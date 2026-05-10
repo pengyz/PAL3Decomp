@@ -2,6 +2,12 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UIBase.h"
 
+// Forward declarations for unnamed functions
+int sub_484E10(...);
+int sub_488C70(...);
+int sub_492E10(...);
+int sub_49A980(...);
+
 // 0x004A3900
 int UIBase::SetItemData(int id, unsigned int data)
 {

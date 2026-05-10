@@ -8,5 +8,4 @@ public:
     static int _CheckStr(); // 0x0053FE90
     static void GetSize(); // 0x0053FEA0
     static void spstr(); // 0x0053FEB0
-    static struct gbRenderEffect * spstr(); // 0x0053FEC0
 };

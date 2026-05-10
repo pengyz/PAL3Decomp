@@ -2,6 +2,15 @@
 #include "pal3/globals.h"
 #include "pal3/gen/RenderTarget4.h"
 
+// Forward declarations for unnamed functions
+int sub_4B6D20(...);
+int sub_4B6D30(...);
+
+// Unnamed globals (extern)
+extern char aEffectscnFrame[];
+extern unsigned char byte_DE6CE0;
+extern int dword_DE6CD8;
+
 // 0x004B6D30
 _DWORD *sub_4B6D30()
 {

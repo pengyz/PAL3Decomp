@@ -15,7 +15,6 @@
 #include "UIStaticRM.h"
 #include "UITabBtn.h"
 #include "st_Manager.h"
-#include "tagRECT.h"
 
 class DealUI;
 class PlayerItem;

@@ -2,6 +2,16 @@
 #include "pal3/globals.h"
 #include "pal3/gen/StateUI.h"
 
+// Forward declarations for unnamed functions
+int sub_484E90(...);
+int sub_484EB0(...);
+int sub_48A310(...);
+int sub_48A330(...);
+int sub_4945E0(...);
+int sub_494600(...);
+int sub_49E860(...);
+int sub_49E880(...);
+
 // 0x004A4960
 int StateUI::Create()
 {

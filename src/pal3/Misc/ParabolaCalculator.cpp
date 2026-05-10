@@ -2,6 +2,13 @@
 #include "pal3/globals.h"
 #include "pal3/gen/ParabolaCalculator.h"
 
+// Forward declarations for unnamed functions
+int sub_4A1CF0(...);
+int sub_523600(...);
+int sub_523670(...);
+int sub_5236E0(...);
+int sub_523820(...);
+
 // 0x00523600
 int sub_523600()
 {
@@ -15,20 +22,20 @@ int sub_523600()
   _BYTE v8[4]; // [esp+0h] [ebp-48h] BYREF
   _DWORD v9[17]; // [esp+4h] [ebp-44h] BYREF
 
-  result = *(this + 439);
+  result = *((_DWORD *)this + 439);
   if ( result )
   {
-    v9[0] = *(this + 439);
+    v9[0] = *((_DWORD *)this + 439);
     v9[16] = 1;
     v8[2] = -1;
     v8[1] = -1;
     v8[0] = -1;
-    v7 = *(this + 441);
-    v6 = *(this + 440);
-    v5 = *(this + 21);
-    v4 = *(this + 20);
-    v3 = *(this + 19);
-    v2 = *(this + 18);
+    v7 = *((_DWORD *)this + 441);
+    v6 = *((_DWORD *)this + 440);
+    v5 = *((_DWORD *)this + 21);
+    v4 = *((_DWORD *)this + 20);
+    v3 = *((_DWORD *)this + 19);
+    v2 = *((_DWORD *)this + 18);
     v8[3] = 62;
     return UIRenderQuad(v2, v3, v4, v5, v6, v7, v8, v9);
   }

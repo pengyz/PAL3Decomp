@@ -2,6 +2,24 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBParabolaWindow.h"
 
+// Forward declarations for unnamed functions
+int sub_4425D0(...);
+int sub_51B710(...);
+int sub_51B810(...);
+int sub_51B860(...);
+int sub_51B920(...);
+int sub_51B950(...);
+int sub_51B9A0(...);
+
+// Unnamed globals (extern)
+extern char aUiCombatContro_21[];
+extern char aWa001[];
+extern int dword_57014C;
+extern int dword_570250;
+extern int dword_57026C;
+extern void *off_570284;
+extern void *off_570298;
+
 // 0x0051B710
 char sub_51B710(gbRefObject ***this, int *a2, int a3)
 {
@@ -12,7 +30,7 @@ char sub_51B710(gbRefObject ***this, int *a2, int a3)
   int v8; // ecx
 
   this->Create(1879048197, a2, a3);
-  *(this + 30) = (gbRefObject **)a3;
+  *((_DWORD *)this + 30) = (gbRefObject **)a3;
   v4 = this + 23;
   if ( (unsigned __int8)CCBLineupWindow::Destroy(this + 23) == 1 )
   {
@@ -81,24 +99,24 @@ int sub_51B810(int this)
 }
 
 // 0x0051B860
-int sub_51B860(_DWORD *this, int a2, int a3, int a4)
+int sub_51B860(int a2, int a3, int a4)
 {
   if ( a2 == 1001 )
   {
     this->GetInstance();
     aWa001->AudioSetPosition(1);
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), a3, a4, 0);
+    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, 0);
   }
   return a2->SendMessage(a3, a4);
 }
 
 // 0x0051B920
-int sub_51B920(int *this)
+int sub_51B920()
 {
   int v2; // ecx
 
   this->SetScroll();
-  v2 = *(this + *(this + 29) + 24);
+  v2 = *(this + *((_DWORD *)this + 29) + 24);
   return (*(int (__thiscall **)(int))(*(_DWORD *)v2 + 4))(v2);
 }
 

@@ -2,6 +2,19 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBProtectWindow.h"
 
+// Forward declarations for unnamed functions
+int sub_51D6E0(...);
+int sub_51D700(...);
+int sub_51D710(...);
+int sub_51DD80(...);
+int sub_51DDA0(...);
+int sub_51F070(...);
+
+// Unnamed globals (extern)
+extern int dword_17AD59C;
+extern float flt_17AD598;
+extern void *off_5705D0;
+
 // 0x0051D6E0
 int sub_51D6E0()
 {
@@ -284,7 +297,7 @@ int sub_51D710(int this)
 }
 
 // 0x0051DD80
-stdiobuf * sub_51DD80(stdiobuf *Block, char a2)
+UIWnd * sub_51DD80(UIWnd *Block, char a2)
 {
   Block->ShowWindow();
   if ( (a2 & 1) != 0 )
@@ -299,39 +312,39 @@ void sub_51DDA0()
   *((_BYTE *)this + 8025) = 1;
   UIItem::UIItem((int)this + 670672);
   UIItem::UIItem((int)this + 669304);
-  stdiobuf::~stdiobuf((std::ios_base *)this + 194);
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 7512));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 7264));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 7016));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 6752));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 6504));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 6256));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 5992));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 5744));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 5496));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 5232));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 4984));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 4736));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 4472));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 4224));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 3976));
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 3728));
-  (std::ios_base *->Destroy2()((char *)this + 3368));
-  (std::ios_base *->Destroy2()((char *)this + 3024));
-  (std::ios_base *->Destroy2()this + 67);
-  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 2432));
-  (std::ios_base *->Destroy2()((char *)this + 2088));
-  (std::ios_base *->Destroy2()((char *)this + 1744));
+  UIWnd::~UIWnd((UIWnd *)this + 194);
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 7512));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 7264));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 7016));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 6752));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 6504));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 6256));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 5992));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 5744));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 5496));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 5232));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 4984));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 4736));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 4472));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 4224));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 3976));
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 3728));
+  (UIWnd *->Destroy2()((char *)this + 3368));
+  (UIWnd *->Destroy2()((char *)this + 3024));
+  (UIWnd *->Destroy2()this + 67);
+  UIWnd::~UIWnd((UIWnd *)((char *)this + 2432));
+  (UIWnd *->Destroy2()((char *)this + 2088));
+  (UIWnd *->Destroy2()((char *)this + 1744));
   `eh vector destructor iterator'((char *)this + 816, 0x98u, 6, (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);
-  (std::ios_base *->_UIFrameWnd()((char *)this + 664));
-  (std::ios_base *->_UIFrameWnd()((char *)this + 512));
-  (std::ios_base *->_UIFrameWnd()this + 9);
-  stdiobuf::~stdiobuf((std::ios_base *)this);
+  (UIWnd *->_UIFrameWnd()((char *)this + 664));
+  (UIWnd *->_UIFrameWnd()((char *)this + 512));
+  (UIWnd *->_UIFrameWnd()this + 9);
+  UIWnd::~UIWnd((UIWnd *)this);
 }
 
 // 0x0051F070
 int sub_51F070(int a2)
 {
-  *(this + 2003) = a2;
+  *((_DWORD *)this + 2003) = a2;
   return a2;
 }

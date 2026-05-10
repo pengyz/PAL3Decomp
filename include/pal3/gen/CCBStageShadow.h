@@ -1,11 +1,7 @@
 #pragma once
 // Auto-generated: CCBStageShadow
 
-#include "gbGeomQuad.h"
-
 class CCBStage;
-class gbRenderEffect;
-class gbTexture;
 class gbTextureArray;
 
 class CCBStageShadow {

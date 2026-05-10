@@ -9,7 +9,6 @@
 #include "UIStatic.h"
 #include "UIStaticFlex.h"
 #include "_TimeMgr.h"
-#include "tagRECT.h"
 
 class UIWnd;
 

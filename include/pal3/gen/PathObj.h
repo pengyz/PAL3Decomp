@@ -1,8 +1,6 @@
 #pragma once
 // Auto-generated: PathObj
 
-#include "gbVec3D.h"
-
 class PathObj {
 public:
     gbVec3D points[256]; // +0x0

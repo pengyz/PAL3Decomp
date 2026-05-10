@@ -2,6 +2,22 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBStageEffect.h"
 
+// Forward declarations for unnamed functions
+int sub_508E30(...);
+int sub_508F30(...);
+int sub_509060(...);
+int sub_509080(...);
+int sub_5090A0(...);
+
+// Unnamed globals (extern)
+extern char aCbdataEfflinke[];
+extern char aCouldnTOpenCbE_0[];
+extern char aCouldnTOpenEff_0[];
+extern char aDProjectPal3Co_7[];
+extern int dword_17AB584;
+extern int dword_17ABC64;
+extern float flt_17ABC60;
+
 // 0x00508E30
 char sub_508E30(int this)
 {

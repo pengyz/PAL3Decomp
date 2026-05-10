@@ -2,6 +2,46 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffGrid.h"
 
+// Forward declarations for unnamed functions
+int sub_4C9550(...);
+int sub_4C9610(...);
+int sub_4C9650(...);
+int sub_4C98F0(...);
+int sub_4CA9A0(...);
+int sub_4CAB30(...);
+int sub_4CABE0(...);
+int sub_4CAC70(...);
+
+// Unnamed globals (extern)
+extern char aDProjectPal3Co_14[];
+extern char aNewFailInCeffg[];
+extern void *off_56F62C;
+extern void *off_56F914;
+extern void *off_56F920;
+extern void *off_56F95C;
+extern int unk_5D4D3C;
+extern int unk_5D4D7C;
+extern int unk_5D4DAC;
+extern int unk_5D4DB8;
+extern int unk_5D4DC4;
+extern int unk_5D4DCC;
+extern int unk_5D4DD4;
+extern int unk_5D4DF4;
+extern int unk_5D4E00;
+extern int unk_5D4E24;
+extern int unk_5D4E30;
+extern int unk_5D4E38;
+extern int unk_5D4E40;
+extern int unk_5D4FFC;
+extern int unk_5D5008;
+extern int unk_5D5014;
+extern int unk_5D5038;
+extern int unk_5D5040;
+extern int unk_5D5048;
+extern int unk_5D5050;
+extern int unk_5D51B0;
+extern int unk_FFFFFF;
+
 // 0x004C9610
 _DWORD *sub_4C9610()
 {

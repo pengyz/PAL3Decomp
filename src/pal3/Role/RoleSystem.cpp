@@ -2,6 +2,42 @@
 #include "pal3/globals.h"
 #include "pal3/gen/RoleSystem.h"
 
+// Forward declarations for unnamed functions
+int sub_407DC0(...);
+int sub_408460(...);
+int sub_4122C0(...);
+int sub_4126D0(...);
+int sub_412D90(...);
+int sub_4132B0(...);
+int sub_413C00(...);
+int sub_4142E0(...);
+int sub_416550(...);
+int sub_416620(...);
+int sub_41C1E0(...);
+int sub_421020(...);
+int sub_421230(...);
+int sub_421440(...);
+int sub_4215B0(...);
+int sub_4218B0(...);
+int sub_424C20(...);
+
+// Unnamed globals (extern)
+extern char aTagWeapon1[];
+extern char aTagWeapon2[];
+extern int dword_58615C;
+extern int dword_58B29C;
+extern int dword_58B2B0;
+extern int dword_58B2C4;
+extern int dword_58B328;
+extern int dword_58B33C;
+extern int dword_58B350;
+extern int dword_58B38C;
+extern int dword_58B3B4;
+extern int dword_58B3C8;
+extern int dword_58B3DC;
+extern int dword_58B3F0;
+extern int dword_5D0750;
+
 // 0x0040BE50
 int * RoleSystem::Init()
 {

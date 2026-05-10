@@ -2,6 +2,9 @@
 #include "pal3/globals.h"
 #include "pal3/gen/SoundSystem.h"
 
+// Forward declarations for unnamed functions
+int sub_41ED00(...);
+
 // 0x0041ED00
 int sub_41ED00()
 {

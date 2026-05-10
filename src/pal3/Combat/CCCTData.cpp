@@ -2,6 +2,101 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCCTData.h"
 
+// Forward declarations for unnamed functions
+int sub_41CA30(...);
+int sub_5058F0(...);
+int sub_505930(...);
+int sub_506020(...);
+int sub_5060D0(...);
+int sub_5062D0(...);
+int sub_506340(...);
+int sub_5075E0(...);
+int sub_507B20(...);
+int sub_5081A0(...);
+int sub_5081C0(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed[];
+extern char aDProjectPal3Co_6[];
+extern char aUiCombatPointe[];
+extern unsigned char byte_17AAEE0;
+extern unsigned char byte_17AAF21;
+extern unsigned char byte_17AAF64;
+extern int dword_17AAD4C;
+extern int dword_17AAD50;
+extern int dword_17AAD58;
+extern int dword_17AAD5C;
+extern int dword_17AAD64;
+extern int dword_17AAD68;
+extern int dword_17AAD70;
+extern int dword_17AAD74;
+extern int dword_17AAD90;
+extern int dword_17AAD94;
+extern int dword_17AAD9C;
+extern int dword_17AADA0;
+extern int dword_17AADA8;
+extern int dword_17AADAC;
+extern int dword_17AADB4;
+extern int dword_17AADB8;
+extern int dword_17AADD4;
+extern int dword_17AADD8;
+extern int dword_17AADE0;
+extern int dword_17AADE4;
+extern int dword_17AADEC;
+extern int dword_17AADF0;
+extern int dword_17AADF8;
+extern int dword_17AADFC;
+extern int dword_17AAE18;
+extern int dword_17AAE1C;
+extern int dword_17AAE24;
+extern int dword_17AAE28;
+extern int dword_17AAE30;
+extern int dword_17AAE34;
+extern int dword_17AAE3C;
+extern int dword_17AAE40;
+extern int dword_17AAE5C;
+extern int dword_17AAE60;
+extern int dword_17AAE68;
+extern int dword_17AAE6C;
+extern int dword_17AAE74;
+extern int dword_17AAE78;
+extern int dword_17AAE80;
+extern int dword_17AAE84;
+extern int dword_17AAEA0;
+extern int dword_17AAEA4;
+extern int dword_17AAEAC;
+extern int dword_17AAEB0;
+extern int dword_17AAEB8;
+extern int dword_17AAEBC;
+extern int dword_17AAEC4;
+extern int dword_17AAEC8;
+extern float flt_17AAD48;
+extern float flt_17AAD54;
+extern float flt_17AAD60;
+extern float flt_17AAD6C;
+extern float flt_17AAD8C;
+extern float flt_17AAD98;
+extern float flt_17AADA4;
+extern float flt_17AADB0;
+extern float flt_17AADD0;
+extern float flt_17AADDC;
+extern float flt_17AADE8;
+extern float flt_17AADF4;
+extern float flt_17AAE14;
+extern float flt_17AAE20;
+extern float flt_17AAE2C;
+extern float flt_17AAE38;
+extern float flt_17AAE58;
+extern float flt_17AAE64;
+extern float flt_17AAE70;
+extern float flt_17AAE7C;
+extern float flt_17AAE9C;
+extern float flt_17AAEA8;
+extern float flt_17AAEB4;
+extern float flt_17AAEC0;
+extern void *off_56A66C;
+extern int unk_17AAD89;
+
 // 0x0041C900
 void CCCTData::CalcDist(float a1, float a2)
 {
@@ -52,13 +147,13 @@ int sub_5058F0(_DWORD *a2, _DWORD *a3)
 {
   int result; // eax
 
-  *(this + 107557) = *a2;
-  *(this + 107558) = a2[1];
-  *(this + 107559) = a2[2];
-  *(this + 107560) = *a3;
-  *(this + 107561) = a3[1];
+  *((_DWORD *)this + 107557) = *a2;
+  *((_DWORD *)this + 107558) = a2[1];
+  *((_DWORD *)this + 107559) = a2[2];
+  *((_DWORD *)this + 107560) = *a3;
+  *((_DWORD *)this + 107561) = a3[1];
   result = a3[2];
-  *(this + 107562) = result;
+  *((_DWORD *)this + 107562) = result;
   return result;
 }
 
@@ -362,7 +457,7 @@ char sub_5060D0()
     v4 = 0;
   }
   v8 = -1;
-  *(this + 107556) = v4;
+  *((_DWORD *)this + 107556) = v4;
   if ( !v4 )
   {
     qmemcpy(
@@ -459,7 +554,7 @@ int sub_5062D0(int a2)
   int v8; // [esp+0h] [ebp-10h]
   int v9; // [esp+4h] [ebp-Ch]
 
-  v2 = *(this + 107501);
+  v2 = *((_DWORD *)this + 107501);
   v3 = *(float *)(v2 + 496);
   v4 = *(float *)(v2 + 492);
   v8 = *(_DWORD *)(v2 + 500);

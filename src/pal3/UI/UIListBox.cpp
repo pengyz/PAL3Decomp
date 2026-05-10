@@ -2,19 +2,57 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UIListBox.h"
 
+// Forward declarations for unnamed functions
+int sub_432680(...);
+int sub_43DCD0(...);
+int sub_43DCF0(...);
+int sub_43DDF0(...);
+int sub_43DE40(...);
+int sub_43DEA0(...);
+int sub_43DEC0(...);
+int sub_43DEF0(...);
+int sub_43DF10(...);
+int sub_43DF20(...);
+int sub_43DF70(...);
+int sub_43E100(...);
+int sub_43E120(...);
+int sub_43E330(...);
+int sub_43E3B0(...);
+int sub_43E440(...);
+int sub_43E480(...);
+int sub_43E520(...);
+int sub_43E5C0(...);
+int sub_43E7D0(...);
+int sub_43E8A0(...);
+int sub_43EBA0(...);
+int sub_43F360(...);
+int sub_43F520(...);
+int sub_43F6D0(...);
+int sub_4413C0(...);
+int sub_442060(...);
+int sub_5372D0(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed[];
+extern char aDProjectPal3Ui[];
+extern char aUiCommonScroll[];
+extern int dword_1894B78;
+extern void *off_56AD20;
+extern void *off_56AD40;
+
 // 0x0043DCD0
 _DWORD * sub_43DCD0()
 {
   UIWnd::UIWnd();
   *this = &off_56AD20;
-  *(this + 17) = 0;
+  *((_DWORD *)this + 17) = 0;
   return this;
 }
 
 // 0x0043DCF0
-stdiobuf * sub_43DCF0(stdiobuf *Block, char a2)
+UIWnd * sub_43DCF0(UIWnd *Block, char a2)
 {
-  stdiobuf::~stdiobuf(Block);
+  UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return Block;
@@ -47,12 +85,12 @@ int sub_43DDF0()
   int result; // eax
   int v3[17]; // [esp+4h] [ebp-44h] BYREF
 
-  result = *(this + 14);
+  result = *((_DWORD *)this + 14);
   if ( result )
   {
-    if ( *(this + 17) )
+    if ( *((_DWORD *)this + 17) )
     {
-      v3[0] = *(this + 17);
+      v3[0] = *((_DWORD *)this + 17);
       v3[16] = 1;
       _TextureLib_Data::SetLibFolder((int)(this + 4), (int)(this + 2), (int)v3, 276, 0, COERCE_FLOAT(1));
     }
@@ -66,11 +104,11 @@ int sub_43DE40(gbRefObject **this)
 {
   gbRefObject *v2; // ecx
 
-  v2 = *(this + 17);
+  v2 = *((_DWORD *)this + 17);
   if ( v2 )
   {
     v2->Release();
-    *(this + 17) = 0;
+    *((_DWORD *)this + 17) = 0;
   }
   return this->UpdateChildren();
 }
@@ -191,7 +229,7 @@ char *__thiscall UIListBox::UpdateKeyCtrl(UIListBox *this)
 }
 
 // 0x0043E100
-std::ios_base * sub_43E100(std::ios_base *Block, char a2)
+UIWnd * sub_43E100(UIWnd *Block, char a2)
 {
   Block->DeleteRow();
   if ( (a2 & 1) != 0 )
@@ -201,7 +239,7 @@ std::ios_base * sub_43E100(std::ios_base *Block, char a2)
 
 // 0x0043E120
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void __thiscall sub_43E120(std::ios_base *this)
+void __thiscall sub_43E120(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AD40;
   UIListBox::GetItemCount();
@@ -292,7 +330,7 @@ void sub_43E330(int a2, int a3)
   {
     OpenBaseFile::OpenBaseFile(&a2);
     v5 = (gbTexture *)(*(int (__thiscall **)(int, int))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, v3);
-    *(this + 288) = v5;
+    *((_DWORD *)this + 288) = v5;
     if ( v5 )
       v5->LoadTexture(1);
     (struct gbVFileSystem **->OpenNULLFile()&a2);
@@ -307,18 +345,18 @@ int sub_43E3B0(int a2, _DWORD *a3, int a4, int a5, char a6)
 
   if ( a2 )
     sub_4413C0(a2, a6);
-  *(this + 282) = *a3;
-  *(this + 283) = a3[1];
-  *(this + 284) = a3[2];
-  *(this + 285) = a3[3];
-  *(this + 282) = *(this + 284) - a4;
+  *((_DWORD *)this + 282) = *a3;
+  *((_DWORD *)this + 283) = a3[1];
+  *((_DWORD *)this + 284) = a3[2];
+  *((_DWORD *)this + 285) = a3[3];
+  *((_DWORD *)this + 282) = *((_DWORD *)this + 284) - a4;
   UIWnd::GetRect(this + 282);
-  v8 = *(this + 101);
-  v9 = a5 + *(this + 97);
-  *(this + 59) = a5;
-  *(this + 99) = v9;
-  *(this + 103) = a5 + v8;
-  *(this + 293) = a4;
+  v8 = *((_DWORD *)this + 101);
+  v9 = a5 + *((_DWORD *)this + 97);
+  *((_DWORD *)this + 59) = a5;
+  *((_DWORD *)this + 99) = v9;
+  *((_DWORD *)this + 103) = a5 + v8;
+  *((_DWORD *)this + 293) = a4;
   return a5;
 }
 
@@ -329,11 +367,11 @@ int sub_43E440(int a2)
 
   sub_43F520(this);
   v3 = a2;
-  if ( a2 >= *(this + 62) )
-    v3 = *(this + 62);
-  if ( v3 <= *(this + 61) )
-    v3 = *(this + 61);
-  *(this + 279) = v3;
+  if ( a2 >= *((_DWORD *)this + 62) )
+    v3 = *((_DWORD *)this + 62);
+  if ( v3 <= *((_DWORD *)this + 61) )
+    v3 = *((_DWORD *)this + 61);
+  *((_DWORD *)this + 279) = v3;
   return sub_442060(v3);
 }
 
@@ -347,27 +385,27 @@ int sub_43E480(int a2, int a3, int a4)
 
   if ( a2 != 1005 )
     return a2->SendMessage(a3, a4);
-  if ( *(this + 297) )
+  if ( *((_DWORD *)this + 297) )
   {
-    v6 = *(this + 279);
-    *(this + 279) = a4;
+    v6 = *((_DWORD *)this + 279);
+    *((_DWORD *)this + 279) = a4;
     v7 = this->CreateChild();
     if ( v7 == -1 )
     {
-      *(this + 279) = v6;
+      *((_DWORD *)this + 279) = v6;
     }
-    else if ( *(_DWORD *)(*(this + 299) + 4 * v7) )
+    else if ( *(_DWORD *)(*((_DWORD *)this + 299) + 4 * v7) )
     {
-      v8 = *(this + 8);
+      v8 = *((_DWORD *)this + 8);
       if ( v8 )
-        (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v8 + 24))(v8, 1006, *(this + 3), v7);
+        (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v8 + 24))(v8, 1006, *((_DWORD *)this + 3), v7);
     }
   }
   else
   {
-    *(this + 279) = a4;
+    *((_DWORD *)this + 279) = a4;
   }
-  v9 = *(this + 8);
+  v9 = *((_DWORD *)this + 8);
   if ( v9 )
     (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1005, 0, 0);
   return 1;
@@ -379,12 +417,12 @@ int sub_43E520(gbRefObject **this)
   gbRefObject *v2; // ecx
 
   sub_43F360();
-  v2 = *(this + 286);
-  *(this + 108) = 0;
+  v2 = *((_DWORD *)this + 286);
+  *((_DWORD *)this + 108) = 0;
   if ( v2 )
   {
     v2->Release();
-    *(this + 286) = 0;
+    *((_DWORD *)this + 286) = 0;
   }
   return this->UpdateChildren();
 }
@@ -445,12 +483,12 @@ int sub_43E5C0(char *Source, int a3)
   else
   {
     strncpy(v5 + 4, Source, 0x40u);
-    *((_DWORD *)v5 + 17) = *(this + 1);
+    *((_DWORD *)v5 + 17) = *((_DWORD *)this + 1);
   }
-  v7 = *(this + 126);
+  v7 = *((_DWORD *)this + 126);
   PtrArray::SetAt(this + 125, v7, (int)v5);
   v8 = 1;
-  if ( *(this + 108) > 1 )
+  if ( *((_DWORD *)this + 108) > 1 )
   {
     v9 = this + 146;
     do
@@ -468,26 +506,26 @@ int sub_43E5C0(char *Source, int a3)
       ++v8;
       v9 += 21;
     }
-    while ( v8 < *(this + 108) );
+    while ( v8 < *((_DWORD *)this + 108) );
   }
   sub_43F520(this);
-  v12 = *(this + 300);
+  v12 = *((_DWORD *)this + 300);
   v17 = 1;
   sub_5372D0(v12, 1, &v17);
-  v13 = *(this + 299);
+  v13 = *((_DWORD *)this + 299);
   if ( v13 )
   {
-    if ( (*(this + 300) - v13) >> 2 )
+    if ( (*((_DWORD *)this + 300) - v13) >> 2 )
     {
-      if ( *(this + 280) == -1 )
+      if ( *((_DWORD *)this + 280) == -1 )
       {
         sub_43F6D0(0);
-        if ( *(this + 280) != -1 )
+        if ( *((_DWORD *)this + 280) != -1 )
         {
           v14 = this->CreateChild();
-          v15 = *(this + 8);
+          v15 = *((_DWORD *)this + 8);
           if ( v15 )
-            (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v15 + 24))(v15, 1006, *(this + 3), v14);
+            (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v15 + 24))(v15, 1006, *((_DWORD *)this + 3), v14);
         }
       }
     }
@@ -553,31 +591,31 @@ int sub_43E8A0()
   int v34[16]; // [esp+20h] [ebp-44h] BYREF
   int v35; // [esp+60h] [ebp-4h]
 
-  result = *(this + 14);
+  result = *((_DWORD *)this + 14);
   if ( result )
   {
-    if ( *(this + 286) )
+    if ( *((_DWORD *)this + 286) )
     {
-      v34[0] = *(this + 286);
-      v3 = *(this + 287);
+      v34[0] = *((_DWORD *)this + 286);
+      v3 = *((_DWORD *)this + 287);
       v35 = 1;
       _TextureLib_Data::SetLibFolder((int)(this + 4), (int)(this + 2), (int)v34, 276, v3, COERCE_FLOAT(1));
     }
-    else if ( *(this + 18) )
+    else if ( *((_DWORD *)this + 18) )
     {
-      _TextureLib_Data::~_TextureLib_Data(*(this + 4), *(this + 5), *(this + 6), *(this + 7), &MEMORY[0xD91780]);
+      _TextureLib_Data::~_TextureLib_Data(*((_DWORD *)this + 4), *((_DWORD *)this + 5), *((_DWORD *)this + 6), *((_DWORD *)this + 7), &MEMORY[0xD91780]);
     }
-    v4 = *(this + 295) + *(this + 4) + 8;
+    v4 = *((_DWORD *)this + 295) + *((_DWORD *)this + 4) + 8;
     v30 = this->SetDefaultSel();
     v31 = 0;
-    if ( *(this + 108) > 0 )
+    if ( *((_DWORD *)this + 108) > 0 )
     {
       v5 = this + 126;
       v29 = this + 126;
       do
       {
-        v6 = *(this + 279);
-        v7 = *(this + 5) + *(this + 296) + 8;
+        v6 = *((_DWORD *)this + 279);
+        v7 = *((_DWORD *)this + 5) + *((_DWORD *)this + 296) + 8;
         if ( v6 < v6 + v30 )
         {
           do
@@ -595,65 +633,65 @@ int sub_43E8A0()
               v35 = 1;
               _TextureLib_Data::SetLibFolder((int)v32, (int)(this + 2), (int)v34, 276, 0, COERCE_FLOAT(1));
             }
-            else if ( *(_DWORD *)(*(this + 299) + 4 * v6) )
+            else if ( *(_DWORD *)(*((_DWORD *)this + 299) + 4 * v6) )
             {
-              v9 = v6 < 0 || v6 >= *(this + 126) ? 0 : *(_DWORD *)(*(this + 125) + 4 * v6);
-              UIRenderQuad(v4, v7, v8 + 1, v9 + 68, *(this + 278));
+              v9 = v6 < 0 || v6 >= *((_DWORD *)this + 126) ? 0 : *(_DWORD *)(*((_DWORD *)this + 125) + 4 * v6);
+              UIRenderQuad(v4, v7, v8 + 1, v9 + 68, *((_DWORD *)this + 278));
             }
             else
             {
-              UIRenderQuad(v4, v7, v8 + 1, &MEMORY[0xD91780], *(this + 278));
+              UIRenderQuad(v4, v7, v8 + 1, &MEMORY[0xD91780], *((_DWORD *)this + 278));
             }
-            v7 += *(this + 277);
+            v7 += *((_DWORD *)this + 277);
             ++v6;
             v5 = v29;
           }
-          while ( v6 < v30 + *(this + 279) );
+          while ( v6 < v30 + *((_DWORD *)this + 279) );
         }
         v4 += v5[3];
         v5 += 21;
-        v10 = ++v31 < *(this + 108);
+        v10 = ++v31 < *((_DWORD *)this + 108);
         v29 = v5;
       }
       while ( v10 );
     }
     v11 = this->CreateChild();
-    v12 = *(this + 297);
+    v12 = *((_DWORD *)this + 297);
     if ( v12 )
     {
-      v13 = *(this + 280) != -1;
-      if ( *(this + 280) == -1 || !*(_DWORD *)(*(this + 299) + 4 * v11) )
+      v13 = *((_DWORD *)this + 280) != -1;
+      if ( *((_DWORD *)this + 280) == -1 || !*(_DWORD *)(*((_DWORD *)this + 299) + 4 * v11) )
         return this->GetID();
     }
     else
     {
-      v13 = *(this + 281) != -1;
+      v13 = *((_DWORD *)this + 281) != -1;
     }
     if ( v13 )
     {
-      v14 = *(this + 4);
-      v15 = *(this + 5);
-      v16 = *(this + 296);
-      v17 = *(this + 6);
-      v33 = *(this + 7);
+      v14 = *((_DWORD *)this + 4);
+      v15 = *((_DWORD *)this + 5);
+      v16 = *((_DWORD *)this + 296);
+      v17 = *((_DWORD *)this + 6);
+      v33 = *((_DWORD *)this + 7);
       v18 = v16 + v15;
-      v19 = *(this + 295) + v14 + 4;
-      v20 = -2 - *(this + 293) + v17;
-      v21 = *(this + 277);
-      v22 = v12 ? *(this + 280) : *(this + 281) - *(this + 279);
+      v19 = *((_DWORD *)this + 295) + v14 + 4;
+      v20 = -2 - *((_DWORD *)this + 293) + v17;
+      v21 = *((_DWORD *)this + 277);
+      v22 = v12 ? *((_DWORD *)this + 280) : *((_DWORD *)this + 281) - *((_DWORD *)this + 279);
       v23 = v18 + v21 * v22 + 8;
       v24 = v21 + v23 - 2;
-      v25 = *(this + 7);
+      v25 = *((_DWORD *)this + 7);
       if ( v24 > v25 )
-        v24 = *(this + 7);
-      if ( v23 >= *(this + 5) && v24 <= v25 )
+        v24 = *((_DWORD *)this + 7);
+      if ( v23 >= *((_DWORD *)this + 5) && v24 <= v25 )
       {
-        if ( *(this + 288) )
+        if ( *((_DWORD *)this + 288) )
         {
-          v34[0] = *(this + 288);
-          v26 = *(this + 290);
-          v28 = v20 + *(this + 292);
-          v27 = v19 + *(this + 291);
+          v34[0] = *((_DWORD *)this + 288);
+          v26 = *((_DWORD *)this + 290);
+          v28 = v20 + *((_DWORD *)this + 292);
+          v27 = v19 + *((_DWORD *)this + 291);
           v35 = 1;
           UIDestorySystem(v27, v23 + v26, v28, v26 + v24, this + 294, v34);
           return this->GetID();
@@ -669,5 +707,5 @@ int sub_43E8A0()
 // 0x0043EBA0
 int sub_43EBA0()
 {
-  return (*(this + 7) - *(this + 5)) / *(this + 277);
+  return (*((_DWORD *)this + 7) - *((_DWORD *)this + 5)) / *((_DWORD *)this + 277);
 }

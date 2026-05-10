@@ -2,6 +2,9 @@
 #include "pal3/globals.h"
 #include "pal3/gen/Combat.h"
 
+// Unnamed globals (extern)
+extern unsigned char byte_17A9927;
+
 // 0x004DFD20
 char Combat::LogMessage(int a1, int a2, int a3, char *format)
 {

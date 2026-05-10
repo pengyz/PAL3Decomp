@@ -2,6 +2,15 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UIManager.h"
 
+// Forward declarations for unnamed functions
+int sub_418260(...);
+
+// Unnamed globals (extern)
+extern char aGfxscriptShado[];
+extern char aGfxscriptShado_0[];
+extern char aShadowTga[];
+extern char aViewm[];
+
 // 0x0041F370
 void UIManager::Render()
 {

@@ -1,9 +1,9 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/CCBControl.h"
-#include "pal3/gen/CCBSystem.h"
 
-int sub_4DC610(void *);  // forward decl
+// Forward declarations for unnamed functions
+int sub_4DC610(...);
 
 // 0x004DC240
 int CCBControl::Update()

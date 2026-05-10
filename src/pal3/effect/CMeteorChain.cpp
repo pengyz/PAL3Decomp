@@ -2,6 +2,12 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CMeteorChain.h"
 
+// Forward declarations for unnamed functions
+int sub_4CD7E0(...);
+
+// Unnamed globals (extern)
+extern int dword_DE9CA8;
+
 // 0x004CD0A0
 void CMeteorChain::CMeteorChain()
 {
@@ -30,11 +36,11 @@ int sub_4CD7E0(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   unsigned int v14; // eax
   _DWORD *v15; // edx
 
-  v8 = *(this + 8);
+  v8 = *((_DWORD *)this + 8);
   v9 = 0;
   if ( v8 <= 0 )
     return -1;
-  v10 = *(_DWORD *)(*(this + 3) + 152 * a2);
+  v10 = *(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2);
   for ( i = (_BYTE *)(v10 + 64); *i; i += 72 )
   {
     if ( ++v9 >= v8 )
@@ -65,6 +71,6 @@ int sub_4CD7E0(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
     v15[2] = a5[2];
     v15[3] = a5[3];
   }
-  ++*(_DWORD *)(*(this + 3) + 152 * a2 + 4);
+  ++*(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2 + 4);
   return v9;
 }

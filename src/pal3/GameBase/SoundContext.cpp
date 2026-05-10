@@ -2,6 +2,14 @@
 #include "pal3/globals.h"
 #include "pal3/gen/SoundContext.h"
 
+// Forward declarations for unnamed functions
+int sub_53D0B0(...);
+int sub_53D150(...);
+
+// Unnamed globals (extern)
+extern unsigned char byte_17B3ED0;
+extern int dword_17B3EB0;
+
 // 0x0053D150
 _DWORD *sub_53D150()
 {

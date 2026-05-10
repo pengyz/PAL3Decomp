@@ -2,6 +2,75 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBAI.h"
 
+// Forward declarations for unnamed functions
+int sub_4D6FF0(...);
+int sub_4D7040(...);
+int sub_4D7080(...);
+int sub_4D70C0(...);
+int sub_4D7120(...);
+int sub_4D71E0(...);
+int sub_4D7820(...);
+int sub_4D7EF0(...);
+int sub_4D8580(...);
+int sub_4D86D0(...);
+int sub_4D8760(...);
+int sub_4D8AF0(...);
+int sub_4D8F20(...);
+int sub_4D9130(...);
+int sub_4D9360(...);
+int sub_4D9380(...);
+int sub_4D93D0(...);
+int sub_4D94F0(...);
+int sub_4D9740(...);
+int sub_4D9920(...);
+int sub_4D9A70(...);
+int sub_4D9BA0(...);
+int sub_4D9D00(...);
+int sub_4D9E20(...);
+int sub_4D9F50(...);
+int sub_4DA0A0(...);
+int sub_4DA1D0(...);
+int sub_4DA350(...);
+int sub_4DA4F0(...);
+int sub_4DA640(...);
+int sub_4DA770(...);
+int sub_4DA900(...);
+int sub_4DAA40(...);
+int sub_4DAB70(...);
+int sub_4DACA0(...);
+int sub_4DADD0(...);
+int sub_4DAF00(...);
+int sub_4DB030(...);
+int sub_4DB160(...);
+int sub_4DB280(...);
+int sub_4DB2A0(...);
+int sub_4DB2C0(...);
+int sub_4DB310(...);
+int sub_4DB360(...);
+int sub_4F2C30(...);
+int sub_4F5330(...);
+int sub_4F5D00(...);
+int sub_4F6000(...);
+int sub_4F61D0(...);
+int sub_4F6370(...);
+int sub_4F6690(...);
+int sub_4F6860(...);
+int sub_4F6A80(...);
+int sub_4F6BB0(...);
+int sub_4FB6B0(...);
+int sub_515CE0(...);
+
+// Unnamed globals (extern)
+extern int dword_17A89C8;
+extern int dword_17A89CC;
+extern int dword_17A89D0;
+extern int dword_17A89D4;
+extern int dword_17A89D8;
+extern int dword_17A89DC;
+extern int dword_17A89E0;
+extern int dword_17A89E4;
+extern int unk_1010101;
+
 // 0x004014F0
 char CCBAI::Thunk_GetValue(int a1, int a2)
 {
@@ -52,9 +121,9 @@ int sub_4D7040()
 _DWORD * sub_4D7080(_DWORD *a2)
 {
   memset(this, 0, 0xE50u);
-  *(this + 3) = a2;
-  *(this + 4) = a2[4];
-  *(this + 5) = *a2;
+  *((_DWORD *)this + 3) = a2;
+  *((_DWORD *)this + 4) = a2[4];
+  *((_DWORD *)this + 5) = *a2;
   return this;
 }
 
@@ -86,7 +155,7 @@ char sub_4D7120(int a2)
   v3 = 0;
   if ( (int)a2->SetRoleField(0) > 0 )
   {
-    v4 = *(_DWORD *)(*(_DWORD *)(*(this + 3) + 20) + 4 * a2 + 24);
+    v4 = *(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 3) + 20) + 4 * a2 + 24);
     *(float *)(v4 + 6632) = *(float *)(v4 + 6636);
   }
   if ( (unsigned __int8)a2->GetRoleField(18) )
@@ -142,7 +211,7 @@ char sub_4D71E0(int a2)
     g_RandSeed = v4;
     if ( ((v4 >> 16) & 0x7FFF) % 3 == 1 )
     {
-      if ( *(_BYTE *)(*(this + 4) + v5 + 577) )
+      if ( *(_BYTE *)(*((_DWORD *)this + 4) + v5 + 577) )
         break;
     }
     v5 += 892;
@@ -161,9 +230,9 @@ LABEL_12:
     v8 = 892 * v6;
     for ( i = this + 40 * v6 + 412; ; i += 40 )
     {
-      if ( *(_BYTE *)(v7 + *(this + 4) + 577) )
+      if ( *(_BYTE *)(v7 + *((_DWORD *)this + 4) + 577) )
       {
-        if ( !(unsigned __int8)v6->IsRoleAlive() || *(_BYTE *)(v7 + *(this + 4) + 583) == 1 )
+        if ( !(unsigned __int8)v6->IsRoleAlive() || *(_BYTE *)(v7 + *((_DWORD *)this + 4) + 583) == 1 )
         {
           v6 = v10;
         }
@@ -178,7 +247,7 @@ LABEL_12:
             if ( i[8] < 100 && (unsigned __int8)a2->DemandChecker(v10, i + 8) == 1 )
               return 1;
           }
-          if ( (int)*(this + 840) < 100 && (unsigned __int8)a2->CastRecoverMagic(this + 840) )
+          if ( (int)*((_DWORD *)this + 840) < 100 && (unsigned __int8)a2->CastRecoverMagic(this + 840) )
             return 1;
           if ( v7 >= 4460 )
           {
@@ -195,7 +264,7 @@ LABEL_12:
               }
             }
           }
-          if ( (int)*(this + 896) < 100 )
+          if ( (int)*((_DWORD *)this + 896) < 100 )
           {
             ++g_nRandCallCount;
             g_RandSeed = 214013 * g_RandSeed + 2531011;
@@ -298,7 +367,7 @@ char sub_4D7820(int a2)
     g_RandSeed = v3;
     if ( ((v3 >> 16) & 0x7FFF) % 3 == 1 )
     {
-      if ( *(_BYTE *)(*(this + 4) + v4 + 577) )
+      if ( *(_BYTE *)(*((_DWORD *)this + 4) + v4 + 577) )
         break;
     }
     v4 += 892;
@@ -316,7 +385,7 @@ LABEL_10:
     v6 = 892 * v5;
     v12 = 892 * v5;
     v11 = this + 40 * v5 + 400;
-    while ( !*(_BYTE *)(v6 + *(this + 4) + 577) )
+    while ( !*(_BYTE *)(v6 + *((_DWORD *)this + 4) + 577) )
     {
 LABEL_75:
       v6 += 892;
@@ -326,7 +395,7 @@ LABEL_75:
       if ( v6 >= 9812 )
         return 0;
     }
-    if ( !(unsigned __int8)v5->IsRoleAlive() || *(_BYTE *)(v6 + *(this + 4) + 583) == 1 )
+    if ( !(unsigned __int8)v5->IsRoleAlive() || *(_BYTE *)(v6 + *((_DWORD *)this + 4) + 583) == 1 )
     {
 LABEL_74:
       v5 = v13;
@@ -341,7 +410,7 @@ LABEL_74:
       if ( v11[20] < 100 && (unsigned __int8)a2->DemandChecker(v13, v11 + 20) )
         return 1;
     }
-    if ( (int)*(this + 840) < 100 && (unsigned __int8)a2->CastRecoverMagic(this + 840) )
+    if ( (int)*((_DWORD *)this + 840) < 100 && (unsigned __int8)a2->CastRecoverMagic(this + 840) )
       return 1;
     v7 = v13;
     if ( v13 == a2 && *v11 < 100 )
@@ -369,7 +438,7 @@ LABEL_74:
         }
       }
     }
-    if ( (int)*(this + 896) < 100 )
+    if ( (int)*((_DWORD *)this + 896) < 100 )
     {
       ++g_nRandCallCount;
       g_RandSeed = 214013 * g_RandSeed + 2531011;
@@ -485,7 +554,7 @@ char sub_4D7EF0(int a2)
     g_RandSeed = v3;
     if ( ((v3 >> 16) & 0x7FFF) % 3 == 1 )
     {
-      if ( *(_BYTE *)(*(this + 4) + v4 + 577) )
+      if ( *(_BYTE *)(*((_DWORD *)this + 4) + v4 + 577) )
         break;
     }
     v4 += 892;
@@ -507,7 +576,7 @@ LABEL_7:
   v6 = 892 * v5;
   v11 = 892 * v5;
   v12 = this + 40 * v5 + 400;
-  while ( !*(_BYTE *)(v6 + *(this + 4) + 577) )
+  while ( !*(_BYTE *)(v6 + *((_DWORD *)this + 4) + 577) )
   {
 LABEL_76:
     v6 += 892;
@@ -517,7 +586,7 @@ LABEL_76:
     if ( v6 >= 9812 )
       return 0;
   }
-  if ( !(unsigned __int8)v5->IsRoleAlive() || *(_BYTE *)(v6 + *(this + 4) + 583) == 1 )
+  if ( !(unsigned __int8)v5->IsRoleAlive() || *(_BYTE *)(v6 + *((_DWORD *)this + 4) + 583) == 1 )
   {
     v5 = v13;
     goto LABEL_76;
@@ -528,7 +597,7 @@ LABEL_76:
      || v12[20] >= 100)
     || !(unsigned __int8)a2->DemandChecker(v13, v12 + 20) )
   {
-    if ( (int)*(this + 840) >= 100 || !(unsigned __int8)a2->CastRecoverMagic(this + 840) )
+    if ( (int)*((_DWORD *)this + 840) >= 100 || !(unsigned __int8)a2->CastRecoverMagic(this + 840) )
     {
       v7 = v13;
       if ( v13 == a2 && *v12 < 100 )
@@ -551,7 +620,7 @@ LABEL_76:
         || !(unsigned __int8)a2->CastAttackBigItem(v7, v12 + 12) )
       {
 LABEL_81:
-        if ( (int)*(this + 896) >= 100
+        if ( (int)*((_DWORD *)this + 896) >= 100
           || ((++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011,
                                    ((g_RandSeed >> 16) & 0x3FF) >= (int)256.0)
            || !(unsigned __int8)a2->CastAttackMagic(this + 896))
@@ -660,16 +729,16 @@ char sub_4D86D0(int a2)
   char result; // al
   int v5; // [esp-4h] [ebp-10h]
 
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 577)
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 577)
     || !(unsigned __int8)a2->IsRoleAlive()
     || !*(_DWORD *)(a2->InitUI() + 36) )
   {
     return 0;
   }
   v5 = a2;
-  v3 = *(_DWORD *)(*(_DWORD *)(*(this + 3) + 20) + 4 * a2 + 24);
+  v3 = *(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 3) + 20) + 4 * a2 + 24);
   *(float *)(v3 + 6632) = *(float *)(v3 + 6636);
-  if ( *(_BYTE *)(892 * a2 + *(this + 4) + 1388) )
+  if ( *(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1388) )
   {
     result = a2->HandleFriendAction();
     if ( result )
@@ -693,7 +762,7 @@ char sub_4D8760(int a2)
   v7 = 0;
   for ( i = this + 400; ; i += 40 )
   {
-    if ( *(_BYTE *)(v4 + *(this + 4) + 577) )
+    if ( *(_BYTE *)(v4 + *((_DWORD *)this + 4) + 577) )
     {
       if ( (unsigned __int8)a2->GetRoleField(18) )
       {
@@ -751,7 +820,7 @@ char sub_4D8760(int a2)
       }
       if ( (unsigned __int8)v3->IsRoleAlive() && *(_BYTE *)(v3->InitUI() + 880) != 1 )
       {
-        if ( *(this + 880) < 100
+        if ( *((_DWORD *)this + 880) < 100
           && ((unsigned __int8)a2->CastRecoverMagic(this + 880)
            || (unsigned __int8)a2->CastBFAMagic(this + 880)
            || (unsigned __int8)a2->CastRecoverBigSkill(this + 880)) )
@@ -815,13 +884,13 @@ char sub_4D8AF0(int a2)
     v11 = 0;
     for ( i = this + 420; ; i += 40 )
     {
-      if ( !*(_BYTE *)(v5 + *(this + 4) + 577)
+      if ( !*(_BYTE *)(v5 + *((_DWORD *)this + 4) + 577)
         || !(unsigned __int8)v4->IsRoleAlive()
         || *(_BYTE *)(v4->InitUI() + 880) )
       {
         goto LABEL_30;
       }
-      if ( *(this + 856) < 100
+      if ( *((_DWORD *)this + 856) < 100
         && ((unsigned __int8)a2->CastAttackMagic(this + 856) == 1
          || (unsigned __int8)a2->CastRandEnemyMagic(this + 856) == 1
          || (unsigned __int8)a2->CastAttackBigSkill(this + 856) == 1) )
@@ -885,7 +954,7 @@ LABEL_30:
     v8 = 214013 * v8 + 2531011;
     g_RandSeed = v8;
     v9 = ((v8 >> 16) & 0x7FFF) % 11;
-    if ( *(_BYTE *)(*(this + 4) + 892 * v9 + 577) )
+    if ( *(_BYTE *)(*((_DWORD *)this + 4) + 892 * v9 + 577) )
       break;
 LABEL_37:
     if ( ++v13 >= 1024 )
@@ -897,7 +966,7 @@ LABEL_37:
     goto LABEL_37;
   }
 LABEL_38:
-  if ( *(_BYTE *)(*(this + 4) + 892 * v9 + 577) && !*(_BYTE *)(v9->InitUI() + 880) )
+  if ( *(_BYTE *)(*((_DWORD *)this + 4) + 892 * v9 + 577) && !*(_BYTE *)(v9->InitUI() + 880) )
   {
     ++g_nRandCallCount;
     g_RandSeed = 214013 * g_RandSeed + 2531011;
@@ -971,7 +1040,7 @@ char sub_4D8F20(int a2, char a3)
   {
     if ( v4 >= 4460 )
     {
-      if ( *(_BYTE *)(v4 + *(this + 4) + 577) )
+      if ( *(_BYTE *)(v4 + *((_DWORD *)this + 4) + 577) )
       {
         if ( (unsigned __int8)v5->IsRoleAlive() )
         {
@@ -1001,7 +1070,7 @@ char sub_4D8F20(int a2, char a3)
     {
       if ( v9 >= 4460 )
       {
-        if ( *(_BYTE *)(v9 + *(this + 4) + 577) )
+        if ( *(_BYTE *)(v9 + *((_DWORD *)this + 4) + 577) )
         {
           if ( (unsigned __int8)v8->IsRoleAlive() )
           {
@@ -1039,7 +1108,7 @@ LABEL_21:
       memset(v13, 0, sizeof(v13));
       LOWORD(v13[4]) = 0;
       v13[3] = v19;
-      v11 = *(this + 3);
+      v11 = *((_DWORD *)this + 3);
       v12 = v14;
       LOBYTE(v13[10]) = 1;
       v13[0] = 259;
@@ -1162,7 +1231,7 @@ LABEL_11:
 void * sub_4D9360()
 {
   *this = &unk_1010101;
-  *(this + 1) = &unk_1010101;
+  *((_DWORD *)this + 1) = &unk_1010101;
   *((_WORD *)this + 4) = (unsigned __int16)&unk_1010101;
   *((_BYTE *)this + 10) = (unsigned __int8)&unk_1010101;
   return &unk_1010101;
@@ -1224,7 +1293,7 @@ int sub_4D93D0()
   v10 = this + 402;
   do
   {
-    if ( *(_BYTE *)(v9 + *(this + 4) + 577) )
+    if ( *(_BYTE *)(v9 + *((_DWORD *)this + 4) + 577) )
     {
       for ( i = 1; i < 10; ++i )
       {
@@ -1440,13 +1509,13 @@ char sub_4D9740(unsigned int a2, int a3, int a4)
   v5 = a2;
   if ( a3 == a2 )
     return 0;
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1384) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1384) )
   {
     if ( !(unsigned __int8)a2->GetRoleField(18) && !(unsigned __int8)a2->GetRoleField(19) )
       return 0;
     v5 = a2;
   }
-  v6 = *(this + 4);
+  v6 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v6 + 577)
     || !*(_BYTE *)(v6 + 892 * a3 + 577)
     || !(unsigned __int8)v5->IsRoleAlive()
@@ -1470,7 +1539,7 @@ char sub_4D9740(unsigned int a2, int a3, int a4)
   {
     v7 = a2;
   }
-  if ( !(unsigned __int8)CCBStageRole::ForceEndTaskByPFN(*(_DWORD *)(*(_DWORD *)(*(this + 3) + 20) + 4 * a3 + 24))
+  if ( !(unsigned __int8)CCBStageRole::ForceEndTaskByPFN(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 3) + 20) + 4 * a3 + 24))
     || !(unsigned __int8)v7->CalSneakAttack(a3) )
   {
     return 0;
@@ -1498,11 +1567,11 @@ char sub_4D9920(int a2, int a3, int a4)
   _DWORD v11[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   memset(v11, 0, sizeof(v11));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v5 = *(this + 4);
+  v5 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v5 + 577) )
     return 0;
   if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )
@@ -1539,12 +1608,12 @@ char sub_4D9A70(int a2, int a3)
   _DWORD v9[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(v9, 0, sizeof(v9));
-  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 1385) && !(unsigned __int8)a2->GetRoleField(18)
+  if ( !*(_BYTE *)(*((_DWORD *)this + 4) + 892 * a2 + 1385) && !(unsigned __int8)a2->GetRoleField(18)
     || (unsigned __int8)a2->GetRoleField(19) )
   {
     return 0;
   }
-  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 577) )
+  if ( !*(_BYTE *)(*((_DWORD *)this + 4) + 892 * a2 + 577) )
     return 0;
   result = a2->IsRoleAlive();
   if ( result )
@@ -1585,11 +1654,11 @@ char sub_4D9BA0(int a2, int a3, int a4)
   _DWORD v11[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(v11, 0, sizeof(v11));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v5 = *(this + 4);
+  v5 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v5 + 577) )
     return 0;
   if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )
@@ -1626,7 +1695,7 @@ char sub_4D9D00(int a2, int a3)
   int v6; // edx
   _DWORD v8[11]; // [esp+10h] [ebp-2Ch] BYREF
 
-  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(*((_DWORD *)this + 4) + 892 * a2 + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
@@ -1661,11 +1730,11 @@ char sub_4D9E20(int a2, int a3)
   _DWORD v7[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(v7, 0, sizeof(v7));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v4 = *(this + 4);
+  v4 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v4 + 577) )
     return 0;
   if ( !*(_BYTE *)(v4 + 892 * a3 + 577) )
@@ -1700,11 +1769,11 @@ char sub_4D9F50(int a2, int a3, int a4)
   _DWORD v11[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   memset(v11, 0, sizeof(v11));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v5 = *(this + 4);
+  v5 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v5 + 577) )
     return 0;
   if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )
@@ -1741,12 +1810,12 @@ char sub_4DA0A0(int a2, int a3)
   _DWORD v9[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(v9, 0, sizeof(v9));
-  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 1386) && !(unsigned __int8)a2->GetRoleField(18)
+  if ( !*(_BYTE *)(*((_DWORD *)this + 4) + 892 * a2 + 1386) && !(unsigned __int8)a2->GetRoleField(18)
     || (unsigned __int8)a2->GetRoleField(19) )
   {
     return 0;
   }
-  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 577) )
+  if ( !*(_BYTE *)(*((_DWORD *)this + 4) + 892 * a2 + 577) )
     return 0;
   result = a2->IsRoleAlive();
   if ( result )
@@ -1786,11 +1855,11 @@ char sub_4DA1D0(int a2, int a3, int a4)
   _DWORD v10[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(v10, 0, sizeof(v10));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1386) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1386) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v5 = *(this + 4);
+  v5 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v5 + 577) )
     return 0;
   if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )
@@ -1831,12 +1900,12 @@ char sub_4DA350(int a2, int a3)
   _DWORD v10[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(v10, 0, sizeof(v10));
-  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 1386) && !(unsigned __int8)a2->GetRoleField(18)
+  if ( !*(_BYTE *)(*((_DWORD *)this + 4) + 892 * a2 + 1386) && !(unsigned __int8)a2->GetRoleField(18)
     || (unsigned __int8)a2->GetRoleField(19) )
   {
     return 0;
   }
-  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 577) )
+  if ( !*(_BYTE *)(*((_DWORD *)this + 4) + 892 * a2 + 577) )
     return 0;
   result = a2->IsRoleAlive();
   if ( result )
@@ -1887,11 +1956,11 @@ char sub_4DA4F0(int a2, int a3, int a4)
   _DWORD v11[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   memset(v11, 0, sizeof(v11));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1387) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1387) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v5 = *(this + 4);
+  v5 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v5 + 577) )
     return 0;
   if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )
@@ -1928,12 +1997,12 @@ char sub_4DA640(int a2, int a3)
   _DWORD v9[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(v9, 0, sizeof(v9));
-  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 1387) && !(unsigned __int8)a2->GetRoleField(18)
+  if ( !*(_BYTE *)(*((_DWORD *)this + 4) + 892 * a2 + 1387) && !(unsigned __int8)a2->GetRoleField(18)
     || (unsigned __int8)a2->GetRoleField(19) )
   {
     return 0;
   }
-  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 577) )
+  if ( !*(_BYTE *)(*((_DWORD *)this + 4) + 892 * a2 + 577) )
     return 0;
   result = a2->IsRoleAlive();
   if ( result )
@@ -1973,11 +2042,11 @@ char sub_4DA770(int a2, int a3, int a4)
   _DWORD v10[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(v10, 0, sizeof(v10));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1387) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1387) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v5 = *(this + 4);
+  v5 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v5 + 577) )
     return 0;
   if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )
@@ -2018,12 +2087,12 @@ char sub_4DA900(int a2, int a3)
   _DWORD v10[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(v10, 0, sizeof(v10));
-  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 1387) && !(unsigned __int8)a2->GetRoleField(18)
+  if ( !*(_BYTE *)(*((_DWORD *)this + 4) + 892 * a2 + 1387) && !(unsigned __int8)a2->GetRoleField(18)
     || (unsigned __int8)a2->GetRoleField(19) )
   {
     return 0;
   }
-  if ( !*(_BYTE *)(*(this + 4) + 892 * a2 + 577) )
+  if ( !*(_BYTE *)(*((_DWORD *)this + 4) + 892 * a2 + 577) )
     return 0;
   result = a2->IsRoleAlive();
   if ( result )
@@ -2064,11 +2133,11 @@ char sub_4DAA40(int a2, int a3, int a4)
   _DWORD v10[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(v10, 0, sizeof(v10));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v5 = *(this + 4);
+  v5 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v5 + 577) )
     return 0;
   if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )
@@ -2103,11 +2172,11 @@ char sub_4DAB70(int a2, int a3, int a4)
   _DWORD v10[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(v10, 0, sizeof(v10));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1386) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1386) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v5 = *(this + 4);
+  v5 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v5 + 577) )
     return 0;
   if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )
@@ -2142,11 +2211,11 @@ char sub_4DACA0(int a2, int a3, int a4)
   _DWORD v10[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(v10, 0, sizeof(v10));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1387) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1387) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v5 = *(this + 4);
+  v5 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v5 + 577) )
     return 0;
   if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )
@@ -2180,11 +2249,11 @@ char sub_4DADD0(int a2, int a3, int a4)
   _DWORD v9[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   memset(v9, 0, sizeof(v9));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1385) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v5 = *(this + 4);
+  v5 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v5 + 577) )
     return 0;
   if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )
@@ -2217,11 +2286,11 @@ char sub_4DAF00(int a2, int a3, int a4)
   _DWORD v9[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   memset(v9, 0, sizeof(v9));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1386) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1386) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v5 = *(this + 4);
+  v5 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v5 + 577) )
     return 0;
   if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )
@@ -2254,11 +2323,11 @@ char sub_4DB030(int a2, int a3, int a4)
   _DWORD v9[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   memset(v9, 0, sizeof(v9));
-  if ( !*(_BYTE *)(892 * a2 + *(this + 4) + 1387) && !(unsigned __int8)a2->GetRoleField(18) )
+  if ( !*(_BYTE *)(892 * a2 + *((_DWORD *)this + 4) + 1387) && !(unsigned __int8)a2->GetRoleField(18) )
     return 0;
   if ( (unsigned __int8)a2->GetRoleField(19) )
     return 0;
-  v5 = *(this + 4);
+  v5 = *((_DWORD *)this + 4);
   if ( !*(_BYTE *)(892 * a2 + v5 + 577) )
     return 0;
   if ( !*(_BYTE *)(v5 + 892 * a3 + 577) )
@@ -2302,7 +2371,7 @@ char sub_4DB160(int a2)
   v5[3] = -1;
   v5->GetRoleNum();
   CCBSystem::CreateObj(CCBSystem::GetSameThreadNum, 0, 0, 0, v5);
-  CEffMgr::Init(*(int **)(*(this + 3) + 44), 559, 0, 0, 0, 0);
+  CEffMgr::Init(*(int **)(*((_DWORD *)this + 3) + 44), 559, 0, 0, 0, 0);
   return 1;
 }
 

@@ -4,8 +4,6 @@
 #include "UIFlexBar.h"
 #include "UITextureArray.h"
 #include "UIWnd.h"
-#include "tagPOINT.h"
-#include "tagRECT.h"
 
 class _PlugInfo;
 
@@ -18,7 +16,8 @@ public:
     unsigned char m_bDrag; // +0xA0
     tagPOINT m_lastPt; // +0xA4
     int m_btnH; // +0xAC
-    UIScrollBar::SB_AREA m_mouseat; // +0xB0
+    struct SB_AREA {}; // nested type stub
+    SB_AREA m_mouseat; // +0xB0
     int m_min; // +0xB4
     int m_max; // +0xB8
     int m_pos; // +0xBC

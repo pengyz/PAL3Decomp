@@ -26,9 +26,26 @@ PDB_FILE = PROJECT_ROOT / "asm" / "pal3a" / "pdb_export.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 OUTPUT_DIR = PROJECT_ROOT / "include" / "pal3" / "gen"
 
-# Skip STL/CRT types
+# Skip STL/CRT/Windows types (already defined by system headers)
 SKIP_CLASSES = {
     'std', 'stdiobuf', 'exception', 'type_info', 'filebuf',
+    # Windows types
+    'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG', 'RECT', 'POINT', 'SIZE',
+    'WNDCLASSA', 'tagWNDCLASSA', 'tagOFNA',
+    '_FILETIME', '_SYSTEMTIME', '_MEMORYSTATUS', '_SECURITY_ATTRIBUTES',
+    '_OSVERSIONINFOA', '_STARTUPINFOA', '_WIN32_FIND_DATAA',
+    '_GUID', 'GUID', 'IID',
+    # CRT
+    '_iobuf', 'FILE', '_cpinfo', '_EXCEPTION_RECORD', 'EXCEPTION_RECORD',
+    # DirectX / DirectInput
+    '_DIMOUSESTATE2',
+    # gbengine (separate library)
+    'gbGfxManager', 'gbActorMgr', 'gbCamera', 'gbActor', 'gbVFileSystem',
+    'gbRenderEffect', 'gbSceneGraph', 'gbTexture', 'gbGeomNode',
+    'gbPrintFont', 'gbPrintFontMgr', 'gbMatrixStack', 'gbRefObject',
+    'gbAudioManager', 'gbBinkVideo', 'gbDynVertBuf', 'gbVertPoolMgr',
+    'gbSoundData', 'gbResManager', 'gbImage2D', 'gbCursorRes',
+    'gbTexture_D3D', 'gbIndexPool', 'gbVertexPool',
 }
 
 # Type mapping for header output
@@ -133,6 +150,25 @@ def generate_header(cls_name, pdb_class, methods):
                   '__int64', 'unsigned char', 'unsigned int', 'unsigned long',
                   'unsigned short', 'unsigned __int64', 'wchar_t'}
 
+    # Types provided by system headers (windows.h, CRT, gbengine) - never include/fwd-declare
+    SYSTEM_TYPES = SKIP_CLASSES | {
+        'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG', 'RECT', 'POINT', 'SIZE',
+        'HWND', 'HINSTANCE', 'HICON', 'HBRUSH', 'HDC', 'HANDLE', 'LPVOID',
+        'WNDCLASSA', 'tagWNDCLASSA', 'tagOFNA', '_GUID', 'GUID', 'IID',
+        '_iobuf', 'FILE', '_DIMOUSESTATE2', '_FILETIME', '_SYSTEMTIME',
+        'CRITICAL_SECTION', 'HRESULT', 'BOOL', 'LPCSTR', 'LPSTR',
+        'gbVec3D', 'gbMatrix4', 'gbColorQuad', 'gbOBBox', 'gbSphere',
+        'gbGeomQuad', 'gbUIQuad', 'gbColorFlt', 'gbAABBox',
+        'gbGfxManager', 'gbActorMgr', 'gbCamera', 'gbActor',
+        'gbVFileSystem', 'gbRenderEffect', 'gbSceneGraph', 'gbTexture',
+        'gbGeomNode', 'gbPrintFont', 'gbPrintFontMgr', 'gbMatrixStack',
+        'gbRefObject', 'gbAudioManager', 'gbBinkVideo', 'gbImage2D',
+        'gbTexture_D3D', 'gbDynVertBuf', 'gbVertPoolMgr', 'gbCursorRes',
+        'gbIndexPool', 'gbVertexPool', 'gbSoundData', 'gbResManager',
+        'gbLight', 'gbMaterial', 'gbPixelFormat', 'gbRay',
+        'IDirectInput8A', 'IDirectInputDevice8A',
+    }
+
     if pdb_class:
         # Inheritance -> include
         for b in pdb_class.get('bases', []) or []:
@@ -149,7 +185,7 @@ def generate_header(cls_name, pdb_class, methods):
             base = re.sub(r'\[\d+\]', '', mtype).replace('*', '').strip()
             if not base or base == cls_name:
                 continue
-            if base in PRIMITIVES:
+            if base in PRIMITIVES or base in SYSTEM_TYPES:
                 continue
             if '::' in base or '<' in base:
                 continue
@@ -161,6 +197,9 @@ def generate_header(cls_name, pdb_class, methods):
 
     # Don't forward-declare what we're including
     fwd_types -= include_types
+    # Remove system types from both sets
+    include_types -= SYSTEM_TYPES
+    fwd_types -= SYSTEM_TYPES
 
     # Emit includes
     for t in sorted(include_types):
@@ -196,6 +235,23 @@ def generate_header(cls_name, pdb_class, methods):
             if not mname:
                 mname = '_field_%04X' % moffset
 
+            # Handle nested class types: ClassName::NestedType
+            if '::' in mtype:
+                # Extract the nested type name, declare as inner struct
+                parts = mtype.split('::')
+                nested_name = parts[-1]
+                # Strip array suffix for the struct name
+                nested_base = re.sub(r'\[.*', '', nested_name).strip()
+                arr_in_nested = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
+                if arr_in_nested:
+                    lines.append("    struct %s {}; // nested type stub" % nested_base)
+                    arr_part = arr_in_nested.group(1)
+                    lines.append("    %s %s%s; // +0x%X" % (nested_base, mname, arr_part, moffset))
+                else:
+                    lines.append("    struct %s {}; // nested type stub" % nested_base)
+                    lines.append("    %s %s; // +0x%X" % (nested_base, mname, moffset))
+                continue
+
             # Handle arrays in type: "Type[N]" or "Type *[N]" -> "Type name[N]" / "Type * name[N]"
             arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
             if arr_match:
@@ -209,8 +265,9 @@ def generate_header(cls_name, pdb_class, methods):
             lines.append("    // total size: 0x%X (%d)" % (size, size))
         lines.append("")
 
-    # Methods
+    # Methods (deduplicate by name+params to avoid C2535)
     if methods:
+        seen_methods = set()  # track "name(params)" to deduplicate
         for method_name, sig, addr in sorted(methods, key=lambda x: x[2]):
             ret, cc, params = parse_signature(sig)
 
@@ -238,6 +295,12 @@ def generate_header(cls_name, pdb_class, methods):
                 decl = "    static %s %s(%s);" % (ret, method_name, params)
             else:
                 decl = "    %s %s(%s);" % (ret, method_name, params)
+
+            # Deduplicate: skip if same method name+params already declared
+            method_key = "%s(%s)" % (method_name, params)
+            if method_key in seen_methods:
+                continue
+            seen_methods.add(method_key)
 
             lines.append("%s // %s" % (decl, addr))
 

@@ -2,6 +2,13 @@
 #include "pal3/globals.h"
 #include "pal3/gen/PropUI.h"
 
+// Forward declarations for unnamed functions
+int sub_451E50(...);
+int sub_4528F0(...);
+
+// Unnamed globals (extern)
+extern void *off_56B1BC;
+
 // 0x00452580
 int PropUI::Create()
 {

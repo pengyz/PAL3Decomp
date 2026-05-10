@@ -5,8 +5,6 @@
 #include "tagQuad.h"
 #include "tagUV.h"
 
-class gbGeomQuad;
-class gbTexture;
 class gbTextureArray;
 
 class CEffQuad : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffQuad::*)(unsigned long)> {

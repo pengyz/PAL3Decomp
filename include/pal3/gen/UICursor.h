@@ -3,8 +3,6 @@
 
 #include "CURSOR_TYPE.h"
 
-class gbTexture;
-
 class UICursor {
 public:
     unsigned long m_dwID[3]; // +0x0

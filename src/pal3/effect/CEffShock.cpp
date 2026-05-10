@@ -2,6 +2,23 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffShock.h"
 
+// Forward declarations for unnamed functions
+int sub_4D3870(...);
+int sub_4D3910(...);
+int sub_4D3A50(...);
+int sub_4D45D0(...);
+int sub_4D48B0(...);
+int sub_4D4AB0(...);
+int sub_4D4B50(...);
+
+// Unnamed globals (extern)
+extern char aDProjectPal3Co_17[];
+extern char aNewFailInCeffs[];
+extern unsigned char byte_1895561;
+extern int dword_17A7E88;
+extern int dword_1895984;
+extern int dword_1895988;
+
 // 0x004D3910
 _DWORD *sub_4D3910()
 {
@@ -302,11 +319,11 @@ int sub_4D4B50(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   unsigned int v14; // eax
   _DWORD *v15; // edx
 
-  v8 = *(this + 8);
+  v8 = *((_DWORD *)this + 8);
   v9 = 0;
   if ( v8 <= 0 )
     return -1;
-  v10 = *(_DWORD *)(*(this + 3) + 152 * a2);
+  v10 = *(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2);
   for ( i = (_BYTE *)(v10 + 64); *i; i += 72 )
   {
     if ( ++v9 >= v8 )
@@ -337,6 +354,6 @@ int sub_4D4B50(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
     v15[2] = a5[2];
     v15[3] = a5[3];
   }
-  ++*(_DWORD *)(*(this + 3) + 152 * a2 + 4);
+  ++*(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2 + 4);
   return v9;
 }

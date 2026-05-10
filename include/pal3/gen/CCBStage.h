@@ -1,7 +1,6 @@
 #pragma once
 // Auto-generated: CCBStage
 
-#include "tagPOINT.h"
 #include "tagStageTask.h"
 
 class Actor;
@@ -56,7 +55,6 @@ public:
     char Create(); // 0x004FBE50
     char Destroy(); // 0x004FBF90
     int Update(); // 0x004FC0A0
-    int Update(); // 0x004FC150
     int EditorUpdate(); // 0x004FC3A0
     void Render(); // 0x004FC6F0
     int GetRoleIndex(int a2, const void *a3, char a4); // 0x004FC700
@@ -69,7 +67,6 @@ public:
     void GetTask(); // 0x004FCA80
     char GetTaskID(int a2, int a3); // 0x004FCBD0
     char GetTaskState(int a2); // 0x004FCC10
-    char GetTaskState(int a2); // 0x004FCC50
     int IsTaskFinished(int a2); // 0x004FCD00
     static _BYTE *__userpurge@<eax> IsTaskValidButNotFinish(_BYTE *result, int a2, int a3); // 0x004FCD50
     int IsTaskExist(int a2); // 0x004FCDA0

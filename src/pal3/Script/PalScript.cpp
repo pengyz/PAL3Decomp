@@ -2,6 +2,45 @@
 #include "pal3/globals.h"
 #include "pal3/gen/PalScript.h"
 
+// Forward declarations for unnamed functions
+int sub_430670(...);
+int sub_4307D0(...);
+int sub_4309D0(...);
+int sub_431040(...);
+int sub_431780(...);
+int sub_431870(...);
+int sub_4318A0(...);
+int sub_4319C0(...);
+int sub_431D80(...);
+int sub_431F00(...);
+int sub_431F10(...);
+int sub_431F40(...);
+int sub_432990(...);
+int sub_434C00(...);
+int sub_43AA00(...);
+
+// Unnamed globals (extern)
+extern char aBegin[];
+extern char aBigmapScriptLo[];
+extern char aDProjectPal3Sc[];
+extern char aInitSce[];
+extern char aInitScs[];
+extern char aLangNull[];
+extern char aPal3lang[];
+extern char aScriptSysInitF[];
+extern char aSystemScriptLo[];
+extern char aUiBigmapBigmap[];
+extern unsigned char byte_56A634;
+extern unsigned char byte_D8C2B8;
+extern unsigned char byte_D8C324;
+extern int dword_D8C2BC;
+extern int dword_D8C2C0;
+extern int dword_D8C2C4;
+extern int dword_D8C2C8;
+extern int dword_D8C2E8;
+extern int dword_D8C360;
+extern void *off_58B448;
+
 // 0x00430290
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
 int __thiscall PalScript::LoadScript(PalScript *this, int pathAddr)
@@ -484,23 +523,23 @@ struct gbVFileSystem * sub_43AA00(gbRefObject **this, const char *a2, char a3)
   OpenBaseFile::OpenBaseFile(&v9);
   v11 = 0;
   sprintf(Buffer, "%s", a2);
-  v4 = *(this + 49);
+  v4 = *((_DWORD *)this + 49);
   if ( v4 )
     v4->Release();
   if ( a3 )
   {
     v5 = *(_DWORD *)g_pGfxManager;
     v6 = Buffer->_CalculateUV();
-    *(this + 49) = (gbRefObject *)(*(int (__thiscall **)(int, int))(v5 + 8))(g_pGfxManager, v6);
-    *(this + 50) = (gbRefObject *)Buffer->Parent_Data();
+    *((_DWORD *)this + 49) = (gbRefObject *)(*(int (__thiscall **)(int, int))(v5 + 8))(g_pGfxManager, v6);
+    *((_DWORD *)this + 50) = (gbRefObject *)Buffer->Parent_Data();
   }
   else
   {
-    *(this + 49) = (gbRefObject *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+    *((_DWORD *)this + 49) = (gbRefObject *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                                     g_pGfxManager,
                                     Buffer);
   }
-  v7 = (gbTexture *)*(this + 49);
+  v7 = (gbTexture *)*((_DWORD *)this + 49);
   if ( v7 )
     v7->LoadTexture(1);
   v11 = -1;

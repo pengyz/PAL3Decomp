@@ -1,0 +1,15 @@
+#pragma once
+// Auto-generated: tagRegion
+
+#include "tagGroup.h"
+
+class tagRegion {
+public:
+    int indGroupUse; // +0x0
+    char cntRegionSize[64]; // +0x4
+    unsigned int bitvGroupHi[32]; // +0x44
+    unsigned int bitvGroupLo[32]; // +0xC4
+    tagGroup grpHeadList[32]; // +0x144
+    // total size: 0x41C4 (16836)
+
+};

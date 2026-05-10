@@ -132,29 +132,14 @@ public:
     int IsThreadExist(int a2); // 0x00514AE0
     int GetThreadIndex(int a2); // 0x00514D60
     int PassCmdToThread(int a2); // 0x00514FE0
-    int PassCmdToThread(int a2); // 0x00515200
     int PassCmdToTask(int a2); // 0x005155D0
     int PassCmdViaThread(int a2); // 0x00515760
     int CreateObj(int a2); // 0x00515940
     static int CreateObj(const char *a1, const char *a2, UINT a3); // 0x005159A0
-    char CreateObj(int a2); // 0x00515AC0
     int CreateObj(int (__thiscall *a2)(int this, int a2), int a3, int a4, int a5, const void *a6); // 0x00515B20
     char ClearEffect(int idx); // 0x00515C50
     bool CreateObj2(_DWORD *a2); // 0x00515D10
     void * DestroyObj(void *Block, char a2); // 0x00515DD0
-    void * DestroyObj(void *Block, char a2); // 0x00515DF0
     static int DestroyObj(); // 0x00515E40
-    static int DestroyObj(); // 0x00515E50
-    static void DestroyObj(); // 0x00515E60
-    static void DestroyObj(); // 0x00515E70
-    static int DestroyObj(); // 0x00515E80
     static int InitObj(); // 0x00515E90
-    static int InitObj(); // 0x00515ED0
-    static int InitObj(); // 0x00515EE0
-    static int InitObj(); // 0x00515F20
-    static int InitObj(); // 0x00515F30
-    static int InitObj(); // 0x00515F70
-    static int InitObj(); // 0x00515F80
-    static int InitObj(); // 0x00515FC0
-    static int InitObj(); // 0x00515FD0
 };

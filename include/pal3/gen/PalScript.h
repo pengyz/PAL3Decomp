@@ -25,5 +25,7 @@ public:
     static void ClearAllCamObj(); // 0x00431F40
     int ClearAllWaitObj(); // 0x00431FA0
     int Update(); // 0x00431FB0
+    static char * GetString(); // 0x00434C00
     int Reset(); // 0x0043A250
+    struct gbVFileSystem * OpenScript(const char *a2, char a3); // 0x0043AA00
 };

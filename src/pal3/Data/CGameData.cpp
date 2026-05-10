@@ -2,6 +2,33 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CGameData.h"
 
+// Forward declarations for unnamed functions
+int sub_43A5D0(...);
+int sub_43AFA0(...);
+int sub_4573A0(...);
+
+// Unnamed globals (extern)
+extern char aUiDlgHeadbkTga[];
+extern char aUiDlgSelbkTga[];
+extern char aUiUilib[];
+extern char aUiUilibUiOptTl[];
+extern unsigned char byte_DD8F3C;
+extern unsigned char byte_DD903C;
+extern unsigned char byte_DD913C;
+extern int dword_1894B78;
+extern void *off_59BA88;
+extern void *off_59BA8C;
+extern void *off_59BA90;
+extern void *off_59BA94;
+extern int unk_AABEF6;
+extern int unk_AABEF7;
+extern int unk_AABEF8;
+extern int unk_AABEF9;
+extern int unk_ABCD01;
+extern int unk_ABCD02;
+extern int unk_ABCD03;
+extern int unk_ABD000;
+
 // 0x0044ADE0
 int CGameData::InitRoles(int a2)
 {

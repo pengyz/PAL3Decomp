@@ -2,11 +2,9 @@
 // Auto-generated: Object3D
 
 #include "ACTION_KIND.h"
-#include "gbVec3D.h"
 
 class Actor;
 class ObjectCamera;
-class gbGeomNode;
 
 class Object3D {
 public:

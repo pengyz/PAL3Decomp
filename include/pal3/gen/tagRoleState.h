@@ -3,8 +3,6 @@
 
 #include "ECBFiveLineup.h"
 
-class gbGeomNode;
-
 class tagRoleState {
 public:
     unsigned long dwID; // +0x0

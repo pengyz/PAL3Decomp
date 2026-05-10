@@ -2,6 +2,29 @@
 #include "pal3/globals.h"
 #include "pal3/gen/_TextureLib_Data.h"
 
+// Forward declarations for unnamed functions
+int sub_53FFA0(...);
+int sub_540070(...);
+int sub_5400E0(...);
+int sub_540210(...);
+int sub_540440(...);
+int sub_540650(...);
+int sub_5407A0(...);
+int sub_5408E0(...);
+int sub_540A20(...);
+
+// Unnamed globals (extern)
+extern int dword_1895048;
+extern int dword_189504C;
+extern int dword_1895050;
+extern int dword_1895054;
+extern int dword_1895058;
+extern int dword_189505C;
+extern int dword_1895060;
+extern int dword_1895064;
+extern int dword_1895068;
+extern int dword_189506C;
+
 // 0x0053FFA0
 void sub_53FFA0()
 {

@@ -2,6 +2,60 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffExplosive.h"
 
+// Forward declarations for unnamed functions
+int sub_4C6F20(...);
+int sub_4C7680(...);
+int sub_4C7A70(...);
+int sub_4C7B70(...);
+int sub_4C7CB0(...);
+int sub_4C7D40(...);
+int sub_4C7E60(...);
+int sub_4C8370(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed_0[];
+extern char aDProjectPal3Co_13[];
+extern char aNewFailInCeffe[];
+extern unsigned char byte_DE99AC;
+extern int dword_DE9980;
+extern int dword_DE9984;
+extern int dword_DE9988;
+extern int dword_DE9990;
+extern int dword_DE9994;
+extern int dword_DE9998;
+extern int dword_DE99A0;
+extern int dword_DE99A4;
+extern int dword_DE99A8;
+extern int unk_5D4D3C;
+extern int unk_5D4D7C;
+extern int unk_5D4DAC;
+extern int unk_5D4DB8;
+extern int unk_5D4DC4;
+extern int unk_5D4DCC;
+extern int unk_5D4DD4;
+extern int unk_5D4DF4;
+extern int unk_5D4E00;
+extern int unk_5D4E24;
+extern int unk_5D4E30;
+extern int unk_5D4E38;
+extern int unk_5D4E40;
+extern int unk_5D5038;
+extern int unk_5D5040;
+extern int unk_5D5048;
+extern int unk_5D5050;
+extern int unk_5D51A4;
+extern int unk_5D51B0;
+extern int unk_5D51BC;
+extern int unk_5D51C8;
+extern int unk_5D51D0;
+extern int unk_5D51D8;
+extern int unk_5D51EC;
+extern int unk_5D51F8;
+extern int unk_5D5204;
+extern int unk_5D5210;
+extern int unk_5D521C;
+extern int unk_FFFFFF;
+
 // 0x004C6C10
 char CEffExplosive::Create(int this, int a2)
 {
@@ -713,7 +767,7 @@ int sub_4C8370(float a2, int a3)
   memset(v43, 0, 12);
   v43[3] = 1065353216;
   (gbMatrix4 *->gbMatrix4()v44);
-  result = *(this + 27);
+  result = *((_DWORD *)this + 27);
   v5 = 0;
   v33 = 0;
   v35 = 0;
@@ -722,36 +776,36 @@ int sub_4C8370(float a2, int a3)
     do
     {
       v34 = 0;
-      if ( (int)*(this + 28) > 0 )
+      if ( (int)*((_DWORD *)this + 28) > 0 )
       {
         v6 = 68 * v5;
         v7 = 24 * v5;
         do
         {
-          v8 = (float *)(v6 + *(this + 12));
+          v8 = (float *)(v6 + *((_DWORD *)this + 12));
           v9 = (v8[9] + v8[6] + v8[3] + *v8) * 0.25;
           v37 = (v8[10] + v8[7] + v8[4] + v8[1]) * 0.25;
           v39 = (v8[11] + v8[8] + v8[5] + v8[2]) * 0.25;
           *v8 = *v8 - v9;
           v8[1] = v8[1] - v37;
           v8[2] = v8[2] - v39;
-          v10 = *(this + 12);
+          v10 = *((_DWORD *)this + 12);
           v11 = (float *)(v10 + v6 + 12);
           *v11 = *v11 - v9;
           v11[1] = *(float *)(v10 + v6 + 16) - v37;
           v11[2] = *(float *)(v10 + v6 + 20) - v39;
-          v12 = *(this + 12);
+          v12 = *((_DWORD *)this + 12);
           v13 = (float *)(v12 + v6 + 24);
           *v13 = *v13 - v9;
           v13[1] = *(float *)(v12 + v6 + 28) - v37;
           v13[2] = *(float *)(v12 + v6 + 32) - v39;
-          v14 = *(this + 12);
+          v14 = *((_DWORD *)this + 12);
           v15 = *(float *)(v14 + v6 + 36);
           v16 = (float *)(v14 + v6 + 36);
           *v16 = v15 - v9;
           v16[1] = v16[1] - v37;
           v16[2] = v16[2] - v39;
-          v17 = *(this + 13);
+          v17 = *((_DWORD *)this + 13);
           v41 = a2 * *(float *)(v17 + v7 + 4);
           v42 = a2 * *(float *)(v17 + v7 + 8);
           v36 = a2 * *(float *)(v17 + v7) + v9;
@@ -762,27 +816,27 @@ int sub_4C8370(float a2, int a3)
           v30 = a2 * *(float *)(v17 + v7 + 12);
           (gbQuaternion *->SetYawPitchRoll()v43, v30, v31, v32);
           (gbQuaternion *->GetMatrix()v43, (struct gbMatrix4 *)v44);
-          (gbMatrix4 *->RotateIn()v44, (struct gbVec3D *)(v6 + *(this + 12)));
-          (gbMatrix4 *->RotateIn()v44, (struct gbVec3D *)(*(this + 12) + v6 + 12));
-          (gbMatrix4 *->RotateIn()v44, (struct gbVec3D *)(*(this + 12) + v6 + 24));
-          (gbMatrix4 *->RotateIn()v44, (struct gbVec3D *)(*(this + 12) + v6 + 36));
-          v18 = *(this + 12);
+          (gbMatrix4 *->RotateIn()v44, (struct gbVec3D *)(v6 + *((_DWORD *)this + 12)));
+          (gbMatrix4 *->RotateIn()v44, (struct gbVec3D *)(*((_DWORD *)this + 12) + v6 + 12));
+          (gbMatrix4 *->RotateIn()v44, (struct gbVec3D *)(*((_DWORD *)this + 12) + v6 + 24));
+          (gbMatrix4 *->RotateIn()v44, (struct gbVec3D *)(*((_DWORD *)this + 12) + v6 + 36));
+          v18 = *((_DWORD *)this + 12);
           v19 = v36 + *(float *)(v18 + v6);
           v20 = (float *)(v6 + v18);
           *v20 = v19;
           v20[1] = v38 + v20[1];
           v20[2] = v40 + v20[2];
-          v21 = *(this + 12);
+          v21 = *((_DWORD *)this + 12);
           v22 = (float *)(v21 + v6 + 12);
           *v22 = v36 + *v22;
           v22[1] = v38 + *(float *)(v21 + v6 + 16);
           v22[2] = v40 + *(float *)(v21 + v6 + 20);
-          v23 = *(this + 12);
+          v23 = *((_DWORD *)this + 12);
           v24 = (float *)(v23 + v6 + 24);
           *v24 = v36 + *v24;
           v24[1] = v38 + *(float *)(v23 + v6 + 28);
           v24[2] = v40 + *(float *)(v23 + v6 + 32);
-          v25 = *(this + 12);
+          v25 = *((_DWORD *)this + 12);
           v26 = v36 + *(float *)(v25 + v6 + 36);
           v27 = (float *)(v25 + v6 + 36);
           *v27 = v26;
@@ -791,7 +845,7 @@ int sub_4C8370(float a2, int a3)
           v27[1] = v38 + v27[1];
           v27[2] = v40 + v27[2];
           v28 = v33 + 1;
-          v29 = ++v34 < *(this + 28);
+          v29 = ++v34 < *((_DWORD *)this + 28);
           ++v33;
         }
         while ( v29 );
@@ -799,7 +853,7 @@ int sub_4C8370(float a2, int a3)
       }
       result = ++v35;
     }
-    while ( v35 < *(this + 27) );
+    while ( v35 < *((_DWORD *)this + 27) );
   }
   return result;
 }

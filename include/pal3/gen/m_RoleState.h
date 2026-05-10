@@ -4,7 +4,6 @@
 #include "UIButton.h"
 #include "UIProgressBar.h"
 #include "UIStatic.h"
-#include "tagRECT.h"
 
 class m_RoleState {
 public:

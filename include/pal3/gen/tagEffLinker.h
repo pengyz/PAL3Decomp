@@ -1,8 +1,6 @@
 #pragma once
 // Auto-generated: tagEffLinker
 
-#include "gbVec3D.h"
-
 class tagEffLinker {
 public:
     unsigned long dwTrickID; // +0x0

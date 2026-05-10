@@ -2,14 +2,11 @@
 // Auto-generated: CCBCamControl
 
 #include "CCCTData.h"
-#include "gbOBBox.h"
-#include "gbVec3D.h"
 #include "tagCam.h"
 
 class CCBStage;
 class CCBStageCam;
 class CUtil;
-class gbGeomNode;
 
 class CCBCamControl {
 public:
@@ -49,7 +46,6 @@ public:
     static int Init(); // 0x00508280
     static int Update(); // 0x005082C0
     static int StartList(); // 0x005082D0
-    static int StartList(); // 0x00508310
     static int StopList(); // 0x00508320
     static int HandleInput(); // 0x00508360
     static int UpdateCircleSet(); // 0x00508370

@@ -1,8 +1,6 @@
 #pragma once
 // Auto-generated: Object
 
-#include "gbVec3D.h"
-
 class Object {
 public:
     gbVec3D position; // +0x4

@@ -6,7 +6,6 @@
 
 class CCBStage;
 class CCBSystem;
-class gbRenderEffect;
 
 class CCBStageEffect {
 public:

@@ -1,10 +1,6 @@
 #pragma once
 // Auto-generated: UILBItem
 
-#include "gbColorQuad.h"
-
-class gbTexture;
-
 class UILBItem {
 public:
     gbTexture * picon; // +0x0

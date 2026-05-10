@@ -2,6 +2,17 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffQuake.h"
 
+// Forward declarations for unnamed functions
+int sub_4D3280(...);
+int sub_4D32C0(...);
+int sub_4D3300(...);
+
+// Unnamed globals (extern)
+extern void *off_56F62C;
+extern void *off_56FA7C;
+extern void *off_56FA88;
+extern void *off_56FAC4;
+
 // 0x004D32C0
 _DWORD *sub_4D32C0()
 {
@@ -25,7 +36,7 @@ int sub_4D3300()
 
   *this = &off_56FA88;
   v2 = this != 0 ? (unsigned int)(this + 3) : 0;
-  *(this + 3) = &off_56FA7C;
+  *((_DWORD *)this + 3) = &off_56FA7C;
   v3 = *(_DWORD *)(v2 + 0x1C);
   *(_DWORD *)v2 = &off_56FAC4;
   if ( v3 || (result = *(this != 0 ? this + 11 : (_DWORD *)32)) != 0 )

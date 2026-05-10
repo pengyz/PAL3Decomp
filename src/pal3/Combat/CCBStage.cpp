@@ -2,6 +2,117 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBStage.h"
 
+// Forward declarations for unnamed functions
+int sub_4C5C20(...);
+int sub_4DF6B0(...);
+int sub_4DF700(...);
+int sub_4DF710(...);
+int sub_4DFA10(...);
+int sub_4DFF90(...);
+int sub_4DFFF0(...);
+int sub_4EED60(...);
+int sub_4F06C0(...);
+int sub_4F6CD0(...);
+int sub_4FB9A0(...);
+int sub_4FB9F0(...);
+int sub_4FBA70(...);
+int sub_4FBE50(...);
+int sub_4FBF90(...);
+int sub_4FC150(...);
+int sub_4FC700(...);
+int sub_4FC7D0(...);
+int sub_4FC9A0(...);
+int sub_4FCD00(...);
+int sub_4FCD50(...);
+int sub_4FCDE0(...);
+int sub_4FCE00(...);
+int sub_4FCFB0(...);
+int sub_4FD290(...);
+int sub_4FD3D0(...);
+int sub_4FD880(...);
+int sub_4FDA10(...);
+int sub_4FDFC0(...);
+int sub_4FE290(...);
+int sub_4FE540(...);
+int sub_4FE550(...);
+int sub_4FE600(...);
+int sub_4FECE0(...);
+int sub_4FEE60(...);
+int sub_4FEFB0(...);
+int sub_4FF1B0(...);
+int sub_4FF3D0(...);
+int sub_4FF5C0(...);
+int sub_4FF740(...);
+int sub_500840(...);
+int sub_5009C0(...);
+int sub_500AD0(...);
+int sub_503680(...);
+int sub_503AE0(...);
+int sub_503FA0(...);
+int sub_504510(...);
+int sub_504540(...);
+int sub_5049F0(...);
+int sub_504A80(...);
+int sub_508460(...);
+int sub_50A4B0(...);
+int sub_50E160(...);
+int sub_50E360(...);
+int sub_50E550(...);
+int sub_50EB00(...);
+int sub_50FD00(...);
+int sub_511E20(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed[];
+extern char aCamFovF[];
+extern char aCamXFYFZF[];
+extern char aCamYawFPitchFR[];
+extern char aDProjectPal3Co_5[];
+extern char aEnemysneakatta[];
+extern char aMoney[];
+extern char aNewFailedAtCre[];
+extern char aOver[];
+extern char aWe013[];
+extern char aWesneakattacke[];
+extern char aWitch[];
+extern unsigned char byte_17A9927;
+extern unsigned char byte_17AA89C;
+extern unsigned char byte_17AA91C;
+extern unsigned char byte_17AA920;
+extern unsigned char byte_17AAA2C;
+extern unsigned char byte_17AB6E4;
+extern int dword_17A990C;
+extern int dword_17AA870;
+extern int dword_17AA874;
+extern int dword_17AA878;
+extern int dword_17AA880;
+extern int dword_17AA884;
+extern int dword_17AA888;
+extern int dword_17AA890;
+extern int dword_17AA894;
+extern int dword_17AA898;
+extern int dword_17AA910;
+extern int dword_17AA914;
+extern int dword_17AA918;
+extern int dword_17AAA20;
+extern int dword_17AAA24;
+extern int dword_17AAA28;
+extern int dword_17AAD3C;
+extern int dword_17AB6B8;
+extern int dword_17AB6BC;
+extern int dword_17AB6C0;
+extern int dword_17AB6C8;
+extern int dword_17AB6CC;
+extern int dword_17AB6D0;
+extern int dword_17AB6D8;
+extern int dword_17AB6DC;
+extern int dword_17AB6E0;
+extern float flt_17ABCDC;
+extern float flt_56A610;
+extern float flt_56A64C;
+extern float flt_56A77C;
+extern int unk_5DB6C4;
+
 // 0x004DFAA0
 int CCBStage::InitRound()
 {
@@ -63,7 +174,7 @@ _DWORD * sub_4FB9A0(int a2)
   while ( v3 );
   memset(this, 0, 0xA48B0u);
   *this = a2;
-  *(this + 1) = *(_DWORD *)(a2 + 16);
+  *((_DWORD *)this + 1) = *(_DWORD *)(a2 + 16);
   return this;
 }
 
@@ -122,7 +233,7 @@ char __thiscall sub_4FBA70(_DWORD *this)
   else
     v3 = 0;
   v18 = -1;
-  *(this + 5) = v3;
+  *((_DWORD *)this + 5) = v3;
   if ( !v3 )
   {
     qmemcpy(
@@ -159,7 +270,7 @@ char __thiscall sub_4FBA70(_DWORD *this)
           v7 = sub_503FA0(this, g_pGfxManager);
         else
           v7 = 0;
-        *(this + 3) = v7;
+        *((_DWORD *)this + 3) = v7;
         v18 = -1;
         if ( !v7 )
         {
@@ -174,11 +285,11 @@ char __thiscall sub_4FBA70(_DWORD *this)
         {
           v18 = 3;
           if ( operator new(0x690B0u) )
-            v8 = this->SetCamPos(*(this + 3));
+            v8 = this->SetCamPos(*((_DWORD *)this + 3));
           else
             v8 = 0;
           v18 = -1;
-          *(this + 4) = v8;
+          *((_DWORD *)this + 4) = v8;
           if ( !v8 )
           {
             qmemcpy(
@@ -197,7 +308,7 @@ char __thiscall sub_4FBA70(_DWORD *this)
             else
               v10 = 0;
             v18 = -1;
-            *(this + 17) = v10;
+            *((_DWORD *)this + 17) = v10;
             if ( !v10 )
             {
               qmemcpy(
@@ -215,7 +326,7 @@ char __thiscall sub_4FBA70(_DWORD *this)
               else
                 v11 = 0;
               v18 = -1;
-              *(this + 18) = v11;
+              *((_DWORD *)this + 18) = v11;
               if ( !v11 )
               {
                 qmemcpy(
@@ -234,7 +345,7 @@ char __thiscall sub_4FBA70(_DWORD *this)
                 else
                   v13 = 0;
                 v18 = -1;
-                *(this + 19) = v13;
+                *((_DWORD *)this + 19) = v13;
                 if ( !v13 )
                 {
                   qmemcpy(
@@ -366,8 +477,8 @@ char sub_4FBF90()
   void *v7; // ecx
 
   CCBStage::~CCBStage((int)this);
-  *(this + 2) = *(_DWORD *)(*this + 28);
-  if ( !*(this + 5) || !(unsigned __int8)CCBStageScene::Reset() )
+  *((_DWORD *)this + 2) = *(_DWORD *)(*this + 28);
+  if ( !*((_DWORD *)this + 5) || !(unsigned __int8)CCBStageScene::Reset() )
     return 0;
   v3 = 0;
   v4 = 0;
@@ -377,7 +488,7 @@ char sub_4FBF90()
     if ( !*v5 )
       return 0;
     CCBStageRole::GetRotAngle();
-    if ( *(_BYTE *)(*(this + 1) + v4 + 577) )
+    if ( *(_BYTE *)(*((_DWORD *)this + 1) + v4 + 577) )
     {
       if ( !(unsigned __int8)v3->IsAtProtectPos(0, 0) )
         return 0;
@@ -391,19 +502,19 @@ char sub_4FBF90()
     ++v5;
   }
   while ( v4 < 9812 );
-  if ( !*(this + 3) || !(unsigned __int8)sub_504540() )
+  if ( !*((_DWORD *)this + 3) || !(unsigned __int8)sub_504540() )
     return 0;
-  if ( !*(this + 4) || !(unsigned __int8)CCBStageCam::Update() )
+  if ( !*((_DWORD *)this + 4) || !(unsigned __int8)CCBStageCam::Update() )
     return 0;
-  v6 = *(this + 18);
+  v6 = *((_DWORD *)this + 18);
   if ( !v6 || !(unsigned __int8)v6->Reset() )
     return 0;
-  if ( !*(this + 19) || !(unsigned __int8)CCBCamControl::ResetListFlag() )
+  if ( !*((_DWORD *)this + 19) || !(unsigned __int8)CCBCamControl::ResetListFlag() )
     return 0;
-  v7 = (void *)*(this + 17);
+  v7 = (void *)*((_DWORD *)this + 17);
   if ( !v7 || !sub_4DF700(v7) )
     return 0;
-  sub_4DFFF0(*(this + 17), 0.0, 0);
+  sub_4DFFF0(*((_DWORD *)this + 17), 0.0, 0);
   return 1;
 }
 
@@ -498,7 +609,7 @@ int sub_4FC150()
   v2 = *((float *)this + 21);
   v18 = *((float *)this + 20);
   v19 = v2;
-  v3 = (char *)*(this + 3);
+  v3 = (char *)*((_DWORD *)this + 3);
   v16 = 0;
   v17 = 0;
   v4 = (char *)v3->GetViewTarget(v26, (int *)&v18);
@@ -517,18 +628,18 @@ int sub_4FC150()
   v21 = v18;
   v20 = v7;
   v23 = v7;
-  v8 = *(this + 22);
+  v8 = *((_DWORD *)this + 22);
   v22 = v19;
   if ( v8 != -1 )
   {
     gbVec3D::operator=(*(this + v8 + 6) + 6596, &v21);
-    v9 = (float *)*(this + *(this + 22) + 6);
+    v9 = (float *)*(this + *((_DWORD *)this + 22) + 6);
     v9[1646] = v21;
     v9 += 1646;
     v9[1] = v22;
     *((_DWORD *)v9 + 2) = v23;
   }
-  result = *(this + 5);
+  result = *((_DWORD *)this + 5);
   if ( *(_BYTE *)(result + 964) )
   {
     if ( (MEMORY[0xBFC6D8] & 0xF) == 1 )
@@ -545,9 +656,9 @@ int sub_4FC150()
     else
     {
       GRPinput::GetMousePos(&g_Input, &v16, &v17);
-      result = *(this + 5);
+      result = *((_DWORD *)this + 5);
       *(float *)(result + 912) = (double)v16 + *(float *)(result + 912);
-      *(float *)(*(this + 5) + 920) = (double)v17 * 0.016666668 + *(float *)(*(this + 5) + 920);
+      *(float *)(*((_DWORD *)this + 5) + 920) = (double)v17 * 0.016666668 + *(float *)(*((_DWORD *)this + 5) + 920);
     }
   }
   return result;
@@ -724,7 +835,7 @@ int sub_4FC700(int a2, const void *a3, char a4)
   _BYTE *i; // eax
   _DWORD *v8; // edi
 
-  if ( (int)*(this + 39) >= 246 )
+  if ( (int)*((_DWORD *)this + 39) >= 246 )
     CCBSystem::CreateObj(&unk_5DB6C4, 0, 48);
   v5 = 0;
   for ( i = this + 699; *i; i += 2632 )
@@ -744,7 +855,7 @@ int sub_4FC700(int a2, const void *a3, char a4)
     qmemcpy(v8 + 688, a3, 0x2Cu);
   else
     v8[690] = -1;
-  ++*(this + 39);
+  ++*((_DWORD *)this + 39);
   return v5;
 }
 
@@ -1038,7 +1149,7 @@ int sub_4FCD00(int a2)
       {
         result = 0;
         memset(v4 - 648, 0, 0xA48u);
-        --*(this + 39);
+        --*((_DWORD *)this + 39);
       }
     }
     v4 += 658;
@@ -1108,9 +1219,9 @@ int sub_4FCDE0(int a2)
 
   result = a2;
   if ( a2 == -1 )
-    *(this + 22) = -1;
+    *((_DWORD *)this + 22) = -1;
   else
-    *(this + 22) = a2;
+    *((_DWORD *)this + 22) = a2;
   return result;
 }
 
@@ -1120,11 +1231,11 @@ int sub_4FCE00(int a2)
   int v2; // eax
   int v3; // esi
 
-  v2 = 80 * *(this + 41);
-  v3 = (int)this + 2632 * *(this + 40) + v2 + 184;
-  if ( *((_BYTE *)this + 2632 * *(this + 40) + v2 + 225) )
+  v2 = 80 * *((_DWORD *)this + 41);
+  v3 = (int)this + 2632 * *((_DWORD *)this + 40) + v2 + 184;
+  if ( *((_BYTE *)this + 2632 * *((_DWORD *)this + 40) + v2 + 225) )
   {
-    if ( *((_BYTE *)this + 2632 * *(this + 40) + v2 + 227) == 1
+    if ( *((_BYTE *)this + 2632 * *((_DWORD *)this + 40) + v2 + 227) == 1
       || *(float *)(*this + 80) - *(float *)(v3 + 24) >= *(float *)(v3 + 32)
       || (char *->SetJoystickAbs()&g_Input) )
     {
@@ -1134,7 +1245,7 @@ int sub_4FCE00(int a2)
   }
   else
   {
-    *((_BYTE *)this + 2632 * *(this + 40) + v2 + 225) = 1;
+    *((_BYTE *)this + 2632 * *((_DWORD *)this + 40) + v2 + 225) = 1;
     return 0;
   }
 }
@@ -1206,8 +1317,8 @@ int sub_4FCFB0(int a2)
   float v13; // [esp+Ch] [ebp-4h]
   float v14; // [esp+Ch] [ebp-4h]
 
-  v3 = 329 * *(this + 40);
-  v4 = 80 * *(this + 41);
+  v3 = 329 * *((_DWORD *)this + 40);
+  v4 = 80 * *((_DWORD *)this + 41);
   v5 = *(float *)((char *)this + 8 * v3 + v4 + 216) * 0.25;
   v6 = (int)this + 8 * v3 + v4 + 184;
   v11 = v5;
@@ -1217,7 +1328,7 @@ int sub_4FCFB0(int a2)
     *(_DWORD *)((char *)this + 8 * v3 + v4 + 248) = 0;
     *((_BYTE *)this + 8 * v3 + v4 + 225) = 1;
   }
-  sub_4DFF90((_DWORD *)*(this + 17), *((_BYTE *)this + 8 * v3 + v4 + 248));
+  sub_4DFF90((_DWORD *)*((_DWORD *)this + 17), *((_BYTE *)this + 8 * v3 + v4 + 248));
   v7 = *(float *)(*this + 80) - *(float *)(v6 + 24);
   if ( v7 >= v13 )
   {
@@ -1332,8 +1443,8 @@ int sub_4FD290(int a2)
   char *v10; // eax
   int v11; // ecx
 
-  v3 = 329 * *(this + 40);
-  v4 = this + 20 * *(this + 41);
+  v3 = 329 * *((_DWORD *)this + 40);
+  v4 = this + 20 * *((_DWORD *)this + 41);
   v5 = (int)&v4[2 * v3 + 46];
   if ( !BYTE1(v4[2 * v3 + 56]) )
   {
@@ -1344,7 +1455,7 @@ int sub_4FD290(int a2)
       return 0;
     }
     v7 = *(_DWORD *)(*this + 4);
-    if ( *(_BYTE *)(*(this + 1) + 536) )
+    if ( *(_BYTE *)(*((_DWORD *)this + 1) + 536) )
     {
       v8 = PalScript::SetAppName(&MEMORY[0x8ACD30], aWesneakattacke);
       UIWnd::SetEnable(*(_DWORD **)(v7 + 1072), v8, 1);
@@ -1364,7 +1475,7 @@ int sub_4FD290(int a2)
     || *((_BYTE *)CEffectSystem::DestroyAllEffect() + 5) )
   {
     v11 = *(_DWORD *)(*this + 4);
-    if ( *(_BYTE *)(*(this + 1) + 536) )
+    if ( *(_BYTE *)(*((_DWORD *)this + 1) + 536) )
     {
       (***(void (__thiscall ****)(_DWORD, _DWORD))(v11 + 1072))(*(_DWORD *)(v11 + 1072), 0);
       *(_DWORD *)(v5 + 16) = 4;
@@ -1609,8 +1720,8 @@ int sub_4FD880(int a2)
   void (__thiscall ***v10)(_DWORD, _DWORD); // ecx
   int v11; // [esp-4h] [ebp-10h]
 
-  v3 = 2632 * *(this + 40);
-  v4 = v3 + 80 * *(this + 41);
+  v3 = 2632 * *((_DWORD *)this + 40);
+  v4 = v3 + 80 * *((_DWORD *)this + 41);
   v5 = (int)this + v4 + 184;
   if ( !*((_BYTE *)this + v4 + 225) )
   {
@@ -1671,8 +1782,8 @@ int sub_4FDA10(int a2)
   void (__thiscall ***v7)(_DWORD, int); // ecx
   void (__thiscall ***v8)(_DWORD, _DWORD); // ecx
 
-  v3 = 2632 * *(this + 40);
-  v4 = v3 + 80 * *(this + 41);
+  v3 = 2632 * *((_DWORD *)this + 40);
+  v4 = v3 + 80 * *((_DWORD *)this + 41);
   v5 = (int)this + v4 + 184;
   if ( !*((_BYTE *)this + v4 + 225) )
   {
@@ -1898,7 +2009,7 @@ int sub_4FDFC0(int a2)
   v26 = 0.0;
   v27 = 0.0;
   v21 = 0;
-  v3 = *(this + 40);
+  v3 = *((_DWORD *)this + 40);
   v22 = 0;
   v23 = 0;
   v20 = this;
@@ -1994,12 +2105,12 @@ int sub_4FE290(const char **this, int a2)
 
   v22 = 0.0;
   v23 = 0.0;
-  v3 = (int)*(this + 40);
+  v3 = (int)*((_DWORD *)this + 40);
   v16 = 0;
   v17 = 0.0;
   v18 = 0;
   v4 = 2632 * v3;
-  v5 = v4 + 80 * (_DWORD)*(this + 41);
+  v5 = v4 + 80 * (_DWORD)*((_DWORD *)this + 41);
   v6 = (int)this + v5 + 184;
   if ( !*((_BYTE *)this + v5 + 225) )
   {
@@ -2019,7 +2130,7 @@ int sub_4FE290(const char **this, int a2)
   v16 = *(const char **)((char *)this + v5 + 248);
   v17 = *(float *)((char *)this + v5 + 252);
   v18 = *(const char **)((char *)this + v5 + 256);
-  (gbCamera *->PointWorldToScr()(*(this + 3) + 4), (struct gbVec3D *)&v16, &v22, &v23);
+  (gbCamera *->PointWorldToScr()(*((_DWORD *)this + 3) + 4), (struct gbVec3D *)&v16, &v22, &v23);
   v8 = (*((float *)*this + 20) - *(float *)(v6 + 24)) / *(float *)(v6 + 32);
   *(float *)&v21 = v8;
   if ( v8 > 1.0 )
@@ -2042,7 +2153,7 @@ int sub_4FE290(const char **this, int a2)
   (***(void (__thiscall ****)(_DWORD, int))(*(_DWORD *)(HIDWORD(v11) + 4) + 1080))(
     *(_DWORD *)(*(_DWORD *)(HIDWORD(v11) + 4) + 1080),
     1);
-  UIWnd::SetEnable(*(_DWORD **)(*((_DWORD *)*this + 1) + 1080), *(this + 1), 0);
+  UIWnd::SetEnable(*(_DWORD **)(*((_DWORD *)*this + 1) + 1080), *((_DWORD *)this + 1), 0);
   v15 = v24;
   v13 = CCBStage::ProcShowEnemyFiveLineup(*this);
   NPC::UpdateAnim(*(_DWORD **)(v13 + 1080), v15);
@@ -2062,7 +2173,7 @@ int sub_4FE290(const char **this, int a2)
 // 0x004FE540
 int sub_4FE540()
 {
-  return *(this + 1);
+  return *((_DWORD *)this + 1);
 }
 
 // 0x004FE550
@@ -2073,8 +2184,8 @@ int sub_4FE550(int a2)
   int v5; // edi
   int v6; // ecx
 
-  v3 = 2632 * *(this + 40);
-  v4 = v3 + 80 * *(this + 41);
+  v3 = 2632 * *((_DWORD *)this + 40);
+  v4 = v3 + 80 * *((_DWORD *)this + 41);
   v5 = (int)this + v4 + 184;
   if ( !*((_BYTE *)this + v4 + 225) )
   {
@@ -2083,7 +2194,7 @@ int sub_4FE550(int a2)
     {
       if ( *(_BYTE *)(v6 + 373) == 1 )
         CCBStageRole::GetCurrentTaskIndex();
-      CCBStageRole::DelAllTask(*(this + 658 * *(this + 40) + 686), 1);
+      CCBStageRole::DelAllTask(*(this + 658 * *((_DWORD *)this + 40) + 686), 1);
       *(_BYTE *)(v5 + 41) = 1;
       *(_DWORD *)(v5 + 16) = 4;
     }
@@ -2098,8 +2209,8 @@ int sub_4FE600(int a2)
   int v3; // edx
   int v4; // esi
 
-  v2 = 2632 * *(this + 40);
-  v3 = v2 + 80 * *(this + 41);
+  v2 = 2632 * *((_DWORD *)this + 40);
+  v3 = v2 + 80 * *((_DWORD *)this + 41);
   v4 = (int)this + v3 + 184;
   if ( !*((_BYTE *)this + v3 + 225) )
   {
@@ -2389,18 +2500,18 @@ int sub_4FECE0(int a2)
     dword_17AA918 = 0;
     atexit(nullsub_21);
   }
-  v3 = 2632 * *(this + 40);
+  v3 = 2632 * *((_DWORD *)this + 40);
   v4 = (_DWORD *)((char *)this + v3 + 2760);
-  v5 = (int)this + 80 * *(this + 41) + v3 + 184;
+  v5 = (int)this + 80 * *((_DWORD *)this + 41) + v3 + 184;
   if ( (unsigned __int8)CCBStageRole::IsReady(*(_DWORD *)((char *)this + v3 + 2744)) )
   {
     if ( !*(_BYTE *)(v5 + 41) && (unsigned __int8)CCBStageRole::ForceDelTaskByPFN(*(this + *v4 + 6)) == 1 )
     {
       *(float *)&dword_17AA910 = (float)*v4;
       *(float *)&dword_17AA914 = (float)*(int *)((char *)this + v3 + 2764);
-      sub_50E550->GetProperCurAction(0, 0, 0, *(this + 658 * *(this + 40) + 686),
+      sub_50E550->GetProperCurAction(0, 0, 0, *(this + 658 * *((_DWORD *)this + 40) + 686),
         &dword_17AA910,
-        this + 658 * *(this + 40) + 688,
+        this + 658 * *((_DWORD *)this + 40) + 688,
         1);
       *(_BYTE *)(v5 + 41) = 1;
     }
@@ -2423,7 +2534,7 @@ int sub_4FEE60(int a2)
   int v2; // edx
   int v3; // esi
 
-  v2 = 2632 * *(this + 40) + 80 * *(this + 41);
+  v2 = 2632 * *((_DWORD *)this + 40) + 80 * *((_DWORD *)this + 41);
   v3 = (int)this + v2 + 184;
   if ( !*((_BYTE *)this + v2 + 225) )
   {
@@ -2540,9 +2651,9 @@ int sub_4FF1B0(int a2)
   int v8; // eax
   float v10[3]; // [esp+18h] [ebp-Ch] BYREF
 
-  v3 = 2632 * *(this + 40);
+  v3 = 2632 * *((_DWORD *)this + 40);
   v4 = (_DWORD *)((char *)this + v3 + 2760);
-  v5 = (int)this + 80 * *(this + 41) + v3 + 184;
+  v5 = (int)this + 80 * *((_DWORD *)this + 41) + v3 + 184;
   if ( !(unsigned __int8)CCBStageRole::IsReady(*(_DWORD *)((char *)this + v3 + 2744)) )
     goto LABEL_13;
   if ( *(_BYTE *)(v5 + 41) || (unsigned __int8)CCBStageRole::ForceDelTaskByPFN(*(this + *v4 + 6)) != 1 )
@@ -2555,7 +2666,7 @@ int sub_4FF1B0(int a2)
     {
       v6 = CCBStageRole::ProcTurnToRole;
 LABEL_10:
-      v6->GetProperCurAction(0, 0, 0, *(this + 658 * *(this + 40) + 686), *(this + *v4 + 6) + 6596, 0, 1);
+      v6->GetProperCurAction(0, 0, 0, *(this + 658 * *((_DWORD *)this + 40) + 686), *(this + *v4 + 6) + 6596, 0, 1);
       goto LABEL_11;
     }
 LABEL_9:
@@ -2567,14 +2678,14 @@ LABEL_9:
     0,
     0,
     0,
-    *(this + 658 * *(this + 40) + 686),
-    *(this + 8) + 6596,
+    *(this + 658 * *((_DWORD *)this + 40) + 686),
+    *((_DWORD *)this + 8) + 6596,
     0,
     1);
 LABEL_11:
   v7 = *(float *)(*(this + *v4 + 6) + 6636);
   v10[1] = 0.0;
-  v8 = *(this + 40);
+  v8 = *((_DWORD *)this + 40);
   v10[0] = v7;
   v10[2] = 0.0;
   CCBStageRole::GetProperCurAction(CCBStage::ProcessCommand, 0, 0, 0, *(this + 658 * v8 + 686), v10, 0, 1);
@@ -2684,8 +2795,8 @@ int sub_4FF5C0(int a2)
   int v9; // ecx
   int v10; // ebx
 
-  v3 = 2632 * *(this + 40);
-  v4 = v3 + 80 * *(this + 41);
+  v3 = 2632 * *((_DWORD *)this + 40);
+  v4 = v3 + 80 * *((_DWORD *)this + 41);
   v5 = (int)this + v3 + 2752;
   v6 = (int)this + v4 + 184;
   if ( !*((_BYTE *)this + v4 + 225) )
@@ -2701,7 +2812,7 @@ int sub_4FF5C0(int a2)
     *(_DWORD *)(v6 + 64) = 0;
   }
   v8 = *(_DWORD *)(v6 + 56);
-  v9 = *(this + 19);
+  v9 = *((_DWORD *)this + 19);
   v10 = v9 + 60 * v8 + 2444;
   if ( !*(_BYTE *)(v6 + 60) && *(float *)(*this + 80) - *(float *)(v6 + 24) >= *(float *)(v9 + 60 * v8 + 2468) )
   {
@@ -2714,9 +2825,9 @@ int sub_4FF5C0(int a2)
     *(_BYTE *)(v6 + 61) = 1;
   }
   if ( !*(_BYTE *)(v6 + 62)
-    && *(float *)(*this + 80) - *(float *)(v6 + 24) >= *(float *)(*(this + 19) + 60 * *(_DWORD *)(v6 + 56) + 2472) )
+    && *(float *)(*this + 80) - *(float *)(v6 + 24) >= *(float *)(*((_DWORD *)this + 19) + 60 * *(_DWORD *)(v6 + 56) + 2472) )
   {
-    CCBRoleState::RandSetEnemyPos(this + 658 * *(this + 40) + 688);
+    CCBRoleState::RandSetEnemyPos(this + 658 * *((_DWORD *)this + 40) + 688);
     *(_BYTE *)(v6 + 62) = 1;
   }
   if ( (unsigned __int8)CCBStageRole::ForceDelTaskByPFN(*(this + *(_DWORD *)(v5 + 8) + 6)) == 1
@@ -2743,8 +2854,8 @@ int sub_4FF740(int a2)
   _BYTE *v11; // ecx
   int v13; // [esp+4h] [ebp-4h]
 
-  v3 = 329 * *(this + 40);
-  v4 = 80 * *(this + 41);
+  v3 = 329 * *((_DWORD *)this + 40);
+  v4 = 80 * *((_DWORD *)this + 41);
   v5 = (int)this + 8 * v3 + v4 + 184;
   v13 = v5;
   if ( !*((_BYTE *)this + 8 * v3 + v4 + 225) )
@@ -2754,7 +2865,7 @@ int sub_4FF740(int a2)
     v8 = this + 6;
     do
     {
-      v9 = (_BYTE *)*(this + 1);
+      v9 = (_BYTE *)*((_DWORD *)this + 1);
       if ( v9[v7 + 577] && !*(_BYTE *)(v9->InitUI(v6) + 880) )
       {
         v10 = (_DWORD *)*v8;
@@ -2768,8 +2879,8 @@ int sub_4FF740(int a2)
       ++v8;
     }
     while ( v7 < 9812 );
-    v11 = (_BYTE *)*(this + 1);
-    if ( v11[9497] && !*(_BYTE *)(v11->InitUI(10) + 880) && *(_BYTE *)(*(this + 16) + 272) )
+    v11 = (_BYTE *)*((_DWORD *)this + 1);
+    if ( v11[9497] && !*(_BYTE *)(v11->InitUI(10) + 880) && *(_BYTE *)(*((_DWORD *)this + 16) + 272) )
       CCBStageRole::ForceRelease(1);
     v5 = v13;
     *(_BYTE *)(v13 + 41) = 1;

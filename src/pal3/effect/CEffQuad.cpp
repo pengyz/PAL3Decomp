@@ -2,6 +2,26 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffQuad.h"
 
+// Forward declarations for unnamed functions
+int sub_4D1090(...);
+int sub_4D1BE0(...);
+int sub_4D1CA0(...);
+int sub_4D1E50(...);
+int sub_4D1EF0(...);
+int sub_4D1F30(...);
+int sub_4D1FD0(...);
+int sub_4D2080(...);
+int sub_4D22F0(...);
+int sub_4D2E10(...);
+int sub_4D3010(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed_0[];
+extern char aDProjectPal3Co_16[];
+extern char aNewFailInCeffq[];
+extern int dword_17A7BC0;
+extern int unk_FFFFFF;
+
 // 0x004D1090
 char sub_4D1090(int this, int a2)
 {
@@ -145,13 +165,13 @@ char sub_4D1BE0(const void *a2)
   int v8; // eax
   int v9; // ecx
 
-  v3 = *(this + 17);
-  if ( *(this + 16) > v3 )
+  v3 = *((_DWORD *)this + 17);
+  if ( *((_DWORD *)this + 16) > v3 )
     return 0;
   v4 = 0;
   if ( v3 <= 0 )
     return 0;
-  v5 = *(this + 39);
+  v5 = *((_DWORD *)this + 39);
   for ( i = (_BYTE *)(v5 + 4); *i; i += 80 )
   {
     if ( ++v4 >= v3 )
@@ -159,17 +179,17 @@ char sub_4D1BE0(const void *a2)
   }
   v8 = 80 * v4;
   qmemcpy((void *)(v5 + 80 * v4), a2, 0x50u);
-  *(_BYTE *)(v8 + *(this + 39) + 4) = 1;
-  *(_DWORD *)(v8 + *(this + 39) + 12) = 0;
-  *(_BYTE *)(v8 + *(this + 39) + 6) = 0;
-  *(_BYTE *)(v8 + *(this + 39) + 7) = 0;
-  v9 = *(this + 15);
+  *(_BYTE *)(v8 + *((_DWORD *)this + 39) + 4) = 1;
+  *(_DWORD *)(v8 + *((_DWORD *)this + 39) + 12) = 0;
+  *(_BYTE *)(v8 + *((_DWORD *)this + 39) + 6) = 0;
+  *(_BYTE *)(v8 + *((_DWORD *)this + 39) + 7) = 0;
+  v9 = *((_DWORD *)this + 15);
   if ( v4 > v9 - 1 )
-    *(this + 15) = v9 + 1;
-  *(_DWORD *)(v8 + *(this + 39)) = *(this + 16);
-  *(_DWORD *)(*(this + 41) + 4 * (*(this + 16))++) = v4;
+    *((_DWORD *)this + 15) = v9 + 1;
+  *(_DWORD *)(v8 + *((_DWORD *)this + 39)) = *((_DWORD *)this + 16);
+  *(_DWORD *)(*((_DWORD *)this + 41) + 4 * (*((_DWORD *)this + 16))++) = v4;
   v4->SetQuad();
-  *(this + 18) = v4;
+  *((_DWORD *)this + 18) = v4;
   return 1;
 }
 
@@ -231,7 +251,7 @@ _DWORD * sub_4D1E50(int a2)
   int v6; // ecx
 
   result = this;
-  v3 = *(this + 39) + 80 * a2;
+  v3 = *((_DWORD *)this + 39) + 80 * a2;
   v4 = result[16] - 1;
   v5 = *(_DWORD *)v3;
   *(_BYTE *)(v3 + 4) = 0;
@@ -317,11 +337,11 @@ int sub_4D2080(_DWORD *a2)
 
   v2 = this + 3;
   v3 = 0;
-  *(this + 14) = a2[20];
-  result = *(this + 10);
+  *((_DWORD *)this + 14) = a2[20];
+  result = *((_DWORD *)this + 10);
   if ( result > 0 )
   {
-    v5 = *(this + 6);
+    v5 = *((_DWORD *)this + 6);
     for ( i = (_BYTE *)(v5 + 148); *i; i += 152 )
     {
       if ( ++v3 >= result )

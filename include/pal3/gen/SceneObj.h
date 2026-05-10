@@ -6,10 +6,7 @@
 #include "ObjectInfo.h"
 #include "PalScriptWaitObj.h"
 #include "SaveTask.h"
-#include "gbOBBox.h"
-#include "gbVec3D.h"
 #include "subPARAM.h"
-#include "tagRECT.h"
 
 class PalScript;
 class PathObj;
@@ -46,7 +43,8 @@ public:
     char m_pObjMsgBuffer[256]; // +0x1A8
     char m_pObjMsgBuffer2[256]; // +0x2A8
     gbVec3D m_renderpos; // +0x3A8
-    SceneObj::SubObj m_subobj; // +0x3B4
+    struct SubObj {}; // nested type stub
+    SubObj m_subobj; // +0x3B4
     MyMdl m_mdl; // +0x3D8
     ObjectInfo m_info; // +0x42C
     PathObj * m_path; // +0x688
@@ -55,7 +53,8 @@ public:
     int m_pushboxdir; // +0x694
     tagRECT m_maprect; // +0x698
     int m_liftrole; // +0x6A8
-    std::queue<SceneObj::Common_State,std::deque<SceneObj::Common_State,std::allocator<SceneObj::Common_State> > > m_common; // +0x6AC
+    struct Common_State> > > {}; // nested type stub
+    Common_State> > > m_common; // +0x6AC
     gbSound3DNode * m_snd; // +0x6DC
     float m_radius; // +0x6E0
     PalScript * m_runscript; // +0x6E4

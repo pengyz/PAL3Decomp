@@ -2,6 +2,21 @@
 #include "pal3/globals.h"
 #include "pal3/gen/ObjectCamera.h"
 
+// Forward declarations for unnamed functions
+int sub_47C580(...);
+int sub_47C590(...);
+int sub_47C640(...);
+int sub_47C6E0(...);
+int sub_47C770(...);
+int sub_47C7E0(...);
+int sub_47C810(...);
+int sub_47C830(...);
+int sub_47C9B0(...);
+int sub_47CAD0(...);
+
+// Unnamed globals (extern)
+extern float flt_DE4A00;
+
 // 0x0047C570
 // attributes: thunk
 void ObjectCamera::ObjectCamera()
@@ -23,46 +38,46 @@ float * sub_47C590()
   int v4; // edx
 
   *this = 0.0;
-  *(this + 1) = 0.0;
-  *(this + 2) = 0.0;
-  *(this + 3) = 0.0;
-  *(this + 4) = 0.0;
-  *(this + 5) = 0.0;
-  *(this + 6) = 0.0;
-  *(this + 7) = 0.0;
-  *(this + 8) = 0.0;
-  *(this + 9) = 0.0;
-  *(this + 10) = 0.0;
-  *(this + 11) = 0.0;
-  *(this + 12) = 0.0;
-  *(this + 20) = 0.0;
-  *(this + 21) = 0.0;
-  *(this + 22) = 0.0;
-  *(this + 23) = 0.0;
-  *(this + 24) = 0.0;
-  *(this + 25) = 0.0;
-  *(this + 1) = 0.0;
-  *(this + 2) = 0.0;
-  *(this + 3) = 800.0;
-  v2 = *(this + 1);
-  v3 = *(this + 2);
-  *(this + 6) = 0.0;
-  *(this + 4) = v2;
-  *(this + 5) = v3;
-  *(this + 7) = 0.0;
-  *(this + 8) = 1.0;
-  *(this + 9) = 0.0;
+  *((_DWORD *)this + 1) = 0.0;
+  *((_DWORD *)this + 2) = 0.0;
+  *((_DWORD *)this + 3) = 0.0;
+  *((_DWORD *)this + 4) = 0.0;
+  *((_DWORD *)this + 5) = 0.0;
+  *((_DWORD *)this + 6) = 0.0;
+  *((_DWORD *)this + 7) = 0.0;
+  *((_DWORD *)this + 8) = 0.0;
+  *((_DWORD *)this + 9) = 0.0;
+  *((_DWORD *)this + 10) = 0.0;
+  *((_DWORD *)this + 11) = 0.0;
+  *((_DWORD *)this + 12) = 0.0;
+  *((_DWORD *)this + 20) = 0.0;
+  *((_DWORD *)this + 21) = 0.0;
+  *((_DWORD *)this + 22) = 0.0;
+  *((_DWORD *)this + 23) = 0.0;
+  *((_DWORD *)this + 24) = 0.0;
+  *((_DWORD *)this + 25) = 0.0;
+  *((_DWORD *)this + 1) = 0.0;
+  *((_DWORD *)this + 2) = 0.0;
+  *((_DWORD *)this + 3) = 800.0;
+  v2 = *((_DWORD *)this + 1);
+  v3 = *((_DWORD *)this + 2);
+  *((_DWORD *)this + 6) = 0.0;
+  *((_DWORD *)this + 4) = v2;
+  *((_DWORD *)this + 5) = v3;
+  *((_DWORD *)this + 7) = 0.0;
+  *((_DWORD *)this + 8) = 1.0;
+  *((_DWORD *)this + 9) = 0.0;
   v4 = *((_DWORD *)this + 3);
-  *(this + 15) = 0.0;
-  *(this + 14) = 0.0;
-  *(this + 13) = 0.0;
-  *(this + 19) = 0.0;
-  *(this + 18) = 0.0;
-  *(this + 17) = 0.0;
+  *((_DWORD *)this + 15) = 0.0;
+  *((_DWORD *)this + 14) = 0.0;
+  *((_DWORD *)this + 13) = 0.0;
+  *((_DWORD *)this + 19) = 0.0;
+  *((_DWORD *)this + 18) = 0.0;
+  *((_DWORD *)this + 17) = 0.0;
   *((_DWORD *)this + 16) = v4;
-  *(this + 28) = 0.0;
-  *(this + 27) = 0.0;
-  *(this + 26) = 0.15000001;
+  *((_DWORD *)this + 28) = 0.0;
+  *((_DWORD *)this + 27) = 0.0;
+  *((_DWORD *)this + 26) = 0.15000001;
   *((_BYTE *)this + 120) = 0;
   return this;
 }
@@ -155,12 +170,12 @@ int sub_47C770(int this, int a2, int a3, int a4)
 // 0x0047C7E0
 int sub_47C7E0(int a2, int a3, int a4)
 {
-  *(this + 13) = a2;
-  *(this + 17) = a2;
-  *(this + 14) = a3;
-  *(this + 18) = a3;
-  *(this + 15) = a4;
-  *(this + 19) = a4;
+  *((_DWORD *)this + 13) = a2;
+  *((_DWORD *)this + 17) = a2;
+  *((_DWORD *)this + 14) = a3;
+  *((_DWORD *)this + 18) = a3;
+  *((_DWORD *)this + 15) = a4;
+  *((_DWORD *)this + 19) = a4;
   return ObjectCamera::ComputeInfo(1);
 }
 
@@ -204,53 +219,53 @@ int sub_47C830(int a2)
   float v27; // [esp+1Ch] [ebp-4h]
   float v28; // [esp+1Ch] [ebp-4h]
 
-  v2 = *(this + 13) * 0.017453292;
-  v19 = *(this + 14) * 0.017453292;
-  v20 = *(this + 15) * 0.017453292;
+  v2 = *((_DWORD *)this + 13) * 0.017453292;
+  v19 = *((_DWORD *)this + 14) * 0.017453292;
+  v20 = *((_DWORD *)this + 15) * 0.017453292;
   v18 = cos(v2);
   v16 = cos(v19);
   v17 = cos(v20);
   v3 = sin(v2);
   v4 = sin(v19);
   v5 = sin(v20);
-  *(this + 20) = v3 * v16;
-  *(this + 21) = v4;
-  *(this + 22) = -(v16 * v18);
-  v6 = *(this + 16);
-  v21 = v6 * *(this + 20);
-  v22 = v6 * *(this + 21);
+  *((_DWORD *)this + 20) = v3 * v16;
+  *((_DWORD *)this + 21) = v4;
+  *((_DWORD *)this + 22) = -(v16 * v18);
+  v6 = *((_DWORD *)this + 16);
+  v21 = v6 * *((_DWORD *)this + 20);
+  v22 = v6 * *((_DWORD *)this + 21);
   if ( a2 )
   {
-    v7 = *(this + 4) - v21;
-    v23 = *(this + 5) - v22;
-    v8 = *(this + 6) - v6 * *(this + 22);
-    *(this + 2) = v23;
+    v7 = *((_DWORD *)this + 4) - v21;
+    v23 = *((_DWORD *)this + 5) - v22;
+    v8 = *((_DWORD *)this + 6) - v6 * *((_DWORD *)this + 22);
+    *((_DWORD *)this + 2) = v23;
     v26 = v8;
-    *(this + 1) = v7;
-    *(this + 3) = v26;
+    *((_DWORD *)this + 1) = v7;
+    *((_DWORD *)this + 3) = v26;
   }
   else
   {
-    v24 = v22 + *(this + 2);
-    v9 = v6 * *(this + 22);
-    v10 = v21 + *(this + 1);
-    v11 = v9 + *(this + 3);
-    *(this + 5) = v24;
+    v24 = v22 + *((_DWORD *)this + 2);
+    v9 = v6 * *((_DWORD *)this + 22);
+    v10 = v21 + *((_DWORD *)this + 1);
+    v11 = v9 + *((_DWORD *)this + 3);
+    *((_DWORD *)this + 5) = v24;
     v27 = v11;
-    *(this + 4) = v10;
-    *(this + 6) = v27;
+    *((_DWORD *)this + 4) = v10;
+    *((_DWORD *)this + 6) = v27;
   }
-  *(this + 7) = -(v5 * v18) - v4 * v3 * v17;
-  *(this + 8) = v17 * v16;
-  *(this + 9) = -(v5 * v3) - -(v4 * v17 * v18);
-  v12 = *(this + 9) * *(this + 21) - *(this + 22) * *(this + 8);
-  v25 = *(this + 22) * *(this + 7) - *(this + 9) * *(this + 20);
-  v13 = *(this + 8) * *(this + 20);
-  v14 = *(this + 7) * *(this + 21);
-  *(this + 24) = v25;
+  *((_DWORD *)this + 7) = -(v5 * v18) - v4 * v3 * v17;
+  *((_DWORD *)this + 8) = v17 * v16;
+  *((_DWORD *)this + 9) = -(v5 * v3) - -(v4 * v17 * v18);
+  v12 = *((_DWORD *)this + 9) * *((_DWORD *)this + 21) - *((_DWORD *)this + 22) * *((_DWORD *)this + 8);
+  v25 = *((_DWORD *)this + 22) * *((_DWORD *)this + 7) - *((_DWORD *)this + 9) * *((_DWORD *)this + 20);
+  v13 = *((_DWORD *)this + 8) * *((_DWORD *)this + 20);
+  v14 = *((_DWORD *)this + 7) * *((_DWORD *)this + 21);
+  *((_DWORD *)this + 24) = v25;
   v28 = v13 - v14;
-  *(this + 23) = v12;
-  *(this + 25) = v28;
+  *((_DWORD *)this + 23) = v12;
+  *((_DWORD *)this + 25) = v28;
   return LODWORD(v25);
 }
 
@@ -349,38 +364,38 @@ void sub_47C9B0(int this)
 // 0x0047CAD0
 void sub_47CAD0()
 {
-  *(this + 1) = 0;
-  *(this + 2) = 0;
-  *(this + 8) = 0;
-  *(this + 9) = 0;
-  *(this + 10) = 0;
-  *(this + 11) = 0;
-  *(this + 12) = 0;
-  *(this + 13) = 0;
-  *(this + 26) = 0;
-  *(this + 27) = 0;
-  *(this + 28) = 0;
+  *((_DWORD *)this + 1) = 0;
+  *((_DWORD *)this + 2) = 0;
+  *((_DWORD *)this + 8) = 0;
+  *((_DWORD *)this + 9) = 0;
+  *((_DWORD *)this + 10) = 0;
+  *((_DWORD *)this + 11) = 0;
+  *((_DWORD *)this + 12) = 0;
+  *((_DWORD *)this + 13) = 0;
+  *((_DWORD *)this + 26) = 0;
+  *((_DWORD *)this + 27) = 0;
+  *((_DWORD *)this + 28) = 0;
   *(_BYTE *)this = 0;
   *((_BYTE *)this + 20) = 0;
-  *(this + 3) = 0;
-  *(this + 16) = 0;
-  *(this + 15) = 0;
-  *(this + 14) = 0;
-  *(this + 19) = 0;
-  *(this + 18) = 0;
-  *(this + 17) = 0;
+  *((_DWORD *)this + 3) = 0;
+  *((_DWORD *)this + 16) = 0;
+  *((_DWORD *)this + 15) = 0;
+  *((_DWORD *)this + 14) = 0;
+  *((_DWORD *)this + 19) = 0;
+  *((_DWORD *)this + 18) = 0;
+  *((_DWORD *)this + 17) = 0;
   *((_BYTE *)this + 80) = 0;
-  *(this + 21) = 0;
-  *(this + 24) = 0;
-  *(this + 23) = 0;
-  *(this + 22) = 0;
-  *(this + 25) = 0;
+  *((_DWORD *)this + 21) = 0;
+  *((_DWORD *)this + 24) = 0;
+  *((_DWORD *)this + 23) = 0;
+  *((_DWORD *)this + 22) = 0;
+  *((_DWORD *)this + 25) = 0;
   *((_BYTE *)this + 120) = 0;
-  *(this + 36) = 0;
-  *(this + 35) = 0;
+  *((_DWORD *)this + 36) = 0;
+  *((_DWORD *)this + 35) = 0;
   *((_BYTE *)this + 121) = 0;
-  *(this + 31) = 0;
-  *(this + 32) = 0;
-  *(this + 33) = 0;
-  *(this + 34) = 1045220557;
+  *((_DWORD *)this + 31) = 0;
+  *((_DWORD *)this + 32) = 0;
+  *((_DWORD *)this + 33) = 0;
+  *((_DWORD *)this + 34) = 1045220557;
 }

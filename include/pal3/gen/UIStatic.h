@@ -5,7 +5,6 @@
 #include "gbFontType.h"
 
 class _PlugInfo;
-class gbTexture;
 
 class UIStatic : public UIWnd {
 public:
@@ -17,7 +16,8 @@ public:
     int m_textx; // +0x54
     int m_texty; // +0x58
     gbFontType m_fonttype; // +0x5C
-    std::basic_string<char,std::char_traits<char>,std::allocator<char> > m_text; // +0x60
+    struct allocator<char> > {}; // nested type stub
+    allocator<char> > m_text; // +0x60
     gbTexture * m_pbk; // +0x70
     _PlugInfo * m_pbkInfo; // +0x74
     gbTexture * m_ppic; // +0x78
@@ -32,4 +32,8 @@ public:
     int m_richtext; // +0x9C
     // total size: 0xA0 (160)
 
+    UIStatic(); // 0x00440740
+    int OnMessage(); // 0x00440BA0
+    int Update(int a2, int a3); // 0x00440DD0
+    int Render(); // 0x00440F30
 };

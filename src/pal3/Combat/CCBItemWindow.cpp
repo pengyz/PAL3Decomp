@@ -2,10 +2,34 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBItemWindow.h"
 
+// Forward declarations for unnamed functions
+int sub_51B160(...);
+int sub_51B1D0(...);
+int sub_51B210(...);
+int sub_51B4B0(...);
+int sub_51B570(...);
+int sub_51B5D0(...);
+int sub_51B620(...);
+int sub_51B670(...);
+int sub_51B6E0(...);
+
+// Unnamed globals (extern)
+extern char aUiCombatContro_11[];
+extern char aUiCombatContro_12[];
+extern char aUiCombatContro_13[];
+extern char aUiCombatContro_14[];
+extern char aUiCombatContro_15[];
+extern char aUiCombatContro_16[];
+extern char aUiCombatContro_17[];
+extern char aUiCombatContro_18[];
+extern int dword_570138;
+extern void *off_570218;
+extern void *off_570554;
+
 // 0x0051B160
-stdiobuf * sub_51B160(stdiobuf *Block, char a2)
+UIWnd * sub_51B160(UIWnd *Block, char a2)
 {
-  stdiobuf::~stdiobuf(Block);
+  UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return Block;
@@ -14,20 +38,20 @@ stdiobuf * sub_51B160(stdiobuf *Block, char a2)
 // 0x0051B1D0
 int sub_51B1D0()
 {
-  *(this + 18) = 0;
-  *(this + 19) = 0;
-  *(this + 20) = 0;
-  *(this + 21) = 0;
-  *(this + 22) = 0;
-  *(this + 23) = 0;
-  *(this + 24) = 0;
-  *(this + 25) = 0;
-  *(this + 26) = 0;
-  *(this + 27) = 0;
-  *(this + 28) = 0;
-  *(this + 29) = 0;
-  *(this + 30) = 0;
-  *(this + 31) = -1;
+  *((_DWORD *)this + 18) = 0;
+  *((_DWORD *)this + 19) = 0;
+  *((_DWORD *)this + 20) = 0;
+  *((_DWORD *)this + 21) = 0;
+  *((_DWORD *)this + 22) = 0;
+  *((_DWORD *)this + 23) = 0;
+  *((_DWORD *)this + 24) = 0;
+  *((_DWORD *)this + 25) = 0;
+  *((_DWORD *)this + 26) = 0;
+  *((_DWORD *)this + 27) = 0;
+  *((_DWORD *)this + 28) = 0;
+  *((_DWORD *)this + 29) = 0;
+  *((_DWORD *)this + 30) = 0;
+  *((_DWORD *)this + 31) = -1;
   return 0;
 }
 
@@ -253,8 +277,8 @@ int sub_51B4B0(int this)
 // 0x0051B570
 BOOL sub_51B570(int a2, int a3)
 {
-  if ( *(this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), 214, -1, 0);
+  if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
+    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 214, -1, 0);
   return this->HitTest(a2, a3);
 }
 
@@ -272,7 +296,7 @@ int sub_51B5D0(int a2)
     do
     {
       v5 = *v4;
-      if ( *(this + 31) == v3 )
+      if ( *((_DWORD *)this + 31) == v3 )
         (**v5)(v5, 1);
       else
         (**v5)(v5, 0);
@@ -294,9 +318,9 @@ _DWORD * sub_51B620()
 }
 
 // 0x0051B670
-stdiobuf * sub_51B670(stdiobuf *Block, char a2)
+UIWnd * sub_51B670(UIWnd *Block, char a2)
 {
-  stdiobuf::~stdiobuf(Block);
+  UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return Block;

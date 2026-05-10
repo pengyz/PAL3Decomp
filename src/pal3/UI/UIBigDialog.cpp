@@ -2,6 +2,16 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UIBigDialog.h"
 
+// Forward declarations for unnamed functions
+int sub_4517A0(...);
+
+// Unnamed globals (extern)
+extern char aUiFlexDlg[];
+extern char aUiScenePage[];
+extern char aUiSceneTimebkT[];
+extern char aUiSceneTimeclo[];
+extern char aUiSceneTimepTg[];
+
 // 0x00450F90
 int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
 {

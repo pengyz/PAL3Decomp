@@ -2,7 +2,6 @@
 // Auto-generated: UIAnimate
 
 #include "TimeCtl.h"
-#include "tagRECT.h"
 
 class UIAnimate {
 public:

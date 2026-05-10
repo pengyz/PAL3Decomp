@@ -2,6 +2,12 @@
 #include "pal3/globals.h"
 #include "pal3/gen/TextureLib.h"
 
+// Forward declarations for unnamed functions
+int sub_53F610(...);
+
+// Unnamed globals (extern)
+extern char aEndfile[];
+
 // 0x0053F920
 char * TextureLib::SetPath(char *path)
 {

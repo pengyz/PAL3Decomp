@@ -2,6 +2,43 @@
 #include "pal3/globals.h"
 #include "pal3/gen/PalScriptMgr.h"
 
+// Forward declarations for unnamed functions
+int sub_431CB0(...);
+int sub_431CD0(...);
+int sub_431E60(...);
+int sub_431E90(...);
+int sub_431EB0(...);
+int sub_431EE0(...);
+int sub_4320A0(...);
+int sub_432170(...);
+int sub_432260(...);
+int sub_4322A0(...);
+int sub_4322C0(...);
+int sub_4323C0(...);
+int sub_432480(...);
+int sub_4324A0(...);
+int sub_4324B0(...);
+int sub_432500(...);
+int sub_432550(...);
+int sub_4325A0(...);
+int sub_4326A0(...);
+int sub_433CD0(...);
+int sub_433DC0(...);
+int sub_434670(...);
+
+// Unnamed globals (extern)
+extern unsigned char byte_D8C2B8;
+extern unsigned char byte_D8C324;
+extern unsigned char byte_D8C339;
+extern int dword_D8C2BC;
+extern int dword_D8C2C0;
+extern int dword_D8C2C4;
+extern int dword_D8C2C8;
+extern int dword_D8C2E8;
+extern int dword_D8C308;
+extern int dword_D8C328;
+extern int dword_D8C32C;
+
 // 0x00431E60
 int sub_431E60()
 {
@@ -142,7 +179,7 @@ int sub_432260(int a1)
 // 0x004322A0
 int sub_4322A0(int a2)
 {
-  return PtrArray::SetAt(*(this + 3), a2);
+  return PtrArray::SetAt(*((_DWORD *)this + 3), a2);
 }
 
 // 0x004322C0
@@ -155,7 +192,7 @@ int sub_4322C0(int a2)
   _DWORD *v8; // esi
   int v9; // esi
 
-  v3 = *(this + 3);
+  v3 = *((_DWORD *)this + 3);
   if ( v3 )
   {
     v5 = 0;
@@ -183,11 +220,11 @@ int sub_4322C0(int a2)
         }
         ++v6;
       }
-      while ( v6 < *(this + 3) );
+      while ( v6 < *((_DWORD *)this + 3) );
       if ( v5 )
       {
         v9 = 0;
-        while ( v9 < *(this + 3) )
+        while ( v9 < *((_DWORD *)this + 3) )
         {
           if ( v9 >= 0 && v9 < v7[1] && *(_DWORD *)(*v7 + 4 * v9) )
             ++v9;
@@ -199,12 +236,12 @@ int sub_4322C0(int a2)
   }
   else
   {
-    while ( PtrArray::~PtrArray(*(this + 1)) != 2 )
+    while ( PtrArray::~PtrArray(*((_DWORD *)this + 1)) != 2 )
     {
-      if ( (int)*(this + 3) > 0 )
+      if ( (int)*((_DWORD *)this + 3) > 0 )
         return 0;
     }
-    if ( !*(this + 3) )
+    if ( !*((_DWORD *)this + 3) )
       return 1;
   }
   return 0;

@@ -2,6 +2,24 @@
 #include "pal3/globals.h"
 #include "pal3/gen/PAL_GDB.h"
 
+// Forward declarations for unnamed functions
+int sub_478E00(...);
+int sub_478FD0(...);
+int sub_479040(...);
+int sub_479050(...);
+int sub_479080(...);
+int sub_479130(...);
+int sub_4791A0(...);
+int sub_4791E0(...);
+int sub_4792D0(...);
+
+// Unnamed globals (extern)
+extern char aCombatDataCoul[];
+extern char aDProjectPal3Fi[];
+extern char aSec1[];
+extern unsigned char byte_DC333C;
+extern void *off_58B448;
+
 // 0x00457410
 char PAL_GDB::LoadLanguage(char *path)
 {
@@ -52,14 +70,14 @@ char sub_478E00()
   }
   g_pVFileSys->Seek(v2, 0, 1);
   g_pVFileSys->Read(this, 0xA0u, v3);
-  g_pVFileSys->Seek(v3, *(this + 32), 1);
-  g_pVFileSys->Read(this + 40, 852 * *(this + 33), v3);
-  g_pVFileSys->Seek(v3, *(this + 34), 1);
-  g_pVFileSys->Read(this + 42640, 760 * *(this + 35), v3);
-  g_pVFileSys->Seek(v3, *(this + 36), 1);
-  g_pVFileSys->Read(this + 99640, 800 * *(this + 37), v3);
-  g_pVFileSys->Seek(v3, *(this + 38), 1);
-  g_pVFileSys->Read(this + 199640, 632 * *(this + 39), v3);
+  g_pVFileSys->Seek(v3, *((_DWORD *)this + 32), 1);
+  g_pVFileSys->Read(this + 40, 852 * *((_DWORD *)this + 33), v3);
+  g_pVFileSys->Seek(v3, *((_DWORD *)this + 34), 1);
+  g_pVFileSys->Read(this + 42640, 760 * *((_DWORD *)this + 35), v3);
+  g_pVFileSys->Seek(v3, *((_DWORD *)this + 36), 1);
+  g_pVFileSys->Read(this + 99640, 800 * *((_DWORD *)this + 37), v3);
+  g_pVFileSys->Seek(v3, *((_DWORD *)this + 38), 1);
+  g_pVFileSys->Read(this + 199640, 632 * *((_DWORD *)this + 39), v3);
   g_pVFileSys->CloseFile(v3);
   v8 = -1;
   OpenNULLFile::OpenNULLFile(&v5);
@@ -74,26 +92,26 @@ int sub_478FD0(int a2)
 
   if ( !a2 )
     return 0;
-  v2 = *(this + 33);
-  *(this + 201220) = 0;
+  v2 = *((_DWORD *)this + 33);
+  *((_DWORD *)this + 201220) = 0;
   if ( v2 <= 0 )
     return 0;
   while ( 1 )
   {
-    v3 = *(this + 201220);
+    v3 = *((_DWORD *)this + 201220);
     if ( a2 == *(this + 213 * v3 + 40) )
       break;
-    *(this + 201220) = v3 + 1;
+    *((_DWORD *)this + 201220) = v3 + 1;
     if ( v3 + 1 >= v2 )
       return 0;
   }
-  return (int)(this + 213 * *(this + 201220) + 40);
+  return (int)(this + 213 * *((_DWORD *)this + 201220) + 40);
 }
 
 // 0x00479040
 int sub_479040()
 {
-  return *(this + 33);
+  return *((_DWORD *)this + 33);
 }
 
 // 0x00479050
@@ -114,21 +132,21 @@ int sub_479080(int a2)
 
   if ( !a2 )
     return 0;
-  v2 = *(this + 35);
-  *(this + 201220) = 0;
+  v2 = *((_DWORD *)this + 35);
+  *((_DWORD *)this + 201220) = 0;
   if ( v2 <= 0 )
     return 0;
   while ( 1 )
   {
-    v3 = *(this + 201220);
+    v3 = *((_DWORD *)this + 201220);
     if ( a2 == *(this + 190 * v3 + 42640) )
       break;
     v4 = v3 + 1;
-    *(this + 201220) = v4;
+    *((_DWORD *)this + 201220) = v4;
     if ( v4 >= v2 )
       return 0;
   }
-  return (int)(this + 190 * *(this + 201220) + 42640);
+  return (int)(this + 190 * *((_DWORD *)this + 201220) + 42640);
 }
 
 // 0x00479130
@@ -140,27 +158,27 @@ int sub_479130(int a2)
 
   if ( !a2 )
     return 0;
-  v2 = *(this + 37);
-  *(this + 201220) = 0;
+  v2 = *((_DWORD *)this + 37);
+  *((_DWORD *)this + 201220) = 0;
   if ( v2 <= 0 )
     return 0;
   while ( 1 )
   {
-    v3 = *(this + 201220);
+    v3 = *((_DWORD *)this + 201220);
     if ( a2 == *(this + 200 * v3 + 99640) )
       break;
     v4 = v3 + 1;
-    *(this + 201220) = v4;
+    *((_DWORD *)this + 201220) = v4;
     if ( v4 >= v2 )
       return 0;
   }
-  return (int)(this + 200 * *(this + 201220) + 99640);
+  return (int)(this + 200 * *((_DWORD *)this + 201220) + 99640);
 }
 
 // 0x004791A0
 int sub_4791A0()
 {
-  return *(this + 37);
+  return *((_DWORD *)this + 37);
 }
 
 // 0x004791E0
@@ -172,21 +190,21 @@ int sub_4791E0(int a2)
 
   if ( !a2 )
     return 0;
-  v2 = *(this + 39);
-  *(this + 201220) = 0;
+  v2 = *((_DWORD *)this + 39);
+  *((_DWORD *)this + 201220) = 0;
   if ( v2 <= 0 )
     return 0;
   while ( 1 )
   {
-    v3 = *(this + 201220);
+    v3 = *((_DWORD *)this + 201220);
     if ( a2 == *(this + 158 * v3 + 199648) )
       break;
     v4 = v3 + 1;
-    *(this + 201220) = v4;
+    *((_DWORD *)this + 201220) = v4;
     if ( v4 >= v2 )
       return 0;
   }
-  return (int)(this + 158 * *(this + 201220) + 199640);
+  return (int)(this + 158 * *((_DWORD *)this + 201220) + 199640);
 }
 
 // 0x004792C0

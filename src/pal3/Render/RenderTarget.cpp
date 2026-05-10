@@ -2,6 +2,18 @@
 #include "pal3/globals.h"
 #include "pal3/gen/RenderTarget.h"
 
+// Forward declarations for unnamed functions
+int sub_4BDAC0(...);
+int sub_4BDB60(...);
+int sub_4BDC10(...);
+int sub_4BDC40(...);
+int sub_4BDF10(...);
+
+// Unnamed globals (extern)
+extern char aDProjectPal3Ef[];
+extern char aLockBackBuffer[];
+extern void *off_56F4F0;
+
 // 0x004BDAC0
 void sub_4BDAC0(int this)
 {
@@ -27,14 +39,14 @@ int sub_4BDB60()
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   (*(void (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
-  (*(void (__thiscall **)(_DWORD *, int, int, int))(*(this + 25) + 12))(
+  (*(void (__thiscall **)(_DWORD *, int, int, int))(*((_DWORD *)this + 25) + 12))(
     this + 25,
     MEMORY[0xBFD6D0],
     MEMORY[0xBFD6D4],
     v4);
-  result = (*(int (__thiscall **)(_DWORD *, int, int, int))(*(this + 1) + 12))(this + 1, 512, 512, v4);
+  result = (*(int (__thiscall **)(_DWORD *, int, int, int))(*((_DWORD *)this + 1) + 12))(this + 1, 512, 512, v4);
   *this = 0;
-  *(this + 49) = 0;
+  *((_DWORD *)this + 49) = 0;
   return result;
 }
 
@@ -43,10 +55,10 @@ void sub_4BDC10(int a2)
 {
   int v2; // eax
 
-  if ( *(this + 49) != 1 )
+  if ( *((_DWORD *)this + 49) != 1 )
   {
     v2 = a2;
-    if ( (a2 == 1 || a2 == 2) && !*(this + 46) )
+    if ( (a2 == 1 || a2 == 2) && !*((_DWORD *)this + 46) )
       v2 = 0;
     *this = v2;
   }
@@ -61,9 +73,9 @@ bool sub_4BDC40(int a2)
   int v7; // [esp+34h] [ebp-4h]
 
   v6 = this;
-  if ( *(this + 49) == 1 )
+  if ( *((_DWORD *)this + 49) == 1 )
     return 0;
-  *(this + 49) = 1;
+  *((_DWORD *)this + 49) = 1;
   v4 = *this;
   v5 = 0;
   if ( !*this )
@@ -108,11 +120,11 @@ LABEL_8:
 // 0x004BDF10
 _DWORD * sub_4BDF10()
 {
-  *(this + 1) = 0;
+  *((_DWORD *)this + 1) = 0;
   *this = &off_56F4F0;
-  *(this + 2) = 1;
-  *(this + 4) = 0;
-  *(this + 3) = 0;
+  *((_DWORD *)this + 2) = 1;
+  *((_DWORD *)this + 4) = 0;
+  *((_DWORD *)this + 3) = 0;
   *((_BYTE *)this + 20) = 0;
   return this;
 }

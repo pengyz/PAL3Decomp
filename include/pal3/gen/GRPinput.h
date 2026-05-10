@@ -2,11 +2,6 @@
 // Auto-generated: GRPinput
 
 #include "GRP_KEYREG.h"
-#include "_DIMOUSESTATE2.h"
-#include "tagPOINT.h"
-
-class IDirectInput8A;
-class IDirectInputDevice8A;
 
 class GRPinput {
 public:

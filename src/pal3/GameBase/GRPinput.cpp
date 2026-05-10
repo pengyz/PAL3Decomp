@@ -2,6 +2,51 @@
 #include "pal3/globals.h"
 #include "pal3/gen/GRPinput.h"
 
+// Forward declarations for unnamed functions
+int sub_402220(...);
+int sub_4024F0(...);
+int sub_402570(...);
+int sub_402640(...);
+int sub_402A90(...);
+int sub_402B70(...);
+int sub_402B90(...);
+int sub_402BA0(...);
+int sub_402BF0(...);
+int sub_402C40(...);
+int sub_402D00(...);
+int sub_402D20(...);
+int sub_402FA0(...);
+int sub_403000(...);
+int sub_403150(...);
+int sub_403170(...);
+int sub_403180(...);
+int sub_403370(...);
+int sub_4033F0(...);
+int sub_403410(...);
+int sub_403470(...);
+int sub_4034B0(...);
+int sub_4034E0(...);
+int sub_403560(...);
+int sub_403640(...);
+int sub_4038F0(...);
+int sub_4039D0(...);
+int sub_403B80(...);
+int sub_404020(...);
+int sub_404060(...);
+int sub_404150(...);
+int sub_4042D0(...);
+
+// Unnamed globals (extern)
+extern unsigned char byte_56A634;
+extern unsigned char byte_8AC5D8;
+extern float flt_8ACBEC;
+extern void *off_56A620;
+extern void *off_580CFC;
+extern int unk_573800;
+extern int unk_573810;
+extern int unk_573A5C;
+extern int unk_573C64;
+
 // 0x004020E0
 int GRPinput::Create(void *hInst, int hwnd, int flag)
 {
@@ -233,9 +278,9 @@ char sub_4024F0(int a2, int a3)
     {
       *((_BYTE *)this + a2 + 104) = 2;
       *(this + a2 + 158) = timeGetTime();
-      v4 = *(this + 16);
+      v4 = *((_DWORD *)this + 16);
       *(this + 2 * a2 + 428) = v4;
-      *(this + 2 * a2 + 429) = *(this + 17);
+      *(this + 2 * a2 + 429) = *((_DWORD *)this + 17);
     }
     else if ( (_BYTE)v4 == 2 )
     {
@@ -396,7 +441,7 @@ void sub_402BF0()
   char v4; // al
 
   *this = &off_56A620;
-  v2 = *(this + 3);
+  v2 = *((_DWORD *)this + 3);
   if ( v2 )
   {
     v3 = (_BYTE *)(v2 - 1);
@@ -406,9 +451,9 @@ void sub_402BF0()
     else
       *v3 = v4 - 1;
   }
-  *(this + 3) = 0;
-  *(this + 4) = 0;
-  *(this + 5) = 0;
+  *((_DWORD *)this + 3) = 0;
+  *((_DWORD *)this + 4) = 0;
+  *((_DWORD *)this + 5) = 0;
 }
 
 // 0x00402C40
@@ -426,7 +471,7 @@ char __thiscall sub_402C40(_BYTE *this, const char *a2, int a3)
   int v11; // ecx
 
   v3 = this;
-  *(this + 4) = 1;
+  *((_DWORD *)this + 4) = 1;
   v4 = strlen(a2) + 1;
   v5 = v3 + 8;
   v6 = v4 - 1;
@@ -607,7 +652,7 @@ char sub_402D20(int this)
 // 0x00402FA0
 int sub_402FA0(int a2)
 {
-  *(this + 8) = a2;
+  *((_DWORD *)this + 8) = a2;
   return a2;
 }
 
@@ -708,8 +753,8 @@ BOOL sub_403180(int a2, int a3)
 {
   int v3; // eax
 
-  if ( a2 >= 0 && (v3 = *(this + 38), a2 < v3) && a3 >= 0 && a3 < *(this + 39) )
-    return *(_BYTE *)(*(this + 40) + 8 * (a2 + a3 * v3) + 4) > 1u;
+  if ( a2 >= 0 && (v3 = *((_DWORD *)this + 38), a2 < v3) && a3 >= 0 && a3 < *((_DWORD *)this + 39) )
+    return *(_BYTE *)(*((_DWORD *)this + 40) + 8 * (a2 + a3 * v3) + 4) > 1u;
   else
     return 0;
 }
@@ -727,9 +772,9 @@ int sub_403370(int this)
 void sub_4033F0()
 {
   *this = 0;
-  *(this + 1) = 0;
-  *(this + 2) = 0;
-  *(this + 3) = 0;
+  *((_DWORD *)this + 1) = 0;
+  *((_DWORD *)this + 2) = 0;
+  *((_DWORD *)this + 3) = 0;
 }
 
 // 0x00403410
@@ -737,46 +782,46 @@ void sub_403410(void **this)
 {
   void *v2; // edi
 
-  if ( *(this + 1) )
+  if ( *((_DWORD *)this + 1) )
   {
-    free(*(this + 1));
-    *(this + 1) = 0;
+    free(*((_DWORD *)this + 1));
+    *((_DWORD *)this + 1) = 0;
   }
-  if ( *(this + 2) )
+  if ( *((_DWORD *)this + 2) )
   {
-    free(*(this + 2));
-    *(this + 2) = 0;
+    free(*((_DWORD *)this + 2));
+    *((_DWORD *)this + 2) = 0;
   }
-  v2 = *(this + 3);
+  v2 = *((_DWORD *)this + 3);
   if ( v2 )
   {
-    GRPinput::GetCharKey(*(this + 3));
+    GRPinput::GetCharKey(*((_DWORD *)this + 3));
     operator delete(v2);
-    *(this + 3) = 0;
+    *((_DWORD *)this + 3) = 0;
   }
   *this = 0;
-  *(this + 1) = 0;
-  *(this + 2) = 0;
-  *(this + 3) = 0;
+  *((_DWORD *)this + 1) = 0;
+  *((_DWORD *)this + 2) = 0;
+  *((_DWORD *)this + 3) = 0;
 }
 
 // 0x00403470
 void sub_403470()
 {
-  *(this + 32) = 0;
-  *(this + 33) = 0;
-  *(this + 34) = 0;
-  *(this + 35) = 0;
-  *(this + 36) = 0;
-  *(this + 37) = 0;
+  *((_DWORD *)this + 32) = 0;
+  *((_DWORD *)this + 33) = 0;
+  *((_DWORD *)this + 34) = 0;
+  *((_DWORD *)this + 35) = 0;
+  *((_DWORD *)this + 36) = 0;
+  *((_DWORD *)this + 37) = 0;
   memset(this, 0, 0xA4u);
 }
 
 // 0x004034B0
 void sub_4034B0(void **this)
 {
-  if ( *(this + 40) )
-    free(*(this + 40));
+  if ( *((_DWORD *)this + 40) )
+    free(*((_DWORD *)this + 40));
   memset(this, 0, 0xA4u);
 }
 
@@ -1032,11 +1077,11 @@ void sub_4039D0(unsigned __int16 *a2)
   v6 = 0;
   v30 = *((_DWORD *)a2 + 1);
   *this = 3.4028235e38;
-  *(this + 1) = 3.4028235e38;
-  *(this + 2) = 3.4028235e38;
-  *(this + 3) = -3.4028235e38;
-  *(this + 4) = -3.4028235e38;
-  *(this + 5) = -3.4028235e38;
+  *((_DWORD *)this + 1) = 3.4028235e38;
+  *((_DWORD *)this + 2) = 3.4028235e38;
+  *((_DWORD *)this + 3) = -3.4028235e38;
+  *((_DWORD *)this + 4) = -3.4028235e38;
+  *((_DWORD *)this + 5) = -3.4028235e38;
   if ( *a2 )
   {
     v7 = 0;
@@ -1048,26 +1093,26 @@ void sub_4039D0(unsigned __int16 *a2)
       v9 = *((_DWORD *)a2 + 1);
       v10 = *(float *)(v7 + v9 + 4);
       v11 = (float *)(v7 + v9 + 4);
-      if ( v10 < *(this + 1) )
-        *(this + 1) = *v11;
+      if ( v10 < *((_DWORD *)this + 1) )
+        *((_DWORD *)this + 1) = *v11;
       v12 = *((_DWORD *)a2 + 1);
       v13 = *(float *)(v7 + v12 + 8);
       v14 = (float *)(v7 + v12 + 8);
-      if ( v13 < *(this + 2) )
-        *(this + 2) = *v14;
+      if ( v13 < *((_DWORD *)this + 2) )
+        *((_DWORD *)this + 2) = *v14;
       v15 = (float *)(v7 + *((_DWORD *)a2 + 1));
-      if ( *v15 > (double)*(this + 3) )
-        *(this + 3) = *v15;
+      if ( *v15 > (double)*((_DWORD *)this + 3) )
+        *((_DWORD *)this + 3) = *v15;
       v16 = *((_DWORD *)a2 + 1);
       v17 = *(float *)(v7 + v16 + 4);
       v18 = (float *)(v7 + v16 + 4);
-      if ( v17 > *(this + 4) )
-        *(this + 4) = *v18;
+      if ( v17 > *((_DWORD *)this + 4) )
+        *((_DWORD *)this + 4) = *v18;
       v19 = *((_DWORD *)a2 + 1);
       v20 = *(float *)(v7 + v19 + 8);
       v21 = (float *)(v7 + v19 + 8);
-      if ( v20 > *(this + 5) )
-        *(this + 5) = *v21;
+      if ( v20 > *((_DWORD *)this + 5) )
+        *((_DWORD *)this + 5) = *v21;
       ++v6;
       v7 += 12;
     }
@@ -1075,9 +1120,9 @@ void sub_4039D0(unsigned __int16 *a2)
   }
   v33 = 0;
   *this = *this - flt_8ACBEC;
-  *(this + 2) = *(this + 2) - flt_8ACBEC;
-  *(this + 3) = flt_8ACBEC + *(this + 3);
-  *(this + 5) = flt_8ACBEC + *(this + 5);
+  *((_DWORD *)this + 2) = *((_DWORD *)this + 2) - flt_8ACBEC;
+  *((_DWORD *)this + 3) = flt_8ACBEC + *((_DWORD *)this + 3);
+  *((_DWORD *)this + 5) = flt_8ACBEC + *((_DWORD *)this + 5);
   if ( a2[1] )
   {
     v22 = 0;
@@ -1277,8 +1322,8 @@ int sub_4042D0()
 {
   int result; // eax
 
-  result = *(this + 1);
+  result = *((_DWORD *)this + 1);
   if ( result )
-    return (*(this + 2) - result) / 36;
+    return (*((_DWORD *)this + 2) - result) / 36;
   return result;
 }

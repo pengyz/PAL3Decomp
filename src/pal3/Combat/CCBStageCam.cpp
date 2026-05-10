@@ -2,6 +2,30 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBStageCam.h"
 
+// Forward declarations for unnamed functions
+int sub_504DD0(...);
+int sub_504E70(...);
+int sub_504F40(...);
+int sub_5050D0(...);
+int sub_505180(...);
+int sub_5051E0(...);
+int sub_505250(...);
+int sub_5052C0(...);
+int sub_5052E0(...);
+int sub_505410(...);
+int sub_5054B0(...);
+int sub_5054F0(...);
+int sub_505800(...);
+int sub_505820(...);
+int sub_5058E0(...);
+
+// Unnamed globals (extern)
+extern char aBasedataCbdata_0[];
+extern char aCbdataFlexcamD[];
+extern char aCouldnTOpenCbC[];
+extern char aDProjectPal3Co_6[];
+extern int dword_17A990C;
+
 // 0x00504E70
 char sub_504E70(char *Buffer)
 {
@@ -238,39 +262,39 @@ _DWORD *__thiscall sub_5052E0(_DWORD *this, int **a2, int a3)
   int v4; // eax
 
   sub_504DD0(this);
-  *(this + 107512) = 0;
-  *(this + 107513) = 0;
-  *(this + 107514) = 0;
-  *(this + 107515) = 0;
-  *(this + 107516) = 0;
-  *(this + 107517) = 0;
-  *(this + 107522) = 0;
-  *(this + 107523) = 0;
-  *(this + 107524) = 0;
-  *(this + 107525) = 0;
-  *(this + 107526) = 0;
-  *(this + 107527) = 0;
-  *(this + 107528) = 0;
-  *(this + 107529) = 0;
-  *(this + 107530) = 0;
-  *(this + 107531) = 0;
-  *(this + 107532) = 0;
-  *(this + 107533) = 0;
-  *(this + 107534) = 0;
-  *(this + 107535) = 0;
-  *(this + 107536) = 0;
+  *((_DWORD *)this + 107512) = 0;
+  *((_DWORD *)this + 107513) = 0;
+  *((_DWORD *)this + 107514) = 0;
+  *((_DWORD *)this + 107515) = 0;
+  *((_DWORD *)this + 107516) = 0;
+  *((_DWORD *)this + 107517) = 0;
+  *((_DWORD *)this + 107522) = 0;
+  *((_DWORD *)this + 107523) = 0;
+  *((_DWORD *)this + 107524) = 0;
+  *((_DWORD *)this + 107525) = 0;
+  *((_DWORD *)this + 107526) = 0;
+  *((_DWORD *)this + 107527) = 0;
+  *((_DWORD *)this + 107528) = 0;
+  *((_DWORD *)this + 107529) = 0;
+  *((_DWORD *)this + 107530) = 0;
+  *((_DWORD *)this + 107531) = 0;
+  *((_DWORD *)this + 107532) = 0;
+  *((_DWORD *)this + 107533) = 0;
+  *((_DWORD *)this + 107534) = 0;
+  *((_DWORD *)this + 107535) = 0;
+  *((_DWORD *)this + 107536) = 0;
   (gbMatrix4 *->gbMatrix4()(this + 107537));
-  *(this + 107557) = 0;
-  *(this + 107558) = 0;
-  *(this + 107559) = 0;
-  *(this + 107560) = 0;
-  *(this + 107561) = 0;
-  *(this + 107562) = 0;
-  *(this + 107500) = a2;
-  *(this + 107501) = a3;
+  *((_DWORD *)this + 107557) = 0;
+  *((_DWORD *)this + 107558) = 0;
+  *((_DWORD *)this + 107559) = 0;
+  *((_DWORD *)this + 107560) = 0;
+  *((_DWORD *)this + 107561) = 0;
+  *((_DWORD *)this + 107562) = 0;
+  *((_DWORD *)this + 107500) = a2;
+  *((_DWORD *)this + 107501) = a3;
   v4 = **a2;
-  *(this + 107509) = -1;
-  *(this + 107502) = v4;
+  *((_DWORD *)this + 107509) = -1;
+  *((_DWORD *)this + 107502) = v4;
   return this;
 }
 
@@ -310,11 +334,11 @@ char sub_5054B0()
 {
   void (__thiscall ***v2)(_DWORD, int); // ecx
 
-  v2 = (void (__thiscall ***)(_DWORD, int))*(this + 107556);
+  v2 = (void (__thiscall ***)(_DWORD, int))*((_DWORD *)this + 107556);
   if ( v2 )
   {
     (**v2)(v2, 1);
-    *(this + 107556) = 0;
+    *((_DWORD *)this + 107556) = 0;
   }
   return 1;
 }
@@ -511,5 +535,5 @@ int sub_505820(int this)
 // 0x005058E0
 int sub_5058E0(_DWORD **this)
 {
-  return (*(int (__thiscall **)(_DWORD))(**(this + 107556) + 20))(*(this + 107556));
+  return (*(int (__thiscall **)(_DWORD))(**((_DWORD *)this + 107556) + 20))(*((_DWORD *)this + 107556));
 }

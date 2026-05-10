@@ -2,6 +2,12 @@
 #include "pal3/globals.h"
 #include "pal3/gen/Camera.h"
 
+// Forward declarations for unnamed functions
+int sub_4031D0(...);
+int sub_41AEA0(...);
+int sub_420A10(...);
+int sub_420F50(...);
+
 // 0x004125D0
 void Camera::SetParams(int a2)
 {

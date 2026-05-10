@@ -3,7 +3,6 @@
 
 #include "UIS_RM_Mode.h"
 #include "UIStatic.h"
-#include "gbColorQuad.h"
 
 class UIStaticRM : public UIStatic {
 public:

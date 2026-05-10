@@ -2,6 +2,16 @@
 #include "pal3/globals.h"
 #include "pal3/gen/Logger.h"
 
+// Forward declarations for unnamed functions
+int sub_423500(...);
+int sub_53CE20(...);
+
+// Unnamed globals (extern)
+extern char aConsoleErrorCo[];
+extern char aPal3ConsoleV10[];
+extern unsigned char byte_17B1D23;
+extern unsigned char byte_608930;
+
 // 0x0053C990
 int Logger::Render()
 {

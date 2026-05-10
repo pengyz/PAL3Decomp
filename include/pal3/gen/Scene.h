@@ -7,9 +7,7 @@
 #include "SceneInfo.h"
 #include "SceneMapObj.h"
 #include "SceneObj.h"
-#include "gbAABBox.h"
 
-class gbGeomNode;
 class gbVisNode;
 
 class Scene {

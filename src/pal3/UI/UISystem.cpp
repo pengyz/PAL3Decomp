@@ -2,6 +2,15 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UISystem.h"
 
+// Forward declarations for unnamed functions
+int sub_41F8C0(...);
+int sub_4208A0(...);
+
+// Unnamed globals (extern)
+extern unsigned char byte_D8B314;
+extern unsigned char byte_D8B938;
+extern int unk_D8B318;
+
 // 0x00422DF0
 int UISystem::Destroy()
 {

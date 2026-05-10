@@ -4,9 +4,6 @@
 #include "tagUVSet.h"
 
 class CEffect;
-class gbDynVertBuf;
-class gbGfxManager;
-class gbRenderEffect;
 
 class CEffectSystem {
 public:
@@ -35,7 +32,6 @@ public:
     static int CreateEffect(); // 0x004C6340
     static void GetEffect(); // 0x004C6350
     static void DestroyEffect(); // 0x004C6360
-    int DestroyEffect(); // 0x004C6370
     static void * DestroyAllEffect(); // 0x004C6410
     char IsVisible(); // 0x004C6460
     void SetVisible(float a2); // 0x004C65C0

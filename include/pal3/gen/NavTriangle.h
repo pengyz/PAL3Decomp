@@ -1,8 +1,6 @@
 #pragma once
 // Auto-generated: NavTriangle
 
-#include "gbVec3D.h"
-
 class NavTriangle {
 public:
     gbVec3D up; // +0x0

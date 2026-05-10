@@ -2,6 +2,9 @@
 #include "pal3/globals.h"
 #include "pal3/gen/OpenNULLFile.h"
 
+// Forward declarations for unnamed functions
+int sub_401F90(...);
+
 // 0x00401F90
 // likely UIListBox method (near SetItemOffset)
 // write access to const memory has been detected, the output may be wrong!

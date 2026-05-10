@@ -11,18 +11,16 @@
 #include "PathObj.h"
 #include "ROLE_BEHAVIOUR.h"
 #include "ROLE_CTRL.h"
-#include "gbVec3D.h"
-#include "tagPOINT.h"
 
 class PalScript;
 class RoleAtt;
 class SceneObj;
 class SceneProp;
-class gbGeomNode;
 
 class Role : public Object, public PalScriptWaitObj, public GlowObj {
 public:
-    std::queue<Role::ScriptCmd,std::deque<Role::ScriptCmd,std::allocator<Role::ScriptCmd> > > m_cmdqueue; // +0x60
+    struct ScriptCmd> > > {}; // nested type stub
+    ScriptCmd> > > m_cmdqueue; // +0x60
     int m_bInView; // +0x90
     gbVec3D m_groundpos; // +0x94
     gbVec3D m_renderpos; // +0xA0
@@ -49,7 +47,8 @@ public:
     int m_bPet; // +0x504
     float m_scale; // +0x508
     NavTriangle m_tri; // +0x50C
-    Role::SPECIAL_ACTION m_specact; // +0x530
+    struct SPECIAL_ACTION {}; // nested type stub
+    SPECIAL_ACTION m_specact; // +0x530
     ROLE_CTRL m_ctrlmode; // +0x554
     ROLE_BEHAVIOUR m_curbehaviour; // +0x558
     int m_bPathOut; // +0x55C

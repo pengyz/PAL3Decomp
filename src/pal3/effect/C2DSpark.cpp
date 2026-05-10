@@ -2,6 +2,60 @@
 #include "pal3/globals.h"
 #include "pal3/gen/C2DSpark.h"
 
+// Forward declarations for unnamed functions
+int sub_4D5AB0(...);
+int sub_4D5DC0(...);
+int sub_4D5EC0(...);
+int sub_4D5F20(...);
+int sub_4D5F40(...);
+int sub_4D6050(...);
+int sub_4D61A0(...);
+int sub_4D61C0(...);
+int sub_4D6380(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed_0[];
+extern char aDProjectPal3Co_10[];
+extern char aEffectFlare2Bm[];
+extern char aEffectFlare3Bm[];
+extern char aEffectFlareblu[];
+extern char aEffectFlarebri[];
+extern char aEffectFlaregre[];
+extern char aGfxscriptTlAdd[];
+extern unsigned char byte_17A8148;
+extern unsigned char byte_17A8178;
+extern unsigned char byte_17A81A8;
+extern int dword_17A8130;
+extern int dword_17A8134;
+extern int dword_17A8138;
+extern int dword_17A813C;
+extern int dword_17A8140;
+extern int dword_17A8144;
+extern int dword_17A8158;
+extern int dword_17A815C;
+extern int dword_17A8160;
+extern int dword_17A8164;
+extern int dword_17A8168;
+extern int dword_17A816C;
+extern int dword_17A8170;
+extern int dword_17A8174;
+extern int dword_17A8190;
+extern int dword_17A8194;
+extern int dword_17A8198;
+extern int dword_17A819C;
+extern int dword_17A81A0;
+extern int dword_17A81A4;
+extern float flt_17A8120;
+extern float flt_17A8124;
+extern float flt_17A8128;
+extern float flt_17A812C;
+extern float flt_17A8150;
+extern float flt_17A8154;
+extern float flt_17A8180;
+extern float flt_17A8184;
+extern float flt_17A8188;
+extern float flt_17A818C;
+
 // 0x004D5AB0
 int sub_4D5AB0(int this, int a2, int a3)
 {
@@ -257,8 +311,8 @@ char sub_4D5EC0(const void *a2)
   }
   qmemcpy(this + 11 * v3, a2, 0x2Cu);
   *((_BYTE *)this + 44 * v3 + 41) = 1;
-  if ( v3 >= *(this + 5634) )
-    *(this + 5634) = v3 + 1;
+  if ( v3 >= *((_DWORD *)this + 5634) )
+    *((_DWORD *)this + 5634) = v3 + 1;
   return 1;
 }
 
@@ -298,9 +352,9 @@ int sub_4D5F40(int a2, int a3)
     ++v4;
   }
   while ( v4 < 60 );
-  *(this + 5635) = 1132068864;
-  *(this + 5636) = a2;
-  *(this + 5637) = a3;
+  *((_DWORD *)this + 5635) = 1132068864;
+  *((_DWORD *)this + 5636) = a2;
+  *((_DWORD *)this + 5637) = a3;
   return a3;
 }
 
@@ -352,7 +406,7 @@ _BYTE * sub_4D61A0()
     --v2;
   }
   while ( v2 );
-  *(this + 5634) = 0;
+  *((_DWORD *)this + 5634) = 0;
   return result;
 }
 

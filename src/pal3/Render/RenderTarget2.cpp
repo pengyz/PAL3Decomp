@@ -2,6 +2,11 @@
 #include "pal3/globals.h"
 #include "pal3/gen/RenderTarget2.h"
 
+// Forward declarations for unnamed functions
+int sub_4BDD90(...);
+int sub_4BDEB0(...);
+int sub_5541EE(...);
+
 // 0x004BF780
 int RenderTarget2::Init()
 {

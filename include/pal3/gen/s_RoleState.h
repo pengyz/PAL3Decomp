@@ -3,7 +3,6 @@
 
 #include "UIProgressBar.h"
 #include "UIStatic.h"
-#include "tagRECT.h"
 
 class s_RoleState {
 public:

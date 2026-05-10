@@ -33,17 +33,14 @@ extern PalScript *g_pPalScript;    // 0x00BFDA98
 extern Config *g_pConfig;          // 0x00BFDA9C
 extern TextureLib *g_pTextureLib;  // 0x00BFDAA0
 
-// Large global object wrappers (allows .m_info[N] byte access from IDA output)
-struct GlobalByteArray { char m_info[4*1024*1024]; };
-
 // GRPinput global instance
-extern GlobalByteArray g_Input;    // 0x00BFAD70
+extern GRPinput g_Input;           // 0x00BFAD70
 
-// Scene manager instance (very large, ~3.5MB)
-extern GlobalByteArray g_SceneMgr; // 0x00C04390
+// Scene manager instance
+extern SceneMgr g_SceneMgr;       // 0x00C04390
 
 // Game data instance
-extern GlobalByteArray g_GameData; // 0x00D8E4C0
+extern CGameData g_GameData;       // 0x00D8E4C0
 
 // Game state flags
 extern int g_nGameFlags;           // from PAL3 static

@@ -1,15 +1,12 @@
 #pragma once
 // Auto-generated: C3DSpark
 
-#include "gbGeomQuad.h"
-
-class gbRenderEffect;
-class gbTexture;
 class gbTextureArray;
 
 class C3DSpark {
 public:
-    C3DSpark::tagSpark m_Spark[128]; // +0x0
+    struct tagSpark {}; // nested type stub
+    tagSpark m_Spark[128]; // +0x0
     int m_nCurrentSpark; // +0x1C00
     gbRenderEffect * m_pAdditiveBlend; // +0x1C04
     gbTexture * m_pRedBig; // +0x1C08

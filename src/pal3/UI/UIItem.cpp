@@ -2,6 +2,18 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UIItem.h"
 
+// Forward declarations for unnamed functions
+int sub_444F60(...);
+int sub_445010(...);
+
+// Unnamed globals (extern)
+extern char aUiFlexNote[];
+extern char aUiGamemainuiMu[];
+extern char aUiGamemainuiMu_0[];
+extern char aUiGamemainuiMu_1[];
+extern int dword_DE5CE4;
+extern void *off_56E190;
+
 // 0x004A12F0
 int UIItem::Refresh()
 {
@@ -33,13 +45,13 @@ void __thiscall UIItem::UIItem(UIItem *this)
 {
   *(_DWORD *)this = &off_56E190;
   this->UpdateChildren();
-  (std::ios_base *->Destroy2()(this + 976));
-  (std::ios_base *->Destroy2()(this + 632));
-  (std::ios_base *->_UIFrameWnd()(this + 456));
-  (std::ios_base *->_UIFrameWnd()(this + 304));
-  sub_445010((std::ios_base *)(this + 112));
+  (UIWnd *->Destroy2()(this + 976));
+  (UIWnd *->Destroy2()(this + 632));
+  (UIWnd *->_UIFrameWnd()(this + 456));
+  (UIWnd *->_UIFrameWnd()(this + 304));
+  sub_445010((UIWnd *)(this + 112));
   dword_DE5CE4 = 0;
-  (std::ios_base *->ctor_BBB0()this);
+  (UIWnd *->ctor_BBB0()this);
 }
 
 // 0x004A14D0

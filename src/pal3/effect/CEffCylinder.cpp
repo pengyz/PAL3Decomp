@@ -2,6 +2,81 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffCylinder.h"
 
+// Forward declarations for unnamed functions
+int sub_4C3DD0(...);
+int sub_4C3EB0(...);
+int sub_4C3EC0(...);
+int sub_4C4370(...);
+int sub_4C45A0(...);
+int sub_4C48D0(...);
+int sub_4C4B00(...);
+int sub_4C5010(...);
+int sub_4C5150(...);
+int sub_4C52C0(...);
+int sub_4C5350(...);
+int sub_4C55F0(...);
+int sub_4D4D30(...);
+int sub_4D4D70(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed_0[];
+extern char aDProjectPal3Co[];
+extern char aNewFailInCeffc[];
+extern unsigned char byte_DE937C;
+extern int dword_DE9350;
+extern int dword_DE9354;
+extern int dword_DE9358;
+extern int dword_DE9360;
+extern int dword_DE9364;
+extern int dword_DE9368;
+extern int dword_DE9370;
+extern int dword_DE9374;
+extern int dword_DE9378;
+extern int dword_DE9380;
+extern void *off_56F62C;
+extern void *off_56F7BC;
+extern void *off_56F7C8;
+extern void *off_56F804;
+extern int unk_5D4D3C;
+extern int unk_5D4D7C;
+extern int unk_5D4DAC;
+extern int unk_5D4DB8;
+extern int unk_5D4DC4;
+extern int unk_5D4DCC;
+extern int unk_5D4DD4;
+extern int unk_5D4DF4;
+extern int unk_5D4E00;
+extern int unk_5D4E24;
+extern int unk_5D4E30;
+extern int unk_5D4E38;
+extern int unk_5D4E40;
+extern int unk_5D4FD0;
+extern int unk_5D4FE0;
+extern int unk_5D4FF0;
+extern int unk_5D4FFC;
+extern int unk_5D5008;
+extern int unk_5D5014;
+extern int unk_5D5020;
+extern int unk_5D502C;
+extern int unk_5D5038;
+extern int unk_5D5040;
+extern int unk_5D5048;
+extern int unk_5D5050;
+extern int unk_5D505C;
+extern int unk_5D5068;
+extern int unk_5D5074;
+extern int unk_5D5080;
+extern int unk_5D508C;
+extern int unk_5D5098;
+extern int unk_5D50A4;
+extern int unk_5D50B0;
+extern int unk_5D50B8;
+extern int unk_5D50C0;
+extern int unk_5D50CC;
+extern int unk_5D50D8;
+extern int unk_5D50E4;
+extern int unk_FFFFFF;
+
 // 0x004C3DD0
 void __fastcall sub_4C3DD0(int a1)
 {
@@ -541,7 +616,7 @@ void sub_4C48D0(_DWORD *a2)
   unsigned int v20; // eax
 
   v2 = this + 3;
-  v3 = *(this + 10);
+  v3 = *((_DWORD *)this + 10);
   v4 = 0;
   if ( v3 > 0 )
   {

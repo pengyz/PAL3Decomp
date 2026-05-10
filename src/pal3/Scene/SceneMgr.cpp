@@ -2,6 +2,15 @@
 #include "pal3/globals.h"
 #include "pal3/gen/SceneMgr.h"
 
+// Forward declarations for unnamed functions
+int sub_4CDED0(...);
+
+// Unnamed globals (extern)
+extern char aGfxscriptAddit[];
+extern char aGfxscriptAddit_0[];
+extern char aGfxscriptAlpha[];
+extern char aGfxscriptAlpha_0[];
+
 // 0x004CDA10
 void * SceneMgr::Create(int gfxMgr, int cam, int a4)
 {

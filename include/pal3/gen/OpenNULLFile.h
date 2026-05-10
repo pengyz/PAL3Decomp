@@ -1,8 +1,6 @@
 #pragma once
 // Auto-generated: OpenNULLFile
 
-class gbVFileSystem;
-
 class OpenNULLFile {
 public:
     gbVFileSystem * m_plastsys; // +0x0

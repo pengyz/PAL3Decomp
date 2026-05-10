@@ -3,7 +3,6 @@
 
 #include "GAME_STATE.h"
 #include "gbGfxDriverInfo.h"
-#include "gbImage2D.h"
 
 class CCBSystem;
 class CEffMgr;
@@ -39,7 +38,8 @@ public:
     CEffectSystem * m_pEffectSystem; // +0x0
     CEffMgr * m_pEffMgr; // +0x0
     int m_snapautoindex; // +0x0
-    std::basic_string<char,std::char_traits<char>,std::allocator<char> > m_snappath; // +0x0
+    struct allocator<char> > {}; // nested type stub
+    allocator<char> > m_snappath; // +0x0
     int m_snapw; // +0x0
     int m_snaph; // +0x0
     // total size: 0x1 (1)

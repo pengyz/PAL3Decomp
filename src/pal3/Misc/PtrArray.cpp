@@ -2,20 +2,45 @@
 #include "pal3/globals.h"
 #include "pal3/gen/PtrArray.h"
 
+// Forward declarations for unnamed functions
+int sub_432660(...);
+int sub_4326A0(...);
+int sub_432770(...);
+int sub_4327B0(...);
+int sub_433F90(...);
+int sub_434130(...);
+int sub_4341E0(...);
+int sub_434240(...);
+int sub_4343B0(...);
+int sub_4343F0(...);
+int sub_434490(...);
+int sub_4344F0(...);
+int sub_434670(...);
+int sub_4348E0(...);
+int sub_5372D0(...);
+
+// Unnamed globals (extern)
+extern int dword_D8C348;
+extern int dword_D8C34C;
+extern int dword_D8C360;
+extern int dword_D8C364;
+extern int dword_D8E468;
+extern int dword_D8E46C;
+
 // 0x00432660
 _DWORD * sub_432660()
 {
   *this = 0;
-  *(this + 2) = 0;
-  *(this + 1) = 0;
-  *(this + 3) = 32;
+  *((_DWORD *)this + 2) = 0;
+  *((_DWORD *)this + 1) = 0;
+  *((_DWORD *)this + 3) = 32;
   return this;
 }
 
 // 0x00432770
 void sub_432770(int a2, int a3)
 {
-  if ( a2 >= *(this + 1) )
+  if ( a2 >= *((_DWORD *)this + 1) )
     sub_4326A0((int)this, a2 + 1, -1);
   *(_DWORD *)(*this + 4 * a2) = a3;
 }
@@ -26,11 +51,11 @@ int sub_4327B0(int a2, int a3)
   int v4; // eax
   int result; // eax
 
-  v4 = *(this + 1) - a2 - a3;
+  v4 = *((_DWORD *)this + 1) - a2 - a3;
   if ( v4 )
     memcpy((void *)(*this + 4 * a2), (const void *)(*this + 4 * (a2 + a3)), 4 * v4);
-  result = *(this + 1) - a3;
-  *(this + 1) = result;
+  result = *((_DWORD *)this + 1) - a3;
+  *((_DWORD *)this + 1) = result;
   return result;
 }
 

@@ -2,6 +2,26 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBCamControl.h"
 
+// Forward declarations for unnamed functions
+int sub_5081E0(...);
+int sub_508230(...);
+int sub_508280(...);
+int sub_5082D0(...);
+int sub_508320(...);
+int sub_508370(...);
+int sub_5084C0(...);
+int sub_508660(...);
+int sub_508680(...);
+int sub_508690(...);
+int sub_508880(...);
+int sub_5088D0(...);
+
+// Unnamed globals (extern)
+extern char aGfxscriptGeomD[];
+extern char aGfxscriptGeomD_0[];
+extern unsigned char byte_17AAF64;
+extern void *off_56A694;
+
 // 0x005081D0
 // attributes: thunk
 int CCBCamControl::CCBCamControl()
@@ -194,19 +214,19 @@ char sub_5084C0(int this)
 // 0x00508660
 _DWORD * sub_508660()
 {
-  *(this + 13) = 0;
-  *(this + 14) = 0;
-  *(this + 15) = 0;
-  *(this + 16) = 0;
-  *(this + 17) = 0;
-  *(this + 18) = 0;
+  *((_DWORD *)this + 13) = 0;
+  *((_DWORD *)this + 14) = 0;
+  *((_DWORD *)this + 15) = 0;
+  *((_DWORD *)this + 16) = 0;
+  *((_DWORD *)this + 17) = 0;
+  *((_DWORD *)this + 18) = 0;
   return this;
 }
 
 // 0x00508680
 char sub_508680(gbRefObject **this)
 {
-  gbRefObject::Release(*(this + 609));
+  gbRefObject::Release(*((_DWORD *)this + 609));
   return 1;
 }
 
@@ -305,10 +325,10 @@ int sub_5088D0(_DWORD **this, unsigned int a2)
     v4 = this + 15 * a2;
     result = (int)v4[612];
     if ( result != -1 )
-      result = CEffect::Render(*(int **)(**(this + 2) + 44), (int)v4[612]);
+      result = CEffect::Render(*(int **)(**((_DWORD *)this + 2) + 44), (int)v4[612]);
     v5 = (int)v4[619];
     if ( v5 != -1 )
-      return CEffect::Render(*(int **)(**(this + 2) + 44), v5);
+      return CEffect::Render(*(int **)(**((_DWORD *)this + 2) + 44), v5);
   }
   return result;
 }

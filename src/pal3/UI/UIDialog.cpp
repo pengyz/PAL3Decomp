@@ -2,6 +2,12 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UIDialog.h"
 
+// Forward declarations for unnamed functions
+int sub_445910(...);
+
+// Unnamed globals (extern)
+extern char aUiFlexNote_0[];
+
 // 0x004503D0
 void UIDialog::Create(int id, int x, int y, int parent, char *tex)
 {

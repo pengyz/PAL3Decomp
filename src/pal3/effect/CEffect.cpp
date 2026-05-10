@@ -2,6 +2,22 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffect.h"
 
+// Forward declarations for unnamed functions
+int sub_4C6940(...);
+int sub_4C6A70(...);
+int sub_4C7150(...);
+int sub_4C7450(...);
+int sub_4CDCA0(...);
+int sub_4D4D30(...);
+int sub_4D4D70(...);
+
+// Unnamed globals (extern)
+extern int dword_1895980;
+extern int dword_DE99B0;
+extern int dword_EC9E70;
+extern int dword_EC9E74;
+extern int unk_EC9EB4;
+
 // 0x004C6940
 _DWORD *sub_4C6940()
 {
@@ -278,7 +294,7 @@ void sub_4C7450(_DWORD *a2)
   unsigned int v20; // eax
 
   v2 = this + 3;
-  v3 = *(this + 10);
+  v3 = *((_DWORD *)this + 10);
   v4 = 0;
   if ( v3 > 0 )
   {

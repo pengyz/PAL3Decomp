@@ -10,7 +10,6 @@
 #include "UIStatic.h"
 #include "s_RoleState.h"
 #include "s_SpecialPropItem.h"
-#include "tagRECT.h"
 
 class JusticeBookUI;
 class LineupUI;
@@ -20,7 +19,6 @@ class MainPropUI;
 class SwordUI;
 class SystemUI;
 class TaskBookUI;
-class gbTexture;
 
 class StateUI : public UIFrameWnd {
 public:

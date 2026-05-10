@@ -2,6 +2,37 @@
 #include "pal3/globals.h"
 #include "pal3/gen/Parent_Data.h"
 
+// Forward declarations for unnamed functions
+int sub_53FDD0(...);
+int sub_53FE90(...);
+int sub_53FEB0(...);
+int sub_53FEC0(...);
+
+// Unnamed globals (extern)
+extern char aGfxscriptGeomN[];
+extern char aGfxscriptUiAdd[];
+extern char aGfxscriptUiAlp[];
+extern char aGfxscriptUiNot[];
+extern char aGfxscriptUiNot_0[];
+extern char aGfxscriptUiPar[];
+extern char aGfxscriptUiTex[];
+extern char aGfxscriptUiTex_0[];
+extern char aGfxscriptUiTlG[];
+extern int dword_189503C;
+extern int dword_1895040;
+extern int dword_1895044;
+extern int dword_1895048;
+extern int dword_189504C;
+extern int dword_1895050;
+extern int dword_1895054;
+extern int dword_1895058;
+extern int dword_189505C;
+extern int dword_1895060;
+extern int dword_1895064;
+extern int dword_1895068;
+extern int dword_189506C;
+extern float flt_1895038;
+
 // 0x0053FDD0
 int sub_53FDD0(int this, LPCSTR lpString)
 {

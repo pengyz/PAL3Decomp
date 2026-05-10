@@ -2,6 +2,163 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBUI.h"
 
+// Forward declarations for unnamed functions
+int sub_43F640(...);
+int sub_43F670(...);
+int sub_43F690(...);
+int sub_43FE90(...);
+int sub_4421F0(...);
+int sub_442200(...);
+int sub_442230(...);
+int sub_442C80(...);
+int sub_442D00(...);
+int sub_4DC650(...);
+int sub_4DF2F0(...);
+int sub_4E2C50(...);
+int sub_4E30E0(...);
+int sub_4E3780(...);
+int sub_4E3A20(...);
+int sub_4E3D90(...);
+int sub_4E40B0(...);
+int sub_4E4570(...);
+int sub_4E4A80(...);
+int sub_4E4D50(...);
+int sub_4E4D70(...);
+int sub_4E4F00(...);
+int sub_4E50B0(...);
+int sub_4E5110(...);
+int sub_4E5170(...);
+int sub_4E5B20(...);
+int sub_4E5E00(...);
+int sub_504240(...);
+int sub_517650(...);
+int sub_5177B0(...);
+int sub_517B30(...);
+int sub_517C10(...);
+int sub_517C80(...);
+int sub_517D60(...);
+int sub_517DF0(...);
+int sub_5181E0(...);
+int sub_5183C0(...);
+int sub_5184C0(...);
+int sub_518AF0(...);
+int sub_518B20(...);
+int sub_518B30(...);
+int sub_518D40(...);
+int sub_518FE0(...);
+int sub_519080(...);
+int sub_519230(...);
+int sub_519260(...);
+int sub_519360(...);
+int sub_5193D0(...);
+int sub_519400(...);
+int sub_519510(...);
+int sub_5195E0(...);
+int sub_519660(...);
+int sub_519B40(...);
+int sub_519BB0(...);
+int sub_519BD0(...);
+int sub_519F50(...);
+int sub_519FE0(...);
+int sub_51A090(...);
+int sub_51A2B0(...);
+int sub_51A340(...);
+int sub_51A390(...);
+int sub_51A400(...);
+int sub_51A430(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed[];
+extern char aCNewFailed_0[];
+extern char aCost[];
+extern char aDProjectPal3Co_12[];
+extern char aLevelcost[];
+extern char aName[];
+extern char aQuantity[];
+extern char aStopped[];
+extern char aUiCombatAttack_0[];
+extern char aUiCombatAttack_1[];
+extern char aUiCombatContro[];
+extern char aUiCombatContro_0[];
+extern char aUiCombatContro_1[];
+extern char aUiCombatContro_2[];
+extern char aUiCombatContro_3[];
+extern char aUiCombatContro_33[];
+extern char aUiCombatContro_34[];
+extern char aUiCombatContro_35[];
+extern char aUiCombatContro_36[];
+extern char aUiCombatContro_37[];
+extern char aUiCombatContro_38[];
+extern char aUiCombatContro_39[];
+extern char aUiCombatContro_40[];
+extern char aUiCombatContro_41[];
+extern char aUiCombatContro_42[];
+extern char aUiCombatContro_43[];
+extern char aUiCombatContro_44[];
+extern char aUiCombatContro_45[];
+extern char aUiCombatContro_46[];
+extern char aUiCombatContro_47[];
+extern char aUiCombatContro_48[];
+extern char aUiCombatContro_49[];
+extern char aUiCombatContro_50[];
+extern char aUiCombatContro_51[];
+extern char aUiCombatContro_52[];
+extern char aUiCombatContro_53[];
+extern char aUiCombatContro_54[];
+extern char aUiCombatDialog[];
+extern char aUiCombatResult_10[];
+extern char aUiCombatResult_11[];
+extern char aUiCombatResult_12[];
+extern char aUiCombatResult_13[];
+extern char aUiCombatResult_6[];
+extern char aUiCombatResult_7[];
+extern char aUiCombatResult_8[];
+extern char aUiCombatResult_9[];
+extern char aUiCombatTrickn[];
+extern char aUiCombatTrickn_0[];
+extern char aWa001[];
+extern char aWa002[];
+extern unsigned char byte_17A94E4;
+extern unsigned char byte_17A9924;
+extern unsigned char byte_17A9925;
+extern unsigned char byte_17A9926;
+extern unsigned char byte_17A9930;
+extern unsigned char byte_17A9931;
+extern unsigned char byte_17A9932;
+extern unsigned char byte_17A9933;
+extern unsigned char byte_17A9934;
+extern unsigned char byte_17A9935;
+extern unsigned char byte_17A9936;
+extern unsigned char byte_17A9937;
+extern unsigned char byte_17A9938;
+extern unsigned char byte_17A9944;
+extern unsigned char byte_17A9945;
+extern unsigned char byte_17A9946;
+extern unsigned char byte_17A9947;
+extern unsigned char byte_17A9948;
+extern unsigned char byte_17A9949;
+extern unsigned char byte_17A994A;
+extern unsigned char byte_17A994B;
+extern unsigned char byte_17A994C;
+extern unsigned char byte_17A994D;
+extern unsigned char byte_17A994E;
+extern unsigned char byte_17ACB08;
+extern unsigned char byte_5D87F0;
+extern unsigned char byte_5D8808;
+extern unsigned char byte_5D8848;
+extern unsigned char byte_5D8864;
+extern unsigned char byte_5D8884;
+extern int dword_17A990C;
+extern int dword_570110;
+extern int dword_570114;
+extern int dword_57011C;
+extern int dword_570134;
+extern int dword_57024C;
+extern int dword_570268;
+extern float flt_17A95F8;
+extern void *off_570500;
+extern int unk_5700E8;
+
 // 0x004DC560
 int CCBUI::GetState()
 {
@@ -295,7 +452,7 @@ char sub_517650(gbRefObject ***this)
   else
     v3 = 0;
   v13 = -1;
-  *(this + 18) = v3;
+  *((_DWORD *)this + 18) = v3;
   if ( v3 )
   {
     v9 = 483;
@@ -303,7 +460,7 @@ char sub_517650(gbRefObject ***this)
     v11 = 803;
     v12 = 42;
     ((void (__thiscall *)(gbRefObject **, int, int *, gbRefObject ***))(*v3)[4].RefCount)(v3, 1, &v9, this);
-    UIWnd::CreateFromTemplate(*(this + 18), aUiCombatAttack_0, 0);
+    UIWnd::CreateFromTemplate(*((_DWORD *)this + 18), aUiCombatAttack_0, 0);
     v9 = 480;
     v11 = 544;
     v10 = 8;
@@ -359,7 +516,7 @@ char sub_5177B0(gbRefObject ***this)
     v3 = sub_442D00((int)v2);
   else
     v3 = 0;
-  *(this + 268) = (gbRefObject **)v3;
+  *((_DWORD *)this + 268) = (gbRefObject **)v3;
   v4 = operator new(0x9Cu);
   v16 = v4;
   v19 = 1;
@@ -367,7 +524,7 @@ char sub_5177B0(gbRefObject ***this)
     v5 = sub_442D00((int)v4);
   else
     v5 = 0;
-  *(this + 269) = (gbRefObject **)v5;
+  *((_DWORD *)this + 269) = (gbRefObject **)v5;
   v6 = operator new(0x98u);
   v16 = v6;
   v19 = 2;
@@ -375,10 +532,10 @@ char sub_5177B0(gbRefObject ***this)
     v6->UIFrameWnd();
   else
     v7 = 0;
-  v8 = (int)*(this + 268);
+  v8 = (int)*((_DWORD *)this + 268);
   v19 = -1;
-  *(this + 270) = v7;
-  if ( !v8 || !*(this + 269) || !v7 )
+  *((_DWORD *)this + 270) = v7;
+  if ( !v8 || !*((_DWORD *)this + 269) || !v7 )
   {
     qmemcpy(
       pExceptionObject,
@@ -391,31 +548,31 @@ char sub_5177B0(gbRefObject ***this)
   v14 = 461;
   v15 = 87;
   (*(void (__thiscall **)(int, int, int *, gbRefObject ***))(*(_DWORD *)v8 + 16))(v8, 784, &v12, this);
-  UIWnd::CreateFromTemplate(*(this + 268), aUiCombatTrickn, 0);
-  UIWnd::SetShow(*(this + 268), 1);
-  UIWnd::GetChild(*(this + 268), &v11);
-  ((void (__thiscall *)(_DWORD, _DWORD))(**(this + 268))->RefCount)(*(this + 268), 0);
-  ((void (__thiscall *)(_DWORD, int, int *, gbRefObject ***))(**(this + 269))[4].RefCount)(
-    *(this + 269),
+  UIWnd::CreateFromTemplate(*((_DWORD *)this + 268), aUiCombatTrickn, 0);
+  UIWnd::SetShow(*((_DWORD *)this + 268), 1);
+  UIWnd::GetChild(*((_DWORD *)this + 268), &v11);
+  ((void (__thiscall *)(_DWORD, _DWORD))(**((_DWORD *)this + 268))->RefCount)(*((_DWORD *)this + 268), 0);
+  ((void (__thiscall *)(_DWORD, int, int *, gbRefObject ***))(**((_DWORD *)this + 269))[4].RefCount)(
+    *((_DWORD *)this + 269),
     784,
     &v12,
     this);
-  UIWnd::CreateFromTemplate(*(this + 269), aUiCombatTrickn_0, 0);
-  UIWnd::SetShow(*(this + 269), 1);
-  UIWnd::GetChild(*(this + 269), &v11);
-  ((void (__thiscall *)(_DWORD, _DWORD))(**(this + 269))->RefCount)(*(this + 269), 0);
-  v9 = (int)*(this + 270);
+  UIWnd::CreateFromTemplate(*((_DWORD *)this + 269), aUiCombatTrickn_0, 0);
+  UIWnd::SetShow(*((_DWORD *)this + 269), 1);
+  UIWnd::GetChild(*((_DWORD *)this + 269), &v11);
+  ((void (__thiscall *)(_DWORD, _DWORD))(**((_DWORD *)this + 269))->RefCount)(*((_DWORD *)this + 269), 0);
+  v9 = (int)*((_DWORD *)this + 270);
   v12 = 100;
   v13 = 100;
   v14 = 356;
   v15 = 228;
   (*(void (__thiscall **)(int, int, int *, gbRefObject ***))(*(_DWORD *)v9 + 16))(v9, 1024, &v12, this);
-  UIWnd::CreateFromTemplate(*(this + 270), aUiCombatDialog, 0);
-  UIWnd::SetShow(*(this + 270), 1);
-  UIWnd::GetChild(*(this + 270), &v11);
-  ((void (__thiscall *)(_DWORD, _DWORD))(**(this + 270))->RefCount)(*(this + 270), 0);
-  UIFrameWnd::SetPosition(*(this + 270), 5, 63);
-  sub_442C80(*(this + 270), 190);
+  UIWnd::CreateFromTemplate(*((_DWORD *)this + 270), aUiCombatDialog, 0);
+  UIWnd::SetShow(*((_DWORD *)this + 270), 1);
+  UIWnd::GetChild(*((_DWORD *)this + 270), &v11);
+  ((void (__thiscall *)(_DWORD, _DWORD))(**((_DWORD *)this + 270))->RefCount)(*((_DWORD *)this + 270), 0);
+  UIFrameWnd::SetPosition(*((_DWORD *)this + 270), 5, 63);
+  sub_442C80(*((_DWORD *)this + 270), 190);
   return 1;
 }
 
@@ -788,40 +945,40 @@ int ( *** sub_5183C0())(_DWORD, _DWORD)
   _DWORD *v15; // esi
   int (__thiscall ***result)(_DWORD, _DWORD); // eax
 
-  v2 = (void (__thiscall ***)(_DWORD, _DWORD))*(this + 253);
+  v2 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 253);
   if ( v2 )
     (**v2)(v2, 0);
-  v3 = (void (__thiscall ***)(_DWORD, _DWORD))*(this + 254);
+  v3 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 254);
   if ( v3 )
     (**v3)(v3, 0);
-  v4 = (void (__thiscall ***)(_DWORD, _DWORD))*(this + 270);
+  v4 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 270);
   if ( v4 )
     (**v4)(v4, 0);
-  v5 = (void (__thiscall ***)(_DWORD, _DWORD))*(this + 279);
+  v5 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 279);
   if ( v5 )
     (**v5)(v5, 0);
-  v6 = (void (__thiscall ***)(_DWORD, _DWORD))*(this + 280);
+  v6 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 280);
   if ( v6 )
     (**v6)(v6, 0);
-  v7 = (void (__thiscall ***)(_DWORD, _DWORD))*(this + 281);
+  v7 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 281);
   if ( v7 )
     (**v7)(v7, 0);
-  v8 = (void (__thiscall ***)(_DWORD, _DWORD))*(this + 282);
+  v8 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 282);
   if ( v8 )
     (**v8)(v8, 0);
-  v9 = (void (__thiscall ***)(_DWORD, _DWORD))*(this + 283);
+  v9 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 283);
   if ( v9 )
     (**v9)(v9, 0);
-  v10 = (void (__thiscall ***)(_DWORD, _DWORD))*(this + 284);
+  v10 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 284);
   if ( v10 )
     (**v10)(v10, 0);
-  v11 = (void (__thiscall ***)(_DWORD, _DWORD))*(this + 285);
+  v11 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 285);
   if ( v11 )
     (**v11)(v11, 0);
-  v12 = (void (__thiscall ***)(_DWORD, _DWORD))*(this + 268);
+  v12 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 268);
   if ( v12 )
     (**v12)(v12, 0);
-  v13 = (void (__thiscall ***)(_DWORD, _DWORD))*(this + 269);
+  v13 = (void (__thiscall ***)(_DWORD, _DWORD))*((_DWORD *)this + 269);
   if ( v13 )
     (**v13)(v13, 0);
   CCBUI::CreateResultWindow(0);
@@ -847,7 +1004,7 @@ int sub_5184C0(char a2)
 {
   int (__thiscall ***v2)(_DWORD, int); // ecx
 
-  v2 = (int (__thiscall ***)(_DWORD, int))*(this + 279);
+  v2 = (int (__thiscall ***)(_DWORD, int))*((_DWORD *)this + 279);
   if ( a2 )
     return (**v2)(v2, 1);
   else
@@ -859,8 +1016,8 @@ int sub_518AF0(int a2, char a3)
 {
   int (__thiscall ***v3)(_DWORD, int); // ecx
 
-  *(_DWORD *)(*(this + 283) + 124) = a2;
-  v3 = (int (__thiscall ***)(_DWORD, int))*(this + 283);
+  *(_DWORD *)(*((_DWORD *)this + 283) + 124) = a2;
+  v3 = (int (__thiscall ***)(_DWORD, int))*((_DWORD *)this + 283);
   if ( a3 )
     return (**v3)(v3, 1);
   else
@@ -870,7 +1027,7 @@ int sub_518AF0(int a2, char a3)
 // 0x00518B20
 char sub_518B20()
 {
-  return *(_BYTE *)(*(this + 286) + 176);
+  return *(_BYTE *)(*((_DWORD *)this + 286) + 176);
 }
 
 // 0x00518B30
@@ -1010,7 +1167,7 @@ int CCBUI::HideAll()
   int v5; // [esp+14h] [ebp-4h]
 
   HIBYTE(v5) = -1;
-  v4 = sin(*(float *)(*(this + 290) + 80) * 12.0) * 50.0;
+  v4 = sin(*(float *)(*((_DWORD *)this + 290) + 80) * 12.0) * 50.0;
   v1 = this + 55;
   v2 = 4;
   BYTE2(v5) = (int)v4 - 56;
@@ -1125,7 +1282,7 @@ int CCBUI::ShowDialogWindow()
 char sub_519230(int a2)
 {
   *((_BYTE *)this + 72 * a2 + 1184) = 0;
-  --*(this + 656);
+  --*((_DWORD *)this + 656);
   return 1;
 }
 
@@ -1136,7 +1293,7 @@ char sub_519260(int a2, int a3, int a4, int a5, int a6, int a7, int a8, const vo
   _BYTE *i; // ecx
   int *v13; // eax
 
-  if ( *(this + 656) >= 19 )
+  if ( *((_DWORD *)this + 656) >= 19 )
     return 0;
   v10 = 0;
   for ( i = this + 296; *i; i += 72 )
@@ -1157,14 +1314,14 @@ char sub_519260(int a2, int a3, int a4, int a5, int a6, int a7, int a8, const vo
   v13[1] = a3;
   v13[2] = a4;
   v13[3] = a5;
-  ++*(this + 656);
+  ++*((_DWORD *)this + 656);
   return 1;
 }
 
 // 0x00519360
-stdiobuf * sub_519360(stdiobuf *Block, char a2)
+UIWnd * sub_519360(UIWnd *Block, char a2)
 {
-  stdiobuf::~stdiobuf(Block);
+  UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return Block;
@@ -1173,17 +1330,17 @@ stdiobuf * sub_519360(stdiobuf *Block, char a2)
 // 0x005193D0
 int sub_5193D0()
 {
-  *(this + 18) = 0;
-  *(this + 19) = 0;
-  *(this + 20) = 0;
-  *(this + 21) = 0;
-  *(this + 22) = 0;
-  *(this + 23) = 0;
-  *(this + 24) = 0;
-  *(this + 25) = 0;
-  *(this + 26) = 0;
-  *(this + 27) = 0;
-  *(this + 28) = 0;
+  *((_DWORD *)this + 18) = 0;
+  *((_DWORD *)this + 19) = 0;
+  *((_DWORD *)this + 20) = 0;
+  *((_DWORD *)this + 21) = 0;
+  *((_DWORD *)this + 22) = 0;
+  *((_DWORD *)this + 23) = 0;
+  *((_DWORD *)this + 24) = 0;
+  *((_DWORD *)this + 25) = 0;
+  *((_DWORD *)this + 26) = 0;
+  *((_DWORD *)this + 27) = 0;
+  *((_DWORD *)this + 28) = 0;
   return 0;
 }
 
@@ -1324,11 +1481,11 @@ int sub_5195E0(int a2, unsigned int a3, int a4)
       this->GetInstance();
       aWa001->AudioSetPosition(1);
     }
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), a3, a4, 0);
+    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, 0);
   }
   else if ( a2 == 1007 && a4 != -1 )
   {
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), a3, a4, 0);
+    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, 0);
   }
   return a2->SendMessage(a3, a4);
 }
@@ -1336,8 +1493,8 @@ int sub_5195E0(int a2, unsigned int a3, int a4)
 // 0x00519660
 BOOL sub_519660(int a2, int a3)
 {
-  if ( *(this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), 128, -1, 0);
+  if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
+    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 128, -1, 0);
   return this->HitTest(a2, a3);
 }
 
@@ -1362,64 +1519,64 @@ struct gbVFileSystem * CCBUI::SetNimbusToNimbusControl(gbRefObject ***this)
   v5 = 156;
   v7 = 202;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 19, 259, (int)&a4, (int)aUiCombatContro_34);
-  ((void (__thiscall *)(_DWORD, int))(**(this + 19))->RefCount)(*(this + 19), 1);
-  PalScript::OpenScript(*(this + 19), aUiCombatContro_35, 0);
+  ((void (__thiscall *)(_DWORD, int))(**((_DWORD *)this + 19))->RefCount)(*((_DWORD *)this + 19), 1);
+  PalScript::OpenScript(*((_DWORD *)this + 19), aUiCombatContro_35, 0);
   a4 = 57;
   v6 = 103;
   v5 = 97;
   v7 = 143;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 20, 260, (int)&a4, (int)aUiCombatContro_36);
-  ((void (__thiscall *)(_DWORD, int))(**(this + 20))->RefCount)(*(this + 20), 1);
-  PalScript::OpenScript(*(this + 20), aUiCombatContro_37, 0);
+  ((void (__thiscall *)(_DWORD, int))(**((_DWORD *)this + 20))->RefCount)(*((_DWORD *)this + 20), 1);
+  PalScript::OpenScript(*((_DWORD *)this + 20), aUiCombatContro_37, 0);
   a4 = 2;
   v6 = 48;
   v5 = 153;
   v7 = 199;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 21, 261, (int)&a4, (int)aUiCombatContro_38);
-  ((void (__thiscall *)(_DWORD, int))(**(this + 21))->RefCount)(*(this + 21), 1);
-  PalScript::OpenScript(*(this + 21), aUiCombatContro_39, 0);
+  ((void (__thiscall *)(_DWORD, int))(**((_DWORD *)this + 21))->RefCount)(*((_DWORD *)this + 21), 1);
+  PalScript::OpenScript(*((_DWORD *)this + 21), aUiCombatContro_39, 0);
   a4 = 56;
   v6 = 102;
   v5 = 208;
   v7 = 254;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 22, 262, (int)&a4, (int)aUiCombatContro_40);
-  ((void (__thiscall *)(_DWORD, int))(**(this + 22))->RefCount)(*(this + 22), 1);
-  PalScript::OpenScript(*(this + 22), aUiCombatContro_41, 0);
+  ((void (__thiscall *)(_DWORD, int))(**((_DWORD *)this + 22))->RefCount)(*((_DWORD *)this + 22), 1);
+  PalScript::OpenScript(*((_DWORD *)this + 22), aUiCombatContro_41, 0);
   a4 = 19;
   v6 = 65;
   v5 = 192;
   v7 = 238;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 24, 264, (int)&a4, (int)aUiCombatContro_43);
-  ((void (__thiscall *)(_DWORD, int))(**(this + 24))->RefCount)(*(this + 24), 1);
-  PalScript::OpenScript(*(this + 24), aUiCombatContro_44, 0);
+  ((void (__thiscall *)(_DWORD, int))(**((_DWORD *)this + 24))->RefCount)(*((_DWORD *)this + 24), 1);
+  PalScript::OpenScript(*((_DWORD *)this + 24), aUiCombatContro_44, 0);
   a4 = 19;
   v6 = 65;
   v5 = 121;
   v7 = 167;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 25, 266, (int)&a4, (int)aUiCombatContro_47);
-  ((void (__thiscall *)(_DWORD, int))(**(this + 25))->RefCount)(*(this + 25), 1);
-  PalScript::OpenScript(*(this + 25), aUiCombatContro_48, 0);
+  ((void (__thiscall *)(_DWORD, int))(**((_DWORD *)this + 25))->RefCount)(*((_DWORD *)this + 25), 1);
+  PalScript::OpenScript(*((_DWORD *)this + 25), aUiCombatContro_48, 0);
   a4 = 90;
   v6 = 136;
   v5 = 192;
   v7 = 238;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 26, 267, (int)&a4, (int)aUiCombatContro_49);
-  ((void (__thiscall *)(_DWORD, int))(**(this + 26))->RefCount)(*(this + 26), 1);
-  PalScript::OpenScript(*(this + 26), aUiCombatContro_50, 0);
+  ((void (__thiscall *)(_DWORD, int))(**((_DWORD *)this + 26))->RefCount)(*((_DWORD *)this + 26), 1);
+  PalScript::OpenScript(*((_DWORD *)this + 26), aUiCombatContro_50, 0);
   a4 = 90;
   v6 = 136;
   v5 = 121;
   v7 = 167;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 27, 268, (int)&a4, (int)aUiCombatContro_51);
-  ((void (__thiscall *)(_DWORD, int))(**(this + 27))->RefCount)(*(this + 27), 1);
-  PalScript::OpenScript(*(this + 27), aUiCombatContro_52, 0);
+  ((void (__thiscall *)(_DWORD, int))(**((_DWORD *)this + 27))->RefCount)(*((_DWORD *)this + 27), 1);
+  PalScript::OpenScript(*((_DWORD *)this + 27), aUiCombatContro_52, 0);
   a4 = 111;
   v6 = 157;
   v5 = 153;
   v7 = 199;
   (CCBUI *->WriteNimbusToPlayerMgr()this, this + 23, 265, (int)&a4, (int)aUiCombatContro_45);
-  ((void (__thiscall *)(_DWORD, int))(**(this + 23))->RefCount)(*(this + 23), 1);
-  return PalScript::OpenScript(*(this + 23), aUiCombatContro_46, 0);
+  ((void (__thiscall *)(_DWORD, int))(**((_DWORD *)this + 23))->RefCount)(*((_DWORD *)this + 23), 1);
+  return PalScript::OpenScript(*((_DWORD *)this + 23), aUiCombatContro_46, 0);
 }
 
 // 0x00519A10
@@ -1452,9 +1609,9 @@ char CCBUI::WriteNimbusToPlayerMgr(_DWORD *a2, int a3, int a4, int a5)
 }
 
 // 0x00519B40
-stdiobuf * sub_519B40(stdiobuf *Block, char a2)
+UIWnd * sub_519B40(UIWnd *Block, char a2)
 {
-  stdiobuf::~stdiobuf(Block);
+  UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return Block;
@@ -1463,14 +1620,14 @@ stdiobuf * sub_519B40(stdiobuf *Block, char a2)
 // 0x00519BB0
 int sub_519BB0()
 {
-  *(this + 20) = 0;
-  *(this + 21) = 0;
-  *(this + 22) = 0;
-  *(this + 18) = 0;
-  *(this + 19) = 0;
-  *(this + 23) = 0;
-  *(this + 24) = 0;
-  *(this + 25) = 0;
+  *((_DWORD *)this + 20) = 0;
+  *((_DWORD *)this + 21) = 0;
+  *((_DWORD *)this + 22) = 0;
+  *((_DWORD *)this + 18) = 0;
+  *((_DWORD *)this + 19) = 0;
+  *((_DWORD *)this + 23) = 0;
+  *((_DWORD *)this + 24) = 0;
+  *((_DWORD *)this + 25) = 0;
   return 0;
 }
 
@@ -1704,7 +1861,7 @@ int sub_519FE0(int a2, unsigned int a3, int a4)
     aWa001->AudioSetPosition(1);
     v7 = 0;
 LABEL_11:
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), a3, a4, v7);
+    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, v7);
     return a2->SendMessage(a3, a4);
   }
   if ( a2 == 1006 )
@@ -1718,7 +1875,7 @@ LABEL_11:
   {
     this->GetInstance();
     aWa002->AudioSetPosition(1);
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), a3, a4, 0);
+    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, 0);
   }
   return a2->SendMessage(a3, a4);
 }
@@ -1726,8 +1883,8 @@ LABEL_11:
 // 0x0051A090
 BOOL sub_51A090(int a2, int a3)
 {
-  if ( *(this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), 128, -1, 0);
+  if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
+    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 128, -1, 0);
   return this->HitTest(a2, a3);
 }
 
@@ -1851,9 +2008,9 @@ _DWORD * sub_51A340()
 }
 
 // 0x0051A390
-stdiobuf * sub_51A390(stdiobuf *Block, char a2)
+UIWnd * sub_51A390(UIWnd *Block, char a2)
 {
-  stdiobuf::~stdiobuf(Block);
+  UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return Block;

@@ -2,6 +2,11 @@
 #include "pal3/globals.h"
 #include "pal3/gen/MiniGame3.h"
 
+// Forward declarations for unnamed functions
+int sub_533FD0(...);
+int sub_535970(...);
+int sub_535F10(...);
+
 // 0x00535320
 void MiniGame3::Render()
 {

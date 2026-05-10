@@ -2,6 +2,30 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffMeteor.h"
 
+// Forward declarations for unnamed functions
+int sub_4CB3A0(...);
+int sub_4CB480(...);
+int sub_4CB4C0(...);
+int sub_4CB5E0(...);
+int sub_4CB800(...);
+int sub_4CBFC0(...);
+int sub_4CCC60(...);
+int sub_4CCD10(...);
+int sub_4CD070(...);
+int sub_4CD0D0(...);
+int sub_4CD3D0(...);
+int sub_4D4D30(...);
+int sub_4D4D70(...);
+
+// Unnamed globals (extern)
+extern char aDProjectPal3Co_0[];
+extern char aNewFailInCeffm[];
+extern void *off_56F62C;
+extern void *off_56F96C;
+extern void *off_56F978;
+extern void *off_56F9B4;
+extern int unk_FFFFFF;
+
 // 0x004CB480
 _DWORD *sub_4CB480()
 {

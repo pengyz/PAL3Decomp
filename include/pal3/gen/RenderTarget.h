@@ -1,8 +1,6 @@
 #pragma once
 // Auto-generated: RenderTarget
 
-#include "gbTexture_D3D.h"
-
 class RenderTarget {
 public:
     int m_iMode; // +0x0

@@ -1,11 +1,7 @@
 #pragma once
 // Auto-generated: MyMdl
 
-#include "gbOBBox.h"
-
 class MeshFx;
-class gbActor;
-class gbGeomNode;
 
 class MyMdl {
 public:

@@ -2,6 +2,19 @@
 #include "pal3/globals.h"
 #include "pal3/gen/RenderTarget3.h"
 
+// Forward declarations for unnamed functions
+int sub_4B6550(...);
+int sub_4B65A0(...);
+int sub_4B66B0(...);
+int sub_4B67B0(...);
+int sub_4B6820(...);
+
+// Unnamed globals (extern)
+extern char aGfxscriptGeomG[];
+extern char aGfxscriptGlowG[];
+extern unsigned char byte_DE6A4C;
+extern int unk_DE6A30;
+
 // 0x004B65A0
 void *sub_4B65A0()
 {

@@ -4,12 +4,8 @@
 #include "UILBColumn.h"
 #include "UIScrollBar.h"
 #include "UIWnd.h"
-#include "gbColorQuad.h"
-#include "tagPOINT.h"
-#include "tagRECT.h"
 
 class _PlugInfo;
-class gbTexture;
 
 class UIListBox : public UIWnd {
 public:
@@ -36,7 +32,8 @@ public:
     gbColorQuad m_seltexcolor; // +0x4E8
     tagPOINT m_itemoffset; // +0x4EC
     int m_movesel; // +0x4F4
-    std::vector<int,std::allocator<int> > m_rowenable; // +0x4F8
+    struct allocator<int> > {}; // nested type stub
+    allocator<int> > m_rowenable; // +0x4F8
     // total size: 0x508 (1288)
 
     UIListBox(); // 0x0043DCD0

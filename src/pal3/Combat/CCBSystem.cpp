@@ -2,6 +2,154 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBSystem.h"
 
+// Forward declarations for unnamed functions
+int sub_4C5980(...);
+int sub_4C6170(...);
+int sub_4CDAE0(...);
+int sub_4CDB60(...);
+int sub_4CDC50(...);
+int sub_4CEA80(...);
+int sub_4DB730(...);
+int sub_4DB9C0(...);
+int sub_4DB9F0(...);
+int sub_4DBB80(...);
+int sub_4DC160(...);
+int sub_4DC1B0(...);
+int sub_4DC220(...);
+int sub_4DC3F0(...);
+int sub_4DC510(...);
+int sub_4E02F0(...);
+int sub_4E0330(...);
+int sub_4E0380(...);
+int sub_4E03F0(...);
+int sub_4E0430(...);
+int sub_4E0530(...);
+int sub_4E05B0(...);
+int sub_4EC680(...);
+int sub_4EC700(...);
+int sub_4EC7D0(...);
+int sub_4EC830(...);
+int sub_4ECB20(...);
+int sub_4F7050(...);
+int sub_4F7140(...);
+int sub_4F76C0(...);
+int sub_4F7820(...);
+int sub_4F7FC0(...);
+int sub_4FF360(...);
+int sub_4FF560(...);
+int sub_4FFA90(...);
+int sub_4FFCB0(...);
+int sub_4FFED0(...);
+int sub_4FFF60(...);
+int sub_500220(...);
+int sub_5004B0(...);
+int sub_500550(...);
+int sub_5007A0(...);
+int sub_500C20(...);
+int sub_500D50(...);
+int sub_5014E0(...);
+int sub_502000(...);
+int sub_5020D0(...);
+int sub_5024D0(...);
+int sub_50A4B0(...);
+int sub_512310(...);
+int sub_512330(...);
+int sub_512380(...);
+int sub_5123D0(...);
+int sub_512420(...);
+int sub_512470(...);
+int sub_5124C0(...);
+int sub_512580(...);
+int sub_5125E0(...);
+int sub_512BA0(...);
+int sub_512D40(...);
+int sub_513150(...);
+int sub_513380(...);
+int sub_513420(...);
+int sub_513430(...);
+int sub_513600(...);
+int sub_5136A0(...);
+int sub_5136D0(...);
+int sub_5137F0(...);
+int sub_5158F0(...);
+int sub_5159A0(...);
+int sub_515B20(...);
+int sub_515C90(...);
+int sub_515DD0(...);
+int sub_515DF0(...);
+int sub_515E50(...);
+int sub_515E70(...);
+int sub_515E90(...);
+int sub_515EE0(...);
+int sub_515F30(...);
+int sub_515F80(...);
+int sub_515FD0(...);
+int sub_5163D0(...);
+int sub_51D5C0(...);
+int sub_53E970(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed[];
+extern char aDProjectPal3Co_4[];
+extern char aEffectCombat10[];
+extern char aPal3CombatSyst[];
+extern char aTooManyCharact[];
+extern unsigned char byte_17AC5DC;
+extern unsigned char byte_17AC6DC;
+extern unsigned char byte_17AC7F0;
+extern unsigned char byte_5DE9E4;
+extern int dword_17A990C;
+extern int dword_17AC7E0;
+extern int dword_17AC7E4;
+extern int dword_17AC7E8;
+extern int dword_17ACA80;
+extern int dword_17ACA84;
+extern int dword_17ACA88;
+extern int dword_17ACA8C;
+extern int dword_17ACA90;
+extern int dword_17ACA94;
+extern int dword_17ACA98;
+extern int dword_17ACA9C;
+extern int dword_17ACAA0;
+extern int dword_17ACAA4;
+extern int dword_17ACAA8;
+extern int dword_17ACAAC;
+extern int dword_17ACAC0;
+extern int dword_17ACAC4;
+extern int dword_17ACAC8;
+extern int dword_17ACACC;
+extern int dword_17ACAD0;
+extern int dword_17ACAD4;
+extern int dword_17ACAD8;
+extern int dword_17ACADC;
+extern int dword_17ACE14;
+extern int dword_17ACE1C;
+extern int dword_17ACE20;
+extern int dword_17ACE24;
+extern int dword_17ACE28;
+extern int dword_17ACE2C;
+extern int dword_17ACE30;
+extern int dword_17ACE34;
+extern int dword_17ACE38;
+extern int dword_17ACE3C;
+extern int dword_17ACE40;
+extern int dword_17ACE44;
+extern int dword_17ACE48;
+extern int dword_17ACE4C;
+extern int dword_17ACE50;
+extern int dword_17ACE54;
+extern int dword_17ACE58;
+extern int dword_17ACE5C;
+extern int dword_17ACE60;
+extern int dword_17ACE64;
+extern int dword_17ACE68;
+extern int dword_17B30E4;
+extern int dword_5DC3DC;
+extern float flt_17AC7DC;
+extern float flt_17AC7EC;
+extern float flt_17ACA78;
+extern float flt_17ACE10;
+
 // 0x004DB3A0
 // attributes: thunk
 int __cdecl CCBSystem::InitCmdTable1_thunk()
@@ -588,7 +736,7 @@ char __thiscall sub_5125E0(_DWORD *this)
     else
       v5 = 0;
     v34 = -1;
-    *(this + 1) = v5;
+    *((_DWORD *)this + 1) = v5;
     if ( !v5 )
     {
       qmemcpy(
@@ -607,7 +755,7 @@ char __thiscall sub_5125E0(_DWORD *this)
       else
         v7 = 0;
       v34 = -1;
-      *(this + 4) = v7;
+      *((_DWORD *)this + 4) = v7;
       if ( !v7 )
       {
         qmemcpy(
@@ -626,7 +774,7 @@ char __thiscall sub_5125E0(_DWORD *this)
         else
           v9 = 0;
         v34 = -1;
-        *(this + 3) = v9;
+        *((_DWORD *)this + 3) = v9;
         if ( !v9 )
         {
           qmemcpy(
@@ -645,7 +793,7 @@ char __thiscall sub_5125E0(_DWORD *this)
           else
             v11 = 0;
           v34 = -1;
-          *(this + 5) = v11;
+          *((_DWORD *)this + 5) = v11;
           if ( !v11 )
           {
             qmemcpy(
@@ -664,7 +812,7 @@ char __thiscall sub_5125E0(_DWORD *this)
             else
               v13 = 0;
             v34 = -1;
-            *(this + 2) = v13;
+            *((_DWORD *)this + 2) = v13;
             if ( !v13 )
             {
               qmemcpy(
@@ -683,7 +831,7 @@ char __thiscall sub_5125E0(_DWORD *this)
               else
                 v15 = 0;
               v34 = -1;
-              *(this + 6) = v15;
+              *((_DWORD *)this + 6) = v15;
               if ( !v15 )
               {
                 qmemcpy(
@@ -695,7 +843,7 @@ char __thiscall sub_5125E0(_DWORD *this)
               result = std::v15->do_always_noconv();
               if ( result )
               {
-                *(this + 8) = g_pSceneMgr;
+                *((_DWORD *)this + 8) = g_pSceneMgr;
                 CCBSystem::ProcAI(1.0);
                 result = CCBSystem::CreateObj2(this + 7);
                 if ( result )
@@ -704,7 +852,7 @@ char __thiscall sub_5125E0(_DWORD *this)
                   v34 = 7;
                   if ( v16 )
                   {
-                    v17 = *(_DWORD *)(*(this + 5) + 12);
+                    v17 = *(_DWORD *)(*((_DWORD *)this + 5) + 12);
                     if ( v17 )
                       v18 = v17 + 4;
                     else
@@ -715,12 +863,12 @@ char __thiscall sub_5125E0(_DWORD *this)
                   {
                     v19 = 0;
                   }
-                  *(this + 11) = v19;
+                  *((_DWORD *)this + 11) = v19;
                   v20 = operator new(0xA930u);
                   v34 = 8;
                   if ( v20 )
                   {
-                    v21 = *(_DWORD *)(*(this + 5) + 12);
+                    v21 = *(_DWORD *)(*((_DWORD *)this + 5) + 12);
                     if ( v21 )
                       v22 = v21 + 4;
                     else
@@ -731,24 +879,24 @@ char __thiscall sub_5125E0(_DWORD *this)
                   {
                     v23 = 0;
                   }
-                  *(this + 12) = v23;
+                  *((_DWORD *)this + 12) = v23;
                   v24 = operator new(0x5870u);
                   v34 = 9;
                   if ( v24 )
                     v25 = C2DSpark::C2DSpark((int)v24, MEMORY[0xBFD6D0], MEMORY[0xBFD6D4]);
                   else
                     v25 = 0;
-                  *(this + 13) = v25;
+                  *((_DWORD *)this + 13) = v25;
                   v26 = operator new(0x3E30u);
                   v34 = 10;
                   if ( v26 )
                     v27 = v26->C3DSpark();
                   else
                     v27 = 0;
-                  v28 = (_DWORD *)*(this + 8);
-                  *(this + 14) = v27;
+                  v28 = (_DWORD *)*((_DWORD *)this + 8);
+                  *((_DWORD *)this + 14) = v27;
                   v29 = (_DWORD *)sub_4C5980(v28, 1);
-                  *(this + 9) = v29;
+                  *((_DWORD *)this + 9) = v29;
                   v29->CEffectSystem((int)aEffectCombat10);
                   return 1;
                 }
@@ -1238,7 +1386,7 @@ int CCBSystem::SetRenderFlag(char flag)
 // 0x00513420
 char sub_513420(char a2)
 {
-  *(this + 132) = a2;
+  *((_DWORD *)this + 132) = a2;
   return a2;
 }
 
@@ -1351,11 +1499,11 @@ int sub_5136A0()
 {
   unsigned int v1; // eax
 
-  v1 = *(this + 34) + 1;
-  *(this + 34) = v1;
+  v1 = *((_DWORD *)this + 34) + 1;
+  *((_DWORD *)this + 34) = v1;
   if ( v1 >= 0x7FFFFFFF )
-    *(this + 34) = 1;
-  return *(this + 34);
+    *((_DWORD *)this + 34) = 1;
+  return *((_DWORD *)this + 34);
 }
 
 // 0x005136D0
@@ -1422,15 +1570,15 @@ int sub_5137F0()
   {
     if ( *((_BYTE *)v3 + 36) == 1 )
     {
-      *(this + 36) = v2;
+      *((_DWORD *)this + 36) = v2;
       result = ((int (__thiscall *)(int, _DWORD))*v3)((int)this + v3[1], 0);
-      *(this + 36) = -1;
+      *((_DWORD *)this + 36) = -1;
     }
     ++v2;
     v3 += 22;
   }
   while ( v2 < 1024 );
-  *(this + 36) = -1;
+  *((_DWORD *)this + 36) = -1;
   return result;
 }
 
@@ -2588,12 +2736,12 @@ int CCBSystem::CreateObj(int a2)
   _DWORD *v4; // edi
   int Obj; // edi
 
-  v3 = *(this + 36);
+  v3 = *((_DWORD *)this + 36);
   v4 = this + 22 * v3 + 38;
   if ( *((_BYTE *)this + 88 * v3 + 189) )
   {
     Obj = CCBSystem::CreateObj(0, 0, 0x40u);
-    (CCBSystem *->ClearEffect()this, *(this + 36));
+    (CCBSystem *->ClearEffect()this, *((_DWORD *)this + 36));
     return Obj;
   }
   else
@@ -2673,7 +2821,7 @@ int sub_515B20(int ( *a2)(int this, int a2), int a3, int a4, int a5, const void 
   _BYTE *i; // ecx
   _DWORD *v10; // ebp
 
-  if ( (int)*(this + 35) >= 1023 )
+  if ( (int)*((_DWORD *)this + 35) >= 1023 )
     MessageBoxA(0, &byte_5DE9E4, 0, 0x30u);
   if ( a2 == CCBSystem::CheckBattleEnd
     && (!CCBSystem::CheckBattleEnd || !a3 && !a4 && !a5)
@@ -2699,7 +2847,7 @@ int sub_515B20(int ( *a2)(int this, int a2), int a3, int a4, int a5, const void 
   v10[43] = -1;
   if ( a6 )
     qmemcpy(v10 + 48, a6, 0x2Cu);
-  ++*(this + 35);
+  ++*((_DWORD *)this + 35);
   return v10[42];
 }
 

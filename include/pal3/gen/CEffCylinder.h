@@ -2,11 +2,8 @@
 // Auto-generated: CEffCylinder
 
 #include "CEffObj.h"
-#include "gbVec3D.h"
 #include "tagUV.h"
 
-class gbGeomQuad;
-class gbTexture;
 class gbTextureArray;
 
 class CEffCylinder : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)> {

@@ -2,6 +2,119 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBRoleState.h"
 
+// Forward declarations for unnamed functions
+int sub_40CCD0(...);
+int sub_43FE90(...);
+int sub_479260(...);
+int sub_4DB940(...);
+int sub_4E2AE0(...);
+int sub_4E2C10(...);
+int sub_4ED0A0(...);
+int sub_4ED680(...);
+int sub_4ED800(...);
+int sub_4ED870(...);
+int sub_4EE540(...);
+int sub_4EE7C0(...);
+int sub_4EEA70(...);
+int sub_4EF4A0(...);
+int sub_4EF6A0(...);
+int sub_4EF6C0(...);
+int sub_4EF8B0(...);
+int sub_4EFAF0(...);
+int sub_4F05A0(...);
+int sub_4F0700(...);
+int sub_4F07D0(...);
+int sub_4F0A10(...);
+int sub_4F1A30(...);
+int sub_4F1C40(...);
+int sub_4F2390(...);
+int sub_4F2660(...);
+int sub_4F2690(...);
+int sub_4F2750(...);
+int sub_4F27B0(...);
+int sub_4F2BF0(...);
+int sub_4F2C30(...);
+int sub_4F4820(...);
+int sub_4F4AA0(...);
+int sub_4F4B90(...);
+int sub_4F4C80(...);
+int sub_4F6A40(...);
+int sub_4F6A60(...);
+int sub_4F6AD0(...);
+int sub_4F6B70(...);
+int sub_4F6C60(...);
+int sub_4F6CD0(...);
+int sub_4F6DA0(...);
+int sub_4F6E80(...);
+int sub_4F6FB0(...);
+int sub_4F7050(...);
+int sub_4F70A0(...);
+int sub_4F7200(...);
+int sub_4F7480(...);
+int sub_4F8AF0(...);
+int sub_4F8FD0(...);
+int sub_4F90F0(...);
+int sub_4F95F0(...);
+int sub_4FA620(...);
+int sub_4FA700(...);
+int sub_4FA930(...);
+int sub_4FB370(...);
+int sub_4FCA40(...);
+int sub_501330(...);
+int sub_501410(...);
+int sub_501CF0(...);
+int sub_501E60(...);
+int sub_501F30(...);
+int sub_502000(...);
+int sub_5021C0(...);
+int sub_502300(...);
+int sub_502430(...);
+int sub_5024D0(...);
+int sub_5027E0(...);
+
+// Unnamed globals (extern)
+extern char aDProjectPal3Co_2[];
+extern char aFailToCreateWe[];
+extern char aWa006[];
+extern char aWa010[];
+extern char aWa048[];
+extern char aWd004[];
+extern char aWd005[];
+extern char aWd006[];
+extern char aWd007[];
+extern char aWd008[];
+extern char aWd009[];
+extern char aWd010[];
+extern char aWd011[];
+extern char aWd012[];
+extern char aWd013[];
+extern char aWd014[];
+extern char aWd015[];
+extern char aWd016[];
+extern char aWd017[];
+extern char aWd018[];
+extern char aWd019[];
+extern char aWd020[];
+extern char aWd021[];
+extern char aWd022[];
+extern unsigned char byte_5D8EC8;
+extern unsigned char byte_5D8EE0;
+extern unsigned char byte_5D8EF8;
+extern unsigned char byte_5D8F0C;
+extern unsigned char byte_5DFDEB;
+extern int dword_17AA050;
+extern int dword_17AA150;
+extern int dword_17AA350;
+extern int dword_17AA450;
+extern int dword_17AA808;
+extern int dword_17AA818;
+extern int dword_17AA828;
+extern int dword_17AA838;
+extern int dword_17AA848;
+extern int dword_17AA858;
+extern void *off_56A66C;
+extern int unk_FFFFFF;
+
 // 0x004ECB00
 int CCBRoleState::Update()
 {
@@ -513,11 +626,11 @@ int CCBRoleState::Destroy()
 }
 
 // 0x004EE7C0
-int sub_4EE7C0(_DWORD *this, int a2, char a3)
+int sub_4EE7C0(int a2, char a3)
 {
   int v3; // esi
 
-  v3 = *(_DWORD *)(*(this + 130) + 4);
+  v3 = *(_DWORD *)(*((_DWORD *)this + 130) + 4);
   if ( a3 == 1 )
   {
     if ( !a2 )
@@ -582,7 +695,7 @@ bool CCBRoleState::VarianceRoundCounter(_DWORD *a2)
 }
 
 // 0x004EEA70
-char sub_4EEA70(_DWORD *this, int a2, int a3, int *a4)
+char sub_4EEA70(int a2, int a3, int *a4)
 {
   int v4; // edi
   signed int v5; // esi
@@ -923,7 +1036,7 @@ char sub_4EF4A0(_DWORD *a1, int a2)
 }
 
 // 0x004EF6A0
-int sub_4EF6A0(_DWORD *this, int a2)
+int sub_4EF6A0(int a2)
 {
   return *(this + 223 * a2 + 284);
 }
@@ -1083,7 +1196,7 @@ int CCBRoleState::CalcHealAmount(int roleIdx)
 }
 
 // 0x004EFAF0
-int sub_4EFAF0(_DWORD *this, int a2, _DWORD *a3, int *a4)
+int sub_4EFAF0(int a2, _DWORD *a3, int *a4)
 {
   int *v4; // edi
   int result; // eax
@@ -1186,9 +1299,9 @@ int sub_4EFAF0(_DWORD *this, int a2, _DWORD *a3, int *a4)
   {
 LABEL_47:
     v16 = *(this + 223 * v15 + 284);
-    if ( v16 != *(this + 5154) && v16 != *(this + 5156) )
+    if ( v16 != *((_DWORD *)this + 5154) && v16 != *((_DWORD *)this + 5156) )
     {
-      v17 = v16 == *(this + 5158);
+      v17 = v16 == *((_DWORD *)this + 5158);
       result = v14;
       if ( !v17 )
         return result;
@@ -1620,7 +1733,7 @@ bool CCBRoleState::InitRoleSpecEquipAttrib(int a2)
 }
 
 // 0x004F0700
-char sub_4F0700(_DWORD *this, int a2)
+char sub_4F0700(int a2)
 {
   int v2; // esi
   _DWORD *i; // edi
@@ -2124,7 +2237,7 @@ char CCBRoleState::GetFirstAliveRoleInForce(int roleIdx, int a3)
 }
 
 // 0x004F1A30
-char sub_4F1A30(_DWORD *this, int a2)
+char sub_4F1A30(int a2)
 {
   int v4; // esi
   int i; // ebp
@@ -2145,18 +2258,18 @@ char sub_4F1A30(_DWORD *this, int a2)
       goto LABEL_13;
     }
     if ( ((_DWORD *->sub_4F05A0()a2)
-       || (unsigned __int8)CCBStageRole::ForceEndTaskByPFN(*(_DWORD *)(*(this + 131) + i))
+       || (unsigned __int8)CCBStageRole::ForceEndTaskByPFN(*(_DWORD *)(*((_DWORD *)this + 131) + i))
        || *(_WORD *)(g_GDB->GDB_GetSkillNum(*(_DWORD *)(a2 + 4)) + 748) == 2)
       && (int)sub_4F2750(a2, v4) < 0
-      && !CCBSystem::IsCmdEmpty(*(_BYTE **)(*(this + 130) + 12), v4)
-      && !CCBSystem::IsCmdReady(*(_DWORD **)(*(this + 130) + 12), v4) )
+      && !CCBSystem::IsCmdEmpty(*(_BYTE **)(*((_DWORD *)this + 130) + 12), v4)
+      && !CCBSystem::IsCmdReady(*(_DWORD **)(*((_DWORD *)this + 130) + 12), v4) )
     {
-      CCBSystem::GetCmdData(*(char **)(*(this + 130) + 12), v4, 0, 0, 1);
+      CCBSystem::GetCmdData(*(char **)(*((_DWORD *)this + 130) + 12), v4, 0, 0, 1);
     }
 LABEL_13:
     ++v4;
   }
-  v6 = *(_DWORD *)(*(this + 132) + 1120);
+  v6 = *(_DWORD *)(*((_DWORD *)this + 132) + 1120);
   if ( *(_DWORD *)(v6 + 56) == 1 )
     sub_4F95F0(v8, *(_DWORD *)(v6 + 104));
   return 1;

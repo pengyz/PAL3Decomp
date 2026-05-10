@@ -1,10 +1,6 @@
 #pragma once
 // Auto-generated: ObjectCamera
 
-#include "gbVec3D.h"
-
-class gbCamera;
-
 class ObjectCamera {
 public:
     gbCamera * m_pCamera; // +0x0

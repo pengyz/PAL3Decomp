@@ -32,9 +32,9 @@ int Array::Size()
 {
   int result; // eax
 
-  result = *(this + 1);
+  result = *((_DWORD *)this + 1);
   if ( result )
-    return (*(this + 2) - result) / 12;
+    return (*((_DWORD *)this + 2) - result) / 12;
   return result;
 }
 

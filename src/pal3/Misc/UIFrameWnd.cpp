@@ -2,13 +2,25 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UIFrameWnd.h"
 
+// Forward declarations for unnamed functions
+int sub_4422E0(...);
+int sub_442390(...);
+int sub_442420(...);
+int sub_442890(...);
+int sub_442AD0(...);
+int sub_442C60(...);
+
+// Unnamed globals (extern)
+extern unsigned char byte_56A634;
+extern void *off_56ADD0;
+
 // 0x004422E0
 void sub_4422E0()
 {
   char v2; // [esp+7h] [ebp-1h]
 
   UIWnd::UIWnd();
-  *(this + 96) = v2;
+  *((_DWORD *)this + 96) = v2;
   *((_DWORD *)this + 25) = 0;
   *((_DWORD *)this + 26) = 0;
   *((_DWORD *)this + 27) = 0;
@@ -27,14 +39,14 @@ void sub_4422E0()
   *(_DWORD *)this = &off_56ADD0;
   *((_DWORD *)this + 17) = 8;
   *((_DWORD *)this + 23) = 1;
-  *(this + 140) = 1;
+  *((_DWORD *)this + 140) = 1;
   *((_DWORD *)this + 36) = 276;
   *((_DWORD *)this + 37) = -1;
 }
 
 // 0x00442390
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void __thiscall sub_442390(std::ios_base *this)
+void __thiscall sub_442390(UIWnd *this)
 {
   int v2; // eax
   _BYTE *v3; // ecx
@@ -66,31 +78,31 @@ void sub_442420(gbRefObject **this)
   gbRefObject *v4; // ecx
   gbRefObject *v5; // ecx
 
-  v2 = *(this + 28);
+  v2 = *((_DWORD *)this + 28);
   if ( v2 )
   {
     v2->Release();
-    *(this + 28) = 0;
+    *((_DWORD *)this + 28) = 0;
   }
-  v3 = *(this + 32);
+  v3 = *((_DWORD *)this + 32);
   if ( v3 )
   {
     v3->Release();
-    *(this + 32) = 0;
+    *((_DWORD *)this + 32) = 0;
   }
-  v4 = *(this + 34);
+  v4 = *((_DWORD *)this + 34);
   if ( v4 )
   {
     v4->Release();
-    *(this + 34) = 0;
+    *((_DWORD *)this + 34) = 0;
   }
-  v5 = *(this + 30);
+  v5 = *((_DWORD *)this + 30);
   if ( v5 )
   {
     v5->Release();
-    *(this + 30) = 0;
+    *((_DWORD *)this + 30) = 0;
   }
-  *(this + 37) = (gbRefObject *)-1;
+  *((_DWORD *)this + 37) = (gbRefObject *)-1;
 }
 
 // 0x00442890
@@ -306,7 +318,7 @@ LABEL_20:
 // 0x00442C60
 int sub_442C60(int a2, int a3)
 {
-  *(this + 21) = a2;
-  *(this + 22) = a3;
+  *((_DWORD *)this + 21) = a2;
+  *((_DWORD *)this + 22) = a3;
   return a2;
 }

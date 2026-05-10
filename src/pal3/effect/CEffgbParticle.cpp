@@ -2,6 +2,31 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffgbParticle.h"
 
+// Forward declarations for unnamed functions
+int sub_4BC760(...);
+int sub_4BC7E0(...);
+int sub_4BC8A0(...);
+int sub_4BD6C0(...);
+int sub_4BD7A0(...);
+int sub_4C6980(...);
+int sub_4C8650(...);
+int sub_4C87A0(...);
+int sub_4C8830(...);
+int sub_4C88D0(...);
+int sub_4C8930(...);
+int sub_4C8970(...);
+int sub_4C8A40(...);
+int sub_4C8BF0(...);
+int sub_4C8E10(...);
+
+// Unnamed globals (extern)
+extern int dword_DE99B0;
+extern void *off_56F62C;
+extern void *off_56F8B4;
+extern void *off_56F8C0;
+extern void *off_56F8CC;
+extern void *off_56F908;
+
 // 0x004C8650
 int sub_4C8650(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
 {
@@ -13,11 +38,11 @@ int sub_4C8650(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   unsigned int v14; // eax
   _DWORD *v15; // edx
 
-  v8 = *(this + 8);
+  v8 = *((_DWORD *)this + 8);
   v9 = 0;
   if ( v8 <= 0 )
     return -1;
-  v10 = *(_DWORD *)(*(this + 3) + 152 * a2);
+  v10 = *(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2);
   for ( i = (_BYTE *)(v10 + 64); *i; i += 72 )
   {
     if ( ++v9 >= v8 )
@@ -48,7 +73,7 @@ int sub_4C8650(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
     v15[2] = a5[2];
     v15[3] = a5[3];
   }
-  ++*(_DWORD *)(*(this + 3) + 152 * a2 + 4);
+  ++*(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2 + 4);
   return v9;
 }
 
@@ -93,22 +118,22 @@ int sub_4C8830(int a2)
   int v3; // esi
   int result; // eax
 
-  *(_BYTE *)(*(this + 3) + 152 * a2 + 148) = 0;
+  *(_BYTE *)(*((_DWORD *)this + 3) + 152 * a2 + 148) = 0;
   v2 = 0;
-  if ( (int)*(this + 8) > 0 )
+  if ( (int)*((_DWORD *)this + 8) > 0 )
   {
     v3 = 0;
     do
     {
       ++v2;
       v3 += 72;
-      *(_BYTE *)(*(_DWORD *)(*(this + 3) + 152 * a2) + v3 - 8) = 0;
+      *(_BYTE *)(*(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2) + v3 - 8) = 0;
     }
-    while ( v2 < *(this + 8) );
+    while ( v2 < *((_DWORD *)this + 8) );
   }
-  *(_DWORD *)(*(this + 3) + 152 * a2 + 4) = 0;
-  result = *(this + 6) - 1;
-  *(this + 6) = result;
+  *(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2 + 4) = 0;
+  result = *((_DWORD *)this + 6) - 1;
+  *((_DWORD *)this + 6) = result;
   return result;
 }
 
@@ -127,27 +152,27 @@ char * CEffgbParticle::Attach(char a2)
 // 0x004C88D0
 _DWORD * sub_4C88D0()
 {
-  *(this + 1) = 0;
+  *((_DWORD *)this + 1) = 0;
   *((_BYTE *)this + 8) = 0;
-  *(this + 4) = 0;
-  *(this + 5) = 0;
-  *(this + 6) = 0;
-  *(this + 7) = -1;
-  *(this + 8) = -1;
-  *(this + 9) = 0;
-  *(this + 10) = 0;
-  *(this + 11) = 0;
-  *(this + 3) = &off_56F908;
+  *((_DWORD *)this + 4) = 0;
+  *((_DWORD *)this + 5) = 0;
+  *((_DWORD *)this + 6) = 0;
+  *((_DWORD *)this + 7) = -1;
+  *((_DWORD *)this + 8) = -1;
+  *((_DWORD *)this + 9) = 0;
+  *((_DWORD *)this + 10) = 0;
+  *((_DWORD *)this + 11) = 0;
+  *((_DWORD *)this + 3) = &off_56F908;
   *this = &off_56F8CC;
-  *(this + 3) = &off_56F8C0;
-  *(this + 12) = 0;
-  *(this + 13) = 0;
-  *(this + 16) = 0;
-  *(this + 15) = 0;
-  *(this + 14) = 0;
-  *(this + 19) = 0;
-  *(this + 18) = 0;
-  *(this + 17) = 0;
+  *((_DWORD *)this + 3) = &off_56F8C0;
+  *((_DWORD *)this + 12) = 0;
+  *((_DWORD *)this + 13) = 0;
+  *((_DWORD *)this + 16) = 0;
+  *((_DWORD *)this + 15) = 0;
+  *((_DWORD *)this + 14) = 0;
+  *((_DWORD *)this + 19) = 0;
+  *((_DWORD *)this + 18) = 0;
+  *((_DWORD *)this + 17) = 0;
   return this;
 }
 
@@ -316,10 +341,10 @@ void sub_4C8BF0(float a2)
   int v21; // [esp+18h] [ebp+4h]
 
   v2 = this;
-  v3 = a2 - *(this + 4);
+  v3 = a2 - *((_DWORD *)this + 4);
   v4 = this + 3;
-  *(this + 4) = a2;
-  *(this + 5) = v3;
+  *((_DWORD *)this + 4) = a2;
+  *((_DWORD *)this + 5) = v3;
   v5 = *((int *)this + 5);
   if ( *(float *)&v5 > 0.0 )
   {

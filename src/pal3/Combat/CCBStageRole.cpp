@@ -2,6 +2,183 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBStageRole.h"
 
+// Forward declarations for unnamed functions
+int sub_40EE00(...);
+int sub_4DFC40(...);
+int sub_4F6A20(...);
+int sub_4F6A80(...);
+int sub_4F6AB0(...);
+int sub_4F6BB0(...);
+int sub_508930(...);
+int sub_5090F0(...);
+int sub_509140(...);
+int sub_509190(...);
+int sub_5091E0(...);
+int sub_509230(...);
+int sub_509280(...);
+int sub_5092A0(...);
+int sub_509410(...);
+int sub_509540(...);
+int sub_509690(...);
+int sub_50A1A0(...);
+int sub_50A1B0(...);
+int sub_50A1F0(...);
+int sub_50A200(...);
+int sub_50A210(...);
+int sub_50A260(...);
+int sub_50A2B0(...);
+int sub_50A500(...);
+int sub_50A5D0(...);
+int sub_50A6F0(...);
+int sub_50A700(...);
+int sub_50A770(...);
+int sub_50A8E0(...);
+int sub_50A8F0(...);
+int sub_50A960(...);
+int sub_50AA60(...);
+int sub_50AAE0(...);
+int sub_50AB10(...);
+int sub_50AC50(...);
+int sub_50B290(...);
+int sub_50B360(...);
+int sub_50B430(...);
+int sub_50B4C0(...);
+int sub_50B4F0(...);
+int sub_50B580(...);
+int sub_50BBD0(...);
+int sub_53DF80(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed_0[];
+extern char aDProjectPal3Co_8[];
+extern char aFlydown[];
+extern char aFlyup[];
+extern char aNghOpenObjD[];
+extern char aOver[];
+extern char aPause[];
+extern char aStore[];
+extern char aTagWeapon1[];
+extern char aTagWeapon2[];
+extern char aWe011[];
+extern char aWe011b[];
+extern char aWe012[];
+extern char aWe013[];
+extern char aWe014[];
+extern char aWork[];
+extern char aWork1[];
+extern unsigned char byte_17AB714;
+extern unsigned char byte_17AB734;
+extern unsigned char byte_17AB764;
+extern unsigned char byte_17AB794;
+extern unsigned char byte_17AB7D4;
+extern unsigned char byte_17AB804;
+extern unsigned char byte_17AB818;
+extern unsigned char byte_17AB874;
+extern unsigned char byte_17AB884;
+extern unsigned char byte_17AB8B4;
+extern unsigned char byte_17AB8B8;
+extern unsigned char byte_17AB9C4;
+extern unsigned char byte_1895558;
+extern int dword_17A990C;
+extern int dword_17AB6E8;
+extern int dword_17AB6EC;
+extern int dword_17AB6F0;
+extern int dword_17AB6F8;
+extern int dword_17AB6FC;
+extern int dword_17AB700;
+extern int dword_17AB708;
+extern int dword_17AB70C;
+extern int dword_17AB710;
+extern int dword_17AB718;
+extern int dword_17AB71C;
+extern int dword_17AB720;
+extern int dword_17AB728;
+extern int dword_17AB72C;
+extern int dword_17AB730;
+extern int dword_17AB738;
+extern int dword_17AB73C;
+extern int dword_17AB740;
+extern int dword_17AB748;
+extern int dword_17AB74C;
+extern int dword_17AB750;
+extern int dword_17AB758;
+extern int dword_17AB75C;
+extern int dword_17AB760;
+extern int dword_17AB768;
+extern int dword_17AB76C;
+extern int dword_17AB770;
+extern int dword_17AB778;
+extern int dword_17AB77C;
+extern int dword_17AB780;
+extern int dword_17AB788;
+extern int dword_17AB78C;
+extern int dword_17AB790;
+extern int dword_17AB7A8;
+extern int dword_17AB7AC;
+extern int dword_17AB7B0;
+extern int dword_17AB7B8;
+extern int dword_17AB7BC;
+extern int dword_17AB7C0;
+extern int dword_17AB7C8;
+extern int dword_17AB7CC;
+extern int dword_17AB7D0;
+extern int dword_17AB7D8;
+extern int dword_17AB7DC;
+extern int dword_17AB7E0;
+extern int dword_17AB7E8;
+extern int dword_17AB7EC;
+extern int dword_17AB7F0;
+extern int dword_17AB7F8;
+extern int dword_17AB7FC;
+extern int dword_17AB800;
+extern int dword_17AB878;
+extern int dword_17AB87C;
+extern int dword_17AB880;
+extern int dword_17AB888;
+extern int dword_17AB88C;
+extern int dword_17AB890;
+extern int dword_17AB898;
+extern int dword_17AB89C;
+extern int dword_17AB8A0;
+extern int dword_17AB8A8;
+extern int dword_17AB8AC;
+extern int dword_17AB8B0;
+extern int dword_17AB9B8;
+extern int dword_17AB9BC;
+extern int dword_17AB9C0;
+extern int dword_17AB9C8;
+extern int dword_17AB9CC;
+extern int dword_17AB9D8;
+extern int dword_17AB9DC;
+extern int dword_17ABC7C;
+extern int dword_17ABC80;
+extern int dword_17ABC84;
+extern int dword_17ABC88;
+extern int dword_17ABC8C;
+extern int dword_17ABC90;
+extern int dword_17ABC94;
+extern int dword_17ABC98;
+extern int dword_17ABC9C;
+extern int dword_17ABCA0;
+extern int dword_17ABCA4;
+extern int dword_17ABCA8;
+extern int dword_17ABCAC;
+extern int dword_17ABCB0;
+extern int dword_17ABCB4;
+extern int dword_17ABCB8;
+extern int dword_56FE98;
+extern int dword_58618C;
+extern int dword_586190;
+extern int dword_586198;
+extern int dword_58619C;
+extern float flt_17ABCCC;
+extern float flt_17ABCD0;
+extern float flt_17ABCD4;
+extern float flt_17ABCD8;
+extern int unk_5888C4;
+extern int unk_5888C8;
+extern int unk_5888D0;
+
 // 0x004ED040
 char CCBStageRole::IsActive(int index)
 {
@@ -54,7 +231,7 @@ int sub_508930(int a2, int a3, _DWORD *a4)
   v6 = this + 15 * a2;
   if ( v5 != a4[1] )
     v5 = a4[1];
-  v7 = *(this + 2);
+  v7 = *((_DWORD *)this + 2);
   v30 = 0.0;
   v31 = 0;
   v32 = 0;
@@ -154,7 +331,7 @@ LABEL_22:
       v16 = *((_BYTE *)v6 + 2454);
       if ( v16 )
       {
-        v17 = *(float **)(*(this + 2) + 4 * v8 + 24);
+        v17 = *(float **)(*((_DWORD *)this + 2) + 4 * v8 + 24);
         v18 = v17[1649];
         v17 += 1649;
         v30 = v18;
@@ -173,7 +350,7 @@ LABEL_22:
         }
         else
         {
-          v21 = *(float **)(*(this + 2) + 4 * v20 + 24);
+          v21 = *(float **)(*((_DWORD *)this + 2) + 4 * v20 + 24);
           v22 = v21[1649];
           v21 += 1649;
           v30 = v22;
@@ -188,13 +365,13 @@ LABEL_22:
         v32 = v6[616];
       }
       if ( *a4 == 269 )
-        CEffect::Render(*(int **)(*(_DWORD *)*(this + 2) + 48), v6[612]);
+        CEffect::Render(*(int **)(*(_DWORD *)*((_DWORD *)this + 2) + 48), v6[612]);
       if ( *a4 == 270 )
-        CEffect::Render(*(int **)(*(_DWORD *)*(this + 2) + 44), v6[612]);
+        CEffect::Render(*(int **)(*(_DWORD *)*((_DWORD *)this + 2) + 44), v6[612]);
       if ( *a4 == 269 )
-        return CEffMgr::Init(*(int **)(*(_DWORD *)*(this + 2) + 48), v6[612], SLODWORD(v30), v31, v32, 0);
+        return CEffMgr::Init(*(int **)(*(_DWORD *)*((_DWORD *)this + 2) + 48), v6[612], SLODWORD(v30), v31, v32, 0);
       else
-        return CEffMgr::Init(*(int **)(*(_DWORD *)*(this + 2) + 44), v6[612], SLODWORD(v30), v31, v32, 0);
+        return CEffMgr::Init(*(int **)(*(_DWORD *)*((_DWORD *)this + 2) + 44), v6[612], SLODWORD(v30), v31, v32, 0);
     }
   }
   else if ( v6[619] == -1 )
@@ -218,7 +395,7 @@ LABEL_22:
     v23 = *((_BYTE *)v6 + 2482);
     if ( v23 )
     {
-      v24 = *(float **)(*(this + 2) + 4 * v8 + 24);
+      v24 = *(float **)(*((_DWORD *)this + 2) + 4 * v8 + 24);
       v25 = v24[1649];
       v24 += 1649;
       v30 = v25;
@@ -237,7 +414,7 @@ LABEL_22:
       }
       else
       {
-        v28 = *(float **)(*(this + 2) + 4 * v27 + 24);
+        v28 = *(float **)(*((_DWORD *)this + 2) + 4 * v27 + 24);
         v29 = v28[1649];
         v28 += 1649;
         v30 = v29;
@@ -252,13 +429,13 @@ LABEL_22:
       v32 = v6[623];
     }
     if ( *a4 == 269 )
-      CEffect::Render(*(int **)(*(_DWORD *)*(this + 2) + 48), v6[619]);
+      CEffect::Render(*(int **)(*(_DWORD *)*((_DWORD *)this + 2) + 48), v6[619]);
     if ( *a4 == 270 )
-      CEffect::Render(*(int **)(*(_DWORD *)*(this + 2) + 44), v6[619]);
+      CEffect::Render(*(int **)(*(_DWORD *)*((_DWORD *)this + 2) + 44), v6[619]);
     if ( *a4 == 269 )
-      return CEffMgr::Init(*(int **)(*(_DWORD *)*(this + 2) + 48), v6[619], SLODWORD(v30), v31, v32, 0);
+      return CEffMgr::Init(*(int **)(*(_DWORD *)*((_DWORD *)this + 2) + 48), v6[619], SLODWORD(v30), v31, v32, 0);
     else
-      return CEffMgr::Init(*(int **)(*(_DWORD *)*(this + 2) + 44), v6[619], SLODWORD(v30), v31, v32, 0);
+      return CEffMgr::Init(*(int **)(*(_DWORD *)*((_DWORD *)this + 2) + 44), v6[619], SLODWORD(v30), v31, v32, 0);
   }
 }
 
@@ -523,16 +700,16 @@ char sub_509690()
 {
   void *v2; // edi
 
-  if ( !*(this + 73) )
+  if ( !*((_DWORD *)this + 73) )
     return 1;
   Actor::UpdateAllActions();
-  v2 = (void *)*(this + 73);
+  v2 = (void *)*((_DWORD *)this + 73);
   if ( v2 )
   {
-    sub_40EE00(*(this + 73));
+    sub_40EE00(*((_DWORD *)this + 73));
     operator delete(v2);
   }
-  *(this + 73) = 0;
+  *((_DWORD *)this + 73) = 0;
   return 1;
 }
 
@@ -669,13 +846,13 @@ char __usercall CCBStageRole::IsTaskFinished@<al>(_DWORD *this@<ecx>, int a2@<ed
   result = *((_BYTE *)this + 264);
   if ( result )
   {
-    v4 = (Actor *)*(this + 73);
+    v4 = (Actor *)*((_DWORD *)this + 73);
     if ( v4 )
     {
       scale = 1.3;
       if ( !*((_BYTE *)this + 380) )
       {
-        v5 = *(this + 1642);
+        v5 = *((_DWORD *)this + 1642);
         if ( v5 == 32 || v5 == 50 )
           scale = 0.64999998;
       }
@@ -693,43 +870,43 @@ char __usercall CCBStageRole::IsTaskFinished@<al>(_DWORD *this@<ecx>, int a2@<ed
         v13 = scale * *((float *)this + 67);
       }
       v11 = a2;
-      (Actor *->SetTimeScale()*(this + 73), v13);
-      if ( *(_DWORD *)((CCBRoleState *->InitUI()*(this + 1), *(this + 71)) + 848) )
+      (Actor *->SetTimeScale()*((_DWORD *)this + 73), v13);
+      if ( *(_DWORD *)((CCBRoleState *->InitUI()*((_DWORD *)this + 1), *((_DWORD *)this + 71)) + 848) )
       {
-        inited = (CCBRoleState *->InitUI()*(this + 1), *(this + 71));
+        inited = (CCBRoleState *->InitUI()*((_DWORD *)this + 1), *((_DWORD *)this + 71));
         gbGeomNode::SetBladeTimeScale(*(gbGeomNode **)(inited + 848), v13);
       }
-      if ( *(_DWORD *)((CCBRoleState *->InitUI()*(this + 1), *(this + 71)) + 860) )
+      if ( *(_DWORD *)((CCBRoleState *->InitUI()*((_DWORD *)this + 1), *((_DWORD *)this + 71)) + 860) )
       {
-        v7 = (CCBRoleState *->InitUI()*(this + 1), *(this + 71));
+        v7 = (CCBRoleState *->InitUI()*((_DWORD *)this + 1), *((_DWORD *)this + 71));
         gbGeomNode::SetBladeTimeScale(*(gbGeomNode **)(v7 + 860), v13);
       }
       if ( this->ForceDelTaskByPFN() && !*((_BYTE *)this + 380) )
       {
         CCBStageRole::ClearBadPushTask((int)this, 0.0099999998);
-        if ( !CCBRoleState::IsRoleAlive(*(CCBRoleState **)(*(_DWORD *)*this + 16), *(this + 71)) )
+        if ( !CCBRoleState::IsRoleAlive(*(CCBRoleState **)(*(_DWORD *)*this + 16), *((_DWORD *)this + 71)) )
           *((_BYTE *)this + 272) = 0;
       }
-      v8 = *(this + 73);
-      *(this + 1660) = 0;
+      v8 = *((_DWORD *)this + 73);
+      *((_DWORD *)this + 1660) = 0;
       if ( gbVisNode::PopMessage(*(gbVisNode **)(v8 + 16), (struct gbNodeMsgObj *)&dword_17AB9C8) == 1
         && dword_17AB9C8 == 1 )
       {
-        *(this + 1660) = dword_17AB9CC;
+        *((_DWORD *)this + 1660) = dword_17AB9CC;
       }
       if ( !*((_BYTE *)this + 380) )
-        (CCBStageRole *->Grab()this, *(this + 1660));
-      if ( !*(this + 71) && *(this + 1642) != 31 )
+        (CCBStageRole *->Grab()this, *((_DWORD *)this + 1660));
+      if ( !*((_DWORD *)this + 71) && *((_DWORD *)this + 1642) != 31 )
       {
         Instance = (CCBStageRole *)CScreenMode::GetInstance();
         Instance->PlaySound(aWe011, a2);
       }
-      if ( *(this + 71) == 4 && *(this + 1642) != 31 )
+      if ( *((_DWORD *)this + 71) == 4 && *((_DWORD *)this + 1642) != 31 )
       {
         v10 = (CCBStageRole *)CScreenMode::GetInstance();
         v10->PlaySound(aWe011b, v11);
       }
-      return (Actor *->QueryState()*(this + 73));
+      return (Actor *->QueryState()*((_DWORD *)this + 73));
     }
   }
   return result;
@@ -939,7 +1116,7 @@ int CCBStageRole::Grab(int a2)
 // 0x0050A1A0
 char sub_50A1A0(char a2)
 {
-  *(this + 272) = a2;
+  *((_DWORD *)this + 272) = a2;
   return a2;
 }
 
@@ -955,14 +1132,14 @@ int sub_50A1B0(int this)
 // 0x0050A1F0
 char sub_50A1F0(char a2)
 {
-  *(this + 265) = a2;
+  *((_DWORD *)this + 265) = a2;
   return a2;
 }
 
 // 0x0050A200
 char sub_50A200(char a2)
 {
-  *(this + 266) = a2;
+  *((_DWORD *)this + 266) = a2;
   return a2;
 }
 
@@ -1030,9 +1207,9 @@ void sub_50A2B0(int a2)
   dword_17AB898 = *v3;
   dword_17AB89C = v3[1];
   dword_17AB8A0 = v3[2];
-  v4 = *(float *)&dword_17AB898 - *(this + 1646);
-  *(float *)&v7 = *(float *)&dword_17AB89C - *(this + 1647);
-  v5 = *(float *)&dword_17AB8A0 - *(this + 1648);
+  v4 = *(float *)&dword_17AB898 - *((_DWORD *)this + 1646);
+  *(float *)&v7 = *(float *)&dword_17AB89C - *((_DWORD *)this + 1647);
+  v5 = *(float *)&dword_17AB8A0 - *((_DWORD *)this + 1648);
   dword_17AB8AC = v7;
   *(float *)&v8 = v5;
   *(float *)&dword_17AB8A8 = v4;
@@ -1042,10 +1219,10 @@ void sub_50A2B0(int a2)
          *(float *)&dword_17AB890 * *(float *)&dword_17AB8B0
        + *(float *)&dword_17AB88C * *(float *)&dword_17AB8AC
        + *(float *)&dword_17AB888 * *(float *)&dword_17AB8A8);
-  *(this + 1658) = v6;
+  *((_DWORD *)this + 1658) = v6;
   if ( *(float *)&dword_17AB8A8 < 0.0 )
-    *(this + 1658) = 6.2831855 - v6;
-  *(this + 1658) = *(this + 1658) * 57.29578;
+    *((_DWORD *)this + 1658) = 6.2831855 - v6;
+  *((_DWORD *)this + 1658) = *((_DWORD *)this + 1658) * 57.29578;
 }
 
 // 0x0050A500
@@ -1101,9 +1278,9 @@ double sub_50A5D0(float *a2)
     dword_17AB880 = 1065353216;
     atexit(nullsub_36);
   }
-  v3 = *a2 - *(this + 1646);
-  v10 = a2[1] - *(this + 1647);
-  v4 = a2[2] - *(this + 1648);
+  v3 = *a2 - *((_DWORD *)this + 1646);
+  v10 = a2[1] - *((_DWORD *)this + 1647);
+  v4 = a2[2] - *((_DWORD *)this + 1648);
   v8 = v10;
   v11 = v4;
   v7 = v3;
@@ -1120,7 +1297,7 @@ double sub_50A5D0(float *a2)
 // 0x0050A6F0
 bool sub_50A6F0()
 {
-  return *(this + 98) == 0;
+  return *((_DWORD *)this + 98) == 0;
 }
 
 // 0x0050A700
@@ -1132,9 +1309,9 @@ bool sub_50A700()
   float v5; // [esp+8h] [ebp-10h]
   float v6[3]; // [esp+Ch] [ebp-Ch] BYREF
 
-  v1 = *(this + 1646) - *(this + 1649);
-  v4 = *(this + 1647) - *(this + 1650);
-  v2 = *(this + 1648) - *(this + 1651);
+  v1 = *((_DWORD *)this + 1646) - *((_DWORD *)this + 1649);
+  v4 = *((_DWORD *)this + 1647) - *((_DWORD *)this + 1650);
+  v2 = *((_DWORD *)this + 1648) - *((_DWORD *)this + 1651);
   v6[1] = v4;
   v5 = v2;
   v6[0] = v1;
@@ -1199,9 +1376,9 @@ bool sub_50A770(int a2, int a3)
   v16 = v12;
   v18 = v23;
   v17 = v22;
-  v13 = *(this + 1646) - v12;
-  v24 = *(this + 1647) - v22;
-  v14 = *(this + 1648) - v23;
+  v13 = *((_DWORD *)this + 1646) - v12;
+  v24 = *((_DWORD *)this + 1647) - v22;
+  v14 = *((_DWORD *)this + 1648) - v23;
   v20 = v24;
   v25 = v14;
   v19 = v13;
@@ -1212,7 +1389,7 @@ bool sub_50A770(int a2, int a3)
 // 0x0050A8E0
 char sub_50A8E0(int a2)
 {
-  *(this + 1641) = a2;
+  *((_DWORD *)this + 1641) = a2;
   return 1;
 }
 
@@ -1316,7 +1493,7 @@ double sub_50AAE0()
   int v1; // eax
   float v3; // [esp+4h] [ebp-4h] BYREF
 
-  v1 = *(this + 73);
+  v1 = *((_DWORD *)this + 73);
   v3 = 0.0;
   if ( gbVisNode::GetBlend(*(gbVisNode **)(v1 + 16), &v3) )
     return v3;
@@ -1378,12 +1555,12 @@ int sub_50AC50(int a2, char a3)
       atexit(nullsub_1);
     }
     result = g_nCursorState->GetEditorTaskDescription((unsigned __int8 *)byte_17AB818);
-    if ( a3 || result != *(this + 1668) )
+    if ( a3 || result != *((_DWORD *)this + 1668) )
     {
-      *(this + 1668) = result;
+      *((_DWORD *)this + 1668) = result;
       byte_17AB818->SetVisible(0, 0);
-      return (*(int (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(*(this + 73) + 16) + 24))(
-               *(_DWORD *)(*(this + 73) + 16),
+      return (*(int (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(*((_DWORD *)this + 73) + 16) + 24))(
+               *(_DWORD *)(*((_DWORD *)this + 73) + 16),
                0);
     }
   }
@@ -1588,12 +1765,12 @@ char sub_50B290(int a2)
   if ( a2 == 63 )
   {
     memset(this + 1616, 0, 0x60u);
-    --*(this + 98);
+    --*((_DWORD *)this + 98);
     return 1;
   }
   else
   {
-    if ( a2 < *(this + 98) )
+    if ( a2 < *((_DWORD *)this + 98) )
     {
       v4 = (int)(this + 24 * a2 + 104);
       do
@@ -1602,9 +1779,9 @@ char sub_50B290(int a2)
         qmemcpy((void *)v4, (const void *)(v4 + 96), 0x60u);
         v4 += 96;
       }
-      while ( v2 < *(this + 98) );
+      while ( v2 < *((_DWORD *)this + 98) );
     }
-    memset(this + 24 * (*(this + 98))-- + 104, 0, 0x60u);
+    memset(this + 24 * (*((_DWORD *)this + 98))-- + 104, 0, 0x60u);
     return 1;
   }
 }
@@ -1634,7 +1811,7 @@ int sub_50B360()
 {
   int result; // eax
 
-  if ( *(this + 71) < 5 )
+  if ( *((_DWORD *)this + 71) < 5 )
   {
     aZ01->GetAnimDuration();
     aZ09->GetAnimDuration();
@@ -1726,183 +1903,183 @@ char sub_50B580(int a2, int a3, char a4)
   v5 = *(_DWORD *)(*(_DWORD *)*this + 4);
   if ( a4 )
   {
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 6) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 6) )
     {
-      v6 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 176);
+      v6 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 176);
       (**v6)(v6, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 176), a2, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 176), a2, a3);
       v7 = a2 + 24;
     }
     else
     {
       v7 = a2;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 7) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 7) )
     {
-      v8 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 220);
+      v8 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 220);
       (**v8)(v8, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 220), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 220), v7, a3);
       v7 += 24;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 8) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 8) )
     {
-      v9 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 264);
+      v9 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 264);
       (**v9)(v9, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 264), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 264), v7, a3);
       v7 += 24;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 9) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 9) )
     {
-      v10 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 308);
+      v10 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 308);
       (**v10)(v10, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 308), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 308), v7, a3);
       v7 += 24;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 12) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 12) )
     {
-      v11 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 440);
+      v11 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 440);
       (**v11)(v11, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 440), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 440), v7, a3);
       v7 += 24;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 13) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 13) )
     {
-      v12 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 484);
+      v12 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 484);
       (**v12)(v12, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 484), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 484), v7, a3);
       v7 += 24;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 10) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 10) )
     {
-      v13 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 352);
+      v13 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 352);
       (**v13)(v13, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 352), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 352), v7, a3);
       v7 += 24;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 11) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 11) )
     {
-      v14 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 396);
+      v14 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 396);
       (**v14)(v14, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 396), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 396), v7, a3);
       v7 += 24;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 14) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 14) )
     {
-      v15 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 528);
+      v15 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 528);
       (**v15)(v15, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 528), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 528), v7, a3);
       v7 += 20;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 15) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 15) )
     {
-      v16 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 572);
+      v16 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 572);
       (**v16)(v16, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 572), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 572), v7, a3);
       v7 += 20;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 16) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 16) )
     {
-      v17 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 616);
+      v17 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 616);
       (**v17)(v17, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 616), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 616), v7, a3);
       v7 += 20;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 17) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 17) )
     {
-      v18 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 660);
+      v18 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 660);
       (**v18)(v18, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 660), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 660), v7, a3);
       v7 += 20;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 18) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 18) )
     {
-      v19 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 704);
+      v19 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 704);
       (**v19)(v19, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 704), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 704), v7, a3);
       v7 += 20;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 19) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 19) )
     {
-      v20 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 748);
+      v20 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 748);
       (**v20)(v20, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 748), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 748), v7, a3);
       v7 += 20;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 20) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 20) )
     {
-      v21 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 792);
+      v21 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 792);
       (**v21)(v21, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 792), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 792), v7, a3);
       v7 += 20;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 21) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 21) )
     {
-      v22 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 836);
+      v22 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 836);
       (**v22)(v22, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 836), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 836), v7, a3);
       v7 += 20;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 22) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 22) )
     {
-      v23 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 880);
+      v23 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 880);
       (**v23)(v23, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 880), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 880), v7, a3);
       v7 += 20;
     }
-    if ( (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 23) )
+    if ( (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 23) )
     {
-      v24 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 924);
+      v24 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 924);
       (**v24)(v24, 1);
-      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 924), v7, a3);
+      UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 924), v7, a3);
       v7 += 20;
     }
-    result = (_BYTE *->GetRoleField()*(this + 1), *(this + 71), 26);
+    result = (_BYTE *->GetRoleField()*((_DWORD *)this + 1), *((_DWORD *)this + 71), 26);
     if ( result )
     {
-      v26 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *(this + 71) + 968);
+      v26 = *(void (__thiscall ****)(_DWORD, int))(v5 + 4 * *((_DWORD *)this + 71) + 968);
       (**v26)(v26, 1);
-      return UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *(this + 71) + 968), v7, a3);
+      return UIWnd::ScreenToClient(*(_DWORD **)(v5 + 4 * *((_DWORD *)this + 71) + 968), v7, a3);
     }
   }
   else
   {
-    v27 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 176);
+    v27 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 176);
     (**v27)(v27, 0);
-    v28 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 220);
+    v28 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 220);
     (**v28)(v28, 0);
-    v29 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 264);
+    v29 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 264);
     (**v29)(v29, 0);
-    v30 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 308);
+    v30 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 308);
     (**v30)(v30, 0);
-    v31 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 352);
+    v31 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 352);
     (**v31)(v31, 0);
-    v32 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 396);
+    v32 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 396);
     (**v32)(v32, 0);
-    v33 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 440);
+    v33 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 440);
     (**v33)(v33, 0);
-    v34 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 484);
+    v34 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 484);
     (**v34)(v34, 0);
-    v35 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 528);
+    v35 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 528);
     (**v35)(v35, 0);
-    v36 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 572);
+    v36 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 572);
     (**v36)(v36, 0);
-    v37 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 616);
+    v37 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 616);
     (**v37)(v37, 0);
-    v38 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 660);
+    v38 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 660);
     (**v38)(v38, 0);
-    v39 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 704);
+    v39 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 704);
     (**v39)(v39, 0);
-    v40 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 748);
+    v40 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 748);
     (**v40)(v40, 0);
-    v41 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 792);
+    v41 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 792);
     (**v41)(v41, 0);
-    v42 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 836);
+    v42 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 836);
     (**v42)(v42, 0);
-    v43 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 880);
+    v43 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 880);
     (**v43)(v43, 0);
-    v44 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 924);
+    v44 = *(void (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 924);
     (**v44)(v44, 0);
-    v45 = *(int (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *(this + 71) + 968);
+    v45 = *(int (__thiscall ****)(_DWORD, _DWORD))(v5 + 4 * *((_DWORD *)this + 71) + 968);
     return (**v45)(v45, 0);
   }
   return result;
@@ -2015,12 +2192,12 @@ int CCBStageRole::ProcTurnToRole(int a2)
     dword_17AB770 = 0;
     atexit(nullsub_44);
   }
-  v3 = this + 24 * *(this + 99);
+  v3 = this + 24 * *((_DWORD *)this + 99);
   if ( !*((_BYTE *)v3 + 506) )
   {
-    *(this + 1652) = v3[108];
-    *(this + 1653) = v3[109];
-    *(this + 1654) = v3[110];
+    *((_DWORD *)this + 1652) = v3[108];
+    *((_DWORD *)this + 1653) = v3[109];
+    *((_DWORD *)this + 1654) = v3[110];
     v4 = *((float *)this + 1652) - *((float *)this + 1646);
     *(float *)&v28 = *((float *)this + 1653) - *((float *)this + 1647);
     v5 = *((float *)this + 1654) - *((float *)this + 1648);
@@ -2030,10 +2207,10 @@ int CCBStageRole::ProcTurnToRole(int a2)
     dword_17AB790 = v30;
     if ( (gbVec3D *->Length()&dword_17AB788) < 2.0 )
     {
-      *(this + 1646) = *(this + 1652);
-      *(this + 1647) = *(this + 1653);
-      *(this + 1648) = *(this + 1654);
-      *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;
+      *((_DWORD *)this + 1646) = *((_DWORD *)this + 1652);
+      *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
+      *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
+      *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
       return 0;
     }
     (gbVec3D *->Normalize()&dword_17AB788);
@@ -2045,30 +2222,30 @@ int CCBStageRole::ProcTurnToRole(int a2)
     if ( *(float *)&dword_17AB788 < 0.0 )
       *((float *)this + 1658) = 6.2831855 - v7;
     *((float *)this + 1658) = *((float *)this + 1658) * 57.29578;
-    *(this + 1655) = dword_17AB788;
-    *(this + 1656) = dword_17AB78C;
-    *(this + 1657) = dword_17AB790;
+    *((_DWORD *)this + 1655) = dword_17AB788;
+    *((_DWORD *)this + 1656) = dword_17AB78C;
+    *((_DWORD *)this + 1657) = dword_17AB790;
     *((float *)this + 1655) = *((float *)this + 1655) * 380.0;
     *((float *)this + 1656) = *((float *)this + 1656) * 380.0;
     *((float *)this + 1657) = *((float *)this + 1657) * 380.0;
-    if ( (CCBStageRole *->IsActive()*(this + 1), *(this + 71)) )
-      *(this + 1642) = 31;
+    if ( (CCBStageRole *->IsActive()*((_DWORD *)this + 1), *((_DWORD *)this + 71)) )
+      *((_DWORD *)this + 1642) = 31;
     else
-      *(this + 1642) = 52;
+      *((_DWORD *)this + 1642) = 52;
     CCBStageRole::IsGrabedBy((int)this);
-    *((_BYTE *)this + 96 * *(this + 99) + 506) = 1;
+    *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 506) = 1;
     CCBStageRole::ClearBadPushTask((int)this, 0.0099999998);
-    v8 = *(this + 99);
+    v8 = *((_DWORD *)this + 99);
     *((_BYTE *)this + 273) = 1;
     v9 = (float *)(this + 24 * v8);
     if ( v9[108] >= -700.0 || v9[110] >= -700.0 )
     {
-      if ( !*(this + 71) )
+      if ( !*((_DWORD *)this + 71) )
       {
         Instance = CScreenMode::GetInstance();
         (CScreenMode *->AudioSetPosition()Instance, aWe011, 0);
       }
-      if ( *(this + 71) == 4 )
+      if ( *((_DWORD *)this + 71) == 4 )
       {
         v26 = 0;
         goto LABEL_25;
@@ -2076,12 +2253,12 @@ int CCBStageRole::ProcTurnToRole(int a2)
     }
     else
     {
-      if ( !*(this + 71) )
+      if ( !*((_DWORD *)this + 71) )
       {
         v10 = CScreenMode::GetInstance();
         (CScreenMode *->AudioSetPosition()v10, aWe011, 1);
       }
-      if ( *(this + 71) == 4 )
+      if ( *((_DWORD *)this + 71) == 4 )
       {
         v26 = 1;
 LABEL_25:
@@ -2121,15 +2298,15 @@ LABEL_25:
     flt_17ABCD0 = v22;
     if ( fabs(v22 - *((float *)this + 1658)) < 1.570796370506287 )
     {
-      if ( (CCBRoleState *->IsRoleAlive()*(this + 1), *(this + 71)) )
+      if ( (CCBRoleState *->IsRoleAlive()*((_DWORD *)this + 1), *((_DWORD *)this + 71)) )
         return 0;
-      *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;
-      if ( !*(this + 71) )
+      *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
+      if ( !*((_DWORD *)this + 71) )
       {
         v24 = (CCBStageRole *)CScreenMode::GetInstance();
         v24->PlaySound(aWe011, v27);
       }
-      if ( *(this + 71) != 4 )
+      if ( *((_DWORD *)this + 71) != 4 )
       {
 LABEL_43:
         *((_BYTE *)this + 273) = 0;
@@ -2138,32 +2315,32 @@ LABEL_43:
     }
     else
     {
-      *v13 = *(this + 1652);
-      *(this + 1647) = *(this + 1653);
-      *(this + 1648) = *(this + 1654);
-      *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;
-      if ( !*(this + 71) )
+      *v13 = *((_DWORD *)this + 1652);
+      *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
+      *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
+      *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
+      if ( !*((_DWORD *)this + 71) )
       {
         v23 = (CCBStageRole *)CScreenMode::GetInstance();
         v23->PlaySound(aWe011, v27);
       }
-      if ( *(this + 71) != 4 )
+      if ( *((_DWORD *)this + 71) != 4 )
         goto LABEL_43;
     }
     v25 = (CCBStageRole *)CScreenMode::GetInstance();
     v25->PlaySound(aWe011b, v27);
     goto LABEL_43;
   }
-  *v13 = *(this + 1652);
-  *(this + 1647) = *(this + 1653);
-  *(this + 1648) = *(this + 1654);
-  *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;
-  if ( !*(this + 71) )
+  *v13 = *((_DWORD *)this + 1652);
+  *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
+  *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
+  *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
+  if ( !*((_DWORD *)this + 71) )
   {
     v19 = (CCBStageRole *)CScreenMode::GetInstance();
     v19->PlaySound(aWe011, v27);
   }
-  if ( *(this + 71) == 4 )
+  if ( *((_DWORD *)this + 71) == 4 )
   {
     v20 = (CCBStageRole *)CScreenMode::GetInstance();
     v20->PlaySound(aWe011b, v27);
@@ -2232,12 +2409,12 @@ int CCBStageRole::ProcBlock(int a2)
     dword_17AB740 = 0;
     atexit(nullsub_47);
   }
-  v3 = this + 24 * *(this + 99);
+  v3 = this + 24 * *((_DWORD *)this + 99);
   if ( !*((_BYTE *)v3 + 506) )
   {
-    *(this + 1652) = v3[108];
-    *(this + 1653) = v3[109];
-    *(this + 1654) = v3[110];
+    *((_DWORD *)this + 1652) = v3[108];
+    *((_DWORD *)this + 1653) = v3[109];
+    *((_DWORD *)this + 1654) = v3[110];
     v4 = *((float *)this + 1652) - *((float *)this + 1646);
     *(float *)&v28 = *((float *)this + 1653) - *((float *)this + 1647);
     v5 = *((float *)this + 1654) - *((float *)this + 1648);
@@ -2247,10 +2424,10 @@ int CCBStageRole::ProcBlock(int a2)
     dword_17AB760 = v30;
     if ( (gbVec3D *->Length()&dword_17AB758) < 2.0 )
     {
-      *(this + 1646) = *(this + 1652);
-      *(this + 1647) = *(this + 1653);
-      *(this + 1648) = *(this + 1654);
-      *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;
+      *((_DWORD *)this + 1646) = *((_DWORD *)this + 1652);
+      *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
+      *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
+      *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
       return 0;
     }
     (gbVec3D *->Normalize()&dword_17AB758);
@@ -2262,30 +2439,30 @@ int CCBStageRole::ProcBlock(int a2)
     if ( *(float *)&dword_17AB758 < 0.0 )
       *((float *)this + 1658) = 6.2831855 - v7;
     *((float *)this + 1658) = *((float *)this + 1658) * 57.29578;
-    *(this + 1655) = dword_17AB758;
-    *(this + 1656) = dword_17AB75C;
-    *(this + 1657) = dword_17AB760;
+    *((_DWORD *)this + 1655) = dword_17AB758;
+    *((_DWORD *)this + 1656) = dword_17AB75C;
+    *((_DWORD *)this + 1657) = dword_17AB760;
     *((float *)this + 1655) = *((float *)this + 1655) * 570.0;
     *((float *)this + 1656) = *((float *)this + 1656) * 570.0;
     *((float *)this + 1657) = *((float *)this + 1657) * 570.0;
-    if ( (CCBStageRole *->IsActive()*(this + 1), *(this + 71)) )
-      *(this + 1642) = 31;
+    if ( (CCBStageRole *->IsActive()*((_DWORD *)this + 1), *((_DWORD *)this + 71)) )
+      *((_DWORD *)this + 1642) = 31;
     else
-      *(this + 1642) = 52;
+      *((_DWORD *)this + 1642) = 52;
     CCBStageRole::IsGrabedBy((int)this);
-    *((_BYTE *)this + 96 * *(this + 99) + 506) = 1;
+    *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 506) = 1;
     CCBStageRole::ClearBadPushTask((int)this, 0.0099999998);
-    v8 = *(this + 99);
+    v8 = *((_DWORD *)this + 99);
     *((_BYTE *)this + 273) = 1;
     v9 = (float *)(this + 24 * v8);
     if ( v9[108] >= -700.0 || v9[110] >= -700.0 )
     {
-      if ( !*(this + 71) )
+      if ( !*((_DWORD *)this + 71) )
       {
         Instance = CScreenMode::GetInstance();
         (CScreenMode *->AudioSetPosition()Instance, aWe011, 0);
       }
-      if ( *(this + 71) == 4 )
+      if ( *((_DWORD *)this + 71) == 4 )
       {
         v26 = 0;
         goto LABEL_25;
@@ -2293,12 +2470,12 @@ int CCBStageRole::ProcBlock(int a2)
     }
     else
     {
-      if ( !*(this + 71) )
+      if ( !*((_DWORD *)this + 71) )
       {
         v10 = CScreenMode::GetInstance();
         (CScreenMode *->AudioSetPosition()v10, aWe011, 1);
       }
-      if ( *(this + 71) == 4 )
+      if ( *((_DWORD *)this + 71) == 4 )
       {
         v26 = 1;
 LABEL_25:
@@ -2338,15 +2515,15 @@ LABEL_25:
     flt_17ABCD4 = v22;
     if ( fabs(v22 - *((float *)this + 1658)) < 1.570796370506287 )
     {
-      if ( (CCBRoleState *->IsRoleAlive()*(this + 1), *(this + 71)) )
+      if ( (CCBRoleState *->IsRoleAlive()*((_DWORD *)this + 1), *((_DWORD *)this + 71)) )
         return 0;
-      *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;
-      if ( !*(this + 71) )
+      *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
+      if ( !*((_DWORD *)this + 71) )
       {
         v24 = (CCBStageRole *)CScreenMode::GetInstance();
         v24->PlaySound(aWe011, v27);
       }
-      if ( *(this + 71) != 4 )
+      if ( *((_DWORD *)this + 71) != 4 )
       {
 LABEL_43:
         *((_BYTE *)this + 273) = 0;
@@ -2355,32 +2532,32 @@ LABEL_43:
     }
     else
     {
-      *v13 = *(this + 1652);
-      *(this + 1647) = *(this + 1653);
-      *(this + 1648) = *(this + 1654);
-      *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;
-      if ( !*(this + 71) )
+      *v13 = *((_DWORD *)this + 1652);
+      *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
+      *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
+      *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
+      if ( !*((_DWORD *)this + 71) )
       {
         v23 = (CCBStageRole *)CScreenMode::GetInstance();
         v23->PlaySound(aWe011, v27);
       }
-      if ( *(this + 71) != 4 )
+      if ( *((_DWORD *)this + 71) != 4 )
         goto LABEL_43;
     }
     v25 = (CCBStageRole *)CScreenMode::GetInstance();
     v25->PlaySound(aWe011b, v27);
     goto LABEL_43;
   }
-  *v13 = *(this + 1652);
-  *(this + 1647) = *(this + 1653);
-  *(this + 1648) = *(this + 1654);
-  *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;
-  if ( !*(this + 71) )
+  *v13 = *((_DWORD *)this + 1652);
+  *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
+  *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
+  *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
+  if ( !*((_DWORD *)this + 71) )
   {
     v19 = (CCBStageRole *)CScreenMode::GetInstance();
     v19->PlaySound(aWe011, v27);
   }
-  if ( *(this + 71) == 4 )
+  if ( *((_DWORD *)this + 71) == 4 )
   {
     v20 = (CCBStageRole *)CScreenMode::GetInstance();
     v20->PlaySound(aWe011b, v27);
@@ -2575,7 +2752,7 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
     dword_17AB6F0 = 0;
     atexit(nullsub_52);
   }
-  v3 = this + 24 * *(this + 99);
+  v3 = this + 24 * *((_DWORD *)this + 99);
   if ( *((_BYTE *)v3 + 506) )
   {
     v11 = a2;
@@ -2583,10 +2760,10 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
   else
   {
     v3[122] = -1054867456;
-    v4 = 96 * *(this + 99);
-    *(this + 1652) = *(_DWORD *)((char *)this + v4 + 432);
-    *(this + 1653) = *(_DWORD *)((char *)this + v4 + 436);
-    *(this + 1654) = *(_DWORD *)((char *)this + v4 + 440);
+    v4 = 96 * *((_DWORD *)this + 99);
+    *((_DWORD *)this + 1652) = *(_DWORD *)((char *)this + v4 + 432);
+    *((_DWORD *)this + 1653) = *(_DWORD *)((char *)this + v4 + 436);
+    *((_DWORD *)this + 1654) = *(_DWORD *)((char *)this + v4 + 440);
     v5 = *((float *)this + 1652) - *((float *)this + 1646);
     *(float *)&v29 = *((float *)this + 1653) - *((float *)this + 1647);
     v6 = *((float *)this + 1654) - *((float *)this + 1648);
@@ -2598,10 +2775,10 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
     v34 = v7;
     if ( v7 < 2.0 )
     {
-      *(this + 1646) = *(this + 1652);
-      *(this + 1647) = *(this + 1653);
-      *(this + 1648) = *(this + 1654);
-      *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;
+      *((_DWORD *)this + 1646) = *((_DWORD *)this + 1652);
+      *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
+      *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
+      *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
       return 0;
     }
     (gbVec3D *->Normalize()&dword_17AB708);
@@ -2613,29 +2790,29 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
     if ( *(float *)&dword_17AB708 < 0.0 )
       *((float *)this + 1658) = 6.2831855 - v9;
     *((float *)this + 1658) = *((float *)this + 1658) * 57.29578;
-    *(this + 1655) = dword_17AB708;
+    *((_DWORD *)this + 1655) = dword_17AB708;
     v10 = v34 + v34;
-    *(this + 1656) = dword_17AB70C;
-    *(this + 1657) = dword_17AB710;
+    *((_DWORD *)this + 1656) = dword_17AB70C;
+    *((_DWORD *)this + 1657) = dword_17AB710;
     *((float *)this + 1655) = v10 * *((float *)this + 1655);
     *((float *)this + 1656) = v10 * *((float *)this + 1656);
     *((float *)this + 1657) = v10 * *((float *)this + 1657);
-    if ( (CCBStageRole *->IsActive()*(this + 1), *(this + 71)) )
-      *(this + 1642) = 31;
+    if ( (CCBStageRole *->IsActive()*((_DWORD *)this + 1), *((_DWORD *)this + 71)) )
+      *((_DWORD *)this + 1642) = 31;
     else
-      *(this + 1642) = 52;
+      *((_DWORD *)this + 1642) = 52;
     CCBStageRole::IsGrabedBy((int)this);
     v11 = 0.0;
-    *((_BYTE *)this + 96 * *(this + 99) + 506) = 1;
+    *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 506) = 1;
     CCBStageRole::ClearBadPushTask((int)this, 0.0099999998);
-    v12 = *(this + 71);
+    v12 = *((_DWORD *)this + 71);
     *((_BYTE *)this + 273) = 1;
     if ( v12 == 1 )
     {
       Instance = CScreenMode::GetInstance();
       (CScreenMode *->AudioSetPosition()Instance, aWe012, 1);
     }
-    if ( *(this + 71) == 3 )
+    if ( *((_DWORD *)this + 71) == 3 )
     {
       v14 = CScreenMode::GetInstance();
       (CScreenMode *->AudioSetPosition()v14, aWe013, 1);
@@ -2648,9 +2825,9 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
   *(float *)&v33 = v16;
   *(float *)&dword_17AB708 = v15;
   dword_17AB710 = v33;
-  if ( LODWORD(v11) == *(this + 1666) )
-    *(this + 24 * *(this + 99) + 122) = 1120403456;
-  if ( *((float *)this + 24 * *(this + 99) + 122) > 0.0 && (gbVec3D *->Length()&dword_17AB708) > 2.0 )
+  if ( LODWORD(v11) == *((_DWORD *)this + 1666) )
+    *(this + 24 * *((_DWORD *)this + 99) + 122) = 1120403456;
+  if ( *((float *)this + 24 * *((_DWORD *)this + 99) + 122) > 0.0 && (gbVec3D *->Length()&dword_17AB708) > 2.0 )
   {
     v17 = *(double *)(*(_DWORD *)*this + 64);
     v28 = *((float *)this + 1655) * v17;
@@ -2660,8 +2837,8 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
     *((float *)this + 1647) = v31 + *((float *)this + 1647);
     *((float *)this + 1648) = v18 + *((float *)this + 1648);
   }
-  if ( LODWORD(v11) == *(this + 1667) && (gbVec3D *->Length()&dword_17AB708) <= 2.0 )
-    *(this + 24 * *(this + 99) + 122) = -1054867456;
+  if ( LODWORD(v11) == *((_DWORD *)this + 1667) && (gbVec3D *->Length()&dword_17AB708) <= 2.0 )
+    *(this + 24 * *((_DWORD *)this + 99) + 122) = -1054867456;
   (gbVec3D *->Normalize()&dword_17AB708);
   v19 = acos(
           *(float *)&dword_17AB700 * *(float *)&dword_17AB710
@@ -2673,41 +2850,41 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
   flt_17ABCD8 = v20;
   if ( fabs(v20 - *((float *)this + 1658)) >= 1.570796370506287 )
   {
-    *(this + 1646) = *(this + 1652);
-    *(this + 1647) = *(this + 1653);
-    *(this + 1648) = *(this + 1654);
-    *(this + 24 * *(this + 99) + 122) = -1054867456;
+    *((_DWORD *)this + 1646) = *((_DWORD *)this + 1652);
+    *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
+    *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
+    *(this + 24 * *((_DWORD *)this + 99) + 122) = -1054867456;
   }
-  if ( LODWORD(v11) == *(this + 1661) )
+  if ( LODWORD(v11) == *((_DWORD *)this + 1661) )
   {
-    *(this + 1646) = *(this + 1652);
-    *(this + 1647) = *(this + 1653);
-    *(this + 1648) = *(this + 1654);
-    *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;
-    v21 = *(this + 71);
+    *((_DWORD *)this + 1646) = *((_DWORD *)this + 1652);
+    *((_DWORD *)this + 1647) = *((_DWORD *)this + 1653);
+    *((_DWORD *)this + 1648) = *((_DWORD *)this + 1654);
+    *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
+    v21 = *((_DWORD *)this + 71);
     *((_BYTE *)this + 273) = 0;
     if ( v21 == 1 )
     {
       v22 = (CCBStageRole *)CScreenMode::GetInstance();
       v22->PlaySound(aWe012, v27);
     }
-    if ( *(this + 71) == 3 )
+    if ( *((_DWORD *)this + 71) == 3 )
     {
       v23 = (CCBStageRole *)CScreenMode::GetInstance();
       v23->PlaySound(aWe013, v27);
     }
   }
-  if ( !(CCBRoleState *->IsRoleAlive()*(this + 1), *(this + 71)) )
+  if ( !(CCBRoleState *->IsRoleAlive()*((_DWORD *)this + 1), *((_DWORD *)this + 71)) )
   {
-    *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;
-    v24 = *(this + 71);
+    *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;
+    v24 = *((_DWORD *)this + 71);
     *((_BYTE *)this + 273) = 0;
     if ( v24 == 1 )
     {
       v25 = (CCBStageRole *)CScreenMode::GetInstance();
       v25->PlaySound(aWe012, v27);
     }
-    if ( *(this + 71) == 3 )
+    if ( *((_DWORD *)this + 71) == 3 )
     {
       v26 = (CCBStageRole *)CScreenMode::GetInstance();
       v26->PlaySound(aWe013, v27);

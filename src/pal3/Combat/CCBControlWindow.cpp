@@ -2,6 +2,43 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBControlWindow.h"
 
+// Forward declarations for unnamed functions
+int sub_43F640(...);
+int sub_43F670(...);
+int sub_43F690(...);
+int sub_51A880(...);
+int sub_51A930(...);
+int sub_51AB60(...);
+int sub_51AC30(...);
+int sub_51AC40(...);
+int sub_51AC90(...);
+int sub_51AD00(...);
+int sub_51AD10(...);
+int sub_51AFE0(...);
+int sub_51B0B0(...);
+int sub_51B110(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed[];
+extern char aCNewFailed_0[];
+extern char aCost[];
+extern char aDProjectPal3Co_12[];
+extern char aName[];
+extern char aUiCombatContro_0[];
+extern char aUiCombatContro_4[];
+extern char aUiCombatContro_5[];
+extern char aUiCombatContro_55[];
+extern char aUiCombatContro_6[];
+extern char aUiCombatContro_7[];
+extern char aUiCombatContro_8[];
+extern char aUiCombatContro_9[];
+extern char aWa001[];
+extern char aWa002[];
+extern int dword_570134;
+extern int dword_570138;
+extern void *off_57051C;
+extern void *off_570538;
+
 // 0x0051A700
 CCBControlWindow * CCBControlWindow::CCBControlWindow()
 {
@@ -137,19 +174,19 @@ int sub_51A930(int a2, unsigned int a3, int a4)
       CCBControlWindow::HandleInput(a3 - 192);
       v5 = (int *->CreateChild()*(this + a3 - 173));
       if ( v5 != -1 )
-        CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), a3 - 48, v5, 1);
+        CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3 - 48, v5, 1);
     }
   }
   else if ( a2 == 1006 )
   {
     if ( a4 != -1 )
-      CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), a3, a4, 1);
+      CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, 1);
   }
   else if ( a2 == 1007 && a4 != -1 )
   {
     this->GetInstance();
     aWa002->AudioSetPosition(1);
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), a3, a4, 0);
+    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, 0);
   }
   return a2->SendMessage(a3, a4);
 }
@@ -258,7 +295,7 @@ LABEL_10:
 // 0x0051AC30
 int sub_51AC30()
 {
-  return *(this + 31);
+  return *((_DWORD *)this + 31);
 }
 
 // 0x0051AC40
@@ -271,9 +308,9 @@ _DWORD * sub_51AC40()
 }
 
 // 0x0051AC90
-stdiobuf * sub_51AC90(stdiobuf *Block, char a2)
+UIWnd * sub_51AC90(UIWnd *Block, char a2)
 {
-  stdiobuf::~stdiobuf(Block);
+  UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return Block;
@@ -282,9 +319,9 @@ stdiobuf * sub_51AC90(stdiobuf *Block, char a2)
 // 0x0051AD00
 int sub_51AD00()
 {
-  *(this + 20) = 0;
-  *(this + 18) = 0;
-  *(this + 19) = 0;
+  *((_DWORD *)this + 20) = 0;
+  *((_DWORD *)this + 18) = 0;
+  *((_DWORD *)this + 19) = 0;
   return 0;
 }
 
@@ -448,8 +485,8 @@ int sub_51AFE0(int this)
 // 0x0051B0B0
 BOOL sub_51B0B0(int a2, int a3)
 {
-  if ( *(this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), 160, -1, 0);
+  if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
+    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 160, -1, 0);
   return this->HitTest(a2, a3);
 }
 

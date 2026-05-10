@@ -2,6 +2,25 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBLineupWindow.h"
 
+// Forward declarations for unnamed functions
+int sub_51CFB0(...);
+int sub_51D070(...);
+int sub_51D120(...);
+int sub_51D1D0(...);
+int sub_51D290(...);
+int sub_51D340(...);
+int sub_51D3F0(...);
+int sub_51D4A0(...);
+int sub_51D590(...);
+int sub_51D5B0(...);
+int sub_51D5F0(...);
+int sub_51D610(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed[];
+extern char aDProjectPal3Co_12[];
+extern unsigned char byte_17ACF80;
+
 // 0x0051CFB0
 char sub_51CFB0(_DWORD *a1)
 {

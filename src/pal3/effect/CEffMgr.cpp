@@ -2,6 +2,40 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffMgr.h"
 
+// Forward declarations for unnamed functions
+int sub_4C04C0(...);
+int sub_4C1570(...);
+int sub_4C3C90(...);
+int sub_4CDCA0(...);
+int sub_4CE100(...);
+int sub_4CE2A0(...);
+int sub_4CE340(...);
+int sub_4CE5F0(...);
+int sub_4CE690(...);
+int sub_4D5950(...);
+int sub_4D5A00(...);
+
+// Unnamed globals (extern)
+extern char aCbdataFlexeffD[];
+extern char aCouldnTOpenCbE[];
+extern char aCouldnTOpenEff[];
+extern char aDProjectPal3Co_3[];
+extern unsigned char byte_174D404;
+extern unsigned char byte_17A7C24;
+extern unsigned char byte_5D55AC;
+extern int dword_174D330;
+extern int dword_174D334;
+extern int dword_174D354;
+extern int dword_17A7B50;
+extern int dword_17A7B74;
+extern int dword_1895980;
+extern int dword_EC9E70;
+extern int dword_EC9E74;
+extern int unk_8834C0;
+extern int unk_8DDCE0;
+extern int unk_DE9CB0;
+extern int unk_EC9EB4;
+
 // 0x004CE100
 char sub_4CE100()
 {

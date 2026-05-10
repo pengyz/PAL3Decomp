@@ -2,6 +2,39 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBMagicWindow.h"
 
+// Forward declarations for unnamed functions
+int sub_43FBC0(...);
+int sub_440CE0(...);
+int sub_51B9F0(...);
+int sub_51BAB0(...);
+int sub_51BB00(...);
+int sub_51BB40(...);
+int sub_51BB50(...);
+int sub_51BB90(...);
+int sub_51BBE0(...);
+int sub_51BC50(...);
+int sub_51BC70(...);
+int sub_51C110(...);
+int sub_51C1B0(...);
+int sub_51C210(...);
+
+// Unnamed globals (extern)
+extern char aUiCombatContro_22[];
+extern char aUiCombatContro_23[];
+extern char aUiCombatContro_24[];
+extern char aUiCombatContro_25[];
+extern char aUiCombatContro_26[];
+extern char aUiCombatContro_27[];
+extern char aUiCombatContro_28[];
+extern char aUiCombatContro_29[];
+extern char aUiCombatContro_30[];
+extern char aUiCombatContro_31[];
+extern char aUiCombatContro_32[];
+extern int dword_57024C;
+extern int dword_570268;
+extern void *off_570570;
+extern void *off_57058C;
+
 // 0x0051B9F0
 char sub_51B9F0(_DWORD **this, int a2, int a3, _DWORD *a4)
 {
@@ -78,7 +111,7 @@ int sub_51BB00(int a2, int a3)
 // 0x0051BB40
 int sub_51BB40(int a2)
 {
-  *(this + 29) = a2;
+  *((_DWORD *)this + 29) = a2;
   return a2;
 }
 
@@ -92,9 +125,9 @@ _DWORD * sub_51BB90()
 }
 
 // 0x0051BBE0
-stdiobuf * sub_51BBE0(stdiobuf *Block, char a2)
+UIWnd * sub_51BBE0(UIWnd *Block, char a2)
 {
-  stdiobuf::~stdiobuf(Block);
+  UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return Block;
@@ -103,14 +136,14 @@ stdiobuf * sub_51BBE0(stdiobuf *Block, char a2)
 // 0x0051BC50
 int sub_51BC50()
 {
-  *(this + 18) = 0;
-  *(this + 19) = 0;
-  *(this + 20) = 0;
-  *(this + 21) = 0;
-  *(this + 22) = 0;
-  *(this + 23) = 0;
-  *(this + 24) = 0;
-  *(this + 25) = 0;
+  *((_DWORD *)this + 18) = 0;
+  *((_DWORD *)this + 19) = 0;
+  *((_DWORD *)this + 20) = 0;
+  *((_DWORD *)this + 21) = 0;
+  *((_DWORD *)this + 22) = 0;
+  *((_DWORD *)this + 23) = 0;
+  *((_DWORD *)this + 24) = 0;
+  *((_DWORD *)this + 25) = 0;
   return 0;
 }
 
@@ -357,8 +390,8 @@ int sub_51C110(int this)
 // 0x0051C1B0
 BOOL sub_51C1B0(int a2, int a3)
 {
-  if ( *(this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
-    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), 272, -1, 0);
+  if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
+    CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 272, -1, 0);
   return this->HitTest(a2, a3);
 }
 

@@ -2,6 +2,16 @@
 #include "pal3/globals.h"
 #include "pal3/gen/NPC.h"
 
+// Forward declarations for unnamed functions
+int sub_41A150(...);
+int sub_479100(...);
+
+// Unnamed globals (extern)
+extern int dword_C020F8;
+extern int dword_C02370;
+extern int dword_C025E8;
+extern int dword_C025EC;
+
 // 0x0040EB90
 unsigned int NPC::Create(int index)
 {

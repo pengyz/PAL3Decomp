@@ -2,6 +2,38 @@
 #include "pal3/globals.h"
 #include "pal3/gen/C3DSpark.h"
 
+// Forward declarations for unnamed functions
+int sub_4D6670(...);
+int sub_4D6960(...);
+int sub_4D6A60(...);
+int sub_4D6AC0(...);
+int sub_4D6BA0(...);
+int sub_4D6BC0(...);
+int sub_4D6D30(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed_0[];
+extern char aDProjectPal3Co_11[];
+extern char aEffectFlare2Bm[];
+extern char aEffectFlare3Bm[];
+extern char aEffectFlareblu[];
+extern char aEffectFlarebri[];
+extern char aEffectFlaregre[];
+extern char aGfxscriptAddit[];
+extern int dword_17A8440;
+extern int dword_17A8444;
+extern int dword_17A8448;
+extern int dword_17A8450;
+extern int dword_17A8458;
+extern int dword_17A845C;
+extern int dword_17A8460;
+extern int dword_17A8464;
+extern int dword_17A8468;
+extern int dword_17A846C;
+extern int dword_17A8470;
+extern float flt_17A844C;
+extern float flt_17A8454;
+
 // 0x004D6670
 _DWORD * sub_4D6670()
 {
@@ -37,16 +69,16 @@ _DWORD * sub_4D6670()
   }
   while ( v2 );
   memset(this, 0, 0x3E30u);
-  *(this + 1793) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptAddit, 0);
+  *((_DWORD *)this + 1793) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptAddit, 0);
   v4 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aEffectFlare3Bm);
-  *(this + 1794) = v4;
+  *((_DWORD *)this + 1794) = v4;
   v4->LoadTexture(1);
   v5 = operator new(0x44u);
   if ( v5 )
   {
-    v6 = *(this + 1794);
+    v6 = *((_DWORD *)this + 1794);
     v5[16] = 1;
     *v5 = v6;
   }
@@ -54,7 +86,7 @@ _DWORD * sub_4D6670()
   {
     v5 = 0;
   }
-  *(this + 1795) = v5;
+  *((_DWORD *)this + 1795) = v5;
   if ( !v5 )
   {
     qmemcpy(
@@ -66,12 +98,12 @@ _DWORD * sub_4D6670()
   v7 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aEffectFlare2Bm);
-  *(this + 1800) = v7;
+  *((_DWORD *)this + 1800) = v7;
   v7->LoadTexture(1);
   v8 = operator new(0x44u);
   if ( v8 )
   {
-    v9 = *(this + 1800);
+    v9 = *((_DWORD *)this + 1800);
     v8[16] = 1;
     *v8 = v9;
   }
@@ -79,7 +111,7 @@ _DWORD * sub_4D6670()
   {
     v8 = 0;
   }
-  *(this + 1801) = v8;
+  *((_DWORD *)this + 1801) = v8;
   if ( !v8 )
   {
     qmemcpy(
@@ -91,12 +123,12 @@ _DWORD * sub_4D6670()
   v10 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                        g_pGfxManager,
                        aEffectFlaregre);
-  *(this + 1798) = v10;
+  *((_DWORD *)this + 1798) = v10;
   v10->LoadTexture(1);
   v11 = operator new(0x44u);
   if ( v11 )
   {
-    v12 = *(this + 1798);
+    v12 = *((_DWORD *)this + 1798);
     v11[16] = 1;
     *v11 = v12;
   }
@@ -104,8 +136,8 @@ _DWORD * sub_4D6670()
   {
     v11 = 0;
   }
-  *(this + 1799) = v11;
-  if ( !*(this + 1801) )
+  *((_DWORD *)this + 1799) = v11;
+  if ( !*((_DWORD *)this + 1801) )
   {
     qmemcpy(
       pExceptionObject,
@@ -116,12 +148,12 @@ _DWORD * sub_4D6670()
   v13 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                        g_pGfxManager,
                        aEffectFlareblu);
-  *(this + 1796) = v13;
+  *((_DWORD *)this + 1796) = v13;
   v13->LoadTexture(1);
   v14 = operator new(0x44u);
   if ( v14 )
   {
-    v15 = *(this + 1796);
+    v15 = *((_DWORD *)this + 1796);
     v14[16] = 1;
     *v14 = v15;
   }
@@ -129,7 +161,7 @@ _DWORD * sub_4D6670()
   {
     v14 = 0;
   }
-  *(this + 1797) = v14;
+  *((_DWORD *)this + 1797) = v14;
   if ( !v14 )
   {
     qmemcpy(
@@ -141,12 +173,12 @@ _DWORD * sub_4D6670()
   v16 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                        g_pGfxManager,
                        aEffectFlarebri);
-  *(this + 1802) = v16;
+  *((_DWORD *)this + 1802) = v16;
   v16->LoadTexture(1);
   v17 = operator new(0x44u);
   if ( v17 )
   {
-    v18 = *(this + 1802);
+    v18 = *((_DWORD *)this + 1802);
     v17[16] = 1;
     *v17 = v18;
   }
@@ -154,7 +186,7 @@ _DWORD * sub_4D6670()
   {
     v17 = 0;
   }
-  *(this + 1803) = v17;
+  *((_DWORD *)this + 1803) = v17;
   if ( !v17 )
   {
     qmemcpy(
@@ -266,8 +298,8 @@ char sub_4D6A60(const void *a2)
   }
   qmemcpy(this + 14 * v3, a2, 0x38u);
   *((_BYTE *)this + 56 * v3 + 53) = 1;
-  if ( v3 >= *(this + 1792) )
-    *(this + 1792) = v3 + 1;
+  if ( v3 >= *((_DWORD *)this + 1792) )
+    *((_DWORD *)this + 1792) = v3 + 1;
   return 1;
 }
 
@@ -312,7 +344,7 @@ _BYTE * sub_4D6BA0()
     --v2;
   }
   while ( v2 );
-  *(this + 1792) = 0;
+  *((_DWORD *)this + 1792) = 0;
   return result;
 }
 

@@ -2,6 +2,16 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UIStatic.h"
 
+// Forward declarations for unnamed functions
+int sub_440740(...);
+int sub_440BA0(...);
+int sub_440DD0(...);
+int sub_440F30(...);
+
+// Unnamed globals (extern)
+extern void *off_56AD88;
+extern void *off_5974E0;
+
 // 0x00440740
 void sub_440740()
 {
@@ -10,8 +20,8 @@ void sub_440740()
 
   UIWnd::UIWnd();
   *(_DWORD *)this = &off_56AD88;
-  *(this + 68) = 0;
-  *(this + 69) = 0;
+  *((_DWORD *)this + 68) = 0;
+  *((_DWORD *)this + 69) = 0;
   *((_DWORD *)this + 20) = 0;
   v2 = this + 92;
   v3 = 2;

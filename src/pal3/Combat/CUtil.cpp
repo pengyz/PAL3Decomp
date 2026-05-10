@@ -2,6 +2,32 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CUtil.h"
 
+// Forward declarations for unnamed functions
+int sub_46DF40(...);
+int sub_46EC30(...);
+int sub_471590(...);
+int sub_472A80(...);
+int sub_4BDD90(...);
+int sub_4BDEB0(...);
+int sub_51DFD0(...);
+int sub_523100(...);
+int sub_523120(...);
+int sub_523130(...);
+int sub_5231D0(...);
+int sub_5231F0(...);
+int sub_5232B0(...);
+int sub_523560(...);
+int sub_524230(...);
+int sub_524960(...);
+int sub_53EA80(...);
+
+// Unnamed globals (extern)
+extern int dword_17ADB04;
+extern float flt_17ADB00;
+extern void *off_5705F4;
+extern void *off_5E2C34;
+extern int unk_ABCD00;
+
 // 0x005230F0
 // attributes: thunk
 int CUtil::~CUtil()
@@ -52,7 +78,7 @@ int sub_523130(int this)
 }
 
 // 0x005231D0
-stdiobuf * sub_5231D0(stdiobuf *Block, char a2)
+UIWnd * sub_5231D0(UIWnd *Block, char a2)
 {
   Block->GetFileSize();
   if ( (a2 & 1) != 0 )
@@ -94,7 +120,7 @@ void sub_5231F0()
     *((_DWORD *)this + 437) = 0;
   }
   UIItem::UIItem((int)this + 368);
-  stdiobuf::~stdiobuf((std::ios_base *)this);
+  UIWnd::~UIWnd((UIWnd *)this);
 }
 
 // 0x005232B0
@@ -121,27 +147,27 @@ int sub_5232B0()
   int v21[4]; // [esp+14h] [ebp-1Ch] BYREF
   int v22; // [esp+2Ch] [ebp-4h]
 
-  v2 = *(this + 22);
-  v3 = *(this + 23);
-  *(this + 20) = v2;
-  *(this + 21) = v3;
-  *(this + 19) = 0;
-  *(this + 18) = 0;
-  this->SetSelTexture(-1, 0, 0, *(this + 20), *(this + 21), 0);
+  v2 = *((_DWORD *)this + 22);
+  v3 = *((_DWORD *)this + 23);
+  *((_DWORD *)this + 20) = v2;
+  *((_DWORD *)this + 21) = v3;
+  *((_DWORD *)this + 19) = 0;
+  *((_DWORD *)this + 18) = 0;
+  this->SetSelTexture(-1, 0, 0, *((_DWORD *)this + 20), *((_DWORD *)this + 21), 0);
   v21[1] = 200;
   v21[0] = 250;
   v21[2] = 550;
   v21[3] = 300;
   UIItem::Create((int)(this + 92), (int)&unk_ABCD00, v21, (int)this, 0, 1);
   UIItem::SetData(this + 92, 18, 255, 28, 200);
-  v4 = *(this + 112);
-  v5 = *(this + 114);
-  *(this + 117) = *(this + 113) + 12;
-  *(this + 116) = v4 + 6;
-  *(this + 119) = *(this + 115) - 38;
-  *(this + 428) = 0;
-  *(this + 429) = 6;
-  *(this + 118) = v5 - 6;
+  v4 = *((_DWORD *)this + 112);
+  v5 = *((_DWORD *)this + 114);
+  *((_DWORD *)this + 117) = *((_DWORD *)this + 113) + 12;
+  *((_DWORD *)this + 116) = v4 + 6;
+  *((_DWORD *)this + 119) = *((_DWORD *)this + 115) - 38;
+  *((_DWORD *)this + 428) = 0;
+  *((_DWORD *)this + 429) = 6;
+  *((_DWORD *)this + 118) = v5 - 6;
   UIWnd::GetRect(this + 206, this + 116);
   v6 = operator new(0x1578u);
   v22 = 0;
@@ -150,7 +176,7 @@ int sub_5232B0()
   else
     v7 = 0;
   v22 = -1;
-  *(this + 434) = v7;
+  *((_DWORD *)this + 434) = v7;
   v8 = operator new(0xA4128u);
   v22 = 1;
   if ( v8 )
@@ -158,7 +184,7 @@ int sub_5232B0()
   else
     v9 = 0;
   v22 = -1;
-  *(this + 435) = v9;
+  *((_DWORD *)this + 435) = v9;
   v10 = operator new(0x1E56Cu);
   v22 = 2;
   if ( v10 )
@@ -166,7 +192,7 @@ int sub_5232B0()
   else
     v11 = 0;
   v22 = -1;
-  *(this + 436) = v11;
+  *((_DWORD *)this + 436) = v11;
   v12 = operator new(0x70DCu);
   v22 = 3;
   if ( v12 )
@@ -174,17 +200,17 @@ int sub_5232B0()
   else
     v13 = 0;
   v22 = -1;
-  *(this + 437) = v13;
+  *((_DWORD *)this + 437) = v13;
   sub_524230(this);
-  sub_51DFD0(*(this + 435), (int)this);
-  sub_472A80((_DWORD *)*(this + 436), 1);
-  sub_471590(*(this + 436), (int)this);
-  sub_46EC30((_DWORD *)*(this + 437), 1);
-  sub_46DF40(*(this + 437), (int)this);
-  sub_524960(*(this + 435));
-  CCBResultWindow::~CCBResultWindow((_DWORD *)*(this + 435), *(this + 437));
-  (_DWORD *->CCBResultWindow()*(this + 435), *(this + 436));
-  (_DWORD *->Update()*(this + 435), *(this + 434));
+  sub_51DFD0(*((_DWORD *)this + 435), (int)this);
+  sub_472A80((_DWORD *)*((_DWORD *)this + 436), 1);
+  sub_471590(*((_DWORD *)this + 436), (int)this);
+  sub_46EC30((_DWORD *)*((_DWORD *)this + 437), 1);
+  sub_46DF40(*((_DWORD *)this + 437), (int)this);
+  sub_524960(*((_DWORD *)this + 435));
+  CCBResultWindow::~CCBResultWindow((_DWORD *)*((_DWORD *)this + 435), *((_DWORD *)this + 437));
+  (_DWORD *->CCBResultWindow()*((_DWORD *)this + 435), *((_DWORD *)this + 436));
+  (_DWORD *->Update()*((_DWORD *)this + 435), *((_DWORD *)this + 434));
   this->RectIntersection();
   if ( (g_nGameFlags & 4) != 0 )
   {
@@ -222,8 +248,8 @@ char sub_523560()
   v4 = 1061158912;
   if ( v3 )
     v4 = 1065353216;
-  *(this + 441) = v4;
-  *(this + 440) = v4;
+  *((_DWORD *)this + 441) = v4;
+  *((_DWORD *)this + 440) = v4;
   v5 = CRenderTarget::GetInstance();
   LOBYTE(v6) = v5->OnResetDevice(1);
   if ( (_BYTE)v6 )
@@ -234,15 +260,15 @@ char sub_523560()
     g_bRenderUI = v7;
     v8 = CRenderTarget::GetInstance();
     sub_4BDD90(v8);
-    *(this + 439) = 0;
+    *((_DWORD *)this + 439) = 0;
     v9 = CRenderTarget::GetInstance();
     v6 = sub_4BDEB0(v9);
     if ( v6 && v6[21] )
-      *(this + 439) = v6;
+      *((_DWORD *)this + 439) = v6;
   }
   else
   {
-    *(this + 439) = 0;
+    *((_DWORD *)this + 439) = 0;
   }
   return (char)v6;
 }

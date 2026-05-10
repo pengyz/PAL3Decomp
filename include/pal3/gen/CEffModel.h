@@ -2,9 +2,6 @@
 // Auto-generated: CEffModel
 
 #include "CEffObj.h"
-#include "gbVec3D.h"
-
-class gbGeomNode;
 
 class CEffModel : public CEffObj, public CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)> {
 public:

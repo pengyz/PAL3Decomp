@@ -2,6 +2,35 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffSParticle.h"
 
+// Forward declarations for unnamed functions
+int sub_4D4EA0(...);
+int sub_4D4EE0(...);
+int sub_4D4F20(...);
+int sub_4D4FC0(...);
+int sub_4D51B0(...);
+int sub_4D53E0(...);
+int sub_4D5620(...);
+int sub_4D56B0(...);
+int sub_4D5790(...);
+int sub_4D5860(...);
+int sub_4D58D0(...);
+
+// Unnamed globals (extern)
+extern unsigned char byte_1895561;
+extern int dword_17A8118;
+extern void *off_56F62C;
+extern void *off_56FB28;
+extern void *off_56FB34;
+extern void *off_56FB70;
+extern int unk_5D4D3C;
+extern int unk_5D4D7C;
+extern int unk_5D4DF4;
+extern int unk_5D572C;
+extern int unk_5D5744;
+extern int unk_5D5758;
+extern int unk_5D5760;
+extern int unk_5D576C;
+
 // 0x004D4EE0
 _DWORD *sub_4D4EE0()
 {
@@ -25,7 +54,7 @@ int sub_4D4F20()
 
   *this = &off_56FB34;
   v2 = this != 0 ? (unsigned int)(this + 3) : 0;
-  *(this + 3) = &off_56FB28;
+  *((_DWORD *)this + 3) = &off_56FB28;
   v3 = *(_DWORD *)(v2 + 0x1C);
   *(_DWORD *)v2 = &off_56FB70;
   if ( v3 || (result = *(this != 0 ? this + 11 : (_DWORD *)32)) != 0 )
@@ -227,7 +256,7 @@ void sub_4D51B0(_DWORD *a2)
   unsigned int v20; // eax
 
   v2 = this + 3;
-  v3 = *(this + 10);
+  v3 = *((_DWORD *)this + 10);
   v4 = 0;
   if ( v3 > 0 )
   {
@@ -343,8 +372,8 @@ int sub_4D53E0(int a2)
   float v9; // [esp+14h] [ebp-4h]
   float v10; // [esp+14h] [ebp-4h]
 
-  v3 = *(this + 6) + 152 * *(this + 7);
-  v4 = *(_DWORD *)v3 + 72 * *(this + 8);
+  v3 = *((_DWORD *)this + 6) + 152 * *((_DWORD *)this + 7);
+  v4 = *(_DWORD *)v3 + 72 * *((_DWORD *)this + 8);
   if ( (byte_1895561 & 1) == 0 )
   {
     byte_1895561 |= 1u;
@@ -359,14 +388,14 @@ int sub_4D53E0(int a2)
   }
   if ( !*(_BYTE *)(v4 + 65) )
   {
-    *(float *)(v4 + 56) = *(float *)(*(_DWORD *)(*(this + 1) + 4) + 104);
+    *(float *)(v4 + 56) = *(float *)(*(_DWORD *)(*((_DWORD *)this + 1) + 4) + 104);
     if ( *(_BYTE *)(v3 + 113) )
-      *(float *)(v4 + 44) = *(float *)(*(_DWORD *)(*(this + 1) + 4) + 108);
+      *(float *)(v4 + 44) = *(float *)(*(_DWORD *)(*((_DWORD *)this + 1) + 4) + 108);
     if ( *(_BYTE *)(v3 + 114) )
       CCBSystem::ProcAI(*(float *)(v3 + 24));
     *(_BYTE *)(v4 + 65) = 1;
   }
-  v5 = *(_DWORD *)(*(this + 1) + 4);
+  v5 = *(_DWORD *)(*((_DWORD *)this + 1) + 4);
   v7 = *(double *)(v5 + 88);
   v8 = *(float *)(v5 + 104);
   if ( v8 - *(float *)(v4 + 56) > *(float *)(v3 + 28) )
@@ -391,7 +420,7 @@ int sub_4D53E0(int a2)
   }
   if ( v8 - *(float *)(v4 + 56) > *(float *)(v3 + 36) )
   {
-    v10 = *(float *)(*(_DWORD *)(*(this + 1) + 4) + 108) + v7 * *(float *)(v3 + 56);
+    v10 = *(float *)(*(_DWORD *)(*((_DWORD *)this + 1) + 4) + 108) + v7 * *(float *)(v3 + 56);
     if ( (byte_1895561 & 1) == 0 )
     {
       byte_1895561 |= 1u;
@@ -466,11 +495,11 @@ int sub_4D56B0(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   unsigned int v14; // eax
   _DWORD *v15; // edx
 
-  v8 = *(this + 8);
+  v8 = *((_DWORD *)this + 8);
   v9 = 0;
   if ( v8 <= 0 )
     return -1;
-  v10 = *(_DWORD *)(*(this + 3) + 152 * a2);
+  v10 = *(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2);
   for ( i = (_BYTE *)(v10 + 64); *i; i += 72 )
   {
     if ( ++v9 >= v8 )
@@ -501,7 +530,7 @@ int sub_4D56B0(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
     v15[2] = a5[2];
     v15[3] = a5[3];
   }
-  ++*(_DWORD *)(*(this + 3) + 152 * a2 + 4);
+  ++*(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2 + 4);
   return v9;
 }
 

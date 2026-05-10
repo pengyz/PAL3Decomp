@@ -2,6 +2,14 @@
 #include "pal3/globals.h"
 #include "pal3/gen/OpenSceneFile.h"
 
+// Forward declarations for unnamed functions
+int sub_401F40(...);
+
+// Unnamed globals (extern)
+extern unsigned char byte_8AC5D8;
+extern int dword_6EBFA0;
+extern int dword_7CC178;
+
 // 0x00401DF0
 // strings: .cpk
 // write access to const memory has been detected, the output may be wrong!

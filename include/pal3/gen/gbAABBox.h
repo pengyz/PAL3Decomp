@@ -1,3 +1,10 @@
 #pragma once
-// Stub: gbAABBox (missing from PDB)
-struct gbAABBox { char _data[64]; };
+// Auto-generated: gbAABBox
+
+class gbAABBox {
+public:
+    gbVec3D min; // +0x0
+    gbVec3D max; // +0xC
+    // total size: 0x18 (24)
+
+};

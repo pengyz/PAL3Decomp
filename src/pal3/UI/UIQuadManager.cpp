@@ -2,6 +2,14 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UIQuadManager.h"
 
+// Forward declarations for unnamed functions
+int sub_541470(...);
+int sub_5415F0(...);
+
+// Unnamed globals (extern)
+extern unsigned char byte_1894DB0;
+extern int unk_1894D90;
+
 // 0x005415C0
 void UIQuadManager::Destroy()
 {

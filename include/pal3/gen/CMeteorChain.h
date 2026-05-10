@@ -2,7 +2,6 @@
 // Auto-generated: CMeteorChain
 
 class CEffMgr;
-class gbGeomQuad;
 class gbTextureArray;
 class tagMeteorNode;
 

@@ -2,6 +2,15 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UICamera.h"
 
+// Forward declarations for unnamed functions
+int sub_4180B0(...);
+int sub_419EF0(...);
+int sub_41A070(...);
+int sub_429A90(...);
+
+// Unnamed globals (extern)
+extern int dword_D8BBEC;
+
 // 0x00420CD0
 int UICamera::GetViewMode(int a1)
 {

@@ -2,6 +2,42 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffectSystem.h"
 
+// Forward declarations for unnamed functions
+int sub_4C5D00(...);
+int sub_4C5D70(...);
+int sub_4C5FA0(...);
+int sub_4C61A0(...);
+int sub_4C6240(...);
+int sub_4C6260(...);
+int sub_4C6290(...);
+int sub_4C6340(...);
+int sub_4C6360(...);
+int sub_4C6370(...);
+int sub_4C6410(...);
+int sub_4C6460(...);
+int sub_4C65C0(...);
+int sub_4C65F0(...);
+int sub_4C6670(...);
+int sub_4C6870(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed_0[];
+extern char aDProjectPal3Ef_0[];
+extern char aGfxscriptTrail[];
+extern unsigned char byte_DE93A8;
+extern unsigned char byte_DE93A9;
+extern unsigned char byte_DE96F4;
+extern int dword_DE9384;
+extern int dword_DE997C;
+extern float flt_DE9978;
+extern void *off_56F844;
+extern void *off_56F86C;
+extern void *off_56F878;
+extern void *off_56F8B4;
+extern int unk_DE9388;
+extern int unk_DE9389;
+extern int unk_DE93B0;
+
 // 0x004C61A0
 _DWORD * sub_4C61A0(int a2)
 {
@@ -12,12 +48,12 @@ _DWORD * sub_4C61A0(int a2)
   char ArgList; // [esp+408h] [ebp-400h] BYREF
 
   v3 = (gbTexture *)(*(int (__thiscall **)(_DWORD, int))(**(_DWORD **)dword_DE9384 + 8))(*(_DWORD *)dword_DE9384, a2);
-  *(this + 61448) = v3;
+  *((_DWORD *)this + 61448) = v3;
   v3->LoadTexture(1);
   result = operator new(0x44u);
   if ( result )
   {
-    v5 = *(this + 61448);
+    v5 = *((_DWORD *)this + 61448);
     result[16] = 1;
     *result = v5;
   }
@@ -25,7 +61,7 @@ _DWORD * sub_4C61A0(int a2)
   {
     result = 0;
   }
-  *(this + 61449) = result;
+  *((_DWORD *)this + 61449) = result;
   if ( !result )
   {
     qmemcpy(
@@ -42,7 +78,7 @@ _DWORD * sub_4C6240(int a2)
 {
   sub_4C5D00(this, a2);
   *this = &off_56F844;
-  *(this + 2) = 1;
+  *((_DWORD *)this + 2) = 1;
   return this;
 }
 
@@ -386,46 +422,46 @@ char sub_4C6670(int this)
 // 0x004C6870
 _DWORD * sub_4C6870()
 {
-  *(this + 1) = 0;
+  *((_DWORD *)this + 1) = 0;
   *((_BYTE *)this + 8) = 0;
-  *(this + 4) = 0;
-  *(this + 5) = 0;
-  *(this + 6) = 0;
-  *(this + 7) = -1;
-  *(this + 8) = -1;
-  *(this + 9) = 0;
-  *(this + 10) = 0;
-  *(this + 11) = 0;
-  *(this + 3) = &off_56F8B4;
-  *(this + 33) = 0;
-  *(this + 34) = 0;
-  *(this + 35) = 0;
-  *(this + 38) = 0;
-  *(this + 39) = 0;
-  *(this + 40) = 0;
-  *(this + 41) = 0;
-  *(this + 42) = 0;
-  *(this + 43) = 0;
-  *(this + 44) = 0;
-  *(this + 45) = 0;
-  *(this + 46) = 0;
+  *((_DWORD *)this + 4) = 0;
+  *((_DWORD *)this + 5) = 0;
+  *((_DWORD *)this + 6) = 0;
+  *((_DWORD *)this + 7) = -1;
+  *((_DWORD *)this + 8) = -1;
+  *((_DWORD *)this + 9) = 0;
+  *((_DWORD *)this + 10) = 0;
+  *((_DWORD *)this + 11) = 0;
+  *((_DWORD *)this + 3) = &off_56F8B4;
+  *((_DWORD *)this + 33) = 0;
+  *((_DWORD *)this + 34) = 0;
+  *((_DWORD *)this + 35) = 0;
+  *((_DWORD *)this + 38) = 0;
+  *((_DWORD *)this + 39) = 0;
+  *((_DWORD *)this + 40) = 0;
+  *((_DWORD *)this + 41) = 0;
+  *((_DWORD *)this + 42) = 0;
+  *((_DWORD *)this + 43) = 0;
+  *((_DWORD *)this + 44) = 0;
+  *((_DWORD *)this + 45) = 0;
+  *((_DWORD *)this + 46) = 0;
   *this = &off_56F878;
-  *(this + 3) = &off_56F86C;
-  *(this + 43) = 0;
-  *(this + 42) = 0;
-  *(this + 41) = 0;
-  *(this + 46) = 0;
-  *(this + 45) = 0;
-  *(this + 44) = 0;
-  *(this + 40) = 0;
-  *(this + 39) = 0;
-  *(this + 38) = 0;
-  *(this + 30) = 0;
-  *(this + 12) = 0;
-  *(this + 13) = 0;
+  *((_DWORD *)this + 3) = &off_56F86C;
+  *((_DWORD *)this + 43) = 0;
+  *((_DWORD *)this + 42) = 0;
+  *((_DWORD *)this + 41) = 0;
+  *((_DWORD *)this + 46) = 0;
+  *((_DWORD *)this + 45) = 0;
+  *((_DWORD *)this + 44) = 0;
+  *((_DWORD *)this + 40) = 0;
+  *((_DWORD *)this + 39) = 0;
+  *((_DWORD *)this + 38) = 0;
+  *((_DWORD *)this + 30) = 0;
+  *((_DWORD *)this + 12) = 0;
+  *((_DWORD *)this + 13) = 0;
   *((_BYTE *)this + 65) = 0;
   *((_BYTE *)this + 66) = 0;
-  *(this + 14) = 0;
-  *(this + 15) = 0;
+  *((_DWORD *)this + 14) = 0;
+  *((_DWORD *)this + 15) = 0;
   return this;
 }

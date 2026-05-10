@@ -2,11 +2,9 @@
 // Auto-generated: CEffect
 
 #include "EEffect.h"
-#include "gbGeomQuad.h"
 #include "tagPartical.h"
 
 class CEffectSystem;
-class gbTexture;
 class gbTextureArray;
 
 class CEffect {

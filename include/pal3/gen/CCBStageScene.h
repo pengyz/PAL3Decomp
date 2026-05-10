@@ -4,14 +4,9 @@
 #include "ECBBattleFieldAttr.h"
 #include "ECBFiveMagic.h"
 #include "ECBForce.h"
-#include "gbGeomQuad.h"
-#include "gbVec3D.h"
 
 class CCBStage;
 class CUtil;
-class gbGeomNode;
-class gbRenderEffect;
-class gbTexture;
 class gbTextureArray;
 class gbVisNode;
 
@@ -77,7 +72,6 @@ public:
     bool LoadFlingNode(); // 0x00511110
     int SetFlingRotX(); // 0x005112B0
     _DWORD * SetFlingRotY(); // 0x005112F0
-    char Update(); // 0x00511690
     char Render(); // 0x00511790
     char ShowAxis(); // 0x00511970
     char ShowRoleIndex(); // 0x00511AE0

@@ -2,6 +2,26 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CScreenMode.h"
 
+// Forward declarations for unnamed functions
+int sub_42C1C0(...);
+int sub_53C420(...);
+int sub_53C460(...);
+int sub_53C470(...);
+int sub_53DF70(...);
+int sub_53DFB0(...);
+int sub_53E510(...);
+int sub_53E740(...);
+int sub_53E890(...);
+int sub_5694F0(...);
+
+// Unnamed globals (extern)
+extern char aDatascriptMusi[];
+extern char aMovieMovieCpk[];
+extern char aMovieMovieEndC[];
+extern char aMusicMusicCpk[];
+extern unsigned char byte_17B41E8;
+extern unsigned char byte_56A634;
+
 // 0x0053C340
 char CScreenMode::InitCPK(int a2, int a3)
 {

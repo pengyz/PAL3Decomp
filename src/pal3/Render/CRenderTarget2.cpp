@@ -2,6 +2,14 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CRenderTarget2.h"
 
+// Forward declarations for unnamed functions
+int sub_4BF760(...);
+int sub_4BFD20(...);
+
+// Unnamed globals (extern)
+extern unsigned char byte_DE8B58;
+extern int dword_DE8B40;
+
 // 0x004BFD20
 _DWORD *sub_4BFD20()
 {

@@ -1,15 +1,12 @@
 #pragma once
 // Auto-generated: C2DSpark
 
-#include "gbUIQuad.h"
-
-class gbRenderEffect;
-class gbTexture;
 class gbTextureArray;
 
 class C2DSpark {
 public:
-    C2DSpark::tagSpark m_Spark[512]; // +0x0
+    struct tagSpark {}; // nested type stub
+    tagSpark m_Spark[512]; // +0x0
     float m_fDisplayWidth; // +0x6000
     float m_fDisplayHeight; // +0x6004
     int m_nCurrentSpark; // +0x6008

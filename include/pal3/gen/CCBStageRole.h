@@ -3,15 +3,12 @@
 
 #include "ACTION_KIND.h"
 #include "ERoleActState.h"
-#include "gbOBBox.h"
-#include "gbVec3D.h"
 #include "tagCmdData.h"
 #include "tagRoleTask.h"
 
 class Actor;
 class CCBRoleState;
 class CCBStage;
-class gbGeomNode;
 
 class CCBStageRole {
 public:

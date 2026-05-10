@@ -2,6 +2,52 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBStageScene.h"
 
+// Forward declarations for unnamed functions
+int sub_4DFB70(...);
+int sub_50FEE0(...);
+int sub_5100D0(...);
+int sub_510180(...);
+int sub_510540(...);
+int sub_510610(...);
+int sub_5107C0(...);
+int sub_510C80(...);
+int sub_510E00(...);
+int sub_510F50(...);
+int sub_511030(...);
+int sub_511110(...);
+int sub_5112B0(...);
+int sub_5112F0(...);
+int sub_511340(...);
+int sub_511630(...);
+int sub_511690(...);
+int sub_511790(...);
+int sub_511970(...);
+int sub_511AE0(...);
+int sub_511C10(...);
+int sub_511C30(...);
+int sub_511C50(...);
+int sub_511CA0(...);
+int sub_511CF0(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed[];
+extern char aCbsceneFivelin[];
+extern char aCbsceneFivelin_0[];
+extern char aCouldnTCreateT[];
+extern char aDProjectPal3Co_1[];
+extern char aDatascriptComb_1[];
+extern char aEnemyfivelineu[];
+extern char aFivelineup[];
+extern char aGfxscriptAddit_1[];
+extern char aRadius[];
+extern char aRolepos[];
+extern char aRoll[];
+extern char aUiCombatPointe[];
+extern unsigned char byte_17ABD00;
+extern unsigned char byte_17ABE00;
+extern unsigned char byte_17ABF00;
+extern void *off_56A66C;
+
 // 0x0050FE50
 int CCBStageScene::Update()
 {
@@ -42,54 +88,54 @@ char sub_50FEE0()
   char ArgList; // [esp+418h] [ebp-400h] BYREF
 
   CCBStageScene::Update((int)this);
-  *(this + 5) = -1025769472;
-  *(this + 6) = 0;
-  *(this + 7) = -1023279104;
-  *(this + 8) = 1106247680;
-  *(this + 10) = -1025769472;
-  *(this + 9) = 0;
-  *(this + 11) = -1025769472;
-  *(this + 12) = 0;
-  *(this + 13) = 1106247680;
-  *(this + 14) = 1106247680;
-  *(this + 15) = 0;
-  *(this + 16) = 1092616192;
-  *(this + 17) = -1021968384;
-  *(this + 18) = 0;
-  *(this + 19) = -1035468800;
-  *(this + 20) = -1035468800;
-  *(this + 22) = -1035468800;
-  *(this + 21) = 0;
-  *(this + 47) = 1124859904;
-  *(this + 48) = 0;
-  *(this + 49) = 1123024896;
-  *(this + 50) = 1133248512;
-  *(this + 51) = 0;
-  *(this + 52) = 1124859904;
-  *(this + 53) = 1124859904;
-  *(this + 54) = 0;
-  *(this + 55) = 1133248512;
-  *(this + 56) = 1133248512;
-  *(this + 57) = 0;
-  *(this + 58) = 1132593152;
-  *(this + 59) = 1120403456;
-  *(this + 60) = 0;
-  *(this + 61) = 1128792064;
-  *(this + 62) = 1128792064;
-  *(this + 63) = 0;
-  *(this + 64) = 1128792064;
+  *((_DWORD *)this + 5) = -1025769472;
+  *((_DWORD *)this + 6) = 0;
+  *((_DWORD *)this + 7) = -1023279104;
+  *((_DWORD *)this + 8) = 1106247680;
+  *((_DWORD *)this + 10) = -1025769472;
+  *((_DWORD *)this + 9) = 0;
+  *((_DWORD *)this + 11) = -1025769472;
+  *((_DWORD *)this + 12) = 0;
+  *((_DWORD *)this + 13) = 1106247680;
+  *((_DWORD *)this + 14) = 1106247680;
+  *((_DWORD *)this + 15) = 0;
+  *((_DWORD *)this + 16) = 1092616192;
+  *((_DWORD *)this + 17) = -1021968384;
+  *((_DWORD *)this + 18) = 0;
+  *((_DWORD *)this + 19) = -1035468800;
+  *((_DWORD *)this + 20) = -1035468800;
+  *((_DWORD *)this + 22) = -1035468800;
+  *((_DWORD *)this + 21) = 0;
+  *((_DWORD *)this + 47) = 1124859904;
+  *((_DWORD *)this + 48) = 0;
+  *((_DWORD *)this + 49) = 1123024896;
+  *((_DWORD *)this + 50) = 1133248512;
+  *((_DWORD *)this + 51) = 0;
+  *((_DWORD *)this + 52) = 1124859904;
+  *((_DWORD *)this + 53) = 1124859904;
+  *((_DWORD *)this + 54) = 0;
+  *((_DWORD *)this + 55) = 1133248512;
+  *((_DWORD *)this + 56) = 1133248512;
+  *((_DWORD *)this + 57) = 0;
+  *((_DWORD *)this + 58) = 1132593152;
+  *((_DWORD *)this + 59) = 1120403456;
+  *((_DWORD *)this + 60) = 0;
+  *((_DWORD *)this + 61) = 1128792064;
+  *((_DWORD *)this + 62) = 1128792064;
+  *((_DWORD *)this + 63) = 0;
+  *((_DWORD *)this + 64) = 1128792064;
   this->Render();
   this->ShowAxis();
-  *(this + 166) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptAddit_1, 0);
+  *((_DWORD *)this + 166) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptAddit_1, 0);
   v2 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aCbsceneFivelin);
-  *(this + 167) = v2;
+  *((_DWORD *)this + 167) = v2;
   v2->LoadTexture(1);
   v3 = operator new(0x44u);
   if ( v3 )
   {
-    v4 = *(this + 167);
+    v4 = *((_DWORD *)this + 167);
     v3[16] = 1;
     *v3 = v4;
   }
@@ -97,16 +143,16 @@ char sub_50FEE0()
   {
     v3 = 0;
   }
-  *(this + 168) = v3;
+  *((_DWORD *)this + 168) = v3;
   v5 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aCbsceneFivelin_0);
-  *(this + 169) = v5;
+  *((_DWORD *)this + 169) = v5;
   v5->LoadTexture(1);
   v6 = operator new(0x44u);
   if ( v6 )
   {
-    v7 = *(this + 169);
+    v7 = *((_DWORD *)this + 169);
     v6[16] = 1;
     *v6 = v7;
   }
@@ -114,7 +160,7 @@ char sub_50FEE0()
   {
     v6 = 0;
   }
-  *(this + 170) = v6;
+  *((_DWORD *)this + 170) = v6;
   if ( !v6 )
   {
     qmemcpy(
@@ -193,123 +239,123 @@ char sub_510180()
   this->SetFlingRotY();
   v2 = *(_DWORD *)(*(_DWORD *)*this + 112);
   v3 = *(_DWORD *)(v2 + 64);
-  *(this + 242) = v3;
+  *((_DWORD *)this + 242) = v3;
   switch ( v3 )
   {
     case 1:
-      *(this + 204) = 2134481581;
+      *((_DWORD *)this + 204) = 2134481581;
       break;
     case 2:
-      *(this + 204) = 2145285425;
+      *((_DWORD *)this + 204) = 2145285425;
       break;
     case 3:
-      *(this + 204) = 2136127083;
+      *((_DWORD *)this + 204) = 2136127083;
       break;
     case 4:
-      *(this + 204) = 2145285565;
+      *((_DWORD *)this + 204) = 2145285565;
       break;
     case 5:
-      *(this + 204) = 2144775770;
+      *((_DWORD *)this + 204) = 2144775770;
       break;
     default:
       break;
   }
-  v4 = CCBRoleState::CheckDeath(*(this + 242));
-  *(this + 20) = *(this + 41);
-  *(this + 21) = *(this + 42);
-  *(this + 22) = *(this + 43);
+  v4 = CCBRoleState::CheckDeath(*((_DWORD *)this + 242));
+  *((_DWORD *)this + 20) = *((_DWORD *)this + 41);
+  *((_DWORD *)this + 21) = *((_DWORD *)this + 42);
+  *((_DWORD *)this + 22) = *((_DWORD *)this + 43);
   switch ( v4 )
   {
     case 1:
       *((float *)this + 230) = *((float *)this + 230) + 1.256636;
-      *(this + 5) = *(this + 38);
-      *(this + 6) = *(this + 39);
-      *(this + 7) = *(this + 40);
-      *(this + 17) = *(this + 32);
-      *(this + 18) = *(this + 33);
-      *(this + 19) = *(this + 34);
-      *(this + 11) = *(this + 35);
-      *(this + 12) = *(this + 36);
-      *(this + 13) = *(this + 37);
-      *(this + 14) = *(this + 29);
-      *(this + 15) = *(this + 30);
-      *(this + 16) = *(this + 31);
-      *(this + 8) = *(this + 26);
-      *(this + 9) = *(this + 27);
-      v5 = *(this + 28);
+      *((_DWORD *)this + 5) = *((_DWORD *)this + 38);
+      *((_DWORD *)this + 6) = *((_DWORD *)this + 39);
+      *((_DWORD *)this + 7) = *((_DWORD *)this + 40);
+      *((_DWORD *)this + 17) = *((_DWORD *)this + 32);
+      *((_DWORD *)this + 18) = *((_DWORD *)this + 33);
+      *((_DWORD *)this + 19) = *((_DWORD *)this + 34);
+      *((_DWORD *)this + 11) = *((_DWORD *)this + 35);
+      *((_DWORD *)this + 12) = *((_DWORD *)this + 36);
+      *((_DWORD *)this + 13) = *((_DWORD *)this + 37);
+      *((_DWORD *)this + 14) = *((_DWORD *)this + 29);
+      *((_DWORD *)this + 15) = *((_DWORD *)this + 30);
+      *((_DWORD *)this + 16) = *((_DWORD *)this + 31);
+      *((_DWORD *)this + 8) = *((_DWORD *)this + 26);
+      *((_DWORD *)this + 9) = *((_DWORD *)this + 27);
+      v5 = *((_DWORD *)this + 28);
       goto LABEL_13;
     case 2:
       *((float *)this + 230) = *((float *)this + 230) + 2.513272;
-      *(this + 5) = *(this + 32);
-      *(this + 6) = *(this + 33);
-      *(this + 7) = *(this + 34);
-      *(this + 17) = *(this + 35);
-      *(this + 18) = *(this + 36);
-      *(this + 19) = *(this + 37);
-      *(this + 11) = *(this + 29);
-      *(this + 12) = *(this + 30);
-      *(this + 13) = *(this + 31);
-      *(this + 14) = *(this + 26);
-      *(this + 15) = *(this + 27);
-      *(this + 16) = *(this + 28);
-      *(this + 8) = *(this + 38);
-      *(this + 9) = *(this + 39);
-      v5 = *(this + 40);
+      *((_DWORD *)this + 5) = *((_DWORD *)this + 32);
+      *((_DWORD *)this + 6) = *((_DWORD *)this + 33);
+      *((_DWORD *)this + 7) = *((_DWORD *)this + 34);
+      *((_DWORD *)this + 17) = *((_DWORD *)this + 35);
+      *((_DWORD *)this + 18) = *((_DWORD *)this + 36);
+      *((_DWORD *)this + 19) = *((_DWORD *)this + 37);
+      *((_DWORD *)this + 11) = *((_DWORD *)this + 29);
+      *((_DWORD *)this + 12) = *((_DWORD *)this + 30);
+      *((_DWORD *)this + 13) = *((_DWORD *)this + 31);
+      *((_DWORD *)this + 14) = *((_DWORD *)this + 26);
+      *((_DWORD *)this + 15) = *((_DWORD *)this + 27);
+      *((_DWORD *)this + 16) = *((_DWORD *)this + 28);
+      *((_DWORD *)this + 8) = *((_DWORD *)this + 38);
+      *((_DWORD *)this + 9) = *((_DWORD *)this + 39);
+      v5 = *((_DWORD *)this + 40);
       goto LABEL_13;
     case 3:
       *((float *)this + 230) = *((float *)this + 230) + 5.0265441;
-      *(this + 5) = *(this + 29);
-      *(this + 6) = *(this + 30);
-      *(this + 7) = *(this + 31);
-      *(this + 17) = *(this + 26);
-      *(this + 18) = *(this + 27);
-      *(this + 19) = *(this + 28);
-      *(this + 11) = *(this + 38);
-      *(this + 12) = *(this + 39);
-      *(this + 13) = *(this + 40);
-      *(this + 14) = *(this + 32);
-      *(this + 15) = *(this + 33);
-      *(this + 16) = *(this + 34);
-      *(this + 8) = *(this + 35);
-      *(this + 9) = *(this + 36);
-      v5 = *(this + 37);
+      *((_DWORD *)this + 5) = *((_DWORD *)this + 29);
+      *((_DWORD *)this + 6) = *((_DWORD *)this + 30);
+      *((_DWORD *)this + 7) = *((_DWORD *)this + 31);
+      *((_DWORD *)this + 17) = *((_DWORD *)this + 26);
+      *((_DWORD *)this + 18) = *((_DWORD *)this + 27);
+      *((_DWORD *)this + 19) = *((_DWORD *)this + 28);
+      *((_DWORD *)this + 11) = *((_DWORD *)this + 38);
+      *((_DWORD *)this + 12) = *((_DWORD *)this + 39);
+      *((_DWORD *)this + 13) = *((_DWORD *)this + 40);
+      *((_DWORD *)this + 14) = *((_DWORD *)this + 32);
+      *((_DWORD *)this + 15) = *((_DWORD *)this + 33);
+      *((_DWORD *)this + 16) = *((_DWORD *)this + 34);
+      *((_DWORD *)this + 8) = *((_DWORD *)this + 35);
+      *((_DWORD *)this + 9) = *((_DWORD *)this + 36);
+      v5 = *((_DWORD *)this + 37);
       goto LABEL_13;
     case 4:
       *((float *)this + 230) = *((float *)this + 230) + 3.769908;
-      *(this + 5) = *(this + 35);
-      *(this + 6) = *(this + 36);
-      *(this + 7) = *(this + 37);
-      *(this + 17) = *(this + 29);
-      *(this + 18) = *(this + 30);
-      *(this + 19) = *(this + 31);
-      *(this + 11) = *(this + 26);
-      *(this + 12) = *(this + 27);
-      *(this + 13) = *(this + 28);
-      *(this + 14) = *(this + 38);
-      *(this + 15) = *(this + 39);
-      *(this + 16) = *(this + 40);
-      *(this + 8) = *(this + 32);
-      *(this + 9) = *(this + 33);
-      v5 = *(this + 34);
+      *((_DWORD *)this + 5) = *((_DWORD *)this + 35);
+      *((_DWORD *)this + 6) = *((_DWORD *)this + 36);
+      *((_DWORD *)this + 7) = *((_DWORD *)this + 37);
+      *((_DWORD *)this + 17) = *((_DWORD *)this + 29);
+      *((_DWORD *)this + 18) = *((_DWORD *)this + 30);
+      *((_DWORD *)this + 19) = *((_DWORD *)this + 31);
+      *((_DWORD *)this + 11) = *((_DWORD *)this + 26);
+      *((_DWORD *)this + 12) = *((_DWORD *)this + 27);
+      *((_DWORD *)this + 13) = *((_DWORD *)this + 28);
+      *((_DWORD *)this + 14) = *((_DWORD *)this + 38);
+      *((_DWORD *)this + 15) = *((_DWORD *)this + 39);
+      *((_DWORD *)this + 16) = *((_DWORD *)this + 40);
+      *((_DWORD *)this + 8) = *((_DWORD *)this + 32);
+      *((_DWORD *)this + 9) = *((_DWORD *)this + 33);
+      v5 = *((_DWORD *)this + 34);
       goto LABEL_13;
     case 5:
-      *(this + 5) = *(this + 26);
-      *(this + 6) = *(this + 27);
-      *(this + 7) = *(this + 28);
-      *(this + 17) = *(this + 38);
-      *(this + 18) = *(this + 39);
-      *(this + 19) = *(this + 40);
-      *(this + 11) = *(this + 32);
-      *(this + 12) = *(this + 33);
-      *(this + 13) = *(this + 34);
-      *(this + 14) = *(this + 35);
-      *(this + 15) = *(this + 36);
-      *(this + 16) = *(this + 37);
-      *(this + 8) = *(this + 29);
-      *(this + 9) = *(this + 30);
-      v5 = *(this + 31);
+      *((_DWORD *)this + 5) = *((_DWORD *)this + 26);
+      *((_DWORD *)this + 6) = *((_DWORD *)this + 27);
+      *((_DWORD *)this + 7) = *((_DWORD *)this + 28);
+      *((_DWORD *)this + 17) = *((_DWORD *)this + 38);
+      *((_DWORD *)this + 18) = *((_DWORD *)this + 39);
+      *((_DWORD *)this + 19) = *((_DWORD *)this + 40);
+      *((_DWORD *)this + 11) = *((_DWORD *)this + 32);
+      *((_DWORD *)this + 12) = *((_DWORD *)this + 33);
+      *((_DWORD *)this + 13) = *((_DWORD *)this + 34);
+      *((_DWORD *)this + 14) = *((_DWORD *)this + 35);
+      *((_DWORD *)this + 15) = *((_DWORD *)this + 36);
+      *((_DWORD *)this + 16) = *((_DWORD *)this + 37);
+      *((_DWORD *)this + 8) = *((_DWORD *)this + 29);
+      *((_DWORD *)this + 9) = *((_DWORD *)this + 30);
+      v5 = *((_DWORD *)this + 31);
 LABEL_13:
-      *(this + 10) = v5;
+      *((_DWORD *)this + 10) = v5;
       break;
     default:
       break;
@@ -358,7 +404,7 @@ int sub_510540()
     v4 = 0;
   }
   v8 = -1;
-  *(this + 154) = v4;
+  *((_DWORD *)this + 154) = v4;
   if ( !v4 )
   {
     qmemcpy(
@@ -659,7 +705,7 @@ int sub_510C80()
   int v3; // ecx
 
   result = CCBStageScene::Init((int)this);
-  v3 = *(this + 154);
+  v3 = *((_DWORD *)this + 154);
   if ( v3 )
     return (*(int (__thiscall **)(int))(*(_DWORD *)v3 + 20))(v3);
   return result;
@@ -746,7 +792,7 @@ void sub_510E00()
   int v16; // [esp+44h] [ebp-8h]
   int v17; // [esp+48h] [ebp-4h]
 
-  if ( g_pGfxManager && *(this + 961) )
+  if ( g_pGfxManager && *((_DWORD *)this + 961) )
   {
     v1 = (gbRefObject *)gbEffectMgr::NewTrivalEffect(*(gbEffectMgr **)(g_pGfxManager + 200), 3);
     v13 = 80;
@@ -816,7 +862,7 @@ char sub_510F50()
   v8 = 0.0;
   if ( g_pGfxManager )
   {
-    result = *(this + 962);
+    result = *((_DWORD *)this + 962);
     if ( result )
     {
       v3 = 0;
@@ -918,9 +964,9 @@ bool sub_511110()
   v9 = v19 * v4;
   v14 = v8 + v16[4];
   v15 = v16[5] + v9;
-  v5 = *(this + 222) - v14;
-  v15 = *(this + 223) - v15;
-  v6 = *(this + 224) - (v4 * v20 + v17);
+  v5 = *((_DWORD *)this + 222) - v14;
+  v15 = *((_DWORD *)this + 223) - v15;
+  v6 = *((_DWORD *)this + 224) - (v4 * v20 + v17);
   v11[1] = v15;
   v16[0] = v6;
   v11[0] = v5;
@@ -936,10 +982,10 @@ int sub_5112B0()
   _DWORD *v3; // ecx
   int result; // eax
 
-  v1 = *(this + 231);
-  *(this + 228) = *(this + 229);
+  v1 = *((_DWORD *)this + 231);
+  *((_DWORD *)this + 228) = *((_DWORD *)this + 229);
   v2 = this + 225;
-  *(this + 230) = v1;
+  *((_DWORD *)this + 230) = v1;
   v3 = this + 222;
   *v3 = *v2;
   v3[1] = v2[1];
@@ -1131,11 +1177,11 @@ char sub_511AE0()
     v4 = 0;
     CIniFile::OpenFileWrite(&v3, aDatascriptComb_1);
     CIniFile::WriteSection(&v3, aFivelineup);
-    CIniFile::WriteLine(&v3, asc_5D8B80, *(this + 222));
-    CIniFile::WriteLine(&v3, "y", *(this + 223));
-    CIniFile::WriteLine(&v3, "z", *(this + 224));
-    CIniFile::WriteLine(&v3, aRadius, *(this + 228));
-    CIniFile::WriteLine(&v3, aRoll, *(this + 230));
+    CIniFile::WriteLine(&v3, asc_5D8B80, *((_DWORD *)this + 222));
+    CIniFile::WriteLine(&v3, "y", *((_DWORD *)this + 223));
+    CIniFile::WriteLine(&v3, "z", *((_DWORD *)this + 224));
+    CIniFile::WriteLine(&v3, aRadius, *((_DWORD *)this + 228));
+    CIniFile::WriteLine(&v3, aRoll, *((_DWORD *)this + 230));
     v4 = -1;
     CIniFile::~CIniFile(&v3);
   }

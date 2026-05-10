@@ -12,7 +12,7 @@ int ScriptObj::Destroy()
   *((_DWORD *)this + 157) = 0;
   if ( v2 )
   {
-    result = (**v2)((_DWORD)v2, 1);
+    result = (**v2)(v2, 1);
     *((_DWORD *)this + 360) = 0;
   }
   *((_DWORD *)this + 363) = 0;

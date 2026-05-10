@@ -2,6 +2,36 @@
 #include "pal3/globals.h"
 #include "pal3/gen/EquipUI.h"
 
+// Forward declarations for unnamed functions
+int sub_47F590(...);
+int sub_483650(...);
+int sub_484E70(...);
+int sub_48A2F0(...);
+int sub_48D5D0(...);
+int sub_4945C0(...);
+int sub_496190(...);
+int sub_49E840(...);
+int sub_49F2E0(...);
+int sub_4A2170(...);
+int sub_4A22E0(...);
+int sub_4A26D0(...);
+int sub_4A2BD0(...);
+int sub_4A2F90(...);
+int sub_4AB6B0(...);
+int sub_4B0820(...);
+int sub_4B4690(...);
+int sub_4B47E0(...);
+
+// Unnamed globals (extern)
+extern char aUiGamemainuiCo_19[];
+extern char aUiGamemainuiCo_23[];
+extern char aUiGamemainuiSt_1[];
+extern unsigned char byte_5CEFA8;
+extern unsigned char byte_5CEFA9;
+extern unsigned char byte_DE5F92;
+extern unsigned char byte_DE5F93;
+extern void *off_56F040;
+
 // 0x004A1E40
 int EquipUI::Create()
 {

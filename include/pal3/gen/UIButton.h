@@ -3,10 +3,8 @@
 
 #include "UITextureArray.h"
 #include "UIWnd.h"
-#include "tagRECT.h"
 
 class _PlugInfo;
-class gbTexture;
 
 class UIButton : public UIWnd {
 public:
@@ -14,7 +12,8 @@ public:
     float m_ratiow; // +0x48
     float m_ratioh; // +0x4C
     tagRECT m_drawrc; // +0x50
-    UIButton::UIBUTTON_STATE m_state; // +0x60
+    struct UIBUTTON_STATE {}; // nested type stub
+    UIBUTTON_STATE m_state; // +0x60
     unsigned char m_canctrl; // +0x64
     unsigned char m_bLockUpdate; // +0x65
     int m_offsetx; // +0x68

@@ -65,3 +65,6 @@ typedef int BOOL;
 
 // IDA helper: qmemcpy = memcpy
 #define qmemcpy memcpy
+
+// Note: IDA misidentifies UIWnd as stdiobuf/std::ios_base in this binary.
+// gen_cpp.py post-processing replaces these with UIWnd* automatically.

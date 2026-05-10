@@ -2,6 +2,15 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UISelectDialog.h"
 
+// Forward declarations for unnamed functions
+int sub_43F640(...);
+int sub_43F690(...);
+
+// Unnamed globals (extern)
+extern char aSeldlg[];
+extern char aUiFlexNote_0[];
+extern char aUiSceneSelpicT[];
+
 // 0x00451980
 int UISelectDialog::Create(int id, void *pRect, int parent, char *tex)
 {

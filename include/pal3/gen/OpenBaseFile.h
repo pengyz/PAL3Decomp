@@ -1,8 +1,6 @@
 #pragma once
 // Auto-generated: OpenBaseFile
 
-class gbVFileSystem;
-
 class OpenBaseFile {
 public:
     gbVFileSystem * m_plastsys; // +0x0

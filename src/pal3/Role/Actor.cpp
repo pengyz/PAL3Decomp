@@ -2,6 +2,30 @@
 #include "pal3/globals.h"
 #include "pal3/gen/Actor.h"
 
+// Forward declarations for unnamed functions
+int sub_43FD90(...);
+int sub_43FE90(...);
+int sub_4A1530(...);
+int sub_4A1CF0(...);
+int sub_535FD0(...);
+int sub_5370E0(...);
+int sub_5372B0(...);
+int sub_5372D0(...);
+int sub_5374E0(...);
+int sub_537510(...);
+
+// Unnamed globals (extern)
+extern char aPal3Timenotefi_96_0[];
+extern unsigned char byte_DD893C;
+extern unsigned char byte_DD8B3C;
+extern unsigned char byte_DDAD3C;
+extern int dword_17B129C;
+extern int dword_17B154C;
+extern float flt_17B1298;
+extern float flt_17B1548;
+extern void *off_570904;
+extern void *off_60154C;
+
 // 0x00536160
 int Actor::SetParam(int a2)
 {

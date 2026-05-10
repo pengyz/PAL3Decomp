@@ -2,6 +2,10 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UILBColumn.h"
 
+// Forward declarations for unnamed functions
+int sub_43DCA0(...);
+int sub_43DCC0(...);
+
 // 0x0043DCA0
 int sub_43DCA0()
 {

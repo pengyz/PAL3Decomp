@@ -1,8 +1,6 @@
 #pragma once
 // Auto-generated: GlowObj
 
-#include "gbColorFlt.h"
-
 class GlowObj {
 public:
     unsigned char m_bEnable; // +0x4

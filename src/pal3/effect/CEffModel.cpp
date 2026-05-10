@@ -2,23 +2,34 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CEffModel.h"
 
+// Forward declarations for unnamed functions
+int sub_4D0CE0(...);
+int sub_4D0D70(...);
+int sub_4D0EC0(...);
+int sub_4D1EF0(...);
+
+// Unnamed globals (extern)
+extern void *off_56FA24;
+extern void *off_56FA30;
+extern void *off_56FA6C;
+
 // 0x004D0CE0
-_DWORD * sub_4D0CE0(_DWORD *this)
+_DWORD * sub_4D0CE0()
 {
-  *(this + 1) = 0;
+  *((_DWORD *)this + 1) = 0;
   *((_BYTE *)this + 8) = 0;
-  *(this + 4) = 0;
-  *(this + 5) = 0;
-  *(this + 6) = 0;
-  *(this + 7) = -1;
-  *(this + 8) = -1;
-  *(this + 9) = 0;
-  *(this + 10) = 0;
-  *(this + 11) = 0;
-  *(this + 3) = &off_56FA6C;
-  *(this + 18) = -1;
+  *((_DWORD *)this + 4) = 0;
+  *((_DWORD *)this + 5) = 0;
+  *((_DWORD *)this + 6) = 0;
+  *((_DWORD *)this + 7) = -1;
+  *((_DWORD *)this + 8) = -1;
+  *((_DWORD *)this + 9) = 0;
+  *((_DWORD *)this + 10) = 0;
+  *((_DWORD *)this + 11) = 0;
+  *((_DWORD *)this + 3) = &off_56FA6C;
+  *((_DWORD *)this + 18) = -1;
   *this = &off_56FA30;
-  *(this + 3) = &off_56FA24;
+  *((_DWORD *)this + 3) = &off_56FA24;
   *((_BYTE *)this + 48) = 0;
   *((_BYTE *)this + 49) = 0;
   *((_BYTE *)this + 50) = 0;
@@ -26,15 +37,15 @@ _DWORD * sub_4D0CE0(_DWORD *this)
   *((_BYTE *)this + 54) = 0;
   *((_BYTE *)this + 52) = 0;
   *((_BYTE *)this + 53) = 0;
-  *(this + 14) = 0;
-  *(this + 15) = 0;
-  *(this + 16) = 0;
-  *(this + 17) = 0;
-  *(this + 39) = 0;
-  *(this + 40) = 0;
-  *(this + 41) = 0;
-  *(this + 1066) = 0;
-  *(this + 1067) = 0;
+  *((_DWORD *)this + 14) = 0;
+  *((_DWORD *)this + 15) = 0;
+  *((_DWORD *)this + 16) = 0;
+  *((_DWORD *)this + 17) = 0;
+  *((_DWORD *)this + 39) = 0;
+  *((_DWORD *)this + 40) = 0;
+  *((_DWORD *)this + 41) = 0;
+  *((_DWORD *)this + 1066) = 0;
+  *((_DWORD *)this + 1067) = 0;
   memset(this + 42, 0, 0x1000u);
   return this;
 }

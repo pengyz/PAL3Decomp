@@ -2,11 +2,43 @@
 #include "pal3/globals.h"
 #include "pal3/gen/Object3D.h"
 
+// Forward declarations for unnamed functions
+int sub_40EE00(...);
+int sub_43AFA0(...);
+int sub_444F60(...);
+int sub_47CB70(...);
+int sub_47CEE0(...);
+int sub_47CF40(...);
+int sub_47CFB0(...);
+int sub_47D030(...);
+int sub_47D130(...);
+int sub_47D230(...);
+int sub_47D320(...);
+int sub_47D440(...);
+int sub_47DC70(...);
+int sub_537060(...);
+
+// Unnamed globals (extern)
+extern char aOver[];
+extern char aSubgameHocksho_0[];
+extern char aSubgameHocksho_1[];
+extern char aUiFlexNote[];
+extern unsigned char byte_DC733C;
+extern int dword_DE4C94;
+extern void *off_56A66C;
+extern void *off_56A9C0;
+extern void *off_56B898;
+extern void *off_56B8A4;
+extern void *off_596420;
+extern void *off_596424;
+extern int unk_56B884;
+extern int unk_ABE000;
+
 // 0x0047CB70
 void sub_47CB70()
 {
   Object3D::LoadSubObject();
-  *(this + 21) = 0;
+  *((_DWORD *)this + 21) = 0;
 }
 
 // 0x0047CB90
@@ -175,32 +207,32 @@ void sub_47CEE0()
   void *v2; // edi
   void (__thiscall ***v3)(_DWORD, int); // ecx
 
-  if ( *(this + 1) == 1 )
+  if ( *((_DWORD *)this + 1) == 1 )
   {
 LABEL_7:
-    v3 = (void (__thiscall ***)(_DWORD, int))*(this + 2);
+    v3 = (void (__thiscall ***)(_DWORD, int))*((_DWORD *)this + 2);
     if ( v3 )
     {
       (**v3)(v3, 1);
-      *(this + 2) = 0;
+      *((_DWORD *)this + 2) = 0;
     }
     goto LABEL_9;
   }
-  if ( *(this + 1) != 2 )
+  if ( *((_DWORD *)this + 1) != 2 )
   {
-    if ( *(this + 1) != 3 )
+    if ( *((_DWORD *)this + 1) != 3 )
     {
       *(_BYTE *)this = 0;
       return;
     }
     goto LABEL_7;
   }
-  v2 = (void *)*(this + 2);
+  v2 = (void *)*((_DWORD *)this + 2);
   if ( v2 )
   {
-    sub_40EE00(*(this + 2));
+    sub_40EE00(*((_DWORD *)this + 2));
     operator delete(v2);
-    *(this + 2) = 0;
+    *((_DWORD *)this + 2) = 0;
     *(_BYTE *)this = 0;
     return;
   }
@@ -252,27 +284,27 @@ void sub_47D030(float a2, float a3, float a4)
 
   v4 = a4;
   v6 = a3;
-  *(this + 8) = a2;
-  *(this + 9) = v6;
-  *(this + 10) = v4;
-  a2 = *(this + 11) - *(this + 8);
-  v7 = *(this + 12) - *(this + 9);
+  *((_DWORD *)this + 8) = a2;
+  *((_DWORD *)this + 9) = v6;
+  *((_DWORD *)this + 10) = v4;
+  a2 = *((_DWORD *)this + 11) - *((_DWORD *)this + 8);
+  v7 = *((_DWORD *)this + 12) - *((_DWORD *)this + 9);
   *(float *)v11 = a2;
   a3 = v7;
-  v8 = *(this + 13) - *(this + 10);
+  v8 = *((_DWORD *)this + 13) - *((_DWORD *)this + 10);
   *(float *)&v11[1] = a3;
   a4 = v8;
   *(float *)&v11[2] = a4;
-  *(this + 25) = (gbVec3D *->Length()v11);
-  v9 = *(this + 8) - *(this + 11);
-  v12 = *(this + 9) - *(this + 12);
-  v10 = *(this + 10) - *(this + 13);
+  *((_DWORD *)this + 25) = (gbVec3D *->Length()v11);
+  v9 = *((_DWORD *)this + 8) - *((_DWORD *)this + 11);
+  v12 = *((_DWORD *)this + 9) - *((_DWORD *)this + 12);
+  v10 = *((_DWORD *)this + 10) - *((_DWORD *)this + 13);
   a3 = v12;
   v13 = v10;
   a2 = v9;
   a4 = v13;
   (gbVec3D *->Normalize()&a2);
-  *(this + 29) = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
+  *((_DWORD *)this + 29) = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
 }
 
 // 0x0047D130
@@ -290,27 +322,27 @@ void sub_47D130(float a2, float a3, float a4)
 
   v4 = a4;
   v6 = a3;
-  *(this + 11) = a2;
-  *(this + 12) = v6;
-  *(this + 13) = v4;
-  a2 = *(this + 11) - *(this + 8);
-  v7 = *(this + 12) - *(this + 9);
+  *((_DWORD *)this + 11) = a2;
+  *((_DWORD *)this + 12) = v6;
+  *((_DWORD *)this + 13) = v4;
+  a2 = *((_DWORD *)this + 11) - *((_DWORD *)this + 8);
+  v7 = *((_DWORD *)this + 12) - *((_DWORD *)this + 9);
   *(float *)v11 = a2;
   a3 = v7;
-  v8 = *(this + 13) - *(this + 10);
+  v8 = *((_DWORD *)this + 13) - *((_DWORD *)this + 10);
   *(float *)&v11[1] = a3;
   a4 = v8;
   *(float *)&v11[2] = a4;
-  *(this + 25) = (gbVec3D *->Length()v11);
-  v9 = *(this + 8) - *(this + 11);
-  v12 = *(this + 9) - *(this + 12);
-  v10 = *(this + 10) - *(this + 13);
+  *((_DWORD *)this + 25) = (gbVec3D *->Length()v11);
+  v9 = *((_DWORD *)this + 8) - *((_DWORD *)this + 11);
+  v12 = *((_DWORD *)this + 9) - *((_DWORD *)this + 12);
+  v10 = *((_DWORD *)this + 10) - *((_DWORD *)this + 13);
   a3 = v12;
   v13 = v10;
   a2 = v9;
   a4 = v13;
   (gbVec3D *->Normalize()&a2);
-  *(this + 29) = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
+  *((_DWORD *)this + 29) = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
 }
 
 // 0x0047D230
@@ -330,17 +362,17 @@ long double sub_47D230()
 
   v9 = 0.0;
   v10 = 0.0;
-  v2 = *(this + 8) - *(this + 11);
-  v3 = *(this + 9) - *(this + 12);
+  v2 = *((_DWORD *)this + 8) - *((_DWORD *)this + 11);
+  v3 = *((_DWORD *)this + 9) - *((_DWORD *)this + 12);
   v11 = 1.0;
   v12 = v3;
-  v4 = *(this + 10) - *(this + 13);
+  v4 = *((_DWORD *)this + 10) - *((_DWORD *)this + 13);
   v7 = v12;
   v13 = v4;
   v6 = v2;
   v8 = v13;
   (gbVec3D *->Normalize()&v6);
-  if ( *(this + 8) >= (double)*(this + 11) )
+  if ( *((_DWORD *)this + 8) >= (double)*((_DWORD *)this + 11) )
     return v6->IsOverCVD(v7, v8, v9, v10, v11);
   else
     return 360.0 - v6->IsOverCVD(v7, v8, v9, v10, v11);
@@ -370,38 +402,38 @@ void sub_47D320()
   float v20; // [esp+24h] [ebp-8h]
   float v21; // [esp+28h] [ebp-4h]
 
-  v2 = *(this + 22) * 0.017453292;
-  v3 = *(this + 23) * 0.017453292;
+  v2 = *((_DWORD *)this + 22) * 0.017453292;
+  v3 = *((_DWORD *)this + 23) * 0.017453292;
   v13 = cos(v3);
-  *(this + 26) = sin(v2) * v13;
-  *(this + 27) = sin(v3);
-  *(this + 28) = -(cos(v2) * v13);
-  v4 = *(this + 25);
-  v17 = v4 * *(this + 26);
-  v18 = v4 * *(this + 27);
-  v5 = v4 * *(this + 28);
-  v6 = *(this + 11) - v17;
-  v7 = *(this + 12) - v18;
+  *((_DWORD *)this + 26) = sin(v2) * v13;
+  *((_DWORD *)this + 27) = sin(v3);
+  *((_DWORD *)this + 28) = -(cos(v2) * v13);
+  v4 = *((_DWORD *)this + 25);
+  v17 = v4 * *((_DWORD *)this + 26);
+  v18 = v4 * *((_DWORD *)this + 27);
+  v5 = v4 * *((_DWORD *)this + 28);
+  v6 = *((_DWORD *)this + 11) - v17;
+  v7 = *((_DWORD *)this + 12) - v18;
   v17 = 0.0;
   v18 = v7;
-  v8 = *(this + 13) - v5;
+  v8 = *((_DWORD *)this + 13) - v5;
   v9 = v18;
   v18 = 0.0;
-  *(this + 9) = v9;
+  *((_DWORD *)this + 9) = v9;
   v19 = v8;
   v10 = v19;
   v19 = 1.0;
-  *(this + 8) = v6;
-  *(this + 10) = v10;
-  v11 = *(this + 8) - *(this + 11);
-  v20 = *(this + 9) - *(this + 12);
-  v12 = *(this + 10) - *(this + 13);
+  *((_DWORD *)this + 8) = v6;
+  *((_DWORD *)this + 10) = v10;
+  v11 = *((_DWORD *)this + 8) - *((_DWORD *)this + 11);
+  v20 = *((_DWORD *)this + 9) - *((_DWORD *)this + 12);
+  v12 = *((_DWORD *)this + 10) - *((_DWORD *)this + 13);
   v15 = v20;
   v21 = v12;
   v14 = v11;
   v16 = v21;
   (gbVec3D *->Normalize()&v14);
-  *(this + 29) = v14->IsOverCVD(v15, v16, v17, v18, v19);
+  *((_DWORD *)this + 29) = v14->IsOverCVD(v15, v16, v17, v18, v19);
 }
 
 // 0x0047D440

@@ -2,6 +2,10 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UINote.h"
 
+// Forward declarations for unnamed functions
+int sub_445ED0(...);
+int sub_445F60(...);
+
 // 0x004450A0
 void * UINote::Create(int id, int a3, int a4, char *tex)
 {

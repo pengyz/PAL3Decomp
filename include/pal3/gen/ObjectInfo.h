@@ -3,9 +3,6 @@
 
 #include "ObjectInfoBase.h"
 #include "PolyLine.h"
-#include "gbAABBox.h"
-#include "gbVec3D.h"
-#include "tagRECT.h"
 
 class ObjectInfo : public ObjectInfoBase {
 public:

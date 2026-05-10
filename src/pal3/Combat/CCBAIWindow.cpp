@@ -2,6 +2,20 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBAIWindow.h"
 
+// Forward declarations for unnamed functions
+int sub_519AF0(...);
+int sub_51CA50(...);
+int sub_51CAA0(...);
+int sub_51CB60(...);
+int sub_51CCE0(...);
+int sub_51CD90(...);
+int sub_51CE40(...);
+int sub_51CF00(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed[];
+extern char aDProjectPal3Co_12[];
+
 // 0x004DFE00
 int CCBAIWindow::SetText(int a2, int a3)
 {
@@ -57,12 +71,12 @@ int sub_51CAA0()
   int v5; // [esp+Ch] [ebp-Ch]
 
   this->SetScroll();
-  v2 = *(this + 4);
-  v5 = *(this + 5);
-  v3 = *(char **)(*(_DWORD *)(*(_DWORD *)(*(this + 42) + 1160) + 20) + 68);
-  v3->SetText(v2 + 105, v5 + 51, (int)*(float *)(*(this + 39) + 156), -6243078);
-  v3->SetText(v2 + 117, v5 + 76, (int)*(float *)(*(this + 40) + 156), -270174);
-  return v3->SetText(v2 + 107, v5 + 102, (int)*(float *)(*(this + 41) + 156), -349995);
+  v2 = *((_DWORD *)this + 4);
+  v5 = *((_DWORD *)this + 5);
+  v3 = *(char **)(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 42) + 1160) + 20) + 68);
+  v3->SetText(v2 + 105, v5 + 51, (int)*(float *)(*((_DWORD *)this + 39) + 156), -6243078);
+  v3->SetText(v2 + 117, v5 + 76, (int)*(float *)(*((_DWORD *)this + 40) + 156), -270174);
+  return v3->SetText(v2 + 107, v5 + 102, (int)*(float *)(*((_DWORD *)this + 41) + 156), -349995);
 }
 
 // 0x0051CB60

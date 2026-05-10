@@ -2,6 +2,16 @@
 #include "pal3/globals.h"
 #include "pal3/gen/ScreenEffect.h"
 
+// Forward declarations for unnamed functions
+int sub_4BDFB0(...);
+int sub_4BE8D0(...);
+int sub_4BEA60(...);
+int sub_4BEBB0(...);
+int sub_4BED00(...);
+
+// Unnamed globals (extern)
+extern void *off_56F508;
+
 // 0x004BDFB0
 _BYTE * sub_4BDFB0()
 {
@@ -11,7 +21,7 @@ _BYTE * sub_4BDFB0()
   sub_4BEA60(this + 32);
   sub_4BEBB0(this + 56);
   sub_4BED00(this + 80);
-  *(this + 104) = v3;
+  *((_DWORD *)this + 104) = v3;
   *((_DWORD *)this + 27) = 0;
   *((_DWORD *)this + 28) = 0;
   *((_DWORD *)this + 29) = 0;

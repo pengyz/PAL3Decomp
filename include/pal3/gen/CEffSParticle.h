@@ -2,7 +2,6 @@
 // Auto-generated: CEffSParticle
 
 #include "CEffObj.h"
-#include "gbVec3D.h"
 
 class CParticleEffect;
 

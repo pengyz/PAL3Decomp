@@ -2,7 +2,6 @@
 // Auto-generated: tagRoleTask
 
 #include "ECBRoleTaskMode.h"
-#include "gbVec3D.h"
 #include "tagCmdData.h"
 
 class tagRoleTask {

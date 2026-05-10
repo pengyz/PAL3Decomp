@@ -3,10 +3,6 @@
 
 #include "UIPar_TimeCtrl.h"
 #include "UIStatic.h"
-#include "gbColorQuad.h"
-#include "tagRECT.h"
-
-class gbTexture;
 
 class UIParticle {
 public:

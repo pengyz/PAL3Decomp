@@ -12,8 +12,6 @@
 #include "UIParticle.h"
 #include "UIStatic.h"
 #include "m_RoleState.h"
-#include "tagPOINT.h"
-#include "tagRECT.h"
 
 class StateUI;
 

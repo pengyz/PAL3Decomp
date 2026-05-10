@@ -7,9 +7,6 @@
 #include "tagEffObjType.h"
 
 class CCBSystem;
-class gbCamera;
-class gbGfxManager;
-class gbRenderEffect;
 
 class CEffMgr {
 public:

@@ -2,6 +2,20 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBStageShadow.h"
 
+// Forward declarations for unnamed functions
+int sub_511E80(...);
+int sub_511EE0(...);
+int sub_511F90(...);
+int sub_512240(...);
+int sub_5122F0(...);
+
+// Unnamed globals (extern)
+extern char aCNewFailed_0[];
+extern char aDProjectPal3Co_9[];
+extern char aGfxscriptShado[];
+extern char aShadowTga_0[];
+extern int dword_17ACA7C;
+
 // 0x00511EE0
 char sub_511EE0()
 {
@@ -14,13 +28,13 @@ char sub_511EE0()
   v2 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aShadowTga_0);
-  *(this + 1) = v2;
+  *((_DWORD *)this + 1) = v2;
   v2->LoadTexture(1);
-  *(this + 2) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptShado, 0);
+  *((_DWORD *)this + 2) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptShado, 0);
   v3 = operator new(0x44u);
   if ( v3 )
   {
-    v4 = *(this + 1);
+    v4 = *((_DWORD *)this + 1);
     v3[16] = 1;
     *v3 = v4;
   }
@@ -28,7 +42,7 @@ char sub_511EE0()
   {
     v3 = 0;
   }
-  *(this + 3) = v3;
+  *((_DWORD *)this + 3) = v3;
   if ( !v3 )
   {
     qmemcpy(

@@ -2,6 +2,9 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBAttackSequen.h"
 
+// Forward declarations for unnamed functions
+int sub_446030(...);
+
 // 0x004DB5C0
 int CCBAttackSequen::Update()
 {

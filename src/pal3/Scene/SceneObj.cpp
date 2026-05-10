@@ -2,6 +2,9 @@
 #include "pal3/globals.h"
 #include "pal3/gen/SceneObj.h"
 
+// Unnamed globals (extern)
+extern void *off_5708E8;
+
 // 0x00407B50
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
 char __thiscall SceneObj::Update(SceneObj *this, unsigned int a2)
@@ -133,9 +136,9 @@ void * SceneObj::Destructor()
 void SceneObj::DestroyInternal()
 {
   *(_DWORD *)this = &off_5708E8;
-  (std::ios_base *->_UIFrameWnd()(this + 3340));
-  stdiobuf::~stdiobuf((std::ios_base *)(this + 3096));
+  (UIWnd *->_UIFrameWnd()(this + 3340));
+  UIWnd::~UIWnd((UIWnd *)(this + 3096));
   (UIItem *->UIItem()this + 1728);
   (UIItem *->UIItem()this + 360);
-  stdiobuf::~stdiobuf((std::ios_base *)this);
+  UIWnd::~UIWnd((UIWnd *)this);
 }

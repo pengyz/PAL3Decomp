@@ -3,9 +3,7 @@
 
 #include "UI3DObj.h"
 #include "UIWnd.h"
-#include "gbVec3D.h"
 
-class gbCamera;
 class gbLightObj;
 
 class UI3DCtrl : public UIWnd {

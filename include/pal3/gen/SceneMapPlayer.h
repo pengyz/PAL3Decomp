@@ -2,12 +2,8 @@
 // Auto-generated: SceneMapPlayer
 
 #include "SceneMap.h"
-#include "gbImage2D.h"
-#include "tagPOINT.h"
-#include "tagRECT.h"
 
 class NavTileLayer;
-class gbTexture;
 
 class SceneMapPlayer : public SceneMap {
 public:

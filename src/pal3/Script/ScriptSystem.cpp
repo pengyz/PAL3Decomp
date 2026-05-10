@@ -2,6 +2,54 @@
 #include "pal3/globals.h"
 #include "pal3/gen/ScriptSystem.h"
 
+// Forward declarations for unnamed functions
+int sub_410360(...);
+int sub_411E00(...);
+int sub_412230(...);
+int sub_4122C0(...);
+int sub_413CD0(...);
+int sub_4142E0(...);
+int sub_4150C0(...);
+int sub_416BC0(...);
+int sub_417420(...);
+int sub_417C50(...);
+int sub_419090(...);
+int sub_419200(...);
+int sub_419B30(...);
+int sub_41A450(...);
+int sub_41B300(...);
+int sub_41B6C0(...);
+int sub_41EFA0(...);
+int sub_431870(...);
+int sub_4318A0(...);
+int sub_4326A0(...);
+int sub_43A270(...);
+int sub_445500(...);
+int sub_4524B0(...);
+
+// Unnamed globals (extern)
+extern char aDatascriptScen_0[];
+extern char aFreeranges[];
+extern char aMons[];
+extern char aRole[];
+extern char aTalkrange[];
+extern char aWe015[];
+extern char aWe016[];
+extern char aWe017[];
+extern char aWe018[];
+extern char aWe019[];
+extern int dword_586194;
+extern int dword_58B260;
+extern int dword_BFFDB0;
+extern int dword_C02198;
+extern int dword_C025EC;
+extern int dword_C042E8;
+extern float flt_58B378;
+extern float flt_58DE64;
+extern void *off_5861F8;
+extern void *off_58B444;
+extern void *off_58B448;
+
 // 0x0040C630
 void ScriptSystem::Render(void *a1)
 {

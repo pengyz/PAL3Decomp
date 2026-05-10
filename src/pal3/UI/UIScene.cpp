@@ -2,6 +2,23 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UIScene.h"
 
+// Forward declarations for unnamed functions
+int sub_4019F0(...);
+int sub_419C20(...);
+int sub_4235B0(...);
+int sub_424570(...);
+int sub_43A660(...);
+int sub_43A770(...);
+int sub_43A810(...);
+int sub_43AB00(...);
+int sub_43AB20(...);
+int sub_43AD40(...);
+int sub_445ED0(...);
+int sub_445F60(...);
+
+// Unnamed globals (extern)
+extern void *off_56AC70;
+
 // 0x004200A0
 int UIScene::Render(int a2)
 {
@@ -197,19 +214,19 @@ void __thiscall sub_43A770(_DWORD *this)
 {
   UIWnd::UIWnd();
   UIWnd::DestroyChildren(this + 29);
-  *(this + 24) = 0;
-  *(this + 49) = 0;
+  *((_DWORD *)this + 24) = 0;
+  *((_DWORD *)this + 49) = 0;
   *this = &off_56AC70;
   *((_BYTE *)this + 204) = 1;
   memset(this + 53, 0, 0x80u);
-  *(this + 19) = 1065353216;
-  *(this + 18) = 1065353216;
-  *(this + 52) = 1;
+  *((_DWORD *)this + 19) = 1065353216;
+  *((_DWORD *)this + 18) = 1065353216;
+  *((_DWORD *)this + 52) = 1;
 }
 
 // 0x0043A810
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void __thiscall sub_43A810(std::ios_base *this)
+void __thiscall sub_43A810(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AC70;
   UIScene::OnMessage2();

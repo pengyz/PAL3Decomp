@@ -252,6 +252,22 @@ def transform_method_code(cls_name, method_name, code, sig):
     # 5. Replace MEMORY[0xADDR] with named globals
     code = replace_memory_refs(code)
 
+    # 6b. Fix IDA type misidentification: stdiobuf/ios_base -> UIWnd in game code
+    code = code.replace('stdiobuf *', 'UIWnd *')
+    code = code.replace('stdiobuf::', 'UIWnd::')
+    code = code.replace('(stdiobuf *)', '(UIWnd *)')
+    code = code.replace('std::ios_base *', 'UIWnd *')
+    code = code.replace('(std::ios_base *)', '(UIWnd *)')
+
+    # 6. Fix *(this + N) -> *((_DWORD *)this + N) for pointer arithmetic on typed this
+    code = re.sub(r'\*\(\s*this\s*\+\s*(\d+)\s*\)', r'*((_DWORD *)this + \1)', code)
+    code = re.sub(r'\*\(\s*this\s*-\s*(\d+)\s*\)', r'*((_DWORD *)this - \1)', code)
+    # Also: &this[N] -> &((_DWORD *)this)[N]  and  this[N] -> ((_DWORD *)this)[N]
+    # But be careful not to break this->member access
+
+    # 7. Fix void* to typed pointer: add (type*) cast for malloc/calloc returns
+    code = re.sub(r'(\w+\s*\*\s*\w+\s*=\s*)malloc\(', r'\1(void *)malloc(', code)
+
     return code
 
 
@@ -275,6 +291,55 @@ def split_params_simple(s):
     return result
 
 
+def collect_sub_refs(code):
+    """Find all sub_XXXXX references in code for forward declaration."""
+    return set(re.findall(r'\b(sub_[0-9A-Fa-f]+)\b', code))
+
+
+def collect_undefined_refs(code):
+    """Find likely undefined identifiers that need extern/forward decl."""
+    refs = set()
+    # IDA string constants: aXxxxx
+    refs.update(re.findall(r'\b(a[A-Z]\w{3,})\b', code))
+    # IDA unnamed globals: dword_XXX, byte_XXX, etc (only as identifiers, not types)
+    refs.update(re.findall(r'\b(dword_[0-9A-Fa-f]+)\b', code))
+    refs.update(re.findall(r'\b(byte_[0-9A-Fa-f]+)\b', code))
+    refs.update(re.findall(r'\b(word_[0-9A-Fa-f]+)\b', code))
+    refs.update(re.findall(r'\b(flt_[0-9A-Fa-f]+)\b', code))
+    refs.update(re.findall(r'\b(off_[0-9A-Fa-f]+)\b', code))
+    refs.update(re.findall(r'\b(unk_[0-9A-Fa-f]+)\b', code))
+    return refs
+
+
+def generate_forward_decls(all_code):
+    """Generate forward declarations for sub_ and unnamed globals."""
+    lines = []
+    subs = collect_sub_refs(all_code)
+    if subs:
+        lines.append("// Forward declarations for unnamed functions")
+        for s in sorted(subs):
+            lines.append("int %s(...);" % s)
+        lines.append("")
+
+    undef = collect_undefined_refs(all_code)
+    if undef:
+        lines.append("// Unnamed globals (extern)")
+        for u in sorted(undef):
+            if u.startswith('flt_'):
+                lines.append("extern float %s;" % u)
+            elif u.startswith('byte_'):
+                lines.append("extern unsigned char %s;" % u)
+            elif u.startswith('off_'):
+                lines.append("extern void *%s;" % u)
+            elif u.startswith('a') and u[1].isupper():
+                lines.append('extern char %s[];' % u)
+            else:
+                lines.append("extern int %s;" % u)
+        lines.append("")
+
+    return '\n'.join(lines)
+
+
 def generate_class_cpp(cls_name, methods):
     """Generate .cpp content for a class."""
     lines = []
@@ -290,9 +355,21 @@ def generate_class_cpp(cls_name, methods):
     # Sort methods by address
     methods.sort(key=lambda m: m['addr'])
 
+    # Transform all method code first
+    transformed = []
     for m in methods:
         code = transform_method_code(cls_name, m['method'], m['code'].strip(), m['sig'])
-        lines.append("// %s" % m['addr'])
+        transformed.append((m['addr'], code))
+
+    # Generate forward declarations based on all code in this file
+    all_code = '\n'.join(code for _, code in transformed)
+    fwd = generate_forward_decls(all_code)
+    if fwd:
+        lines.append(fwd)
+
+    # Emit transformed code
+    for addr, code in transformed:
+        lines.append("// %s" % addr)
         lines.append(code)
         lines.append("")
 
@@ -309,10 +386,22 @@ def generate_free_funcs_cpp(funcs):
     lines.append("")
 
     funcs.sort(key=lambda f: f['addr'])
+
+    # Transform all
+    transformed = []
     for f in funcs:
         code = f['code'].strip()
         code = replace_memory_refs(code)
-        lines.append("// %s" % f['addr'])
+        transformed.append((f['addr'], code))
+
+    # Forward declarations
+    all_code = '\n'.join(code for _, code in transformed)
+    fwd = generate_forward_decls(all_code)
+    if fwd:
+        lines.append(fwd)
+
+    for addr, code in transformed:
+        lines.append("// %s" % addr)
         lines.append(code)
         lines.append("")
 
