@@ -12,6 +12,7 @@ int sub_4B6820(...);
 extern char aGfxscriptGeomG[];
 extern char aGfxscriptGlowG[];
 extern unsigned char byte_DE6A4C;
+extern int dword_BFDA60;
 extern int dword_C11760;
 extern int unk_DE6A30;
 extern int unknown_libname_413;
@@ -31,11 +32,11 @@ void *RenderTarget3::GetInstance()
 // 0x004B65F0
 void RenderTarget3::Init()
 {
-  gbEffectMgr *v1; // edi
+  gbEffectMgr *pEffectMgr; // edi
 
-  v1 = (gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200);
-  *(_DWORD *)this = v1->NewRenderEffect(aGfxscriptGlowG, 0);
-  *((_DWORD *)this + 1) = v1->NewRenderEffect(aGfxscriptGeomG, 1u);
+  pEffectMgr = (gbEffectMgr *)dword_BFDA60->pEffectMgr;
+  *(_DWORD *)this = pEffectMgr->NewRenderEffect(aGfxscriptGlowG, 0);
+  *((_DWORD *)this + 1) = pEffectMgr->NewRenderEffect(aGfxscriptGeomG, 1u);
 }
 
 // 0x004B6630
@@ -79,8 +80,8 @@ void * RenderTarget3::End()
   void *result; // eax
 
   if ( *v0 )
-    return (*(void *(__stdcall **)(_DWORD, int, int))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816) + 228))(
-             *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
+    return (*(void *(__stdcall **)(_DWORD, int, int))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44] + 228))(
+             *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
              168,
              3);
   return result;
@@ -90,38 +91,38 @@ void * RenderTarget3::End()
 void RenderTarget3::Resolve()
 {
   gbDynVertBuf *DynVertBuf; // eax
-  __int32 v3; // esi
-  struct gbUIQuad v4; // [esp+24h] [ebp-78h] BYREF
+  int v3; // esi
+  struct gbUIQuad v4[2]; // [esp+24h] [ebp-78h] BYREF
   int v5; // [esp+8Ch] [ebp-10h]
   int v6; // [esp+98h] [ebp-4h]
 
   if ( *this )
   {
-    (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816) + 228))(
-      *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
+    (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44] + 228))(
+      *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
       168,
       7);
     if ( *((_DWORD *)this + 1) )
     {
       if ( dword_C11760 )
       {
-        v4.z = 0.0;
-        v4.color.ColorQuadFmt = -1;
-        v4.sv = 0.0;
-        v4.su = 0.0;
-        v4.eu = 1.0;
-        v4.ev = 1.0;
-        v4.sx = -1.0;
-        v4.ey = 1.0;
-        v4.ex = 1.0;
-        v4.sy = -1.0;
+        v4[0].z = 0.0;
+        v4[0].color.ColorQuadFmt = -1;
+        v4[0].sv = 0.0;
+        v4[0].su = 0.0;
+        v4[0].eu = 1.0;
+        v4[0].ev = 1.0;
+        v4[0].sx = -1.0;
+        v4[0].ey = 1.0;
+        v4[0].ex = 1.0;
+        v4[0].sy = -1.0;
         PushMatrixStacks();
         v6 = 0;
-        DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x15u);
+        DynVertBuf = ((gbVertPoolMgr *)dword_BFDA60->pVertPoolMgr)->GetDynVertBuf(0x15u);
         v3 = *((_DWORD *)this + 1);
         v5 = 1;
-        v4.color.Blue = v3;
-        DynVertBuf->RenderUIQuad(&v4, 1, (struct gbRenderEffect *)dword_C11760, (struct gbTextureArray *)&v4.color.Blue);
+        *(_DWORD *)&v4[0].color.Blue = v3;
+        DynVertBuf->RenderUIQuad(v4, 1, (struct gbRenderEffect *)dword_C11760, (struct gbTextureArray *)&v4[0].color.Blue);
         v6 = -1;
         PopMatrixStacks();
       }

@@ -3,15 +3,15 @@
 
 class FLOATING_SAVE_AREA {
 public:
-    int ControlWord; // +0x0
-    int StatusWord; // +0x4
-    int TagWord; // +0x8
-    int ErrorOffset; // +0xC
-    int ErrorSelector; // +0x10
-    int DataOffset; // +0x14
-    int DataSelector; // +0x18
-    int RegisterArea[80]; // +0x1C
-    int Cr0NpxState; // +0x15C
-    // total size: 0x160 (352)
+    UINT ControlWord; // +0x0
+    UINT StatusWord; // +0x4
+    UINT TagWord; // +0x8
+    UINT ErrorOffset; // +0xC
+    UINT ErrorSelector; // +0x10
+    UINT DataOffset; // +0x14
+    UINT DataSelector; // +0x18
+    unsigned char RegisterArea[80]; // +0x1C
+    UINT Cr0NpxState; // +0x6C
+    // total size: 0x70 (112)
 
 };

@@ -3,5 +3,5 @@
   "address": "0x00431E20",
   "size_bytes": 10,
   "signature": "int *()",
-  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\nint *unknown_libname_342()\n{\n  LOBYTE(stru_D8C2B8.m_joystickY) = (unsigned int)&stru_D8C2B8.m_joystickX >> 24;\n  stru_D8C2B8.m_joystickFreeX = 0;\n  stru_D8C2B8.m_joystickFreeY = 0;\n  stru_D8C2B8.m_joystickDeltaX = 0;\n  LOWORD(stru_D8C2B8.m_joystickDeltaY) = 0;\n  stru_D8C2B8.m_keyStates[0] = 0;\n  stru_D8C2B8.m_joystickX = 0;\n  return &stru_D8C2B8.m_joystickX;\n}\n"
+  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\nint *unknown_libname_342()\n{\n  LOBYTE(stru_D8C2B8.m_joystickY) = (unsigned int)&stru_D8C2B8.m_joystickX >> 24;\n  stru_D8C2B8.m_joystickFreeX = 0;\n  stru_D8C2B8.m_joystickFreeY = 0;\n  stru_D8C2B8.m_joystickDeltaX = 0;\n  LOWORD(stru_D8C2B8.m_joystickDeltaY) = 0;\n  *(_DWORD *)stru_D8C2B8.m_keyStates = 0;\n  stru_D8C2B8.m_joystickX = 0;\n  return &stru_D8C2B8.m_joystickX;\n}\n"
 }

@@ -26,7 +26,7 @@ _DWORD * CEffModel::Render()
   *(_DWORD *)&this->_pad_0000[40] = 0;
   *(_DWORD *)&this->_pad_0000[44] = 0;
   *(_DWORD *)&this->_pad_0000[12] = &off_56FA6C;
-  this->m_vecOffsetPos.x = NAN;
+  this->m_vecOffsetPos.z = NAN;
   *(_DWORD *)this->_pad_0000 = &off_56FA30;
   *(_DWORD *)&this->_pad_0000[12] = &off_56FA24;
   LOBYTE(this->m_pGeomNode) = 0;
@@ -38,8 +38,8 @@ _DWORD * CEffModel::Render()
   BYTE1(this->m_vecCurPos.x) = 0;
   this->m_vecCurPos.y = 0.0;
   this->m_vecCurPos.z = 0.0;
-  *(_DWORD *)this->_pad_0038 = 0;
-  *(_DWORD *)&this->_pad_0038[4] = 0;
+  this->m_vecOffsetPos.x = 0.0;
+  this->m_vecOffsetPos.y = 0.0;
   *((_DWORD *)this + 39) = 0;
   *((_DWORD *)this + 40) = 0;
   *((_DWORD *)this + 41) = 0;
@@ -72,7 +72,7 @@ int CEffModel::ProcInitTask(int a2, float a3, float a4, float a5)
   this->_pad_0000[8] = 0;
   HIBYTE(this->m_pGeomNode) = *(_BYTE *)(a2 + 214);
   sub_4D1EF0(this);
-  this->m_vecOffsetPos.z = 257;
+  this->m_vecRot.y = 257;
   *((_DWORD *)this + 38) = *(_DWORD *)(a2 + 204);
   if ( (g_bCursorVisible & 1) == 0 )
   {
@@ -102,21 +102,21 @@ int CEffModel::ProcInitTask(int a2, float a3, float a4, float a5)
     atexit(nullsub_1);
   }
   v7 = *(unsigned __int8 *)(a2 + 204);
-  *(_DWORD *)&this->_pad_0044[4] = 0;
+  *(_DWORD *)&this->m_bVisible = 0;
   *((float *)this + 37) = (float)v7;
-  *(_DWORD *)this->_pad_0044 = *(_DWORD *)(a2 + 180);
-  this->m_fSizeZ = *(float *)(a2 + 196);
+  this->m_vecRot.z = *(float *)(a2 + 180);
+  *((_DWORD *)this + 31) = *(_DWORD *)(a2 + 196);
   *((_DWORD *)this + 32) = *(_DWORD *)(a2 + 216);
   *((_DWORD *)this + 33) = *(_DWORD *)(a2 + 220);
-  *(_DWORD *)this->_pad_0050 = *(_DWORD *)(a2 + 200);
-  *(_DWORD *)&this->_pad_0050[4] = *(_DWORD *)(a2 + 200);
-  this->m_vecRot.x = a3 + *(float *)(a2 + 184);
-  this->m_vecRot.y = a4 + *(float *)(a2 + 188);
+  *((_DWORD *)this + 26) = *(_DWORD *)(a2 + 200);
+  *((_DWORD *)this + 27) = *(_DWORD *)(a2 + 200);
+  this->m_fSizeX = a3 + *(float *)(a2 + 184);
+  this->m_fSizeY = a4 + *(float *)(a2 + 188);
   v8 = a5 + *(float *)(a2 + 192);
-  *(_DWORD *)&this->m_bVisible = 0;
-  this->m_fSizeX = 0.0;
-  this->m_fSizeY = 0.0;
-  this->m_vecOffsetPos.y = 0.0;
-  this->m_vecRot.z = v8;
+  *((_DWORD *)this + 28) = 0;
+  *((_DWORD *)this + 29) = 0;
+  *((_DWORD *)this + 30) = 0;
+  this->m_vecRot.x = 0.0;
+  this->m_fSizeZ = v8;
   return 0;
 }

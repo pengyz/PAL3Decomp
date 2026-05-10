@@ -15,6 +15,7 @@ extern char aUiScenePage[];
 extern char aUiSceneTimebkT[];
 extern char aUiSceneTimeclo[];
 extern char aUiSceneTimepTg[];
+extern int dword_BFD6D4;
 
 // 0x00450F90
 int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
@@ -45,8 +46,8 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   ((UIWnd *)this)->Create(id, v16, v17);
   ((UINote *)((char *)this + 80))->Create(0, (int)v5, 0, aUiFlexDlg);
   *((_DWORD *)this + 37) = 1048576000;
-  v21 = g_Input.KeyInfo[120].HoldTime - 8;
-  v19 = g_Input.KeyInfo[120].HoldTime - 520;
+  v21 = dword_BFD6D4 - 8;
+  v19 = dword_BFD6D4 - 520;
   v7 = *((_DWORD *)this + 109);
   a2 = 8;
   v20 = 264;

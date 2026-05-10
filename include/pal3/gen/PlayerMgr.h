@@ -21,34 +21,34 @@ public:
     int m_favor[6]; // +0x1C
     int m_favor_old[6]; // +0x34
     RoleTaskPool m_RoleTask; // +0x4C
-    Comp_Donate m_CompDonate[10][5]; // +0x2E0
-    Inventory m_inventory; // +0x538
-    Reoccupy m_reoccupy; // +0x560
-    int dwWeaponWU; // +0x570
-    PlayerAtt m_att[5]; // +0x574
-    Role m_role[5]; // +0x2EDC
-    Role m_huaYing; // +0xDA1C
-    int m_bNGHS; // +0xFC5C
-    int m_bWPXS; // +0xFC60
-    Role m_FYS[3]; // +0xFC64
-    CParticleEffect * pNGHVarianceParticle; // +0x16324
-    Role m_SeekingMouse; // +0x16328
-    Role m_Bee; // +0x18568
-    int m_inteam[5]; // +0x1A7A8
-    int m_skill[5]; // +0x1A7BC
-    MonsterStar m_starts[10]; // +0x1A7D0
-    int m_pstate; // +0x1A870
-    float m_fFStime; // +0x1A874
-    int m_byGemUseTime[8]; // +0x1A878
-    int m_dwCombatTimes; // +0x1A898
-    int nImbibeNimbusTimes; // +0x1A89C
-    int nNimbus[5]; // +0x1A8A0
-    int bHaveNimbus; // +0x1A8B4
-    int bPXVariance; // +0x1A8B8
-    int m_bFinalCombat; // +0x1A8BC
-    int m_nCombatHurtHP; // +0x1A8C0
-    int m_nCombatHurtMP; // +0x1A8C4
-    int m_bShowStatuary; // +0x1A8C8
-    // total size: 0x1A8CC (108748)
+    Comp_Donate m_CompDonate[10][5]; // +0x2F8
+    Inventory m_inventory; // +0x488
+    Reoccupy m_reoccupy; // +0x4B0
+    int dwWeaponWU; // +0x4C0
+    PlayerAtt m_att[5]; // +0x4C4
+    Role m_role[5]; // +0x2288
+    Role m_huaYing; // +0xCF30
+    int m_bNGHS; // +0xF1B8
+    int m_bWPXS; // +0xF1BC
+    Role m_FYS[3]; // +0xF1C0
+    CParticleEffect * pNGHVarianceParticle; // +0x15958
+    Role m_SeekingMouse; // +0x1595C
+    Role m_Bee; // +0x17BE4
+    int m_inteam[5]; // +0x19E6C
+    int m_skill[5]; // +0x19E80
+    MonsterStar m_starts[10]; // +0x19E94
+    int m_pstate; // +0x19F34
+    float m_fFStime; // +0x19F38
+    int m_byGemUseTime[8]; // +0x19F3C
+    int m_dwCombatTimes; // +0x19F5C
+    int nImbibeNimbusTimes; // +0x19F60
+    int nNimbus[5]; // +0x19F64
+    int bHaveNimbus; // +0x19F78
+    int bPXVariance; // +0x19F7C
+    int m_bFinalCombat; // +0x19F80
+    int m_nCombatHurtHP; // +0x19F84
+    int m_nCombatHurtMP; // +0x19F88
+    int m_bShowStatuary; // +0x19F8C
+    // total size: 0x19F90 (106384)
 
 };

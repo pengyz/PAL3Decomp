@@ -144,19 +144,19 @@ LABEL_10:
   this->m_fGridSize = *(float *)(a2 + 228);
   this->m_fMaxExplosivePower = *(float *)(a2 + 244);
   this->m_fMinExplosivePower = *(float *)(a2 + 248);
-  *(_DWORD *)this->m_vecExplosiveDir = *(_DWORD *)(a2 + 252);
-  *(_DWORD *)&this->m_vecExplosiveDir[4] = *(_DWORD *)(a2 + 256);
+  this->m_vecExplosiveDir.x = *(float *)(a2 + 252);
+  this->m_vecExplosiveDir.y = *(float *)(a2 + 256);
   v10 = this->m_nXDivision * this->m_nZDivision;
-  *(_DWORD *)&this->m_vecExplosiveDir[8] = *(_DWORD *)(a2 + 268);
+  this->m_vecExplosiveDir.z = *(float *)(a2 + 268);
   this->m_fPowerDec = *(float *)(a2 + 260);
   this->m_nQuad = v10;
   this->m_fFramePerSec = *(float *)(a2 + 180);
-  *(_DWORD *)this->m_vecPos = *(_DWORD *)(a2 + 184);
-  *(_DWORD *)&this->m_vecPos[4] = *(_DWORD *)(a2 + 188);
-  *(_DWORD *)&this->m_vecPos[8] = *(_DWORD *)(a2 + 192);
-  *(_DWORD *)this->m_vecRot = *(_DWORD *)(a2 + 216);
-  *(_DWORD *)&this->m_vecRot[4] = *(_DWORD *)(a2 + 196);
-  *(_DWORD *)&this->m_vecRot[8] = *(_DWORD *)(a2 + 220);
+  this->m_vecPos.x = *(float *)(a2 + 184);
+  this->m_vecPos.y = *(float *)(a2 + 188);
+  this->m_vecPos.z = *(float *)(a2 + 192);
+  this->m_vecRot.x = *(float *)(a2 + 216);
+  this->m_vecRot.y = *(float *)(a2 + 196);
+  this->m_vecRot.z = *(float *)(a2 + 220);
   this->m_bAdditiveBlend = *(_BYTE *)(a2 + 213);
   this->m_bNoZTest = *(_BYTE *)(a2 + 215);
   this->m_byMaxFrame = *(_BYTE *)(a2 + 176);
@@ -289,13 +289,13 @@ void CEffExplosive::Destroy()
     }
     v6 = (gbMatrixStack *)*(gbMatrixStack **)(*v4 + 216);
     v6->Push();
-    v7 = *(float *)this->m_vecOffsetPos + *(float *)this->m_vecPos;
+    v7 = this->m_vecOffsetPos.x + this->m_vecPos.x;
     retaddr = v7;
     v6->Translate((struct gbVec3D *)&retaddr);
     v6->Scale(this->m_fXSize, 1.0, this->m_fZSize);
-    v6->Rotate(*(float *)this->m_vecRot, (struct gbVec3D *)&dword_DE99A0);
-    v6->Rotate(*(float *)&this->m_vecRot[4], (struct gbVec3D *)&dword_DE9990);
-    v6->Rotate(*(float *)&this->m_vecRot[8], (struct gbVec3D *)&dword_DE9980);
+    v6->Rotate(this->m_vecRot.x, (struct gbVec3D *)&dword_DE99A0);
+    v6->Rotate(this->m_vecRot.y, (struct gbVec3D *)&dword_DE9990);
+    v6->Rotate(this->m_vecRot.z, (struct gbVec3D *)&dword_DE9980);
     ((gbDynVertBuf *)this->m_pGeomQuad)->RenderGeomQuad(this->m_nQuad, v5, this->m_pTextureArray);
     v6->Pop();
   }
@@ -341,12 +341,12 @@ int CEffExplosive::ProcCommonTask(int _94)
     sub_4C7E60((int)this);
     *(_DWORD *)(v7 + 44) = 1;
   }
-  *(float *)this->m_vecRot = a2 * *(float *)(v4 + 64) + *(float *)this->m_vecRot;
-  *(float *)&this->m_vecRot[4] = a2 * *(float *)(v4 + 68) + *(float *)&this->m_vecRot[4];
-  *(float *)&this->m_vecRot[8] = a2 * *(float *)(v4 + 72) + *(float *)&this->m_vecRot[8];
-  *(float *)this->m_vecPos = a2 * *(float *)(v4 + 28) + *(float *)this->m_vecPos;
-  *(float *)&this->m_vecPos[4] = a2 * *(float *)(v4 + 32) + *(float *)&this->m_vecPos[4];
-  *(float *)&this->m_vecPos[8] = a2 * *(float *)(v4 + 36) + *(float *)&this->m_vecPos[8];
+  this->m_vecRot.x = a2 * *(float *)(v4 + 64) + this->m_vecRot.x;
+  this->m_vecRot.y = a2 * *(float *)(v4 + 68) + this->m_vecRot.y;
+  this->m_vecRot.z = a2 * *(float *)(v4 + 72) + this->m_vecRot.z;
+  this->m_vecPos.x = a2 * *(float *)(v4 + 28) + this->m_vecPos.x;
+  this->m_vecPos.y = a2 * *(float *)(v4 + 32) + this->m_vecPos.y;
+  this->m_vecPos.z = a2 * *(float *)(v4 + 36) + this->m_vecPos.z;
   ((gbMatrix4 *)v20)->gbMatrix4();
   memset(&v18, 0, sizeof(v18));
   memset(&v19, 0, sizeof(v19));
@@ -358,7 +358,7 @@ int CEffExplosive::ProcCommonTask(int _94)
   v19.z = *(float *)(v4 + 56);
   v19.x = 0.0;
   v19.y = 0.0;
-  ((gbMatrix4 *)v20)->Rotate(&v19, (struct gbVec3D *)this->m_vecOffsetPos);
+  ((gbMatrix4 *)v20)->Rotate(&v19, &this->m_vecOffsetPos);
   if ( *(float *)(v4 + 80) != 0.0
     || *(float *)(v4 + 84) != 0.0
     || *(float *)(v4 + 92) != 0.0
@@ -549,10 +549,10 @@ void * CEffExplosive::GetEditorObjDescription(int a1)
 void CEffExplosive::InitDefaultUVSet(int a2, int a3)
 {
   int v3; // ebx
-  char *v4; // edi
+  float *p_eu; // edi
   int v5; // ecx
   double v6; // st7
-  char *v7; // eax
+  float *v7; // eax
   double v8; // st5
   double v9; // st5
   double v10; // st3
@@ -565,7 +565,7 @@ void CEffExplosive::InitDefaultUVSet(int a2, int a3)
   v12 = 0;
   if ( a3 > 0 )
   {
-    v4 = (char *)&this->m_DefaultUVSet[8];
+    p_eu = (float *)&this->m_DefaultUVSet[0].eu;
     do
     {
       v5 = 0;
@@ -573,21 +573,21 @@ void CEffExplosive::InitDefaultUVSet(int a2, int a3)
       if ( a2 > 0 )
       {
         v6 = (double)a2;
-        v7 = v4;
-        v4 += 16 * a2;
+        v7 = p_eu;
+        p_eu += 4 * a2;
         v8 = (double)a3;
         v13 = (double)v12 / v8;
         v9 = 1.0 - (1.0 / v8 + v13);
         do
         {
           v10 = (double)v14;
-          v7 += 16;
+          v7 += 4;
           v14 = ++v5;
           v11 = v10 / v6;
-          *((float *)v7 - 6) = v11;
-          *((float *)v7 - 4) = 1.0 / v6 + v11;
-          *((float *)v7 - 5) = v9;
-          *((float *)v7 - 3) = 1.0 - v13;
+          *(v7 - 6) = v11;
+          *(v7 - 4) = 1.0 / v6 + v11;
+          *(v7 - 5) = v9;
+          *(v7 - 3) = 1.0 - v13;
         }
         while ( v5 < a2 );
       }

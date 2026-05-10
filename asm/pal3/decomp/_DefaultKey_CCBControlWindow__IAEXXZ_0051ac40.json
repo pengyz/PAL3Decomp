@@ -3,5 +3,5 @@
   "address": "0x0051AC40",
   "size_bytes": 73,
   "signature": "_DWORD *__thiscall(CCBControlWindow *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\n_DWORD *__thiscall CCBControlWindow::DefaultKey(CCBControlWindow *this)\n{\n  UIListBox::UIListBox((UIListBox *)this);\n  this->m_fontcolor.ColorQuadFmt = (int)&off_57051C;\n  CCBControlWindow::CheckKeyInput(this);\n  return &this->m_fontcolor.ColorQuadFmt;\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\n_DWORD *__thiscall CCBControlWindow::DefaultKey(CCBControlWindow *this)\n{\n  UIListBox::UIListBox((UIListBox *)this);\n  *(_DWORD *)this->_pad_0000 = &off_57051C;\n  CCBControlWindow::CheckKeyInput(this);\n  return this->_pad_0000;\n}\n"
 }

@@ -145,15 +145,15 @@ int CEffCylinder::Init(int a2, float a3, float a4, float a5)
 
   this->_pad_0000[8] = 0;
   this->m_bVisible = 0;
-  *(float *)this->m_vecPos = a3 + *(float *)(a2 + 184);
-  *(float *)&this->m_vecPos[4] = a4 + *(float *)(a2 + 188);
-  *(float *)&this->m_vecPos[8] = a5 + *(float *)(a2 + 192);
-  *(_DWORD *)this->m_vecRot = *(_DWORD *)(a2 + 216);
-  *(_DWORD *)&this->m_vecRot[4] = *(_DWORD *)(a2 + 196);
-  *(_DWORD *)&this->m_vecRot[8] = *(_DWORD *)(a2 + 220);
-  *(_DWORD *)&this->m_vecOffsetPos[8] = 0;
-  *(_DWORD *)&this->m_vecOffsetPos[4] = 0;
-  *(_DWORD *)this->m_vecOffsetPos = 0;
+  this->m_vecPos.x = a3 + *(float *)(a2 + 184);
+  this->m_vecPos.y = a4 + *(float *)(a2 + 188);
+  this->m_vecPos.z = a5 + *(float *)(a2 + 192);
+  this->m_vecRot.x = *(float *)(a2 + 216);
+  this->m_vecRot.y = *(float *)(a2 + 196);
+  this->m_vecRot.z = *(float *)(a2 + 220);
+  this->m_vecOffsetPos.z = 0.0;
+  this->m_vecOffsetPos.y = 0.0;
+  this->m_vecOffsetPos.x = 0.0;
   this->m_dwStartColor = *(_DWORD *)(a2 + 204);
   if ( (g_bCursorVisible & 1) == 0 )
   {
@@ -288,12 +288,12 @@ LABEL_10:
   this->m_fBottomRiseSpeed = *(float *)(a2 + 264);
   this->m_fTextureRepeat = *(float *)(a2 + 268);
   this->m_fFramePerSec = *(float *)(a2 + 180);
-  *(_DWORD *)this->m_vecPos = *(_DWORD *)(a2 + 184);
-  *(_DWORD *)&this->m_vecPos[4] = *(_DWORD *)(a2 + 188);
-  *(_DWORD *)&this->m_vecPos[8] = *(_DWORD *)(a2 + 192);
-  *(_DWORD *)this->m_vecRot = *(_DWORD *)(a2 + 216);
-  *(_DWORD *)&this->m_vecRot[4] = *(_DWORD *)(a2 + 196);
-  *(_DWORD *)&this->m_vecRot[8] = *(_DWORD *)(a2 + 220);
+  this->m_vecPos.x = *(float *)(a2 + 184);
+  this->m_vecPos.y = *(float *)(a2 + 188);
+  this->m_vecPos.z = *(float *)(a2 + 192);
+  this->m_vecRot.x = *(float *)(a2 + 216);
+  this->m_vecRot.y = *(float *)(a2 + 196);
+  this->m_vecRot.z = *(float *)(a2 + 220);
   this->m_bAdditiveBlend = *(_BYTE *)(a2 + 213);
   this->m_bNoZTest = *(_BYTE *)(a2 + 215);
   this->m_byMaxFrame = *(_BYTE *)(a2 + 176);
@@ -397,12 +397,12 @@ void CEffCylinder::Destroy()
     }
     v6 = (gbMatrixStack *)*(gbMatrixStack **)(*v4 + 216);
     v6->Push();
-    v7 = *(float *)this->m_vecOffsetPos + *(float *)this->m_vecPos;
+    v7 = this->m_vecOffsetPos.x + this->m_vecPos.x;
     retaddr = v7;
     v6->Translate((struct gbVec3D *)&retaddr);
-    v6->Rotate(*(float *)this->m_vecRot, (struct gbVec3D *)&dword_DE9370);
-    v6->Rotate(*(float *)&this->m_vecRot[4], (struct gbVec3D *)&dword_DE9360);
-    v6->Rotate(*(float *)&this->m_vecRot[8], (struct gbVec3D *)&dword_DE9350);
+    v6->Rotate(this->m_vecRot.x, (struct gbVec3D *)&dword_DE9370);
+    v6->Rotate(this->m_vecRot.y, (struct gbVec3D *)&dword_DE9360);
+    v6->Rotate(this->m_vecRot.z, (struct gbVec3D *)&dword_DE9350);
     v6->Scale(this->m_fSize, this->m_fHeight, this->m_fSize);
     ((gbDynVertBuf *)this->m_pGeomQuad)->RenderGeomQuadViaStrip(this->m_nDivision, v5, this->m_pTextureArray, this->m_dwStartColor);
     v6->Pop();
@@ -752,12 +752,12 @@ int CEffCylinder::ProcCommonTask(int a2)
     this->m_bVisible = 1;
     *(_BYTE *)(v7 + 65) = 1;
   }
-  *(float *)this->m_vecRot = v16 * *(float *)(v4 + 64) + *(float *)this->m_vecRot;
-  *(float *)&this->m_vecRot[4] = v16 * *(float *)(v4 + 68) + *(float *)&this->m_vecRot[4];
-  *(float *)&this->m_vecRot[8] = v16 * *(float *)(v4 + 72) + *(float *)&this->m_vecRot[8];
-  *(float *)this->m_vecPos = v16 * *(float *)(v4 + 28) + *(float *)this->m_vecPos;
-  *(float *)&this->m_vecPos[4] = v16 * *(float *)(v4 + 32) + *(float *)&this->m_vecPos[4];
-  *(float *)&this->m_vecPos[8] = v16 * *(float *)(v4 + 36) + *(float *)&this->m_vecPos[8];
+  this->m_vecRot.x = v16 * *(float *)(v4 + 64) + this->m_vecRot.x;
+  this->m_vecRot.y = v16 * *(float *)(v4 + 68) + this->m_vecRot.y;
+  this->m_vecRot.z = v16 * *(float *)(v4 + 72) + this->m_vecRot.z;
+  this->m_vecPos.x = v16 * *(float *)(v4 + 28) + this->m_vecPos.x;
+  this->m_vecPos.y = v16 * *(float *)(v4 + 32) + this->m_vecPos.y;
+  this->m_vecPos.z = v16 * *(float *)(v4 + 36) + this->m_vecPos.z;
   ((gbMatrix4 *)v23)->gbMatrix4();
   memset(&v21, 0, sizeof(v21));
   memset(&v22, 0, sizeof(v22));
@@ -769,7 +769,7 @@ int CEffCylinder::ProcCommonTask(int a2)
   v22.z = *(float *)(v4 + 56);
   v22.x = 0.0;
   v22.y = 0.0;
-  ((gbMatrix4 *)v23)->Rotate(&v22, (struct gbVec3D *)this->m_vecOffsetPos);
+  ((gbMatrix4 *)v23)->Rotate(&v22, &this->m_vecOffsetPos);
   v8 = v16 * *(float *)(v4 + 108) + this->m_fCurTextureV;
   this->m_fCurTextureV = v8;
   if ( v8 > 1.0 )
@@ -1043,10 +1043,10 @@ void * CEffCylinder::GetEditorObjDescription(int a1)
 void CEffCylinder::InitDefaultUVSet(int a2, int a3)
 {
   int v3; // ebx
-  char *v4; // edi
+  float *p_eu; // edi
   int v5; // ecx
   double v6; // st7
-  char *v7; // eax
+  float *v7; // eax
   double v8; // st5
   double v9; // st5
   double v10; // st3
@@ -1059,7 +1059,7 @@ void CEffCylinder::InitDefaultUVSet(int a2, int a3)
   v12 = 0;
   if ( a3 > 0 )
   {
-    v4 = (char *)&this->m_DefaultUVSet[8];
+    p_eu = (float *)&this->m_DefaultUVSet[0].eu;
     do
     {
       v5 = 0;
@@ -1067,21 +1067,21 @@ void CEffCylinder::InitDefaultUVSet(int a2, int a3)
       if ( a2 > 0 )
       {
         v6 = (double)a2;
-        v7 = v4;
-        v4 += 16 * a2;
+        v7 = p_eu;
+        p_eu += 4 * a2;
         v8 = (double)a3;
         v13 = (double)v12 / v8;
         v9 = 1.0 - (1.0 / v8 + v13);
         do
         {
           v10 = (double)v14;
-          v7 += 16;
+          v7 += 4;
           v14 = ++v5;
           v11 = v10 / v6;
-          *((float *)v7 - 6) = v11;
-          *((float *)v7 - 4) = 1.0 / v6 + v11;
-          *((float *)v7 - 5) = v9;
-          *((float *)v7 - 3) = 1.0 - v13;
+          *(v7 - 6) = v11;
+          *(v7 - 4) = 1.0 / v6 + v11;
+          *(v7 - 5) = v9;
+          *(v7 - 3) = 1.0 - v13;
         }
         while ( v5 < a2 );
       }

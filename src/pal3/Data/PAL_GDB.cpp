@@ -22,8 +22,8 @@ char PAL_GDB::LoadLanguage(char *path)
   PalScript *v3; // esi
   char *v4; // edi
 
-  v3 = (PalScript *)&this->m_ItemData[360].desc[440];
-  ((PalScript *)&this->m_ItemData[360].desc[440])->LoadFromFile(path);
+  v3 = (PalScript *)&this->m_ItemData[508].desc[360];
+  ((PalScript *)&this->m_ItemData[508].desc[360])->LoadFromFile(path);
   v3->SetDirectory(aSec1);
   if ( v3->HasNext() )
   {
@@ -38,7 +38,7 @@ char PAL_GDB::LoadLanguage(char *path)
     }
     while ( v3->HasNext() );
   }
-  this->m_ItemData[360].desc[436] = 1;
+  this->m_ItemData[508].desc[356] = 1;
   return 1;
 }
 
@@ -69,11 +69,11 @@ PAL_GDB::PAL_GDB()
   g_pVFileSys->Seek(v3, this->m_head.RolePos, 1);
   g_pVFileSys->Read(this->m_RoleData, 852 * this->m_head.RoleNum, v3);
   g_pVFileSys->Seek(v3, this->m_head.SkillPos, 1);
-  g_pVFileSys->Read(&this->m_RoleData[175].Remark[292], 760 * this->m_head.SkillNum, v3);
+  g_pVFileSys->Read(this->m_SkillData, 760 * this->m_head.SkillNum, v3);
   g_pVFileSys->Seek(v3, this->m_head.ItemPos, 1);
-  g_pVFileSys->Read(&this->m_SkillData[235].att[3], 800 * this->m_head.ItemNum, v3);
+  g_pVFileSys->Read(this->m_ItemData, 800 * this->m_head.ItemNum, v3);
   g_pVFileSys->Seek(v3, this->m_head.ComboPos, 1);
-  g_pVFileSys->Read(&this->m_ItemData[353].desc[388], 632 * this->m_head.ComboNum, v3);
+  g_pVFileSys->Read(&this->m_ItemData[500], 632 * this->m_head.ComboNum, v3);
   g_pVFileSys->CloseFile(v3);
   v8 = -1;
   ((OpenNULLFile *)&v5)->OpenNULLFile();
@@ -84,24 +84,24 @@ PAL_GDB::PAL_GDB()
 PAL_GDB::~PAL_GDB()
 {
   int RoleNum; // esi
-  __int32 id; // edx
+  int v3; // edx
 
   if ( !a2 )
   0;
   RoleNum = this->m_head.RoleNum;
-  this->m_ItemData[360].id = 0;
+  *(_DWORD *)&this->m_ItemData[507].fightstate[10] = 0;
   if ( RoleNum <= 0 )
   0;
   while ( 1 )
   {
-    id = this->m_ItemData[360].id;
-    if ( a2 == *(&this->m_RoleData[0].id + 213 * id) )
+    v3 = *(_DWORD *)&this->m_ItemData[507].fightstate[10];
+    if ( a2 == this->m_RoleData[v3].id )
       break;
-    this->m_ItemData[360].id = id + 1;
-    if ( id + 1 >= RoleNum )
+    *(_DWORD *)&this->m_ItemData[507].fightstate[10] = v3 + 1;
+    if ( v3 + 1 >= RoleNum )
   0;
   }
-  (int)this->m_RoleData + 852 * this->m_ItemData[360].id;
+  (int)&this->m_RoleData[*(_DWORD *)&this->m_ItemData[507].fightstate[10]];
 }
 
 // 0x00479040
@@ -116,59 +116,59 @@ int PAL_GDB::GDB_GetRole(unsigned int a2)
   if ( a2 > 0xC8 )
     return 0;
   else
-    return *(&this->m_RoleData[0].id + 213 * a2);
+    return this->m_RoleData[a2].id;
 }
 
 // 0x00479080
 int PAL_GDB::GDB_GetRoleNum(int a2)
 {
   int SkillNum; // edx
-  __int32 id; // eax
-  __int32 v4; // eax
+  int v3; // eax
+  int v4; // eax
 
   if ( !a2 )
     return 0;
   SkillNum = this->m_head.SkillNum;
-  this->m_ItemData[360].id = 0;
+  *(_DWORD *)&this->m_ItemData[507].fightstate[10] = 0;
   if ( SkillNum <= 0 )
     return 0;
   while ( 1 )
   {
-    id = this->m_ItemData[360].id;
-    if ( a2 == *(_DWORD *)&this->m_RoleData[175].Remark[760 * id + 292] )
+    v3 = *(_DWORD *)&this->m_ItemData[507].fightstate[10];
+    if ( a2 == this->m_SkillData[v3].id )
       break;
-    v4 = id + 1;
-    this->m_ItemData[360].id = v4;
+    v4 = v3 + 1;
+    *(_DWORD *)&this->m_ItemData[507].fightstate[10] = v4;
     if ( v4 >= SkillNum )
       return 0;
   }
-  return (int)&this->m_RoleData[175].Remark[760 * this->m_ItemData[360].id + 292];
+  return (int)&this->m_SkillData[*(_DWORD *)&this->m_ItemData[507].fightstate[10]];
 }
 
 // 0x00479130
 int PAL_GDB::GDB_GetSkillNum(int a2)
 {
   int ItemNum; // esi
-  __int32 id; // eax
-  __int32 v4; // eax
+  int v3; // eax
+  int v4; // eax
 
   if ( !a2 )
     return 0;
   ItemNum = this->m_head.ItemNum;
-  this->m_ItemData[360].id = 0;
+  *(_DWORD *)&this->m_ItemData[507].fightstate[10] = 0;
   if ( ItemNum <= 0 )
     return 0;
   while ( 1 )
   {
-    id = this->m_ItemData[360].id;
-    if ( a2 == this->m_SkillData[235].att[200 * id + 3] )
+    v3 = *(_DWORD *)&this->m_ItemData[507].fightstate[10];
+    if ( a2 == this->m_ItemData[v3].id )
       break;
-    v4 = id + 1;
-    this->m_ItemData[360].id = v4;
+    v4 = v3 + 1;
+    *(_DWORD *)&this->m_ItemData[507].fightstate[10] = v4;
     if ( v4 >= ItemNum )
       return 0;
   }
-  return (int)&this->m_SkillData[235].att[200 * this->m_ItemData[360].id + 3];
+  return (int)&this->m_ItemData[*(_DWORD *)&this->m_ItemData[507].fightstate[10]];
 }
 
 // 0x004791A0
@@ -181,26 +181,26 @@ int PAL_GDB::GDB_GetSkillID()
 int PAL_GDB::GDB_GetItemNum(int a2)
 {
   int ComboNum; // edx
-  __int32 id; // eax
-  __int32 v4; // eax
+  int v3; // eax
+  int v4; // eax
 
   if ( !a2 )
     return 0;
   ComboNum = this->m_head.ComboNum;
-  this->m_ItemData[360].id = 0;
+  *(_DWORD *)&this->m_ItemData[507].fightstate[10] = 0;
   if ( ComboNum <= 0 )
     return 0;
   while ( 1 )
   {
-    id = this->m_ItemData[360].id;
-    if ( a2 == *(_DWORD *)&this->m_ItemData[353].desc[632 * id + 420] )
+    v3 = *(_DWORD *)&this->m_ItemData[507].fightstate[10];
+    if ( a2 == *(_DWORD *)&this->m_ItemData[500].name[632 * v3 + 28] )
       break;
-    v4 = id + 1;
-    this->m_ItemData[360].id = v4;
+    v4 = v3 + 1;
+    *(_DWORD *)&this->m_ItemData[507].fightstate[10] = v4;
     if ( v4 >= ComboNum )
       return 0;
   }
-  return (int)&this->m_ItemData[353].desc[632 * this->m_ItemData[360].id + 388];
+  return (int)&this->m_ItemData[500] + 632 * *(_DWORD *)&this->m_ItemData[507].fightstate[10];
 }
 
 // 0x004792C0

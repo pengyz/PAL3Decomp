@@ -14,6 +14,8 @@ int sub_519AF0(...);
 // Unnamed globals (extern)
 extern char aCNewFailed[];
 extern char aDProjectPal3Co_12[];
+extern int dword_BFD6D0;
+extern int dword_BFD6D4;
 
 // 0x004DFE00
 int CCBAIWindow::SetText(int a2, int a3)
@@ -22,17 +24,14 @@ int CCBAIWindow::SetText(int a2, int a3)
   int v5; // [esp+10h] [ebp+Ch]
   int v6; // [esp+14h] [ebp+10h]
 
-  sprintf((char *const)&this->m_wndcolor + 280 * this->m_fontcolor.Alpha, "%d", v5);
-  *((float *)this + 70 * this->m_fontcolor.Alpha + 71) = ((double)a2 + (double)a2) / (double)g_Input.KeyInfo[120].Data
-                                                       - 1.0;
-  *((float *)this + 70 * this->m_fontcolor.Alpha + 72) = 1.0
-                                                       - ((double)a3 + (double)a3)
-                                                       / (double)g_Input.KeyInfo[120].HoldTime;
-  *(&this->m_fontcolor.Color + 70 * this->m_fontcolor.Alpha) = 2;
-  *((_DWORD *)this + 70 * this->m_fontcolor.Alpha + 74) = 1094713344;
-  *((_DWORD *)this + 70 * this->m_fontcolor.Alpha + 70) = v6;
-  result = this->m_fontcolor.Alpha + 1;
-  this->m_fontcolor.Alpha = result;
+  sprintf(&this->_pad_0000[280 * *(_DWORD *)&this->_pad_0000[16] + 24], "%d", v5);
+  *((float *)this + 70 * *(_DWORD *)&this->_pad_0000[16] + 71) = ((double)a2 + (double)a2) / (double)dword_BFD6D0 - 1.0;
+  *((float *)this + 70 * *(_DWORD *)&this->_pad_0000[16] + 72) = 1.0 - ((double)a3 + (double)a3) / (double)dword_BFD6D4;
+  *(_DWORD *)&this->_pad_0000[280 * *(_DWORD *)&this->_pad_0000[16] + 20] = 2;
+  *((_DWORD *)this + 70 * *(_DWORD *)&this->_pad_0000[16] + 74) = 1094713344;
+  *((_DWORD *)this + 70 * *(_DWORD *)&this->_pad_0000[16] + 70) = v6;
+  result = *(_DWORD *)&this->_pad_0000[16] + 1;
+  *(_DWORD *)&this->_pad_0000[16] = result;
   return result;
 }
 
@@ -40,43 +39,43 @@ int CCBAIWindow::SetText(int a2, int a3)
 CCBAIWindow::CCBAIWindow(int a2)
 {
   int v3; // edi
-  UIStatic **p_m_pBack; // esi
-  UIStatic *v5; // ecx
+  UIPushButton **p_m_pMagic; // esi
+  UIPushButton *v5; // ecx
 
   if ( a2 == 1 )
   {
     *((_BYTE *)this + 176) = 0;
     v3 = 0;
-    p_m_pBack = &this->m_pBack;
+    p_m_pMagic = &this->m_pMagic;
     do
     {
-      v5 = (UIStatic *)*p_m_pBack;
+      v5 = (UIPushButton *)*p_m_pMagic;
       if ( *((_DWORD *)this + 43) == v3 )
-        (*(void (**)(UIStatic *, int))v5->m_fontcolor.ColorQuadFmt)(v5, 1);
+        (**(void (***)(UIPushButton *, int))v5->_pad_0000)(v5, 1);
       else
-        (*(void (**)(UIStatic *, _DWORD))v5->m_fontcolor.ColorQuadFmt)(v5, 0);
+        (**(void (***)(UIPushButton *, _DWORD))v5->_pad_0000)(v5, 0);
       ++v3;
-      ++p_m_pBack;
+      ++p_m_pMagic;
     }
     while ( v3 < 5 );
   }
-  (CCBAIWindow *)this->Destroy(a2);
+  (CCBAIWindow *)((UIWnd *)this)->Destroy(a2);
 }
 
 // 0x0051CAA0
 CCBAIWindow::~CCBAIWindow()
 {
-  __int32 Alpha; // ebx
+  int v2; // ebx
   CCBAIWindow *v3; // edi
-  __int32 Color; // [esp+Ch] [ebp-Ch]
+  int v5; // [esp+Ch] [ebp-Ch]
 
   ((UIListBox *)this)->SetScroll();
-  Alpha = this->m_fontcolor.Alpha;
-  Color = this->m_fontcolor.Color;
+  v2 = *(_DWORD *)&this->_pad_0000[16];
+  v5 = *(_DWORD *)&this->_pad_0000[20];
   v3 = (CCBAIWindow *)*(CCBAIWindow **)(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 42) + 1160) + 20) + 68);
-  v3->SetText(Alpha + 105, Color + 51);
-  v3->SetText(Alpha + 117, Color + 76);
-  v3->SetText(Alpha + 107, Color + 102);
+  v3->SetText(v2 + 105, v5 + 51);
+  v3->SetText(v2 + 117, v5 + 76);
+  v3->SetText(v2 + 107, v5 + 102);
 }
 
 // 0x0051CB60

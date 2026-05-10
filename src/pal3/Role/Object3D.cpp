@@ -25,6 +25,9 @@ extern char aSubgameHocksho_0[];
 extern char aSubgameHocksho_1[];
 extern char aUiFlexNote[];
 extern unsigned char byte_DC733C;
+extern int dword_BFD6D0;
+extern int dword_BFD6D4;
+extern int dword_BFDA60;
 extern int dword_DE4C94;
 extern void *off_56A66C;
 extern void *off_56A9C0;
@@ -39,7 +42,7 @@ extern int unk_ABE000;
 Object3D::Object3D()
 {
   this->LoadSubObject();
-  this->m_dropz = 0.0;
+  *(_DWORD *)&this->m_visible = 0;
 }
 
 // 0x0047CB90
@@ -53,7 +56,7 @@ struct gbVFileSystem * Object3D::_Object3D(const char *a2, int a3)
   char Destination[4]; // [esp+10h] [ebp-60h] BYREF
   OpenBaseFile v11; // [esp+14h] [ebp-5Ch] BYREF
   _BYTE v12[68]; // [esp+18h] [ebp-58h] BYREF
-  __int32 v13; // [esp+5Ch] [ebp-14h]
+  float v13; // [esp+5Ch] [ebp-14h]
   int v14; // [esp+6Ch] [ebp-4h]
 
   this->LoadSubObject();
@@ -108,15 +111,15 @@ LABEL_5:
   this->m_pol = v8;
   ((Actor *)v8)->LoadModel();
   ((Actor *)this->m_pol)->CompareAction(a3, 0);
-  (*(void (**)(_DWORD, _BYTE *, gbChain1DNode *))(**(_DWORD **)this->m_pol->Children.m_Tail[11]._pad_0000 + 28))(
-    *(_DWORD *)this->m_pol->Children.m_Tail[11]._pad_0000,
+  (*(void (**)(_DWORD, _BYTE *, _DWORD))(**(_DWORD **)(*(_DWORD *)&this->m_pol->_pad_0000[16] + 88) + 28))(
+    *(_DWORD *)(*(_DWORD *)&this->m_pol->_pad_0000[16] + 88),
     v12,
-    this->m_pol->Children.m_Tail);
+    *(_DWORD *)&this->m_pol->_pad_0000[16]);
 LABEL_13:
-  this->m_showSubObj = v13;
-  LOBYTE(this->m_isLoadObj) = 1;
-  LOBYTE(this->m_dropy) = 1;
-  LODWORD(this->m_rotDstSpeed) = a3;
+  this->m_subObjHeight = v13;
+  this->m_isLoadObj = 1;
+  LOBYTE(this->m_dropz) = 1;
+  this->m_rotDstMode = a3;
   v14 = -1;
   return ((OpenNULLFile *)&v11)->OpenNULLFile();
 }
@@ -166,7 +169,7 @@ LABEL_15:
       if ( v9 )
       {
         v9->gbGeomNode();
-        v10->m_actarray = (__int32)&off_56A66C;
+        v10->m_actarray = &off_56A66C;
         v11 = v10;
       }
       else
@@ -187,7 +190,7 @@ LABEL_15:
       if ( v6 )
       {
         v6->gbGeomNode();
-        v7->m_actarray = (__int32)&off_56A66C;
+        v7->m_actarray = &off_56A66C;
         v8 = v7;
       }
       else
@@ -225,7 +228,7 @@ LABEL_7:
   {
     if ( this->m_type != 3 )
     {
-      LOBYTE(this->m_isLoadObj) = 0;
+      this->m_isLoadObj = 0;
       return;
     }
     goto LABEL_7;
@@ -233,14 +236,14 @@ LABEL_7:
   v2 = (gbGeomNode *)this->m_pol;
   if ( v2 )
   {
-    sub_40EE00((int)this->m_pol);
+    sub_40EE00((int)this->m_pol->_pad_0000);
     operator delete(v2);
     this->m_pol = 0;
-    LOBYTE(this->m_isLoadObj) = 0;
+    this->m_isLoadObj = 0;
     return;
   }
 LABEL_9:
-  LOBYTE(this->m_isLoadObj) = 0;
+  this->m_isLoadObj = 0;
 }
 
 // 0x0047CF40
@@ -287,27 +290,27 @@ void Object3D::VecAngle(float a2, float a3, float a4)
 
   v4 = a4;
   v6 = a3;
-  this->m_subObjHeight = a2;
-  this->m_height = v6;
-  this->m_position.x = v4;
-  a2 = this->m_position.y - this->m_subObjHeight;
-  v7 = this->m_position.z - this->m_height;
+  this->m_height = a2;
+  this->m_position.x = v6;
+  this->m_position.y = v4;
+  a2 = this->m_position.z - this->m_height;
+  v7 = this->RelativePos.x - this->m_position.x;
   v11.x = a2;
   a3 = v7;
-  v8 = this->RelativePos.x - this->m_position.x;
+  v8 = this->RelativePos.y - this->m_position.y;
   v11.y = a3;
   a4 = v8;
   v11.z = a4;
-  this->m_pitch = ((gbVec3D *)&v11)->Length();
-  v9 = this->m_subObjHeight - this->m_position.y;
-  v12 = this->m_height - this->m_position.z;
-  v10 = this->m_position.x - this->RelativePos.x;
+  this->m_roll = ((gbVec3D *)&v11)->Length();
+  v9 = this->m_height - this->m_position.z;
+  v12 = this->m_position.x - this->RelativePos.x;
+  v10 = this->m_position.y - this->RelativePos.y;
   a3 = v12;
   v13 = v10;
   a2 = v9;
   a4 = v13;
   ((gbVec3D *)&a2)->Normalize();
-  this->m_forward.y = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
+  this->m_forward.z = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
 }
 
 // 0x0047D130
@@ -325,27 +328,27 @@ void Object3D::SetObjectPosition(float a2, float a3, float a4)
 
   v4 = a4;
   v6 = a3;
-  this->m_position.y = a2;
-  this->m_position.z = v6;
-  this->RelativePos.x = v4;
-  a2 = this->m_position.y - this->m_subObjHeight;
-  v7 = this->m_position.z - this->m_height;
+  this->m_position.z = a2;
+  this->RelativePos.x = v6;
+  this->RelativePos.y = v4;
+  a2 = this->m_position.z - this->m_height;
+  v7 = this->RelativePos.x - this->m_position.x;
   v11.x = a2;
   a3 = v7;
-  v8 = this->RelativePos.x - this->m_position.x;
+  v8 = this->RelativePos.y - this->m_position.y;
   v11.y = a3;
   a4 = v8;
   v11.z = a4;
-  this->m_pitch = ((gbVec3D *)&v11)->Length();
-  v9 = this->m_subObjHeight - this->m_position.y;
-  v12 = this->m_height - this->m_position.z;
-  v10 = this->m_position.x - this->RelativePos.x;
+  this->m_roll = ((gbVec3D *)&v11)->Length();
+  v9 = this->m_height - this->m_position.z;
+  v12 = this->m_position.x - this->RelativePos.x;
+  v10 = this->m_position.y - this->RelativePos.y;
   a3 = v12;
   v13 = v10;
   a2 = v9;
   a4 = v13;
   ((gbVec3D *)&a2)->Normalize();
-  this->m_forward.y = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
+  this->m_forward.z = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
 }
 
 // 0x0047D230
@@ -363,17 +366,17 @@ long double Object3D::SetCentrePos()
 
   v7 = 0.0;
   v8 = 0.0;
-  v2 = this->m_subObjHeight - this->m_position.y;
-  v3 = this->m_height - this->m_position.z;
+  v2 = this->m_height - this->m_position.z;
+  v3 = this->m_position.x - this->RelativePos.x;
   v9 = 1.0;
   v10 = v3;
-  v4 = this->m_position.x - this->RelativePos.x;
+  v4 = this->m_position.y - this->RelativePos.y;
   v6.y = v10;
   v11 = v4;
   v6.x = v2;
   v6.z = v11;
   ((gbVec3D *)&v6)->Normalize();
-  if ( this->m_subObjHeight >= (double)this->m_position.y )
+  if ( this->m_height >= (double)this->m_position.z )
     return ((Object3D *)v6.x)->IsOverCVD(v6.y, v6.z, v7, v8, v9);
   else
     return 360.0 - ((Object3D *)v6.x)->IsOverCVD(v6.y, v6.z, v7, v8, v9);
@@ -384,7 +387,7 @@ void Object3D::GetScreenDegree()
 {
   long double v2; // st7
   long double v3; // st6
-  double m_pitch; // st7
+  double m_roll; // st7
   double v5; // st7
   double v6; // st6
   double v7; // st5
@@ -401,45 +404,45 @@ void Object3D::GetScreenDegree()
   float v18; // [esp+24h] [ebp-8h]
   float v19; // [esp+28h] [ebp-4h]
 
-  v2 = *(float *)&this->m_visible * 0.017453292;
-  v3 = *(float *)&this->m_pCamera * 0.017453292;
+  v2 = *(float *)&this->m_pCamera * 0.017453292;
+  v3 = this->m_yaw * 0.017453292;
   v13 = cos(v3);
-  this->m_roll = sin(v2) * v13;
-  this->m_dist = sin(v3);
-  this->m_forward.x = -(cos(v2) * v13);
-  m_pitch = this->m_pitch;
-  v15 = m_pitch * this->m_roll;
-  v16 = m_pitch * this->m_dist;
-  v5 = m_pitch * this->m_forward.x;
-  v6 = this->m_position.y - v15;
-  v7 = this->m_position.z - v16;
+  this->m_dist = sin(v2) * v13;
+  this->m_forward.x = sin(v3);
+  this->m_forward.y = -(cos(v2) * v13);
+  m_roll = this->m_roll;
+  v15 = m_roll * this->m_dist;
+  v16 = m_roll * this->m_forward.x;
+  v5 = m_roll * this->m_forward.y;
+  v6 = this->m_position.z - v15;
+  v7 = this->RelativePos.x - v16;
   v15 = 0.0;
   v16 = v7;
-  v8 = this->RelativePos.x - v5;
+  v8 = this->RelativePos.y - v5;
   v9 = v16;
   v16 = 0.0;
-  this->m_height = v9;
+  this->m_position.x = v9;
   v17 = v8;
   v10 = v17;
   v17 = 1.0;
-  this->m_subObjHeight = v6;
-  this->m_position.x = v10;
-  v11 = this->m_subObjHeight - this->m_position.y;
-  v18 = this->m_height - this->m_position.z;
-  v12 = this->m_position.x - this->RelativePos.x;
+  this->m_height = v6;
+  this->m_position.y = v10;
+  v11 = this->m_height - this->m_position.z;
+  v18 = this->m_position.x - this->RelativePos.x;
+  v12 = this->m_position.y - this->RelativePos.y;
   v14.y = v18;
   v19 = v12;
   v14.x = v11;
   v14.z = v19;
   ((gbVec3D *)&v14)->Normalize();
-  this->m_forward.y = ((Object3D *)v14.x)->IsOverCVD(v14.y, v14.z, v15, v16, v17);
+  this->m_forward.z = ((Object3D *)v14.x)->IsOverCVD(v14.y, v14.z, v15, v16, v17);
 }
 
 // 0x0047D440
 void Object3D::GetScreenDegree(int a1@<ecx>, int a2, int a3, int a4, gbMatrixStack *a5)
 {
   struct gbCamera **v6; // eax
-  int v7; // edi
+  float v7; // edi
   gbMatrixStack *v8; // edi
   double v10; // st7
   unsigned __int8 v11; // c0
@@ -455,13 +458,13 @@ void Object3D::GetScreenDegree(int a1@<ecx>, int a2, int a3, int a4, gbMatrixSta
   v6 = *(struct gbCamera ***)(a1 + 84);
   if ( !v6 || !*(_BYTE *)a1 || !*(_BYTE *)(a1 + 80) )
     return;
-  v7 = *(_DWORD *)(g_Input.KeyInfo[177].Data + 448);
-  v16 = (gbSceneGraph *)v7;
-  ((gbSceneGraph *)v7)->Begin(*v6);
-  *(_BYTE *)(v7 + 19244) = 0;
+  v7 = dword_BFDA60->InvViewMatrix.m[1][3];
+  v16 = (gbSceneGraph *)LODWORD(v7);
+  ((gbSceneGraph *)LODWORD(v7))->Begin(*v6);
+  *(_BYTE *)(LODWORD(v7) + 19244) = 0;
   v8 = a5;
   if ( !a5 )
-    v8 = (gbMatrixStack *)*(gbMatrixStack **)(g_Input.KeyInfo[177].Data + 216);
+    v8 = (gbMatrixStack *)dword_BFDA60->pMatrixStack[1];
   ((gbCamera *)**(gbCamera ***)(a1 + 84))->SetAsCurrent(3);
   v8->Push();
   v8->Translate((struct gbVec3D *)(a1 + 32));
@@ -523,7 +526,7 @@ LABEL_16:
 void Object3D::CaculateRelative(float a2)
 {
   unsigned int v3; // eax
-  float m_rotDstDegree; // eax
+  int m_rotDstDir; // eax
   double v5; // st7
   double v6; // st6
   double v7; // st7
@@ -537,28 +540,28 @@ void Object3D::CaculateRelative(float a2)
   double v17; // st6
   double v18; // st7
   double v19; // st6
-  double m_degreeToScreen; // st7
+  double v21; // st7
   unsigned __int8 v22; // c0
   unsigned __int8 v23; // c3
   double v24; // st7
   struct gbNodeMsgObj v25; // [esp+Ch] [ebp-10h] BYREF
 
-  if ( !LOBYTE(this->m_isLoadObj) )
+  if ( !this->m_isLoadObj )
     return;
-  if ( LOBYTE(this->m_dropy) )
+  if ( LOBYTE(this->m_dropz) )
   {
     switch ( this->m_type )
     {
-      case 1:
+      case 1u:
 LABEL_10:
         (*(void (**)(gbGeomNode *))(*(_DWORD *)this->m_pol + 20))(this->m_pol);
         break;
-      case 2:
+      case 2u:
         if ( sub_537060((gbVisNode **)this->m_pol) )
           ((Actor *)this->m_pol)->CompareAction(0, 0);
         ((Actor *)this->m_pol)->QueryState();
         break;
-      case 3:
+      case 3u:
         goto LABEL_10;
     }
   }
@@ -566,11 +569,11 @@ LABEL_10:
   {
     if ( this->m_subObj == (gbGeomNode *)1 )
     {
-      (*(void (**)(Actor *))(this->m_actor->m_actarray + 20))(this->m_actor);
+      (*((void (**)(Actor *))this->m_actor->m_actarray + 5))(this->m_actor);
     }
     else if ( this->m_subObj == (gbGeomNode *)3 )
     {
-      (*(void (**)(Actor *))(this->m_actor->m_actarray + 20))(this->m_actor);
+      (*((void (**)(Actor *))this->m_actor->m_actarray + 5))(this->m_actor);
       while ( ((gbVisNode *)this->m_actor)->PopMessage(&v25) )
       {
         if ( v25.msgid == 1 )
@@ -578,100 +581,100 @@ LABEL_10:
           v3 = gbCrc32Compute(aOver);
           if ( v25.param[0] == v3 )
           {
-            (*(void (**)(Actor *, _DWORD))(this->m_actor->m_actarray + 24))(this->m_actor, 0);
+            (*((void (**)(Actor *, _DWORD))this->m_actor->m_actarray + 6))(this->m_actor, 0);
             ((gbVisNode *)this->m_actor)->SetTimeScale(1.0);
           }
         }
       }
     }
   }
-  if ( BYTE1(this->m_forward.z) )
+  if ( BYTE1(this->m_degreeToScreen) )
   {
-    m_rotDstDegree = this->m_rotDstDegree;
-    if ( m_rotDstDegree != 0.0 )
+    m_rotDstDir = this->m_rotDstDir;
+    if ( m_rotDstDir )
     {
-      if ( LODWORD(m_rotDstDegree) == 1 )
+      if ( m_rotDstDir == 1 )
       {
-        if ( *(float *)&this->m_isActionRelativeRot >= (double)*(float *)&this->m_bRotDstDegree )
+        if ( this->m_rotRelative >= (double)this->m_rotDegree )
         {
-          if ( *(float *)&this->m_isActionRelativeRot <= (double)*(float *)&this->m_bRotDstDegree )
+          if ( this->m_rotRelative <= (double)this->m_rotDegree )
           {
-            if ( *(float *)&this->m_isActionRelativeRot > 360.0 )
-              *(float *)&this->m_isActionRelativeRot = *(float *)&this->m_isActionRelativeRot - 360.0;
-            if ( *(float *)&this->m_isActionRelativeRot < 0.0 )
-              *(float *)&this->m_isActionRelativeRot = *(float *)&this->m_isActionRelativeRot + 360.0;
-            BYTE1(this->m_forward.z) = 0;
+            if ( this->m_rotRelative > 360.0 )
+              this->m_rotRelative = this->m_rotRelative - 360.0;
+            if ( this->m_rotRelative < 0.0 )
+              this->m_rotRelative = this->m_rotRelative + 360.0;
+            BYTE1(this->m_degreeToScreen) = 0;
           }
           else
           {
-            v11 = a2 * 50.0 * this->m_rotRelative;
-            v12 = *(float *)&this->m_isActionRelativeRot - v11;
-            *(float *)&this->m_isActionRelativeRot = v12;
-            if ( v12 <= *(float *)&this->m_bRotDstDegree )
-              this->m_isActionRelativeRot = this->m_bRotDstDegree;
-            v13 = this->RelativePos.y - v11;
-            this->RelativePos.y = v13;
+            v11 = a2 * 50.0 * this->m_rotDstDegree;
+            v12 = this->m_rotRelative - v11;
+            this->m_rotRelative = v12;
+            if ( v12 <= this->m_rotDegree )
+              this->m_rotRelative = this->m_rotDegree;
+            v13 = this->RelativePos.z - v11;
+            this->RelativePos.z = v13;
             if ( v15 )
-              this->RelativePos.y = v13 + 360.0;
+              this->RelativePos.z = v13 + 360.0;
           }
         }
         else
         {
-          v5 = a2 * 50.0 * this->m_rotRelative;
-          v6 = v5 + *(float *)&this->m_isActionRelativeRot;
-          *(float *)&this->m_isActionRelativeRot = v6;
-          if ( v6 >= *(float *)&this->m_bRotDstDegree )
-            this->m_isActionRelativeRot = this->m_bRotDstDegree;
-          v7 = v5 + this->RelativePos.y;
-          this->RelativePos.y = v7;
+          v5 = a2 * 50.0 * this->m_rotDstDegree;
+          v6 = v5 + this->m_rotRelative;
+          this->m_rotRelative = v6;
+          if ( v6 >= this->m_rotDegree )
+            this->m_rotRelative = this->m_rotDegree;
+          v7 = v5 + this->RelativePos.z;
+          this->RelativePos.z = v7;
           if ( !(v9 | v10) )
-            this->RelativePos.y = v7 - 360.0;
+            this->RelativePos.z = v7 - 360.0;
         }
       }
       return;
     }
-    if ( *(float *)&this->m_isActionRelativeRot >= (double)*(float *)&this->m_bRotDstDegree )
+    if ( this->m_rotRelative >= (double)this->m_rotDegree )
     {
-      if ( *(float *)&this->m_isActionRelativeRot <= (double)*(float *)&this->m_bRotDstDegree )
+      if ( this->m_rotRelative <= (double)this->m_rotDegree )
       {
-        BYTE1(this->m_forward.z) = 0;
+        BYTE1(this->m_degreeToScreen) = 0;
       }
       else
       {
-        v18 = a2 * 50.0 * this->m_rotRelative;
-        v19 = *(float *)&this->m_isActionRelativeRot - v18;
-        *(float *)&this->m_isActionRelativeRot = v19;
-        this->m_degreeToScreen = this->m_degreeToScreen - v18;
-        if ( v19 <= *(float *)&this->m_bRotDstDegree )
-          this->m_isActionRelativeRot = this->m_bRotDstDegree;
+        v18 = a2 * 50.0 * this->m_rotDstDegree;
+        v19 = this->m_rotRelative - v18;
+        this->m_rotRelative = v19;
+        *(float *)&this->m_isActionRelativeRot = *(float *)&this->m_isActionRelativeRot - v18;
+        if ( v19 <= this->m_rotDegree )
+          this->m_rotRelative = this->m_rotDegree;
       }
     }
     else
     {
-      v16 = a2 * 50.0 * this->m_rotRelative;
-      v17 = v16 + *(float *)&this->m_isActionRelativeRot;
-      *(float *)&this->m_isActionRelativeRot = v17;
-      this->m_degreeToScreen = v16 + this->m_degreeToScreen;
-      if ( v17 >= *(float *)&this->m_bRotDstDegree )
-        this->m_isActionRelativeRot = this->m_bRotDstDegree;
+      v16 = a2 * 50.0 * this->m_rotDstDegree;
+      v17 = v16 + this->m_rotRelative;
+      this->m_rotRelative = v17;
+      *(float *)&this->m_isActionRelativeRot = v16 + *(float *)&this->m_isActionRelativeRot;
+      if ( v17 >= this->m_rotDegree )
+        this->m_rotRelative = this->m_rotDegree;
     }
-    m_degreeToScreen = this->m_degreeToScreen;
+    v21 = *(float *)&this->m_isActionRelativeRot;
     if ( v22 | v23 )
     {
-      if ( m_degreeToScreen >= 0.0 )
+      if ( v21 >= 0.0 )
       {
 LABEL_52:
-        *(float *)&this->m_visible = this->m_degreeToScreen;
+        this->m_pCamera = *(ObjectCamera **)&this->m_isActionRelativeRot;
         this->GetScreenDegree();
         return;
       }
-      v24 = this->m_degreeToScreen + 360.0;
+      v24 = *(float *)&this->m_isActionRelativeRot + 360.0;
     }
     else
     {
-      v24 = m_degreeToScreen - 360.0;
+      v24 = v21 - 360.0;
     }
-    this->m_degreeToScreen = v24;
+    *(float *)&this->m_isActionRelativeRot = v24;
     goto LABEL_52;
   }
 }
@@ -686,9 +689,9 @@ void * Object3D::SetupCamera()
   int *v6; // [esp+34h] [ebp+8h]
 
   memset(&v4, 0, sizeof(v4));
-  v3 = 1.0 - ((double)v6[1] + (double)v6[1]) / (double)g_Input.KeyInfo[120].HoldTime;
-  v2 = ((double)*v6 + (double)*v6) / (double)g_Input.KeyInfo[120].Data - 1.0;
-  ((gbCamera *)*(gbCamera **)LODWORD(this->m_dropz))->GetRayToScreen(v2, v3, &v4);
+  v3 = 1.0 - ((double)v6[1] + (double)v6[1]) / (double)dword_BFD6D4;
+  v2 = ((double)*v6 + (double)*v6) / (double)dword_BFD6D0 - 1.0;
+  ((gbCamera *)**(gbCamera ***)&this->m_visible)->GetRayToScreen(v2, v3, &v4);
   qmemcpy(v5, &v4, sizeof(struct gbRay));
   return v5;
 }
@@ -697,13 +700,13 @@ void * Object3D::SetupCamera()
 bool Object3D::Update()
 {
   void *v2; // esi
-  __int32 m_type; // eax
-  __int32 v4; // eax
-  __int32 v5; // eax
+  unsigned int m_type; // eax
+  unsigned int v4; // eax
+  unsigned int v5; // eax
   struct tagPOINT Point; // [esp+4h] [ebp-84h] BYREF
   _BYTE actionId[124]; // [esp+Ch] [ebp-7Ch] BYREF
 
-  if ( !LOBYTE(this->m_dropy) || BYTE1(this->m_forward.z) || g_Input.m_shiftedKeyStates[207] != 1 )
+  if ( !LOBYTE(this->m_dropz) || BYTE1(this->m_degreeToScreen) || g_Input.KeyInfo[0].PressTime != 1 )
     return 0;
   ((gbMatrix4 *)actionId)->gbMatrix4();
   ((GRPinput *)&Point)->GetCursorPos();
@@ -729,7 +732,7 @@ bool Object3D::Update()
   {
     ((gbGeomNode *)this->m_pol)->GetOBBox((struct gbOBBox *)actionId);
   }
-  ((gbMatrix4 *)actionId)->RightTranslate((struct gbVec3D *)&this->m_subObjHeight);
+  ((gbMatrix4 *)actionId)->RightTranslate((struct gbVec3D *)&this->m_height);
   return ((gbRay *)&actionId[76])->IsColOBB((struct gbOBBox *)actionId) != 0;
 }
 
@@ -737,13 +740,13 @@ bool Object3D::Update()
 bool Object3D::GetMouseRay(int a2)
 {
   void *v3; // esi
-  __int32 m_type; // eax
-  __int32 v5; // eax
-  __int32 v6; // eax
+  unsigned int m_type; // eax
+  unsigned int v5; // eax
+  unsigned int v6; // eax
   struct tagPOINT Point; // [esp+4h] [ebp-84h] BYREF
   _BYTE actionId[124]; // [esp+Ch] [ebp-7Ch] BYREF
 
-  if ( !LOBYTE(this->m_dropy) || BYTE1(this->m_forward.z) || (g_Input.m_shiftedKeyStates[4 * a2 + 204] & 0xF) != 1 )
+  if ( !LOBYTE(this->m_dropz) || BYTE1(this->m_degreeToScreen) || (g_Input.KeyInfo[a2].Data & 0xF) != 1 )
     return 0;
   ((gbMatrix4 *)actionId)->gbMatrix4();
   ((GRPinput *)&Point)->GetCursorPos();
@@ -769,7 +772,7 @@ bool Object3D::GetMouseRay(int a2)
   {
     ((gbGeomNode *)this->m_pol)->GetOBBox((struct gbOBBox *)actionId);
   }
-  ((gbMatrix4 *)actionId)->RightTranslate((struct gbVec3D *)&this->m_subObjHeight);
+  ((gbMatrix4 *)actionId)->RightTranslate((struct gbVec3D *)&this->m_height);
   return ((gbRay *)&actionId[76])->IsColOBB((struct gbOBBox *)actionId) != 0;
 }
 
@@ -791,10 +794,10 @@ int Object3D::CheckMousePressed()
 int Object3D::Create()
 {
   ((UIListBox *)this)->UIListBox();
-  LODWORD(this->m_rotz) = &off_56A9C0;
-  this->m_dropx = 0.0;
-  LODWORD(this->m_yaw) = 800;
-  LODWORD(this->m_pitch) = 600;
+  LODWORD(this->m_dropx) = &off_56A9C0;
+  this->m_dropy = 0.0;
+  LODWORD(this->m_pitch) = 800;
+  LODWORD(this->m_roll) = 600;
   *((_DWORD *)this + 96) = 0;
   *((_BYTE *)this + 388) = 0;
   sub_444F60((UIWnd *)((char *)this + 392));
@@ -806,16 +809,16 @@ int Object3D::Create()
     (void (*)(void *))UIScene::_UIScene,
     (void (*)(void *))UIScene::Destroy2);
   ((UIItem *)(UIItem *)this + 2456)->Refresh();
-  this->m_isLoadObj = (__int32)&off_56B8A4;
-  LODWORD(this->m_rotz) = &off_56B898;
+  *(_DWORD *)&this->m_isLoadObj = &off_56B8A4;
+  LODWORD(this->m_dropx) = &off_56B898;
   return (int)this;
 }
 
 // 0x0047DE40
 void Object3D::Init()
 {
-  __int32 m_yaw_low; // eax
-  float m_pitch; // ecx
+  float m_pitch; // eax
+  float m_roll; // ecx
   int v4; // eax
   char *v5; // ebx
   _DWORD *v6; // ebp
@@ -826,13 +829,13 @@ void Object3D::Init()
   _DWORD v11[4]; // [esp+20h] [ebp-20h] BYREF
   int a3[4]; // [esp+30h] [ebp-10h] BYREF
 
-  m_yaw_low = LODWORD(this->m_yaw);
   m_pitch = this->m_pitch;
-  this->m_visible = m_yaw_low;
+  m_roll = this->m_roll;
   *(float *)&this->m_pCamera = m_pitch;
+  this->m_yaw = m_roll;
+  *(_DWORD *)&this->m_visible = 0;
   this->m_dropz = 0.0;
-  this->m_dropy = 0.0;
-  ((UIListBox *)this)->SetSelTexture(-1, 0, 0, this->m_visible, (int)this->m_pCamera, 0);
+  ((UIListBox *)this)->SetSelTexture(-1, 0, 0, (int)this->m_pCamera, LODWORD(this->m_yaw), 0);
   *((_DWORD *)this + 93) = 170;
   *((_DWORD *)this + 92) = 310;
   *((_DWORD *)this + 94) = 468;
@@ -881,7 +884,7 @@ void Object3D::Init()
     v7[27] = (PalScript *)3;
     v7[26] = (PalScript *)1;
     v7[52] = (PalScript *)1;
-    ((void (*)(PalScript **, _DWORD))(*v7)->m_bLoadSceneScript)(v7, 0);
+    (*(void (**)(PalScript **, _DWORD))&(*v7)->m_bLoadSceneScript)(v7, 0);
     ++v6;
     v5 += 256;
     v7 += 86;

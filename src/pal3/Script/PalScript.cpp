@@ -34,6 +34,7 @@ extern char aSystemScriptLo[];
 extern char aUiBigmapBigmap[];
 extern unsigned char byte_56A634;
 extern int dword_1894B78;
+extern int dword_BFDA60;
 extern void *off_58B448;
 extern int stru_D8C2B8;
 extern int unknown_libname_339;
@@ -47,18 +48,18 @@ int PalScript::LoadScript(int pathAddr)
   unsigned int v3; // ebp
   unsigned int v4; // kr08_4
   unsigned int v5; // ebp
-  char *v6; // ecx
-  char v7; // al
-  char *v8; // ecx
+  _BYTE *v6; // ecx
+  char m_nGrowBy_high; // al
+  _BYTE *v8; // ecx
   char v9; // al
   int result; // eax
   char v11; // [esp+13h] [ebp-265h]
   int v12; // [esp+14h] [ebp-264h] BYREF
-  char *v13; // [esp+18h] [ebp-260h]
+  PalScript *v13; // [esp+18h] [ebp-260h]
   unsigned int v14; // [esp+1Ch] [ebp-25Ch]
   int v15; // [esp+20h] [ebp-258h]
   int v16; // [esp+24h] [ebp-254h] BYREF
-  char *v17; // [esp+28h] [ebp-250h]
+  PalScript *v17; // [esp+28h] [ebp-250h]
   unsigned int v18; // [esp+2Ch] [ebp-24Ch]
   int v19; // [esp+30h] [ebp-248h]
   PalScript *v20; // [esp+34h] [ebp-244h]
@@ -85,7 +86,7 @@ int PalScript::LoadScript(int pathAddr)
     {
       qmemcpy(v13, String1, v3);
       v14 = v2 - 1;
-      v13[v3] = 0;
+      *(&v13->m_bLoadSceneScript + v3) = 0;
     }
     String1->LoadNext();
     LOBYTE(v16) = v11;
@@ -96,7 +97,7 @@ int PalScript::LoadScript(int pathAddr)
     {
       qmemcpy(v17, String1, v5);
       v18 = v4 - 1;
-      v17[v5] = 0;
+      *(&v17->m_bLoadSceneScript + v5) = 0;
     }
     LOBYTE(v25) = 2;
     LOBYTE(v21[0]) = v12;
@@ -113,20 +114,20 @@ int PalScript::LoadScript(int pathAddr)
     LOBYTE(v25) = 1;
     if ( v17 )
     {
-      v6 = (char *)v17 - 1;
-      v7 = *(v17 - 1);
-      if ( !v7 || v7 == -1 )
+      v6 = (char *)&v17[-1].m_CamObj.m_nGrowBy + 3;
+      m_nGrowBy_high = HIBYTE(v17[-1].m_CamObj.m_nGrowBy);
+      if ( !m_nGrowBy_high || m_nGrowBy_high == -1 )
         operator delete(v6);
       else
-        * v6 = (*)v7 - 1;
+        * v6 = (*)m_nGrowBy_high - 1;
     }
     v17 = 0;
     v18 = 0;
   }
   if ( v13 )
   {
-    v8 = (char *)v13 - 1;
-    v9 = *(v13 - 1);
+    v8 = (char *)&v13[-1].m_CamObj.m_nGrowBy + 3;
+    v9 = HIBYTE(v13[-1].m_CamObj.m_nGrowBy);
     if ( !v9 || v9 == -1 )
       operator delete(v8);
     else
@@ -263,8 +264,8 @@ int PalScript::HasNext()
 {
   int v2; // ecx
   PalScript *v3; // esi
-  char v4; // al
-  char v5; // al
+  unsigned __int8 v4; // al
+  unsigned __int8 v5; // al
   _BYTE *v6; // eax
 
   memset(this, 0, 0x200u);
@@ -296,7 +297,7 @@ int PalScript::HasNext()
           }
           else if ( v5 != 13 )
           {
-            LOBYTE(v3->m_bLoadSceneScript) = v5;
+            v3->m_bLoadSceneScript = v5;
             v3 = (PalScript *)((char *)v3 + 1);
           }
           goto LABEL_31;
@@ -314,7 +315,7 @@ int PalScript::HasNext()
           }
           else if ( v4 != 32 && v4 != 9 && v4 != 44 && v4 != 13 && v4 != 10 )
           {
-            LOBYTE(v3->m_bLoadSceneScript) = v4;
+            v3->m_bLoadSceneScript = v4;
             v3 = (PalScript *)((char *)v3 + 1);
             v2 = 2;
           }
@@ -339,7 +340,7 @@ int PalScript::LoadNext()
   int result; // eax
   PalScript *v3; // esi
   char v4; // cl
-  char v5; // cl
+  unsigned __int8 v5; // cl
   _BYTE *v6; // ecx
 
   result = 0;
@@ -360,7 +361,7 @@ int PalScript::LoadNext()
         }
         else
         {
-          LOBYTE(v3->m_bLoadSceneScript) = v5;
+          v3->m_bLoadSceneScript = v5;
           v3 = (PalScript *)((char *)v3 + 1);
         }
       }
@@ -417,9 +418,9 @@ void PalScript::ClearAllCamObj()
 {
   IDirectInputDevice8A v0; // al
 
-  if ( (stru_D8C2B8.m_keyStates[1] & 0x10) == 0 )
+  if ( (stru_D8C2B8.m_keyStates[4] & 0x10) == 0 )
   {
-    LOBYTE(stru_D8C2B8.m_keyStates[1]) |= 0x10u;
+    stru_D8C2B8.m_keyStates[4] |= 0x10u;
     if ( stru_D8C2B8.m_lpDIDKeyboard )
     {
       v0 = stru_D8C2B8.m_lpDIDKeyboard[-1];
@@ -482,14 +483,14 @@ char *PalScript::GetString()
 {
   char *result; // eax
 
-  if ( stru_D8C2B8.m_keyStates[16] < 0 )
+  if ( *(int *)&stru_D8C2B8.m_keyStates[64] < 0 )
   {
     result = 0;
   }
   else
   {
-    --stru_D8C2B8.m_keyStates[16];
-    result = (char *)(8 * stru_D8C2B8.m_keyStates[16] + 14205804);
+    --*(_DWORD *)&stru_D8C2B8.m_keyStates[64];
+    result = (char *)(8 * *(_DWORD *)&stru_D8C2B8.m_keyStates[64] + 14205804);
   }
   if ( result )
   {
@@ -528,15 +529,15 @@ struct gbVFileSystem * PalScript::OpenScript(const char *a2, char a3)
     v4->Release();
   if ( a3 )
   {
-    v5 = *(_DWORD *)g_Input.KeyInfo[177].Data;
+    v5 = *(_DWORD *)dword_BFDA60->_pad_0000;
     v6 = ((_Texture_Info *)dword_1894B78)->_CalculateUV(Buffer);
-    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(int, Scene *))(v5 + 8))(g_Input.KeyInfo[177].Data, v6);
+    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(gbGfxManager *, Scene *))(v5 + 8))(dword_BFDA60, v6);
     *((_DWORD *)this + 50) = (PalScript *)((Parent_Data *)dword_1894B78)->Parent_Data(Buffer);
   }
   else
   {
-    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
-                                  g_Input.KeyInfo[177].Data,
+    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
+                                  dword_BFDA60,
                                   Buffer);
   }
   v7 = (gbTexture *)*((_DWORD *)this + 49);

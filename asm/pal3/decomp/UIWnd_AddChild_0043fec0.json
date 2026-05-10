@@ -3,5 +3,5 @@
   "address": "0x0043FEC0",
   "size_bytes": 63,
   "signature": "int __thiscall(UIWnd *this, _DWORD *a2)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall UIWnd::AddChild(UIWnd *this, _DWORD *a2)\n{\n  int *p_m_nSize; // edx\n  __int32 *p_Alpha; // ecx\n  int result; // eax\n\n  p_m_nSize = &this->m_childs.m_nSize;\n  p_Alpha = &this->m_fontcolor.Alpha;\n  *p_m_nSize = *a2;\n  p_m_nSize[1] = a2[1];\n  p_m_nSize[2] = a2[2];\n  p_m_nSize[3] = a2[3];\n  *p_Alpha = *a2;\n  p_Alpha[1] = a2[1];\n  p_Alpha[2] = a2[2];\n  result = a2[3];\n  p_Alpha[3] = result;\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall UIWnd::AddChild(UIWnd *this, _DWORD *a2)\n{\n  int *p_m_benable; // edx\n  gbColorQuad *p_m_wndcolor; // ecx\n  int result; // eax\n\n  p_m_benable = &this->m_benable;\n  p_m_wndcolor = &this->m_wndcolor;\n  *p_m_benable = *a2;\n  p_m_benable[1] = a2[1];\n  p_m_benable[2] = a2[2];\n  p_m_benable[3] = a2[3];\n  *p_m_wndcolor = *(gbColorQuad *)a2;\n  result = a2[3];\n  p_m_wndcolor[1].ColorQuadFmt = result;\n  return result;\n}\n"
 }

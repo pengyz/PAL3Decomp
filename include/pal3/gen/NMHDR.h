@@ -6,8 +6,8 @@ class HWND__;
 class NMHDR {
 public:
     HWND__ * hwndFrom; // +0x0
-    int idFrom; // +0x4
-    int code; // +0x8
+    UINT idFrom; // +0x4
+    UINT code; // +0x8
     // total size: 0xC (12)
 
 };

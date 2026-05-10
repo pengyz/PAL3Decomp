@@ -133,7 +133,7 @@ public:
     void ClearAniMsg(char a2, float a3); // 0x0050AB10
     int SetParam(int a2, char a3); // 0x0050AC50
     char GetProperCurAction(_DWORD *a2, _DWORD *a3, _DWORD *a4, _DWORD *a5, _DWORD *a6, int *a7, const void *a8, _DWORD *a9); // 0x0050AD30
-    char ProcTransportRun(float a2, float a3, int a4, int a5, int *a6, const void *a7, int a8); // 0x0050B070
+    char ProcTransportRun(float a2, float a3, int a4, int a5, int *a6, const void *a7, float a8); // 0x0050B070
     char SetForceFinishThrowingWeapon(int a2); // 0x0050B290
     char GetState(); // 0x0050B330
     int ProcCatchED(); // 0x0050B360

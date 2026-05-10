@@ -38,12 +38,12 @@ int CEffShock::Init(int a2, float a3, float a4, float a5)
 
   this->_pad_0000[8] = 0;
   this->m_fSize = *(float *)(a2 + 200);
-  *(float *)this->m_vecPos = a3 + *(float *)(a2 + 184);
-  *(float *)&this->m_vecPos[4] = a4 + *(float *)(a2 + 188);
-  *(float *)&this->m_vecPos[8] = a5 + *(float *)(a2 + 192);
-  *(_DWORD *)this->m_vecRot = *(_DWORD *)(a2 + 216);
-  *(_DWORD *)&this->m_vecRot[4] = *(_DWORD *)(a2 + 196);
-  *(_DWORD *)&this->m_vecRot[8] = *(_DWORD *)(a2 + 220);
+  this->m_vecPos.x = a3 + *(float *)(a2 + 184);
+  this->m_vecPos.y = a4 + *(float *)(a2 + 188);
+  this->m_vecPos.z = a5 + *(float *)(a2 + 192);
+  this->m_vecRot.x = *(float *)(a2 + 216);
+  this->m_vecRot.y = *(float *)(a2 + 196);
+  this->m_vecRot.z = *(float *)(a2 + 220);
   result = *(_DWORD *)(a2 + 204);
   this->m_dwStartColor = result;
   return result;
@@ -138,12 +138,12 @@ LABEL_10:
   this->m_fInterleaving = *(float *)(a2 + 268);
   this->m_nMaxGeomQuad = v10;
   this->m_fFramePerSec = *(float *)(a2 + 180);
-  *(_DWORD *)this->m_vecPos = *(_DWORD *)(a2 + 184);
-  *(_DWORD *)&this->m_vecPos[4] = *(_DWORD *)(a2 + 188);
-  *(_DWORD *)&this->m_vecPos[8] = *(_DWORD *)(a2 + 192);
-  *(_DWORD *)this->m_vecRot = *(_DWORD *)(a2 + 216);
-  *(_DWORD *)&this->m_vecRot[4] = *(_DWORD *)(a2 + 196);
-  *(_DWORD *)&this->m_vecRot[8] = *(_DWORD *)(a2 + 220);
+  this->m_vecPos.x = *(float *)(a2 + 184);
+  this->m_vecPos.y = *(float *)(a2 + 188);
+  this->m_vecPos.z = *(float *)(a2 + 192);
+  this->m_vecRot.x = *(float *)(a2 + 216);
+  this->m_vecRot.y = *(float *)(a2 + 196);
+  this->m_vecRot.z = *(float *)(a2 + 220);
   this->m_bAdditiveBlend = *(_BYTE *)(a2 + 213);
   this->m_bNoZTest = *(_BYTE *)(a2 + 215);
   this->m_byMaxFrame = *(_BYTE *)(a2 + 176);
@@ -248,10 +248,10 @@ int CEffShock::CreateGeom(int a2, int a3)
 {
   int result; // eax
   int v4; // ebx
-  char *v6; // edi
+  float *p_eu; // edi
   int v7; // esi
   int v8; // ecx
-  char *v9; // eax
+  float *v9; // eax
   double v10; // st7
   double v11; // st7
   double v12; // st6
@@ -270,7 +270,7 @@ int CEffShock::CreateGeom(int a2, int a3)
   v13 = (float)a3;
   if ( a3 > 0 )
   {
-    v6 = (char *)&this->m_DefaultUVSet[8];
+    p_eu = (float *)&this->m_DefaultUVSet[0].eu;
     v7 = 16 * a2;
     do
     {
@@ -278,23 +278,23 @@ int CEffShock::CreateGeom(int a2, int a3)
       a2a = 0;
       if ( a2 > 0 )
       {
-        v9 = v6;
-        v6 += v7;
+        v9 = p_eu;
+        p_eu = (float *)((char *)p_eu + v7);
         v10 = (double)v15 / v13;
         v17 = 1.0 / v13;
         v16 = 1.0 - (v10 + v17);
         v11 = 1.0 - v10;
         do
         {
-          v9 += 16;
+          v9 += 4;
           ++v8;
           v12 = (double)a2a / v14;
           a2a = v8;
-          *((float *)v9 - 6) = v12;
+          *(v9 - 6) = v12;
           v18 = 1.0 / v14;
-          *((float *)v9 - 4) = v12 + v18;
-          *((float *)v9 - 5) = v16;
-          *((float *)v9 - 3) = v11;
+          *(v9 - 4) = v12 + v18;
+          *(v9 - 5) = v16;
+          *(v9 - 3) = v11;
         }
         while ( v8 < a2 );
       }

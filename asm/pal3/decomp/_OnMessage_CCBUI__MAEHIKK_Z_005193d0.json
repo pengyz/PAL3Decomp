@@ -3,5 +3,5 @@
   "address": "0x005193D0",
   "size_bytes": 36,
   "signature": "int __thiscall(CCBUI *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBUI::OnMessage(CCBUI *this)\n{\n  this->m_childs.m_pData = 0;\n  this->m_childs.m_nSize = 0;\n  this->m_childs.m_nMaxSize = 0;\n  this->m_childs.m_nGrowBy = 0;\n  this->m_bcreateok = 0;\n  this->m_bvisible = 0;\n  this->m_benable = 0;\n  this->m_bfocus = 0;\n  this->m_pbktex = 0;\n  this->m_pAttackSequenBack = 0;\n  this->pPanel = 0;\n  return 0;\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBUI::OnMessage(CCBUI *this)\n{\n  this->m_pAttackSequenBack = 0;\n  this->pPanel = 0;\n  this->m_pBattleFieldAttr[0] = 0;\n  this->m_pBattleFieldAttr[1] = 0;\n  this->m_pBattleFieldAttr[2] = 0;\n  this->m_pBattleFieldAttr[3] = 0;\n  this->m_pBattleFieldAttr[4] = 0;\n  this->m_pBattleFieldAttr[5] = 0;\n  this->m_pAttackSequenFace[0] = 0;\n  this->m_pAttackSequenFace[1] = 0;\n  this->m_pAttackSequenFace[2] = 0;\n  return 0;\n}\n"
 }

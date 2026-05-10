@@ -3,5 +3,5 @@
   "address": "0x0043DD10",
   "size_bytes": 79,
   "signature": "void __thiscall(UIWnd *this)",
-  "decompiled_c": "void __thiscall UIWnd::~UIWnd(UIWnd *this)\n{\n  this->m_fontcolor.ColorQuadFmt = (int)&off_56AD20;\n  UIListBox::SetScrollPos((UIListBox **)this);\n  UIWnd::_UIWnd(this);\n}\n"
+  "decompiled_c": "void __thiscall UIWnd::~UIWnd(UIWnd *this)\n{\n  *(_DWORD *)this->_pad_0000 = &off_56AD20;\n  UIListBox::SetScrollPos((UIListBox **)this);\n  UIWnd::_UIWnd(this);\n}\n"
 }

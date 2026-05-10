@@ -3,5 +3,5 @@
   "address": "0x0050A210",
   "size_bytes": 70,
   "signature": "int __thiscall(CCBStageRole *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBStageRole::IsGrabedBy(CCBStageRole *this)\n{\n  Actor *m_bFlash; // ecx\n  int result; // eax\n\n  m_bFlash = (Actor *)this->m_bFlash;\n  if ( m_bFlash )\n  {\n    Actor::EnableTransition(\n      m_bFlash,\n      *(&bVisible + this->m_Task[35].cmd.bDestRole[3]),\n      LOBYTE(this->m_vThrowVec.x) != 0);\n    return Actor::CompareAction((Actor *)this->m_bFlash, this->m_Task[35].cmd.bDestRole[3], 0);\n  }\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBStageRole::IsGrabedBy(CCBStageRole *this)\n{\n  Actor *m_nIndex; // ecx\n  int result; // eax\n\n  m_nIndex = (Actor *)this->m_nIndex;\n  if ( m_nIndex )\n  {\n    Actor::EnableTransition(m_nIndex, *(&bVisible + this->m_Task[61].dwID), this->m_bShowWeaponModel != 0);\n    return Actor::CompareAction((Actor *)this->m_nIndex, this->m_Task[61].dwID, 0);\n  }\n  return result;\n}\n"
 }

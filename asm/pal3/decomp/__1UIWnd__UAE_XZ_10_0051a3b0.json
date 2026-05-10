@@ -3,5 +3,5 @@
   "address": "0x0051A3B0",
   "size_bytes": 79,
   "signature": "void __thiscall(UIWnd *this)",
-  "decompiled_c": "void __thiscall UIWnd::~UIWnd(UIWnd *this)\n{\n  this->m_fontcolor.ColorQuadFmt = (int)&off_570500;\n  sub_51A400(this);\n  UIWnd::~UIWnd(this);\n}\n"
+  "decompiled_c": "void __thiscall UIWnd::~UIWnd(UIWnd *this)\n{\n  *(_DWORD *)this->_pad_0000 = &off_570500;\n  sub_51A400(this);\n  UIWnd::~UIWnd(this);\n}\n"
 }

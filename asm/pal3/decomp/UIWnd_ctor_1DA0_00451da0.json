@@ -3,5 +3,5 @@
   "address": "0x00451DA0",
   "size_bytes": 172,
   "signature": "void __thiscall(UIWnd *this)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nvoid __thiscall UIWnd::ctor_1DA0(UIWnd *this)\n{\n  this->m_fontcolor.ColorQuadFmt = (int)&off_56B19C;\n  `eh vector destructor iterator'((char *)this + 1172, 0x98u, 4, (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);\n  UIFrameWnd::_UIFrameWnd((UIFrameWnd *)((char *)this + 1012));\n  `eh vector destructor iterator'((char *)this + 556, 0x98u, 3, (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);\n  UIWnd::~UIWnd(this + 3);\n  UIWnd::~UIWnd((UIWnd *)&this->m_pfather);\n  UIWnd::_UIWnd(this);\n}\n"
+  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nvoid __thiscall UIWnd::ctor_1DA0(UIWnd *this)\n{\n  *(_DWORD *)this->_pad_0000 = &off_56B19C;\n  `eh vector destructor iterator'((char *)this + 1172, 0x98u, 4, (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);\n  UIFrameWnd::_UIFrameWnd((UIFrameWnd *)((char *)this + 1012));\n  `eh vector destructor iterator'((char *)this + 556, 0x98u, 3, (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);\n  UIWnd::~UIWnd((UIWnd *)((char *)this + 312));\n  UIWnd::~UIWnd((UIWnd *)&this->m_bcreateok);\n  UIWnd::_UIWnd(this);\n}\n"
 }

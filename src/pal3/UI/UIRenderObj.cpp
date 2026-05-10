@@ -4,6 +4,9 @@
 #include "pal3/gen/GRPinput.h"
 #include "pal3/gen/UIQuadManager.h"
 
+// Unnamed globals (extern)
+extern int dword_BFDA60;
+
 // 0x00541640
 UIRenderObj::UIRenderObj()
 {
@@ -43,8 +46,8 @@ UIRenderObj::UIRenderObj()
 UIRenderObj::~UIRenderObj()
 {
   if ( !*((_BYTE *)UIQuadManager::GetInstance() + 29) )
-    return (*(unsigned __int8 (**)(int, _DWORD))(*(_DWORD *)g_Input.KeyInfo[177].Data + 104))(
-             g_Input.KeyInfo[177].Data,
+    return (*(unsigned __int8 (**)(gbGfxManager *, _DWORD))(*(_DWORD *)dword_BFDA60->_pad_0000 + 104))(
+             dword_BFDA60,
              a2);
   *((_BYTE *)this + 28) = a2;
   a2;

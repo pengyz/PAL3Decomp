@@ -26,6 +26,7 @@ extern int dword_17A8464;
 extern int dword_17A8468;
 extern int dword_17A846C;
 extern int dword_17A8470;
+extern int dword_BFDA60;
 extern float flt_17A844C;
 extern float flt_17A8454;
 
@@ -35,20 +36,20 @@ C3DSpark::C3DSpark()
   int v2; // ebx
   gbGeomQuad *m_GeomQuad; // edi
   gbTexture *v4; // eax
-  _DWORD *v5; // eax
-  void *m_pRedBig; // ecx
+  gbTextureArray *v5; // eax
+  gbTexture *m_pRedBig; // ecx
   gbTexture *v7; // eax
-  _DWORD *v8; // eax
-  void *m_pRed16; // ecx
+  gbTextureArray *v8; // eax
+  gbTexture *m_pRed16; // ecx
   gbTexture *v10; // eax
-  _DWORD *v11; // eax
-  void *m_pGreen16; // ecx
+  gbTextureArray *v11; // eax
+  gbTexture *m_pGreen16; // ecx
   gbTexture *v13; // eax
-  _DWORD *v14; // eax
-  void *m_pBlue16; // ecx
+  gbTextureArray *v14; // eax
+  gbTexture *m_pBlue16; // ecx
   gbTexture *v16; // eax
-  _DWORD *v17; // eax
-  void *m_pYellow16; // ecx
+  gbTextureArray *v17; // eax
+  gbTexture *m_pYellow16; // ecx
   float *p_sv; // eax
   int v20; // ecx
   char pExceptionObject[1024]; // [esp+30h] [ebp-800h] BYREF
@@ -64,18 +65,18 @@ C3DSpark::C3DSpark()
   }
   while ( v2 );
   memset(this, 0, 0x3E30u);
-  this->m_pAdditiveBlend = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptAddit, 0);
-  v4 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
-                      g_Input.KeyInfo[177].Data,
+  this->m_pAdditiveBlend = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptAddit, 0);
+  v4 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
+                      dword_BFDA60,
                       aEffectFlare3Bm);
   this->m_pRedBig = v4;
   v4->LoadTexture(1);
-  v5 = (_DWORD *)operator new(0x44u);
+  v5 = (gbTextureArray *)operator new(0x44u);
   if ( v5 )
   {
-    m_pRedBig = (void *)this->m_pRedBig;
-    v5[16] = 1;
-    *v5 = m_pRedBig;
+    m_pRedBig = (gbTexture *)this->m_pRedBig;
+    v5->nTex = 1;
+    v5->pTexPt[0] = m_pRedBig;
   }
   else
   {
@@ -90,17 +91,17 @@ C3DSpark::C3DSpark()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v7 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
-                      g_Input.KeyInfo[177].Data,
+  v7 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
+                      dword_BFDA60,
                       aEffectFlare2Bm);
   this->m_pRed16 = v7;
   v7->LoadTexture(1);
-  v8 = (_DWORD *)operator new(0x44u);
+  v8 = (gbTextureArray *)operator new(0x44u);
   if ( v8 )
   {
-    m_pRed16 = (void *)this->m_pRed16;
-    v8[16] = 1;
-    *v8 = m_pRed16;
+    m_pRed16 = (gbTexture *)this->m_pRed16;
+    v8->nTex = 1;
+    v8->pTexPt[0] = m_pRed16;
   }
   else
   {
@@ -115,17 +116,17 @@ C3DSpark::C3DSpark()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v10 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
-                       g_Input.KeyInfo[177].Data,
+  v10 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
+                       dword_BFDA60,
                        aEffectFlaregre);
   this->m_pGreen16 = v10;
   v10->LoadTexture(1);
-  v11 = (_DWORD *)operator new(0x44u);
+  v11 = (gbTextureArray *)operator new(0x44u);
   if ( v11 )
   {
-    m_pGreen16 = (void *)this->m_pGreen16;
-    v11[16] = 1;
-    *v11 = m_pGreen16;
+    m_pGreen16 = (gbTexture *)this->m_pGreen16;
+    v11->nTex = 1;
+    v11->pTexPt[0] = m_pGreen16;
   }
   else
   {
@@ -140,17 +141,17 @@ C3DSpark::C3DSpark()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v13 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
-                       g_Input.KeyInfo[177].Data,
+  v13 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
+                       dword_BFDA60,
                        aEffectFlareblu);
   this->m_pBlue16 = v13;
   v13->LoadTexture(1);
-  v14 = (_DWORD *)operator new(0x44u);
+  v14 = (gbTextureArray *)operator new(0x44u);
   if ( v14 )
   {
-    m_pBlue16 = (void *)this->m_pBlue16;
-    v14[16] = 1;
-    *v14 = m_pBlue16;
+    m_pBlue16 = (gbTexture *)this->m_pBlue16;
+    v14->nTex = 1;
+    v14->pTexPt[0] = m_pBlue16;
   }
   else
   {
@@ -165,17 +166,17 @@ C3DSpark::C3DSpark()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v16 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
-                       g_Input.KeyInfo[177].Data,
+  v16 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
+                       dword_BFDA60,
                        aEffectFlarebri);
   this->m_pYellow16 = v16;
   v16->LoadTexture(1);
-  v17 = (_DWORD *)operator new(0x44u);
+  v17 = (gbTextureArray *)operator new(0x44u);
   if ( v17 )
   {
-    m_pYellow16 = (void *)this->m_pYellow16;
-    v17[16] = 1;
-    *v17 = m_pYellow16;
+    m_pYellow16 = (gbTexture *)this->m_pYellow16;
+    v17->nTex = 1;
+    v17->pTexPt[0] = m_pYellow16;
   }
   else
   {
@@ -209,47 +210,47 @@ C3DSpark::C3DSpark()
 // 0x004D6960
 C3DSpark::~C3DSpark()
 {
-  gbRefObject *m_pAdditiveBlend; // ecx
-  gbRefObject *m_pRedBig; // ecx
-  gbRefObject *m_pGreen16; // ecx
-  gbRefObject *m_pBlue16; // ecx
-  gbRefObject *m_pRed16; // ecx
-  gbRefObject *m_pYellow16; // ecx
+  gbRenderEffect *m_pAdditiveBlend; // ecx
+  gbTexture *m_pRedBig; // ecx
+  gbTexture *m_pGreen16; // ecx
+  gbTexture *m_pBlue16; // ecx
+  gbTexture *m_pRed16; // ecx
+  gbTexture *m_pYellow16; // ecx
 
-  m_pAdditiveBlend = (gbRefObject *)this->m_pAdditiveBlend;
+  m_pAdditiveBlend = (gbRenderEffect *)this->m_pAdditiveBlend;
   if ( m_pAdditiveBlend )
   {
-    m_pAdditiveBlend->Release();
+    ((gbRefObject *)m_pAdditiveBlend)->Release();
     this->m_pAdditiveBlend = 0;
   }
-  m_pRedBig = (gbRefObject *)this->m_pRedBig;
+  m_pRedBig = (gbTexture *)this->m_pRedBig;
   if ( m_pRedBig )
   {
-    m_pRedBig->Release();
+    ((gbRefObject *)m_pRedBig)->Release();
     this->m_pRedBig = 0;
   }
-  m_pGreen16 = (gbRefObject *)this->m_pGreen16;
+  m_pGreen16 = (gbTexture *)this->m_pGreen16;
   if ( m_pGreen16 )
   {
-    m_pGreen16->Release();
+    ((gbRefObject *)m_pGreen16)->Release();
     this->m_pGreen16 = 0;
   }
-  m_pBlue16 = (gbRefObject *)this->m_pBlue16;
+  m_pBlue16 = (gbTexture *)this->m_pBlue16;
   if ( m_pBlue16 )
   {
-    m_pBlue16->Release();
+    ((gbRefObject *)m_pBlue16)->Release();
     this->m_pBlue16 = 0;
   }
-  m_pRed16 = (gbRefObject *)this->m_pRed16;
+  m_pRed16 = (gbTexture *)this->m_pRed16;
   if ( m_pRed16 )
   {
-    m_pRed16->Release();
+    ((gbRefObject *)m_pRed16)->Release();
     this->m_pRed16 = 0;
   }
-  m_pYellow16 = (gbRefObject *)this->m_pYellow16;
+  m_pYellow16 = (gbTexture *)this->m_pYellow16;
   if ( m_pYellow16 )
   {
-    m_pYellow16->Release();
+    ((gbRefObject *)m_pYellow16)->Release();
     this->m_pYellow16 = 0;
   }
   if ( this->m_pRedBigArray )
@@ -282,7 +283,7 @@ C3DSpark::~C3DSpark()
 // 0x004D6A60
 char C3DSpark::CreateSingle(const void *a2)
 {
-  __int32 v3; // eax
+  int v3; // eax
   char *i; // ecx
 
   v3 = 0;
@@ -364,7 +365,7 @@ void C3DSpark::Render(int a1@<ecx>, struct gbVec3D *a2@<edi>)
   int v17; // [esp+28h] [ebp-8h]
   float v18; // [esp+2Ch] [ebp-4h]
 
-  v2 = (gbMatrixStack *)*(gbMatrixStack **)(g_Input.KeyInfo[177].Data + 216);
+  v2 = (gbMatrixStack *)dword_BFDA60->pMatrixStack[1];
   v15 = a1;
   v17 = 0;
   v16 = 0;
@@ -410,7 +411,7 @@ void C3DSpark::Render(int a1@<ecx>, struct gbVec3D *a2@<edi>)
     while ( v16 < *(_DWORD *)(a1 + 7168) );
     if ( v17 > 0 )
     {
-      ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(0x15u);
+      ((gbVertPoolMgr *)dword_BFDA60->pVertPoolMgr)->GetDynVertBuf(0x15u);
       v2->Push();
       v2->LoadIdentity();
       ((gbDynVertBuf *)(v15 + 7216))->RenderGeomQuad(v17, *(struct gbRenderEffect **)(v15 + 7172), *(struct gbTextureArray **)(v15 + 7204));
@@ -425,7 +426,7 @@ int C3DSpark::Update(float a2)
   int result; // eax
   int v3; // esi
   char *v4; // edx
-  __int32 v5; // eax
+  int v5; // eax
   float v6; // [esp+4h] [ebp-4h]
 
   result = this->m_nCurrentSpark;

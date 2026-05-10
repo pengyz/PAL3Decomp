@@ -95,21 +95,21 @@ PtrArray::~PtrArray()
   v2 = *(_DWORD *)(*(_DWORD *)a1 + 68) + *(_DWORD *)(*(_DWORD *)a1 + 72);
   if ( *(_DWORD *)(a1 + 8) >= v2 )
   2;
-  stru_D8C2B8.KeyTransformation[1] = a1;
+  stru_D8C2B8.KeyInfo[147].CountMode = a1;
   if ( *(_DWORD *)(a1 + 8) < v2 )
   {
     do
       sub_433F90();
     while ( *(_BYTE *)(a1 + 4) != 1 && *(_DWORD *)(a1 + 8) < v2 );
   }
-  stru_D8C2B8.KeyTransformation[1] = 0;
+  stru_D8C2B8.KeyInfo[147].CountMode = 0;
   1;
 }
 
 // 0x00434240
 void PtrArray::SetSize()
 {
-  __int32 v0; // esi
+  int v0; // esi
   int v1; // edi
   void **v2; // ebx
   int v3; // esi
@@ -118,17 +118,17 @@ void PtrArray::SetSize()
   int v6; // edi
   int v7; // eax
   int i; // [esp+Ch] [ebp-8h]
-  __int32 v9; // [esp+10h] [ebp-4h]
+  int v9; // [esp+10h] [ebp-4h]
 
-  v0 = stru_D8C2B8.m_keyStates[11];
+  v0 = *(_DWORD *)&stru_D8C2B8.m_keyStates[44];
   v1 = 0;
-  v9 = stru_D8C2B8.m_keyStates[11];
+  v9 = *(_DWORD *)&stru_D8C2B8.m_keyStates[44];
   for ( i = 0; v1 < v0; i = v1 )
   {
-    if ( v1 < 0 || v1 >= stru_D8C2B8.m_keyStates[11] )
+    if ( v1 < 0 || v1 >= *(int *)&stru_D8C2B8.m_keyStates[44] )
       v2 = 0;
     else
-      v2 = *(void ***)(stru_D8C2B8.m_keyStates[10] + 4 * v1);
+      v2 = *(void ***)(*(_DWORD *)&stru_D8C2B8.m_keyStates[40] + 4 * v1);
     if ( *v2 )
     {
       if ( *((_WORD *)*v2 + 38) )
@@ -179,30 +179,30 @@ void PtrArray::SetSize()
     free(v2);
     ++v1;
   }
-  sub_4326A0((int)&stru_D8C2B8.m_keyStates[10], 0, -1);
-  stru_D8C2B8.m_keyStates[16] = -1;
-  memset(&stru_D8C2B8.m_keyStates[17], 0, 0x100u);
-  stru_D8C2B8.KeyTransformation[1] = 0;
-  if ( stru_D8C2B8.KeyTransformation[3] )
+  sub_4326A0((int)&stru_D8C2B8.m_keyStates[40], 0, -1);
+  *(_DWORD *)&stru_D8C2B8.m_keyStates[64] = -1;
+  memset(&stru_D8C2B8.m_keyStates[68], 0, 0x100u);
+  stru_D8C2B8.KeyInfo[147].CountMode = 0;
+  if ( stru_D8C2B8.KeyInfo[148].Data )
   {
-    free((void *)stru_D8C2B8.KeyTransformation[3]);
-    stru_D8C2B8.KeyTransformation[3] = 0;
+    free((void *)stru_D8C2B8.KeyInfo[148].Data);
+    stru_D8C2B8.KeyInfo[148].Data = 0;
   }
-  stru_D8C2B8.KeyTransformation[2] = 0;
+  stru_D8C2B8.KeyInfo[147].PressTime = 0;
 }
 
 // 0x004343B0
-char * PtrArray::SetAtGrow(signed __int16 a1, int a2)
+char * PtrArray::SetAtGrow(unsigned __int16 a1, int a2)
 {
-  int v2; // ecx
+  int CountMode; // ecx
 
-  v2 = a2;
+  CountMode = a2;
   if ( !a2 )
-    v2 = stru_D8C2B8.KeyTransformation[1];
-  if ( a1 >= 0 )
-    return (char *)(*(_DWORD *)(v2 + 76) + 8 * (unsigned __int16)a1);
+    CountMode = stru_D8C2B8.KeyInfo[147].CountMode;
+  if ( (a1 & 0x8000u) == 0 )
+    return (char *)(*(_DWORD *)(CountMode + 76) + 8 * a1);
   else
-    return (char *)(stru_D8C2B8.KeyTransformation[3] + 24 * (a1 & 0x7FFF));
+    return (char *)(stru_D8C2B8.KeyInfo[148].Data + 24 * (a1 & 0x7FFF));
 }
 
 // 0x004343F0
@@ -212,14 +212,14 @@ char * PtrArray::RemoveAt(const char *a1)
   const char *i; // ebp
 
   v1 = 0;
-  if ( stru_D8C2B8.KeyTransformation[2] <= 0 )
+  if ( stru_D8C2B8.KeyInfo[147].PressTime <= 0 )
     return 0;
-  for ( i = (const char *)(stru_D8C2B8.KeyTransformation[3] + 8); strcmp(a1, i); i += 24 )
+  for ( i = (const char *)(stru_D8C2B8.KeyInfo[148].Data + 8); strcmp(a1, i); i += 24 )
   {
-    if ( ++v1 >= stru_D8C2B8.KeyTransformation[2] )
+    if ( ++v1 >= stru_D8C2B8.KeyInfo[147].PressTime )
       return 0;
   }
-  return (char *)(stru_D8C2B8.KeyTransformation[3] + 24 * v1);
+  return (char *)(stru_D8C2B8.KeyInfo[148].Data + 24 * v1);
 }
 
 // 0x00434490

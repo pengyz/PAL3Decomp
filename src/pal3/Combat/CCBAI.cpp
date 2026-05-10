@@ -44,7 +44,7 @@ void * CCBAI::GetTargetRole(void *pOut)
   _DWORD *v2; // edx
   int v4; // [esp+Ch] [ebp+8h]
 
-  v2 = (_DWORD *)(this->m_bNewRole[1] + 12 * v4);
+  v2 = (_DWORD *)(*(_DWORD *)&this->m_bNewRole[4] + 12 * v4);
   *(_DWORD *)pOut = *v2;
   *((_DWORD *)pOut + 1) = v2[1];
   *((_DWORD *)pOut + 2) = v2[2];
@@ -82,18 +82,18 @@ int CCBAI::Reset()
 _DWORD * CCBAI::Create(_DWORD *a2)
 {
   memset(this, 0, 0xE50u);
-  this->m_bNewRole[3] = (__int32)a2;
-  this->m_bNewRole[4] = a2[4];
-  this->m_bNewRole[5] = *a2;
+  this->m_pCBSystem = (CCBSystem *)a2;
+  this->m_pRoleState = (CCBRoleState *)a2[4];
+  this->m_pUtil = (CUtil *)*a2;
   return this->m_bNewRole;
 }
 
 // 0x004D70C0
 char CCBAI::Init()
 {
-  memset(&this->m_VAF[31], 0, 0x6E0u);
-  memset(&this->m_Demand[9][9], 0, 0xA0u);
+  memset(&this->m_Demand[0][8], 0, 0x6E0u);
   memset(&this->m_EnemyDemand[8], 0, 0xA0u);
+  memset(&this->m_FriendDemand[8], 0, 0xA0u);
   this->SetNewRole();
   this->RepeatPlayerLastOperation();
   return 1;
@@ -110,28 +110,28 @@ int CCBAI::Update()
 char CCBAI::Render(int a2)
 {
   char v3; // bl
-  int v4; // eax
+  CCBStageRole *v4; // eax
   char RoleField; // al
-  CCBRoleState *v6; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   char result; // al
 
   v3 = 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a2, 0) > 0 )
+  if ( ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a2, 0) > 0 )
   {
-    v4 = *(_DWORD *)(*(_DWORD *)(this->m_bNewRole[3] + 20) + 4 * a2 + 24);
-    *(float *)(v4 + 6632) = *(float *)(v4 + 6636);
+    v4 = (CCBStageRole *)this->m_pCBSystem->m_pStage->m_pRole[a2];
+    *(float *)&v4->m_Task[62].cmd.bSrcRole[2] = *(float *)&v4->m_Task[62].cmd.bSrcRole[6];
   }
-  RoleField = ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 18);
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
+  RoleField = ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 18);
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
   if ( RoleField )
   {
-    if ( v6->GetRoleAttr(a2) != 5 )
+    if ( m_pRoleState->GetRoleAttr(a2) != 5 )
       return sub_4D8580(this, a2);
     return v3;
   }
   else
   {
-    switch ( v6->GetRoleAttr(a2) )
+    switch ( m_pRoleState->GetRoleAttr(a2) )
     {
       case 1:
       case 2:
@@ -160,7 +160,7 @@ char CCBAI::HandleEnemyAction(int a2)
   int v5; // edi
   int v6; // eax
   int v7; // edi
-  CCBRoleState *v8; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v9; // ecx
   int v10; // [esp+38h] [ebp-Ch]
   tagDemand *a4; // [esp+3Ch] [ebp-8h]
@@ -178,7 +178,7 @@ char CCBAI::HandleEnemyAction(int a2)
     g_RandSeed = v4;
     if ( ((v4 >> 16) & 0x7FFF) % 3 == 1 )
     {
-      if ( *(_BYTE *)(this->m_bNewRole[4] + v5 + 577) )
+      if ( *(&this->m_pRoleState->m_Role[0].bValid + v5) )
         break;
     }
     v5 += 892;
@@ -195,13 +195,13 @@ LABEL_9:
 LABEL_12:
     v7 = 892 * v6;
     v10 = 892 * v6;
-    for ( a4 = &this->m_Demand[0][10 * v6 + 2]; ; a4 += 10 )
+    for ( a4 = &this->m_Demand[1][10 * v6 + 1]; ; a4 += 10 )
     {
-      v8 = (CCBRoleState *)this->m_bNewRole[4];
-      if ( *(&v8->m_Role[0].bValid + v7) )
+      m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+      if ( *(&m_pRoleState->m_Role[0].bValid + v7) )
       {
-        if ( !v8->IsRoleAlive(v6)
-          || (v9 = (CCBRoleState *)this->m_bNewRole[4], *(&v9->m_Role[0].bEnemyFriend + v7) == 1) )
+        if ( !m_pRoleState->IsRoleAlive(v6)
+          || (v9 = this->m_pRoleState, *(&v9->m_Role[0].bEnemyFriend + v7) == 1) )
         {
           v6 = roleIdx;
         }
@@ -210,13 +210,13 @@ LABEL_12:
           if ( (unsigned int)v7 < 0x116C
             || v9->GetRoleField(a2, 19)
             && (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x7FFF) % 10 > 7)
-            || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 18)
+            || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 18)
             && (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x7FFF) % 10 > 7) )
           {
             if ( a4[2].nSatisfy < 100 && this->DemandChecker(a2, roleIdx, (int)&a4[2]) == 1 )
               return 1;
           }
-          if ( this->m_Demand[9][10].nSatisfy < 100 && this->CastRecoverMagic(a2, (int)&this->m_Demand[9][10]) )
+          if ( this->m_EnemyDemand[9].nSatisfy < 100 && this->CastRecoverMagic(a2, (int)&this->m_EnemyDemand[9]) )
             return 1;
           if ( v7 >= 4460 )
           {
@@ -233,22 +233,22 @@ LABEL_12:
               }
             }
           }
-          if ( this->m_FriendDemand[3].nSatisfy < 100 )
+          if ( *((int *)this + 896) < 100 )
           {
             ++g_nRandCallCount;
             g_RandSeed = 214013 * g_RandSeed + 2531011;
             if ( ((g_RandSeed >> 16) & 0x3FF) < (int)378.88 )
             {
-              if ( this->CastAttackMagic(a2, (int)&this->m_FriendDemand[3]) )
+              if ( this->CastAttackMagic(a2, (int)this + 3584) )
                 return 1;
             }
-            if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleType(a2) )
+            if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleType(a2) )
             {
               ++g_nRandCallCount;
               g_RandSeed = 214013 * g_RandSeed + 2531011;
               if ( ((g_RandSeed >> 16) & 0x3FF) < (int)307.19998 )
               {
-                if ( a2->Thunk_GetValue((int)&this->m_FriendDemand[3]) )
+                if ( a2->Thunk_GetValue((int)this + 3584) )
                   return 1;
               }
             }
@@ -287,9 +287,9 @@ LABEL_12:
             }
           }
           if ( (unsigned int)v10 < 0x116C
-            || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19)
+            || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19)
             && (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x7FFF) % 10 > 7)
-            || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 18)
+            || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 18)
             && (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x7FFF) % 10 > 7) )
           {
             if ( this->DemandChecker(a2, roleIdx, 0) )
@@ -318,12 +318,12 @@ char CCBAI::HandleEnemyWell(int a2)
   int v4; // edi
   int v5; // eax
   int v6; // edi
-  CCBRoleState *v7; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v8; // ecx
   int v9; // edx
   int v10; // edx
   int v11; // edi
-  int *a4; // [esp+40h] [ebp-Ch]
+  tagDemand *a4; // [esp+40h] [ebp-Ch]
   int v14; // [esp+44h] [ebp-8h]
   int roleIdx; // [esp+48h] [ebp-4h]
 
@@ -337,7 +337,7 @@ char CCBAI::HandleEnemyWell(int a2)
     g_RandSeed = v3;
     if ( ((v3 >> 16) & 0x7FFF) % 3 == 1 )
     {
-      if ( *(_BYTE *)(this->m_bNewRole[4] + v4 + 577) )
+      if ( *(&this->m_pRoleState->m_Role[0].bValid + v4) )
         break;
     }
     v4 += 892;
@@ -354,10 +354,10 @@ LABEL_7:
 LABEL_10:
     v6 = 892 * v5;
     v14 = 892 * v5;
-    for ( a4 = (int *)&this->m_VAF[5 * v5 + 31]._pad_000C[4]; ; a4 += 40 )
+    for ( a4 = &this->m_Demand[0][10 * v5 + 9]; ; a4 += 10 )
     {
-      v7 = (CCBRoleState *)this->m_bNewRole[4];
-      if ( *(&v7->m_Role[0].bValid + v6) )
+      m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+      if ( *(&m_pRoleState->m_Role[0].bValid + v6) )
         break;
 LABEL_75:
       v6 += 892;
@@ -366,8 +366,8 @@ LABEL_75:
       if ( v6 >= 9812 )
         return 0;
     }
-    if ( !v7->IsRoleAlive(v5)
-      || (v8 = (CCBRoleState *)this->m_bNewRole[4], *(&v8->m_Role[0].bEnemyFriend + v6) == 1) )
+    if ( !m_pRoleState->IsRoleAlive(v5)
+      || (v8 = this->m_pRoleState, *(&v8->m_Role[0].bEnemyFriend + v6) == 1) )
     {
 LABEL_74:
       v5 = roleIdx;
@@ -376,16 +376,16 @@ LABEL_74:
     if ( (unsigned int)v6 < 0x116C
       || v8->GetRoleField(a2, 19)
       && (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x7FFF) % 10 > 7)
-      || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 18)
+      || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 18)
       && (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x7FFF) % 10 > 7) )
     {
-      if ( a4[20] < 100 && this->DemandChecker(a2, roleIdx, (int)(a4 + 20)) )
+      if ( a4[5].nSatisfy < 100 && this->DemandChecker(a2, roleIdx, (int)&a4[5]) )
         return 1;
     }
-    if ( this->m_Demand[9][10].nSatisfy < 100 && this->CastRecoverMagic(a2, (int)&this->m_Demand[9][10]) )
+    if ( this->m_EnemyDemand[9].nSatisfy < 100 && this->CastRecoverMagic(a2, (int)&this->m_EnemyDemand[9]) )
       return 1;
     v9 = roleIdx;
-    if ( roleIdx == a2 && *a4 < 100 )
+    if ( roleIdx == a2 && a4->nSatisfy < 100 )
     {
       if ( this->CastNormalAttack(a2, roleIdx, (int)a4) )
         return 1;
@@ -393,39 +393,39 @@ LABEL_74:
     }
     if ( v6 >= 4460 )
     {
-      if ( v6 < 9812 && *a4 < 100 )
+      if ( v6 < 9812 && a4->nSatisfy < 100 )
       {
         if ( this->CastNormalAttack(a2, v9, (int)a4) )
           return 1;
         v9 = roleIdx;
       }
-      if ( v6 < 9812 && a4[12] < 100 )
+      if ( v6 < 9812 && a4[3].nSatisfy < 100 )
       {
         ++g_nRandCallCount;
         g_RandSeed = 214013 * g_RandSeed + 2531011;
         if ( ((g_RandSeed >> 16) & 0x3FF) < (int)512.0 )
         {
-          if ( this->CastAttackBigItem(a2, v9, (int)(a4 + 12)) )
+          if ( this->CastAttackBigItem(a2, v9, (int)&a4[3]) )
             return 1;
         }
       }
     }
-    if ( this->m_FriendDemand[3].nSatisfy < 100 )
+    if ( *((int *)this + 896) < 100 )
     {
       ++g_nRandCallCount;
       g_RandSeed = 214013 * g_RandSeed + 2531011;
       if ( ((g_RandSeed >> 16) & 0x3FF) < (int)256.0 )
       {
-        if ( this->CastAttackMagic(a2, (int)&this->m_FriendDemand[3]) )
+        if ( this->CastAttackMagic(a2, (int)this + 3584) )
           return 1;
       }
-      if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleType(a2) )
+      if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleType(a2) )
       {
         ++g_nRandCallCount;
         g_RandSeed = 214013 * g_RandSeed + 2531011;
         if ( ((g_RandSeed >> 16) & 0x3FF) < (int)307.19998 )
         {
-          if ( a2->Thunk_GetValue((int)&this->m_FriendDemand[3]) )
+          if ( a2->Thunk_GetValue((int)this + 3584) )
             return 1;
         }
       }
@@ -434,7 +434,7 @@ LABEL_74:
     if ( v14 < 0 )
       goto LABEL_82;
     if ( v14 >= 4460
-      || a4[28] >= 100
+      || a4[7].nSatisfy >= 100
       || (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x3FF) >= (int)716.79999) )
     {
       v11 = roleIdx;
@@ -442,31 +442,31 @@ LABEL_74:
     else
     {
       v11 = roleIdx;
-      if ( this->CastRecoverBigMagic(a2, roleIdx, (int)(a4 + 28)) )
+      if ( this->CastRecoverBigMagic(a2, roleIdx, (int)&a4[7]) )
         return 1;
       v10 = v14;
     }
     if ( v10 < 0 )
       goto LABEL_82;
-    if ( v10 < 4460 && a4[32] < 100 )
+    if ( v10 < 4460 && a4[8].nSatisfy < 100 )
     {
       ++g_nRandCallCount;
       g_RandSeed = 214013 * g_RandSeed + 2531011;
-      if ( ((g_RandSeed >> 16) & 0x3FF) < (int)716.79999 && this->DemandChecker(a2, v11, (int)(a4 + 32)) )
+      if ( ((g_RandSeed >> 16) & 0x3FF) < (int)716.79999 && this->DemandChecker(a2, v11, (int)&a4[8]) )
         return 1;
       v10 = v14;
     }
-    if ( v10 < 4460 && a4[24] < 100 )
+    if ( v10 < 4460 && a4[6].nSatisfy < 100 )
     {
-      if ( this->CastRecoverBigMagic(a2, v11, (int)(a4 + 24)) )
+      if ( this->CastRecoverBigMagic(a2, v11, (int)&a4[6]) )
         return 1;
       v10 = v14;
     }
-    if ( v10 < 4460 && a4[24] < 100 )
+    if ( v10 < 4460 && a4[6].nSatisfy < 100 )
     {
       ++g_nRandCallCount;
       g_RandSeed = 214013 * g_RandSeed + 2531011;
-      if ( ((g_RandSeed >> 16) & 0x3FF) < (int)256.0 && this->CastRecoverBigMagic(a2, v11, (int)(a4 + 24)) )
+      if ( ((g_RandSeed >> 16) & 0x3FF) < (int)256.0 && this->CastRecoverBigMagic(a2, v11, (int)&a4[6]) )
         return 1;
       v10 = v14;
     }
@@ -484,7 +484,7 @@ LABEL_74:
     if ( v10 >= 4460 )
     {
 LABEL_82:
-      if ( !((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19)
+      if ( !((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19)
         || (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x7FFF) % 10 <= 7) )
       {
 LABEL_73:
@@ -509,13 +509,13 @@ char CCBAI::HandleEnemyWeak(int a2)
   int v4; // edi
   int v5; // eax
   int v6; // edi
-  CCBRoleState *v7; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v8; // ecx
   int v9; // edx
   int v10; // edx
   int v11; // edi
   int v13; // [esp+40h] [ebp-Ch]
-  int *a4; // [esp+44h] [ebp-8h]
+  tagDemand *a4; // [esp+44h] [ebp-8h]
   int roleIdx; // [esp+48h] [ebp-4h]
 
   v3 = g_RandSeed;
@@ -528,7 +528,7 @@ char CCBAI::HandleEnemyWeak(int a2)
     g_RandSeed = v3;
     if ( ((v3 >> 16) & 0x7FFF) % 3 == 1 )
     {
-      if ( *(_BYTE *)(this->m_bNewRole[4] + v4 + 577) )
+      if ( *(&this->m_pRoleState->m_Role[0].bValid + v4) )
         break;
     }
     v4 += 892;
@@ -549,10 +549,10 @@ LABEL_7:
   }
   v6 = 892 * v5;
   v13 = 892 * v5;
-  for ( a4 = (int *)&this->m_VAF[5 * v5 + 31]._pad_000C[4]; ; a4 += 40 )
+  for ( a4 = &this->m_Demand[0][10 * v5 + 9]; ; a4 += 10 )
   {
-    v7 = (CCBRoleState *)this->m_bNewRole[4];
-    if ( *(&v7->m_Role[0].bValid + v6) )
+    m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+    if ( *(&m_pRoleState->m_Role[0].bValid + v6) )
       break;
 LABEL_76:
     v6 += 892;
@@ -561,8 +561,8 @@ LABEL_76:
     if ( v6 >= 9812 )
       return 0;
   }
-  if ( !v7->IsRoleAlive(v5)
-    || (v8 = (CCBRoleState *)this->m_bNewRole[4], *(&v8->m_Role[0].bEnemyFriend + v6) == 1) )
+  if ( !m_pRoleState->IsRoleAlive(v5)
+    || (v8 = this->m_pRoleState, *(&v8->m_Role[0].bEnemyFriend + v6) == 1) )
   {
     v5 = roleIdx;
     goto LABEL_76;
@@ -570,13 +570,13 @@ LABEL_76:
   if ( (unsigned int)v6 >= 0x116C
     && (!v8->GetRoleField(a2, 19)
      || (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x7FFF) % 10 <= 7)
-     || a4[20] >= 100)
-    || !this->DemandChecker(a2, roleIdx, (int)(a4 + 20)) )
+     || a4[5].nSatisfy >= 100)
+    || !this->DemandChecker(a2, roleIdx, (int)&a4[5]) )
   {
-    if ( this->m_Demand[9][10].nSatisfy >= 100 || !this->CastRecoverMagic(a2, (int)&this->m_Demand[9][10]) )
+    if ( this->m_EnemyDemand[9].nSatisfy >= 100 || !this->CastRecoverMagic(a2, (int)&this->m_EnemyDemand[9]) )
     {
       v9 = roleIdx;
-      if ( roleIdx == a2 && *a4 < 100 )
+      if ( roleIdx == a2 && a4->nSatisfy < 100 )
       {
         if ( this->CastNormalAttack(a2, roleIdx, (int)a4) || this->CastRecoverMagic(a2, (int)a4) )
           return 1;
@@ -584,33 +584,33 @@ LABEL_76:
       }
       if ( v6 < 4460 )
         goto LABEL_81;
-      if ( v6 < 9812 && *a4 < 100 )
+      if ( v6 < 9812 && a4->nSatisfy < 100 )
       {
         if ( this->CastNormalAttack(a2, v9, (int)a4) )
           return 1;
         v9 = roleIdx;
       }
       if ( v6 >= 9812
-        || a4[12] >= 100
+        || a4[3].nSatisfy >= 100
         || (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x3FF) >= (int)512.0)
-        || !this->CastAttackBigItem(a2, v9, (int)(a4 + 12)) )
+        || !this->CastAttackBigItem(a2, v9, (int)&a4[3]) )
       {
 LABEL_81:
-        if ( this->m_FriendDemand[3].nSatisfy >= 100
+        if ( *((int *)this + 896) >= 100
           || ((++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011,
                                    ((g_RandSeed >> 16) & 0x3FF) >= (int)256.0)
-           || !this->CastAttackMagic(a2, (int)&this->m_FriendDemand[3]))
-          && (!((CCBRoleState *)this->m_bNewRole[4])->GetRoleType(a2)
+           || !this->CastAttackMagic(a2, (int)this + 3584))
+          && (!((CCBRoleState *)this->m_pRoleState)->GetRoleType(a2)
            || (++g_nRandCallCount,
                g_RandSeed = 214013 * g_RandSeed + 2531011,
                ((g_RandSeed >> 16) & 0x3FF) >= (int)307.19998)
-           || !a2->Thunk_GetValue((int)&this->m_FriendDemand[3])) )
+           || !a2->Thunk_GetValue((int)this + 3584)) )
         {
           v10 = v13;
           if ( v13 < 0 )
             goto LABEL_82;
           if ( v13 >= 4460
-            || a4[28] >= 100
+            || a4[7].nSatisfy >= 100
             || (++g_nRandCallCount,
                 g_RandSeed = 214013 * g_RandSeed + 2531011,
                 ((g_RandSeed >> 16) & 0x3FF) >= (int)716.79999) )
@@ -620,31 +620,31 @@ LABEL_81:
           else
           {
             v11 = roleIdx;
-            if ( this->CastRecoverBigMagic(a2, roleIdx, (int)(a4 + 28)) )
+            if ( this->CastRecoverBigMagic(a2, roleIdx, (int)&a4[7]) )
               return 1;
             v10 = v13;
           }
           if ( v10 < 0 )
             goto LABEL_82;
-          if ( v10 < 4460 && a4[32] < 100 )
+          if ( v10 < 4460 && a4[8].nSatisfy < 100 )
           {
             ++g_nRandCallCount;
             g_RandSeed = 214013 * g_RandSeed + 2531011;
-            if ( ((g_RandSeed >> 16) & 0x3FF) < (int)716.79999 && this->DemandChecker(a2, v11, (int)(a4 + 32)) )
+            if ( ((g_RandSeed >> 16) & 0x3FF) < (int)716.79999 && this->DemandChecker(a2, v11, (int)&a4[8]) )
               return 1;
             v10 = v13;
           }
-          if ( v10 < 4460 && a4[24] < 100 )
+          if ( v10 < 4460 && a4[6].nSatisfy < 100 )
           {
-            if ( this->CastRecoverBigMagic(a2, v11, (int)(a4 + 24)) )
+            if ( this->CastRecoverBigMagic(a2, v11, (int)&a4[6]) )
               return 1;
             v10 = v13;
           }
-          if ( v10 < 4460 && a4[24] < 100 )
+          if ( v10 < 4460 && a4[6].nSatisfy < 100 )
           {
             ++g_nRandCallCount;
             g_RandSeed = 214013 * g_RandSeed + 2531011;
-            if ( ((g_RandSeed >> 16) & 0x3FF) < (int)256.0 && this->CastRecoverBigMagic(a2, v11, (int)(a4 + 24)) )
+            if ( ((g_RandSeed >> 16) & 0x3FF) < (int)256.0 && this->CastRecoverBigMagic(a2, v11, (int)&a4[6]) )
               return 1;
             v10 = v13;
           }
@@ -668,7 +668,7 @@ LABEL_71:
           else
           {
 LABEL_82:
-            if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+            if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
             {
               ++g_nRandCallCount;
               g_RandSeed = 214013 * g_RandSeed + 2531011;
@@ -692,24 +692,24 @@ LABEL_82:
 // 0x004D86D0
 char CCBAI::HandleEnemyChaos(int a2)
 {
-  CCBRoleState *v3; // ecx
-  int v4; // eax
+  CCBRoleState *m_pRoleState; // ecx
+  CCBStageRole *v4; // eax
   CCBAI *v5; // ecx
   char result; // al
   int v7; // [esp-4h] [ebp-10h]
 
-  v3 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v3->m_Role[a2].bValid
-    || !v3->IsRoleAlive(a2)
-    || !*(_DWORD *)(((CCBRoleState *)this->m_bNewRole[4])->InitUI(a2) + 36) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&m_pRoleState->m_Role[0].bValid + 892 * a2)
+    || !m_pRoleState->IsRoleAlive(a2)
+    || !*(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(a2) + 36) )
   {
     return 0;
   }
   v7 = a2;
-  v4 = *(_DWORD *)(*(_DWORD *)(this->m_bNewRole[3] + 20) + 4 * a2 + 24);
+  v4 = (CCBStageRole *)this->m_pCBSystem->m_pStage->m_pRole[a2];
   v5 = this;
-  *(float *)(v4 + 6632) = *(float *)(v4 + 6636);
-  if ( *(_BYTE *)(892 * a2 + this->m_bNewRole[4] + 1388) )
+  *(float *)&v4->m_Task[62].cmd.bSrcRole[2] = *(float *)&v4->m_Task[62].cmd.bSrcRole[6];
+  if ( LOBYTE(this->m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 25]) )
   {
     result = this->HandleFriendAction(a2);
     if ( result )
@@ -725,20 +725,20 @@ char CCBAI::HandleFriendAction(int a2)
 {
   int v3; // ebx
   int v4; // eax
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   bool v6; // cc
   int v8; // [esp+10h] [ebp-8h]
-  int *a4; // [esp+14h] [ebp-4h]
+  tagDemand *a4; // [esp+14h] [ebp-4h]
 
   v3 = 0;
   v4 = 0;
   v8 = 0;
-  for ( a4 = (int *)&this->m_VAF[31]._pad_000C[4]; ; a4 += 40 )
+  for ( a4 = &this->m_Demand[0][9]; ; a4 += 10 )
   {
-    v5 = (CCBRoleState *)this->m_bNewRole[4];
-    if ( *(&v5->m_Role[0].bValid + v4) )
+    m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+    if ( *(&m_pRoleState->m_Role[0].bValid + v4) )
     {
-      if ( v5->GetRoleField(a2, 18) )
+      if ( m_pRoleState->GetRoleField(a2, 18) )
       {
         ++g_nRandCallCount;
         g_RandSeed = 214013 * g_RandSeed + 2531011;
@@ -785,41 +785,41 @@ char CCBAI::HandleFriendAction(int a2)
         }
       }
       if ( (unsigned int)v8 < 0x116C
-        && a4[4] < 100
-        && (this->CastRecoverBigItem(a2, v3, (int)(a4 + 4))
-         || this->CastRecoverItem(a2, v3, (int)(a4 + 4))
-         || this->CastAttackItem(a2, v3, (int)(a4 + 4)) == 1) )
+        && a4[1].nSatisfy < 100
+        && (this->CastRecoverBigItem(a2, v3, (int)&a4[1])
+         || this->CastRecoverItem(a2, v3, (int)&a4[1])
+         || this->CastAttackItem(a2, v3, (int)&a4[1]) == 1) )
       {
         break;
       }
-      if ( ((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(v3)
-        && *(_BYTE *)(((CCBRoleState *)this->m_bNewRole[4])->InitUI(v3) + 880) != 1 )
+      if ( ((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(v3)
+        && *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v3) + 880) != 1 )
       {
-        if ( this->m_EnemyDemand[9].nSatisfy < 100
-          && (this->CastRecoverMagic(a2, (int)&this->m_EnemyDemand[9])
-           || this->CastBFAMagic(a2, (int)&this->m_EnemyDemand[9])
-           || this->CastRecoverBigSkill(a2, (int)&this->m_EnemyDemand[9])) )
+        if ( this->m_FriendDemand[9].nSatisfy < 100
+          && (this->CastRecoverMagic(a2, (int)&this->m_FriendDemand[9])
+           || this->CastBFAMagic(a2, (int)&this->m_FriendDemand[9])
+           || this->CastRecoverBigSkill(a2, (int)&this->m_FriendDemand[9])) )
         {
           break;
         }
         if ( v8 >= 0 )
         {
           if ( v8 < 4460
-            && *a4 < 50
+            && a4->nSatisfy < 50
             && (this->CastNormalAttack(a2, v3, (int)a4)
              || this->CastSpecifyMagic(a2, v3, (int)a4)
              || this->CastRecoverSkill(a2, v3, (int)a4)) )
           {
             break;
           }
-          if ( v8 < 4460 && a4[12] < 100 )
+          if ( v8 < 4460 && a4[3].nSatisfy < 100 )
           {
             ++g_nRandCallCount;
             g_RandSeed = 214013 * g_RandSeed + 2531011;
             if ( ((g_RandSeed >> 16) & 0x3FF) < (int)512.0
-              && (this->CastAttackBigItem(a2, v3, (int)(a4 + 12))
-               || this->CastBossPhysicalAttack(a2, v3, (int)(a4 + 12))
-               || this->CastReviveMagic(a2, v3, (int)(a4 + 12))) )
+              && (this->CastAttackBigItem(a2, v3, (int)&a4[3])
+               || this->CastBossPhysicalAttack(a2, v3, (int)&a4[3])
+               || this->CastReviveMagic(a2, v3, (int)&a4[3])) )
             {
               break;
             }
@@ -843,7 +843,7 @@ char CCBAI::HandleFriendNegative(int a2)
 {
   int v4; // edi
   int v5; // ebx
-  CCBRoleState *v6; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   int v7; // ebx
   char result; // al
   int v9; // edi
@@ -855,24 +855,24 @@ char CCBAI::HandleFriendNegative(int a2)
   tagDemand *roleIdx; // [esp+18h] [ebp+4h]
   int roleIdxa; // [esp+18h] [ebp+4h]
 
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 18) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 18) )
   {
     v4 = 0;
     v5 = 0;
     v14 = 0;
-    for ( roleIdx = &this->m_Demand[0][4]; ; roleIdx += 10 )
+    for ( roleIdx = &this->m_Demand[1][3]; ; roleIdx += 10 )
     {
-      v6 = (CCBRoleState *)this->m_bNewRole[4];
-      if ( !*(&v6->m_Role[0].bValid + v5)
-        || !v6->IsRoleAlive(v4)
-        || *(_BYTE *)(((CCBRoleState *)this->m_bNewRole[4])->InitUI(v4) + 880) )
+      m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+      if ( !*(&m_pRoleState->m_Role[0].bValid + v5)
+        || !m_pRoleState->IsRoleAlive(v4)
+        || *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v4) + 880) )
       {
         goto LABEL_30;
       }
-      if ( this->m_EnemyDemand[3].nSatisfy < 100
-        && (this->CastAttackMagic(a2, (int)&this->m_EnemyDemand[3]) == 1
-         || this->CastRandEnemyMagic(a2, (int)&this->m_EnemyDemand[3]) == 1
-         || this->CastAttackBigSkill(a2, (int)&this->m_EnemyDemand[3]) == 1) )
+      if ( this->m_FriendDemand[3].nSatisfy < 100
+        && (this->CastAttackMagic(a2, (int)&this->m_FriendDemand[3]) == 1
+         || this->CastRandEnemyMagic(a2, (int)&this->m_FriendDemand[3]) == 1
+         || this->CastAttackBigSkill(a2, (int)&this->m_FriendDemand[3]) == 1) )
       {
         return 1;
       }
@@ -896,7 +896,7 @@ LABEL_17:
           goto LABEL_21;
         }
       }
-      if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+      if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
       {
         ++g_nRandCallCount;
         g_RandSeed = 214013 * g_RandSeed + 2531011;
@@ -905,7 +905,7 @@ LABEL_17:
       }
 LABEL_21:
       if ( v14 >= 4460 && v14 < 9812
-        || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19)
+        || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19)
         && (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x7FFF) % 10 > 7) )
       {
         if ( this->DemandChecker(a2, v4, 0) == 1
@@ -932,9 +932,9 @@ LABEL_30:
     ++g_nRandCallCount;
     v9 = 214013 * v9 + 2531011;
     g_RandSeed = v9;
-    v10 = (CCBRoleState *)this->m_bNewRole[4];
+    v10 = (CCBRoleState *)this->m_pRoleState;
     v11 = ((v9 >> 16) & 0x7FFF) % 11;
-    if ( v10->m_Role[v11].bValid )
+    if ( *(&v10->m_Role[0].bValid + 892 * v11) )
       break;
 LABEL_37:
     if ( ++roleIdxa >= 1024 )
@@ -946,8 +946,8 @@ LABEL_37:
     goto LABEL_37;
   }
 LABEL_38:
-  v12 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( v12->m_Role[v11].bValid && !*(_BYTE *)(v12->InitUI(v11) + 880) )
+  v12 = (CCBRoleState *)this->m_pRoleState;
+  if ( *(&v12->m_Role[0].bValid + 892 * v11) && !*(_BYTE *)(v12->InitUI(v11) + 880) )
   {
     ++g_nRandCallCount;
     g_RandSeed = 214013 * g_RandSeed + 2531011;
@@ -997,14 +997,14 @@ char CCBAI::HandleFriendAffirmative(int a2, char a3)
 {
   int v4; // ebx
   int v5; // edi
-  CCBRoleState *v6; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   int v7; // eax
   CCBRoleState *v8; // ecx
   double v9; // st7
   int v11; // ebx
   int v12; // edi
   CCBRoleState *v13; // ecx
-  __int32 v15; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   CCBAI *v16; // edx
   _DWORD v17[11]; // [esp+Ch] [ebp-44h] BYREF
   CCBAI *v18; // [esp+38h] [ebp-18h]
@@ -1023,16 +1023,16 @@ char CCBAI::HandleFriendAffirmative(int a2, char a3)
   v5 = 0;
   do
   {
-    if ( v4 >= 5 )
+    if ( v4 >= 4460 )
     {
-      v6 = (CCBRoleState *)this->m_bNewRole[4];
-      if ( v6->m_Role[v4].bValid )
+      m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+      if ( *(&m_pRoleState->m_Role[0].bValid + v4) )
       {
-        if ( v6->IsRoleAlive(v5) )
+        if ( m_pRoleState->IsRoleAlive(v5) )
         {
           ++v22;
-          v7 = ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(v5, 0);
-          v8 = (CCBRoleState *)this->m_bNewRole[4];
+          v7 = ((CCBRoleState *)this->m_pRoleState)->SetRoleField(v5, 0);
+          v8 = (CCBRoleState *)this->m_pRoleState;
           *(float *)&v19 = (float)v7;
           v20 = v8->SetRoleField(v5, 1);
           v9 = *(float *)&v19 / (double)v20;
@@ -1044,10 +1044,10 @@ char CCBAI::HandleFriendAffirmative(int a2, char a3)
         }
       }
     }
-    ++v4;
+    v4 += 892;
     ++v5;
   }
-  while ( v4 < 11 );
+  while ( v4 < 9812 );
   if ( v22 <= 0 )
     return 0;
   if ( v23 == -1 )
@@ -1056,10 +1056,10 @@ char CCBAI::HandleFriendAffirmative(int a2, char a3)
     v12 = 0;
     while ( 1 )
     {
-      if ( v12 >= 5 )
+      if ( v12 >= 4460 )
       {
-        v13 = (CCBRoleState *)this->m_bNewRole[4];
-        if ( v13->m_Role[v12].bValid )
+        v13 = (CCBRoleState *)this->m_pRoleState;
+        if ( *(&v13->m_Role[0].bValid + v12) )
         {
           if ( v13->IsRoleAlive(v11) )
           {
@@ -1076,9 +1076,9 @@ char CCBAI::HandleFriendAffirmative(int a2, char a3)
           }
         }
       }
-      ++v12;
+      v12 += 892;
       ++v11;
-      if ( v12 >= 11 )
+      if ( v12 >= 9812 )
         return 0;
     }
     v23 = v11;
@@ -1089,21 +1089,21 @@ char CCBAI::HandleFriendAffirmative(int a2, char a3)
   else
   {
 LABEL_21:
-    *(_BYTE *)(((CCBRoleState *)this->m_bNewRole[4])->InitUI(a2) + 832) = 1;
+    *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(a2) + 832) = 1;
     a2_3 = this->DemandChecker(a2, v23, 0);
-    *(_BYTE *)(((CCBRoleState *)this->m_bNewRole[4])->InitUI(a2) + 832) = 0;
+    *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(a2) + 832) = 0;
     if ( a3 )
     {
       memset(v17, 0, sizeof(v17));
       LOWORD(v17[4]) = 0;
       v17[3] = v23;
-      v15 = this->m_bNewRole[3];
+      m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
       v16 = v18;
       LOBYTE(v17[10]) = 1;
       v17[0] = 259;
       v17[2] = a2;
-      qmemcpy((void *)(v15 + 52 * a2 + 90264), v17, 0x2Cu);
-      *((_BYTE *)v16->m_bNewRole + a2) = 0;
+      qmemcpy(&m_pCBSystem->m_Player[0].LastRoleCmd.dwCmdID + 13 * a2, v17, 0x2Cu);
+      v16->m_bNewRole[a2] = 0;
     }
     return a2_3;
   }
@@ -1126,77 +1126,73 @@ char CCBAI::HandlePlayerNormalAttack(int a2, int a3)
     case 0x104:
     case 0x105:
     case 0x106:
-      result = ((CCBRoleState *)this->m_bNewRole[4])->GetRoleAI((void *)a3);
+      result = ((CCBRoleState *)this->m_pRoleState)->GetRoleAI((void *)a3);
       if ( !result )
         goto LABEL_11;
 LABEL_5:
       switch ( *(_DWORD *)a3 )
       {
         case 0x103:
-          if ( ((CCBRoleState *)this->m_bNewRole[4])->InitRoleSpecEquipAttrib(a3)
-            || *((_BYTE *)this->m_bNewRole + a2) )
+          if ( ((CCBRoleState *)this->m_pRoleState)->InitRoleSpecEquipAttrib(a3) || this->m_bNewRole[a2] )
           {
             *(_DWORD *)(a3 + 29) = 0;
             *(_DWORD *)(a3 + 33) = 0;
             *(_WORD *)(a3 + 37) = 0;
             *(_BYTE *)(a3 + 39) = 0;
-            *(_DWORD *)(a3 + 12) = ((CCBRoleState *)this->m_bNewRole[4])->CalcMPCost(2);
+            *(_DWORD *)(a3 + 12) = ((CCBRoleState *)this->m_pRoleState)->CalcMPCost(2);
             *(_BYTE *)(a3 + 17) = 0;
-            ((CCBRoleState *)this->m_bNewRole[4])->CalcHealAmount(a3);
+            ((CCBRoleState *)this->m_pRoleState)->CalcHealAmount(a3);
           }
           v4 = (int (*)(int, int))CCBSystem::IsRoleWaitForFlee;
           goto LABEL_33;
         case 0x104:
-          if ( ((CCBRoleState *)this->m_bNewRole[4])->InitRoleSpecEquipAttrib(a3)
-            || *((_BYTE *)this->m_bNewRole + a2) )
+          if ( ((CCBRoleState *)this->m_pRoleState)->InitRoleSpecEquipAttrib(a3) || this->m_bNewRole[a2] )
           {
             *(_DWORD *)(a3 + 29) = 0;
             *(_DWORD *)(a3 + 33) = 0;
             *(_WORD *)(a3 + 37) = 0;
             *(_BYTE *)(a3 + 39) = 0;
             if ( sub_4F6A80(*(_DWORD *)(a3 + 4)) )
-              v7 = ((CCBRoleState *)this->m_bNewRole[4])->CalcMPCost(2);
+              v7 = ((CCBRoleState *)this->m_pRoleState)->CalcMPCost(2);
             else
-              v7 = ((CCBRoleState *)this->m_bNewRole[4])->CalcMPCost(1);
+              v7 = ((CCBRoleState *)this->m_pRoleState)->CalcMPCost(1);
             *(_DWORD *)(a3 + 12) = v7;
             *(_BYTE *)(a3 + 17) = 0;
-            ((CCBRoleState *)this->m_bNewRole[4])->GetRoleNum((int *)a3);
+            ((CCBRoleState *)this->m_pRoleState)->GetRoleNum((int *)a3);
           }
           v4 = (int (*)(int, int))CCBSystem::GetThreadIndex;
           goto LABEL_33;
         case 0x105:
-          if ( ((CCBRoleState *)this->m_bNewRole[4])->InitRoleSpecEquipAttrib(a3)
-            || *((_BYTE *)this->m_bNewRole + a2) )
+          if ( ((CCBRoleState *)this->m_pRoleState)->InitRoleSpecEquipAttrib(a3) || this->m_bNewRole[a2] )
           {
             *(_DWORD *)(a3 + 29) = 0;
             *(_DWORD *)(a3 + 33) = 0;
             *(_WORD *)(a3 + 37) = 0;
             *(_BYTE *)(a3 + 39) = 0;
             if ( sub_4F6A80(*(_DWORD *)(a3 + 4)) )
-              v6 = ((CCBRoleState *)this->m_bNewRole[4])->CalcMPCost(2);
+              v6 = ((CCBRoleState *)this->m_pRoleState)->CalcMPCost(2);
             else
-              v6 = ((CCBRoleState *)this->m_bNewRole[4])->CalcMPCost(1);
+              v6 = ((CCBRoleState *)this->m_pRoleState)->CalcMPCost(1);
             *(_DWORD *)(a3 + 12) = v6;
             *(_BYTE *)(a3 + 17) = 0;
-            ((CCBRoleState *)this->m_bNewRole[4])->GetRoleNum((int *)a3);
+            ((CCBRoleState *)this->m_pRoleState)->GetRoleNum((int *)a3);
           }
           v4 = (int (*)(int, int))CCBSystem::GetSameThreadNum;
           goto LABEL_33;
         case 0x106:
-          if ( ((CCBRoleState *)this->m_bNewRole[4])->InitRoleSpecEquipAttrib(a3)
-            || *((_BYTE *)this->m_bNewRole + a2) )
+          if ( ((CCBRoleState *)this->m_pRoleState)->InitRoleSpecEquipAttrib(a3) || this->m_bNewRole[a2] )
           {
             *(_DWORD *)(a3 + 29) = 0;
             *(_DWORD *)(a3 + 33) = 0;
             *(_WORD *)(a3 + 37) = 0;
             *(_BYTE *)(a3 + 39) = 0;
             if ( sub_4F6BB0(*(_DWORD *)(a3 + 4)) )
-              v8 = ((CCBRoleState *)this->m_bNewRole[4])->CalcMPCost(2);
+              v8 = ((CCBRoleState *)this->m_pRoleState)->CalcMPCost(2);
             else
-              v8 = ((CCBRoleState *)this->m_bNewRole[4])->CalcMPCost(1);
+              v8 = ((CCBRoleState *)this->m_pRoleState)->CalcMPCost(1);
             *(_DWORD *)(a3 + 12) = v8;
             *(_BYTE *)(a3 + 17) = 0;
-            ((CCBRoleState *)this->m_bNewRole[4])->GetRoleNum((int *)a3);
+            ((CCBRoleState *)this->m_pRoleState)->GetRoleNum((int *)a3);
           }
           v4 = (int (*)(int, int))CCBSystem::PassCmdToThread;
           goto LABEL_33;
@@ -1209,7 +1205,7 @@ LABEL_5:
     case 0x10B:
       v4 = (int (*)(int, int))CCBSystem::PassCmdToThread;
 LABEL_33:
-      ((CCBSystem *)this->m_bNewRole[3])->CreateObj(v4, 0, 0, 0, (const void *)a3);
+      ((CCBSystem *)this->m_pCBSystem)->CreateObj(v4, 0, 0, 0, (const void *)a3);
       result = 1;
       break;
     default:
@@ -1223,38 +1219,38 @@ LABEL_11:
 // 0x004D9360
 void * CCBAI::RepeatPlayerLastOperation()
 {
-  this->m_bNewRole[0] = (__int32)&unk_1010101;
-  this->m_bNewRole[1] = (__int32)&unk_1010101;
-  LOWORD(this->m_bNewRole[2]) = (unsigned __int16)&unk_1010101;
-  BYTE2(this->m_bNewRole[2]) = (unsigned __int8)&unk_1010101;
+  *(_DWORD *)this->m_bNewRole = &unk_1010101;
+  *(_DWORD *)&this->m_bNewRole[4] = &unk_1010101;
+  *(_WORD *)&this->m_bNewRole[8] = (unsigned __int16)&unk_1010101;
+  this->m_bNewRole[10] = (unsigned __int8)&unk_1010101;
   return &unk_1010101;
 }
 
 // 0x004D9380
 _DWORD * CCBAI::SetNewRole()
 {
-  tagVAF *v1; // eax
+  tagDemand *v1; // eax
   int v2; // esi
   int v3; // edx
   _DWORD *result; // eax
   int v5; // ecx
 
-  v1 = (tagVAF *)&this->m_VAF[31];
+  v1 = (tagDemand *)&this->m_Demand[0][8];
   v2 = 11;
   do
   {
     v3 = 10;
     do
     {
-      v1->nIndex = 100;
-      v1 = (tagVAF *)((char *)v1 + 16);
+      v1->nSatisfy = 100;
+      ++v1;
       --v3;
     }
     while ( v3 );
     --v2;
   }
   while ( v2 );
-  result = (_DWORD *)&this->m_EnemyDemand[8].nSatisfy;
+  result = (_DWORD *)&this->m_FriendDemand[8].nSatisfy;
   v5 = 10;
   do
   {
@@ -1270,83 +1266,83 @@ _DWORD * CCBAI::SetNewRole()
 // 0x004D93D0
 int CCBAI::FillAllDemandSatisfy()
 {
-  unsigned __int8 *p_bValid; // esi
+  unsigned __int8 *p_bHandle; // esi
   int v3; // ebp
   int i; // edi
-  __int32 *p_bHandle; // esi
+  unsigned __int8 *v5; // esi
   int v6; // ebp
   int result; // eax
   int v8; // edi
   int v9; // [esp+10h] [ebp-8h]
   unsigned __int8 *v10; // [esp+14h] [ebp-4h]
 
-  p_bValid = (unsigned __int8 *)&this->m_VAF[31].bValid;
+  p_bHandle = (unsigned __int8 *)&this->m_Demand[0][9].bHandle;
   v9 = 0;
   v3 = 99;
-  v10 = (unsigned __int8 *)&this->m_VAF[31].bValid;
+  v10 = (unsigned __int8 *)&this->m_Demand[0][9].bHandle;
   do
   {
-    if ( *(_BYTE *)(v9 + this->m_bNewRole[4] + 577) )
+    if ( *(&this->m_pRoleState->m_Role[0].bValid + v9) )
     {
       for ( i = 1; i < 10; ++i )
       {
-        if ( *((_DWORD *)p_bValid - 1) )
+        if ( *((_DWORD *)p_bHandle - 1) )
         {
-          if ( sub_515CE0((char *)this->m_bNewRole[3], *((_DWORD *)p_bValid - 1)) )
+          if ( sub_515CE0((char *)this->m_pCBSystem, *((_DWORD *)p_bHandle - 1)) )
           {
-            *p_bValid = 1;
-            this->m_bNewRole[4 * i + 4 * v3] = 100;
+            *p_bHandle = 1;
+            *(_DWORD *)&this->m_bNewRole[16 * i + 16 * v3] = 100;
           }
           else
           {
-            *((_DWORD *)p_bValid - 1) = 0;
-            *p_bValid = 0;
+            *((_DWORD *)p_bHandle - 1) = 0;
+            *p_bHandle = 0;
           }
         }
-        p_bValid += 16;
+        p_bHandle += 16;
       }
     }
     v3 += 10;
     v9 += 892;
-    p_bValid = (unsigned __int8 *)v10 + 160;
+    p_bHandle = (unsigned __int8 *)v10 + 160;
     v10 += 160;
   }
   while ( v3 < 209 );
-  p_bHandle = (__int32 *)&this->m_Demand[9][10].bHandle;
+  v5 = (unsigned __int8 *)&this->m_EnemyDemand[9].bHandle;
   v6 = 9;
   do
   {
-    result = *(p_bHandle - 1);
-    v8 = p_bHandle[39];
+    result = *((_DWORD *)v5 - 1);
+    v8 = *((_DWORD *)v5 + 39);
     if ( result )
     {
-      LOBYTE(result) = sub_515CE0((char *)this->m_bNewRole[3], *(p_bHandle - 1));
+      LOBYTE(result) = sub_515CE0((char *)this->m_pCBSystem, *((_DWORD *)v5 - 1));
       if ( (_BYTE)result )
       {
-        *(_BYTE *)p_bHandle = 1;
-        *(p_bHandle - 2) = 100;
+        *v5 = 1;
+        *((_DWORD *)v5 - 2) = 100;
       }
       else
       {
-        *(p_bHandle - 1) = 0;
-        *(_BYTE *)p_bHandle = 0;
+        *((_DWORD *)v5 - 1) = 0;
+        *v5 = 0;
       }
     }
     if ( v8 )
     {
-      LOBYTE(result) = sub_515CE0((char *)this->m_bNewRole[3], v8);
+      LOBYTE(result) = sub_515CE0((char *)this->m_pCBSystem, v8);
       if ( (_BYTE)result )
       {
-        *((_BYTE *)p_bHandle + 160) = 1;
-        p_bHandle[38] = 100;
+        v5[160] = 1;
+        *((_DWORD *)v5 + 38) = 100;
       }
       else
       {
-        p_bHandle[39] = 0;
-        *((_BYTE *)p_bHandle + 160) = 0;
+        *((_DWORD *)v5 + 39) = 0;
+        v5[160] = 0;
       }
     }
-    p_bHandle += 4;
+    v5 += 16;
     --v6;
   }
   while ( v6 );
@@ -1359,49 +1355,49 @@ char CCBAI::DemandThreadTracer()
   int v2; // edi
   int v3; // ebp
   tagDemand *v4; // esi
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   char result; // al
 
   v2 = 0;
   v3 = 0;
-  v4 = (tagDemand *)this->m_Demand[0];
+  v4 = (tagDemand *)&this->m_Demand[0][10];
   do
   {
-    v5 = (CCBRoleState *)this->m_bNewRole[4];
-    if ( v5->m_Role[v3].bValid )
+    m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+    if ( *(&m_pRoleState->m_Role[0].bValid + v3) )
     {
-      if ( v5->IsRoleAlive(v2) )
+      if ( m_pRoleState->IsRoleAlive(v2) )
       {
         v4->nSatisfy = 100;
       }
-      else if ( !LOBYTE(v4->bHandle) )
+      else if ( !v4->bHandle )
       {
         v4->nSatisfy = 0;
       }
-      if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleAttr(v2) < 3 )
+      if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleAttr(v2) < 3 )
       {
         v4[-1].nSatisfy = 100;
         v4[3].nSatisfy = 80;
       }
       else
       {
-        if ( !LOBYTE(v4[-1].bHandle) )
+        if ( !v4[-1].bHandle )
           v4[-1].nSatisfy = 40;
-        if ( !LOBYTE(v4[3].bHandle) )
+        if ( !v4[3].bHandle )
           v4[3].nSatisfy = 40;
       }
-      if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleAttr(v2) == 4 )
+      if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleAttr(v2) == 4 )
       {
-        if ( !LOBYTE(v4[-1].bHandle) )
+        if ( !v4[-1].bHandle )
           v4[-1].nSatisfy = 10;
-        if ( !LOBYTE(v4[3].bHandle) )
+        if ( !v4[3].bHandle )
           v4[3].nSatisfy = 10;
       }
-      if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleForce(v2) )
+      if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleForce(v2) )
       {
-        if ( !LOBYTE(v4[2].bHandle) )
+        if ( !v4[2].bHandle )
         {
-          v4[2].eSpecState = ((CCBRoleState *)this->m_bNewRole[4])->GetRoleSpeed(v2);
+          *(_DWORD *)&v4[2].eSpecState[3] = ((CCBRoleState *)this->m_pRoleState)->GetRoleSpeed(v2);
           v4[2].nSatisfy = 50;
         }
       }
@@ -1410,22 +1406,22 @@ char CCBAI::DemandThreadTracer()
         v4[2].nSatisfy = 100;
       }
     }
-    ++v3;
+    v3 += 892;
     ++v2;
     v4 += 10;
   }
-  while ( v3 < 11 );
-  ((CCBRoleState *)this->m_bNewRole[4])->GetRoleMP(2);
-  if ( !LOBYTE(this->m_Demand[9][10].bHandle) )
-    this->m_Demand[9][10].nSatisfy = 110;
-  if ( !LOBYTE(this->m_EnemyDemand[3].bHandle) )
-    this->m_EnemyDemand[3].nSatisfy = 0;
-  ((CCBRoleState *)this->m_bNewRole[4])->GetRoleMP(1);
-  if ( !LOBYTE(this->m_EnemyDemand[9].bHandle) )
+  while ( v3 < 9812 );
+  ((CCBRoleState *)this->m_pRoleState)->GetRoleMP(2);
+  if ( !this->m_EnemyDemand[9].bHandle )
     this->m_EnemyDemand[9].nSatisfy = 110;
-  result = this->m_FriendDemand[3].bHandle;
+  if ( !this->m_FriendDemand[3].bHandle )
+    this->m_FriendDemand[3].nSatisfy = 0;
+  ((CCBRoleState *)this->m_pRoleState)->GetRoleMP(1);
+  if ( !this->m_FriendDemand[9].bHandle )
+    this->m_FriendDemand[9].nSatisfy = 110;
+  result = *((_BYTE *)this + 3592);
   if ( !result )
-    this->m_FriendDemand[3].nSatisfy = 100;
+    *((_DWORD *)this + 896) = 100;
   return result;
 }
 
@@ -1433,7 +1429,7 @@ char CCBAI::DemandThreadTracer()
 char CCBAI::DemandChecker(unsigned int a2, int a3, int a4)
 {
   unsigned int v5; // eax
-  CCBRoleState *v6; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v7; // ecx
   unsigned int v8; // edi
   CCBRoleState *v10; // ecx
@@ -1444,27 +1440,24 @@ char CCBAI::DemandChecker(unsigned int a2, int a3, int a4)
   v5 = a2;
   if ( a3 == a2 )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].snSpecStateLast[46] )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !LOBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 23]) )
   {
-    if ( !v6->GetRoleField(a2, 18)
-      && !((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
-    {
+    if ( !m_pRoleState->GetRoleField(a2, 18) && !((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
       return 0;
-    }
     v5 = a2;
   }
-  v7 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v7->m_Role[a2].bValid
-    || !v7->m_Role[a3].bValid
+  v7 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v7->m_Role[0].bValid + 892 * a2)
+    || !*(&v7->m_Role[0].bValid + 892 * a3)
     || !v7->IsRoleAlive(v5)
-    || !((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3)
-    || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a3, 23) == 1 )
+    || !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3)
+    || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a3, 23) == 1 )
   {
     return 0;
   }
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a3, 21) == 1
-    && ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a3, 20) == 1 )
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a3, 21) == 1
+    && ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a3, 20) == 1 )
   {
     v8 = a2;
     if ( a2 <= 4 )
@@ -1478,19 +1471,19 @@ char CCBAI::DemandChecker(unsigned int a2, int a3, int a4)
   {
     v8 = a2;
   }
-  if ( !((CCBStageRole *)*(CCBStageRole **)(*(_DWORD *)(this->m_bNewRole[3] + 20) + 4 * a3 + 24))->ForceEndTaskByPFN()
-    || !((CCBRoleState *)this->m_bNewRole[4])->CalSneakAttack(v8, a3) )
+  if ( !((CCBStageRole *)this->m_pCBSystem->m_pStage->m_pRole[a3])->ForceEndTaskByPFN()
+    || !((CCBRoleState *)this->m_pRoleState)->CalSneakAttack(v8, a3) )
   {
     return 0;
   }
-  v10 = (CCBRoleState *)this->m_bNewRole[4];
+  v10 = (CCBRoleState *)this->m_pRoleState;
   LOBYTE(a6[10]) = 1;
   a6[0] = 259;
   a6[2] = v8;
   a6[3] = a3;
   LOWORD(a6[4]) = 0;
   v10->CalcHealAmount((int)a6);
-  Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::IsRoleWaitForFlee, 0, 0, 0, a6);
+  Obj = ((CCBSystem *)this->m_pCBSystem)->CreateObj((int (*)(int, int))CCBSystem::IsRoleWaitForFlee, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -1499,41 +1492,44 @@ char CCBAI::DemandChecker(unsigned int a2, int a3, int a4)
 // 0x004D9920
 char CCBAI::CastNormalAttack(int a2, int a3, int a4)
 {
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v6; // ecx
   int v7; // eax
-  CCBSystem *v8; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   int Obj; // eax
   _DWORD a6[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].snSpecStateLast[47] && !v5->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 23])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v6->m_Role[a3].bValid )
+  if ( !*(&v6->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v6->IsRoleAlive(a2) )
     return 0;
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) )
     return 0;
-  ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a3, 1);
-  ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a3, 0);
-  v7 = ((CCBRoleState *)this->m_bNewRole[4])->ProcessAttackResult(a2);
+  ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a3, 1);
+  ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a3, 0);
+  v7 = ((CCBRoleState *)this->m_pRoleState)->ProcessAttackResult(a2);
   if ( !v7 )
     return 0;
   a6[1] = v7;
   a6[3] = a3;
   LOBYTE(a6[10]) = 1;
   LOWORD(a6[4]) = 0;
-  v8 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   a6[0] = 261;
   a6[2] = a2;
-  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  Obj = m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -1542,7 +1538,7 @@ char CCBAI::CastNormalAttack(int a2, int a3, int a4)
 // 0x004D9A70
 char CCBAI::CastRecoverMagic(int a2, int a3)
 {
-  CCBRoleState *v4; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   char result; // al
   CCBRoleState *v6; // ecx
   int RoleHP; // eax
@@ -1552,24 +1548,25 @@ char CCBAI::CastRecoverMagic(int a2, int a3)
   int a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v4->m_Role[a2].snSpecStateLast[47] && !v4->GetRoleField(a2, 18)
-    || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 23])
+    && !m_pRoleState->GetRoleField(a2, 18)
+    || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
   {
     return 0;
   }
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
   result = v6->IsRoleAlive(a2);
   if ( result )
   {
-    RoleHP = ((CCBRoleState *)this->m_bNewRole[4])->GetRoleHP(a2);
-    ((CCBRoleState *)this->m_bNewRole[4])->CalcMagicDefense(RoleHP);
-    v8 = ((CCBRoleState *)this->m_bNewRole[4])->ProcessAttackResult(a2);
+    RoleHP = ((CCBRoleState *)this->m_pRoleState)->GetRoleHP(a2);
+    ((CCBRoleState *)this->m_pRoleState)->CalcMagicDefense(RoleHP);
+    v8 = ((CCBRoleState *)this->m_pRoleState)->ProcessAttackResult(a2);
     if ( v8 )
     {
-      v9 = (CCBRoleState *)this->m_bNewRole[4];
+      v9 = (CCBRoleState *)this->m_pRoleState;
       a6[1] = v8;
       LOBYTE(a6[10]) = 1;
       LOWORD(a6[4]) = 0;
@@ -1577,7 +1574,7 @@ char CCBAI::CastRecoverMagic(int a2, int a3)
       a6[2] = a2;
       a6[3] = -1;
       v9->GetRoleNum(a6);
-      Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+      Obj = ((CCBSystem *)this->m_pCBSystem)->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
       if ( a3 )
         *(_DWORD *)(a3 + 4) = Obj;
       return 1;
@@ -1593,33 +1590,36 @@ char CCBAI::CastRecoverMagic(int a2, int a3)
 // 0x004D9BA0
 char CCBAI::CastRecoverBigMagic(int a2, int a3, int a4)
 {
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v6; // ecx
   int v7; // eax
   int v8; // eax
-  CCBSystem *v9; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   int Obj; // eax
   _DWORD a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].snSpecStateLast[47] && !v5->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 23])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v6->m_Role[a3].bValid )
+  if ( !*(&v6->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v6->IsRoleAlive(a2) )
     return 0;
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) )
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a3, 0) <= 0 )
+  if ( ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a3, 0) <= 0 )
     return 0;
-  ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a3, 0);
-  v7 = ((CCBRoleState *)this->m_bNewRole[4])->ProcessMagicResult(a2);
+  ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a3, 0);
+  v7 = ((CCBRoleState *)this->m_pRoleState)->ProcessMagicResult(a2);
   if ( !v7 )
     return 0;
   v8 = sub_4FB6B0(v7);
@@ -1627,10 +1627,10 @@ char CCBAI::CastRecoverBigMagic(int a2, int a3, int a4)
   a6[1] = v8;
   a6[3] = a3;
   LOBYTE(a6[10]) = 1;
-  v9 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   LOWORD(a6[4]) = 0;
   a6[0] = 261;
-  Obj = v9->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  Obj = m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -1639,119 +1639,128 @@ char CCBAI::CastRecoverBigMagic(int a2, int a3, int a4)
 // 0x004D9D00
 char CCBAI::CastAttackMagic(int a2, int a3)
 {
-  CCBRoleState *v4; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   int RoleHP; // eax
   int IsForce1; // eax
   int v7; // edx
   CCBRoleState *v8; // ecx
   int a6[11]; // [esp+10h] [ebp-2Ch] BYREF
 
-  v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v4->m_Role[a2].snSpecStateLast[47] && !v4->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 23])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  ((CCBRoleState *)this->m_bNewRole[4])->GetRoleHP(a2);
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a2) )
+  ((CCBRoleState *)this->m_pRoleState)->GetRoleHP(a2);
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a2) )
     return 0;
-  RoleHP = ((CCBRoleState *)this->m_bNewRole[4])->GetRoleHP(a2);
+  RoleHP = ((CCBRoleState *)this->m_pRoleState)->GetRoleHP(a2);
   IsForce1 = RoleHP->IsForce1();
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->CalcMagicAttack(IsForce1) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->CalcMagicAttack(IsForce1) )
     return 0;
-  v7 = ((CCBRoleState *)this->m_bNewRole[4])->ProcessMagicResult(a2);
+  v7 = ((CCBRoleState *)this->m_pRoleState)->ProcessMagicResult(a2);
   if ( !v7 )
     return 0;
   memset(a6, 0, sizeof(a6));
   LOBYTE(a6[10]) = 1;
-  v8 = (CCBRoleState *)this->m_bNewRole[4];
+  v8 = (CCBRoleState *)this->m_pRoleState;
   LOWORD(a6[4]) = 0;
   a6[0] = 261;
   a6[1] = v7;
   a6[2] = a2;
   a6[3] = -1;
   v8->GetRoleNum(a6);
-  ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  ((CCBSystem *)this->m_pCBSystem)->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   return 1;
 }
 
 // 0x004D9E20
 char CCBAI::CastAttackBigMagic(int a2, int a3)
 {
-  CCBRoleState *v4; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v5; // ecx
   int v6; // eax
-  CCBSystem *v7; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   _DWORD a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v4->m_Role[a2].snSpecStateLast[47] && !v4->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 23])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].bValid )
+  v5 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v5->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v5->m_Role[a3].bValid )
+  if ( !*(&v5->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v5->IsRoleAlive(a2) )
     return 0;
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) )
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a3, 0) <= 0 )
+  if ( ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a3, 0) <= 0 )
     return 0;
-  v6 = sub_4F5330((CCBRoleState *)this->m_bNewRole[4], a2, 0);
+  v6 = sub_4F5330(this->m_pRoleState, a2, 0);
   if ( !v6 )
     return 0;
   a6[2] = a2;
   a6[1] = v6;
   a6[3] = a3;
   LOBYTE(a6[10]) = 1;
-  v7 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   LOWORD(a6[4]) = 0;
   a6[0] = 261;
-  v7->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   return 1;
 }
 
 // 0x004D9F50
 char CCBAI::CastSpecifyMagic(int a2, int a3, int a4)
 {
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v6; // ecx
   int v7; // eax
-  CCBSystem *v8; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   int Obj; // eax
   _DWORD a6[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].snSpecStateLast[47] && !v5->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 23])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v6->m_Role[a3].bValid )
+  if ( !*(&v6->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v6->IsRoleAlive(a2) )
     return 0;
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) )
     return 0;
-  ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a3, 1);
-  ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a3, 0);
-  v7 = ((CCBRoleState *)this->m_bNewRole[4])->CalcPhysicalDamage(a2);
+  ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a3, 1);
+  ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a3, 0);
+  v7 = ((CCBRoleState *)this->m_pRoleState)->CalcPhysicalDamage(a2);
   if ( !v7 )
     return 0;
   a6[1] = v7;
   a6[3] = a3;
   LOBYTE(a6[10]) = 1;
   LOWORD(a6[4]) = 0;
-  v8 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   a6[0] = 260;
   a6[2] = a2;
-  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
+  Obj = m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -1760,7 +1769,7 @@ char CCBAI::CastSpecifyMagic(int a2, int a3, int a4)
 // 0x004DA0A0
 char CCBAI::CastBFAMagic(int a2, int a3)
 {
-  CCBRoleState *v4; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   char result; // al
   CCBRoleState *v6; // ecx
   int RoleHP; // eax
@@ -1770,24 +1779,25 @@ char CCBAI::CastBFAMagic(int a2, int a3)
   int a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v4->m_Role[a2].snSpecStateLast[48] && !v4->GetRoleField(a2, 18)
-    || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !LOBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 24])
+    && !m_pRoleState->GetRoleField(a2, 18)
+    || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
   {
     return 0;
   }
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
   result = v6->IsRoleAlive(a2);
   if ( result )
   {
-    RoleHP = ((CCBRoleState *)this->m_bNewRole[4])->GetRoleHP(a2);
-    ((CCBRoleState *)this->m_bNewRole[4])->CalcMagicDefense(RoleHP);
-    v8 = ((CCBRoleState *)this->m_bNewRole[4])->CalcPhysicalDamage(a2);
+    RoleHP = ((CCBRoleState *)this->m_pRoleState)->GetRoleHP(a2);
+    ((CCBRoleState *)this->m_pRoleState)->CalcMagicDefense(RoleHP);
+    v8 = ((CCBRoleState *)this->m_pRoleState)->CalcPhysicalDamage(a2);
     if ( v8 )
     {
-      v9 = (CCBRoleState *)this->m_bNewRole[4];
+      v9 = (CCBRoleState *)this->m_pRoleState;
       a6[1] = v8;
       LOBYTE(a6[10]) = 1;
       LOWORD(a6[4]) = 0;
@@ -1795,7 +1805,7 @@ char CCBAI::CastBFAMagic(int a2, int a3)
       a6[2] = a2;
       a6[3] = -1;
       v9->GetRoleNum(a6);
-      Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
+      Obj = ((CCBSystem *)this->m_pCBSystem)->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
       if ( a3 )
         *(_DWORD *)(a3 + 4) = Obj;
       return 1;
@@ -1811,43 +1821,46 @@ char CCBAI::CastBFAMagic(int a2, int a3)
 // 0x004DA1D0
 char CCBAI::CastBFAAttackMagic(int a2, int a3, int a4)
 {
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v6; // ecx
   int v7; // eax
-  CCBSystem *v8; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   int Obj; // eax
   _DWORD a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].snSpecStateLast[48] && !v5->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !LOBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 24])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v6->m_Role[a3].bValid )
+  if ( !*(&v6->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v6->IsRoleAlive(a2) )
     return 0;
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) )
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a3, 0) <= 0 )
+  if ( ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a3, 0) <= 0 )
     return 0;
   ++g_nRandCallCount;
   g_RandSeed = 214013 * g_RandSeed + 2531011;
-  v7 = ((CCBRoleState *)this->m_bNewRole[4])->CalcMagicDamage(a2);
+  v7 = ((CCBRoleState *)this->m_pRoleState)->CalcMagicDamage(a2);
   if ( !v7 )
     return 0;
   a6[2] = a2;
   a6[1] = v7;
   a6[3] = a3;
   LOBYTE(a6[10]) = 1;
-  v8 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   LOWORD(a6[4]) = 0;
   a6[0] = 260;
-  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
+  Obj = m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -1856,7 +1869,7 @@ char CCBAI::CastBFAAttackMagic(int a2, int a3, int a4)
 // 0x004DA350
 char CCBAI::CastRandEnemyMagic(int a2, int a3)
 {
-  CCBRoleState *v4; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   char result; // al
   CCBRoleState *v6; // ecx
   int RoleHP; // eax
@@ -1867,29 +1880,30 @@ char CCBAI::CastRandEnemyMagic(int a2, int a3)
   int a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v4->m_Role[a2].snSpecStateLast[48] && !v4->GetRoleField(a2, 18)
-    || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !LOBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 24])
+    && !m_pRoleState->GetRoleField(a2, 18)
+    || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
   {
     return 0;
   }
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
   result = v6->IsRoleAlive(a2);
   if ( result )
   {
-    RoleHP = ((CCBRoleState *)this->m_bNewRole[4])->GetRoleHP(a2);
+    RoleHP = ((CCBRoleState *)this->m_pRoleState)->GetRoleHP(a2);
     IsForce1 = RoleHP->IsForce1();
-    if ( ((CCBRoleState *)this->m_bNewRole[4])->CalcMPRegen(IsForce1) > 0 )
+    if ( ((CCBRoleState *)this->m_pRoleState)->CalcMPRegen(IsForce1) > 0 )
     {
       ++g_nRandCallCount;
       g_RandSeed = 214013 * g_RandSeed + 2531011;
-      ((CCBRoleState *)this->m_bNewRole[4])->CalcMPRegen(IsForce1);
-      v9 = ((CCBRoleState *)this->m_bNewRole[4])->CalcMagicDamage(a2);
+      ((CCBRoleState *)this->m_pRoleState)->CalcMPRegen(IsForce1);
+      v9 = ((CCBRoleState *)this->m_pRoleState)->CalcMagicDamage(a2);
       if ( v9 )
       {
-        v10 = (CCBRoleState *)this->m_bNewRole[4];
+        v10 = (CCBRoleState *)this->m_pRoleState;
         LOBYTE(a6[10]) = 1;
         LOWORD(a6[4]) = 0;
         a6[0] = 260;
@@ -1897,7 +1911,7 @@ char CCBAI::CastRandEnemyMagic(int a2, int a3)
         a6[2] = a2;
         a6[3] = -1;
         v10->GetRoleNum(a6);
-        Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
+        Obj = ((CCBSystem *)this->m_pCBSystem)->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
         if ( a3 )
           *(_DWORD *)(a3 + 4) = Obj;
         return 1;
@@ -1918,41 +1932,44 @@ char CCBAI::CastRandEnemyMagic(int a2, int a3)
 // 0x004DA4F0
 char CCBAI::CastRecoverSkill(int a2, int a3, int a4)
 {
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v6; // ecx
   int v7; // eax
-  CCBSystem *v8; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   int Obj; // eax
   _DWORD a6[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].snSpecStateLast[49] && !v5->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 24])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v6->m_Role[a3].bValid )
+  if ( !*(&v6->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v6->IsRoleAlive(a2) )
     return 0;
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) )
     return 0;
-  ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a3, 1);
-  ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a3, 0);
-  v7 = ((CCBRoleState *)this->m_bNewRole[4])->ProcessSkillEffect(a2);
+  ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a3, 1);
+  ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a3, 0);
+  v7 = ((CCBRoleState *)this->m_pRoleState)->ProcessSkillEffect(a2);
   if ( !v7 )
     return 0;
   a6[1] = v7;
   a6[3] = a3;
   LOBYTE(a6[10]) = 1;
   LOWORD(a6[4]) = 0;
-  v8 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   a6[0] = 262;
   a6[2] = a2;
-  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+  Obj = m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -1961,7 +1978,7 @@ char CCBAI::CastRecoverSkill(int a2, int a3, int a4)
 // 0x004DA640
 char CCBAI::CastRecoverBigSkill(int a2, int a3)
 {
-  CCBRoleState *v4; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   char result; // al
   CCBRoleState *v6; // ecx
   int RoleHP; // eax
@@ -1971,24 +1988,25 @@ char CCBAI::CastRecoverBigSkill(int a2, int a3)
   int a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v4->m_Role[a2].snSpecStateLast[49] && !v4->GetRoleField(a2, 18)
-    || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 24])
+    && !m_pRoleState->GetRoleField(a2, 18)
+    || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
   {
     return 0;
   }
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
   result = v6->IsRoleAlive(a2);
   if ( result )
   {
-    RoleHP = ((CCBRoleState *)this->m_bNewRole[4])->GetRoleHP(a2);
-    ((CCBRoleState *)this->m_bNewRole[4])->CalcMagicDefense(RoleHP);
-    v8 = ((CCBRoleState *)this->m_bNewRole[4])->ProcessSkillEffect(a2);
+    RoleHP = ((CCBRoleState *)this->m_pRoleState)->GetRoleHP(a2);
+    ((CCBRoleState *)this->m_pRoleState)->CalcMagicDefense(RoleHP);
+    v8 = ((CCBRoleState *)this->m_pRoleState)->ProcessSkillEffect(a2);
     if ( v8 )
     {
-      v9 = (CCBRoleState *)this->m_bNewRole[4];
+      v9 = (CCBRoleState *)this->m_pRoleState;
       a6[1] = v8;
       LOBYTE(a6[10]) = 1;
       LOWORD(a6[4]) = 0;
@@ -1996,7 +2014,7 @@ char CCBAI::CastRecoverBigSkill(int a2, int a3)
       a6[2] = a2;
       a6[3] = -1;
       v9->GetRoleNum(a6);
-      Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+      Obj = ((CCBSystem *)this->m_pCBSystem)->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
       if ( a3 )
         *(_DWORD *)(a3 + 4) = Obj;
       return 1;
@@ -2012,44 +2030,47 @@ char CCBAI::CastRecoverBigSkill(int a2, int a3)
 // 0x004DA770
 char CCBAI::CastAttackSkill(int a2, int a3, int a4)
 {
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v6; // ecx
   int v7; // eax
-  CCBSystem *v8; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   int Obj; // eax
   _DWORD a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].snSpecStateLast[49] && !v5->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 24])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v6->m_Role[a3].bValid )
+  if ( !*(&v6->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v6->IsRoleAlive(a2) )
     return 0;
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) )
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a3, 0) <= 0 )
+  if ( ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a3, 0) <= 0 )
     return 0;
   ++g_nRandCallCount;
   g_RandSeed = 214013 * g_RandSeed + 2531011;
-  ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a3, 0);
-  v7 = ((CCBRoleState *)this->m_bNewRole[4])->ProcessItemEffect(a2);
+  ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a3, 0);
+  v7 = ((CCBRoleState *)this->m_pRoleState)->ProcessItemEffect(a2);
   if ( !v7 )
     return 0;
   a6[2] = a2;
   a6[1] = v7;
   a6[3] = a3;
   LOBYTE(a6[10]) = 1;
-  v8 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   LOWORD(a6[4]) = 0;
   a6[0] = 262;
-  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+  Obj = m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2058,7 +2079,7 @@ char CCBAI::CastAttackSkill(int a2, int a3, int a4)
 // 0x004DA900
 char CCBAI::CastAttackBigSkill(int a2, int a3)
 {
-  CCBRoleState *v4; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   char result; // al
   CCBRoleState *v6; // ecx
   int RoleHP; // eax
@@ -2069,25 +2090,26 @@ char CCBAI::CastAttackBigSkill(int a2, int a3)
   int a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v4->m_Role[a2].snSpecStateLast[49] && !v4->GetRoleField(a2, 18)
-    || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 24])
+    && !m_pRoleState->GetRoleField(a2, 18)
+    || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
   {
     return 0;
   }
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
   result = v6->IsRoleAlive(a2);
   if ( result )
   {
-    RoleHP = ((CCBRoleState *)this->m_bNewRole[4])->GetRoleHP(a2);
+    RoleHP = ((CCBRoleState *)this->m_pRoleState)->GetRoleHP(a2);
     IsForce1 = RoleHP->IsForce1();
-    ((CCBRoleState *)this->m_bNewRole[4])->CalcMagicAttack(IsForce1);
-    v9 = ((CCBRoleState *)this->m_bNewRole[4])->ProcessItemEffect(a2);
+    ((CCBRoleState *)this->m_pRoleState)->CalcMagicAttack(IsForce1);
+    v9 = ((CCBRoleState *)this->m_pRoleState)->ProcessItemEffect(a2);
     if ( v9 )
     {
-      v10 = (CCBRoleState *)this->m_bNewRole[4];
+      v10 = (CCBRoleState *)this->m_pRoleState;
       a6[1] = v9;
       LOBYTE(a6[10]) = 1;
       LOWORD(a6[4]) = 0;
@@ -2095,7 +2117,7 @@ char CCBAI::CastAttackBigSkill(int a2, int a3)
       a6[2] = a2;
       a6[3] = -1;
       v10->GetRoleNum(a6);
-      Obj = ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+      Obj = ((CCBSystem *)this->m_pCBSystem)->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
       if ( a3 )
         *(_DWORD *)(a3 + 4) = Obj;
       return 1;
@@ -2111,41 +2133,44 @@ char CCBAI::CastAttackBigSkill(int a2, int a3)
 // 0x004DAA40
 char CCBAI::CastRecoverItem(int a2, int a3, int a4)
 {
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v6; // ecx
   int v7; // eax
   int v8; // eax
-  CCBSystem *v9; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   int Obj; // eax
   _DWORD a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].snSpecStateLast[47] && !v5->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 23])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v6->m_Role[a3].bValid )
+  if ( !*(&v6->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v6->IsRoleAlive(a2) )
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) == 1 )
+  if ( ((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) == 1 )
     return 0;
-  v7 = ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a2, 1);
-  v8 = sub_4F5D00((CCBRoleState *)this->m_bNewRole[4], a2, 0, v7);
+  v7 = ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a2, 1);
+  v8 = sub_4F5D00(this->m_pRoleState, a2, 0, v7);
   if ( !v8 )
     return 0;
   a6[3] = a3;
   a6[1] = v8;
   a6[2] = a2;
   LOBYTE(a6[10]) = 1;
-  v9 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   LOWORD(a6[4]) = 0;
   a6[0] = 261;
-  Obj = v9->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  Obj = m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2154,41 +2179,44 @@ char CCBAI::CastRecoverItem(int a2, int a3, int a4)
 // 0x004DAB70
 char CCBAI::CastRecoverBigItem(int a2, int a3, int a4)
 {
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v6; // ecx
   int v7; // eax
   int v8; // eax
-  CCBSystem *v9; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   int Obj; // eax
   _DWORD a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].snSpecStateLast[48] && !v5->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !LOBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 24])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v6->m_Role[a3].bValid )
+  if ( !*(&v6->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v6->IsRoleAlive(a2) )
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) == 1 )
+  if ( ((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) == 1 )
     return 0;
-  v7 = ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a2, 1);
-  v8 = sub_4F6000((CCBRoleState *)this->m_bNewRole[4], a2, 0, v7);
+  v7 = ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a2, 1);
+  v8 = sub_4F6000(this->m_pRoleState, a2, 0, v7);
   if ( !v8 )
     return 0;
   a6[3] = a3;
   a6[1] = v8;
   a6[2] = a2;
   LOBYTE(a6[10]) = 1;
-  v9 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   LOWORD(a6[4]) = 0;
   a6[0] = 260;
-  Obj = v9->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
+  Obj = m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2197,41 +2225,44 @@ char CCBAI::CastRecoverBigItem(int a2, int a3, int a4)
 // 0x004DACA0
 char CCBAI::CastAttackItem(int a2, int a3, int a4)
 {
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v6; // ecx
   int v7; // eax
   int v8; // eax
-  CCBSystem *v9; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   int Obj; // eax
   _DWORD a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].snSpecStateLast[49] && !v5->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 24])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v6->m_Role[a3].bValid )
+  if ( !*(&v6->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v6->IsRoleAlive(a2) )
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) == 1 )
+  if ( ((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) == 1 )
     return 0;
-  v7 = ((CCBRoleState *)this->m_bNewRole[4])->SetRoleField(a2, 1);
-  v8 = sub_4F61D0((CCBRoleState *)this->m_bNewRole[4], a2, 0, v7);
+  v7 = ((CCBRoleState *)this->m_pRoleState)->SetRoleField(a2, 1);
+  v8 = sub_4F61D0(this->m_pRoleState, a2, 0, v7);
   if ( !v8 )
     return 0;
   a6[3] = a3;
   a6[1] = v8;
   a6[2] = a2;
   LOBYTE(a6[10]) = 1;
-  v9 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   LOWORD(a6[4]) = 0;
   a6[0] = 262;
-  Obj = v9->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+  Obj = m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2240,39 +2271,42 @@ char CCBAI::CastAttackItem(int a2, int a3, int a4)
 // 0x004DADD0
 char CCBAI::CastAttackBigItem(int a2, int a3, int a4)
 {
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v6; // ecx
   int v7; // eax
-  CCBSystem *v8; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   int Obj; // eax
   _DWORD a6[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].snSpecStateLast[47] && !v5->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 23])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v6->m_Role[a3].bValid )
+  if ( !*(&v6->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v6->IsRoleAlive(a2) )
     return 0;
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) )
     return 0;
-  v7 = sub_4F6370((CCBRoleState *)this->m_bNewRole[4], a2, *(_DWORD *)(a4 + 12), 0);
+  v7 = sub_4F6370(this->m_pRoleState, a2, *(_DWORD *)(a4 + 12), 0);
   if ( !v7 )
     return 0;
   a6[2] = a2;
   a6[1] = v7;
   a6[3] = a3;
   LOBYTE(a6[10]) = 1;
-  v8 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   LOWORD(a6[4]) = 0;
   a6[0] = 261;
-  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  Obj = m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2281,39 +2315,42 @@ char CCBAI::CastAttackBigItem(int a2, int a3, int a4)
 // 0x004DAF00
 char CCBAI::CastBossPhysicalAttack(int a2, int a3, int a4)
 {
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v6; // ecx
   int v7; // eax
-  CCBSystem *v8; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   int Obj; // eax
   _DWORD a6[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].snSpecStateLast[48] && !v5->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !LOBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 24])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v6->m_Role[a3].bValid )
+  if ( !*(&v6->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v6->IsRoleAlive(a2) )
     return 0;
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) )
     return 0;
-  v7 = sub_4F6690((CCBRoleState *)this->m_bNewRole[4], a2, *(_DWORD *)(a4 + 12), 0);
+  v7 = sub_4F6690(this->m_pRoleState, a2, *(_DWORD *)(a4 + 12), 0);
   if ( !v7 )
     return 0;
   a6[2] = a2;
   a6[1] = v7;
   a6[3] = a3;
   LOBYTE(a6[10]) = 1;
-  v8 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   LOWORD(a6[4]) = 0;
   a6[0] = 260;
-  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
+  Obj = m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2322,39 +2359,42 @@ char CCBAI::CastBossPhysicalAttack(int a2, int a3, int a4)
 // 0x004DB030
 char CCBAI::CastReviveMagic(int a2, int a3, int a4)
 {
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   CCBRoleState *v6; // ecx
   int v7; // eax
-  CCBSystem *v8; // ecx
+  CCBSystem *m_pCBSystem; // ecx
   int Obj; // eax
   _DWORD a6[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v5->m_Role[a2].snSpecStateLast[49] && !v5->GetRoleField(a2, 18) )
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
+  if ( !HIBYTE(m_pRoleState->m_Role[0].snSpecStateLast[446 * a2 + 24])
+    && !m_pRoleState->GetRoleField(a2, 18) )
+  {
     return 0;
-  if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
+  }
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(a2, 19) )
     return 0;
-  v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !v6->m_Role[a2].bValid )
+  v6 = (CCBRoleState *)this->m_pRoleState;
+  if ( !*(&v6->m_Role[0].bValid + 892 * a2) )
     return 0;
-  if ( !v6->m_Role[a3].bValid )
+  if ( !*(&v6->m_Role[0].bValid + 892 * a3) )
     return 0;
   if ( !v6->IsRoleAlive(a2) )
     return 0;
-  if ( !((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(a3) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(a3) )
     return 0;
-  v7 = sub_4F6860((CCBRoleState *)this->m_bNewRole[4], a2, *(_DWORD *)(a4 + 12), 0);
+  v7 = sub_4F6860(this->m_pRoleState, a2, *(_DWORD *)(a4 + 12), 0);
   if ( !v7 )
     return 0;
   a6[2] = a2;
   a6[1] = v7;
   a6[3] = a3;
   LOBYTE(a6[10]) = 1;
-  v8 = (CCBSystem *)this->m_bNewRole[3];
+  m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
   LOWORD(a6[4]) = 0;
   a6[0] = 262;
-  Obj = v8->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
+  Obj = m_pCBSystem->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, a6);
   if ( a4 )
     *(_DWORD *)(a4 + 4) = Obj;
   return 1;
@@ -2364,25 +2404,25 @@ char CCBAI::CastReviveMagic(int a2, int a3, int a4)
 char CCBAI::CastReviveSkill(int a2)
 {
   int v4; // edi
-  CCBRoleState *v5; // ecx
+  CCBRoleState *m_pRoleState; // ecx
   int a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
-  if ( *(_DWORD *)((CCBRoleState *)this->m_bNewRole[4])->InitUI(a2) != 739 )
+  if ( *(_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(a2) != 739 )
     return 0;
-  v4 = sub_4F2C30((_DWORD *)this->m_bNewRole[4], a2, 0);
-  if ( v4 != sub_4F2C30((_DWORD *)this->m_bNewRole[4], a2, 1) )
+  v4 = sub_4F2C30(this->m_pRoleState->m_sCombatDialog, a2, 0);
+  if ( v4 != sub_4F2C30(this->m_pRoleState->m_sCombatDialog, a2, 1) )
     return 0;
   memset(a6, 0, sizeof(a6));
-  v5 = (CCBRoleState *)this->m_bNewRole[4];
+  m_pRoleState = (CCBRoleState *)this->m_pRoleState;
   LOWORD(a6[4]) = 0;
   LOBYTE(a6[10]) = 1;
   a6[0] = 261;
   a6[1] = 7709;
   a6[2] = a2;
   a6[3] = -1;
-  v5->GetRoleNum(a6);
-  ((CCBSystem *)this->m_bNewRole[3])->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
-  ((CEffMgr *)*(CEffMgr **)(this->m_bNewRole[3] + 44))->Init(559, 0, 0, 0, 0);
+  m_pRoleState->GetRoleNum(a6);
+  ((CCBSystem *)this->m_pCBSystem)->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, a6);
+  ((CEffMgr *)this->m_pCBSystem->m_pEffMgr)->Init(559, 0, 0, 0, 0);
   return 1;
 }
 

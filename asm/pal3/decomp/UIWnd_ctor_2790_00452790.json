@@ -3,5 +3,5 @@
   "address": "0x00452790",
   "size_bytes": 148,
   "signature": "int __thiscall(UIWnd *this)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nint __thiscall UIWnd::ctor_2790(UIWnd *this)\n{\n  UIWnd::UIWnd(this);\n  UIScene::_UIScene((UIScene *)&this->m_pfather);\n  UIFrameWnd::UIFrameWnd((UIFrameWnd *)((char *)this + 412));\n  UIWnd::ctor_2E10((UIWnd *)((char *)this + 564));\n  sub_444F60((UIWnd *)((char *)this + 748));\n  UIWnd::DestroyChildren((UIWnd *)((char *)this + 940));\n  this->m_fontcolor.ColorQuadFmt = (int)&off_56B1DC;\n  *((_DWORD *)this + 252) = 0;\n  return (int)this;\n}\n"
+  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nint __thiscall UIWnd::ctor_2790(UIWnd *this)\n{\n  UIWnd::UIWnd(this);\n  UIScene::_UIScene((UIScene *)&this->m_bcreateok);\n  UIFrameWnd::UIFrameWnd((UIFrameWnd *)((char *)this + 412));\n  UIWnd::ctor_2E10((UIWnd *)((char *)this + 564));\n  sub_444F60((UIWnd *)((char *)this + 748));\n  UIWnd::DestroyChildren((UIWnd *)((char *)this + 940));\n  *(_DWORD *)this->_pad_0000 = &off_56B1DC;\n  *((_DWORD *)this + 252) = 0;\n  return (int)this->_pad_0000;\n}\n"
 }

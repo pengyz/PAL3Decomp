@@ -84,28 +84,28 @@ CCBMagicWindow::~CCBMagicWindow()
 // 0x0051BB00
 int CCBMagicWindow::Reset(int a2, int a3)
 {
-  PtrArray *p_m_childs; // eax
+  UIStatic **p_m_pBack; // eax
   int v4; // esi
 
-  p_m_childs = (PtrArray *)&this->m_childs;
+  p_m_pBack = &this->m_pBack;
   v4 = 5;
   do
   {
-    if ( p_m_childs->m_pData == (void *)a3 )
-      p_m_childs->m_pData = (void *)*((_DWORD *)&this->m_childs.m_pData + a2);
-    p_m_childs = (PtrArray *)((char *)p_m_childs + 4);
+    if ( *p_m_pBack == (UIStatic *)a3 )
+      * p_m_pBack = (*)*(UIStatic **)&this->_pad_0000[4 * a2 + 72];
+    ++p_m_pBack;
     --v4;
   }
   while ( v4 );
-  *((_DWORD *)&this->m_childs.m_pData + a2) = a3;
-  sub_51BB50((char *)this);
+  *(_DWORD *)&this->_pad_0000[4 * a2 + 72] = a3;
+  sub_51BB50(this->_pad_0000);
   return -1;
 }
 
 // 0x0051BB40
 int CCBMagicWindow::Create(int a2)
 {
-  this->m_pMagicList[1] = (UIListBox *)a2;
+  this->m_pButtonEarth = (UIPushButton *)a2;
   return a2;
 }
 
@@ -113,15 +113,15 @@ int CCBMagicWindow::Create(int a2)
 _DWORD * CCBMagicWindow::ForbidPage()
 {
   ((UIListBox *)this)->UIListBox();
-  this->m_fontcolor.ColorQuadFmt = (int)&off_570570;
+  *(_DWORD *)this->_pad_0000 = &off_570570;
   this->OnMessage();
-  return &this->m_fontcolor.ColorQuadFmt;
+  return this->_pad_0000;
 }
 
 // 0x0051BBE0
 UIWnd * CCBMagicWindow::Destroy(CCBMagicWindow *Block, char a2)
 {
-  Block->~UIWnd();
+  ((UIWnd *)Block)->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return (UIWnd *)Block;
@@ -130,205 +130,206 @@ UIWnd * CCBMagicWindow::Destroy(CCBMagicWindow *Block, char a2)
 // 0x0051BC50
 int CCBMagicWindow::OnMessage()
 {
-  this->m_childs.m_pData = 0;
-  this->m_childs.m_nSize = 0;
-  this->m_childs.m_nMaxSize = 0;
-  this->m_childs.m_nGrowBy = 0;
-  this->m_bcreateok = 0;
-  this->m_bvisible = 0;
-  this->m_benable = 0;
-  this->m_bfocus = 0;
+  this->m_pBack = 0;
+  this->m_pMagicList[0] = 0;
+  this->m_pMagicList[1] = 0;
+  this->m_pMagicList[2] = 0;
+  this->m_pMagicList[3] = 0;
+  this->m_pMagicList[4] = 0;
+  this->m_pMagicList[5] = 0;
+  this->m_pButtonWater = 0;
   return 0;
 }
 
 // 0x0051BC70
 char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
 {
-  UIWnd ***p_m_childs; // edi
-  int *p_m_bcreateok; // edi
+  UIWnd ***p_m_pBack; // edi
+  UIWnd **v5; // edi
   _DWORD *v6; // eax
   UIWnd *v7; // eax
-  int *p_m_bvisible; // edi
+  UIWnd **v8; // edi
   _DWORD *v9; // eax
   UIWnd *v10; // eax
-  int *p_m_benable; // edi
+  UIWnd **v11; // edi
   _DWORD *v12; // eax
   UIWnd *v13; // eax
-  int *p_m_nSize; // edi
-  int *p_m_nMaxSize; // edi
-  int *p_m_nGrowBy; // edi
-  int *p_m_bfocus; // edi
+  gbRefObject ***m_pMagicList; // edi
+  gbRefObject ***v15; // edi
+  gbRefObject ***v16; // edi
+  UIPushButton **p_m_pButtonWater; // edi
   _DWORD a2a[4]; // [esp+3Ch] [ebp-10h] BYREF
 
-  this->Create(1879048198, a2, a3);
-  p_m_childs = (UIWnd ***)&this->m_childs;
-  if ( ((CCBLineupWindow *)&this->m_childs.m_pData)->Destroy() == 1 )
+  ((UIWnd *)this)->Create(1879048198, a2, a3);
+  p_m_pBack = (UIWnd ***)&this->m_pBack;
+  if ( ((CCBLineupWindow *)&this->m_pBack)->Destroy() == 1 )
   {
     *a2 = 0;
     a2[2] = 230;
     a2[1] = 0;
     a2[3] = 200;
-    ((void (*)(UIWnd **, int, _DWORD *, CCBMagicWindow *))(**p_m_childs)->m_fontcolor.Alpha)(
-      *p_m_childs,
+    ((void (*)(UIWnd **, int, _DWORD *, CCBMagicWindow *))(**p_m_pBack)->m_wndcolor.ColorQuadFmt)(
+      *p_m_pBack,
       272,
       a2,
       this);
-    ((UIWnd *)*p_m_childs)->CreateFromTemplate(aUiCombatContro_22, 0);
-    ((void (*)(UIWnd **, int))(**p_m_childs)->m_fontcolor.ColorQuadFmt)(*p_m_childs, 1);
+    ((UIWnd *)*p_m_pBack)->CreateFromTemplate(aUiCombatContro_22, 0);
+    (*(void (**)(UIWnd **, int))(**p_m_pBack)->_pad_0000)(*p_m_pBack, 1);
   }
-  p_m_bcreateok = (int *)&this->m_bcreateok;
-  if ( ((CCBLineupWindow *)&this->m_bcreateok)->Render() == 1 )
+  v5 = (UIWnd **)&this->m_pMagicList[3];
+  if ( ((CCBLineupWindow *)&this->m_pMagicList[3])->Render() == 1 )
   {
     *a2 = 27;
     a2[1] = 57;
     a2[2] = 211;
     a2[3] = 95;
-    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)*p_m_bcreateok + 16))(
-      *p_m_bcreateok,
+    (*(void (**)(UIWnd *, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)(*v5)->_pad_0000 + 16))(
+      *v5,
       276,
       a2,
       this);
-    v6 = ((UIWnd *)*p_m_bcreateok)->SetRect(a2a);
-    ((UIWnd *)*p_m_bcreateok)->AddChild(v6);
-    ((UIWnd *)*p_m_bcreateok)->GetChildCount(aUiCombatContro_29, 0);
-    ((UIWnd *)*p_m_bcreateok)->GetChildAt(aUiCombatContro_30, 0);
-    ((UIWnd *)*p_m_bcreateok)->SetFrameRate(48);
-    ((UIWnd *)*p_m_bcreateok)->GetHeight(23);
-    ((UIWnd *)*p_m_bcreateok)->GetWidth(11);
-    ((UIWnd *)*p_m_bcreateok)->GetPosition(5);
-    sub_43FBC0((gbRefObject **)*p_m_bcreateok, aUiCombatContro_31, 0);
-    v7 = (UIWnd *)*p_m_bcreateok;
-    v7[1].m_bvisible = 10;
-    v7[1].m_benable = 9;
-    ((UIWnd *)*p_m_bcreateok)->FindChild(100.0);
-    ((UIWnd *)*p_m_bcreateok)->FindChildByName(100.0);
-    *(_DWORD *)(*p_m_bcreateok + 112) = 1077936128;
-    (**(void (***)(int, int))*p_m_bcreateok)(*p_m_bcreateok, 1);
+    v6 = ((UIWnd *)*v5)->SetRect(a2a);
+    ((UIWnd *)*v5)->AddChild(v6);
+    ((UIWnd *)*v5)->GetChildCount(aUiCombatContro_29, 0);
+    ((UIWnd *)*v5)->GetChildAt(aUiCombatContro_30, 0);
+    ((UIWnd *)*v5)->SetFrameRate(48);
+    ((UIWnd *)*v5)->GetHeight(23);
+    ((UIWnd *)*v5)->GetWidth(11);
+    ((UIWnd *)*v5)->GetPosition(5);
+    sub_43FBC0((gbRefObject **)*v5, aUiCombatContro_31, 0);
+    v7 = (UIWnd *)*v5;
+    v7[2].m_id = 10;
+    v7[2].m_rect.left = 9;
+    ((UIWnd *)*v5)->FindChild(100.0);
+    ((UIWnd *)*v5)->FindChildByName(100.0);
+    (*v5)[1].m_id = 1077936128;
+    (**(void (***)(UIWnd *, int))(*v5)->_pad_0000)(*v5, 1);
   }
-  p_m_bvisible = (int *)&this->m_bvisible;
-  if ( ((CCBLineupWindow *)&this->m_bvisible)->Render() == 1 )
+  v8 = (UIWnd **)&this->m_pMagicList[4];
+  if ( ((CCBLineupWindow *)&this->m_pMagicList[4])->Render() == 1 )
   {
     *a2 = 27;
     a2[1] = 94;
     a2[2] = 211;
     a2[3] = 132;
-    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)*p_m_bvisible + 16))(
-      *p_m_bvisible,
+    (*(void (**)(UIWnd *, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)(*v8)->_pad_0000 + 16))(
+      *v8,
       277,
       a2,
       this);
-    v9 = ((UIWnd *)*p_m_bvisible)->SetRect(a2a);
-    ((UIWnd *)*p_m_bvisible)->AddChild(v9);
-    ((UIWnd *)*p_m_bvisible)->GetChildCount(aUiCombatContro_29, 0);
-    ((UIWnd *)*p_m_bvisible)->GetChildAt(aUiCombatContro_30, 0);
-    ((UIWnd *)*p_m_bvisible)->SetFrameRate(48);
-    ((UIWnd *)*p_m_bvisible)->GetHeight(23);
-    ((UIWnd *)*p_m_bvisible)->GetWidth(11);
-    ((UIWnd *)*p_m_bvisible)->GetPosition(5);
-    sub_43FBC0((gbRefObject **)*p_m_bvisible, aUiCombatContro_31, 0);
-    v10 = (UIWnd *)*p_m_bvisible;
-    v10[1].m_bvisible = 10;
-    v10[1].m_benable = 9;
-    ((UIWnd *)*p_m_bvisible)->FindChild(100.0);
-    ((UIWnd *)*p_m_bvisible)->FindChildByName(100.0);
-    *(_DWORD *)(*p_m_bvisible + 112) = 1077936128;
-    (**(void (***)(int, int))*p_m_bvisible)(*p_m_bvisible, 1);
+    v9 = ((UIWnd *)*v8)->SetRect(a2a);
+    ((UIWnd *)*v8)->AddChild(v9);
+    ((UIWnd *)*v8)->GetChildCount(aUiCombatContro_29, 0);
+    ((UIWnd *)*v8)->GetChildAt(aUiCombatContro_30, 0);
+    ((UIWnd *)*v8)->SetFrameRate(48);
+    ((UIWnd *)*v8)->GetHeight(23);
+    ((UIWnd *)*v8)->GetWidth(11);
+    ((UIWnd *)*v8)->GetPosition(5);
+    sub_43FBC0((gbRefObject **)*v8, aUiCombatContro_31, 0);
+    v10 = (UIWnd *)*v8;
+    v10[2].m_id = 10;
+    v10[2].m_rect.left = 9;
+    ((UIWnd *)*v8)->FindChild(100.0);
+    ((UIWnd *)*v8)->FindChildByName(100.0);
+    (*v8)[1].m_id = 1077936128;
+    (**(void (***)(UIWnd *, int))(*v8)->_pad_0000)(*v8, 1);
   }
-  p_m_benable = (int *)&this->m_benable;
-  if ( ((CCBLineupWindow *)&this->m_benable)->Render() == 1 )
+  v11 = (UIWnd **)&this->m_pMagicList[5];
+  if ( ((CCBLineupWindow *)&this->m_pMagicList[5])->Render() == 1 )
   {
     *a2 = 27;
     a2[1] = 132;
     a2[2] = 211;
     a2[3] = 170;
-    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)*p_m_benable + 16))(
-      *p_m_benable,
+    (*(void (**)(UIWnd *, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)(*v11)->_pad_0000 + 16))(
+      *v11,
       278,
       a2,
       this);
-    v12 = ((UIWnd *)*p_m_benable)->SetRect(a2a);
-    ((UIWnd *)*p_m_benable)->AddChild(v12);
-    ((UIWnd *)*p_m_benable)->GetChildCount(aUiCombatContro_29, 0);
-    ((UIWnd *)*p_m_benable)->GetChildAt(aUiCombatContro_30, 0);
-    ((UIWnd *)*p_m_benable)->SetFrameRate(48);
-    ((UIWnd *)*p_m_benable)->GetHeight(23);
-    ((UIWnd *)*p_m_benable)->GetWidth(11);
-    ((UIWnd *)*p_m_benable)->GetPosition(5);
-    sub_43FBC0((gbRefObject **)*p_m_benable, aUiCombatContro_31, 0);
-    v13 = (UIWnd *)*p_m_benable;
-    v13[1].m_bvisible = 10;
-    v13[1].m_benable = 9;
-    ((UIWnd *)*p_m_benable)->FindChild(100.0);
-    ((UIWnd *)*p_m_benable)->FindChildByName(100.0);
-    *(_DWORD *)(*p_m_benable + 112) = 1077936128;
-    (**(void (***)(int, int))*p_m_benable)(*p_m_benable, 1);
+    v12 = ((UIWnd *)*v11)->SetRect(a2a);
+    ((UIWnd *)*v11)->AddChild(v12);
+    ((UIWnd *)*v11)->GetChildCount(aUiCombatContro_29, 0);
+    ((UIWnd *)*v11)->GetChildAt(aUiCombatContro_30, 0);
+    ((UIWnd *)*v11)->SetFrameRate(48);
+    ((UIWnd *)*v11)->GetHeight(23);
+    ((UIWnd *)*v11)->GetWidth(11);
+    ((UIWnd *)*v11)->GetPosition(5);
+    sub_43FBC0((gbRefObject **)*v11, aUiCombatContro_31, 0);
+    v13 = (UIWnd *)*v11;
+    v13[2].m_id = 10;
+    v13[2].m_rect.left = 9;
+    ((UIWnd *)*v11)->FindChild(100.0);
+    ((UIWnd *)*v11)->FindChildByName(100.0);
+    (*v11)[1].m_id = 1077936128;
+    (**(void (***)(UIWnd *, int))(*v11)->_pad_0000)(*v11, 1);
   }
-  p_m_nSize = (int *)&this->m_childs.m_nSize;
-  if ( ((CCBLineupWindow *)&this->m_childs.m_nSize)->OnMessage() == 1 )
+  m_pMagicList = (gbRefObject ***)this->m_pMagicList;
+  if ( ((CCBLineupWindow *)this->m_pMagicList)->OnMessage() == 1 )
   {
     *a2 = 37;
     a2[1] = 57;
     a2[2] = 69;
     a2[3] = 89;
-    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(*(_DWORD *)*p_m_nSize + 28))(
-      *p_m_nSize,
+    ((void (*)(gbRefObject **, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(**m_pMagicList)[3].RefCount)(
+      *m_pMagicList,
       273,
       a2,
       this,
       aUiCombatContro_23,
       0);
-    sub_440CE0((gbRefObject **)*p_m_nSize, aUiCombatContro_26, 0);
-    (**(void (***)(int, int))*p_m_nSize)(*p_m_nSize, 1);
+    sub_440CE0(*m_pMagicList, aUiCombatContro_26, 0);
+    (*(void (**)(gbRefObject **, int))(**m_pMagicList)->_pad_0000)(*m_pMagicList, 1);
   }
-  p_m_nMaxSize = (int *)&this->m_childs.m_nMaxSize;
-  if ( ((CCBLineupWindow *)&this->m_childs.m_nMaxSize)->OnMessage() == 1 )
+  v15 = (gbRefObject ***)&this->m_pMagicList[1];
+  if ( ((CCBLineupWindow *)&this->m_pMagicList[1])->OnMessage() == 1 )
   {
     *a2 = 37;
     a2[1] = 94;
     a2[2] = 69;
     a2[3] = 126;
-    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(*(_DWORD *)*p_m_nMaxSize + 28))(
-      *p_m_nMaxSize,
+    ((void (*)(gbRefObject **, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(**v15)[3].RefCount)(
+      *v15,
       274,
       a2,
       this,
       aUiCombatContro_24,
       0);
-    sub_440CE0((gbRefObject **)*p_m_nMaxSize, aUiCombatContro_27, 0);
-    (**(void (***)(int, int))*p_m_nMaxSize)(*p_m_nMaxSize, 1);
+    sub_440CE0(*v15, aUiCombatContro_27, 0);
+    (*(void (**)(gbRefObject **, int))(**v15)->_pad_0000)(*v15, 1);
   }
-  p_m_nGrowBy = (int *)&this->m_childs.m_nGrowBy;
-  if ( ((CCBLineupWindow *)&this->m_childs.m_nGrowBy)->OnMessage() == 1 )
+  v16 = (gbRefObject ***)&this->m_pMagicList[2];
+  if ( ((CCBLineupWindow *)&this->m_pMagicList[2])->OnMessage() == 1 )
   {
     *a2 = 37;
     a2[1] = 132;
     a2[2] = 69;
     a2[3] = 164;
-    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(*(_DWORD *)*p_m_nGrowBy + 28))(
-      *p_m_nGrowBy,
+    ((void (*)(gbRefObject **, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(**v16)[3].RefCount)(
+      *v16,
       275,
       a2,
       this,
       aUiCombatContro_25,
       0);
-    sub_440CE0((gbRefObject **)*p_m_nGrowBy, aUiCombatContro_28, 0);
-    (**(void (***)(int, int))*p_m_nGrowBy)(*p_m_nGrowBy, 1);
+    sub_440CE0(*v16, aUiCombatContro_28, 0);
+    (*(void (**)(gbRefObject **, int))(**v16)->_pad_0000)(*v16, 1);
   }
-  p_m_bfocus = (int *)&this->m_bfocus;
-  ((CCBLineupWindow *)&this->m_bfocus)->Update();
+  p_m_pButtonWater = &this->m_pButtonWater;
+  ((CCBLineupWindow *)&this->m_pButtonWater)->Update();
   *a2 = 68;
   a2[2] = 160;
   a2[1] = 170;
   a2[3] = 196;
-  (*(void (**)(int, int, _DWORD *, CCBMagicWindow *, char *, int, _DWORD))(*(_DWORD *)*p_m_bfocus + 28))(
-    *p_m_bfocus,
+  (*(void (**)(UIPushButton *, int, _DWORD *, CCBMagicWindow *, char *, int, _DWORD))(*(_DWORD *)(*p_m_pButtonWater)->_pad_0000
+                                                                                               + 28))(
+    *p_m_pButtonWater,
     282,
     a2,
     this,
     aUiCombatContro_32,
     1,
     0);
-  (**(void (***)(int, int))*p_m_bfocus)(*p_m_bfocus, 1);
+  (**(void (***)(UIPushButton *, int))(*p_m_pButtonWater)->_pad_0000)(*p_m_pButtonWater, 1);
   return 1;
 }
 
@@ -336,63 +337,63 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
 int CCBMagicWindow::Update()
 {
   int result; // eax
-  void *m_pData; // ecx
-  int m_nSize; // ecx
-  int m_nMaxSize; // ecx
-  int m_nGrowBy; // ecx
-  int m_bcreateok; // ecx
-  int m_bvisible; // ecx
-  int m_benable; // ecx
-  int m_bfocus; // ecx
+  UIStatic *m_pBack; // ecx
+  UIListBox *v4; // ecx
+  UIListBox *v5; // ecx
+  UIListBox *v6; // ecx
+  UIListBox *v7; // ecx
+  UIListBox *v8; // ecx
+  UIListBox *v9; // ecx
+  UIPushButton *m_pButtonWater; // ecx
 
   result = ((UIListBox *)this)->SetScrollPos();
-  m_pData = (void *)this->m_childs.m_pData;
-  if ( m_pData )
+  m_pBack = (UIStatic *)this->m_pBack;
+  if ( m_pBack )
   {
-    result = (*(int (**)(void *, int))(*(_DWORD *)m_pData + 20))(m_pData, 1);
-    this->m_childs.m_pData = 0;
+    result = (*(int (**)(UIStatic *, int))(*(_DWORD *)m_pBack->_pad_0000 + 20))(m_pBack, 1);
+    this->m_pBack = 0;
   }
-  m_nSize = this->m_childs.m_nSize;
-  if ( m_nSize )
+  v4 = (UIListBox *)this->m_pMagicList[0];
+  if ( v4 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)m_nSize + 20))(m_nSize, 1);
-    this->m_childs.m_nSize = 0;
+    result = (*(int (**)(UIListBox *, int))(*(_DWORD *)v4->_pad_0000 + 20))(v4, 1);
+    this->m_pMagicList[0] = 0;
   }
-  m_nMaxSize = this->m_childs.m_nMaxSize;
-  if ( m_nMaxSize )
+  v5 = (UIListBox *)this->m_pMagicList[1];
+  if ( v5 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)m_nMaxSize + 20))(m_nMaxSize, 1);
-    this->m_childs.m_nMaxSize = 0;
+    result = (*(int (**)(UIListBox *, int))(*(_DWORD *)v5->_pad_0000 + 20))(v5, 1);
+    this->m_pMagicList[1] = 0;
   }
-  m_nGrowBy = this->m_childs.m_nGrowBy;
-  if ( m_nGrowBy )
+  v6 = (UIListBox *)this->m_pMagicList[2];
+  if ( v6 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)m_nGrowBy + 20))(m_nGrowBy, 1);
-    this->m_childs.m_nGrowBy = 0;
+    result = (*(int (**)(UIListBox *, int))(*(_DWORD *)v6->_pad_0000 + 20))(v6, 1);
+    this->m_pMagicList[2] = 0;
   }
-  m_bcreateok = this->m_bcreateok;
-  if ( m_bcreateok )
+  v7 = (UIListBox *)this->m_pMagicList[3];
+  if ( v7 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)m_bcreateok + 20))(m_bcreateok, 1);
-    this->m_bcreateok = 0;
+    result = (*(int (**)(UIListBox *, int))(*(_DWORD *)v7->_pad_0000 + 20))(v7, 1);
+    this->m_pMagicList[3] = 0;
   }
-  m_bvisible = this->m_bvisible;
-  if ( m_bvisible )
+  v8 = (UIListBox *)this->m_pMagicList[4];
+  if ( v8 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)m_bvisible + 20))(m_bvisible, 1);
-    this->m_bvisible = 0;
+    result = (*(int (**)(UIListBox *, int))(*(_DWORD *)v8->_pad_0000 + 20))(v8, 1);
+    this->m_pMagicList[4] = 0;
   }
-  m_benable = this->m_benable;
-  if ( m_benable )
+  v9 = (UIListBox *)this->m_pMagicList[5];
+  if ( v9 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)m_benable + 20))(m_benable, 1);
-    this->m_benable = 0;
+    result = (*(int (**)(UIListBox *, int))(*(_DWORD *)v9->_pad_0000 + 20))(v9, 1);
+    this->m_pMagicList[5] = 0;
   }
-  m_bfocus = this->m_bfocus;
-  if ( m_bfocus )
+  m_pButtonWater = (UIPushButton *)this->m_pButtonWater;
+  if ( m_pButtonWater )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)m_bfocus + 20))(m_bfocus, 1);
-    this->m_bfocus = 0;
+    result = (*(int (**)(UIPushButton *, int))(*(_DWORD *)m_pButtonWater->_pad_0000 + 20))(m_pButtonWater, 1);
+    this->m_pButtonWater = 0;
   }
   return result;
 }
@@ -400,19 +401,19 @@ int CCBMagicWindow::Update()
 // 0x0051C1B0
 BOOL CCBMagicWindow::SetActivePage(int a2, int a3)
 {
-  if ( this->m_rect.top == 1
-    && (g_Input.m_DIKToKEY[1] == 1 && (g_Input.m_shiftedKeyStates[268] & 0xF) == 1 || g_Input.m_DIKToKEY[5] == 1) )
+  if ( *(_DWORD *)&this->_pad_0000[56] == 1
+    && (g_Input.KeyInfo[16].PressTime == 1 && (g_Input.KeyInfo[16].Data & 0xF) == 1 || g_Input.KeyInfo[17].PressTime == 1) )
   {
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8))->SetParam(272, -1);
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_pad_0000[32] + 1160) + 8))->SetParam(272, -1);
   }
-  return this->HitTest(a2, a3);
+  return ((UIWnd *)this)->HitTest(a2, a3);
 }
 
 // 0x0051C210
 _DWORD * CCBMagicWindow::GetActivePage()
 {
   ((UIListBox *)this)->UIListBox();
-  this->m_fontcolor.ColorQuadFmt = (int)&off_57058C;
+  *(_DWORD *)this->_pad_0000 = &off_57058C;
   ((CCBSkillWindow *)this)->Reset();
-  return &this->m_fontcolor.ColorQuadFmt;
+  return this->_pad_0000;
 }

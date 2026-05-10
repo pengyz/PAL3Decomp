@@ -3,5 +3,5 @@
   "address": "0x004055A0",
   "size_bytes": 41,
   "signature": "char()",
-  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nchar PAL3::DestroyEffectSystem()\n{\n  void *Data; // esi\n\n  Data = (void *)g_Input.KeyInfo[178].Data;\n  if ( g_Input.KeyInfo[178].Data )\n  {\n    sub_4C5840((int *)g_Input.KeyInfo[178].Data);\n    operator delete(Data);\n  }\n  g_Input.KeyInfo[178].Data = 0;\n  return 1;\n}\n"
+  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nchar PAL3::DestroyEffectSystem()\n{\n  SceneMgr *v0; // esi\n\n  v0 = dword_BFDA70;\n  if ( dword_BFDA70 )\n  {\n    sub_4C5840((int *)dword_BFDA70);\n    operator delete(v0);\n  }\n  dword_BFDA70 = 0;\n  return 1;\n}\n"
 }

@@ -7,6 +7,9 @@ int sub_533FD0(...);
 int sub_535970(...);
 int sub_535F10(...);
 
+// Unnamed globals (extern)
+extern int dword_BFDA60;
+
 // 0x00535320
 void MiniGame3::Render()
 {
@@ -16,14 +19,14 @@ void MiniGame3::Render()
   gbMatrixStack *v5; // edi
   int v6; // ecx
 
-  v2 = (gbSceneGraph *)*(gbSceneGraph **)(g_Input.KeyInfo[177].Data + 448);
+  v2 = (gbSceneGraph *)LODWORD(dword_BFDA60->InvViewMatrix.m[1][3]);
   v3 = *((_DWORD *)this + 3);
   if ( v3 )
     v4 = (struct gbCamera *)(v3 + 4);
   else
     v4 = 0;
   v2->Begin(v4);
-  v5 = (gbMatrixStack *)*(gbMatrixStack **)(g_Input.KeyInfo[177].Data + 216);
+  v5 = (gbMatrixStack *)dword_BFDA60->pMatrixStack[1];
   sub_533FD0(*((_DWORD *)this + 3));
   v5->Push();
   v6 = *(_DWORD *)(*((_DWORD *)this + 1) + 3216);

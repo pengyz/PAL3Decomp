@@ -3,5 +3,5 @@
   "address": "0x00432550",
   "size_bytes": 77,
   "signature": "void()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid PalScriptMgr::IfHaveScript()\n{\n  __int32 v0; // eax\n  int i; // edi\n  void *v2; // esi\n\n  v0 = stru_D8C2B8.m_keyStates[3];\n  for ( i = 0; i < v0; ++i )\n  {\n    if ( i >= 0 && i < v0 )\n    {\n      v2 = *(void **)(stru_D8C2B8.m_keyStates[2] + 4 * i);\n      if ( v2 )\n      {\n        sub_431CD0(*(void ***)(stru_D8C2B8.m_keyStates[2] + 4 * i));\n        operator delete(v2);\n        v0 = stru_D8C2B8.m_keyStates[3];\n      }\n    }\n  }\n  sub_4326A0((int)&stru_D8C2B8.m_keyStates[2], 0, -1);\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid PalScriptMgr::IfHaveScript()\n{\n  int v0; // eax\n  int i; // edi\n  void *v2; // esi\n\n  v0 = *(_DWORD *)&stru_D8C2B8.m_keyStates[12];\n  for ( i = 0; i < v0; ++i )\n  {\n    if ( i >= 0 && i < v0 )\n    {\n      v2 = *(void **)(*(_DWORD *)&stru_D8C2B8.m_keyStates[8] + 4 * i);\n      if ( v2 )\n      {\n        sub_431CD0(*(void ***)(*(_DWORD *)&stru_D8C2B8.m_keyStates[8] + 4 * i));\n        operator delete(v2);\n        v0 = *(_DWORD *)&stru_D8C2B8.m_keyStates[12];\n      }\n    }\n  }\n  sub_4326A0((int)&stru_D8C2B8.m_keyStates[8], 0, -1);\n}\n"
 }

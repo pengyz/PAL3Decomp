@@ -20,21 +20,21 @@ int MagicUI::Create()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->buf[224] = data;
+    this->remarkbuf[4] = data;
     ((UIBase *)this)->SetItemData(3, data);
-    sub_48A350((char *)this->m_btnPar2[8][0]._element.m_id, data);
-    sub_494620((char *)this->m_btnPar2[8][0]._element.m_rect.left, data);
-    sub_49E8A0((char *)this->m_btnPar2[8][0]._element.m_rect.top, data);
-    return sub_484ED0((char *)this->m_btnPar2[8][0]._element.m_wndcolor.Color, data);
+    sub_48A350(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[36], data);
+    sub_494620(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[40], data);
+    sub_49E8A0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[44], data);
+    return sub_484ED0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[32], data);
   }
   else
   {
-    this->buf[224] = 0;
+    this->remarkbuf[4] = 0;
     ((UIBase *)this)->SetItemData(3, 0);
-    sub_48A350((char *)this->m_btnPar2[8][0]._element.m_id, 0);
-    sub_494620((char *)this->m_btnPar2[8][0]._element.m_rect.left, 0);
-    sub_49E8A0((char *)this->m_btnPar2[8][0]._element.m_rect.top, 0);
-    return sub_484ED0((char *)this->m_btnPar2[8][0]._element.m_wndcolor.Color, 0);
+    sub_48A350(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[36], 0);
+    sub_494620(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[40], 0);
+    sub_49E8A0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[44], 0);
+    return sub_484ED0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[32], 0);
   }
 }
 
@@ -45,20 +45,20 @@ void MagicUI::Init()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->buf[225] = data;
+    this->remarkbuf[5] = data;
     ((UIBase *)this)->SetItemData(4, data);
-    sub_48A370((char *)this->m_btnPar2[8][0]._element.m_id, data);
-    sub_494640((char *)this->m_btnPar2[8][0]._element.m_rect.left, data);
-    sub_49E8C0((char *)this->m_btnPar2[8][0]._element.m_rect.top, data);
-    sub_484EF0((char *)this->m_btnPar2[8][0]._element.m_wndcolor.Color, data);
+    sub_48A370(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[36], data);
+    sub_494640(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[40], data);
+    sub_49E8C0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[44], data);
+    sub_484EF0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[32], data);
   }
   else
   {
-    this->buf[225] = 0;
+    this->remarkbuf[5] = 0;
     ((UIBase *)this)->SetItemData(4, 0);
-    sub_48A370((char *)this->m_btnPar2[8][0]._element.m_id, 0);
-    sub_494640((char *)this->m_btnPar2[8][0]._element.m_rect.left, 0);
-    sub_49E8C0((char *)this->m_btnPar2[8][0]._element.m_rect.top, 0);
-    sub_484EF0((char *)this->m_btnPar2[8][0]._element.m_wndcolor.Color, 0);
+    sub_48A370(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[36], 0);
+    sub_494640(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[40], 0);
+    sub_49E8C0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[44], 0);
+    sub_484EF0(*(char **)&this->m_btnPar2[10][1]._element._pad_0004[32], 0);
   }
 }

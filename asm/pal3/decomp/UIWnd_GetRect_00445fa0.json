@@ -3,5 +3,5 @@
   "address": "0x00445FA0",
   "size_bytes": 52,
   "signature": "int __thiscall(UIWnd *this, _DWORD *a2)",
-  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nint __thiscall UIWnd::GetRect(UIWnd *this, _DWORD *a2)\n{\n  int result; // eax\n\n  result = (int)&this->m_fontcolor.Alpha;\n  this->m_fontcolor.Alpha = *a2;\n  this->m_fontcolor.Color = a2[1];\n  this->m_wndcolor.ColorQuadFmt = a2[2];\n  this->m_wndcolor.Blue = a2[3];\n  if ( this )\n    return (*(int (__thiscall **)(UIWnd *, int, _DWORD, _DWORD))(this->m_fontcolor.ColorQuadFmt + 24))(this, 1022, 0, 0);\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nint __thiscall UIWnd::GetRect(UIWnd *this, _DWORD *a2)\n{\n  int result; // eax\n\n  result = (int)&this->m_wndcolor;\n  this->m_wndcolor = *(gbColorQuad *)a2;\n  this->m_id = a2[3];\n  if ( this )\n    return (*(int (__thiscall **)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)this->_pad_0000 + 24))(this, 1022, 0, 0);\n  return result;\n}\n"
 }

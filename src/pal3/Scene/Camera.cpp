@@ -13,6 +13,9 @@ int sub_41AEA0(...);
 int sub_420A10(...);
 int sub_420F50(...);
 
+// Unnamed globals (extern)
+extern int dword_BFDA68;
+
 // 0x004125D0
 void Camera::SetParams(int a2)
 {
@@ -60,11 +63,8 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
 
   *pDist = 0.0;
   v3 = (int *)(UISceneUpdate() + 492772);
-  qmemcpy(
-    &v19,
-    ((CameraCtrl *)g_Input.KeyInfo[177].CountMode)->GetViewTarget(pTarget, (float *)pPos),
-    sizeof(v19));
-  v4 = *(float *)(g_Input.KeyInfo[177].CountMode + 468) - 300.0;
+  qmemcpy(&v19, ((CameraCtrl *)dword_BFDA68)->GetViewTarget(pTarget, (float *)pPos), sizeof(v19));
+  v4 = *(float *)&dword_BFDA68->CurCtrl - 300.0;
   v17.x = v19.Direction.x * v4;
   v17.y = v19.Direction.y * v4;
   v19.Origin.x = v17.x + v19.Origin.x;
@@ -142,11 +142,8 @@ int Camera::CheckCollision2(void *pPos, int rolePtr, void *pBounds)
 
   v3 = (char *)UISceneUpdate();
   v4 = (int *)sub_420F50(v3, rolePtr);
-  qmemcpy(
-    &v15,
-    ((CameraCtrl *)g_Input.KeyInfo[177].CountMode)->GetViewTarget(&pTarget, (float *)pPos),
-    sizeof(v15));
-  v5 = *(float *)(g_Input.KeyInfo[177].CountMode + 468) - 100.0;
+  qmemcpy(&v15, ((CameraCtrl *)dword_BFDA68)->GetViewTarget(&pTarget, (float *)pPos), sizeof(v15));
+  v5 = *(float *)&dword_BFDA68->CurCtrl - 100.0;
   v11.x = v15.Direction.x * v5;
   v11.y = v15.Direction.y * v5;
   v15.Origin.x = v11.x + v15.Origin.x;

@@ -80,13 +80,13 @@ int CGameData::InitRoles(int a2)
   a2a = 3;
   do
   {
-    ((void (*)(UIWnd **, void *, char *, CGameData *))(*v6)->m_fontcolor.Alpha)(
+    ((void (*)(UIWnd **, void *, char *, CGameData *))(*v6)->m_wndcolor.ColorQuadFmt)(
       v6,
       &unk_AABEF6,
       &this->_data[92],
       this);
     v6->CreateFromTemplate(off_59BA90, 1);
-    ((void (*)(UIWnd **, _DWORD))(*v6)->m_fontcolor.ColorQuadFmt)(v6, 0);
+    (*(void (**)(UIWnd **, _DWORD))(*v6)->_pad_0000)(v6, 0);
     v6 += 38;
     --a2a;
   }
@@ -233,12 +233,8 @@ int CGameData::InitItems(int a2)
   v5 = (UIWnd *)&this->_data[244];
   do
   {
-    (*(void (**)(UIWnd *, _DWORD, _DWORD *, CGameData *))(v5->m_fontcolor.ColorQuadFmt + 16))(
-      v5,
-      0,
-      pRect,
-      this);
-    (*(void (**)(UIWnd *, _DWORD))v5->m_fontcolor.ColorQuadFmt)(v5, 0);
+    (*(void (**)(UIWnd *, _DWORD, _DWORD *, CGameData *))(*(_DWORD *)v5->_pad_0000 + 16))(v5, 0, pRect, this);
+    (**(void (***)(UIWnd *, _DWORD))v5->_pad_0000)(v5, 0);
     v6 = *(v4 - 1);
     v11 = *v4;
     v10 = v6;
@@ -340,7 +336,7 @@ void * CGameData::Init()
   {
     v11->Create(1002, 180, 50, (int)this, aUiDlgHeadbkTga);
     v11->Show();
-    (*(void (**)(UIDialog *, _DWORD))v11->m_fontcolor.ColorQuadFmt)(v11, 0);
+    (**(void (***)(UIDialog *, _DWORD))v11->_pad_0000)(v11, 0);
     v10 += 8704;
     v11 = (UIDialog *)((char *)v11 + 352);
   }
@@ -381,7 +377,7 @@ void CGameData::Destroy()
   int v5; // ecx
 
   ((UIWnd *)this)->UpdateChildren();
-  sub_4573A0(&g_PAL3Data.mStorePos[8]);
+  sub_4573A0(&g_PAL3Data.mParam.n5);
   (*(void (**)(char *))(*(_DWORD *)&this->_data[3904] + 12))(&this->_data[3904]);
   v2 = *((_DWORD *)this + 7044);
   if ( v2 )

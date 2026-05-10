@@ -3,5 +3,5 @@
   "address": "0x004022C0",
   "size_bytes": 18,
   "signature": "__int16 __thiscall(GRPinput *this, unsigned __int16 key)",
-  "decompiled_c": "__int16 __thiscall GRPinput::GetKeyState(GRPinput *this, unsigned __int16 key)\n{\n  return *((unsigned __int8 *)this->m_keyStates + key);\n}\n"
+  "decompiled_c": "__int16 __thiscall GRPinput::GetKeyState(GRPinput *this, unsigned __int16 key)\n{\n  return this->m_keyStates[key];\n}\n"
 }

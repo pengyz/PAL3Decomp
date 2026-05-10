@@ -118,18 +118,18 @@ int CEffMeteor::Init(int a2, float a3, float a4, float a5)
 
   this->_pad_0000[8] = 0;
   this->m_bVisible = 0;
-  *(float *)this->m_vecPos = a3 + *(float *)(a2 + 184);
-  *(float *)&this->m_vecPos[4] = a4 + *(float *)(a2 + 188);
-  *(float *)&this->m_vecPos[8] = a5 + *(float *)(a2 + 192);
-  *(_DWORD *)this->m_vecRot = *(_DWORD *)(a2 + 216);
-  *(_DWORD *)&this->m_vecRot[4] = *(_DWORD *)(a2 + 196);
-  *(_DWORD *)&this->m_vecRot[8] = *(_DWORD *)(a2 + 220);
-  *(float *)this->m_vecTarget = a3 + *(float *)(a2 + 252);
-  *(float *)&this->m_vecTarget[4] = a4 + *(float *)(a2 + 256);
-  *(float *)&this->m_vecTarget[8] = a5 + *(float *)(a2 + 260);
-  *(_DWORD *)&this->m_vecOffsetPos[8] = 0;
-  *(_DWORD *)&this->m_vecOffsetPos[4] = 0;
-  *(_DWORD *)this->m_vecOffsetPos = 0;
+  this->m_vecPos.x = a3 + *(float *)(a2 + 184);
+  this->m_vecPos.y = a4 + *(float *)(a2 + 188);
+  this->m_vecPos.z = a5 + *(float *)(a2 + 192);
+  this->m_vecRot.x = *(float *)(a2 + 216);
+  this->m_vecRot.y = *(float *)(a2 + 196);
+  this->m_vecRot.z = *(float *)(a2 + 220);
+  this->m_vecTarget.x = a3 + *(float *)(a2 + 252);
+  this->m_vecTarget.y = a4 + *(float *)(a2 + 256);
+  this->m_vecTarget.z = a5 + *(float *)(a2 + 260);
+  this->m_vecOffsetPos.z = 0.0;
+  this->m_vecOffsetPos.y = 0.0;
+  this->m_vecOffsetPos.x = 0.0;
   this->m_dwStartColor = *(_DWORD *)(a2 + 204);
   if ( (g_bCursorVisible & 1) == 0 )
   {
@@ -173,7 +173,7 @@ int CEffMeteor::Init(int a2, float a3, float a4, float a5)
     do
     {
       ++v8;
-      *(__int32 *)((char *)&this->m_pChain->m_dwColor + result) = this->m_dwStartColor;
+      *(unsigned int *)((char *)&this->m_pChain->m_dwColor + result) = this->m_dwStartColor;
       *(float *)((char *)&this->m_pChain->m_fMaxWidth + result) = this->m_fMeteorWidth;
       *(float *)((char *)&this->m_pChain->m_fLumDecSpeed + result) = this->m_fLumDecSpeed;
       *(float *)((char *)&this->m_pChain->m_fWidthDecSpeed + result) = this->m_fWidthDecSpeed;
@@ -293,18 +293,18 @@ LABEL_10:
   this->m_fMaxLum = *(float *)(base + 268);
   this->m_bHaveHead = *(float *)(base + 224) > 0.0;
   this->m_fFramePerSec = *(float *)(base + 180);
-  *(_DWORD *)this->m_vecPos = *(_DWORD *)(base + 184);
-  *(_DWORD *)&this->m_vecPos[4] = *(_DWORD *)(base + 188);
-  *(_DWORD *)&this->m_vecPos[8] = *(_DWORD *)(base + 192);
-  *(_DWORD *)this->m_vecRot = *(_DWORD *)(base + 216);
-  *(_DWORD *)&this->m_vecRot[4] = *(_DWORD *)(base + 196);
-  *(_DWORD *)&this->m_vecRot[8] = *(_DWORD *)(base + 220);
-  *(_DWORD *)this->m_vecTarget = *(_DWORD *)(base + 252);
-  *(_DWORD *)&this->m_vecTarget[4] = *(_DWORD *)(base + 256);
-  *(_DWORD *)&this->m_vecTarget[8] = *(_DWORD *)(base + 260);
-  *(_DWORD *)this->m_vecStartSpeed = *(_DWORD *)(base + 264);
-  *(_DWORD *)&this->m_vecStartSpeed[4] = *(_DWORD *)(base + 236);
-  *(_DWORD *)&this->m_vecStartSpeed[8] = *(_DWORD *)(base + 240);
+  this->m_vecPos.x = *(float *)(base + 184);
+  this->m_vecPos.y = *(float *)(base + 188);
+  this->m_vecPos.z = *(float *)(base + 192);
+  this->m_vecRot.x = *(float *)(base + 216);
+  this->m_vecRot.y = *(float *)(base + 196);
+  this->m_vecRot.z = *(float *)(base + 220);
+  this->m_vecTarget.x = *(float *)(base + 252);
+  this->m_vecTarget.y = *(float *)(base + 256);
+  this->m_vecTarget.z = *(float *)(base + 260);
+  this->m_vecStartSpeed.x = *(float *)(base + 264);
+  this->m_vecStartSpeed.y = *(float *)(base + 236);
+  this->m_vecStartSpeed.z = *(float *)(base + 240);
   this->m_bAdditiveBlend = *(_BYTE *)(base + 213);
   this->m_bNoZTest = *(_BYTE *)(base + 215);
   this->m_byMaxFrame = *(_BYTE *)(base + 176);
@@ -580,7 +580,7 @@ LABEL_30:
           {
             ++v14;
             v16 += 68;
-            *(_DWORD *)((char *)&v2->m_pGeomQuad->vec[-1] + v16 - 8) = *(_DWORD *)&v2->m_DefaultUVSet[16 * v15];
+            *(float *)((char *)&v2->m_pGeomQuad->vec[-1] + v16 - 8) = v2->m_DefaultUVSet[v15].su;
             *(float *)((char *)&v2->m_pGeomQuad->vec[-1].x + v16) = *((float *)v17 + 54);
             *(_DWORD *)((char *)&v2->m_pGeomQuad->vec[-1] + v16 - 4) = *((_DWORD *)v17 + 53);
             *(_DWORD *)((char *)v2->m_pGeomQuad->vec + v16 - 8) = *((_DWORD *)v17 + 55);

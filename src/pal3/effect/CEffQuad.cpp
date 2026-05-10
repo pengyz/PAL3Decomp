@@ -158,7 +158,7 @@ char CEffQuad::DestroyOneQuad(const void *a2)
   int m_nMaxQuad; // ecx
   int v4; // ebp
   tagQuad *m_pQuad; // esi
-  __int32 *i; // eax
+  unsigned __int8 *i; // eax
   int v8; // eax
   int m_nQuadNum; // ecx
 
@@ -169,21 +169,21 @@ char CEffQuad::DestroyOneQuad(const void *a2)
   if ( m_nMaxQuad <= 0 )
     return 0;
   m_pQuad = (tagQuad *)this->m_pQuad;
-  for ( i = &m_pQuad->bValid; *(_BYTE *)i; i += 20 )
+  for ( i = &m_pQuad->bValid; *i; i += 80 )
   {
     if ( ++v4 >= m_nMaxQuad )
       return 0;
   }
-  v8 = 80 * v4;
-  qmemcpy((char *)m_pQuad + 80 * v4, a2, 0x50u);
-  *((_BYTE *)&this->m_pQuad->bValid + v8) = 1;
-  *(__int32 *)((char *)&this->m_pQuad->byFrame + v8) = 0;
-  *((_BYTE *)&this->m_pQuad->bValid + v8 + 2) = 0;
-  *((_BYTE *)&this->m_pQuad->bValid + v8 + 3) = 0;
+  v8 = v4;
+  qmemcpy(&m_pQuad[v4], a2, sizeof(tagQuad));
+  this->m_pQuad[v8].bValid = 1;
+  this->m_pQuad[v8].fCurFrame = 0.0;
+  this->m_pQuad[v8].byFrame = 0;
+  this->m_pQuad[v8].byLoops = 0;
   m_nQuadNum = this->m_nQuadNum;
   if ( v4 > m_nQuadNum - 1 )
     this->m_nQuadNum = m_nQuadNum + 1;
-  *(int *)((char *)&this->m_pQuad->nGeomQuad + v8) = this->m_nGeomQuadNum;
+  this->m_pQuad[v8].nGeomQuad = this->m_nGeomQuadNum;
   this->m_pnG2Q[this->m_nGeomQuadNum++] = v4;
   this->SetQuad(v4);
   this->m_nLastCreatedQuad = v4;
@@ -193,42 +193,42 @@ char CEffQuad::DestroyOneQuad(const void *a2)
 // 0x004D1CA0
 int CEffQuad::SetQuad(int a2)
 {
-  char *v2; // edx
+  tagQuad *v2; // edx
   int result; // eax
   double v4; // st7
 
-  v2 = (char *)this->m_pQuad + 80 * a2;
-  result = 68 * *(_DWORD *)v2;
-  *(int *)((char *)&this->m_pGeomQuad->color.ColorQuadFmt + result) = *((_DWORD *)v2 + 19);
+  v2 = (tagQuad *)&this->m_pQuad[a2];
+  result = 68 * v2->nGeomQuad;
+  *(int *)((char *)&this->m_pGeomQuad->color.ColorQuadFmt + result) = v2->dwColor;
   if ( this->m_bBillBoard )
   {
-    *(float *)((char *)&this->m_pGeomQuad->vec[0].x + result) = *((float *)v2 + 4) - *((float *)v2 + 7);
-    *(float *)((char *)&this->m_pGeomQuad->vec[1].x + result) = *((float *)v2 + 7) + *((float *)v2 + 4);
-    *(float *)((char *)&this->m_pGeomQuad->vec[2].x + result) = *((float *)v2 + 7) + *((float *)v2 + 4);
-    *(float *)((char *)&this->m_pGeomQuad->vec[3].x + result) = *((float *)v2 + 4) - *((float *)v2 + 7);
-    *(float *)((char *)&this->m_pGeomQuad->vec[0].y + result) = *((float *)v2 + 5);
-    *(float *)((char *)&this->m_pGeomQuad->vec[1].y + result) = *((float *)v2 + 5);
-    *(float *)((char *)&this->m_pGeomQuad->vec[2].y + result) = *((float *)v2 + 5);
-    *(float *)((char *)&this->m_pGeomQuad->vec[3].y + result) = *((float *)v2 + 5);
-    *(float *)((char *)&this->m_pGeomQuad->vec[0].z + result) = *((float *)v2 + 8) + *((float *)v2 + 6);
-    *(float *)((char *)&this->m_pGeomQuad->vec[1].z + result) = *((float *)v2 + 8) + *((float *)v2 + 6);
-    *(float *)((char *)&this->m_pGeomQuad->vec[2].z + result) = *((float *)v2 + 6) - *((float *)v2 + 8);
-    v4 = *((float *)v2 + 6) - *((float *)v2 + 8);
+    *(float *)((char *)&this->m_pGeomQuad->vec[0].x + result) = v2->fX - v2->fXSize;
+    *(float *)((char *)&this->m_pGeomQuad->vec[1].x + result) = v2->fXSize + v2->fX;
+    *(float *)((char *)&this->m_pGeomQuad->vec[2].x + result) = v2->fXSize + v2->fX;
+    *(float *)((char *)&this->m_pGeomQuad->vec[3].x + result) = v2->fX - v2->fXSize;
+    *(float *)((char *)&this->m_pGeomQuad->vec[0].y + result) = v2->fY;
+    *(float *)((char *)&this->m_pGeomQuad->vec[1].y + result) = v2->fY;
+    *(float *)((char *)&this->m_pGeomQuad->vec[2].y + result) = v2->fY;
+    *(float *)((char *)&this->m_pGeomQuad->vec[3].y + result) = v2->fY;
+    *(float *)((char *)&this->m_pGeomQuad->vec[0].z + result) = v2->fYSize + v2->fZ;
+    *(float *)((char *)&this->m_pGeomQuad->vec[1].z + result) = v2->fYSize + v2->fZ;
+    *(float *)((char *)&this->m_pGeomQuad->vec[2].z + result) = v2->fZ - v2->fYSize;
+    v4 = v2->fZ - v2->fYSize;
   }
   else
   {
-    *(float *)((char *)&this->m_pGeomQuad->vec[0].x + result) = -*((float *)v2 + 7);
-    *(float *)((char *)&this->m_pGeomQuad->vec[1].x + result) = *((float *)v2 + 7);
-    *(float *)((char *)&this->m_pGeomQuad->vec[2].x + result) = *((float *)v2 + 7);
-    *(float *)((char *)&this->m_pGeomQuad->vec[3].x + result) = -*((float *)v2 + 7);
+    *(float *)((char *)&this->m_pGeomQuad->vec[0].x + result) = -v2->fXSize;
+    *(float *)((char *)&this->m_pGeomQuad->vec[1].x + result) = v2->fXSize;
+    *(float *)((char *)&this->m_pGeomQuad->vec[2].x + result) = v2->fXSize;
+    *(float *)((char *)&this->m_pGeomQuad->vec[3].x + result) = -v2->fXSize;
     *(float *)((char *)&this->m_pGeomQuad->vec[0].y + result) = 0.0;
     *(float *)((char *)&this->m_pGeomQuad->vec[1].y + result) = 0.0;
     *(float *)((char *)&this->m_pGeomQuad->vec[2].y + result) = 0.0;
     *(float *)((char *)&this->m_pGeomQuad->vec[3].y + result) = 0.0;
-    *(float *)((char *)&this->m_pGeomQuad->vec[0].z + result) = *((float *)v2 + 8);
-    *(float *)((char *)&this->m_pGeomQuad->vec[1].z + result) = *((float *)v2 + 8);
-    *(float *)((char *)&this->m_pGeomQuad->vec[2].z + result) = -*((float *)v2 + 8);
-    v4 = -*((float *)v2 + 8);
+    *(float *)((char *)&this->m_pGeomQuad->vec[0].z + result) = v2->fYSize;
+    *(float *)((char *)&this->m_pGeomQuad->vec[1].z + result) = v2->fYSize;
+    *(float *)((char *)&this->m_pGeomQuad->vec[2].z + result) = -v2->fYSize;
+    v4 = -v2->fYSize;
   }
   *(float *)((char *)&this->m_pGeomQuad->vec[3].z + result) = v4;
   *(float *)((char *)&this->m_pGeomQuad->vec[4].x + result) = 0.0;
@@ -242,21 +242,21 @@ int CEffQuad::SetQuad(int a2)
 _DWORD * CEffQuad::DestroyAllQuad(int a2)
 {
   _DWORD *result; // eax
-  char *v3; // ecx
+  tagQuad *v3; // ecx
   int v4; // edx
-  int v5; // ebx
+  int nGeomQuad; // ebx
   int v6; // ecx
 
   result = (_DWORD *)this->_pad_0000;
-  v3 = (char *)this->m_pQuad + 80 * a2;
+  v3 = (tagQuad *)&this->m_pQuad[a2];
   v4 = result[16] - 1;
-  v5 = *(_DWORD *)v3;
-  v3[4] = 0;
-  if ( v4 != v5 )
+  nGeomQuad = v3->nGeomQuad;
+  v3->bValid = 0;
+  if ( v4 != nGeomQuad )
   {
-    qmemcpy((void *)(result[40] + 68 * v5), (const void *)(result[40] + 68 * v4), 0x44u);
-    *(_DWORD *)(80 * *(_DWORD *)(result[41] + 4 * v4) + result[39]) = v5;
-    *(_DWORD *)(result[41] + 4 * v5) = *(_DWORD *)(result[41] + 4 * v4);
+    qmemcpy((void *)(result[40] + 68 * nGeomQuad), (const void *)(result[40] + 68 * v4), 0x44u);
+    *(_DWORD *)(80 * *(_DWORD *)(result[41] + 4 * v4) + result[39]) = nGeomQuad;
+    *(_DWORD *)(result[41] + 4 * nGeomQuad) = *(_DWORD *)(result[41] + 4 * v4);
   }
   v6 = result[15] - 1;
   --result[16];

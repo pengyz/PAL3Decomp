@@ -42,6 +42,6 @@ int CCBResultWindow::Reset(int a2, int a3)
   *((_DWORD *)this + 126856) = v8;
   *((_DWORD *)this + 126857) = v9;
   a2->RunSceneScript();
-  this->HitTest(a2, a3);
+  ((UIWnd *)this)->HitTest(a2, a3);
   return 1;
 }

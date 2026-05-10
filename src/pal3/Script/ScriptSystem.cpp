@@ -51,6 +51,18 @@ extern char aWe018[];
 extern char aWe019[];
 extern int dword_586194;
 extern int dword_58B260;
+extern int dword_BFD6D0;
+extern int dword_BFD6D4;
+extern int dword_BFDA60;
+extern int dword_BFDA68;
+extern int dword_BFDB80;
+extern int dword_BFDB84;
+extern int dword_BFDB90;
+extern int dword_BFDB98;
+extern int dword_BFDB9C;
+extern int dword_BFDBA0;
+extern int dword_BFDBA4;
+extern int dword_BFDBB0;
 extern int dword_BFFDB0;
 extern int dword_C02198;
 extern int dword_C025EC;
@@ -60,6 +72,7 @@ extern float flt_58DE64;
 extern void *off_5861F8;
 extern void *off_58B444;
 extern void *off_58B448;
+extern int unk_BFDAB0;
 
 // 0x0040C630
 void ScriptSystem::Render(void *a1)
@@ -111,7 +124,7 @@ void ScriptSystem::Render(void *a1)
     }
   }
   ((RoleSystem *)dword_BFFDB0)->RenderRole(a1, 0);
-  ((RoleSystem *)&g_Input.KeyInfo[198])->RenderRole(a1, 0);
+  ((RoleSystem *)dword_BFDBB0)->RenderRole(a1, 0);
   if ( *(_DWORD *)&g_SceneMgr._gap_c5e0[844] )
   {
     v7 = *(struct gbVec3D *)&g_SceneMgr.m_slot4[8704 * g_SceneMgr.m_nCameraState + 1000];
@@ -132,13 +145,13 @@ int ScriptSystem::Cleanup()
   void (***v1)(_DWORD, int); // ecx
   int result; // eax
 
-  for ( i = 0; i < g_Input.KeyInfo[195].HoldTime; ++i )
+  for ( i = 0; i < dword_BFDB84; ++i )
   {
-    v1 = *(void (****)(_DWORD, int))(g_Input.KeyInfo[195].Data + 4 * i);
+    v1 = *(void (****)(_DWORD, int))(dword_BFDB80 + 4 * i);
     if ( v1 )
       (**v1)(v1, 1);
   }
-  sub_4326A0((int)&g_Input.KeyInfo[195], 0, -1);
+  sub_4326A0((int)&dword_BFDB80, 0, -1);
   return result;
 }
 
@@ -148,7 +161,7 @@ char ScriptSystem::Render2()
   int i; // esi
   char result; // al
   double v2; // st7
-  int v3; // edi
+  gbPrintFont *v3; // edi
   int v4; // ebx
   int v5; // ebp
   _DWORD *v6; // esi
@@ -158,18 +171,18 @@ char ScriptSystem::Render2()
   struct gbVec3D pOut; // [esp+38h] [ebp-8Ch] BYREF
   char Buffer[128]; // [esp+44h] [ebp-80h] BYREF
 
-  sub_445500(&g_Input.KeyInfo[182].Data);
-  for ( i = 0; i < g_Input.KeyInfo[195].HoldTime; ++i )
-    ((GRPinput *)*(GRPinput **)(g_Input.KeyInfo[195].Data + 4 * i))->SetMouseSensitivity();
+  sub_445500((int *)unk_BFDAB0._data);
+  for ( i = 0; i < dword_BFDB84; ++i )
+    ((GRPinput *)*(GRPinput **)(dword_BFDB80 + 4 * i))->SetMouseSensitivity();
   sub_43A270((UIWnd *)&g_SceneMgr.m_pCameraCtrl);
   result = g_SceneMgr.m_slot0[81];
   if ( g_SceneMgr.m_slot0[81] )
   {
-    v2 = 32.0 / (double)g_Input.KeyInfo[120].HoldTime;
-    v3 = *(_DWORD *)(*(_DWORD *)(g_Input.KeyInfo[177].Data + 208) + 12);
-    *(float *)(v3 + 48) = 32.0 / (double)g_Input.KeyInfo[120].Data;
-    *(float *)(v3 + 52) = v2;
-    *(_DWORD *)(v3 + 44) = -2134325048;
+    v2 = 32.0 / (double)dword_BFD6D4;
+    v3 = (gbPrintFont *)dword_BFDA60->pFontMgr->pAllFont[3];
+    *(float *)&v3->curColor.Blue = 32.0 / (double)dword_BFD6D0;
+    *(float *)&v3->curColor.Color = v2;
+    v3->curColor.ColorQuadFmt = -2134325048;
     v4 = UISceneUpdate();
     v5 = 0;
     if ( *(int *)(v4 + 57568) > 0 )
@@ -181,10 +194,10 @@ char ScriptSystem::Render2()
         {
           memset(&pOut, 0, sizeof(pOut));
           ((RoleSystem *)(v6 - 158))->GetDirection(&pOut.x);
-          ((gbCamera *)(g_Input.KeyInfo[177].CountMode + 4))->PointWorldToScr(&pOut, &v8, (float *)&v9);
+          ((gbCamera *)&dword_BFDA68->OrthoSize)->PointWorldToScr(&pOut, &v8, (float *)&v9);
           sprintf(Buffer, "%d", *((unsigned __int8 *)v6 - 332));
           v7 = v8 - 0.050000001;
-          (*(void (**)(int, char *, _DWORD, int, int, int))(*(_DWORD *)v3 + 16))(
+          (*(void (**)(gbPrintFont *, char *, _DWORD, int, int, int))(*(_DWORD *)v3->_pad_0000 + 16))(
             v3,
             Buffer,
             LODWORD(v7),
@@ -197,7 +210,7 @@ char ScriptSystem::Render2()
       }
       while ( v5 < *(_DWORD *)(v4 + 57568) );
     }
-    return (*(int (**)(int))(*(_DWORD *)v3 + 8))(v3);
+    return (*(int (**)(gbPrintFont *))(*(_DWORD *)v3->_pad_0000 + 8))(v3);
   }
   return result;
 }
@@ -208,7 +221,7 @@ int ScriptSystem::Destroy()
   ScriptObj *v0; // esi
   int result; // eax
 
-  ((UIWnd *)&g_Input.KeyInfo[182])->Reset();
+  ((UIWnd *)&unk_BFDAB0)->Reset();
   ((PalScript *)&g_SceneMgr.m_pCameraCtrl)->Reset();
   ScriptSystem::Cleanup();
   v0 = (ScriptObj *)&g_SceneMgr.m_slot4[840];
@@ -262,8 +275,8 @@ int ScriptSystem::Execute(int a1, char a2)
   RoleSystemNotify((int)&g_SceneMgr.m_slot4[8704 * a1 + 840]);
   ((CameraSystem *)&g_SceneMgr.m_slot4[8704 * a1 + 840])->Init();
   g_SceneMgr.m_nCameraState = a1;
-  if ( *(_DWORD *)(g_Input.KeyInfo[177].CountMode + 448) )
-    ((RoleSystem *)g_Input.KeyInfo[177].CountMode)->SetActive((int)&g_SceneMgr.m_slot4[8704 * a1 + 840]);
+  if ( dword_BFDA68->pControl[11] )
+    ((RoleSystem *)dword_BFDA68)->SetActive((int)&g_SceneMgr.m_slot4[8704 * a1 + 840]);
   if ( a1 == 1 && dword_C025EC == 10 )
   {
     sub_419090((float *)&dword_C02198);
@@ -349,7 +362,7 @@ int ScriptSystem::RunScript(int a1, int a2, int a3)
       v11 = 0;
     v16 = -1;
     v11->SetJoystickPos(Buffer, 0);
-    ((PtrArray *)&g_Input.KeyInfo[195])->SetAt(g_Input.KeyInfo[195].HoldTime, (int)v11);
+    ((PtrArray *)&dword_BFDB80)->SetAt(dword_BFDB84, (int)v11);
     LOBYTE(result) = a2;
     if ( (_BYTE)a2 )
     {
@@ -416,7 +429,7 @@ int ScriptSystem::RunWithDelay(float delay, int a2, int a3)
       v10 = 0;
     v16 = -1;
     v10->SetJoystickPos(Buffer, 0);
-    ((PtrArray *)&g_Input.KeyInfo[195])->SetAt(g_Input.KeyInfo[195].HoldTime, (int)v10);
+    ((PtrArray *)&dword_BFDB80)->SetAt(dword_BFDB84, (int)v10);
     LOBYTE(result) = a2;
     if ( (_BYTE)a2 )
     {
@@ -444,16 +457,16 @@ int ScriptSystem::RunEvent(int eventId, int a2, int a3)
   char Buffer[32]; // [esp+8h] [ebp-20h] BYREF
 
   LOBYTE(result) = a2;
-  if ( !(_BYTE)a2 || (unsigned int)eventId > 4 || g_Input.KeyInfo[197].HoldTime != eventId )
+  if ( !(_BYTE)a2 || (unsigned int)eventId > 4 || dword_BFDBA4 != eventId )
   {
-    memset(&g_Input.KeyInfo[196], 0, 0x20u);
+    memset(&dword_BFDB90, 0, 0x20u);
     m_nCameraState = g_SceneMgr.m_nCameraState;
-    g_Input.KeyInfo[196].Data = a3;
-    g_Input.KeyInfo[197].HoldTime = eventId;
+    dword_BFDB90 = a3;
+    dword_BFDBA4 = eventId;
     v5 = (int *)&g_SceneMgr.m_slot4[8704 * g_SceneMgr.m_nCameraState + 844];
-    g_Input.KeyInfo[196].CountMode = *v5;
-    g_Input.KeyInfo[196].PressTime = v5[1];
-    g_Input.KeyInfo[197].Data = v5[2];
+    dword_BFDB98 = *v5;
+    dword_BFDB9C = v5[1];
+    dword_BFDBA0 = v5[2];
     if ( !a3 )
     {
       v6 = 1408 * g_SceneMgr.m_nCameraState;
@@ -467,7 +480,7 @@ int ScriptSystem::RunEvent(int eventId, int a2, int a3)
     if ( !g_SceneMgr.m_slot0[1408 * m_nCameraState + 77] && (unsigned int)eventId <= 4 && !a3 )
     {
       sprintf(Buffer, off_5861F8, eventId);
-      v7 = ((PalScript *)&g_PAL3Data.mVelocity[8])->SetAppName(Buffer);
+      v7 = ((PalScript *)&g_PAL3Data.mParam.f4)->SetAppName(Buffer);
       sub_410360(v7);
       result = g_SceneMgr.m_nCameraState;
       g_SceneMgr.m_slot0[1408 * g_SceneMgr.m_nCameraState + 52 + eventId] = 1;

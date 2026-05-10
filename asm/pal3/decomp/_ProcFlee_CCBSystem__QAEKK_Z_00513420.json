@@ -3,5 +3,5 @@
   "address": "0x00513420",
   "size_bytes": 13,
   "signature": "char __thiscall(CCBSystem *this, char a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall CCBSystem::ProcFlee(CCBSystem *this, char a2)\n{\n  LOBYTE(this->m_bFiveNimbus) = a2;\n  return a2;\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall CCBSystem::ProcFlee(CCBSystem *this, char a2)\n{\n  this->m_bAuto = a2;\n  return a2;\n}\n"
 }

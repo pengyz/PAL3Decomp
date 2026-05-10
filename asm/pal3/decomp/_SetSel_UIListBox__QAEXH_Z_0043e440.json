@@ -3,5 +3,5 @@
   "address": "0x0043E440",
   "size_bytes": 55,
   "signature": "int __thiscall(UIListBox *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall UIListBox::SetSel(UIListBox *this, int a2)\n{\n  __int32 ColorQuadFmt; // eax\n\n  sub_43F520(this);\n  ColorQuadFmt = a2;\n  if ( a2 >= this->m_scrollbar.m_bk.m_fontcolor.ColorQuadFmt )\n    ColorQuadFmt = this->m_scrollbar.m_bk.m_fontcolor.ColorQuadFmt;\n  if ( ColorQuadFmt <= this->m_scrollbar.m_bPressed )\n    ColorQuadFmt = this->m_scrollbar.m_bPressed;\n  this->m_column[5].items.m_nMaxSize = ColorQuadFmt;\n  return sub_442060(&this->m_childs.m_nMaxSize, ColorQuadFmt);\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall UIListBox::SetSel(UIListBox *this, int a2)\n{\n  int m_DragState; // eax\n\n  sub_43F520(this);\n  m_DragState = a2;\n  if ( a2 >= *(_DWORD *)&this->m_scrollbar.m_bDrag )\n    m_DragState = *(_DWORD *)&this->m_scrollbar.m_bDrag;\n  if ( m_DragState <= this->m_scrollbar.m_DragState )\n    m_DragState = this->m_scrollbar.m_DragState;\n  *(_DWORD *)&this->m_column[7].head[12] = m_DragState;\n  return sub_442060(&this->m_showGrayBk, m_DragState);\n}\n"
 }

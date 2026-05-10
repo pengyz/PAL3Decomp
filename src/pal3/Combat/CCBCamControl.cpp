@@ -8,6 +8,7 @@
 extern char aGfxscriptGeomD[];
 extern char aGfxscriptGeomD_0[];
 extern unsigned char byte_17AAF64;
+extern int dword_BFDA60;
 extern int nullsub_3;
 extern void *off_56A694;
 
@@ -116,34 +117,34 @@ int CCBCamControl::UpdateCircleSet()
 // 0x005083B0
 char * CCBCamControl::SetCircle(int a2)
 {
-  float *p_fFromZ; // eax
+  float *p_fCircleCentreZ; // eax
   int v4; // ecx
 
-  ((gbVolModNode *)&this->m_CCT.m_Pool[0].bFinished)->gbVolModNode();
+  ((gbVolModNode *)&this->m_CCT.m_Pool[0].dwID)->gbVolModNode();
   `eh vector constructor iterator'(
-    (char *)&this->m_CCT.m_Pool[0].fCircleCentreY,
+    (char *)&this->m_CCT.m_Pool[0].fStartTracePosY,
     0xDCu,
     10,
     gbVolModNode::gbVolModNode,
     gbVolModNode::~gbVolModNode);
-  p_fFromZ = (float *)&this->m_CCT.m_Pool[8].EndPos.fFromZ;
+  p_fCircleCentreZ = (float *)&this->m_CCT.m_Pool[9].fCircleCentreZ;
   v4 = 384;
   do
   {
-    *(p_fFromZ - 2) = 0.0;
-    *(p_fFromZ - 1) = 0.0;
-    *p_fFromZ = 0.0;
-    p_fFromZ[5] = 0.0;
-    p_fFromZ[6] = 0.0;
-    p_fFromZ[7] = 0.0;
-    p_fFromZ += 15;
+    *(p_fCircleCentreZ - 2) = 0.0;
+    *(p_fCircleCentreZ - 1) = 0.0;
+    *p_fCircleCentreZ = 0.0;
+    p_fCircleCentreZ[5] = 0.0;
+    p_fCircleCentreZ[6] = 0.0;
+    p_fCircleCentreZ[7] = 0.0;
+    p_fCircleCentreZ += 15;
     --v4;
   }
   while ( v4 );
   nullsub_3(this);
-  this->m_CCT.m_Pool[8].StartPos.pit = 0.0;
-  this->m_CCT.m_Pool[8].StartPos.fRoll = 0.0;
-  this->m_CCT.m_Pool[0].bValid = a2;
+  this->m_CCT.m_Pool[9].fAccelerationTime2 = 0.0;
+  this->m_CCT.m_Pool[9].fAcceleration1 = 0.0;
+  *(_DWORD *)&this->m_CCT.m_Pool[0]._pad_0004[4] = a2;
   return (char *)this;
 }
 
@@ -187,10 +188,10 @@ char CCBCamControl::IsPointerUnderMouse()
   v2[15] = 0x40000000;
   v2[16] = 1133903872;
   v2[6] = 1065353216;
-  ((gbVolModNode *)&this->m_CCT.m_Pool[0].bFinished)->SetVolModObj((struct gbVolumeModifier *)v2);
+  ((gbVolModNode *)&this->m_CCT.m_Pool[0].dwID)->SetVolModObj((struct gbVolumeModifier *)v2);
   ((gbRefObject *)v2)->Release();
-  LODWORD(this->m_CCT.m_Pool[8].StartPos.pit) = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptGeomD, 0x401u);
-  LODWORD(this->m_CCT.m_Pool[8].StartPos.fRoll) = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptGeomD_0, 0x441u);
+  LODWORD(this->m_CCT.m_Pool[9].fAccelerationTime2) = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptGeomD, 0x401u);
+  LODWORD(this->m_CCT.m_Pool[9].fAcceleration1) = ((gbEffectMgr *)dword_BFDA60->pEffectMgr)->NewRenderEffect(aGfxscriptGeomD_0, 0x441u);
   return 1;
 }
 
@@ -252,14 +253,14 @@ int CCBCamControl::ResetListFlag()
   v2[15] = 0x40000000;
   v2[16] = 1133903872;
   v2[6] = 1065353216;
-  ((gbVolModNode *)&this->m_CCT.m_Pool[0].fCircleCentreY)->SetVolModObj((struct gbVolumeModifier *)v2);
+  ((gbVolModNode *)&this->m_CCT.m_Pool[0].fStartTracePosY)->SetVolModObj((struct gbVolumeModifier *)v2);
   ((gbRefObject *)v2)->Release();
-  v3 = (_DWORD *)(LODWORD(this->m_CCT.m_Pool[0].fCircleCentreX) + 28);
+  v3 = (_DWORD *)(LODWORD(this->m_CCT.m_Pool[0].fStartTracePosX) + 28);
   *v3 = -1098907648;
   v3[1] = -1098907648;
   v3[2] = -1098907648;
   v3[3] = 1065353216;
-  v4 = (_DWORD *)(this->m_CCT.m_Pool[1].bCircleMove + 28);
+  v4 = (_DWORD *)(LODWORD(this->m_CCT.m_Pool[1].fCircleEndX) + 28);
   *v4 = -1098907648;
   v4[1] = -1098907648;
   v4[2] = -1098907648;
@@ -270,25 +271,25 @@ int CCBCamControl::ResetListFlag()
 // 0x00508880
 int CCBCamControl::KeepCurCam(int a2)
 {
-  float *p_rol; // edx
+  float *p_fAcceleration2; // edx
   int result; // eax
   float *i; // esi
 
-  p_rol = (float *)&this->m_CCT.m_Pool[8].StartPos.rol;
+  p_fAcceleration2 = (float *)&this->m_CCT.m_Pool[9].fAcceleration2;
   result = 0;
-  for ( i = &this->m_CCT.m_Pool[8].StartPos.rol; *(_DWORD *)i != a2; i += 15 )
+  for ( i = &this->m_CCT.m_Pool[9].fAcceleration2; *(_DWORD *)i != a2; i += 15 )
   {
     if ( ++result >= 384 )
     {
       result = 0;
-      while ( *(_DWORD *)p_rol )
+      while ( *(_DWORD *)p_fAcceleration2 )
       {
         ++result;
-        p_rol += 15;
+        p_fAcceleration2 += 15;
         if ( result >= 384 )
           return 0;
       }
-      *((_DWORD *)&this->m_CCT.m_Pool[8].StartPos.rol + 15 * result) = a2;
+      *((_DWORD *)&this->m_CCT.m_Pool[9].fAcceleration2 + 15 * result) = a2;
       return result;
     }
   }

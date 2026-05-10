@@ -30,18 +30,22 @@ CCBParabolaWindow::CCBParabolaWindow(int *a2, int a3)
 
   ((UIWnd *)this)->Create(1879048197, a2, a3);
   *((_DWORD *)this + 30) = (CCBParabolaWindow **)a3;
-  v4 = this + 23;
+  v4 = (UIWnd ***)(this + 23);
   if ( ((CCBLineupWindow *)this + 23)->Destroy() == 1 )
   {
     *a2 = 0;
     a2[2] = 230;
     a2[1] = 0;
     a2[3] = 250;
-    ((void (*)(UIWnd **, int, int *, CCBParabolaWindow ***))(**v4)->m_fontcolor.Alpha)(*v4, 240, a2, this);
+    ((void (*)(UIWnd **, int, int *, CCBParabolaWindow ***))(**v4)->m_wndcolor.ColorQuadFmt)(
+      *v4,
+      240,
+      a2,
+      this);
     ((UIWnd *)*v4)->CreateFromTemplate(aUiCombatContro_21, 0);
-    ((void (*)(UIWnd **, int))(**v4)->m_fontcolor.ColorQuadFmt)(*v4, 1);
+    (*(void (**)(UIWnd **, int))(**v4)->_pad_0000)(*v4, 1);
   }
-  v5 = this + 24;
+  v5 = (UIWnd ***)(this + 24);
   for ( i = 0; i < 5; ++i )
   {
     if ( v5->Destroy() )
@@ -52,14 +56,14 @@ CCBParabolaWindow::CCBParabolaWindow(int *a2, int a3)
       a2[1] = v7;
       a2[2] = v8 + 40;
       a2[3] = v7 + 38;
-      ((void (*)(UIWnd **, int, int *, CCBParabolaWindow ***))(**v5)->m_fontcolor.Alpha)(
+      ((void (*)(UIWnd **, int, int *, CCBParabolaWindow ***))(**v5)->m_wndcolor.ColorQuadFmt)(
         *v5,
         dword_57014C[i],
         a2,
         this);
       ((UIWnd *)*v5)->CreateFromTemplate(off_570284[i], 0);
       sub_4425D0((gbRefObject **)*v5, off_570298[i], 0);
-      ((void (*)(UIWnd **, int))(**v5)->m_fontcolor.ColorQuadFmt)(*v5, 1);
+      (*(void (**)(UIWnd **, int))(**v5)->_pad_0000)(*v5, 1);
     }
     ++v5;
   }
@@ -70,27 +74,27 @@ CCBParabolaWindow::CCBParabolaWindow(int *a2, int a3)
 CCBParabolaWindow::~CCBParabolaWindow()
 {
   int result; // eax
-  int m_bvisible; // ecx
-  int *p_m_benable; // esi
+  int v3; // ecx
+  _DWORD *v4; // esi
   int v5; // edi
 
   result = ((UIListBox *)this)->SetScrollPos();
-  m_bvisible = this->m_bvisible;
-  if ( m_bvisible )
+  v3 = *((_DWORD *)this + 23);
+  if ( v3 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)m_bvisible + 20))(m_bvisible, 1);
-    this->m_bvisible = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
+    *((_DWORD *)this + 23) = 0;
   }
-  p_m_benable = (int *)&this->m_benable;
+  v4 = (_DWORD *)((char *)this + 96);
   v5 = 5;
   do
   {
-    if ( *p_m_benable )
+    if ( *v4 )
     {
-      result = (*(int (**)(int, int))(*(_DWORD *)*p_m_benable + 20))(*p_m_benable, 1);
-      *p_m_benable = 0;
+      result = (*(int (**)(_DWORD, int))(*(_DWORD *)*v4 + 20))(*v4, 1);
+      *v4 = 0;
     }
-    ++p_m_benable;
+    ++v4;
     --v5;
   }
   while ( v5 );
@@ -106,7 +110,7 @@ int CCBParabolaWindow::Reset(int a2, int a3, int a4)
   {
     Instance = (char *)CScreenMode::GetInstance();
     ((CScreenMode *)Instance)->AudioSetPosition(aWa001, 1);
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8))->SetParam(a3, a4);
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_pad_0000[32] + 1160) + 8))->SetParam(a3, a4);
   }
   return a2->SendMessage(a3, a4);
 }
@@ -117,7 +121,7 @@ int CCBParabolaWindow::Destroy()
   int v2; // ecx
 
   ((UIListBox *)this)->SetScroll();
-  v2 = *(&this->m_benable + (int)this->m_pItemList);
+  v2 = *((_DWORD *)this + *((_DWORD *)this + 29) + 24);
   return (*(int (**)(int))(*(_DWORD *)v2 + 4))(v2);
 }
 
@@ -138,7 +142,7 @@ int CCBParabolaWindow::Update(int a2, int a3)
   CCBParabolaWindow **i; // edi
 
   v4 = 0;
-  for ( i = this + 24; (*i)->m_rect.top != 1 || !this->OnMessage(v4, a2, a3); ++i )
+  for ( i = this + 24; *(_DWORD *)&(*i)->_pad_0000[56] != 1 || !this->OnMessage(v4, a2, a3); ++i )
   {
     if ( ++v4 >= 5 )
       return -1;

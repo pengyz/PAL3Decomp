@@ -149,6 +149,8 @@ extern int dword_58618C;
 extern int dword_586190;
 extern int dword_586198;
 extern int dword_58619C;
+extern int dword_BFD6D0;
+extern int dword_BFD6D4;
 extern float flt_17ABCCC;
 extern float flt_17ABCD0;
 extern float flt_17ABCD4;
@@ -185,7 +187,7 @@ extern int unk_5888D0;
 // 0x004ED040
 char CCBStageRole::IsActive(int index)
 {
-  return *((_BYTE *)&this->m_OBBox.trans.zx + 892 * index + 3);
+  return *((_BYTE *)&this->m_OBBox.ylen + 892 * index + 3);
 }
 
 // 0x00508930
@@ -230,7 +232,7 @@ CCBStageRole::~CCBStageRole()
   int v42; // [esp+44h] [ebp-8h]
   int v43; // [esp+48h] [ebp-4h]
 
-  v5 = this->m_Task[10].cmd.bSrcRole[15 * a2 + 8];
+  v5 = *(_DWORD *)&this->m_Task[18].eMode[60 * a2];
   v6 = (char *)this + 60 * a2;
   if ( v5 != a4[1] )
     v5 = a4[1];
@@ -541,51 +543,51 @@ int CCBStageRole::GetRoleHeight()
 // 0x005092B0
 char * CCBStageRole::GetOBBox(int a2)
 {
-  __int32 *p_bMultiSrcRole; // ebp
-  __int32 *v4; // edi
+  gbOBBox *p_m_OBBox; // ebp
+  gbOBBox *v4; // edi
   CCBRoleState *v5; // ecx
   int v7; // [esp+10h] [ebp-4h]
 
-  ((gbMatrix4 *)&this->m_bFlashCounter)->gbMatrix4();
-  p_bMultiSrcRole = (__int32 *)&this->m_ThrowCmdData.bMultiSrcRole;
+  ((gbMatrix4 *)&this->m_dwID)->gbMatrix4();
+  p_m_OBBox = (gbOBBox *)&this->m_OBBox;
   v7 = 64;
   do
   {
-    ((gbVec3D *)(gbVec3D *)p_bMultiSrcRole - 1)->gbVec3D(0.0, 0.0, 0.0);
-    v4 = p_bMultiSrcRole;
-    p_bMultiSrcRole += 24;
+    ((gbVec3D *)&p_m_OBBox[-1].xlen)->gbVec3D(0.0, 0.0, 0.0);
+    v4 = p_m_OBBox;
+    p_m_OBBox = (gbOBBox *)((char *)p_m_OBBox + 96);
     memset(v4, 0, 0x2Cu);
     --v7;
   }
   while ( v7 );
-  this->m_Task[35].cmd.bDestRole[4] = 0;
-  this->m_Task[35].cmd.bDestRole[5] = 0;
-  this->m_Task[35].cmd.bDestRole[6] = 0;
-  this->m_Task[35].cmd.bDestRole[7] = 0;
-  this->m_Task[35].cmd.bDestRole[8] = 0;
-  this->m_Task[35].cmd.bDestRole[9] = 0;
-  this->m_Task[35].cmd.bDestRole[10] = 0;
-  this->m_Task[35].cmd.bValid = 0;
-  this->m_Task[35].fTemp = 0.0;
-  this->m_Task[35].fTemp2 = 0.0;
-  this->m_Task[35].dwID = 0;
-  this->m_Task[35].eMode = 0;
-  this->m_Task[35].bValid = 0;
-  this->m_Task[35].bFinished = 0;
-  this->m_Task[35].bExecuted = 0;
+  *(_DWORD *)this->m_Task[61].eMode = 0;
+  *(_DWORD *)&this->m_Task[61].bValid = 0;
+  this->m_Task[62].fp = 0;
+  *(_DWORD *)this->m_Task[62]._pad_0004 = 0;
+  *(_DWORD *)&this->m_Task[62]._pad_0004[4] = 0;
+  *(_DWORD *)&this->m_Task[62]._pad_0004[8] = 0;
+  this->m_Task[62].vec1.x = 0.0;
+  this->m_Task[62].vec1.y = 0.0;
+  this->m_Task[62].vec1.z = 0.0;
+  this->m_Task[62].cmd.dwCmdKind = 0;
+  this->m_Task[62].cmd.dwCmdID = 0;
+  this->m_Task[62].cmd.dwItemID = 0;
+  this->m_Task[62].cmd.nSrcRole = 0;
+  this->m_Task[62].cmd.nDestRole = 0;
+  *(_DWORD *)&this->m_Task[62].cmd.bMultiSrcRole = 0;
   memset(this, 0, 0x1A18u);
   this->m_pStage = (CCBStage *)a2;
   v5 = (CCBRoleState *)*(CCBRoleState **)(*(_DWORD *)a2 + 16);
-  this->m_Task[36].vec1.y = 0.0;
+  *(_DWORD *)&this->m_Task[62].cmd.bSrcRole[10] = 0;
   this->m_pRoleState = v5;
-  LODWORD(this->m_Task[36].vec1.z) = gbCrc32Compute(aOver);
-  this->m_Task[36].cmd.dwCmdKind = gbCrc32Compute(aWork);
-  this->m_Task[36].cmd.dwCmdID = gbCrc32Compute(aWork1);
-  this->m_Task[36].cmd.dwItemID = gbCrc32Compute(aPause);
-  this->m_Task[36].cmd.nSrcRole = gbCrc32Compute(aStore);
-  this->m_Task[36].cmd.nDestRole = gbCrc32Compute(aFlyup);
-  this->m_Task[36].cmd.bMultiSrcRole = gbCrc32Compute(aFlydown);
-  this->m_Task[36].cmd.bMultiDestRole = 0;
+  *(_DWORD *)&this->m_Task[62].cmd.bDestRole[3] = gbCrc32Compute(aOver);
+  *(_DWORD *)&this->m_Task[62].cmd.bDestRole[7] = gbCrc32Compute(aWork);
+  *(_DWORD *)&this->m_Task[62].cmd.bValid = gbCrc32Compute(aWork1);
+  LODWORD(this->m_Task[62].fTemp) = gbCrc32Compute(aPause);
+  LODWORD(this->m_Task[62].fTemp2) = gbCrc32Compute(aStore);
+  this->m_Task[62].dwID = gbCrc32Compute(aFlyup);
+  *(_DWORD *)this->m_Task[62].eMode = gbCrc32Compute(aFlydown);
+  *(_DWORD *)&this->m_Task[62].bValid = 0;
   strcpy(this->m_sLastRole, "???");
   return (char *)this;
 }
@@ -593,55 +595,55 @@ char * CCBStageRole::GetOBBox(int a2)
 // 0x00509410
 int CCBStageRole::GetRotAngle()
 {
-  __int32 *p_m_bCatching; // ebp
-  __int32 *v4; // ecx
+  unsigned int *p_dwCmdID; // ebp
+  char *eMode; // ecx
 
-  p_m_bCatching = (__int32 *)&this->m_bCatching;
-  this->m_bCatching = 0;
-  this->m_iState = 0;
-  v4 = (__int32 *)&this->m_Task[35].cmd.bDestRole[4];
-  LOBYTE(this->m_bValid) = 0;
-  BYTE1(this->m_bValid) = 0;
-  p_m_bCatching[2] = 0;
-  BYTE2(this->m_bValid) = 0;
-  HIBYTE(this->m_bValid) = 0;
-  this->m_bVisible = 1065353216;
-  LOBYTE(this->m_bPaused) = 0;
-  BYTE1(this->m_bPaused) = 0;
-  LOBYTE(this->m_fTimeScale) = 0;
-  BYTE2(this->m_bPaused) = 0;
-  LOBYTE(this->m_vThrowVec.z) = 0;
-  this->m_vecLen.x = 0.0;
-  this->m_vecLen.y = 0.0;
+  p_dwCmdID = (unsigned int *)&this->m_ThrowCmdData.dwCmdID;
+  this->m_ThrowCmdData.dwCmdID = 0;
+  this->m_ThrowCmdData.dwItemID = 0;
+  eMode = (char *)this->m_Task[61].eMode;
+  this->m_bValid = 0;
+  this->m_bVisible = 0;
+  p_dwCmdID[2] = 0;
+  this->m_bPaused = 0;
+  this->m_bAbsTime = 0;
+  this->m_fTimeScale = 1.0;
   this->m_bAlive = 0;
-  this->m_Task[36].fp = 0;
-  this->m_Task[36].vec1.x = 0.0;
-  this->m_Task[35].cmd.bDestRole[2] = 2;
-  this->m_Task[35].cmd.bDestRole[3] = 32;
-  this->m_vecLen.z = 0.0;
-  this->m_bShowWeaponModel = -1;
-  p_m_bCatching[3] = -1;
-  BYTE1(this->m_vThrowVec.x) = 0;
-  BYTE2(this->m_vThrowVec.x) = 0;
-  this->m_vThrowVec.y = 0.0;
-  this->m_Task[35].cmd.bDestRole[1] = 1;
-  *v4 = 0;
-  v4[1] = 0;
-  v4[2] = 0;
-  this->m_Task[35].cmd.bDestRole[7] = 0;
-  this->m_Task[35].cmd.bDestRole[8] = 0;
-  this->m_Task[35].cmd.bDestRole[9] = 0;
-  this->m_Task[35].cmd.bDestRole[10] = 0;
-  this->m_Task[35].cmd.bValid = 0;
-  this->m_Task[35].fTemp = 0.0;
-  this->m_Task[35].fTemp2 = 0.0;
-  this->m_Task[35].dwID = 0;
-  this->m_Task[35].eMode = 0;
-  this->m_Task[35].bValid = 0;
-  this->m_Task[35].bFinished = 0;
-  this->m_Task[35].bExecuted = 0;
-  memset(&this->m_fThrowSpeed, 0, 0x1800u);
-  this->m_Task[36].vec1.y = 0.0;
+  this->m_bRun = 0;
+  this->m_bShowWeapon = 0;
+  this->m_bFlash = 0;
+  this->m_bForceFinishThrowingWeapon = 0;
+  this->m_fMaxThrowSpeed = 0.0;
+  this->m_fThrowSpeed = 0.0;
+  this->m_fBlend = 0.0;
+  *(_DWORD *)&this->m_Task[62].cmd.bSrcRole[2] = 0;
+  *(_DWORD *)&this->m_Task[62].cmd.bSrcRole[6] = 0;
+  LODWORD(this->m_Task[61].fTemp2) = 2;
+  this->m_Task[61].dwID = 32;
+  this->m_fThrowLen = 0.0;
+  this->m_ThrowCmdData.dwCmdKind = -1;
+  p_dwCmdID[3] = -1;
+  this->m_bCatching = 0;
+  *(&this->m_bCatching + 1) = 0;
+  this->m_iState = 0;
+  LODWORD(this->m_Task[61].fTemp) = 1;
+  *(_DWORD *)eMode = 0;
+  *((_DWORD *)eMode + 1) = 0;
+  *((_DWORD *)eMode + 2) = 0;
+  *(_DWORD *)this->m_Task[62]._pad_0004 = 0;
+  *(_DWORD *)&this->m_Task[62]._pad_0004[4] = 0;
+  *(_DWORD *)&this->m_Task[62]._pad_0004[8] = 0;
+  this->m_Task[62].vec1.x = 0.0;
+  this->m_Task[62].vec1.y = 0.0;
+  this->m_Task[62].vec1.z = 0.0;
+  this->m_Task[62].cmd.dwCmdKind = 0;
+  this->m_Task[62].cmd.dwCmdID = 0;
+  this->m_Task[62].cmd.dwItemID = 0;
+  this->m_Task[62].cmd.nSrcRole = 0;
+  this->m_Task[62].cmd.nDestRole = 0;
+  *(_DWORD *)&this->m_Task[62].cmd.bMultiSrcRole = 0;
+  memset(&this->m_ThrowCmdData.bMultiSrcRole, 0, 0x1800u);
+  *(_DWORD *)&this->m_Task[62].cmd.bSrcRole[10] = 0;
   return 0;
 }
 
@@ -662,7 +664,7 @@ char CCBStageRole::IsIdle(unsigned int a2)
   else
     v4 = 0;
   v9 = -1;
-  this->m_bFlash = v4;
+  this->m_nIndex = v4;
   if ( !v4 )
   {
     qmemcpy(
@@ -691,30 +693,30 @@ char CCBStageRole::IsIdle(unsigned int a2)
         sprintf(Buffer, dword_58618C);
         break;
     }
-    ((Actor *)this->m_bFlash)->LoadModel();
+    ((Actor *)this->m_nIndex)->LoadModel();
     this->ProcCatchED();
   }
-  BYTE2(this->m_bPaused) = 0;
+  this->m_bFlash = 0;
   return 1;
 }
 
 // 0x00509690
 char CCBStageRole::IsAtInitPos()
 {
-  Actor *m_bFlash; // ecx
+  Actor *m_nIndex; // ecx
   void *v3; // edi
 
-  m_bFlash = (Actor *)this->m_bFlash;
-  if ( !m_bFlash )
+  m_nIndex = (Actor *)this->m_nIndex;
+  if ( !m_nIndex )
     return 1;
-  m_bFlash->UpdateAllActions();
-  v3 = (void *)this->m_bFlash;
+  m_nIndex->UpdateAllActions();
+  v3 = (void *)this->m_nIndex;
   if ( v3 )
   {
-    sub_40EE00(this->m_bFlash);
+    sub_40EE00(this->m_nIndex);
     operator delete(v3);
   }
-  this->m_bFlash = 0;
+  this->m_nIndex = 0;
   return 1;
 }
 
@@ -722,7 +724,7 @@ char CCBStageRole::IsAtInitPos()
 char CCBStageRole::IsAtProtectPos(int a2, int a3, int a4)
 {
   int inited; // eax
-  __int32 m_bAlive; // eax
+  float m_fBlend; // eax
   unsigned int v7; // eax
   char *v8; // edi
   char *v9; // esi
@@ -733,24 +735,24 @@ char CCBStageRole::IsAtProtectPos(int a2, int a3, int a4)
   CCBStage *m_pStage; // eax
   CCBRoleState *m_pRoleState; // ecx
   CCBStageScene *m_pScene; // esi
-  int v17; // eax
+  float *p_x; // eax
   CCBStage *v18; // eax
   CCBRoleState *v19; // ecx
   CCBStageScene *v20; // esi
-  __int32 v21; // eax
-  char v22; // dl
-  unsigned __int32 v23; // eax
+  int m_fBlend_low; // eax
+  unsigned __int8 v22; // dl
+  float v23; // eax
   const char *v25; // [esp-8h] [ebp-11Ch]
-  float x; // [esp+Ch] [ebp-108h]
+  float v26; // [esp+Ch] [ebp-108h]
   char Buffer[260]; // [esp+10h] [ebp-104h] BYREF
 
   this->GetRotAngle();
-  this->m_bAlive = a2;
-  this->m_bRun = a3;
-  LOBYTE(this->m_bValid) = 1;
-  BYTE1(this->m_bValid) = 1;
-  LOBYTE(this->m_bPaused) = 1;
-  this->m_Task[36].fp = 0;
+  LODWORD(this->m_fBlend) = a2;
+  *(_DWORD *)&this->m_bBeSelected = a3;
+  this->m_bValid = 1;
+  this->m_bVisible = 1;
+  this->m_bAlive = 1;
+  *(_DWORD *)&this->m_Task[62].cmd.bSrcRole[2] = 0;
   if ( a2 >= 5 && a2 < 11 )
   {
     if ( strcmp((const char *)(((CCBRoleState *)this->m_pRoleState)->InitUI(a2) + 8), this->m_sLastRole) )
@@ -758,11 +760,13 @@ char CCBStageRole::IsAtProtectPos(int a2, int a3, int a4)
       v25 = (const char *)(((CCBRoleState *)this->m_pRoleState)->InitUI(a2) + 8);
       inited = ((CCBRoleState *)this->m_pRoleState)->InitUI(a2);
       sprintf(Buffer, "role\\%s\\%s.ini", (const char *)(inited + 8), v25);
-      m_bAlive = this->m_bAlive;
-      if ( m_bAlive < 5 || m_bAlive >= 11 || (int)g_pVFileSys->FileExistNum(Buffer) > 0 )
+      m_fBlend = this->m_fBlend;
+      if ( SLODWORD(m_fBlend) < 5
+        || SLODWORD(m_fBlend) >= 11
+        || (int)g_pVFileSys->FileExistNum(Buffer) > 0 )
       {
         ((CCBRoleState *)this->m_pRoleState)->InitUI(a2);
-        ((Actor *)this->m_bFlash)->LoadModel();
+        ((Actor *)this->m_nIndex)->LoadModel();
         v11 = (const char *)(((CCBRoleState *)this->m_pRoleState)->InitUI(a2) + 8);
         v12 = strlen(v11) + 1;
         v13 = (const char *)&v11[v12];
@@ -773,7 +777,7 @@ char CCBStageRole::IsAtProtectPos(int a2, int a3, int a4)
       }
       else
       {
-        ((Actor *)this->m_bFlash)->LoadModel();
+        ((Actor *)this->m_nIndex)->LoadModel();
         v7 = strlen(a203) + 1;
         qmemcpy(this->m_sLastRole, a203, 4 * (v7 >> 2));
         v9 = (char *)&a203[4 * (v7 >> 2)];
@@ -785,51 +789,51 @@ char CCBStageRole::IsAtProtectPos(int a2, int a3, int a4)
     this->ProcCatchED();
   }
   if ( ((CCBStageRole *)this->m_pRoleState)->IsActive(a2) )
-    this->m_Task[35].cmd.bDestRole[3] = 32;
+    this->m_Task[61].dwID = 32;
   else
-    this->m_Task[35].cmd.bDestRole[3] = 50;
+    this->m_Task[61].dwID = 50;
   this->IsGrabedBy();
   if ( ((CCBStageRole *)this->m_pRoleState)->IsActive(a2) == 1 )
   {
     m_pStage = (CCBStage *)this->m_pStage;
     m_pRoleState = (CCBRoleState *)this->m_pRoleState;
-    this->m_Task[36].vec1.x = 45.0;
+    *(_DWORD *)&this->m_Task[62].cmd.bSrcRole[6] = 1110704128;
     m_pScene = (CCBStageScene *)m_pStage->m_pScene;
-    v17 = (int)&m_pScene->m_vecFiveLineup[m_pRoleState->IsAllWeDead(a2)];
+    p_x = (float *)&m_pScene->m_vecFiveLineup[m_pRoleState->IsAllWeDead(a2)].x;
   }
   else
   {
     v18 = (CCBStage *)this->m_pStage;
     v19 = (CCBRoleState *)this->m_pRoleState;
-    this->m_Task[36].vec1.x = -135.0;
+    *(_DWORD *)&this->m_Task[62].cmd.bSrcRole[6] = -1022951424;
     v20 = (CCBStageScene *)v18->m_pScene;
-    v17 = (int)&v20->m_vecEnemyLineup[v19->IsAllWeDead(a2)];
+    p_x = (float *)&v20->m_vecEnemyLineup[v19->IsAllWeDead(a2)].x;
   }
-  this->m_Task[35].cmd.bDestRole[10] = *(_DWORD *)v17;
-  this->m_Task[35].cmd.bValid = *(_DWORD *)(v17 + 4);
-  this->m_Task[35].fTemp = *(float *)(v17 + 8);
-  this->m_Task[35].cmd.bDestRole[7] = this->m_Task[35].cmd.bDestRole[10];
-  this->m_Task[35].cmd.bDestRole[8] = this->m_Task[35].cmd.bValid;
-  this->m_Task[35].cmd.bDestRole[9] = LODWORD(this->m_Task[35].fTemp);
-  x = this->m_Task[36].vec1.x;
-  v21 = this->m_bAlive;
-  *(float *)&this->m_Task[36].fp = x;
-  if ( v21 >= 5 && v21 < 11 )
+  this->m_Task[62].vec1.x = *p_x;
+  this->m_Task[62].vec1.y = p_x[1];
+  this->m_Task[62].vec1.z = p_x[2];
+  *(float *)this->m_Task[62]._pad_0004 = this->m_Task[62].vec1.x;
+  *(float *)&this->m_Task[62]._pad_0004[4] = this->m_Task[62].vec1.y;
+  *(float *)&this->m_Task[62]._pad_0004[8] = this->m_Task[62].vec1.z;
+  v26 = *(float *)&this->m_Task[62].cmd.bSrcRole[6];
+  m_fBlend_low = LODWORD(this->m_fBlend);
+  *(float *)&this->m_Task[62].cmd.bSrcRole[2] = v26;
+  if ( m_fBlend_low >= 5 && m_fBlend_low < 11 )
   {
     if ( !this->m_pRoleState->m_bWeSneakAttackEnemy )
       goto LABEL_24;
     goto LABEL_23;
   }
-  if ( (unsigned int)v21 <= 4 && this->m_pRoleState->m_bEnemySneakAttackUs )
+  if ( (unsigned int)m_fBlend_low <= 4 && this->m_pRoleState->m_bEnemySneakAttackUs )
 LABEL_23:
-    *(float *)&this->m_Task[36].fp = x + 180.0;
+    *(float *)&this->m_Task[62].cmd.bSrcRole[2] = v26 + 180.0;
 LABEL_24:
   this->ClearAniMsg(0, 1.0);
-  v22 = *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive) + 878);
-  v23 = this->m_bAlive;
-  LOBYTE(this->m_vThrowVec.x) = v22;
-  if ( v23 <= 4 )
-    LOBYTE(this->m_vThrowVec.x) = 0;
+  v22 = *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend)) + 878);
+  v23 = this->m_fBlend;
+  this->m_bShowWeaponModel = v22;
+  if ( LODWORD(v23) <= 4 )
+    this->m_bShowWeaponModel = 0;
   return 1;
 }
 
@@ -920,15 +924,15 @@ char CCBStageRole::IsTaskFinished@<al>(_DWORD *this@<ecx>, int a2@<edi>)
 // 0x00509B90
 void CCBStageRole::IsDoTask(gbMatrixStack *a2)
 {
-  __int32 m_bAlive; // eax
-  __int32 v4; // eax
+  float m_fBlend; // eax
+  int m_fBlend_low; // eax
   int v5; // esi
   int v6; // edi
   char RoleType; // al
   unsigned int v8; // edi
   int v9; // esi
-  int HoldTime; // ebx
-  __int32 v11; // edx
+  int v10; // ebx
+  unsigned int dwID; // edx
   int v12; // ecx
   int v13; // eax
   int v14; // eax
@@ -936,7 +940,7 @@ void CCBStageRole::IsDoTask(gbMatrixStack *a2)
   double v16; // st7
   int inited; // eax
   CCBStage *m_pStage; // eax
-  char x_low; // cl
+  unsigned __int8 m_bShowWeaponModel; // cl
   __int16 v20; // [esp+2Ch] [ebp-6Ah]
   float v21; // [esp+32h] [ebp-64h] BYREF
   float v22; // [esp+36h] [ebp-60h] BYREF
@@ -953,60 +957,61 @@ void CCBStageRole::IsDoTask(gbMatrixStack *a2)
     atexit(nullsub_32);
   }
   ((gbMatrix4 *)v25)->gbMatrix4();
-  m_bAlive = this->m_bAlive;
+  m_fBlend = this->m_fBlend;
   memset(&v23, 0, sizeof(v23));
   v20 = 0;
-  if ( m_bAlive >= 5 && m_bAlive < 11 )
+  if ( SLODWORD(m_fBlend) >= 5 && SLODWORD(m_fBlend) < 11 )
     this->ProcPursueRole(0, 0, 0);
-  if ( LOBYTE(this->m_fTimeScale) )
+  if ( this->m_bShowWeapon )
   {
     this->DoTask(&v23.x);
-    v4 = this->m_bAlive;
-    v23.y = sin(this->m_pStage->m_pCBSystem->m_fTimeFund * 10.0 + (double)v4) * 5.0 + v23.y + 6.0;
-    if ( (unsigned int)v4 <= 4 || v4 >= 5 && v4 < 11 && this->ForceEndTaskByPFN() )
+    m_fBlend_low = LODWORD(this->m_fBlend);
+    v23.y = sin(this->m_pStage->m_pCBSystem->m_fTimeFund * 10.0 + (double)m_fBlend_low) * 5.0 + v23.y + 6.0;
+    if ( (unsigned int)m_fBlend_low <= 4
+      || m_fBlend_low >= 5 && m_fBlend_low < 11 && this->ForceEndTaskByPFN() )
     {
-      ((gbCamera *)&this->m_pStage->m_pCam->OrthoSize)->PointWorldToScr(&v23, &v21, &v22);
-      v5 = ((CCBRoleState *)this->m_pRoleState)->SetRoleField(this->m_bAlive, 0);
-      v6 = ((CCBRoleState *)this->m_pRoleState)->SetRoleField(this->m_bAlive, 1);
-      RoleType = ((CCBRoleState *)this->m_pRoleState)->GetRoleType(this->m_bAlive);
-      if ( this->m_bAlive == 10 && this->m_pRoleState->m_bMustFail || RoleType && v5 > v6 / 4 )
-        strcpy(byte_17AB8B8, *(const char **)(((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive) + 888));
+      ((gbCamera *)&this->m_pStage->m_pCam->_pad_0000[4])->PointWorldToScr(&v23, &v21, &v22);
+      v5 = ((CCBRoleState *)this->m_pRoleState)->SetRoleField(LODWORD(this->m_fBlend), 0);
+      v6 = ((CCBRoleState *)this->m_pRoleState)->SetRoleField(LODWORD(this->m_fBlend), 1);
+      RoleType = ((CCBRoleState *)this->m_pRoleState)->GetRoleType(LODWORD(this->m_fBlend));
+      if ( LODWORD(this->m_fBlend) == 10 && this->m_pRoleState->m_bMustFail || RoleType && v5 > v6 / 4 )
+        strcpy(byte_17AB8B8, *(const char **)(((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend)) + 888));
       else
         sprintf(byte_17AB8B8, "%d/%d", v5, v6);
       v8 = 10 * strlen(byte_17AB8B8);
-      v9 = (__int64)((v21 + 1.0) * (double)g_Input.KeyInfo[120].Data * 0.5);
-      HoldTime = (__int64)((1.0 - v22) * (double)g_Input.KeyInfo[120].HoldTime * 0.5);
+      v9 = (__int64)((v21 + 1.0) * (double)dword_BFD6D0 * 0.5);
+      v10 = (__int64)((1.0 - v22) * (double)dword_BFD6D4 * 0.5);
       if ( v9 >= 0 )
       {
-        if ( v9 > (int)(g_Input.KeyInfo[120].Data - v8) )
-          v9 = g_Input.KeyInfo[120].Data - v8;
+        if ( v9 > (int)(dword_BFD6D0 - v8) )
+          v9 = dword_BFD6D0 - v8;
       }
       else
       {
         v9 = 0;
       }
-      if ( HoldTime >= 20 )
+      if ( v10 >= 20 )
       {
-        if ( HoldTime > g_Input.KeyInfo[120].HoldTime )
-          HoldTime = g_Input.KeyInfo[120].HoldTime;
+        if ( v10 > dword_BFD6D4 )
+          v10 = dword_BFD6D4;
       }
       else
       {
-        HoldTime = 20;
+        v10 = 20;
       }
-      sub_4DFC40((char *)this->m_pStage->m_TempStorageNGH, byte_17AB8B8, v9, HoldTime, -1);
-      if ( this->m_bAlive > 4u )
-        this->ProcPursueRole(v9, HoldTime, 1);
+      sub_4DFC40((char *)this->m_pStage->m_TempStorageNGH, byte_17AB8B8, v9, v10, -1);
+      if ( LODWORD(this->m_fBlend) > 4 )
+        this->ProcPursueRole(v9, v10, 1);
     }
   }
-  if ( BYTE1(this->m_pStage->m_pCBSystem->m_bFiveNimbus) && dword_17A990C == 1
-    || BYTE1(this->m_bValid) && (LOBYTE(this->m_bPaused) || this->m_bAlive < 5) )
+  if ( this->m_pStage->m_pCBSystem->m_bEditor && dword_17A990C == 1
+    || this->m_bVisible && (this->m_bAlive || SLODWORD(this->m_fBlend) < 5) )
   {
     a2->Push();
-    a2->Translate((struct gbVec3D *)&this->m_Task[35].cmd.bDestRole[7]);
-    a2->Rotate(*(float *)&this->m_Task[36].fp, (struct gbVec3D *)&dword_17AB9B8);
-    v11 = this->m_Task[35].cmd.bDestRole[3];
-    switch ( dword_56FE98[v11] )
+    a2->Translate((struct gbVec3D *)this->m_Task[62]._pad_0004);
+    a2->Rotate(*(float *)&this->m_Task[62].cmd.bSrcRole[2], (struct gbVec3D *)&dword_17AB9B8);
+    dwID = this->m_Task[61].dwID;
+    switch ( dword_56FE98[dwID] )
     {
       case 1:
         v20 = 1;
@@ -1018,55 +1023,55 @@ void CCBStageRole::IsDoTask(gbMatrixStack *a2)
         v20 = 0;
         break;
     }
-    v12 = this->m_bAlive;
-    if ( !v12 && (v11 == 39 || v11 == 49) )
+    v12 = LODWORD(this->m_fBlend);
+    if ( !v12 && (dwID == 39 || dwID == 49) )
       v20 = 0;
     if ( v12 == 3 )
       v20 = 257;
     if ( v12 == 1 )
       v20 = 257;
-    if ( (v12 == 2 || v12 == 4) && v11 == 46 )
+    if ( (v12 == 2 || v12 == 4) && dwID == 46 )
       v20 = 256;
-    if ( LOBYTE(this->m_vThrowVec.z) )
+    if ( this->m_bForceFinishThrowingWeapon )
     {
-      if ( this->m_vecLen.x > 0.0 || (LOBYTE(v20) = 0, this->m_vecLen.x >= 0.0) )
+      if ( this->m_fMaxThrowSpeed > 0.0 || (LOBYTE(v20) = 0, this->m_fMaxThrowSpeed >= 0.0) )
         LOBYTE(v20) = 1;
-      if ( this->m_vecLen.y <= 0.0 && this->m_vecLen.y < 0.0 )
+      if ( this->m_fThrowSpeed <= 0.0 && this->m_fThrowSpeed < 0.0 )
         goto LABEL_64;
     }
     else if ( !HIBYTE(v20) )
     {
 LABEL_64:
-      if ( (_BYTE)v20 && *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive) + 848) )
+      if ( (_BYTE)v20 && *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend)) + 848) )
       {
         a2->Push();
-        ((gbActor *)*(gbActor **)(this->m_bFlash + 16))->GetTagNodeTM((struct gbMatrix4 *)v25, aTagWeapon2);
+        ((gbActor *)*(gbActor **)(this->m_nIndex + 16))->GetTagNodeTM((struct gbMatrix4 *)v25, aTagWeapon2);
         a2->MultMatrix((struct gbMatrix4 *)v25);
-        inited = ((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive);
+        inited = ((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend));
         (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)(inited + 848) + 16))(*(_DWORD *)(inited + 848), 0);
         a2->Pop();
       }
-      if ( BYTE2(this->m_bPaused) )
+      if ( this->m_bFlash )
       {
         m_pStage = (CCBStage *)this->m_pStage;
-        x_low = LOBYTE(this->m_vThrowVec.x);
+        m_bShowWeaponModel = this->m_bShowWeaponModel;
         v24[0] = sin(this->m_pStage->m_pCBSystem->m_fTimeFund * 7.8000002) * 0.34999999 + 0.64999998;
         v24[1] = v24[0];
         v24[2] = v24[0];
-        if ( x_low )
+        if ( m_bShowWeaponModel )
         {
-          ((gbRenderEffect *)*(gbRenderEffect **)&m_pStage->m_TempStorageWPX[4].m_name[96])->SetVariant(PARAM_HANDLE_SPECULAR, v24);
-          ((Actor *)this->m_bFlash)->DispatchAction(*(_DWORD *)&this->m_pStage->m_TempStorageWPX[4].m_name[96]);
+          ((gbRenderEffect *)*(gbRenderEffect **)&m_pStage->m_TempStorageWPX[4].m_name[36])->SetVariant(PARAM_HANDLE_SPECULAR, v24);
+          ((Actor *)this->m_nIndex)->DispatchAction(*(_DWORD *)&this->m_pStage->m_TempStorageWPX[4].m_name[36]);
         }
         else
         {
-          ((gbRenderEffect *)*(gbRenderEffect **)&m_pStage->m_TempStorageWPX[4].m_name[92])->SetVariant(PARAM_HANDLE_SPECULAR, v24);
-          ((Actor *)this->m_bFlash)->DispatchAction(*(_DWORD *)&this->m_pStage->m_TempStorageWPX[4].m_name[92]);
+          ((gbRenderEffect *)*(gbRenderEffect **)&m_pStage->m_TempStorageWPX[4].m_name[32])->SetVariant(PARAM_HANDLE_SPECULAR, v24);
+          ((Actor *)this->m_nIndex)->DispatchAction(*(_DWORD *)&this->m_pStage->m_TempStorageWPX[4].m_name[32]);
         }
       }
       else
       {
-        ((Actor *)this->m_bFlash)->DispatchAction(0);
+        ((Actor *)this->m_nIndex)->DispatchAction(0);
       }
       a2->Pop();
       return;
@@ -1074,12 +1079,12 @@ LABEL_64:
     if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v12) + 860) )
     {
       a2->Push();
-      ((gbActor *)*(gbActor **)(this->m_bFlash + 16))->GetTagNodeTM((struct gbMatrix4 *)v25, aTagWeapon1);
+      ((gbActor *)*(gbActor **)(this->m_nIndex + 16))->GetTagNodeTM((struct gbMatrix4 *)v25, aTagWeapon1);
       a2->MultMatrix((struct gbMatrix4 *)v25);
-      v13 = ((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive);
+      v13 = ((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend));
       (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)(v13 + 860) + 16))(*(_DWORD *)(v13 + 860), 0);
       a2->Pop();
-      if ( this->m_bAlive == 3 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slot3[288] + 613) == 3 )
+      if ( LODWORD(this->m_fBlend) == 3 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slot3[288] + 613) == 3 )
       {
         v14 = ((CCBRoleState *)this->m_pRoleState)->InitUI(3);
         LastBladePos = (int *)((gbGeomNode *)*(gbGeomNode **)(v14 + 860))->GetLastBladePos(0);
@@ -1110,14 +1115,14 @@ int CCBStageRole::Grab(int a2)
 // 0x0050A1A0
 char CCBStageRole::Release(char a2)
 {
-  LOBYTE(this->m_bPaused) = a2;
+  this->m_bAlive = a2;
   return a2;
 }
 
 // 0x0050A1B0
 void CCBStageRole::TryRelease()
 {
-  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 23) )
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 23) )
     this->ClearAniMsg(1, 0.44);
   else
     this->ClearAniMsg(0, 1.0);
@@ -1126,28 +1131,28 @@ void CCBStageRole::TryRelease()
 // 0x0050A1F0
 char CCBStageRole::ForceRelease(char a2)
 {
-  BYTE1(this->m_bValid) = a2;
+  this->m_bVisible = a2;
   return a2;
 }
 
 // 0x0050A200
 char CCBStageRole::DangerForceRelease(char a2)
 {
-  BYTE2(this->m_bValid) = a2;
+  this->m_bPaused = a2;
   return a2;
 }
 
 // 0x0050A210
 int CCBStageRole::IsGrabedBy()
 {
-  Actor *m_bFlash; // ecx
+  Actor *m_nIndex; // ecx
   int result; // eax
 
-  m_bFlash = (Actor *)this->m_bFlash;
-  if ( m_bFlash )
+  m_nIndex = (Actor *)this->m_nIndex;
+  if ( m_nIndex )
   {
-    m_bFlash->EnableTransition(*(&bVisible + this->m_Task[35].cmd.bDestRole[3]), LOBYTE(this->m_vThrowVec.x) != 0);
-    return ((Actor *)this->m_bFlash)->CompareAction(this->m_Task[35].cmd.bDestRole[3], 0);
+    m_nIndex->EnableTransition(*(&bVisible + this->m_Task[61].dwID), this->m_bShowWeaponModel != 0);
+    return ((Actor *)this->m_nIndex)->CompareAction(this->m_Task[61].dwID, 0);
   }
   return result;
 }
@@ -1155,20 +1160,20 @@ int CCBStageRole::IsGrabedBy()
 // 0x0050A260
 void CCBStageRole::GetPointerPos()
 {
-  Actor *m_bFlash; // ecx
+  Actor *m_nIndex; // ecx
 
-  m_bFlash = (Actor *)this->m_bFlash;
-  if ( m_bFlash )
+  m_nIndex = (Actor *)this->m_nIndex;
+  if ( m_nIndex )
   {
-    m_bFlash->EnableTransition(*(&bVisible + this->m_Task[35].cmd.bDestRole[3]), LOBYTE(this->m_vThrowVec.x) != 0);
-    ((Actor *)this->m_bFlash)->SetVisible(*(&bVisible + this->m_Task[35].cmd.bDestRole[3]));
+    m_nIndex->EnableTransition(*(&bVisible + this->m_Task[61].dwID), this->m_bShowWeaponModel != 0);
+    ((Actor *)this->m_nIndex)->SetVisible(*(&bVisible + this->m_Task[61].dwID));
   }
 }
 
 // 0x0050A2B0
 void CCBStageRole::SetBladeTime(int a2)
 {
-  __int32 *v3; // eax
+  int *pad_0004; // eax
   double v4; // st7
   double v5; // st6
   long double v6; // st7
@@ -1199,13 +1204,13 @@ void CCBStageRole::SetBladeTime(int a2)
     dword_17AB890 = 1065353216;
     atexit(nullsub_33);
   }
-  v3 = (__int32 *)&this->m_pStage->m_pRole[a2]->m_Task[35].cmd.bDestRole[7];
-  dword_17AB898 = *v3;
-  dword_17AB89C = v3[1];
-  dword_17AB8A0 = v3[2];
-  v4 = *(float *)&dword_17AB898 - *(float *)&this->m_Task[35].cmd.bDestRole[7];
-  *(float *)&v7 = *(float *)&dword_17AB89C - *(float *)&this->m_Task[35].cmd.bDestRole[8];
-  v5 = *(float *)&dword_17AB8A0 - *(float *)&this->m_Task[35].cmd.bDestRole[9];
+  pad_0004 = (int *)this->m_pStage->m_pRole[a2]->m_Task[62]._pad_0004;
+  dword_17AB898 = *pad_0004;
+  dword_17AB89C = pad_0004[1];
+  dword_17AB8A0 = pad_0004[2];
+  v4 = *(float *)&dword_17AB898 - *(float *)this->m_Task[62]._pad_0004;
+  *(float *)&v7 = *(float *)&dword_17AB89C - *(float *)&this->m_Task[62]._pad_0004[4];
+  v5 = *(float *)&dword_17AB8A0 - *(float *)&this->m_Task[62]._pad_0004[8];
   dword_17AB8AC = v7;
   *(float *)&v8 = v5;
   *(float *)&dword_17AB8A8 = v4;
@@ -1215,10 +1220,10 @@ void CCBStageRole::SetBladeTime(int a2)
          *(float *)&dword_17AB890 * *(float *)&dword_17AB8B0
        + *(float *)&dword_17AB88C * *(float *)&dword_17AB8AC
        + *(float *)&dword_17AB888 * *(float *)&dword_17AB8A8);
-  *(float *)&this->m_Task[36].fp = v6;
+  *(float *)&this->m_Task[62].cmd.bSrcRole[2] = v6;
   if ( *(float *)&dword_17AB8A8 < 0.0 )
-    *(float *)&this->m_Task[36].fp = 6.2831855 - v6;
-  *(float *)&this->m_Task[36].fp = *(float *)&this->m_Task[36].fp * 57.29578;
+    *(float *)&this->m_Task[62].cmd.bSrcRole[2] = 6.2831855 - v6;
+  *(float *)&this->m_Task[62].cmd.bSrcRole[2] = *(float *)&this->m_Task[62].cmd.bSrcRole[2] * 57.29578;
 }
 
 // 0x0050A500
@@ -1233,8 +1238,8 @@ bool CCBStageRole::LoadAction(gbRay a2)
 // 0x0050A520
 int CCBStageRole::GetStatus(int index)
 {
-  ((Actor *)this->m_bFlash)->PlayAction((int)&this->m_bFlashCounter);
-  return this->m_bAlive;
+  ((Actor *)this->m_nIndex)->PlayAction((int)&this->m_dwID);
+  return LODWORD(this->m_fBlend);
 }
 
 // 0x0050A560
@@ -1243,12 +1248,12 @@ float * CCBStageRole::GetWorldPos()
   _BYTE v3[64]; // [esp+8h] [ebp-40h] BYREF
 
   ((gbMatrix4 *)v3)->gbMatrix4();
-  ((Actor *)this->m_bFlash)->PlayAction((int)&this->m_bFlashCounter);
+  ((Actor *)this->m_nIndex)->PlayAction((int)&this->m_dwID);
   ((gbMatrix4 *)v3)->LoadIdentity();
-  ((gbMatrix4 *)v3)->SetAxisAngle(GB_AXIS_Y, *(float *)&this->m_Task[36].fp);
-  ((gbMatrix4 *)&this->m_bFlashCounter)->RightMultiply((const struct gbMatrix4 *)v3);
-  ((gbMatrix4 *)&this->m_bFlashCounter)->RightTranslate((struct gbVec3D *)&this->m_Task[35].cmd.bDestRole[7]);
-  return (float *)&this->m_bFlashCounter;
+  ((gbMatrix4 *)v3)->SetAxisAngle(GB_AXIS_Y, *(float *)&this->m_Task[62].cmd.bSrcRole[2]);
+  ((gbMatrix4 *)&this->m_dwID)->RightMultiply((const struct gbMatrix4 *)v3);
+  ((gbMatrix4 *)&this->m_dwID)->RightTranslate((struct gbVec3D *)this->m_Task[62]._pad_0004);
+  return (float *)&this->m_dwID;
 }
 
 // 0x0050A5D0
@@ -1272,9 +1277,9 @@ double CCBStageRole::AddTask(float *a2)
     dword_17AB880 = 1065353216;
     atexit(nullsub_36);
   }
-  v3 = *a2 - *(float *)&this->m_Task[35].cmd.bDestRole[7];
-  v8 = a2[1] - *(float *)&this->m_Task[35].cmd.bDestRole[8];
-  v4 = a2[2] - *(float *)&this->m_Task[35].cmd.bDestRole[9];
+  v3 = *a2 - *(float *)this->m_Task[62]._pad_0004;
+  v8 = a2[1] - *(float *)&this->m_Task[62]._pad_0004[4];
+  v4 = a2[2] - *(float *)&this->m_Task[62]._pad_0004[8];
   v7.y = v8;
   v9 = v4;
   v7.x = v3;
@@ -1291,7 +1296,7 @@ double CCBStageRole::AddTask(float *a2)
 // 0x0050A6F0
 bool CCBStageRole::ForceDelTaskByPFN()
 {
-  return LODWORD(this->m_vecLen.z) == 0;
+  return LODWORD(this->m_fThrowLen) == 0;
 }
 
 // 0x0050A700
@@ -1303,9 +1308,9 @@ bool CCBStageRole::ForceEndTaskByPFN()
   float v5; // [esp+8h] [ebp-10h]
   gbVec3D v6; // [esp+Ch] [ebp-Ch] BYREF
 
-  v1 = *(float *)&this->m_Task[35].cmd.bDestRole[7] - *(float *)&this->m_Task[35].cmd.bDestRole[10];
-  v4 = *(float *)&this->m_Task[35].cmd.bDestRole[8] - *(float *)&this->m_Task[35].cmd.bValid;
-  v2 = *(float *)&this->m_Task[35].cmd.bDestRole[9] - this->m_Task[35].fTemp;
+  v1 = *(float *)this->m_Task[62]._pad_0004 - this->m_Task[62].vec1.x;
+  v4 = *(float *)&this->m_Task[62]._pad_0004[4] - this->m_Task[62].vec1.y;
+  v2 = *(float *)&this->m_Task[62]._pad_0004[8] - this->m_Task[62].vec1.z;
   v6.y = v4;
   v5 = v2;
   v6.x = v1;
@@ -1316,10 +1321,10 @@ bool CCBStageRole::ForceEndTaskByPFN()
 // 0x0050A770
 bool CCBStageRole::EndTask(int a2, int a3)
 {
-  __int32 m_bAlive; // eax
+  float m_fBlend; // eax
   CCBStage *m_pStage; // ecx
   float *v6; // eax
-  float *v7; // ecx
+  float *p_x; // ecx
   double v8; // st7
   double v9; // st6
   CCBStage *v10; // edx
@@ -1335,17 +1340,17 @@ bool CCBStageRole::EndTask(int a2, int a3)
   float v21; // [esp+30h] [ebp-4h]
 
   memset(&v16, 0, sizeof(v16));
-  m_bAlive = this->m_bAlive;
+  m_fBlend = this->m_fBlend;
   memset(&v17, 0, sizeof(v17));
-  if ( m_bAlive )
+  if ( m_fBlend != 0.0 )
     return 0;
   m_pStage = (CCBStage *)this->m_pStage;
   v6 = (float *)m_pStage->m_pRole[a2];
-  v7 = (float *)&m_pStage->m_pRole[a3]->m_Task[35].cmd.bDestRole[10];
+  p_x = (float *)&m_pStage->m_pRole[a3]->m_Task[62].vec1.x;
   v6 += 1649;
-  v8 = *v7 - *v6;
-  v18 = v7[1] - v6[1];
-  v9 = v7[2] - v6[2];
+  v8 = *p_x - *v6;
+  v18 = p_x[1] - v6[1];
+  v9 = p_x[2] - v6[2];
   v16.y = v18;
   v19 = v9;
   v16.x = v8;
@@ -1362,9 +1367,9 @@ bool CCBStageRole::EndTask(int a2, int a3)
   v16.x = v12;
   v16.z = v19;
   v16.y = v18;
-  v13 = *(float *)&this->m_Task[35].cmd.bDestRole[7] - v12;
-  v20 = *(float *)&this->m_Task[35].cmd.bDestRole[8] - v18;
-  v14 = *(float *)&this->m_Task[35].cmd.bDestRole[9] - v19;
+  v13 = *(float *)this->m_Task[62]._pad_0004 - v12;
+  v20 = *(float *)&this->m_Task[62]._pad_0004[4] - v18;
+  v14 = *(float *)&this->m_Task[62]._pad_0004[8] - v19;
   v17.y = v20;
   v21 = v14;
   v17.x = v13;
@@ -1375,7 +1380,7 @@ bool CCBStageRole::EndTask(int a2, int a3)
 // 0x0050A8E0
 char CCBStageRole::DelTask(int a2)
 {
-  this->m_Task[35].cmd.bDestRole[2] = a2;
+  LODWORD(this->m_Task[61].fTemp2) = a2;
   return 1;
 }
 
@@ -1385,11 +1390,11 @@ char CCBStageRole::DelAllTask(int a2, char a3)
   char result; // al
 
   result = 1;
-  if ( BYTE1(this->m_vThrowVec.x) == 1 )
+  if ( this->m_bCatching == 1 )
     return 0;
-  BYTE1(this->m_vThrowVec.x) = 1;
-  BYTE2(this->m_vThrowVec.x) = a3;
-  LODWORD(this->m_vThrowVec.y) = a2;
+  this->m_bCatching = 1;
+  *(&this->m_bCatching + 1) = a3;
+  this->m_iState = a2;
   return result;
 }
 
@@ -1398,12 +1403,12 @@ char CCBStageRole::GetCurrentTask(int a2)
 {
   char result; // al
 
-  if ( a2 != 0x7FFFFFFF || (result = BYTE1(this->m_vThrowVec.x)) != 0 )
+  if ( a2 != 0x7FFFFFFF || (result = this->m_bCatching) != 0 )
   {
     result = this->GetState();
-    BYTE1(this->m_vThrowVec.x) = 0;
-    BYTE2(this->m_vThrowVec.x) = 0;
-    this->m_vThrowVec.y = 0.0;
+    this->m_bCatching = 0;
+    *(&this->m_bCatching + 1) = 0;
+    this->m_iState = 0;
   }
   return result;
 }
@@ -1412,16 +1417,16 @@ char CCBStageRole::GetCurrentTask(int a2)
 int CCBStageRole::GetCurrentTaskIndex()
 {
   this->GetState();
-  BYTE1(this->m_vThrowVec.x) = 0;
-  BYTE2(this->m_vThrowVec.x) = 0;
-  this->m_vThrowVec.y = 0.0;
+  this->m_bCatching = 0;
+  *(&this->m_bCatching + 1) = 0;
+  this->m_iState = 0;
   return 0;
 }
 
 // 0x0050A980
 bool CCBStageRole::IsReady(int idx)
 {
-  return BYTE1(this->m_vThrowVec.x) && LODWORD(this->m_vThrowVec.y) == idx;
+  return this->m_bCatching && this->m_iState == idx;
 }
 
 // 0x0050A9B0
@@ -1443,8 +1448,8 @@ _DWORD * CCBStageRole::DoTask(float *a2)
   * a2 = (*)*Center;
   a2[1] = Center[1];
   a2[2] = Center[2];
-  a2[1] = this->m_vNoteThrowPos.y * 0.5 + a2[1] + 10.0;
-  result = (_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive);
+  a2[1] = this->m_vecLen.y * 0.5 + a2[1] + 10.0;
+  result = (_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend));
   if ( *result == 707 )
     a2[1] = a2[1] - 80.0;
   return result;
@@ -1453,21 +1458,21 @@ _DWORD * CCBStageRole::DoTask(float *a2)
 // 0x0050AA60
 void CCBStageRole::ClearBadPushTask(float a2)
 {
-  unsigned int m_bAlive; // eax
+  unsigned int m_fBlend_low; // eax
   int inited; // eax
   int v5; // eax
 
-  m_bAlive = this->m_bAlive;
-  if ( m_bAlive <= 4 )
+  m_fBlend_low = LODWORD(this->m_fBlend);
+  if ( m_fBlend_low <= 4 )
   {
-    if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(m_bAlive) + 848) )
+    if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(m_fBlend_low) + 848) )
     {
-      inited = ((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive);
+      inited = ((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend));
       ((gbGeomNode *)*(gbGeomNode **)(inited + 848))->SetBladeTime(a2);
     }
-    if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive) + 860) )
+    if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend)) + 860) )
     {
-      v5 = ((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive);
+      v5 = ((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend));
       ((gbGeomNode *)*(gbGeomNode **)(v5 + 860))->SetBladeTime(a2);
     }
   }
@@ -1476,12 +1481,12 @@ void CCBStageRole::ClearBadPushTask(float a2)
 // 0x0050AAE0
 double CCBStageRole::PushBackAllTask()
 {
-  __int32 m_bFlash; // eax
+  int m_nIndex; // eax
   float v3; // [esp+4h] [ebp-4h] BYREF
 
-  m_bFlash = this->m_bFlash;
+  m_nIndex = this->m_nIndex;
   v3 = 0.0;
-  if ( ((gbVisNode *)*(gbVisNode **)(m_bFlash + 16))->GetBlend(&v3) )
+  if ( ((gbVisNode *)*(gbVisNode **)(m_nIndex + 16))->GetBlend(&v3) )
     return v3;
   else
     return 1.0;
@@ -1497,29 +1502,29 @@ void CCBStageRole::ClearAniMsg(char a2, float a3)
 
   if ( a3 <= 0.98000002 && a2 )
   {
-    ((gbVisNode *)*(gbVisNode **)(this->m_bFlash + 16))->SetBlend(BLEND_ALPHA, a3);
-    if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive) + 860) )
+    ((gbVisNode *)*(gbVisNode **)(this->m_nIndex + 16))->SetBlend(BLEND_ALPHA, a3);
+    if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend)) + 860) )
     {
-      inited = ((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive);
+      inited = ((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend));
       ((gbVisNode *)*(gbVisNode **)(inited + 860))->SetBlend(BLEND_ALPHA, a3);
     }
-    if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive) + 848) )
+    if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend)) + 848) )
     {
-      v5 = ((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive);
+      v5 = ((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend));
       ((gbVisNode *)*(gbVisNode **)(v5 + 848))->SetBlend(BLEND_ALPHA, a3);
     }
   }
   else
   {
-    ((gbVisNode *)*(gbVisNode **)(this->m_bFlash + 16))->SetBlend(BLEND_NONE, 1.0);
-    if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive) + 860) )
+    ((gbVisNode *)*(gbVisNode **)(this->m_nIndex + 16))->SetBlend(BLEND_NONE, 1.0);
+    if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend)) + 860) )
     {
-      v6 = ((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive);
+      v6 = ((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend));
       ((gbVisNode *)*(gbVisNode **)(v6 + 860))->SetBlend(BLEND_NONE, 1.0);
     }
-    if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive) + 848) )
+    if ( *(_DWORD *)(((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend)) + 848) )
     {
-      v7 = ((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive);
+      v7 = ((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend));
       ((gbVisNode *)*(gbVisNode **)(v7 + 848))->SetBlend(BLEND_NONE, 1.0);
     }
   }
@@ -1529,7 +1534,7 @@ void CCBStageRole::ClearAniMsg(char a2, float a3)
 int CCBStageRole::SetParam(int a2, char a3)
 {
   int result; // eax
-  Actor *m_bFlash; // ecx
+  Actor *m_nIndex; // ecx
 
   result = a2;
   if ( a2 > 0 )
@@ -1542,13 +1547,13 @@ int CCBStageRole::SetParam(int a2, char a3)
       atexit(nullsub_1);
     }
     result = ((CEffSParticle *)&g_nCursorState)->GetEditorTaskDescription((unsigned __int8 *)byte_17AB818);
-    if ( a3 || result != this->m_Task[36].cmd.bMultiDestRole )
+    if ( a3 || result != *(_DWORD *)&this->m_Task[62].bValid )
     {
-      m_bFlash = (Actor *)this->m_bFlash;
-      this->m_Task[36].cmd.bMultiDestRole = result;
-      m_bFlash->SetVisible((int)byte_17AB818);
-      return (*(int (**)(_DWORD, _DWORD))(**(_DWORD **)(this->m_bFlash + 16) + 24))(
-               *(_DWORD *)(this->m_bFlash + 16),
+      m_nIndex = (Actor *)this->m_nIndex;
+      *(_DWORD *)&this->m_Task[62].bValid = result;
+      m_nIndex->SetVisible((int)byte_17AB818);
+      return (*(int (**)(_DWORD, _DWORD))(**(_DWORD **)(this->m_nIndex + 16) + 24))(
+               *(_DWORD *)(this->m_nIndex + 16),
                0);
     }
   }
@@ -1568,8 +1573,8 @@ char CCBStageRole::GetProperCurAction(
         _DWORD *a9)
 {
   int *v11; // eax
-  float *v12; // eax
-  __int32 *v13; // eax
+  unsigned __int8 *v12; // eax
+  unsigned __int8 *v13; // eax
   _DWORD v14[3]; // [esp+4h] [ebp-Ch] BYREF
 
   if ( (byte_17AB804 & 1) == 0 )
@@ -1596,7 +1601,7 @@ char CCBStageRole::GetProperCurAction(
     dword_17AB7E0 = 0;
     atexit(nullsub_38);
   }
-  if ( (_DWORD *)LODWORD(this->m_vThrowVec.y) != a6 )
+  if ( (_DWORD *)this->m_iState != a6 )
     return 0;
   v11 = a7;
   if ( !a7 )
@@ -1615,46 +1620,46 @@ char CCBStageRole::GetProperCurAction(
   if ( a9 != (_DWORD *)3 )
   {
 LABEL_15:
-    v12 = (float *)&this->m_fThrowSpeed + 24 * LODWORD(this->m_vecLen.z);
+    v12 = (unsigned __int8 *)&this->m_ThrowCmdData.bMultiSrcRole + 96 * LODWORD(this->m_fThrowLen);
     *(_DWORD *)v12 = a2;
     *((_DWORD *)v12 + 1) = a3;
     *((_DWORD *)v12 + 2) = a4;
     *((_DWORD *)v12 + 3) = a5;
-    LOBYTE(this->m_ThrowCmdData.bDestRole[24 * LODWORD(this->m_vecLen.z) + 2]) = 1;
-    BYTE2(this->m_ThrowCmdData.bDestRole[24 * LODWORD(this->m_vecLen.z) + 2]) = 0;
-    BYTE1(this->m_ThrowCmdData.bDestRole[24 * LODWORD(this->m_vecLen.z) + 2]) = 0;
-    this->m_ThrowCmdData.bDestRole[24 * LODWORD(this->m_vecLen.z)] = ((CCBSystem *)this->m_pStage->m_pCBSystem)->ProcProtect();
-    v13 = (__int32 *)&this->m_ThrowCmdData.dwItemID + 24 * LODWORD(this->m_vecLen.z);
-    *v13 = dword_17AB7F8;
-    v13[1] = dword_17AB7FC;
-    v13[2] = dword_17AB800;
-    this->m_ThrowCmdData.bDestRole[24 * LODWORD(this->m_vecLen.z) + 1] = (__int32)a9;
+    *((_BYTE *)&this->m_OBBox.trans.tw + 96 * LODWORD(this->m_fThrowLen)) = 1;
+    *((_BYTE *)&this->m_OBBox.trans.tw + 96 * LODWORD(this->m_fThrowLen) + 2) = 0;
+    *((_BYTE *)&this->m_OBBox.trans.tw + 96 * LODWORD(this->m_fThrowLen) + 1) = 0;
+    *((_DWORD *)&this->m_OBBox.trans.ty + 24 * LODWORD(this->m_fThrowLen)) = ((CCBSystem *)this->m_pStage->m_pCBSystem)->ProcProtect();
+    v13 = (unsigned __int8 *)&this->m_ThrowCmdData.bDestRole[96 * LODWORD(this->m_fThrowLen) + 3];
+    *(_DWORD *)v13 = dword_17AB7F8;
+    *((_DWORD *)v13 + 1) = dword_17AB7FC;
+    *((_DWORD *)v13 + 2) = dword_17AB800;
+    *((_DWORD *)&this->m_OBBox.trans.tz + 24 * LODWORD(this->m_fThrowLen)) = a9;
     if ( a8 )
-      qmemcpy(&this->m_ThrowCmdData.bMultiSrcRole + 24 * LODWORD(this->m_vecLen.z), a8, 0x2Cu);
+      qmemcpy((char *)&this->m_OBBox + 96 * LODWORD(this->m_fThrowLen), a8, 0x2Cu);
     else
-      memset(&this->m_ThrowCmdData.bMultiSrcRole + 24 * LODWORD(this->m_vecLen.z), 0, 0x2Cu);
+      memset((char *)&this->m_OBBox + 96 * LODWORD(this->m_fThrowLen), 0, 0x2Cu);
     goto LABEL_23;
   }
   this->GetTaskState();
-  LOBYTE(this->m_ThrowCmdData.bDestRole[2]) = 1;
-  BYTE2(this->m_ThrowCmdData.bDestRole[2]) = 0;
-  BYTE1(this->m_ThrowCmdData.bDestRole[2]) = 0;
-  LODWORD(this->m_fThrowSpeed) = a2;
-  LODWORD(this->m_fThrowLen) = a3;
-  this->m_ThrowCmdData.dwCmdKind = (__int32)a4;
-  this->m_ThrowCmdData.dwCmdID = (__int32)a5;
-  this->m_ThrowCmdData.bDestRole[0] = ((CCBSystem *)this->m_pStage->m_pCBSystem)->ProcProtect();
-  this->m_ThrowCmdData.dwItemID = dword_17AB7F8;
-  this->m_ThrowCmdData.nSrcRole = dword_17AB7FC;
-  this->m_ThrowCmdData.nDestRole = dword_17AB800;
-  this->m_ThrowCmdData.bDestRole[1] = 3;
+  LOBYTE(this->m_OBBox.trans.tw) = 1;
+  BYTE2(this->m_OBBox.trans.tw) = 0;
+  BYTE1(this->m_OBBox.trans.tw) = 0;
+  *(_DWORD *)&this->m_ThrowCmdData.bMultiSrcRole = a2;
+  *(_DWORD *)&this->m_ThrowCmdData.bSrcRole[2] = a3;
+  *(_DWORD *)&this->m_ThrowCmdData.bSrcRole[6] = a4;
+  *(_DWORD *)&this->m_ThrowCmdData.bSrcRole[10] = a5;
+  LODWORD(this->m_OBBox.trans.ty) = ((CCBSystem *)this->m_pStage->m_pCBSystem)->ProcProtect();
+  *(_DWORD *)&this->m_ThrowCmdData.bDestRole[3] = dword_17AB7F8;
+  *(_DWORD *)&this->m_ThrowCmdData.bDestRole[7] = dword_17AB7FC;
+  *(_DWORD *)&this->m_ThrowCmdData.bValid = dword_17AB800;
+  LODWORD(this->m_OBBox.trans.tz) = 3;
   if ( a8 )
-    qmemcpy(&this->m_ThrowCmdData.bMultiSrcRole, a8, 0x2Cu);
+    qmemcpy(&this->m_OBBox, a8, 0x2Cu);
   else
-    memset(&this->m_ThrowCmdData.bMultiSrcRole, 0, 0x2Cu);
-  BYTE2(this->m_OBBox.trans.tz) = 0;
+    memset(&this->m_OBBox, 0, 0x2Cu);
+  BYTE2(this->m_fRightWeapon) = 0;
 LABEL_23:
-  ++LODWORD(this->m_vecLen.z);
+  ++LODWORD(this->m_fThrowLen);
   return 1;
 }
 
@@ -1667,7 +1672,7 @@ char CCBStageRole::ProcTransportRun(
         int a5,
         int *a6,
         const void *a7,
-        int a8)
+        float a8)
 {
   int *v9; // eax
   float v11; // eax
@@ -1706,7 +1711,7 @@ char CCBStageRole::ProcTransportRun(
   dword_17AB7C8 = *v9;
   dword_17AB7CC = v9[1];
   dword_17AB7D0 = v9[2];
-  switch ( a8 )
+  switch ( LODWORD(a8) )
   {
     case 2:
       this->GetState();
@@ -1715,31 +1720,31 @@ char CCBStageRole::ProcTransportRun(
       this->GetTaskState();
       break;
     case 4:
-      if ( SLODWORD(this->m_vecLen.z) > 0 )
+      if ( SLODWORD(this->m_fThrowLen) > 0 )
         return 0;
       break;
     default:
       return 0;
   }
-  LOBYTE(this->m_ThrowCmdData.bDestRole[2]) = 1;
-  BYTE2(this->m_ThrowCmdData.bDestRole[2]) = 0;
-  BYTE1(this->m_ThrowCmdData.bDestRole[2]) = 0;
-  this->m_fThrowSpeed = a2;
-  this->m_fThrowLen = a3;
-  this->m_ThrowCmdData.dwCmdKind = a4;
-  this->m_ThrowCmdData.dwCmdID = a5;
-  this->m_ThrowCmdData.bDestRole[0] = ((CCBSystem *)this->m_pStage->m_pCBSystem)->ProcProtect();
-  this->m_ThrowCmdData.dwItemID = dword_17AB7C8;
-  this->m_ThrowCmdData.nSrcRole = dword_17AB7CC;
-  this->m_ThrowCmdData.nDestRole = dword_17AB7D0;
-  this->m_ThrowCmdData.bDestRole[1] = a8;
+  LOBYTE(this->m_OBBox.trans.tw) = 1;
+  BYTE2(this->m_OBBox.trans.tw) = 0;
+  BYTE1(this->m_OBBox.trans.tw) = 0;
+  *(float *)&this->m_ThrowCmdData.bMultiSrcRole = a2;
+  *(float *)&this->m_ThrowCmdData.bSrcRole[2] = a3;
+  *(_DWORD *)&this->m_ThrowCmdData.bSrcRole[6] = a4;
+  *(_DWORD *)&this->m_ThrowCmdData.bSrcRole[10] = a5;
+  LODWORD(this->m_OBBox.trans.ty) = ((CCBSystem *)this->m_pStage->m_pCBSystem)->ProcProtect();
+  *(_DWORD *)&this->m_ThrowCmdData.bDestRole[3] = dword_17AB7C8;
+  *(_DWORD *)&this->m_ThrowCmdData.bDestRole[7] = dword_17AB7CC;
+  *(_DWORD *)&this->m_ThrowCmdData.bValid = dword_17AB7D0;
+  this->m_OBBox.trans.tz = a8;
   if ( a7 )
-    qmemcpy(&this->m_ThrowCmdData.bMultiSrcRole, a7, 0x2Cu);
+    qmemcpy(&this->m_OBBox, a7, 0x2Cu);
   else
-    memset(&this->m_ThrowCmdData.bMultiSrcRole, 0, 0x2Cu);
-  LODWORD(v11) = LODWORD(this->m_vecLen.z) + 1;
-  BYTE2(this->m_OBBox.trans.tz) = 0;
-  this->m_vecLen.z = v11;
+    memset(&this->m_OBBox, 0, 0x2Cu);
+  LODWORD(v11) = LODWORD(this->m_fThrowLen) + 1;
+  BYTE2(this->m_fRightWeapon) = 0;
+  this->m_fThrowLen = v11;
   return 1;
 }
 
@@ -1747,29 +1752,29 @@ char CCBStageRole::ProcTransportRun(
 char CCBStageRole::SetForceFinishThrowingWeapon(int a2)
 {
   int v2; // ebx
-  float *v4; // eax
+  unsigned __int8 *v4; // eax
 
   v2 = a2;
   if ( a2 == 63 )
   {
-    memset(&this->m_Task[34].bExecuted, 0, 0x60u);
-    --LODWORD(this->m_vecLen.z);
+    memset(&this->m_Task[60].fTemp, 0, 0x60u);
+    --LODWORD(this->m_fThrowLen);
     return 1;
   }
   else
   {
-    if ( a2 < SLODWORD(this->m_vecLen.z) )
+    if ( a2 < SLODWORD(this->m_fThrowLen) )
     {
-      v4 = (float *)&this->m_fThrowSpeed + 24 * a2;
+      v4 = (unsigned __int8 *)&this->m_ThrowCmdData.bMultiSrcRole + 96 * a2;
       do
       {
         ++v2;
-        qmemcpy(v4, v4 + 24, 0x60u);
-        v4 += 24;
+        qmemcpy(v4, v4 + 96, 0x60u);
+        v4 += 96;
       }
-      while ( v2 < SLODWORD(this->m_vecLen.z) );
+      while ( v2 < SLODWORD(this->m_fThrowLen) );
     }
-    memset(&this->m_fThrowSpeed + 24 * LODWORD(this->m_vecLen.z)--, 0, 0x60u);
+    memset(&this->m_ThrowCmdData.bMultiSrcRole + 96 * LODWORD(this->m_fThrowLen)--, 0, 0x60u);
     return 1;
   }
 }
@@ -1777,20 +1782,20 @@ char CCBStageRole::SetForceFinishThrowingWeapon(int a2)
 // 0x0050B330
 char CCBStageRole::GetState()
 {
-  __int32 *bDestRole; // eax
+  float *p_ty; // eax
   int v2; // edx
 
-  bDestRole = (__int32 *)this->m_ThrowCmdData.bDestRole;
+  p_ty = (float *)&this->m_OBBox.trans.ty;
   v2 = 64;
   do
   {
-    *((_BYTE *)bDestRole + 8) = 0;
-    *bDestRole = 0;
-    bDestRole += 24;
+    *((_BYTE *)p_ty + 8) = 0;
+    *p_ty = 0.0;
+    p_ty += 24;
     --v2;
   }
   while ( v2 );
-  this->m_vecLen.z = 0.0;
+  this->m_fThrowLen = 0.0;
   return 1;
 }
 
@@ -1799,18 +1804,18 @@ int CCBStageRole::ProcCatchED()
 {
   int result; // eax
 
-  if ( this->m_bAlive < 5 )
+  if ( SLODWORD(this->m_fBlend) < 5 )
   {
-    ((Actor *)this->m_bFlash)->GetAnimDuration((int)aZ01);
-    ((Actor *)this->m_bFlash)->GetAnimDuration((int)aZ09);
-    ((Actor *)this->m_bFlash)->GetAnimDuration((int)aZ06);
-    ((Actor *)this->m_bFlash)->GetAnimDuration((int)aZ03);
-    ((Actor *)this->m_bFlash)->GetAnimDuration((int)aZ04);
-    ((Actor *)this->m_bFlash)->GetAnimDuration((int)aZ05);
-    ((Actor *)this->m_bFlash)->GetAnimDuration((int)&unk_5888D0);
-    ((Actor *)this->m_bFlash)->GetAnimDuration((int)&unk_5888C8);
-    ((Actor *)this->m_bFlash)->GetAnimDuration((int)&unk_5888C4);
-    return ((Actor *)this->m_bFlash)->GetAnimDuration((int)&aNghOpenObjD);
+    ((Actor *)this->m_nIndex)->GetAnimDuration((int)aZ01);
+    ((Actor *)this->m_nIndex)->GetAnimDuration((int)aZ09);
+    ((Actor *)this->m_nIndex)->GetAnimDuration((int)aZ06);
+    ((Actor *)this->m_nIndex)->GetAnimDuration((int)aZ03);
+    ((Actor *)this->m_nIndex)->GetAnimDuration((int)aZ04);
+    ((Actor *)this->m_nIndex)->GetAnimDuration((int)aZ05);
+    ((Actor *)this->m_nIndex)->GetAnimDuration((int)&unk_5888D0);
+    ((Actor *)this->m_nIndex)->GetAnimDuration((int)&unk_5888C8);
+    ((Actor *)this->m_nIndex)->GetAnimDuration((int)&unk_5888C4);
+    return ((Actor *)this->m_nIndex)->GetAnimDuration((int)&aNghOpenObjD);
   }
   return result;
 }
@@ -1819,25 +1824,25 @@ int CCBStageRole::ProcCatchED()
 int CCBStageRole::GetTaskState()
 {
   int result; // eax
-  float z; // edx
-  float *v3; // edi
+  float m_fThrowLen; // edx
+  unsigned __int8 *v3; // edi
 
-  result = LODWORD(this->m_vecLen.z);
+  result = LODWORD(this->m_fThrowLen);
   if ( result )
   {
     if ( result > 0 )
     {
-      z = this->m_vecLen.z;
-      v3 = (float *)&this->m_fThrowSpeed + 24 * result;
+      m_fThrowLen = this->m_fThrowLen;
+      v3 = (unsigned __int8 *)&this->m_ThrowCmdData.bMultiSrcRole + 96 * result;
       do
       {
-        --LODWORD(z);
-        qmemcpy(v3, v3 - 24, 0x60u);
-        v3 -= 24;
+        --LODWORD(m_fThrowLen);
+        qmemcpy(v3, v3 - 96, 0x60u);
+        v3 -= 96;
       }
-      while ( z != 0.0 );
+      while ( m_fThrowLen != 0.0 );
     }
-    memset(&this->m_fThrowSpeed, 0, 0x60u);
+    memset(&this->m_ThrowCmdData.bMultiSrcRole, 0, 0x60u);
     return 0;
   }
   return result;
@@ -1891,184 +1896,184 @@ char CCBStageRole::ProcPursueRole(int a2, int a3, char a4)
   m_pUI = (CCBUI *)this->m_pStage->m_pCBSystem->m_pUI;
   if ( a4 )
   {
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 6) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 6) )
     {
-      v6 = (UIStatic *)m_pUI->m_pAttackSequenFace[this->m_bAlive + 9];
-      (*(void (**)(UIStatic *, int))v6->m_fontcolor.ColorQuadFmt)(v6, 1);
-      ((UIWnd *)m_pUI->m_pAttackSequenFace[this->m_bAlive + 9])->ScreenToClient(a2, a3);
+      v6 = (UIStatic *)m_pUI->m_pRoleStateFace[LODWORD(this->m_fBlend) + 3];
+      (**(void (***)(UIStatic *, int))v6->_pad_0000)(v6, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateFace[LODWORD(this->m_fBlend) + 3])->ScreenToClient(a2, a3);
       v7 = a2 + 24;
     }
     else
     {
       v7 = a2;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 7) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 7) )
     {
-      v8 = (UIStatic *)m_pUI->m_pRoleStateFaceName[this->m_bAlive];
-      (*(void (**)(UIStatic *, int))v8->m_fontcolor.ColorQuadFmt)(v8, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateFaceName[this->m_bAlive])->ScreenToClient(v7, a3);
+      v8 = (UIStatic *)m_pUI->m_pRoleStateAttackInc[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v8->_pad_0000)(v8, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateAttackInc[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 24;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 8) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 8) )
     {
-      v9 = (UIStatic *)m_pUI->m_pRoleStateAttackInc[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v9->m_fontcolor.ColorQuadFmt)(v9, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateAttackInc[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v9 = (UIStatic *)m_pUI->m_pRoleStateAttackDec[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v9->_pad_0000)(v9, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateAttackDec[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 24;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 9) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 9) )
     {
-      v10 = (UIStatic *)m_pUI->m_pRoleStateAttackDec[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v10->m_fontcolor.ColorQuadFmt)(v10, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateAttackDec[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v10 = (UIStatic *)m_pUI->m_pRoleStateDefenceInc[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v10->_pad_0000)(v10, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateDefenceInc[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 24;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 12) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 12) )
     {
-      v11 = (UIStatic *)m_pUI->m_pRoleStateLuckInc[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v11->m_fontcolor.ColorQuadFmt)(v11, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateLuckInc[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v11 = (UIStatic *)m_pUI->m_pRoleStateLuckDec[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v11->_pad_0000)(v11, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateLuckDec[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 24;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 13) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 13) )
     {
-      v12 = (UIStatic *)m_pUI->m_pRoleStateLuckDec[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v12->m_fontcolor.ColorQuadFmt)(v12, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateLuckDec[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v12 = (UIStatic *)m_pUI->m_pRoleStateSpeedInc[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v12->_pad_0000)(v12, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateSpeedInc[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 24;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 10) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 10) )
     {
-      v13 = (UIStatic *)m_pUI->m_pRoleStateDefenceInc[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v13->m_fontcolor.ColorQuadFmt)(v13, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateDefenceInc[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v13 = (UIStatic *)m_pUI->m_pRoleStateDefenceDec[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v13->_pad_0000)(v13, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateDefenceDec[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 24;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 11) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 11) )
     {
-      v14 = (UIStatic *)m_pUI->m_pRoleStateDefenceDec[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v14->m_fontcolor.ColorQuadFmt)(v14, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateDefenceDec[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v14 = (UIStatic *)m_pUI->m_pRoleStateLuckInc[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v14->_pad_0000)(v14, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateLuckInc[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 24;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 14) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 14) )
     {
-      v15 = (UIStatic *)m_pUI->m_pRoleStateSpeedInc[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v15->m_fontcolor.ColorQuadFmt)(v15, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateSpeedInc[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v15 = (UIStatic *)m_pUI->m_pRoleStateSpeedDec[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v15->_pad_0000)(v15, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateSpeedDec[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 20;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 15) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 15) )
     {
-      v16 = (UIStatic *)m_pUI->m_pRoleStateSpeedDec[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v16->m_fontcolor.ColorQuadFmt)(v16, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateSpeedDec[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v16 = (UIStatic *)m_pUI->m_pRoleStateStable[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v16->_pad_0000)(v16, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateStable[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 20;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 16) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 16) )
     {
-      v17 = (UIStatic *)m_pUI->m_pRoleStateStable[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v17->m_fontcolor.ColorQuadFmt)(v17, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateStable[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v17 = (UIStatic *)m_pUI->m_pRoleStateBlank[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v17->_pad_0000)(v17, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateBlank[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 20;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 17) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 17) )
     {
-      v18 = (UIStatic *)m_pUI->m_pRoleStateBlank[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v18->m_fontcolor.ColorQuadFmt)(v18, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateBlank[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v18 = (UIStatic *)m_pUI->m_pRoleStateForbid[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v18->_pad_0000)(v18, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateForbid[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 20;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 18) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 18) )
     {
-      v19 = (UIStatic *)m_pUI->m_pRoleStateForbid[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v19->m_fontcolor.ColorQuadFmt)(v19, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateForbid[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v19 = (UIStatic *)m_pUI->m_pRoleStateSleep[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v19->_pad_0000)(v19, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateSleep[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 20;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 19) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 19) )
     {
-      v20 = (UIStatic *)m_pUI->m_pRoleStateSleep[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v20->m_fontcolor.ColorQuadFmt)(v20, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateSleep[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v20 = (UIStatic *)m_pUI->m_pRoleStateChaos[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v20->_pad_0000)(v20, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateChaos[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 20;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 20) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 20) )
     {
-      v21 = (UIStatic *)m_pUI->m_pRoleStateChaos[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v21->m_fontcolor.ColorQuadFmt)(v21, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateChaos[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v21 = (UIStatic *)m_pUI->m_pRoleStateMad[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v21->_pad_0000)(v21, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateMad[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 20;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 21) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 21) )
     {
-      v22 = (UIStatic *)m_pUI->m_pRoleStateMad[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v22->m_fontcolor.ColorQuadFmt)(v22, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateMad[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v22 = (UIStatic *)m_pUI->m_pRoleStateMirror[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v22->_pad_0000)(v22, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateMirror[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 20;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 22) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 22) )
     {
-      v23 = (UIStatic *)m_pUI->m_pRoleStateMirror[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v23->m_fontcolor.ColorQuadFmt)(v23, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateMirror[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v23 = (UIStatic *)m_pUI->m_pRoleStateWall[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v23->_pad_0000)(v23, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateWall[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 20;
     }
-    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 23) )
+    if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 23) )
     {
-      v24 = (UIStatic *)m_pUI->m_pRoleStateWall[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v24->m_fontcolor.ColorQuadFmt)(v24, 1);
-      ((UIWnd *)m_pUI->m_pRoleStateWall[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v24 = (UIStatic *)m_pUI->m_pRoleStateBound[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v24->_pad_0000)(v24, 1);
+      ((UIWnd *)m_pUI->m_pRoleStateBound[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
       v7 += 20;
     }
-    result = ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 26);
+    result = ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 26);
     if ( result )
     {
-      v26 = (UIStatic *)m_pUI->m_pRoleStateBound[this->m_bAlive + 6];
-      (*(void (**)(UIStatic *, int))v26->m_fontcolor.ColorQuadFmt)(v26, 1);
-      return ((UIWnd *)m_pUI->m_pRoleStateBound[this->m_bAlive + 6])->ScreenToClient(v7, a3);
+      v26 = (UIStatic *)m_pUI->m_pRoleStateHermit[LODWORD(this->m_fBlend) + 4];
+      (**(void (***)(UIStatic *, int))v26->_pad_0000)(v26, 1);
+      return ((UIWnd *)m_pUI->m_pRoleStateHermit[LODWORD(this->m_fBlend) + 4])->ScreenToClient(v7, a3);
     }
   }
   else
   {
-    v27 = (UIStatic *)m_pUI->m_pAttackSequenFace[this->m_bAlive + 9];
-    (*(void (**)(UIStatic *, _DWORD))v27->m_fontcolor.ColorQuadFmt)(v27, 0);
-    v28 = (UIStatic *)m_pUI->m_pRoleStateFaceName[this->m_bAlive];
-    (*(void (**)(UIStatic *, _DWORD))v28->m_fontcolor.ColorQuadFmt)(v28, 0);
-    v29 = (UIStatic *)m_pUI->m_pRoleStateAttackInc[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v29->m_fontcolor.ColorQuadFmt)(v29, 0);
-    v30 = (UIStatic *)m_pUI->m_pRoleStateAttackDec[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v30->m_fontcolor.ColorQuadFmt)(v30, 0);
-    v31 = (UIStatic *)m_pUI->m_pRoleStateDefenceInc[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v31->m_fontcolor.ColorQuadFmt)(v31, 0);
-    v32 = (UIStatic *)m_pUI->m_pRoleStateDefenceDec[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v32->m_fontcolor.ColorQuadFmt)(v32, 0);
-    v33 = (UIStatic *)m_pUI->m_pRoleStateLuckInc[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v33->m_fontcolor.ColorQuadFmt)(v33, 0);
-    v34 = (UIStatic *)m_pUI->m_pRoleStateLuckDec[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v34->m_fontcolor.ColorQuadFmt)(v34, 0);
-    v35 = (UIStatic *)m_pUI->m_pRoleStateSpeedInc[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v35->m_fontcolor.ColorQuadFmt)(v35, 0);
-    v36 = (UIStatic *)m_pUI->m_pRoleStateSpeedDec[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v36->m_fontcolor.ColorQuadFmt)(v36, 0);
-    v37 = (UIStatic *)m_pUI->m_pRoleStateStable[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v37->m_fontcolor.ColorQuadFmt)(v37, 0);
-    v38 = (UIStatic *)m_pUI->m_pRoleStateBlank[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v38->m_fontcolor.ColorQuadFmt)(v38, 0);
-    v39 = (UIStatic *)m_pUI->m_pRoleStateForbid[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v39->m_fontcolor.ColorQuadFmt)(v39, 0);
-    v40 = (UIStatic *)m_pUI->m_pRoleStateSleep[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v40->m_fontcolor.ColorQuadFmt)(v40, 0);
-    v41 = (UIStatic *)m_pUI->m_pRoleStateChaos[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v41->m_fontcolor.ColorQuadFmt)(v41, 0);
-    v42 = (UIStatic *)m_pUI->m_pRoleStateMad[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v42->m_fontcolor.ColorQuadFmt)(v42, 0);
-    v43 = (UIStatic *)m_pUI->m_pRoleStateMirror[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v43->m_fontcolor.ColorQuadFmt)(v43, 0);
-    v44 = (UIStatic *)m_pUI->m_pRoleStateWall[this->m_bAlive + 6];
-    (*(void (**)(UIStatic *, _DWORD))v44->m_fontcolor.ColorQuadFmt)(v44, 0);
-    v45 = (UIStatic *)m_pUI->m_pRoleStateBound[this->m_bAlive + 6];
-    return (*(char (**)(UIStatic *, _DWORD))v45->m_fontcolor.ColorQuadFmt)(v45, 0);
+    v27 = (UIStatic *)m_pUI->m_pRoleStateFace[LODWORD(this->m_fBlend) + 3];
+    (**(void (***)(UIStatic *, _DWORD))v27->_pad_0000)(v27, 0);
+    v28 = (UIStatic *)m_pUI->m_pRoleStateAttackInc[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v28->_pad_0000)(v28, 0);
+    v29 = (UIStatic *)m_pUI->m_pRoleStateAttackDec[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v29->_pad_0000)(v29, 0);
+    v30 = (UIStatic *)m_pUI->m_pRoleStateDefenceInc[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v30->_pad_0000)(v30, 0);
+    v31 = (UIStatic *)m_pUI->m_pRoleStateDefenceDec[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v31->_pad_0000)(v31, 0);
+    v32 = (UIStatic *)m_pUI->m_pRoleStateLuckInc[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v32->_pad_0000)(v32, 0);
+    v33 = (UIStatic *)m_pUI->m_pRoleStateLuckDec[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v33->_pad_0000)(v33, 0);
+    v34 = (UIStatic *)m_pUI->m_pRoleStateSpeedInc[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v34->_pad_0000)(v34, 0);
+    v35 = (UIStatic *)m_pUI->m_pRoleStateSpeedDec[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v35->_pad_0000)(v35, 0);
+    v36 = (UIStatic *)m_pUI->m_pRoleStateStable[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v36->_pad_0000)(v36, 0);
+    v37 = (UIStatic *)m_pUI->m_pRoleStateBlank[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v37->_pad_0000)(v37, 0);
+    v38 = (UIStatic *)m_pUI->m_pRoleStateForbid[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v38->_pad_0000)(v38, 0);
+    v39 = (UIStatic *)m_pUI->m_pRoleStateSleep[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v39->_pad_0000)(v39, 0);
+    v40 = (UIStatic *)m_pUI->m_pRoleStateChaos[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v40->_pad_0000)(v40, 0);
+    v41 = (UIStatic *)m_pUI->m_pRoleStateMad[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v41->_pad_0000)(v41, 0);
+    v42 = (UIStatic *)m_pUI->m_pRoleStateMirror[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v42->_pad_0000)(v42, 0);
+    v43 = (UIStatic *)m_pUI->m_pRoleStateWall[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v43->_pad_0000)(v43, 0);
+    v44 = (UIStatic *)m_pUI->m_pRoleStateBound[LODWORD(this->m_fBlend) + 4];
+    (**(void (***)(UIStatic *, _DWORD))v44->_pad_0000)(v44, 0);
+    v45 = (UIStatic *)m_pUI->m_pRoleStateHermit[LODWORD(this->m_fBlend) + 4];
+    return (**(char (***)(UIStatic *, _DWORD))v45->_pad_0000)(v45, 0);
   }
   return result;
 }
@@ -2076,37 +2081,37 @@ char CCBStageRole::ProcPursueRole(int a2, int a3, char a4)
 // 0x0050BBD0
 int CCBStageRole::ProcTurn()
 {
-  unsigned int m_bAlive; // eax
+  unsigned int m_fBlend_low; // eax
   CCBRoleState *m_pRoleState; // ecx
   int v5; // eax
 
-  m_bAlive = this->m_bAlive;
+  m_fBlend_low = LODWORD(this->m_fBlend);
   m_pRoleState = (CCBRoleState *)this->m_pRoleState;
-  if ( !m_pRoleState->m_Role[m_bAlive].bValid )
+  if ( !*(&m_pRoleState->m_Role[0].bValid + 892 * m_fBlend_low) )
   {
-    if ( m_bAlive <= 4 )
+    if ( m_fBlend_low <= 4 )
       return 32;
     return 50;
   }
-  if ( !((CCBStageRole *)m_pRoleState)->IsActive(m_bAlive) )
+  if ( !((CCBStageRole *)m_pRoleState)->IsActive(m_fBlend_low) )
     return 50;
-  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleAttr(this->m_bAlive) == 5 )
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleAttr(LODWORD(this->m_fBlend)) == 5 )
     return 47;
-  if ( this->m_Task[35].cmd.bDestRole[2] == 4 )
+  if ( LODWORD(this->m_Task[61].fTemp2) == 4 )
     return 34;
-  if ( *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(this->m_bAlive) + 588) )
+  if ( *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend)) + 588) )
   {
     this->ClearBadPushTask(0.25);
     return 42;
   }
-  else if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 17)
-         || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 14) )
+  else if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 17)
+         || ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 14) )
   {
     return 45;
   }
   else
   {
-    v5 = ((CCBRoleState *)this->m_pRoleState)->GetRoleAttr(this->m_bAlive) - 4;
+    v5 = ((CCBRoleState *)this->m_pRoleState)->GetRoleAttr(LODWORD(this->m_fBlend)) - 4;
     if ( v5 )
     {
       if ( v5 == 1 )
@@ -2127,12 +2132,12 @@ int CCBStageRole::ProcTurnToRole(int a2)
   double v4; // st7
   double v5; // st6
   long double v7; // st7
-  __int32 m_bShowWeaponModel; // eax
+  unsigned int dwCmdKind; // eax
   float *v9; // ecx
   char *v10; // eax
   char *Instance; // eax
   char *v12; // eax
-  float *v13; // edi
+  char *pad_0004; // edi
   double m_DeltaTime; // st7
   double v15; // st6
   double v16; // st5
@@ -2148,9 +2153,9 @@ int CCBStageRole::ProcTurnToRole(int a2)
   int v26; // [esp-4h] [ebp-28h]
   int v27; // [esp+0h] [ebp-24h]
   int v28; // [esp+10h] [ebp-14h]
-  __int32 v29; // [esp+10h] [ebp-14h]
+  float v29; // [esp+10h] [ebp-14h]
   int v30; // [esp+14h] [ebp-10h]
-  __int32 v31; // [esp+14h] [ebp-10h]
+  float v31; // [esp+14h] [ebp-10h]
   float v32; // [esp+18h] [ebp-Ch]
   float v33; // [esp+1Ch] [ebp-8h]
   int v34; // [esp+1Ch] [ebp-8h]
@@ -2180,25 +2185,25 @@ int CCBStageRole::ProcTurnToRole(int a2)
     dword_17AB770 = 0;
     atexit(nullsub_44);
   }
-  v3 = (char *)this + 96 * this->m_bShowWeaponModel;
+  v3 = (char *)this + 96 * this->m_ThrowCmdData.dwCmdKind;
   if ( !v3[506] )
   {
-    this->m_Task[35].fTemp2 = *((float *)v3 + 108);
-    this->m_Task[35].dwID = *((_DWORD *)v3 + 109);
-    this->m_Task[35].eMode = *((_DWORD *)v3 + 110);
-    v4 = this->m_Task[35].fTemp2 - *(float *)&this->m_Task[35].cmd.bDestRole[7];
-    *(float *)&v28 = *(float *)&this->m_Task[35].dwID - *(float *)&this->m_Task[35].cmd.bDestRole[8];
-    v5 = *(float *)&this->m_Task[35].eMode - *(float *)&this->m_Task[35].cmd.bDestRole[9];
+    this->m_Task[62].cmd.dwCmdKind = *((_DWORD *)v3 + 108);
+    this->m_Task[62].cmd.dwCmdID = *((_DWORD *)v3 + 109);
+    this->m_Task[62].cmd.dwItemID = *((_DWORD *)v3 + 110);
+    v4 = *(float *)&this->m_Task[62].cmd.dwCmdKind - *(float *)this->m_Task[62]._pad_0004;
+    *(float *)&v28 = *(float *)&this->m_Task[62].cmd.dwCmdID - *(float *)&this->m_Task[62]._pad_0004[4];
+    v5 = *(float *)&this->m_Task[62].cmd.dwItemID - *(float *)&this->m_Task[62]._pad_0004[8];
     dword_17AB78C = v28;
     *(float *)&v30 = v5;
     *(float *)&dword_17AB788 = v4;
     dword_17AB790 = v30;
     if ( ((gbVec3D *)&dword_17AB788)->Length() < 2.0 )
     {
-      this->m_Task[35].cmd.bDestRole[7] = LODWORD(this->m_Task[35].fTemp2);
-      this->m_Task[35].cmd.bDestRole[8] = this->m_Task[35].dwID;
-      this->m_Task[35].cmd.bDestRole[9] = this->m_Task[35].eMode;
-      BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
+      *(_DWORD *)this->m_Task[62]._pad_0004 = this->m_Task[62].cmd.dwCmdKind;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[4] = this->m_Task[62].cmd.dwCmdID;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[8] = this->m_Task[62].cmd.dwItemID;
+      *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
       return 0;
     }
     ((gbVec3D *)&dword_17AB788)->Normalize();
@@ -2206,34 +2211,34 @@ int CCBStageRole::ProcTurnToRole(int a2)
            *(float *)&dword_17AB780 * *(float *)&dword_17AB790
          + *(float *)&dword_17AB77C * *(float *)&dword_17AB78C
          + *(float *)&dword_17AB778 * *(float *)&dword_17AB788);
-    *(float *)&this->m_Task[36].fp = v7;
+    *(float *)&this->m_Task[62].cmd.bSrcRole[2] = v7;
     if ( *(float *)&dword_17AB788 < 0.0 )
-      *(float *)&this->m_Task[36].fp = 6.2831855 - v7;
-    *(float *)&this->m_Task[36].fp = *(float *)&this->m_Task[36].fp * 57.29578;
-    this->m_Task[35].bValid = dword_17AB788;
-    this->m_Task[35].bFinished = dword_17AB78C;
-    this->m_Task[35].bExecuted = dword_17AB790;
-    *(float *)&this->m_Task[35].bValid = *(float *)&this->m_Task[35].bValid * 380.0;
-    *(float *)&this->m_Task[35].bFinished = *(float *)&this->m_Task[35].bFinished * 380.0;
-    *(float *)&this->m_Task[35].bExecuted = *(float *)&this->m_Task[35].bExecuted * 380.0;
-    if ( ((CCBStageRole *)this->m_pRoleState)->IsActive(this->m_bAlive) )
-      this->m_Task[35].cmd.bDestRole[3] = 31;
+      *(float *)&this->m_Task[62].cmd.bSrcRole[2] = 6.2831855 - v7;
+    *(float *)&this->m_Task[62].cmd.bSrcRole[2] = *(float *)&this->m_Task[62].cmd.bSrcRole[2] * 57.29578;
+    this->m_Task[62].cmd.nSrcRole = dword_17AB788;
+    this->m_Task[62].cmd.nDestRole = dword_17AB78C;
+    *(_DWORD *)&this->m_Task[62].cmd.bMultiSrcRole = dword_17AB790;
+    *(float *)&this->m_Task[62].cmd.nSrcRole = *(float *)&this->m_Task[62].cmd.nSrcRole * 380.0;
+    *(float *)&this->m_Task[62].cmd.nDestRole = *(float *)&this->m_Task[62].cmd.nDestRole * 380.0;
+    *(float *)&this->m_Task[62].cmd.bMultiSrcRole = *(float *)&this->m_Task[62].cmd.bMultiSrcRole * 380.0;
+    if ( ((CCBStageRole *)this->m_pRoleState)->IsActive(LODWORD(this->m_fBlend)) )
+      this->m_Task[61].dwID = 31;
     else
-      this->m_Task[35].cmd.bDestRole[3] = 52;
+      this->m_Task[61].dwID = 52;
     this->IsGrabedBy();
-    BYTE2(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
+    *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 2) = 1;
     this->ClearBadPushTask(0.0099999998);
-    m_bShowWeaponModel = this->m_bShowWeaponModel;
-    BYTE1(this->m_bPaused) = 1;
-    v9 = (float *)((char *)this + 96 * m_bShowWeaponModel);
+    dwCmdKind = this->m_ThrowCmdData.dwCmdKind;
+    this->m_bRun = 1;
+    v9 = (float *)((char *)this + 96 * dwCmdKind);
     if ( v9[108] >= -700.0 || v9[110] >= -700.0 )
     {
-      if ( !this->m_bAlive )
+      if ( !LODWORD(this->m_fBlend) )
       {
         Instance = (char *)CScreenMode::GetInstance();
         ((CScreenMode *)Instance)->AudioSetPosition(aWe011, 0);
       }
-      if ( this->m_bAlive == 4 )
+      if ( LODWORD(this->m_fBlend) == 4 )
       {
         v26 = 0;
         goto LABEL_25;
@@ -2241,12 +2246,12 @@ int CCBStageRole::ProcTurnToRole(int a2)
     }
     else
     {
-      if ( !this->m_bAlive )
+      if ( !LODWORD(this->m_fBlend) )
       {
         v10 = (char *)CScreenMode::GetInstance();
         ((CScreenMode *)v10)->AudioSetPosition(aWe011, 1);
       }
-      if ( this->m_bAlive == 4 )
+      if ( LODWORD(this->m_fBlend) == 4 )
       {
         v26 = 1;
 LABEL_25:
@@ -2255,20 +2260,20 @@ LABEL_25:
       }
     }
   }
-  v13 = (float *)&this->m_Task[35].cmd.bDestRole[7];
+  pad_0004 = (char *)this->m_Task[62]._pad_0004;
   m_DeltaTime = this->m_pStage->m_pCBSystem->m_DeltaTime;
-  v32 = *(float *)&this->m_Task[35].bValid * m_DeltaTime;
-  v33 = *(float *)&this->m_Task[35].bFinished * m_DeltaTime;
-  v15 = v32 + *(float *)&this->m_Task[35].cmd.bDestRole[7];
-  *(float *)&v29 = *(float *)&this->m_Task[35].cmd.bDestRole[8] + v33;
-  v16 = *(float *)&this->m_Task[35].cmd.bDestRole[9] + m_DeltaTime * *(float *)&this->m_Task[35].bExecuted;
-  this->m_Task[35].cmd.bDestRole[8] = v29;
-  *(float *)&v31 = v16;
-  *(float *)&this->m_Task[35].cmd.bDestRole[7] = v15;
-  this->m_Task[35].cmd.bDestRole[9] = v31;
-  v17 = this->m_Task[35].fTemp2 - *(float *)&this->m_Task[35].cmd.bDestRole[7];
-  *(float *)&v34 = *(float *)&this->m_Task[35].dwID - *(float *)&this->m_Task[35].cmd.bDestRole[8];
-  v18 = *(float *)&this->m_Task[35].eMode - *(float *)&this->m_Task[35].cmd.bDestRole[9];
+  v32 = *(float *)&this->m_Task[62].cmd.nSrcRole * m_DeltaTime;
+  v33 = *(float *)&this->m_Task[62].cmd.nDestRole * m_DeltaTime;
+  v15 = v32 + *(float *)this->m_Task[62]._pad_0004;
+  v29 = *(float *)&this->m_Task[62]._pad_0004[4] + v33;
+  v16 = *(float *)&this->m_Task[62]._pad_0004[8] + m_DeltaTime * *(float *)&this->m_Task[62].cmd.bMultiSrcRole;
+  *(float *)&this->m_Task[62]._pad_0004[4] = v29;
+  v31 = v16;
+  *(float *)this->m_Task[62]._pad_0004 = v15;
+  *(float *)&this->m_Task[62]._pad_0004[8] = v31;
+  v17 = *(float *)&this->m_Task[62].cmd.dwCmdKind - *(float *)this->m_Task[62]._pad_0004;
+  *(float *)&v34 = *(float *)&this->m_Task[62].cmd.dwCmdID - *(float *)&this->m_Task[62]._pad_0004[4];
+  v18 = *(float *)&this->m_Task[62].cmd.dwItemID - *(float *)&this->m_Task[62]._pad_0004[8];
   dword_17AB78C = v34;
   *(float *)&v35 = v18;
   *(float *)&dword_17AB788 = v17;
@@ -2284,51 +2289,51 @@ LABEL_25:
       v21 = 6.2831855 - v21;
     v22 = v21 * 57.29578;
     flt_17ABCD0 = v22;
-    if ( fabs(v22 - *(float *)&this->m_Task[36].fp) < 1.570796370506287 )
+    if ( fabs(v22 - *(float *)&this->m_Task[62].cmd.bSrcRole[2]) < 1.570796370506287 )
     {
-      if ( ((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(this->m_bAlive) )
+      if ( ((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(LODWORD(this->m_fBlend)) )
         return 0;
-      BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
-      if ( !this->m_bAlive )
+      *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
+      if ( !LODWORD(this->m_fBlend) )
       {
         v24 = (char *)CScreenMode::GetInstance();
         ((CCBStageRole *)v24)->PlaySound(aWe011, v27);
       }
-      if ( this->m_bAlive != 4 )
+      if ( LODWORD(this->m_fBlend) != 4 )
       {
 LABEL_43:
-        BYTE1(this->m_bPaused) = 0;
+        this->m_bRun = 0;
         return 0;
       }
     }
     else
     {
-      * v13 = (*)this->m_Task[35].fTemp2;
-      this->m_Task[35].cmd.bDestRole[8] = this->m_Task[35].dwID;
-      this->m_Task[35].cmd.bDestRole[9] = this->m_Task[35].eMode;
-      BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
-      if ( !this->m_bAlive )
+      *(_DWORD *)pad_0004 = this->m_Task[62].cmd.dwCmdKind;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[4] = this->m_Task[62].cmd.dwCmdID;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[8] = this->m_Task[62].cmd.dwItemID;
+      *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
+      if ( !LODWORD(this->m_fBlend) )
       {
         v23 = (char *)CScreenMode::GetInstance();
         ((CCBStageRole *)v23)->PlaySound(aWe011, v27);
       }
-      if ( this->m_bAlive != 4 )
+      if ( LODWORD(this->m_fBlend) != 4 )
         goto LABEL_43;
     }
     v25 = (char *)CScreenMode::GetInstance();
     ((CCBStageRole *)v25)->PlaySound(aWe011b, v27);
     goto LABEL_43;
   }
-  * v13 = (*)this->m_Task[35].fTemp2;
-  this->m_Task[35].cmd.bDestRole[8] = this->m_Task[35].dwID;
-  this->m_Task[35].cmd.bDestRole[9] = this->m_Task[35].eMode;
-  BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
-  if ( !this->m_bAlive )
+  *(_DWORD *)pad_0004 = this->m_Task[62].cmd.dwCmdKind;
+  *(_DWORD *)&this->m_Task[62]._pad_0004[4] = this->m_Task[62].cmd.dwCmdID;
+  *(_DWORD *)&this->m_Task[62]._pad_0004[8] = this->m_Task[62].cmd.dwItemID;
+  *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
+  if ( !LODWORD(this->m_fBlend) )
   {
     v19 = (char *)CScreenMode::GetInstance();
     ((CCBStageRole *)v19)->PlaySound(aWe011, v27);
   }
-  if ( this->m_bAlive == 4 )
+  if ( LODWORD(this->m_fBlend) == 4 )
   {
     v20 = (char *)CScreenMode::GetInstance();
     ((CCBStageRole *)v20)->PlaySound(aWe011b, v27);
@@ -2344,12 +2349,12 @@ int CCBStageRole::ProcBlock(int a2)
   double v4; // st7
   double v5; // st6
   long double v7; // st7
-  __int32 m_bShowWeaponModel; // eax
+  unsigned int dwCmdKind; // eax
   float *v9; // ecx
   char *v10; // eax
   char *Instance; // eax
   char *v12; // eax
-  float *v13; // edi
+  char *pad_0004; // edi
   double m_DeltaTime; // st7
   double v15; // st6
   double v16; // st5
@@ -2365,9 +2370,9 @@ int CCBStageRole::ProcBlock(int a2)
   int v26; // [esp-4h] [ebp-28h]
   int v27; // [esp+0h] [ebp-24h]
   int v28; // [esp+10h] [ebp-14h]
-  __int32 v29; // [esp+10h] [ebp-14h]
+  float v29; // [esp+10h] [ebp-14h]
   int v30; // [esp+14h] [ebp-10h]
-  __int32 v31; // [esp+14h] [ebp-10h]
+  float v31; // [esp+14h] [ebp-10h]
   float v32; // [esp+18h] [ebp-Ch]
   float v33; // [esp+1Ch] [ebp-8h]
   int v34; // [esp+1Ch] [ebp-8h]
@@ -2397,25 +2402,25 @@ int CCBStageRole::ProcBlock(int a2)
     dword_17AB740 = 0;
     atexit(nullsub_47);
   }
-  v3 = (char *)this + 96 * this->m_bShowWeaponModel;
+  v3 = (char *)this + 96 * this->m_ThrowCmdData.dwCmdKind;
   if ( !v3[506] )
   {
-    this->m_Task[35].fTemp2 = *((float *)v3 + 108);
-    this->m_Task[35].dwID = *((_DWORD *)v3 + 109);
-    this->m_Task[35].eMode = *((_DWORD *)v3 + 110);
-    v4 = this->m_Task[35].fTemp2 - *(float *)&this->m_Task[35].cmd.bDestRole[7];
-    *(float *)&v28 = *(float *)&this->m_Task[35].dwID - *(float *)&this->m_Task[35].cmd.bDestRole[8];
-    v5 = *(float *)&this->m_Task[35].eMode - *(float *)&this->m_Task[35].cmd.bDestRole[9];
+    this->m_Task[62].cmd.dwCmdKind = *((_DWORD *)v3 + 108);
+    this->m_Task[62].cmd.dwCmdID = *((_DWORD *)v3 + 109);
+    this->m_Task[62].cmd.dwItemID = *((_DWORD *)v3 + 110);
+    v4 = *(float *)&this->m_Task[62].cmd.dwCmdKind - *(float *)this->m_Task[62]._pad_0004;
+    *(float *)&v28 = *(float *)&this->m_Task[62].cmd.dwCmdID - *(float *)&this->m_Task[62]._pad_0004[4];
+    v5 = *(float *)&this->m_Task[62].cmd.dwItemID - *(float *)&this->m_Task[62]._pad_0004[8];
     dword_17AB75C = v28;
     *(float *)&v30 = v5;
     *(float *)&dword_17AB758 = v4;
     dword_17AB760 = v30;
     if ( ((gbVec3D *)&dword_17AB758)->Length() < 2.0 )
     {
-      this->m_Task[35].cmd.bDestRole[7] = LODWORD(this->m_Task[35].fTemp2);
-      this->m_Task[35].cmd.bDestRole[8] = this->m_Task[35].dwID;
-      this->m_Task[35].cmd.bDestRole[9] = this->m_Task[35].eMode;
-      BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
+      *(_DWORD *)this->m_Task[62]._pad_0004 = this->m_Task[62].cmd.dwCmdKind;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[4] = this->m_Task[62].cmd.dwCmdID;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[8] = this->m_Task[62].cmd.dwItemID;
+      *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
       return 0;
     }
     ((gbVec3D *)&dword_17AB758)->Normalize();
@@ -2423,34 +2428,34 @@ int CCBStageRole::ProcBlock(int a2)
            *(float *)&dword_17AB750 * *(float *)&dword_17AB760
          + *(float *)&dword_17AB74C * *(float *)&dword_17AB75C
          + *(float *)&dword_17AB748 * *(float *)&dword_17AB758);
-    *(float *)&this->m_Task[36].fp = v7;
+    *(float *)&this->m_Task[62].cmd.bSrcRole[2] = v7;
     if ( *(float *)&dword_17AB758 < 0.0 )
-      *(float *)&this->m_Task[36].fp = 6.2831855 - v7;
-    *(float *)&this->m_Task[36].fp = *(float *)&this->m_Task[36].fp * 57.29578;
-    this->m_Task[35].bValid = dword_17AB758;
-    this->m_Task[35].bFinished = dword_17AB75C;
-    this->m_Task[35].bExecuted = dword_17AB760;
-    *(float *)&this->m_Task[35].bValid = *(float *)&this->m_Task[35].bValid * 570.0;
-    *(float *)&this->m_Task[35].bFinished = *(float *)&this->m_Task[35].bFinished * 570.0;
-    *(float *)&this->m_Task[35].bExecuted = *(float *)&this->m_Task[35].bExecuted * 570.0;
-    if ( ((CCBStageRole *)this->m_pRoleState)->IsActive(this->m_bAlive) )
-      this->m_Task[35].cmd.bDestRole[3] = 31;
+      *(float *)&this->m_Task[62].cmd.bSrcRole[2] = 6.2831855 - v7;
+    *(float *)&this->m_Task[62].cmd.bSrcRole[2] = *(float *)&this->m_Task[62].cmd.bSrcRole[2] * 57.29578;
+    this->m_Task[62].cmd.nSrcRole = dword_17AB758;
+    this->m_Task[62].cmd.nDestRole = dword_17AB75C;
+    *(_DWORD *)&this->m_Task[62].cmd.bMultiSrcRole = dword_17AB760;
+    *(float *)&this->m_Task[62].cmd.nSrcRole = *(float *)&this->m_Task[62].cmd.nSrcRole * 570.0;
+    *(float *)&this->m_Task[62].cmd.nDestRole = *(float *)&this->m_Task[62].cmd.nDestRole * 570.0;
+    *(float *)&this->m_Task[62].cmd.bMultiSrcRole = *(float *)&this->m_Task[62].cmd.bMultiSrcRole * 570.0;
+    if ( ((CCBStageRole *)this->m_pRoleState)->IsActive(LODWORD(this->m_fBlend)) )
+      this->m_Task[61].dwID = 31;
     else
-      this->m_Task[35].cmd.bDestRole[3] = 52;
+      this->m_Task[61].dwID = 52;
     this->IsGrabedBy();
-    BYTE2(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
+    *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 2) = 1;
     this->ClearBadPushTask(0.0099999998);
-    m_bShowWeaponModel = this->m_bShowWeaponModel;
-    BYTE1(this->m_bPaused) = 1;
-    v9 = (float *)((char *)this + 96 * m_bShowWeaponModel);
+    dwCmdKind = this->m_ThrowCmdData.dwCmdKind;
+    this->m_bRun = 1;
+    v9 = (float *)((char *)this + 96 * dwCmdKind);
     if ( v9[108] >= -700.0 || v9[110] >= -700.0 )
     {
-      if ( !this->m_bAlive )
+      if ( !LODWORD(this->m_fBlend) )
       {
         Instance = (char *)CScreenMode::GetInstance();
         ((CScreenMode *)Instance)->AudioSetPosition(aWe011, 0);
       }
-      if ( this->m_bAlive == 4 )
+      if ( LODWORD(this->m_fBlend) == 4 )
       {
         v26 = 0;
         goto LABEL_25;
@@ -2458,12 +2463,12 @@ int CCBStageRole::ProcBlock(int a2)
     }
     else
     {
-      if ( !this->m_bAlive )
+      if ( !LODWORD(this->m_fBlend) )
       {
         v10 = (char *)CScreenMode::GetInstance();
         ((CScreenMode *)v10)->AudioSetPosition(aWe011, 1);
       }
-      if ( this->m_bAlive == 4 )
+      if ( LODWORD(this->m_fBlend) == 4 )
       {
         v26 = 1;
 LABEL_25:
@@ -2472,20 +2477,20 @@ LABEL_25:
       }
     }
   }
-  v13 = (float *)&this->m_Task[35].cmd.bDestRole[7];
+  pad_0004 = (char *)this->m_Task[62]._pad_0004;
   m_DeltaTime = this->m_pStage->m_pCBSystem->m_DeltaTime;
-  v32 = *(float *)&this->m_Task[35].bValid * m_DeltaTime;
-  v33 = *(float *)&this->m_Task[35].bFinished * m_DeltaTime;
-  v15 = v32 + *(float *)&this->m_Task[35].cmd.bDestRole[7];
-  *(float *)&v29 = *(float *)&this->m_Task[35].cmd.bDestRole[8] + v33;
-  v16 = *(float *)&this->m_Task[35].cmd.bDestRole[9] + m_DeltaTime * *(float *)&this->m_Task[35].bExecuted;
-  this->m_Task[35].cmd.bDestRole[8] = v29;
-  *(float *)&v31 = v16;
-  *(float *)&this->m_Task[35].cmd.bDestRole[7] = v15;
-  this->m_Task[35].cmd.bDestRole[9] = v31;
-  v17 = this->m_Task[35].fTemp2 - *(float *)&this->m_Task[35].cmd.bDestRole[7];
-  *(float *)&v34 = *(float *)&this->m_Task[35].dwID - *(float *)&this->m_Task[35].cmd.bDestRole[8];
-  v18 = *(float *)&this->m_Task[35].eMode - *(float *)&this->m_Task[35].cmd.bDestRole[9];
+  v32 = *(float *)&this->m_Task[62].cmd.nSrcRole * m_DeltaTime;
+  v33 = *(float *)&this->m_Task[62].cmd.nDestRole * m_DeltaTime;
+  v15 = v32 + *(float *)this->m_Task[62]._pad_0004;
+  v29 = *(float *)&this->m_Task[62]._pad_0004[4] + v33;
+  v16 = *(float *)&this->m_Task[62]._pad_0004[8] + m_DeltaTime * *(float *)&this->m_Task[62].cmd.bMultiSrcRole;
+  *(float *)&this->m_Task[62]._pad_0004[4] = v29;
+  v31 = v16;
+  *(float *)this->m_Task[62]._pad_0004 = v15;
+  *(float *)&this->m_Task[62]._pad_0004[8] = v31;
+  v17 = *(float *)&this->m_Task[62].cmd.dwCmdKind - *(float *)this->m_Task[62]._pad_0004;
+  *(float *)&v34 = *(float *)&this->m_Task[62].cmd.dwCmdID - *(float *)&this->m_Task[62]._pad_0004[4];
+  v18 = *(float *)&this->m_Task[62].cmd.dwItemID - *(float *)&this->m_Task[62]._pad_0004[8];
   dword_17AB75C = v34;
   *(float *)&v35 = v18;
   *(float *)&dword_17AB758 = v17;
@@ -2501,51 +2506,51 @@ LABEL_25:
       v21 = 6.2831855 - v21;
     v22 = v21 * 57.29578;
     flt_17ABCD4 = v22;
-    if ( fabs(v22 - *(float *)&this->m_Task[36].fp) < 1.570796370506287 )
+    if ( fabs(v22 - *(float *)&this->m_Task[62].cmd.bSrcRole[2]) < 1.570796370506287 )
     {
-      if ( ((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(this->m_bAlive) )
+      if ( ((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(LODWORD(this->m_fBlend)) )
         return 0;
-      BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
-      if ( !this->m_bAlive )
+      *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
+      if ( !LODWORD(this->m_fBlend) )
       {
         v24 = (char *)CScreenMode::GetInstance();
         ((CCBStageRole *)v24)->PlaySound(aWe011, v27);
       }
-      if ( this->m_bAlive != 4 )
+      if ( LODWORD(this->m_fBlend) != 4 )
       {
 LABEL_43:
-        BYTE1(this->m_bPaused) = 0;
+        this->m_bRun = 0;
         return 0;
       }
     }
     else
     {
-      * v13 = (*)this->m_Task[35].fTemp2;
-      this->m_Task[35].cmd.bDestRole[8] = this->m_Task[35].dwID;
-      this->m_Task[35].cmd.bDestRole[9] = this->m_Task[35].eMode;
-      BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
-      if ( !this->m_bAlive )
+      *(_DWORD *)pad_0004 = this->m_Task[62].cmd.dwCmdKind;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[4] = this->m_Task[62].cmd.dwCmdID;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[8] = this->m_Task[62].cmd.dwItemID;
+      *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
+      if ( !LODWORD(this->m_fBlend) )
       {
         v23 = (char *)CScreenMode::GetInstance();
         ((CCBStageRole *)v23)->PlaySound(aWe011, v27);
       }
-      if ( this->m_bAlive != 4 )
+      if ( LODWORD(this->m_fBlend) != 4 )
         goto LABEL_43;
     }
     v25 = (char *)CScreenMode::GetInstance();
     ((CCBStageRole *)v25)->PlaySound(aWe011b, v27);
     goto LABEL_43;
   }
-  * v13 = (*)this->m_Task[35].fTemp2;
-  this->m_Task[35].cmd.bDestRole[8] = this->m_Task[35].dwID;
-  this->m_Task[35].cmd.bDestRole[9] = this->m_Task[35].eMode;
-  BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
-  if ( !this->m_bAlive )
+  *(_DWORD *)pad_0004 = this->m_Task[62].cmd.dwCmdKind;
+  *(_DWORD *)&this->m_Task[62]._pad_0004[4] = this->m_Task[62].cmd.dwCmdID;
+  *(_DWORD *)&this->m_Task[62]._pad_0004[8] = this->m_Task[62].cmd.dwItemID;
+  *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
+  if ( !LODWORD(this->m_fBlend) )
   {
     v19 = (char *)CScreenMode::GetInstance();
     ((CCBStageRole *)v19)->PlaySound(aWe011, v27);
   }
-  if ( this->m_bAlive == 4 )
+  if ( LODWORD(this->m_fBlend) == 4 )
   {
     v20 = (char *)CScreenMode::GetInstance();
     ((CCBStageRole *)v20)->PlaySound(aWe011b, v27);
@@ -2561,7 +2566,7 @@ int CCBStageRole::ProcMagic(int a2)
   double v4; // st7
   double v5; // st6
   long double v7; // st7
-  __int32 v8; // ecx
+  unsigned int v8; // ecx
   char *Instance; // eax
   double v10; // st7
   char *v11; // ecx
@@ -2593,17 +2598,17 @@ int CCBStageRole::ProcMagic(int a2)
     atexit(nullsub_50);
   }
   v19 = 1.0;
-  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(this->m_bAlive, 23) )
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(LODWORD(this->m_fBlend), 23) )
     v19 = 0.44;
-  v3 = (char *)this + 96 * this->m_bShowWeaponModel;
+  v3 = (char *)this + 96 * this->m_ThrowCmdData.dwCmdKind;
   if ( !v3[506] )
   {
-    this->m_Task[35].fTemp2 = *((float *)v3 + 108);
-    this->m_Task[35].dwID = *((_DWORD *)v3 + 109);
-    this->m_Task[35].eMode = *((_DWORD *)v3 + 110);
-    v4 = this->m_Task[35].fTemp2 - *(float *)&this->m_Task[35].cmd.bDestRole[7];
-    *(float *)&v20 = *(float *)&this->m_Task[35].dwID - *(float *)&this->m_Task[35].cmd.bDestRole[8];
-    v5 = *(float *)&this->m_Task[35].eMode - *(float *)&this->m_Task[35].cmd.bDestRole[9];
+    this->m_Task[62].cmd.dwCmdKind = *((_DWORD *)v3 + 108);
+    this->m_Task[62].cmd.dwCmdID = *((_DWORD *)v3 + 109);
+    this->m_Task[62].cmd.dwItemID = *((_DWORD *)v3 + 110);
+    v4 = *(float *)&this->m_Task[62].cmd.dwCmdKind - *(float *)this->m_Task[62]._pad_0004;
+    *(float *)&v20 = *(float *)&this->m_Task[62].cmd.dwCmdID - *(float *)&this->m_Task[62]._pad_0004[4];
+    v5 = *(float *)&this->m_Task[62].cmd.dwItemID - *(float *)&this->m_Task[62]._pad_0004[8];
     dword_17AB72C = v20;
     *(float *)&v21 = v5;
     *(float *)&dword_17AB728 = v4;
@@ -2611,10 +2616,10 @@ int CCBStageRole::ProcMagic(int a2)
     if ( ((gbVec3D *)&dword_17AB728)->Length() < 2.0 )
     {
       this->ClearAniMsg(0, 1.0);
-      this->m_Task[35].cmd.bDestRole[7] = LODWORD(this->m_Task[35].fTemp2);
-      this->m_Task[35].cmd.bDestRole[8] = this->m_Task[35].dwID;
-      this->m_Task[35].cmd.bDestRole[9] = this->m_Task[35].eMode;
-      BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
+      *(_DWORD *)this->m_Task[62]._pad_0004 = this->m_Task[62].cmd.dwCmdKind;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[4] = this->m_Task[62].cmd.dwCmdID;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[8] = this->m_Task[62].cmd.dwItemID;
+      *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
       return 0;
     }
     ((gbVec3D *)&dword_17AB728)->Normalize();
@@ -2622,26 +2627,26 @@ int CCBStageRole::ProcMagic(int a2)
            *(float *)&dword_17AB720 * *(float *)&dword_17AB730
          + *(float *)&dword_17AB71C * *(float *)&dword_17AB72C
          + *(float *)&dword_17AB718 * *(float *)&dword_17AB728);
-    *(float *)&this->m_Task[36].fp = v7;
+    *(float *)&this->m_Task[62].cmd.bSrcRole[2] = v7;
     if ( *(float *)&dword_17AB728 < 0.0 )
-      *(float *)&this->m_Task[36].fp = 6.2831855 - v7;
-    v8 = 24 * this->m_bShowWeaponModel;
-    *(float *)&this->m_Task[36].fp = *(float *)&this->m_Task[36].fp * 57.29578;
-    BYTE2(this->m_ThrowCmdData.bDestRole[v8 + 2]) = 1;
-    this->m_ThrowCmdData.bSrcRole[24 * this->m_bShowWeaponModel + 9] = 1065353216;
-    this->m_Task[35].cmd.bDestRole[3] = 32;
+      *(float *)&this->m_Task[62].cmd.bSrcRole[2] = 6.2831855 - v7;
+    v8 = 96 * this->m_ThrowCmdData.dwCmdKind;
+    *(float *)&this->m_Task[62].cmd.bSrcRole[2] = *(float *)&this->m_Task[62].cmd.bSrcRole[2] * 57.29578;
+    *((_BYTE *)&this->m_OBBox.trans.tw + v8 + 2) = 1;
+    *((_DWORD *)&this->m_OBBox.trans.zw + 24 * this->m_ThrowCmdData.dwCmdKind) = 1065353216;
+    this->m_Task[61].dwID = 32;
     this->IsGrabedBy();
-    *(float *)&a4 = *(float *)&this->m_Task[35].cmd.bDestRole[8] - 20.0;
-    if ( this->m_bAlive )
-      ((CEffMgr *)this->m_pStage->m_pCBSystem->m_pEffMgr)->Init(221, this->m_Task[35].cmd.bDestRole[7], a4, this->m_Task[35].cmd.bDestRole[9], 0);
+    *(float *)&a4 = *(float *)&this->m_Task[62]._pad_0004[4] - 20.0;
+    if ( LODWORD(this->m_fBlend) )
+      ((CEffMgr *)this->m_pStage->m_pCBSystem->m_pEffMgr)->Init(221, *(_DWORD *)this->m_Task[62]._pad_0004, a4, *(_DWORD *)&this->m_Task[62]._pad_0004[8], 0);
     else
-      ((CEffMgr *)this->m_pStage->m_pCBSystem->m_pEffMgr)->Init(222, this->m_Task[35].cmd.bDestRole[7], a4, this->m_Task[35].cmd.bDestRole[9], 0);
+      ((CEffMgr *)this->m_pStage->m_pCBSystem->m_pEffMgr)->Init(222, *(_DWORD *)this->m_Task[62]._pad_0004, a4, *(_DWORD *)&this->m_Task[62]._pad_0004[8], 0);
     this->ClearBadPushTask(0.0099999998);
     Instance = (char *)CScreenMode::GetInstance();
     ((CScreenMode *)Instance)->AudioSetPosition(aWe014, 1);
   }
   v10 = this->PushBackAllTask();
-  v11 = (char *)this + 96 * this->m_bShowWeaponModel;
+  v11 = (char *)this + 96 * this->m_ThrowCmdData.dwCmdKind;
   if ( *((float *)v11 + 122) <= 0.0 )
   {
     v13 = this->m_pStage->m_pCBSystem->m_DeltaTime * 2.5 + v10;
@@ -2661,16 +2666,16 @@ int CCBStageRole::ProcMagic(int a2)
     if ( v12 < 0.0 )
     {
       *((_DWORD *)v11 + 122) = -1054867456;
-      this->m_Task[35].cmd.bDestRole[7] = LODWORD(this->m_Task[35].fTemp2);
-      this->m_Task[35].cmd.bDestRole[8] = this->m_Task[35].dwID;
-      this->m_Task[35].cmd.bDestRole[9] = this->m_Task[35].eMode;
-      this->m_Task[36].fp = (void *)LODWORD(this->m_Task[36].vec1.x);
+      *(_DWORD *)this->m_Task[62]._pad_0004 = this->m_Task[62].cmd.dwCmdKind;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[4] = this->m_Task[62].cmd.dwCmdID;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[8] = this->m_Task[62].cmd.dwItemID;
+      *(_DWORD *)&this->m_Task[62].cmd.bSrcRole[2] = *(_DWORD *)&this->m_Task[62].cmd.bSrcRole[6];
     }
   }
-  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(this->m_bAlive) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(LODWORD(this->m_fBlend)) )
   {
     v18 = v19;
-    BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
+    *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
     v15 = (char *)CScreenMode::GetInstance();
     ((CCBStageRole *)v15)->PlaySound(aWe014, v17);
   }
@@ -2685,14 +2690,14 @@ int CCBStageRole::ProcMagic(int a2)
 int CCBStageRole::ProcUseRecoverItem(float a2)
 {
   char *v3; // eax
-  __int32 v4; // ecx
+  unsigned int v4; // ecx
   double v5; // st7
   double v6; // st6
   double v7; // st7
   long double v9; // st7
   double v10; // st7
   float v11; // edi
-  __int32 m_bAlive; // eax
+  float m_fBlend; // eax
   char *Instance; // eax
   char *v14; // eax
   double v15; // st7
@@ -2701,10 +2706,10 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
   double v18; // st7
   double v19; // st7
   double v20; // st7
-  __int32 v21; // eax
+  float v21; // eax
   char *v22; // eax
   char *v23; // eax
-  __int32 v24; // eax
+  float v24; // eax
   char *v25; // eax
   char *v26; // eax
   int v27; // [esp+0h] [ebp-18h]
@@ -2740,7 +2745,7 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
     dword_17AB6F0 = 0;
     atexit(nullsub_52);
   }
-  v3 = (char *)this + 96 * this->m_bShowWeaponModel;
+  v3 = (char *)this + 96 * this->m_ThrowCmdData.dwCmdKind;
   if ( v3[506] )
   {
     v11 = a2;
@@ -2748,13 +2753,13 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
   else
   {
     *((_DWORD *)v3 + 122) = -1054867456;
-    v4 = 96 * this->m_bShowWeaponModel;
-    LODWORD(this->m_Task[35].fTemp2) = *(__int32 *)((char *)&this->m_ThrowCmdData.dwItemID + v4);
-    this->m_Task[35].dwID = *(int *)((char *)&this->m_ThrowCmdData.nSrcRole + v4);
-    this->m_Task[35].eMode = *(int *)((char *)&this->m_ThrowCmdData.nDestRole + v4);
-    v5 = this->m_Task[35].fTemp2 - *(float *)&this->m_Task[35].cmd.bDestRole[7];
-    *(float *)&v29 = *(float *)&this->m_Task[35].dwID - *(float *)&this->m_Task[35].cmd.bDestRole[8];
-    v6 = *(float *)&this->m_Task[35].eMode - *(float *)&this->m_Task[35].cmd.bDestRole[9];
+    v4 = 96 * this->m_ThrowCmdData.dwCmdKind;
+    this->m_Task[62].cmd.dwCmdKind = *(_DWORD *)&this->m_ThrowCmdData.bDestRole[v4 + 3];
+    this->m_Task[62].cmd.dwCmdID = *(_DWORD *)&this->m_ThrowCmdData.bDestRole[v4 + 7];
+    this->m_Task[62].cmd.dwItemID = *(_DWORD *)&this->m_ThrowCmdData.bDestRole[v4 + 11];
+    v5 = *(float *)&this->m_Task[62].cmd.dwCmdKind - *(float *)this->m_Task[62]._pad_0004;
+    *(float *)&v29 = *(float *)&this->m_Task[62].cmd.dwCmdID - *(float *)&this->m_Task[62]._pad_0004[4];
+    v6 = *(float *)&this->m_Task[62].cmd.dwItemID - *(float *)&this->m_Task[62]._pad_0004[8];
     dword_17AB70C = v29;
     *(float *)&v32 = v6;
     *(float *)&dword_17AB708 = v5;
@@ -2763,10 +2768,10 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
     a2a = v7;
     if ( v7 < 2.0 )
     {
-      this->m_Task[35].cmd.bDestRole[7] = LODWORD(this->m_Task[35].fTemp2);
-      this->m_Task[35].cmd.bDestRole[8] = this->m_Task[35].dwID;
-      this->m_Task[35].cmd.bDestRole[9] = this->m_Task[35].eMode;
-      BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
+      *(_DWORD *)this->m_Task[62]._pad_0004 = this->m_Task[62].cmd.dwCmdKind;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[4] = this->m_Task[62].cmd.dwCmdID;
+      *(_DWORD *)&this->m_Task[62]._pad_0004[8] = this->m_Task[62].cmd.dwItemID;
+      *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
       return 0;
     }
     ((gbVec3D *)&dword_17AB708)->Normalize();
@@ -2774,60 +2779,60 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
            *(float *)&dword_17AB700 * *(float *)&dword_17AB710
          + *(float *)&dword_17AB6FC * *(float *)&dword_17AB70C
          + *(float *)&dword_17AB6F8 * *(float *)&dword_17AB708);
-    *(float *)&this->m_Task[36].fp = v9;
+    *(float *)&this->m_Task[62].cmd.bSrcRole[2] = v9;
     if ( *(float *)&dword_17AB708 < 0.0 )
-      *(float *)&this->m_Task[36].fp = 6.2831855 - v9;
-    *(float *)&this->m_Task[36].fp = *(float *)&this->m_Task[36].fp * 57.29578;
-    this->m_Task[35].bValid = dword_17AB708;
+      *(float *)&this->m_Task[62].cmd.bSrcRole[2] = 6.2831855 - v9;
+    *(float *)&this->m_Task[62].cmd.bSrcRole[2] = *(float *)&this->m_Task[62].cmd.bSrcRole[2] * 57.29578;
+    this->m_Task[62].cmd.nSrcRole = dword_17AB708;
     v10 = a2a + a2a;
-    this->m_Task[35].bFinished = dword_17AB70C;
-    this->m_Task[35].bExecuted = dword_17AB710;
-    *(float *)&this->m_Task[35].bValid = v10 * *(float *)&this->m_Task[35].bValid;
-    *(float *)&this->m_Task[35].bFinished = v10 * *(float *)&this->m_Task[35].bFinished;
-    *(float *)&this->m_Task[35].bExecuted = v10 * *(float *)&this->m_Task[35].bExecuted;
-    if ( ((CCBStageRole *)this->m_pRoleState)->IsActive(this->m_bAlive) )
-      this->m_Task[35].cmd.bDestRole[3] = 31;
+    this->m_Task[62].cmd.nDestRole = dword_17AB70C;
+    *(_DWORD *)&this->m_Task[62].cmd.bMultiSrcRole = dword_17AB710;
+    *(float *)&this->m_Task[62].cmd.nSrcRole = v10 * *(float *)&this->m_Task[62].cmd.nSrcRole;
+    *(float *)&this->m_Task[62].cmd.nDestRole = v10 * *(float *)&this->m_Task[62].cmd.nDestRole;
+    *(float *)&this->m_Task[62].cmd.bMultiSrcRole = v10 * *(float *)&this->m_Task[62].cmd.bMultiSrcRole;
+    if ( ((CCBStageRole *)this->m_pRoleState)->IsActive(LODWORD(this->m_fBlend)) )
+      this->m_Task[61].dwID = 31;
     else
-      this->m_Task[35].cmd.bDestRole[3] = 52;
+      this->m_Task[61].dwID = 52;
     this->IsGrabedBy();
     v11 = 0.0;
-    BYTE2(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
+    *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 2) = 1;
     this->ClearBadPushTask(0.0099999998);
-    m_bAlive = this->m_bAlive;
-    BYTE1(this->m_bPaused) = 1;
-    if ( m_bAlive == 1 )
+    m_fBlend = this->m_fBlend;
+    this->m_bRun = 1;
+    if ( LODWORD(m_fBlend) == 1 )
     {
       Instance = (char *)CScreenMode::GetInstance();
       ((CScreenMode *)Instance)->AudioSetPosition(aWe012, 1);
     }
-    if ( this->m_bAlive == 3 )
+    if ( LODWORD(this->m_fBlend) == 3 )
     {
       v14 = (char *)CScreenMode::GetInstance();
       ((CScreenMode *)v14)->AudioSetPosition(aWe013, 1);
     }
   }
-  v15 = this->m_Task[35].fTemp2 - *(float *)&this->m_Task[35].cmd.bDestRole[7];
-  *(float *)&v30 = *(float *)&this->m_Task[35].dwID - *(float *)&this->m_Task[35].cmd.bDestRole[8];
-  v16 = *(float *)&this->m_Task[35].eMode - *(float *)&this->m_Task[35].cmd.bDestRole[9];
+  v15 = *(float *)&this->m_Task[62].cmd.dwCmdKind - *(float *)this->m_Task[62]._pad_0004;
+  *(float *)&v30 = *(float *)&this->m_Task[62].cmd.dwCmdID - *(float *)&this->m_Task[62]._pad_0004[4];
+  v16 = *(float *)&this->m_Task[62].cmd.dwItemID - *(float *)&this->m_Task[62]._pad_0004[8];
   dword_17AB70C = v30;
   *(float *)&v33 = v16;
   *(float *)&dword_17AB708 = v15;
   dword_17AB710 = v33;
-  if ( LODWORD(v11) == this->m_Task[36].cmd.nDestRole )
-    this->m_ThrowCmdData.bSrcRole[24 * this->m_bShowWeaponModel + 9] = 1120403456;
-  if ( *(float *)&this->m_ThrowCmdData.bSrcRole[24 * this->m_bShowWeaponModel + 9] > 0.0
+  if ( LODWORD(v11) == this->m_Task[62].dwID )
+    *((_DWORD *)&this->m_OBBox.trans.zw + 24 * this->m_ThrowCmdData.dwCmdKind) = 1120403456;
+  if ( *(&this->m_OBBox.trans.zw + 24 * this->m_ThrowCmdData.dwCmdKind) > 0.0
     && ((gbVec3D *)&dword_17AB708)->Length() > 2.0 )
   {
     m_DeltaTime = this->m_pStage->m_pCBSystem->m_DeltaTime;
-    v28 = *(float *)&this->m_Task[35].bValid * m_DeltaTime;
-    v31 = *(float *)&this->m_Task[35].bFinished * m_DeltaTime;
-    v18 = m_DeltaTime * *(float *)&this->m_Task[35].bExecuted;
-    *(float *)&this->m_Task[35].cmd.bDestRole[7] = v28 + *(float *)&this->m_Task[35].cmd.bDestRole[7];
-    *(float *)&this->m_Task[35].cmd.bDestRole[8] = v31 + *(float *)&this->m_Task[35].cmd.bDestRole[8];
-    *(float *)&this->m_Task[35].cmd.bDestRole[9] = v18 + *(float *)&this->m_Task[35].cmd.bDestRole[9];
+    v28 = *(float *)&this->m_Task[62].cmd.nSrcRole * m_DeltaTime;
+    v31 = *(float *)&this->m_Task[62].cmd.nDestRole * m_DeltaTime;
+    v18 = m_DeltaTime * *(float *)&this->m_Task[62].cmd.bMultiSrcRole;
+    *(float *)this->m_Task[62]._pad_0004 = v28 + *(float *)this->m_Task[62]._pad_0004;
+    *(float *)&this->m_Task[62]._pad_0004[4] = v31 + *(float *)&this->m_Task[62]._pad_0004[4];
+    *(float *)&this->m_Task[62]._pad_0004[8] = v18 + *(float *)&this->m_Task[62]._pad_0004[8];
   }
-  if ( LODWORD(v11) == this->m_Task[36].cmd.bMultiSrcRole && ((gbVec3D *)&dword_17AB708)->Length() <= 2.0 )
-    this->m_ThrowCmdData.bSrcRole[24 * this->m_bShowWeaponModel + 9] = -1054867456;
+  if ( LODWORD(v11) == *(_DWORD *)this->m_Task[62].eMode && ((gbVec3D *)&dword_17AB708)->Length() <= 2.0 )
+    *((_DWORD *)&this->m_OBBox.trans.zw + 24 * this->m_ThrowCmdData.dwCmdKind) = -1054867456;
   ((gbVec3D *)&dword_17AB708)->Normalize();
   v19 = acos(
           *(float *)&dword_17AB700 * *(float *)&dword_17AB710
@@ -2837,43 +2842,43 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
     v19 = 6.2831855 - v19;
   v20 = v19 * 57.29578;
   flt_17ABCD8 = v20;
-  if ( fabs(v20 - *(float *)&this->m_Task[36].fp) >= 1.570796370506287 )
+  if ( fabs(v20 - *(float *)&this->m_Task[62].cmd.bSrcRole[2]) >= 1.570796370506287 )
   {
-    this->m_Task[35].cmd.bDestRole[7] = LODWORD(this->m_Task[35].fTemp2);
-    this->m_Task[35].cmd.bDestRole[8] = this->m_Task[35].dwID;
-    this->m_Task[35].cmd.bDestRole[9] = this->m_Task[35].eMode;
-    this->m_ThrowCmdData.bSrcRole[24 * this->m_bShowWeaponModel + 9] = -1054867456;
+    *(_DWORD *)this->m_Task[62]._pad_0004 = this->m_Task[62].cmd.dwCmdKind;
+    *(_DWORD *)&this->m_Task[62]._pad_0004[4] = this->m_Task[62].cmd.dwCmdID;
+    *(_DWORD *)&this->m_Task[62]._pad_0004[8] = this->m_Task[62].cmd.dwItemID;
+    *((_DWORD *)&this->m_OBBox.trans.zw + 24 * this->m_ThrowCmdData.dwCmdKind) = -1054867456;
   }
-  if ( LODWORD(v11) == LODWORD(this->m_Task[36].vec1.z) )
+  if ( LODWORD(v11) == *(_DWORD *)&this->m_Task[62].cmd.bDestRole[3] )
   {
-    this->m_Task[35].cmd.bDestRole[7] = LODWORD(this->m_Task[35].fTemp2);
-    this->m_Task[35].cmd.bDestRole[8] = this->m_Task[35].dwID;
-    this->m_Task[35].cmd.bDestRole[9] = this->m_Task[35].eMode;
-    BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
-    v21 = this->m_bAlive;
-    BYTE1(this->m_bPaused) = 0;
-    if ( v21 == 1 )
+    *(_DWORD *)this->m_Task[62]._pad_0004 = this->m_Task[62].cmd.dwCmdKind;
+    *(_DWORD *)&this->m_Task[62]._pad_0004[4] = this->m_Task[62].cmd.dwCmdID;
+    *(_DWORD *)&this->m_Task[62]._pad_0004[8] = this->m_Task[62].cmd.dwItemID;
+    *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
+    v21 = this->m_fBlend;
+    this->m_bRun = 0;
+    if ( LODWORD(v21) == 1 )
     {
       v22 = (char *)CScreenMode::GetInstance();
       ((CCBStageRole *)v22)->PlaySound(aWe012, v27);
     }
-    if ( this->m_bAlive == 3 )
+    if ( LODWORD(this->m_fBlend) == 3 )
     {
       v23 = (char *)CScreenMode::GetInstance();
       ((CCBStageRole *)v23)->PlaySound(aWe013, v27);
     }
   }
-  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(this->m_bAlive) )
+  if ( !((CCBRoleState *)this->m_pRoleState)->IsRoleAlive(LODWORD(this->m_fBlend)) )
   {
-    BYTE1(this->m_ThrowCmdData.bDestRole[24 * this->m_bShowWeaponModel + 2]) = 1;
-    v24 = this->m_bAlive;
-    BYTE1(this->m_bPaused) = 0;
-    if ( v24 == 1 )
+    *((_BYTE *)&this->m_OBBox.trans.tw + 96 * this->m_ThrowCmdData.dwCmdKind + 1) = 1;
+    v24 = this->m_fBlend;
+    this->m_bRun = 0;
+    if ( LODWORD(v24) == 1 )
     {
       v25 = (char *)CScreenMode::GetInstance();
       ((CCBStageRole *)v25)->PlaySound(aWe012, v27);
     }
-    if ( this->m_bAlive == 3 )
+    if ( LODWORD(this->m_fBlend) == 3 )
     {
       v26 = (char *)CScreenMode::GetInstance();
       ((CCBStageRole *)v26)->PlaySound(aWe013, v27);
@@ -2889,8 +2894,8 @@ void CCBStageRole::PlaySound(char *name, int a3)
   unsigned int v4; // ebp
   unsigned int v5; // kr08_4
   unsigned int v6; // ebp
-  int i; // esi
-  __int32 j; // edi
+  gbSound2DNode **i; // esi
+  gbSound2DNode **j; // edi
   char v9; // al
   int v10; // [esp+4h] [ebp-20h] BYREF
   __int8 *v11; // [esp+8h] [ebp-1Ch]
@@ -2919,18 +2924,18 @@ void CCBStageRole::PlaySound(char *name, int a3)
       v12 = v5 - 1;
       v11[v6] = 0;
     }
-    for ( i = this->m_Task[0].cmd.bDestRole[0]; i != this->m_Task[0].cmd.bDestRole[1]; i += 20 )
+    for ( i = *(gbSound2DNode ***)&this->m_Task[1].bValid; i != this->m_Task[2].fp; i += 5 )
     {
-      for ( j = this->m_Task[0].cmd.bDestRole[1]; i != j; i += 20 )
+      for ( j = (gbSound2DNode **)this->m_Task[2].fp; i != j; i += 5 )
       {
-        if ( sub_53DF80(i, (int)&v10) )
+        if ( sub_53DF80((int)i, (int)&v10) )
           break;
       }
-      if ( i == this->m_Task[0].cmd.bDestRole[1] )
+      if ( i == this->m_Task[2].fp )
         break;
-      if ( ((gbSound2DNode *)*(gbSound2DNode **)(i + 16))->IsPlaying() )
+      if ( ((gbSound2DNode *)i[4])->IsPlaying() )
       {
-        ((gbSound2DNode *)*(gbSound2DNode **)(i + 16))->Stop();
+        ((gbSound2DNode *)i[4])->Stop();
         break;
       }
     }

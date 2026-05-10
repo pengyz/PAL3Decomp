@@ -3,5 +3,5 @@
   "address": "0x00445C60",
   "size_bytes": 99,
   "signature": "BOOL __thiscall(UIWnd *this, int a2, int a3)",
-  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nBOOL __thiscall UIWnd::HitTest(UIWnd *this, int a2, int a3)\n{\n  __int32 v5; // edi\n  int v6; // esi\n  int v7; // ecx\n\n  if ( !this->m_rect.top )\n    return 0;\n  if ( !this->m_rect.right )\n    return 0;\n  v5 = this->m_wndcolor.Alpha - 1;\n  if ( v5 < 0 )\n    return a3 == 0;\n  v6 = a3;\n  do\n  {\n    v7 = *(_DWORD *)(this->m_wndcolor.Red + 4 * v5);\n    if ( (*(int (__thiscall **)(int, int, int))(*(_DWORD *)v7 + 8))(v7, a2, v6) )\n      v6 = 0;\n    --v5;\n  }\n  while ( v5 >= 0 );\n  return v6 == 0;\n}\n"
+  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nBOOL __thiscall UIWnd::HitTest(UIWnd *this, int a2, int a3)\n{\n  int v5; // edi\n  int v6; // esi\n  int v7; // ecx\n\n  if ( !this->m_childs.m_nSize )\n    return 0;\n  if ( !this->m_childs.m_nMaxSize )\n    return 0;\n  v5 = this->m_rect.right - 1;\n  if ( v5 < 0 )\n    return a3 == 0;\n  v6 = a3;\n  do\n  {\n    v7 = *(_DWORD *)(this->m_rect.top + 4 * v5);\n    if ( (*(int (__thiscall **)(int, int, int))(*(_DWORD *)v7 + 8))(v7, a2, v6) )\n      v6 = 0;\n    --v5;\n  }\n  while ( v5 >= 0 );\n  return v6 == 0;\n}\n"
 }

@@ -30,6 +30,8 @@ extern char aMovieMovieEndC[];
 extern char aMusicMusicCpk[];
 extern unsigned char byte_17B41E8;
 extern unsigned char byte_56A634;
+extern int dword_BFDA60;
+extern int dword_BFDA68;
 
 // 0x0053C340
 char CScreenMode::InitCPK(int a2, int a3)
@@ -75,7 +77,7 @@ int CScreenMode::CreateDevice(int a, int b, int c, int d)
 // 0x0053C5A0
 int CScreenMode::PlayVideo(int a2)
 {
-  int Data; // esi
+  gbGfxManager *v3; // esi
   UIRenderObj *Instance; // eax
   UIRenderObj *v5; // eax
   UIRenderObj *v7; // eax
@@ -83,24 +85,24 @@ int CScreenMode::PlayVideo(int a2)
 
   if ( *((_DWORD *)this + 3) )
   {
-    Data = g_Input.KeyInfo[177].Data;
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data + 1816)
+    v3 = dword_BFDA60;
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44]
                                                                          + 172))(
-      *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
+      *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
       0,
       0,
       1,
       -16777216,
       1065353216,
       0);
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD))(**(_DWORD **)(Data + 1816) + 68))(
-      *(_DWORD *)(Data + 1816),
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 68))(
+      *(_DWORD *)&v3[1].DrvInfo.winname[44],
       0,
       0,
       0,
       0);
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(Data + 1816) + 172))(
-      *(_DWORD *)(Data + 1816),
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 172))(
+      *(_DWORD *)&v3[1].DrvInfo.winname[44],
       0,
       0,
       1,
@@ -341,10 +343,10 @@ void CScreenMode::AudioUpdate()
 {
   if ( (g_nGameFlags & 1) != 0 )
   {
-    if ( g_Input.KeyInfo[177].CountMode )
+    if ( dword_BFDA68 )
     {
-      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerPosition((const struct gbVec3D *)(g_Input.KeyInfo[177].CountMode + 492));
-      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerOrientation((struct gbVec3D *)(g_Input.KeyInfo[177].CountMode + 504), (struct gbVec3D *)(g_Input.KeyInfo[177].CountMode + 516));
+      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerPosition((const struct gbVec3D *)&dword_BFDA68->eyeDir.y);
+      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerOrientation((struct gbVec3D *)&dword_BFDA68[1], (struct gbVec3D *)&dword_BFDA68[1].Hscreen);
     }
   }
 }

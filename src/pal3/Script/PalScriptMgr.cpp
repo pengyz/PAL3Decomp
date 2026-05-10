@@ -36,9 +36,9 @@ int PalScriptMgr::OpenSCE()
 // 0x00431EE0
 void PalScriptMgr::FindScript()
 {
-  if ( (stru_D8C2B8.m_keyStates[1] & 8) == 0 )
+  if ( (stru_D8C2B8.m_keyStates[4] & 8) == 0 )
   {
-    LOBYTE(stru_D8C2B8.m_keyStates[1]) |= 8u;
+    stru_D8C2B8.m_keyStates[4] |= 8u;
     ((PtrArray *)&stru_D8C2B8.m_mouseMinX)->Remove();
   }
 }
@@ -117,7 +117,7 @@ int * PalScriptMgr::Destroy(unsigned int a1, char a2)
       if ( v5 )
       {
         v5[1] = v3;
-        ((PtrArray *)&stru_D8C2B8.m_keyStates[2])->SetAt(stru_D8C2B8.m_keyStates[3], (int)v5);
+        ((PtrArray *)&stru_D8C2B8.m_keyStates[8])->SetAt(*(int *)&stru_D8C2B8.m_keyStates[12], (int)v5);
         return v5;
       }
       else
@@ -138,11 +138,11 @@ int PalScriptMgr::_CON_State(int a1)
   int result; // eax
 
   v1 = 0;
-  if ( stru_D8C2B8.m_keyStates[3] <= 0 )
+  if ( *(int *)&stru_D8C2B8.m_keyStates[12] <= 0 )
     return 0;
-  for ( i = (int *)stru_D8C2B8.m_keyStates[2]; ; ++i )
+  for ( i = *(int **)&stru_D8C2B8.m_keyStates[8]; ; ++i )
   {
-    if ( v1 >= 0 && v1 < stru_D8C2B8.m_keyStates[3] )
+    if ( v1 >= 0 && v1 < *(int *)&stru_D8C2B8.m_keyStates[12] )
     {
       result = *i;
       if ( *i )
@@ -151,7 +151,7 @@ int PalScriptMgr::_CON_State(int a1)
           break;
       }
     }
-    if ( ++v1 >= stru_D8C2B8.m_keyStates[3] )
+    if ( ++v1 >= *(int *)&stru_D8C2B8.m_keyStates[12] )
       return 0;
   }
   return result;
@@ -234,24 +234,24 @@ int PalScriptMgr::IsScriptRuning(int a2)
 // 0x004323C0
 void PalScriptMgr::RunSceneScript(int a2)
 {
-  __int32 v1; // ebp
+  int v1; // ebp
   int v2; // ebx
   int v3; // esi
   void **v4; // edi
-  __int32 v5; // eax
+  int v5; // eax
   int i; // esi
 
-  v1 = stru_D8C2B8.m_keyStates[3];
+  v1 = *(_DWORD *)&stru_D8C2B8.m_keyStates[12];
   v2 = 0;
   v3 = 0;
-  if ( stru_D8C2B8.m_keyStates[3] > 0 )
+  if ( *(int *)&stru_D8C2B8.m_keyStates[12] > 0 )
   {
     do
     {
-      if ( v3 < 0 || v3 >= stru_D8C2B8.m_keyStates[3] )
+      if ( v3 < 0 || v3 >= *(int *)&stru_D8C2B8.m_keyStates[12] )
         v4 = 0;
       else
-        v4 = *(void ***)(stru_D8C2B8.m_keyStates[2] + 4 * v3);
+        v4 = *(void ***)(*(_DWORD *)&stru_D8C2B8.m_keyStates[8] + 4 * v3);
       if ( ((PalScriptMgr *)v4)->IsScriptRuning(a2) )
       {
         if ( v4 )
@@ -259,8 +259,8 @@ void PalScriptMgr::RunSceneScript(int a2)
           sub_431CD0(v4);
           operator delete(v4);
         }
-        if ( v3 >= 0 && v3 < stru_D8C2B8.m_keyStates[3] )
-          *(_DWORD *)(stru_D8C2B8.m_keyStates[2] + 4 * v3) = 0;
+        if ( v3 >= 0 && v3 < *(int *)&stru_D8C2B8.m_keyStates[12] )
+          *(_DWORD *)(*(_DWORD *)&stru_D8C2B8.m_keyStates[8] + 4 * v3) = 0;
         v2 = 1;
       }
       ++v3;
@@ -268,13 +268,13 @@ void PalScriptMgr::RunSceneScript(int a2)
     while ( v3 < v1 );
     if ( v2 )
     {
-      v5 = stru_D8C2B8.m_keyStates[3];
-      for ( i = 0; i < stru_D8C2B8.m_keyStates[3]; v5 = stru_D8C2B8.m_keyStates[3] )
+      v5 = *(_DWORD *)&stru_D8C2B8.m_keyStates[12];
+      for ( i = 0; i < *(int *)&stru_D8C2B8.m_keyStates[12]; v5 = *(_DWORD *)&stru_D8C2B8.m_keyStates[12] )
       {
-        if ( i >= 0 && i < v5 && *(_DWORD *)(stru_D8C2B8.m_keyStates[2] + 4 * i) )
+        if ( i >= 0 && i < v5 && *(_DWORD *)(*(_DWORD *)&stru_D8C2B8.m_keyStates[8] + 4 * i) )
           ++i;
         else
-          ((PtrArray *)&stru_D8C2B8.m_keyStates[2])->InsertAt(i, 1);
+          ((PtrArray *)&stru_D8C2B8.m_keyStates[8])->InsertAt(i, 1);
       }
     }
   }
@@ -291,7 +291,7 @@ int PalScriptMgr::_CON_ReLoadScript()
 // 0x004324A0
 BOOL PalScriptMgr::_CON_CloseScript()
 {
-  return stru_D8C2B8.m_keyStates[3] > 0;
+  return *(_DWORD *)&stru_D8C2B8.m_keyStates[12] > 0;
 }
 
 // 0x004324B0
@@ -304,14 +304,14 @@ int PalScriptMgr::ClearAllScript(int a1)
   if ( !a1 )
     return 0;
   v1 = 0;
-  if ( stru_D8C2B8.m_keyStates[3] <= 0 )
+  if ( *(int *)&stru_D8C2B8.m_keyStates[12] <= 0 )
     return 0;
-  for ( i = (_DWORD *)stru_D8C2B8.m_keyStates[2]; ; ++i )
+  for ( i = *(_DWORD **)&stru_D8C2B8.m_keyStates[8]; ; ++i )
   {
-    v3 = v1 < 0 || v1 >= stru_D8C2B8.m_keyStates[3] ? 0 : *i;
+    v3 = v1 < 0 || v1 >= *(int *)&stru_D8C2B8.m_keyStates[12] ? 0 : *i;
     if ( v3 == a1 )
       break;
-    if ( ++v1 >= stru_D8C2B8.m_keyStates[3] )
+    if ( ++v1 >= *(int *)&stru_D8C2B8.m_keyStates[12] )
       return 0;
   }
   return 1;
@@ -328,30 +328,30 @@ int * PalScriptMgr::FindScriptByDesc(const char *a1, const char *a2)
   v2 = sub_4325A0(Buffer);
   result = (int *)v2->Destroy(0);
   if ( result )
-    BYTE1(stru_D8C2B8.m_keyStates[6]) = 1;
+    stru_D8C2B8.m_keyStates[25] = 1;
   return result;
 }
 
 // 0x00432550
 void PalScriptMgr::IfHaveScript()
 {
-  __int32 v0; // eax
+  int v0; // eax
   int i; // edi
   void *v2; // esi
 
-  v0 = stru_D8C2B8.m_keyStates[3];
+  v0 = *(_DWORD *)&stru_D8C2B8.m_keyStates[12];
   for ( i = 0; i < v0; ++i )
   {
     if ( i >= 0 && i < v0 )
     {
-      v2 = (void *)*(void **)(stru_D8C2B8.m_keyStates[2] + 4 * i);
+      v2 = (void *)*(void **)(*(_DWORD *)&stru_D8C2B8.m_keyStates[8] + 4 * i);
       if ( v2 )
       {
-        sub_431CD0(*(void ***)(stru_D8C2B8.m_keyStates[2] + 4 * i));
+        sub_431CD0(*(void ***)(*(_DWORD *)&stru_D8C2B8.m_keyStates[8] + 4 * i));
         operator delete(v2);
-        v0 = stru_D8C2B8.m_keyStates[3];
+        v0 = *(_DWORD *)&stru_D8C2B8.m_keyStates[12];
       }
     }
   }
-  sub_4326A0((int)&stru_D8C2B8.m_keyStates[2], 0, -1);
+  sub_4326A0((int)&stru_D8C2B8.m_keyStates[8], 0, -1);
 }

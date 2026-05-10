@@ -25,6 +25,9 @@ extern int dword_1895060;
 extern int dword_1895064;
 extern int dword_1895068;
 extern int dword_189506C;
+extern int dword_BFD6D0;
+extern int dword_BFD6D4;
+extern int dword_BFDA60;
 extern float flt_1895038;
 
 // 0x0053FDD0
@@ -78,22 +81,22 @@ void Parent_Data::spstr()
 // 0x0053FEC0
 struct gbRenderEffect *Parent_Data::spstr()
 {
-  gbEffectMgr *v0; // esi
+  gbEffectMgr *pEffectMgr; // esi
   struct gbRenderEffect *result; // eax
 
-  dword_1895040 = (g_Input.KeyInfo[120].Data - 800) / 2;
-  dword_1895044 = (g_Input.KeyInfo[120].HoldTime - 600) / 2;
-  v0 = (gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200);
-  dword_1895048 = (int)v0->NewTrivalEffect(0);
-  dword_189504C = (int)v0->NewRenderEffect(aGfxscriptUiTlG, 0);
-  dword_1895050 = (int)v0->NewRenderEffect(aGfxscriptUiNot, 0);
-  dword_1895068 = (int)v0->NewRenderEffect(aGfxscriptUiNot_0, 0);
-  dword_1895054 = (int)v0->NewRenderEffect(aGfxscriptUiTex, 0);
-  dword_1895058 = (int)v0->NewRenderEffect(aGfxscriptUiTex_0, 0);
-  dword_189505C = (int)v0->NewRenderEffect(aGfxscriptUiPar, 0);
-  dword_1895060 = (int)v0->NewRenderEffect(aGfxscriptUiAlp, 0);
-  dword_1895064 = (int)v0->NewRenderEffect(aGfxscriptUiAdd, 0);
-  result = (struct gbRenderEffect *)v0->NewRenderEffect(aGfxscriptGeomN, 0);
+  dword_1895040 = (dword_BFD6D0 - 800) / 2;
+  dword_1895044 = (dword_BFD6D4 - 600) / 2;
+  pEffectMgr = (gbEffectMgr *)dword_BFDA60->pEffectMgr;
+  dword_1895048 = (int)pEffectMgr->NewTrivalEffect(0);
+  dword_189504C = (int)pEffectMgr->NewRenderEffect(aGfxscriptUiTlG, 0);
+  dword_1895050 = (int)pEffectMgr->NewRenderEffect(aGfxscriptUiNot, 0);
+  dword_1895068 = (int)pEffectMgr->NewRenderEffect(aGfxscriptUiNot_0, 0);
+  dword_1895054 = (int)pEffectMgr->NewRenderEffect(aGfxscriptUiTex, 0);
+  dword_1895058 = (int)pEffectMgr->NewRenderEffect(aGfxscriptUiTex_0, 0);
+  dword_189505C = (int)pEffectMgr->NewRenderEffect(aGfxscriptUiPar, 0);
+  dword_1895060 = (int)pEffectMgr->NewRenderEffect(aGfxscriptUiAlp, 0);
+  dword_1895064 = (int)pEffectMgr->NewRenderEffect(aGfxscriptUiAdd, 0);
+  result = (struct gbRenderEffect *)pEffectMgr->NewRenderEffect(aGfxscriptGeomN, 0);
   dword_189506C = (int)result;
   return result;
 }

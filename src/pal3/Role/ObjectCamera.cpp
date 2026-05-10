@@ -3,6 +3,8 @@
 #include "pal3/gen/ObjectCamera.h"
 
 // Unnamed globals (extern)
+extern int dword_BFD6D0;
+extern int dword_BFD6D4;
 extern float flt_DE4A00;
 
 // 0x0047C570
@@ -66,7 +68,7 @@ float * ObjectCamera::Create()
   this->m_stepRotMode = 0;
   this->m_stepRot = 0.0;
   this->m_stepRotSpeed = 0.15000001;
-  LOBYTE(this->m_bStepRot) = 0;
+  this->m_bStepRot = 0;
   return (float *)this;
 }
 
@@ -90,7 +92,7 @@ void ObjectCamera::SetCameraEyePosition(struct gbGfxManager *a2)
   else
     v4 = 0;
   *this = v4;
-  ((gbCamera *)v4)->SetDimention(g_Input.KeyInfo[120].Data, g_Input.KeyInfo[120].HoldTime);
+  ((gbCamera *)v4)->SetDimention(dword_BFD6D0, dword_BFD6D4);
   v5 = (ObjectCamera *)*this;
   v5->m_camFrom.x = 0.0;
   v5->m_pCamera = (gbCamera *)1112014848;
@@ -272,7 +274,7 @@ void ObjectCamera::SetStepRotate()
   float v11; // [esp+4h] [ebp-4h]
   float v12; // [esp+4h] [ebp-4h]
 
-  if ( LOBYTE(this->m_bStepRot) )
+  if ( this->m_bStepRot )
   {
     m_stepRotMode = this->m_stepRotMode;
     if ( m_stepRotMode )
@@ -289,7 +291,7 @@ void ObjectCamera::SetStepRotate()
             v9 = this->m_stepRot + this->m_nyaw;
             if ( v4 >= v9 )
             {
-              LOBYTE(this->m_bStepRot) = 0;
+              this->m_bStepRot = 0;
               this->m_yaw = v9;
               this->m_nyaw = v9;
             }
@@ -302,7 +304,7 @@ void ObjectCamera::SetStepRotate()
           v10 = this->m_stepRot + this->m_npitch;
           if ( v5 >= v10 )
           {
-            LOBYTE(this->m_bStepRot) = 0;
+            this->m_bStepRot = 0;
             this->m_pitch = v10;
             this->m_npitch = v10;
           }
@@ -321,7 +323,7 @@ void ObjectCamera::SetStepRotate()
           v11 = this->m_nyaw - this->m_stepRot;
           if ( v7 <= v11 )
           {
-            LOBYTE(this->m_bStepRot) = 0;
+            this->m_bStepRot = 0;
             this->m_yaw = v11;
             this->m_nyaw = v11;
           }
@@ -334,7 +336,7 @@ void ObjectCamera::SetStepRotate()
         v12 = this->m_npitch - this->m_stepRot;
         if ( v8 <= v12 )
         {
-          LOBYTE(this->m_bStepRot) = 0;
+          this->m_bStepRot = 0;
           this->m_pitch = v12;
           this->m_npitch = v12;
         }
@@ -374,10 +376,10 @@ void ObjectCamera::Update()
   this->m_side.x = 0.0;
   this->m_forward.z = 0.0;
   this->m_side.z = 0.0;
-  LOBYTE(this->m_bStepRot) = 0;
+  this->m_bStepRot = 0;
   *((_DWORD *)this + 36) = 0;
   *((_DWORD *)this + 35) = 0;
-  BYTE1(this->m_bStepRot) = 0;
+  *(&this->m_bStepRot + 1) = 0;
   *((_DWORD *)this + 31) = 0;
   *((_DWORD *)this + 32) = 0;
   *((_DWORD *)this + 33) = 0;

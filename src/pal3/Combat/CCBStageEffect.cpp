@@ -41,7 +41,7 @@ CCBStageEffect::CCBStageEffect()
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   g_pVFileSys->Seek(v2, 0, 1);
-  g_pVFileSys->Read(&this->m_Light[6].m_ToWorld, 0x5A00u, v3);
+  g_pVFileSys->Read(&this->m_Light[5].m_ToView.m[3][3], 0x5A00u, v3);
   g_pVFileSys->CloseFile(v3);
   dword_17AB584 = 1;
   v8 = -1;
@@ -72,7 +72,7 @@ CCBStageEffect::~CCBStageEffect()
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   g_pVFileSys->Seek(v2, 0, 1);
-  g_pVFileSys->Write(&this->m_Light[6].m_ToWorld, 0x5A00u, v3);
+  g_pVFileSys->Write(&this->m_Light[5].m_ToView.m[3][3], 0x5A00u, v3);
   g_pVFileSys->CloseFile(v3);
   v8 = -1;
   ((OpenNULLFile *)&v5)->OpenNULLFile();

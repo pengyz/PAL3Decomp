@@ -3,5 +3,5 @@
   "address": "0x004F39A0",
   "size_bytes": 74,
   "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBRoleState::GetRoleLevel(CCBRoleState *this, int roleIdx)\n{\n  int nSpeed; // edi\n  __int32 *p_nSpeed; // edx\n  int v5; // [esp+10h] [ebp+8h]\n\n  nSpeed = this->m_Role[roleIdx].nSpeed;\n  p_nSpeed = &this->m_Role[roleIdx].nSpeed;\n  *p_nSpeed = nSpeed + v5;\n  if ( nSpeed + v5 < 0 )\n    *p_nSpeed = 0;\n  CCBSystem::GetCmdSlot(*(CCBSystem **)(this->m_pCBSystem + 12), roleIdx);\n  return nSpeed;\n}\n"
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBRoleState::GetRoleLevel(CCBRoleState *this, int roleIdx)\n{\n  int v2; // edi\n  int *v3; // edx\n  int v5; // [esp+10h] [ebp+8h]\n\n  v2 = *(&this->m_Role[0].nSpeed + 223 * roleIdx);\n  v3 = &this->m_Role[0].nSpeed + 223 * roleIdx;\n  *v3 = v2 + v5;\n  if ( v2 + v5 < 0 )\n    *v3 = 0;\n  CCBSystem::GetCmdSlot((CCBSystem *)this->m_pCBSystem->m_pAttackSequen, roleIdx);\n  return v2;\n}\n"
 }

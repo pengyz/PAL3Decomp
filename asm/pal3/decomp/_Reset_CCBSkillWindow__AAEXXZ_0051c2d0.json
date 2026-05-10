@@ -3,5 +3,5 @@
   "address": "0x0051C2D0",
   "size_bytes": 88,
   "signature": "int __thiscall(CCBSkillWindow *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBSkillWindow::Reset(CCBSkillWindow *this)\n{\n  *((_DWORD *)this + 42) = 0;\n  *((_DWORD *)this + 43) = -1;\n  this->m_childs.m_pData = 0;\n  this->m_childs.m_nSize = 0;\n  this->m_childs.m_nMaxSize = 0;\n  this->m_childs.m_nGrowBy = 0;\n  this->m_bcreateok = 0;\n  this->m_bvisible = 0;\n  this->m_benable = 0;\n  this->m_bfocus = 0;\n  this->m_pbktex = 0;\n  memset(&this->m_pBack, 0, 0x2Cu);\n  *((_DWORD *)this + 38) = 0;\n  *((_DWORD *)this + 39) = 0;\n  *((_DWORD *)this + 40) = 0;\n  *((_DWORD *)this + 41) = 0;\n  return 0;\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBSkillWindow::Reset(CCBSkillWindow *this)\n{\n  *((_DWORD *)this + 42) = 0;\n  *((_DWORD *)this + 43) = -1;\n  this->m_pBack = 0;\n  this->m_pDescription = 0;\n  this->m_pSkillList[0] = 0;\n  *((_DWORD *)this + 21) = 0;\n  *((_DWORD *)this + 22) = 0;\n  *((_DWORD *)this + 23) = 0;\n  *((_DWORD *)this + 24) = 0;\n  *((_DWORD *)this + 25) = 0;\n  *((_DWORD *)this + 26) = 0;\n  memset((char *)this + 108, 0, 0x2Cu);\n  *((_DWORD *)this + 38) = 0;\n  *((_DWORD *)this + 39) = 0;\n  *((_DWORD *)this + 40) = 0;\n  *((_DWORD *)this + 41) = 0;\n  return 0;\n}\n"
 }

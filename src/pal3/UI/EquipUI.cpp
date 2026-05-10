@@ -41,40 +41,40 @@ extern void *off_56F040;
 int EquipUI::Create()
 {
   ((UIListBox *)this)->UIListBox();
-  this->m_bcreateok = 800;
-  this->m_bvisible = 600;
-  this->m_benable = 0;
-  this->m_bfocus = 0;
-  this->buf[244] = 0;
-  *(_DWORD *)&this->buf[252] = 0;
-  LOBYTE(this->m_SelNum) = 0;
-  BYTE1(this->m_SelNum) = 0;
-  ((UIFrameWnd *)&this->m_ListNum)->UIFrameWnd();
-  ((UIFrameWnd *)&this->m_EquipData.m_Name[104])->UIFrameWnd();
-  ((UIFrameWnd *)&this->m_EquipData.m_C)->UIFrameWnd();
-  ((UIFrameWnd *)&this->m_EquipData.m_BeginTalk[144])->UIFrameWnd();
-  ((UIFrameWnd *)&this->m_EquipData.m_EntryBuy[40])->UIFrameWnd();
-  ((UIFrameWnd *)&this->m_EquipData.m_EntryBuy[192])->UIFrameWnd();
-  ((UIScene *)&this->m_EquipData.m_EntrySale[88])->_UIScene();
-  ((UIScene *)&this->m_EquipData.m_NormalAcptTalk[176])->_UIScene();
-  ((UIScene *)&this->m_EquipData.m_NoEnoughMoney[8])->_UIScene();
-  ((UIScene *)&this->m_EquipData.m_Leave[96])->_UIScene();
-  ((UIScene *)&this->m_EquipData.m_HarshTalkbuy[184])->_UIScene();
-  ((UIScene *)&this->m_EquipData.m_AcptTalk[25][0][2])->_UIScene();
-  ((UIScene *)&this->m_EquipData.m_AcptTalk[59][1][1])->_UIScene();
-  ((UIScene *)this->m_EquipData.m_AcptTalk[94])->_UIScene();
-  ((UIScene *)&this->m_EquipData.m_AcptTalk[128][0][4])->_UIScene();
-  ((UIFrameWnd *)&this->m_EquipData.m_AcptTalk[162][1][3])->UIFrameWnd();
-  ((UIFrameWnd *)&this->m_EquipData.m_AcptTalk[179][1][1])->UIFrameWnd();
-  ((UIFrameWnd *)&this->m_EquipData.m_AcptTalk[194][1][3])->UIFrameWnd();
+  *(_DWORD *)&this->buf[8] = 800;
+  *(_DWORD *)&this->buf[12] = 600;
+  *(_DWORD *)&this->buf[16] = 0;
+  *(_DWORD *)&this->buf[20] = 0;
+  LOBYTE(this->j) = 0;
+  *(_DWORD *)&this->_isCreatable = 0;
+  LOBYTE(this->_flashSpeed) = 0;
+  BYTE1(this->_flashSpeed) = 0;
+  ((UIFrameWnd *)&this->m_EquipData)->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_Name[148])->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_BeginTalk[36])->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_BeginTalk[188])->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_EntryBuy[84])->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_EntryBuy[236])->UIFrameWnd();
+  ((UIScene *)&this->m_EquipData.m_EntrySale[132])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_NormalAcptTalk[220])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_NoEnoughMoney[52])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_Leave[140])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_HarshTalkbuy[228])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_AcptTalk[29][1][1])->_UIScene();
+  ((UIScene *)this->m_EquipData.m_AcptTalk[64])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_AcptTalk[98][0][4])->_UIScene();
+  ((UIScene *)&this->m_EquipData.m_AcptTalk[132][1][3])->_UIScene();
+  ((UIFrameWnd *)&this->m_EquipData.m_AcptTalk[167][0][2])->UIFrameWnd();
+  ((UIFrameWnd *)this->m_EquipData.m_AcptTalk[184])->UIFrameWnd();
+  ((UIFrameWnd *)&this->m_EquipData.m_AcptTalk[199][0][2])->UIFrameWnd();
   `eh vector constructor iterator'(
-    this->m_EquipData.m_AcptTalk[210][0],
+    &this->m_EquipData.m_AcptTalk[214][0][4],
     0x248u,
     128,
     (void (*)(void *))sub_4B4690,
     (void (*)(void *))sub_4B47E0);
   `eh vector constructor iterator'(
-    (char *)&this->m_ArrowNum[1][0][1].m_FVF,
+    (char *)&this->m_Arrow[7][1][1].m_texty,
     0x248u,
     128,
     (void (*)(void *))sub_4B4690,
@@ -112,29 +112,29 @@ int EquipUI::Create()
   *((_DWORD *)this + 44020) = 0;
   *((_DWORD *)this + 44021) = 0;
   ((UIFrameWnd *)((char *)this + 176092))->UIFrameWnd();
-  this->m_fontcolor.ColorQuadFmt = (int)&off_56F040;
-  this->buf[249] = 0;
-  this->buf[248] = 0;
-  this->buf[246] = 0;
-  this->buf[245] = 0;
-  this->buf[247] = 0;
+  *(_DWORD *)this->_pad_0000 = &off_56F040;
+  BYTE1(this->k) = 0;
+  LOBYTE(this->k) = 0;
+  BYTE2(this->j) = 0;
+  BYTE1(this->j) = 0;
+  HIBYTE(this->j) = 0;
   *((_DWORD *)this + 38622) = 0;
   *((_DWORD *)this + 38623) = 0;
   *((_DWORD *)this + 38624) = 0;
   *((_DWORD *)this + 44061) = 0;
-  return (int)this;
+  return (int)this->_pad_0000;
 }
 
 // 0x004A4220
 void EquipUI::Init()
 {
-  int m_bcreateok; // eax
-  int m_bvisible; // ecx
+  int v2; // eax
+  int v3; // ecx
   int v4; // eax
   int v5; // edx
   const CHAR *v6; // ebp
   UIWnd **v7; // edi
-  __int32 m_C; // edx
+  int v8; // edx
   int v9; // eax
   int v10; // edx
   char *v11; // edi
@@ -177,34 +177,38 @@ void EquipUI::Init()
   int v48; // [esp+5Ch] [ebp-44h]
   int v49; // [esp+60h] [ebp-40h]
   int v50[4]; // [esp+64h] [ebp-3Ch] BYREF
-  char *v51; // [esp+74h] [ebp-2Ch] BYREF
+  int v51; // [esp+74h] [ebp-2Ch] BYREF
   int v52; // [esp+78h] [ebp-28h]
-  char *v53; // [esp+7Ch] [ebp-24h]
+  int v53; // [esp+7Ch] [ebp-24h]
   int v54; // [esp+80h] [ebp-20h]
   _DWORD v55[4]; // [esp+84h] [ebp-1Ch] BYREF
   int v56; // [esp+9Ch] [ebp-4h]
 
-  m_bcreateok = this->m_bcreateok;
-  m_bvisible = this->m_bvisible;
-  this->m_childs.m_nMaxSize = m_bcreateok;
-  this->m_childs.m_nSize = 0;
-  this->m_childs.m_pData = 0;
-  this->m_childs.m_nGrowBy = m_bvisible;
-  ((UIListBox *)this)->SetSelTexture(-1, (int)this->m_childs.m_pData, this->m_childs.m_nSize, this->m_childs.m_nMaxSize, this->m_childs.m_nGrowBy, 0);
-  v4 = this->m_childs.m_nSize + 18;
-  v51 = (char *)this->m_childs.m_pData + 592;
+  v2 = *(_DWORD *)&this->buf[8];
+  v3 = *(_DWORD *)&this->buf[12];
+  *(_DWORD *)this->buf = v2;
+  this->bkWndY = 0;
+  this->bkWndX = 0;
+  *(_DWORD *)&this->buf[4] = v3;
+  ((UIListBox *)this)->SetSelTexture(-1, this->bkWndX, this->bkWndY, *(_DWORD *)this->buf, *(_DWORD *)&this->buf[4], 0);
+  v4 = this->bkWndY + 18;
+  v51 = this->bkWndX + 592;
   v52 = v4;
-  v53 = (char *)v51 + 192;
+  v53 = v51 + 192;
   v54 = v4 + 526;
-  (*((void (**)(int **, int, char **, EquipUI *))this->m_ListNum + 4))(&this->m_ListNum, 161, &v51, this);
-  ((UIWnd *)&this->m_ListNum)->CreateFromTemplate(aUiGamemainuiSt_1, byte_5CEFA8);
-  v5 = *(_DWORD *)&this->m_EquipData.m_Name[104];
+  (*(void (**)(st_Manager *, int, int *, EquipUI *))(*(_DWORD *)&this->m_EquipData.m_Type + 16))(
+    &this->m_EquipData,
+    161,
+    &v51,
+    this);
+  ((UIWnd *)&this->m_EquipData)->CreateFromTemplate(aUiGamemainuiSt_1, byte_5CEFA8);
+  v5 = *(_DWORD *)&this->m_EquipData.m_Name[148];
   v52 += 26;
   v51 = v53;
   v54 = v52 + 526;
   v53 += 17;
-  (*(void (**)(char *, int, char **, EquipUI *))(v5 + 16))(&this->m_EquipData.m_Name[104], 161, &v51, this);
-  ((UIWnd *)&this->m_EquipData.m_Name[104])->CreateFromTemplate(aUiGamemainuiCo_23, byte_5CEFA8);
+  (*(void (**)(char *, int, int *, EquipUI *))(v5 + 16))(&this->m_EquipData.m_Name[148], 161, &v51, this);
+  ((UIWnd *)&this->m_EquipData.m_Name[148])->CreateFromTemplate(aUiGamemainuiCo_23, byte_5CEFA8);
   v55[1] = 14;
   v55[0] = 626;
   v55[2] = 674;
@@ -213,31 +217,31 @@ void EquipUI::Init()
   v7 = (UIWnd **)((char *)this + 174080);
   do
   {
-    ((void (*)(UIWnd **, int, _DWORD *, EquipUI *))(*v7)->m_fontcolor.Alpha)(v7, 161, v55, this);
+    ((void (*)(UIWnd **, int, _DWORD *, EquipUI *))(*v7)->m_wndcolor.ColorQuadFmt)(v7, 161, v55, this);
     v7->CreateFromTemplate(v6, byte_5CEFA8);
-    ((void (*)(UIWnd **, _DWORD))(*v7)->m_fontcolor.ColorQuadFmt)(v7, 0);
+    (*(void (**)(UIWnd **, _DWORD))(*v7)->_pad_0000)(v7, 0);
     v6 += 256;
     v7 += 38;
   }
   while ( (int)v6 < (int)"UI\\GameMainUI\\State\\Portrait0.tga" );
-  m_C = this->m_EquipData.m_C;
-  v46 = (int)(v53 - 205);
-  v48 = (int)(v53 - 2);
+  v8 = *(_DWORD *)&this->m_EquipData.m_BeginTalk[36];
+  v46 = v53 - 205;
+  v48 = v53 - 205 + 203;
   v47 = 0;
   v49 = 64;
-  (*(void (**)(__int32 *, int, int *, EquipUI *))(m_C + 16))(&this->m_EquipData.m_C, 161, &v46, this);
-  ((UIWnd *)&this->m_EquipData.m_C)->CreateFromTemplate(aUiGamemainuiCo_19, byte_5CEFA8);
-  v9 = *(_DWORD *)&this->m_EquipData.m_AcptTalk[194][1][3];
+  (*(void (**)(char *, int, int *, EquipUI *))(v8 + 16))(&this->m_EquipData.m_BeginTalk[36], 161, &v46, this);
+  ((UIWnd *)&this->m_EquipData.m_BeginTalk[36])->CreateFromTemplate(aUiGamemainuiCo_19, byte_5CEFA8);
+  v9 = *(_DWORD *)&this->m_EquipData.m_AcptTalk[199][0][2];
   v47 = -4;
   v46 = 618;
   v48 = 738;
   v49 = 28;
   (*(void (**)(char *, int, int *, EquipUI *))(v9 + 16))(
-    &this->m_EquipData.m_AcptTalk[194][1][3],
+    &this->m_EquipData.m_AcptTalk[199][0][2],
     161,
     &v46,
     this);
-  ((UIWnd *)&this->m_EquipData.m_AcptTalk[194][1][3])->SetShow(0);
+  ((UIWnd *)&this->m_EquipData.m_AcptTalk[199][0][2])->SetShow(0);
   if ( gbColorQuad::ColorQuadFmt )
   {
     *(_WORD *)((char *)&id + 1) = -5;
@@ -249,19 +253,19 @@ void EquipUI::Init()
     LOBYTE(id) = -1;
   }
   HIBYTE(id) = -1;
-  ((UIWnd *)&this->m_EquipData.m_AcptTalk[194][1][3])->GetChild((int)&id);
-  v10 = *(_DWORD *)&this->m_EquipData.m_AcptTalk[179][1][1];
-  v11 = (char *)&this->m_EquipData.m_AcptTalk[179][1][1];
+  ((UIWnd *)&this->m_EquipData.m_AcptTalk[199][0][2])->GetChild((int)&id);
+  v10 = *(_DWORD *)&this->m_EquipData.m_AcptTalk[184][0][0];
+  v11 = (char *)this->m_EquipData.m_AcptTalk[184][0];
   v47 = 16;
   v46 = 668;
   v48 = 748;
   v49 = 48;
   (*(void (**)(char *, int, int *, EquipUI *))(v10 + 16))(
-    &this->m_EquipData.m_AcptTalk[179][1][1],
+    this->m_EquipData.m_AcptTalk[184][0],
     161,
     &v46,
     this);
-  ((UIWnd *)&this->m_EquipData.m_AcptTalk[179][1][1])->SetShow(0);
+  ((UIWnd *)this->m_EquipData.m_AcptTalk[184])->SetShow(0);
   if ( gbColorQuad::ColorQuadFmt )
   {
     v44 = -5;
@@ -273,7 +277,7 @@ void EquipUI::Init()
     v43 = -1;
   }
   v45 = -1;
-  ((UIWnd *)&this->m_EquipData.m_AcptTalk[179][1][1])->GetChild((int)&v43);
+  ((UIWnd *)this->m_EquipData.m_AcptTalk[184])->GetChild((int)&v43);
   sub_4A26D0((int)this);
   memset(v50, 0, 12);
   v50[3] = 32;
@@ -362,7 +366,7 @@ void EquipUI::Init()
   sub_4B0820(*((_DWORD *)this + 44020), (int)this);
   byte_DE5F92 = 0;
   byte_DE5F93 = 0;
-  BYTE1(this->m_SelNum) = 1;
+  BYTE1(this->_flashSpeed) = 1;
 }
 
 // 0x004A48B0
@@ -372,7 +376,7 @@ void EquipUI::InitSlots()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->buf[245] = data;
+    BYTE1(this->j) = data;
     ((UIBase *)this)->SetItemData(0, data);
     sub_48A2F0(*((char **)this + 44015), data);
     sub_4945C0(*((char **)this + 44016), data);
@@ -381,7 +385,7 @@ void EquipUI::InitSlots()
   }
   else
   {
-    this->buf[245] = 0;
+    BYTE1(this->j) = 0;
     ((UIBase *)this)->SetItemData(0, 0);
     sub_48A2F0(*((char **)this + 44015), 0);
     sub_4945C0(*((char **)this + 44016), 0);

@@ -3,5 +3,5 @@
   "address": "0x004352D0",
   "size_bytes": 79,
   "signature": "gbCamera *__cdecl()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\ngbCamera *__cdecl GetCamera_1()\n{\n  char *String; // esi\n  char *v1; // edi\n  gbCamera *result; // eax\n  float pParams[3]; // [esp+8h] [ebp-Ch] BYREF\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  result = (gbCamera *)PalScript::GetString();\n  if ( String && v1 )\n  {\n    if ( result )\n    {\n      pParams[0] = *((float *)String + 1);\n      pParams[1] = *((float *)v1 + 1);\n      pParams[2] = result->OrthoSize;\n      return (gbCamera *)CameraCtrl::InitParams((CameraCtrl *)g_Input.KeyInfo[177].CountMode, pParams);\n    }\n  }\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\ngbCamera *__cdecl GetCamera_1()\n{\n  char *String; // esi\n  char *v1; // edi\n  gbCamera *result; // eax\n  float pParams[3]; // [esp+8h] [ebp-Ch] BYREF\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  result = (gbCamera *)PalScript::GetString();\n  if ( String && v1 )\n  {\n    if ( result )\n    {\n      pParams[0] = *((float *)String + 1);\n      pParams[1] = *((float *)v1 + 1);\n      pParams[2] = result->OrthoSize;\n      return (gbCamera *)CameraCtrl::InitParams((CameraCtrl *)dword_BFDA68, pParams);\n    }\n  }\n  return result;\n}\n"
 }

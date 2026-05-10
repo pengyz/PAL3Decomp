@@ -16,7 +16,7 @@ int CCBAttackSequen::Update()
   float *p_fLastTime; // eax
   int v5; // ecx
 
-  if ( BYTE1(this->m_Sequen[8].nSlot2) || !LOBYTE(this->m_Sequen[8].nSlot2) )
+  if ( this->m_bPause || !this->m_bEnable )
   {
     p_fLastTime = (float *)&this->m_Sequen[0].fLastTime;
     v5 = 11;
@@ -101,25 +101,25 @@ char CCBAttackSequen::ProcessQueue()
 char CCBAttackSequen::CheckComplete()
 {
   int v2; // edi
-  char *v3; // esi
+  unsigned __int8 *p_bSlot2Running; // esi
   char result; // al
   double v5; // st7
 
   v2 = 76;
-  v3 = (char *)&this->m_Sequen[0].bySpeed1 + 2;
+  p_bSlot2Running = (unsigned __int8 *)&this->m_Sequen[0].bSlot2Running;
   do
   {
-    result = v3[2];
+    result = p_bSlot2Running[2];
     if ( result )
     {
-      if ( *v3 )
-        v5 = (double)*(int *)(v3 - 10) * 0.0078260871 + 659.0;
+      if ( *p_bSlot2Running )
+        v5 = (double)*(int *)(p_bSlot2Running - 10) * 0.0078260871 + 659.0;
       else
-        v5 = (double)*(int *)(v3 - 14) * 0.017130435 + 460.0;
-      result = ((UIWnd *)*(UIWnd **)((char *)&this->m_pUI->m_fontcolor.ColorQuadFmt + v2))->ScreenToClient((__int64)v5, 8);
+        v5 = (double)*(int *)(p_bSlot2Running - 14) * 0.017130435 + 460.0;
+      result = ((UIWnd *)*(UIWnd **)&this->m_pUI->_pad_0000[v2])->ScreenToClient((__int64)v5, 8);
     }
     v2 += 4;
-    v3 += 40;
+    p_bSlot2Running += 40;
   }
   while ( v2 < 120 );
   return result;
@@ -148,21 +148,20 @@ int CCBAttackSequen::AdvanceStep()
   do
   {
     m_pRole = (CCBRoleState *)this->m_pRole;
-    if ( m_pRole->m_Role[v1].bValid )
+    if ( *(&m_pRole->m_Role[0].bValid + v1 * 4) )
     {
-      if ( !m_pRole->IsRoleAlive(roleIdx) || this->m_pRole->m_Role[v1].nSpecStateRound[40] == 1 )
+      if ( !m_pRole->IsRoleAlive(roleIdx)
+        || LOBYTE(this->m_pRole->m_Role[0].nSpecStateRound[v1 + 10]) == 1 )
       {
-        (***(void (****)(_DWORD, _DWORD))((char *)&this->m_pUI->m_fontcolor.ColorQuadFmt + v3))(
-          *(int *)((char *)&this->m_pUI->m_fontcolor.ColorQuadFmt + v3),
+        (***(void (****)(_DWORD, _DWORD))&this->m_pUI->_pad_0000[v3])(
+          *(_DWORD *)&this->m_pUI->_pad_0000[v3],
           0);
       }
       else
       {
         m_pUI = (CCBUI *)this->m_pUI;
-        if ( *((_DWORD *)m_pUI->m_childs.m_pData + 14) == 1 )
-          (***(void (****)(_DWORD, int))((char *)&m_pUI->m_fontcolor.ColorQuadFmt + v3))(
-            *(int *)((char *)&m_pUI->m_fontcolor.ColorQuadFmt + v3),
-            1);
+        if ( *(_DWORD *)&m_pUI->m_pAttackSequenBack->_pad_0000[56] == 1 )
+          (***(void (****)(_DWORD, int))&m_pUI->_pad_0000[v3])(*(_DWORD *)&m_pUI->_pad_0000[v3], 1);
         v14 = -1;
         if ( *(_BYTE *)(*(_DWORD *)((char *)this->m_pCBSystem->m_pStage + v3 - 52) + 280) )
         {
@@ -182,14 +181,14 @@ int CCBAttackSequen::AdvanceStep()
           }
           BYTE1(v14) = v7;
           LOBYTE(v14) = v7;
-          sub_446030(*(_DWORD **)((char *)&this->m_pUI->m_fontcolor.ColorQuadFmt + v3));
+          sub_446030(*(_DWORD **)&this->m_pUI->_pad_0000[v3]);
         }
         v14->UpdateAnim();
       }
     }
     v3 += 4;
     result = roleIdx + 1;
-    ++v1;
+    v1 += 223;
     ++roleIdx;
   }
   while ( v3 < 120 );

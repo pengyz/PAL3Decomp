@@ -3,5 +3,5 @@
   "address": "0x00446010",
   "size_bytes": 12,
   "signature": "int __thiscall(UIWnd *this, int id)",
-  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nint __thiscall UIWnd::GetChild(UIWnd *this, int id)\n{\n  this->m_fontcolor.Blue = *(_DWORD *)id;\n  return id;\n}\n"
+  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nint __thiscall UIWnd::GetChild(UIWnd *this, int id)\n{\n  this->m_fontcolor.ColorQuadFmt = *(_DWORD *)id;\n  return id;\n}\n"
 }

@@ -273,7 +273,7 @@ BOOL UIScene::Update2(int a2, int a3)
   }
   if ( !*((_DWORD *)this + 15) )
   {
-    if ( v4 && g_Input.m_shiftedKeyStates[207] == 1 )
+    if ( v4 && g_Input.KeyInfo[0].PressTime == 1 )
     {
       v6 = *((_DWORD *)this + 8);
       if ( v6 )
@@ -314,7 +314,7 @@ LABEL_27:
     }
     goto LABEL_30;
   }
-  if ( g_Input.m_shiftedKeyStates[207] == 1 && (g_Input.m_shiftedKeyStates[204] & 0xF) == 2 && *((_BYTE *)this + 68) )
+  if ( g_Input.KeyInfo[0].PressTime == 1 && (g_Input.KeyInfo[0].Data & 0xF) == 2 && *((_BYTE *)this + 68) )
   {
     v8 = *((_DWORD *)this + 8);
     *((_DWORD *)this + 24) = 2;
@@ -325,7 +325,7 @@ LABEL_27:
       goto LABEL_30;
     }
   }
-  else if ( g_Input.m_shiftedKeyStates[207] == 1 )
+  else if ( g_Input.KeyInfo[0].PressTime == 1 )
   {
     v11 = *((_DWORD *)this + 8);
     *((_DWORD *)this + 24) = 2;
@@ -344,7 +344,7 @@ LABEL_27:
   }
   *((_BYTE *)this + 204) = 0;
 LABEL_30:
-  if ( *((_DWORD *)this + 24) == 2 && (g_Input.m_shiftedKeyStates[204] & 0xF) != 1 )
+  if ( *((_DWORD *)this + 24) == 2 && (g_Input.KeyInfo[0].Data & 0xF) != 1 )
   {
     if ( v4 )
     {
@@ -385,7 +385,7 @@ int UIScene::Create2()
   int v19; // ecx
   int v20; // eax
   int v21; // eax
-  gbColorQuad v22; // [esp-Ch] [ebp-94h] BYREF
+  gbColorQuad v22[2]; // [esp-Ch] [ebp-94h] BYREF
   int v23; // [esp+10h] [ebp-78h]
   int v24; // [esp+14h] [ebp-74h]
   int v25; // [esp+18h] [ebp-70h]
@@ -423,22 +423,22 @@ int UIScene::Create2()
   if ( !v12 )
     goto LABEL_6;
   v13 = *((_DWORD *)this + 24);
-  v22.Green = *((_DWORD *)this + v13 + 46);
-  v22.Blue = 276;
-  v22.ColorQuadFmt = v13;
-  ((gbColorQuad *)&v22)->gbColorQuad((struct gbColorQuad *)((char *)this + 8));
+  v22[0].Color = *((_DWORD *)this + v13 + 46);
+  *(_DWORD *)&v22[0].Blue = 276;
+  v22[0].ColorQuadFmt = v13;
+  v22->gbColorQuad((struct gbColorQuad *)((char *)this + 8));
   v14 = ((gbTextureArray *)v32)->gbTextureArray(v12);
-  ((_TextureLib_Data *)(_DWORD *)this + 4)->_CheckItem(v31, v14, v22.ColorQuadFmt, v22.Blue, (float *)v22.Green);
+  ((_TextureLib_Data *)(_DWORD *)this + 4)->_CheckItem(v31, v14, v22[0].ColorQuadFmt, *(unsigned int *)&v22[0].Blue, (float *)v22[0].Color);
   if ( !*((_DWORD *)this + 15) )
   {
     if ( *((_DWORD *)this + 49) )
     {
-      v22.Green = *((_DWORD *)this + 50);
-      v22.Blue = 276;
-      v22.ColorQuadFmt = v22.Green;
-      ((gbColorQuad *)&v22)->gbColorQuad((struct gbColorQuad *)((char *)this + 8));
+      v22[0].Color = *((_DWORD *)this + 50);
+      *(_DWORD *)&v22[0].Blue = 276;
+      v22[0].ColorQuadFmt = v22[0].Color;
+      v22->gbColorQuad((struct gbColorQuad *)((char *)this + 8));
       v15 = ((gbTextureArray *)v32)->gbTextureArray(*((struct gbTexture **)this + 49));
-      ((_TextureLib_Data *)(_DWORD *)this + 4)->_CheckItem((int *)this + 4, v15, v22.ColorQuadFmt, v22.Blue, (float *)v22.Green);
+      ((_TextureLib_Data *)(_DWORD *)this + 4)->_CheckItem((int *)this + 4, v15, v22[0].ColorQuadFmt, *(unsigned int *)&v22[0].Blue, (float *)v22[0].Color);
       goto LABEL_7;
     }
 LABEL_6:
@@ -468,15 +468,15 @@ LABEL_7:
     }
     if ( *((_BYTE *)this + 112) )
     {
-      v22.Green = 1;
-      v22.Blue = 2;
+      v22[0].Color = 1;
+      *(_DWORD *)&v22[0].Blue = 2;
     }
     else
     {
-      v22.Green = *((_DWORD *)this + 52);
-      v22.Blue = 1;
+      v22[0].Color = *((_DWORD *)this + 52);
+      *(_DWORD *)&v22[0].Blue = 1;
     }
-    UIRenderPar((const char *)this + 212, &v27, &v26, v22.Blue, v22.Green);
+    UIRenderPar((const char *)this + 212, &v27, &v26, *(int *)&v22[0].Blue, v22[0].Color);
   }
   return ((UIWnd *)this)->GetID();
 }

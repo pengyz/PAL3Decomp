@@ -117,8 +117,8 @@ LABEL_29:
 int SceneObj::CreateUI()
 {
   ((UIListBox *)this)->UIListBox();
-  ((UIItem *)&this->mOBBox[15])->Refresh();
-  ((UIItem *)&this->m_common[20])->Refresh();
+  ((UIItem *)&this->mParam.f6)->Refresh();
+  ((UIItem *)&this->m_info.reserve[6])->Refresh();
   ((UIWnd *)((char *)this + 3096))->ctor_F7F0();
   ((UIFrameWnd *)((char *)this + 3340))->UIFrameWnd();
   *(_DWORD *)this->_pad_0000 = &off_5708E8;
@@ -144,7 +144,7 @@ void SceneObj::DestroyInternal()
   *(_DWORD *)this->_pad_0000 = &off_5708E8;
   ((UIFrameWnd *)((char *)this + 3340))->_UIFrameWnd();
   ((UIWnd *)((char *)this + 3096))->~UIWnd();
-  ((UIItem *)&this->m_common[20])->UIItem();
-  ((UIItem *)&this->mOBBox[15])->UIItem();
+  ((UIItem *)&this->m_info.reserve[6])->UIItem();
+  ((UIItem *)&this->mParam.f6)->UIItem();
   ((UIWnd *)this)->~UIWnd();
 }

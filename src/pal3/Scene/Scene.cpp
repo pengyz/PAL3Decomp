@@ -27,18 +27,18 @@ int Scene::LoadConfig(void *pConfig)
   unsigned int v18; // [esp+10h] [ebp-8h]
   _DWORD *v19; // [esp+14h] [ebp-4h]
 
-  v3 = (char *)*(char **)&this->m_info[8];
+  v3 = (char *)*(char **)&this->m_info.cityname[8];
   v4 = v3;
-  if ( (*(_DWORD *)&this->m_info[12] - (int)v3) / 12 )
+  if ( (*(_DWORD *)&this->m_info.cityname[12] - (int)v3) / 12 )
   {
     v3->Insert(v3, v3 + 12);
-    ((Array *)*(void **)&this->m_info[8])->Erase(1 - (*(_DWORD *)&this->m_info[8] - (int)v4) / 12, pConfig);
-    v15 = (char *)*(char **)&this->m_info[8];
+    ((Array *)*(void **)&this->m_info.cityname[8])->Erase(1 - (*(_DWORD *)&this->m_info.cityname[8] - (int)v4) / 12, pConfig);
+    v15 = (char *)*(char **)&this->m_info.cityname[8];
     v16 = v4;
     if ( v4 == v15 )
     {
-      result = *(_DWORD *)&this->m_info[8] + 12;
-      *(_DWORD *)&this->m_info[8] = result;
+      result = *(_DWORD *)&this->m_info.cityname[8] + 12;
+      *(_DWORD *)&this->m_info.cityname[8] = result;
     }
     else
     {
@@ -51,13 +51,13 @@ int Scene::LoadConfig(void *pConfig)
         *((_DWORD *)v17 + 2) = *((_DWORD *)pConfig + 2);
       }
       while ( v16 != v15 );
-      result = *(_DWORD *)&this->m_info[8] + 12;
-      *(_DWORD *)&this->m_info[8] = result;
+      result = *(_DWORD *)&this->m_info.cityname[8] + 12;
+      *(_DWORD *)&this->m_info.cityname[8] = result;
     }
   }
   else
   {
-    v5 = *(_DWORD *)&this->m_info[4];
+    v5 = *(_DWORD *)&this->m_info.cityname[4];
     if ( !v5 || (v6 = (int)&v3[-v5] / 12, v6 <= 1) )
       v6 = 1;
     if ( v5 )
@@ -69,7 +69,7 @@ int Scene::LoadConfig(void *pConfig)
     if ( (int)(v7 + v6) < 0 )
       v8 = 0;
     v9 = (_DWORD *)operator new(12 * v8);
-    v10 = (char *)*(char **)&this->m_info[4];
+    v10 = (char *)*(char **)&this->m_info.cityname[4];
     v19 = v9;
     for ( i = v9; v10 != v4; i += 3 )
     {
@@ -77,22 +77,22 @@ int Scene::LoadConfig(void *pConfig)
       v10 += 12;
     }
     i->Erase(1, pConfig);
-    v4->Insert(*(void **)&this->m_info[8], i + 3);
-    nullsub_2(*(_DWORD *)&this->m_info[4], *(_DWORD *)&this->m_info[8]);
-    operator delete(*(void **)&this->m_info[4]);
-    *(_DWORD *)&this->m_info[12] = &v19[3 * v18];
-    v12 = *(_DWORD *)&this->m_info[4];
+    v4->Insert(*(void **)&this->m_info.cityname[8], i + 3);
+    nullsub_2(*(_DWORD *)&this->m_info.cityname[4], *(_DWORD *)&this->m_info.cityname[8]);
+    operator delete(*(void **)&this->m_info.cityname[4]);
+    *(_DWORD *)&this->m_info.cityname[12] = &v19[3 * v18];
+    v12 = *(_DWORD *)&this->m_info.cityname[4];
     if ( v12 )
     {
-      v14 = *(_DWORD *)&this->m_info[8];
-      *(_DWORD *)&this->m_info[4] = v19;
+      v14 = *(_DWORD *)&this->m_info.cityname[8];
+      *(_DWORD *)&this->m_info.cityname[4] = v19;
       result = (int)&v19[3 * ((v14 - v12) / 12) + 3];
-      *(_DWORD *)&this->m_info[8] = result;
+      *(_DWORD *)&this->m_info.cityname[8] = result;
     }
     else
     {
-      *(_DWORD *)&this->m_info[4] = v19;
-      *(_DWORD *)&this->m_info[8] = v19 + 3;
+      *(_DWORD *)&this->m_info.cityname[4] = v19;
+      *(_DWORD *)&this->m_info.cityname[8] = v19 + 3;
       return (int)(v19 + 3);
     }
   }

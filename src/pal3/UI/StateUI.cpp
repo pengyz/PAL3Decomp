@@ -20,21 +20,21 @@ int StateUI::Create()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->buf[222] = data;
+    this->m_Is[1] = data;
     ((UIBase *)this)->SetItemData(1, data);
-    sub_48A310((char *)this->m_RoleState[4].m_Shen.m_bcreateok, data);
-    sub_4945E0((char *)this->m_RoleState[4].m_Shen.m_bvisible, data);
-    sub_49E860((char *)this->m_RoleState[4].m_Shen.m_benable, data);
-    return sub_484E90((char *)this->m_RoleState[4].m_Shen.m_childs.m_nGrowBy, data);
+    sub_48A310(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[24], data);
+    sub_4945E0(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[28], data);
+    sub_49E860(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[32], data);
+    return sub_484E90(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[20], data);
   }
   else
   {
-    this->buf[222] = 0;
+    this->m_Is[1] = 0;
     ((UIBase *)this)->SetItemData(1, 0);
-    sub_48A310((char *)this->m_RoleState[4].m_Shen.m_bcreateok, 0);
-    sub_4945E0((char *)this->m_RoleState[4].m_Shen.m_bvisible, 0);
-    sub_49E860((char *)this->m_RoleState[4].m_Shen.m_benable, 0);
-    return sub_484E90((char *)this->m_RoleState[4].m_Shen.m_childs.m_nGrowBy, 0);
+    sub_48A310(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[24], 0);
+    sub_4945E0(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[28], 0);
+    sub_49E860(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[32], 0);
+    return sub_484E90(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[20], 0);
   }
 }
 
@@ -45,20 +45,20 @@ void StateUI::Init()
 
   if ( ((UIBase *)this)->GetSelected() < 5 )
   {
-    this->buf[223] = data;
+    this->m_Is[2] = data;
     ((UIBase *)this)->SetItemData(2, data);
-    sub_48A330((char *)this->m_RoleState[4].m_Shen.m_bcreateok, data);
-    sub_494600((char *)this->m_RoleState[4].m_Shen.m_bvisible, data);
-    sub_49E880((char *)this->m_RoleState[4].m_Shen.m_benable, data);
-    sub_484EB0((char *)this->m_RoleState[4].m_Shen.m_childs.m_nGrowBy, data);
+    sub_48A330(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[24], data);
+    sub_494600(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[28], data);
+    sub_49E880(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[32], data);
+    sub_484EB0(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[20], data);
   }
   else
   {
-    this->buf[223] = 0;
+    this->m_Is[2] = 0;
     ((UIBase *)this)->SetItemData(2, 0);
-    sub_48A330((char *)this->m_RoleState[4].m_Shen.m_bcreateok, 0);
-    sub_494600((char *)this->m_RoleState[4].m_Shen.m_bvisible, 0);
-    sub_49E880((char *)this->m_RoleState[4].m_Shen.m_benable, 0);
-    sub_484EB0((char *)this->m_RoleState[4].m_Shen.m_childs.m_nGrowBy, 0);
+    sub_48A330(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[24], 0);
+    sub_494600(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[28], 0);
+    sub_49E880(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[32], 0);
+    sub_484EB0(*(char **)&this->m_RoleState[2].m_WuLing[3]._pad_0000[20], 0);
   }
 }

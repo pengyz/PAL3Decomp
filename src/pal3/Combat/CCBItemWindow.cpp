@@ -25,7 +25,7 @@ extern void *off_570554;
 // 0x0051B160
 CCBItemWindow::CCBItemWindow(CCBItemWindow *Block, char a2)
 {
-  Block->~UIWnd();
+  ((UIWnd *)Block)->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   (UIWnd *)Block;
@@ -34,164 +34,161 @@ CCBItemWindow::CCBItemWindow(CCBItemWindow *Block, char a2)
 // 0x0051B1D0
 int CCBItemWindow::Reset()
 {
-  this->m_childs.m_pData = 0;
-  this->m_childs.m_nSize = 0;
-  this->m_childs.m_nMaxSize = 0;
-  this->m_childs.m_nGrowBy = 0;
-  this->m_bcreateok = 0;
-  this->m_bvisible = 0;
-  this->m_benable = 0;
-  this->m_bfocus = 0;
-  this->m_pbktex = 0;
   this->m_pBack = 0;
   this->m_pDescription = 0;
   this->m_pItemList[0] = 0;
   this->m_pItemList[1] = 0;
-  this->m_pItemList[2] = (UIListBox *)-1;
+  this->m_pItemList[2] = 0;
+  this->m_pButtonRecover = 0;
+  this->m_pButtonAttack = 0;
+  this->m_pButtonTreasure = 0;
+  this->m_nActivePage = 0;
+  *((_DWORD *)this + 27) = 0;
+  *((_DWORD *)this + 28) = 0;
+  *((_DWORD *)this + 29) = 0;
+  *((_DWORD *)this + 30) = 0;
+  *((_DWORD *)this + 31) = -1;
   return 0;
 }
 
 // 0x0051B210
 char CCBItemWindow::Create(_DWORD *pRect, int parent)
 {
-  PtrArray *p_m_childs; // ebx
-  int *p_m_benable; // ebx
-  int *p_m_bfocus; // ebx
-  gbTexture **p_m_pbktex; // ebx
   UIStatic **p_m_pBack; // ebx
+  UIPushButton **p_m_pButtonAttack; // ebx
+  UIPushButton **p_m_pButtonTreasure; // ebx
+  int *p_m_nActivePage; // ebx
+  CCBItemWindow *v8; // ebx
+  _DWORD *v9; // ebx
+  _DWORD *v10; // ebx
   UIStatic **p_m_pDescription; // ebx
-  UIListBox **m_pItemList; // ebx
-  int *p_m_nSize; // ebx
   int i; // ebp
-  UIListBox **v13; // ebx
+  _DWORD *v13; // ebx
 
-  this->Create(1879048196, pRect, parent);
-  p_m_childs = (PtrArray *)&this->m_childs;
-  ((CCBLineupWindow *)&this->m_childs.m_pData)->Destroy();
+  ((UIWnd *)this)->Create(1879048196, pRect, parent);
+  p_m_pBack = &this->m_pBack;
+  ((CCBLineupWindow *)&this->m_pBack)->Destroy();
   *pRect = 0;
   pRect[2] = 158;
   pRect[1] = 0;
   pRect[3] = 158;
-  (*(void (**)(void *, int, _DWORD *, CCBItemWindow *))(*(_DWORD *)p_m_childs->m_pData + 16))(
-    p_m_childs->m_pData,
+  (*(void (**)(UIStatic *, int, _DWORD *, CCBItemWindow *))(*(_DWORD *)(*p_m_pBack)->_pad_0000 + 16))(
+    *p_m_pBack,
     232,
     pRect,
     this);
-  ((UIWnd *)this->m_childs.m_pData)->CreateFromTemplate(aUiCombatContro_18, 0);
-  (**(void (***)(void *, int))p_m_childs->m_pData)(p_m_childs->m_pData, 1);
-  p_m_benable = (int *)&this->m_benable;
-  ((CCBLineupWindow *)&this->m_benable)->OnMessage();
+  ((UIWnd *)this->m_pBack)->CreateFromTemplate(aUiCombatContro_18, 0);
+  (**(void (***)(UIStatic *, int))(*p_m_pBack)->_pad_0000)(*p_m_pBack, 1);
+  p_m_pButtonAttack = &this->m_pButtonAttack;
+  ((CCBLineupWindow *)&this->m_pButtonAttack)->OnMessage();
   *pRect = 7;
   pRect[2] = 80;
   pRect[1] = 48;
   pRect[3] = 73;
-  (*(void (**)(int, int, _DWORD *, CCBItemWindow *, char *, _DWORD))(*(_DWORD *)*p_m_benable + 28))(
-    *p_m_benable,
+  (*(void (**)(UIPushButton *, int, _DWORD *, CCBItemWindow *, char *, _DWORD))(*(_DWORD *)(*p_m_pButtonAttack)->_pad_0000
+                                                                                         + 28))(
+    *p_m_pButtonAttack,
     214,
     pRect,
     this,
     aUiCombatContro_11,
     0);
-  (**(void (***)(int, int))*p_m_benable)(*p_m_benable, 1);
-  p_m_bfocus = (int *)&this->m_bfocus;
-  ((CCBLineupWindow *)&this->m_bfocus)->OnMessage();
+  (**(void (***)(UIPushButton *, int))(*p_m_pButtonAttack)->_pad_0000)(*p_m_pButtonAttack, 1);
+  p_m_pButtonTreasure = &this->m_pButtonTreasure;
+  ((CCBLineupWindow *)&this->m_pButtonTreasure)->OnMessage();
   *pRect = 78;
   pRect[2] = 151;
   pRect[1] = 48;
   pRect[3] = 73;
-  (*(void (**)(int, int, _DWORD *, CCBItemWindow *, char *, _DWORD))(*(_DWORD *)*p_m_bfocus + 28))(
-    *p_m_bfocus,
+  (*(void (**)(UIPushButton *, int, _DWORD *, CCBItemWindow *, char *, _DWORD))(*(_DWORD *)(*p_m_pButtonTreasure)->_pad_0000
+                                                                                         + 28))(
+    *p_m_pButtonTreasure,
     215,
     pRect,
     this,
     aUiCombatContro_12,
     0);
-  (**(void (***)(int, int))*p_m_bfocus)(*p_m_bfocus, 1);
-  p_m_pbktex = &this->m_pbktex;
-  ((CCBLineupWindow *)&this->m_pbktex)->OnMessage();
+  (**(void (***)(UIPushButton *, int))(*p_m_pButtonTreasure)->_pad_0000)(*p_m_pButtonTreasure, 1);
+  p_m_nActivePage = (int *)&this->m_nActivePage;
+  ((CCBLineupWindow *)&this->m_nActivePage)->OnMessage();
   pRect[1] = 73;
   *pRect = 7;
   pRect[2] = 80;
   pRect[3] = 98;
-  (*(void (**)(gbTexture *, int, _DWORD *, CCBItemWindow *, char *, _DWORD))(*(_DWORD *)(*p_m_pbktex)->_pad_0000
-                                                                                      + 28))(
-    *p_m_pbktex,
+  (*(void (**)(int, int, _DWORD *, CCBItemWindow *, char *, _DWORD))(*(_DWORD *)*p_m_nActivePage + 28))(
+    *p_m_nActivePage,
     216,
     pRect,
     this,
     aUiCombatContro_13,
     0);
-  (**(void (***)(gbTexture *, int))(*p_m_pbktex)->_pad_0000)(*p_m_pbktex, 1);
-  p_m_pBack = &this->m_pBack;
-  ((CCBLineupWindow *)&this->m_pBack)->OnMessage();
+  (**(void (***)(int, int))*p_m_nActivePage)(*p_m_nActivePage, 1);
+  v8 = (CCBItemWindow *)this + 1;
+  ((CCBLineupWindow *)(_DWORD *)this + 27)->OnMessage();
   *pRect = 78;
   pRect[2] = 151;
   pRect[1] = 73;
   pRect[3] = 98;
-  (*(void (**)(UIStatic *, int, _DWORD *, CCBItemWindow *, char *, _DWORD))((*p_m_pBack)->m_fontcolor.ColorQuadFmt
-                                                                                     + 28))(
-    *p_m_pBack,
+  (*(void (**)(_DWORD, int, _DWORD *, CCBItemWindow *, char *, _DWORD))(**(_DWORD **)v8->_pad_0000 + 28))(
+    *(_DWORD *)v8->_pad_0000,
     217,
     pRect,
     this,
     aUiCombatContro_14,
     0);
-  (*(void (**)(UIStatic *, int))(*p_m_pBack)->m_fontcolor.ColorQuadFmt)(*p_m_pBack, 1);
-  p_m_pDescription = &this->m_pDescription;
-  ((CCBLineupWindow *)&this->m_pDescription)->OnMessage();
+  (***(void (****)(_DWORD, int))v8->_pad_0000)(*(_DWORD *)v8->_pad_0000, 1);
+  v9 = (_DWORD *)((char *)this + 112);
+  ((CCBLineupWindow *)(_DWORD *)this + 28)->OnMessage();
   *pRect = 7;
   pRect[2] = 80;
   pRect[1] = 98;
   pRect[3] = 123;
-  (*(void (**)(UIStatic *, int, _DWORD *, CCBItemWindow *, char *, _DWORD))((*p_m_pDescription)->m_fontcolor.ColorQuadFmt
-                                                                                     + 28))(
-    *p_m_pDescription,
+  (*(void (**)(_DWORD, int, _DWORD *, CCBItemWindow *, char *, _DWORD))(*(_DWORD *)*v9 + 28))(
+    *v9,
     218,
     pRect,
     this,
     aUiCombatContro_15,
     0);
-  (*(void (**)(UIStatic *, int))(*p_m_pDescription)->m_fontcolor.ColorQuadFmt)(*p_m_pDescription, 1);
-  m_pItemList = this->m_pItemList;
-  ((CCBLineupWindow *)this->m_pItemList)->OnMessage();
+  (**(void (***)(_DWORD, int))*v9)(*v9, 1);
+  v10 = (_DWORD *)((char *)this + 116);
+  ((CCBLineupWindow *)(_DWORD *)this + 29)->OnMessage();
   *pRect = 78;
   pRect[2] = 151;
   pRect[1] = 98;
   pRect[3] = 123;
-  (*(void (**)(UIListBox *, int, _DWORD *, CCBItemWindow *, char *, _DWORD))((*m_pItemList)->m_fontcolor.ColorQuadFmt
-                                                                                      + 28))(
-    *m_pItemList,
+  (*(void (**)(_DWORD, int, _DWORD *, CCBItemWindow *, char *, _DWORD))(*(_DWORD *)*v10 + 28))(
+    *v10,
     219,
     pRect,
     this,
     aUiCombatContro_16,
     0);
-  (*(void (**)(UIListBox *, int))(*m_pItemList)->m_fontcolor.ColorQuadFmt)(*m_pItemList, 1);
-  p_m_nSize = (int *)&this->m_childs.m_nSize;
+  (**(void (***)(_DWORD, int))*v10)(*v10, 1);
+  p_m_pDescription = &this->m_pDescription;
   for ( i = 0; i < 5; ++i )
   {
-    p_m_nSize->Destroy();
+    p_m_pDescription->Destroy();
     *pRect = 57;
     pRect[2] = 95;
     pRect[1] = 31;
     pRect[3] = 47;
-    (*(void (**)(int, int, _DWORD *, CCBItemWindow *))(*(_DWORD *)*p_m_nSize + 16))(
-      *p_m_nSize,
+    (*(void (**)(UIStatic *, int, _DWORD *, CCBItemWindow *))(*(_DWORD *)(*p_m_pDescription)->_pad_0000 + 16))(
+      *p_m_pDescription,
       dword_570138[i],
       pRect,
       this);
-    ((UIWnd *)*p_m_nSize)->CreateFromTemplate(off_570218[i], 0);
-    (**(void (***)(int, int))*p_m_nSize)(*p_m_nSize, 1);
-    ++p_m_nSize;
+    ((UIWnd *)*p_m_pDescription)->CreateFromTemplate(off_570218[i], 0);
+    (**(void (***)(UIStatic *, int))(*p_m_pDescription)->_pad_0000)(*p_m_pDescription, 1);
+    ++p_m_pDescription;
   }
-  v13 = &this->m_pItemList[1];
-  ((CCBLineupWindow *)&this->m_pItemList[1])->Update();
+  v13 = (_DWORD *)((char *)this + 120);
+  ((CCBLineupWindow *)(_DWORD *)this + 30)->Update();
   *pRect = 35;
   pRect[2] = 127;
   pRect[1] = 127;
   pRect[3] = 153;
-  (*(void (**)(UIListBox *, int, _DWORD *, CCBItemWindow *, char *, int, _DWORD))((*v13)->m_fontcolor.ColorQuadFmt
-                                                                                           + 28))(
+  (*(void (**)(_DWORD, int, _DWORD *, CCBItemWindow *, char *, int, _DWORD))(*(_DWORD *)*v13 + 28))(
     *v13,
     220,
     pRect,
@@ -199,7 +196,7 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
     aUiCombatContro_17,
     1,
     0);
-  (*(void (**)(UIListBox *, int))(*v13)->m_fontcolor.ColorQuadFmt)(*v13, 1);
+  (**(void (***)(_DWORD, int))*v13)(*v13, 1);
   return 1;
 }
 
@@ -207,76 +204,82 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
 int CCBItemWindow::Destroy()
 {
   int result; // eax
-  void *m_pData; // ecx
-  int m_benable; // ecx
-  int m_bfocus; // ecx
-  gbTexture *m_pbktex; // ecx
   UIStatic *m_pBack; // ecx
-  UIStatic *m_pDescription; // ecx
-  UIListBox *v9; // ecx
-  UIListBox *v10; // ecx
-  int *p_m_nSize; // esi
+  UIPushButton *m_pButtonAttack; // ecx
+  UIPushButton *m_pButtonTreasure; // ecx
+  int m_nActivePage; // ecx
+  int v7; // ecx
+  int v8; // ecx
+  int v9; // ecx
+  int v10; // ecx
+  UIStatic **p_m_pDescription; // esi
   int v12; // edi
 
   result = ((UIListBox *)this)->SetScrollPos();
-  m_pData = (void *)this->m_childs.m_pData;
-  if ( m_pData )
-  {
-    result = (*(int (**)(void *, int))(*(_DWORD *)m_pData + 20))(m_pData, 1);
-    this->m_childs.m_pData = 0;
-  }
-  m_benable = this->m_benable;
-  if ( m_benable )
-  {
-    result = (*(int (**)(int, int))(*(_DWORD *)m_benable + 20))(m_benable, 1);
-    this->m_benable = 0;
-  }
-  m_bfocus = this->m_bfocus;
-  if ( m_bfocus )
-  {
-    result = (*(int (**)(int, int))(*(_DWORD *)m_bfocus + 20))(m_bfocus, 1);
-    this->m_bfocus = 0;
-  }
-  m_pbktex = (gbTexture *)this->m_pbktex;
-  if ( m_pbktex )
-  {
-    result = (*(int (**)(gbTexture *, int))(*(_DWORD *)m_pbktex->_pad_0000 + 20))(m_pbktex, 1);
-    this->m_pbktex = 0;
-  }
   m_pBack = (UIStatic *)this->m_pBack;
   if ( m_pBack )
   {
-    result = (*(int (**)(UIStatic *, int))(m_pBack->m_fontcolor.ColorQuadFmt + 20))(m_pBack, 1);
+    result = (*(int (**)(UIStatic *, int))(*(_DWORD *)m_pBack->_pad_0000 + 20))(m_pBack, 1);
     this->m_pBack = 0;
   }
-  m_pDescription = (UIStatic *)this->m_pDescription;
-  if ( m_pDescription )
+  m_pButtonAttack = (UIPushButton *)this->m_pButtonAttack;
+  if ( m_pButtonAttack )
   {
-    result = (*(int (**)(UIStatic *, int))(m_pDescription->m_fontcolor.ColorQuadFmt + 20))(m_pDescription, 1);
-    this->m_pDescription = 0;
+    result = (*(int (**)(UIPushButton *, int))(*(_DWORD *)m_pButtonAttack->_pad_0000 + 20))(
+               m_pButtonAttack,
+               1);
+    this->m_pButtonAttack = 0;
   }
-  v9 = (UIListBox *)this->m_pItemList[0];
+  m_pButtonTreasure = (UIPushButton *)this->m_pButtonTreasure;
+  if ( m_pButtonTreasure )
+  {
+    result = (*(int (**)(UIPushButton *, int))(*(_DWORD *)m_pButtonTreasure->_pad_0000 + 20))(
+               m_pButtonTreasure,
+               1);
+    this->m_pButtonTreasure = 0;
+  }
+  m_nActivePage = this->m_nActivePage;
+  if ( m_nActivePage )
+  {
+    result = (*(int (**)(int, int))(*(_DWORD *)m_nActivePage + 20))(m_nActivePage, 1);
+    this->m_nActivePage = 0;
+  }
+  v7 = *((_DWORD *)this + 27);
+  if ( v7 )
+  {
+    result = (*(int (**)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);
+    *((_DWORD *)this + 27) = 0;
+  }
+  v8 = *((_DWORD *)this + 28);
+  if ( v8 )
+  {
+    result = (*(int (**)(int, int))(*(_DWORD *)v8 + 20))(v8, 1);
+    *((_DWORD *)this + 28) = 0;
+  }
+  v9 = *((_DWORD *)this + 29);
   if ( v9 )
   {
-    result = (*(int (**)(UIListBox *, int))(v9->m_fontcolor.ColorQuadFmt + 20))(v9, 1);
-    this->m_pItemList[0] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)v9 + 20))(v9, 1);
+    *((_DWORD *)this + 29) = 0;
   }
-  v10 = (UIListBox *)this->m_pItemList[1];
+  v10 = *((_DWORD *)this + 30);
   if ( v10 )
   {
-    result = (*(int (**)(UIListBox *, int))(v10->m_fontcolor.ColorQuadFmt + 20))(v10, 1);
-    this->m_pItemList[1] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
+    *((_DWORD *)this + 30) = 0;
   }
-  p_m_nSize = (int *)&this->m_childs.m_nSize;
+  p_m_pDescription = &this->m_pDescription;
   v12 = 5;
   do
   {
-    if ( *p_m_nSize )
+    if ( *p_m_pDescription )
     {
-      result = (*(int (**)(int, int))(*(_DWORD *)*p_m_nSize + 20))(*p_m_nSize, 1);
-      *p_m_nSize = 0;
+      result = (*(int (**)(UIStatic *, int))(*(_DWORD *)(*p_m_pDescription)->_pad_0000 + 20))(
+                 *p_m_pDescription,
+                 1);
+      *p_m_pDescription = 0;
     }
-    ++p_m_nSize;
+    ++p_m_pDescription;
     --v12;
   }
   while ( v12 );
@@ -286,53 +289,53 @@ int CCBItemWindow::Destroy()
 // 0x0051B570
 BOOL CCBItemWindow::HandleInput(int a2, int a3)
 {
-  if ( this->m_rect.top == 1
-    && (g_Input.m_DIKToKEY[1] == 1 && (g_Input.m_shiftedKeyStates[268] & 0xF) == 1 || g_Input.m_DIKToKEY[5] == 1) )
+  if ( *(_DWORD *)&this->_pad_0000[56] == 1
+    && (g_Input.KeyInfo[16].PressTime == 1 && (g_Input.KeyInfo[16].Data & 0xF) == 1 || g_Input.KeyInfo[17].PressTime == 1) )
   {
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8))->SetParam(214, -1);
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_pad_0000[32] + 1160) + 8))->SetParam(214, -1);
   }
-  return this->HitTest(a2, a3);
+  return ((UIWnd *)this)->HitTest(a2, a3);
 }
 
 // 0x0051B5D0
 int CCBItemWindow::OnMessage(int a2)
 {
   int v3; // edi
-  int *p_m_nSize; // esi
-  void (***v5)(_DWORD, int); // ecx
+  UIStatic **p_m_pDescription; // esi
+  UIStatic *v5; // ecx
 
   if ( a2 == 1 )
   {
     v3 = 0;
-    p_m_nSize = (int *)&this->m_childs.m_nSize;
+    p_m_pDescription = &this->m_pDescription;
     do
     {
-      v5 = (void (***)(_DWORD, int))*p_m_nSize;
-      if ( this->m_pItemList[2] == (UIListBox *)v3 )
-        (**v5)(v5, 1);
+      v5 = (UIStatic *)*p_m_pDescription;
+      if ( *((_DWORD *)this + 31) == v3 )
+        (**(void (***)(UIStatic *, int))v5->_pad_0000)(v5, 1);
       else
-        (**v5)(v5, 0);
+        (**(void (***)(UIStatic *, _DWORD))v5->_pad_0000)(v5, 0);
       ++v3;
-      ++p_m_nSize;
+      ++p_m_pDescription;
     }
     while ( v3 < 5 );
   }
-  return this->Destroy(a2);
+  return ((UIWnd *)this)->Destroy(a2);
 }
 
 // 0x0051B620
 _DWORD * CCBItemWindow::Update()
 {
   ((UIListBox *)this)->UIListBox();
-  this->m_fontcolor.ColorQuadFmt = (int)&off_570554;
+  *(_DWORD *)this->_pad_0000 = &off_570554;
   sub_51B6E0(this);
-  return &this->m_fontcolor.ColorQuadFmt;
+  return this->_pad_0000;
 }
 
 // 0x0051B670
 UIWnd * CCBItemWindow::CreateButtons(CCBItemWindow *Block, char a2)
 {
-  Block->~UIWnd();
+  ((UIWnd *)Block)->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return (UIWnd *)Block;

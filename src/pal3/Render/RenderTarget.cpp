@@ -7,12 +7,16 @@
 // Unnamed globals (extern)
 extern char aDProjectPal3Ef[];
 extern char aLockBackBuffer[];
+extern int dword_BFD6D0;
+extern int dword_BFD6D4;
+extern int dword_BFDA60;
+extern int dword_BFDA68;
 extern void *off_56F4F0;
 
 // 0x004BDAC0
 RenderTarget::RenderTarget()
 {
-  ((gbTexture_D3D *)&this->m_Texture.InFmt.a_shift)->~gbTexture_D3D();
+  ((gbTexture_D3D *)&this->m_ScreenPlane)->~gbTexture_D3D();
   ((gbTexture_D3D *)&this->m_Texture)->~gbTexture_D3D();
 }
 
@@ -25,8 +29,8 @@ int RenderTarget::Create()
   char pExceptionObject[1024]; // [esp+20h] [ebp-800h] BYREF
   char ArgList[1024]; // [esp+420h] [ebp-400h] BYREF
 
-  if ( !(*(int (**)(int, int *, int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 84))(
-          g_Input.KeyInfo[177].Data,
+  if ( !(*(int (**)(gbGfxManager *, int *, int))(*(_DWORD *)dword_BFDA60->_pad_0000 + 84))(
+          dword_BFDA60,
           &v3,
           1) )
   {
@@ -36,11 +40,11 @@ int RenderTarget::Create()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 88))(g_Input.KeyInfo[177].Data);
-  (*(void (**)(__int32 *, int, int, int))(this->m_Texture.InFmt.a_shift + 12))(
-    &this->m_Texture.InFmt.a_shift,
-    g_Input.KeyInfo[120].Data,
-    g_Input.KeyInfo[120].HoldTime,
+  (*(void (**)(gbGfxManager *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 88))(dword_BFDA60);
+  (*(void (**)(gbTexture_D3D *, int, int, int))(*(_DWORD *)this->m_ScreenPlane._pad_0000 + 12))(
+    &this->m_ScreenPlane,
+    dword_BFD6D0,
+    dword_BFD6D4,
     v4);
   result = (*(int (**)(gbTexture_D3D *, int, int, int))(*(_DWORD *)this->m_Texture._pad_0000 + 12))(
              &this->m_Texture,
@@ -48,7 +52,7 @@ int RenderTarget::Create()
              512,
              v4);
   this->m_iMode = 0;
-  this->m_ScreenPlane.InFmt.g_mask = 0;
+  this->m_nState = 0;
   return result;
 }
 
@@ -57,10 +61,10 @@ void RenderTarget::OnDeviceLost(int a2)
 {
   int v2; // eax
 
-  if ( this->m_ScreenPlane.InFmt.g_mask != 1 )
+  if ( this->m_nState != 1 )
   {
     v2 = a2;
-    if ( (a2 == 1 || a2 == 2) && !this->m_ScreenPlane.InFmt.Bpp )
+    if ( (a2 == 1 || a2 == 2) && !this->m_ScreenPlane.pTex )
       v2 = 0;
     this->m_iMode = v2;
   }
@@ -73,44 +77,43 @@ bool RenderTarget::OnResetDevice(int a2)
   int m_iMode; // ecx
   int v5; // esi
 
-  if ( this->m_ScreenPlane.InFmt.g_mask != 1 )
+  if ( this->m_nState != 1 )
   {
-    this->m_ScreenPlane.InFmt.g_mask = 1;
+    this->m_nState = 1;
     m_iMode = this->m_iMode;
     v5 = 0;
     if ( this->m_iMode )
     {
       if ( m_iMode <= 0 || m_iMode > 2 )
         return v5 != 0;
-      v5 = (*(int (**)(int, __int32 *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(
-             g_Input.KeyInfo[177].Data,
-             &this->m_Texture.InFmt.a_shift);
+      v5 = (*(int (**)(gbGfxManager *, gbTexture_D3D *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 92))(
+             dword_BFDA60,
+             &this->m_ScreenPlane);
     }
     else
     {
-      v5 = (*(int (**)(int, gbTexture_D3D *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(
-             g_Input.KeyInfo[177].Data,
+      v5 = (*(int (**)(gbGfxManager *, gbTexture_D3D *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 92))(
+             dword_BFDA60,
              &this->m_Texture);
-      ((gbCamera *)(g_Input.KeyInfo[177].CountMode + 4))->SetDimention(512, 384);
-      ((CameraCtrl *)g_Input.KeyInfo[177].CountMode)->SetAsCurrent(3);
+      ((gbCamera *)&dword_BFDA68->OrthoSize)->SetDimention(512, 384);
+      ((CameraCtrl *)dword_BFDA68)->SetAsCurrent(3);
     }
     if ( v5 && (_BYTE)a2 )
     {
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_Input.KeyInfo[177].Data
-                                                                                         + 1816)
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&dword_BFDA60[1].DrvInfo.winname[44]
                                                                            + 172))(
-        *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816),
+        *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44],
         0,
         0,
         3,
         -16777216,
         1065353216,
         0);
-      (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 48))(g_Input.KeyInfo[177].Data);
+      (*(void (**)(gbGfxManager *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 48))(dword_BFDA60);
       PushMatrixStacks();
       a2 = -16777216;
       ((_TextureLib_Data *)0)->~_TextureLib_Data(0, 512, 512, (float *)&a2);
-      (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 52))(g_Input.KeyInfo[177].Data);
+      (*(void (**)(gbGfxManager *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 52))(dword_BFDA60);
       PopMatrixStacks();
     }
     return v5 != 0;
@@ -124,9 +127,9 @@ _DWORD * RenderTarget::Destroy()
 {
   *(_DWORD *)this->m_Texture._pad_0000 = 0;
   this->m_iMode = (int)&off_56F4F0;
-  this->m_Texture.RefCount = 1;
-  this->m_Texture.NameCrc32 = 0;
-  this->m_Texture.pName = 0;
-  LOBYTE(this->m_Texture.IsLoaded) = 0;
+  *(_DWORD *)&this->m_Texture._pad_0000[4] = 1;
+  *(_DWORD *)&this->m_Texture._pad_0000[12] = 0;
+  *(_DWORD *)&this->m_Texture._pad_0000[8] = 0;
+  this->m_Texture._pad_0000[16] = 0;
   return &this->m_iMode;
 }

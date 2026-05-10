@@ -17,7 +17,7 @@ void * UINote::Create(int id, int a3, int a4, char *tex)
   char Buffer[256]; // [esp+14h] [ebp-10Ch] BYREF
   int v10; // [esp+11Ch] [ebp-4h]
 
-  this->Create(id, (void *)a3, a4);
+  ((UIWnd *)this)->Create(id, (void *)a3, a4);
   ((OpenBaseFile *)&v8)->OpenBaseFile();
   v6 = 0;
   v10 = 0;
@@ -28,9 +28,9 @@ void * UINote::Create(int id, int a3, int a4, char *tex)
     ++v6;
   }
   while ( v6 < 9 );
-  this->m_static.m_childs.m_nSize = *(_DWORD *)(sub_445F60(&this->m_bmodal, 0) + 24);
-  this->m_static.m_rect.bottom = 0;
-  this->m_rect.top = 0;
+  this->m_static.m_texs.m_ptex[2] = *(gbTexture **)(sub_445F60(&this->m_static._pad_0000[32], 0) + 24);
+  this->m_static.m_currect.bottom = 0;
+  *(_DWORD *)&this->_pad_0000[56] = 0;
   v10 = -1;
   return ((OpenNULLFile *)&v8)->OpenNULLFile();
 }

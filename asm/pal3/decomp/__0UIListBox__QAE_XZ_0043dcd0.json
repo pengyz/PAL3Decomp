@@ -3,5 +3,5 @@
   "address": "0x0043DCD0",
   "size_bytes": 25,
   "signature": "_DWORD *__thiscall(UIListBox *this)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\n_DWORD *__thiscall UIListBox::UIListBox(UIListBox *this)\n{\n  UIWnd::UIWnd(this);\n  this->m_fontcolor.ColorQuadFmt = (int)&off_56AD20;\n  this->m_pfather = 0;\n  return &this->m_fontcolor.ColorQuadFmt;\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\n_DWORD *__thiscall UIListBox::UIListBox(UIListBox *this)\n{\n  UIWnd::UIWnd((UIWnd *)this);\n  *(_DWORD *)this->_pad_0000 = &off_56AD20;\n  this->m_selcolor.ColorQuadFmt = 0;\n  return this->_pad_0000;\n}\n"
 }

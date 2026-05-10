@@ -145,6 +145,8 @@ extern unsigned char byte_60AF10;
 extern unsigned char byte_60AF58;
 extern unsigned char byte_60B710;
 extern unsigned char byte_60B72C;
+extern unsigned char byte_BFDA88;
+extern unsigned char byte_BFDA91;
 extern unsigned char byte_D8B938;
 extern unsigned char byte_D92784;
 extern unsigned char byte_D92785;
@@ -244,6 +246,24 @@ extern int dword_60B538;
 extern int dword_60B870;
 extern int dword_6EBFA0;
 extern int dword_7CC178;
+extern int dword_BFD6D0;
+extern int dword_BFD6D4;
+extern int dword_BFDA48;
+extern int dword_BFDA60;
+extern int dword_BFDA64;
+extern int dword_BFDA68;
+extern int dword_BFDA6C;
+extern int dword_BFDA80;
+extern int dword_BFDA84;
+extern int dword_BFDB80;
+extern int dword_BFDB84;
+extern int dword_BFDB90;
+extern int dword_BFDB98;
+extern int dword_BFDB9C;
+extern int dword_BFDBA0;
+extern int dword_BFDBA4;
+extern int dword_BFDBB0;
+extern int dword_BFDE28;
 extern int dword_BFE0A0;
 extern int dword_BFFDB0;
 extern int dword_C00028;
@@ -277,6 +297,10 @@ extern float flt_5F4B9C;
 extern float flt_60B720;
 extern float flt_60B724;
 extern float flt_60B728;
+extern float flt_BFDB94;
+extern float flt_BFDBA8;
+extern float flt_BFDBAC;
+extern float flt_BFDC54;
 extern float flt_C116F8;
 extern int nullsub_1;
 extern int nullsub_103;
@@ -332,6 +356,8 @@ extern int unk_60B348;
 extern int unk_60B878;
 extern int unk_60B9D8;
 extern int unk_60BDC8;
+extern int unk_BFDAA4;
+extern int unk_BFDAB0;
 extern int unk_DBA258;
 extern int unk_DBB364;
 extern int unk_DBD894;
@@ -733,12 +759,12 @@ int unknown_libname_289()
 // 0x004021E0
 int __thiscall WinProc_HWND_4021E0(GRPinput *_this, int a2, int a3, int a4)
 {
-  _this->m_shiftedKeyStates[201] = a2;
+  _this->m_bMouse = a2;
   if ( a2 )
     GRPinput::AcquireDevices(_this);
   else
     WinProc_HWND_402360((int *)_this);
-  _this->m_shiftedKeyStates[202] = a3;
+  _this->m_bKeyboard = a3;
   if ( a3 )
     return GRPinput::ReleaseDevices(_this);
   else
@@ -848,7 +874,7 @@ void __cdecl unknown_libname_294()
 // Microsoft VisualC 2-14/net runtime
 char *unknown_libname_295()
 {
-  return sub_53C250(&g_GDB.m_ItemData[360].desc[144]);
+  return sub_53C250(&g_GDB.m_ItemData[508].desc[64]);
 }
 
 // 0x00404510
@@ -856,7 +882,7 @@ char *unknown_libname_295()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_296()
 {
-  std::strstreambuf::~strstreambuf((std::strstreambuf *)&g_GDB.m_ItemData[360].desc[144]);
+  std::strstreambuf::~strstreambuf((std::strstreambuf *)&g_GDB.m_ItemData[508].desc[64]);
 }
 
 // 0x00404570
@@ -871,9 +897,9 @@ GRPinput *unknown_libname_297()
   g_Input.m_lpDI = 0;
   g_Input.m_lpDIDKeyboard = 0;
   g_Input.m_lpDIDMouse = 0;
-  g_Input.m_shiftedKeyStates[201] = 0;
-  g_Input.m_shiftedKeyStates[202] = 0;
-  g_Input.m_shiftedKeyStates[203] = 0;
+  g_Input.m_bMouse = 0;
+  g_Input.m_bKeyboard = 0;
+  g_Input.m_bJoystick = 0;
   g_Input.m_mouseSensitivity = 1.0;
   g_Input.m_mouseMinX = 0x80000000;
   g_Input.m_mouseMinY = 0x80000000;
@@ -892,11 +918,11 @@ GRPinput *unknown_libname_297()
   g_Input.m_joystickDeltaX = 0;
   g_Input.m_joystickDeltaY = 0;
   memset(g_Input.m_keyStates, 0, 0x10Cu);
-  LOWORD(g_Input.m_keyStates[67]) = 0;
-  memset((char *)&g_Input.m_keyStates[67] + 2, 0, 0x10Cu);
-  HIWORD(g_Input.m_keyStates[134]) = 0;
-  memset(&g_Input.m_keyStates[132], 0, 0x438u);
-  memset(&g_Input.m_keyRaw[132], 0, 0x870u);
+  *(_WORD *)&g_Input.m_keyStates[268] = 0;
+  memset(g_Input.m_keyRaw, 0, 0x10Cu);
+  HIWORD(g_Input.m_keyPressTimes[2]) = 0;
+  memset(g_Input.m_keyPressTimes, 0, sizeof(g_Input.m_keyPressTimes));
+  memset(g_Input.m_keyDragStartPositions, 0, sizeof(g_Input.m_keyDragStartPositions));
   return &g_Input;
 }
 
@@ -945,7 +971,7 @@ void __cdecl unknown_libname_300()
 // Microsoft VisualC 2-14/net runtime
 _DWORD *unknown_libname_301()
 {
-  return sub_457260(&g_PAL3Data.mStorePos[8]);
+  return sub_457260(&g_PAL3Data.mParam.n5);
 }
 
 // 0x00404610
@@ -953,7 +979,7 @@ _DWORD *unknown_libname_301()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_302()
 {
-  sub_457340((int)&g_PAL3Data.mStorePos[8]);
+  sub_457340((int)&g_PAL3Data.mParam.n5);
 }
 
 // 0x00404620
@@ -969,7 +995,7 @@ int _E187()
 // Microsoft VisualC 2-14/net runtime
 _BYTE *unknown_libname_303()
 {
-  return sub_430180(&g_PAL3Data.mVelocity[8]);
+  return sub_430180(&g_PAL3Data.mParam.f4);
 }
 
 // 0x00404650
@@ -977,13 +1003,17 @@ _BYTE *unknown_libname_303()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_304()
 {
-  char *v0; // [esp+0h] [ebp-4h] BYREF
+  float *p_f4; // [esp+0h] [ebp-4h] BYREF
 
-  v0 = &g_PAL3Data.mVelocity[8];
-  sub_430B30(&g_PAL3Data.mVelocity[8], &v0, *(_DWORD **)LODWORD(g_PAL3Data.mTime), (_DWORD *)LODWORD(g_PAL3Data.mTime));
-  operator delete((void *)LODWORD(g_PAL3Data.mTime));
-  g_PAL3Data.mTime = 0.0;
-  *(_DWORD *)&g_PAL3Data.mStorePos[4] = 0;
+  p_f4 = &g_PAL3Data.mParam.f4;
+  sub_430B30(
+    &g_PAL3Data.mParam.f4,
+    &p_f4,
+    *(_DWORD **)LODWORD(g_PAL3Data.mParam.pf4[0]),
+    (_DWORD *)LODWORD(g_PAL3Data.mParam.pf4[0]));
+  operator delete((void *)LODWORD(g_PAL3Data.mParam.pf4[0]));
+  g_PAL3Data.mParam.pf4[0] = 0.0;
+  g_PAL3Data.mParam.pf4[2] = 0.0;
   if ( !--*(_DWORD *)&String[256] )
   {
     operator delete(dword_D8C2B0);
@@ -1074,7 +1104,7 @@ int __stdcall WinProc(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)
   WPARAM v4; // ebx
   UIRenderObj *Instance; // eax
   int result; // eax
-  int Data; // esi
+  gbGfxManager *v7; // esi
   struct tagPOINT Point; // [esp+Ch] [ebp-8h] BYREF
 
   v4 = pvParam;
@@ -1090,14 +1120,14 @@ int __stdcall WinProc(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)
       {
         if ( Msg == 512 && !*((_BYTE *)UIQuadManager::GetInstance() + 29) )
         {
-          if ( BYTE1(g_Input.KeyInfo[180].Data) )
+          if ( byte_BFDA91 )
           {
-            Data = g_Input.KeyInfo[177].Data;
-            if ( g_Input.KeyInfo[177].Data )
+            v7 = dword_BFDA60;
+            if ( dword_BFDA60 )
             {
-              if ( *(_DWORD *)(g_Input.KeyInfo[177].Data + 1816) && GetCursorPos(&Point) )
-                (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)(Data + 1816) + 44))(
-                  *(_DWORD *)(Data + 1816),
+              if ( *(_DWORD *)&dword_BFDA60[1].DrvInfo.winname[44] && GetCursorPos(&Point) )
+                (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v7[1].DrvInfo.winname[44] + 44))(
+                  *(_DWORD *)&v7[1].DrvInfo.winname[44],
                   Point.x,
                   Point.y,
                   1);
@@ -1138,7 +1168,7 @@ int __stdcall WinProc(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)
       SystemParametersInfoA(0x26u, 0, 0, 0);
       SystemParametersInfoA(0x24u, 1u, &pvParam, 0);
       SystemParametersInfoA(0x61u, 0, &pvParam, 0);
-      g_Input.KeyInfo[177].PressTime = 0;
+      dword_BFDA6C = 0;
       PostQuitMessage(0);
       return DefWindowProcA(hWnd, Msg, v4, lParam);
     case 6u:
@@ -1155,7 +1185,7 @@ int __stdcall WinProc(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)
       result = 0;
       break;
     case 0x20u:
-      if ( !g_Input.KeyInfo[177].Data )
+      if ( !dword_BFDA60 )
         return DefWindowProcA(hWnd, Msg, v4, lParam);
       SetCursor(0);
       UIQuadManager::GetInstance();
@@ -1405,7 +1435,7 @@ void unknown_libname_314()
 // Microsoft VisualC 2-14/net runtime
 void unknown_libname_315()
 {
-  sub_411900(&g_Input.KeyInfo[198].Data);
+  sub_411900(dword_BFDBB0);
 }
 
 // 0x00408B40
@@ -1413,7 +1443,7 @@ void unknown_libname_315()
 // Microsoft VisualC 2-14/net runtime
 _DWORD *unknown_libname_316()
 {
-  return PtrArray::Clear((PtrArray *)&g_Input.KeyInfo[195]);
+  return PtrArray::Clear((PtrArray *)&dword_BFDB80);
 }
 
 // 0x00408B90
@@ -1421,7 +1451,7 @@ _DWORD *unknown_libname_316()
 // Microsoft VisualC 2-14/net runtime
 UIWnd *unknown_libname_317()
 {
-  return sub_444F60((UIWnd *)&g_Input.KeyInfo[182]);
+  return sub_444F60((UIWnd *)&unk_BFDAB0);
 }
 
 // 0x00408BB0
@@ -1429,7 +1459,7 @@ UIWnd *unknown_libname_317()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_318()
 {
-  sub_445010((UIWnd *)&g_Input.KeyInfo[182]);
+  sub_445010(&unk_BFDAB0);
 }
 
 // 0x0040C230
@@ -1445,9 +1475,9 @@ __int8 *__cdecl ScriptUpdate(int dt)
   __int8 *result; // eax
   bool v8; // cl
   int v9; // edx
-  int v10; // [esp+14h] [ebp-24h]
-  int v11; // [esp+18h] [ebp-20h]
-  int v12; // [esp+1Ch] [ebp-1Ch]
+  float v10; // [esp+14h] [ebp-24h]
+  float v11; // [esp+18h] [ebp-20h]
+  float v12; // [esp+1Ch] [ebp-1Ch]
   _BYTE v13[12]; // [esp+20h] [ebp-18h]
   gbVec3D v14; // [esp+2Ch] [ebp-Ch] BYREF
 
@@ -1480,26 +1510,26 @@ __int8 *__cdecl ScriptUpdate(int dt)
     }
     ScriptSystem::UpdateTimers(*(float *)&dt);
   }
-  if ( g_Input.KeyInfo[237].CountMode )
+  if ( dword_BFDE28 )
   {
     if ( dword_BFE0A0 != 4 )
     {
-      g_Input.KeyInfo[237].CountMode = 0;
-      RoleSystemNotify((int)&g_Input.KeyInfo[198]);
+      dword_BFDE28 = 0;
+      RoleSystemNotify((int)dword_BFDBB0);
     }
     ScriptSystem::UpdateTimers(*(float *)&dt);
-    *(float *)&g_Input.KeyInfo[208].HoldTime = *(float *)&g_Input.KeyInfo[208].HoldTime + 80.0;
+    flt_BFDC54 = flt_BFDC54 + 80.0;
   }
-  if ( g_Input.KeyInfo[197].HoldTime <= 4u )
+  if ( (unsigned int)dword_BFDBA4 <= 4 )
   {
-    if ( g_Input.KeyInfo[196].Data )
+    if ( dword_BFDB90 )
     {
-      v3 = *(float *)&g_Input.KeyInfo[197].PressTime + *(float *)&dt;
-      *(float *)&g_Input.KeyInfo[197].PressTime = v3;
+      v3 = flt_BFDBAC + *(float *)&dt;
+      flt_BFDBAC = v3;
       if ( v3 >= 4.0 )
       {
-        g_Input.KeyInfo[197].PressTime = 0;
-        switch ( g_Input.KeyInfo[197].HoldTime )
+        flt_BFDBAC = 0.0;
+        switch ( dword_BFDBA4 )
         {
           case 0:
           case 1:
@@ -1515,8 +1545,8 @@ __int8 *__cdecl ScriptUpdate(int dt)
               1);
             break;
           case 4:
-            *(float *)&g_Input.KeyInfo[197].CountMode = *(float *)&g_Input.KeyInfo[197].CountMode * 1.5;
-            ScriptSystem::RunScript((__int64)*(float *)&g_Input.KeyInfo[197].CountMode, 0, 1);
+            flt_BFDBA8 = flt_BFDBA8 * 1.5;
+            ScriptSystem::RunScript((__int64)flt_BFDBA8, 0, 1);
             break;
           default:
             break;
@@ -1525,7 +1555,7 @@ __int8 *__cdecl ScriptUpdate(int dt)
     }
     else
     {
-      switch ( g_Input.KeyInfo[197].HoldTime )
+      switch ( dword_BFDBA4 )
       {
         case 0:
           v2 = (double)*(int *)&g_SceneMgr.m_slot0[1408 * g_SceneMgr.m_nCameraState + 340] * 0.5;
@@ -1547,30 +1577,27 @@ __int8 *__cdecl ScriptUpdate(int dt)
             1);
           break;
         case 4:
-          *(float *)&g_Input.KeyInfo[197].CountMode = (double)*(int *)&g_SceneMgr.m_slot0[1408
-                                                                                        * g_SceneMgr.m_nCameraState
-                                                                                        + 292]
-                                                    * 0.5;
-          ScriptSystem::RunScript((__int64)*(float *)&g_Input.KeyInfo[197].CountMode, 1, 1);
+          flt_BFDBA8 = (double)*(int *)&g_SceneMgr.m_slot0[1408 * g_SceneMgr.m_nCameraState + 292] * 0.5;
+          ScriptSystem::RunScript((__int64)flt_BFDBA8, 1, 1);
           break;
         default:
           break;
       }
     }
-    ++g_Input.KeyInfo[196].Data;
+    ++dword_BFDB90;
     v4 = &g_SceneMgr.m_slot4[8704 * g_SceneMgr.m_nCameraState + 844];
-    v10 = *(_DWORD *)v4;
-    v11 = *((int *)v4 + 1);
-    *(float *)v13 = *(float *)v4 - *(float *)&g_Input.KeyInfo[196].CountMode;
-    v12 = *((int *)v4 + 2);
-    *(float *)&v13[4] = *(float *)&v11 - *(float *)&g_Input.KeyInfo[196].PressTime;
-    *(float *)&v13[8] = *(float *)&v12 - *(float *)&g_Input.KeyInfo[197].Data;
+    v10 = *(float *)v4;
+    v11 = *((float *)v4 + 1);
+    *(float *)v13 = *(float *)v4 - *(float *)&dword_BFDB98;
+    v12 = *((float *)v4 + 2);
+    *(float *)&v13[4] = v11 - *(float *)&dword_BFDB9C;
+    *(float *)&v13[8] = v12 - *(float *)&dword_BFDBA0;
     v14 = *(gbVec3D *)v13;
-    v5 = gbVec3D::Length(&v14) + *(float *)&g_Input.KeyInfo[196].HoldTime;
-    g_Input.KeyInfo[196].PressTime = v11;
-    g_Input.KeyInfo[196].CountMode = v10;
-    g_Input.KeyInfo[197].Data = v12;
-    *(float *)&g_Input.KeyInfo[196].HoldTime = v5;
+    v5 = gbVec3D::Length(&v14) + flt_BFDB94;
+    dword_BFDB9C = LODWORD(v11);
+    dword_BFDB98 = LODWORD(v10);
+    dword_BFDBA0 = LODWORD(v12);
+    flt_BFDB94 = v5;
     if ( v5 >= 12.0 * 100.0 )
       ScriptSystem::RunEvent(31, 1, 0);
   }
@@ -1602,7 +1629,7 @@ __int8 *__cdecl ScriptUpdate(int dt)
     if ( v8 )
     {
       g_SceneMgr._gap_c5e0[848] = 0;
-      result = (__int8 *)sub_41D5C0((_DWORD *)g_Input.KeyInfo[177].CountMode, dword_586154);
+      result = (__int8 *)sub_41D5C0(dword_BFDA68, dword_586154);
     }
   }
   if ( *(_DWORD *)&g_SceneMgr._gap_c5e0[844] )
@@ -2050,13 +2077,13 @@ int __cdecl NPCAnimUpdate(float a1)
   double v5; // st6
   double v6; // st6
   double v7; // st7
-  int HoldTime; // edx
+  int v8; // edx
   int i; // esi
   int v10; // edi
   int v11; // esi
   GRPinput *v12; // ecx
   int v14; // eax
-  int Data; // ecx
+  int v15; // ecx
   int v16; // ecx
   unsigned __int8 v17; // [esp+13h] [ebp-15h]
   int v18; // [esp+14h] [ebp-14h]
@@ -2067,11 +2094,11 @@ int __cdecl NPCAnimUpdate(float a1)
   v2 = 0;
   v18 = -1;
   v17 = 0;
-  if ( g_Input.KeyInfo[195].HoldTime <= 0 )
-    return sub_445720((UIWnd *)&g_Input.KeyInfo[182], 0);
+  if ( dword_BFDB84 <= 0 )
+    return sub_445720((UIWnd *)&unk_BFDAB0, 0);
   do
   {
-    v3 = *(_DWORD *)(g_Input.KeyInfo[195].Data + 4 * v2);
+    v3 = *(_DWORD *)(dword_BFDB80 + 4 * v2);
     GRPinput::SetJoystickFreePos((GRPinput *)v3, a1);
     if ( *(_BYTE *)(v3 + 4) )
     {
@@ -2102,64 +2129,64 @@ int __cdecl NPCAnimUpdate(float a1)
     {
       if ( v3 )
         (**(void (__thiscall ***)(int, int))v3)(v3, 1);
-      if ( v2 >= 0 && v2 < g_Input.KeyInfo[195].HoldTime )
-        *(_DWORD *)(g_Input.KeyInfo[195].Data + 4 * v2) = 0;
+      if ( v2 >= 0 && v2 < dword_BFDB84 )
+        *(_DWORD *)(dword_BFDB80 + 4 * v2) = 0;
       v1 = 1;
     }
-    HoldTime = g_Input.KeyInfo[195].HoldTime;
+    v8 = dword_BFDB84;
     ++v2;
   }
-  while ( v2 < g_Input.KeyInfo[195].HoldTime );
+  while ( v2 < dword_BFDB84 );
   if ( v1 )
   {
-    for ( i = 0; i < g_Input.KeyInfo[195].HoldTime; HoldTime = g_Input.KeyInfo[195].HoldTime )
+    for ( i = 0; i < dword_BFDB84; v8 = dword_BFDB84 )
     {
-      if ( i >= 0 && i < HoldTime && *(_DWORD *)(g_Input.KeyInfo[195].Data + 4 * i) )
+      if ( i >= 0 && i < v8 && *(_DWORD *)(dword_BFDB80 + 4 * i) )
         ++i;
       else
-        PtrArray::InsertAt((PtrArray *)&g_Input.KeyInfo[195], i, 1);
+        PtrArray::InsertAt((PtrArray *)&dword_BFDB80, i, 1);
     }
     v10 = 0;
     v11 = 40;
-    if ( HoldTime > 0 )
+    if ( v8 > 0 )
     {
       do
       {
-        v12 = *(GRPinput **)(g_Input.KeyInfo[195].Data + 4 * v10);
+        v12 = *(GRPinput **)(dword_BFDB80 + 4 * v10);
         if ( v12->m_mouseMaxY == 1 )
         {
           GRPinput::GetMouseSensitivity(v12, v11);
           v11 += 24;
         }
-        HoldTime = g_Input.KeyInfo[195].HoldTime;
+        v8 = dword_BFDB84;
         ++v10;
       }
-      while ( v10 < g_Input.KeyInfo[195].HoldTime );
+      while ( v10 < dword_BFDB84 );
     }
   }
   if ( v18 == -1 )
-    return sub_445720((UIWnd *)&g_Input.KeyInfo[182], 0);
+    return sub_445720((UIWnd *)&unk_BFDAB0, 0);
   v14 = 0;
-  if ( HoldTime > 0 )
+  if ( v8 > 0 )
   {
-    Data = g_Input.KeyInfo[195].Data;
+    v15 = dword_BFDB80;
     do
     {
-      if ( *(_DWORD *)(*(_DWORD *)Data + 28) == 1 )
+      if ( *(_DWORD *)(*(_DWORD *)v15 + 28) == 1 )
         ++v14;
-      Data += 4;
-      --HoldTime;
+      v15 += 4;
+      --v8;
     }
-    while ( HoldTime );
+    while ( v8 );
   }
   a2[1] = 5;
   v16 = 10 * v18 + 64;
   a2[3] = 24 * v14 + 30;
-  a2[0] = (g_Input.KeyInfo[120].Data - v16) / 2 < 0 ? 0 : (g_Input.KeyInfo[120].Data - v16) / 2;
+  a2[0] = (dword_BFD6D0 - v16) / 2 < 0 ? 0 : (dword_BFD6D0 - v16) / 2;
   a2[2] = v16 + a2[0];
-  UIWnd::GetRect((UIWnd *)&g_Input.KeyInfo[182], a2);
-  sub_445720((UIWnd *)&g_Input.KeyInfo[182], 1);
-  UIWnd::SetState((UIWnd *)&g_Input.KeyInfo[182], 1);
+  UIWnd::GetRect((UIWnd *)&unk_BFDAB0, a2);
+  sub_445720((UIWnd *)&unk_BFDAB0, 1);
+  UIWnd::SetState((UIWnd *)&unk_BFDAB0, 1);
   *(_WORD *)((char *)&v20 + 1) = -1;
   LOBYTE(v20) = -1;
   HIBYTE(v20) = v17;
@@ -2231,7 +2258,7 @@ gbGfxManager *__cdecl GetGfxManager_1()
   gbGfxManager *result; // eax
   int a3; // [esp+4h] [ebp+4h]
 
-  RoleSystem::RenderRole((RoleSystem *)(v0 - 64), *(void **)(g_Input.KeyInfo[177].Data + 216), a3);
+  RoleSystem::RenderRole((RoleSystem *)(v0 - 64), dword_BFDA60->pMatrixStack[1], a3);
   return result;
 }
 
@@ -2386,13 +2413,13 @@ void __cdecl CameraUpdate_Internal(float a1)
 {
   double v1; // st7
   double v2; // st7
-  float *v3; // eax
+  float *p_OrthoSize; // eax
   double v4; // st7
   CScreenMode *Instance; // eax
   CScreenMode *v6; // eax
   int v7; // eax
   __int32 m_pCollisionNode; // esi
-  __int32 *v9; // eax
+  GRP_KEYREG *KeyInfo; // eax
   int v10; // edx
   int v11; // ebp
   int v12; // ebx
@@ -2407,7 +2434,7 @@ void __cdecl CameraUpdate_Internal(float a1)
   double v21; // st7
   char v22; // al
   bool v23; // cl
-  __int32 v24; // ecx
+  int PressTime; // ecx
   int v25; // eax
   int v26; // esi
   int v27; // eax
@@ -2417,7 +2444,7 @@ void __cdecl CameraUpdate_Internal(float a1)
   int v31; // esi
   int State; // eax
   int ViewMode; // eax
-  float v34; // edx
+  float Wscreen; // edx
   float v35; // eax
   float v36; // eax
   float v37; // eax
@@ -2436,8 +2463,8 @@ void __cdecl CameraUpdate_Internal(float a1)
   GRPinput::GetCursorPos(&g_SceneMgr._gap_cd10[912]);
   if ( dword_58B234 && dword_D8BBEC != 1 )
   {
-    v41 = g_Input.m_keyDragStartPositions[1][202];
-    if ( g_Input.m_keyDragStartPositions[1][202] )
+    v41 = *(_DWORD *)&g_Input.MouseState[8];
+    if ( *(_DWORD *)&g_Input.MouseState[8] )
     {
       v1 = (double)v41 * 0.0013962634;
       pDist = v1;
@@ -2445,53 +2472,52 @@ void __cdecl CameraUpdate_Internal(float a1)
       {
         if ( pDist < -1.5700001 )
           pDist = -1.5700001;
-        CameraCtrl::SetCamMode((CameraCtrl *)g_Input.KeyInfo[177].CountMode, SLODWORD(pDist));
+        CameraCtrl::SetCamMode((CameraCtrl *)dword_BFDA68, SLODWORD(pDist));
       }
       else
       {
         pDist = 1.5700001;
-        CameraCtrl::SetCamMode((CameraCtrl *)g_Input.KeyInfo[177].CountMode, 1070134723);
+        CameraCtrl::SetCamMode((CameraCtrl *)dword_BFDA68, 1070134723);
       }
     }
-    else if ( (g_Input.m_shiftedKeyStates[256] & 0xF) == 1 )
+    else if ( (g_Input.KeyInfo[13].Data & 0xF) == 1 )
     {
-      CameraCtrl::SetCamMode((CameraCtrl *)g_Input.KeyInfo[177].CountMode, 1034147594);
+      CameraCtrl::SetCamMode((CameraCtrl *)dword_BFDA68, 1034147594);
     }
-    else if ( (g_Input.m_shiftedKeyStates[260] & 0xF) == 1 )
+    else if ( (g_Input.KeyInfo[14].Data & 0xF) == 1 )
     {
-      CameraCtrl::SetCamMode((CameraCtrl *)g_Input.KeyInfo[177].CountMode, -1113336054);
+      CameraCtrl::SetCamMode((CameraCtrl *)dword_BFDA68, -1113336054);
     }
   }
   if ( g_SceneMgr._tail )
   {
     v2 = 0.0;
-    if ( (g_Input.m_shiftedKeyStates[220] & 0xF) == 1 )
+    if ( (g_Input.KeyInfo[4].Data & 0xF) == 1 )
     {
       v2 = 1.0;
     }
-    else if ( (g_Input.m_shiftedKeyStates[224] & 0xF) == 1 )
+    else if ( (g_Input.KeyInfo[5].Data & 0xF) == 1 )
     {
       v2 = -1.0;
     }
-    if ( (g_Input.m_DIKToKEY[86] & 0xF) == 1 )
+    if ( (g_Input.KeyInfo[38].Data & 0xF) == 1 )
     {
-      v3 = (float *)(g_Input.KeyInfo[177].CountMode + 4);
-      v4 = v2 + *(float *)(g_Input.KeyInfo[177].CountMode + 4);
-      *(_DWORD *)(g_Input.KeyInfo[177].CountMode + 8) = 0;
-      *v3 = v4;
+      p_OrthoSize = &dword_BFDA68->OrthoSize;
+      v4 = v2 + dword_BFDA68->OrthoSize;
+      dword_BFDA68->Wscreen = 0.0;
+      *p_OrthoSize = v4;
     }
-    else if ( (g_Input.m_DIKToKEY[90] & 0xF) == 1 )
+    else if ( (g_Input.KeyInfo[39].Data & 0xF) == 1 )
     {
-      *(float *)(g_Input.KeyInfo[177].CountMode + 468) = v2 * 8.0 + *(float *)(g_Input.KeyInfo[177].CountMode + 468);
+      *(float *)&dword_BFDA68->CurCtrl = v2 * 8.0 + *(float *)&dword_BFDA68->CurCtrl;
     }
-    else if ( (g_Input.m_DIKToKEY[94] & 0xF) == 1 )
+    else if ( (g_Input.KeyInfo[40].Data & 0xF) == 1 )
     {
-      *(float *)(g_Input.KeyInfo[177].CountMode + 452) = v2 * 0.039250001
-                                                       + *(float *)(g_Input.KeyInfo[177].CountMode + 452);
+      *(float *)&dword_BFDA68->pControl[12] = v2 * 0.039250001 + *(float *)&dword_BFDA68->pControl[12];
     }
-    else if ( (g_Input.m_shiftedKeyStates[204] & 0xF) == 1 )
+    else if ( (g_Input.KeyInfo[0].Data & 0xF) == 1 )
     {
-      *(float *)(g_Input.KeyInfo[177].CountMode + 540) = v2 + v2 + *(float *)(g_Input.KeyInfo[177].CountMode + 540);
+      *(float *)&dword_BFDA68[1].Viewport.height = v2 + v2 + *(float *)&dword_BFDA68[1].Viewport.height;
     }
     return;
   }
@@ -2500,10 +2526,10 @@ void __cdecl CameraUpdate_Internal(float a1)
   v6 = (CScreenMode *)SoundContext::GetInstance();
   if ( CScreenMode::IsAudioReady(v6) && !g_SceneMgr._gap_c5e0[848] )
   {
-    if ( g_Input.KeyInfo[177].PressTime == 2
+    if ( dword_BFDA6C == 2
       && dword_D8BBEC == 2
-      && g_Input.m_shiftedKeyStates[255] == 1
-      && (g_Input.m_shiftedKeyStates[252] & 0xF) == 1
+      && g_Input.KeyInfo[12].PressTime == 1
+      && (g_Input.KeyInfo[12].Data & 0xF) == 1
       && !(*(int (__thiscall **)(__int32))(*(_DWORD *)(g_SceneMgr.m_pCollisionNode + 56) + 4))(g_SceneMgr.m_pCollisionNode + 56) )
     {
       v7 = g_SceneMgr.m_nCameraState + 1;
@@ -2525,12 +2551,12 @@ void __cdecl CameraUpdate_Internal(float a1)
       goto LABEL_51;
     if ( *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1228) == 44 )
     {
-      v9 = &g_Input.m_shiftedKeyStates[204];
+      KeyInfo = g_Input.KeyInfo;
       v10 = 0;
-      while ( (*(_BYTE *)v9 & 0xF) != 1 )
+      while ( (KeyInfo->Data & 0xF) != 1 )
       {
         v10 += 16;
-        v9 += 4;
+        ++KeyInfo;
         if ( v10 >= 656 )
           goto LABEL_50;
       }
@@ -2550,23 +2576,20 @@ LABEL_51:
         memset(pOut, 0, 12);
         RoleSystem::GetDirection((RoleSystem *)g_SceneMgr.m_pCollisionNode, &pOut[0].x);
         pOut[0].y = pOut[0].y + 10.0;
-        gbCamera::PointWorldToScr((gbCamera *)(g_Input.KeyInfo[177].CountMode + 4), pOut, &v43, &pOut2);
+        gbCamera::PointWorldToScr((gbCamera *)&dword_BFDA68->OrthoSize, pOut, &v43, &pOut2);
         UIWnd::ScreenToClient(
           (UIWnd *)&g_SceneMgr.m_pCameraCtrl,
-          (__int64)((v43 + 1.0) * (double)g_Input.KeyInfo[120].Data * 0.5),
-          (__int64)((1.0 - pOut2) * (double)g_Input.KeyInfo[120].HoldTime * 0.5));
+          (__int64)((v43 + 1.0) * (double)dword_BFD6D0 * 0.5),
+          (__int64)((1.0 - pOut2) * (double)dword_BFD6D4 * 0.5));
       }
       v11 = 0;
       v12 = 0;
       pDist = 0.0;
       qmemcpy(
         pMat,
-        CameraCtrl::GetViewTarget(
-          (CameraCtrl *)g_Input.KeyInfo[177].CountMode,
-          pOut,
-          (float *)&g_SceneMgr._gap_cd10[912]),
+        CameraCtrl::GetViewTarget((CameraCtrl *)dword_BFDA68, pOut, (float *)&g_SceneMgr._gap_cd10[912]),
         sizeof(pMat));
-      if ( g_Input.KeyInfo[177].PressTime != 2 && g_Input.KeyInfo[177].PressTime != 8 )
+      if ( dword_BFDA6C != 2 && dword_BFDA6C != 8 )
         goto LABEL_107;
       Target = UICamera::GetTarget(pMat);
       v14 = Target;
@@ -2593,10 +2616,10 @@ LABEL_90:
           UIQuadManager::GetInstance();
           UIQuadManager_Reset();
         }
-        v24 = g_Input.m_shiftedKeyStates[207];
-        if ( g_Input.m_shiftedKeyStates[207] != 1 )
+        PressTime = g_Input.KeyInfo[0].PressTime;
+        if ( g_Input.KeyInfo[0].PressTime != 1 )
           goto LABEL_109;
-        if ( (g_Input.m_shiftedKeyStates[204] & 0xF) != 1 )
+        if ( (g_Input.KeyInfo[0].Data & 0xF) != 1 )
           goto LABEL_108;
         if ( v14 )
         {
@@ -2615,19 +2638,19 @@ LABEL_90:
         if ( v11 )
           goto LABEL_153;
 LABEL_107:
-        v24 = g_Input.m_shiftedKeyStates[207];
-        if ( g_Input.m_shiftedKeyStates[207] == 1 )
+        PressTime = g_Input.KeyInfo[0].PressTime;
+        if ( g_Input.KeyInfo[0].PressTime == 1 )
         {
 LABEL_108:
-          if ( (g_Input.m_shiftedKeyStates[204] & 0xF) == 1 )
+          if ( (g_Input.KeyInfo[0].Data & 0xF) == 1 )
             goto LABEL_115;
         }
 LABEL_109:
-        v25 = g_Input.m_shiftedKeyStates[204] & 0xF;
+        v25 = g_Input.KeyInfo[0].Data & 0xF;
         if ( v25 != 1
-          && (v24 != 1 || v25 != 2)
-          && (g_Input.m_shiftedKeyStates[204] & 0xFu) <= 1
-          && (g_Input.m_shiftedKeyStates[211] != 1 || (g_Input.m_shiftedKeyStates[208] & 0xF) != 1) )
+          && (PressTime != 1 || v25 != 2)
+          && (g_Input.KeyInfo[0].Data & 0xFu) <= 1
+          && (g_Input.KeyInfo[1].PressTime != 1 || (g_Input.KeyInfo[1].Data & 0xF) != 1) )
         {
           goto LABEL_153;
         }
@@ -2648,7 +2671,7 @@ LABEL_115:
         if ( v43 != 0.0 || pOut2 != 0.0 )
           v26 = 1;
         *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1460) = 0;
-        if ( g_Input.m_shiftedKeyStates[207] == 1 && (g_Input.m_shiftedKeyStates[204] & 0xF) == 1 )
+        if ( g_Input.KeyInfo[0].PressTime == 1 && (g_Input.KeyInfo[0].Data & 0xF) == 1 )
         {
           RoleSystem::UpdateRole((RoleSystem *)g_SceneMgr.m_pCollisionNode, (int)&a2, SLODWORD(pDist), 1);
           v27 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628);
@@ -2664,7 +2687,7 @@ LABEL_115:
               1);
           }
         }
-        else if ( (g_Input.m_shiftedKeyStates[204] & 0xF) == 1 && (double)g_Input.m_shiftedKeyStates[207] * a1 > 0.5 )
+        else if ( (g_Input.KeyInfo[0].Data & 0xF) == 1 && (double)g_Input.KeyInfo[0].PressTime * a1 > 0.5 )
         {
           RoleSystem::MoveRole((RoleSystem *)g_SceneMgr.m_pCollisionNode, &a2.x, SLODWORD(pDist), 1, v26);
           v28 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628);
@@ -2681,7 +2704,7 @@ LABEL_115:
               1);
           }
         }
-        else if ( g_Input.m_shiftedKeyStates[207] == 1 && (g_Input.m_shiftedKeyStates[204] & 0xF) == 2 )
+        else if ( g_Input.KeyInfo[0].PressTime == 1 && (g_Input.KeyInfo[0].Data & 0xF) == 2 )
         {
           RoleSystem::UpdateRole((RoleSystem *)g_SceneMgr.m_pCollisionNode, (int)&a2, SLODWORD(pDist), 2);
           v29 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628);
@@ -2699,12 +2722,12 @@ LABEL_115:
         }
         else
         {
-          if ( (g_Input.m_shiftedKeyStates[204] & 0xFu) <= 1 || (double)g_Input.m_shiftedKeyStates[207] * a1 <= 0.5 )
+          if ( (g_Input.KeyInfo[0].Data & 0xFu) <= 1 || (double)g_Input.KeyInfo[0].PressTime * a1 <= 0.5 )
           {
 LABEL_145:
             if ( (g_SceneMgr._gap_cd10[1610] || (_BYTE)v41 && dword_D8BBEC == 2)
-              && g_Input.m_shiftedKeyStates[211] == 1
-              && (g_Input.m_shiftedKeyStates[208] & 0xF) == 1
+              && g_Input.KeyInfo[1].PressTime == 1
+              && (g_Input.KeyInfo[1].Data & 0xF) == 1
               && *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628) == LODWORD(pDist) )
             {
               RoleSystem::PathFind((RoleSystem *)g_SceneMgr.m_pCollisionNode, &a2.x);
@@ -2716,9 +2739,9 @@ LABEL_145:
 LABEL_153:
             v31 = 0;
             memset(&a2, 0, sizeof(a2));
-            if ( g_Input.m_shiftedKeyStates[231] == 1 && (g_Input.m_shiftedKeyStates[228] & 0xF) == 1 )
+            if ( g_Input.KeyInfo[6].PressTime == 1 && (g_Input.KeyInfo[6].Data & 0xF) == 1 )
             {
-              if ( g_Input.KeyInfo[177].PressTime == 2 )
+              if ( dword_BFDA6C == 2 )
               {
                 State = UICamera::GetState();
                 if ( State && *(_DWORD *)(State + 1264) != 7 )
@@ -2736,36 +2759,36 @@ LABEL_153:
               }
               goto LABEL_163;
             }
-            if ( (g_Input.m_shiftedKeyStates[216] & 0xF) == 1 )
+            if ( (g_Input.KeyInfo[3].Data & 0xF) == 1 )
             {
               v31 = 1;
-              a2.x = *(float *)(g_Input.KeyInfo[177].CountMode + 528);
-              a2.y = *(float *)(g_Input.KeyInfo[177].CountMode + 532);
-              a2.z = *(float *)(g_Input.KeyInfo[177].CountMode + 536);
+              LODWORD(a2.x) = dword_BFDA68[1].Viewport.x;
+              LODWORD(a2.y) = dword_BFDA68[1].Viewport.y;
+              LODWORD(a2.z) = dword_BFDA68[1].Viewport.width;
 LABEL_176:
               v12 = 3;
               goto LABEL_177;
             }
-            if ( (g_Input.m_shiftedKeyStates[216] & 0xFu) <= 1 )
+            if ( (g_Input.KeyInfo[3].Data & 0xFu) <= 1 )
             {
-              if ( (g_Input.m_shiftedKeyStates[212] & 0xF) == 1 )
+              if ( (g_Input.KeyInfo[2].Data & 0xF) == 1 )
               {
-                a2.x = -*(float *)(g_Input.KeyInfo[177].CountMode + 528);
-                a2.y = -*(float *)(g_Input.KeyInfo[177].CountMode + 532);
-                a2.z = -*(float *)(g_Input.KeyInfo[177].CountMode + 536);
+                a2.x = -*(float *)&dword_BFDA68[1].Viewport.x;
+                a2.y = -*(float *)&dword_BFDA68[1].Viewport.y;
+                a2.z = -*(float *)&dword_BFDA68[1].Viewport.width;
                 v31 = 1;
                 goto LABEL_176;
               }
-              if ( (g_Input.m_shiftedKeyStates[212] & 0xFu) <= 1 )
+              if ( (g_Input.KeyInfo[2].Data & 0xFu) <= 1 )
               {
 LABEL_177:
-                if ( (g_Input.m_shiftedKeyStates[220] & 0xF) == 1 )
+                if ( (g_Input.KeyInfo[4].Data & 0xF) == 1 )
                 {
-                  pOut[0].x = *(float *)(g_Input.KeyInfo[177].CountMode + 504);
-                  pOut[0].y = *(float *)(g_Input.KeyInfo[177].CountMode + 508);
-                  v34 = *(float *)(g_Input.KeyInfo[177].CountMode + 512);
+                  pOut[0].x = dword_BFDA68[1].fov;
+                  pOut[0].y = dword_BFDA68[1].OrthoSize;
+                  Wscreen = dword_BFDA68[1].Wscreen;
                   pOut[0].y = 0.0;
-                  pOut[0].z = v34;
+                  pOut[0].z = Wscreen;
                   gbVec3D::Normalize(pOut);
                   v31 = 1;
                   v12 = 3;
@@ -2773,13 +2796,13 @@ LABEL_177:
                   a2.y = a2.y + pOut[0].y;
                   a2.z = a2.z + pOut[0].z;
                 }
-                else if ( (g_Input.m_shiftedKeyStates[220] & 0xFu) <= 1 )
+                else if ( (g_Input.KeyInfo[4].Data & 0xFu) <= 1 )
                 {
-                  if ( (g_Input.m_shiftedKeyStates[224] & 0xF) == 1 )
+                  if ( (g_Input.KeyInfo[5].Data & 0xF) == 1 )
                   {
-                    pOut[0].x = *(float *)(g_Input.KeyInfo[177].CountMode + 504);
-                    pOut[0].y = *(float *)(g_Input.KeyInfo[177].CountMode + 508);
-                    v36 = *(float *)(g_Input.KeyInfo[177].CountMode + 512);
+                    pOut[0].x = dword_BFDA68[1].fov;
+                    pOut[0].y = dword_BFDA68[1].OrthoSize;
+                    v36 = dword_BFDA68[1].Wscreen;
                     pOut[0].y = 0.0;
                     pOut[0].z = v36;
                     gbVec3D::Normalize(pOut);
@@ -2789,7 +2812,7 @@ LABEL_177:
                     a2.y = a2.y - pOut[0].y;
                     a2.z = a2.z - pOut[0].z;
                   }
-                  else if ( (g_Input.m_shiftedKeyStates[224] & 0xFu) <= 1 )
+                  else if ( (g_Input.KeyInfo[5].Data & 0xFu) <= 1 )
                   {
                     if ( v12 != 3 )
                     {
@@ -2812,9 +2835,9 @@ LABEL_163:
                   }
                   else
                   {
-                    pOut[0].x = *(float *)(g_Input.KeyInfo[177].CountMode + 504);
-                    pOut[0].y = *(float *)(g_Input.KeyInfo[177].CountMode + 508);
-                    v37 = *(float *)(g_Input.KeyInfo[177].CountMode + 512);
+                    pOut[0].x = dword_BFDA68[1].fov;
+                    pOut[0].y = dword_BFDA68[1].OrthoSize;
+                    v37 = dword_BFDA68[1].Wscreen;
                     pOut[0].y = 0.0;
                     pOut[0].z = v37;
                     gbVec3D::Normalize(pOut);
@@ -2827,9 +2850,9 @@ LABEL_163:
                 }
                 else
                 {
-                  pOut[0].x = *(float *)(g_Input.KeyInfo[177].CountMode + 504);
-                  pOut[0].y = *(float *)(g_Input.KeyInfo[177].CountMode + 508);
-                  v35 = *(float *)(g_Input.KeyInfo[177].CountMode + 512);
+                  pOut[0].x = dword_BFDA68[1].fov;
+                  pOut[0].y = dword_BFDA68[1].OrthoSize;
+                  v35 = dword_BFDA68[1].Wscreen;
                   pOut[0].y = 0.0;
                   pOut[0].z = v35;
                   gbVec3D::Normalize(pOut);
@@ -2848,15 +2871,15 @@ LABEL_166:
                 flt_C116F8[0] = 0.0;
                 return;
               }
-              a2.x = -*(float *)(g_Input.KeyInfo[177].CountMode + 528);
-              a2.y = -*(float *)(g_Input.KeyInfo[177].CountMode + 532);
-              a2.z = -*(float *)(g_Input.KeyInfo[177].CountMode + 536);
+              a2.x = -*(float *)&dword_BFDA68[1].Viewport.x;
+              a2.y = -*(float *)&dword_BFDA68[1].Viewport.y;
+              a2.z = -*(float *)&dword_BFDA68[1].Viewport.width;
             }
             else
             {
-              a2.x = *(float *)(g_Input.KeyInfo[177].CountMode + 528);
-              a2.y = *(float *)(g_Input.KeyInfo[177].CountMode + 532);
-              a2.z = *(float *)(g_Input.KeyInfo[177].CountMode + 536);
+              LODWORD(a2.x) = dword_BFDA68[1].Viewport.x;
+              LODWORD(a2.y) = dword_BFDA68[1].Viewport.y;
+              LODWORD(a2.z) = dword_BFDA68[1].Viewport.width;
             }
             v31 = 2;
             goto LABEL_176;
@@ -2966,15 +2989,15 @@ void __thiscall UIPostUpdate(void *_this)
       v6 = *(unsigned __int8 *)(*(_DWORD *)(RolePtr + 160) + 8 * (v3 + v4 * v5) + 5);
       if ( v6 == 6 )
       {
-        if ( g_Input.KeyInfo[197].HoldTime != 2 )
+        if ( dword_BFDBA4 != 2 )
           ScriptSystem::RunEvent(2, 1, 0);
       }
       else if ( v6 == 10 )
       {
-        if ( g_Input.KeyInfo[197].HoldTime )
+        if ( dword_BFDBA4 )
           ScriptSystem::RunEvent(0, 1, 0);
       }
-      else if ( v6 == 13 && g_Input.KeyInfo[197].HoldTime != 3 )
+      else if ( v6 == 13 && dword_BFDBA4 != 3 )
       {
         ScriptSystem::RunEvent(3, 1, 0);
       }
@@ -3089,7 +3112,7 @@ double __userpurge UIUpdate@<st0>(_DWORD *_this@<ecx>, double result@<st0>, doub
       }
       while ( v5 < *(_this + 14392) );
     }
-    if ( g_Input.KeyInfo[177].PressTime != 9 )
+    if ( dword_BFDA6C != 9 )
     {
       v7 = 0;
       if ( (int)*(_this + 55) > 0 )
@@ -3120,7 +3143,7 @@ gbGfxManager *__cdecl GetGfxManager_2()
   v1 = v0;
   result = *(gbGfxManager **)(v0 + 132);
   if ( result && !*(_DWORD *)(v0 + 493144) )
-    gbSceneGraph::AddVisNode(*(gbSceneGraph **)(g_Input.KeyInfo[177].Data + 448), (struct gbVisNode *)result);
+    gbSceneGraph::AddVisNode((gbSceneGraph *)LODWORD(dword_BFDA60->InvViewMatrix.m[1][3]), (struct gbVisNode *)result);
   *(_DWORD *)(v1 + 493144) = 1;
   return result;
 }
@@ -3136,7 +3159,7 @@ gbGfxManager *__cdecl GetGfxManager_3()
   v1 = v0;
   result = *(gbGfxManager **)(v0 + 132);
   if ( result && *(_DWORD *)(v0 + 493144) )
-    gbSceneGraph::DelVisNode(*(gbSceneGraph **)(g_Input.KeyInfo[177].Data + 448), (struct gbVisNode *)result);
+    gbSceneGraph::DelVisNode((gbSceneGraph *)LODWORD(dword_BFDA60->InvViewMatrix.m[1][3]), (struct gbVisNode *)result);
   *(_DWORD *)(v1 + 493144) = 0;
   return result;
 }
@@ -3349,22 +3372,22 @@ void __cdecl EffectUpdate(float a1)
 
 // 0x00423540
 // between_std_methods (0x411BB0-0x430790)
-int CombatEnter()
+gbGfxManager *CombatEnter()
 {
-  int result; // eax
+  gbGfxManager *result; // eax
 
-  result = UISceneUpdate();
-  if ( *(_DWORD *)(result + 100) != 1
-    || (result = UIScene::ProcessInput(aM19, 0), (_BYTE)result)
-    || (result = UIScene::ProcessInput(aM20, 0), (_BYTE)result)
-    || (result = UIScene::ProcessInput(aM25, 0), (_BYTE)result) )
+  result = (gbGfxManager *)UISceneUpdate();
+  if ( *(_DWORD *)&result->DrvInfo.winname[48] != 1
+    || (result = (gbGfxManager *)UIScene::ProcessInput(aM19, 0), (_BYTE)result)
+    || (result = (gbGfxManager *)UIScene::ProcessInput(aM20, 0), (_BYTE)result)
+    || (result = (gbGfxManager *)UIScene::ProcessInput(aM25, 0), (_BYTE)result) )
   {
-    *(_DWORD *)(g_Input.KeyInfo[177].Data + 444) = 1060320051;
+    dword_BFDA60->InvViewMatrix.m[1][2] = 0.69999999;
   }
   else
   {
-    result = g_Input.KeyInfo[177].Data;
-    *(_DWORD *)(g_Input.KeyInfo[177].Data + 444) = 0;
+    result = dword_BFDA60;
+    dword_BFDA60->InvViewMatrix.m[1][2] = 0.0;
   }
   return result;
 }
@@ -3397,7 +3420,7 @@ gbActorMgr *__cdecl GetActorMgr()
       result = *(gbActorMgr **)(v0 + 4);
       if ( result )
       {
-        gbActorMgr::DestroyActor((gbActorMgr *)g_Input.KeyInfo[177].HoldTime, *(struct gbActor **)(v0 + 4));
+        gbActorMgr::DestroyActor(dword_BFDA64, *(struct gbActor **)(v0 + 4));
         v1[1] = 0;
       }
       goto LABEL_4;
@@ -3443,7 +3466,7 @@ gbGfxManager *__cdecl GetGfxManager_4()
   gbGfxManager *result; // eax
   int v2; // [esp+4h] [ebp+4h]
 
-  sub_424570(v0 - 8, *(gbMatrixStack **)(g_Input.KeyInfo[177].Data + 216), v2);
+  sub_424570(v0 - 8, dword_BFDA60->pMatrixStack[1], v2);
   return result;
 }
 
@@ -3534,7 +3557,7 @@ int unknown_libname_338()
 // Microsoft VisualC 2-14/net runtime
 Iostream_init *unknown_libname_339()
 {
-  return Iostream_init::Iostream_init((Iostream_init *)&stru_D8C2B8.m_keyStates[6]);
+  return Iostream_init::Iostream_init((Iostream_init *)&stru_D8C2B8.m_keyStates[24]);
 }
 
 // 0x00431DB0
@@ -3542,7 +3565,7 @@ Iostream_init *unknown_libname_339()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_340()
 {
-  PalScript::ClearAllWaitObj((PalScript *)&stru_D8C2B8.m_keyStates[6]);
+  PalScript::ClearAllWaitObj((PalScript *)&stru_D8C2B8.m_keyStates[24]);
 }
 
 // 0x00431DC0
@@ -3558,17 +3581,17 @@ int _E58()
 // Microsoft VisualC 2-14/net runtime
 _DWORD *unknown_libname_341()
 {
-  return PtrArray::Clear((PtrArray *)&stru_D8C2B8.m_keyStates[2]);
+  return PtrArray::Clear((PtrArray *)&stru_D8C2B8.m_keyStates[8]);
 }
 
 // 0x00431DF0
 // between_std_methods (0x430790-0x445B40)
 void __cdecl _E69()
 {
-  if ( (stru_D8C2B8.m_keyStates[1] & 1) == 0 )
+  if ( (stru_D8C2B8.m_keyStates[4] & 1) == 0 )
   {
-    LOBYTE(stru_D8C2B8.m_keyStates[1]) |= 1u;
-    sub_432680((void **)&stru_D8C2B8.m_keyStates[2]);
+    stru_D8C2B8.m_keyStates[4] |= 1u;
+    sub_432680((void **)&stru_D8C2B8.m_keyStates[8]);
   }
 }
 
@@ -3590,7 +3613,7 @@ int *unknown_libname_342()
   stru_D8C2B8.m_joystickFreeY = 0;
   stru_D8C2B8.m_joystickDeltaX = 0;
   LOWORD(stru_D8C2B8.m_joystickDeltaY) = 0;
-  stru_D8C2B8.m_keyStates[0] = 0;
+  *(_DWORD *)stru_D8C2B8.m_keyStates = 0;
   stru_D8C2B8.m_joystickX = 0;
   return &stru_D8C2B8.m_joystickX;
 }
@@ -3599,9 +3622,9 @@ int *unknown_libname_342()
 // between_std_methods (0x430790-0x445B40)
 void __cdecl _E84()
 {
-  if ( (stru_D8C2B8.m_keyStates[1] & 2) == 0 )
+  if ( (stru_D8C2B8.m_keyStates[4] & 2) == 0 )
   {
-    LOBYTE(stru_D8C2B8.m_keyStates[1]) |= 2u;
+    stru_D8C2B8.m_keyStates[4] |= 2u;
     PtrArray::Remove((PtrArray *)&stru_D8C2B8.m_joystickX);
   }
 }
@@ -3661,7 +3684,7 @@ int unknown_libname_346()
 // Microsoft VisualC 2-14/net runtime
 _DWORD *unknown_libname_347()
 {
-  return PtrArray::Clear((PtrArray *)&stru_D8C2B8.m_keyStates[10]);
+  return PtrArray::Clear((PtrArray *)&stru_D8C2B8.m_keyStates[40]);
 }
 
 // 0x00434B20
@@ -3677,23 +3700,23 @@ int unknown_libname_348()
 // 0x00434BA0
 // Microsoft VisualC 2-14/net runtime
 // Microsoft VisualC 2-14/net runtime
-CGameData *unknown_libname_349()
+GRP_KEYREG *unknown_libname_349()
 {
-  stru_D8C2B8.KeyInfo[5].PressTime = 0;
-  stru_D8C2B8.KeyInfo[6].Data = 0;
-  stru_D8C2B8.KeyInfo[6].HoldTime = 0;
-  stru_D8C2B8.KeyInfo[6].CountMode = 0;
-  stru_D8C2B8.KeyInfo[6].PressTime = 0;
-  stru_D8C2B8.KeyInfo[7].Data = 0;
-  stru_D8C2B8.KeyInfo[2].CountMode = (int)&off_56AA90;
-  stru_D8C2B8.KeyInfo[2].PressTime = 0;
-  stru_D8C2B8.KeyInfo[3].Data = 0;
-  stru_D8C2B8.KeyInfo[3].HoldTime = 0;
-  stru_D8C2B8.KeyInfo[4].HoldTime = 1143930880;
-  stru_D8C2B8.KeyInfo[3].CountMode = 0;
-  stru_D8C2B8.KeyInfo[3].PressTime = 0;
-  stru_D8C2B8.KeyInfo[4].Data = 0;
-  return (CGameData *)&stru_D8C2B8.KeyInfo[2].CountMode;
+  stru_D8C2B8.KeyInfo[156].HoldTime = 0;
+  stru_D8C2B8.KeyInfo[156].CountMode = 0;
+  stru_D8C2B8.KeyInfo[156].PressTime = 0;
+  stru_D8C2B8.KeyInfo[157].Data = 0;
+  stru_D8C2B8.KeyInfo[157].HoldTime = 0;
+  stru_D8C2B8.KeyInfo[157].CountMode = 0;
+  stru_D8C2B8.KeyInfo[153].Data = (int)&off_56AA90;
+  stru_D8C2B8.KeyInfo[153].HoldTime = 0;
+  stru_D8C2B8.KeyInfo[153].CountMode = 0;
+  stru_D8C2B8.KeyInfo[153].PressTime = 0;
+  stru_D8C2B8.KeyInfo[154].PressTime = 1143930880;
+  stru_D8C2B8.KeyInfo[154].Data = 0;
+  stru_D8C2B8.KeyInfo[154].HoldTime = 0;
+  stru_D8C2B8.KeyInfo[154].CountMode = 0;
+  return &stru_D8C2B8.KeyInfo[153];
 }
 
 // 0x00434BC0
@@ -3701,7 +3724,7 @@ CGameData *unknown_libname_349()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_350()
 {
-  sub_41CBC0(&stru_D8C2B8.KeyInfo[2].CountMode);
+  sub_41CBC0(&stru_D8C2B8.KeyInfo[153].Data);
 }
 
 // 0x004352D0
@@ -3723,7 +3746,7 @@ gbCamera *__cdecl GetCamera_1()
       pParams[0] = *((float *)String + 1);
       pParams[1] = *((float *)v1 + 1);
       pParams[2] = result->OrthoSize;
-      return (gbCamera *)CameraCtrl::InitParams((CameraCtrl *)g_Input.KeyInfo[177].CountMode, pParams);
+      return (gbCamera *)CameraCtrl::InitParams((CameraCtrl *)dword_BFDA68, pParams);
     }
   }
   return result;
@@ -3740,7 +3763,7 @@ gbCamera *__cdecl GetCamera_2()
   if ( result )
   {
     v1 = sub_434BD0(LOWORD(result->OrthoSize));
-    return (gbCamera *)RoleSystem::SetActive((RoleSystem *)g_Input.KeyInfo[177].CountMode, (int)v1);
+    return (gbCamera *)RoleSystem::SetActive((RoleSystem *)dword_BFDA68, (int)v1);
   }
   return result;
 }
@@ -3760,7 +3783,7 @@ gbCamera *__cdecl GetCamera_3()
     OrthoSize_low = LOWORD(result->OrthoSize);
     v1 = (_DWORD *)UISceneUpdate();
     v2 = sub_421560(v1, OrthoSize_low);
-    return (gbCamera *)sub_41C190((_DWORD *)g_Input.KeyInfo[177].CountMode, (int)v2);
+    return (gbCamera *)sub_41C190(dword_BFDA68, (int)v2);
   }
   return result;
 }
@@ -3775,7 +3798,7 @@ gbCamera *__cdecl GetCamera_4()
   if ( result )
   {
     result = (gbCamera *)LODWORD(result->OrthoSize);
-    *(_DWORD *)(g_Input.KeyInfo[177].CountMode + 448) = result;
+    dword_BFDA68->pControl[11] = (gbCamControler *)result;
   }
   return result;
 }
@@ -3796,12 +3819,12 @@ gbCamera *__cdecl GetCamera_5()
     if ( result )
     {
       sub_41CEE0(
-        &stru_D8C2B8.KeyInfo[2].CountMode,
-        g_Input.KeyInfo[177].CountMode,
+        &stru_D8C2B8.KeyInfo[153].Data,
+        (int)dword_BFDA68,
         *((_DWORD *)String + 1),
         *((_DWORD *)v1 + 1),
         LODWORD(result->OrthoSize));
-      sub_434C40((int)&stru_D8C2B8.KeyInfo[2].CountMode);
+      sub_434C40((int)&stru_D8C2B8.KeyInfo[153]);
     }
   }
   return result;
@@ -4176,13 +4199,13 @@ int __thiscall CGameData_Load(int _this, CUtil *a2)
   CUtil *v2; // ebx
   int result; // eax
   int v5; // ecx
-  void *HoldTime; // esi
+  RoleSystem *v6; // esi
   ScreenEffect *Instance; // eax
   int v8; // eax
   int (__thiscall ***v9)(_DWORD, _DWORD); // ecx
   int v10; // eax
   int v11; // ecx
-  void *Data; // esi
+  GRPinput *v12; // esi
 
   v2 = a2;
   if ( a2 != (CUtil *)8 || *(_DWORD *)(_this + 14536) || (result = (unsigned __int8)byte_D92785, !byte_D92785) )
@@ -4203,15 +4226,15 @@ int __thiscall CGameData_Load(int _this, CUtil *a2)
       }
       if ( dword_5A3748 == dword_DC1100 )
       {
-        if ( LOBYTE(g_Input.KeyInfo[179].CountMode) )
+        if ( byte_BFDA88 )
         {
-          HoldTime = (void *)g_Input.KeyInfo[179].HoldTime;
-          if ( g_Input.KeyInfo[179].HoldTime )
+          v6 = dword_BFDA84;
+          if ( dword_BFDA84 )
           {
-            sub_534FB0((void **)g_Input.KeyInfo[179].HoldTime);
-            operator delete(HoldTime);
-            g_Input.KeyInfo[179].HoldTime = 0;
-            LOBYTE(g_Input.KeyInfo[179].CountMode) = 0;
+            sub_534FB0((void **)dword_BFDA84);
+            operator delete(v6);
+            dword_BFDA84 = 0;
+            byte_BFDA88 = 0;
             dword_5A3748 = 1;
             dword_DC1100 = 0;
           }
@@ -4238,12 +4261,12 @@ int __thiscall CGameData_Load(int _this, CUtil *a2)
         }
         if ( *(_DWORD *)(_this + 14536) == 10 )
         {
-          Data = (void *)g_Input.KeyInfo[179].Data;
-          if ( g_Input.KeyInfo[179].Data )
+          v12 = dword_BFDA80;
+          if ( dword_BFDA80 )
           {
-            sub_52B2A0((void ***)g_Input.KeyInfo[179].Data);
-            operator delete(Data);
-            g_Input.KeyInfo[179].Data = 0;
+            sub_52B2A0((void ***)dword_BFDA80);
+            operator delete(v12);
+            dword_BFDA80 = 0;
           }
         }
         result = (int)sub_44F8D0((int *)_this, (int)a2);
@@ -4260,35 +4283,35 @@ int __thiscall CGameData_Load(int _this, CUtil *a2)
         v2 = *(CUtil **)(_this + 14536);
         *(_BYTE *)(_this + 652) = 1;
         *(_BYTE *)(_this + 653) = 0;
-        g_Input.KeyInfo[177].PressTime = 1;
+        dword_BFDA6C = 1;
       }
     }
     switch ( (unsigned int)v2 )
     {
       case 0u:
-        g_Input.KeyInfo[177].PressTime = 2;
-        result = CombatEnter();
+        dword_BFDA6C = 2;
+        result = (int)CombatEnter();
         break;
       case 6u:
-        g_Input.KeyInfo[177].PressTime = 3;
+        dword_BFDA6C = 3;
         break;
       case 9u:
       case 0xDu:
       case 0xEu:
-        g_Input.KeyInfo[177].PressTime = 1;
+        dword_BFDA6C = 1;
         break;
       case 0xAu:
-        g_Input.KeyInfo[177].PressTime = 4;
+        dword_BFDA6C = 4;
         break;
       case 0xBu:
-        g_Input.KeyInfo[177].PressTime = 5;
+        dword_BFDA6C = 5;
         break;
       case 0xCu:
-        g_Input.KeyInfo[177].PressTime = 6;
+        dword_BFDA6C = 6;
         break;
       case 0xFu:
-        g_Input.KeyInfo[177].PressTime = 9;
-        result = CombatEnter();
+        dword_BFDA6C = 9;
+        result = (int)CombatEnter();
         break;
       default:
         break;
@@ -6542,7 +6565,7 @@ void __cdecl _TextureLib_Data::~_TextureLib_Data(int a1, int a2, int a3, int a4,
   v6[3] = (float)a2;
   v6[2] = (float)a3;
   v6[1] = (float)a4;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v6, 1, (struct gbRenderEffect *)dword_1895050, 0);
 }
 
@@ -6553,7 +6576,7 @@ void __cdecl _TextureLib_Data::_GetItemNum(int *a1, struct gbTextureArray *a2, i
   float v4; // ecx
   gbTexture *v5; // ecx
   long double v6; // st7
-  double Data; // st7
+  double v7; // st7
   struct gbRenderEffect *v8; // esi
   gbDynVertBuf *DynVertBuf; // eax
   float v10[4]; // [esp+8h] [ebp-28h] BYREF
@@ -6565,7 +6588,7 @@ void __cdecl _TextureLib_Data::_GetItemNum(int *a1, struct gbTextureArray *a2, i
   int v16; // [esp+2Ch] [ebp-4h]
   int v17; // [esp+3Ch] [ebp+Ch]
   int v18; // [esp+3Ch] [ebp+Ch]
-  float HoldTime; // [esp+3Ch] [ebp+Ch]
+  float v19; // [esp+3Ch] [ebp+Ch]
 
   v16 = a3;
   v15 = 0;
@@ -6583,19 +6606,19 @@ void __cdecl _TextureLib_Data::_GetItemNum(int *a1, struct gbTextureArray *a2, i
     v17 = a1[2] - *a1;
     v12 = 0;
     v11 = 0;
-    v6 = (fabs((double)v17) + -0.5) / (double)v5->IsCreateMipmap;
+    v6 = (fabs((double)v17) + -0.5) / (double)v5->Height;
     v18 = a1[3] - a1[1];
     v13 = v6;
-    v14 = (fabs((double)v18) + -0.5) / (double)v5->TextureDetail;
+    v14 = (fabs((double)v18) + -0.5) / (double)(int)v5->pTexImage;
   }
-  Data = (double)g_Input.KeyInfo[120].Data;
+  v7 = (double)dword_BFD6D0;
   v8 = (struct gbRenderEffect *)dword_1895048;
-  v10[0] = ((double)*a1 + (double)*a1) / Data - 1.0;
-  HoldTime = (float)g_Input.KeyInfo[120].HoldTime;
-  v10[3] = 1.0 - ((double)a1[1] + (double)a1[1]) / HoldTime;
-  v10[2] = ((double)a1[2] + (double)a1[2]) / Data - 1.0;
-  v10[1] = 1.0 - ((double)a1[3] + (double)a1[3]) / HoldTime;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), 0x15u);
+  v10[0] = ((double)*a1 + (double)*a1) / v7 - 1.0;
+  v19 = (float)dword_BFD6D4;
+  v10[3] = 1.0 - ((double)a1[1] + (double)a1[1]) / v19;
+  v10[2] = ((double)a1[2] + (double)a1[2]) / v7 - 1.0;
+  v10[1] = 1.0 - ((double)a1[3] + (double)a1[3]) / v19;
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x15u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v10, 1, v8, a2);
 }
 
@@ -6616,7 +6639,7 @@ void __cdecl _TextureLib_Data::_CheckItem(
   unsigned int v10; // eax
   struct gbRenderEffect *v11; // esi
   double v12; // st7
-  double Data; // st7
+  double v14; // st7
   __int64 v15; // rax
   double v16; // st7
   gbDynVertBuf *DynVertBuf; // eax
@@ -6632,7 +6655,7 @@ void __cdecl _TextureLib_Data::_CheckItem(
   float v27; // [esp+34h] [ebp-Ch]
   int v28; // [esp+38h] [ebp-8h]
   int v29; // [esp+3Ch] [ebp-4h]
-  float HoldTime; // [esp+48h] [ebp+8h]
+  float v30; // [esp+48h] [ebp+8h]
   int v31; // [esp+50h] [ebp+10h]
 
   v28 = 0;
@@ -6653,8 +6676,8 @@ void __cdecl _TextureLib_Data::_CheckItem(
     v25 = 0;
     v24 = 0;
     v31 = a1[3] - a1[1];
-    v26 = (fabs((double)(a1[2] - *a1)) + -0.5) / (double)v9->IsCreateMipmap;
-    v27 = (fabs((double)v31) + -0.5) / (double)v9->TextureDetail;
+    v26 = (fabs((double)(a1[2] - *a1)) + -0.5) / (double)v9->Height;
+    v27 = (fabs((double)v31) + -0.5) / (double)(int)v9->pTexImage;
   }
   if ( (a5 & 0x100) != 0 )
   {
@@ -6679,26 +6702,26 @@ void __cdecl _TextureLib_Data::_CheckItem(
   }
   else
   {
-    Data = (double)g_Input.KeyInfo[120].Data;
-    v20 = ((double)*a2 + (double)*a2) / Data - 1.0;
-    HoldTime = (float)g_Input.KeyInfo[120].HoldTime;
-    v23 = 1.0 - ((double)a2[1] + (double)a2[1]) / HoldTime;
+    v14 = (double)dword_BFD6D0;
+    v20 = ((double)*a2 + (double)*a2) / v14 - 1.0;
+    v30 = (float)dword_BFD6D4;
+    v23 = 1.0 - ((double)a2[1] + (double)a2[1]) / v30;
     if ( a6 )
     {
       v15 = (__int64)((double)*((unsigned int *)a6 + 260) + v20 + 0.5);
       v19 = *((unsigned int *)a6 + 261);
-      v22 = ((double)(int)v15 + (double)(int)v15) / Data - 1.0;
+      v22 = ((double)(int)v15 + (double)(int)v15) / v14 - 1.0;
       v16 = (double)(int)(__int64)((double)v19 + v23 + 0.5);
     }
     else
     {
-      v22 = ((double)a2[2] + (double)a2[2]) / Data - 1.0;
+      v22 = ((double)a2[2] + (double)a2[2]) / v14 - 1.0;
       v16 = (double)a2[3];
     }
     v11 = (struct gbRenderEffect *)dword_1895048;
-    v21 = 1.0 - (v16 + v16) / HoldTime;
+    v21 = 1.0 - (v16 + v16) / v30;
   }
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), a5);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, a5);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)&v20, 1, v11, a3);
 }
 
@@ -6737,8 +6760,8 @@ void __cdecl _TextureLib_Data::SetLibFolder(
   int v28; // [esp+3Ch] [ebp-4h]
   int v29; // [esp+48h] [ebp+8h]
   int v30; // [esp+48h] [ebp+8h]
-  float HoldTime; // [esp+48h] [ebp+8h]
-  float Data; // [esp+58h] [ebp+18h]
+  float v31; // [esp+48h] [ebp+8h]
+  float v32; // [esp+58h] [ebp+18h]
 
   v6 = *a2;
   v27 = 0;
@@ -6759,10 +6782,10 @@ void __cdecl _TextureLib_Data::SetLibFolder(
     v29 = a1[2] - *a1;
     v24 = 0;
     v23 = 0;
-    v11 = (fabs((double)v29) + -0.5) / (double)v10->IsCreateMipmap;
+    v11 = (fabs((double)v29) + -0.5) / (double)v10->Height;
     v30 = a1[3] - a1[1];
     v25 = v11;
-    v26 = (fabs((double)v30) + -0.5) / (double)v10->TextureDetail;
+    v26 = (fabs((double)v30) + -0.5) / (double)(int)v10->pTexImage;
   }
   if ( (a4 & 0x100) != 0 )
   {
@@ -6784,13 +6807,13 @@ void __cdecl _TextureLib_Data::SetLibFolder(
   }
   else
   {
-    Data = (float)g_Input.KeyInfo[120].Data;
-    v12 = ((double)*a1 + (double)*a1) / Data - 1.0;
-    HoldTime = (float)g_Input.KeyInfo[120].HoldTime;
-    v22 = 1.0 - ((double)a1[1] + (double)a1[1]) / HoldTime;
+    v32 = (float)dword_BFD6D0;
+    v12 = ((double)*a1 + (double)*a1) / v32 - 1.0;
+    v31 = (float)dword_BFD6D4;
+    v22 = 1.0 - ((double)a1[1] + (double)a1[1]) / v31;
     if ( a5 == (unsigned int *)HIDWORD(v6) )
     {
-      v14 = ((double)a1[2] + (double)a1[2]) / Data - 1.0;
+      v14 = ((double)a1[2] + (double)a1[2]) / v32 - 1.0;
       v16 = (double)a1[3];
     }
     else
@@ -6798,15 +6821,15 @@ void __cdecl _TextureLib_Data::SetLibFolder(
       v15 = (__int64)((double)__SPAIR64__(HIDWORD(v6), a5[260]) + v12);
       LODWORD(v18) = a5[261];
       HIDWORD(v18) = HIDWORD(v6);
-      v14 = ((double)(int)v15 + (double)(int)v15) / Data - 1.0;
+      v14 = ((double)(int)v15 + (double)(int)v15) / v32 - 1.0;
       v16 = (double)(int)(__int64)((double)v18 + v22);
     }
     v13 = (struct gbRenderEffect *)dword_1895048;
-    v20 = 1.0 - (v16 + v16) / HoldTime;
+    v20 = 1.0 - (v16 + v16) / v31;
   }
   v19 = v12 - -0.5;
   v21 = v14 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), a4);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, a4);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)&v19, 1, v13, a3);
 }
 
@@ -6858,8 +6881,8 @@ void __cdecl _TextureLib_Data::GetLibInfo(
     v11 = a6->pTexPt[0];
     v21 = 0;
     v20 = 0;
-    v22 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->IsCreateMipmap;
-    v23 = (fabs((double)(a4 - a2)) + -0.5) / (double)v11->TextureDetail;
+    v22 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->Height;
+    v23 = (fabs((double)(a4 - a2)) + -0.5) / (double)(int)v11->pTexImage;
   }
   v12 = (double)a1;
   v19 = (float)a2;
@@ -6876,7 +6899,7 @@ void __cdecl _TextureLib_Data::GetLibInfo(
   v18[1] = v14;
   v18[0] = v12 - -0.5;
   v18[2] = v13 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
   if ( !a7 )
   {
     v17 = a6;
@@ -6937,8 +6960,8 @@ void __cdecl _TextureLib_Data::GetLib(
     v9 = a6->pTexPt[0];
     v17 = 0;
     v16 = 0;
-    v18 = (fabs((double)(a3 - a1)) + -0.5) / (double)v9->IsCreateMipmap;
-    v19 = (fabs((double)(a4 - a2)) + -0.5) / (double)v9->TextureDetail;
+    v18 = (fabs((double)(a3 - a1)) + -0.5) / (double)v9->Height;
+    v19 = (fabs((double)(a4 - a2)) + -0.5) / (double)(int)v9->pTexImage;
   }
   v10 = (double)a1;
   v15 = (float)a2;
@@ -6956,7 +6979,7 @@ void __cdecl _TextureLib_Data::GetLib(
   v14[1] = v12;
   v14[0] = v10 - -0.5;
   v14[2] = v11 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v14, 1, (struct gbRenderEffect *)dword_189505C, a6);
 }
 
@@ -7007,8 +7030,8 @@ void __cdecl _TextureLib_Data::GetTextureInfo(
     v17 = 0;
     v16 = 0;
     v22 = a1[3] - a1[1];
-    v18 = (fabs((double)v9) + -0.5) / (double)v8->IsCreateMipmap;
-    v19 = (fabs((double)v22) + -0.5) / (double)v8->TextureDetail;
+    v18 = (fabs((double)v9) + -0.5) / (double)v8->Height;
+    v19 = (fabs((double)v22) + -0.5) / (double)(int)v8->pTexImage;
   }
   v13[0] = (float)*a2;
   v15 = (float)a2[1];
@@ -7024,7 +7047,7 @@ void __cdecl _TextureLib_Data::GetTextureInfo(
     v10 = (double)a2[3];
   }
   v13[1] = v10;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v13, 1, (struct gbRenderEffect *)dword_1895054, a4);
 }
 
@@ -7083,7 +7106,7 @@ void __cdecl _TextureLib_Data::GetTextureInfo(
   v11[1] = v9;
   v11[0] = v7 - -0.5;
   v11[2] = v8 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v11, 1, (struct gbRenderEffect *)dword_1895058, a6);
 }
 
@@ -7156,7 +7179,7 @@ LABEL_12:
   v10[1] = v8;
   v10[0] = v6 - -0.5;
   v10[2] = v7 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v10, 1, (struct gbRenderEffect *)dword_189504C, a3);
 }
 
@@ -7184,13 +7207,13 @@ void __cdecl UIDestorySystem(int a1, int a2, int a3, int a4, int *a5, struct gbT
   v13 = 0;
   v12 = 0;
   v14 = 1065353216;
-  v15 = (fabs((double)(a4 - a2)) + -0.5) / (double)v7->TextureDetail;
+  v15 = (fabs((double)(a4 - a2)) + -0.5) / (double)(int)v7->pTexImage;
   v11 = (float)a2;
   v10 = (float)a3;
   v9[1] = (float)a4;
   v9[0] = (double)a1 - -0.5;
   v10 = v10 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v9, 1, (struct gbRenderEffect *)dword_1895058, a6);
 }
 
@@ -7220,7 +7243,7 @@ void __cdecl UIRenderQuad(int a1, int a2, int a3, int a4, int a5, int a6, int *a
   v9[1] = (float)a4;
   v9[0] = (double)a1 - -0.5;
   v10 = v10 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v9, 1, (struct gbRenderEffect *)dword_1895058, a8);
 }
 
@@ -7253,8 +7276,8 @@ void __cdecl UIRenderQuadEX(int a1, int a2, int a3, int a4, int *a5, struct gbTe
     v11 = a6->pTexPt[0];
     v19 = 0.0;
     v18 = 0.0;
-    v20 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->IsCreateMipmap;
-    v10 = (fabs((double)(a4 - a2)) + -0.5) / (double)v11->TextureDetail;
+    v20 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->Height;
+    v10 = (fabs((double)(a4 - a2)) + -0.5) / (double)(int)v11->pTexImage;
     goto LABEL_6;
   }
   v18 = *(float *)(a7 + 1048);
@@ -7262,8 +7285,8 @@ void __cdecl UIRenderQuadEX(int a1, int a2, int a3, int a4, int *a5, struct gbTe
   if ( !a8 )
   {
     v9 = a6->pTexPt[0];
-    v20 = (fabs((double)(a3 - a1)) + -0.5) / (double)a6->pTexPt[0]->IsCreateMipmap + v18;
-    v10 = (fabs((double)(a4 - a2)) + -0.5) / (double)v9->TextureDetail + v19;
+    v20 = (fabs((double)(a3 - a1)) + -0.5) / (double)a6->pTexPt[0]->Height + v18;
+    v10 = (fabs((double)(a4 - a2)) + -0.5) / (double)(int)v9->pTexImage + v19;
 LABEL_6:
     v21 = v10;
     goto LABEL_7;
@@ -7286,7 +7309,7 @@ LABEL_7:
   v16[1] = v14;
   v16[0] = v12 - -0.5;
   v16[2] = v13 - -0.5;
-  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), 0x114u);
+  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(dword_BFDA60->pVertPoolMgr, 0x114u);
   gbDynVertBuf::RenderUIQuad(DynVertBuf, (struct gbUIQuad *)v16, 1, (struct gbRenderEffect *)dword_1895060, a6);
 }
 
@@ -7299,9 +7322,9 @@ gbGfxManager *__cdecl PushMatrixStacks()
   gbGfxManager *v2; // ebx
   gbMatrixStack *v3; // edi
 
-  v1 = *(gbMatrixStack **)(g_Input.KeyInfo[177].Data + 216);
+  v1 = dword_BFDA60->pMatrixStack[1];
   v2 = v0;
-  v3 = *(gbMatrixStack **)(g_Input.KeyInfo[177].Data + 212);
+  v3 = dword_BFDA60->pMatrixStack[0];
   gbMatrixStack::Push(v1);
   gbMatrixStack::Push(v3);
   gbMatrixStack::LoadIdentity(v1);
@@ -7316,8 +7339,8 @@ gbGfxManager *__cdecl PopMatrixStacks()
   gbMatrixStack *v0; // esi
   gbGfxManager *result; // eax
 
-  v0 = *(gbMatrixStack **)(g_Input.KeyInfo[177].Data + 216);
-  gbMatrixStack::Pop(*(gbMatrixStack **)(g_Input.KeyInfo[177].Data + 212));
+  v0 = dword_BFDA60->pMatrixStack[1];
+  gbMatrixStack::Pop(dword_BFDA60->pMatrixStack[0]);
   gbMatrixStack::Pop(v0);
   return result;
 }
@@ -7327,7 +7350,7 @@ gbGfxManager *__cdecl PopMatrixStacks()
 void __cdecl UIRenderQuad(int a1, int a2, int a3, _BYTE *a4, int a5)
 {
   int v5; // eax
-  int v6; // esi
+  gbPrintFont *v6; // esi
   bool v7; // cc
   bool v8; // cc
   double v9; // st7
@@ -7385,24 +7408,24 @@ LABEL_17:
   switch ( v5 )
   {
     case 12:
-      v6 = **(_DWORD **)(g_Input.KeyInfo[177].Data + 208);
+      v6 = dword_BFDA60->pFontMgr->pAllFont[0];
       break;
     case 16:
-      v6 = *(_DWORD *)(*(_DWORD *)(g_Input.KeyInfo[177].Data + 208) + 4);
+      v6 = dword_BFDA60->pFontMgr->pAllFont[1];
       break;
     case 20:
-      v6 = *(_DWORD *)(*(_DWORD *)(g_Input.KeyInfo[177].Data + 208) + 8);
+      v6 = dword_BFDA60->pFontMgr->pAllFont[2];
       break;
     case 24:
-      v6 = *(_DWORD *)(*(_DWORD *)(g_Input.KeyInfo[177].Data + 208) + 12);
+      v6 = dword_BFDA60->pFontMgr->pAllFont[3];
       break;
     default:
       break;
   }
   v9 = (double)a5 + (double)a5;
-  v10 = v9 / (double)g_Input.KeyInfo[120].HoldTime;
-  *(float *)(v6 + 48) = v9 / (double)g_Input.KeyInfo[120].Data;
-  *(float *)(v6 + 52) = v10;
+  v10 = v9 / (double)dword_BFD6D4;
+  *(float *)&v6->curColor.Blue = v9 / (double)dword_BFD6D0;
+  *(float *)&v6->curColor.Color = v10;
   if ( gbColorQuad::ColorQuadFmt )
   {
     BYTE2(v14) = *a4;
@@ -7415,28 +7438,28 @@ LABEL_17:
     LOBYTE(v14) = *a4;
   }
   HIBYTE(v14) = a4[3];
-  *(_DWORD *)(v6 + 44) = v14;
-  v12 = 1.0 - ((double)v13 + (double)v13) / (double)g_Input.KeyInfo[120].HoldTime;
-  v11 = ((double)a1 + (double)a1) / (double)g_Input.KeyInfo[120].Data - 1.0;
-  (*(void (__thiscall **)(int, int, _DWORD, _DWORD, int, int))(*(_DWORD *)v6 + 16))(
+  v6->curColor.ColorQuadFmt = v14;
+  v12 = 1.0 - ((double)v13 + (double)v13) / (double)dword_BFD6D4;
+  v11 = ((double)a1 + (double)a1) / (double)dword_BFD6D0 - 1.0;
+  (*(void (__thiscall **)(gbPrintFont *, int, _DWORD, _DWORD, int, int))(*(_DWORD *)v6->_pad_0000 + 16))(
     v6,
     a3,
     LODWORD(v11),
     LODWORD(v12),
     1176256512,
     1176256512);
-  (*(void (__thiscall **)(int))(*(_DWORD *)v6 + 8))(v6);
+  (*(void (__thiscall **)(gbPrintFont *))(*(_DWORD *)v6->_pad_0000 + 8))(v6);
 }
 
 // 0x00541160
 // between_std_methods (0x53C2D0-0x541D1B)
 void __cdecl UIRenderPar(const char *a1, int *a2, _BYTE *a3, int a4, int a5)
 {
-  int v6; // edi
+  gbPrintFont *v6; // edi
   int v7; // eax
   int v8; // [esp+20h] [ebp+10h]
 
-  v6 = *(_DWORD *)(*(_DWORD *)(g_Input.KeyInfo[177].Data + 208) + 4 * a4);
+  v6 = dword_BFDA60->pFontMgr->pAllFont[a4];
   if ( gbColorQuad::ColorQuadFmt )
   {
     BYTE2(v8) = *a3;
@@ -7449,7 +7472,7 @@ void __cdecl UIRenderPar(const char *a1, int *a2, _BYTE *a3, int a4, int a5)
     LOBYTE(v8) = *a3;
   }
   HIBYTE(v8) = a3[3];
-  *(_DWORD *)(v6 + 44) = v8;
+  v6->curColor.ColorQuadFmt = v8;
   v7 = 16;
   switch ( a4 )
   {
@@ -7468,7 +7491,7 @@ void __cdecl UIRenderPar(const char *a1, int *a2, _BYTE *a3, int a4, int a5)
     default:
       break;
   }
-  UIRenderQuad(a1, a2, (float *)v6, v7, a5);
+  UIRenderQuad(a1, a2, (float *)v6->_pad_0000, v7, a5);
 }
 
 // 0x00541210
@@ -7514,8 +7537,8 @@ void __cdecl UIRenderQuad(const char *a1, int *a2, float *a3, int a4, int a5)
         v22 = 0;
         v25 = 0;
         v26 = 0;
-        v11 = v10 / (double)g_Input.KeyInfo[120].HoldTime;
-        a3[12] = v10 / (double)g_Input.KeyInfo[120].Data;
+        v11 = v10 / (double)dword_BFD6D4;
+        a3[12] = v10 / (double)dword_BFD6D0;
         a3[13] = v11;
         v12 = a4;
         v13 = a2;
@@ -7577,9 +7600,8 @@ LABEL_23:
               (*(void (__thiscall **)(float *))(*(_DWORD *)a3 + 8))(a3);
               return;
             }
-            v21 = 1.0
-                - ((double)(v26 + v23 + a2[1]) + (double)(v26 + v23 + a2[1])) / (double)g_Input.KeyInfo[120].HoldTime;
-            v20 = ((double)v27 + (double)v27) / (double)g_Input.KeyInfo[120].Data - 1.0;
+            v21 = 1.0 - ((double)(v26 + v23 + a2[1]) + (double)(v26 + v23 + a2[1])) / (double)dword_BFD6D4;
+            v20 = ((double)v27 + (double)v27) / (double)dword_BFD6D0 - 1.0;
             (*(void (__stdcall **)(int *, _DWORD, _DWORD, int, int))(*(_DWORD *)a3 + 16))(
               &a5,
               LODWORD(v20),
@@ -7640,8 +7662,8 @@ struct gbVFileSystem *__thiscall UIRenderQuadList(_BYTE *_this)
     v5 = 3;
     do
     {
-      v6 = (gbTexture *)(*(int (__thiscall **)(int, _DWORD))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
-                          g_Input.KeyInfo[177].Data,
+      v6 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
+                          dword_BFDA60,
                           *v4);
       *v3 = v6;
       gbTexture::LoadTexture(v6, 1);
@@ -7657,8 +7679,8 @@ struct gbVFileSystem *__thiscall UIRenderQuadList(_BYTE *_this)
     v8 = 3;
     do
     {
-      *v7 = (*(int (__thiscall **)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)g_Input.KeyInfo[177].Data + 96))(
-              g_Input.KeyInfo[177].Data,
+      *v7 = (*(int (__thiscall **)(gbGfxManager *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)dword_BFDA60->_pad_0000 + 96))(
+              dword_BFDA60,
               *(_DWORD *)((char *)v7 + (char *)v11 - _this),
               0,
               0);
@@ -7666,7 +7688,7 @@ struct gbVFileSystem *__thiscall UIRenderQuadList(_BYTE *_this)
       --v8;
     }
     while ( v8 );
-    (*(void (__thiscall **)(int, int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 104))(g_Input.KeyInfo[177].Data, 1);
+    (*(void (__thiscall **)(gbGfxManager *, int))(*(_DWORD *)dword_BFDA60->_pad_0000 + 104))(dword_BFDA60, 1);
   }
   UIQuadManager_Reset();
   v12 = -1;
@@ -7686,11 +7708,11 @@ gbGfxManager *__cdecl UIQuadManager_Reset()
   if ( v3 != *(_DWORD *)(v0 + 12) )
   {
     v2 = *(_BYTE *)(v0 + 29);
-    *(_DWORD *)result->DrvInfo = v3;
+    result->DrvInfo.type = v3;
     if ( !v2 )
-      return (gbGfxManager *)(*(int (__thiscall **)(int, _DWORD))(*(_DWORD *)g_Input.KeyInfo[177].Data + 100))(
-                               g_Input.KeyInfo[177].Data,
-                               *(_DWORD *)&result->_vftable[4 * v3]);
+      return (gbGfxManager *)(*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)dword_BFDA60->_pad_0000 + 100))(
+                               dword_BFDA60,
+                               *(_DWORD *)&result->_pad_0000[4 * v3]);
   }
   return result;
 }
@@ -7800,7 +7822,7 @@ int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdL
     ShowWindow(WindowA, 1);
     return 0;
   }
-  g_Input.KeyInfo[175].CountMode = (int)hInstance;
+  dword_BFDA48 = hInstance;
   hhk = SetWindowsHookExA(13, (HOOKPROC)fn, hInstance, 0);
   memset(Data, 0, sizeof(Data));
   v24 = 0;
@@ -8301,7 +8323,7 @@ enum _EXCEPTION_DISPOSITION __usercall TranslatorGuardHandler@<eax>(
       *((EXCEPTION_POINTERS **)TargetFrame + 2),
       *((_DWORD *)TargetFrame + 4),
       *((struct EHRegistrationNode **)TargetFrame + 5),
-      1u);
+      1);
     if ( !*((_DWORD *)TargetFrame + 9) )
       _UnwindNestedFrames(a1, TargetFrame, (PEXCEPTION_RECORD)ExceptionRecord);
     return (*((enum _EXCEPTION_DISPOSITION (**)(void))TargetFrame + 6))();
@@ -8462,12 +8484,12 @@ __int64 __usercall _ftol@<edx:eax>(double a1@<st0>)
 }
 
 // 0x005535C9
-void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *))
+void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (*a4)(void))
 {
   while ( --a3 >= 0 )
   {
     a1 -= a2;
-    ((void (*)(void))a4)();
+    a4();
   }
 }
 
@@ -9679,9 +9701,16 @@ LABEL_10:
 }
 
 // 0x00554700
-long double __usercall _CIpow@<st0>(double x@<st0>, unsigned __int64 y@<st1>)
+long double __usercall _CIpow@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)
 {
-  return sub_554722(HIDWORD(y), x, *(long double *)&y, SLODWORD(x), HIDWORD(*(unsigned __int64 *)&x), y, HIDWORD(y));
+  return sub_554722(
+           HIDWORD(*(unsigned __int64 *)&y),
+           *(double *)&x,
+           y,
+           x,
+           HIDWORD(x),
+           SLODWORD(y),
+           HIDWORD(*(unsigned __int64 *)&y));
 }
 
 // 0x00554719
@@ -10253,12 +10282,12 @@ char *__cdecl strtok(char *String, const char *Delimiter)
 void __noreturn start()
 {
   DWORD Version; // eax
-  int v1; // eax
+  int wShowWindow; // eax
   HMODULE ModuleHandleA; // eax
   int v3; // [esp-4h] [ebp-78h]
   CHAR *lpCmdLine; // [esp+10h] [ebp-64h]
   int v5; // [esp+14h] [ebp-60h]
-  _DWORD StartupInfo[17]; // [esp+18h] [ebp-5Ch] BYREF
+  struct _STARTUPINFOA StartupInfo; // [esp+18h] [ebp-5Ch] BYREF
   CPPEH_RECORD ms_exc; // [esp+5Ch] [ebp-18h]
 
   Version = GetVersion();
@@ -10275,14 +10304,14 @@ void __noreturn start()
   _setargv();
   _setenvp();
   _cinit();
-  StartupInfo[11] = 0;
-  GetStartupInfoA((LPSTARTUPINFOA)StartupInfo);
+  StartupInfo.dwFlags = 0;
+  GetStartupInfoA(&StartupInfo);
   lpCmdLine = _wincmdln();
-  if ( (StartupInfo[11] & 1) != 0 )
-    v1 = LOWORD(StartupInfo[12]);
+  if ( (StartupInfo.dwFlags & 1) != 0 )
+    wShowWindow = StartupInfo.wShowWindow;
   else
-    v1 = 10;
-  v3 = v1;
+    wShowWindow = 10;
+  v3 = wShowWindow;
   ModuleHandleA = GetModuleHandleA(0);
   v5 = WinMain(ModuleHandleA, 0, lpCmdLine, v3);
   exit(v5);
@@ -12610,7 +12639,7 @@ int __cdecl __InternalCxxFrameHandler(
         EXCEPTION_POINTERS *a5,
         int a6,
         struct EHRegistrationNode *TargetFrame,
-        char a8)
+        unsigned __int8 a8)
 {
   EXCEPTION_POINTERS *v8; // ecx
   int (__cdecl *pForwardCompat)(); // ecx
@@ -12639,7 +12668,7 @@ int __cdecl __InternalCxxFrameHandler(
                  a5,
                  a6,
                  TargetFrame,
-                 (unsigned __int8)a8);
+                 a8);
     }
     FindHandler(ExceptionRecord, a2, a3, a4, a5, a8, a6, TargetFrame);
   }
@@ -13275,7 +13304,7 @@ UINT _ioinit()
   char *v1; // esi
   unsigned int i; // eax
   signed int v3; // esi
-  _BYTE *v4; // ebp
+  unsigned __int8 *v4; // ebp
   HANDLE *v5; // ebx
   _DWORD *v6; // edi
   char *v7; // eax
@@ -13288,7 +13317,7 @@ UINT _ioinit()
   HANDLE StdHandle; // eax
   HANDLE v15; // edi
   DWORD FileType; // eax
-  _BYTE StartupInfo[68]; // [esp+10h] [ebp-44h] BYREF
+  struct _STARTUPINFOA StartupInfo; // [esp+10h] [ebp-44h] BYREF
 
   v0 = (char *)malloc(0x100u);
   v1 = v0;
@@ -13303,13 +13332,13 @@ UINT _ioinit()
     v1[5] = 10;
     v1 += 8;
   }
-  GetStartupInfoA((LPSTARTUPINFOA)StartupInfo);
-  if ( *(_WORD *)&StartupInfo[50] && *(_DWORD *)&StartupInfo[52] )
+  GetStartupInfoA(&StartupInfo);
+  if ( StartupInfo.cbReserved2 && StartupInfo.lpReserved2 )
   {
-    v3 = **(_DWORD **)&StartupInfo[52];
-    v4 = (_BYTE *)(*(_DWORD *)&StartupInfo[52] + 4);
-    v5 = (HANDLE *)(**(_DWORD **)&StartupInfo[52] + *(_DWORD *)&StartupInfo[52] + 4);
-    if ( (int)**(_DWORD **)&StartupInfo[52] >= 2048 )
+    v3 = *(_DWORD *)StartupInfo.lpReserved2;
+    v4 = StartupInfo.lpReserved2 + 4;
+    v5 = (HANDLE *)&StartupInfo.lpReserved2[*(_DWORD *)StartupInfo.lpReserved2 + 4];
+    if ( *(int *)StartupInfo.lpReserved2 >= 2048 )
       v3 = 2048;
     if ( (int)uNumber < v3 )
     {
@@ -13810,7 +13839,7 @@ int __cdecl __crtLCMapStringA(
     }
     else
     {
-      if ( !LCMapStringA(0, 0x100u, (LPCSTR)&g_Input.KeyInfo[181].HoldTime, 1, 0, 0) )
+      if ( !LCMapStringA(0, 0x100u, unk_BFDAA4, 1, 0, 0) )
         return 0;
       dword_189539C = 2;
     }
@@ -14326,7 +14355,7 @@ int __cdecl _setmbcp(int CodePage)
   int v15; // eax
   _DWORD *v16; // esi
   unsigned int j; // eax
-  _DWORD CPInfo[5]; // [esp+Ch] [ebp-18h] BYREF
+  struct _cpinfo CPInfo; // [esp+Ch] [ebp-18h] BYREF
   unsigned int v20; // [esp+20h] [ebp-4h]
   UINT CodePagea; // [esp+2Ch] [ebp+8h]
 
@@ -14395,21 +14424,21 @@ LABEL_31:
     ++v3;
   }
   while ( (int)v4 < (int)&tbyte_60B050 );
-  if ( GetCPInfo(v2, (LPCPINFO)CPInfo) )
+  if ( GetCPInfo(v2, &CPInfo) )
   {
     ::CodePage = v2;
     memset(&unk_1896AC0, 0, 0x100u);
     unk_1896BC0 = 0;
     Locale = 0;
-    if ( CPInfo[0] <= 1u )
+    if ( CPInfo.MaxCharSize <= 1 )
     {
       dword_18969BC = 0;
     }
     else
     {
-      if ( BYTE2(CPInfo[1]) )
+      if ( CPInfo.LeadByte[0] )
       {
-        v5 = (unsigned __int8 *)&CPInfo[1] + 3;
+        v5 = &CPInfo.LeadByte[1];
         do
         {
           v6 = *v5;
@@ -14504,17 +14533,17 @@ unsigned int setSBUpLow()
   CHAR v9[256]; // [esp+204h] [ebp-314h] BYREF
   CHAR DestStr[256]; // [esp+304h] [ebp-214h] BYREF
   CHAR SrcStr[256]; // [esp+404h] [ebp-114h] BYREF
-  _BYTE CPInfo[20]; // [esp+504h] [ebp-14h] BYREF
+  struct _cpinfo CPInfo; // [esp+504h] [ebp-14h] BYREF
 
-  if ( GetCPInfo(CodePage, (LPCPINFO)CPInfo) )
+  if ( GetCPInfo(CodePage, &CPInfo) )
   {
     for ( i = 0; i < 0x100; ++i )
       SrcStr[i] = i;
-    v1 = CPInfo[6];
+    v1 = CPInfo.LeadByte[0];
     SrcStr[0] = 32;
-    if ( CPInfo[6] )
+    if ( CPInfo.LeadByte[0] )
     {
-      v2 = &CPInfo[7];
+      v2 = &CPInfo.LeadByte[1];
       do
       {
         v3 = *v2;
@@ -14587,9 +14616,9 @@ int __initmbctable()
 }
 
 // 0x005592F0
-double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
+long double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
 {
-  double result; // st7
+  long double result; // st7
   long double v6; // st6
   long double v7; // st7
   long double v8; // st7
@@ -15902,7 +15931,7 @@ LABEL_256:
 }
 
 // 0x0055A28B
-int __cdecl _hextodec(int C)
+unsigned int __cdecl _hextodec(int C)
 {
   int v1; // esi
   int v2; // eax
@@ -17853,7 +17882,7 @@ BOOL __cdecl __crtGetStringTypeA(
     }
     else
     {
-      if ( !GetStringTypeA(0, 1u, (LPCSTR)&g_Input.KeyInfo[181].HoldTime, 1, &CharType) )
+      if ( !GetStringTypeA(0, 1u, unk_BFDAA4, 1, &CharType) )
         return 0;
       v7 = 2;
     }
