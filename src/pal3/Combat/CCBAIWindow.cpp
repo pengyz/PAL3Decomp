@@ -50,7 +50,7 @@ int sub_51CA50(int this, int a2)
 }
 
 // 0x0051CAA0
-int sub_51CAA0(int *this)
+int sub_51CAA0()
 {
   int v2; // ebx
   char *v3; // edi
@@ -105,7 +105,7 @@ char sub_51CCE0(_DWORD *a1)
   v1 = operator new(0x74u);
   v6 = 0;
   if ( v1 )
-    v2 = sub_519310(v1);
+    v2 = v1->ctor_9310();
   else
     v2 = 0;
   v6 = -1;

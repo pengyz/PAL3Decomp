@@ -3,5 +3,5 @@
   "address": "0x004A2150",
   "size_bytes": 30,
   "signature": "stdiobuf *__thiscall(stdiobuf *Block, char a2)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nstdiobuf *__thiscall sub_4A2150(stdiobuf *Block, char a2)\n{\n  sub_4A2450(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nstdiobuf *__thiscall sub_4A2150(stdiobuf *Block, char a2)\n{\n  UIWnd::ctor_2450(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
 }

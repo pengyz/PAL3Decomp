@@ -3,5 +3,5 @@
   "address": "0x004512F0",
   "size_bytes": 37,
   "signature": "int __thiscall(int *this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_4512F0(int *this)\n{\n  int result; // eax\n\n  result = *(this + 14);\n  if ( result )\n  {\n    result = (*(int (__thiscall **)(int *))(*(this + 20) + 4))(this + 20);\n    if ( *(this + 63) == 2 )\n      return sub_445CD0(this);\n  }\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_4512F0(int *this)\n{\n  int result; // eax\n\n  result = *(this + 14);\n  if ( result )\n  {\n    result = (*(int (__thiscall **)(int *))(*(this + 20) + 4))(this + 20);\n    if ( *(this + 63) == 2 )\n      return UIWnd::GetID(this);\n  }\n  return result;\n}\n"
 }

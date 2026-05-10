@@ -3,7 +3,7 @@
 #include "pal3/gen/C3DSpark.h"
 
 // 0x004D6670
-_DWORD * sub_4D6670(_DWORD *this)
+_DWORD * sub_4D6670()
 {
   int v2; // ebx
   int v3; // edi
@@ -253,7 +253,7 @@ void sub_4D6960(int this)
 }
 
 // 0x004D6A60
-char sub_4D6A60(_DWORD *this, const void *a2)
+char sub_4D6A60(const void *a2)
 {
   int v3; // eax
   _BYTE *i; // ecx
@@ -272,7 +272,7 @@ char sub_4D6A60(_DWORD *this, const void *a2)
 }
 
 // 0x004D6AC0
-char sub_4D6AC0(_DWORD *this, int a2, int a3, int a4)
+char sub_4D6AC0(int a2, int a3, int a4)
 {
   int v5; // eax
   long double v6; // st7
@@ -298,7 +298,7 @@ char sub_4D6AC0(_DWORD *this, int a2, int a3, int a4)
 }
 
 // 0x004D6BA0
-_BYTE * sub_4D6BA0(_DWORD *this)
+_BYTE * sub_4D6BA0()
 {
   _BYTE *result; // eax
   int v2; // edx
@@ -396,7 +396,7 @@ void __usercall sub_4D6BC0(int a1@<ecx>, struct gbVec3D *a2@<edi>)
 }
 
 // 0x004D6D30
-int sub_4D6D30(float *this, float a2)
+int sub_4D6D30(float a2)
 {
   int result; // eax
   int v3; // esi

@@ -210,7 +210,7 @@ char sub_51D4A0(_DWORD *a1)
   v1 = operator new(0xF4u);
   v6 = 0;
   if ( v1 )
-    v2 = sub_43F7F0(v1);
+    v2 = v1->ctor_F7F0();
   else
     v2 = 0;
   v6 = -1;

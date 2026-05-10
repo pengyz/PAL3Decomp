@@ -1,0 +1,210 @@
+// between_std_methods (0x402FB0-0x407AB0)
+struct gbVFileSystem *__usercall sub_404800@<eax>(int a1@<ebp>, HINSTANCE hInstance)
+{
+  int v2; // eax
+  HCURSOR CursorA; // eax
+  HWND v4; // edi
+  int v5; // eax
+  void *v6; // eax
+  void *v7; // eax
+  int v8; // ecx
+  int v9; // eax
+  int v10; // eax
+  int v11; // eax
+  int v12; // eax
+  int v13; // eax
+  int v14; // eax
+  int v15; // eax
+  int v16; // eax
+  int v17; // eax
+  int v18; // eax
+  int v19; // eax
+  gbGeomNode *v20; // eax
+  gbGeomNode *v21; // esi
+  gbGeomNode *v22; // ecx
+  struct gbVFileSystem *v23; // eax
+  struct gbVFileSystem *v24; // esi
+  gbGeomNode *v25; // ecx
+  int v26; // eax
+  char v28; // [esp+0h] [ebp-96Ch]
+  int v29; // [esp+Ch] [ebp-960h]
+  void *v30; // [esp+1Ch] [ebp-950h]
+  struct gbVFileSystem *v31; // [esp+20h] [ebp-94Ch] BYREF
+  _DWORD v32[3]; // [esp+24h] [ebp-948h] BYREF
+  _BYTE pExceptionObject[1024]; // [esp+30h] [ebp-93Ch] BYREF
+  char v34[24]; // [esp+430h] [ebp-53Ch] BYREF
+  int v35; // [esp+448h] [ebp-524h]
+  char ArgList[1024]; // [esp+560h] [ebp-40Ch] BYREF
+  int v37; // [esp+968h] [ebp-4h]
+  _UNKNOWN *retaddr; // [esp+96Ch] [ebp+0h]
+
+  PAL3::CreateGfxWindow();
+  sub_53CF80();
+  FileSysInit();
+  gbTimeCounterInit();
+  PAL3::CheckSystemRequire(hInstance);
+  PAL3::InitGFX(hInstance);
+  PAL3::CreateEffectSystem();
+  Parent_Data::spstr();
+  PalScript::Update();
+  sub_41EFA0();
+  sub_4318B0(aDatascriptComb);
+  sub_430290(aDatascriptLang);
+  sub_430570(aAppname);
+  v2 = CScreenMode_GetInstance();
+  sub_53DD70(v2);
+  CursorA = LoadCursorA(hInstance, (LPCSTR)0x73);
+  v4 = hWnd;
+  g_hCursor = (int)CursorA;
+  ShowWindow(hWnd, 5);
+  UpdateWindow(v4);
+  if ( !sub_4020E0(&stru_BFAD70, hInstance, (int)v4, 0) )
+  {
+    qmemcpy(
+      pExceptionObject,
+      (const void *)sub_53CEF0((char)ArgList, (int)aInputDeviceCre, (int)aDProjectPal3Ga_0, 180),
+      sizeof(pExceptionObject));
+    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
+  }
+  sub_402270(&stru_BFAD70, 0, 0, xRight, yBottom);
+  GRPinput_SetMode(&stru_BFAD70, 0x40000000);
+  sub_53C340(0, 1);
+  memset(v32, 0, sizeof(v32));
+  sub_41C1B0(v32);
+  if ( !(unsigned __int8)PAL_GDB::PAL_GDB(&g_GDB) )
+  {
+    qmemcpy(
+      pExceptionObject,
+      (const void *)sub_53CEF0((char)ArgList, (int)aFightDatabaseL, (int)aDProjectPal3Ga_0, 191),
+      sizeof(pExceptionObject));
+    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
+  }
+  sub_457410(aAssislangLang);
+  sub_408BE0();
+  v5 = UIQuadManager_GetInstance();
+  UIRenderQuadList(v5);
+  sub_41F5E0(&g_UIManager);
+  sub_53CE90((int)&g_Logger);
+  sub_53CC70((int)&g_Logger, aSBulidSS, (char)aV104);
+  sub_53CC70((int)&g_Logger, aGameCreateOk, v28);
+  v6 = operator new(0x162D8u);
+  v37 = 0;
+  if ( v6 )
+    v7 = (void *)sub_512500(v6);
+  else
+    v7 = 0;
+  g_pCBSystem = v7;
+  v37 = -1;
+  if ( !v7 )
+  {
+    qmemcpy(
+      pExceptionObject,
+      (const void *)sub_53CEF0((char)ArgList, (int)aCouldNotAlloca, (int)aDProjectPal3Ga_0, 214),
+      sizeof(pExceptionObject));
+    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
+  }
+  CCBSystem::ProcNormalAttack(v7);
+  v30 = operator new(0xA930u);
+  v37 = 1;
+  if ( v30 )
+  {
+    if ( g_pCamera )
+      v8 = g_pCamera + 4;
+    else
+      v8 = 0;
+    v9 = sub_4CDA10(g_pGfxManager, v8, 0);
+  }
+  else
+  {
+    v9 = 0;
+  }
+  v37 = -1;
+  g_pSceneMgr = v9;
+  if ( !v9 )
+  {
+    qmemcpy(
+      pExceptionObject,
+      (const void *)sub_53CEF0((char)ArgList, (int)aCouldNotAlloca_0, (int)aDProjectPal3Ga_0, 222),
+      sizeof(pExceptionObject));
+    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
+  }
+  if ( byte_BFDA90 )
+  {
+    if ( byte_5833C0 )
+      sub_44F130(&g_GameData);
+    v15 = CRenderTarget_GetInstance();
+    RenderTarget::Create(v15);
+    v16 = sub_4B65A0();
+    sub_4B65F0(v16);
+    v17 = CRenderTarget2_GetInstance();
+    sub_4BF780(v17);
+    v18 = sub_4B6D30();
+    sub_4B6D80(v18);
+    v19 = CEffectSystem::DestroyAllEffect();
+    CEffectSystem::IsVisible(v19);
+    PAL3::GetCommandLineParam();
+  }
+  else
+  {
+    sub_44F130(&g_GameData);
+    CGameData_Load(4);
+    v10 = CRenderTarget_GetInstance();
+    RenderTarget::Create(v10);
+    v11 = sub_4B65A0();
+    sub_4B65F0(v11);
+    v12 = CRenderTarget2_GetInstance();
+    sub_4BF780(v12);
+    v13 = sub_4B6D30();
+    sub_4B6D80(v13);
+    v14 = CEffectSystem::DestroyAllEffect();
+    CEffectSystem::IsVisible(v14);
+  }
+  (*(void (__stdcall **)(_DWORD, char *))(**(_DWORD **)(g_pGfxManager + 1816) + 28))(
+    *(_DWORD *)(g_pGfxManager + 1816),
+    v34);
+  if ( !v35 )
+    byte_BFDA91 = 1;
+  sub_41ED00(a1);
+  OpenBaseFile::OpenBaseFile(&v31);
+  v37 = 2;
+  v20 = (gbGeomNode *)operator new(0x118u);
+  v21 = v20;
+  LOBYTE(v37) = 3;
+  if ( v20 )
+  {
+    gbGeomNode::gbGeomNode(v20);
+    *(_DWORD *)v21->_data = &off_56A66C;
+    v22 = v21;
+  }
+  else
+  {
+    v22 = 0;
+  }
+  LOBYTE(v37) = 2;
+  g_pCursorNode1 = (int)v22;
+  gbGeomNode::LoadFromFile(v22, aObjectG02Cvd, 0, 0);
+  v23 = (struct gbVFileSystem *)operator new(0x118u);
+  v24 = v23;
+  v31 = v23;
+  LOBYTE(retaddr) = 4;
+  if ( v23 )
+  {
+    gbGeomNode::gbGeomNode(v23);
+    *(_DWORD *)v24->_data = &off_56A66C;
+    v25 = (gbGeomNode *)v24;
+  }
+  else
+  {
+    v25 = 0;
+  }
+  LOBYTE(retaddr) = 2;
+  g_pCursorNode2 = (int)v25;
+  gbGeomNode::LoadFromFile(v25, aObjectG03Cvd, 0, 0);
+  sub_53C440(aMovieLogoBik, hWndParent, 0, 0);
+  v29 = (600 - DisplayConfig_GetHeight(&g_DisplayConfig)) / 2;
+  v26 = DisplayConfig_GetWidth(&g_DisplayConfig);
+  CScreenMode_SetViewport((800 - v26) / 2, v29);
+  sub_53C5A0(1);
+  v37 = -1;
+  return OpenNULLFile::OpenNULLFile(&v31);
+}

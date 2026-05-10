@@ -192,7 +192,7 @@ char sub_5084C0(int this)
 }
 
 // 0x00508660
-_DWORD * sub_508660(_DWORD *this)
+_DWORD * sub_508660()
 {
   *(this + 13) = 0;
   *(this + 14) = 0;
@@ -265,7 +265,7 @@ int sub_508690(int this)
 }
 
 // 0x00508880
-int sub_508880(_DWORD *this, int a2)
+int sub_508880(int a2)
 {
   _DWORD *v2; // edx
   int result; // eax

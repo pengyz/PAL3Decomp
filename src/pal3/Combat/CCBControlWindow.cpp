@@ -124,7 +124,7 @@ int sub_51A880(int this)
 }
 
 // 0x0051A930
-int sub_51A930(_DWORD *this, int a2, unsigned int a3, int a4)
+int sub_51A930(int a2, unsigned int a3, int a4)
 {
   int v5; // eax
 
@@ -256,13 +256,13 @@ LABEL_10:
 }
 
 // 0x0051AC30
-int sub_51AC30(_DWORD *this)
+int sub_51AC30()
 {
   return *(this + 31);
 }
 
 // 0x0051AC40
-_DWORD * sub_51AC40(_DWORD *this)
+_DWORD * sub_51AC40()
 {
   this->UIListBox();
   *this = &off_57051C;
@@ -280,7 +280,7 @@ stdiobuf * sub_51AC90(stdiobuf *Block, char a2)
 }
 
 // 0x0051AD00
-int sub_51AD00(_DWORD *this)
+int sub_51AD00()
 {
   *(this + 20) = 0;
   *(this + 18) = 0;
@@ -446,7 +446,7 @@ int sub_51AFE0(int this)
 }
 
 // 0x0051B0B0
-BOOL sub_51B0B0(_DWORD *this, int a2, int a3)
+BOOL sub_51B0B0(int a2, int a3)
 {
   if ( *(this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
     CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), 160, -1, 0);
@@ -454,7 +454,7 @@ BOOL sub_51B0B0(_DWORD *this, int a2, int a3)
 }
 
 // 0x0051B110
-_DWORD * sub_51B110(_DWORD *this)
+_DWORD * sub_51B110()
 {
   this->UIListBox();
   *this = &off_570538;

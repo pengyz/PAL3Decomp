@@ -188,12 +188,10 @@ def transform_method_code(cls_name, method_name, code, sig):
         first = re.sub(r'\s*__thiscall\s*', ' ', first)
         first = re.sub(r'\s*__cdecl\s*', ' ', first)
         first = re.sub(r'\s*__stdcall\s*', ' ', first)
-        # Remove "ClassName *this" or "ClassName *this, " from params
-        first = re.sub(r'\(\s*%s\s*\*\s*this\s*,\s*' % re.escape(cls_name), '(', first)
-        first = re.sub(r'\(\s*%s\s*\*\s*this\s*\)' % re.escape(cls_name), '()', first)
-        # Also handle void *this
-        first = re.sub(r'\(\s*void\s*\*\s*this\s*,\s*', '(', first)
-        first = re.sub(r'\(\s*void\s*\*\s*this\s*\)', '()', first)
+        # Remove "ClassName *this" or any "*this" variant from params
+        # Handles: ClassName *this, void *this, _DWORD *this, _BYTE *this, char *this, etc.
+        first = re.sub(r'\(\s*\w[\w\s]*\*\s*this\s*,\s*', '(', first)
+        first = re.sub(r'\(\s*\w[\w\s]*\*\s*this\s*\)', '()', first)
         # Clean double spaces
         first = re.sub(r'  +', ' ', first).strip()
         lines[0] = first

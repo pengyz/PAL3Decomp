@@ -55,7 +55,7 @@ int sub_51BAB0(_DWORD **this, int a2)
 }
 
 // 0x0051BB00
-int sub_51BB00(_DWORD *this, int a2, int a3)
+int sub_51BB00(int a2, int a3)
 {
   _DWORD *v3; // eax
   int v4; // esi
@@ -76,14 +76,14 @@ int sub_51BB00(_DWORD *this, int a2, int a3)
 }
 
 // 0x0051BB40
-int sub_51BB40(_DWORD *this, int a2)
+int sub_51BB40(int a2)
 {
   *(this + 29) = a2;
   return a2;
 }
 
 // 0x0051BB90
-_DWORD * sub_51BB90(_DWORD *this)
+_DWORD * sub_51BB90()
 {
   this->UIListBox();
   *this = &off_570570;
@@ -101,7 +101,7 @@ stdiobuf * sub_51BBE0(stdiobuf *Block, char a2)
 }
 
 // 0x0051BC50
-int sub_51BC50(_DWORD *this)
+int sub_51BC50()
 {
   *(this + 18) = 0;
   *(this + 19) = 0;
@@ -115,7 +115,7 @@ int sub_51BC50(_DWORD *this)
 }
 
 // 0x0051BC70
-char sub_51BC70(_DWORD *this, _DWORD *a2, int a3)
+char sub_51BC70(_DWORD *a2, int a3)
 {
   gbRefObject ***v4; // edi
   gbRefObject ***v5; // edi
@@ -355,7 +355,7 @@ int sub_51C110(int this)
 }
 
 // 0x0051C1B0
-BOOL sub_51C1B0(_DWORD *this, int a2, int a3)
+BOOL sub_51C1B0(int a2, int a3)
 {
   if ( *(this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
     CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), 272, -1, 0);
@@ -363,7 +363,7 @@ BOOL sub_51C1B0(_DWORD *this, int a2, int a3)
 }
 
 // 0x0051C210
-_DWORD * sub_51C210(_DWORD *this)
+_DWORD * sub_51C210()
 {
   this->UIListBox();
   *this = &off_57058C;

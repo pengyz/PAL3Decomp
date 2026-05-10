@@ -28,7 +28,7 @@ void * Array::Insert(void *arr, void *elem, void *end)
 }
 
 // 0x004111C0
-int Array::Size(int *this)
+int Array::Size()
 {
   int result; // eax
 

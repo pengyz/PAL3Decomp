@@ -1,0 +1,7 @@
+{
+  "name": "UIWnd::ctor_AB90",
+  "address": "0x0044AB90",
+  "size_bytes": 298,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nint __thiscall sub_44AB90(int this)\n{\n  UIWnd::UIWnd((_DWORD *)this);\n  *(_DWORD *)(this + 108) = 360;\n  *(_DWORD *)(this + 112) = 136;\n  UIFrameWnd::UIFrameWnd((_BYTE *)(this + 124));\n  UIFrameWnd::UIFrameWnd((_BYTE *)(this + 276));\n  `eh vector constructor iterator'(\n    (void *)(this + 428),\n    0x98u,\n    3,\n    (void (__thiscall *)(void *))UIFrameWnd::UIFrameWnd,\n    (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);\n  UIScene::_UIScene((_DWORD *)(this + 884));\n  UIScene::_UIScene((_DWORD *)(this + 1228));\n  UIScene::_UIScene((_DWORD *)(this + 1572));\n  UIItem::Refresh(this + 1916);\n  *(_BYTE *)(this + 3300) = 0;\n  *(_DWORD *)(this + 3296) = 0;\n  *(_DWORD *)(this + 3292) = 0;\n  UIItem::Refresh(this + 3308);\n  UIItem::Refresh(this + 4676);\n  UIItem::Refresh(this + 6044);\n  sub_44B850(this + 7420);\n  *(_DWORD *)this = &off_56AFD4;\n  *(_DWORD *)(this + 116) = 90;\n  *(_DWORD *)(this + 120) = 24;\n  return this;\n}\n"
+}

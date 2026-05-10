@@ -183,56 +183,7 @@ endif()
 # ========================================================================
 if(BUILD_TARGET STREQUAL "pal3")
     message(STATUS "Configuring PAL3.exe build")
-
-    # PAL3.exe 反编译源文件列表
-    # 随 BFS 调用图展开逐步添加。每个文件包含已实现函数 + callee stub。
-    # 维护规则: 新增 .cpp 文件时添加到此列表。
-    set(PAL3_SOURCES
-        src/pal3/WinMain.cpp
-        src/pal3/gamebase/PAL3.cpp
-        src/pal3/gamebase/ScreenMode.cpp
-        src/pal3/gamebase/GRPinput.cpp
-        src/pal3/gamebase/GfxHelper.cpp
-        src/pal3/effect/RenderTarget.cpp
-        src/pal3/effect/RenderTarget2.cpp
-        src/pal3/effect/ScreenEffectMgr.cpp
-        src/pal3/effect/RenderTarget34.cpp
-        src/pal3/ui/UIQuadManager.cpp
-        src/pal3/Combat/CBSystem.cpp
-        src/pal3/Combat/CBStage.cpp
-        src/pal3/globals.cpp
-    )
-
-    add_executable(pal3 WIN32 ${PAL3_SOURCES})
-    target_include_directories(pal3 PUBLIC include)
-    set_target_properties(pal3 PROPERTIES
-        OUTPUT_NAME "PAL3"
-        SUFFIX ".exe"
-    )
-
-    if(MSVC)
-        target_compile_options(pal3 PRIVATE ${PAL3_COMPILE_FLAGS})
-
-        target_link_options(pal3 PRIVATE
-            /SUBSYSTEM:WINDOWS
-            /BASE:0x00400000
-            /FIXED
-            /MAP
-            ${PAL3_EXE_LINK_FLAGS}
-        )
-
-        # Generate assembly listings for byte comparison
-        file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/asm)
-        target_compile_options(pal3 PRIVATE /FAcs /Fa${CMAKE_BINARY_DIR}/asm/)
-    endif()
-
-    target_link_libraries(pal3
-        ${CMAKE_SOURCE_DIR}/lib/gbengine.lib
-        ${PLATFORM_LIBS}
-        advapi32
-    )
-
-    message(STATUS "PAL3.exe: ${list_length} source files configured")
+    add_subdirectory(src/pal3)
 endif()
 
 if(BUILD_TARGET STREQUAL "pal3a")

@@ -1,0 +1,7 @@
+{
+  "name": "UIWnd::ctor_3D10",
+  "address": "0x00453D10",
+  "size_bytes": 313,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_453D10(int this)\n{\n  UIListBox::UIListBox((_DWORD *)this);\n  UIFrameWnd::UIFrameWnd((_BYTE *)(this + 360));\n  UIFrameWnd::UIFrameWnd((_BYTE *)(this + 512));\n  `eh vector constructor iterator'(\n    (void *)(this + 664),\n    0x178u,\n    3,\n    (void (__thiscall *)(void *))sub_43B3E0,\n    (void (__thiscall *)(void *))sub_43B4D0);\n  UIScene::_UIScene((_DWORD *)(this + 1792));\n  UIFrameWnd::UIFrameWnd((_BYTE *)(this + 2136));\n  UIFrameWnd::UIFrameWnd((_BYTE *)(this + 2288));\n  UIFrameWnd::UIFrameWnd((_BYTE *)(this + 2440));\n  UIFrameWnd::UIFrameWnd((_BYTE *)(this + 2592));\n  UIFrameWnd::UIFrameWnd((_BYTE *)(this + 2744));\n  UIScene::_UIScene((_DWORD *)(this + 2896));\n  UIScene::_UIScene((_DWORD *)(this + 3240));\n  UIScene::_UIScene((_DWORD *)(this + 3584));\n  UIItem::Refresh(this + 3928);\n  *(_DWORD *)(this + 5312) = 0;\n  *(_DWORD *)(this + 76) = 0;\n  *(_DWORD *)(this + 72) = 0;\n  *(_DWORD *)this = &off_56B22C;\n  *(_DWORD *)(this + 80) = 800;\n  *(_DWORD *)(this + 84) = 600;\n  return this;\n}\n"
+}

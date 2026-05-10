@@ -1,0 +1,7 @@
+{
+  "name": "UIWnd::ctor_4130",
+  "address": "0x00524130",
+  "size_bytes": 245,
+  "signature": "void __thiscall(stdiobuf *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nvoid __thiscall sub_524130(stdiobuf *this)\n{\n  *(_DWORD *)this = &off_570630;\n  UIItem::UIItem((int)this + 3876);\n  sub_522120((int)this + 2236);\n  UIScene::Destroy2((std::ios_base *)((char *)this + 1888));\n  UIScene::Destroy2((std::ios_base *)((char *)this + 1544));\n  stdiobuf::~stdiobuf((std::ios_base *)((char *)this + 1272));\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)this + 28);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)((char *)this + 968));\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)((char *)this + 816));\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)((char *)this + 664));\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)((char *)this + 512));\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)this + 9);\n  stdiobuf::~stdiobuf((std::ios_base *)this);\n}\n"
+}

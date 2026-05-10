@@ -1,0 +1,7 @@
+{
+  "name": "UIWnd::ctor_1E70",
+  "address": "0x00531E70",
+  "size_bytes": 223,
+  "signature": "void __thiscall(stdiobuf *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nvoid __thiscall sub_531E70(stdiobuf *this)\n{\n  *(_DWORD *)this = &off_570890;\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)((char *)this + 7432));\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)this + 182);\n  UIItem::UIItem((int)this + 5908);\n  UIItem::UIItem((int)this + 4540);\n  `eh vector destructor iterator'((char *)this + 2988, 0x98u, 10, (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);\n  `eh vector destructor iterator'((char *)this + 1468, 0x98u, 10, (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)((char *)this + 1316));\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)((char *)this + 364));\n  stdiobuf::~stdiobuf((std::ios_base *)this);\n}\n"
+}

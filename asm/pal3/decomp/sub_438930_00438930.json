@@ -3,5 +3,5 @@
   "address": "0x00438930",
   "size_bytes": 71,
   "signature": "int()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint sub_438930()\n{\n  char **v0; // esi\n  int v1; // edi\n  int result; // eax\n  _DWORD v3[3]; // [esp+8h] [ebp-Ch] BYREF\n\n  v0 = (char **)v3;\n  v1 = 3;\n  do\n  {\n    *v0++ = sub_434C00();\n    --v1;\n  }\n  while ( v1 );\n  dword_D8E478 = *(_DWORD *)(v3[0] + 4);\n  result = *(_DWORD *)(v3[1] + 4);\n  dword_D8E47C = result;\n  dword_D8E480 = *(_DWORD *)(v3[2] + 4);\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint sub_438930()\n{\n  char **v0; // esi\n  int v1; // edi\n  int result; // eax\n  _DWORD v3[3]; // [esp+8h] [ebp-Ch] BYREF\n\n  v0 = (char **)v3;\n  v1 = 3;\n  do\n  {\n    *v0++ = PalScript::GetString();\n    --v1;\n  }\n  while ( v1 );\n  dword_D8E478 = *(_DWORD *)(v3[0] + 4);\n  result = *(_DWORD *)(v3[1] + 4);\n  dword_D8E47C = result;\n  dword_D8E480 = *(_DWORD *)(v3[2] + 4);\n  return result;\n}\n"
 }

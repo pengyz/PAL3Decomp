@@ -3,5 +3,5 @@
   "address": "0x004363E0",
   "size_bytes": 43,
   "signature": "char *()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar *sub_4363E0()\n{\n  char *v0; // esi\n  char *result; // eax\n  int v2; // ecx\n\n  v0 = sub_434C00();\n  result = sub_434C00();\n  if ( v0 && result )\n  {\n    v2 = *((_DWORD *)v0 + 1) - *((_DWORD *)result + 1);\n    *((_DWORD *)v0 + 1) = v2;\n    result = (char *)v2;\n    if ( v2 < 0 )\n    {\n      *((_DWORD *)v0 + 1) = -v2;\n      return (char *)-v2;\n    }\n  }\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar *sub_4363E0()\n{\n  char *v0; // esi\n  char *result; // eax\n  int v2; // ecx\n\n  v0 = PalScript::GetString();\n  result = PalScript::GetString();\n  if ( v0 && result )\n  {\n    v2 = *((_DWORD *)v0 + 1) - *((_DWORD *)result + 1);\n    *((_DWORD *)v0 + 1) = v2;\n    result = (char *)v2;\n    if ( v2 < 0 )\n    {\n      *((_DWORD *)v0 + 1) = -v2;\n      return (char *)-v2;\n    }\n  }\n  return result;\n}\n"
 }

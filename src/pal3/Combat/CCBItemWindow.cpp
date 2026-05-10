@@ -12,7 +12,7 @@ stdiobuf * sub_51B160(stdiobuf *Block, char a2)
 }
 
 // 0x0051B1D0
-int sub_51B1D0(_DWORD *this)
+int sub_51B1D0()
 {
   *(this + 18) = 0;
   *(this + 19) = 0;
@@ -251,7 +251,7 @@ int sub_51B4B0(int this)
 }
 
 // 0x0051B570
-BOOL sub_51B570(_DWORD *this, int a2, int a3)
+BOOL sub_51B570(int a2, int a3)
 {
   if ( *(this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
     CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*(this + 8) + 1160) + 8), 214, -1, 0);
@@ -259,7 +259,7 @@ BOOL sub_51B570(_DWORD *this, int a2, int a3)
 }
 
 // 0x0051B5D0
-int sub_51B5D0(int *this, int a2)
+int sub_51B5D0(int a2)
 {
   int v3; // edi
   void (__thiscall ****v4)(_DWORD, int); // esi
@@ -285,7 +285,7 @@ int sub_51B5D0(int *this, int a2)
 }
 
 // 0x0051B620
-_DWORD * sub_51B620(_DWORD *this)
+_DWORD * sub_51B620()
 {
   this->UIListBox();
   *this = &off_570554;
