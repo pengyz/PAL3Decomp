@@ -122,6 +122,7 @@ def apply_pdb_names(name, members, pdb_class, shift):
 
 # Structs to fix with their sizes (from earlier analysis)
 TARGETS = [
+    # CEffect family
     ("CEffgbParticle", 80),
     ("CEffSParticle", 128),
     ("CEffModel", 256),
@@ -132,6 +133,7 @@ TARGETS = [
     ("CEffMeteor", 512),
     ("CEffExplosive", 1280),
     ("CEffCustomShape", 256),
+    # UI family
     ("UIStatic", 248),
     ("UIFrameWnd", 152),
     ("UIDialog", 128),
@@ -144,8 +146,20 @@ TARGETS = [
     ("CCBParabolaWindow", 128),
     ("CCBSkillWindow", 128),
     ("CCBResultWindow", 256),
+    # Scene/Game
     ("SceneObj", 256),
     ("PalScript", 64),
+    # Large classes (second pass)
+    ("CEffMgr", 2304),
+    ("CCBStageScene", 1024),
+    ("CCBStageCam", 2048),
+    ("MagicUI", 4096),
+    ("StateUI", 4096),
+    ("EquipUI", 4096),
+    ("PAL_GDB", 8192),
+    ("CCCTData", 4096),
+    ("ParabolaCalculator", 512),
+    ("_Texture_Info", 1088),
 ]
 
 
