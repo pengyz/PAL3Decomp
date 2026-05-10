@@ -2165,16 +2165,16 @@ int CCBStage::ProcShowFiveLineup(int a2)
   (***(void (****)(_DWORD, int))(*(_DWORD *)(HIDWORD(v10) + 4) + 1080))(
     *(_DWORD *)(*(_DWORD *)(HIDWORD(v10) + 4) + 1080),
     1);
-  ((UIWnd *)(*this)->m_pRoleState->m_Role[0].bMagicMastered[1][0])->SetEnable((const char *)*((_DWORD *)this + 1), 0);
+  ((UIWnd *)(*this)->m_pRoleState->m_Role[0].?[1][0])->SetEnable((const char *)*((_DWORD *)this + 1), 0);
   v14 = id;
   ((CCBStage *)*this)->ProcShowEnemyFiveLineup();
   v14->UpdateAnim();
-  ((UIWnd *)(*this)->m_pRoleState->m_Role[0].bMagicMastered[1][0])->GetChild((int)&id);
-  ((UIWnd *)(*this)->m_pRoleState->m_Role[0].bMagicMastered[1][0])->ScreenToClient(LODWORD(v11) - 168, v18 - 128);
-  ((UIWnd *)(*this)->m_pRoleState->m_Role[0].bMagicMastered[1][0])->SetShow(0);
+  ((UIWnd *)(*this)->m_pRoleState->m_Role[0].?[1][0])->GetChild((int)&id);
+  ((UIWnd *)(*this)->m_pRoleState->m_Role[0].?[1][0])->ScreenToClient(LODWORD(v11) - 168, v18 - 128);
+  ((UIWnd *)(*this)->m_pRoleState->m_Role[0].?[1][0])->SetShow(0);
   if ( *((_BYTE *)v6 + 43) == 1 || *(float *)&(*this)->m_WPXVariance - v6[6] > v6[8] )
   {
-    v12 = (void (***)(_DWORD, _DWORD))(*this)->m_pRoleState->m_Role[0].bMagicMastered[1][0];
+    v12 = (void (***)(_DWORD, _DWORD))(*this)->m_pRoleState->m_Role[0].?[1][0];
     (**v12)(v12, 0);
     *((_DWORD *)v6 + 4) = 4;
   }
@@ -2815,7 +2815,7 @@ int CCBStage::ProcShowCombatDialog(int a2)
     }
     while ( v7 < 9812 );
     v11 = (CCBRoleState *)this->m_pRoleState;
-    if ( BYTE1(v11->m_Role[5].bMagicMastered[4][1]) )
+    if ( BYTE1(v11->m_Role[5].?[4][1]) )
     {
       if ( !*(_BYTE *)(v11->InitUI(10) + 880) )
       {

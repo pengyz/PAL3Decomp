@@ -1059,7 +1059,7 @@ char CCBRoleState::IsBoss(_DWORD *a1, int a2)
 // 0x004EF6A0
 int CCBRoleState::IsAllWeDead(int a2)
 {
-  return this->m_Role[0].bMagicMastered[3][223 * a2 + 2];
+  return this->m_Role[0].?[3][223 * a2 + 2];
 }
 
 // 0x004EF6C0
@@ -1311,18 +1311,18 @@ int CCBRoleState::WriteBackRoleData(int a2, _DWORD *a3, int *a4)
     *a4 = v14;
     return 100;
   }
-  if ( this->m_Role[0].bMagicMastered[3][223 * v15 + 2] == 6 )
+  if ( this->m_Role[0].?[3][223 * v15 + 2] == 6 )
     return v15;
-  if ( this->m_Role[0].bMagicMastered[3][223 * v14 + 2] == 6 )
+  if ( this->m_Role[0].?[3][223 * v14 + 2] == 6 )
     return v14;
   result = v20;
-  if ( this->m_Role[0].bMagicMastered[3][223 * v20 + 2] != 6 )
+  if ( this->m_Role[0].?[3][223 * v20 + 2] != 6 )
   {
 LABEL_47:
-    v16 = this->m_Role[0].bMagicMastered[3][223 * v15 + 2];
-    if ( v16 != this->m_RoleXor[1].bFriend && v16 != this->m_RoleXor[1].bCanAction )
+    v16 = this->m_Role[0].?[3][223 * v15 + 2];
+    if ( v16 != this->?[1].nHP && v16 != this->?[1].nGP )
     {
-      v17 = v16 == this->m_RoleXor[1].bEnemyFriend;
+      v17 = v16 == this->?[1].nMP;
       result = v14;
       if ( !v17 )
         return result;
@@ -1759,9 +1759,7 @@ char CCBRoleState::UnloadWeaponModel(int a2)
   __int32 *i; // edi
 
   v3 = 0;
-  for ( i = &this->m_Role[0].bMagicMastered[3][2];
-        !*((_BYTE *)i - 559) || *i != a2 || this->SetVisible(v3);
-        i += 223 )
+  for ( i = &this->m_Role[0].?[3][2]; !*((_BYTE *)i - 559) || *i != a2 || this->SetVisible(v3); i += 223 )
   {
     if ( ++v3 >= 5 )
       return 0;

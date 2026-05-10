@@ -1508,7 +1508,7 @@ char CCBAI::DemandChecker(unsigned int a2, int a3, int a4)
   if ( a3 == a2 )
     return 0;
   v6 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !LOBYTE(v6->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) )
+  if ( !LOBYTE(v6->m_Role[0].?[4][223 * a2 + 4]) )
   {
     if ( !v6->GetRoleField(a2, 18)
       && !((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
@@ -1571,7 +1571,7 @@ char CCBAI::CastNormalAttack(int a2, int a3, int a4)
 
   memset(a6, 0, sizeof(a6));
   v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE1(v5->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
+  if ( !BYTE1(v5->m_Role[0].?[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -1616,7 +1616,7 @@ char CCBAI::CastRecoverMagic(int a2, int a3)
 
   memset(a6, 0, sizeof(a6));
   v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE1(v4->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18)
+  if ( !BYTE1(v4->m_Role[0].?[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18)
     || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
   {
     return 0;
@@ -1666,7 +1666,7 @@ char CCBAI::CastRecoverBigMagic(int a2, int a3, int a4)
 
   memset(a6, 0, sizeof(a6));
   v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE1(v5->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
+  if ( !BYTE1(v5->m_Role[0].?[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -1710,7 +1710,7 @@ char CCBAI::CastAttackMagic(int a2, int a3)
   int a6[11]; // [esp+10h] [ebp-2Ch] BYREF
 
   v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE1(v4->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18) )
+  if ( !BYTE1(v4->m_Role[0].?[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -1748,7 +1748,7 @@ char CCBAI::CastAttackBigMagic(int a2, int a3)
 
   memset(a6, 0, sizeof(a6));
   v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE1(v4->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18) )
+  if ( !BYTE1(v4->m_Role[0].?[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -1789,7 +1789,7 @@ char CCBAI::CastSpecifyMagic(int a2, int a3, int a4)
 
   memset(a6, 0, sizeof(a6));
   v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE1(v5->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
+  if ( !BYTE1(v5->m_Role[0].?[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -1834,7 +1834,7 @@ char CCBAI::CastBFAMagic(int a2, int a3)
 
   memset(a6, 0, sizeof(a6));
   v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE2(v4->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18)
+  if ( !BYTE2(v4->m_Role[0].?[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18)
     || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
   {
     return 0;
@@ -1883,7 +1883,7 @@ char CCBAI::CastBFAAttackMagic(int a2, int a3, int a4)
 
   memset(a6, 0, sizeof(a6));
   v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE2(v5->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
+  if ( !BYTE2(v5->m_Role[0].?[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -1931,7 +1931,7 @@ char CCBAI::CastRandEnemyMagic(int a2, int a3)
 
   memset(a6, 0, sizeof(a6));
   v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE2(v4->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18)
+  if ( !BYTE2(v4->m_Role[0].?[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18)
     || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
   {
     return 0;
@@ -1990,7 +1990,7 @@ char CCBAI::CastRecoverSkill(int a2, int a3, int a4)
 
   memset(a6, 0, sizeof(a6));
   v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !HIBYTE(v5->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
+  if ( !HIBYTE(v5->m_Role[0].?[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -2035,7 +2035,7 @@ char CCBAI::CastRecoverBigSkill(int a2, int a3)
 
   memset(a6, 0, sizeof(a6));
   v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !HIBYTE(v4->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18)
+  if ( !HIBYTE(v4->m_Role[0].?[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18)
     || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
   {
     return 0;
@@ -2084,7 +2084,7 @@ char CCBAI::CastAttackSkill(int a2, int a3, int a4)
 
   memset(a6, 0, sizeof(a6));
   v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !HIBYTE(v5->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
+  if ( !HIBYTE(v5->m_Role[0].?[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -2133,7 +2133,7 @@ char CCBAI::CastAttackBigSkill(int a2, int a3)
 
   memset(a6, 0, sizeof(a6));
   v4 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !HIBYTE(v4->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18)
+  if ( !HIBYTE(v4->m_Role[0].?[4][223 * a2 + 4]) && !v4->GetRoleField(a2, 18)
     || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
   {
     return 0;
@@ -2184,7 +2184,7 @@ char CCBAI::CastRecoverItem(int a2, int a3, int a4)
 
   memset(a6, 0, sizeof(a6));
   v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE1(v5->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
+  if ( !BYTE1(v5->m_Role[0].?[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -2227,7 +2227,7 @@ char CCBAI::CastRecoverBigItem(int a2, int a3, int a4)
 
   memset(a6, 0, sizeof(a6));
   v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE2(v5->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
+  if ( !BYTE2(v5->m_Role[0].?[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -2270,7 +2270,7 @@ char CCBAI::CastAttackItem(int a2, int a3, int a4)
 
   memset(a6, 0, sizeof(a6));
   v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !HIBYTE(v5->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
+  if ( !HIBYTE(v5->m_Role[0].?[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -2312,7 +2312,7 @@ char CCBAI::CastAttackBigItem(int a2, int a3, int a4)
 
   memset(a6, 0, sizeof(a6));
   v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE1(v5->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
+  if ( !BYTE1(v5->m_Role[0].?[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -2353,7 +2353,7 @@ char CCBAI::CastBossPhysicalAttack(int a2, int a3, int a4)
 
   memset(a6, 0, sizeof(a6));
   v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !BYTE2(v5->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
+  if ( !BYTE2(v5->m_Role[0].?[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;
@@ -2394,7 +2394,7 @@ char CCBAI::CastReviveMagic(int a2, int a3, int a4)
 
   memset(a6, 0, sizeof(a6));
   v5 = (CCBRoleState *)this->m_bNewRole[4];
-  if ( !HIBYTE(v5->m_Role[0].byMagicUseTime[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
+  if ( !HIBYTE(v5->m_Role[0].?[4][223 * a2 + 4]) && !v5->GetRoleField(a2, 18) )
     return 0;
   if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 19) )
     return 0;

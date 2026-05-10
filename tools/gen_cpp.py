@@ -175,7 +175,7 @@ def transform_method_code(cls_name, method_name, code, sig):
     """Post-process Hex-Rays output into cleaner C++."""
     lines = code.split('\n')
 
-    # 0. Replace sub_XXXXX function name in definition with correct class::method name
+    # 0. Filter IDA header comments (before function definition line)
     lines = [l for l in lines if not l.strip().startswith('// between_std_methods')]
 
     # Fix function definition line: replace sub_XXXXX with ClassName::MethodName
