@@ -180,14 +180,12 @@ def import_class(cls, til, all_class_names):
         type_tif = make_tinfo(mtype, til, all_class_names)
         if type_tif:
             member.type = type_tif
-            ts = type_tif.get_size()
-            if ts > 0:
-                member.size = ts * 8
-            else:
-                member.size = member_size * 8
         else:
             member.type = ida_typeinf.tinfo_t(ida_typeinf.BT_INT32)
-            member.size = member_size * 8
+
+        # Always use PDB-derived size (from offset differences), not type_tif.get_size()
+        # This ensures correct layout even when type sizes differ between PAL3A and PAL3
+        member.size = member_size * 8
 
         udt.push_back(member)
 
