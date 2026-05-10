@@ -3,8 +3,7 @@
 
 class gbMixActInfo {
 public:
-    struct __unnamed {}; // nested type stub
-    __unnamed state; // +0x0
+    char state[4]; // +0x0 (gbMixActInfo::__unnamed)
     unsigned long name; // +0x4
     float weight; // +0x8
     unsigned int time; // +0xC

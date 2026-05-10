@@ -10,8 +10,7 @@ public:
     PtrArray m_script; // +0x0
     scSCEFile m_scefile; // +0x0
     scSCEFile m_scesys; // +0x0
-    struct allocator<char> > {}; // nested type stub
-    allocator<char> > m_scepath; // +0x0
+    int m_scepath; // +0x0 (std::basic_string<char,std::char_traits<char>,std::allocator<char> >)
     scSCEFile m_bigmapsce; // +0x0
     // total size: 0x1 (1)
 

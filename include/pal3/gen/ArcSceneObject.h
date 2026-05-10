@@ -8,8 +8,7 @@ class ArcSceneObject {
 public:
     ObjectInfo info; // +0x0
     SaveTask task; // +0x25C
-    struct SubObj {}; // nested type stub
-    SubObj subobj; // +0x268
+    char subobj[36]; // +0x268 (SceneObj::SubObj)
     // total size: 0x28C (652)
 
 };

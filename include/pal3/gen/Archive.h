@@ -3,12 +3,9 @@
 
 class Archive {
 public:
-    struct allocator<ArcScene> > {}; // nested type stub
-    allocator<ArcScene> > m_scene; // +0x0
-    struct allocator<ArcPastScene> > {}; // nested type stub
-    allocator<ArcPastScene> > m_past; // +0x10
-    struct allocator<unsigned long> > {}; // nested type stub
-    allocator<unsigned long> > m_objNotLoad; // +0x20
+    char m_scene[16]; // +0x0 (std::vector<ArcScene,std::allocator<ArcScene> >)
+    char m_past[16]; // +0x10 (std::vector<ArcPastScene,std::allocator<ArcPastScene> >)
+    char m_objNotLoad[16]; // +0x20 (std::vector<unsigned long,std::allocator<unsigned long> >)
     // total size: 0x30 (48)
 
 };

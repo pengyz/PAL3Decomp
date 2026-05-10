@@ -44,8 +44,7 @@ public:
     char m_pObjMsgBuffer[256]; // +0x1A8
     char m_pObjMsgBuffer2[256]; // +0x2A8
     gbVec3D m_renderpos; // +0x3A8
-    struct SubObj {}; // nested type stub
-    SubObj m_subobj; // +0x3B4
+    char m_subobj[36]; // +0x3B4 (SceneObj::SubObj)
     MyMdl m_mdl; // +0x3D8
     ObjectInfo m_info; // +0x42C
     PathObj * m_path; // +0x688
@@ -54,8 +53,7 @@ public:
     int m_pushboxdir; // +0x694
     tagRECT m_maprect; // +0x698
     int m_liftrole; // +0x6A8
-    struct Common_State> > > {}; // nested type stub
-    Common_State> > > m_common; // +0x6AC
+    char m_common[48]; // +0x6AC (std::queue<SceneObj::Common_State,std::deque<SceneObj::Common_State,std::allocator<SceneObj::Common_State> > >)
     gbSound3DNode * m_snd; // +0x6DC
     float m_radius; // +0x6E0
     PalScript * m_runscript; // +0x6E4

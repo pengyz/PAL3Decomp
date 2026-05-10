@@ -8,8 +8,7 @@ public:
     gbVec3D B; // +0x18
     float H; // +0x24
     float G; // +0x28
-    struct PRBL_STATE {}; // nested type stub
-    PRBL_STATE m_state; // +0x2C
+    char m_state[4]; // +0x2C (ParabolaCalculator::PRBL_STATE)
     // total size: 0x30 (48)
 
     int CalulateParabola(); // 0x00523600

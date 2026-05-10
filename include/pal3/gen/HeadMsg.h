@@ -7,8 +7,7 @@ class UIStatic;
 class HeadMsg {
 public:
     unsigned char m_bEnable; // +0x4
-    struct allocator<char> > {}; // nested type stub
-    allocator<char> > m_szMsg; // +0x8
+    char m_szMsg[16]; // +0x8 (std::basic_string<char,std::char_traits<char>,std::allocator<char> >)
     float m_fTime; // +0x18
     int m_nType; // +0x1C
     int m_nY; // +0x20

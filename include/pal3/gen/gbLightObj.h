@@ -5,8 +5,7 @@
 
 class gbLightObj : public gbVolumeModifier {
 public:
-    struct LIGHT_TYPE {}; // nested type stub
-    LIGHT_TYPE m_LightType; // +0x8
+    char m_LightType[4]; // +0x8 (gbLightObj::LIGHT_TYPE)
     gbColorFlt m_Color; // +0xC
     gbColorFlt m_Ambient; // +0x1C
     int m_UseDiffuse; // +0x2C
@@ -15,11 +14,9 @@ public:
     float m_NearEnd; // +0x38
     float m_FarStart; // +0x3C
     float m_FarEnd; // +0x40
-    struct DECAY_TYPE {}; // nested type stub
-    DECAY_TYPE m_DecayType; // +0x44
+    char m_DecayType[4]; // +0x44 (gbLightObj::DECAY_TYPE)
     float m_DecayRadius; // +0x48
-    struct LIGHT_SHAPE {}; // nested type stub
-    LIGHT_SHAPE m_LightShape; // +0x4C
+    char m_LightShape[4]; // +0x4C (gbLightObj::LIGHT_SHAPE)
     float m_HotSize; // +0x50
     float m_Falloff; // +0x54
     float m_Aspect; // +0x58

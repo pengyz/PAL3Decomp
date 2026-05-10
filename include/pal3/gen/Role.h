@@ -19,8 +19,7 @@ class SceneProp;
 
 class Role : public Object, public PalScriptWaitObj, public GlowObj {
 public:
-    struct ScriptCmd> > > {}; // nested type stub
-    ScriptCmd> > > m_cmdqueue; // +0x60
+    char m_cmdqueue[48]; // +0x60 (std::queue<Role::ScriptCmd,std::deque<Role::ScriptCmd,std::allocator<Role::ScriptCmd> > >)
     int m_bInView; // +0x90
     gbVec3D m_groundpos; // +0x94
     gbVec3D m_renderpos; // +0xA0
@@ -47,8 +46,7 @@ public:
     int m_bPet; // +0x504
     float m_scale; // +0x508
     NavTriangle m_tri; // +0x50C
-    struct SPECIAL_ACTION {}; // nested type stub
-    SPECIAL_ACTION m_specact; // +0x530
+    char m_specact[36]; // +0x530 (Role::SPECIAL_ACTION)
     ROLE_CTRL m_ctrlmode; // +0x554
     ROLE_BEHAVIOUR m_curbehaviour; // +0x558
     int m_bPathOut; // +0x55C

@@ -14,8 +14,7 @@ public:
     ArcLocaleRole player[5]; // +0xA0
     unsigned char underctrl; // +0x12C
     char px_mdl[32]; // +0x12D
-    struct PoisonState {}; // nested type stub
-    PoisonState pstate; // +0x150
+    char pstate[32]; // +0x150 (PlayerMgr::PoisonState)
     unsigned char g_bYouDi; // +0x170
     float m_fFStime; // +0x174
     ArcLocaleMusic music; // +0x178

@@ -52,8 +52,7 @@ public:
     CG_PROPINFO m_propinfo; // +0x73C38
     unsigned long m_propid; // +0x73C3C
     gbVec3D m_tmpPos; // +0x73C40
-    struct allocator<SceneProp *> > {}; // nested type stub
-    allocator<SceneProp *> > m_PropArray; // +0x73C4C
+    char m_PropArray[12]; // +0x73C4C (std::list<SceneProp *,std::allocator<SceneProp *> >)
     // total size: 0x73C58 (474200)
 
 };

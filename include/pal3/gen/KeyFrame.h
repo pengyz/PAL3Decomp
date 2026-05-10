@@ -5,8 +5,7 @@ class CPolicy;
 
 class KeyFrame {
 public:
-    struct EmitterAttribute {}; // nested type stub
-    EmitterAttribute emitterAttr; // +0x0
+    char emitterAttr[220]; // +0x0 (CParticleSystem::EmitterAttribute)
     CPolicy * pPositionPolicy; // +0xDC
     CPolicy * pDirectionPolicy; // +0xE0
     CPolicy * pColorPolicy; // +0xE4

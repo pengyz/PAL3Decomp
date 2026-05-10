@@ -26,8 +26,7 @@ public:
     char remarkbuf[256]; // +0x150
     int m_SelNum; // +0x250
     st_Manager m_data; // +0x254
-    struct SortData {}; // nested type stub
-    SortData m_sort[299][5]; // +0x46B4
+    char m_sort[11960]; // +0x46B4 (SaleUI::SortData[299][5])
     int m_ListSelNum[299][5]; // +0x756C
     int m_Max[299][5]; // +0x8CC8
     int m_Sum[5]; // +0xA424

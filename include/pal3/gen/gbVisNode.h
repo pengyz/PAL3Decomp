@@ -8,7 +8,7 @@ class gbOctreeNode;
 
 class gbVisNode : public gbNBTreeNode {
 public:
-    gbCycleQueue<gbNodeMsgObj> MsgBuffer; // +0x1C
+    char MsgBuffer[24]; // +0x1C (gbCycleQueue<gbNodeMsgObj>)
     int Priority; // +0x34
     float TimeScale; // +0x38
     int bShow; // +0x3C

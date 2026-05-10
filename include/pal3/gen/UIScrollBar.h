@@ -16,8 +16,7 @@ public:
     unsigned char m_bDrag; // +0xA0
     tagPOINT m_lastPt; // +0xA4
     int m_btnH; // +0xAC
-    struct SB_AREA {}; // nested type stub
-    SB_AREA m_mouseat; // +0xB0
+    char m_mouseat[4]; // +0xB0 (UIScrollBar::SB_AREA)
     int m_min; // +0xB4
     int m_max; // +0xB8
     int m_pos; // +0xBC

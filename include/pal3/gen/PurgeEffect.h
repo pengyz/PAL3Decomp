@@ -7,8 +7,7 @@ public:
     gbImage2D pSrcImg; // +0x4
     gbImage2D pDstImg; // +0xCC
     int m_ItemNum; // +0x194
-    struct allocator<EffectItem> > {}; // nested type stub
-    allocator<EffectItem> > EffItem; // +0x198
+    char EffItem[16]; // +0x198 (std::vector<EffectItem,std::allocator<EffectItem> >)
     unsigned char m_isUpdateMerge; // +0x1A8
     // total size: 0x1AC (428)
 

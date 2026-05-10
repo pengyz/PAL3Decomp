@@ -3,14 +3,10 @@
 
 class AStarPathFinder {
 public:
-    struct NODE * {}; // nested type stub
-    NODE * OPEN; // +0x4
-    struct NODE * {}; // nested type stub
-    NODE * CLOSED; // +0x8
-    struct NODE * {}; // nested type stub
-    NODE * PATH; // +0xC
-    struct STACK * {}; // nested type stub
-    STACK * Stack; // +0x10
+    char OPEN[4]; // +0x4 (AStarPathFinder::NODE *)
+    char CLOSED[4]; // +0x8 (AStarPathFinder::NODE *)
+    char PATH[4]; // +0xC (AStarPathFinder::NODE *)
+    char Stack[4]; // +0x10 (AStarPathFinder::STACK *)
     int m_TestTimer; // +0x14
     // total size: 0x18 (24)
 

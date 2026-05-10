@@ -4,8 +4,7 @@
 class _Console {
 public:
     int m_numcmd; // +0x0
-    struct _ConCmd {}; // nested type stub
-    _ConCmd m_cmd[64]; // +0x4
+    char m_cmd[8704]; // +0x4 (_Console::_ConCmd[64])
     tagRECT m_rect; // +0x2204
     int m_bactive; // +0x2214
     int m_bEnable; // +0x2218

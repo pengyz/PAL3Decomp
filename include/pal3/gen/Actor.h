@@ -3,8 +3,7 @@
 
 class Actor {
 public:
-    struct allocator<gbActor *> > {}; // nested type stub
-    allocator<gbActor *> > m_actarray; // +0x0
+    char m_actarray[16]; // +0x0 (std::vector<gbActor *,std::allocator<gbActor *> >)
     gbActor * m_pact; // +0x10
     char m_name[260]; // +0x14
     char m_szTexture[260]; // +0x118

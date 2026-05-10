@@ -7,8 +7,7 @@ public:
     float _fTimeScale; // +0x4
     int _tBlendType; // +0x8
     float _fTime; // +0xC
-    struct allocator<CParticleSystem *> > {}; // nested type stub
-    allocator<CParticleSystem *> > _ParticleSystems; // +0x10
+    char _ParticleSystems[16]; // +0x10 (std::vector<CParticleSystem *,std::allocator<CParticleSystem *> >)
     gbRenderEffect * _pRenderEffect; // +0x20
     gbGfxManager * _pGfxMgr; // +0x24
     unsigned long _dwReserved[4]; // +0x28

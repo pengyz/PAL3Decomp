@@ -12,8 +12,7 @@ public:
     float m_ratiow; // +0x48
     float m_ratioh; // +0x4C
     tagRECT m_drawrc; // +0x50
-    struct UIBUTTON_STATE {}; // nested type stub
-    UIBUTTON_STATE m_state; // +0x60
+    char m_state[4]; // +0x60 (UIButton::UIBUTTON_STATE)
     unsigned char m_canctrl; // +0x64
     unsigned char m_bLockUpdate; // +0x65
     int m_offsetx; // +0x68

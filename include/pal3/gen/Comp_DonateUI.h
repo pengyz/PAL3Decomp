@@ -16,8 +16,7 @@ public:
     Comp_Donate_Detail m_CompDonate[10]; // +0x4C
     int m_keynum; // +0x164
     int m_curitem; // +0x168
-    struct CDState {}; // nested type stub
-    CDState m_state[10]; // +0x16C
+    char m_state[40]; // +0x16C (Comp_DonateUI::CDState[10])
     char m_lang[256][16][5]; // +0x194
     UIStatic m_OutFrameT; // +0x5194
     UIStatic m_OutFrameR; // +0x5234

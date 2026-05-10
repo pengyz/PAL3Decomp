@@ -8,8 +8,7 @@ public:
     int m_tilewidth; // +0x44
     int m_tileheight; // +0x48
     gbTexture * m_tex; // +0x4C
-    struct STYLE {}; // nested type stub
-    STYLE m_style; // +0x50
+    char m_style[4]; // +0x50 (UIFlexBar::STYLE)
     // total size: 0x54 (84)
 
 };

@@ -19,19 +19,15 @@ public:
     float m_nextYAW; // +0x1BC
     float m_lastYAW; // +0x1C0
     gbVec3D m_camVelocity; // +0x1C4
-    struct allocator<RC_ARG> > > {}; // nested type stub
-    allocator<RC_ARG> > > m_argstack; // +0x1D0
+    char m_argstack[48]; // +0x1D0 (std::stack<RC_ARG,std::deque<RC_ARG,std::allocator<RC_ARG> > >)
     int m_bFree; // +0x200
     int m_bLockForward; // +0x204
     int m_bLockCenter; // +0x208
     int m_bProcessCollision; // +0x20C
     int m_CollideTriangleNum; // +0x210
-    struct allocator<primitive<3,float> > > {}; // nested type stub
-    allocator<primitive<3,float> > > polygonList; // +0x214
-    struct allocator<primitive<3,float> > > {}; // nested type stub
-    allocator<primitive<3,float> > > polygonListBackup; // +0x224
-    struct allocator<COLLIDE_DATA> > {}; // nested type stub
-    allocator<COLLIDE_DATA> > m_CollideData; // +0x234
+    char polygonList[16]; // +0x214 (std::vector<primitive<3,float>,std::allocator<primitive<3,float> > >)
+    char polygonListBackup[16]; // +0x224 (std::vector<primitive<3,float>,std::allocator<primitive<3,float> > >)
+    char m_CollideData[12]; // +0x234 (std::list<COLLIDE_DATA,std::allocator<COLLIDE_DATA> >)
     int m_clientwidth; // +0x240
     int m_clientheight; // +0x244
     unsigned char CAMERA_LOCK_HALFRADIUS; // +0x248

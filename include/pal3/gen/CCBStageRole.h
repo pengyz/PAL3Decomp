@@ -105,7 +105,7 @@ public:
     char IsIdle(unsigned int a2); // 0x00509540
     char IsAtInitPos(); // 0x00509690
     char IsAtProtectPos(int a2, int a3, int a4); // 0x005096D0
-    static char __usercall@<al> IsTaskFinished(_DWORD *this, int a2); // 0x005099A0
+    char __usercall@<al> IsTaskFinished(int a2); // 0x005099A0
     void IsDoTask(gbMatrixStack *a2); // 0x00509B90
     int Grab(int a2); // 0x0050A180
     char Release(char a2); // 0x0050A1A0

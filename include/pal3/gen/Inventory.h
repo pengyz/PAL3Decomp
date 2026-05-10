@@ -3,11 +3,9 @@
 
 class Inventory {
 public:
-    struct allocator<PlayerItem> > {}; // nested type stub
-    allocator<PlayerItem> > m_items; // +0x0
+    char m_items[16]; // +0x0 (std::vector<PlayerItem,std::allocator<PlayerItem> >)
     int m_curtype; // +0x10
-    struct allocator<PlayerItem> > {}; // nested type stub
-    allocator<PlayerItem> > m_typeitems; // +0x14
+    char m_typeitems[16]; // +0x14 (std::vector<PlayerItem,std::allocator<PlayerItem> >)
     int m_money; // +0x24
     // total size: 0x28 (40)
 

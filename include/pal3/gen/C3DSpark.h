@@ -5,8 +5,7 @@ class gbTextureArray;
 
 class C3DSpark {
 public:
-    struct tagSpark {}; // nested type stub
-    tagSpark m_Spark[128]; // +0x0
+    char m_Spark[7168]; // +0x0 (C3DSpark::tagSpark[128])
     int m_nCurrentSpark; // +0x1C00
     gbRenderEffect * m_pAdditiveBlend; // +0x1C04
     gbTexture * m_pRedBig; // +0x1C08

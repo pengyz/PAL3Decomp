@@ -3,8 +3,7 @@
 
 class Reoccupy {
 public:
-    struct allocator<unsigned long> > {}; // nested type stub
-    allocator<unsigned long> > m_id; // +0x0
+    char m_id[16]; // +0x0 (std::vector<unsigned long,std::allocator<unsigned long> >)
     // total size: 0x10 (16)
 
 };

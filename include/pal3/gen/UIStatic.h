@@ -16,8 +16,7 @@ public:
     int m_textx; // +0x54
     int m_texty; // +0x58
     gbFontType m_fonttype; // +0x5C
-    struct allocator<char> > {}; // nested type stub
-    allocator<char> > m_text; // +0x60
+    char m_text[16]; // +0x60 (std::basic_string<char,std::char_traits<char>,std::allocator<char> >)
     gbTexture * m_pbk; // +0x70
     _PlugInfo * m_pbkInfo; // +0x74
     gbTexture * m_ppic; // +0x78

@@ -255,21 +255,18 @@ def generate_header(cls_name, pdb_class, methods):
             mtype = mtype.replace('stdiobuf', 'UIWnd')
             mtype = mtype.replace('std::ios_base', 'UIWnd')
 
-            # Handle nested class types: ClassName::NestedType
-            if '::' in mtype:
-                # Extract the nested type name, declare as inner struct
-                parts = mtype.split('::')
-                nested_name = parts[-1]
-                # Strip array suffix for the struct name
-                nested_base = re.sub(r'\[.*', '', nested_name).strip()
-                arr_in_nested = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
-                if arr_in_nested:
-                    lines.append("    struct %s {}; // nested type stub" % nested_base)
-                    arr_part = arr_in_nested.group(1)
-                    lines.append("    %s %s%s; // +0x%X" % (nested_base, mname, arr_part, moffset))
+            # Handle nested/template types that can't be directly declared
+            if '::' in mtype or '<' in mtype:
+                # Calculate member size from next offset
+                idx = members.index(m)
+                if idx + 1 < len(members):
+                    msize = members[idx+1]['offset'] - moffset
                 else:
-                    lines.append("    struct %s {}; // nested type stub" % nested_base)
-                    lines.append("    %s %s; // +0x%X" % (nested_base, mname, moffset))
+                    msize = size - moffset if size > moffset else 4
+                if msize > 0:
+                    lines.append("    char %s[%d]; // +0x%X (%s)" % (mname, msize, moffset, mtype))
+                else:
+                    lines.append("    int %s; // +0x%X (%s)" % (mname, moffset, mtype))
                 continue
 
             # Handle arrays in type: "Type[N]" or "Type *[N]" -> "Type name[N]" / "Type * name[N]"
@@ -294,6 +291,9 @@ def generate_header(cls_name, pdb_class, methods):
             is_ctor = (method_name == cls_name)
             is_dtor = (method_name.startswith('~') or method_name == '~%s' % cls_name)
             is_thiscall = '__thiscall' in cc
+            # Also treat as thiscall if params contain '*this' (IDA sometimes omits __thiscall)
+            if not is_thiscall and '*this' in params:
+                is_thiscall = True
             is_static = not is_thiscall and not is_ctor and not is_dtor
 
             # Strip register annotations

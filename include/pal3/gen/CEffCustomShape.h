@@ -30,8 +30,7 @@ public:
     float m_fFrameV; // +0x90
     float m_fSpeed; // +0x94
     float m_fTimeCount; // +0x98
-    struct allocator<gbVec2D> > {}; // nested type stub
-    allocator<gbVec2D> > m_UVData; // +0x9C
+    char m_UVData[16]; // +0x9C (std::vector<gbVec2D,std::allocator<gbVec2D> >)
     // total size: 0xAC (172)
 
 };

@@ -5,8 +5,7 @@ class EffectItem {
 public:
     int _pixelNum; // +0x0
     unsigned char _alpha; // +0x4
-    struct allocator<EffectInfo> > {}; // nested type stub
-    allocator<EffectInfo> > _pixelInfo; // +0x8
+    char _pixelInfo[16]; // +0x8 (std::vector<EffectInfo,std::allocator<EffectInfo> >)
     // total size: 0x18 (24)
 
 };

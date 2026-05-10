@@ -3,8 +3,7 @@
 
 class gbLight {
 public:
-    struct gbLightType {}; // nested type stub
-    gbLightType type; // +0x0
+    char type[4]; // +0x0 (gbLight::gbLightType)
     gbColorFlt diffuse; // +0x4
     gbColorFlt specular; // +0x14
     gbColorFlt ambient; // +0x24

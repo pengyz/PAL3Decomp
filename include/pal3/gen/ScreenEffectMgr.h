@@ -12,8 +12,7 @@ public:
     ScreenFadeOut m_fadeOut; // +0x20
     ScreenFadeWhite m_fadeWhite; // +0x38
     ScreenFadeWhite2 m_fadeWhite2; // +0x50
-    struct allocator<ScreenEffect *> > > {}; // nested type stub
-    allocator<ScreenEffect *> > > m_activeQueue; // +0x68
+    char m_activeQueue[48]; // +0x68 (std::queue<ScreenEffect *,std::deque<ScreenEffect *,std::allocator<ScreenEffect *> > >)
     // total size: 0x98 (152)
 
     void Render(); // 0x004BE4A0
