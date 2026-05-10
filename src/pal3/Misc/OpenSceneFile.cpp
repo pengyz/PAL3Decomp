@@ -2,9 +2,6 @@
 #include "pal3/globals.h"
 #include "pal3/gen/OpenSceneFile.h"
 
-// Forward declarations for unnamed functions
-int sub_401F40(...);
-
 // Unnamed globals (extern)
 extern unsigned char byte_8AC5D8;
 extern int dword_6EBFA0;
@@ -13,7 +10,7 @@ extern int dword_7CC178;
 // 0x00401DF0
 // strings: .cpk
 // write access to const memory has been detected, the output may be wrong!
-void *OpenSceneFile::OpenSceneFile(OpenSceneFile *this, char *String1)
+OpenSceneFile::OpenSceneFile(char *String1)
 {
   char v4[260]; // [esp+Ch] [ebp-248h] BYREF
   char Buffer[324]; // [esp+110h] [ebp-144h] BYREF
@@ -43,7 +40,7 @@ void *OpenSceneFile::OpenSceneFile(OpenSceneFile *this, char *String1)
 
 // 0x00401F40
 // write access to const memory has been detected, the output may be wrong!
-struct gbVFileSystem *sub_401F40()
+OpenSceneFile::~OpenSceneFile()
 {
   g_pVFileSys = (struct gbVFileSystem *)&dword_7CC178;
   return g_pVFileSys;

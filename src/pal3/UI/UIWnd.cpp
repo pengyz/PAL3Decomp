@@ -35,7 +35,6 @@ int sub_4318A0(...);
 int sub_431C10(...);
 int sub_432680(...);
 int sub_4326A0(...);
-int sub_439130(...);
 int sub_4391A0(...);
 int sub_439230(...);
 int sub_439740(...);
@@ -44,23 +43,16 @@ int sub_439850(...);
 int sub_439930(...);
 int sub_43A070(...);
 int sub_43A090(...);
-int sub_43A1F0(...);
 int sub_43B3E0(...);
 int sub_43B4D0(...);
-int sub_43BBB0(...);
-int sub_43BE80(...);
-int sub_43D880(...);
 int sub_43EBB0(...);
 int sub_43F650(...);
-int sub_43F9C0(...);
 int sub_43FD90(...);
 int sub_440CE0(...);
-int sub_4411D0(...);
 int sub_4414D0(...);
 int sub_443190(...);
 int sub_4431D0(...);
 int sub_4434C0(...);
-int sub_4438F0(...);
 int sub_444A20(...);
 int sub_444AC0(...);
 int sub_444F60(...);
@@ -72,11 +64,8 @@ int sub_4461B0(...);
 int sub_4461F0(...);
 int sub_44A3D0(...);
 int sub_44A7F0(...);
-int sub_44AB90(...);
-int sub_44ACE0(...);
 int sub_44B850(...);
 int sub_44B890(...);
-int sub_44BA60(...);
 int sub_44BD60(...);
 int sub_44BD80(...);
 int sub_44BE60(...);
@@ -84,16 +73,10 @@ int sub_44C910(...);
 int sub_44C970(...);
 int sub_44DB50(...);
 int sub_44E5E0(...);
-int sub_44F050(...);
 int sub_450390(...);
 int sub_450AD0(...);
 int sub_450EB0(...);
 int sub_451900(...);
-int sub_451CC0(...);
-int sub_451DA0(...);
-int sub_452790(...);
-int sub_452850(...);
-int sub_453030(...);
 int sub_4543C0(...);
 int sub_454420(...);
 int sub_4544F0(...);
@@ -136,8 +119,6 @@ int sub_4B7AF0(...);
 int sub_4B7F00(...);
 int sub_5040D0(...);
 int sub_516170(...);
-int sub_51A400(...);
-int sub_51B6E0(...);
 int sub_522030(...);
 int sub_522120(...);
 int sub_523820(...);
@@ -285,7 +266,7 @@ extern int word_DE5FA8;
 
 // 0x00439030
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-_DWORD *((*)UIWnd *this)->ctor_9030()
+_DWORD * UIWnd::ctor_9030()
 {
   this->UIWnd();
   `eh vector constructor iterator'(
@@ -319,7 +300,7 @@ _DWORD *((*)UIWnd *this)->ctor_9030()
 
 // 0x00439130
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_439130(UIWnd *this)
+void UIWnd::ctor_9130(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AC20;
   sub_439810();
@@ -329,7 +310,7 @@ void sub_439130(UIWnd *this)
 
 // 0x0043A160
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void UIWnd::ctor_A160(UIWnd *this)
+void UIWnd::ctor_A160()
 {
   this->UIWnd();
   ((UIWnd *)&this->m_childs.m_nSize)->DestroyChildren();
@@ -343,7 +324,7 @@ void UIWnd::ctor_A160(UIWnd *this)
 
 // 0x0043A1F0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_43A1F0(UIWnd *this)
+void UIWnd::ctor_A1F0(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AC4C;
   this->Reset();
@@ -362,7 +343,7 @@ _DWORD * UIWnd::ctor_BB70()
 
 // 0x0043BBB0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_43BBB0(UIWnd *this)
+void UIWnd::ctor_BBB0(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56ACB8;
   this->_UIWnd();
@@ -370,7 +351,7 @@ void sub_43BBB0(UIWnd *this)
 
 // 0x0043BCE0
 // write access to const memory has been detected, the output may be wrong!
-_DWORD *((*)UIWnd *this)->ctor_BCE0()
+_DWORD * UIWnd::ctor_BCE0()
 {
   this->UIWnd();
   this->m_bvisible = 32;
@@ -418,9 +399,9 @@ _DWORD *((*)UIWnd *this)->ctor_BCE0()
 }
 
 // 0x0043BE10
-UIWnd * UIWnd::`scalar deleting destructor'(UIWnd *Block, char a2)
+UIWnd *UIWnd::`scalar deleting destructor'(UIWnd *Block, char a2)
 {
-  UIWnd::~UIWnd(Block);
+UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return Block;
@@ -430,7 +411,7 @@ UIWnd * UIWnd::`scalar deleting destructor'(UIWnd *Block, char a2)
 void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56ACD8;
-  sub_43BE80();
+UIWnd::~UIWnd();
   this->_UIWnd();
 }
 
@@ -448,7 +429,7 @@ _DWORD * UIWnd::ctor_D830()
 
 // 0x0043D880
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_43D880(UIWnd *this)
+void UIWnd::ctor_D880(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56ACFC;
   this->_UIWnd();
@@ -459,7 +440,7 @@ void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AD20;
   UIListBox::SetScrollPos();
-  this->_UIWnd();
+this->_UIWnd();
 }
 
 // 0x0043F560
@@ -478,7 +459,7 @@ int UIWnd::CreateChild()
 
 // 0x0043F7F0
 // write access to const memory has been detected, the output may be wrong!
-_DWORD *((*)UIWnd *this)->ctor_F7F0()
+_DWORD * UIWnd::ctor_F7F0()
 {
   int v2; // ecx
 
@@ -529,7 +510,7 @@ _DWORD *((*)UIWnd *this)->ctor_F7F0()
 void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AD64;
-  sub_43F9C0();
+UIWnd::~UIWnd();
   this->_UIWnd();
 }
 
@@ -725,12 +706,12 @@ void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AD88;
   UIStatic::OnMessage();
-  this->_UIWnd();
+this->_UIWnd();
 }
 
 // 0x004410F0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-_DWORD *((*)UIWnd *this)->ctor_10F0()
+_DWORD * UIWnd::ctor_10F0()
 {
   this->UIWnd();
   ((UIWnd *)&this->m_childs)->ctor_D830();
@@ -754,7 +735,7 @@ _DWORD *((*)UIWnd *this)->ctor_10F0()
 
 // 0x004411D0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_4411D0(UIWnd *this)
+void UIWnd::ctor_11D0(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56ADAC;
   sub_4414D0();
@@ -820,7 +801,7 @@ int UIWnd::SetShow(int a2)
 
 // 0x004427C0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void UIWnd::SetEnable(UIWnd *this, const char *a2, int a3)
+void UIWnd::SetEnable(const char *a2, int a3)
 {
   int *p_m_benable; // ebp
   unsigned int v4; // kr04_4
@@ -905,7 +886,7 @@ void UIWnd::ctor_2E80(UIWnd *this)
 void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AE64;
-  sub_4438F0();
+UIWnd::~UIWnd();
   this->_UIWnd();
 }
 
@@ -971,7 +952,7 @@ UIWnd::UIWnd()
 void std::ios_base::~ios_base(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AEC8;
-  this->UpdateChildren();
+this->UpdateChildren();
   sub_432680((void **)&this->_data[36]);
 }
 
@@ -997,7 +978,7 @@ int UIWnd::Create(int id, void *pRect, int parent)
 
 // 0x00445C10
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void UIWnd::UpdateChildren(UIWnd *this)
+void UIWnd::UpdateChildren()
 {
   __int32 v2; // edi
   int v3; // ecx
@@ -1312,7 +1293,7 @@ int UIWnd::ctor_A540(int _this, int a2, int a3, int a4)
 
 // 0x0044AB90
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-int sub_44AB90(int _this)
+int UIWnd::ctor_AB90(int _this)
 {
   ((_DWORD *)this)->UIWnd();
   *(_DWORD *)(this + 108) = 360;
@@ -1344,7 +1325,7 @@ int sub_44AB90(int _this)
 
 // 0x0044ACE0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_44ACE0(UIWnd *this)
+void UIWnd::ctor_ACE0(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AFD4;
   sub_44B890((char *)this + 7420);
@@ -1363,7 +1344,7 @@ void sub_44ACE0(UIWnd *this)
 
 // 0x0044BA60
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-int sub_44BA60(int _this)
+int UIWnd::ctor_BA60(int _this)
 {
   ((_DWORD *)this)->UIListBox();
   ((_BYTE *)(this + 360))->UIFrameWnd();
@@ -1433,7 +1414,7 @@ int sub_44BA60(int _this)
 
 // 0x0044BE80
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void UIWnd::ctor_BE80(UIWnd *this)
+void UIWnd::ctor_BE80()
 {
   this->m_fontcolor.ColorQuadFmt = (int)&off_56AFFC;
   sub_44C910((int)this);
@@ -1485,7 +1466,7 @@ void UIWnd::ctor_BE80(UIWnd *this)
 
 // 0x0044F050
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_44F050(UIWnd *this)
+void UIWnd::ctor_F050(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56B094;
   this->Destroy();
@@ -1538,7 +1519,7 @@ void UIWnd::ctor_790()
 
 // 0x00451CC0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-int sub_451CC0(int _this)
+int UIWnd::ctor_1CC0(int _this)
 {
   ((_DWORD *)this)->UIWnd();
   ((_DWORD *)(this + 68))->ctor_F7F0();
@@ -1563,7 +1544,7 @@ int sub_451CC0(int _this)
 
 // 0x00451DA0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_451DA0(UIWnd *this)
+void UIWnd::ctor_1DA0(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56B19C;
   `eh vector destructor iterator'((char *)this + 1172, 0x98u, 4, (void (*)(void *))UIFrameWnd::_UIFrameWnd);
@@ -1585,7 +1566,7 @@ void UIWnd::ctor_2600()
 
 // 0x00452790
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-int sub_452790(int _this)
+int UIWnd::ctor_2790(int _this)
 {
   ((_DWORD *)this)->UIWnd();
   ((_DWORD *)(this + 68))->_UIScene();
@@ -1600,7 +1581,7 @@ int sub_452790(int _this)
 
 // 0x00452850
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_452850(UIWnd *this)
+void UIWnd::ctor_2850(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56B1DC;
   ((j_UIWnd *)(char *)this + 940)->MoveWindow();
@@ -1632,7 +1613,7 @@ int UIWnd::ctor_2FD0(int _this)
 
 // 0x00453030
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_453030(UIWnd *this)
+void UIWnd::ctor_3030(UIWnd *this)
 {
   int v2; // eax
   _BYTE *v3; // ecx
@@ -4547,7 +4528,7 @@ _DWORD * UIWnd::ctor_60A0(int a2)
 void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_5704A8;
-  sub_516170(this);
+this->~UIWnd();
   this->~UIWnd();
 }
 
@@ -4565,7 +4546,7 @@ void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_5704C8;
   this->OnMessage();
-  this->~UIWnd();
+this->~UIWnd();
 }
 
 // 0x00519B60
@@ -4573,14 +4554,14 @@ void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_5704E4;
   this->Render();
-  this->~UIWnd();
+this->~UIWnd();
 }
 
 // 0x0051A3B0
 void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_570500;
-  sub_51A400(this);
+this->~UIWnd();
   this->~UIWnd();
 }
 
@@ -4589,7 +4570,7 @@ void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_57051C;
   this->CheckKeyInput();
-  this->~UIWnd();
+this->~UIWnd();
 }
 
 // 0x0051B180
@@ -4597,14 +4578,14 @@ void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_570538;
   this->Reset();
-  this->~UIWnd();
+this->~UIWnd();
 }
 
 // 0x0051B690
 void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_570554;
-  sub_51B6E0(this);
+this->~UIWnd();
   this->~UIWnd();
 }
 
@@ -4613,7 +4594,7 @@ void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_570570;
   this->OnMessage();
-  this->~UIWnd();
+this->~UIWnd();
 }
 
 // 0x0051C280
@@ -4621,7 +4602,7 @@ void UIWnd::~stdiobuf(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_57058C;
   this->Reset();
-  this->~UIWnd();
+this->~UIWnd();
 }
 
 // 0x00523F30

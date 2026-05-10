@@ -5,7 +5,7 @@
 // 0x00401F90
 // likely UIListBox method (near SetItemOffset)
 // write access to const memory has been detected, the output may be wrong!
-struct gbVFileSystem *OpenNULLFile::OpenNULLFile(OpenNULLFile **this)
+OpenNULLFile::OpenNULLFile()
 {
   struct gbVFileSystem *result; // eax
 

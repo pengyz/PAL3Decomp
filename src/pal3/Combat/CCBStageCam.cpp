@@ -248,7 +248,7 @@ int CCBStageCam::IsCamValid()
 
 // 0x005052E0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-_DWORD *((CCBStageCam *)CCBStageCam *this)->SetCamPos(int, **a2, int, a3)
+_DWORD * CCBStageCam::SetCamPos(int **a2, int a3)
 {
   int v4; // eax
 

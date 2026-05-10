@@ -178,30 +178,31 @@ def transform_method_code(cls_name, method_name, code, sig):
     # 0. Filter IDA header comments (before function definition line)
     lines = [l for l in lines if not l.strip().startswith('// between_std_methods')]
 
+    # Find the actual function definition line (may not be lines[0] if IDA comments precede it)
+    func_line_idx = 0
+    for idx, l in enumerate(lines):
+        if '(' in l and (cls_name + '::' in l or 'sub_' in l):
+            func_line_idx = idx
+            break
+
     # Fix function definition line: replace sub_XXXXX with ClassName::MethodName
     if lines and method_name:
-        first_line = lines[0]
-        # Match: "RetType sub_XXXXX(params)" and replace sub_ with cls::method
+        first_line = lines[func_line_idx]
         full_method = '%s::%s' % (cls_name, method_name)
         first_line = re.sub(r'\bsub_[0-9A-Fa-f]+\b', full_method, first_line, count=1)
 
-        # If this is a constructor (method_name == cls_name) or destructor (~cls_name),
-        # remove the return type
+        # If this is a constructor or destructor, remove the return type
         is_ctor = (method_name == cls_name)
         is_dtor = (method_name == '~%s' % cls_name)
         if is_ctor or is_dtor:
-            # Remove return type: "_DWORD * ClassName::ClassName(..." -> "ClassName::ClassName(..."
             first_line = re.sub(r'^.*?\b(%s::%s)' % (re.escape(cls_name), re.escape(method_name)),
                                r'\1', first_line)
 
-        lines[0] = first_line
+        lines[func_line_idx] = first_line
 
     # 2. Transform function signature: remove ClassName *this param, fix return
-    # Original: "int __thiscall CCBRoleState::Update(CCBRoleState *this)"
-    # Target:   "int CCBRoleState::Update()"
     if lines:
-        # Fix first line (function signature)
-        first = lines[0]
+        first = lines[func_line_idx]
         # Remove calling conventions from definition (not valid in VC6 function defs)
         first = re.sub(r'\s*__thiscall\s*', ' ', first)
         first = re.sub(r'\s*__cdecl\s*', ' ', first)
@@ -215,7 +216,7 @@ def transform_method_code(cls_name, method_name, code, sig):
         first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*\)', '()', first)
         # Clean double spaces
         first = re.sub(r'  +', ' ', first).strip()
-        lines[0] = first
+        lines[func_line_idx] = first
 
     code = '\n'.join(lines)
 

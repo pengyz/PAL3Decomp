@@ -2882,7 +2882,7 @@ int CCBStageRole::ProcUseRecoverItem(float a2)
 
 // 0x0053E310
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void CCBStageRole::PlaySound(CCBStageRole *this, char *name, int a3)
+void CCBStageRole::PlaySound(char *name, int a3)
 {
   unsigned int v4; // ebp
   unsigned int v5; // kr08_4

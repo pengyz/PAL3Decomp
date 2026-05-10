@@ -5,7 +5,7 @@
 
 // 0x0043DC90
 // attributes: thunk
-int UILBItem::~UILBItem()
+UILBItem::~UILBItem()
 {
   return UILBColumn::UILBColumn();
 }

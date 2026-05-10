@@ -36,7 +36,6 @@ int sub_4DFFF0(...);
 int sub_4EED60(...);
 int sub_4F06C0(...);
 int sub_4F6CD0(...);
-int sub_4FBE50(...);
 int sub_500840(...);
 int sub_5009C0(...);
 int sub_500AD0(...);
@@ -209,7 +208,7 @@ CCBStage::~CCBStage(int _this)
 
 // 0x004FBA70
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char CCBStage::Reset(CCBStage *this)
+char CCBStage::Reset()
 {
   char *v2; // eax
   unsigned int v3; // edi
@@ -381,7 +380,7 @@ char CCBStage::Reset(CCBStage *this)
 
 // 0x004FBE50
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char sub_4FBE50(int _this)
+char CCBStage::Create(int _this)
 {
   int v2; // ebp
   void *v3; // edi
@@ -842,7 +841,7 @@ LABEL_31:
 
 // 0x004FC6F0
 // attributes: thunk
-void CCBStage::Render(CCBStage *this)
+void CCBStage::Render()
 {
   this->GetTask();
 }

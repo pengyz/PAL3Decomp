@@ -13,7 +13,7 @@ extern void *off_56A694;
 
 // 0x005081D0
 // attributes: thunk
-int CCBCamControl::CCBCamControl()
+CCBCamControl::CCBCamControl()
 {
   return CCBCamControl::~CCBCamControl();
 }

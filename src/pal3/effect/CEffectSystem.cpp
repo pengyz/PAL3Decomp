@@ -83,7 +83,7 @@ _DWORD * CEffectSystem::Reset(CEffectSystem *Block, char a2)
 
 // 0x004C6280
 // attributes: thunk
-int CEffectSystem::Init(CEffectSystem *this)
+int CEffectSystem::Init()
 {
   return sub_4C5D70(this);
 }

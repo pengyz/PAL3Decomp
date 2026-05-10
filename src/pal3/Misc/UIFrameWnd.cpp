@@ -4,9 +4,6 @@
 #include "pal3/gen/GRPinput.h"
 #include "pal3/gen/UIWnd.h"
 
-// Forward declarations for unnamed functions
-int sub_442390(...);
-
 // Unnamed globals (extern)
 extern unsigned char byte_56A634;
 extern void *off_56ADD0;
@@ -43,7 +40,7 @@ UIFrameWnd::UIFrameWnd()
 
 // 0x00442390
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_442390(UIWnd *this)
+void UIFrameWnd::_UIFrameWnd(UIWnd *this)
 {
   int v2; // eax
   _BYTE *v3; // ecx

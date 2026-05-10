@@ -5,7 +5,6 @@
 // Forward declarations for unnamed functions
 int sub_402220(...);
 int sub_402640(...);
-int sub_403000(...);
 int sub_403B80(...);
 
 // Unnamed globals (extern)
@@ -431,7 +430,7 @@ void GRPinput::SetMouseFreePos()
 
 // 0x00402C40
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char GRPinput::SetJoystickPos(GRPinput *this, const char *a2, int a3)
+char GRPinput::SetJoystickPos(const char *a2, int a3)
 {
   GRPinput *v3; // esi
   unsigned int v4; // kr04_4
@@ -628,7 +627,7 @@ int GRPinput::GetMouseSensitivity(int a2)
 
 // 0x00403000
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-_BYTE *sub_403000(int _this, unsigned int a2)
+_BYTE * GRPinput::GetKeyState(int _this, unsigned int a2)
 {
   unsigned int v2; // esi
   size_t v4; // eax

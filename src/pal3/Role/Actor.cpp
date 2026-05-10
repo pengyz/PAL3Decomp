@@ -65,7 +65,7 @@ int Actor::SetParam(int a2)
 
 // 0x00536220
 // attributes: thunk
-int __cdecl Actor::GetDefaultFOV_thunk()
+int Actor::GetDefaultFOV_thunk()
 {
   return Actor::SetDefaultFOV();
 }
@@ -79,7 +79,7 @@ int Actor::SetDefaultFOV()
 
 // 0x00536240
 // attributes: thunk
-int __cdecl Actor::GetDefaultDist_thunk()
+int Actor::GetDefaultDist_thunk()
 {
   int result; // eax
 
@@ -370,7 +370,7 @@ BOOL Actor::HandleEvent(int a2, int a3)
 
 // 0x00536A40
 // attributes: thunk
-int __cdecl Actor::GetDefaultFOV2_thunk()
+int Actor::GetDefaultFOV2_thunk()
 {
   return Actor::SetDefaultFOV2();
 }
@@ -384,7 +384,7 @@ int Actor::SetDefaultFOV2()
 
 // 0x00536A60
 // attributes: thunk
-int __cdecl Actor::GetDefaultDist2_thunk()
+int Actor::GetDefaultDist2_thunk()
 {
   int result; // eax
 

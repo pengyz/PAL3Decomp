@@ -13,7 +13,7 @@ extern void *off_5708E8;
 
 // 0x00407B50
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char SceneObj::Update(SceneObj *this, unsigned int a2)
+char SceneObj::Update(unsigned int a2)
 {
   _BYTE *v3; // eax
   char v4; // cl

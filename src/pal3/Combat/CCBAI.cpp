@@ -63,7 +63,7 @@ CCBAI::CCBAI()
 
 // 0x004D7030
 // attributes: thunk
-int CCBAI::~CCBAI()
+CCBAI::~CCBAI()
 {
   return CCBAI::Reset();
 }

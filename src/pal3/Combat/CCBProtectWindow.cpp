@@ -22,7 +22,7 @@ CCBProtectWindow::CCBProtectWindow()
 
 // 0x0051D6F0
 // attributes: thunk
-void CCBProtectWindow::~CCBProtectWindow()
+CCBProtectWindow::~CCBProtectWindow()
 {
   CCBProtectWindow::Reset();
 }

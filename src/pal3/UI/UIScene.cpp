@@ -13,7 +13,6 @@ int sub_4019F0(...);
 int sub_419C20(...);
 int sub_424570(...);
 int sub_43A660(...);
-int sub_43A810(...);
 int sub_445ED0(...);
 int sub_445F60(...);
 
@@ -211,7 +210,7 @@ void UIScene::LoadResource(char *path)
 
 // 0x0043A770
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void UIScene::_UIScene(UIScene *this)
+void UIScene::_UIScene()
 {
   ((UIWnd *)this)->UIWnd();
   ((UIWnd *)((char *)this + 116))->DestroyChildren();
@@ -227,7 +226,7 @@ void UIScene::_UIScene(UIScene *this)
 
 // 0x0043A810
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_43A810(UIWnd *this)
+void UIScene::Destroy2(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AC70;
   UIScene::OnMessage2();

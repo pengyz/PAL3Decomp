@@ -11,7 +11,7 @@ UILBColumn::UILBColumn()
 
 // 0x0043DCB0
 // attributes: thunk
-void UILBColumn::~UILBColumn()
+UILBColumn::~UILBColumn()
 {
   UILBColumn::Destroy();
 }

@@ -11,7 +11,6 @@
 // Forward declarations for unnamed functions
 int sub_432680(...);
 int sub_43DF70(...);
-int sub_43E120(...);
 int sub_43F360(...);
 int sub_43F520(...);
 int sub_43F6D0(...);
@@ -163,7 +162,7 @@ void UIListBox::GetItemPos()
 
 // 0x0043DFC0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char *UIListBox::UpdateKeyCtrl(UIListBox *this)
+char * UIListBox::UpdateKeyCtrl()
 {
   char v3; // [esp+Bh] [ebp-11h]
 
@@ -228,7 +227,7 @@ UIWnd * UIListBox::DeleteAllItems(UIWnd *Block, char a2)
 
 // 0x0043E120
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void sub_43E120(UIWnd *this)
+void UIListBox::DeleteRow(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AD40;
   UIListBox::GetItemCount();

@@ -8,7 +8,6 @@
 int sub_431CB0(...);
 int sub_431CD0(...);
 int sub_431E90(...);
-int sub_4320A0(...);
 int sub_4325A0(...);
 int sub_4326A0(...);
 int sub_433CD0(...);
@@ -55,7 +54,7 @@ void PalScriptMgr::FindScript()
 
 // 0x004320A0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void __cdecl sub_4320A0(const char *a1)
+void PalScriptMgr::Update(const char *a1)
 {
   unsigned int v1; // kr04_4
   unsigned int v2; // ebp

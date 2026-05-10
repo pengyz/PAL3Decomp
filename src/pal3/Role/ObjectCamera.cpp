@@ -7,7 +7,7 @@ extern float flt_DE4A00;
 
 // 0x0047C570
 // attributes: thunk
-void ObjectCamera::ObjectCamera()
+ObjectCamera::ObjectCamera()
 {
   ObjectCamera::~ObjectCamera();
 }
@@ -72,7 +72,7 @@ float * ObjectCamera::Create()
 
 // 0x0047C630
 // attributes: thunk
-void ObjectCamera::GetCameraDirect(ObjectCamera **this)
+void ObjectCamera::GetCameraDirect()
 {
   this->Destroy();
 }

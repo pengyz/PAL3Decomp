@@ -46,7 +46,6 @@
 #include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
-int sub_406B80(...);
 int sub_4070A0(...);
 int sub_410430(...);
 int sub_419AE0(...);
@@ -232,7 +231,7 @@ PAL3::PAL3()
 
 // 0x004047F0
 // attributes: thunk
-int PAL3::~PAL3()
+PAL3::~PAL3()
 {
   return PAL3::Destroy();
 }
@@ -1524,7 +1523,7 @@ int PAL3::TestCombat()
 
 // 0x00406B80
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-int __cdecl sub_406B80(const char *a1, int a2, int a3)
+int PAL3::DefaultKeyMap(const char *a1, int a2, int a3)
 {
   int v3; // eax
   bool v4; // zf

@@ -45,7 +45,7 @@ int UIItem::Refresh()
 
 // 0x004A1410
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void UIItem::UIItem(UIItem *this)
+UIItem::UIItem()
 {
   *(_DWORD *)this = &off_56E190;
   this->UpdateChildren();

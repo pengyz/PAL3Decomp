@@ -48,7 +48,7 @@ extern int unknown_libname_340;
 
 // 0x00430290
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-int PalScript::LoadScript(PalScript *this, int pathAddr)
+int PalScript::LoadScript(int pathAddr)
 {
   unsigned int v2; // kr04_4
   unsigned int v3; // ebp
@@ -147,7 +147,7 @@ int PalScript::LoadScript(PalScript *this, int pathAddr)
 
 // 0x00430570
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char *PalScript::SetAppName(PalScript *this, char *name)
+char * PalScript::SetAppName(char *name)
 {
   char *v3; // esi
   unsigned int v4; // kr04_4
@@ -441,7 +441,7 @@ void PalScript::ClearAllCamObj()
 
 // 0x00431FA0
 // attributes: thunk
-int PalScript::ClearAllWaitObj(PalScript *this)
+int PalScript::ClearAllWaitObj()
 {
   return PalScriptMgr::_CON_ReLoadScript();
 }

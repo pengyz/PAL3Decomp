@@ -73,7 +73,6 @@ int sub_5020D0(...);
 int sub_5024D0(...);
 int sub_50A4B0(...);
 int sub_512420(...);
-int sub_512BA0(...);
 int sub_5158F0(...);
 int sub_515C90(...);
 int sub_5163D0(...);
@@ -146,7 +145,7 @@ extern int nullsub_68;
 
 // 0x004DB3A0
 // attributes: thunk
-int __cdecl CCBSystem::InitCmdTable1_thunk()
+int CCBSystem::InitCmdTable1_thunk()
 {
   return CCBSystem::InitCmdTable1();
 }
@@ -163,7 +162,7 @@ int CCBSystem::InitCmdTable1()
 
 // 0x004DB3F0
 // attributes: thunk
-int __cdecl CCBSystem::InitCmdTable2_thunk()
+int CCBSystem::InitCmdTable2_thunk()
 {
   return CCBSystem::InitCmdTable2();
 }
@@ -180,7 +179,7 @@ int CCBSystem::InitCmdTable2()
 
 // 0x004DB440
 // attributes: thunk
-int __cdecl CCBSystem::InitCmdTable3_thunk()
+int CCBSystem::InitCmdTable3_thunk()
 {
   return CCBSystem::InitCmdTable3();
 }
@@ -669,7 +668,7 @@ int CCBSystem::ProcDialog(int _this)
 
 // 0x005125E0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char CCBSystem::ProcNormalAttack(CCBSystem *this)
+char CCBSystem::ProcNormalAttack()
 {
   void *v2; // eax
   std::codecvt_base *v3; // ecx
@@ -907,7 +906,7 @@ char CCBSystem::ProcNormalAttack(CCBSystem *this)
 
 // 0x00512BA0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char sub_512BA0(int _this)
+char CCBSystem::ProcFling(int _this)
 {
   int v2; // ecx
   void *v3; // edi
