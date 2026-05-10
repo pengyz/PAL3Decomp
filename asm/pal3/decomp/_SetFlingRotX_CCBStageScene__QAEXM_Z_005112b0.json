@@ -3,5 +3,5 @@
   "address": "0x005112B0",
   "size_bytes": 53,
   "signature": "int __thiscall(CCBStageScene *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBStageScene::SetFlingRotX(CCBStageScene *this)\n{\n  float eu; // edx\n  float *p_z; // eax\n  float *v3; // ecx\n  int result; // eax\n\n  eu = this->m_EnemyFiveLineupQuad.eu;\n  this->m_EnemyFiveLineupQuad.vec[3].z = this->m_EnemyFiveLineupQuad.su;\n  p_z = &this->m_EnemyFiveLineupQuad.vec[2].z;\n  this->m_EnemyFiveLineupQuad.sv = eu;\n  v3 = &this->m_EnemyFiveLineupQuad.vec[1].z;\n  *v3 = *p_z;\n  v3[1] = p_z[1];\n  result = *((_DWORD *)p_z + 2);\n  *((_DWORD *)v3 + 2) = result;\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBStageScene::SetFlingRotX(CCBStageScene *this)\n{\n  int d39C; // edx\n  char *pad_384; // eax\n  float *p_f378; // ecx\n  int result; // eax\n\n  d39C = this->_d39C;\n  this->_d390 = this->_d394;\n  pad_384 = this->_pad_384;\n  this->_d398 = d39C;\n  p_f378 = &this->_f378;\n  *p_f378 = *(float *)pad_384;\n  p_f378[1] = *((float *)pad_384 + 1);\n  result = *((_DWORD *)pad_384 + 2);\n  *((_DWORD *)p_f378 + 2) = result;\n  return result;\n}\n"
 }
