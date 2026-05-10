@@ -11,7 +11,7 @@ class GRPinput;
 class Logger;
 class PalScript;
 class RoleSystem;
-class SceneMgr;
+#include "pal3/gen/SceneMgr.h"
 class TextureLib;
 class UIManager;
 
