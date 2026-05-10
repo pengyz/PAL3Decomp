@@ -380,8 +380,8 @@ private:
 // [0] x1 (left), [1] y1 (top), [2] x2 (right), [3] y2 (bottom)
 // [4] u1, [5] v1, [6] u2, [7] v2, [8] z (depth), [9] color (as uint)
 struct gbUIQuad {
-    float sx, sy, ex, ey;
-    float su, sv, eu, ev;
+    union { struct { float sx, sy, ex, ey; }; struct { float x1, y1, x2, y2; }; };
+    union { struct { float su, sv, eu, ev; }; struct { float u1, v1, u2, v2; }; };
     float z;
     unsigned int color;
 };
@@ -390,10 +390,10 @@ struct gbUIQuad {
 // [0-2] v0 xyz, [3-5] v1 xyz, [6-8] v2 xyz, [9-11] v3 xyz
 // [12] u1, [13] v1, [14] u2, [15] v2, [16] color
 struct gbGeomQuad {
-    gbVec3D vec[4];         // 4 corner positions (48 bytes) - PDB name
-    float su, sv, eu, ev;   // texture coordinates (16 bytes) - PDB names
-    int color;              // vertex color (4 bytes)
-    int texid;              // texture id (4 bytes)
+    union { gbVec3D vec[4]; gbVec3D verts[4]; };  // PDB: vec, legacy: verts
+    union { struct { float su, sv, eu, ev; }; struct { float u1, v1, u2, v2; }; };
+    int color;
+    int texid;
 };
 
 class gbDynVertBuf {

@@ -56,6 +56,7 @@ struct gbVec4D {
 struct gbColorQuad {
     union {
         struct { unsigned char Blue, Green, Red, Alpha; };
+        struct { unsigned char b, g, r, a; };  // legacy source name aliases
         unsigned int Color;
     };
 
@@ -69,7 +70,10 @@ struct gbColorQuad {
 };
 
 struct gbColorFlt {
-    float Red, Green, Blue, Alpha;
+    union {
+        struct { float Red, Green, Blue, Alpha; };
+        struct { float r, g, b, a; };  // legacy source name aliases
+    };
 
     // Methods (auto-generated)
     gbColorFlt(float p0, float p1, float p2);
@@ -168,8 +172,8 @@ struct gbQuaternion {
 };
 
 struct gbRay {
-    gbVec3D Origin;
-    gbVec3D Direction;
+    union { gbVec3D Origin; gbVec3D origin; };
+    union { gbVec3D Direction; gbVec3D direction; };
 
     // Methods (auto-generated)
     gbRay();
@@ -197,10 +201,11 @@ struct gbAABBox {
 };
 
 struct gbOBBox {
-    gbMatrix4 trans;     // axis directions in rows 0-2, center in row 3 (PDB name)
-    float xlen;          // +0x40
-    float ylen;          // +0x44
-    float zlen;          // +0x48
+    union { gbMatrix4 trans; gbMatrix4 matrix; };  // PDB: trans, legacy: matrix
+    union {
+        struct { float xlen, ylen, zlen; };  // PDB names
+        gbVec3D extent;                       // legacy name
+    };
 
     // Methods (auto-generated)
     gbOBBox();
