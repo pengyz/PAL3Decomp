@@ -31,7 +31,6 @@
 int ArraySort(...);
 int sub_40CC60(...);
 int sub_41C090(...);
-int sub_431870(...);
 int sub_4318A0(...);
 int sub_431C10(...);
 int sub_432680(...);
@@ -1209,7 +1208,7 @@ _DWORD * UIWnd::ctor_60D0()
   *((_DWORD *)this + 4709) = 38;
   ((UIItem *)(UIItem *)this + 18840)->Refresh();
   ((UIItem *)(UIItem *)this + 20208)->Refresh();
-  sub_431870((_DWORD *)this + 5394);
+  ctor_0x431870((_DWORD *)this + 5394);
   *(_DWORD *)this->_pad_0000 = &off_56AF80;
   this->m_benable = 0;
   this->m_bvisible = 0;
@@ -5940,7 +5939,7 @@ int UIWnd::ctor_82E0()
   ((UIWnd *)((char *)this + 2280))->ctor_9030();
   ((UIFrameWnd *)((char *)this + 2588))->UIFrameWnd();
   ((UIFrameWnd *)((char *)this + 2740))->UIFrameWnd();
-  sub_431870((_DWORD *)this + 725);
+  ctor_0x431870((_DWORD *)this + 725);
   v4 = (char *)this + 4712;
   v5 = 5;
   do
@@ -6063,7 +6062,7 @@ int UIWnd::ctor_BA10()
   ((UIListBox *)this)->UIListBox();
   *((_DWORD *)this + 22) = 800;
   *((_DWORD *)this + 23) = 600;
-  sub_431870((_DWORD *)this + 88);
+  ctor_0x431870((_DWORD *)this + 88);
   *((_DWORD *)this + 283) = 418;
   *((_DWORD *)this + 284) = 418;
   *((_DWORD *)this + 285) = 48;

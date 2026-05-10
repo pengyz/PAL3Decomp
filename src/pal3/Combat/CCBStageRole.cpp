@@ -1004,7 +1004,7 @@ void CCBStageRole::IsDoTask(gbMatrixStack *a2)
         this->ProcPursueRole(v9, v10, 1);
     }
   }
-  if ( this->m_pStage->m_pCBSystem->m_bEditor && dword_17A990C == 1
+  if ( BYTE1(this->m_pStage->m_pCBSystem->m_nTimesOfCombat) && dword_17A990C == 1
     || this->m_bVisible && (this->m_bAlive || SLODWORD(this->m_fBlend) < 5) )
   {
     a2->Push();

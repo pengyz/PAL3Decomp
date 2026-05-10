@@ -866,7 +866,7 @@ char CCBStageScene::IsSameBattleFieldAttr()
         {
           inited = m_pRoleState->InitUI(v3);
           sprintf(byte_17ABF00, "%d(%s)", v3, (const char *)(inited + 8));
-          ((gbCamera *)&this->m_pStage->m_pCam->_pad_0000[4])->PointWorldToScr((struct gbVec3D *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v4))->m_Thread[73]._pad_0004[8], &v9, &v8);
+          ((gbCamera *)&this->m_pStage->m_pCam->_pad_0000[4])->PointWorldToScr((struct gbVec3D *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v4))->m_Thread[6432], &v9, &v8);
           result = sub_4DFB70((char *)this->m_pStage->m_TempStorageNGH, byte_17ABF00, v9, v8, 16.0);
         }
         v4 += 4;
@@ -1003,9 +1003,9 @@ char CCBStageScene::Update()
   for ( i = 24; i < 68; i += 4 )
   {
     sprintf(byte_17ABE00, "Role%d-x", v3);
-    ((CIniFile *)&v5)->WriteLine(byte_17ABE00, *(float *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + i))->m_Thread[73]._pad_0004[8]);
+    ((CIniFile *)&v5)->WriteLine(byte_17ABE00, *(float *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + i))->m_Thread[6432]);
     sprintf(byte_17ABE00, "Role%d-z", v3);
-    ((CIniFile *)&v5)->WriteLine(byte_17ABE00, *(float *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + i))->m_Thread[73].nTaskIndex);
+    ((CIniFile *)&v5)->WriteLine(byte_17ABE00, *(float *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + i))->m_Thread[6440]);
     ++v3;
   }
   v6 = -1;

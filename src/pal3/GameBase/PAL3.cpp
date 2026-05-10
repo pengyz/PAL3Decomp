@@ -847,7 +847,7 @@ int PAL3::Update(int a1)
         CombatEffectUpdate((int)dword_BFDA70, 0.0);
         goto LABEL_59;
       }
-      byte_5833D0 = *(_DWORD *)&dword_BFDA74->m_eResult[2] == 2;
+      byte_5833D0 = dword_BFDA74->m_eResult == CBR_LOSE;
       Mode = (CUtil *)((CGameData *)&g_GameData)->GetMode();
       CGameData_Load((int)&g_GameData, Mode);
       CombatEnter();

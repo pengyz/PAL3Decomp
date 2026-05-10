@@ -2640,7 +2640,7 @@ int CCBRoleState::CalcAttackPower(int roleIdx)
     v2 = v17;
   }
   m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
-  if ( m_pCBSystem->m_bEditor )
+  if ( BYTE1(m_pCBSystem->m_nTimesOfCombat) )
     sub_4E2AE0((int *)m_pCBSystem->m_pEditor, v4);
   return v2;
 }
@@ -2715,7 +2715,7 @@ int CCBRoleState::CalcDefensePower(int roleIdx)
     v2 = v16;
   }
   m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
-  if ( m_pCBSystem->m_bEditor )
+  if ( BYTE1(m_pCBSystem->m_nTimesOfCombat) )
     sub_4E2AE0((int *)m_pCBSystem->m_pEditor, roleIdx);
   return v2;
 }
@@ -2771,7 +2771,7 @@ char CCBRoleState::CheckBuff(int roleIdx)
     }
   }
   m_pCBSystem = (CCBSystem *)this->m_pCBSystem;
-  result = m_pCBSystem->m_bEditor;
+  result = BYTE1(m_pCBSystem->m_nTimesOfCombat);
   if ( result )
     return sub_4E2C10(m_pCBSystem->m_pEditor);
   return result;
@@ -4352,7 +4352,7 @@ void * CCBRoleState::ProcessActions()
 
   memset(a3, 0, sizeof(a3));
   if ( sub_4ED0A0(this->m_sCombatDialog, 0) == 1
-    && *(_DWORD *)&this->m_pCBSystem->m_eState[2] == 2
+    && this->m_pCBSystem->m_eState == CBS_END
     && !((CCBStage *)this->m_pStage)->ForceDelTask(12) )
   {
     sub_4ED800(this->m_sCombatDialog);
@@ -4368,13 +4368,13 @@ void * CCBRoleState::ProcessActions()
     ((CCBStageCam *)this->m_pStage->m_pCamControl)->ClearFinishedTask(10);
     v3 = 24;
     p_bValid = (unsigned __int8 *)&this->m_Role[0].bValid;
-    *(_DWORD *)&this->m_pCBSystem->m_eState[2] = 7;
+    this->m_pCBSystem->m_eState = CBS_END|CBS_RUNNING|0x4;
     do
     {
       if ( *p_bValid )
       {
-        LOBYTE((*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v3))->m_Thread[1].cmd.dwCmdID) = 0;
-        *(&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v3))->m_Thread[1].bExecuted + 1) = 0;
+        (*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v3))->m_Thread[128] = 0;
+        (*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v3))->m_Thread[122] = 0;
         ((CCBStageRole *)*(CCBStageRole **)((char *)&this->m_pStage->m_pCBSystem + v3))->TryRelease();
       }
       v3 += 4;
@@ -4384,7 +4384,7 @@ void * CCBRoleState::ProcessActions()
   }
   if ( ((unsigned __int8)this->GetForce(0) == 1
      || this->m_nBossRound >= this->m_nMaxRound && !this->m_bMustFail)
-    && *(_DWORD *)&this->m_pCBSystem->m_eState[2] == 2
+    && this->m_pCBSystem->m_eState == CBS_END
     && !((CCBStage *)this->m_pStage)->ForceDelTask(12) )
   {
     sub_4F8AF0(this);
@@ -4438,10 +4438,10 @@ void * CCBRoleState::ProcessActions()
     sub_4ED680(this);
     ((C2DSpark *)this->m_pCBSystem->m_p2DSpark)->CreateStars();
     ((C2DSpark *)this->m_pCBSystem->m_p2DSpark)->CreateTrack(1);
-    *(_DWORD *)&this->m_pCBSystem->m_eState[2] = 5;
+    this->m_pCBSystem->m_eState = 5;
     ((CCBStageScene *)this->m_pCBSystem->m_pStage->m_pScene)->Destroy();
   }
-  if ( *(_DWORD *)&this->m_pCBSystem->m_eState[2] == 4 )
+  if ( this->m_pCBSystem->m_eState == 4 )
   {
     sub_4FA930((int)this, 1, -1);
     ((CCBStageCam *)this->m_pCBSystem->m_pStage->m_pCamControl)->ClearFinishedTask(8);
@@ -4458,7 +4458,7 @@ void * CCBRoleState::ProcessActions()
       ((CCBSystem *)this->m_pStage)->GetStageRoleByIdx(v10);
     }
     sub_4ED680(this);
-    *(_DWORD *)&this->m_pCBSystem->m_eState[2] = 5;
+    this->m_pCBSystem->m_eState = 5;
     ((CCBStageScene *)this->m_pCBSystem->m_pStage->m_pScene)->Destroy();
   }
   result = (void *)this->m_pCBSystem;
@@ -4468,7 +4468,7 @@ void * CCBRoleState::ProcessActions()
     LOBYTE(result) = sub_4FCA40((char *)this->m_pStage, this->m_RoleXor[8].dwMagicID[2][1]);
     if ( (_BYTE)result )
       return result;
-    *(_DWORD *)&this->m_pCBSystem->m_eResult[2] = 2;
+    this->m_pCBSystem->m_eResult = CBR_LOSE;
     return (void *)CCBSystem::GetRenderFlag();
   }
   if ( v12 == 7 )

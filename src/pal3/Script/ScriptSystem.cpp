@@ -31,7 +31,6 @@ int sub_419B30(...);
 int sub_41A450(...);
 int sub_41B300(...);
 int sub_41B6C0(...);
-int sub_431870(...);
 int sub_4318A0(...);
 int sub_4326A0(...);
 int sub_43A270(...);
@@ -696,7 +695,7 @@ void ScriptSystem::Init()
   PalScript String[13]; // [esp+8h] [ebp-218h] BYREF
   int v5; // [esp+21Ch] [ebp-4h]
 
-  sub_431870(String);
+  ctor_0x431870(String);
   v5 = 0;
   String->LoadFromFile(aDatascriptScen_0);
   String->SetDirectory(aRole);

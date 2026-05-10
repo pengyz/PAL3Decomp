@@ -16,7 +16,6 @@ int sub_4307D0(...);
 int sub_4309D0(...);
 int sub_431040(...);
 int sub_431780(...);
-int sub_431870(...);
 int sub_4318A0(...);
 int sub_4319C0(...);
 int sub_432990(...);
@@ -70,7 +69,7 @@ int PalScript::LoadScript(int pathAddr)
   int v25; // [esp+274h] [ebp-4h]
 
   v20 = this;
-  sub_431870(String1);
+  ctor_0x431870(String1);
   v25 = 0;
   String1->LoadFromFile((char *)pathAddr);
   String1->SetDirectory(aPal3lang);

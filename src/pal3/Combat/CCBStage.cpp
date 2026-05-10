@@ -816,7 +816,7 @@ int CCBStage::EditorUpdate()
     ((CCBStageScene *)this->m_pScene)->IsSameBattleFieldAttr();
     ((CCBStageScene *)this->m_pScene)->GetBFASubdueFM();
   }
-  if ( this->m_pCBSystem->m_bEditor )
+  if ( BYTE1(this->m_pCBSystem->m_nTimesOfCombat) )
   {
     if ( dword_17A990C == 1 )
     {
@@ -2484,7 +2484,7 @@ int CCBStage::HandleKeyFriend(int a2)
   v4 = (char *)&this->m_nCurTask + v3;
   if ( !this->m_Task[0].SubTask[0].eStats[v3 + 5] )
   {
-    ((CCBStageRole *)this->m_pRole[*(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v2)])->ProcTransportRun(COERCE_FLOAT(sub_50EB00), 0.0, 0, 0, 0, 0, 3);
+    ((CCBStageRole *)this->m_pRole[*(_DWORD *)((char *)&this->m_Task[0].SubTask[18].fTemp2 + v2)])->ProcTransportRun(COERCE_FLOAT(sub_50EB00), 0.0, 0, 0, 0, 0, COERCE_FLOAT(3));
     v4[41] = 1;
     *((_DWORD *)v4 + 4) = 4;
   }

@@ -112,60 +112,60 @@ LABEL_18:
 // 0x004CB5E0
 int CEffMeteor::Init(int a2, float a3, float a4, float a5)
 {
-  int m_dwStartColor_low; // ecx
+  int v6; // ecx
   int result; // eax
   int v8; // ecx
 
-  this->_pad_0000[8] = 0;
-  this->m_bVisible = 0;
-  this->m_vecPos.x = a3 + *(float *)(a2 + 184);
-  this->m_vecPos.y = a4 + *(float *)(a2 + 188);
-  this->m_vecPos.z = a5 + *(float *)(a2 + 192);
-  this->m_vecRot.x = *(float *)(a2 + 216);
-  this->m_vecRot.y = *(float *)(a2 + 196);
-  this->m_vecRot.z = *(float *)(a2 + 220);
-  this->m_vecTarget.x = a3 + *(float *)(a2 + 252);
-  this->m_vecTarget.y = a4 + *(float *)(a2 + 256);
-  this->m_vecTarget.z = a5 + *(float *)(a2 + 260);
-  this->m_vecOffsetPos.z = 0.0;
-  this->m_vecOffsetPos.y = 0.0;
-  this->m_vecOffsetPos.x = 0.0;
-  this->m_dwStartColor = *(_DWORD *)(a2 + 204);
+  this->_data[8] = 0;
+  this->_data[68] = 0;
+  *(float *)&this->_data[160] = a3 + *(float *)(a2 + 184);
+  *(float *)&this->_data[164] = a4 + *(float *)(a2 + 188);
+  *(float *)&this->_data[168] = a5 + *(float *)(a2 + 192);
+  *(_DWORD *)&this->_data[148] = *(_DWORD *)(a2 + 216);
+  *(_DWORD *)&this->_data[152] = *(_DWORD *)(a2 + 196);
+  *(_DWORD *)&this->_data[156] = *(_DWORD *)(a2 + 220);
+  *(float *)&this->_data[184] = a3 + *(float *)(a2 + 252);
+  *(float *)&this->_data[188] = a4 + *(float *)(a2 + 256);
+  *(float *)&this->_data[192] = a5 + *(float *)(a2 + 260);
+  *(_DWORD *)&this->_data[180] = 0;
+  *(_DWORD *)&this->_data[176] = 0;
+  *(_DWORD *)&this->_data[172] = 0;
+  *(_DWORD *)&this->_data[88] = *(_DWORD *)(a2 + 204);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  this->m_fAlpha = (float)HIBYTE(this->m_dwStartColor);
+  *(float *)&this->_data[92] = (float)HIBYTE(*(_DWORD *)&this->_data[88]);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  this->m_fRed = (float)(unsigned __int8)BYTE2(this->m_dwStartColor);
+  *(float *)&this->_data[96] = (float)(unsigned __int8)BYTE2(*(_DWORD *)&this->_data[88]);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  this->m_fGreen = (float)(unsigned __int8)BYTE1(this->m_dwStartColor);
+  *(float *)&this->_data[100] = (float)(unsigned __int8)BYTE1(*(_DWORD *)&this->_data[88]);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  this->m_fCurFrame = 0.0;
-  m_dwStartColor_low = LOBYTE(this->m_dwStartColor);
-  this->m_nLoops = 0;
-  this->m_fBlue = (float)m_dwStartColor_low;
-  this->m_fXSize = *(float *)(a2 + 200);
-  this->m_fZSize = *(float *)(a2 + 200);
+  *(_DWORD *)&this->_data[84] = 0;
+  v6 = (unsigned __int8)this->_data[88];
+  *(_DWORD *)&this->_data[80] = 0;
+  *(float *)&this->_data[104] = (float)v6;
+  *(_DWORD *)&this->_data[108] = *(_DWORD *)(a2 + 200);
+  *(_DWORD *)&this->_data[112] = *(_DWORD *)(a2 + 200);
   nullsub_3(this);
-  result = this->m_nMaxChain;
+  result = *(_DWORD *)&this->_data[116];
   v8 = 0;
   if ( result > 0 )
   {
@@ -173,14 +173,14 @@ int CEffMeteor::Init(int a2, float a3, float a4, float a5)
     do
     {
       ++v8;
-      *(unsigned int *)((char *)&this->m_pChain->m_dwColor + result) = this->m_dwStartColor;
-      *(float *)((char *)&this->m_pChain->m_fMaxWidth + result) = this->m_fMeteorWidth;
-      *(float *)((char *)&this->m_pChain->m_fLumDecSpeed + result) = this->m_fLumDecSpeed;
-      *(float *)((char *)&this->m_pChain->m_fWidthDecSpeed + result) = this->m_fWidthDecSpeed;
-      *(float *)((char *)&this->m_pChain->m_fMaxLum + result) = this->m_fMaxLum;
+      *(_DWORD *)(*(_DWORD *)&this->_data[52] + result + 36) = *(_DWORD *)&this->_data[88];
+      *(_DWORD *)(*(_DWORD *)&this->_data[52] + result + 48) = *(_DWORD *)&this->_data[120];
+      *(_DWORD *)(*(_DWORD *)&this->_data[52] + result + 44) = *(_DWORD *)&this->_data[128];
+      *(_DWORD *)(*(_DWORD *)&this->_data[52] + result + 52) = *(_DWORD *)&this->_data[132];
+      *(_DWORD *)(*(_DWORD *)&this->_data[52] + result + 40) = *(_DWORD *)&this->_data[136];
       result += 56;
     }
-    while ( v8 < this->m_nMaxChain );
+    while ( v8 < *(_DWORD *)&this->_data[116] );
   }
   return result;
 }
@@ -196,19 +196,19 @@ char CEffMeteor::Create(int base)
   int v8; // eax
   int v9; // ecx
   int v11; // edi
-  int m_nMaxChain; // ebx
-  gbGeomQuad *v13; // eax
+  int v12; // ebx
+  void *v13; // eax
   int v14; // ebx
   int v15; // ebx
   int v16; // ebx
-  tagMeteor *v17; // eax
+  _DWORD *v17; // eax
   int v18; // ebx
-  _DWORD *p_z; // ecx
+  _DWORD *v19; // ecx
   int v20; // ebx
   int v21; // ebx
   char *v22; // eax
-  CMeteorChain *v23; // eax
-  gbGeomQuad *m_pGeomQuad; // ecx
+  int v23; // eax
+  int v24; // ecx
   int v25; // edi
   int v26; // ebx
   char ArgList[1024]; // [esp+Ch] [ebp-810h] BYREF
@@ -219,43 +219,43 @@ char CEffMeteor::Create(int base)
   int baseb; // [esp+824h] [ebp+8h]
 
   v3 = (_DWORD *)operator new(0x4C0u);
-  *(_DWORD *)&this->_pad_0000[24] = v3;
+  *(_DWORD *)&this->_data[24] = v3;
   if ( v3 )
   {
     v4 = 0;
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v5 + *(_DWORD *)&this->_pad_0000[24]) = operator new(0x2D0u);
-      if ( !*(_DWORD *)(v5 + *(_DWORD *)&this->_pad_0000[24]) )
+      *(_DWORD *)(v5 + *(_DWORD *)&this->_data[24]) = operator new(0x2D0u);
+      if ( !*(_DWORD *)(v5 + *(_DWORD *)&this->_data[24]) )
         break;
       v5 += 152;
       ++v4;
       if ( v5 >= 1216 )
       {
         v6 = 0;
-        *(_DWORD *)&this->_pad_0000[40] = 8;
-        *(_DWORD *)&this->_pad_0000[44] = 10;
+        *(_DWORD *)&this->_data[40] = 8;
+        *(_DWORD *)&this->_data[44] = 10;
         v7 = 0;
         do
         {
-          *(_BYTE *)(v7 + *(_DWORD *)&this->_pad_0000[24] + 148) = 0;
+          *(_BYTE *)(v7 + *(_DWORD *)&this->_data[24] + 148) = 0;
           v8 = 0;
-          if ( *(int *)&this->_pad_0000[44] > 0 )
+          if ( *(int *)&this->_data[44] > 0 )
           {
             v9 = 0;
             do
             {
               ++v8;
               v9 += 72;
-              *(_BYTE *)(*(_DWORD *)(v7 + *(_DWORD *)&this->_pad_0000[24]) + v9 - 8) = 0;
+              *(_BYTE *)(*(_DWORD *)(v7 + *(_DWORD *)&this->_data[24]) + v9 - 8) = 0;
             }
-            while ( v8 < *(_DWORD *)&this->_pad_0000[44] );
+            while ( v8 < *(_DWORD *)&this->_data[44] );
           }
           ++v6;
           v7 += 152;
         }
-        while ( v6 < *(_DWORD *)&this->_pad_0000[40] );
+        while ( v6 < *(_DWORD *)&this->_data[40] );
         goto LABEL_10;
       }
     }
@@ -264,13 +264,13 @@ char CEffMeteor::Create(int base)
       v11 = 152 * (v4 - 1);
       do
       {
-        operator delete(*(void **)(v11 + *(_DWORD *)&this->_pad_0000[24]));
+        operator delete(*(void **)(v11 + *(_DWORD *)&this->_data[24]));
         v11 -= 152;
         --v4;
       }
       while ( v4 );
     }
-    operator delete(*(void **)&this->_pad_0000[24]);
+    operator delete(*(void **)&this->_data[24]);
   }
 LABEL_10:
   if ( (g_bCursorVisible & 1) == 0 )
@@ -279,45 +279,45 @@ LABEL_10:
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  this->m_nMaxChain = abs32((int)*(float *)(base + 224));
-  this->m_fMeteorWidth = *(float *)(base + 228);
+  *(_DWORD *)&this->_data[116] = abs32((int)*(float *)(base + 224));
+  *(_DWORD *)&this->_data[120] = *(_DWORD *)(base + 228);
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
     ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  this->m_nMaxTrail = (int)*(float *)(base + 232);
-  this->m_fLumDecSpeed = *(float *)(base + 244);
-  this->m_fWidthDecSpeed = *(float *)(base + 248);
-  this->m_fMaxLum = *(float *)(base + 268);
-  this->m_bHaveHead = *(float *)(base + 224) > 0.0;
-  this->m_fFramePerSec = *(float *)(base + 180);
-  this->m_vecPos.x = *(float *)(base + 184);
-  this->m_vecPos.y = *(float *)(base + 188);
-  this->m_vecPos.z = *(float *)(base + 192);
-  this->m_vecRot.x = *(float *)(base + 216);
-  this->m_vecRot.y = *(float *)(base + 196);
-  this->m_vecRot.z = *(float *)(base + 220);
-  this->m_vecTarget.x = *(float *)(base + 252);
-  this->m_vecTarget.y = *(float *)(base + 256);
-  this->m_vecTarget.z = *(float *)(base + 260);
-  this->m_vecStartSpeed.x = *(float *)(base + 264);
-  this->m_vecStartSpeed.y = *(float *)(base + 236);
-  this->m_vecStartSpeed.z = *(float *)(base + 240);
-  this->m_bAdditiveBlend = *(_BYTE *)(base + 213);
-  this->m_bNoZTest = *(_BYTE *)(base + 215);
-  this->m_byMaxFrame = *(_BYTE *)(base + 176);
-  this->m_nRequireLoops = (int)&unk_FFFFFF;
-  this->m_dwStartColor = *(_DWORD *)(base + 204);
-  sub_4CCC60(this->_pad_0000, *(_DWORD *)(base + 168), *(_DWORD *)(base + 172));
-  m_nMaxChain = this->m_nMaxChain;
-  v13 = (gbGeomQuad *)operator new(68 * m_nMaxChain);
+  *(_DWORD *)&this->_data[124] = (int)*(float *)(base + 232);
+  *(_DWORD *)&this->_data[128] = *(_DWORD *)(base + 244);
+  *(_DWORD *)&this->_data[132] = *(_DWORD *)(base + 248);
+  *(_DWORD *)&this->_data[136] = *(_DWORD *)(base + 268);
+  this->_data[71] = *(float *)(base + 224) > 0.0;
+  *(_DWORD *)&this->_data[144] = *(_DWORD *)(base + 180);
+  *(_DWORD *)&this->_data[160] = *(_DWORD *)(base + 184);
+  *(_DWORD *)&this->_data[164] = *(_DWORD *)(base + 188);
+  *(_DWORD *)&this->_data[168] = *(_DWORD *)(base + 192);
+  *(_DWORD *)&this->_data[148] = *(_DWORD *)(base + 216);
+  *(_DWORD *)&this->_data[152] = *(_DWORD *)(base + 196);
+  *(_DWORD *)&this->_data[156] = *(_DWORD *)(base + 220);
+  *(_DWORD *)&this->_data[184] = *(_DWORD *)(base + 252);
+  *(_DWORD *)&this->_data[188] = *(_DWORD *)(base + 256);
+  *(_DWORD *)&this->_data[192] = *(_DWORD *)(base + 260);
+  *(_DWORD *)&this->_data[196] = *(_DWORD *)(base + 264);
+  *(_DWORD *)&this->_data[200] = *(_DWORD *)(base + 236);
+  *(_DWORD *)&this->_data[204] = *(_DWORD *)(base + 240);
+  this->_data[69] = *(_BYTE *)(base + 213);
+  this->_data[70] = *(_BYTE *)(base + 215);
+  this->_data[72] = *(_BYTE *)(base + 176);
+  *(_DWORD *)&this->_data[76] = &unk_FFFFFF;
+  *(_DWORD *)&this->_data[88] = *(_DWORD *)(base + 204);
+  sub_4CCC60(this->_data, *(_DWORD *)(base + 168), *(_DWORD *)(base + 172));
+  v12 = *(_DWORD *)&this->_data[116];
+  v13 = (void *)operator new(68 * v12);
   Block = v13;
   v31 = 0;
   if ( v13 )
   {
-    v14 = m_nMaxChain - 1;
+    v14 = v12 - 1;
     basea = (int)v13;
     if ( v14 >= 0 )
     {
@@ -329,39 +329,39 @@ LABEL_10:
         basea += 68;
       }
       while ( v15 );
-      v13 = (gbGeomQuad *)Block;
+      v13 = Block;
     }
   }
   else
   {
     v13 = 0;
   }
-  v16 = this->m_nMaxChain;
-  this->m_pGeomQuad = v13;
+  v16 = *(_DWORD *)&this->_data[116];
+  *(_DWORD *)&this->_data[48] = v13;
   v31 = -1;
-  v17 = (tagMeteor *)operator new(48 * v16);
+  v17 = (_DWORD *)operator new(48 * v16);
   if ( v17 )
   {
     v18 = v16 - 1;
     if ( v18 >= 0 )
     {
-      p_z = (_DWORD *)&v17->vecSpeed.z;
+      v19 = (_DWORD *)v17 + 5;
       v20 = v18 + 1;
       do
       {
-        *(p_z - 5) = 0;
-        *(p_z - 4) = 0;
-        *(p_z - 3) = 0;
-        *(p_z - 2) = 0;
-        *(p_z - 1) = 0;
-        *p_z = 0;
-        p_z[1] = 0;
-        p_z[2] = 0;
-        p_z[3] = 0;
-        p_z[4] = 0;
-        p_z[5] = 0;
-        p_z[6] = 0;
-        p_z += 12;
+        *(v19 - 5) = 0;
+        *(v19 - 4) = 0;
+        *(v19 - 3) = 0;
+        *(v19 - 2) = 0;
+        *(v19 - 1) = 0;
+        *v19 = 0;
+        v19[1] = 0;
+        v19[2] = 0;
+        v19[3] = 0;
+        v19[4] = 0;
+        v19[5] = 0;
+        v19[6] = 0;
+        v19 += 12;
         --v20;
       }
       while ( v20 );
@@ -371,8 +371,8 @@ LABEL_10:
   {
     v17 = 0;
   }
-  v21 = this->m_nMaxChain;
-  this->m_pMeteor = v17;
+  v21 = *(_DWORD *)&this->_data[116];
+  *(_DWORD *)&this->_data[56] = v17;
   v22 = (char *)operator new(56 * v21 + 4);
   Block = v22;
   v31 = 1;
@@ -386,16 +386,16 @@ LABEL_10:
       v21,
       (void (*)(void *))sub_4CD070,
       (void (*)(void *))CMeteorChain::CMeteorChain);
-    v23 = (CMeteorChain *)baseb;
+    v23 = baseb;
   }
   else
   {
     v23 = 0;
   }
-  m_pGeomQuad = (gbGeomQuad *)this->m_pGeomQuad;
+  v24 = *(_DWORD *)&this->_data[48];
   v31 = -1;
-  this->m_pChain = v23;
-  if ( !m_pGeomQuad || !v23 )
+  *(_DWORD *)&this->_data[52] = v23;
+  if ( !v24 || !v23 )
   {
     qmemcpy(
       pExceptionObject,
@@ -405,21 +405,21 @@ LABEL_10:
   }
   sub_4CCD10((int)this, base + 40);
   v25 = 0;
-  if ( this->m_nMaxChain > 0 )
+  if ( *(int *)&this->_data[116] > 0 )
   {
     v26 = 0;
     do
     {
       sub_4CD0D0(
-        &this->m_pChain[v26],
-        *(_DWORD *)&this->_pad_0000[4],
-        this->m_nMaxTrail,
-        this->m_bHaveHead == 0,
-        (int)this->m_pTextureArray);
+        (_BYTE *)(*(_DWORD *)&this->_data[52] + v26),
+        *(_DWORD *)&this->_data[4],
+        *(_DWORD *)&this->_data[124],
+        this->_data[71] == 0,
+        *(_DWORD *)&this->_data[64]);
       ++v25;
-      ++v26;
+      v26 += 56;
     }
-    while ( v25 < this->m_nMaxChain );
+    while ( v25 < *(_DWORD *)&this->_data[116] );
   }
   return 1;
 }
@@ -448,14 +448,14 @@ void CEffMeteor::CreateTask(int arg0)
   int a2; // [esp+Ch] [ebp-4h]
 
   v2 = this;
-  v3 = *(float *)&arg0 - *(float *)&this->_pad_0000[16];
-  v4 = (char *)&this->_pad_0000[12];
-  *(float *)&this->_pad_0000[16] = *(float *)&arg0;
-  *(float *)&this->_pad_0000[20] = v3;
-  if ( *(float *)&this->_pad_0000[20] > 0.0 )
+  v3 = *(float *)&arg0 - *(float *)&this->_data[16];
+  v4 = (char *)&this->_data[12];
+  *(float *)&this->_data[16] = *(float *)&arg0;
+  *(float *)&this->_data[20] = v3;
+  if ( *(float *)&this->_data[20] > 0.0 )
   {
     a2 = 0;
-    if ( *(int *)&this->_pad_0000[40] > 0 )
+    if ( *(int *)&this->_data[40] > 0 )
     {
       v20 = 0;
       while ( 1 )
@@ -543,27 +543,27 @@ LABEL_24:
       }
     }
 LABEL_30:
-    if ( *(int *)&v2->_pad_0000[36] <= 0 )
-      v2->_pad_0000[8] = 1;
-    if ( !v2->_pad_0000[8] )
+    if ( *(int *)&v2->_data[36] <= 0 )
+      v2->_data[8] = 1;
+    if ( !v2->_data[8] )
     {
       v12 = 0;
-      if ( v2->m_nMaxChain > 0 )
+      if ( *(int *)&v2->_data[116] > 0 )
       {
         v13 = 0;
         do
         {
-          v2->m_pChain[v13].m_dwColor = v2->m_dwStartColor;
-          v2->m_pChain[v13].m_fMaxLum = v2->m_fMaxLum;
-          sub_4CD3D0((int)&v2->m_pChain[v13], arg0);
+          *(_DWORD *)(v13 + *(_DWORD *)&v2->_data[52] + 36) = *(_DWORD *)&v2->_data[88];
+          *(_DWORD *)(v13 + *(_DWORD *)&v2->_data[52] + 40) = *(_DWORD *)&v2->_data[136];
+          sub_4CD3D0(*(_DWORD *)&v2->_data[52] + v13, arg0);
           ++v12;
-          ++v13;
+          v13 += 56;
         }
-        while ( v12 < v2->m_nMaxChain );
+        while ( v12 < *(_DWORD *)&v2->_data[116] );
       }
-      if ( v2->m_bHaveHead )
+      if ( v2->_data[71] )
       {
-        v2->m_fCurFrame = v2->m_fFramePerSec * *(float *)&v2->_pad_0000[20] + v2->m_fCurFrame;
+        *(float *)&v2->_data[84] = *(float *)&v2->_data[144] * *(float *)&v2->_data[20] + *(float *)&v2->_data[84];
         if ( (g_bCursorVisible & 1) == 0 )
         {
           g_bCursorVisible |= 1u;
@@ -571,22 +571,22 @@ LABEL_30:
           atexit(nullsub_1);
         }
         v14 = 0;
-        v15 = (int)abs32((int)v2->m_fCurFrame) % v2->m_byMaxFrame;
-        if ( v2->m_nMaxChain > 0 )
+        v15 = (int)abs32((int)*(float *)&v2->_data[84]) % (unsigned __int8)v2->_data[72];
+        if ( *(int *)&v2->_data[116] > 0 )
         {
           v16 = 0;
-          v17 = (char *)&v2->_pad_0000[16 * v15];
+          v17 = (char *)&v2->_data[16 * v15];
           do
           {
             ++v14;
             v16 += 68;
-            *(float *)((char *)&v2->m_pGeomQuad->vec[-1] + v16 - 8) = v2->m_DefaultUVSet[v15].su;
-            *(float *)((char *)&v2->m_pGeomQuad->vec[-1].x + v16) = *((float *)v17 + 54);
-            *(_DWORD *)((char *)&v2->m_pGeomQuad->vec[-1] + v16 - 4) = *((_DWORD *)v17 + 53);
-            *(_DWORD *)((char *)v2->m_pGeomQuad->vec + v16 - 8) = *((_DWORD *)v17 + 55);
-            *(_DWORD *)((char *)v2->m_pGeomQuad->vec + v16 - 4) = v2->m_dwStartColor;
+            *(_DWORD *)(v16 + *(_DWORD *)&v2->_data[48] - 20) = *(_DWORD *)&v2->_data[16 * v15 + 208];
+            *(_DWORD *)(v16 + *(_DWORD *)&v2->_data[48] - 12) = *((_DWORD *)v17 + 54);
+            *(_DWORD *)(v16 + *(_DWORD *)&v2->_data[48] - 16) = *((_DWORD *)v17 + 53);
+            *(_DWORD *)(v16 + *(_DWORD *)&v2->_data[48] - 8) = *((_DWORD *)v17 + 55);
+            *(_DWORD *)(v16 + *(_DWORD *)&v2->_data[48] - 4) = *(_DWORD *)&v2->_data[88];
           }
-          while ( v14 < v2->m_nMaxChain );
+          while ( v14 < *(_DWORD *)&v2->_data[116] );
         }
       }
     }
