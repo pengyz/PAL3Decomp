@@ -2,6 +2,6 @@
   "name": "_rtforexpinf",
   "address": "0x00559441",
   "size_bytes": 13,
-  "signature": "double __fastcall(char a1)",
-  "decompiled_c": "double __fastcall rtforexpinf(char a1)\n{\n  if ( a1 )\n    JUMPOUT(0x5593F4);\n  return *(double *)&tbyte_60B050;\n}\n"
+  "signature": "void __fastcall(char a1)",
+  "decompiled_c": "void __fastcall rtforexpinf(char a1)\n{\n  if ( a1 )\n    JUMPOUT(0x5593F4);\n  __asm\n  {\n    fstp    st\n    fld     tbyte_60B050\n  }\n}\n"
 }

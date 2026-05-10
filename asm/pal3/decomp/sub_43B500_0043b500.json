@@ -2,6 +2,6 @@
   "name": "sub_43B500",
   "address": "0x0043B500",
   "size_bytes": 110,
-  "signature": "unsigned __int8 __thiscall(_DWORD *this, int a2, int a3, int a4)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nunsigned __int8 __thiscall sub_43B500(_DWORD *this, int a2, int a3, int a4)\n{\n  _DWORD *v4; // edx\n  gbTexture_D3D *v5; // eax\n  int v7; // [esp-Ch] [ebp-14h]\n  int v8; // [esp-8h] [ebp-10h]\n\n  if ( a2 < 0 )\n    return 0;\n  v4 = (_DWORD *)*(this + 46);\n  if ( (unsigned int)a2 >= v4[260] || a3 < 0 || (unsigned int)a3 >= v4[261] )\n    return 0;\n  v8 = a4 + 4 * (v4[258] + a2);\n  v7 = v4[259] - v4[257] - a3 + 1024;\n  v5 = (gbTexture_D3D *)sub_445F60(0);\n  return gbTexture_D3D::GetByte(v5, v7, v8);\n}\n"
+  "signature": "unsigned __int8 __thiscall(_DWORD *this, unsigned int a2, unsigned int a3, int a4)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nunsigned __int8 __thiscall sub_43B500(_DWORD *this, unsigned int a2, unsigned int a3, int a4)\n{\n  _DWORD *v4; // edx\n  gbTexture_D3D *v5; // eax\n  int v7; // [esp-Ch] [ebp-14h]\n  int v8; // [esp-8h] [ebp-10h]\n\n  if ( (a2 & 0x80000000) != 0 )\n    return 0;\n  v4 = (_DWORD *)*(this + 46);\n  if ( a2 >= v4[260] || (a3 & 0x80000000) != 0 || a3 >= v4[261] )\n    return 0;\n  v8 = a4 + 4 * (v4[258] + a2);\n  v7 = v4[259] - v4[257] - a3 + 1024;\n  v5 = (gbTexture_D3D *)sub_445F60(this + 29, 0);\n  return gbTexture_D3D::GetByte(v5, v7, v8);\n}\n"
 }

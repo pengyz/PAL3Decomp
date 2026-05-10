@@ -3,5 +3,5 @@
   "address": "0x0052AA50",
   "size_bytes": 81,
   "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_52AA50(_DWORD *this)\n{\n  MEMORY[0xC05F54] += *(this + 407);\n  MEMORY[0xC0476C][0] -= *(this + 312);\n  if ( MEMORY[0xC0476C][0] <= 0 )\n    MEMORY[0xC0476C][0] = 1;\n  if ( *(this + 89) == 2 )\n    *(this + 89) = 1;\n  return CGameData_Load((int)&g_GameData, 0);\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_52AA50(_DWORD *this)\n{\n  LODWORD(g_SceneMgr.m_npc[0].m_path.normal[82].y) += *(this + 407);\n  g_SceneMgr.m_npc[0].m_npcinfo.reserve[12] -= *(this + 312);\n  if ( g_SceneMgr.m_npc[0].m_npcinfo.reserve[12] <= 0 )\n    g_SceneMgr.m_npc[0].m_npcinfo.reserve[12] = 1;\n  if ( *(this + 89) == 2 )\n    *(this + 89) = 1;\n  return CGameData_Load((int)&g_GameData, 0);\n}\n"
 }

@@ -2,6 +2,6 @@
   "name": "sub_420F70",
   "address": "0x00420F70",
   "size_bytes": 63,
-  "signature": "BOOL __thiscall(void *this, int a2, int a3, int a4)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nBOOL __thiscall sub_420F70(void *this, int a2, int a3, int a4)\n{\n  int *v4; // eax\n\n  v4 = (int *)RoleSystem::GetRolePtr(this, a2);\n  return a3 >= 0 && a3 < v4[38] && a4 >= 0 && a4 < v4[39] && GRPinput::GetJoystickFreePos(v4, a3, a4);\n}\n"
+  "signature": "BOOL __thiscall(RoleSystem *this, int index, int a2, int a3)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nBOOL __thiscall sub_420F70(RoleSystem *this, int index, int a2, int a3)\n{\n  GRPinput *RolePtr; // eax\n\n  RolePtr = (GRPinput *)RoleSystem::GetRolePtr(this, index);\n  return a2 >= 0\n      && a2 < RolePtr->m_keyStates[12]\n      && a3 >= 0\n      && a3 < RolePtr->m_keyStates[13]\n      && GRPinput::GetJoystickFreePos(RolePtr, a2, a3);\n}\n"
 }

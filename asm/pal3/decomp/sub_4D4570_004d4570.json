@@ -3,5 +3,5 @@
   "address": "0x004D4570",
   "size_bytes": 96,
   "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nint __thiscall sub_4D4570(_DWORD *this, int a2)\n{\n  _DWORD *v3; // ecx\n  int v4; // edi\n\n  v3 = (_DWORD *)(*(this + 6) + 152 * *(this + 7));\n  v4 = *v3 + 72 * *(this + 8);\n  if ( !*(_BYTE *)(v4 + 65) )\n  {\n    CEffShock::StartShock(v3[26]);\n    *(_BYTE *)(v4 + 65) = 1;\n  }\n  nullsub_3(this);\n  if ( *(_BYTE *)(v4 + 66) == 1 || *((float *)this + 4) - *(float *)(v4 + 16) >= *(float *)(v4 + 24) )\n    *(_DWORD *)(v4 + 8) = 4;\n  return 0;\n}\n"
+  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nint __thiscall sub_4D4570(_DWORD *this, int a2)\n{\n  _DWORD *v3; // ecx\n  int v4; // edi\n\n  v3 = (_DWORD *)(*(this + 6) + 152 * *(this + 7));\n  v4 = *v3 + 72 * *(this + 8);\n  if ( !*(_BYTE *)(v4 + 65) )\n  {\n    CEffShock::StartShock((int)this, v3[26]);\n    *(_BYTE *)(v4 + 65) = 1;\n  }\n  nullsub_3(this);\n  if ( *(_BYTE *)(v4 + 66) == 1 || *((float *)this + 4) - *(float *)(v4 + 16) >= *(float *)(v4 + 24) )\n    *(_DWORD *)(v4 + 8) = 4;\n  return 0;\n}\n"
 }

@@ -2,6 +2,6 @@
   "name": "__rtinfpop",
   "address": "0x0055942F",
   "size_bytes": 18,
-  "signature": "double __usercall@<st0>(int a1@<ebp>)",
-  "decompiled_c": "double __usercall _rtinfpop@<st0>(int a1@<ebp>)\n{\n  double result; // st7\n\n  result = *(double *)&tbyte_60B050;\n  *(_BYTE *)(a1 - 144) = 3;\n  return result;\n}\n"
+  "signature": "void __usercall(int a1@<ebp>)",
+  "decompiled_c": "void __usercall _rtinfpop(int a1@<ebp>)\n{\n  __asm\n  {\n    fstp    st\n    fstp    st\n    fld     tbyte_60B050\n  }\n  *(_BYTE *)(a1 - 144) = 3;\n}\n"
 }

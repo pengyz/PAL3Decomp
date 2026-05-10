@@ -3,5 +3,5 @@
   "address": "0x004C6940",
   "size_bytes": 27,
   "signature": "_DWORD *()",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\n_DWORD *sub_4C6940()\n{\n  _DWORD *v0; // eax\n\n  v0 = operator new(0x10C0u);\n  if ( v0 )\n    return CEffectSystem::FillDefaultUVSet(v0);\n  else\n    return 0;\n}\n"
+  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\n_DWORD *CEffect::CEffect()\n{\n  CEffectSystem *v0; // eax\n\n  v0 = (CEffectSystem *)operator new(0x10C0u);\n  if ( v0 )\n    return CEffectSystem::FillDefaultUVSet(v0);\n  else\n    return 0;\n}\n"
 }

@@ -2,6 +2,6 @@
   "name": "sub_41F2D0",
   "address": "0x0041F2D0",
   "size_bytes": 106,
-  "signature": "_DWORD *()",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\n_DWORD *sub_41F2D0()\n{\n  char *v0; // esi\n  int v1; // edi\n\n  v0 = (char *)&MEMORY[0xC11768];\n  v1 = 55;\n  do\n  {\n    ArraySort((int)v0, 12, 4, (int (__thiscall *)(int))gbVec3D::`default constructor closure');\n    v0 += 68;\n    --v1;\n  }\n  while ( v1 );\n  MEMORY[0xC11760] = 0;\n  MEMORY[0xC11764] = 0;\n  MEMORY[0xC11758][1] = 0;\n  MEMORY[0xC11758][0] = &off_56AAC4;\n  return MEMORY[0xC11758];\n}\n"
+  "signature": "char *()",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nchar *sub_41F2D0()\n{\n  char *v0; // esi\n  int v1; // edi\n\n  v0 = &g_SceneMgr.m_npc[6].m_actor.m_szTexture[256];\n  v1 = 55;\n  do\n  {\n    ArraySort((int)v0, 12, 4, gbVec3D::`default constructor closure');\n    v0 += 68;\n    --v1;\n  }\n  while ( v1 );\n  *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[248] = 0;\n  *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[252] = 0;\n  *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[244] = 0;\n  *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[240] = &off_56AAC4;\n  return &g_SceneMgr.m_npc[6].m_actor.m_szTexture[240];\n}\n"
 }

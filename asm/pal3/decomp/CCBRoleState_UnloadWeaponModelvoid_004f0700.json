@@ -3,5 +3,5 @@
   "address": "0x004F0700",
   "size_bytes": 74,
   "signature": "char __thiscall(CCBRoleState *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall CCBRoleState::UnloadWeaponModel(CCBRoleState *this, int a2)\n{\n  int v3; // esi\n  __int32 *i; // edi\n\n  v3 = 0;\n  for ( i = &this->m_Role[0].?[3][2]; !*((_BYTE *)i - 559) || *i != a2 || CCBRoleState::SetVisible(this, v3); i += 223 )\n  {\n    if ( ++v3 >= 5 )\n      return 0;\n  }\n  return 1;\n}\n"
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall CCBRoleState::UnloadWeaponModel(CCBRoleState *this, int a2)\n{\n  int v3; // esi\n  __int8 *i; // edi\n\n  v3 = 0;\n  for ( i = &this->m_Role[0].byMagicUseTime[102];\n        !*(i - 559) || *(_DWORD *)i != a2 || CCBRoleState::SetVisible(this, v3);\n        i += 892 )\n  {\n    if ( ++v3 >= 5 )\n      return 0;\n  }\n  return 1;\n}\n"
 }

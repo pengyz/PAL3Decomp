@@ -3,5 +3,5 @@
   "address": "0x0052C450",
   "size_bytes": 42,
   "signature": "int __thiscall(UIListBox *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_52C450(UIListBox *this)\n{\n  _BYTE *Instance; // eax\n\n  if ( !*((_DWORD *)this + 3237) )\n  {\n    Instance = ScreenEffectMgr::GetInstance();\n    *((_DWORD *)this + 3237) = sub_4BE1A0((int)Instance, 2);\n  }\n  return UIListBox::SetScroll(this);\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_52C450(UIListBox *this)\n{\n  ScreenEffect *Instance; // eax\n\n  if ( !*((_DWORD *)this + 3237) )\n  {\n    Instance = ScreenEffectMgr::GetInstance();\n    *((_DWORD *)this + 3237) = sub_4BE1A0((int)Instance, 2);\n  }\n  return UIListBox::SetScroll(this);\n}\n"
 }

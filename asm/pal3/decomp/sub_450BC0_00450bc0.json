@@ -2,6 +2,6 @@
   "name": "sub_450BC0",
   "address": "0x00450BC0",
   "size_bytes": 160,
-  "signature": "int __thiscall(_DWORD *this, const char *a2)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_450BC0(_DWORD *this, const char *a2)\n{\n  void (__thiscall **v3)(_DWORD *, int); // eax\n  _DWORD v5[2]; // [esp+Ch] [ebp-10h] BYREF\n  unsigned int v6; // [esp+14h] [ebp-8h]\n  int v7; // [esp+18h] [ebp-4h]\n\n  v5[1] = 0;\n  v5[0] = 0;\n  v7 = 48;\n  if ( 10 * (strlen(a2) + 6) >= 0x40 )\n    v6 = 10 * (strlen(a2) + 6);\n  else\n    v6 = 64;\n  UIWnd::GetRect(this + 18, v5);\n  UIWnd::SetVisible((UIWnd *)(this + 18), (int)this);\n  sub_445860(this + 18, a2);\n  v3 = (void (__thiscall **)(_DWORD *, int))*this;\n  *(this + 66) = 0;\n  (*v3)(this, 1);\n  return UIWnd::SetState((UIWnd *)(this + 18), 1);\n}\n"
+  "signature": "int __thiscall(_DWORD *this, const char *arg0)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_450BC0(_DWORD *this, const char *arg0)\n{\n  void (__thiscall **v3)(_DWORD *, int); // eax\n  _DWORD a2[2]; // [esp+Ch] [ebp-10h] BYREF\n  unsigned int v6; // [esp+14h] [ebp-8h]\n  int v7; // [esp+18h] [ebp-4h]\n\n  a2[1] = 0;\n  a2[0] = 0;\n  v7 = 48;\n  if ( 10 * (strlen(arg0) + 6) >= 0x40 )\n    v6 = 10 * (strlen(arg0) + 6);\n  else\n    v6 = 64;\n  UIWnd::GetRect((UIWnd *)(this + 18), a2);\n  UIWnd::SetVisible((UIWnd *)(this + 18), (int)this);\n  sub_445860((char *)this + 72, arg0);\n  v3 = (void (__thiscall **)(_DWORD *, int))*this;\n  *(this + 66) = 0;\n  (*v3)(this, 1);\n  return UIWnd::SetState((UIWnd *)(this + 18), 1);\n}\n"
 }

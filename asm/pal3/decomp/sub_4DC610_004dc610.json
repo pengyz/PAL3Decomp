@@ -3,5 +3,5 @@
   "address": "0x004DC610",
   "size_bytes": 49,
   "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4DC610(_DWORD *this)\n{\n  int v2; // edi\n  _DWORD *v3; // esi\n  char result; // al\n\n  v2 = 0;\n  v3 = this + 28;\n  do\n  {\n    result = *((_BYTE *)v3 + 60);\n    if ( result )\n    {\n      *(this + 26) = v2;\n      result = ((int (__thiscall *)(int, _DWORD))*v3)((int)this + v3[1], 0);\n    }\n    ++v2;\n    v3 += 16;\n  }\n  while ( v2 < 20 );\n  *(this + 26) = -1;\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4DC610(_DWORD *this)\n{\n  int v2; // edi\n  _DWORD *v3; // esi\n  char result; // al\n\n  v2 = 0;\n  v3 = this + 28;\n  do\n  {\n    result = *((_BYTE *)v3 + 60);\n    if ( result )\n    {\n      *(this + 26) = v2;\n      result = ((int (__thiscall *)(char *, _DWORD))*v3)((char *)this + v3[1], 0);\n    }\n    ++v2;\n    v3 += 16;\n  }\n  while ( v2 < 20 );\n  *(this + 26) = -1;\n  return result;\n}\n"
 }

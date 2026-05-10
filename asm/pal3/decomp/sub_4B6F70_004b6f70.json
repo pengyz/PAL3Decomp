@@ -2,6 +2,6 @@
   "name": "sub_4B6F70",
   "address": "0x004B6F70",
   "size_bytes": 26,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nint __thiscall sub_4B6F70(int this)\n{\n  gbVisNode::gbVisNode((gbVisNode *)this);\n  *(_DWORD *)this = &off_56F37C;\n  *(_DWORD *)(this + 88) = 0;\n  return this;\n}\n"
+  "signature": "gbVisNode *__thiscall(gbVisNode *this)",
+  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\ngbVisNode *__thiscall sub_4B6F70(gbVisNode *this)\n{\n  gbVisNode::gbVisNode(this);\n  this->next = (gbChain1DNode *)&off_56F37C;\n  *((_DWORD *)this + 22) = 0;\n  return this;\n}\n"
 }

@@ -49,6 +49,11 @@ def main():
             if (i+1) % 1000 == 0:
                 log("  [%d/%d]" % (i+1, len(targets)))
             try:
+                # Clear Hex-Rays cache to force fresh decompilation with latest type info
+                try:
+                    ida_hexrays.mark_cfunc_dirty(ea)
+                except:
+                    pass
                 cfunc = ida_hexrays.decompile(ea)
                 if not cfunc: continue
                 code = str(cfunc)

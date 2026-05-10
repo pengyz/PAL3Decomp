@@ -2,6 +2,6 @@
   "name": "sub_534DD0",
   "address": "0x00534DD0",
   "size_bytes": 83,
-  "signature": "char __thiscall(_BYTE *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_534DD0(_BYTE *this, int a2)\n{\n  if ( (MEMORY[0xBFC5E8][4 * a2] & 0xF) != 1\n    && *(&g_Input + 4 * a2 + 1569) != (LPVOID)1\n    && (MEMORY[0xBFC5E8][4 * a2] & 0xFu) <= 1\n    && GRPinput::GetKeyState((unsigned __int8 *)&g_Input, a2) != 2 )\n  {\n    return 0;\n  }\n  *(this + 4) = 1;\n  return 1;\n}\n"
+  "signature": "char __thiscall(_BYTE *this, int key)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_534DD0(_BYTE *this, int key)\n{\n  if ( (g_Input.m_shiftedKeyStates[4 * key + 204] & 0xF) != 1\n    && g_Input.m_shiftedKeyStates[4 * key + 207] != 1\n    && (g_Input.m_shiftedKeyStates[4 * key + 204] & 0xFu) <= 1\n    && GRPinput::GetKeyState(&g_Input, key) != 2 )\n  {\n    return 0;\n  }\n  *(this + 4) = 1;\n  return 1;\n}\n"
 }

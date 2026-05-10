@@ -2,6 +2,6 @@
   "name": "unknown_libname_312",
   "address": "0x00408800",
   "size_bytes": 10,
-  "signature": "_BYTE *()",
-  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\n_BYTE *unknown_libname_312()\n{\n  MEMORY[0xC05F20][0] = (unsigned int)MEMORY[0xC05F20] >> 24;\n  MEMORY[0xC05F24] = 0;\n  MEMORY[0xC05F28] = 0;\n  *(_DWORD *)MEMORY[0xC05F2C] = 0;\n  return MEMORY[0xC05F20];\n}\n"
+  "signature": "gbVec3D *()",
+  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\ngbVec3D *unknown_libname_312()\n{\n  LOBYTE(g_SceneMgr.m_npc[0].m_path.normal[78].x) = (unsigned int)&g_SceneMgr.m_npc[0].m_path.normal[78] >> 24;\n  g_SceneMgr.m_npc[0].m_path.normal[78].y = 0.0;\n  g_SceneMgr.m_npc[0].m_path.normal[78].z = 0.0;\n  g_SceneMgr.m_npc[0].m_path.normal[79].x = 0.0;\n  return &g_SceneMgr.m_npc[0].m_path.normal[78];\n}\n"
 }

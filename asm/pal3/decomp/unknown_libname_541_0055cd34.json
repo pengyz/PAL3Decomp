@@ -2,6 +2,6 @@
   "name": "unknown_libname_541",
   "address": "0x0055CD34",
   "size_bytes": 52,
-  "signature": "void __userpurge __spoils<edx,ecx,st0>(__int16 a1@<fpstat>, double a2@<st1>, double a3@<st0>, __int16 a4)",
-  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\nvoid __userpurge __spoils<edx,ecx,st0> unknown_libname_541(\n        __int16 a1@<fpstat>,\n        double a2@<st1>,\n        double a3@<st0>,\n        __int16 a4)\n{\n  if ( (a1 & 0x3800) != 0 )\n    unknown_libname_534(a2, a3);\n  else\n    unknown_libname_534((double)a4, a2);\n}\n"
+  "signature": "void __userpurge(__int16 a1@<fpstat>, double a2@<st1>, double a3@<st0>, __int16 a4)",
+  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\nvoid __userpurge unknown_libname_541(__int16 a1@<fpstat>, double a2@<st1>, double a3@<st0>, __int16 a4)\n{\n  if ( (a1 & 0x3800) != 0 )\n    unknown_libname_534(a2, a3);\n  else\n    unknown_libname_534((double)a4, a2);\n}\n"
 }

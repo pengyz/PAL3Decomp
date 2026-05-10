@@ -3,5 +3,5 @@
   "address": "0x0041EF30",
   "size_bytes": 103,
   "signature": "int()",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint sub_41EF30()\n{\n  MEMORY[0xC11748] = 0;\n  MEMORY[0xC1171C] = 0x7FFFFFFF;\n  strcpy(MEMORY[0xC11720], aZ27);\n  MEMORY[0xC11740] = 1;\n  MEMORY[0xC1174C] = -1;\n  MEMORY[0xC11744] = 0;\n  MEMORY[0xC11754] = 0;\n  MEMORY[0xC11750] = 0;\n  MEMORY[0xC11752] = 1;\n  return 1;\n}\n"
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint sub_41EF30()\n{\n  g_SceneMgr.m_npc[6].m_actor.m_szTexture[224] = 0;\n  *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[180] = 0x7FFFFFFF;\n  strcpy(&g_SceneMgr.m_npc[6].m_actor.m_szTexture[184], aZ27);\n  *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[216] = 1;\n  *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[228] = -1;\n  *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[220] = 0;\n  *(_DWORD *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[236] = 0;\n  g_SceneMgr.m_npc[6].m_actor.m_szTexture[232] = 0;\n  g_SceneMgr.m_npc[6].m_actor.m_szTexture[234] = 1;\n  return 1;\n}\n"
 }

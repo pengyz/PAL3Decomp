@@ -3,5 +3,5 @@
   "address": "0x00431F40",
   "size_bytes": 89,
   "signature": "void __cdecl()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __cdecl sub_431F40()\n{\n  char v0; // al\n\n  if ( (byte_D8C324 & 0x10) == 0 )\n  {\n    byte_D8C324 |= 0x10u;\n    if ( dword_D8C2BC )\n    {\n      v0 = *(_BYTE *)(dword_D8C2BC - 1);\n      if ( !v0 || v0 == -1 )\n        operator delete((void *)(dword_D8C2BC - 1));\n      else\n        *(_BYTE *)(dword_D8C2BC - 1) = v0 - 1;\n    }\n    dword_D8C2BC = 0;\n    dword_D8C2C0 = 0;\n    dword_D8C2C4 = 0;\n  }\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __cdecl PalScript::ClearAllCamObj()\n{\n  char v0; // al\n\n  if ( (byte_D8C324 & 0x10) == 0 )\n  {\n    byte_D8C324 |= 0x10u;\n    if ( dword_D8C2BC )\n    {\n      v0 = *(_BYTE *)(dword_D8C2BC - 1);\n      if ( !v0 || v0 == -1 )\n        operator delete((void *)(dword_D8C2BC - 1));\n      else\n        *(_BYTE *)(dword_D8C2BC - 1) = v0 - 1;\n    }\n    dword_D8C2BC = 0;\n    dword_D8C2C0 = 0;\n    dword_D8C2C4 = 0;\n  }\n}\n"
 }

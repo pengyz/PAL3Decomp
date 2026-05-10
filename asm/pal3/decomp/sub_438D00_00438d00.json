@@ -3,5 +3,5 @@
   "address": "0x00438D00",
   "size_bytes": 25,
   "signature": "gbCamera *__cdecl()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\ngbCamera *__cdecl sub_438D00()\n{\n  gbCamera *result; // eax\n\n  result = (gbCamera *)PalScript::GetString();\n  if ( result )\n    return (gbCamera *)sub_41D590((int)MEMORY[0xBFDA68], *(_DWORD *)&result->fov[4]);\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\ngbCamera *__cdecl sub_438D00()\n{\n  gbCamera *result; // eax\n\n  result = (gbCamera *)PalScript::GetString();\n  if ( result )\n    return (gbCamera *)sub_41D590((_DWORD *)g_Input.KeyInfo[177].CountMode, LODWORD(result->OrthoSize));\n  return result;\n}\n"
 }

@@ -3,5 +3,5 @@
   "address": "0x00407180",
   "size_bytes": 60,
   "signature": "char __cdecl(HKEY hKey, CHAR *lpSubKey)",
-  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nchar __cdecl sub_407180(HKEY hKey, CHAR *lpSubKey)\n{\n  if ( RegOpenKeyExA(hKey, lpSubKey, 0, 0x20019u, (PHKEY)&lpSubKey) )\n  {\n    RegCloseKey((HKEY)lpSubKey);\n    return 0;\n  }\n  else\n  {\n    RegCloseKey((HKEY)lpSubKey);\n    return 1;\n  }\n}\n"
+  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nchar __cdecl PAL3::StartWolf(HKEY hKey, CHAR *lpSubKey)\n{\n  if ( RegOpenKeyExA(hKey, lpSubKey, 0, 0x20019u, (PHKEY)&lpSubKey) )\n  {\n    RegCloseKey((HKEY)lpSubKey);\n    return 0;\n  }\n  else\n  {\n    RegCloseKey((HKEY)lpSubKey);\n    return 1;\n  }\n}\n"
 }

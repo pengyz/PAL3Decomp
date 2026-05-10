@@ -2,6 +2,6 @@
   "name": "sub_517AC0",
   "address": "0x00517AC0",
   "size_bytes": 104,
-  "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_517AC0(_DWORD *this)\n{\n  _DWORD *v2; // esi\n  char result; // al\n  _DWORD v4[4]; // [esp+8h] [ebp-10h] BYREF\n\n  v2 = this + 280;\n  result = CCBAIWindow::OnMessage(this + 280);\n  if ( result )\n  {\n    v4[0] = 6;\n    v4[2] = 255;\n    v4[1] = 278;\n    v4[3] = 484;\n    CCBUI::CreateButton(v4, this);\n    (**(void (__thiscall ***)(_DWORD, _DWORD))*v2)(*v2, 0);\n    return 1;\n  }\n  return result;\n}\n"
+  "signature": "char __usercall@<al>(_DWORD *this@<ecx>, int a2@<ebx>, int a3@<ebp>)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __usercall sub_517AC0@<al>(_DWORD *this@<ecx>, int a2@<ebx>, int a3@<ebp>)\n{\n  _DWORD *v4; // esi\n  char result; // al\n  void (__thiscall ***v6)(_DWORD, _DWORD); // ecx\n  int v7; // [esp+8h] [ebp-10h] BYREF\n  int v8; // [esp+Ch] [ebp-Ch]\n  int v9; // [esp+10h] [ebp-8h]\n  int v10; // [esp+14h] [ebp-4h]\n\n  v4 = this + 280;\n  result = CCBAIWindow::OnMessage(this + 280);\n  if ( result )\n  {\n    v8 = 0;\n    v9 = 0;\n    v6 = (void (__thiscall ***)(_DWORD, _DWORD))*v4;\n    v7 = 6;\n    v9 = 255;\n    v8 = 278;\n    v10 = 484;\n    CCBUI::CreateButton((int)v6, a2, a3, (int)this, (int)v4, &v7, (int)this);\n    (**(void (__thiscall ***)(_DWORD, _DWORD))*v4)(*v4, 0);\n    return 1;\n  }\n  return result;\n}\n"
 }

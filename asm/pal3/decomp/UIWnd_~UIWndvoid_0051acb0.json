@@ -3,5 +3,5 @@
   "address": "0x0051ACB0",
   "size_bytes": 79,
   "signature": "void __thiscall(std::ios_base *this)",
-  "decompiled_c": "void __thiscall stdiobuf::~stdiobuf(std::ios_base *this)\n{\n  *(_DWORD *)this->_data = &off_57051C;\n  CCBControlWindow::CheckKeyInput(this);\n  UIWnd::~UIWnd(this);\n}\n"
+  "decompiled_c": "void __thiscall UIWnd::~UIWnd(std::ios_base *this)\n{\n  *(_DWORD *)this->_data = &off_57051C;\n  CCBControlWindow::CheckKeyInput((CCBControlWindow *)this);\n  UIWnd::~UIWnd(this);\n}\n"
 }

@@ -2,6 +2,6 @@
   "name": "sub_41A150",
   "address": "0x0041A150",
   "size_bytes": 65,
-  "signature": "int __thiscall(const char *this, const char *a2)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall sub_41A150(const char *this, const char *a2)\n{\n  char Buffer[260]; // [esp+4h] [ebp-104h] BYREF\n\n  sprintf(Buffer, \"role\\\\%s\\\\%s.tga\", this + 174, a2);\n  return sub_537120(Buffer);\n}\n"
+  "signature": "void __thiscall(const char *this, const char *a2)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nvoid __thiscall sub_41A150(const char *this, const char *a2)\n{\n  char Buffer[260]; // [esp+4h] [ebp-104h] BYREF\n\n  sprintf(Buffer, \"role\\\\%s\\\\%s.tga\", this + 174, a2);\n  sub_537120((int)(this + 680), Buffer);\n}\n"
 }

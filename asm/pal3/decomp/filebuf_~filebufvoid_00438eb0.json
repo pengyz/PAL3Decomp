@@ -3,5 +3,5 @@
   "address": "0x00438EB0",
   "size_bytes": 92,
   "signature": "void __thiscall(filebuf *this)",
-  "decompiled_c": "void __thiscall filebuf::~filebuf(filebuf *this)\n{\n  *(_DWORD *)this = &off_56AC08;\n  if ( MEMORY[0xBFDA34] )\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)MEMORY[0xBFDA34] + 20))(MEMORY[0xBFDA34], 1);\n  MEMORY[0xBFDA34] = 0;\n  *(_DWORD *)this = &off_56A9C0;\n}\n"
+  "decompiled_c": "void __thiscall filebuf::~filebuf(filebuf *this)\n{\n  *(_DWORD *)this = &off_56AC08;\n  if ( g_Input.KeyInfo[174].HoldTime )\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)g_Input.KeyInfo[174].HoldTime + 20))(g_Input.KeyInfo[174].HoldTime, 1);\n  g_Input.KeyInfo[174].HoldTime = 0;\n  *(_DWORD *)this = &off_56A9C0;\n}\n"
 }

@@ -3,5 +3,5 @@
   "address": "0x004022F0",
   "size_bytes": 21,
   "signature": "int __thiscall(GRPinput *this, void *pOut, void *pOut2)",
-  "decompiled_c": "int __thiscall GRPinput::GetMousePos(GRPinput *this, void *pOut, void *pOut2)\n{\n  int result; // eax\n\n  *(_DWORD *)pOut = *(_DWORD *)&this->m_mousept[24];\n  result = *(_DWORD *)&this->m_mousept[28];\n  *(_DWORD *)pOut2 = result;\n  return result;\n}\n"
+  "decompiled_c": "int __thiscall GRPinput::GetMousePos(GRPinput *this, void *pOut, void *pOut2)\n{\n  int result; // eax\n\n  *(_DWORD *)pOut = this->m_mouseDeltaX;\n  result = this->m_mouseDeltaY;\n  *(_DWORD *)pOut2 = result;\n  return result;\n}\n"
 }

@@ -3,5 +3,5 @@
   "address": "0x0053D030",
   "size_bytes": 67,
   "signature": "FILE *(char *Format, ...)",
-  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nFILE *sub_53D030(char *Format, ...)\n{\n  FILE *result; // eax\n  FILE *v2; // esi\n  va_list va; // [esp+Ch] [ebp+8h] BYREF\n\n  va_start(va, Format);\n  vsprintf(byte_17B3AAC, Format, va);\n  result = fopen(\"Pal3Log.txt\", aAt);\n  v2 = result;\n  if ( result )\n  {\n    fprintf(result, byte_17B3AAC);\n    return (FILE *)fclose(v2);\n  }\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nFILE *LogMessage(char *Format, ...)\n{\n  FILE *result; // eax\n  FILE *v2; // esi\n  va_list ArgList; // [esp+Ch] [ebp+8h] BYREF\n\n  va_start(ArgList, Format);\n  vsprintf(byte_17B3AAC, Format, ArgList);\n  result = fopen(\"Pal3Log.txt\", aAt);\n  v2 = result;\n  if ( result )\n  {\n    fprintf(result, byte_17B3AAC);\n    return (FILE *)fclose(v2);\n  }\n  return result;\n}\n"
 }

@@ -2,6 +2,6 @@
   "name": "_rtforln0",
   "address": "0x00559394",
   "size_bytes": 16,
-  "signature": "double __usercall@<st0>(int a1@<ebp>)",
-  "decompiled_c": "double __usercall rtforln0@<st0>(int a1@<ebp>)\n{\n  *(_BYTE *)(a1 - 144) = 2;\n  return *(double *)&tbyte_60B05A;\n}\n"
+  "signature": "void __usercall(int a1@<ebp>)",
+  "decompiled_c": "void __usercall rtforln0(int a1@<ebp>)\n{\n  *(_BYTE *)(a1 - 144) = 2;\n  __asm\n  {\n    fstp    st\n    fld     tbyte_60B05A\n  }\n}\n"
 }

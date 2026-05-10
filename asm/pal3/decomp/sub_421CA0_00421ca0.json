@@ -2,6 +2,6 @@
   "name": "sub_421CA0",
   "address": "0x00421CA0",
   "size_bytes": 109,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall sub_421CA0(_DWORD *this)\n{\n  int v2; // ebp\n  bool v3; // bl\n  _BYTE *v4; // esi\n  char v5; // al\n  int result; // eax\n\n  v2 = 0;\n  v3 = 1;\n  if ( (int)*(this + 55) > 0 )\n  {\n    v4 = this + 117;\n    do\n    {\n      if ( *(v4 - 72) != 32 && *v4 == 25 )\n      {\n        v5 = CCBStageRole_Find(MEMORY[0xC05F30], v4 - 68);\n        *(v4 - 71) = v5;\n        v3 = v3 && v5;\n      }\n      ++v2;\n      v4 += 896;\n    }\n    while ( v2 < *(this + 55) );\n  }\n  result = sub_421560(this, 32);\n  if ( result )\n    *(_BYTE *)(result + 173) = v3;\n  return result;\n}\n"
+  "signature": "_DWORD *__thiscall(_DWORD *this)",
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\n_DWORD *__thiscall sub_421CA0(_DWORD *this)\n{\n  int v2; // ebp\n  bool v3; // bl\n  _BYTE *v4; // esi\n  char v5; // al\n  _DWORD *result; // eax\n\n  v2 = 0;\n  v3 = 1;\n  if ( (int)*(this + 55) > 0 )\n  {\n    v4 = this + 117;\n    do\n    {\n      if ( *(v4 - 72) != 32 && *v4 == 25 )\n      {\n        v5 = CCBStageRole_Find(&g_SceneMgr.m_npc[0].m_path.normal[79].y, v4 - 68);\n        *(v4 - 71) = v5;\n        v3 = v3 && v5;\n      }\n      ++v2;\n      v4 += 896;\n    }\n    while ( v2 < *(this + 55) );\n  }\n  result = sub_421560(this, 32);\n  if ( result )\n    *((_BYTE *)result + 173) = v3;\n  return result;\n}\n"
 }

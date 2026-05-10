@@ -2,6 +2,6 @@
   "name": "sub_4B7C30",
   "address": "0x004B7C30",
   "size_bytes": 132,
-  "signature": "_DWORD *__thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\n_DWORD *__thiscall sub_4B7C30(_DWORD *this)\n{\n  gbVec3D *v2; // esi\n  int v3; // ebx\n  int v4; // esi\n  int v5; // ebx\n\n  sub_4B6F70((int)this);\n  v2 = (gbVec3D *)(this + 43);\n  *(this + 40) = 0;\n  v3 = 4;\n  do\n  {\n    gbVec3D::`default constructor closure'(v2);\n    v2 = (gbVec3D *)((char *)v2 + 12);\n    --v3;\n  }\n  while ( v3 );\n  v4 = (int)(this + 60);\n  v5 = 12;\n  do\n  {\n    ArraySort(v4, 12, 4, (int (__thiscall *)(int))gbVec3D::`default constructor closure');\n    v4 += 68;\n    --v5;\n  }\n  while ( v5 );\n  *this = &off_56F450;\n  return this;\n}\n"
+  "signature": "gbVisNode *__thiscall(gbVisNode *this)",
+  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\ngbVisNode *__thiscall sub_4B7C30(gbVisNode *this)\n{\n  gbVisNode *v2; // esi\n  int v3; // ebx\n  gbVisNode *v4; // esi\n  int v5; // ebx\n\n  sub_4B6F70(this);\n  v2 = (gbVisNode *)((char *)this + 172);\n  *((_DWORD *)this + 40) = 0;\n  v3 = 4;\n  do\n  {\n    ((void (__thiscall *)(gbVisNode *))gbVec3D::`default constructor closure')(v2);\n    v2 = (gbVisNode *)((char *)v2 + 12);\n    --v3;\n  }\n  while ( v3 );\n  v4 = (gbVisNode *)((char *)this + 240);\n  v5 = 12;\n  do\n  {\n    ArraySort((int)v4, 12, 4, gbVec3D::`default constructor closure');\n    v4 = (gbVisNode *)((char *)v4 + 68);\n    --v5;\n  }\n  while ( v5 );\n  this->next = (gbChain1DNode *)&off_56F450;\n  return this;\n}\n"
 }

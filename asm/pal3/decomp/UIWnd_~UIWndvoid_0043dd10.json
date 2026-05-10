@@ -3,5 +3,5 @@
   "address": "0x0043DD10",
   "size_bytes": 79,
   "signature": "void __thiscall(std::ios_base *this)",
-  "decompiled_c": "void __thiscall stdiobuf::~stdiobuf(std::ios_base *this)\n{\n  *(_DWORD *)this->_data = &off_56AD20;\n  UIListBox::SetScrollPos();\n  UIWnd::_UIWnd(this);\n}\n"
+  "decompiled_c": "void __thiscall UIWnd::~UIWnd(std::ios_base *this)\n{\n  *(_DWORD *)this->_data = &off_56AD20;\n  UIListBox::SetScrollPos((UIListBox **)this);\n  UIWnd::_UIWnd(this);\n}\n"
 }

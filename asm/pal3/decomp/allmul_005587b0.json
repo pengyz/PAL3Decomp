@@ -2,6 +2,6 @@
   "name": "__allmul",
   "address": "0x005587B0",
   "size_bytes": 52,
-  "signature": "unsigned __int64 __stdcall(__int64 a1, __int64 a2)",
-  "decompiled_c": "unsigned __int64 __stdcall _allmul(__int64 a1, __int64 a2)\n{\n  if ( HIDWORD(a1) | HIDWORD(a2) )\n    return a1 * a2;\n  else\n    return (unsigned int)a2 * (unsigned __int64)(unsigned int)a1;\n}\n"
+  "signature": "__int64 __stdcall(__int64 a1, __int64 a2)",
+  "decompiled_c": "__int64 __stdcall _allmul(__int64 a1, __int64 a2)\n{\n  if ( HIDWORD(a1) | HIDWORD(a2) )\n    return a1 * a2;\n  else\n    return (unsigned int)a2 * (unsigned __int64)(unsigned int)a1;\n}\n"
 }

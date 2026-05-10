@@ -3,5 +3,5 @@
   "address": "0x004356C0",
   "size_bytes": 67,
   "signature": "char *()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar *sub_4356C0()\n{\n  char *result; // eax\n  char *v1; // esi\n\n  result = PalScript::GetString();\n  v1 = result;\n  if ( result )\n  {\n    UISceneUpdate();\n    RoleSystem::SetActive((_DWORD *)MEMORY[0xBFDA68], MEMORY[0xC116EC]);\n    result = (char *)sub_41D100(MEMORY[0xBFDA68], *((_DWORD *)v1 + 1));\n    *(_DWORD *)(MEMORY[0xBFDA68] + 448) = 1;\n  }\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar *sub_4356C0()\n{\n  char *result; // eax\n  char *v1; // esi\n\n  result = PalScript::GetString();\n  v1 = result;\n  if ( result )\n  {\n    UISceneUpdate();\n    RoleSystem::SetActive(\n      (RoleSystem *)g_Input.KeyInfo[177].CountMode,\n      *(int *)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132]);\n    result = (char *)sub_41D100((_DWORD *)g_Input.KeyInfo[177].CountMode, *((_DWORD *)v1 + 1));\n    *(_DWORD *)(g_Input.KeyInfo[177].CountMode + 448) = 1;\n  }\n  return result;\n}\n"
 }

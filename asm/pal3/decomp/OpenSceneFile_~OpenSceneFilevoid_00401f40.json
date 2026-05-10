@@ -3,5 +3,5 @@
   "address": "0x00401F40",
   "size_bytes": 12,
   "signature": "struct gbVFileSystem *()",
-  "decompiled_c": "// write access to const memory has been detected, the output may be wrong!\nstruct gbVFileSystem *sub_401F40()\n{\n  g_pVFileSys = (struct gbVFileSystem *)&dword_7CC178;\n  return g_pVFileSys;\n}\n"
+  "decompiled_c": "// write access to const memory has been detected, the output may be wrong!\nstruct gbVFileSystem *OpenSceneFile::~OpenSceneFile()\n{\n  g_pVFileSys = (struct gbVFileSystem *)&dword_7CC178;\n  return g_pVFileSys;\n}\n"
 }

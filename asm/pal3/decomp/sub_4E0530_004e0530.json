@@ -3,5 +3,5 @@
   "address": "0x004E0530",
   "size_bytes": 116,
   "signature": "bool __stdcall(HWND a1)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nbool __stdcall sub_4E0530(HWND a1)\n{\n  if ( !a1 )\n    return 0;\n  if ( a1 == MEMORY[0xBFDA4C] )\n    return 1;\n  if ( a1 == MEMORY[0xBFDA50] )\n    return 1;\n  if ( a1 == MEMORY[0xBFDA54] )\n    return 1;\n  if ( a1 == (HWND)dwInitParam )\n    return 1;\n  if ( a1 == (HWND)dword_17A9914 )\n    return 1;\n  if ( a1 == (HWND)dword_17A9918 )\n    return 1;\n  if ( a1 == dword_17A991C )\n    return 1;\n  return a1 == dword_17A9920;\n}\n"
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nbool __stdcall sub_4E0530(HWND a1)\n{\n  if ( !a1 )\n    return 0;\n  if ( a1 == (HWND)g_Input.KeyInfo[175].PressTime )\n    return 1;\n  if ( a1 == (HWND)g_Input.KeyInfo[176].Data )\n    return 1;\n  if ( a1 == (HWND)g_Input.KeyInfo[176].HoldTime )\n    return 1;\n  if ( a1 == (HWND)dwInitParam )\n    return 1;\n  if ( a1 == (HWND)dword_17A9914 )\n    return 1;\n  if ( a1 == (HWND)dword_17A9918 )\n    return 1;\n  if ( a1 == dword_17A991C )\n    return 1;\n  return a1 == dword_17A9920;\n}\n"
 }

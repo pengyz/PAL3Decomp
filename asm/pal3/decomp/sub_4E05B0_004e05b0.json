@@ -3,5 +3,5 @@
   "address": "0x004E05B0",
   "size_bytes": 145,
   "signature": "void __cdecl(float a1)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nvoid __cdecl sub_4E05B0(float a1)\n{\n  HWND DlgItem; // edi\n  HWND v2; // esi\n\n  if ( flt_17A95F8 != a1 )\n  {\n    flt_17A95F8 = a1;\n    DlgItem = GetDlgItem(MEMORY[0xBFDA50], 1001);\n    v2 = GetDlgItem(MEMORY[0xBFDA50], 1003);\n    SendMessageA(DlgItem, 0x405u, 1u, (__int64)(100.0 * flt_17A95F8));\n    sprintf(byte_17A95E4, \"Speed%1.2f\", flt_17A95F8);\n    SendMessageA(v2, 0xCu, 0, (LPARAM)byte_17A95E4);\n  }\n}\n"
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nvoid __cdecl sub_4E05B0(float a1)\n{\n  HWND DlgItem; // edi\n  HWND v2; // esi\n\n  if ( flt_17A95F8 != a1 )\n  {\n    flt_17A95F8 = a1;\n    DlgItem = GetDlgItem((HWND)g_Input.KeyInfo[176].Data, 1001);\n    v2 = GetDlgItem((HWND)g_Input.KeyInfo[176].Data, 1003);\n    SendMessageA(DlgItem, 0x405u, 1u, (__int64)(100.0 * flt_17A95F8));\n    sprintf(byte_17A95E4, \"Speed%1.2f\", flt_17A95F8);\n    SendMessageA(v2, 0xCu, 0, (LPARAM)byte_17A95E4);\n  }\n}\n"
 }

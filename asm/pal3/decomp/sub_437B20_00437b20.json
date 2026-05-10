@@ -3,5 +3,5 @@
   "address": "0x00437B20",
   "size_bytes": 103,
   "signature": "void()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid sub_437B20()\n{\n  char *v0; // esi\n  char *v1; // eax\n  char *v2; // edi\n  char Buffer[260]; // [esp+8h] [ebp-104h] BYREF\n\n  v0 = PalScript::GetString();\n  v1 = PalScript::GetString();\n  v2 = v1;\n  if ( v0 )\n  {\n    if ( v1 )\n    {\n      sprintf(Buffer, \"caption\\\\%s.tga\", *((const char **)v0 + 1));\n      sub_44A970(Buffer, *((_DWORD *)v2 + 1));\n      sub_434C40(&dword_DBA0D4 != 0 ? (unsigned int)&unk_DBA118 : 0);\n    }\n  }\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid sub_437B20()\n{\n  char *String; // esi\n  char *v1; // eax\n  char *v2; // edi\n  char Buffer[260]; // [esp+8h] [ebp-104h] BYREF\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  v2 = v1;\n  if ( String )\n  {\n    if ( v1 )\n    {\n      sprintf(Buffer, \"caption\\\\%s.tga\", *((const char **)String + 1));\n      sub_44A970(dword_DBA0D4, (int)Buffer, *((_DWORD *)v2 + 1));\n      sub_434C40(dword_DBA0D4 != 0 ? (unsigned int)&unk_DBA118 : 0);\n    }\n  }\n}\n"
 }

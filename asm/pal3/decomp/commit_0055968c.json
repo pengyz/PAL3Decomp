@@ -3,5 +3,5 @@
   "address": "0x0055968C",
   "size_bytes": 87,
   "signature": "int __cdecl(int FileHandle)",
-  "decompiled_c": "int __cdecl _commit(int FileHandle)\n{\n  void *osfhandle; // eax\n  int result; // eax\n\n  if ( FileHandle >= uNumber || (*(_BYTE *)(g_nUIState[FileHandle >> 5] + 8 * (FileHandle & 0x1F) + 4) & 1) == 0 )\n    goto LABEL_8;\n  osfhandle = (void *)_get_osfhandle(FileHandle);\n  if ( FlushFileBuffers(osfhandle) )\n    result = 0;\n  else\n    result = GetLastError();\n  if ( result )\n  {\n    dword_1895340 = result;\nLABEL_8:\n    dword_189533C = 9;\n    return -1;\n  }\n  return result;\n}\n"
+  "decompiled_c": "int __cdecl _commit(int FileHandle)\n{\n  void *osfhandle; // eax\n  int result; // eax\n\n  if ( FileHandle >= uNumber || (*(_BYTE *)(*(&g_nUIState + (FileHandle >> 5)) + 8 * (FileHandle & 0x1F) + 4) & 1) == 0 )\n    goto LABEL_8;\n  osfhandle = (void *)_get_osfhandle(FileHandle);\n  if ( FlushFileBuffers(osfhandle) )\n    result = 0;\n  else\n    result = GetLastError();\n  if ( result )\n  {\n    dword_1895340 = result;\nLABEL_8:\n    dword_189533C = 9;\n    return -1;\n  }\n  return result;\n}\n"
 }

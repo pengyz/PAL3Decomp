@@ -3,5 +3,5 @@
   "address": "0x0041F800",
   "size_bytes": 177,
   "signature": "void __thiscall(char *this)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nvoid __thiscall sub_41F800(char *this)\n{\n  sub_41F8C0();\n  GRPinput::UnacquireKeyboard((int)(this + 492772));\n  `eh vector destructor iterator'(this + 57572, 0x2200u, 50, (void (__thiscall *)(void *))sub_411CA0);\n  `eh vector destructor iterator'(this + 224, 0x380u, 64, sub_423880);\n  `eh vector destructor iterator'(this + 180, 0x14u, 2, sub_420930);\n  sub_432680(this + 164);\n}\n"
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nvoid __thiscall sub_41F800(char *this)\n{\n  sub_41F8C0((int)this);\n  GRPinput::UnacquireKeyboard((int)(this + 492772));\n  `eh vector destructor iterator'(this + 57572, 0x2200u, 50, (void (__thiscall *)(void *))sub_411CA0);\n  `eh vector destructor iterator'(this + 224, 0x380u, 64, (void (__thiscall *)(void *))sub_423880);\n  `eh vector destructor iterator'(this + 180, 0x14u, 2, (void (__thiscall *)(void *))sub_420930);\n  sub_432680((void **)this + 41);\n}\n"
 }

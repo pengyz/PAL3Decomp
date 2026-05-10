@@ -3,5 +3,5 @@
   "address": "0x004B67B0",
   "size_bytes": 47,
   "signature": "void()",
-  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nvoid sub_4B67B0()\n{\n  int *Instance; // eax\n\n  gbSceneGraph::End(*(gbSceneGraph **)(MEMORY[0xBFDA60] + 448));\n  Instance = CRenderTarget::GetInstance();\n  sub_4BDD90(Instance);\n  gbMatrixStack::Pop(*(gbMatrixStack **)(MEMORY[0xBFDA60] + 216));\n}\n"
+  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nvoid sub_4B67B0()\n{\n  int *Instance; // eax\n\n  gbSceneGraph::End(*(gbSceneGraph **)(g_Input.KeyInfo[177].Data + 448));\n  Instance = CRenderTarget::GetInstance();\n  sub_4BDD90(Instance);\n  gbMatrixStack::Pop(*(gbMatrixStack **)(g_Input.KeyInfo[177].Data + 216));\n}\n"
 }

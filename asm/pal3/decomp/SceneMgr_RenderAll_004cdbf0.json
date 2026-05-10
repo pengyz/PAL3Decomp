@@ -3,5 +3,5 @@
   "address": "0x004CDBF0",
   "size_bytes": 36,
   "signature": "char __thiscall(SceneMgr *this)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar __thiscall SceneMgr::RenderAll(SceneMgr *this)\n{\n  SceneMgr *v1; // esi\n  int v2; // edi\n  char result; // al\n\n  v1 = this + 2348;\n  v2 = 2048;\n  do\n  {\n    result = (char)v1[-4];\n    if ( result )\n      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)v1 + 24))(*(_DWORD *)v1);\n    v1 += 20;\n    --v2;\n  }\n  while ( v2 );\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar __thiscall SceneMgr::RenderAll(SceneMgr *this)\n{\n  float *p_y; // esi\n  int v2; // edi\n  char result; // al\n\n  p_y = &this->s_scene[0].m_npc[0].m_path.points[27].y;\n  v2 = 2048;\n  do\n  {\n    result = *((_BYTE *)p_y - 4);\n    if ( result )\n      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)p_y + 24))(*(_DWORD *)p_y);\n    p_y += 5;\n    --v2;\n  }\n  while ( v2 );\n  return result;\n}\n"
 }

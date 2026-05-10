@@ -3,5 +3,5 @@
   "address": "0x00554719",
   "size_bytes": 9,
   "signature": "double __cdecl(double X, double Y)",
-  "decompiled_c": "double __cdecl pow(double X, double Y)\n{\n  _fload_withFB();\n  return sub_554722(LODWORD(X), HIDWORD(X), LODWORD(Y), HIDWORD(Y));\n}\n"
+  "decompiled_c": "double __cdecl pow(double X, double Y)\n{\n  int v2; // ecx\n  double v3; // st6\n  int v4; // eax\n\n  _fload_withFB(v2, &Y);\n  return sub_554722(v4, v3, SLODWORD(X), SHIDWORD(X), SLODWORD(Y), SHIDWORD(Y));\n}\n"
 }

@@ -3,5 +3,5 @@
   "address": "0x004370E0",
   "size_bytes": 53,
   "signature": "void()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid sub_4370E0()\n{\n  _DWORD *v0; // eax\n  _DWORD *v1; // eax\n\n  CGameData_Load(9);\n  v0 = operator new(0xCu);\n  if ( v0 )\n  {\n    v1 = sub_434CA0(v0, 9);\n    sub_434C40((int)v1);\n  }\n  else\n  {\n    sub_434C40(0);\n  }\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid sub_4370E0()\n{\n  _DWORD *v0; // eax\n  _DWORD *v1; // eax\n\n  CGameData_Load((int)&g_GameData, 9);\n  v0 = (_DWORD *)operator new(0xCu);\n  if ( v0 )\n  {\n    v1 = sub_434CA0(v0, 9);\n    sub_434C40((int)v1);\n  }\n  else\n  {\n    sub_434C40(0);\n  }\n}\n"
 }

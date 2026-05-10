@@ -2,6 +2,6 @@
   "name": "sub_4B74A0",
   "address": "0x004B74A0",
   "size_bytes": 67,
-  "signature": "_DWORD *__thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\n_DWORD *__thiscall sub_4B74A0(_DWORD *this)\n{\n  sub_4B6F70((int)this);\n  *(this + 58) = 0;\n  *this = &off_56F404;\n  *(this + 25) = 0;\n  memset(this + 26, 0, 0x40u);\n  *(this + 23) = 0;\n  *(this + 24) = 0;\n  *(this + 60) = 0;\n  *(this + 59) = 0;\n  *(this + 61) = 0;\n  return this;\n}\n"
+  "signature": "gbVisNode *__thiscall(gbVisNode *this)",
+  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\ngbVisNode *__thiscall sub_4B74A0(gbVisNode *this)\n{\n  sub_4B6F70(this);\n  *((_DWORD *)this + 58) = 0;\n  this->next = (gbChain1DNode *)&off_56F404;\n  *((_DWORD *)this + 25) = 0;\n  memset((char *)this + 104, 0, 0x40u);\n  *((_DWORD *)this + 23) = 0;\n  *((_DWORD *)this + 24) = 0;\n  *((_DWORD *)this + 60) = 0;\n  *((_DWORD *)this + 59) = 0;\n  *((_DWORD *)this + 61) = 0;\n  return this;\n}\n"
 }

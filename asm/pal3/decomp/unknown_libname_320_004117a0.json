@@ -3,5 +3,5 @@
   "address": "0x004117A0",
   "size_bytes": 10,
   "signature": "_DWORD *()",
-  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\n_DWORD *unknown_libname_320()\n{\n  sub_401000(MEMORY[0xC10DF0]);\n  MEMORY[0xC10DF0][0] = &off_56A6D0;\n  MEMORY[0xC10DF0][6] = 0;\n  MEMORY[0xC10DF0][7] = 0;\n  LOBYTE(MEMORY[0xC10DF0][8]) = -1;\n  return MEMORY[0xC10DF0];\n}\n"
+  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\n_DWORD *unknown_libname_320()\n{\n  sub_401000(&g_SceneMgr.m_npc[5].m_path.normal[155].z);\n  LODWORD(g_SceneMgr.m_npc[5].m_path.normal[155].z) = &off_56A6D0;\n  g_SceneMgr.m_npc[5].m_path.normal[157].z = 0.0;\n  g_SceneMgr.m_npc[5].m_path.normal[158].x = 0.0;\n  LOBYTE(g_SceneMgr.m_npc[5].m_path.normal[158].y) = -1;\n  return (_DWORD *)&g_SceneMgr.m_npc[5].m_path.normal[155].z;\n}\n"
 }

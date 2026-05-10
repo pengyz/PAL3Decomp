@@ -3,5 +3,5 @@
   "address": "0x004DB660",
   "size_bytes": 45,
   "signature": "int __thiscall(CCBSystem *this, int idx)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBSystem::GetCmdSlot(CCBSystem *this, int idx)\n{\n  char *v2; // ebx\n  int result; // eax\n\n  v2 = &this->m_pUtil[40 * idx];\n  v2[44] = CCBSystem::CalcSpeed(idx, 0);\n  result = CCBSystem::CalcSpeed(idx, 1);\n  v2[45] = result;\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBSystem::GetCmdSlot(CCBSystem *this, int idx)\n{\n  char *v2; // ebx\n  int result; // eax\n\n  v2 = (char *)this + 40 * idx;\n  v2[44] = CCBSystem::CalcSpeed(idx, 0);\n  result = CCBSystem::CalcSpeed(idx, 1);\n  v2[45] = result;\n  return result;\n}\n"
 }

@@ -3,5 +3,5 @@
   "address": "0x00438F50",
   "size_bytes": 97,
   "signature": "char()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar sub_438F50()\n{\n  int v0; // eax\n  _DWORD *v1; // eax\n\n  LOBYTE(v0) = dword_D8BC38;\n  if ( !(_BYTE)dword_D8BC38 )\n  {\n    if ( UIScene::ProcessInput(aM16, a4) )\n    {\n      v1 = (_DWORD *)UISceneUpdate();\n      v0 = sub_421560(v1, 22) + 172;\n    }\n    else\n    {\n      sub_5394F0();\n      v0 = sub_539540(aM16, a4, 22);\n    }\n    if ( v0 )\n      *(_BYTE *)(v0 + 3) = *(_BYTE *)(v0 + 3) == 0;\n    LOBYTE(dword_D8BC38) = 1;\n  }\n  return v0;\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar sub_438F50()\n{\n  _DWORD *v0; // eax\n  _DWORD *v1; // eax\n  _DWORD *v2; // eax\n\n  LOBYTE(v0) = dword_D8BC38;\n  if ( !(_BYTE)dword_D8BC38 )\n  {\n    if ( UIScene::ProcessInput(aM16, a4) )\n    {\n      v1 = (_DWORD *)UISceneUpdate();\n      v0 = sub_421560(v1, 22) + 43;\n    }\n    else\n    {\n      v2 = sub_5394F0();\n      v0 = (_DWORD *)sub_539540(v2, aM16, a4, 22);\n    }\n    if ( v0 )\n      *((_BYTE *)v0 + 3) = *((_BYTE *)v0 + 3) == 0;\n    LOBYTE(dword_D8BC38) = 1;\n  }\n  return (char)v0;\n}\n"
 }
