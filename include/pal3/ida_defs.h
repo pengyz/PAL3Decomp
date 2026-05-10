@@ -13,11 +13,16 @@
 #include "gbengine/gbTexture.h"
 #include "gbengine/gbMesh.h"
 #include "gbengine/gbCamera.h"
+#include "gbengine/gbActor.h"
 
 typedef unsigned char _BYTE;
 typedef unsigned short _WORD;
 typedef unsigned long _DWORD;
 typedef unsigned __int64 _QWORD;
+
+// DirectInput forward declarations (used by GRPinput)
+struct IDirectInput8A;
+struct IDirectInputDevice8A;
 
 // Allow C-style implicit void* conversion (IDA generated code relies on this)
 #pragma warning(disable: 4133)  // incompatible pointer types
