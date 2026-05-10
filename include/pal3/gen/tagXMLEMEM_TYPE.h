@@ -1,0 +1,12 @@
+#pragma once
+// Auto-generated: tagXMLEMEM_TYPE enum
+
+enum tagXMLEMEM_TYPE {
+    XMLELEMTYPE_ELEMENT = 0,
+    XMLELEMTYPE_TEXT = 1,
+    XMLELEMTYPE_COMMENT = 2,
+    XMLELEMTYPE_DOCUMENT = 3,
+    XMLELEMTYPE_DTD = 4,
+    XMLELEMTYPE_PI = 5,
+    XMLELEMTYPE_OTHER = 6,
+};

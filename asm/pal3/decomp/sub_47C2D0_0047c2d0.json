@@ -1,7 +1,0 @@
-{
-  "name": "sub_47C2D0",
-  "address": "0x0047C2D0",
-  "size_bytes": 143,
-  "signature": "void __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nvoid __thiscall sub_47C2D0(_DWORD *this, int a2)\n{\n  int v3; // ecx\n  int v4; // ecx\n\n  switch ( a2 )\n  {\n    case 0:\n      (*(void (__thiscall **)(_DWORD *, int, int, _DWORD))(*this + 24))(this, 1000, 1, 0);\n      goto LABEL_6;\n    case 1:\n      (*(void (__thiscall **)(_DWORD *, int, _DWORD, _DWORD))(*this + 24))(this, 1000, 0, 0);\n      v3 = *(this + 30);\n      if ( !v3 )\n        goto LABEL_10;\n      (*(void (__thiscall **)(int, int, int, _DWORD))(*(_DWORD *)v3 + 24))(v3, 1000, 1, 0);\n      *(this + 31) = a2;\n      return;\n    case 2:\n      (*(void (__thiscall **)(_DWORD *, int, _DWORD, _DWORD))(*this + 24))(this, 1000, 0, 0);\nLABEL_6:\n      v4 = *(this + 30);\n      if ( v4 )\n        goto LABEL_9;\n      goto LABEL_10;\n    case 3:\n      (*(void (__thiscall **)(_DWORD *, int, _DWORD, _DWORD))(*this + 24))(this, 1000, 0, 0);\n      v4 = *(this + 30);\n      if ( v4 )\nLABEL_9:\n        (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v4 + 24))(v4, 1000, 0, 0);\n      goto LABEL_10;\n    default:\nLABEL_10:\n      *(this + 31) = a2;\n      return;\n  }\n}\n"
-}

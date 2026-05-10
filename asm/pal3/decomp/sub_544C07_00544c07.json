@@ -1,7 +1,0 @@
-{
-  "name": "sub_544C07",
-  "address": "0x00544C07",
-  "size_bytes": 159,
-  "signature": "float *__stdcall(float *a1, float *a2, float *a3)",
-  "decompiled_c": "float *__stdcall sub_544C07(float *a1, float *a2, float *a3)\n{\n  float v4; // [esp+8h] [ebp-10h]\n  float v5; // [esp+Ch] [ebp-Ch]\n  float v6; // [esp+10h] [ebp-8h]\n  float v7; // [esp+14h] [ebp-4h]\n\n  v4 = a3[8] * a2[2] + a3[12] * a2[3] + a3[4] * a2[1] + *a2 * *a3;\n  v5 = a3[9] * a2[2] + a3[1] * *a2 + a3[13] * a2[3] + a3[5] * a2[1];\n  v6 = a3[10] * a2[2] + a3[2] * *a2 + a3[14] * a2[3] + a3[6] * a2[1];\n  v7 = a3[11] * a2[2] + a3[3] * *a2 + a3[15] * a2[3] + a3[7] * a2[1];\n  *a1 = v4;\n  a1[1] = v5;\n  a1[2] = v6;\n  a1[3] = v7;\n  return a1;\n}\n"
-}

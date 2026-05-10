@@ -1,7 +1,0 @@
-{
-  "name": "sub_529C80",
-  "address": "0x00529C80",
-  "size_bytes": 103,
-  "signature": "void __thiscall(int *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nvoid __thiscall sub_529C80(int *this)\n{\n  int v1; // [esp-10h] [ebp-58h]\n  int v2; // [esp-Ch] [ebp-54h]\n  int v3; // [esp+0h] [ebp-48h] BYREF\n  struct gbTextureArray v4; // [esp+4h] [ebp-44h] BYREF\n\n  if ( *(this + 547) )\n  {\n    v4.pTexPt[0] = (gbTexture *)*(this + 547);\n    v4.nTex = 1;\n    *(_WORD *)((char *)&v3 + 1) = -1;\n    LOBYTE(v3) = -1;\n    v2 = *(this + 549);\n    v1 = *(this + 548);\n    HIBYTE(v3) = 62;\n    UIRenderQuad(0, 0, 800, 600, v1, v2, &v3, &v4);\n  }\n}\n"
-}

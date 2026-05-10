@@ -1,0 +1,7 @@
+{
+  "name": "?Create@ObjectCamera@@QAEXPAVgbGfxManager@@@Z",
+  "address": "0x0047C590",
+  "size_bytes": 156,
+  "signature": "float *__thiscall(ObjectCamera *this)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nfloat *__thiscall ObjectCamera::Create(ObjectCamera *this)\n{\n  double x; // st7\n  float y; // edx\n  float z; // edx\n\n  this->m_pCamera = 0;\n  this->m_camFrom.x = 0.0;\n  this->m_camFrom.y = 0.0;\n  this->m_camFrom.z = 0.0;\n  this->m_camTo.x = 0.0;\n  this->m_camTo.y = 0.0;\n  this->m_camTo.z = 0.0;\n  this->m_camUp.x = 0.0;\n  this->m_camUp.y = 0.0;\n  this->m_camUp.z = 0.0;\n  this->m_camDirect.x = 0.0;\n  this->m_camDirect.y = 0.0;\n  this->m_camDirect.z = 0.0;\n  this->m_forward.x = 0.0;\n  this->m_forward.y = 0.0;\n  this->m_forward.z = 0.0;\n  this->m_side.x = 0.0;\n  this->m_side.y = 0.0;\n  this->m_side.z = 0.0;\n  this->m_camFrom.x = 0.0;\n  this->m_camFrom.y = 0.0;\n  this->m_camFrom.z = 800.0;\n  x = this->m_camFrom.x;\n  y = this->m_camFrom.y;\n  this->m_camTo.z = 0.0;\n  this->m_camTo.x = x;\n  this->m_camTo.y = y;\n  this->m_camUp.x = 0.0;\n  this->m_camUp.y = 1.0;\n  this->m_camUp.z = 0.0;\n  z = this->m_camFrom.z;\n  this->m_roll = 0.0;\n  this->m_pitch = 0.0;\n  this->m_yaw = 0.0;\n  this->m_nroll = 0.0;\n  this->m_npitch = 0.0;\n  this->m_nyaw = 0.0;\n  this->m_dist = z;\n  this->m_stepRotMode = 0;\n  this->m_stepRot = 0.0;\n  this->m_stepRotSpeed = 0.15000001;\n  LOBYTE(this->m_bStepRot) = 0;\n  return (float *)this;\n}\n"
+}

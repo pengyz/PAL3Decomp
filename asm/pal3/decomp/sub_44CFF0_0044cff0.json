@@ -1,7 +1,0 @@
-{
-  "name": "sub_44CFF0",
-  "address": "0x0044CFF0",
-  "size_bytes": 192,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_44CFF0(_DWORD *this)\n{\n  int v2; // ebx\n  _DWORD *v3; // esi\n\n  v2 = 16;\n  v3 = this + 1310;\n  do\n  {\n    v3 += 52;\n    --v2;\n    *(v3 - 51) = rand() % 50 + 298;\n    *(v3 - 52) = 758;\n    *(v3 - 48) = 1144881152;\n  }\n  while ( v2 );\n  *(this + 1315) = 256;\n  *(this + 1316) = 64;\n  *(this + 1367) = 512;\n  *(this + 1368) = 128;\n  *(this + 1419) = 128;\n  *(this + 1420) = 64;\n  *(this + 1471) = 128;\n  *(this + 1472) = 64;\n  *(this + 1523) = 128;\n  *(this + 1524) = 64;\n  *(this + 1575) = 128;\n  *(this + 1576) = 64;\n  *(this + 1627) = 64;\n  *(this + 1628) = 32;\n  *(this + 1679) = 128;\n  *(this + 1680) = 128;\n  return 128;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_551C66",
-  "address": "0x00551C66",
-  "size_bytes": 67,
-  "signature": "__m64 *__stdcall(__m64 *a1, __m64 *a2, __m64 *a3)",
-  "decompiled_c": "__m64 *__stdcall sub_551C66(__m64 *a1, __m64 *a2, __m64 *a3)\n{\n  __m64 v4; // mm1\n  __m64 v5; // mm2\n  __m64 v6; // mm2\n\n  _m_femms();\n  v4 = _mm_cvtsi32_si64(a3[1].m64_u32[0]);\n  v5 = _m_pfmul((__m64)a2->m64_u64, (__m64)a3->m64_u64);\n  v6 = _m_pfadd(_m_pfacc(v5, v5), _m_pfmul(_mm_cvtsi32_si64(a2[1].m64_u32[0]), v4));\n  a1->m64_u64 = a3->m64_u64;\n  a1[1].m64_i32[0] = _mm_cvtsi64_si32(v4);\n  a1[1].m64_i32[1] = _mm_cvtsi64_si32(_m_pxor(v6, (__m64)0x80000000LL));\n  _m_femms();\n  return a1;\n}\n"
-}

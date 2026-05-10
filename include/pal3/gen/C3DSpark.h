@@ -21,8 +21,6 @@ public:
     gbGeomQuad m_GeomQuad[128]; // +0x1C30
     // total size: 0x3E30 (15920)
 
-    C3DSpark(); // 0x004D6670
-    ~C3DSpark(); // 0x004D6960
     char CreateSingle(const void *a2); // 0x004D6A60
     char CreateOne(int a2, int a3, int a4); // 0x004D6AC0
     _BYTE * DestroyAll(); // 0x004D6BA0

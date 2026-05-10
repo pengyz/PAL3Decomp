@@ -15,8 +15,6 @@ public:
     float m_fShadowRadius[11]; // +0x5E8
     // total size: 0x614 (1556)
 
-    CCBStageShadow(); // 0x00511EE0
-    ~CCBStageShadow(); // 0x00511F90
     char Reset(); // 0x00511FC0
     void Create(); // 0x00512080
     float * Destroy(); // 0x00512240

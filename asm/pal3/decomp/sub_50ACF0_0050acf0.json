@@ -1,7 +1,0 @@
-{
-  "name": "sub_50ACF0",
-  "address": "0x0050ACF0",
-  "size_bytes": 50,
-  "signature": "unsigned int __thiscall(Actor **this, int a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nunsigned int __thiscall sub_50ACF0(Actor **this, int a2)\n{\n  unsigned int result; // eax\n\n  result = a2;\n  if ( a2 > 0 )\n  {\n    sprintf(byte_17AB808, \"z%02d\", a2);\n    return Actor::GetAnimDuration(*(this + 73), (int)byte_17AB808);\n  }\n  return result;\n}\n"
-}

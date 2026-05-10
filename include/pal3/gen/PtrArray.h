@@ -12,8 +12,6 @@ public:
     _DWORD * Clear(); // 0x00432660
     void SetAt(int a2, int a3); // 0x00432770
     int InsertAt(int a2, int a3); // 0x004327B0
-    PtrArray(int a1, int a2, char a3); // 0x00434130
-    ~PtrArray(); // 0x004341E0
     static void SetSize(); // 0x00434240
     static char * SetAtGrow(unsigned __int16 a1, int a2); // 0x004343B0
     static char * RemoveAt(const char *a1); // 0x004343F0

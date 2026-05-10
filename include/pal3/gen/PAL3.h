@@ -43,8 +43,6 @@ public:
     int m_snaph; // +0x0
     // total size: 0x1 (1)
 
-    PAL3(); // 0x00404760
-    ~PAL3(); // 0x004047F0
     // [IDA_USERPURGE] Create; // 0x00404800
     static void InitGFX(); // 0x00404FF0
     static char CreateEffectSystem(); // 0x00405330

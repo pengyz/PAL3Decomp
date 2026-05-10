@@ -1,7 +1,0 @@
-{
-  "name": "sub_557DCA",
-  "address": "0x00557DCA",
-  "size_bytes": 17,
-  "signature": "LONG (__stdcall *())(struct _EXCEPTION_POINTERS *ExceptionInfo)",
-  "decompiled_c": "LONG (__stdcall *sub_557DCA())(struct _EXCEPTION_POINTERS *ExceptionInfo)\n{\n  LONG (__stdcall *result)(struct _EXCEPTION_POINTERS *); // eax\n\n  result = SetUnhandledExceptionFilter(__CxxUnhandledExceptionFilter);\n  lpTopLevelExceptionFilter = result;\n  return result;\n}\n"
-}

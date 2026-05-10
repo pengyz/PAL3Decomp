@@ -1,7 +1,0 @@
-{
-  "name": "GRPinput::SetMouseAbs(void)",
-  "address": "0x00402A90",
-  "size_bytes": 111,
-  "signature": "int __thiscall(GRPinput *this, int a2, int a3, int a4)",
-  "decompiled_c": "int __thiscall GRPinput::SetMouseAbs(GRPinput *this, int a2, int a3, int a4)\n{\n  __int32 *v4; // eax\n  __int32 v5; // ecx\n  __int32 v7; // ecx\n  __int32 v8; // ecx\n\n  v4 = &this->m_shiftedKeyStates[4 * a3 + 204];\n  if ( a4 )\n  {\n    if ( this->m_shiftedKeyStates[4 * a3 + 205] )\n    {\n      v7 = this->m_shiftedKeyStates[this->m_shiftedKeyStates[4 * a3 + 206] + 191];\n      v4[3] = 0;\n      *v4 = v7;\n      v4[2] = v7;\n    }\n    v8 = v4[3];\n    v4[1] = 0;\n    v4[3] = v8 + 1;\n  }\n  else\n  {\n    v5 = this->m_shiftedKeyStates[4 * a3 + 205];\n    v4[3] = 0;\n    if ( !v5 )\n    {\n      v4[1] = a2;\n      return 0;\n    }\n    *v4 = 0;\n    if ( (unsigned int)(a2 - v5) > 0x64 )\n    {\n      v4[2] = 0;\n      return v4[3];\n    }\n  }\n  return v4[3];\n}\n"
-}

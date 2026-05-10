@@ -8,5 +8,4 @@ public:
     gbColorQuad itemColor; // +0x44
     // total size: 0x48 (72)
 
-    ~UILBItem(); // 0x0043DC90
 };

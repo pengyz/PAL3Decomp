@@ -1,7 +1,0 @@
-{
-  "name": "sub_449E60",
-  "address": "0x00449E60",
-  "size_bytes": 151,
-  "signature": "void __thiscall(int *this, int a2, int a3)",
-  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nvoid __thiscall sub_449E60(int *this, int a2, int a3)\n{\n  int v4; // eax\n  int v5; // eax\n\n  v4 = *(this + 4697);\n  if ( a2 > v4 && a3 > *(this + 4698) )\n  {\n    UIScene::LoadResource((UIScene *)(this + 4654), off_5995A8[0]);\nLABEL_7:\n    *(this + 4708) = 1;\n    goto LABEL_8;\n  }\n  if ( a2 > v4 && a3 <= *(this + 4698) )\n  {\n    UIScene::LoadResource((UIScene *)(this + 4654), off_5995A0);\n    goto LABEL_7;\n  }\nLABEL_8:\n  v5 = *(this + 4697);\n  if ( a2 >= v5 )\n    return;\n  if ( a3 > *(this + 4698) )\n  {\n    UIScene::LoadResource((UIScene *)(this + 4654), off_5995A4[0]);\nLABEL_14:\n    *(this + 4708) = 0;\n    return;\n  }\n  if ( a2 < v5 && a3 <= *(this + 4698) )\n  {\n    UIScene::LoadResource((UIScene *)(this + 4654), off_59959C);\n    goto LABEL_14;\n  }\n}\n"
-}

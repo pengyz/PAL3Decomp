@@ -45,7 +45,6 @@ public:
     ACTION_KIND m_action; // +0x94
     // total size: 0x98 (152)
 
-    Object3D(); // 0x0047CB70
     struct gbVFileSystem * _Object3D(const char *a2, int a3); // 0x0047CB90
     unsigned __int8 LoadObject(const char *a2, int a3); // 0x0047CD70
     void LoadSubObject(); // 0x0047CEE0

@@ -1,0 +1,8 @@
+#pragma once
+// Auto-generated: RPC_ADDRESS_CHANGE_TYPE enum
+
+enum RPC_ADDRESS_CHANGE_TYPE {
+    PROTOCOL_NOT_LOADED = 1,
+    PROTOCOL_LOADED = 2,
+    PROTOCOL_ADDRESS_CHANGE = 3,
+};

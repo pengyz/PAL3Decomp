@@ -1,7 +1,0 @@
-{
-  "name": "sub_4F6AD0",
-  "address": "0x004F6AD0",
-  "size_bytes": 68,
-  "signature": "bool __stdcall(int a2)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nbool __stdcall sub_4F6AD0(int a2)\n{\n  int SkillNum; // eax\n  unsigned __int8 v2; // cl\n\n  SkillNum = PAL_GDB::GDB_GetSkillNum(&g_GDB, a2);\n  if ( SkillNum && *(_BYTE *)(SkillNum + 612) == 1 )\n  {\n    v2 = *(_BYTE *)(SkillNum + 631);\n    if ( v2 <= 1u )\n      return *(_WORD *)(SkillNum + 644) > 0;\n    if ( v2 == 2 )\n      return 1;\n  }\n  return 0;\n}\n"
-}

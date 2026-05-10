@@ -1,7 +1,0 @@
-{
-  "name": "sub_547BAB",
-  "address": "0x00547BAB",
-  "size_bytes": 121,
-  "signature": "double *__stdcall(double *a1, int a2, int a3)",
-  "decompiled_c": "double *__stdcall sub_547BAB(double *a1, int a2, int a3)\n{\n  __m128 v3; // xmm0\n  __m128 v4; // xmm2\n  __m128 v5; // xmm1\n  __m128 v6; // xmm0\n  __m128 v7; // xmm1\n  __m128 v8; // xmm0\n  __m128 v9; // xmm1\n\n  v3 = _mm_loadh_ps((const double *)(a2 + 8));\n  v4 = _mm_loadh_ps((const double *)(a3 + 8));\n  v5 = _mm_mul_ps(_mm_shuffle_ps(v4, v4, 255), v3);\n  v6 = _mm_shuffle_ps(v3, v3, 27);\n  v7 = _mm_add_ps(v5, _mm_mul_ps(_mm_xor_ps(_mm_shuffle_ps(v4, v4, 0), (__m128)xmmword_572E30), v6));\n  v8 = _mm_shuffle_ps(v6, v6, 177);\n  v9 = _mm_add_ps(\n         _mm_add_ps(v7, _mm_mul_ps(_mm_xor_ps(_mm_shuffle_ps(v4, v4, 85), (__m128)xmmword_572E20), v8)),\n         _mm_mul_ps(_mm_xor_ps(_mm_shuffle_ps(v4, v4, 170), (__m128)xmmword_572E10), _mm_shuffle_ps(v8, v8, 27)));\n  _mm_storel_ps(a1, v9);\n  _mm_storeh_ps(a1 + 1, v9);\n  return a1;\n}\n"
-}

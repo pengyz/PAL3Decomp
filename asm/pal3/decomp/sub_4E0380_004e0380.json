@@ -1,7 +1,0 @@
-{
-  "name": "sub_4E0380",
-  "address": "0x004E0380",
-  "size_bytes": 97,
-  "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall sub_4E0380(_DWORD *this)\n{\n  sub_4E0340(this);\n  flt_17A95F8 = *(float *)(*this + 108);\n  if ( LOBYTE(g_Input.KeyInfo[180].Data) )\n  {\n    g_Input.KeyInfo[176].Data = (int)CreateDialogParamA(\n                                       (HINSTANCE)g_Input.KeyInfo[175].CountMode,\n                                       (LPCSTR)0x66,\n                                       (HWND)g_Input.KeyInfo[175].PressTime,\n                                       DialogFunc,\n                                       0);\n    g_Input.KeyInfo[176].HoldTime = (int)CreateDialogParamA(\n                                           (HINSTANCE)g_Input.KeyInfo[175].CountMode,\n                                           (LPCSTR)0x6A,\n                                           (HWND)g_Input.KeyInfo[175].PressTime,\n                                           sub_4E10E0,\n                                           0);\n  }\n  return 1;\n}\n"
-}

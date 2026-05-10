@@ -1,7 +1,0 @@
-{
-  "name": "PalScriptMgr::_CON_State(char const *)",
-  "address": "0x00432260",
-  "size_bytes": 56,
-  "signature": "int __cdecl(int a1)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __cdecl PalScriptMgr::_CON_State(int a1)\n{\n  int v1; // ecx\n  int *i; // edx\n  int result; // eax\n\n  v1 = 0;\n  if ( stru_D8C328.m_nSize <= 0 )\n    return 0;\n  for ( i = (int *)stru_D8C328.m_pData; ; ++i )\n  {\n    if ( v1 >= 0 && v1 < stru_D8C328.m_nSize )\n    {\n      result = *i;\n      if ( *i )\n      {\n        if ( *(_DWORD *)(result + 4) == a1 )\n          break;\n      }\n    }\n    if ( ++v1 >= stru_D8C328.m_nSize )\n      return 0;\n  }\n  return result;\n}\n"
-}

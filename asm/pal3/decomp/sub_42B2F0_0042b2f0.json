@@ -1,7 +1,0 @@
-{
-  "name": "sub_42B2F0",
-  "address": "0x0042B2F0",
-  "size_bytes": 93,
-  "signature": "void __thiscall(int this, struct gbOBBox *a2)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nvoid __thiscall sub_42B2F0(int this, struct gbOBBox *a2)\n{\n  _BYTE v3[64]; // [esp+Ch] [ebp-40h] BYREF\n\n  gbGeomNode::GetOBBox(*(gbGeomNode **)(this + 52), a2);\n  gbMatrix4::gbMatrix4((gbMatrix4 *)v3);\n  gbMatrix4::LoadIdentity((gbMatrix4 *)v3);\n  gbMatrix4::SetAxisAngle((gbMatrix4 *)v3, GB_AXIS_Y, *(float *)(this + 224));\n  gbMatrix4::RightMultiply(&a2->trans, (const struct gbMatrix4 *)v3);\n  gbMatrix4::RightTranslate(&a2->trans, (struct gbVec3D *)(this + 56));\n}\n"
-}

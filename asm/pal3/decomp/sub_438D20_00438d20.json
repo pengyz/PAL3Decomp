@@ -1,7 +1,0 @@
-{
-  "name": "sub_438D20",
-  "address": "0x00438D20",
-  "size_bytes": 265,
-  "signature": "void()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid sub_438D20()\n{\n  int v0; // eax\n  int v1; // esi\n  UIFrameWnd *v2; // eax\n  int *v3; // eax\n  int v4; // edx\n  size_t v5; // [esp+0h] [ebp-34h] BYREF\n  int v6; // [esp+Ch] [ebp-28h]\n  int v7; // [esp+10h] [ebp-24h]\n  size_t *v8; // [esp+14h] [ebp-20h]\n  _DWORD v9[4]; // [esp+18h] [ebp-1Ch] BYREF\n  int v10; // [esp+30h] [ebp-4h]\n\n  v0 = operator new(0x10u);\n  v1 = v0;\n  v7 = v0;\n  v10 = 0;\n  if ( v0 )\n  {\n    v5 = 152;\n    *(_DWORD *)v0 = &off_56AC08;\n    *(_DWORD *)(v0 + 4) = 1;\n    *(_DWORD *)(v0 + 8) = 0;\n    *(_BYTE *)(v0 + 12) = 0;\n    v2 = (UIFrameWnd *)operator new(v5);\n    v6 = (int)v2;\n    LOBYTE(v10) = 2;\n    if ( v2 )\n      UIFrameWnd::UIFrameWnd(v2);\n    else\n      v3 = 0;\n    g_Input.KeyInfo[174].HoldTime = (int)v3;\n    v9[2] = 256;\n    v9[3] = 256;\n    v9[0] = 0;\n    v9[1] = 0;\n    v4 = *v3;\n    LOBYTE(v10) = 1;\n    (*(void (__thiscall **)(int *, _DWORD, _DWORD *, _DWORD))(v4 + 16))(v3, 0, v9, 0);\n    UIWnd::CreateFromTemplate((UIWnd **)g_Input.KeyInfo[174].HoldTime, aEffectscn104sT, 0);\n    UIWnd::SetVisible((UIWnd *)g_Input.KeyInfo[174].HoldTime, 0);\n    v6 = 0xFFFFFF;\n    v8 = &v5;\n    NPC::UpdateAnim(0xFFFFFF);\n  }\n  else\n  {\n    v1 = 0;\n  }\n  v10 = -1;\n  sub_434C40(v1);\n}\n"
-}

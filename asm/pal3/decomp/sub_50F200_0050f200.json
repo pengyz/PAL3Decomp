@@ -1,7 +1,0 @@
-{
-  "name": "sub_50F200",
-  "address": "0x0050F200",
-  "size_bytes": 259,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_50F200(_DWORD *this, int a2)\n{\n  _DWORD *v3; // eax\n  int v4; // eax\n  char *Instance; // eax\n\n  v3 = this + 24 * *(this + 99);\n  if ( *((_BYTE *)v3 + 506) )\n  {\n    if ( !CCBRoleState::IsRoleAlive((CCBRoleState *)*(this + 1), *(this + 71)) || a2 == *(this + 1661) )\n    {\n      CCBStageRole::ClearBadPushTask((int)this, 0.0099999998);\n      *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;\n    }\n    return 0;\n  }\n  else\n  {\n    if ( sub_4F7050((int)(v3 + 111)) )\n    {\n      *((_BYTE *)this + 96 * *(this + 99) + 506) = 1;\n      *((_BYTE *)this + 96 * *(this + 99) + 505) = 1;\n    }\n    else\n    {\n      CCBStageRole::ClearBadPushTask((int)this, 0.25);\n      v4 = *(this + 1659);\n      *(this + 1642) = 39;\n      *(this + 1658) = v4;\n      CCBStageRole::GetPointerPos((int)this);\n      nullsub_3(this);\n      Instance = CScreenMode::GetInstance();\n      CScreenMode::AudioSetPosition((CScreenMode *)Instance, aWe033, 1);\n    }\n    *((_BYTE *)this + 96 * *(this + 99) + 506) = 1;\n    return 0;\n  }\n}\n"
-}

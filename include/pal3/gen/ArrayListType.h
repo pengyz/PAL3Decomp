@@ -1,3 +1,7 @@
 #pragma once
-// Stub type (no PDB definition available)
-struct ArrayListType {};
+// Auto-generated: ArrayListType enum
+
+enum ArrayListType {
+    AL_VALUE = 0,
+    AL_REFERENCE = 1,
+};

@@ -1,7 +1,0 @@
-{
-  "name": "sub_407EC0",
-  "address": "0x00407EC0",
-  "size_bytes": 321,
-  "signature": "BOOL __userpurge@<eax>(float *this@<ecx>, double a2@<st0>, double a3@<st1>, float *a4, float *a5, _DWORD *a6)",
-  "decompiled_c": "// between_std_methods (0x407D40-0x411B80)\nBOOL __userpurge sub_407EC0@<eax>(\n        float *this@<ecx>,\n        double a2@<st0>,\n        double a3@<st1>,\n        float *a4,\n        float *a5,\n        _DWORD *a6)\n{\n  int v7; // ebx\n  float *v8; // ebp\n  float *v9; // edi\n  float v11; // [esp+8h] [ebp-1Ch]\n  _BYTE v12[12]; // [esp+Ch] [ebp-18h]\n  gbVec3D v13; // [esp+18h] [ebp-Ch] BYREF\n\n  v7 = 1;\n  v11 = 3.4028231e38;\n  if ( *((int *)this + 768) > 1 )\n  {\n    v8 = this + 771;\n    v9 = this + 1031;\n    do\n    {\n      *(this + 1795) = *v8;\n      *(this + 1796) = *(v9 - 2);\n      *(this + 1797) = *(v9 - 1);\n      *(this + 1798) = *v9;\n      sub_408190((int)this, a4, v9 - 1031, v9 - 1028);\n      if ( a3 < v11 )\n      {\n        v11 = a3;\n        *a5 = *(this + 1799);\n        a5[1] = *(this + 1800);\n        a5[2] = *(this + 1801);\n        *a6 = *((_DWORD *)this + 1796);\n        a6[1] = *((_DWORD *)this + 1797);\n        a6[2] = *((_DWORD *)this + 1798);\n      }\n      ++v7;\n      ++v8;\n      v9 += 3;\n    }\n    while ( v7 < *((_DWORD *)this + 768) );\n  }\n  *(float *)v12 = *a4 - *a5;\n  *(float *)&v12[4] = a4[1] - a5[1];\n  v13 = *(gbVec3D *)v12;\n  gbVec3D::Length(&v13);\n  return 12.0 * 0.5 > a2;\n}\n"
-}

@@ -1,0 +1,10 @@
+#pragma once
+// Auto-generated: tagMSHCTX enum
+
+enum tagMSHCTX {
+    MSHCTX_LOCAL = 0,
+    MSHCTX_NOSHAREDMEM = 1,
+    MSHCTX_DIFFERENTMACHINE = 2,
+    MSHCTX_INPROC = 3,
+    MSHCTX_CROSSCTX = 4,
+};

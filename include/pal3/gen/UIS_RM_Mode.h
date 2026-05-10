@@ -1,3 +1,7 @@
 #pragma once
-// Stub: UIS_RM_Mode (missing from PDB)
-typedef int UIS_RM_Mode;
+// Auto-generated: UIS_RM_Mode enum
+
+enum UIS_RM_Mode {
+    RM_DEFAULT = 0,
+    RM_ALPHA = 1,
+};

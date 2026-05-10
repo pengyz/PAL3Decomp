@@ -1,7 +1,0 @@
-{
-  "name": "sub_441380",
-  "address": "0x00441380",
-  "size_bytes": 54,
-  "signature": "int __thiscall(int this, int arg0, int a3, int a4, int a5)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall sub_441380(int this, int arg0, int a3, int a4, int a5)\n{\n  _DWORD a2[4]; // [esp+0h] [ebp-10h] BYREF\n\n  a2[1] = arg0;\n  a2[2] = a4;\n  a2[0] = a3;\n  a2[3] = a5;\n  return UIWnd::GetRect((UIWnd *)(this + 72), a2);\n}\n"
-}

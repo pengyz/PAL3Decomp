@@ -27,8 +27,6 @@ public:
     gbUIQuad m_Quad; // +0x6048
     // total size: 0x6070 (24688)
 
-    C2DSpark(int a2, int a3); // 0x004D5AB0
-    ~C2DSpark(); // 0x004D5DC0
     char CreateSingle(const void *a2); // 0x004D5EC0
     char CreateTrack(char a2); // 0x004D5F20
     int SetEnableMouseTrack(int a2, int a3); // 0x004D5F40

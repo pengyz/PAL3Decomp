@@ -1,0 +1,7 @@
+{
+  "name": "?SetParam@CCBStageRole@@AAEXPAUtagParam@@KKK@Z",
+  "address": "0x0050AC50",
+  "size_bytes": 156,
+  "signature": "int __thiscall(CCBStageRole *this, int a2, char a3)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBStageRole::SetParam(CCBStageRole *this, int a2, char a3)\n{\n  int result; // eax\n  Actor *m_bFlash; // ecx\n\n  result = a2;\n  if ( a2 > 0 )\n  {\n    sprintf(byte_17AB818, \"z%02d\", a2);\n    if ( (byte_1895558 & 1) == 0 )\n    {\n      byte_1895558 |= 1u;\n      CEffMgr::Reset((CEffMgr *)&g_nCursorState);\n      atexit(nullsub_1);\n    }\n    result = CEffSParticle::GetEditorTaskDescription((CEffSParticle *)&g_nCursorState, (unsigned __int8 *)byte_17AB818);\n    if ( a3 || result != this->m_Task[36].cmd.bMultiDestRole )\n    {\n      m_bFlash = (Actor *)this->m_bFlash;\n      this->m_Task[36].cmd.bMultiDestRole = result;\n      Actor::SetVisible(m_bFlash, (int)byte_17AB818);\n      return (*(int (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(this->m_bFlash + 16) + 24))(\n               *(_DWORD *)(this->m_bFlash + 16),\n               0);\n    }\n  }\n  return result;\n}\n"
+}

@@ -1,7 +1,0 @@
-{
-  "name": "UIListBox::SetDefaultSel(int)",
-  "address": "0x0043EBA0",
-  "size_bytes": 16,
-  "signature": "int __thiscall(UIListBox *this)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall UIListBox::SetDefaultSel(UIListBox *this)\n{\n  return (this->m_wndcolor.Blue - this->m_fontcolor.Color) / (__int32)this->m_column[5].items.m_pData;\n}\n"
-}

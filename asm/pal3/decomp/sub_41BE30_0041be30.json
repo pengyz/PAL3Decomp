@@ -1,7 +1,0 @@
-{
-  "name": "sub_41BE30",
-  "address": "0x0041BE30",
-  "size_bytes": 8,
-  "signature": "ScriptObj *__thiscall(ScriptObj *this, char a2)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nScriptObj *__thiscall sub_41BE30(ScriptObj *this, char a2)\n{\n  ScriptObj *v2; // esi\n\n  v2 = this - 64;\n  sub_411CA0(this - 64);\n  if ( (a2 & 1) != 0 )\n    operator delete(v2);\n  return v2;\n}\n"
-}

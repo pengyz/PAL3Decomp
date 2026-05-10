@@ -1,7 +1,0 @@
-{
-  "name": "std::_Xlen(void)",
-  "address": "0x00541D1B",
-  "size_bytes": 90,
-  "signature": "void __stdcall __noreturn(int a1)",
-  "decompiled_c": "void __stdcall __noreturn std::_Xlen(int a1)\n{\n  size_t v1; // eax\n  exception pExceptionObject[3]; // [esp+4h] [ebp-3Ch] BYREF\n  _DWORD v3[4]; // [esp+20h] [ebp-20h] BYREF\n  char v4; // [esp+33h] [ebp-Dh]\n  int v5; // [esp+3Ch] [ebp-4h]\n\n  LOBYTE(v3[0]) = v4;\n  std::string::_Tidy(v3, 0);\n  v1 = strlen(\"string too long\");\n  sub_453C00((int)v3, \"string too long\", v1);\n  v5 = 0;\n  std_logic_error_ctor0(pExceptionObject, v3);\n  pExceptionObject[0]._m_what = (char *)&vtbl_std_length_error;\n  _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI3_AVlength_error_std__);\n}\n"
-}

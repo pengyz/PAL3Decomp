@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CEB60",
-  "address": "0x004CEB60",
-  "size_bytes": 276,
-  "signature": "int __thiscall(char *this, char *a2, int a3, const char *a4)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nint __thiscall sub_4CEB60(char *this, char *a2, int a3, const char *a4)\n{\n  int v4; // ebp\n  char *i; // eax\n  char *v7; // ebx\n  const char *p_y; // edi\n  CEffgbParticle *v9; // eax\n  _DWORD *v10; // eax\n\n  v4 = 0;\n  for ( i = this + 88; *i; i += 72 )\n  {\n    if ( ++v4 >= 32 )\n      return -1;\n  }\n  v7 = this + 72 * v4;\n  strcpy(v7 + 28, a2);\n  p_y = a4;\n  if ( !a4 )\n    p_y = (const char *)&g_SceneMgr.m_npc[5].m_path.normal[140].y;\n  strcpy(v7 + 58, p_y);\n  v7[88] = 1;\n  v9 = (CEffgbParticle *)operator new(0x50u);\n  if ( v9 )\n    v10 = CEffgbParticle::Render(v9);\n  else\n    v10 = 0;\n  *((_DWORD *)v7 + 24) = v10;\n  if ( (g_bCursorVisible & 1) == 0 )\n  {\n    g_bCursorVisible |= 1u;\n    CEffMgr::Reset((CEffMgr *)&g_nCursorState);\n    atexit(nullsub_1);\n  }\n  *((_DWORD *)v7 + 23) = CEffSParticle::GetEditorTaskDescription(\n                           (CEffSParticle *)&g_nCursorState,\n                           (unsigned __int8 *)a2);\n  return v4;\n}\n"
-}

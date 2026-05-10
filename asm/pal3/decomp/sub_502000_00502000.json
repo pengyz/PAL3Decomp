@@ -1,7 +1,0 @@
-{
-  "name": "sub_502000",
-  "address": "0x00502000",
-  "size_bytes": 195,
-  "signature": "int __thiscall(int *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall sub_502000(int *this, int a2)\n{\n  int v3; // ecx\n  int v4; // edx\n  char *v5; // esi\n  double v7; // st7\n  float v8; // [esp+8h] [ebp-4h]\n\n  v3 = 329 * *(this + 40);\n  v4 = 80 * *(this + 41);\n  v5 = (char *)this + 8 * v3 + v4 + 184;\n  if ( *((_BYTE *)this + 8 * v3 + v4 + 225) )\n  {\n    v7 = (*(float *)(*this + 80) - *(float *)((char *)this + 8 * v3 + v4 + 208))\n       / *(float *)((char *)this + 8 * v3 + v4 + 216)\n       * 255.0;\n    v8 = v7;\n    if ( v7 > 255.0 )\n      v8 = 255.0;\n    sub_4DFFF0(*(this + 17), v8, *(int *)((char *)this + 8 * v3 + v4 + 228));\n    if ( v5[43] == 1\n      || *(float *)(*this + 80) - *((float *)v5 + 6) > *((float *)v5 + 8)\n      || GRPinput::SetJoystickAbs(&g_Input) )\n    {\n      sub_4DFFF0(*(this + 17), 255.0, *((_DWORD *)v5 + 11));\n      *((_DWORD *)v5 + 4) = 4;\n    }\n    return 0;\n  }\n  else\n  {\n    *((_BYTE *)this + 8 * v3 + v4 + 225) = 1;\n    return 0;\n  }\n}\n"
-}

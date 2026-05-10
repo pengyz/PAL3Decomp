@@ -1,0 +1,7 @@
+{
+  "name": "?Update@ObjectCamera@@QAEXXZ",
+  "address": "0x0047CAD0",
+  "size_bytes": 149,
+  "signature": "void __thiscall(ObjectCamera *this)",
+  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nvoid __thiscall ObjectCamera::Update(ObjectCamera *this)\n{\n  this->m_camFrom.x = 0.0;\n  this->m_camFrom.y = 0.0;\n  this->m_camUp.y = 0.0;\n  this->m_camUp.z = 0.0;\n  this->m_camDirect.x = 0.0;\n  this->m_camDirect.y = 0.0;\n  this->m_camDirect.z = 0.0;\n  this->m_yaw = 0.0;\n  this->m_stepRotSpeed = 0.0;\n  this->m_stepRot = 0.0;\n  this->m_stepRotMode = 0;\n  LOBYTE(this->m_pCamera) = 0;\n  LOBYTE(this->m_camTo.y) = 0;\n  this->m_camFrom.z = 0.0;\n  this->m_dist = 0.0;\n  this->m_roll = 0.0;\n  this->m_pitch = 0.0;\n  this->m_nroll = 0.0;\n  this->m_npitch = 0.0;\n  this->m_nyaw = 0.0;\n  LOBYTE(this->m_forward.x) = 0;\n  this->m_forward.y = 0.0;\n  this->m_side.y = 0.0;\n  this->m_side.x = 0.0;\n  this->m_forward.z = 0.0;\n  this->m_side.z = 0.0;\n  LOBYTE(this->m_bStepRot) = 0;\n  *((_DWORD *)this + 36) = 0;\n  *((_DWORD *)this + 35) = 0;\n  BYTE1(this->m_bStepRot) = 0;\n  *((_DWORD *)this + 31) = 0;\n  *((_DWORD *)this + 32) = 0;\n  *((_DWORD *)this + 33) = 0;\n  *((_DWORD *)this + 34) = 1045220557;\n}\n"
+}

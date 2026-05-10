@@ -1,7 +1,0 @@
-{
-  "name": "sub_44D180",
-  "address": "0x0044D180",
-  "size_bytes": 266,
-  "signature": "int __thiscall(char *this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_44D180(char *this)\n{\n  DWORD Time; // eax\n  char *v3; // esi\n  int v4; // ebp\n  int result; // eax\n  int v6; // [esp+Ch] [ebp-4h]\n\n  Time = timeGetTime();\n  sub_5541EE(Time);\n  v3 = this + 684;\n  v4 = 22;\n  do\n  {\n    *((_DWORD *)v3 - 4) = rand() % 160 + 238;\n    v6 = rand() % 500 + 150;\n    *((_DWORD *)v3 - 5) = v6;\n    *((float *)v3 - 1) = (float)v6;\n    *((_DWORD *)v3 - 3) = *(_DWORD *)v3 + *((_DWORD *)v3 - 5);\n    *((_DWORD *)v3 - 2) = *((_DWORD *)v3 - 4) + *((_DWORD *)v3 + 1);\n    *((float *)v3 + 2) = (double)(rand() % 16) * 0.1 + 1.0;\n    *((float *)v3 + 3) = (float)(rand() % 255);\n    *((float *)v3 + 4) = (double)(rand() % 10 + 10) * 0.1;\n    v3[20] = 1;\n    *((_DWORD *)v3 + 6) = rand() % 3;\n    *((_DWORD *)v3 + 8) = 30;\n    *((_DWORD *)v3 + 7) = *((_DWORD *)v3 - 4);\n    result = UIWnd::GetRect((UIWnd *)(v3 - 172), (_DWORD *)v3 - 5);\n    v3 += 208;\n    --v4;\n  }\n  while ( v4 );\n  return result;\n}\n"
-}

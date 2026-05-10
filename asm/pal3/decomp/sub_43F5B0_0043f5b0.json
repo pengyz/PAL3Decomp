@@ -1,7 +1,0 @@
-{
-  "name": "sub_43F5B0",
-  "address": "0x0043F5B0",
-  "size_bytes": 139,
-  "signature": "int __thiscall(UIListBox *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall sub_43F5B0(UIListBox *this, int a2)\n{\n  int m_nMaxSize; // ecx\n  int result; // eax\n  int v5; // [esp-4h] [ebp-Ch]\n\n  if ( a2 < 0 || a2 >= (int)this->m_scrollbar.m_texarrayInfo[4] )\n  {\n    this->m_column[5].items.m_nGrowBy = -1;\n  }\n  else\n  {\n    m_nMaxSize = this->m_column[5].items.m_nMaxSize;\n    this->m_column[5].items.m_nGrowBy = a2 - m_nMaxSize;\n    if ( a2 - m_nMaxSize < 0 )\n      this->m_column[5].items.m_nGrowBy = 0;\n    if ( this->m_column[5].items.m_nGrowBy >= UIListBox::SetDefaultSel(this) )\n      this->m_column[5].items.m_nGrowBy = UIListBox::SetDefaultSel(this) - 1;\n    v5 = a2 - this->m_column[5].items.m_nGrowBy;\n    this->m_column[5].items.m_nMaxSize = v5;\n    sub_442060(&this->m_childs.m_nMaxSize, v5);\n  }\n  result = this->m_column[5].items.m_nGrowBy + this->m_column[5].items.m_nMaxSize;\n  this->m_column[5].width = result;\n  return result;\n}\n"
-}

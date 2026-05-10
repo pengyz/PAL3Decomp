@@ -5,7 +5,6 @@
 // Unnamed globals (extern)
 extern unsigned char byte_8AC5D8;
 extern int dword_6EBFA0;
-extern int dword_7CC178;
 
 // 0x00401DF0
 // strings: .cpk
@@ -36,12 +35,4 @@ OpenSceneFile::OpenSceneFile(char *String1)
     g_pVFileSys = (struct gbVFileSystem *)&dword_6EBFA0;
   this;
   }
-}
-
-// 0x00401F40
-// write access to const memory has been detected, the output may be wrong!
-OpenSceneFile::~OpenSceneFile()
-{
-  g_pVFileSys = (struct gbVFileSystem *)&dword_7CC178;
-  g_pVFileSys;
 }

@@ -1,7 +1,0 @@
-{
-  "name": "sub_437650",
-  "address": "0x00437650",
-  "size_bytes": 66,
-  "signature": "void()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid sub_437650()\n{\n  char *String; // esi\n  char *v1; // eax\n  int v2; // eax\n  char *Instance; // eax\n  char *v4; // eax\n  void *v5; // [esp-8h] [ebp-Ch]\n  char *v6; // [esp-4h] [ebp-8h]\n  int v7; // [esp-4h] [ebp-8h]\n  int v8; // [esp+0h] [ebp-4h]\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  if ( String && v1 )\n  {\n    v2 = *((_DWORD *)v1 + 1);\n    if ( v2 == -1 )\n    {\n      v6 = (char *)*((_DWORD *)String + 1);\n      Instance = CScreenMode::GetInstance();\n      CCBStageRole::PlaySound((CCBStageRole *)Instance, v6, v8);\n    }\n    else\n    {\n      v7 = v2;\n      v5 = (void *)*((_DWORD *)String + 1);\n      v4 = CScreenMode::GetInstance();\n      sub_53E4E0((CScreenMode *)v4, v5, v7);\n    }\n  }\n}\n"
-}

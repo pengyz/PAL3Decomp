@@ -28,7 +28,5 @@ public:
     unsigned char m_bClosed; // +0xB0
     // total size: 0xB4 (180)
 
-    CCBResultWindow(int a2); // 0x0051F080
-    ~CCBResultWindow(); // 0x0051F090
     int Reset(int a2, int a3); // 0x0051F0A0
 };

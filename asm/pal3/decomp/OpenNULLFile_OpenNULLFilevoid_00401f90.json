@@ -1,7 +1,0 @@
-{
-  "name": "OpenNULLFile::OpenNULLFile(void)",
-  "address": "0x00401F90",
-  "size_bytes": 11,
-  "signature": "struct gbVFileSystem *__thiscall(OpenNULLFile **this)",
-  "decompiled_c": "// likely UIListBox method (near SetItemOffset)\n// write access to const memory has been detected, the output may be wrong!\nstruct gbVFileSystem *__thiscall OpenNULLFile::OpenNULLFile(OpenNULLFile **this)\n{\n  struct gbVFileSystem *result; // eax\n\n  result = (struct gbVFileSystem *)*this;\n  g_pVFileSys = (struct gbVFileSystem *)*this;\n  return result;\n}\n"
-}

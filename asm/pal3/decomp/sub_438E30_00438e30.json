@@ -1,7 +1,0 @@
-{
-  "name": "sub_438E30",
-  "address": "0x00438E30",
-  "size_bytes": 91,
-  "signature": "int __thiscall(int this, float a2)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall sub_438E30(int this, float a2)\n{\n  double v2; // st7\n  int v4; // [esp+4h] [ebp+4h]\n\n  v2 = a2 + *(float *)(this + 8);\n  *(float *)(this + 8) = v2;\n  if ( v2 >= 4.0 )\n  {\n    *(_BYTE *)(this + 12) = 1;\n    *(_DWORD *)(this + 8) = 1082130432;\n  }\n  v4 = -1;\n  HIBYTE(v4) = (__int64)(sin(*(float *)(this + 8) * 0.78539819) * 160.0);\n  return NPC::UpdateAnim(v4);\n}\n"
-}

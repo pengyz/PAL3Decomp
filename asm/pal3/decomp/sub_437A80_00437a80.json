@@ -1,7 +1,0 @@
-{
-  "name": "sub_437A80",
-  "address": "0x00437A80",
-  "size_bytes": 51,
-  "signature": "void()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid sub_437A80()\n{\n  char *String; // eax\n  _DWORD *v1; // eax\n  _DWORD *v2; // eax\n  int v3; // esi\n  __int16 v4; // [esp-4h] [ebp-8h]\n\n  String = PalScript::GetString();\n  if ( String )\n  {\n    v4 = *((_WORD *)String + 2);\n    v1 = (_DWORD *)UISceneUpdate();\n    v2 = sub_421560(v1, v4);\n    v3 = (int)v2;\n    if ( v2 )\n    {\n      sub_42BEA0((int)v2);\n      sub_434C40(v3);\n    }\n  }\n}\n"
-}

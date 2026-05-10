@@ -94,7 +94,6 @@ public:
     char UpdateDisplay(); // 0x004E0740
     char UpdateAnimation(); // 0x004E0820
     char UpdateState(); // 0x004E0980
-    ~CCBUI(); // 0x00517650
     char Reset(); // 0x005177B0
     char CreateCombatPanel(); // 0x00517B30
     char CreateAttackSequen(); // 0x00517C10

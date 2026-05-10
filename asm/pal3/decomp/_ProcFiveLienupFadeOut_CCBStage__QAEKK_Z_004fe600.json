@@ -1,0 +1,7 @@
+{
+  "name": "?ProcFiveLienupFadeOut@CCBStage@@QAEKK@Z",
+  "address": "0x004FE600",
+  "size_bytes": 92,
+  "signature": "int __thiscall(CCBStage *this, int a2)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBStage::ProcFiveLienupFadeOut(CCBStage *this, int a2)\n{\n  __int32 v2; // eax\n  __int32 v3; // edx\n  char *v4; // esi\n\n  v2 = 2632 * this->m_bHideSceneAndRole;\n  v3 = v2 + 80 * LODWORD(this->m_fDamageNumPosY[0]);\n  v4 = (char *)&this->m_fDamageNumPosY[5] + v3;\n  if ( !*((_BYTE *)&this->m_nCurSubTask + v3 + 1) )\n  {\n    CCBStageRole::GetCurrentTask(\n      (int)this->m_pRole[*(__int32 *)((char *)&this->m_Task[0].SubTask[17].param.dw3 + v2)],\n      *(int *)((char *)&this->m_Task[0].SubTask[17].param.n2 + v2));\n    v4[41] = 1;\n    *((_DWORD *)v4 + 4) = 4;\n  }\n  return 0;\n}\n"
+}

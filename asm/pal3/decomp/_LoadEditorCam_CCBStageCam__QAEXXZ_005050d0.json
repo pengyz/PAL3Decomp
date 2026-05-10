@@ -1,0 +1,7 @@
+{
+  "name": "?LoadEditorCam@CCBStageCam@@QAEXXZ",
+  "address": "0x005050D0",
+  "size_bytes": 169,
+  "signature": "char __thiscall(CCBStageCam *this, int a2, int a3, const void *a4)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall CCBStageCam::LoadEditorCam(CCBStageCam *this, int a2, int a3, const void *a4)\n{\n  int IsEditorCamValid; // eax\n  int IsCamValid; // eax\n  _DWORD *v8; // edx\n  int v9; // ecx\n\n  IsEditorCamValid = CCBStageCam::IsEditorCamValid(this, a2);\n  if ( a3 >= IsEditorCamValid )\n    return CCBStageCam::Reset(this, a2, a4);\n  if ( IsEditorCamValid >= 50 )\n    return 0;\n  IsCamValid = CCBStageCam::IsCamValid(this);\n  if ( IsCamValid == -1 )\n    return 0;\n  if ( a3 < 49 )\n  {\n    v8 = (_DWORD *)((char *)this + 200 * a2 + 410196);\n    v9 = 49 - a3;\n    do\n    {\n      *v8 = *(v8 - 1);\n      --v8;\n      --v9;\n    }\n    while ( v9 );\n  }\n  *((_DWORD *)this + 50 * a2 + a3 + 102500) = IsCamValid;\n  *((_BYTE *)this + IsCamValid + 408000) = 1;\n  qmemcpy((char *)this + 204 * IsCamValid, a4, 0xCCu);\n  return 1;\n}\n"
+}

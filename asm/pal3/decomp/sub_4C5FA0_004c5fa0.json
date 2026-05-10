@@ -1,7 +1,0 @@
-{
-  "name": "sub_4C5FA0",
-  "address": "0x004C5FA0",
-  "size_bytes": 136,
-  "signature": "char __thiscall(_DWORD *this, const void *a2)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar __thiscall sub_4C5FA0(_DWORD *this, const void *a2)\n{\n  int v3; // eax\n  _BYTE *i; // ecx\n  _DWORD *v6; // ebx\n  int v7; // ecx\n\n  if ( (int)*(this + 24583) >= 2047 )\n    return 0;\n  v3 = 0;\n  for ( i = this + 9; *i; i += 48 )\n  {\n    if ( ++v3 >= 2048 )\n      return 0;\n  }\n  v6 = this + 12 * v3;\n  qmemcpy(v6 + 7, a2, 0x30u);\n  *((_BYTE *)v6 + 36) = 1;\n  v7 = *(this + 6);\n  if ( v3 > v7 - 1 )\n    *(this + 6) = v7 + 1;\n  v6[8] = *(this + 24583);\n  *(this + (*(this + 24583))++ + 59400) = v3;\n  (*(void (__thiscall **)(_DWORD *, int))(*this + 28))(this, v3);\n  return 1;\n}\n"
-}

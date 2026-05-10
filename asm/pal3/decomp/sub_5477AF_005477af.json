@@ -1,7 +1,0 @@
-{
-  "name": "sub_5477AF",
-  "address": "0x005477AF",
-  "size_bytes": 95,
-  "signature": "float *__stdcall(float *a1, float *a2, float *a3)",
-  "decompiled_c": "float *__stdcall sub_5477AF(float *a1, float *a2, float *a3)\n{\n  double v3; // st6\n  double v4; // st7\n\n  v3 = *a2 * a3[1] + a2[1] * a3[5] + a2[2] * a3[9];\n  v4 = *a2 * a3[2] + a2[1] * a3[6] + a2[2] * a3[10];\n  *a1 = *a2 * *a3 + a2[1] * a3[4] + a2[2] * a3[8];\n  a1[1] = v3;\n  a1[2] = v4;\n  return a1;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_4F2690",
-  "address": "0x004F2690",
-  "size_bytes": 186,
-  "signature": "int __thiscall(CCBRoleState *this, _DWORD *a2, int roleIdx)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall sub_4F2690(CCBRoleState *this, _DWORD *a2, int roleIdx)\n{\n  int v5; // ebp\n  int result; // eax\n  __int8 *v7; // esi\n  int v8; // eax\n  int roleIdxa; // [esp+18h] [ebp+8h]\n\n  CCBRoleState::IsBoss(this, a2, roleIdx);\n  v5 = CCBRoleState::SetRoleField(this, roleIdx, 0);\n  result = sub_4EEF20(this, a2, roleIdx);\n  roleIdxa = result;\n  switch ( a2[1] )\n  {\n    case 0x1069:\n      v8 = CCBRoleState::SetRoleField(this, roleIdx, 0);\n      sub_4F2C70((int)this, a2[2], abs32((v5 - v8) / 2), 1, -1);\n      return roleIdxa;\n    case 0x10D0:\n      CCBRoleState::CalcDefensePower(this, a2[2]);\n      return roleIdxa;\n    case 0x1132:\n      v7 = &this->m_sCombatDialog[892 * roleIdx];\n      v7[1390] = 1;\n      v7[1391] = 0;\n      break;\n  }\n  return result;\n}\n"
-}

@@ -49,8 +49,6 @@ public:
 
     int InitRound(); // 0x004DFAA0
     int EndRound(); // 0x004DFED0
-    CCBStage(int a2); // 0x004FB9A0
-    ~CCBStage(); // 0x004FB9F0
     char Reset(); // 0x004FBA70
     char Create(); // 0x004FBE50
     char Destroy(); // 0x004FBF90

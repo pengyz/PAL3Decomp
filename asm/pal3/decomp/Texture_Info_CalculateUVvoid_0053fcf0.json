@@ -1,7 +1,0 @@
-{
-  "name": "_Texture_Info::_CalculateUV(void)",
-  "address": "0x0053FCF0",
-  "size_bytes": 211,
-  "signature": "Scene *__thiscall(int this, LPCSTR lpString)",
-  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nScene *__thiscall _Texture_Info::_CalculateUV(int this, LPCSTR lpString)\n{\n  int v3; // edi\n  int v4; // ebx\n  char pExceptionObject[1024]; // [esp+10h] [ebp-800h] BYREF\n  char ArgList[1024]; // [esp+410h] [ebp-400h] BYREF\n\n  if ( !*(_BYTE *)(this + 532) || lstrlenA(lpString) <= 0 )\n    return (Scene *)&g_SceneMgr.m_npc[5].m_path.normal[140].y;\n  v3 = 0;\n  if ( *(int *)(this + 524) <= 0 )\n  {\nLABEL_7:\n    qmemcpy(\n      pExceptionObject,\n      Texture_Info_53CF30(ArgList, aNotFoundSInUiO, lpString, aDProjectPal3Ui_0, 552),\n      sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  v4 = 0;\n  while ( _strcmpi(lpString, (const char *)(v4 + *(_DWORD *)(this + 528))) )\n  {\n    ++v3;\n    v4 += 1088;\n    if ( v3 >= *(_DWORD *)(this + 524) )\n      goto LABEL_7;\n  }\n  return (Scene *)(1088 * v3 + *(_DWORD *)(this + 528) + 512);\n}\n"
-}

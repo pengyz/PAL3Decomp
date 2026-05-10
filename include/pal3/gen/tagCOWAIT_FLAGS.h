@@ -1,0 +1,8 @@
+#pragma once
+// Auto-generated: tagCOWAIT_FLAGS enum
+
+enum tagCOWAIT_FLAGS {
+    COWAIT_WAITALL = 1,
+    COWAIT_ALERTABLE = 2,
+    COWAIT_INPUTAVAILABLE = 4,
+};

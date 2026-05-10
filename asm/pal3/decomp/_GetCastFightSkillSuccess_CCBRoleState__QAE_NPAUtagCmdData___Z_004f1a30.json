@@ -1,0 +1,7 @@
+{
+  "name": "?GetCastFightSkillSuccess@CCBRoleState@@QAE_NPAUtagCmdData@@@Z",
+  "address": "0x004F1A30",
+  "size_bytes": 234,
+  "signature": "char __thiscall(CCBRoleState *this, int a2)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall CCBRoleState::GetCastFightSkillSuccess(CCBRoleState *this, int a2)\n{\n  int v4; // esi\n  int i; // ebp\n  int v6; // eax\n  int a2a; // [esp+14h] [ebp+4h]\n\n  a2a = *(_DWORD *)(a2 + 8);\n  v4 = 0;\n  for ( i = 24; i < 68; i += 4 )\n  {\n    if ( *(_BYTE *)(a2 + 17) )\n    {\n      if ( !*(_BYTE *)(v4 + a2 + 29) )\n        goto LABEL_13;\n    }\n    else if ( *(_DWORD *)(a2 + 12) != v4 )\n    {\n      goto LABEL_13;\n    }\n    if ( (CCBRoleState::sub_4F05A0((_DWORD *)a2)\n       || CCBStageRole::ForceEndTaskByPFN(*(CCBStageRole **)(this->m_pStage + i))\n       || *(_WORD *)(PAL_GDB::GDB_GetSkillNum(&g_GDB, *(_DWORD *)(a2 + 4)) + 748) == 2)\n      && sub_4F2750(this, (_DWORD *)a2, v4) < 0\n      && !CCBSystem::IsCmdEmpty(*(CCBSystem **)(this->m_pCBSystem + 12), v4)\n      && !CCBSystem::IsCmdReady(*(CCBSystem **)(this->m_pCBSystem + 12), v4) )\n    {\n      CCBSystem::GetCmdData(*(CCBSystem **)(this->m_pCBSystem + 12), v4);\n    }\nLABEL_13:\n    ++v4;\n  }\n  v6 = *(_DWORD *)(this->m_pUI + 1120);\n  if ( *(_DWORD *)(v6 + 56) == 1 )\n    sub_4F95F0(this, a2a, *(_DWORD *)(v6 + 104));\n  return 1;\n}\n"
+}

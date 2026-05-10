@@ -24,8 +24,6 @@ public:
     unsigned char m_bStepRot; // +0x78
     // total size: 0x7C (124)
 
-    ObjectCamera(); // 0x0047C570
-    ~ObjectCamera(); // 0x0047C580
     float * Create(); // 0x0047C590
     void GetCameraDirect(); // 0x0047C630
     void SetCameraEyePosition(struct gbGfxManager *a2); // 0x0047C640

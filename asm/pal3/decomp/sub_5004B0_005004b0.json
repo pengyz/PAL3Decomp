@@ -1,7 +1,0 @@
-{
-  "name": "sub_5004B0",
-  "address": "0x005004B0",
-  "size_bytes": 147,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall sub_5004B0(_DWORD *this, int a2)\n{\n  int v3; // eax\n  _DWORD *v4; // edi\n  char *v5; // ebp\n\n  v3 = 2632 * *(this + 40);\n  v4 = (_DWORD *)((char *)this + v3 + 2760);\n  v5 = (char *)this + 80 * *(this + 41) + v3 + 184;\n  if ( !CCBStageRole::IsReady((CCBStageRole *)*(this + *v4 + 6), *(_DWORD *)((char *)this + v3 + 2744)) )\n    goto LABEL_7;\n  if ( !v5[41] && CCBStageRole::ForceDelTaskByPFN((CCBStageRole *)*(this + *v4 + 6)) )\n  {\n    CCBStageRole::GetState((CCBStageRole *)*(this + *v4 + 6));\n    v5[41] = 1;\n  }\n  if ( v5[43] == 1 || CCBStageRole::ForceDelTaskByPFN((CCBStageRole *)*(this + *v4 + 6)) )\nLABEL_7:\n    *((_DWORD *)v5 + 4) = 4;\n  return 0;\n}\n"
-}

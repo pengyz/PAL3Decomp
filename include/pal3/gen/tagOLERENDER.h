@@ -1,0 +1,9 @@
+#pragma once
+// Auto-generated: tagOLERENDER enum
+
+enum tagOLERENDER {
+    OLERENDER_NONE = 0,
+    OLERENDER_DRAW = 1,
+    OLERENDER_FORMAT = 2,
+    OLERENDER_ASIS = 3,
+};

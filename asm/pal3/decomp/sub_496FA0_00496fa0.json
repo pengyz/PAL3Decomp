@@ -1,7 +1,0 @@
-{
-  "name": "sub_496FA0",
-  "address": "0x00496FA0",
-  "size_bytes": 173,
-  "signature": "char __thiscall(UIListBox *this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nchar __thiscall sub_496FA0(UIListBox *this)\n{\n  int v2; // eax\n  int i; // edi\n\n  UIListBox::SetScroll(this);\n  v2 = *((_DWORD *)this + 38626);\n  if ( *((_BYTE *)this + v2 + 154496) )\n  {\n    for ( i = 0; i < 16; ++i )\n    {\n      if ( Concurrency::details::VirtualProcessor::IsThrottled((Concurrency::details::VirtualProcessor *)((char *)this + 9344 * *((_DWORD *)this + 38626) + 584 * i + 4864)) )\n        sub_4B4DC0((int)this + 9344 * *((_DWORD *)this + 38626) + 584 * i + 4864, 11);\n      LOBYTE(v2) = Concurrency::details::VirtualProcessor::IsThrottled((Concurrency::details::VirtualProcessor *)((char *)this + 9344 * *((_DWORD *)this + 38626) + 584 * i + 79616));\n      if ( (_BYTE)v2 )\n        LOBYTE(v2) = sub_4B4DC0((int)this + 9344 * *((_DWORD *)this + 38626) + 584 * i + 79616, 10);\n    }\n  }\n  return v2;\n}\n"
-}

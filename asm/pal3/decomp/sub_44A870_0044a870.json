@@ -1,7 +1,0 @@
-{
-  "name": "sub_44A870",
-  "address": "0x0044A870",
-  "size_bytes": 245,
-  "signature": "void __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nvoid __thiscall sub_44A870(_DWORD *this)\n{\n  int v2; // ebp\n  int v3; // eax\n  int v4; // edi\n  double v5; // st7\n  double v6; // st7\n  int v7; // edi\n\n  if ( *(this + 14) )\n  {\n    if ( *(this + 19) )\n    {\n      v2 = *(this + 20);\n      if ( v2 > 0 )\n      {\n        v3 = *(this + 22);\n        if ( v3 > v2 )\n        {\n          v5 = *((float *)this + 23) - 5.0;\n          if ( v5 <= 0.0 )\n            v5 = 0.0;\n          v6 = 1.0 - v5 * 0.33333334;\n          if ( v6 < 0.0 )\n            v6 = 0.0;\n          v7 = 0;\n          do\n            sub_44AA20(this, v7++, (__int64)(v6 * 255.0));\n          while ( v7 <= *(this + 20) );\n          if ( !(unsigned __int8)(__int64)(v6 * 255.0) )\n          {\n            (*(void (__thiscall **)(_DWORD *))(*this + 12))(this);\n            (*(void (__thiscall **)(_DWORD *, _DWORD))*this)(this, 0);\n          }\n        }\n        else\n        {\n          v4 = 0;\n          if ( v3 > 0 )\n          {\n            do\n              sub_44AA20(this, v4++, 255);\n            while ( v4 < *(this + 22) );\n          }\n          sub_44AA20(this, *(this + 22), (__int64)(*((float *)this + 23) / 2.0 * 255.0));\n        }\n      }\n    }\n  }\n}\n"
-}

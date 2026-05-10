@@ -1,0 +1,8 @@
+#pragma once
+// Auto-generated: tagUSERCLASSTYPE enum
+
+enum tagUSERCLASSTYPE {
+    USERCLASSTYPE_FULL = 1,
+    USERCLASSTYPE_SHORT = 2,
+    USERCLASSTYPE_APPNAME = 3,
+};

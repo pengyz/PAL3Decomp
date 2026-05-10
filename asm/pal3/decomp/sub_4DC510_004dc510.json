@@ -1,7 +1,0 @@
-{
-  "name": "sub_4DC510",
-  "address": "0x004DC510",
-  "size_bytes": 73,
-  "signature": "double __thiscall(int this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\ndouble __thiscall sub_4DC510(int this, int a2)\n{\n  _DWORD *v3; // ecx\n  CCBSystem *v4; // ecx\n  double result; // st7\n\n  v3 = (_DWORD *)(this + 40);\n  *v3 = 0;\n  v3[1] = 0;\n  v3[2] = 0;\n  v3[3] = 0;\n  memset((void *)(this + 56), 0, 0x2Cu);\n  v4 = *(CCBSystem **)(this + 4);\n  *(_BYTE *)(this + 36) = 0;\n  result = CCBSystem::GetDeltaTime(v4);\n  *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this + 8) + 4 * *(_DWORD *)(this + 32) + 24) + 280) = 0;\n  *(_DWORD *)(this + 32) = -1;\n  return result;\n}\n"
-}

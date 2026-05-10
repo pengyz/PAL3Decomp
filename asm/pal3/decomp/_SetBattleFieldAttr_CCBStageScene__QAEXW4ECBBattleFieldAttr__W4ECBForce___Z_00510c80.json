@@ -1,0 +1,7 @@
+{
+  "name": "?SetBattleFieldAttr@CCBStageScene@@QAEXW4ECBBattleFieldAttr@@W4ECBForce@@@Z",
+  "address": "0x00510C80",
+  "size_bytes": 25,
+  "signature": "int __thiscall(CCBStageScene *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBStageScene::SetBattleFieldAttr(CCBStageScene *this)\n{\n  int result; // eax\n  gbGeomNode *m_pPointer; // ecx\n\n  result = CCBStageScene::Init((int)this);\n  m_pPointer = this->m_pPointer;\n  if ( m_pPointer )\n    return ((int (__thiscall *)(gbGeomNode *))m_pPointer->next[5].next)(m_pPointer);\n  return result;\n}\n"
+}

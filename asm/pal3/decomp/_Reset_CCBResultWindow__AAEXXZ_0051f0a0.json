@@ -1,0 +1,7 @@
+{
+  "name": "?Reset@CCBResultWindow@@AAEXXZ",
+  "address": "0x0051F0A0",
+  "size_bytes": 133,
+  "signature": "int __thiscall(CCBResultWindow *this, int a2, int a3)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBResultWindow::Reset(CCBResultWindow *this, int a2, int a3)\n{\n  int v4; // eax\n  const void *v5; // esi\n  int v6; // edx\n  int v7; // eax\n  int v8; // ecx\n  int v9; // edx\n\n  v4 = *((_DWORD *)this + 2011);\n  v5 = (const void *)*((_DWORD *)this + 2012);\n  v6 = *((_DWORD *)this + 82011);\n  *((_DWORD *)this + 86393) = *((_DWORD *)this + 82005);\n  *((_DWORD *)this + 86395) = v4;\n  v7 = *((_DWORD *)this + 82008);\n  qmemcpy((char *)this + 345584, v5, 0xDCu);\n  v8 = *((_DWORD *)this + 82009);\n  *((_DWORD *)this + 126858) = v6;\n  v9 = *((_DWORD *)this + 82010);\n  *((_DWORD *)this + 126855) = v7;\n  *((_DWORD *)this + 126856) = v8;\n  *((_DWORD *)this + 126857) = v9;\n  PalScriptMgr::RunSceneScript(a2);\n  UIWnd::HitTest(this, a2, a3);\n  return 1;\n}\n"
+}

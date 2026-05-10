@@ -1,7 +1,0 @@
-{
-  "name": "sub_4207D0",
-  "address": "0x004207D0",
-  "size_bytes": 198,
-  "signature": "unsigned __int8 *__thiscall(int this, int a2, const char *a3)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nunsigned __int8 *__thiscall sub_4207D0(int this, int a2, const char *a3)\n{\n  unsigned __int8 *result; // eax\n  unsigned __int8 *v5; // ebp\n  unsigned __int8 *v6; // edx\n  int v7; // ecx\n\n  (**(void (__thiscall ***)(int))this)(this);\n  sub_4202A0((void (__thiscall ***)(void *))this, a2);\n  *(_DWORD *)(this + 256) = a2;\n  result = (unsigned __int8 *)(*(int (__thiscall **)(int, _DWORD))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(\n                                g_Input.KeyInfo[177].Data,\n                                0);\n  v5 = result;\n  if ( result )\n  {\n    result = gbImage2D::CreateImage((gbImage2D *)(this + 56), 256, 256, 32);\n    v6 = result;\n    v7 = *(_DWORD *)(this + 184) * *(_DWORD *)(this + 188);\n    if ( v7 > 0 )\n    {\n      result = 0;\n      memset(v6, 0, 4 * v7);\n    }\n    if ( v6 )\n    {\n      (*(void (__thiscall **)(unsigned __int8 *, _DWORD, _DWORD, int, _DWORD, int, unsigned __int8 *))(*(_DWORD *)v5 + 4))(\n        v5,\n        *(_DWORD *)(this + 184),\n        *(_DWORD *)(this + 188),\n        2,\n        0,\n        2,\n        v6);\n      *(_DWORD *)(this + 52) = v5;\n      *(_DWORD *)(this + 48) = 1;\n      *(_DWORD *)(this + 44) = 1;\n      return (unsigned __int8 *)sprintf((char *const)(this + 261), \"%s%s\", a3, a3 + 32);\n    }\n  }\n  return result;\n}\n"
-}

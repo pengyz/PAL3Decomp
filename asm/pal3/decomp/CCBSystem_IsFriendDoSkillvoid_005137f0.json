@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::IsFriendDoSkill(void)",
-  "address": "0x005137F0",
-  "size_bytes": 70,
-  "signature": "int __thiscall(CCBSystem *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBSystem::IsFriendDoSkill(CCBSystem *this)\n{\n  __int32 v2; // ebp\n  __int32 *p_m_bLockCam; // esi\n  int result; // eax\n\n  v2 = 0;\n  p_m_bLockCam = &this->m_bLockCam;\n  do\n  {\n    if ( *((_BYTE *)p_m_bLockCam + 36) == 1 )\n    {\n      this->m_bAuto = v2;\n      result = ((int (__thiscall *)(char *, _DWORD))*p_m_bLockCam)((char *)this + p_m_bLockCam[1], 0);\n      this->m_bAuto = -1;\n    }\n    ++v2;\n    p_m_bLockCam += 22;\n  }\n  while ( v2 < 1024 );\n  this->m_bAuto = -1;\n  return result;\n}\n"
-}

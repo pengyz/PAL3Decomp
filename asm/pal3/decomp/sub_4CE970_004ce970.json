@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CE970",
-  "address": "0x004CE970",
-  "size_bytes": 200,
-  "signature": "char *__stdcall(int a1, int a2, int a3)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar *__stdcall sub_4CE970(int a1, int a2, int a3)\n{\n  int v3; // edx\n  char *result; // eax\n  int v5; // ecx\n  int v6; // eax\n  int v7; // edi\n  char *v8; // edx\n  _BYTE v9[992]; // [esp+8h] [ebp-3E0h] BYREF\n\n  v3 = 15940 * a1;\n  result = (char *)dword_EC9E70[3985 * a1];\n  if ( a2 < (int)result && a3 < (int)result )\n  {\n    v5 = 3985 * a1 + a3;\n    v6 = a2 + 3985 * a1;\n    v7 = dword_EC9E74[v6];\n    dword_EC9E74[v6] = dword_EC9E74[v5];\n    dword_EC9E74[v5] = v7;\n    result = (char *)&unk_EC9EB4 + 992 * a2 + v3;\n    qmemcpy(v9, result, sizeof(v9));\n    v8 = (char *)&unk_EC9EB4 + 992 * a3 + v3;\n    qmemcpy(result, v8, 0x3E0u);\n    qmemcpy(v8, v9, 0x3E0u);\n  }\n  return result;\n}\n"
-}

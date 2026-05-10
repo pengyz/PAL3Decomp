@@ -1,7 +1,0 @@
-{
-  "name": "sub_4161E0",
-  "address": "0x004161E0",
-  "size_bytes": 54,
-  "signature": "void __cdecl(gbVec3D *a1, float a2)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nvoid __cdecl sub_4161E0(gbVec3D *a1, float a2)\n{\n  double v2; // st7\n  double v3; // st7\n\n  v2 = gbVec3D::Length(a1);\n  if ( v2 > a2 )\n  {\n    v3 = a2 / v2;\n    a1->x = v3 * a1->x;\n    a1->y = v3 * a1->y;\n    a1->z = v3 * a1->z;\n  }\n}\n"
-}

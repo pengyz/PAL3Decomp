@@ -1,7 +1,0 @@
-{
-  "name": "sub_421EA0",
-  "address": "0x00421EA0",
-  "size_bytes": 117,
-  "signature": "void __usercall(int *this@<ecx>, double a2@<st0>)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nvoid __usercall sub_421EA0(int *this@<ecx>, double a2@<st0>)\n{\n  int v2; // esi\n  int v3; // edx\n  int *v4; // eax\n  char *v5; // eax\n\n  v2 = *(this + 55);\n  v3 = 0;\n  if ( v2 <= 0 )\n  {\nLABEL_7:\n    v5 = PalScript::SetAppName((PalScript *)(&g_PAL3Data + 312), aXmouse);\n    sub_410360(v5);\n  }\n  else\n  {\n    v4 = this + 117;\n    while ( !*((_BYTE *)v4 - 71) || *(_BYTE *)v4 != 24 || v4[2] != 1 )\n    {\n      ++v3;\n      v4 += 224;\n      if ( v3 >= v2 )\n        goto LABEL_7;\n    }\n    sub_424C20(\n      (int)(this + 224 * v3 + 56),\n      a2,\n      *(RoleSystem **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132],\n      11,\n      0,\n      0.001);\n  }\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_47F390",
-  "address": "0x0047F390",
-  "size_bytes": 120,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_47F390(int this)\n{\n  int result; // eax\n  int v3; // edi\n  int v4; // eax\n\n  result = sub_40F030(&g_SceneMgr.m_npc[0].m_path.normal[78].x);\n  v3 = 0;\n  *(_DWORD *)(this + 160088) = result;\n  if ( result > 0 )\n  {\n    if ( *(_DWORD *)(this + 160084) )\n    {\n      operator delete(*(void **)(this + 160084));\n      *(_DWORD *)(this + 160084) = 0;\n    }\n    *(_DWORD *)(this + 160084) = operator new(4 * *(_DWORD *)(this + 160088));\n    result = *(_DWORD *)(this + 160088);\n    if ( result > 0 )\n    {\n      do\n      {\n        v4 = sub_40F050(&g_SceneMgr.m_npc[0].m_path.normal[78].x, v3++);\n        *(_DWORD *)(*(_DWORD *)(this + 160084) + 4 * v3 - 4) = v4;\n        result = *(_DWORD *)(this + 160088);\n      }\n      while ( v3 < result );\n    }\n  }\n  return result;\n}\n"
-}

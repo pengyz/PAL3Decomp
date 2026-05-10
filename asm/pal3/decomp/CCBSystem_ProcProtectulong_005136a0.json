@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::ProcProtect(ulong)",
-  "address": "0x005136A0",
-  "size_bytes": 37,
-  "signature": "int __thiscall(CCBSystem *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBSystem::ProcProtect(CCBSystem *this)\n{\n  unsigned __int32 v1; // eax\n\n  v1 = this->m_bPXVariance + 1;\n  this->m_bPXVariance = v1;\n  if ( v1 >= 0x7FFFFFFF )\n    this->m_bPXVariance = 1;\n  return this->m_bPXVariance;\n}\n"
-}

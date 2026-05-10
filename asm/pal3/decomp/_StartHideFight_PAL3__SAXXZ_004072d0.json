@@ -1,0 +1,7 @@
+{
+  "name": "?StartHideFight@PAL3@@SAXXZ",
+  "address": "0x004072D0",
+  "size_bytes": 41,
+  "signature": "int()",
+  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nint PAL3::StartHideFight()\n{\n  int (__thiscall ***v0)(_DWORD, _DWORD); // eax\n\n  g_Input.KeyInfo[177].PressTime = 8;\n  g_Input.KeyInfo[176].CountMode = 0;\n  v0 = (int (__thiscall ***)(_DWORD, _DWORD))CGameData::SetMode((CGameData *)&g_GameData, 0);\n  return (**v0)(v0, 0);\n}\n"
+}

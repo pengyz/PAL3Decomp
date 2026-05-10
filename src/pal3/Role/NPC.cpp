@@ -1,8 +1,8 @@
 #include "pal3/ida_defs.h"
 #include "pal3/globals.h"
 #include "pal3/gen/NPC.h"
-#include "pal3/gen/Concurrency.h"
 #include "pal3/gen/PAL_GDB.h"
+#include "pal3/gen/VirtualProcessor.h"
 
 // Forward declarations for unnamed functions
 int sub_41A150(...);

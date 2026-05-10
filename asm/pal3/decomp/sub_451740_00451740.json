@@ -1,7 +1,0 @@
-{
-  "name": "sub_451740",
-  "address": "0x00451740",
-  "size_bytes": 95,
-  "signature": "int __thiscall(int this, LPCSTR lpString1)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall sub_451740(int this, LPCSTR lpString1)\n{\n  int v3; // ebx\n  int v4; // ebp\n  int result; // eax\n\n  if ( lpString1 != *(LPCSTR *)(this + 56) )\n  {\n    (**(void (__thiscall ***)(int, LPCSTR))(this + 80))(this + 80, lpString1);\n    v3 = *(_DWORD *)(this + 752);\n    v4 = *(_DWORD *)(this + 904);\n    UIWnd::Destroy((UIWnd *)this, (int)lpString1);\n    (**(void (__thiscall ***)(int, int))(this + 696))(this + 696, v3);\n    result = (**(int (__thiscall ***)(int, int))(this + 848))(this + 848, v4);\n  }\n  if ( !lpString1 )\n    return sub_451360(this, 0, 1);\n  return result;\n}\n"
-}

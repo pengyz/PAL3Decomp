@@ -1,7 +1,0 @@
-{
-  "name": "sub_519180",
-  "address": "0x00519180",
-  "size_bytes": 120,
-  "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall sub_519180(_DWORD *this)\n{\n  _DWORD *v2; // ebp\n  int v3; // ebx\n  _BYTE *v4; // edi\n  char result; // al\n\n  v2 = this + 652;\n  *(this + 652) = 0;\n  *(this + 657) = -1;\n  *(this + 653) = 0;\n  *(this + 654) = 0;\n  *(this + 655) = -1;\n  v3 = 0;\n  v4 = (char *)this + 1186;\n  do\n  {\n    result = *(v4 - 2);\n    if ( result )\n    {\n      if ( !*v4 )\n      {\n        *(this + 657) = v3;\n        *v2 = *(_DWORD *)(v4 - 18);\n        *(this + 653) = *(_DWORD *)(v4 - 14);\n        *(this + 654) = *(_DWORD *)(v4 - 10);\n        *(this + 655) = *(_DWORD *)(v4 - 6);\n        result = ((int (__thiscall *)(char *, _DWORD))*v2)((char *)this + *(this + 653), 0);\n      }\n    }\n    ++v3;\n    v4 += 72;\n  }\n  while ( v3 < 20 );\n  return result;\n}\n"
-}

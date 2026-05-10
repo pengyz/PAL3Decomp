@@ -21,27 +21,27 @@ void * SceneMgr::Create(int gfxMgr, int cam, int a4)
   struct gbRenderEffect *v8; // eax
   __int32 v9; // edx
 
-  this->s_curscene = gfxMgr;
-  *(_DWORD *)&this->s_scene[0].m_info.cityname[20] = cam;
-  *(_DWORD *)&this->s_scene[0].m_info.cityname[12] = 0;
-  *(_DWORD *)&this->s_scene[0].m_info.cityname[16] = 0;
-  *(_DWORD *)this->s_scene[0].m_info.cityname = a4;
-  memset(&this->s_scene[0].m_info.cityname[24], 0, 0x900u);
-  memset(&this->s_scene[0].m_npc[0].m_path.points[26], 0, 0xA000u);
-  s_curscene = this->s_curscene;
-  this->s_scene[0].m_npc[4].m_path.normal[176].x = 0.0;
-  this->s_scene[0].m_npc[4].m_path.normal[176].y = 0.0;
-  this->s_scene[0].m_npc[4].m_path.normal[176].z = 0.0;
-  this->s_scene[0].m_npc[4].m_path.normal[177].x = 0.0;
-  this->s_scene[0].m_npc[4].m_path.normal[177].y = 1.0;
+  this->m_pGfxMgr = gfxMgr;
+  *(_DWORD *)&this->m_pSceneRoot[0].m_info.cityname[20] = cam;
+  *(_DWORD *)&this->m_pSceneRoot[0].m_info.cityname[12] = 0;
+  *(_DWORD *)&this->m_pSceneRoot[0].m_info.cityname[16] = 0;
+  *(_DWORD *)this->m_pSceneRoot[0].m_info.cityname = a4;
+  memset(&this->m_pSceneRoot[0].m_info.cityname[24], 0, 0x900u);
+  memset(&this->m_pSceneRoot[0].m_npc[0].m_path.points[26], 0, 0xA000u);
+  s_curscene = this->m_pGfxMgr;
+  this->m_pSceneRoot[0].m_npc[4].m_path.normal[176].x = 0.0;
+  this->m_pSceneRoot[0].m_npc[4].m_path.normal[176].y = 0.0;
+  this->m_pSceneRoot[0].m_npc[4].m_path.normal[176].z = 0.0;
+  this->m_pSceneRoot[0].m_npc[4].m_path.normal[177].x = 0.0;
+  this->m_pSceneRoot[0].m_npc[4].m_path.normal[177].y = 1.0;
   v6 = ((gbEffectMgr *)*(gbEffectMgr **)(s_curscene + 200))->NewRenderEffect(aGfxscriptAddit, 0);
-  v7 = this->s_curscene;
-  *(_DWORD *)&this->s_scene[0].m_info.cityname[12] = v6;
+  v7 = this->m_pGfxMgr;
+  *(_DWORD *)&this->m_pSceneRoot[0].m_info.cityname[12] = v6;
   v8 = ((gbEffectMgr *)*(gbEffectMgr **)(v7 + 200))->NewRenderEffect(aGfxscriptAlpha, 0);
-  v9 = this->s_curscene;
-  *(_DWORD *)&this->s_scene[0].m_info.cityname[16] = v8;
-  *(_DWORD *)&this->s_scene[0].m_info.cityname[4] = ((gbEffectMgr *)*(gbEffectMgr **)(v9 + 200))->NewRenderEffect(aGfxscriptAddit_0, 0);
-  *(_DWORD *)&this->s_scene[0].m_info.cityname[8] = ((gbEffectMgr *)*(gbEffectMgr **)(this->s_curscene + 200))->NewRenderEffect(aGfxscriptAlpha_0, 0);
+  v9 = this->m_pGfxMgr;
+  *(_DWORD *)&this->m_pSceneRoot[0].m_info.cityname[16] = v8;
+  *(_DWORD *)&this->m_pSceneRoot[0].m_info.cityname[4] = ((gbEffectMgr *)*(gbEffectMgr **)(v9 + 200))->NewRenderEffect(aGfxscriptAddit_0, 0);
+  *(_DWORD *)&this->m_pSceneRoot[0].m_info.cityname[8] = ((gbEffectMgr *)*(gbEffectMgr **)(this->m_pGfxMgr + 200))->NewRenderEffect(aGfxscriptAlpha_0, 0);
   sub_4CDED0((CEffMgr *)this);
   CEffMgr::CEffMgr();
   return this;
@@ -54,7 +54,7 @@ char SceneMgr::RenderAll()
   int v2; // edi
   char result; // al
 
-  p_y = (float *)&this->s_scene[0].m_npc[0].m_path.points[27].y;
+  p_y = (float *)&this->m_pSceneRoot[0].m_npc[0].m_path.points[27].y;
   v2 = 2048;
   do
   {
@@ -75,7 +75,7 @@ char SceneMgr::RenderUpdate()
   int v2; // edi
   char result; // al
 
-  p_y = (float *)&this->s_scene[0].m_npc[0].m_path.points[27].y;
+  p_y = (float *)&this->m_pSceneRoot[0].m_npc[0].m_path.points[27].y;
   v2 = 2048;
   do
   {

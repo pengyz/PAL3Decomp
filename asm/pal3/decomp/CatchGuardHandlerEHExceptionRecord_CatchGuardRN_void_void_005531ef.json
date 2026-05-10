@@ -1,7 +1,0 @@
-{
-  "name": "CatchGuardHandler(EHExceptionRecord *,CatchGuardRN *,void *,void *)",
-  "address": "0x005531EF",
-  "size_bytes": 37,
-  "signature": "int __cdecl(PEXCEPTION_RECORD ExceptionRecord, PVOID TargetFrame, struct _CONTEXT *a3)",
-  "decompiled_c": "int __cdecl CatchGuardHandler(PEXCEPTION_RECORD ExceptionRecord, PVOID TargetFrame, struct _CONTEXT *a3)\n{\n  return __InternalCxxFrameHandler(\n           ExceptionRecord,\n           *((struct EHRegistrationNode **)TargetFrame + 3),\n           a3,\n           0,\n           *((struct _s_FuncInfo **)TargetFrame + 2),\n           *((_DWORD *)TargetFrame + 4),\n           TargetFrame,\n           0);\n}\n"
-}

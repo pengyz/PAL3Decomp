@@ -18,8 +18,6 @@ public:
     UIButton * m_pOk; // +0x5C
     // total size: 0x60 (96)
 
-    CCBProtectWindow(); // 0x0051D6E0
-    ~CCBProtectWindow(); // 0x0051D6F0
     static void Reset(); // 0x0051D700
     int Create(); // 0x0051D710
     UIWnd * Destroy(CCBProtectWindow *Block, char a2); // 0x0051DD80

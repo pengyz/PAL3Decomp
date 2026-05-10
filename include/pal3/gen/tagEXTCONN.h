@@ -1,0 +1,8 @@
+#pragma once
+// Auto-generated: tagEXTCONN enum
+
+enum tagEXTCONN {
+    EXTCONN_STRONG = 1,
+    EXTCONN_WEAK = 2,
+    EXTCONN_CALLABLE = 4,
+};

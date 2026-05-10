@@ -1,7 +1,0 @@
-{
-  "name": "CCBStage::~CCBStage(void)",
-  "address": "0x004FB9F0",
-  "size_bytes": 115,
-  "signature": "unsigned int __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nunsigned int __thiscall CCBStage::~CCBStage(int this)\n{\n  _DWORD *v2; // ecx\n  unsigned int result; // eax\n\n  v2 = (_DWORD *)(this + 80);\n  *v2 = 0;\n  v2[1] = 0;\n  *(_BYTE *)(this + 152) = 0;\n  *(_DWORD *)(this + 156) = 0;\n  memset((void *)(this + 168), 0, 0xA4800u);\n  *(_DWORD *)(this + 160) = -1;\n  *(_DWORD *)(this + 164) = -1;\n  *(_DWORD *)(this + 88) = -1;\n  *(_DWORD *)(this + 92) = 0;\n  *(_DWORD *)(this + 96) = 0;\n  *(_WORD *)(this + 100) = 0;\n  *(_BYTE *)(this + 102) = 0;\n  memset((void *)(this + 104), 0, 0x2Cu);\n  *(_DWORD *)(this + 148) = 0;\n  result = gbCrc32Compute(aOver);\n  *(_DWORD *)(this + 673960) = result;\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_4F2800",
-  "address": "0x004F2800",
-  "size_bytes": 260,
-  "signature": "int __thiscall(CCBRoleState *this, int a2, int a3)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall sub_4F2800(CCBRoleState *this, int a2, int a3)\n{\n  int v4; // edi\n  int *v5; // ebx\n  unsigned int v6; // eax\n  int v7; // edi\n  signed int v8; // esi\n  int v9; // edx\n  int v11; // [esp+14h] [ebp+8h]\n  float v12; // [esp+14h] [ebp+8h]\n\n  v4 = 0;\n  v5 = (int *)(PAL_GDB::GDB_GetItemNum(&g_GDB, *(_DWORD *)(a2 + 4)) + 36);\n  v11 = 4;\n  do\n  {\n    if ( *v5 )\n    {\n      v6 = sub_4FA5F0(this->m_sCombatDialog, *v5);\n      v4 += CCBRoleState::SetCanAction(this, v6, a3, 0);\n    }\n    ++v5;\n    --v11;\n  }\n  while ( v11 );\n  v7 = 2 * v4;\n  if ( byte_5DFDEB )\n  {\n    v12 = (double)v7 * 0.1;\n    v8 = abs32((int)v12);\n    if ( v8 )\n    {\n      v9 = (((214013 * g_RandSeed + 2531011) >> 16) & 0x7FFF) % v8;\n      g_nRandCallCount += 2;\n      g_RandSeed = 214013 * (214013 * g_RandSeed + 2531011) + 2531011;\n      if ( ((g_RandSeed >> 16) & 0x3FFu) >= 0x200 )\n        return v9 + v7;\n      v7 -= v9;\n    }\n  }\n  return v7;\n}\n"
-}

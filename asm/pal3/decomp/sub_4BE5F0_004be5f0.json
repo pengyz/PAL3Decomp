@@ -1,7 +1,0 @@
-{
-  "name": "sub_4BE5F0",
-  "address": "0x004BE5F0",
-  "size_bytes": 181,
-  "signature": "int __thiscall(void ***this)",
-  "decompiled_c": "// between_std_methods (0x4A7690-0x4BEF50)\nint __thiscall sub_4BE5F0(void ***this)\n{\n  int result; // eax\n  void **v3; // edx\n  void **v4; // ecx\n  void **v5; // eax\n  void **v6; // eax\n  void **v7; // ecx\n  void *v8; // [esp-Ch] [ebp-10h]\n\n  for ( result = (int)*(this + 37); result; result = (int)*(this + 37) )\n  {\n    v3 = *(this + 29) + 1;\n    v4 = (void **)((char *)*(this + 37) - 1);\n    *(this + 29) = v3;\n    *(this + 37) = v4;\n    if ( !v4 || v3 == *(this + 28) )\n    {\n      v5 = *(this + 30);\n      *(this + 30) = v5 + 1;\n      operator delete(*v5);\n      if ( *(this + 37) )\n      {\n        v6 = *(this + 30);\n        v7 = (void **)*v6;\n        *(this + 27) = (void **)*v6;\n        *(this + 28) = v7 + 1024;\n        *(this + 29) = v7;\n        *(this + 30) = v6;\n      }\n      else\n      {\n        *(this + 27) = 0;\n        *(this + 28) = 0;\n        *(this + 29) = 0;\n        *(this + 30) = 0;\n        *(this + 31) = 0;\n        v8 = *(this + 35);\n        *(this + 32) = 0;\n        *(this + 33) = 0;\n        *(this + 34) = 0;\n        operator delete(v8);\n      }\n    }\n  }\n  return result;\n}\n"
-}

@@ -87,7 +87,6 @@ public:
     // total size: 0x1AC0 (6848)
 
     char IsActive(int index); // 0x004ED040
-    ~CCBStageRole(); // 0x00508930
     static int Proceed(); // 0x005090F0
     static int SetAlive(); // 0x00509130
     static int SetMaxBlend(); // 0x00509140

@@ -1,7 +1,0 @@
-{
-  "name": "sub_416550",
-  "address": "0x00416550",
-  "size_bytes": 199,
-  "signature": "void __thiscall(int this, float *a2, int a3)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nvoid __thiscall sub_416550(int this, float *a2, int a3)\n{\n  float v4; // eax\n  float v5; // ecx\n  float x; // eax\n  float v7; // edx\n  float z; // edx\n  int v9; // ecx\n  float v10; // edx\n  gbVec3D v11; // [esp+4h] [ebp-18h] BYREF\n  float v12; // [esp+10h] [ebp-Ch]\n  int v13; // [esp+14h] [ebp-8h]\n  float v14; // [esp+18h] [ebp-4h]\n\n  v12 = *(float *)(this + 160);\n  v13 = *(_DWORD *)(this + 164);\n  v4 = *(float *)(this + 168);\n  v11.x = *a2;\n  v14 = v4;\n  v11.y = 0.0;\n  v5 = a2[2];\n  v11.x = v11.x - v12;\n  v11.z = v5 - v4;\n  if ( gbVec3D::Length(&v11) >= 0.0049999999 )\n  {\n    v12 = *(float *)(this + 1296);\n    x = v11.x;\n    v13 = *(_DWORD *)(this + 1300);\n    v7 = *(float *)(this + 1304);\n    *(float *)(this + 1300) = v11.y;\n    v14 = v7;\n    z = v11.z;\n    *(float *)(this + 1296) = x;\n    *(float *)(this + 1304) = z;\n    sub_4122C0(this);\n    v9 = v13;\n    v10 = v14;\n    *(float *)(this + 1296) = v12;\n    *(_DWORD *)(this + 1300) = v9;\n    *(float *)(this + 1304) = v10;\n  }\n}\n"
-}

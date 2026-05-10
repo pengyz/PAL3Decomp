@@ -1,0 +1,7 @@
+#pragma once
+// Auto-generated: tagDISCARDCACHE enum
+
+enum tagDISCARDCACHE {
+    DISCARDCACHE_SAVEIFDIRTY = 0,
+    DISCARDCACHE_NOSAVE = 1,
+};

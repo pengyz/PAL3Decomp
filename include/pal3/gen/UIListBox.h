@@ -35,8 +35,6 @@ public:
     char m_rowenable[16]; // +0x4F8 (std::vector<int,std::allocator<int> >)
     // total size: 0x508 (1288)
 
-    UIListBox(); // 0x0043DCD0
-    ~UIListBox(); // 0x0043DCF0
     int SetSelTexture(int id, int pRect, int a4, int a5, int a6, int a7); // 0x0043DD60
     int SetScroll(); // 0x0043DDF0
     int SetScrollPos(); // 0x0043DE40

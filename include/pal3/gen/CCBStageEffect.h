@@ -19,8 +19,6 @@ public:
     tagEffLinker m_Linker[384]; // +0x98C
     // total size: 0x6390 (25488)
 
-    CCBStageEffect(); // 0x00508E30
-    ~CCBStageEffect(); // 0x00508F30
     static int Create(); // 0x00509050
     static int Destroy(); // 0x00509060
     static void Init(); // 0x00509070

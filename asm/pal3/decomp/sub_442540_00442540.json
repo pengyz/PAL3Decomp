@@ -1,7 +1,0 @@
-{
-  "name": "sub_442540",
-  "address": "0x00442540",
-  "size_bytes": 129,
-  "signature": "struct gbVFileSystem *__thiscall(gbRefObject **this, int a2)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nstruct gbVFileSystem *__thiscall sub_442540(gbRefObject **this, int a2)\n{\n  gbRefObject *v3; // ecx\n  gbTexture *v4; // eax\n  OpenBaseFile v6; // [esp+8h] [ebp-10h] BYREF\n  int v7; // [esp+14h] [ebp-4h]\n\n  v3 = *(this + 34);\n  if ( v3 )\n    gbRefObject::Release(v3);\n  OpenBaseFile::~OpenBaseFile(&v6);\n  v7 = 0;\n  v4 = (gbTexture *)(*(int (__thiscall **)(int, int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(\n                      g_Input.KeyInfo[177].Data,\n                      a2);\n  *(this + 34) = v4;\n  if ( v4 )\n    gbTexture::LoadTexture(v4, 1);\n  v7 = -1;\n  return OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v6);\n}\n"
-}

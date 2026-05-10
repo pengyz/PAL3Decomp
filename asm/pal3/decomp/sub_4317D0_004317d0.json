@@ -1,7 +1,0 @@
-{
-  "name": "sub_4317D0",
-  "address": "0x004317D0",
-  "size_bytes": 105,
-  "signature": "int __thiscall(_DWORD *this, unsigned int a2, unsigned int a3, const char *a4, unsigned int a5)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nint __thiscall sub_4317D0(_DWORD *this, unsigned int a2, unsigned int a3, const char *a4, unsigned int a5)\n{\n  unsigned int v6; // edx\n  int v7; // ecx\n  int v8; // eax\n  const char *v9; // esi\n  int result; // eax\n\n  if ( *(this + 2) < a2 )\n    std::_Xran();\n  v6 = a3;\n  if ( *(this + 2) - a2 < a3 )\n    v6 = *(this + 2) - a2;\n  v7 = v6;\n  if ( v6 >= a5 )\n    v7 = a5;\n  v8 = *(this + 1);\n  if ( v8 )\n    v9 = (const char *)(v8 + a2);\n  else\n    v9 = 0;\n  result = memcmp(v9, a4, v7);\n  if ( !result )\n  {\n    if ( v6 >= a5 )\n      return v6 != a5;\n    else\n      return -1;\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_4F4820",
-  "address": "0x004F4820",
-  "size_bytes": 155,
-  "signature": "unsigned __int8 __thiscall(int this, int idx)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nunsigned __int8 __thiscall sub_4F4820(int this, int idx)\n{\n  int v3; // ecx\n  int v4; // eax\n  _BYTE *v5; // ecx\n  unsigned __int8 result; // al\n\n  v3 = *(_DWORD *)(*(_DWORD *)(this + 520) + 8);\n  if ( *(_BYTE *)(v3 + 36) && CCBSystem::GetControl((CCBSystem *)v3) == idx )\n  {\n    CCBUI::GetState(*(CCBUI **)(*(_DWORD *)(this + 520) + 8));\n    v4 = 24;\n    v5 = (_BYTE *)(this + 577);\n    do\n    {\n      if ( *v5 )\n      {\n        *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this + 524) + v4) + 280) = 0;\n        *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this + 524) + v4) + 274) = 0;\n      }\n      v4 += 4;\n      v5 += 892;\n    }\n    while ( v4 < 68 );\n  }\n  result = CCBSystem::IsCmdEmpty(*(CCBSystem **)(*(_DWORD *)(this + 520) + 12), idx);\n  if ( !result && !*(_BYTE *)(this + 549) )\n    return (unsigned __int8)CCBSystem::GetCmdPtr(*(CCBSystem **)(*(_DWORD *)(this + 520) + 12), idx);\n  return result;\n}\n"
-}

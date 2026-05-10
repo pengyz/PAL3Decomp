@@ -38,8 +38,6 @@ public:
     unsigned char m_bCircleEndSelected; // +0x690AE
     // total size: 0x690B0 (430256)
 
-    CCBCamControl(); // 0x005081D0
-    ~CCBCamControl(); // 0x005081E0
     static int Reset(); // 0x00508220
     static int Create(); // 0x00508230
     static int Destroy(); // 0x00508270

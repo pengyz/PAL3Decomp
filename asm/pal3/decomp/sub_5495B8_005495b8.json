@@ -1,7 +1,0 @@
-{
-  "name": "sub_5495B8",
-  "address": "0x005495B8",
-  "size_bytes": 378,
-  "signature": "__m128 *__thiscall(__m128 *this, unsigned int *a2)",
-  "decompiled_c": "__m128 *__thiscall sub_5495B8(__m128 *this, unsigned int *a2)\n{\n  *this = _mm_shuffle_ps((__m128)*a2, (__m128)*a2, 0);\n  *(this + 4) = _mm_shuffle_ps((__m128)a2[4], (__m128)a2[4], 0);\n  *(this + 8) = _mm_shuffle_ps((__m128)a2[8], (__m128)a2[8], 0);\n  *(this + 12) = _mm_shuffle_ps((__m128)a2[12], (__m128)a2[12], 0);\n  *(this + 1) = _mm_shuffle_ps((__m128)a2[1], (__m128)a2[1], 0);\n  *(this + 5) = _mm_shuffle_ps((__m128)a2[5], (__m128)a2[5], 0);\n  *(this + 9) = _mm_shuffle_ps((__m128)a2[9], (__m128)a2[9], 0);\n  *(this + 13) = _mm_shuffle_ps((__m128)a2[13], (__m128)a2[13], 0);\n  *(this + 2) = _mm_shuffle_ps((__m128)a2[2], (__m128)a2[2], 0);\n  *(this + 6) = _mm_shuffle_ps((__m128)a2[6], (__m128)a2[6], 0);\n  *(this + 10) = _mm_shuffle_ps((__m128)a2[10], (__m128)a2[10], 0);\n  *(this + 14) = _mm_shuffle_ps((__m128)a2[14], (__m128)a2[14], 0);\n  *(this + 3) = _mm_shuffle_ps((__m128)a2[3], (__m128)a2[3], 0);\n  *(this + 7) = _mm_shuffle_ps((__m128)a2[7], (__m128)a2[7], 0);\n  *(this + 11) = _mm_shuffle_ps((__m128)a2[11], (__m128)a2[11], 0);\n  *(this + 15) = _mm_shuffle_ps((__m128)a2[15], (__m128)a2[15], 0);\n  return this;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CDAE0",
-  "address": "0x004CDAE0",
-  "size_bytes": 125,
-  "signature": "char __thiscall(gbRefObject **this)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar __thiscall sub_4CDAE0(gbRefObject **this)\n{\n  gbRefObject **v2; // esi\n  int v3; // ebx\n  gbRefObject **v4; // esi\n  int v5; // edi\n  char result; // al\n\n  gbRefObject::Release(*(this + 4));\n  gbRefObject::Release(*(this + 5));\n  gbRefObject::Release(*(this + 2));\n  gbRefObject::Release(*(this + 3));\n  v2 = this + 24;\n  v3 = 32;\n  do\n  {\n    if ( *((_BYTE *)v2 - 8) )\n    {\n      if ( !*((_BYTE *)v2 - 7) )\n      {\n        (*(void (__thiscall **)(gbRefObject *))((*v2)->RefCount + 12))(*v2);\n        if ( *v2 )\n          (*(void (__thiscall **)(gbRefObject *, int))(*v2)->RefCount)(*v2, 1);\n      }\n    }\n    v2 += 18;\n    --v3;\n  }\n  while ( v3 );\n  v4 = this + 587;\n  v5 = 2048;\n  do\n  {\n    result = *((_BYTE *)v4 - 4);\n    if ( result )\n    {\n      result = (*(int (__thiscall **)(gbRefObject *))((*v4)->RefCount + 12))(*v4);\n      if ( *v4 )\n        result = (*(int (__thiscall **)(gbRefObject *, int))(*v4)->RefCount)(*v4, 1);\n    }\n    v4 += 5;\n    --v5;\n  }\n  while ( v5 );\n  return result;\n}\n"
-}

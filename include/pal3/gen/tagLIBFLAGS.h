@@ -1,0 +1,9 @@
+#pragma once
+// Auto-generated: tagLIBFLAGS enum
+
+enum tagLIBFLAGS {
+    LIBFLAG_FRESTRICTED = 1,
+    LIBFLAG_FCONTROL = 2,
+    LIBFLAG_FHIDDEN = 4,
+    LIBFLAG_FHASDISKIMAGE = 8,
+};

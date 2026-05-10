@@ -1,0 +1,7 @@
+{
+  "name": "?LoadAction@CCBStageRole@@QAEXH@Z",
+  "address": "0x0050A500",
+  "size_bytes": 25,
+  "signature": "bool __thiscall(CCBStageRole *this, gbRay a2)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nbool __thiscall CCBStageRole::LoadAction(CCBStageRole *this, gbRay a2)\n{\n  struct gbOBBox *WorldPos; // eax\n\n  WorldPos = (struct gbOBBox *)CCBStageRole::GetWorldPos(this);\n  return gbRay::IsColOBB(&a2, WorldPos) == 1;\n}\n"
+}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_5294C0",
-  "address": "0x005294C0",
-  "size_bytes": 183,
-  "signature": "const void *__thiscall(char *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nconst void *__thiscall sub_5294C0(char *this)\n{\n  char *v1; // ebx\n  int v2; // ebp\n  const void *result; // eax\n  void *v4; // edi\n\n  *((_DWORD *)this + 1176) = 6025;\n  *((_DWORD *)this + 1578) = 6021;\n  *((_DWORD *)this + 1980) = 6023;\n  *((_DWORD *)this + 2382) = 6010;\n  *((_DWORD *)this + 2784) = 6001;\n  *((_DWORD *)this + 1177) = 6301;\n  *((_DWORD *)this + 1579) = 6302;\n  *((_DWORD *)this + 1981) = 6303;\n  *((_DWORD *)this + 2383) = 6304;\n  *((_DWORD *)this + 2785) = 6305;\n  v1 = this + 4712;\n  v2 = 5;\n  do\n  {\n    qmemcpy(v1, (const void *)PAL_GDB::GDB_GetSkillNum(&g_GDB, *((_DWORD *)v1 - 2)), 0x320u);\n    result = (const void *)PAL_GDB::GDB_GetSkillNum(&g_GDB, *((_DWORD *)v1 - 1));\n    v4 = v1 + 800;\n    v1 += 1608;\n    --v2;\n    qmemcpy(v4, result, 0x320u);\n  }\n  while ( v2 );\n  return result;\n}\n"
-}

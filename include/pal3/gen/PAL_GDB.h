@@ -18,8 +18,6 @@ public:
     // total size: 0xC6DBC (814524)
 
     char LoadLanguage(char *path); // 0x00457410
-    PAL_GDB(); // 0x00478E00
-    ~PAL_GDB(); // 0x00478FD0
     int GDB_LoadFile(); // 0x00479040
     int GDB_GetRole(unsigned int a2); // 0x00479050
     int GDB_GetRoleNum(int a2); // 0x00479080

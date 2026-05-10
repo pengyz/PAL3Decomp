@@ -1,7 +1,0 @@
-{
-  "name": "CEffQuad::DestroyOneQuad(int)",
-  "address": "0x004D1BE0",
-  "size_bytes": 180,
-  "signature": "char __thiscall(CEffQuad *this, const void *a2)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar __thiscall CEffQuad::DestroyOneQuad(CEffQuad *this, const void *a2)\n{\n  int v3; // ecx\n  int v4; // ebp\n  int v5; // esi\n  _BYTE *i; // eax\n  int v8; // eax\n  int v9; // ecx\n\n  v3 = *((_DWORD *)this + 17);\n  if ( *((_DWORD *)this + 16) > v3 )\n    return 0;\n  v4 = 0;\n  if ( v3 <= 0 )\n    return 0;\n  v5 = *((_DWORD *)this + 39);\n  for ( i = (_BYTE *)(v5 + 4); *i; i += 80 )\n  {\n    if ( ++v4 >= v3 )\n      return 0;\n  }\n  v8 = 80 * v4;\n  qmemcpy((void *)(v5 + 80 * v4), a2, 0x50u);\n  *(_BYTE *)(v8 + *((_DWORD *)this + 39) + 4) = 1;\n  *(_DWORD *)(v8 + *((_DWORD *)this + 39) + 12) = 0;\n  *(_BYTE *)(v8 + *((_DWORD *)this + 39) + 6) = 0;\n  *(_BYTE *)(v8 + *((_DWORD *)this + 39) + 7) = 0;\n  v9 = *((_DWORD *)this + 15);\n  if ( v4 > v9 - 1 )\n    *((_DWORD *)this + 15) = v9 + 1;\n  *(_DWORD *)(v8 + *((_DWORD *)this + 39)) = *((_DWORD *)this + 16);\n  *(_DWORD *)(*((_DWORD *)this + 41) + 4 * (*((_DWORD *)this + 16))++) = v4;\n  CEffQuad::SetQuad((int)this, v4);\n  *((_DWORD *)this + 18) = v4;\n  return 1;\n}\n"
-}

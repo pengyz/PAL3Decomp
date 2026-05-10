@@ -12,7 +12,5 @@ public:
     int rightoffset; // +0x58
     // total size: 0x5C (92)
 
-    UILBColumn(); // 0x0043DCA0
-    ~UILBColumn(); // 0x0043DCB0
     static void Destroy(); // 0x0043DCC0
 };

@@ -48,6 +48,23 @@ SKIP_CLASSES = {
     'gbTexture_D3D', 'gbIndexPool', 'gbVertexPool',
 }
 
+# Prefix patterns for system/library types that should never be generated
+SKIP_PREFIXES = (
+    'D3D', '_D3D', 'ID3D', 'IDirect', 'IUnknown',
+    'CD3D',  # D3D helper classes from SDK samples
+    'D3DX',  # D3DX math types
+    'gb',    # gbengine types (all start with gb)
+)
+
+
+def should_skip_class(name):
+    """Check if a class name should be skipped (system/library type)."""
+    if name in SKIP_CLASSES:
+        return True
+    if name.startswith(SKIP_PREFIXES):
+        return True
+    return False
+
 # Type mapping for header output
 TYPE_REMAP = {
     'unsigned char': 'BYTE',
@@ -104,12 +121,48 @@ def split_params(params_str):
     return result
 
 
+def demangle_name(mangled):
+    """Extract ClassName::MethodName from MSVC mangled name like ?Method@Class@@..."""
+    if not mangled.startswith('?'):
+        return None
+    # ?Method@Class@@... or ??0Class@@... (ctor) or ??1Class@@... (dtor)
+    parts = mangled[1:].split('@')
+    if len(parts) < 2:
+        return None
+    if parts[0].startswith('?'):
+        # ??0ClassName = ctor, ??1ClassName = dtor
+        code = parts[0][1]
+        cls = parts[1]
+        if code == '0':
+            pass  # ctor
+        elif code == '1':
+            pass  # dtor
+        else:
+            return None
+        # Validate class name (no template/special chars)
+        if not cls or '$' in cls or '<' in cls or '?' in cls or not cls[0].isalpha():
+            return None
+        if code == '0':
+            return cls, cls
+        else:
+            return cls, '~' + cls
+    else:
+        method = parts[0]
+        cls = parts[1]
+        # Validate both names (no template/special chars, must be valid C++ identifiers)
+        if not cls or '$' in cls or '<' in cls or '?' in cls or not cls[0].isalpha():
+            return None
+        if not method or '$' in method or '<' in method:
+            return None
+        if not method[0].isalpha() and method[0] != '~':
+            return None
+        return cls, method
+
+
 def collect_methods():
     """Collect all class methods from decomp JSONs."""
     classes = defaultdict(list)
     for f in sorted(DECOMP_DIR.glob("*.json")):
-        if f.name.startswith("_"):
-            continue
         try:
             with open(f, 'r', encoding='utf-8') as fh:
                 d = json.load(fh)
@@ -120,19 +173,27 @@ def collect_methods():
         sig = d.get('signature', '')
         addr = d.get('address', '')
 
-        if '::' not in name or name.startswith('sub_'):
-            continue
-        # Skip mangled/special names
-        if '`' in name or '?' in name.split('::')[-1]:
-            continue
+        cls = None
+        method = None
 
-        parts = name.split('::', 1)
-        cls = parts[0]
-        method = parts[1].split('(')[0] if '(' in parts[1] else parts[1]
+        # Try demangling first (handles ?Method@Class@@ format)
+        if name.startswith('?'):
+            result = demangle_name(name)
+            if result:
+                cls, method = result
+        # Then try ClassName::Method format
+        elif '::' in name and not name.startswith('sub_'):
+            if '`' not in name:
+                parts = name.split('::', 1)
+                cls = parts[0]
+                method = parts[1].split('(')[0] if '(' in parts[1] else parts[1]
+                if '?' in method:
+                    cls = None  # skip
 
-        if cls in SKIP_CLASSES:
+        if not cls or not method:
             continue
-        # Skip invalid method names
+        if should_skip_class(cls):
+            continue
         if ' ' in method or '`' in method:
             continue
 
@@ -369,7 +430,7 @@ def main():
     all_classes = set(pdb_classes.keys()) | set(methods_by_class.keys())
 
     for cls_name in sorted(all_classes):
-        if cls_name in SKIP_CLASSES:
+        if should_skip_class(cls_name):
             continue
 
         pdb_class = pdb_classes.get(cls_name)
@@ -387,10 +448,34 @@ def main():
             f.write(content)
         generated += 1
 
+    # Generate enum headers
+    enum_count = 0
+    for e in pdb.get('enums', []):
+        name = e.get('name', '')
+        values = e.get('values', {})
+        if not name or '<' in name or '::' in name:
+            continue
+        if not name[0].isalpha():
+            continue
+
+        lines = ['#pragma once', '// Auto-generated: %s enum' % name, '']
+        lines.append('enum %s {' % name)
+        sorted_vals = sorted(values.items(), key=lambda x: int(x[1]))
+        for vname, vval in sorted_vals:
+            lines.append('    %s = %s,' % (vname, vval))
+        lines.append('};')
+        lines.append('')
+
+        out_path = OUTPUT_DIR / ('%s.h' % name)
+        with open(out_path, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(lines))
+        enum_count += 1
+
     print("Generated %d header files in %s" % (generated, OUTPUT_DIR))
     print("  With PDB layout: %d" % sum(1 for c in all_classes
           if c in pdb_classes and pdb_classes[c].get('data_members') and pdb_classes[c].get('size', 0) > 1))
     print("  With methods: %d" % sum(1 for c in all_classes if c in methods_by_class and methods_by_class[c]))
+    print("  Enums: %d" % enum_count)
 
 
 if __name__ == '__main__':

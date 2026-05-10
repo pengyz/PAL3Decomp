@@ -1,0 +1,7 @@
+{
+  "name": "?SnapScreen@PAL3@@SAXPBDHH@Z",
+  "address": "0x00406FF0",
+  "size_bytes": 164,
+  "signature": "int __cdecl(int a1)",
+  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nint __cdecl PAL3::SnapScreen(int a1)\n{\n  float *p_y; // esi\n  int (__thiscall ***v2)(_DWORD, _DWORD); // eax\n  int result; // eax\n\n  g_Input.KeyInfo[174].Data = 0;\n  g_Input.KeyInfo[173].PressTime = a1;\n  if ( a1 )\n  {\n    *(_DWORD *)(g_Input.KeyInfo[177].CountMode + 448) = 1;\n    RoleSystem::SetActive((RoleSystem *)g_Input.KeyInfo[177].CountMode, (int)&g_SceneMgr.m_npc[0].m_path.normal[83].y);\n  }\n  sub_4070A0(aSoftwareSoftst, (DWORD)aSGameA, 1);\n  PalScriptMgr::Destroy(0x63u, 0);\n  p_y = &g_SceneMgr.m_npc[1].m_path.normal[78].y;\n  do\n  {\n    sub_419AE0(p_y);\n    p_y += 2176;\n  }\n  while ( (int)p_y < (int)&g_SceneMgr.m_npc[5].m_path.normal[58].y );\n  ScriptSystem::Execute(0, 1);\n  g_Input.KeyInfo[177].PressTime = 7;\n  v2 = (int (__thiscall ***)(_DWORD, _DWORD))CGameData::SetMode((CGameData *)&g_GameData, 0);\n  result = (**v2)(v2, 0);\n  g_Input.KeyInfo[176].CountMode = 0;\n  return result;\n}\n"
+}

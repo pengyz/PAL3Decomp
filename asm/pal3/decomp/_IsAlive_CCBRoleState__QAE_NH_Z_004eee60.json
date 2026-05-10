@@ -1,0 +1,7 @@
+{
+  "name": "?IsAlive@CCBRoleState@@QAE_NH@Z",
+  "address": "0x004EEE60",
+  "size_bytes": 185,
+  "signature": "char __thiscall(int this, int a2, int a3)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall CCBRoleState::IsAlive(int this, int a2, int a3)\n{\n  char result; // al\n  int v5; // eax\n\n  if ( !*(_BYTE *)(this + 577) )\n    return 0;\n  v5 = *(_DWORD *)(this + 636);\n  if ( !v5 )\n    return 0;\n  if ( v5 != a2 )\n    return 0;\n  result = CCBRoleState::IsRoleAlive((CCBRoleState *)this, 0);\n  if ( result )\n  {\n    if ( *(_DWORD *)(this + 1136) == 6 )\n    {\n      if ( CCBRoleState::GetRoleField((CCBRoleState *)this, 0, 14) )\n      {\n        return 0;\n      }\n      else\n      {\n        result = CCBStageRole::EndTask(*(CCBStageRole **)(*(_DWORD *)(this + 524) + 24), a2, a3);\n        if ( result )\n        {\n          result = CCBStageRole::ForceEndTaskByPFN(*(CCBStageRole **)(*(_DWORD *)(this + 524) + 4 * a2 + 24));\n          if ( result )\n            return CCBStage::ForceDelTask(*(CCBStage **)(this + 524), 18) != 0;\n        }\n      }\n    }\n    else\n    {\n      return 0;\n    }\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "??_GUIWnd@std@@UAEPAXI@Z",
+  "address": "0x00445B20",
+  "size_bytes": 30,
+  "signature": "std::ios_base *__thiscall(std::ios_base *Block, char a2)",
+  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nstd::ios_base *__thiscall std::UIWnd::`scalar deleting destructor'(std::ios_base *Block, char a2)\n{\n  UIWnd::_UIWnd(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+}

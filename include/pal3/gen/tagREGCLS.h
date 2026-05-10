@@ -1,0 +1,10 @@
+#pragma once
+// Auto-generated: tagREGCLS enum
+
+enum tagREGCLS {
+    REGCLS_SINGLEUSE = 0,
+    REGCLS_MULTIPLEUSE = 1,
+    REGCLS_MULTI_SEPARATE = 2,
+    REGCLS_SUSPENDED = 4,
+    REGCLS_SURROGATE = 8,
+};

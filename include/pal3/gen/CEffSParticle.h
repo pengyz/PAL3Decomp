@@ -21,8 +21,6 @@ public:
     float m_fRotZ; // +0x60
     // total size: 0x64 (100)
 
-    CEffSParticle(); // 0x004D4EE0
-    ~CEffSParticle(); // 0x004D4F20
     int Create(float a2); // 0x004D4FC0
     void Init(_DWORD *a2); // 0x004D51B0
     int Attach(int a2); // 0x004D53E0

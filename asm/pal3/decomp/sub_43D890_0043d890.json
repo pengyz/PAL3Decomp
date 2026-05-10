@@ -1,7 +1,0 @@
-{
-  "name": "sub_43D890",
-  "address": "0x0043D890",
-  "size_bytes": 138,
-  "signature": "struct gbVFileSystem *__thiscall(UIWnd *this, int id, void *pRect, int a4, int a5, int parent)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nstruct gbVFileSystem *__thiscall sub_43D890(UIWnd *this, int id, void *pRect, int a4, int a5, int parent)\n{\n  gbTexture *v7; // eax\n\n  UIWnd::Create(this, id, pRect, parent);\n  OpenBaseFile::OpenBaseFile((OpenBaseFile *)&parent);\n  v7 = (gbTexture *)(*(int (__thiscall **)(int, int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(\n                      g_Input.KeyInfo[177].Data,\n                      a4);\n  this->m_childs.m_nSize = (int)v7;\n  if ( v7 )\n    gbTexture::LoadTexture(v7, 1);\n  this->m_childs.m_nMaxSize = a5;\n  return OpenNULLFile::OpenNULLFile((OpenNULLFile **)&parent);\n}\n"
-}

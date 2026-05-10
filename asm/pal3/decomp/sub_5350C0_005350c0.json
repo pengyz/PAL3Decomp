@@ -1,7 +1,0 @@
-{
-  "name": "sub_5350C0",
-  "address": "0x005350C0",
-  "size_bytes": 83,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall sub_5350C0(int this)\n{\n  int v2; // eax\n  char *v3; // ecx\n\n  v2 = *(_DWORD *)(this + 16);\n  *(_BYTE *)(this + 36) = 0;\n  *(_BYTE *)(this + 37) = 0;\n  if ( v2 )\n  {\n    if ( *(_BYTE *)(v2 + 135) )\n    {\n      v3 = *(char **)(this + 4);\n      if ( v3 )\n      {\n        sub_535930(v3, dword_5A3748);\n        Actor::InitComponents(*(Actor **)(this + 20));\n      }\n    }\n    sub_532B40(*(_DWORD **)(this + 16));\n    sub_534BF0(*(_DWORD *)(this + 12));\n    *(_BYTE *)(this + 36) = 0;\n    *(_BYTE *)(this + 37) = 0;\n  }\n  return UICursor::IRender();\n}\n"
-}

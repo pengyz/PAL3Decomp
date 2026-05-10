@@ -1,0 +1,7 @@
+{
+  "name": "?CastAttackBigMagic@CCBAI@@AAE_NHPAUtagDemand@@@Z",
+  "address": "0x004D9E20",
+  "size_bytes": 296,
+  "signature": "char __thiscall(CCBAI *this, int a2, int a3)",
+  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nchar __thiscall CCBAI::CastAttackBigMagic(CCBAI *this, int a2, int a3)\n{\n  CCBRoleState *v4; // ecx\n  CCBRoleState *v5; // ecx\n  int v6; // eax\n  CCBSystem *v7; // ecx\n  _DWORD a6[11]; // [esp+Ch] [ebp-2Ch] BYREF\n\n  memset(a6, 0, sizeof(a6));\n  v4 = (CCBRoleState *)this->m_bNewRole[4];\n  if ( !v4->m_Role[a2].snSpecStateLast[47] && !CCBRoleState::GetRoleField(v4, a2, 18) )\n    return 0;\n  if ( CCBRoleState::GetRoleField((CCBRoleState *)this->m_bNewRole[4], a2, 19) )\n    return 0;\n  v5 = (CCBRoleState *)this->m_bNewRole[4];\n  if ( !v5->m_Role[a2].bValid )\n    return 0;\n  if ( !v5->m_Role[a3].bValid )\n    return 0;\n  if ( !CCBRoleState::IsRoleAlive(v5, a2) )\n    return 0;\n  if ( !CCBRoleState::IsRoleAlive((CCBRoleState *)this->m_bNewRole[4], a3) )\n    return 0;\n  if ( CCBRoleState::SetRoleField((CCBRoleState *)this->m_bNewRole[4], a3, 0) <= 0 )\n    return 0;\n  v6 = sub_4F5330((CCBRoleState *)this->m_bNewRole[4], a2, 0);\n  if ( !v6 )\n    return 0;\n  a6[2] = a2;\n  a6[1] = v6;\n  a6[3] = a3;\n  LOBYTE(a6[10]) = 1;\n  v7 = (CCBSystem *)this->m_bNewRole[3];\n  LOWORD(a6[4]) = 0;\n  a6[0] = 261;\n  CCBSystem::CreateObj(v7, CCBSystem::GetSameThreadNum, 0, 0, 0, a6);\n  return 1;\n}\n"
+}

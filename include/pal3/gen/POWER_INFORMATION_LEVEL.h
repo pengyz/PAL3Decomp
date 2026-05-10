@@ -1,0 +1,30 @@
+#pragma once
+// Auto-generated: POWER_INFORMATION_LEVEL enum
+
+enum POWER_INFORMATION_LEVEL {
+    SystemPowerPolicyAc = 0,
+    SystemPowerPolicyDc = 1,
+    VerifySystemPolicyAc = 2,
+    VerifySystemPolicyDc = 3,
+    SystemPowerCapabilities = 4,
+    SystemBatteryState = 5,
+    SystemPowerStateHandler = 6,
+    ProcessorStateHandler = 7,
+    SystemPowerPolicyCurrent = 8,
+    AdministratorPowerPolicy = 9,
+    SystemReserveHiberFile = 10,
+    ProcessorInformation = 11,
+    SystemPowerInformation = 12,
+    ProcessorStateHandler2 = 13,
+    LastWakeTime = 14,
+    LastSleepTime = 15,
+    SystemExecutionState = 16,
+    SystemPowerStateNotifyHandler = 17,
+    ProcessorPowerPolicyAc = 18,
+    ProcessorPowerPolicyDc = 19,
+    VerifyProcessorPowerPolicyAc = 20,
+    VerifyProcessorPowerPolicyDc = 21,
+    ProcessorPowerPolicyCurrent = 22,
+    SystemPowerStateLogging = 23,
+    SystemPowerLoggingEntry = 24,
+};

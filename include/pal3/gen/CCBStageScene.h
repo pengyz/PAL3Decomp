@@ -58,8 +58,6 @@ public:
     // total size: 0x3F4 (1012)
 
     int Update(); // 0x0050FE50
-    CCBStageScene(); // 0x0050FEE0
-    ~CCBStageScene(); // 0x005100D0
     char Reset(); // 0x00510180
     int Create(); // 0x00510540
     void Destroy(); // 0x00510610

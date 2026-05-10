@@ -1,0 +1,10 @@
+#pragma once
+// Auto-generated: tagSTGC enum
+
+enum tagSTGC {
+    STGC_DEFAULT = 0,
+    STGC_OVERWRITE = 1,
+    STGC_ONLYIFCURRENT = 2,
+    STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
+    STGC_CONSOLIDATE = 8,
+};

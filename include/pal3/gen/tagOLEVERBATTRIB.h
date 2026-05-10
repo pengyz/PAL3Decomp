@@ -1,0 +1,7 @@
+#pragma once
+// Auto-generated: tagOLEVERBATTRIB enum
+
+enum tagOLEVERBATTRIB {
+    OLEVERBATTRIB_NEVERDIRTIES = 1,
+    OLEVERBATTRIB_ONCONTAINERMENU = 2,
+};

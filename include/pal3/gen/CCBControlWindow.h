@@ -21,8 +21,6 @@ public:
     int m_CurCtrl; // +0x70
     // total size: 0x74 (116)
 
-    CCBControlWindow(); // 0x0051A700
-    ~CCBControlWindow(); // 0x0051A880
     int Reset(int a2, unsigned int a3, int a4); // 0x0051A930
     char Create(_DWORD *a2, int a3, int a4, int a5); // 0x0051AA20
     int HandleInput(int a2); // 0x0051AB60

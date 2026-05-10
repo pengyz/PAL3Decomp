@@ -1,0 +1,7 @@
+{
+  "name": "??_Gfilebuf@@UAEPAXI@Z",
+  "address": "0x00438E90",
+  "size_bytes": 30,
+  "signature": "filebuf *__thiscall(filebuf *this, char a2)",
+  "decompiled_c": "filebuf *__thiscall filebuf::`scalar deleting destructor'(filebuf *this, char a2)\n{\n  filebuf::~filebuf(this);\n  if ( (a2 & 1) != 0 )\n    operator delete(this);\n  return this;\n}\n"
+}

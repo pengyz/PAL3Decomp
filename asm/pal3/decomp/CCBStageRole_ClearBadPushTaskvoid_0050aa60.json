@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageRole::ClearBadPushTask(void)",
-  "address": "0x0050AA60",
-  "size_bytes": 128,
-  "signature": "void __thiscall(int this, float a2)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nvoid __thiscall CCBStageRole::ClearBadPushTask(int this, float a2)\n{\n  unsigned int v3; // eax\n  int inited; // eax\n  int v5; // eax\n\n  v3 = *(_DWORD *)(this + 284);\n  if ( v3 <= 4 )\n  {\n    if ( *(_DWORD *)(CCBRoleState::InitUI(*(CCBRoleState **)(this + 4), v3) + 848) )\n    {\n      inited = CCBRoleState::InitUI(*(CCBRoleState **)(this + 4), *(_DWORD *)(this + 284));\n      gbGeomNode::SetBladeTime(*(gbGeomNode **)(inited + 848), a2);\n    }\n    if ( *(_DWORD *)(CCBRoleState::InitUI(*(CCBRoleState **)(this + 4), *(_DWORD *)(this + 284)) + 860) )\n    {\n      v5 = CCBRoleState::InitUI(*(CCBRoleState **)(this + 4), *(_DWORD *)(this + 284));\n      gbGeomNode::SetBladeTime(*(gbGeomNode **)(v5 + 860), a2);\n    }\n  }\n}\n"
-}

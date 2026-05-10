@@ -1,7 +1,0 @@
-{
-  "name": "sub_436190",
-  "address": "0x00436190",
-  "size_bytes": 169,
-  "signature": "char *()",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar *sub_436190()\n{\n  char *String; // esi\n  char *result; // eax\n  char *v2; // edi\n  char *v3; // esi\n  float v4; // [esp+0h] [ebp-14h]\n  int v5; // [esp+4h] [ebp-10h]\n\n  String = PalScript::GetString();\n  result = PalScript::GetString();\n  v2 = result;\n  if ( String )\n  {\n    if ( result )\n    {\n      result = (char *)*((_DWORD *)result + 1);\n      if ( (unsigned int)result < 8 )\n      {\n        result = sub_434BD0(*((_WORD *)String + 2));\n        v3 = result;\n        if ( result )\n        {\n          v4 = (float)(45 * *((_DWORD *)v2 + 1));\n          result = (char *)sub_416620((int)result, v4, 1);\n        }\n        if ( v3 == *(char **)&g_SceneMgr.m_npc[6].m_actor.m_szTexture[132] )\n        {\n          result = *(char **)(g_Input.KeyInfo[177].CountMode + 448);\n          if ( result )\n          {\n            result = (char *)PalScriptMgr::_CON_State(dword_D8E468);\n            if ( *result )\n            {\n              *(float *)&v5 = *((float *)v3 + 2172) * -0.017453292;\n              return (char *)sub_41D590((_DWORD *)g_Input.KeyInfo[177].CountMode, v5);\n            }\n          }\n        }\n      }\n    }\n  }\n  return result;\n}\n"
-}

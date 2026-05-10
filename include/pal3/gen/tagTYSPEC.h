@@ -1,0 +1,12 @@
+#pragma once
+// Auto-generated: tagTYSPEC enum
+
+enum tagTYSPEC {
+    TYSPEC_CLSID = 0,
+    TYSPEC_FILEEXT = 1,
+    TYSPEC_MIMETYPE = 2,
+    TYSPEC_FILENAME = 3,
+    TYSPEC_PROGID = 4,
+    TYSPEC_PACKAGENAME = 5,
+    TYSPEC_OBJECTID = 6,
+};

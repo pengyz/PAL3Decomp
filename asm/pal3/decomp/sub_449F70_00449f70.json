@@ -1,7 +1,0 @@
-{
-  "name": "sub_449F70",
-  "address": "0x00449F70",
-  "size_bytes": 105,
-  "signature": "unsigned int __thiscall(_DWORD *this, unsigned int a2)",
-  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nunsigned int __thiscall sub_449F70(_DWORD *this, unsigned int a2)\n{\n  unsigned int result; // eax\n  _DWORD *v3; // esi\n  int v4; // edx\n  int v5; // edi\n\n  result = a2;\n  if ( a2 <= 0x25 )\n  {\n    v3 = this + 119 * a2 + 128;\n    v4 = *(this + 119 * a2 + 130);\n    v3[22] = *(this + 119 * a2 + 131) - (*(this + 119 * a2 + 131) - *(this + 119 * a2 + 129)) / 2;\n    v5 = *(this + 119 * a2 + 132) - (*(this + 119 * a2 + 132) - v4) / 2;\n    v3[23] = v5;\n    return sub_449F00((int)this, *(this + 119 * a2 + 150), v5);\n  }\n  return result;\n}\n"
-}

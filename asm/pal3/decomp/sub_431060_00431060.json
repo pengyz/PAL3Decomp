@@ -1,7 +1,0 @@
-{
-  "name": "sub_431060",
-  "address": "0x00431060",
-  "size_bytes": 157,
-  "signature": "void *__stdcall(_DWORD *Block)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nvoid *__stdcall sub_431060(_DWORD *Block)\n{\n  _DWORD *v1; // esi\n  void *result; // eax\n  _DWORD *i; // edi\n  int v4; // eax\n  _BYTE *v5; // ecx\n  char v6; // al\n\n  v1 = Block;\n  result = dword_D8C2B0;\n  for ( i = Block; i != dword_D8C2B0; v1 = i )\n  {\n    sub_431060((_DWORD *)i[2]);\n    i = (_DWORD *)*i;\n    std::string::_Tidy(v1 + 7, 1);\n    v4 = v1[4];\n    if ( v4 )\n    {\n      v5 = (_BYTE *)(v4 - 1);\n      v6 = *(_BYTE *)(v4 - 1);\n      if ( !v6 || v6 == -1 )\n        operator delete(v5);\n      else\n        *v5 = v6 - 1;\n    }\n    v1[4] = 0;\n    v1[5] = 0;\n    v1[6] = 0;\n    operator delete(v1);\n    result = dword_D8C2B0;\n  }\n  return result;\n}\n"
-}

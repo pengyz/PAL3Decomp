@@ -1,7 +1,0 @@
-{
-  "name": "exception::exception(exception const &)",
-  "address": "0x00555214",
-  "size_bytes": 74,
-  "signature": "exception *__thiscall(exception *this, const struct exception *a2)",
-  "decompiled_c": "exception *__thiscall exception::exception(exception *this, const struct exception *a2)\n{\n  char *m_what; // eax\n  size_t v4; // eax\n  char *v5; // eax\n\n  this->_m_what = (char *)&vtbl_exception;\n  m_what = a2[1]._m_what;\n  *((_DWORD *)this + 2) = m_what;\n  if ( m_what )\n  {\n    v4 = strlen((const char *)a2->_m_doFree);\n    v5 = (char *)operator new(v4 + 1);\n    this->_m_doFree = (int)v5;\n    if ( v5 )\n      strcpy(v5, (const char *)a2->_m_doFree);\n  }\n  else\n  {\n    this->_m_doFree = a2->_m_doFree;\n  }\n  return this;\n}\n"
-}

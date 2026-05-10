@@ -1,7 +1,0 @@
-{
-  "name": "sub_547F66",
-  "address": "0x00547F66",
-  "size_bytes": 87,
-  "signature": "double *__stdcall(double *a1, unsigned int *a2, __m128 *a3)",
-  "decompiled_c": "double *__stdcall sub_547F66(double *a1, unsigned int *a2, __m128 *a3)\n{\n  __m128 v3; // xmm2\n  __m128 v4; // xmm0\n  __m128 v5; // xmm0\n\n  v3 = _mm_add_ps(\n         _mm_add_ps(_mm_mul_ps(_mm_shuffle_ps((__m128)*a2, (__m128)*a2, 0), *a3), a3[3]),\n         _mm_mul_ps(_mm_shuffle_ps((__m128)a2[1], (__m128)a2[1], 0), a3[1]));\n  v4 = _mm_rcp_ps(v3);\n  v5 = _mm_sub_ps(_mm_add_ps(v4, v4), _mm_mul_ps(_mm_mul_ps(v4, v4), v3));\n  _mm_storel_ps(a1, _mm_mul_ps(v3, _mm_shuffle_ps(v5, v5, 255)));\n  return a1;\n}\n"
-}

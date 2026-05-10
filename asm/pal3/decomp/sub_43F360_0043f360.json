@@ -1,7 +1,0 @@
-{
-  "name": "sub_43F360",
-  "address": "0x0043F360",
-  "size_bytes": 171,
-  "signature": "int __thiscall(int *this)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall sub_43F360(int *this)\n{\n  int i; // edi\n  int v3; // edi\n  int *v4; // ebx\n  int result; // eax\n\n  for ( i = 0; i < *(this + 126); ++i )\n    sub_43F410(this, i);\n  v3 = 0;\n  if ( *(this + 108) > 0 )\n  {\n    v4 = this + 109;\n    do\n    {\n      sub_43DF70(v4);\n      ++v3;\n      v4 += 21;\n    }\n    while ( v3 < *(this + 108) );\n  }\n  *(this + 279) = 0;\n  sub_441240(this + 20, 0, 0);\n  result = *(this + 300);\n  *(this + 300) = *(this + 299);\n  return result;\n}\n"
-}

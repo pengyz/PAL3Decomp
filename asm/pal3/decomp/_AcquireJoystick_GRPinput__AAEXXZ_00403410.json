@@ -1,0 +1,7 @@
+{
+  "name": "?AcquireJoystick@GRPinput@@AAEXXZ",
+  "address": "0x00403410",
+  "size_bytes": 96,
+  "signature": "void __thiscall(GRPinput **this)",
+  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nvoid __thiscall GRPinput::AcquireJoystick(GRPinput **this)\n{\n  void *v2; // edi\n\n  if ( *(this + 1) )\n  {\n    free(*(this + 1));\n    *(this + 1) = 0;\n  }\n  if ( *(this + 2) )\n  {\n    free(*(this + 2));\n    *(this + 2) = 0;\n  }\n  v2 = *(this + 3);\n  if ( v2 )\n  {\n    GRPinput::GetCharKey((int)*(this + 3));\n    operator delete(v2);\n    *(this + 3) = 0;\n  }\n  *this = 0;\n  *(this + 1) = 0;\n  *(this + 2) = 0;\n  *(this + 3) = 0;\n}\n"
+}

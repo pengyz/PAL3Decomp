@@ -23,7 +23,6 @@ public:
     gbTextureArray * m_pTextureArray; // +0x3C024
     // total size: 0x3C028 (245800)
 
-    CEffect(); // 0x004C6940
     int Reset(int a2, float a3, float a4, float a5); // 0x004C6A70
     void CreateOnePartical(float a2); // 0x004C7150
     void FillQuadByPartical(_DWORD *a2); // 0x004C7450
