@@ -20,9 +20,15 @@ typedef unsigned short _WORD;
 typedef unsigned long _DWORD;
 typedef unsigned __int64 _QWORD;
 
-// DirectInput forward declarations (used by GRPinput)
-struct IDirectInput8A;
-struct IDirectInputDevice8A;
+// DirectInput 8 (DX SDK provides full dinput.h with IDirectInput8A)
+#define DIRECTINPUT_VERSION 0x0800
+#include <dinput.h>
+
+// GRPinput full definition (for g_Input member access in generated code)
+#include "pal3/gen/GRP_KEYREG.h"
+#include "pal3/gen/GRPinput.h"
+
+// (DirectInput forward declarations moved above GRPinput include)
 
 // Allow C-style implicit void* conversion (IDA generated code relies on this)
 #pragma warning(disable: 4133)  // incompatible pointer types

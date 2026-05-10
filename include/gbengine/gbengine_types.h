@@ -191,8 +191,10 @@ struct gbAABBox {
 };
 
 struct gbOBBox {
-    gbMatrix4 matrix;    // axis directions in rows 0-2, center in row 3
-    gbVec3D extent;      // half-extents at +0x40
+    gbMatrix4 trans;     // axis directions in rows 0-2, center in row 3 (PDB name)
+    float xlen;          // +0x40
+    float ylen;          // +0x44
+    float zlen;          // +0x48
 
     // Methods (auto-generated)
     gbOBBox();
