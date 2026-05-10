@@ -748,7 +748,7 @@ void GRPinput::UnacquireMouse()
 }
 
 // 0x00403410
-void GRPinput::AcquireJoystick(GRPinput **this)
+void GRPinput::AcquireJoystick()
 {
   void *v2; // edi
 
@@ -788,7 +788,7 @@ void GRPinput::UnacquireJoystick()
 }
 
 // 0x004034B0
-void GRPinput::AcquireKeyboard(GRPinput **this)
+void GRPinput::AcquireKeyboard()
 {
   if ( *((_DWORD *)this + 40) )
     free(*((_DWORD *)this + 40));

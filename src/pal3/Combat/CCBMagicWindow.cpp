@@ -30,7 +30,7 @@ extern void *off_570570;
 extern void *off_57058C;
 
 // 0x0051B9F0
-CCBMagicWindow::CCBMagicWindow(CCBMagicWindow **this, int a2, int a3, _DWORD *a4)
+CCBMagicWindow::CCBMagicWindow(int a2, int a3, _DWORD *a4)
 {
   int v4; // eax
   int *v5; // eax
@@ -60,7 +60,7 @@ CCBMagicWindow::CCBMagicWindow(CCBMagicWindow **this, int a2, int a3, _DWORD *a4
 }
 
 // 0x0051BAB0
-CCBMagicWindow::~CCBMagicWindow(CCBMagicWindow **this, int a2)
+CCBMagicWindow::~CCBMagicWindow(int a2)
 {
   int v2; // edi
   int v4; // ebx

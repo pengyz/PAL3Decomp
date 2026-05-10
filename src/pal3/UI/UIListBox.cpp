@@ -87,7 +87,7 @@ int UIListBox::SetScroll()
 }
 
 // 0x0043DE40
-int UIListBox::SetScrollPos(UIListBox **this)
+int UIListBox::SetScrollPos()
 {
   gbRefObject *v2; // ecx
   int result; // eax
@@ -137,7 +137,7 @@ void * UIListBox::GetSubItemInfo()
 }
 
 // 0x0043DEF0
-int UIListBox::Render(UIListBox **this)
+int UIListBox::Render()
 {
   UIListBox *v2; // ecx
 
@@ -155,7 +155,7 @@ void UIListBox::CalHeightCount()
 }
 
 // 0x0043DF20
-void UIListBox::GetItemPos(UIListBox **this)
+void UIListBox::GetItemPos()
 {
   sub_43DF70(this);
   sub_432680((void **)this + 16);
@@ -407,7 +407,7 @@ int UIListBox::SetItemHeight(int a2, int a3, int a4)
 }
 
 // 0x0043E520
-int UIListBox::GetItemCount(UIListBox **this)
+int UIListBox::GetItemCount()
 {
   gbRefObject *v2; // ecx
   int result; // eax

@@ -210,9 +210,9 @@ def transform_method_code(cls_name, method_name, code, sig):
         first = re.sub(r'\s*__userpurge\s*', ' ', first)
         first = re.sub(r'\s*__usercall\s*', ' ', first)
         # Remove "ClassName *this" or any "*this" variant from params
-        # Handles: ClassName *this, void *this, _DWORD *this, _BYTE *this, char *this, etc.
-        first = re.sub(r'\(\s*\w[\w\s]*\*\s*this\s*,\s*', '(', first)
-        first = re.sub(r'\(\s*\w[\w\s]*\*\s*this\s*\)', '()', first)
+        # Handles: Type *this, Type **this, _DWORD *this, etc.
+        first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*,\s*', '(', first)
+        first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*\)', '()', first)
         # Clean double spaces
         first = re.sub(r'  +', ' ', first).strip()
         lines[0] = first

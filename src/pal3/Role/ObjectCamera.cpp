@@ -78,7 +78,7 @@ void ObjectCamera::GetCameraDirect(ObjectCamera **this)
 }
 
 // 0x0047C640
-void ObjectCamera::SetCameraEyePosition(ObjectCamera **this, struct gbGfxManager *a2)
+void ObjectCamera::SetCameraEyePosition(struct gbGfxManager *a2)
 {
   gbCamera *v3; // eax
   ObjectCamera *v4; // eax
@@ -168,7 +168,7 @@ int ObjectCamera::SetCameraDist(int a2, int a3, int a4)
 }
 
 // 0x0047C810
-void ObjectCamera::Destroy(ObjectCamera **this)
+void ObjectCamera::Destroy()
 {
   if ( *this )
   {

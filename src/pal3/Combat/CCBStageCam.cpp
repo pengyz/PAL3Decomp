@@ -518,7 +518,7 @@ int CCBStageCam::ProcCamMove(int _this)
 }
 
 // 0x005058E0
-int CCBStageCam::SwitchEditorCamPos(CCBStageCam **this)
+int CCBStageCam::SwitchEditorCamPos()
 {
   return (*(int (**)(_DWORD))(LODWORD((*((_DWORD *)this + 107556))->fov) + 20))(*((_DWORD *)this + 107556));
 }

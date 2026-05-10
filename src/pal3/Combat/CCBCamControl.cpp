@@ -207,7 +207,7 @@ _DWORD * CCBCamControl::LoadPointer()
 }
 
 // 0x00508680
-char CCBCamControl::DoList(CCBCamControl **this)
+char CCBCamControl::DoList()
 {
   ((gbRefObject *)*((_DWORD *)this + 609))->Release();
   return 1;
@@ -296,7 +296,7 @@ int CCBCamControl::KeepCurCam(int a2)
 }
 
 // 0x005088D0
-int CCBCamControl::DoLineMove(CCBCamControl **this, unsigned int a2)
+int CCBCamControl::DoLineMove(unsigned int a2)
 {
   int result; // eax
   CCBCamControl **v4; // esi

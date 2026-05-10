@@ -415,7 +415,7 @@ char CCBUI::UpdateState()
 }
 
 // 0x00517650
-CCBUI::~CCBUI(CCBUI ***this)
+CCBUI::~CCBUI()
 {
   UIFrameWnd *v2; // eax
   CCBUI **v3; // eax
@@ -472,7 +472,7 @@ CCBUI::~CCBUI(CCBUI ***this)
 }
 
 // 0x005177B0
-char CCBUI::Reset(CCBUI ***this)
+char CCBUI::Reset()
 {
   int v2; // eax
   CCBUI **v3; // eax
@@ -682,7 +682,7 @@ char CCBUI::CreateControlWindow()
 }
 
 // 0x00517DF0
-char CCBUI::CreateItemWindow(CCBUI ***this)
+char CCBUI::CreateItemWindow()
 {
   CCBUI ***v2; // edi
   char result; // al
@@ -1515,7 +1515,7 @@ BOOL CCBUI::IsImbibeNimbusNotFinish(int a2, int a3)
 }
 
 // 0x005196C0
-struct gbVFileSystem * CCBUI::SetNimbusToNimbusControl(CCBUI ***this)
+struct gbVFileSystem * CCBUI::SetNimbusToNimbusControl()
 {
   CCBUI ***v2; // edi
   int a4; // [esp+24h] [ebp-10h] BYREF

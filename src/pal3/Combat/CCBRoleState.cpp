@@ -491,7 +491,7 @@ LABEL_4:
 }
 
 // 0x004EE540
-char CCBRoleState::Create(CCBRoleState **this)
+char CCBRoleState::Create()
 {
   __int32 *p_speed; // ebp
   gbGeomNode **v2; // edi

@@ -2103,7 +2103,7 @@ int CCBStage::ProcWait(int a2)
 }
 
 // 0x004FE290
-int CCBStage::ProcShowFiveLineup(CCBStage **this, int a2)
+int CCBStage::ProcShowFiveLineup(int a2)
 {
   int v3; // eax
   int v4; // eax

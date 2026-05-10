@@ -68,7 +68,7 @@ void sub_442390(UIWnd *this)
 }
 
 // 0x00442420
-void UIFrameWnd::OnMessage(UIFrameWnd **this)
+void UIFrameWnd::OnMessage()
 {
   gbRefObject *v2; // ecx
   gbRefObject *v3; // ecx

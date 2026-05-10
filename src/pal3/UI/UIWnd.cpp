@@ -534,7 +534,7 @@ void UIWnd::~stdiobuf(UIWnd *this)
 }
 
 // 0x0043FA00
-void UIWnd::GetChildCount(UIWnd **this, LPCSTR lpString, char a3)
+void UIWnd::GetChildCount(LPCSTR lpString, char a3)
 {
   const CHAR *v3; // edi
   gbRefObject *v5; // ecx
@@ -573,7 +573,7 @@ void UIWnd::GetChildCount(UIWnd **this, LPCSTR lpString, char a3)
 }
 
 // 0x0043FAE0
-void UIWnd::GetChildAt(UIWnd **this, LPCSTR lpString, char a3)
+void UIWnd::GetChildAt(LPCSTR lpString, char a3)
 {
   const CHAR *v3; // edi
   gbRefObject *v5; // ecx
@@ -764,7 +764,7 @@ void sub_4411D0(UIWnd *this)
 }
 
 // 0x004426B0
-void UIWnd::CreateFromTemplate(UIWnd **this, LPCSTR lpString1, char a3)
+void UIWnd::CreateFromTemplate(LPCSTR lpString1, char a3)
 {
   const CHAR *v3; // edi
   gbRefObject *v5; // ecx
@@ -1155,7 +1155,7 @@ void * UIWnd::DestroyChildren()
 }
 
 // 0x00445F20
-int UIWnd::MoveWindow(UIWnd **this)
+int UIWnd::MoveWindow()
 {
   int v2; // esi
   UIWnd **v3; // ebx
@@ -4526,7 +4526,7 @@ UIWnd::~UIWnd()
 }
 
 // 0x00504080
-UIWnd::~UIWnd(UIWnd ***this)
+UIWnd::~UIWnd()
 {
   *this = (UIWnd **)&off_56FD78;
   sub_5040D0(this);

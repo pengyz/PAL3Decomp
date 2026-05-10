@@ -38,7 +38,7 @@ UIStatic::UIStatic()
 }
 
 // 0x00440BA0
-int UIStatic::OnMessage(UIStatic **this)
+int UIStatic::OnMessage()
 {
   gbRefObject **v2; // esi
   int v3; // ebx

@@ -20,7 +20,7 @@ extern void *off_570284;
 extern void *off_570298;
 
 // 0x0051B710
-CCBParabolaWindow::CCBParabolaWindow(CCBParabolaWindow ***this, int *a2, int a3)
+CCBParabolaWindow::CCBParabolaWindow(int *a2, int a3)
 {
   UIWnd ***v4; // edi
   UIWnd ***v5; // ebx
@@ -122,7 +122,7 @@ int CCBParabolaWindow::Destroy()
 }
 
 // 0x0051B950
-bool CCBParabolaWindow::OnMessage(CCBParabolaWindow **this, int a2, int a3, int a4)
+bool CCBParabolaWindow::OnMessage(int a2, int a3, int a4)
 {
   int *v4; // eax
   _DWORD v6[4]; // [esp+8h] [ebp-10h] BYREF
@@ -132,7 +132,7 @@ bool CCBParabolaWindow::OnMessage(CCBParabolaWindow **this, int a2, int a3, int 
 }
 
 // 0x0051B9A0
-int CCBParabolaWindow::Update(CCBParabolaWindow **this, int a2, int a3)
+int CCBParabolaWindow::Update(int a2, int a3)
 {
   int v4; // esi
   CCBParabolaWindow **i; // edi

@@ -403,7 +403,7 @@ int CCBStageScene::Create()
 }
 
 // 0x00510610
-void CCBStageScene::Destroy(CCBStageScene **this)
+void CCBStageScene::Destroy()
 {
   CCBStageScene **v1; // esi
   int v2; // ebx

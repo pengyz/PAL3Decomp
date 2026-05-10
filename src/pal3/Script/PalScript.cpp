@@ -515,7 +515,7 @@ int PalScript::Reset()
 }
 
 // 0x0043AA00
-struct gbVFileSystem * PalScript::OpenScript(PalScript **this, const char *a2, char a3)
+struct gbVFileSystem * PalScript::OpenScript(const char *a2, char a3)
 {
   gbRefObject *v4; // ecx
   int v5; // edi
