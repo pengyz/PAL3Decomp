@@ -3,13 +3,13 @@
 
 class SceneMgr {
 public:
-    int m_pGfxMgr; // +0x0
-    int m_pSceneRoot; // +0x4
-    int m_pAddEffect2; // +0x8
-    int m_pAlphaEffect2; // +0xC
-    int m_pAddEffect; // +0x10
-    int m_pAlphaEffect; // +0x14
-    int m_pCamera; // +0x18
+    gbGfxManager * m_pGfxMgr; // +0x0
+    gbSceneGraph * m_pSceneRoot; // +0x4
+    gbRenderEffect * m_pAddEffect2; // +0x8
+    gbRenderEffect * m_pAlphaEffect2; // +0xC
+    gbRenderEffect * m_pAddEffect; // +0x10
+    gbRenderEffect * m_pAlphaEffect; // +0x14
+    gbCamera * m_pCamera; // +0x18
     char _preArray[620]; // +0x1C
     char m_slot0[1408]; // +0x288
     char m_slot1[1408]; // +0x808

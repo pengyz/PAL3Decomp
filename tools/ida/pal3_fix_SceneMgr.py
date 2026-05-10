@@ -59,14 +59,27 @@ def main():
     # Make a DWORD pointer type
     ptr_tif = ida_typeinf.tinfo_t(ida_typeinf.BT_INT32)
 
-    # === HEADER: Runtime pointers ===
-    add_member(0x0000, "m_pGfxMgr",      4, ptr_tif)
-    add_member(0x0004, "m_pSceneRoot",    4, ptr_tif)
-    add_member(0x0008, "m_pAddEffect2",   4, ptr_tif)
-    add_member(0x000C, "m_pAlphaEffect2", 4, ptr_tif)
-    add_member(0x0010, "m_pAddEffect",    4, ptr_tif)
-    add_member(0x0014, "m_pAlphaEffect",  4, ptr_tif)
-    add_member(0x0018, "m_pCamera",       4, ptr_tif)
+    # Helper: create pointer-to-named-type
+    def make_ptr_type(type_name):
+        """Create a pointer type to a named struct/class."""
+        base = ida_typeinf.tinfo_t()
+        if not base.get_named_type(til, type_name):
+            # Create forward declaration
+            decl = "struct %s;" % type_name
+            ida_typeinf.parse_decl(base, til, decl, ida_typeinf.PT_TYP)
+            base.get_named_type(til, type_name)
+        p = ida_typeinf.tinfo_t()
+        p.create_ptr(base)
+        return p
+
+    # === HEADER: Runtime pointers (typed) ===
+    add_member(0x0000, "m_pGfxMgr",      4, make_ptr_type("gbGfxManager"))
+    add_member(0x0004, "m_pSceneRoot",    4, make_ptr_type("gbSceneGraph"))
+    add_member(0x0008, "m_pAddEffect2",   4, make_ptr_type("gbRenderEffect"))
+    add_member(0x000C, "m_pAlphaEffect2", 4, make_ptr_type("gbRenderEffect"))
+    add_member(0x0010, "m_pAddEffect",    4, make_ptr_type("gbRenderEffect"))
+    add_member(0x0014, "m_pAlphaEffect",  4, make_ptr_type("gbRenderEffect"))
+    add_member(0x0018, "m_pCamera",       4, make_ptr_type("gbCamera"))
 
     # === PRE-ARRAY REGION ===
     add_member(0x001C, "_preArray", 0x288 - 0x1C)
