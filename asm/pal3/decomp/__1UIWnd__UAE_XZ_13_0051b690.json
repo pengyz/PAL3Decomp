@@ -3,5 +3,5 @@
   "address": "0x0051B690",
   "size_bytes": 79,
   "signature": "void __thiscall(UIWnd *this)",
-  "decompiled_c": "void __thiscall UIWnd::~UIWnd(UIWnd *this)\n{\n  *(_DWORD *)this->_pad_000 = &off_570554;\n  sub_51B6E0(this);\n  UIWnd::~UIWnd(this);\n}\n"
+  "decompiled_c": "void __thiscall UIWnd::~UIWnd(UIWnd *this)\n{\n  this->_vftable = (void **)&off_570554;\n  sub_51B6E0(this);\n  UIWnd::~UIWnd(this);\n}\n"
 }

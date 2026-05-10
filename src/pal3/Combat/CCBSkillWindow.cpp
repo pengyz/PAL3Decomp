@@ -80,13 +80,13 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   pRect[2] = 256;
   pRect[1] = 0;
   pRect[3] = 256;
-  (*(void (**)(UIStatic *, int, _DWORD *, CCBSkillWindow *))(*(_DWORD *)(*p_m_pBack)->_base._pad_000 + 16))(
+  (*((void (**)(UIStatic *, int, _DWORD *, CCBSkillWindow *))(*p_m_pBack)->_base._vftable + 4))(
     *p_m_pBack,
     513,
     pRect,
     this);
   ((UIWnd *)this->m_pBack)->CreateFromTemplate(aUiCombatResult, 0);
-  (**(void (***)(UIStatic *, int))(*p_m_pBack)->_base._pad_000)(*p_m_pBack, 1);
+  ((void (*)(UIStatic *, int))*(*p_m_pBack)->_base._vftable)(*p_m_pBack, 1);
   v6 = (LPCSTR *)off_570310;
   v7 = (UIWnd ***)((char *)this + 108);
   do
@@ -96,7 +96,7 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
     pRect[2] = 79;
     pRect[1] = -15;
     pRect[3] = 113;
-    (*(void (**)(UIWnd **, int, _DWORD *, CCBSkillWindow *))(**v7)->m_rect)(*v7, 528, pRect, this);
+    ((void (*)(UIWnd **, int, _DWORD *, CCBSkillWindow *))(**v7)->m_rect_left)(*v7, 528, pRect, this);
     ((UIWnd *)*v7++)->CreateFromTemplate(*v6++, 0);
   }
   while ( (int)v6 < (int)dword_570324 );
@@ -107,8 +107,8 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   pRect[2] = 168;
   pRect[1] = 46;
   pRect[3] = 58;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v8->_base._base._pad_000 + 16))(
-    *(_DWORD *)v8->_base._base._pad_000,
+  (*((void (**)(void **, int, _DWORD *, CCBSkillWindow *))*v8->_base._base._vftable + 4))(
+    v8->_base._base._vftable,
     545,
     pRect,
     this);
@@ -118,15 +118,15 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   ((UIWnd *)*((UIWnd ***)this + 39))->GetChildAt(aUiCombatResult_1, 0);
   SetIntParam(*((void **)this + 39), 3);
   ((UIWnd *)*((UIWnd **)this + 39))->SetFrameRate(-2);
-  (***(void (****)(_DWORD, int))v8->_base._base._pad_000)(*(_DWORD *)v8->_base._base._pad_000, 1);
+  (**(void (***)(void **, int))v8->_base._base._vftable)(v8->_base._base._vftable, 1);
   v10 = (CCBSkillWindow *)((char *)this + 160);
   ((CCBLineupWindow *)(_DWORD *)this + 40)->Render();
   *pRect = 86;
   pRect[2] = 171;
   pRect[1] = 71;
   pRect[3] = 83;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v10->_base._base._pad_000 + 16))(
-    *(_DWORD *)v10->_base._base._pad_000,
+  (*((void (**)(void **, int, _DWORD *, CCBSkillWindow *))*v10->_base._base._vftable + 4))(
+    v10->_base._base._vftable,
     546,
     pRect,
     this);
@@ -136,15 +136,15 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   ((UIWnd *)*((UIWnd ***)this + 40))->GetChildAt(aUiCombatResult_2, 0);
   SetIntParam(*((void **)this + 40), 3);
   ((UIWnd *)*((UIWnd **)this + 40))->SetFrameRate(-2);
-  (***(void (****)(_DWORD, int))v10->_base._base._pad_000)(*(_DWORD *)v10->_base._base._pad_000, 1);
+  (**(void (***)(void **, int))v10->_base._base._vftable)(v10->_base._base._vftable, 1);
   v12 = (CCBSkillWindow *)((char *)this + 164);
   ((CCBLineupWindow *)(_DWORD *)this + 41)->Render();
   *pRect = 84;
   pRect[2] = 169;
   pRect[1] = 97;
   pRect[3] = 109;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v12->_base._base._pad_000 + 16))(
-    *(_DWORD *)v12->_base._base._pad_000,
+  (*((void (**)(void **, int, _DWORD *, CCBSkillWindow *))*v12->_base._base._vftable + 4))(
+    v12->_base._base._vftable,
     547,
     pRect,
     this);
@@ -154,20 +154,20 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   ((UIWnd *)*((UIWnd ***)this + 41))->GetChildAt(aUiCombatResult_3, 0);
   SetIntParam(*((void **)this + 41), 3);
   ((UIWnd *)*((UIWnd **)this + 41))->SetFrameRate(-2);
-  (***(void (****)(_DWORD, int))v12->_base._base._pad_000)(*(_DWORD *)v12->_base._base._pad_000, 1);
+  (**(void (***)(void **, int))v12->_base._base._vftable)(v12->_base._base._vftable, 1);
   v14 = (CCBSkillWindow *)((char *)this + 152);
   ((CCBLineupWindow *)(_DWORD *)this + 38)->Destroy();
   *pRect = 66;
   pRect[2] = 130;
   pRect[1] = 42;
   pRect[3] = 109;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v14->_base._base._pad_000 + 16))(
-    *(_DWORD *)v14->_base._base._pad_000,
+  (*((void (**)(void **, int, _DWORD *, CCBSkillWindow *))*v14->_base._base._vftable + 4))(
+    v14->_base._base._vftable,
     544,
     pRect,
     this);
   ((UIWnd *)*((UIWnd ***)this + 38))->CreateFromTemplate(aUiCombatResult_5, 0);
-  (***(void (****)(_DWORD, int))v14->_base._base._pad_000)(*(_DWORD *)v14->_base._base._pad_000, 1);
+  (**(void (***)(void **, int))v14->_base._base._vftable)(v14->_base._base._vftable, 1);
   p_m_pDescription = &this->m_pDescription;
   parent = -1;
   ((CCBLineupWindow *)&this->m_pDescription)->Destroy();
@@ -175,13 +175,12 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   pRect[2] = 200;
   pRect[1] = 134;
   pRect[3] = 166;
-  (*(void (**)(UIStatic *, int, _DWORD *, CCBSkillWindow *))(*(_DWORD *)(*p_m_pDescription)->_base._pad_000
-                                                                      + 16))(
+  (*((void (**)(UIStatic *, int, _DWORD *, CCBSkillWindow *))(*p_m_pDescription)->_base._vftable + 4))(
     *p_m_pDescription,
     514,
     pRect,
     this);
-  (**(void (***)(UIStatic *, int))(*p_m_pDescription)->_base._pad_000)(*p_m_pDescription, 1);
+  ((void (*)(UIStatic *, int))*(*p_m_pDescription)->_base._vftable)(*p_m_pDescription, 1);
   ((UIWnd *)&this->m_pDescription->_base)->SetShow(0);
   ((UIWnd *)&this->m_pDescription->_base)->GetChild((int)&parent);
   m_pSkillList = this->m_pSkillList;
@@ -204,12 +203,12 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   pRect[2] = 115;
   pRect[1] = 108;
   pRect[3] = 140;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v17->_base._base._pad_000 + 16))(
-    *(_DWORD *)v17->_base._base._pad_000,
+  (*((void (**)(void **, int, _DWORD *, CCBSkillWindow *))*v17->_base._base._vftable + 4))(
+    v17->_base._base._vftable,
     516,
     pRect,
     this);
-  (***(void (****)(_DWORD, int))v17->_base._base._pad_000)(*(_DWORD *)v17->_base._base._pad_000, 1);
+  (**(void (***)(void **, int))v17->_base._base._vftable)(v17->_base._base._vftable, 1);
   ((UIWnd *)*((UIWnd **)this + 21))->SetShow(0);
   ((UIWnd *)*((UIWnd **)this + 21))->GetChild((int)&parent);
   v18 = (CCBSkillWindow *)((char *)this + 88);
@@ -218,12 +217,12 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   pRect[2] = 200;
   pRect[1] = 108;
   pRect[3] = 140;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v18->_base._base._pad_000 + 16))(
-    *(_DWORD *)v18->_base._base._pad_000,
+  (*((void (**)(void **, int, _DWORD *, CCBSkillWindow *))*v18->_base._base._vftable + 4))(
+    v18->_base._base._vftable,
     517,
     pRect,
     this);
-  (***(void (****)(_DWORD, int))v18->_base._base._pad_000)(*(_DWORD *)v18->_base._base._pad_000, 1);
+  (**(void (***)(void **, int))v18->_base._base._vftable)(v18->_base._base._vftable, 1);
   ((UIWnd *)*((UIWnd **)this + 22))->SetShow(0);
   ((UIWnd *)*((UIWnd **)this + 22))->GetChild((int)&parent);
   v19 = (CCBSkillWindow *)((char *)this + 92);
@@ -232,12 +231,12 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   *pRect = 51;
   pRect[1] = 160;
   pRect[3] = 192;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v19->_base._base._pad_000 + 16))(
-    *(_DWORD *)v19->_base._base._pad_000,
+  (*((void (**)(void **, int, _DWORD *, CCBSkillWindow *))*v19->_base._base._vftable + 4))(
+    v19->_base._base._vftable,
     518,
     pRect,
     this);
-  (***(void (****)(_DWORD, int))v19->_base._base._pad_000)(*(_DWORD *)v19->_base._base._pad_000, 1);
+  (**(void (***)(void **, int))v19->_base._base._vftable)(v19->_base._base._vftable, 1);
   ((UIWnd *)*((UIWnd **)this + 23))->SetShow(0);
   ((UIWnd *)*((UIWnd **)this + 23))->GetChild((int)&parent);
   v20 = (CCBSkillWindow *)((char *)this + 96);
@@ -246,12 +245,12 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   pRect[2] = 200;
   pRect[1] = 160;
   pRect[3] = 192;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v20->_base._base._pad_000 + 16))(
-    *(_DWORD *)v20->_base._base._pad_000,
+  (*((void (**)(void **, int, _DWORD *, CCBSkillWindow *))*v20->_base._base._vftable + 4))(
+    v20->_base._base._vftable,
     519,
     pRect,
     this);
-  (***(void (****)(_DWORD, int))v20->_base._base._pad_000)(*(_DWORD *)v20->_base._base._pad_000, 1);
+  (**(void (***)(void **, int))v20->_base._base._vftable)(v20->_base._base._vftable, 1);
   ((UIWnd *)*((UIWnd **)this + 24))->SetShow(0);
   ((UIWnd *)*((UIWnd **)this + 24))->GetChild((int)&parent);
   v21 = (CCBSkillWindow *)((char *)this + 100);
@@ -260,12 +259,12 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   pRect[2] = 187;
   pRect[1] = 211;
   pRect[3] = 243;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v21->_base._base._pad_000 + 16))(
-    *(_DWORD *)v21->_base._base._pad_000,
+  (*((void (**)(void **, int, _DWORD *, CCBSkillWindow *))*v21->_base._base._vftable + 4))(
+    v21->_base._base._vftable,
     529,
     pRect,
     this);
-  (***(void (****)(_DWORD, int))v21->_base._base._pad_000)(*(_DWORD *)v21->_base._base._pad_000, 1);
+  (**(void (***)(void **, int))v21->_base._base._vftable)(v21->_base._base._vftable, 1);
   ((UIWnd *)*((UIWnd **)this + 25))->SetShow(0);
   ((UIWnd *)*((UIWnd **)this + 25))->GetChild((int)&parent);
   v22 = (CCBSkillWindow *)((char *)this + 104);
@@ -274,12 +273,12 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   pRect[2] = 187;
   pRect[1] = 0;
   pRect[3] = 32;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBSkillWindow *))(**(_DWORD **)v22->_base._base._pad_000 + 16))(
-    *(_DWORD *)v22->_base._base._pad_000,
+  (*((void (**)(void **, int, _DWORD *, CCBSkillWindow *))*v22->_base._base._vftable + 4))(
+    v22->_base._base._vftable,
     530,
     pRect,
     this);
-  (***(void (****)(_DWORD, int))v22->_base._base._pad_000)(*(_DWORD *)v22->_base._base._pad_000, 1);
+  (**(void (***)(void **, int))v22->_base._base._vftable)(v22->_base._base._vftable, 1);
   ((UIWnd *)*((UIWnd **)this + 26))->SetShow(0);
   ((UIWnd *)*((UIWnd **)this + 26))->GetChild((int)&parent);
   return 1;
@@ -310,12 +309,10 @@ int CCBSkillWindow::Destroy()
   v4 = 11;
   do
   {
-    if ( *(_DWORD *)v3->_base._base._pad_000 )
+    if ( v3->_base._base._vftable )
     {
-      result = (*(int (**)(_DWORD, int))(**(_DWORD **)v3->_base._base._pad_000 + 20))(
-                 *(_DWORD *)v3->_base._base._pad_000,
-                 1);
-      *(_DWORD *)v3->_base._base._pad_000 = 0;
+      result = (*((int (**)(void **, int))*v3->_base._base._vftable + 5))(v3->_base._base._vftable, 1);
+      v3->_base._base._vftable = 0;
     }
     v3 = (CCBSkillWindow *)((char *)v3 + 4);
     --v4;
@@ -324,15 +321,13 @@ int CCBSkillWindow::Destroy()
   m_pBack = (UIStatic *)this->m_pBack;
   if ( m_pBack )
   {
-    result = (*(int (**)(UIStatic *, int))(*(_DWORD *)m_pBack->_base._pad_000 + 20))(m_pBack, 1);
+    result = (*((int (**)(UIStatic *, int))m_pBack->_base._vftable + 5))(m_pBack, 1);
     this->m_pBack = 0;
   }
   m_pDescription = (UIStatic *)this->m_pDescription;
   if ( m_pDescription )
   {
-    result = (*(int (**)(UIStatic *, int))(*(_DWORD *)m_pDescription->_base._pad_000 + 20))(
-               m_pDescription,
-               1);
+    result = (*((int (**)(UIStatic *, int))m_pDescription->_base._vftable + 5))(m_pDescription, 1);
     this->m_pDescription = 0;
   }
   v7 = (void *)this->m_pSkillList[0];
@@ -408,7 +403,7 @@ int CCBSkillWindow::Destroy()
 int CCBSkillWindow::OnMessage(int a2, int a3, int a4)
 {
   if ( a2 == 1001 )
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)this->_base._base.m_pfather[17].m_fontcolor + 8))->SetParam(a3, a4);
+    ((CCBUI *)*(CCBUI **)(this->_base._base.m_pfather[17].m_fontcolor + 8))->SetParam(a3, a4);
   return a2->SendMessage(a3, a4);
 }
 
@@ -416,6 +411,6 @@ int CCBSkillWindow::OnMessage(int a2, int a3, int a4)
 BOOL CCBSkillWindow::Update(int a2, int a3)
 {
   if ( this->_base._base.m_bvisible == 1 && g_Input.KeyInfo[16].PressTime == 1 && (g_Input.KeyInfo[16].Data & 0xF) == 1 )
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)this->_base._base.m_pfather[17].m_fontcolor + 8))->SetParam(513, -1);
+    ((CCBUI *)*(CCBUI **)(this->_base._base.m_pfather[17].m_fontcolor + 8))->SetParam(513, -1);
   return ((UIWnd *)&this->_base._base)->HitTest(a2, a3);
 }

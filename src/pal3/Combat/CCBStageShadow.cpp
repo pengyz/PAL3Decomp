@@ -25,7 +25,7 @@ CCBStageShadow::CCBStageShadow()
   char pExceptionObject[1024]; // [esp+10h] [ebp-800h] BYREF
   char ArgList[1024]; // [esp+410h] [ebp-400h] BYREF
 
-  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_vftable + 8))(
                       g_pGfxMgr,
                       aShadowTga_0);
   this->m_pTexture = v2;

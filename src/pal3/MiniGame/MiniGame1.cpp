@@ -9,7 +9,7 @@ int sub_52AFC0(...);
 // 0x0052B860
 void MiniGame1::Render()
 {
-  float v1; // ebx
+  gbSceneGraph *pSceneGraph; // ebx
   gbMatrixStack *v3; // edi
   int v4; // ecx
   char *v5; // ebx
@@ -18,10 +18,10 @@ void MiniGame1::Render()
   int v8; // [esp+4h] [ebp-Ch]
   gbMatrixStack *v9; // [esp+8h] [ebp-8h]
 
-  v1 = g_pGfxMgr->InvViewMatrix.m[1][3];
+  pSceneGraph = (gbSceneGraph *)g_pGfxMgr->pSceneGraph;
   v3 = (gbMatrixStack *)g_pGfxMgr->pMatrixStack[1];
-  ((gbSceneGraph *)LODWORD(v1))->Begin(**((struct gbCamera ***)this + 3));
-  *(_BYTE *)(LODWORD(v1) + 19244) = 0;
+  pSceneGraph->Begin(**((struct gbCamera ***)this + 3));
+  LOBYTE(pSceneGraph->pnodebuf[713]) = 0;
   ((gbCamera *)**((gbCamera ***)this + 3))->SetAsCurrent(3);
   v3->Push();
   v4 = *((_DWORD *)this + 2);
@@ -29,7 +29,7 @@ void MiniGame1::Render()
     (*(void (**)(int, _DWORD))(*(_DWORD *)v4 + 16))(v4, 0);
   sub_52AFC0(*(int **)this, v3);
   v3->Pop();
-  ((gbSceneGraph *)LODWORD(v1))->End();
+  pSceneGraph->End();
   v5 = (char *)this + 16;
   v6 = 5;
   do

@@ -490,8 +490,8 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
     v16 = (CEffectSystem *)CEffectSystem::DestroyAllEffect();
     v16->IsVisible();
   }
-  (*(void (__stdcall **)(_DWORD, char *))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44] + 28))(
-    *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
+  (*(void (__stdcall **)(_DWORD, char *))(**(_DWORD **)&g_pGfxMgr[1].InvViewMatrix[4] + 28))(
+    *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4],
     v35);
   if ( !v36 )
     byte_BFDA91 = 1;
@@ -865,7 +865,7 @@ int PAL3::Update(int a1)
         CombatEffectUpdate((int)g_pEffectSystem, 0.0);
         goto LABEL_59;
       }
-      byte_5833D0 = *(_DWORD *)&g_pCBSystem->m_eResult[2] == 2;
+      byte_5833D0 = g_pCBSystem->m_eResult == CBR_LOSE;
       Mode = (CUtil *)((CGameData *)&g_GameData)->GetMode();
       CGameData_Load((int)&g_GameData, Mode);
       CombatEnter();
@@ -1031,7 +1031,7 @@ LABEL_64:
 // 0x00405C00
 void PAL3::Render()
 {
-  float v0; // edi
+  gbSceneGraph *pSceneGraph; // edi
   struct gbCamera *v1; // eax
   int v2; // ebx
   gbMatrixStack *v3; // esi
@@ -1068,11 +1068,11 @@ void PAL3::Render()
   struct gbQuaternion v34; // [esp+80h] [ebp-14h] BYREF
   int v35; // [esp+90h] [ebp-4h]
 
-  (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 48))(g_pGfxMgr);
+  (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_vftable + 48))(g_pGfxMgr);
   switch ( g_nGameState )
   {
     case 0:
-      (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 52))(g_pGfxMgr);
+      (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_vftable + 52))(g_pGfxMgr);
       return;
     case 2:
     case 7:
@@ -1082,12 +1082,12 @@ void PAL3::Render()
       RenderTarget3::End();
       CRenderTarget2::GetInstance();
       RenderTarget2::Begin();
-      v0 = g_pGfxMgr->InvViewMatrix.m[1][3];
+      pSceneGraph = (gbSceneGraph *)g_pGfxMgr->pSceneGraph;
       if ( g_pCameraCtrl )
         v1 = (struct gbCamera *)((char *)g_pCameraCtrl + 4);
       else
         v1 = 0;
-      ((gbSceneGraph *)LODWORD(v0))->Begin(v1);
+      pSceneGraph->Begin(v1);
       v2 = UIScene::CombatCheck();
       v3 = (gbMatrixStack *)g_pGfxMgr->pMatrixStack[1];
       g_pCameraCtrl->SetAsCurrent(3);
@@ -1127,19 +1127,19 @@ void PAL3::Render()
       {
         Top = (gbMatrix4 *)v3->GetTop();
         Top->TransformPlane();
-        (*(void (**)(gbGfxManager *, int *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 112))(
+        (*(void (**)(gbGfxManager *, int *))(*(_DWORD *)g_pGfxMgr->_vftable + 112))(
           g_pGfxMgr,
           &g_InputState.KeyInfo[149].CountMode);
       }
       else
       {
-        (*(void (**)(gbGfxManager *, _DWORD))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 112))(g_pGfxMgr, 0);
+        (*(void (**)(gbGfxManager *, _DWORD))(*(_DWORD *)g_pGfxMgr->_vftable + 112))(g_pGfxMgr, 0);
       }
       v5 = (UIScene *)UISceneUpdate();
       v5->RenderWithStack(v3);
       if ( g_nGameState != 9 )
         v3->Render();
-      ((gbSceneGraph *)LODWORD(v0))->End();
+      pSceneGraph->End();
       if ( dword_BFDA38 && byte_BFDA40 )
       {
         if ( g_pCameraCtrl )
@@ -1162,14 +1162,14 @@ void PAL3::Render()
         v9 = (struct gbCamera *)((char *)g_pCameraCtrl + 4);
       else
         v9 = 0;
-      ((gbSceneGraph *)LODWORD(v0))->Begin(v9);
-      *(_BYTE *)(LODWORD(v0) + 19244) = 0;
+      pSceneGraph->Begin(v9);
+      LOBYTE(pSceneGraph->pnodebuf[713]) = 0;
       if ( *(_DWORD *)(UISceneUpdate() + 100) != 1 )
         UIScene::CombatCheck();
       v10 = (UIScene *)UISceneUpdate();
       v10->Render((int)v3);
       ((SceneMgr *)dword_BFDA78)->RenderUpdate();
-      ((gbSceneGraph *)LODWORD(v0))->End();
+      pSceneGraph->End();
       if ( g_nGameState == 8 )
       {
         v11 = (UIScene *)UISceneUpdate();
@@ -1181,13 +1181,13 @@ void PAL3::Render()
         v12 = (struct gbCamera *)((char *)g_pCameraCtrl + 4);
       else
         v12 = 0;
-      ((gbSceneGraph *)LODWORD(v0))->Begin(v12);
-      *(_BYTE *)(LODWORD(v0) + 19244) = 0;
+      pSceneGraph->Begin(v12);
+      LOBYTE(pSceneGraph->pnodebuf[713]) = 0;
       UIScene::CombatCheck();
       sub_410430(v3);
       v13 = (UIScene *)UISceneUpdate();
       v13->OverlayRender((int)v3);
-      ((gbSceneGraph *)LODWORD(v0))->End();
+      pSceneGraph->End();
       Instance = (RenderTarget3 *)RenderTarget4::GetInstance();
       Instance->Resolve();
       v15 = (RenderTarget2 *)CRenderTarget2::GetInstance();
@@ -1288,7 +1288,7 @@ LABEL_46:
   }
   v22 = (UIRenderObj *)UIQuadManager::GetInstance();
   v22->UIRenderObj();
-  (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 52))(g_pGfxMgr);
+  (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_vftable + 52))(g_pGfxMgr);
   if ( dword_BFDA98 )
   {
     PAL3::PrintScreen();
@@ -1343,7 +1343,7 @@ void PAL3::Destroy()
   }
   if ( g_pGfxMgr )
   {
-    (**(void (***)(gbGfxManager *, int))g_pGfxMgr->_pad_0000)(g_pGfxMgr, 1);
+    (**(void (***)(gbGfxManager *, int))g_pGfxMgr->_vftable)(g_pGfxMgr, 1);
     g_pGfxMgr = 0;
   }
   FileSysDestory();
@@ -1778,7 +1778,7 @@ void PAL3::PrintScreen()
   gbImage2D v30; // [esp+3Ch] [ebp-D4h] BYREF
   int v31; // [esp+10Ch] [ebp-4h]
 
-  if ( (*(int (**)(gbGfxManager *, int *, int))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 84))(g_pGfxMgr, &v23, 1) )
+  if ( (*(int (**)(gbGfxManager *, int *, int))(*(_DWORD *)g_pGfxMgr->_vftable + 84))(g_pGfxMgr, &v23, 1) )
   {
     ((gbImage2D *)&v30)->gbImage2D();
     v31 = 0;
@@ -1808,7 +1808,7 @@ LABEL_8:
           while ( v30.ImgInfo.goal < v26 );
           isdiskinfo = v30.ImgInfo.isdiskinfo;
         }
-        (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 88))(g_pGfxMgr);
+        (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_vftable + 88))(g_pGfxMgr);
         ((gbImage2D *)&g_PAL3Data._tail[8])->Release();
         Image = ((gbImage2D *)&g_PAL3Data._tail[8])->CreateImage(v26, v27, 24);
         pBits = (unsigned __int8 *)v30.pBits;
@@ -1913,7 +1913,7 @@ LABEL_8:
       }
       if ( v25 != 9 )
       {
-        (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 88))(g_pGfxMgr);
+        (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_vftable + 88))(g_pGfxMgr);
 LABEL_34:
         v31 = -1;
         ((gbImage2D *)&v30)->~gbImage2D();

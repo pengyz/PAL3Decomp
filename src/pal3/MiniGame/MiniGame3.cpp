@@ -10,19 +10,19 @@ int sub_535F10(...);
 // 0x00535320
 void MiniGame3::Render()
 {
-  gbSceneGraph *v2; // ebx
+  gbSceneGraph *pSceneGraph; // ebx
   int v3; // eax
   struct gbCamera *v4; // eax
   gbMatrixStack *v5; // edi
   int v6; // ecx
 
-  v2 = (gbSceneGraph *)LODWORD(g_pGfxMgr->InvViewMatrix.m[1][3]);
+  pSceneGraph = (gbSceneGraph *)g_pGfxMgr->pSceneGraph;
   v3 = *((_DWORD *)this + 3);
   if ( v3 )
     v4 = (struct gbCamera *)(v3 + 4);
   else
     v4 = 0;
-  v2->Begin(v4);
+  pSceneGraph->Begin(v4);
   v5 = (gbMatrixStack *)g_pGfxMgr->pMatrixStack[1];
   sub_533FD0(*((_DWORD *)this + 3));
   v5->Push();
@@ -32,5 +32,5 @@ void MiniGame3::Render()
   sub_535F10(*(struct gbVec3D **)this, v5);
   sub_535970(v5);
   v5->Pop();
-  v2->End();
+  pSceneGraph->End();
 }

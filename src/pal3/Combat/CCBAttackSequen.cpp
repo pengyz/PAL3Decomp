@@ -116,7 +116,7 @@ char CCBAttackSequen::CheckComplete()
         v5 = (double)*(int *)(p_bSlot2Running - 10) * 0.0078260871 + 659.0;
       else
         v5 = (double)*(int *)(p_bSlot2Running - 14) * 0.017130435 + 460.0;
-      result = ((UIWnd *)*(UIWnd **)&this->m_pUI->_base._base._pad_000[v2])->ScreenToClient((__int64)v5, 8);
+      result = ((UIWnd *)*(UIWnd **)((char *)&this->m_pUI->_base._base._vftable + v2))->ScreenToClient((__int64)v5, 8);
     }
     v2 += 4;
     p_bSlot2Running += 40;
@@ -148,21 +148,20 @@ int CCBAttackSequen::AdvanceStep()
   do
   {
     m_pRole = (CCBRoleState *)this->m_pRole;
-    if ( *(&m_pRole->m_Role[0].bValid + v1 * 4) )
+    if ( *(&m_pRole->m_Role[0].bValid + v1) )
     {
-      if ( !m_pRole->IsRoleAlive(roleIdx)
-        || LOBYTE(this->m_pRole->m_Role[0].nSpecStateRound[v1 + 10]) == 1 )
+      if ( !m_pRole->IsRoleAlive(roleIdx) || this->m_pRole->m_Role[0]._rest[v1 + 804] == 1 )
       {
-        (***(void (****)(_DWORD, _DWORD))&this->m_pUI->_base._base._pad_000[v3])(
-          *(_DWORD *)&this->m_pUI->_base._base._pad_000[v3],
+        (***(void (****)(_DWORD, _DWORD))((char *)&this->m_pUI->_base._base._vftable + v3))(
+          *(void ***)((char *)&this->m_pUI->_base._base._vftable + v3),
           0);
       }
       else
       {
         m_pUI = (CCBUI *)this->m_pUI;
         if ( m_pUI->m_pAttackSequenBack->_base.m_bvisible == 1 )
-          (***(void (****)(_DWORD, int))&m_pUI->_base._base._pad_000[v3])(
-            *(_DWORD *)&m_pUI->_base._base._pad_000[v3],
+          (***(void (****)(_DWORD, int))((char *)&m_pUI->_base._base._vftable + v3))(
+            *(void ***)((char *)&m_pUI->_base._base._vftable + v3),
             1);
         v14 = -1;
         if ( *(_BYTE *)(*(_DWORD *)((char *)this->m_pCBSystem->m_pStage + v3 - 52) + 280) )
@@ -183,14 +182,14 @@ int CCBAttackSequen::AdvanceStep()
           }
           BYTE1(v14) = v7;
           LOBYTE(v14) = v7;
-          sub_446030(*(_DWORD **)&this->m_pUI->_base._base._pad_000[v3]);
+          sub_446030(*(_DWORD **)((char *)&this->m_pUI->_base._base._vftable + v3));
         }
         v14->UpdateAnim();
       }
     }
     v3 += 4;
     result = roleIdx + 1;
-    v1 += 223;
+    v1 += 892;
     ++roleIdx;
   }
   while ( v3 < 120 );

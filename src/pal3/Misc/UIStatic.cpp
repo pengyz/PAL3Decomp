@@ -17,7 +17,7 @@ UIStatic::UIStatic()
   int v3; // ecx
 
   ((UIWnd *)&this->_base)->UIWnd();
-  *(_DWORD *)this->_base._pad_000 = &off_56AD88;
+  this->_base._vftable = (void **)&off_56AD88;
   LOBYTE(this->m_bordersize) = 0;
   BYTE1(this->m_bordersize) = 0;
   *(_DWORD *)this->_pad_004 = 0;
@@ -80,7 +80,7 @@ BOOL UIStatic::Update(int a2, int a3)
   if ( !this->_base.m_bvisible )
     return 0;
   ((GRPinput *)&pt)->GetCursorPos();
-  v5 = PtInRect((const RECT *)this->_base.m_rect, pt);
+  v5 = PtInRect((const RECT *)&this->_base.m_rect_left, pt);
   if ( this->_base.m_benable )
   {
     if ( a3 )
@@ -97,17 +97,14 @@ BOOL UIStatic::Update(int a2, int a3)
             m_pfather = (UIWnd *)this->_base.m_pfather;
             *(_DWORD *)this->_pad_004 = 0;
             if ( m_pfather )
-              (*(void (__stdcall **)(int, unsigned int, _DWORD))(*(_DWORD *)m_pfather->_pad_000 + 24))(
-                1001,
-                this->_base.m_id,
-                0);
+              (*((void (__stdcall **)(int, unsigned int, _DWORD))m_pfather->_vftable + 6))(1001, this->_base.m_id, 0);
           }
           else
           {
             v9 = (UIWnd *)this->_base.m_pfather;
             *(_DWORD *)this->_pad_004 = 1;
             if ( v9 )
-              (*(void (__stdcall **)(int, unsigned int, int))(*(_DWORD *)v9->_pad_000 + 24))(1001, this->_base.m_id, 1);
+              (*((void (__stdcall **)(int, unsigned int, int))v9->_vftable + 6))(1001, this->_base.m_id, 1);
           }
           BYTE1(this->m_bordersize) = 0;
           BYTE2(this->m_bordersize) = 0;
@@ -118,10 +115,7 @@ BOOL UIStatic::Update(int a2, int a3)
           this->_pad_004[20] = 1;
           BYTE2(this->m_bordersize) = 0;
           if ( v11 )
-            (*(void (__stdcall **)(int, unsigned int, _DWORD))(*(_DWORD *)v11->_pad_000 + 24))(
-              1002,
-              this->_base.m_id,
-              0);
+            (*((void (__stdcall **)(int, unsigned int, _DWORD))v11->_vftable + 6))(1002, this->_base.m_id, 0);
         }
       }
       else if ( !BYTE2(this->m_bordersize) )
@@ -130,7 +124,7 @@ BOOL UIStatic::Update(int a2, int a3)
         this->_pad_004[20] = 0;
         BYTE2(this->m_bordersize) = 1;
         if ( v12 )
-          (*(void (__stdcall **)(int, unsigned int, _DWORD))(*(_DWORD *)v12->_pad_000 + 24))(1003, this->_base.m_id, 0);
+          (*((void (__stdcall **)(int, unsigned int, _DWORD))v12->_vftable + 6))(1003, this->_base.m_id, 0);
       }
       return ((UIWnd *)&this->_base)->HitTest(a2, a3);
     }
@@ -145,11 +139,7 @@ BOOL UIStatic::Update(int a2, int a3)
     {
       v6 = (UIWnd *)this->_base.m_pfather;
       if ( v6 )
-        (*(void (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)v6->_pad_000 + 24))(
-          v6,
-          1021,
-          this->_base.m_id,
-          1);
+        (*((void (**)(UIWnd *, int, unsigned int, int))v6->_vftable + 6))(v6, 1021, this->_base.m_id, 1);
       v13 = off_5974E0;
       Instance = (char *)CScreenMode::GetInstance();
       ((CScreenMode *)Instance)->AudioSetPosition(v13, 1);
@@ -164,8 +154,8 @@ int UIStatic::Render()
   int result; // eax
   int v3; // eax
   unsigned int *v4; // eax
-  unsigned int *m_wndcolor; // ebx
-  int *m_rect; // edi
+  unsigned int *p_m_wndcolor; // ebx
+  int *p_m_rect_left; // edi
   gbTexture *v7; // ecx
   gbTexture *v8; // eax
   unsigned int *v9; // [esp-10h] [ebp-58h]
@@ -182,18 +172,18 @@ int UIStatic::Render()
         v4 = (unsigned int *)*(unsigned int **)&this->_pad_004[28];
         v10.pTexPt[0] = *(gbTexture **)&this->_pad_004[24];
         v10.nTex = 1;
-        m_wndcolor = (unsigned int *)this->_base.m_wndcolor;
-        m_rect = (int *)this->_base.m_rect;
-        ((_TextureLib_Data *)this->_base.m_rect)->SetLibFolder((unsigned int *)this->_base.m_wndcolor, &v10, 0x114u, v4, COERCE_FLOAT(1));
+        p_m_wndcolor = (unsigned int *)&this->_base.m_wndcolor;
+        p_m_rect_left = (int *)&this->_base.m_rect_left;
+        ((_TextureLib_Data *)&this->_base.m_rect_left)->SetLibFolder(&this->_base.m_wndcolor, &v10, 0x114u, v4, COERCE_FLOAT(1));
       }
       else
       {
         v7 = (gbTexture *)*(gbTexture **)&this->_pad_004[4 * v3 + 4];
         v10.nTex = 1;
         v10.pTexPt[0] = v7;
-        m_wndcolor = (unsigned int *)this->_base.m_wndcolor;
-        m_rect = (int *)this->_base.m_rect;
-        ((_TextureLib_Data *)this->_base.m_rect)->SetLibFolder((unsigned int *)this->_base.m_wndcolor, &v10, 0x114u, *(unsigned int **)&this->_pad_004[4 * v3 + 12], COERCE_FLOAT(1));
+        p_m_wndcolor = (unsigned int *)&this->_base.m_wndcolor;
+        p_m_rect_left = (int *)&this->_base.m_rect_left;
+        ((_TextureLib_Data *)&this->_base.m_rect_left)->SetLibFolder(&this->_base.m_wndcolor, &v10, 0x114u, *(unsigned int **)&this->_pad_004[4 * v3 + 12], COERCE_FLOAT(1));
       }
       if ( !this->_base.m_benable )
       {
@@ -203,17 +193,17 @@ int UIStatic::Render()
           v9 = (unsigned int *)*(unsigned int **)&this->_pad_004[36];
           v10.nTex = 1;
           v10.pTexPt[0] = v8;
-          m_rect->SetLibFolder(m_wndcolor, &v10, 0x114u, v9, COERCE_FLOAT(1));
+          p_m_rect_left->SetLibFolder(p_m_wndcolor, &v10, 0x114u, v9, COERCE_FLOAT(1));
         }
       }
     }
     else
     {
-      m_rect = (int *)this->_base.m_rect;
-      ((_TextureLib_Data *)*(_DWORD *)this->_base.m_rect)->~_TextureLib_Data(*(_DWORD *)&this->_base.m_rect[4], *(_DWORD *)&this->_base.m_rect[8], *(_DWORD *)&this->_base.m_rect[12], (float *)&unk_D91780);
+      p_m_rect_left = (int *)&this->_base.m_rect_left;
+      ((_TextureLib_Data *)this->_base.m_rect_left)->~_TextureLib_Data(this->_base.m_rect_top, this->_base.m_rect_right, this->_base.m_rect_bottom, (float *)&unk_D91780);
     }
     if ( this->_pad_004[40] )
-      UIRenderPar(&this->_pad_004[40], m_rect, &this->m_align, 1, 1);
+      UIRenderPar(&this->_pad_004[40], p_m_rect_left, &this->m_align, 1, 1);
     return ((UIWnd *)&this->_base)->GetID();
   }
   return result;

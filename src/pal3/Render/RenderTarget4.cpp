@@ -34,7 +34,7 @@ void * RenderTarget4::Init()
 
   ((OpenBaseFile *)&v4)->OpenBaseFile();
   v5 = 0;
-  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_vftable + 8))(
                       g_pGfxMgr,
                       aEffectscnFrame);
   *((_DWORD *)this + 1) = v2;

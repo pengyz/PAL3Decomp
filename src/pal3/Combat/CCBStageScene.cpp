@@ -111,7 +111,7 @@ CCBStageScene::CCBStageScene()
   this->Render();
   this->ShowAxis();
   this->_p298 = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptAddit_1, 0);
-  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_vftable + 8))(
                       g_pGfxMgr,
                       aCbsceneFivelin);
   this->_d29C = (int)v2;
@@ -128,7 +128,7 @@ CCBStageScene::CCBStageScene()
     v3 = 0;
   }
   this->_d2A0 = (int)v3;
-  v5 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+  v5 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_vftable + 8))(
                       g_pGfxMgr,
                       aCbsceneFivelin_0);
   this->_d2A4 = (int)v5;

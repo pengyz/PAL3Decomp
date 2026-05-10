@@ -113,7 +113,7 @@ int CCBProtectWindow::Create()
   v24 = 396;
   while ( 1 )
   {
-    *(_DWORD *)v2->_base._base._pad_000 = 0;
+    v2->_base._base._vftable = 0;
     lstrcpyA(v3 - 32, g_SceneMgr.m_szUIString);
     lstrcpyA(v3, g_SceneMgr.m_szUIString);
     lstrcpyA(v3 + 30, g_SceneMgr.m_szUIString);
@@ -153,7 +153,7 @@ int CCBProtectWindow::Create()
   do
   {
     v6 = (char *)v5 - 24;
-    *(_DWORD *)v4->_base._base._pad_000 = 0;
+    v4->_base._base._vftable = 0;
     *((_DWORD *)v5 - 8) = 0;
     *((_DWORD *)v5 - 7) = 0;
     *(_DWORD *)v6 = 0;
@@ -191,7 +191,7 @@ int CCBProtectWindow::Create()
   v10 = (char *)this + 345840;
   while ( 1 )
   {
-    *(_DWORD *)v9->_base._base._pad_000 = 0;
+    v9->_base._base._vftable = 0;
     lstrcpyA(v10 - 32, g_SceneMgr.m_szUIString);
     lstrcpyA(v10, g_SceneMgr.m_szUIString);
     lstrcpyA(v10 + 30, g_SceneMgr.m_szUIString);
@@ -220,7 +220,7 @@ int CCBProtectWindow::Create()
   do
   {
     v13 = (char *)v12 - 24;
-    *(_DWORD *)v11->_base._base._pad_000 = 0;
+    v11->_base._base._vftable = 0;
     *((_DWORD *)v12 - 8) = 0;
     *((_DWORD *)v12 - 7) = 0;
     *(_DWORD *)v13 = 0;
@@ -258,7 +258,7 @@ int CCBProtectWindow::Create()
   v17 = (char *)this + 507704;
   while ( 1 )
   {
-    *(_DWORD *)v16->_base._base._pad_000 = 0;
+    v16->_base._base._vftable = 0;
     lstrcpyA(v17 - 32, g_SceneMgr.m_szUIString);
     lstrcpyA(v17, g_SceneMgr.m_szUIString);
     lstrcpyA(v17 + 30, g_SceneMgr.m_szUIString);
@@ -281,13 +281,13 @@ int CCBProtectWindow::Create()
   *((_BYTE *)this + 669300) = 0;
   ((UIItem *)(UIItem *)this + 669304)->Refresh();
   ((UIItem *)(UIItem *)this + 670672)->Refresh();
-  *(_DWORD *)this->_base._base._pad_000 = &off_5705D0;
+  this->_base._base._vftable = (void **)&off_5705D0;
   v18 = (CCBProtectWindow *)((char *)this + 8028);
   v19 = 4;
   do
   {
     v18[3515].m_pWPXLove = 0;
-    *(_DWORD *)v18->_base._base._pad_000 = 0;
+    v18->_base._base._vftable = 0;
     v18 = (CCBProtectWindow *)((char *)v18 + 4);
     --v19;
   }
@@ -307,7 +307,7 @@ UIWnd * CCBProtectWindow::Destroy(CCBProtectWindow *Block, char a2)
 // 0x0051DDA0
 void CCBProtectWindow::ShowWindow()
 {
-  *(_DWORD *)this->_base._base._pad_000 = &off_5705D0;
+  this->_base._base._vftable = (void **)&off_5705D0;
   *((_BYTE *)this + 8025) = 1;
   ((UIItem *)(UIItem *)this + 670672)->UIItem();
   ((UIItem *)(UIItem *)this + 669304)->UIItem();

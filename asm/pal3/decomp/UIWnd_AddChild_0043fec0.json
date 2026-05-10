@@ -3,5 +3,5 @@
   "address": "0x0043FEC0",
   "size_bytes": 63,
   "signature": "int __thiscall(UIWnd *this, _DWORD *a2)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall UIWnd::AddChild(UIWnd *this, _DWORD *a2)\n{\n  UIWnd *v2; // edx\n  char *m_rect; // ecx\n  int result; // eax\n\n  v2 = (UIWnd *)((char *)this + 76);\n  m_rect = this->m_rect;\n  *(_DWORD *)v2->_pad_000 = *a2;\n  *(_DWORD *)v2->m_fontcolor = a2[1];\n  *(_DWORD *)v2->m_wndcolor = a2[2];\n  v2->m_id = a2[3];\n  *(_DWORD *)m_rect = *a2;\n  *((_DWORD *)m_rect + 1) = a2[1];\n  *((_DWORD *)m_rect + 2) = a2[2];\n  result = a2[3];\n  *((_DWORD *)m_rect + 3) = result;\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall UIWnd::AddChild(UIWnd *this, _DWORD *a2)\n{\n  UIWnd *v2; // edx\n  int *p_m_rect_left; // ecx\n  int result; // eax\n\n  v2 = (UIWnd *)((char *)this + 76);\n  p_m_rect_left = &this->m_rect_left;\n  v2->_vftable = (void **)*a2;\n  v2->m_fontcolor = a2[1];\n  v2->m_wndcolor = a2[2];\n  v2->m_id = a2[3];\n  *p_m_rect_left = *a2;\n  p_m_rect_left[1] = a2[1];\n  p_m_rect_left[2] = a2[2];\n  result = a2[3];\n  p_m_rect_left[3] = result;\n  return result;\n}\n"
 }

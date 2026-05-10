@@ -79,8 +79,8 @@ void * RenderTarget3::End()
   void *result; // eax
 
   if ( *v0 )
-    return (*(void *(__stdcall **)(_DWORD, int, int))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44] + 228))(
-             *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
+    return (*(void *(__stdcall **)(_DWORD, int, int))(**(_DWORD **)&g_pGfxMgr[1].InvViewMatrix[4] + 228))(
+             *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4],
              168,
              3);
   return result;
@@ -97,8 +97,8 @@ void RenderTarget3::Resolve()
 
   if ( *this )
   {
-    (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44] + 228))(
-      *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
+    (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&g_pGfxMgr[1].InvViewMatrix[4] + 228))(
+      *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4],
       168,
       7);
     if ( *((_DWORD *)this + 1) )

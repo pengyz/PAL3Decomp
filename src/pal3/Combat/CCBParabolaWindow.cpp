@@ -37,9 +37,9 @@ CCBParabolaWindow::CCBParabolaWindow(int *a2, int a3)
     a2[2] = 230;
     a2[1] = 0;
     a2[3] = 250;
-    (*(void (**)(UIWnd **, int, int *, CCBParabolaWindow ***))(**v4)->m_rect)(*v4, 240, a2, this);
+    ((void (*)(UIWnd **, int, int *, CCBParabolaWindow ***))(**v4)->m_rect_left)(*v4, 240, a2, this);
     ((UIWnd *)*v4)->CreateFromTemplate(aUiCombatContro_21, 0);
-    (*(void (**)(UIWnd **, int))(**v4)->_pad_000)(*v4, 1);
+    ((void (*)(UIWnd **, int))(**v4)->_vftable)(*v4, 1);
   }
   v5 = (UIWnd ***)(this + 24);
   for ( i = 0; i < 5; ++i )
@@ -52,14 +52,14 @@ CCBParabolaWindow::CCBParabolaWindow(int *a2, int a3)
       a2[1] = v7;
       a2[2] = v8 + 40;
       a2[3] = v7 + 38;
-      (*(void (**)(UIWnd **, int, int *, CCBParabolaWindow ***))(**v5)->m_rect)(
+      ((void (*)(UIWnd **, int, int *, CCBParabolaWindow ***))(**v5)->m_rect_left)(
         *v5,
         dword_57014C[i],
         a2,
         this);
       ((UIWnd *)*v5)->CreateFromTemplate(off_570284[i], 0);
       sub_4425D0((gbRefObject **)*v5, off_570298[i], 0);
-      (*(void (**)(UIWnd **, int))(**v5)->_pad_000)(*v5, 1);
+      ((void (*)(UIWnd **, int))(**v5)->_vftable)(*v5, 1);
     }
     ++v5;
   }
@@ -85,12 +85,10 @@ CCBParabolaWindow::~CCBParabolaWindow()
   v5 = 5;
   do
   {
-    if ( *(_DWORD *)v4->_base._base._pad_000 )
+    if ( v4->_base._base._vftable )
     {
-      result = (*(int (**)(_DWORD, int))(**(_DWORD **)v4->_base._base._pad_000 + 20))(
-                 *(_DWORD *)v4->_base._base._pad_000,
-                 1);
-      *(_DWORD *)v4->_base._base._pad_000 = 0;
+      result = (*((int (**)(void **, int))*v4->_base._base._vftable + 5))(v4->_base._base._vftable, 1);
+      v4->_base._base._vftable = 0;
     }
     v4 = (CCBParabolaWindow *)((char *)v4 + 4);
     --v5;
@@ -108,7 +106,7 @@ int CCBParabolaWindow::Reset(int a2, int a3, int a4)
   {
     Instance = (char *)CScreenMode::GetInstance();
     ((CScreenMode *)Instance)->AudioSetPosition(aWa001, 1);
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)this->_base._base.m_pfather[17].m_fontcolor + 8))->SetParam(a3, a4);
+    ((CCBUI *)*(CCBUI **)(this->_base._base.m_pfather[17].m_fontcolor + 8))->SetParam(a3, a4);
   }
   return a2->SendMessage(a3, a4);
 }

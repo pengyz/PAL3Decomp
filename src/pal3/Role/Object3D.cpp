@@ -438,7 +438,7 @@ void Object3D::GetScreenDegree()
 void Object3D::GetScreenDegree(int a1@<ecx>, int a2, int a3, int a4, gbMatrixStack *a5)
 {
   struct gbCamera **v6; // eax
-  float v7; // edi
+  gbSceneGraph *pSceneGraph; // edi
   gbMatrixStack *v8; // edi
   double v10; // st7
   unsigned __int8 v11; // c0
@@ -454,10 +454,10 @@ void Object3D::GetScreenDegree(int a1@<ecx>, int a2, int a3, int a4, gbMatrixSta
   v6 = *(struct gbCamera ***)(a1 + 84);
   if ( !v6 || !*(_BYTE *)a1 || !*(_BYTE *)(a1 + 80) )
     return;
-  v7 = g_pGfxMgr->InvViewMatrix.m[1][3];
-  v16 = (gbSceneGraph *)LODWORD(v7);
-  ((gbSceneGraph *)LODWORD(v7))->Begin(*v6);
-  *(_BYTE *)(LODWORD(v7) + 19244) = 0;
+  pSceneGraph = (gbSceneGraph *)g_pGfxMgr->pSceneGraph;
+  v16 = pSceneGraph;
+  pSceneGraph->Begin(*v6);
+  LOBYTE(pSceneGraph->pnodebuf[713]) = 0;
   v8 = a5;
   if ( !a5 )
     v8 = (gbMatrixStack *)g_pGfxMgr->pMatrixStack[1];

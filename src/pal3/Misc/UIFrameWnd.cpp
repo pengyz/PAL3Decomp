@@ -30,7 +30,7 @@ UIFrameWnd::UIFrameWnd()
   *((_DWORD *)this + 33) = 0;
   *((_DWORD *)this + 19) = 1065353216;
   *((_DWORD *)this + 20) = 1065353216;
-  *(_DWORD *)this->_base._pad_000 = &off_56ADD0;
+  this->_base._vftable = (void **)&off_56ADD0;
   this->m_pbktex = (gbTexture *)8;
   *((_DWORD *)this + 23) = 1;
   *((_BYTE *)this + 140) = 1;
@@ -46,7 +46,7 @@ void UIFrameWnd::_UIFrameWnd()
   _BYTE *v3; // ecx
   char v4; // al
 
-  *(_DWORD *)this->_base._pad_000 = &off_56ADD0;
+  this->_base._vftable = (void **)&off_56ADD0;
   ((UIFrameWnd *)this)->OnMessage();
   v2 = *((_DWORD *)this + 25);
   if ( v2 )
@@ -103,10 +103,10 @@ void UIFrameWnd::OnMessage()
 int UIFrameWnd::Render()
 {
   int result; // eax
-  int v3; // ecx
+  int m_rect_left; // ecx
   int v4; // eax
   double v5; // st7
-  int v6; // ecx
+  int m_rect_top; // ecx
   double v7; // st7
   double v8; // st6
   __int64 v9; // rax
@@ -129,9 +129,9 @@ int UIFrameWnd::Render()
   int v26; // [esp-18h] [ebp-9Ch]
   gbColorQuad v27[2]; // [esp-Ch] [ebp-90h] BYREF
   int v28; // [esp+10h] [ebp-74h]
-  int v29; // [esp+14h] [ebp-70h]
+  int m_rect_right; // [esp+14h] [ebp-70h]
   int v30; // [esp+18h] [ebp-6Ch]
-  int v31; // [esp+1Ch] [ebp-68h]
+  int m_rect_bottom; // [esp+1Ch] [ebp-68h]
   int v32; // [esp+20h] [ebp-64h] BYREF
   int v33; // [esp+24h] [ebp-60h]
   int v34; // [esp+28h] [ebp-5Ch]
@@ -145,66 +145,66 @@ int UIFrameWnd::Render()
   result = this->_base.m_bvisible;
   if ( result )
   {
-    v3 = *(_DWORD *)this->_base.m_rect;
-    v29 = *(_DWORD *)&this->_base.m_rect[8];
-    v4 = v3 + v29;
-    v28 = v3;
+    m_rect_left = this->_base.m_rect_left;
+    m_rect_right = this->_base.m_rect_right;
+    v4 = m_rect_left + m_rect_right;
+    v28 = m_rect_left;
     v5 = 1.0 - *((float *)this + 19);
-    v6 = *(_DWORD *)&this->_base.m_rect[4];
+    m_rect_top = this->_base.m_rect_top;
     v32 = v4 / 2;
     v7 = v5 * (double)(v4 / 2);
-    v31 = *(_DWORD *)&this->_base.m_rect[12];
-    v30 = v6;
+    m_rect_bottom = this->_base.m_rect_bottom;
+    v30 = m_rect_top;
     v8 = (double)v28 * *((float *)this + 19);
-    v33 = (v6 + v31) / 2;
+    v33 = (m_rect_top + m_rect_bottom) / 2;
     v36 = (__int64)(v8 + v7);
-    v9 = (__int64)((double)v29 * *((float *)this + 19) + v7);
+    v9 = (__int64)((double)m_rect_right * *((float *)this + 19) + v7);
     v10 = (1.0 - *((float *)this + 20)) * (double)v33;
     v38 = v9;
-    v37 = (__int64)((double)v6 * *((float *)this + 20) + v10);
-    v39 = (__int64)((double)v31 * *((float *)this + 20) + v10);
+    v37 = (__int64)((double)m_rect_top * *((float *)this + 20) + v10);
+    v39 = (__int64)((double)m_rect_bottom * *((float *)this + 20) + v10);
     if ( *((_DWORD *)this + 28) )
     {
       v11 = *((_DWORD *)this + 36);
       v27[0].Color = *((_DWORD *)this + 29);
       *(_DWORD *)&v27[0].Blue = v11;
       v27[0].ColorQuadFmt = v11;
-      v27->gbColorQuad((struct gbColorQuad *)this->_base.m_wndcolor);
+      v27->gbColorQuad((struct gbColorQuad *)&this->_base.m_wndcolor);
       v12 = ((gbTextureArray *)&v40.pTexPt[1])->gbTextureArray(*((struct gbTexture **)this + 28));
-      ((_TextureLib_Data *)this->_base.m_rect)->_CheckItem(&v36, v12, v27[0].ColorQuadFmt, *(unsigned int *)&v27[0].Blue, (float *)v27[0].Color);
+      ((_TextureLib_Data *)&this->_base.m_rect_left)->_CheckItem(&v36, v12, v27[0].ColorQuadFmt, *(unsigned int *)&v27[0].Blue, (float *)v27[0].Color);
     }
     if ( !this->_base.m_benable && *((_DWORD *)this + 32) )
     {
       v13 = *((_DWORD *)this + 36);
       v27[0].Color = *((_DWORD *)this + 33);
       *(_DWORD *)&v27[0].Blue = v13;
-      v27[0].ColorQuadFmt = v6;
-      v27->gbColorQuad((struct gbColorQuad *)this->_base.m_wndcolor);
+      v27[0].ColorQuadFmt = m_rect_top;
+      v27->gbColorQuad((struct gbColorQuad *)&this->_base.m_wndcolor);
       v14 = ((gbTextureArray *)&v40.pTexPt[1])->gbTextureArray(*((struct gbTexture **)this + 32));
-      ((_TextureLib_Data *)this->_base.m_rect)->_CheckItem(&v36, v14, v27[0].ColorQuadFmt, *(unsigned int *)&v27[0].Blue, (float *)v27[0].Color);
+      ((_TextureLib_Data *)&this->_base.m_rect_left)->_CheckItem(&v36, v14, v27[0].ColorQuadFmt, *(unsigned int *)&v27[0].Blue, (float *)v27[0].Color);
     }
     if ( *((_DWORD *)this + 34) )
     {
-      v15 = *(_DWORD *)&this->_base.m_rect[12];
+      v15 = this->_base.m_rect_bottom;
       v40.pTexPt[0] = (gbTexture *)*((_DWORD *)this + 34);
       v27[0].Color = 0;
       *(_DWORD *)&v27[0].Blue = &v40;
-      v16 = *(_DWORD *)&this->_base.m_rect[8];
-      v27[0].ColorQuadFmt = (int)this->_base.m_wndcolor;
-      v26 = *(_DWORD *)&this->_base.m_rect[4];
-      v25 = *(_DWORD *)this->_base.m_rect;
+      v16 = this->_base.m_rect_right;
+      v27[0].ColorQuadFmt = (int)&this->_base.m_wndcolor;
+      v26 = this->_base.m_rect_top;
+      v25 = this->_base.m_rect_left;
       v40.nTex = 1;
-      v25->GetTextureInfo(v26, v16, v15, (int *)this->_base.m_wndcolor, &v40, 0);
+      v25->GetTextureInfo(v26, v16, v15, (int *)&this->_base.m_wndcolor, &v40, 0);
     }
     if ( *((_DWORD *)this + 30) )
     {
       v17 = *((_DWORD *)this + 36);
       v27[0].Color = 0;
       *(_DWORD *)&v27[0].Blue = v17;
-      v27[0].ColorQuadFmt = v6;
-      v27->gbColorQuad((struct gbColorQuad *)this->_base.m_wndcolor);
+      v27[0].ColorQuadFmt = m_rect_top;
+      v27->gbColorQuad((struct gbColorQuad *)&this->_base.m_wndcolor);
       v18 = ((gbTextureArray *)&v40.pTexPt[1])->gbTextureArray(*((struct gbTexture **)this + 30));
-      ((_TextureLib_Data *)this->_base.m_rect)->_CheckItem(&v36, v18, v27[0].ColorQuadFmt, *(unsigned int *)&v27[0].Blue, (float *)v27[0].Color);
+      ((_TextureLib_Data *)&this->_base.m_rect_left)->_CheckItem(&v36, v18, v27[0].ColorQuadFmt, *(unsigned int *)&v27[0].Blue, (float *)v27[0].Color);
     }
     if ( *((_DWORD *)this + 26) )
     {
@@ -224,7 +224,7 @@ int UIFrameWnd::Render()
       v35 = v39 - (_DWORD)m_pbktex;
       if ( !v24 )
         v24 = byte_56A634;
-      UIRenderPar(v24, &v32, this->_base.m_fontcolor, *((_DWORD *)this + 23), *((_DWORD *)this + 18));
+      UIRenderPar(v24, &v32, &this->_base.m_fontcolor, *((_DWORD *)this + 23), *((_DWORD *)this + 18));
     }
     return ((UIWnd *)&this->_base)->GetID();
   }
@@ -246,14 +246,14 @@ BOOL UIFrameWnd::Update(int a2, int a3)
   if ( !this->_base.m_benable )
     return 0;
   ((GRPinput *)&pt)->GetCursorPos();
-  if ( !PtInRect((const RECT *)this->_base.m_rect, pt) )
+  if ( !PtInRect((const RECT *)&this->_base.m_rect_left, pt) )
   {
     if ( !*((_BYTE *)this + 140) )
     {
       m_pfather = (UIWnd *)this->_base.m_pfather;
       *((_BYTE *)this + 140) = 1;
       if ( m_pfather )
-        (*(void (**)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)m_pfather->_pad_000 + 24))(
+        (*((void (**)(UIWnd *, int, unsigned int, _DWORD))m_pfather->_vftable + 6))(
           m_pfather,
           1003,
           this->_base.m_id,
@@ -268,7 +268,7 @@ BOOL UIFrameWnd::Update(int a2, int a3)
       v6 = (UIWnd *)this->_base.m_pfather;
       if ( v6 )
       {
-        (*(void (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)v6->_pad_000 + 24))(
+        (*((void (**)(UIWnd *, int, unsigned int, int))v6->_vftable + 6))(
           v6,
           1010,
           this->_base.m_id,
@@ -282,11 +282,7 @@ BOOL UIFrameWnd::Update(int a2, int a3)
       v7 = (UIWnd *)this->_base.m_pfather;
       if ( v7 )
       {
-        (*(void (**)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)v7->_pad_000 + 24))(
-          v7,
-          1011,
-          this->_base.m_id,
-          0);
+        (*((void (**)(UIWnd *, int, unsigned int, _DWORD))v7->_vftable + 6))(v7, 1011, this->_base.m_id, 0);
         *((_BYTE *)this + 140) = 0;
         return ((UIWnd *)&this->_base)->HitTest(a2, a3);
       }
@@ -295,11 +291,7 @@ BOOL UIFrameWnd::Update(int a2, int a3)
     {
       v8 = (UIWnd *)this->_base.m_pfather;
       if ( v8 )
-        (*(void (**)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)v8->_pad_000 + 24))(
-          v8,
-          1002,
-          this->_base.m_id,
-          0);
+        (*((void (**)(UIWnd *, int, unsigned int, _DWORD))v8->_vftable + 6))(v8, 1002, this->_base.m_id, 0);
     }
 LABEL_20:
     *((_BYTE *)this + 140) = 0;
@@ -308,7 +300,7 @@ LABEL_20:
   v5 = (UIWnd *)this->_base.m_pfather;
   if ( !v5 )
     goto LABEL_20;
-  (*(void (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)v5->_pad_000 + 24))(
+  (*((void (**)(UIWnd *, int, unsigned int, int))v5->_vftable + 6))(
     v5,
     1009,
     this->_base.m_id,

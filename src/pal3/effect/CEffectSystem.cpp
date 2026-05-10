@@ -209,18 +209,15 @@ char CEffectSystem::IsVisible()
     v7 = 0;
     v8 = 0;
     v9 = 0;
-    if ( !(*(int (**)(gbGfxManager *, _DWORD *, int))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 84))(
-            g_pGfxMgr,
-            v6,
-            1) )
+    if ( !(*(int (**)(gbGfxManager *, _DWORD *, int))(*(_DWORD *)g_pGfxMgr->_vftable + 84))(g_pGfxMgr, v6, 1) )
       return 0;
-    (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 88))(g_pGfxMgr);
+    (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_vftable + 88))(g_pGfxMgr);
     v3 = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptTrail, 0);
     *((_DWORD *)this + 207) = v3;
     if ( !v3 )
       return 0;
-    if ( (*(int (__stdcall **)(_DWORD, _DWORD, char *))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44] + 152))(
-           *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
+    if ( (*(int (__stdcall **)(_DWORD, _DWORD, char *))(**(_DWORD **)&g_pGfxMgr[1].InvViewMatrix[4] + 152))(
+           *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4],
            0,
            (char *)this + 832) < 0 )
       return 0;
@@ -229,13 +226,13 @@ char CEffectSystem::IsVisible()
     do
     {
       if ( !(*(int (**)(float *, int, int, int))(*(_DWORD *)p_ev + 12))(p_ev, 256, 256, v7)
-        || !(*(int (**)(gbGfxManager *, float *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 92))(g_pGfxMgr, p_ev) )
+        || !(*(int (**)(gbGfxManager *, float *))(*(_DWORD *)g_pGfxMgr->_vftable + 92))(g_pGfxMgr, p_ev) )
       {
         return 0;
       }
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44]
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].InvViewMatrix[4]
                                                                            + 172))(
-        *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
+        *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4],
         0,
         0,
         3,
@@ -246,8 +243,8 @@ char CEffectSystem::IsVisible()
       p_ev += 24;
     }
     while ( v4 < 8 );
-    if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44] + 148))(
-           *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
+    if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].InvViewMatrix[4] + 148))(
+           *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4],
            0,
            *((_DWORD *)this + 208)) < 0 )
       return 0;
@@ -283,12 +280,12 @@ void CEffectSystem::HandleViewMove(int a2)
       this->m_pAdditiveBlend = (gbRenderEffect *)a2;
     v3 = LODWORD(this->m_DefaultUVSet[2].sv) & 7;
     LODWORD(this->m_DefaultUVSet[2].eu) = v3;
-    (*(void (**)(gbGfxManager *, float *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 92))(
+    (*(void (**)(gbGfxManager *, float *))(*(_DWORD *)g_pGfxMgr->_vftable + 92))(
       g_pGfxMgr,
       &this->m_DefaultUVSet[6 * v3 + 2].ev);
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44]
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].InvViewMatrix[4]
                                                                          + 172))(
-      *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
+      *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4],
       0,
       0,
       3,
@@ -328,13 +325,13 @@ char CEffectSystem::Update()
     LOBYTE(v2) = this->m_pVertexBuffer;
     if ( LOBYTE(v2) )
     {
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44] + 148))(
-        *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].InvViewMatrix[4] + 148))(
+        *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4],
         0,
         *((_DWORD *)this + 208));
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44]
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].InvViewMatrix[4]
                                                                            + 172))(
-        *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
+        *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4],
         0,
         0,
         3,

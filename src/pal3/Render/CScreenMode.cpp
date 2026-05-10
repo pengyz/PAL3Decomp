@@ -84,23 +84,23 @@ int CScreenMode::PlayVideo(int a2)
   if ( *((_DWORD *)this + 3) )
   {
     v3 = g_pGfxMgr;
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44]
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].InvViewMatrix[4]
                                                                          + 172))(
-      *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
+      *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4],
       0,
       0,
       1,
       -16777216,
       1065353216,
       0);
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 68))(
-      *(_DWORD *)&v3[1].DrvInfo.winname[44],
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 68))(
+      *(_DWORD *)&v3[1].InvViewMatrix[4],
       0,
       0,
       0,
       0);
-    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 172))(
-      *(_DWORD *)&v3[1].DrvInfo.winname[44],
+    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 172))(
+      *(_DWORD *)&v3[1].InvViewMatrix[4],
       0,
       0,
       1,

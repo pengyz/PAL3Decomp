@@ -512,14 +512,14 @@ struct gbVFileSystem * PalScript::OpenScript(const char *a2, char a3)
     v4->Release();
   if ( a3 )
   {
-    v5 = *(_DWORD *)g_pGfxMgr->_pad_0000;
+    v5 = *(_DWORD *)g_pGfxMgr->_vftable;
     v6 = ((_Texture_Info *)&g_PlayerBase)->_CalculateUV(Buffer);
     *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(gbGfxManager *, Scene *))(v5 + 8))(g_pGfxMgr, v6);
     *((_DWORD *)this + 50) = (PalScript *)((Parent_Data *)&g_PlayerBase)->Parent_Data(Buffer);
   }
   else
   {
-    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+    *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_vftable + 8))(
                                   g_pGfxMgr,
                                   Buffer);
   }

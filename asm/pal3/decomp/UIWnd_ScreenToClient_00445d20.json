@@ -3,5 +3,5 @@
   "address": "0x00445D20",
   "size_bytes": 28,
   "signature": "int __thiscall(UIWnd *this, int a2, int a3)",
-  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nint __thiscall UIWnd::ScreenToClient(UIWnd *this, int a2, int a3)\n{\n  return UIWnd::ClientToScreen(this, a2 - *(_DWORD *)this->m_rect, a3 - *(_DWORD *)&this->m_rect[4]);\n}\n"
+  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\nint __thiscall UIWnd::ScreenToClient(UIWnd *this, int a2, int a3)\n{\n  return UIWnd::ClientToScreen(this, a2 - this->m_rect_left, a3 - this->m_rect_top);\n}\n"
 }

@@ -15,7 +15,7 @@ int RenderTarget2::Init()
   RenderTarget2 *v1; // esi
   gbGfxManager *v2; // ebp
   int v3; // eax
-  float end; // eax
+  gbVertPoolMgr *pVertPoolMgr; // eax
   RenderTarget *Instance; // eax
   DWORD Time; // eax
   _BYTE *v7; // edi
@@ -66,21 +66,20 @@ int RenderTarget2::Init()
   v1 = this;
   *((_DWORD *)this + 4) = 0;
   v2 = g_pGfxMgr;
-  v3 = *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44];
+  v3 = *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4];
   v46 = this;
   (*(void (__stdcall **)(int, _DWORD *))(*(_DWORD *)v3 + 28))(v3, v50);
   if ( (v50[36] & 0x200000) == 0 )
     *(_DWORD *)&v1[16] = 1;
-  if ( LOBYTE(v2->FogParam.color.Alpha) )
-    end = v2->FogParam.end;
+  if ( v2[1].DrvInfo[116] )
+    pVertPoolMgr = (gbVertPoolMgr *)*(gbVertPoolMgr **)&v2[1].DrvInfo[128];
   else
-    end = *(float *)v2->_tail;
-  if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD, int, int))(**(_DWORD **)&v2[1].DrvInfo.winname[40]
-                                                                              + 40))(
-         *(_DWORD *)&v2[1].DrvInfo.winname[40],
+    pVertPoolMgr = (gbVertPoolMgr *)v2[1].pVertPoolMgr;
+  if ( (*(int (__stdcall **)(_DWORD, _DWORD, _DWORD, int, _DWORD, int, int))(**(_DWORD **)v2[1].InvViewMatrix + 40))(
+         *(_DWORD *)v2[1].InvViewMatrix,
          v50[1],
          v50[0],
-         *(_DWORD *)(LODWORD(end) + 8),
+         pVertPoolMgr->StaticPool[0].m_numNode,
          0,
          3,
          60) < 0 )
@@ -92,9 +91,9 @@ int RenderTarget2::Init()
     v44 = 0.75;
   if ( *(_DWORD *)&v1[16] )
     goto LABEL_22;
-  if ( (*(int (__stdcall **)(_DWORD, int, int, int, _DWORD, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)&v2[1].DrvInfo.winname[44]
+  if ( (*(int (__stdcall **)(_DWORD, int, int, int, _DWORD, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)&v2[1].InvViewMatrix[4]
                                                                                               + 92))(
-         *(_DWORD *)&v2[1].DrvInfo.winname[44],
+         *(_DWORD *)&v2[1].InvViewMatrix[4],
          256,
          256,
          1,
@@ -136,16 +135,16 @@ int RenderTarget2::Init()
       v43 += v48[0];
     }
     (*(void (__stdcall **)(_DWORD, _DWORD))(**(_DWORD **)&v46[12] + 80))(*(_DWORD *)&v46[12], 0);
-    v11 = *(_DWORD *)&v2[1].DrvInfo.winname[44];
+    v11 = *(_DWORD *)&v2[1].InvViewMatrix[4];
     v40 = 0.0099999998;
     (*(void (__stdcall **)(int, _DWORD, int, int))(*(_DWORD *)v11 + 268))(v11, 0, 7, 1008981770);
-    v12 = *(_DWORD *)&v2[1].DrvInfo.winname[44];
+    v12 = *(_DWORD *)&v2[1].InvViewMatrix[4];
     v40 = 0.0;
     (*(void (__stdcall **)(int, _DWORD, int, _DWORD))(*(_DWORD *)v12 + 268))(v12, 0, 8, 0);
-    v13 = *(_DWORD *)&v2[1].DrvInfo.winname[44];
+    v13 = *(_DWORD *)&v2[1].InvViewMatrix[4];
     v40 = 0.0;
     (*(void (__stdcall **)(int, _DWORD, int, _DWORD))(*(_DWORD *)v13 + 268))(v13, 0, 9, 0);
-    v14 = *(_DWORD *)&v2[1].DrvInfo.winname[44];
+    v14 = *(_DWORD *)&v2[1].InvViewMatrix[4];
     v40 = 0.0099999998;
     (*(void (__stdcall **)(int, _DWORD, int, int))(*(_DWORD *)v14 + 268))(v14, 0, 10, 1008981770);
     v1 = v46;
@@ -158,9 +157,9 @@ int RenderTarget2::Init()
   {
 LABEL_22:
     v24 = (RenderTarget2 *)v1 + 8;
-    result = (*(int (__stdcall **)(_DWORD, int, int, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)&v2[1].DrvInfo.winname[44]
+    result = (*(int (__stdcall **)(_DWORD, int, int, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)&v2[1].InvViewMatrix[4]
                                                                                        + 104))(
-               *(_DWORD *)&v2[1].DrvInfo.winname[44],
+               *(_DWORD *)&v2[1].InvViewMatrix[4],
                2800,
                8,
                514,
@@ -169,7 +168,7 @@ LABEL_22:
                0);
     if ( result >= 0 )
     {
-      v25 = (int *)*(int **)&v2[1].DrvInfo.winname[44];
+      v25 = (int *)*(int **)&v2[1].InvViewMatrix[4];
       v26 = (RenderTarget2 *)v1 + 4;
       v27 = *v25;
       v45 = *(float *)&v26;
@@ -263,9 +262,9 @@ LABEL_22:
   else
   {
     v15 = (RenderTarget2 *)v1 + 8;
-    result = (*(int (__stdcall **)(_DWORD, int, int, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)&v2[1].DrvInfo.winname[44]
+    result = (*(int (__stdcall **)(_DWORD, int, int, int, int, RenderTarget2 *, _DWORD))(**(_DWORD **)&v2[1].InvViewMatrix[4]
                                                                                        + 104))(
-               *(_DWORD *)&v2[1].DrvInfo.winname[44],
+               *(_DWORD *)&v2[1].InvViewMatrix[4],
                112,
                8,
                514,
@@ -342,9 +341,9 @@ void * RenderTarget2::Begin()
     v3 = (RenderTarget *)CRenderTarget::GetInstance();
     LOBYTE(result) = v3->OnResetDevice(0);
     if ( (_BYTE)result )
-      return (*(void *(__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44]
+      return (*(void *(__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].InvViewMatrix[4]
                                                                                    + 172))(
-               *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
+               *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4],
                0,
                0,
                3,
@@ -372,100 +371,99 @@ void RenderTarget2::Resolve()
     sub_4BDD90(Instance);
     v3 = g_pGfxMgr;
     PushMatrixStacks();
-    (*(void (**)(gbGfxManager *))(*(_DWORD *)v3->_pad_0000 + 60))(v3);
+    (*(void (**)(gbGfxManager *))(*(_DWORD *)v3->_vftable + 60))(v3);
     v4 = (_DWORD *)CRenderTarget::GetInstance();
     v5 = (_DWORD *)sub_4BDEB0(v4);
     v6 = v5;
     if ( v5 && v5[21] && *((_DWORD *)this + 2) )
     {
-      (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 228))(
-        *(_DWORD *)&v3[1].DrvInfo.winname[44],
+      (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 228))(
+        *(_DWORD *)&v3[1].InvViewMatrix[4],
         22,
         1);
-      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 228))(
-        *(_DWORD *)&v3[1].DrvInfo.winname[44],
+      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 228))(
+        *(_DWORD *)&v3[1].InvViewMatrix[4],
         137,
         0);
-      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 228))(
-        *(_DWORD *)&v3[1].DrvInfo.winname[44],
+      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 228))(
+        *(_DWORD *)&v3[1].InvViewMatrix[4],
         7,
         0);
-      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 228))(
-        *(_DWORD *)&v3[1].DrvInfo.winname[44],
+      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 228))(
+        *(_DWORD *)&v3[1].InvViewMatrix[4],
         14,
         0);
-      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 228))(
-        *(_DWORD *)&v3[1].DrvInfo.winname[44],
+      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 228))(
+        *(_DWORD *)&v3[1].InvViewMatrix[4],
         15,
         0);
-      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 228))(
-        *(_DWORD *)&v3[1].DrvInfo.winname[44],
+      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 228))(
+        *(_DWORD *)&v3[1].InvViewMatrix[4],
         27,
         0);
-      (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 228))(
-        *(_DWORD *)&v3[1].DrvInfo.winname[44],
+      (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 228))(
+        *(_DWORD *)&v3[1].InvViewMatrix[4],
         26,
         1);
-      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 228))(
-        *(_DWORD *)&v3[1].DrvInfo.winname[44],
+      (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 228))(
+        *(_DWORD *)&v3[1].InvViewMatrix[4],
         29,
         0);
       if ( *((_DWORD *)this + 4) )
       {
-        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 260))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 260))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           v6[21]);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, int, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           11,
           0);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           1,
           2);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           2,
           2);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           3,
           1);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           4,
           1);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 276))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 276))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           1,
           3);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 276))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 276))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           2,
           3);
-        (*(void (__stdcall **)(_DWORD, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 356))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 356))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           514);
-        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 400))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 400))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           *((_DWORD *)this + 2),
           0,
           28);
-        (*(void (__stdcall **)(_DWORD, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 416))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 416))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           *((_DWORD *)this + 1));
-        (*(void (__stdcall **)(_DWORD, int, _DWORD, _DWORD, int, _DWORD, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44]
-                                                                             + 328))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int, _DWORD, _DWORD, int, _DWORD, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 328))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           4,
           0,
           0,
@@ -475,101 +473,101 @@ void RenderTarget2::Resolve()
       }
       else
       {
-        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 260))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 260))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           *((_DWORD *)this + 3));
-        (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 260))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 260))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           1,
           v6[21]);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, _DWORD))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, int, _DWORD))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           11,
           0);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           1,
           22);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           2,
           2);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           3,
           1);
-        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           4,
           1);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           1,
           11,
           1);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           1,
           1,
           2);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           1,
           2,
           2);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           1,
           3,
           1);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           1,
           4,
           1);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 276))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 276))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           1,
           1,
           3);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 276))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 276))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           1,
           2,
           3);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           2,
           1,
           1);
-        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 268))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 268))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           2,
           4,
           1);
-        (*(void (__stdcall **)(_DWORD, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 356))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 356))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           514);
-        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 400))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 400))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           0,
           *((_DWORD *)this + 2),
           0,
           28);
-        (*(void (__stdcall **)(_DWORD, int, _DWORD, int))(**(_DWORD **)&v3[1].DrvInfo.winname[44] + 324))(
-          *(_DWORD *)&v3[1].DrvInfo.winname[44],
+        (*(void (__stdcall **)(_DWORD, int, _DWORD, int))(**(_DWORD **)&v3[1].InvViewMatrix[4] + 324))(
+          *(_DWORD *)&v3[1].InvViewMatrix[4],
           5,
           0,
           2);
       }
-      g_pGfxMgr[1].WorldMatrix.m[0][3] = 0.0;
-      g_pGfxMgr[1].WorldMatrix.m[1][0] = 0.0;
+      *(_DWORD *)&g_pGfxMgr[1]._tail[244] = 0;
+      *(_DWORD *)&g_pGfxMgr[1]._tail[248] = 0;
       ((gbGfxManager_D3D *)g_pGfxMgr)->SetTexture(0);
       ((gbRenderEffect *)g_pGfxMgr->pEffectMgr->m_pDefEffect)->Apply();
     }

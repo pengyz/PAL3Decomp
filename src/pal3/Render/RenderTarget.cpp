@@ -25,7 +25,7 @@ int RenderTarget::Create()
   char pExceptionObject[1024]; // [esp+20h] [ebp-800h] BYREF
   char ArgList[1024]; // [esp+420h] [ebp-400h] BYREF
 
-  if ( !(*(int (**)(gbGfxManager *, int *, int))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 84))(g_pGfxMgr, &v3, 1) )
+  if ( !(*(int (**)(gbGfxManager *, int *, int))(*(_DWORD *)g_pGfxMgr->_vftable + 84))(g_pGfxMgr, &v3, 1) )
   {
     qmemcpy(
       pExceptionObject,
@@ -33,7 +33,7 @@ int RenderTarget::Create()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 88))(g_pGfxMgr);
+  (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_vftable + 88))(g_pGfxMgr);
   (*(void (**)(char *, double *, double *, int))(*(_DWORD *)this->m_ScreenPlane + 12))(
     this->m_ScreenPlane,
     g_pGameTime,
@@ -79,13 +79,13 @@ bool RenderTarget::OnResetDevice(int a2)
     {
       if ( m_iMode <= 0 || m_iMode > 2 )
         return v5 != 0;
-      v5 = (*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 92))(
+      v5 = (*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_vftable + 92))(
              g_pGfxMgr,
              this->m_ScreenPlane);
     }
     else
     {
-      v5 = (*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 92))(
+      v5 = (*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_vftable + 92))(
              g_pGfxMgr,
              this->m_Texture);
       ((gbCamera *)((char *)g_pCameraCtrl + 4))->SetDimention(512, 384);
@@ -93,20 +93,20 @@ bool RenderTarget::OnResetDevice(int a2)
     }
     if ( v5 && (_BYTE)a2 )
     {
-      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].DrvInfo.winname[44]
+      (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&g_pGfxMgr[1].InvViewMatrix[4]
                                                                            + 172))(
-        *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44],
+        *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4],
         0,
         0,
         3,
         -16777216,
         1065353216,
         0);
-      (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 48))(g_pGfxMgr);
+      (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_vftable + 48))(g_pGfxMgr);
       PushMatrixStacks();
       a2 = -16777216;
       ((_TextureLib_Data *)0)->~_TextureLib_Data(0, 512, 512, (float *)&a2);
-      (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 52))(g_pGfxMgr);
+      (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxMgr->_vftable + 52))(g_pGfxMgr);
       PopMatrixStacks();
     }
     return v5 != 0;

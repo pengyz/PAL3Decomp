@@ -43,7 +43,7 @@ UIRenderObj::UIRenderObj()
 UIRenderObj::~UIRenderObj()
 {
   if ( !*((_BYTE *)UIQuadManager::GetInstance() + 29) )
-    return (*(unsigned __int8 (**)(gbGfxManager *, _DWORD))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 104))(
+    return (*(unsigned __int8 (**)(gbGfxManager *, _DWORD))(*(_DWORD *)g_pGfxMgr->_vftable + 104))(
              g_pGfxMgr,
              a2);
   *((_BYTE *)this + 28) = a2;

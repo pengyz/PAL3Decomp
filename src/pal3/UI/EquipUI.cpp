@@ -107,7 +107,7 @@ int EquipUI::Create()
   *((_DWORD *)this + 44020) = 0;
   *((_DWORD *)this + 44021) = 0;
   ((UIFrameWnd *)((char *)this + 176092))->UIFrameWnd();
-  *(_DWORD *)this->_base._base._pad_000 = &off_56F040;
+  this->_base._base._vftable = (void **)&off_56F040;
   BYTE1(this->k) = 0;
   LOBYTE(this->k) = 0;
   BYTE2(this->j) = 0;
@@ -199,9 +199,9 @@ void EquipUI::Init()
   v7 = (UIWnd **)((char *)this + 174080);
   do
   {
-    (*(void (**)(UIWnd **, int, _DWORD *, EquipUI *))(*v7)->m_rect)(v7, 161, v42, this);
+    ((void (*)(UIWnd **, int, _DWORD *, EquipUI *))(*v7)->m_rect_left)(v7, 161, v42, this);
     v7->CreateFromTemplate(v6, g_bConsoleOpen);
-    (*(void (**)(UIWnd **, _DWORD))(*v7)->_pad_000)(v7, 0);
+    ((void (*)(UIWnd **, _DWORD))(*v7)->_vftable)(v7, 0);
     v6 += 256;
     v7 += 38;
   }

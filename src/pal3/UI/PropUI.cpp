@@ -17,7 +17,7 @@ int PropUI::Create()
   ((UIListBox *)this)->UIListBox();
   ((UIWnd *)&this->bkWndX)->ctor_2790();
   ((UIWnd *)&this->m_PropData[996])->ctor_1CC0();
-  *(_DWORD *)this->_base._base._pad_000 = &off_56B1BC;
+  this->_base._base._vftable = (void **)&off_56B1BC;
   return (int)this;
 }
 

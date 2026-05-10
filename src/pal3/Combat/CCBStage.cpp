@@ -694,7 +694,7 @@ int CCBStage::EditorUpdate()
   char *v4; // eax
   CEffectSystem *v5; // eax
   CCBStageCam *v6; // eax
-  float v7; // ebx
+  gbSceneGraph *pSceneGraph; // ebx
   struct gbCamera *v8; // eax
   gbMatrixStack *v9; // edi
   char *v10; // eax
@@ -718,7 +718,7 @@ int CCBStage::EditorUpdate()
   float v29; // [esp+50h] [ebp-4h]
 
   v2 = 0;
-  g_pGfxMgr->InvViewMatrix.m[1][2] = 0.0;
+  g_pGfxMgr->fSelfIllum = 0.0;
   m_pCam = (CCBStageCam *)this->m_pCam;
   if ( m_pCam )
     v4 = (char *)&m_pCam->_base[4];
@@ -728,13 +728,13 @@ int CCBStage::EditorUpdate()
   v5 = (CEffectSystem *)CEffectSystem::DestroyAllEffect();
   v5->HandleViewMove(v21);
   v6 = (CCBStageCam *)this->m_pCam;
-  v7 = g_pGfxMgr->InvViewMatrix.m[1][3];
+  pSceneGraph = (gbSceneGraph *)g_pGfxMgr->pSceneGraph;
   if ( v6 )
     v8 = (struct gbCamera *)&v6->_base[4];
   else
     v8 = 0;
-  ((gbSceneGraph *)LODWORD(v7))->Begin(v8);
-  *(_BYTE *)(LODWORD(v7) + 19244) = 0;
+  pSceneGraph->Begin(v8);
+  LOBYTE(pSceneGraph->pnodebuf[713]) = 0;
   v9 = (gbMatrixStack *)g_pGfxMgr->pMatrixStack[1];
   ((CameraCtrl *)this->m_pCam)->SetAsCurrent(3);
   v9->Push();
@@ -784,15 +784,15 @@ int CCBStage::EditorUpdate()
   ((SceneMgr *)this->m_pCBSystem->m_pEffMgr)->RenderUpdate();
   ((SceneMgr *)this->m_pCBSystem->m_pATSEffMgr)->RenderUpdate();
   v9->Pop();
-  ((gbSceneGraph *)LODWORD(v7))->End();
+  pSceneGraph->End();
   ((CCBStageShadow *)this->m_NGHVariance)->Create();
   v15 = (CCBStageCam *)this->m_pCam;
   if ( v15 )
     v16 = (struct gbCamera *)&v15->_base[4];
   else
     v16 = 0;
-  ((gbSceneGraph *)LODWORD(v7))->Begin(v16);
-  *(_BYTE *)(LODWORD(v7) + 19244) = 0;
+  pSceneGraph->Begin(v16);
+  LOBYTE(pSceneGraph->pnodebuf[713]) = 0;
   (*(void (**)(gbActor **, _DWORD))&this->m_TempStorageWPX->m_pact->_base[16])(
     &this->m_TempStorageWPX->m_pact,
     0);
@@ -800,13 +800,13 @@ int CCBStage::EditorUpdate()
   ((SceneMgr *)this->m_pCBSystem->m_pEffMgr)->RenderAll();
   ((SceneMgr *)this->m_pCBSystem->m_pATSEffMgr)->RenderAll();
   ((C3DSpark *)this->m_pCBSystem->m_p3DSpark->m_Spark)->Render((struct gbVec3D *)gbSceneGraph::End);
-  ((gbSceneGraph *)LODWORD(v7))->End();
+  pSceneGraph->End();
   if ( byte_17A9927 )
   {
     ((CCBStageScene *)this->m_pScene)->IsSameBattleFieldAttr();
     ((CCBStageScene *)this->m_pScene)->GetBFASubdueFM();
   }
-  if ( this->m_pCBSystem->m_bEditor )
+  if ( BYTE1(this->m_pCBSystem->m_nTimesOfCombat) )
   {
     if ( g_nCombatMode == 1 )
     {
@@ -2156,16 +2156,16 @@ int CCBStage::ProcShowFiveLineup(int a2)
   (***(void (****)(_DWORD, int))(*(_DWORD *)(HIDWORD(v10) + 4) + 1080))(
     *(_DWORD *)(*(_DWORD *)(HIDWORD(v10) + 4) + 1080),
     1);
-  ((UIWnd *)*(UIWnd **)&(*this)->m_pRoleState->m_Role[0].byMagicUseTime[3][5])->SetEnable((const char *)*((_DWORD *)this + 1), 0);
+  ((UIWnd *)*(UIWnd **)&(*this)->m_pRoleState->m_Role[0]._rest[452])->SetEnable((const char *)*((_DWORD *)this + 1), 0);
   v14 = id;
   ((CCBStage *)*this)->ProcShowEnemyFiveLineup();
   v14->UpdateAnim();
-  ((UIWnd *)*(UIWnd **)&(*this)->m_pRoleState->m_Role[0].byMagicUseTime[3][5])->GetChild((int)&id);
-  ((UIWnd *)*(UIWnd **)&(*this)->m_pRoleState->m_Role[0].byMagicUseTime[3][5])->ScreenToClient(LODWORD(v11) - 168, v18 - 128);
-  ((UIWnd *)*(UIWnd **)&(*this)->m_pRoleState->m_Role[0].byMagicUseTime[3][5])->SetShow(0);
+  ((UIWnd *)*(UIWnd **)&(*this)->m_pRoleState->m_Role[0]._rest[452])->GetChild((int)&id);
+  ((UIWnd *)*(UIWnd **)&(*this)->m_pRoleState->m_Role[0]._rest[452])->ScreenToClient(LODWORD(v11) - 168, v18 - 128);
+  ((UIWnd *)*(UIWnd **)&(*this)->m_pRoleState->m_Role[0]._rest[452])->SetShow(0);
   if ( *((_BYTE *)v6 + 43) == 1 || *(float *)&(*this)->m_WPXVariance - v6[6] > v6[8] )
   {
-    v12 = *(void (****)(_DWORD, _DWORD))&(*this)->m_pRoleState->m_Role[0].byMagicUseTime[3][5];
+    v12 = *(void (****)(_DWORD, _DWORD))&(*this)->m_pRoleState->m_Role[0]._rest[452];
     (**v12)(v12, 0);
     *((_DWORD *)v6 + 4) = 4;
   }
@@ -2677,7 +2677,7 @@ int CCBStage::ProcShowDamage(int a2)
         if ( v13 != -1 && v13 != 10 )
         {
           m_pRoleState = (CCBRoleState *)this->m_pRoleState;
-          if ( m_pRoleState->m_Role[8].byMagicLevel[5][5] )
+          if ( m_pRoleState->m_Role[9]._rest[805] )
           {
             if ( !*(_BYTE *)(m_pRoleState->InitUI(10) + 880) )
             {
@@ -2805,7 +2805,7 @@ int CCBStage::ProcShowCombatDialog(int a2)
     }
     while ( v7 < 9812 );
     v11 = (CCBRoleState *)this->m_pRoleState;
-    if ( v11->m_Role[8].byMagicLevel[5][5] )
+    if ( v11->m_Role[9]._rest[805] )
     {
       if ( !*(_BYTE *)(v11->InitUI(10) + 880) )
       {

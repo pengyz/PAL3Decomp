@@ -1219,9 +1219,9 @@ int __stdcall WinProc(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)
             v7 = g_pGfxMgr;
             if ( g_pGfxMgr )
             {
-              if ( *(_DWORD *)&g_pGfxMgr[1].DrvInfo.winname[44] && GetCursorPos(&Point) )
-                (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v7[1].DrvInfo.winname[44] + 44))(
-                  *(_DWORD *)&v7[1].DrvInfo.winname[44],
+              if ( *(_DWORD *)&g_pGfxMgr[1].InvViewMatrix[4] && GetCursorPos(&Point) )
+                (*(void (__stdcall **)(_DWORD, int, int, int))(**(_DWORD **)&v7[1].InvViewMatrix[4] + 44))(
+                  *(_DWORD *)&v7[1].InvViewMatrix[4],
                   Point.x,
                   Point.y,
                   1);
@@ -3230,7 +3230,7 @@ gbGfxManager *__cdecl GetGfxManager_2()
   v1 = v0;
   result = *(gbGfxManager **)(v0 + 132);
   if ( result && !*(_DWORD *)(v0 + 493144) )
-    gbSceneGraph::AddVisNode((gbSceneGraph *)LODWORD(g_pGfxMgr->InvViewMatrix.m[1][3]), (struct gbVisNode *)result);
+    gbSceneGraph::AddVisNode(g_pGfxMgr->pSceneGraph, (struct gbVisNode *)result);
   *(_DWORD *)(v1 + 493144) = 1;
   return result;
 }
@@ -3246,7 +3246,7 @@ gbGfxManager *__cdecl GetGfxManager_3()
   v1 = v0;
   result = *(gbGfxManager **)(v0 + 132);
   if ( result && *(_DWORD *)(v0 + 493144) )
-    gbSceneGraph::DelVisNode((gbSceneGraph *)LODWORD(g_pGfxMgr->InvViewMatrix.m[1][3]), (struct gbVisNode *)result);
+    gbSceneGraph::DelVisNode(g_pGfxMgr->pSceneGraph, (struct gbVisNode *)result);
   *(_DWORD *)(v1 + 493144) = 0;
   return result;
 }
@@ -3464,17 +3464,17 @@ gbGfxManager *CombatEnter()
   gbGfxManager *result; // eax
 
   result = (gbGfxManager *)UISceneUpdate();
-  if ( *(_DWORD *)&result->DrvInfo.winname[48] != 1
+  if ( *(_DWORD *)&result->DrvInfo[88] != 1
     || (result = (gbGfxManager *)UIScene::ProcessInput(aM19, 0), (_BYTE)result)
     || (result = (gbGfxManager *)UIScene::ProcessInput(aM20, 0), (_BYTE)result)
     || (result = (gbGfxManager *)UIScene::ProcessInput(aM25, 0), (_BYTE)result) )
   {
-    g_pGfxMgr->InvViewMatrix.m[1][2] = 0.69999999;
+    g_pGfxMgr->fSelfIllum = 0.69999999;
   }
   else
   {
     result = g_pGfxMgr;
-    g_pGfxMgr->InvViewMatrix.m[1][2] = 0.0;
+    g_pGfxMgr->fSelfIllum = 0.0;
   }
   return result;
 }
@@ -4281,7 +4281,7 @@ int unknown_libname_365()
 // between_std_methods (0x430790-0x445B40)
 void __thiscall UIFrameWnd_Destructor_444AC0(UIWnd *_this)
 {
-  *(_DWORD *)_this->_pad_000 = &off_56AE84;
+  _this->_vftable = (void **)&off_56AE84;
   UIFrameWnd::_UIFrameWnd((UIFrameWnd *)_this);
 }
 
@@ -4308,12 +4308,12 @@ UIWnd *__thiscall UIWnd_Init_444F60(UIWnd *_this)
   *((_DWORD *)_this + 21) = 0;
   UIWnd::DestroyChildren((UIWnd *)((char *)_this + 104));
   *((_DWORD *)_this + 44) = 0;
-  _this->m_fontcolor[2] = -1;
-  _this->m_fontcolor[1] = -1;
+  BYTE2(_this->m_fontcolor) = -1;
+  BYTE1(_this->m_fontcolor) = -1;
   *((_DWORD *)_this + 47) = 0;
-  *(_DWORD *)_this->_pad_000 = &off_56AEA4;
+  _this->_vftable = (void **)&off_56AEA4;
   *((_DWORD *)_this + 43) = 2;
-  _this->m_fontcolor[0] = -6;
+  LOBYTE(_this->m_fontcolor) = -6;
   *((_DWORD *)_this + 17) = 1056964608;
   return _this;
 }
@@ -4326,7 +4326,7 @@ void __thiscall UIWnd_Destructor(UIWnd *_this)
   _BYTE *v3; // ecx
   char v4; // al
 
-  *(_DWORD *)_this->_pad_000 = &off_56AEA4;
+  _this->_vftable = (void **)&off_56AEA4;
   j_UIWnd::MoveWindow((UIWnd **)_this + 26);
   v2 = *((_DWORD *)_this + 19);
   if ( v2 )
@@ -5074,7 +5074,7 @@ UIWnd *__thiscall UIWnd_GetChild(UIWnd *_this, int index)
     v14[1] = v13 + 12;
     v12 = v4;
     v14[0] = v4 + 85;
-    v5 = &_this->_pad_000[3788 * index];
+    v5 = (char *)_this + 3788 * index;
     (*(void (__thiscall **)(char *, _DWORD, int *, UIWnd *, int))(*((_DWORD *)v5 + 38937) + 16))(
       v5 + 155748,
       *(&off_56F02C + index),
@@ -5216,7 +5216,7 @@ UIWnd *__thiscall UIWnd_FindChild(UIWnd *_this, int id)
     v12 = v2;
     v6 = v13;
     v11 = v3;
-    v7 = &_this->_pad_000[3788 * id];
+    v7 = (char *)_this + 3788 * id;
     (*(void (__thiscall **)(char *, _DWORD, int, UIWnd *, int, int))(*((_DWORD *)v7 + 39310) + 16))(
       v7 + 157240,
       *(&off_56F02C + id),
@@ -5422,16 +5422,16 @@ int unknown_libname_410()
 // write access to const memory has been detected, the output may be wrong!
 void __thiscall UIObj_Reset(UIWnd *_this)
 {
-  *(_DWORD *)_this->m_rect = 0;
-  *(_DWORD *)&_this->m_rect[4] = 0;
-  *(_DWORD *)&_this->m_rect[8] = 0;
-  *(_DWORD *)&_this->m_rect[12] = 0;
+  _this->m_rect_left = 0;
+  _this->m_rect_top = 0;
+  _this->m_rect_right = 0;
+  _this->m_rect_bottom = 0;
   _this->m_pfather = (UIWnd *)100;
-  *(_DWORD *)_this->m_childs = 200;
-  _this->m_childs[4] = 0;
-  _this->m_childs[5] = 1;
-  *(_DWORD *)&_this->m_childs[8] = 0;
-  *(_DWORD *)&_this->m_childs[12] = 0;
+  _this->m_childs_data = (void *)200;
+  LOBYTE(_this->m_childs_count) = 0;
+  BYTE1(_this->m_childs_count) = 1;
+  _this->m_childs_capacity = 0;
+  _this->m_childs_elemsize = 0;
   _this->m_bcreateok = 0;
   _this->m_bvisible = 0;
   _this->m_benable = 0;
@@ -5463,15 +5463,12 @@ void __thiscall UIObj_Reset(UIWnd *_this)
   *((_DWORD *)_this + 144) = 0;
   *((_DWORD *)_this + 145) = 1058642330;
   *((_DWORD *)_this + 31) = -16777216;
-  *(_DWORD *)_this->m_fontcolor = 100;
-  *(_DWORD *)_this->_pad_000 = 100;
-  *(_DWORD *)_this->m_wndcolor = 200;
+  _this->m_fontcolor = 100;
+  _this->_vftable = (void **)100;
+  _this->m_wndcolor = 200;
   _this->m_id = 400;
   gbColorQuad::ColorQuadFmt = 1;
-  *((_BYTE *)_this + 87) = -1;
-  *((_BYTE *)_this + 86) = 0;
-  *((_BYTE *)_this + 85) = 0;
-  *((_BYTE *)_this + 84) = 0;
+  *((_DWORD *)_this + 21) = -16777216;
 }
 
 // 0x004B47E0
@@ -6389,14 +6386,14 @@ char __thiscall CCBStage_Method_4FA930(CCBRoleState *_this, char arg0, int a2)
   int v37; // eax
   _BYTE *v38; // ecx
   unsigned __int8 v39; // al
-  unsigned int v40; // ecx
+  int v40; // ecx
   bool v41; // zf
   int *v42; // eax
   int v43; // ecx
   int v44; // eax
   int v45; // eax
   int v46; // eax
-  unsigned __int8 *v47; // eax
+  char *v47; // eax
   int v48; // eax
   int v49; // ecx
   int *v50; // eax
@@ -6406,7 +6403,7 @@ char __thiscall CCBStage_Method_4FA930(CCBRoleState *_this, char arg0, int a2)
   unsigned __int8 *v54; // edx
   int v55; // edx
   int a7; // [esp+Ch] [ebp-50h] BYREF
-  unsigned int v57; // [esp+10h] [ebp-4Ch]
+  int v57; // [esp+10h] [ebp-4Ch]
   int v58; // [esp+14h] [ebp-48h]
   unsigned __int8 *v59; // [esp+18h] [ebp-44h]
   int v60; // [esp+1Ch] [ebp-40h]
@@ -6619,7 +6616,7 @@ LABEL_26:
                             {
                               if ( sub_4F6C60(_this->m_sCombatDialog, v3, *v79, &v72, &v75) )
                               {
-                                v47 = &v33[8 * v72 + 936 + v75 + (_DWORD)_this];
+                                v47 = (char *)&v33[8 * v72 + 936 + v75 + (_DWORD)_this];
                                 if ( !*v47 )
                                 {
                                   *v47 = 1;
@@ -6627,7 +6624,7 @@ LABEL_26:
                                   v48 = v65;
                                   v33[8 * v72 + 984 + v75 + (_DWORD)_this] = 0;
                                   a7 = v3;
-                                  v57 = _this->m_Role[0].dwSkillID[8 * v72 + 7 + v75 + v48];
+                                  v57 = *(_DWORD *)&_this->m_Role[0]._rest[32 * v72 + 116 + 4 * v75 + 4 * v48];
                                   CCBStage::GetRoleName(
                                     _this->m_pStage,
                                     a2,
@@ -6697,7 +6694,7 @@ LABEL_26:
                         v55 = v65;
                         v33[8 * v72 + 984 + v75 + (_DWORD)_this] = 0;
                         a7 = v3;
-                        v57 = _this->m_Role[0].dwSkillID[8 * v72 + 7 + v75 + v55];
+                        v57 = *(_DWORD *)&_this->m_Role[0]._rest[32 * v72 + 116 + 4 * v75 + 4 * v55];
                         CCBStage::GetRoleName(
                           _this->m_pStage,
                           a2,
@@ -8941,7 +8938,7 @@ struct gbVFileSystem *__thiscall UIRenderQuadList(_BYTE *_this)
     v5 = 3;
     do
     {
-      v6 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+      v6 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)g_pGfxMgr->_vftable + 8))(
                           g_pGfxMgr,
                           *v4);
       *v3 = v6;
@@ -8958,7 +8955,7 @@ struct gbVFileSystem *__thiscall UIRenderQuadList(_BYTE *_this)
     v8 = 3;
     do
     {
-      *v7 = (*(int (__thiscall **)(gbGfxManager *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 96))(
+      *v7 = (*(int (__thiscall **)(gbGfxManager *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)g_pGfxMgr->_vftable + 96))(
               g_pGfxMgr,
               *(_DWORD *)((char *)v7 + (char *)v11 - _this),
               0,
@@ -8967,7 +8964,7 @@ struct gbVFileSystem *__thiscall UIRenderQuadList(_BYTE *_this)
       --v8;
     }
     while ( v8 );
-    (*(void (__thiscall **)(gbGfxManager *, int))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 104))(g_pGfxMgr, 1);
+    (*(void (__thiscall **)(gbGfxManager *, int))(*(_DWORD *)g_pGfxMgr->_vftable + 104))(g_pGfxMgr, 1);
   }
   UIQuadManager_Reset();
   v12 = -1;
@@ -8987,11 +8984,11 @@ gbGfxManager *__cdecl UIQuadManager_Reset()
   if ( v3 != *(_DWORD *)(v0 + 12) )
   {
     v2 = *(_BYTE *)(v0 + 29);
-    result->DrvInfo.type = v3;
+    *(_DWORD *)result->DrvInfo = v3;
     if ( !v2 )
-      return (gbGfxManager *)(*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 100))(
+      return (gbGfxManager *)(*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)g_pGfxMgr->_vftable + 100))(
                                g_pGfxMgr,
-                               *(_DWORD *)&result->_pad_0000[4 * v3]);
+                               *(_DWORD *)&result->_vftable[4 * v3]);
   }
   return result;
 }

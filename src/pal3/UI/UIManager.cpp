@@ -98,7 +98,7 @@ void UIManager::Render()
   if ( v4 > 0 )
   {
     ((gbVertPoolMgr *)g_pGfxMgr->pVertPoolMgr)->GetDynVertBuf(0x15u);
-    if ( LODWORD(g_pGfxMgr->AllLight[6].ambient.Green) == 1 )
+    if ( *(_DWORD *)&g_pGfxMgr->_tail[916] == 1 )
     {
       Top = ((gbMatrixStack *)g_pGfxMgr->pMatrixStack[1])->GetTop();
       v10 = ((gbMatrixStack *)g_pGfxMgr->pMatrixStack[0])->GetTop();
@@ -110,10 +110,10 @@ void UIManager::Render()
       ((gbMatrix4 *)&v16)->RightMultiply((gbMatrix4 *)v16.m);
       ((gbMatrix4 *)&v16)->RightMultiply(v10);
       ((gbRenderEffect *)*((gbRenderEffect **)this + 3))->SetVariant(PARAM_HANDLE_ALLTM, &v16);
-      v15[0] = LODWORD(g_pGfxMgr->AllLight[6].direction.x);
-      v15[1] = LODWORD(g_pGfxMgr->AllLight[6].direction.y);
+      v15[0] = *(_DWORD *)&g_pGfxMgr->_tail[940];
+      v15[1] = *(_DWORD *)&g_pGfxMgr->_tail[944];
       v11 = (gbRenderEffect *)*((_DWORD *)this + 3);
-      v15[2] = LODWORD(g_pGfxMgr->AllLight[6].direction.z);
+      v15[2] = *(_DWORD *)&g_pGfxMgr->_tail[948];
       v15[3] = 1065353216;
       v11->SetVariant(PARAM_HANDLE_FOGPLANE, v15);
       qmemcpy(v18, Top, sizeof(v18));
@@ -137,7 +137,7 @@ void * UIManager::LoadShadowTexture()
 
   ((OpenBaseFile *)&v4)->OpenBaseFile();
   v5 = 0;
-  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 8))(
+  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_vftable + 8))(
                       g_pGfxMgr,
                       aShadowTga);
   *((_DWORD *)this + 1) = v2;
