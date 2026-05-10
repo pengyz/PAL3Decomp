@@ -434,7 +434,7 @@ char CCCTData::Destroy()
   if ( v2 )
   {
     v2->gbGeomNode();
-    v3->next = (gbChain1DNode *)&off_56A66C;
+    *(_DWORD *)v3->_pad_0000 = &off_56A66C;
     v4 = v3;
   }
   else

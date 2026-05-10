@@ -12,7 +12,7 @@ extern void *off_56F4F0;
 // 0x004BDAC0
 RenderTarget::RenderTarget()
 {
-  ((gbTexture_D3D *)&this->m_Texture.nLevels)->~gbTexture_D3D();
+  ((gbTexture_D3D *)&this->m_Texture.InFmt.a_shift)->~gbTexture_D3D();
   ((gbTexture_D3D *)&this->m_Texture)->~gbTexture_D3D();
 }
 
@@ -37,18 +37,18 @@ int RenderTarget::Create()
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 88))(g_Input.KeyInfo[177].Data);
-  (*(void (**)(int *, int, int, int))(this->m_Texture.nLevels + 12))(
-    &this->m_Texture.nLevels,
+  (*(void (**)(__int32 *, int, int, int))(this->m_Texture.InFmt.a_shift + 12))(
+    &this->m_Texture.InFmt.a_shift,
     g_Input.KeyInfo[120].Data,
     g_Input.KeyInfo[120].HoldTime,
     v4);
-  result = (*(int (**)(gbTexture_D3D *, int, int, int))(this->m_Texture.RefCount + 12))(
+  result = (*(int (**)(gbTexture_D3D *, int, int, int))(*(_DWORD *)this->m_Texture._pad_0000 + 12))(
              &this->m_Texture,
              512,
              512,
              v4);
   this->m_iMode = 0;
-  this->m_ScreenPlane.InFmt.a_mask = 0;
+  this->m_ScreenPlane.InFmt.g_mask = 0;
   return result;
 }
 
@@ -57,10 +57,10 @@ void RenderTarget::OnDeviceLost(int a2)
 {
   int v2; // eax
 
-  if ( this->m_ScreenPlane.InFmt.a_mask != 1 )
+  if ( this->m_ScreenPlane.InFmt.g_mask != 1 )
   {
     v2 = a2;
-    if ( (a2 == 1 || a2 == 2) && !this->m_ScreenPlane.InFmt.r_mask )
+    if ( (a2 == 1 || a2 == 2) && !this->m_ScreenPlane.InFmt.Bpp )
       v2 = 0;
     this->m_iMode = v2;
   }
@@ -73,18 +73,18 @@ bool RenderTarget::OnResetDevice(int a2)
   int m_iMode; // ecx
   int v5; // esi
 
-  if ( this->m_ScreenPlane.InFmt.a_mask != 1 )
+  if ( this->m_ScreenPlane.InFmt.g_mask != 1 )
   {
-    this->m_ScreenPlane.InFmt.a_mask = 1;
+    this->m_ScreenPlane.InFmt.g_mask = 1;
     m_iMode = this->m_iMode;
     v5 = 0;
     if ( this->m_iMode )
     {
       if ( m_iMode <= 0 || m_iMode > 2 )
         return v5 != 0;
-      v5 = (*(int (**)(int, int *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(
+      v5 = (*(int (**)(int, __int32 *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(
              g_Input.KeyInfo[177].Data,
-             &this->m_Texture.nLevels);
+             &this->m_Texture.InFmt.a_shift);
     }
     else
     {
@@ -122,11 +122,11 @@ bool RenderTarget::OnResetDevice(int a2)
 // 0x004BDF10
 _DWORD * RenderTarget::Destroy()
 {
-  this->m_Texture.RefCount = 0;
+  *(_DWORD *)this->m_Texture._pad_0000 = 0;
   this->m_iMode = (int)&off_56F4F0;
-  this->m_Texture.pName = (char *)1;
-  this->m_Texture.IsLoaded = 0;
+  this->m_Texture.RefCount = 1;
   this->m_Texture.NameCrc32 = 0;
-  LOBYTE(this->m_Texture.pMgr) = 0;
+  this->m_Texture.pName = 0;
+  LOBYTE(this->m_Texture.IsLoaded) = 0;
   return &this->m_iMode;
 }

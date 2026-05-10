@@ -192,15 +192,15 @@ void PtrArray::SetSize()
 }
 
 // 0x004343B0
-char * PtrArray::SetAtGrow(unsigned __int16 a1, int a2)
+char * PtrArray::SetAtGrow(signed __int16 a1, int a2)
 {
   int v2; // ecx
 
   v2 = a2;
   if ( !a2 )
     v2 = stru_D8C2B8.KeyTransformation[1];
-  if ( (a1 & 0x8000u) == 0 )
-    return (char *)(*(_DWORD *)(v2 + 76) + 8 * a1);
+  if ( a1 >= 0 )
+    return (char *)(*(_DWORD *)(v2 + 76) + 8 * (unsigned __int16)a1);
   else
     return (char *)(stru_D8C2B8.KeyTransformation[3] + 24 * (a1 & 0x7FFF));
 }

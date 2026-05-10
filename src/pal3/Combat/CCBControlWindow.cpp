@@ -57,7 +57,7 @@ CCBControlWindow::CCBControlWindow()
   v5 = 27;
   v7 = 59;
   this->Create(&this->m_pbktex, 193, (int)&a4, (int)aUiCombatContro_5);
-  (*(void (**)(gbTexture *, int))this->m_pbktex->RefCount)(this->m_pbktex, 1);
+  (**(void (***)(gbTexture *, int))this->m_pbktex)(this->m_pbktex, 1);
   a4 = 104;
   v6 = 136;
   v5 = 27;
@@ -123,7 +123,7 @@ CCBControlWindow::~CCBControlWindow()
   m_pbktex = (gbTexture *)this->m_pbktex;
   if ( m_pbktex )
   {
-    result = (*(int (**)(gbTexture *, int))(m_pbktex->RefCount + 20))(m_pbktex, 1);
+    result = (*(int (**)(gbTexture *, int))(*(_DWORD *)m_pbktex->_pad_0000 + 20))(m_pbktex, 1);
     this->m_pbktex = 0;
   }
   m_pBack = (UIStatic *)this->m_pBack;
@@ -234,7 +234,7 @@ int CCBControlWindow::HandleInput(int a2)
   UIButton *m_pButtonAttack; // eax
   UIButton *m_pButtonSkill; // eax
   int result; // eax
-  _DWORD *p_RefCount; // eax
+  _DWORD *pad_0000; // eax
 
   v3 = 6;
   p_m_nSize = (int *)&this->m_childs.m_nSize;
@@ -249,8 +249,8 @@ int CCBControlWindow::HandleInput(int a2)
   *(_DWORD *)(m_bfocus + 80) = 0;
   *(_BYTE *)(m_bfocus + 68) = 0;
   m_pbktex = (gbTexture *)this->m_pbktex;
-  m_pbktex->InFmt.r_shift = 0;
-  LOBYTE(m_pbktex->InFmt.g_mask) = 0;
+  m_pbktex->InFmt.a_mask = 0;
+  LOBYTE(m_pbktex->InFmt.r_mask) = 0;
   m_pBack = (UIStatic *)this->m_pBack;
   m_pBack->m_childs.m_nMaxSize = 0;
   LOBYTE(m_pBack->m_pfather) = 0;
@@ -266,25 +266,25 @@ int CCBControlWindow::HandleInput(int a2)
   switch ( a2 )
   {
     case 0:
-      p_RefCount = (_DWORD *)this->m_bfocus;
+      pad_0000 = (_DWORD *)this->m_bfocus;
       goto LABEL_10;
     case 1:
-      p_RefCount = (_DWORD *)&this->m_pbktex->RefCount;
+      pad_0000 = (_DWORD *)this->m_pbktex->_pad_0000;
       goto LABEL_10;
     case 2:
-      p_RefCount = (_DWORD *)&this->m_pBack->m_fontcolor.ColorQuadFmt;
+      pad_0000 = (_DWORD *)&this->m_pBack->m_fontcolor.ColorQuadFmt;
       goto LABEL_10;
     case 3:
-      p_RefCount = (_DWORD *)&this->m_pButtonAttack->m_fontcolor.ColorQuadFmt;
+      pad_0000 = (_DWORD *)&this->m_pButtonAttack->m_fontcolor.ColorQuadFmt;
       goto LABEL_10;
     case 4:
-      p_RefCount = (_DWORD *)&this->m_pButtonSkill->m_fontcolor.ColorQuadFmt;
+      pad_0000 = (_DWORD *)&this->m_pButtonSkill->m_fontcolor.ColorQuadFmt;
       goto LABEL_10;
     case 5:
-      p_RefCount = (_DWORD *)&this->m_pButtonMagic->m_fontcolor.ColorQuadFmt;
+      pad_0000 = (_DWORD *)&this->m_pButtonMagic->m_fontcolor.ColorQuadFmt;
 LABEL_10:
-      p_RefCount[20] = 1;
-      *((_BYTE *)p_RefCount + 68) = 1;
+      pad_0000[20] = 1;
+      *((_BYTE *)pad_0000 + 68) = 1;
       ((UIWnd *)this->m_childs.m_pData)->SetEnable(g_SceneMgr.m_szUIString, 0);
       result = (***((int (****)(_DWORD, int))&this->m_childs.m_nSize + a2))(
                  *(&this->m_childs.m_nSize + a2),

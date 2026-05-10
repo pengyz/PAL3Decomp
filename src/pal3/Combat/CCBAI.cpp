@@ -91,9 +91,9 @@ _DWORD * CCBAI::Create(_DWORD *a2)
 // 0x004D70C0
 char CCBAI::Init()
 {
-  memset(&this->m_Demand[1][3], 0, 0x6E0u);
-  memset(&this->m_FriendDemand[4], 0, 0xA0u);
-  memset((char *)this + 3504, 0, 0xA0u);
+  memset(&this->m_VAF[31], 0, 0x6E0u);
+  memset(&this->m_Demand[9][9], 0, 0xA0u);
+  memset(&this->m_EnemyDemand[8], 0, 0xA0u);
   this->SetNewRole();
   this->RepeatPlayerLastOperation();
   return 1;
@@ -195,7 +195,7 @@ LABEL_9:
 LABEL_12:
     v7 = 892 * v6;
     v10 = 892 * v6;
-    for ( a4 = &this->m_Demand[1][10 * v6 + 7]; ; a4 += 10 )
+    for ( a4 = &this->m_Demand[0][10 * v6 + 2]; ; a4 += 10 )
     {
       v8 = (CCBRoleState *)this->m_bNewRole[4];
       if ( *(&v8->m_Role[0].bValid + v7) )
@@ -216,11 +216,8 @@ LABEL_12:
             if ( a4[2].nSatisfy < 100 && this->DemandChecker(a2, roleIdx, (int)&a4[2]) == 1 )
               return 1;
           }
-          if ( this->m_FriendDemand[5].nSatisfy < 100
-            && this->CastRecoverMagic(a2, (int)&this->m_FriendDemand[5]) )
-          {
+          if ( this->m_Demand[9][10].nSatisfy < 100 && this->CastRecoverMagic(a2, (int)&this->m_Demand[9][10]) )
             return 1;
-          }
           if ( v7 >= 4460 )
           {
             if ( v7 < 9812 && a4[-3].nSatisfy < 100 && this->CastNormalAttack(a2, roleIdx, (int)&a4[-3]) )
@@ -236,13 +233,13 @@ LABEL_12:
               }
             }
           }
-          if ( *((int *)this + 896) < 100 )
+          if ( this->m_FriendDemand[3].nSatisfy < 100 )
           {
             ++g_nRandCallCount;
             g_RandSeed = 214013 * g_RandSeed + 2531011;
             if ( ((g_RandSeed >> 16) & 0x3FF) < (int)378.88 )
             {
-              if ( this->CastAttackMagic(a2, (int)this + 3584) )
+              if ( this->CastAttackMagic(a2, (int)&this->m_FriendDemand[3]) )
                 return 1;
             }
             if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleType(a2) )
@@ -251,7 +248,7 @@ LABEL_12:
               g_RandSeed = 214013 * g_RandSeed + 2531011;
               if ( ((g_RandSeed >> 16) & 0x3FF) < (int)307.19998 )
               {
-                if ( a2->Thunk_GetValue((int)this + 3584) )
+                if ( a2->Thunk_GetValue((int)&this->m_FriendDemand[3]) )
                   return 1;
               }
             }
@@ -326,7 +323,7 @@ char CCBAI::HandleEnemyWell(int a2)
   int v9; // edx
   int v10; // edx
   int v11; // edi
-  tagDemand *a4; // [esp+40h] [ebp-Ch]
+  int *a4; // [esp+40h] [ebp-Ch]
   int v14; // [esp+44h] [ebp-8h]
   int roleIdx; // [esp+48h] [ebp-4h]
 
@@ -357,7 +354,7 @@ LABEL_7:
 LABEL_10:
     v6 = 892 * v5;
     v14 = 892 * v5;
-    for ( a4 = &this->m_Demand[1][10 * v5 + 4]; ; a4 += 10 )
+    for ( a4 = (int *)&this->m_VAF[5 * v5 + 31]._pad_000C[4]; ; a4 += 40 )
     {
       v7 = (CCBRoleState *)this->m_bNewRole[4];
       if ( *(&v7->m_Role[0].bValid + v6) )
@@ -382,13 +379,13 @@ LABEL_74:
       || ((CCBRoleState *)this->m_bNewRole[4])->GetRoleField(a2, 18)
       && (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x7FFF) % 10 > 7) )
     {
-      if ( a4[5].nSatisfy < 100 && this->DemandChecker(a2, roleIdx, (int)&a4[5]) )
+      if ( a4[20] < 100 && this->DemandChecker(a2, roleIdx, (int)(a4 + 20)) )
         return 1;
     }
-    if ( this->m_FriendDemand[5].nSatisfy < 100 && this->CastRecoverMagic(a2, (int)&this->m_FriendDemand[5]) )
+    if ( this->m_Demand[9][10].nSatisfy < 100 && this->CastRecoverMagic(a2, (int)&this->m_Demand[9][10]) )
       return 1;
     v9 = roleIdx;
-    if ( roleIdx == a2 && a4->nSatisfy < 100 )
+    if ( roleIdx == a2 && *a4 < 100 )
     {
       if ( this->CastNormalAttack(a2, roleIdx, (int)a4) )
         return 1;
@@ -396,30 +393,30 @@ LABEL_74:
     }
     if ( v6 >= 4460 )
     {
-      if ( v6 < 9812 && a4->nSatisfy < 100 )
+      if ( v6 < 9812 && *a4 < 100 )
       {
         if ( this->CastNormalAttack(a2, v9, (int)a4) )
           return 1;
         v9 = roleIdx;
       }
-      if ( v6 < 9812 && a4[3].nSatisfy < 100 )
+      if ( v6 < 9812 && a4[12] < 100 )
       {
         ++g_nRandCallCount;
         g_RandSeed = 214013 * g_RandSeed + 2531011;
         if ( ((g_RandSeed >> 16) & 0x3FF) < (int)512.0 )
         {
-          if ( this->CastAttackBigItem(a2, v9, (int)&a4[3]) )
+          if ( this->CastAttackBigItem(a2, v9, (int)(a4 + 12)) )
             return 1;
         }
       }
     }
-    if ( *((int *)this + 896) < 100 )
+    if ( this->m_FriendDemand[3].nSatisfy < 100 )
     {
       ++g_nRandCallCount;
       g_RandSeed = 214013 * g_RandSeed + 2531011;
       if ( ((g_RandSeed >> 16) & 0x3FF) < (int)256.0 )
       {
-        if ( this->CastAttackMagic(a2, (int)this + 3584) )
+        if ( this->CastAttackMagic(a2, (int)&this->m_FriendDemand[3]) )
           return 1;
       }
       if ( ((CCBRoleState *)this->m_bNewRole[4])->GetRoleType(a2) )
@@ -428,7 +425,7 @@ LABEL_74:
         g_RandSeed = 214013 * g_RandSeed + 2531011;
         if ( ((g_RandSeed >> 16) & 0x3FF) < (int)307.19998 )
         {
-          if ( a2->Thunk_GetValue((int)this + 3584) )
+          if ( a2->Thunk_GetValue((int)&this->m_FriendDemand[3]) )
             return 1;
         }
       }
@@ -437,7 +434,7 @@ LABEL_74:
     if ( v14 < 0 )
       goto LABEL_82;
     if ( v14 >= 4460
-      || a4[7].nSatisfy >= 100
+      || a4[28] >= 100
       || (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x3FF) >= (int)716.79999) )
     {
       v11 = roleIdx;
@@ -445,31 +442,31 @@ LABEL_74:
     else
     {
       v11 = roleIdx;
-      if ( this->CastRecoverBigMagic(a2, roleIdx, (int)&a4[7]) )
+      if ( this->CastRecoverBigMagic(a2, roleIdx, (int)(a4 + 28)) )
         return 1;
       v10 = v14;
     }
     if ( v10 < 0 )
       goto LABEL_82;
-    if ( v10 < 4460 && a4[8].nSatisfy < 100 )
+    if ( v10 < 4460 && a4[32] < 100 )
     {
       ++g_nRandCallCount;
       g_RandSeed = 214013 * g_RandSeed + 2531011;
-      if ( ((g_RandSeed >> 16) & 0x3FF) < (int)716.79999 && this->DemandChecker(a2, v11, (int)&a4[8]) )
+      if ( ((g_RandSeed >> 16) & 0x3FF) < (int)716.79999 && this->DemandChecker(a2, v11, (int)(a4 + 32)) )
         return 1;
       v10 = v14;
     }
-    if ( v10 < 4460 && a4[6].nSatisfy < 100 )
+    if ( v10 < 4460 && a4[24] < 100 )
     {
-      if ( this->CastRecoverBigMagic(a2, v11, (int)&a4[6]) )
+      if ( this->CastRecoverBigMagic(a2, v11, (int)(a4 + 24)) )
         return 1;
       v10 = v14;
     }
-    if ( v10 < 4460 && a4[6].nSatisfy < 100 )
+    if ( v10 < 4460 && a4[24] < 100 )
     {
       ++g_nRandCallCount;
       g_RandSeed = 214013 * g_RandSeed + 2531011;
-      if ( ((g_RandSeed >> 16) & 0x3FF) < (int)256.0 && this->CastRecoverBigMagic(a2, v11, (int)&a4[6]) )
+      if ( ((g_RandSeed >> 16) & 0x3FF) < (int)256.0 && this->CastRecoverBigMagic(a2, v11, (int)(a4 + 24)) )
         return 1;
       v10 = v14;
     }
@@ -518,7 +515,7 @@ char CCBAI::HandleEnemyWeak(int a2)
   int v10; // edx
   int v11; // edi
   int v13; // [esp+40h] [ebp-Ch]
-  tagDemand *a4; // [esp+44h] [ebp-8h]
+  int *a4; // [esp+44h] [ebp-8h]
   int roleIdx; // [esp+48h] [ebp-4h]
 
   v3 = g_RandSeed;
@@ -552,7 +549,7 @@ LABEL_7:
   }
   v6 = 892 * v5;
   v13 = 892 * v5;
-  for ( a4 = &this->m_Demand[1][10 * v5 + 4]; ; a4 += 10 )
+  for ( a4 = (int *)&this->m_VAF[5 * v5 + 31]._pad_000C[4]; ; a4 += 40 )
   {
     v7 = (CCBRoleState *)this->m_bNewRole[4];
     if ( *(&v7->m_Role[0].bValid + v6) )
@@ -573,13 +570,13 @@ LABEL_76:
   if ( (unsigned int)v6 >= 0x116C
     && (!v8->GetRoleField(a2, 19)
      || (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x7FFF) % 10 <= 7)
-     || a4[5].nSatisfy >= 100)
-    || !this->DemandChecker(a2, roleIdx, (int)&a4[5]) )
+     || a4[20] >= 100)
+    || !this->DemandChecker(a2, roleIdx, (int)(a4 + 20)) )
   {
-    if ( this->m_FriendDemand[5].nSatisfy >= 100 || !this->CastRecoverMagic(a2, (int)&this->m_FriendDemand[5]) )
+    if ( this->m_Demand[9][10].nSatisfy >= 100 || !this->CastRecoverMagic(a2, (int)&this->m_Demand[9][10]) )
     {
       v9 = roleIdx;
-      if ( roleIdx == a2 && a4->nSatisfy < 100 )
+      if ( roleIdx == a2 && *a4 < 100 )
       {
         if ( this->CastNormalAttack(a2, roleIdx, (int)a4) || this->CastRecoverMagic(a2, (int)a4) )
           return 1;
@@ -587,33 +584,33 @@ LABEL_76:
       }
       if ( v6 < 4460 )
         goto LABEL_81;
-      if ( v6 < 9812 && a4->nSatisfy < 100 )
+      if ( v6 < 9812 && *a4 < 100 )
       {
         if ( this->CastNormalAttack(a2, v9, (int)a4) )
           return 1;
         v9 = roleIdx;
       }
       if ( v6 >= 9812
-        || a4[3].nSatisfy >= 100
+        || a4[12] >= 100
         || (++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011, ((g_RandSeed >> 16) & 0x3FF) >= (int)512.0)
-        || !this->CastAttackBigItem(a2, v9, (int)&a4[3]) )
+        || !this->CastAttackBigItem(a2, v9, (int)(a4 + 12)) )
       {
 LABEL_81:
-        if ( *((int *)this + 896) >= 100
+        if ( this->m_FriendDemand[3].nSatisfy >= 100
           || ((++g_nRandCallCount, g_RandSeed = 214013 * g_RandSeed + 2531011,
                                    ((g_RandSeed >> 16) & 0x3FF) >= (int)256.0)
-           || !this->CastAttackMagic(a2, (int)this + 3584))
+           || !this->CastAttackMagic(a2, (int)&this->m_FriendDemand[3]))
           && (!((CCBRoleState *)this->m_bNewRole[4])->GetRoleType(a2)
            || (++g_nRandCallCount,
                g_RandSeed = 214013 * g_RandSeed + 2531011,
                ((g_RandSeed >> 16) & 0x3FF) >= (int)307.19998)
-           || !a2->Thunk_GetValue((int)this + 3584)) )
+           || !a2->Thunk_GetValue((int)&this->m_FriendDemand[3])) )
         {
           v10 = v13;
           if ( v13 < 0 )
             goto LABEL_82;
           if ( v13 >= 4460
-            || a4[7].nSatisfy >= 100
+            || a4[28] >= 100
             || (++g_nRandCallCount,
                 g_RandSeed = 214013 * g_RandSeed + 2531011,
                 ((g_RandSeed >> 16) & 0x3FF) >= (int)716.79999) )
@@ -623,31 +620,31 @@ LABEL_81:
           else
           {
             v11 = roleIdx;
-            if ( this->CastRecoverBigMagic(a2, roleIdx, (int)&a4[7]) )
+            if ( this->CastRecoverBigMagic(a2, roleIdx, (int)(a4 + 28)) )
               return 1;
             v10 = v13;
           }
           if ( v10 < 0 )
             goto LABEL_82;
-          if ( v10 < 4460 && a4[8].nSatisfy < 100 )
+          if ( v10 < 4460 && a4[32] < 100 )
           {
             ++g_nRandCallCount;
             g_RandSeed = 214013 * g_RandSeed + 2531011;
-            if ( ((g_RandSeed >> 16) & 0x3FF) < (int)716.79999 && this->DemandChecker(a2, v11, (int)&a4[8]) )
+            if ( ((g_RandSeed >> 16) & 0x3FF) < (int)716.79999 && this->DemandChecker(a2, v11, (int)(a4 + 32)) )
               return 1;
             v10 = v13;
           }
-          if ( v10 < 4460 && a4[6].nSatisfy < 100 )
+          if ( v10 < 4460 && a4[24] < 100 )
           {
-            if ( this->CastRecoverBigMagic(a2, v11, (int)&a4[6]) )
+            if ( this->CastRecoverBigMagic(a2, v11, (int)(a4 + 24)) )
               return 1;
             v10 = v13;
           }
-          if ( v10 < 4460 && a4[6].nSatisfy < 100 )
+          if ( v10 < 4460 && a4[24] < 100 )
           {
             ++g_nRandCallCount;
             g_RandSeed = 214013 * g_RandSeed + 2531011;
-            if ( ((g_RandSeed >> 16) & 0x3FF) < (int)256.0 && this->CastRecoverBigMagic(a2, v11, (int)&a4[6]) )
+            if ( ((g_RandSeed >> 16) & 0x3FF) < (int)256.0 && this->CastRecoverBigMagic(a2, v11, (int)(a4 + 24)) )
               return 1;
             v10 = v13;
           }
@@ -731,12 +728,12 @@ char CCBAI::HandleFriendAction(int a2)
   CCBRoleState *v5; // ecx
   bool v6; // cc
   int v8; // [esp+10h] [ebp-8h]
-  tagDemand *a4; // [esp+14h] [ebp-4h]
+  int *a4; // [esp+14h] [ebp-4h]
 
   v3 = 0;
   v4 = 0;
   v8 = 0;
-  for ( a4 = &this->m_Demand[1][4]; ; a4 += 10 )
+  for ( a4 = (int *)&this->m_VAF[31]._pad_000C[4]; ; a4 += 40 )
   {
     v5 = (CCBRoleState *)this->m_bNewRole[4];
     if ( *(&v5->m_Role[0].bValid + v4) )
@@ -788,41 +785,41 @@ char CCBAI::HandleFriendAction(int a2)
         }
       }
       if ( (unsigned int)v8 < 0x116C
-        && a4[1].nSatisfy < 100
-        && (this->CastRecoverBigItem(a2, v3, (int)&a4[1])
-         || this->CastRecoverItem(a2, v3, (int)&a4[1])
-         || this->CastAttackItem(a2, v3, (int)&a4[1]) == 1) )
+        && a4[4] < 100
+        && (this->CastRecoverBigItem(a2, v3, (int)(a4 + 4))
+         || this->CastRecoverItem(a2, v3, (int)(a4 + 4))
+         || this->CastAttackItem(a2, v3, (int)(a4 + 4)) == 1) )
       {
         break;
       }
       if ( ((CCBRoleState *)this->m_bNewRole[4])->IsRoleAlive(v3)
         && *(_BYTE *)(((CCBRoleState *)this->m_bNewRole[4])->InitUI(v3) + 880) != 1 )
       {
-        if ( *((int *)this + 880) < 100
-          && (this->CastRecoverMagic(a2, (int)this + 3520)
-           || this->CastBFAMagic(a2, (int)this + 3520)
-           || this->CastRecoverBigSkill(a2, (int)this + 3520)) )
+        if ( this->m_EnemyDemand[9].nSatisfy < 100
+          && (this->CastRecoverMagic(a2, (int)&this->m_EnemyDemand[9])
+           || this->CastBFAMagic(a2, (int)&this->m_EnemyDemand[9])
+           || this->CastRecoverBigSkill(a2, (int)&this->m_EnemyDemand[9])) )
         {
           break;
         }
         if ( v8 >= 0 )
         {
           if ( v8 < 4460
-            && a4->nSatisfy < 50
+            && *a4 < 50
             && (this->CastNormalAttack(a2, v3, (int)a4)
              || this->CastSpecifyMagic(a2, v3, (int)a4)
              || this->CastRecoverSkill(a2, v3, (int)a4)) )
           {
             break;
           }
-          if ( v8 < 4460 && a4[3].nSatisfy < 100 )
+          if ( v8 < 4460 && a4[12] < 100 )
           {
             ++g_nRandCallCount;
             g_RandSeed = 214013 * g_RandSeed + 2531011;
             if ( ((g_RandSeed >> 16) & 0x3FF) < (int)512.0
-              && (this->CastAttackBigItem(a2, v3, (int)&a4[3])
-               || this->CastBossPhysicalAttack(a2, v3, (int)&a4[3])
-               || this->CastReviveMagic(a2, v3, (int)&a4[3])) )
+              && (this->CastAttackBigItem(a2, v3, (int)(a4 + 12))
+               || this->CastBossPhysicalAttack(a2, v3, (int)(a4 + 12))
+               || this->CastReviveMagic(a2, v3, (int)(a4 + 12))) )
             {
               break;
             }
@@ -863,7 +860,7 @@ char CCBAI::HandleFriendNegative(int a2)
     v4 = 0;
     v5 = 0;
     v14 = 0;
-    for ( roleIdx = &this->m_Demand[1][9]; ; roleIdx += 10 )
+    for ( roleIdx = &this->m_Demand[0][4]; ; roleIdx += 10 )
     {
       v6 = (CCBRoleState *)this->m_bNewRole[4];
       if ( !*(&v6->m_Role[0].bValid + v5)
@@ -872,10 +869,10 @@ char CCBAI::HandleFriendNegative(int a2)
       {
         goto LABEL_30;
       }
-      if ( this->m_FriendDemand[9].nSatisfy < 100
-        && (this->CastAttackMagic(a2, (int)&this->m_FriendDemand[9]) == 1
-         || this->CastRandEnemyMagic(a2, (int)&this->m_FriendDemand[9]) == 1
-         || this->CastAttackBigSkill(a2, (int)&this->m_FriendDemand[9]) == 1) )
+      if ( this->m_EnemyDemand[3].nSatisfy < 100
+        && (this->CastAttackMagic(a2, (int)&this->m_EnemyDemand[3]) == 1
+         || this->CastRandEnemyMagic(a2, (int)&this->m_EnemyDemand[3]) == 1
+         || this->CastAttackBigSkill(a2, (int)&this->m_EnemyDemand[3]) == 1) )
       {
         return 1;
       }
@@ -1236,28 +1233,28 @@ void * CCBAI::RepeatPlayerLastOperation()
 // 0x004D9380
 _DWORD * CCBAI::SetNewRole()
 {
-  tagDemand *v1; // eax
+  tagVAF *v1; // eax
   int v2; // esi
   int v3; // edx
   _DWORD *result; // eax
   int v5; // ecx
 
-  v1 = (tagDemand *)&this->m_Demand[1][3];
+  v1 = (tagVAF *)&this->m_VAF[31];
   v2 = 11;
   do
   {
     v3 = 10;
     do
     {
-      v1->nSatisfy = 100;
-      ++v1;
+      v1->nIndex = 100;
+      v1 = (tagVAF *)((char *)v1 + 16);
       --v3;
     }
     while ( v3 );
     --v2;
   }
   while ( v2 );
-  result = (_DWORD *)((char *)this + 3504);
+  result = (_DWORD *)&this->m_EnemyDemand[8].nSatisfy;
   v5 = 10;
   do
   {
@@ -1273,66 +1270,66 @@ _DWORD * CCBAI::SetNewRole()
 // 0x004D93D0
 int CCBAI::FillAllDemandSatisfy()
 {
-  __int32 *p_bHandle; // esi
+  unsigned __int8 *p_bValid; // esi
   int v3; // ebp
   int i; // edi
-  __int32 *v5; // esi
+  __int32 *p_bHandle; // esi
   int v6; // ebp
   int result; // eax
   int v8; // edi
   int v9; // [esp+10h] [ebp-8h]
-  __int32 *v10; // [esp+14h] [ebp-4h]
+  unsigned __int8 *v10; // [esp+14h] [ebp-4h]
 
-  p_bHandle = (__int32 *)&this->m_Demand[1][4].bHandle;
+  p_bValid = (unsigned __int8 *)&this->m_VAF[31].bValid;
   v9 = 0;
   v3 = 99;
-  v10 = (__int32 *)&this->m_Demand[1][4].bHandle;
+  v10 = (unsigned __int8 *)&this->m_VAF[31].bValid;
   do
   {
     if ( *(_BYTE *)(v9 + this->m_bNewRole[4] + 577) )
     {
       for ( i = 1; i < 10; ++i )
       {
-        if ( *(p_bHandle - 1) )
+        if ( *((_DWORD *)p_bValid - 1) )
         {
-          if ( sub_515CE0((char *)this->m_bNewRole[3], *(p_bHandle - 1)) )
+          if ( sub_515CE0((char *)this->m_bNewRole[3], *((_DWORD *)p_bValid - 1)) )
           {
-            *(_BYTE *)p_bHandle = 1;
+            *p_bValid = 1;
             this->m_bNewRole[4 * i + 4 * v3] = 100;
           }
           else
           {
-            *(p_bHandle - 1) = 0;
-            *(_BYTE *)p_bHandle = 0;
+            *((_DWORD *)p_bValid - 1) = 0;
+            *p_bValid = 0;
           }
         }
-        p_bHandle += 4;
+        p_bValid += 16;
       }
     }
     v3 += 10;
     v9 += 892;
-    p_bHandle = (__int32 *)v10 + 40;
-    v10 += 40;
+    p_bValid = (unsigned __int8 *)v10 + 160;
+    v10 += 160;
   }
   while ( v3 < 209 );
-  v5 = (__int32 *)&this->m_FriendDemand[5].bHandle;
+  p_bHandle = (__int32 *)&this->m_Demand[9][10].bHandle;
   v6 = 9;
   do
   {
-    result = *(v5 - 1);
-    v8 = v5[39];
+    result = *(p_bHandle - 1);
+    v8 = p_bHandle[39];
     if ( result )
     {
-      LOBYTE(result) = sub_515CE0((char *)this->m_bNewRole[3], *(v5 - 1));
+      LOBYTE(result) = sub_515CE0((char *)this->m_bNewRole[3], *(p_bHandle - 1));
       if ( (_BYTE)result )
       {
-        *(_BYTE *)v5 = 1;
-        *(v5 - 2) = 100;
+        *(_BYTE *)p_bHandle = 1;
+        *(p_bHandle - 2) = 100;
       }
       else
       {
-        *(v5 - 1) = 0;
-        *(_BYTE *)v5 = 0;
+        *(p_bHandle - 1) = 0;
+        *(_BYTE *)p_bHandle = 0;
       }
     }
     if ( v8 )
@@ -1340,16 +1337,16 @@ int CCBAI::FillAllDemandSatisfy()
       LOBYTE(result) = sub_515CE0((char *)this->m_bNewRole[3], v8);
       if ( (_BYTE)result )
       {
-        *((_BYTE *)v5 + 160) = 1;
-        v5[38] = 100;
+        *((_BYTE *)p_bHandle + 160) = 1;
+        p_bHandle[38] = 100;
       }
       else
       {
-        v5[39] = 0;
-        *((_BYTE *)v5 + 160) = 0;
+        p_bHandle[39] = 0;
+        *((_BYTE *)p_bHandle + 160) = 0;
       }
     }
-    v5 += 4;
+    p_bHandle += 4;
     --v6;
   }
   while ( v6 );
@@ -1367,7 +1364,7 @@ char CCBAI::DemandThreadTracer()
 
   v2 = 0;
   v3 = 0;
-  v4 = (tagDemand *)&this->m_Demand[1][5];
+  v4 = (tagDemand *)this->m_Demand[0];
   do
   {
     v5 = (CCBRoleState *)this->m_bNewRole[4];
@@ -1419,16 +1416,16 @@ char CCBAI::DemandThreadTracer()
   }
   while ( v3 < 11 );
   ((CCBRoleState *)this->m_bNewRole[4])->GetRoleMP(2);
-  if ( !LOBYTE(this->m_FriendDemand[5].bHandle) )
-    this->m_FriendDemand[5].nSatisfy = 110;
-  if ( !LOBYTE(this->m_FriendDemand[9].bHandle) )
-    this->m_FriendDemand[9].nSatisfy = 0;
+  if ( !LOBYTE(this->m_Demand[9][10].bHandle) )
+    this->m_Demand[9][10].nSatisfy = 110;
+  if ( !LOBYTE(this->m_EnemyDemand[3].bHandle) )
+    this->m_EnemyDemand[3].nSatisfy = 0;
   ((CCBRoleState *)this->m_bNewRole[4])->GetRoleMP(1);
-  if ( !*((_BYTE *)this + 3528) )
-    *((_DWORD *)this + 880) = 110;
-  result = *((_BYTE *)this + 3592);
+  if ( !LOBYTE(this->m_EnemyDemand[9].bHandle) )
+    this->m_EnemyDemand[9].nSatisfy = 110;
+  result = this->m_FriendDemand[3].bHandle;
   if ( !result )
-    *((_DWORD *)this + 896) = 100;
+    this->m_FriendDemand[3].nSatisfy = 100;
   return result;
 }
 

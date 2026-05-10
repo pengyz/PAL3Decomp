@@ -177,19 +177,19 @@ CCBStageScene::~CCBStageScene()
   m_pPointer = (gbGeomNode *)this->m_pPointer;
   if ( m_pPointer )
   {
-    ((void (*)(gbGeomNode *, int))m_pPointer->next->next)(m_pPointer, 1);
+    (**(void (***)(gbGeomNode *, int))m_pPointer->_pad_0000)(m_pPointer, 1);
     this->m_pPointer = 0;
   }
   m_pGeomNode = (gbGeomNode *)this->m_pGeomNode;
   if ( m_pGeomNode )
   {
-    ((void (*)(gbGeomNode *, int))m_pGeomNode->next->next)(m_pGeomNode, 1);
+    (**(void (***)(gbGeomNode *, int))m_pGeomNode->_pad_0000)(m_pGeomNode, 1);
     this->m_pGeomNode = 0;
   }
   m_pCvd = (gbGeomNode *)this->m_pCvd;
   if ( m_pCvd )
   {
-    ((void (*)(gbGeomNode *, int))m_pCvd->next->next)(m_pCvd, 1);
+    (**(void (***)(gbGeomNode *, int))m_pCvd->_pad_0000)(m_pCvd, 1);
     this->m_pCvd = 0;
   }
   m_pCorpse = this->m_pCorpse;
@@ -198,7 +198,7 @@ CCBStageScene::~CCBStageScene()
   {
     if ( *m_pCorpse )
     {
-      ((void (*)(gbGeomNode *, int))(*m_pCorpse)->next->next)(*m_pCorpse, 1);
+      (**(void (***)(gbGeomNode *, int))(*m_pCorpse)->_pad_0000)(*m_pCorpse, 1);
       *m_pCorpse = 0;
     }
     ++m_pCorpse;
@@ -356,7 +356,7 @@ LABEL_13:
   {
     if ( *m_pCorpse )
     {
-      ((void (*)(gbGeomNode *, int))(*m_pCorpse)->next->next)(*m_pCorpse, 1);
+      (**(void (***)(gbGeomNode *, int))(*m_pCorpse)->_pad_0000)(*m_pCorpse, 1);
       *m_pCorpse = 0;
     }
     ++m_pCorpse;
@@ -382,7 +382,7 @@ int CCBStageScene::Create()
   if ( v2 )
   {
     v2->gbGeomNode();
-    v3->next = (gbChain1DNode *)&off_56A66C;
+    *(_DWORD *)v3->_pad_0000 = &off_56A66C;
     v4 = v3;
   }
   else
@@ -427,7 +427,7 @@ void CCBStageScene::Destroy()
   {
     if ( *v3 )
     {
-      ((void (*)(gbGeomNode *, int))(*v3)->next->next)(*v3, 1);
+      (**(void (***)(gbGeomNode *, int))(*v3)->_pad_0000)(*v3, 1);
       *v3 = 0;
     }
     m_pCamControl = (CCBRoleState *)(*v1)->m_pStage->m_pCamControl;
@@ -445,7 +445,7 @@ void CCBStageScene::Destroy()
           if ( v7 )
           {
             v7->gbGeomNode();
-            v8->next = (gbChain1DNode *)&off_56A66C;
+            *(_DWORD *)v8->_pad_0000 = &off_56A66C;
           }
           else
           {
@@ -466,7 +466,7 @@ void CCBStageScene::Destroy()
           {
             if ( *v3 )
             {
-              ((void (*)(gbGeomNode *, int))(*v3)->next->next)(*v3, 1);
+              (**(void (***)(gbGeomNode *, int))(*v3)->_pad_0000)(*v3, 1);
               *v3 = 0;
             }
           }
@@ -698,7 +698,7 @@ int CCBStageScene::SetBattleFieldAttr()
   result = this->Init();
   m_pPointer = (gbGeomNode *)this->m_pPointer;
   if ( m_pPointer )
-    return ((int (*)(gbGeomNode *))m_pPointer->next[5].next)(m_pPointer);
+    return (*(int (**)(gbGeomNode *))(*(_DWORD *)m_pPointer->_pad_0000 + 20))(m_pPointer);
   return result;
 }
 
@@ -721,16 +721,16 @@ void CCBStageScene::GetBattleFieldSubdueAttr(gbMatrixStack *a2)
   m_pGeomNode = (gbGeomNode *)this->m_pGeomNode;
   if ( m_pGeomNode && LOBYTE(this->m_bLoaded) )
   {
-    ((void (*)(gbGeomNode *, _DWORD))m_pGeomNode->next[4].next)(m_pGeomNode, 0);
+    (*(void (**)(gbGeomNode *, _DWORD))(*(_DWORD *)m_pGeomNode->_pad_0000 + 16))(m_pGeomNode, 0);
     m_pLights = (gbVisNode *)this->m_pLights;
     if ( m_pLights )
-      ((void (*)(gbVisNode *, _DWORD))m_pLights->next[4].next)(m_pLights, 0);
+      (*(void (**)(gbVisNode *, _DWORD))(*(_DWORD *)m_pLights->_pad_0000 + 16))(m_pLights, 0);
     if ( LOBYTE(this->m_EnemyFiveLineupQuad.color.Blue) && this->m_pPointer )
     {
       a2->Push();
       v9 = sin(this->m_pStage->m_pCBSystem->m_fTimeFund * 10.0) * 5.0 + this->m_EnemyFiveLineupQuad.ev + 6.0;
       a2->Translate(this->m_EnemyFiveLineupQuad.eu, v9, *(float *)&this->m_EnemyFiveLineupQuad.color.ColorQuadFmt);
-      ((void (*)(gbGeomNode *, _DWORD))this->m_pPointer->next[4].next)(this->m_pPointer, 0);
+      (*(void (**)(gbGeomNode *, _DWORD))(*(_DWORD *)this->m_pPointer + 16))(this->m_pPointer, 0);
       a2->Pop();
     }
     a2a = 0;
@@ -748,7 +748,7 @@ void CCBStageScene::GetBattleFieldSubdueAttr(gbMatrixStack *a2)
           a2->Push();
           v10 = x + 2.0;
           a2->Translate(v11, v10, v13);
-          ((void (*)(gbGeomNode *, _DWORD))(*m_pCorpse)->next[4].next)(*m_pCorpse, 0);
+          (*(void (**)(gbGeomNode *, _DWORD))(*(_DWORD *)(*m_pCorpse)->_pad_0000 + 16))(*m_pCorpse, 0);
           a2->Pop();
           a2a = (gbMatrixStack *)((char *)a2a + 60);
         }

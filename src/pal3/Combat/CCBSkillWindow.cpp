@@ -280,12 +280,12 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   pRect[2] = 187;
   pRect[1] = 0;
   pRect[3] = 32;
-  (*(void (**)(gbTexture *, int, _DWORD *, CCBSkillWindow *))((*p_m_pbktex)->RefCount + 16))(
+  (*(void (**)(gbTexture *, int, _DWORD *, CCBSkillWindow *))(*(_DWORD *)(*p_m_pbktex)->_pad_0000 + 16))(
     *p_m_pbktex,
     530,
     pRect,
     this);
-  (*(void (**)(gbTexture *, int))(*p_m_pbktex)->RefCount)(*p_m_pbktex, 1);
+  (**(void (***)(gbTexture *, int))(*p_m_pbktex)->_pad_0000)(*p_m_pbktex, 1);
   ((UIWnd *)this->m_pbktex)->SetShow(0);
   ((UIWnd *)this->m_pbktex)->GetChild((int)&parent);
   return 1;
@@ -376,7 +376,7 @@ int CCBSkillWindow::Destroy()
   m_pbktex = (gbTexture *)this->m_pbktex;
   if ( m_pbktex )
   {
-    result = (*(int (**)(gbTexture *, int))(m_pbktex->RefCount + 20))(m_pbktex, 1);
+    result = (*(int (**)(gbTexture *, int))(*(_DWORD *)m_pbktex->_pad_0000 + 20))(m_pbktex, 1);
     this->m_pbktex = 0;
   }
   v14 = *((_DWORD *)this + 38);

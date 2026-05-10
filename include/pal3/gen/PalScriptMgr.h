@@ -9,10 +9,10 @@ public:
     int m_bGetSceneScript; // +0x0
     PtrArray m_script; // +0x4
     scSCEFile m_scefile; // +0x14
-    scSCEFile m_scesys; // +0x24
-    int m_scepath; // +0x34
-    scSCEFile m_bigmapsce; // +0x38
-    // total size: 0x48 (72)
+    scSCEFile m_scesys; // +0x30
+    int m_scepath; // +0x4C
+    scSCEFile m_bigmapsce; // +0x50
+    // total size: 0x6C (108)
 
     PalScriptMgr(); // 0x00431E60
     static int OpenSCE(); // 0x00431EB0

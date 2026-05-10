@@ -254,6 +254,7 @@ extern int dword_C025EC;
 extern int dword_C116F4;
 extern int dword_C12B38;
 extern int dword_C12B3C;
+extern int dword_C12B40;
 extern int dword_D8BBEC;
 extern int dword_D8C2B0;
 extern int dword_D92788;
@@ -331,7 +332,6 @@ extern int unk_60B348;
 extern int unk_60B878;
 extern int unk_60B9D8;
 extern int unk_60BDC8;
-extern int unk_C12B40;
 extern int unk_DBA258;
 extern int unk_DBB364;
 extern int unk_DBD894;
@@ -3063,46 +3063,46 @@ int unknown_libname_328()
 // between_std_methods (0x411BB0-0x430790)
 double __userpurge UIUpdate@<st0>(_DWORD *_this@<ecx>, double result@<st0>, double a3)
 {
-  int v5; // ecx
-  int v6; // edi
-  _DWORD *v7; // ebx
-  int v8; // edi
-  _DWORD *v9; // ebx
+  int v4; // ecx
+  int v5; // edi
+  _DWORD *v6; // ebx
+  int v7; // edi
+  _DWORD *v8; // ebx
   float dt; // [esp+10h] [ebp-4h]
   int dta; // [esp+10h] [ebp-4h]
 
   if ( *(_this + 123285) )
   {
-    v5 = *(_this + 123284);
-    if ( v5 )
-      (*(void (__thiscall **)(int))(*(_DWORD *)v5 + 20))(v5);
-    v6 = 0;
+    v4 = *(_this + 123284);
+    if ( v4 )
+      (*(void (__thiscall **)(int))(*(_DWORD *)v4 + 20))(v4);
+    v5 = 0;
     if ( (int)*(_this + 14392) > 0 )
     {
-      v7 = _this + 14393;
+      v6 = _this + 14393;
       do
       {
         dt = a3;
         ScriptSystem::UpdateTimers(dt);
-        ++v6;
-        v7 += 2176;
+        ++v5;
+        v6 += 2176;
       }
-      while ( v6 < *(_this + 14392) );
+      while ( v5 < *(_this + 14392) );
     }
     if ( g_Input.KeyInfo[177].PressTime != 9 )
     {
-      v8 = 0;
+      v7 = 0;
       if ( (int)*(_this + 55) > 0 )
       {
-        v9 = _this + 56;
+        v8 = _this + 56;
         do
         {
           *(float *)&dta = a3;
-          result = sub_426EB0(v9, result, a3, dta);
-          ++v8;
-          v9 += 224;
+          result = sub_426EB0(v8, result, a3, dta);
+          ++v7;
+          v8 += 224;
         }
-        while ( v8 < *(_this + 55) );
+        while ( v7 < *(_this + 55) );
       }
     }
   }
@@ -3188,7 +3188,7 @@ char *unknown_libname_331()
 {
   dword_C12B38 = 0;
   dword_C12B3C = 0;
-  unk_C12B40 = 0;
+  dword_C12B40 = 0;
   return byte_D8B938;
 }
 
@@ -3236,18 +3236,20 @@ void __cdecl EffectUpdate(float a1)
     if ( (_BYTE)dword_C12B38 == 6 || (_BYTE)dword_C12B38 == 14 )
     {
       sub_418130((_DWORD *)g_SceneMgr.m_pCollisionNode, 0);
-      v1 = unk_C12B40;
-      if ( *(_DWORD *)(unk_C12B40 + 88) == 3 )
+      v1 = dword_C12B40;
+      if ( *(_DWORD *)(dword_C12B40 + 88) == 3 )
       {
-        gbVisNode::SetTimeScale(*(gbVisNode **)(unk_C12B40 + 92), 0.0);
-        (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(unk_C12B40 + 92) + 24))(*(_DWORD *)(unk_C12B40 + 92), 0);
-        v1 = unk_C12B40;
+        gbVisNode::SetTimeScale(*(gbVisNode **)(dword_C12B40 + 92), 0.0);
+        (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(dword_C12B40 + 92) + 24))(
+          *(_DWORD *)(dword_C12B40 + 92),
+          0);
+        v1 = dword_C12B40;
       }
       *(_BYTE *)(v1 + 80) = 0;
     }
     dword_C12B38 = 0;
     dword_C12B3C = 0;
-    unk_C12B40 = 0;
+    dword_C12B40 = 0;
   }
   v2 = 493156 * (dword_D8BBEC == 1) + 12722152;
   v18 = v2;
@@ -6581,10 +6583,10 @@ void __cdecl _TextureLib_Data::_GetItemNum(int *a1, struct gbTextureArray *a2, i
     v17 = a1[2] - *a1;
     v12 = 0;
     v11 = 0;
-    v6 = (fabs((double)v17) + -0.5) / (double)v5->TextureDetail;
+    v6 = (fabs((double)v17) + -0.5) / (double)v5->IsCreateMipmap;
     v18 = a1[3] - a1[1];
     v13 = v6;
-    v14 = (fabs((double)v18) + -0.5) / (double)v5->TextureRes;
+    v14 = (fabs((double)v18) + -0.5) / (double)v5->TextureDetail;
   }
   Data = (double)g_Input.KeyInfo[120].Data;
   v8 = (struct gbRenderEffect *)dword_1895048;
@@ -6651,8 +6653,8 @@ void __cdecl _TextureLib_Data::_CheckItem(
     v25 = 0;
     v24 = 0;
     v31 = a1[3] - a1[1];
-    v26 = (fabs((double)(a1[2] - *a1)) + -0.5) / (double)v9->TextureDetail;
-    v27 = (fabs((double)v31) + -0.5) / (double)v9->TextureRes;
+    v26 = (fabs((double)(a1[2] - *a1)) + -0.5) / (double)v9->IsCreateMipmap;
+    v27 = (fabs((double)v31) + -0.5) / (double)v9->TextureDetail;
   }
   if ( (a5 & 0x100) != 0 )
   {
@@ -6757,10 +6759,10 @@ void __cdecl _TextureLib_Data::SetLibFolder(
     v29 = a1[2] - *a1;
     v24 = 0;
     v23 = 0;
-    v11 = (fabs((double)v29) + -0.5) / (double)v10->TextureDetail;
+    v11 = (fabs((double)v29) + -0.5) / (double)v10->IsCreateMipmap;
     v30 = a1[3] - a1[1];
     v25 = v11;
-    v26 = (fabs((double)v30) + -0.5) / (double)v10->TextureRes;
+    v26 = (fabs((double)v30) + -0.5) / (double)v10->TextureDetail;
   }
   if ( (a4 & 0x100) != 0 )
   {
@@ -6856,8 +6858,8 @@ void __cdecl _TextureLib_Data::GetLibInfo(
     v11 = a6->pTexPt[0];
     v21 = 0;
     v20 = 0;
-    v22 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->TextureDetail;
-    v23 = (fabs((double)(a4 - a2)) + -0.5) / (double)v11->TextureRes;
+    v22 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->IsCreateMipmap;
+    v23 = (fabs((double)(a4 - a2)) + -0.5) / (double)v11->TextureDetail;
   }
   v12 = (double)a1;
   v19 = (float)a2;
@@ -6935,8 +6937,8 @@ void __cdecl _TextureLib_Data::GetLib(
     v9 = a6->pTexPt[0];
     v17 = 0;
     v16 = 0;
-    v18 = (fabs((double)(a3 - a1)) + -0.5) / (double)v9->TextureDetail;
-    v19 = (fabs((double)(a4 - a2)) + -0.5) / (double)v9->TextureRes;
+    v18 = (fabs((double)(a3 - a1)) + -0.5) / (double)v9->IsCreateMipmap;
+    v19 = (fabs((double)(a4 - a2)) + -0.5) / (double)v9->TextureDetail;
   }
   v10 = (double)a1;
   v15 = (float)a2;
@@ -7005,8 +7007,8 @@ void __cdecl _TextureLib_Data::GetTextureInfo(
     v17 = 0;
     v16 = 0;
     v22 = a1[3] - a1[1];
-    v18 = (fabs((double)v9) + -0.5) / (double)v8->TextureDetail;
-    v19 = (fabs((double)v22) + -0.5) / (double)v8->TextureRes;
+    v18 = (fabs((double)v9) + -0.5) / (double)v8->IsCreateMipmap;
+    v19 = (fabs((double)v22) + -0.5) / (double)v8->TextureDetail;
   }
   v13[0] = (float)*a2;
   v15 = (float)a2[1];
@@ -7182,7 +7184,7 @@ void __cdecl UIDestorySystem(int a1, int a2, int a3, int a4, int *a5, struct gbT
   v13 = 0;
   v12 = 0;
   v14 = 1065353216;
-  v15 = (fabs((double)(a4 - a2)) + -0.5) / (double)v7->TextureRes;
+  v15 = (fabs((double)(a4 - a2)) + -0.5) / (double)v7->TextureDetail;
   v11 = (float)a2;
   v10 = (float)a3;
   v9[1] = (float)a4;
@@ -7251,8 +7253,8 @@ void __cdecl UIRenderQuadEX(int a1, int a2, int a3, int a4, int *a5, struct gbTe
     v11 = a6->pTexPt[0];
     v19 = 0.0;
     v18 = 0.0;
-    v20 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->TextureDetail;
-    v10 = (fabs((double)(a4 - a2)) + -0.5) / (double)v11->TextureRes;
+    v20 = (fabs((double)(a3 - a1)) + -0.5) / (double)v11->IsCreateMipmap;
+    v10 = (fabs((double)(a4 - a2)) + -0.5) / (double)v11->TextureDetail;
     goto LABEL_6;
   }
   v18 = *(float *)(a7 + 1048);
@@ -7260,8 +7262,8 @@ void __cdecl UIRenderQuadEX(int a1, int a2, int a3, int a4, int *a5, struct gbTe
   if ( !a8 )
   {
     v9 = a6->pTexPt[0];
-    v20 = (fabs((double)(a3 - a1)) + -0.5) / (double)a6->pTexPt[0]->TextureDetail + v18;
-    v10 = (fabs((double)(a4 - a2)) + -0.5) / (double)v9->TextureRes + v19;
+    v20 = (fabs((double)(a3 - a1)) + -0.5) / (double)a6->pTexPt[0]->IsCreateMipmap + v18;
+    v10 = (fabs((double)(a4 - a2)) + -0.5) / (double)v9->TextureDetail + v19;
 LABEL_6:
     v21 = v10;
     goto LABEL_7;
@@ -7769,30 +7771,29 @@ LRESULT __stdcall fn(int code, WPARAM wParam, int *lParam)
 // 0x00541900
 int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
-  double v4; // st6
   HWND WindowA; // esi
   BOOL i; // eax
-  char *v8; // eax
-  _DWORD *v9; // esi
-  double v10; // st7
-  int v11; // edx
+  char *v7; // eax
+  _DWORD *v8; // esi
+  double v9; // st7
+  int v10; // edx
   HWND ActiveWindow; // eax
-  int v13; // [esp+0h] [ebp-698h] BYREF
+  int v12; // [esp+0h] [ebp-698h] BYREF
   CHAR Text[256]; // [esp+40Ch] [ebp-28Ch] BYREF
   char Buffer[324]; // [esp+50Ch] [ebp-18Ch] BYREF
   struct tagMSG Msg; // [esp+650h] [ebp-48h] BYREF
-  int v17; // [esp+66Ch] [ebp-2Ch]
-  _DWORD *v18; // [esp+670h] [ebp-28h]
-  int v19; // [esp+678h] [ebp-20h]
-  char v20; // [esp+680h] [ebp-18h]
-  char v21; // [esp+681h] [ebp-17h]
-  char v22; // [esp+682h] [ebp-16h]
+  int v16; // [esp+66Ch] [ebp-2Ch]
+  _DWORD *v17; // [esp+670h] [ebp-28h]
+  int v18; // [esp+678h] [ebp-20h]
+  char v19; // [esp+680h] [ebp-18h]
+  char v20; // [esp+681h] [ebp-17h]
+  char v21; // [esp+682h] [ebp-16h]
   HHOOK hhk; // [esp+684h] [ebp-14h]
-  int *v24; // [esp+688h] [ebp-10h]
-  int v25; // [esp+694h] [ebp-4h]
+  int *v23; // [esp+688h] [ebp-10h]
+  int v24; // [esp+694h] [ebp-4h]
   int hInstancea; // [esp+6A0h] [ebp+8h]
 
-  v24 = &v13;
+  v23 = &v12;
   WindowA = FindWindowA(WindowName, WindowName);
   if ( IsWindow(WindowA) )
   {
@@ -7802,7 +7803,7 @@ int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdL
   g_Input.KeyInfo[175].CountMode = (int)hInstance;
   hhk = SetWindowsHookExA(13, (HOOKPROC)fn, hInstance, 0);
   memset(Data, 0, sizeof(Data));
-  v25 = 0;
+  v24 = 0;
   if ( !UICursor::Inst(aSoftwareSoftst_1, aCdriver, (LPBYTE)Data) )
     UICursor::Init();
   if ( !strrchr(Data, 92) )
@@ -7816,21 +7817,21 @@ int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdL
   }
   memset(Filename, 0, sizeof(Filename));
   GetModuleFileNameA(0, Filename, 0x104u);
-  v8 = strrchr(Filename, 92);
-  if ( v8 )
-    *v8 = 0;
+  v7 = strrchr(Filename, 92);
+  if ( v7 )
+    *v7 = 0;
   PAL3::Create((char *)dword_1894B78, hInstance);
   gbUpdateCurTime();
-  v17 = 20;
+  v16 = 20;
   *(_QWORD *)&dbl_1895070 = __PAIR64__(HIDWORD(g_CurrentTime), LODWORD(g_CurrentTime));
-  v9 = operator new(0x50u);
-  v18 = v9;
-  memset(v9, 0, 0x50u);
-  v19 = 0;
-  v20 = 1;
+  v8 = operator new(0x50u);
+  v17 = v8;
+  memset(v8, 0, 0x50u);
+  v18 = 0;
+  v19 = 1;
+  v20 = 0;
   v21 = 0;
-  v22 = 0;
-  LOBYTE(v25) = 1;
+  LOBYTE(v24) = 1;
   while ( 1 )
   {
     if ( !PeekMessageA(&Msg, 0, 0, 0, 0) )
@@ -7841,14 +7842,14 @@ int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdL
     DispatchMessageA(&Msg);
 LABEL_20:
     gbUpdateCurTime();
-    v10 = g_CurrentTime - dbl_1895070;
-    v11 = HIDWORD(g_CurrentTime);
+    v9 = g_CurrentTime - dbl_1895070;
+    v10 = HIDWORD(g_CurrentTime);
     LODWORD(dbl_1895070) = LODWORD(g_CurrentTime);
-    HIDWORD(dbl_1895070) = v11;
+    HIDWORD(dbl_1895070) = v10;
     if ( g_bGameActive || (ActiveWindow = GetActiveWindow(), CCBSystem::ProcUseItem(ActiveWindow)) )
     {
-      *(float *)&hInstancea = v10;
-      PAL3::Update(v4, hInstancea);
+      *(float *)&hInstancea = v9;
+      PAL3::Update(hInstancea);
       PAL3::Render();
     }
     else
@@ -7856,9 +7857,9 @@ LABEL_20:
       Sleep(0x64u);
     }
   }
-  if ( v9 )
-    operator delete(v9);
-  v25 = -1;
+  if ( v8 )
+    operator delete(v8);
+  v24 = -1;
   UnhookWindowsHookEx(hhk);
   PAL3::Destroy();
   return Msg.wParam;
@@ -8300,7 +8301,7 @@ enum _EXCEPTION_DISPOSITION __usercall TranslatorGuardHandler@<eax>(
       *((EXCEPTION_POINTERS **)TargetFrame + 2),
       *((_DWORD *)TargetFrame + 4),
       *((struct EHRegistrationNode **)TargetFrame + 5),
-      1);
+      1u);
     if ( !*((_DWORD *)TargetFrame + 9) )
       _UnwindNestedFrames(a1, TargetFrame, (PEXCEPTION_RECORD)ExceptionRecord);
     return (*((enum _EXCEPTION_DISPOSITION (**)(void))TargetFrame + 6))();
@@ -8461,12 +8462,12 @@ __int64 __usercall _ftol@<edx:eax>(double a1@<st0>)
 }
 
 // 0x005535C9
-void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (*a4)(void))
+void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *))
 {
   while ( --a3 >= 0 )
   {
     a1 -= a2;
-    a4();
+    ((void (*)(void))a4)();
   }
 }
 
@@ -9678,16 +9679,9 @@ LABEL_10:
 }
 
 // 0x00554700
-long double __usercall _CIpow@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)
+long double __usercall _CIpow@<st0>(double x@<st0>, unsigned __int64 y@<st1>)
 {
-  return sub_554722(
-           HIDWORD(*(unsigned __int64 *)&y),
-           *(double *)&x,
-           y,
-           x,
-           HIDWORD(x),
-           SLODWORD(y),
-           HIDWORD(*(unsigned __int64 *)&y));
+  return sub_554722(HIDWORD(y), x, *(long double *)&y, SLODWORD(x), HIDWORD(*(unsigned __int64 *)&x), y, HIDWORD(y));
 }
 
 // 0x00554719
@@ -12616,7 +12610,7 @@ int __cdecl __InternalCxxFrameHandler(
         EXCEPTION_POINTERS *a5,
         int a6,
         struct EHRegistrationNode *TargetFrame,
-        unsigned __int8 a8)
+        char a8)
 {
   EXCEPTION_POINTERS *v8; // ecx
   int (__cdecl *pForwardCompat)(); // ecx
@@ -12645,7 +12639,7 @@ int __cdecl __InternalCxxFrameHandler(
                  a5,
                  a6,
                  TargetFrame,
-                 a8);
+                 (unsigned __int8)a8);
     }
     FindHandler(ExceptionRecord, a2, a3, a4, a5, a8, a6, TargetFrame);
   }
@@ -14593,9 +14587,9 @@ int __initmbctable()
 }
 
 // 0x005592F0
-long double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
+double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
 {
-  long double result; // st7
+  double result; // st7
   long double v6; // st6
   long double v7; // st7
   long double v8; // st7
@@ -15908,7 +15902,7 @@ LABEL_256:
 }
 
 // 0x0055A28B
-unsigned int __cdecl _hextodec(int C)
+int __cdecl _hextodec(int C)
 {
   int v1; // esi
   int v2; // eax

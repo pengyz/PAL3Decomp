@@ -56,7 +56,7 @@ int Actor::SetParam(int a2)
   result = (*(int (**)(__int32))(*(_DWORD *)this->m_actarray + 20))(this->m_actarray);
   m_pact = (gbActor *)this->m_pact;
   if ( m_pact )
-    result = ((int (*)(gbActor *))m_pact->next[5].next)(m_pact);
+    result = (*(int (**)(gbActor *))(*(_DWORD *)m_pact->_pad_0000 + 20))(m_pact);
   v6 = *(_DWORD *)this->m_name;
   if ( v6 )
     return (*(int (**)(int))(*(_DWORD *)v6 + 20))(v6);
@@ -450,9 +450,9 @@ int Actor::LoadAction(char *name)
       v10 = (gbActor *)this->m_pact;
       if ( !v10 || v8 >= (*(_DWORD *)this->m_name - (int)v10) >> 2 )
         break;
-      if ( sub_5370E0(v9, *((_DWORD *)&v10->next + v8)) )
+      if ( sub_5370E0(v9, *(_DWORD *)&v10->_pad_0000[4 * v8]) )
       {
-        *(_DWORD *)&this->m_name[8] = *((_DWORD *)&this->m_pact->next + v8);
+        *(_DWORD *)&this->m_name[8] = *(_DWORD *)&this->m_pact->_pad_0000[4 * v8];
         break;
       }
       ++v8;
@@ -570,7 +570,7 @@ void * Actor::LoadModel()
         if ( v9 < 0 )
           v9 = 0;
         v10 = (gbActor *)operator new(4 * v9);
-        v11 = (_DWORD *)sub_5374E0(&this->m_pact->next, v5, v10);
+        v11 = (_DWORD *)sub_5374E0(this->m_pact->_pad_0000, v5, v10);
         sub_537510(v11, (_DWORD *)1, &this->m_name[8]);
         sub_5374E0(v5, *(_DWORD **)this->m_name, v11 + 1);
         v18 = (gbActor *)this->m_pact;
@@ -578,7 +578,7 @@ void * Actor::LoadModel()
         *(_DWORD *)&this->m_name[4] = (char *)v10 + 4 * v16;
         v12 = sub_5372B0(this);
         this->m_pact = v10;
-        *(_DWORD *)this->m_name = &v10->pFather + v12;
+        *(_DWORD *)this->m_name = &v10->_pad_0000[4 * v12 + 4];
       }
     }
   }
@@ -598,7 +598,7 @@ void * Actor::LoadModel()
       ++v2;
     }
     while ( v2 < 10 );
-    *(_DWORD *)&this->m_name[8] = this->m_pact->next;
+    *(_DWORD *)&this->m_name[8] = *(_DWORD *)this->m_pact;
   }
 LABEL_21:
   v20 = -1;
@@ -641,7 +641,7 @@ int Actor::UpdateAllActions()
     m_pact = (gbActor *)this->m_pact;
     if ( !m_pact || i >= (*(_DWORD *)this->m_name - (int)m_pact) >> 2 )
       break;
-    ((gbActorMgr *)g_Input.KeyInfo[177].HoldTime)->DestroyActor(*((struct gbActor **)&m_pact->next + i));
+    ((gbActorMgr *)g_Input.KeyInfo[177].HoldTime)->DestroyActor(*(struct gbActor **)&m_pact->_pad_0000[4 * i]);
   }
   result = *(_DWORD *)this->m_name;
   *(_DWORD *)this->m_name = this->m_pact;

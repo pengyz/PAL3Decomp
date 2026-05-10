@@ -119,6 +119,9 @@ extern unsigned char byte_C020F0;
 extern unsigned char byte_C021A4;
 extern unsigned char byte_C021A5;
 extern unsigned char byte_C021A6;
+extern unsigned char byte_C11748;
+extern unsigned char byte_C11750;
+extern unsigned char byte_C11751;
 extern unsigned char byte_D924E8;
 extern unsigned char byte_DE5220;
 extern int dword_5833C4;
@@ -211,6 +214,14 @@ extern int dword_C04380;
 extern int dword_C0438C;
 extern int dword_C116F4;
 extern int dword_C11700;
+extern int dword_C11718;
+extern int dword_C1171C;
+extern int dword_C11740;
+extern int dword_C11744;
+extern int dword_C11754;
+extern int dword_C12B28;
+extern int dword_C12B2C;
+extern int dword_C12B30;
 extern int nullsub_2;
 extern int nullsub_3;
 extern void *off_56A66C;
@@ -222,19 +233,8 @@ extern void *off_586180;
 extern int stru_BFAB60;
 extern int stru_D8C2B8;
 extern int unk_8ACBF0;
-extern int unk_C11718;
-extern int unk_C1171C;
 extern int unk_C11720;
-extern int unk_C11740;
-extern int unk_C11744;
-extern int unk_C11748;
-extern int unk_C11750;
-extern int unk_C11751;
-extern int unk_C11754;
 extern int unk_C11758;
-extern int unk_C12B28;
-extern int unk_C12B2C;
-extern int unk_C12B30;
 
 // 0x00404760
 PAL3::PAL3()
@@ -438,7 +438,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   if ( v22 )
   {
     v22->gbGeomNode();
-    v23->next = (gbChain1DNode *)&off_56A66C;
+    *(_DWORD *)v23->_pad_0000 = &off_56A66C;
     v24 = v23;
   }
   else
@@ -677,7 +677,7 @@ char PAL3::DestroyEffectSystem()
 }
 
 // 0x004055D0
-int PAL3::Update@<eax>(double st6_0@<st1>, int a1)
+int PAL3::Update(int a1)
 {
   int v2; // edi
   unsigned __int16 *v3; // esi
@@ -776,7 +776,7 @@ int PAL3::Update@<eax>(double st6_0@<st1>, int a1)
         ScriptUpdate(a1);
       }
       v23 = (_DWORD *)UISceneUpdate();
-      UIUpdate(v23, st6_0, *(float *)&a1);
+      UIUpdate(v23, *(float *)&a1, *(float *)&a1);
       EffectUpdate(*(float *)&a1);
       SceneMgrUpdate((float *)g_Input.KeyInfo[178].CountMode, *(float *)&g_Input.KeyInfo[176].PressTime);
       UIPostUpdate(v24);
@@ -809,7 +809,7 @@ int PAL3::Update@<eax>(double st6_0@<st1>, int a1)
       AudioManager = (gbAudioManager *)((CScreenMode *)v28)->GetAudioManager();
       if ( !AudioManager )
         goto LABEL_54;
-      if ( unk_C11751 )
+      if ( byte_C11751 )
       {
         if ( CScreenMode::GetInstance()[4] )
           goto LABEL_54;
@@ -831,8 +831,8 @@ LABEL_51:
 LABEL_54:
       if ( byte_5833D0 || !dword_5833CC )
       {
-        if ( unk_C11754 )
-          *(_DWORD *)(unk_C11754 + 632) = 0;
+        if ( dword_C11754 )
+          *(_DWORD *)(dword_C11754 + 632) = 0;
       }
       else
       {
@@ -840,9 +840,9 @@ LABEL_54:
         PalScriptMgr::IfHaveScript();
       }
 LABEL_59:
-      unk_C11748 = 0;
-      unk_C11750 = 0;
-      unk_C1171C = 0x7FFFFFFF;
+      byte_C11748 = 0;
+      byte_C11750 = 0;
+      dword_C1171C = 0x7FFFFFFF;
       dword_5833CC = 1;
       goto LABEL_64;
     case 4:
@@ -881,7 +881,7 @@ LABEL_63:
       InputUpdate(g_Input.KeyInfo[177].CountMode, a1);
       ScriptUpdate(a1);
       v10 = (_DWORD *)UISceneUpdate();
-      UIUpdate(v10, st6_0, *(float *)&a1);
+      UIUpdate(v10, *(float *)&a1, *(float *)&a1);
       EffectUpdate(*(float *)&a1);
       if ( g_Input.KeyInfo[174].Data )
         goto LABEL_64;
@@ -933,7 +933,7 @@ LABEL_33:
       InputUpdate(g_Input.KeyInfo[177].CountMode, a1);
       ScriptUpdate(a1);
       v18 = (_DWORD *)UISceneUpdate();
-      UIUpdate(v18, st6_0, *(float *)&a1);
+      UIUpdate(v18, *(float *)&a1, *(float *)&a1);
       EffectUpdate(*(float *)&a1);
       if ( !v8 )
         CameraUpdate_Internal(*(float *)&a1);
@@ -1028,15 +1028,15 @@ void PAL3::Render()
       v27.x = 1.0;
       v27.y = 0.0;
       v27.z = 0.0;
-      v3->Rotate(unk_C12B28, &v27);
+      v3->Rotate(*(float *)&dword_C12B28, &v27);
       v28.x = 0.0;
       v28.y = 1.0;
       v28.z = 0.0;
-      v3->Rotate(unk_C12B2C, &v28);
+      v3->Rotate(*(float *)&dword_C12B2C, &v28);
       v29.x = 0.0;
       v29.y = 0.0;
       v29.z = 1.0;
-      v3->Rotate(unk_C12B30, &v29);
+      v3->Rotate(*(float *)&dword_C12B30, &v29);
       if ( !v2 && *(_DWORD *)(UISceneUpdate() + 100) != 1 )
       {
         memset(&v32, 0, 12);
@@ -1499,7 +1499,7 @@ int PAL3::GetCommandLineParam()
     g_SceneMgr.m_slot4[835] = 1;
     g_SceneMgr.m_slot4[836] = 0;
   }
-  if ( !unk_C11718 )
+  if ( !dword_C11718 )
     PAL3::UpdateSubsystems();
   ((CCBSystem *)g_Input.KeyInfo[178].HoldTime)->ProcMagicWait((int)dword_C11700, 1);
   return CGameData_Load((int)&g_GameData, (CUtil *)6);
@@ -2041,15 +2041,15 @@ char PAL3::StartCombat(int a1, int a2, int a3, char a4)
       sub_431C10(&stru_BFAB60, aDefault, unk_C11720, 32);
     ((PalScript *)&stru_BFAB60)->SetDirectory(dir);
     if ( sub_431C10(&stru_BFAB60, unk_C11720, Buffer, 256) )
-      unk_C11740 = atoi(Buffer);
+      dword_C11740 = atoi(Buffer);
     else
-      unk_C11740 = 1;
+      dword_C11740 = 1;
     if ( a2 == 1 )
-      unk_C11744 = 2;
+      dword_C11744 = 2;
     else
-      unk_C11744 = a2 == 2;
-    unk_C11754 = a3;
-    unk_C11751 = a4;
+      dword_C11744 = a2 == 2;
+    dword_C11754 = a3;
+    byte_C11751 = a4;
     result = ((CCBSystem *)g_Input.KeyInfo[178].HoldTime)->ProcMagicWait((int)dword_C11700, 0);
     if ( result )
     {

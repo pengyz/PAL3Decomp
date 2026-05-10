@@ -533,7 +533,7 @@ char CCBRoleState::Create()
         if ( v4 )
         {
           v4->gbGeomNode();
-          v5->next = (gbChain1DNode *)&off_56A66C;
+          *(_DWORD *)v5->_pad_0000 = &off_56A66C;
           v6 = v5;
         }
         else
@@ -558,7 +558,7 @@ char CCBRoleState::Create()
         if ( v7 )
         {
           v7->gbGeomNode();
-          v8->next = (gbChain1DNode *)&off_56A66C;
+          *(_DWORD *)v8->_pad_0000 = &off_56A66C;
           v9 = v8;
         }
         else
@@ -575,8 +575,8 @@ char CCBRoleState::Create()
         v9->LoadFromFile(Buffer, 0, 0);
         ((gbGeomNode *)v2[3])->ReplaceTexture(v12);
         LOBYTE(v3) = 1;
-        LODWORD((*v2)->OffMat.tw) = 1;
-        LODWORD(v2[3]->OffMat.tw) = 1;
+        LODWORD((*v2)->OffMat.tz) = 1;
+        LODWORD(v2[3]->OffMat.tz) = 1;
       }
     }
     v1 += 1408;

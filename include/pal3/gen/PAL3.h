@@ -47,7 +47,7 @@ public:
     static void InitGFX(); // 0x00404FF0
     static char CreateEffectSystem(); // 0x00405330
     static char DestroyEffectSystem(); // 0x004055A0
-    // [IDA_USERPURGE] Update; // 0x004055D0
+    static int Update(int a1); // 0x004055D0
     static void Render(); // 0x00405C00
     static void Destroy(); // 0x00406230
     // [IDA_USERPURGE] CheckSystemRequire; // 0x00406310

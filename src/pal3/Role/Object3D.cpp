@@ -75,7 +75,7 @@ struct gbVFileSystem * Object3D::_Object3D(const char *a2, int a3)
     }
 LABEL_3:
     v4->gbGeomNode();
-    v5->next = (gbChain1DNode *)&off_56A66C;
+    *(_DWORD *)v5->_pad_0000 = &off_56A66C;
     v6 = v5;
 LABEL_5:
     LOBYTE(v14) = 0;
@@ -108,10 +108,10 @@ LABEL_5:
   this->m_pol = v8;
   ((Actor *)v8)->LoadModel();
   ((Actor *)this->m_pol)->CompareAction(a3, 0);
-  (*(void (**)(_DWORD, _BYTE *, int))(**(_DWORD **)(this->m_pol->Children.m_numNode + 88) + 28))(
-    *(_DWORD *)(this->m_pol->Children.m_numNode + 88),
+  (*(void (**)(_DWORD, _BYTE *, gbChain1DNode *))(**(_DWORD **)this->m_pol->Children.m_Tail[11]._pad_0000 + 28))(
+    *(_DWORD *)this->m_pol->Children.m_Tail[11]._pad_0000,
     v12,
-    this->m_pol->Children.m_numNode);
+    this->m_pol->Children.m_Tail);
 LABEL_13:
   this->m_showSubObj = v13;
   LOBYTE(this->m_isLoadObj) = 1;
@@ -216,7 +216,7 @@ LABEL_7:
     m_pol = (gbGeomNode *)this->m_pol;
     if ( m_pol )
     {
-      ((void (*)(gbGeomNode *, int))m_pol->next->next)(m_pol, 1);
+      (**(void (***)(gbGeomNode *, int))m_pol->_pad_0000)(m_pol, 1);
       this->m_pol = 0;
     }
     goto LABEL_9;
@@ -551,7 +551,7 @@ void Object3D::CaculateRelative(float a2)
     {
       case 1:
 LABEL_10:
-        ((void (*)(gbGeomNode *))this->m_pol->next[5].next)(this->m_pol);
+        (*(void (**)(gbGeomNode *))(*(_DWORD *)this->m_pol + 20))(this->m_pol);
         break;
       case 2:
         if ( sub_537060((gbVisNode **)this->m_pol) )

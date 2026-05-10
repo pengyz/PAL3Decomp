@@ -5286,7 +5286,7 @@ _DWORD * UIWnd::ctor_57B0(int a2)
   do
   {
     LOBYTE(v11) = *(_BYTE *)(*((_DWORD *)this + 24800) + 1756);
-    ((void (*)(gbRefObject **, _DWORD, _DWORD *, UIWnd *, char *, int))(*v13)[7].RefCount)(
+    ((void (*)(gbRefObject **, _DWORD, _DWORD *, UIWnd *, char *, int))(*v13)[3].RefCount)(
       v13,
       *v12,
       v66,

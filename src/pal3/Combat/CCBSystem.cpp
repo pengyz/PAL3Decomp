@@ -395,7 +395,7 @@ int CCBSystem::ProcessAllCmds()
   do
   {
     m_pControl = (CCBControl *)this->m_pControl;
-    if ( *((_BYTE *)&m_pControl->m_Thread[8].dwTaskID + v3 * 892 + 1) )
+    if ( *((_BYTE *)&m_pControl->m_Thread[6].fp + v3 * 892 + 1) )
     {
       if ( !((CCBStageRole *)m_pControl)->IsActive(v2) )
       {

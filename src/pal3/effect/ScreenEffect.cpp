@@ -16,10 +16,10 @@ ScreenEffect::ScreenEffect()
 {
   char v3; // [esp+Bh] [ebp-11h]
 
-  sub_4BE8D0((RenderTarget *)&this->m_blive);
+  sub_4BE8D0((RenderTarget *)&this->m_needscriptdel);
   sub_4BEA60((int)this + 32);
   sub_4BEBB0((int)this + 56);
-  sub_4BED00((RenderTarget *)(this + 4));
+  sub_4BED00((RenderTarget *)((char *)this + 80));
   *((_BYTE *)this + 104) = v3;
   *((_DWORD *)this + 27) = 0;
   *((_DWORD *)this + 28) = 0;
@@ -32,6 +32,6 @@ ScreenEffect::ScreenEffect()
   *((_DWORD *)this + 35) = 0;
   *((_DWORD *)this + 36) = 0;
   *((_DWORD *)this + 37) = 0;
-  this->m_needscriptdel = (int)&off_56F508;
-  this;
+  *(_DWORD *)this->_pad_0000 = &off_56F508;
+  this->_pad_0000;
 }

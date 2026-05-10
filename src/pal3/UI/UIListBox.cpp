@@ -450,7 +450,7 @@ int UIListBox::SetFirstShow(char *Source, int a3)
     Source,
     0x40u);
   this->m_scrollbar.m_texarrayInfo[21 * (int)this->m_scrollbar.m_texarray.m_ptex[3] + 7] = (_PlugInfo *)a3;
-  result = (int)&this->m_scrollbar.m_texarray.m_ptex[3]->RefCount + 1;
+  result = (int)&this->m_scrollbar.m_texarray.m_ptex[3]->_pad_0000[1];
   this->m_scrollbar.m_texarray.m_ptex[3] = (gbTexture *)result;
   return result;
 }

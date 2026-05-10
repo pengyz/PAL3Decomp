@@ -9,8 +9,8 @@ int sub_41A070(...);
 int sub_429A90(...);
 
 // Unnamed globals (extern)
+extern int dword_C300C8;
 extern int dword_D8BBEC;
-extern int unk_C300C8;
 
 // 0x00420CD0
 int UICamera::GetViewMode(int a1)
@@ -169,7 +169,7 @@ int UICamera::GetState()
   v13 = 3.4028235e38;
   v1 = 0;
   v2 = 493156 * (dword_D8BBEC == 1) + 12722152;
-  if ( *((int *)&unk_C300C8 + 123289 * (dword_D8BBEC == 1)) > 0 )
+  if ( dword_C300C8[123289 * (dword_D8BBEC == 1)] > 0 )
   {
     v3 = 493156 * (dword_D8BBEC == 1) + 12779892;
     do
@@ -267,7 +267,7 @@ int UICamera::GetTarget(float *pMat)
   v1 = 0;
   v2 = 1;
   v3 = 493156 * (dword_D8BBEC == 1) + 12722152;
-  if ( *((int *)&unk_C300C8 + 123289 * (dword_D8BBEC == 1)) > 0 )
+  if ( dword_C300C8[123289 * (dword_D8BBEC == 1)] > 0 )
   {
     v4 = 493156 * (dword_D8BBEC == 1) + 12779892;
     do

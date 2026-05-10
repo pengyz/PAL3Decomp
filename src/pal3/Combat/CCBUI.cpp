@@ -1536,7 +1536,7 @@ int CCBUI::ConfigImbibeNimbus()
   m_pbktex = (gbTexture *)this->m_pbktex;
   if ( m_pbktex )
   {
-    result = (*(int (**)(gbTexture *, int))(m_pbktex->RefCount + 20))(m_pbktex, 1);
+    result = (*(int (**)(gbTexture *, int))(*(_DWORD *)m_pbktex->_pad_0000 + 20))(m_pbktex, 1);
     this->m_pbktex = 0;
   }
   m_pAttackSequenBack = (UIStatic *)this->m_pAttackSequenBack;

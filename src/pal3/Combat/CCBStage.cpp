@@ -774,7 +774,7 @@ int CCBStage::EditorUpdate()
         v9->Translate(v27, v28, v29);
         v22 = v25 * 0.2 + 1.0;
         v9->Scale(1.0, v22, 1.0);
-        ((void (*)(gbGeomNode *, _DWORD))this->m_pScene->m_pPointer->next[4].next)(
+        (*(void (**)(gbGeomNode *, _DWORD))(*(_DWORD *)this->m_pScene->m_pPointer + 16))(
           this->m_pScene->m_pPointer,
           0);
         v9->Pop();
@@ -800,7 +800,9 @@ int CCBStage::EditorUpdate()
   (*(void (**)(char *, _DWORD))(*(_DWORD *)&this->m_TempStorageWPX->m_name[8] + 16))(
     &this->m_TempStorageWPX->m_name[8],
     0);
-  ((void (*)(gbVisNode *, _DWORD))this->m_pScene->m_pLights->next[4].next)(this->m_pScene->m_pLights, 0);
+  (*(void (**)(gbVisNode *, _DWORD))(*(_DWORD *)this->m_pScene->m_pLights + 16))(
+    this->m_pScene->m_pLights,
+    0);
   ((SceneMgr *)this->m_pCBSystem->m_pEffMgr)->RenderAll();
   ((SceneMgr *)this->m_pCBSystem->m_pATSEffMgr)->RenderAll();
   ((C3DSpark *)this->m_pCBSystem->m_p3DSpark->m_Spark)->Render((struct gbVec3D *)gbSceneGraph::End);

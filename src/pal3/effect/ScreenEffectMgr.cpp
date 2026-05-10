@@ -16,46 +16,46 @@ void ScreenEffectMgr::Render()
   int v4; // ecx
   void **v5; // eax
   int *v6; // eax
-  int *v7; // esi
+  char *v7; // esi
   int v8; // ecx
   void *v9; // [esp-8h] [ebp-20h]
 
-  if ( *((_DWORD *)this + 37) )
+  if ( *(_DWORD *)&this->m_activeQueue[29] )
   {
-    v2 = **((_DWORD **)this + 29);
+    v2 = **(_DWORD **)&this->_pad_0054[17];
     (*(void (**)(int))(*(_DWORD *)v2 + 16))(v2);
     if ( !*(_DWORD *)(v2 + 8) && !*(_BYTE *)(v2 + 20) )
     {
-      v3 = *((_DWORD *)this + 29) + 4;
-      v4 = *((_DWORD *)this + 37) - 1;
-      *((_DWORD *)this + 29) = v3;
-      *((_DWORD *)this + 37) = v4;
-      if ( !v4 || v3 == *((_DWORD *)this + 28) )
+      v3 = *(_DWORD *)&this->_pad_0054[17] + 4;
+      v4 = *(_DWORD *)&this->m_activeQueue[29] - 1;
+      *(_DWORD *)&this->_pad_0054[17] = v3;
+      *(_DWORD *)&this->m_activeQueue[29] = v4;
+      if ( !v4 || v3 == *(_DWORD *)&this->_pad_0054[13] )
       {
-        v5 = (void **)*((_DWORD *)this + 30);
-        *((_DWORD *)this + 30) = v5 + 1;
+        v5 = *(void ***)&this->m_activeQueue[1];
+        *(_DWORD *)&this->m_activeQueue[1] = v5 + 1;
         operator delete(*v5);
-        if ( *((_DWORD *)this + 37) )
+        if ( *(_DWORD *)&this->m_activeQueue[29] )
         {
-          v6 = (int *)*((_DWORD *)this + 30);
-          v7 = (int *)this + 27;
+          v6 = (int *)*(int **)&this->m_activeQueue[1];
+          v7 = (char *)&this->_pad_0054[9];
           v8 = *v6;
-          * v7 = (*)*v6;
-          v7[1] = v8 + 4096;
-          v7[2] = v8;
-          v7[3] = (int)v6;
+          *(_DWORD *)v7 = *v6;
+          *((_DWORD *)v7 + 1) = v8 + 4096;
+          *((_DWORD *)v7 + 2) = v8;
+          *((_DWORD *)v7 + 3) = v6;
         }
         else
         {
-          *((_DWORD *)this + 27) = 0;
-          *((_DWORD *)this + 28) = 0;
-          *((_DWORD *)this + 29) = 0;
-          *((_DWORD *)this + 30) = 0;
-          *((_DWORD *)this + 31) = 0;
-          v9 = (void *)*((_DWORD *)this + 35);
-          *((_DWORD *)this + 32) = 0;
-          *((_DWORD *)this + 33) = 0;
-          *((_DWORD *)this + 34) = 0;
+          *(_DWORD *)&this->_pad_0054[9] = 0;
+          *(_DWORD *)&this->_pad_0054[13] = 0;
+          *(_DWORD *)&this->_pad_0054[17] = 0;
+          *(_DWORD *)&this->m_activeQueue[1] = 0;
+          *(_DWORD *)&this->m_activeQueue[5] = 0;
+          v9 = (void *)*(void **)&this->m_activeQueue[21];
+          *(_DWORD *)&this->m_activeQueue[9] = 0;
+          *(_DWORD *)&this->m_activeQueue[13] = 0;
+          *(_DWORD *)&this->m_activeQueue[17] = 0;
           operator delete(v9);
         }
       }

@@ -113,14 +113,15 @@ char CCBItemWindow::Create(_DWORD *pRect, int parent)
   *pRect = 7;
   pRect[2] = 80;
   pRect[3] = 98;
-  (*(void (**)(gbTexture *, int, _DWORD *, CCBItemWindow *, char *, _DWORD))((*p_m_pbktex)->RefCount + 28))(
+  (*(void (**)(gbTexture *, int, _DWORD *, CCBItemWindow *, char *, _DWORD))(*(_DWORD *)(*p_m_pbktex)->_pad_0000
+                                                                                      + 28))(
     *p_m_pbktex,
     216,
     pRect,
     this,
     aUiCombatContro_13,
     0);
-  (*(void (**)(gbTexture *, int))(*p_m_pbktex)->RefCount)(*p_m_pbktex, 1);
+  (**(void (***)(gbTexture *, int))(*p_m_pbktex)->_pad_0000)(*p_m_pbktex, 1);
   p_m_pBack = &this->m_pBack;
   ((CCBLineupWindow *)&this->m_pBack)->OnMessage();
   *pRect = 78;
@@ -239,7 +240,7 @@ int CCBItemWindow::Destroy()
   m_pbktex = (gbTexture *)this->m_pbktex;
   if ( m_pbktex )
   {
-    result = (*(int (**)(gbTexture *, int))(m_pbktex->RefCount + 20))(m_pbktex, 1);
+    result = (*(int (**)(gbTexture *, int))(*(_DWORD *)m_pbktex->_pad_0000 + 20))(m_pbktex, 1);
     this->m_pbktex = 0;
   }
   m_pBack = (UIStatic *)this->m_pBack;
