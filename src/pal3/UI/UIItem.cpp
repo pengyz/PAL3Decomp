@@ -6,10 +6,6 @@
 #include "pal3/gen/UIScene.h"
 #include "pal3/gen/UIWnd.h"
 
-// Forward declarations for unnamed functions
-int sub_444F60(...);
-int sub_445010(...);
-
 // Unnamed globals (extern)
 extern char aUiFlexNote[];
 extern char aUiGamemainuiMu[];
@@ -22,7 +18,7 @@ extern void *off_56E190;
 int UIItem::Refresh()
 {
   ((UIWnd *)this)->ctor_BB70();
-  sub_444F60((UIWnd *)(this + 112));
+  UIWnd_Init_444F60((UIWnd *)(this + 112));
   ((UIFrameWnd *)(this + 304))->UIFrameWnd();
   ((UIFrameWnd *)(this + 456))->UIFrameWnd();
   *((_DWORD *)this + 152) = 90;
@@ -53,7 +49,7 @@ UIItem::UIItem()
   ((UIScene *)(this + 632))->Destroy2();
   ((UIFrameWnd *)(this + 456))->_UIFrameWnd();
   ((UIFrameWnd *)(this + 304))->_UIFrameWnd();
-  sub_445010((UIWnd *)(this + 112));
+  UIWnd_Destructor((UIWnd *)(this + 112));
   dword_DE5CE4 = 0;
   ((UIWnd *)this)->ctor_BBB0();
 }

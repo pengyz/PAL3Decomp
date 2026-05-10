@@ -8,7 +8,6 @@
 
 // Forward declarations for unnamed functions
 int sub_4D8580(...);
-int sub_4F2C30(...);
 int sub_4F5330(...);
 int sub_4F5D00(...);
 int sub_4F6000(...);
@@ -2403,14 +2402,14 @@ char CCBAI::CastReviveMagic(int a2, int a3, int a4)
 // 0x004DB160
 char CCBAI::CastReviveSkill(int a2)
 {
-  int v4; // edi
+  void *Role; // edi
   CCBRoleState *m_pRoleState; // ecx
   int a6[11]; // [esp+Ch] [ebp-2Ch] BYREF
 
   if ( *(_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(a2) != 739 )
     return 0;
-  v4 = sub_4F2C30(this->m_pRoleState->m_sCombatDialog, a2, 0);
-  if ( v4 != sub_4F2C30(this->m_pRoleState->m_sCombatDialog, a2, 1) )
+  Role = (void *)CCBRoleState_GetRole(this->m_pRoleState, a2);
+  if ( Role != CCBRoleState_GetRole(this->m_pRoleState, a2) )
     return 0;
   memset(a6, 0, sizeof(a6));
   m_pRoleState = (CCBRoleState *)this->m_pRoleState;

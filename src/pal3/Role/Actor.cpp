@@ -8,9 +8,7 @@
 #include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
-int sub_43FD90(...);
 int sub_43FE90(...);
-int sub_4A1530(...);
 int sub_4A1CF0(...);
 int sub_535FD0(...);
 int sub_5370E0(...);
@@ -133,7 +131,7 @@ void Actor::SetAction(int actionId)
         (**((void (***)(char *, _DWORD))this + 835))((char *)this + 3340, 0);
         sprintf(&this->m_name[52], "       %s\\n       %s", byte_DD893C, byte_DD8B3C);
         ((UIWnd *)(UIWnd *)this + 12)->SetEnable(&this->m_name[52], 0);
-        sub_4A1530((int)&this->m_szTexture[80], 1);
+        UIWnd_SetByte((UIWnd *)&this->m_szTexture[80], 1);
         *(_DWORD *)&this->m_szTexture[68] = 0;
       }
       v5 = (float)*(int *)&this->m_szTexture[72];
@@ -155,7 +153,7 @@ int Actor::InitComponents()
 
   this->m_szTexture[65] = 0;
   ((UIWnd *)((char *)this + 2184))->SetEnable(byte_DDAD3C, 0);
-  sub_4A1530((int)this + 1728, 1);
+  UIWnd_SetByte((UIWnd *)((char *)this + 1728), 1);
   *(_DWORD *)&this->m_szTexture[68] = 1000;
   *(_DWORD *)&this->m_szTexture[72] = 1000;
   sub_43FE90((int)this + 3096);
@@ -224,7 +222,7 @@ char Actor::ProcessFrame()
   (*(void (**)(char *, int, int *, Actor *))(v3 + 16))((char *)this + 3096, -5570049, &v18, this);
   ((UIWnd *)(UIWnd **)this + 774)->GetChildCount(aPal3Timenotefi_96_0, *((_BYTE *)this + 3492));
   ((UIWnd *)(UIWnd **)this + 774)->GetChildAt(off_60154C, *((_BYTE *)this + 3492));
-  sub_43FD90((float *)this + 774, 2);
+  SetIntParam((char *)this + 3096, 2);
   ((UIWnd *)((char *)this + 3096))->GetWidth(2);
   ((UIWnd *)((char *)this + 3096))->SetFrameRate(2);
   ((UIWnd *)((char *)this + 3096))->GetHeight(2);
@@ -297,7 +295,7 @@ char Actor::ProcessFrame()
   *((_DWORD *)this + 459) = v11;
   ((UIWnd *)((char *)this + 2184))->GetRect((_DWORD *)this + 456);
   ((UIWnd *)((char *)this + 2184))->SetEnable(byte_DDAD3C, 0);
-  sub_4A1530((int)this + 1728, 1);
+  UIWnd_SetByte((UIWnd *)((char *)this + 1728), 1);
   return 1;
 }
 

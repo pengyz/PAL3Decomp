@@ -9,7 +9,6 @@ int sub_431CB0(...);
 int sub_431CD0(...);
 int sub_431E90(...);
 int sub_4325A0(...);
-int sub_4326A0(...);
 int sub_433CD0(...);
 int sub_433DC0(...);
 int sub_434670(...);
@@ -353,5 +352,5 @@ void PalScriptMgr::IfHaveScript()
       }
     }
   }
-  sub_4326A0((int)&stru_D8C2B8.m_keyStates[8], 0, -1);
+  String_Assign_4326A0(&stru_D8C2B8.m_keyStates[8], 0, -1);
 }

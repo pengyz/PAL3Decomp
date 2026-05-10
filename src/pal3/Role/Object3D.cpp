@@ -16,7 +16,6 @@
 // Forward declarations for unnamed functions
 int sub_40EE00(...);
 int sub_43AFA0(...);
-int sub_444F60(...);
 int sub_537060(...);
 
 // Unnamed globals (extern)
@@ -800,7 +799,7 @@ int Object3D::Create()
   LODWORD(this->m_roll) = 600;
   *((_DWORD *)this + 96) = 0;
   *((_BYTE *)this + 388) = 0;
-  sub_444F60((UIWnd *)((char *)this + 392));
+  UIWnd_Init_444F60((UIWnd *)((char *)this + 392));
   ((UIFrameWnd *)((char *)this + 584))->UIFrameWnd();
   `eh vector constructor iterator'(
     (char *)this + 736,

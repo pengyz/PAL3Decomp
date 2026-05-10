@@ -16,7 +16,6 @@ int sub_4307D0(...);
 int sub_4309D0(...);
 int sub_431040(...);
 int sub_431780(...);
-int sub_4318A0(...);
 int sub_4319C0(...);
 int sub_432990(...);
 
@@ -124,7 +123,7 @@ int PalScript::LoadScript(int pathAddr)
   v12[0]._d008 = 0;
   v12[0]._d00C = 0;
   v13 = -1;
-  sub_4318A0((int)&v12[0]._tail[60]);
+  PalScript_Cleanup((PalScript *)&v12[0]._tail[60]);
   return result;
 }
 

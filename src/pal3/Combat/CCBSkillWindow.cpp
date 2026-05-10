@@ -6,9 +6,6 @@
 #include "pal3/gen/UIListBox.h"
 #include "pal3/gen/UIWnd.h"
 
-// Forward declarations for unnamed functions
-int sub_43FD90(...);
-
 // Unnamed globals (extern)
 extern char aUiCombatResult[];
 extern char aUiCombatResult_1[];
@@ -115,7 +112,7 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   ((UIWnd *)*((UIWnd **)this + 39))->AddChild(v9);
   ((UIWnd *)*((UIWnd ***)this + 39))->GetChildCount(aUiCombatResult_4, 0);
   ((UIWnd *)*((UIWnd ***)this + 39))->GetChildAt(aUiCombatResult_1, 0);
-  sub_43FD90(*((float **)this + 39), 3);
+  SetIntParam(*((void **)this + 39), 3);
   ((UIWnd *)*((UIWnd **)this + 39))->SetFrameRate(-2);
   (**(void (***)(_DWORD, int))*v8)(*v8, 1);
   v10 = (_DWORD *)((char *)this + 160);
@@ -129,7 +126,7 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   ((UIWnd *)*((UIWnd **)this + 40))->AddChild(v11);
   ((UIWnd *)*((UIWnd ***)this + 40))->GetChildCount(aUiCombatResult_4, 0);
   ((UIWnd *)*((UIWnd ***)this + 40))->GetChildAt(aUiCombatResult_2, 0);
-  sub_43FD90(*((float **)this + 40), 3);
+  SetIntParam(*((void **)this + 40), 3);
   ((UIWnd *)*((UIWnd **)this + 40))->SetFrameRate(-2);
   (**(void (***)(_DWORD, int))*v10)(*v10, 1);
   v12 = (_DWORD *)((char *)this + 164);
@@ -143,7 +140,7 @@ char CCBSkillWindow::Create(_DWORD *pRect, int parent)
   ((UIWnd *)*((UIWnd **)this + 41))->AddChild(v13);
   ((UIWnd *)*((UIWnd ***)this + 41))->GetChildCount(aUiCombatResult_4, 0);
   ((UIWnd *)*((UIWnd ***)this + 41))->GetChildAt(aUiCombatResult_3, 0);
-  sub_43FD90(*((float **)this + 41), 3);
+  SetIntParam(*((void **)this + 41), 3);
   ((UIWnd *)*((UIWnd **)this + 41))->SetFrameRate(-2);
   (**(void (***)(_DWORD, int))*v12)(*v12, 1);
   v14 = (_DWORD *)((char *)this + 152);

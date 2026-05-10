@@ -3,7 +3,6 @@
 #include "pal3/gen/PtrArray.h"
 
 // Forward declarations for unnamed functions
-int sub_4326A0(...);
 int sub_433F90(...);
 int sub_434670(...);
 int sub_4348E0(...);
@@ -26,7 +25,7 @@ _DWORD * PtrArray::Clear()
 void PtrArray::SetAt(int a2, int a3)
 {
   if ( a2 >= this->m_nSize )
-    sub_4326A0((int)this, a2 + 1, -1);
+    String_Assign_4326A0(this, (char *)(a2 + 1), -1);
   *((_DWORD *)this->m_pData + a2) = a3;
 }
 
@@ -179,7 +178,7 @@ void PtrArray::SetSize()
     free(v2);
     ++v1;
   }
-  sub_4326A0((int)&stru_D8C2B8.m_keyStates[40], 0, -1);
+  String_Assign_4326A0(&stru_D8C2B8.m_keyStates[40], 0, -1);
   *(_DWORD *)&stru_D8C2B8.m_keyStates[64] = -1;
   memset(&stru_D8C2B8.m_keyStates[68], 0, 0x100u);
   stru_D8C2B8.KeyInfo[147].CountMode = 0;

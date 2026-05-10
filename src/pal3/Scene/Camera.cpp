@@ -8,7 +8,6 @@
 
 // Forward declarations for unnamed functions
 int UISceneUpdate(...);
-int sub_4031D0(...);
 int sub_41AEA0(...);
 int sub_420A10(...);
 int sub_420F50(...);
@@ -44,7 +43,7 @@ void Camera::SetParams(int a2)
 // 0x0041E7D0
 int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
 {
-  int *v3; // ebx
+  int v3; // ebx
   double v4; // st7
   double x; // st7
   float y; // edx
@@ -62,7 +61,7 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
   gbRay v19; // [esp+34h] [ebp-18h] BYREF
 
   *pDist = 0.0;
-  v3 = (int *)(UISceneUpdate() + 492772);
+  v3 = UISceneUpdate() + 492772;
   qmemcpy(&v19, ((CameraCtrl *)dword_BFDA68)->GetViewTarget(pTarget, (float *)pPos), sizeof(v19));
   v4 = *(float *)&dword_BFDA68->CurCtrl - 300.0;
   v17.x = v19.Direction.x * v4;
@@ -70,16 +69,16 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
   v19.Origin.x = v17.x + v19.Origin.x;
   v19.Origin.y = v19.Origin.y + v17.y;
   v19.Origin.z = v19.Origin.z + v4 * v19.Direction.z;
-  if ( *v3 <= 1 )
+  if ( *(int *)v3 <= 1 )
   {
     v12 = UISceneUpdate();
-    if ( sub_4031D0((int *)(v12 + 493104), &v19, (int)pBounds, 0) )
+    if ( GRPinput_GetState((GRPinput *)(v12 + 493104)) )
       return 1;
   }
   else
   {
     memset(&v17, 0, sizeof(v17));
-    if ( sub_4031D0(v3 + 87, &v19, (int)&v17, 0) )
+    if ( GRPinput_GetState((GRPinput *)(v3 + 348)) )
     {
       x = v17.x;
       y = v17.y;
@@ -90,7 +89,7 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
       *((float *)pBounds + 2) = z;
       return 1;
     }
-    if ( sub_4031D0(v3 + 83, &v19, (int)&v17, 0) )
+    if ( GRPinput_GetState((GRPinput *)(v3 + 332)) )
     {
       v9 = v17.x;
       v10 = v17.y;
@@ -128,7 +127,7 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
 int Camera::CheckCollision2(void *pPos, int rolePtr, void *pBounds)
 {
   char *v3; // eax
-  int *v4; // ebx
+  char *v4; // ebx
   double v5; // st7
   double v7; // st7
   double v8; // st7
@@ -141,7 +140,7 @@ int Camera::CheckCollision2(void *pPos, int rolePtr, void *pBounds)
   gbRay v15; // [esp+30h] [ebp-18h] BYREF
 
   v3 = (char *)UISceneUpdate();
-  v4 = (int *)sub_420F50(v3, rolePtr);
+  v4 = (char *)sub_420F50(v3, rolePtr);
   qmemcpy(&v15, ((CameraCtrl *)dword_BFDA68)->GetViewTarget(&pTarget, (float *)pPos), sizeof(v15));
   v5 = *(float *)&dword_BFDA68->CurCtrl - 100.0;
   v11.x = v15.Direction.x * v5;
@@ -149,7 +148,7 @@ int Camera::CheckCollision2(void *pPos, int rolePtr, void *pBounds)
   v15.Origin.x = v11.x + v15.Origin.x;
   v15.Origin.y = v15.Origin.y + v11.y;
   v15.Origin.z = v15.Origin.z + v5 * v15.Direction.z;
-  if ( sub_4031D0(v4, &v15, (int)pBounds, 0) )
+  if ( GRPinput_GetState((GRPinput *)v4) )
     return 1;
   v11.x = 0.0;
   v11.y = 1.0;

@@ -37,9 +37,7 @@ int sub_4F2690(...);
 int sub_4F2750(...);
 int sub_4F27B0(...);
 int sub_4F2BF0(...);
-int sub_4F2C30(...);
 int sub_4F4820(...);
-int sub_4F4AA0(...);
 int sub_4F4B90(...);
 int sub_4F4C80(...);
 int sub_4F6A40(...);
@@ -61,7 +59,6 @@ int sub_4F90F0(...);
 int sub_4F95F0(...);
 int sub_4FA620(...);
 int sub_4FA700(...);
-int sub_4FA930(...);
 int sub_4FB370(...);
 int sub_4FCA40(...);
 int sub_501330(...);
@@ -2720,8 +2717,8 @@ int CCBRoleState::GetMaxHP(int roleIdx)
   int v4; // [esp+14h] [ebp+8h]
   int v5; // [esp+18h] [ebp+Ch]
 
-  if ( sub_4F2C30(this, roleIdx, 0) < (int)abs32(v5) )
-    sub_4F2C30(this, roleIdx, 0);
+  if ( (int)CCBRoleState_GetRole(this, roleIdx) < (int)abs32(v5) )
+    CCBRoleState_GetRole(this, roleIdx);
   this->CalcDefensePower(roleIdx);
   return this->CalcDefensePower(v4);
 }
@@ -3539,7 +3536,7 @@ int CCBRoleState::ProcessAttackResult(int roleIdx)
   bool v15; // cc
   int v16; // esi
   int *v17; // ebp
-  int v18; // ecx
+  CCBStageRole *Role; // ecx
   int v19; // [esp+10h] [ebp-48h]
   int v21; // [esp+18h] [ebp-40h]
   int v22; // [esp+1Ch] [ebp-3Ch]
@@ -3610,11 +3607,11 @@ LABEL_37:
         v17 = dword_17AA450;
         do
         {
-          v18 = sub_4F4AA0(this, v2, *v17);
-          if ( (int)abs32(v18 - v29) < v24 )
+          Role = (CCBStageRole *)CCBStage_GetRole((CCBStage *)this, v2);
+          if ( (int)abs32((int)Role - v29) < v24 )
           {
             v25 = v16;
-            v24 = abs32(abs32(v18) - abs32(v29));
+            v24 = abs32(abs32((int)Role) - abs32(v29));
           }
           ++v16;
           ++v17;
@@ -3778,7 +3775,7 @@ LABEL_37:
         v18 = abs32(v31);
         do
         {
-          v19 = (int)(abs32(sub_4F4AA0(this, v2, *v17)) - v18);
+          v19 = (int)(abs32((int)CCBStage_GetRole((CCBStage *)this, v2)) - v18);
           v20 = (HIDWORD(v19) ^ v19) - HIDWORD(v19);
           if ( v20 < v26 )
           {
@@ -3867,7 +3864,7 @@ int CCBRoleState::CalcPhysicalDamage(int roleIdx)
   int RoleNum; // edi
   int v8; // esi
   int *v9; // ebx
-  int v10; // ecx
+  CCBStageRole *Role; // ecx
   int v12; // [esp+14h] [ebp-40h]
   int *v13; // [esp+18h] [ebp-3Ch]
   int *v14; // [esp+1Ch] [ebp-38h]
@@ -3937,11 +3934,11 @@ LABEL_16:
     v9 = dword_17AA150;
     do
     {
-      v10 = sub_4F4AA0(this, roleIdx, *v9);
-      if ( (int)abs32(v10 - v18) < v2 )
+      Role = (CCBStageRole *)CCBStage_GetRole((CCBStage *)this, roleIdx);
+      if ( (int)abs32((int)Role - v18) < v2 )
       {
         v15 = v8;
-        v2 = abs32(abs32(v10) - abs32(v18));
+        v2 = abs32(abs32((int)Role) - abs32(v18));
       }
       ++v8;
       ++v9;
@@ -3968,7 +3965,7 @@ int CCBRoleState::CalcMagicDamage(int roleIdx)
   bool v10; // cc
   int v11; // esi
   int *v12; // ebp
-  int v13; // ecx
+  CCBStageRole *Role; // ecx
   int v14; // [esp+10h] [ebp-48h]
   int *v15; // [esp+14h] [ebp-44h]
   int *v16; // [esp+18h] [ebp-40h]
@@ -4042,11 +4039,11 @@ LABEL_15:
     v12 = dword_17AA050;
     do
     {
-      v13 = sub_4F4AA0(this, roleIdx, *v12);
-      if ( (int)abs32(v13 - v22) < v3 )
+      Role = (CCBStageRole *)CCBStage_GetRole((CCBStage *)this, roleIdx);
+      if ( (int)abs32((int)Role - v22) < v3 )
       {
         v18 = v11;
-        v3 = abs32(abs32(v13) - abs32(v22));
+        v3 = abs32(abs32((int)Role) - abs32(v22));
       }
       ++v11;
       ++v12;
@@ -4382,7 +4379,7 @@ void * CCBRoleState::ProcessActions()
     && !((CCBStage *)this->m_pStage)->ForceDelTask(12) )
   {
     sub_4F8AF0(this);
-    sub_4FA930((int)this, 1, -1);
+    CCBStage_Method_4FA930(this, 1, -1);
     ((CCBStageCam *)this->m_pStage->m_pCamControl)->ClearFinishedTask(3);
     v5 = 0;
     p_bAlive = (unsigned __int8 *)&this->m_Role[0].bAlive;
@@ -4420,7 +4417,7 @@ void * CCBRoleState::ProcessActions()
       ((CCBStage *)this->m_pStage)->GetRoleName(v9, (int)sub_502300, 0, 0, 0, 0, -1082130432, 1056964608);
       ((CCBStage *)this->m_pStage)->GetRoleName(v9, (int)sub_501E60, 0, 0, 0, 0, -1082130432, 1077936128);
       ((CCBStage *)this->m_pStage)->GetRoleName(v9, (int)sub_502430, 0, 0, 0, 0, -1082130432, 0x40000000);
-      sub_4FA930((int)this, 0, v9);
+      CCBStage_Method_4FA930(this, 0, v9);
       sub_4FB370(this, v9);
       ((CCBStage *)this->m_pStage)->GetRoleName(v9, (int)CCBStage::StartSubTask, 0, 0, 0, 0, -1082130432, 1084227584);
       ((CCBStage *)this->m_pStage)->GetRoleName(v9, (int)sub_5021C0, 0, 0, 0, 0, -1082130432, 1045220557);
@@ -4437,7 +4434,7 @@ void * CCBRoleState::ProcessActions()
   }
   if ( *(_DWORD *)&this->m_pCBSystem->m_eState[2] == 4 )
   {
-    sub_4FA930((int)this, 1, -1);
+    CCBStage_Method_4FA930(this, 1, -1);
     ((CCBStageCam *)this->m_pCBSystem->m_pStage->m_pCamControl)->ClearFinishedTask(8);
     ((CCBSystem *)this->m_pCBSystem->m_pAttackSequen)->GetDeltaTime();
     sub_4DB940(this->m_pCBSystem->m_pAttackSequen, 0);
@@ -4446,7 +4443,7 @@ void * CCBRoleState::ProcessActions()
     if ( v10 != -1 )
     {
       ((CCBStage *)this->m_pStage)->GetRoleName(v10, (int)sub_502430, 0, 0, 0, 0, -1082130432, 0x40000000);
-      sub_4FA930((int)this, 0, v10);
+      CCBStage_Method_4FA930(this, 0, v10);
       sub_4FB370(this, v10);
       ((CCBStage *)this->m_pStage)->GetRoleName(v10, (int)CCBStage::StartSubTask, 0, 0, 0, 0, -1082130432, 1097859072);
       ((CCBSystem *)this->m_pStage)->GetStageRoleByIdx(v10);

@@ -65,7 +65,6 @@ int sub_41BE80(...);
 int sub_41D100(...);
 int sub_426E80(...);
 int sub_42BEF0(...);
-int sub_431C10(...);
 int sub_4C5820(...);
 int sub_4C5840(...);
 int sub_4C58C0(...);
@@ -2109,10 +2108,10 @@ char PAL3::StartCombat(int a1, int a2, int a3, char a4)
     sprintf(Buffer, "%s_%s", v14, (const char *)(v13 + 32));
     ((PalScript *)&stru_BFAB60)->SetDirectory(Buffer);
     sprintf(Buffer, "%d", v11);
-    if ( !sub_431C10(&stru_BFAB60, Buffer, unk_C11720, 32) )
-      sub_431C10(&stru_BFAB60, aDefault, unk_C11720, 32);
+    if ( !Script_Method_431C10(&stru_BFAB60, Buffer, unk_C11720, 32) )
+      Script_Method_431C10(&stru_BFAB60, aDefault, unk_C11720, 32);
     ((PalScript *)&stru_BFAB60)->SetDirectory(dir);
-    if ( sub_431C10(&stru_BFAB60, unk_C11720, Buffer, 256) )
+    if ( Script_Method_431C10(&stru_BFAB60, unk_C11720, Buffer, 256) )
       dword_C11740 = atoi(Buffer);
     else
       dword_C11740 = 1;

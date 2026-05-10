@@ -3,5 +3,5 @@
   "address": "0x0044BDA0",
   "size_bytes": 95,
   "signature": "void __thiscall(UIWnd *this)",
-  "decompiled_c": "void __thiscall std::UIWnd::~UIWnd(UIWnd *this)\n{\n  *(_DWORD *)this->_pad_000 = &off_56B018;\n  `eh vector destructor iterator'((char *)this + 344, 0x10u, 3, (void (__thiscall *)(void *))sub_44BD80);\n  UIScene::Destroy2((UIScene *)this);\n}\n"
+  "decompiled_c": "void __thiscall std::UIWnd::~UIWnd(UIWnd *this)\n{\n  *(_DWORD *)this->_pad_000 = &off_56B018;\n  `eh vector destructor iterator'((char *)this + 344, 0x10u, 3, (void (__thiscall *)(void *))SafeDelete_44BD80);\n  UIScene::Destroy2((UIScene *)this);\n}\n"
 }

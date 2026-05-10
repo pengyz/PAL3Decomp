@@ -40,7 +40,6 @@ int sub_500840(...);
 int sub_5009C0(...);
 int sub_500AD0(...);
 int sub_503680(...);
-int sub_503AE0(...);
 int sub_503FA0(...);
 int sub_504510(...);
 int sub_504540(...);
@@ -1580,7 +1579,7 @@ int CCBStage::HasNormalAttackRole(int _24)
       *((_DWORD *)v5 + 4) = 4;
       return 0;
     }
-    sub_503AE0(
+    CCBRoleState_Method_503AE0(
       (void **)&this->m_pCBSystem,
       v6,
       *((_DWORD *)v5 + 11),
@@ -1599,7 +1598,7 @@ int CCBStage::HasNormalAttackRole(int _24)
         && sub_50A4B0(*m_pRole) )
       {
         dword_17AAD3C = v8;
-        sub_503AE0(
+        CCBRoleState_Method_503AE0(
           (void **)&this->m_pCBSystem,
           v8,
           *((_DWORD *)v5 + 11),
@@ -1609,7 +1608,7 @@ int CCBStage::HasNormalAttackRole(int _24)
       ++m_pRole;
     }
     while ( v8 < 11 );
-    sub_503AE0(
+    CCBRoleState_Method_503AE0(
       (void **)&this->m_pCBSystem,
       dword_17AAD3C,
       *((_DWORD *)v5 + 11),
@@ -1635,7 +1634,7 @@ int CCBStage::HasNormalAttackRole(int _24)
         && sub_50A4B0(*v28) )
       {
         dword_17AAD3C = v10;
-        sub_503AE0(
+        CCBRoleState_Method_503AE0(
           (void **)&this->m_pCBSystem,
           v10,
           *((_DWORD *)v29 + 11),

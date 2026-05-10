@@ -31,8 +31,6 @@ int sub_419B30(...);
 int sub_41A450(...);
 int sub_41B300(...);
 int sub_41B6C0(...);
-int sub_4318A0(...);
-int sub_4326A0(...);
 int sub_43A270(...);
 int sub_445500(...);
 int sub_4524B0(...);
@@ -151,7 +149,7 @@ int ScriptSystem::Cleanup()
     if ( v1 )
       (**v1)(v1, 1);
   }
-  sub_4326A0((int)&dword_BFDB80, 0, -1);
+  String_Assign_4326A0(&dword_BFDB80, 0, -1);
   return result;
 }
 
@@ -738,5 +736,5 @@ LABEL_16:
     ;
   }
   v5 = -1;
-  sub_4318A0((int)String);
+  PalScript_Cleanup(String);
 }

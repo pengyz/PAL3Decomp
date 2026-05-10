@@ -1,0 +1,7 @@
+{
+  "name": "GetGridOffset",
+  "address": "0x0043EBB0",
+  "size_bytes": 41,
+  "signature": "void __thiscall(void *this, int *pOut, int index)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __thiscall GetGridOffset(void *this, int *pOut, int index)\n{\n  int v3; // eax\n  int v4; // edx\n\n  v3 = *((_DWORD *)this + 5);\n  v4 = *((_DWORD *)this + 277) * (index - *((_DWORD *)this + 279));\n  *pOut = *((_DWORD *)this + 4);\n  pOut[1] = v3 + v4;\n}\n"
+}
