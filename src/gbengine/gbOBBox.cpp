@@ -12,9 +12,9 @@ gbOBBox::gbOBBox() {
 
 gbOBBox& gbOBBox::operator=(const gbOBBox& box) {
     trans = box.trans;
-    extent.x = box.xlen;
-    extent.y = box.ylen;
-    extent.z = box.zlen;
+    xlen = box.xlen;
+    ylen = box.ylen;
+    zlen = box.zlen;
     return *this;
 }
 
@@ -28,7 +28,7 @@ gbVec3D gbOBBox::GetCenter() const {
 
 // Get radius (distance from center to corner)
 float gbOBBox::GetRadius() const {
-    float r = (float)sqrt(extent.x * extent.x + extent.y * extent.y + extent.z * extent.z);
+    float r = (float)sqrt(xlen * xlen + ylen * ylen + zlen * zlen);
     return r * 0.5f;
 }
 
@@ -45,12 +45,12 @@ float gbOBBox::GetRadiusInDirection(const gbVec3D& dir) const {
 }
 
 void gbOBBox::GetAABBox(gbAABBox& aabb) {
-    aabb.vMin.x = extent.x * -0.5f;
-    aabb.vMin.y = extent.y * -0.5f;
-    aabb.vMin.z = extent.z * -0.5f;
-    aabb.vMax.x = extent.x * 0.5f;
-    aabb.vMax.y = extent.y * 0.5f;
-    aabb.vMax.z = extent.z * 0.5f;
+    aabb.vMin.x = xlen * -0.5f;
+    aabb.vMin.y = ylen * -0.5f;
+    aabb.vMin.z = zlen * -0.5f;
+    aabb.vMax.x = xlen * 0.5f;
+    aabb.vMax.y = ylen * 0.5f;
+    aabb.vMax.z = zlen * 0.5f;
     aabb.Transform(&trans);
 }
 
@@ -59,7 +59,7 @@ void gbOBBox::GetSphere(gbSphere& sphere) {
     sphere.center.x = trans.m[3][0];
     sphere.center.y = trans.m[3][1];
     sphere.center.z = trans.m[3][2];
-    sphere.radius = (float)sqrt(extent.x * extent.x + extent.y * extent.y + extent.z * extent.z) * 0.5f;
+    sphere.radius = (float)sqrt(xlen * xlen + ylen * ylen + zlen * zlen) * 0.5f;
 }
 
 // OBB-OBB collision using Separating Axis Theorem

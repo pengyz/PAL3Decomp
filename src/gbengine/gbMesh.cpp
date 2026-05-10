@@ -302,9 +302,9 @@ static void SetupMeshLighting(gbRenderInfoObj* renderInfo, gbGfxManager* gfxMgr,
         // Transform light direction to view space using inverse world matrix
         // Use first enabled directional light
         gbVec3D lightDir;
-        lightDir.x = gfxMgr->AllLight[0].Direction.x;
-        lightDir.y = gfxMgr->AllLight[0].Direction.y;
-        lightDir.z = gfxMgr->AllLight[0].Direction.z;
+        lightDir.x = gfxMgr->AllLight[0].direction.x;
+        lightDir.y = gfxMgr->AllLight[0].direction.y;
+        lightDir.z = gfxMgr->AllLight[0].direction.z;
 
         gbVec3D transformedDir;
         invWorld.Rotate(&lightDir, &transformedDir);

@@ -98,14 +98,14 @@ void gbLightObj::Compute(gbVolModNode* volmod) {
     } else if (lightType == 1) {
         // Spot light: transform position and rotate direction
         worldMatrix->Transform(&localPos, &sysLight.position);
-        worldMatrix->Rotate(&localDir, &sysLight.Direction);
+        worldMatrix->Rotate(&localDir, &sysLight.direction);
     } else {
         // Directional light: rotate direction, set position far away
-        worldMatrix->Rotate(&localDir, &sysLight.Direction);
+        worldMatrix->Rotate(&localDir, &sysLight.direction);
         sysLight.range = 200000.0f;
-        sysLight.position.x = sysLight.Direction.x * -100000.0f;
-        sysLight.position.y = sysLight.Direction.y * -100000.0f;
-        sysLight.position.z = sysLight.Direction.z * -100000.0f;
+        sysLight.position.x = sysLight.direction.x * -100000.0f;
+        sysLight.position.y = sysLight.direction.y * -100000.0f;
+        sysLight.position.z = sysLight.direction.z * -100000.0f;
     }
 }
 

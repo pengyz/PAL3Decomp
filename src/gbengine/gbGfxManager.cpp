@@ -57,9 +57,9 @@ gbGfxManager::gbGfxManager(int& result, gbGfxDriverInfo* driverInfo) {
         AllLight[i].position.x = 0.0f;
         AllLight[i].position.y = 0.0f;
         AllLight[i].position.z = 0.0f;
-        AllLight[i].Direction.x = 0.0f;
-        AllLight[i].Direction.y = 0.0f;
-        AllLight[i].Direction.z = 0.0f;
+        AllLight[i].direction.x = 0.0f;
+        AllLight[i].direction.y = 0.0f;
+        AllLight[i].direction.z = 0.0f;
     }
 
     memcpy(&DrvInfo, driverInfo, sizeof(gbGfxDriverInfo));

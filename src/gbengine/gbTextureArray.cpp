@@ -7,23 +7,23 @@
 #include <string.h>
 
 gbTextureArray::gbTextureArray(void) {
-    numTextures = 0;
+    nTex = 0;
 }
 
 gbTextureArray::gbTextureArray(gbTexture* tex0) {
-    numTextures = 1;
-    pTex[0] = tex0;
+    nTex = 1;
+    pTexPt[0] = tex0;
 }
 
 gbTextureArray::gbTextureArray(gbTexture* tex0, gbTexture* tex1) {
-    numTextures = 2;
-    pTex[0] = tex0;
-    pTex[1] = tex1;
+    nTex = 2;
+    pTexPt[0] = tex0;
+    pTexPt[1] = tex1;
 }
 
 void gbTextureArray::SetTexture(gbTexture* tex) {
-    numTextures = 1;
-    pTex[0] = tex;
+    nTex = 1;
+    pTexPt[0] = tex;
 }
 
 gbTextureArray& gbTextureArray::operator=(const gbTextureArray& other) {
