@@ -5,5 +5,8 @@
 
 class SceneMgr {
 public:
-    char m_info[0x400000]; // ~4MB (SceneMgr is very large, contains Scene[3])
+    union {
+        char m_info[0x400000]; // byte access: g_SceneMgr.m_info[N]
+        char m_npc[0x400000];  // also accessed as g_SceneMgr.m_npc[N]
+    };
 };
