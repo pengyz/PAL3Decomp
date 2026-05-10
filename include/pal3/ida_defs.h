@@ -77,3 +77,9 @@ class gbSound3DNode;
 
 // Note: IDA misidentifies UIWnd as stdiobuf/std::ios_base in this binary.
 // gen_cpp.py post-processing replaces these with UIWnd* automatically.
+
+// Common game functions that may be called from generated code
+void PushMatrixStacks();
+void PopMatrixStacks();
+int UIRenderQuad(...);
+void UIQuadManager_Reset();

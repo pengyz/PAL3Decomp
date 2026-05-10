@@ -70,3 +70,4 @@ extern int g_nRandCallCount;       // 0x017AD310
 // g_pVFileSys declared in gbengine/gbVFileSystem.h
 // g_CurrentTime declared in gbengine/gbengine_types.h
 extern void *g_PAL3Data;           // 0x008ACBF8
+extern char g_GDB[];               // PAL_GDB global data
