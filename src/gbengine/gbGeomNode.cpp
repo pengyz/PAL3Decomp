@@ -6,7 +6,6 @@
 
 #include "gbengine/gbGeomNode.h"
 #include "gbengine/gbMesh.h"
-#include "gbengine/gbGfxManager.h"
 #include "gbengine/gbGfxManager_impl.h"
 #include "gbengine/gbRenderEffect.h"
 #include "gbengine/gbSceneGraph.h"

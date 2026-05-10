@@ -10,7 +10,6 @@
  *   CreateD3DDevice - 0x10019920 (479B) - D3D device creation & window setup
  */
 
-#include "gbengine/gbGfxManager.h"
 #include "gbengine/gbGfxManager_impl.h"
 #include "gbengine/gbTexture.h"
 #include "gbengine/gbSceneGraph.h"

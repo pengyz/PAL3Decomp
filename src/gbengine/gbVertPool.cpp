@@ -4,7 +4,6 @@
  */
 
 #include "gbengine/gbMesh.h"
-#include "gbengine/gbGfxManager.h"
 #include "gbengine/gbGfxManager_impl.h"
 #include <d3d9.h>
 #include <string.h>
