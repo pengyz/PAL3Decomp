@@ -1,179 +1,202 @@
 # PAL3 迭代管线
 
-持续执行 IDA 标注 → 导出 → 生成 → 编译 → 质量评估 → 规划 循环，直到目标达成。
+## 核心原则（不可违背）
 
-## 核心循环
+1. **质量优先于通过率** — 宁可一个高质量文件，不要十个 hack 通过的文件
+2. **IDA 是唯一的质量来源** — 代码中的类型/偏移/命名问题，只通过 IDA 标注解决，不在后处理中编造信息
+3. **ROI 驱动选择** — 每轮迭代选收益最大的改进点，不做边角优化
+4. **不降级** — 禁止任何让代码信息量减少的操作（void* 替代具体类型、char[] 替代结构体、注释掉继承等）
+5. **可重复** — `gen_cpp.py --force-all` 任何时候跑都应该得到同样或更好的结果
+
+## 进度控制
+
+### 量化指标（每轮迭代必须记录）
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  1. 质量评估 (评估当前代码状态，确定改进方向)                    │
-│  2. IDA 标注 (在 IDA 中修复类型/签名/命名)                      │
-│  3. IDA 导出 (重新导出反编译结果)                               │
-│  4. 代码生成 (gen_headers + gen_cpp)                           │
-│  5. 编译验证 (VC6 编译，统计通过率和错误分布)                    │
-│  6. 方案探讨 (分析失败原因，确定下一轮改进点)                    │
-│  └──→ 回到 1                                                  │
-└─────────────────────────────────────────────────────────────┘
+=== Iteration #N (YYYY-MM-DD) ===
+[IDA]   Named functions: XXXX / 5413
+[IDA]   Structs with full layout: XXX / 869
+[GEN]   Generated cpp: XXX files, XXXX functions
+[VC6]   Compile pass: XX / XXX
+[Quality]
+  sub_ refs in code: XXXX
+  unnamed globals (dword_/byte_): XXXX
+  hardcoded offsets *(this+N): XXXX
+  void* params (named funcs): XX / XXXX
+  stdiobuf/ios_base refs: XXX
+[Focus] 本轮聚焦: (e.g. "CCBRoleState 结构体成员完善")
+[Result] 改善: (e.g. "CCBRoleState 相关 12 个函数从偏移访问变为成员名")
 ```
 
-## Phase 1: 质量评估
+### 里程碑
 
-对当前生成的代码进行定量分析：
+| 阶段 | 目标 | 衡量标准 |
+|------|------|----------|
+| M1 | 核心类结构完整 | CCBSystem/Stage/RoleState/UI 的成员访问全部用字段名 |
+| M2 | 函数签名完善 | void* 参数 < 20，sub_ 引用 < 500 |
+| M3 | 核心逻辑可编译 | Combat/ + Script/ + Scene/ 全部 VC6 通过 |
+| M4 | 全量可编译 | 113 文件全部 VC6 通过 |
+| M5 | 字节匹配验证 | 核心函数 binary compare 通过 |
+
+## 终止条件
+
+### 单轮迭代终止
+
+- 本轮标注完成（脚本已跑、IDB 已保存）
+- 导出完成（decomp JSON 已更新）
+- 重新生成完成（cpp/headers 已刷新）
+- 编译结果已记录
+- 质量指标已对比上轮
+- **如果某项指标没有改善或回退**：停下来分析原因，不继续盲目迭代
+
+### 管线整体终止
+
+达到 M3（核心逻辑可编译）后转入字节匹配阶段，工作流从"IDA 标注循环"变为"单函数字节匹配循环"。
+
+## 反馈循环
+
+### 从编译错误到 IDA 动作的映射
+
+```
+编译错误 → 根因分析 → IDA 修复动作
+    ↓
+C2027 "未定义类型 XXX"
+  → 找到 XXX 的 PDB 定义 (dia_export_structs.py)
+  → 写 IDA 脚本导入结构体 (udt_type_data_t)
+  → 验证: Hex-Rays 输出中 *(this+N) 变为 this->field
+
+C2440 "void* 转 TypedPtr*"
+  → 找到该函数的 IDA 签名
+  → 用 DIA 或调用上下文确定正确参数类型
+  → idc.SetType(addr, corrected_sig)
+  → 验证: Hex-Rays 输出参数类型正确
+
+C2065 "未声明标识符 dword_XXX"
+  → 在 IDA 中找到该地址
+  → 分析 xref 确定变量的类型和含义
+  → ida_name.set_name + apply_tinfo
+  → 验证: 导出代码中用正确变量名
+
+C2065 "未声明标识符 sub_XXX"
+  → 在 IDA 中分析该函数
+  → 从 callers 的 this-source 或 vtable 确定类归属
+  → set_name 标注
+  → 验证: 导出代码中用 Class::Method 名
+```
+
+### 从质量指标到优先级的映射
+
+```
+"hardcoded offsets 多" (*(this+N) 模式)
+  → 优先完善对应类的结构体成员定义
+  → 选影响面最大的类（被最多函数引用的）
+
+"sub_ refs 多"
+  → 优先标注高频 sub_（从调用统计中选 top N）
+  → 通过 vtable 分析批量标注同一类的方法
+
+"void* params 多"
+  → 优先修正高频函数的签名
+  → 从调用者传入的实参类型反推参数类型
+
+"某个类的代码质量特别差"
+  → 集中处理该类: 结构体导入 → 签名修正 → 重新生成 → 验证
+```
+
+### 自检清单（每轮迭代结束前）
+
+- [ ] 本轮标注是否基于数据分析（不是猜测）？
+- [ ] 有没有做任何降级操作？
+- [ ] 新增的修复是否在管线脚本中（可重复）？
+- [ ] 指标是否改善？如果没有，原因是什么？
+- [ ] 下一轮的改进方向是否明确？
+
+## 单轮迭代详细流程
+
+### Step 1: 质量评估
+
+```powershell
+# 统计当前代码质量
+python -c "
+import os, re
+src = 'src/pal3'
+metrics = {'sub_': 0, 'dword_': 0, 'byte_': 0, 'void_ptr': 0, 'offset_access': 0}
+for root, _, files in os.walk(src):
+    for f in files:
+        if not f.endswith('.cpp'): continue
+        c = open(os.path.join(root, f)).read()
+        metrics['sub_'] += len(re.findall(r'\bsub_[0-9A-Fa-f]+', c))
+        metrics['dword_'] += len(re.findall(r'\b(dword|byte|word)_[0-9A-Fa-f]+', c))
+        metrics['offset_access'] += len(re.findall(r'\*\(\(_DWORD \*\)\w+ \+', c))
+        metrics['void_ptr'] += len(re.findall(r'void \*\w+', c))
+for k, v in metrics.items():
+    print(f'  {k}: {v}')
+"
+
+# VC6 编译通过率
+# (使用 PowerShell 批量编译脚本)
+```
+
+### Step 2: 确定本轮焦点
+
+基于指标选择**一个**改进方向（不贪多）：
+- 如果某个类被大量硬编码偏移引用 → 完善该类结构体
+- 如果某些高频 sub_ 可以通过 vtable 分析批量标注 → 做 vtable 扫描
+- 如果某个函数的签名导致大量 void* 传播 → 修正该签名
+
+### Step 3: IDA 标注
 
 ```bash
-# 编译通过率
-python tools/pal3_quality.py compile    # VC6 编译所有文件，报告 pass/fail
+# 写脚本 tools/ida/pal3_iter_NNN.py
+# 内容根据 Step 2 确定的焦点
 
-# 代码质量指标
-python tools/pal3_quality.py metrics    # 统计: sub_ 引用、unnamed globals、void* 参数、硬编码偏移
-
-# 对比上次
-python tools/pal3_quality.py diff       # 与上次评估结果对比
-```
-
-指标定义：
-- **sub_ 引用数**: 代码中调用未命名函数的次数（越少越好）
-- **unnamed globals**: dword_/byte_/off_ 等未命名全局变量引用
-- **硬编码偏移**: `*(this + N)` 或 `member[N * stride + offset]` 模式
-- **void* 参数**: 函数参数类型为 void* 的数量
-- **stdiobuf/ios_base 引用**: IDA 类型误判残留
-- **VC6 编译通过率**: 能通过 VC6 单独编译的 .cpp 文件比例
-
-## Phase 2: IDA 标注
-
-根据质量评估确定的改进方向，在 IDA 中做标注。
-
-### 优先级排序
-
-1. **结构体成员完善**（ROI 最高）— 一个类的布局修好，所有引用该类的函数都改善
-2. **函数签名修正**（高 ROI）— 修正参数类型后 Hex-Rays 输出正确
-3. **函数命名**（中 ROI）— 可读性提升
-4. **全局变量类型**（中 ROI）— 传播效应
-
-### 操作方式
-
-```bash
-# 写 IDAPython 脚本
-# tools/ida/pal3_iter_NNN.py
-
-# 运行
+# 执行
 idat.exe -A -S"tools/ida/pal3_iter_NNN.py" original/PAL3.exe.i64
 
-# 检查日志
+# 检查结果
 cat tools/ida/_logs/pal3_iter_NNN_log.txt
 ```
 
-### 标注规则
-
-- **结构体导入**: 使用 `udt_type_data_t` API 精确设置偏移（不用 parse_decl）
-- **函数签名**: 使用 `idc.SetType(addr, sig)` 设置完整签名
-- **函数命名**: 使用 `ida_name.set_name(addr, name, SN_FORCE)`
-- **全局变量**: `ida_name.set_name` + `ida_typeinf.apply_tinfo`
-- **数据来源**: PAL3A PDB (`asm/pal3a/pdb_export.json`) + DIA SDK + 二进制分析
-
-### 验证标注效果
-
-标注后选 2-3 个受影响的函数，用 Hex-Rays 反编译检查输出质量是否改善。
-
-## Phase 3: IDA 导出
+### Step 4: 导出 + 生成
 
 ```bash
+# 导出
 idat.exe -A -S"tools/ida/pal3_export_only.py" original/PAL3.exe.i64
-# 输出: asm/pal3/decomp/*.json (5414 函数)
-# 日志: tools/ida/_logs/pal3_export_only_log.txt
-```
 
-验证导出成功：检查 named 函数数是否增加。
-
-## Phase 4: 代码生成
-
-```bash
-# 重新生成头文件（始终全量）
+# 生成
 python tools/gen_headers.py
-
-# 重新生成 cpp（增量或全量）
-python tools/gen_cpp.py --force-all     # IDA 改动后全量
-python tools/gen_cpp.py ClassName       # 只更新指定类
-
-# 清理不应存在的系统头文件
-# (gen_headers.py 的 SKIP_CLASSES 控制)
+python tools/gen_cpp.py --force-all
 ```
 
-生成后快速验证：
-```bash
-# 检查关键指标
-python -c "统计 sub_ 和 unnamed globals 数量"
-```
-
-## Phase 5: 编译验证
+### Step 5: 验证
 
 ```bash
-# VC6 单文件编译
-$cl = "tools/compilers/msvc6.0/Bin/CL.EXE"
-& $cl /c /nologo /W0 /I"include" /I"tools/compilers/msvc6.0/Include" /I"tools/vc6/Include" src/pal3/XXX.cpp /FoNUL
+# VC6 编译
+# 重点验证本轮焦点涉及的文件
 
-# 批量编译统计
-# 使用 PowerShell 遍历所有 .cpp，统计 pass/fail 和错误码分布
+# 质量对比
+# 对比 Step 1 的指标，确认改善
 ```
 
-### 编译错误分类
+### Step 6: 记录 + 规划下轮
 
-| 错误码 | 含义 | 修复方向 |
-|--------|------|----------|
-| C2027 | 未定义类型使用 | IDA: 导入完整结构体 |
-| C2065 | 未声明标识符 | IDA: 命名全局变量/函数 |
-| C2440 | 类型转换 | IDA: 修正函数签名参数类型 |
-| C2511 | 成员函数未找到 | gen_headers: 签名不匹配 |
-| C2533 | ctor 有返回类型 | gen_cpp: 构造函数处理 |
-| C2673 | 全局函数用 this | gen_cpp: 函数归属错误 |
-| C4234 | __thiscall 关键字 | gen_cpp: 去除调用约定 |
-
-### 错误根因判定
-
-- **是 IDA 类型问题** → Phase 2 修 IDA
-- **是 gen_cpp/gen_headers 逻辑问题** → 修管线脚本
-- **是边角代码/系统库** → 低优先级，记录跳过
-
-## Phase 6: 方案探讨
-
-每轮迭代后分析：
-
-1. **本轮收益**: 哪些指标改善了，改善多少
-2. **瓶颈分析**: 当前最大的阻塞是什么
-3. **ROI 评估**: 下一步做什么收益最大
-4. **是否需要新工具**: DIA SDK 导出、新后处理规则等
-
-### 停止条件
-
-- 核心游戏逻辑的主要类（CCBSystem、CCBStage、SceneMgr、RoleSystem、PalScript、UI 系统）的代码质量达标
-- "达标"定义: 成员访问用正确字段名、函数调用用正确方法名、控制流清晰可读
-- 边角函数（CRT stub、系统回调、纯算术小函数）可以不追求完美
+记录本轮结果到迭代日志，确定下一轮方向。
 
 ## 工具命令速查
 
 ```bash
-# IDA 操作
-idat.exe -A -S"tools/ida/SCRIPT.py" original/PAL3.exe.i64
+# IDA
+idat.exe -A -S"SCRIPT.py" original/PAL3.exe.i64
 
-# DIA SDK 导出结构体/继承
-python tools/dia_export_structs.py
-python tools/dia_export_bases.py
+# DIA SDK
+python tools/dia_export_structs.py   # 导出所有结构体+成员
+python tools/dia_export_bases.py     # 导出继承关系
 
 # 代码生成
-python tools/gen_headers.py
-python tools/gen_cpp.py --force-all
+python tools/gen_headers.py          # 头文件（总是全量）
+python tools/gen_cpp.py --force-all  # cpp 全量
+python tools/gen_cpp.py ClassName    # cpp 单类
 
-# VC6 编译单文件
+# VC6 编译
 & "tools/compilers/msvc6.0/Bin/CL.EXE" /c /nologo /W0 /I"include" /I"tools/compilers/msvc6.0/Include" /I"tools/vc6/Include" FILE.cpp /FoNUL
-
-# 质量统计
-python -c "import os,re; ..."  # 自定义统计脚本
 ```
-
-## 关键原则回顾
-
-- **不做 workaround**: 不为了编译通过而降低代码质量
-- **IDA 先行**: 代码中的硬编码偏移、错误类型 → 回 IDA 修
-- **ROI 驱动**: 聚焦核心游戏逻辑，边角代码宽容度高
-- **累积效应**: 结构体/签名修复一次，所有引用函数受益
-- **可重复**: 每次 gen_cpp --force-all 应该得到一致的高质量输出
