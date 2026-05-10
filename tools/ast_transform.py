@@ -54,30 +54,38 @@ def transform_oop_calls(code):
                         first_arg = arg_nodes[0]
                         first_arg_text = first_arg.text.decode('utf-8')
 
-                        # Only convert if first arg is simple:
-                        # - 'this' keyword
-                        # - simple identifier (variable name)
-                        safe_to_convert = False
+                        # Determine conversion strategy based on first arg type
+                        rest_args = [a.text.decode('utf-8')
+                                     for a in arg_nodes[1:]]
+                        rest_str = ', '.join(rest_args)
+
                         if first_arg.type == 'this':
-                            safe_to_convert = True
+                            # Simple: this->Method(rest)
+                            new_text = 'this->%s(%s)' % (method_name, rest_str)
+                            replacements.append((
+                                node.start_byte, node.end_byte, new_text))
+                            return
                         elif first_arg.type == 'identifier':
-                            safe_to_convert = True
-
-                        if safe_to_convert:
-                            # Build replacement: obj->Method(rest_args)
-                            rest_args = [a.text.decode('utf-8')
-                                         for a in arg_nodes[1:]]
-                            rest_str = ', '.join(rest_args)
-
+                            # Simple var: var->Method(rest)
                             new_text = '%s->%s(%s)' % (
                                 first_arg_text, method_name, rest_str)
-
                             replacements.append((
-                                node.start_byte,
-                                node.end_byte,
-                                new_text
-                            ))
-                            return  # Don't recurse into this node
+                                node.start_byte, node.end_byte, new_text))
+                            return
+                        else:
+                            # Complex expression as this-pointer
+                            # If it's already a cast to the right type, use directly
+                            if first_arg.type == 'cast_expression':
+                                new_text = '(%s)->%s(%s)' % (
+                                    first_arg_text, method_name, rest_str)
+                            else:
+                                # Add cast: ((ClassName *)expr)->Method(rest)
+                                new_text = '((%s *)%s)->%s(%s)' % (
+                                    class_name, first_arg_text,
+                                    method_name, rest_str)
+                            replacements.append((
+                                node.start_byte, node.end_byte, new_text))
+                            return
 
         for child in node.children:
             process_node(child)

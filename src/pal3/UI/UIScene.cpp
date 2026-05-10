@@ -189,15 +189,15 @@ void UIScene::LoadResource(char *path)
   v2 = 0;
   if ( path )
   {
-    UIWnd::MoveWindow((gbRefObject **)this + 19);
+    ((UIWnd *)(gbRefObject **)this + 19)->MoveWindow();
     *((_DWORD *)this + 37) = 0;
-    OpenBaseFile::OpenBaseFile(&v4);
+    ((OpenBaseFile *)&v4)->OpenBaseFile();
     v6 = 0;
     sprintf(Buffer, "%s%d.tga", path, 0);
     while ( (int)g_pVFileSys->FileExistNum(Buffer) > 0 )
     {
       if ( !sub_445ED0() )
-        UIWnd::MoveWindow((gbRefObject **)this + 19);
+        ((UIWnd *)(gbRefObject **)this + 19)->MoveWindow();
       ++v2;
       ++*((_DWORD *)this + 37);
       sprintf(Buffer, "%s%d.tga", path, v2);
@@ -205,7 +205,7 @@ void UIScene::LoadResource(char *path)
     *((_DWORD *)this + 40) = 0;
     sub_43A660(this);
     v6 = -1;
-    OpenNULLFile::OpenNULLFile(&v4);
+    ((OpenNULLFile *)&v4)->OpenNULLFile();
   }
 }
 
@@ -213,8 +213,8 @@ void UIScene::LoadResource(char *path)
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
 void UIScene::_UIScene(UIScene *this)
 {
-  UIWnd::UIWnd((UIWnd *)this);
-  UIWnd::DestroyChildren((UIWnd *)((char *)this + 116));
+  ((UIWnd *)this)->UIWnd();
+  ((UIWnd *)((char *)this + 116))->DestroyChildren();
   *((_DWORD *)this + 24) = 0;
   *((_DWORD *)this + 49) = 0;
   *(_DWORD *)this = &off_56AC70;
@@ -231,7 +231,7 @@ void sub_43A810(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AC70;
   UIScene::OnMessage2();
-  j_UIWnd::MoveWindow((char *)this + 116);
+  ((j_UIWnd *)(char *)this + 116)->MoveWindow();
   this->_UIWnd();
 }
 
@@ -240,8 +240,8 @@ int UIScene::OnMessage2()
 {
   int result; // eax
 
-  UIWnd::MoveWindow((UIWnd **)this + 29);
-  UIWnd::UpdateChildren((UIWnd *)this);
+  ((UIWnd *)(UIWnd **)this + 29)->MoveWindow();
+  ((UIWnd *)this)->UpdateChildren();
   return result;
 }
 
@@ -260,7 +260,7 @@ BOOL UIScene::Update2(int _this, int a2, int a3)
   void *v14; // [esp-8h] [ebp-20h]
   POINT pt; // [esp+10h] [ebp-8h] BYREF
 
-  GRPinput::GetCursorPos(&pt);
+  ((GRPinput *)&pt)->GetCursorPos();
   v4 = PtInRect((const RECT *)(this + 16), pt);
   if ( !*(_DWORD *)(this + 56) )
     return 0;
@@ -281,7 +281,7 @@ BOOL UIScene::Update2(int _this, int a2, int a3)
       {
         v14 = pPos;
         Instance = (char *)CScreenMode::GetInstance();
-        CScreenMode::AudioSetPosition((CScreenMode *)Instance, v14, 1);
+        ((CScreenMode *)Instance)->AudioSetPosition(v14, 1);
       }
     }
     *(_DWORD *)(this + 96) = 0;
@@ -290,7 +290,7 @@ BOOL UIScene::Update2(int _this, int a2, int a3)
   if ( !a3 )
   {
     *(_DWORD *)(this + 96) = 0;
-    return UIWnd::HitTest((UIWnd *)this, a2, 0);
+    return ((UIWnd *)this)->HitTest(a2, 0);
   }
   if ( *(_DWORD *)(this + 96) != 2 )
   {
@@ -357,7 +357,7 @@ LABEL_30:
       *(_DWORD *)(this + 96) = 0;
     }
   }
-  v13 = UIWnd::HitTest((UIWnd *)this, a2, a3);
+  v13 = ((UIWnd *)this)->HitTest(a2, a3);
   return v4 || v13;
 }
 
@@ -425,9 +425,9 @@ int UIScene::Create2(int _this)
   v22.Green = *(_DWORD *)(this + 4 * v13 + 184);
   v22.Blue = 276;
   v22.ColorQuadFmt = v13;
-  gbColorQuad::gbColorQuad(&v22, (struct gbColorQuad *)(this + 8));
-  v14 = (struct gbTextureArray *)gbTextureArray::gbTextureArray((gbTextureArray *)v32, v12);
-  _TextureLib_Data::_CheckItem((_DWORD *)(this + 16), v31, v14, v22.ColorQuadFmt, v22.Blue, (float *)v22.Green);
+  ((gbColorQuad *)&v22)->gbColorQuad((struct gbColorQuad *)(this + 8));
+  v14 = ((gbTextureArray *)v32)->gbTextureArray(v12);
+  ((_DWORD *)(this + 16))->_CheckItem(v31, v14, v22.ColorQuadFmt, v22.Blue, (float *)v22.Green);
   if ( !*(_DWORD *)(this + 60) )
   {
     if ( *(_DWORD *)(this + 196) )
@@ -435,24 +435,13 @@ int UIScene::Create2(int _this)
       v22.Green = *(_DWORD *)(this + 200);
       v22.Blue = 276;
       v22.ColorQuadFmt = v22.Green;
-      gbColorQuad::gbColorQuad(&v22, (struct gbColorQuad *)(this + 8));
-      v15 = (struct gbTextureArray *)gbTextureArray::gbTextureArray((gbTextureArray *)v32, *(struct gbTexture **)(this + 196));
-      _TextureLib_Data::_CheckItem(
-        (_DWORD *)(this + 16),
-        (int *)(this + 16),
-        v15,
-        v22.ColorQuadFmt,
-        v22.Blue,
-        (float *)v22.Green);
+      ((gbColorQuad *)&v22)->gbColorQuad((struct gbColorQuad *)(this + 8));
+      v15 = ((gbTextureArray *)v32)->gbTextureArray(*(struct gbTexture **)(this + 196));
+      ((_DWORD *)(this + 16))->_CheckItem((int *)(this + 16), v15, v22.ColorQuadFmt, v22.Blue, (float *)v22.Green);
       goto LABEL_7;
     }
 LABEL_6:
-    _TextureLib_Data::~_TextureLib_Data(
-      *v4,
-      *(_DWORD *)(this + 20),
-      *(_DWORD *)(this + 24),
-      *(_DWORD *)(this + 28),
-      (float *)&g_GameData_0._data[12992]);
+    ((_TextureLib_Data *)*v4)->~_TextureLib_Data(*(_DWORD *)(this + 20), *(_DWORD *)(this + 24), *(_DWORD *)(this + 28), (float *)&g_GameData_0._data[12992]);
   }
 LABEL_7:
   if ( *(_BYTE *)(this + 212) )
@@ -488,5 +477,5 @@ LABEL_7:
     }
     UIRenderPar(this + 212, (int)&v27, &v26, v22.Blue, v22.Green);
   }
-  return UIWnd::GetID((UIWnd *)this);
+  return ((UIWnd *)this)->GetID();
 }

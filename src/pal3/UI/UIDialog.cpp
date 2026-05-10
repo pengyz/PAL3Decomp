@@ -49,9 +49,9 @@ int UIDialog::Init()
   pRect[1] = 10;
   pRect[3] = 87;
   pRect[2] = pRect[0] + 274;
-  UIWnd::Create((UIWnd *)this, 0, pRect, parent);
-  UINote::Create((UINote *)(this + 18), 1, (int)pRect, (int)this, aUiFlexNote_0);
-  UIWnd::GetRect((_DWORD *)this + 18, pRect);
+  ((UIWnd *)this)->Create(0, pRect, parent);
+  ((UINote *)(this + 18))->Create(1, (int)pRect, (int)this, aUiFlexNote_0);
+  ((UIWnd *)(_DWORD *)this + 18)->GetRect(pRect);
   sub_445910((_DWORD *)this + 18, 2);
   return (*(int (**)(UIDialog *, _DWORD))this->UIWnd)(this, 0);
 }

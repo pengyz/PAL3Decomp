@@ -61,7 +61,7 @@ int CGameData::InitRoles(int a2)
   *(_DWORD *)&this->_data[76] = 0;
   *(_DWORD *)&this->_data[84] = 800;
   *(_DWORD *)&this->_data[88] = 600;
-  UIWnd::Create((UIWnd *)this, (int)&unk_AABEF6, &this->_data[76], a2);
+  ((UIWnd *)this)->Create((int)&unk_AABEF6, &this->_data[76], a2);
   v3 = *(_DWORD *)&this->_data[108];
   v4 = *(_DWORD *)&this->_data[112];
   v5 = *(_DWORD *)&this->_data[124];
@@ -74,7 +74,7 @@ int CGameData::InitRoles(int a2)
     &unk_AABEF6,
     &this->_data[92],
     this);
-  UIWnd::CreateFromTemplate((gbRefObject **)&this->_data[124], off_59BA88, 1);
+  ((gbRefObject **)&this->_data[124])->CreateFromTemplate(off_59BA88, 1);
   (**(void (***)(char *, _DWORD))&this->_data[124])(&this->_data[124], 0);
   v6 = (gbRefObject **)&this->_data[428];
   a2a = 3;
@@ -96,7 +96,7 @@ int CGameData::InitRoles(int a2)
     &unk_AABEF6,
     &this->_data[92],
     this);
-  UIWnd::CreateFromTemplate((gbRefObject **)&this->_data[276], off_59BA8C, 1);
+  ((gbRefObject **)&this->_data[276])->CreateFromTemplate(off_59BA8C, 1);
   (**(void (***)(char *, _DWORD))&this->_data[276])(&this->_data[276], 0);
   (*(void (**)(char *, void *, char *, CGameData *, char *, _DWORD, int))(*(_DWORD *)&this->_data[884] + 28))(
     &this->_data[884],
@@ -138,16 +138,16 @@ int CGameData::InitRoles(int a2)
   v8 = 300;
   v10 = 600;
   v11 = 456;
-  UIItem::Create((int)&this->_data[1916], (int)&unk_ABD000, &v8, (int)this, 2, 1);
-  UIItem::SetData(&this->_data[1916], 31, 251, 255, 255);
+  ((int)&this->_data[1916])->Create((int)&unk_ABD000, &v8, (int)this, 2, 1);
+  ((UIItem *)&this->_data[1916])->SetData(31, 251, 255, 255);
   v10 = v8 + 256;
   v11 = v9 + 128;
-  UIItem::Create((int)&this->_data[3308], (int)&unk_ABCD01, &v8, (int)this, 3, 0);
-  UIItem::SetData(&this->_data[3308], 31, 251, 255, 255);
-  UIItem::Create((int)&this->_data[4676], (int)&unk_ABCD02, &v8, (int)this, 3, 0);
-  UIItem::SetData(&this->_data[4676], 18, 255, 28, 200);
-  UIItem::Create((int)&this->_data[6044], (int)&unk_ABCD03, &v8, (int)this, 3, 0);
-  result = (int)UIItem::SetData(&this->_data[6044], 31, 251, 255, 255);
+  ((int)&this->_data[3308])->Create((int)&unk_ABCD01, &v8, (int)this, 3, 0);
+  ((UIItem *)&this->_data[3308])->SetData(31, 251, 255, 255);
+  ((int)&this->_data[4676])->Create((int)&unk_ABCD02, &v8, (int)this, 3, 0);
+  ((UIItem *)&this->_data[4676])->SetData(18, 255, 28, 200);
+  ((int)&this->_data[6044])->Create((int)&unk_ABCD03, &v8, (int)this, 3, 0);
+  result = (int)((UIItem *)&this->_data[6044])->SetData(31, 251, 255, 255);
   *(_DWORD *)&this->_data[9492] = 0;
   *(_DWORD *)&this->_data[9488] = 0;
   *(_DWORD *)&this->_data[9496] = 0;
@@ -184,7 +184,7 @@ int CGameData::InitItems(int a2)
   pRect[0] = 0;
   v11 = 600;
   v10 = 800;
-  UIWnd::Create((UIWnd *)this, 0, pRect, a2);
+  ((UIWnd *)this)->Create(0, pRect, a2);
   memset32(&this->_data[2220], 3, 0xDu);
   v14[8] = 32;
   v14[0] = 54;
@@ -277,12 +277,12 @@ void * CGameData::Init()
   pRect = 0;
   v18 = 800;
   v19 = 600;
-  UIWnd::Create((UIWnd *)this, 0, &pRect, 0);
-  OpenBaseFile::OpenBaseFile(&v14);
+  ((UIWnd *)this)->Create(0, &pRect, 0);
+  ((OpenBaseFile *)&v14)->OpenBaseFile();
   v20 = 0;
-  TextureLib::SetPath((TextureLib *)dword_1894B78, aUiUilib);
-  TextureLib::LoadFromFile((TextureLib *)dword_1894B78, aUiUilibUiOptTl);
-  v2 = (PropUI *)operator new(0xB30u);
+  ((TextureLib *)dword_1894B78)->SetPath(aUiUilib);
+  ((TextureLib *)dword_1894B78)->LoadFromFile(aUiUilibUiOptTl);
+  v2 = (PropUI *)((operator *)0xB30u)->new();
   v15 = v2;
   LOBYTE(v20) = 1;
   if ( v2 )
@@ -292,7 +292,7 @@ void * CGameData::Init()
   LOBYTE(v20) = 0;
   *((_DWORD *)this + 7044) = v3;
   v3->Init();
-  v4 = (EquipUI *)operator new(0x2B080u);
+  v4 = (EquipUI *)((operator *)0x2B080u)->new();
   v15 = v4;
   LOBYTE(v20) = 2;
   if ( v4 )
@@ -302,12 +302,12 @@ void * CGameData::Init()
   LOBYTE(v20) = 0;
   *((_DWORD *)this + 7045) = v5;
   v5->Init();
-  EquipUI::InitSlots(*((EquipUI **)this + 7045));
-  StateUI::Create(*((StateUI **)this + 7045));
-  StateUI::Init(*((StateUI **)this + 7045));
-  MagicUI::Init(*((MagicUI **)this + 7045));
-  MagicUI::Create(*((MagicUI **)this + 7045));
-  v6 = (Object3D *)operator new(0xEF8u);
+  ((EquipUI *)*((EquipUI **)this + 7045))->InitSlots();
+  ((StateUI *)*((StateUI **)this + 7045))->Create();
+  ((StateUI *)*((StateUI **)this + 7045))->Init();
+  ((MagicUI *)*((MagicUI **)this + 7045))->Init();
+  ((MagicUI *)*((MagicUI **)this + 7045))->Create();
+  v6 = (Object3D *)((operator *)0xEF8u)->new();
   v15 = v6;
   LOBYTE(v20) = 3;
   if ( v6 )
@@ -328,7 +328,7 @@ void * CGameData::Init()
   while ( v9 );
   v17 = v19 - 150;
   v18 = pRect + 800;
-  UIBigDialog::Create((UIBigDialog *)&this->_data[3904], 1001, &pRect, 0, tex);
+  ((UIBigDialog *)&this->_data[3904])->Create(1001, &pRect, 0, tex);
   (**(void (***)(char *, _DWORD))&this->_data[3904])(&this->_data[3904], 0);
   v10 = (char *)&g_SceneMgr.m_info[7120];
   v11 = (UIDialog *)&this->_data[2144];
@@ -345,10 +345,10 @@ void * CGameData::Init()
   v18 = 414;
   v17 = 0;
   v19 = 125;
-  UISelectDialog::Create((UISelectDialog *)&this->_data[656], 1011, &pRect, (int)this, aUiDlgSelbkTga);
-  UIWnd::SetVisible((UIWnd *)&this->_data[656], 0);
-  UIDialog::Init((UIDialog *)&this->_data[356]);
-  CGameData::InitRoles((CGameData *)&this->_data[5012], (int)this);
+  ((UISelectDialog *)&this->_data[656])->Create(1011, &pRect, (int)this, aUiDlgSelbkTga);
+  ((UIWnd *)&this->_data[656])->SetVisible(0);
+  ((UIDialog *)&this->_data[356])->Init();
+  ((CGameData *)&this->_data[5012])->InitRoles((int)this);
   *(_DWORD *)&this->_data[14528] = 3;
   memset(&this->_data[68], 0, 0x24u);
   *(_WORD *)&this->_data[104] = 0;
@@ -365,7 +365,7 @@ void * CGameData::Init()
   (*(void (**)(char *, _DWORD, int *, CGameData *))(v12 + 16))(&this->_data[260], 0, &pRect, this);
   (**(void (***)(char *, _DWORD))&this->_data[260])(&this->_data[260], 0);
   v20 = -1;
-  return OpenNULLFile::OpenNULLFile(&v14);
+  return ((OpenNULLFile *)&v14)->OpenNULLFile();
 }
 
 // 0x0044F430
@@ -413,7 +413,7 @@ int CGameData::Render()
   v2 = (_BYTE *)*((_DWORD *)this + 7046);
   if ( v2 && v2[3829] )
     (*(void (**)(_BYTE *))(*(_DWORD *)v2 + 4))(v2);
-  UIWnd::GetID((UIWnd *)this);
+  ((UIWnd *)this)->GetID();
   result = *(_DWORD *)&this->_data[14536];
   if ( !result )
     return (*(int (**)(char *))(*(_DWORD *)&this->_data[3904] + 4))(&this->_data[3904]);

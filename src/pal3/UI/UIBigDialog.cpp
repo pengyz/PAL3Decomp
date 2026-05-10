@@ -42,8 +42,8 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   *((_DWORD *)this + 5) = 458;
   v5[2] = 800;
   v5[3] = 594;
-  UIWnd::Create((UIWnd *)this, id, v16, v17);
-  UINote::Create((UINote *)((char *)this + 80), 0, (int)v5, 0, aUiFlexDlg);
+  ((UIWnd *)this)->Create(id, v16, v17);
+  ((UINote *)((char *)this + 80))->Create(0, (int)v5, 0, aUiFlexDlg);
   *((_DWORD *)this + 37) = 1048576000;
   v21 = MEMORY[0xBFD6D4] - 8;
   v19 = MEMORY[0xBFD6D4] - 520;
@@ -71,16 +71,16 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
     LOBYTE(pRect) = -6;
   }
   HIBYTE(pRect) = -1;
-  UIWnd::GetChild((_DWORD *)this + 148, &pRect);
+  ((UIWnd *)(_DWORD *)this + 148)->GetChild(&pRect);
   (*(void (**)(char *, int, int *, UIBigDialog *))(*((_DWORD *)this + 68) + 16))(
     (char *)this + 272,
     2,
     &v18,
     this);
-  UIScene::LoadResource((UIBigDialog *)((char *)this + 272), aUiScenePage);
-  MvcViewport::SetController((_DWORD *)this + 68, 0x40000000);
+  ((UIBigDialog *)((char *)this + 272))->LoadResource(aUiScenePage);
+  ((MvcViewport *)(_DWORD *)this + 68)->SetController(0x40000000);
   sub_4517A0(&v18, 1);
-  UIWnd::GetRect((_DWORD *)this + 68, &v18);
+  ((UIWnd *)(_DWORD *)this + 68)->GetRect(&v18);
   v12 = (v11 - 134) / 2;
   v18 = v12;
   v20 = v12 + 134;
@@ -88,23 +88,23 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   v21 = 600;
   v19 = 580;
   (*(void (**)(char *, _DWORD, int *, UIBigDialog *))(v13 + 16))((char *)this + 696, 0, &v18, this);
-  UIWnd::GetRect((_DWORD *)this + 174, &v18);
-  UIWnd::CreateFromTemplate((gbRefObject **)this + 174, aUiSceneTimeclo, 0);
+  ((UIWnd *)(_DWORD *)this + 174)->GetRect(&v18);
+  ((UIWnd *)(gbRefObject **)this + 174)->CreateFromTemplate(aUiSceneTimeclo, 0);
   v14 = *((_DWORD *)this + 212);
   v18 = v12;
   v20 = v12 + 134;
   v21 = 600;
   v19 = 568;
   (*(void (**)(char *, _DWORD, int *, UIBigDialog *))(v14 + 16))((char *)this + 848, 0, &v18, this);
-  UIWnd::AddChild((_DWORD *)this + 212, &v18);
-  UIWnd::GetChildCount((gbRefObject **)this + 212, aUiSceneTimebkT, 0);
-  UIWnd::GetChildAt((gbRefObject **)this + 212, aUiSceneTimepTg, 0);
-  UIWnd::FindChild((int)this + 848, 4.0);
-  UIWnd::FindChildByName((int)this + 848, 0.0);
+  ((UIWnd *)(_DWORD *)this + 212)->AddChild(&v18);
+  ((UIWnd *)(gbRefObject **)this + 212)->GetChildCount(aUiSceneTimebkT, 0);
+  ((UIWnd *)(gbRefObject **)this + 212)->GetChildAt(aUiSceneTimepTg, 0);
+  ((UIWnd *)(int)this + 848)->FindChild(4.0);
+  ((UIWnd *)(int)this + 848)->FindChildByName(0.0);
   *((_DWORD *)this + 240) = 1120403456;
-  UIWnd::SetFrameRate((float *)this + 212, 4);
-  UIWnd::GetHeight((float *)this + 212, 9);
-  UIWnd::GetWidth((float *)this + 212, 4);
-  UIWnd::GetPosition((float *)this + 212, 9);
+  ((UIWnd *)(float *)this + 212)->SetFrameRate(4);
+  ((UIWnd *)(float *)this + 212)->GetHeight(9);
+  ((UIWnd *)(float *)this + 212)->GetWidth(4);
+  ((UIWnd *)(float *)this + 212)->GetPosition(9);
   return (**((int (***)(char *, _DWORD))this + 212))((char *)this + 848, 0);
 }

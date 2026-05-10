@@ -119,7 +119,7 @@ char * CCBCamControl::SetCircle(int a2)
   char *v3; // eax
   int v4; // ecx
 
-  gbVolModNode::gbVolModNode(&this->m_CCT[16]);
+  ((gbVolModNode *)&this->m_CCT[16])->gbVolModNode();
   `eh vector constructor iterator'(
     &this->m_CCT[236],
     0xDCu,
@@ -153,7 +153,7 @@ char CCBCamControl::IsPointerUnderMouse(int _this)
   gbRefObject *v2; // esi
 
   this->CCBStageEffect();
-  v2 = (gbRefObject *)operator new(0xD8u);
+  v2 = (gbRefObject *)((operator *)0xD8u)->new();
   if ( v2 )
   {
     v2[1].RefCount = 1;
@@ -162,7 +162,7 @@ char CCBCamControl::IsPointerUnderMouse(int _this)
     v2[24].RefCount = 0;
     v2[25].RefCount = 0;
     v2[26].RefCount = 0;
-    CCBCamControl::LoadPointer(&v2[27]);
+    ((CCBCamControl *)&v2[27])->LoadPointer();
     v2->RefCount = (int)&off_56A694;
   }
   else
@@ -187,16 +187,10 @@ char CCBCamControl::IsPointerUnderMouse(int _this)
   v2[15].RefCount = 0x40000000;
   v2[16].RefCount = 1133903872;
   v2[6].RefCount = 1065353216;
-  gbVolModNode::SetVolModObj((gbVolModNode *)(this + 16), (struct gbVolumeModifier *)v2);
+  ((gbVolModNode *)(this + 16))->SetVolModObj((struct gbVolumeModifier *)v2);
   v2->Release();
-  *(_DWORD *)(this + 2436) = gbEffectMgr::NewRenderEffect(
-                               *(gbEffectMgr **)(g_pGfxManager + 200),
-                               aGfxscriptGeomD,
-                               0x401u);
-  *(_DWORD *)(this + 2440) = gbEffectMgr::NewRenderEffect(
-                               *(gbEffectMgr **)(g_pGfxManager + 200),
-                               aGfxscriptGeomD_0,
-                               0x441u);
+  *(_DWORD *)(this + 2436) = ((gbEffectMgr *)*(gbEffectMgr **)(g_pGfxManager + 200))->NewRenderEffect(aGfxscriptGeomD, 0x401u);
+  *(_DWORD *)(this + 2440) = ((gbEffectMgr *)*(gbEffectMgr **)(g_pGfxManager + 200))->NewRenderEffect(aGfxscriptGeomD_0, 0x441u);
   return 1;
 }
 
@@ -215,7 +209,7 @@ _DWORD * CCBCamControl::LoadPointer()
 // 0x00508680
 char CCBCamControl::DoList(CCBCamControl **this)
 {
-  gbRefObject::Release((gbRefObject *)*((_DWORD *)this + 609));
+  ((gbRefObject *)*((_DWORD *)this + 609))->Release();
   return 1;
 }
 
@@ -226,14 +220,14 @@ int CCBCamControl::ResetListFlag(int _this)
   _DWORD *v3; // edx
   _DWORD *v4; // edx
 
-  v2 = (gbRefObject *)operator new(0xD8u);
+  v2 = (gbRefObject *)((operator *)0xD8u)->new();
   if ( v2 )
   {
     v2[1].RefCount = 1;
     v2->RefCount = (int)gbRefObject::`vftable';
     v2->RefCount = (int)gbVolumeModifier::`vftable';
-    gbVec3D::gbVec3D((gbVec3D *)&v2[24], 0.0, 0.0, 0.0);
-    CCBCamControl::LoadPointer(&v2[27].RefCount);
+    ((gbVec3D *)&v2[24])->gbVec3D(0.0, 0.0, 0.0);
+    ((CCBCamControl *)&v2[27].RefCount)->LoadPointer();
     v2->RefCount = (int)&off_56A694;
   }
   else
@@ -258,7 +252,7 @@ int CCBCamControl::ResetListFlag(int _this)
   v2[15].RefCount = 0x40000000;
   v2[16].RefCount = 1133903872;
   v2[6].RefCount = 1065353216;
-  gbVolModNode::SetVolModObj((gbVolModNode *)(this + 236), (struct gbVolumeModifier *)v2);
+  ((gbVolModNode *)(this + 236))->SetVolModObj((struct gbVolumeModifier *)v2);
   v2->Release();
   v3 = (_DWORD *)(*(_DWORD *)(this + 232) + 28);
   *v3 = -1098907648;
@@ -314,10 +308,10 @@ int CCBCamControl::DoLineMove(CCBCamControl **this, unsigned int a2)
     v4 = this + 15 * a2;
     result = (int)v4[612];
     if ( result != -1 )
-      result = CEffect::Render(*((CEffect **)(*((_DWORD *)this + 2))->m_CCT.m_Pool[0].fp + 11), (int)v4[612]);
+      result = ((CEffect *)*((CEffect **)(*((_DWORD *)this + 2))->m_CCT.m_Pool[0].fp + 11))->Render((int)v4[612]);
     v5 = (int)v4[619];
     if ( v5 != -1 )
-      return CEffect::Render(*((CEffect **)(*((_DWORD *)this + 2))->m_CCT.m_Pool[0].fp + 11), v5);
+      return ((CEffect *)*((CEffect **)(*((_DWORD *)this + 2))->m_CCT.m_Pool[0].fp + 11))->Render(v5);
   }
   return result;
 }

@@ -58,7 +58,7 @@ int GRPinput::Create(void *hInst, int hwnd, int flag)
     if ( !*(_DWORD *)&this->m_mousept[6208] )
       return 0;
     sub_402640(this);
-    GRPinput::Create((int)this);
+    ((int)this)->Create();
   }
   GetCursorPos((LPPOINT)this->m_mousept);
   return 1;
@@ -456,7 +456,7 @@ char GRPinput::SetJoystickPos(GRPinput *this, const char *a2, int a3)
   {
     if ( v4 == 1 )
     {
-      std::string::_Tidy(&v3->m_lpDIDMouse, 1);
+      ((std *)&v3->m_lpDIDMouse)->string::_Tidy(1);
       goto LABEL_15;
     }
     m_mouseMinY = v3->m_mouseMinY;
@@ -471,9 +471,9 @@ LABEL_14:
       *(_BYTE *)(LODWORD(v11) + v6) = 0;
       goto LABEL_15;
     }
-    std::string::_Tidy(&v3->m_lpDIDMouse, 1);
+    ((std *)&v3->m_lpDIDMouse)->string::_Tidy(1);
 LABEL_13:
-    GRPinput::GetKeyState((int)&v3->m_lpDIDMouse, v6);
+    ((int)&v3->m_lpDIDMouse)->GetKeyState(v6);
     goto LABEL_14;
   }
   if ( v4 != 1 )
@@ -552,12 +552,7 @@ char GRPinput::SetMouseSensitivity(int _this)
         HIBYTE(v22[0]) = (__int64)(v7 * 255.0);
         if ( !HIBYTE(v22[0]) )
           *(_BYTE *)(this + 4) = 0;
-        *(_DWORD *)(v5 + 44) = *(_DWORD *)gbColorQuad::gbColorQuad(
-                                            (gbColorQuad *)v22,
-                                            0xFFu,
-                                            0xFFu,
-                                            0xFFu,
-                                            HIBYTE(v22[0]));
+        *(_DWORD *)(v5 + 44) = *(_DWORD *)((gbColorQuad *)v22)->gbColorQuad(0xFFu, 0xFFu, 0xFFu, HIBYTE(v22[0]));
         v8 = (void *)*(void **)(this + 12);
         if ( !v8 )
           v8 = (void *)&byte_56A634;
@@ -583,7 +578,7 @@ char GRPinput::SetMouseSensitivity(int _this)
         v24 = *(float *)(MEMORY[0xC116EC] + 164);
         v25 = *(_DWORD *)(MEMORY[0xC116EC] + 168);
         v24 = v18 * 20.0 + v24 + 64.0;
-        gbCamera::PointWorldToScr((gbCamera *)(g_pCamera + 4), (struct gbVec3D *)&v23, v22, (float *)&v20);
+        ((gbCamera *)(g_pCamera + 4))->PointWorldToScr((struct gbVec3D *)&v23, v22, (float *)&v20);
         v9 = 1.0 - v18;
         if ( v9 < 0.0 )
           v9 = 0.0;
@@ -770,7 +765,7 @@ void GRPinput::AcquireJoystick(GRPinput **this)
   v2 = (void *)*((_DWORD *)this + 3);
   if ( v2 )
   {
-    GRPinput::GetCharKey((int)*((_DWORD *)this + 3));
+    ((int)*((_DWORD *)this + 3))->GetCharKey();
     operator delete(v2);
     *((_DWORD *)this + 3) = 0;
   }
@@ -849,7 +844,7 @@ int GRPinput::Update()
       v4 = (void *)v2[1];
       if ( v4 )
       {
-        GRPinput::GetCharKey(v2[1]);
+        ((GRPinput *)v2[1])->GetCharKey();
         operator delete(v4);
         v2[1] = 0;
       }
@@ -943,7 +938,7 @@ void GRPinput::CheckKeyEvents(const char *a2)
           v12 = (void *)malloc(v11);
           v8[2] = (__int32)v12;
           g_pVFileSys->Read(v12, v11, v3);
-          v13 = operator new(0x3Cu);
+          v13 = ((operator *)0x3Cu)->new();
           v20 = 0;
           if ( v13 )
             Key = (GRPinput *)v13->GetKey();
@@ -1165,7 +1160,7 @@ int GRPinput::GetCharKey(int _this)
     v4 = (void *)*v3;
     if ( *v3 )
     {
-      GRPinput::GetCharKey(*v3);
+      ((GRPinput *)*v3)->GetCharKey();
       operator delete(v4);
     }
     ++v3;
@@ -1234,12 +1229,7 @@ unsigned int GRPinput::DecideKeyStatus(int _this, gbRay *a2, int a3)
         break;
       v7 = (int *)(i + *(_DWORD *)(this + 28));
       ++*(_DWORD *)(a3 + 20);
-      if ( gbRay::IsColTriangle(
-             (gbRay *)v3,
-             (struct gbVec3D *)v7,
-             (struct gbVec3D *)(v7 + 3),
-             (struct gbVec3D *)(v7 + 6),
-             (struct gbVec3D *)&v23) )
+      if ( ((gbRay *)v3)->IsColTriangle((struct gbVec3D *)v7, (struct gbVec3D *)(v7 + 3), (struct gbVec3D *)(v7 + 6), (struct gbVec3D *)&v23) )
       {
         v26 = v23 - *v3;
         v8 = v24 - v3[1];
@@ -1249,7 +1239,7 @@ unsigned int GRPinput::DecideKeyStatus(int _this, gbRay *a2, int a3)
         *(float *)&v29[1] = v27;
         v28 = v9;
         *(float *)&v29[2] = v28;
-        v10 = gbVec3D::Length((gbVec3D *)v29);
+        v10 = ((gbVec3D *)v29)->Length();
         if ( v10 < *(float *)a3 )
         {
           v11 = v24;

@@ -82,7 +82,7 @@ void ScriptSystem::Render(void *a1)
   {
     if ( v2 != v1 )
     {
-      RoleSystem::RenderRole((int)v3, (gbMatrixStack *)a1, 0);
+      ((int)v3)->RenderRole((gbMatrixStack *)a1, 0);
       v1 = *(_DWORD *)&g_SceneMgr.m_info[51512];
     }
     v3 += 8704;
@@ -91,14 +91,11 @@ void ScriptSystem::Render(void *a1)
   while ( (int)v3 < (int)&g_SceneMgr.m_info[50640] );
   if ( flt_58DE64 >= 1.2 )
   {
-    RoleSystem::RenderRole((int)&g_SceneMgr.m_info[8704 * v1 + 7120], (gbMatrixStack *)a1, 0);
+    ((int)&g_SceneMgr.m_info[8704 * v1 + 7120])->RenderRole((gbMatrixStack *)a1, 0);
   }
   else if ( rand() % 3 )
   {
-    RoleSystem::RenderRole(
-      (int)&g_SceneMgr.m_info[8704 * *(_DWORD *)&g_SceneMgr.m_info[51512] + 7120],
-      (gbMatrixStack *)a1,
-      0);
+    ((int)&g_SceneMgr.m_info[8704 * *(_DWORD *)&g_SceneMgr.m_info[51512] + 7120])->RenderRole((gbMatrixStack *)a1, 0);
   }
   else
   {
@@ -112,27 +109,24 @@ void ScriptSystem::Render(void *a1)
       v10 = 1036831949;
       v11 = 1056964608;
       v6->SetVariant(PARAM_HANDLE_SPECULAR, &v8);
-      RoleSystem::RenderRole(
-        (int)&g_SceneMgr.m_info[8704 * *(_DWORD *)&g_SceneMgr.m_info[51512] + 7120],
-        (gbMatrixStack *)a1,
-        v5);
+      ((int)&g_SceneMgr.m_info[8704 * *(_DWORD *)&g_SceneMgr.m_info[51512] + 7120])->RenderRole((gbMatrixStack *)a1, v5);
     }
   }
-  RoleSystem::RenderRole((int)dword_BFFDB0, (gbMatrixStack *)a1, 0);
-  RoleSystem::RenderRole((int)MEMORY[0xBFDBB0], (gbMatrixStack *)a1, 0);
+  ((int)dword_BFFDB0)->RenderRole((gbMatrixStack *)a1, 0);
+  ((int)MEMORY[0xBFDBB0])->RenderRole((gbMatrixStack *)a1, 0);
   if ( *(_DWORD *)&g_SceneMgr.m_info[51500] )
   {
     v7 = (char *)&g_SceneMgr.m_info[8704 * *(_DWORD *)&g_SceneMgr.m_info[51512] + 7280];
     v8 = *(_DWORD *)v7;
     v9 = *((float *)v7 + 1);
     v10 = *((_DWORD *)v7 + 2);
-    gbMatrixStack::Push((gbMatrixStack *)a1);
+    ((gbMatrixStack *)a1)->Push();
     v9 = v9 + 40.0;
-    gbMatrixStack::Translate((gbMatrixStack *)a1, (struct gbVec3D *)&v8);
+    ((gbMatrixStack *)a1)->Translate((struct gbVec3D *)&v8);
     (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)&g_SceneMgr.m_info[51500] + 16))(
       *(_DWORD *)&g_SceneMgr.m_info[51500],
       0);
-    gbMatrixStack::Pop((gbMatrixStack *)a1);
+    ((gbMatrixStack *)a1)->Pop();
   }
 }
 
@@ -171,7 +165,7 @@ char ScriptSystem::Render2()
 
   sub_445500((int *)MEMORY[0xBFDAB0]._data);
   for ( i = 0; i < MEMORY[0xBFDB84]; ++i )
-    GRPinput::SetMouseSensitivity(*(_DWORD *)(MEMORY[0xBFDB80] + 4 * i));
+    ((GRPinput *)*(_DWORD *)(MEMORY[0xBFDB80] + 4 * i))->SetMouseSensitivity();
   sub_43A270(&g_SceneMgr.?[5].?.length[25]);
   result = (char)g_SceneMgr.?[225];
   if ( g_SceneMgr.?[225] )
@@ -191,8 +185,8 @@ char ScriptSystem::Render2()
         if ( *(v6 - 122) && *v6 && *((_BYTE *)v6 - 459) == 2 )
         {
           memset(pOut, 0, sizeof(pOut));
-          RoleSystem::GetDirection((RoleSystem *)(v6 - 158), pOut);
-          gbCamera::PointWorldToScr((gbCamera *)&g_pCamera->OrthoSize, (struct gbVec3D *)pOut, &v8, (float *)&v9);
+          ((RoleSystem *)(v6 - 158))->GetDirection(pOut);
+          ((gbCamera *)&g_pCamera->OrthoSize)->PointWorldToScr((struct gbVec3D *)pOut, &v8, (float *)&v9);
           sprintf(Buffer, "%d", *((unsigned __int8 *)v6 - 332));
           v7 = v8 - 0.050000001;
           (*(void (**)(int, char *, _DWORD, int, int, int))(*(_DWORD *)v3 + 16))(
@@ -219,8 +213,8 @@ int ScriptSystem::Destroy()
   char *v0; // esi
   int result; // eax
 
-  UIWnd::Reset((UIWnd *)&MEMORY[0xBFDAB0]);
-  PalScript::Reset((PalScript *)&g_SceneMgr.m_info[50648]);
+  ((UIWnd *)&MEMORY[0xBFDAB0])->Reset();
+  ((PalScript *)&g_SceneMgr.m_info[50648])->Reset();
   ScriptSystem::Cleanup();
   v0 = (char *)&g_SceneMgr.m_info[7120];
   do
@@ -271,16 +265,16 @@ int ScriptSystem::Execute(int a1, char a2)
   *(_DWORD *)&g_SceneMgr.m_info[8704 * *(_DWORD *)&g_SceneMgr.m_info[51512] + 7752] = 0;
   *(_DWORD *)&g_SceneMgr.m_info[8704 * a1 + 7752] = 1;
   RoleSystemNotify((int)&g_SceneMgr.m_info[8704 * a1 + 7120]);
-  CameraSystem::Init((int)&g_SceneMgr.m_info[8704 * a1 + 7120]);
+  ((int)&g_SceneMgr.m_info[8704 * a1 + 7120])->Init();
   *(_DWORD *)&g_SceneMgr.m_info[51512] = a1;
   if ( *((_DWORD *)g_pCamera + 112) )
-    RoleSystem::SetActive((RoleSystem *)g_pCamera, (int)&g_SceneMgr.m_info[8704 * a1 + 7120]);
+    ((RoleSystem *)g_pCamera)->SetActive((int)&g_SceneMgr.m_info[8704 * a1 + 7120]);
   if ( a1 == 1 && dword_C025EC == 10 )
   {
     sub_419090((float *)&dword_C02198);
     dword_C042E8 = *(_DWORD *)&g_SceneMgr.m_info[24512];
   }
-  v4 = CGameData::SetMode(&g_GameData, 0);
+  v4 = ((CGameData *)&g_GameData)->SetMode(0);
   if ( v4 )
     sub_4524B0((gbRefObject **)(v4 + 1084), *(int *)&g_SceneMgr.m_info[51512]);
   v5 = *(_DWORD *)&g_SceneMgr.m_info[51512];
@@ -288,9 +282,9 @@ int ScriptSystem::Execute(int a1, char a2)
   {
     if ( _strcmpi(&g_SceneMgr.m_info[24702], dword_586194) )
     {
-      Actor::LoadModel((int)&g_SceneMgr.m_info[25208], dword_586194, 0);
+      ((int)&g_SceneMgr.m_info[25208])->LoadModel(dword_586194, 0);
       strcpy(&g_SceneMgr.m_info[24702], dword_586194);
-      RoleSystem::UpdateTransform((int)&g_SceneMgr.m_info[24528]);
+      ((int)&g_SceneMgr.m_info[24528])->UpdateTransform();
     }
     v5 = *(_DWORD *)&g_SceneMgr.m_info[51512];
   }
@@ -299,7 +293,7 @@ int ScriptSystem::Execute(int a1, char a2)
   while ( !v7[v6] )
   {
     if ( ++v6 > 4 )
-      return ScriptSystem::RunEvent(31, 0, 0);
+      return ((ScriptSystem *)31)->RunEvent(0, 0);
   }
   return v6->RunEvent(1, 1);
 }
@@ -351,7 +345,7 @@ int ScriptSystem::RunScript(int a1, int a2, int a3)
   if ( v6 < 0 )
   {
     sprintf(Buffer, "%d", v6);
-    v10 = operator new(0x24u);
+    v10 = ((operator *)0x24u)->new();
     v14[5] = v10;
     v16 = 0;
     if ( v10 )
@@ -360,7 +354,7 @@ int ScriptSystem::RunScript(int a1, int a2, int a3)
       v11 = 0;
     v16 = -1;
     v11->SetJoystickPos(Buffer, 0);
-    PtrArray::SetAt(&MEMORY[0xBFDB80], MEMORY[0xBFDB84], (int)v11);
+    ((PtrArray *)&MEMORY[0xBFDB80])->SetAt(MEMORY[0xBFDB84], (int)v11);
     LOBYTE(result) = a2;
     if ( (_BYTE)a2 )
     {
@@ -419,7 +413,7 @@ int ScriptSystem::RunWithDelay(float delay, int a2, int a3)
   if ( v13 < 0 )
   {
     sprintf(Buffer, "%d", v13);
-    v9 = operator new(0x24u);
+    v9 = ((operator *)0x24u)->new();
     v16 = 0;
     if ( v9 )
       v10 = (_BYTE *)v9->SetMousePos();
@@ -427,7 +421,7 @@ int ScriptSystem::RunWithDelay(float delay, int a2, int a3)
       v10 = 0;
     v16 = -1;
     v10->SetJoystickPos(Buffer, 0);
-    PtrArray::SetAt(&MEMORY[0xBFDB80], MEMORY[0xBFDB84], (int)v10);
+    ((PtrArray *)&MEMORY[0xBFDB80])->SetAt(MEMORY[0xBFDB84], (int)v10);
     LOBYTE(result) = a2;
     if ( (_BYTE)a2 )
     {
@@ -478,7 +472,7 @@ int ScriptSystem::RunEvent(int eventId, int a2, int a3)
     if ( !g_SceneMgr.m_info[1408 * v4 + 725] && (unsigned int)eventId <= 4 && !a3 )
     {
       sprintf(Buffer, off_5861F8, eventId);
-      v7 = (char *)PalScript::SetAppName(&MEMORY[0x8ACD30], Buffer);
+      v7 = ((PalScript *)&MEMORY[0x8ACD30])->SetAppName(Buffer);
       sub_410360(v7);
       result = *(_DWORD *)&g_SceneMgr.m_info[51512];
       g_SceneMgr.m_info[1408 * *(_DWORD *)&g_SceneMgr.m_info[51512] + 700 + eventId] = 1;
@@ -511,7 +505,7 @@ int ScriptSystem::UpdateTimers(float dt)
   if ( result )
   {
     if ( v1[36] || v1[316] == 4 )
-      Actor::QueryState(v1 + 170);
+      ((Actor *)v1 + 170)->QueryState();
     switch ( *(_DWORD *)(v2 + 1264) )
     {
       case 0:
@@ -638,11 +632,11 @@ int ScriptSystem::UpdateObjects(float dt)
   float dta; // [esp+54h] [ebp+4h]
 
   v2 = v1;
-  Actor::QueryState((void *)(v1 + 680));
+  ((void *)(v1 + 680))->QueryState();
   if ( *(_DWORD *)&g_SceneMgr.m_info[17108] <= 2u && *(_DWORD *)(v2 + 1284) != *(_DWORD *)&g_SceneMgr.m_info[17108] )
   {
     *(_DWORD *)(v2 + 1284) = *(_DWORD *)&g_SceneMgr.m_info[17108];
-    RoleSystem::UpdatePath((RoleSystem *)v2, *(int *)&g_SceneMgr.m_info[17108]);
+    ((RoleSystem *)v2)->UpdatePath(*(int *)&g_SceneMgr.m_info[17108]);
   }
   v3 = (float *)(v2 + 1344);
   sub_419090((float *)(v2 + 1344));
@@ -651,7 +645,7 @@ int ScriptSystem::UpdateObjects(float dt)
   v15 = *(float *)(v2 + 1352) - *(float *)(v2 + 168);
   v13 = *(float *)(v2 + 1348) - *(float *)(v2 + 164);
   v11 = *v3 - *(float *)(v2 + 160);
-  v4 = (gbVec3D *)gbVec3D::gbVec3D((gbVec3D *)v21, v11, v13, v15);
+  v4 = ((gbVec3D *)v21)->gbVec3D(v11, v13, v15);
   v5 = *(float *)(v2 + 8700) - *(float *)(v2 + 168);
   v19[0] = *(_DWORD *)v4;
   v19[1] = *((_DWORD *)v4 + 1);
@@ -660,14 +654,14 @@ int ScriptSystem::UpdateObjects(float dt)
   v19[2] = *((_DWORD *)v4 + 2);
   v14 = v6;
   v12 = *(float *)(v2 + 8692) - *(float *)(v2 + 160);
-  v7 = (gbVec3D *)gbVec3D::gbVec3D((gbVec3D *)v22, v12, v14, v16);
+  v7 = ((gbVec3D *)v22)->gbVec3D(v12, v14, v16);
   v20[0] = *(_DWORD *)v7;
   v20[1] = *((_DWORD *)v7 + 1);
   v20[2] = *((_DWORD *)v7 + 2);
-  v8 = gbVec3D::Length((gbVec3D *)v19);
+  v8 = ((gbVec3D *)v19)->Length();
   dta = v8;
   if ( v8 < 0.000049999999
-    || (v9 = gbVec3D::DotProduct((gbVec3D *)v19, (const struct gbVec3D *)v20) / dta, v9 >= 0.0) && v9 - dta > -0.1 )
+    || (v9 = ((gbVec3D *)v19)->DotProduct((const struct gbVec3D *)v20) / dta, v9 >= 0.0) && v9 - dta > -0.1 )
   {
     *(float *)(v2 + 160) = *v3;
     *(_DWORD *)(v2 + 164) = *(_DWORD *)(v2 + 1348);

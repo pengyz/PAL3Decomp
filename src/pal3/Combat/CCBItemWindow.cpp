@@ -25,7 +25,7 @@ extern void *off_570554;
 // 0x0051B160
 CCBItemWindow::CCBItemWindow(CCBItemWindow *Block, char a2)
 {
-  UIWnd::~UIWnd((UIWnd *)Block);
+  ((UIWnd *)Block)->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return (UIWnd *)Block;
@@ -65,18 +65,18 @@ char CCBItemWindow::Create(int _this, _DWORD *a2, int a3)
   int i; // ebp
   _DWORD *v13; // ebx
 
-  UIWnd::Create((_DWORD *)this, 1879048196, a2, a3);
+  ((_DWORD *)this)->Create(1879048196, a2, a3);
   v4 = (_DWORD *)(this + 72);
-  CCBLineupWindow::Destroy(this + 72);
+  ((CCBLineupWindow *)this + 72)->Destroy();
   *a2 = 0;
   a2[2] = 158;
   a2[1] = 0;
   a2[3] = 158;
   (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v4 + 16))(*v4, 232, a2, this);
-  UIWnd::CreateFromTemplate(*(gbRefObject ***)(this + 72), aUiCombatContro_18, 0);
+  ((UIWnd *)*(gbRefObject ***)(this + 72))->CreateFromTemplate(aUiCombatContro_18, 0);
   (**(void (***)(_DWORD, int))*v4)(*v4, 1);
   v5 = (_DWORD *)(this + 96);
-  CCBLineupWindow::OnMessage(this + 96);
+  ((CCBLineupWindow *)this + 96)->OnMessage();
   *a2 = 7;
   a2[2] = 80;
   a2[1] = 48;
@@ -90,7 +90,7 @@ char CCBItemWindow::Create(int _this, _DWORD *a2, int a3)
     0);
   (**(void (***)(_DWORD, int))*v5)(*v5, 1);
   v6 = (_DWORD *)(this + 100);
-  CCBLineupWindow::OnMessage(this + 100);
+  ((CCBLineupWindow *)this + 100)->OnMessage();
   *a2 = 78;
   a2[2] = 151;
   a2[1] = 48;
@@ -104,7 +104,7 @@ char CCBItemWindow::Create(int _this, _DWORD *a2, int a3)
     0);
   (**(void (***)(_DWORD, int))*v6)(*v6, 1);
   v7 = (_DWORD *)(this + 104);
-  CCBLineupWindow::OnMessage(this + 104);
+  ((CCBLineupWindow *)this + 104)->OnMessage();
   a2[1] = 73;
   *a2 = 7;
   a2[2] = 80;
@@ -118,7 +118,7 @@ char CCBItemWindow::Create(int _this, _DWORD *a2, int a3)
     0);
   (**(void (***)(_DWORD, int))*v7)(*v7, 1);
   v8 = (_DWORD *)(this + 108);
-  CCBLineupWindow::OnMessage(this + 108);
+  ((CCBLineupWindow *)this + 108)->OnMessage();
   *a2 = 78;
   a2[2] = 151;
   a2[1] = 73;
@@ -132,7 +132,7 @@ char CCBItemWindow::Create(int _this, _DWORD *a2, int a3)
     0);
   (**(void (***)(_DWORD, int))*v8)(*v8, 1);
   v9 = (_DWORD *)(this + 112);
-  CCBLineupWindow::OnMessage(this + 112);
+  ((CCBLineupWindow *)this + 112)->OnMessage();
   *a2 = 7;
   a2[2] = 80;
   a2[1] = 98;
@@ -146,7 +146,7 @@ char CCBItemWindow::Create(int _this, _DWORD *a2, int a3)
     0);
   (**(void (***)(_DWORD, int))*v9)(*v9, 1);
   v10 = (_DWORD *)(this + 116);
-  CCBLineupWindow::OnMessage(this + 116);
+  ((CCBLineupWindow *)this + 116)->OnMessage();
   *a2 = 78;
   a2[2] = 151;
   a2[1] = 98;
@@ -168,12 +168,12 @@ char CCBItemWindow::Create(int _this, _DWORD *a2, int a3)
     a2[1] = 31;
     a2[3] = 47;
     ((void (*)(gbRefObject **, int, _DWORD *, int))(**v11)[4].RefCount)(*v11, dword_570138[i], a2, this);
-    UIWnd::CreateFromTemplate(*v11, off_570218[i], 0);
+    ((UIWnd *)*v11)->CreateFromTemplate(off_570218[i], 0);
     ((void (*)(gbRefObject **, int))(**v11)->RefCount)(*v11, 1);
     ++v11;
   }
   v13 = (_DWORD *)(this + 120);
-  CCBLineupWindow::Update(this + 120);
+  ((CCBLineupWindow *)this + 120)->Update();
   *a2 = 35;
   a2[2] = 127;
   a2[1] = 127;
@@ -205,7 +205,7 @@ int CCBItemWindow::Destroy(int _this)
   _DWORD *v11; // esi
   int v12; // edi
 
-  result = UIListBox::SetScrollPos((gbRefObject **)this);
+  result = ((gbRefObject **)this)->SetScrollPos();
   v3 = *(_DWORD *)(this + 72);
   if ( v3 )
   {
@@ -276,7 +276,7 @@ BOOL CCBItemWindow::HandleInput(int a2, int a3)
   if ( this->m_rect.top == 1
     && (g_Input.m_DIKToKEY[1] == 1 && (g_Input.m_shiftedKeyStates[268] & 0xF) == 1 || g_Input.m_DIKToKEY[5] == 1) )
   {
-    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), 214, -1);
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8))->SetParam(214, -1);
   }
   return this->HitTest(a2, a3);
 }
@@ -310,7 +310,7 @@ int CCBItemWindow::OnMessage(int a2)
 // 0x0051B620
 _DWORD * CCBItemWindow::Update()
 {
-  UIListBox::UIListBox((UIListBox *)this);
+  ((UIListBox *)this)->UIListBox();
   this->m_fontcolor.ColorQuadFmt = (int)&off_570554;
   sub_51B6E0(this);
   return &this->m_fontcolor.ColorQuadFmt;
@@ -319,7 +319,7 @@ _DWORD * CCBItemWindow::Update()
 // 0x0051B670
 UIWnd * CCBItemWindow::CreateButtons(CCBItemWindow *Block, char a2)
 {
-  UIWnd::~UIWnd((UIWnd *)Block);
+  ((UIWnd *)Block)->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return (UIWnd *)Block;

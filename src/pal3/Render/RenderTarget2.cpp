@@ -452,8 +452,8 @@ void RenderTarget2::Resolve()
       }
       *(_DWORD *)&g_pGfxManager[2280] = 0;
       *(_DWORD *)&g_pGfxManager[2284] = 0;
-      gbGfxManager_D3D::SetTexture((gbGfxManager_D3D *)g_pGfxManager, 0);
-      gbRenderEffect::Apply(*(gbRenderEffect **)(*(_DWORD *)&g_pGfxManager[200] + 24));
+      ((gbGfxManager_D3D *)g_pGfxManager)->SetTexture(0);
+      ((gbRenderEffect *)*(gbRenderEffect **)(*(_DWORD *)&g_pGfxManager[200] + 24))->Apply();
     }
     PopMatrixStacks();
   }

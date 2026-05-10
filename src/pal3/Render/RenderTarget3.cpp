@@ -55,10 +55,7 @@ int RenderTarget3::Begin()
       v5 = *((_DWORD *)this + 4);
       if ( !v5 || i >= (*((_DWORD *)this + 5) - v5) >> 2 )
         break;
-      gbRenderEffect::SetVariant(
-        *((gbRenderEffect **)this + 1),
-        PARAM_HANDLE_SPECULAR,
-        (void *)(*(_DWORD *)(v5 + 4 * i) + 16));
+      ((gbRenderEffect *)*((gbRenderEffect **)this + 1))->SetVariant(PARAM_HANDLE_SPECULAR, (void *)(*(_DWORD *)(v5 + 4 * i) + 16));
       v6 = *(_DWORD *)(*((_DWORD *)this + 4) + 4 * i);
       (*(void (**)(int, _DWORD))(*(_DWORD *)v6 + 4))(v6, *((_DWORD *)this + 1));
     }
@@ -119,7 +116,7 @@ void RenderTarget3::Resolve()
         v4[1] = -1082130432;
         PushMatrixStacks();
         v6 = 0;
-        DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&g_pGfxManager[196], 0x15u);
+        DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)&g_pGfxManager[196])->GetDynVertBuf(0x15u);
         v3 = *((_DWORD *)this + 1);
         v5[16] = 1;
         v5[0] = v3;

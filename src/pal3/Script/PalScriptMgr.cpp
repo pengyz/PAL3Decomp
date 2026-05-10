@@ -84,14 +84,14 @@ void __cdecl sub_4320A0(const char *a1)
     {
       if ( v1 == 1 )
       {
-        std::string::_Tidy(&byte_D8C2B8, 1);
+        ((std *)&byte_D8C2B8)->string::_Tidy(1);
         return;
       }
       if ( (unsigned int)dword_D8C2C4 <= 0x1F && dword_D8C2C4 >= v1 - 1 )
         goto LABEL_15;
-      std::string::_Tidy(&byte_D8C2B8, 1);
+      ((std *)&byte_D8C2B8)->string::_Tidy(1);
     }
-    GRPinput::GetKeyState((int)&byte_D8C2B8, v2);
+    ((int)&byte_D8C2B8)->GetKeyState(v2);
     v3 = (char *)dword_D8C2BC;
 LABEL_15:
     qmemcpy(v3, a1, v2);
@@ -118,7 +118,7 @@ _DWORD * PalScriptMgr::Destroy(unsigned int a1, char a2)
     v3 = result;
     if ( result )
     {
-      v4 = (_DWORD *)operator new(0x18u);
+      v4 = ((operator *)0x18u)->new();
       if ( v4 )
         v5 = (_DWORD *)sub_431CB0(v4);
       else
@@ -126,7 +126,7 @@ _DWORD * PalScriptMgr::Destroy(unsigned int a1, char a2)
       if ( v5 )
       {
         v5[1] = v3;
-        PtrArray::SetAt(MEMORY[0xD8C32C], v5);
+        ((PtrArray *)MEMORY[0xD8C32C])->SetAt(v5);
         return v5;
       }
       else
@@ -171,7 +171,7 @@ int PalScriptMgr::IfAnyScriptRunning(int a2)
 {
   int result; // eax
 
-  PtrArray::SetAt((PtrArray *)&this->m_script.m_nSize, this->m_script.m_nMaxSize, a2);
+  ((PtrArray *)&this->m_script.m_nSize)->SetAt(this->m_script.m_nMaxSize, a2);
   return result;
 }
 
@@ -229,7 +229,7 @@ int PalScriptMgr::IsScriptRuning(int a2)
   }
   else
   {
-    while ( PtrArray::~PtrArray((int)this->m_script.m_pData) != 2 )
+    while ( ((int)this->m_script.m_pData)->~PtrArray() != 2 )
     {
       if ( this->m_script.m_nMaxSize > 0 )
         return 0;

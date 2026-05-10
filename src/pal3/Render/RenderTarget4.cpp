@@ -32,7 +32,7 @@ void * RenderTarget4::Init()
   struct gbVFileSystem *v4; // [esp+8h] [ebp-10h] BYREF
   int v5; // [esp+14h] [ebp-4h]
 
-  OpenBaseFile::OpenBaseFile(&v4);
+  ((OpenBaseFile *)&v4)->OpenBaseFile();
   v5 = 0;
   v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
@@ -41,5 +41,5 @@ void * RenderTarget4::Init()
   v2->LoadTexture(1);
   *this = 0;
   v5 = -1;
-  return OpenNULLFile::OpenNULLFile(&v4);
+  return ((OpenNULLFile *)&v4)->OpenNULLFile();
 }

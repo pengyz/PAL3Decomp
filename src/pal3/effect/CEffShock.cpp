@@ -23,7 +23,7 @@ CEffShock::CEffShock()
 {
   _DWORD *v0; // eax
 
-  v0 = (_DWORD *)operator new(0x10B0u);
+  v0 = ((operator *)0x10B0u)->new();
   if ( v0 )
     return sub_4D3870(v0);
   else
@@ -73,7 +73,7 @@ char CEffShock::Create(int _this, int a2)
   char ArgList[1024]; // [esp+410h] [ebp-40Ch] BYREF
   int v24; // [esp+818h] [ebp-4h]
 
-  v3 = operator new(0x4C0u);
+  v3 = ((operator *)0x4C0u)->new();
   *(_DWORD *)(this + 24) = v3;
   if ( v3 )
   {
@@ -81,7 +81,7 @@ char CEffShock::Create(int _this, int a2)
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
+      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = ((operator *)0x2D0u)->new();
       if ( !*(_DWORD *)(v5 + *(_DWORD *)(this + 24)) )
         break;
       v5 += 152;
@@ -148,9 +148,9 @@ LABEL_10:
   *(_BYTE *)(this + 4172) = *(_BYTE *)(a2 + 176);
   *(_DWORD *)(this + 4176) = 0xFFFF;
   *(_DWORD *)(this + 4188) = *(_DWORD *)(a2 + 204);
-  CEffShock::CreateGeom((CEffShock *)this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
+  ((CEffShock *)this)->CreateGeom(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   v11 = *(_DWORD *)(this + 4152);
-  v12 = operator new(68 * v11);
+  v12 = ((operator *)68 * v11)->new();
   v21 = v12;
   v24 = 0;
   if ( v12 )
@@ -184,7 +184,7 @@ LABEL_10:
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aNewFailInCeffs, aDProjectPal3Co_17, 91),
+      ((Logger *)ArgList)->FormatException(aNewFailInCeffs, aDProjectPal3Co_17, 91),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -214,7 +214,7 @@ int CEffShock::StartShock(int _this, int a2)
     if ( (byte_1895561 & 1) == 0 )
     {
       byte_1895561 |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     ++dword_1895988;

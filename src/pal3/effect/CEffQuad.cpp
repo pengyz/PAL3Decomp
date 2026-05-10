@@ -49,9 +49,9 @@ char CEffQuad::Create(int _this, int a2)
   *(_BYTE *)(this + 54) = *(_BYTE *)(a2 + 176);
   *(_DWORD *)(this + 56) = &unk_FFFFFF;
   sub_4D1FD0(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
-  *(_DWORD *)(this + 156) = operator new(80 * *(_DWORD *)(a2 + 208));
+  *(_DWORD *)(this + 156) = ((operator *)80 * *(_DWORD *)(a2 + 208))->new();
   v3 = *(_DWORD *)(a2 + 208);
-  v4 = (void *)operator new(68 * v3);
+  v4 = ((operator *)68 * v3)->new();
   v21 = v4;
   v24 = 0;
   if ( v4 )
@@ -85,7 +85,7 @@ char CEffQuad::Create(int _this, int a2)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aNewFailInCeffq, (int)aDProjectPal3Co_16, 127),
+      (const void *)((char)&ArgList)->FormatException((int)aNewFailInCeffq, (int)aDProjectPal3Co_16, 127),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -93,8 +93,8 @@ char CEffQuad::Create(int _this, int a2)
   sub_4D1EF0(this);
   for ( i = 0; i < *(_DWORD *)(this + 68); ++i )
     *(_DWORD *)(*(_DWORD *)(this + 164) + 4 * i) = i;
-  CEffQuad::ToNextFrame(a2 + 40);
-  v11 = (void *)operator new(0x4C0u);
+  ((CEffQuad *)a2 + 40)->ToNextFrame();
+  v11 = ((operator *)0x4C0u)->new();
   *(_DWORD *)(this + 24) = v11;
   if ( v11 )
   {
@@ -102,7 +102,7 @@ char CEffQuad::Create(int _this, int a2)
     v13 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v13 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
+      *(_DWORD *)(v13 + *(_DWORD *)(this + 24)) = ((operator *)0x2D0u)->new();
       if ( !*(_DWORD *)(v13 + *(_DWORD *)(this + 24)) )
         break;
       v13 += 152;
@@ -184,7 +184,7 @@ char CEffQuad::DestroyOneQuad(const void *a2)
     *((_DWORD *)this + 15) = v9 + 1;
   *(_DWORD *)(v8 + *((_DWORD *)this + 39)) = *((_DWORD *)this + 16);
   *(_DWORD *)(*((_DWORD *)this + 41) + 4 * (*((_DWORD *)this + 16))++) = v4;
-  CEffQuad::SetQuad((int)this, v4);
+  ((int)this)->SetQuad(v4);
   *((_DWORD *)this + 18) = v4;
   return 1;
 }
@@ -278,7 +278,7 @@ _DWORD * CEffQuad::ToNextFrame(int _this, int a2)
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 4264) = v3;
   v3->LoadTexture(1);
-  result = (_DWORD *)operator new(0x44u);
+  result = ((operator *)0x44u)->new();
   if ( result )
   {
     v5 = *(_DWORD *)(this + 4264);
@@ -294,7 +294,7 @@ _DWORD * CEffQuad::ToNextFrame(int _this, int a2)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed_0, (int)aDProjectPal3Co_16, 540),
+      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co_16, 540),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }

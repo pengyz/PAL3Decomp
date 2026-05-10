@@ -80,14 +80,14 @@ int PalScript::LoadScript(PalScript *this, int pathAddr)
   String1->LoadFromFile((char *)pathAddr);
   String1->SetDirectory(aPal3lang);
   LOBYTE(v12) = v11;
-  std::string::_Tidy(&v12, 0);
+  ((std *)&v12)->string::_Tidy(0);
   for ( LOBYTE(v25) = 1; String1->HasNext(); v19 = 0 )
   {
     if ( !_strcmpi(String1[0].m_bLoadSceneScript, off_58B448) )
       break;
     v2 = strlen(String1[0].m_bLoadSceneScript) + 1;
     v3 = v2 - 1;
-    if ( SceneObj::Update(&v12, v2 - 1, 1) )
+    if ( ((SceneObj *)&v12)->Update(v2 - 1, 1) )
     {
       qmemcpy(v13, String1, v3);
       v14 = v2 - 1;
@@ -95,10 +95,10 @@ int PalScript::LoadScript(PalScript *this, int pathAddr)
     }
     String1->LoadNext();
     LOBYTE(v16) = v11;
-    std::string::_Tidy(&v16, 0);
+    ((std *)&v16)->string::_Tidy(0);
     v4 = strlen(String1[0].m_bLoadSceneScript) + 1;
     v5 = v4 - 1;
-    if ( SceneObj::Update(&v16, v4 - 1, 1) )
+    if ( ((SceneObj *)&v16)->Update(v4 - 1, 1) )
     {
       qmemcpy(v17, String1, v5);
       v18 = v4 - 1;
@@ -166,11 +166,11 @@ char *PalScript::SetAppName(PalScript *this, char *name)
   int v17; // [esp+30h] [ebp-4h]
 
   LOBYTE(v14) = (_BYTE)name;
-  std::string::_Tidy(&v14, 0);
+  ((std *)&v14)->string::_Tidy(0);
   v3 = name;
   v4 = strlen(name) + 1;
   v5 = v4 - 1;
-  if ( SceneObj::Update(&v14, v4 - 1, 1) )
+  if ( ((SceneObj *)&v14)->Update(v4 - 1, 1) )
   {
     qmemcpy(v15, v3, v5);
     v16 = v4 - 1;
@@ -191,7 +191,7 @@ char *PalScript::SetAppName(PalScript *this, char *name)
   }
   v9 = (char *)*p_name;
   v17 = -1;
-  std::string::_Tidy(&v14, 1);
+  ((std *)&v14)->string::_Tidy(1);
   if ( v9 == *(char **)&this->m_bLoadSceneScript[4] )
     return aLangNull;
   v10 = (char *)*((_DWORD *)v9 + 8);
@@ -212,7 +212,7 @@ void * PalScript::LoadFromFile(char *filename)
   int v9; // [esp+40h] [ebp-4h]
 
   sub_4319C0((int)this);
-  OpenBaseFile::OpenBaseFile(&v8);
+  ((OpenBaseFile *)&v8)->OpenBaseFile();
   v9 = 0;
   v3 = (struct gbVFile *)g_pVFileSys->OpenFile(filename, 0x201u);
   v4 = v3;
@@ -232,7 +232,7 @@ void * PalScript::LoadFromFile(char *filename)
     }
   }
   v9 = -1;
-  return OpenNULLFile::OpenNULLFile(&v8);
+  return ((OpenNULLFile *)&v8)->OpenNULLFile();
 }
 
 // 0x004319F0
@@ -458,24 +458,24 @@ int PalScript::Update()
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aScriptSysInitF, aDProjectPal3Sc, 71),
+      ((Logger *)ArgList)->FormatException(aScriptSysInitF, aDProjectPal3Sc, 71),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  if ( !PtrArray::InsertAt((int)dword_D8C2E8, aInitSce) )
+  if ( !((int)dword_D8C2E8)->InsertAt(aInitSce) )
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aSystemScriptLo, aDProjectPal3Sc, 73),
+      ((Logger *)ArgList)->FormatException(aSystemScriptLo, aDProjectPal3Sc, 73),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  result = (int)PtrArray::InsertAt((int)dword_D8C2C8, aUiBigmapBigmap);
+  result = (int)((int)dword_D8C2C8)->InsertAt(aUiBigmapBigmap);
   if ( !result )
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aBigmapScriptLo, aDProjectPal3Sc, 75),
+      ((Logger *)ArgList)->FormatException(aBigmapScriptLo, aDProjectPal3Sc, 75),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -499,7 +499,7 @@ char *PalScript::GetString()
   if ( result )
   {
     if ( *result == 5 )
-      return PtrArray::SetAtGrow(*((_WORD *)result + 2), 0);
+      return ((PtrArray *)*((_WORD *)result + 2))->SetAtGrow(0);
   }
   return result;
 }
@@ -509,8 +509,8 @@ int PalScript::Reset()
 {
   int result; // eax
 
-  UIWnd::MoveWindow((UIWnd **)this + 19);
-  UIWnd::UpdateChildren((UIWnd *)this);
+  ((UIWnd *)(UIWnd **)this + 19)->MoveWindow();
+  ((UIWnd *)this)->UpdateChildren();
   return result;
 }
 
@@ -525,7 +525,7 @@ struct gbVFileSystem * PalScript::OpenScript(PalScript **this, const char *a2, c
   char Buffer[256]; // [esp+Ch] [ebp-10Ch] BYREF
   int v11; // [esp+114h] [ebp-4h]
 
-  OpenBaseFile::OpenBaseFile(&v9);
+  ((OpenBaseFile *)&v9)->OpenBaseFile();
   v11 = 0;
   sprintf(Buffer, "%s", a2);
   v4 = (gbRefObject *)*((_DWORD *)this + 49);
@@ -534,9 +534,9 @@ struct gbVFileSystem * PalScript::OpenScript(PalScript **this, const char *a2, c
   if ( a3 )
   {
     v5 = *(_DWORD *)g_Input.KeyInfo[177].Data;
-    v6 = (CHAR *)_Texture_Info::_CalculateUV((int)dword_1894B78, Buffer);
+    v6 = ((int)dword_1894B78)->_CalculateUV(Buffer);
     *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(int, CHAR *))(v5 + 8))(g_Input.KeyInfo[177].Data, v6);
-    *((_DWORD *)this + 50) = (PalScript *)Parent_Data::Parent_Data((int)dword_1894B78, Buffer);
+    *((_DWORD *)this + 50) = (PalScript *)((int)dword_1894B78)->Parent_Data(Buffer);
   }
   else
   {
@@ -548,5 +548,5 @@ struct gbVFileSystem * PalScript::OpenScript(PalScript **this, const char *a2, c
   if ( v7 )
     v7->LoadTexture(1);
   v11 = -1;
-  return OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v9);
+  return ((OpenNULLFile **)&v9)->OpenNULLFile();
 }

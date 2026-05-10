@@ -84,21 +84,17 @@ void ObjectCamera::SetCameraEyePosition(ObjectCamera **this, struct gbGfxManager
   ObjectCamera *v4; // eax
   ObjectCamera *v5; // eax
 
-  v3 = (gbCamera *)operator new(0x178u);
+  v3 = (gbCamera *)((operator *)0x178u)->new();
   if ( v3 )
     v4 = (ObjectCamera *)v3->gbCamera(a2);
   else
     v4 = 0;
   *this = v4;
-  gbCamera::SetDimention((gbCamera *)v4, g_Input.KeyInfo[120].Data, g_Input.KeyInfo[120].HoldTime);
+  ((gbCamera *)v4)->SetDimention(g_Input.KeyInfo[120].Data, g_Input.KeyInfo[120].HoldTime);
   v5 = (ObjectCamera *)*this;
   v5->m_camFrom.x = 0.0;
   v5->m_pCamera = (gbCamera *)1112014848;
-  gbCamera::SetLookAt(
-    (gbCamera *)*this,
-    (struct gbVec3D *)(this + 1),
-    (struct gbVec3D *)(this + 4),
-    (struct gbVec3D *)(this + 7));
+  ((gbCamera *)*this)->SetLookAt((struct gbVec3D *)(this + 1), (struct gbVec3D *)(this + 4), (struct gbVec3D *)(this + 7));
 }
 
 // 0x0047C6E0
@@ -130,8 +126,8 @@ int ObjectCamera::SetCameraAtPosition(int _this, int a2, int a3, int a4, char a5
   v10.y = v12;
   v13 = v8;
   v10.z = v13;
-  *(float *)(this + 64) = gbVec3D::Length(&v10);
-  return ObjectCamera::ComputeInfo((ObjectCamera *)this, 1);
+  *(float *)(this + 64) = ((gbVec3D *)&v10)->Length();
+  return ((ObjectCamera *)this)->ComputeInfo(1);
 }
 
 // 0x0047C770
@@ -155,8 +151,8 @@ int ObjectCamera::SetCameraRotate(int _this, int a2, int a3, int a4)
   v8.y = v10;
   v11 = v6;
   v8.z = v11;
-  *(float *)(this + 64) = gbVec3D::Length(&v8);
-  return ObjectCamera::ComputeInfo((ObjectCamera *)this, 1);
+  *(float *)(this + 64) = ((gbVec3D *)&v8)->Length();
+  return ((ObjectCamera *)this)->ComputeInfo(1);
 }
 
 // 0x0047C7E0
@@ -344,13 +340,9 @@ void ObjectCamera::SetStepRotate(int _this)
         }
       }
     }
-    ObjectCamera::ComputeInfo((ObjectCamera *)this, 1);
+    ((ObjectCamera *)this)->ComputeInfo(1);
   }
-  gbCamera::SetLookAt(
-    *(gbCamera **)this,
-    (struct gbVec3D *)(this + 4),
-    (struct gbVec3D *)(this + 16),
-    (struct gbVec3D *)(this + 28));
+  ((gbCamera *)*(gbCamera **)this)->SetLookAt((struct gbVec3D *)(this + 4), (struct gbVec3D *)(this + 16), (struct gbVec3D *)(this + 28));
 }
 
 // 0x0047CAD0

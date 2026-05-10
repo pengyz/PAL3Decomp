@@ -69,7 +69,7 @@ CCBAIWindow::~CCBAIWindow()
   CCBAIWindow *v3; // edi
   __int32 Color; // [esp+Ch] [ebp-Ch]
 
-  UIListBox::SetScroll((UIListBox *)this);
+  ((UIListBox *)this)->SetScroll();
   Alpha = this->m_fontcolor.Alpha;
   Color = this->m_fontcolor.Color;
   v3 = (CCBAIWindow *)*(CCBAIWindow **)(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 42) + 1160) + 20) + 68);
@@ -87,7 +87,7 @@ char CCBAIWindow::Reset(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (_BYTE *)operator new(0x98u);
+  v1 = ((operator *)0x98u)->new();
   v6 = 0;
   if ( v1 )
     v1->UIFrameWnd();
@@ -99,7 +99,7 @@ char CCBAIWindow::Reset(_DWORD *a1)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
+      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -115,7 +115,7 @@ char CCBAIWindow::Destroy(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (_DWORD *)operator new(0x74u);
+  v1 = ((operator *)0x74u)->new();
   v6 = 0;
   if ( v1 )
     v2 = (_DWORD *)v1->ctor_9310();
@@ -127,7 +127,7 @@ char CCBAIWindow::Destroy(_DWORD *a1)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
+      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -143,7 +143,7 @@ char CCBAIWindow::OnMessage(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (_DWORD *)operator new(0x6Cu);
+  v1 = ((operator *)0x6Cu)->new();
   v6 = 0;
   if ( v1 )
     v2 = (_DWORD *)sub_519AF0(v1);
@@ -155,7 +155,7 @@ char CCBAIWindow::OnMessage(_DWORD *a1)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
+      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -171,7 +171,7 @@ char CCBAIWindow::Update(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (_DWORD *)operator new(0x80u);
+  v1 = ((operator *)0x80u)->new();
   v6 = 0;
   if ( v1 )
     v2 = (_DWORD *)v1->ChangeNumTxt();
@@ -183,7 +183,7 @@ char CCBAIWindow::Update(_DWORD *a1)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
+      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -199,7 +199,7 @@ char CCBAIWindow::ShowWindow(_DWORD *a1)
   char ArgList; // [esp+404h] [ebp-40Ch] BYREF
   int v6; // [esp+80Ch] [ebp-4h]
 
-  v1 = (_DWORD *)operator new(0x54u);
+  v1 = ((operator *)0x54u)->new();
   v6 = 0;
   if ( v1 )
     v2 = (_DWORD *)v1->DefaultKey();
@@ -211,7 +211,7 @@ char CCBAIWindow::ShowWindow(_DWORD *a1)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
+      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed, (int)aDProjectPal3Co_12, 1660),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }

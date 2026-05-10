@@ -191,7 +191,7 @@ int UICamera::GetState()
               v21 = v16;
               v18 = v5;
               v22 = v18;
-              v6 = gbVec3D::Length((gbVec3D *)&v20);
+              v6 = ((gbVec3D *)&v20)->Length();
               if ( v6 < v13 )
               {
                 v13 = v6;
@@ -224,7 +224,7 @@ int UICamera::GetState()
           v21 = v17;
           v19 = v10;
           v22 = v19;
-          v11 = gbVec3D::Length((gbVec3D *)&v20);
+          v11 = ((gbVec3D *)&v20)->Length();
           if ( v11 < v13 )
           {
             v13 = v11;

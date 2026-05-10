@@ -527,7 +527,7 @@ char CCBRoleState::Create(CCBRoleState **this)
           (const char *)(*p_speed + 36),
           (const char *)(*p_speed + 36),
           (const char *)(*p_speed + 66));
-        v4 = (gbGeomNode *)operator new(0x118u);
+        v4 = (gbGeomNode *)((operator *)0x118u)->new();
         v5 = v4;
         v17 = 0;
         if ( v4 )
@@ -546,13 +546,13 @@ char CCBRoleState::Create(CCBRoleState **this)
         {
           qmemcpy(
             pExceptionObject,
-            Logger::FormatException((Logger *)ArgList, aFailToCreateWe, aDProjectPal3Co_2, 1484),
+            ((Logger *)ArgList)->FormatException(aFailToCreateWe, aDProjectPal3Co_2, 1484),
             sizeof(pExceptionObject));
           _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
         }
         v6->LoadFromFile(Buffer, 0, 0);
-        gbGeomNode::ReplaceTexture(*v2, v12);
-        v7 = (gbGeomNode *)operator new(0x118u);
+        ((gbGeomNode *)*v2)->ReplaceTexture(v12);
+        v7 = (gbGeomNode *)((operator *)0x118u)->new();
         v8 = v7;
         v17 = 1;
         if ( v7 )
@@ -569,11 +569,11 @@ char CCBRoleState::Create(CCBRoleState **this)
         v2[3] = v9;
         if ( !v9 )
         {
-          qmemcpy(v14, Logger::FormatException((Logger *)v16, aFailToCreateWe, aDProjectPal3Co_2, 1494), sizeof(v14));
+          qmemcpy(v14, ((Logger *)v16)->FormatException(aFailToCreateWe, aDProjectPal3Co_2, 1494), sizeof(v14));
           _CxxThrowException(v14, (_ThrowInfo *)&_TI1_AV_Exception__);
         }
         v9->LoadFromFile(Buffer, 0, 0);
-        gbGeomNode::ReplaceTexture(v2[3], v12);
+        ((gbGeomNode *)v2[3])->ReplaceTexture(v12);
         LOBYTE(v3) = 1;
         LODWORD((*v2)->OffMat.tw) = 1;
         LODWORD(v2[3]->OffMat.tw) = 1;
@@ -742,7 +742,7 @@ char CCBRoleState::CheckVarianceRound(int a2, int a3, int *a4)
   if ( a2 >= 5 && a2 < 11 )
     return 0;
   v5 = 0;
-  Proxy = Concurrency::details::InternalContextBase::GetProxy((Concurrency::details::InternalContextBase *)&g_GDB);
+  Proxy = ((Concurrency::details::InternalContextBase *)&g_GDB)->details::InternalContextBase::GetProxy();
   v23 = 0;
   if ( (int)Proxy <= 0 )
     return 0;
@@ -751,7 +751,7 @@ char CCBRoleState::CheckVarianceRound(int a2, int a3, int *a4)
     v6 = 1;
     v7 = sub_479260(&g_GDB, v5);
     *a4 = v7;
-    ItemNum = PAL_GDB::GDB_GetItemNum(&g_GDB, v7);
+    ItemNum = ((PAL_GDB *)&g_GDB)->GDB_GetItemNum(v7);
     if ( *(_DWORD *)(ItemNum + 56) != a3 )
       goto LABEL_53;
     if ( *(_DWORD *)(ItemNum + 36) != *(&this->m_bMustFail + 223 * v4) )
@@ -891,7 +891,7 @@ char CCBRoleState::CancelVariance(_DWORD *a2, unsigned int a3)
     return 0;
   if ( *a2 != 259 )
     return 1;
-  result = CCBRoleState::CalSneakAttack((int)this, a2[2], a3);
+  result = ((int)this)->CalSneakAttack(a2[2], a3);
   if ( result )
     return 1;
   return result;
@@ -910,23 +910,23 @@ char CCBRoleState::IsAlive(int _this, int a2, int a3)
     return 0;
   if ( v5 != a2 )
     return 0;
-  result = CCBRoleState::IsRoleAlive((CCBRoleState *)this, 0);
+  result = ((CCBRoleState *)this)->IsRoleAlive(0);
   if ( result )
   {
     if ( *(_DWORD *)(this + 1136) == 6 )
     {
-      if ( CCBRoleState::GetRoleField((CCBRoleState *)this, 0, 14) )
+      if ( ((CCBRoleState *)this)->GetRoleField(0, 14) )
       {
         return 0;
       }
       else
       {
-        result = CCBStageRole::EndTask(*(float **)(*(_DWORD *)(this + 524) + 24), a2, a3);
+        result = ((CCBStageRole *)*(float **)(*(_DWORD *)(this + 524) + 24))->EndTask(a2, a3);
         if ( result )
         {
-          result = CCBStageRole::ForceEndTaskByPFN(*(float **)(*(_DWORD *)(this + 524) + 4 * a2 + 24));
+          result = ((CCBStageRole *)*(float **)(*(_DWORD *)(this + 524) + 4 * a2 + 24))->ForceEndTaskByPFN();
           if ( result )
-            return CCBStage::ForceDelTask(*(char **)(this + 524), 18) != 0;
+            return ((CCBStage *)*(char **)(this + 524))->ForceDelTask(18) != 0;
         }
       }
     }
@@ -1600,9 +1600,7 @@ LABEL_14:
     {
       if ( *(_BYTE *)(this + 892 * a2 + 650) || *(_BYTE *)(this + 892 * a2 + 651) )
         return 1;
-      if ( *(_DWORD *)(this + 892 * a3 + 1136) == CCBRoleState::CheckDeath(
-                                                    (CCBRoleState *)this,
-                                                    *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 520) + 112) + 64)) )
+      if ( *(_DWORD *)(this + 892 * a3 + 1136) == ((CCBRoleState *)this)->CheckDeath(*(_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 520) + 112) + 64)) )
       {
         v5 = 0;
         v6 = (_BYTE *)(this + 1432);
@@ -1610,7 +1608,7 @@ LABEL_14:
              || *v6
              || *(v6 - 1)
              || *((_DWORD *)v6 - 74) != 6
-             || CCBRoleState::SetRoleField((CCBRoleState *)this, v5, 0) <= 0 )
+             || ((CCBRoleState *)this)->SetRoleField(v5, 0) <= 0 )
         {
           ++v5;
           v6 += 892;
@@ -1630,7 +1628,7 @@ LABEL_14:
       || !*(_BYTE *)(this + 9497)
       || *(_BYTE *)(this + 10352)
       || *(_BYTE *)(this + 10351)
-      || CCBRoleState::SetRoleField((CCBRoleState *)this, 10, 0) <= 0;
+      || ((CCBRoleState *)this)->SetRoleField(10, 0) <= 0;
 }
 
 // 0x004F0360
@@ -1913,7 +1911,7 @@ char CCBRoleState::GetAliveRoleNumInForce(int a2)
     {
       goto LABEL_27;
     }
-    if ( CCBStageRole::ForceEndTaskByPFN(*(float **)(v4 + *(_DWORD *)&this->m_sCombatDialog[524]))
+    if ( ((CCBStageRole *)*(float **)(v4 + *(_DWORD *)&this->m_sCombatDialog[524]))->ForceEndTaskByPFN()
       || *(_WORD *)(g_GDB->GDB_GetRoleNum(*(_DWORD *)(a2 + 4)) + 666) == 2 )
     {
       if ( this->GetRoleField(v3, 22) )
@@ -1925,11 +1923,11 @@ char CCBRoleState::GetAliveRoleNumInForce(int a2)
         v8 = idx;
         v21 = sub_4F2660(this, (_DWORD *)a2, idx);
         if ( v21 < 0
-          && !CCBSystem::IsCmdEmpty(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), v8)
-          && !CCBSystem::IsCmdReady(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), v8) )
+          && !((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->IsCmdEmpty(v8)
+          && !((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->IsCmdReady(v8) )
         {
           g_GDB->GDB_GetRoleNum(*(_DWORD *)(a2 + 4));
-          CCBSystem::GetCmdData(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), v8);
+          ((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->GetCmdData(v8);
         }
         if ( v23 >= 44 && v23 < 68 && this->SetRoleField(idx, 0) <= 0 )
         {
@@ -1971,17 +1969,8 @@ char CCBRoleState::GetAliveRoleNumInForce(int a2)
       if ( RoleIndex == -1 )
         goto LABEL_27;
       this->CheckRoleStatus((int)roleIdx);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        RoleIndex,
-        (int)CCBStage::SelectRole,
-        0,
-        0,
-        0,
-        roleIdx,
-        0,
-        1065353216);
-      CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], RoleIndex);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(RoleIndex, (int)CCBStage::SelectRole, 0, 0, 0, roleIdx, 0, 1065353216);
+      ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(RoleIndex);
     }
     v5 = (_DWORD *)a2;
 LABEL_27:
@@ -2054,17 +2043,17 @@ char CCBRoleState::GetDeadRoleNumInForce(int a2)
     v14[3] = v3;
     if ( this->VarianceRoundCounter(v14) )
     {
-      if ( CCBRoleState::sub_4F05A0((_DWORD *)a2)
-        || CCBStageRole::ForceEndTaskByPFN(*(float **)(v23 + *(_DWORD *)&this->m_sCombatDialog[524]))
+      if ( ((_DWORD *)a2)->sub_4F05A0()
+        || ((CCBStageRole *)*(float **)(v23 + *(_DWORD *)&this->m_sCombatDialog[524]))->ForceEndTaskByPFN()
         || *(_WORD *)(g_GDB->GDB_GetRoleNum(*(_DWORD *)(a2 + 4)) + 666) == 2 )
       {
         v8 = idx;
         v20 = sub_4F2690(this, (_DWORD *)a2, idx);
         if ( v20 < 0
-          && !CCBSystem::IsCmdEmpty(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), v8)
-          && !CCBSystem::IsCmdReady(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), v8) )
+          && !((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->IsCmdEmpty(v8)
+          && !((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->IsCmdReady(v8) )
         {
-          CCBSystem::GetCmdData(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), v8);
+          ((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->GetCmdData(v8);
         }
         if ( *(_DWORD *)(a2 + 4) == 4101 )
           this->GetFirstAliveRoleInForce(0, *(_DWORD *)(a2 + 12));
@@ -2107,17 +2096,8 @@ char CCBRoleState::GetDeadRoleNumInForce(int a2)
         if ( RoleIndex != -1 )
         {
           this->CheckRoleStatus((int)v17);
-          CCBStage::GetRoleName(
-            *(_DWORD **)&this->m_sCombatDialog[524],
-            RoleIndex,
-            (int)CCBStage::SelectRole,
-            0,
-            0,
-            0,
-            v17,
-            0,
-            1065353216);
-          CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], RoleIndex);
+          ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(RoleIndex, (int)CCBStage::SelectRole, 0, 0, 0, v17, 0, 1065353216);
+          ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(RoleIndex);
         }
       }
     }
@@ -2132,17 +2112,8 @@ char CCBRoleState::GetDeadRoleNumInForce(int a2)
       if ( v5 != -1 )
       {
         this->CheckRoleStatus((int)roleIdx);
-        CCBStage::GetRoleName(
-          *(_DWORD **)&this->m_sCombatDialog[524],
-          v5,
-          (int)CCBStage::SelectRole,
-          0,
-          0,
-          0,
-          roleIdx,
-          0,
-          1065353216);
-        CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], v5);
+        ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v5, (int)CCBStage::SelectRole, 0, 0, 0, roleIdx, 0, 1065353216);
+        ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(v5);
       }
     }
 LABEL_30:
@@ -2199,22 +2170,13 @@ char CCBRoleState::GetFirstAliveRoleInForce(int roleIdx, int a3)
     v7 = *((_DWORD *)v6 + 274);
     v8 = ((g_RandSeed >> 16) & 0x7FFF) % v7 + 1;
     *((_DWORD *)v6 + 274) = v7 - v8;
-    RoleIndex = CCBStage::GetRoleIndex(*(_DWORD **)&this->m_sCombatDialog[524], 28, v21, 1);
+    RoleIndex = ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleIndex(28, v21, 1);
     v4 = RoleIndex;
     if ( RoleIndex != -1 )
     {
       v15 = 1;
       v17 = v8;
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        RoleIndex,
-        (int)sub_5027E0,
-        0,
-        0,
-        0,
-        &v15,
-        -1082130432,
-        0x40000000);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(RoleIndex, (int)sub_5027E0, 0, 0, 0, &v15, -1082130432, 0x40000000);
       this->CheckBuff(roleIdx);
     }
   }
@@ -2227,25 +2189,16 @@ char CCBRoleState::GetFirstAliveRoleInForce(int roleIdx, int a3)
     *((_DWORD *)v6 + 276) = v10 - v11;
     if ( v4 == -1 )
     {
-      v4 = CCBStage::GetRoleIndex(*(_DWORD **)&this->m_sCombatDialog[524], 28, v21, 1);
+      v4 = ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleIndex(28, v21, 1);
       if ( v4 == -1 )
         return 0;
     }
     Instance = (char *)CScreenMode::GetInstance();
-    CScreenMode::AudioSetPosition((CScreenMode *)Instance, aWa006, 1);
+    ((CScreenMode *)Instance)->AudioSetPosition(aWa006, 1);
     v16 = *((_DWORD *)v6 + 275);
     v15 = 0;
     v17 = v11;
-    CCBStage::GetRoleName(
-      *(_DWORD **)&this->m_sCombatDialog[524],
-      v4,
-      (int)sub_5027E0,
-      0,
-      0,
-      0,
-      &v15,
-      -1082130432,
-      0x40000000);
+    ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v4, (int)sub_5027E0, 0, 0, 0, &v15, -1082130432, 0x40000000);
     SkillNum = g_GDB->GDB_GetSkillNum(*((_DWORD *)v6 + 275));
     v18 = *((_DWORD *)v6 + 275);
     v20 = SkillNum;
@@ -2254,7 +2207,7 @@ char CCBRoleState::GetFirstAliveRoleInForce(int roleIdx, int a3)
   }
   if ( v4 != -1 )
   {
-    CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], v4);
+    ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(v4);
     return 1;
   }
   return 0;
@@ -2281,14 +2234,14 @@ char CCBRoleState::GetCastFightSkillSuccess(int a2)
     {
       goto LABEL_13;
     }
-    if ( (CCBRoleState::sub_4F05A0((_DWORD *)a2)
-       || CCBStageRole::ForceEndTaskByPFN(*(CCBStageRole **)((char *)&this->m_pStage->m_pCBSystem + i))
-       || *(_WORD *)(PAL_GDB::GDB_GetSkillNum(&g_GDB, *(_DWORD *)(a2 + 4)) + 748) == 2)
+    if ( (((_DWORD *)a2)->sub_4F05A0()
+       || ((CCBStageRole *)*(CCBStageRole **)((char *)&this->m_pStage->m_pCBSystem + i))->ForceEndTaskByPFN()
+       || *(_WORD *)(((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(*(_DWORD *)(a2 + 4)) + 748) == 2)
       && sub_4F2750(this, (_DWORD *)a2, v4) < 0
-      && !CCBSystem::IsCmdEmpty((CCBSystem *)this->m_pCBSystem->m_pAttackSequen, v4)
-      && !CCBSystem::IsCmdReady((CCBSystem *)this->m_pCBSystem->m_pAttackSequen, v4) )
+      && !((CCBSystem *)this->m_pCBSystem->m_pAttackSequen)->IsCmdEmpty(v4)
+      && !((CCBSystem *)this->m_pCBSystem->m_pAttackSequen)->IsCmdReady(v4) )
     {
-      CCBSystem::GetCmdData((CCBSystem *)this->m_pCBSystem->m_pAttackSequen, v4);
+      ((CCBSystem *)this->m_pCBSystem->m_pAttackSequen)->GetCmdData(v4);
     }
 LABEL_13:
     ++v4;
@@ -2317,21 +2270,21 @@ char CCBRoleState::SetCoAttack(int a2)
     {
       goto LABEL_12;
     }
-    if ( (CCBRoleState::sub_4F05A0((_DWORD *)a2)
-       || CCBStageRole::ForceEndTaskByPFN(*(float **)(*(_DWORD *)&this->m_sCombatDialog[524] + i)))
+    if ( (((_DWORD *)a2)->sub_4F05A0()
+       || ((CCBStageRole *)*(float **)(*(_DWORD *)&this->m_sCombatDialog[524] + i))->ForceEndTaskByPFN())
       && sub_4F27B0(this, (_DWORD *)a2, v4) < 0
-      && !CCBSystem::IsCmdEmpty(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), v4)
-      && !CCBSystem::IsCmdReady(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), v4) )
+      && !((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->IsCmdEmpty(v4)
+      && !((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->IsCmdReady(v4) )
     {
-      CCBSystem::GetCmdData(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), v4);
+      ((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->GetCmdData(v4);
     }
 LABEL_12:
     ++v4;
   }
   this->SetRoleHP(*(_DWORD *)(a2 + 8), *(_DWORD *)(a2 + 4));
   sub_43FE90(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 1068));
-  UIWnd::FindChild(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 1068), 50.0);
-  UIWnd::FindChildByName(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 1068), 0.0);
+  ((UIWnd *)*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 1068))->FindChild(50.0);
+  ((UIWnd *)*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 1068))->FindChildByName(0.0);
   *(_DWORD *)&this->m_sCombatDialog[892 * *(_DWORD *)(a2 + 8) + 1088] = 0;
   return 1;
 }
@@ -2392,16 +2345,16 @@ char CCBRoleState::CanBeImbibeNimbus(int arg0, unsigned int a2)
       result = 1;
       break;
     case 0x391:
-      result = CCBRoleState::CheckRoleValid((int)this, arg0, a2, 27);
+      result = ((int)this)->CheckRoleValid(arg0, a2, 27);
       break;
     case 0x392:
-      result = CCBRoleState::CheckRoleValid((int)this, arg0, a2, 28);
+      result = ((int)this)->CheckRoleValid(arg0, a2, 28);
       break;
     case 0x393:
-      result = CCBRoleState::CheckRoleValid((int)this, arg0, a2, 1);
+      result = ((int)this)->CheckRoleValid(arg0, a2, 1);
       break;
     case 0x3A1:
-      result = CCBRoleState::CheckRoleValid((int)this, arg0, a2, 30);
+      result = ((int)this)->CheckRoleValid(arg0, a2, 30);
       break;
     default:
 LABEL_8:
@@ -2430,7 +2383,7 @@ char CCBRoleState::CheckRoleValid(int _this, int a2, unsigned int roleIdx, int a
   switch ( a4 )
   {
     case 1:
-      return CCBRoleState::CanRoleAct((CCBRoleState *)this, roleIdx);
+      return ((CCBRoleState *)this)->CanRoleAct(roleIdx);
     case 2:
       v6 = (_DWORD *)*(_DWORD **)(this + 520);
       if ( *(_BYTE *)(v6[28] + 80) )
@@ -2446,8 +2399,8 @@ char CCBRoleState::CheckRoleValid(int _this, int a2, unsigned int roleIdx, int a
         if ( RoleIndex != -1 )
         {
           memset(v13, 0, sizeof(v13));
-          CCBStage::GetRoleName(*(_DWORD **)(this + 524), RoleIndex, (int)sub_5024D0, 0, 0, 0, v13, 0, 1077936128);
-          CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)(this + 524), RoleIndex);
+          ((CCBStage *)*(_DWORD **)(this + 524))->GetRoleName(RoleIndex, (int)sub_5024D0, 0, 0, 0, v13, 0, 1077936128);
+          ((CCBSystem *)*(CCBStageRole **)(this + 524))->GetStageRoleByIdx(RoleIndex);
         }
         goto LABEL_6;
       }
@@ -2471,17 +2424,17 @@ char CCBRoleState::CheckRoleValid(int _this, int a2, unsigned int roleIdx, int a
     case 27:
       if ( roleIdx > 4 )
         return 1;
-      v10 = CCBRoleState::GetTotalRounds((CCBRoleState *)this) / 200;
-      v11 = v10 - CCBRoleState::GetTotalRounds((CCBRoleState *)this) / 100;
+      v10 = ((CCBRoleState *)this)->GetTotalRounds() / 200;
+      v11 = v10 - ((CCBRoleState *)this)->GetTotalRounds() / 100;
       if ( v11 > 0 )
       {
         ++g_nRandCallCount;
         g_RandSeed = 214013 * g_RandSeed + 2531011;
         v11 = ((g_RandSeed >> 16) & 0x7FFF) % v11;
       }
-      if ( v11 + CCBRoleState::GetTotalRounds((CCBRoleState *)this) / 200 <= 0 )
+      if ( v11 + ((CCBRoleState *)this)->GetTotalRounds() / 200 <= 0 )
         return 1;
-      CCBRoleState::CheckBuff((CCBRoleState *)this, roleIdx);
+      ((CCBRoleState *)this)->CheckBuff(roleIdx);
       return 1;
     case 28:
       if ( roleIdx > 4 )
@@ -2490,12 +2443,12 @@ char CCBRoleState::CheckRoleValid(int _this, int a2, unsigned int roleIdx, int a
         goto LABEL_6;
       ++g_nRandCallCount;
       g_RandSeed = 214013 * g_RandSeed + 2531011;
-      TargetRole = (void *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_info[7072], pOut);
+      TargetRole = ((CCBAI *)&g_SceneMgr.m_info[7072])->GetTargetRole(pOut);
       CCBStageRole_PassCmd(&g_SceneMgr.m_info[7072], (int)TargetRole);
       result = 1;
       break;
     case 29:
-      if ( CCBRoleState::Update((CCBRoleState *)this, 2) == 1 )
+      if ( ((CCBRoleState *)this)->Update(2) == 1 )
         sub_4F8FD0((char *)this, a2, roleIdx);
       return 1;
     default:
@@ -2512,7 +2465,7 @@ char CCBRoleState::CheckRoleNimbus(int a2, unsigned int a3)
   int SkillNum; // eax
 
   SkillNum = g_GDB->GDB_GetSkillNum(*(_DWORD *)(a2 + 4));
-  return CCBRoleState::CheckRoleValid((int)this, *(_DWORD *)(a2 + 8), a3, *(unsigned __int8 *)(SkillNum + 628));
+  return ((int)this)->CheckRoleValid(*(_DWORD *)(a2 + 8), a3, *(unsigned __int8 *)(SkillNum + 628));
 }
 
 // 0x004F2350
@@ -2521,7 +2474,7 @@ char CCBRoleState::CanBeSelect(int a2, unsigned int a3)
   int RoleNum; // eax
 
   RoleNum = g_GDB->GDB_GetRoleNum(*(_DWORD *)(a2 + 4));
-  return CCBRoleState::CheckRoleValid((int)this, *(_DWORD *)(a2 + 8), a3, *(unsigned __int8 *)(RoleNum + 578));
+  return ((int)this)->CheckRoleValid(*(_DWORD *)(a2 + 8), a3, *(unsigned __int8 *)(RoleNum + 578));
 }
 
 // 0x004F2910
@@ -2589,22 +2542,13 @@ int CCBRoleState::SetRoleHP(int roleIdx, int value)
           v8 = 1;
           v7 = 6113;
           CCBStageRole_PassCmd(&g_SceneMgr.m_info[7072], (int)&v7);
-          result = CCBStage::GetRoleIndex(*(_DWORD **)&this->m_sCombatDialog[524], 8, 0, 1);
+          result = ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleIndex(8, 0, 1);
           v6 = result;
           if ( result != -1 )
           {
             this->CheckRoleStatus((int)roleIdxa);
-            CCBStage::GetRoleName(
-              *(_DWORD **)&this->m_sCombatDialog[524],
-              v6,
-              (int)CCBStage::ProcWait,
-              0,
-              0,
-              0,
-              roleIdxa,
-              0,
-              1080033280);
-            LOBYTE(result) = CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], v6);
+            ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v6, (int)CCBStage::ProcWait, 0, 0, 0, roleIdxa, 0, 1080033280);
+            LOBYTE(result) = ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(v6);
           }
         }
         break;
@@ -2689,17 +2633,8 @@ int CCBRoleState::CalcAttackPower(int roleIdx)
           v16 = v10;
       }
       this->CheckRoleStatus((int)roleIdxa);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        RoleIndex,
-        (int)CCBStage::GetRoleTaskNum,
-        0,
-        0,
-        0,
-        roleIdxa,
-        -1082130432,
-        1075838976);
-      CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], RoleIndex);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(RoleIndex, (int)CCBStage::GetRoleTaskNum, 0, 0, 0, roleIdxa, -1082130432, 1075838976);
+      ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(RoleIndex);
     }
     v4 = roleIdx;
     v2 = v16;
@@ -2772,17 +2707,8 @@ int CCBRoleState::CalcDefensePower(int roleIdx)
           v15 = v9;
       }
       this->CheckRoleStatus((int)v12);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        RoleIndex,
-        (int)CCBStage::GetRoleTaskNum,
-        0,
-        0,
-        0,
-        v12,
-        -1082130432,
-        1075838976);
-      CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], RoleIndex);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(RoleIndex, (int)CCBStage::GetRoleTaskNum, 0, 0, 0, v12, -1082130432, 1075838976);
+      ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(RoleIndex);
     }
     v2 = v15;
   }
@@ -2832,21 +2758,12 @@ char CCBRoleState::CheckBuff(int roleIdx)
   *(_DWORD *)&this->m_sCombatDialog[632] += v6;
   if ( v6 < 0 )
   {
-    RoleIndex = CCBStage::GetRoleIndex(*(_DWORD **)&this->m_sCombatDialog[524], 8, 0, 1);
+    RoleIndex = ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleIndex(8, 0, 1);
     if ( RoleIndex != -1 )
     {
       this->CheckRoleStatus((int)roleIdxa);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        RoleIndex,
-        (int)CCBStage::ProcWait,
-        0,
-        0,
-        0,
-        roleIdxa,
-        0,
-        1077936128);
-      CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], RoleIndex);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(RoleIndex, (int)CCBStage::ProcWait, 0, 0, 0, roleIdxa, 0, 1077936128);
+      ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(RoleIndex);
     }
   }
   result = *(_BYTE *)(*(_DWORD *)&this->m_sCombatDialog[520] + 133);
@@ -2877,13 +2794,13 @@ char CCBRoleState::CanUseSkill(int roleIdx)
       if ( v7 > 0 )
       {
         Instance = (char *)CScreenMode::GetInstance();
-        CScreenMode::AudioSetPosition((CScreenMode *)Instance, aWa010, 1);
+        ((CScreenMode *)Instance)->AudioSetPosition(aWa010, 1);
         v4 = v7 < 0;
       }
       if ( v4 )
       {
         v6 = (char *)CScreenMode::GetInstance();
-        CScreenMode::AudioSetPosition((CScreenMode *)v6, aWa048, 1);
+        ((CScreenMode *)v6)->AudioSetPosition(aWa048, 1);
       }
       if ( *(int *)v3 < 0 )
         *(_DWORD *)v3 = 0;
@@ -3047,7 +2964,7 @@ int CCBRoleState::GetRoleLevel(int roleIdx)
   *(_DWORD *)v3 = v2 + v5;
   if ( v2 + v5 < 0 )
     *(_DWORD *)v3 = 0;
-  CCBSystem::GetCmdSlot(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), roleIdx);
+  ((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->GetCmdSlot(roleIdx);
   return v2;
 }
 
@@ -3264,7 +3181,7 @@ char CCBRoleState::ProcessRound(unsigned int a2)
     goto LABEL_7;
   if ( v27 )
   {
-    LOBYTE(v3) = CCBRoleState::IsRoleInForce(this->m_sCombatDialog, a2);
+    LOBYTE(v3) = ((CCBRoleState *)this->m_sCombatDialog)->IsRoleInForce(a2);
     if ( (_BYTE)v3 )
       return (char)v3;
 LABEL_7:
@@ -3300,17 +3217,8 @@ LABEL_7:
         v7 = RoleIndex;
         if ( RoleIndex != -1 )
         {
-          CCBStage::GetRoleName(
-            *(_DWORD **)&this->m_sCombatDialog[524],
-            RoleIndex,
-            (int)CCBStage::HandleKeyFriend,
-            0,
-            0,
-            0,
-            v23,
-            -1082130432,
-            0);
-          CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], v7);
+          ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(RoleIndex, (int)CCBStage::HandleKeyFriend, 0, 0, 0, v23, -1082130432, 0);
+          ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(v7);
         }
       }
     }
@@ -3390,7 +3298,7 @@ LABEL_25:
         this->m_sCombatDialog[v9 + 1154] = 0;
         *v3 = 1;
         *(_WORD *)&this->m_sCombatDialog[2 * v10 + 1222] = 5;
-        CCBSystem::GetCmdSlot(*(char **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), a2);
+        ((CCBSystem *)*(char **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->GetCmdSlot(a2);
 LABEL_38:
         LOBYTE(v3) = v28;
         if ( !v28 )
@@ -3402,7 +3310,7 @@ LABEL_38:
         this->m_sCombatDialog[v9 + 1154] = 0;
         *v3 = 1;
         *(_WORD *)&this->m_sCombatDialog[2 * v10 + 1222] = 5;
-        CCBSystem::GetCmdSlot(*(char **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), a2);
+        ((CCBSystem *)*(char **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->GetCmdSlot(a2);
 LABEL_41:
         LOBYTE(v3) = v28;
         if ( !v28 )
@@ -3443,7 +3351,7 @@ LABEL_41:
         break;
       case 18:
         sub_4F4820((int)this, a2);
-        CCBStageRole::DangerForceRelease(*(_BYTE **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24), 0);
+        ((CCBStageRole *)*(_BYTE **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24))->DangerForceRelease(0);
         LOBYTE(v3) = v28;
         *(_WORD *)&this->m_sCombatDialog[2 * v10 + 1222] = 0x7FFF;
         if ( !v28 )
@@ -3486,21 +3394,12 @@ LABEL_41:
         *(_WORD *)&this->m_sCombatDialog[2 * v10 + 1222] = 5;
         if ( this->IsRoleAlive(a2) )
         {
-          v12 = CCBStage::GetRoleIndex(*(_DWORD **)&this->m_sCombatDialog[524], 22, 0, 1);
+          v12 = ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleIndex(22, 0, 1);
           if ( v12 != -1 )
           {
             this->CheckRoleStatus((int)v23);
-            CCBStage::GetRoleName(
-              *(_DWORD **)&this->m_sCombatDialog[524],
-              v12,
-              (int)sub_501330,
-              0,
-              0,
-              0,
-              v23,
-              0,
-              1065353216);
-            CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], v12);
+            ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v12, (int)sub_501330, 0, 0, 0, v23, 0, 1065353216);
+            ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(v12);
           }
         }
         LOBYTE(v3) = v28;
@@ -3527,7 +3426,7 @@ LABEL_41:
         return (char)v3;
     }
     Instance = (char *)CScreenMode::GetInstance();
-    CScreenMode::AudioSetPosition((CScreenMode *)Instance, v21, 1);
+    ((CScreenMode *)Instance)->AudioSetPosition(v21, 1);
   }
   else
   {
@@ -3546,10 +3445,10 @@ LABEL_41:
         goto LABEL_91;
       case 12:
       case 13:
-        CCBSystem::GetCmdSlot(*(char **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), a2);
+        ((CCBSystem *)*(char **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->GetCmdSlot(a2);
         goto LABEL_91;
       case 14:
-        CCBStageRole::DangerForceRelease(*(_BYTE **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24), 0);
+        ((CCBStageRole *)*(_BYTE **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24))->DangerForceRelease(0);
         goto LABEL_91;
       case 20:
       case 21:
@@ -3558,21 +3457,12 @@ LABEL_41:
       case 23:
         if ( this->IsRoleAlive(a2) )
         {
-          v18 = CCBStage::GetRoleIndex(*(_DWORD **)&this->m_sCombatDialog[524], 22, 0, 1);
+          v18 = ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleIndex(22, 0, 1);
           if ( v18 != -1 )
           {
             this->CheckRoleStatus((int)v23);
-            CCBStage::GetRoleName(
-              *(_DWORD **)&this->m_sCombatDialog[524],
-              v18,
-              (int)sub_501410,
-              0,
-              0,
-              0,
-              v23,
-              0,
-              1065353216);
-            CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], v18);
+            ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v18, (int)sub_501410, 0, 0, 0, v23, 0, 1065353216);
+            ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(v18);
           }
         }
 LABEL_86:
@@ -3594,13 +3484,13 @@ LABEL_86:
         memset(&this->m_sCombatDialog[v9 + 1222], 0, 0x34u);
         *(_WORD *)&this->m_sCombatDialog[v9 + 1274] = 0;
         this->m_sCombatDialog[v9 + 1140] = 0;
-        CCBStageRole::DangerForceRelease(*(_BYTE **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24), 0);
-        CCBStageRole::Release(*(_BYTE **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24), 1);
+        ((CCBStageRole *)*(_BYTE **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24))->DangerForceRelease(0);
+        ((CCBStageRole *)*(_BYTE **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24))->Release(1);
         v15 = *(void (****)(_DWORD, int))(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * a2 + 76);
         (**v15)(v15, 1);
-        CCBSystem::SetCmdParam(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), a2, 0);
-        CCBSystem::GetCmdData(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), a2);
-        if ( !CCBStageRole::ForceEndTaskByPFN(*(float **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24)) )
+        ((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->SetCmdParam(a2, 0);
+        ((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->GetCmdData(a2);
+        if ( !((CCBStageRole *)*(float **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24))->ForceEndTaskByPFN() )
         {
           memset(v24, 0, sizeof(v24));
           v16 = (_DWORD *)*(_DWORD **)&this->m_sCombatDialog[524];
@@ -3613,37 +3503,10 @@ LABEL_86:
             v23[2] = v24[3];
             v23[1] = v24[2];
             v23[0] = 0;
-            CCBStage::GetRoleName(
-              *(_DWORD **)&this->m_sCombatDialog[524],
-              v17,
-              (int)CCBStage::ProcFiveLienupFadeIn,
-              0,
-              0,
-              0,
-              v23,
-              -1082130432,
-              0);
-            CCBStage::GetRoleName(
-              *(_DWORD **)&this->m_sCombatDialog[524],
-              v17,
-              (int)CCBStage::ProcShowItemName,
-              0,
-              0,
-              0,
-              v23,
-              -1082130432,
-              0);
-            CCBStage::GetRoleName(
-              *(_DWORD **)&this->m_sCombatDialog[524],
-              v17,
-              (int)CCBStage::ProcFiveLienupFadeOut,
-              0,
-              0,
-              0,
-              v23,
-              -1082130432,
-              0);
-            CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], v17);
+            ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v17, (int)CCBStage::ProcFiveLienupFadeIn, 0, 0, 0, v23, -1082130432, 0);
+            ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v17, (int)CCBStage::ProcShowItemName, 0, 0, 0, v23, -1082130432, 0);
+            ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v17, (int)CCBStage::ProcFiveLienupFadeOut, 0, 0, 0, v23, -1082130432, 0);
+            ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(v17);
           }
         }
         if ( !v28 )
@@ -3654,7 +3517,7 @@ LABEL_86:
         goto LABEL_91;
     }
     v19 = (char *)CScreenMode::GetInstance();
-    CScreenMode::AudioSetPosition((CScreenMode *)v19, v22, 1);
+    ((CScreenMode *)v19)->AudioSetPosition(v22, 1);
 LABEL_91:
     *(_WORD *)&this->m_sCombatDialog[2 * v26 + 1168] = 0;
     *(_WORD *)&this->m_sCombatDialog[2 * v26 + 1222] = 0;
@@ -4242,13 +4105,13 @@ int CCBRoleState::ProcessSkillEffect(int roleIdx)
     return 0;
   while ( 1 )
   {
-    if ( *((int *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_info[7072], pOut) + 1) > 0 )
+    if ( *((int *)((CCBAI *)&g_SceneMgr.m_info[7072])->GetTargetRole(pOut) + 1) > 0 )
     {
-      v6 = *(_DWORD *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_info[7072], v19);
+      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr.m_info[7072])->GetTargetRole(v19);
       v15[1] = v6;
       if ( v2->GetRoleAI(v15) )
       {
-        v7 = *(_BYTE *)(*((_DWORD *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_info[7072], v16) + 2) + 629);
+        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr.m_info[7072])->GetTargetRole(v16) + 2) + 629);
         if ( v20 )
         {
           if ( v7 == 1 || v7 == 3 )
@@ -4285,7 +4148,7 @@ LABEL_21:
   if ( v13 == -1 )
     return 0;
   else
-    return *(_DWORD *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_info[7072], v16);
+    return *(_DWORD *)((CCBAI *)&g_SceneMgr.m_info[7072])->GetTargetRole(v16);
 }
 
 // 0x004F5B70
@@ -4321,13 +4184,13 @@ int CCBRoleState::ProcessItemEffect(int roleIdx)
     return 0;
   for ( i = 0; i < v10; ++i )
   {
-    if ( *((int *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_info[7072], pOut) + 1) > 0 )
+    if ( *((int *)((CCBAI *)&g_SceneMgr.m_info[7072])->GetTargetRole(pOut) + 1) > 0 )
     {
-      v6 = *(_DWORD *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_info[7072], v12);
+      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr.m_info[7072])->GetTargetRole(v12);
       v14[1] = v6;
       if ( this->GetRoleAI(v14) )
       {
-        v7 = *(_BYTE *)(*((_DWORD *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_info[7072], v13) + 2) + 629);
+        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr.m_info[7072])->GetTargetRole(v13) + 2) + 629);
         if ( v15 )
         {
           if ( v7 == 1 || v7 == 3 )
@@ -4352,7 +4215,7 @@ int CCBRoleState::ProcessItemEffect(int roleIdx)
   if ( v9 == -1 )
     return 0;
   else
-    return *(_DWORD *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_info[7072], v13);
+    return *(_DWORD *)((CCBAI *)&g_SceneMgr.m_info[7072])->GetTargetRole(v13);
 }
 
 // 0x004F7500
@@ -4486,55 +4349,19 @@ void * CCBRoleState::ProcessActions()
   memset(v15, 0, sizeof(v15));
   if ( sub_4ED0A0(this->m_sCombatDialog, 0) == 1
     && *(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 120) == 2
-    && !CCBStage::ForceDelTask(*(char **)&this->m_sCombatDialog[524], 12) )
+    && !((CCBStage *)*(char **)&this->m_sCombatDialog[524])->ForceDelTask(12) )
   {
     sub_4ED800(this->m_sCombatDialog);
-    RoleIndex = CCBStage::GetRoleIndex(*(_DWORD **)&this->m_sCombatDialog[524], 25, v15, 1);
+    RoleIndex = ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleIndex(25, v15, 1);
     if ( RoleIndex != -1 )
     {
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        RoleIndex,
-        (int)sub_502300,
-        0,
-        0,
-        0,
-        0,
-        -1082130432,
-        1056964608);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        RoleIndex,
-        (int)sub_501F30,
-        0,
-        0,
-        0,
-        0,
-        -1082130432,
-        1084227584);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        RoleIndex,
-        (int)sub_502000,
-        0,
-        0,
-        0,
-        0,
-        -1082130432,
-        1065353216);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        RoleIndex,
-        (int)sub_5021C0,
-        0,
-        0,
-        0,
-        0,
-        -1082130432,
-        1045220557);
-      CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], RoleIndex);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(RoleIndex, (int)sub_502300, 0, 0, 0, 0, -1082130432, 1056964608);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(RoleIndex, (int)sub_501F30, 0, 0, 0, 0, -1082130432, 1084227584);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(RoleIndex, (int)sub_502000, 0, 0, 0, 0, -1082130432, 1065353216);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(RoleIndex, (int)sub_5021C0, 0, 0, 0, 0, -1082130432, 1045220557);
+      ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(RoleIndex);
     }
-    CCBStageCam::ClearFinishedTask(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[524] + 16), 10);
+    ((CCBStageCam *)*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[524] + 16))->ClearFinishedTask(10);
     v3 = 24;
     v4 = (char *)&this->m_sCombatDialog[577];
     *(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 120) = 7;
@@ -4544,7 +4371,7 @@ void * CCBRoleState::ProcessActions()
       {
         *(_BYTE *)(*(_DWORD *)(v3 + *(_DWORD *)&this->m_sCombatDialog[524]) + 280) = 0;
         *(_BYTE *)(*(_DWORD *)(v3 + *(_DWORD *)&this->m_sCombatDialog[524]) + 274) = 0;
-        CCBStageRole::TryRelease(*(_DWORD *)(v3 + *(_DWORD *)&this->m_sCombatDialog[524]));
+        ((CCBStageRole *)*(_DWORD *)(v3 + *(_DWORD *)&this->m_sCombatDialog[524]))->TryRelease();
       }
       v3 += 4;
       v4 += 892;
@@ -4554,11 +4381,11 @@ void * CCBRoleState::ProcessActions()
   if ( ((unsigned __int8)this->GetForce(0) == 1
      || *(_DWORD *)&this->m_sCombatDialog[544] >= *(_DWORD *)&this->m_sCombatDialog[540] && !this->m_sCombatDialog[548])
     && *(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 120) == 2
-    && !CCBStage::ForceDelTask(*(char **)&this->m_sCombatDialog[524], 12) )
+    && !((CCBStage *)*(char **)&this->m_sCombatDialog[524])->ForceDelTask(12) )
   {
     sub_4F8AF0(this);
     sub_4FA930((int)this, 1, -1);
-    CCBStageCam::ClearFinishedTask(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[524] + 16), 3);
+    ((CCBStageCam *)*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[524] + 16))->ClearFinishedTask(3);
     v5 = 0;
     v6 = (char *)&this->m_sCombatDialog[578];
     v13 = 0;
@@ -4574,37 +4401,10 @@ void * CCBRoleState::ProcessActions()
           v8 = v7->GetRoleIndex(24, v15, 1);
           if ( v8 != -1 )
           {
-            CCBStage::GetRoleName(
-              *(_DWORD **)&this->m_sCombatDialog[524],
-              v8,
-              (int)CCBStage::ProcFiveLienupFadeIn,
-              0,
-              0,
-              0,
-              0,
-              -1082130432,
-              0);
-            CCBStage::GetRoleName(
-              *(_DWORD **)&this->m_sCombatDialog[524],
-              v8,
-              (int)sub_501CF0,
-              0,
-              0,
-              0,
-              0,
-              -1082130432,
-              0);
-            CCBStage::GetRoleName(
-              *(_DWORD **)&this->m_sCombatDialog[524],
-              v8,
-              (int)CCBStage::ProcFiveLienupFadeOut,
-              0,
-              0,
-              0,
-              0,
-              -1082130432,
-              0);
-            CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], v8);
+            ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v8, (int)CCBStage::ProcFiveLienupFadeIn, 0, 0, 0, 0, -1082130432, 0);
+            ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v8, (int)sub_501CF0, 0, 0, 0, 0, -1082130432, 0);
+            ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v8, (int)CCBStage::ProcFiveLienupFadeOut, 0, 0, 0, 0, -1082130432, 0);
+            ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(v8);
             v6 = v14;
             v5 = v13;
           }
@@ -4616,118 +4416,46 @@ void * CCBRoleState::ProcessActions()
       v14 = v6;
     }
     while ( v5 < 5 );
-    v9 = CCBStage::GetRoleIndex(*(_DWORD **)&this->m_sCombatDialog[524], 23, v15, 1);
+    v9 = ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleIndex(23, v15, 1);
     if ( v9 != -1 )
     {
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        v9,
-        (int)sub_502300,
-        0,
-        0,
-        0,
-        0,
-        -1082130432,
-        1056964608);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        v9,
-        (int)sub_501E60,
-        0,
-        0,
-        0,
-        0,
-        -1082130432,
-        1077936128);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        v9,
-        (int)sub_502430,
-        0,
-        0,
-        0,
-        0,
-        -1082130432,
-        0x40000000);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v9, (int)sub_502300, 0, 0, 0, 0, -1082130432, 1056964608);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v9, (int)sub_501E60, 0, 0, 0, 0, -1082130432, 1077936128);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v9, (int)sub_502430, 0, 0, 0, 0, -1082130432, 0x40000000);
       sub_4FA930((int)this, 0, v9);
       sub_4FB370(this, v9);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        v9,
-        (int)CCBStage::StartSubTask,
-        0,
-        0,
-        0,
-        0,
-        -1082130432,
-        1084227584);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        v9,
-        (int)sub_5021C0,
-        0,
-        0,
-        0,
-        0,
-        -1082130432,
-        1045220557);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        v9,
-        (int)sub_502000,
-        0,
-        0,
-        0,
-        0,
-        -1082130432,
-        1065353216);
-      CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], v9);
-      *(_DWORD *)&this->m_sCombatDialog[20576] = CCBStage::EndTask(*(_DWORD **)&this->m_sCombatDialog[524], v9);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v9, (int)CCBStage::StartSubTask, 0, 0, 0, 0, -1082130432, 1084227584);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v9, (int)sub_5021C0, 0, 0, 0, 0, -1082130432, 1045220557);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v9, (int)sub_502000, 0, 0, 0, 0, -1082130432, 1065353216);
+      ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(v9);
+      *(_DWORD *)&this->m_sCombatDialog[20576] = ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->EndTask(v9);
     }
     sub_4ED870(this);
     sub_4ED680(this);
-    C2DSpark::CreateStars(*(_DWORD **)(*(_DWORD *)&this->m_sCombatDialog[520] + 52));
-    C2DSpark::CreateTrack(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 52), 1);
+    ((C2DSpark *)*(_DWORD **)(*(_DWORD *)&this->m_sCombatDialog[520] + 52))->CreateStars();
+    ((C2DSpark *)*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 52))->CreateTrack(1);
     *(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 120) = 5;
-    CCBStageScene::Destroy(*(gbGeomNode ***)(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 20) + 20));
+    ((CCBStageScene *)*(gbGeomNode ***)(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 20) + 20))->Destroy();
   }
   if ( *(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 120) == 4 )
   {
     sub_4FA930((int)this, 1, -1);
-    CCBStageCam::ClearFinishedTask(*(_DWORD *)(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 20) + 16), 8);
-    CCBSystem::GetDeltaTime(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12));
+    ((CCBStageCam *)*(_DWORD *)(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 20) + 16))->ClearFinishedTask(8);
+    ((CCBSystem *)*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12))->GetDeltaTime();
     sub_4DB940(*(_BYTE **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), 0);
-    CCBUI::CreateMagicWindow(*(_DWORD **)(*(_DWORD *)&this->m_sCombatDialog[520] + 4));
-    v10 = CCBStage::GetRoleIndex(*(_DWORD **)&this->m_sCombatDialog[524], 23, v15, 1);
+    ((CCBUI *)*(_DWORD **)(*(_DWORD *)&this->m_sCombatDialog[520] + 4))->CreateMagicWindow();
+    v10 = ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleIndex(23, v15, 1);
     if ( v10 != -1 )
     {
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        v10,
-        (int)sub_502430,
-        0,
-        0,
-        0,
-        0,
-        -1082130432,
-        0x40000000);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v10, (int)sub_502430, 0, 0, 0, 0, -1082130432, 0x40000000);
       sub_4FA930((int)this, 0, v10);
       sub_4FB370(this, v10);
-      CCBStage::GetRoleName(
-        *(_DWORD **)&this->m_sCombatDialog[524],
-        v10,
-        (int)CCBStage::StartSubTask,
-        0,
-        0,
-        0,
-        0,
-        -1082130432,
-        1097859072);
-      CCBSystem::GetStageRoleByIdx(*(CCBStageRole **)&this->m_sCombatDialog[524], v10);
+      ((CCBStage *)*(_DWORD **)&this->m_sCombatDialog[524])->GetRoleName(v10, (int)CCBStage::StartSubTask, 0, 0, 0, 0, -1082130432, 1097859072);
+      ((CCBSystem *)*(CCBStageRole **)&this->m_sCombatDialog[524])->GetStageRoleByIdx(v10);
     }
     sub_4ED680(this);
     *(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 120) = 5;
-    CCBStageScene::Destroy(*(gbGeomNode ***)(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 20) + 20));
+    ((CCBStageScene *)*(gbGeomNode ***)(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[520] + 20) + 20))->Destroy();
   }
   result = (void *)*(void **)&this->m_sCombatDialog[520];
   v12 = *((_DWORD *)result + 30);
@@ -4823,35 +4551,35 @@ int CCBRoleState::UpdateEffects()
     {
       v4 = *(unsigned __int8 *)(result + 576);
       v45 = (float)*(int *)(result + 592);
-      UIWnd::FindChild(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1020), v45);
+      ((UIWnd *)*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1020))->FindChild(v45);
       v46 = (float)a1[150];
-      UIWnd::FindChild(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1036), v46);
+      ((UIWnd *)*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1036))->FindChild(v46);
       v47 = (float)a1[152];
-      UIWnd::FindChild(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1052), v47);
+      ((UIWnd *)*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1052))->FindChild(v47);
       v48 = (float)a1[147];
-      UIWnd::FindChildByName(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1020), v48);
+      ((UIWnd *)*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1020))->FindChildByName(v48);
       v49 = (float)a1[149];
-      UIWnd::FindChildByName(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1036), v49);
+      ((UIWnd *)*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1036))->FindChildByName(v49);
       v50 = (float)a1[151];
-      UIWnd::FindChildByName(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1052), v50);
+      ((UIWnd *)*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1052))->FindChildByName(v50);
       if ( !v2 )
       {
         v5 = *(_DWORD *)&this->m_sCombatDialog[528];
         if ( *(_DWORD *)(*(_DWORD *)(v5 + 120) + 56) == 1 )
         {
           v51 = *(float *)&this->m_sCombatDialog[1088] * 0.25;
-          UIWnd::FindChildByName(*(_DWORD *)(v5 + 1068), v51);
+          ((UIWnd *)*(_DWORD *)(v5 + 1068))->FindChildByName(v51);
           if ( *(int *)&this->m_sCombatDialog[588] > 0 )
           {
             v6 = *(_DWORD *)&this->m_sCombatDialog[520];
             if ( *(float *)(v6 + 80) - *(float *)&this->m_sCombatDialog[20640] > 0.1 )
             {
               *(float *)&v52 = *(float *)&this->m_sCombatDialog[1088] * 0.1;
-              C2DSpark::CreateMore(*(_DWORD **)(v6 + 52), 25, 570, 20, v52);
+              ((C2DSpark *)*(_DWORD **)(v6 + 52))->CreateMore(25, 570, 20, v52);
               if ( *(float *)&this->m_sCombatDialog[1088] > 199.89999 )
               {
                 *(float *)&v53 = *(float *)&this->m_sCombatDialog[1088] * 0.1;
-                C2DSpark::CreateMore(*(_DWORD **)(*(_DWORD *)&this->m_sCombatDialog[520] + 52), 25, 570, 20, v53);
+                ((C2DSpark *)*(_DWORD **)(*(_DWORD *)&this->m_sCombatDialog[520] + 52))->CreateMore(25, 570, 20, v53);
               }
               *(float *)&this->m_sCombatDialog[20640] = *(float *)(*(_DWORD *)&this->m_sCombatDialog[520] + 80);
             }
@@ -4866,30 +4594,30 @@ int CCBRoleState::UpdateEffects()
         v54->SetText(dword_17AA848[v4] + 23, dword_17AA858[v4] + 5, (int)*(float *)(*(_DWORD *)(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 1052) + 156), -349995);
         if ( this->GetRoleField(v2, 3) )
         {
-          NPC::UpdateAnim(-13002067);
+          ((NPC *)-13002067)->UpdateAnim();
         }
         else if ( this->GetRoleField(v2, 4) )
         {
-          NPC::UpdateAnim(-2198223);
+          ((NPC *)-2198223)->UpdateAnim();
         }
         else if ( this->GetRoleField(v2, 2) )
         {
-          NPC::UpdateAnim(-6002966);
+          ((NPC *)-6002966)->UpdateAnim();
         }
         else if ( this->GetRoleField(v2, 1) )
         {
-          NPC::UpdateAnim(-11356565);
+          ((NPC *)-11356565)->UpdateAnim();
         }
         else if ( this->GetRoleField(v2, 5) )
         {
-          NPC::UpdateAnim(-2707878);
+          ((NPC *)-2707878)->UpdateAnim();
         }
         else
         {
-          NPC::UpdateAnim(-1);
+          ((NPC *)-1)->UpdateAnim();
         }
         if ( a1[147] <= 0 )
-          NPC::UpdateAnim(-11513776);
+          ((NPC *)-11513776)->UpdateAnim();
         RoleField = this->GetRoleField(v2, 6);
         v8 = **(void (__stdcall ****)(int))(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * v4 + 176);
         if ( RoleField )

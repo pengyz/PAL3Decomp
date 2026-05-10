@@ -157,21 +157,21 @@ int CEffCylinder::Init(int _this, int a2, float a3, float a4, float a5)
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(float *)(this + 80) = (float)HIBYTE(*(_DWORD *)(this + 76));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(float *)(this + 84) = (float)(unsigned __int8)BYTE2(*(_DWORD *)(this + 76));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   result = (unsigned __int8)BYTE1(*(_DWORD *)(this + 76));
@@ -180,7 +180,7 @@ int CEffCylinder::Init(int _this, int a2, float a3, float a4, float a5)
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     result = atexit(nullsub_1);
   }
   *(_DWORD *)(this + 156) = 0;
@@ -213,7 +213,7 @@ char CEffCylinder::Create(int _this, int a2)
   int v18; // [esp+818h] [ebp-4h]
   int v19; // [esp+824h] [ebp+8h]
 
-  v3 = operator new(0x4C0u);
+  v3 = ((operator *)0x4C0u)->new();
   *(_DWORD *)(this + 24) = v3;
   if ( v3 )
   {
@@ -221,7 +221,7 @@ char CEffCylinder::Create(int _this, int a2)
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
+      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = ((operator *)0x2D0u)->new();
       if ( !*(_DWORD *)(v5 + *(_DWORD *)(this + 24)) )
         break;
       v5 += 152;
@@ -273,7 +273,7 @@ LABEL_10:
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(_DWORD *)(this + 112) = (int)*(float *)(a2 + 232);
@@ -298,9 +298,9 @@ LABEL_10:
   *(_BYTE *)(this + 63) = *(_BYTE *)(a2 + 176);
   *(_DWORD *)(this + 64) = &unk_FFFFFF;
   *(_DWORD *)(this + 76) = *(_DWORD *)(a2 + 204);
-  CEffCylinder::InitDefaultUVSet((CEffCylinder *)this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
+  ((CEffCylinder *)this)->InitDefaultUVSet(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   v19 = *(_DWORD *)(this + 112);
-  v11 = (void *)operator new(68 * v19);
+  v11 = (void *)((operator *)68 * v19)->new();
   Block = v11;
   v18 = 0;
   if ( v11 )
@@ -328,7 +328,7 @@ LABEL_10:
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aNewFailInCeffc, aDProjectPal3Co, 127),
+      ((Logger *)ArgList)->FormatException(aNewFailInCeffc, aDProjectPal3Co, 127),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -374,7 +374,7 @@ void CEffCylinder::Destroy(int _this)
   }
   if ( !*(_BYTE *)(this + 8) && *(_BYTE *)(this + 60) )
   {
-    gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(**(_DWORD **)(this + 4) + 196), 0x15u);
+    ((gbVertPoolMgr *)*(gbVertPoolMgr **)(**(_DWORD **)(this + 4) + 196))->GetDynVertBuf(0x15u);
     v2 = *(_BYTE *)(this + 61);
     if ( *(_BYTE *)(this + 62) )
     {
@@ -403,12 +403,7 @@ void CEffCylinder::Destroy(int _this)
     v6->Rotate(*(float *)(this + 164), (struct gbVec3D *)&dword_DE9360);
     v6->Rotate(*(float *)(this + 168), (struct gbVec3D *)&dword_DE9350);
     v6->Scale(*(float *)(this + 96), *(float *)(this + 100), *(float *)(this + 96));
-    gbDynVertBuf::RenderGeomQuadViaStrip(
-      *(struct gbGeomQuad **)(this + 48),
-      *(_DWORD *)(this + 112),
-      v5,
-      *(struct gbTextureArray **)(this + 56),
-      *(_DWORD *)(this + 76));
+    ((gbDynVertBuf *)*(struct gbGeomQuad **)(this + 48))->RenderGeomQuadViaStrip(*(_DWORD *)(this + 112), v5, *(struct gbTextureArray **)(this + 56), *(_DWORD *)(this + 76));
     v6->Pop();
   }
 }
@@ -547,7 +542,7 @@ LABEL_30:
       if ( (g_bCursorVisible & 1) == 0 )
       {
         g_bCursorVisible |= 1u;
-        CEffMgr::Reset(&g_nCursorState);
+        ((CEffMgr *)&g_nCursorState)->Reset();
         atexit(nullsub_1);
       }
       v12 = (int)abs32((int)*(float *)(v2 + 72)) % *(unsigned __int8 *)(v2 + 63);
@@ -560,7 +555,7 @@ LABEL_30:
       if ( (g_bCursorVisible & 1) == 0 )
       {
         g_bCursorVisible |= 1u;
-        CEffMgr::Reset(&g_nCursorState);
+        ((CEffMgr *)&g_nCursorState)->Reset();
         atexit(nullsub_1);
       }
       v15 = (double)(int)v27;
@@ -766,24 +761,24 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
   *(float *)(this + 172) = v16 * *(float *)(v4 + 28) + *(float *)(this + 172);
   *(float *)(this + 176) = v16 * *(float *)(v4 + 32) + *(float *)(this + 176);
   *(float *)(this + 180) = v16 * *(float *)(v4 + 36) + *(float *)(this + 180);
-  gbMatrix4::gbMatrix4((gbMatrix4 *)v27);
+  ((gbMatrix4 *)v27)->gbMatrix4();
   v21 = 0;
   v22 = 0;
   v23 = 0;
   v24 = 0;
   v25 = 0;
   v26 = 0.0;
-  gbMatrix4::LoadIdentity((gbMatrix4 *)v27);
+  ((gbMatrix4 *)v27)->LoadIdentity();
   v21 = *(_DWORD *)(v4 + 44);
   v22 = *(_DWORD *)(v4 + 48);
   v23 = *(_DWORD *)(v4 + 52);
-  gbVec3D::Normalize((gbVec3D *)&v21);
+  ((gbVec3D *)&v21)->Normalize();
   v15 = (*(float *)(this + 16) - *(float *)(v7 + 16)) * *(float *)(v4 + 60);
-  gbMatrix4::SetAxisAngle((gbMatrix4 *)v27, (struct gbVec3D *)&v21, v15);
+  ((gbMatrix4 *)v27)->SetAxisAngle((struct gbVec3D *)&v21, v15);
   v26 = *(float *)(v4 + 56);
   v24 = 0;
   v25 = 0;
-  gbMatrix4::Rotate((gbMatrix4 *)v27, (const struct gbVec3D *)&v24, (struct gbVec3D *)(this + 184));
+  ((gbMatrix4 *)v27)->Rotate((const struct gbVec3D *)&v24, (struct gbVec3D *)(this + 184));
   v8 = v16 * *(float *)(v4 + 108) + *(float *)(this + 156);
   *(float *)(this + 156) = v8;
   if ( v8 > 1.0 )
@@ -800,7 +795,7 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     if ( *(float *)(this + 80) <= 255.0 )
@@ -818,7 +813,7 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     if ( *(float *)(this + 84) <= 255.0 )
@@ -836,7 +831,7 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     if ( *(float *)(this + 88) <= 255.0 )
@@ -854,7 +849,7 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     if ( *(float *)(this + 92) <= 255.0 )
@@ -872,35 +867,35 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     v17 = *(float *)(this + 80) + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     v18 = *(float *)(this + 84) + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     v19 = *(float *)(this + 88) + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     v20 = *(float *)(this + 92) + 12582912.0;
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     HIBYTE(v13) = LOBYTE(v17);
@@ -1117,7 +1112,7 @@ _DWORD * CEffCylinder::LoadTexture(int _this, int a2)
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 52) = v3;
   v3->LoadTexture(1);
-  result = (_DWORD *)operator new(0x44u);
+  result = ((operator *)0x44u)->new();
   if ( result )
   {
     v5 = *(_DWORD *)(this + 52);
@@ -1133,7 +1128,7 @@ _DWORD * CEffCylinder::LoadTexture(int _this, int a2)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCNewFailed_0, (int)aDProjectPal3Co, 504),
+      (const void *)((char)&ArgList)->FormatException((int)aCNewFailed_0, (int)aDProjectPal3Co, 504),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }

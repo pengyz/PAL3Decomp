@@ -61,16 +61,13 @@ C3DSpark::C3DSpark()
   }
   while ( v2 );
   memset(this, 0, 0x3E30u);
-  LODWORD(this->m_GeomQuad[75].vec[1].x) = gbEffectMgr::NewRenderEffect(
-                                             *(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200),
-                                             aGfxscriptAddit,
-                                             0);
+  LODWORD(this->m_GeomQuad[75].vec[1].x) = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptAddit, 0);
   v4 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
                       g_Input.KeyInfo[177].Data,
                       aEffectFlare3Bm);
   LODWORD(this->m_GeomQuad[75].vec[1].y) = v4;
   v4->LoadTexture(1);
-  v5 = (float *)operator new(0x44u);
+  v5 = (float *)((operator *)0x44u)->new();
   if ( v5 )
   {
     y = this->m_GeomQuad[75].vec[1].y;
@@ -86,7 +83,7 @@ C3DSpark::C3DSpark()
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Co_11, 37),
+      ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_11, 37),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -95,7 +92,7 @@ C3DSpark::C3DSpark()
                       aEffectFlare2Bm);
   LODWORD(this->m_GeomQuad[75].vec[3].y) = v7;
   v7->LoadTexture(1);
-  v8 = (float *)operator new(0x44u);
+  v8 = (float *)((operator *)0x44u)->new();
   if ( v8 )
   {
     v9 = this->m_GeomQuad[75].vec[3].y;
@@ -111,7 +108,7 @@ C3DSpark::C3DSpark()
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Co_11, 42),
+      ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_11, 42),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -120,7 +117,7 @@ C3DSpark::C3DSpark()
                        aEffectFlaregre);
   LODWORD(this->m_GeomQuad[75].vec[2].z) = v10;
   v10->LoadTexture(1);
-  v11 = (float *)operator new(0x44u);
+  v11 = (float *)((operator *)0x44u)->new();
   if ( v11 )
   {
     z = this->m_GeomQuad[75].vec[2].z;
@@ -136,7 +133,7 @@ C3DSpark::C3DSpark()
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Co_11, 47),
+      ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_11, 47),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -145,7 +142,7 @@ C3DSpark::C3DSpark()
                        aEffectFlareblu);
   LODWORD(this->m_GeomQuad[75].vec[2].x) = v13;
   v13->LoadTexture(1);
-  v14 = (float *)operator new(0x44u);
+  v14 = (float *)((operator *)0x44u)->new();
   if ( v14 )
   {
     x = this->m_GeomQuad[75].vec[2].x;
@@ -161,7 +158,7 @@ C3DSpark::C3DSpark()
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Co_11, 52),
+      ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_11, 52),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -170,7 +167,7 @@ C3DSpark::C3DSpark()
                        aEffectFlarebri);
   LODWORD(this->m_GeomQuad[75].su) = v16;
   v16->LoadTexture(1);
-  v17 = (float *)operator new(0x44u);
+  v17 = (float *)((operator *)0x44u)->new();
   if ( v17 )
   {
     su = this->m_GeomQuad[75].su;
@@ -186,7 +183,7 @@ C3DSpark::C3DSpark()
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Co_11, 57),
+      ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_11, 57),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -410,14 +407,10 @@ void C3DSpark::Render(int a1@<ecx>, struct gbVec3D *a2@<edi>)
     while ( v16 < *(_DWORD *)(a1 + 7168) );
     if ( v17 > 0 )
     {
-      gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x15u);
+      ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x15u);
       v2->Push();
       v2->LoadIdentity();
-      gbDynVertBuf::RenderGeomQuad(
-        (struct gbGeomQuad *)(v15 + 7216),
-        v17,
-        *(struct gbRenderEffect **)(v15 + 7172),
-        *(struct gbTextureArray **)(v15 + 7204));
+      ((struct gbGeomQuad *)(v15 + 7216))->RenderGeomQuad(v17, *(struct gbRenderEffect **)(v15 + 7172), *(struct gbTextureArray **)(v15 + 7204));
       v2->Pop();
     }
   }

@@ -54,7 +54,7 @@ char SceneObj::Update(SceneObj *this, unsigned int a2)
       if ( *((_DWORD *)this + 3) >= a2 )
         return 1;
 LABEL_29:
-      GRPinput::GetKeyState((int)this, a2);
+      ((int)this)->GetKeyState(a2);
       return 1;
     }
     v8 = *((_DWORD *)this + 3);
@@ -70,7 +70,7 @@ LABEL_29:
         *((_DWORD *)this + 1) = 0;
         *((_DWORD *)this + 2) = 0;
         *((_DWORD *)this + 3) = 0;
-        GRPinput::GetKeyState((int)this, a2);
+        ((int)this)->GetKeyState(a2);
         return 1;
       }
       operator delete(v9);
@@ -78,7 +78,7 @@ LABEL_29:
     *((_DWORD *)this + 1) = 0;
     *((_DWORD *)this + 2) = 0;
     *((_DWORD *)this + 3) = 0;
-    GRPinput::GetKeyState((int)this, a2);
+    ((int)this)->GetKeyState(a2);
     return 1;
   }
   else if ( v12 )
@@ -117,12 +117,12 @@ LABEL_29:
 int SceneObj::CreateUI()
 {
   this->UIListBox();
-  UIItem::Refresh((UIItem *)this + 360);
-  UIItem::Refresh((UIItem *)this + 1728);
-  UIWnd::ctor_F7F0((_DWORD *)this + 774);
-  UIFrameWnd::UIFrameWnd((_BYTE *)this + 3340);
+  ((UIItem *)(UIItem *)this + 360)->Refresh();
+  ((UIItem *)(UIItem *)this + 1728)->Refresh();
+  ((UIWnd *)(_DWORD *)this + 774)->ctor_F7F0();
+  ((UIFrameWnd *)(_BYTE *)this + 3340)->UIFrameWnd();
   *(_DWORD *)this = &off_5708E8;
-  Actor::ResetState((Actor *)this);
+  ((Actor *)this)->ResetState();
   *((_BYTE *)this + 3492) = 1;
   return (int)this;
 }
@@ -142,9 +142,9 @@ void * SceneObj::Destructor()
 void SceneObj::DestroyInternal()
 {
   *(_DWORD *)this = &off_5708E8;
-  UIFrameWnd::_UIFrameWnd((UIWnd *)(this + 3340));
-  UIWnd::~UIWnd((UIWnd *)(this + 3096));
-  UIItem::UIItem((UIItem *)this + 1728);
-  UIItem::UIItem((UIItem *)this + 360);
-  UIWnd::~UIWnd((UIWnd *)this);
+  ((UIWnd *)(this + 3340))->_UIFrameWnd();
+  ((UIWnd *)(this + 3096))->~UIWnd();
+  ((UIItem *)(UIItem *)this + 1728)->UIItem();
+  ((UIItem *)(UIItem *)this + 360)->UIItem();
+  ((UIWnd *)this)->~UIWnd();
 }

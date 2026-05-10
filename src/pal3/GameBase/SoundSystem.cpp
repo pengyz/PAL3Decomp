@@ -24,7 +24,7 @@ int SoundSystem::Init()
   do
   {
     sprintf(Buffer, "snd\\we021%c.wav", v0);
-    v2 = (gbSound2DNode *)operator new(0x10u);
+    v2 = (gbSound2DNode *)((operator *)0x10u)->new();
     v9 = 0;
     if ( v2 )
       v3 = (gbSound2DNode *)v2->gbSound2DNode();
@@ -34,7 +34,7 @@ int SoundSystem::Init()
     MEMORY[0xC113C0][v1] = (int)v3;
     v3->LoadFromFile(Buffer);
     *(_DWORD *)(MEMORY[0xC113C0][v1] + 8) = 0;
-    v4 = (gbSound2DNode *)operator new(0x10u);
+    v4 = (gbSound2DNode *)((operator *)0x10u)->new();
     v9 = 1;
     if ( v4 )
       v5 = (gbSound2DNode *)v4->gbSound2DNode();
@@ -43,7 +43,7 @@ int SoundSystem::Init()
     v9 = -1;
     MEMORY[0xC11360][v1] = (int)v5;
     sprintf(Buffer, "snd\\we022%c.wav", v0);
-    result = gbSound2DNode::LoadFromFile((gbSound2DNode *)MEMORY[0xC11360][v1], Buffer);
+    result = ((gbSound2DNode *)MEMORY[0xC11360][v1])->LoadFromFile(Buffer);
     v7 = MEMORY[0xC11360][v1];
     ++v0;
     ++v1;

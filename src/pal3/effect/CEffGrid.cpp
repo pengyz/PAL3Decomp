@@ -44,7 +44,7 @@ CEffGrid::CEffGrid()
 {
   _DWORD *v0; // eax
 
-  v0 = (_DWORD *)operator new(0x10B8u);
+  v0 = ((operator *)0x10B8u)->new();
   if ( v0 )
     return sub_4C9550(v0);
   else
@@ -156,7 +156,7 @@ char CEffGrid::Create(int _this, int a2)
   v40 = (void *)&loc_5667EA;
   v39 = ExceptionList;
   v3 = (void *)alloca(4100);
-  v5 = (void *)operator new(0x4C0u);
+  v5 = ((operator *)0x4C0u)->new();
   *(_DWORD *)(this + 24) = v5;
   if ( v5 )
   {
@@ -164,7 +164,7 @@ char CEffGrid::Create(int _this, int a2)
     v7 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v7 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
+      *(_DWORD *)(v7 + *(_DWORD *)(this + 24)) = ((operator *)0x2D0u)->new();
       if ( !*(_DWORD *)(v7 + *(_DWORD *)(this + 24)) )
         break;
       v7 += 152;
@@ -235,7 +235,7 @@ LABEL_10:
   *(_DWORD *)(this + 140) = *(_DWORD *)(a2 + 252);
   sub_4CAB30(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   v14 = *(_DWORD *)(this + 124);
-  v15 = (void *)operator new(68 * v14);
+  v15 = ((operator *)68 * v14)->new();
   v32 = v15;
   v41 = 0;
   if ( v15 )
@@ -265,12 +265,12 @@ LABEL_10:
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aNewFailInCeffg, (int)aDProjectPal3Co_14, 115),
+      (const void *)((char)&ArgList)->FormatException((int)aNewFailInCeffg, (int)aDProjectPal3Co_14, 115),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   v20 = (*(_DWORD *)(this + 112) + 1) * (*(_DWORD *)(this + 116) + 1);
-  v21 = (gbVec3D *)operator new(12 * v20);
+  v21 = (gbVec3D *)((operator *)12 * v20)->new();
   v33 = v21;
   v41 = 1;
   if ( v21 )
@@ -296,7 +296,7 @@ LABEL_10:
   }
   v25 = (*(_DWORD *)(this + 112) + 1) * (*(_DWORD *)(this + 116) + 1);
   *(_DWORD *)(this + 52) = v21;
-  v26 = (gbVec3D *)operator new(12 * v25);
+  v26 = (gbVec3D *)((operator *)12 * v25)->new();
   v34 = v26;
   v41 = 2;
   if ( v26 )
@@ -327,7 +327,7 @@ LABEL_10:
   {
     qmemcpy(
       v35,
-      (const void *)Logger::FormatException((char)&v38, (int)aNewFailInCeffg, (int)aDProjectPal3Co_14, 124),
+      (const void *)((char)&v38)->FormatException((int)aNewFailInCeffg, (int)aDProjectPal3Co_14, 124),
       sizeof(v35));
     _CxxThrowException(v35, (_ThrowInfo *)&_TI1_AV_Exception__);
   }

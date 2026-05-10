@@ -17,8 +17,8 @@ void * UINote::Create(int id, int a3, int a4, char *tex)
   char Buffer[256]; // [esp+14h] [ebp-10Ch] BYREF
   int v10; // [esp+11Ch] [ebp-4h]
 
-  UIWnd::Create((UIWnd *)this, id, (void *)a3, a4);
-  OpenBaseFile::OpenBaseFile(&v8);
+  ((UIWnd *)this)->Create(id, (void *)a3, a4);
+  ((OpenBaseFile *)&v8)->OpenBaseFile();
   v6 = 0;
   v10 = 0;
   do
@@ -32,5 +32,5 @@ void * UINote::Create(int id, int a3, int a4, char *tex)
   *(_DWORD *)&this->UIWnd[172] = 0;
   *(_DWORD *)&this->UIWnd[56] = 0;
   v10 = -1;
-  return OpenNULLFile::OpenNULLFile(&v8);
+  return ((OpenNULLFile *)&v8)->OpenNULLFile();
 }

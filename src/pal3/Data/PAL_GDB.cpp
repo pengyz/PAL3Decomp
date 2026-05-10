@@ -23,7 +23,7 @@ char PAL_GDB::LoadLanguage(char *path)
   char *v4; // edi
 
   v3 = (PalScript *)&this->m_head[805416];
-  PalScript::LoadFromFile((PalScript *)&this->m_head[805416], path);
+  ((PalScript *)&this->m_head[805416])->LoadFromFile(path);
   v3->SetDirectory(aSec1);
   if ( v3->HasNext() )
   {
@@ -52,7 +52,7 @@ PAL_GDB::PAL_GDB()
   char ArgList[1024]; // [esp+488h] [ebp-40Ch] BYREF
   int v8; // [esp+890h] [ebp-4h]
 
-  OpenBaseFile::OpenBaseFile(&v5);
+  ((OpenBaseFile *)&v5)->OpenBaseFile();
   v8 = 0;
   v2 = (struct gbVFile *)g_pVFileSys->OpenFile("cbdata\\pal3_softstar.gdb", 0x201u);
   v3 = v2;
@@ -60,7 +60,7 @@ PAL_GDB::PAL_GDB()
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aCombatDataCoul, aDProjectPal3Fi, 38),
+      ((Logger *)ArgList)->FormatException(aCombatDataCoul, aDProjectPal3Fi, 38),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -76,7 +76,7 @@ PAL_GDB::PAL_GDB()
   g_pVFileSys->Read(&this->m_ItemData[353].desc[388], 632 * this->m_head.ComboNum, v3);
   g_pVFileSys->CloseFile(v3);
   v8 = -1;
-  OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v5);
+  ((OpenNULLFile **)&v5)->OpenNULLFile();
   return 1;
 }
 

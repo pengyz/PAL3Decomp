@@ -54,7 +54,7 @@ _DWORD *CEffModel::SetTimeScale()
 {
   _DWORD *v0; // eax
 
-  v0 = (_DWORD *)operator new(0x10B0u);
+  v0 = ((operator *)0x10B0u)->new();
   if ( v0 )
     return v0->Render();
   else
@@ -80,28 +80,28 @@ int CEffModel::ProcInitTask(int _this, int a2, float a3, float a4, float a5)
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(float *)(this + 136) = (float)HIBYTE(*(_DWORD *)(a2 + 204));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(float *)(this + 140) = (float)(unsigned __int8)BYTE2(*(_DWORD *)(a2 + 204));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(float *)(this + 144) = (float)(unsigned __int8)BYTE1(*(_DWORD *)(a2 + 204));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   v7 = *(unsigned __int8 *)(a2 + 204);

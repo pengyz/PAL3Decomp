@@ -34,14 +34,14 @@ void * SceneMgr::Create(int gfxMgr, int cam, int a4)
   *((_DWORD *)this + 10825) = 0;
   *((_DWORD *)this + 10826) = 0;
   *((_DWORD *)this + 10827) = 1065353216;
-  v6 = (struct gbRenderEffect *)gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(v5 + 200), aGfxscriptAddit, 0);
+  v6 = ((gbEffectMgr *)*(gbEffectMgr **)(v5 + 200))->NewRenderEffect(aGfxscriptAddit, 0);
   v7 = *(_DWORD *)this;
   *((_DWORD *)this + 4) = v6;
-  v8 = (struct gbRenderEffect *)gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(v7 + 200), aGfxscriptAlpha, 0);
+  v8 = ((gbEffectMgr *)*(gbEffectMgr **)(v7 + 200))->NewRenderEffect(aGfxscriptAlpha, 0);
   v9 = *(_DWORD *)this;
   *((_DWORD *)this + 5) = v8;
-  *((_DWORD *)this + 2) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(v9 + 200), aGfxscriptAddit_0, 0);
-  *((_DWORD *)this + 3) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(*(_DWORD *)this + 200), aGfxscriptAlpha_0, 0);
+  *((_DWORD *)this + 2) = ((gbEffectMgr *)*(gbEffectMgr **)(v9 + 200))->NewRenderEffect(aGfxscriptAddit_0, 0);
+  *((_DWORD *)this + 3) = ((gbEffectMgr *)*(gbEffectMgr **)(*(_DWORD *)this + 200))->NewRenderEffect(aGfxscriptAlpha_0, 0);
   ((void (__stdcall *)())sub_4CDED0)();
   CEffMgr::CEffMgr();
   return this;

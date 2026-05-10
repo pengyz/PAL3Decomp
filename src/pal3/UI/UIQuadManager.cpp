@@ -22,7 +22,7 @@ void UIQuadManager::Destroy()
   {
     if ( *v1 )
     {
-      gbRefObject::Release(*v1);
+      ((gbRefObject *)*v1)->Release();
       *v1 = 0;
     }
     ++v1;

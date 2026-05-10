@@ -18,10 +18,10 @@ int StateUI::Create()
 {
   unsigned int data; // [esp+8h] [ebp+4h]
 
-  if ( UIBase::GetSelected((UIBase *)this) < 5 )
+  if ( ((UIBase *)this)->GetSelected() < 5 )
   {
     this->UIFrameWnd[362] = data;
-    UIBase::SetItemData((UIBase *)this, 1, data);
+    ((UIBase *)this)->SetItemData(1, data);
     sub_48A310(*((char **)this + 44015), data);
     sub_4945E0(*((char **)this + 44016), data);
     sub_49E860(*((char **)this + 44017), data);
@@ -30,7 +30,7 @@ int StateUI::Create()
   else
   {
     this->UIFrameWnd[362] = 0;
-    UIBase::SetItemData((UIBase *)this, 1, 0);
+    ((UIBase *)this)->SetItemData(1, 0);
     sub_48A310(*((char **)this + 44015), 0);
     sub_4945E0(*((char **)this + 44016), 0);
     sub_49E860(*((char **)this + 44017), 0);
@@ -43,10 +43,10 @@ void StateUI::Init()
 {
   unsigned int data; // [esp+8h] [ebp+4h]
 
-  if ( UIBase::GetSelected((UIBase *)this) < 5 )
+  if ( ((UIBase *)this)->GetSelected() < 5 )
   {
     this->UIFrameWnd[363] = data;
-    UIBase::SetItemData((UIBase *)this, 2, data);
+    ((UIBase *)this)->SetItemData(2, data);
     sub_48A330(*((char **)this + 44015), data);
     sub_494600(*((char **)this + 44016), data);
     sub_49E880(*((char **)this + 44017), data);
@@ -55,7 +55,7 @@ void StateUI::Init()
   else
   {
     this->UIFrameWnd[363] = 0;
-    UIBase::SetItemData((UIBase *)this, 2, 0);
+    ((UIBase *)this)->SetItemData(2, 0);
     sub_48A330(*((char **)this + 44015), 0);
     sub_494600(*((char **)this + 44016), 0);
     sub_49E880(*((char **)this + 44017), 0);

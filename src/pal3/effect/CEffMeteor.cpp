@@ -32,7 +32,7 @@ CEffMeteor::CEffMeteor()
 {
   _DWORD *v0; // eax
 
-  v0 = (_DWORD *)operator new(0x10D0u);
+  v0 = ((operator *)0x10D0u)->new();
   if ( v0 )
     return sub_4CB3A0(v0);
   else
@@ -129,28 +129,28 @@ int CEffMeteor::Init(int _this, int a2, float a3, float a4, float a5)
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(float *)(this + 92) = (float)HIBYTE(*(_DWORD *)(this + 88));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(float *)(this + 96) = (float)(unsigned __int8)BYTE2(*(_DWORD *)(this + 88));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(float *)(this + 100) = (float)(unsigned __int8)BYTE1(*(_DWORD *)(this + 88));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(_DWORD *)(this + 84) = 0;
@@ -213,7 +213,7 @@ char CEffMeteor::Create(int _this, int a2)
   int v32; // [esp+824h] [ebp+8h]
   _DWORD *v33; // [esp+824h] [ebp+8h]
 
-  v3 = (void *)operator new(0x4C0u);
+  v3 = ((operator *)0x4C0u)->new();
   *(_DWORD *)(this + 24) = v3;
   if ( v3 )
   {
@@ -221,7 +221,7 @@ char CEffMeteor::Create(int _this, int a2)
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = operator new(0x2D0u);
+      *(_DWORD *)(v5 + *(_DWORD *)(this + 24)) = ((operator *)0x2D0u)->new();
       if ( !*(_DWORD *)(v5 + *(_DWORD *)(this + 24)) )
         break;
       v5 += 152;
@@ -271,7 +271,7 @@ LABEL_10:
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(_DWORD *)(this + 116) = abs32((int)*(float *)(a2 + 224));
@@ -279,7 +279,7 @@ LABEL_10:
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(_DWORD *)(this + 124) = (int)*(float *)(a2 + 232);
@@ -307,7 +307,7 @@ LABEL_10:
   *(_DWORD *)(this + 88) = *(_DWORD *)(a2 + 204);
   sub_4CCC60(*(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   v12 = *(_DWORD *)(this + 116);
-  v13 = (void *)operator new(68 * v12);
+  v13 = ((operator *)68 * v12)->new();
   Block = v13;
   v31 = 0;
   if ( v13 )
@@ -334,7 +334,7 @@ LABEL_10:
   v16 = *(_DWORD *)(this + 116);
   *(_DWORD *)(this + 48) = v13;
   v31 = -1;
-  v17 = (char *)operator new(48 * v16);
+  v17 = (char *)((operator *)48 * v16)->new();
   if ( v17 )
   {
     v18 = v16 - 1;
@@ -368,7 +368,7 @@ LABEL_10:
   }
   v21 = *(_DWORD *)(this + 116);
   *(_DWORD *)(this + 56) = v17;
-  v22 = (int *)operator new(56 * v21 + 4);
+  v22 = (int *)((operator *)56 * v21 + 4)->new();
   Block = v22;
   v31 = 1;
   if ( v22 )
@@ -389,7 +389,7 @@ LABEL_10:
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aNewFailInCeffm, (int)aDProjectPal3Co_0, 144),
+      (const void *)((char)&ArgList)->FormatException((int)aNewFailInCeffm, (int)aDProjectPal3Co_0, 144),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -552,7 +552,7 @@ LABEL_30:
         if ( (g_bCursorVisible & 1) == 0 )
         {
           g_bCursorVisible |= 1u;
-          CEffMgr::Reset(&g_nCursorState);
+          ((CEffMgr *)&g_nCursorState)->Reset();
           atexit(nullsub_1);
         }
         v14 = 0;

@@ -61,12 +61,12 @@ void CUtil::Init()
 // 0x00523130
 int CUtil::CreateLog(int _this)
 {
-  UIListBox::UIListBox((_DWORD *)this);
+  ((_DWORD *)this)->UIListBox();
   *(_DWORD *)(this + 88) = 800;
   *(_DWORD *)(this + 92) = 600;
   *(_DWORD *)(this + 360) = 0;
   *(_DWORD *)(this + 364) = 0;
-  UIItem::Refresh(this + 368);
+  ((UIItem *)this + 368)->Refresh();
   *(_DWORD *)(this + 1736) = 0;
   *(_DWORD *)(this + 1740) = 0;
   *(_DWORD *)(this + 1744) = 0;
@@ -122,8 +122,8 @@ void CUtil::GetFileSize()
     (*(void (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
     *((_DWORD *)this + 437) = 0;
   }
-  UIItem::UIItem((UIItem *)&this->m_INIBuffer[84]);
-  UIWnd::~UIWnd((UIWnd *)this);
+  ((UIItem *)&this->m_INIBuffer[84])->UIItem();
+  ((UIWnd *)this)->~UIWnd();
 }
 
 // 0x005232B0
@@ -156,20 +156,13 @@ int CUtil::GetFileSize()
   *(_DWORD *)&this->m_INIFileName[64] = v3;
   *(_DWORD *)&this->m_INIFileName[56] = 0;
   *(_DWORD *)&this->m_INIFileName[52] = 0;
-  UIListBox::SetSelTexture(
-    (UIListBox *)this,
-    -1,
-    0,
-    0,
-    *(_DWORD *)&this->m_INIFileName[60],
-    *(_DWORD *)&this->m_INIFileName[64],
-    0);
+  ((UIListBox *)this)->SetSelTexture(-1, 0, 0, *(_DWORD *)&this->m_INIFileName[60], *(_DWORD *)&this->m_INIFileName[64], 0);
   a3[1] = 200;
   a3[0] = 250;
   a3[2] = 550;
   a3[3] = 300;
-  UIItem::Create((UIItem *)&this->m_INIBuffer[84], (int)&unk_ABCD00, (int)a3);
-  UIItem::SetData((UIItem *)&this->m_INIBuffer[84], 18);
+  ((UIItem *)&this->m_INIBuffer[84])->Create((int)&unk_ABCD00, (int)a3);
+  ((UIItem *)&this->m_INIBuffer[84])->SetData(18);
   v4 = *(_DWORD *)&this->m_INIBuffer[164];
   v5 = *(_DWORD *)&this->m_INIBuffer[172];
   *(_DWORD *)&this->m_INIBuffer[184] = *(_DWORD *)&this->m_INIBuffer[168] + 12;
@@ -178,8 +171,8 @@ int CUtil::GetFileSize()
   *((_DWORD *)this + 428) = 0;
   *((_DWORD *)this + 429) = 6;
   *(_DWORD *)&this->m_INIBuffer[188] = v5 - 6;
-  UIWnd::GetRect((UIWnd *)((char *)this + 824), &this->m_INIBuffer[180]);
-  v6 = operator new(0x1578u);
+  ((UIWnd *)((char *)this + 824))->GetRect(&this->m_INIBuffer[180]);
+  v6 = ((operator *)0x1578u)->new();
   v22 = 0;
   if ( v6 )
     v7 = v6->ctor_3F30();
@@ -187,7 +180,7 @@ int CUtil::GetFileSize()
     v7 = 0;
   v22 = -1;
   *((_DWORD *)this + 434) = v7;
-  v8 = operator new(0xA4128u);
+  v8 = ((operator *)0xA4128u)->new();
   v22 = 1;
   if ( v8 )
     v9 = v8->Create();
@@ -195,7 +188,7 @@ int CUtil::GetFileSize()
     v9 = 0;
   v22 = -1;
   *((_DWORD *)this + 435) = v9;
-  v10 = operator new(0x1E56Cu);
+  v10 = ((operator *)0x1E56Cu)->new();
   v22 = 2;
   if ( v10 )
     v11 = v10->ctor_A60();
@@ -203,7 +196,7 @@ int CUtil::GetFileSize()
     v11 = 0;
   v22 = -1;
   *((_DWORD *)this + 436) = v11;
-  v12 = operator new(0x70DCu);
+  v12 = ((operator *)0x70DCu)->new();
   v22 = 3;
   if ( v12 )
     v13 = v12->ctor_D140();
@@ -219,14 +212,14 @@ int CUtil::GetFileSize()
   sub_46EC30(*((_DWORD **)this + 437), 1);
   sub_46DF40(*((_DWORD *)this + 437), (int)this);
   sub_524960(*((_DWORD **)this + 434), *((_DWORD *)this + 435));
-  CCBResultWindow::~CCBResultWindow(*((CCBResultWindow **)this + 435), *((_DWORD *)this + 437));
-  CCBResultWindow::CCBResultWindow(*((CCBResultWindow **)this + 435), *((_DWORD *)this + 436));
-  CCBProtectWindow::Update(*((CCBProtectWindow **)this + 435), *((_DWORD *)this + 434));
+  ((CCBResultWindow *)*((CCBResultWindow **)this + 435))->~CCBResultWindow(*((_DWORD *)this + 437));
+  ((CCBResultWindow *)*((CCBResultWindow **)this + 435))->CCBResultWindow(*((_DWORD *)this + 436));
+  ((CCBProtectWindow *)*((CCBProtectWindow **)this + 435))->Update(*((_DWORD *)this + 434));
   this->RectIntersection();
   if ( (g_nGameFlags & 4) != 0 )
   {
     Instance = (char *)CScreenMode::GetInstance();
-    AudioManager = (gbAudioManager *)CScreenMode::GetAudioManager((CScreenMode *)Instance);
+    AudioManager = (gbAudioManager *)((CScreenMode *)Instance)->GetAudioManager();
     v17 = AudioManager;
     if ( AudioManager )
     {

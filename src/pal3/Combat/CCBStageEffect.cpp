@@ -28,7 +28,7 @@ CCBStageEffect::CCBStageEffect(int _this)
   char ArgList; // [esp+428h] [ebp-40Ch] BYREF
   int v8; // [esp+830h] [ebp-4h]
 
-  OpenBaseFile::OpenBaseFile(&v5);
+  ((OpenBaseFile *)&v5)->OpenBaseFile();
   v8 = 0;
   v2 = (struct gbVFile *)g_pVFileSys->OpenFile(aCbdataEfflinke, 0x201u);
   v3 = v2;
@@ -36,7 +36,7 @@ CCBStageEffect::CCBStageEffect(int _this)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCouldnTOpenEff_0, (int)aDProjectPal3Co_7, 366),
+      (const void *)((char)&ArgList)->FormatException((int)aCouldnTOpenEff_0, (int)aDProjectPal3Co_7, 366),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -45,7 +45,7 @@ CCBStageEffect::CCBStageEffect(int _this)
   g_pVFileSys->CloseFile(v3);
   dword_17AB584 = 1;
   v8 = -1;
-  OpenNULLFile::OpenNULLFile(&v5);
+  ((OpenNULLFile *)&v5)->OpenNULLFile();
   return 1;
 }
 
@@ -59,7 +59,7 @@ CCBStageEffect::~CCBStageEffect(int _this)
   char ArgList; // [esp+428h] [ebp-40Ch] BYREF
   int v8; // [esp+830h] [ebp-4h]
 
-  OpenBaseFile::OpenBaseFile(&v5);
+  ((OpenBaseFile *)&v5)->OpenBaseFile();
   v8 = 0;
   v2 = (struct gbVFile *)g_pVFileSys->OpenFile(aCbdataEfflinke, 0x202u);
   v3 = v2;
@@ -67,7 +67,7 @@ CCBStageEffect::~CCBStageEffect(int _this)
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCouldnTOpenCbE_0, (int)aDProjectPal3Co_7, 390),
+      (const void *)((char)&ArgList)->FormatException((int)aCouldnTOpenCbE_0, (int)aDProjectPal3Co_7, 390),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -75,7 +75,7 @@ CCBStageEffect::~CCBStageEffect(int _this)
   g_pVFileSys->Write((void *)(this + 2444), 0x5A00u, v3);
   g_pVFileSys->CloseFile(v3);
   v8 = -1;
-  OpenNULLFile::OpenNULLFile(&v5);
+  ((OpenNULLFile *)&v5)->OpenNULLFile();
   return 1;
 }
 

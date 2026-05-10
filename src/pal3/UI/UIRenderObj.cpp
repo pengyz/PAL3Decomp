@@ -24,7 +24,7 @@ UIRenderObj::UIRenderObj(int _this)
     {
       PushMatrixStacks(v5);
       v11 = 0;
-      GRPinput::GetCursorPos(&Point);
+      ((GRPinput *)&Point)->GetCursorPos();
       v7 = Point;
       v9 = Point.y + 32;
       v2 = *(_DWORD *)(this + 12);
@@ -33,13 +33,7 @@ UIRenderObj::UIRenderObj(int _this)
       v3 = *(_DWORD *)(this + 4 * v2 + 16);
       v10[16] = 1;
       v10[0] = v3;
-      _TextureLib_Data::SetLibFolder(
-        &v7.x,
-        (unsigned int *)&v4,
-        (struct gbTextureArray *)v10,
-        0x114u,
-        0,
-        COERCE_FLOAT(1));
+      ((_TextureLib_Data *)&v7.x)->SetLibFolder((unsigned int *)&v4, (struct gbTextureArray *)v10, 0x114u, 0, COERCE_FLOAT(1));
       v11 = -1;
       PopMatrixStacks();
     }

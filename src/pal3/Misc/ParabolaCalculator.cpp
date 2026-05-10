@@ -43,12 +43,12 @@ int ParabolaCalculator::UpdateParabola(int _this)
 {
   int result; // eax
 
-  ParabolaCalculator::CalulateParabola((ParabolaCalculator *)this);
+  ((ParabolaCalculator *)this)->CalulateParabola();
   result = *(_DWORD *)(this + 1752);
   switch ( result )
   {
     case 0:
-      result = UIListBox::SetScroll((UIListBox *)this);
+      result = ((UIListBox *)this)->SetScroll();
       break;
     case 1:
       result = (*(int (**)(_DWORD))(**(_DWORD **)(this + 1736) + 4))(*(_DWORD *)(this + 1736));
@@ -78,7 +78,7 @@ int ParabolaCalculator::UpdateParabolaY(int _this, int a2, int a3)
   if ( g_Input.KeyInfo[177].PressTime != 2 && (g_nGameFlags & 1) != 0 )
   {
     Instance = (char *)CScreenMode::GetInstance();
-    AudioManager = (gbAudioManager *)CScreenMode::GetAudioManager((CScreenMode *)Instance);
+    AudioManager = (gbAudioManager *)((CScreenMode *)Instance)->GetAudioManager();
     AudioManager->DetachAll3D();
   }
   if ( !sub_4A1CF0((_DWORD *)(this + 368)) )
@@ -86,7 +86,7 @@ int ParabolaCalculator::UpdateParabolaY(int _this, int a2, int a3)
   switch ( *(_DWORD *)(this + 1752) )
   {
     case 0:
-      UIWnd::HitTest((UIWnd *)this, a2, a3);
+      ((UIWnd *)this)->HitTest(a2, a3);
       result = 1;
       break;
     case 1:

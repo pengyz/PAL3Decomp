@@ -172,9 +172,9 @@ int UIFrameWnd::Render(int _this)
       v27.Green = *(_DWORD *)(this + 116);
       v27.Blue = v11;
       v27.ColorQuadFmt = v11;
-      gbColorQuad::gbColorQuad(&v27, (struct gbColorQuad *)(this + 8));
-      v12 = (struct gbTextureArray *)gbTextureArray::gbTextureArray((gbTextureArray *)&v40.pTexPt[1], *(struct gbTexture **)(this + 112));
-      _TextureLib_Data::_CheckItem((_DWORD *)(this + 16), &v36, v12, v27.ColorQuadFmt, v27.Blue, (float *)v27.Green);
+      ((gbColorQuad *)&v27)->gbColorQuad((struct gbColorQuad *)(this + 8));
+      v12 = ((gbTextureArray *)&v40.pTexPt[1])->gbTextureArray(*(struct gbTexture **)(this + 112));
+      ((_DWORD *)(this + 16))->_CheckItem(&v36, v12, v27.ColorQuadFmt, v27.Blue, (float *)v27.Green);
     }
     if ( !*(_DWORD *)(this + 60) && *(_DWORD *)(this + 128) )
     {
@@ -182,9 +182,9 @@ int UIFrameWnd::Render(int _this)
       v27.Green = *(_DWORD *)(this + 132);
       v27.Blue = v13;
       v27.ColorQuadFmt = v6;
-      gbColorQuad::gbColorQuad(&v27, (struct gbColorQuad *)(this + 8));
-      v14 = (struct gbTextureArray *)gbTextureArray::gbTextureArray((gbTextureArray *)&v40.pTexPt[1], *(struct gbTexture **)(this + 128));
-      _TextureLib_Data::_CheckItem((_DWORD *)(this + 16), &v36, v14, v27.ColorQuadFmt, v27.Blue, (float *)v27.Green);
+      ((gbColorQuad *)&v27)->gbColorQuad((struct gbColorQuad *)(this + 8));
+      v14 = ((gbTextureArray *)&v40.pTexPt[1])->gbTextureArray(*(struct gbTexture **)(this + 128));
+      ((_DWORD *)(this + 16))->_CheckItem(&v36, v14, v27.ColorQuadFmt, v27.Blue, (float *)v27.Green);
     }
     if ( *(_DWORD *)(this + 136) )
     {
@@ -205,9 +205,9 @@ int UIFrameWnd::Render(int _this)
       v27.Green = 0;
       v27.Blue = v17;
       v27.ColorQuadFmt = v6;
-      gbColorQuad::gbColorQuad(&v27, (struct gbColorQuad *)(this + 8));
-      v18 = (struct gbTextureArray *)gbTextureArray::gbTextureArray((gbTextureArray *)&v40.pTexPt[1], *(struct gbTexture **)(this + 120));
-      _TextureLib_Data::_CheckItem((_DWORD *)(this + 16), &v36, v18, v27.ColorQuadFmt, v27.Blue, (float *)v27.Green);
+      ((gbColorQuad *)&v27)->gbColorQuad((struct gbColorQuad *)(this + 8));
+      v18 = ((gbTextureArray *)&v40.pTexPt[1])->gbTextureArray(*(struct gbTexture **)(this + 120));
+      ((_DWORD *)(this + 16))->_CheckItem(&v36, v18, v27.ColorQuadFmt, v27.Blue, (float *)v27.Green);
     }
     if ( *(_DWORD *)(this + 104) )
     {
@@ -229,7 +229,7 @@ int UIFrameWnd::Render(int _this)
         v24 = byte_56A634;
       UIRenderPar((int)v24, (int)&v32, (_BYTE *)(this + 4), *(_DWORD *)(this + 92), *(_DWORD *)(this + 72));
     }
-    return UIWnd::GetID((UIWnd *)this);
+    return ((UIWnd *)this)->GetID();
   }
   return result;
 }
@@ -248,7 +248,7 @@ BOOL UIFrameWnd::Update(int _this, int a2, int a3)
     return 0;
   if ( !*(_DWORD *)(this + 60) )
     return 0;
-  GRPinput::GetCursorPos(&pt);
+  ((GRPinput *)&pt)->GetCursorPos();
   if ( !PtInRect((const RECT *)(this + 16), pt) )
   {
     if ( !*(_BYTE *)(this + 140) )
@@ -258,7 +258,7 @@ BOOL UIFrameWnd::Update(int _this, int a2, int a3)
       if ( v9 )
         (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1003, *(_DWORD *)(this + 12), 0);
     }
-    return UIWnd::HitTest((UIWnd *)this, a2, a3);
+    return ((UIWnd *)this)->HitTest(a2, a3);
   }
   if ( g_Input.m_shiftedKeyStates[207] != 1 || (g_Input.m_shiftedKeyStates[204] & 0xF) != 1 )
   {
@@ -273,7 +273,7 @@ BOOL UIFrameWnd::Update(int _this, int a2, int a3)
           *(_DWORD *)(this + 12),
           LOWORD(pt.x) | (LOWORD(pt.y) << 16));
         *(_BYTE *)(this + 140) = 0;
-        return UIWnd::HitTest((UIWnd *)this, a2, a3);
+        return ((UIWnd *)this)->HitTest(a2, a3);
       }
     }
     else if ( g_Input.m_shiftedKeyStates[207] == 1 && (g_Input.m_shiftedKeyStates[204] & 0xF) == 2 )
@@ -283,7 +283,7 @@ BOOL UIFrameWnd::Update(int _this, int a2, int a3)
       {
         (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v7 + 24))(v7, 1011, *(_DWORD *)(this + 12), 0);
         *(_BYTE *)(this + 140) = 0;
-        return UIWnd::HitTest((UIWnd *)this, a2, a3);
+        return ((UIWnd *)this)->HitTest(a2, a3);
       }
     }
     else
@@ -294,7 +294,7 @@ BOOL UIFrameWnd::Update(int _this, int a2, int a3)
     }
 LABEL_20:
     *(_BYTE *)(this + 140) = 0;
-    return UIWnd::HitTest((UIWnd *)this, a2, a3);
+    return ((UIWnd *)this)->HitTest(a2, a3);
   }
   v5 = *(_DWORD *)(this + 32);
   if ( !v5 )
@@ -305,7 +305,7 @@ LABEL_20:
     *(_DWORD *)(this + 12),
     LOWORD(pt.x) | (LOWORD(pt.y) << 16));
   *(_BYTE *)(this + 140) = 0;
-  return UIWnd::HitTest((UIWnd *)this, a2, a3);
+  return ((UIWnd *)this)->HitTest(a2, a3);
 }
 
 // 0x00442C60

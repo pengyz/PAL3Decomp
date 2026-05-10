@@ -179,7 +179,7 @@ _DWORD *CEffgbParticle::SetTimeScale()
 {
   _DWORD *v0; // eax
 
-  v0 = (_DWORD *)operator new(0x50u);
+  v0 = ((operator *)0x50u)->new();
   if ( v0 )
     return v0->Render();
   else
@@ -251,7 +251,7 @@ char CEffgbParticle::CreateTask(int _this, int a2)
   _DWORD *v11; // eax
   int v12; // edi
 
-  v3 = (void *)operator new(0x4C0u);
+  v3 = ((operator *)0x4C0u)->new();
   *(_DWORD *)(this + 24) = v3;
   if ( v3 )
   {
@@ -259,7 +259,7 @@ char CEffgbParticle::CreateTask(int _this, int a2)
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(*(_DWORD *)(this + 24) + v5) = operator new(0x2D0u);
+      *(_DWORD *)(*(_DWORD *)(this + 24) + v5) = ((operator *)0x2D0u)->new();
       if ( !*(_DWORD *)(*(_DWORD *)(this + 24) + v5) )
         break;
       v5 += 152;
@@ -306,7 +306,7 @@ char CEffgbParticle::CreateTask(int _this, int a2)
     operator delete(*(void **)(this + 24));
   }
 LABEL_10:
-  v10 = (_DWORD *)operator new(0x5896Cu);
+  v10 = ((operator *)0x5896Cu)->new();
   if ( v10 )
     v11 = (_DWORD *)sub_4BC760(v10);
   else

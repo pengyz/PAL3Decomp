@@ -19,52 +19,52 @@ _TextureLib_Data::_TextureLib_Data()
 {
   if ( dword_1895048 )
   {
-    gbRefObject::Release((gbRefObject *)dword_1895048);
+    ((gbRefObject *)dword_1895048)->Release();
     dword_1895048 = 0;
   }
   if ( dword_189504C )
   {
-    gbRefObject::Release((gbRefObject *)dword_189504C);
+    ((gbRefObject *)dword_189504C)->Release();
     dword_189504C = 0;
   }
   if ( dword_1895054 )
   {
-    gbRefObject::Release((gbRefObject *)dword_1895054);
+    ((gbRefObject *)dword_1895054)->Release();
     dword_1895054 = 0;
   }
   if ( dword_189505C )
   {
-    gbRefObject::Release((gbRefObject *)dword_189505C);
+    ((gbRefObject *)dword_189505C)->Release();
     dword_189505C = 0;
   }
   if ( dword_1895068 )
   {
-    gbRefObject::Release((gbRefObject *)dword_1895068);
+    ((gbRefObject *)dword_1895068)->Release();
     dword_1895068 = 0;
   }
   if ( dword_1895050 )
   {
-    gbRefObject::Release((gbRefObject *)dword_1895050);
+    ((gbRefObject *)dword_1895050)->Release();
     dword_1895050 = 0;
   }
   if ( dword_1895058 )
   {
-    gbRefObject::Release((gbRefObject *)dword_1895058);
+    ((gbRefObject *)dword_1895058)->Release();
     dword_1895058 = 0;
   }
   if ( dword_1895060 )
   {
-    gbRefObject::Release((gbRefObject *)dword_1895060);
+    ((gbRefObject *)dword_1895060)->Release();
     dword_1895060 = 0;
   }
   if ( dword_1895064 )
   {
-    gbRefObject::Release((gbRefObject *)dword_1895064);
+    ((gbRefObject *)dword_1895064)->Release();
     dword_1895064 = 0;
   }
   if ( dword_189506C )
   {
-    gbRefObject::Release((gbRefObject *)dword_189506C);
+    ((gbRefObject *)dword_189506C)->Release();
     dword_189506C = 0;
   }
 }
@@ -81,7 +81,7 @@ _TextureLib_Data::~_TextureLib_Data(int a1, int a2, int a3, int a4, float *a5)
   v6[3] = (float)a2;
   v6[2] = (float)a3;
   v6[1] = (float)a4;
-  DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v6, 1, (struct gbRenderEffect *)dword_1895050, 0);
 }
 
@@ -133,7 +133,7 @@ void _TextureLib_Data::_GetItemNum(int *a1, struct gbTextureArray *a2, int a3, i
   v10[3] = 1.0 - ((double)a1[1] + (double)a1[1]) / v19;
   v10[2] = ((double)a1[2] + (double)a1[2]) / v7 - 1.0;
   v10[1] = 1.0 - ((double)a1[3] + (double)a1[3]) / v19;
-  DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x15u);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x15u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v10, 1, v8, a2);
 }
 
@@ -229,7 +229,7 @@ void _TextureLib_Data::_CheckItem(_DWORD *a1, int *a2, struct gbTextureArray *a3
     v11 = (struct gbRenderEffect *)dword_1895048;
     v21 = 1.0 - (v16 + v16) / v30;
   }
-  DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), a5);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(a5);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)&v20, 1, v11, a3);
 }
 
@@ -336,7 +336,7 @@ void _TextureLib_Data::SetLibFolder(
   }
   v19 = v12 - -0.5;
   v21 = v14 - -0.5;
-  DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), a4);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(a4);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)&v19, 1, v13, a3);
 }
 
@@ -397,7 +397,7 @@ void _TextureLib_Data::GetLibInfo(int a1, int a2, int a3, int a4, int *a5, struc
   v18[1] = v14;
   v18[0] = v12 - -0.5;
   v18[2] = v13 - -0.5;
-  DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
   if ( !a7 )
   {
     v17 = a6;
@@ -469,7 +469,7 @@ void _TextureLib_Data::GetLib(int a1, int a2, int a3, int a4, int *a5, struct gb
   v14[1] = v12;
   v14[0] = v10 - -0.5;
   v14[2] = v11 - -0.5;
-  DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v14, 1, (struct gbRenderEffect *)dword_189505C, a6);
 }
 
@@ -531,7 +531,7 @@ void _TextureLib_Data::GetTextureInfo(_DWORD *a1, int *a2, int *a3, struct gbTex
     v10 = (double)a2[3];
   }
   v13[1] = v10;
-  DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v13, 1, (struct gbRenderEffect *)dword_1895054, a4);
 }
 
@@ -582,6 +582,6 @@ void _TextureLib_Data::GetTextureInfo(int a1, int a2, int a3, int a4, int *a5, s
   v11[1] = v9;
   v11[0] = v7 - -0.5;
   v11[2] = v8 - -0.5;
-  DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
+  DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
   DynVertBuf->RenderUIQuad((struct gbUIQuad *)v11, 1, (struct gbRenderEffect *)dword_1895058, a6);
 }

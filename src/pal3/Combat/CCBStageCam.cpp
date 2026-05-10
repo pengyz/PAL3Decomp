@@ -31,7 +31,7 @@ CCBStageCam::CCBStageCam(CCBStageCam *Buffer)
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aCouldnTOpenCbC, aDProjectPal3Co_6, 702),
+      ((Logger *)ArgList)->FormatException(aCouldnTOpenCbC, aDProjectPal3Co_6, 702),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -62,14 +62,14 @@ CCBStageCam::~CCBStageCam(int _this)
   char ArgList; // [esp+440h] [ebp-40Ch] BYREF
   int v7; // [esp+848h] [ebp-4h]
 
-  OpenBaseFile::OpenBaseFile(&v4);
+  ((OpenBaseFile *)&v4)->OpenBaseFile();
   v7 = 0;
   v2 = (struct gbVFile *)g_pVFileSys->OpenFile(aCbdataFlexcamD, 0x201u);
   if ( !v2 )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCouldnTOpenCbC, (int)aDProjectPal3Co_6, 734),
+      (const void *)((char)&ArgList)->FormatException((int)aCouldnTOpenCbC, (int)aDProjectPal3Co_6, 734),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -79,7 +79,7 @@ CCBStageCam::~CCBStageCam(int _this)
   g_pVFileSys->Read((void *)(this + 410000), 0x4E20u, v2);
   g_pVFileSys->CloseFile(v2);
   v7 = -1;
-  OpenNULLFile::OpenNULLFile(&v4);
+  ((OpenNULLFile *)&v4)->OpenNULLFile();
   return 1;
 }
 
@@ -248,7 +248,7 @@ int CCBStageCam::IsCamValid()
 
 // 0x005052E0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-_DWORD *CCBStageCam::SetCamPos(CCBStageCam *this, int **a2, int a3)
+_DWORD *((CCBStageCam *)CCBStageCam *this)->SetCamPos(int, **a2, int, a3)
 {
   int v4; // eax
 
@@ -274,7 +274,7 @@ _DWORD *CCBStageCam::SetCamPos(CCBStageCam *this, int **a2, int a3)
   *((_DWORD *)this + 107534) = 0;
   *((_DWORD *)this + 107535) = 0;
   *((_DWORD *)this + 107536) = 0;
-  gbMatrix4::gbMatrix4((gbMatrix4 *)((char *)this + 430148));
+  ((gbMatrix4 *)((char *)this + 430148))->gbMatrix4();
   *((_DWORD *)this + 107557) = 0;
   *((_DWORD *)this + 107558) = 0;
   *((_DWORD *)this + 107559) = 0;
@@ -314,9 +314,9 @@ int CCBStageCam::Create(int _this)
 // 0x00505490
 char CCBStageCam::Destroy()
 {
-  CCBStageCam::Create((int)this);
-  CCBStageCam::~CCBStageCam((int)this);
-  CCCTData::Destroy((CCCTData *)this);
+  ((int)this)->Create();
+  ((int)this)->~CCBStageCam();
+  ((CCCTData *)this)->Destroy();
   return 1;
 }
 
@@ -337,7 +337,7 @@ char CCBStageCam::Init()
 // 0x005054E0
 char CCBStageCam::Update()
 {
-  CCBStageCam::Create((int)this);
+  ((int)this)->Create();
   return 1;
 }
 
@@ -383,12 +383,12 @@ void CCBStageCam::DoTask(int _this)
     *(float *)(this + 430116) = sin(*(float *)(*(_DWORD *)v2 + 80) * *(float *)(this + 430084)) * v4
                               + *(float *)(this + 430116);
     v3->UpdateCamera(this + 430112);
-    CameraCtrl::SetAsCurrent(*(CameraCtrl **)(this + 430004), 3);
+    ((CameraCtrl *)*(CameraCtrl **)(this + 430004))->SetAsCurrent(3);
     *(float *)(this + 430116) = pPos;
   }
   if ( dword_17A990C == 4 )
   {
-    CCBStageCam::SwitchEditorCamPos((CCBStageCam **)this);
+    ((CCBStageCam **)this)->SwitchEditorCamPos();
     this->ProcCamMove();
     v20.y = 1.0;
     v17 = 0;
@@ -400,7 +400,7 @@ void CCBStageCam::DoTask(int _this)
     v19.x = 1.0;
     v19.z = 1.0;
     memset(&v21, 0, 12);
-    gbVec3D::gbVec3D(&v21.Direction, 0.0, 0.0, 0.0);
+    ((gbVec3D *)&v21.Direction)->gbVec3D(0.0, 0.0, 0.0);
     v5 = *(_DWORD *)(this + 430000);
     pPos = *(float *)(v5 + 80);
     v6 = (CameraCtrl *)*(CameraCtrl **)(this + 430004);
@@ -411,8 +411,8 @@ void CCBStageCam::DoTask(int _this)
     v21.Origin.x = v8;
     v21.Origin.y = *(ViewTarget - 2);
     v21.Origin.z = *(ViewTarget - 1);
-    gbVec3D::operator=(&v21.Direction, ViewTarget);
-    v9 = gbRay::IntersectPlane(&v21, &v20, &v19);
+    ((gbVec3D *)&v21.Direction)->operator=(ViewTarget);
+    v9 = ((gbRay *)&v21)->IntersectPlane(&v20, &v19);
     v10 = *(_BYTE *)(this + 430253);
     v20.x = v21.Direction.x * v9;
     v19.x = v20.x + v21.Origin.x;
@@ -444,10 +444,10 @@ void CCBStageCam::DoTask(int _this)
 // 0x00505770
 char CCBStageCam::ClearFinishedTask(int _this, int a2)
 {
-  if ( !CCBStageCam::IsEditorCamValid((CCBStageCam *)this, a2) )
+  if ( !((CCBStageCam *)this)->IsEditorCamValid(a2) )
     return 0;
   *(_BYTE *)(this + 430012) = 1;
-  CCCTData::Save((CCCTData *)this, a2);
+  ((CCCTData *)this)->Save(a2);
   *(_DWORD *)(this + 430032) = a2;
   *(_DWORD *)(this + 430036) = 0;
   return 1;
@@ -490,14 +490,14 @@ int CCBStageCam::ProcCamMove(int _this)
   v10 = 0;
   if ( MEMORY[0xBFC6E4] == 1 )
   {
-    result = CCCTData::Create(&v6);
+    result = ((CCCTData *)&v6)->Create();
     if ( (_BYTE)result )
     {
       *(_BYTE *)(this + 430253) = 1;
     }
     else
     {
-      result = CCCTData::Create(&v9);
+      result = ((CCCTData *)&v9)->Create();
       if ( (_BYTE)result )
       {
         *(_BYTE *)(this + 430254) = 1;

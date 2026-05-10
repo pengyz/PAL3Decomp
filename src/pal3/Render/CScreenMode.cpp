@@ -45,7 +45,7 @@ char CScreenMode::InitCPK(int a2, int a3)
   if ( (g_nGameFlags & 2) != 0 )
   {
     v5 = (CPK *)((char *)this + 16);
-    CPK::SetOpenMode((CPK *)((char *)this + 16), CPKM_Normal);
+    ((CPK *)((char *)this + 16))->SetOpenMode(CPKM_Normal);
     v6 = (CPK *)((char *)this + 917964);
     v6->SetOpenMode(CPKM_Normal);
     if ( v5->IsValidCPK(aMovieMovieCpk) )
@@ -200,7 +200,7 @@ void CScreenMode::SetAudioParam()
     if ( v4 >= 0 && v4 < *((_DWORD *)this + 5) && *(_DWORD *)(*((_DWORD *)this + 4) + 4 * v4) )
       ++v4;
     else
-      PtrArray::InsertAt((PtrArray *)this + 1, v4, 1);
+      ((PtrArray *)(PtrArray *)this + 1)->InsertAt(v4, 1);
   }
   v5 = *((_DWORD *)this + 1);
   for ( j = 0; j < v5; ++j )
@@ -219,7 +219,7 @@ void CScreenMode::SetAudioParam()
     if ( k >= 0 && k < v8 && *(_DWORD *)(*(_DWORD *)this + 4 * k) )
       ++k;
     else
-      PtrArray::InsertAt((PtrArray *)this, k, 1);
+      ((PtrArray *)this)->InsertAt(k, 1);
   }
 }
 
@@ -245,12 +245,12 @@ void CScreenMode::SetMode(int mode)
 
   if ( (g_nGameFlags & 5) != 0 )
   {
-    gbAudioMgrDesc::gbAudioMgrDesc((gbAudioMgrDesc *)v11);
-    v3 = (struct gbVFileSystem *)operator new(0xF4u);
+    ((gbAudioMgrDesc *)v11)->gbAudioMgrDesc();
+    v3 = (struct gbVFileSystem *)((operator *)0xF4u)->new();
     v9[1] = v3;
     v12 = 0;
     if ( v3 )
-      v4 = (gbAudioManager *)gbAudioManager::gbAudioManager((gbAudioManager *)v3, &v8, (struct gbAudioMgrDesc *)v11);
+      v4 = ((gbAudioManager *)v3)->gbAudioManager(&v8, (struct gbAudioMgrDesc *)v11);
     else
       v4 = 0;
     v12 = -1;
@@ -274,7 +274,7 @@ void CScreenMode::SetMode(int mode)
       *((_DWORD *)this + 6) = 0;
       v9->OpenBaseFile();
       v12 = 1;
-      PalScript::LoadFromFile((PalScript *)((char *)this + 284), aDatascriptMusi);
+      ((PalScript *)((char *)this + 284))->LoadFromFile(aDatascriptMusi);
       if ( (g_nGameFlags & 2) != 0 )
       {
         v7 = (CPK *)((char *)this + 832);
@@ -305,7 +305,7 @@ void CScreenMode::Restore()
   v2 = (void *)*((_DWORD *)this + 202);
   if ( v2 )
   {
-    gbAudioManager::~gbAudioManager(*((gbAudioManager **)this + 202));
+    ((gbAudioManager *)*((gbAudioManager **)this + 202))->~gbAudioManager();
     operator delete(v2);
     *((_DWORD *)this + 202) = 0;
   }
@@ -328,7 +328,7 @@ void CScreenMode::AudioSetPosition(void *pPos, int a3)
     if ( v3 )
     {
       *(_DWORD *)(*(_DWORD *)(v3 + 16) + 8) = a3;
-      gbSound2DNode::Play(*(gbSound2DNode **)(v3 + 16));
+      ((gbSound2DNode *)*(gbSound2DNode **)(v3 + 16))->Play();
     }
   }
 }
@@ -340,13 +340,8 @@ void CScreenMode::AudioUpdate()
   {
     if ( g_pCamera )
     {
-      gbAudioManager::SetListenerPosition(
-        *((gbAudioManager **)this + 202),
-        (const struct gbVec3D *)((char *)g_pCamera + 492));
-      gbAudioManager::SetListenerOrientation(
-        *((gbAudioManager **)this + 202),
-        (struct gbVec3D *)((char *)g_pCamera + 504),
-        (struct gbVec3D *)((char *)g_pCamera + 516));
+      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerPosition((const struct gbVec3D *)((char *)g_pCamera + 492));
+      ((gbAudioManager *)*((gbAudioManager **)this + 202))->SetListenerOrientation((struct gbVec3D *)((char *)g_pCamera + 504), (struct gbVec3D *)((char *)g_pCamera + 516));
     }
   }
 }

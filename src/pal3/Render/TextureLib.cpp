@@ -84,7 +84,7 @@ char TextureLib::LoadFromFile(char *filename)
     v10 = v9;
     if ( v9 )
     {
-      v11 = operator new(1088 * v9);
+      v11 = ((operator *)1088 * v9)->new();
       if ( v11 )
       {
         if ( v10 - 1 >= 0 )
@@ -155,7 +155,7 @@ char TextureLib::LoadFromFile(char *filename)
   v21 = v20;
   if ( !v20 )
     return 0;
-  v22 = operator new(1088 * v20);
+  v22 = ((operator *)1088 * v20)->new();
   if ( v22 )
   {
     if ( v21 - 1 >= 0 )

@@ -30,7 +30,7 @@ CEffSParticle::CEffSParticle()
 {
   _DWORD *v0; // eax
 
-  v0 = (_DWORD *)operator new(0x30u);
+  v0 = ((operator *)0x30u)->new();
   if ( v0 )
     return sub_4D4EA0(v0);
   else
@@ -371,13 +371,13 @@ int CEffSParticle::Attach(int a2)
   if ( (byte_1895561 & 1) == 0 )
   {
     byte_1895561 |= 1u;
-    CEffMgr::Reset((CEffMgr *)&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   if ( (byte_1895561 & 1) == 0 )
   {
     byte_1895561 |= 1u;
-    CEffMgr::Reset((CEffMgr *)&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   if ( !*(_BYTE *)(v4 + 65) )
@@ -386,7 +386,7 @@ int CEffSParticle::Attach(int a2)
     if ( *(_BYTE *)(v3 + 113) )
       *(float *)(v4 + 44) = *(float *)(*(_DWORD *)(*((_DWORD *)this + 1) + 4) + 108);
     if ( *(_BYTE *)(v3 + 114) )
-      CCBSystem::ProcAI(*(_DWORD *)(*((_DWORD *)this + 1) + 4), *(float *)(v3 + 24));
+      ((CCBSystem *)*(_DWORD *)(*((_DWORD *)this + 1) + 4))->ProcAI(*(float *)(v3 + 24));
     *(_BYTE *)(v4 + 65) = 1;
   }
   v5 = *(_DWORD *)(*((_DWORD *)this + 1) + 4);
@@ -398,18 +398,18 @@ int CEffSParticle::Attach(int a2)
     if ( (byte_1895561 & 1) == 0 )
     {
       byte_1895561 |= 1u;
-      CEffMgr::Reset((CEffMgr *)&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     if ( v9 <= 20.0 )
     {
       if ( v9 < 0.0 )
         v9 = 0.0;
-      CCBSystem::ProcAI(*(_DWORD *)(*((_DWORD *)this + 1) + 4), v9);
+      ((CCBSystem *)*(_DWORD *)(*((_DWORD *)this + 1) + 4))->ProcAI(v9);
     }
     else
     {
-      CCBSystem::ProcAI(*(_DWORD *)(*((_DWORD *)this + 1) + 4), 20.0);
+      ((CCBSystem *)*(_DWORD *)(*((_DWORD *)this + 1) + 4))->ProcAI(20.0);
     }
   }
   if ( v8 - *(float *)(v4 + 56) > *(float *)(v3 + 36) )
@@ -418,24 +418,24 @@ int CEffSParticle::Attach(int a2)
     if ( (byte_1895561 & 1) == 0 )
     {
       byte_1895561 |= 1u;
-      CEffMgr::Reset((CEffMgr *)&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     if ( v10 <= 20.0 )
     {
       if ( v10 < 0.0 )
         v10 = 0.0;
-      CCBSystem::ProcAI(*(_DWORD *)(*((_DWORD *)this + 1) + 4), v10);
+      ((CCBSystem *)*(_DWORD *)(*((_DWORD *)this + 1) + 4))->ProcAI(v10);
     }
     else
     {
-      CCBSystem::ProcAI(*(_DWORD *)(*((_DWORD *)this + 1) + 4), 20.0);
+      ((CCBSystem *)*(_DWORD *)(*((_DWORD *)this + 1) + 4))->ProcAI(20.0);
     }
   }
   if ( *(_BYTE *)(v4 + 66) == 1 || v8 - *(float *)(v4 + 56) >= *(float *)(v4 + 24) )
   {
     if ( *(_BYTE *)(v3 + 113) )
-      CCBSystem::ProcAI(*(_DWORD *)(*((_DWORD *)this + 1) + 4), 1.0);
+      ((CCBSystem *)*(_DWORD *)(*((_DWORD *)this + 1) + 4))->ProcAI(1.0);
     *(_DWORD *)(v4 + 8) = 4;
   }
   return 0;
@@ -568,7 +568,7 @@ char * CEffSParticle::CreateTask(char a2)
   CEffSParticle *v2; // esi
 
   v2 = (CEffSParticle *)this - 12;
-  CEffSParticle::~CEffSParticle(this - 12);
+  ((CEffSParticle *)this - 12)->~CEffSParticle();
   if ( (a2 & 1) != 0 )
     operator delete(v2);
   return (char *)v2;

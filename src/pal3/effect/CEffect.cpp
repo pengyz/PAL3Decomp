@@ -24,7 +24,7 @@ CEffect::CEffect()
 {
   _DWORD *v0; // eax
 
-  v0 = (_DWORD *)operator new(0x10C0u);
+  v0 = ((operator *)0x10C0u)->new();
   if ( v0 )
     return v0->FillDefaultUVSet();
   else
@@ -51,28 +51,28 @@ int CEffect::Reset(int _this, int a2, float a3, float a4, float a5)
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(float *)(this + 84) = (float)HIBYTE(*(_DWORD *)(this + 80));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(float *)(this + 88) = (float)(unsigned __int8)BYTE2(*(_DWORD *)(this + 80));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(float *)(this + 92) = (float)(unsigned __int8)BYTE1(*(_DWORD *)(this + 80));
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   *(_DWORD *)(this + 76) = 0;
@@ -221,7 +221,7 @@ LABEL_30:
       if ( (g_bCursorVisible & 1) == 0 )
       {
         g_bCursorVisible |= 1u;
-        CEffMgr::Reset(&g_nCursorState);
+        ((CEffMgr *)&g_nCursorState)->Reset();
         atexit(nullsub_1);
       }
       v12 = 0;
@@ -392,14 +392,7 @@ LABEL_22:
         ++*(_DWORD *)(p_m_bVisible[3] + v7 + 4);
       }
 LABEL_31:
-      CEffgbParticle::~CEffgbParticle(
-        (CEffgbParticle *)p_m_bVisible,
-        v4,
-        (int)CEffExplosive::ProcCommonTask,
-        0,
-        0,
-        a2[18],
-        a2[19]);
+      ((CEffgbParticle *)p_m_bVisible)->~CEffgbParticle(v4, (int)CEffExplosive::ProcCommonTask, 0, 0, a2[18], a2[19]);
       *(_DWORD *)(p_m_bVisible[3] + v7 + 12) = 3;
       *(_DWORD *)(*(_DWORD *)(p_m_bVisible[3] + v7) + 8) = 3;
       *(_DWORD *)(*(_DWORD *)(p_m_bVisible[3] + v7) + 16) = p_m_bVisible[1];
@@ -442,7 +435,7 @@ int CEffect::Render(int a2)
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
   result = dword_1895980;

@@ -40,7 +40,7 @@ CEffectSystem::CEffectSystem(int a2)
   v3 = (gbTexture *)(*(int (**)(_DWORD, int))(**(_DWORD **)dword_DE9384 + 8))(*(_DWORD *)dword_DE9384, a2);
   *((_DWORD *)this + 61448) = v3;
   v3->LoadTexture(1);
-  result = (_DWORD *)operator new(0x44u);
+  result = (_DWORD *)((operator *)0x44u)->new();
   if ( result )
   {
     v5 = *((_DWORD *)this + 61448);
@@ -56,7 +56,7 @@ CEffectSystem::CEffectSystem(int a2)
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Ef_0, 761),
+      ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Ef_0, 761),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -180,7 +180,7 @@ void *CEffectSystem::DestroyAllEffect()
   if ( (byte_DE96F4 & 1) == 0 )
   {
     byte_DE96F4 |= 1u;
-    CEffectSystem::DestroyEffect((int)&unk_DE93B0);
+    ((int)&unk_DE93B0)->DestroyEffect();
     atexit(unknown_libname_446);
   }
   return &unk_DE93B0;
@@ -209,7 +209,7 @@ char CEffectSystem::IsVisible(int _this)
     if ( !(*(int (**)(int, _DWORD *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, v6, 1) )
       return 0;
     (*(void (**)(int))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
-    v3 = (struct gbRenderEffect *)gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptTrail, 0);
+    v3 = ((gbEffectMgr *)*(gbEffectMgr **)(g_pGfxManager + 200))->NewRenderEffect(aGfxscriptTrail, 0);
     *(_DWORD *)(this + 828) = v3;
     if ( !v3 )
       return 0;
@@ -331,8 +331,8 @@ char CEffectSystem::Update(int _this)
         -16777216,
         1065353216,
         0);
-      gbCamera::SetDimention(*(gbCamera **)(this + 8), MEMORY[0xBFD6D0], MEMORY[0xBFD6D4]);
-      DynVertBuf = (gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x114u);
+      ((gbCamera *)*(gbCamera **)(this + 8))->SetDimention(MEMORY[0xBFD6D0], MEMORY[0xBFD6D4]);
+      DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x114u);
       if ( (byte_DE93A8 & 1) == 0 )
       {
         v3 = (gbColorQuad *)&unk_DE9388;

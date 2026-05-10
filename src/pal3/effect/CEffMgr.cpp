@@ -51,14 +51,14 @@ CEffMgr::CEffMgr()
 
   if ( dword_17A7B50 )
     return 1;
-  OpenBaseFile::OpenBaseFile(&v5);
+  ((OpenBaseFile *)&v5)->OpenBaseFile();
   v8 = 0;
   v1 = (struct gbVFile *)g_pVFileSys->OpenFile(aCbdataFlexeffD, 0x201u);
   if ( !v1 )
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCouldnTOpenEff, (int)aDProjectPal3Co_3, 447),
+      (const void *)((char)&ArgList)->FormatException((int)aCouldnTOpenEff, (int)aDProjectPal3Co_3, 447),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -70,13 +70,13 @@ CEffMgr::CEffMgr()
   g_pVFileSys->Seek(v1, 0, 1);
   g_pVFileSys->Read(v2, 0x2C047u, v1);
   g_pVFileSys->CloseFile(v1);
-  if ( (_UNKNOWN *)CPK::DeCompress((CPK *)&unk_DE9CB0, v4, v2, 0x2C047u) != &unk_8DDCE0 )
+  if ( (_UNKNOWN *)((CPK *)&unk_DE9CB0)->DeCompress(v4, v2, 0x2C047u) != &unk_8DDCE0 )
   {
     free(v2);
     free(v4);
 LABEL_9:
     v8 = -1;
-    OpenNULLFile::OpenNULLFile(&v5);
+    ((OpenNULLFile *)&v5)->OpenNULLFile();
     return 0;
   }
   qmemcpy(dword_174D330, v4, 0x5A820u);
@@ -85,7 +85,7 @@ LABEL_9:
   free(v4);
   dword_17A7B50 = 1;
   v8 = -1;
-  OpenNULLFile::OpenNULLFile(&v5);
+  ((OpenNULLFile *)&v5)->OpenNULLFile();
   return 1;
 }
 
@@ -103,7 +103,7 @@ CEffMgr::~CEffMgr()
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)Logger::FormatException((char)&ArgList, (int)aCouldnTOpenCbE, (int)aDProjectPal3Co_3, 521),
+      (const void *)((char)&ArgList)->FormatException((int)aCouldnTOpenCbE, (int)aDProjectPal3Co_3, 521),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -132,7 +132,7 @@ int CEffMgr::Init(int a2, int a3, int a4, int a5, int a6)
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset((CEffMgr *)&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     v6 = dword_1895980;
@@ -257,7 +257,7 @@ char CEffMgr::CreateEff(int a1)
     if ( v6 )
     {
       g_bCursorVisible = v4 | 1;
-      CEffMgr::Reset(&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
     sub_4D5950((char *)&dword_174D334[v5], (int)&dword_174D334[v1]);
@@ -265,11 +265,11 @@ char CEffMgr::CreateEff(int a1)
     {
 LABEL_9:
       g_bCursorVisible |= 1u;
-      CEffMgr::Reset(&g_nCursorState);
+      ((CEffMgr *)&g_nCursorState)->Reset();
       atexit(nullsub_1);
     }
 LABEL_10:
-    v2 = (char *)CEffSParticle::GetEditorTaskDescription(&dword_174D334[v5]);
+    v2 = (char *)((CEffSParticle *)&dword_174D334[v5])->GetEditorTaskDescription();
     v7 = dword_174D354;
     do
     {
@@ -278,7 +278,7 @@ LABEL_10:
         if ( (g_bCursorVisible & 1) == 0 )
         {
           g_bCursorVisible |= 1u;
-          CEffMgr::Reset(&g_nCursorState);
+          ((CEffMgr *)&g_nCursorState)->Reset();
           atexit(nullsub_1);
         }
         sub_4D5950((char *)&dword_174D334[v5], (int)&dword_174D334[v5]);
@@ -317,7 +317,7 @@ int CEffMgr::RunEffGroup(const char *a2, int a3, const char *a4)
     v8 = (char *)&g_SceneMgr.m_info[51624];
   strcpy(v7 + 58, v8);
   v7[88] = 1;
-  v9 = (_DWORD *)operator new(0x34u);
+  v9 = (_DWORD *)((operator *)0x34u)->new();
   if ( v9 )
     v10 = (_DWORD *)sub_4C04C0(v9);
   else
@@ -326,10 +326,10 @@ int CEffMgr::RunEffGroup(const char *a2, int a3, const char *a4)
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  *((_DWORD *)v7 + 23) = CEffSParticle::GetEditorTaskDescription(&g_nCursorState, (unsigned __int8 *)a2);
+  *((_DWORD *)v7 + 23) = ((CEffSParticle *)&g_nCursorState)->GetEditorTaskDescription((unsigned __int8 *)a2);
   return v4;
 }
 
@@ -356,7 +356,7 @@ int CEffMgr::IsAllEffGroupStop(const char *a2, int a3, const char *a4)
     v8 = (char *)&g_SceneMgr.m_info[51624];
   strcpy(v7 + 58, v8);
   v7[88] = 1;
-  v9 = (_DWORD *)operator new(0x10C4u);
+  v9 = (_DWORD *)((operator *)0x10C4u)->new();
   if ( v9 )
     v10 = (_DWORD *)sub_4C3C90(v9);
   else
@@ -365,10 +365,10 @@ int CEffMgr::IsAllEffGroupStop(const char *a2, int a3, const char *a4)
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  *((_DWORD *)v7 + 23) = CEffSParticle::GetEditorTaskDescription(&g_nCursorState, (unsigned __int8 *)a2);
+  *((_DWORD *)v7 + 23) = ((CEffSParticle *)&g_nCursorState)->GetEditorTaskDescription((unsigned __int8 *)a2);
   return v4;
 }
 
@@ -395,7 +395,7 @@ int CEffMgr::CopyObjInGroup(const char *a2, int a3, const char *a4)
     v8 = (char *)&g_SceneMgr.m_info[51624];
   strcpy(v7 + 58, v8);
   v7[88] = 1;
-  v9 = (_DWORD *)operator new(0x130u);
+  v9 = (_DWORD *)((operator *)0x130u)->new();
   if ( v9 )
     v10 = (_DWORD *)sub_4C1570(v9);
   else
@@ -404,10 +404,10 @@ int CEffMgr::CopyObjInGroup(const char *a2, int a3, const char *a4)
   if ( (g_bCursorVisible & 1) == 0 )
   {
     g_bCursorVisible |= 1u;
-    CEffMgr::Reset(&g_nCursorState);
+    ((CEffMgr *)&g_nCursorState)->Reset();
     atexit(nullsub_1);
   }
-  *((_DWORD *)v7 + 23) = CEffSParticle::GetEditorTaskDescription(&g_nCursorState, (unsigned __int8 *)a2);
+  *((_DWORD *)v7 + 23) = ((CEffSParticle *)&g_nCursorState)->GetEditorTaskDescription((unsigned __int8 *)a2);
   return v4;
 }
 

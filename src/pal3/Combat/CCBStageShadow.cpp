@@ -30,8 +30,8 @@ CCBStageShadow::CCBStageShadow()
                       aShadowTga_0);
   this->m_pTexture = v2;
   v2->LoadTexture(1);
-  this->m_pEffect = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200), aGfxscriptShado, 0);
-  v3 = (gbTextureArray *)operator new(0x44u);
+  this->m_pEffect = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptShado, 0);
+  v3 = (gbTextureArray *)((operator *)0x44u)->new();
   if ( v3 )
   {
     m_pTexture = (gbTexture *)this->m_pTexture;
@@ -47,7 +47,7 @@ CCBStageShadow::CCBStageShadow()
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Co_9, 85),
+      ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_9, 85),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -57,8 +57,8 @@ CCBStageShadow::CCBStageShadow()
 // 0x00511F90
 CCBStageShadow::~CCBStageShadow(int _this)
 {
-  gbRefObject::Release(*(gbRefObject **)(this + 4));
-  gbRefObject::Release(*(gbRefObject **)(this + 8));
+  ((gbRefObject *)*(gbRefObject **)(this + 4))->Release();
+  ((gbRefObject *)*(gbRefObject **)(this + 8))->Release();
   if ( *(_DWORD *)(this + 12) )
   {
     operator delete(*(void **)(this + 12));
@@ -81,7 +81,7 @@ char CCBStageShadow::Reset()
   float v11; // [esp+5Ch] [ebp-4h]
 
   sub_511E80((char *)this);
-  gbMatrix4::gbMatrix4((gbMatrix4 *)v8);
+  ((gbMatrix4 *)v8)->gbMatrix4();
   v2 = 0;
   v3 = -1488 - (_DWORD)this;
   v4 = (gbGeomQuad *)&this->m_ShadowQuad[6];
@@ -89,7 +89,7 @@ char CCBStageShadow::Reset()
   {
     if ( this->m_pStage->m_pCBSystem->m_pRoleState->m_Role[0].sModel[v2 + 5] )
     {
-      WorldPos = (float *)CCBStageRole::GetWorldPos(*(CCBStageRole **)((char *)&v4->vec[0].x + v3 + (unsigned int)this->m_pStage));
+      WorldPos = ((CCBStageRole *)*(CCBStageRole **)((char *)&v4->vec[0].x + v3 + (unsigned int)this->m_pStage))->GetWorldPos();
       v8->operator=(WorldPos);
       v9 = WorldPos[16];
       v10 = *((_DWORD *)WorldPos + 17);
@@ -148,7 +148,7 @@ void CCBStageShadow::Create()
 
   v2 = (CCBRoleState *)this->m_pStage->m_pCBSystem->m_pRoleState;
   v19 = v2;
-  gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&g_pGfxManager[196], 0x15u);
+  ((gbVertPoolMgr *)*(gbVertPoolMgr **)&g_pGfxManager[196])->GetDynVertBuf(0x15u);
   v18 = 0;
   v17 = (char *)&v2->m_bMustFail[0].sModel[4] + 1;
   roleIdx = 0;
@@ -209,11 +209,7 @@ LABEL_8:
   }
   while ( v3 < 68 );
   if ( v18 > 0 )
-    gbDynVertBuf::RenderGeomQuad(
-      (struct gbGeomQuad *)&this->m_ShadowInitQuad[8].vec[3].z,
-      v18,
-      this->m_pEffect,
-      this->m_pTextureArray);
+    ((struct gbGeomQuad *)&this->m_ShadowInitQuad[8].vec[3].z)->RenderGeomQuad(v18, this->m_pEffect, this->m_pTextureArray);
 }
 
 // 0x00512240

@@ -20,12 +20,8 @@ int CameraCtrl::InitParams(void *pParams)
 void CameraCtrl::SetAsCurrent(int flags)
 {
   if ( (flags & 2) != 0 )
-    gbCamera::SetLookAt(
-      (gbCamera *)((char *)this + 4),
-      (CameraCtrl *)((char *)this + 492),
-      (CameraCtrl *)((char *)this + 480),
-      (CameraCtrl *)((char *)this + 516));
-  gbCamera::SetAsCurrent((gbCamera *)((char *)this + 4), flags);
+    ((gbCamera *)((char *)this + 4))->SetLookAt((CameraCtrl *)((char *)this + 492), (CameraCtrl *)((char *)this + 480), (CameraCtrl *)((char *)this + 516));
+  ((gbCamera *)((char *)this + 4))->SetAsCurrent(flags);
 }
 
 // 0x0041CA90
@@ -33,7 +29,7 @@ void CameraCtrl::SetDimention(int w, int h)
 {
   *((_DWORD *)this + 118) = w;
   *((_DWORD *)this + 119) = h;
-  gbCamera::SetDimention((gbCamera *)((char *)this + 4), w, h);
+  ((gbCamera *)((char *)this + 4))->SetDimention(w, h);
 }
 
 // 0x0041CAC0
@@ -52,7 +48,7 @@ void * CameraCtrl::GetViewTarget(void *pTarget, float *pPos)
   memset(v9, 0, sizeof(v9));
   v7 = v4 / (v5 * 0.5) - 1.0;
   v8 = 1.0 - (double)*((int *)pPos + 1) / ((double)v3[118] * 0.5);
-  gbCamera::GetRayToScreen((gbCamera *)v3, v7, v8, (struct gbRay *)v9);
+  ((gbCamera *)v3)->GetRayToScreen(v7, v8, (struct gbRay *)v9);
   qmemcpy(pTarget, v9, 0x18u);
   return pTarget;
 }

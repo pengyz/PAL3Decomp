@@ -33,12 +33,7 @@ int Logger::Render()
     v3 = *((_DWORD *)this + 1160);
     v4 = *((_DWORD *)this + 1159);
     v11 = 0;
-    _TextureLib_Data::~_TextureLib_Data(
-      *((_DWORD *)this + 1157),
-      *((_DWORD *)this + 1158),
-      v4,
-      v3,
-      (float *)this + 1163);
+    ((_TextureLib_Data *)*((_DWORD *)this + 1157))->~_TextureLib_Data(*((_DWORD *)this + 1158), v4, v3, (float *)this + 1163);
     if ( gbColorQuad::ColorQuadFmt )
       qmemcpy(&v10, "\ndd", 3);
     else

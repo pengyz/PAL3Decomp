@@ -50,14 +50,14 @@ int UIStatic::OnMessage(UIStatic **this)
   {
     if ( *v2 )
     {
-      gbRefObject::Release(*v2);
+      ((gbRefObject *)*v2)->Release();
       *v2 = 0;
     }
     ++v2;
     --v3;
   }
   while ( v3 );
-  UIWnd::UpdateChildren((UIWnd *)this);
+  ((UIWnd *)this)->UpdateChildren();
   return result;
 }
 
@@ -77,7 +77,7 @@ BOOL UIStatic::Update(int _this, int a2, int a3)
 
   if ( !*(_DWORD *)(this + 56) )
     return 0;
-  GRPinput::GetCursorPos(&pt);
+  ((GRPinput *)&pt)->GetCursorPos();
   v5 = PtInRect((const RECT *)(this + 16), pt);
   if ( *(_DWORD *)(this + 60) )
   {
@@ -124,11 +124,11 @@ BOOL UIStatic::Update(int _this, int a2, int a3)
         if ( v12 )
           (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v12 + 24))(1003, *(_DWORD *)(this + 12), 0);
       }
-      return UIWnd::HitTest((UIWnd *)this, a2, a3);
+      return ((UIWnd *)this)->HitTest(a2, a3);
     }
     else
     {
-      return UIWnd::HitTest((UIWnd *)this, a2, 0);
+      return ((UIWnd *)this)->HitTest(a2, 0);
     }
   }
   else
@@ -140,7 +140,7 @@ BOOL UIStatic::Update(int _this, int a2, int a3)
         (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(v6, 1021, *(_DWORD *)(this + 12), 1);
       v13 = off_5974E0;
       Instance = (char *)CScreenMode::GetInstance();
-      CScreenMode::AudioSetPosition((CScreenMode *)Instance, v13, 1);
+      ((CScreenMode *)Instance)->AudioSetPosition(v13, 1);
     }
     return 0;
   }
@@ -172,13 +172,7 @@ int UIStatic::Render(int _this)
         v10.nTex = 1;
         v5 = (unsigned int *)(this + 8);
         v6 = (int *)(this + 16);
-        _TextureLib_Data::SetLibFolder(
-          (int *)(this + 16),
-          (unsigned int *)(this + 8),
-          &v10,
-          0x114u,
-          v4,
-          COERCE_FLOAT(1));
+        ((int *)(this + 16))->SetLibFolder((unsigned int *)(this + 8), &v10, 0x114u, v4, COERCE_FLOAT(1));
       }
       else
       {
@@ -187,13 +181,7 @@ int UIStatic::Render(int _this)
         v10.pTexPt[0] = v7;
         v5 = (unsigned int *)(this + 8);
         v6 = (int *)(this + 16);
-        _TextureLib_Data::SetLibFolder(
-          (int *)(this + 16),
-          (unsigned int *)(this + 8),
-          &v10,
-          0x114u,
-          *(unsigned int **)(this + 4 * v3 + 92),
-          COERCE_FLOAT(1));
+        ((int *)(this + 16))->SetLibFolder((unsigned int *)(this + 8), &v10, 0x114u, *(unsigned int **)(this + 4 * v3 + 92), COERCE_FLOAT(1));
       }
       if ( !*(_DWORD *)(this + 60) )
       {
@@ -210,16 +198,11 @@ int UIStatic::Render(int _this)
     else
     {
       v6 = (int *)(this + 16);
-      _TextureLib_Data::~_TextureLib_Data(
-        *(_DWORD *)(this + 16),
-        *(_DWORD *)(this + 20),
-        *(_DWORD *)(this + 24),
-        *(_DWORD *)(this + 28),
-        (float *)&g_GameData_0._data[12992]);
+      ((_TextureLib_Data *)*(_DWORD *)(this + 16))->~_TextureLib_Data(*(_DWORD *)(this + 20), *(_DWORD *)(this + 24), *(_DWORD *)(this + 28), (float *)&g_GameData_0._data[12992]);
     }
     if ( *(_BYTE *)(this + 120) )
       UIRenderPar(this + 120, (int)v6, (_BYTE *)(this + 72), 1, 1);
-    return UIWnd::GetID((UIWnd *)this);
+    return ((UIWnd *)this)->GetID();
   }
   return result;
 }

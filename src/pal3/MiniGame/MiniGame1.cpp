@@ -22,7 +22,7 @@ void MiniGame1::Render()
   v3 = (gbMatrixStack *)*(gbMatrixStack **)&g_pGfxManager[216];
   pSceneGraph->Begin(**((struct gbCamera ***)this + 3));
   LOBYTE(pSceneGraph->?[9].m[0]) = 0;
-  gbCamera::SetAsCurrent(**((gbCamera ***)this + 3), 3);
+  ((gbCamera *)**((gbCamera ***)this + 3))->SetAsCurrent(3);
   v3->Push();
   v4 = *((_DWORD *)this + 2);
   if ( v4 )
@@ -34,10 +34,10 @@ void MiniGame1::Render()
   v6 = 5;
   do
   {
-    Object3D::GetScreenDegree((int)v5, (int)v3, v7, v8, v9);
+    ((int)v5)->GetScreenDegree((int)v3, v7, v8, v9);
     v5 += 152;
     --v6;
   }
   while ( v6 );
-  Object3D::GetScreenDegree((int)this + 856, 0, v7, v8, v9);
+  ((Object3D *)(int)this + 856)->GetScreenDegree(0, v7, v8, v9);
 }

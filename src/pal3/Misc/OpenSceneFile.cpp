@@ -22,14 +22,14 @@ void *OpenSceneFile::OpenSceneFile(OpenSceneFile *this, char *String1)
   {
     strcpy(byte_8AC5D8, String1);
     if ( dword_6EBFA0 )
-      gbVFileSystem::Release((gbVFileSystem *)&dword_6EBFA0);
+      ((gbVFileSystem *)&dword_6EBFA0)->Release();
     strcpy(v4, String1);
     if ( (g_nGameFlags & 2) != 0 )
       strcat(v4, aCpk);
-    if ( !gbVFileSystem::Init((gbVFileSystem *)&dword_6EBFA0, v4) )
+    if ( !((gbVFileSystem *)&dword_6EBFA0)->Init(v4) )
     {
       sprintf(Buffer, "%s%s", Data, v4);
-      gbVFileSystem::Init((gbVFileSystem *)&dword_6EBFA0, v4);
+      ((gbVFileSystem *)&dword_6EBFA0)->Init(v4);
     }
     g_pVFileSys = (struct gbVFileSystem *)&dword_6EBFA0;
     return this;

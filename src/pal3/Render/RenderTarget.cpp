@@ -12,8 +12,8 @@ extern void *off_56F4F0;
 // 0x004BDAC0
 RenderTarget::RenderTarget(int _this)
 {
-  gbTexture_D3D::~gbTexture_D3D((void *)(this + 100));
-  gbTexture_D3D::~gbTexture_D3D((void *)(this + 4));
+  ((void *)(this + 100))->~gbTexture_D3D();
+  ((void *)(this + 4))->~gbTexture_D3D();
 }
 
 // 0x004BDB60
@@ -32,7 +32,7 @@ int RenderTarget::Create()
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aLockBackBuffer, aDProjectPal3Ef, 39),
+      ((Logger *)ArgList)->FormatException(aLockBackBuffer, aDProjectPal3Ef, 39),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -91,8 +91,8 @@ bool RenderTarget::OnResetDevice(int a2)
       v5 = (*(int (**)(int, gbTexture_D3D *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(
              g_Input.KeyInfo[177].Data,
              &this->m_Texture);
-      gbCamera::SetDimention((gbCamera *)(g_Input.KeyInfo[177].CountMode + 4), 512, 384);
-      CameraCtrl::SetAsCurrent((CameraCtrl *)g_Input.KeyInfo[177].CountMode, 3);
+      ((gbCamera *)(g_Input.KeyInfo[177].CountMode + 4))->SetDimention(512, 384);
+      ((CameraCtrl *)g_Input.KeyInfo[177].CountMode)->SetAsCurrent(3);
     }
     if ( v5 && (_BYTE)a2 )
     {
@@ -109,7 +109,7 @@ bool RenderTarget::OnResetDevice(int a2)
       (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 48))(g_Input.KeyInfo[177].Data);
       PushMatrixStacks();
       a2 = -16777216;
-      _TextureLib_Data::~_TextureLib_Data(0, 0, 512, 512, (float *)&a2);
+      ((_TextureLib_Data *)0)->~_TextureLib_Data(0, 512, 512, (float *)&a2);
       (*(void (**)(int))(*(_DWORD *)g_Input.KeyInfo[177].Data + 52))(g_Input.KeyInfo[177].Data);
       PopMatrixStacks();
     }

@@ -65,7 +65,7 @@ char CCBAttackSequen::ProcessQueue()
     LOBYTE(v4) = v3[12];
     if ( (_BYTE)v4 )
     {
-      LOBYTE(v4) = CCBRoleState::IsRoleAlive(*(_BYTE **)(*(_DWORD *)this->m_pCBSystem + 16), v2);
+      LOBYTE(v4) = ((CCBRoleState *)*(_BYTE **)(*(_DWORD *)this->m_pCBSystem + 16))->IsRoleAlive(v2);
       if ( (_BYTE)v4 )
       {
         if ( v3[10] )
@@ -115,7 +115,7 @@ char CCBAttackSequen::CheckComplete()
         v5 = (double)*(int *)(v3 - 10) * 0.0078260871 + 659.0;
       else
         v5 = (double)*(int *)(v3 - 14) * 0.017130435 + 460.0;
-      result = UIWnd::ScreenToClient(*(_DWORD **)(*(_DWORD *)&this->m_pCBSystem[4] + v2), (__int64)v5, 8);
+      result = ((UIWnd *)*(_DWORD **)(*(_DWORD *)&this->m_pCBSystem[4] + v2))->ScreenToClient((__int64)v5, 8);
     }
     v2 += 4;
     v3 += 40;

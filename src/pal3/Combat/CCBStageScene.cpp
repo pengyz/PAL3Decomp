@@ -108,18 +108,15 @@ CCBStageScene::CCBStageScene()
   this->m_vecEnemyLineup[6].x = 200.0;
   this->m_vecEnemyLineup[6].y = 0.0;
   this->m_vecEnemyLineup[6].z = 200.0;
-  CCBStageScene::Render((int)this);
-  CCBStageScene::ShowAxis((int)this);
-  this->m_pFling = (gbGeomNode *)gbEffectMgr::NewRenderEffect(
-                                   *(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200),
-                                   aGfxscriptAddit_1,
-                                   0);
+  ((int)this)->Render();
+  ((int)this)->ShowAxis();
+  this->m_pFling = (gbGeomNode *)((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewRenderEffect(aGfxscriptAddit_1, 0);
   v2 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 8))(
                       g_Input.KeyInfo[177].Data,
                       aCbsceneFivelin);
   LODWORD(this->m_vecFling.x) = v2;
   v2->LoadTexture(1);
-  v3 = (float *)operator new(0x44u);
+  v3 = (float *)((operator *)0x44u)->new();
   if ( v3 )
   {
     x = this->m_vecFling.x;
@@ -136,7 +133,7 @@ CCBStageScene::CCBStageScene()
                       aCbsceneFivelin_0);
   LODWORD(this->m_vecFling.z) = v5;
   v5->LoadTexture(1);
-  v6 = (float *)operator new(0x44u);
+  v6 = (float *)((operator *)0x44u)->new();
   if ( v6 )
   {
     z = this->m_vecFling.z;
@@ -152,7 +149,7 @@ CCBStageScene::CCBStageScene()
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aCouldnTCreateT, aDProjectPal3Co_1, 135),
+      ((Logger *)ArgList)->FormatException(aCouldnTCreateT, aDProjectPal3Co_1, 135),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -170,8 +167,8 @@ CCBStageScene::~CCBStageScene(int _this)
   int v6; // edi
 
   sub_511630(this);
-  gbRefObject::Release(*(gbRefObject **)(this + 668));
-  gbRefObject::Release(*(gbRefObject **)(this + 664));
+  ((gbRefObject *)*(gbRefObject **)(this + 668))->Release();
+  ((gbRefObject *)*(gbRefObject **)(this + 664))->Release();
   if ( *(_DWORD *)(this + 672) )
   {
     operator delete(*(void **)(this + 672));
@@ -249,7 +246,7 @@ char CCBStageScene::Reset()
     default:
       break;
   }
-  v5 = CCBRoleState::CheckDeath(m_pStage->m_pCBSystem->m_pRoleState, this->m_EnemyFiveLineupQuad.color.Red);
+  v5 = ((CCBRoleState *)m_pStage->m_pCBSystem->m_pRoleState)->CheckDeath(this->m_EnemyFiveLineupQuad.color.Red);
   this->m_vecFiveLineup[6].x = this->m_vecInitFiveLineup[6].x;
   this->m_vecFiveLineup[6].y = this->m_vecInitFiveLineup[6].y;
   this->m_vecFiveLineup[6].z = this->m_vecInitFiveLineup[6].z;
@@ -379,7 +376,7 @@ int CCBStageScene::Create()
   char ArgList[1024]; // [esp+40Ch] [ebp-40Ch] BYREF
   int v8; // [esp+814h] [ebp-4h]
 
-  v2 = (gbGeomNode *)operator new(0x118u);
+  v2 = (gbGeomNode *)((operator *)0x118u)->new();
   v3 = v2;
   v8 = 0;
   if ( v2 )
@@ -398,7 +395,7 @@ int CCBStageScene::Create()
   {
     qmemcpy(
       pExceptionObject,
-      Logger::FormatException((Logger *)ArgList, aCNewFailed, aDProjectPal3Co_1, 293),
+      ((Logger *)ArgList)->FormatException(aCNewFailed, aDProjectPal3Co_1, 293),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -439,10 +436,10 @@ void CCBStageScene::Destroy(CCBStageScene **this)
       v5 = *(_DWORD *)(m_pCamControl->InitUI(a2) + 540);
       if ( v5 )
       {
-        SkillNum = PAL_GDB::GDB_GetSkillNum(&g_GDB, v5);
+        SkillNum = ((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(v5);
         if ( SkillNum )
         {
-          v7 = (gbGeomNode *)operator new(0x118u);
+          v7 = (gbGeomNode *)((operator *)0x118u)->new();
           v8 = v7;
           v14 = 0;
           if ( v7 )
@@ -460,12 +457,12 @@ void CCBStageScene::Destroy(CCBStageScene **this)
           {
             qmemcpy(
               pExceptionObject,
-              Logger::FormatException((Logger *)ArgList, aCNewFailed, aDProjectPal3Co_1, 330),
+              ((Logger *)ArgList)->FormatException(aCNewFailed, aDProjectPal3Co_1, 330),
               sizeof(pExceptionObject));
             _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
           }
           sprintf(v11, "item\\%s\\%s.pol", (const char *)(SkillNum + 36), (const char *)(SkillNum + 36));
-          if ( !gbGeomNode::LoadFromFile(*v3, v11, 0, 0) )
+          if ( !((gbGeomNode *)*v3)->LoadFromFile(v11, 0, 0) )
           {
             if ( *v3 )
             {
@@ -479,7 +476,7 @@ void CCBStageScene::Destroy(CCBStageScene **this)
             (const char *)(SkillNum + 36),
             (const char *)(SkillNum + 36),
             (const char *)(SkillNum + 66));
-          gbGeomNode::ReplaceTexture(*v3, v11);
+          ((gbGeomNode *)*v3)->ReplaceTexture(v11);
           v1 = this;
         }
       }
@@ -698,7 +695,7 @@ int CCBStageScene::SetBattleFieldAttr()
   int result; // eax
   gbGeomNode *m_pPointer; // ecx
 
-  result = CCBStageScene::Init((int)this);
+  result = ((int)this)->Init();
   m_pPointer = (gbGeomNode *)this->m_pPointer;
   if ( m_pPointer )
     return ((int (*)(gbGeomNode *))m_pPointer->next[5].next)(m_pPointer);
@@ -781,7 +778,7 @@ void CCBStageScene::GetBFASubdueFM()
 
   if ( g_Input.KeyInfo[177].Data && BYTE1(this->m_EnemyFiveLineupQuad.color.Blue) )
   {
-    v1 = (struct gbRenderEffect *)gbEffectMgr::NewTrivalEffect(*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200), 3);
+    v1 = ((gbEffectMgr *)*(gbEffectMgr **)(g_Input.KeyInfo[177].Data + 200))->NewTrivalEffect(3);
     HIBYTE(v9.ColorQuadFmt) = 80;
     p_Blue = (__int32 *)&v9.Blue;
     v3 = 2;
@@ -793,7 +790,7 @@ void CCBStageScene::GetBFASubdueFM()
     }
     while ( v3 );
     memset(&v9.Blue, 0, 12);
-    DynVertBuf = (struct gbDynVertBuf *)gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196), 5u);
+    DynVertBuf = ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_Input.KeyInfo[177].Data + 196))->GetDynVertBuf(5u);
     v8.Red = (__int32)v1;
     v8.Green = 2;
     v8.Blue = (__int32)&v9.Blue;
@@ -804,7 +801,7 @@ void CCBStageScene::GetBFASubdueFM()
     v9.Color = 0;
     v9.Alpha = 0;
     v10 = 1176256512;
-    gbColorQuad::gbColorQuad(&v8, &v9);
+    ((gbColorQuad *)&v8)->gbColorQuad(&v9);
     v5->RenderLineStrip();
     v8.Red = (__int32)v1;
     v8.Green = 2;
@@ -815,7 +812,7 @@ void CCBStageScene::GetBFASubdueFM()
     v10 = 0;
     v9.Color = 0;
     v9.Alpha = 1176256512;
-    gbColorQuad::gbColorQuad(&v8, &v9);
+    ((gbColorQuad *)&v8)->gbColorQuad(&v9);
     v5->RenderLineStrip();
     v8.Red = (__int32)v1;
     v8.Green = 2;
@@ -826,7 +823,7 @@ void CCBStageScene::GetBFASubdueFM()
     v10 = 0;
     v9.Alpha = 0;
     v9.Color = 1176256512;
-    gbColorQuad::gbColorQuad(&v8, &v9);
+    ((gbColorQuad *)&v8)->gbColorQuad(&v9);
     v5->RenderLineStrip();
     v1->Release();
   }
@@ -863,11 +860,7 @@ char CCBStageScene::IsSameBattleFieldAttr()
         {
           inited = m_pRoleState->InitUI(v3);
           sprintf(byte_17ABF00, "%d(%s)", v3, (const char *)(inited + 8));
-          gbCamera::PointWorldToScr(
-            (gbCamera *)&this->m_pStage->m_pCam->OrthoSize,
-            (struct gbVec3D *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v4))->m_Thread[42].bExecuted,
-            &v9,
-            &v8);
+          ((gbCamera *)&this->m_pStage->m_pCam->OrthoSize)->PointWorldToScr((struct gbVec3D *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v4))->m_Thread[42].bExecuted, &v9, &v8);
           result = sub_4DFB70((char *)this->m_pStage->m_TempStorageNGH, byte_17ABF00, v9, v8, 16.0);
         }
         v4 += 4;
@@ -886,7 +879,7 @@ void CCBStageScene::LoadPointer(int _this, char a2)
   struct gbTextureArray *v3; // ecx
   struct gbRenderEffect *v4; // edx
 
-  gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x15u);
+  ((gbVertPoolMgr *)*(gbVertPoolMgr **)(g_pGfxManager + 196))->GetDynVertBuf(0x15u);
   v3 = (struct gbTextureArray *)*(struct gbTextureArray **)(this + 672);
   v4 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 664);
   *(_BYTE *)(this + 750) = -1;
@@ -894,12 +887,8 @@ void CCBStageScene::LoadPointer(int _this, char a2)
   *(_BYTE *)(this + 748) = -1;
   *(_BYTE *)(this + 751) = a2;
   *(_BYTE *)(this + 819) = a2;
-  gbDynVertBuf::RenderGeomQuad((struct gbGeomQuad *)(this + 684), 1, v4, v3);
-  gbDynVertBuf::RenderGeomQuad(
-    (struct gbGeomQuad *)(this + 752),
-    1,
-    *(struct gbRenderEffect **)(this + 664),
-    *(struct gbTextureArray **)(this + 680));
+  ((struct gbGeomQuad *)(this + 684))->RenderGeomQuad(1, v4, v3);
+  ((struct gbGeomQuad *)(this + 752))->RenderGeomQuad(1, *(struct gbRenderEffect **)(this + 664), *(struct gbTextureArray **)(this + 680));
 }
 
 // 0x00511110
@@ -927,12 +916,12 @@ bool CCBStageScene::LoadFlingNode()
   v12.z = 1.0;
   memset(&v11, 0, sizeof(v11));
   memset(&v14.Direction, 0, sizeof(v14.Direction));
-  gbVec3D::gbVec3D(&v15, 0.0, 0.0, 0.0);
+  ((gbVec3D *)&v15)->gbVec3D(0.0, 0.0, 0.0);
   m_pStage = (CCBStage *)this->m_pStage;
   pPos = (Actor *)this->m_pStage->m_WPXVariance;
   LODWORD(v10.x) = m_pStage->m_pDisplayChain;
-  v14 = *(gbRay *)CameraCtrl::GetViewTarget((CameraCtrl *)m_pStage->m_pCam, pTarget, (float *)&pPos);
-  v3 = gbRay::IntersectPlane(&v14, &v12, &v11);
+  v14 = *(gbRay *)((CameraCtrl *)m_pStage->m_pCam)->GetViewTarget(pTarget, (float *)&pPos);
+  v3 = ((gbRay *)&v14)->IntersectPlane(&v12, &v11);
   v7 = v14.Origin.y * v3;
   v8 = v14.Origin.z * v3;
   v12.y = v7 + pTarget[4];
@@ -944,7 +933,7 @@ bool CCBStageScene::LoadFlingNode()
   pTarget[0] = v5;
   v10.x = v4;
   v10.z = pTarget[0];
-  return gbVec3D::Length(&v10) < 30.0;
+  return ((gbVec3D *)&v10)->Length() < 30.0;
 }
 
 // 0x005112B0
@@ -1000,27 +989,21 @@ char CCBStageScene::Update()
 
   if ( (g_nGameFlags & 2) != 0 )
     return 1;
-  CIniFile::CIniFile(&v5);
+  ((CIniFile *)&v5)->CIniFile();
   v3 = 0;
   v6 = 0;
-  CIniFile::OpenFileWrite(&v5, aDatascriptComb_1);
-  CIniFile::WriteSection(&v5, aRolepos);
+  ((CIniFile *)&v5)->OpenFileWrite(aDatascriptComb_1);
+  ((CIniFile *)&v5)->WriteSection(aRolepos);
   for ( i = 24; i < 68; i += 4 )
   {
     sprintf(byte_17ABE00, "Role%d-x", v3);
-    CIniFile::WriteLine(
-      &v5,
-      byte_17ABE00,
-      *(float *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + i))->m_Thread[42].bExecuted);
+    ((CIniFile *)&v5)->WriteLine(byte_17ABE00, *(float *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + i))->m_Thread[42].bExecuted);
     sprintf(byte_17ABE00, "Role%d-z", v3);
-    CIniFile::WriteLine(
-      &v5,
-      byte_17ABE00,
-      *(float *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + i))->m_Thread[42].cmd.dwCmdID);
+    ((CIniFile *)&v5)->WriteLine(byte_17ABE00, *(float *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + i))->m_Thread[42].cmd.dwCmdID);
     ++v3;
   }
   v6 = -1;
-  CIniFile::~CIniFile(&v5);
+  ((CIniFile *)&v5)->~CIniFile();
   return 1;
 }
 
@@ -1051,18 +1034,18 @@ char CCBStageScene::Render(int _this)
   v19 = 0;
   v2 = 0;
   v3 = 0;
-  CIniFile::CIniFile(&v16);
+  ((CIniFile *)&v16)->CIniFile();
   v20 = 0;
-  CIniFile::OpenFileRead(&v16, aDatascriptComb_1);
+  ((CIniFile *)&v16)->OpenFileRead(aDatascriptComb_1);
   do
   {
-    CIniFile::ReadStart(&v16);
-    CIniFile::ReadSection(&v16, aRolepos);
+    ((CIniFile *)&v16)->ReadStart();
+    ((CIniFile *)&v16)->ReadSection(aRolepos);
     sprintf(byte_17ABD00, "Role%d-x", v2);
-    CIniFile::ReadLine(&v16, byte_17ABD00, &v17);
+    ((CIniFile *)&v16)->ReadLine(byte_17ABD00, &v17);
     v18 = 0;
     sprintf(byte_17ABD00, "Role%d-z", v2);
-    CIniFile::ReadLine(&v16, byte_17ABD00, (float *)&v19);
+    ((CIniFile *)&v16)->ReadLine(byte_17ABD00, (float *)&v19);
     if ( ++v3 >= 6 )
       v4 = this + 12 * v3 + 200;
     else
@@ -1074,10 +1057,10 @@ char CCBStageScene::Render(int _this)
     *(_DWORD *)(v4 + 8) = v6;
     if ( v3 == 6 )
     {
-      CIniFile::ReadStart(&v16);
-      CIniFile::ReadSection(&v16, aFivelineup);
-      CIniFile::ReadLine(&v16, asc_5D8B80, &v17);
-      CIniFile::ReadLine(&v16, "z", (float *)&v19);
+      ((CIniFile *)&v16)->ReadStart();
+      ((CIniFile *)&v16)->ReadSection(aFivelineup);
+      ((CIniFile *)&v16)->ReadLine(asc_5D8B80, &v17);
+      ((CIniFile *)&v16)->ReadLine("z", (float *)&v19);
       v7 = v18;
       v8 = v19;
       *(float *)(this + 164) = v17;
@@ -1103,7 +1086,7 @@ char CCBStageScene::Render(int _this)
   *(_DWORD *)(this + 136) = v14;
   *(_DWORD *)(this + 132) = v13;
   v20 = -1;
-  CIniFile::~CIniFile(&v16);
+  ((CIniFile *)&v16)->~CIniFile();
   return 1;
 }
 
@@ -1116,16 +1099,16 @@ char CCBStageScene::ShowAxis(int _this)
   CIniFile v6; // [esp+5Ch] [ebp-14h] BYREF
   int v7; // [esp+6Ch] [ebp-4h]
 
-  CIniFile::CIniFile(&v6);
+  ((CIniFile *)&v6)->CIniFile();
   v7 = 0;
-  CIniFile::OpenFileRead(&v6, aDatascriptComb_1);
-  CIniFile::ReadSection(&v6, aFivelineup);
-  CIniFile::ReadLine(&v6, asc_5D8B80, (float *)(this + 900));
-  CIniFile::ReadLine(&v6, "y", (float *)(this + 904));
-  CIniFile::ReadLine(&v6, "z", (float *)(this + 908));
-  CIniFile::ReadLine(&v6, aRadius, (float *)(this + 916));
+  ((CIniFile *)&v6)->OpenFileRead(aDatascriptComb_1);
+  ((CIniFile *)&v6)->ReadSection(aFivelineup);
+  ((CIniFile *)&v6)->ReadLine(asc_5D8B80, (float *)(this + 900));
+  ((CIniFile *)&v6)->ReadLine("y", (float *)(this + 904));
+  ((CIniFile *)&v6)->ReadLine("z", (float *)(this + 908));
+  ((CIniFile *)&v6)->ReadLine(aRadius, (float *)(this + 916));
   *(_DWORD *)(this + 912) = *(_DWORD *)(this + 916);
-  CIniFile::ReadLine(&v6, aRoll, (float *)(this + 924));
+  ((CIniFile *)&v6)->ReadLine(aRoll, (float *)(this + 924));
   v2 = *(_DWORD *)(this + 900);
   *(_DWORD *)(this + 920) = *(_DWORD *)(this + 924);
   v3 = *(_DWORD *)(this + 904);
@@ -1133,14 +1116,14 @@ char CCBStageScene::ShowAxis(int _this)
   v4 = *(_DWORD *)(this + 908);
   *(_DWORD *)(this + 892) = v3;
   *(_DWORD *)(this + 896) = v4;
-  CIniFile::ReadSection(&v6, aEnemyfivelineu);
-  CIniFile::ReadLine(&v6, asc_5D8B80, (float *)(this + 928));
-  CIniFile::ReadLine(&v6, "y", (float *)(this + 932));
-  CIniFile::ReadLine(&v6, "z", (float *)(this + 936));
-  CIniFile::ReadLine(&v6, aRadius, (float *)(this + 940));
-  CIniFile::ReadLine(&v6, aRoll, (float *)(this + 944));
+  ((CIniFile *)&v6)->ReadSection(aEnemyfivelineu);
+  ((CIniFile *)&v6)->ReadLine(asc_5D8B80, (float *)(this + 928));
+  ((CIniFile *)&v6)->ReadLine("y", (float *)(this + 932));
+  ((CIniFile *)&v6)->ReadLine("z", (float *)(this + 936));
+  ((CIniFile *)&v6)->ReadLine(aRadius, (float *)(this + 940));
+  ((CIniFile *)&v6)->ReadLine(aRoll, (float *)(this + 944));
   v7 = -1;
-  CIniFile::~CIniFile(&v6);
+  ((CIniFile *)&v6)->~CIniFile();
   return 1;
 }
 
@@ -1152,17 +1135,17 @@ char CCBStageScene::ShowRoleIndex()
 
   if ( (g_nGameFlags & 2) == 0 )
   {
-    CIniFile::CIniFile(&v3);
+    ((CIniFile *)&v3)->CIniFile();
     v4 = 0;
-    CIniFile::OpenFileWrite(&v3, aDatascriptComb_1);
-    CIniFile::WriteSection(&v3, aFivelineup);
-    CIniFile::WriteLine(&v3, asc_5D8B80, *(float *)&this->m_FiveLineupCenterQuad.color.Color);
-    CIniFile::WriteLine(&v3, "y", this->m_EnemyFiveLineupQuad.vec[0].x);
-    CIniFile::WriteLine(&v3, "z", this->m_EnemyFiveLineupQuad.vec[0].y);
-    CIniFile::WriteLine(&v3, aRadius, this->m_EnemyFiveLineupQuad.vec[1].z);
-    CIniFile::WriteLine(&v3, aRoll, this->m_EnemyFiveLineupQuad.vec[2].y);
+    ((CIniFile *)&v3)->OpenFileWrite(aDatascriptComb_1);
+    ((CIniFile *)&v3)->WriteSection(aFivelineup);
+    ((CIniFile *)&v3)->WriteLine(asc_5D8B80, *(float *)&this->m_FiveLineupCenterQuad.color.Color);
+    ((CIniFile *)&v3)->WriteLine("y", this->m_EnemyFiveLineupQuad.vec[0].x);
+    ((CIniFile *)&v3)->WriteLine("z", this->m_EnemyFiveLineupQuad.vec[0].y);
+    ((CIniFile *)&v3)->WriteLine(aRadius, this->m_EnemyFiveLineupQuad.vec[1].z);
+    ((CIniFile *)&v3)->WriteLine(aRoll, this->m_EnemyFiveLineupQuad.vec[2].y);
     v4 = -1;
-    CIniFile::~CIniFile(&v3);
+    ((CIniFile *)&v3)->~CIniFile();
   }
   return 1;
 }
