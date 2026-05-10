@@ -226,14 +226,14 @@ PAL3::PAL3()
   LOBYTE(v0) = g_nGameFlags & 0xF4 | 3;
   g_nGameFlags = v0;
   *(_DWORD *)&g_GDB.m_ItemData[360].name[4] = 0;
-  return &unk_8ACBF0;
+  &unk_8ACBF0;
 }
 
 // 0x004047F0
 // attributes: thunk
 PAL3::~PAL3()
 {
-  return PAL3::Destroy();
+  PAL3::Destroy();
 }
 
 // 0x00404800

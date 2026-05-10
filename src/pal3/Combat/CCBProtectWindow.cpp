@@ -17,7 +17,7 @@ extern void *off_5705D0;
 CCBProtectWindow::CCBProtectWindow()
 {
   dword_17AD59C = 1094713344;
-  return 1094713344;
+  1094713344;
 }
 
 // 0x0051D6F0

@@ -149,7 +149,7 @@ CCCTData::CCCTData(_DWORD *a2, _DWORD *a3)
   this->m_Pool[1453].bCircleMove = a3[1];
   result = a3[2];
   this->m_Pool[1453].bMechanicsMove = result;
-  return result;
+  result;
 }
 
 // 0x00505930

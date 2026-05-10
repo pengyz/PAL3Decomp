@@ -13,7 +13,7 @@ OpenBaseFile::OpenBaseFile()
 {
   this->m_plastsys = g_pVFileSys;
   g_pVFileSys = (struct gbVFileSystem *)&dword_7CC178;
-  return &this->m_plastsys;
+  &this->m_plastsys;
 }
 
 // 0x00401F70
@@ -22,5 +22,5 @@ OpenBaseFile::~OpenBaseFile()
 {
   this->m_plastsys = g_pVFileSys;
   g_pVFileSys = (struct gbVFileSystem *)&unk_60BDC8;
-  return &this->m_plastsys;
+  &this->m_plastsys;
 }

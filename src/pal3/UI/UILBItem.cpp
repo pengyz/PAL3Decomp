@@ -7,5 +7,5 @@
 // attributes: thunk
 UILBItem::~UILBItem()
 {
-  return UILBColumn::UILBColumn();
+  UILBColumn::UILBColumn();
 }

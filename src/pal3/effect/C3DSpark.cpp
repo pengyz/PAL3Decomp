@@ -200,7 +200,7 @@ C3DSpark::C3DSpark()
     --v20;
   }
   while ( v20 );
-  return this->m_Spark;
+  this->m_Spark;
 }
 
 // 0x004D6960

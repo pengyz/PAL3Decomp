@@ -950,7 +950,7 @@ UIWnd::UIWnd()
   HIBYTE(v3) = -1;
   this->m_fontcolor.Blue = v3;
   this->m_fontcolor.Green = -1;
-  return &this->m_fontcolor.ColorQuadFmt;
+  &this->m_fontcolor.ColorQuadFmt;
 }
 
 // 0x00445B40

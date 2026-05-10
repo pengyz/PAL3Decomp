@@ -50,7 +50,7 @@ CEffMgr::CEffMgr()
   int v8; // [esp+83Ch] [ebp-4h]
 
   if ( dword_17A7B50 )
-    return 1;
+  1;
   ((OpenBaseFile *)&v5)->OpenBaseFile();
   v8 = 0;
   v1 = (struct gbVFile *)g_pVFileSys->OpenFile(aCbdataFlexeffD, 0x201u);
@@ -77,7 +77,7 @@ CEffMgr::CEffMgr()
 LABEL_9:
     v8 = -1;
     ((OpenNULLFile **)&v5)->OpenNULLFile();
-    return 0;
+  0;
   }
   qmemcpy(dword_174D330, v4, 0x5A820u);
   qmemcpy(dword_EC9E70, v4 + 370720, 0x8834C0u);
@@ -86,7 +86,7 @@ LABEL_9:
   dword_17A7B50 = 1;
   v8 = -1;
   ((OpenNULLFile **)&v5)->OpenNULLFile();
-  return 1;
+  1;
 }
 
 // 0x004CE2A0
@@ -111,7 +111,7 @@ CEffMgr::~CEffMgr()
   fwrite(dword_174D330, 0x5A820u, 1u, v1);
   fwrite(dword_EC9E70, (size_t)&unk_8834C0, 1u, v1);
   fclose(v1);
-  return 1;
+  1;
 }
 
 // 0x004CE340

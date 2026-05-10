@@ -195,7 +195,7 @@ GRPinput::GRPinput()
            (char *)&this->m_keyStates[67] + 2) )
     {
       LOBYTE(v3) = this->ReleaseDevices();
-      return (GRPinput *)(char)v3;
+  (GRPinput *)(char)v3;
     }
     v4 = (int *)&this->m_keyDragStartPositions[0][214];
     v5 = 256;
@@ -242,7 +242,7 @@ GRPinput::GRPinput()
       while ( v12 );
     }
   }
-  return (GRPinput *)(char)v3;
+  (GRPinput *)(char)v3;
 }
 
 // 0x004024F0
@@ -278,7 +278,7 @@ GRPinput::~GRPinput(int a2, int a3)
       *((_BYTE *)this->m_keyStates + a2) = 0;
     }
   }
-  return m_mouseFreeX;
+  m_mouseFreeX;
 }
 
 // 0x00402570

@@ -86,7 +86,7 @@ PtrArray::PtrArray(int a1, int a2, char a3)
       *(_DWORD *)(a1 + 4) = 0;
       break;
   }
-  return result;
+  result;
 }
 
 // 0x004341E0
@@ -95,10 +95,10 @@ PtrArray::~PtrArray(int a1)
   unsigned int v2; // edi
 
   if ( !a1 )
-    return 0;
+  0;
   v2 = *(_DWORD *)(*(_DWORD *)a1 + 68) + *(_DWORD *)(*(_DWORD *)a1 + 72);
   if ( *(_DWORD *)(a1 + 8) >= v2 )
-    return 2;
+  2;
   dword_D8E468 = a1;
   if ( *(_DWORD *)(a1 + 8) < v2 )
   {
@@ -107,7 +107,7 @@ PtrArray::~PtrArray(int a1)
     while ( *(_BYTE *)(a1 + 4) != 1 && *(_DWORD *)(a1 + 8) < v2 );
   }
   dword_D8E468 = 0;
-  return 1;
+  1;
 }
 
 // 0x00434240

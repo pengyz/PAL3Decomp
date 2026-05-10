@@ -41,7 +41,7 @@ CCBLineupWindow::CCBLineupWindow(_DWORD *a1)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  return 1;
+  1;
 }
 
 // 0x0051D070
@@ -69,7 +69,7 @@ CCBLineupWindow::~CCBLineupWindow(_DWORD *a1)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  return 1;
+  1;
 }
 
 // 0x0051D120

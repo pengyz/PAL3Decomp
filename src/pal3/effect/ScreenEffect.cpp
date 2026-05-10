@@ -33,5 +33,5 @@ ScreenEffect::ScreenEffect()
   *((_DWORD *)this + 36) = 0;
   *((_DWORD *)this + 37) = 0;
   this->m_needscriptdel = (int)&off_56F508;
-  return this;
+  this;
 }

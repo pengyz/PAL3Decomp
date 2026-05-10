@@ -39,12 +39,12 @@ CEffgbParticle::~CEffgbParticle(
   v8 = *((_DWORD *)this + 8);
   v9 = 0;
   if ( v8 <= 0 )
-    return -1;
+  -1;
   v10 = *(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2);
   for ( i = (_BYTE *)(v10 + 64); *i; i += 72 )
   {
     if ( ++v9 >= v8 )
-      return -1;
+  -1;
   }
   v13 = (int *)(v10 + 72 * v9);
   memset(v13, 0, 0x48u);
@@ -72,7 +72,7 @@ CEffgbParticle::~CEffgbParticle(
     v15[3] = a5[3];
   }
   ++*(_DWORD *)(*((_DWORD *)this + 3) + 152 * a2 + 4);
-  return v9;
+  v9;
 }
 
 // 0x004C87A0

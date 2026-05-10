@@ -25,7 +25,7 @@ CCBSkillWindow::CCBSkillWindow(CCBSkillWindow *Block, char a2)
   ((UIWnd *)Block)->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
-  return (UIWnd *)Block;
+  (UIWnd *)Block;
 }
 
 // 0x0051C2D0

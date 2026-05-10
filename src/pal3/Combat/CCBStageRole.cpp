@@ -315,7 +315,7 @@ LABEL_22:
   {
     if ( *((_DWORD *)v6 + 612) == -1 )
     {
-      return 0;
+  0;
     }
     else
     {
@@ -379,7 +379,7 @@ LABEL_22:
   }
   else if ( *((_DWORD *)v6 + 619) == -1 )
   {
-    return 0;
+  0;
   }
   else
   {

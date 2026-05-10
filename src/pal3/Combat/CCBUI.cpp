@@ -465,10 +465,10 @@ CCBUI::~CCBUI()
       ((void (*)(CCBUI **, _DWORD, int *, CCBUI ***))(*v8)->m_fontcolor.Alpha)(v8, *v5, &v9, this);
       ((UIWnd *)*i)->CreateFromTemplate(aUiCombatAttack_1, 0);
       if ( (int)++v5 >= (int)dword_570114 )
-        return 1;
+  1;
     }
   }
-  return 0;
+  0;
 }
 
 // 0x005177B0

@@ -8,14 +8,14 @@
 CCBResultWindow::CCBResultWindow(int a2)
 {
   *((_DWORD *)this + 2004) = a2;
-  return a2;
+  a2;
 }
 
 // 0x0051F090
 CCBResultWindow::~CCBResultWindow(int a2)
 {
   *((_DWORD *)this + 2005) = a2;
-  return a2;
+  a2;
 }
 
 // 0x0051F0A0

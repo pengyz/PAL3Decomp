@@ -156,7 +156,7 @@ CCBControlWindow::~CCBControlWindow(int _this)
     result = (*(int (**)(int, int))(*(_DWORD *)v11 + 20))(v11, 1);
     *(_DWORD *)(this + 72) = 0;
   }
-  return result;
+  result;
 }
 
 // 0x0051A930

@@ -34,18 +34,18 @@ Parent_Data::Parent_Data(LPCSTR lpString)
   int i; // ebx
 
   if ( !*((_BYTE *)this + 532) )
-    return 0;
+  0;
   if ( lstrlenA(lpString) <= 0 )
-    return 0;
+  0;
   v3 = 0;
   if ( *((int *)this + 131) <= 0 )
-    return 0;
+  0;
   for ( i = 0; _strcmpi(lpString, (const char *)(i + *((_DWORD *)this + 132))); i += 1088 )
   {
     if ( ++v3 >= *((_DWORD *)this + 131) )
-      return 0;
+  0;
   }
-  return (Parent_Data *)(*((_DWORD *)this + 132) + 1088 * v3);
+  (Parent_Data *)(*((_DWORD *)this + 132) + 1088 * v3);
 }
 
 // 0x0053FE80

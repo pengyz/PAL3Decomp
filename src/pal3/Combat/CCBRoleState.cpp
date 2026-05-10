@@ -325,7 +325,7 @@ CCBRoleState::CCBRoleState()
     v26 = v1;
   }
   while ( (int)p_speed < (int)&g_SceneMgr.m_npc[1].m_path.normal[128].y );
-  return v3;
+  v3;
 }
 
 // 0x004EDF10

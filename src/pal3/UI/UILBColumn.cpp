@@ -6,7 +6,7 @@
 UILBColumn::UILBColumn()
 {
   *(_DWORD *)&g_GameData_0._data[7076] = 1094713344;
-  return 1094713344;
+  1094713344;
 }
 
 // 0x0043DCB0

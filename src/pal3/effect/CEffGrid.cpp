@@ -46,9 +46,9 @@ CEffGrid::CEffGrid()
 
   v0 = (_DWORD *)((operator *)0x10B8u)->new();
   if ( v0 )
-    return sub_4C9550(v0);
+  sub_4C9550(v0);
   else
-    return 0;
+  0;
 }
 
 // 0x004C9650

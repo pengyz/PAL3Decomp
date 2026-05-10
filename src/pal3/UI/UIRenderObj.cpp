@@ -47,5 +47,5 @@ UIRenderObj::~UIRenderObj(unsigned __int8 a2)
              g_Input.KeyInfo[177].Data,
              a2);
   *((_BYTE *)this + 28) = a2;
-  return a2;
+  a2;
 }

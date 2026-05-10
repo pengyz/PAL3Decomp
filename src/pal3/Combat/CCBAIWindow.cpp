@@ -60,7 +60,7 @@ CCBAIWindow::CCBAIWindow(int a2)
     }
     while ( v3 < 5 );
   }
-  return (CCBAIWindow *)this->Destroy(a2);
+  (CCBAIWindow *)this->Destroy(a2);
 }
 
 // 0x0051CAA0
@@ -76,7 +76,7 @@ CCBAIWindow::~CCBAIWindow()
   v3 = (CCBAIWindow *)*(CCBAIWindow **)(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 42) + 1160) + 20) + 68);
   v3->SetText(Alpha + 105, Color + 51);
   v3->SetText(Alpha + 117, Color + 76);
-  return v3->SetText(Alpha + 107, Color + 102);
+  v3->SetText(Alpha + 107, Color + 102);
 }
 
 // 0x0051CB60

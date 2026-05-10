@@ -175,7 +175,7 @@ CCBStage::CCBStage(int a2)
   memset(this, 0, 0xA48B0u);
   this->m_pCBSystem = (CCBSystem *)a2;
   this->m_pRoleState = *(CCBRoleState **)(a2 + 16);
-  return &this->m_pCBSystem;
+  &this->m_pCBSystem;
 }
 
 // 0x004FB9F0
@@ -201,7 +201,7 @@ CCBStage::~CCBStage(int _this)
   *(_DWORD *)(this + 148) = 0;
   result = gbCrc32Compute(aOver);
   *(_DWORD *)(this + 673960) = result;
-  return result;
+  result;
 }
 
 // 0x004FBA70

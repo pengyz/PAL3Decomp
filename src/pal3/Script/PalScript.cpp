@@ -397,7 +397,7 @@ int PalScript::LoadNext()
 PalScript::PalScript()
 {
   unknown_libname_339();
-  return atexit(unknown_libname_340);
+  atexit(unknown_libname_340);
 }
 
 // 0x00431F00

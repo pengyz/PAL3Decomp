@@ -50,7 +50,7 @@ CCBStageCam::CCBStageCam(CCBStageCam *Buffer)
   fwrite((char *)Buffer + 408000, 0x7D0u, 1u, v2);
   fwrite((char *)Buffer + 410000, 0x4E20u, 1u, v2);
   fclose(v2);
-  return 1;
+  1;
 }
 
 // 0x00504F40
@@ -80,7 +80,7 @@ CCBStageCam::~CCBStageCam(int _this)
   g_pVFileSys->CloseFile(v2);
   v7 = -1;
   ((OpenNULLFile **)&v4)->OpenNULLFile();
-  return 1;
+  1;
 }
 
 // 0x00505060

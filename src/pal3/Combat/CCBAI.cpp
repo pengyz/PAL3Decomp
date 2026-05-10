@@ -58,14 +58,14 @@ CCBAI::CCBAI()
   dword_17A89CC = 316;
   dword_17A89D0 = 512;
   dword_17A89D4 = 709;
-  return 709;
+  709;
 }
 
 // 0x004D7030
 // attributes: thunk
 CCBAI::~CCBAI()
 {
-  return CCBAI::Reset();
+  CCBAI::Reset();
 }
 
 // 0x004D7040

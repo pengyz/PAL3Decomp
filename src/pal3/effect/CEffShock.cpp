@@ -25,9 +25,9 @@ CEffShock::CEffShock()
 
   v0 = (_DWORD *)((operator *)0x10B0u)->new();
   if ( v0 )
-    return sub_4D3870(v0);
+  sub_4D3870(v0);
   else
-    return 0;
+  0;
 }
 
 // 0x004D3A50

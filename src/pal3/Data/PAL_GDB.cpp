@@ -77,7 +77,7 @@ PAL_GDB::PAL_GDB()
   g_pVFileSys->CloseFile(v3);
   v8 = -1;
   ((OpenNULLFile **)&v5)->OpenNULLFile();
-  return 1;
+  1;
 }
 
 // 0x00478FD0
@@ -87,11 +87,11 @@ PAL_GDB::~PAL_GDB(int a2)
   __int32 id; // edx
 
   if ( !a2 )
-    return 0;
+  0;
   RoleNum = this->m_head.RoleNum;
   this->m_ItemData[360].id = 0;
   if ( RoleNum <= 0 )
-    return 0;
+  0;
   while ( 1 )
   {
     id = this->m_ItemData[360].id;
@@ -99,9 +99,9 @@ PAL_GDB::~PAL_GDB(int a2)
       break;
     this->m_ItemData[360].id = id + 1;
     if ( id + 1 >= RoleNum )
-      return 0;
+  0;
   }
-  return (int)this->m_RoleData + 852 * this->m_ItemData[360].id;
+  (int)this->m_RoleData + 852 * this->m_ItemData[360].id;
 }
 
 // 0x00479040

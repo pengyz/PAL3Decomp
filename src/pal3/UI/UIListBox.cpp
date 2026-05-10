@@ -32,7 +32,7 @@ UIListBox::UIListBox()
   this->UIWnd();
   this->m_fontcolor.ColorQuadFmt = (int)&off_56AD20;
   this->m_pfather = 0;
-  return &this->m_fontcolor.ColorQuadFmt;
+  &this->m_fontcolor.ColorQuadFmt;
 }
 
 // 0x0043DCF0
@@ -41,7 +41,7 @@ UIListBox::~UIListBox(UIListBox *Block, char a2)
   ((UIWnd *)Block)->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
-  return (UIWnd *)Block;
+  (UIWnd *)Block;
 }
 
 // 0x0043DD60

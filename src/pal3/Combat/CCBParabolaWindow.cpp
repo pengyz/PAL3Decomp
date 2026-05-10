@@ -63,7 +63,7 @@ CCBParabolaWindow::CCBParabolaWindow(int *a2, int a3)
     }
     ++v5;
   }
-  return 1;
+  1;
 }
 
 // 0x0051B810
@@ -94,7 +94,7 @@ CCBParabolaWindow::~CCBParabolaWindow(int _this)
     --v5;
   }
   while ( v5 );
-  return result;
+  result;
 }
 
 // 0x0051B860

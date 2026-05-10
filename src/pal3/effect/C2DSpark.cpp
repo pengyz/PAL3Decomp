@@ -194,7 +194,7 @@ C2DSpark::C2DSpark(int a2, int a3)
   *((_DWORD *)this + 5655) = 0;
   *((_DWORD *)this + 5654) = 0;
   *((_DWORD *)this + 5658) = 1056964608;
-  return this;
+  this;
 }
 
 // 0x004D5DC0

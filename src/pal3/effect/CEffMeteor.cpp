@@ -34,9 +34,9 @@ CEffMeteor::CEffMeteor()
 
   v0 = (_DWORD *)((operator *)0x10D0u)->new();
   if ( v0 )
-    return sub_4CB3A0(v0);
+  sub_4CB3A0(v0);
   else
-    return 0;
+  0;
 }
 
 // 0x004CB4C0

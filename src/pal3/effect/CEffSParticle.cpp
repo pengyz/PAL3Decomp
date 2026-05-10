@@ -32,9 +32,9 @@ CEffSParticle::CEffSParticle()
 
   v0 = (_DWORD *)((operator *)0x30u)->new();
   if ( v0 )
-    return sub_4D4EA0(v0);
+  sub_4D4EA0(v0);
   else
-    return 0;
+  0;
 }
 
 // 0x004D4F20
@@ -71,13 +71,13 @@ CEffSParticle::~CEffSParticle()
     *(_DWORD *)&v2[28] = 0;
     *(_DWORD *)&v2[32] = 0;
     *(_DWORD *)this = &off_56F62C;
-    return 0;
+  0;
   }
   else
   {
     *(_DWORD *)this = &off_56F62C;
   }
-  return result;
+  result;
 }
 
 // 0x004D4FC0

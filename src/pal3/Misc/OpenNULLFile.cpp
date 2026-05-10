@@ -11,5 +11,5 @@ OpenNULLFile::OpenNULLFile()
 
   result = (struct gbVFileSystem *)*this;
   g_pVFileSys = (struct gbVFileSystem *)*this;
-  return result;
+  result;
 }

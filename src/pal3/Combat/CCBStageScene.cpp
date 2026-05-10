@@ -154,7 +154,7 @@ CCBStageScene::CCBStageScene()
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   this->Create();
-  return 1;
+  1;
 }
 
 // 0x005100D0
@@ -205,7 +205,7 @@ CCBStageScene::~CCBStageScene(int _this)
     --v6;
   }
   while ( v6 );
-  return 1;
+  1;
 }
 
 // 0x00510180

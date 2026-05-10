@@ -51,7 +51,7 @@ CCBStageShadow::CCBStageShadow()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  return 1;
+  1;
 }
 
 // 0x00511F90
@@ -64,7 +64,7 @@ CCBStageShadow::~CCBStageShadow(int _this)
     operator delete(*(void **)(this + 12));
     *(_DWORD *)(this + 12) = 0;
   }
-  return 1;
+  1;
 }
 
 // 0x00511FC0

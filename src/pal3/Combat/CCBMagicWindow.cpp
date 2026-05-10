@@ -50,12 +50,12 @@ CCBMagicWindow::CCBMagicWindow(int a2, int a3, _DWORD *a4)
   if ( ((CCBLineupWindow *)*v5)->SetFaceLineup(v5[1], v5[2], v5[3], v7, v8, v9, v10, v11) )
   {
     *a4 = (v11[3] - v11[1]) * (v11[2] - v11[0]);
-    return 1;
+  1;
   }
   else
   {
     *a4 = 0;
-    return 0;
+  0;
   }
 }
 
@@ -78,7 +78,7 @@ CCBMagicWindow::~CCBMagicWindow(int a2)
       v2 = a4;
     }
   }
-  return v4;
+  v4;
 }
 
 // 0x0051BB00

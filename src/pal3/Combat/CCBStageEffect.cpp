@@ -46,7 +46,7 @@ CCBStageEffect::CCBStageEffect()
   dword_17AB584 = 1;
   v8 = -1;
   ((OpenNULLFile **)&v5)->OpenNULLFile();
-  return (CCBStageEffect *)1;
+  (CCBStageEffect *)1;
 }
 
 // 0x00508F30
@@ -76,7 +76,7 @@ CCBStageEffect::~CCBStageEffect(int _this)
   g_pVFileSys->CloseFile(v3);
   v8 = -1;
   ((OpenNULLFile **)&v5)->OpenNULLFile();
-  return 1;
+  1;
 }
 
 // 0x00509050

@@ -32,7 +32,7 @@ extern int unknown_libname_344;
 PalScriptMgr::PalScriptMgr()
 {
   unknown_libname_343();
-  return atexit(sub_431E90);
+  atexit(sub_431E90);
 }
 
 // 0x00431EB0

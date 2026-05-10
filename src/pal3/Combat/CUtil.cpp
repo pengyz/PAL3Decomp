@@ -35,7 +35,7 @@ extern int unk_ABCD00;
 // attributes: thunk
 CUtil::~CUtil()
 {
-  return CUtil::Create();
+  CUtil::Create();
 }
 
 // 0x00523100

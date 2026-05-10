@@ -653,7 +653,7 @@ CCBSystem::CCBSystem()
   LOBYTE(this->m_bQuitFlag) = 1;
   this->m_bPause = 1;
   BYTE2(this->m_bFiveNimbus) = 1;
-  return (int)this;
+  (int)this;
 }
 
 // 0x00512580

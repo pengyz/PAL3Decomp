@@ -26,9 +26,9 @@ CEffect::CEffect()
 
   v0 = (CEffectSystem *)((operator *)0x10C0u)->new();
   if ( v0 )
-    return v0->FillDefaultUVSet();
+  v0->FillDefaultUVSet();
   else
-    return 0;
+  0;
 }
 
 // 0x004C6A70

@@ -200,6 +200,12 @@ def transform_method_code(cls_name, method_name, code, sig):
 
         lines[func_line_idx] = first_line
 
+    # 1b. For constructors/destructors, remove 'return expr;' (they can't return values)
+    if method_name and (method_name == cls_name or method_name == '~%s' % cls_name):
+        for i in range(len(lines)):
+            # "return expr;" -> "expr;" (keep the expression as a statement)
+            lines[i] = re.sub(r'^\s*return\s+(.+);', r'  \1;', lines[i])
+
     # 2. Transform function signature: remove ClassName *this param, fix return
     if lines:
         first = lines[func_line_idx]

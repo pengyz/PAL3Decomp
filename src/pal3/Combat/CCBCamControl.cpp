@@ -15,7 +15,7 @@ extern void *off_56A694;
 // attributes: thunk
 CCBCamControl::CCBCamControl()
 {
-  return CCBCamControl::~CCBCamControl();
+  CCBCamControl::~CCBCamControl();
 }
 
 // 0x005081E0
@@ -25,7 +25,7 @@ CCBCamControl::~CCBCamControl()
   *(_DWORD *)&byte_17AAF64[1476] = 314;
   *(_DWORD *)&byte_17AAF64[1480] = 510;
   *(_DWORD *)&byte_17AAF64[1484] = 707;
-  return 707;
+  707;
 }
 
 // 0x00508220

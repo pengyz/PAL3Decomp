@@ -60,7 +60,7 @@ CEffectSystem::CEffectSystem(int a2)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  return result;
+  result;
 }
 
 // 0x004C6240
@@ -69,7 +69,7 @@ CEffectSystem::~CEffectSystem(int a2)
   sub_4C5D00(this, a2);
   this->m_pDisplay = (gbGfxManager *)&off_56F844;
   this->m_pAdditiveBlend = (gbRenderEffect *)1;
-  return &this->m_pDisplay;
+  &this->m_pDisplay;
 }
 
 // 0x004C6260

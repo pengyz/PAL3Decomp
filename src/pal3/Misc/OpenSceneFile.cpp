@@ -29,12 +29,12 @@ OpenSceneFile::OpenSceneFile(char *String1)
       ((gbVFileSystem *)&dword_6EBFA0)->Init(v4);
     }
     g_pVFileSys = (struct gbVFileSystem *)&dword_6EBFA0;
-    return this;
+  this;
   }
   else
   {
     g_pVFileSys = (struct gbVFileSystem *)&dword_6EBFA0;
-    return this;
+  this;
   }
 }
 
@@ -43,5 +43,5 @@ OpenSceneFile::OpenSceneFile(char *String1)
 OpenSceneFile::~OpenSceneFile()
 {
   g_pVFileSys = (struct gbVFileSystem *)&dword_7CC178;
-  return g_pVFileSys;
+  g_pVFileSys;
 }
