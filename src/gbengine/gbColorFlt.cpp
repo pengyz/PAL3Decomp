@@ -7,44 +7,44 @@
 
 // Constructor with RGB
 gbColorFlt::gbColorFlt(float red, float green, float blue) {
-    r = red;
-    g = green;
-    b = blue;
-    a = 1.0f;  // Default alpha
+    Red = red;
+    Green = green;
+    Blue = blue;
+    Alpha = 1.0f;
 }
 
 // Constructor with RGBA
 gbColorFlt::gbColorFlt(float red, float green, float blue, float alpha) {
-    r = red;
-    g = green;
-    b = blue;
-    a = alpha;
+    Red = red;
+    Green = green;
+    Blue = blue;
+    Alpha = alpha;
 }
 
 // Default constructor
 gbColorFlt::gbColorFlt() {
-    r = g = b = 0.0f;
-    a = 1.0f;
+    Red = Green = Blue = 0.0f;
+    Alpha = 1.0f;
 }
 
 // Assignment operator
 gbColorFlt& gbColorFlt::operator=(const gbColorFlt& color) {
-    r = color.r;
-    g = color.g;
-    b = color.b;
-    a = color.a;
+    Red = color.Red;
+    Green = color.Green;
+    Blue = color.Blue;
+    Alpha = color.Alpha;
     return *this;
 }
 
 // Inequality operator
 int gbColorFlt::operator!=(gbColorFlt& color) {
-    return (r != color.r || g != color.g || b != color.b || a != color.a) ? 1 : 0;
+    return (Red != color.Red || Green != color.Green || Blue != color.Blue || Alpha != color.Alpha) ? 1 : 0;
 }
 
 // Add-assign operator
 void gbColorFlt::operator+=(const gbColorFlt& color) {
-    r += color.r;
-    g += color.g;
-    b += color.b;
-    a += color.a;
+    Red += color.Red;
+    Green += color.Green;
+    Blue += color.Blue;
+    Alpha += color.Alpha;
 }

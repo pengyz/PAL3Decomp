@@ -1271,17 +1271,17 @@ int gbColorQuad::ColorQuadFmt;
 gbColorQuad::gbColorQuad(struct gbColorQuad & p0) { *(unsigned int*)this = *(unsigned int*)&p0; }
 
 gbColorQuad::gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2) {
-    if (ColorQuadFmt == 0) { r = p0; g = p1; b = p2; a = 0xFF; }
-    else { r = p2; g = p1; b = p0; a = 0xFF; }
+    if (ColorQuadFmt == 0) { Red = p0; Green = p1; Blue = p2; Alpha = 0xFF; }
+    else { Red = p2; Green = p1; Blue = p0; Alpha = 0xFF; }
 }
 
 gbColorQuad::gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2, unsigned char p3) {
-    if (ColorQuadFmt == 0) { r = p0; g = p1; b = p2; a = p3; }
-    else { r = p2; g = p1; b = p0; a = p3; }
+    if (ColorQuadFmt == 0) { Red = p0; Green = p1; Blue = p2; Alpha = p3; }
+    else { Red = p2; Green = p1; Blue = p0; Alpha = p3; }
 }
 
 gbColorQuad::gbColorQuad() {
-    b = g = r = a = 0;
+    Blue = Green = Red = Alpha = 0;
 }
 
 struct gbColorQuad & gbColorQuad::operator=(struct gbColorQuad const & p0) { *(unsigned int*)this = *(unsigned int*)&p0; return *this; }
