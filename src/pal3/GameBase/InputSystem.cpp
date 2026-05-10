@@ -2,6 +2,9 @@
 #include "pal3/globals.h"
 #include "pal3/gen/InputSystem.h"
 
+void *UISceneUpdate();           // forward decl
+int sub_421A40(void *, void *);  // forward decl
+
 // 0x0041C540
 void InputSystem::ProcessMouse(int a1)
 {

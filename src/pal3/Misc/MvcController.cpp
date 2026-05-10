@@ -5,6 +5,6 @@
 // 0x004B73D0
 int MvcController::SetComponent(int a2)
 {
-  *(this + 23) = a2;
+  *((_DWORD *)this + 23) = a2;
   return a2;
 }

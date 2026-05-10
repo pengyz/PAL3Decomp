@@ -5,6 +5,6 @@
 // 0x0043A4B0
 int MvcViewport::SetController(int a2)
 {
-  *(this + 17) = a2;
+  *((_DWORD *)this + 17) = a2;
   return a2;
 }

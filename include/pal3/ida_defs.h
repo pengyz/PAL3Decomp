@@ -2,10 +2,37 @@
 // IDA Hex-Rays pseudo-code compatibility macros
 // These allow IDA-generated code to compile directly
 
+#include <windows.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+
+#include "pal3/pal3_stl.h"
+
 typedef unsigned char _BYTE;
 typedef unsigned short _WORD;
 typedef unsigned long _DWORD;
 typedef unsigned __int64 _QWORD;
+
+// Forward declarations for gbengine types used in generated code
+class gbGfxManager;
+class gbActorMgr;
+class gbCamera;
+class gbActor;
+class gbVFileSystem;
+class gbRenderEffect;
+class gbSceneGraph;
+class gbTexture;
+class gbGeomNode;
+class gbPrintFont;
+class gbPrintFontMgr;
+class gbMatrixStack;
+class gbRefObject;
+class gbAudioManager;
+
+// Allow C-style implicit void* conversion (IDA generated code relies on this)
+#pragma warning(disable: 4133)  // incompatible pointer types
 
 #define LOBYTE(x)   (*((_BYTE*)&(x)))
 #define HIBYTE(x)   (*(((_BYTE*)&(x))+1))
@@ -24,4 +51,17 @@ typedef unsigned __int64 _QWORD;
 #define PAIR64(high, low) (((unsigned __int64)(high) << 32) | (unsigned long)(low))
 
 // IDA boolean type
+#ifndef BOOL
 typedef int BOOL;
+#endif
+
+// Allow void* implicit conversion (C++ compatibility for IDA code)
+#pragma warning(disable: 4312)  // conversion to greater size
+#pragma warning(disable: 4311)  // pointer truncation
+#pragma warning(disable: 4302)  // truncation
+#pragma warning(disable: 4267)  // size_t conversion
+#pragma warning(disable: 4244)  // narrowing
+#pragma warning(disable: 4018)  // signed/unsigned mismatch
+
+// IDA helper: qmemcpy = memcpy
+#define qmemcpy memcpy
