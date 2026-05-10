@@ -158,7 +158,7 @@ int sub_5058F0(_DWORD *a2, _DWORD *a3)
 }
 
 // 0x00505930
-void sub_505930(int this)
+void sub_505930(int _this)
 {
   int v2; // ebp
   struct gbRenderEffect *v3; // ebx
@@ -409,7 +409,7 @@ void sub_505930(int this)
 }
 
 // 0x00506020
-bool sub_506020(int this, _DWORD *a2)
+bool sub_506020(int _this, _DWORD *a2)
 {
   int v3; // eax
   char *v4; // ecx
@@ -471,7 +471,7 @@ char sub_5060D0()
 }
 
 // 0x005061A0
-void CCCTData::Init(int this)
+void CCCTData::Init(int _this)
 {
   int v2; // edx
   int v3; // ebp
@@ -571,7 +571,7 @@ int sub_5062D0(int a2)
 }
 
 // 0x005075E0
-void sub_5075E0(int this)
+void sub_5075E0(int _this)
 {
   int v1; // edx
   _BYTE *v2; // eax
@@ -808,7 +808,7 @@ void sub_5075E0(int this)
 }
 
 // 0x00507B20
-void sub_507B20(int this)
+void sub_507B20(int _this)
 {
   int v2; // ecx
   int v3; // ebx

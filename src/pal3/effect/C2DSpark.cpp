@@ -57,7 +57,7 @@ extern float flt_17A8188;
 extern float flt_17A818C;
 
 // 0x004D5AB0
-int sub_4D5AB0(int this, int a2, int a3)
+int sub_4D5AB0(int _this, int a2, int a3)
 {
   gbTexture *v4; // eax
   _DWORD *v5; // eax
@@ -225,7 +225,7 @@ int sub_4D5AB0(int this, int a2, int a3)
 }
 
 // 0x004D5DC0
-void sub_4D5DC0(int this)
+void sub_4D5DC0(int _this)
 {
   gbRefObject *v2; // ecx
   gbRefObject *v3; // ecx
@@ -317,7 +317,7 @@ char sub_4D5EC0(const void *a2)
 }
 
 // 0x004D5F20
-char sub_4D5F20(int this, char a2)
+char sub_4D5F20(int _this, char a2)
 {
   *(_DWORD *)(this + 22540) = 0;
   *(_BYTE *)(this + 22552) = a2;
@@ -411,7 +411,7 @@ _BYTE * sub_4D61A0()
 }
 
 // 0x004D61C0
-int sub_4D61C0(int this)
+int sub_4D61C0(int _this)
 {
   gbDynVertBuf *DynVertBuf; // ebx
   LONG y; // ecx
@@ -512,7 +512,7 @@ LABEL_14:
 }
 
 // 0x004D6380
-int sub_4D6380(int this, float a2)
+int sub_4D6380(int _this, float a2)
 {
   int v3; // edi
   int v4; // eax

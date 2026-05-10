@@ -68,7 +68,7 @@ char sub_51B710(gbRefObject ***this, int *a2, int a3)
 }
 
 // 0x0051B810
-int sub_51B810(int this)
+int sub_51B810(int _this)
 {
   int result; // eax
   int v3; // ecx

@@ -15,7 +15,7 @@ extern char aLockBackBuffer[];
 extern void *off_56F4F0;
 
 // 0x004BDAC0
-void sub_4BDAC0(int this)
+void sub_4BDAC0(int _this)
 {
   gbTexture_D3D::~gbTexture_D3D((void *)(this + 100));
   gbTexture_D3D::~gbTexture_D3D((void *)(this + 4));

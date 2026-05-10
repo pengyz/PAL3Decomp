@@ -128,7 +128,7 @@ _DWORD * sub_4D7080(_DWORD *a2)
 }
 
 // 0x004D70C0
-char sub_4D70C0(int this)
+char sub_4D70C0(int _this)
 {
   memset((void *)(this + 1584), 0, 0x6E0u);
   memset((void *)(this + 3344), 0, 0xA0u);
@@ -1361,7 +1361,7 @@ int sub_4D93D0()
 }
 
 // 0x004D94F0
-char sub_4D94F0(int this)
+char sub_4D94F0(int _this)
 {
   int v2; // edi
   int v3; // ebp

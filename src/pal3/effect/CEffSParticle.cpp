@@ -87,7 +87,7 @@ int sub_4D4F20()
 }
 
 // 0x004D4FC0
-int sub_4D4FC0(int this, float a2)
+int sub_4D4FC0(int _this, float a2)
 {
   float *v2; // esi
   int v3; // ebx

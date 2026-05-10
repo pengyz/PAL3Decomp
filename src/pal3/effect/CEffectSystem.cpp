@@ -156,7 +156,7 @@ void sub_4C6360()
 }
 
 // 0x004C6370
-int sub_4C6370(int this)
+int sub_4C6370(int _this)
 {
   *(_DWORD *)(this + 48) = -1;
   *(_DWORD *)(this + 44) = 0;
@@ -197,7 +197,7 @@ void *sub_4C6410()
 }
 
 // 0x004C6460
-char sub_4C6460(int this)
+char sub_4C6460(int _this)
 {
   struct gbRenderEffect *v3; // eax
   int v4; // esi
@@ -275,7 +275,7 @@ void sub_4C65C0(float a2)
 }
 
 // 0x004C65F0
-void sub_4C65F0(int this, int a2)
+void sub_4C65F0(int _this, int a2)
 {
   int v3; // eax
   gbCamera *v4; // ecx
@@ -302,7 +302,7 @@ void sub_4C65F0(int this, int a2)
 }
 
 // 0x004C6670
-char sub_4C6670(int this)
+char sub_4C6670(int _this)
 {
   unsigned int v2; // eax
   gbColorQuad *v3; // edi

@@ -159,7 +159,7 @@ char * CCBCamControl::SetCircle(int a2)
 }
 
 // 0x005084C0
-char sub_5084C0(int this)
+char sub_5084C0(int _this)
 {
   gbRefObject *v2; // esi
 
@@ -231,7 +231,7 @@ char sub_508680(gbRefObject **this)
 }
 
 // 0x00508690
-int sub_508690(int this)
+int sub_508690(int _this)
 {
   gbRefObject *v2; // esi
   _DWORD *v3; // edx

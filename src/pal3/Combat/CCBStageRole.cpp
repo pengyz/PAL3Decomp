@@ -588,7 +588,7 @@ char * CCBStageRole::GetOBBox(int a2)
 }
 
 // 0x00509410
-int sub_509410(int this)
+int sub_509410(int _this)
 {
   int v3; // ebp
   _DWORD *v4; // ecx
@@ -643,7 +643,7 @@ int sub_509410(int this)
 }
 
 // 0x00509540
-char sub_509540(int this, unsigned int a2)
+char sub_509540(int _this, unsigned int a2)
 {
   void *v3; // eax
   int v4; // eax
@@ -1121,7 +1121,7 @@ char sub_50A1A0(char a2)
 }
 
 // 0x0050A1B0
-int sub_50A1B0(int this)
+int sub_50A1B0(int _this)
 {
   if ( CCBRoleState::GetRoleField(*(_BYTE **)(this + 4), *(_DWORD *)(this + 284), 23) )
     return CCBStageRole::ClearAniMsg(1, 0.44);
@@ -1144,7 +1144,7 @@ char sub_50A200(char a2)
 }
 
 // 0x0050A210
-int sub_50A210(int this)
+int sub_50A210(int _this)
 {
   int result; // eax
 
@@ -1157,7 +1157,7 @@ int sub_50A210(int this)
 }
 
 // 0x0050A260
-int sub_50A260(int this)
+int sub_50A260(int _this)
 {
   int result; // eax
 
@@ -1394,7 +1394,7 @@ char sub_50A8E0(int a2)
 }
 
 // 0x0050A8F0
-char sub_50A8F0(int this, int a2, char a3)
+char sub_50A8F0(int _this, int a2, char a3)
 {
   char result; // al
 
@@ -1408,7 +1408,7 @@ char sub_50A8F0(int this, int a2, char a3)
 }
 
 // 0x0050A920
-char CCBStageRole::GetCurrentTask(int this, int a2)
+char CCBStageRole::GetCurrentTask(int _this, int a2)
 {
   char result; // al
 
@@ -1423,7 +1423,7 @@ char CCBStageRole::GetCurrentTask(int this, int a2)
 }
 
 // 0x0050A960
-int sub_50A960(int this)
+int sub_50A960(int _this)
 {
   this->GetState();
   *(_BYTE *)(this + 373) = 0;
@@ -1439,7 +1439,7 @@ bool CCBStageRole::IsReady(int idx)
 }
 
 // 0x0050A9B0
-_DWORD * CCBStageRole::DoTask(int this, float *a2)
+_DWORD * CCBStageRole::DoTask(int _this, float *a2)
 {
   float *WorldPos; // eax
   float *Center; // eax
@@ -1465,7 +1465,7 @@ _DWORD * CCBStageRole::DoTask(int this, float *a2)
 }
 
 // 0x0050AA60
-void sub_50AA60(int this, float a2)
+void sub_50AA60(int _this, float a2)
 {
   unsigned int v3; // eax
   int v4; // eax
@@ -1502,7 +1502,7 @@ double sub_50AAE0()
 }
 
 // 0x0050AB10
-void sub_50AB10(int this, char a2, float a3)
+void sub_50AB10(int _this, char a2, float a3)
 {
   int v4; // eax
   int v5; // eax
@@ -2086,7 +2086,7 @@ char sub_50B580(int a2, int a3, char a4)
 }
 
 // 0x0050BBD0
-int sub_50BBD0(int this)
+int sub_50BBD0(int _this)
 {
   unsigned int v2; // eax
   _BYTE *v3; // ecx
@@ -2567,7 +2567,7 @@ LABEL_43:
 }
 
 // 0x0050C970
-int CCBStageRole::ProcMagic(int this, int a2)
+int CCBStageRole::ProcMagic(int _this, int a2)
 {
   int v3; // eax
   double v4; // st7

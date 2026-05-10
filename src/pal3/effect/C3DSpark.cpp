@@ -212,7 +212,7 @@ _DWORD * sub_4D6670()
 }
 
 // 0x004D6960
-void sub_4D6960(int this)
+void sub_4D6960(int _this)
 {
   gbRefObject *v2; // ecx
   gbRefObject *v3; // ecx

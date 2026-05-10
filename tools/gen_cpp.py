@@ -262,6 +262,12 @@ def transform_method_code(cls_name, method_name, code, sig):
     # 6. Fix *(this + N) -> *((_DWORD *)this + N) for pointer arithmetic on typed this
     code = re.sub(r'\*\(\s*this\s*\+\s*(\d+)\s*\)', r'*((_DWORD *)this + \1)', code)
     code = re.sub(r'\*\(\s*this\s*-\s*(\d+)\s*\)', r'*((_DWORD *)this - \1)', code)
+
+    # 6c. If 'this' appears as a non-pointer parameter (e.g. "int this"), rename to _this
+    # This handles cases where IDA named a parameter 'this' but it's not a real C++ this
+    code = re.sub(r'\bint\s+this\b', 'int _this', code)
+    code = re.sub(r'\bchar\s+this\b', 'char _this', code)
+    code = re.sub(r'\b_DWORD\s+this\b', '_DWORD _this', code)
     # Also: &this[N] -> &((_DWORD *)this)[N]  and  this[N] -> ((_DWORD *)this)[N]
     # But be careful not to break this->member access
 
@@ -392,6 +398,13 @@ def generate_free_funcs_cpp(funcs):
     for f in funcs:
         code = f['code'].strip()
         code = replace_memory_refs(code)
+        # In free functions, 'this' is not a valid parameter name in C++
+        # Rename to '_this' to avoid syntax errors
+        code = re.sub(r'\bthis\b', '_this', code)
+        # Fix stdiobuf/ios_base
+        code = code.replace('stdiobuf *', 'UIWnd *')
+        code = code.replace('stdiobuf::', 'UIWnd::')
+        code = code.replace('std::ios_base *', 'UIWnd *')
         transformed.append((f['addr'], code))
 
     # Forward declarations

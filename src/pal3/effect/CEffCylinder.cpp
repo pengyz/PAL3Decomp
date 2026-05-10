@@ -138,7 +138,7 @@ void sub_4C3EB0()
 }
 
 // 0x004C3EC0
-int sub_4C3EC0(int this, int a2, float a3, float a4, float a5)
+int sub_4C3EC0(int _this, int a2, float a3, float a4, float a5)
 {
   int result; // eax
   int v7; // ecx
@@ -197,7 +197,7 @@ int sub_4C3EC0(int this, int a2, float a3, float a4, float a5)
 }
 
 // 0x004C4060
-char CEffCylinder::Create(int this, int a2)
+char CEffCylinder::Create(int _this, int a2)
 {
   int v3; // eax
   int v4; // ebx
@@ -340,7 +340,7 @@ LABEL_10:
 }
 
 // 0x004C4370
-void sub_4C4370(int this)
+void sub_4C4370(int _this)
 {
   char v2; // al
   bool v3; // zf
@@ -416,7 +416,7 @@ void sub_4C4370(int this)
 }
 
 // 0x004C45A0
-void sub_4C45A0(int this, float a2)
+void sub_4C45A0(int _this, float a2)
 {
   int v2; // edi
   double v3; // st7
@@ -722,7 +722,7 @@ LABEL_31:
 }
 
 // 0x004C4B00
-int sub_4C4B00(int this, int a2)
+int sub_4C4B00(int _this, int a2)
 {
   double v3; // st7
   int v4; // edi
@@ -1108,7 +1108,7 @@ void CEffCylinder::InitDefaultUVSet(int a2, int a3)
 }
 
 // 0x004C52C0
-_DWORD * sub_4C52C0(int this, int a2)
+_DWORD * sub_4C52C0(int _this, int a2)
 {
   gbTexture *v3; // eax
   _DWORD *result; // eax

@@ -55,7 +55,7 @@ char sub_511EE0()
 }
 
 // 0x00511F90
-char sub_511F90(int this)
+char sub_511F90(int _this)
 {
   gbRefObject::Release(*(gbRefObject **)(this + 4));
   gbRefObject::Release(*(gbRefObject **)(this + 8));

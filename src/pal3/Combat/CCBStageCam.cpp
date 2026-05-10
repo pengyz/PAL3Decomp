@@ -63,7 +63,7 @@ char sub_504E70(char *Buffer)
 }
 
 // 0x00504F40
-char sub_504F40(int this)
+char sub_504F40(int _this)
 {
   struct gbVFile *v2; // esi
   struct gbVFileSystem *v4; // [esp+3Ch] [ebp-810h] BYREF
@@ -299,7 +299,7 @@ _DWORD *__thiscall sub_5052E0(_DWORD *this, int **a2, int a3)
 }
 
 // 0x00505410
-int sub_505410(int this)
+int sub_505410(int _this)
 {
   *(_DWORD *)(this + 430016) = 0;
   *(_DWORD *)(this + 430020) = 0;
@@ -351,7 +351,7 @@ char CCBStageCam::Update()
 }
 
 // 0x005054F0
-void sub_5054F0(int this)
+void sub_5054F0(int _this)
 {
   int v2; // eax
   void *v3; // ecx
@@ -457,7 +457,7 @@ void sub_5054F0(int this)
 }
 
 // 0x00505770
-char CCBStageCam::ClearFinishedTask(int this, int a2)
+char CCBStageCam::ClearFinishedTask(int _this, int a2)
 {
   if ( !(CCBStageCam *->IsEditorCamValid()this, a2) )
     return 0;
@@ -469,7 +469,7 @@ char CCBStageCam::ClearFinishedTask(int this, int a2)
 }
 
 // 0x00505800
-int sub_505800(int this)
+int sub_505800(int _this)
 {
   *(_BYTE *)(this + 430012) = 0;
   *(_DWORD *)(this + 430032) = -1;
@@ -478,7 +478,7 @@ int sub_505800(int this)
 }
 
 // 0x00505820
-int sub_505820(int this)
+int sub_505820(int _this)
 {
   int v2; // eax
   int *v3; // ecx

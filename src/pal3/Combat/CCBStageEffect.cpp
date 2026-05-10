@@ -19,7 +19,7 @@ extern int dword_17ABC64;
 extern float flt_17ABC60;
 
 // 0x00508E30
-char sub_508E30(int this)
+char sub_508E30(int _this)
 {
   struct gbVFile *v2; // eax
   struct gbVFile *v3; // esi
@@ -50,7 +50,7 @@ char sub_508E30(int this)
 }
 
 // 0x00508F30
-char sub_508F30(int this)
+char sub_508F30(int _this)
 {
   struct gbVFile *v2; // eax
   struct gbVFile *v3; // esi

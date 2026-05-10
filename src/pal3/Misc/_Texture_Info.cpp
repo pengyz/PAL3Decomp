@@ -10,7 +10,7 @@ extern char aDProjectPal3Ui_0[];
 extern char aNotFoundSInUiO[];
 
 // 0x0053FCF0
-CHAR * sub_53FCF0(int this, LPCSTR lpString)
+CHAR * sub_53FCF0(int _this, LPCSTR lpString)
 {
   int v3; // edi
   int v4; // ebx

@@ -106,7 +106,7 @@ void sub_442420(gbRefObject **this)
 }
 
 // 0x00442890
-int sub_442890(int this)
+int sub_442890(int _this)
 {
   int result; // eax
   int v3; // ecx
@@ -242,7 +242,7 @@ int sub_442890(int this)
 }
 
 // 0x00442AD0
-int sub_442AD0(int this, int a2, int a3)
+int sub_442AD0(int _this, int a2, int a3)
 {
   int v5; // ecx
   int v6; // ecx

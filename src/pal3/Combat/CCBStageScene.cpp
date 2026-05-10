@@ -174,7 +174,7 @@ char sub_50FEE0()
 }
 
 // 0x005100D0
-char sub_5100D0(int this)
+char sub_5100D0(int _this)
 {
   void (__thiscall ***v2)(_DWORD, int); // ecx
   void (__thiscall ***v3)(_DWORD, int); // ecx
@@ -498,7 +498,7 @@ void sub_510610(gbGeomNode **this)
 }
 
 // 0x005107C0
-int sub_5107C0(int this)
+int sub_5107C0(int _this)
 {
   double v1; // st7
   long double v3; // st6
@@ -893,7 +893,7 @@ char sub_510F50()
 }
 
 // 0x00511030
-void sub_511030(int this, char a2)
+void sub_511030(int _this, char a2)
 {
   struct gbTextureArray *v3; // ecx
   struct gbRenderEffect *v4; // edx
@@ -1046,7 +1046,7 @@ char sub_511690()
 }
 
 // 0x00511790
-char sub_511790(int this)
+char sub_511790(int _this)
 {
   int v2; // ebp
   int v3; // edi
@@ -1129,7 +1129,7 @@ char sub_511790(int this)
 }
 
 // 0x00511970
-char sub_511970(int this)
+char sub_511970(int _this)
 {
   int v2; // eax
   int v3; // ecx

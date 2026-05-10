@@ -253,7 +253,7 @@ void __thiscall sub_43E120(UIWnd *this)
 }
 
 // 0x0043E1C0
-int UIListBox::CalScrollBarRange(int this, int id, _DWORD *a3, int parent, LPCSTR lpString, int a6, char a7)
+int UIListBox::CalScrollBarRange(int _this, int id, _DWORD *a3, int parent, LPCSTR lpString, int a6, char a7)
 {
   const CHAR *v7; // edi
   int (__thiscall **vtable)(gbGfxManager *, CHAR *); // ebp

@@ -36,7 +36,7 @@ void sub_51D700()
 }
 
 // 0x0051D710
-int sub_51D710(int this)
+int sub_51D710(int _this)
 {
   _DWORD *v2; // eax
   int v3; // ebp

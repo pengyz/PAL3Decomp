@@ -685,7 +685,7 @@ void sub_43FAE0(gbRefObject **this, LPCSTR lpString, char a3)
 }
 
 // 0x0043FCA0
-void sub_43FCA0(int this, float a2)
+void sub_43FCA0(int _this, float a2)
 {
   int v2; // eax
   double v3; // st7
@@ -742,7 +742,7 @@ void sub_43FDE0(int a2)
 }
 
 // 0x0043FDF0
-void sub_43FDF0(int this, float a2)
+void sub_43FDF0(int _this, float a2)
 {
   double v2; // st7
   double v3; // st6
@@ -1318,7 +1318,7 @@ void sub_446200()
 }
 
 // 0x0044A540
-int sub_44A540(int this, int a2, int a3, int a4)
+int sub_44A540(int _this, int a2, int a3, int a4)
 {
   int v6; // esi
   int *v7; // eax
@@ -1380,7 +1380,7 @@ int sub_44A540(int this, int a2, int a3, int a4)
 
 // 0x0044AB90
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-int __thiscall sub_44AB90(int this)
+int __thiscall sub_44AB90(int _this)
 {
   (_DWORD *->UIWnd()this);
   *(_DWORD *)(this + 108) = 360;
@@ -1431,7 +1431,7 @@ void __thiscall sub_44ACE0(UIWnd *this)
 
 // 0x0044BA60
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-int __thiscall sub_44BA60(int this)
+int __thiscall sub_44BA60(int _this)
 {
   (_DWORD *->UIListBox()this);
   (_BYTE *->UIFrameWnd()(this + 360));
@@ -1568,7 +1568,7 @@ void __thiscall sub_44F050(UIWnd *this)
 }
 
 // 0x0044FFE0
-int sub_44FFE0(int this)
+int sub_44FFE0(int _this)
 {
   (_DWORD *->UIListBox()this);
   (_BYTE *->UIFrameWnd()(this + 76));
@@ -1606,7 +1606,7 @@ void sub_450790()
 
 // 0x00451CC0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-int __thiscall sub_451CC0(int this)
+int __thiscall sub_451CC0(int _this)
 {
   (_DWORD *->UIWnd()this);
   (_DWORD *->ctor_F7F0()(this + 68));
@@ -1653,7 +1653,7 @@ void sub_452600()
 
 // 0x00452790
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-int __thiscall sub_452790(int this)
+int __thiscall sub_452790(int _this)
 {
   (_DWORD *->UIWnd()this);
   (_DWORD *->_UIScene()(this + 68));
@@ -1680,7 +1680,7 @@ void __thiscall sub_452850(UIWnd *this)
 }
 
 // 0x00452FD0
-int sub_452FD0(int this)
+int sub_452FD0(int _this)
 {
   char v3; // [esp+7h] [ebp-1h]
 
@@ -1746,7 +1746,7 @@ void __thiscall sub_453030(UIWnd *this)
 }
 
 // 0x00453D10
-int sub_453D10(int this)
+int sub_453D10(int _this)
 {
   (_DWORD *->UIListBox()this);
   (_BYTE *->UIFrameWnd()(this + 360));
@@ -1797,7 +1797,7 @@ void sub_453E70()
 }
 
 // 0x00454590
-int sub_454590(int this, int a2, int a3, int a4)
+int sub_454590(int _this, int a2, int a3, int a4)
 {
   int v6; // ecx
   int *v7; // eax
@@ -1907,7 +1907,7 @@ LABEL_16:
 }
 
 // 0x00454830
-int sub_454830(int this)
+int sub_454830(int _this)
 {
   (_DWORD *->UIListBox()this);
   (_BYTE *->UIFrameWnd()(this + 360));
@@ -1954,7 +1954,7 @@ void sub_454BA0()
 }
 
 // 0x00456AB0
-int sub_456AB0(int this)
+int sub_456AB0(int _this)
 {
   (_DWORD *->UIListBox()this);
   (_BYTE *->UIFrameWnd()(this + 360));
@@ -1987,7 +1987,7 @@ void sub_456B80()
 }
 
 // 0x00457070
-int sub_457070(int this, int a2, int a3, int a4)
+int sub_457070(int _this, int a2, int a3, int a4)
 {
   int result; // eax
   int v6; // eax
@@ -2071,7 +2071,7 @@ LABEL_20:
 }
 
 // 0x004590D0
-int sub_4590D0(int this)
+int sub_4590D0(int _this)
 {
   (_DWORD *->UIListBox()this);
   *(_DWORD *)(this + 120) = 800;
@@ -2129,7 +2129,7 @@ void sub_459260()
 }
 
 // 0x0045A7B0
-int sub_45A7B0(int this)
+int sub_45A7B0(int _this)
 {
   _DWORD *v2; // eax
   _DWORD *v3; // ebp
@@ -2391,7 +2391,7 @@ void sub_45AE60()
 }
 
 // 0x0046D140
-int sub_46D140(int this)
+int sub_46D140(int _this)
 {
   int v2; // eax
 
@@ -2534,7 +2534,7 @@ void sub_46D4E0()
 }
 
 // 0x00470A60
-int sub_470A60(int this)
+int sub_470A60(int _this)
 {
   _DWORD *v2; // eax
   int v3; // ecx
@@ -2725,7 +2725,7 @@ void sub_470F40()
 }
 
 // 0x00477BB0
-int sub_477BB0(int this, int a2, int a3, int a4)
+int sub_477BB0(int _this, int a2, int a3, int a4)
 {
   int v5; // eax
   _DWORD *v6; // ebx
@@ -3243,7 +3243,7 @@ LABEL_95:
 }
 
 // 0x00479300
-int sub_479300(int this)
+int sub_479300(int _this)
 {
   _DWORD *v2; // eax
   int v3; // ecx
@@ -3412,7 +3412,7 @@ void sub_479680()
 }
 
 // 0x0047BBF0
-int sub_47BBF0(int this)
+int sub_47BBF0(int _this)
 {
   (_DWORD *->UIListBox()this);
   (_BYTE *->UIFrameWnd()(this + 128));
@@ -3456,7 +3456,7 @@ void sub_47BD20()
 }
 
 // 0x0047E5C0
-int sub_47E5C0(int this)
+int sub_47E5C0(int _this)
 {
   (_DWORD *->UIListBox()this);
   *(_DWORD *)(this + 88) = 800;
@@ -3570,7 +3570,7 @@ void sub_47E910()
 }
 
 // 0x00482ED0
-int sub_482ED0(int this)
+int sub_482ED0(int _this)
 {
   gbVec3D *v2; // edi
   int v4; // [esp+10h] [ebp-14h]
@@ -3727,7 +3727,7 @@ void sub_483380()
 }
 
 // 0x004867F0
-int sub_4867F0(int this)
+int sub_4867F0(int _this)
 {
   int v2; // edi
   int v3; // ebp
@@ -3908,7 +3908,7 @@ void sub_4870C0()
 }
 
 // 0x004909F0
-int sub_4909F0(int this)
+int sub_4909F0(int _this)
 {
   _DWORD *v2; // eax
   int v3; // ebp
@@ -4079,7 +4079,7 @@ void sub_4912D0()
 }
 
 // 0x00498820
-int sub_498820(int this)
+int sub_498820(int _this)
 {
   (_DWORD *->UIListBox()this);
   *(_DWORD *)(this + 88) = 800;
@@ -4276,7 +4276,7 @@ void sub_4A2450()
 }
 
 // 0x004A6F10
-int sub_4A6F10(int this)
+int sub_4A6F10(int _this)
 {
   _DWORD *v2; // eax
   CHAR *v3; // ebp
@@ -4467,7 +4467,7 @@ int sub_4A6F10(int this)
 }
 
 // 0x004B01D0
-int sub_4B01D0(int this)
+int sub_4B01D0(int _this)
 {
   (_DWORD *->UIListBox()this);
   *(_DWORD *)(this + 88) = 800;
@@ -4693,7 +4693,7 @@ void UIWnd::~stdiobuf(UIWnd *this)
 }
 
 // 0x00523F30
-int sub_523F30(int this)
+int sub_523F30(int _this)
 {
   _DWORD *v2; // ecx
   _DWORD *v3; // eax
@@ -4788,7 +4788,7 @@ void sub_524130()
 }
 
 // 0x00525120
-int sub_525120(int this)
+int sub_525120(int _this)
 {
   gbVec3D *v2; // edi
   int v3; // ebp
@@ -4949,7 +4949,7 @@ void sub_525540()
 }
 
 // 0x005257B0
-_DWORD * sub_5257B0(int this, int a2)
+_DWORD * sub_5257B0(int _this, int a2)
 {
   int v3; // eax
   int v4; // edx
@@ -5412,7 +5412,7 @@ _DWORD * sub_5257B0(int this, int a2)
 }
 
 // 0x00526A40
-int sub_526A40(int this, int a2, _BYTE *a3, int a4)
+int sub_526A40(int _this, int a2, _BYTE *a3, int a4)
 {
   _BYTE *v6; // edx
   int v7; // eax
@@ -5709,7 +5709,7 @@ LABEL_21:
 }
 
 // 0x00527950
-int sub_527950(int this)
+int sub_527950(int _this)
 {
   (_DWORD *->UIListBox()this);
   *(_DWORD *)(this + 88) = 800;
@@ -5748,7 +5748,7 @@ void sub_5279F0()
 }
 
 // 0x005282E0
-int sub_5282E0(int this)
+int sub_5282E0(int _this)
 {
   gbVec3D *v2; // edi
   int v3; // ebp
@@ -5836,7 +5836,7 @@ void sub_5284E0()
 }
 
 // 0x005295F0
-int sub_5295F0(int this)
+int sub_5295F0(int _this)
 {
   (_DWORD *->UIListBox()this);
   *(_DWORD *)(this + 88) = 800;
@@ -5896,7 +5896,7 @@ void sub_529790()
 }
 
 // 0x0052BA10
-int sub_52BA10(int this)
+int sub_52BA10(int _this)
 {
   (_DWORD *->UIListBox()this);
   *(_DWORD *)(this + 88) = 800;
@@ -5963,7 +5963,7 @@ void sub_52BD50()
 }
 
 // 0x00531D20
-int sub_531D20(int this)
+int sub_531D20(int _this)
 {
   (_DWORD *->UIListBox()this);
   *(_BYTE *)(this + 360) = 0;

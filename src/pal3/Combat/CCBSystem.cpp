@@ -648,7 +648,7 @@ int CCBSystem::CCBSystem()
 }
 
 // 0x00512580
-int sub_512580(int this)
+int sub_512580(int _this)
 {
   _DWORD *v3; // ecx
 
@@ -912,7 +912,7 @@ char __thiscall sub_5125E0(_DWORD *this)
 
 // 0x00512BA0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char __thiscall sub_512BA0(int this)
+char __thiscall sub_512BA0(int _this)
 {
   int v2; // ecx
   void *v3; // edi
@@ -1121,7 +1121,7 @@ char CCBSystem::ProcWeaponSkill()
 }
 
 // 0x00512F40
-char CCBSystem::ProcMagicWait(int this, int a2, char a3)
+char CCBSystem::ProcMagicWait(int _this, int a2, char a3)
 {
   int v4; // ecx
   unsigned int v5; // ebx
@@ -1226,7 +1226,7 @@ char CCBSystem::RenderCheck()
 }
 
 // 0x00513150
-char sub_513150(int this)
+char sub_513150(int _this)
 {
   char v2; // bl
   int v3; // ebp
@@ -1391,7 +1391,7 @@ char sub_513420(char a2)
 }
 
 // 0x00513430
-char sub_513430(int this)
+char sub_513430(int _this)
 {
   int v2; // ebx
   int v3; // ebp
@@ -1462,7 +1462,7 @@ char sub_513430(int this)
 }
 
 // 0x00513600
-void sub_513600(int this, float a2)
+void sub_513600(int _this, float a2)
 {
   int v3; // ecx
   _DWORD *v4; // ecx
@@ -1507,7 +1507,7 @@ int sub_5136A0()
 }
 
 // 0x005136D0
-char sub_5136D0(int this, int a2)
+char sub_5136D0(int _this, int a2)
 {
   int i; // eax
   int v4; // ecx
@@ -1784,7 +1784,7 @@ LABEL_39:
 }
 
 // 0x00513EB0
-int CCBSystem::Message(int this, int a2)
+int CCBSystem::Message(int _this, int a2)
 {
   int RoleIndex; // edi
 
@@ -1825,7 +1825,7 @@ int CCBSystem::Message(int this, int a2)
 }
 
 // 0x00513FD0
-int CCBSystem::IsRoleWaitForFlee(int this, int a2)
+int CCBSystem::IsRoleWaitForFlee(int _this, int a2)
 {
   int v3; // eax
   int v4; // ebp
@@ -1923,7 +1923,7 @@ LABEL_12:
 }
 
 // 0x00514220
-int CCBSystem::AddThread(int this, int a2)
+int CCBSystem::AddThread(int _this, int a2)
 {
   int v3; // eax
   int v4; // ebp
@@ -2030,7 +2030,7 @@ int CCBSystem::AddThread(int this, int a2)
 }
 
 // 0x00514610
-int CCBSystem::DelThread(int this, int a2)
+int CCBSystem::DelThread(int _this, int a2)
 {
   int v3; // eax
   int v4; // ebp
@@ -2118,7 +2118,7 @@ int CCBSystem::DelThread(int this, int a2)
 }
 
 // 0x00514870
-int CCBSystem::GetSameThreadNum(int this, int a2)
+int CCBSystem::GetSameThreadNum(int _this, int a2)
 {
   int v3; // eax
   _DWORD *v4; // edi
@@ -2213,7 +2213,7 @@ LABEL_15:
 }
 
 // 0x00514AE0
-int CCBSystem::IsThreadExist(int this, int a2)
+int CCBSystem::IsThreadExist(int _this, int a2)
 {
   int v3; // eax
   int v4; // ebp
@@ -2307,7 +2307,7 @@ int CCBSystem::IsThreadExist(int this, int a2)
 }
 
 // 0x00514D60
-int CCBSystem::GetThreadIndex(int this, int a2)
+int CCBSystem::GetThreadIndex(int _this, int a2)
 {
   int v3; // eax
   _DWORD *v4; // ebp
@@ -2393,7 +2393,7 @@ int CCBSystem::GetThreadIndex(int this, int a2)
 }
 
 // 0x00514FE0
-int CCBSystem::PassCmdToThread(int this, int a2)
+int CCBSystem::PassCmdToThread(int _this, int a2)
 {
   int v3; // eax
   int v4; // edi
@@ -2477,7 +2477,7 @@ int CCBSystem::PassCmdToThread(int this, int a2)
 }
 
 // 0x00515200
-int CCBSystem::PassCmdToThread(int this, int a2)
+int CCBSystem::PassCmdToThread(int _this, int a2)
 {
   int v3; // eax
   int v4; // ebp
@@ -2602,7 +2602,7 @@ LABEL_5:
 }
 
 // 0x005155D0
-int CCBSystem::PassCmdToTask(int this, int a2)
+int CCBSystem::PassCmdToTask(int _this, int a2)
 {
   int v3; // eax
   int v4; // esi
@@ -2673,7 +2673,7 @@ int CCBSystem::PassCmdToTask(int this, int a2)
 }
 
 // 0x00515760
-int CCBSystem::PassCmdViaThread(int this, int a2)
+int CCBSystem::PassCmdViaThread(int _this, int a2)
 {
   int v3; // eax
   int v4; // esi
@@ -2815,7 +2815,7 @@ char CCBSystem::CreateObj(int a2)
 }
 
 // 0x00515B20
-int sub_515B20(int ( *a2)(int this, int a2), int a3, int a4, int a5, const void *a6)
+int sub_515B20(int ( *a2)(int _this, int a2), int a3, int a4, int a5, const void *a6)
 {
   int v8; // eax
   _BYTE *i; // ecx

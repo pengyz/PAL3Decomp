@@ -840,7 +840,7 @@ char sub_517DF0(gbRefObject ***this)
 }
 
 // 0x005181E0
-char sub_5181E0(int this)
+char sub_5181E0(int _this)
 {
   void (__thiscall ***v2)(_DWORD, _DWORD); // ecx
   void (__thiscall ***v3)(_DWORD, _DWORD); // ecx
@@ -1031,7 +1031,7 @@ char sub_518B20()
 }
 
 // 0x00518B30
-char sub_518B30(int this, char a2)
+char sub_518B30(int _this, char a2)
 {
   int i; // edi
   char result; // al
@@ -1119,7 +1119,7 @@ char sub_518B30(int this, char a2)
 }
 
 // 0x00518D40
-int sub_518D40(int this, char a2)
+int sub_518D40(int _this, char a2)
 {
   int v3; // ebx
   int v4; // ebp
@@ -1345,7 +1345,7 @@ int sub_5193D0()
 }
 
 // 0x00519400
-char sub_519400(int this, _DWORD *a2, int a3)
+char sub_519400(int _this, _DWORD *a2, int a3)
 {
   _BYTE *v4; // eax
   int v5; // eax
@@ -1386,7 +1386,7 @@ char sub_519400(int this, _DWORD *a2, int a3)
 }
 
 // 0x00519510
-int sub_519510(int this)
+int sub_519510(int _this)
 {
   int result; // eax
   int v3; // ecx
@@ -1788,7 +1788,7 @@ char __userpurge sub_519BD0@<al>(
 }
 
 // 0x00519F50
-int sub_519F50(int this)
+int sub_519F50(int _this)
 {
   int result; // eax
   _DWORD *v3; // esi
@@ -1889,7 +1889,7 @@ BOOL sub_51A090(int a2, int a3)
 }
 
 // 0x0051A0F0
-int CCBUI::ChangeSpecStateLum(int this)
+int CCBUI::ChangeSpecStateLum(int _this)
 {
   _DWORD *v2; // edi
   int a4; // [esp+8h] [ebp-10h] BYREF
@@ -1948,7 +1948,7 @@ char CCBUI::LineMove(_DWORD *a2, int a3, int a4, int a5)
 }
 
 // 0x0051A2B0
-int sub_51A2B0(int this, int a2)
+int sub_51A2B0(int _this, int a2)
 {
   int v3; // ebp
   _DWORD *v4; // edi
@@ -2017,7 +2017,7 @@ UIWnd * sub_51A390(UIWnd *Block, char a2)
 }
 
 // 0x0051A430
-char sub_51A430(int this, _DWORD *a2, int a3)
+char sub_51A430(int _this, _DWORD *a2, int a3)
 {
   char *v4; // eax
   int v5; // eax

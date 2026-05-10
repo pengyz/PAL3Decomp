@@ -18,12 +18,12 @@ public:
     int m_nActivePage; // +0x68
     // total size: 0x6C (108)
 
-    CCBItemWindow(stdiobuf *Block, char a2); // 0x0051B160
+    CCBItemWindow(UIWnd *Block, char a2); // 0x0051B160
     int Reset(); // 0x0051B1D0
     char Create(_DWORD *a2, int a3); // 0x0051B210
     int Destroy(); // 0x0051B4B0
     BOOL HandleInput(int a2, int a3); // 0x0051B570
     int OnMessage(int a2); // 0x0051B5D0
     _DWORD * Update(); // 0x0051B620
-    stdiobuf * CreateButtons(stdiobuf *Block, char a2); // 0x0051B670
+    UIWnd * CreateButtons(UIWnd *Block, char a2); // 0x0051B670
 };

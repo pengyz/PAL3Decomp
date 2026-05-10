@@ -23,7 +23,7 @@ extern int dword_17A7BC0;
 extern int unk_FFFFFF;
 
 // 0x004D1090
-char sub_4D1090(int this, int a2)
+char sub_4D1090(int _this, int a2)
 {
   int v3; // ebp
   void *v4; // eax
@@ -194,7 +194,7 @@ char sub_4D1BE0(const void *a2)
 }
 
 // 0x004D1CA0
-int sub_4D1CA0(int this, int a2)
+int sub_4D1CA0(int _this, int a2)
 {
   int v2; // edx
   int result; // eax
@@ -271,7 +271,7 @@ _DWORD * sub_4D1E50(int a2)
 }
 
 // 0x004D1F30
-_DWORD * sub_4D1F30(int this, int a2)
+_DWORD * sub_4D1F30(int _this, int a2)
 {
   gbTexture *v3; // eax
   _DWORD *result; // eax

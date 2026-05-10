@@ -43,7 +43,7 @@ int sub_523600()
 }
 
 // 0x00523670
-int sub_523670(int this)
+int sub_523670(int _this)
 {
   int result; // eax
 
@@ -73,7 +73,7 @@ int sub_523670(int this)
 }
 
 // 0x005236E0
-int sub_5236E0(int this, int a2, int a3)
+int sub_5236E0(int _this, int a2, int a3)
 {
   int v4; // eax
   gbAudioManager *v5; // eax

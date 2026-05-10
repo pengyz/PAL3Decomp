@@ -110,7 +110,7 @@ void sub_47C640(gbCamera **this, struct gbGfxManager *a2)
 }
 
 // 0x0047C6E0
-int sub_47C6E0(int this, int a2, int a3, int a4, char a5)
+int sub_47C6E0(int _this, int a2, int a3, int a4, char a5)
 {
   int v6; // ecx
   double v7; // st7
@@ -143,7 +143,7 @@ int sub_47C6E0(int this, int a2, int a3, int a4, char a5)
 }
 
 // 0x0047C770
-int sub_47C770(int this, int a2, int a3, int a4)
+int sub_47C770(int _this, int a2, int a3, int a4)
 {
   double v5; // st7
   double v6; // st7
@@ -270,7 +270,7 @@ int sub_47C830(int a2)
 }
 
 // 0x0047C9B0
-void sub_47C9B0(int this)
+void sub_47C9B0(int _this)
 {
   int v2; // eax
   int v3; // eax

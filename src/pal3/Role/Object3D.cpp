@@ -241,7 +241,7 @@ LABEL_9:
 }
 
 // 0x0047CF40
-char sub_47CF40(int this)
+char sub_47CF40(int _this)
 {
   unsigned int v2; // eax
   _DWORD v4[4]; // [esp+Ch] [ebp-10h] BYREF
@@ -523,7 +523,7 @@ LABEL_16:
 }
 
 // 0x0047D690
-void Object3D::CaculateRelative(int this, float a2)
+void Object3D::CaculateRelative(int _this, float a2)
 {
   unsigned int v3; // eax
   int v4; // eax
@@ -697,7 +697,7 @@ void * Object3D::SetupCamera()
 }
 
 // 0x0047DA60
-bool Object3D::Update(int this)
+bool Object3D::Update(int _this)
 {
   void *v2; // esi
   int v3; // eax
@@ -737,7 +737,7 @@ bool Object3D::Update(int this)
 }
 
 // 0x0047DB40
-bool Object3D::GetMouseRay(int this, int a2)
+bool Object3D::GetMouseRay(int _this, int a2)
 {
   void *v3; // esi
   int v4; // eax

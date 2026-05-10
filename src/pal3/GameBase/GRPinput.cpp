@@ -303,7 +303,7 @@ char sub_4024F0(int a2, int a3)
 }
 
 // 0x00402570
-int sub_402570(int this)
+int sub_402570(int _this)
 {
   int result; // eax
   _BYTE *v3; // esi
@@ -517,7 +517,7 @@ LABEL_15:
 }
 
 // 0x00402D00
-char sub_402D00(int this, float a2)
+char sub_402D00(int _this, float a2)
 {
   char result; // al
 
@@ -528,7 +528,7 @@ char sub_402D00(int this, float a2)
 }
 
 // 0x00402D20
-char sub_402D20(int this)
+char sub_402D20(int _this)
 {
   int v2; // eax
   int v3; // eax
@@ -658,7 +658,7 @@ int sub_402FA0(int a2)
 
 // 0x00403000
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-_BYTE *__thiscall sub_403000(int this, unsigned int a2)
+_BYTE *__thiscall sub_403000(int _this, unsigned int a2)
 {
   unsigned int v2; // esi
   size_t v4; // eax
@@ -760,7 +760,7 @@ BOOL sub_403180(int a2, int a3)
 }
 
 // 0x00403370
-int sub_403370(int this)
+int sub_403370(int _this)
 {
   `eh vector constructor iterator'((void *)(this + 4), 0xA4u, 2, GRPinput::UnacquireJoystick, GRPinput::AcquireKeyboard);
   `eh vector constructor iterator'((void *)(this + 332), 0x10u, 2, GRPinput::UnacquireMouse, GRPinput::AcquireJoystick);
@@ -826,7 +826,7 @@ void sub_4034B0(void **this)
 }
 
 // 0x004034E0
-void sub_4034E0(int this)
+void sub_4034E0(int _this)
 {
   GRPinput::Update();
   `eh vector destructor iterator'(
@@ -1174,7 +1174,7 @@ int __fastcall sub_404020(int a1)
 }
 
 // 0x00404060
-int sub_404060(int this)
+int sub_404060(int _this)
 {
   _DWORD *v2; // ebx
   _DWORD *v3; // edi
@@ -1210,7 +1210,7 @@ int sub_404060(int this)
 }
 
 // 0x00404150
-unsigned int sub_404150(int this, gbRay *a2, int a3)
+unsigned int sub_404150(int _this, gbRay *a2, int a3)
 {
   float *v3; // ebx
   unsigned int result; // eax

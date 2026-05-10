@@ -56,7 +56,7 @@ void sub_523120()
 }
 
 // 0x00523130
-int sub_523130(int this)
+int sub_523130(int _this)
 {
   (_DWORD *->UIListBox()this);
   *(_DWORD *)(this + 88) = 800;

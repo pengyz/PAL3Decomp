@@ -877,7 +877,7 @@ char CCBRoleState::CancelVariance(_DWORD *a2, unsigned int a3)
 }
 
 // 0x004EEE60
-char CCBRoleState::IsAlive(int this, int a2, int a3)
+char CCBRoleState::IsAlive(int _this, int a2, int a3)
 {
   char result; // al
   int v5; // eax
@@ -1561,7 +1561,7 @@ int CCBRoleState::SetEnemyBeImbibeNimbus(char a2, char a3)
 }
 
 // 0x004F0210
-bool CCBRoleState::CalSneakAttack(int this, int a2, unsigned int a3)
+bool CCBRoleState::CalSneakAttack(int _this, int a2, unsigned int a3)
 {
   int v4; // esi
   int v5; // ebx
@@ -2388,7 +2388,7 @@ LABEL_8:
 }
 
 // 0x004F1FA0
-char CCBRoleState::CheckRoleValid(int this, int a2, unsigned int roleIdx, int a4)
+char CCBRoleState::CheckRoleValid(int _this, int a2, unsigned int roleIdx, int a4)
 {
   char result; // al
   _DWORD *v6; // edx

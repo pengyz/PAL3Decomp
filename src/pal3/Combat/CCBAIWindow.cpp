@@ -37,7 +37,7 @@ int CCBAIWindow::SetText(int a2, int a3)
 }
 
 // 0x0051CA50
-int sub_51CA50(int this, int a2)
+int sub_51CA50(int _this, int a2)
 {
   int v3; // edi
   void (__thiscall ****v4)(_DWORD, int); // esi

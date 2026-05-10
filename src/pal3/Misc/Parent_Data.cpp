@@ -34,7 +34,7 @@ extern int dword_189506C;
 extern float flt_1895038;
 
 // 0x0053FDD0
-int sub_53FDD0(int this, LPCSTR lpString)
+int sub_53FDD0(int _this, LPCSTR lpString)
 {
   int v3; // edi
   int i; // ebx

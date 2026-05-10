@@ -88,7 +88,7 @@ CCBControlWindow * CCBControlWindow::CCBControlWindow()
 }
 
 // 0x0051A880
-int sub_51A880(int this)
+int sub_51A880(int _this)
 {
   int result; // eax
   _DWORD *v3; // edi
@@ -221,7 +221,7 @@ char CCBControlWindow::Create(_DWORD *a2, int a3, int a4, int a5)
 }
 
 // 0x0051AB60
-int sub_51AB60(int this, int a2)
+int sub_51AB60(int _this, int a2)
 {
   int v3; // ebp
   _DWORD *v4; // edi
@@ -326,7 +326,7 @@ int sub_51AD00()
 }
 
 // 0x0051AD10
-char sub_51AD10(int this, _DWORD *a2, int a3)
+char sub_51AD10(int _this, _DWORD *a2, int a3)
 {
   struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // eax
   void *v4; // esp
@@ -453,7 +453,7 @@ char sub_51AD10(int this, _DWORD *a2, int a3)
 }
 
 // 0x0051AFE0
-int sub_51AFE0(int this)
+int sub_51AFE0(int _this)
 {
   int result; // eax
   int v3; // ecx

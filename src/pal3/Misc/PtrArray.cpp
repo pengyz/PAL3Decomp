@@ -238,7 +238,7 @@ char * sub_4343F0(const char *a1)
 }
 
 // 0x00434490
-void sub_434490(int this)
+void sub_434490(int _this)
 {
   sub_434670(this);
   operator delete(*(void **)(this + 8));
@@ -248,7 +248,7 @@ void sub_434490(int this)
 }
 
 // 0x004344F0
-struct gbVFile * sub_4344F0(int this, const char *a2)
+struct gbVFile * sub_4344F0(int _this, const char *a2)
 {
   struct gbVFile *result; // eax
   int v4; // edi

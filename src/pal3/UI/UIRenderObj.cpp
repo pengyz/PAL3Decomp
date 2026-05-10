@@ -7,7 +7,7 @@ int sub_541640(...);
 int sub_541710(...);
 
 // 0x00541640
-void sub_541640(int this)
+void sub_541640(int _this)
 {
   int v2; // ecx
   int v3; // esi

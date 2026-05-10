@@ -31,7 +31,7 @@ _DWORD *sub_4C6940()
 }
 
 // 0x004C6A70
-int sub_4C6A70(int this, int a2, float a3, float a4, float a5)
+int sub_4C6A70(int _this, int a2, float a3, float a4, float a5)
 {
   int v6; // ecx
 
@@ -84,7 +84,7 @@ int sub_4C6A70(int this, int a2, float a3, float a4, float a5)
 }
 
 // 0x004C7150
-void sub_4C7150(int this, float a2)
+void sub_4C7150(int _this, float a2)
 {
   int v2; // edi
   double v3; // st7

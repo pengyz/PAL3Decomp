@@ -323,7 +323,7 @@ char sub_51BC70(_DWORD *a2, int a3)
 }
 
 // 0x0051C110
-int sub_51C110(int this)
+int sub_51C110(int _this)
 {
   int result; // eax
   int v3; // ecx

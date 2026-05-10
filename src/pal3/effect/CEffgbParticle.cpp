@@ -240,7 +240,7 @@ LABEL_10:
 }
 
 // 0x004C8A40
-char sub_4C8A40(int this, int a2)
+char sub_4C8A40(int _this, int a2)
 {
   void *v3; // eax
   int v4; // ebp
@@ -471,7 +471,7 @@ LABEL_35:
 }
 
 // 0x004C8E10
-void sub_4C8E10(int this)
+void sub_4C8E10(int _this)
 {
   gbMatrixStack *v2; // edi
   int v3; // eax

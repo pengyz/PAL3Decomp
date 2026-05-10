@@ -56,7 +56,7 @@ int sub_51B1D0()
 }
 
 // 0x0051B210
-char sub_51B210(int this, _DWORD *a2, int a3)
+char sub_51B210(int _this, _DWORD *a2, int a3)
 {
   _DWORD *v4; // ebx
   _DWORD *v5; // ebx
@@ -195,7 +195,7 @@ char sub_51B210(int this, _DWORD *a2, int a3)
 }
 
 // 0x0051B4B0
-int sub_51B4B0(int this)
+int sub_51B4B0(int _this)
 {
   int result; // eax
   int v3; // ecx

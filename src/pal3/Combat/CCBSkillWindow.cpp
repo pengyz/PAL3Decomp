@@ -53,7 +53,7 @@ int sub_51C2D0()
 }
 
 // 0x0051C330
-char sub_51C330(int this, _DWORD *a2, int a3)
+char sub_51C330(int _this, _DWORD *a2, int a3)
 {
   int v3; // ebx
   _DWORD *v5; // ebx
@@ -238,7 +238,7 @@ char sub_51C330(int this, _DWORD *a2, int a3)
 }
 
 // 0x0051C880
-int sub_51C880(int this)
+int sub_51C880(int _this)
 {
   int result; // eax
   _DWORD *v3; // edi

@@ -179,7 +179,7 @@ _DWORD * sub_4FB9A0(int a2)
 }
 
 // 0x004FB9F0
-unsigned int sub_4FB9F0(int this)
+unsigned int sub_4FB9F0(int _this)
 {
   _DWORD *v2; // ecx
   unsigned int result; // eax
@@ -368,7 +368,7 @@ char __thiscall sub_4FBA70(_DWORD *this)
 
 // 0x004FBE50
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char __thiscall sub_4FBE50(int this)
+char __thiscall sub_4FBE50(int _this)
 {
   int v2; // ebp
   void *v3; // edi
@@ -1488,7 +1488,7 @@ int sub_4FD290(int a2)
 }
 
 // 0x004FD3D0
-int sub_4FD3D0(int this, int a2)
+int sub_4FD3D0(int _this, int a2)
 {
   int v3; // ebp
   int v4; // ecx
@@ -2222,7 +2222,7 @@ int sub_4FE600(int a2)
 }
 
 // 0x004FE660
-int CCBStage::ProcShowSneakAttackState(int this, int a2)
+int CCBStage::ProcShowSneakAttackState(int _this, int a2)
 {
   int v3; // eax
   int v4; // ebp
@@ -2548,7 +2548,7 @@ int sub_4FEE60(int a2)
 }
 
 // 0x004FEFB0
-int sub_4FEFB0(int this, int a2)
+int sub_4FEFB0(int _this, int a2)
 {
   int v3; // eax
   int *v4; // edi
@@ -2698,7 +2698,7 @@ LABEL_13:
 }
 
 // 0x004FF3D0
-int sub_4FF3D0(int this, int a2)
+int sub_4FF3D0(int _this, int a2)
 {
   int v3; // ebp
   int v4; // eax

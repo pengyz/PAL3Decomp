@@ -28,7 +28,7 @@ public:
     int HandleInput(int a2); // 0x0051AB60
     int KeyPressed(); // 0x0051AC30
     _DWORD * DefaultKey(); // 0x0051AC40
-    stdiobuf * HandleEnable(stdiobuf *Block, char a2); // 0x0051AC90
+    UIWnd * HandleEnable(UIWnd *Block, char a2); // 0x0051AC90
     int CheckKeyInput(); // 0x0051AD00
     char OnMessage(_DWORD *a2, int a3); // 0x0051AD10
     int Update(); // 0x0051AFE0

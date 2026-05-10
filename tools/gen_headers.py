@@ -251,6 +251,10 @@ def generate_header(cls_name, pdb_class, methods):
             if not mname:
                 mname = '_field_%04X' % moffset
 
+            # Fix IDA type misidentification
+            mtype = mtype.replace('stdiobuf', 'UIWnd')
+            mtype = mtype.replace('std::ios_base', 'UIWnd')
+
             # Handle nested class types: ClassName::NestedType
             if '::' in mtype:
                 # Extract the nested type name, declare as inner struct
@@ -322,6 +326,10 @@ def generate_header(cls_name, pdb_class, methods):
                 continue
             seen_methods.add(method_key)
 
+            # Fix IDA type misidentification in method declarations
+            decl = decl.replace('stdiobuf *', 'UIWnd *')
+            decl = decl.replace('stdiobuf', 'UIWnd')
+            decl = decl.replace('std::ios_base *', 'UIWnd *')
             lines.append("%s // %s" % (decl, addr))
 
     lines.append("};")

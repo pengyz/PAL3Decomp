@@ -242,7 +242,7 @@ int sub_43AB00()
 }
 
 // 0x0043AB20
-int sub_43AB20(int this, int a2, int a3)
+int sub_43AB20(int _this, int a2, int a3)
 {
   BOOL v4; // edi
   int v6; // ecx
@@ -357,7 +357,7 @@ LABEL_30:
 }
 
 // 0x0043AD40
-int sub_43AD40(int this)
+int sub_43AD40(int _this)
 {
   int result; // eax
   int v3; // ecx

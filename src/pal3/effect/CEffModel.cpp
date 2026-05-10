@@ -63,7 +63,7 @@ _DWORD *sub_4D0D70()
 }
 
 // 0x004D0EC0
-int sub_4D0EC0(int this, int a2, float a3, float a4, float a5)
+int sub_4D0EC0(int _this, int a2, float a3, float a4, float a5)
 {
   int v7; // edx
   double v8; // st7

@@ -57,7 +57,7 @@ extern int unk_5D521C;
 extern int unk_FFFFFF;
 
 // 0x004C6C10
-char CEffExplosive::Create(int this, int a2)
+char CEffExplosive::Create(int _this, int a2)
 {
   int v3; // eax
   int v4; // ebx
@@ -230,7 +230,7 @@ LABEL_10:
 }
 
 // 0x004C6F20
-void sub_4C6F20(int this)
+void sub_4C6F20(int _this)
 {
   char v2; // al
   bool v3; // zf
@@ -305,7 +305,7 @@ void sub_4C6F20(int this)
 }
 
 // 0x004C7680
-int sub_4C7680(int this, int a2)
+int sub_4C7680(int _this, int a2)
 {
   double v3; // st7
   int v4; // edi
@@ -611,7 +611,7 @@ void CEffExplosive::InitDefaultUVSet(int a2, int a3)
 }
 
 // 0x004C7CB0
-_DWORD * sub_4C7CB0(int this, int a2)
+_DWORD * sub_4C7CB0(int _this, int a2)
 {
   gbTexture *v3; // eax
   _DWORD *result; // eax
@@ -646,7 +646,7 @@ _DWORD * sub_4C7CB0(int this, int a2)
 }
 
 // 0x004C7D40
-int sub_4C7D40(int this)
+int sub_4C7D40(int _this)
 {
   int v1; // edx
   int result; // eax

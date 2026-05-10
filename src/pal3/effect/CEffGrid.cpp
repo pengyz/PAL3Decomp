@@ -113,7 +113,7 @@ LABEL_18:
 }
 
 // 0x004C98F0
-char sub_4C98F0(int this, int a2)
+char sub_4C98F0(int _this, int a2)
 {
   struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // eax
   void *v3; // esp

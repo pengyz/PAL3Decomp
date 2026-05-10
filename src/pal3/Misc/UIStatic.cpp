@@ -63,7 +63,7 @@ int sub_440BA0(gbRefObject **this)
 }
 
 // 0x00440DD0
-int sub_440DD0(int this, int a2, int a3)
+int sub_440DD0(int _this, int a2, int a3)
 {
   BOOL v5; // eax
   int v6; // ecx
@@ -147,7 +147,7 @@ int sub_440DD0(int this, int a2, int a3)
 }
 
 // 0x00440F30
-int sub_440F30(int this)
+int sub_440F30(int _this)
 {
   int result; // eax
   int v3; // eax

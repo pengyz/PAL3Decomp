@@ -32,7 +32,7 @@ _DWORD *sub_4D3910()
 }
 
 // 0x004D3A50
-int sub_4D3A50(int this, int a2, float a3, float a4, float a5)
+int sub_4D3A50(int _this, int a2, float a3, float a4, float a5)
 {
   int result; // eax
 
@@ -50,7 +50,7 @@ int sub_4D3A50(int this, int a2, float a3, float a4, float a5)
 }
 
 // 0x004D3AD0
-char CEffShock::Create(int this, int a2)
+char CEffShock::Create(int _this, int a2)
 {
   int v3; // eax
   int v4; // ebx
@@ -195,7 +195,7 @@ LABEL_10:
 }
 
 // 0x004D45D0
-int sub_4D45D0(int this, int a2)
+int sub_4D45D0(int _this, int a2)
 {
   int i; // edi
   int v4; // ecx

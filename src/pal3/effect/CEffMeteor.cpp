@@ -104,7 +104,7 @@ LABEL_18:
 }
 
 // 0x004CB5E0
-int sub_4CB5E0(int this, int a2, float a3, float a4, float a5)
+int sub_4CB5E0(int _this, int a2, float a3, float a4, float a5)
 {
   int v6; // ecx
   int result; // eax
@@ -180,7 +180,7 @@ int sub_4CB5E0(int this, int a2, float a3, float a4, float a5)
 }
 
 // 0x004CB800
-char sub_4CB800(int this, int a2)
+char sub_4CB800(int _this, int a2)
 {
   void *v3; // eax
   int v4; // ebx
@@ -409,7 +409,7 @@ LABEL_10:
 }
 
 // 0x004CBFC0
-void sub_4CBFC0(int this, float a2)
+void sub_4CBFC0(int _this, float a2)
 {
   int v2; // edi
   double v3; // st7
