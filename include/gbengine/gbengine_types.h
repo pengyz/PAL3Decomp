@@ -172,8 +172,8 @@ struct gbQuaternion {
 };
 
 struct gbRay {
-    union { gbVec3D Origin; gbVec3D origin; };
-    union { gbVec3D Direction; gbVec3D direction; };
+    gbVec3D Origin;
+    gbVec3D Direction;
 
     // Methods (auto-generated)
     gbRay();
@@ -201,11 +201,8 @@ struct gbAABBox {
 };
 
 struct gbOBBox {
-    union { gbMatrix4 trans; gbMatrix4 matrix; };  // PDB: trans, legacy: matrix
-    union {
-        struct { float xlen, ylen, zlen; };  // PDB names
-        gbVec3D extent;                       // legacy name
-    };
+    gbMatrix4 trans;
+    float xlen, ylen, zlen;
 
     // Methods (auto-generated)
     gbOBBox();

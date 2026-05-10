@@ -390,8 +390,8 @@ struct gbUIQuad {
 // [0-2] v0 xyz, [3-5] v1 xyz, [6-8] v2 xyz, [9-11] v3 xyz
 // [12] u1, [13] v1, [14] u2, [15] v2, [16] color
 struct gbGeomQuad {
-    union { gbVec3D vec[4]; gbVec3D verts[4]; };  // PDB: vec, legacy: verts
-    union { struct { float su, sv, eu, ev; }; struct { float u1, v1, u2, v2; }; };
+    gbVec3D vec[4];
+    float su, sv, eu, ev;
     int color;
     int texid;
 };

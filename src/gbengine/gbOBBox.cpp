@@ -7,11 +7,11 @@
 #include <math.h>
 
 gbOBBox::gbOBBox() {
-    matrix.LoadIdentity();
+    trans.LoadIdentity();
 }
 
 gbOBBox& gbOBBox::operator=(const gbOBBox& box) {
-    matrix = box.trans;
+    trans = box.trans;
     extent.x = box.xlen;
     extent.y = box.ylen;
     extent.z = box.zlen;
@@ -20,9 +20,9 @@ gbOBBox& gbOBBox::operator=(const gbOBBox& box) {
 
 gbVec3D gbOBBox::GetCenter() const {
     gbVec3D result;
-    result.x = matrix.m[3][0];
-    result.y = matrix.m[3][1];
-    result.z = matrix.m[3][2];
+    result.x = trans.m[3][0];
+    result.y = trans.m[3][1];
+    result.z = trans.m[3][2];
     return result;
 }
 
@@ -37,7 +37,7 @@ float gbOBBox::GetRadiusInDirection(const gbVec3D& dir) const {
     float r = 0.0f;
     for (int i = 0; i < 3; i++) {
         gbVec3D axis;
-        ((gbMatrix4*)&matrix)->GetRow(&axis, i);
+        ((gbMatrix4*)&trans)->GetRow(&axis, i);
         float proj = fabsf(dir.DotProduct(&axis));
         r += proj * ((float*)&xlen)[i];
     }
@@ -51,28 +51,28 @@ void gbOBBox::GetAABBox(gbAABBox& aabb) {
     aabb.vMax.x = extent.x * 0.5f;
     aabb.vMax.y = extent.y * 0.5f;
     aabb.vMax.z = extent.z * 0.5f;
-    aabb.Transform(&matrix);
+    aabb.Transform(&trans);
 }
 
 // 0x10027d10
 void gbOBBox::GetSphere(gbSphere& sphere) {
-    sphere.center.x = matrix.m[3][0];
-    sphere.center.y = matrix.m[3][1];
-    sphere.center.z = matrix.m[3][2];
+    sphere.center.x = trans.m[3][0];
+    sphere.center.y = trans.m[3][1];
+    sphere.center.z = trans.m[3][2];
     sphere.radius = (float)sqrt(extent.x * extent.x + extent.y * extent.y + extent.z * extent.z) * 0.5f;
 }
 
 // OBB-OBB collision using Separating Axis Theorem
 int gbOBBox::IsColOBB(gbOBBox* other) {
     gbVec3D T;
-    T.x = other->trans.m[3][0] - matrix.m[3][0];
-    T.y = other->trans.m[3][1] - matrix.m[3][1];
-    T.z = other->trans.m[3][2] - matrix.m[3][2];
+    T.x = other->trans.m[3][0] - trans.m[3][0];
+    T.y = other->trans.m[3][1] - trans.m[3][1];
+    T.z = other->trans.m[3][2] - trans.m[3][2];
 
     int i;
     for (i = 0; i < 3; i++) {
         gbVec3D axis;
-        matrix.GetRow(&axis, i);
+        trans.GetRow(&axis, i);
         float dist = fabsf(T.DotProduct(&axis));
         float radiusA = ((float*)&xlen)[i];
         float radiusB = other->GetRadiusInDirection(axis);
@@ -87,7 +87,7 @@ int gbOBBox::IsColOBB(gbOBBox* other) {
 
     for (i = 0; i < 3; i++) {
         gbVec3D axisA;
-        matrix.GetRow(&axisA, i);
+        trans.GetRow(&axisA, i);
         for (int j = 0; j < 3; j++) {
             gbVec3D axisB;
             other->trans.GetRow(&axisB, j);
@@ -112,9 +112,9 @@ int gbOBBox::IsColOBB(gbOBBox* other) {
 // Point-in-OBB test
 int gbOBBox::IsColPoint(gbVec3D& point) {
     gbVec3D center;
-    center.x = matrix.m[3][0];
-    center.y = matrix.m[3][1];
-    center.z = matrix.m[3][2];
+    center.x = trans.m[3][0];
+    center.y = trans.m[3][1];
+    center.z = trans.m[3][2];
 
     gbVec3D d;
     d.x = point.x - center.x;
@@ -124,7 +124,7 @@ int gbOBBox::IsColPoint(gbVec3D& point) {
     // Project point onto each axis and check bounds
     for (int i = 0; i < 3; i++) {
         gbVec3D axis;
-        matrix.GetRow(&axis, i);
+        trans.GetRow(&axis, i);
         float proj = d.DotProduct(&axis);
         float halfExt = ((float*)&xlen)[i];
         if (fabsf(proj) > halfExt) return 0;

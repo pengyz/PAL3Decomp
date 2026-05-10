@@ -219,7 +219,7 @@ void gbCamQuakeControl::Update(double deltaTime) {
 /* gbCamera method implementations                                          */
 /* ======================================================================== */
 
-// ---- Helper: build projection matrix (not stored, computed on the fly) ----
+// ---- Helper: build projection trans (not stored, computed on the fly) ----
 
 void gbCamera::BuildProjMatrix(gbMatrix4* proj) {
     float aspect = GetAspect();
@@ -235,7 +235,7 @@ void gbCamera::BuildProjMatrix(gbMatrix4* proj) {
     proj->m[3][2] = -Q * zNear;
 }
 
-// ---- Helper: extract frustum planes from view-projection matrix ----
+// ---- Helper: extract frustum planes from view-projection trans ----
 
 void gbCamera::BuildFrustumPlanes(gbMatrix4* viewProj) {
     float (*M)[4] = viewProj->m;
@@ -292,13 +292,13 @@ void gbCamera::BuildFrustumPlanes(gbMatrix4* viewProj) {
     numPlane = 6;
 }
 
-// ---- Helper: build view matrix from eyeLoc and eyeDir quaternion ----
+// ---- Helper: build view trans from eyeLoc and eyeDir quaternion ----
 
 void gbCamera::BuildViewFromQuaternion() {
     gbMatrix4 rotMat;
     eyeDir.GetMatrix(&rotMat);
 
-    // View matrix = transpose(rotation) with translation
+    // View trans = transpose(rotation) with translation
     ViewMatrix.m[0][0] = rotMat.m[0][0];
     ViewMatrix.m[0][1] = rotMat.m[1][0];
     ViewMatrix.m[0][2] = rotMat.m[2][0];
@@ -522,7 +522,7 @@ int gbCamera::IsCurCtrlDefault(void) {
 // View setup methods
 // ======================================================================
 
-// 0x10021970 (155B) - Set look-at parameters and build view matrix
+// 0x10021970 (155B) - Set look-at parameters and build view trans
 void gbCamera::SetLookAt(gbVec3D* eye, gbVec3D* target, gbVec3D* up) {
     if (!eye || !target || !up)
         return;
@@ -552,7 +552,7 @@ void gbCamera::SetLookAt(gbVec3D* eye, gbVec3D* target, gbVec3D* up) {
     float uy = fz * rx - fx * rz;
     float uz = fx * ry - fy * rx;
 
-    // Build view matrix (row-major, D3D convention)
+    // Build view trans (row-major, D3D convention)
     ViewMatrix.m[0][0] = rx;  ViewMatrix.m[0][1] = ux;  ViewMatrix.m[0][2] = fx;  ViewMatrix.m[0][3] = 0.0f;
     ViewMatrix.m[1][0] = ry;  ViewMatrix.m[1][1] = uy;  ViewMatrix.m[1][2] = fy;  ViewMatrix.m[1][3] = 0.0f;
     ViewMatrix.m[2][0] = rz;  ViewMatrix.m[2][1] = uz;  ViewMatrix.m[2][2] = fz;  ViewMatrix.m[2][3] = 0.0f;
@@ -561,7 +561,7 @@ void gbCamera::SetLookAt(gbVec3D* eye, gbVec3D* target, gbVec3D* up) {
     ViewMatrix.m[3][2] = -(fx * eyeLoc.x + fy * eyeLoc.y + fz * eyeLoc.z);
     ViewMatrix.m[3][3] = 1.0f;
 
-    // Inverse view matrix
+    // Inverse view trans
     InvVMatrix.m[0][0] = rx;  InvVMatrix.m[0][1] = ry;  InvVMatrix.m[0][2] = rz;  InvVMatrix.m[0][3] = 0.0f;
     InvVMatrix.m[1][0] = ux;  InvVMatrix.m[1][1] = uy;  InvVMatrix.m[1][2] = uz;  InvVMatrix.m[1][3] = 0.0f;
     InvVMatrix.m[2][0] = fx;  InvVMatrix.m[2][1] = fy;  InvVMatrix.m[2][2] = fz;  InvVMatrix.m[2][3] = 0.0f;
@@ -570,7 +570,7 @@ void gbCamera::SetLookAt(gbVec3D* eye, gbVec3D* target, gbVec3D* up) {
     InvVMatrix.m[3][2] = eyeLoc.z;
     InvVMatrix.m[3][3] = 1.0f;
 
-    // Derive quaternion from the view matrix for eyeDir
+    // Derive quaternion from the view trans for eyeDir
     eyeDir.SetMatrix(&InvVMatrix);
 }
 
@@ -607,7 +607,7 @@ void gbCamera::SetAsCurrent(int mode) {
     float aspectHalf = ((float)Viewport.height * halfSize) / (float)Viewport.width;
 
     if (mode & 1) {
-        // Load identity into world matrix stack (pMatrixStack[0])
+        // Load identity into world trans stack (pMatrixStack[0])
         pGfxMgr->pMatrixStack[0]->LoadIdentity();
 
         if (fov == 0.0f) {
@@ -622,10 +622,10 @@ void gbCamera::SetAsCurrent(int mode) {
     }
 
     if (mode & 2) {
-        // Get rotation matrix from quaternion → InvVMatrix
+        // Get rotation trans from quaternion → InvVMatrix
         eyeDir.GetMatrix(&InvVMatrix);
 
-        // Build translation matrix and multiply
+        // Build translation trans and multiply
         gbMatrix4 transMat;
         transMat.LoadIdentity();
         transMat.m[3][0] = eyeLoc.x;
@@ -640,7 +640,7 @@ void gbCamera::SetAsCurrent(int mode) {
         // Set camera matrices in GfxManager
         pGfxMgr->SetCameraMatrix(InvVMatrix, ViewMatrix);
 
-        // Load ViewMatrix into projection matrix stack (pMatrixStack[1])
+        // Load ViewMatrix into projection trans stack (pMatrixStack[1])
         pGfxMgr->pMatrixStack[1]->LoadMatrix(&ViewMatrix);
     }
 
