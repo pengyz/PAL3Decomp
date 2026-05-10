@@ -39,19 +39,19 @@ extern void *off_570538;
 // 0x0051A700
 CCBControlWindow::CCBControlWindow()
 {
-  _DWORD *v2; // edi
+  CCBControlWindow *v2; // edi
   int a4; // [esp+14h] [ebp-10h] BYREF
   int v5; // [esp+18h] [ebp-Ch]
   int v6; // [esp+1Ch] [ebp-8h]
   int v7; // [esp+20h] [ebp-4h]
 
-  v2 = (_DWORD *)((char *)this + 100);
+  v2 = (CCBControlWindow *)((char *)this + 100);
   a4 = 40;
   v6 = 72;
   v5 = 27;
   v7 = 59;
   this->Create((_DWORD *)this + 25, 192, (int)&a4, (int)aUiCombatContro_4);
-  (**(void (***)(_DWORD, int))*v2)(*v2, 1);
+  (**(void (***)(void *, int))v2->_p000)(v2->_p000, 1);
   a4 = 72;
   v6 = 104;
   v5 = 27;
@@ -88,7 +88,7 @@ CCBControlWindow::CCBControlWindow()
 CCBControlWindow::~CCBControlWindow()
 {
   int result; // eax
-  char *v3; // edi
+  int *p_d04C; // edi
   int v4; // ebx
   int v5; // ecx
   int v6; // ecx
@@ -96,19 +96,19 @@ CCBControlWindow::~CCBControlWindow()
   int v8; // ecx
   int v9; // ecx
   int v10; // ecx
-  int v11; // ecx
+  int d048; // ecx
 
   result = ((UIListBox *)this)->SetScrollPos();
-  v3 = (char *)&this->_data[76];
+  p_d04C = (int *)&this->_d04C;
   v4 = 6;
   do
   {
-    if ( *(_DWORD *)v3 )
+    if ( *p_d04C )
     {
-      result = (*(int (**)(_DWORD, int))(**(_DWORD **)v3 + 20))(*(_DWORD *)v3, 1);
-      *(_DWORD *)v3 = 0;
+      result = (*(int (**)(int, int))(*(_DWORD *)*p_d04C + 20))(*p_d04C, 1);
+      *p_d04C = 0;
     }
-    v3 += 4;
+    ++p_d04C;
     --v4;
   }
   while ( v4 );
@@ -148,11 +148,11 @@ CCBControlWindow::~CCBControlWindow()
     result = (*(int (**)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
     *((_DWORD *)this + 30) = 0;
   }
-  v11 = *(_DWORD *)&this->_data[72];
-  if ( v11 )
+  d048 = this->_d048;
+  if ( d048 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v11 + 20))(v11, 1);
-    *(_DWORD *)&this->_data[72] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d048 + 20))(d048, 1);
+    this->_d048 = 0;
   }
   result;
 }
@@ -171,21 +171,21 @@ int CCBControlWindow::Reset(int a2, unsigned int a3, int a4)
       Instance = (char *)CScreenMode::GetInstance();
       ((CScreenMode *)Instance)->AudioSetPosition(aWa001, 1);
       this->HandleInput(a3 - 192);
-      Child = ((UIWnd *)*(UIWnd **)&this->_data[4 * a3 - 692])->CreateChild();
+      Child = ((UIWnd *)*((UIWnd **)this + a3 - 173))->CreateChild();
       if ( Child != -1 )
-        ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_data[32] + 1160) + 8))->SetParam(a3 - 48, Child);
+        ((CCBUI *)*(CCBUI **)(*(_DWORD *)(this->_d020 + 1160) + 8))->SetParam(a3 - 48, Child);
     }
   }
   else if ( a2 == 1006 )
   {
     if ( a4 != -1 )
-      ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_data[32] + 1160) + 8))->SetParam(a3, a4);
+      ((CCBUI *)*(CCBUI **)(*(_DWORD *)(this->_d020 + 1160) + 8))->SetParam(a3, a4);
   }
   else if ( a2 == 1007 && a4 != -1 )
   {
     v5 = (char *)CScreenMode::GetInstance();
     ((CScreenMode *)v5)->AudioSetPosition(aWa002, 1);
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_data[32] + 1160) + 8))->SetParam(a3, a4);
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(this->_d020 + 1160) + 8))->SetParam(a3, a4);
   }
   return a2->SendMessage(a3, a4);
 }
@@ -223,7 +223,7 @@ char CCBControlWindow::Create(_DWORD *a2, int a3, int a4, int a5)
 int CCBControlWindow::HandleInput(int a2)
 {
   int v3; // ebp
-  char *v4; // edi
+  int *p_d04C; // edi
   int v5; // eax
   int v6; // eax
   int v7; // eax
@@ -233,11 +233,11 @@ int CCBControlWindow::HandleInput(int a2)
   int v11; // eax
 
   v3 = 6;
-  v4 = (char *)&this->_data[76];
+  p_d04C = (int *)&this->_d04C;
   do
   {
-    (***(void (****)(_DWORD, _DWORD))v4)(*(_DWORD *)v4, 0);
-    v4 += 4;
+    (**(void (***)(int, _DWORD))*p_d04C)(*p_d04C, 0);
+    ++p_d04C;
     --v3;
   }
   while ( v3 );
@@ -281,10 +281,8 @@ int CCBControlWindow::HandleInput(int a2)
 LABEL_10:
       *(_DWORD *)(v11 + 80) = 1;
       *(_BYTE *)(v11 + 68) = 1;
-      ((UIWnd *)*(UIWnd **)&this->_data[72])->SetEnable(g_SceneMgr.m_szUIString, 0);
-      result = (***(int (****)(_DWORD, int))&this->_data[4 * a2 + 76])(
-                 *(_DWORD *)&this->_data[4 * a2 + 76],
-                 1);
+      ((UIWnd *)this->_d048)->SetEnable(g_SceneMgr.m_szUIString, 0);
+      result = (***((int (****)(_DWORD, int))&this->_d04C + a2))(*(&this->_d04C + a2), 1);
       *((_DWORD *)this + 31) = a2;
       break;
     default:
@@ -303,9 +301,9 @@ int CCBControlWindow::KeyPressed()
 _DWORD * CCBControlWindow::DefaultKey()
 {
   ((UIListBox *)this)->UIListBox();
-  *(_DWORD *)this->_data = &off_57051C;
+  this->_p000 = &off_57051C;
   this->CheckKeyInput();
-  return this->_data;
+  return &this->_p000;
 }
 
 // 0x0051AC90
@@ -320,9 +318,9 @@ UIWnd * CCBControlWindow::HandleEnable(CCBControlWindow *Block, char a2)
 // 0x0051AD00
 int CCBControlWindow::CheckKeyInput()
 {
-  *(_DWORD *)&this->_data[80] = 0;
-  *(_DWORD *)&this->_data[72] = 0;
-  *(_DWORD *)&this->_data[76] = 0;
+  this->_d050 = 0;
+  this->_d048 = 0;
+  this->_d04C = 0;
   return 0;
 }
 
@@ -335,9 +333,9 @@ char CCBControlWindow::OnMessage(_DWORD *pRect, int parent)
   int v7; // eax
   UIFrameWnd *v8; // eax
   int v9; // eax
-  UIWnd *v10; // ecx
+  UIWnd *d048; // ecx
   const int *v11; // ebp
-  UIListBox **v12; // esi
+  int *p_d050; // esi
   UIListBox *v13; // eax
   char *updated; // eax
   int id; // [esp+10h] [ebp-1014h] BYREF
@@ -364,7 +362,7 @@ char CCBControlWindow::OnMessage(_DWORD *pRect, int parent)
   else
     v7 = 0;
   v24 = -1;
-  *(_DWORD *)&this->_data[72] = v7;
+  this->_d048 = v7;
   if ( !v7 )
   {
     qmemcpy(
@@ -377,13 +375,13 @@ char CCBControlWindow::OnMessage(_DWORD *pRect, int parent)
   pRect[2] = 256;
   pRect[1] = 0;
   pRect[3] = 256;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBControlWindow *))(**(_DWORD **)&this->_data[72] + 16))(
-    *(_DWORD *)&this->_data[72],
+  (*(void (**)(int, int, _DWORD *, CCBControlWindow *))(*(_DWORD *)this->_d048 + 16))(
+    this->_d048,
     161,
     pRect,
     this);
-  ((UIWnd *)*(UIWnd ***)&this->_data[72])->CreateFromTemplate(aUiCombatContro_55, 0);
-  (***(void (****)(_DWORD, int))&this->_data[72])(*(_DWORD *)&this->_data[72], 1);
+  ((UIWnd *)this->_d048)->CreateFromTemplate(aUiCombatContro_55, 0);
+  (**(void (***)(int, int))this->_d048)(this->_d048, 1);
   v8 = (UIFrameWnd *)operator new(0x98u);
   v17 = v8;
   v24 = 1;
@@ -392,7 +390,7 @@ char CCBControlWindow::OnMessage(_DWORD *pRect, int parent)
   else
     v9 = 0;
   v24 = -1;
-  *(_DWORD *)&this->_data[76] = v9;
+  this->_d04C = v9;
   if ( !v9 )
   {
     qmemcpy(
@@ -401,13 +399,13 @@ char CCBControlWindow::OnMessage(_DWORD *pRect, int parent)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v10 = (UIWnd *)*(UIWnd **)&this->_data[72];
+  d048 = (UIWnd *)this->_d048;
   id = -1879048192;
-  v10->SetShow(0);
-  ((UIWnd *)*(UIWnd **)&this->_data[72])->GetChild((int)&id);
-  ((UIFrameWnd *)*(UIFrameWnd **)&this->_data[72])->SetPosition(39, 219);
+  d048->SetShow(0);
+  ((UIWnd *)this->_d048)->GetChild((int)&id);
+  ((UIFrameWnd *)this->_d048)->SetPosition(39, 219);
   v11 = (const int *)&dword_570134;
-  v12 = (UIListBox **)&this->_data[80];
+  p_d050 = (int *)&this->_d050;
   do
   {
     v13 = (UIListBox *)operator new(0x4B8u);
@@ -418,7 +416,7 @@ char CCBControlWindow::OnMessage(_DWORD *pRect, int parent)
     else
       updated = 0;
     v24 = -1;
-    *v12 = (UIListBox *)updated;
+    *p_d050 = (int)updated;
     if ( !updated )
     {
       qmemcpy(v20, ((Logger *)v21)->FormatException(aCNewFailed_0, aDProjectPal3Co_12, 3067), sizeof(v20));
@@ -428,23 +426,24 @@ char CCBControlWindow::OnMessage(_DWORD *pRect, int parent)
     pRect[2] = 241;
     pRect[1] = 110;
     pRect[3] = 226;
-    (*(void (**)(UIListBox *, const int, _DWORD *, CCBControlWindow *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)(*v12)->_data + 28))(
-      *v12,
+    (*(void (**)(int, const int, _DWORD *, CCBControlWindow *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)*p_d050
+                                                                                                 + 28))(
+      *p_d050,
       *v11,
       pRect,
       this,
       0,
       0,
       0);
-    (**(void (***)(UIListBox *, int))(*v12)->_data)(*v12, 1);
-    sub_43F670(*v12, 2, -4);
-    ((UIListBox *)*v12)->SetFirstShow(aName, 150);
-    ((UIListBox *)*v12)->SetFirstShow(aCost, 43);
-    sub_43F640(*v12, 19);
-    ((UIListBox *)*v12)->GetSel((int)aUiCombatContro_0, 0);
-    sub_43F690(*v12, 1);
+    (**(void (***)(int, int))*p_d050)(*p_d050, 1);
+    sub_43F670((_DWORD *)*p_d050, 2, -4);
+    ((UIListBox *)*p_d050)->SetFirstShow(aName, 150);
+    ((UIListBox *)*p_d050)->SetFirstShow(aCost, 43);
+    sub_43F640((_DWORD *)*p_d050, 19);
+    ((UIListBox *)*p_d050)->GetSel((int)aUiCombatContro_0, 0);
+    sub_43F690((_DWORD *)*p_d050, 1);
     ++v11;
-    ++v12;
+    ++p_d050;
   }
   while ( (int)v11 < (int)dword_570138 );
   return 1;
@@ -454,28 +453,28 @@ char CCBControlWindow::OnMessage(_DWORD *pRect, int parent)
 int CCBControlWindow::Update()
 {
   int result; // eax
-  int v3; // ecx
-  int v4; // ecx
-  int v5; // ecx
+  int d050; // ecx
+  int d048; // ecx
+  int d04C; // ecx
 
   result = ((UIListBox *)this)->SetScrollPos();
-  v3 = *(_DWORD *)&this->_data[80];
-  if ( v3 )
+  d050 = this->_d050;
+  if ( d050 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
-    *(_DWORD *)&this->_data[80] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d050 + 20))(d050, 1);
+    this->_d050 = 0;
   }
-  v4 = *(_DWORD *)&this->_data[72];
-  if ( v4 )
+  d048 = this->_d048;
+  if ( d048 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);
-    *(_DWORD *)&this->_data[72] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d048 + 20))(d048, 1);
+    this->_d048 = 0;
   }
-  v5 = *(_DWORD *)&this->_data[76];
-  if ( v5 )
+  d04C = this->_d04C;
+  if ( d04C )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
-    *(_DWORD *)&this->_data[76] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d04C + 20))(d04C, 1);
+    this->_d04C = 0;
   }
   return result;
 }
@@ -483,10 +482,10 @@ int CCBControlWindow::Update()
 // 0x0051B0B0
 BOOL CCBControlWindow::MoveButtons(int a2, int a3)
 {
-  if ( *(_DWORD *)&this->_data[56] == 1
+  if ( *(_DWORD *)&this->_pad_024[20] == 1
     && (g_Input.KeyInfo[16].PressTime == 1 && (g_Input.KeyInfo[16].Data & 0xF) == 1 || g_Input.KeyInfo[17].PressTime == 1) )
   {
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_data[32] + 1160) + 8))->SetParam(160, -1);
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(this->_d020 + 1160) + 8))->SetParam(160, -1);
   }
   return ((UIWnd *)this)->HitTest(a2, a3);
 }
@@ -495,7 +494,7 @@ BOOL CCBControlWindow::MoveButtons(int a2, int a3)
 _DWORD * CCBControlWindow::CreateButton()
 {
   ((UIListBox *)this)->UIListBox();
-  *(_DWORD *)this->_data = &off_570538;
+  this->_p000 = &off_570538;
   ((CCBItemWindow *)this)->Reset();
-  return this->_data;
+  return &this->_p000;
 }

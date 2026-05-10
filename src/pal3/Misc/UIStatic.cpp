@@ -17,11 +17,11 @@ UIStatic::UIStatic()
   int v3; // ecx
 
   ((UIWnd *)this)->UIWnd();
-  *(_DWORD *)this->_data = &off_56AD88;
-  this->_data[68] = 0;
-  this->_data[69] = 0;
-  *(_DWORD *)&this->_data[80] = 0;
-  v2 = (char *)&this->_data[92];
+  this->_p000 = &off_56AD88;
+  this->_b044 = 0;
+  this->_b045 = 0;
+  this->_d050 = 0;
+  v2 = (char *)&this->_pad_054[8];
   v3 = 2;
   do
   {
@@ -31,12 +31,12 @@ UIStatic::UIStatic()
     --v3;
   }
   while ( v3 );
-  memset(&this->_data[120], 0, 0x80u);
-  *(_DWORD *)&this->_data[76] = 1;
-  *(_DWORD *)&this->_data[112] = 0;
-  *(_DWORD *)&this->_data[116] = 0;
-  *(_DWORD *)&this->_data[104] = 0;
-  *(_DWORD *)&this->_data[108] = 0;
+  memset(this->_tail, 0, sizeof(this->_tail));
+  this->_d04C = 1;
+  this->_d070 = 0;
+  this->_d074 = 0;
+  this->_d068 = 0;
+  this->_d06C = 0;
 }
 
 // 0x00440BA0
@@ -69,19 +69,19 @@ BOOL UIStatic::Update(int a2, int a3)
   BOOL v5; // eax
   int v6; // ecx
   char *Instance; // eax
-  char v8; // dl
+  char b044; // dl
   int v9; // ecx
-  int v10; // ecx
+  int d020; // ecx
   int v11; // ecx
   int v12; // ecx
   void *v13; // [esp-8h] [ebp-1Ch]
   POINT pt; // [esp+Ch] [ebp-8h] BYREF
 
-  if ( !*(_DWORD *)&this->_data[56] )
+  if ( !this->_d038 )
     return 0;
   ((GRPinput *)&pt)->GetCursorPos();
-  v5 = PtInRect((const RECT *)&this->_data[16], pt);
-  if ( *(_DWORD *)&this->_data[60] )
+  v5 = PtInRect((const RECT *)&this->_d010, pt);
+  if ( this->_d03C )
   {
     if ( a3 )
     {
@@ -89,42 +89,42 @@ BOOL UIStatic::Update(int a2, int a3)
       {
         if ( g_Input.KeyInfo[0].PressTime == 1 )
         {
-          v8 = this->_data[68];
-          this->_data[69] = 1;
-          this->_data[68] = v8 == 0;
-          if ( v8 )
+          b044 = this->_b044;
+          this->_b045 = 1;
+          this->_b044 = b044 == 0;
+          if ( b044 )
           {
-            v10 = *(_DWORD *)&this->_data[32];
-            *(_DWORD *)&this->_data[80] = 0;
-            if ( v10 )
-              (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v10 + 24))(1001, *(_DWORD *)&this->_data[12], 0);
+            d020 = this->_d020;
+            this->_d050 = 0;
+            if ( d020 )
+              (*(void (__stdcall **)(int, int, _DWORD))(*(_DWORD *)d020 + 24))(1001, this->_d00C, 0);
           }
           else
           {
-            v9 = *(_DWORD *)&this->_data[32];
-            *(_DWORD *)&this->_data[80] = 1;
+            v9 = this->_d020;
+            this->_d050 = 1;
             if ( v9 )
-              (*(void (__stdcall **)(int, _DWORD, int))(*(_DWORD *)v9 + 24))(1001, *(_DWORD *)&this->_data[12], 1);
+              (*(void (__stdcall **)(int, int, int))(*(_DWORD *)v9 + 24))(1001, this->_d00C, 1);
           }
-          this->_data[69] = 0;
-          this->_data[70] = 0;
+          this->_b045 = 0;
+          this->_b046 = 0;
         }
         else
         {
-          v11 = *(_DWORD *)&this->_data[32];
-          this->_data[100] = 1;
-          this->_data[70] = 0;
+          v11 = this->_d020;
+          this->_b064 = 1;
+          this->_b046 = 0;
           if ( v11 )
-            (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v11 + 24))(1002, *(_DWORD *)&this->_data[12], 0);
+            (*(void (__stdcall **)(int, int, _DWORD))(*(_DWORD *)v11 + 24))(1002, this->_d00C, 0);
         }
       }
-      else if ( !this->_data[70] )
+      else if ( !this->_b046 )
       {
-        v12 = *(_DWORD *)&this->_data[32];
-        this->_data[100] = 0;
-        this->_data[70] = 1;
+        v12 = this->_d020;
+        this->_b064 = 0;
+        this->_b046 = 1;
         if ( v12 )
-          (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v12 + 24))(1003, *(_DWORD *)&this->_data[12], 0);
+          (*(void (__stdcall **)(int, int, _DWORD))(*(_DWORD *)v12 + 24))(1003, this->_d00C, 0);
       }
       return ((UIWnd *)this)->HitTest(a2, a3);
     }
@@ -137,9 +137,9 @@ BOOL UIStatic::Update(int a2, int a3)
   {
     if ( v5 && g_Input.KeyInfo[0].PressTime == 1 )
     {
-      v6 = *(_DWORD *)&this->_data[32];
+      v6 = this->_d020;
       if ( v6 )
-        (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(v6, 1021, *(_DWORD *)&this->_data[12], 1);
+        (*(void (**)(int, int, int, int))(*(_DWORD *)v6 + 24))(v6, 1021, this->_d00C, 1);
       v13 = off_5974E0;
       Instance = (char *)CScreenMode::GetInstance();
       ((CScreenMode *)Instance)->AudioSetPosition(v13, 1);
@@ -152,58 +152,58 @@ BOOL UIStatic::Update(int a2, int a3)
 int UIStatic::Render()
 {
   int result; // eax
-  int v3; // eax
-  unsigned int *v4; // eax
+  int d050; // eax
+  unsigned int *d06C; // eax
   unsigned int *v5; // ebx
-  int *v6; // edi
+  int *p_d010; // edi
   gbTexture *v7; // ecx
-  gbTexture *v8; // eax
-  unsigned int *v9; // [esp-10h] [ebp-58h]
+  gbTexture *d070; // eax
+  unsigned int *d074; // [esp-10h] [ebp-58h]
   struct gbTextureArray v10; // [esp+4h] [ebp-44h] BYREF
 
-  result = *(_DWORD *)&this->_data[56];
+  result = this->_d038;
   if ( result )
   {
-    v3 = *(_DWORD *)&this->_data[80];
-    if ( *(_DWORD *)&this->_data[4 * v3 + 84] )
+    d050 = this->_d050;
+    if ( *(_DWORD *)&this->_pad_054[4 * d050] )
     {
-      if ( this->_data[100] && *(_DWORD *)&this->_data[104] && v3 != 1 )
+      if ( this->_b064 && this->_d068 && d050 != 1 )
       {
-        v4 = (unsigned int *)*(unsigned int **)&this->_data[108];
-        v10.pTexPt[0] = *(gbTexture **)&this->_data[104];
+        d06C = (unsigned int *)this->_d06C;
+        v10.pTexPt[0] = (gbTexture *)this->_d068;
         v10.nTex = 1;
-        v5 = (unsigned int *)&this->_data[8];
-        v6 = (int *)&this->_data[16];
-        ((_TextureLib_Data *)&this->_data[16])->SetLibFolder((unsigned int *)&this->_data[8], &v10, 0x114u, v4, COERCE_FLOAT(1));
+        v5 = (unsigned int *)&this->_pad_004[4];
+        p_d010 = (int *)&this->_d010;
+        ((_TextureLib_Data *)&this->_d010)->SetLibFolder((unsigned int *)&this->_pad_004[4], &v10, 0x114u, d06C, COERCE_FLOAT(1));
       }
       else
       {
-        v7 = (gbTexture *)*(gbTexture **)&this->_data[4 * v3 + 84];
+        v7 = (gbTexture *)*(gbTexture **)&this->_pad_054[4 * d050];
         v10.nTex = 1;
         v10.pTexPt[0] = v7;
-        v5 = (unsigned int *)&this->_data[8];
-        v6 = (int *)&this->_data[16];
-        ((_TextureLib_Data *)&this->_data[16])->SetLibFolder((unsigned int *)&this->_data[8], &v10, 0x114u, *(unsigned int **)&this->_data[4 * v3 + 92], COERCE_FLOAT(1));
+        v5 = (unsigned int *)&this->_pad_004[4];
+        p_d010 = (int *)&this->_d010;
+        ((_TextureLib_Data *)&this->_d010)->SetLibFolder((unsigned int *)&this->_pad_004[4], &v10, 0x114u, *(unsigned int **)&this->_pad_054[4 * d050 + 8], COERCE_FLOAT(1));
       }
-      if ( !*(_DWORD *)&this->_data[60] )
+      if ( !this->_d03C )
       {
-        v8 = (gbTexture *)*(gbTexture **)&this->_data[112];
-        if ( v8 )
+        d070 = (gbTexture *)this->_d070;
+        if ( d070 )
         {
-          v9 = (unsigned int *)*(unsigned int **)&this->_data[116];
+          d074 = (unsigned int *)this->_d074;
           v10.nTex = 1;
-          v10.pTexPt[0] = v8;
-          v6->SetLibFolder(v5, &v10, 0x114u, v9, COERCE_FLOAT(1));
+          v10.pTexPt[0] = d070;
+          p_d010->SetLibFolder(v5, &v10, 0x114u, d074, COERCE_FLOAT(1));
         }
       }
     }
     else
     {
-      v6 = (int *)&this->_data[16];
-      ((_TextureLib_Data *)*(_DWORD *)&this->_data[16])->~_TextureLib_Data(*(_DWORD *)&this->_data[20], *(_DWORD *)&this->_data[24], *(_DWORD *)&this->_data[28], (float *)&unk_D91780);
+      p_d010 = (int *)&this->_d010;
+      ((_TextureLib_Data *)this->_d010)->~_TextureLib_Data(this->_d014, this->_d018, this->_d01C, (float *)&unk_D91780);
     }
-    if ( this->_data[120] )
-      UIRenderPar(&this->_data[120], v6, &this->_data[72], 1, 1);
+    if ( this->_tail[0] )
+      UIRenderPar(this->_tail, p_d010, &this->_pad_047[1], 1, 1);
     return ((UIWnd *)this)->GetID();
   }
   return result;

@@ -19,8 +19,8 @@ void UIDialog::Create(int id, int x, int y, int parent, char *tex)
   _DWORD pRect[4]; // [esp+4h] [ebp-10h] BYREF
 
   pRect[2] = x;
-  *(_DWORD *)&this->_data[84] = x;
-  *(_DWORD *)&this->_data[88] = y;
+  this->_d054 = x;
+  this->_d058 = y;
   pRect[3] = y;
   pRect[1] = 0;
   pRect[0] = 0;
@@ -28,7 +28,7 @@ void UIDialog::Create(int id, int x, int y, int parent, char *tex)
   v7 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
                       dword_BFDA60,
                       tex);
-  *(_DWORD *)&this->_data[92] = v7;
+  this->_d05C = (int)v7;
   if ( v7 )
     v7->LoadTexture(1);
 }
@@ -38,7 +38,7 @@ void UIDialog::Show()
 {
   int v1; // [esp+4h] [ebp+4h]
 
-  *(_DWORD *)&this->_data[80] = v1;
+  this->_d050 = v1;
 }
 
 // 0x00450B30
@@ -52,8 +52,8 @@ int UIDialog::Init()
   pRect[3] = 87;
   pRect[2] = pRect[0] + 274;
   ((UIWnd *)this)->Create(0, pRect, parent);
-  ((UINote *)&this->_data[72])->Create(1, (int)pRect, (int)this, aUiFlexNote_0);
-  ((UIWnd *)&this->_data[72])->GetRect(pRect);
-  sub_445910(&this->_data[72], 2);
-  return (**(int (***)(UIDialog *, _DWORD))this->_data)(this, 0);
+  ((UINote *)&this->_pad_000[72])->Create(1, (int)pRect, (int)this, aUiFlexNote_0);
+  ((UIWnd *)&this->_pad_000[72])->GetRect(pRect);
+  sub_445910(&this->_pad_000[72], 2);
+  return (**(int (***)(UIDialog *, _DWORD))this->_pad_000)(this, 0);
 }

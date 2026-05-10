@@ -64,10 +64,10 @@ int CCBProtectWindow::Create()
   int v28; // [esp+14h] [ebp-14h]
 
   ((UIListBox *)this)->UIListBox();
-  *(_DWORD *)&this->_data[88] = 128;
-  *(_DWORD *)&this->_data[92] = 512;
-  *(_DWORD *)&this->_data[96] = 0;
-  *(_DWORD *)&this->_data[100] = 0;
+  this->_d058 = 128;
+  this->_d05C = 512;
+  this->_d060 = 0;
+  this->_d064 = 0;
   ((UIFrameWnd *)((char *)this + 360))->UIFrameWnd();
   ((UIFrameWnd *)(this + 4))->UIFrameWnd();
   ((UIFrameWnd *)((char *)this + 664))->UIFrameWnd();
@@ -281,7 +281,7 @@ int CCBProtectWindow::Create()
   *((_BYTE *)this + 669300) = 0;
   ((UIItem *)(UIItem *)this + 669304)->Refresh();
   ((UIItem *)(UIItem *)this + 670672)->Refresh();
-  *(_DWORD *)this->_data = &off_5705D0;
+  this->_p000 = &off_5705D0;
   v18 = (_DWORD *)this + 2007;
   v19 = 4;
   do
@@ -291,7 +291,7 @@ int CCBProtectWindow::Create()
     --v19;
   }
   while ( v19 );
-  return (int)this->_data;
+  return (int)this;
 }
 
 // 0x0051DD80
@@ -306,7 +306,7 @@ UIWnd * CCBProtectWindow::Destroy(CCBProtectWindow *Block, char a2)
 // 0x0051DDA0
 void CCBProtectWindow::ShowWindow()
 {
-  *(_DWORD *)this->_data = &off_5705D0;
+  this->_p000 = &off_5705D0;
   *((_BYTE *)this + 8025) = 1;
   ((UIItem *)(UIItem *)this + 670672)->UIItem();
   ((UIItem *)(UIItem *)this + 669304)->UIItem();

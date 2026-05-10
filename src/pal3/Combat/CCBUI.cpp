@@ -1755,7 +1755,7 @@ char CCBUI::CreateButton@<al>(
     pRect[2] = 241;
     pRect[1] = 78;
     pRect[3] = 175;
-    (*(void (**)(UIListBox *, const int, _DWORD *, int, _DWORD, int, _DWORD))(*(_DWORD *)(*v14)->_data + 28))(
+    (*((void (**)(UIListBox *, const int, _DWORD *, int, _DWORD, int, _DWORD))(*v14)->_p000 + 7))(
       *v14,
       *v13,
       pRect,
@@ -1763,22 +1763,22 @@ char CCBUI::CreateButton@<al>(
       0,
       1,
       0);
-    (**(void (***)(UIListBox *, int))(*v14)->_data)(*v14, 1);
+    (*(void (**)(UIListBox *, int))(*v14)->_p000)(*v14, 1);
     sub_43F670(*v14, 2, -4);
     ((UIListBox *)*v14)->SetFirstShow(aName, 150);
     ((UIListBox *)*v14)->SetFirstShow(aQuantity, 43);
     sub_43F640(*v14, 19);
     ((UIListBox *)*v14)->GetSel((int)aUiCombatContro_0, 0);
     sub_43F690(*v14, 1);
-    v17 = ((UIWnd *)&(*v14)->_data[80])->SetRect(pExceptionObject);
+    v17 = ((UIWnd *)&(*v14)->_tail[8])->SetRect(pExceptionObject);
     * pRect = (*)*v17;
     pRect[1] = v17[1];
     pRect[2] = v17[2];
     pRect[3] = v17[3];
     ((UIListBox *)*v14)->GetLockSel((int)aUiCombatContro, pRect, 16, 16, 0);
-    sub_442230(&(*v14)->_data[80], 26, 28);
-    sub_4421F0(&(*v14)->_data[80], -5);
-    sub_442200(&(*v14)->_data[80], -2);
+    sub_442230(&(*v14)->_tail[8], 26, 28);
+    sub_4421F0(&(*v14)->_tail[8], -5);
+    sub_442200(&(*v14)->_tail[8], -2);
     ++v13;
     ++v14;
   }
@@ -2117,7 +2117,7 @@ char CCBUI::AddTask(_DWORD *pRect, int parent)
     pRect[2] = 241;
     pRect[1] = 78;
     pRect[3] = 175;
-    (*(void (**)(UIListBox *, const int, _DWORD *, CCBUI *, _DWORD, int, _DWORD))(*(_DWORD *)(*v8)->_data + 28))(
+    (*((void (**)(UIListBox *, const int, _DWORD *, CCBUI *, _DWORD, int, _DWORD))(*v8)->_p000 + 7))(
       *v8,
       *v7,
       pRect,
@@ -2125,7 +2125,7 @@ char CCBUI::AddTask(_DWORD *pRect, int parent)
       0,
       1,
       0);
-    (**(void (***)(UIListBox *, _DWORD))(*v8)->_data)(*v8, 0);
+    (*(void (**)(UIListBox *, _DWORD))(*v8)->_p000)(*v8, 0);
     sub_43F670(*v8, 2, -4);
     ((UIListBox *)*v8)->SetFirstShow(aName, 96);
     ((UIListBox *)*v8)->SetFirstShow(aCost, 37);
@@ -2133,15 +2133,15 @@ char CCBUI::AddTask(_DWORD *pRect, int parent)
     sub_43F640(*v8, 19);
     ((UIListBox *)*v8)->GetSel((int)aUiCombatContro_0, 0);
     sub_43F690(*v8, 1);
-    v11 = ((UIWnd *)&(*v8)->_data[80])->SetRect(a2);
+    v11 = ((UIWnd *)&(*v8)->_tail[8])->SetRect(a2);
     * pRect = (*)*v11;
     pRect[1] = v11[1];
     pRect[2] = v11[2];
     pRect[3] = v11[3];
     ((UIListBox *)*v8)->GetLockSel((int)aUiCombatContro, pRect, 16, 16, 0);
-    sub_442230(&(*v8)->_data[80], 26, 30);
-    sub_4421F0(&(*v8)->_data[80], -5);
-    sub_442200(&(*v8)->_data[80], -2);
+    sub_442230(&(*v8)->_tail[8], 26, 30);
+    sub_4421F0(&(*v8)->_tail[8], -5);
+    sub_442200(&(*v8)->_tail[8], -2);
     ++v7;
     ++v8;
   }

@@ -74,27 +74,27 @@ CCBParabolaWindow::CCBParabolaWindow(int *a2, int a3)
 CCBParabolaWindow::~CCBParabolaWindow()
 {
   int result; // eax
-  int v3; // ecx
-  char *v4; // esi
+  int d05C; // ecx
+  char *pad_060; // esi
   int v5; // edi
 
   result = ((UIListBox *)this)->SetScrollPos();
-  v3 = *(_DWORD *)&this->_data[92];
-  if ( v3 )
+  d05C = this->_d05C;
+  if ( d05C )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
-    *(_DWORD *)&this->_data[92] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d05C + 20))(d05C, 1);
+    this->_d05C = 0;
   }
-  v4 = (char *)&this->_data[96];
+  pad_060 = (char *)this->_pad_060;
   v5 = 5;
   do
   {
-    if ( *(_DWORD *)v4 )
+    if ( *(_DWORD *)pad_060 )
     {
-      result = (*(int (**)(_DWORD, int))(**(_DWORD **)v4 + 20))(*(_DWORD *)v4, 1);
-      *(_DWORD *)v4 = 0;
+      result = (*(int (**)(_DWORD, int))(**(_DWORD **)pad_060 + 20))(*(_DWORD *)pad_060, 1);
+      *(_DWORD *)pad_060 = 0;
     }
-    v4 += 4;
+    pad_060 += 4;
     --v5;
   }
   while ( v5 );
@@ -110,7 +110,7 @@ int CCBParabolaWindow::Reset(int a2, int a3, int a4)
   {
     Instance = (char *)CScreenMode::GetInstance();
     ((CScreenMode *)Instance)->AudioSetPosition(aWa001, 1);
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_data[32] + 1160) + 8))->SetParam(a3, a4);
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(this->_d020 + 1160) + 8))->SetParam(a3, a4);
   }
   return a2->SendMessage(a3, a4);
 }
@@ -121,7 +121,7 @@ int CCBParabolaWindow::Destroy()
   int v2; // ecx
 
   ((UIListBox *)this)->SetScroll();
-  v2 = *(_DWORD *)&this->_data[4 * *(_DWORD *)&this->_data[116] + 96];
+  v2 = *(_DWORD *)&this->_pad_060[4 * this->_d074];
   return (*(int (**)(int))(*(_DWORD *)v2 + 4))(v2);
 }
 
@@ -142,7 +142,7 @@ int CCBParabolaWindow::Update(int a2, int a3)
   CCBParabolaWindow **i; // edi
 
   v4 = 0;
-  for ( i = this + 24; *(_DWORD *)&(*i)->_data[56] != 1 || !this->OnMessage(v4, a2, a3); ++i )
+  for ( i = this + 24; *(_DWORD *)&(*i)->_b038 != 1 || !this->OnMessage(v4, a2, a3); ++i )
   {
     if ( ++v4 >= 5 )
       return -1;

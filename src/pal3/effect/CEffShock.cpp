@@ -36,7 +36,7 @@ int CEffShock::Init(int a2, float a3, float a4, float a5)
 {
   int result; // eax
 
-  this->_data[8] = 0;
+  this->_b008 = 0;
   *((_DWORD *)this + 1052) = *(_DWORD *)(a2 + 200);
   *((float *)this + 1056) = a3 + *(float *)(a2 + 184);
   *((float *)this + 1057) = a4 + *(float *)(a2 + 188);
@@ -75,43 +75,43 @@ char CEffShock::Create(int a2)
   int v24; // [esp+818h] [ebp-4h]
 
   v3 = (_DWORD *)operator new(0x4C0u);
-  *(_DWORD *)&this->_data[24] = v3;
+  this->_d018 = (int)v3;
   if ( v3 )
   {
     v4 = 0;
     v5 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v5 + *(_DWORD *)&this->_data[24]) = operator new(0x2D0u);
-      if ( !*(_DWORD *)(v5 + *(_DWORD *)&this->_data[24]) )
+      *(_DWORD *)(v5 + this->_d018) = operator new(0x2D0u);
+      if ( !*(_DWORD *)(v5 + this->_d018) )
         break;
       v5 += 152;
       ++v4;
       if ( v5 >= 1216 )
       {
         v6 = 0;
-        *(_DWORD *)&this->_data[40] = 8;
-        *(_DWORD *)&this->_data[44] = 10;
+        this->_d028 = 8;
+        this->_d02C = 10;
         v7 = 0;
         do
         {
-          *(_BYTE *)(v7 + *(_DWORD *)&this->_data[24] + 148) = 0;
+          *(_BYTE *)(v7 + this->_d018 + 148) = 0;
           v8 = 0;
-          if ( *(int *)&this->_data[44] > 0 )
+          if ( this->_d02C > 0 )
           {
             v9 = 0;
             do
             {
               ++v8;
               v9 += 72;
-              *(_BYTE *)(*(_DWORD *)(v7 + *(_DWORD *)&this->_data[24]) + v9 - 8) = 0;
+              *(_BYTE *)(*(_DWORD *)(v7 + this->_d018) + v9 - 8) = 0;
             }
-            while ( v8 < *(_DWORD *)&this->_data[44] );
+            while ( v8 < this->_d02C );
           }
           ++v6;
           v7 += 152;
         }
-        while ( v6 < *(_DWORD *)&this->_data[40] );
+        while ( v6 < this->_d028 );
         goto LABEL_10;
       }
     }
@@ -120,13 +120,13 @@ char CEffShock::Create(int a2)
       v16 = 152 * (v4 - 1);
       do
       {
-        operator delete(*(void **)(v16 + *(_DWORD *)&this->_data[24]));
+        operator delete(*(void **)(v16 + this->_d018));
         v16 -= 152;
         --v4;
       }
       while ( v4 );
     }
-    operator delete(*(void **)&this->_data[24]);
+    operator delete((void *)this->_d018);
   }
 LABEL_10:
   *((_DWORD *)this + 1062) = (__int64)*(float *)(a2 + 224);
@@ -272,7 +272,7 @@ int CEffShock::CreateGeom(int a2, int a3)
   v13 = (float)a3;
   if ( a3 > 0 )
   {
-    v6 = (char *)&this->_data[56];
+    v6 = (char *)&this->_tail[8];
     v7 = 16 * a2;
     do
     {
@@ -311,7 +311,7 @@ int CEffShock::CreateGeom(int a2, int a3)
 // 0x004D4B50
 int CEffShock::LoadTexture(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
 {
-  int v8; // ecx
+  int d020; // ecx
   int v9; // esi
   int v10; // edx
   _BYTE *i; // eax
@@ -319,14 +319,14 @@ int CEffShock::LoadTexture(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
   unsigned int v14; // eax
   _DWORD *v15; // edx
 
-  v8 = *(_DWORD *)&this->_data[32];
+  d020 = this->_d020;
   v9 = 0;
-  if ( v8 <= 0 )
+  if ( d020 <= 0 )
     return -1;
-  v10 = *(_DWORD *)(*(_DWORD *)&this->_data[12] + 152 * a2);
+  v10 = *(_DWORD *)(this->_d00C + 152 * a2);
   for ( i = (_BYTE *)(v10 + 64); *i; i += 72 )
   {
-    if ( ++v9 >= v8 )
+    if ( ++v9 >= d020 )
       return -1;
   }
   v13 = (int *)(v10 + 72 * v9);
@@ -354,6 +354,6 @@ int CEffShock::LoadTexture(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
     v15[2] = a5[2];
     v15[3] = a5[3];
   }
-  ++*(_DWORD *)(*(_DWORD *)&this->_data[12] + 152 * a2 + 4);
+  ++*(_DWORD *)(this->_d00C + 152 * a2 + 4);
   return v9;
 }

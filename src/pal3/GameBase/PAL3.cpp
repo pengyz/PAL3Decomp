@@ -802,7 +802,7 @@ int PAL3::Update(int a1)
   *(float *)&flt_BFDAA0 = *(float *)&flt_BFDAA0 + *(float *)&a1;
   ((GRPinput *)&g_Input)->GRPinput();
   v1 = 0;
-  v2 = (unsigned __int16 *)&g_PAL3Data._data[224];
+  v2 = (unsigned __int16 *)&g_PAL3Data._tail[208];
   do
   {
     KeyState = ((GRPinput *)&g_Input)->GetKeyState(*v2);
@@ -1587,24 +1587,24 @@ int PAL3::GetCommandLineParam()
 // 0x00406A10
 int PAL3::TestCombat()
 {
-  *(_WORD *)&g_PAL3Data._data[240] = 27;
-  strcpy(&g_PAL3Data._data[246], "\t");
-  strcpy(&g_PAL3Data._data[248], "\t");
+  *(_WORD *)&g_PAL3Data._tail[224] = 27;
+  strcpy(&g_PAL3Data._tail[230], "\t");
+  strcpy(&g_PAL3Data._tail[232], "\t");
   word_8ACCFA = 27;
   word_8ACD08 = 9;
-  *(_WORD *)&g_PAL3Data._data[224] = 256;
-  *(_WORD *)&g_PAL3Data._data[226] = 257;
-  *(_WORD *)&g_PAL3Data._data[228] = 134;
-  *(_WORD *)&g_PAL3Data._data[230] = 135;
-  *(_WORD *)&g_PAL3Data._data[232] = 136;
-  *(_WORD *)&g_PAL3Data._data[234] = 137;
-  strcpy(&g_PAL3Data._data[236], " ");
-  *(_WORD *)&g_PAL3Data._data[238] = 13;
-  *(_WORD *)&g_PAL3Data._data[244] = 154;
-  *(_WORD *)&g_PAL3Data._data[242] = 155;
-  strcpy(&g_PAL3Data._data[250], "a");
-  strcpy(&g_PAL3Data._data[252], "d");
-  *(_WORD *)&g_PAL3Data._data[254] = 256;
+  *(_WORD *)&g_PAL3Data._tail[208] = 256;
+  *(_WORD *)&g_PAL3Data._tail[210] = 257;
+  *(_WORD *)&g_PAL3Data._tail[212] = 134;
+  *(_WORD *)&g_PAL3Data._tail[214] = 135;
+  *(_WORD *)&g_PAL3Data._tail[216] = 136;
+  *(_WORD *)&g_PAL3Data._tail[218] = 137;
+  strcpy(&g_PAL3Data._tail[220], " ");
+  *(_WORD *)&g_PAL3Data._tail[222] = 13;
+  *(_WORD *)&g_PAL3Data._tail[228] = 154;
+  *(_WORD *)&g_PAL3Data._tail[226] = 155;
+  strcpy(&g_PAL3Data._tail[234], "a");
+  strcpy(&g_PAL3Data._tail[236], "d");
+  *(_WORD *)&g_PAL3Data._tail[238] = 256;
   word_8ACCF8 = 257;
   word_8ACCFC = 13;
   word_8ACCFE = 32;
@@ -1643,10 +1643,10 @@ int PAL3::DefaultKeyMap(const char *a1, int a2, int a3)
   int v8; // ebx
   unsigned int v9; // edi
   int result; // eax
-  unsigned int v11; // edi
+  int v11; // edi
   unsigned int v12; // kr04_4
   unsigned int v13; // ebx
-  char *v14; // edi
+  char *d004; // edi
   char v15; // al
   int v16; // [esp+0h] [ebp-Ch]
 
@@ -1657,12 +1657,12 @@ int PAL3::DefaultKeyMap(const char *a1, int a2, int a3)
     v13 = v12 - 1;
     if ( std::string::max_size() < v12 - 1 )
       v16->_Xlen();
-    v14 = (char *)*(char **)&g_PAL3Data._data[4];
-    if ( *(_DWORD *)&g_PAL3Data._data[4] && (v15 = *(_BYTE *)(*(_DWORD *)&g_PAL3Data._data[4] - 1)) != 0 && v15 != -1 )
+    d004 = (char *)g_PAL3Data._d004;
+    if ( g_PAL3Data._d004 && (v15 = *(_BYTE *)(g_PAL3Data._d004 - 1)) != 0 && v15 != -1 )
     {
       if ( v12 == 1 )
       {
-        *(_BYTE *)(*(_DWORD *)&g_PAL3Data._data[4] - 1) = v15 - 1;
+        *(_BYTE *)(g_PAL3Data._d004 - 1) = v15 - 1;
         ((std *)&g_PAL3Data)->string::_Tidy(0);
         goto LABEL_43;
       }
@@ -1674,84 +1674,81 @@ int PAL3::DefaultKeyMap(const char *a1, int a2, int a3)
         ((std *)&g_PAL3Data)->string::_Tidy(1);
         goto LABEL_43;
       }
-      if ( *(_DWORD *)&g_PAL3Data._data[12] <= 0x1Fu && *(_DWORD *)&g_PAL3Data._data[12] >= v13 )
+      if ( g_PAL3Data._d00C <= 0x1Fu && g_PAL3Data._d00C >= v13 )
       {
 LABEL_42:
-        qmemcpy(v14, a1, v13);
-        result = *(_DWORD *)&g_PAL3Data._data[4];
-        *(_DWORD *)&g_PAL3Data._data[8] = v12 - 1;
-        *(_BYTE *)(*(_DWORD *)&g_PAL3Data._data[4] + v13) = 0;
+        qmemcpy(d004, a1, v13);
+        result = g_PAL3Data._d004;
+        g_PAL3Data._d008 = v12 - 1;
+        *(_BYTE *)(g_PAL3Data._d004 + v13) = 0;
         goto LABEL_43;
       }
       ((std *)&g_PAL3Data)->string::_Tidy(1);
     }
     ((GRPinput *)&g_PAL3Data)->GetKeyState(v13);
-    v14 = (char *)*(char **)&g_PAL3Data._data[4];
+    d004 = (char *)g_PAL3Data._d004;
     goto LABEL_42;
   }
-  v3 = *(_DWORD *)&g_PAL3Data._data[4];
-  v4 = *(_DWORD *)&g_PAL3Data._data[4] == 0;
-  if ( *(_DWORD *)&g_PAL3Data._data[4] )
+  v3 = g_PAL3Data._d004;
+  v4 = g_PAL3Data._d004 == 0;
+  if ( g_PAL3Data._d004 )
   {
-    v5 = *(_BYTE *)(*(_DWORD *)&g_PAL3Data._data[4] - 1);
+    v5 = *(_BYTE *)(g_PAL3Data._d004 - 1);
     if ( v5 && v5 != -1 )
     {
-      ((SceneObj *)&g_PAL3Data)->Update(*(unsigned int *)&g_PAL3Data._data[8]);
-      v3 = *(_DWORD *)&g_PAL3Data._data[4];
+      ((SceneObj *)&g_PAL3Data)->Update(g_PAL3Data._d008);
+      v3 = g_PAL3Data._d004;
     }
     v4 = v3 == 0;
     if ( v3 )
     {
       *(_BYTE *)(v3 - 1) = -1;
-      v3 = *(_DWORD *)&g_PAL3Data._data[4];
-      v4 = *(_DWORD *)&g_PAL3Data._data[4] == 0;
+      v3 = g_PAL3Data._d004;
+      v4 = g_PAL3Data._d004 == 0;
     }
   }
   if ( v4 )
     v6 = 0;
   else
-    v6 = *(_DWORD *)&g_PAL3Data._data[8] + v3;
+    v6 = g_PAL3Data._d008 + v3;
   if ( v3 )
   {
     v7 = *(_BYTE *)(v3 - 1);
     if ( v7 && v7 != -1 )
     {
-      ((SceneObj *)&g_PAL3Data)->Update(*(unsigned int *)&g_PAL3Data._data[8]);
-      v3 = *(_DWORD *)&g_PAL3Data._data[4];
+      ((SceneObj *)&g_PAL3Data)->Update(g_PAL3Data._d008);
+      v3 = g_PAL3Data._d004;
     }
     if ( v3 )
     {
       *(_BYTE *)(v3 - 1) = -1;
-      v3 = *(_DWORD *)&g_PAL3Data._data[4];
+      v3 = g_PAL3Data._d004;
     }
   }
   v8 = v3;
   ((std *)&g_PAL3Data)->string::_Freeze();
   if ( v8 )
-    v9 = v8 - *(_DWORD *)&g_PAL3Data._data[4];
+    v9 = v8 - g_PAL3Data._d004;
   else
     v9 = 0;
   if ( v6 )
     v6 -= v8;
-  if ( *(_DWORD *)&g_PAL3Data._data[8] < v9 )
+  if ( g_PAL3Data._d008 < v9 )
     std::_Xran();
   ((std *)&g_PAL3Data)->string::_Split();
-  result = *(_DWORD *)&g_PAL3Data._data[8];
-  if ( *(_DWORD *)&g_PAL3Data._data[8] - v9 < v6 )
-    v6 = *(_DWORD *)&g_PAL3Data._data[8] - v9;
+  result = g_PAL3Data._d008;
+  if ( g_PAL3Data._d008 - v9 < v6 )
+    v6 = g_PAL3Data._d008 - v9;
   if ( v6 )
   {
-    memcpy(
-      (void *)(v9 + *(_DWORD *)&g_PAL3Data._data[4]),
-      (const void *)(v9 + *(_DWORD *)&g_PAL3Data._data[4] + v6),
-      *(_DWORD *)&g_PAL3Data._data[8] - v6 - v9);
-    v11 = *(_DWORD *)&g_PAL3Data._data[8] - v6;
-    LOBYTE(result) = ((SceneObj *)&g_PAL3Data)->Update(*(_DWORD *)&g_PAL3Data._data[8] - v6);
+    memcpy((void *)(v9 + g_PAL3Data._d004), (const void *)(v9 + g_PAL3Data._d004 + v6), g_PAL3Data._d008 - v6 - v9);
+    v11 = g_PAL3Data._d008 - v6;
+    LOBYTE(result) = ((SceneObj *)&g_PAL3Data)->Update(g_PAL3Data._d008 - v6);
     if ( (_BYTE)result )
     {
-      result = *(_DWORD *)&g_PAL3Data._data[4];
-      *(_DWORD *)&g_PAL3Data._data[8] = v11;
-      *(_BYTE *)(*(_DWORD *)&g_PAL3Data._data[4] + v11) = 0;
+      result = g_PAL3Data._d004;
+      g_PAL3Data._d008 = v11;
+      *(_BYTE *)(g_PAL3Data._d004 + v11) = 0;
     }
   }
 LABEL_43:
@@ -1830,8 +1827,8 @@ LABEL_8:
           isdiskinfo = v30.ImgInfo.isdiskinfo;
         }
         (*(void (**)(gbGfxManager *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 88))(dword_BFDA60);
-        ((gbImage2D *)&g_PAL3Data._data[24])->Release();
-        Image = ((gbImage2D *)&g_PAL3Data._data[24])->CreateImage(v26, v27, 24);
+        ((gbImage2D *)&g_PAL3Data._tail[8])->Release();
+        Image = ((gbImage2D *)&g_PAL3Data._tail[8])->CreateImage(v26, v27, 24);
         pBits = (unsigned __int8 *)v30.pBits;
         v8 = (unsigned __int8 *)v30.pBits;
         if ( isdiskinfo == 32 )
@@ -1928,7 +1925,7 @@ LABEL_8:
           }
         }
         if ( dword_5833C4 != -1 && dword_5833C8 != -1 )
-          ((gbImage2D *)&g_PAL3Data._data[24])->ScaleTo(dword_5833C4, dword_5833C8);
+          ((gbImage2D *)&g_PAL3Data._tail[8])->ScaleTo(dword_5833C4, dword_5833C8);
         ((gbImage2D *)&v30)->Release();
         goto LABEL_34;
       }

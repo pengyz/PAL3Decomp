@@ -28,7 +28,7 @@ char CEffQuad::Create(int a2)
   int v6; // ebx
   int v7; // ebp
   _DWORD *v8; // eax
-  int v9; // ecx
+  int d09C; // ecx
   int i; // eax
   _DWORD *v11; // eax
   int v12; // ebx
@@ -44,13 +44,13 @@ char CEffQuad::Create(int a2)
   char ArgList[1024]; // [esp+414h] [ebp-40Ch] BYREF
   int v24; // [esp+81Ch] [ebp-4h]
 
-  this->_data[50] = 1;
-  this->_data[53] = *(_BYTE *)(a2 + 215);
-  this->_data[52] = *(_BYTE *)(a2 + 213);
-  this->_data[54] = *(_BYTE *)(a2 + 176);
-  *(_DWORD *)&this->_data[56] = &unk_FFFFFF;
-  sub_4D1FD0(this->_data, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
-  *(_DWORD *)&this->_data[156] = operator new(80 * *(_DWORD *)(a2 + 208));
+  this->_b032 = 1;
+  this->_b035 = *(_BYTE *)(a2 + 215);
+  this->_b034 = *(_BYTE *)(a2 + 213);
+  this->_b036 = *(_BYTE *)(a2 + 176);
+  this->_d038 = (int)&unk_FFFFFF;
+  sub_4D1FD0(this->_pad_000, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
+  this->_d09C = (int)operator new(80 * *(_DWORD *)(a2 + 208));
   v3 = *(_DWORD *)(a2 + 208);
   v4 = (_DWORD *)operator new(68 * v3);
   v21 = v4;
@@ -76,13 +76,13 @@ char CEffQuad::Create(int a2)
   {
     v4 = 0;
   }
-  *(_DWORD *)&this->_data[160] = v4;
+  this->_d0A0 = (int)v4;
   v20 = 4 * *(_DWORD *)(a2 + 208);
   v24 = -1;
   v8 = (_DWORD *)operator new(v20);
-  v9 = *(_DWORD *)&this->_data[156];
-  *(_DWORD *)&this->_data[164] = v8;
-  if ( !v9 || !*(_DWORD *)&this->_data[160] || !v8 )
+  d09C = this->_d09C;
+  this->_d0A4 = (int)v8;
+  if ( !d09C || !this->_d0A0 || !v8 )
   {
     qmemcpy(
       pExceptionObject,
@@ -90,49 +90,49 @@ char CEffQuad::Create(int a2)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  *(_DWORD *)&this->_data[68] = *(_DWORD *)(a2 + 208);
+  this->_d044 = *(_DWORD *)(a2 + 208);
   sub_4D1EF0(this);
-  for ( i = 0; i < *(_DWORD *)&this->_data[68]; ++i )
-    *(_DWORD *)(*(_DWORD *)&this->_data[164] + 4 * i) = i;
+  for ( i = 0; i < this->_d044; ++i )
+    *(_DWORD *)(this->_d0A4 + 4 * i) = i;
   this->ToNextFrame(a2 + 40);
   v11 = (_DWORD *)operator new(0x4C0u);
-  *(_DWORD *)&this->_data[24] = v11;
+  this->_d018 = (int)v11;
   if ( v11 )
   {
     v12 = 0;
     v13 = 0;
     while ( 1 )
     {
-      *(_DWORD *)(v13 + *(_DWORD *)&this->_data[24]) = operator new(0x2D0u);
-      if ( !*(_DWORD *)(v13 + *(_DWORD *)&this->_data[24]) )
+      *(_DWORD *)(v13 + this->_d018) = operator new(0x2D0u);
+      if ( !*(_DWORD *)(v13 + this->_d018) )
         break;
       v13 += 152;
       ++v12;
       if ( v13 >= 1216 )
       {
         v14 = 0;
-        *(_DWORD *)&this->_data[40] = 8;
-        *(_DWORD *)&this->_data[44] = 10;
+        this->_d028 = 8;
+        this->_d02C = 10;
         v15 = 0;
         do
         {
-          *(_BYTE *)(v15 + *(_DWORD *)&this->_data[24] + 148) = 0;
+          *(_BYTE *)(v15 + this->_d018 + 148) = 0;
           v16 = 0;
-          if ( *(int *)&this->_data[44] > 0 )
+          if ( this->_d02C > 0 )
           {
             v17 = 0;
             do
             {
               ++v16;
               v17 += 72;
-              *(_BYTE *)(*(_DWORD *)(v15 + *(_DWORD *)&this->_data[24]) + v17 - 8) = 0;
+              *(_BYTE *)(*(_DWORD *)(v15 + this->_d018) + v17 - 8) = 0;
             }
-            while ( v16 < *(_DWORD *)&this->_data[44] );
+            while ( v16 < this->_d02C );
           }
           ++v14;
           v15 += 152;
         }
-        while ( v14 < *(_DWORD *)&this->_data[40] );
+        while ( v14 < this->_d028 );
         return 1;
       }
     }
@@ -141,13 +141,13 @@ char CEffQuad::Create(int a2)
       v19 = 152 * (v12 - 1);
       do
       {
-        operator delete(*(void **)(v19 + *(_DWORD *)&this->_data[24]));
+        operator delete(*(void **)(v19 + this->_d018));
         v19 -= 152;
         --v12;
       }
       while ( v12 );
     }
-    operator delete(*(void **)&this->_data[24]);
+    operator delete((void *)this->_d018);
   }
   return 1;
 }
@@ -155,38 +155,38 @@ char CEffQuad::Create(int a2)
 // 0x004D1BE0
 char CEffQuad::DestroyOneQuad(const void *a2)
 {
-  int v3; // ecx
+  int d044; // ecx
   int v4; // ebp
-  int v5; // esi
+  int d09C; // esi
   _BYTE *i; // eax
   int v8; // eax
-  int v9; // ecx
+  int d03C; // ecx
 
-  v3 = *(_DWORD *)&this->_data[68];
-  if ( *(_DWORD *)&this->_data[64] > v3 )
+  d044 = this->_d044;
+  if ( this->_d040 > d044 )
     return 0;
   v4 = 0;
-  if ( v3 <= 0 )
+  if ( d044 <= 0 )
     return 0;
-  v5 = *(_DWORD *)&this->_data[156];
-  for ( i = (_BYTE *)(v5 + 4); *i; i += 80 )
+  d09C = this->_d09C;
+  for ( i = (_BYTE *)(d09C + 4); *i; i += 80 )
   {
-    if ( ++v4 >= v3 )
+    if ( ++v4 >= d044 )
       return 0;
   }
   v8 = 80 * v4;
-  qmemcpy((void *)(v5 + 80 * v4), a2, 0x50u);
-  *(_BYTE *)(v8 + *(_DWORD *)&this->_data[156] + 4) = 1;
-  *(_DWORD *)(v8 + *(_DWORD *)&this->_data[156] + 12) = 0;
-  *(_BYTE *)(v8 + *(_DWORD *)&this->_data[156] + 6) = 0;
-  *(_BYTE *)(v8 + *(_DWORD *)&this->_data[156] + 7) = 0;
-  v9 = *(_DWORD *)&this->_data[60];
-  if ( v4 > v9 - 1 )
-    *(_DWORD *)&this->_data[60] = v9 + 1;
-  *(_DWORD *)(v8 + *(_DWORD *)&this->_data[156]) = *(_DWORD *)&this->_data[64];
-  *(_DWORD *)(*(_DWORD *)&this->_data[164] + 4 * (*(_DWORD *)&this->_data[64])++) = v4;
+  qmemcpy((void *)(d09C + 80 * v4), a2, 0x50u);
+  *(_BYTE *)(v8 + this->_d09C + 4) = 1;
+  *(_DWORD *)(v8 + this->_d09C + 12) = 0;
+  *(_BYTE *)(v8 + this->_d09C + 6) = 0;
+  *(_BYTE *)(v8 + this->_d09C + 7) = 0;
+  d03C = this->_d03C;
+  if ( v4 > d03C - 1 )
+    this->_d03C = d03C + 1;
+  *(_DWORD *)(v8 + this->_d09C) = this->_d040;
+  *(_DWORD *)(this->_d0A4 + 4 * this->_d040++) = v4;
   this->SetQuad(v4);
-  *(_DWORD *)&this->_data[72] = v4;
+  this->_d048 = v4;
   return 1;
 }
 
@@ -197,44 +197,44 @@ int CEffQuad::SetQuad(int a2)
   int result; // eax
   double v4; // st7
 
-  v2 = 80 * a2 + *(_DWORD *)&this->_data[156];
+  v2 = 80 * a2 + this->_d09C;
   result = 68 * *(_DWORD *)v2;
-  *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 64) = *(_DWORD *)(v2 + 76);
-  if ( this->_data[51] )
+  *(_DWORD *)(result + this->_d0A0 + 64) = *(_DWORD *)(v2 + 76);
+  if ( this->_pad_033[0] )
   {
-    *(float *)(result + *(_DWORD *)&this->_data[160]) = *(float *)(v2 + 16) - *(float *)(v2 + 28);
-    *(float *)(result + *(_DWORD *)&this->_data[160] + 12) = *(float *)(v2 + 28) + *(float *)(v2 + 16);
-    *(float *)(result + *(_DWORD *)&this->_data[160] + 24) = *(float *)(v2 + 28) + *(float *)(v2 + 16);
-    *(float *)(result + *(_DWORD *)&this->_data[160] + 36) = *(float *)(v2 + 16) - *(float *)(v2 + 28);
-    *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 4) = *(_DWORD *)(v2 + 20);
-    *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 16) = *(_DWORD *)(v2 + 20);
-    *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 28) = *(_DWORD *)(v2 + 20);
-    *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 40) = *(_DWORD *)(v2 + 20);
-    *(float *)(result + *(_DWORD *)&this->_data[160] + 8) = *(float *)(v2 + 32) + *(float *)(v2 + 24);
-    *(float *)(result + *(_DWORD *)&this->_data[160] + 20) = *(float *)(v2 + 32) + *(float *)(v2 + 24);
-    *(float *)(result + *(_DWORD *)&this->_data[160] + 32) = *(float *)(v2 + 24) - *(float *)(v2 + 32);
+    *(float *)(result + this->_d0A0) = *(float *)(v2 + 16) - *(float *)(v2 + 28);
+    *(float *)(result + this->_d0A0 + 12) = *(float *)(v2 + 28) + *(float *)(v2 + 16);
+    *(float *)(result + this->_d0A0 + 24) = *(float *)(v2 + 28) + *(float *)(v2 + 16);
+    *(float *)(result + this->_d0A0 + 36) = *(float *)(v2 + 16) - *(float *)(v2 + 28);
+    *(_DWORD *)(result + this->_d0A0 + 4) = *(_DWORD *)(v2 + 20);
+    *(_DWORD *)(result + this->_d0A0 + 16) = *(_DWORD *)(v2 + 20);
+    *(_DWORD *)(result + this->_d0A0 + 28) = *(_DWORD *)(v2 + 20);
+    *(_DWORD *)(result + this->_d0A0 + 40) = *(_DWORD *)(v2 + 20);
+    *(float *)(result + this->_d0A0 + 8) = *(float *)(v2 + 32) + *(float *)(v2 + 24);
+    *(float *)(result + this->_d0A0 + 20) = *(float *)(v2 + 32) + *(float *)(v2 + 24);
+    *(float *)(result + this->_d0A0 + 32) = *(float *)(v2 + 24) - *(float *)(v2 + 32);
     v4 = *(float *)(v2 + 24) - *(float *)(v2 + 32);
   }
   else
   {
-    *(float *)(result + *(_DWORD *)&this->_data[160]) = -*(float *)(v2 + 28);
-    *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 12) = *(_DWORD *)(v2 + 28);
-    *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 24) = *(_DWORD *)(v2 + 28);
-    *(float *)(result + *(_DWORD *)&this->_data[160] + 36) = -*(float *)(v2 + 28);
-    *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 4) = 0;
-    *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 16) = 0;
-    *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 28) = 0;
-    *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 40) = 0;
-    *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 8) = *(_DWORD *)(v2 + 32);
-    *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 20) = *(_DWORD *)(v2 + 32);
-    *(float *)(result + *(_DWORD *)&this->_data[160] + 32) = -*(float *)(v2 + 32);
+    *(float *)(result + this->_d0A0) = -*(float *)(v2 + 28);
+    *(_DWORD *)(result + this->_d0A0 + 12) = *(_DWORD *)(v2 + 28);
+    *(_DWORD *)(result + this->_d0A0 + 24) = *(_DWORD *)(v2 + 28);
+    *(float *)(result + this->_d0A0 + 36) = -*(float *)(v2 + 28);
+    *(_DWORD *)(result + this->_d0A0 + 4) = 0;
+    *(_DWORD *)(result + this->_d0A0 + 16) = 0;
+    *(_DWORD *)(result + this->_d0A0 + 28) = 0;
+    *(_DWORD *)(result + this->_d0A0 + 40) = 0;
+    *(_DWORD *)(result + this->_d0A0 + 8) = *(_DWORD *)(v2 + 32);
+    *(_DWORD *)(result + this->_d0A0 + 20) = *(_DWORD *)(v2 + 32);
+    *(float *)(result + this->_d0A0 + 32) = -*(float *)(v2 + 32);
     v4 = -*(float *)(v2 + 32);
   }
-  *(float *)(result + *(_DWORD *)&this->_data[160] + 44) = v4;
-  *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 48) = 0;
-  *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 56) = 0;
-  *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 52) = 0;
-  *(_DWORD *)(result + *(_DWORD *)&this->_data[160] + 60) = 0;
+  *(float *)(result + this->_d0A0 + 44) = v4;
+  *(_DWORD *)(result + this->_d0A0 + 48) = 0;
+  *(_DWORD *)(result + this->_d0A0 + 56) = 0;
+  *(_DWORD *)(result + this->_d0A0 + 52) = 0;
+  *(_DWORD *)(result + this->_d0A0 + 60) = 0;
   return result;
 }
 
@@ -247,8 +247,8 @@ _DWORD * CEffQuad::DestroyAllQuad(int a2)
   int v5; // ebx
   int v6; // ecx
 
-  result = (_DWORD *)this->_data;
-  v3 = *(_DWORD *)&this->_data[156] + 80 * a2;
+  result = (_DWORD *)this->_pad_000;
+  v3 = this->_d09C + 80 * a2;
   v4 = result[16] - 1;
   v5 = *(_DWORD *)v3;
   *(_BYTE *)(v3 + 4) = 0;
@@ -276,8 +276,8 @@ _DWORD * CEffQuad::ToNextFrame(int a2)
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
   char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF
 
-  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)&this->_data[4] + 8))(
-                      **(_DWORD **)&this->_data[4],
+  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)&this->_pad_000[4] + 8))(
+                      **(_DWORD **)&this->_pad_000[4],
                       a2);
   *((_DWORD *)this + 1066) = v3;
   v3->LoadTexture(1);
@@ -310,7 +310,7 @@ int CEffQuad::CreateTask(_DWORD *a2)
   int *v2; // ebp
   int v3; // edx
   int result; // eax
-  int v5; // esi
+  int d018; // esi
   _BYTE *i; // ecx
   int v7; // ebx
   unsigned int v8; // eax
@@ -334,21 +334,21 @@ int CEffQuad::CreateTask(_DWORD *a2)
   _DWORD *v26; // eax
   int v27; // [esp+10h] [ebp-Ch]
 
-  v2 = (int *)&this->_data[12];
+  v2 = (int *)&this->_pad_000[12];
   v3 = 0;
-  *(_DWORD *)&this->_data[56] = a2[20];
-  result = *(_DWORD *)&this->_data[40];
+  this->_d038 = a2[20];
+  result = this->_d028;
   if ( result > 0 )
   {
-    v5 = *(_DWORD *)&this->_data[24];
-    for ( i = (_BYTE *)(v5 + 148); *i; i += 152 )
+    d018 = this->_d018;
+    for ( i = (_BYTE *)(d018 + 148); *i; i += 152 )
     {
       if ( ++v3 >= result )
         return result;
     }
     v27 = v3;
     v7 = 152 * v3;
-    *(_DWORD *)(v5 + v7 + 12) = 2;
+    *(_DWORD *)(d018 + v7 + 12) = 2;
     *(_BYTE *)(v2[3] + v7 + 148) = 1;
     *(_BYTE *)(v2[3] + v7 + 149) = 1;
     v8 = ++dword_17A7BC0;

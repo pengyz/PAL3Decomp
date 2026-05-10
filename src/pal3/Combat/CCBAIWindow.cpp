@@ -24,14 +24,14 @@ int CCBAIWindow::SetText(int a2, int a3)
   int v5; // [esp+10h] [ebp+Ch]
   int v6; // [esp+14h] [ebp+10h]
 
-  sprintf(&this->_data[280 * *(_DWORD *)&this->_data[16] + 24], "%d", v5);
-  *((float *)this + 70 * *(_DWORD *)&this->_data[16] + 71) = ((double)a2 + (double)a2) / (double)dword_BFD6D0 - 1.0;
-  *((float *)this + 70 * *(_DWORD *)&this->_data[16] + 72) = 1.0 - ((double)a3 + (double)a3) / (double)dword_BFD6D4;
-  *(_DWORD *)&this->_data[280 * *(_DWORD *)&this->_data[16] + 20] = 2;
-  *((_DWORD *)this + 70 * *(_DWORD *)&this->_data[16] + 74) = 1094713344;
-  *((_DWORD *)this + 70 * *(_DWORD *)&this->_data[16] + 70) = v6;
-  result = *(_DWORD *)&this->_data[16] + 1;
-  *(_DWORD *)&this->_data[16] = result;
+  sprintf(&this->_pad_018[280 * this->_d010], "%d", v5);
+  *((float *)this + 70 * this->_d010 + 71) = ((double)a2 + (double)a2) / (double)dword_BFD6D0 - 1.0;
+  *((float *)this + 70 * this->_d010 + 72) = 1.0 - ((double)a3 + (double)a3) / (double)dword_BFD6D4;
+  *(&this->_d014 + 70 * this->_d010) = 2;
+  *((_DWORD *)this + 70 * this->_d010 + 74) = 1094713344;
+  *((_DWORD *)this + 70 * this->_d010 + 70) = v6;
+  result = this->_d010 + 1;
+  this->_d010 = result;
   return result;
 }
 
@@ -44,13 +44,13 @@ CCBAIWindow::CCBAIWindow(int a2)
 
   if ( a2 == 1 )
   {
-    this->_data[176] = 0;
+    this->_b0B0 = 0;
     v3 = 0;
-    v4 = (char *)&this->_data[108];
+    v4 = (char *)&this->_pad_018[84];
     do
     {
       v5 = *(void (****)(_DWORD, int))v4;
-      if ( *(_DWORD *)&this->_data[172] == v3 )
+      if ( this->_d0AC == v3 )
         (**v5)(v5, 1);
       else
         (**v5)(v5, 0);
@@ -65,17 +65,17 @@ CCBAIWindow::CCBAIWindow(int a2)
 // 0x0051CAA0
 CCBAIWindow::~CCBAIWindow()
 {
-  int v2; // ebx
+  int d010; // ebx
   CCBAIWindow *v3; // edi
-  int v5; // [esp+Ch] [ebp-Ch]
+  int d014; // [esp+Ch] [ebp-Ch]
 
   ((UIListBox *)this)->SetScroll();
-  v2 = *(_DWORD *)&this->_data[16];
-  v5 = *(_DWORD *)&this->_data[20];
-  v3 = (CCBAIWindow *)*(CCBAIWindow **)(*(_DWORD *)(*(_DWORD *)(*(_DWORD *)&this->_data[168] + 1160) + 20) + 68);
-  v3->SetText(v2 + 105, v5 + 51);
-  v3->SetText(v2 + 117, v5 + 76);
-  v3->SetText(v2 + 107, v5 + 102);
+  d010 = this->_d010;
+  d014 = this->_d014;
+  v3 = (CCBAIWindow *)*(CCBAIWindow **)(*(_DWORD *)(*(_DWORD *)(this->_d0A8 + 1160) + 20) + 68);
+  v3->SetText(d010 + 105, d014 + 51);
+  v3->SetText(d010 + 117, d014 + 76);
+  v3->SetText(d010 + 107, d014 + 102);
 }
 
 // 0x0051CB60

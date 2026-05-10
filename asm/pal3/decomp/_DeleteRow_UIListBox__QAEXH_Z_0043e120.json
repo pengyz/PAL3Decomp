@@ -3,5 +3,5 @@
   "address": "0x0043E120",
   "size_bytes": 160,
   "signature": "void __thiscall(UIListBox *this)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nvoid __thiscall UIListBox::DeleteRow(UIListBox *this)\n{\n  *(_DWORD *)this->_data = &off_56AD40;\n  UIListBox::GetItemCount((UIListBox **)this);\n  operator delete(*(void **)&this->_data[1196]);\n  *(_DWORD *)&this->_data[1196] = 0;\n  *(_DWORD *)&this->_data[1200] = 0;\n  *(_DWORD *)&this->_data[1204] = 0;\n  `eh vector destructor iterator'(&this->_data[436], 0x54u, 8, (void (__thiscall *)(void *))UIListBox::GetItemPos);\n  UIWnd::ctor_11D0((UIWnd *)&this->_data[80]);\n  UIWnd::_UIWnd((UIWnd *)this);\n}\n"
+  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nvoid __thiscall UIListBox::DeleteRow(UIListBox *this)\n{\n  this->_p000 = &off_56AD40;\n  UIListBox::GetItemCount((UIListBox **)this);\n  operator delete(*(void **)&this->_tail[1124]);\n  *(_DWORD *)&this->_tail[1124] = 0;\n  *(_DWORD *)&this->_tail[1128] = 0;\n  *(_DWORD *)&this->_tail[1132] = 0;\n  `eh vector destructor iterator'(&this->_tail[364], 0x54u, 8, (void (__thiscall *)(void *))UIListBox::GetItemPos);\n  UIWnd::ctor_11D0((UIWnd *)&this->_tail[8]);\n  UIWnd::_UIWnd((UIWnd *)this);\n}\n"
 }

@@ -56,75 +56,75 @@ int PalScript::LoadScript(int pathAddr)
   SceneObj v12[2]; // [esp+14h] [ebp-264h] BYREF
   int v13; // [esp+274h] [ebp-4h]
 
-  *(_DWORD *)&v12[0]._data[32] = this;
-  ctor_0x431870(&v12[0]._data[76]);
+  *(_DWORD *)&v12[0]._tail[16] = this;
+  ctor_0x431870(&v12[0]._tail[60]);
   v13 = 0;
-  ((PalScript *)&v12[0]._data[76])->LoadFromFile((char *)pathAddr);
-  ((PalScript *)&v12[0]._data[76])->SetDirectory(aPal3lang);
-  v12[0]._data[0] = v11;
+  ((PalScript *)&v12[0]._tail[60])->LoadFromFile((char *)pathAddr);
+  ((PalScript *)&v12[0]._tail[60])->SetDirectory(aPal3lang);
+  LOBYTE(v12[0]._p000) = v11;
   v12->string::_Tidy(0);
-  for ( LOBYTE(v13) = 1; ((PalScript *)&v12[0]._data[76])->HasNext(); *(_DWORD *)&v12[0]._data[28] = 0 )
+  for ( LOBYTE(v13) = 1; ((PalScript *)&v12[0]._tail[60])->HasNext(); *(_DWORD *)&v12[0]._tail[12] = 0 )
   {
-    if ( !_strcmpi(&v12[0]._data[76], off_58B448) )
+    if ( !_strcmpi(&v12[0]._tail[60], off_58B448) )
       break;
-    v2 = strlen(&v12[0]._data[76]) + 1;
+    v2 = strlen(&v12[0]._tail[60]) + 1;
     v3 = v2 - 1;
     if ( v12->Update(v2 - 1) )
     {
-      qmemcpy(*(void **)&v12[0]._data[4], &v12[0]._data[76], v3);
-      *(_DWORD *)&v12[0]._data[8] = v2 - 1;
-      *(_BYTE *)(*(_DWORD *)&v12[0]._data[4] + v3) = 0;
+      qmemcpy((void *)v12[0]._d004, &v12[0]._tail[60], v3);
+      v12[0]._d008 = v2 - 1;
+      *(_BYTE *)(v12[0]._d004 + v3) = 0;
     }
-    ((PalScript *)&v12[0]._data[76])->LoadNext();
-    v12[0]._data[16] = v11;
-    ((std *)&v12[0]._data[16])->string::_Tidy(0);
-    v4 = strlen(&v12[0]._data[76]) + 1;
+    ((PalScript *)&v12[0]._tail[60])->LoadNext();
+    v12[0]._tail[0] = v11;
+    ((std *)v12[0]._tail)->string::_Tidy(0);
+    v4 = strlen(&v12[0]._tail[60]) + 1;
     v5 = v4 - 1;
-    if ( ((SceneObj *)&v12[0]._data[16])->Update(v4 - 1) )
+    if ( ((SceneObj *)v12[0]._tail)->Update(v4 - 1) )
     {
-      qmemcpy(*(void **)&v12[0]._data[20], &v12[0]._data[76], v5);
-      *(_DWORD *)&v12[0]._data[24] = v4 - 1;
-      *(_BYTE *)(*(_DWORD *)&v12[0]._data[20] + v5) = 0;
+      qmemcpy(*(void **)&v12[0]._tail[4], &v12[0]._tail[60], v5);
+      *(_DWORD *)&v12[0]._tail[8] = v4 - 1;
+      *(_BYTE *)(*(_DWORD *)&v12[0]._tail[4] + v5) = 0;
     }
     LOBYTE(v13) = 2;
-    v12[0]._data[36] = v12[0]._data[0];
-    ((std *)&v12[0]._data[36])->string::_Tidy(0);
-    sub_4307D0((int)&v12[0]._data[36], v12, 0, 0xFFFFFFFF);
+    v12[0]._tail[20] = (char)v12[0]._p000;
+    ((std *)&v12[0]._tail[20])->string::_Tidy(0);
+    sub_4307D0((int)&v12[0]._tail[20], v12, 0, 0xFFFFFFFF);
     LOBYTE(v13) = 3;
-    sub_430670((int)&v12[0]._data[52], (int)&v12[0]._data[16]);
+    sub_430670((int)&v12[0]._tail[36], (int)v12[0]._tail);
     LOBYTE(v13) = 4;
-    sub_4309D0(*(int *)&v12[0]._data[32], &v12[0]._data[68], &v12[0]._data[36]);
+    sub_4309D0(*(int *)&v12[0]._tail[16], &v12[0]._tail[52], &v12[0]._tail[20]);
     LOBYTE(v13) = 5;
-    ((std *)&v12[0]._data[52])->string::_Tidy(1);
+    ((std *)&v12[0]._tail[36])->string::_Tidy(1);
     LOBYTE(v13) = 2;
-    ((std *)&v12[0]._data[36])->string::_Tidy(1);
+    ((std *)&v12[0]._tail[20])->string::_Tidy(1);
     LOBYTE(v13) = 1;
-    if ( *(_DWORD *)&v12[0]._data[20] )
+    if ( *(_DWORD *)&v12[0]._tail[4] )
     {
-      v6 = (_BYTE *)(*(_DWORD *)&v12[0]._data[20] - 1);
-      v7 = *(_BYTE *)(*(_DWORD *)&v12[0]._data[20] - 1);
+      v6 = (_BYTE *)(*(_DWORD *)&v12[0]._tail[4] - 1);
+      v7 = *(_BYTE *)(*(_DWORD *)&v12[0]._tail[4] - 1);
       if ( !v7 || v7 == -1 )
         operator delete(v6);
       else
         * v6 = (*)v7 - 1;
     }
-    *(_DWORD *)&v12[0]._data[20] = 0;
-    *(_DWORD *)&v12[0]._data[24] = 0;
+    *(_DWORD *)&v12[0]._tail[4] = 0;
+    *(_DWORD *)&v12[0]._tail[8] = 0;
   }
-  if ( *(_DWORD *)&v12[0]._data[4] )
+  if ( v12[0]._d004 )
   {
-    v8 = (_BYTE *)(*(_DWORD *)&v12[0]._data[4] - 1);
-    v9 = *(_BYTE *)(*(_DWORD *)&v12[0]._data[4] - 1);
+    v8 = (_BYTE *)(v12[0]._d004 - 1);
+    v9 = *(_BYTE *)(v12[0]._d004 - 1);
     if ( !v9 || v9 == -1 )
       operator delete(v8);
     else
       * v8 = (*)v9 - 1;
   }
-  *(_DWORD *)&v12[0]._data[4] = 0;
-  *(_DWORD *)&v12[0]._data[8] = 0;
-  *(_DWORD *)&v12[0]._data[12] = 0;
+  v12[0]._d004 = 0;
+  v12[0]._d008 = 0;
+  v12[0]._d00C = 0;
   v13 = -1;
-  sub_4318A0((int)&v12[0]._data[76]);
+  sub_4318A0((int)&v12[0]._tail[60]);
   return result;
 }
 

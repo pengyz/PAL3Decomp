@@ -84,28 +84,28 @@ CCBMagicWindow::~CCBMagicWindow()
 // 0x0051BB00
 int CCBMagicWindow::Reset(int a2, int a3)
 {
-  char *v3; // eax
+  int *p_d048; // eax
   int v4; // esi
 
-  v3 = (char *)&this->_data[72];
+  p_d048 = (int *)&this->_d048;
   v4 = 5;
   do
   {
-    if ( *(_DWORD *)v3 == a3 )
-      *(_DWORD *)v3 = *(_DWORD *)&this->_data[4 * a2 + 72];
-    v3 += 4;
+    if ( *p_d048 == a3 )
+      * p_d048 = (*)*(_DWORD *)&this->_pad_03C[4 * a2 + 12];
+    ++p_d048;
     --v4;
   }
   while ( v4 );
-  *(_DWORD *)&this->_data[4 * a2 + 72] = a3;
-  sub_51BB50(this->_data);
+  *(_DWORD *)&this->_pad_03C[4 * a2 + 12] = a3;
+  sub_51BB50((char *)this);
   return -1;
 }
 
 // 0x0051BB40
 int CCBMagicWindow::Create(int a2)
 {
-  *(_DWORD *)&this->_data[116] = a2;
+  this->_d074 = a2;
   return a2;
 }
 
@@ -113,9 +113,9 @@ int CCBMagicWindow::Create(int a2)
 _DWORD * CCBMagicWindow::ForbidPage()
 {
   ((UIListBox *)this)->UIListBox();
-  *(_DWORD *)this->_data = &off_570570;
+  this->_p000 = &off_570570;
   this->OnMessage();
-  return this->_data;
+  return &this->_p000;
 }
 
 // 0x0051BBE0
@@ -130,205 +130,189 @@ UIWnd * CCBMagicWindow::Destroy(CCBMagicWindow *Block, char a2)
 // 0x0051BC50
 int CCBMagicWindow::OnMessage()
 {
-  *(_DWORD *)&this->_data[72] = 0;
-  *(_DWORD *)&this->_data[76] = 0;
-  *(_DWORD *)&this->_data[80] = 0;
-  *(_DWORD *)&this->_data[84] = 0;
-  *(_DWORD *)&this->_data[88] = 0;
-  *(_DWORD *)&this->_data[92] = 0;
-  *(_DWORD *)&this->_data[96] = 0;
-  *(_DWORD *)&this->_data[100] = 0;
+  this->_d048 = 0;
+  this->_d04C = 0;
+  this->_d050 = 0;
+  this->_d054 = 0;
+  this->_d058 = 0;
+  this->_d05C = 0;
+  this->_d060 = 0;
+  this->_d064 = 0;
   return 0;
 }
 
 // 0x0051BC70
 char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
 {
-  UIWnd ***v4; // edi
-  UIWnd **v5; // edi
+  int *p_d048; // edi
+  int *p_d058; // edi
   _DWORD *v6; // eax
   UIWnd *v7; // eax
-  UIWnd **v8; // edi
+  int *p_d05C; // edi
   _DWORD *v9; // eax
   UIWnd *v10; // eax
-  UIWnd **v11; // edi
+  int *p_d060; // edi
   _DWORD *v12; // eax
   UIWnd *v13; // eax
-  gbRefObject ***v14; // edi
-  gbRefObject ***v15; // edi
-  gbRefObject ***v16; // edi
-  char *v17; // edi
+  int *p_d04C; // edi
+  int *p_d050; // edi
+  int *p_d054; // edi
+  int *p_d064; // edi
   _DWORD a2a[4]; // [esp+3Ch] [ebp-10h] BYREF
 
   ((UIWnd *)this)->Create(1879048198, a2, a3);
-  v4 = (UIWnd ***)&this->_data[72];
-  if ( ((CCBLineupWindow *)&this->_data[72])->Destroy() == 1 )
+  p_d048 = (int *)&this->_d048;
+  if ( ((CCBLineupWindow *)&this->_d048)->Destroy() == 1 )
   {
     *a2 = 0;
     a2[2] = 230;
     a2[1] = 0;
     a2[3] = 200;
-    ((void (*)(UIWnd **, int, _DWORD *, CCBMagicWindow *))(**v4)->m_wndcolor.ColorQuadFmt)(
-      *v4,
-      272,
-      a2,
-      this);
-    ((UIWnd *)*v4)->CreateFromTemplate(aUiCombatContro_22, 0);
-    (*(void (**)(UIWnd **, int))(**v4)->_pad_0000)(*v4, 1);
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)*p_d048 + 16))(*p_d048, 272, a2, this);
+    ((UIWnd *)*p_d048)->CreateFromTemplate(aUiCombatContro_22, 0);
+    (**(void (***)(int, int))*p_d048)(*p_d048, 1);
   }
-  v5 = (UIWnd **)&this->_data[88];
-  if ( ((CCBLineupWindow *)&this->_data[88])->Render() == 1 )
+  p_d058 = (int *)&this->_d058;
+  if ( ((CCBLineupWindow *)&this->_d058)->Render() == 1 )
   {
     *a2 = 27;
     a2[1] = 57;
     a2[2] = 211;
     a2[3] = 95;
-    (*(void (**)(UIWnd *, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)(*v5)->_pad_0000 + 16))(
-      *v5,
-      276,
-      a2,
-      this);
-    v6 = ((UIWnd *)*v5)->SetRect(a2a);
-    ((UIWnd *)*v5)->AddChild(v6);
-    ((UIWnd *)*v5)->GetChildCount(aUiCombatContro_29, 0);
-    ((UIWnd *)*v5)->GetChildAt(aUiCombatContro_30, 0);
-    ((UIWnd *)*v5)->SetFrameRate(48);
-    ((UIWnd *)*v5)->GetHeight(23);
-    ((UIWnd *)*v5)->GetWidth(11);
-    ((UIWnd *)*v5)->GetPosition(5);
-    sub_43FBC0((gbRefObject **)*v5, aUiCombatContro_31, 0);
-    v7 = (UIWnd *)*v5;
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)*p_d058 + 16))(*p_d058, 276, a2, this);
+    v6 = ((UIWnd *)*p_d058)->SetRect(a2a);
+    ((UIWnd *)*p_d058)->AddChild(v6);
+    ((UIWnd *)*p_d058)->GetChildCount(aUiCombatContro_29, 0);
+    ((UIWnd *)*p_d058)->GetChildAt(aUiCombatContro_30, 0);
+    ((UIWnd *)*p_d058)->SetFrameRate(48);
+    ((UIWnd *)*p_d058)->GetHeight(23);
+    ((UIWnd *)*p_d058)->GetWidth(11);
+    ((UIWnd *)*p_d058)->GetPosition(5);
+    sub_43FBC0((gbRefObject **)*p_d058, aUiCombatContro_31, 0);
+    v7 = (UIWnd *)*p_d058;
     v7[2].m_id = 10;
     v7[2].m_rect.left = 9;
-    ((UIWnd *)*v5)->FindChild(100.0);
-    ((UIWnd *)*v5)->FindChildByName(100.0);
-    (*v5)[1].m_id = 1077936128;
-    (**(void (***)(UIWnd *, int))(*v5)->_pad_0000)(*v5, 1);
+    ((UIWnd *)*p_d058)->FindChild(100.0);
+    ((UIWnd *)*p_d058)->FindChildByName(100.0);
+    *(_DWORD *)(*p_d058 + 112) = 1077936128;
+    (**(void (***)(int, int))*p_d058)(*p_d058, 1);
   }
-  v8 = (UIWnd **)&this->_data[92];
-  if ( ((CCBLineupWindow *)&this->_data[92])->Render() == 1 )
+  p_d05C = (int *)&this->_d05C;
+  if ( ((CCBLineupWindow *)&this->_d05C)->Render() == 1 )
   {
     *a2 = 27;
     a2[1] = 94;
     a2[2] = 211;
     a2[3] = 132;
-    (*(void (**)(UIWnd *, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)(*v8)->_pad_0000 + 16))(
-      *v8,
-      277,
-      a2,
-      this);
-    v9 = ((UIWnd *)*v8)->SetRect(a2a);
-    ((UIWnd *)*v8)->AddChild(v9);
-    ((UIWnd *)*v8)->GetChildCount(aUiCombatContro_29, 0);
-    ((UIWnd *)*v8)->GetChildAt(aUiCombatContro_30, 0);
-    ((UIWnd *)*v8)->SetFrameRate(48);
-    ((UIWnd *)*v8)->GetHeight(23);
-    ((UIWnd *)*v8)->GetWidth(11);
-    ((UIWnd *)*v8)->GetPosition(5);
-    sub_43FBC0((gbRefObject **)*v8, aUiCombatContro_31, 0);
-    v10 = (UIWnd *)*v8;
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)*p_d05C + 16))(*p_d05C, 277, a2, this);
+    v9 = ((UIWnd *)*p_d05C)->SetRect(a2a);
+    ((UIWnd *)*p_d05C)->AddChild(v9);
+    ((UIWnd *)*p_d05C)->GetChildCount(aUiCombatContro_29, 0);
+    ((UIWnd *)*p_d05C)->GetChildAt(aUiCombatContro_30, 0);
+    ((UIWnd *)*p_d05C)->SetFrameRate(48);
+    ((UIWnd *)*p_d05C)->GetHeight(23);
+    ((UIWnd *)*p_d05C)->GetWidth(11);
+    ((UIWnd *)*p_d05C)->GetPosition(5);
+    sub_43FBC0((gbRefObject **)*p_d05C, aUiCombatContro_31, 0);
+    v10 = (UIWnd *)*p_d05C;
     v10[2].m_id = 10;
     v10[2].m_rect.left = 9;
-    ((UIWnd *)*v8)->FindChild(100.0);
-    ((UIWnd *)*v8)->FindChildByName(100.0);
-    (*v8)[1].m_id = 1077936128;
-    (**(void (***)(UIWnd *, int))(*v8)->_pad_0000)(*v8, 1);
+    ((UIWnd *)*p_d05C)->FindChild(100.0);
+    ((UIWnd *)*p_d05C)->FindChildByName(100.0);
+    *(_DWORD *)(*p_d05C + 112) = 1077936128;
+    (**(void (***)(int, int))*p_d05C)(*p_d05C, 1);
   }
-  v11 = (UIWnd **)&this->_data[96];
-  if ( ((CCBLineupWindow *)&this->_data[96])->Render() == 1 )
+  p_d060 = (int *)&this->_d060;
+  if ( ((CCBLineupWindow *)&this->_d060)->Render() == 1 )
   {
     *a2 = 27;
     a2[1] = 132;
     a2[2] = 211;
     a2[3] = 170;
-    (*(void (**)(UIWnd *, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)(*v11)->_pad_0000 + 16))(
-      *v11,
-      278,
-      a2,
-      this);
-    v12 = ((UIWnd *)*v11)->SetRect(a2a);
-    ((UIWnd *)*v11)->AddChild(v12);
-    ((UIWnd *)*v11)->GetChildCount(aUiCombatContro_29, 0);
-    ((UIWnd *)*v11)->GetChildAt(aUiCombatContro_30, 0);
-    ((UIWnd *)*v11)->SetFrameRate(48);
-    ((UIWnd *)*v11)->GetHeight(23);
-    ((UIWnd *)*v11)->GetWidth(11);
-    ((UIWnd *)*v11)->GetPosition(5);
-    sub_43FBC0((gbRefObject **)*v11, aUiCombatContro_31, 0);
-    v13 = (UIWnd *)*v11;
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *))(*(_DWORD *)*p_d060 + 16))(*p_d060, 278, a2, this);
+    v12 = ((UIWnd *)*p_d060)->SetRect(a2a);
+    ((UIWnd *)*p_d060)->AddChild(v12);
+    ((UIWnd *)*p_d060)->GetChildCount(aUiCombatContro_29, 0);
+    ((UIWnd *)*p_d060)->GetChildAt(aUiCombatContro_30, 0);
+    ((UIWnd *)*p_d060)->SetFrameRate(48);
+    ((UIWnd *)*p_d060)->GetHeight(23);
+    ((UIWnd *)*p_d060)->GetWidth(11);
+    ((UIWnd *)*p_d060)->GetPosition(5);
+    sub_43FBC0((gbRefObject **)*p_d060, aUiCombatContro_31, 0);
+    v13 = (UIWnd *)*p_d060;
     v13[2].m_id = 10;
     v13[2].m_rect.left = 9;
-    ((UIWnd *)*v11)->FindChild(100.0);
-    ((UIWnd *)*v11)->FindChildByName(100.0);
-    (*v11)[1].m_id = 1077936128;
-    (**(void (***)(UIWnd *, int))(*v11)->_pad_0000)(*v11, 1);
+    ((UIWnd *)*p_d060)->FindChild(100.0);
+    ((UIWnd *)*p_d060)->FindChildByName(100.0);
+    *(_DWORD *)(*p_d060 + 112) = 1077936128;
+    (**(void (***)(int, int))*p_d060)(*p_d060, 1);
   }
-  v14 = (gbRefObject ***)&this->_data[76];
-  if ( ((CCBLineupWindow *)&this->_data[76])->OnMessage() == 1 )
+  p_d04C = (int *)&this->_d04C;
+  if ( ((CCBLineupWindow *)&this->_d04C)->OnMessage() == 1 )
   {
     *a2 = 37;
     a2[1] = 57;
     a2[2] = 69;
     a2[3] = 89;
-    ((void (*)(gbRefObject **, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(**v14)[3].RefCount)(
-      *v14,
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(*(_DWORD *)*p_d04C + 28))(
+      *p_d04C,
       273,
       a2,
       this,
       aUiCombatContro_23,
       0);
-    sub_440CE0(*v14, aUiCombatContro_26, 0);
-    (*(void (**)(gbRefObject **, int))(**v14)->_pad_0000)(*v14, 1);
+    sub_440CE0((gbRefObject **)*p_d04C, aUiCombatContro_26, 0);
+    (**(void (***)(int, int))*p_d04C)(*p_d04C, 1);
   }
-  v15 = (gbRefObject ***)&this->_data[80];
-  if ( ((CCBLineupWindow *)&this->_data[80])->OnMessage() == 1 )
+  p_d050 = (int *)&this->_d050;
+  if ( ((CCBLineupWindow *)&this->_d050)->OnMessage() == 1 )
   {
     *a2 = 37;
     a2[1] = 94;
     a2[2] = 69;
     a2[3] = 126;
-    ((void (*)(gbRefObject **, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(**v15)[3].RefCount)(
-      *v15,
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(*(_DWORD *)*p_d050 + 28))(
+      *p_d050,
       274,
       a2,
       this,
       aUiCombatContro_24,
       0);
-    sub_440CE0(*v15, aUiCombatContro_27, 0);
-    (*(void (**)(gbRefObject **, int))(**v15)->_pad_0000)(*v15, 1);
+    sub_440CE0((gbRefObject **)*p_d050, aUiCombatContro_27, 0);
+    (**(void (***)(int, int))*p_d050)(*p_d050, 1);
   }
-  v16 = (gbRefObject ***)&this->_data[84];
-  if ( ((CCBLineupWindow *)&this->_data[84])->OnMessage() == 1 )
+  p_d054 = (int *)&this->_d054;
+  if ( ((CCBLineupWindow *)&this->_d054)->OnMessage() == 1 )
   {
     *a2 = 37;
     a2[1] = 132;
     a2[2] = 69;
     a2[3] = 164;
-    ((void (*)(gbRefObject **, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(**v16)[3].RefCount)(
-      *v16,
+    (*(void (**)(int, int, _DWORD *, CCBMagicWindow *, char *, _DWORD))(*(_DWORD *)*p_d054 + 28))(
+      *p_d054,
       275,
       a2,
       this,
       aUiCombatContro_25,
       0);
-    sub_440CE0(*v16, aUiCombatContro_28, 0);
-    (*(void (**)(gbRefObject **, int))(**v16)->_pad_0000)(*v16, 1);
+    sub_440CE0((gbRefObject **)*p_d054, aUiCombatContro_28, 0);
+    (**(void (***)(int, int))*p_d054)(*p_d054, 1);
   }
-  v17 = (char *)&this->_data[100];
-  ((CCBLineupWindow *)&this->_data[100])->Update();
+  p_d064 = (int *)&this->_d064;
+  ((CCBLineupWindow *)&this->_d064)->Update();
   *a2 = 68;
   a2[2] = 160;
   a2[1] = 170;
   a2[3] = 196;
-  (*(void (**)(_DWORD, int, _DWORD *, CCBMagicWindow *, char *, int, _DWORD))(**(_DWORD **)v17 + 28))(
-    *(_DWORD *)v17,
+  (*(void (**)(int, int, _DWORD *, CCBMagicWindow *, char *, int, _DWORD))(*(_DWORD *)*p_d064 + 28))(
+    *p_d064,
     282,
     a2,
     this,
     aUiCombatContro_32,
     1,
     0);
-  (***(void (****)(_DWORD, int))v17)(*(_DWORD *)v17, 1);
+  (**(void (***)(int, int))*p_d064)(*p_d064, 1);
   return 1;
 }
 
@@ -336,63 +320,63 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
 int CCBMagicWindow::Update()
 {
   int result; // eax
-  int v3; // ecx
-  int v4; // ecx
-  int v5; // ecx
-  int v6; // ecx
-  int v7; // ecx
-  int v8; // ecx
-  int v9; // ecx
-  int v10; // ecx
+  int d048; // ecx
+  int d04C; // ecx
+  int d050; // ecx
+  int d054; // ecx
+  int d058; // ecx
+  int d05C; // ecx
+  int d060; // ecx
+  int d064; // ecx
 
   result = ((UIListBox *)this)->SetScrollPos();
-  v3 = *(_DWORD *)&this->_data[72];
-  if ( v3 )
+  d048 = this->_d048;
+  if ( d048 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
-    *(_DWORD *)&this->_data[72] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d048 + 20))(d048, 1);
+    this->_d048 = 0;
   }
-  v4 = *(_DWORD *)&this->_data[76];
-  if ( v4 )
+  d04C = this->_d04C;
+  if ( d04C )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);
-    *(_DWORD *)&this->_data[76] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d04C + 20))(d04C, 1);
+    this->_d04C = 0;
   }
-  v5 = *(_DWORD *)&this->_data[80];
-  if ( v5 )
+  d050 = this->_d050;
+  if ( d050 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
-    *(_DWORD *)&this->_data[80] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d050 + 20))(d050, 1);
+    this->_d050 = 0;
   }
-  v6 = *(_DWORD *)&this->_data[84];
-  if ( v6 )
+  d054 = this->_d054;
+  if ( d054 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v6 + 20))(v6, 1);
-    *(_DWORD *)&this->_data[84] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d054 + 20))(d054, 1);
+    this->_d054 = 0;
   }
-  v7 = *(_DWORD *)&this->_data[88];
-  if ( v7 )
+  d058 = this->_d058;
+  if ( d058 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);
-    *(_DWORD *)&this->_data[88] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d058 + 20))(d058, 1);
+    this->_d058 = 0;
   }
-  v8 = *(_DWORD *)&this->_data[92];
-  if ( v8 )
+  d05C = this->_d05C;
+  if ( d05C )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v8 + 20))(v8, 1);
-    *(_DWORD *)&this->_data[92] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d05C + 20))(d05C, 1);
+    this->_d05C = 0;
   }
-  v9 = *(_DWORD *)&this->_data[96];
-  if ( v9 )
+  d060 = this->_d060;
+  if ( d060 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v9 + 20))(v9, 1);
-    *(_DWORD *)&this->_data[96] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d060 + 20))(d060, 1);
+    this->_d060 = 0;
   }
-  v10 = *(_DWORD *)&this->_data[100];
-  if ( v10 )
+  d064 = this->_d064;
+  if ( d064 )
   {
-    result = (*(int (**)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
-    *(_DWORD *)&this->_data[100] = 0;
+    result = (*(int (**)(int, int))(*(_DWORD *)d064 + 20))(d064, 1);
+    this->_d064 = 0;
   }
   return result;
 }
@@ -400,10 +384,10 @@ int CCBMagicWindow::Update()
 // 0x0051C1B0
 BOOL CCBMagicWindow::SetActivePage(int a2, int a3)
 {
-  if ( *(_DWORD *)&this->_data[56] == 1
+  if ( this->_d038 == 1
     && (g_Input.KeyInfo[16].PressTime == 1 && (g_Input.KeyInfo[16].Data & 0xF) == 1 || g_Input.KeyInfo[17].PressTime == 1) )
   {
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_data[32] + 1160) + 8))->SetParam(272, -1);
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(this->_d020 + 1160) + 8))->SetParam(272, -1);
   }
   return ((UIWnd *)this)->HitTest(a2, a3);
 }
@@ -412,7 +396,7 @@ BOOL CCBMagicWindow::SetActivePage(int a2, int a3)
 _DWORD * CCBMagicWindow::GetActivePage()
 {
   ((UIListBox *)this)->UIListBox();
-  *(_DWORD *)this->_data = &off_57058C;
+  this->_p000 = &off_57058C;
   ((CCBSkillWindow *)this)->Reset();
-  return this->_data;
+  return &this->_p000;
 }

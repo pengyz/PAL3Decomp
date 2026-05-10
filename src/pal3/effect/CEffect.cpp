@@ -275,14 +275,14 @@ LABEL_30:
 // 0x004C7450
 void CEffect::FillQuadByPartical(_DWORD *a2)
 {
-  unsigned __int8 *p_m_bActive; // ebx
+  CEffgbParticle *p_m_bActive; // ebx
   int v3; // ecx
   int v4; // edx
-  int v5; // esi
+  int d00C; // esi
   _BYTE *i; // eax
   int v7; // ebp
   unsigned int v8; // eax
-  int v9; // ecx
+  int d020; // ecx
   int v10; // eax
   int v11; // edi
   _BYTE *v12; // esi
@@ -295,49 +295,49 @@ void CEffect::FillQuadByPartical(_DWORD *a2)
   int (**v19)(CEffect *, int); // esi
   unsigned int v20; // eax
 
-  p_m_bActive = (unsigned __int8 *)&this->m_bActive;
+  p_m_bActive = (CEffgbParticle *)&this->m_bActive;
   v3 = *(_DWORD *)&this->m_Partical[0].byMaxFrame;
   v4 = 0;
   if ( v3 > 0 )
   {
-    v5 = *((_DWORD *)p_m_bActive + 3);
-    for ( i = (_BYTE *)(v5 + 148); *i; i += 152 )
+    d00C = p_m_bActive->_d00C;
+    for ( i = (_BYTE *)(d00C + 148); *i; i += 152 )
     {
       if ( ++v4 >= v3 )
         return;
     }
     v7 = 152 * v4;
-    *(_DWORD *)(v5 + v7 + 12) = 2;
-    *(_BYTE *)(*((_DWORD *)p_m_bActive + 3) + v7 + 148) = 1;
-    *(_BYTE *)(*((_DWORD *)p_m_bActive + 3) + v7 + 149) = 1;
+    *(_DWORD *)(d00C + v7 + 12) = 2;
+    *(_BYTE *)(p_m_bActive->_d00C + v7 + 148) = 1;
+    *(_BYTE *)(p_m_bActive->_d00C + v7 + 149) = 1;
     v8 = ++dword_DE99B0;
     if ( !dword_DE99B0 || v8 >= 0x7FFFFFFF )
     {
       v8 = 1;
       dword_DE99B0 = 1;
     }
-    *(_DWORD *)(*((_DWORD *)p_m_bActive + 3) + v7 + 16) = v8;
-    *(_DWORD *)(*((_DWORD *)p_m_bActive + 3) + v7 + 4) = 0;
-    *(_DWORD *)(*((_DWORD *)p_m_bActive + 3) + v7 + 8) = 0;
-    *(_DWORD *)(*((_DWORD *)p_m_bActive + 3) + v7 + 20) = 0;
+    *(_DWORD *)(p_m_bActive->_d00C + v7 + 16) = v8;
+    *(_DWORD *)(p_m_bActive->_d00C + v7 + 4) = 0;
+    *(_DWORD *)(p_m_bActive->_d00C + v7 + 8) = 0;
+    *(_DWORD *)(p_m_bActive->_d00C + v7 + 20) = 0;
     if ( a2 )
-      qmemcpy((void *)(*((_DWORD *)p_m_bActive + 3) + v7 + 24), a2, 0x7Cu);
+      qmemcpy((void *)(p_m_bActive->_d00C + v7 + 24), a2, 0x7Cu);
     else
-      memset((void *)(*((_DWORD *)p_m_bActive + 3) + v7 + 24), 0, 0x7Cu);
-    ++*((_DWORD *)p_m_bActive + 6);
+      memset((void *)(p_m_bActive->_d00C + v7 + 24), 0, 0x7Cu);
+    ++p_m_bActive->_d018;
     if ( v4 != -1 )
     {
-      v9 = *((_DWORD *)p_m_bActive + 8);
+      d020 = p_m_bActive->_d020;
       v10 = 0;
-      if ( v9 > 0 )
+      if ( d020 > 0 )
       {
-        v11 = *(_DWORD *)(*((_DWORD *)p_m_bActive + 3) + 152 * v4);
+        v11 = *(_DWORD *)(p_m_bActive->_d00C + 152 * v4);
         v12 = (_BYTE *)(v11 + 64);
         while ( *v12 )
         {
           ++v10;
           v12 += 72;
-          if ( v10 >= v9 )
+          if ( v10 >= d020 )
             goto LABEL_22;
         }
         v13 = (int (**)(CEffect *, int))(v11 + 72 * v10);
@@ -357,14 +357,14 @@ void CEffect::FillQuadByPartical(_DWORD *a2)
         v13[5] = 0;
         v13[4] = 0;
         v13[6] = 0;
-        ++*(_DWORD *)(*((_DWORD *)p_m_bActive + 3) + v7 + 4);
+        ++*(_DWORD *)(p_m_bActive->_d00C + v7 + 4);
       }
 LABEL_22:
-      v15 = *((_DWORD *)p_m_bActive + 8);
+      v15 = p_m_bActive->_d020;
       v16 = 0;
       if ( v15 > 0 )
       {
-        v17 = *(_DWORD *)(*((_DWORD *)p_m_bActive + 3) + 152 * v4);
+        v17 = *(_DWORD *)(p_m_bActive->_d00C + 152 * v4);
         v18 = (_BYTE *)(v17 + 64);
         while ( *v18 )
         {
@@ -390,13 +390,13 @@ LABEL_22:
         v19[5] = 0;
         v19[4] = 0;
         v19[6] = 0;
-        ++*(_DWORD *)(*((_DWORD *)p_m_bActive + 3) + v7 + 4);
+        ++*(_DWORD *)(p_m_bActive->_d00C + v7 + 4);
       }
 LABEL_31:
-      ((CEffgbParticle *)p_m_bActive)->~CEffgbParticle(v4, (int)CEffExplosive::ProcCommonTask, 0, 0, a2[18], a2[19]);
-      *(_DWORD *)(*((_DWORD *)p_m_bActive + 3) + v7 + 12) = 3;
-      *(_DWORD *)(*(_DWORD *)(*((_DWORD *)p_m_bActive + 3) + v7) + 8) = 3;
-      *(_DWORD *)(*(_DWORD *)(*((_DWORD *)p_m_bActive + 3) + v7) + 16) = *((_DWORD *)p_m_bActive + 1);
+      p_m_bActive->~CEffgbParticle(v4, (int)CEffExplosive::ProcCommonTask, 0, 0, a2[18], a2[19]);
+      *(_DWORD *)(p_m_bActive->_d00C + v7 + 12) = 3;
+      *(_DWORD *)(*(_DWORD *)(p_m_bActive->_d00C + v7) + 8) = 3;
+      *(_DWORD *)(*(_DWORD *)(p_m_bActive->_d00C + v7) + 16) = p_m_bActive->_d004;
     }
   }
 }
