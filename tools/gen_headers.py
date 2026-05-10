@@ -122,12 +122,18 @@ def collect_methods():
 
         if '::' not in name or name.startswith('sub_'):
             continue
+        # Skip mangled/special names
+        if '`' in name or '?' in name.split('::')[-1]:
+            continue
 
         parts = name.split('::', 1)
         cls = parts[0]
         method = parts[1].split('(')[0] if '(' in parts[1] else parts[1]
 
         if cls in SKIP_CLASSES:
+            continue
+        # Skip invalid method names
+        if ' ' in method or '`' in method:
             continue
 
         classes[cls].append((method, sig, addr))
@@ -295,6 +301,10 @@ def generate_header(cls_name, pdb_class, methods):
                 decl = "    static %s %s(%s);" % (ret, method_name, params)
             else:
                 decl = "    %s %s(%s);" % (ret, method_name, params)
+
+            # Skip invalid method names (IDA special names with backticks, etc.)
+            if '`' in method_name or ' ' in method_name or '?' in method_name:
+                continue
 
             # Deduplicate: skip if same method name+params already declared
             method_key = "%s(%s)" % (method_name, params)

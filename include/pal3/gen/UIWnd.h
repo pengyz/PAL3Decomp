@@ -24,7 +24,6 @@ public:
     _DWORD * ctor_BB70(); // 0x0043BB70
     void ctor_BBB0(); // 0x0043BBB0
     _DWORD * ctor_BCE0(); // 0x0043BCE0
-    std::ios_base * `scalar deleting destructor'(std::ios_base *Block, char a2); // 0x0043BE10
     ~UIWnd(); // 0x0043BE30
     _DWORD * ctor_D830(); // 0x0043D830
     void ctor_D880(); // 0x0043D880

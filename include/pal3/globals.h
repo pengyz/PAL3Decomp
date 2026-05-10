@@ -67,6 +67,6 @@ extern int g_RandSeed;             // 0x005DFDEC
 extern int g_nRandCallCount;       // 0x017AD310
 
 // Misc
-extern void *g_pVFileSys;
+// g_pVFileSys declared in gbengine/gbVFileSystem.h
+// g_CurrentTime declared in gbengine/gbengine_types.h
 extern void *g_PAL3Data;           // 0x008ACBF8
-extern float g_CurrentTime;

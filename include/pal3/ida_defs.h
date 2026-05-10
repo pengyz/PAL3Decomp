@@ -9,27 +9,15 @@
 #include <math.h>
 
 #include "pal3/pal3_stl.h"
+#include "gbengine/gbengine_types.h"
+#include "gbengine/gbTexture.h"
+#include "gbengine/gbMesh.h"
+#include "gbengine/gbCamera.h"
 
 typedef unsigned char _BYTE;
 typedef unsigned short _WORD;
 typedef unsigned long _DWORD;
 typedef unsigned __int64 _QWORD;
-
-// Forward declarations for gbengine types used in generated code
-class gbGfxManager;
-class gbActorMgr;
-class gbCamera;
-class gbActor;
-class gbVFileSystem;
-class gbRenderEffect;
-class gbSceneGraph;
-class gbTexture;
-class gbGeomNode;
-class gbPrintFont;
-class gbPrintFontMgr;
-class gbMatrixStack;
-class gbRefObject;
-class gbAudioManager;
 
 // Allow C-style implicit void* conversion (IDA generated code relies on this)
 #pragma warning(disable: 4133)  // incompatible pointer types
