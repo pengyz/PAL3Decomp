@@ -320,13 +320,16 @@ def generate_header(cls_name, pdb_class, methods):
             if '`' in method_name or ' ' in method_name or '?' in method_name:
                 continue
             if '__userpurge' in sig or '__usercall' in sig:
+                lines.append("    // [IDA_USERPURGE] %s; // %s" % (method_name, addr))
                 continue
-            if '@<' in sig:  # IDA register annotations
+            if '@<' in sig:
+                lines.append("    // [IDA_REGPARAM] %s; // %s" % (method_name, addr))
                 continue
-            # Complex signatures (function pointer return types) -> simplify to int return
+            # Complex signatures (function pointer return types) -> simplify
             if sig.count('(') > 2:
+                lines.append("    // [IDA_COMPLEX_RET] original: %s" % sig[:80])
                 ret = 'int'
-                params = ''  # can't parse params reliably, declare as no-arg
+                params = ''
 
             # Deduplicate: skip if same method name+params already declared
             method_key = "%s(%s)" % (method_name, params)

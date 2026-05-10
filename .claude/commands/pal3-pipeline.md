@@ -75,6 +75,31 @@ git commit -m "milestone(pal3): M1 — 核心类结构完整
 3. **ROI 驱动选择** — 每轮迭代选收益最大的改进点，不做边角优化
 4. **不降级** — 禁止任何让代码信息量减少的操作（void* 替代具体类型、char[] 替代结构体、注释掉继承等）
 5. **可重复** — `gen_cpp.py --force-all` 任何时候跑都应该得到同样或更好的结果
+6. **问题标记不隐藏** — 当管线无法正确处理某个 IDA 输出时，必须在生成代码中留下规范标签标明问题，便于后续按类型查找和批量修复
+
+## 问题标签规范
+
+管线生成代码时遇到无法正确处理的情况，必须在输出中留下标准化注释标签：
+
+| 标签 | 含义 | 后续修复方向 |
+|------|------|-------------|
+| `[IDA_USERPURGE]` | IDA 无法确定调用约定 | IDA 中修正函数边界/签名 |
+| `[IDA_REGPARAM]` | IDA 使用了寄存器参数标注 @<reg> | IDA 中修正为标准调用约定 |
+| `[IDA_COMPLEX_RET]` | 函数指针返回类型，gen 无法解析 | IDA 中简化函数签名 |
+| `[IDA_WRONG_THIS]` | this 类型不是正确的 ClassName* | IDA 中 SetType 修正签名 |
+| `[IDA_MISTYPE]` | 类型误判 (stdiobuf→UIWnd 等) | IDA 中修正类型/删除错误传播 |
+| `[GEN_NESTED_TYPE]` | 嵌套/模板成员类型无法直接声明 | 扩展类型导出或手动定义 |
+| `[GEN_CTOR_RET]` | 构造函数有返回类型 (IDA 输出) | IDA 中修正构造函数识别 |
+
+使用方式：
+```bash
+# 查找所有某类问题
+grep -r "\[IDA_USERPURGE\]" include/pal3/gen/
+grep -r "\[IDA_COMPLEX_RET\]" include/pal3/gen/
+
+# 统计各类问题数量
+grep -roh "\[.*\]" include/pal3/gen/ src/pal3/ | sort | uniq -c | sort -rn
+```
 
 ## 进度控制
 
