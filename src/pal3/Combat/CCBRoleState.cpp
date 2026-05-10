@@ -2237,7 +2237,7 @@ LABEL_13:
     ++v4;
   }
   m_pResultThunderLvup = (UIStatic *)this->m_pUI->m_pResultThunderLvup;
-  if ( *(_DWORD *)&m_pResultThunderLvup->_base[56] == 1 )
+  if ( m_pResultThunderLvup->_base.m_bvisible == 1 )
     sub_4F95F0(this, a2a, *(_DWORD *)&m_pResultThunderLvup->_pad_004[24]);
   return 1;
 }
@@ -4581,7 +4581,7 @@ int CCBRoleState::UpdateEffects()
           }
         }
       }
-      result = (int)this->m_pUI->_base;
+      result = (int)this->m_pUI;
       if ( *(_DWORD *)(*(_DWORD *)(result + 4 * v4 + 120) + 56) == 1 )
       {
         m_TempStorageNGH->SetText(dword_17AA808[v4] + 22, dword_17AA818[v4] + 5);

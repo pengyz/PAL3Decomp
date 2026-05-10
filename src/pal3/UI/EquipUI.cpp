@@ -108,7 +108,7 @@ int EquipUI::Create()
   *((_DWORD *)this + 44020) = 0;
   *((_DWORD *)this + 44021) = 0;
   ((UIFrameWnd *)((char *)this + 176092))->UIFrameWnd();
-  *(_DWORD *)this->_base = &off_56F040;
+  *(_DWORD *)this->_base._base._pad_000 = &off_56F040;
   BYTE1(this->k) = 0;
   LOBYTE(this->k) = 0;
   BYTE2(this->j) = 0;
@@ -118,7 +118,7 @@ int EquipUI::Create()
   *((_DWORD *)this + 38623) = 0;
   *((_DWORD *)this + 38624) = 0;
   *((_DWORD *)this + 44061) = 0;
-  return (int)this->_base;
+  return (int)this;
 }
 
 // 0x004A4220
@@ -257,16 +257,16 @@ void EquipUI::Init()
   v34 = 0;
   v36 = 0;
   v37 = 32;
-  UIWnd_GetChild((UIWnd *)this, 0);
-  UIWnd_GetChild((UIWnd *)this, 1);
-  UIWnd_GetChild((UIWnd *)this, 2);
-  UIWnd_GetChild((UIWnd *)this, 3);
-  UIWnd_GetChild((UIWnd *)this, 4);
-  UIWnd_FindChild((UIWnd *)this, 0);
-  UIWnd_FindChild((UIWnd *)this, 1);
-  UIWnd_FindChild((UIWnd *)this, 2);
-  UIWnd_FindChild((UIWnd *)this, 3);
-  UIWnd_FindChild((UIWnd *)this, 4);
+  UIWnd_GetChild(&this->_base._base, 0);
+  UIWnd_GetChild(&this->_base._base, 1);
+  UIWnd_GetChild(&this->_base._base, 2);
+  UIWnd_GetChild(&this->_base._base, 3);
+  UIWnd_GetChild(&this->_base._base, 4);
+  UIWnd_FindChild(&this->_base._base, 0);
+  UIWnd_FindChild(&this->_base._base, 1);
+  UIWnd_FindChild(&this->_base._base, 2);
+  UIWnd_FindChild(&this->_base._base, 3);
+  UIWnd_FindChild(&this->_base._base, 4);
   *((_BYTE *)this + 176089) = 0;
   *((_BYTE *)this + 176088) = byte_5CEFA9;
   v11 = (UIWnd *)operator new(0x29CECu);

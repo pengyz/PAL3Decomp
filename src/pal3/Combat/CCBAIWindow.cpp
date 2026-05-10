@@ -24,14 +24,16 @@ int CCBAIWindow::SetText(int a2, int a3)
   int v5; // [esp+10h] [ebp+Ch]
   int v6; // [esp+14h] [ebp+10h]
 
-  sprintf(&this->_base[280 * *(_DWORD *)&this->_base[16] + 24], "%d", v5);
-  *((float *)this + 70 * *(_DWORD *)&this->_base[16] + 71) = ((double)a2 + (double)a2) / (double)dword_BFD6D0 - 1.0;
-  *((float *)this + 70 * *(_DWORD *)&this->_base[16] + 72) = 1.0 - ((double)a3 + (double)a3) / (double)dword_BFD6D4;
-  *(_DWORD *)&this->_base[280 * *(_DWORD *)&this->_base[16] + 20] = 2;
-  *((_DWORD *)this + 70 * *(_DWORD *)&this->_base[16] + 74) = 1094713344;
-  *((_DWORD *)this + 70 * *(_DWORD *)&this->_base[16] + 70) = v6;
-  result = *(_DWORD *)&this->_base[16] + 1;
-  *(_DWORD *)&this->_base[16] = result;
+  sprintf(&this->_base._base.m_rect[280 * *(_DWORD *)this->_base._base.m_rect + 8], "%d", v5);
+  *((float *)this + 70 * *(_DWORD *)this->_base._base.m_rect + 71) = ((double)a2 + (double)a2) / (double)dword_BFD6D0
+                                                                   - 1.0;
+  *((float *)this + 70 * *(_DWORD *)this->_base._base.m_rect + 72) = 1.0
+                                                                   - ((double)a3 + (double)a3) / (double)dword_BFD6D4;
+  *(_DWORD *)&this->_base._base.m_rect[280 * *(_DWORD *)this->_base._base.m_rect + 4] = 2;
+  *((_DWORD *)this + 70 * *(_DWORD *)this->_base._base.m_rect + 74) = 1094713344;
+  *((_DWORD *)this + 70 * *(_DWORD *)this->_base._base.m_rect + 70) = v6;
+  result = *(_DWORD *)this->_base._base.m_rect + 1;
+  *(_DWORD *)this->_base._base.m_rect = result;
   return result;
 }
 
@@ -51,15 +53,15 @@ CCBAIWindow::CCBAIWindow(int a2)
     {
       v5 = (UIPushButton *)*p_m_pMagic;
       if ( *((_DWORD *)this + 43) == v3 )
-        (**(void (***)(UIPushButton *, int))v5->_base)(v5, 1);
+        (**(void (***)(UIPushButton *, int))v5->_base._pad_000)(v5, 1);
       else
-        (**(void (***)(UIPushButton *, _DWORD))v5->_base)(v5, 0);
+        (**(void (***)(UIPushButton *, _DWORD))v5->_base._pad_000)(v5, 0);
       ++v3;
       ++p_m_pMagic;
     }
     while ( v3 < 5 );
   }
-  (CCBAIWindow *)((UIWnd *)this)->Destroy(a2);
+  (CCBAIWindow *)((UIWnd *)&this->_base._base)->Destroy(a2);
 }
 
 // 0x0051CAA0
@@ -70,8 +72,8 @@ CCBAIWindow::~CCBAIWindow()
   int v5; // [esp+Ch] [ebp-Ch]
 
   ((UIListBox *)this)->SetScroll();
-  v2 = *(_DWORD *)&this->_base[16];
-  v5 = *(_DWORD *)&this->_base[20];
+  v2 = *(_DWORD *)this->_base._base.m_rect;
+  v5 = *(_DWORD *)&this->_base._base.m_rect[4];
   v3 = (CCBAIWindow *)*(CCBAIWindow **)(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 42) + 1160) + 20) + 68);
   v3->SetText(v2 + 105, v5 + 51);
   v3->SetText(v2 + 117, v5 + 76);

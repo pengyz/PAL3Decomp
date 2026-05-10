@@ -337,7 +337,7 @@ void * CGameData::Init()
   {
     v11->Create(1002, 180, 50, (int)this, aUiDlgHeadbkTga);
     v11->Show();
-    (**(void (***)(UIDialog *, _DWORD))v11->_base)(v11, 0);
+    (**(void (***)(UIDialog *, _DWORD))v11->_base._pad_000)(v11, 0);
     v10 += 8704;
     v11 = (UIDialog *)((char *)v11 + 352);
   }

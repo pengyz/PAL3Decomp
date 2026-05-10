@@ -71,7 +71,7 @@ CCBParabolaWindow::~CCBParabolaWindow()
 {
   int result; // eax
   int v3; // ecx
-  _DWORD *v4; // esi
+  CCBParabolaWindow *v4; // esi
   int v5; // edi
 
   result = ((UIListBox *)this)->SetScrollPos();
@@ -81,16 +81,18 @@ CCBParabolaWindow::~CCBParabolaWindow()
     result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
     *((_DWORD *)this + 23) = 0;
   }
-  v4 = (_DWORD *)((char *)this + 96);
+  v4 = (CCBParabolaWindow *)((char *)this + 96);
   v5 = 5;
   do
   {
-    if ( *v4 )
+    if ( *(_DWORD *)v4->_base._base._pad_000 )
     {
-      result = (*(int (**)(_DWORD, int))(*(_DWORD *)*v4 + 20))(*v4, 1);
-      *v4 = 0;
+      result = (*(int (**)(_DWORD, int))(**(_DWORD **)v4->_base._base._pad_000 + 20))(
+                 *(_DWORD *)v4->_base._base._pad_000,
+                 1);
+      *(_DWORD *)v4->_base._base._pad_000 = 0;
     }
-    ++v4;
+    v4 = (CCBParabolaWindow *)((char *)v4 + 4);
     --v5;
   }
   while ( v5 );
@@ -106,7 +108,7 @@ int CCBParabolaWindow::Reset(int a2, int a3, int a4)
   {
     Instance = (char *)CScreenMode::GetInstance();
     ((CScreenMode *)Instance)->AudioSetPosition(aWa001, 1);
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_base[32] + 1160) + 8))->SetParam(a3, a4);
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)this->_base._base.m_pfather[17].m_fontcolor + 8))->SetParam(a3, a4);
   }
   return a2->SendMessage(a3, a4);
 }
@@ -127,7 +129,7 @@ bool CCBParabolaWindow::OnMessage(int a2, int a3, int a4)
   int *v4; // eax
   _DWORD v6[4]; // [esp+8h] [ebp-10h] BYREF
 
-  v4 = ((UIWnd *)*(this + a2 + 24))->SetRect(v6);
+  v4 = ((UIWnd *)&(*(this + a2 + 24))->_base._base)->SetRect(v6);
   return a3 >= *v4 && a3 < v4[2] && a4 >= v4[1] && a4 < v4[3];
 }
 
@@ -138,7 +140,7 @@ int CCBParabolaWindow::Update(int a2, int a3)
   CCBParabolaWindow **i; // edi
 
   v4 = 0;
-  for ( i = this + 24; *(_DWORD *)&(*i)->_base[56] != 1 || !this->OnMessage(v4, a2, a3); ++i )
+  for ( i = this + 24; (*i)->_base._base.m_bvisible != 1 || !this->OnMessage(v4, a2, a3); ++i )
   {
     if ( ++v4 >= 5 )
       return -1;

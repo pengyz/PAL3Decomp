@@ -3,5 +3,5 @@
   "address": "0x00519660",
   "size_bytes": 91,
   "signature": "BOOL __thiscall(CCBUI *this, int a2, int a3)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nBOOL __thiscall CCBUI::IsImbibeNimbusNotFinish(CCBUI *this, int a2, int a3)\n{\n  if ( *(_DWORD *)&this->_base[56] == 1\n    && (g_Input.KeyInfo[16].PressTime == 1 && (g_Input.KeyInfo[16].Data & 0xF) == 1 || g_Input.KeyInfo[17].PressTime == 1) )\n  {\n    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_base[32] + 1160) + 8), 128, -1);\n  }\n  return UIWnd::HitTest((UIWnd *)this, a2, a3);\n}\n"
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nBOOL __thiscall CCBUI::IsImbibeNimbusNotFinish(CCBUI *this, int a2, int a3)\n{\n  if ( this->_base._base.m_bvisible == 1\n    && (g_Input.KeyInfo[16].PressTime == 1 && (g_Input.KeyInfo[16].Data & 0xF) == 1 || g_Input.KeyInfo[17].PressTime == 1) )\n  {\n    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)this->_base._base.m_pfather[17].m_fontcolor + 8), 128, -1);\n  }\n  return UIWnd::HitTest(&this->_base._base, a2, a3);\n}\n"
 }

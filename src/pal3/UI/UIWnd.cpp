@@ -1324,7 +1324,7 @@ int UIWnd::ctor_AB90()
 void UIWnd::ctor_ACE0()
 {
   *(_DWORD *)this->_pad_000 = &off_56AFD4;
-  j_PalScript_Cleanup((int)this + 7420);
+  j_PalScript_Cleanup((PalScript *)((char *)this + 7420));
   ((UIItem *)(UIItem *)this + 6044)->UIItem();
   ((UIItem *)(UIItem *)this + 4676)->UIItem();
   ((UIItem *)(UIItem *)this + 3308)->UIItem();

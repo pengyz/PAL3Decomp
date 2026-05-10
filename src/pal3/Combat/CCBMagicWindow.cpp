@@ -46,7 +46,7 @@ CCBMagicWindow::CCBMagicWindow(int a2, int a3, _DWORD *a4)
   v8 = dword_570268[a2] + 232;
   v9 = v4 + 49;
   v10 = dword_570268[a2] + 270;
-  v5 = ((UIWnd *)*(this + a3 + 24))->SetRect(v12);
+  v5 = ((UIWnd *)&(*(this + a3 + 24))->_base._base)->SetRect(v12);
   if ( ((CCBLineupWindow *)*v5)->SetFaceLineup(v5[1], v5[2], v5[3], v7, v8, v9, v10, v11) )
   {
     *a4 = (v11[3] - v11[1]) * (v11[2] - v11[0]);
@@ -92,13 +92,13 @@ int CCBMagicWindow::Reset(int a2, int a3)
   do
   {
     if ( *p_m_pBack == (UIStatic *)a3 )
-      * p_m_pBack = (*)*(UIStatic **)&this->_base[4 * a2 + 72];
+      *p_m_pBack = (UIStatic *)*((_DWORD *)&this->m_pBack + a2);
     ++p_m_pBack;
     --v4;
   }
   while ( v4 );
-  *(_DWORD *)&this->_base[4 * a2 + 72] = a3;
-  sub_51BB50(this->_base);
+  *((_DWORD *)&this->m_pBack + a2) = a3;
+  sub_51BB50(this->_base._base._pad_000);
   return -1;
 }
 
@@ -113,15 +113,15 @@ int CCBMagicWindow::Create(int a2)
 _DWORD * CCBMagicWindow::ForbidPage()
 {
   ((UIListBox *)this)->UIListBox();
-  *(_DWORD *)this->_base = &off_570570;
+  *(_DWORD *)this->_base._base._pad_000 = &off_570570;
   this->OnMessage();
-  return this->_base;
+  return this->_base._base._pad_000;
 }
 
 // 0x0051BBE0
 UIWnd * CCBMagicWindow::Destroy(CCBMagicWindow *Block, char a2)
 {
-  ((UIWnd *)Block)->~UIWnd();
+  ((UIWnd *)&Block->_base._base)->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   return (UIWnd *)Block;
@@ -160,7 +160,7 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
   UIPushButton **p_m_pButtonWater; // edi
   _DWORD a2a[4]; // [esp+3Ch] [ebp-10h] BYREF
 
-  ((UIWnd *)this)->Create(1879048198, a2, a3);
+  ((UIWnd *)&this->_base._base)->Create(1879048198, a2, a3);
   p_m_pBack = (UIWnd ***)&this->m_pBack;
   if ( ((CCBLineupWindow *)&this->m_pBack)->Destroy() == 1 )
   {
@@ -316,7 +316,7 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
   a2[2] = 160;
   a2[1] = 170;
   a2[3] = 196;
-  (*(void (**)(UIPushButton *, int, _DWORD *, CCBMagicWindow *, char *, int, _DWORD))(*(_DWORD *)(*p_m_pButtonWater)->_base
+  (*(void (**)(UIPushButton *, int, _DWORD *, CCBMagicWindow *, char *, int, _DWORD))(*(_DWORD *)(*p_m_pButtonWater)->_base._pad_000
                                                                                                + 28))(
     *p_m_pButtonWater,
     282,
@@ -325,7 +325,7 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
     aUiCombatContro_32,
     1,
     0);
-  (**(void (***)(UIPushButton *, int))(*p_m_pButtonWater)->_base)(*p_m_pButtonWater, 1);
+  (**(void (***)(UIPushButton *, int))(*p_m_pButtonWater)->_base._pad_000)(*p_m_pButtonWater, 1);
   return 1;
 }
 
@@ -346,7 +346,7 @@ int CCBMagicWindow::Update()
   m_pBack = (UIStatic *)this->m_pBack;
   if ( m_pBack )
   {
-    result = (*(int (**)(UIStatic *, int))(*(_DWORD *)m_pBack->_base + 20))(m_pBack, 1);
+    result = (*(int (**)(UIStatic *, int))(*(_DWORD *)m_pBack->_base._pad_000 + 20))(m_pBack, 1);
     this->m_pBack = 0;
   }
   v4 = (void *)this->m_pMagicList[0];
@@ -388,7 +388,9 @@ int CCBMagicWindow::Update()
   m_pButtonWater = (UIPushButton *)this->m_pButtonWater;
   if ( m_pButtonWater )
   {
-    result = (*(int (**)(UIPushButton *, int))(*(_DWORD *)m_pButtonWater->_base + 20))(m_pButtonWater, 1);
+    result = (*(int (**)(UIPushButton *, int))(*(_DWORD *)m_pButtonWater->_base._pad_000 + 20))(
+               m_pButtonWater,
+               1);
     this->m_pButtonWater = 0;
   }
   return result;
@@ -397,19 +399,19 @@ int CCBMagicWindow::Update()
 // 0x0051C1B0
 BOOL CCBMagicWindow::SetActivePage(int a2, int a3)
 {
-  if ( *(_DWORD *)&this->_base[56] == 1
+  if ( this->_base._base.m_bvisible == 1
     && (g_Input.KeyInfo[16].PressTime == 1 && (g_Input.KeyInfo[16].Data & 0xF) == 1 || g_Input.KeyInfo[17].PressTime == 1) )
   {
-    ((CCBUI *)*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_base[32] + 1160) + 8))->SetParam(272, -1);
+    ((CCBUI *)*(CCBUI **)(*(_DWORD *)this->_base._base.m_pfather[17].m_fontcolor + 8))->SetParam(272, -1);
   }
-  return ((UIWnd *)this)->HitTest(a2, a3);
+  return ((UIWnd *)&this->_base._base)->HitTest(a2, a3);
 }
 
 // 0x0051C210
 _DWORD * CCBMagicWindow::GetActivePage()
 {
   ((UIListBox *)this)->UIListBox();
-  *(_DWORD *)this->_base = &off_57058C;
+  *(_DWORD *)this->_base._base._pad_000 = &off_57058C;
   ((CCBSkillWindow *)this)->Reset();
-  return this->_base;
+  return this->_base._base._pad_000;
 }

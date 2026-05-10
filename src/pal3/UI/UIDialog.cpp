@@ -24,7 +24,7 @@ void UIDialog::Create(int id, int x, int y, int parent, char *tex)
   pRect[3] = y;
   pRect[1] = 0;
   pRect[0] = 0;
-  ((UIWnd *)this)->Create(id, pRect, parent);
+  ((UIWnd *)&this->_base)->Create(id, pRect, parent);
   v7 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)dword_BFDA60->_pad_0000 + 8))(
                       dword_BFDA60,
                       tex);
@@ -51,9 +51,9 @@ int UIDialog::Init()
   pRect[1] = 10;
   pRect[3] = 87;
   pRect[2] = pRect[0] + 274;
-  ((UIWnd *)this)->Create(0, pRect, parent);
+  ((UIWnd *)&this->_base)->Create(0, pRect, parent);
   ((UINote *)(this + 1))->Create(1, (int)pRect, (int)this, aUiFlexNote_0);
   ((UIWnd *)(this + 1))->GetRect(pRect);
   sub_445910((_DWORD *)this + 18, 2);
-  return (**(int (***)(UIDialog *, _DWORD))this->_base)(this, 0);
+  return (**(int (***)(UIDialog *, _DWORD))this->_base._pad_000)(this, 0);
 }

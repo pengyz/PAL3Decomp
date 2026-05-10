@@ -33,16 +33,16 @@ extern int unk_D91780;
 // 0x0043DCD0
 UIListBox::UIListBox()
 {
-  ((UIWnd *)this)->UIWnd();
-  *(_DWORD *)this->_base = &off_56AD20;
+  ((UIWnd *)&this->_base)->UIWnd();
+  *(_DWORD *)this->_base._pad_000 = &off_56AD20;
   *(_DWORD *)this->m_selcolor = 0;
-  this->_base;
+  this->_base._pad_000;
 }
 
 // 0x0043DCF0
 UIListBox::~UIListBox()
 {
-  ((UIWnd *)Block)->~UIWnd();
+  ((UIWnd *)&Block->_base)->~UIWnd();
   if ( (a2 & 1) != 0 )
     operator delete(Block);
   (UIWnd *)Block;
@@ -66,7 +66,7 @@ int UIListBox::SetSelTexture(int id, int pRect, int a4, int a5, int a6, int a7)
       v9->LoadTexture(1);
     ((OpenNULLFile *)&a7)->OpenNULLFile();
   }
-  return ((UIWnd *)this)->Create(id, &pRect, 0);
+  return ((UIWnd *)&this->_base)->Create(id, &pRect, 0);
 }
 
 // 0x0043DDF0
@@ -75,16 +75,16 @@ int UIListBox::SetScroll()
   int result; // eax
   struct gbTextureArray v3; // [esp+4h] [ebp-44h] BYREF
 
-  result = *(_DWORD *)&this->_base[56];
+  result = this->_base.m_bvisible;
   if ( result )
   {
     if ( *(_DWORD *)this->m_selcolor )
     {
       v3.pTexPt[0] = *(gbTexture **)this->m_selcolor;
       v3.nTex = 1;
-      ((_TextureLib_Data *)&this->_base[16])->SetLibFolder((unsigned int *)&this->_base[8], &v3, 0x114u, 0, COERCE_FLOAT(1));
+      ((_TextureLib_Data *)this->_base.m_rect)->SetLibFolder((unsigned int *)this->_base.m_wndcolor, &v3, 0x114u, 0, COERCE_FLOAT(1));
     }
-    return ((UIWnd *)this)->GetID();
+    return ((UIWnd *)&this->_base)->GetID();
   }
   return result;
 }
@@ -154,7 +154,7 @@ int UIListBox::Render()
 // 0x0043DF10
 void UIListBox::CalHeightCount()
 {
-  ((PtrArray *)&this->_base[64])->Clear();
+  ((PtrArray *)&this->_base.m_bfocus)->Clear();
 }
 
 // 0x0043DF20
@@ -170,7 +170,7 @@ char * UIListBox::UpdateKeyCtrl()
 {
   char v3; // [esp+Bh] [ebp-11h]
 
-  ((UIWnd *)this)->UIWnd();
+  ((UIWnd *)&this->_base)->UIWnd();
   if ( gbColorQuad::ColorQuadFmt )
   {
     this->m_selcolor[2] = -6;
@@ -215,9 +215,9 @@ char * UIListBox::UpdateKeyCtrl()
   this->m_showGrayBk = 0;
   *(_DWORD *)&this->m_column[696] = 0;
   *(_DWORD *)&this->m_column[704] = 0;
-  *(_DWORD *)this->_base = &off_56AD40;
+  *(_DWORD *)this->_base._pad_000 = &off_56AD40;
   *(_DWORD *)&this->m_column[668] = -1;
-  return this->_base;
+  return this->_base._pad_000;
 }
 
 // 0x0043E100
@@ -233,7 +233,7 @@ UIWnd * UIListBox::DeleteAllItems(char a2)
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
 void UIListBox::DeleteRow()
 {
-  *(_DWORD *)this->_base = &off_56AD40;
+  *(_DWORD *)this->_base._pad_000 = &off_56AD40;
   ((UIListBox *)this)->GetItemCount();
   operator delete((void *)this->m_firstshow);
   this->m_firstshow = 0;
@@ -241,7 +241,7 @@ void UIListBox::DeleteRow()
   this->m_locksel = 0;
   `eh vector destructor iterator'(&this->m_scrollbar[359], 0x54u, 8, (void (*)(void *))UIListBox::GetItemPos);
   ((UIWnd *)&this->m_scrollbar[3])->ctor_11D0();
-  ((UIWnd *)this)->_UIWnd();
+  ((UIWnd *)&this->_base)->_UIWnd();
 }
 
 // 0x0043E1C0
@@ -291,7 +291,7 @@ int UIListBox::CalScrollBarRange(
     v19 = -1;
     ((OpenNULLFile *)&lpString)->OpenNULLFile();
   }
-  ((UIWnd *)this)->Create(id, a3, parent);
+  ((UIWnd *)&this->_base)->Create(id, a3, parent);
   v12 = *(_DWORD *)&this->m_column[720];
   this->m_hasKeyCtrl = 1;
   v13 = a3[2] - *a3;
@@ -382,8 +382,8 @@ int UIListBox::SetItemHeight(int a2, int a3, int a4)
 {
   int v6; // edi
   int Child; // eax
-  int v8; // ecx
-  int v9; // ecx
+  UIWnd *m_pfather; // ecx
+  UIWnd *v9; // ecx
 
   if ( a2 != 1005 )
     return a2->SendMessage(a3, a4);
@@ -391,19 +391,19 @@ int UIListBox::SetItemHeight(int a2, int a3, int a4)
   {
     v6 = *(_DWORD *)&this->m_column[664];
     *(_DWORD *)&this->m_column[664] = a4;
-    Child = ((UIWnd *)this)->CreateChild();
+    Child = ((UIWnd *)&this->_base)->CreateChild();
     if ( Child == -1 )
     {
       *(_DWORD *)&this->m_column[664] = v6;
     }
     else if ( *(_DWORD *)(this->m_firstshow + 4 * Child) )
     {
-      v8 = *(_DWORD *)&this->_base[32];
-      if ( v8 )
-        (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v8 + 24))(
-          v8,
+      m_pfather = (UIWnd *)this->_base.m_pfather;
+      if ( m_pfather )
+        (*(void (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather->_pad_000 + 24))(
+          m_pfather,
           1006,
-          *(_DWORD *)&this->_base[12],
+          this->_base.m_id,
           Child);
     }
   }
@@ -411,9 +411,9 @@ int UIListBox::SetItemHeight(int a2, int a3, int a4)
   {
     *(_DWORD *)&this->m_column[664] = a4;
   }
-  v9 = *(_DWORD *)&this->_base[32];
+  v9 = (UIWnd *)this->_base.m_pfather;
   if ( v9 )
-    (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1005, 0, 0);
+    (*(void (**)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)v9->_pad_000 + 24))(v9, 1005, 0, 0);
   return 1;
 }
 
@@ -461,7 +461,7 @@ int UIListBox::SetItemOffset(char *Source, int a3)
   _DWORD *m_onsel; // ecx
   int m_firstshow; // eax
   int Child; // eax
-  int v15; // ecx
+  UIWnd *m_pfather; // ecx
   int v17; // [esp+10h] [ebp-814h] BYREF
   OpenBaseFile v18; // [esp+14h] [ebp-810h] BYREF
   char pExceptionObject[1024]; // [esp+18h] [ebp-80Ch] BYREF
@@ -493,7 +493,7 @@ int UIListBox::SetItemOffset(char *Source, int a3)
   else
   {
     strncpy(SubItemInfo + 4, Source, 0x40u);
-    *((_DWORD *)SubItemInfo + 17) = *(_DWORD *)&this->_base[4];
+    *((_DWORD *)SubItemInfo + 17) = *(_DWORD *)this->_base.m_fontcolor;
   }
   v7 = *(_DWORD *)&this->m_column[52];
   ((PtrArray *)&this->m_column[48])->SetAt(v7, (int)SubItemInfo);
@@ -532,13 +532,13 @@ int UIListBox::SetItemOffset(char *Source, int a3)
         sub_43F6D0(this, 0);
         if ( *(_DWORD *)&this->m_column[668] != -1 )
         {
-          Child = ((UIWnd *)this)->CreateChild();
-          v15 = *(_DWORD *)&this->_base[32];
-          if ( v15 )
-            (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v15 + 24))(
-              v15,
+          Child = ((UIWnd *)&this->_base)->CreateChild();
+          m_pfather = (UIWnd *)this->_base.m_pfather;
+          if ( m_pfather )
+            (*(void (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather->_pad_000 + 24))(
+              m_pfather,
               1006,
-              *(_DWORD *)&this->_base[12],
+              this->_base.m_id,
               Child);
         }
       }
@@ -606,7 +606,7 @@ int UIListBox::EnableRow()
   int v33; // [esp+1Ch] [ebp-48h]
   struct gbTextureArray v34; // [esp+20h] [ebp-44h] BYREF
 
-  result = *(_DWORD *)&this->_base[56];
+  result = this->_base.m_bvisible;
   if ( result )
   {
     if ( *(_DWORD *)&this->m_column[692] )
@@ -614,13 +614,13 @@ int UIListBox::EnableRow()
       v34.pTexPt[0] = *(gbTexture **)&this->m_column[692];
       v3 = (unsigned int *)*(unsigned int **)&this->m_column[696];
       v34.nTex = 1;
-      ((_TextureLib_Data *)&this->_base[16])->SetLibFolder((unsigned int *)&this->_base[8], &v34, 0x114u, v3, COERCE_FLOAT(1));
+      ((_TextureLib_Data *)this->_base.m_rect)->SetLibFolder((unsigned int *)this->_base.m_wndcolor, &v34, 0x114u, v3, COERCE_FLOAT(1));
     }
     else if ( this->m_showGrayBk )
     {
-      ((_TextureLib_Data *)*(_DWORD *)&this->_base[16])->~_TextureLib_Data(*(_DWORD *)&this->_base[20], *(_DWORD *)&this->_base[24], *(_DWORD *)&this->_base[28], (float *)&unk_D91780);
+      ((_TextureLib_Data *)*(_DWORD *)this->_base.m_rect)->~_TextureLib_Data(*(_DWORD *)&this->_base.m_rect[4], *(_DWORD *)&this->_base.m_rect[8], *(_DWORD *)&this->_base.m_rect[12], (float *)&unk_D91780);
     }
-    v4 = *(_DWORD *)&this->m_column[728] + *(_DWORD *)&this->_base[16] + 8;
+    v4 = *(_DWORD *)&this->m_column[728] + *(_DWORD *)this->_base.m_rect + 8;
     v30 = this->SetDefaultSel();
     v31 = 0;
     if ( *(int *)&this->m_scrollbar[355] > 0 )
@@ -630,7 +630,7 @@ int UIListBox::EnableRow()
       do
       {
         v6 = *(_DWORD *)&this->m_column[664];
-        v7 = *(_DWORD *)&this->_base[20] + *(_DWORD *)&this->m_column[732] + 8;
+        v7 = *(_DWORD *)&this->_base.m_rect[4] + *(_DWORD *)&this->m_column[732] + 8;
         if ( v6 < v6 + v30 )
         {
           do
@@ -646,7 +646,7 @@ int UIListBox::EnableRow()
               v32[0] = v4;
               v32[1] = v7;
               v34.nTex = 1;
-              v32->SetLibFolder((unsigned int *)&this->_base[8], &v34, 0x114u, 0, COERCE_FLOAT(1));
+              v32->SetLibFolder((unsigned int *)this->_base.m_wndcolor, &v34, 0x114u, 0, COERCE_FLOAT(1));
             }
             else if ( *(_DWORD *)(this->m_firstshow + 4 * v6) )
             {
@@ -672,13 +672,13 @@ int UIListBox::EnableRow()
       }
       while ( v10 );
     }
-    Child = ((UIWnd *)this)->CreateChild();
+    Child = ((UIWnd *)&this->_base)->CreateChild();
     m_itemheight = this->m_itemheight;
     if ( m_itemheight )
     {
       v13 = *(_DWORD *)&this->m_column[668] != -1;
       if ( *(_DWORD *)&this->m_column[668] == -1 || !*(_DWORD *)(this->m_firstshow + 4 * Child) )
-        return ((UIWnd *)this)->GetID();
+        return ((UIWnd *)&this->_base)->GetID();
     }
     else
     {
@@ -686,11 +686,11 @@ int UIListBox::EnableRow()
     }
     if ( v13 )
     {
-      v14 = *(_DWORD *)&this->_base[16];
-      v15 = *(_DWORD *)&this->_base[20];
+      v14 = *(_DWORD *)this->_base.m_rect;
+      v15 = *(_DWORD *)&this->_base.m_rect[4];
       v16 = *(_DWORD *)&this->m_column[732];
-      v17 = *(_DWORD *)&this->_base[24];
-      v33 = *(_DWORD *)&this->_base[28];
+      v17 = *(_DWORD *)&this->_base.m_rect[8];
+      v33 = *(_DWORD *)&this->_base.m_rect[12];
       v18 = v16 + v15;
       v19 = *(_DWORD *)&this->m_column[728] + v14 + 4;
       v20 = -2 - *(_DWORD *)&this->m_column[720] + v17;
@@ -700,10 +700,10 @@ int UIListBox::EnableRow()
           : *(_DWORD *)&this->m_column[672] - *(_DWORD *)&this->m_column[664];
       v23 = v18 + v21 * v22 + 8;
       v24 = v21 + v23 - 2;
-      v25 = *(_DWORD *)&this->_base[28];
+      v25 = *(_DWORD *)&this->_base.m_rect[12];
       if ( v24 > v25 )
-        v24 = *(_DWORD *)&this->_base[28];
-      if ( v23 >= *(_DWORD *)&this->_base[20] && v24 <= v25 )
+        v24 = *(_DWORD *)&this->_base.m_rect[12];
+      if ( v23 >= *(_DWORD *)&this->_base.m_rect[4] && v24 <= v25 )
       {
         if ( *(_DWORD *)&this->m_column[700] )
         {
@@ -713,12 +713,12 @@ int UIListBox::EnableRow()
           v27 = v19 + *(_DWORD *)&this->m_column[712];
           v34.nTex = 1;
           UIDestorySystem(v27, v23 + v26, v28, v26 + v24, (int *)&this->m_column[724], &v34);
-          return ((UIWnd *)this)->GetID();
+          return ((UIWnd *)&this->_base)->GetID();
         }
         v19->~_TextureLib_Data(v23, v20, v24, (float *)this->m_selcolor);
       }
     }
-    return ((UIWnd *)this)->GetID();
+    return ((UIWnd *)&this->_base)->GetID();
   }
   return result;
 }
@@ -726,5 +726,5 @@ int UIListBox::EnableRow()
 // 0x0043EBA0
 int UIListBox::SetDefaultSel()
 {
-  return (*(_DWORD *)&this->_base[28] - *(_DWORD *)&this->_base[20]) / *(_DWORD *)&this->m_column[656];
+  return (*(_DWORD *)&this->_base.m_rect[12] - *(_DWORD *)&this->_base.m_rect[4]) / *(_DWORD *)&this->m_column[656];
 }

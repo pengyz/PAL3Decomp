@@ -250,10 +250,10 @@ char CCBSystem::DestroySubsystems()
   if ( dword_17A990C == 1 )
   {
     m_pAttackSequenBack = (UIStatic *)this->m_pUtil->m_pUI->m_pAttackSequenBack;
-    (**(void (***)(UIStatic *, _DWORD))m_pAttackSequenBack->_base)(m_pAttackSequenBack, 0);
+    (**(void (***)(UIStatic *, _DWORD))m_pAttackSequenBack->_base._pad_000)(m_pAttackSequenBack, 0);
     for ( i = 76; i < 120; i += 4 )
     {
-      v5 = *(void (****)(_DWORD, _DWORD))&this->m_pUtil->m_pUI->_base[i];
+      v5 = *(void (****)(_DWORD, _DWORD))&this->m_pUtil->m_pUI->_base._base._pad_000[i];
       (**v5)(v5, 0);
     }
     return 1;
@@ -261,15 +261,19 @@ char CCBSystem::DestroySubsystems()
   else
   {
     v6 = (UIStatic *)this->m_pUtil->m_pUI->m_pAttackSequenBack;
-    (**(void (***)(UIStatic *, int))v6->_base)(v6, 1);
+    (**(void (***)(UIStatic *, int))v6->_base._pad_000)(v6, 1);
     v7 = 0;
     for ( j = 76; j < 120; j += 4 )
     {
       m_pUtil = (CCBSystem *)this->m_pUtil;
       if ( *(&this->m_pUtil->m_pRoleState->m_Role[0].bValid + v7) )
-        (***(void (****)(_DWORD, int))&m_pUtil->m_pUI->_base[j])(*(_DWORD *)&m_pUtil->m_pUI->_base[j], 1);
+        (***(void (****)(_DWORD, int))&m_pUtil->m_pUI->_base._base._pad_000[j])(
+          *(_DWORD *)&m_pUtil->m_pUI->_base._base._pad_000[j],
+          1);
       else
-        (***(void (****)(_DWORD, _DWORD))&m_pUtil->m_pUI->_base[j])(*(_DWORD *)&m_pUtil->m_pUI->_base[j], 0);
+        (***(void (****)(_DWORD, _DWORD))&m_pUtil->m_pUI->_base._base._pad_000[j])(
+          *(_DWORD *)&m_pUtil->m_pUI->_base._base._pad_000[j],
+          0);
       v7 += 892;
     }
     return 1;
@@ -988,10 +992,10 @@ char CCBSystem::ProcFling()
   m_pUI = (CCBUI *)this->m_pUI;
   if ( !m_pUI )
     return 0;
-  (*(void (**)(CCBUI *))(*(_DWORD *)m_pUI->_base + 12))(m_pUI);
+  (*(void (**)(CCBUI *))(*(_DWORD *)m_pUI->_base._base._pad_000 + 12))(m_pUI);
   v11 = (CCBUI *)this->m_pUI;
   if ( v11 )
-    (*(void (**)(CCBUI *, int))(*(_DWORD *)v11->_base + 20))(v11, 1);
+    (*(void (**)(CCBUI *, int))(*(_DWORD *)v11->_base._base._pad_000 + 20))(v11, 1);
   this->m_pUI = 0;
   m_pAI = (std::codecvt_base *)this->m_pAI;
   if ( !m_pAI )
@@ -1595,7 +1599,7 @@ int CCBSystem::CheckBattleEnd()
   if ( (unsigned __int8)((CCBRoleState *)this->m_pRoleState)->GetForce(0) || *(_DWORD *)&this->m_eState[2] != 2 )
   {
     m_pControl = (CCBUI *)this->m_pControl;
-    if ( m_pControl->_base[36] )
+    if ( m_pControl->_base._base.m_childs[0] )
       m_pControl->GetState();
     return 0;
   }
