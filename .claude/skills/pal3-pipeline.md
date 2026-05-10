@@ -2,6 +2,66 @@
 
 **持续执行，直到达成里程碑目标或被用户中断。** 不等待确认，不主动停止，每轮迭代结束后立即开始下一轮。
 
+## 版本控制与记录
+
+### 每轮迭代结束时自动执行
+
+```bash
+git add -A
+git commit -m "iter(pal3): #N — [本轮焦点简述]
+
+[Metrics]
+  VC6 pass: X/114 (±N)
+  Errors: XXXX (±N)
+  sub_ refs: XXXX (±N)
+  Focus: [聚焦的类/模块]
+  Result: [具体改善]"
+git push origin master
+```
+
+### 里程碑达成时
+
+在 commit message 中用 `milestone(pal3): M1/M2/M3...` 前缀标记，正文包含完整指标快照：
+
+```bash
+git commit -m "milestone(pal3): M1 — 核心类结构完整
+
+[Snapshot]
+  VC6 pass: XX/114
+  Named functions: XXXX/5413
+  CCBSystem: 全部成员访问用字段名 ✓
+  CCBStage: 全部成员访问用字段名 ✓
+  ...
+[Next] M2: 函数签名完善"
+```
+
+### 迭代记录文件
+
+每轮迭代写入 `.claude/iterations/pal3_iterN.md`（不提交到 git，本地记录）：
+
+```markdown
+# Iteration N (YYYY-MM-DD HH:MM)
+## Baseline
+  VC6 pass: X/114, errors: XXXX, sub_: XXXX
+## Focus
+  [本轮做了什么]
+## Actions
+  - [具体 IDA 脚本/操作]
+## Result
+  VC6 pass: X/114 (±N), errors: XXXX (±N)
+## Next
+  [下轮方向]
+```
+
+### 用户随时可查
+
+用户发送"汇报"或"进度"时，读取最近 N 个迭代记录，输出总结：
+- 从哪个基线开始
+- 经过了几轮迭代
+- 当前在哪个里程碑
+- 关键指标变化趋势
+- 下一步计划
+
 ## 核心原则（不可违背）
 
 1. **质量优先于通过率** — 宁可一个高质量文件，不要十个 hack 通过的文件
