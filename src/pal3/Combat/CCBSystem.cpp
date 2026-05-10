@@ -142,7 +142,6 @@ extern int dword_17ACE60;
 extern int dword_17ACE64;
 extern int dword_17ACE68;
 extern int dword_17B30E4;
-extern int dword_5DC3DC;
 extern float flt_17AC7DC;
 extern float flt_17AC7EC;
 extern float flt_17ACA78;
@@ -1572,7 +1571,7 @@ int CCBSystem::CheckBattleEnd()
   int *p_m_CmdData; // ebx
   int v3; // eax
   unsigned int *p_dwCmdID; // edi
-  int v5; // esi
+  unsigned int v5; // esi
   char v6; // bl
   int j; // edi
   int inited; // eax
@@ -1638,7 +1637,7 @@ int CCBSystem::CheckBattleEnd()
           {
             if ( !*(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v5) + 876) )
             {
-              dword_5DC3DC = v5;
+              g_bDebugMode = v5;
               sub_4DC3F0((char *)this->m_pControl, v5);
               return 0;
             }
@@ -1702,14 +1701,14 @@ LABEL_39:
     || (v15 = ((CCBSystem *)this->m_pControl)->GetControl(),
         *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v15) + 876)) )
   {
-    dword_5DC3DC = -1;
+    g_bDebugMode = -1;
     ((CCBSystem *)this->m_pAttackSequen)->GetDeltaTime();
     ((CCBUI *)this->m_pControl)->GetState();
     return 0;
   }
-  if ( ((CCBSystem *)this->m_pControl)->GetControl() != dword_5DC3DC || !p_m_CmdData )
+  if ( ((CCBSystem *)this->m_pControl)->GetControl() != g_bDebugMode || !p_m_CmdData )
     return 0;
-  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(dword_5DC3DC, 14) )
+  if ( ((CCBRoleState *)this->m_pRoleState)->GetRoleField(g_bDebugMode, 14) )
   {
     ((CCBUI *)this->m_pControl)->GetState();
     return 0;
@@ -1720,23 +1719,23 @@ LABEL_39:
     {
       case 259:
         this->CreateObj((int (*)(int, int))CCBSystem::IsRoleWaitForFlee, 0, 0, 0, p_m_CmdData);
-        qmemcpy(&this->m_Player[0].LastRoleCmd.dwCmdID + 13 * dword_5DC3DC, p_m_CmdData, 0x2Cu);
-        this->m_pAI->m_bNewRole[dword_5DC3DC] = 0;
+        qmemcpy(&this->m_Player[0].LastRoleCmd.dwCmdID + 13 * g_bDebugMode, p_m_CmdData, 0x2Cu);
+        this->m_pAI->m_bNewRole[g_bDebugMode] = 0;
         break;
       case 260:
         this->CreateObj((int (*)(int, int))CCBSystem::GetThreadIndex, 0, 0, 0, p_m_CmdData);
-        qmemcpy(&this->m_Player[0].LastRoleCmd.dwCmdID + 13 * dword_5DC3DC, p_m_CmdData, 0x2Cu);
-        this->m_pAI->m_bNewRole[dword_5DC3DC] = 0;
+        qmemcpy(&this->m_Player[0].LastRoleCmd.dwCmdID + 13 * g_bDebugMode, p_m_CmdData, 0x2Cu);
+        this->m_pAI->m_bNewRole[g_bDebugMode] = 0;
         break;
       case 261:
         this->CreateObj((int (*)(int, int))CCBSystem::GetSameThreadNum, 0, 0, 0, p_m_CmdData);
-        qmemcpy(&this->m_Player[0].LastRoleCmd.dwCmdID + 13 * dword_5DC3DC, p_m_CmdData, 0x2Cu);
-        this->m_pAI->m_bNewRole[dword_5DC3DC] = 0;
+        qmemcpy(&this->m_Player[0].LastRoleCmd.dwCmdID + 13 * g_bDebugMode, p_m_CmdData, 0x2Cu);
+        this->m_pAI->m_bNewRole[g_bDebugMode] = 0;
         break;
       case 262:
         this->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, p_m_CmdData);
-        qmemcpy(&this->m_Player[0].LastRoleCmd.dwCmdID + 13 * dword_5DC3DC, p_m_CmdData, 0x2Cu);
-        this->m_pAI->m_bNewRole[dword_5DC3DC] = 0;
+        qmemcpy(&this->m_Player[0].LastRoleCmd.dwCmdID + 13 * g_bDebugMode, p_m_CmdData, 0x2Cu);
+        this->m_pAI->m_bNewRole[g_bDebugMode] = 0;
         break;
       case 264:
       case 266:
@@ -1745,23 +1744,23 @@ LABEL_39:
         break;
       case 265:
         this->CreateObj((int (*)(int, int))CCBSystem::PassCmdViaThread, 0, 0, 0, p_m_CmdData);
-        qmemcpy(&this->m_Player[0].LastRoleCmd.dwCmdID + 13 * dword_5DC3DC, p_m_CmdData, 0x2Cu);
-        this->m_pAI->m_bNewRole[dword_5DC3DC] = 0;
+        qmemcpy(&this->m_Player[0].LastRoleCmd.dwCmdID + 13 * g_bDebugMode, p_m_CmdData, 0x2Cu);
+        this->m_pAI->m_bNewRole[g_bDebugMode] = 0;
         break;
       case 267:
         this->CreateObj((int (*)(int, int))CCBSystem::PassCmdToThread, 0, 0, 0, p_m_CmdData);
-        qmemcpy(&this->m_Player[0].LastRoleCmd.dwCmdID + 13 * dword_5DC3DC, p_m_CmdData, 0x2Cu);
-        this->m_pAI->m_bNewRole[dword_5DC3DC] = 0;
+        qmemcpy(&this->m_Player[0].LastRoleCmd.dwCmdID + 13 * g_bDebugMode, p_m_CmdData, 0x2Cu);
+        this->m_pAI->m_bNewRole[g_bDebugMode] = 0;
         break;
       case 269:
         this->CreateObj((int (*)(int, int))CCBSystem::DelThread, 0, 0, 0, p_m_CmdData);
-        this->m_pAI->m_bNewRole[dword_5DC3DC] = 0;
+        this->m_pAI->m_bNewRole[g_bDebugMode] = 0;
         break;
       default:
         break;
     }
     sub_4DC510((int)this->m_pControl, p_m_CmdData[2]);
-    dword_5DC3DC = -1;
+    g_bDebugMode = -1;
     return 0;
   }
 }
@@ -2472,7 +2471,7 @@ int CCBSystem::CreateObj(const char *a2, const char *a3, UINT a4)
   unsigned int v9; // edx
 
   if ( !a2 )
-    return MessageBoxA((HWND)g_pRoleSystem, byte_17AC6DC, byte_17AC5DC, uType);
+    return MessageBoxA((HWND)g_pRoleSystem2, byte_17AC6DC, byte_17AC5DC, uType);
   if ( strlen(a2) >= 0xFF )
   {
     v9 = strlen(aTooManyCharact) + 1;

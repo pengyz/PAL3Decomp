@@ -246,7 +246,6 @@ extern int dword_C0436C;
 extern int dword_C0437C;
 extern int dword_C04380;
 extern int dword_C0438C;
-extern int dword_C116F4;
 extern int dword_C11700;
 extern int dword_C11718;
 extern int dword_C1171C;
@@ -269,7 +268,6 @@ extern void *off_583A1C;
 extern void *off_586180;
 extern int stru_A3A750;
 extern int stru_BFAB60;
-extern int stru_D8C2B8;
 extern int unk_8ACBF0;
 extern int unk_8ACD30;
 extern int unk_A3A6F8;
@@ -533,7 +531,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
   LOBYTE(retaddr) = 2;
   dword_A3A6F0 = v27;
   v27->LoadFromFile(aObjectG03Cvd, 0, 0);
-  ((CScreenMode *)&unk_A3A7D8)->CreateDevice((int)aMovieLogoBik, (int)g_pRoleSystem, 0, 0);
+  ((CScreenMode *)&unk_A3A7D8)->CreateDevice((int)aMovieLogoBik, (int)g_pRoleSystem2, 0, 0);
   v30 = (600 - ((CScreenMode *)&unk_A3A7D8)->GetHeight()) / 2;
   Width = ((CScreenMode *)&unk_A3A7D8)->GetWidth();
   ((CScreenMode *)&unk_A3A7D8)->SetViewport((800 - Width) / 2, v30);
@@ -824,9 +822,9 @@ int PAL3::Update(int a1)
       Instance = (float *)CRenderTarget2::GetInstance();
       CRenderTarget2_Update(Instance, *(float *)&a1);
       a1->RunSceneScript();
-      if ( stru_D8C2B8.m_keyStates[25] )
+      if ( g_InputState.m_keyStates[25] )
       {
-        stru_D8C2B8.m_keyStates[25] = 0;
+        g_InputState.m_keyStates[25] = 0;
         a1->RunSceneScript();
       }
       InputUpdate((int)g_pCameraCtrl, a1);
@@ -1125,13 +1123,13 @@ void PAL3::Render()
         ((gbQuaternion *)&v34)->GetMatrix(&stru_A3A750);
         ((gbVolModNode *)&unk_A3A6F8)->Attach(0);
       }
-      if ( stru_D8C2B8.KeyInfo[149].CountMode == 2 )
+      if ( g_InputState.KeyInfo[149].CountMode == 2 )
       {
         Top = (gbMatrix4 *)v3->GetTop();
         Top->TransformPlane();
         (*(void (**)(gbGfxManager *, int *))(*(_DWORD *)g_pGfxMgr->_pad_0000 + 112))(
           g_pGfxMgr,
-          &stru_D8C2B8.KeyInfo[149].CountMode);
+          &g_InputState.KeyInfo[149].CountMode);
       }
       else
       {
@@ -1433,7 +1431,7 @@ void PAL3::CheckSystemRequire(char *a1@<edi>, char *a2@<esi>, HINSTANCE hInstanc
     _CxxThrowException(v12, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
   dword_BFD774 = Window;
-  g_pRoleSystem = Window;
+  g_pRoleSystem2 = Window;
   v18 = -1;
   nullsub_3(Buffer);
 }
@@ -3609,10 +3607,10 @@ int PAL3::UIPostProcess()
 {
   int result; // eax
 
-  if ( dword_C116F4 )
+  if ( g_pSceneNode )
   {
-    dword_C116F4->Stop();
-    dword_C116F4 = 0;
+    ((gbSound2DNode *)g_pSceneNode)->Stop();
+    g_pSceneNode = 0;
   }
   return result;
 }

@@ -65,7 +65,6 @@ extern int dword_17AAEB8;
 extern int dword_17AAEBC;
 extern int dword_17AAEC4;
 extern int dword_17AAEC8;
-extern float flt_17AAD48;
 extern float flt_17AAD54;
 extern float flt_17AAD60;
 extern float flt_17AAD6C;
@@ -206,7 +205,7 @@ CCCTData::~CCCTData()
     *(_DWORD *)&v32.Blue = ((gbVertPoolMgr *)g_pGfxMgr->pVertPoolMgr)->GetDynVertBuf(0x15u);
     if ( (byte_17AAEE0 & 1) == 0 )
     {
-      v4 = (float *)&flt_17AAD48;
+      v4 = (float *)&g_fMoveSpeed;
       byte_17AAEE0 |= 1u;
       v28 = 6;
       do
@@ -224,7 +223,7 @@ CCCTData::~CCCTData()
     *(float *)&v31 = v40 * 0.5;
     dword_17AAD4C = v31;
     *(float *)&v28 = v41 * 0.5;
-    flt_17AAD48 = v39 * -0.5;
+    g_fMoveSpeed = v39 * -0.5;
     dword_17AAD50 = v28;
     dword_17AAD58 = v31;
     flt_17AAD54 = v39 * 0.5;
@@ -233,30 +232,30 @@ CCCTData::~CCCTData()
     *(float *)&v29 = v40 * -0.5;
     flt_17AAD60 = flt_17AAD54;
     dword_17AAD64 = v29;
-    flt_17AAD6C = flt_17AAD48;
+    flt_17AAD6C = g_fMoveSpeed;
     dword_17AAD70 = v29;
     *(float *)&v30 = v41 * -0.5;
     dword_17AAD74 = v28;
-    flt_17AAD8C = flt_17AAD48;
+    flt_17AAD8C = g_fMoveSpeed;
     dword_17AAD90 = v31;
     dword_17AAD94 = v30;
     flt_17AAD98 = flt_17AAD54;
     dword_17AAD9C = v31;
     dword_17AADA0 = v30;
     flt_17AADA4 = flt_17AAD54;
-    flt_17AADB0 = flt_17AAD48;
-    flt_17AADD0 = flt_17AAD48;
+    flt_17AADB0 = g_fMoveSpeed;
+    flt_17AADD0 = g_fMoveSpeed;
     dword_17AADA8 = v29;
     dword_17AADAC = v30;
     dword_17AADB4 = v29;
     dword_17AADB8 = v30;
-    flt_17AADDC = flt_17AAD48;
+    flt_17AADDC = g_fMoveSpeed;
     dword_17AADD4 = v31;
     dword_17AADD8 = v28;
-    flt_17AADE8 = flt_17AAD48;
+    flt_17AADE8 = g_fMoveSpeed;
     dword_17AADE0 = v31;
     dword_17AADE4 = v30;
-    flt_17AADF4 = flt_17AAD48;
+    flt_17AADF4 = g_fMoveSpeed;
     dword_17AADEC = v29;
     dword_17AADF0 = v30;
     dword_17AADF8 = v29;
@@ -270,7 +269,7 @@ CCCTData::~CCCTData()
     flt_17AAE2C = flt_17AAD54;
     dword_17AAE30 = v29;
     flt_17AAE38 = flt_17AAD54;
-    flt_17AAE58 = flt_17AAD48;
+    flt_17AAE58 = g_fMoveSpeed;
     dword_17AAE34 = v30;
     dword_17AAE3C = v29;
     flt_17AAE64 = flt_17AAD54;
@@ -281,10 +280,10 @@ CCCTData::~CCCTData()
     dword_17AAE68 = v31;
     dword_17AAE6C = v30;
     dword_17AAE74 = v31;
-    flt_17AAE7C = flt_17AAD48;
+    flt_17AAE7C = g_fMoveSpeed;
     dword_17AAE78 = v28;
     dword_17AAE80 = v31;
-    flt_17AAE9C = flt_17AAD48;
+    flt_17AAE9C = g_fMoveSpeed;
     dword_17AAE84 = v28;
     dword_17AAEA0 = v29;
     dword_17AAEA4 = v30;
@@ -292,7 +291,7 @@ CCCTData::~CCCTData()
     flt_17AAEB4 = flt_17AAD54;
     dword_17AAEAC = v29;
     dword_17AAEB0 = v30;
-    flt_17AAEC0 = flt_17AAD48;
+    flt_17AAEC0 = g_fMoveSpeed;
     dword_17AAEB8 = v29;
     dword_17AAEBC = v28;
     v26 = v29;
@@ -312,7 +311,7 @@ CCCTData::~CCCTData()
       v5 += 68;
     }
     while ( (int)v5 < (int)byte_17AAF21 );
-    ((gbDynVertBuf *)&flt_17AAD48)->RenderGeomQuad(6, v3, 0);
+    ((gbDynVertBuf *)&g_fMoveSpeed)->RenderGeomQuad(6, v3, 0);
     p_Color = (unsigned int *)&v32.Color;
     v28 = 2;
     do

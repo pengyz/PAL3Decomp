@@ -27,7 +27,6 @@ int sub_4B0820(...);
 extern char aUiGamemainuiCo_19[];
 extern char aUiGamemainuiCo_23[];
 extern char aUiGamemainuiSt_1[];
-extern unsigned char byte_5CEFA8;
 extern unsigned char byte_5CEFA9;
 extern unsigned char byte_DE5F92;
 extern unsigned char byte_DE5F93;
@@ -184,14 +183,14 @@ void EquipUI::Init()
     161,
     &v38,
     this);
-  ((UIWnd *)this->m_EquipData)->CreateFromTemplate(aUiGamemainuiSt_1, byte_5CEFA8);
+  ((UIWnd *)this->m_EquipData)->CreateFromTemplate(aUiGamemainuiSt_1, g_bConsoleOpen);
   v5 = *(_DWORD *)&this->m_EquipData[152];
   v39 += 26;
   v38 = v40;
   v41 = v39 + 526;
   v40 += 17;
   (*(void (**)(char *, int, int *, EquipUI *))(v5 + 16))(&this->m_EquipData[152], 161, &v38, this);
-  ((UIWnd *)&this->m_EquipData[152])->CreateFromTemplate(aUiGamemainuiCo_23, byte_5CEFA8);
+  ((UIWnd *)&this->m_EquipData[152])->CreateFromTemplate(aUiGamemainuiCo_23, g_bConsoleOpen);
   v42[1] = 14;
   v42[0] = 626;
   v42[2] = 674;
@@ -201,7 +200,7 @@ void EquipUI::Init()
   do
   {
     (*(void (**)(UIWnd **, int, _DWORD *, EquipUI *))(*v7)->m_rect)(v7, 161, v42, this);
-    v7->CreateFromTemplate(v6, byte_5CEFA8);
+    v7->CreateFromTemplate(v6, g_bConsoleOpen);
     (*(void (**)(UIWnd **, _DWORD))(*v7)->_pad_000)(v7, 0);
     v6 += 256;
     v7 += 38;
@@ -213,7 +212,7 @@ void EquipUI::Init()
   v31 = 0;
   v33 = 64;
   (*(void (**)(char *, int, int *, EquipUI *))(v8 + 16))(&this->m_EquipData[304], 161, &v30, this);
-  ((UIWnd *)&this->m_EquipData[304])->CreateFromTemplate(aUiGamemainuiCo_19, byte_5CEFA8);
+  ((UIWnd *)&this->m_EquipData[304])->CreateFromTemplate(aUiGamemainuiCo_19, g_bConsoleOpen);
   v9 = *(_DWORD *)&this->m_EquipData[4328];
   v31 = -4;
   v30 = 618;

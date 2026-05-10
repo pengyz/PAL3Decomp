@@ -31,9 +31,7 @@ extern char aScriptSysInitF[];
 extern char aSystemScriptLo[];
 extern char aUiBigmapBigmap[];
 extern unsigned char byte_56A634;
-extern int dword_1894B78;
 extern void *off_58B448;
-extern int stru_D8C2B8;
 extern int unknown_libname_339;
 extern int unknown_libname_340;
 
@@ -391,10 +389,10 @@ int PalScript::AddWaitObj()
 // 0x00431F10
 int PalScript::AddCamObj(int a1)
 {
-  LOBYTE(stru_D8C2B8.m_lpDI) = HIBYTE(a1);
-  stru_D8C2B8.m_lpDIDKeyboard = 0;
-  stru_D8C2B8.m_lpDIDMouse = 0;
-  stru_D8C2B8.m_mouseSensitivity = 0.0;
+  LOBYTE(g_InputState.m_lpDI) = HIBYTE(a1);
+  g_InputState.m_lpDIDKeyboard = 0;
+  g_InputState.m_lpDIDMouse = 0;
+  g_InputState.m_mouseSensitivity = 0.0;
   return 0;
 }
 
@@ -403,20 +401,20 @@ void PalScript::ClearAllCamObj()
 {
   IDirectInputDevice8A v0; // al
 
-  if ( (stru_D8C2B8.m_keyStates[4] & 0x10) == 0 )
+  if ( (g_InputState.m_keyStates[4] & 0x10) == 0 )
   {
-    stru_D8C2B8.m_keyStates[4] |= 0x10u;
-    if ( stru_D8C2B8.m_lpDIDKeyboard )
+    g_InputState.m_keyStates[4] |= 0x10u;
+    if ( g_InputState.m_lpDIDKeyboard )
     {
-      v0 = stru_D8C2B8.m_lpDIDKeyboard[-1];
+      v0 = g_InputState.m_lpDIDKeyboard[-1];
       if ( !*(_BYTE *)&v0 || v0 == 0xFF )
-        operator delete(&stru_D8C2B8.m_lpDIDKeyboard[-1]);
+        operator delete(&g_InputState.m_lpDIDKeyboard[-1]);
       else
-        stru_D8C2B8.m_lpDIDKeyboard[-1] = (IDirectInputDevice8A)(*(_BYTE *)&v0 - 1);
+        g_InputState.m_lpDIDKeyboard[-1] = (IDirectInputDevice8A)(*(_BYTE *)&v0 - 1);
     }
-    stru_D8C2B8.m_lpDIDKeyboard = 0;
-    stru_D8C2B8.m_lpDIDMouse = 0;
-    stru_D8C2B8.m_mouseSensitivity = 0.0;
+    g_InputState.m_lpDIDKeyboard = 0;
+    g_InputState.m_lpDIDMouse = 0;
+    g_InputState.m_mouseSensitivity = 0.0;
   }
 }
 
@@ -443,7 +441,7 @@ int PalScript::Update()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  if ( !((PtrArray *)&stru_D8C2B8.m_mousept)->InsertAt(aInitSce) )
+  if ( !((PtrArray *)&g_InputState.m_mousept)->InsertAt(aInitSce) )
   {
     qmemcpy(
       pExceptionObject,
@@ -451,7 +449,7 @@ int PalScript::Update()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  result = (int)((PtrArray *)&stru_D8C2B8.m_mouseMinX)->InsertAt(aUiBigmapBigmap);
+  result = (int)((PtrArray *)&g_InputState.m_mouseMinX)->InsertAt(aUiBigmapBigmap);
   if ( !result )
   {
     qmemcpy(
@@ -468,14 +466,14 @@ char *PalScript::GetString()
 {
   char *result; // eax
 
-  if ( *(int *)&stru_D8C2B8.m_keyStates[64] < 0 )
+  if ( *(int *)&g_InputState.m_keyStates[64] < 0 )
   {
     result = 0;
   }
   else
   {
-    --*(_DWORD *)&stru_D8C2B8.m_keyStates[64];
-    result = (char *)(8 * *(_DWORD *)&stru_D8C2B8.m_keyStates[64] + 14205804);
+    --*(_DWORD *)&g_InputState.m_keyStates[64];
+    result = (char *)(8 * *(_DWORD *)&g_InputState.m_keyStates[64] + 14205804);
   }
   if ( result )
   {
@@ -515,9 +513,9 @@ struct gbVFileSystem * PalScript::OpenScript(const char *a2, char a3)
   if ( a3 )
   {
     v5 = *(_DWORD *)g_pGfxMgr->_pad_0000;
-    v6 = ((_Texture_Info *)dword_1894B78)->_CalculateUV(Buffer);
+    v6 = ((_Texture_Info *)&g_PlayerBase)->_CalculateUV(Buffer);
     *((_DWORD *)this + 49) = (PalScript *)(*(int (**)(gbGfxManager *, Scene *))(v5 + 8))(g_pGfxMgr, v6);
-    *((_DWORD *)this + 50) = (PalScript *)((Parent_Data *)dword_1894B78)->Parent_Data(Buffer);
+    *((_DWORD *)this + 50) = (PalScript *)((Parent_Data *)&g_PlayerBase)->Parent_Data(Buffer);
   }
   else
   {

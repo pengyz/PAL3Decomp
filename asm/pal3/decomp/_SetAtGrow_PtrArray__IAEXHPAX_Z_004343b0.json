@@ -2,6 +2,6 @@
   "name": "?SetAtGrow@PtrArray@@IAEXHPAX@Z",
   "address": "0x004343B0",
   "size_bytes": 53,
-  "signature": "char *__cdecl(unsigned __int16 a1, int a2)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar *__cdecl PtrArray::SetAtGrow(unsigned __int16 a1, int a2)\n{\n  int CountMode; // ecx\n\n  CountMode = a2;\n  if ( !a2 )\n    CountMode = stru_D8C2B8.KeyInfo[147].CountMode;\n  if ( (a1 & 0x8000u) == 0 )\n    return (char *)(*(_DWORD *)(CountMode + 76) + 8 * a1);\n  else\n    return (char *)(stru_D8C2B8.KeyInfo[148].Data + 24 * (a1 & 0x7FFF));\n}\n"
+  "signature": "char *__cdecl(signed __int16 a1, int a2)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar *__cdecl PtrArray::SetAtGrow(signed __int16 a1, int a2)\n{\n  int CountMode; // ecx\n\n  CountMode = a2;\n  if ( !a2 )\n    CountMode = g_InputState.KeyInfo[147].CountMode;\n  if ( a1 >= 0 )\n    return (char *)(*(_DWORD *)(CountMode + 76) + 8 * (unsigned __int16)a1);\n  else\n    return (char *)(g_InputState.KeyInfo[148].Data + 24 * (a1 & 0x7FFF));\n}\n"
 }

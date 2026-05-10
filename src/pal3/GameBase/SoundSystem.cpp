@@ -2,9 +2,6 @@
 #include "pal3/globals.h"
 #include "pal3/gen/SoundSystem.h"
 
-// Unnamed globals (extern)
-extern int dword_C116F4;
-
 // 0x0041ED00
 int SoundSystem::Init()
 {
@@ -22,7 +19,7 @@ int SoundSystem::Init()
   memset(&g_SceneMgr._gap_cd10[800], 0, 0x60u);
   memset(&g_SceneMgr._gap_cd10[704], 0, 0x60u);
   v0 = 97;
-  dword_C116F4 = 0;
+  g_pSceneNode = 0;
   v1 = 0;
   do
   {

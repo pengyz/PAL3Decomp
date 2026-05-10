@@ -130,7 +130,7 @@ int ScriptSystem::Cleanup()
   void (***v1)(_DWORD, int); // ecx
   int result; // eax
 
-  for ( i = 0; i < (int)g_pUIManager; ++i )
+  for ( i = 0; i < (int)g_pUIManager2; ++i )
   {
     v1 = (void (***)(_DWORD, int))*((_DWORD *)g_pScriptSystem + i);
     if ( v1 )
@@ -157,7 +157,7 @@ char ScriptSystem::Render2()
   char Buffer[128]; // [esp+44h] [ebp-80h] BYREF
 
   sub_445500((int *)unk_BFDAB0._data);
-  for ( i = 0; i < (int)g_pUIManager; ++i )
+  for ( i = 0; i < (int)g_pUIManager2; ++i )
     ((GRPinput *)*((GRPinput **)g_pScriptSystem + i))->SetMouseSensitivity();
   sub_43A270((UIWnd *)&g_SceneMgr.m_pCameraCtrl);
   result = g_SceneMgr.m_slot0[81];
@@ -344,7 +344,7 @@ int ScriptSystem::RunScript(int a1, int a2, int a3)
       v11 = 0;
     v16 = -1;
     v11->SetJoystickPos(Buffer, 0);
-    ((PtrArray *)&g_pScriptSystem)->SetAt((int)g_pUIManager, (int)v11);
+    ((PtrArray *)&g_pScriptSystem)->SetAt((int)g_pUIManager2, (int)v11);
     LOBYTE(result) = a2;
     if ( (_BYTE)a2 )
     {
@@ -411,7 +411,7 @@ int ScriptSystem::RunWithDelay(float delay, int a2, int a3)
       v10 = 0;
     v16 = -1;
     v10->SetJoystickPos(Buffer, 0);
-    ((PtrArray *)&g_pScriptSystem)->SetAt((int)g_pUIManager, (int)v10);
+    ((PtrArray *)&g_pScriptSystem)->SetAt((int)g_pUIManager2, (int)v10);
     LOBYTE(result) = a2;
     if ( (_BYTE)a2 )
     {

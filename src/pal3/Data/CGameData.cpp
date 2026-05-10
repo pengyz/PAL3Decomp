@@ -29,7 +29,6 @@ extern char aUiUilibUiOptTl[];
 extern unsigned char byte_DD8F3C;
 extern unsigned char byte_DD903C;
 extern unsigned char byte_DD913C;
-extern int dword_1894B78;
 extern int dword_8ACD40;
 extern void *off_59BA88;
 extern void *off_59BA8C;
@@ -281,8 +280,8 @@ void * CGameData::Init()
   ((UIWnd *)this)->Create(0, &pRect, 0);
   ((OpenBaseFile *)&v14)->OpenBaseFile();
   v20 = 0;
-  ((TextureLib *)dword_1894B78)->SetPath(aUiUilib);
-  ((TextureLib *)dword_1894B78)->LoadFromFile(aUiUilibUiOptTl);
+  ((TextureLib *)&g_PlayerBase)->SetPath(aUiUilib);
+  ((TextureLib *)&g_PlayerBase)->LoadFromFile(aUiUilibUiOptTl);
   v2 = (PropUI *)operator new(0xB30u);
   v15 = v2;
   LOBYTE(v20) = 1;

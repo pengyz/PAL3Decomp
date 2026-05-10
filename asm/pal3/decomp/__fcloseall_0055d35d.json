@@ -3,5 +3,5 @@
   "address": "0x0055D35D",
   "size_bytes": 88,
   "signature": "int __cdecl()",
-  "decompiled_c": "int __cdecl _fcloseall()\n{\n  int v0; // edi\n  int i; // esi\n  int v2; // eax\n\n  v0 = 0;\n  for ( i = 3; i < (int)Count; ++i )\n  {\n    v2 = *(_DWORD *)(dword_1895990 + 4 * i);\n    if ( v2 )\n    {\n      if ( (*(_BYTE *)(v2 + 12) & 0x83) != 0 && fclose(*(FILE **)(dword_1895990 + 4 * i)) != -1 )\n        ++v0;\n      if ( i >= 20 )\n      {\n        free(*(void **)(dword_1895990 + 4 * i));\n        *(_DWORD *)(dword_1895990 + 4 * i) = 0;\n      }\n    }\n  }\n  return v0;\n}\n"
+  "decompiled_c": "int __cdecl _fcloseall()\n{\n  int v0; // edi\n  int i; // esi\n  int v2; // eax\n\n  v0 = 0;\n  for ( i = 3; i < (int)Count; ++i )\n  {\n    v2 = *(_DWORD *)(g_PlayerLevel + 4 * i);\n    if ( v2 )\n    {\n      if ( (*(_BYTE *)(v2 + 12) & 0x83) != 0 && fclose(*(FILE **)(g_PlayerLevel + 4 * i)) != -1 )\n        ++v0;\n      if ( i >= 20 )\n      {\n        free(*(void **)(g_PlayerLevel + 4 * i));\n        *(_DWORD *)(g_PlayerLevel + 4 * i) = 0;\n      }\n    }\n  }\n  return v0;\n}\n"
 }

@@ -22,7 +22,6 @@ int sub_5372D0(...);
 extern char aCNewFailed[];
 extern char aDProjectPal3Ui[];
 extern char aUiCommonScroll[];
-extern int dword_1894B78;
 extern void *off_56AD20;
 extern void *off_56AD40;
 extern int unk_D902F0;
@@ -271,9 +270,9 @@ int UIListBox::CalScrollBarRange(
     if ( a7 )
     {
       v9 = *(_DWORD *)g_pGfxMgr->_pad_0000;
-      v10 = ((_Texture_Info *)dword_1894B78)->_CalculateUV(v7);
+      v10 = ((_Texture_Info *)&g_PlayerBase)->_CalculateUV(v7);
       *(_DWORD *)&this->m_column[692] = (*(int (**)(gbGfxManager *, Scene *))(v9 + 8))(g_pGfxMgr, v10);
-      *(_DWORD *)&this->m_column[696] = ((Parent_Data *)dword_1894B78)->Parent_Data(v7);
+      *(_DWORD *)&this->m_column[696] = ((Parent_Data *)&g_PlayerBase)->Parent_Data(v7);
     }
     else
     {

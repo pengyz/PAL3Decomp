@@ -10,7 +10,6 @@ int sub_429A90(...);
 
 // Unnamed globals (extern)
 extern int dword_C300C8;
-extern int dword_D8BBEC;
 
 // 0x00420CD0
 int UICamera::GetViewMode(int a1)
@@ -168,10 +167,10 @@ int UICamera::GetState()
   v0 = 0;
   v13 = 3.4028235e38;
   v1 = 0;
-  v2 = 493156 * (dword_D8BBEC == 1) + 12722152;
-  if ( dword_C300C8[123289 * (dword_D8BBEC == 1)] > 0 )
+  v2 = 493156 * (g_GameDataFlags == 1) + 12722152;
+  if ( dword_C300C8[123289 * (g_GameDataFlags == 1)] > 0 )
   {
-    v3 = 493156 * (dword_D8BBEC == 1) + 12779892;
+    v3 = 493156 * (g_GameDataFlags == 1) + 12779892;
     do
     {
       if ( *(_DWORD *)(v3 + 464) )
@@ -266,10 +265,10 @@ int UICamera::GetTarget(float *pMat)
   v17 = -1;
   v1 = 0;
   v2 = 1;
-  v3 = 493156 * (dword_D8BBEC == 1) + 12722152;
-  if ( dword_C300C8[123289 * (dword_D8BBEC == 1)] > 0 )
+  v3 = 493156 * (g_GameDataFlags == 1) + 12722152;
+  if ( dword_C300C8[123289 * (g_GameDataFlags == 1)] > 0 )
   {
-    v4 = 493156 * (dword_D8BBEC == 1) + 12779892;
+    v4 = 493156 * (g_GameDataFlags == 1) + 12779892;
     do
     {
       if ( *(_DWORD *)(v4 + 464) )

@@ -161,7 +161,6 @@ extern unsigned char byte_DD953C;
 extern unsigned char byte_DD963C;
 extern unsigned char byte_DDB03C;
 extern unsigned char byte_DDB13C;
-extern int dword_1894B78;
 extern int dword_56AEE8;
 extern int dword_56B220;
 extern int dword_56B294;
@@ -531,9 +530,9 @@ void UIWnd::GetChildCount(LPCSTR lpString, char a3)
     else
     {
       v7 = *(_DWORD *)g_pGfxMgr->_pad_0000;
-      v8 = ((_Texture_Info *)dword_1894B78)->_CalculateUV(v3);
+      v8 = ((_Texture_Info *)&g_PlayerBase)->_CalculateUV(v3);
       *((_DWORD *)this + 43) = (UIWnd *)(*(int (**)(gbGfxManager *, Scene *))(v7 + 8))(g_pGfxMgr, v8);
-      *((_DWORD *)this + 44) = (UIWnd *)((Parent_Data *)dword_1894B78)->Parent_Data(v3);
+      *((_DWORD *)this + 44) = (UIWnd *)((Parent_Data *)&g_PlayerBase)->Parent_Data(v3);
     }
     v9 = (gbTexture *)*((_DWORD *)this + 43);
     if ( v9 )
@@ -570,9 +569,9 @@ void UIWnd::GetChildAt(LPCSTR lpString, char a3)
     else
     {
       v7 = *(_DWORD *)g_pGfxMgr->_pad_0000;
-      v8 = ((_Texture_Info *)dword_1894B78)->_CalculateUV(v3);
+      v8 = ((_Texture_Info *)&g_PlayerBase)->_CalculateUV(v3);
       *((_DWORD *)this + 45) = (UIWnd *)(*(int (**)(gbGfxManager *, Scene *))(v7 + 8))(g_pGfxMgr, v8);
-      *((_DWORD *)this + 46) = (UIWnd *)((Parent_Data *)dword_1894B78)->Parent_Data(v3);
+      *((_DWORD *)this + 46) = (UIWnd *)((Parent_Data *)&g_PlayerBase)->Parent_Data(v3);
     }
     v9 = (gbTexture *)*((_DWORD *)this + 45);
     if ( v9 )
@@ -756,9 +755,9 @@ void UIWnd::CreateFromTemplate(LPCSTR lpString1, char a3)
     if ( v6 )
     {
       v7 = *(_DWORD *)g_pGfxMgr->_pad_0000;
-      v8 = ((_Texture_Info *)dword_1894B78)->_CalculateUV(v3);
+      v8 = ((_Texture_Info *)&g_PlayerBase)->_CalculateUV(v3);
       *((_DWORD *)this + 28) = (UIWnd *)(*(int (**)(gbGfxManager *, Scene *))(v7 + 8))(g_pGfxMgr, v8);
-      *((_DWORD *)this + 29) = (UIWnd *)((Parent_Data *)dword_1894B78)->Parent_Data(v3);
+      *((_DWORD *)this + 29) = (UIWnd *)((Parent_Data *)&g_PlayerBase)->Parent_Data(v3);
     }
     else
     {
@@ -1964,7 +1963,7 @@ int UIWnd::ctor_7070(int a2, int a3, int a4)
         if ( a3 == *v7 )
         {
           sprintf((char *const)this + 104, "Movie\\%s.bik", (const char *)(30 * v6 + 5967612));
-          ((CScreenMode *)&unk_A3A7D8)->CreateDevice((int)this + 104, (int)g_pRoleSystem, 0, 0);
+          ((CScreenMode *)&unk_A3A7D8)->CreateDevice((int)this + 104, (int)g_pRoleSystem2, 0, 0);
           v14 = (600 - ((CScreenMode *)&unk_A3A7D8)->GetHeight()) / 2;
           Width = ((CScreenMode *)&unk_A3A7D8)->GetWidth();
           ((CScreenMode *)&unk_A3A7D8)->SetViewport((800 - Width) / 2, v14);
