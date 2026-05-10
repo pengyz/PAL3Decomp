@@ -299,6 +299,7 @@ static HHOOK hhk = NULL;
 typedef struct {
     DWORD vkCode;
     DWORD scanCode;
+typedef unsigned long ULONG_PTR;
     DWORD flags;
     DWORD time;
     ULONG_PTR dwExtraInfo;

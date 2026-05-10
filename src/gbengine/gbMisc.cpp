@@ -1474,7 +1474,7 @@ void gbSpline_Constructor(gbSpline* spline) {
     spline->pPoints = NULL;
     spline->pDistances = NULL;
     spline->numPoints = 0;
-    spline->trans.LoadIdentity();
+    spline->matrix.LoadIdentity();
 }
 
 // 0x10029B20 (452B)
@@ -1536,6 +1536,6 @@ int gbSpline_LoadFromFile(gbSpline* spline, const char* filename) {
         }
     }
 
-    spline->trans.LoadIdentity();
+    spline->matrix.LoadIdentity();
     return 1;
 }

@@ -81,7 +81,7 @@ int gbOBBox::IsColOBB(gbOBBox* other) {
         other->trans.GetRow(&axis, i);
         dist = fabsf(T.DotProduct(&axis));
         radiusA = GetRadiusInDirection(axis);
-        radiusB = ((float*)&other->extent)[i];
+        radiusB = ((float*)&other->xlen)[i];
         if (dist > radiusA + radiusB) return 0;
     }
 

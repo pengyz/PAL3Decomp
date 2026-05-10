@@ -56,27 +56,27 @@ void gbDynVertBuf::RenderGeomQuad(gbGeomQuad* quads, int numQuads,
         // Vertex 0: corner 0, uv=(u1, v1)
         pVerts[0] = q->vec[0].x; pVerts[1] = q->vec[0].y; pVerts[2] = q->vec[0].z;
         *(unsigned int*)&pVerts[3] = q->color;
-        pVerts[4] = q->u1; pVerts[5] = q->v1;
+        pVerts[4] = q->su; pVerts[5] = q->sv;
         // Vertex 1: corner 1, uv=(u2, v1)
         pVerts[6] = q->vec[1].x; pVerts[7] = q->vec[1].y; pVerts[8] = q->vec[1].z;
         *(unsigned int*)&pVerts[9] = q->color;
-        pVerts[10] = q->u2; pVerts[11] = q->v1;
+        pVerts[10] = q->eu; pVerts[11] = q->sv;
         // Vertex 2: corner 3, uv=(u1, v2)
         pVerts[12] = q->vec[3].x; pVerts[13] = q->vec[3].y; pVerts[14] = q->vec[3].z;
         *(unsigned int*)&pVerts[15] = q->color;
-        pVerts[16] = q->u1; pVerts[17] = q->v2;
+        pVerts[16] = q->su; pVerts[17] = q->ev;
         // Vertex 3: corner 3, uv=(u1, v2) (duplicate for 2nd triangle)
         pVerts[18] = q->vec[3].x; pVerts[19] = q->vec[3].y; pVerts[20] = q->vec[3].z;
         *(unsigned int*)&pVerts[21] = q->color;
-        pVerts[22] = q->u1; pVerts[23] = q->v2;
+        pVerts[22] = q->su; pVerts[23] = q->ev;
         // Vertex 4: corner 1, uv=(u2, v1) (duplicate for 2nd triangle)
         pVerts[24] = q->vec[1].x; pVerts[25] = q->vec[1].y; pVerts[26] = q->vec[1].z;
         *(unsigned int*)&pVerts[27] = q->color;
-        pVerts[28] = q->u2; pVerts[29] = q->v1;
+        pVerts[28] = q->eu; pVerts[29] = q->sv;
         // Vertex 5: corner 2, uv=(u2, v2)
         pVerts[30] = q->vec[2].x; pVerts[31] = q->vec[2].y; pVerts[32] = q->vec[2].z;
         *(unsigned int*)&pVerts[33] = q->color;
-        pVerts[34] = q->u2; pVerts[35] = q->v2;
+        pVerts[34] = q->eu; pVerts[35] = q->ev;
         pVerts += 36;
     }
     Draw(1, effect, textures);
@@ -124,11 +124,11 @@ void gbDynVertBuf::RenderGeomQuadViaStrip(gbGeomQuad* quads, int numQuads,
     gbGeomQuad* q = &quads[0];
 
     *(unsigned int*)&pVerts[3] = flags;
-    pVerts[4] = q->u1; pVerts[5] = q->v1;
+    pVerts[4] = q->su; pVerts[5] = q->sv;
     pVerts[0] = q->vec[0].x; pVerts[1] = q->vec[0].y; pVerts[2] = q->vec[0].z;
 
     *(unsigned int*)&pVerts[9] = flags;
-    pVerts[10] = q->u1; pVerts[11] = q->v2;
+    pVerts[10] = q->su; pVerts[11] = q->ev;
     pVerts[6] = q->vec[3].x; pVerts[7] = q->vec[3].y; pVerts[8] = q->vec[3].z;
     pVerts += 12;
 
@@ -139,10 +139,10 @@ void gbDynVertBuf::RenderGeomQuadViaStrip(gbGeomQuad* quads, int numQuads,
             do {
                 pVerts[0] = q->vec[0].x; pVerts[1] = q->vec[0].y; pVerts[2] = q->vec[0].z;
                 *(unsigned int*)&pVerts[3] = flags;
-                pVerts[4] = q->u2; pVerts[5] = q->v1;
+                pVerts[4] = q->eu; pVerts[5] = q->sv;
 
                 *(unsigned int*)&pVerts[9] = flags;
-                pVerts[10] = q->u2; pVerts[11] = q->v2;
+                pVerts[10] = q->eu; pVerts[11] = q->ev;
                 pVerts[6] = q->vec[3].x; pVerts[7] = q->vec[3].y; pVerts[8] = q->vec[3].z;
                 pVerts += 12;
                 q++;
@@ -152,11 +152,11 @@ void gbDynVertBuf::RenderGeomQuadViaStrip(gbGeomQuad* quads, int numQuads,
     }
 
     *(unsigned int*)&pVerts[3] = flags;
-    pVerts[4] = q->u1; pVerts[5] = q->v1;
+    pVerts[4] = q->su; pVerts[5] = q->sv;
     pVerts[0] = q->vec[1].x; pVerts[1] = q->vec[1].y; pVerts[2] = q->vec[1].z;
 
     *(unsigned int*)&pVerts[9] = flags;
-    pVerts[10] = q->u1; pVerts[11] = q->v2;
+    pVerts[10] = q->su; pVerts[11] = q->ev;
     pVerts[6] = q->vec[2].x; pVerts[7] = q->vec[2].y; pVerts[8] = q->vec[2].z;
 
     Draw(3, effect, textures);
@@ -175,32 +175,32 @@ void gbDynVertBuf::RenderUIQuad(gbUIQuad* quads, int numQuads,
             pVerts[0] = q->x1; pVerts[1] = q->y1; pVerts[2] = q->z;
             pVerts[3] = 1.0f;
             *(unsigned int*)&pVerts[4] = q->color;
-            pVerts[5] = q->u1; pVerts[6] = q->v1;
+            pVerts[5] = q->su; pVerts[6] = q->sv;
             // Vertex 1: top-right
             pVerts[7] = q->x2; pVerts[8] = q->y1; pVerts[9] = q->z;
             pVerts[10] = 1.0f;
             *(unsigned int*)&pVerts[11] = q->color;
-            pVerts[12] = q->u2; pVerts[13] = q->v1;
+            pVerts[12] = q->eu; pVerts[13] = q->sv;
             // Vertex 2: bottom-left
             pVerts[14] = q->x1; pVerts[15] = q->y2; pVerts[16] = q->z;
             pVerts[17] = 1.0f;
             *(unsigned int*)&pVerts[18] = q->color;
-            pVerts[19] = q->u1; pVerts[20] = q->v2;
+            pVerts[19] = q->su; pVerts[20] = q->ev;
             // Vertex 3: bottom-left (duplicate for 2nd triangle)
             pVerts[21] = q->x1; pVerts[22] = q->y2; pVerts[23] = q->z;
             pVerts[24] = 1.0f;
             *(unsigned int*)&pVerts[25] = q->color;
-            pVerts[26] = q->u1; pVerts[27] = q->v2;
+            pVerts[26] = q->su; pVerts[27] = q->ev;
             // Vertex 4: top-right (duplicate for 2nd triangle)
             pVerts[28] = q->x2; pVerts[29] = q->y1; pVerts[30] = q->z;
             pVerts[31] = 1.0f;
             *(unsigned int*)&pVerts[32] = q->color;
-            pVerts[33] = q->u2; pVerts[34] = q->v1;
+            pVerts[33] = q->eu; pVerts[34] = q->sv;
             // Vertex 5: bottom-right
             pVerts[35] = q->x2; pVerts[36] = q->y2; pVerts[37] = q->z;
             pVerts[38] = 1.0f;
             *(unsigned int*)&pVerts[39] = q->color;
-            pVerts[40] = q->u2; pVerts[41] = q->v2;
+            pVerts[40] = q->eu; pVerts[41] = q->ev;
             pVerts += 42;
         }
     } else {
@@ -213,27 +213,27 @@ void gbDynVertBuf::RenderUIQuad(gbUIQuad* quads, int numQuads,
             // Vertex 0: top-left
             pVerts[0] = q->x1; pVerts[1] = q->y1; pVerts[2] = q->z;
             *(unsigned int*)&pVerts[3] = q->color;
-            pVerts[4] = q->u1; pVerts[5] = q->v1;
+            pVerts[4] = q->su; pVerts[5] = q->sv;
             // Vertex 1: top-right
             pVerts[6] = q->x2; pVerts[7] = q->y1; pVerts[8] = q->z;
             *(unsigned int*)&pVerts[9] = q->color;
-            pVerts[10] = q->u2; pVerts[11] = q->v1;
+            pVerts[10] = q->eu; pVerts[11] = q->sv;
             // Vertex 2: bottom-left
             pVerts[12] = q->x1; pVerts[13] = q->y2; pVerts[14] = q->z;
             *(unsigned int*)&pVerts[15] = q->color;
-            pVerts[16] = q->u1; pVerts[17] = q->v2;
+            pVerts[16] = q->su; pVerts[17] = q->ev;
             // Vertex 3: bottom-left (duplicate for 2nd triangle)
             pVerts[18] = q->x1; pVerts[19] = q->y2; pVerts[20] = q->z;
             *(unsigned int*)&pVerts[21] = q->color;
-            pVerts[22] = q->u1; pVerts[23] = q->v2;
+            pVerts[22] = q->su; pVerts[23] = q->ev;
             // Vertex 4: top-right (duplicate for 2nd triangle)
             pVerts[24] = q->x2; pVerts[25] = q->y1; pVerts[26] = q->z;
             *(unsigned int*)&pVerts[27] = q->color;
-            pVerts[28] = q->u2; pVerts[29] = q->v1;
+            pVerts[28] = q->eu; pVerts[29] = q->sv;
             // Vertex 5: bottom-right
             pVerts[30] = q->x2; pVerts[31] = q->y2; pVerts[32] = q->z;
             *(unsigned int*)&pVerts[33] = q->color;
-            pVerts[34] = q->u2; pVerts[35] = q->v2;
+            pVerts[34] = q->eu; pVerts[35] = q->ev;
             pVerts += 36;
         }
     }

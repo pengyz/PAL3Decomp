@@ -17,7 +17,7 @@ gbRay::gbRay() {
 // Assignment operator
 gbRay& gbRay::operator=(const gbRay& r) {
     Origin = r.Origin;
-    Direction = r.direction;
+    Direction = r.Direction;
     return *this;
 }
 
@@ -239,7 +239,7 @@ int gbRay::IsColOBB_H(gbOBBox& obb) {
 
     gbRay localRay;
     localRay.Origin = localOrigin;
-    localRay.direction = localDir;
+    localRay.Direction = localDir;
     return localRay.IsColAABB(localBox);
 }
 
