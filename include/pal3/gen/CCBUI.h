@@ -124,7 +124,6 @@ public:
     char WriteNimbusToPlayerMgr(_DWORD *a2, int a3, int a4, int a5); // 0x00519A10
     UIWnd * GetNimbusColor(CCBUI *Block, char a2); // 0x00519B40
     int Render(); // 0x00519BB0
-    static char __userpurge@<al> CreateButton(int a1, int a2, int a3, int a4, int a5, _DWORD *a6, int a7); // 0x00519BD0
     int DeleteUIObj(); // 0x00519F50
     int AddRightControlButtonAni(int a2, unsigned int a3, int a4); // 0x00519FE0
     BOOL AddResultWindowAni(int a2, int a3); // 0x0051A090

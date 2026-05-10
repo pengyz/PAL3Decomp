@@ -26,6 +26,5 @@ public:
     char CreateSingle(const void *a2); // 0x004D6A60
     char CreateOne(int a2, int a3, int a4); // 0x004D6AC0
     _BYTE * DestroyAll(); // 0x004D6BA0
-    static void __usercall Render(int a1, struct gbVec3D *a2); // 0x004D6BC0
     int Update(float a2); // 0x004D6D30
 };

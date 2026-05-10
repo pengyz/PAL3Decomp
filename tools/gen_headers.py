@@ -316,9 +316,17 @@ def generate_header(cls_name, pdb_class, methods):
             else:
                 decl = "    %s %s(%s);" % (ret, method_name, params)
 
-            # Skip invalid method names (IDA special names with backticks, etc.)
+            # Skip invalid method names and calling conventions
             if '`' in method_name or ' ' in method_name or '?' in method_name:
                 continue
+            if '__userpurge' in sig or '__usercall' in sig:
+                continue
+            if '@<' in sig:  # IDA register annotations
+                continue
+            # Complex signatures (function pointer return types) -> simplify to int return
+            if sig.count('(') > 2:
+                ret = 'int'
+                params = ''  # can't parse params reliably, declare as no-arg
 
             # Deduplicate: skip if same method name+params already declared
             method_key = "%s(%s)" % (method_name, params)
