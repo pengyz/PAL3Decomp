@@ -52,38 +52,11 @@ int sub_502000(...);
 int sub_5020D0(...);
 int sub_5024D0(...);
 int sub_50A4B0(...);
-int sub_512310(...);
-int sub_512330(...);
-int sub_512380(...);
-int sub_5123D0(...);
 int sub_512420(...);
-int sub_512470(...);
-int sub_5124C0(...);
-int sub_512580(...);
 int sub_5125E0(...);
 int sub_512BA0(...);
-int sub_512D40(...);
-int sub_513150(...);
-int sub_513380(...);
-int sub_513420(...);
-int sub_513430(...);
-int sub_513600(...);
-int sub_5136A0(...);
-int sub_5136D0(...);
-int sub_5137F0(...);
 int sub_5158F0(...);
-int sub_5159A0(...);
-int sub_515B20(...);
 int sub_515C90(...);
-int sub_515DD0(...);
-int sub_515DF0(...);
-int sub_515E50(...);
-int sub_515E70(...);
-int sub_515E90(...);
-int sub_515EE0(...);
-int sub_515F30(...);
-int sub_515F80(...);
-int sub_515FD0(...);
 int sub_5163D0(...);
 int sub_51D5C0(...);
 int sub_53E970(...);
@@ -336,7 +309,7 @@ char * CCBSystem::GetCmdPtr(int idx)
 }
 
 // 0x004DB730
-char * CCBSystem::sub_4DB730(int a2)
+char * CCBSystem::CCBSystem::sub_4DB730(int a2)
 {
   char *result; // eax
 
@@ -509,7 +482,7 @@ LABEL_7:
 }
 
 // 0x00512310
-void sub_512310()
+void CCBSystem::HandleInput()
 {
   flt_17ACA78 = 12.0 + 12.0;
 }
@@ -522,7 +495,7 @@ int CCBSystem::SetQuitFlag()
 }
 
 // 0x00512330
-int sub_512330()
+int CCBSystem::IsEditorWindow()
 {
   dword_17ACA80 = 119;
   dword_17ACA84 = 314;
@@ -539,7 +512,7 @@ int CCBSystem::SetAuto()
 }
 
 // 0x00512380
-int sub_512380()
+int CCBSystem::SetAutoOnly()
 {
   dword_17ACA90 = 519;
   dword_17ACA94 = 519;
@@ -556,7 +529,7 @@ int CCBSystem::ShowInfo()
 }
 
 // 0x005123D0
-int sub_5123D0()
+int CCBSystem::SetTimeScale()
 {
   dword_17ACAA0 = 128;
   dword_17ACAA4 = 323;
@@ -580,7 +553,7 @@ int CCBSystem::DelAllTaskAndThread()
 }
 
 // 0x00512470
-int sub_512470()
+int CCBSystem::Proceed()
 {
   dword_17ACAC0 = 121;
   dword_17ACAC4 = 316;
@@ -597,7 +570,7 @@ int CCBSystem::CanBeHandleWPX_R()
 }
 
 // 0x005124C0
-int sub_5124C0()
+int CCBSystem::CanBeHandleNGH_R()
 {
   dword_17ACAD0 = 573;
   dword_17ACAD4 = 573;
@@ -607,7 +580,7 @@ int sub_5124C0()
 }
 
 // 0x00512500
-int CCBSystem::CCBSystem()
+CCBSystem::CCBSystem()
 {
   char *v1; // esi
   int v2; // ebx
@@ -648,7 +621,7 @@ int CCBSystem::CCBSystem()
 }
 
 // 0x00512580
-int sub_512580(int _this)
+int CCBSystem::ProcDialog(int _this)
 {
   _DWORD *v3; // ecx
 
@@ -1036,7 +1009,7 @@ char sub_512BA0(int _this)
 }
 
 // 0x00512D40
-void * sub_512D40(void *Block, char a2)
+void * CCBSystem::ProcCoAttack(void *Block, char a2)
 {
   C3DSpark::~C3DSpark((int)Block);
   if ( (a2 & 1) != 0 )
@@ -1226,7 +1199,7 @@ char CCBSystem::RenderCheck()
 }
 
 // 0x00513150
-char sub_513150(int _this)
+char CCBSystem::ProcMagic(int _this)
 {
   char v2; // bl
   int v3; // ebp
@@ -1357,7 +1330,7 @@ int CCBSystem::GetRenderFlag()
 }
 
 // 0x00513380
-bool sub_513380(HWND a1)
+bool CCBSystem::ProcUseItem(HWND a1)
 {
   return sub_4E0530(a1);
 }
@@ -1384,14 +1357,14 @@ int CCBSystem::SetRenderFlag(char flag)
 }
 
 // 0x00513420
-char sub_513420(char a2)
+char CCBSystem::ProcFlee(char a2)
 {
   *((_DWORD *)this + 132) = a2;
   return a2;
 }
 
 // 0x00513430
-char sub_513430(int _this)
+char CCBSystem::ProcDefence(int _this)
 {
   int v2; // ebx
   int v3; // ebp
@@ -1462,7 +1435,7 @@ char sub_513430(int _this)
 }
 
 // 0x00513600
-void sub_513600(int _this, float a2)
+void CCBSystem::ProcAI(int _this, float a2)
 {
   int v3; // ecx
   _DWORD *v4; // ecx
@@ -1495,7 +1468,7 @@ void sub_513600(int _this, float a2)
 }
 
 // 0x005136A0
-int sub_5136A0()
+int CCBSystem::ProcProtect()
 {
   unsigned int v1; // eax
 
@@ -1507,7 +1480,7 @@ int sub_5136A0()
 }
 
 // 0x005136D0
-char sub_5136D0(int _this, int a2)
+char CCBSystem::ProcMessage(int _this, int a2)
 {
   int i; // eax
   int v4; // ecx
@@ -1558,7 +1531,7 @@ char sub_5136D0(int _this, int a2)
 }
 
 // 0x005137F0
-int sub_5137F0()
+int CCBSystem::IsFriendDoSkill()
 {
   int v2; // ebp
   _DWORD *v3; // esi
@@ -2753,7 +2726,7 @@ int CCBSystem::CreateObj(int a2)
 }
 
 // 0x005159A0
-int sub_5159A0(const char *a1, const char *a2, UINT a3)
+int CCBSystem::CreateObj(const char *a1, const char *a2, UINT a3)
 {
   unsigned int v3; // eax
   CHAR *v4; // edi
@@ -2815,7 +2788,7 @@ char CCBSystem::CreateObj(int a2)
 }
 
 // 0x00515B20
-int sub_515B20(int ( *a2)(int _this, int a2), int a3, int a4, int a5, const void *a6)
+int CCBSystem::CreateObj(int ( *a2)(int _this, int a2), int a3, int a4, int a5, const void *a6)
 {
   int v8; // eax
   _BYTE *i; // ecx
@@ -2888,7 +2861,7 @@ bool CCBSystem::CreateObj(_DWORD *a2)
 }
 
 // 0x00515DD0
-void * sub_515DD0(void *Block, char a2)
+void * CCBSystem::DestroyObj(void *Block, char a2)
 {
   nullsub_3(Block);
   if ( (a2 & 1) != 0 )
@@ -2897,7 +2870,7 @@ void * sub_515DD0(void *Block, char a2)
 }
 
 // 0x00515DF0
-void * sub_515DF0(void *Block, char a2)
+void * CCBSystem::DestroyObj(void *Block, char a2)
 {
   sub_4E0330(Block);
   if ( (a2 & 1) != 0 )
@@ -2913,7 +2886,7 @@ int CCBSystem::DestroyObj()
 }
 
 // 0x00515E50
-int sub_515E50()
+int CCBSystem::DestroyObj()
 {
   dword_17ACE14 = 1094713344;
   return 1094713344;
@@ -2927,7 +2900,7 @@ void CCBSystem::DestroyObj()
 }
 
 // 0x00515E70
-void sub_515E70()
+void CCBSystem::DestroyObj()
 {
   flt_17ACE10 = 12.0 + 12.0;
 }
@@ -2940,7 +2913,7 @@ int CCBSystem::DestroyObj()
 }
 
 // 0x00515E90
-int sub_515E90()
+int CCBSystem::InitObj()
 {
   dword_17ACE1C = 119;
   dword_17ACE20 = 314;
@@ -2957,7 +2930,7 @@ int CCBSystem::InitObj()
 }
 
 // 0x00515EE0
-int sub_515EE0()
+int CCBSystem::InitObj()
 {
   dword_17ACE2C = 519;
   dword_17ACE30 = 519;
@@ -2974,7 +2947,7 @@ int CCBSystem::InitObj()
 }
 
 // 0x00515F30
-int sub_515F30()
+int CCBSystem::InitObj()
 {
   dword_17ACE3C = 128;
   dword_17ACE40 = 323;
@@ -2991,7 +2964,7 @@ int CCBSystem::InitObj()
 }
 
 // 0x00515F80
-int sub_515F80()
+int CCBSystem::InitObj()
 {
   dword_17ACE4C = 545;
   dword_17ACE50 = 545;
@@ -3008,7 +2981,7 @@ int CCBSystem::InitObj()
 }
 
 // 0x00515FD0
-int sub_515FD0()
+int CCBSystem::InitObj()
 {
   dword_17ACE5C = 121;
   dword_17ACE60 = 316;

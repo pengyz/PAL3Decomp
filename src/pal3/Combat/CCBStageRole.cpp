@@ -9,43 +9,10 @@ int sub_4F6A20(...);
 int sub_4F6A80(...);
 int sub_4F6AB0(...);
 int sub_4F6BB0(...);
-int sub_508930(...);
-int sub_5090F0(...);
-int sub_509140(...);
-int sub_509190(...);
-int sub_5091E0(...);
 int sub_509230(...);
-int sub_509280(...);
-int sub_5092A0(...);
-int sub_509410(...);
-int sub_509540(...);
-int sub_509690(...);
-int sub_50A1A0(...);
-int sub_50A1B0(...);
-int sub_50A1F0(...);
-int sub_50A200(...);
-int sub_50A210(...);
-int sub_50A260(...);
-int sub_50A2B0(...);
-int sub_50A500(...);
-int sub_50A5D0(...);
-int sub_50A6F0(...);
-int sub_50A700(...);
-int sub_50A770(...);
-int sub_50A8E0(...);
-int sub_50A8F0(...);
-int sub_50A960(...);
-int sub_50AA60(...);
-int sub_50AAE0(...);
-int sub_50AB10(...);
-int sub_50AC50(...);
-int sub_50B290(...);
-int sub_50B360(...);
 int sub_50B430(...);
 int sub_50B4C0(...);
 int sub_50B4F0(...);
-int sub_50B580(...);
-int sub_50BBD0(...);
 int sub_53DF80(...);
 
 // Unnamed globals (extern)
@@ -186,7 +153,7 @@ char CCBStageRole::IsActive(int index)
 }
 
 // 0x00508930
-int sub_508930(int a2, int a3, _DWORD *a4)
+CCBStageRole::~CCBStageRole(int a2, int a3, _DWORD *a4)
 {
   int v5; // edx
   _DWORD *v6; // esi
@@ -440,7 +407,7 @@ LABEL_22:
 }
 
 // 0x005090F0
-int sub_5090F0()
+int CCBStageRole::Proceed()
 {
   dword_17ABC7C = 519;
   dword_17ABC80 = 519;
@@ -457,7 +424,7 @@ int CCBStageRole::SetAlive()
 }
 
 // 0x00509140
-int sub_509140()
+int CCBStageRole::SetMaxBlend()
 {
   dword_17ABC8C = 128;
   dword_17ABC90 = 323;
@@ -474,7 +441,7 @@ int CCBStageRole::SetVisible()
 }
 
 // 0x00509190
-int sub_509190()
+int CCBStageRole::SetPause()
 {
   dword_17ABC9C = 545;
   dword_17ABCA0 = 545;
@@ -491,7 +458,7 @@ int CCBStageRole::OnChangeAction()
 }
 
 // 0x005091E0
-int sub_5091E0()
+int CCBStageRole::CheckAction()
 {
   dword_17ABCAC = 121;
   dword_17ABCB0 = 316;
@@ -515,7 +482,7 @@ int CCBStageRole::IsUnderMouse()
 }
 
 // 0x00509280
-int sub_509280()
+int CCBStageRole::IsCollideRay()
 {
   dword_17AB9DC = 12;
   return 12;
@@ -529,7 +496,7 @@ int CCBStageRole::GetRoleRadius()
 }
 
 // 0x005092A0
-int sub_5092A0()
+int CCBStageRole::GetRoleHeight()
 {
   dword_17AB9D8 = 508;
   return 508;
@@ -588,7 +555,7 @@ char * CCBStageRole::GetOBBox(int a2)
 }
 
 // 0x00509410
-int sub_509410(int _this)
+int CCBStageRole::GetRotAngle(int _this)
 {
   int v3; // ebp
   _DWORD *v4; // ecx
@@ -643,7 +610,7 @@ int sub_509410(int _this)
 }
 
 // 0x00509540
-char sub_509540(int _this, unsigned int a2)
+char CCBStageRole::IsIdle(int _this, unsigned int a2)
 {
   void *v3; // eax
   int v4; // eax
@@ -696,7 +663,7 @@ char sub_509540(int _this, unsigned int a2)
 }
 
 // 0x00509690
-char sub_509690()
+char CCBStageRole::IsAtInitPos()
 {
   void *v2; // edi
 
@@ -1114,14 +1081,14 @@ int CCBStageRole::Grab(int a2)
 }
 
 // 0x0050A1A0
-char sub_50A1A0(char a2)
+char CCBStageRole::Release(char a2)
 {
   *((_DWORD *)this + 272) = a2;
   return a2;
 }
 
 // 0x0050A1B0
-int sub_50A1B0(int _this)
+int CCBStageRole::TryRelease(int _this)
 {
   if ( CCBRoleState::GetRoleField(*(_BYTE **)(this + 4), *(_DWORD *)(this + 284), 23) )
     return CCBStageRole::ClearAniMsg(1, 0.44);
@@ -1130,21 +1097,21 @@ int sub_50A1B0(int _this)
 }
 
 // 0x0050A1F0
-char sub_50A1F0(char a2)
+char CCBStageRole::ForceRelease(char a2)
 {
   *((_DWORD *)this + 265) = a2;
   return a2;
 }
 
 // 0x0050A200
-char sub_50A200(char a2)
+char CCBStageRole::DangerForceRelease(char a2)
 {
   *((_DWORD *)this + 266) = a2;
   return a2;
 }
 
 // 0x0050A210
-int sub_50A210(int _this)
+int CCBStageRole::IsGrabedBy(int _this)
 {
   int result; // eax
 
@@ -1157,7 +1124,7 @@ int sub_50A210(int _this)
 }
 
 // 0x0050A260
-int sub_50A260(int _this)
+int CCBStageRole::GetPointerPos(int _this)
 {
   int result; // eax
 
@@ -1170,7 +1137,7 @@ int sub_50A260(int _this)
 }
 
 // 0x0050A2B0
-void sub_50A2B0(int a2)
+void CCBStageRole::SetBladeTime(int a2)
 {
   int *v3; // eax
   double v4; // st7
@@ -1226,7 +1193,7 @@ void sub_50A2B0(int a2)
 }
 
 // 0x0050A500
-bool sub_50A500(char a1, int a2, int a3, int a4, int a5, int a6)
+bool CCBStageRole::LoadAction(char a1, int a2, int a3, int a4, int a5, int a6)
 {
   struct gbOBBox *v6; // eax
 
@@ -1256,7 +1223,7 @@ float * CCBStageRole::GetWorldPos()
 }
 
 // 0x0050A5D0
-double sub_50A5D0(float *a2)
+double CCBStageRole::AddTask(float *a2)
 {
   double v3; // st7
   double v4; // st6
@@ -1295,13 +1262,13 @@ double sub_50A5D0(float *a2)
 }
 
 // 0x0050A6F0
-bool sub_50A6F0()
+bool CCBStageRole::ForceDelTaskByPFN()
 {
   return *((_DWORD *)this + 98) == 0;
 }
 
 // 0x0050A700
-bool sub_50A700()
+bool CCBStageRole::ForceEndTaskByPFN()
 {
   double v1; // st7
   double v2; // st6
@@ -1320,7 +1287,7 @@ bool sub_50A700()
 }
 
 // 0x0050A770
-bool sub_50A770(int a2, int a3)
+bool CCBStageRole::EndTask(int a2, int a3)
 {
   int v4; // eax
   float v5; // ecx
@@ -1387,14 +1354,14 @@ bool sub_50A770(int a2, int a3)
 }
 
 // 0x0050A8E0
-char sub_50A8E0(int a2)
+char CCBStageRole::DelTask(int a2)
 {
   *((_DWORD *)this + 1641) = a2;
   return 1;
 }
 
 // 0x0050A8F0
-char sub_50A8F0(int _this, int a2, char a3)
+char CCBStageRole::DelAllTask(int _this, int a2, char a3)
 {
   char result; // al
 
@@ -1423,7 +1390,7 @@ char CCBStageRole::GetCurrentTask(int _this, int a2)
 }
 
 // 0x0050A960
-int sub_50A960(int _this)
+int CCBStageRole::GetCurrentTaskIndex(int _this)
 {
   this->GetState();
   *(_BYTE *)(this + 373) = 0;
@@ -1465,7 +1432,7 @@ _DWORD * CCBStageRole::DoTask(int _this, float *a2)
 }
 
 // 0x0050AA60
-void sub_50AA60(int _this, float a2)
+void CCBStageRole::ClearBadPushTask(int _this, float a2)
 {
   unsigned int v3; // eax
   int v4; // eax
@@ -1488,7 +1455,7 @@ void sub_50AA60(int _this, float a2)
 }
 
 // 0x0050AAE0
-double sub_50AAE0()
+double CCBStageRole::PushBackAllTask()
 {
   int v1; // eax
   float v3; // [esp+4h] [ebp-4h] BYREF
@@ -1502,7 +1469,7 @@ double sub_50AAE0()
 }
 
 // 0x0050AB10
-void sub_50AB10(int _this, char a2, float a3)
+void CCBStageRole::ClearAniMsg(int _this, char a2, float a3)
 {
   int v4; // eax
   int v5; // eax
@@ -1540,7 +1507,7 @@ void sub_50AB10(int _this, char a2, float a3)
 }
 
 // 0x0050AC50
-int sub_50AC50(int a2, char a3)
+int CCBStageRole::SetParam(int a2, char a3)
 {
   int result; // eax
 
@@ -1756,7 +1723,7 @@ char CCBStageRole::ProcTransportRun(
 }
 
 // 0x0050B290
-char sub_50B290(int a2)
+char CCBStageRole::SetForceFinishThrowingWeapon(int a2)
 {
   int v2; // ebx
   int v4; // eax
@@ -1807,7 +1774,7 @@ char CCBStageRole::GetCurrentState()
 }
 
 // 0x0050B360
-int sub_50B360()
+int CCBStageRole::ProcCatchED()
 {
   int result; // eax
 
@@ -1856,7 +1823,7 @@ int CCBStageRole::GetTaskState()
 }
 
 // 0x0050B580
-char sub_50B580(int a2, int a3, char a4)
+char CCBStageRole::ProcPursueRole(int a2, int a3, char a4)
 {
   int v5; // edi
   void (***v6)(_DWORD, int); // ecx
@@ -2086,7 +2053,7 @@ char sub_50B580(int a2, int a3, char a4)
 }
 
 // 0x0050BBD0
-int sub_50BBD0(int _this)
+int CCBStageRole::ProcTurn(int _this)
 {
   unsigned int v2; // eax
   _BYTE *v3; // ecx

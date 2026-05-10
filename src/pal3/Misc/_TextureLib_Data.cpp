@@ -2,17 +2,6 @@
 #include "pal3/globals.h"
 #include "pal3/gen/_TextureLib_Data.h"
 
-// Forward declarations for unnamed functions
-int sub_53FFA0(...);
-int sub_540070(...);
-int sub_5400E0(...);
-int sub_540210(...);
-int sub_540440(...);
-int sub_540650(...);
-int sub_5407A0(...);
-int sub_5408E0(...);
-int sub_540A20(...);
-
 // Unnamed globals (extern)
 extern int dword_1895048;
 extern int dword_189504C;
@@ -26,7 +15,7 @@ extern int dword_1895068;
 extern int dword_189506C;
 
 // 0x0053FFA0
-void sub_53FFA0()
+_TextureLib_Data::_TextureLib_Data()
 {
   if ( dword_1895048 )
   {
@@ -81,7 +70,7 @@ void sub_53FFA0()
 }
 
 // 0x00540070
-void sub_540070(int a1, int a2, int a3, int a4, float *a5)
+_TextureLib_Data::~_TextureLib_Data(int a1, int a2, int a3, int a4, float *a5)
 {
   gbDynVertBuf *DynVertBuf; // eax
   float v6[10]; // [esp+4h] [ebp-28h] BYREF
@@ -97,7 +86,7 @@ void sub_540070(int a1, int a2, int a3, int a4, float *a5)
 }
 
 // 0x005400E0
-void sub_5400E0(int *a1, struct gbTextureArray *a2, int a3, int a4)
+void _TextureLib_Data::_GetItemNum(int *a1, struct gbTextureArray *a2, int a3, int a4)
 {
   float v4; // ecx
   int v5; // ecx
@@ -149,7 +138,7 @@ void sub_5400E0(int *a1, struct gbTextureArray *a2, int a3, int a4)
 }
 
 // 0x00540210
-void sub_540210(_DWORD *a1, int *a2, struct gbTextureArray *a3, int a4, unsigned int a5, float *a6)
+void _TextureLib_Data::_CheckItem(_DWORD *a1, int *a2, struct gbTextureArray *a3, int a4, unsigned int a5, float *a6)
 {
   int v6; // edx
   float v7; // eax
@@ -245,7 +234,7 @@ void sub_540210(_DWORD *a1, int *a2, struct gbTextureArray *a3, int a4, unsigned
 }
 
 // 0x00540440
-void sub_540440(
+void _TextureLib_Data::SetLibFolder(
         int *a1,
         unsigned int *a2,
         struct gbTextureArray *a3,
@@ -352,7 +341,7 @@ void sub_540440(
 }
 
 // 0x00540650
-void sub_540650(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *a6, int a7, unsigned int *a8)
+void _TextureLib_Data::GetLibInfo(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *a6, int a7, unsigned int *a8)
 {
   unsigned int v8; // ecx
   float v9; // edx
@@ -427,7 +416,7 @@ LABEL_12:
 }
 
 // 0x005407A0
-void sub_5407A0(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *a6, unsigned int a7)
+void _TextureLib_Data::GetLib(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *a6, unsigned int a7)
 {
   int v7; // ecx
   __int64 v8; // rax
@@ -485,7 +474,7 @@ void sub_5407A0(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *
 }
 
 // 0x005408E0
-void sub_5408E0(_DWORD *a1, int *a2, int *a3, struct gbTextureArray *a4, unsigned int *a5)
+void _TextureLib_Data::GetTextureInfo(_DWORD *a1, int *a2, int *a3, struct gbTextureArray *a4, unsigned int *a5)
 {
   unsigned int v5; // ecx
   float v6; // edx
@@ -547,7 +536,7 @@ void sub_5408E0(_DWORD *a1, int *a2, int *a3, struct gbTextureArray *a4, unsigne
 }
 
 // 0x00540A20
-void sub_540A20(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *a6, unsigned int *a7)
+void _TextureLib_Data::GetTextureInfo(int a1, int a2, int a3, int a4, int *a5, struct gbTextureArray *a6, unsigned int *a7)
 {
   double v7; // st7
   double v8; // st6

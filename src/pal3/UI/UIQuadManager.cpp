@@ -4,7 +4,6 @@
 
 // Forward declarations for unnamed functions
 int sub_541470(...);
-int sub_5415F0(...);
 
 // Unnamed globals (extern)
 extern unsigned char byte_1894DB0;
@@ -32,7 +31,7 @@ void UIQuadManager::Destroy()
 }
 
 // 0x005415F0
-void *sub_5415F0()
+void *UIQuadManager::GetInstance()
 {
   if ( (byte_1894DB0 & 1) == 0 )
   {

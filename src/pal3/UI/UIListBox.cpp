@@ -4,27 +4,8 @@
 
 // Forward declarations for unnamed functions
 int sub_432680(...);
-int sub_43DCD0(...);
-int sub_43DCF0(...);
-int sub_43DDF0(...);
-int sub_43DE40(...);
-int sub_43DEA0(...);
-int sub_43DEC0(...);
-int sub_43DEF0(...);
-int sub_43DF10(...);
-int sub_43DF20(...);
 int sub_43DF70(...);
-int sub_43E100(...);
 int sub_43E120(...);
-int sub_43E330(...);
-int sub_43E3B0(...);
-int sub_43E440(...);
-int sub_43E480(...);
-int sub_43E520(...);
-int sub_43E5C0(...);
-int sub_43E7D0(...);
-int sub_43E8A0(...);
-int sub_43EBA0(...);
 int sub_43F360(...);
 int sub_43F520(...);
 int sub_43F6D0(...);
@@ -41,7 +22,7 @@ extern void *off_56AD20;
 extern void *off_56AD40;
 
 // 0x0043DCD0
-_DWORD * sub_43DCD0()
+UIListBox::UIListBox()
 {
   UIWnd::UIWnd();
   *this = &off_56AD20;
@@ -50,7 +31,7 @@ _DWORD * sub_43DCD0()
 }
 
 // 0x0043DCF0
-UIWnd * sub_43DCF0(UIWnd *Block, char a2)
+UIListBox::~UIListBox(UIWnd *Block, char a2)
 {
   UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
@@ -80,7 +61,7 @@ int UIListBox::SetSelTexture(int id, int pRect, int a4, int a5, int a6, int a7)
 }
 
 // 0x0043DDF0
-int sub_43DDF0()
+int UIListBox::SetScroll()
 {
   int result; // eax
   int v3[17]; // [esp+4h] [ebp-44h] BYREF
@@ -100,7 +81,7 @@ int sub_43DDF0()
 }
 
 // 0x0043DE40
-int sub_43DE40(gbRefObject **this)
+int UIListBox::SetScrollPos(gbRefObject **this)
 {
   gbRefObject *v2; // ecx
 
@@ -121,7 +102,7 @@ int UIListBox::Destroy()
 }
 
 // 0x0043DEA0
-int sub_43DEA0()
+int UIListBox::AddColumn()
 {
   MEMORY[0xD902F4] = 1094713344;
   return 1094713344;
@@ -135,7 +116,7 @@ void UIListBox::AddRow()
 }
 
 // 0x0043DEC0
-void sub_43DEC0()
+void UIListBox::SetSubItem()
 {
   MEMORY[0xD902F0] = 12.0 + 12.0;
 }
@@ -148,7 +129,7 @@ void * UIListBox::GetSubItemInfo()
 }
 
 // 0x0043DEF0
-int sub_43DEF0(gbRefObject **this)
+int UIListBox::Render(gbRefObject **this)
 {
   gbRefObject *v2; // ecx
 
@@ -160,13 +141,13 @@ int sub_43DEF0(gbRefObject **this)
 }
 
 // 0x0043DF10
-void sub_43DF10()
+void UIListBox::CalHeightCount()
 {
   PtrArray::Clear(this + 16);
 }
 
 // 0x0043DF20
-void sub_43DF20(void **this)
+void UIListBox::GetItemPos(void **this)
 {
   sub_43DF70();
   sub_432680(this + 16);
@@ -229,7 +210,7 @@ char *UIListBox::UpdateKeyCtrl(UIListBox *this)
 }
 
 // 0x0043E100
-UIWnd * sub_43E100(UIWnd *Block, char a2)
+UIWnd * UIListBox::DeleteAllItems(UIWnd *Block, char a2)
 {
   Block->DeleteRow();
   if ( (a2 & 1) != 0 )
@@ -320,7 +301,7 @@ int UIListBox::CalScrollBarRange(int _this, int id, _DWORD *a3, int parent, LPCS
 }
 
 // 0x0043E330
-void sub_43E330(int a2, int a3)
+void UIListBox::GetSel(int a2, int a3)
 {
   int v3; // edi
   gbTexture *v5; // eax
@@ -338,7 +319,7 @@ void sub_43E330(int a2, int a3)
 }
 
 // 0x0043E3B0
-int sub_43E3B0(int a2, _DWORD *a3, int a4, int a5, char a6)
+int UIListBox::GetLockSel(int a2, _DWORD *a3, int a4, int a5, char a6)
 {
   int v8; // ecx
   int v9; // edx
@@ -361,7 +342,7 @@ int sub_43E3B0(int a2, _DWORD *a3, int a4, int a5, char a6)
 }
 
 // 0x0043E440
-int sub_43E440(int a2)
+int UIListBox::SetSel(int a2)
 {
   int v3; // eax
 
@@ -376,7 +357,7 @@ int sub_43E440(int a2)
 }
 
 // 0x0043E480
-int sub_43E480(int a2, int a3, int a4)
+int UIListBox::SetItemHeight(int a2, int a3, int a4)
 {
   int v6; // edi
   int v7; // eax
@@ -412,7 +393,7 @@ int sub_43E480(int a2, int a3, int a4)
 }
 
 // 0x0043E520
-int sub_43E520(gbRefObject **this)
+int UIListBox::GetItemCount(gbRefObject **this)
 {
   gbRefObject *v2; // ecx
 
@@ -440,7 +421,7 @@ int UIListBox::SetFirstShow(char *Source, int a3)
 }
 
 // 0x0043E5C0
-int sub_43E5C0(char *Source, int a3)
+int UIListBox::SetItemOffset(char *Source, int a3)
 {
   void *v4; // eax
   char *v5; // edi
@@ -534,7 +515,7 @@ int sub_43E5C0(char *Source, int a3)
 }
 
 // 0x0043E7D0
-struct gbVFileSystem * sub_43E7D0(int a2, int a3, char *Source, int a5)
+struct gbVFileSystem * UIListBox::SetMouseMoveSel(int a2, int a3, char *Source, int a5)
 {
   int v5; // esi
   gbTexture *v6; // eax
@@ -554,7 +535,7 @@ struct gbVFileSystem * sub_43E7D0(int a2, int a3, char *Source, int a5)
 }
 
 // 0x0043E8A0
-int sub_43E8A0()
+int UIListBox::EnableRow()
 {
   int result; // eax
   int v3; // eax
@@ -705,7 +686,7 @@ int sub_43E8A0()
 }
 
 // 0x0043EBA0
-int sub_43EBA0()
+int UIListBox::SetDefaultSel()
 {
   return (*((_DWORD *)this + 7) - *((_DWORD *)this + 5)) / *((_DWORD *)this + 277);
 }

@@ -2,15 +2,12 @@
 #include "pal3/globals.h"
 #include "pal3/gen/_Texture_Info.h"
 
-// Forward declarations for unnamed functions
-int sub_53FCF0(...);
-
 // Unnamed globals (extern)
 extern char aDProjectPal3Ui_0[];
 extern char aNotFoundSInUiO[];
 
 // 0x0053FCF0
-CHAR * sub_53FCF0(int _this, LPCSTR lpString)
+CHAR * _Texture_Info::_CalculateUV(int _this, LPCSTR lpString)
 {
   int v3; // edi
   int v4; // ebx

@@ -4,10 +4,6 @@
 
 // Forward declarations for unnamed functions
 int sub_511E80(...);
-int sub_511EE0(...);
-int sub_511F90(...);
-int sub_512240(...);
-int sub_5122F0(...);
 
 // Unnamed globals (extern)
 extern char aCNewFailed_0[];
@@ -17,7 +13,7 @@ extern char aShadowTga_0[];
 extern int dword_17ACA7C;
 
 // 0x00511EE0
-char sub_511EE0()
+CCBStageShadow::CCBStageShadow()
 {
   gbTexture *v2; // eax
   _DWORD *v3; // eax
@@ -55,7 +51,7 @@ char sub_511EE0()
 }
 
 // 0x00511F90
-char sub_511F90(int _this)
+CCBStageShadow::~CCBStageShadow(int _this)
 {
   gbRefObject::Release(*(gbRefObject **)(this + 4));
   gbRefObject::Release(*(gbRefObject **)(this + 8));
@@ -213,7 +209,7 @@ LABEL_8:
 }
 
 // 0x00512240
-float * sub_512240()
+float * CCBStageShadow::Destroy()
 {
   float *v1; // edx
   float *result; // eax
@@ -256,7 +252,7 @@ int CCBStageShadow::Update()
 }
 
 // 0x005122F0
-int sub_5122F0()
+int CCBStageShadow::Render()
 {
   dword_17ACA7C = 1094713344;
   return 1094713344;

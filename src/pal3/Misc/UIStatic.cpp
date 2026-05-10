@@ -2,18 +2,12 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UIStatic.h"
 
-// Forward declarations for unnamed functions
-int sub_440740(...);
-int sub_440BA0(...);
-int sub_440DD0(...);
-int sub_440F30(...);
-
 // Unnamed globals (extern)
 extern void *off_56AD88;
 extern void *off_5974E0;
 
 // 0x00440740
-void sub_440740()
+UIStatic::UIStatic()
 {
   _DWORD *v2; // eax
   int v3; // ecx
@@ -41,7 +35,7 @@ void sub_440740()
 }
 
 // 0x00440BA0
-int sub_440BA0(gbRefObject **this)
+int UIStatic::OnMessage(gbRefObject **this)
 {
   gbRefObject **v2; // esi
   int v3; // ebx
@@ -63,7 +57,7 @@ int sub_440BA0(gbRefObject **this)
 }
 
 // 0x00440DD0
-int sub_440DD0(int _this, int a2, int a3)
+int UIStatic::Update(int _this, int a2, int a3)
 {
   BOOL v5; // eax
   int v6; // ecx
@@ -147,7 +141,7 @@ int sub_440DD0(int _this, int a2, int a3)
 }
 
 // 0x00440F30
-int sub_440F30(int _this)
+int UIStatic::Render(int _this)
 {
   int result; // eax
   int v3; // eax

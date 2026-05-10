@@ -2,27 +2,13 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBLineupWindow.h"
 
-// Forward declarations for unnamed functions
-int sub_51CFB0(...);
-int sub_51D070(...);
-int sub_51D120(...);
-int sub_51D1D0(...);
-int sub_51D290(...);
-int sub_51D340(...);
-int sub_51D3F0(...);
-int sub_51D4A0(...);
-int sub_51D590(...);
-int sub_51D5B0(...);
-int sub_51D5F0(...);
-int sub_51D610(...);
-
 // Unnamed globals (extern)
 extern char aCNewFailed[];
 extern char aDProjectPal3Co_12[];
 extern unsigned char byte_17ACF80;
 
 // 0x0051CFB0
-char sub_51CFB0(_DWORD *a1)
+CCBLineupWindow::CCBLineupWindow(_DWORD *a1)
 {
   _DWORD *v1; // eax
   _DWORD *v2; // eax
@@ -50,7 +36,7 @@ char sub_51CFB0(_DWORD *a1)
 }
 
 // 0x0051D070
-char sub_51D070(_DWORD *a1)
+CCBLineupWindow::~CCBLineupWindow(_DWORD *a1)
 {
   _DWORD *v1; // eax
   _DWORD *v2; // eax
@@ -78,7 +64,7 @@ char sub_51D070(_DWORD *a1)
 }
 
 // 0x0051D120
-char sub_51D120(_DWORD *a1)
+char CCBLineupWindow::Reset(_DWORD *a1)
 {
   _DWORD *v1; // eax
   _DWORD *v2; // eax
@@ -106,7 +92,7 @@ char sub_51D120(_DWORD *a1)
 }
 
 // 0x0051D1D0
-char sub_51D1D0(_DWORD *a1)
+char CCBLineupWindow::Create(_DWORD *a1)
 {
   _DWORD *v1; // eax
   _DWORD *v2; // eax
@@ -134,7 +120,7 @@ char sub_51D1D0(_DWORD *a1)
 }
 
 // 0x0051D290
-char sub_51D290(_DWORD *a1)
+char CCBLineupWindow::Destroy(_DWORD *a1)
 {
   _BYTE *v1; // eax
   int v2; // eax
@@ -162,7 +148,7 @@ char sub_51D290(_DWORD *a1)
 }
 
 // 0x0051D340
-char sub_51D340(_DWORD *a1)
+char CCBLineupWindow::OnMessage(_DWORD *a1)
 {
   char *v1; // eax
   int v2; // eax
@@ -190,7 +176,7 @@ char sub_51D340(_DWORD *a1)
 }
 
 // 0x0051D3F0
-char sub_51D3F0(_DWORD *a1)
+char CCBLineupWindow::Update(_DWORD *a1)
 {
   _DWORD *v1; // eax
   int v2; // eax
@@ -218,7 +204,7 @@ char sub_51D3F0(_DWORD *a1)
 }
 
 // 0x0051D4A0
-char sub_51D4A0(_DWORD *a1)
+char CCBLineupWindow::Render(_DWORD *a1)
 {
   _DWORD *v1; // eax
   _DWORD *v2; // eax
@@ -253,7 +239,7 @@ int CCBLineupWindow::IsPtOnFace()
 }
 
 // 0x0051D590
-int sub_51D590()
+int CCBLineupWindow::IsPtOnFace()
 {
   *(_DWORD *)&byte_17ACF80[908] = 1094713344;
   return 1094713344;
@@ -267,13 +253,13 @@ void CCBLineupWindow::IsPtOnInitPos()
 }
 
 // 0x0051D5B0
-void sub_51D5B0()
+void CCBLineupWindow::IsPtOnInitPos()
 {
   *(float *)&byte_17ACF80[904] = 12.0 + 12.0;
 }
 
 // 0x0051D5F0
-char sub_51D5F0()
+char CCBLineupWindow::IsFaceOnInitPos()
 {
   g_RandSeed = timeGetTime();
   g_nRandCallCount = 0;
@@ -281,7 +267,7 @@ char sub_51D5F0()
 }
 
 // 0x0051D610
-char sub_51D610(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, _DWORD *a9)
+char CCBLineupWindow::SetFaceLineup(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, _DWORD *a9)
 {
   if ( a1 > a7 || a5 > a3 || a2 > a8 || a6 > a4 )
     return 0;

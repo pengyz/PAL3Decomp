@@ -3,14 +3,6 @@
 #include "pal3/gen/CCBItemWindow.h"
 
 // Forward declarations for unnamed functions
-int sub_51B160(...);
-int sub_51B1D0(...);
-int sub_51B210(...);
-int sub_51B4B0(...);
-int sub_51B570(...);
-int sub_51B5D0(...);
-int sub_51B620(...);
-int sub_51B670(...);
 int sub_51B6E0(...);
 
 // Unnamed globals (extern)
@@ -27,7 +19,7 @@ extern void *off_570218;
 extern void *off_570554;
 
 // 0x0051B160
-UIWnd * sub_51B160(UIWnd *Block, char a2)
+CCBItemWindow::CCBItemWindow(UIWnd *Block, char a2)
 {
   UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
@@ -36,7 +28,7 @@ UIWnd * sub_51B160(UIWnd *Block, char a2)
 }
 
 // 0x0051B1D0
-int sub_51B1D0()
+int CCBItemWindow::Reset()
 {
   *((_DWORD *)this + 18) = 0;
   *((_DWORD *)this + 19) = 0;
@@ -56,7 +48,7 @@ int sub_51B1D0()
 }
 
 // 0x0051B210
-char sub_51B210(int _this, _DWORD *a2, int a3)
+char CCBItemWindow::Create(int _this, _DWORD *a2, int a3)
 {
   _DWORD *v4; // ebx
   _DWORD *v5; // ebx
@@ -195,7 +187,7 @@ char sub_51B210(int _this, _DWORD *a2, int a3)
 }
 
 // 0x0051B4B0
-int sub_51B4B0(int _this)
+int CCBItemWindow::Destroy(int _this)
 {
   int result; // eax
   int v3; // ecx
@@ -275,7 +267,7 @@ int sub_51B4B0(int _this)
 }
 
 // 0x0051B570
-BOOL sub_51B570(int a2, int a3)
+BOOL CCBItemWindow::HandleInput(int a2, int a3)
 {
   if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
     CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 214, -1, 0);
@@ -283,7 +275,7 @@ BOOL sub_51B570(int a2, int a3)
 }
 
 // 0x0051B5D0
-int sub_51B5D0(int a2)
+int CCBItemWindow::OnMessage(int a2)
 {
   int v3; // edi
   void (****v4)(_DWORD, int); // esi
@@ -309,7 +301,7 @@ int sub_51B5D0(int a2)
 }
 
 // 0x0051B620
-_DWORD * sub_51B620()
+_DWORD * CCBItemWindow::Update()
 {
   this->UIListBox();
   *this = &off_570554;
@@ -318,7 +310,7 @@ _DWORD * sub_51B620()
 }
 
 // 0x0051B670
-UIWnd * sub_51B670(UIWnd *Block, char a2)
+UIWnd * CCBItemWindow::CreateButtons(UIWnd *Block, char a2)
 {
   UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )

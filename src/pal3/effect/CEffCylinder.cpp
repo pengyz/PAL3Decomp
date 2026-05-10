@@ -3,16 +3,6 @@
 #include "pal3/gen/CEffCylinder.h"
 
 // Forward declarations for unnamed functions
-int sub_4C3DD0(...);
-int sub_4C3EB0(...);
-int sub_4C3EC0(...);
-int sub_4C4370(...);
-int sub_4C45A0(...);
-int sub_4C48D0(...);
-int sub_4C4B00(...);
-int sub_4C5010(...);
-int sub_4C5150(...);
-int sub_4C52C0(...);
 int sub_4C5350(...);
 int sub_4C55F0(...);
 int sub_4D4D30(...);
@@ -78,7 +68,7 @@ extern int unk_5D50E4;
 extern int unk_FFFFFF;
 
 // 0x004C3DD0
-void sub_4C3DD0(int a1)
+CEffCylinder::CEffCylinder(int a1)
 {
   int v2; // edi
   void *v3; // eax
@@ -132,13 +122,13 @@ LABEL_14:
 }
 
 // 0x004C3EB0
-void sub_4C3EB0()
+CEffCylinder::~CEffCylinder()
 {
   *this = &off_56F62C;
 }
 
 // 0x004C3EC0
-int sub_4C3EC0(int _this, int a2, float a3, float a4, float a5)
+int CEffCylinder::Init(int _this, int a2, float a3, float a4, float a5)
 {
   int result; // eax
   int v7; // ecx
@@ -340,7 +330,7 @@ LABEL_10:
 }
 
 // 0x004C4370
-void sub_4C4370(int _this)
+void CEffCylinder::Destroy(int _this)
 {
   char v2; // al
   bool v3; // zf
@@ -416,7 +406,7 @@ void sub_4C4370(int _this)
 }
 
 // 0x004C45A0
-void sub_4C45A0(int _this, float a2)
+void CEffCylinder::CreateTask(int _this, float a2)
 {
   int v2; // edi
   double v3; // st7
@@ -593,7 +583,7 @@ LABEL_30:
 }
 
 // 0x004C48D0
-void sub_4C48D0(_DWORD *a2)
+void CEffCylinder::ProcInitTask(_DWORD *a2)
 {
   _DWORD *v2; // ebx
   int v3; // ecx
@@ -722,7 +712,7 @@ LABEL_31:
 }
 
 // 0x004C4B00
-int sub_4C4B00(int _this, int a2)
+int CEffCylinder::ProcCommonTask(int _this, int a2)
 {
   double v3; // st7
   int v4; // edi
@@ -917,7 +907,7 @@ int sub_4C4B00(int _this, int a2)
 }
 
 // 0x004C5010
-void * sub_4C5010(int a1)
+void * CEffCylinder::GetEditorTaskDescription(int a1)
 {
   void *result; // eax
 
@@ -1003,7 +993,7 @@ void * sub_4C5010(int a1)
 }
 
 // 0x004C5150
-void * sub_4C5150(int a1)
+void * CEffCylinder::GetEditorObjDescription(int a1)
 {
   void *result; // eax
 
@@ -1108,7 +1098,7 @@ void CEffCylinder::InitDefaultUVSet(int a2, int a3)
 }
 
 // 0x004C52C0
-_DWORD * sub_4C52C0(int _this, int a2)
+_DWORD * CEffCylinder::LoadTexture(int _this, int a2)
 {
   gbTexture *v3; // eax
   _DWORD *result; // eax

@@ -11,13 +11,7 @@ int sub_431780(...);
 int sub_431870(...);
 int sub_4318A0(...);
 int sub_4319C0(...);
-int sub_431D80(...);
-int sub_431F00(...);
-int sub_431F10(...);
-int sub_431F40(...);
 int sub_432990(...);
-int sub_434C00(...);
-int sub_43AA00(...);
 
 // Unnamed globals (extern)
 extern char aBegin[];
@@ -389,21 +383,21 @@ int PalScript::LoadNext()
 }
 
 // 0x00431D80
-int sub_431D80()
+PalScript::PalScript()
 {
   unknown_libname_339();
   return atexit(unknown_libname_340);
 }
 
 // 0x00431F00
-int sub_431F00()
+int PalScript::AddWaitObj()
 {
   PalScript::AddCamObj();
   return atexit(PalScript::ClearAllCamObj);
 }
 
 // 0x00431F10
-int sub_431F10(int a1)
+int PalScript::AddCamObj(int a1)
 {
   byte_D8C2B8 = HIBYTE(a1);
   dword_D8C2BC = 0;
@@ -413,7 +407,7 @@ int sub_431F10(int a1)
 }
 
 // 0x00431F40
-void sub_431F40()
+void PalScript::ClearAllCamObj()
 {
   char v0; // al
 
@@ -478,7 +472,7 @@ int PalScript::Update()
 }
 
 // 0x00434C00
-char *sub_434C00()
+char *PalScript::GetString()
 {
   char *result; // eax
 
@@ -510,7 +504,7 @@ int PalScript::Reset()
 }
 
 // 0x0043AA00
-struct gbVFileSystem * sub_43AA00(gbRefObject **this, const char *a2, char a3)
+struct gbVFileSystem * PalScript::OpenScript(gbRefObject **this, const char *a2, char a3)
 {
   gbRefObject *v4; // ecx
   int v5; // edi

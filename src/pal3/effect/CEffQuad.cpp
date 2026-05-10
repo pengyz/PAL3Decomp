@@ -3,14 +3,8 @@
 #include "pal3/gen/CEffQuad.h"
 
 // Forward declarations for unnamed functions
-int sub_4D1090(...);
-int sub_4D1BE0(...);
-int sub_4D1CA0(...);
-int sub_4D1E50(...);
 int sub_4D1EF0(...);
-int sub_4D1F30(...);
 int sub_4D1FD0(...);
-int sub_4D2080(...);
 int sub_4D22F0(...);
 int sub_4D2E10(...);
 int sub_4D3010(...);
@@ -23,7 +17,7 @@ extern int dword_17A7BC0;
 extern int unk_FFFFFF;
 
 // 0x004D1090
-char sub_4D1090(int _this, int a2)
+char CEffQuad::Create(int _this, int a2)
 {
   int v3; // ebp
   void *v4; // eax
@@ -156,7 +150,7 @@ char sub_4D1090(int _this, int a2)
 }
 
 // 0x004D1BE0
-char sub_4D1BE0(const void *a2)
+char CEffQuad::DestroyOneQuad(const void *a2)
 {
   int v3; // ecx
   int v4; // ebp
@@ -194,7 +188,7 @@ char sub_4D1BE0(const void *a2)
 }
 
 // 0x004D1CA0
-int sub_4D1CA0(int _this, int a2)
+int CEffQuad::SetQuad(int _this, int a2)
 {
   int v2; // edx
   int result; // eax
@@ -242,7 +236,7 @@ int sub_4D1CA0(int _this, int a2)
 }
 
 // 0x004D1E50
-_DWORD * sub_4D1E50(int a2)
+_DWORD * CEffQuad::DestroyAllQuad(int a2)
 {
   _DWORD *result; // eax
   int v3; // ecx
@@ -271,7 +265,7 @@ _DWORD * sub_4D1E50(int a2)
 }
 
 // 0x004D1F30
-_DWORD * sub_4D1F30(int _this, int a2)
+_DWORD * CEffQuad::ToNextFrame(int _this, int a2)
 {
   gbTexture *v3; // eax
   _DWORD *result; // eax
@@ -306,7 +300,7 @@ _DWORD * sub_4D1F30(int _this, int a2)
 }
 
 // 0x004D2080
-int sub_4D2080(_DWORD *a2)
+int CEffQuad::CreateTask(_DWORD *a2)
 {
   _DWORD *v2; // ebp
   int v3; // edx

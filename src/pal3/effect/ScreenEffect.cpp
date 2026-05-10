@@ -3,7 +3,6 @@
 #include "pal3/gen/ScreenEffect.h"
 
 // Forward declarations for unnamed functions
-int sub_4BDFB0(...);
 int sub_4BE8D0(...);
 int sub_4BEA60(...);
 int sub_4BEBB0(...);
@@ -13,7 +12,7 @@ int sub_4BED00(...);
 extern void *off_56F508;
 
 // 0x004BDFB0
-_BYTE * sub_4BDFB0()
+ScreenEffect::ScreenEffect()
 {
   char v3; // [esp+Bh] [ebp-11h]
 

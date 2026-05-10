@@ -4,12 +4,6 @@
 
 // Forward declarations for unnamed functions
 int sub_4425D0(...);
-int sub_51B710(...);
-int sub_51B810(...);
-int sub_51B860(...);
-int sub_51B920(...);
-int sub_51B950(...);
-int sub_51B9A0(...);
 
 // Unnamed globals (extern)
 extern char aUiCombatContro_21[];
@@ -21,7 +15,7 @@ extern void *off_570284;
 extern void *off_570298;
 
 // 0x0051B710
-char sub_51B710(gbRefObject ***this, int *a2, int a3)
+CCBParabolaWindow::CCBParabolaWindow(gbRefObject ***this, int *a2, int a3)
 {
   gbRefObject ***v4; // edi
   gbRefObject ***v5; // ebx
@@ -68,7 +62,7 @@ char sub_51B710(gbRefObject ***this, int *a2, int a3)
 }
 
 // 0x0051B810
-int sub_51B810(int _this)
+CCBParabolaWindow::~CCBParabolaWindow(int _this)
 {
   int result; // eax
   int v3; // ecx
@@ -99,7 +93,7 @@ int sub_51B810(int _this)
 }
 
 // 0x0051B860
-int sub_51B860(int a2, int a3, int a4)
+int CCBParabolaWindow::Reset(int a2, int a3, int a4)
 {
   if ( a2 == 1001 )
   {
@@ -111,7 +105,7 @@ int sub_51B860(int a2, int a3, int a4)
 }
 
 // 0x0051B920
-int sub_51B920()
+int CCBParabolaWindow::Destroy()
 {
   int v2; // ecx
 
@@ -121,7 +115,7 @@ int sub_51B920()
 }
 
 // 0x0051B950
-bool sub_51B950(_DWORD **this, int a2, int a3, int a4)
+bool CCBParabolaWindow::OnMessage(_DWORD **this, int a2, int a3, int a4)
 {
   _DWORD *v4; // eax
   _DWORD v6[4]; // [esp+8h] [ebp-10h] BYREF
@@ -131,7 +125,7 @@ bool sub_51B950(_DWORD **this, int a2, int a3, int a4)
 }
 
 // 0x0051B9A0
-int sub_51B9A0(_DWORD **this, int a2, int a3)
+int CCBParabolaWindow::Update(_DWORD **this, int a2, int a3)
 {
   int v4; // esi
   _DWORD **i; // edi

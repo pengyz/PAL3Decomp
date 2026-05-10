@@ -4,11 +4,6 @@
 
 // Forward declarations for unnamed functions
 int sub_4CB3A0(...);
-int sub_4CB480(...);
-int sub_4CB4C0(...);
-int sub_4CB5E0(...);
-int sub_4CB800(...);
-int sub_4CBFC0(...);
 int sub_4CCC60(...);
 int sub_4CCD10(...);
 int sub_4CD070(...);
@@ -27,7 +22,7 @@ extern void *off_56F9B4;
 extern int unk_FFFFFF;
 
 // 0x004CB480
-_DWORD *sub_4CB480()
+CEffMeteor::CEffMeteor()
 {
   _DWORD *v0; // eax
 
@@ -39,7 +34,7 @@ _DWORD *sub_4CB480()
 }
 
 // 0x004CB4C0
-void sub_4CB4C0(int a1)
+CEffMeteor::~CEffMeteor(int a1)
 {
   int v2; // edi
   void *v3; // eax
@@ -104,7 +99,7 @@ LABEL_18:
 }
 
 // 0x004CB5E0
-int sub_4CB5E0(int _this, int a2, float a3, float a4, float a5)
+int CEffMeteor::Init(int _this, int a2, float a3, float a4, float a5)
 {
   int v6; // ecx
   int result; // eax
@@ -180,7 +175,7 @@ int sub_4CB5E0(int _this, int a2, float a3, float a4, float a5)
 }
 
 // 0x004CB800
-char sub_4CB800(int _this, int a2)
+char CEffMeteor::Create(int _this, int a2)
 {
   void *v3; // eax
   int v4; // ebx
@@ -409,7 +404,7 @@ LABEL_10:
 }
 
 // 0x004CBFC0
-void sub_4CBFC0(int _this, float a2)
+void CEffMeteor::CreateTask(int _this, float a2)
 {
   int v2; // edi
   double v3; // st7

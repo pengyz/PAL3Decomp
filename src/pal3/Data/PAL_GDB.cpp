@@ -3,14 +3,6 @@
 #include "pal3/gen/PAL_GDB.h"
 
 // Forward declarations for unnamed functions
-int sub_478E00(...);
-int sub_478FD0(...);
-int sub_479040(...);
-int sub_479050(...);
-int sub_479080(...);
-int sub_479130(...);
-int sub_4791A0(...);
-int sub_4791E0(...);
 int sub_4792D0(...);
 
 // Unnamed globals (extern)
@@ -47,7 +39,7 @@ char PAL_GDB::LoadLanguage(char *path)
 }
 
 // 0x00478E00
-char sub_478E00()
+PAL_GDB::PAL_GDB()
 {
   struct gbVFile *v2; // eax
   struct gbVFile *v3; // edi
@@ -85,7 +77,7 @@ char sub_478E00()
 }
 
 // 0x00478FD0
-int sub_478FD0(int a2)
+PAL_GDB::~PAL_GDB(int a2)
 {
   int v2; // esi
   int v3; // edx
@@ -109,13 +101,13 @@ int sub_478FD0(int a2)
 }
 
 // 0x00479040
-int sub_479040()
+int PAL_GDB::GDB_LoadFile()
 {
   return *((_DWORD *)this + 33);
 }
 
 // 0x00479050
-int sub_479050(unsigned int a2)
+int PAL_GDB::GDB_GetRole(unsigned int a2)
 {
   if ( a2 > 0xC8 )
     return 0;
@@ -124,7 +116,7 @@ int sub_479050(unsigned int a2)
 }
 
 // 0x00479080
-int sub_479080(int a2)
+int PAL_GDB::GDB_GetRoleNum(int a2)
 {
   int v2; // edx
   int v3; // eax
@@ -150,7 +142,7 @@ int sub_479080(int a2)
 }
 
 // 0x00479130
-int sub_479130(int a2)
+int PAL_GDB::GDB_GetSkillNum(int a2)
 {
   int v2; // esi
   int v3; // eax
@@ -176,13 +168,13 @@ int sub_479130(int a2)
 }
 
 // 0x004791A0
-int sub_4791A0()
+int PAL_GDB::GDB_GetSkillID()
 {
   return *((_DWORD *)this + 37);
 }
 
 // 0x004791E0
-int sub_4791E0(int a2)
+int PAL_GDB::GDB_GetItemNum(int a2)
 {
   int v2; // edx
   int v3; // eax

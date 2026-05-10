@@ -3,10 +3,6 @@
 #include "pal3/gen/CEffect.h"
 
 // Forward declarations for unnamed functions
-int sub_4C6940(...);
-int sub_4C6A70(...);
-int sub_4C7150(...);
-int sub_4C7450(...);
 int sub_4CDCA0(...);
 int sub_4D4D30(...);
 int sub_4D4D70(...);
@@ -19,7 +15,7 @@ extern int dword_EC9E74;
 extern int unk_EC9EB4;
 
 // 0x004C6940
-_DWORD *sub_4C6940()
+CEffect::CEffect()
 {
   _DWORD *v0; // eax
 
@@ -31,7 +27,7 @@ _DWORD *sub_4C6940()
 }
 
 // 0x004C6A70
-int sub_4C6A70(int _this, int a2, float a3, float a4, float a5)
+int CEffect::Reset(int _this, int a2, float a3, float a4, float a5)
 {
   int v6; // ecx
 
@@ -84,7 +80,7 @@ int sub_4C6A70(int _this, int a2, float a3, float a4, float a5)
 }
 
 // 0x004C7150
-void sub_4C7150(int _this, float a2)
+void CEffect::CreateOnePartical(int _this, float a2)
 {
   int v2; // edi
   double v3; // st7
@@ -271,7 +267,7 @@ LABEL_30:
 }
 
 // 0x004C7450
-void sub_4C7450(_DWORD *a2)
+void CEffect::FillQuadByPartical(_DWORD *a2)
 {
   _DWORD *v2; // ebx
   int v3; // ecx

@@ -4,14 +4,13 @@
 
 // Forward declarations for unnamed functions
 int sub_4BDA60(...);
-int sub_4BDB10(...);
 
 // Unnamed globals (extern)
 extern unsigned char byte_DE7B68;
 extern int dword_DE7AA0;
 
 // 0x004BDB10
-_DWORD *sub_4BDB10()
+_DWORD *CRenderTarget::GetInstance()
 {
   if ( (byte_DE7B68 & 1) == 0 )
   {

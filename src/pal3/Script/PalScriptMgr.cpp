@@ -5,21 +5,8 @@
 // Forward declarations for unnamed functions
 int sub_431CB0(...);
 int sub_431CD0(...);
-int sub_431E60(...);
 int sub_431E90(...);
-int sub_431EB0(...);
-int sub_431EE0(...);
 int sub_4320A0(...);
-int sub_432170(...);
-int sub_432260(...);
-int sub_4322A0(...);
-int sub_4322C0(...);
-int sub_4323C0(...);
-int sub_432480(...);
-int sub_4324A0(...);
-int sub_4324B0(...);
-int sub_432500(...);
-int sub_432550(...);
 int sub_4325A0(...);
 int sub_4326A0(...);
 int sub_433CD0(...);
@@ -40,21 +27,21 @@ extern int dword_D8C328;
 extern int dword_D8C32C;
 
 // 0x00431E60
-int sub_431E60()
+PalScriptMgr::PalScriptMgr()
 {
   unknown_libname_343();
   return atexit(sub_431E90);
 }
 
 // 0x00431EB0
-int sub_431EB0()
+int PalScriptMgr::OpenSCE()
 {
   unknown_libname_344();
   return atexit(PalScriptMgr::FindScript);
 }
 
 // 0x00431EE0
-void sub_431EE0()
+void PalScriptMgr::FindScript()
 {
   if ( (byte_D8C324 & 8) == 0 )
   {
@@ -111,7 +98,7 @@ LABEL_15:
 }
 
 // 0x00432170
-_DWORD * sub_432170(unsigned int a1, char a2)
+_DWORD * PalScriptMgr::Destroy(unsigned int a1, char a2)
 {
   _DWORD *result; // eax
   void *v3; // edi
@@ -150,7 +137,7 @@ _DWORD * sub_432170(unsigned int a1, char a2)
 }
 
 // 0x00432260
-int sub_432260(int a1)
+int PalScriptMgr::_CON_State(int a1)
 {
   int v1; // ecx
   int *i; // edx
@@ -177,13 +164,13 @@ int sub_432260(int a1)
 }
 
 // 0x004322A0
-int sub_4322A0(int a2)
+int PalScriptMgr::IfAnyScriptRunning(int a2)
 {
   return PtrArray::SetAt(*((_DWORD *)this + 3), a2);
 }
 
 // 0x004322C0
-int sub_4322C0(int a2)
+int PalScriptMgr::IsScriptRuning(int a2)
 {
   int v3; // eax
   int v5; // ebp
@@ -248,7 +235,7 @@ int sub_4322C0(int a2)
 }
 
 // 0x004323C0
-void sub_4323C0(int a1)
+void PalScriptMgr::RunSceneScript(int a1)
 {
   int v1; // ebp
   int v2; // ebx
@@ -297,7 +284,7 @@ void sub_4323C0(int a1)
 }
 
 // 0x00432480
-int sub_432480()
+int PalScriptMgr::_CON_ReLoadScript()
 {
   PalScriptMgr::IfHaveScript();
   PtrArray::SetSize();
@@ -305,13 +292,13 @@ int sub_432480()
 }
 
 // 0x004324A0
-BOOL sub_4324A0()
+BOOL PalScriptMgr::_CON_CloseScript()
 {
   return dword_D8C32C > 0;
 }
 
 // 0x004324B0
-int sub_4324B0(int a1)
+int PalScriptMgr::ClearAllScript(int a1)
 {
   int v1; // eax
   _DWORD *i; // esi
@@ -334,7 +321,7 @@ int sub_4324B0(int a1)
 }
 
 // 0x00432500
-_DWORD * sub_432500(const char *a1, const char *a2)
+_DWORD * PalScriptMgr::FindScriptByDesc(const char *a1, const char *a2)
 {
   unsigned int v2; // eax
   _DWORD *result; // eax
@@ -349,7 +336,7 @@ _DWORD * sub_432500(const char *a1, const char *a2)
 }
 
 // 0x00432550
-int sub_432550()
+int PalScriptMgr::IfHaveScript()
 {
   int v0; // eax
   int i; // edi

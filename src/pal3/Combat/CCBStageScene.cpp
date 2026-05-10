@@ -4,30 +4,9 @@
 
 // Forward declarations for unnamed functions
 int sub_4DFB70(...);
-int sub_50FEE0(...);
-int sub_5100D0(...);
-int sub_510180(...);
-int sub_510540(...);
-int sub_510610(...);
-int sub_5107C0(...);
-int sub_510C80(...);
-int sub_510E00(...);
-int sub_510F50(...);
-int sub_511030(...);
-int sub_511110(...);
-int sub_5112B0(...);
-int sub_5112F0(...);
 int sub_511340(...);
 int sub_511630(...);
-int sub_511690(...);
-int sub_511790(...);
-int sub_511970(...);
-int sub_511AE0(...);
-int sub_511C10(...);
-int sub_511C30(...);
-int sub_511C50(...);
 int sub_511CA0(...);
-int sub_511CF0(...);
 
 // Unnamed globals (extern)
 extern char aCNewFailed[];
@@ -76,7 +55,7 @@ int CCBStageScene::Update()
 }
 
 // 0x0050FEE0
-char sub_50FEE0()
+CCBStageScene::CCBStageScene()
 {
   gbTexture *v2; // eax
   _DWORD *v3; // eax
@@ -174,7 +153,7 @@ char sub_50FEE0()
 }
 
 // 0x005100D0
-char sub_5100D0(int _this)
+CCBStageScene::~CCBStageScene(int _this)
 {
   void (***v2)(_DWORD, int); // ecx
   void (***v3)(_DWORD, int); // ecx
@@ -225,7 +204,7 @@ char sub_5100D0(int _this)
 }
 
 // 0x00510180
-char sub_510180()
+char CCBStageScene::Reset()
 {
   int v2; // edi
   int v3; // eax
@@ -381,7 +360,7 @@ LABEL_13:
 }
 
 // 0x00510540
-int sub_510540()
+int CCBStageScene::Create()
 {
   gbGeomNode *v2; // eax
   gbGeomNode *v3; // esi
@@ -417,7 +396,7 @@ int sub_510540()
 }
 
 // 0x00510610
-void sub_510610(gbGeomNode **this)
+void CCBStageScene::Destroy(gbGeomNode **this)
 {
   gbGeomNode **v1; // esi
   int v2; // ebx
@@ -498,7 +477,7 @@ void sub_510610(gbGeomNode **this)
 }
 
 // 0x005107C0
-int sub_5107C0(int _this)
+int CCBStageScene::Init(int _this)
 {
   double v1; // st7
   long double v3; // st6
@@ -699,7 +678,7 @@ int sub_5107C0(int _this)
 }
 
 // 0x00510C80
-int sub_510C80()
+int CCBStageScene::SetBattleFieldAttr()
 {
   int result; // eax
   int v3; // ecx
@@ -772,7 +751,7 @@ void CCBStageScene::GetBattleFieldSubdueAttr(gbMatrixStack *a2)
 }
 
 // 0x00510E00
-void sub_510E00()
+void CCBStageScene::GetBFASubdueFM()
 {
   gbRefObject *v1; // esi
   gbVec3D *v2; // edi
@@ -846,7 +825,7 @@ void sub_510E00()
 }
 
 // 0x00510F50
-char sub_510F50()
+char CCBStageScene::IsSameBattleFieldAttr()
 {
   char result; // al
   int v3; // esi
@@ -893,7 +872,7 @@ char sub_510F50()
 }
 
 // 0x00511030
-void sub_511030(int _this, char a2)
+void CCBStageScene::LoadPointer(int _this, char a2)
 {
   struct gbTextureArray *v3; // ecx
   struct gbRenderEffect *v4; // edx
@@ -914,7 +893,7 @@ void sub_511030(int _this, char a2)
 }
 
 // 0x00511110
-bool sub_511110()
+bool CCBStageScene::LoadFlingNode()
 {
   int v2; // eax
   float *v3; // eax
@@ -975,7 +954,7 @@ bool sub_511110()
 }
 
 // 0x005112B0
-int sub_5112B0()
+int CCBStageScene::SetFlingRotX()
 {
   int v1; // edx
   _DWORD *v2; // eax
@@ -995,7 +974,7 @@ int sub_5112B0()
 }
 
 // 0x005112F0
-_DWORD * sub_5112F0()
+_DWORD * CCBStageScene::SetFlingRotY()
 {
   _DWORD *result; // eax
   int v2; // ecx
@@ -1018,7 +997,7 @@ _DWORD * sub_5112F0()
 }
 
 // 0x00511690
-char sub_511690()
+char CCBStageScene::Update()
 {
   int v3; // edi
   int i; // esi
@@ -1046,7 +1025,7 @@ char sub_511690()
 }
 
 // 0x00511790
-char sub_511790(int _this)
+char CCBStageScene::Render(int _this)
 {
   int v2; // ebp
   int v3; // edi
@@ -1129,7 +1108,7 @@ char sub_511790(int _this)
 }
 
 // 0x00511970
-char sub_511970(int _this)
+char CCBStageScene::ShowAxis(int _this)
 {
   int v2; // eax
   int v3; // ecx
@@ -1166,7 +1145,7 @@ char sub_511970(int _this)
 }
 
 // 0x00511AE0
-char sub_511AE0()
+char CCBStageScene::ShowRoleIndex()
 {
   CIniFile v3; // [esp+30h] [ebp-14h] BYREF
   int v4; // [esp+40h] [ebp-4h]
@@ -1196,7 +1175,7 @@ int CCBStageScene::ShowEnemyFiveLineupEx()
 }
 
 // 0x00511C10
-int sub_511C10()
+int CCBStageScene::IsFiveLineupUnderMouse()
 {
   *(_DWORD *)&byte_17ABF00[1644] = 1094713344;
   return 1094713344;
@@ -1210,7 +1189,7 @@ void CCBStageScene::ResetFiveLineupToInit()
 }
 
 // 0x00511C30
-void sub_511C30()
+void CCBStageScene::ResetRolePosToInit()
 {
   *(float *)&byte_17ABF00[1640] = 12.0 + 12.0;
 }
@@ -1223,7 +1202,7 @@ int CCBStageScene::LoadScene()
 }
 
 // 0x00511C50
-int sub_511C50()
+int CCBStageScene::DestroyScene()
 {
   *(_DWORD *)&byte_17ABF00[1652] = 119;
   *(_DWORD *)&byte_17ABF00[1656] = 314;
@@ -1247,7 +1226,7 @@ int CCBStageScene::LoadFiveLineupData()
 }
 
 // 0x00511CF0
-int sub_511CF0()
+int CCBStageScene::SaveFiveLineupDate()
 {
   *(_DWORD *)&byte_17ABF00[1684] = 128;
   *(_DWORD *)&byte_17ABF00[1688] = 323;

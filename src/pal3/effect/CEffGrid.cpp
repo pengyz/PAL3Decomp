@@ -4,10 +4,6 @@
 
 // Forward declarations for unnamed functions
 int sub_4C9550(...);
-int sub_4C9610(...);
-int sub_4C9650(...);
-int sub_4C98F0(...);
-int sub_4CA9A0(...);
 int sub_4CAB30(...);
 int sub_4CABE0(...);
 int sub_4CAC70(...);
@@ -43,7 +39,7 @@ extern int unk_5D51B0;
 extern int unk_FFFFFF;
 
 // 0x004C9610
-_DWORD *sub_4C9610()
+CEffGrid::CEffGrid()
 {
   _DWORD *v0; // eax
 
@@ -55,7 +51,7 @@ _DWORD *sub_4C9610()
 }
 
 // 0x004C9650
-void sub_4C9650(int a1)
+CEffGrid::~CEffGrid(int a1)
 {
   int v2; // edi
   void *v3; // eax
@@ -113,7 +109,7 @@ LABEL_18:
 }
 
 // 0x004C98F0
-char sub_4C98F0(int _this, int a2)
+char CEffGrid::Create(int _this, int a2)
 {
   struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // eax
   void *v3; // esp
@@ -340,7 +336,7 @@ LABEL_10:
 }
 
 // 0x004CA9A0
-void * sub_4CA9A0(int a1)
+void * CEffGrid::GetEditorObjDescription(int a1)
 {
   void *result; // eax
 

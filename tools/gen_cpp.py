@@ -175,8 +175,26 @@ def transform_method_code(cls_name, method_name, code, sig):
     """Post-process Hex-Rays output into cleaner C++."""
     lines = code.split('\n')
 
-    # 1. Remove the "// between_std_methods" comment line
+    # 0. Replace sub_XXXXX function name in definition with correct class::method name
     lines = [l for l in lines if not l.strip().startswith('// between_std_methods')]
+
+    # Fix function definition line: replace sub_XXXXX with ClassName::MethodName
+    if lines and method_name:
+        first_line = lines[0]
+        # Match: "RetType sub_XXXXX(params)" and replace sub_ with cls::method
+        full_method = '%s::%s' % (cls_name, method_name)
+        first_line = re.sub(r'\bsub_[0-9A-Fa-f]+\b', full_method, first_line, count=1)
+
+        # If this is a constructor (method_name == cls_name) or destructor (~cls_name),
+        # remove the return type
+        is_ctor = (method_name == cls_name)
+        is_dtor = (method_name == '~%s' % cls_name)
+        if is_ctor or is_dtor:
+            # Remove return type: "_DWORD * ClassName::ClassName(..." -> "ClassName::ClassName(..."
+            first_line = re.sub(r'^.*?\b(%s::%s)' % (re.escape(cls_name), re.escape(method_name)),
+                               r'\1', first_line)
+
+        lines[0] = first_line
 
     # 2. Transform function signature: remove ClassName *this param, fix return
     # Original: "int __thiscall CCBRoleState::Update(CCBRoleState *this)"

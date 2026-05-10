@@ -4,12 +4,8 @@
 
 // Forward declarations for unnamed functions
 int sub_4D3870(...);
-int sub_4D3910(...);
-int sub_4D3A50(...);
-int sub_4D45D0(...);
 int sub_4D48B0(...);
 int sub_4D4AB0(...);
-int sub_4D4B50(...);
 
 // Unnamed globals (extern)
 extern char aDProjectPal3Co_17[];
@@ -20,7 +16,7 @@ extern int dword_1895984;
 extern int dword_1895988;
 
 // 0x004D3910
-_DWORD *sub_4D3910()
+CEffShock::CEffShock()
 {
   _DWORD *v0; // eax
 
@@ -32,7 +28,7 @@ _DWORD *sub_4D3910()
 }
 
 // 0x004D3A50
-int sub_4D3A50(int _this, int a2, float a3, float a4, float a5)
+int CEffShock::Init(int _this, int a2, float a3, float a4, float a5)
 {
   int result; // eax
 
@@ -195,7 +191,7 @@ LABEL_10:
 }
 
 // 0x004D45D0
-int sub_4D45D0(int _this, int a2)
+int CEffShock::StartShock(int _this, int a2)
 {
   int i; // edi
   int v4; // ecx
@@ -309,7 +305,7 @@ int CEffShock::CreateGeom(int a2, int a3)
 }
 
 // 0x004D4B50
-int sub_4D4B50(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
+int CEffShock::LoadTexture(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
 {
   int v8; // ecx
   int v9; // esi

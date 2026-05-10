@@ -2,20 +2,6 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBCamControl.h"
 
-// Forward declarations for unnamed functions
-int sub_5081E0(...);
-int sub_508230(...);
-int sub_508280(...);
-int sub_5082D0(...);
-int sub_508320(...);
-int sub_508370(...);
-int sub_5084C0(...);
-int sub_508660(...);
-int sub_508680(...);
-int sub_508690(...);
-int sub_508880(...);
-int sub_5088D0(...);
-
 // Unnamed globals (extern)
 extern char aGfxscriptGeomD[];
 extern char aGfxscriptGeomD_0[];
@@ -30,7 +16,7 @@ int CCBCamControl::CCBCamControl()
 }
 
 // 0x005081E0
-int sub_5081E0()
+CCBCamControl::~CCBCamControl()
 {
   *(_DWORD *)&byte_17AAF64[1472] = 119;
   *(_DWORD *)&byte_17AAF64[1476] = 314;
@@ -47,7 +33,7 @@ int CCBCamControl::Reset()
 }
 
 // 0x00508230
-int sub_508230()
+int CCBCamControl::Create()
 {
   *(_DWORD *)&byte_17AAF64[1488] = 519;
   *(_DWORD *)&byte_17AAF64[1492] = 519;
@@ -64,7 +50,7 @@ int CCBCamControl::Destroy()
 }
 
 // 0x00508280
-int sub_508280()
+int CCBCamControl::Init()
 {
   *(_DWORD *)&byte_17AAF64[1504] = 128;
   *(_DWORD *)&byte_17AAF64[1508] = 323;
@@ -81,7 +67,7 @@ int CCBCamControl::Update()
 }
 
 // 0x005082D0
-int sub_5082D0()
+int CCBCamControl::StartList()
 {
   *(_DWORD *)&byte_17AAF64[1520] = 545;
   *(_DWORD *)&byte_17AAF64[1524] = 545;
@@ -98,7 +84,7 @@ int CCBCamControl::StartList()
 }
 
 // 0x00508320
-int sub_508320()
+int CCBCamControl::StopList()
 {
   *(_DWORD *)&byte_17AAF64[1536] = 121;
   *(_DWORD *)&byte_17AAF64[1540] = 316;
@@ -115,7 +101,7 @@ int CCBCamControl::HandleInput()
 }
 
 // 0x00508370
-int sub_508370()
+int CCBCamControl::UpdateCircleSet()
 {
   *(_DWORD *)&byte_17AAF64[1552] = 573;
   *(_DWORD *)&byte_17AAF64[1556] = 573;
@@ -159,7 +145,7 @@ char * CCBCamControl::SetCircle(int a2)
 }
 
 // 0x005084C0
-char sub_5084C0(int _this)
+char CCBCamControl::IsPointerUnderMouse(int _this)
 {
   gbRefObject *v2; // esi
 
@@ -212,7 +198,7 @@ char sub_5084C0(int _this)
 }
 
 // 0x00508660
-_DWORD * sub_508660()
+_DWORD * CCBCamControl::LoadPointer()
 {
   *((_DWORD *)this + 13) = 0;
   *((_DWORD *)this + 14) = 0;
@@ -224,14 +210,14 @@ _DWORD * sub_508660()
 }
 
 // 0x00508680
-char sub_508680(gbRefObject **this)
+char CCBCamControl::DoList(gbRefObject **this)
 {
   gbRefObject::Release(*((_DWORD *)this + 609));
   return 1;
 }
 
 // 0x00508690
-int sub_508690(int _this)
+int CCBCamControl::ResetListFlag(int _this)
 {
   gbRefObject *v2; // esi
   _DWORD *v3; // edx
@@ -285,7 +271,7 @@ int sub_508690(int _this)
 }
 
 // 0x00508880
-int sub_508880(int a2)
+int CCBCamControl::KeepCurCam(int a2)
 {
   _DWORD *v2; // edx
   int result; // eax
@@ -313,7 +299,7 @@ int sub_508880(int a2)
 }
 
 // 0x005088D0
-int sub_5088D0(_DWORD **this, unsigned int a2)
+int CCBCamControl::DoLineMove(_DWORD **this, unsigned int a2)
 {
   int result; // eax
   _DWORD **v4; // esi

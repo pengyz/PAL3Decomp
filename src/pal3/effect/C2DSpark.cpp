@@ -2,17 +2,6 @@
 #include "pal3/globals.h"
 #include "pal3/gen/C2DSpark.h"
 
-// Forward declarations for unnamed functions
-int sub_4D5AB0(...);
-int sub_4D5DC0(...);
-int sub_4D5EC0(...);
-int sub_4D5F20(...);
-int sub_4D5F40(...);
-int sub_4D6050(...);
-int sub_4D61A0(...);
-int sub_4D61C0(...);
-int sub_4D6380(...);
-
 // Unnamed globals (extern)
 extern char aCNewFailed_0[];
 extern char aDProjectPal3Co_10[];
@@ -57,7 +46,7 @@ extern float flt_17A8188;
 extern float flt_17A818C;
 
 // 0x004D5AB0
-int sub_4D5AB0(int _this, int a2, int a3)
+C2DSpark::C2DSpark(int _this, int a2, int a3)
 {
   gbTexture *v4; // eax
   _DWORD *v5; // eax
@@ -225,7 +214,7 @@ int sub_4D5AB0(int _this, int a2, int a3)
 }
 
 // 0x004D5DC0
-void sub_4D5DC0(int _this)
+C2DSpark::~C2DSpark(int _this)
 {
   gbRefObject *v2; // ecx
   gbRefObject *v3; // ecx
@@ -298,7 +287,7 @@ void sub_4D5DC0(int _this)
 }
 
 // 0x004D5EC0
-char sub_4D5EC0(const void *a2)
+char C2DSpark::CreateSingle(const void *a2)
 {
   int v3; // eax
   _BYTE *i; // ecx
@@ -317,7 +306,7 @@ char sub_4D5EC0(const void *a2)
 }
 
 // 0x004D5F20
-char sub_4D5F20(int _this, char a2)
+char C2DSpark::CreateTrack(int _this, char a2)
 {
   *(_DWORD *)(this + 22540) = 0;
   *(_BYTE *)(this + 22552) = a2;
@@ -325,7 +314,7 @@ char sub_4D5F20(int _this, char a2)
 }
 
 // 0x004D5F40
-int sub_4D5F40(int a2, int a3)
+int C2DSpark::SetEnableMouseTrack(int a2, int a3)
 {
   int v4; // edi
   long double v5; // st7
@@ -359,7 +348,7 @@ int sub_4D5F40(int a2, int a3)
 }
 
 // 0x004D6050
-char sub_4D6050(int a2, int a3, int a4, int a5)
+char C2DSpark::CreateMore(int a2, int a3, int a4, int a5)
 {
   double v5; // st7
   double v7; // st7
@@ -392,7 +381,7 @@ char sub_4D6050(int a2, int a3, int a4, int a5)
 }
 
 // 0x004D61A0
-_BYTE * sub_4D61A0()
+_BYTE * C2DSpark::CreateStars()
 {
   _BYTE *result; // eax
   int v2; // edx
@@ -411,7 +400,7 @@ _BYTE * sub_4D61A0()
 }
 
 // 0x004D61C0
-int sub_4D61C0(int _this)
+int C2DSpark::DestroyAll(int _this)
 {
   gbDynVertBuf *DynVertBuf; // ebx
   LONG y; // ecx
@@ -512,7 +501,7 @@ LABEL_14:
 }
 
 // 0x004D6380
-int sub_4D6380(int _this, float a2)
+int C2DSpark::Render(int _this, float a2)
 {
   int v3; // edi
   int v4; // eax

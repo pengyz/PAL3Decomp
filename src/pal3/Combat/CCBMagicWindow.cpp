@@ -5,18 +5,7 @@
 // Forward declarations for unnamed functions
 int sub_43FBC0(...);
 int sub_440CE0(...);
-int sub_51B9F0(...);
-int sub_51BAB0(...);
-int sub_51BB00(...);
-int sub_51BB40(...);
 int sub_51BB50(...);
-int sub_51BB90(...);
-int sub_51BBE0(...);
-int sub_51BC50(...);
-int sub_51BC70(...);
-int sub_51C110(...);
-int sub_51C1B0(...);
-int sub_51C210(...);
 
 // Unnamed globals (extern)
 extern char aUiCombatContro_22[];
@@ -36,7 +25,7 @@ extern void *off_570570;
 extern void *off_57058C;
 
 // 0x0051B9F0
-char sub_51B9F0(_DWORD **this, int a2, int a3, _DWORD *a4)
+CCBMagicWindow::CCBMagicWindow(_DWORD **this, int a2, int a3, _DWORD *a4)
 {
   int v4; // eax
   _DWORD *v5; // eax
@@ -66,7 +55,7 @@ char sub_51B9F0(_DWORD **this, int a2, int a3, _DWORD *a4)
 }
 
 // 0x0051BAB0
-int sub_51BAB0(_DWORD **this, int a2)
+CCBMagicWindow::~CCBMagicWindow(_DWORD **this, int a2)
 {
   int v2; // edi
   int v4; // ebx
@@ -88,7 +77,7 @@ int sub_51BAB0(_DWORD **this, int a2)
 }
 
 // 0x0051BB00
-int sub_51BB00(int a2, int a3)
+int CCBMagicWindow::Reset(int a2, int a3)
 {
   _DWORD *v3; // eax
   int v4; // esi
@@ -109,14 +98,14 @@ int sub_51BB00(int a2, int a3)
 }
 
 // 0x0051BB40
-int sub_51BB40(int a2)
+int CCBMagicWindow::Create(int a2)
 {
   *((_DWORD *)this + 29) = a2;
   return a2;
 }
 
 // 0x0051BB90
-_DWORD * sub_51BB90()
+_DWORD * CCBMagicWindow::ForbidPage()
 {
   this->UIListBox();
   *this = &off_570570;
@@ -125,7 +114,7 @@ _DWORD * sub_51BB90()
 }
 
 // 0x0051BBE0
-UIWnd * sub_51BBE0(UIWnd *Block, char a2)
+UIWnd * CCBMagicWindow::Destroy(UIWnd *Block, char a2)
 {
   UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
@@ -134,7 +123,7 @@ UIWnd * sub_51BBE0(UIWnd *Block, char a2)
 }
 
 // 0x0051BC50
-int sub_51BC50()
+int CCBMagicWindow::OnMessage()
 {
   *((_DWORD *)this + 18) = 0;
   *((_DWORD *)this + 19) = 0;
@@ -148,7 +137,7 @@ int sub_51BC50()
 }
 
 // 0x0051BC70
-char sub_51BC70(_DWORD *a2, int a3)
+char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
 {
   gbRefObject ***v4; // edi
   gbRefObject ***v5; // edi
@@ -323,7 +312,7 @@ char sub_51BC70(_DWORD *a2, int a3)
 }
 
 // 0x0051C110
-int sub_51C110(int _this)
+int CCBMagicWindow::Update(int _this)
 {
   int result; // eax
   int v3; // ecx
@@ -388,7 +377,7 @@ int sub_51C110(int _this)
 }
 
 // 0x0051C1B0
-BOOL sub_51C1B0(int a2, int a3)
+BOOL CCBMagicWindow::SetActivePage(int a2, int a3)
 {
   if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
     CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 272, -1, 0);
@@ -396,7 +385,7 @@ BOOL sub_51C1B0(int a2, int a3)
 }
 
 // 0x0051C210
-_DWORD * sub_51C210()
+_DWORD * CCBMagicWindow::GetActivePage()
 {
   this->UIListBox();
   *this = &off_57058C;

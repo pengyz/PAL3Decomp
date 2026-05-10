@@ -3,19 +3,14 @@
 #include "pal3/gen/UIFrameWnd.h"
 
 // Forward declarations for unnamed functions
-int sub_4422E0(...);
 int sub_442390(...);
-int sub_442420(...);
-int sub_442890(...);
-int sub_442AD0(...);
-int sub_442C60(...);
 
 // Unnamed globals (extern)
 extern unsigned char byte_56A634;
 extern void *off_56ADD0;
 
 // 0x004422E0
-void sub_4422E0()
+UIFrameWnd::UIFrameWnd()
 {
   char v2; // [esp+7h] [ebp-1h]
 
@@ -71,7 +66,7 @@ void sub_442390(UIWnd *this)
 }
 
 // 0x00442420
-void sub_442420(gbRefObject **this)
+void UIFrameWnd::OnMessage(gbRefObject **this)
 {
   gbRefObject *v2; // ecx
   gbRefObject *v3; // ecx
@@ -106,7 +101,7 @@ void sub_442420(gbRefObject **this)
 }
 
 // 0x00442890
-int sub_442890(int _this)
+int UIFrameWnd::Render(int _this)
 {
   int result; // eax
   int v3; // ecx
@@ -242,7 +237,7 @@ int sub_442890(int _this)
 }
 
 // 0x00442AD0
-int sub_442AD0(int _this, int a2, int a3)
+int UIFrameWnd::Update(int _this, int a2, int a3)
 {
   int v5; // ecx
   int v6; // ecx
@@ -316,7 +311,7 @@ LABEL_20:
 }
 
 // 0x00442C60
-int sub_442C60(int a2, int a3)
+int UIFrameWnd::SetPosition(int a2, int a3)
 {
   *((_DWORD *)this + 21) = a2;
   *((_DWORD *)this + 22) = a3;

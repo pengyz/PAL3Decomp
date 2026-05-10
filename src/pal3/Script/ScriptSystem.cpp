@@ -19,7 +19,6 @@ int sub_419B30(...);
 int sub_41A450(...);
 int sub_41B300(...);
 int sub_41B6C0(...);
-int sub_41EFA0(...);
 int sub_431870(...);
 int sub_4318A0(...);
 int sub_4326A0(...);
@@ -677,7 +676,7 @@ LABEL_9:
 }
 
 // 0x0041EFA0
-int sub_41EFA0()
+int ScriptSystem::Init()
 {
   int v0; // edi
   const char *v1; // esi

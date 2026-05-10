@@ -4,37 +4,10 @@
 
 // Forward declarations for unnamed functions
 int sub_402220(...);
-int sub_4024F0(...);
-int sub_402570(...);
 int sub_402640(...);
-int sub_402A90(...);
-int sub_402B70(...);
-int sub_402B90(...);
-int sub_402BA0(...);
-int sub_402BF0(...);
 int sub_402C40(...);
-int sub_402D00(...);
-int sub_402D20(...);
-int sub_402FA0(...);
 int sub_403000(...);
-int sub_403150(...);
-int sub_403170(...);
-int sub_403180(...);
-int sub_403370(...);
-int sub_4033F0(...);
-int sub_403410(...);
-int sub_403470(...);
-int sub_4034B0(...);
-int sub_4034E0(...);
-int sub_403560(...);
-int sub_403640(...);
-int sub_4038F0(...);
-int sub_4039D0(...);
 int sub_403B80(...);
-int sub_404020(...);
-int sub_404060(...);
-int sub_404150(...);
-int sub_4042D0(...);
 
 // Unnamed globals (extern)
 extern unsigned char byte_56A634;
@@ -193,7 +166,7 @@ int GRPinput::ReleaseDevices()
 }
 
 // 0x00402400
-GRPinput * GRPinput::GRPinput()
+GRPinput::GRPinput()
 {
   char *v2; // edi
   int v3; // eax
@@ -267,7 +240,7 @@ GRPinput * GRPinput::GRPinput()
 }
 
 // 0x004024F0
-char sub_4024F0(int a2, int a3)
+GRPinput::~GRPinput(int a2, int a3)
 {
   int v4; // eax
 
@@ -303,7 +276,7 @@ char sub_4024F0(int a2, int a3)
 }
 
 // 0x00402570
-int sub_402570(int _this)
+int GRPinput::Create(int _this)
 {
   int result; // eax
   _BYTE *v3; // esi
@@ -331,7 +304,7 @@ int sub_402570(int _this)
 }
 
 // 0x00402A90
-int sub_402A90(int a2, int a3, int a4)
+int GRPinput::SetMouseAbs(int a2, int a3, int a4)
 {
   _DWORD *v4; // eax
   int v5; // ecx
@@ -399,7 +372,7 @@ int GRPinput::RunJoystickControlPanel()
 }
 
 // 0x00402B70
-int sub_402B70()
+int GRPinput::ClearKeyBuffer()
 {
   *(_DWORD *)&byte_8AC5D8[908] = 1094713344;
   return 1094713344;
@@ -413,13 +386,13 @@ void GRPinput::SetMouseLimits()
 }
 
 // 0x00402B90
-void sub_402B90()
+void GRPinput::SetJoystickLimits()
 {
   *(float *)&byte_8AC5D8[904] = 12.0 + 12.0;
 }
 
 // 0x00402BA0
-int sub_402BA0(int a1)
+int GRPinput::SetMousePos(int a1)
 {
   *(_BYTE *)(a1 + 8) = HIBYTE(a1);
   *(_DWORD *)(a1 + 12) = 0;
@@ -434,7 +407,7 @@ int sub_402BA0(int a1)
 }
 
 // 0x00402BF0
-void sub_402BF0()
+void GRPinput::SetMouseFreePos()
 {
   int v2; // eax
   _BYTE *v3; // ecx
@@ -517,7 +490,7 @@ LABEL_15:
 }
 
 // 0x00402D00
-char sub_402D00(int _this, float a2)
+char GRPinput::SetJoystickFreePos(int _this, float a2)
 {
   char result; // al
 
@@ -528,7 +501,7 @@ char sub_402D00(int _this, float a2)
 }
 
 // 0x00402D20
-char sub_402D20(int _this)
+char GRPinput::SetMouseSensitivity(int _this)
 {
   int v2; // eax
   int v3; // eax
@@ -650,7 +623,7 @@ char sub_402D20(int _this)
 }
 
 // 0x00402FA0
-int sub_402FA0(int a2)
+int GRPinput::GetMouseSensitivity(int a2)
 {
   *((_DWORD *)this + 8) = a2;
   return a2;
@@ -729,7 +702,7 @@ int GRPinput::GetMousePos()
 }
 
 // 0x00403150
-int sub_403150()
+int GRPinput::GetMouseFreePos()
 {
   flt_8ACBEC = 12.0;
   return 1094713344;
@@ -743,13 +716,13 @@ void GRPinput::GetMouseDeltas()
 }
 
 // 0x00403170
-void sub_403170()
+void GRPinput::GetJoystickPos()
 {
   *(float *)&byte_8AC5D8[1552] = 12.0 + 12.0;
 }
 
 // 0x00403180
-BOOL sub_403180(int a2, int a3)
+BOOL GRPinput::GetJoystickFreePos(int a2, int a3)
 {
   int v3; // eax
 
@@ -760,7 +733,7 @@ BOOL sub_403180(int a2, int a3)
 }
 
 // 0x00403370
-int sub_403370(int _this)
+int GRPinput::AcquireMouse(int _this)
 {
   `eh vector constructor iterator'((void *)(this + 4), 0xA4u, 2, GRPinput::UnacquireJoystick, GRPinput::AcquireKeyboard);
   `eh vector constructor iterator'((void *)(this + 332), 0x10u, 2, GRPinput::UnacquireMouse, GRPinput::AcquireJoystick);
@@ -769,7 +742,7 @@ int sub_403370(int _this)
 }
 
 // 0x004033F0
-void sub_4033F0()
+void GRPinput::UnacquireMouse()
 {
   *this = 0;
   *((_DWORD *)this + 1) = 0;
@@ -778,7 +751,7 @@ void sub_4033F0()
 }
 
 // 0x00403410
-void sub_403410(void **this)
+void GRPinput::AcquireJoystick(void **this)
 {
   void *v2; // edi
 
@@ -806,7 +779,7 @@ void sub_403410(void **this)
 }
 
 // 0x00403470
-void sub_403470()
+void GRPinput::UnacquireJoystick()
 {
   *((_DWORD *)this + 32) = 0;
   *((_DWORD *)this + 33) = 0;
@@ -818,7 +791,7 @@ void sub_403470()
 }
 
 // 0x004034B0
-void sub_4034B0(void **this)
+void GRPinput::AcquireKeyboard(void **this)
 {
   if ( *((_DWORD *)this + 40) )
     free(*((_DWORD *)this + 40));
@@ -826,7 +799,7 @@ void sub_4034B0(void **this)
 }
 
 // 0x004034E0
-void sub_4034E0(int _this)
+void GRPinput::UnacquireKeyboard(int _this)
 {
   GRPinput::Update();
   `eh vector destructor iterator'(
@@ -838,7 +811,7 @@ void sub_4034E0(int _this)
 }
 
 // 0x00403560
-int sub_403560()
+int GRPinput::Update()
 {
   void **v2; // esi
   void **v3; // ebx
@@ -894,7 +867,7 @@ int sub_403560()
 }
 
 // 0x00403640
-void sub_403640(const char *a2)
+void GRPinput::CheckKeyEvents(const char *a2)
 {
   _DWORD *v2; // ebx
   struct gbVFile *v3; // edi
@@ -992,7 +965,7 @@ void sub_403640(const char *a2)
 }
 
 // 0x004038F0
-float * sub_4038F0(float *a1, int a2)
+float * GRPinput::InitShiftedKeys(float *a1, int a2)
 {
   double v2; // st7
   float *v3; // ecx
@@ -1032,7 +1005,7 @@ float * sub_4038F0(float *a1, int a2)
 }
 
 // 0x004039D0
-void sub_4039D0(unsigned __int16 *a2)
+void GRPinput::InitDIKToKEY(unsigned __int16 *a2)
 {
   gbVec3D *v3; // edi
   int v4; // ebx
@@ -1153,7 +1126,7 @@ void sub_4039D0(unsigned __int16 *a2)
 }
 
 // 0x00404020
-int sub_404020(int a1)
+int GRPinput::GetKey(int a1)
 {
   *(_DWORD *)a1 = 0;
   *(_DWORD *)(a1 + 4) = 0;
@@ -1174,7 +1147,7 @@ int sub_404020(int a1)
 }
 
 // 0x00404060
-int sub_404060(int _this)
+int GRPinput::GetCharKey(int _this)
 {
   _DWORD *v2; // ebx
   _DWORD *v3; // edi
@@ -1210,7 +1183,7 @@ int sub_404060(int _this)
 }
 
 // 0x00404150
-unsigned int sub_404150(int _this, gbRay *a2, int a3)
+unsigned int GRPinput::DecideKeyStatus(int _this, gbRay *a2, int a3)
 {
   float *v3; // ebx
   unsigned int result; // eax
@@ -1318,7 +1291,7 @@ unsigned int sub_404150(int _this, gbRay *a2, int a3)
 }
 
 // 0x004042D0
-int sub_4042D0()
+int GRPinput::IsAnyKeyPressed()
 {
   int result; // eax
 

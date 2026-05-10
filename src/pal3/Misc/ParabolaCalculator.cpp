@@ -4,13 +4,10 @@
 
 // Forward declarations for unnamed functions
 int sub_4A1CF0(...);
-int sub_523600(...);
-int sub_523670(...);
-int sub_5236E0(...);
 int sub_523820(...);
 
 // 0x00523600
-int sub_523600()
+int ParabolaCalculator::CalulateParabola()
 {
   int result; // eax
   int v2; // [esp-20h] [ebp-68h]
@@ -43,7 +40,7 @@ int sub_523600()
 }
 
 // 0x00523670
-int sub_523670(int _this)
+int ParabolaCalculator::UpdateParabola(int _this)
 {
   int result; // eax
 
@@ -73,7 +70,7 @@ int sub_523670(int _this)
 }
 
 // 0x005236E0
-int sub_5236E0(int _this, int a2, int a3)
+int ParabolaCalculator::UpdateParabolaY(int _this, int a2, int a3)
 {
   int v4; // eax
   gbAudioManager *v5; // eax

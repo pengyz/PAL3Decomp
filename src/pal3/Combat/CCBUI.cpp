@@ -31,41 +31,7 @@ int sub_4E5170(...);
 int sub_4E5B20(...);
 int sub_4E5E00(...);
 int sub_504240(...);
-int sub_517650(...);
-int sub_5177B0(...);
-int sub_517B30(...);
-int sub_517C10(...);
-int sub_517C80(...);
-int sub_517D60(...);
-int sub_517DF0(...);
-int sub_5181E0(...);
-int sub_5183C0(...);
-int sub_5184C0(...);
-int sub_518AF0(...);
-int sub_518B20(...);
-int sub_518B30(...);
-int sub_518D40(...);
-int sub_518FE0(...);
-int sub_519080(...);
-int sub_519230(...);
-int sub_519260(...);
-int sub_519360(...);
-int sub_5193D0(...);
-int sub_519400(...);
-int sub_519510(...);
-int sub_5195E0(...);
-int sub_519660(...);
-int sub_519B40(...);
-int sub_519BB0(...);
-int sub_519BD0(...);
-int sub_519F50(...);
-int sub_519FE0(...);
-int sub_51A090(...);
-int sub_51A2B0(...);
-int sub_51A340(...);
-int sub_51A390(...);
 int sub_51A400(...);
-int sub_51A430(...);
 
 // Unnamed globals (extern)
 extern char aCNewFailed[];
@@ -431,7 +397,7 @@ char CCBUI::UpdateState()
 }
 
 // 0x00517650
-char sub_517650(gbRefObject ***this)
+CCBUI::~CCBUI(gbRefObject ***this)
 {
   _BYTE *v2; // eax
   gbRefObject **v3; // eax
@@ -488,7 +454,7 @@ char sub_517650(gbRefObject ***this)
 }
 
 // 0x005177B0
-char sub_5177B0(gbRefObject ***this)
+char CCBUI::Reset(gbRefObject ***this)
 {
   _BYTE *v2; // eax
   int v3; // eax
@@ -577,7 +543,7 @@ char sub_5177B0(gbRefObject ***this)
 }
 
 // 0x00517B30
-char sub_517B30()
+char CCBUI::CreateCombatPanel()
 {
   _DWORD *v2; // esi
   char result; // al
@@ -599,7 +565,7 @@ char sub_517B30()
 }
 
 // 0x00517C10
-char sub_517C10()
+char CCBUI::CreateAttackSequen()
 {
   _DWORD *v2; // esi
   char result; // al
@@ -621,7 +587,7 @@ char sub_517C10()
 }
 
 // 0x00517C80
-char sub_517C80()
+char CCBUI::CreateBattleFieldAttr()
 {
   _DWORD *v2; // esi
   char result; // al
@@ -643,7 +609,7 @@ char sub_517C80()
 }
 
 // 0x00517D60
-char sub_517D60()
+char CCBUI::CreateControlWindow()
 {
   int v1; // esi
   _DWORD *i; // edi
@@ -673,7 +639,7 @@ char sub_517D60()
 }
 
 // 0x00517DF0
-char sub_517DF0(gbRefObject ***this)
+char CCBUI::CreateItemWindow(gbRefObject ***this)
 {
   gbRefObject ***v2; // edi
   char result; // al
@@ -840,7 +806,7 @@ char sub_517DF0(gbRefObject ***this)
 }
 
 // 0x005181E0
-char sub_5181E0(int _this)
+char CCBUI::CreateParaWindow(int _this)
 {
   void (***v2)(_DWORD, _DWORD); // ecx
   void (***v3)(_DWORD, _DWORD); // ecx
@@ -927,7 +893,7 @@ char sub_5181E0(int _this)
 }
 
 // 0x005183C0
-int ( *** sub_5183C0())(_DWORD, _DWORD)
+int ( *** CCBUI::CreateMagicWindow())(_DWORD, _DWORD)
 {
   void (***v2)(_DWORD, _DWORD); // ecx
   void (***v3)(_DWORD, _DWORD); // ecx
@@ -1000,7 +966,7 @@ int ( *** sub_5183C0())(_DWORD, _DWORD)
 }
 
 // 0x005184C0
-int sub_5184C0(char a2)
+int CCBUI::CreateSkillWindow(char a2)
 {
   int (***v2)(_DWORD, int); // ecx
 
@@ -1012,7 +978,7 @@ int sub_5184C0(char a2)
 }
 
 // 0x00518AF0
-int sub_518AF0(int a2, char a3)
+int CCBUI::CreateLineupWindow(int a2, char a3)
 {
   int (***v3)(_DWORD, int); // ecx
 
@@ -1025,13 +991,13 @@ int sub_518AF0(int a2, char a3)
 }
 
 // 0x00518B20
-char sub_518B20()
+char CCBUI::CreateProtectWindow()
 {
   return *(_BYTE *)(*((_DWORD *)this + 286) + 176);
 }
 
 // 0x00518B30
-char sub_518B30(int _this, char a2)
+char CCBUI::CreateResultWindow(int _this, char a2)
 {
   int i; // edi
   char result; // al
@@ -1119,7 +1085,7 @@ char sub_518B30(int _this, char a2)
 }
 
 // 0x00518D40
-int sub_518D40(int _this, char a2)
+int CCBUI::CreateFiveNimbus(int _this, char a2)
 {
   int v3; // ebx
   int v4; // ebp
@@ -1202,7 +1168,7 @@ int CCBUI::HideAll()
 }
 
 // 0x00518FE0
-int sub_518FE0(int a2)
+int CCBUI::ShowBattleFieldAttr(int a2)
 {
   int v2; // esi
   double v3; // st7
@@ -1230,7 +1196,7 @@ int sub_518FE0(int a2)
 }
 
 // 0x00519080
-int sub_519080(int a2)
+int CCBUI::ShowControlWindow(int a2)
 {
   int v2; // esi
   double v3; // st6
@@ -1279,7 +1245,7 @@ int CCBUI::ShowDialogWindow()
 }
 
 // 0x00519230
-char sub_519230(int a2)
+char CCBUI::ShowAIWindow(int a2)
 {
   *((_BYTE *)this + 72 * a2 + 1184) = 0;
   --*((_DWORD *)this + 656);
@@ -1287,7 +1253,7 @@ char sub_519230(int a2)
 }
 
 // 0x00519260
-char sub_519260(int a2, int a3, int a4, int a5, int a6, int a7, int a8, const void *a9)
+char CCBUI::IsResultWindowClosed(int a2, int a3, int a4, int a5, int a6, int a7, int a8, const void *a9)
 {
   int v10; // eax
   _BYTE *i; // ecx
@@ -1319,7 +1285,7 @@ char sub_519260(int a2, int a3, int a4, int a5, int a6, int a7, int a8, const vo
 }
 
 // 0x00519360
-UIWnd * sub_519360(UIWnd *Block, char a2)
+UIWnd * CCBUI::ShowLineupWindow(UIWnd *Block, char a2)
 {
   UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
@@ -1328,7 +1294,7 @@ UIWnd * sub_519360(UIWnd *Block, char a2)
 }
 
 // 0x005193D0
-int sub_5193D0()
+int CCBUI::OnMessage()
 {
   *((_DWORD *)this + 18) = 0;
   *((_DWORD *)this + 19) = 0;
@@ -1345,7 +1311,7 @@ int sub_5193D0()
 }
 
 // 0x00519400
-char sub_519400(int _this, _DWORD *a2, int a3)
+char CCBUI::CreateImbibeNimbus(int _this, _DWORD *a2, int a3)
 {
   _BYTE *v4; // eax
   int v5; // eax
@@ -1386,7 +1352,7 @@ char sub_519400(int _this, _DWORD *a2, int a3)
 }
 
 // 0x00519510
-int sub_519510(int _this)
+int CCBUI::ConfigImbibeNimbus(int _this)
 {
   int result; // eax
   int v3; // ecx
@@ -1472,7 +1438,7 @@ int sub_519510(int _this)
 }
 
 // 0x005195E0
-int sub_5195E0(int a2, unsigned int a3, int a4)
+int CCBUI::CheckNimbusMove(int a2, unsigned int a3, int a4)
 {
   if ( a2 == 1001 )
   {
@@ -1491,7 +1457,7 @@ int sub_5195E0(int a2, unsigned int a3, int a4)
 }
 
 // 0x00519660
-BOOL sub_519660(int a2, int a3)
+BOOL CCBUI::IsImbibeNimbusNotFinish(int a2, int a3)
 {
   if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
     CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 128, -1, 0);
@@ -1609,7 +1575,7 @@ char CCBUI::WriteNimbusToPlayerMgr(_DWORD *a2, int a3, int a4, int a5)
 }
 
 // 0x00519B40
-UIWnd * sub_519B40(UIWnd *Block, char a2)
+UIWnd * CCBUI::GetNimbusColor(UIWnd *Block, char a2)
 {
   UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
@@ -1618,7 +1584,7 @@ UIWnd * sub_519B40(UIWnd *Block, char a2)
 }
 
 // 0x00519BB0
-int sub_519BB0()
+int CCBUI::Render()
 {
   *((_DWORD *)this + 20) = 0;
   *((_DWORD *)this + 21) = 0;
@@ -1632,7 +1598,7 @@ int sub_519BB0()
 }
 
 // 0x00519BD0
-char sub_519BD0@<al>(
+char CCBUI::CreateButton@<al>(
         int a1@<ecx>,
         int a2@<ebx>,
         int a3@<ebp>,
@@ -1788,7 +1754,7 @@ char sub_519BD0@<al>(
 }
 
 // 0x00519F50
-int sub_519F50(int _this)
+int CCBUI::DeleteUIObj(int _this)
 {
   int result; // eax
   _DWORD *v3; // esi
@@ -1847,7 +1813,7 @@ int sub_519F50(int _this)
 }
 
 // 0x00519FE0
-int sub_519FE0(int a2, unsigned int a3, int a4)
+int CCBUI::AddRightControlButtonAni(int a2, unsigned int a3, int a4)
 {
   int v5; // ecx
   int v7; // [esp-4h] [ebp-14h]
@@ -1881,7 +1847,7 @@ LABEL_11:
 }
 
 // 0x0051A090
-BOOL sub_51A090(int a2, int a3)
+BOOL CCBUI::AddResultWindowAni(int a2, int a3)
 {
   if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
     CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 128, -1, 0);
@@ -1948,7 +1914,7 @@ char CCBUI::LineMove(_DWORD *a2, int a3, int a4, int a5)
 }
 
 // 0x0051A2B0
-int sub_51A2B0(int _this, int a2)
+int CCBUI::GravityDown(int _this, int a2)
 {
   int v3; // ebp
   _DWORD *v4; // edi
@@ -1999,7 +1965,7 @@ LABEL_9:
 }
 
 // 0x0051A340
-_DWORD * sub_51A340()
+_DWORD * CCBUI::ChangeNumTxt()
 {
   this->UIListBox();
   *this = &off_570500;
@@ -2008,7 +1974,7 @@ _DWORD * sub_51A340()
 }
 
 // 0x0051A390
-UIWnd * sub_51A390(UIWnd *Block, char a2)
+UIWnd * CCBUI::DoTask(UIWnd *Block, char a2)
 {
   UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
@@ -2017,7 +1983,7 @@ UIWnd * sub_51A390(UIWnd *Block, char a2)
 }
 
 // 0x0051A430
-char sub_51A430(int _this, _DWORD *a2, int a3)
+char CCBUI::AddTask(int _this, _DWORD *a2, int a3)
 {
   char *v4; // eax
   int v5; // eax

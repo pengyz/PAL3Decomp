@@ -3,28 +3,8 @@
 #include "pal3/gen/PAL3.h"
 
 // Forward declarations for unnamed functions
-int sub_404760(...);
-int sub_404FF0(...);
-int sub_405330(...);
-int sub_4055A0(...);
-int sub_4055D0(...);
-int sub_405C00(...);
-int sub_406230(...);
-int sub_4065F0(...);
-int sub_406980(...);
-int sub_406A10(...);
 int sub_406B80(...);
-int sub_406FF0(...);
 int sub_4070A0(...);
-int sub_407180(...);
-int sub_4071C0(...);
-int sub_4072D0(...);
-int sub_407300(...);
-int sub_407320(...);
-int sub_407560(...);
-int sub_407640(...);
-int sub_407740(...);
-int sub_408BE0(...);
 int sub_410430(...);
 int sub_419AE0(...);
 int sub_41BE80(...);
@@ -188,7 +168,7 @@ extern int unk_A3A6F8;
 extern int unk_A3A750;
 
 // 0x00404760
-void *sub_404760()
+PAL3::PAL3()
 {
   int v0; // eax
 
@@ -426,7 +406,7 @@ struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
 }
 
 // 0x00404FF0
-void sub_404FF0()
+void PAL3::InitGFX()
 {
   gbActorMgr *v0; // eax
   gbActorMgr *v1; // eax
@@ -524,7 +504,7 @@ void sub_404FF0()
 }
 
 // 0x00405330
-char sub_405330()
+char PAL3::CreateEffectSystem()
 {
   gbSnow *v0; // esi
   gbRain *v1; // eax
@@ -623,7 +603,7 @@ char sub_405330()
 }
 
 // 0x004055A0
-char sub_4055A0()
+char PAL3::DestroyEffectSystem()
 {
   void *v0; // esi
 
@@ -638,7 +618,7 @@ char sub_4055A0()
 }
 
 // 0x004055D0
-int sub_4055D0(float a1)
+int PAL3::Update(float a1)
 {
   int v1; // edi
   unsigned __int16 *v2; // esi
@@ -916,7 +896,7 @@ LABEL_64:
 }
 
 // 0x00405C00
-int sub_405C00()
+int PAL3::Render()
 {
   int result; // eax
   int v1; // eax
@@ -1184,7 +1164,7 @@ LABEL_46:
 }
 
 // 0x00406230
-int sub_406230()
+int PAL3::Destroy()
 {
   int v0; // eax
   int v1; // eax
@@ -1324,7 +1304,7 @@ void PAL3::CheckSystemRequire(char *a1@<edi>, char *a2@<esi>, HINSTANCE hInstanc
 }
 
 // 0x004065F0
-char sub_4065F0()
+char PAL3::CreateGfxWindow()
 {
   LPSTR CommandLineA; // eax
   int v1; // eax
@@ -1436,7 +1416,7 @@ int PAL3::HasCommandLineParam(char *lpKeyName)
 }
 
 // 0x00406980
-int sub_406980()
+int PAL3::GetCommandLineParam()
 {
   if ( !(_BYTE)MEMORY[0xC05F58]
     && __PAIR16__(BYTE1(MEMORY[0xC05F58]), 0) == BYTE2(MEMORY[0xC05F58])
@@ -1452,7 +1432,7 @@ int sub_406980()
 }
 
 // 0x00406A10
-int sub_406A10()
+int PAL3::TestCombat()
 {
   MEMORY[0x8ACCE8] = 27;
   MEMORY[0x8ACCEE] = 9;
@@ -1809,7 +1789,7 @@ LABEL_34:
 }
 
 // 0x00406FF0
-int sub_406FF0(int a1)
+int PAL3::SnapScreen(int a1)
 {
   char *v1; // esi
   int (***v2)(_DWORD, _DWORD); // eax
@@ -1840,7 +1820,7 @@ int sub_406FF0(int a1)
 }
 
 // 0x00407180
-char sub_407180(HKEY hKey, CHAR *lpSubKey)
+char PAL3::StartWolf(HKEY hKey, CHAR *lpSubKey)
 {
   if ( RegOpenKeyExA(hKey, lpSubKey, 0, 0x20019u, (PHKEY)&lpSubKey) )
   {
@@ -1855,7 +1835,7 @@ char sub_407180(HKEY hKey, CHAR *lpSubKey)
 }
 
 // 0x004071C0
-int sub_4071C0(int a1)
+int PAL3::EndWolf(int a1)
 {
   _DWORD *v1; // esi
   int result; // eax
@@ -1914,7 +1894,7 @@ int sub_4071C0(int a1)
 }
 
 // 0x004072D0
-int sub_4072D0()
+int PAL3::StartHideFight()
 {
   int (***v0)(_DWORD, _DWORD); // eax
 
@@ -1925,7 +1905,7 @@ int sub_4072D0()
 }
 
 // 0x00407300
-int sub_407300()
+int PAL3::EndHideFight()
 {
   int (***v0)(_DWORD, int); // eax
 
@@ -1935,7 +1915,7 @@ int sub_407300()
 }
 
 // 0x00407320
-int sub_407320(int a1, int a2, int a3, char a4)
+int PAL3::StartCombat(int a1, int a2, int a3, char a4)
 {
   int result; // eax
   int v5; // ebx
@@ -2005,7 +1985,7 @@ int sub_407320(int a1, int a2, int a3, char a4)
 }
 
 // 0x00407560
-int sub_407560(const void *a1, int a2, int a3)
+int PAL3::StartCombat(const void *a1, int a2, int a3)
 {
   _BYTE v4[28]; // [esp+Ch] [ebp-220h] BYREF
   int v5; // [esp+28h] [ebp-204h]
@@ -2036,7 +2016,7 @@ int sub_407560(const void *a1, int a2, int a3)
 }
 
 // 0x00407640
-char sub_407640()
+char PAL3::EntryCatchGhost()
 {
   int v0; // esi
   int v1; // ecx
@@ -2090,7 +2070,7 @@ char sub_407640()
 }
 
 // 0x00407740
-int sub_407740(int a1)
+int PAL3::IfHideFightSucceed(int a1)
 {
   int result; // eax
   int v2; // eax
@@ -2114,7 +2094,7 @@ int sub_407740(int a1)
 }
 
 // 0x00408BE0
-int sub_408BE0()
+int PAL3::InitSubsystems()
 {
   _DWORD v1[4]; // [esp+0h] [ebp-10h] BYREF
 

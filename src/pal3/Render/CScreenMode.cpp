@@ -7,7 +7,6 @@ int sub_42C1C0(...);
 int sub_53C420(...);
 int sub_53C460(...);
 int sub_53C470(...);
-int sub_53DF70(...);
 int sub_53DFB0(...);
 int sub_53E510(...);
 int sub_53E740(...);
@@ -304,7 +303,7 @@ void CScreenMode::Restore()
 }
 
 // 0x0053DF70
-char *sub_53DF70()
+char *CScreenMode::GetInstance()
 {
   return byte_17B41E8;
 }

@@ -2,21 +2,13 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBProtectWindow.h"
 
-// Forward declarations for unnamed functions
-int sub_51D6E0(...);
-int sub_51D700(...);
-int sub_51D710(...);
-int sub_51DD80(...);
-int sub_51DDA0(...);
-int sub_51F070(...);
-
 // Unnamed globals (extern)
 extern int dword_17AD59C;
 extern float flt_17AD598;
 extern void *off_5705D0;
 
 // 0x0051D6E0
-int sub_51D6E0()
+CCBProtectWindow::CCBProtectWindow()
 {
   dword_17AD59C = 1094713344;
   return 1094713344;
@@ -30,13 +22,13 @@ void CCBProtectWindow::~CCBProtectWindow()
 }
 
 // 0x0051D700
-void sub_51D700()
+void CCBProtectWindow::Reset()
 {
   flt_17AD598 = 12.0 + 12.0;
 }
 
 // 0x0051D710
-int sub_51D710(int _this)
+int CCBProtectWindow::Create(int _this)
 {
   _DWORD *v2; // eax
   int v3; // ebp
@@ -297,7 +289,7 @@ int sub_51D710(int _this)
 }
 
 // 0x0051DD80
-UIWnd * sub_51DD80(UIWnd *Block, char a2)
+UIWnd * CCBProtectWindow::Destroy(UIWnd *Block, char a2)
 {
   Block->ShowWindow();
   if ( (a2 & 1) != 0 )
@@ -306,7 +298,7 @@ UIWnd * sub_51DD80(UIWnd *Block, char a2)
 }
 
 // 0x0051DDA0
-void sub_51DDA0()
+void CCBProtectWindow::ShowWindow()
 {
   *(_DWORD *)this = &off_5705D0;
   *((_BYTE *)this + 8025) = 1;
@@ -343,7 +335,7 @@ void sub_51DDA0()
 }
 
 // 0x0051F070
-int sub_51F070(int a2)
+int CCBProtectWindow::Update(int a2)
 {
   *((_DWORD *)this + 2003) = a2;
   return a2;

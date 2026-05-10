@@ -2,15 +2,6 @@
 #include "pal3/globals.h"
 #include "pal3/gen/C3DSpark.h"
 
-// Forward declarations for unnamed functions
-int sub_4D6670(...);
-int sub_4D6960(...);
-int sub_4D6A60(...);
-int sub_4D6AC0(...);
-int sub_4D6BA0(...);
-int sub_4D6BC0(...);
-int sub_4D6D30(...);
-
 // Unnamed globals (extern)
 extern char aCNewFailed_0[];
 extern char aDProjectPal3Co_11[];
@@ -35,7 +26,7 @@ extern float flt_17A844C;
 extern float flt_17A8454;
 
 // 0x004D6670
-_DWORD * sub_4D6670()
+C3DSpark::C3DSpark()
 {
   int v2; // ebx
   int v3; // edi
@@ -212,7 +203,7 @@ _DWORD * sub_4D6670()
 }
 
 // 0x004D6960
-void sub_4D6960(int _this)
+C3DSpark::~C3DSpark(int _this)
 {
   gbRefObject *v2; // ecx
   gbRefObject *v3; // ecx
@@ -285,7 +276,7 @@ void sub_4D6960(int _this)
 }
 
 // 0x004D6A60
-char sub_4D6A60(const void *a2)
+char C3DSpark::CreateSingle(const void *a2)
 {
   int v3; // eax
   _BYTE *i; // ecx
@@ -304,7 +295,7 @@ char sub_4D6A60(const void *a2)
 }
 
 // 0x004D6AC0
-char sub_4D6AC0(int a2, int a3, int a4)
+char C3DSpark::CreateOne(int a2, int a3, int a4)
 {
   int v5; // eax
   long double v6; // st7
@@ -330,7 +321,7 @@ char sub_4D6AC0(int a2, int a3, int a4)
 }
 
 // 0x004D6BA0
-_BYTE * sub_4D6BA0()
+_BYTE * C3DSpark::DestroyAll()
 {
   _BYTE *result; // eax
   int v2; // edx
@@ -349,7 +340,7 @@ _BYTE * sub_4D6BA0()
 }
 
 // 0x004D6BC0
-void sub_4D6BC0(int a1@<ecx>, struct gbVec3D *a2@<edi>)
+void C3DSpark::Render(int a1@<ecx>, struct gbVec3D *a2@<edi>)
 {
   gbMatrixStack *v2; // ebx
   int v3; // esi
@@ -428,7 +419,7 @@ void sub_4D6BC0(int a1@<ecx>, struct gbVec3D *a2@<edi>)
 }
 
 // 0x004D6D30
-int sub_4D6D30(float a2)
+int C3DSpark::Update(float a2)
 {
   int result; // eax
   int v3; // esi

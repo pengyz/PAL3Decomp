@@ -2,12 +2,6 @@
 #include "pal3/globals.h"
 #include "pal3/gen/Parent_Data.h"
 
-// Forward declarations for unnamed functions
-int sub_53FDD0(...);
-int sub_53FE90(...);
-int sub_53FEB0(...);
-int sub_53FEC0(...);
-
 // Unnamed globals (extern)
 extern char aGfxscriptGeomN[];
 extern char aGfxscriptUiAdd[];
@@ -34,7 +28,7 @@ extern int dword_189506C;
 extern float flt_1895038;
 
 // 0x0053FDD0
-int sub_53FDD0(int _this, LPCSTR lpString)
+Parent_Data::Parent_Data(int _this, LPCSTR lpString)
 {
   int v3; // edi
   int i; // ebx
@@ -62,7 +56,7 @@ int Parent_Data::_CheckKeyWord()
 }
 
 // 0x0053FE90
-int sub_53FE90()
+int Parent_Data::_CheckStr()
 {
   dword_189503C = 1094713344;
   return 1094713344;
@@ -76,13 +70,13 @@ void Parent_Data::GetSize()
 }
 
 // 0x0053FEB0
-void sub_53FEB0()
+void Parent_Data::spstr()
 {
   flt_1895038 = 12.0 + 12.0;
 }
 
 // 0x0053FEC0
-struct gbRenderEffect *sub_53FEC0()
+struct gbRenderEffect *Parent_Data::spstr()
 {
   gbEffectMgr *v0; // esi
   struct gbRenderEffect *result; // eax

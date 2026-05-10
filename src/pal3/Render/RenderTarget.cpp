@@ -2,27 +2,20 @@
 #include "pal3/globals.h"
 #include "pal3/gen/RenderTarget.h"
 
-// Forward declarations for unnamed functions
-int sub_4BDAC0(...);
-int sub_4BDB60(...);
-int sub_4BDC10(...);
-int sub_4BDC40(...);
-int sub_4BDF10(...);
-
 // Unnamed globals (extern)
 extern char aDProjectPal3Ef[];
 extern char aLockBackBuffer[];
 extern void *off_56F4F0;
 
 // 0x004BDAC0
-void sub_4BDAC0(int _this)
+RenderTarget::RenderTarget(int _this)
 {
   gbTexture_D3D::~gbTexture_D3D((void *)(this + 100));
   gbTexture_D3D::~gbTexture_D3D((void *)(this + 4));
 }
 
 // 0x004BDB60
-int sub_4BDB60()
+int RenderTarget::Create()
 {
   int result; // eax
   int v3; // [esp+Ch] [ebp-814h] BYREF
@@ -51,7 +44,7 @@ int sub_4BDB60()
 }
 
 // 0x004BDC10
-void sub_4BDC10(int a2)
+void RenderTarget::OnDeviceLost(int a2)
 {
   int v2; // eax
 
@@ -65,7 +58,7 @@ void sub_4BDC10(int a2)
 }
 
 // 0x004BDC40
-bool sub_4BDC40(int a2)
+bool RenderTarget::OnResetDevice(int a2)
 {
   int v4; // ecx
   int v5; // esi
@@ -118,7 +111,7 @@ LABEL_8:
 }
 
 // 0x004BDF10
-_DWORD * sub_4BDF10()
+_DWORD * RenderTarget::Destroy()
 {
   *((_DWORD *)this + 1) = 0;
   *this = &off_56F4F0;

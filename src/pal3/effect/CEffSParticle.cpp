@@ -4,16 +4,6 @@
 
 // Forward declarations for unnamed functions
 int sub_4D4EA0(...);
-int sub_4D4EE0(...);
-int sub_4D4F20(...);
-int sub_4D4FC0(...);
-int sub_4D51B0(...);
-int sub_4D53E0(...);
-int sub_4D5620(...);
-int sub_4D56B0(...);
-int sub_4D5790(...);
-int sub_4D5860(...);
-int sub_4D58D0(...);
 
 // Unnamed globals (extern)
 extern unsigned char byte_1895561;
@@ -32,7 +22,7 @@ extern int unk_5D5760;
 extern int unk_5D576C;
 
 // 0x004D4EE0
-_DWORD *sub_4D4EE0()
+CEffSParticle::CEffSParticle()
 {
   _DWORD *v0; // eax
 
@@ -44,7 +34,7 @@ _DWORD *sub_4D4EE0()
 }
 
 // 0x004D4F20
-int sub_4D4F20()
+CEffSParticle::~CEffSParticle()
 {
   int v2; // esi
   int v3; // eax
@@ -87,7 +77,7 @@ int sub_4D4F20()
 }
 
 // 0x004D4FC0
-int sub_4D4FC0(int _this, float a2)
+int CEffSParticle::Create(int _this, float a2)
 {
   float *v2; // esi
   int v3; // ebx
@@ -233,7 +223,7 @@ LABEL_34:
 }
 
 // 0x004D51B0
-void sub_4D51B0(_DWORD *a2)
+void CEffSParticle::Init(_DWORD *a2)
 {
   _DWORD *v2; // ebx
   int v3; // ecx
@@ -362,7 +352,7 @@ LABEL_31:
 }
 
 // 0x004D53E0
-int sub_4D53E0(int a2)
+int CEffSParticle::Attach(int a2)
 {
   int v3; // edi
   int v4; // ebx
@@ -448,7 +438,7 @@ int sub_4D53E0(int a2)
 }
 
 // 0x004D5620
-void * sub_4D5620(int a1)
+void * CEffSParticle::Update(int a1)
 {
   void *result; // eax
 
@@ -485,7 +475,7 @@ void * sub_4D5620(int a1)
 }
 
 // 0x004D56B0
-int sub_4D56B0(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
+int CEffSParticle::Render(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
 {
   int v8; // ecx
   int v9; // esi
@@ -535,7 +525,7 @@ int sub_4D56B0(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
 }
 
 // 0x004D5790
-void * sub_4D5790(void *Block, char a2)
+void * CEffSParticle::SetTimeScale(void *Block, char a2)
 {
   int v3; // eax
   int v4; // ebx
@@ -569,7 +559,7 @@ void * sub_4D5790(void *Block, char a2)
 }
 
 // 0x004D5860
-char * sub_4D5860(char a2)
+char * CEffSParticle::CreateTask(char a2)
 {
   char *v2; // esi
 
@@ -581,7 +571,7 @@ char * sub_4D5860(char a2)
 }
 
 // 0x004D58D0
-int sub_4D58D0(unsigned __int8 *a2)
+int CEffSParticle::GetEditorTaskDescription(unsigned __int8 *a2)
 {
   unsigned __int8 *v4; // edx
   int v5; // esi

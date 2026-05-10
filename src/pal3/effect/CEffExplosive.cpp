@@ -3,14 +3,7 @@
 #include "pal3/gen/CEffExplosive.h"
 
 // Forward declarations for unnamed functions
-int sub_4C6F20(...);
-int sub_4C7680(...);
-int sub_4C7A70(...);
-int sub_4C7B70(...);
-int sub_4C7CB0(...);
-int sub_4C7D40(...);
 int sub_4C7E60(...);
-int sub_4C8370(...);
 
 // Unnamed globals (extern)
 extern char aCNewFailed_0[];
@@ -230,7 +223,7 @@ LABEL_10:
 }
 
 // 0x004C6F20
-void sub_4C6F20(int _this)
+void CEffExplosive::Destroy(int _this)
 {
   char v2; // al
   bool v3; // zf
@@ -305,7 +298,7 @@ void sub_4C6F20(int _this)
 }
 
 // 0x004C7680
-int sub_4C7680(int _this, int a2)
+int CEffExplosive::ProcCommonTask(int _this, int a2)
 {
   double v3; // st7
   int v4; // edi
@@ -447,7 +440,7 @@ int sub_4C7680(int _this, int a2)
 }
 
 // 0x004C7A70
-void * sub_4C7A70(int a1)
+void * CEffExplosive::GetEditorTaskDescription(int a1)
 {
   void *result; // eax
 
@@ -515,7 +508,7 @@ void * sub_4C7A70(int a1)
 }
 
 // 0x004C7B70
-void * sub_4C7B70(int a1)
+void * CEffExplosive::GetEditorObjDescription(int a1)
 {
   void *result; // eax
 
@@ -611,7 +604,7 @@ void CEffExplosive::InitDefaultUVSet(int a2, int a3)
 }
 
 // 0x004C7CB0
-_DWORD * sub_4C7CB0(int _this, int a2)
+_DWORD * CEffExplosive::LoadTexture(int _this, int a2)
 {
   gbTexture *v3; // eax
   _DWORD *result; // eax
@@ -646,7 +639,7 @@ _DWORD * sub_4C7CB0(int _this, int a2)
 }
 
 // 0x004C7D40
-int sub_4C7D40(int _this)
+int CEffExplosive::CreateGeom(int _this)
 {
   int v1; // edx
   int result; // eax
@@ -720,7 +713,7 @@ int sub_4C7D40(int _this)
 }
 
 // 0x004C8370
-int sub_4C8370(float a2, int a3)
+int CEffExplosive::UpdateExplosive(float a2, int a3)
 {
   int result; // eax
   int v5; // ebp

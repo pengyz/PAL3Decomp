@@ -4,7 +4,6 @@
 
 // Forward declarations for unnamed functions
 int sub_4B6550(...);
-int sub_4B65A0(...);
 int sub_4B66B0(...);
 int sub_4B67B0(...);
 int sub_4B6820(...);
@@ -16,7 +15,7 @@ extern unsigned char byte_DE6A4C;
 extern int unk_DE6A30;
 
 // 0x004B65A0
-void *sub_4B65A0()
+void *RenderTarget3::GetInstance()
 {
   if ( (byte_DE6A4C & 1) == 0 )
   {

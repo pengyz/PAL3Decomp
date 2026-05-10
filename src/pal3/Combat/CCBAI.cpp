@@ -3,50 +3,7 @@
 #include "pal3/gen/CCBAI.h"
 
 // Forward declarations for unnamed functions
-int sub_4D6FF0(...);
-int sub_4D7040(...);
-int sub_4D7080(...);
-int sub_4D70C0(...);
-int sub_4D7120(...);
-int sub_4D71E0(...);
-int sub_4D7820(...);
-int sub_4D7EF0(...);
 int sub_4D8580(...);
-int sub_4D86D0(...);
-int sub_4D8760(...);
-int sub_4D8AF0(...);
-int sub_4D8F20(...);
-int sub_4D9130(...);
-int sub_4D9360(...);
-int sub_4D9380(...);
-int sub_4D93D0(...);
-int sub_4D94F0(...);
-int sub_4D9740(...);
-int sub_4D9920(...);
-int sub_4D9A70(...);
-int sub_4D9BA0(...);
-int sub_4D9D00(...);
-int sub_4D9E20(...);
-int sub_4D9F50(...);
-int sub_4DA0A0(...);
-int sub_4DA1D0(...);
-int sub_4DA350(...);
-int sub_4DA4F0(...);
-int sub_4DA640(...);
-int sub_4DA770(...);
-int sub_4DA900(...);
-int sub_4DAA40(...);
-int sub_4DAB70(...);
-int sub_4DACA0(...);
-int sub_4DADD0(...);
-int sub_4DAF00(...);
-int sub_4DB030(...);
-int sub_4DB160(...);
-int sub_4DB280(...);
-int sub_4DB2A0(...);
-int sub_4DB2C0(...);
-int sub_4DB310(...);
-int sub_4DB360(...);
 int sub_4F2C30(...);
 int sub_4F5330(...);
 int sub_4F5D00(...);
@@ -91,7 +48,7 @@ void * CCBAI::GetTargetRole(void *pOut)
 }
 
 // 0x004D6FF0
-int sub_4D6FF0()
+CCBAI::CCBAI()
 {
   dword_17A89C8 = 121;
   dword_17A89CC = 316;
@@ -108,7 +65,7 @@ int CCBAI::~CCBAI()
 }
 
 // 0x004D7040
-int sub_4D7040()
+int CCBAI::Reset()
 {
   dword_17A89D8 = 573;
   dword_17A89DC = 573;
@@ -118,7 +75,7 @@ int sub_4D7040()
 }
 
 // 0x004D7080
-_DWORD * sub_4D7080(_DWORD *a2)
+_DWORD * CCBAI::Create(_DWORD *a2)
 {
   memset(this, 0, 0xE50u);
   *((_DWORD *)this + 3) = a2;
@@ -128,7 +85,7 @@ _DWORD * sub_4D7080(_DWORD *a2)
 }
 
 // 0x004D70C0
-char sub_4D70C0(int _this)
+char CCBAI::Init(int _this)
 {
   memset((void *)(this + 1584), 0, 0x6E0u);
   memset((void *)(this + 3344), 0, 0xA0u);
@@ -146,7 +103,7 @@ int CCBAI::Update()
 }
 
 // 0x004D7120
-char sub_4D7120(int a2)
+char CCBAI::Render(int a2)
 {
   char v3; // bl
   int v4; // eax
@@ -189,7 +146,7 @@ char sub_4D7120(int a2)
 }
 
 // 0x004D71E0
-char sub_4D71E0(int a2)
+char CCBAI::HandleEnemyAction(int a2)
 {
   int v4; // ecx
   int v5; // edi
@@ -344,7 +301,7 @@ LABEL_12:
 }
 
 // 0x004D7820
-char sub_4D7820(int a2)
+char CCBAI::HandleEnemyWell(int a2)
 {
   int v3; // ecx
   int v4; // edi
@@ -531,7 +488,7 @@ LABEL_73:
 }
 
 // 0x004D7EF0
-char sub_4D7EF0(int a2)
+char CCBAI::HandleEnemyWeak(int a2)
 {
   int v3; // ecx
   int v4; // edi
@@ -723,7 +680,7 @@ LABEL_82:
 }
 
 // 0x004D86D0
-char sub_4D86D0(int a2)
+char CCBAI::HandleEnemyChaos(int a2)
 {
   int v3; // eax
   char result; // al
@@ -749,7 +706,7 @@ char sub_4D86D0(int a2)
 }
 
 // 0x004D8760
-char sub_4D8760(int a2)
+char CCBAI::HandleFriendAction(int a2)
 {
   int v3; // ebx
   int v4; // eax
@@ -864,7 +821,7 @@ LABEL_46:
 }
 
 // 0x004D8AF0
-char sub_4D8AF0(int a2)
+char CCBAI::HandleFriendNegative(int a2)
 {
   int v4; // edi
   int v5; // ebx
@@ -1012,7 +969,7 @@ LABEL_49:
 }
 
 // 0x004D8F20
-char sub_4D8F20(int a2, char a3)
+char CCBAI::HandleFriendAffirmative(int a2, char a3)
 {
   int v4; // ebx
   int v5; // edi
@@ -1121,7 +1078,7 @@ LABEL_21:
 }
 
 // 0x004D9130
-char sub_4D9130(int a2, int a3)
+char CCBAI::HandlePlayerNormalAttack(int a2, int a3)
 {
   int (__stdcall *v4)(int); // eax
   char result; // al
@@ -1228,7 +1185,7 @@ LABEL_11:
 }
 
 // 0x004D9360
-void * sub_4D9360()
+void * CCBAI::RepeatPlayerLastOperation()
 {
   *this = &unk_1010101;
   *((_DWORD *)this + 1) = &unk_1010101;
@@ -1238,7 +1195,7 @@ void * sub_4D9360()
 }
 
 // 0x004D9380
-_DWORD * sub_4D9380()
+_DWORD * CCBAI::SetNewRole()
 {
   _DWORD *v1; // eax
   int v2; // esi
@@ -1275,7 +1232,7 @@ _DWORD * sub_4D9380()
 }
 
 // 0x004D93D0
-int sub_4D93D0()
+int CCBAI::FillAllDemandSatisfy()
 {
   _BYTE *v2; // esi
   int v3; // ebp
@@ -1361,7 +1318,7 @@ int sub_4D93D0()
 }
 
 // 0x004D94F0
-char sub_4D94F0(int _this)
+char CCBAI::DemandThreadTracer(int _this)
 {
   int v2; // edi
   int v3; // ebp
@@ -1497,7 +1454,7 @@ LABEL_45:
 }
 
 // 0x004D9740
-char sub_4D9740(unsigned int a2, int a3, int a4)
+char CCBAI::DemandChecker(unsigned int a2, int a3, int a4)
 {
   unsigned int v5; // eax
   int v6; // ecx
@@ -1557,7 +1514,7 @@ char sub_4D9740(unsigned int a2, int a3, int a4)
 }
 
 // 0x004D9920
-char sub_4D9920(int a2, int a3, int a4)
+char CCBAI::CastNormalAttack(int a2, int a3, int a4)
 {
   int v5; // ecx
   int v6; // ebx
@@ -1598,7 +1555,7 @@ char sub_4D9920(int a2, int a3, int a4)
 }
 
 // 0x004D9A70
-char sub_4D9A70(int a2, int a3)
+char CCBAI::CastRecoverMagic(int a2, int a3)
 {
   char result; // al
   int v5; // eax
@@ -1644,7 +1601,7 @@ char sub_4D9A70(int a2, int a3)
 }
 
 // 0x004D9BA0
-char sub_4D9BA0(int a2, int a3, int a4)
+char CCBAI::CastRecoverBigMagic(int a2, int a3, int a4)
 {
   int v5; // ecx
   int v6; // eax
@@ -1687,7 +1644,7 @@ char sub_4D9BA0(int a2, int a3, int a4)
 }
 
 // 0x004D9D00
-char sub_4D9D00(int a2, int a3)
+char CCBAI::CastAttackMagic(int a2, int a3)
 {
   int v3; // eax
   int v4; // eax
@@ -1723,7 +1680,7 @@ char sub_4D9D00(int a2, int a3)
 }
 
 // 0x004D9E20
-char sub_4D9E20(int a2, int a3)
+char CCBAI::CastAttackBigMagic(int a2, int a3)
 {
   int v4; // ecx
   int v5; // eax
@@ -1759,7 +1716,7 @@ char sub_4D9E20(int a2, int a3)
 }
 
 // 0x004D9F50
-char sub_4D9F50(int a2, int a3, int a4)
+char CCBAI::CastSpecifyMagic(int a2, int a3, int a4)
 {
   int v5; // ecx
   int v6; // ebx
@@ -1800,7 +1757,7 @@ char sub_4D9F50(int a2, int a3, int a4)
 }
 
 // 0x004DA0A0
-char sub_4DA0A0(int a2, int a3)
+char CCBAI::CastBFAMagic(int a2, int a3)
 {
   char result; // al
   int v5; // eax
@@ -1846,7 +1803,7 @@ char sub_4DA0A0(int a2, int a3)
 }
 
 // 0x004DA1D0
-char sub_4DA1D0(int a2, int a3, int a4)
+char CCBAI::CastBFAAttackMagic(int a2, int a3, int a4)
 {
   int v5; // ecx
   int v6; // ecx
@@ -1889,7 +1846,7 @@ char sub_4DA1D0(int a2, int a3, int a4)
 }
 
 // 0x004DA350
-char sub_4DA350(int a2, int a3)
+char CCBAI::CastRandEnemyMagic(int a2, int a3)
 {
   char result; // al
   int v5; // eax
@@ -1946,7 +1903,7 @@ char sub_4DA350(int a2, int a3)
 }
 
 // 0x004DA4F0
-char sub_4DA4F0(int a2, int a3, int a4)
+char CCBAI::CastRecoverSkill(int a2, int a3, int a4)
 {
   int v5; // ecx
   int v6; // ebx
@@ -1987,7 +1944,7 @@ char sub_4DA4F0(int a2, int a3, int a4)
 }
 
 // 0x004DA640
-char sub_4DA640(int a2, int a3)
+char CCBAI::CastRecoverBigSkill(int a2, int a3)
 {
   char result; // al
   int v5; // eax
@@ -2033,7 +1990,7 @@ char sub_4DA640(int a2, int a3)
 }
 
 // 0x004DA770
-char sub_4DA770(int a2, int a3, int a4)
+char CCBAI::CastAttackSkill(int a2, int a3, int a4)
 {
   int v5; // ecx
   int v6; // eax
@@ -2076,7 +2033,7 @@ char sub_4DA770(int a2, int a3, int a4)
 }
 
 // 0x004DA900
-char sub_4DA900(int a2, int a3)
+char CCBAI::CastAttackBigSkill(int a2, int a3)
 {
   char result; // al
   int v5; // eax
@@ -2124,7 +2081,7 @@ char sub_4DA900(int a2, int a3)
 }
 
 // 0x004DAA40
-char sub_4DAA40(int a2, int a3, int a4)
+char CCBAI::CastRecoverItem(int a2, int a3, int a4)
 {
   int v5; // ecx
   int v6; // eax
@@ -2163,7 +2120,7 @@ char sub_4DAA40(int a2, int a3, int a4)
 }
 
 // 0x004DAB70
-char sub_4DAB70(int a2, int a3, int a4)
+char CCBAI::CastRecoverBigItem(int a2, int a3, int a4)
 {
   int v5; // ecx
   int v6; // eax
@@ -2202,7 +2159,7 @@ char sub_4DAB70(int a2, int a3, int a4)
 }
 
 // 0x004DACA0
-char sub_4DACA0(int a2, int a3, int a4)
+char CCBAI::CastAttackItem(int a2, int a3, int a4)
 {
   int v5; // ecx
   int v6; // eax
@@ -2241,7 +2198,7 @@ char sub_4DACA0(int a2, int a3, int a4)
 }
 
 // 0x004DADD0
-char sub_4DADD0(int a2, int a3, int a4)
+char CCBAI::CastAttackBigItem(int a2, int a3, int a4)
 {
   int v5; // ecx
   int v6; // eax
@@ -2278,7 +2235,7 @@ char sub_4DADD0(int a2, int a3, int a4)
 }
 
 // 0x004DAF00
-char sub_4DAF00(int a2, int a3, int a4)
+char CCBAI::CastBossPhysicalAttack(int a2, int a3, int a4)
 {
   int v5; // ecx
   int v6; // eax
@@ -2315,7 +2272,7 @@ char sub_4DAF00(int a2, int a3, int a4)
 }
 
 // 0x004DB030
-char sub_4DB030(int a2, int a3, int a4)
+char CCBAI::CastReviveMagic(int a2, int a3, int a4)
 {
   int v5; // ecx
   int v6; // eax
@@ -2352,7 +2309,7 @@ char sub_4DB030(int a2, int a3, int a4)
 }
 
 // 0x004DB160
-char sub_4DB160(int a2)
+char CCBAI::CastReviveSkill(int a2)
 {
   int v4; // edi
   _DWORD v5[11]; // [esp+Ch] [ebp-2Ch] BYREF
@@ -2383,7 +2340,7 @@ int CCBAI::CastCureSpecStateMagic()
 }
 
 // 0x004DB280
-int sub_4DB280()
+int CCBAI::CastCureSpecStateSkill()
 {
   *(_DWORD *)&Buffer[900] = 1094713344;
   return 1094713344;
@@ -2397,7 +2354,7 @@ void CCBAI::CastCureSpecStateItem()
 }
 
 // 0x004DB2A0
-void sub_4DB2A0()
+void CCBAI::HasVeryPunyFiveMagicRole()
 {
   *(float *)&Buffer[896] = 12.0 + 12.0;
 }
@@ -2410,7 +2367,7 @@ int CCBAI::CreateValueAutomation()
 }
 
 // 0x004DB2C0
-int sub_4DB2C0()
+int CCBAI::AddValueFunction()
 {
   *(_DWORD *)&Buffer[908] = 119;
   *(_DWORD *)&Buffer[912] = 314;
@@ -2427,7 +2384,7 @@ int CCBAI::AddValueItem()
 }
 
 // 0x004DB310
-int sub_4DB310()
+int CCBAI::DestroyValueAutomation()
 {
   *(_DWORD *)&Buffer[924] = 519;
   *(_DWORD *)&Buffer[928] = 519;
@@ -2444,7 +2401,7 @@ int CCBAI::RunValueAutomation()
 }
 
 // 0x004DB360
-int sub_4DB360()
+int CCBAI::SpecAI()
 {
   *(_DWORD *)&Buffer[940] = 128;
   *(_DWORD *)&Buffer[944] = 323;

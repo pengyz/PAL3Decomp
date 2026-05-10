@@ -3,9 +3,6 @@
 #include "pal3/gen/CEffModel.h"
 
 // Forward declarations for unnamed functions
-int sub_4D0CE0(...);
-int sub_4D0D70(...);
-int sub_4D0EC0(...);
 int sub_4D1EF0(...);
 
 // Unnamed globals (extern)
@@ -14,7 +11,7 @@ extern void *off_56FA30;
 extern void *off_56FA6C;
 
 // 0x004D0CE0
-_DWORD * sub_4D0CE0()
+_DWORD * CEffModel::Render()
 {
   *((_DWORD *)this + 1) = 0;
   *((_BYTE *)this + 8) = 0;
@@ -51,7 +48,7 @@ _DWORD * sub_4D0CE0()
 }
 
 // 0x004D0D70
-_DWORD *sub_4D0D70()
+_DWORD *CEffModel::SetTimeScale()
 {
   _DWORD *v0; // eax
 
@@ -63,7 +60,7 @@ _DWORD *sub_4D0D70()
 }
 
 // 0x004D0EC0
-int sub_4D0EC0(int _this, int a2, float a3, float a4, float a5)
+int CEffModel::ProcInitTask(int _this, int a2, float a3, float a4, float a5)
 {
   int v7; // edx
   double v8; // st7

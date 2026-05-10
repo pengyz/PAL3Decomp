@@ -3,18 +3,8 @@
 #include "pal3/gen/PtrArray.h"
 
 // Forward declarations for unnamed functions
-int sub_432660(...);
 int sub_4326A0(...);
-int sub_432770(...);
-int sub_4327B0(...);
 int sub_433F90(...);
-int sub_434130(...);
-int sub_4341E0(...);
-int sub_434240(...);
-int sub_4343B0(...);
-int sub_4343F0(...);
-int sub_434490(...);
-int sub_4344F0(...);
 int sub_434670(...);
 int sub_4348E0(...);
 int sub_5372D0(...);
@@ -28,7 +18,7 @@ extern int dword_D8E468;
 extern int dword_D8E46C;
 
 // 0x00432660
-_DWORD * sub_432660()
+_DWORD * PtrArray::Clear()
 {
   *this = 0;
   *((_DWORD *)this + 2) = 0;
@@ -38,7 +28,7 @@ _DWORD * sub_432660()
 }
 
 // 0x00432770
-void sub_432770(int a2, int a3)
+void PtrArray::SetAt(int a2, int a3)
 {
   if ( a2 >= *((_DWORD *)this + 1) )
     sub_4326A0((int)this, a2 + 1, -1);
@@ -46,7 +36,7 @@ void sub_432770(int a2, int a3)
 }
 
 // 0x004327B0
-int sub_4327B0(int a2, int a3)
+int PtrArray::InsertAt(int a2, int a3)
 {
   int v4; // eax
   int result; // eax
@@ -60,7 +50,7 @@ int sub_4327B0(int a2, int a3)
 }
 
 // 0x00434130
-int sub_434130(int a1, int a2, char a3)
+PtrArray::PtrArray(int a1, int a2, char a3)
 {
   int result; // eax
   int v4; // edx
@@ -101,7 +91,7 @@ int sub_434130(int a1, int a2, char a3)
 }
 
 // 0x004341E0
-int sub_4341E0(int a1)
+PtrArray::~PtrArray(int a1)
 {
   unsigned int v2; // edi
 
@@ -122,7 +112,7 @@ int sub_4341E0(int a1)
 }
 
 // 0x00434240
-void sub_434240()
+void PtrArray::SetSize()
 {
   int v0; // esi
   int v1; // edi
@@ -207,7 +197,7 @@ void sub_434240()
 }
 
 // 0x004343B0
-char * sub_4343B0(unsigned __int16 a1, int a2)
+char * PtrArray::SetAtGrow(unsigned __int16 a1, int a2)
 {
   int v2; // ecx
 
@@ -221,7 +211,7 @@ char * sub_4343B0(unsigned __int16 a1, int a2)
 }
 
 // 0x004343F0
-char * sub_4343F0(const char *a1)
+char * PtrArray::RemoveAt(const char *a1)
 {
   int v1; // edi
   const char *i; // ebp
@@ -238,7 +228,7 @@ char * sub_4343F0(const char *a1)
 }
 
 // 0x00434490
-void sub_434490(int _this)
+void PtrArray::Remove(int _this)
 {
   sub_434670(this);
   operator delete(*(void **)(this + 8));
@@ -248,7 +238,7 @@ void sub_434490(int _this)
 }
 
 // 0x004344F0
-struct gbVFile * sub_4344F0(int _this, const char *a2)
+struct gbVFile * PtrArray::InsertAt(int _this, const char *a2)
 {
   struct gbVFile *result; // eax
   int v4; // edi

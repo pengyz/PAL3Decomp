@@ -4,13 +4,6 @@
 
 // Forward declarations for unnamed functions
 int sub_519AF0(...);
-int sub_51CA50(...);
-int sub_51CAA0(...);
-int sub_51CB60(...);
-int sub_51CCE0(...);
-int sub_51CD90(...);
-int sub_51CE40(...);
-int sub_51CF00(...);
 
 // Unnamed globals (extern)
 extern char aCNewFailed[];
@@ -37,7 +30,7 @@ int CCBAIWindow::SetText(int a2, int a3)
 }
 
 // 0x0051CA50
-int sub_51CA50(int _this, int a2)
+CCBAIWindow::CCBAIWindow(int _this, int a2)
 {
   int v3; // edi
   void (****v4)(_DWORD, int); // esi
@@ -64,7 +57,7 @@ int sub_51CA50(int _this, int a2)
 }
 
 // 0x0051CAA0
-int sub_51CAA0()
+CCBAIWindow::~CCBAIWindow()
 {
   int v2; // ebx
   char *v3; // edi
@@ -80,7 +73,7 @@ int sub_51CAA0()
 }
 
 // 0x0051CB60
-char sub_51CB60(_DWORD *a1)
+char CCBAIWindow::Reset(_DWORD *a1)
 {
   _BYTE *v1; // eax
   int v2; // eax
@@ -108,7 +101,7 @@ char sub_51CB60(_DWORD *a1)
 }
 
 // 0x0051CCE0
-char sub_51CCE0(_DWORD *a1)
+char CCBAIWindow::Destroy(_DWORD *a1)
 {
   _DWORD *v1; // eax
   _DWORD *v2; // eax
@@ -136,7 +129,7 @@ char sub_51CCE0(_DWORD *a1)
 }
 
 // 0x0051CD90
-char sub_51CD90(_DWORD *a1)
+char CCBAIWindow::OnMessage(_DWORD *a1)
 {
   _DWORD *v1; // eax
   _DWORD *v2; // eax
@@ -164,7 +157,7 @@ char sub_51CD90(_DWORD *a1)
 }
 
 // 0x0051CE40
-char sub_51CE40(_DWORD *a1)
+char CCBAIWindow::Update(_DWORD *a1)
 {
   _DWORD *v1; // eax
   _DWORD *v2; // eax
@@ -192,7 +185,7 @@ char sub_51CE40(_DWORD *a1)
 }
 
 // 0x0051CF00
-char sub_51CF00(_DWORD *a1)
+char CCBAIWindow::ShowWindow(_DWORD *a1)
 {
   _DWORD *v1; // eax
   _DWORD *v2; // eax

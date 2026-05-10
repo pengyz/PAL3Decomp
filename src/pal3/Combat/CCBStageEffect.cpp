@@ -3,10 +3,6 @@
 #include "pal3/gen/CCBStageEffect.h"
 
 // Forward declarations for unnamed functions
-int sub_508E30(...);
-int sub_508F30(...);
-int sub_509060(...);
-int sub_509080(...);
 int sub_5090A0(...);
 
 // Unnamed globals (extern)
@@ -19,7 +15,7 @@ extern int dword_17ABC64;
 extern float flt_17ABC60;
 
 // 0x00508E30
-char sub_508E30(int _this)
+CCBStageEffect::CCBStageEffect(int _this)
 {
   struct gbVFile *v2; // eax
   struct gbVFile *v3; // esi
@@ -50,7 +46,7 @@ char sub_508E30(int _this)
 }
 
 // 0x00508F30
-char sub_508F30(int _this)
+CCBStageEffect::~CCBStageEffect(int _this)
 {
   struct gbVFile *v2; // eax
   struct gbVFile *v3; // esi
@@ -87,7 +83,7 @@ int CCBStageEffect::Create()
 }
 
 // 0x00509060
-int sub_509060()
+int CCBStageEffect::Destroy()
 {
   dword_17ABC64 = 1094713344;
   return 1094713344;
@@ -101,7 +97,7 @@ void CCBStageEffect::Init()
 }
 
 // 0x00509080
-void sub_509080()
+void CCBStageEffect::GetLinkerIndex()
 {
   flt_17ABC60 = 12.0 + 12.0;
 }

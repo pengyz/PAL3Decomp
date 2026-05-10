@@ -10,13 +10,6 @@ int sub_472A80(...);
 int sub_4BDD90(...);
 int sub_4BDEB0(...);
 int sub_51DFD0(...);
-int sub_523100(...);
-int sub_523120(...);
-int sub_523130(...);
-int sub_5231D0(...);
-int sub_5231F0(...);
-int sub_5232B0(...);
-int sub_523560(...);
 int sub_524230(...);
 int sub_524960(...);
 int sub_53EA80(...);
@@ -36,7 +29,7 @@ int CUtil::~CUtil()
 }
 
 // 0x00523100
-int sub_523100()
+int CUtil::Create()
 {
   dword_17ADB04 = 1094713344;
   return 1094713344;
@@ -50,13 +43,13 @@ void CUtil::Destroy()
 }
 
 // 0x00523120
-void sub_523120()
+void CUtil::Init()
 {
   flt_17ADB00 = 12.0 + 12.0;
 }
 
 // 0x00523130
-int sub_523130(int _this)
+int CUtil::CreateLog(int _this)
 {
   (_DWORD *->UIListBox()this);
   *(_DWORD *)(this + 88) = 800;
@@ -78,7 +71,7 @@ int sub_523130(int _this)
 }
 
 // 0x005231D0
-UIWnd * sub_5231D0(UIWnd *Block, char a2)
+UIWnd * CUtil::WriteLog(UIWnd *Block, char a2)
 {
   Block->GetFileSize();
   if ( (a2 & 1) != 0 )
@@ -87,7 +80,7 @@ UIWnd * sub_5231D0(UIWnd *Block, char a2)
 }
 
 // 0x005231F0
-void sub_5231F0()
+void CUtil::GetFileSize()
 {
   int v2; // ecx
   int v3; // ecx
@@ -124,7 +117,7 @@ void sub_5231F0()
 }
 
 // 0x005232B0
-int sub_5232B0()
+int CUtil::GetFileSize()
 {
   int v2; // eax
   int v3; // ecx
@@ -231,7 +224,7 @@ int sub_5232B0()
 }
 
 // 0x00523560
-char sub_523560()
+char CUtil::RectIntersection()
 {
   _DWORD *v2; // eax
   int v3; // ecx

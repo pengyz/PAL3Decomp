@@ -4,8 +4,6 @@
 
 // Forward declarations for unnamed functions
 int sub_4D3280(...);
-int sub_4D32C0(...);
-int sub_4D3300(...);
 
 // Unnamed globals (extern)
 extern void *off_56F62C;
@@ -14,7 +12,7 @@ extern void *off_56FA88;
 extern void *off_56FAC4;
 
 // 0x004D32C0
-_DWORD *sub_4D32C0()
+_DWORD *CEffQuake::Destroy()
 {
   _DWORD *v0; // eax
 
@@ -26,7 +24,7 @@ _DWORD *sub_4D32C0()
 }
 
 // 0x004D3300
-int sub_4D3300()
+int CEffQuake::Update()
 {
   int v2; // esi
   int v3; // eax

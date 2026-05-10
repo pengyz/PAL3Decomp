@@ -2,12 +2,8 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UIRenderObj.h"
 
-// Forward declarations for unnamed functions
-int sub_541640(...);
-int sub_541710(...);
-
 // 0x00541640
-void sub_541640(int _this)
+UIRenderObj::UIRenderObj(int _this)
 {
   int v2; // ecx
   int v3; // esi
@@ -49,7 +45,7 @@ void sub_541640(int _this)
 }
 
 // 0x00541710
-unsigned __int8 sub_541710(unsigned __int8 a2)
+UIRenderObj::~UIRenderObj(unsigned __int8 a2)
 {
   if ( !*((_BYTE *)UIQuadManager::GetInstance() + 29) )
     return (*(int (**)(int, _DWORD))(*(_DWORD *)g_pGfxManager + 104))(g_pGfxManager, a2);

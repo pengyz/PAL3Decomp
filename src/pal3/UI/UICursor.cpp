@@ -2,23 +2,17 @@
 #include "pal3/globals.h"
 #include "pal3/gen/UICursor.h"
 
-// Forward declarations for unnamed functions
-int sub_5417B0(...);
-int sub_541860(...);
-int sub_541C40(...);
-int sub_541CC0(...);
-
 // Unnamed globals (extern)
 extern float flt_18952F8;
 
 // 0x005417B0
-void sub_5417B0()
+UICursor::UICursor()
 {
   flt_18952F8 = 12.0 + 12.0;
 }
 
 // 0x00541860
-UINT sub_541860()
+UINT UICursor::Init()
 {
   char v0; // bl
   UINT result; // eax
@@ -43,7 +37,7 @@ UINT sub_541860()
 }
 
 // 0x00541C40
-char sub_541C40(CHAR *lpSubKey, LPCSTR lpValueName, LPBYTE lpData)
+char UICursor::Inst(CHAR *lpSubKey, LPCSTR lpValueName, LPBYTE lpData)
 {
   DWORD cbData; // [esp+0h] [ebp-8h] BYREF
   DWORD Type; // [esp+4h] [ebp-4h] BYREF
@@ -64,7 +58,7 @@ char sub_541C40(CHAR *lpSubKey, LPCSTR lpValueName, LPBYTE lpData)
 }
 
 // 0x00541CC0
-int sub_541CC0()
+int UICursor::IRender()
 {
   gbUpdateCurTime();
   dbl_1895070 = g_CurrentTime;

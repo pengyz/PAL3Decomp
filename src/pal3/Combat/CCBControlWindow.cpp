@@ -6,17 +6,6 @@
 int sub_43F640(...);
 int sub_43F670(...);
 int sub_43F690(...);
-int sub_51A880(...);
-int sub_51A930(...);
-int sub_51AB60(...);
-int sub_51AC30(...);
-int sub_51AC40(...);
-int sub_51AC90(...);
-int sub_51AD00(...);
-int sub_51AD10(...);
-int sub_51AFE0(...);
-int sub_51B0B0(...);
-int sub_51B110(...);
 
 // Unnamed globals (extern)
 extern char aCNewFailed[];
@@ -40,7 +29,7 @@ extern void *off_57051C;
 extern void *off_570538;
 
 // 0x0051A700
-CCBControlWindow * CCBControlWindow::CCBControlWindow()
+CCBControlWindow::CCBControlWindow()
 {
   CCBControlWindow *v2; // edi
   int a4; // [esp+14h] [ebp-10h] BYREF
@@ -88,7 +77,7 @@ CCBControlWindow * CCBControlWindow::CCBControlWindow()
 }
 
 // 0x0051A880
-int sub_51A880(int _this)
+CCBControlWindow::~CCBControlWindow(int _this)
 {
   int result; // eax
   _DWORD *v3; // edi
@@ -161,7 +150,7 @@ int sub_51A880(int _this)
 }
 
 // 0x0051A930
-int sub_51A930(int a2, unsigned int a3, int a4)
+int CCBControlWindow::Reset(int a2, unsigned int a3, int a4)
 {
   int v5; // eax
 
@@ -221,7 +210,7 @@ char CCBControlWindow::Create(_DWORD *a2, int a3, int a4, int a5)
 }
 
 // 0x0051AB60
-int sub_51AB60(int _this, int a2)
+int CCBControlWindow::HandleInput(int _this, int a2)
 {
   int v3; // ebp
   _DWORD *v4; // edi
@@ -293,13 +282,13 @@ LABEL_10:
 }
 
 // 0x0051AC30
-int sub_51AC30()
+int CCBControlWindow::KeyPressed()
 {
   return *((_DWORD *)this + 31);
 }
 
 // 0x0051AC40
-_DWORD * sub_51AC40()
+_DWORD * CCBControlWindow::DefaultKey()
 {
   this->UIListBox();
   *this = &off_57051C;
@@ -308,7 +297,7 @@ _DWORD * sub_51AC40()
 }
 
 // 0x0051AC90
-UIWnd * sub_51AC90(UIWnd *Block, char a2)
+UIWnd * CCBControlWindow::HandleEnable(UIWnd *Block, char a2)
 {
   UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
@@ -317,7 +306,7 @@ UIWnd * sub_51AC90(UIWnd *Block, char a2)
 }
 
 // 0x0051AD00
-int sub_51AD00()
+int CCBControlWindow::CheckKeyInput()
 {
   *((_DWORD *)this + 20) = 0;
   *((_DWORD *)this + 18) = 0;
@@ -326,7 +315,7 @@ int sub_51AD00()
 }
 
 // 0x0051AD10
-char sub_51AD10(int _this, _DWORD *a2, int a3)
+char CCBControlWindow::OnMessage(int _this, _DWORD *a2, int a3)
 {
   struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // eax
   void *v4; // esp
@@ -453,7 +442,7 @@ char sub_51AD10(int _this, _DWORD *a2, int a3)
 }
 
 // 0x0051AFE0
-int sub_51AFE0(int _this)
+int CCBControlWindow::Update(int _this)
 {
   int result; // eax
   int v3; // ecx
@@ -483,7 +472,7 @@ int sub_51AFE0(int _this)
 }
 
 // 0x0051B0B0
-BOOL sub_51B0B0(int a2, int a3)
+BOOL CCBControlWindow::MoveButtons(int a2, int a3)
 {
   if ( *((_DWORD *)this + 14) == 1 && (MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 || MEMORY[0xBFC704] == 1) )
     CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 160, -1, 0);
@@ -491,7 +480,7 @@ BOOL sub_51B0B0(int a2, int a3)
 }
 
 // 0x0051B110
-_DWORD * sub_51B110()
+_DWORD * CCBControlWindow::CreateButton()
 {
   this->UIListBox();
   *this = &off_570538;

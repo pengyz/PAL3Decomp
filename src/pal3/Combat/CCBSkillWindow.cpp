@@ -4,12 +4,6 @@
 
 // Forward declarations for unnamed functions
 int sub_43FD90(...);
-int sub_51C260(...);
-int sub_51C2D0(...);
-int sub_51C330(...);
-int sub_51C880(...);
-int sub_51C9B0(...);
-int sub_51C9F0(...);
 
 // Unnamed globals (extern)
 extern char aUiCombatResult[];
@@ -22,7 +16,7 @@ extern int dword_570324;
 extern void *off_570310;
 
 // 0x0051C260
-UIWnd * sub_51C260(UIWnd *Block, char a2)
+CCBSkillWindow::CCBSkillWindow(UIWnd *Block, char a2)
 {
   UIWnd::~UIWnd(Block);
   if ( (a2 & 1) != 0 )
@@ -31,7 +25,7 @@ UIWnd * sub_51C260(UIWnd *Block, char a2)
 }
 
 // 0x0051C2D0
-int sub_51C2D0()
+int CCBSkillWindow::Reset()
 {
   *((_DWORD *)this + 42) = 0;
   *((_DWORD *)this + 43) = -1;
@@ -53,7 +47,7 @@ int sub_51C2D0()
 }
 
 // 0x0051C330
-char sub_51C330(int _this, _DWORD *a2, int a3)
+char CCBSkillWindow::Create(int _this, _DWORD *a2, int a3)
 {
   int v3; // ebx
   _DWORD *v5; // ebx
@@ -238,7 +232,7 @@ char sub_51C330(int _this, _DWORD *a2, int a3)
 }
 
 // 0x0051C880
-int sub_51C880(int _this)
+int CCBSkillWindow::Destroy(int _this)
 {
   int result; // eax
   _DWORD *v3; // edi
@@ -353,7 +347,7 @@ int sub_51C880(int _this)
 }
 
 // 0x0051C9B0
-int sub_51C9B0(int a2, int a3, int a4)
+int CCBSkillWindow::OnMessage(int a2, int a3, int a4)
 {
   if ( a2 == 1001 )
     CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), a3, a4, 0);
@@ -361,7 +355,7 @@ int sub_51C9B0(int a2, int a3, int a4)
 }
 
 // 0x0051C9F0
-BOOL sub_51C9F0(int a2, int a3)
+BOOL CCBSkillWindow::Update(int a2, int a3)
 {
   if ( *((_DWORD *)this + 14) == 1 && MEMORY[0xBFC6F4] == 1 && (MEMORY[0xBFC6E8] & 0xF) == 1 )
     CCBUI::SetParam(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 8) + 1160) + 8), 513, -1, 0);

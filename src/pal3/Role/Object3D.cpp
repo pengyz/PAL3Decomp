@@ -6,16 +6,6 @@
 int sub_40EE00(...);
 int sub_43AFA0(...);
 int sub_444F60(...);
-int sub_47CB70(...);
-int sub_47CEE0(...);
-int sub_47CF40(...);
-int sub_47CFB0(...);
-int sub_47D030(...);
-int sub_47D130(...);
-int sub_47D230(...);
-int sub_47D320(...);
-int sub_47D440(...);
-int sub_47DC70(...);
 int sub_537060(...);
 
 // Unnamed globals (extern)
@@ -35,7 +25,7 @@ extern int unk_56B884;
 extern int unk_ABE000;
 
 // 0x0047CB70
-void sub_47CB70()
+Object3D::Object3D()
 {
   Object3D::LoadSubObject();
   *((_DWORD *)this + 21) = 0;
@@ -202,7 +192,7 @@ LABEL_15:
 }
 
 // 0x0047CEE0
-void sub_47CEE0()
+void Object3D::LoadSubObject()
 {
   void *v2; // edi
   void (***v3)(_DWORD, int); // ecx
@@ -241,7 +231,7 @@ LABEL_9:
 }
 
 // 0x0047CF40
-char sub_47CF40(int _this)
+char Object3D::Destroy(int _this)
 {
   unsigned int v2; // eax
   _DWORD v4[4]; // [esp+Ch] [ebp-10h] BYREF
@@ -263,14 +253,14 @@ char sub_47CF40(int _this)
 }
 
 // 0x0047CFB0
-long double sub_47CFB0(float a1, float a2, float a3, float a4, float a5, float a6)
+long double Object3D::IsOverCVD(float a1, float a2, float a3, float a4, float a5, float a6)
 {
   return acos((a6 * a3 + a5 * a2 + a4 * a1) / (sqrt(a6 * a6 + a5 * a5 + a4 * a4) * sqrt(a3 * a3 + a2 * a2 + a1 * a1)))
        * 57.295776;
 }
 
 // 0x0047D030
-void sub_47D030(float a2, float a3, float a4)
+void Object3D::VecAngle(float a2, float a3, float a4)
 {
   float v4; // edx
   float v6; // ecx
@@ -308,7 +298,7 @@ void sub_47D030(float a2, float a3, float a4)
 }
 
 // 0x0047D130
-void sub_47D130(float a2, float a3, float a4)
+void Object3D::SetObjectPosition(float a2, float a3, float a4)
 {
   float v4; // edx
   float v6; // ecx
@@ -346,7 +336,7 @@ void sub_47D130(float a2, float a3, float a4)
 }
 
 // 0x0047D230
-long double sub_47D230()
+long double Object3D::SetCentrePos()
 {
   double v2; // st7
   double v3; // st6
@@ -379,7 +369,7 @@ long double sub_47D230()
 }
 
 // 0x0047D320
-void sub_47D320()
+void Object3D::GetScreenDegree()
 {
   long double v2; // st7
   long double v3; // st6
@@ -437,7 +427,7 @@ void sub_47D320()
 }
 
 // 0x0047D440
-void sub_47D440(int a1@<ecx>, int a2, int a3, int a4, gbMatrixStack *a5)
+void Object3D::GetScreenDegree(int a1@<ecx>, int a2, int a3, int a4, gbMatrixStack *a5)
 {
   struct gbCamera **v6; // eax
   gbSceneGraph *v7; // edi
@@ -784,7 +774,7 @@ int Object3D::CheckMouseLPressed()
 }
 
 // 0x0047DC70
-int sub_47DC70()
+int Object3D::CheckMousePressed()
 {
   dword_DE4C94 = 1094713344;
   return 1094713344;

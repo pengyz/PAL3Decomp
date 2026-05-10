@@ -4,16 +4,7 @@
 
 // Forward declarations for unnamed functions
 int sub_41CA30(...);
-int sub_5058F0(...);
-int sub_505930(...);
-int sub_506020(...);
-int sub_5060D0(...);
-int sub_5062D0(...);
 int sub_506340(...);
-int sub_5075E0(...);
-int sub_507B20(...);
-int sub_5081A0(...);
-int sub_5081C0(...);
 
 // Unnamed globals (extern)
 extern char aCNewFailed[];
@@ -143,7 +134,7 @@ int CCCTData::UpdateCamera(int a2)
 }
 
 // 0x005058F0
-int sub_5058F0(_DWORD *a2, _DWORD *a3)
+CCCTData::CCCTData(_DWORD *a2, _DWORD *a3)
 {
   int result; // eax
 
@@ -158,7 +149,7 @@ int sub_5058F0(_DWORD *a2, _DWORD *a3)
 }
 
 // 0x00505930
-void sub_505930(int _this)
+CCCTData::~CCCTData(int _this)
 {
   int v2; // ebp
   struct gbRenderEffect *v3; // ebx
@@ -409,7 +400,7 @@ void sub_505930(int _this)
 }
 
 // 0x00506020
-bool sub_506020(int _this, _DWORD *a2)
+bool CCCTData::Create(int _this, _DWORD *a2)
 {
   int v3; // eax
   char *v4; // ecx
@@ -434,7 +425,7 @@ bool sub_506020(int _this, _DWORD *a2)
 }
 
 // 0x005060D0
-char sub_5060D0()
+char CCCTData::Destroy()
 {
   gbGeomNode *v2; // eax
   gbGeomNode *v3; // esi
@@ -544,7 +535,7 @@ int CCCTData::Save(int a2)
 }
 
 // 0x005062D0
-int sub_5062D0(int a2)
+int CCCTData::Load(int a2)
 {
   int v2; // eax
   double v3; // st7
@@ -571,7 +562,7 @@ int sub_5062D0(int a2)
 }
 
 // 0x005075E0
-void sub_5075E0(int _this)
+void CCCTData::InsertTaskToList(int _this)
 {
   int v1; // edx
   _BYTE *v2; // eax
@@ -808,7 +799,7 @@ void sub_5075E0(int _this)
 }
 
 // 0x00507B20
-void sub_507B20(int _this)
+void CCCTData::SwapTask(int _this)
 {
   int v2; // ecx
   int v3; // ebx
@@ -1104,7 +1095,7 @@ int CCCTData::ClearList()
 }
 
 // 0x005081A0
-int sub_5081A0()
+int CCCTData::IsTaskValid()
 {
   *(_DWORD *)&byte_17AAF64[1464] = 1094713344;
   return 1094713344;
@@ -1118,7 +1109,7 @@ void CCCTData::GetTaskNumInList()
 }
 
 // 0x005081C0
-void sub_5081C0()
+void CCCTData::GetFreeSpaceInPool()
 {
   *(float *)&byte_17AAF64[1460] = 12.0 + 12.0;
 }

@@ -6,19 +6,6 @@
 int sub_4C5D00(...);
 int sub_4C5D70(...);
 int sub_4C5FA0(...);
-int sub_4C61A0(...);
-int sub_4C6240(...);
-int sub_4C6260(...);
-int sub_4C6290(...);
-int sub_4C6340(...);
-int sub_4C6360(...);
-int sub_4C6370(...);
-int sub_4C6410(...);
-int sub_4C6460(...);
-int sub_4C65C0(...);
-int sub_4C65F0(...);
-int sub_4C6670(...);
-int sub_4C6870(...);
 
 // Unnamed globals (extern)
 extern char aCNewFailed_0[];
@@ -39,7 +26,7 @@ extern int unk_DE9389;
 extern int unk_DE93B0;
 
 // 0x004C61A0
-_DWORD * sub_4C61A0(int a2)
+CEffectSystem::CEffectSystem(int a2)
 {
   gbTexture *v3; // eax
   _DWORD *result; // eax
@@ -74,7 +61,7 @@ _DWORD * sub_4C61A0(int a2)
 }
 
 // 0x004C6240
-_DWORD * sub_4C6240(int a2)
+CEffectSystem::~CEffectSystem(int a2)
 {
   sub_4C5D00(this, a2);
   *this = &off_56F844;
@@ -83,7 +70,7 @@ _DWORD * sub_4C6240(int a2)
 }
 
 // 0x004C6260
-_DWORD * sub_4C6260(_DWORD *Block, char a2)
+_DWORD * CEffectSystem::Reset(_DWORD *Block, char a2)
 {
   Block->Init();
   if ( (a2 & 1) != 0 )
@@ -99,7 +86,7 @@ int CEffectSystem::Init(_DWORD *this)
 }
 
 // 0x004C6290
-char sub_4C6290(int a2, int a3, int a4, int a5, int a6)
+char CEffectSystem::Destroy(int a2, int a3, int a4, int a5, int a6)
 {
   _BYTE v7[16]; // [esp+4h] [ebp-30h] BYREF
   int v8; // [esp+14h] [ebp-20h]
@@ -136,7 +123,7 @@ int CEffectSystem::GetEffectIndex()
 }
 
 // 0x004C6340
-int sub_4C6340()
+int CEffectSystem::CreateEffect()
 {
   dword_DE997C = 1094713344;
   return 1094713344;
@@ -150,13 +137,13 @@ void CEffectSystem::GetEffect()
 }
 
 // 0x004C6360
-void sub_4C6360()
+void CEffectSystem::DestroyEffect()
 {
   flt_DE9978 = 12.0 + 12.0;
 }
 
 // 0x004C6370
-int sub_4C6370(int _this)
+int CEffectSystem::DestroyEffect(int _this)
 {
   *(_DWORD *)(this + 48) = -1;
   *(_DWORD *)(this + 44) = 0;
@@ -185,7 +172,7 @@ int sub_4C6370(int _this)
 }
 
 // 0x004C6410
-void *sub_4C6410()
+void *CEffectSystem::DestroyAllEffect()
 {
   if ( (byte_DE96F4 & 1) == 0 )
   {
@@ -197,7 +184,7 @@ void *sub_4C6410()
 }
 
 // 0x004C6460
-char sub_4C6460(int _this)
+char CEffectSystem::IsVisible(int _this)
 {
   struct gbRenderEffect *v3; // eax
   int v4; // esi
@@ -260,7 +247,7 @@ char sub_4C6460(int _this)
 }
 
 // 0x004C65C0
-void sub_4C65C0(float a2)
+void CEffectSystem::SetVisible(float a2)
 {
   double v2; // st7
   char v4; // c0
@@ -275,7 +262,7 @@ void sub_4C65C0(float a2)
 }
 
 // 0x004C65F0
-void sub_4C65F0(int _this, int a2)
+void CEffectSystem::HandleViewMove(int _this, int a2)
 {
   int v3; // eax
   gbCamera *v4; // ecx
@@ -302,7 +289,7 @@ void sub_4C65F0(int _this, int a2)
 }
 
 // 0x004C6670
-char sub_4C6670(int _this)
+char CEffectSystem::Update(int _this)
 {
   unsigned int v2; // eax
   gbColorQuad *v3; // edi
@@ -420,7 +407,7 @@ char sub_4C6670(int _this)
 }
 
 // 0x004C6870
-_DWORD * sub_4C6870()
+_DWORD * CEffectSystem::FillDefaultUVSet()
 {
   *((_DWORD *)this + 1) = 0;
   *((_BYTE *)this + 8) = 0;

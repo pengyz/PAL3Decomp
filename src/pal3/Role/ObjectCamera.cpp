@@ -2,18 +2,6 @@
 #include "pal3/globals.h"
 #include "pal3/gen/ObjectCamera.h"
 
-// Forward declarations for unnamed functions
-int sub_47C580(...);
-int sub_47C590(...);
-int sub_47C640(...);
-int sub_47C6E0(...);
-int sub_47C770(...);
-int sub_47C7E0(...);
-int sub_47C810(...);
-int sub_47C830(...);
-int sub_47C9B0(...);
-int sub_47CAD0(...);
-
 // Unnamed globals (extern)
 extern float flt_DE4A00;
 
@@ -25,13 +13,13 @@ void ObjectCamera::ObjectCamera()
 }
 
 // 0x0047C580
-void sub_47C580()
+ObjectCamera::~ObjectCamera()
 {
   flt_DE4A00 = 12.0 + 12.0;
 }
 
 // 0x0047C590
-float * sub_47C590()
+float * ObjectCamera::Create()
 {
   double v2; // st7
   float v3; // edx
@@ -90,7 +78,7 @@ void ObjectCamera::GetCameraDirect(void **this)
 }
 
 // 0x0047C640
-void sub_47C640(gbCamera **this, struct gbGfxManager *a2)
+void ObjectCamera::SetCameraEyePosition(gbCamera **this, struct gbGfxManager *a2)
 {
   gbCamera *v3; // eax
   gbCamera *v4; // eax
@@ -110,7 +98,7 @@ void sub_47C640(gbCamera **this, struct gbGfxManager *a2)
 }
 
 // 0x0047C6E0
-int sub_47C6E0(int _this, int a2, int a3, int a4, char a5)
+int ObjectCamera::SetCameraAtPosition(int _this, int a2, int a3, int a4, char a5)
 {
   int v6; // ecx
   double v7; // st7
@@ -143,7 +131,7 @@ int sub_47C6E0(int _this, int a2, int a3, int a4, char a5)
 }
 
 // 0x0047C770
-int sub_47C770(int _this, int a2, int a3, int a4)
+int ObjectCamera::SetCameraRotate(int _this, int a2, int a3, int a4)
 {
   double v5; // st7
   double v6; // st7
@@ -168,7 +156,7 @@ int sub_47C770(int _this, int a2, int a3, int a4)
 }
 
 // 0x0047C7E0
-int sub_47C7E0(int a2, int a3, int a4)
+int ObjectCamera::SetCameraDist(int a2, int a3, int a4)
 {
   *((_DWORD *)this + 13) = a2;
   *((_DWORD *)this + 17) = a2;
@@ -180,7 +168,7 @@ int sub_47C7E0(int a2, int a3, int a4)
 }
 
 // 0x0047C810
-void sub_47C810(void **this)
+void ObjectCamera::Destroy(void **this)
 {
   if ( *this )
   {
@@ -190,7 +178,7 @@ void sub_47C810(void **this)
 }
 
 // 0x0047C830
-int sub_47C830(int a2)
+int ObjectCamera::ComputeInfo(int a2)
 {
   long double v2; // st7
   long double v3; // st7
@@ -270,7 +258,7 @@ int sub_47C830(int a2)
 }
 
 // 0x0047C9B0
-void sub_47C9B0(int _this)
+void ObjectCamera::SetStepRotate(int _this)
 {
   int v2; // eax
   int v3; // eax
@@ -362,7 +350,7 @@ void sub_47C9B0(int _this)
 }
 
 // 0x0047CAD0
-void sub_47CAD0()
+void ObjectCamera::Update()
 {
   *((_DWORD *)this + 1) = 0;
   *((_DWORD *)this + 2) = 0;

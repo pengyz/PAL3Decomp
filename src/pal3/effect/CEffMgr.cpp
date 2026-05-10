@@ -7,11 +7,6 @@ int sub_4C04C0(...);
 int sub_4C1570(...);
 int sub_4C3C90(...);
 int sub_4CDCA0(...);
-int sub_4CE100(...);
-int sub_4CE2A0(...);
-int sub_4CE340(...);
-int sub_4CE5F0(...);
-int sub_4CE690(...);
 int sub_4D5950(...);
 int sub_4D5A00(...);
 
@@ -37,7 +32,7 @@ extern int unk_DE9CB0;
 extern int unk_EC9EB4;
 
 // 0x004CE100
-char sub_4CE100()
+CEffMgr::CEffMgr()
 {
   struct gbVFile *v1; // esi
   void *v2; // ebx
@@ -89,7 +84,7 @@ LABEL_9:
 }
 
 // 0x004CE2A0
-char sub_4CE2A0()
+CEffMgr::~CEffMgr()
 {
   FILE *v0; // eax
   FILE *v1; // esi
@@ -114,7 +109,7 @@ char sub_4CE2A0()
 }
 
 // 0x004CE340
-int sub_4CE340(int a2, int a3, int a4, int a5, int a6)
+int CEffMgr::Init(int a2, int a3, int a4, int a5, int a6)
 {
   int v6; // eax
   int v7; // ebx
@@ -183,7 +178,7 @@ char CEffMgr::Render(int a2)
 }
 
 // 0x004CE5F0
-int sub_4CE5F0(int a1)
+int CEffMgr::SetTimeScale(int a1)
 {
   int v1; // esi
   int v2; // ebx
@@ -224,7 +219,7 @@ int sub_4CE5F0(int a1)
 }
 
 // 0x004CE690
-char sub_4CE690(int a1)
+char CEffMgr::CreateEff(int a1)
 {
   int v1; // ebx
   char *v2; // eax

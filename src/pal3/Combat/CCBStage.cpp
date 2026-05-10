@@ -13,36 +13,8 @@ int sub_4DFFF0(...);
 int sub_4EED60(...);
 int sub_4F06C0(...);
 int sub_4F6CD0(...);
-int sub_4FB9A0(...);
-int sub_4FB9F0(...);
 int sub_4FBA70(...);
 int sub_4FBE50(...);
-int sub_4FBF90(...);
-int sub_4FC150(...);
-int sub_4FC700(...);
-int sub_4FC7D0(...);
-int sub_4FC9A0(...);
-int sub_4FCD00(...);
-int sub_4FCD50(...);
-int sub_4FCDE0(...);
-int sub_4FCE00(...);
-int sub_4FCFB0(...);
-int sub_4FD290(...);
-int sub_4FD3D0(...);
-int sub_4FD880(...);
-int sub_4FDA10(...);
-int sub_4FDFC0(...);
-int sub_4FE290(...);
-int sub_4FE540(...);
-int sub_4FE550(...);
-int sub_4FE600(...);
-int sub_4FECE0(...);
-int sub_4FEE60(...);
-int sub_4FEFB0(...);
-int sub_4FF1B0(...);
-int sub_4FF3D0(...);
-int sub_4FF5C0(...);
-int sub_4FF740(...);
 int sub_500840(...);
 int sub_5009C0(...);
 int sub_500AD0(...);
@@ -156,7 +128,7 @@ int CCBStage::EndRound()
 }
 
 // 0x004FB9A0
-_DWORD * sub_4FB9A0(int a2)
+CCBStage::CCBStage(int a2)
 {
   _DWORD *v2; // edx
   int v3; // esi
@@ -179,7 +151,7 @@ _DWORD * sub_4FB9A0(int a2)
 }
 
 // 0x004FB9F0
-unsigned int sub_4FB9F0(int _this)
+CCBStage::~CCBStage(int _this)
 {
   _DWORD *v2; // ecx
   unsigned int result; // eax
@@ -468,7 +440,7 @@ char sub_4FBE50(int _this)
 }
 
 // 0x004FBF90
-char sub_4FBF90()
+char CCBStage::Destroy()
 {
   int v3; // ebx
   int v4; // edi
@@ -558,7 +530,7 @@ int CCBStage::Update()
 }
 
 // 0x004FC150
-int sub_4FC150()
+int CCBStage::Update()
 {
   float v2; // ecx
   char *v3; // ecx
@@ -829,7 +801,7 @@ void CCBStage::Render(_DWORD *this)
 }
 
 // 0x004FC700
-int sub_4FC700(int a2, const void *a3, char a4)
+int CCBStage::GetRoleIndex(int a2, const void *a3, char a4)
 {
   int v5; // ebp
   _BYTE *i; // eax
@@ -860,7 +832,7 @@ int sub_4FC700(int a2, const void *a3, char a4)
 }
 
 // 0x004FC7D0
-int sub_4FC7D0(int a2, int a3, int a4, int a5, int a6, _DWORD *a7, int a8, int a9)
+int CCBStage::GetRoleName(int a2, int a3, int a4, int a5, int a6, _DWORD *a7, int a8, int a9)
 {
   int v9; // ebp
   int v10; // ebx
@@ -928,7 +900,7 @@ int CCBStage::IsDoTask(int a2)
 }
 
 // 0x004FC9A0
-int sub_4FC9A0(int a2)
+int CCBStage::EndTask(int a2)
 {
   return *(this + 658 * a2 + 686);
 }
@@ -1131,7 +1103,7 @@ LABEL_18:
 }
 
 // 0x004FCD00
-int sub_4FCD00(int a2)
+int CCBStage::IsTaskFinished(int a2)
 {
   int result; // eax
   _DWORD *v4; // edx
@@ -1160,7 +1132,7 @@ int sub_4FCD00(int a2)
 }
 
 // 0x004FCD50
-_BYTE * sub_4FCD50@<eax>(_BYTE *result@<eax>, int a2@<ecx>, int a3)
+_BYTE * CCBStage::IsTaskValidButNotFinish@<eax>(_BYTE *result@<eax>, int a2@<ecx>, int a3)
 {
   int v3; // edx
   int v4; // esi
@@ -1213,7 +1185,7 @@ int CCBStage::IsTaskExist(int a2)
 }
 
 // 0x004FCDE0
-int sub_4FCDE0(int a2)
+int CCBStage::DoTask(int a2)
 {
   int result; // eax
 
@@ -1226,7 +1198,7 @@ int sub_4FCDE0(int a2)
 }
 
 // 0x004FCE00
-int sub_4FCE00(int a2)
+int CCBStage::StartSubTask(int a2)
 {
   int v2; // eax
   int v3; // esi
@@ -1303,7 +1275,7 @@ int CCBStage::IsSubTaskFinished(int a2)
 }
 
 // 0x004FCFB0
-int sub_4FCFB0(int a2)
+int CCBStage::IsAllSubTaskFinished(int a2)
 {
   int v3; // ecx
   int v4; // edx
@@ -1432,7 +1404,7 @@ int CCBStage::IsSubTaskValid(int a2)
 }
 
 // 0x004FD290
-int sub_4FD290(int a2)
+int CCBStage::IsIdle(int a2)
 {
   int v3; // ecx
   _DWORD *v4; // eax
@@ -1488,7 +1460,7 @@ int sub_4FD290(int a2)
 }
 
 // 0x004FD3D0
-int sub_4FD3D0(int _this, int a2)
+int CCBStage::HasNormalAttackRole(int _this, int a2)
 {
   int v3; // ebp
   int v4; // ecx
@@ -1709,7 +1681,7 @@ int sub_4FD3D0(int _this, int a2)
 }
 
 // 0x004FD880
-int sub_4FD880(int a2)
+int CCBStage::ClearRoleAllTask(int a2)
 {
   int v3; // edi
   int v4; // eax
@@ -1773,7 +1745,7 @@ int sub_4FD880(int a2)
 }
 
 // 0x004FDA10
-int sub_4FDA10(int a2)
+int CCBStage::EndRoleAllTask(int a2)
 {
   int v3; // edi
   int v4; // eax
@@ -1977,7 +1949,7 @@ int CCBStage::SelectRole(int a2)
 }
 
 // 0x004FDFC0
-int sub_4FDFC0(int a2)
+int CCBStage::ProcWait(int a2)
 {
   _DWORD *v2; // esi
   int v3; // eax
@@ -2079,7 +2051,7 @@ int sub_4FDFC0(int a2)
 }
 
 // 0x004FE290
-int sub_4FE290(const char **this, int a2)
+int CCBStage::ProcShowFiveLineup(const char **this, int a2)
 {
   int v3; // eax
   int v4; // eax
@@ -2171,13 +2143,13 @@ int sub_4FE290(const char **this, int a2)
 }
 
 // 0x004FE540
-int sub_4FE540()
+int CCBStage::ProcShowEnemyFiveLineup()
 {
   return *((_DWORD *)this + 1);
 }
 
 // 0x004FE550
-int sub_4FE550(int a2)
+int CCBStage::ProcFiveLienupFadeIn(int a2)
 {
   int v3; // eax
   int v4; // ecx
@@ -2203,7 +2175,7 @@ int sub_4FE550(int a2)
 }
 
 // 0x004FE600
-int sub_4FE600(int a2)
+int CCBStage::ProcFiveLienupFadeOut(int a2)
 {
   int v2; // eax
   int v3; // edx
@@ -2486,7 +2458,7 @@ LABEL_35:
 }
 
 // 0x004FECE0
-int sub_4FECE0(int a2)
+int CCBStage::HandleKeyCtrl(int a2)
 {
   int v3; // edi
   int *v4; // ebp
@@ -2529,7 +2501,7 @@ int sub_4FECE0(int a2)
 }
 
 // 0x004FEE60
-int sub_4FEE60(int a2)
+int CCBStage::HandleKeyFriend(int a2)
 {
   int v2; // edx
   int v3; // esi
@@ -2548,7 +2520,7 @@ int sub_4FEE60(int a2)
 }
 
 // 0x004FEFB0
-int sub_4FEFB0(int _this, int a2)
+int CCBStage::ProcShowName(int _this, int a2)
 {
   int v3; // eax
   int *v4; // edi
@@ -2641,7 +2613,7 @@ LABEL_23:
 }
 
 // 0x004FF1B0
-int sub_4FF1B0(int a2)
+int CCBStage::ProcShowItemName(int a2)
 {
   int v3; // eax
   _DWORD *v4; // ebp
@@ -2698,7 +2670,7 @@ LABEL_13:
 }
 
 // 0x004FF3D0
-int sub_4FF3D0(int _this, int a2)
+int CCBStage::ProcShowDamage(int _this, int a2)
 {
   int v3; // ebp
   int v4; // eax
@@ -2784,7 +2756,7 @@ int sub_4FF3D0(int _this, int a2)
 }
 
 // 0x004FF5C0
-int sub_4FF5C0(int a2)
+int CCBStage::ProcShowCost(int a2)
 {
   int v3; // eax
   int v4; // ecx
@@ -2841,7 +2813,7 @@ int sub_4FF5C0(int a2)
 }
 
 // 0x004FF740
-int sub_4FF740(int a2)
+int CCBStage::ProcShowCombatDialog(int a2)
 {
   int v3; // ecx
   int v4; // edx

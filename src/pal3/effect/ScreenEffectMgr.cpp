@@ -2,9 +2,6 @@
 #include "pal3/globals.h"
 #include "pal3/gen/ScreenEffectMgr.h"
 
-// Forward declarations for unnamed functions
-int sub_4BE590(...);
-
 // Unnamed globals (extern)
 extern unsigned char byte_DE7DF8;
 extern unsigned char byte_DE7E90;
@@ -65,7 +62,7 @@ void ScreenEffectMgr::Render()
 }
 
 // 0x004BE590
-_BYTE * sub_4BE590()
+_BYTE * ScreenEffectMgr::GetInstance()
 {
   if ( (byte_DE7E90 & 1) == 0 )
   {

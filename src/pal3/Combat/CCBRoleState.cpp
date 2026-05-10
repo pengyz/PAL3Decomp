@@ -13,19 +13,8 @@ int sub_4ED0A0(...);
 int sub_4ED680(...);
 int sub_4ED800(...);
 int sub_4ED870(...);
-int sub_4EE540(...);
-int sub_4EE7C0(...);
-int sub_4EEA70(...);
-int sub_4EF4A0(...);
-int sub_4EF6A0(...);
-int sub_4EF6C0(...);
-int sub_4EF8B0(...);
-int sub_4EFAF0(...);
 int sub_4F05A0(...);
-int sub_4F0700(...);
-int sub_4F07D0(...);
 int sub_4F0A10(...);
-int sub_4F1A30(...);
 int sub_4F1C40(...);
 int sub_4F2390(...);
 int sub_4F2660(...);
@@ -185,7 +174,7 @@ int CCBRoleState::GetForce(int roleIdx)
 }
 
 // 0x004EDD60
-char CCBRoleState::CCBRoleState()
+CCBRoleState::CCBRoleState()
 {
   char *v1; // ebp
   char *v2; // esi
@@ -487,7 +476,7 @@ LABEL_4:
 }
 
 // 0x004EE540
-char sub_4EE540(gbGeomNode **this)
+char CCBRoleState::Create(gbGeomNode **this)
 {
   int *v1; // ebp
   gbGeomNode **v2; // edi
@@ -626,7 +615,7 @@ int CCBRoleState::Destroy()
 }
 
 // 0x004EE7C0
-int sub_4EE7C0(int a2, char a3)
+int CCBRoleState::Init(int a2, char a3)
 {
   int v3; // esi
 
@@ -695,7 +684,7 @@ bool CCBRoleState::VarianceRoundCounter(_DWORD *a2)
 }
 
 // 0x004EEA70
-char sub_4EEA70(int a2, int a3, int *a4)
+char CCBRoleState::CheckVarianceRound(int a2, int a3, int *a4)
 {
   int v4; // edi
   signed int v5; // esi
@@ -918,7 +907,7 @@ char CCBRoleState::IsAlive(int _this, int a2, int a3)
 }
 
 // 0x004EF4A0
-char sub_4EF4A0(_DWORD *a1, int a2)
+char CCBRoleState::IsBoss(_DWORD *a1, int a2)
 {
   int v2; // edi
   int v3; // ebp
@@ -1036,13 +1025,13 @@ char sub_4EF4A0(_DWORD *a1, int a2)
 }
 
 // 0x004EF6A0
-int sub_4EF6A0(int a2)
+int CCBRoleState::IsAllWeDead(int a2)
 {
   return *(this + 223 * a2 + 284);
 }
 
 // 0x004EF6C0
-_DWORD * sub_4EF6C0(int a1, int *a2, int *a3)
+_DWORD * CCBRoleState::IsAllEnemyDead(int a1, int *a2, int *a3)
 {
   int v3; // eax
   int v4; // ecx
@@ -1122,7 +1111,7 @@ int CCBRoleState::SetCanAction(unsigned int dmg, int roleIdx, int a4)
 }
 
 // 0x004EF8B0
-char sub_4EF8B0(const void *a1)
+char CCBRoleState::RandSetEnemyPos(const void *a1)
 {
   char result; // al
   _DWORD v2[11]; // [esp+8h] [ebp-2Ch] BYREF
@@ -1196,7 +1185,7 @@ int CCBRoleState::CalcHealAmount(int roleIdx)
 }
 
 // 0x004EFAF0
-int sub_4EFAF0(int a2, _DWORD *a3, int *a4)
+int CCBRoleState::WriteBackRoleData(int a2, _DWORD *a3, int *a4)
 {
   int *v4; // edi
   int result; // eax
@@ -1675,7 +1664,7 @@ LABEL_12:
 }
 
 // 0x004F05A0
-char sub_4F05A0(_DWORD *a1)
+char CCBRoleState::sub_4F05A0(_DWORD *a1)
 {
   char v1; // al
   char result; // al
@@ -1733,7 +1722,7 @@ bool CCBRoleState::InitRoleSpecEquipAttrib(int a2)
 }
 
 // 0x004F0700
-char sub_4F0700(int a2)
+char CCBRoleState::UnloadWeaponModel(int a2)
 {
   int v2; // esi
   _DWORD *i; // edi
@@ -1762,7 +1751,7 @@ bool CCBRoleState::SetVisible(int roleIdx)
 }
 
 // 0x004F07D0
-char sub_4F07D0(int a1, int a2)
+char CCBRoleState::GetRole(int a1, int a2)
 {
   switch ( a1 )
   {
@@ -2237,7 +2226,7 @@ char CCBRoleState::GetFirstAliveRoleInForce(int roleIdx, int a3)
 }
 
 // 0x004F1A30
-char sub_4F1A30(int a2)
+char CCBRoleState::GetCastFightSkillSuccess(int a2)
 {
   int v4; // esi
   int i; // ebp

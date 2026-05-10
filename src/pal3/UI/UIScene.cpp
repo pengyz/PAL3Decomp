@@ -5,14 +5,10 @@
 // Forward declarations for unnamed functions
 int sub_4019F0(...);
 int sub_419C20(...);
-int sub_4235B0(...);
 int sub_424570(...);
 int sub_43A660(...);
 int sub_43A770(...);
 int sub_43A810(...);
-int sub_43AB00(...);
-int sub_43AB20(...);
-int sub_43AD40(...);
 int sub_445ED0(...);
 int sub_445F60(...);
 
@@ -163,7 +159,7 @@ int UIScene::CombatCheck()
 }
 
 // 0x004235B0
-BOOL sub_4235B0(char *String1, char *a2)
+BOOL UIScene::ProcessInput(char *String1, char *a2)
 {
   const char *v2; // esi
   bool v3; // bl
@@ -235,14 +231,14 @@ void sub_43A810(UIWnd *this)
 }
 
 // 0x0043AB00
-int sub_43AB00()
+int UIScene::OnMessage2()
 {
   UIWnd::MoveWindow(this + 116);
   return this->UpdateChildren();
 }
 
 // 0x0043AB20
-int sub_43AB20(int _this, int a2, int a3)
+int UIScene::Update2(int _this, int a2, int a3)
 {
   BOOL v4; // edi
   int v6; // ecx
@@ -357,7 +353,7 @@ LABEL_30:
 }
 
 // 0x0043AD40
-int sub_43AD40(int _this)
+int UIScene::Create2(int _this)
 {
   int result; // eax
   int v3; // ecx

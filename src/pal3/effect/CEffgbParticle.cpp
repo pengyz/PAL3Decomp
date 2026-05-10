@@ -9,15 +9,6 @@ int sub_4BC8A0(...);
 int sub_4BD6C0(...);
 int sub_4BD7A0(...);
 int sub_4C6980(...);
-int sub_4C8650(...);
-int sub_4C87A0(...);
-int sub_4C8830(...);
-int sub_4C88D0(...);
-int sub_4C8930(...);
-int sub_4C8970(...);
-int sub_4C8A40(...);
-int sub_4C8BF0(...);
-int sub_4C8E10(...);
 
 // Unnamed globals (extern)
 extern int dword_DE99B0;
@@ -28,7 +19,7 @@ extern void *off_56F8CC;
 extern void *off_56F908;
 
 // 0x004C8650
-int sub_4C8650(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
+CEffgbParticle::~CEffgbParticle(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
 {
   int v8; // ecx
   int v9; // esi
@@ -78,7 +69,7 @@ int sub_4C8650(int a2, int a3, int a4, _DWORD *a5, int a6, int a7)
 }
 
 // 0x004C87A0
-void * sub_4C87A0(void *Block, char a2)
+void * CEffgbParticle::Create(void *Block, char a2)
 {
   int v3; // eax
   int v4; // ebx
@@ -112,7 +103,7 @@ void * sub_4C87A0(void *Block, char a2)
 }
 
 // 0x004C8830
-int sub_4C8830(int a2)
+int CEffgbParticle::Init(int a2)
 {
   int v2; // edx
   int v3; // esi
@@ -150,7 +141,7 @@ char * CEffgbParticle::Attach(char a2)
 }
 
 // 0x004C88D0
-_DWORD * sub_4C88D0()
+_DWORD * CEffgbParticle::Render()
 {
   *((_DWORD *)this + 1) = 0;
   *((_BYTE *)this + 8) = 0;
@@ -177,7 +168,7 @@ _DWORD * sub_4C88D0()
 }
 
 // 0x004C8930
-_DWORD *sub_4C8930()
+_DWORD *CEffgbParticle::SetTimeScale()
 {
   _DWORD *v0; // eax
 
@@ -189,7 +180,7 @@ _DWORD *sub_4C8930()
 }
 
 // 0x004C8970
-void sub_4C8970(_DWORD *a1)
+void CEffgbParticle::Destroy(_DWORD *a1)
 {
   _DWORD *v2; // edi
   void (***v3)(_DWORD, int); // ecx
@@ -240,7 +231,7 @@ LABEL_10:
 }
 
 // 0x004C8A40
-char sub_4C8A40(int _this, int a2)
+char CEffgbParticle::CreateTask(int _this, int a2)
 {
   void *v3; // eax
   int v4; // ebp
@@ -318,7 +309,7 @@ LABEL_10:
 }
 
 // 0x004C8BF0
-void sub_4C8BF0(float a2)
+void CEffgbParticle::ProcCommonTask(float a2)
 {
   float *v2; // edi
   double v3; // st7
@@ -471,7 +462,7 @@ LABEL_35:
 }
 
 // 0x004C8E10
-void sub_4C8E10(int _this)
+void CEffgbParticle::GetEditorTaskDescription(int _this)
 {
   gbMatrixStack *v2; // edi
   int v3; // eax

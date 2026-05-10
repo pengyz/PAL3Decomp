@@ -4,20 +4,7 @@
 
 // Forward declarations for unnamed functions
 int sub_504DD0(...);
-int sub_504E70(...);
-int sub_504F40(...);
-int sub_5050D0(...);
-int sub_505180(...);
-int sub_5051E0(...);
-int sub_505250(...);
-int sub_5052C0(...);
 int sub_5052E0(...);
-int sub_505410(...);
-int sub_5054B0(...);
-int sub_5054F0(...);
-int sub_505800(...);
-int sub_505820(...);
-int sub_5058E0(...);
 
 // Unnamed globals (extern)
 extern char aBasedataCbdata_0[];
@@ -27,7 +14,7 @@ extern char aDProjectPal3Co_6[];
 extern int dword_17A990C;
 
 // 0x00504E70
-char sub_504E70(char *Buffer)
+CCBStageCam::CCBStageCam(char *Buffer)
 {
   FILE *v2; // esi
   _DWORD *v3; // eax
@@ -63,7 +50,7 @@ char sub_504E70(char *Buffer)
 }
 
 // 0x00504F40
-char sub_504F40(int _this)
+CCBStageCam::~CCBStageCam(int _this)
 {
   struct gbVFile *v2; // esi
   struct gbVFileSystem *v4; // [esp+3Ch] [ebp-810h] BYREF
@@ -111,7 +98,7 @@ char CCBStageCam::Reset(int a2, const void *a3)
 }
 
 // 0x005050D0
-char sub_5050D0(int a2, int a3, const void *a4)
+char CCBStageCam::LoadEditorCam(int a2, int a3, const void *a4)
 {
   int v5; // eax
   int v7; // eax
@@ -145,7 +132,7 @@ char sub_5050D0(int a2, int a3, const void *a4)
 }
 
 // 0x00505180
-char sub_505180(int a2, int a3, int a4)
+char CCBStageCam::SaveEditorCam(int a2, int a3, int a4)
 {
   int v5; // eax
   int v6; // eax
@@ -166,7 +153,7 @@ char sub_505180(int a2, int a3, int a4)
 }
 
 // 0x005051E0
-char sub_5051E0(int a2, int a3)
+char CCBStageCam::AddCurCamToEditor(int a2, int a3)
 {
   int v5; // eax
   _DWORD *v6; // eax
@@ -200,7 +187,7 @@ char sub_5051E0(int a2, int a3)
 }
 
 // 0x00505250
-char sub_505250(int a2)
+char CCBStageCam::DelEditorCam(int a2)
 {
   int v2; // edx
   int *v3; // eax
@@ -242,7 +229,7 @@ int CCBStageCam::IsEditorCamValid(int a2)
 }
 
 // 0x005052C0
-int sub_5052C0()
+int CCBStageCam::IsCamValid()
 {
   int result; // eax
 
@@ -299,7 +286,7 @@ _DWORD *sub_5052E0(_DWORD *this, int **a2, int a3)
 }
 
 // 0x00505410
-int sub_505410(int _this)
+int CCBStageCam::Create(int _this)
 {
   *(_DWORD *)(this + 430016) = 0;
   *(_DWORD *)(this + 430020) = 0;
@@ -330,7 +317,7 @@ char CCBStageCam::Destroy()
 }
 
 // 0x005054B0
-char sub_5054B0()
+char CCBStageCam::Init()
 {
   void (***v2)(_DWORD, int); // ecx
 
@@ -351,7 +338,7 @@ char CCBStageCam::Update()
 }
 
 // 0x005054F0
-void sub_5054F0(int _this)
+void CCBStageCam::DoTask(int _this)
 {
   int v2; // eax
   void *v3; // ecx
@@ -469,7 +456,7 @@ char CCBStageCam::ClearFinishedTask(int _this, int a2)
 }
 
 // 0x00505800
-int sub_505800(int _this)
+int CCBStageCam::AddTask(int _this)
 {
   *(_BYTE *)(this + 430012) = 0;
   *(_DWORD *)(this + 430032) = -1;
@@ -478,7 +465,7 @@ int sub_505800(int _this)
 }
 
 // 0x00505820
-int sub_505820(int _this)
+int CCBStageCam::ProcCamMove(int _this)
 {
   int v2; // eax
   int *v3; // ecx
@@ -533,7 +520,7 @@ int sub_505820(int _this)
 }
 
 // 0x005058E0
-int sub_5058E0(_DWORD **this)
+int CCBStageCam::SwitchEditorCamPos(_DWORD **this)
 {
   return (*(int (**)(_DWORD))(**((_DWORD *)this + 107556) + 20))(*((_DWORD *)this + 107556));
 }

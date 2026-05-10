@@ -2,27 +2,22 @@
 #include "pal3/globals.h"
 #include "pal3/gen/CCBResultWindow.h"
 
-// Forward declarations for unnamed functions
-int sub_51F080(...);
-int sub_51F090(...);
-int sub_51F0A0(...);
-
 // 0x0051F080
-int sub_51F080(int a2)
+CCBResultWindow::CCBResultWindow(int a2)
 {
   *((_DWORD *)this + 2004) = a2;
   return a2;
 }
 
 // 0x0051F090
-int sub_51F090(int a2)
+CCBResultWindow::~CCBResultWindow(int a2)
 {
   *((_DWORD *)this + 2005) = a2;
   return a2;
 }
 
 // 0x0051F0A0
-int sub_51F0A0(int a2, int a3)
+int CCBResultWindow::Reset(int a2, int a3)
 {
   int v4; // eax
   const void *v5; // esi
