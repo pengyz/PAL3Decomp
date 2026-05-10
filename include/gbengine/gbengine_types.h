@@ -54,7 +54,7 @@ struct gbVec4D {
 };
 
 struct gbColorQuad {
-    unsigned char b, g, r, a;
+    unsigned char Blue, Green, Red, Alpha;
 
     // Methods (auto-generated)
     gbColorQuad(struct gbColorQuad & p0);
@@ -66,7 +66,7 @@ struct gbColorQuad {
 };
 
 struct gbColorFlt {
-    float r, g, b, a;
+    float Red, Green, Blue, Alpha;
 
     // Methods (auto-generated)
     gbColorFlt(float p0, float p1, float p2);
@@ -162,8 +162,8 @@ struct gbQuaternion {
 };
 
 struct gbRay {
-    gbVec3D origin;
-    gbVec3D direction;
+    gbVec3D Origin;
+    gbVec3D Direction;
 
     // Methods (auto-generated)
     gbRay();

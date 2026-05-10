@@ -390,9 +390,10 @@ struct gbUIQuad {
 // [0-2] v0 xyz, [3-5] v1 xyz, [6-8] v2 xyz, [9-11] v3 xyz
 // [12] u1, [13] v1, [14] u2, [15] v2, [16] color
 struct gbGeomQuad {
-    gbVec3D verts[4];       // 4 corner positions (48 bytes)
-    float u1, v1, u2, v2;   // texture coordinates (16 bytes)
-    unsigned int color;      // vertex color (4 bytes)
+    gbVec3D vec[4];         // 4 corner positions (48 bytes) - PDB name
+    float su, sv, eu, ev;   // texture coordinates (16 bytes) - PDB names
+    int color;              // vertex color (4 bytes)
+    int texid;              // texture id (4 bytes)
 };
 
 class gbDynVertBuf {

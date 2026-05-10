@@ -256,8 +256,8 @@ public:
 // Layout (IDA-verified): pTex[0..15] at [0..15], numTextures at [16]
 // ============================================================================
 struct gbTextureArray {
-    gbTexture* pTex[16];    // +0x00 [0..15]: texture pointers
-    int numTextures;        // +0x40 [16]: active texture count
+    gbTexture* pTexPt[16];  // +0x00 [0..15]: texture pointers (PDB name)
+    int nTex;               // +0x40 [16]: active texture count (PDB name)
 
     gbTextureArray(void);
     gbTextureArray(gbTexture* tex0);
