@@ -371,13 +371,13 @@ int CEffSParticle::Attach(int a2)
   if ( (byte_1895561 & 1) == 0 )
   {
     byte_1895561 |= 1u;
-    (CEffMgr *->Reset()&g_nCursorState);
+    CEffMgr::Reset((CEffMgr *)&g_nCursorState);
     atexit(nullsub_1);
   }
   if ( (byte_1895561 & 1) == 0 )
   {
     byte_1895561 |= 1u;
-    (CEffMgr *->Reset()&g_nCursorState);
+    CEffMgr::Reset((CEffMgr *)&g_nCursorState);
     atexit(nullsub_1);
   }
   if ( !*(_BYTE *)(v4 + 65) )
@@ -398,7 +398,7 @@ int CEffSParticle::Attach(int a2)
     if ( (byte_1895561 & 1) == 0 )
     {
       byte_1895561 |= 1u;
-      (CEffMgr *->Reset()&g_nCursorState);
+      CEffMgr::Reset((CEffMgr *)&g_nCursorState);
       atexit(nullsub_1);
     }
     if ( v9 <= 20.0 )
@@ -418,7 +418,7 @@ int CEffSParticle::Attach(int a2)
     if ( (byte_1895561 & 1) == 0 )
     {
       byte_1895561 |= 1u;
-      (CEffMgr *->Reset()&g_nCursorState);
+      CEffMgr::Reset((CEffMgr *)&g_nCursorState);
       atexit(nullsub_1);
     }
     if ( v10 <= 20.0 )

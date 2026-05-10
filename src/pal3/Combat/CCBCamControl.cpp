@@ -119,7 +119,7 @@ char * CCBCamControl::SetCircle(int a2)
   char *v3; // eax
   int v4; // ecx
 
-  &this->m_CCT[16]->gbVolModNode();
+  gbVolModNode::gbVolModNode(&this->m_CCT[16]);
   `eh vector constructor iterator'(
     &this->m_CCT[236],
     0xDCu,
@@ -187,7 +187,7 @@ char CCBCamControl::IsPointerUnderMouse(int _this)
   v2[15].RefCount = 0x40000000;
   v2[16].RefCount = 1133903872;
   v2[6].RefCount = 1065353216;
-  (gbVolModNode *->SetVolModObj()(this + 16), (struct gbVolumeModifier *)v2);
+  gbVolModNode::SetVolModObj((gbVolModNode *)(this + 16), (struct gbVolumeModifier *)v2);
   v2->Release();
   *(_DWORD *)(this + 2436) = gbEffectMgr::NewRenderEffect(
                                *(gbEffectMgr **)(g_pGfxManager + 200),
@@ -215,7 +215,7 @@ _DWORD * CCBCamControl::LoadPointer()
 // 0x00508680
 char CCBCamControl::DoList(CCBCamControl **this)
 {
-  (gbRefObject *->Release()*((_DWORD *)this + 609));
+  gbRefObject::Release((gbRefObject *)*((_DWORD *)this + 609));
   return 1;
 }
 
@@ -232,7 +232,7 @@ int CCBCamControl::ResetListFlag(int _this)
     v2[1].RefCount = 1;
     v2->RefCount = (int)gbRefObject::`vftable';
     v2->RefCount = (int)gbVolumeModifier::`vftable';
-    (gbVec3D *->gbVec3D()&v2[24], 0.0, 0.0, 0.0);
+    gbVec3D::gbVec3D((gbVec3D *)&v2[24], 0.0, 0.0, 0.0);
     CCBCamControl::LoadPointer(&v2[27].RefCount);
     v2->RefCount = (int)&off_56A694;
   }
@@ -258,7 +258,7 @@ int CCBCamControl::ResetListFlag(int _this)
   v2[15].RefCount = 0x40000000;
   v2[16].RefCount = 1133903872;
   v2[6].RefCount = 1065353216;
-  (gbVolModNode *->SetVolModObj()(this + 236), (struct gbVolumeModifier *)v2);
+  gbVolModNode::SetVolModObj((gbVolModNode *)(this + 236), (struct gbVolumeModifier *)v2);
   v2->Release();
   v3 = (_DWORD *)(*(_DWORD *)(this + 232) + 28);
   *v3 = -1098907648;

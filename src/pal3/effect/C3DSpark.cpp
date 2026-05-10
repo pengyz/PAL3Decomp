@@ -86,7 +86,7 @@ C3DSpark::C3DSpark()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_11, 37),
+      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Co_11, 37),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -111,7 +111,7 @@ C3DSpark::C3DSpark()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_11, 42),
+      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Co_11, 42),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -136,7 +136,7 @@ C3DSpark::C3DSpark()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_11, 47),
+      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Co_11, 47),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -161,7 +161,7 @@ C3DSpark::C3DSpark()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_11, 52),
+      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Co_11, 52),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -186,7 +186,7 @@ C3DSpark::C3DSpark()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_11, 57),
+      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Co_11, 57),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -413,7 +413,8 @@ void C3DSpark::Render(int a1@<ecx>, struct gbVec3D *a2@<edi>)
       gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)(g_pGfxManager + 196), 0x15u);
       v2->Push();
       v2->LoadIdentity();
-      (struct gbGeomQuad *->RenderGeomQuad()(v15 + 7216),
+      gbDynVertBuf::RenderGeomQuad(
+        (struct gbGeomQuad *)(v15 + 7216),
         v17,
         *(struct gbRenderEffect **)(v15 + 7172),
         *(struct gbTextureArray **)(v15 + 7204));

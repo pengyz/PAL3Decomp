@@ -112,7 +112,7 @@ int CCBMagicWindow::Create(int a2)
 // 0x0051BB90
 _DWORD * CCBMagicWindow::ForbidPage()
 {
-  (UIListBox *->UIListBox()this);
+  UIListBox::UIListBox((UIListBox *)this);
   this->m_fontcolor.ColorQuadFmt = (int)&off_570570;
   this->OnMessage();
   return &this->m_fontcolor.ColorQuadFmt;
@@ -162,7 +162,7 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
 
   this->Create(1879048198, a2, a3);
   p_m_childs = (UIWnd ***)&this->m_childs;
-  if ( &this->m_childs.m_pData->Destroy() == 1 )
+  if ( CCBLineupWindow::Destroy(&this->m_childs.m_pData) == 1 )
   {
     *a2 = 0;
     a2[2] = 230;
@@ -177,7 +177,7 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
     ((void (*)(UIWnd **, int))(**p_m_childs)->m_fontcolor.ColorQuadFmt)(*p_m_childs, 1);
   }
   p_m_bcreateok = (int *)&this->m_bcreateok;
-  if ( &this->m_bcreateok->Render() == 1 )
+  if ( CCBLineupWindow::Render(&this->m_bcreateok) == 1 )
   {
     *a2 = 27;
     a2[1] = 57;
@@ -188,14 +188,14 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
       276,
       a2,
       this);
-    v6 = (UIWnd *->SetRect()*p_m_bcreateok, a2a);
-    (UIWnd *->AddChild()*p_m_bcreateok, v6);
-    (UIWnd **->GetChildCount()*p_m_bcreateok, aUiCombatContro_29, 0);
-    (UIWnd **->GetChildAt()*p_m_bcreateok, aUiCombatContro_30, 0);
-    (UIWnd *->SetFrameRate()*p_m_bcreateok, 48);
-    (UIWnd *->GetHeight()*p_m_bcreateok, 23);
-    (UIWnd *->GetWidth()*p_m_bcreateok, 11);
-    (UIWnd *->GetPosition()*p_m_bcreateok, 5);
+    v6 = (_DWORD *)UIWnd::SetRect((UIWnd *)*p_m_bcreateok, a2a);
+    UIWnd::AddChild((UIWnd *)*p_m_bcreateok, v6);
+    UIWnd::GetChildCount((UIWnd **)*p_m_bcreateok, aUiCombatContro_29, 0);
+    UIWnd::GetChildAt((UIWnd **)*p_m_bcreateok, aUiCombatContro_30, 0);
+    UIWnd::SetFrameRate((UIWnd *)*p_m_bcreateok, 48);
+    UIWnd::GetHeight((UIWnd *)*p_m_bcreateok, 23);
+    UIWnd::GetWidth((UIWnd *)*p_m_bcreateok, 11);
+    UIWnd::GetPosition((UIWnd *)*p_m_bcreateok, 5);
     sub_43FBC0((gbRefObject **)*p_m_bcreateok, aUiCombatContro_31, 0);
     v7 = (UIWnd *)*p_m_bcreateok;
     v7[1].m_bvisible = 10;
@@ -206,7 +206,7 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
     (**(void (***)(int, int))*p_m_bcreateok)(*p_m_bcreateok, 1);
   }
   p_m_bvisible = (int *)&this->m_bvisible;
-  if ( &this->m_bvisible->Render() == 1 )
+  if ( CCBLineupWindow::Render(&this->m_bvisible) == 1 )
   {
     *a2 = 27;
     a2[1] = 94;
@@ -217,14 +217,14 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
       277,
       a2,
       this);
-    v9 = (UIWnd *->SetRect()*p_m_bvisible, a2a);
-    (UIWnd *->AddChild()*p_m_bvisible, v9);
-    (UIWnd **->GetChildCount()*p_m_bvisible, aUiCombatContro_29, 0);
-    (UIWnd **->GetChildAt()*p_m_bvisible, aUiCombatContro_30, 0);
-    (UIWnd *->SetFrameRate()*p_m_bvisible, 48);
-    (UIWnd *->GetHeight()*p_m_bvisible, 23);
-    (UIWnd *->GetWidth()*p_m_bvisible, 11);
-    (UIWnd *->GetPosition()*p_m_bvisible, 5);
+    v9 = (_DWORD *)UIWnd::SetRect((UIWnd *)*p_m_bvisible, a2a);
+    UIWnd::AddChild((UIWnd *)*p_m_bvisible, v9);
+    UIWnd::GetChildCount((UIWnd **)*p_m_bvisible, aUiCombatContro_29, 0);
+    UIWnd::GetChildAt((UIWnd **)*p_m_bvisible, aUiCombatContro_30, 0);
+    UIWnd::SetFrameRate((UIWnd *)*p_m_bvisible, 48);
+    UIWnd::GetHeight((UIWnd *)*p_m_bvisible, 23);
+    UIWnd::GetWidth((UIWnd *)*p_m_bvisible, 11);
+    UIWnd::GetPosition((UIWnd *)*p_m_bvisible, 5);
     sub_43FBC0((gbRefObject **)*p_m_bvisible, aUiCombatContro_31, 0);
     v10 = (UIWnd *)*p_m_bvisible;
     v10[1].m_bvisible = 10;
@@ -235,7 +235,7 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
     (**(void (***)(int, int))*p_m_bvisible)(*p_m_bvisible, 1);
   }
   p_m_benable = (int *)&this->m_benable;
-  if ( &this->m_benable->Render() == 1 )
+  if ( CCBLineupWindow::Render(&this->m_benable) == 1 )
   {
     *a2 = 27;
     a2[1] = 132;
@@ -246,14 +246,14 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
       278,
       a2,
       this);
-    v12 = (UIWnd *->SetRect()*p_m_benable, a2a);
-    (UIWnd *->AddChild()*p_m_benable, v12);
-    (UIWnd **->GetChildCount()*p_m_benable, aUiCombatContro_29, 0);
-    (UIWnd **->GetChildAt()*p_m_benable, aUiCombatContro_30, 0);
-    (UIWnd *->SetFrameRate()*p_m_benable, 48);
-    (UIWnd *->GetHeight()*p_m_benable, 23);
-    (UIWnd *->GetWidth()*p_m_benable, 11);
-    (UIWnd *->GetPosition()*p_m_benable, 5);
+    v12 = (_DWORD *)UIWnd::SetRect((UIWnd *)*p_m_benable, a2a);
+    UIWnd::AddChild((UIWnd *)*p_m_benable, v12);
+    UIWnd::GetChildCount((UIWnd **)*p_m_benable, aUiCombatContro_29, 0);
+    UIWnd::GetChildAt((UIWnd **)*p_m_benable, aUiCombatContro_30, 0);
+    UIWnd::SetFrameRate((UIWnd *)*p_m_benable, 48);
+    UIWnd::GetHeight((UIWnd *)*p_m_benable, 23);
+    UIWnd::GetWidth((UIWnd *)*p_m_benable, 11);
+    UIWnd::GetPosition((UIWnd *)*p_m_benable, 5);
     sub_43FBC0((gbRefObject **)*p_m_benable, aUiCombatContro_31, 0);
     v13 = (UIWnd *)*p_m_benable;
     v13[1].m_bvisible = 10;
@@ -264,7 +264,7 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
     (**(void (***)(int, int))*p_m_benable)(*p_m_benable, 1);
   }
   p_m_nSize = (int *)&this->m_childs.m_nSize;
-  if ( &this->m_childs.m_nSize->OnMessage() == 1 )
+  if ( CCBLineupWindow::OnMessage(&this->m_childs.m_nSize) == 1 )
   {
     *a2 = 37;
     a2[1] = 57;
@@ -281,7 +281,7 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
     (**(void (***)(int, int))*p_m_nSize)(*p_m_nSize, 1);
   }
   p_m_nMaxSize = (int *)&this->m_childs.m_nMaxSize;
-  if ( &this->m_childs.m_nMaxSize->OnMessage() == 1 )
+  if ( CCBLineupWindow::OnMessage(&this->m_childs.m_nMaxSize) == 1 )
   {
     *a2 = 37;
     a2[1] = 94;
@@ -298,7 +298,7 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
     (**(void (***)(int, int))*p_m_nMaxSize)(*p_m_nMaxSize, 1);
   }
   p_m_nGrowBy = (int *)&this->m_childs.m_nGrowBy;
-  if ( &this->m_childs.m_nGrowBy->OnMessage() == 1 )
+  if ( CCBLineupWindow::OnMessage(&this->m_childs.m_nGrowBy) == 1 )
   {
     *a2 = 37;
     a2[1] = 132;
@@ -315,7 +315,7 @@ char CCBMagicWindow::CreateButton(_DWORD *a2, int a3)
     (**(void (***)(int, int))*p_m_nGrowBy)(*p_m_nGrowBy, 1);
   }
   p_m_bfocus = (int *)&this->m_bfocus;
-  &this->m_bfocus->Update();
+  CCBLineupWindow::Update(&this->m_bfocus);
   *a2 = 68;
   a2[2] = 160;
   a2[1] = 170;
@@ -345,7 +345,7 @@ int CCBMagicWindow::Update(int _this)
   int v9; // ecx
   int v10; // ecx
 
-  result = (gbRefObject **->SetScrollPos()this);
+  result = UIListBox::SetScrollPos((gbRefObject **)this);
   v3 = *(_DWORD *)(this + 72);
   if ( v3 )
   {
@@ -411,8 +411,8 @@ BOOL CCBMagicWindow::SetActivePage(int a2, int a3)
 // 0x0051C210
 _DWORD * CCBMagicWindow::GetActivePage()
 {
-  (UIListBox *->UIListBox()this);
+  UIListBox::UIListBox((UIListBox *)this);
   this->m_fontcolor.ColorQuadFmt = (int)&off_57058C;
-  (CCBSkillWindow *->Reset()this);
+  CCBSkillWindow::Reset((CCBSkillWindow *)this);
   return &this->m_fontcolor.ColorQuadFmt;
 }

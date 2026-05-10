@@ -71,7 +71,7 @@ CEffMeteor::~CEffMeteor(int a1)
   }
   v7 = (gbRefObject *)*(gbRefObject **)(a1 + 60);
   if ( v7 )
-    v7->Release();
+    gbRefObject::Release(v7);
   if ( *(_DWORD *)(a1 + 64) )
     operator delete(*(void **)(a1 + 64));
   v8 = a1 != 0 ? v2 : 0;

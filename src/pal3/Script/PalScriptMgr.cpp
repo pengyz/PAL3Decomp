@@ -171,7 +171,7 @@ int PalScriptMgr::IfAnyScriptRunning(int a2)
 {
   int result; // eax
 
-  (PtrArray *->SetAt()&this->m_script.m_nSize, this->m_script.m_nMaxSize, a2);
+  PtrArray::SetAt((PtrArray *)&this->m_script.m_nSize, this->m_script.m_nMaxSize, a2);
   return result;
 }
 

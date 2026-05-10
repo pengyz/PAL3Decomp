@@ -23,7 +23,7 @@ char PAL_GDB::LoadLanguage(char *path)
   char *v4; // edi
 
   v3 = (PalScript *)&this->m_head[805416];
-  (PalScript *->LoadFromFile()&this->m_head[805416], path);
+  PalScript::LoadFromFile((PalScript *)&this->m_head[805416], path);
   v3->SetDirectory(aSec1);
   if ( v3->HasNext() )
   {
@@ -60,7 +60,7 @@ PAL_GDB::PAL_GDB()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCombatDataCoul, aDProjectPal3Fi, 38),
+      Logger::FormatException((Logger *)ArgList, aCombatDataCoul, aDProjectPal3Fi, 38),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -76,7 +76,7 @@ PAL_GDB::PAL_GDB()
   g_pVFileSys->Read(&this->m_ItemData[353].desc[388], 632 * this->m_head.ComboNum, v3);
   g_pVFileSys->CloseFile(v3);
   v8 = -1;
-  (OpenNULLFile **->OpenNULLFile()&v5);
+  OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v5);
   return 1;
 }
 

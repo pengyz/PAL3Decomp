@@ -552,37 +552,38 @@ void RoleSystem::RenderRole(void *pStack, int a3)
       g_SceneMgr.?[5].?.normal[11].z = 0;
       atexit(nullsub_5);
     }
-    (gbMatrixStack *->Push()pStack);
-    (gbMatrixStack *->Translate()pStack, (struct gbVec3D *)((char *)this + 160));
+    gbMatrixStack::Push((gbMatrixStack *)pStack);
+    gbMatrixStack::Translate((gbMatrixStack *)pStack, (struct gbVec3D *)((char *)this + 160));
     if ( *((_DWORD *)this + 316) == 4 && *((_DWORD *)this + 307) == 11 )
-      (gbMatrixStack *->Rotate()pStack, *((float *)this + 336), (struct gbVec3D *)this + 108);
-    (gbMatrixStack *->Rotate()pStack, *((float *)this + 2172), &g_SceneMgr.?[5].?.normal[11]);
-    (gbMatrixStack *->Scale()pStack,
+      gbMatrixStack::Rotate((gbMatrixStack *)pStack, *((float *)this + 336), (struct gbVec3D *)this + 108);
+    gbMatrixStack::Rotate((gbMatrixStack *)pStack, *((float *)this + 2172), &g_SceneMgr.?[5].?.normal[11]);
+    gbMatrixStack::Scale(
+      (gbMatrixStack *)pStack,
       *((float *)this + 160),
       *((float *)this + 160),
       *((float *)this + 160));
-    *((_DWORD *)this + 36) = (Actor *->DispatchAction()((char *)this + 680), a3);
+    *((_DWORD *)this + 36) = Actor::DispatchAction((Actor *)((char *)this + 680), a3);
     if ( *((_DWORD *)this + 360) )
     {
-      (gbMatrix4 *->gbMatrix4()v4);
+      gbMatrix4::gbMatrix4((gbMatrix4 *)v4);
       if ( *((_BYTE *)this + 1445) )
       {
-        (gbMatrixStack *->Push()pStack);
+        gbMatrixStack::Push((gbMatrixStack *)pStack);
         gbActor::GetTagNodeTM(*((gbActor **)this + 174), (struct gbMatrix4 *)v4, aTagWeapon1);
-        (gbMatrixStack *->MultMatrix()pStack, (struct gbMatrix4 *)v4);
+        gbMatrixStack::MultMatrix((gbMatrixStack *)pStack, (struct gbMatrix4 *)v4);
         (*(void (**)(_DWORD, _DWORD))(**((_DWORD **)this + 360) + 16))(*((_DWORD *)this + 360), 0);
-        (gbMatrixStack *->Pop()pStack);
+        gbMatrixStack::Pop((gbMatrixStack *)pStack);
       }
       if ( *((_BYTE *)this + 1444) )
       {
-        (gbMatrixStack *->Push()pStack);
+        gbMatrixStack::Push((gbMatrixStack *)pStack);
         gbActor::GetTagNodeTM(*((gbActor **)this + 174), (struct gbMatrix4 *)v4, aTagWeapon2);
-        (gbMatrixStack *->MultMatrix()pStack, (struct gbMatrix4 *)v4);
+        gbMatrixStack::MultMatrix((gbMatrixStack *)pStack, (struct gbMatrix4 *)v4);
         (*(void (**)(_DWORD, _DWORD))(**((_DWORD **)this + 360) + 16))(*((_DWORD *)this + 360), 0);
-        (gbMatrixStack *->Pop()pStack);
+        gbMatrixStack::Pop((gbMatrixStack *)pStack);
       }
     }
-    (gbMatrixStack *->Pop()pStack);
+    gbMatrixStack::Pop((gbMatrixStack *)pStack);
   }
 }
 
@@ -694,8 +695,8 @@ int RoleSystem::UpdatePath(int a2)
 
   if ( *((_BYTE *)this + 174) == 49 )
   {
-    (const char *->CompareAction()this + 680, a2, 2);
-    (gbVisNode **->SetTimeScale()this + 170, 1.0);
+    Actor::CompareAction((const char *)this + 680, a2, 2);
+    Actor::SetTimeScale((gbVisNode **)this + 170, 1.0);
     *((_BYTE *)this + 1445) = 0;
     *((_BYTE *)this + 1444) = 0;
     return result;
@@ -726,9 +727,9 @@ LABEL_11:
   }
 LABEL_12:
   if ( *((_DWORD *)this + 321) == 2 )
-    (gbVisNode **->SetTimeScale()v4, 2.4000001);
+    Actor::SetTimeScale((gbVisNode **)v4, 2.4000001);
   else
-    (gbVisNode **->SetTimeScale()v4, 1.0);
+    Actor::SetTimeScale((gbVisNode **)v4, 1.0);
   *((_BYTE *)this + 1445) = 0;
   *((_BYTE *)this + 1444) = 0;
   return result;
@@ -940,7 +941,7 @@ void RoleSystem::GetPosition(void *pOut, int a3)
   if ( a3 )
   {
     *((_DWORD *)this + 328) = 0;
-    (gbVec3D *->Normalize()v4);
+    gbVec3D::Normalize((gbVec3D *)v4);
     v5 = *((float *)this + 322);
     * v4 = (*)v5 * *v4;
     v4[1] = v5 * v4[1];
@@ -1025,7 +1026,7 @@ int RoleSystem::PathFind(float *pTarget)
   v50 = v6;
   v54 = v5;
   v51 = v54;
-  v7 = (gbVec3D *->Length()&v49);
+  v7 = gbVec3D::Length((gbVec3D *)&v49);
   if ( v7 <= *(float *)&g_SceneMgr.m_info[51640] )
   {
     v9 = (float *)((char *)this + 1240);
@@ -1099,7 +1100,7 @@ int RoleSystem::PathFind(float *pTarget)
   *((float *)this + 325) = *((float *)this + 325) - *((float *)this + 41);
   *((float *)this + 326) = *((float *)this + 326) - *((float *)this + 42);
   *((_DWORD *)this + 325) = 0;
-  (RoleSystem *->Normalize()((char *)this + 1296));
+  gbVec3D::Normalize((RoleSystem *)((char *)this + 1296));
   sub_4122C0((int)this);
   v25 = sqrt((50.0 + 50.0) / 490.0);
   *((float *)this + 313) = v25;
@@ -1118,8 +1119,8 @@ int RoleSystem::PathFind(float *pTarget)
   v54 = v29;
   v53 = 0.0;
   *((float *)this + 326) = v29;
-  (RoleSystem *->Normalize()((char *)this + 1296));
-  v30 = (gbVec3D *->Length()&v52) / *((float *)this + 313);
+  gbVec3D::Normalize((RoleSystem *)((char *)this + 1296));
+  v30 = gbVec3D::Length((gbVec3D *)&v52) / *((float *)this + 313);
   *((float *)this + 324) = v30 * *((float *)this + 324);
   *((float *)this + 325) = v30 * *((float *)this + 325);
   *((float *)this + 326) = v30 * *((float *)this + 326);
@@ -1128,8 +1129,8 @@ int RoleSystem::PathFind(float *pTarget)
     v31 = *((float *)this + 311) - *((float *)this + 41) + 50.0;
   *((_DWORD *)this + 321) = 4;
   *((float *)this + 325) = sqrt((v31 + v31) / 490.0) * 490.0;
-  (const char *->CompareAction()this + 680, 4, 2);
-  (gbVisNode **->SetTimeScale()this + 170, 4.0);
+  Actor::CompareAction((const char *)this + 680, 4, 2);
+  Actor::SetTimeScale((gbVisNode **)this + 170, 4.0);
   v33 = *((float *)this + 313) + 0.5;
   *((float *)this + 313) = v33;
   *((float *)this + 313) = v33 + 0.5;
@@ -1186,7 +1187,7 @@ void RoleSystem::UpdateAnimation(int a2)
     v24 = v24 - *(float *)(a2 + 4);
     v25 = v25 - *(float *)(a2 + 8);
     v26 = v4 - *(float *)(a2 + 12);
-    v5 = (gbVec3D *->Length()&v24);
+    v5 = gbVec3D::Length((gbVec3D *)&v24);
     v6 = *((_DWORD *)this + 348);
     v7 = v5 - *(float *)(v6 + 16);
     if ( v7 >= 0.0 )
@@ -1400,8 +1401,8 @@ int RoleSystem::GetDirection(float *pOut)
   * pOut = (*)*((float *)this + 40);
   pOut[1] = *((float *)this + 41);
   pOut[2] = *((float *)this + 42);
-  (gbMatrix4 *->gbMatrix4()v4);
-  result = (Actor *->PlayAction()((char *)this + 680), (int)v4);
+  gbMatrix4::gbMatrix4((gbMatrix4 *)v4);
+  result = Actor::PlayAction((Actor *)((char *)this + 680), (int)v4);
   pOut[1] = *(float *)&v4[68] + pOut[1];
   return result;
 }

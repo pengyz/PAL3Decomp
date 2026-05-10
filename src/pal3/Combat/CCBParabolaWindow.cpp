@@ -28,7 +28,7 @@ CCBParabolaWindow::CCBParabolaWindow(CCBParabolaWindow ***this, int *a2, int a3)
   int v7; // eax
   int v8; // ecx
 
-  (UIWnd *->Create()this, 1879048197, a2, a3);
+  UIWnd::Create((UIWnd *)this, 1879048197, a2, a3);
   *((_DWORD *)this + 30) = (CCBParabolaWindow **)a3;
   v4 = this + 23;
   if ( CCBLineupWindow::Destroy(this + 23) == 1 )
@@ -74,7 +74,7 @@ CCBParabolaWindow::~CCBParabolaWindow(int _this)
   _DWORD *v4; // esi
   int v5; // edi
 
-  result = (gbRefObject **->SetScrollPos()this);
+  result = UIListBox::SetScrollPos((gbRefObject **)this);
   v3 = *(_DWORD *)(this + 92);
   if ( v3 )
   {
@@ -105,7 +105,7 @@ int CCBParabolaWindow::Reset(int a2, int a3, int a4)
   if ( a2 == 1001 )
   {
     Instance = (char *)CScreenMode::GetInstance();
-    (CScreenMode *->AudioSetPosition()Instance, aWa001, 1);
+    CScreenMode::AudioSetPosition((CScreenMode *)Instance, aWa001, 1);
     CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), a3, a4);
   }
   return a2->SendMessage(a3, a4);
@@ -116,7 +116,7 @@ int CCBParabolaWindow::Destroy()
 {
   int v2; // ecx
 
-  (UIListBox *->SetScroll()this);
+  UIListBox::SetScroll((UIListBox *)this);
   v2 = *(&this->m_benable + (int)this->m_pItemList);
   return (*(int (**)(int))(*(_DWORD *)v2 + 4))(v2);
 }

@@ -70,7 +70,7 @@ CEffMgr::CEffMgr()
   g_pVFileSys->Seek(v1, 0, 1);
   g_pVFileSys->Read(v2, 0x2C047u, v1);
   g_pVFileSys->CloseFile(v1);
-  if ( (_UNKNOWN *)(CPK *->DeCompress()&unk_DE9CB0, v4, v2, 0x2C047u) != &unk_8DDCE0 )
+  if ( (_UNKNOWN *)CPK::DeCompress((CPK *)&unk_DE9CB0, v4, v2, 0x2C047u) != &unk_8DDCE0 )
   {
     free(v2);
     free(v4);
@@ -132,7 +132,7 @@ int CEffMgr::Init(int a2, int a3, int a4, int a5, int a6)
     if ( (g_bCursorVisible & 1) == 0 )
     {
       g_bCursorVisible |= 1u;
-      (CEffMgr *->Reset()&g_nCursorState);
+      CEffMgr::Reset((CEffMgr *)&g_nCursorState);
       atexit(nullsub_1);
     }
     v6 = dword_1895980;

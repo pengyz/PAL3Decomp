@@ -75,7 +75,7 @@ char CCBSkillWindow::Create(int _this, _DWORD *a2, int a3)
   _DWORD v24[4]; // [esp+C8h] [ebp-10h] BYREF
 
   v3 = a3;
-  (_DWORD *->Create()this, 512, a2, a3);
+  UIWnd::Create((_DWORD *)this, 512, a2, a3);
   *(_DWORD *)(this + 168) = v3;
   v5 = (_DWORD *)(this + 72);
   CCBLineupWindow::Destroy(this + 72);
@@ -255,7 +255,7 @@ int CCBSkillWindow::Destroy(int _this)
   int v16; // ecx
   int v17; // ecx
 
-  result = (gbRefObject **->SetScrollPos()this);
+  result = UIListBox::SetScrollPos((gbRefObject **)this);
   v3 = (_DWORD *)(this + 108);
   v4 = 11;
   do

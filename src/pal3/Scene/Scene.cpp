@@ -73,10 +73,10 @@ int Scene::LoadConfig(void *pConfig)
     v19 = v9;
     for ( i = v9; v10 != v4; i += 12 )
     {
-      (void *->Copy()i, v10);
+      Array::Copy((void *)i, v10);
       v10 += 12;
     }
-    (void *->Erase()i, 1, pConfig);
+    Array::Erase((void *)i, 1, pConfig);
     v4->Insert(*(void **)&this->m_info[8], (void *)(i + 12));
     nullsub_2(*(_DWORD *)&this->m_info[4], *(_DWORD *)&this->m_info[8]);
     operator delete(*(void **)&this->m_info[4]);

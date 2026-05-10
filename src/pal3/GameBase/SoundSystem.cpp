@@ -43,7 +43,7 @@ int SoundSystem::Init()
     v9 = -1;
     MEMORY[0xC11360][v1] = (int)v5;
     sprintf(Buffer, "snd\\we022%c.wav", v0);
-    result = (gbSound2DNode *->LoadFromFile()MEMORY[0xC11360][v1], Buffer);
+    result = gbSound2DNode::LoadFromFile((gbSound2DNode *)MEMORY[0xC11360][v1], Buffer);
     v7 = MEMORY[0xC11360][v1];
     ++v0;
     ++v1;

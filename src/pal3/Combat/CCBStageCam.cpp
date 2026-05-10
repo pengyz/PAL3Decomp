@@ -31,7 +31,7 @@ CCBStageCam::CCBStageCam(CCBStageCam *Buffer)
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCouldnTOpenCbC, aDProjectPal3Co_6, 702),
+      Logger::FormatException((Logger *)ArgList, aCouldnTOpenCbC, aDProjectPal3Co_6, 702),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -274,7 +274,7 @@ _DWORD *CCBStageCam::SetCamPos(CCBStageCam *this, int **a2, int a3)
   *((_DWORD *)this + 107534) = 0;
   *((_DWORD *)this + 107535) = 0;
   *((_DWORD *)this + 107536) = 0;
-  (gbMatrix4 *->gbMatrix4()((char *)this + 430148));
+  gbMatrix4::gbMatrix4((gbMatrix4 *)((char *)this + 430148));
   *((_DWORD *)this + 107557) = 0;
   *((_DWORD *)this + 107558) = 0;
   *((_DWORD *)this + 107559) = 0;
@@ -316,7 +316,7 @@ char CCBStageCam::Destroy()
 {
   CCBStageCam::Create((int)this);
   CCBStageCam::~CCBStageCam((int)this);
-  (CCCTData *->Destroy()this);
+  CCCTData::Destroy((CCCTData *)this);
   return 1;
 }
 
@@ -388,7 +388,7 @@ void CCBStageCam::DoTask(int _this)
   }
   if ( dword_17A990C == 4 )
   {
-    (CCBStageCam **->SwitchEditorCamPos()this);
+    CCBStageCam::SwitchEditorCamPos((CCBStageCam **)this);
     this->ProcCamMove();
     v20.y = 1.0;
     v17 = 0;
@@ -444,10 +444,10 @@ void CCBStageCam::DoTask(int _this)
 // 0x00505770
 char CCBStageCam::ClearFinishedTask(int _this, int a2)
 {
-  if ( !(CCBStageCam *->IsEditorCamValid()this, a2) )
+  if ( !CCBStageCam::IsEditorCamValid((CCBStageCam *)this, a2) )
     return 0;
   *(_BYTE *)(this + 430012) = 1;
-  (CCCTData *->Save()this, a2);
+  CCCTData::Save((CCCTData *)this, a2);
   *(_DWORD *)(this + 430032) = a2;
   *(_DWORD *)(this + 430036) = 0;
   return 1;

@@ -56,7 +56,7 @@ CEffectSystem::CEffectSystem(int a2)
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Ef_0, 761),
+      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Ef_0, 761),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }

@@ -69,7 +69,7 @@ CCBAIWindow::~CCBAIWindow()
   CCBAIWindow *v3; // edi
   __int32 Color; // [esp+Ch] [ebp-Ch]
 
-  (UIListBox *->SetScroll()this);
+  UIListBox::SetScroll((UIListBox *)this);
   Alpha = this->m_fontcolor.Alpha;
   Color = this->m_fontcolor.Color;
   v3 = (CCBAIWindow *)*(CCBAIWindow **)(*(_DWORD *)(*(_DWORD *)(*((_DWORD *)this + 42) + 1160) + 20) + 68);

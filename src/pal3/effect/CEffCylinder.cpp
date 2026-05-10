@@ -298,7 +298,7 @@ LABEL_10:
   *(_BYTE *)(this + 63) = *(_BYTE *)(a2 + 176);
   *(_DWORD *)(this + 64) = &unk_FFFFFF;
   *(_DWORD *)(this + 76) = *(_DWORD *)(a2 + 204);
-  (CEffCylinder *->InitDefaultUVSet()this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
+  CEffCylinder::InitDefaultUVSet((CEffCylinder *)this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   v19 = *(_DWORD *)(this + 112);
   v11 = (void *)operator new(68 * v19);
   Block = v11;
@@ -328,7 +328,7 @@ LABEL_10:
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aNewFailInCeffc, aDProjectPal3Co, 127),
+      Logger::FormatException((Logger *)ArgList, aNewFailInCeffc, aDProjectPal3Co, 127),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -766,24 +766,24 @@ int CEffCylinder::ProcCommonTask(int _this, int a2)
   *(float *)(this + 172) = v16 * *(float *)(v4 + 28) + *(float *)(this + 172);
   *(float *)(this + 176) = v16 * *(float *)(v4 + 32) + *(float *)(this + 176);
   *(float *)(this + 180) = v16 * *(float *)(v4 + 36) + *(float *)(this + 180);
-  (gbMatrix4 *->gbMatrix4()v27);
+  gbMatrix4::gbMatrix4((gbMatrix4 *)v27);
   v21 = 0;
   v22 = 0;
   v23 = 0;
   v24 = 0;
   v25 = 0;
   v26 = 0.0;
-  (gbMatrix4 *->LoadIdentity()v27);
+  gbMatrix4::LoadIdentity((gbMatrix4 *)v27);
   v21 = *(_DWORD *)(v4 + 44);
   v22 = *(_DWORD *)(v4 + 48);
   v23 = *(_DWORD *)(v4 + 52);
-  (gbVec3D *->Normalize()&v21);
+  gbVec3D::Normalize((gbVec3D *)&v21);
   v15 = (*(float *)(this + 16) - *(float *)(v7 + 16)) * *(float *)(v4 + 60);
-  (gbMatrix4 *->SetAxisAngle()v27, (struct gbVec3D *)&v21, v15);
+  gbMatrix4::SetAxisAngle((gbMatrix4 *)v27, (struct gbVec3D *)&v21, v15);
   v26 = *(float *)(v4 + 56);
   v24 = 0;
   v25 = 0;
-  (gbMatrix4 *->Rotate()v27, (const struct gbVec3D *)&v24, (struct gbVec3D *)(this + 184));
+  gbMatrix4::Rotate((gbMatrix4 *)v27, (const struct gbVec3D *)&v24, (struct gbVec3D *)(this + 184));
   v8 = v16 * *(float *)(v4 + 108) + *(float *)(this + 156);
   *(float *)(this + 156) = v8;
   if ( v8 > 1.0 )

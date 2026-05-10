@@ -98,7 +98,7 @@ CCBControlWindow::~CCBControlWindow(int _this)
   int v10; // ecx
   int v11; // ecx
 
-  result = (gbRefObject **->SetScrollPos()this);
+  result = UIListBox::SetScrollPos((gbRefObject **)this);
   v3 = (_DWORD *)(this + 76);
   v4 = 6;
   do
@@ -169,7 +169,7 @@ int CCBControlWindow::Reset(int a2, unsigned int a3, int a4)
     if ( a3 >= 0xC0 && a3 <= 0xC5 )
     {
       Instance = (char *)CScreenMode::GetInstance();
-      (CScreenMode *->AudioSetPosition()Instance, aWa001, 1);
+      CScreenMode::AudioSetPosition((CScreenMode *)Instance, aWa001, 1);
       CCBControlWindow::HandleInput((int)this, a3 - 192);
       Child = UIWnd::CreateChild(*((UIWnd **)this + a3 - 173));
       if ( Child != -1 )
@@ -184,7 +184,7 @@ int CCBControlWindow::Reset(int a2, unsigned int a3, int a4)
   else if ( a2 == 1007 && a4 != -1 )
   {
     v5 = (char *)CScreenMode::GetInstance();
-    (CScreenMode *->AudioSetPosition()v5, aWa002, 1);
+    CScreenMode::AudioSetPosition((CScreenMode *)v5, aWa002, 1);
     CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_wndcolor.Green + 1160) + 8), a3, a4);
   }
   return a2->SendMessage(a3, a4);
@@ -211,7 +211,7 @@ char CCBControlWindow::Create(_DWORD *a2, int a3, int a4, int a5)
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCNewFailed, aDProjectPal3Co_12, 2875),
+      Logger::FormatException((Logger *)ArgList, aCNewFailed, aDProjectPal3Co_12, 2875),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -300,7 +300,7 @@ int CCBControlWindow::KeyPressed()
 // 0x0051AC40
 _DWORD * CCBControlWindow::DefaultKey()
 {
-  (UIListBox *->UIListBox()this);
+  UIListBox::UIListBox((UIListBox *)this);
   this->m_fontcolor.ColorQuadFmt = (int)&off_57051C;
   this->CheckKeyInput();
   return &this->m_fontcolor.ColorQuadFmt;
@@ -353,7 +353,7 @@ char CCBControlWindow::OnMessage(int _this, _DWORD *a2, int a3)
   v23 = (void *)&loc_56733A;
   v22 = ExceptionList;
   v4 = (void *)alloca(4104);
-  (_DWORD *->Create()this, 1879048195, a2, a3);
+  UIWnd::Create((_DWORD *)this, 1879048195, a2, a3);
   v6 = (char *)operator new(0x98u);
   v17 = v6;
   v24 = 0;
@@ -459,7 +459,7 @@ int CCBControlWindow::Update(int _this)
   int v4; // ecx
   int v5; // ecx
 
-  result = (gbRefObject **->SetScrollPos()this);
+  result = UIListBox::SetScrollPos((gbRefObject **)this);
   v3 = *(_DWORD *)(this + 80);
   if ( v3 )
   {
@@ -495,8 +495,8 @@ BOOL CCBControlWindow::MoveButtons(int a2, int a3)
 // 0x0051B110
 _DWORD * CCBControlWindow::CreateButton()
 {
-  (UIListBox *->UIListBox()this);
+  UIListBox::UIListBox((UIListBox *)this);
   this->m_fontcolor.ColorQuadFmt = (int)&off_570538;
-  (CCBItemWindow *->Reset()this);
+  CCBItemWindow::Reset((CCBItemWindow *)this);
   return &this->m_fontcolor.ColorQuadFmt;
 }

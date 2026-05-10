@@ -720,11 +720,11 @@ char CCBSystem::ProcNormalAttack(CCBSystem *this)
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
+      Logger::FormatException((Logger *)ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  result = std::v3->do_always_noconv();
+  result = v3->codecvt_base::do_always_noconv();
   if ( result )
   {
     v6 = (UIWnd *)operator new(0xA48u);
@@ -739,7 +739,7 @@ char CCBSystem::ProcNormalAttack(CCBSystem *this)
     {
       qmemcpy(
         pExceptionObject,
-        (Logger *->FormatException()ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
+        Logger::FormatException((Logger *)ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
         sizeof(pExceptionObject));
       _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
     }
@@ -758,7 +758,7 @@ char CCBSystem::ProcNormalAttack(CCBSystem *this)
       {
         qmemcpy(
           pExceptionObject,
-          (Logger *->FormatException()ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
+          Logger::FormatException((Logger *)ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
           sizeof(pExceptionObject));
         _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
       }
@@ -777,11 +777,11 @@ char CCBSystem::ProcNormalAttack(CCBSystem *this)
         {
           qmemcpy(
             pExceptionObject,
-            (Logger *->FormatException()ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
+            Logger::FormatException((Logger *)ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
             sizeof(pExceptionObject));
           _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
         }
-        result = std::(std::codecvt_base *->do_always_noconv()inited);
+        result = std::codecvt_base::do_always_noconv((std::codecvt_base *)inited);
         if ( result )
         {
           v12 = (CCBStage *)operator new(0xA48B0u);
@@ -796,7 +796,7 @@ char CCBSystem::ProcNormalAttack(CCBSystem *this)
           {
             qmemcpy(
               pExceptionObject,
-              (Logger *->FormatException()ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
+              Logger::FormatException((Logger *)ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
               sizeof(pExceptionObject));
             _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
           }
@@ -815,11 +815,11 @@ char CCBSystem::ProcNormalAttack(CCBSystem *this)
             {
               qmemcpy(
                 pExceptionObject,
-                (Logger *->FormatException()ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
+                Logger::FormatException((Logger *)ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
                 sizeof(pExceptionObject));
               _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
             }
-            result = std::(std::codecvt_base *->do_always_noconv()v15);
+            result = std::codecvt_base::do_always_noconv((std::codecvt_base *)v15);
             if ( result )
             {
               v16 = (CCBAI *)operator new(0xE50u);
@@ -832,10 +832,10 @@ char CCBSystem::ProcNormalAttack(CCBSystem *this)
               this->m_pAI = v17;
               if ( !v17 )
               {
-                qmemcpy(v34, (Logger *->FormatException()v35, aCNewFailed, aDProjectPal3Co_4, 2504), sizeof(v34));
+                qmemcpy(v34, Logger::FormatException((Logger *)v35, aCNewFailed, aDProjectPal3Co_4, 2504), sizeof(v34));
                 _CxxThrowException(v34, (_ThrowInfo *)&_TI1_AV_Exception__);
               }
-              result = std::(std::codecvt_base *->do_always_noconv()v17);
+              result = std::codecvt_base::do_always_noconv((std::codecvt_base *)v17);
               if ( result )
               {
                 this->m_pES = (CEffectSystem *)g_Input.KeyInfo[178].Data;
@@ -892,7 +892,7 @@ char CCBSystem::ProcNormalAttack(CCBSystem *this)
                   this->m_p3DSpark = v29;
                   v31 = (CEffectSimple *)sub_4C5980(m_pES, 1);
                   this->m_pEffectSimple = v31;
-                  (CEffectSystem *->CEffectSystem()v31, (int)aEffectCombat10);
+                  CEffectSystem::CEffectSystem((CEffectSystem *)v31, (int)aEffectCombat10);
                   return 1;
                 }
               }
@@ -941,7 +941,7 @@ char sub_512BA0(int _this)
   v4 = *(std::codecvt_base **)(this + 12);
   if ( !v4 )
     return 0;
-  std::v4->do_always_noconv();
+  v4->codecvt_base::do_always_noconv();
   v5 = (void *)*(void **)(this + 12);
   if ( v5 )
   {
@@ -963,7 +963,7 @@ char sub_512BA0(int _this)
   v8 = *(std::codecvt_base **)(this + 8);
   if ( !v8 )
     return 0;
-  std::v8->do_always_noconv();
+  v8->codecvt_base::do_always_noconv();
   v9 = (void *)*(void **)(this + 8);
   if ( v9 )
   {
@@ -982,7 +982,7 @@ char sub_512BA0(int _this)
   v12 = *(std::codecvt_base **)(this + 24);
   if ( !v12 )
     return 0;
-  std::v12->do_always_noconv();
+  v12->codecvt_base::do_always_noconv();
   v13 = (void *)*(void **)(this + 24);
   if ( v13 )
     v13->DestroyObj(1);
@@ -996,7 +996,7 @@ char sub_512BA0(int _this)
   *(_DWORD *)(this + 28) = 0;
   if ( !*(_DWORD *)this )
     return 0;
-  std::v14->do_always_noconv();
+  v14->codecvt_base::do_always_noconv();
   if ( *(_DWORD *)this )
     CCBSystem::DestroyObj(*(void **)this, 1);
   v15 = *(gbRefObject ***)(this + 44);
@@ -1084,18 +1084,18 @@ char CCBSystem::ProcWeaponSkill()
   if ( !this->m_pATSEffMgr || !sub_4CDB60() )
     return 0;
   C2DSpark::CreateTrack((int)this->m_p2DSpark->m_Spark, 0);
-  this->m_p2DSpark->CreateStars();
-  this->m_p3DSpark->DestroyAll();
+  C2DSpark::CreateStars(this->m_p2DSpark);
+  C3DSpark::DestroyAll(this->m_p3DSpark);
   v10 = 0;
   this->CreateObj(CCBSystem::Message, 0, 0, 0, 0);
-  (CCBSystem *->GetDeltaTime()this->m_pAttackSequen);
+  CCBSystem::GetDeltaTime((CCBSystem *)this->m_pAttackSequen);
   for ( i = 0; i < 4460; i += 892 )
   {
     v12 = (CCBRoleState *)this->m_pRoleState;
     if ( v12->m_Role[0].sModel[i + 5] )
     {
       *(_BYTE *)(v12->InitUI(v10) + 876) = 0;
-      *(_BYTE *)(this->m_pRoleState->InitUI(v10) + 877) = 0;
+      *(_BYTE *)(CCBRoleState::InitUI(this->m_pRoleState, v10) + 877) = 0;
     }
     ++v10;
   }
@@ -1133,7 +1133,7 @@ char CCBSystem::ProcMagicWait(int _this, int a2, char a3)
   *(_DWORD *)(this + 128) = v4;
   ++*(_DWORD *)&g_SceneMgr.m_info[51524];
   *(_DWORD *)(this + 112) = a2;
-  v9 = (CCBSystem *->ProcWeaponSkill()this);
+  v9 = CCBSystem::ProcWeaponSkill((CCBSystem *)this);
   UICursor::IRender();
   v5 = 0;
   v6 = (char *)&g_SceneMgr.m_info[916];
@@ -1183,21 +1183,21 @@ int CCBSystem::CombatUpdate(double dt)
   SceneMgrUpdate((float *)this->m_pATSEffMgr, this->m_fAbsTimeFund);
   CCBSystem::ProcMagic((int)this);
   this->IsFriendDoSkill();
-  this->m_pAttackSequen->Update();
-  this->m_pRoleState->Update();
-  this->m_pAI->Update();
-  this->m_pStage->Update();
-  this->m_pControl->Update();
+  CCBAttackSequen::Update(this->m_pAttackSequen);
+  CCBRoleState::Update(this->m_pRoleState);
+  CCBAI::Update(this->m_pAI);
+  CCBStage::Update(this->m_pStage);
+  CCBControl::Update(this->m_pControl);
   if ( BYTE1(this->m_bFiveNimbus) )
   {
     m_pEditor = (CCBEditor *)this->m_pEditor;
     if ( m_pEditor )
-      (CCBUI *->Update()m_pEditor);
+      CCBUI::Update((CCBUI *)m_pEditor);
   }
   a2 = this->m_DeltaTime;
   C2DSpark::Render((int)this->m_p2DSpark->m_Spark, a2);
   a2a = this->m_DeltaTime;
-  this->m_p3DSpark->Update(a2a);
+  C3DSpark::Update(this->m_p3DSpark, a2a);
   LOBYTE(result) = CCBSystem::ProcDefence((int)this);
   return result;
 }
@@ -1518,7 +1518,7 @@ char CCBSystem::ProcMessage(int _this, int a2)
   v4 = *(_DWORD *)(this + 8);
   if ( *(_BYTE *)(v4 + 36) )
   {
-    i = (_DWORD *->GetControl()v4);
+    i = CCBSystem::GetControl((_DWORD *)v4);
     if ( i == a2 )
     {
       CCBUI::GetState(*(_BYTE **)(this + 8));
@@ -1534,7 +1534,7 @@ char CCBSystem::ProcMessage(int _this, int a2)
       }
     }
   }
-  (_BYTE *->IsTaskValidButNotFinish()i, *(_DWORD *)(this + 20), a2);
+  CCBStage::IsTaskValidButNotFinish((_BYTE *)i, *(_DWORD *)(this + 20), a2);
   CCBSystem::GetCmdPtr(*(char **)(this + 12), a2);
   sub_4DB9C0(*(_DWORD **)(this + 12), a2, 0);
   *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this + 20) + 4 * a2 + 24) + 280) = 0;
@@ -1601,11 +1601,11 @@ int CCBSystem::CheckBattleEnd()
   if ( BYTE1(this->m_bFiveNimbus) && dword_17A990C != 2 )
     return 0;
   p_bValid = 0;
-  if ( (unsigned __int8)this->m_pRoleState->GetForce(0) || this->m_bPause != 2 )
+  if ( (unsigned __int8)CCBRoleState::GetForce(this->m_pRoleState, 0) || this->m_bPause != 2 )
   {
     m_pControl = (CCBControl *)this->m_pControl;
     if ( LOBYTE(m_pControl->m_bActive) )
-      (CCBUI *->GetState()m_pControl);
+      CCBUI::GetState((CCBUI *)m_pControl);
     return 0;
   }
   if ( !LOBYTE(this->m_pControl->m_bActive) )
@@ -1624,30 +1624,30 @@ int CCBSystem::CheckBattleEnd()
       }
       if ( sub_4ECB20(this->m_pRoleState, v5) )
       {
-        (CCBSystem *->GetDeltaTime()this->m_pAttackSequen);
+        CCBSystem::GetDeltaTime((CCBSystem *)this->m_pAttackSequen);
         return 0;
       }
-      if ( (CCBSystem *->GetCmdType()this->m_pAttackSequen, v5) == 1
-        && this->m_pRoleState->IsRoleAlive(v5) == 1
-        && (CCBStageRole *->IsActive()this->m_pRoleState, v5) == 1
-        && (CCBSystem *->IsBusy()this->m_pAttackSequen) )
+      if ( CCBSystem::GetCmdType((CCBSystem *)this->m_pAttackSequen, v5) == 1
+        && CCBRoleState::IsRoleAlive(this->m_pRoleState, v5) == 1
+        && CCBStageRole::IsActive((CCBStageRole *)this->m_pRoleState, v5) == 1
+        && CCBSystem::IsBusy((CCBSystem *)this->m_pAttackSequen) )
       {
-        if ( this->m_pRoleState->GetRoleField(v5, 17)
-          || this->m_pRoleState->GetRoleField(v5, 14) )
+        if ( CCBRoleState::GetRoleField(this->m_pRoleState, v5, 17)
+          || CCBRoleState::GetRoleField(this->m_pRoleState, v5, 14) )
         {
           goto LABEL_38;
         }
-        if ( !*(_BYTE *)(this->m_pRoleState->InitUI(v5) + 837)
-          && !this->m_pRoleState->GetRoleField(v5, 18)
-          && !this->m_pRoleState->GetRoleField(v5, 19) )
+        if ( !*(_BYTE *)(CCBRoleState::InitUI(this->m_pRoleState, v5) + 837)
+          && !CCBRoleState::GetRoleField(this->m_pRoleState, v5, 18)
+          && !CCBRoleState::GetRoleField(this->m_pRoleState, v5, 19) )
         {
           sub_4F7FC0((int)this->m_pRoleState->m_sCombatDialog, v5);
-          if ( !*(_BYTE *)(this->m_pRoleState->InitUI(v5) + 877)
-            || (v6 = this->m_pAI->HandleFriendAffirmative(v5, 1),
-                *(_BYTE *)(this->m_pRoleState->InitUI(v5) + 877) = 0,
+          if ( !*(_BYTE *)(CCBRoleState::InitUI(this->m_pRoleState, v5) + 877)
+            || (v6 = CCBAI::HandleFriendAffirmative(this->m_pAI, v5, 1),
+                *(_BYTE *)(CCBRoleState::InitUI(this->m_pRoleState, v5) + 877) = 0,
                 !v6) )
           {
-            if ( !*(_BYTE *)(this->m_pRoleState->InitUI(v5) + 876) )
+            if ( !*(_BYTE *)(CCBRoleState::InitUI(this->m_pRoleState, v5) + 876) )
             {
               dword_5DC3DC = v5;
               sub_4DC3F0((char *)this->m_pControl, v5);
@@ -1655,19 +1655,19 @@ int CCBSystem::CheckBattleEnd()
             }
             if ( *((_BYTE *)v4 + 40) )
             {
-              this->m_pAI->HandlePlayerNormalAttack(v5, (int)v4);
+              CCBAI::HandlePlayerNormalAttack(this->m_pAI, v5, (int)v4);
               for ( j = 0; j < 5; ++j )
               {
-                inited = this->m_pRoleState->InitUI(j);
+                inited = CCBRoleState::InitUI(this->m_pRoleState, j);
                 *(_BYTE *)(inited + 876) = 0;
               }
             }
             else
             {
-              this->m_pAI->HandleFriendAffirmative(v5, 0);
+              CCBAI::HandleFriendAffirmative(this->m_pAI, v5, 0);
               for ( k = 0; k < 5; ++k )
               {
-                v10 = this->m_pRoleState->InitUI(k);
+                v10 = CCBRoleState::InitUI(this->m_pRoleState, k);
                 *(_BYTE *)(v10 + 876) = 0;
               }
             }
@@ -1675,24 +1675,24 @@ int CCBSystem::CheckBattleEnd()
           goto LABEL_39;
         }
         sub_4F7FC0((int)this->m_pRoleState->m_sCombatDialog, v5);
-        this->m_pAI->HandleEnemyChaos(v5);
+        CCBAI::HandleEnemyChaos(this->m_pAI, v5);
       }
-      if ( (CCBSystem *->GetCmdType()this->m_pAttackSequen, v5) != 1
-        || this->m_pRoleState->IsRoleAlive(v5) != 1
-        || (CCBStageRole *->IsActive()this->m_pRoleState, v5)
-        || !(CCBSystem *->IsBusy()this->m_pAttackSequen) )
+      if ( CCBSystem::GetCmdType((CCBSystem *)this->m_pAttackSequen, v5) != 1
+        || CCBRoleState::IsRoleAlive(this->m_pRoleState, v5) != 1
+        || CCBStageRole::IsActive((CCBStageRole *)this->m_pRoleState, v5)
+        || !CCBSystem::IsBusy((CCBSystem *)this->m_pAttackSequen) )
       {
         goto LABEL_39;
       }
-      if ( this->m_pRoleState->GetRoleField(v5, 17)
-        || this->m_pRoleState->GetRoleField(v5, 14)
-        || *(_BYTE *)(this->m_pRoleState->InitUI(v5) + 879) )
+      if ( CCBRoleState::GetRoleField(this->m_pRoleState, v5, 17)
+        || CCBRoleState::GetRoleField(this->m_pRoleState, v5, 14)
+        || *(_BYTE *)(CCBRoleState::InitUI(this->m_pRoleState, v5) + 879) )
       {
 LABEL_38:
-        (CCBSystem *->GetCmdData()this->m_pAttackSequen, v5);
+        CCBSystem::GetCmdData((CCBSystem *)this->m_pAttackSequen, v5);
         goto LABEL_39;
       }
-      this->m_pAI->Render(v5);
+      CCBAI::Render(this->m_pAI, v5);
 LABEL_39:
       v3 = v18 + 4;
       v17 += 892;
@@ -1704,25 +1704,25 @@ LABEL_39:
         return 0;
     }
   }
-  (CCBSystem *->GetDeltaTime()this->m_pAttackSequen);
+  CCBSystem::GetDeltaTime((CCBSystem *)this->m_pAttackSequen);
   v13 = (CCBControl *)this->m_pControl;
   if ( LOBYTE(v13->m_CmdData.bSrcRole[2]) )
     p_bValid = (int *)&v13->m_InputData.bValid;
-  Control = (CCBSystem *->GetControl()v13);
-  if ( *(_BYTE *)(this->m_pRoleState->InitUI(Control) + 877)
-    || (v15 = (CCBSystem *->GetControl()this->m_pControl),
-        *(_BYTE *)(this->m_pRoleState->InitUI(v15) + 876)) )
+  Control = CCBSystem::GetControl((CCBSystem *)v13);
+  if ( *(_BYTE *)(CCBRoleState::InitUI(this->m_pRoleState, Control) + 877)
+    || (v15 = CCBSystem::GetControl((CCBSystem *)this->m_pControl),
+        *(_BYTE *)(CCBRoleState::InitUI(this->m_pRoleState, v15) + 876)) )
   {
     dword_5DC3DC = -1;
-    (CCBSystem *->GetDeltaTime()this->m_pAttackSequen);
-    (CCBUI *->GetState()this->m_pControl);
+    CCBSystem::GetDeltaTime((CCBSystem *)this->m_pAttackSequen);
+    CCBUI::GetState((CCBUI *)this->m_pControl);
     return 0;
   }
-  if ( (CCBSystem *->GetControl()this->m_pControl) != dword_5DC3DC || !p_bValid )
+  if ( CCBSystem::GetControl((CCBSystem *)this->m_pControl) != dword_5DC3DC || !p_bValid )
     return 0;
-  if ( this->m_pRoleState->GetRoleField(dword_5DC3DC, 14) )
+  if ( CCBRoleState::GetRoleField(this->m_pRoleState, dword_5DC3DC, 14) )
   {
-    (CCBUI *->GetState()this->m_pControl);
+    CCBUI::GetState((CCBUI *)this->m_pControl);
     return 0;
   }
   else
@@ -1783,18 +1783,24 @@ int CCBSystem::Message(int a2)
   int RoleIndex; // edi
 
   BYTE2(this->m_pFightInfo->nRoleWillNotBeAttack) = 0;
-  RoleIndex = this->m_pStage->GetRoleIndex(3, 0, 1);
+  RoleIndex = CCBStage::GetRoleIndex(this->m_pStage, 3, 0, 1);
   if ( RoleIndex != -1 )
   {
     if ( BYTE1(this->m_pRoleState->m_bWeSneakAttackEnemy)
-      || (this->m_pStage->GetRoleName(RoleIndex, (int)CCBStage::IsSubTaskFinished,
+      || (CCBStage::GetRoleName(
+            this->m_pStage,
+            RoleIndex,
+            (int)CCBStage::IsSubTaskFinished,
             0,
             0,
             0,
             0,
             -1082130432,
             1082130432),
-          this->m_pStage->GetRoleName(RoleIndex, (int)CCBStage::IsAllSubTaskFinished,
+          CCBStage::GetRoleName(
+            this->m_pStage,
+            RoleIndex,
+            (int)CCBStage::IsAllSubTaskFinished,
             0,
             0,
             0,
@@ -1803,9 +1809,9 @@ int CCBSystem::Message(int a2)
             1082130432),
           LOBYTE(this->m_pRoleState->m_bWeSneakAttackEnemy)) )
     {
-      this->m_pStage->GetRoleName(RoleIndex, (int)CCBStage::IsIdle, 0, 0, 0, 0, 0, 1077936128);
+      CCBStage::GetRoleName(this->m_pStage, RoleIndex, (int)CCBStage::IsIdle, 0, 0, 0, 0, 0, 1077936128);
     }
-    (CCBSystem *->GetStageRoleByIdx()this->m_pStage, RoleIndex);
+    CCBSystem::GetStageRoleByIdx((CCBSystem *)this->m_pStage, RoleIndex);
   }
   this->CreateObj((int (*)(int, int))CCBSystem::CheckBattleEnd, 0, 0, 0, 0);
   this->ClearEffect(this->m_bAuto);
@@ -1848,9 +1854,9 @@ LABEL_11:
       *v5 = 270;
       *(_DWORD *)(v4 + 44) = v11;
       CCBSystem::GetCmdPtr(*(CCBSystem **)(this + 12), v6);
-      (CCBSystem *->CreateObj()this, CCBSystem::AddThread, 0, 0, 0, (const void *)(v4 + 40));
+      CCBSystem::CreateObj((CCBSystem *)this, CCBSystem::AddThread, 0, 0, 0, (const void *)(v4 + 40));
 LABEL_12:
-      (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+      CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
       return 0;
     }
     RoleIndex = CCBStage::GetRoleIndex(*(CCBStage **)(this + 20), 11, (const void *)(v4 + 40), 0);
@@ -1940,7 +1946,7 @@ int CCBSystem::AddThread(int _this, int a2)
       *(_BYTE *)(v4 + 37) = 1;
       CCBSystem::GetDeltaTime(*(CCBSystem **)(this + 12));
       CCBSystem::SetCmdParam(*(CCBSystem **)(this + 12), *(_DWORD *)(v4 + 48), 0);
-      (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+      CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
       return 0;
     }
     v10 = 0;
@@ -2012,7 +2018,7 @@ int CCBSystem::AddThread(int _this, int a2)
       CCBSystem::GetStageRole(*(CCBSystem **)(this + 20), *(_DWORD *)(v4 + 20));
     CCBSystem::GetDeltaTime(*(CCBSystem **)(this + 12));
     CCBSystem::SetCmdParam(*(CCBSystem **)(this + 12), *(_DWORD *)(v4 + 48), 0);
-    (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+    CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
   }
   return 0;
 }
@@ -2100,7 +2106,7 @@ int CCBSystem::DelThread(int _this, int a2)
     if ( *(_DWORD *)(v4 + 20) != -1 )
       CCBSystem::GetStageRole(*(CCBSystem **)(this + 20), *(_DWORD *)(v4 + 20));
     CCBSystem::SetCmdParam(*(CCBSystem **)(this + 12), *(_DWORD *)(v4 + 48), 0);
-    (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+    CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
   }
   return 0;
 }
@@ -2129,15 +2135,15 @@ int CCBSystem::GetSameThreadNum(int _this, int a2)
       v4[10] = 270;
       v4[11] = a4;
       CCBSystem::GetCmdPtr(*(CCBSystem **)(this + 12), v7);
-      (CCBSystem *->CreateObj()this, CCBSystem::AddThread, 0, 0, 0, v4 + 10);
+      CCBSystem::CreateObj((CCBSystem *)this, CCBSystem::AddThread, 0, 0, 0, v4 + 10);
 LABEL_16:
-      (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+      CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
       return 0;
     }
     CCBSystem::SetCmdParam(*(CCBSystem **)(this + 12), v4[12], 0);
     if ( !CCBSystem::IsBusy(*(CCBSystem **)(this + 12)) )
     {
-      (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+      CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
       return -1;
     }
     CCBSystem::sub_4DB730(*(CCBSystem **)(this + 12), v4[12]);
@@ -2157,7 +2163,7 @@ LABEL_16:
   {
 LABEL_12:
     CCBStageRole::DelTask(*(CCBStageRole **)(*(_DWORD *)(this + 20) + 4 * v4[12] + 24), 2);
-    (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+    CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
     return 0;
   }
   if ( CCBRoleState::GetRoleField(*(CCBRoleState **)(this + 16), v4[12], 15) )
@@ -2169,7 +2175,7 @@ LABEL_12:
   if ( CCBSystem::IsCmdReady(*(CCBSystem **)(this + 12), v4[12]) )
   {
     CCBStageRole::DelTask(*(CCBStageRole **)(*(_DWORD *)(this + 20) + 4 * v4[12] + 24), 2);
-    (CCBSystem *->CreateObj()this, CCBSystem::IsThreadExist, 0, 0, 0, v4 + 10);
+    CCBSystem::CreateObj((CCBSystem *)this, CCBSystem::IsThreadExist, 0, 0, 0, v4 + 10);
     goto LABEL_16;
   }
   if ( !CCBSystem::IsCmdEmpty(*(CCBSystem **)(this + 12), v4[12]) )
@@ -2177,11 +2183,11 @@ LABEL_12:
   v6 = *(_DWORD *)(this + 8);
   if ( *(_BYTE *)(v6 + 36) )
   {
-    if ( (CCBSystem *->GetControl()v6) == v4[12] )
+    if ( CCBSystem::GetControl((CCBSystem *)v6) == v4[12] )
       CCBUI::GetState(*(CCBUI **)(this + 8));
   }
   CCBStageRole::DelTask(*(CCBStageRole **)(*(_DWORD *)(this + 20) + 4 * v4[12] + 24), 2);
-  (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+  CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
   return -1;
 }
 
@@ -2274,7 +2280,7 @@ int CCBSystem::IsThreadExist(int _this, int a2)
     if ( *(_DWORD *)(v4 + 20) != -1 )
       CCBSystem::GetStageRole(*(CCBSystem **)(this + 20), *(_DWORD *)(v4 + 20));
     CCBSystem::SetCmdParam(*(CCBSystem **)(this + 12), *(_DWORD *)(v4 + 48), 0);
-    (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+    CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
   }
   return 0;
 }
@@ -2307,8 +2313,8 @@ int CCBSystem::GetThreadIndex(int _this, int a2)
       v4[10] = 270;
       v4[11] = v11;
       CCBSystem::GetCmdPtr(*(CCBSystem **)(this + 12), v9);
-      (CCBSystem *->CreateObj()this, CCBSystem::AddThread, 0, 0, 0, v4 + 10);
-      (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+      CCBSystem::CreateObj((CCBSystem *)this, CCBSystem::AddThread, 0, 0, 0, v4 + 10);
+      CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
       return 0;
     }
     RoleIndex = CCBStage::GetRoleIndex(*(CCBStage **)(this + 20), 16, v4 + 10, 0);
@@ -2360,7 +2366,7 @@ int CCBSystem::GetThreadIndex(int _this, int a2)
   {
     CCBSystem::GetStageRole(*(CCBSystem **)(this + 20), v4[5]);
     CCBSystem::SetCmdParam(*(CCBSystem **)(this + 12), v4[12], 0);
-    (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+    CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
   }
   return 0;
 }
@@ -2444,7 +2450,7 @@ int CCBSystem::PassCmdToThread(int _this, int a2)
   {
     CCBSystem::SetCmdParam(*(CCBSystem **)(this + 12), *(_DWORD *)(v4 + 48), 0);
     CCBSystem::GetStageRole(*(CCBSystem **)(this + 20), *(_DWORD *)(v4 + 20));
-    (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+    CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
   }
   return 0;
 }
@@ -2476,7 +2482,7 @@ int CCBSystem::PassCmdToThread(int _this, int a2)
     {
       CCBSystem::SetCmdParam(*(CCBSystem **)(this + 12), *(_DWORD *)(v4 + 48), 0);
 LABEL_5:
-      (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+      CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
       return 0;
     }
     CCBSystem::sub_4DB730(*(CCBSystem **)(this + 12), *(_DWORD *)(v4 + 48));
@@ -2522,7 +2528,7 @@ LABEL_5:
   {
     CCBSystem::GetStageRole(*(CCBSystem **)(this + 20), *(_DWORD *)(v4 + 20));
     *(_BYTE *)(CCBRoleState::InitUI(*(CCBRoleState **)(this + 16), *(_DWORD *)(v4 + 48)) + 30) = 0;
-    (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+    CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
     return 0;
   }
   else
@@ -2534,7 +2540,7 @@ LABEL_5:
       if ( a3 )
       {
         CCBSystem::GetStageRole(*(CCBSystem **)(this + 20), *(_DWORD *)(v4 + 20));
-        (CCBSystem *->CreateObj()this, CCBSystem::PassCmdToTask, 0, 0, 0, (const void *)(v4 + 40));
+        CCBSystem::CreateObj((CCBSystem *)this, CCBSystem::PassCmdToTask, 0, 0, 0, (const void *)(v4 + 40));
         goto LABEL_5;
       }
     }
@@ -2554,7 +2560,7 @@ LABEL_5:
     memset(v17, 0, sizeof(v17));
     LOBYTE(v17[10]) = 1;
     v17[0] = 267;
-    v9 = (CCBSystem *->ProcProtect()this);
+    v9 = CCBSystem::ProcProtect((CCBSystem *)this);
     v10 = *(_DWORD *)(v4 + 48);
     v11 = (CCBStage *)*(CCBStage **)(this + 20);
     v17[1] = v9;
@@ -2567,7 +2573,7 @@ LABEL_5:
       CCBStage::GetRoleName(*(CCBStage **)(this + 20), v12, (int)sub_5024D0, 0, 0, 0, v16, 0, 1077936128);
       CCBSystem::GetStageRoleByIdx(*(CCBSystem **)(this + 20), v12);
     }
-    (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+    CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
     return -1;
   }
 }
@@ -2638,7 +2644,7 @@ int CCBSystem::PassCmdToTask(int _this, int a2)
     {
       CCBSystem::SetCmdParam(*(CCBSystem **)(this + 12), *(_DWORD *)(v4 + 48), 0);
     }
-    (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+    CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
   }
   return 0;
 }
@@ -2694,7 +2700,7 @@ int CCBSystem::PassCmdViaThread(int _this, int a2)
     || *(_DWORD *)(CCBRoleState::InitUI(*(void **)(this + 16), *(_DWORD *)(v4 + 48)) + 872) > *(_DWORD *)(v4 + 32) )
   {
     CCBRoleState::SetRoleFlag(*(_BYTE **)(this + 16), *(_DWORD *)(v4 + 48), 0);
-    (CCBSystem *->ClearEffect()this, *(_DWORD *)(this + 144));
+    CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));
     *(_DWORD *)(v4 + 32) = 0;
   }
   return 0;
@@ -2857,7 +2863,7 @@ bool CCBSystem::CreateObj(_DWORD *a2)
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
+      Logger::FormatException((Logger *)ArgList, aCNewFailed, aDProjectPal3Co_4, 2504),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }

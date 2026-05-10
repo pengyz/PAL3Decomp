@@ -126,13 +126,13 @@ void ScriptSystem::Render(void *a1)
     v8 = *(_DWORD *)v7;
     v9 = *((float *)v7 + 1);
     v10 = *((_DWORD *)v7 + 2);
-    (gbMatrixStack *->Push()a1);
+    gbMatrixStack::Push((gbMatrixStack *)a1);
     v9 = v9 + 40.0;
-    (gbMatrixStack *->Translate()a1, (struct gbVec3D *)&v8);
+    gbMatrixStack::Translate((gbMatrixStack *)a1, (struct gbVec3D *)&v8);
     (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)&g_SceneMgr.m_info[51500] + 16))(
       *(_DWORD *)&g_SceneMgr.m_info[51500],
       0);
-    (gbMatrixStack *->Pop()a1);
+    gbMatrixStack::Pop((gbMatrixStack *)a1);
   }
 }
 
@@ -191,8 +191,8 @@ char ScriptSystem::Render2()
         if ( *(v6 - 122) && *v6 && *((_BYTE *)v6 - 459) == 2 )
         {
           memset(pOut, 0, sizeof(pOut));
-          (RoleSystem *->GetDirection()(v6 - 158), pOut);
-          (gbCamera *->PointWorldToScr()&g_pCamera->OrthoSize, (struct gbVec3D *)pOut, &v8, (float *)&v9);
+          RoleSystem::GetDirection((RoleSystem *)(v6 - 158), pOut);
+          gbCamera::PointWorldToScr((gbCamera *)&g_pCamera->OrthoSize, (struct gbVec3D *)pOut, &v8, (float *)&v9);
           sprintf(Buffer, "%d", *((unsigned __int8 *)v6 - 332));
           v7 = v8 - 0.050000001;
           (*(void (**)(int, char *, _DWORD, int, int, int))(*(_DWORD *)v3 + 16))(
@@ -219,8 +219,8 @@ int ScriptSystem::Destroy()
   char *v0; // esi
   int result; // eax
 
-  (UIWnd *->Reset()&MEMORY[0xBFDAB0]);
-  (PalScript *->Reset()&g_SceneMgr.m_info[50648]);
+  UIWnd::Reset((UIWnd *)&MEMORY[0xBFDAB0]);
+  PalScript::Reset((PalScript *)&g_SceneMgr.m_info[50648]);
   ScriptSystem::Cleanup();
   v0 = (char *)&g_SceneMgr.m_info[7120];
   do
@@ -274,7 +274,7 @@ int ScriptSystem::Execute(int a1, char a2)
   CameraSystem::Init((int)&g_SceneMgr.m_info[8704 * a1 + 7120]);
   *(_DWORD *)&g_SceneMgr.m_info[51512] = a1;
   if ( *((_DWORD *)g_pCamera + 112) )
-    (RoleSystem *->SetActive()g_pCamera, (int)&g_SceneMgr.m_info[8704 * a1 + 7120]);
+    RoleSystem::SetActive((RoleSystem *)g_pCamera, (int)&g_SceneMgr.m_info[8704 * a1 + 7120]);
   if ( a1 == 1 && dword_C025EC == 10 )
   {
     sub_419090((float *)&dword_C02198);
@@ -638,11 +638,11 @@ int ScriptSystem::UpdateObjects(float dt)
   float dta; // [esp+54h] [ebp+4h]
 
   v2 = v1;
-  (void *->QueryState()(v1 + 680));
+  Actor::QueryState((void *)(v1 + 680));
   if ( *(_DWORD *)&g_SceneMgr.m_info[17108] <= 2u && *(_DWORD *)(v2 + 1284) != *(_DWORD *)&g_SceneMgr.m_info[17108] )
   {
     *(_DWORD *)(v2 + 1284) = *(_DWORD *)&g_SceneMgr.m_info[17108];
-    (RoleSystem *->UpdatePath()v2, *(int *)&g_SceneMgr.m_info[17108]);
+    RoleSystem::UpdatePath((RoleSystem *)v2, *(int *)&g_SceneMgr.m_info[17108]);
   }
   v3 = (float *)(v2 + 1344);
   sub_419090((float *)(v2 + 1344));
@@ -651,7 +651,7 @@ int ScriptSystem::UpdateObjects(float dt)
   v15 = *(float *)(v2 + 1352) - *(float *)(v2 + 168);
   v13 = *(float *)(v2 + 1348) - *(float *)(v2 + 164);
   v11 = *v3 - *(float *)(v2 + 160);
-  v4 = (gbVec3D *->gbVec3D()v21, v11, v13, v15);
+  v4 = (gbVec3D *)gbVec3D::gbVec3D((gbVec3D *)v21, v11, v13, v15);
   v5 = *(float *)(v2 + 8700) - *(float *)(v2 + 168);
   v19[0] = *(_DWORD *)v4;
   v19[1] = *((_DWORD *)v4 + 1);
@@ -660,14 +660,14 @@ int ScriptSystem::UpdateObjects(float dt)
   v19[2] = *((_DWORD *)v4 + 2);
   v14 = v6;
   v12 = *(float *)(v2 + 8692) - *(float *)(v2 + 160);
-  v7 = (gbVec3D *->gbVec3D()v22, v12, v14, v16);
+  v7 = (gbVec3D *)gbVec3D::gbVec3D((gbVec3D *)v22, v12, v14, v16);
   v20[0] = *(_DWORD *)v7;
   v20[1] = *((_DWORD *)v7 + 1);
   v20[2] = *((_DWORD *)v7 + 2);
-  v8 = (gbVec3D *->Length()v19);
+  v8 = gbVec3D::Length((gbVec3D *)v19);
   dta = v8;
   if ( v8 < 0.000049999999
-    || (v9 = (gbVec3D *->DotProduct()v19, (const struct gbVec3D *)v20) / dta, v9 >= 0.0) && v9 - dta > -0.1 )
+    || (v9 = gbVec3D::DotProduct((gbVec3D *)v19, (const struct gbVec3D *)v20) / dta, v9 >= 0.0) && v9 - dta > -0.1 )
   {
     *(float *)(v2 + 160) = *v3;
     *(_DWORD *)(v2 + 164) = *(_DWORD *)(v2 + 1348);

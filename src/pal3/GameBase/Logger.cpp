@@ -47,7 +47,7 @@ int Logger::Render()
     v9 = *((_DWORD *)this + 1160);
     v6 = *((_DWORD *)this + 1157);
     HIBYTE(v10) = 0x80;
-    _TextureLib_Data::~_TextureLib_Data(v6, v9 - 18, v5, v9, &v10);
+    v6->~_TextureLib_Data(v9 - 18, v5, v9, &v10);
     UIRenderQuad(
       *((_DWORD *)this + 1157) + 4,
       *((_DWORD *)this + 1160) - 17,

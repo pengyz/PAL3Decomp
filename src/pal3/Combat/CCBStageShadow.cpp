@@ -47,7 +47,7 @@ CCBStageShadow::CCBStageShadow()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCNewFailed_0, aDProjectPal3Co_9, 85),
+      Logger::FormatException((Logger *)ArgList, aCNewFailed_0, aDProjectPal3Co_9, 85),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -81,7 +81,7 @@ char CCBStageShadow::Reset()
   float v11; // [esp+5Ch] [ebp-4h]
 
   sub_511E80((char *)this);
-  (gbMatrix4 *->gbMatrix4()v8);
+  gbMatrix4::gbMatrix4((gbMatrix4 *)v8);
   v2 = 0;
   v3 = -1488 - (_DWORD)this;
   v4 = (gbGeomQuad *)&this->m_ShadowQuad[6];
@@ -90,7 +90,7 @@ char CCBStageShadow::Reset()
     if ( this->m_pStage->m_pCBSystem->m_pRoleState->m_Role[0].sModel[v2 + 5] )
     {
       WorldPos = (float *)CCBStageRole::GetWorldPos(*(CCBStageRole **)((char *)&v4->vec[0].x + v3 + (unsigned int)this->m_pStage));
-      gbMatrix4::operator=(v8, WorldPos);
+      v8->operator=(WorldPos);
       v9 = WorldPos[16];
       v10 = *((_DWORD *)WorldPos + 17);
       v11 = WorldPos[18];
@@ -209,7 +209,8 @@ LABEL_8:
   }
   while ( v3 < 68 );
   if ( v18 > 0 )
-    (struct gbGeomQuad *->RenderGeomQuad()&this->m_ShadowInitQuad[8].vec[3].z,
+    gbDynVertBuf::RenderGeomQuad(
+      (struct gbGeomQuad *)&this->m_ShadowInitQuad[8].vec[3].z,
       v18,
       this->m_pEffect,
       this->m_pTextureArray);

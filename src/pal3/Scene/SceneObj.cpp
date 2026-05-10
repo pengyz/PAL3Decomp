@@ -117,12 +117,12 @@ LABEL_29:
 int SceneObj::CreateUI()
 {
   this->UIListBox();
-  (UIItem *->Refresh()this + 360);
-  (UIItem *->Refresh()this + 1728);
-  (_DWORD *->ctor_F7F0()this + 774);
-  (_BYTE *->UIFrameWnd()this + 3340);
+  UIItem::Refresh((UIItem *)this + 360);
+  UIItem::Refresh((UIItem *)this + 1728);
+  UIWnd::ctor_F7F0((_DWORD *)this + 774);
+  UIFrameWnd::UIFrameWnd((_BYTE *)this + 3340);
   *(_DWORD *)this = &off_5708E8;
-  (Actor *->ResetState()this);
+  Actor::ResetState((Actor *)this);
   *((_BYTE *)this + 3492) = 1;
   return (int)this;
 }
@@ -142,9 +142,9 @@ void * SceneObj::Destructor()
 void SceneObj::DestroyInternal()
 {
   *(_DWORD *)this = &off_5708E8;
-  (UIWnd *->_UIFrameWnd()(this + 3340));
+  UIFrameWnd::_UIFrameWnd((UIWnd *)(this + 3340));
   UIWnd::~UIWnd((UIWnd *)(this + 3096));
-  (UIItem *->UIItem()this + 1728);
-  (UIItem *->UIItem()this + 360);
+  UIItem::UIItem((UIItem *)this + 1728);
+  UIItem::UIItem((UIItem *)this + 360);
   UIWnd::~UIWnd((UIWnd *)this);
 }

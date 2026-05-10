@@ -152,7 +152,7 @@ CCBStageScene::CCBStageScene()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCouldnTCreateT, aDProjectPal3Co_1, 135),
+      Logger::FormatException((Logger *)ArgList, aCouldnTCreateT, aDProjectPal3Co_1, 135),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -249,7 +249,7 @@ char CCBStageScene::Reset()
     default:
       break;
   }
-  v5 = m_pStage->m_pCBSystem->m_pRoleState->CheckDeath(this->m_EnemyFiveLineupQuad.color.Red);
+  v5 = CCBRoleState::CheckDeath(m_pStage->m_pCBSystem->m_pRoleState, this->m_EnemyFiveLineupQuad.color.Red);
   this->m_vecFiveLineup[6].x = this->m_vecInitFiveLineup[6].x;
   this->m_vecFiveLineup[6].y = this->m_vecInitFiveLineup[6].y;
   this->m_vecFiveLineup[6].z = this->m_vecInitFiveLineup[6].z;
@@ -398,7 +398,7 @@ int CCBStageScene::Create()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aCNewFailed, aDProjectPal3Co_1, 293),
+      Logger::FormatException((Logger *)ArgList, aCNewFailed, aDProjectPal3Co_1, 293),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -460,7 +460,7 @@ void CCBStageScene::Destroy(CCBStageScene **this)
           {
             qmemcpy(
               pExceptionObject,
-              (Logger *->FormatException()ArgList, aCNewFailed, aDProjectPal3Co_1, 330),
+              Logger::FormatException((Logger *)ArgList, aCNewFailed, aDProjectPal3Co_1, 330),
               sizeof(pExceptionObject));
             _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
           }
@@ -863,7 +863,8 @@ char CCBStageScene::IsSameBattleFieldAttr()
         {
           inited = m_pRoleState->InitUI(v3);
           sprintf(byte_17ABF00, "%d(%s)", v3, (const char *)(inited + 8));
-          (gbCamera *->PointWorldToScr()&this->m_pStage->m_pCam->OrthoSize,
+          gbCamera::PointWorldToScr(
+            (gbCamera *)&this->m_pStage->m_pCam->OrthoSize,
             (struct gbVec3D *)&(*(CCBSystem **)((char *)&this->m_pStage->m_pCBSystem + v4))->m_Thread[42].bExecuted,
             &v9,
             &v8);
@@ -893,8 +894,9 @@ void CCBStageScene::LoadPointer(int _this, char a2)
   *(_BYTE *)(this + 748) = -1;
   *(_BYTE *)(this + 751) = a2;
   *(_BYTE *)(this + 819) = a2;
-  (struct gbGeomQuad *->RenderGeomQuad()(this + 684), 1, v4, v3);
-  (struct gbGeomQuad *->RenderGeomQuad()(this + 752),
+  gbDynVertBuf::RenderGeomQuad((struct gbGeomQuad *)(this + 684), 1, v4, v3);
+  gbDynVertBuf::RenderGeomQuad(
+    (struct gbGeomQuad *)(this + 752),
     1,
     *(struct gbRenderEffect **)(this + 664),
     *(struct gbTextureArray **)(this + 680));
@@ -929,7 +931,7 @@ bool CCBStageScene::LoadFlingNode()
   m_pStage = (CCBStage *)this->m_pStage;
   pPos = (Actor *)this->m_pStage->m_WPXVariance;
   LODWORD(v10.x) = m_pStage->m_pDisplayChain;
-  v14 = *(gbRay *)(CameraCtrl *->GetViewTarget()m_pStage->m_pCam, pTarget, (float *)&pPos);
+  v14 = *(gbRay *)CameraCtrl::GetViewTarget((CameraCtrl *)m_pStage->m_pCam, pTarget, (float *)&pPos);
   v3 = gbRay::IntersectPlane(&v14, &v12, &v11);
   v7 = v14.Origin.y * v3;
   v8 = v14.Origin.z * v3;

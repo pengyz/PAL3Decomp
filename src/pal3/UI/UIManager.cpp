@@ -101,9 +101,9 @@ void UIManager::Render()
     {
       Top = (struct gbMatrix4 *)gbMatrixStack::GetTop(*(gbMatrixStack **)&g_pGfxManager[216]);
       v10 = (const struct gbMatrix4 *)gbMatrixStack::GetTop(*(gbMatrixStack **)&g_pGfxManager[212]);
-      (gbMatrix4 *->gbMatrix4()v16.m);
+      gbMatrix4::gbMatrix4((gbMatrix4 *)v16.m);
       gbMatrix4::gbMatrix4(&v16);
-      (gbMatrix4 *->LoadIdentity()v16.m);
+      gbMatrix4::LoadIdentity((gbMatrix4 *)v16.m);
       v16.m[2][2] = -1.0;
       gbMatrix4::operator=(&v16, Top);
       gbMatrix4::RightMultiply(&v16, (gbMatrix4 *)v16.m);
@@ -116,16 +116,18 @@ void UIManager::Render()
       v15[3] = 1065353216;
       v11->SetVariant(PARAM_HANDLE_FOGPLANE, v15);
       qmemcpy(v18, Top, sizeof(v18));
-      (gbMatrix4 *->RightMultiply()v18, (gbMatrix4 *)v16.m);
+      gbMatrix4::RightMultiply((gbMatrix4 *)v18, (gbMatrix4 *)v16.m);
       gbRenderEffect::SetVariant(*((gbRenderEffect **)this + 3), aViewm, v18);
-      (struct gbGeomQuad *->RenderGeomQuad()((char *)this + 16),
+      gbDynVertBuf::RenderGeomQuad(
+        (struct gbGeomQuad *)((char *)this + 16),
         v13,
         *((struct gbRenderEffect **)this + 3),
         &v17);
     }
     else
     {
-      (struct gbGeomQuad *->RenderGeomQuad()((char *)this + 16),
+      gbDynVertBuf::RenderGeomQuad(
+        (struct gbGeomQuad *)((char *)this + 16),
         v4,
         *((struct gbRenderEffect **)this + 2),
         &v17);

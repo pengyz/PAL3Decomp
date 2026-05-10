@@ -32,7 +32,7 @@ int RenderTarget::Create()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aLockBackBuffer, aDProjectPal3Ef, 39),
+      Logger::FormatException((Logger *)ArgList, aLockBackBuffer, aDProjectPal3Ef, 39),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -91,8 +91,8 @@ bool RenderTarget::OnResetDevice(int a2)
       v5 = (*(int (**)(int, gbTexture_D3D *))(*(_DWORD *)g_Input.KeyInfo[177].Data + 92))(
              g_Input.KeyInfo[177].Data,
              &this->m_Texture);
-      (gbCamera *->SetDimention()(g_Input.KeyInfo[177].CountMode + 4), 512, 384);
-      (CameraCtrl *->SetAsCurrent()g_Input.KeyInfo[177].CountMode, 3);
+      gbCamera::SetDimention((gbCamera *)(g_Input.KeyInfo[177].CountMode + 4), 512, 384);
+      CameraCtrl::SetAsCurrent((CameraCtrl *)g_Input.KeyInfo[177].CountMode, 3);
     }
     if ( v5 && (_BYTE)a2 )
     {

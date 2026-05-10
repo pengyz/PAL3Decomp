@@ -144,9 +144,9 @@ char TextureLib::LoadFromFile(char *filename)
     g_pVFileSys->CloseFile(v3);
     return 0;
   }
-  v18 = (char *)operator new(v16);
+  v18 = (char *)v16->new();
   String = v18;
-  Blocka = (char *)operator new(v17);
+  Blocka = (char *)v17->new();
   g_pVFileSys->Read(v18, v17, v3);
   g_pVFileSys->CloseFile(v3);
   qmemcpy(Blocka, v18, v17);

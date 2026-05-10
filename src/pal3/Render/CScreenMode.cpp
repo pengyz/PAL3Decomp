@@ -45,7 +45,7 @@ char CScreenMode::InitCPK(int a2, int a3)
   if ( (g_nGameFlags & 2) != 0 )
   {
     v5 = (CPK *)((char *)this + 16);
-    (CPK *->SetOpenMode()((char *)this + 16), CPKM_Normal);
+    CPK::SetOpenMode((CPK *)((char *)this + 16), CPKM_Normal);
     v6 = (CPK *)((char *)this + 917964);
     v6->SetOpenMode(CPKM_Normal);
     if ( v5->IsValidCPK(aMovieMovieCpk) )
@@ -106,7 +106,7 @@ int CScreenMode::PlayVideo(int a2)
       1065353216,
       0);
     Instance = (_BYTE *)UIQuadManager::GetInstance();
-    UIRenderObj::~UIRenderObj(Instance, 0);
+    Instance->~UIRenderObj(0);
     do
     {
       while ( PeekMessageA(&Msg, 0, 0, 0, 1u) )
@@ -118,7 +118,7 @@ LABEL_13:
           sub_53C420((int *)this);
           UICursor::IRender();
           v5 = (_BYTE *)UIQuadManager::GetInstance();
-          UIRenderObj::~UIRenderObj(v5, 1u);
+          v5->~UIRenderObj(1u);
           return 0;
         }
         if ( a2 && Msg.message == 258 && Msg.wParam == 27 )
@@ -131,7 +131,7 @@ LABEL_13:
     sub_53C420((int *)this);
     UICursor::IRender();
     v7 = (_BYTE *)UIQuadManager::GetInstance();
-    UIRenderObj::~UIRenderObj(v7, 1u);
+    v7->~UIRenderObj(1u);
   }
   return 1;
 }
@@ -200,7 +200,7 @@ void CScreenMode::SetAudioParam()
     if ( v4 >= 0 && v4 < *((_DWORD *)this + 5) && *(_DWORD *)(*((_DWORD *)this + 4) + 4 * v4) )
       ++v4;
     else
-      (PtrArray *->InsertAt()this + 1, v4, 1);
+      PtrArray::InsertAt((PtrArray *)this + 1, v4, 1);
   }
   v5 = *((_DWORD *)this + 1);
   for ( j = 0; j < v5; ++j )
@@ -219,7 +219,7 @@ void CScreenMode::SetAudioParam()
     if ( k >= 0 && k < v8 && *(_DWORD *)(*(_DWORD *)this + 4 * k) )
       ++k;
     else
-      (PtrArray *->InsertAt()this, k, 1);
+      PtrArray::InsertAt((PtrArray *)this, k, 1);
   }
 }
 
@@ -245,12 +245,12 @@ void CScreenMode::SetMode(int mode)
 
   if ( (g_nGameFlags & 5) != 0 )
   {
-    (gbAudioMgrDesc *->gbAudioMgrDesc()v11);
+    gbAudioMgrDesc::gbAudioMgrDesc((gbAudioMgrDesc *)v11);
     v3 = (struct gbVFileSystem *)operator new(0xF4u);
     v9[1] = v3;
     v12 = 0;
     if ( v3 )
-      v4 = (gbAudioManager *->gbAudioManager()v3, &v8, (struct gbAudioMgrDesc *)v11);
+      v4 = (gbAudioManager *)gbAudioManager::gbAudioManager((gbAudioManager *)v3, &v8, (struct gbAudioMgrDesc *)v11);
     else
       v4 = 0;
     v12 = -1;
@@ -260,7 +260,7 @@ void CScreenMode::SetMode(int mode)
     {
       if ( v4 )
       {
-        gbAudioManager::~gbAudioManager(v4);
+        v4->~gbAudioManager();
         operator delete(v4);
       }
       *((_DWORD *)this + 202) = 0;
@@ -274,7 +274,7 @@ void CScreenMode::SetMode(int mode)
       *((_DWORD *)this + 6) = 0;
       v9->OpenBaseFile();
       v12 = 1;
-      (PalScript *->LoadFromFile()((char *)this + 284), aDatascriptMusi);
+      PalScript::LoadFromFile((PalScript *)((char *)this + 284), aDatascriptMusi);
       if ( (g_nGameFlags & 2) != 0 )
       {
         v7 = (CPK *)((char *)this + 832);

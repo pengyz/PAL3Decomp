@@ -106,16 +106,16 @@ int PalScript::LoadScript(PalScript *this, int pathAddr)
     }
     LOBYTE(v25) = 2;
     LOBYTE(v21[0]) = v12;
-    std::v21->_Tidy(0);
+    v21->string::_Tidy(0);
     sub_4307D0((int)v21, &v12, 0, 0xFFFFFFFF);
     LOBYTE(v25) = 3;
     sub_430670((int)v22, (int)&v16);
     LOBYTE(v25) = 4;
     sub_4309D0((int)v20, v23, (int)v21);
     LOBYTE(v25) = 5;
-    std::v22->_Tidy(1);
+    v22->string::_Tidy(1);
     LOBYTE(v25) = 2;
-    std::v21->_Tidy(1);
+    v21->string::_Tidy(1);
     LOBYTE(v25) = 1;
     if ( v17 )
     {
@@ -458,7 +458,7 @@ int PalScript::Update()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aScriptSysInitF, aDProjectPal3Sc, 71),
+      Logger::FormatException((Logger *)ArgList, aScriptSysInitF, aDProjectPal3Sc, 71),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -466,7 +466,7 @@ int PalScript::Update()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aSystemScriptLo, aDProjectPal3Sc, 73),
+      Logger::FormatException((Logger *)ArgList, aSystemScriptLo, aDProjectPal3Sc, 73),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -475,7 +475,7 @@ int PalScript::Update()
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aBigmapScriptLo, aDProjectPal3Sc, 75),
+      Logger::FormatException((Logger *)ArgList, aBigmapScriptLo, aDProjectPal3Sc, 75),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
@@ -509,8 +509,8 @@ int PalScript::Reset()
 {
   int result; // eax
 
-  (UIWnd **->MoveWindow()this + 19);
-  (UIWnd *->UpdateChildren()this);
+  UIWnd::MoveWindow((UIWnd **)this + 19);
+  UIWnd::UpdateChildren((UIWnd *)this);
   return result;
 }
 
@@ -548,5 +548,5 @@ struct gbVFileSystem * PalScript::OpenScript(PalScript **this, const char *a2, c
   if ( v7 )
     v7->LoadTexture(1);
   v11 = -1;
-  return (OpenNULLFile **->OpenNULLFile()&v9);
+  return OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v9);
 }

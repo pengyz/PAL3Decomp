@@ -223,49 +223,11 @@ def transform_method_code(cls_name, method_name, code, sig):
     #    and Class::Method(obj, ...) -> obj->Method(...)
     # Pattern: ClassName::MethodName(expr, ...)
     # Only for thiscall methods (where first arg is this or a pointer)
-    def replace_thiscall(match):
-        full = match.group(0)
-        called_cls = match.group(1)
-        called_method = match.group(2)
-        args_str = match.group(3)
-
-        # Split args
-        args = split_params_simple(args_str)
-        if not args:
-            return full
-
-        first_arg = args[0].strip()
-        rest_args = ', '.join(a.strip() for a in args[1:])
-
-        # Check if first arg looks like 'this' or a pointer expression
-        if first_arg == 'this':
-            if rest_args:
-                return 'this->%s(%s)' % (called_method, rest_args)
-            else:
-                return 'this->%s()' % called_method
-        elif first_arg.startswith('(') and '*' in first_arg:
-            # Cast expression like (CCBStage *)xxx
-            if rest_args:
-                return '%s->%s(%s)' % (first_arg, called_method, rest_args)
-            else:
-                return '%s->%s()' % (first_arg, called_method)
-        else:
-            # Could be a variable: v7, this->m_pStage, etc
-            # Only convert if it looks like a pointer variable
-            if re.match(r'^[a-zA-Z_]\w*$', first_arg) or '->' in first_arg:
-                if rest_args:
-                    return '%s->%s(%s)' % (first_arg, called_method, rest_args)
-                else:
-                    return '%s->%s()' % (first_arg, called_method)
-
-        return full
-
-    # Match: ClassName::Method(args)
-    code = re.sub(
-        r'(\w+)::(\w+)\(([^;]*?)\)',
-        replace_thiscall,
-        code
-    )
+    # 3. AST-based OOP conversion: Class::Method(obj, ...) -> obj->Method(...)
+    import sys, os
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from ast_transform import transform_oop_calls
+    code = transform_oop_calls(code)
 
     # 4. Remove variable declarations for 'this' pointer
     code = re.sub(r'^\s*%s\s*\*\s*this\s*;.*$' % re.escape(cls_name), '', code, flags=re.MULTILINE)

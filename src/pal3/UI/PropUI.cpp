@@ -24,7 +24,7 @@ int PropUI::Create()
 // 0x00452670
 void PropUI::Init()
 {
-  (UIListBox *->SetSelTexture()this, -1, 0, 0, 800, 600, 0);
+  UIListBox::SetSelTexture((UIListBox *)this, -1, 0, 0, 800, 600, 0);
   sub_4528F0((gbRefObject **)&this->m_childs, 100, (int)this);
   sub_451E50((int)&this->m_PropData.m_EntrySale[172], (int)this);
 }

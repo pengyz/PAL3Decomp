@@ -65,7 +65,7 @@ char CCBItemWindow::Create(int _this, _DWORD *a2, int a3)
   int i; // ebp
   _DWORD *v13; // ebx
 
-  (_DWORD *->Create()this, 1879048196, a2, a3);
+  UIWnd::Create((_DWORD *)this, 1879048196, a2, a3);
   v4 = (_DWORD *)(this + 72);
   CCBLineupWindow::Destroy(this + 72);
   *a2 = 0;
@@ -205,7 +205,7 @@ int CCBItemWindow::Destroy(int _this)
   _DWORD *v11; // esi
   int v12; // edi
 
-  result = (gbRefObject **->SetScrollPos()this);
+  result = UIListBox::SetScrollPos((gbRefObject **)this);
   v3 = *(_DWORD *)(this + 72);
   if ( v3 )
   {
@@ -310,7 +310,7 @@ int CCBItemWindow::OnMessage(int a2)
 // 0x0051B620
 _DWORD * CCBItemWindow::Update()
 {
-  (UIListBox *->UIListBox()this);
+  UIListBox::UIListBox((UIListBox *)this);
   this->m_fontcolor.ColorQuadFmt = (int)&off_570554;
   sub_51B6E0(this);
   return &this->m_fontcolor.ColorQuadFmt;

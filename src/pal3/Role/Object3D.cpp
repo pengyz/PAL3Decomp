@@ -59,7 +59,7 @@ struct gbVFileSystem * Object3D::_Object3D(const char *a2, int a3)
   strncpy(Destination, &a2[strlen(a2) - 3], 3u);
   OpenBaseFile::OpenBaseFile(&v11);
   *(_DWORD *)&v12[84] = 0;
-  (gbMatrix4 *->gbMatrix4()v12);
+  gbMatrix4::gbMatrix4((gbMatrix4 *)v12);
   if ( !_strcmpi(Destination, off_596424) )
   {
     this->m_type = 1;
@@ -79,7 +79,7 @@ LABEL_5:
     v12[84] = 0;
     this->m_pol = v6;
     v6->LoadFromFile(a2, 0, 0);
-    this->m_pol->GetOBBox((struct gbOBBox *)v12);
+    gbGeomNode::GetOBBox(this->m_pol, (struct gbOBBox *)v12);
     goto LABEL_13;
   }
   if ( !_strcmpi(Destination, off_596420) )
@@ -104,8 +104,8 @@ LABEL_5:
     v8 = 0;
   v12[84] = 0;
   this->m_pol = v8;
-  (Actor *->LoadModel()v8);
-  (Actor *->CompareAction()this->m_pol, a3, 0);
+  Actor::LoadModel((Actor *)v8);
+  Actor::CompareAction((Actor *)this->m_pol, a3, 0);
   (*(void (**)(_DWORD, _BYTE *, int))(**(_DWORD **)(this->m_pol->Children.m_numNode + 88) + 28))(
     *(_DWORD *)(this->m_pol->Children.m_numNode + 88),
     v12,
@@ -304,7 +304,7 @@ void Object3D::VecAngle(float a2, float a3, float a4)
   v13 = v10;
   a2 = v9;
   a4 = v13;
-  (gbVec3D *->Normalize()&a2);
+  gbVec3D::Normalize((gbVec3D *)&a2);
   this->m_forward.y = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
 }
 
@@ -342,7 +342,7 @@ void Object3D::SetObjectPosition(float a2, float a3, float a4)
   v13 = v10;
   a2 = v9;
   a4 = v13;
-  (gbVec3D *->Normalize()&a2);
+  gbVec3D::Normalize((gbVec3D *)&a2);
   this->m_forward.y = a2->IsOverCVD(a3, a4, 0.0, 0.0, 1.0);
 }
 
@@ -662,7 +662,7 @@ LABEL_10:
       {
 LABEL_52:
         *(float *)(this + 88) = *(float *)(this + 124);
-        (Object3D *->GetScreenDegree()this);
+        Object3D::GetScreenDegree((Object3D *)this);
         return;
       }
       v24 = *(float *)(this + 124) + 360.0;
@@ -705,9 +705,9 @@ bool Object3D::Update(int _this)
 
   if ( !*(_BYTE *)(this + 80) || *(_BYTE *)(this + 121) || g_Input.? != 1 )
     return 0;
-  (gbMatrix4 *->gbMatrix4()actionId);
+  gbMatrix4::gbMatrix4((gbMatrix4 *)actionId);
   GRPinput::GetCursorPos(&Point);
-  v2 = (Object3D *->SetupCamera()this);
+  v2 = (void *)Object3D::SetupCamera((Object3D *)this);
   v3 = *(_DWORD *)(this + 4);
   qmemcpy(&actionId[76], v2, 0x18u);
   v4 = v3 - 1;
@@ -717,7 +717,7 @@ bool Object3D::Update(int _this)
     if ( v5 )
     {
       if ( v5 != 1 )
-        return (gbRay *->IsColOBB()&actionId[76], (struct gbOBBox *)actionId) != 0;
+        return gbRay::IsColOBB((gbRay *)&actionId[76], (struct gbOBBox *)actionId) != 0;
       gbGeomNode::GetTotalOBBox(*(gbGeomNode **)(this + 8), (struct gbOBBox *)actionId);
     }
     else
@@ -729,8 +729,8 @@ bool Object3D::Update(int _this)
   {
     gbGeomNode::GetOBBox(*(gbGeomNode **)(this + 8), (struct gbOBBox *)actionId);
   }
-  (gbMatrix4 *->RightTranslate()actionId, (struct gbVec3D *)(this + 32));
-  return (gbRay *->IsColOBB()&actionId[76], (struct gbOBBox *)actionId) != 0;
+  gbMatrix4::RightTranslate((gbMatrix4 *)actionId, (struct gbVec3D *)(this + 32));
+  return gbRay::IsColOBB((gbRay *)&actionId[76], (struct gbOBBox *)actionId) != 0;
 }
 
 // 0x0047DB40
@@ -745,9 +745,9 @@ bool Object3D::GetMouseRay(int _this, int a2)
 
   if ( !*(_BYTE *)(this + 80) || *(_BYTE *)(this + 121) || (g_Input.?[4 * a2 + 7] & 0xF) != 1 )
     return 0;
-  (gbMatrix4 *->gbMatrix4()actionId);
+  gbMatrix4::gbMatrix4((gbMatrix4 *)actionId);
   GRPinput::GetCursorPos(&Point);
-  v3 = (Object3D *->SetupCamera()this);
+  v3 = (void *)Object3D::SetupCamera((Object3D *)this);
   v4 = *(_DWORD *)(this + 4);
   qmemcpy(&actionId[76], v3, 0x18u);
   v5 = v4 - 1;
@@ -757,7 +757,7 @@ bool Object3D::GetMouseRay(int _this, int a2)
     if ( v6 )
     {
       if ( v6 != 1 )
-        return (gbRay *->IsColOBB()&actionId[76], (struct gbOBBox *)actionId) != 0;
+        return gbRay::IsColOBB((gbRay *)&actionId[76], (struct gbOBBox *)actionId) != 0;
       gbGeomNode::GetTotalOBBox(*(gbGeomNode **)(this + 8), (struct gbOBBox *)actionId);
     }
     else
@@ -769,8 +769,8 @@ bool Object3D::GetMouseRay(int _this, int a2)
   {
     gbGeomNode::GetOBBox(*(gbGeomNode **)(this + 8), (struct gbOBBox *)actionId);
   }
-  (gbMatrix4 *->RightTranslate()actionId, (struct gbVec3D *)(this + 32));
-  return (gbRay *->IsColOBB()&actionId[76], (struct gbOBBox *)actionId) != 0;
+  gbMatrix4::RightTranslate((gbMatrix4 *)actionId, (struct gbVec3D *)(this + 32));
+  return gbRay::IsColOBB((gbRay *)&actionId[76], (struct gbOBBox *)actionId) != 0;
 }
 
 // 0x0047DC60
@@ -798,7 +798,7 @@ int Object3D::Create()
   *((_DWORD *)this + 96) = 0;
   *((_BYTE *)this + 388) = 0;
   sub_444F60((_BYTE *)this + 392);
-  (_BYTE *->UIFrameWnd()this + 584);
+  UIFrameWnd::UIFrameWnd((_BYTE *)this + 584);
   `eh vector constructor iterator'(
     (char *)this + 736,
     0x158u,
@@ -832,12 +832,12 @@ void Object3D::Init()
   *(float *)&this->m_pCamera = m_pitch;
   this->m_dropz = 0.0;
   this->m_dropy = 0.0;
-  (UIListBox *->SetSelTexture()this, -1, 0, 0, this->m_visible, (int)this->m_pCamera, 0);
+  UIListBox::SetSelTexture((UIListBox *)this, -1, 0, 0, this->m_visible, (int)this->m_pCamera, 0);
   *((_DWORD *)this + 93) = 170;
   *((_DWORD *)this + 92) = 310;
   *((_DWORD *)this + 94) = 468;
   *((_DWORD *)this + 95) = 430;
-  (UINote *->Create()((char *)this + 392), -1430519792, (int)this + 368, (int)this, aUiFlexNote);
+  UINote::Create((UINote *)((char *)this + 392), -1430519792, (int)this + 368, (int)this, aUiFlexNote);
   (**((void (***)(char *, _DWORD))this + 98))((char *)this + 392, 0);
   v4 = *((_DWORD *)this + 93) + 10;
   v11[0] = *((_DWORD *)this + 92) + 10;
@@ -849,7 +849,7 @@ void Object3D::Init()
     -1430519792,
     v11,
     this);
-  (UIWnd *->SetShow()((char *)this + 584), 0);
+  UIWnd::SetShow((UIWnd *)((char *)this + 584), 0);
   if ( gbColorQuad::ColorQuadFmt )
   {
     id_1 = -5;
@@ -861,7 +861,7 @@ void Object3D::Init()
     id = -1;
   }
   id_3 = -1;
-  (UIWnd *->GetChild()((char *)this + 584), (int)&id);
+  UIWnd::GetChild((UIWnd *)((char *)this + 584), (int)&id);
   (**((void (***)(char *, _DWORD))this + 146))((char *)this + 584, 0);
   v5 = byte_DC733C;
   v6 = (_DWORD *)&unk_56B884;
@@ -891,8 +891,8 @@ void Object3D::Init()
   a3[0] = 300;
   a3[2] = 500;
   a3[3] = 300;
-  (UIItem *->Create()this + 2456, (int)&unk_ABE000, (int)a3);
-  (UIItem *->SetData()this + 2456, 18);
+  UIItem::Create((UIItem *)this + 2456, (int)&unk_ABE000, (int)a3);
+  UIItem::SetData((UIItem *)this + 2456, 18);
   *((_BYTE *)this + 3829) = 0;
   *((_BYTE *)this + 3830) = 0;
 }

@@ -78,7 +78,7 @@ char CEffQuad::Create(int _this, int a2)
   *(_DWORD *)(this + 160) = v4;
   v20 = 4 * *(_DWORD *)(a2 + 208);
   v24 = -1;
-  v8 = (void *)operator new(v20);
+  v8 = (void *)v20->new();
   v9 = *(_DWORD *)(this + 156);
   *(_DWORD *)(this + 164) = v8;
   if ( !v9 || !*(_DWORD *)(this + 160) || !v8 )

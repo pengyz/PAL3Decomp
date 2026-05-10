@@ -148,7 +148,7 @@ LABEL_10:
   *(_BYTE *)(this + 4172) = *(_BYTE *)(a2 + 176);
   *(_DWORD *)(this + 4176) = 0xFFFF;
   *(_DWORD *)(this + 4188) = *(_DWORD *)(a2 + 204);
-  (CEffShock *->CreateGeom()this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
+  CEffShock::CreateGeom((CEffShock *)this, *(_DWORD *)(a2 + 168), *(_DWORD *)(a2 + 172));
   v11 = *(_DWORD *)(this + 4152);
   v12 = operator new(68 * v11);
   v21 = v12;
@@ -177,14 +177,14 @@ LABEL_10:
   *(_DWORD *)(this + 4156) = v12;
   v20 = 8 * *(_DWORD *)(this + 4152);
   v24 = -1;
-  v17 = operator new(v20);
+  v17 = v20->new();
   v18 = *(_DWORD *)(this + 4156);
   *(_DWORD *)(this + 4160) = v17;
   if ( !v18 || !v17 )
   {
     qmemcpy(
       pExceptionObject,
-      (Logger *->FormatException()ArgList, aNewFailInCeffs, aDProjectPal3Co_17, 91),
+      Logger::FormatException((Logger *)ArgList, aNewFailInCeffs, aDProjectPal3Co_17, 91),
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }

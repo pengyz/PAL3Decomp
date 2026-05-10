@@ -448,10 +448,7 @@ int C2DSpark::DestroyAll(int _this)
     *(float *)(this + 22612) = (float)v16;
     v7 = (struct gbRenderEffect *)*(struct gbRenderEffect **)(this + 22556);
     *(_BYTE *)(this + 22639) = (__int64)*(float *)(this + 22540);
-    DynVertBuf->RenderUIQuad((struct gbUIQuad *)(this + 22600),
-      1,
-      v7,
-      *(struct gbTextureArray **)(this + 22564));
+    DynVertBuf->RenderUIQuad((struct gbUIQuad *)(this + 22600), 1, v7, *(struct gbTextureArray **)(this + 22564));
   }
   result = *(_DWORD *)(this + 22536);
   v16 = 0;
@@ -535,7 +532,7 @@ int C2DSpark::Render(int _this, float a2)
         dword_17A8144 = 0;
         v9 = v4 % 100;
         flt_17A812C = ((double)(v4 % 100) - 50.0) * 2.5;
-        (C2DSpark *->CreateSingle()this, &flt_17A8120);
+        C2DSpark::CreateSingle((C2DSpark *)this, &flt_17A8120);
         --v3;
       }
       while ( v3 );

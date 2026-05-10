@@ -19,52 +19,52 @@ _TextureLib_Data::_TextureLib_Data()
 {
   if ( dword_1895048 )
   {
-    (gbRefObject *->Release()dword_1895048);
+    gbRefObject::Release((gbRefObject *)dword_1895048);
     dword_1895048 = 0;
   }
   if ( dword_189504C )
   {
-    (gbRefObject *->Release()dword_189504C);
+    gbRefObject::Release((gbRefObject *)dword_189504C);
     dword_189504C = 0;
   }
   if ( dword_1895054 )
   {
-    (gbRefObject *->Release()dword_1895054);
+    gbRefObject::Release((gbRefObject *)dword_1895054);
     dword_1895054 = 0;
   }
   if ( dword_189505C )
   {
-    (gbRefObject *->Release()dword_189505C);
+    gbRefObject::Release((gbRefObject *)dword_189505C);
     dword_189505C = 0;
   }
   if ( dword_1895068 )
   {
-    (gbRefObject *->Release()dword_1895068);
+    gbRefObject::Release((gbRefObject *)dword_1895068);
     dword_1895068 = 0;
   }
   if ( dword_1895050 )
   {
-    (gbRefObject *->Release()dword_1895050);
+    gbRefObject::Release((gbRefObject *)dword_1895050);
     dword_1895050 = 0;
   }
   if ( dword_1895058 )
   {
-    (gbRefObject *->Release()dword_1895058);
+    gbRefObject::Release((gbRefObject *)dword_1895058);
     dword_1895058 = 0;
   }
   if ( dword_1895060 )
   {
-    (gbRefObject *->Release()dword_1895060);
+    gbRefObject::Release((gbRefObject *)dword_1895060);
     dword_1895060 = 0;
   }
   if ( dword_1895064 )
   {
-    (gbRefObject *->Release()dword_1895064);
+    gbRefObject::Release((gbRefObject *)dword_1895064);
     dword_1895064 = 0;
   }
   if ( dword_189506C )
   {
-    (gbRefObject *->Release()dword_189506C);
+    gbRefObject::Release((gbRefObject *)dword_189506C);
     dword_189506C = 0;
   }
 }

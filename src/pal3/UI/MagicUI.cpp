@@ -18,10 +18,10 @@ int MagicUI::Create()
 {
   unsigned int data; // [esp+8h] [ebp+4h]
 
-  if ( (UIBase *->GetSelected()this) < 5 )
+  if ( UIBase::GetSelected((UIBase *)this) < 5 )
   {
     this->UIFrameWnd[364] = data;
-    (UIBase *->SetItemData()this, 3, data);
+    UIBase::SetItemData((UIBase *)this, 3, data);
     sub_48A350(*(char **)&this->UIFrameWnd[176060], data);
     sub_494620(*(char **)&this->UIFrameWnd[176064], data);
     sub_49E8A0(*(char **)&this->UIFrameWnd[176068], data);
@@ -30,7 +30,7 @@ int MagicUI::Create()
   else
   {
     this->UIFrameWnd[364] = 0;
-    (UIBase *->SetItemData()this, 3, 0);
+    UIBase::SetItemData((UIBase *)this, 3, 0);
     sub_48A350(*(char **)&this->UIFrameWnd[176060], 0);
     sub_494620(*(char **)&this->UIFrameWnd[176064], 0);
     sub_49E8A0(*(char **)&this->UIFrameWnd[176068], 0);
@@ -43,10 +43,10 @@ void MagicUI::Init()
 {
   unsigned int data; // [esp+8h] [ebp+4h]
 
-  if ( (UIBase *->GetSelected()this) < 5 )
+  if ( UIBase::GetSelected((UIBase *)this) < 5 )
   {
     this->UIFrameWnd[365] = data;
-    (UIBase *->SetItemData()this, 4, data);
+    UIBase::SetItemData((UIBase *)this, 4, data);
     sub_48A370(*(char **)&this->UIFrameWnd[176060], data);
     sub_494640(*(char **)&this->UIFrameWnd[176064], data);
     sub_49E8C0(*(char **)&this->UIFrameWnd[176068], data);
@@ -55,7 +55,7 @@ void MagicUI::Init()
   else
   {
     this->UIFrameWnd[365] = 0;
-    (UIBase *->SetItemData()this, 4, 0);
+    UIBase::SetItemData((UIBase *)this, 4, 0);
     sub_48A370(*(char **)&this->UIFrameWnd[176060], 0);
     sub_494640(*(char **)&this->UIFrameWnd[176064], 0);
     sub_49E8C0(*(char **)&this->UIFrameWnd[176068], 0);

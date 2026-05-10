@@ -196,7 +196,7 @@ GRPinput::GRPinput()
     do
     {
       if ( *v4 )
-        GRPinput::~GRPinput(this, *v4, *v2 >> 7);
+        this->~GRPinput(*v4, *v2 >> 7);
       ++v4;
       ++v2;
       --v5;
@@ -229,7 +229,7 @@ GRPinput::GRPinput()
       v12 = 3;
       do
       {
-        LOBYTE(v3) = GRPinput::~GRPinput(this, v10++, *(unsigned __int8 *)v11 >> 7);
+        LOBYTE(v3) = this->~GRPinput(v10++, *(unsigned __int8 *)v11 >> 7);
         v11 = (__int32 *)((char *)v11 + 1);
         --v12;
       }
@@ -456,7 +456,7 @@ char GRPinput::SetJoystickPos(GRPinput *this, const char *a2, int a3)
   {
     if ( v4 == 1 )
     {
-      std::&v3->m_lpDIDMouse->_Tidy(1);
+      std::string::_Tidy(&v3->m_lpDIDMouse, 1);
       goto LABEL_15;
     }
     m_mouseMinY = v3->m_mouseMinY;
@@ -471,7 +471,7 @@ LABEL_14:
       *(_BYTE *)(LODWORD(v11) + v6) = 0;
       goto LABEL_15;
     }
-    std::&v3->m_lpDIDMouse->_Tidy(1);
+    std::string::_Tidy(&v3->m_lpDIDMouse, 1);
 LABEL_13:
     GRPinput::GetKeyState((int)&v3->m_lpDIDMouse, v6);
     goto LABEL_14;
@@ -552,7 +552,8 @@ char GRPinput::SetMouseSensitivity(int _this)
         HIBYTE(v22[0]) = (__int64)(v7 * 255.0);
         if ( !HIBYTE(v22[0]) )
           *(_BYTE *)(this + 4) = 0;
-        *(_DWORD *)(v5 + 44) = *(_DWORD *)(gbColorQuad *->gbColorQuad()v22,
+        *(_DWORD *)(v5 + 44) = *(_DWORD *)gbColorQuad::gbColorQuad(
+                                            (gbColorQuad *)v22,
                                             0xFFu,
                                             0xFFu,
                                             0xFFu,
@@ -582,7 +583,7 @@ char GRPinput::SetMouseSensitivity(int _this)
         v24 = *(float *)(MEMORY[0xC116EC] + 164);
         v25 = *(_DWORD *)(MEMORY[0xC116EC] + 168);
         v24 = v18 * 20.0 + v24 + 64.0;
-        (gbCamera *->PointWorldToScr()(g_pCamera + 4), (struct gbVec3D *)&v23, v22, (float *)&v20);
+        gbCamera::PointWorldToScr((gbCamera *)(g_pCamera + 4), (struct gbVec3D *)&v23, v22, (float *)&v20);
         v9 = 1.0 - v18;
         if ( v9 < 0.0 )
           v9 = 0.0;
@@ -662,7 +663,7 @@ _BYTE *sub_403000(int _this, unsigned int a2)
   v15 = 0;
   if ( (int)(v2 + 2) < 0 )
     v4 = 0;
-  v16 = (_BYTE *)operator new(v4);
+  v16 = (_BYTE *)v4->new();
   v5 = *(_DWORD *)(this + 8);
   if ( v5 )
   {
@@ -1233,7 +1234,8 @@ unsigned int GRPinput::DecideKeyStatus(int _this, gbRay *a2, int a3)
         break;
       v7 = (int *)(i + *(_DWORD *)(this + 28));
       ++*(_DWORD *)(a3 + 20);
-      if ( (gbRay *->IsColTriangle()v3,
+      if ( gbRay::IsColTriangle(
+             (gbRay *)v3,
              (struct gbVec3D *)v7,
              (struct gbVec3D *)(v7 + 3),
              (struct gbVec3D *)(v7 + 6),
@@ -1247,7 +1249,7 @@ unsigned int GRPinput::DecideKeyStatus(int _this, gbRay *a2, int a3)
         *(float *)&v29[1] = v27;
         v28 = v9;
         *(float *)&v29[2] = v28;
-        v10 = (gbVec3D *->Length()v29);
+        v10 = gbVec3D::Length((gbVec3D *)v29);
         if ( v10 < *(float *)a3 )
         {
           v11 = v24;

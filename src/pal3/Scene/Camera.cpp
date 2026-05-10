@@ -20,13 +20,13 @@ void Camera::SetParams(int a2)
 
   if ( a2 )
   {
-    (ScriptObj *->Destroy()this);
-    (Actor *->LoadModel()((char *)this + 680));
+    ScriptObj::Destroy((ScriptObj *)this);
+    Actor::LoadModel((Actor *)((char *)this + 680));
     *((_DWORD *)this + 321) = 0;
     this->UpdateTransform();
     sub_41AEA0((gbVisNode **)this, 1.0);
-    (gbMatrix4 *->gbMatrix4()actionId);
-    (Actor *->PlayAction()((char *)this + 680), (int)actionId);
+    gbMatrix4::gbMatrix4((gbMatrix4 *)actionId);
+    Actor::PlayAction((Actor *)((char *)this + 680), (int)actionId);
     v3 = sqrt(*(float *)&actionId[72] * *(float *)&actionId[72] + *(float *)&actionId[64] * *(float *)&actionId[64])
        * 0.40000001;
     *((float *)this + 4) = v3;
@@ -61,7 +61,7 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
 
   *pDist = 0.0;
   v3 = (int *)(UISceneUpdate() + 492772);
-  qmemcpy(v22, (CameraCtrl *->GetViewTarget()g_pCamera, &pTarget, (float *)pPos), sizeof(v22));
+  qmemcpy(v22, CameraCtrl::GetViewTarget((CameraCtrl *)g_pCamera, &pTarget, (float *)pPos), sizeof(v22));
   v4 = *((float *)g_pCamera + 117) - 300.0;
   v16 = v22[3] * v4;
   v17 = v22[4] * v4;
@@ -110,7 +110,7 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
   v16 = *(float *)(*(_DWORD *)&g_SceneMgr.m_info[54108] + 160);
   v17 = *(float *)(*(_DWORD *)&g_SceneMgr.m_info[54108] + 164);
   v18 = *(float *)(*(_DWORD *)&g_SceneMgr.m_info[54108] + 168);
-  v12 = (gbRay *->IntersectPlane()v22, (struct gbVec3D *)&pTarget, (struct gbVec3D *)&v16);
+  v12 = gbRay::IntersectPlane((gbRay *)v22, (struct gbVec3D *)&pTarget, (struct gbVec3D *)&v16);
   if ( v12 == 3.4028235e38 )
     return 0;
   v20 = v22[4] * v12;
@@ -145,7 +145,7 @@ int Camera::CheckCollision2(void *pPos, int rolePtr, void *pBounds)
 
   v3 = (char *)UISceneUpdate();
   sub_420F50(v3, rolePtr);
-  qmemcpy(v16, (CameraCtrl *->GetViewTarget()g_pCamera, &pTarget, (float *)pPos), sizeof(v16));
+  qmemcpy(v16, CameraCtrl::GetViewTarget((CameraCtrl *)g_pCamera, &pTarget, (float *)pPos), sizeof(v16));
   v4 = *((float *)g_pCamera + 117) - 100.0;
   v10 = v16[3] * v4;
   v11 = v16[4] * v4;
@@ -157,7 +157,8 @@ int Camera::CheckCollision2(void *pPos, int rolePtr, void *pBounds)
   v10 = 0.0;
   v11 = 1.0;
   v12 = 0.0;
-  v6 = (gbRay *->IntersectPlane()v16,
+  v6 = gbRay::IntersectPlane(
+         (gbRay *)v16,
          (struct gbVec3D *)&v10,
          (struct gbVec3D *)(*(_DWORD *)&g_SceneMgr.m_info[54108] + 160));
   if ( v6 >= 3.4028235e38 )

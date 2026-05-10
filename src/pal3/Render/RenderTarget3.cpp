@@ -123,10 +123,7 @@ void RenderTarget3::Resolve()
         v3 = *((_DWORD *)this + 1);
         v5[16] = 1;
         v5[0] = v3;
-        DynVertBuf->RenderUIQuad((struct gbUIQuad *)v4,
-          1,
-          (struct gbRenderEffect *)g_SceneMgr.?[5].?.normal[221].x,
-          (struct gbTextureArray *)v5);
+        DynVertBuf->RenderUIQuad((struct gbUIQuad *)v4, 1, (struct gbRenderEffect *)g_SceneMgr.?[5].?.normal[221].x, (struct gbTextureArray *)v5);
         v6 = -1;
         PopMatrixStacks();
       }
