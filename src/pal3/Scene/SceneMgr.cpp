@@ -29,11 +29,11 @@ void * SceneMgr::Create(gbGfxManager *gfxMgr, gbCamera *cam, gbSceneGraph *pRoot
   memset(this->_preArray, 0, 0x900u);
   memset(&this->m_slot1[276], 0, 0xA000u);
   m_pGfxMgr = (gbGfxManager *)this->m_pGfxMgr;
-  *(_DWORD *)&this->m_RoleSystem[4]._data[1356] = 0;
-  *(_DWORD *)&this->m_RoleSystem[4]._data[1360] = 0;
-  *(_DWORD *)&this->m_RoleSystem[4]._data[1364] = 0;
-  *(_DWORD *)&this->m_RoleSystem[4]._data[1368] = 0;
-  *(_DWORD *)&this->m_RoleSystem[4]._data[1372] = 1065353216;
+  this->m_RoleSystem[4]._d54C = 0;
+  this->m_RoleSystem[4]._d550 = 0;
+  *(_DWORD *)this->m_RoleSystem[4]._pad_554 = 0;
+  *(_DWORD *)&this->m_RoleSystem[4]._pad_554[4] = 0;
+  *(_DWORD *)&this->m_RoleSystem[4]._pad_554[8] = 1065353216;
   v6 = ((gbEffectMgr *)m_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptAddit, 0);
   v7 = (gbGfxManager *)this->m_pGfxMgr;
   this->m_pAddEffect = v6;

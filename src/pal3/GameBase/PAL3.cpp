@@ -756,7 +756,7 @@ int PAL3::Update(int a1)
   _DWORD *v9; // eax
   float *m_pCollisionNode; // ebp
   int v11; // ebx
-  char *v12; // esi
+  float *p_f00C; // esi
   double v13; // st7
   double v14; // st7
   int *v15; // eax
@@ -844,7 +844,7 @@ int PAL3::Update(int a1)
       v22 = (_DWORD *)UISceneUpdate();
       UIUpdate(v22, *(float *)&a1, *(float *)&a1);
       EffectUpdate(*(float *)&a1);
-      SceneMgrUpdate((float *)dword_BFDA78->_data, flt_BFDA5C);
+      SceneMgrUpdate((float *)dword_BFDA78->_pad_000, flt_BFDA5C);
       UIPostUpdate(v23);
       v24 = (char *)CScreenMode::GetInstance();
       ((CScreenMode *)v24)->AudioUpdate();
@@ -924,7 +924,7 @@ LABEL_59:
     case 6:
       UIQuadManager::GetInstance();
       UIQuadManager_Reset();
-      MiniGame3Update((int *)dword_BFDA84->_data, *(float *)&a1);
+      MiniGame3Update((int *)dword_BFDA84->_pad_000, *(float *)&a1);
 LABEL_63:
       NPCAnimUpdate(*(float *)&a1);
       goto LABEL_64;
@@ -955,25 +955,25 @@ LABEL_63:
         CameraUpdate_Internal(*(float *)&a1);
       m_pCollisionNode = (float *)g_SceneMgr.m_pCollisionNode;
       v11 = 1;
-      v12 = (char *)&g_SceneMgr.m_RoleSystem[1]._data[12];
+      p_f00C = (float *)&g_SceneMgr.m_RoleSystem[1]._f00C;
       while ( 1 )
       {
-        if ( *((_DWORD *)v12 + 155) )
+        if ( *((_DWORD *)p_f00C + 155) )
         {
-          dt = m_pCollisionNode[1] - *((float *)v12 - 2);
-          v13 = m_pCollisionNode[2] - *((float *)v12 - 1);
+          dt = m_pCollisionNode[1] - *(p_f00C - 2);
+          v13 = m_pCollisionNode[2] - *(p_f00C - 1);
           v38.x = dt;
           dt_4 = v13;
-          v14 = m_pCollisionNode[3] - *(float *)v12;
+          v14 = m_pCollisionNode[3] - *p_f00C;
           v38.y = dt_4;
           v37 = v14;
           v38.z = v37;
           if ( 12.0 + 12.0 > ((gbVec3D *)&v38)->Length() )
             break;
         }
-        v12 += 8704;
+        p_f00C += 2176;
         ++v11;
-        if ( (int)v12 >= (int)&g_SceneMgr.m_pScriptCtrl )
+        if ( (int)p_f00C >= (int)&g_SceneMgr.m_pScriptCtrl )
           goto LABEL_64;
       }
       v11->EndWolf();
@@ -1971,7 +1971,7 @@ char PAL3::StartWolf(HKEY hKey, CHAR *lpSubKey)
 // 0x004071C0
 void PAL3::EndWolf(int a1)
 {
-  char *v1; // esi
+  int *p_d4F0; // esi
   void (***v2)(_DWORD, int); // eax
   PtrArray *v3; // eax
   PtrArray *Instance; // eax
@@ -1980,14 +1980,14 @@ void PAL3::EndWolf(int a1)
   _DWORD v7[5]; // [esp+0h] [ebp-14h]
   void *retaddr; // [esp+14h] [ebp+0h]
 
-  v1 = (char *)&g_SceneMgr.m_RoleSystem[1]._data[1264];
+  p_d4F0 = (int *)&g_SceneMgr.m_RoleSystem[1]._d4F0;
   do
   {
-    RoleSystemNotify((int)(v1 - 1264));
-    *(_DWORD *)v1 = 2;
-    v1 += 8704;
+    RoleSystemNotify((int)(p_d4F0 - 316));
+    *p_d4F0 = 2;
+    p_d4F0 += 2176;
   }
-  while ( (int)v1 < (int)&g_SceneMgr.m_szUIString[280] );
+  while ( (int)p_d4F0 < (int)&g_SceneMgr.m_szUIString[280] );
   if ( dword_BFDA2C )
   {
     v7[0] = 0;
@@ -2476,7 +2476,7 @@ int PAL3::FullInit()
   v164[3] = &dword_586190;
   v164[4] = dword_58618C;
   v145 = 0;
-  v2 = (char *)&g_SceneMgr.m_RoleSystem[0]._data[174];
+  v2 = (char *)&g_SceneMgr.m_RoleSystem[0]._pad_0AC[2];
   v3 = v164;
   do
   {

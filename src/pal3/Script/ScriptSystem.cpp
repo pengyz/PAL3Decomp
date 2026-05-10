@@ -112,7 +112,7 @@ void ScriptSystem::Render(void *a1)
   ((RoleSystem *)&g_pActorSystem)->RenderRole(a1, 0);
   if ( *(_DWORD *)&g_SceneMgr._gap_c5e0[844] )
   {
-    v7 = *(struct gbVec3D *)&g_SceneMgr.m_RoleSystem[g_SceneMgr.m_nCameraState]._data[160];
+    v7 = *(struct gbVec3D *)&g_SceneMgr.m_RoleSystem[g_SceneMgr.m_nCameraState]._f0A0;
     ((gbMatrixStack *)a1)->Push();
     v7.y = v7.y + 40.0;
     ((gbMatrixStack *)a1)->Translate(&v7);
@@ -219,50 +219,50 @@ int ScriptSystem::Destroy()
 // 0x0040E5F0
 int ScriptSystem::Execute(int a1, char a2)
 {
-  _DWORD *m_pCollisionNode; // ecx
+  int m_pCollisionNode; // ecx
   int v3; // eax
   int v4; // eax
   int m_nCameraState; // ecx
   int v6; // eax
   char *v7; // ecx
 
-  m_pCollisionNode = (_DWORD *)g_SceneMgr.m_pCollisionNode;
+  m_pCollisionNode = g_SceneMgr.m_pCollisionNode;
   flt_58DE64 = 10.0;
   if ( a2 )
   {
     v3 = a1;
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[20] = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 20);
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[24] = m_pCollisionNode[6];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[28] = m_pCollisionNode[7];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[32] = m_pCollisionNode[8];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[36] = m_pCollisionNode[9];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[40] = m_pCollisionNode[10];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[4] = m_pCollisionNode[1];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[8] = m_pCollisionNode[2];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[12] = m_pCollisionNode[3];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[160] = m_pCollisionNode[40];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[164] = m_pCollisionNode[41];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[168] = m_pCollisionNode[42];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[8692] = m_pCollisionNode[2173];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[8696] = m_pCollisionNode[2174];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[8700] = m_pCollisionNode[2175];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[148] = m_pCollisionNode[37];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[152] = m_pCollisionNode[38];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[156] = m_pCollisionNode[39];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[8688] = m_pCollisionNode[2172];
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._data[628] = m_pCollisionNode[157];
+    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._pad_010[4] = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 20);
+    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._pad_010[8] = *(_DWORD *)(m_pCollisionNode + 24);
+    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._pad_010[12] = *(_DWORD *)(m_pCollisionNode + 28);
+    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._pad_010[16] = *(_DWORD *)(m_pCollisionNode + 32);
+    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._pad_010[20] = *(_DWORD *)(m_pCollisionNode + 36);
+    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._pad_010[24] = *(_DWORD *)(m_pCollisionNode + 40);
+    g_SceneMgr.m_RoleSystem[v3]._f004 = *(float *)(m_pCollisionNode + 4);
+    g_SceneMgr.m_RoleSystem[v3]._f008 = *(float *)(m_pCollisionNode + 8);
+    g_SceneMgr.m_RoleSystem[v3]._f00C = *(float *)(m_pCollisionNode + 12);
+    g_SceneMgr.m_RoleSystem[v3]._f0A0 = *(float *)(m_pCollisionNode + 160);
+    g_SceneMgr.m_RoleSystem[v3]._f0A4 = *(float *)(m_pCollisionNode + 164);
+    g_SceneMgr.m_RoleSystem[v3]._f0A8 = *(float *)(m_pCollisionNode + 168);
+    *(_DWORD *)g_SceneMgr.m_RoleSystem[v3]._tail = *(_DWORD *)(m_pCollisionNode + 8692);
+    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._tail[4] = *(_DWORD *)(m_pCollisionNode + 8696);
+    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._tail[8] = *(_DWORD *)(m_pCollisionNode + 8700);
+    *(_DWORD *)g_SceneMgr.m_RoleSystem[v3]._pad_094 = *(_DWORD *)(m_pCollisionNode + 148);
+    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._pad_094[4] = *(_DWORD *)(m_pCollisionNode + 152);
+    *(_DWORD *)&g_SceneMgr.m_RoleSystem[v3]._pad_094[8] = *(_DWORD *)(m_pCollisionNode + 156);
+    g_SceneMgr.m_RoleSystem[v3]._f21F0 = *(float *)(m_pCollisionNode + 8688);
+    g_SceneMgr.m_RoleSystem[v3]._d274 = *(_DWORD *)(m_pCollisionNode + 628);
   }
-  *(_DWORD *)&g_SceneMgr.m_RoleSystem[g_SceneMgr.m_nCameraState]._data[632] = 0;
-  *(_DWORD *)&g_SceneMgr.m_RoleSystem[a1]._data[632] = 1;
-  RoleSystemNotify((int)g_SceneMgr.m_RoleSystem[a1]._data);
-  ((CameraSystem *)g_SceneMgr.m_RoleSystem[a1]._data)->Init();
+  g_SceneMgr.m_RoleSystem[g_SceneMgr.m_nCameraState]._d278 = 0;
+  g_SceneMgr.m_RoleSystem[a1]._d278 = 1;
+  RoleSystemNotify((int)g_SceneMgr.m_RoleSystem[a1]._pad_000);
+  ((CameraSystem *)g_SceneMgr.m_RoleSystem[a1]._pad_000)->Init();
   g_SceneMgr.m_nCameraState = a1;
   if ( *((_DWORD *)g_pCameraCtrl + 112) )
-    ((RoleSystem *)g_pCameraCtrl)->SetActive((int)g_SceneMgr.m_RoleSystem[a1]._data);
+    ((RoleSystem *)g_pCameraCtrl)->SetActive((int)g_SceneMgr.m_RoleSystem[a1]._pad_000);
   if ( a1 == 1 && dword_C025EC == 10 )
   {
     sub_419090((float *)&dword_C02198);
-    dword_C042E8 = *(_DWORD *)&g_SceneMgr.m_RoleSystem[1]._data[8688];
+    dword_C042E8 = LODWORD(g_SceneMgr.m_RoleSystem[1]._f21F0);
   }
   v4 = ((CGameData *)&g_GameData)->SetMode(0);
   if ( v4 )
@@ -270,10 +270,10 @@ int ScriptSystem::Execute(int a1, char a2)
   m_nCameraState = g_SceneMgr.m_nCameraState;
   if ( g_SceneMgr.m_nCameraState == 2 )
   {
-    if ( _strcmpi(&g_SceneMgr.m_RoleSystem[2]._data[174], dword_586194) )
+    if ( _strcmpi(&g_SceneMgr.m_RoleSystem[2]._pad_0AC[2], dword_586194) )
     {
-      ((Actor *)&g_SceneMgr.m_RoleSystem[2]._data[680])->LoadModel();
-      strcpy(&g_SceneMgr.m_RoleSystem[2]._data[174], dword_586194);
+      ((Actor *)&g_SceneMgr.m_RoleSystem[2]._pad_284[36])->LoadModel();
+      strcpy(&g_SceneMgr.m_RoleSystem[2]._pad_0AC[2], dword_586194);
       ((RoleSystem *)&g_SceneMgr.m_RoleSystem[2])->UpdateTransform();
     }
     m_nCameraState = g_SceneMgr.m_nCameraState;
@@ -331,7 +331,7 @@ int ScriptSystem::RunScript(int a1, int a2, int a3)
     v4 += 1408;
     ++v7;
   }
-  while ( (int)v4 < (int)&g_SceneMgr.m_RoleSystem[0]._data[908] );
+  while ( (int)v4 < (int)&g_SceneMgr.m_RoleSystem[0]._pad_284[264] );
   if ( v6 < 0 )
   {
     sprintf(Buffer, "%d", v6);
@@ -398,7 +398,7 @@ int ScriptSystem::RunWithDelay(float delay, int a2, int a3)
     v5 += 1408;
     ++v4;
   }
-  while ( (int)v5 < (int)&g_SceneMgr.m_RoleSystem[0]._data[908] );
+  while ( (int)v5 < (int)&g_SceneMgr.m_RoleSystem[0]._pad_284[264] );
   result = v13;
   if ( v13 < 0 )
   {
@@ -433,7 +433,7 @@ int ScriptSystem::RunEvent(int eventId, int a2, int a3)
 {
   int result; // eax
   int m_nCameraState; // ecx
-  int *v5; // eax
+  int *p_f004; // eax
   int v6; // eax
   char *v7; // eax
   char Buffer[32]; // [esp+8h] [ebp-20h] BYREF
@@ -445,10 +445,10 @@ int ScriptSystem::RunEvent(int eventId, int a2, int a3)
     m_nCameraState = g_SceneMgr.m_nCameraState;
     g_pSoundMgr = (void *)a3;
     g_nScreenH = eventId;
-    v5 = (int *)&g_SceneMgr.m_RoleSystem[g_SceneMgr.m_nCameraState]._data[4];
-    g_hWnd = *v5;
-    g_hInstance = v5[1];
-    g_nScreenW = v5[2];
+    p_f004 = (int *)&g_SceneMgr.m_RoleSystem[g_SceneMgr.m_nCameraState]._f004;
+    g_hWnd = *p_f004;
+    g_hInstance = p_f004[1];
+    g_nScreenW = p_f004[2];
     if ( !a3 )
     {
       v6 = 1408 * g_SceneMgr.m_nCameraState;
@@ -624,11 +624,10 @@ int ScriptSystem::UpdateObjects(float dt)
 
   v2 = v1;
   ((Actor *)(v1 + 680))->QueryState();
-  if ( *(_DWORD *)&g_SceneMgr.m_RoleSystem[1]._data[1284] <= 2u
-    && *(_DWORD *)(v2 + 1284) != *(_DWORD *)&g_SceneMgr.m_RoleSystem[1]._data[1284] )
+  if ( g_SceneMgr.m_RoleSystem[1]._d504 <= 2u && *(_DWORD *)(v2 + 1284) != g_SceneMgr.m_RoleSystem[1]._d504 )
   {
-    *(_DWORD *)(v2 + 1284) = *(_DWORD *)&g_SceneMgr.m_RoleSystem[1]._data[1284];
-    ((RoleSystem *)v2)->UpdatePath(*(int *)&g_SceneMgr.m_RoleSystem[1]._data[1284]);
+    *(_DWORD *)(v2 + 1284) = g_SceneMgr.m_RoleSystem[1]._d504;
+    ((RoleSystem *)v2)->UpdatePath(g_SceneMgr.m_RoleSystem[1]._d504);
   }
   v3 = (float *)(v2 + 1344);
   sub_419090((float *)(v2 + 1344));
@@ -655,9 +654,9 @@ int ScriptSystem::UpdateObjects(float dt)
     *(_DWORD *)(v2 + 164) = *(_DWORD *)(v2 + 1348);
     *(_DWORD *)(v2 + 168) = *(_DWORD *)(v2 + 1352);
 LABEL_9:
-    *(_DWORD *)(v2 + 1296) = *(_DWORD *)&g_SceneMgr.m_RoleSystem[1]._data[20];
-    *(_DWORD *)(v2 + 1300) = *(_DWORD *)&g_SceneMgr.m_RoleSystem[1]._data[24];
-    *(_DWORD *)(v2 + 1304) = *(_DWORD *)&g_SceneMgr.m_RoleSystem[1]._data[28];
+    *(_DWORD *)(v2 + 1296) = *(_DWORD *)&g_SceneMgr.m_RoleSystem[1]._pad_010[4];
+    *(_DWORD *)(v2 + 1300) = *(_DWORD *)&g_SceneMgr.m_RoleSystem[1]._pad_010[8];
+    *(_DWORD *)(v2 + 1304) = *(_DWORD *)&g_SceneMgr.m_RoleSystem[1]._pad_010[12];
     sub_4122C0(v2);
     return result;
   }
