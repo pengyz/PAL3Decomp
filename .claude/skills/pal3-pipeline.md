@@ -113,29 +113,40 @@ C2065 "未声明标识符 sub_XXX"
 
 ## 单轮迭代详细流程
 
-### Step 1: 质量评估
+### Step 1: 质量评估（全局 + 局部）
 
-```powershell
-# 统计当前代码质量
+每轮迭代**必须**先跑全局评估，记录基线。
+
+```bash
+# 全局编译评估（CMake 整编，几十秒完成）
+cmake --build build/pal3 -- -k 0 2>&1 | tee build/pal3/build_log.txt
+# 从日志统计: 通过文件数、错误总数、错误码分布
+
+# 全局代码质量指标
 python -c "
 import os, re
 src = 'src/pal3'
-metrics = {'sub_': 0, 'dword_': 0, 'byte_': 0, 'void_ptr': 0, 'offset_access': 0}
+metrics = {'sub_': 0, 'unnamed_globals': 0, 'offset_access': 0, 'void_ptr': 0, 'stdiobuf': 0}
 for root, _, files in os.walk(src):
     for f in files:
         if not f.endswith('.cpp'): continue
         c = open(os.path.join(root, f)).read()
         metrics['sub_'] += len(re.findall(r'\bsub_[0-9A-Fa-f]+', c))
-        metrics['dword_'] += len(re.findall(r'\b(dword|byte|word)_[0-9A-Fa-f]+', c))
+        metrics['unnamed_globals'] += len(re.findall(r'\b(dword|byte|word|off|stru)_[0-9A-Fa-f]+', c))
         metrics['offset_access'] += len(re.findall(r'\*\(\(_DWORD \*\)\w+ \+', c))
         metrics['void_ptr'] += len(re.findall(r'void \*\w+', c))
-for k, v in metrics.items():
+        metrics['stdiobuf'] += c.count('stdiobuf') + c.count('ios_base')
+for k, v in sorted(metrics.items()):
     print(f'  {k}: {v}')
 "
-
-# VC6 编译通过率
-# (使用 PowerShell 批量编译脚本)
 ```
+
+**全局不允许劣化原则**：
+- 编译通过数只能增不能减
+- 编译错误总数只能降不能升
+- 如果出现全局劣化，立即停止，回退本轮变更，分析原因
+
+**局部评估**：对本轮聚焦的类/模块，深入看代码质量（成员访问是否用字段名、调用是否用方法名）。
 
 ### Step 2: 确定本轮焦点
 
