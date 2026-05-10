@@ -1,0 +1,42 @@
+struct CCBSystem {
+  CCBSystem *m_pUtil;
+  CCBUI *m_pUI;
+  CCBControl *m_pControl;
+  CCBAttackSequen *m_pAttackSequen;
+  CCBRoleState *m_pRoleState;
+  CCBStage *m_pStage;
+  CCBAI *m_pAI;
+  CCBEditor *m_pEditor;
+  CEffectSystem *m_pES;
+  CEffectSimple *m_pEffectSimple;
+  TxtFile *m_pConfig;
+  CEffMgr *m_pEffMgr;
+  CEffMgr *m_pATSEffMgr;
+  C2DSpark *m_p2DSpark;
+  C3DSpark *m_p3DSpark;
+  char _pad_003C[4];
+  double m_DeltaTime;
+  double m_dTimeFund;
+  float m_fTimeFund;
+  double m_AbsDeltaTime;
+  double m_dAbsTimeFund;
+  float m_fAbsTimeFund;
+  float m_fTimeScale;
+  FightInfo *m_pFightInfo;
+  unsigned char m_bQuitFlag;
+  unsigned char m_bPause;
+  ECBCombatState m_eState;
+  ECBCombatResult m_eResult;
+  unsigned char m_bFiveNimbus;
+  unsigned char m_bPXVariance;
+  int m_nTimesOfCombat;
+  unsigned char m_bAuto;
+  unsigned char m_bEditor;
+  unsigned char m_bLockCam;
+  unsigned char m_bFirstRender;
+  unsigned long m_dwIDHolder;
+  int m_nThread;
+  int m_nCurThread;
+  char m_Thread[90112]; // tagThread[1024]
+  char m_Player[576]; // tagPlayerSet[11]
+};
