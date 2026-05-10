@@ -537,7 +537,7 @@ void * sub_4C7B70(int a1)
       result = &unk_5D51EC;
       break;
     case 5:
-      result = &CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffCallBack::*)(unsigned long)>::DelTask;
+      result = &CTaskTpl<tagEffTaskParam,unsigned long (CEffCallBack::*)(unsigned long)>::DelTask;
       break;
     case 6:
       result = &unk_5D51D8;
@@ -619,7 +619,7 @@ _DWORD * sub_4C7CB0(int _this, int a2)
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
   char ArgList; // [esp+408h] [ebp-400h] BYREF
 
-  v3 = (gbTexture *)(*(int (__thiscall **)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
+  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 56) = v3;
   v3->LoadTexture(1);
   result = operator new(0x44u);

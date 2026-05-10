@@ -77,8 +77,8 @@ int sub_51D710(int _this)
     (void *)(this + 816),
     0x98u,
     6,
-    (void (__thiscall *)(void *))UIFrameWnd::UIFrameWnd,
-    (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);
+    (void (*)(void *))UIFrameWnd::UIFrameWnd,
+    (void (*)(void *))UIFrameWnd::_UIFrameWnd);
   (_DWORD *->_UIScene()(this + 1744));
   (_DWORD *->_UIScene()(this + 2088));
   (char *->UIStatic()(this + 2432));
@@ -335,7 +335,7 @@ void sub_51DDA0()
   UIWnd::~UIWnd((UIWnd *)((char *)this + 2432));
   (UIWnd *->Destroy2()((char *)this + 2088));
   (UIWnd *->Destroy2()((char *)this + 1744));
-  `eh vector destructor iterator'((char *)this + 816, 0x98u, 6, (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);
+  `eh vector destructor iterator'((char *)this + 816, 0x98u, 6, (void (*)(void *))UIFrameWnd::_UIFrameWnd);
   (UIWnd *->_UIFrameWnd()((char *)this + 664));
   (UIWnd *->_UIFrameWnd()((char *)this + 512));
   (UIWnd *->_UIFrameWnd()this + 9);

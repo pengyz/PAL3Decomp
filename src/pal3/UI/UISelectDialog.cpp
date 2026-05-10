@@ -29,7 +29,7 @@ int UISelectDialog::Create(int id, void *pRect, int parent, char *tex)
   v11 = v6 - *((_DWORD *)pRect + 1) - 16;
   v9[0] = 8;
   v9[1] = 0;
-  (*(void (__thiscall **)(char *, _DWORD, _DWORD *, UISelectDialog *, _DWORD, _DWORD, _DWORD))(v7 + 28))(
+  (*(void (**)(char *, _DWORD, _DWORD *, UISelectDialog *, _DWORD, _DWORD, _DWORD))(v7 + 28))(
     (char *)this + 88,
     0,
     v9,
@@ -52,7 +52,7 @@ int UISelectDialog::Create(int id, void *pRect, int parent, char *tex)
   HIBYTE(parent) = -1;
   (_DWORD *->GetChild()this + 22, &parent);
   (_DWORD *->GetSel()this + 22, (int)aUiSceneSelpicT, 0);
-  (**(void (__thiscall ***)(UISelectDialog *, _DWORD))this)(this, 0);
+  (**(void (***)(UISelectDialog *, _DWORD))this)(this, 0);
   *((_DWORD *)this + 300) = 20;
   return sub_43F640((_DWORD *)this + 22, 20);
 }

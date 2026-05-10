@@ -148,7 +148,7 @@ int CCBAttackSequen::AdvanceStep()
     {
       if ( !v4->IsRoleAlive(v13) || *(_BYTE *)(v1 + *(_DWORD *)&this->m_pCBSystem[8] + 1432) == 1 )
       {
-        (***(void (__thiscall ****)(_DWORD, _DWORD))(*(_DWORD *)&this->m_pCBSystem[4] + v3))(
+        (***(void (****)(_DWORD, _DWORD))(*(_DWORD *)&this->m_pCBSystem[4] + v3))(
           *(_DWORD *)(*(_DWORD *)&this->m_pCBSystem[4] + v3),
           0);
       }
@@ -156,7 +156,7 @@ int CCBAttackSequen::AdvanceStep()
       {
         v5 = *(_DWORD *)&this->m_pCBSystem[4];
         if ( *(_DWORD *)(*(_DWORD *)(v5 + 72) + 56) == 1 )
-          (***(void (__thiscall ****)(_DWORD, int))(v3 + v5))(*(_DWORD *)(v3 + v5), 1);
+          (***(void (****)(_DWORD, int))(v3 + v5))(*(_DWORD *)(v3 + v5), 1);
         v14 = -1;
         if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(*(_DWORD *)this->m_pCBSystem + 20) + v3 - 52) + 280) )
         {

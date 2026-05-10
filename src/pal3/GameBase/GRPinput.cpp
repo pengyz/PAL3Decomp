@@ -419,7 +419,7 @@ void sub_402B90()
 }
 
 // 0x00402BA0
-int __fastcall sub_402BA0(int a1)
+int sub_402BA0(int a1)
 {
   *(_BYTE *)(a1 + 8) = HIBYTE(a1);
   *(_DWORD *)(a1 + 12) = 0;
@@ -458,7 +458,7 @@ void sub_402BF0()
 
 // 0x00402C40
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char __thiscall sub_402C40(_BYTE *this, const char *a2, int a3)
+char sub_402C40(_BYTE *this, const char *a2, int a3)
 {
   _BYTE *v3; // esi
   unsigned int v4; // kr04_4
@@ -588,14 +588,14 @@ char sub_402D20(int _this)
           v8 = &byte_56A634;
         v17 = 1.0 - ((double)v21 + (double)v21) / (double)MEMORY[0xBFD6D4];
         v15 = ((double)v20 + (double)v20) / (double)MEMORY[0xBFD6D0] - 1.0;
-        (*(void (__thiscall **)(int, void *, _DWORD, _DWORD, int, int))(*(_DWORD *)v5 + 16))(
+        (*(void (**)(int, void *, _DWORD, _DWORD, int, int))(*(_DWORD *)v5 + 16))(
           v5,
           v8,
           LODWORD(v15),
           LODWORD(v17),
           1176256512,
           1176256512);
-        LOBYTE(v2) = (*(int (__thiscall **)(int))(*(_DWORD *)v5 + 8))(v5);
+        LOBYTE(v2) = (*(int (**)(int))(*(_DWORD *)v5 + 8))(v5);
       }
     }
     else
@@ -635,14 +635,14 @@ char sub_402D20(int _this)
         if ( !v13 )
           v13 = &byte_56A634;
         v16 = v22[0] - 0.1;
-        (*(void (__thiscall **)(int, void *, _DWORD, signed int, int, int))(*(_DWORD *)v12 + 16))(
+        (*(void (**)(int, void *, _DWORD, signed int, int, int))(*(_DWORD *)v12 + 16))(
           v12,
           v13,
           LODWORD(v16),
           v20,
           1176256512,
           1176256512);
-        LOBYTE(v2) = (*(int (__thiscall **)(int))(*(_DWORD *)v12 + 8))(v12);
+        LOBYTE(v2) = (*(int (**)(int))(*(_DWORD *)v12 + 8))(v12);
       }
     }
   }
@@ -658,7 +658,7 @@ int sub_402FA0(int a2)
 
 // 0x00403000
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-_BYTE *__thiscall sub_403000(int _this, unsigned int a2)
+_BYTE *sub_403000(int _this, unsigned int a2)
 {
   unsigned int v2; // esi
   size_t v4; // eax
@@ -833,8 +833,8 @@ void sub_4034E0(int _this)
     (void *)(this + 332),
     0x10u,
     2,
-    (void (__thiscall *)(void *))GRPinput::AcquireJoystick);
-  `eh vector destructor iterator'((void *)(this + 4), 0xA4u, 2, (void (__thiscall *)(void *))GRPinput::AcquireKeyboard);
+    (void (*)(void *))GRPinput::AcquireJoystick);
+  `eh vector destructor iterator'((void *)(this + 4), 0xA4u, 2, (void (*)(void *))GRPinput::AcquireKeyboard);
 }
 
 // 0x00403560
@@ -1153,7 +1153,7 @@ void sub_4039D0(unsigned __int16 *a2)
 }
 
 // 0x00404020
-int __fastcall sub_404020(int a1)
+int sub_404020(int a1)
 {
   *(_DWORD *)a1 = 0;
   *(_DWORD *)(a1 + 4) = 0;

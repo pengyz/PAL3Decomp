@@ -63,14 +63,14 @@ _DWORD * sub_4D6670()
   v3 = (int)(this + 1804);
   do
   {
-    ArraySort(v3, 12, 4, (int (__thiscall *)(int))gbVec3D::`default constructor closure');
+    ArraySort(v3, 12, 4, (int (*)(int))gbVec3D::`default constructor closure');
     v3 += 68;
     --v2;
   }
   while ( v2 );
   memset(this, 0, 0x3E30u);
   *((_DWORD *)this + 1793) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptAddit, 0);
-  v4 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v4 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aEffectFlare3Bm);
   *((_DWORD *)this + 1794) = v4;
@@ -95,7 +95,7 @@ _DWORD * sub_4D6670()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v7 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v7 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aEffectFlare2Bm);
   *((_DWORD *)this + 1800) = v7;
@@ -120,7 +120,7 @@ _DWORD * sub_4D6670()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v10 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v10 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                        g_pGfxManager,
                        aEffectFlaregre);
   *((_DWORD *)this + 1798) = v10;
@@ -145,7 +145,7 @@ _DWORD * sub_4D6670()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v13 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v13 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                        g_pGfxManager,
                        aEffectFlareblu);
   *((_DWORD *)this + 1796) = v13;
@@ -170,7 +170,7 @@ _DWORD * sub_4D6670()
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v16 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v16 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                        g_pGfxManager,
                        aEffectFlarebri);
   *((_DWORD *)this + 1802) = v16;
@@ -349,7 +349,7 @@ _BYTE * sub_4D6BA0()
 }
 
 // 0x004D6BC0
-void __usercall sub_4D6BC0(int a1@<ecx>, struct gbVec3D *a2@<edi>)
+void sub_4D6BC0(int a1@<ecx>, struct gbVec3D *a2@<edi>)
 {
   gbMatrixStack *v2; // ebx
   int v3; // esi

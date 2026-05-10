@@ -54,37 +54,37 @@ CCBControlWindow * CCBControlWindow::CCBControlWindow()
   v5 = 27;
   v7 = 59;
   this->Create((_DWORD *)this + 25, 192, (int)&a4, (int)aUiCombatContro_4);
-  (**(void (__thiscall ***)(UIStatic *, int))v2->UIFrameWnd)(v2->UIFrameWnd, 1);
+  (**(void (***)(UIStatic *, int))v2->UIFrameWnd)(v2->UIFrameWnd, 1);
   a4 = 72;
   v6 = 104;
   v5 = 27;
   v7 = 59;
   this->Create((_DWORD *)this + 26, 193, (int)&a4, (int)aUiCombatContro_5);
-  (***((void (__thiscall ****)(_DWORD, int))this + 26))(*((_DWORD *)this + 26), 1);
+  (***((void (****)(_DWORD, int))this + 26))(*((_DWORD *)this + 26), 1);
   a4 = 104;
   v6 = 136;
   v5 = 27;
   v7 = 59;
   this->Create((_DWORD *)this + 27, 194, (int)&a4, (int)aUiCombatContro_6);
-  (***((void (__thiscall ****)(_DWORD, int))this + 27))(*((_DWORD *)this + 27), 1);
+  (***((void (****)(_DWORD, int))this + 27))(*((_DWORD *)this + 27), 1);
   a4 = 136;
   v6 = 168;
   v5 = 27;
   v7 = 59;
   this->Create((_DWORD *)this + 28, 195, (int)&a4, (int)aUiCombatContro_7);
-  (***((void (__thiscall ****)(_DWORD, int))this + 28))(*((_DWORD *)this + 28), 1);
+  (***((void (****)(_DWORD, int))this + 28))(*((_DWORD *)this + 28), 1);
   a4 = 168;
   v6 = 200;
   v5 = 27;
   v7 = 59;
   this->Create((_DWORD *)this + 29, 196, (int)&a4, (int)aUiCombatContro_8);
-  (***((void (__thiscall ****)(_DWORD, int))this + 29))(*((_DWORD *)this + 29), 1);
+  (***((void (****)(_DWORD, int))this + 29))(*((_DWORD *)this + 29), 1);
   a4 = 200;
   v6 = 232;
   v5 = 27;
   v7 = 59;
   this->Create((_DWORD *)this + 30, 197, (int)&a4, (int)aUiCombatContro_9);
-  return (CCBControlWindow *)(***((int (__thiscall ****)(_DWORD, int))this + 30))(*((_DWORD *)this + 30), 1);
+  return (CCBControlWindow *)(***((int (****)(_DWORD, int))this + 30))(*((_DWORD *)this + 30), 1);
 }
 
 // 0x0051A880
@@ -108,7 +108,7 @@ int sub_51A880(int _this)
   {
     if ( *v3 )
     {
-      result = (*(int (__thiscall **)(_DWORD, int))(*(_DWORD *)*v3 + 20))(*v3, 1);
+      result = (*(int (**)(_DWORD, int))(*(_DWORD *)*v3 + 20))(*v3, 1);
       *v3 = 0;
     }
     ++v3;
@@ -118,43 +118,43 @@ int sub_51A880(int _this)
   v5 = *(_DWORD *)(this + 100);
   if ( v5 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
     *(_DWORD *)(this + 100) = 0;
   }
   v6 = *(_DWORD *)(this + 104);
   if ( v6 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v6 + 20))(v6, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v6 + 20))(v6, 1);
     *(_DWORD *)(this + 104) = 0;
   }
   v7 = *(_DWORD *)(this + 108);
   if ( v7 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);
     *(_DWORD *)(this + 108) = 0;
   }
   v8 = *(_DWORD *)(this + 112);
   if ( v8 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v8 + 20))(v8, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v8 + 20))(v8, 1);
     *(_DWORD *)(this + 112) = 0;
   }
   v9 = *(_DWORD *)(this + 116);
   if ( v9 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v9 + 20))(v9, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v9 + 20))(v9, 1);
     *(_DWORD *)(this + 116) = 0;
   }
   v10 = *(_DWORD *)(this + 120);
   if ( v10 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
     *(_DWORD *)(this + 120) = 0;
   }
   v11 = *(_DWORD *)(this + 72);
   if ( v11 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v11 + 20))(v11, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v11 + 20))(v11, 1);
     *(_DWORD *)(this + 72) = 0;
   }
   return result;
@@ -216,7 +216,7 @@ char CCBControlWindow::Create(_DWORD *a2, int a3, int a4, int a5)
       sizeof(pExceptionObject));
     _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  (*(void (__thiscall **)(int, int, int, CCBControlWindow *, int, _DWORD))(*(_DWORD *)v7 + 28))(v7, a3, a4, this, a5, 0);
+  (*(void (**)(int, int, int, CCBControlWindow *, int, _DWORD))(*(_DWORD *)v7 + 28))(v7, a3, a4, this, a5, 0);
   return 1;
 }
 
@@ -237,7 +237,7 @@ int sub_51AB60(int _this, int a2)
   v4 = (_DWORD *)(this + 76);
   do
   {
-    (**(void (__thiscall ***)(_DWORD, _DWORD))*v4)(*v4, 0);
+    (**(void (***)(_DWORD, _DWORD))*v4)(*v4, 0);
     ++v4;
     --v3;
   }
@@ -283,7 +283,7 @@ LABEL_10:
       *(_DWORD *)(v11 + 80) = 1;
       *(_BYTE *)(v11 + 68) = 1;
       UIWnd::SetEnable(*(_DWORD **)(this + 72), MEMORY[0xC10D38], 0);
-      result = (***(int (__thiscall ****)(_DWORD, int))(this + 4 * a2 + 76))(*(_DWORD *)(this + 4 * a2 + 76), 1);
+      result = (***(int (****)(_DWORD, int))(this + 4 * a2 + 76))(*(_DWORD *)(this + 4 * a2 + 76), 1);
       *(_DWORD *)(this + 124) = a2;
       break;
     default:
@@ -376,13 +376,13 @@ char sub_51AD10(int _this, _DWORD *a2, int a3)
   a2[2] = 256;
   a2[1] = 0;
   a2[3] = 256;
-  (*(void (__thiscall **)(_DWORD, int, _DWORD *, int))(**(_DWORD **)(this + 72) + 16))(
+  (*(void (**)(_DWORD, int, _DWORD *, int))(**(_DWORD **)(this + 72) + 16))(
     *(_DWORD *)(this + 72),
     161,
     a2,
     this);
   UIWnd::CreateFromTemplate(*(gbRefObject ***)(this + 72), aUiCombatContro_55, 0);
-  (***(void (__thiscall ****)(_DWORD, int))(this + 72))(*(_DWORD *)(this + 72), 1);
+  (***(void (****)(_DWORD, int))(this + 72))(*(_DWORD *)(this + 72), 1);
   v8 = (char *)operator new(0x98u);
   v17 = v8;
   v24 = 1;
@@ -430,7 +430,7 @@ char sub_51AD10(int _this, _DWORD *a2, int a3)
     a2[2] = 241;
     a2[1] = 110;
     a2[3] = 226;
-    (*(void (__thiscall **)(char *, int, _DWORD *, int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)*v12 + 28))(
+    (*(void (**)(char *, int, _DWORD *, int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)*v12 + 28))(
       *v12,
       *v11,
       a2,
@@ -438,7 +438,7 @@ char sub_51AD10(int _this, _DWORD *a2, int a3)
       0,
       0,
       0);
-    (**(void (__thiscall ***)(char *, int))*v12)(*v12, 1);
+    (**(void (***)(char *, int))*v12)(*v12, 1);
     sub_43F670(*v12, 2, -4);
     UIListBox::SetFirstShow(*v12, aName, 150);
     UIListBox::SetFirstShow(*v12, aCost, 43);
@@ -464,19 +464,19 @@ int sub_51AFE0(int _this)
   v3 = *(_DWORD *)(this + 80);
   if ( v3 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
     *(_DWORD *)(this + 80) = 0;
   }
   v4 = *(_DWORD *)(this + 72);
   if ( v4 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);
     *(_DWORD *)(this + 72) = 0;
   }
   v5 = *(_DWORD *)(this + 76);
   if ( v5 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
     *(_DWORD *)(this + 76) = 0;
   }
   return result;

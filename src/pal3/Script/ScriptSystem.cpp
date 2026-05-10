@@ -119,7 +119,7 @@ void ScriptSystem::Render(void *a1)
     (gbMatrixStack *->Push()a1);
     v9 = v9 + 40.0;
     (gbMatrixStack *->Translate()a1, (struct gbVec3D *)&v8);
-    (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)&g_SceneMgr.m_info[51500] + 16))(
+    (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)&g_SceneMgr.m_info[51500] + 16))(
       *(_DWORD *)&g_SceneMgr.m_info[51500],
       0);
     (gbMatrixStack *->Pop()a1);
@@ -130,12 +130,12 @@ void ScriptSystem::Render(void *a1)
 int ScriptSystem::Cleanup()
 {
   int i; // esi
-  void (__thiscall ***v1)(_DWORD, int); // ecx
+  void (***v1)(_DWORD, int); // ecx
   int result; // eax
 
   for ( i = 0; i < MEMORY[0xBFDB84]; ++i )
   {
-    v1 = *(void (__thiscall ****)(_DWORD, int))(MEMORY[0xBFDB80] + 4 * i);
+    v1 = *(void (****)(_DWORD, int))(MEMORY[0xBFDB80] + 4 * i);
     if ( v1 )
       (**v1)(v1, 1);
   }
@@ -185,7 +185,7 @@ char ScriptSystem::Render2()
           (gbCamera *->PointWorldToScr()&g_pCamera->OrthoSize, (struct gbVec3D *)pOut, &v8, (float *)&v9);
           sprintf(Buffer, "%d", *((unsigned __int8 *)v6 - 332));
           v7 = v8 - 0.050000001;
-          (*(void (__thiscall **)(int, char *, _DWORD, int, int, int))(*(_DWORD *)v3 + 16))(
+          (*(void (**)(int, char *, _DWORD, int, int, int))(*(_DWORD *)v3 + 16))(
             v3,
             Buffer,
             LODWORD(v7),
@@ -198,7 +198,7 @@ char ScriptSystem::Render2()
       }
       while ( v5 < *(_DWORD *)(v4 + 57568) );
     }
-    return (*(int (__thiscall **)(int))(*(_DWORD *)v3 + 8))(v3);
+    return (*(int (**)(int))(*(_DWORD *)v3 + 8))(v3);
   }
   return result;
 }
@@ -589,7 +589,7 @@ LABEL_23:
             }
           }
         }
-        result = (*(int (__thiscall **)(int))(*(_DWORD *)(v2 + 56) + 4))(v2 + 56);
+        result = (*(int (**)(int))(*(_DWORD *)(v2 + 56) + 4))(v2 + 56);
         if ( !result )
           result = sub_41B300((void ***)v2);
         if ( *(_DWORD *)(v2 + 1264) == 3 )

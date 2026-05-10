@@ -46,7 +46,7 @@ void sub_4422E0()
 
 // 0x00442390
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void __thiscall sub_442390(UIWnd *this)
+void sub_442390(UIWnd *this)
 {
   int v2; // eax
   _BYTE *v3; // ecx
@@ -263,7 +263,7 @@ int sub_442AD0(int _this, int a2, int a3)
       v9 = *(_DWORD *)(this + 32);
       *(_BYTE *)(this + 140) = 1;
       if ( v9 )
-        (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1003, *(_DWORD *)(this + 12), 0);
+        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1003, *(_DWORD *)(this + 12), 0);
     }
     return a2->HitTest(a3);
   }
@@ -274,7 +274,7 @@ int sub_442AD0(int _this, int a2, int a3)
       v6 = *(_DWORD *)(this + 32);
       if ( v6 )
       {
-        (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(
+        (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(
           v6,
           1010,
           *(_DWORD *)(this + 12),
@@ -288,7 +288,7 @@ int sub_442AD0(int _this, int a2, int a3)
       v7 = *(_DWORD *)(this + 32);
       if ( v7 )
       {
-        (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v7 + 24))(v7, 1011, *(_DWORD *)(this + 12), 0);
+        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v7 + 24))(v7, 1011, *(_DWORD *)(this + 12), 0);
         *(_BYTE *)(this + 140) = 0;
         return a2->HitTest(a3);
       }
@@ -297,7 +297,7 @@ int sub_442AD0(int _this, int a2, int a3)
     {
       v8 = *(_DWORD *)(this + 32);
       if ( v8 )
-        (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v8 + 24))(v8, 1002, *(_DWORD *)(this + 12), 0);
+        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v8 + 24))(v8, 1002, *(_DWORD *)(this + 12), 0);
     }
 LABEL_20:
     *(_BYTE *)(this + 140) = 0;
@@ -306,7 +306,7 @@ LABEL_20:
   v5 = *(_DWORD *)(this + 32);
   if ( !v5 )
     goto LABEL_20;
-  (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v5 + 24))(
+  (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v5 + 24))(
     v5,
     1009,
     *(_DWORD *)(this + 12),

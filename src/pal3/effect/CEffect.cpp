@@ -179,7 +179,7 @@ LABEL_21:
                 *(_DWORD *)(v4 + 20) = v6;
                 *(_DWORD *)(v4 + 16) = v30;
 LABEL_24:
-                (*(void (__thiscall **)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4 + 4))(
+                (*(void (**)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4 + 4))(
                   v4,
                   *(_DWORD *)(*(_DWORD *)v5 + v7),
                   *(_DWORD *)(*(_DWORD *)v5 + v7 + 4),
@@ -459,7 +459,7 @@ int CEffect::Render(int a2)
         do
         {
           if ( v6[88] )
-            (*(void (__thiscall **)(_DWORD, char *))(**(_DWORD **)&this->m_pES[20 * v5 + 2348] + 36))(
+            (*(void (**)(_DWORD, char *))(**(_DWORD **)&this->m_pES[20 * v5 + 2348] + 36))(
               *(_DWORD *)&this->m_pES[20 * v5 + 2348],
               v6);
           v6 += 124;

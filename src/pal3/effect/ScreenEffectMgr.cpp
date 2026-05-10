@@ -24,7 +24,7 @@ void ScreenEffectMgr::Render()
   if ( *(_DWORD *)&this->m_fadeIn[148] )
   {
     v2 = **(_DWORD **)&this->m_fadeIn[116];
-    (*(void (__thiscall **)(int))(*(_DWORD *)v2 + 16))(v2);
+    (*(void (**)(int))(*(_DWORD *)v2 + 16))(v2);
     if ( !*(_DWORD *)(v2 + 8) && !*(_BYTE *)(v2 + 20) )
     {
       v3 = *(_DWORD *)&this->m_fadeIn[116] + 4;

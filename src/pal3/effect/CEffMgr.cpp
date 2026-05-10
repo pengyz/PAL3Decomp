@@ -154,7 +154,7 @@ int sub_4CE340(int a2, int a3, int a4, int a5, int a6)
     do
     {
       if ( v8[88] )
-        (*(void (__thiscall **)(_DWORD, char *))(*(_DWORD *)*(this + 5 * v9 + 587) + 48))(*(this + 5 * v9 + 587), v8);
+        (*(void (**)(_DWORD, char *))(*(_DWORD *)*(this + 5 * v9 + 587) + 48))(*(this + 5 * v9 + 587), v8);
       v8 += 124;
       --v10;
     }

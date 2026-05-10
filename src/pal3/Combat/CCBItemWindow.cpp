@@ -76,93 +76,93 @@ char sub_51B210(int _this, _DWORD *a2, int a3)
   a2[2] = 158;
   a2[1] = 0;
   a2[3] = 158;
-  (*(void (__thiscall **)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v4 + 16))(*v4, 232, a2, this);
+  (*(void (**)(_DWORD, int, _DWORD *, int))(*(_DWORD *)*v4 + 16))(*v4, 232, a2, this);
   UIWnd::CreateFromTemplate(*(gbRefObject ***)(this + 72), aUiCombatContro_18, 0);
-  (**(void (__thiscall ***)(_DWORD, int))*v4)(*v4, 1);
+  (**(void (***)(_DWORD, int))*v4)(*v4, 1);
   v5 = (_DWORD *)(this + 96);
   CCBLineupWindow::OnMessage(this + 96);
   *a2 = 7;
   a2[2] = 80;
   a2[1] = 48;
   a2[3] = 73;
-  (*(void (__thiscall **)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v5 + 28))(
+  (*(void (**)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v5 + 28))(
     *v5,
     214,
     a2,
     this,
     aUiCombatContro_11,
     0);
-  (**(void (__thiscall ***)(_DWORD, int))*v5)(*v5, 1);
+  (**(void (***)(_DWORD, int))*v5)(*v5, 1);
   v6 = (_DWORD *)(this + 100);
   CCBLineupWindow::OnMessage(this + 100);
   *a2 = 78;
   a2[2] = 151;
   a2[1] = 48;
   a2[3] = 73;
-  (*(void (__thiscall **)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v6 + 28))(
+  (*(void (**)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v6 + 28))(
     *v6,
     215,
     a2,
     this,
     aUiCombatContro_12,
     0);
-  (**(void (__thiscall ***)(_DWORD, int))*v6)(*v6, 1);
+  (**(void (***)(_DWORD, int))*v6)(*v6, 1);
   v7 = (_DWORD *)(this + 104);
   CCBLineupWindow::OnMessage(this + 104);
   a2[1] = 73;
   *a2 = 7;
   a2[2] = 80;
   a2[3] = 98;
-  (*(void (__thiscall **)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v7 + 28))(
+  (*(void (**)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v7 + 28))(
     *v7,
     216,
     a2,
     this,
     aUiCombatContro_13,
     0);
-  (**(void (__thiscall ***)(_DWORD, int))*v7)(*v7, 1);
+  (**(void (***)(_DWORD, int))*v7)(*v7, 1);
   v8 = (_DWORD *)(this + 108);
   CCBLineupWindow::OnMessage(this + 108);
   *a2 = 78;
   a2[2] = 151;
   a2[1] = 73;
   a2[3] = 98;
-  (*(void (__thiscall **)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v8 + 28))(
+  (*(void (**)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v8 + 28))(
     *v8,
     217,
     a2,
     this,
     aUiCombatContro_14,
     0);
-  (**(void (__thiscall ***)(_DWORD, int))*v8)(*v8, 1);
+  (**(void (***)(_DWORD, int))*v8)(*v8, 1);
   v9 = (_DWORD *)(this + 112);
   CCBLineupWindow::OnMessage(this + 112);
   *a2 = 7;
   a2[2] = 80;
   a2[1] = 98;
   a2[3] = 123;
-  (*(void (__thiscall **)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v9 + 28))(
+  (*(void (**)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v9 + 28))(
     *v9,
     218,
     a2,
     this,
     aUiCombatContro_15,
     0);
-  (**(void (__thiscall ***)(_DWORD, int))*v9)(*v9, 1);
+  (**(void (***)(_DWORD, int))*v9)(*v9, 1);
   v10 = (_DWORD *)(this + 116);
   CCBLineupWindow::OnMessage(this + 116);
   *a2 = 78;
   a2[2] = 151;
   a2[1] = 98;
   a2[3] = 123;
-  (*(void (__thiscall **)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v10 + 28))(
+  (*(void (**)(_DWORD, int, _DWORD *, int, char *, _DWORD))(*(_DWORD *)*v10 + 28))(
     *v10,
     219,
     a2,
     this,
     aUiCombatContro_16,
     0);
-  (**(void (__thiscall ***)(_DWORD, int))*v10)(*v10, 1);
+  (**(void (***)(_DWORD, int))*v10)(*v10, 1);
   v11 = (gbRefObject ***)(this + 76);
   for ( i = 0; i < 5; ++i )
   {
@@ -171,9 +171,9 @@ char sub_51B210(int _this, _DWORD *a2, int a3)
     a2[2] = 95;
     a2[1] = 31;
     a2[3] = 47;
-    ((void (__thiscall *)(gbRefObject **, int, _DWORD *, int))(**v11)[4].RefCount)(*v11, dword_570138[i], a2, this);
+    ((void (*)(gbRefObject **, int, _DWORD *, int))(**v11)[4].RefCount)(*v11, dword_570138[i], a2, this);
     UIWnd::CreateFromTemplate(*v11, off_570218[i], 0);
-    ((void (__thiscall *)(gbRefObject **, int))(**v11)->RefCount)(*v11, 1);
+    ((void (*)(gbRefObject **, int))(**v11)->RefCount)(*v11, 1);
     ++v11;
   }
   v13 = (_DWORD *)(this + 120);
@@ -182,7 +182,7 @@ char sub_51B210(int _this, _DWORD *a2, int a3)
   a2[2] = 127;
   a2[1] = 127;
   a2[3] = 153;
-  (*(void (__thiscall **)(_DWORD, int, _DWORD *, int, char *, int, _DWORD))(*(_DWORD *)*v13 + 28))(
+  (*(void (**)(_DWORD, int, _DWORD *, int, char *, int, _DWORD))(*(_DWORD *)*v13 + 28))(
     *v13,
     220,
     a2,
@@ -190,7 +190,7 @@ char sub_51B210(int _this, _DWORD *a2, int a3)
     aUiCombatContro_17,
     1,
     0);
-  (**(void (__thiscall ***)(_DWORD, int))*v13)(*v13, 1);
+  (**(void (***)(_DWORD, int))*v13)(*v13, 1);
   return 1;
 }
 
@@ -213,49 +213,49 @@ int sub_51B4B0(int _this)
   v3 = *(_DWORD *)(this + 72);
   if ( v3 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
     *(_DWORD *)(this + 72) = 0;
   }
   v4 = *(_DWORD *)(this + 96);
   if ( v4 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);
     *(_DWORD *)(this + 96) = 0;
   }
   v5 = *(_DWORD *)(this + 100);
   if ( v5 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
     *(_DWORD *)(this + 100) = 0;
   }
   v6 = *(_DWORD *)(this + 104);
   if ( v6 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v6 + 20))(v6, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v6 + 20))(v6, 1);
     *(_DWORD *)(this + 104) = 0;
   }
   v7 = *(_DWORD *)(this + 108);
   if ( v7 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);
     *(_DWORD *)(this + 108) = 0;
   }
   v8 = *(_DWORD *)(this + 112);
   if ( v8 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v8 + 20))(v8, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v8 + 20))(v8, 1);
     *(_DWORD *)(this + 112) = 0;
   }
   v9 = *(_DWORD *)(this + 116);
   if ( v9 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v9 + 20))(v9, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v9 + 20))(v9, 1);
     *(_DWORD *)(this + 116) = 0;
   }
   v10 = *(_DWORD *)(this + 120);
   if ( v10 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
     *(_DWORD *)(this + 120) = 0;
   }
   v11 = (_DWORD *)(this + 76);
@@ -264,7 +264,7 @@ int sub_51B4B0(int _this)
   {
     if ( *v11 )
     {
-      result = (*(int (__thiscall **)(_DWORD, int))(*(_DWORD *)*v11 + 20))(*v11, 1);
+      result = (*(int (**)(_DWORD, int))(*(_DWORD *)*v11 + 20))(*v11, 1);
       *v11 = 0;
     }
     ++v11;
@@ -286,13 +286,13 @@ BOOL sub_51B570(int a2, int a3)
 int sub_51B5D0(int a2)
 {
   int v3; // edi
-  void (__thiscall ****v4)(_DWORD, int); // esi
-  void (__thiscall ***v5)(_DWORD, int); // ecx
+  void (****v4)(_DWORD, int); // esi
+  void (***v5)(_DWORD, int); // ecx
 
   if ( a2 == 1 )
   {
     v3 = 0;
-    v4 = (void (__thiscall ****)(_DWORD, int))(this + 19);
+    v4 = (void (****)(_DWORD, int))(this + 19);
     do
     {
       v5 = *v4;

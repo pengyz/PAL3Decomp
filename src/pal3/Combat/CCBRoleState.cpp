@@ -591,7 +591,7 @@ int CCBRoleState::Destroy()
   char *v1; // ebp
   char *v2; // esi
   int v3; // edi
-  void (__thiscall ***v4)(_DWORD, int); // ecx
+  void (***v4)(_DWORD, int); // ecx
   int result; // eax
   int v6; // [esp+10h] [ebp-4h]
 
@@ -603,7 +603,7 @@ int CCBRoleState::Destroy()
     v3 = 3;
     do
     {
-      v4 = (void (__thiscall ***)(_DWORD, int))*((_DWORD *)v2 - 3);
+      v4 = (void (***)(_DWORD, int))*((_DWORD *)v2 - 3);
       if ( v4 )
       {
         (**v4)(v4, 1);
@@ -611,7 +611,7 @@ int CCBRoleState::Destroy()
       }
       if ( *(_DWORD *)v2 )
       {
-        (***(void (__thiscall ****)(_DWORD, int))v2)(*(_DWORD *)v2, 1);
+        (***(void (****)(_DWORD, int))v2)(*(_DWORD *)v2, 1);
         *(_DWORD *)v2 = 0;
       }
       v2 += 4;
@@ -634,20 +634,20 @@ int sub_4EE7C0(int a2, char a3)
   if ( a3 == 1 )
   {
     if ( !a2 )
-      (***(void (__thiscall ****)(_DWORD, int))(v3 + 1068))(*(_DWORD *)(v3 + 1068), 1);
-    (***(void (__thiscall ****)(_DWORD, int))(v3 + 4 * a2 + 120))(*(_DWORD *)(v3 + 4 * a2 + 120), 1);
-    (***(void (__thiscall ****)(_DWORD, int))(v3 + 4 * a2 + 1020))(*(_DWORD *)(v3 + 4 * a2 + 1020), 1);
-    (***(void (__thiscall ****)(_DWORD, int))(v3 + 4 * a2 + 1052))(*(_DWORD *)(v3 + 4 * a2 + 1052), 1);
-    return (***(int (__thiscall ****)(_DWORD, int))(v3 + 4 * a2 + 1036))(*(_DWORD *)(v3 + 4 * a2 + 1036), 1);
+      (***(void (****)(_DWORD, int))(v3 + 1068))(*(_DWORD *)(v3 + 1068), 1);
+    (***(void (****)(_DWORD, int))(v3 + 4 * a2 + 120))(*(_DWORD *)(v3 + 4 * a2 + 120), 1);
+    (***(void (****)(_DWORD, int))(v3 + 4 * a2 + 1020))(*(_DWORD *)(v3 + 4 * a2 + 1020), 1);
+    (***(void (****)(_DWORD, int))(v3 + 4 * a2 + 1052))(*(_DWORD *)(v3 + 4 * a2 + 1052), 1);
+    return (***(int (****)(_DWORD, int))(v3 + 4 * a2 + 1036))(*(_DWORD *)(v3 + 4 * a2 + 1036), 1);
   }
   else
   {
     if ( !a2 )
-      (***(void (__thiscall ****)(_DWORD, _DWORD))(v3 + 1068))(*(_DWORD *)(v3 + 1068), 0);
-    (***(void (__thiscall ****)(_DWORD, _DWORD))(v3 + 4 * a2 + 120))(*(_DWORD *)(v3 + 4 * a2 + 120), 0);
-    (***(void (__thiscall ****)(_DWORD, _DWORD))(v3 + 4 * a2 + 1020))(*(_DWORD *)(v3 + 4 * a2 + 1020), 0);
-    (***(void (__thiscall ****)(_DWORD, _DWORD))(v3 + 4 * a2 + 1052))(*(_DWORD *)(v3 + 4 * a2 + 1052), 0);
-    return (***(int (__thiscall ****)(_DWORD, _DWORD))(v3 + 4 * a2 + 1036))(*(_DWORD *)(v3 + 4 * a2 + 1036), 0);
+      (***(void (****)(_DWORD, _DWORD))(v3 + 1068))(*(_DWORD *)(v3 + 1068), 0);
+    (***(void (****)(_DWORD, _DWORD))(v3 + 4 * a2 + 120))(*(_DWORD *)(v3 + 4 * a2 + 120), 0);
+    (***(void (****)(_DWORD, _DWORD))(v3 + 4 * a2 + 1020))(*(_DWORD *)(v3 + 4 * a2 + 1020), 0);
+    (***(void (****)(_DWORD, _DWORD))(v3 + 4 * a2 + 1052))(*(_DWORD *)(v3 + 4 * a2 + 1052), 0);
+    return (***(int (****)(_DWORD, _DWORD))(v3 + 4 * a2 + 1036))(*(_DWORD *)(v3 + 4 * a2 + 1036), 0);
   }
 }
 
@@ -3219,7 +3219,7 @@ char CCBRoleState::ProcessRound(unsigned int a2)
   int v12; // edi
   int v13; // edx
   char *v14; // edi
-  void (__thiscall ***v15)(_DWORD, int); // ecx
+  void (***v15)(_DWORD, int); // ecx
   _DWORD *v16; // ecx
   int v17; // edi
   int v18; // edi
@@ -3572,7 +3572,7 @@ LABEL_86:
         this->m_sCombatDialog[v9 + 1140] = 0;
         CCBStageRole::DangerForceRelease(*(_BYTE **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24), 0);
         CCBStageRole::Release(*(_BYTE **)(*(_DWORD *)&this->m_sCombatDialog[524] + 4 * a2 + 24), 1);
-        v15 = *(void (__thiscall ****)(_DWORD, int))(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * a2 + 76);
+        v15 = *(void (****)(_DWORD, int))(*(_DWORD *)&this->m_sCombatDialog[528] + 4 * a2 + 76);
         (**v15)(v15, 1);
         CCBSystem::SetCmdParam(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), a2, 0);
         CCBSystem::GetCmdData(*(CCBSystem **)(*(_DWORD *)&this->m_sCombatDialog[520] + 12), a2);

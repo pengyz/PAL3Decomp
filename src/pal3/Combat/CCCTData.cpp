@@ -220,7 +220,7 @@ void sub_505930(int _this)
       v30 = 6;
       do
       {
-        ArraySort((int)v4, 12, 4, (int (__thiscall *)(int))gbVec3D::`default constructor closure');
+        ArraySort((int)v4, 12, 4, (int (*)(int))gbVec3D::`default constructor closure');
         v4 += 17;
         --v30;
       }

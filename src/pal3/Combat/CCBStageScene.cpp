@@ -127,7 +127,7 @@ char sub_50FEE0()
   this->Render();
   this->ShowAxis();
   *((_DWORD *)this + 166) = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptAddit_1, 0);
-  v2 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v2 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aCbsceneFivelin);
   *((_DWORD *)this + 167) = v2;
@@ -144,7 +144,7 @@ char sub_50FEE0()
     v3 = 0;
   }
   *((_DWORD *)this + 168) = v3;
-  v5 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v5 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aCbsceneFivelin_0);
   *((_DWORD *)this + 169) = v5;
@@ -176,9 +176,9 @@ char sub_50FEE0()
 // 0x005100D0
 char sub_5100D0(int _this)
 {
-  void (__thiscall ***v2)(_DWORD, int); // ecx
-  void (__thiscall ***v3)(_DWORD, int); // ecx
-  void (__thiscall ***v4)(_DWORD, int); // ecx
+  void (***v2)(_DWORD, int); // ecx
+  void (***v3)(_DWORD, int); // ecx
+  void (***v4)(_DWORD, int); // ecx
   _DWORD *v5; // esi
   int v6; // edi
 
@@ -190,19 +190,19 @@ char sub_5100D0(int _this)
     operator delete(*(void **)(this + 672));
     *(_DWORD *)(this + 672) = 0;
   }
-  v2 = *(void (__thiscall ****)(_DWORD, int))(this + 616);
+  v2 = *(void (****)(_DWORD, int))(this + 616);
   if ( v2 )
   {
     (**v2)(v2, 1);
     *(_DWORD *)(this + 616) = 0;
   }
-  v3 = *(void (__thiscall ****)(_DWORD, int))(this + 604);
+  v3 = *(void (****)(_DWORD, int))(this + 604);
   if ( v3 )
   {
     (**v3)(v3, 1);
     *(_DWORD *)(this + 604) = 0;
   }
-  v4 = *(void (__thiscall ****)(_DWORD, int))(this + 608);
+  v4 = *(void (****)(_DWORD, int))(this + 608);
   if ( v4 )
   {
     (**v4)(v4, 1);
@@ -214,7 +214,7 @@ char sub_5100D0(int _this)
   {
     if ( *v5 )
     {
-      (**(void (__thiscall ***)(_DWORD, int))*v5)(*v5, 1);
+      (**(void (***)(_DWORD, int))*v5)(*v5, 1);
       *v5 = 0;
     }
     ++v5;
@@ -370,7 +370,7 @@ LABEL_13:
   {
     if ( *v6 )
     {
-      (**(void (__thiscall ***)(_DWORD, int))*v6)(*v6, 1);
+      (**(void (***)(_DWORD, int))*v6)(*v6, 1);
       *v6 = 0;
     }
     ++v6;
@@ -441,7 +441,7 @@ void sub_510610(gbGeomNode **this)
   {
     if ( *v3 )
     {
-      (**(void (__thiscall ***)(gbGeomNode *, int))(*v3)->gbVisNode)(*v3, 1);
+      (**(void (***)(gbGeomNode *, int))(*v3)->gbVisNode)(*v3, 1);
       *v3 = 0;
     }
     v4 = *(void **)(*(_DWORD *)(*v1)->gbVisNode + 16);
@@ -480,7 +480,7 @@ void sub_510610(gbGeomNode **this)
           {
             if ( *v3 )
             {
-              (**(void (__thiscall ***)(gbGeomNode *, int))(*v3)->gbVisNode)(*v3, 1);
+              (**(void (***)(gbGeomNode *, int))(*v3)->gbVisNode)(*v3, 1);
               *v3 = 0;
             }
           }
@@ -707,7 +707,7 @@ int sub_510C80()
   result = CCBStageScene::Init((int)this);
   v3 = *((_DWORD *)this + 154);
   if ( v3 )
-    return (*(int (__thiscall **)(int))(*(_DWORD *)v3 + 20))(v3);
+    return (*(int (**)(int))(*(_DWORD *)v3 + 20))(v3);
   return result;
 }
 
@@ -730,16 +730,16 @@ void CCBStageScene::GetBattleFieldSubdueAttr(gbMatrixStack *a2)
   v4 = *(_DWORD *)&this->m_pStage[604];
   if ( v4 && this->m_pStage[344] )
   {
-    (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)v4 + 16))(v4, 0);
+    (*(void (**)(int, _DWORD))(*(_DWORD *)v4 + 16))(v4, 0);
     v5 = *(_DWORD *)&this->m_pStage[612];
     if ( v5 )
-      (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)v5 + 16))(v5, 0);
+      (*(void (**)(int, _DWORD))(*(_DWORD *)v5 + 16))(v5, 0);
     if ( this->m_pStage[960] && *(_DWORD *)&this->m_pStage[616] )
     {
       a2->Push();
       v9 = sin(*(float *)(**(_DWORD **)this->m_pStage + 80) * 10.0) * 5.0 + *(float *)&this->m_pStage[952] + 6.0;
       a2->Translate(*(float *)&this->m_pStage[948], v9, *(float *)&this->m_pStage[956]);
-      (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)&this->m_pStage[616] + 16))(
+      (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)&this->m_pStage[616] + 16))(
         *(_DWORD *)&this->m_pStage[616],
         0);
       a2->Pop();
@@ -759,7 +759,7 @@ void CCBStageScene::GetBattleFieldSubdueAttr(gbMatrixStack *a2)
           a2->Push();
           v10 = v12 + 2.0;
           a2->Translate(v11, v10, v13);
-          (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)v7 + 16))(*(_DWORD *)v7, 0);
+          (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)v7 + 16))(*(_DWORD *)v7, 0);
           a2->Pop();
           a2a = (gbMatrixStack *)((char *)a2a + 60);
         }

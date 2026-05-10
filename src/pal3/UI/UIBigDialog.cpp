@@ -46,7 +46,7 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   v7 = *((_DWORD *)this + 109);
   v18 = 8;
   v20 = 264;
-  (*(void (__thiscall **)(char *, int, int *, UIBigDialog *))(v7 + 16))((char *)this + 436, 2, &v18, this);
+  (*(void (**)(char *, int, int *, UIBigDialog *))(v7 + 16))((char *)this + 436, 2, &v18, this);
   v8 = *((_DWORD *)this + 6);
   v9 = *((_DWORD *)this + 4);
   v10 = *((_DWORD *)this + 148);
@@ -55,7 +55,7 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   v18 = 256;
   v20 = 600;
   v21 = 144;
-  (*(void (__thiscall **)(char *, int, int *, UIBigDialog *))(v10 + 16))((char *)this + 592, 1, &v18, this);
+  (*(void (**)(char *, int, int *, UIBigDialog *))(v10 + 16))((char *)this + 592, 1, &v18, this);
   if ( gbColorQuad::ColorQuadFmt )
   {
     *(_WORD *)((char *)&pRect + 1) = -1286;
@@ -68,7 +68,7 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   }
   HIBYTE(pRect) = -1;
   (_DWORD *->GetChild()this + 148, &pRect);
-  (*(void (__thiscall **)(char *, int, int *, UIBigDialog *))(*((_DWORD *)this + 68) + 16))(
+  (*(void (**)(char *, int, int *, UIBigDialog *))(*((_DWORD *)this + 68) + 16))(
     (char *)this + 272,
     2,
     &v18,
@@ -83,7 +83,7 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   v13 = *((_DWORD *)this + 174);
   v21 = 600;
   v19 = 580;
-  (*(void (__thiscall **)(char *, _DWORD, int *, UIBigDialog *))(v13 + 16))((char *)this + 696, 0, &v18, this);
+  (*(void (**)(char *, _DWORD, int *, UIBigDialog *))(v13 + 16))((char *)this + 696, 0, &v18, this);
   (_DWORD *->GetRect()this + 174, &v18);
   (gbRefObject **->CreateFromTemplate()this + 174, aUiSceneTimeclo, 0);
   v14 = *((_DWORD *)this + 212);
@@ -91,7 +91,7 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   v20 = v12 + 134;
   v21 = 600;
   v19 = 568;
-  (*(void (__thiscall **)(char *, _DWORD, int *, UIBigDialog *))(v14 + 16))((char *)this + 848, 0, &v18, this);
+  (*(void (**)(char *, _DWORD, int *, UIBigDialog *))(v14 + 16))((char *)this + 848, 0, &v18, this);
   (_DWORD *->AddChild()this + 212, &v18);
   (gbRefObject **->GetChildCount()this + 212, aUiSceneTimebkT, 0);
   (gbRefObject **->GetChildAt()this + 212, aUiSceneTimepTg, 0);
@@ -102,5 +102,5 @@ int UIBigDialog::Create(int id, void *pRect, int parent, char *tex)
   (float *->GetHeight()this + 212, 9);
   (float *->GetWidth()this + 212, 4);
   (float *->GetPosition()this + 212, 9);
-  return (**((int (__thiscall ***)(char *, _DWORD))this + 212))((char *)this + 848, 0);
+  return (**((int (***)(char *, _DWORD))this + 212))((char *)this + 848, 0);
 }

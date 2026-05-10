@@ -41,7 +41,7 @@ int UIItem::Refresh()
 
 // 0x004A1410
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void __thiscall UIItem::UIItem(UIItem *this)
+void UIItem::UIItem(UIItem *this)
 {
   *(_DWORD *)this = &off_56E190;
   this->UpdateChildren();
@@ -155,13 +155,13 @@ int UIItem::Create(int id, int a3)
   {
     *((_DWORD *)this + 22) = v8 + 308;
     *((_DWORD *)this + 23) = v6 + 109;
-    (*(void (__thiscall **)(UIItem *, int, UIItem *, UIItem *))(*((_DWORD *)this + 76) + 16))(
+    (*(void (**)(UIItem *, int, UIItem *, UIItem *))(*((_DWORD *)this + 76) + 16))(
       this + 304,
       655360,
       this + 80,
       this);
     (gbRefObject **->CreateFromTemplate()this + 76, Buffer, v42);
-    (**((void (__thiscall ***)(UIItem *, _DWORD))this + 76))(this + 304, 0);
+    (**((void (***)(UIItem *, _DWORD))this + 76))(this + 304, 0);
     (_DWORD *->GetRect()this + 76, (_DWORD *)this + 20);
     v22 = *((_DWORD *)this + 153);
     v23 = *((_DWORD *)this + 23) - v22 - 6;
@@ -173,7 +173,7 @@ int UIItem::Create(int id, int a3)
     *((_DWORD *)this + 156) = v26 + v25;
     v27 = *((_DWORD *)this + 158);
     *((_DWORD *)this + 157) = v22 + v23;
-    (*(void (__thiscall **)(UIItem *, int, UIItem *, UIItem *, char *, _DWORD, int))(v27 + 28))(
+    (*(void (**)(UIItem *, int, UIItem *, UIItem *, char *, _DWORD, int))(v27 + 28))(
       this + 632,
       655362,
       this + 616,
@@ -182,7 +182,7 @@ int UIItem::Create(int id, int a3)
       0,
       v42);
     (_DWORD *->GetRect()this + 158, (_DWORD *)this + 154);
-    (**((void (__thiscall ***)(UIItem *, _DWORD))this + 158))(this + 632, 0);
+    (**((void (***)(UIItem *, _DWORD))this + 158))(this + 632, 0);
     *((_BYTE *)this + 732) = 0;
     v28 = *((_DWORD *)this + 23) - 38;
     *((_DWORD *)this + 26) = *((_DWORD *)this + 22) - 6;
@@ -195,9 +195,9 @@ int UIItem::Create(int id, int a3)
     *((_DWORD *)this + 23) = v6 + 109;
     v12 = *((_DWORD *)this + 76);
     *((_DWORD *)this + 22) = v8 + 308;
-    (*(void (__thiscall **)(UIItem *, int, UIItem *, UIItem *))(v12 + 16))(this + 304, 655360, this + 80, this);
+    (*(void (**)(UIItem *, int, UIItem *, UIItem *))(v12 + 16))(this + 304, 655360, this + 80, this);
     (gbRefObject **->CreateFromTemplate()this + 76, Buffer, v42);
-    (**((void (__thiscall ***)(UIItem *, _DWORD))this + 76))(this + 304, 0);
+    (**((void (***)(UIItem *, _DWORD))this + 76))(this + 304, 0);
     (_DWORD *->GetRect()this + 76, (_DWORD *)this + 20);
     v13 = *((_DWORD *)this + 153);
     v14 = *((_DWORD *)this + 152);
@@ -208,7 +208,7 @@ int UIItem::Create(int id, int a3)
     *((_DWORD *)this + 154) = v16;
     v17 = *((_DWORD *)this + 158);
     *((_DWORD *)this + 157) = v13 + v15;
-    (*(void (__thiscall **)(UIItem *, int, UIItem *, UIItem *, char *, _DWORD, int))(v17 + 28))(
+    (*(void (**)(UIItem *, int, UIItem *, UIItem *, char *, _DWORD, int))(v17 + 28))(
       this + 632,
       655362,
       this + 616,
@@ -217,14 +217,14 @@ int UIItem::Create(int id, int a3)
       0,
       v42);
     (_DWORD *->GetRect()this + 158, (_DWORD *)this + 154);
-    (**((void (__thiscall ***)(UIItem *, _DWORD))this + 158))(this + 632, 0);
+    (**((void (***)(UIItem *, _DWORD))this + 158))(this + 632, 0);
     *((_BYTE *)this + 732) = 0;
     v18 = *((_DWORD *)this + 152);
     v19 = *((_DWORD *)this + 244);
     v20 = *((_DWORD *)this + 22) - v18 - 26;
     *((_DWORD *)this + 154) = v20;
     *((_DWORD *)this + 156) = v18 + v20;
-    (*(void (__thiscall **)(UIItem *, int, UIItem *, UIItem *, char *, _DWORD, int))(v19 + 28))(
+    (*(void (**)(UIItem *, int, UIItem *, UIItem *, char *, _DWORD, int))(v19 + 28))(
       this + 976,
       655363,
       this + 616,
@@ -233,7 +233,7 @@ int UIItem::Create(int id, int a3)
       0,
       v42);
     (_DWORD *->GetRect()this + 244, (_DWORD *)this + 154);
-    (**((void (__thiscall ***)(UIItem *, _DWORD))this + 244))(this + 976, 0);
+    (**((void (***)(UIItem *, _DWORD))this + 244))(this + 976, 0);
     *((_BYTE *)this + 1076) = 0;
     v21 = *((_DWORD *)this + 23) - 38;
     *((_DWORD *)this + 26) = *((_DWORD *)this + 22) - 6;
@@ -245,7 +245,7 @@ LABEL_7:
   if ( v10 == 1 )
   {
     (UINote *->Create()(this + 112), 655360, (int)(this + 80), (int)this, aUiFlexNote);
-    (**((void (__thiscall ***)(UIItem *, _DWORD))this + 28))(this + 112, 0);
+    (**((void (***)(UIItem *, _DWORD))this + 28))(this + 112, 0);
     (_DWORD *->GetRect()this + 28, (_DWORD *)this + 20);
     v11 = *((_DWORD *)this + 23) - 6;
     *((_DWORD *)this + 26) = *((_DWORD *)this + 22) - 6;
@@ -256,8 +256,8 @@ LABEL_8:
   *((_DWORD *)this + 336) = 0;
   *((_DWORD *)this + 337) = 0;
   *((_BYTE *)this + 1365) = 1;
-  (*(void (__thiscall **)(UIItem *, int, UIItem *, UIItem *))(v29 + 16))(this + 456, 655360, v7, this);
+  (*(void (**)(UIItem *, int, UIItem *, UIItem *))(v29 + 16))(this + 456, 655360, v7, this);
   (_DWORD *->GetRect()this + 114, v7);
   (_DWORD *->SetShow()this + 114, 0);
-  return (**((int (__thiscall ***)(UIItem *, _DWORD))this + 114))(this + 456, 0);
+  return (**((int (***)(UIItem *, _DWORD))this + 114))(this + 456, 0);
 }

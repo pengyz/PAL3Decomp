@@ -184,10 +184,13 @@ def transform_method_code(cls_name, method_name, code, sig):
     if lines:
         # Fix first line (function signature)
         first = lines[0]
-        # Remove __thiscall/__cdecl from definition
+        # Remove calling conventions from definition (not valid in VC6 function defs)
         first = re.sub(r'\s*__thiscall\s*', ' ', first)
         first = re.sub(r'\s*__cdecl\s*', ' ', first)
         first = re.sub(r'\s*__stdcall\s*', ' ', first)
+        first = re.sub(r'\s*__fastcall\s*', ' ', first)
+        first = re.sub(r'\s*__userpurge\s*', ' ', first)
+        first = re.sub(r'\s*__usercall\s*', ' ', first)
         # Remove "ClassName *this" or any "*this" variant from params
         # Handles: ClassName *this, void *this, _DWORD *this, _BYTE *this, char *this, etc.
         first = re.sub(r'\(\s*\w[\w\s]*\*\s*this\s*,\s*', '(', first)
@@ -258,6 +261,11 @@ def transform_method_code(cls_name, method_name, code, sig):
     code = code.replace('(stdiobuf *)', '(UIWnd *)')
     code = code.replace('std::ios_base *', 'UIWnd *')
     code = code.replace('(std::ios_base *)', '(UIWnd *)')
+
+    # 6d. Remove __thiscall from function pointer casts (VC6 doesn't support explicit __thiscall)
+    code = re.sub(r'__thiscall\s+', '', code)
+    code = re.sub(r'__userpurge\s+', '', code)
+    code = re.sub(r'__usercall\s+', '', code)
 
     # 6. Fix *(this + N) -> *((_DWORD *)this + N) for pointer arithmetic on typed this
     code = re.sub(r'\*\(\s*this\s*\+\s*(\d+)\s*\)', r'*((_DWORD *)this + \1)', code)

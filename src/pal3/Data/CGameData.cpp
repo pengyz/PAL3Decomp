@@ -55,36 +55,36 @@ int CGameData::InitRoles(int a2)
   *(_DWORD *)&this->_data[92] = v3;
   *(_DWORD *)&this->_data[100] = v3 + 68;
   *(_DWORD *)&this->_data[104] = v4 + 32;
-  (*(void (__thiscall **)(char *, void *, char *, CGameData *))(v5 + 16))(
+  (*(void (**)(char *, void *, char *, CGameData *))(v5 + 16))(
     &this->_data[124],
     &unk_AABEF6,
     &this->_data[92],
     this);
   (gbRefObject **->CreateFromTemplate()&this->_data[124], off_59BA88, 1);
-  (**(void (__thiscall ***)(char *, _DWORD))&this->_data[124])(&this->_data[124], 0);
+  (**(void (***)(char *, _DWORD))&this->_data[124])(&this->_data[124], 0);
   v6 = (gbRefObject **)&this->_data[428];
   a2a = 3;
   do
   {
-    ((void (__thiscall *)(gbRefObject **, void *, char *, CGameData *))(*v6)[4].RefCount)(
+    ((void (*)(gbRefObject **, void *, char *, CGameData *))(*v6)[4].RefCount)(
       v6,
       &unk_AABEF6,
       &this->_data[92],
       this);
     v6->CreateFromTemplate(off_59BA90, 1);
-    ((void (__thiscall *)(gbRefObject **, _DWORD))(*v6)->RefCount)(v6, 0);
+    ((void (*)(gbRefObject **, _DWORD))(*v6)->RefCount)(v6, 0);
     v6 += 38;
     --a2a;
   }
   while ( a2a );
-  (*(void (__thiscall **)(char *, void *, char *, CGameData *))(*(_DWORD *)&this->_data[276] + 16))(
+  (*(void (**)(char *, void *, char *, CGameData *))(*(_DWORD *)&this->_data[276] + 16))(
     &this->_data[276],
     &unk_AABEF6,
     &this->_data[92],
     this);
   (gbRefObject **->CreateFromTemplate()&this->_data[276], off_59BA8C, 1);
-  (**(void (__thiscall ***)(char *, _DWORD))&this->_data[276])(&this->_data[276], 0);
-  (*(void (__thiscall **)(char *, void *, char *, CGameData *, char *, _DWORD, int))(*(_DWORD *)&this->_data[884] + 28))(
+  (**(void (***)(char *, _DWORD))&this->_data[276])(&this->_data[276], 0);
+  (*(void (**)(char *, void *, char *, CGameData *, char *, _DWORD, int))(*(_DWORD *)&this->_data[884] + 28))(
     &this->_data[884],
     &unk_AABEF7,
     &this->_data[92],
@@ -95,8 +95,8 @@ int CGameData::InitRoles(int a2)
   sub_43AFA0(&this->_data[884], byte_DD8F3C);
   *(_DWORD *)&this->_data[988] = 0;
   *(_DWORD *)&this->_data[992] = 2;
-  (**(void (__thiscall ***)(char *, _DWORD))&this->_data[884])(&this->_data[884], 0);
-  (*(void (__thiscall **)(char *, void *, char *, CGameData *, char *, _DWORD, int))(*(_DWORD *)&this->_data[1228] + 28))(
+  (**(void (***)(char *, _DWORD))&this->_data[884])(&this->_data[884], 0);
+  (*(void (**)(char *, void *, char *, CGameData *, char *, _DWORD, int))(*(_DWORD *)&this->_data[1228] + 28))(
     &this->_data[1228],
     &unk_AABEF8,
     &this->_data[92],
@@ -107,8 +107,8 @@ int CGameData::InitRoles(int a2)
   sub_43AFA0(&this->_data[1228], byte_DD903C);
   *(_DWORD *)&this->_data[1332] = 0;
   *(_DWORD *)&this->_data[1336] = 2;
-  (**(void (__thiscall ***)(char *, _DWORD))&this->_data[1228])(&this->_data[1228], 0);
-  (*(void (__thiscall **)(char *, void *, char *, CGameData *, char *, _DWORD, int))(*(_DWORD *)&this->_data[1572] + 28))(
+  (**(void (***)(char *, _DWORD))&this->_data[1228])(&this->_data[1228], 0);
+  (*(void (**)(char *, void *, char *, CGameData *, char *, _DWORD, int))(*(_DWORD *)&this->_data[1572] + 28))(
     &this->_data[1572],
     &unk_AABEF9,
     &this->_data[92],
@@ -119,7 +119,7 @@ int CGameData::InitRoles(int a2)
   sub_43AFA0(&this->_data[1572], byte_DD913C);
   *(_DWORD *)&this->_data[1676] = 0;
   *(_DWORD *)&this->_data[1680] = 2;
-  (**(void (__thiscall ***)(char *, _DWORD))&this->_data[1572])(&this->_data[1572], 0);
+  (**(void (***)(char *, _DWORD))&this->_data[1572])(&this->_data[1572], 0);
   v9 = 200;
   v8 = 300;
   v10 = 600;
@@ -219,8 +219,8 @@ int CGameData::InitItems(int a2)
   v5 = &this->_data[244];
   do
   {
-    (*(void (__thiscall **)(char *, _DWORD, _DWORD *, CGameData *))(*(_DWORD *)v5 + 16))(v5, 0, pRect, this);
-    (**(void (__thiscall ***)(char *, _DWORD))v5)(v5, 0);
+    (*(void (**)(char *, _DWORD, _DWORD *, CGameData *))(*(_DWORD *)v5 + 16))(v5, 0, pRect, this);
+    (**(void (***)(char *, _DWORD))v5)(v5, 0);
     v6 = *(v4 - 1);
     v11 = *v4;
     v10 = v6;
@@ -234,7 +234,7 @@ int CGameData::InitItems(int a2)
     ++v8;
   }
   while ( v3 < 13 );
-  return (**(int (__thiscall ***)(CGameData *, _DWORD))this->_data)(this, 0);
+  return (**(int (***)(CGameData *, _DWORD))this->_data)(this, 0);
 }
 
 // 0x0044F130
@@ -315,14 +315,14 @@ void * CGameData::Init()
   v17 = v19 - 150;
   v18 = pRect + 800;
   (UIBigDialog *->Create()&this->_data[3904], 1001, &pRect, 0, tex);
-  (**(void (__thiscall ***)(char *, _DWORD))&this->_data[3904])(&this->_data[3904], 0);
+  (**(void (***)(char *, _DWORD))&this->_data[3904])(&this->_data[3904], 0);
   v10 = &g_SceneMgr.m_info[7120];
   v11 = (UIDialog *)&this->_data[2144];
   do
   {
     v11->Create(1002, 180, 50, (int)this, aUiDlgHeadbkTga);
     v11->Show();
-    (*(void (__thiscall **)(UIDialog *, _DWORD))v11->UIWnd)(v11, 0);
+    (*(void (**)(UIDialog *, _DWORD))v11->UIWnd)(v11, 0);
     v10 += 8704;
     v11 += 88;
   }
@@ -348,8 +348,8 @@ void * CGameData::Init()
   v18 = 760;
   v17 = 50;
   v19 = 600;
-  (*(void (__thiscall **)(char *, _DWORD, int *, CGameData *))(v12 + 16))(&this->_data[260], 0, &pRect, this);
-  (**(void (__thiscall ***)(char *, _DWORD))&this->_data[260])(&this->_data[260], 0);
+  (*(void (**)(char *, _DWORD, int *, CGameData *))(v12 + 16))(&this->_data[260], 0, &pRect, this);
+  (**(void (***)(char *, _DWORD))&this->_data[260])(&this->_data[260], 0);
   v20 = -1;
   return OpenNULLFile::OpenNULLFile(&v14);
 }
@@ -364,17 +364,17 @@ void CGameData::Destroy()
 
   this->UpdateChildren();
   sub_4573A0(MEMORY[0x8ACD40]);
-  (*(void (__thiscall **)(char *))(*(_DWORD *)&this->_data[3904] + 12))(&this->_data[3904]);
+  (*(void (**)(char *))(*(_DWORD *)&this->_data[3904] + 12))(&this->_data[3904]);
   v2 = *((_DWORD *)this + 7044);
   if ( v2 )
   {
-    (*(void (__thiscall **)(int, int))(*(_DWORD *)v2 + 20))(v2, 1);
+    (*(void (**)(int, int))(*(_DWORD *)v2 + 20))(v2, 1);
     *((_DWORD *)this + 7044) = 0;
   }
   v3 = *((_DWORD *)this + 7045);
   if ( v3 )
   {
-    (*(void (__thiscall **)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
+    (*(void (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
     *((_DWORD *)this + 7045) = 0;
   }
   v4 = *(_DWORD *)&this->_data[14536];
@@ -382,7 +382,7 @@ void CGameData::Destroy()
   {
     v5 = *(_DWORD *)&this->_data[14532];
     if ( v5 )
-      (*(void (__thiscall **)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
+      (*(void (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
     *(_DWORD *)&this->_data[14532] = 0;
   }
 }
@@ -393,16 +393,16 @@ int CGameData::Render()
   _BYTE *v2; // ecx
   int result; // eax
 
-  (*(void (__thiscall **)(_DWORD))(**(_DWORD **)&this->_data[14532] + 4))(*(_DWORD *)&this->_data[14532]);
+  (*(void (**)(_DWORD))(**(_DWORD **)&this->_data[14532] + 4))(*(_DWORD *)&this->_data[14532]);
   if ( *(_DWORD *)&this->_data[14536] == 12 )
-    (*(void (__thiscall **)(_DWORD))(**((_DWORD **)this + 7044) + 4))(*((_DWORD *)this + 7044));
+    (*(void (**)(_DWORD))(**((_DWORD **)this + 7044) + 4))(*((_DWORD *)this + 7044));
   v2 = (_BYTE *)*((_DWORD *)this + 7046);
   if ( v2 && v2[3829] )
-    (*(void (__thiscall **)(_BYTE *))(*(_DWORD *)v2 + 4))(v2);
+    (*(void (**)(_BYTE *))(*(_DWORD *)v2 + 4))(v2);
   this->GetID();
   result = *(_DWORD *)&this->_data[14536];
   if ( !result )
-    return (*(int (__thiscall **)(char *))(*(_DWORD *)&this->_data[3904] + 4))(&this->_data[3904]);
+    return (*(int (**)(char *))(*(_DWORD *)&this->_data[3904] + 4))(&this->_data[3904]);
   return result;
 }
 

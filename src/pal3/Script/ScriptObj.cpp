@@ -5,10 +5,10 @@
 // 0x00412680
 int ScriptObj::Destroy()
 {
-  int (__thiscall ***v2)(_DWORD, int); // ecx
+  int (***v2)(_DWORD, int); // ecx
   int result; // eax
 
-  v2 = (int (__thiscall ***)(_DWORD, int))*((_DWORD *)this + 360);
+  v2 = (int (***)(_DWORD, int))*((_DWORD *)this + 360);
   *((_DWORD *)this + 157) = 0;
   if ( v2 )
   {

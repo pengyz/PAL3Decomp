@@ -87,7 +87,7 @@ int sub_4D5AB0(int _this, int a2, int a3)
                                 *(gbEffectMgr **)(g_pGfxManager + 200),
                                 aGfxscriptTlAdd,
                                 0);
-  v4 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v4 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aEffectFlare3Bm);
   *(_DWORD *)&v20[12] = 1;
@@ -113,7 +113,7 @@ int sub_4D5AB0(int _this, int a2, int a3)
       0x400u);
     _CxxThrowException(&v20[32], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v7 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v7 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aEffectFlare2Bm);
   *(_DWORD *)&v20[8] = 1;
@@ -139,7 +139,7 @@ int sub_4D5AB0(int _this, int a2, int a3)
       0x400u);
     _CxxThrowException(&v20[24], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v10 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v10 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                        g_pGfxManager,
                        aEffectFlaregre);
   *(_DWORD *)v20 = 1;
@@ -165,7 +165,7 @@ int sub_4D5AB0(int _this, int a2, int a3)
       0x400u);
     _CxxThrowException(&v20[16], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v13 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v13 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                        g_pGfxManager,
                        aEffectFlareblu);
   *(_DWORD *)(this + 22568) = v13;
@@ -190,7 +190,7 @@ int sub_4D5AB0(int _this, int a2, int a3)
       0x400u);
     _CxxThrowException(&v20[8], (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  v16 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v16 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                        g_pGfxManager,
                        aEffectFlarebri);
   *(_DWORD *)(this + 22592) = v16;

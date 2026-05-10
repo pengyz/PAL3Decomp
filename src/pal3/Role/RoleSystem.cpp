@@ -566,7 +566,7 @@ void RoleSystem::RenderRole(void *pStack, int a3)
         (gbMatrixStack *->Push()pStack);
         gbActor::GetTagNodeTM(*((gbActor **)this + 174), (struct gbMatrix4 *)v4, aTagWeapon1);
         (gbMatrixStack *->MultMatrix()pStack, (struct gbMatrix4 *)v4);
-        (*(void (__thiscall **)(_DWORD, _DWORD))(**((_DWORD **)this + 360) + 16))(*((_DWORD *)this + 360), 0);
+        (*(void (**)(_DWORD, _DWORD))(**((_DWORD **)this + 360) + 16))(*((_DWORD *)this + 360), 0);
         (gbMatrixStack *->Pop()pStack);
       }
       if ( *((_BYTE *)this + 1444) )
@@ -574,7 +574,7 @@ void RoleSystem::RenderRole(void *pStack, int a3)
         (gbMatrixStack *->Push()pStack);
         gbActor::GetTagNodeTM(*((gbActor **)this + 174), (struct gbMatrix4 *)v4, aTagWeapon2);
         (gbMatrixStack *->MultMatrix()pStack, (struct gbMatrix4 *)v4);
-        (*(void (__thiscall **)(_DWORD, _DWORD))(**((_DWORD **)this + 360) + 16))(*((_DWORD *)this + 360), 0);
+        (*(void (**)(_DWORD, _DWORD))(**((_DWORD **)this + 360) + 16))(*((_DWORD *)this + 360), 0);
         (gbMatrixStack *->Pop()pStack);
       }
     }

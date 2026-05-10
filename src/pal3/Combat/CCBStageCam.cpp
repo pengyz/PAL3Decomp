@@ -257,7 +257,7 @@ int sub_5052C0()
 
 // 0x005052E0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-_DWORD *__thiscall sub_5052E0(_DWORD *this, int **a2, int a3)
+_DWORD *sub_5052E0(_DWORD *this, int **a2, int a3)
 {
   int v4; // eax
 
@@ -332,9 +332,9 @@ char CCBStageCam::Destroy()
 // 0x005054B0
 char sub_5054B0()
 {
-  void (__thiscall ***v2)(_DWORD, int); // ecx
+  void (***v2)(_DWORD, int); // ecx
 
-  v2 = (void (__thiscall ***)(_DWORD, int))*((_DWORD *)this + 107556);
+  v2 = (void (***)(_DWORD, int))*((_DWORD *)this + 107556);
   if ( v2 )
   {
     (**v2)(v2, 1);
@@ -535,5 +535,5 @@ int sub_505820(int _this)
 // 0x005058E0
 int sub_5058E0(_DWORD **this)
 {
-  return (*(int (__thiscall **)(_DWORD))(**((_DWORD *)this + 107556) + 20))(*((_DWORD *)this + 107556));
+  return (*(int (**)(_DWORD))(**((_DWORD *)this + 107556) + 20))(*((_DWORD *)this + 107556));
 }

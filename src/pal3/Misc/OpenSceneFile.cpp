@@ -13,7 +13,7 @@ extern int dword_7CC178;
 // 0x00401DF0
 // strings: .cpk
 // write access to const memory has been detected, the output may be wrong!
-void *__thiscall OpenSceneFile::OpenSceneFile(OpenSceneFile *this, char *String1)
+void *OpenSceneFile::OpenSceneFile(OpenSceneFile *this, char *String1)
 {
   char v4[260]; // [esp+Ch] [ebp-248h] BYREF
   char Buffer[324]; // [esp+110h] [ebp-144h] BYREF

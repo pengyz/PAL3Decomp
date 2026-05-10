@@ -126,7 +126,7 @@ char TextureLib::LoadFromFile(char *filename)
         do
         {
           v14 = strtok(0, Delimiter);
-          (**(void (__thiscall ***)(TextureLib *, char *, char *))v8)(v8, v14, Delimiter);
+          (**(void (***)(TextureLib *, char *, char *))v8)(v8, v14, Delimiter);
         }
         while ( lstrcmpA(v14, aEndfile) );
       }
@@ -198,7 +198,7 @@ char TextureLib::LoadFromFile(char *filename)
     do
     {
       v25 = strtok(0, Delimiter);
-      (**(void (__thiscall ***)(TextureLib *, char *, char *))v19)(v19, v25, Delimiter);
+      (**(void (***)(TextureLib *, char *, char *))v19)(v19, v25, Delimiter);
     }
     while ( lstrcmpA(v25, aEndfile) );
   }

@@ -25,7 +25,7 @@ char sub_511EE0()
   char pExceptionObject[1024]; // [esp+10h] [ebp-800h] BYREF
   char ArgList; // [esp+410h] [ebp-400h] BYREF
 
-  v2 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v2 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aShadowTga_0);
   *((_DWORD *)this + 1) = v2;

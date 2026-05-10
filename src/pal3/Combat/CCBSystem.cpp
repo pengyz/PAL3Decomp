@@ -224,10 +224,10 @@ int CCBSystem::ResetFlags()
 // 0x004DB4F0
 char CCBSystem::DestroySubsystems()
 {
-  void (__thiscall ***v3)(_DWORD, _DWORD); // ecx
+  void (***v3)(_DWORD, _DWORD); // ecx
   int i; // esi
-  void (__thiscall ***v5)(_DWORD, _DWORD); // ecx
-  void (__thiscall ***v6)(_DWORD, int); // ecx
+  void (***v5)(_DWORD, _DWORD); // ecx
+  void (***v6)(_DWORD, int); // ecx
   int v7; // ebx
   int j; // esi
   int v9; // eax
@@ -243,27 +243,27 @@ char CCBSystem::DestroySubsystems()
   sub_4DB9F0(this);
   if ( dword_17A990C == 1 )
   {
-    v3 = *(void (__thiscall ****)(_DWORD, _DWORD))(*(_DWORD *)(*(_DWORD *)this->m_pUtil + 4) + 72);
+    v3 = *(void (****)(_DWORD, _DWORD))(*(_DWORD *)(*(_DWORD *)this->m_pUtil + 4) + 72);
     (**v3)(v3, 0);
     for ( i = 76; i < 120; i += 4 )
     {
-      v5 = *(void (__thiscall ****)(_DWORD, _DWORD))(*(_DWORD *)(*(_DWORD *)this->m_pUtil + 4) + i);
+      v5 = *(void (****)(_DWORD, _DWORD))(*(_DWORD *)(*(_DWORD *)this->m_pUtil + 4) + i);
       (**v5)(v5, 0);
     }
     return 1;
   }
   else
   {
-    v6 = *(void (__thiscall ****)(_DWORD, int))(*(_DWORD *)(*(_DWORD *)this->m_pUtil + 4) + 72);
+    v6 = *(void (****)(_DWORD, int))(*(_DWORD *)(*(_DWORD *)this->m_pUtil + 4) + 72);
     (**v6)(v6, 1);
     v7 = 0;
     for ( j = 76; j < 120; j += 4 )
     {
       v9 = *(_DWORD *)this->m_pUtil;
       if ( *(_BYTE *)(*(_DWORD *)(*(_DWORD *)this->m_pUtil + 16) + v7 + 577) )
-        (***(void (__thiscall ****)(_DWORD, int))(*(_DWORD *)(v9 + 4) + j))(*(_DWORD *)(*(_DWORD *)(v9 + 4) + j), 1);
+        (***(void (****)(_DWORD, int))(*(_DWORD *)(v9 + 4) + j))(*(_DWORD *)(*(_DWORD *)(v9 + 4) + j), 1);
       else
-        (***(void (__thiscall ****)(_DWORD, _DWORD))(*(_DWORD *)(v9 + 4) + j))(*(_DWORD *)(*(_DWORD *)(v9 + 4) + j), 0);
+        (***(void (****)(_DWORD, _DWORD))(*(_DWORD *)(v9 + 4) + j))(*(_DWORD *)(*(_DWORD *)(v9 + 4) + j), 0);
       v7 += 892;
     }
     return 1;
@@ -675,7 +675,7 @@ int sub_512580(int _this)
 
 // 0x005125E0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char __thiscall sub_5125E0(_DWORD *this)
+char sub_5125E0(_DWORD *this)
 {
   std::codecvt_base *v2; // ecx
   int v3; // eax
@@ -912,7 +912,7 @@ char __thiscall sub_5125E0(_DWORD *this)
 
 // 0x00512BA0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char __thiscall sub_512BA0(int _this)
+char sub_512BA0(int _this)
 {
   int v2; // ecx
   void *v3; // edi
@@ -979,10 +979,10 @@ char __thiscall sub_512BA0(int _this)
   v10 = *(_DWORD *)(this + 4);
   if ( !v10 )
     return 0;
-  (*(void (__thiscall **)(int))(*(_DWORD *)v10 + 12))(v10);
+  (*(void (**)(int))(*(_DWORD *)v10 + 12))(v10);
   v11 = *(_DWORD *)(this + 4);
   if ( v11 )
-    (*(void (__thiscall **)(int, int))(*(_DWORD *)v11 + 20))(v11, 1);
+    (*(void (**)(int, int))(*(_DWORD *)v11 + 20))(v11, 1);
   *(_DWORD *)(this + 4) = 0;
   v12 = *(std::codecvt_base **)(this + 24);
   if ( !v12 )
@@ -1571,7 +1571,7 @@ int sub_5137F0()
     if ( *((_BYTE *)v3 + 36) == 1 )
     {
       *((_DWORD *)this + 36) = v2;
-      result = ((int (__thiscall *)(int, _DWORD))*v3)((int)this + v3[1], 0);
+      result = ((int (*)(int, _DWORD))*v3)((int)this + v3[1], 0);
       *((_DWORD *)this + 36) = -1;
     }
     ++v2;
@@ -2803,7 +2803,7 @@ char CCBSystem::CreateObj(int a2)
   v2 = 0;
   for ( i = &this->m_pUtil[152];
         !i[36]
-     || *(int (__thiscall **)(int, int))i != CCBSystem::PassCmdToThread
+     || *(int (**)(int, int))i != CCBSystem::PassCmdToThread
      || *(_DWORD *)i && (*((_DWORD *)i + 1) || *((_DWORD *)i + 2) || *((_DWORD *)i + 3))
      || *((_DWORD *)i + 12) != a2;
         i += 88 )

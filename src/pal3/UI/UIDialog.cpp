@@ -21,7 +21,7 @@ void UIDialog::Create(int id, int x, int y, int parent, char *tex)
   pRect[1] = 0;
   pRect[0] = 0;
   this->Create(id, pRect, parent);
-  v7 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v7 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       tex);
   this->m_bvisible = (int)v7;
@@ -51,5 +51,5 @@ int UIDialog::Init()
   (UINote *->Create()(this + 18), 1, (int)pRect, (int)this, aUiFlexNote_0);
   (_DWORD *->GetRect()this + 18, pRect);
   sub_445910((_DWORD *)this + 18, 2);
-  return (*(int (__thiscall **)(UIDialog *, _DWORD))this->UIWnd)(this, 0);
+  return (*(int (**)(UIDialog *, _DWORD))this->UIWnd)(this, 0);
 }

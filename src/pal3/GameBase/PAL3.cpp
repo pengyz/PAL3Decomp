@@ -214,7 +214,7 @@ int PAL3::~PAL3()
 }
 
 // 0x00404800
-struct gbVFileSystem *__usercall PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
+struct gbVFileSystem * PAL3::Create@<eax>(char *a1@<edi>, HINSTANCE hInstance)
 {
   PalScript *v2; // ecx
   char *Instance; // eax
@@ -600,7 +600,7 @@ char sub_405330()
   {
     qmemcpy(
       pExceptionObject,
-      (const void *)((int (__userpurge *)@<eax>(char@<cl>, int, int, int))Logger::FormatException)(
+      (const void *)((int (*)@<eax>(char@<cl>, int, int, int))Logger::FormatException)(
                       (char)&ArgList,
                       (int)aCouldnTMallocM,
                       (int)aDProjectPal3Ga_0,
@@ -704,8 +704,8 @@ int sub_4055D0(float a1)
     case 2:
     case 9:
       MEMORY[0xBFDA5C] = MEMORY[0xBFDA5C] + a1;
-      (*(void (__thiscall **)(int))(*(_DWORD *)g_pCursorNode1 + 20))(g_pCursorNode1);
-      (*(void (__thiscall **)(int))(*(_DWORD *)g_pCursorNode2 + 20))(g_pCursorNode2);
+      (*(void (**)(int))(*(_DWORD *)g_pCursorNode1 + 20))(g_pCursorNode1);
+      (*(void (**)(int))(*(_DWORD *)g_pCursorNode2 + 20))(g_pCursorNode2);
       CRenderTarget2::GetInstance();
       CRenderTarget2_Update(a1);
       PalScriptMgr::RunSceneScript(LODWORD(a1));
@@ -955,11 +955,11 @@ int sub_405C00()
   _DWORD v34[4]; // [esp+80h] [ebp-14h] BYREF
   int v35; // [esp+90h] [ebp-4h]
 
-  (*(void (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 48))(g_pGfxManager);
+  (*(void (**)(int))(*(_DWORD *)g_pGfxManager + 48))(g_pGfxManager);
   switch ( g_nGameState )
   {
     case 0:
-      return (*(int (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 52))(g_pGfxManager);
+      return (*(int (**)(int))(*(_DWORD *)g_pGfxManager + 52))(g_pGfxManager);
     case 2:
     case 7:
     case 8:
@@ -1015,11 +1015,11 @@ int sub_405C00()
       {
         Top = v6->GetTop();
         Top->TransformPlane();
-        (*(void (__thiscall **)(int, int *))(*(_DWORD *)g_pGfxManager + 112))(g_pGfxManager, &dword_D8E488);
+        (*(void (**)(int, int *))(*(_DWORD *)g_pGfxManager + 112))(g_pGfxManager, &dword_D8E488);
       }
       else
       {
-        (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)g_pGfxManager + 112))(g_pGfxManager, 0);
+        (*(void (**)(int, _DWORD))(*(_DWORD *)g_pGfxManager + 112))(g_pGfxManager, 0);
       }
       UISceneUpdate();
       v6->RenderWithStack();
@@ -1149,14 +1149,14 @@ LABEL_46:
     }
     v24 = 1.0 - 64.0 / (double)MEMORY[0xBFD6D4];
     v23 = 1380.0 / (double)MEMORY[0xBFD6D0] - 1.0;
-    (*(void (__thiscall **)(int, _DWORD *, _DWORD, _DWORD, int, int))(*(_DWORD *)v19 + 16))(
+    (*(void (**)(int, _DWORD *, _DWORD, _DWORD, int, int))(*(_DWORD *)v19 + 16))(
       v19,
       Buffer,
       LODWORD(v23),
       LODWORD(v24),
       1176256512,
       1176256512);
-    (*(void (__thiscall **)(int))(*(_DWORD *)v19 + 8))(v19);
+    (*(void (**)(int))(*(_DWORD *)v19 + 8))(v19);
   }
   if ( g_nGameState && g_nGameState != 3 && g_bRenderUI )
   {
@@ -1166,7 +1166,7 @@ LABEL_46:
     v21->Render();
     CGameData::Render(&g_GameData);
     if ( MEMORY[0xBFDA34] )
-      (*(void (__thiscall **)(int))(*(_DWORD *)MEMORY[0xBFDA34] + 4))(MEMORY[0xBFDA34]);
+      (*(void (**)(int))(*(_DWORD *)MEMORY[0xBFDA34] + 4))(MEMORY[0xBFDA34]);
     if ( !g_pPalScript )
       Logger::Render(&g_Logger);
     v35 = -1;
@@ -1174,7 +1174,7 @@ LABEL_46:
   }
   v22 = UIQuadManager::GetInstance();
   v22->UIRenderObj();
-  result = (*(int (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 52))(g_pGfxManager);
+  result = (*(int (**)(int))(*(_DWORD *)g_pGfxManager + 52))(g_pGfxManager);
   if ( g_pPalScript )
   {
     result = PAL3::PrintScreen();
@@ -1218,7 +1218,7 @@ int sub_406230()
   PAL3::DestroyEffectSystem();
   if ( g_pCamera )
   {
-    (**(void (__thiscall ***)(int, int))g_pCamera)(g_pCamera, 1);
+    (**(void (***)(int, int))g_pCamera)(g_pCamera, 1);
     g_pCamera = 0;
   }
   v4 = g_pActorMgr;
@@ -1230,7 +1230,7 @@ int sub_406230()
   }
   if ( g_pGfxManager )
   {
-    (**(void (__thiscall ***)(int, int))g_pGfxManager)(g_pGfxManager, 1);
+    (**(void (***)(int, int))g_pGfxManager)(g_pGfxManager, 1);
     g_pGfxManager = 0;
   }
   FileSysDestory();
@@ -1239,7 +1239,7 @@ int sub_406230()
 }
 
 // 0x00406310
-void __usercall PAL3::CheckSystemRequire(char *a1@<edi>, char *a2@<esi>, HINSTANCE hInstance)
+void PAL3::CheckSystemRequire(char *a1@<edi>, char *a2@<esi>, HINSTANCE hInstance)
 {
   struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList; // eax
   void *v4; // esp
@@ -1661,7 +1661,7 @@ void PAL3::PrintScreen()
   _BYTE *v32; // [esp+F4h] [ebp-1Ch]
   int v33; // [esp+10Ch] [ebp-4h]
 
-  if ( (*(int (__thiscall **)(gbGfxManager *, int *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, &v23, 1) )
+  if ( (*(int (**)(gbGfxManager *, int *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, &v23, 1) )
   {
     (gbImage2D *->gbImage2D()&v30);
     v33 = 0;
@@ -1691,7 +1691,7 @@ LABEL_8:
           while ( v31 < v26 );
           v0 = v30;
         }
-        (*(void (__thiscall **)(gbGfxManager *))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
+        (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
         (gbImage2D *->Release()(&g_PAL3Data + 24));
         v6 = (gbImage2D *->CreateImage()(&g_PAL3Data + 24), v26, v27, 24);
         v7 = v32;
@@ -1796,7 +1796,7 @@ LABEL_8:
       }
       if ( v25 != 9 )
       {
-        (*(void (__thiscall **)(gbGfxManager *))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
+        (*(void (**)(gbGfxManager *))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
 LABEL_34:
         v33 = -1;
         gbImage2D::~gbImage2D((gbImage2D *)&v30);
@@ -1812,7 +1812,7 @@ LABEL_34:
 int sub_406FF0(int a1)
 {
   char *v1; // esi
-  int (__thiscall ***v2)(_DWORD, _DWORD); // eax
+  int (***v2)(_DWORD, _DWORD); // eax
   int result; // eax
 
   MEMORY[0xBFDA30] = 0;
@@ -1833,7 +1833,7 @@ int sub_406FF0(int a1)
   while ( (int)v1 < (int)MEMORY[0xC10960] );
   ScriptSystem::Execute(0, 1);
   g_nGameState = 7;
-  v2 = (int (__thiscall ***)(_DWORD, _DWORD))CGameData::SetMode(0);
+  v2 = (int (***)(_DWORD, _DWORD))CGameData::SetMode(0);
   result = (**v2)(v2, 0);
   MEMORY[0xBFDA58] = 0.0;
   return result;
@@ -1859,7 +1859,7 @@ int sub_4071C0(int a1)
 {
   _DWORD *v1; // esi
   int result; // eax
-  void (__thiscall ***v3)(_DWORD, int); // eax
+  void (***v3)(_DWORD, int); // eax
   int v4; // [esp-4h] [ebp-18h]
   int v5; // [esp-4h] [ebp-18h]
   _DWORD v6[5]; // [esp+0h] [ebp-14h]
@@ -1885,7 +1885,7 @@ int sub_4071C0(int a1)
   else
   {
     g_nGameState = 2;
-    v3 = (void (__thiscall ***)(_DWORD, int))CGameData::SetMode(0);
+    v3 = (void (***)(_DWORD, int))CGameData::SetMode(0);
     (**v3)(v3, 1);
     if ( retaddr == (void *)-1 )
     {
@@ -1916,21 +1916,21 @@ int sub_4071C0(int a1)
 // 0x004072D0
 int sub_4072D0()
 {
-  int (__thiscall ***v0)(_DWORD, _DWORD); // eax
+  int (***v0)(_DWORD, _DWORD); // eax
 
   g_nGameState = 8;
   MEMORY[0xBFDA58] = 0.0;
-  v0 = (int (__thiscall ***)(_DWORD, _DWORD))CGameData::SetMode(0);
+  v0 = (int (***)(_DWORD, _DWORD))CGameData::SetMode(0);
   return (**v0)(v0, 0);
 }
 
 // 0x00407300
 int sub_407300()
 {
-  int (__thiscall ***v0)(_DWORD, int); // eax
+  int (***v0)(_DWORD, int); // eax
 
   g_nGameState = 2;
-  v0 = (int (__thiscall ***)(_DWORD, int))CGameData::SetMode(0);
+  v0 = (int (***)(_DWORD, int))CGameData::SetMode(0);
   return (**v0)(v0, 1);
 }
 
@@ -2318,7 +2318,7 @@ int PAL3::FullInit()
   memset(byte_DE5220, 0, 0x28u);
   if ( *(_DWORD *)&g_SceneMgr.m_info[51500] )
   {
-    (***(void (__thiscall ****)(_DWORD, int))&g_SceneMgr.m_info[51500])(*(_DWORD *)&g_SceneMgr.m_info[51500], 1);
+    (***(void (****)(_DWORD, int))&g_SceneMgr.m_info[51500])(*(_DWORD *)&g_SceneMgr.m_info[51500], 1);
     *(_DWORD *)&g_SceneMgr.m_info[51500] = 0;
   }
   memset(dword_C02050, 0, 0xA0u);

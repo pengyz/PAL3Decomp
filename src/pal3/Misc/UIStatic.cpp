@@ -137,7 +137,7 @@ int sub_440DD0(int _this, int a2, int a3)
     {
       v6 = *(_DWORD *)(this + 32);
       if ( v6 )
-        (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(v6, 1021, *(_DWORD *)(this + 12), 1);
+        (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(v6, 1021, *(_DWORD *)(this + 12), 1);
       v12 = off_5974E0[0];
       CScreenMode::GetInstance();
       v12->AudioSetPosition(1);

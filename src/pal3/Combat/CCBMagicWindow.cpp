@@ -174,9 +174,9 @@ char sub_51BC70(_DWORD *a2, int a3)
     a2[2] = 230;
     a2[1] = 0;
     a2[3] = 200;
-    ((void (__thiscall *)(gbRefObject **, int, _DWORD *, _DWORD *))(**v4)[4].RefCount)(*v4, 272, a2, this);
+    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *))(**v4)[4].RefCount)(*v4, 272, a2, this);
     UIWnd::CreateFromTemplate(*v4, aUiCombatContro_22, 0);
-    ((void (__thiscall *)(gbRefObject **, int))(**v4)->RefCount)(*v4, 1);
+    ((void (*)(gbRefObject **, int))(**v4)->RefCount)(*v4, 1);
   }
   v5 = (gbRefObject ***)(this + 22);
   if ( (unsigned __int8)CCBLineupWindow::Render(this + 22) == 1 )
@@ -185,7 +185,7 @@ char sub_51BC70(_DWORD *a2, int a3)
     a2[1] = 57;
     a2[2] = 211;
     a2[3] = 95;
-    ((void (__thiscall *)(gbRefObject **, int, _DWORD *, _DWORD *))(**v5)[4].RefCount)(*v5, 276, a2, this);
+    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *))(**v5)[4].RefCount)(*v5, 276, a2, this);
     v6 = UIWnd::SetRect(*v5, v19);
     UIWnd::AddChild(*v5, v6);
     UIWnd::GetChildCount(*v5, aUiCombatContro_29, 0);
@@ -201,7 +201,7 @@ char sub_51BC70(_DWORD *a2, int a3)
     UIWnd::FindChild((int)*v5, 100.0);
     UIWnd::FindChildByName((int)*v5, 100.0);
     (*v5)[28] = (gbRefObject *)1077936128;
-    ((void (__thiscall *)(gbRefObject **, int))(**v5)->RefCount)(*v5, 1);
+    ((void (*)(gbRefObject **, int))(**v5)->RefCount)(*v5, 1);
   }
   v8 = (gbRefObject ***)(this + 23);
   if ( (unsigned __int8)CCBLineupWindow::Render(this + 23) == 1 )
@@ -210,7 +210,7 @@ char sub_51BC70(_DWORD *a2, int a3)
     a2[1] = 94;
     a2[2] = 211;
     a2[3] = 132;
-    ((void (__thiscall *)(gbRefObject **, int, _DWORD *, _DWORD *))(**v8)[4].RefCount)(*v8, 277, a2, this);
+    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *))(**v8)[4].RefCount)(*v8, 277, a2, this);
     v9 = UIWnd::SetRect(*v8, v19);
     UIWnd::AddChild(*v8, v9);
     UIWnd::GetChildCount(*v8, aUiCombatContro_29, 0);
@@ -226,7 +226,7 @@ char sub_51BC70(_DWORD *a2, int a3)
     UIWnd::FindChild((int)*v8, 100.0);
     UIWnd::FindChildByName((int)*v8, 100.0);
     (*v8)[28] = (gbRefObject *)1077936128;
-    ((void (__thiscall *)(gbRefObject **, int))(**v8)->RefCount)(*v8, 1);
+    ((void (*)(gbRefObject **, int))(**v8)->RefCount)(*v8, 1);
   }
   v11 = (gbRefObject ***)(this + 24);
   if ( (unsigned __int8)CCBLineupWindow::Render(this + 24) == 1 )
@@ -235,7 +235,7 @@ char sub_51BC70(_DWORD *a2, int a3)
     a2[1] = 132;
     a2[2] = 211;
     a2[3] = 170;
-    ((void (__thiscall *)(gbRefObject **, int, _DWORD *, _DWORD *))(**v11)[4].RefCount)(*v11, 278, a2, this);
+    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *))(**v11)[4].RefCount)(*v11, 278, a2, this);
     v12 = UIWnd::SetRect(*v11, v19);
     UIWnd::AddChild(*v11, v12);
     UIWnd::GetChildCount(*v11, aUiCombatContro_29, 0);
@@ -251,7 +251,7 @@ char sub_51BC70(_DWORD *a2, int a3)
     UIWnd::FindChild((int)*v11, 100.0);
     UIWnd::FindChildByName((int)*v11, 100.0);
     (*v11)[28] = (gbRefObject *)1077936128;
-    ((void (__thiscall *)(gbRefObject **, int))(**v11)->RefCount)(*v11, 1);
+    ((void (*)(gbRefObject **, int))(**v11)->RefCount)(*v11, 1);
   }
   v14 = (gbRefObject ***)(this + 19);
   if ( (unsigned __int8)CCBLineupWindow::OnMessage(this + 19) == 1 )
@@ -260,7 +260,7 @@ char sub_51BC70(_DWORD *a2, int a3)
     a2[1] = 57;
     a2[2] = 69;
     a2[3] = 89;
-    ((void (__thiscall *)(gbRefObject **, int, _DWORD *, _DWORD *, char *, _DWORD))(**v14)[7].RefCount)(
+    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *, char *, _DWORD))(**v14)[7].RefCount)(
       *v14,
       273,
       a2,
@@ -268,7 +268,7 @@ char sub_51BC70(_DWORD *a2, int a3)
       aUiCombatContro_23,
       0);
     sub_440CE0(*v14, aUiCombatContro_26, 0);
-    ((void (__thiscall *)(gbRefObject **, int))(**v14)->RefCount)(*v14, 1);
+    ((void (*)(gbRefObject **, int))(**v14)->RefCount)(*v14, 1);
   }
   v15 = (gbRefObject ***)(this + 20);
   if ( (unsigned __int8)CCBLineupWindow::OnMessage(this + 20) == 1 )
@@ -277,7 +277,7 @@ char sub_51BC70(_DWORD *a2, int a3)
     a2[1] = 94;
     a2[2] = 69;
     a2[3] = 126;
-    ((void (__thiscall *)(gbRefObject **, int, _DWORD *, _DWORD *, char *, _DWORD))(**v15)[7].RefCount)(
+    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *, char *, _DWORD))(**v15)[7].RefCount)(
       *v15,
       274,
       a2,
@@ -285,7 +285,7 @@ char sub_51BC70(_DWORD *a2, int a3)
       aUiCombatContro_24,
       0);
     sub_440CE0(*v15, aUiCombatContro_27, 0);
-    ((void (__thiscall *)(gbRefObject **, int))(**v15)->RefCount)(*v15, 1);
+    ((void (*)(gbRefObject **, int))(**v15)->RefCount)(*v15, 1);
   }
   v16 = (gbRefObject ***)(this + 21);
   if ( (unsigned __int8)CCBLineupWindow::OnMessage(this + 21) == 1 )
@@ -294,7 +294,7 @@ char sub_51BC70(_DWORD *a2, int a3)
     a2[1] = 132;
     a2[2] = 69;
     a2[3] = 164;
-    ((void (__thiscall *)(gbRefObject **, int, _DWORD *, _DWORD *, char *, _DWORD))(**v16)[7].RefCount)(
+    ((void (*)(gbRefObject **, int, _DWORD *, _DWORD *, char *, _DWORD))(**v16)[7].RefCount)(
       *v16,
       275,
       a2,
@@ -302,7 +302,7 @@ char sub_51BC70(_DWORD *a2, int a3)
       aUiCombatContro_25,
       0);
     sub_440CE0(*v16, aUiCombatContro_28, 0);
-    ((void (__thiscall *)(gbRefObject **, int))(**v16)->RefCount)(*v16, 1);
+    ((void (*)(gbRefObject **, int))(**v16)->RefCount)(*v16, 1);
   }
   v17 = this + 25;
   CCBLineupWindow::Update(this + 25);
@@ -310,7 +310,7 @@ char sub_51BC70(_DWORD *a2, int a3)
   a2[2] = 160;
   a2[1] = 170;
   a2[3] = 196;
-  (*(void (__thiscall **)(_DWORD, int, _DWORD *, _DWORD *, char *, int, _DWORD))(*(_DWORD *)*v17 + 28))(
+  (*(void (**)(_DWORD, int, _DWORD *, _DWORD *, char *, int, _DWORD))(*(_DWORD *)*v17 + 28))(
     *v17,
     282,
     a2,
@@ -318,7 +318,7 @@ char sub_51BC70(_DWORD *a2, int a3)
     aUiCombatContro_32,
     1,
     0);
-  (**(void (__thiscall ***)(_DWORD, int))*v17)(*v17, 1);
+  (**(void (***)(_DWORD, int))*v17)(*v17, 1);
   return 1;
 }
 
@@ -339,49 +339,49 @@ int sub_51C110(int _this)
   v3 = *(_DWORD *)(this + 72);
   if ( v3 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
     *(_DWORD *)(this + 72) = 0;
   }
   v4 = *(_DWORD *)(this + 76);
   if ( v4 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);
     *(_DWORD *)(this + 76) = 0;
   }
   v5 = *(_DWORD *)(this + 80);
   if ( v5 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
     *(_DWORD *)(this + 80) = 0;
   }
   v6 = *(_DWORD *)(this + 84);
   if ( v6 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v6 + 20))(v6, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v6 + 20))(v6, 1);
     *(_DWORD *)(this + 84) = 0;
   }
   v7 = *(_DWORD *)(this + 88);
   if ( v7 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v7 + 20))(v7, 1);
     *(_DWORD *)(this + 88) = 0;
   }
   v8 = *(_DWORD *)(this + 92);
   if ( v8 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v8 + 20))(v8, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v8 + 20))(v8, 1);
     *(_DWORD *)(this + 92) = 0;
   }
   v9 = *(_DWORD *)(this + 96);
   if ( v9 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v9 + 20))(v9, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v9 + 20))(v9, 1);
     *(_DWORD *)(this + 96) = 0;
   }
   v10 = *(_DWORD *)(this + 100);
   if ( v10 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v10 + 20))(v10, 1);
     *(_DWORD *)(this + 100) = 0;
   }
   return result;

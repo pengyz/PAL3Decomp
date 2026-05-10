@@ -68,7 +68,7 @@ int UIListBox::SetSelTexture(int id, int pRect, int a4, int a5, int a6, int a7)
   if ( a7 )
   {
     OpenBaseFile::OpenBaseFile(&a7);
-    v9 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, int))(*(_DWORD *)g_pGfxManager + 8))(
+    v9 = (gbTexture *)(*(int (**)(gbGfxManager *, int))(*(_DWORD *)g_pGfxManager + 8))(
                         g_pGfxManager,
                         v7);
     this->m_pfather = (UIWnd *)v9;
@@ -174,7 +174,7 @@ void sub_43DF20(void **this)
 
 // 0x0043DFC0
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char *__thiscall UIListBox::UpdateKeyCtrl(UIListBox *this)
+char *UIListBox::UpdateKeyCtrl(UIListBox *this)
 {
   char v3; // [esp+Bh] [ebp-11h]
 
@@ -197,8 +197,8 @@ char *__thiscall UIListBox::UpdateKeyCtrl(UIListBox *this)
     &this->UIWnd[436],
     0x54u,
     8,
-    (void (__thiscall *)(void *))UIListBox::CalHeightCount,
-    (void (__thiscall *)(void *))UIListBox::GetItemPos);
+    (void (*)(void *))UIListBox::CalHeightCount,
+    (void (*)(void *))UIListBox::GetItemPos);
   this->UIWnd[1179] = -56;
   this->UIWnd[1178] = -88;
   this->UIWnd[1177] = -88;
@@ -239,7 +239,7 @@ UIWnd * sub_43E100(UIWnd *Block, char a2)
 
 // 0x0043E120
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void __thiscall sub_43E120(UIWnd *this)
+void sub_43E120(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AD40;
   UIListBox::GetItemCount();
@@ -247,7 +247,7 @@ void __thiscall sub_43E120(UIWnd *this)
   *((_DWORD *)this + 299) = 0;
   *((_DWORD *)this + 300) = 0;
   *((_DWORD *)this + 301) = 0;
-  `eh vector destructor iterator'((char *)this + 436, 0x54u, 8, (void (__thiscall *)(void *))UIListBox::GetItemPos);
+  `eh vector destructor iterator'((char *)this + 436, 0x54u, 8, (void (*)(void *))UIListBox::GetItemPos);
   UIWnd::ctor_11D0(this + 2);
   this->_UIWnd();
 }
@@ -256,14 +256,14 @@ void __thiscall sub_43E120(UIWnd *this)
 int UIListBox::CalScrollBarRange(int _this, int id, _DWORD *a3, int parent, LPCSTR lpString, int a6, char a7)
 {
   const CHAR *v7; // edi
-  int (__thiscall **vtable)(gbGfxManager *, CHAR *); // ebp
+  int (**vtable)(gbGfxManager *, CHAR *); // ebp
   CHAR *v10; // eax
   gbTexture *v11; // ecx
   int v12; // ecx
   int v13; // eax
   int v14; // eax
   _DWORD *v15; // eax
-  int (__thiscall **v16)(int, int); // edx
+  int (**v16)(int, int); // edx
   _DWORD v18[4]; // [esp+20h] [ebp-1Ch] BYREF
   int v19; // [esp+38h] [ebp-4h]
 
@@ -274,14 +274,14 @@ int UIListBox::CalScrollBarRange(int _this, int id, _DWORD *a3, int parent, LPCS
     v19 = 0;
     if ( a7 )
     {
-      vtable = *(int (__thiscall ***)(gbGfxManager *, CHAR *))g_pGfxManager;
+      vtable = *(int (***)(gbGfxManager *, CHAR *))g_pGfxManager;
       v10 = _Texture_Info::_CalculateUV((int)dword_1894B78, v7);
       *(_DWORD *)(this + 1144) = vtable[2](g_pGfxManager, v10);
       *(_DWORD *)(this + 1148) = Parent_Data::Parent_Data((int)dword_1894B78, v7);
     }
     else
     {
-      *(_DWORD *)(this + 1144) = (*(int (__thiscall **)(gbGfxManager *, const CHAR *))(*(_DWORD *)g_pGfxManager + 8))(
+      *(_DWORD *)(this + 1144) = (*(int (**)(gbGfxManager *, const CHAR *))(*(_DWORD *)g_pGfxManager + 8))(
                                    g_pGfxManager,
                                    v7);
     }
@@ -300,7 +300,7 @@ int UIListBox::CalScrollBarRange(int _this, int id, _DWORD *a3, int parent, LPCS
   *(_DWORD *)(this + 1132) = 0;
   v14 = *(_DWORD *)(this + 80);
   *(_DWORD *)(this + 1140) = a3[3] - a3[1];
-  (*(void (__thiscall **)(int, int, int, int, char *, int, _DWORD))(v14 + 28))(
+  (*(void (**)(int, int, int, int, char *, int, _DWORD))(v14 + 28))(
     this + 80,
     1,
     this + 1128,
@@ -314,7 +314,7 @@ int UIListBox::CalScrollBarRange(int _this, int id, _DWORD *a3, int parent, LPCS
   *(_DWORD *)(this + 1128) = *v15;
   *(_DWORD *)(this + 1132) = v15[1];
   *(_DWORD *)(this + 1136) = v15[2];
-  v16 = *(int (__thiscall ***)(int, int))(this + 80);
+  v16 = *(int (***)(int, int))(this + 80);
   *(_DWORD *)(this + 1140) = v15[3];
   return (*v16)(this + 80, a6);
 }
@@ -329,7 +329,7 @@ void sub_43E330(int a2, int a3)
   if ( a2 )
   {
     OpenBaseFile::OpenBaseFile(&a2);
-    v5 = (gbTexture *)(*(int (__thiscall **)(int, int))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, v3);
+    v5 = (gbTexture *)(*(int (**)(int, int))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, v3);
     *((_DWORD *)this + 288) = v5;
     if ( v5 )
       v5->LoadTexture(1);
@@ -398,7 +398,7 @@ int sub_43E480(int a2, int a3, int a4)
     {
       v8 = *((_DWORD *)this + 8);
       if ( v8 )
-        (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v8 + 24))(v8, 1006, *((_DWORD *)this + 3), v7);
+        (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v8 + 24))(v8, 1006, *((_DWORD *)this + 3), v7);
     }
   }
   else
@@ -407,7 +407,7 @@ int sub_43E480(int a2, int a3, int a4)
   }
   v9 = *((_DWORD *)this + 8);
   if ( v9 )
-    (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1005, 0, 0);
+    (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1005, 0, 0);
   return 1;
 }
 
@@ -473,7 +473,7 @@ int sub_43E5C0(char *Source, int a3)
   {
     OpenBaseFile::OpenBaseFile(&v18);
     v21 = 0;
-    v6 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, Source);
+    v6 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, Source);
     *(_DWORD *)v5 = v6;
     if ( v6 )
       v6->LoadTexture(1);
@@ -525,7 +525,7 @@ int sub_43E5C0(char *Source, int a3)
           v14 = this->CreateChild();
           v15 = *((_DWORD *)this + 8);
           if ( v15 )
-            (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v15 + 24))(v15, 1006, *((_DWORD *)this + 3), v14);
+            (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v15 + 24))(v15, 1006, *((_DWORD *)this + 3), v14);
         }
       }
     }
@@ -546,7 +546,7 @@ struct gbVFileSystem * sub_43E7D0(int a2, int a3, char *Source, int a5)
   if ( !a5 )
     return (struct gbVFileSystem *)strncpy((char *)(v5 + 4), Source, 0x40u);
   OpenBaseFile::OpenBaseFile(&a2);
-  v6 = (gbTexture *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, Source);
+  v6 = (gbTexture *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(g_pGfxManager, Source);
   *(_DWORD *)v5 = v6;
   if ( v6 )
     v6->LoadTexture(1);

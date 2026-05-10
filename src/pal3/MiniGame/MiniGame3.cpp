@@ -28,7 +28,7 @@ void MiniGame3::Render()
   v5->Push();
   v6 = *(_DWORD *)(*((_DWORD *)this + 1) + 3216);
   if ( v6 )
-    (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)v6 + 16))(v6, 0);
+    (*(void (**)(int, _DWORD))(*(_DWORD *)v6 + 16))(v6, 0);
   sub_535F10(*(float **)this, v5);
   sub_535970(v5);
   v5->Pop();

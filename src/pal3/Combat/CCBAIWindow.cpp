@@ -40,14 +40,14 @@ int CCBAIWindow::SetText(int a2, int a3)
 int sub_51CA50(int _this, int a2)
 {
   int v3; // edi
-  void (__thiscall ****v4)(_DWORD, int); // esi
-  void (__thiscall ***v5)(_DWORD, int); // ecx
+  void (****v4)(_DWORD, int); // esi
+  void (***v5)(_DWORD, int); // ecx
 
   if ( a2 == 1 )
   {
     *(_BYTE *)(this + 176) = 0;
     v3 = 0;
-    v4 = (void (__thiscall ****)(_DWORD, int))(this + 108);
+    v4 = (void (****)(_DWORD, int))(this + 108);
     do
     {
       v5 = *v4;

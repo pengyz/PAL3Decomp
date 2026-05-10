@@ -160,7 +160,7 @@ LABEL_24:
                 *((_DWORD *)v2 + 5) = v5;
                 *((_DWORD *)v2 + 4) = v19;
 LABEL_25:
-                (*(void (__thiscall **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))(
+                (*(void (**)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))(
                   v2,
                   *(_DWORD *)(*v4 + v6),
                   *(_DWORD *)(*v4 + v6 + 4),
@@ -246,13 +246,13 @@ void sub_4D51B0(_DWORD *a2)
   int v10; // eax
   int v11; // edi
   _BYTE *v12; // esi
-  int (__thiscall **v13)(int, int); // esi
+  int (**v13)(int, int); // esi
   unsigned int v14; // eax
   int v15; // ecx
   int v16; // eax
   int v17; // edi
   _BYTE *v18; // esi
-  int (__thiscall **v19)(int, int); // esi
+  int (**v19)(int, int); // esi
   unsigned int v20; // eax
 
   v2 = this + 3;
@@ -300,20 +300,20 @@ void sub_4D51B0(_DWORD *a2)
           if ( v10 >= v9 )
             goto LABEL_22;
         }
-        v13 = (int (__thiscall **)(int, int))(v11 + 72 * v10);
+        v13 = (int (**)(int, int))(v11 + 72 * v10);
         memset(v13, 0, 0x48u);
         *v13 = CEffect::SetParam;
         *((_BYTE *)v13 + 64) = 1;
         *((_BYTE *)v13 + 65) = 0;
         v13[1] = 0;
-        v13[2] = (int (__thiscall *)(int, int))2;
+        v13[2] = (int (*)(int, int))2;
         v14 = ++dword_17A8118;
         if ( !dword_17A8118 || v14 >= 0x7FFFFFFF )
         {
           v14 = 1;
           dword_17A8118 = 1;
         }
-        v13[3] = (int (__thiscall *)(int, int))v14;
+        v13[3] = (int (*)(int, int))v14;
         v13[5] = 0;
         v13[4] = 0;
         v13[6] = 0;
@@ -333,20 +333,20 @@ LABEL_22:
           if ( v16 >= v15 )
             goto LABEL_31;
         }
-        v19 = (int (__thiscall **)(int, int))(v17 + 72 * v16);
+        v19 = (int (**)(int, int))(v17 + 72 * v16);
         memset(v19, 0, 0x48u);
         *v19 = CEffect::SetParam;
         *((_BYTE *)v19 + 64) = 1;
         *((_BYTE *)v19 + 65) = 0;
         v19[1] = 0;
-        v19[2] = (int (__thiscall *)(int, int))2;
+        v19[2] = (int (*)(int, int))2;
         v20 = ++dword_17A8118;
         if ( !dword_17A8118 || v20 >= 0x7FFFFFFF )
         {
           v20 = 1;
           dword_17A8118 = 1;
         }
-        v19[3] = (int (__thiscall *)(int, int))v20;
+        v19[3] = (int (*)(int, int))v20;
         v19[5] = 0;
         v19[4] = 0;
         v19[6] = 0;

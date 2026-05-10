@@ -367,7 +367,7 @@ void RenderTarget2::Resolve()
     sub_4BDD90(Instance);
     v3 = g_pGfxManager;
     PushMatrixStacks();
-    (*(void (__thiscall **)(gbGfxManager *))(*(_DWORD *)v3 + 60))(v3);
+    (*(void (**)(gbGfxManager *))(*(_DWORD *)v3 + 60))(v3);
     v4 = CRenderTarget::GetInstance();
     v5 = sub_4BDEB0(v4);
     v6 = v5;

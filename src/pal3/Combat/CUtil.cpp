@@ -98,25 +98,25 @@ void sub_5231F0()
   v2 = *((_DWORD *)this + 434);
   if ( v2 )
   {
-    (*(void (__thiscall **)(int, int))(*(_DWORD *)v2 + 20))(v2, 1);
+    (*(void (**)(int, int))(*(_DWORD *)v2 + 20))(v2, 1);
     *((_DWORD *)this + 434) = 0;
   }
   v3 = *((_DWORD *)this + 435);
   if ( v3 )
   {
-    (*(void (__thiscall **)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
+    (*(void (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
     *((_DWORD *)this + 435) = 0;
   }
   v4 = *((_DWORD *)this + 436);
   if ( v4 )
   {
-    (*(void (__thiscall **)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);
+    (*(void (**)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);
     *((_DWORD *)this + 436) = 0;
   }
   v5 = *((_DWORD *)this + 437);
   if ( v5 )
   {
-    (*(void (__thiscall **)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
+    (*(void (**)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);
     *((_DWORD *)this + 437) = 0;
   }
   UIItem::UIItem((int)this + 368);

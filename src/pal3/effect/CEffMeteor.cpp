@@ -39,7 +39,7 @@ _DWORD *sub_4CB480()
 }
 
 // 0x004CB4C0
-void __fastcall sub_4CB4C0(int a1)
+void sub_4CB4C0(int a1)
 {
   int v2; // edi
   void *v3; // eax
@@ -318,7 +318,7 @@ LABEL_10:
       v15 = v14 + 1;
       do
       {
-        ArraySort(v32, 12, 4, (int (__thiscall *)(int))gbVec3D::`default constructor closure');
+        ArraySort(v32, 12, 4, (int (*)(int))gbVec3D::`default constructor closure');
         --v15;
         v32 += 68;
       }
@@ -494,7 +494,7 @@ LABEL_21:
                 *((_DWORD *)v4 + 5) = v6;
                 *((_DWORD *)v4 + 4) = v21;
 LABEL_24:
-                (*(void (__thiscall **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4 + 4))(
+                (*(void (**)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4 + 4))(
                   v4,
                   *(_DWORD *)(*(_DWORD *)v5 + v7),
                   *(_DWORD *)(*(_DWORD *)v5 + v7 + 4),

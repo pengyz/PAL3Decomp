@@ -60,7 +60,7 @@ int RenderTarget3::Begin()
         PARAM_HANDLE_SPECULAR,
         (void *)(*(_DWORD *)(v5 + 4 * i) + 16));
       v6 = *(_DWORD *)(*((_DWORD *)this + 4) + 4 * i);
-      (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)v6 + 4))(v6, *((_DWORD *)this + 1));
+      (*(void (**)(int, _DWORD))(*(_DWORD *)v6 + 4))(v6, *((_DWORD *)this + 1));
     }
     sub_4B67B0();
     for ( j = 0; ; ++j )

@@ -43,7 +43,7 @@ extern void *off_58B448;
 
 // 0x00430290
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-int __thiscall PalScript::LoadScript(PalScript *this, int pathAddr)
+int PalScript::LoadScript(PalScript *this, int pathAddr)
 {
   unsigned int v2; // kr04_4
   unsigned int v3; // ebp
@@ -142,7 +142,7 @@ int __thiscall PalScript::LoadScript(PalScript *this, int pathAddr)
 
 // 0x00430570
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char *__thiscall PalScript::SetAppName(PalScript *this, char *name)
+char *PalScript::SetAppName(PalScript *this, char *name)
 {
   char *v3; // esi
   unsigned int v4; // kr04_4
@@ -403,7 +403,7 @@ int sub_431F00()
 }
 
 // 0x00431F10
-int __fastcall sub_431F10(int a1)
+int sub_431F10(int a1)
 {
   byte_D8C2B8 = HIBYTE(a1);
   dword_D8C2BC = 0;
@@ -436,7 +436,7 @@ void sub_431F40()
 
 // 0x00431FA0
 // attributes: thunk
-int __thiscall PalScript::ClearAllWaitObj(PalScript *this)
+int PalScript::ClearAllWaitObj(PalScript *this)
 {
   return PalScriptMgr::_CON_ReLoadScript();
 }
@@ -530,12 +530,12 @@ struct gbVFileSystem * sub_43AA00(gbRefObject **this, const char *a2, char a3)
   {
     v5 = *(_DWORD *)g_pGfxManager;
     v6 = Buffer->_CalculateUV();
-    *((_DWORD *)this + 49) = (gbRefObject *)(*(int (__thiscall **)(int, int))(v5 + 8))(g_pGfxManager, v6);
+    *((_DWORD *)this + 49) = (gbRefObject *)(*(int (**)(int, int))(v5 + 8))(g_pGfxManager, v6);
     *((_DWORD *)this + 50) = (gbRefObject *)Buffer->Parent_Data();
   }
   else
   {
-    *((_DWORD *)this + 49) = (gbRefObject *)(*(int (__thiscall **)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
+    *((_DWORD *)this + 49) = (gbRefObject *)(*(int (**)(int, char *))(*(_DWORD *)g_pGfxManager + 8))(
                                     g_pGfxManager,
                                     Buffer);
   }

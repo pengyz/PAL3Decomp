@@ -67,7 +67,7 @@ char sub_4D1090(int _this, int a2)
       v7 = v5 + 1;
       do
       {
-        ArraySort(v6, 12, 4, (int (__thiscall *)(int))gbVec3D::`default constructor closure');
+        ArraySort(v6, 12, 4, (int (*)(int))gbVec3D::`default constructor closure');
         v6 += 68;
         --v7;
       }
@@ -279,7 +279,7 @@ _DWORD * sub_4D1F30(int _this, int a2)
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
   char ArgList; // [esp+408h] [ebp-400h] BYREF
 
-  v3 = (gbTexture *)(*(int (__thiscall **)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
+  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 4264) = v3;
   v3->LoadTexture(1);
   result = operator new(0x44u);
@@ -319,7 +319,7 @@ int sub_4D2080(_DWORD *a2)
   int v10; // eax
   int v11; // esi
   _BYTE *v12; // edi
-  int (__thiscall **v13)(int, int); // edx
+  int (**v13)(int, int); // edx
   unsigned int v14; // eax
   int v15; // edx
   int v16; // ecx
@@ -328,7 +328,7 @@ int sub_4D2080(_DWORD *a2)
   int v19; // eax
   int v20; // esi
   _BYTE *v21; // edi
-  int (__thiscall **v22)(int, int); // edx
+  int (**v22)(int, int); // edx
   unsigned int v23; // eax
   int v24; // edx
   int v25; // ecx
@@ -388,20 +388,20 @@ int sub_4D2080(_DWORD *a2)
           if ( v10 >= v9 )
             goto LABEL_22;
         }
-        v13 = (int (__thiscall **)(int, int))(v11 + 72 * v10);
+        v13 = (int (**)(int, int))(v11 + 72 * v10);
         memset(v13, 0, 0x48u);
         *((_BYTE *)v13 + 65) = 0;
         *v13 = CEffect::SetParam;
         *((_BYTE *)v13 + 64) = 1;
         v13[1] = 0;
-        v13[2] = (int (__thiscall *)(int, int))2;
+        v13[2] = (int (*)(int, int))2;
         v14 = ++dword_17A7BC0;
         if ( !dword_17A7BC0 || v14 >= 0x7FFFFFFF )
         {
           v14 = 1;
           dword_17A7BC0 = 1;
         }
-        v13[3] = (int (__thiscall *)(int, int))v14;
+        v13[3] = (int (*)(int, int))v14;
         v13[5] = 0;
         v13[4] = 0;
         v13[6] = 0;
@@ -425,20 +425,20 @@ LABEL_22:
           if ( v19 >= v18 )
             goto LABEL_31;
         }
-        v22 = (int (__thiscall **)(int, int))(v20 + 72 * v19);
+        v22 = (int (**)(int, int))(v20 + 72 * v19);
         memset(v22, 0, 0x48u);
         *((_BYTE *)v22 + 64) = 1;
         *v22 = CEffect::SetParam;
         *((_BYTE *)v22 + 65) = 0;
         v22[1] = 0;
-        v22[2] = (int (__thiscall *)(int, int))2;
+        v22[2] = (int (*)(int, int))2;
         v23 = ++dword_17A7BC0;
         if ( !dword_17A7BC0 || v23 >= 0x7FFFFFFF )
         {
           v23 = 1;
           dword_17A7BC0 = 1;
         }
-        v22[3] = (int (__thiscall *)(int, int))v23;
+        v22[3] = (int (*)(int, int))v23;
         v22[5] = 0;
         v22[4] = 0;
         v22[6] = 0;

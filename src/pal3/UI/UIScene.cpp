@@ -34,7 +34,7 @@ int UIScene::Render(int a2)
     if ( v4 )
     {
       v4->SetTimeScale(0.2);
-      (*(void (__thiscall **)(_DWORD, _DWORD))(**((_DWORD **)this + 123284) + 16))(*((_DWORD *)this + 123284), 0);
+      (*(void (**)(_DWORD, _DWORD))(**((_DWORD **)this + 123284) + 16))(*((_DWORD *)this + 123284), 0);
     }
     result = *((_DWORD *)this + 55);
     v5 = 0;
@@ -158,7 +158,7 @@ int UIScene::CombatCheck()
   if ( !*(_DWORD *)(UISceneUpdate() + 136) )
     return 0;
   v1 = UISceneUpdate();
-  (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(v1 + 136) + 16))(*(_DWORD *)(v1 + 136), 0);
+  (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)(v1 + 136) + 16))(*(_DWORD *)(v1 + 136), 0);
   return 1;
 }
 
@@ -210,7 +210,7 @@ void UIScene::LoadResource(char *path)
 
 // 0x0043A770
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void __thiscall sub_43A770(_DWORD *this)
+void sub_43A770(_DWORD *this)
 {
   UIWnd::UIWnd();
   UIWnd::DestroyChildren(this + 29);
@@ -226,7 +226,7 @@ void __thiscall sub_43A770(_DWORD *this)
 
 // 0x0043A810
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-void __thiscall sub_43A810(UIWnd *this)
+void sub_43A810(UIWnd *this)
 {
   *(_DWORD *)this->_data = &off_56AC70;
   UIScene::OnMessage2();
@@ -271,7 +271,7 @@ int sub_43AB20(int _this, int a2, int a3)
     {
       v6 = *(_DWORD *)(this + 32);
       if ( v6 )
-        (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(v6, 1021, *(_DWORD *)(this + 12), 1);
+        (*(void (**)(int, int, _DWORD, int))(*(_DWORD *)v6 + 24))(v6, 1021, *(_DWORD *)(this + 12), 1);
       if ( *(_BYTE *)(this + 340) )
       {
         v13 = pPos[0];
@@ -304,7 +304,7 @@ LABEL_27:
       v8 = *(_DWORD *)(this + 32);
       *(_BYTE *)(this + 204) = 1;
       if ( v8 )
-        (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v8 + 24))(v8, 1003, *(_DWORD *)(this + 12), 0);
+        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v8 + 24))(v8, 1003, *(_DWORD *)(this + 12), 0);
     }
     goto LABEL_30;
   }
@@ -314,7 +314,7 @@ LABEL_27:
     *(_DWORD *)(this + 96) = 2;
     if ( v7 )
     {
-      (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v7 + 24))(v7, 1020, *(_DWORD *)(this + 12), 0);
+      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v7 + 24))(v7, 1020, *(_DWORD *)(this + 12), 0);
       *(_BYTE *)(this + 204) = 0;
       goto LABEL_30;
     }
@@ -325,7 +325,7 @@ LABEL_27:
     *(_DWORD *)(this + 96) = 2;
     if ( v10 )
     {
-      (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v10 + 24))(v10, 1004, *(_DWORD *)(this + 12), 0);
+      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v10 + 24))(v10, 1004, *(_DWORD *)(this + 12), 0);
       *(_BYTE *)(this + 204) = 0;
       goto LABEL_30;
     }
@@ -334,7 +334,7 @@ LABEL_27:
   {
     v11 = *(_DWORD *)(this + 32);
     if ( v11 )
-      (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v11 + 24))(v11, 1002, *(_DWORD *)(this + 12), 0);
+      (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v11 + 24))(v11, 1002, *(_DWORD *)(this + 12), 0);
   }
   *(_BYTE *)(this + 204) = 0;
 LABEL_30:
@@ -345,7 +345,7 @@ LABEL_30:
       v9 = *(_DWORD *)(this + 32);
       *(_DWORD *)(this + 96) = 1;
       if ( v9 )
-        (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1001, *(_DWORD *)(this + 12), 0);
+        (*(void (**)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1001, *(_DWORD *)(this + 12), 0);
     }
     else
     {

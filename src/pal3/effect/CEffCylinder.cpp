@@ -78,7 +78,7 @@ extern int unk_5D50E4;
 extern int unk_FFFFFF;
 
 // 0x004C3DD0
-void __fastcall sub_4C3DD0(int a1)
+void sub_4C3DD0(int a1)
 {
   int v2; // edi
   void *v3; // eax
@@ -507,7 +507,7 @@ LABEL_21:
                 *(_DWORD *)(v4 + 20) = v6;
                 *(_DWORD *)(v4 + 16) = v26;
 LABEL_24:
-                (*(void (__thiscall **)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4 + 4))(
+                (*(void (**)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4 + 4))(
                   v4,
                   *(_DWORD *)(*(_DWORD *)v5 + v7),
                   *(_DWORD *)(*(_DWORD *)v5 + v7 + 4),
@@ -1116,7 +1116,7 @@ _DWORD * sub_4C52C0(int _this, int a2)
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
   char ArgList; // [esp+408h] [ebp-400h] BYREF
 
-  v3 = (gbTexture *)(*(int (__thiscall **)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
+  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);
   *(_DWORD *)(this + 52) = v3;
   v3->LoadTexture(1);
   result = operator new(0x44u);

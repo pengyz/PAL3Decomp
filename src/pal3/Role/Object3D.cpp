@@ -105,7 +105,7 @@ LABEL_5:
   this->m_pol = v8;
   (Actor *->LoadModel()v8);
   (Actor *->CompareAction()this->m_pol, a3, 0);
-  (*(void (__thiscall **)(_DWORD, _BYTE *, int))(**(_DWORD **)(this->m_pol->Children.m_numNode + 88) + 28))(
+  (*(void (**)(_DWORD, _BYTE *, int))(**(_DWORD **)(this->m_pol->Children.m_numNode + 88) + 28))(
     *(_DWORD *)(this->m_pol->Children.m_numNode + 88),
     v12,
     this->m_pol->Children.m_numNode);
@@ -122,7 +122,7 @@ LABEL_13:
 unsigned __int8 Object3D::LoadObject(const char *a2, int a3)
 {
   unsigned __int8 result; // al
-  void (__thiscall ***v5)(_DWORD, int); // ecx
+  void (***v5)(_DWORD, int); // ecx
   gbGeomNode *v6; // eax
   gbGeomNode *v7; // edi
   gbGeomNode *v8; // ecx
@@ -138,7 +138,7 @@ unsigned __int8 Object3D::LoadObject(const char *a2, int a3)
   this->m_isLoadObj[21] = 0;
   if ( result )
   {
-    v5 = *(void (__thiscall ****)(_DWORD, int))&this->m_isLoadObj[12];
+    v5 = *(void (****)(_DWORD, int))&this->m_isLoadObj[12];
     if ( v5 )
     {
       (**v5)(v5, 1);
@@ -205,12 +205,12 @@ LABEL_15:
 void sub_47CEE0()
 {
   void *v2; // edi
-  void (__thiscall ***v3)(_DWORD, int); // ecx
+  void (***v3)(_DWORD, int); // ecx
 
   if ( *((_DWORD *)this + 1) == 1 )
   {
 LABEL_7:
-    v3 = (void (__thiscall ***)(_DWORD, int))*((_DWORD *)this + 2);
+    v3 = (void (***)(_DWORD, int))*((_DWORD *)this + 2);
     if ( v3 )
     {
       (**v3)(v3, 1);
@@ -437,7 +437,7 @@ void sub_47D320()
 }
 
 // 0x0047D440
-void __userpurge sub_47D440(int a1@<ecx>, int a2, int a3, int a4, gbMatrixStack *a5)
+void sub_47D440(int a1@<ecx>, int a2, int a3, int a4, gbMatrixStack *a5)
 {
   struct gbCamera **v6; // eax
   gbSceneGraph *v7; // edi
@@ -504,7 +504,7 @@ void __userpurge sub_47D440(int a1@<ecx>, int a2, int a3, int a4, gbMatrixStack 
       break;
     case 3:
 LABEL_16:
-      (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(a1 + 8) + 16))(*(_DWORD *)(a1 + 8), 0);
+      (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)(a1 + 8) + 16))(*(_DWORD *)(a1 + 8), 0);
       break;
   }
   v8->Pop();
@@ -516,7 +516,7 @@ LABEL_16:
     v19 = *(float *)(a1 + 40);
     v8->Translate((struct gbVec3D *)&v17);
     if ( *(_DWORD *)(a1 + 16) == 1 || *(_DWORD *)(a1 + 16) == 3 )
-      (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(a1 + 12) + 16))(*(_DWORD *)(a1 + 12), 0);
+      (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)(a1 + 12) + 16))(*(_DWORD *)(a1 + 12), 0);
     v8->Pop();
   }
   v16->End();
@@ -554,7 +554,7 @@ void Object3D::CaculateRelative(int _this, float a2)
     {
       case 1:
 LABEL_10:
-        (*(void (__thiscall **)(_DWORD))(**(_DWORD **)(this + 8) + 20))(*(_DWORD *)(this + 8));
+        (*(void (**)(_DWORD))(**(_DWORD **)(this + 8) + 20))(*(_DWORD *)(this + 8));
         break;
       case 2:
         if ( sub_537060() )
@@ -569,11 +569,11 @@ LABEL_10:
   {
     if ( *(_DWORD *)(this + 16) == 1 )
     {
-      (*(void (__thiscall **)(_DWORD))(**(_DWORD **)(this + 12) + 20))(*(_DWORD *)(this + 12));
+      (*(void (**)(_DWORD))(**(_DWORD **)(this + 12) + 20))(*(_DWORD *)(this + 12));
     }
     else if ( *(_DWORD *)(this + 16) == 3 )
     {
-      (*(void (__thiscall **)(_DWORD))(**(_DWORD **)(this + 12) + 20))(*(_DWORD *)(this + 12));
+      (*(void (**)(_DWORD))(**(_DWORD **)(this + 12) + 20))(*(_DWORD *)(this + 12));
       while ( gbVisNode::PopMessage(*(gbVisNode **)(this + 12), (struct gbNodeMsgObj *)v25) )
       {
         if ( v25[0] == 1 )
@@ -581,7 +581,7 @@ LABEL_10:
           v3 = gbCrc32Compute(aOver);
           if ( v25[1] == v3 )
           {
-            (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(this + 12) + 24))(*(_DWORD *)(this + 12), 0);
+            (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)(this + 12) + 24))(*(_DWORD *)(this + 12), 0);
             gbVisNode::SetTimeScale(*(gbVisNode **)(this + 12), 1.0);
           }
         }
@@ -806,8 +806,8 @@ int Object3D::Create()
     (char *)this + 736,
     0x158u,
     5,
-    (void (__thiscall *)(void *))UIScene::_UIScene,
-    (void (__thiscall *)(void *))UIScene::Destroy2);
+    (void (*)(void *))UIScene::_UIScene,
+    (void (*)(void *))UIScene::Destroy2);
   UIItem::Refresh((int)this + 2456);
   *(_DWORD *)this->m_isLoadObj = &off_56B8A4;
   *(_DWORD *)&this->m_isLoadObj[72] = &off_56B898;
@@ -845,13 +845,13 @@ void Object3D::Init()
   *((_DWORD *)this + 94) = 468;
   *((_DWORD *)this + 95) = 430;
   (UINote *->Create()this + 2, -1430519792, (int)this + 368, (int)this, aUiFlexNote);
-  (**((void (__thiscall ***)(char *, _DWORD))this + 98))((char *)this + 392, 0);
+  (**((void (***)(char *, _DWORD))this + 98))((char *)this + 392, 0);
   v4 = *((_DWORD *)this + 93) + 10;
   v9[0] = *((_DWORD *)this + 92) + 10;
   v9[1] = v4;
   v9[2] = v9[0] + 136;
   v9[3] = v4 + 128;
-  (*(void (__thiscall **)(char *, int, _DWORD *, Object3D *))(*((_DWORD *)this + 146) + 16))(
+  (*(void (**)(char *, int, _DWORD *, Object3D *))(*((_DWORD *)this + 146) + 16))(
     (char *)this + 584,
     -1430519792,
     v9,
@@ -869,13 +869,13 @@ void Object3D::Init()
   }
   HIBYTE(v8) = -1;
   (_DWORD *->GetChild()this + 146, &v8);
-  (**((void (__thiscall ***)(char *, _DWORD))this + 146))((char *)this + 584, 0);
+  (**((void (***)(char *, _DWORD))this + 146))((char *)this + 584, 0);
   v5 = byte_DC733C;
   v6 = &unk_56B884;
   v7 = (gbRefObject **)((char *)this + 736);
   do
   {
-    ((void (__thiscall *)(gbRefObject **, _DWORD, _DWORD *, Object3D *, char *, _DWORD, int))(*v7)[7].RefCount)(
+    ((void (*)(gbRefObject **, _DWORD, _DWORD *, Object3D *, char *, _DWORD, int))(*v7)[7].RefCount)(
       v7,
       *v6,
       v9,
@@ -888,7 +888,7 @@ void Object3D::Init()
     v7[27] = (gbRefObject *)3;
     v7[26] = (gbRefObject *)1;
     v7[52] = (gbRefObject *)1;
-    ((void (__thiscall *)(gbRefObject **, _DWORD))(*v7)->RefCount)(v7, 0);
+    ((void (*)(gbRefObject **, _DWORD))(*v7)->RefCount)(v7, 0);
     ++v6;
     v5 += 256;
     v7 += 86;

@@ -25,7 +25,7 @@ void MiniGame1::Render()
   v3->Push();
   v4 = *((_DWORD *)this + 2);
   if ( v4 )
-    (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)v4 + 16))(v4, 0);
+    (*(void (**)(int, _DWORD))(*(_DWORD *)v4 + 16))(v4, 0);
   sub_52AFC0(*(int **)this, (int)v3);
   v3->Pop();
   pSceneGraph->End();

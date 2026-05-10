@@ -38,9 +38,9 @@ char sub_51B710(gbRefObject ***this, int *a2, int a3)
     a2[2] = 230;
     a2[1] = 0;
     a2[3] = 250;
-    ((void (__thiscall *)(gbRefObject **, int, int *, gbRefObject ***))(**v4)[4].RefCount)(*v4, 240, a2, this);
+    ((void (*)(gbRefObject **, int, int *, gbRefObject ***))(**v4)[4].RefCount)(*v4, 240, a2, this);
     UIWnd::CreateFromTemplate(*v4, aUiCombatContro_21, 0);
-    ((void (__thiscall *)(gbRefObject **, int))(**v4)->RefCount)(*v4, 1);
+    ((void (*)(gbRefObject **, int))(**v4)->RefCount)(*v4, 1);
   }
   v5 = this + 24;
   for ( i = 0; i < 5; ++i )
@@ -53,14 +53,14 @@ char sub_51B710(gbRefObject ***this, int *a2, int a3)
       a2[1] = v7;
       a2[2] = v8 + 40;
       a2[3] = v7 + 38;
-      ((void (__thiscall *)(gbRefObject **, int, int *, gbRefObject ***))(**v5)[4].RefCount)(
+      ((void (*)(gbRefObject **, int, int *, gbRefObject ***))(**v5)[4].RefCount)(
         *v5,
         dword_57014C[i],
         a2,
         this);
       UIWnd::CreateFromTemplate(*v5, off_570284[i], 0);
       sub_4425D0(*v5, off_570298[i], 0);
-      ((void (__thiscall *)(gbRefObject **, int))(**v5)->RefCount)(*v5, 1);
+      ((void (*)(gbRefObject **, int))(**v5)->RefCount)(*v5, 1);
     }
     ++v5;
   }
@@ -79,7 +79,7 @@ int sub_51B810(int _this)
   v3 = *(_DWORD *)(this + 92);
   if ( v3 )
   {
-    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
+    result = (*(int (**)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);
     *(_DWORD *)(this + 92) = 0;
   }
   v4 = (_DWORD *)(this + 96);
@@ -88,7 +88,7 @@ int sub_51B810(int _this)
   {
     if ( *v4 )
     {
-      result = (*(int (__thiscall **)(_DWORD, int))(*(_DWORD *)*v4 + 20))(*v4, 1);
+      result = (*(int (**)(_DWORD, int))(*(_DWORD *)*v4 + 20))(*v4, 1);
       *v4 = 0;
     }
     ++v4;
@@ -117,7 +117,7 @@ int sub_51B920()
 
   this->SetScroll();
   v2 = *(this + *((_DWORD *)this + 29) + 24);
-  return (*(int (__thiscall **)(int))(*(_DWORD *)v2 + 4))(v2);
+  return (*(int (**)(int))(*(_DWORD *)v2 + 4))(v2);
 }
 
 // 0x0051B950

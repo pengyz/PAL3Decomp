@@ -206,14 +206,14 @@ int sub_4322C0(int a2)
           v8 = 0;
         else
           v8 = *(_DWORD **)(*v7 + 4 * v6);
-        if ( (*(int (__thiscall **)(_DWORD *))(*v8 + 4))(v8) )
+        if ( (*(int (**)(_DWORD *))(*v8 + 4))(v8) )
         {
-          (*(void (__thiscall **)(_DWORD *, int))(*v8 + 8))(v8, a2);
+          (*(void (**)(_DWORD *, int))(*v8 + 8))(v8, a2);
         }
         else
         {
           if ( v8[1] && v8 )
-            (*(void (__thiscall **)(_DWORD *, int))*v8)(v8, 1);
+            (*(void (**)(_DWORD *, int))*v8)(v8, 1);
           if ( v6 >= 0 && v6 < v7[1] )
             *(_DWORD *)(*v7 + 4 * v6) = 0;
           v5 = 1;

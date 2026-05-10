@@ -55,7 +55,7 @@ _DWORD *sub_4C9610()
 }
 
 // 0x004C9650
-void __fastcall sub_4C9650(int a1)
+void sub_4C9650(int a1)
 {
   int v2; // edi
   void *v3; // eax
@@ -250,7 +250,7 @@ LABEL_10:
       v18 = v16 + 1;
       do
       {
-        ArraySort(v17, 12, 4, (int (__thiscall *)(int))gbVec3D::`default constructor closure');
+        ArraySort(v17, 12, 4, (int (*)(int))gbVec3D::`default constructor closure');
         v17 += 68;
         --v18;
       }

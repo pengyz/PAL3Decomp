@@ -59,7 +59,7 @@ char SceneMgr::RenderAll()
   {
     result = (char)v1[-4];
     if ( result )
-      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)v1 + 24))(*(_DWORD *)v1);
+      result = (*(int (**)(_DWORD))(**(_DWORD **)v1 + 24))(*(_DWORD *)v1);
     v1 += 20;
     --v2;
   }
@@ -80,7 +80,7 @@ char SceneMgr::RenderUpdate()
   {
     result = (char)v1[-4];
     if ( result )
-      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)v1 + 16))(*(_DWORD *)v1);
+      result = (*(int (**)(_DWORD))(**(_DWORD **)v1 + 16))(*(_DWORD *)v1);
     v1 += 20;
     --v2;
   }

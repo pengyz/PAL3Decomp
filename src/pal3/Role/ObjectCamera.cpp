@@ -84,7 +84,7 @@ float * sub_47C590()
 
 // 0x0047C630
 // attributes: thunk
-void __thiscall ObjectCamera::GetCameraDirect(void **this)
+void ObjectCamera::GetCameraDirect(void **this)
 {
   this->Destroy();
 }

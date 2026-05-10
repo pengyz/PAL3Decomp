@@ -52,7 +52,7 @@ void sub_541640(int _this)
 unsigned __int8 sub_541710(unsigned __int8 a2)
 {
   if ( !*((_BYTE *)UIQuadManager::GetInstance() + 29) )
-    return (*(int (__thiscall **)(int, _DWORD))(*(_DWORD *)g_pGfxManager + 104))(g_pGfxManager, a2);
+    return (*(int (**)(int, _DWORD))(*(_DWORD *)g_pGfxManager + 104))(g_pGfxManager, a2);
   *((_DWORD *)this + 28) = a2;
   return a2;
 }

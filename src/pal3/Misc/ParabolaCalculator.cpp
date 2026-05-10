@@ -55,16 +55,16 @@ int sub_523670(int _this)
       result = (int *->SetScroll()this);
       break;
     case 1:
-      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)(this + 1736) + 4))(*(_DWORD *)(this + 1736));
+      result = (*(int (**)(_DWORD))(**(_DWORD **)(this + 1736) + 4))(*(_DWORD *)(this + 1736));
       break;
     case 2:
-      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)(this + 1740) + 4))(*(_DWORD *)(this + 1740));
+      result = (*(int (**)(_DWORD))(**(_DWORD **)(this + 1740) + 4))(*(_DWORD *)(this + 1740));
       break;
     case 3:
-      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)(this + 1744) + 4))(*(_DWORD *)(this + 1744));
+      result = (*(int (**)(_DWORD))(**(_DWORD **)(this + 1744) + 4))(*(_DWORD *)(this + 1744));
       break;
     case 4:
-      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)(this + 1748) + 4))(*(_DWORD *)(this + 1748));
+      result = (*(int (**)(_DWORD))(**(_DWORD **)(this + 1748) + 4))(*(_DWORD *)(this + 1748));
       break;
     default:
       return result;
@@ -94,20 +94,20 @@ int sub_5236E0(int _this, int a2, int a3)
       result = 1;
       break;
     case 1:
-      (*(void (__thiscall **)(_DWORD, int, int))(**(_DWORD **)(this + 1736) + 8))(*(_DWORD *)(this + 1736), a2, a3);
+      (*(void (**)(_DWORD, int, int))(**(_DWORD **)(this + 1736) + 8))(*(_DWORD *)(this + 1736), a2, a3);
       result = 1;
       break;
     case 2:
       a2->RunSceneScript();
-      (*(void (__thiscall **)(_DWORD, int, int))(**(_DWORD **)(this + 1740) + 8))(*(_DWORD *)(this + 1740), a2, a3);
+      (*(void (**)(_DWORD, int, int))(**(_DWORD **)(this + 1740) + 8))(*(_DWORD *)(this + 1740), a2, a3);
       result = 1;
       break;
     case 3:
-      (*(void (__thiscall **)(_DWORD, int, int))(**(_DWORD **)(this + 1744) + 8))(*(_DWORD *)(this + 1744), a2, a3);
+      (*(void (**)(_DWORD, int, int))(**(_DWORD **)(this + 1744) + 8))(*(_DWORD *)(this + 1744), a2, a3);
       result = 1;
       break;
     case 4:
-      (*(void (__thiscall **)(_DWORD, int, int))(**(_DWORD **)(this + 1748) + 8))(*(_DWORD *)(this + 1748), a2, a3);
+      (*(void (**)(_DWORD, int, int))(**(_DWORD **)(this + 1748) + 8))(*(_DWORD *)(this + 1748), a2, a3);
       result = 1;
       break;
     case 5:

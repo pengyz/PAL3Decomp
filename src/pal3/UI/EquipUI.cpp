@@ -66,14 +66,14 @@ int EquipUI::Create()
     &this->UIFrameWnd[4856],
     0x248u,
     128,
-    (void (__thiscall *)(void *))sub_4B4690,
-    (void (__thiscall *)(void *))sub_4B47E0);
+    (void (*)(void *))sub_4B4690,
+    (void (*)(void *))sub_4B47E0);
   `eh vector constructor iterator'(
     &this->UIFrameWnd[79608],
     0x248u,
     128,
-    (void (__thiscall *)(void *))sub_4B4690,
-    (void (__thiscall *)(void *))sub_4B47E0);
+    (void (*)(void *))sub_4B4690,
+    (void (*)(void *))sub_4B47E0);
   (_BYTE *->UIFrameWnd()this + 154516);
   (_BYTE *->UIFrameWnd()this + 154668);
   (_BYTE *->UIFrameWnd()this + 154820);
@@ -82,21 +82,21 @@ int EquipUI::Create()
     (char *)this + 155140,
     0xECCu,
     5,
-    (void (__thiscall *)(void *))sub_4A2170,
-    (void (__thiscall *)(void *))sub_4A22E0);
+    (void (*)(void *))sub_4A2170,
+    (void (*)(void *))sub_4A22E0);
   `eh vector constructor iterator'(
     (char *)this + 174080,
     0x98u,
     4,
-    (void (__thiscall *)(void *))UIFrameWnd::UIFrameWnd,
-    (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);
+    (void (*)(void *))UIFrameWnd::UIFrameWnd,
+    (void (*)(void *))UIFrameWnd::_UIFrameWnd);
   (_BYTE *->UIFrameWnd()this + 174688);
   `eh vector constructor iterator'(
     (char *)this + 174856,
     0x98u,
     5,
-    (void (__thiscall *)(void *))UIFrameWnd::UIFrameWnd,
-    (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);
+    (void (*)(void *))UIFrameWnd::UIFrameWnd,
+    (void (*)(void *))UIFrameWnd::_UIFrameWnd);
   (_DWORD *->_UIScene()this + 43924);
   *((_DWORD *)this + 44014) = 0;
   *((_DWORD *)this + 44015) = 0;
@@ -195,7 +195,7 @@ void EquipUI::Init()
   v50 = v4;
   v51 = v49 + 192;
   v52 = v4 + 526;
-  (*(void (__thiscall **)(char *, int, int *, EquipUI *))(*(_DWORD *)&this->UIFrameWnd[376] + 16))(
+  (*(void (**)(char *, int, int *, EquipUI *))(*(_DWORD *)&this->UIFrameWnd[376] + 16))(
     &this->UIFrameWnd[376],
     161,
     &v49,
@@ -206,7 +206,7 @@ void EquipUI::Init()
   v49 = v51;
   v52 = v50 + 526;
   v51 += 17;
-  (*(void (__thiscall **)(char *, int, int *, EquipUI *))(v5 + 16))(&this->UIFrameWnd[528], 161, &v49, this);
+  (*(void (**)(char *, int, int *, EquipUI *))(v5 + 16))(&this->UIFrameWnd[528], 161, &v49, this);
   (gbRefObject **->CreateFromTemplate()&this->UIFrameWnd[528], aUiGamemainuiCo_23, byte_5CEFA8);
   v53[1] = 14;
   v53[0] = 626;
@@ -216,9 +216,9 @@ void EquipUI::Init()
   v7 = (gbRefObject **)((char *)this + 174080);
   do
   {
-    ((void (__thiscall *)(gbRefObject **, int, _DWORD *, EquipUI *))(*v7)[4].RefCount)(v7, 161, v53, this);
+    ((void (*)(gbRefObject **, int, _DWORD *, EquipUI *))(*v7)[4].RefCount)(v7, 161, v53, this);
     v7->CreateFromTemplate(v6, byte_5CEFA8);
-    ((void (__thiscall *)(gbRefObject **, _DWORD))(*v7)->RefCount)(v7, 0);
+    ((void (*)(gbRefObject **, _DWORD))(*v7)->RefCount)(v7, 0);
     v6 += 256;
     v7 += 38;
   }
@@ -228,14 +228,14 @@ void EquipUI::Init()
   v46 = v51 - 205 + 203;
   v45 = 0;
   v47 = 64;
-  (*(void (__thiscall **)(char *, int, int *, EquipUI *))(v8 + 16))(&this->UIFrameWnd[680], 161, &v44, this);
+  (*(void (**)(char *, int, int *, EquipUI *))(v8 + 16))(&this->UIFrameWnd[680], 161, &v44, this);
   (gbRefObject **->CreateFromTemplate()&this->UIFrameWnd[680], aUiGamemainuiCo_19, byte_5CEFA8);
   v9 = *(_DWORD *)&this->UIFrameWnd[4704];
   v45 = -4;
   v44 = 618;
   v46 = 738;
   v47 = 28;
-  (*(void (__thiscall **)(char *, int, int *, EquipUI *))(v9 + 16))(&this->UIFrameWnd[4704], 161, &v44, this);
+  (*(void (**)(char *, int, int *, EquipUI *))(v9 + 16))(&this->UIFrameWnd[4704], 161, &v44, this);
   &this->UIFrameWnd[4704]->SetShow(0);
   if ( gbColorQuad::ColorQuadFmt )
   {
@@ -255,7 +255,7 @@ void EquipUI::Init()
   v44 = 668;
   v46 = 748;
   v47 = 48;
-  (*(void (__thiscall **)(char *, int, int *, EquipUI *))(v10 + 16))(&this->UIFrameWnd[4552], 161, &v44, this);
+  (*(void (**)(char *, int, int *, EquipUI *))(v10 + 16))(&this->UIFrameWnd[4552], 161, &v44, this);
   &this->UIFrameWnd[4552]->SetShow(0);
   if ( gbColorQuad::ColorQuadFmt )
   {

@@ -189,10 +189,10 @@ _DWORD *sub_4C8930()
 }
 
 // 0x004C8970
-void __fastcall sub_4C8970(_DWORD *a1)
+void sub_4C8970(_DWORD *a1)
 {
   _DWORD *v2; // edi
-  void (__thiscall ***v3)(_DWORD, int); // ecx
+  void (***v3)(_DWORD, int); // ecx
   int v4; // ebx
   _DWORD *v5; // esi
   int v6; // eax
@@ -202,7 +202,7 @@ void __fastcall sub_4C8970(_DWORD *a1)
   v2 = a1 + 3;
   *a1 = &off_56F8CC;
   a1[3] = &off_56F8C0;
-  v3 = (void (__thiscall ***)(_DWORD, int))a1[12];
+  v3 = (void (***)(_DWORD, int))a1[12];
   v4 = 0;
   if ( v3 )
   {
@@ -407,7 +407,7 @@ LABEL_25:
             *((_DWORD *)v4 + 5) = v8;
             *((_DWORD *)v4 + 4) = v21;
 LABEL_26:
-            (*(void (__thiscall **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4 + 4))(
+            (*(void (**)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4 + 4))(
               v4,
               *(_DWORD *)(*v7 + v9),
               *(_DWORD *)(*v7 + v9 + 4),

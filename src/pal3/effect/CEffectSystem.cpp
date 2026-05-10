@@ -47,7 +47,7 @@ _DWORD * sub_4C61A0(int a2)
   char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF
   char ArgList; // [esp+408h] [ebp-400h] BYREF
 
-  v3 = (gbTexture *)(*(int (__thiscall **)(_DWORD, int))(**(_DWORD **)dword_DE9384 + 8))(*(_DWORD *)dword_DE9384, a2);
+  v3 = (gbTexture *)(*(int (**)(_DWORD, int))(**(_DWORD **)dword_DE9384 + 8))(*(_DWORD *)dword_DE9384, a2);
   *((_DWORD *)this + 61448) = v3;
   v3->LoadTexture(1);
   result = operator new(0x44u);
@@ -93,7 +93,7 @@ _DWORD * sub_4C6260(_DWORD *Block, char a2)
 
 // 0x004C6280
 // attributes: thunk
-int __thiscall CEffectSystem::Init(_DWORD *this)
+int CEffectSystem::Init(_DWORD *this)
 {
   return sub_4C5D70(this);
 }
@@ -216,9 +216,9 @@ char sub_4C6460(int _this)
     v7 = 0;
     v8 = 0;
     v9 = 0;
-    if ( !(*(int (__thiscall **)(int, _DWORD *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, v6, 1) )
+    if ( !(*(int (**)(int, _DWORD *, int))(*(_DWORD *)g_pGfxManager + 84))(g_pGfxManager, v6, 1) )
       return 0;
-    (*(void (__thiscall **)(int))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
+    (*(void (**)(int))(*(_DWORD *)g_pGfxManager + 88))(g_pGfxManager);
     v3 = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)(g_pGfxManager + 200), aGfxscriptTrail, 0);
     *(_DWORD *)(this + 828) = v3;
     if ( !v3 )
@@ -232,8 +232,8 @@ char sub_4C6460(int _this)
     v5 = this + 60;
     do
     {
-      if ( !(*(int (__thiscall **)(int, int, int, int))(*(_DWORD *)v5 + 12))(v5, 256, 256, v7)
-        || !(*(int (__thiscall **)(int, int))(*(_DWORD *)g_pGfxManager + 92))(g_pGfxManager, v5) )
+      if ( !(*(int (**)(int, int, int, int))(*(_DWORD *)v5 + 12))(v5, 256, 256, v7)
+        || !(*(int (**)(int, int))(*(_DWORD *)g_pGfxManager + 92))(g_pGfxManager, v5) )
       {
         return 0;
       }
@@ -286,7 +286,7 @@ void sub_4C65F0(int _this, int a2)
       *(_DWORD *)(this + 8) = a2;
     v3 = *(_DWORD *)(this + 52) & 7;
     *(_DWORD *)(this + 56) = v3;
-    (*(void (__thiscall **)(int, int))(*(_DWORD *)g_pGfxManager + 92))(g_pGfxManager, 96 * v3 + this + 60);
+    (*(void (**)(int, int))(*(_DWORD *)g_pGfxManager + 92))(g_pGfxManager, 96 * v3 + this + 60);
     (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)(g_pGfxManager + 1816) + 172))(
       *(_DWORD *)(g_pGfxManager + 1816),
       0,

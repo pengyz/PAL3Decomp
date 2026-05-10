@@ -206,7 +206,7 @@ unsigned int sub_4FB9F0(int _this)
 
 // 0x004FBA70
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char __thiscall sub_4FBA70(_DWORD *this)
+char sub_4FBA70(_DWORD *this)
 {
   int v2; // edi
   int v3; // eax
@@ -368,14 +368,14 @@ char __thiscall sub_4FBA70(_DWORD *this)
 
 // 0x004FBE50
 // likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
-char __thiscall sub_4FBE50(int _this)
+char sub_4FBE50(int _this)
 {
   int v2; // ebp
   void *v3; // edi
   void **i; // edi
   void *v5; // ebx
   std::codecvt_base *v6; // ecx
-  void (__thiscall ***v7)(_DWORD, int); // ecx
+  void (***v7)(_DWORD, int); // ecx
   void *v8; // edi
   std::codecvt_base *v9; // ecx
   void *v10; // edi
@@ -409,7 +409,7 @@ char __thiscall sub_4FBE50(int _this)
         if ( v6 )
         {
           std::v6->do_always_noconv();
-          v7 = *(void (__thiscall ****)(_DWORD, int))(this + 12);
+          v7 = *(void (****)(_DWORD, int))(this + 12);
           if ( v7 )
             (**v7)(v7, 1);
           *(_DWORD *)(this + 12) = 0;
@@ -716,7 +716,7 @@ int CCBStage::EditorUpdate()
   v9 = *(gbMatrixStack **)&g_pGfxManager[216];
   (CameraCtrl *->SetAsCurrent()this->m_pCam, 3);
   v9->Push();
-  (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)(*(_DWORD *)this->m_TempStorageWPX + 16) + 16))(
+  (*(void (**)(int, _DWORD))(*(_DWORD *)(*(_DWORD *)this->m_TempStorageWPX + 16) + 16))(
     *(_DWORD *)this->m_TempStorageWPX + 16,
     0);
   if ( !HIBYTE(this->m_pShadow[3]) )
@@ -753,7 +753,7 @@ int CCBStage::EditorUpdate()
         v9->Translate(v27, v28, v29);
         v22 = v25 * 0.2 + 1.0;
         v9->Scale(1.0, v22, 1.0);
-        ((void (__thiscall *)(gbGeomNode *, _DWORD))this->m_pScene->m_pPointer->next[4].next)(
+        ((void (*)(gbGeomNode *, _DWORD))this->m_pScene->m_pPointer->next[4].next)(
           this->m_pScene->m_pPointer,
           0);
         v9->Pop();
@@ -776,10 +776,10 @@ int CCBStage::EditorUpdate()
     v16 = 0;
   pSceneGraph->Begin(v16);
   LOBYTE(pSceneGraph->?[9].m[0]) = 0;
-  (*(void (__thiscall **)(int, _DWORD))(*(_DWORD *)(*(_DWORD *)this->m_TempStorageWPX + 16) + 16))(
+  (*(void (**)(int, _DWORD))(*(_DWORD *)(*(_DWORD *)this->m_TempStorageWPX + 16) + 16))(
     *(_DWORD *)this->m_TempStorageWPX + 16,
     0);
-  ((void (__thiscall *)(gbVisNode *, _DWORD))this->m_pScene->m_pLights->next[4].next)(this->m_pScene->m_pLights, 0);
+  ((void (*)(gbVisNode *, _DWORD))this->m_pScene->m_pLights->next[4].next)(this->m_pScene->m_pLights, 0);
   (SceneMgr *->RenderAll()this->m_pCBSystem->m_pEffMgr);
   (SceneMgr *->RenderAll()this->m_pCBSystem->m_pATSEffMgr);
   C3DSpark::Render((int)this->m_pCBSystem->m_p3DSpark->m_Spark, (struct gbVec3D *)gbSceneGraph::End);
@@ -823,7 +823,7 @@ LABEL_31:
 
 // 0x004FC6F0
 // attributes: thunk
-void __thiscall CCBStage::Render(_DWORD *this)
+void CCBStage::Render(_DWORD *this)
 {
   this->GetTask();
 }
@@ -977,7 +977,7 @@ void CCBStage::GetTask()
   int v6; // eax
   int v7; // ecx
   int v8; // eax
-  int (__thiscall *v9)(_DWORD *, int); // ecx
+  int (*v9)(_DWORD *, int); // ecx
   char *v10; // [esp+10h] [ebp-4h]
 
   v2 = 0;
@@ -1006,7 +1006,7 @@ LABEL_25:
 LABEL_26:
                 *(_DWORD *)&this->m_pUtil[160] = v2;
                 *(_DWORD *)&this->m_pUtil[164] = v4;
-                (*((void (__thiscall **)(char *, _DWORD))v5 + 16))(&this->m_pUtil[*((_DWORD *)v5 + 17)], 0);
+                (*((void (**)(char *, _DWORD))v5 + 16))(&this->m_pUtil[*((_DWORD *)v5 + 17)], 0);
               }
             }
             else if ( *(_DWORD *)v5 == 4 )
@@ -1027,7 +1027,7 @@ LABEL_26:
             v7 = *(_DWORD *)&v10[v6 - 2656];
             v8 = (int)&v10[v6 - 2628];
             *((_DWORD *)v10 - 12) = v7;
-            v9 = *(int (__thiscall **)(_DWORD *, int))(v8 - 64);
+            v9 = *(int (**)(_DWORD *, int))(v8 - 64);
             if ( v9 == CCBStage::ProcFiveLienupFadeOut
               && (!v9 || !*(_DWORD *)(v8 - 60) && !*(_DWORD *)(v8 - 56) && !*(_DWORD *)(v8 - 52)) )
             {
@@ -1114,7 +1114,7 @@ LABEL_18:
   v6 = i - 2612;
   while ( 1 )
   {
-    if ( *(int (__thiscall **)(_DWORD *, int))v6 == CCBStage::HandleKeyCtrl
+    if ( *(int (**)(_DWORD *, int))v6 == CCBStage::HandleKeyCtrl
       && (!*(_DWORD *)v6 || !*((_DWORD *)v6 + 1) && !*((_DWORD *)v6 + 2) && !*((_DWORD *)v6 + 3)) )
     {
       if ( *((_DWORD *)v6 + 4) == 4 )
@@ -1160,7 +1160,7 @@ int sub_4FCD00(int a2)
 }
 
 // 0x004FCD50
-_BYTE *__userpurge sub_4FCD50@<eax>(_BYTE *result@<eax>, int a2@<ecx>, int a3)
+_BYTE * sub_4FCD50@<eax>(_BYTE *result@<eax>, int a2@<ecx>, int a3)
 {
   int v3; // edx
   int v4; // esi
@@ -1439,7 +1439,7 @@ int sub_4FD290(int a2)
   int v5; // edi
   int v7; // ebp
   char *v8; // eax
-  void (__thiscall ***v9)(_DWORD, int); // ecx
+  void (***v9)(_DWORD, int); // ecx
   char *v10; // eax
   int v11; // ecx
 
@@ -1459,13 +1459,13 @@ int sub_4FD290(int a2)
     {
       v8 = PalScript::SetAppName(&MEMORY[0x8ACD30], aWesneakattacke);
       UIWnd::SetEnable(*(_DWORD **)(v7 + 1072), v8, 1);
-      v9 = *(void (__thiscall ****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1072);
+      v9 = *(void (****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1072);
     }
     else
     {
       v10 = PalScript::SetAppName(&MEMORY[0x8ACD30], aEnemysneakatta);
       UIWnd::SetEnable(*(_DWORD **)(v7 + 1076), v10, 1);
-      v9 = *(void (__thiscall ****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1076);
+      v9 = *(void (****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1076);
     }
     (**v9)(v9, 1);
     *(_BYTE *)(v5 + 41) = 1;
@@ -1477,11 +1477,11 @@ int sub_4FD290(int a2)
     v11 = *(_DWORD *)(*this + 4);
     if ( *(_BYTE *)(*((_DWORD *)this + 1) + 536) )
     {
-      (***(void (__thiscall ****)(_DWORD, _DWORD))(v11 + 1072))(*(_DWORD *)(v11 + 1072), 0);
+      (***(void (****)(_DWORD, _DWORD))(v11 + 1072))(*(_DWORD *)(v11 + 1072), 0);
       *(_DWORD *)(v5 + 16) = 4;
       return 0;
     }
-    (***(void (__thiscall ****)(_DWORD, _DWORD))(v11 + 1076))(*(_DWORD *)(v11 + 1076), 0);
+    (***(void (****)(_DWORD, _DWORD))(v11 + 1076))(*(_DWORD *)(v11 + 1076), 0);
     *(_DWORD *)(v5 + 16) = 4;
   }
   return 0;
@@ -1716,8 +1716,8 @@ int sub_4FD880(int a2)
   int v5; // ebp
   const char *v7; // eax
   int v8; // eax
-  void (__thiscall ***v9)(_DWORD, int); // ecx
-  void (__thiscall ***v10)(_DWORD, _DWORD); // ecx
+  void (***v9)(_DWORD, int); // ecx
+  void (***v10)(_DWORD, _DWORD); // ecx
   int v11; // [esp-4h] [ebp-10h]
 
   v3 = 2632 * *((_DWORD *)this + 40);
@@ -1752,9 +1752,9 @@ int sub_4FD880(int a2)
       }
     }
     if ( *(_DWORD *)((char *)this + v3 + 2760) > 4u )
-      v9 = *(void (__thiscall ****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1076);
+      v9 = *(void (****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1076);
     else
-      v9 = *(void (__thiscall ****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1072);
+      v9 = *(void (****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1072);
     (**v9)(v9, 1);
     *(_BYTE *)(v5 + 41) = 1;
   }
@@ -1763,9 +1763,9 @@ int sub_4FD880(int a2)
     || *((_BYTE *)CEffectSystem::DestroyAllEffect() + 5) )
   {
     if ( *(_DWORD *)((char *)this + v3 + 2760) > 4u )
-      v10 = *(void (__thiscall ****)(_DWORD, _DWORD))(*(_DWORD *)(*this + 4) + 1076);
+      v10 = *(void (****)(_DWORD, _DWORD))(*(_DWORD *)(*this + 4) + 1076);
     else
-      v10 = *(void (__thiscall ****)(_DWORD, _DWORD))(*(_DWORD *)(*this + 4) + 1072);
+      v10 = *(void (****)(_DWORD, _DWORD))(*(_DWORD *)(*this + 4) + 1072);
     (**v10)(v10, 0);
     *(_DWORD *)(v5 + 16) = 4;
   }
@@ -1779,8 +1779,8 @@ int sub_4FDA10(int a2)
   int v4; // eax
   int v5; // ebp
   int v6; // eax
-  void (__thiscall ***v7)(_DWORD, int); // ecx
-  void (__thiscall ***v8)(_DWORD, _DWORD); // ecx
+  void (***v7)(_DWORD, int); // ecx
+  void (***v8)(_DWORD, _DWORD); // ecx
 
   v3 = 2632 * *((_DWORD *)this + 40);
   v4 = v3 + 80 * *((_DWORD *)this + 41);
@@ -1791,12 +1791,12 @@ int sub_4FDA10(int a2)
     if ( *(_DWORD *)((char *)this + v3 + 2760) > 4u )
     {
       UIWnd::SetEnable(*(_DWORD **)(*(_DWORD *)(*this + 4) + 1076), (const char *)(v6 + 4), 1);
-      v7 = *(void (__thiscall ****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1076);
+      v7 = *(void (****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1076);
     }
     else
     {
       UIWnd::SetEnable(*(_DWORD **)(*(_DWORD *)(*this + 4) + 1072), (const char *)(v6 + 4), 1);
-      v7 = *(void (__thiscall ****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1072);
+      v7 = *(void (****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1072);
     }
     (**v7)(v7, 1);
     *(_BYTE *)(v5 + 41) = 1;
@@ -1804,9 +1804,9 @@ int sub_4FDA10(int a2)
   if ( *(_BYTE *)(v5 + 43) == 1 || *(float *)(*this + 80) - *(float *)(v5 + 24) > *(float *)(v5 + 32) )
   {
     if ( *(_DWORD *)((char *)this + v3 + 2760) > 4u )
-      v8 = *(void (__thiscall ****)(_DWORD, _DWORD))(*(_DWORD *)(*this + 4) + 1076);
+      v8 = *(void (****)(_DWORD, _DWORD))(*(_DWORD *)(*this + 4) + 1076);
     else
-      v8 = *(void (__thiscall ****)(_DWORD, _DWORD))(*(_DWORD *)(*this + 4) + 1072);
+      v8 = *(void (****)(_DWORD, _DWORD))(*(_DWORD *)(*this + 4) + 1072);
     (**v8)(v8, 0);
     *(_DWORD *)(v5 + 16) = 4;
   }
@@ -2150,7 +2150,7 @@ int sub_4FE290(const char **this, int a2)
   *(_WORD *)((char *)&v24 + 1) = 13055;
   LOBYTE(v24) = -1;
   v22 = ((double)SLODWORD(v12) + (double)SLODWORD(v12)) / v10 - 1.0;
-  (***(void (__thiscall ****)(_DWORD, int))(*(_DWORD *)(HIDWORD(v11) + 4) + 1080))(
+  (***(void (****)(_DWORD, int))(*(_DWORD *)(HIDWORD(v11) + 4) + 1080))(
     *(_DWORD *)(*(_DWORD *)(HIDWORD(v11) + 4) + 1080),
     1);
   UIWnd::SetEnable(*(_DWORD **)(*((_DWORD *)*this + 1) + 1080), *((_DWORD *)this + 1), 0);
@@ -2162,7 +2162,7 @@ int sub_4FE290(const char **this, int a2)
   UIWnd::SetShow(*(_DWORD **)(*((_DWORD *)*this + 1) + 1080), 0);
   if ( *(_BYTE *)(v6 + 43) == 1 || *((float *)*this + 20) - *(float *)(v6 + 24) > *(float *)(v6 + 32) )
   {
-    (***(void (__thiscall ****)(_DWORD, _DWORD))(*((_DWORD *)*this + 1) + 1080))(
+    (***(void (****)(_DWORD, _DWORD))(*((_DWORD *)*this + 1) + 1080))(
       *(_DWORD *)(*((_DWORD *)*this + 1) + 1080),
       0);
     *(_DWORD *)(v6 + 16) = 4;

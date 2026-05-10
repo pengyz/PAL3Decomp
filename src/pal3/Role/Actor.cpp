@@ -48,13 +48,13 @@ int Actor::SetParam(int a2)
     *(float *)&this->m_actarray[168],
     *(float *)&this->m_actarray[172],
     *(float *)&this->m_actarray[176]);
-  result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)this->m_actarray + 20))(*(_DWORD *)this->m_actarray);
+  result = (*(int (**)(_DWORD))(**(_DWORD **)this->m_actarray + 20))(*(_DWORD *)this->m_actarray);
   v5 = *(_DWORD *)&this->m_actarray[4];
   if ( v5 )
-    result = (*(int (__thiscall **)(int))(*(_DWORD *)v5 + 20))(v5);
+    result = (*(int (**)(int))(*(_DWORD *)v5 + 20))(v5);
   v6 = *(_DWORD *)&this->m_actarray[8];
   if ( v6 )
-    return (*(int (__thiscall **)(int))(*(_DWORD *)v6 + 20))(v6);
+    return (*(int (**)(int))(*(_DWORD *)v6 + 20))(v6);
   return result;
 }
 
@@ -123,8 +123,8 @@ void Actor::SetAction(int actionId)
       *(_DWORD *)&this->m_actarray[348] = v4;
       if ( v4 <= 0 )
       {
-        (**((void (__thiscall ***)(char *, _DWORD))this + 774))((char *)this + 3096, 0);
-        (**((void (__thiscall ***)(char *, _DWORD))this + 835))((char *)this + 3340, 0);
+        (**((void (***)(char *, _DWORD))this + 774))((char *)this + 3096, 0);
+        (**((void (***)(char *, _DWORD))this + 835))((char *)this + 3340, 0);
         sprintf(&this->m_actarray[72], "       %s\\n       %s", byte_DD893C, byte_DD8B3C);
         (_DWORD *->SetEnable()this + 204, &this->m_actarray[72], 0);
         sub_4A1530((int)&this->m_actarray[360], 1);
@@ -143,7 +143,7 @@ void Actor::SetAction(int actionId)
 int Actor::InitComponents()
 {
   int v2; // eax
-  void (__thiscall **v3)(char *, bool); // edx
+  void (**v3)(char *, bool); // edx
   float v5; // [esp+0h] [ebp-Ch]
   float v6; // [esp+0h] [ebp-Ch]
 
@@ -158,10 +158,10 @@ int Actor::InitComponents()
   v6 = (float)*(int *)&this->m_actarray[348];
   UIWnd::FindChildByName((int)this + 3096, v6);
   v2 = *(_DWORD *)&this->m_actarray[348];
-  v3 = (void (__thiscall **)(char *, bool))*((_DWORD *)this + 774);
+  v3 = (void (**)(char *, bool))*((_DWORD *)this + 774);
   this->m_actarray[356] = v2 <= 0;
   (*v3)((char *)this + 3096, v2 > 0);
-  return (**((int (__thiscall ***)(char *, bool))this + 835))(
+  return (**((int (***)(char *, bool))this + 835))(
            (char *)this + 3340,
            *(_DWORD *)&this->m_actarray[348] > 0);
 }
@@ -215,7 +215,7 @@ char Actor::ProcessFrame()
   v18 = 350;
   v20 = 440;
   v21 = 322;
-  (*(void (__thiscall **)(char *, int, int *, Actor *))(v3 + 16))((char *)this + 3096, -5570049, &v18, this);
+  (*(void (**)(char *, int, int *, Actor *))(v3 + 16))((char *)this + 3096, -5570049, &v18, this);
   (gbRefObject **->GetChildCount()this + 774, aPal3Timenotefi_96_0, *((_BYTE *)this + 3492));
   (gbRefObject **->GetChildAt()this + 774, off_60154C, *((_BYTE *)this + 3492));
   sub_43FD90((float *)this + 774, 2);
@@ -237,7 +237,7 @@ char Actor::ProcessFrame()
   *((_DWORD *)this + 832) = 1101004800;
   *((_DWORD *)this + 829) = 255;
   v22[3] = v5 - 26 + 32;
-  (*(void (__thiscall **)(char *, int, _DWORD *, Actor *))(*((_DWORD *)this + 835) + 16))(
+  (*(void (**)(char *, int, _DWORD *, Actor *))(*((_DWORD *)this + 835) + 16))(
     (char *)this + 3340,
     -5570049,
     v22,
@@ -394,7 +394,7 @@ void Actor::SetDefaultDist2()
 }
 
 // 0x00536A80
-int __fastcall Actor::FastInit(int a1)
+int Actor::FastInit(int a1)
 {
   *(_BYTE *)a1 = HIBYTE(a1);
   *(_DWORD *)(a1 + 4) = 0;
@@ -468,7 +468,7 @@ int Actor::LoadAction(char *name)
     OpenBaseFile::OpenBaseFile(&name);
     v15 = *(_DWORD *)&this->m_actarray[16];
     v18 = 0;
-    (*(void (__thiscall **)(_DWORD, char *))(**(_DWORD **)(v15 + 88) + 60))(*(_DWORD *)(v15 + 88), v14);
+    (*(void (**)(_DWORD, char *))(**(_DWORD **)(v15 + 88) + 60))(*(_DWORD *)(v15 + 88), v14);
     v18 = -1;
     (struct gbVFileSystem **->OpenNULLFile()&name);
   }
@@ -603,13 +603,13 @@ LABEL_21:
 // 0x00536FB0
 int Actor::QueryState()
 {
-  return (*(int (__thiscall **)(_DWORD))(**(_DWORD **)&this->m_actarray[16] + 20))(*(_DWORD *)&this->m_actarray[16]);
+  return (*(int (**)(_DWORD))(**(_DWORD **)&this->m_actarray[16] + 20))(*(_DWORD *)&this->m_actarray[16]);
 }
 
 // 0x00536FC0
 int Actor::DispatchAction(int actionId)
 {
-  return (*(int (__thiscall **)(_DWORD, int))(**(_DWORD **)&this->m_actarray[16] + 16))(
+  return (*(int (**)(_DWORD, int))(**(_DWORD **)&this->m_actarray[16] + 16))(
            *(_DWORD *)&this->m_actarray[16],
            actionId);
 }
@@ -617,7 +617,7 @@ int Actor::DispatchAction(int actionId)
 // 0x00536FD0
 int Actor::PlayAction(int actionId)
 {
-  return (*(int (__thiscall **)(_DWORD, int, _DWORD))(**(_DWORD **)(*(_DWORD *)&this->m_actarray[16] + 88) + 28))(
+  return (*(int (**)(_DWORD, int, _DWORD))(**(_DWORD **)(*(_DWORD *)&this->m_actarray[16] + 88) + 28))(
            *(_DWORD *)(*(_DWORD *)&this->m_actarray[16] + 88),
            actionId,
            *(_DWORD *)&this->m_actarray[16]);
@@ -681,7 +681,7 @@ void Actor::SetVisible(int bVisible)
       OpenBaseFile::OpenBaseFile(&bVisible);
       v7 = *(_DWORD *)&this->m_actarray[16];
       v10 = 0;
-      (*(void (__thiscall **)(_DWORD, char *))(**(_DWORD **)(v7 + 88) + 60))(*(_DWORD *)(v7 + 88), v6);
+      (*(void (**)(_DWORD, char *))(**(_DWORD **)(v7 + 88) + 60))(*(_DWORD *)(v7 + 88), v6);
       v10 = -1;
       (struct gbVFileSystem **->OpenNULLFile()&bVisible);
     }

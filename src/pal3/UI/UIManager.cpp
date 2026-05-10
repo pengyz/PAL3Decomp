@@ -140,7 +140,7 @@ void * UIManager::LoadShadowTexture()
 
   OpenBaseFile::OpenBaseFile(&v4);
   v5 = 0;
-  v2 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxManager + 8))(
+  v2 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxManager + 8))(
                       g_pGfxManager,
                       aShadowTga);
   *((_DWORD *)this + 1) = v2;
