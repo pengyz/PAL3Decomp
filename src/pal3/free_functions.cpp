@@ -300,11 +300,14 @@ extern int nullsub_3;
 extern int nullsub_96;
 extern void *off_56A6D0;
 extern void *off_56AA90;
+extern void *off_56AC90;
+extern void *off_56AE2C;
 extern void *off_56AE84;
 extern void *off_56AEA4;
 extern void *off_56B094;
 extern void *off_56F018;
 extern void *off_56F02C;
+extern void *off_56F37C;
 extern void *off_592DA4;
 extern void *off_6088D8;
 extern void *off_60AC20;
@@ -4305,6 +4308,21 @@ int __thiscall SetFloatParam(void *_this, float value)
   return LODWORD(value);
 }
 
+// 0x0043A090
+// between_std_methods (0x430790-0x445B40)
+void __thiscall UIWnd_sub_43A090(int _this, int a2, float a3)
+{
+  double v3; // st7
+  double v4; // st6
+
+  v3 = a3 + *(float *)(_this + 248);
+  *(_DWORD *)(_this + 236) = a2;
+  *(float *)(_this + 252) = v3;
+  v4 = v3 * 0.0027777778 * 360.0;
+  if ( v3 > v4 )
+    *(float *)(_this + 252) = 360.0 - (v3 - v4) + v3;
+}
+
 // 0x0043A0F0
 // Microsoft VisualC 2-14/net runtime
 // Microsoft VisualC 2-14/net runtime
@@ -4333,6 +4351,48 @@ int unknown_libname_354()
   if ( (g_bInitFlags & 1) == 0 )
     g_bInitFlags |= 1u;
   return atexit(nullsub_1);
+}
+
+// 0x0043B3E0
+// between_std_methods (0x430790-0x445B40)
+void __thiscall UIWnd_sub_43B3E0(UIScene *_this)
+{
+  int v2; // [esp+4h] [ebp-4h]
+
+  UIScene::_UIScene(_this);
+  *((_DWORD *)_this + 89) = 32;
+  *((_DWORD *)_this + 86) = 0;
+  *((_DWORD *)_this + 87) = 0;
+  *((_DWORD *)_this + 88) = 0;
+  *((_DWORD *)_this + 90) = 1;
+  if ( gbColorQuad::ColorQuadFmt )
+  {
+    LOBYTE(v2) = 0x80;
+    *(_WORD *)((char *)&v2 + 1) = 17476;
+  }
+  else
+  {
+    *(_WORD *)((char *)&v2 + 1) = -32700;
+    LOBYTE(v2) = 68;
+  }
+  HIBYTE(v2) = -1;
+  *((_DWORD *)_this + 91) = v2;
+  *((_DWORD *)_this + 92) = -16777216;
+  *((_DWORD *)_this + 93) = -16119286;
+  *(_DWORD *)_this = &off_56AC90;
+}
+
+// 0x0043B4D0
+// between_std_methods (0x430790-0x445B40)
+void __thiscall UIWnd_sub_43B4D0(UIWnd *_this)
+{
+  _this->_vftable = (void **)&off_56AC90;
+  if ( *((_DWORD *)_this + 86) )
+  {
+    operator delete(*((void **)_this + 86));
+    *((_DWORD *)_this + 86) = 0;
+  }
+  UIScene::Destroy2((UIScene *)_this);
 }
 
 // 0x0043BB00
@@ -4480,6 +4540,43 @@ int unknown_libname_365()
   return atexit(nullsub_1);
 }
 
+// 0x00443190
+// between_std_methods (0x430790-0x445B40)
+UIWnd *__thiscall UIWnd_sub_443190(UIWnd *_this)
+{
+  UIWnd::ctor_2E10(_this);
+  _this->_vftable = (void **)&off_56AE2C;
+  return _this;
+}
+
+// 0x004431D0
+// between_std_methods (0x430790-0x445B40)
+void __thiscall UIWnd_sub_4431D0(UIWnd *_this)
+{
+  _this->_vftable = (void **)&off_56AE2C;
+  UIWnd::ctor_2E80(_this);
+}
+
+// 0x00444A20
+// between_std_methods (0x430790-0x445B40)
+void __thiscall UIWnd_sub_444A20(UIFrameWnd *_this)
+{
+  int v2; // eax
+
+  UIFrameWnd::UIFrameWnd(_this);
+  *((_DWORD *)_this + 42) = 1065353216;
+  *((_BYTE *)_this + 172) = 0;
+  *((_BYTE *)_this + 173) = 0;
+  *((_BYTE *)_this + 174) = 0;
+  *((_DWORD *)_this + 44) = 0;
+  _this->_base._vftable = (void **)&off_56AE84;
+  *((_DWORD *)_this + 41) = 6;
+  *((_DWORD *)_this + 38) = -1;
+  v2 = *((unsigned __int8 *)_this + 155);
+  *((_DWORD *)_this + 40) = v2;
+  *((_DWORD *)_this + 39) = v2;
+}
+
 // 0x00444AC0
 // between_std_methods (0x430790-0x445B40)
 void __thiscall UIFrameWnd_Destructor_444AC0(UIWnd *_this)
@@ -4592,6 +4689,13 @@ int unknown_libname_369()
   return atexit(nullsub_1);
 }
 
+// 0x004461F0
+// between_std_methods (0x445B40-0x44BDA0)
+void __thiscall UIWnd_sub_4461F0(char *_this)
+{
+  UIWnd_sub_43B4D0((UIWnd *)(_this + 96));
+}
+
 // 0x00449990
 // between_std_methods (0x445B40-0x44BDA0)
 // attributes: thunk
@@ -4618,6 +4722,22 @@ int unknown_libname_371()
   if ( (g_bInitFlags & 1) == 0 )
     g_bInitFlags |= 1u;
   return atexit(nullsub_1);
+}
+
+// 0x0044B850
+// between_std_methods (0x445B40-0x44BDA0)
+int __thiscall UIWnd_sub_44B850(int _this)
+{
+  ctor_0x431870((_DWORD *)_this);
+  *(_WORD *)(_this + 780) = 0;
+  *(_BYTE *)(_this + 782) = 0;
+  *(_DWORD *)(_this + 1040) = 0;
+  *(_BYTE *)(_this + 1044) = 0;
+  *(_BYTE *)(_this + 1300) = 0;
+  *(_BYTE *)(_this + 1556) = 0;
+  *(_BYTE *)(_this + 1812) = 0;
+  *(_BYTE *)(_this + 524) = 0;
+  return _this;
 }
 
 // 0x0044B890
@@ -4656,6 +4776,99 @@ void __thiscall SafeDelete_44BD80(void **_this)
   {
     operator delete(*_this);
     *_this = 0;
+  }
+}
+
+// 0x0044BE60
+// between_std_methods (0x44BDA0-0x4A7690)
+void __thiscall UIWnd_sub_44BE60(UIFrameWnd *_this)
+{
+  UIFrameWnd::UIFrameWnd(_this);
+}
+
+// 0x0044C970
+// between_std_methods (0x44BDA0-0x4A7690)
+void __thiscall UIWnd_sub_44C970(_DWORD *_this, int a2)
+{
+  int v3; // ecx
+  int v4; // ecx
+  int v5; // ecx
+  int v6; // ecx
+  int v7; // ecx
+  int v8; // ecx
+  int v9; // ecx
+  int v10; // ecx
+  int v11; // ecx
+  int v12; // ecx
+  int v13; // ecx
+
+  switch ( a2 )
+  {
+    case 0:
+      if ( _this )
+        (*(void (__thiscall **)(_DWORD *, int, int, _DWORD))(*_this + 24))(_this, 1000, 1, 0);
+      v3 = *(_this + 3464);
+      if ( v3 )
+        (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v3 + 24))(1000, 0, 0);
+      goto LABEL_6;
+    case 1:
+      if ( _this )
+        (*(void (__thiscall **)(_DWORD *, int, _DWORD, _DWORD))(*_this + 24))(_this, 1000, 0, 0);
+      v5 = *(_this + 3464);
+      if ( v5 )
+        (*(void (__stdcall **)(int, int, _DWORD))(*(_DWORD *)v5 + 24))(1000, 1, 0);
+LABEL_6:
+      v4 = *(_this + 3465);
+      if ( v4 )
+        (*(void (__stdcall **)(int, _DWORD, _DWORD))(*(_DWORD *)v4 + 24))(1000, 0, 0);
+      goto LABEL_18;
+    case 3:
+      if ( _this )
+        (*(void (__thiscall **)(_DWORD *, int, _DWORD, _DWORD))(*_this + 24))(_this, 1000, 0, 0);
+      v6 = *(_this + 3464);
+      if ( v6 )
+        (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v6 + 24))(v6, 1000, 0, 0);
+      v7 = *(_this + 3465);
+      if ( v7 )
+        (*(void (__stdcall **)(int, int, _DWORD))(*(_DWORD *)v7 + 24))(1000, 1, 0);
+LABEL_18:
+      v8 = *(_this + 3466);
+      if ( v8 )
+        goto LABEL_35;
+      goto LABEL_36;
+    case 4:
+      if ( _this )
+        (*(void (__thiscall **)(_DWORD *, int, _DWORD, _DWORD))(*_this + 24))(_this, 1000, 0, 0);
+      v9 = *(_this + 3464);
+      if ( v9 )
+        (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1000, 0, 0);
+      v10 = *(_this + 3465);
+      if ( v10 )
+        (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v10 + 24))(v10, 1000, 0, 0);
+      v11 = *(_this + 3466);
+      if ( !v11 )
+        goto LABEL_36;
+      (*(void (__thiscall **)(int, int, int, _DWORD))(*(_DWORD *)v11 + 24))(v11, 1000, 1, 0);
+      *(_this + 3467) = a2;
+      break;
+    case 5:
+      if ( _this )
+        (*(void (__thiscall **)(_DWORD *, int, _DWORD, _DWORD))(*_this + 24))(_this, 1000, 0, 0);
+      v12 = *(_this + 3464);
+      if ( v12 )
+        (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v12 + 24))(v12, 1000, 0, 0);
+      v13 = *(_this + 3465);
+      if ( v13 )
+        (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v13 + 24))(v13, 1000, 0, 0);
+      v8 = *(_this + 3466);
+      if ( v8 )
+LABEL_35:
+        (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v8 + 24))(v8, 1000, 0, 0);
+LABEL_36:
+      *(_this + 3467) = a2;
+      break;
+    default:
+      return;
   }
 }
 
@@ -5008,6 +5221,27 @@ int unknown_libname_386()
   return atexit(nullsub_1);
 }
 
+// 0x004543C0
+// between_std_methods (0x44BDA0-0x4A7690)
+int __thiscall UIWnd_sub_4543C0(int _this, unsigned __int8 a2)
+{
+  void (__thiscall ***v3)(_DWORD, _DWORD); // edi
+  int v4; // ebp
+
+  (**(void (__thiscall ***)(int, _DWORD))(_this + 360))(_this + 360, a2);
+  (**(void (__thiscall ***)(int, _DWORD))(_this + 512))(_this + 512, a2);
+  v3 = (void (__thiscall ***)(_DWORD, _DWORD))(_this + 664);
+  v4 = 3;
+  do
+  {
+    (**v3)(v3, a2);
+    v3 += 94;
+    --v4;
+  }
+  while ( v4 );
+  return (**(int (__thiscall ***)(int, _DWORD))(_this + 1792))(_this + 1792, a2);
+}
+
 // 0x004547C0
 // Microsoft VisualC 2-14/net runtime
 // Microsoft VisualC 2-14/net runtime
@@ -5016,6 +5250,22 @@ int unknown_libname_387()
   if ( (g_bInitFlags & 1) == 0 )
     g_bInitFlags |= 1u;
   return atexit(nullsub_1);
+}
+
+// 0x00454AA0
+// between_std_methods (0x44BDA0-0x4A7690)
+void __thiscall UIWnd_sub_454AA0(char *_this)
+{
+  UIFrameWnd::_UIFrameWnd((UIFrameWnd *)(_this + 3408));
+  UIFrameWnd::_UIFrameWnd((UIFrameWnd *)(_this + 3256));
+  `eh vector destructor iterator'(_this + 2496, 0x98u, 5, (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);
+  UIFrameWnd::_UIFrameWnd((UIFrameWnd *)(_this + 2344));
+  UIFrameWnd::_UIFrameWnd((UIFrameWnd *)(_this + 2192));
+  `eh vector destructor iterator'(_this + 1424, 0x98u, 5, (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);
+  `eh vector destructor iterator'(_this + 664, 0x98u, 5, (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);
+  UIFrameWnd::_UIFrameWnd((UIFrameWnd *)(_this + 512));
+  UIFrameWnd::_UIFrameWnd((UIFrameWnd *)_this + 5);
+  UIScene::Destroy2((UIScene *)(_this + 16));
 }
 
 // 0x00456A40
@@ -5056,6 +5306,17 @@ int unknown_libname_391()
   if ( (g_bInitFlags & 1) == 0 )
     g_bInitFlags |= 1u;
   return atexit(nullsub_1);
+}
+
+// 0x0045ADD0
+// between_std_methods (0x44BDA0-0x4A7690)
+void __thiscall UIWnd_sub_45ADD0(_BYTE *_this)
+{
+  *(_this + 48) = 0;
+  *((_DWORD *)_this + 11) = 0;
+  *((_DWORD *)_this + 10) = 0;
+  *((_DWORD *)_this + 9) = 0;
+  *(_DWORD *)_this = 80;
 }
 
 // 0x0046D0D0
@@ -5748,6 +6009,18 @@ int unknown_libname_417()
   if ( (g_bInitFlags & 1) == 0 )
     g_bInitFlags |= 1u;
   return atexit(nullsub_1);
+}
+
+// 0x004B6FB0
+// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)
+void __thiscall UIWnd_sub_4B6FB0(int _this)
+{
+  *(_DWORD *)_this = &off_56F37C;
+  *(_DWORD *)_this = gbVisNode::`vftable';
+  operator delete(*(void **)(_this + 28));
+  *(_DWORD *)_this = gbNBTreeNode::`vftable';
+  gbChain1D::~gbChain1D((gbChain1D *)(_this + 12));
+  gbChain1DNode::~gbChain1DNode((gbChain1DNode *)_this);
 }
 
 // 0x004B7050
@@ -9802,7 +10075,7 @@ enum _EXCEPTION_DISPOSITION __usercall TranslatorGuardHandler@<eax>(
       *((EXCEPTION_POINTERS **)TargetFrame + 2),
       *((_DWORD *)TargetFrame + 4),
       *((struct EHRegistrationNode **)TargetFrame + 5),
-      1u);
+      1);
     if ( !*((_DWORD *)TargetFrame + 9) )
       _UnwindNestedFrames(a1, TargetFrame, (PEXCEPTION_RECORD)ExceptionRecord);
     return (*((enum _EXCEPTION_DISPOSITION (**)(void))TargetFrame + 6))();
@@ -9962,12 +10235,12 @@ __int64 __usercall _ftol@<edx:eax>(double a1@<st0>)
 }
 
 // 0x005535C9
-void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *))
+void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (*a4)(void))
 {
   while ( --a3 >= 0 )
   {
     a1 -= a2;
-    ((void (*)(void))a4)();
+    a4();
   }
 }
 
@@ -11179,9 +11452,16 @@ LABEL_10:
 }
 
 // 0x00554700
-long double __usercall _CIpow@<st0>(double x@<st0>, unsigned __int64 y@<st1>)
+long double __usercall _CIpow@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)
 {
-  return sub_554722(HIDWORD(y), x, *(long double *)&y, SLODWORD(x), HIDWORD(*(unsigned __int64 *)&x), y, HIDWORD(y));
+  return sub_554722(
+           HIDWORD(*(unsigned __int64 *)&y),
+           *(double *)&x,
+           y,
+           x,
+           HIDWORD(x),
+           SLODWORD(y),
+           HIDWORD(*(unsigned __int64 *)&y));
 }
 
 // 0x00554719
@@ -14110,7 +14390,7 @@ int __cdecl __InternalCxxFrameHandler(
         EXCEPTION_POINTERS *a5,
         int a6,
         struct EHRegistrationNode *TargetFrame,
-        char a8)
+        unsigned __int8 a8)
 {
   int (__cdecl *pForwardCompat)(); // ecx
   struct _EXCEPTION_POINTERS *v10; // [esp+0h] [ebp-8h]
@@ -14139,7 +14419,7 @@ int __cdecl __InternalCxxFrameHandler(
                  a5,
                  a6,
                  TargetFrame,
-                 (unsigned __int8)a8);
+                 a8);
     }
     FindHandler(ExceptionRecord, a2, a3, a4, a5, a8, a6, TargetFrame);
   }
@@ -16061,9 +16341,9 @@ int __initmbctable()
 }
 
 // 0x005592F0
-double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
+long double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
 {
-  double result; // st7
+  long double result; // st7
   long double v6; // st6
   long double v7; // st7
   long double v8; // st7
@@ -17376,7 +17656,7 @@ LABEL_256:
 }
 
 // 0x0055A28B
-int __cdecl _hextodec(int C)
+unsigned int __cdecl _hextodec(int C)
 {
   int v1; // esi
   int v2; // eax

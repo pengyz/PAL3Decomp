@@ -35,45 +35,32 @@ int sub_432680(...);
 int sub_4391A0(...);
 int sub_439230(...);
 int sub_439810(...);
-int sub_43A090(...);
-int sub_43B3E0(...);
-int sub_43B4D0(...);
 int sub_43BE80(...);
 int sub_43F650(...);
 int sub_43F9C0(...);
 int sub_440CE0(...);
 int sub_4414D0(...);
-int sub_443190(...);
-int sub_4431D0(...);
 int sub_4434C0(...);
 int sub_4438F0(...);
-int sub_444A20(...);
 int sub_445BF0(...);
 int sub_445E10(...);
 int sub_4461B0(...);
-int sub_4461F0(...);
 int sub_44A3D0(...);
 int sub_44A7F0(...);
-int sub_44B850(...);
-int sub_44BE60(...);
 int sub_44C910(...);
-int sub_44C970(...);
 int sub_44DB50(...);
 int sub_44E5E0(...);
 int sub_450390(...);
 int sub_450AD0(...);
 int sub_450EB0(...);
 int sub_451900(...);
-int sub_4543C0(...);
 int sub_454420(...);
 int sub_4544F0(...);
 int sub_4549A0(...);
-int sub_454AA0(...);
 int sub_456E20(...);
 int sub_456EE0(...);
 int sub_459360(...);
 int sub_45A220(...);
-int sub_45ADD0(...);
 int sub_472AA0(...);
 int sub_473520(...);
 int sub_473B50(...);
@@ -99,7 +86,6 @@ int sub_4A22E0(...);
 int sub_4A6600(...);
 int sub_4A6730(...);
 int sub_4A67B0(...);
-int sub_4B6FB0(...);
 int sub_4B7AF0(...);
 int sub_4B7F00(...);
 int sub_4BC7B0(...);
@@ -1182,7 +1168,7 @@ _DWORD * UIWnd::ctor_60D0()
     0x1DCu,
     38,
     (void (*)(void *))sub_4461B0,
-    (void (*)(void *))sub_4461F0);
+    (void (*)(void *))UIWnd_sub_4461F0);
   ((UIWnd *)((char *)this + 18616))->ctor_A160();
   *((_DWORD *)this + 4709) = 38;
   ((UIItem *)(UIItem *)this + 18840)->Refresh();
@@ -1205,7 +1191,7 @@ void UIWnd::ctor_6200()
   ((UIItem *)(UIItem *)this + 20208)->UIItem();
   ((UIItem *)(UIItem *)this + 18840)->UIItem();
   ((UIWnd *)((char *)this + 18616))->ctor_A1F0();
-  `eh vector destructor iterator'((char *)this + 512, 0x1DCu, 38, (void (*)(void *))sub_4461F0);
+  `eh vector destructor iterator'((char *)this + 512, 0x1DCu, 38, (void (*)(void *))UIWnd_sub_4461F0);
   ((UIWnd *)((char *)this + 360))->~UIWnd();
   this->~UIWnd();
 }
@@ -1296,7 +1282,7 @@ int UIWnd::ctor_AB90()
   ((UIItem *)(UIItem *)this + 3308)->Refresh();
   ((UIItem *)(UIItem *)this + 4676)->Refresh();
   ((UIItem *)(UIItem *)this + 6044)->Refresh();
-  sub_44B850((int)this + 7420);
+  UIWnd_sub_44B850((int)this + 7420);
   this->_vftable = (void **)&off_56AFD4;
   *((_DWORD *)this + 29) = 90;
   *((_DWORD *)this + 30) = 24;
@@ -1332,26 +1318,26 @@ int UIWnd::ctor_BA60()
     (char *)this + 512,
     0xD0u,
     22,
-    (void (*)(void *))sub_44BE60,
+    (void (*)(void *))UIWnd_sub_44BE60,
     (void (*)(void *))j_UIFrameWnd::_UIFrameWnd);
   `eh vector constructor iterator'(
     (char *)this + 5088,
     0xD0u,
     16,
-    (void (*)(void *))sub_44BE60,
+    (void (*)(void *))UIWnd_sub_44BE60,
     (void (*)(void *))j_UIFrameWnd::_UIFrameWnd);
   `eh vector constructor iterator'(
     (char *)this + 8416,
     0xD0u,
     10,
-    (void (*)(void *))sub_44BE60,
+    (void (*)(void *))UIWnd_sub_44BE60,
     (void (*)(void *))j_UIFrameWnd::_UIFrameWnd);
   ((UIFrameWnd *)((char *)this + 10496))->UIFrameWnd();
   ((UIFrameWnd *)((char *)this + 10648))->UIFrameWnd();
   ((UIFrameWnd *)(UIFrameWnd *)this + 150)->UIFrameWnd();
   ((UIFrameWnd *)((char *)this + 10952))->UIFrameWnd();
-  sub_443190((UIWnd *)((char *)this + 11116));
-  sub_443190((UIWnd *)((char *)this + 11308));
+  UIWnd_sub_443190((UIWnd *)((char *)this + 11116));
+  UIWnd_sub_443190((UIWnd *)((char *)this + 11308));
   ((UIScene *)((char *)this + 11500))->_UIScene();
   `eh vector constructor iterator'(
     (char *)this + 11844,
@@ -1461,8 +1447,8 @@ void UIWnd::ctor_BE80()
   *((_DWORD *)this + 2875) = &off_56B018;
   `eh vector destructor iterator'((char *)this + 11844, 0x10u, 3, (void (*)(void *))SafeDelete_44BD80);
   ((UIScene *)((char *)this + 11500))->Destroy2();
-  sub_4431D0((UIWnd *)((char *)this + 11308));
-  sub_4431D0((UIWnd *)((char *)this + 11116));
+  UIWnd_sub_4431D0((UIWnd *)((char *)this + 11308));
+  UIWnd_sub_4431D0((UIWnd *)((char *)this + 11116));
   ((UIFrameWnd *)((char *)this + 10952))->_UIFrameWnd();
   ((UIFrameWnd *)(UIFrameWnd *)this + 150)->_UIFrameWnd();
   ((UIFrameWnd *)((char *)this + 10648))->_UIFrameWnd();
@@ -1686,8 +1672,8 @@ int UIWnd::ctor_3D10()
     (char *)this + 664,
     0x178u,
     3,
-    (void (*)(void *))sub_43B3E0,
-    (void (*)(void *))sub_43B4D0);
+    (void (*)(void *))UIWnd_sub_43B3E0,
+    (void (*)(void *))UIWnd_sub_43B4D0);
   ((UIScene *)((char *)this + 1792))->_UIScene();
   ((UIFrameWnd *)((char *)this + 2136))->UIFrameWnd();
   ((UIFrameWnd *)((char *)this + 2288))->UIFrameWnd();
@@ -1721,7 +1707,7 @@ void UIWnd::ctor_3E70()
   ((UIFrameWnd *)((char *)this + 2288))->_UIFrameWnd();
   ((UIFrameWnd *)((char *)this + 2136))->_UIFrameWnd();
   ((UIScene *)((char *)this + 1792))->Destroy2();
-  `eh vector destructor iterator'((char *)this + 664, 0x178u, 3, (void (*)(void *))sub_43B4D0);
+  `eh vector destructor iterator'((char *)this + 664, 0x178u, 3, (void (*)(void *))UIWnd_sub_43B4D0);
   ((UIFrameWnd *)((char *)this + 512))->_UIFrameWnd();
   ((UIFrameWnd *)(UIFrameWnd *)this + 5)->_UIFrameWnd();
   this->~UIWnd();
@@ -1764,7 +1750,7 @@ int UIWnd::ctor_4590(int a2, int a3, int a4)
           Instance = (char *)CScreenMode::GetInstance();
           ((CScreenMode *)Instance)->AudioSetPosition(v15, 1);
           sub_454420((int)this, 1u);
-          sub_4543C0((int)this, 0);
+          UIWnd_sub_4543C0((int)this, 0);
           return 1;
         }
         ++v7;
@@ -1774,7 +1760,7 @@ int UIWnd::ctor_4590(int a2, int a3, int a4)
       switch ( a3 )
       {
         case 193:
-          sub_44C970(*((_DWORD **)this + 1328), 0);
+          UIWnd_sub_44C970(*((_DWORD **)this + 1328), 0);
           break;
         case -1431699013:
           v9 = *((_DWORD *)this + 1328);
@@ -1788,7 +1774,7 @@ LABEL_16:
           return 1;
         case -1431698501:
           sub_454420((int)this, 0);
-          sub_4543C0((int)this, 1u);
+          UIWnd_sub_4543C0((int)this, 1u);
           break;
         default:
           return 1;
@@ -1850,7 +1836,7 @@ int UIWnd::ctor_4830()
     0xDE8u,
     36,
     (void (*)(void *))sub_4549A0,
-    (void (*)(void *))sub_454AA0);
+    (void (*)(void *))UIWnd_sub_454AA0);
   ((UIFrameWnd *)((char *)this + 129052))->UIFrameWnd();
   ((UIFrameWnd *)((char *)this + 129204))->UIFrameWnd();
   ((UIScene *)((char *)this + 129356))->_UIScene();
@@ -1885,7 +1871,7 @@ void UIWnd::ctor_4BA0()
   ((UIScene *)((char *)this + 129356))->Destroy2();
   ((UIFrameWnd *)((char *)this + 129204))->_UIFrameWnd();
   ((UIFrameWnd *)((char *)this + 129052))->_UIFrameWnd();
-  `eh vector destructor iterator'((char *)this + 892, 0xDE8u, 36, (void (*)(void *))sub_454AA0);
+  `eh vector destructor iterator'((char *)this + 892, 0xDE8u, 36, (void (*)(void *))UIWnd_sub_454AA0);
   ((UIScene *)((char *)this + 512))->Destroy2();
   ((UIFrameWnd *)(UIFrameWnd *)this + 5)->_UIFrameWnd();
   this->~UIWnd();
@@ -1900,8 +1886,8 @@ int UIWnd::ctor_6AB0()
     (char *)this + 512,
     0x178u,
     52,
-    (void (*)(void *))sub_43B3E0,
-    (void (*)(void *))sub_43B4D0);
+    (void (*)(void *))UIWnd_sub_43B3E0,
+    (void (*)(void *))UIWnd_sub_43B4D0);
   ((UIScene *)((char *)this + 20064))->_UIScene();
   ((UIFrameWnd *)((char *)this + 20408))->UIFrameWnd();
   *((_DWORD *)this + 5141) = 0;
@@ -1919,7 +1905,7 @@ void UIWnd::ctor_6B80()
   this->_vftable = (void **)&off_56B364;
   ((UIFrameWnd *)((char *)this + 20408))->_UIFrameWnd();
   ((UIScene *)((char *)this + 20064))->Destroy2();
-  `eh vector destructor iterator'((char *)this + 512, 0x178u, 52, (void (*)(void *))sub_43B4D0);
+  `eh vector destructor iterator'((char *)this + 512, 0x178u, 52, (void (*)(void *))UIWnd_sub_43B4D0);
   ((UIFrameWnd *)(UIFrameWnd *)this + 5)->_UIFrameWnd();
   this->~UIWnd();
 }
@@ -1972,7 +1958,7 @@ int UIWnd::ctor_7070(int a2, int a3, int a4)
       v13 = off_5B0DA4;
       Instance = (char *)CScreenMode::GetInstance();
       ((CScreenMode *)Instance)->AudioSetPosition(v13, 1);
-      sub_44C970(*((_DWORD **)this + 5141), 0);
+      UIWnd_sub_44C970(*((_DWORD **)this + 5141), 0);
       result = 1;
       break;
     case 1002:
@@ -2153,13 +2139,13 @@ int UIWnd::ctor_A7B0()
     (char *)this + 71000,
     0x34u,
     240,
-    (void (*)(void *))sub_45ADD0,
+    (void (*)(void *))UIWnd_sub_45ADD0,
     (void (*)(void *))nullsub_1);
   `eh vector constructor iterator'(
     (char *)this + 83480,
     0xB4u,
     30,
-    (void (*)(void *))sub_444A20,
+    (void (*)(void *))UIWnd_sub_444A20,
     (void (*)(void *))UIFrameWnd_Destructor_444AC0);
   `eh vector constructor iterator'(
     (char *)this + 88880,
@@ -2549,7 +2535,7 @@ int UIWnd::ctor_A60()
     (char *)this + 107268,
     0xB4u,
     25,
-    (void (*)(void *))sub_444A20,
+    (void (*)(void *))UIWnd_sub_444A20,
     (void (*)(void *))UIFrameWnd_Destructor_444AC0);
   ((UIWnd *)((char *)this + 111768))->ctor_D830();
   ((UIFrameWnd *)((char *)this + 111852))->UIFrameWnd();
@@ -3386,7 +3372,7 @@ int UIWnd::ctor_BBF0()
   ((UIScene *)((char *)this + 888))->_UIScene();
   ((UIScene *)((char *)this + 1232))->_UIScene();
   ((UIScene *)((char *)this + 1576))->_UIScene();
-  sub_44B850((int)this + 1920);
+  UIWnd_sub_44B850((int)this + 1920);
   this->_vftable = (void **)&off_56B850;
   *((_DWORD *)this + 22) = 88;
   *((_DWORD *)this + 23) = 138;
@@ -3803,7 +3789,7 @@ int UIWnd::ctor_67F0()
     (char *)this + 209896,
     0x34u,
     5,
-    (void (*)(void *))sub_45ADD0,
+    (void (*)(void *))UIWnd_sub_45ADD0,
     (void (*)(void *))nullsub_1);
   ((UIWnd *)((char *)this + 210236))->ctor_D830();
   ((UIFrameWnd *)((char *)this + 210320))->UIFrameWnd();
@@ -4228,7 +4214,7 @@ int UIWnd::ctor_8820()
     (char *)this + 194400,
     0x34u,
     5,
-    (void (*)(void *))sub_45ADD0,
+    (void (*)(void *))UIWnd_sub_45ADD0,
     (void (*)(void *))nullsub_1);
   ((UIScene *)((char *)this + 194756))->_UIScene();
   ((UIScene *)((char *)this + 195100))->_UIScene();
@@ -4748,7 +4734,7 @@ int UIWnd::ctor_1D0()
     0xDE8u,
     36,
     (void (*)(void *))sub_4549A0,
-    (void (*)(void *))sub_454AA0);
+    (void (*)(void *))UIWnd_sub_454AA0);
   ((UIScene *)((char *)this + 284520))->_UIScene();
   ((UIScene *)((char *)this + 284864))->_UIScene();
   ((UIWnd *)((char *)this + 285224))->ctor_BCE0();
@@ -4788,7 +4774,7 @@ void UIWnd::ctor_540()
   ((UIWnd *)((char *)this + 285224))->~UIWnd();
   ((UIScene *)((char *)this + 284864))->Destroy2();
   ((UIScene *)((char *)this + 284520))->Destroy2();
-  `eh vector destructor iterator'((char *)this + 156360, 0xDE8u, 36, (void (*)(void *))sub_454AA0);
+  `eh vector destructor iterator'((char *)this + 156360, 0xDE8u, 36, (void (*)(void *))UIWnd_sub_454AA0);
   ((UIScene *)((char *)this + 155980))->Destroy2();
   ((UIScene *)((char *)this + 155636))->Destroy2();
   ((UIScene *)((char *)this + 155292))->Destroy2();
@@ -4832,7 +4818,7 @@ UIWnd::~UIWnd()
 {
   this->_vftable = (void **)&off_56F404;
   sub_4B7AF0((gbRefObject **)this);
-  sub_4B6FB0((int)this);
+  UIWnd_sub_4B6FB0((int)this);
 }
 
 // 0x004B7CE0
@@ -4840,7 +4826,7 @@ UIWnd::~UIWnd()
 {
   this->_vftable = (void **)&off_56F450;
   sub_4B7F00((gbRefObject **)this);
-  sub_4B6FB0((int)this);
+  UIWnd_sub_4B6FB0((int)this);
 }
 
 // 0x004BEF50
@@ -4849,7 +4835,7 @@ UIWnd::~UIWnd()
   this->_vftable = (void **)&off_56F580;
   sub_4BF170((gbRefObject **)this);
   sub_4BC7B0((char *)this + 1108);
-  sub_4B6FB0((int)this);
+  UIWnd_sub_4B6FB0((int)this);
 }
 
 // 0x00504080
@@ -5512,7 +5498,7 @@ _DWORD * UIWnd::ctor_57B0(int a2)
   do
   {
     v31->_vftable = 0;
-    sub_43A090((int)this + 4004, 1, 180.0);
+    UIWnd_sub_43A090((int)this + 4004, 1, 180.0);
     *((_DWORD *)this + 1062) = 58;
     v31 = (UIWnd *)((char *)v31 + 32);
     --v32;
@@ -5527,7 +5513,7 @@ _DWORD * UIWnd::ctor_57B0(int a2)
   do
   {
     v33->_vftable = 0;
-    sub_43A090((int)this + 4312, 1, 180.0);
+    UIWnd_sub_43A090((int)this + 4312, 1, 180.0);
     *((_DWORD *)this + 1139) = 58;
     v33 = (UIWnd *)((char *)v33 + 32);
     --v34;
@@ -6115,7 +6101,7 @@ int UIWnd::ctor_95F0()
     3,
     (void (*)(void *))UIWnd::ctor_2E10,
     (void (*)(void *))UIWnd::ctor_2E80);
-  sub_444A20((UIFrameWnd *)((char *)this + 1064));
+  UIWnd_sub_444A20((UIFrameWnd *)((char *)this + 1064));
   *((_BYTE *)this + 1260) = 0;
   *((_DWORD *)this + 314) = 0;
   *((_DWORD *)this + 313) = 0;

@@ -1,0 +1,7 @@
+{
+  "name": "UIWnd_sub_43B3E0",
+  "address": "0x0043B3E0",
+  "size_bytes": 194,
+  "signature": "void __thiscall(UIScene *this)",
+  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __thiscall UIWnd_sub_43B3E0(UIScene *this)\n{\n  int v2; // [esp+4h] [ebp-4h]\n\n  UIScene::_UIScene(this);\n  *((_DWORD *)this + 89) = 32;\n  *((_DWORD *)this + 86) = 0;\n  *((_DWORD *)this + 87) = 0;\n  *((_DWORD *)this + 88) = 0;\n  *((_DWORD *)this + 90) = 1;\n  if ( gbColorQuad::ColorQuadFmt )\n  {\n    LOBYTE(v2) = 0x80;\n    *(_WORD *)((char *)&v2 + 1) = 17476;\n  }\n  else\n  {\n    *(_WORD *)((char *)&v2 + 1) = -32700;\n    LOBYTE(v2) = 68;\n  }\n  HIBYTE(v2) = -1;\n  *((_DWORD *)this + 91) = v2;\n  *((_DWORD *)this + 92) = -16777216;\n  *((_DWORD *)this + 93) = -16119286;\n  *(_DWORD *)this = &off_56AC90;\n}\n"
+}
