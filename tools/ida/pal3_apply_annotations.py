@@ -137,18 +137,24 @@ def apply_annotations():
     with open(ANNOTATIONS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # --- 1. Functions (rename only, signatures deferred to step 6) ---
+    # --- 1. Functions (ensure exist + rename, signatures deferred to step 6) ---
     import re as _re_fn
+    import ida_funcs as _ida_funcs
     funcs = data.get("functions", {})
+    created = 0
     renamed = 0
     for addr_str, info in funcs.items():
         addr = int(addr_str, 16)
         name = info.get("name", "")
+        # 确保函数边界存在
+        if not _ida_funcs.get_func(addr):
+            if _ida_funcs.add_func(addr):
+                created += 1
         if name:
             if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                 renamed += 1
 
-    print("[1] Functions: renamed=%d/%d" % (renamed, len(funcs)))
+    print("[1] Functions: created=%d, renamed=%d/%d" % (created, renamed, len(funcs)))
 
     # --- 2. Globals ---
     globs = data.get("globals", {})
@@ -318,7 +324,9 @@ def apply_annotations():
 
     print("[6] Signatures: %d/%d" % (sig_ok, len([f for f in funcs.values() if f.get("signature")])))
 
-    # --- 7. Trigger reanalysis for type propagation ---
+    # --- 7. Trigger full reanalysis for type propagation ---
+    # plan_and_wait 重新分析所有已标注函数，传播类型信息
+    ida_auto.plan_and_wait(0x00401000, 0x00560000)
     ida_auto.auto_wait()
 
     idc.save_database(idc.get_idb_path(), 0)
