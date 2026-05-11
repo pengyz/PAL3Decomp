@@ -20599,13 +20599,128 @@
   },
   "structs": {
     "CCBSystem": {
-      "note": "PAL3 layout differs from PAL3A PDB",
-      "corrections": {
-        "28": {
+      "binary_size": 90840,
+      "note": "Two fix scripts progressively refined this. Offsets verified from PAL3 binary.",
+      "known_members": {
+        "0": {
+          "name": "m_pUtil",
+          "type": "CCBSystem *",
+          "source": "fix_ccbsystem_full"
+        },
+        "4": {
+          "name": "m_pUI",
+          "type": "CCBUI *",
+          "source": "fix_ccbsystem_full"
+        },
+        "8": {
+          "name": "m_pControl",
+          "type": "CCBControl *",
+          "source": "fix_ccbsystem_full"
+        },
+        "12": {
+          "name": "m_pAttackSequen",
+          "type": "CCBAttackSequen *",
+          "source": "fix_ccbsystem_full"
+        },
+        "16": {
+          "name": "m_pRoleState",
+          "type": "CCBRoleState *",
+          "source": "fix_ccbsystem_full"
+        },
+        "20": {
           "name": "m_pStage",
           "type": "CCBStage *",
-          "pdb_offset": 20,
-          "evidence": "binary:0x513380 [ecx+0x1C]"
+          "source": "fix_ccbsystem_full"
+        },
+        "24": {
+          "name": "m_pAI",
+          "type": "CCBAI *",
+          "source": "fix_ccbsystem_full"
+        },
+        "28": {
+          "name": "m_pEditor",
+          "type": "CCBEditor *",
+          "source": "fix_ccbsystem_full"
+        },
+        "32": {
+          "name": "m_pES",
+          "type": "CEffectSystem *",
+          "source": "fix_ccbsystem_full"
+        },
+        "36": {
+          "name": "m_pEffectSimple",
+          "type": "CEffectSimple *",
+          "source": "fix_ccbsystem_full"
+        },
+        "40": {
+          "name": "m_pConfig",
+          "type": "TxtFile *",
+          "source": "fix_ccbsystem_full"
+        },
+        "44": {
+          "name": "m_pEffMgr",
+          "type": "CEffMgr *",
+          "source": "fix_ccbsystem_full"
+        },
+        "48": {
+          "name": "m_pATSEffMgr",
+          "type": "CEffMgr *",
+          "source": "fix_ccbsystem_full"
+        },
+        "52": {
+          "name": "m_p2DSpark",
+          "type": "C2DSpark *",
+          "source": "fix_ccbsystem_full"
+        },
+        "56": {
+          "name": "m_p3DSpark",
+          "type": "C3DSpark *",
+          "source": "fix_ccbsystem_full"
+        },
+        "64": {
+          "name": "m_DeltaTime",
+          "type": "double",
+          "source": "fix_ccbsystem_full"
+        },
+        "72": {
+          "name": "m_dTimeFund",
+          "type": "double",
+          "source": "fix_ccbsystem_full"
+        },
+        "80": {
+          "name": "m_pFightInfo",
+          "type": "FightInfo *",
+          "source": "fix_verified_sizes"
+        }
+      }
+    },
+    "CCBUI": {
+      "binary_size": 2664,
+      "note": "Placeholder, offsets need binary analysis",
+      "known_members": {}
+    },
+    "Scene": {
+      "note": "Verified from binary. PDB size was 1094164 (wrong/different version)",
+      "known_members": {
+        "0": {
+          "name": "_vftable",
+          "type": "int",
+          "source": "fix_scene_struct"
+        },
+        "4": {
+          "name": "m_pDataBegin",
+          "type": "void *",
+          "source": "fix_scene_struct"
+        },
+        "8": {
+          "name": "m_pDataEnd",
+          "type": "void *",
+          "source": "fix_scene_struct"
+        },
+        "12": {
+          "name": "m_pCapacity",
+          "type": "void *",
+          "source": "fix_scene_struct"
         }
       }
     }
