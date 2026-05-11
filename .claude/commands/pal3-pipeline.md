@@ -93,16 +93,28 @@ for c in json.load(open('asm/pal3a/pdb_export.json'))['classes']:
 
 ### Step 3: 更新 annotations.json
 
-直接编辑 JSON 或用脚本更新：
+<HARD-REQUIREMENT>
+**函数标注必须同时包含：名字 + 完整签名（返回类型、调用约定、类限定、参数类型、参数名）。**
+**全局变量标注必须同时包含：语义名 + 类型。**
+缺少任何一项不得提交。禁止提交 `_DWORD *this, int a2` 这种 IDA 原始参数名。
+</HARD-REQUIREMENT>
 
 ```python
-# 添加函数名
-ann['functions']['0x00XXXXXX'] = {"name": "ClassName::MethodName", "signature": "..."}
+# 函数：必须有 name + signature（含类限定名、参数类型、参数名）
+ann['functions']['0x00XXXXXX'] = {
+    "name": "UIListBox::GetItem",
+    "signature": "int __thiscall UIListBox::GetItem(int nIndex)"
+    # 禁止: "int __thiscall(_DWORD *this, int a2)"
+}
 
-# 添加全局变量类型
-ann['globals']['0x00XXXXXX']['type'] = "ClassName *"
+# 全局变量：必须有 name + type
+ann['globals']['0x00XXXXXX'] = {
+    "name": "g_pGfxManager",
+    "type": "gbGfxManager *"
+    # 禁止: {"name": "dword_BFDA60"} 或 {"name": "g_pGfxManager"} (缺type)
+}
 
-# 添加结构体成员 (增量)
+# 结构体成员 (增量叠加)
 ann['structs']['ClassName']['known_members']['OFFSET'] = {
     "name": "m_fieldName", "type": "int", "source": "binary:EVIDENCE"
 }
@@ -153,10 +165,12 @@ structs:   XXX classes, XXXX members
 ## 核心原则
 
 1. **annotations.json 是唯一输出** — 每轮迭代的成果必须体现在 JSON 中
-2. **PDB 是参考不是权威** — 偏移需要从 PAL3 二进制验证
-3. **增量叠加** — 结构体成员只加不删，新发现的字段直接追加
-4. **不做编译修复** — 那是标注收敛后的工作
-5. **ROI 驱动** — 选收益最大的改进点，不做边角优化
+2. **函数标注 = 名字 + 签名** — 禁止只标名字不标签名，签名必须有语义参数名和正确类型
+3. **全局变量标注 = 名字 + 类型** — 禁止只标名字不标类型
+4. **PDB 是参考不是权威** — 偏移需要从 PAL3 二进制验证
+5. **增量叠加** — 结构体成员只加不删，新发现的字段直接追加
+6. **不做编译修复** — 那是标注收敛后的工作
+7. **ROI 驱动** — 选收益最大的改进点，不做边角优化
 
 ## 退出条件
 
