@@ -8232,6 +8232,86 @@
     "0x004A6030": {
       "name": "UIWnd::ProcessInput",
       "signature": "BOOL __thiscall UIWnd::ProcessInput(int nInputEvent)"
+    },
+    "0x00442170": {
+      "name": "CCBUI::SetTargetPos",
+      "signature": "void __thiscall CCBUI::SetTargetPos(gbVec3D *pPos, gbVec3D *pDir)"
+    },
+    "0x00441380": {
+      "name": "CCBUI::ShowEffect",
+      "signature": "int __thiscall CCBUI::ShowEffect(int nX, int nY, int nWidth, int nHeight)"
+    },
+    "0x004420B0": {
+      "name": "CCBUI::VirtualCall",
+      "signature": "int __thiscall CCBUI::VirtualCall(int nParam)"
+    },
+    "0x004B4910": {
+      "name": "RenderTarget::SetState",
+      "signature": "void __thiscall RenderTarget::SetState(int nState)"
+    },
+    "0x004B4920": {
+      "name": "RenderTarget::LoadTexture",
+      "signature": "gbVFileSystem *__thiscall RenderTarget::LoadTexture(const char *szFilename)"
+    },
+    "0x004B48E0": {
+      "name": "RenderTarget::SetSize",
+      "signature": "void __thiscall RenderTarget::SetSize(int nWidth, int nHeight)"
+    },
+    "0x004B4850": {
+      "name": "RenderTarget::SetColor",
+      "signature": "void __thiscall RenderTarget::SetColor(unsigned char r, unsigned char g, unsigned char b)"
+    },
+    "0x004B48B0": {
+      "name": "RenderTarget::SetAlpha",
+      "signature": "void __thiscall RenderTarget::SetAlpha(unsigned char nAlpha)"
+    },
+    "0x004B4840": {
+      "name": "RenderTarget::SetMode",
+      "signature": "void __thiscall RenderTarget::SetMode(int nMode)"
+    },
+    "0x004B49C0": {
+      "name": "RenderTarget::UpdateTransform",
+      "signature": "void __thiscall RenderTarget::UpdateTransform(float fX, float fY)"
+    },
+    "0x004B4D80": {
+      "name": "RenderTarget::SetOffset",
+      "signature": "void __thiscall RenderTarget::SetOffset(int nOffX, int nOffY)"
+    },
+    "0x004B4DA0": {
+      "name": "RenderTarget::SetScale",
+      "signature": "void __thiscall RenderTarget::SetScale(int nScaleX, int nScaleY)"
+    },
+    "0x004B4820": {
+      "name": "RenderTarget::SetVisible",
+      "signature": "void __thiscall RenderTarget::SetVisible(BOOL bVisible)"
+    },
+    "0x004BB200": {
+      "name": "RenderTarget::ScreenToLocal",
+      "signature": "void __thiscall RenderTarget::ScreenToLocal(float *pOutX, float *pInX, float *pInY)"
+    },
+    "0x00410360": {
+      "name": "InputSystem_ProcessFrame",
+      "signature": "void __cdecl InputSystem_ProcessFrame(char *pInputState)"
+    },
+    "0x00418130": {
+      "name": "RoleSystem::GetMoveState",
+      "signature": "int __thiscall RoleSystem::GetMoveState(int nRoleIndex)"
+    },
+    "0x0040D6B0": {
+      "name": "PtrArray::Insert",
+      "signature": "void *__thiscall PtrArray::Insert(void *pItem)"
+    },
+    "0x0042EBE0": {
+      "name": "PalScriptMgr::ExecuteOpcode",
+      "signature": "int __thiscall PalScriptMgr::ExecuteOpcode(void)"
+    },
+    "0x0042C440": {
+      "name": "PalScriptMgr::RunCommand",
+      "signature": "void __thiscall PalScriptMgr::RunCommand(int nCmdID)"
+    },
+    "0x005394F0": {
+      "name": "GetSaveDataManager",
+      "signature": "void *__cdecl GetSaveDataManager(void)"
     }
   },
   "globals": {
