@@ -27,11 +27,13 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 ANNOTATIONS_FILE = os.path.join(PROJECT_ROOT, "asm", "pal3", "annotations.json")
 
 
-def build_struct_decl(name, struct_info, all_structs=None):
-    """从 known_members + size 生成带 gap 填充的 C struct 声明。支持基类继承和数组类型。"""
+def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
+    """从 known_members + size 生成带 gap 填充的 C struct 声明。支持基类继承、数组类型和虚函数。"""
     import re as _re
     if all_structs is None:
         all_structs = {}
+    if vtables is None:
+        vtables = {}
 
     members = struct_info.get("known_members", {})
     size = max(struct_info.get("binary_size", 0), struct_info.get("pdb_size", 0), struct_info.get("gen_size", 0))
@@ -52,6 +54,14 @@ def build_struct_decl(name, struct_info, all_structs=None):
                 return off
         return size if size > 0 else current_offset
 
+    # 查找此类的 vtable（只处理无基类的，有基类时 vtable 由基类定义）
+    virtual_methods = None
+    if not base_class:
+        for vt_name, vt_info in vtables.items():
+            if vt_info.get("class") == name:
+                virtual_methods = vt_info.get("methods", [])
+                break
+
     lines = []
     cursor = base_size
 
@@ -61,6 +71,24 @@ def build_struct_decl(name, struct_info, all_structs=None):
 
         if offset > cursor:
             lines.append("    char _gap_%03X[%d];" % (cursor, offset - cursor))
+
+        # 如果是 vfptr 且有 vtable 数据，生成 virtual 方法声明
+        if offset == 0 and mname == "vfptr" and virtual_methods:
+            for vm in virtual_methods:
+                vm_name = vm.get("name", "")
+                vm_sig = vm.get("signature", "")
+                if vm_sig:
+                    sig = vm_sig.lstrip()
+                    if not sig.startswith("virtual "):
+                        sig = "virtual " + sig
+                    lines.append("    %s;" % sig)
+                elif "::" in vm_name:
+                    short = vm_name.split("::")[-1]
+                    lines.append("    virtual int %s();" % short)
+                else:
+                    lines.append("    virtual int __unk_%s();" % vm.get("address", "0")[2:])
+            cursor = offset + 4
+            continue
 
         arr_match = _re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
 
@@ -185,10 +213,12 @@ def apply_annotations():
             done.add(sname)
     ordered.extend(remaining.items())
 
+    vtables = data.get("vtables", {})
+
     s_ok = 0
     s_fail = []
     for sname, sinfo in ordered:
-        decl = build_struct_decl(sname, sinfo, structs)
+        decl = build_struct_decl(sname, sinfo, structs, vtables)
         if not decl:
             continue
         tinfo = ida_typeinf.tinfo_t()
