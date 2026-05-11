@@ -273,7 +273,7 @@ int ScriptSystem::Execute(int a1, char a2)
   {
     if ( _strcmpi(&g_SceneMgr.m_RoleSystem[2]._gap_00AC[2], dword_586194) )
     {
-      ((Actor *)&g_SceneMgr.m_RoleSystem[2]._gap_0278[48])->LoadModel();
+      ((Actor *)&g_SceneMgr.m_RoleSystem[2].m_nBaseStats[11])->LoadModel();
       strcpy(&g_SceneMgr.m_RoleSystem[2]._gap_00AC[2], dword_586194);
       ((RoleSystem *)&g_SceneMgr.m_RoleSystem[2])->UpdateTransform();
     }
@@ -332,7 +332,7 @@ int ScriptSystem::RunScript(int a1, int a2, int a3)
     v4 += 1408;
     ++v7;
   }
-  while ( (int)v4 < (int)&g_SceneMgr.m_RoleSystem[0]._gap_0278[276] );
+  while ( (int)v4 < (int)&g_SceneMgr.m_RoleSystem[0].m_pEquipAtt4 );
   if ( v6 < 0 )
   {
     sprintf(Buffer, "%d", v6);
@@ -399,7 +399,7 @@ int ScriptSystem::RunWithDelay(float delay, int a2, int a3)
     v5 += 1408;
     ++v4;
   }
-  while ( (int)v5 < (int)&g_SceneMgr.m_RoleSystem[0]._gap_0278[276] );
+  while ( (int)v5 < (int)&g_SceneMgr.m_RoleSystem[0].m_pEquipAtt4 );
   result = v13;
   if ( v13 < 0 )
   {

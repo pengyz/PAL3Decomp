@@ -1972,7 +1972,7 @@ char PAL3::StartWolf(HKEY hKey, CHAR *lpSubKey)
 // 0x004071C0
 void PAL3::EndWolf(int a1)
 {
-  int *p_d4F0; // esi
+  int *p_m_nMoveMode; // esi
   void (***v2)(_DWORD, int); // eax
   PtrArray *v3; // eax
   PtrArray *Instance; // eax
@@ -1981,14 +1981,14 @@ void PAL3::EndWolf(int a1)
   _DWORD v7[5]; // [esp+0h] [ebp-14h]
   void *retaddr; // [esp+14h] [ebp+0h]
 
-  p_d4F0 = (int *)&g_SceneMgr.m_RoleSystem[1]._d4F0;
+  p_m_nMoveMode = (int *)&g_SceneMgr.m_RoleSystem[1].m_nMoveMode;
   do
   {
-    RoleSystemNotify((int)(p_d4F0 - 316));
-    *p_d4F0 = 2;
-    p_d4F0 += 2176;
+    RoleSystemNotify((int)(p_m_nMoveMode - 316));
+    *p_m_nMoveMode = 2;
+    p_m_nMoveMode += 2176;
   }
-  while ( (int)p_d4F0 < (int)&g_SceneMgr.m_szUIString[280] );
+  while ( (int)p_m_nMoveMode < (int)&g_SceneMgr.m_szUIString[280] );
   if ( dword_BFDA2C )
   {
     v7[0] = 0;

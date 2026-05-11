@@ -224,7 +224,7 @@ CCBRoleState::CCBRoleState()
     if ( (_BYTE)v3 )
     {
       memset(v4, 0, 0x1Cu);
-      if ( (int)v2 < (int)&g_SceneMgr.m_slot[0]._data[288] || (int)v2 >= (int)&g_SceneMgr.m_RoleSystem[0]._gap_0278[224] )
+      if ( (int)v2 < (int)&g_SceneMgr.m_slot[0]._data[288] || (int)v2 >= (int)&g_SceneMgr.m_RoleSystem[0]._gap_02AC[172] )
       {
         v21 = 580;
         v25 = v1;
@@ -446,7 +446,7 @@ char CCBRoleState::_CCBRoleState()
     ++v2;
     v4 += 892;
   }
-  while ( (int)v3 < (int)&g_SceneMgr.m_RoleSystem[0]._gap_0278[176] );
+  while ( (int)v3 < (int)&g_SceneMgr.m_RoleSystem[0]._gap_02AC[124] );
   return result;
 }
 
@@ -579,7 +579,7 @@ char CCBRoleState::Create()
     v1 += 1408;
     v2 += 223;
   }
-  while ( (int)v1 < (int)&g_SceneMgr.m_RoleSystem[0]._gap_0278[224] );
+  while ( (int)v1 < (int)&g_SceneMgr.m_RoleSystem[0]._gap_02AC[172] );
   return v3;
 }
 

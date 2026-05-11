@@ -1721,7 +1721,7 @@ __int8 *__cdecl ScriptUpdate(int dt)
   {
     v8 = 1;
     v9 = 0;
-    result = (__int8 *)&g_SceneMgr.m_RoleSystem[0]._d4CC;
+    result = (__int8 *)&g_SceneMgr.m_RoleSystem[0].m_nPathState;
     do
     {
       if ( v9 != g_SceneMgr.m_nCameraState )
@@ -3318,7 +3318,7 @@ void __cdecl EffectUpdate(float a1)
   _DWORD *v8; // esi
   int v9; // ebx
   RoleSystem *m_RoleSystem; // ebx
-  int *p_d4F0; // esi
+  int *p_m_nMoveMode; // esi
   int v12; // edi
   int v13; // edi
   _DWORD *v14; // esi
@@ -3395,17 +3395,17 @@ void __cdecl EffectUpdate(float a1)
         m_RoleSystem = g_SceneMgr.m_RoleSystem;
         do
         {
-          if ( *(_DWORD *)m_RoleSystem->_gap_0278 && m_RoleSystem->_d4F0 != 4 )
+          if ( *(_DWORD *)m_RoleSystem->_gap_0278 && m_RoleSystem->m_nMoveMode != 4 )
           {
             if ( (int)m_RoleSystem < (int)&g_SceneMgr.m_RoleSystem[4] )
             {
-              p_d4F0 = &g_SceneMgr.m_RoleSystem[4]._d4F0;
+              p_m_nMoveMode = &g_SceneMgr.m_RoleSystem[4].m_nMoveMode;
               v12 = 4 - v17;
               do
               {
-                if ( *(p_d4F0 - 158) && *p_d4F0 != 4 )
-                  sub_416220((int)m_RoleSystem, (int)(p_d4F0 - 316));
-                p_d4F0 -= 2176;
+                if ( *(p_m_nMoveMode - 158) && *p_m_nMoveMode != 4 )
+                  sub_416220((int)m_RoleSystem, (int)(p_m_nMoveMode - 316));
+                p_m_nMoveMode -= 2176;
                 --v12;
               }
               while ( v12 );
@@ -9586,7 +9586,7 @@ enum _EXCEPTION_DISPOSITION __usercall TranslatorGuardHandler@<eax>(
       *((EXCEPTION_POINTERS **)TargetFrame + 2),
       *((_DWORD *)TargetFrame + 4),
       *((struct EHRegistrationNode **)TargetFrame + 5),
-      1);
+      1u);
     if ( !*((_DWORD *)TargetFrame + 9) )
       _UnwindNestedFrames(a1, TargetFrame, (PEXCEPTION_RECORD)ExceptionRecord);
     return (*((enum _EXCEPTION_DISPOSITION (**)(void))TargetFrame + 6))();
@@ -9746,12 +9746,12 @@ __int64 __usercall _ftol@<edx:eax>(double a1@<st0>)
 }
 
 // 0x005535C9
-void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (*a4)(void))
+void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *))
 {
   while ( --a3 >= 0 )
   {
     a1 -= a2;
-    a4();
+    ((void (*)(void))a4)();
   }
 }
 
@@ -10963,16 +10963,9 @@ LABEL_10:
 }
 
 // 0x00554700
-long double __usercall _CIpow@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)
+long double __usercall _CIpow@<st0>(double x@<st0>, unsigned __int64 y@<st1>)
 {
-  return sub_554722(
-           HIDWORD(*(unsigned __int64 *)&y),
-           *(double *)&x,
-           y,
-           x,
-           HIDWORD(x),
-           SLODWORD(y),
-           HIDWORD(*(unsigned __int64 *)&y));
+  return sub_554722(HIDWORD(y), x, *(long double *)&y, SLODWORD(x), HIDWORD(*(unsigned __int64 *)&x), y, HIDWORD(y));
 }
 
 // 0x00554719
@@ -13901,7 +13894,7 @@ int __cdecl __InternalCxxFrameHandler(
         EXCEPTION_POINTERS *a5,
         int a6,
         struct EHRegistrationNode *TargetFrame,
-        unsigned __int8 a8)
+        char a8)
 {
   int (__cdecl *pForwardCompat)(); // ecx
   struct _EXCEPTION_POINTERS *v10; // [esp+0h] [ebp-8h]
@@ -13930,7 +13923,7 @@ int __cdecl __InternalCxxFrameHandler(
                  a5,
                  a6,
                  TargetFrame,
-                 a8);
+                 (unsigned __int8)a8);
     }
     FindHandler(ExceptionRecord, a2, a3, a4, a5, a8, a6, TargetFrame);
   }
@@ -15852,9 +15845,9 @@ int __initmbctable()
 }
 
 // 0x005592F0
-long double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
+double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
 {
-  long double result; // st7
+  double result; // st7
   long double v6; // st6
   long double v7; // st7
   long double v8; // st7
@@ -17167,7 +17160,7 @@ LABEL_256:
 }
 
 // 0x0055A28B
-unsigned int __cdecl _hextodec(int C)
+int __cdecl _hextodec(int C)
 {
   int v1; // esi
   int v2; // eax

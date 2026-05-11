@@ -1166,7 +1166,7 @@ char CCBSystem::ProcMagicWait(int a2, char a3)
     ++v5;
     v8 += 892;
   }
-  while ( (int)v6 < (int)&g_SceneMgr.m_RoleSystem[0]._gap_0278[204] );
+  while ( (int)v6 < (int)&g_SceneMgr.m_RoleSystem[0]._gap_02AC[152] );
   return v9;
 }
 
