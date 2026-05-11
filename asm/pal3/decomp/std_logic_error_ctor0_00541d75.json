@@ -3,5 +3,5 @@
   "address": "0x00541D75",
   "size_bytes": 100,
   "signature": "exception *__thiscall(exception *this, _DWORD *a2)",
-  "decompiled_c": "exception *__thiscall std_logic_error_ctor0(exception *this, _DWORD *a2)\n{\n  char *v4[4]; // [esp+10h] [ebp-10h] BYREF\n\n  v4[0] = g_SceneMgr.m_szUIString;\n  exception::exception(this, (const char **)v4);\n  v4[3] = 0;\n  *((_BYTE *)this + 12) = *(_BYTE *)a2;\n  std::string::_Tidy((_DWORD *)this + 3, 0);\n  sub_4307D0((int)this + 12, a2, 0, 0xFFFFFFFF);\n  this->_m_what = (char *)&vtbl_std_logic_error;\n  return this;\n}\n"
+  "decompiled_c": "exception *__thiscall std_logic_error_ctor0(exception *this, _DWORD *a2)\n{\n  char *v4[4]; // [esp+10h] [ebp-10h] BYREF\n\n  v4[0] = &g_SceneMgr._gap_c93c[76];\n  exception::exception(this, (const char **)v4);\n  v4[3] = 0;\n  *((_BYTE *)this + 12) = *(_BYTE *)a2;\n  std::string::_Tidy((_DWORD *)this + 3, 0);\n  sub_4307D0((int)this + 12, a2, 0, 0xFFFFFFFF);\n  this->_m_what = (char *)&vtbl_std_logic_error;\n  return this;\n}\n"
 }

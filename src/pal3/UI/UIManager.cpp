@@ -22,7 +22,7 @@ void UIManager::Render()
   int v4; // edi
   _DWORD *v5; // esi
   _DWORD *v6; // ebp
-  void **p_p090; // ebp
+  char *v7; // ebp
   _DWORD *v8; // esi
   struct gbMatrix4 *Top; // esi
   const struct gbMatrix4 *v10; // edi
@@ -71,28 +71,28 @@ void UIManager::Render()
   }
   if ( g_nGameState != 9 )
   {
-    p_p090 = &g_SceneMgr.m_RoleSystem[0]._p090;
+    v7 = (char *)&g_SceneMgr.m_RoleSystem[0]._pad_010[96];
     v8 = (_DWORD *)((char *)this + 68 * v4 + 64);
     do
     {
-      if ( p_p090[122] )
+      if ( *((_DWORD *)v7 + 122) )
       {
-        if ( *p_p090 )
+        if ( *(_DWORD *)v7 )
         {
           v8[1] = 0;
           *v8 = 0;
           v8[3] = 1065353216;
           v8[2] = 1065353216;
-          if ( sub_418260((int)(p_p090 - 36), (int)(v8 - 12), v12) )
+          if ( sub_418260((int)(v7 - 144), (int)(v8 - 12), v12) )
           {
             ++v4;
             v8 += 17;
           }
         }
       }
-      p_p090 += 2176;
+      v7 += 8704;
     }
-    while ( (int)p_p090 < (int)&g_SceneMgr._gap_c5e0[128] );
+    while ( (int)v7 < (int)&g_SceneMgr._gap_c5e0[96] );
     v13 = v4;
   }
   if ( v4 > 0 )

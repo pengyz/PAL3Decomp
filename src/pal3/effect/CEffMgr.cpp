@@ -300,7 +300,7 @@ int CEffMgr::RunEffGroup(const char *a2, int a3, const char *a4)
   int v4; // ebp
   char *i; // eax
   char *v7; // ebx
-  const char *m_szUIString; // edi
+  char *v8; // edi
   _DWORD *v9; // eax
   _DWORD *v10; // eax
 
@@ -312,10 +312,10 @@ int CEffMgr::RunEffGroup(const char *a2, int a3, const char *a4)
   }
   v7 = (char *)&this->_pad_000[72 * v4];
   strcpy(v7 + 28, a2);
-  m_szUIString = a4;
+  v8 = (char *)a4;
   if ( !a4 )
-    m_szUIString = (const char *)g_SceneMgr.m_szUIString;
-  strcpy(v7 + 58, m_szUIString);
+    v8 = (char *)&g_SceneMgr._gap_c93c[76];
+  strcpy(v7 + 58, v8);
   v7[88] = 1;
   v9 = (_DWORD *)operator new(0x34u);
   if ( v9 )
@@ -339,7 +339,7 @@ int CEffMgr::IsAllEffGroupStop(const char *a2, int a3, const char *a4)
   int v4; // ebp
   char *i; // eax
   char *v7; // ebx
-  const char *m_szUIString; // edi
+  char *v8; // edi
   _DWORD *v9; // eax
   _DWORD *v10; // eax
 
@@ -351,10 +351,10 @@ int CEffMgr::IsAllEffGroupStop(const char *a2, int a3, const char *a4)
   }
   v7 = (char *)&this->_pad_000[72 * v4];
   strcpy(v7 + 28, a2);
-  m_szUIString = a4;
+  v8 = (char *)a4;
   if ( !a4 )
-    m_szUIString = (const char *)g_SceneMgr.m_szUIString;
-  strcpy(v7 + 58, m_szUIString);
+    v8 = (char *)&g_SceneMgr._gap_c93c[76];
+  strcpy(v7 + 58, v8);
   v7[88] = 1;
   v9 = (_DWORD *)operator new(0x10C4u);
   if ( v9 )
@@ -378,7 +378,7 @@ int CEffMgr::CopyObjInGroup(const char *a2, int a3, const char *a4)
   int v4; // ebp
   char *i; // eax
   char *v7; // ebx
-  const char *m_szUIString; // edi
+  char *v8; // edi
   _DWORD *v9; // eax
   _DWORD *v10; // eax
 
@@ -390,10 +390,10 @@ int CEffMgr::CopyObjInGroup(const char *a2, int a3, const char *a4)
   }
   v7 = (char *)&this->_pad_000[72 * v4];
   strcpy(v7 + 28, a2);
-  m_szUIString = a4;
+  v8 = (char *)a4;
   if ( !a4 )
-    m_szUIString = (const char *)g_SceneMgr.m_szUIString;
-  strcpy(v7 + 58, m_szUIString);
+    v8 = (char *)&g_SceneMgr._gap_c93c[76];
+  strcpy(v7 + 58, v8);
   v7[88] = 1;
   v9 = (_DWORD *)operator new(0x130u);
   if ( v9 )

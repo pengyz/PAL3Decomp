@@ -1135,7 +1135,7 @@ char CCBSystem::ProcMagicWait(int a2, char a3)
 {
   int v4; // ecx
   unsigned int v5; // ebx
-  char *v6; // edi
+  int *p_d10C; // edi
   int v8; // [esp+1Ch] [ebp+8h]
   char v9; // [esp+23h] [ebp+Fh]
 
@@ -1146,27 +1146,27 @@ char CCBSystem::ProcMagicWait(int a2, char a3)
   this->m_eState = CBS_END;
   this->m_eResult = CBR_WIN;
   *(_DWORD *)&this->m_bFiveNimbus = v4;
-  ++*(_DWORD *)&g_SceneMgr._gap_c93c[8];
+  ++*(_DWORD *)&g_SceneMgr._gap_c5e0[836];
   this->m_pFightInfo = (FightInfo *)a2;
   v9 = this->ProcWeaponSkill();
   UICursor::IRender();
   v5 = 0;
-  v6 = (char *)&g_SceneMgr.m_slot0[268];
+  p_d10C = (int *)&g_SceneMgr.m_slot[0]._d10C;
   v8 = 0;
   do
   {
-    if ( *(&this->m_pRoleState->m_Role[0].bValid + v8) && (*((_DWORD *)v6 - 3) == 8114 || *(_DWORD *)v6 == 8114) )
+    if ( *(&this->m_pRoleState->m_Role[0].bValid + v8) && (*(p_d10C - 3) == 8114 || *p_d10C == 8114) )
     {
       ++g_nRandCallCount;
       g_RandSeed = 214013 * g_RandSeed + 2531011;
       if ( ((g_RandSeed >> 16) & 0x3FF) < (int)102.39999 )
         ((CCBRoleState *)this->m_pRoleState)->ProcessRound(v5);
     }
-    v6 += 1408;
+    p_d10C += 352;
     ++v5;
     v8 += 892;
   }
-  while ( (int)v6 < (int)&g_SceneMgr.m_RoleSystem[0]._pad_284[192] );
+  while ( (int)p_d10C < (int)&g_SceneMgr.m_RoleSystem[0]._pad_284[160] );
   return v9;
 }
 
@@ -2228,7 +2228,7 @@ int CCBSystem::PassCmdToThread(int a2)
     if ( sub_4F7050((int)(v4 + 40)) )
       sub_4F7140((int)(v4 + 40));
     else
-      CCBStageRole_PassCmd(&g_SceneMgr._gap_1888[792], &v12);
+      CCBStageRole_PassCmd(&g_SceneMgr._gap_1888[760], &v12);
     v4[37] = 1;
   }
   ((CCBStage *)this->m_pStage)->DelTask(*((_DWORD *)v4 + 5), &a3, &a4);

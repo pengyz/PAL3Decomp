@@ -1081,7 +1081,7 @@ LABEL_64:
       v13 = ((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend));
       (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)(v13 + 860) + 16))(*(_DWORD *)(v13 + 860), 0);
       a2->Pop();
-      if ( LODWORD(this->m_fBlend) == 3 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slot3[288] + 613) == 3 )
+      if ( LODWORD(this->m_fBlend) == 3 && *(_BYTE *)(g_SceneMgr.m_slot[3]._d108 + 613) == 3 )
       {
         v14 = ((CCBRoleState *)this->m_pRoleState)->InitUI(3);
         LastBladePos = (int *)((gbGeomNode *)*(gbGeomNode **)(v14 + 860))->GetLastBladePos(0);
@@ -2905,10 +2905,10 @@ void CCBStageRole::PlaySound(char *name, int a3)
     LOBYTE(v10) = (_BYTE)name;
     ((std *)&v10)->string::_Tidy(0);
     v14 = 0;
-    v4 = strlen(g_SceneMgr.m_szUIString);
+    v4 = strlen(&g_SceneMgr._gap_c93c[76]);
     if ( ((SceneObj *)&v10)->Update(v4) )
     {
-      qmemcpy(v11, g_SceneMgr.m_szUIString, v4);
+      qmemcpy(v11, &g_SceneMgr._gap_c93c[76], v4);
       ((std *)&v10)->string::_Eos(v4);
     }
     v13 = 0;

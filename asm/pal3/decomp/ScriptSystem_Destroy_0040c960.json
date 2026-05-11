@@ -3,5 +3,5 @@
   "address": "0x0040C960",
   "size_bytes": 54,
   "signature": "int __cdecl()",
-  "decompiled_c": "// between_std_methods (0x407D40-0x411B80)\nint __cdecl ScriptSystem::Destroy()\n{\n  RoleSystem *m_RoleSystem; // esi\n  int result; // eax\n\n  UIWnd::Reset((UIWnd *)&unk_BFDAB0);\n  PalScript::Reset((PalScript *)&g_SceneMgr.m_pCameraCtrl);\n  ScriptSystem::Cleanup();\n  m_RoleSystem = g_SceneMgr.m_RoleSystem;\n  do\n    result = ScriptObj::Destroy((ScriptObj *)m_RoleSystem++);\n  while ( (int)m_RoleSystem < (int)&g_SceneMgr.m_pGameData );\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x407D40-0x411B80)\nint __cdecl ScriptSystem::Destroy()\n{\n  ScriptObj *v0; // esi\n  int result; // eax\n\n  UIWnd::Reset((UIWnd *)&unk_BFDAB0);\n  PalScript::Reset((PalScript *)&g_SceneMgr.m_RoleSystem[4]._pad_11CC[4124]);\n  ScriptSystem::Cleanup();\n  v0 = (ScriptObj *)&g_SceneMgr._gap_1888[808];\n  do\n  {\n    result = ScriptObj::Destroy(v0);\n    v0 += 8704;\n  }\n  while ( (int)v0 < (int)&g_SceneMgr.m_RoleSystem[4]._pad_11CC[4116] );\n  return result;\n}\n"
 }

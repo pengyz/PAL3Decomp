@@ -574,13 +574,13 @@ char GRPinput::SetMouseSensitivity()
     }
     else
     {
-      LOBYTE(v2) = g_SceneMgr.m_pCollisionNode;
+      LOBYTE(v2) = g_SceneMgr._gap_cd10[1580];
       v18 = *(float *)&this->m_mouseMaxX * 0.40000001;
-      if ( g_SceneMgr.m_pCollisionNode )
+      if ( *(_DWORD *)&g_SceneMgr._gap_cd10[1580] )
       {
-        v22.Color = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 160);
-        v23 = *(float *)(g_SceneMgr.m_pCollisionNode + 164);
-        v24 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 168);
+        v22.Color = *(_DWORD *)(*(_DWORD *)&g_SceneMgr._gap_cd10[1580] + 160);
+        v23 = *(float *)(*(_DWORD *)&g_SceneMgr._gap_cd10[1580] + 164);
+        v24 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr._gap_cd10[1580] + 168);
         v23 = v18 * 20.0 + v23 + 64.0;
         ((gbCamera *)((char *)g_pCameraCtrl + 4))->PointWorldToScr((struct gbVec3D *)&v22.Color, (float *)&v22.ColorQuadFmt, (float *)&v20);
         v9 = 1.0 - v18;

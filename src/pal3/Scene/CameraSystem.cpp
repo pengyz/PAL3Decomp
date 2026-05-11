@@ -10,7 +10,7 @@ int CameraSystem::Init(int a1)
   result = a1;
   if ( a1 )
   {
-    g_SceneMgr.m_pCollisionNode = a1;
+    *(_DWORD *)&g_SceneMgr._gap_cd10[1580] = a1;
     *(_DWORD *)(a1 + 1264) = 2;
   }
   return result;
