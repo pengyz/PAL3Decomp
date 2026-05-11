@@ -23949,6 +23949,34 @@
     "0x00C05F58": {
       "name": "g_ScriptSlotFlags",
       "type": "char[8]"
+    },
+    "0x00BFDB84": {
+      "name": "g_pScriptEventObj",
+      "type": "void *"
+    },
+    "0x00BFDB90": {
+      "name": "g_nScriptEventParam",
+      "type": "int"
+    },
+    "0x00BFDB94": {
+      "name": "g_nScriptEventParam2",
+      "type": "int"
+    },
+    "0x00BFDB98": {
+      "name": "g_nScriptRolePosX",
+      "type": "int"
+    },
+    "0x00BFDB9C": {
+      "name": "g_nScriptRolePosY",
+      "type": "int"
+    },
+    "0x00BFDBA0": {
+      "name": "g_nScriptRolePosZ",
+      "type": "int"
+    },
+    "0x00BFDBA4": {
+      "name": "g_nCurrentEventId",
+      "type": "unsigned int"
     }
   },
   "structs": {
@@ -26057,9 +26085,9 @@
           "source": "gen_headers_9.2"
         },
         "51512": {
-          "name": "m_nCameraState",
+          "name": "m_nCurrentScriptSlot",
           "type": "int",
-          "source": "gen_headers_9.2"
+          "source": "binary:RunEvent_used_as_slot_index"
         },
         "52492": {
           "name": "m_fMoveParam",
@@ -26073,8 +26101,8 @@
         },
         "7076": {
           "name": "m_ScriptSlots",
-          "type": "char[17408]",
-          "source": "binary:Execute g_SceneMgr._gap_1BA4[8704*index]"
+          "type": "ScriptSlot[5]",
+          "source": "binary:stride_8704_x5"
         },
         "128": {
           "name": "m_nSceneParam",
@@ -29553,6 +29581,21 @@
           "name": "byMagicLevel",
           "type": "unsigned char[8][6]",
           "source": "pdb_fill_incomplete"
+        },
+        "568": {
+          "name": "byEventFlags",
+          "type": "unsigned char[5]",
+          "source": "binary:RunEvent_0x410470"
+        },
+        "593": {
+          "name": "bScriptActive",
+          "type": "unsigned char",
+          "source": "binary:RunEvent_0x410470"
+        },
+        "856": {
+          "name": "nScriptCounter",
+          "type": "int",
+          "source": "binary:RunScript_0x4100A0"
         }
       },
       "pdb_size": 1408
@@ -43122,7 +43165,8 @@
         }
       },
       "gen_size": 856,
-      "pdb_size": 856
+      "pdb_size": 856,
+      "binary_size": 856
     },
     "SceneObjParam": {
       "gen_size": 708,
@@ -65716,6 +65760,27 @@
           "name": "vfptr",
           "type": "int",
           "source": "binary:vtable_ptr"
+        }
+      }
+    },
+    "ScriptSlot": {
+      "pdb_size": 0,
+      "binary_size": 8704,
+      "known_members": {
+        "48": {
+          "name": "nRolePosX",
+          "type": "int",
+          "source": "binary:RunEvent_read_3_ints"
+        },
+        "52": {
+          "name": "nRolePosY",
+          "type": "int",
+          "source": "binary:RunEvent_read_3_ints"
+        },
+        "56": {
+          "name": "nRolePosZ",
+          "type": "int",
+          "source": "binary:RunEvent_read_3_ints"
         }
       }
     }
