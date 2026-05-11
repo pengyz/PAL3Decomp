@@ -101,6 +101,19 @@ struct SceneMgrSlot;
 
     DECL = """
 struct RoleSystem { char _data[8704]; };
+struct CameraParam { int nID; int _reserved; int nParam1; int nParam2; };
+struct CameraCmd { int nCmdID; int nValue; };
+struct SceneMgrCamBlock {
+  char m_CameraList[160];
+  CameraParam m_Params[25];
+  CameraCmd m_Cmds[33];
+  int m_nCurrentScene;
+  char _gap33C[16];
+  void *m_pCameraScript;
+  char m_bCameraTransition;
+  char m_bCameraReset;
+  int m_nActiveCamera;
+};
 struct SceneMgrSlot {
   int _vtable;
   int _d004; int _d008; int _d00C; int _d010;
@@ -130,7 +143,7 @@ struct SceneMgr {
   void *_c5d4;                     // +0xC5D4
   CameraCtrl *m_pCameraCtrl;      // +0xC5D8
   PalScriptMgr *m_pScriptCtrl;    // +0xC5DC
-  char _gap_c5e0[856];             // +0xC5E0
+  SceneMgrCamBlock m_camBlock;     // +0xC5E0 (856 bytes, to +0xC938)
   int m_nCameraState;              // +0xC938
   char _gap_c93c[108];             // +0xC93C
   char m_szUIString[512];          // +0xC9A8
