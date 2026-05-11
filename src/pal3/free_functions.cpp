@@ -24,14 +24,14 @@ int UISceneUpdate(...);
 int sub_401000(...);
 int sub_402220(...);
 int sub_4083D0(...);
+int sub_408460(...);
 int sub_40CC60(...);
 int sub_40CCD0(...);
 int sub_40DCD0(...);
 int sub_410BD0(...);
 int sub_410DF0(...);
 int sub_411900(...);
-int sub_4142E0(...);
-int sub_416220(...);
+int sub_412230(...);
 int sub_418130(...);
 int sub_419690(...);
 int sub_419EF0(...);
@@ -42,6 +42,7 @@ int sub_41D5C0(...);
 int sub_41EB50(...);
 int sub_420730(...);
 int sub_420B40(...);
+int sub_420FB0(...);
 int sub_421560(...);
 int sub_423600(...);
 int sub_424570(...);
@@ -2318,13 +2319,148 @@ void __cdecl unknown_libname_321()
   sub_4083D0((void **)&g_SceneMgr.m_szUIString[184]);
 }
 
+// 0x00412D90
+// between_std_methods (0x411BB0-0x430790)
+char __thiscall RoleSystem_Helper_412D90(RoleSystem *_this, float *a2, int a3)
+{
+  float *p_m_fTargetX; // ecx
+  unsigned __int8 v6; // c0
+  unsigned __int8 v7; // c3
+  int m_nCoreState; // ecx
+
+  p_m_fTargetX = &_this->m_fTargetX;
+  if ( !(v6 | v7) )
+    return 1;
+  if ( sub_408460(
+         &g_SceneMgr.m_szUIString[184],
+         _this->m_nState,
+         p_m_fTargetX,
+         a2,
+         &_this->m_fMoveTargetX,
+         _this->m_nFacing) )
+  {
+    m_nCoreState = _this->m_nCoreState;
+    _this->m_nMoveSubMode = 2;
+    if ( m_nCoreState != a3 )
+    {
+      _this->m_nCoreState = a3;
+      RoleSystem::UpdateTransform(_this);
+    }
+    return 1;
+  }
+  else
+  {
+    RoleSystem_Helper_4142E0(_this);
+    return 0;
+  }
+}
+
+// 0x004142E0
+// between_std_methods (0x411BB0-0x430790)
+int __thiscall RoleSystem_Helper_4142E0(RoleSystem *_this)
+{
+  int result; // eax
+
+  _this->m_nMoveSubMode = 0;
+  _this->m_nCoreState = 0;
+  RoleSystem::UpdateTransform(_this);
+  _this->m_fRotAxisX = 0.0;
+  _this->m_fRotAxisY = 0.0;
+  _this->m_fRotAxisZ = 0.0;
+  _this->_d51C = 0;
+  _this->_d520 = LODWORD(_this->m_fRotAxisY);
+  *(float *)_this->_gap_0524 = _this->m_fRotAxisZ;
+  result = *(_DWORD *)_this->_gap_04F8;
+  if ( result )
+  {
+    *(_DWORD *)_this->_gap_04F8 = 0;
+    *(_DWORD *)_this->_gap_0278 = 0;
+  }
+  return result;
+}
+
+// 0x00416220
+// between_std_methods (0x411BB0-0x430790)
+void __thiscall RoleSystem_Helper_416220(int _this, int a2)
+{
+  double v4; // st7
+  float *v5; // edi
+  double v6; // st6
+  double v7; // st7
+  double v8; // st6
+  double v9; // st5
+  float v10; // eax
+  double v11; // st6
+  RoleSystem *v12; // eax
+  float v13; // eax
+  float v14; // ecx
+  float v15; // edx
+  int v16; // [esp-Ch] [ebp-48h]
+  float v17; // [esp+Ch] [ebp-30h] BYREF
+  float v18; // [esp+10h] [ebp-2Ch]
+  float v19; // [esp+14h] [ebp-28h]
+  gbVec3D v20; // [esp+18h] [ebp-24h] BYREF
+  float v21; // [esp+28h] [ebp-14h]
+  float v22; // [esp+2Ch] [ebp-10h]
+  float v23; // [esp+34h] [ebp-8h]
+  float v24; // [esp+38h] [ebp-4h]
+  float v25; // [esp+40h] [ebp+4h]
+  float v26; // [esp+40h] [ebp+4h]
+
+  if ( !*(_DWORD *)(_this + 1456) && !*(_DWORD *)(a2 + 1456) && *(_DWORD *)(_this + 628) == *(_DWORD *)(a2 + 628) )
+  {
+    v4 = *(float *)(_this + 4) - *(float *)(a2 + 4);
+    v5 = (float *)(_this + 4);
+    v18 = *(float *)(_this + 8) - *(float *)(a2 + 8);
+    v6 = *(float *)(_this + 12) - *(float *)(a2 + 12);
+    v20.y = v18;
+    v19 = v6;
+    v20.x = v4;
+    v20.z = v19;
+    v7 = gbVec3D::Length(&v20);
+    v25 = *(float *)(a2 + 16) + *(float *)(_this + 16);
+    if ( v7 <= v25 )
+    {
+      v8 = *v5 - *(float *)(a2 + 4);
+      v21 = *(float *)(_this + 8) - *(float *)(a2 + 8);
+      v9 = *(float *)(_this + 12) - *(float *)(a2 + 12);
+      v17 = *v5;
+      v22 = v9;
+      v18 = *(float *)(_this + 8);
+      v10 = *(float *)(_this + 12);
+      v16 = *(_DWORD *)(_this + 628);
+      v26 = (v25 * 1.1 - v7) / v7;
+      v23 = v21 * v26;
+      v24 = v22 * v26;
+      v11 = v17 + v8 * v26;
+      v17 = v11;
+      v18 = v18 + v23;
+      v19 = v10 + v24;
+      v12 = (RoleSystem *)UISceneUpdate();
+      if ( sub_420FB0(v12, v16, &v17, 255) )
+      {
+        *(_DWORD *)(_this + 1468) = *(_DWORD *)(_this + 160);
+        v13 = v17;
+        *(_DWORD *)(_this + 1472) = *(_DWORD *)(_this + 164);
+        v14 = v18;
+        *(_DWORD *)(_this + 1476) = *(_DWORD *)(_this + 168);
+        v15 = v19;
+        *(float *)(_this + 8) = v14;
+        *v5 = v13;
+        *(float *)(_this + 12) = v15;
+        sub_412230((float *)_this, v11, 0, 0);
+      }
+    }
+  }
+}
+
 // 0x004181E0
 // between_std_methods (0x411BB0-0x430790)
 int __thiscall RoleSystemNotify(int _this)
 {
   int result; // eax
 
-  sub_4142E0((RoleSystem *)_this);
+  RoleSystem_Helper_4142E0((RoleSystem *)_this);
   *(_DWORD *)(_this + 1284) = 0;
   RoleSystem::UpdateTransform((RoleSystem *)_this);
   *(_DWORD *)(_this + 8692) = *(_DWORD *)(_this + 4);
@@ -3387,7 +3523,7 @@ void __cdecl EffectUpdate(float a1)
                 do
                 {
                   if ( v8[122] && *v8 )
-                    sub_416220((int)(v6 - 158), (int)(v8 - 36));
+                    RoleSystem_Helper_416220((int)(v6 - 158), (int)(v8 - 36));
                   v8 -= 2176;
                   --v9;
                 }
@@ -3417,7 +3553,7 @@ void __cdecl EffectUpdate(float a1)
               do
               {
                 if ( *(p_m_nMoveMode - 158) && *p_m_nMoveMode != 4 )
-                  sub_416220((int)m_RoleSystem, (int)(p_m_nMoveMode - 316));
+                  RoleSystem_Helper_416220((int)m_RoleSystem, (int)(p_m_nMoveMode - 316));
                 p_m_nMoveMode -= 2176;
                 --v12;
               }
@@ -3430,7 +3566,7 @@ void __cdecl EffectUpdate(float a1)
               do
               {
                 if ( v14[122] && *v14 )
-                  sub_416220((int)m_RoleSystem, (int)(v14 - 36));
+                  RoleSystem_Helper_416220((int)m_RoleSystem, (int)(v14 - 36));
                 ++v13;
                 v14 += 2176;
               }
@@ -4027,9 +4163,9 @@ int PAL3::StartHideFight()
 
 // 0x004386A0
 // attributes: thunk
-int j_nullsub_103()
+void j_nullsub_103()
 {
-  return nullsub_103();
+  nullsub_103();
 }
 
 // 0x00438E90
@@ -4049,6 +4185,73 @@ int unknown_libname_351()
   if ( (g_bInitFlags & 1) == 0 )
     g_bInitFlags |= 1u;
   return atexit(nullsub_1);
+}
+
+// 0x00439740
+// between_std_methods (0x430790-0x445B40)
+_DWORD *__thiscall UIWnd_Helper_439740(UIWnd *_this, int id, int parent)
+{
+  gbCamera *v4; // eax
+  gbCamera *v5; // eax
+  _DWORD *result; // eax
+  _DWORD pRect[4]; // [esp+8h] [ebp-1Ch] BYREF
+  int v8; // [esp+20h] [ebp-4h]
+
+  memset(pRect, 0, sizeof(pRect));
+  UIWnd::Create(_this, id, pRect, parent);
+  v4 = (gbCamera *)operator new(0x178u);
+  v8 = 0;
+  if ( v4 )
+    v5 = gbCamera::gbCamera(v4, g_pGfxMgr);
+  else
+    v5 = 0;
+  *((_DWORD *)_this + 73) = v5;
+  v8 = -1;
+  gbCamera::SetDimention(v5, g_pGameTime, g_pAbsTime);
+  result = (_DWORD *)*((_DWORD *)_this + 73);
+  *((_DWORD *)_this + 58) = 1161527296;
+  result[1] = 1161527296;
+  *result = 0;
+  *((_DWORD *)_this + 62) = 0;
+  return result;
+}
+
+// 0x00439850
+// between_std_methods (0x430790-0x445B40)
+void __thiscall Camera_Helper_439850(int _this, int a2, int a3)
+{
+  gbCamera *v4; // ecx
+  double v5; // st7
+  float y; // eax
+  float z; // edx
+  struct gbVec3D v8; // [esp+Ch] [ebp-24h] BYREF
+  struct gbVec3D v9; // [esp+18h] [ebp-18h] BYREF
+  struct gbVec3D v10; // [esp+24h] [ebp-Ch] BYREF
+  float v11; // [esp+34h] [ebp+4h]
+
+  v4 = *(gbCamera **)(_this + 292);
+  v10.x = 0.0;
+  v10.y = 1.0;
+  v10.z = 0.0;
+  v9.z = 1600.0;
+  v8.z = 0.0;
+  v5 = (((double)a2 + (double)a2) / (double)(int)g_pGameTime - 1.0) * *(float *)(_this + 232);
+  v8.y = (1.0 - ((double)a3 + (double)a3) / (double)(int)g_pAbsTime) * *(float *)(_this + 232);
+  v9.x = -v5;
+  v11 = -v8.y;
+  v9.y = v11;
+  v8.y = v11;
+  v8.x = v9.x;
+  gbCamera::SetLookAt(v4, &v9, &v8, &v10);
+  y = v8.y;
+  *(float *)(_this + 296) = v8.x;
+  z = v8.z;
+  *(float *)(_this + 300) = y;
+  *(float *)(_this + 304) = z;
+  *(float *)(_this + 296) = *(float *)(_this + 296) - v9.x;
+  *(float *)(_this + 300) = *(float *)(_this + 300) - v9.y;
+  *(float *)(_this + 304) = *(float *)(_this + 304) - v9.z;
+  gbVec3D::Normalize((gbVec3D *)(_this + 296));
 }
 
 // 0x00439930

@@ -2623,7 +2623,7 @@ int PAL3::FullInit()
     v146 = (char *)g_RoleTeam1->Insert(v8, v14);
     v146->Erase(1, &pConfig);
     v8->Insert((void *)g_RoleTeam2[0], v146 + 12);
-    nullsub_2(g_RoleTeam1, g_RoleTeam2[0]);
+    nullsub_2((int)g_RoleTeam1, g_RoleTeam2[0]);
     operator delete(g_RoleTeam1);
     dword_C0435C = (int)&v14[3 * v12];
     v15 = ((Array *)&dword_C04350)->Size();
@@ -2724,7 +2724,7 @@ int PAL3::FullInit()
     v147 = (char *)arr->Insert(v22, v27);
     v147->Erase(1, &pConfig);
     v22->Insert(end, v147 + 12);
-    nullsub_2(arr, end);
+    nullsub_2((int)arr, (int)end);
     operator delete(arr);
     dword_C0436C = (int)&v27[3 * v25];
     v28 = ((Array *)&dword_C04360)->Size();
@@ -2825,7 +2825,7 @@ int PAL3::FullInit()
     v148 = (char *)((Array *)g_nSceneMode)->Insert(v35, v40);
     v148->Erase(1, &pConfig);
     v35->Insert(elem, v148 + 12);
-    nullsub_2(g_nSceneMode, elem);
+    nullsub_2(g_nSceneMode, (int)elem);
     operator delete((void *)g_nSceneMode);
     dword_C0437C = (int)&v40[3 * v38];
     v41 = ((Array *)&g_nSceneFlags)->Size();
@@ -2871,7 +2871,7 @@ int PAL3::FullInit()
     v149 = (char *)((Array *)g_nSceneMode)->Insert(v44, v49);
     v149->Erase(1, &pConfig);
     v44->Insert(elem, v149 + 12);
-    nullsub_2(g_nSceneMode, elem);
+    nullsub_2(g_nSceneMode, (int)elem);
     operator delete((void *)g_nSceneMode);
     dword_C0437C = (int)&v49[3 * v47];
     v50 = ((Array *)&g_nSceneFlags)->Size();
@@ -2917,7 +2917,7 @@ int PAL3::FullInit()
     v150 = (char *)((Array *)g_nSceneMode)->Insert(v53, v58);
     v150->Erase(1, &pConfig);
     v53->Insert(elem, v150 + 12);
-    nullsub_2(g_nSceneMode, elem);
+    nullsub_2(g_nSceneMode, (int)elem);
     operator delete((void *)g_nSceneMode);
     dword_C0437C = (int)&v58[3 * v56];
     v59 = ((Array *)&g_nSceneFlags)->Size();
@@ -2963,7 +2963,7 @@ int PAL3::FullInit()
     v151 = (char *)((Array *)g_nSceneMode)->Insert(v62, v67);
     v151->Erase(1, &pConfig);
     v62->Insert(elem, v151 + 12);
-    nullsub_2(g_nSceneMode, elem);
+    nullsub_2(g_nSceneMode, (int)elem);
     operator delete((void *)g_nSceneMode);
     dword_C0437C = (int)&v67[3 * v65];
     v68 = ((Array *)&g_nSceneFlags)->Size();
@@ -3276,7 +3276,7 @@ LABEL_148:
     v156 = (char *)((Array *)g_SceneMgr.m_pSceneRoot)->Insert(m_pAddEffect2, v119);
     v156->Erase(1, &pConfig);
     m_pAddEffect2->Insert(g_SceneMgr.m_pAddEffect2, v156 + 12);
-    nullsub_2(g_SceneMgr.m_pSceneRoot, g_SceneMgr.m_pAddEffect2);
+    nullsub_2((int)g_SceneMgr.m_pSceneRoot, (int)g_SceneMgr.m_pAddEffect2->_base);
     operator delete(g_SceneMgr.m_pSceneRoot);
     g_SceneMgr.m_pAlphaEffect2 = (gbRenderEffect *)((char *)v119 + 12 * v117);
     if ( g_SceneMgr.m_pSceneRoot )
@@ -3332,7 +3332,7 @@ LABEL_148:
     }
     i3->Erase(1, &pConfig);
     v123->Insert(g_SceneMgr.m_pAddEffect2, &i3->index[2]);
-    nullsub_2(g_SceneMgr.m_pSceneRoot, g_SceneMgr.m_pAddEffect2);
+    nullsub_2((int)g_SceneMgr.m_pSceneRoot, (int)g_SceneMgr.m_pAddEffect2->_base);
     operator delete(g_SceneMgr.m_pSceneRoot);
     g_SceneMgr.m_pAlphaEffect2 = (gbRenderEffect *)((char *)v159 + 12 * v157);
     v130 = ((Array *)&g_SceneMgr)->Size();
@@ -3385,7 +3385,7 @@ LABEL_148:
     }
     i5->Erase(1, &pConfig);
     v133->Insert(g_SceneMgr.m_pAddEffect2, &i5->index[2]);
-    nullsub_2(g_SceneMgr.m_pSceneRoot, g_SceneMgr.m_pAddEffect2);
+    nullsub_2((int)g_SceneMgr.m_pSceneRoot, (int)g_SceneMgr.m_pAddEffect2->_base);
     operator delete(g_SceneMgr.m_pSceneRoot);
     g_SceneMgr.m_pAlphaEffect2 = (gbRenderEffect *)((char *)v158 + 12 * v160);
     v140 = ((Array *)&g_SceneMgr)->Size();

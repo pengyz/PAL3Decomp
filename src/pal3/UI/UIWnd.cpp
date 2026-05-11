@@ -34,9 +34,7 @@ int sub_41C090(...);
 int sub_432680(...);
 int sub_4391A0(...);
 int sub_439230(...);
-int sub_439740(...);
 int sub_439810(...);
-int sub_439850(...);
 int sub_43A090(...);
 int sub_43B3E0(...);
 int sub_43B4D0(...);
@@ -5506,9 +5504,9 @@ _DWORD * UIWnd::ctor_57B0(int a2)
     0,
     v29);
   (**((void (***)(char *, _DWORD))this + 915))((char *)this + 3660, 0);
-  sub_439740((UIWnd *)((char *)this + 4004), (int)&unk_AA0C25, (int)this);
+  UIWnd_Helper_439740((UIWnd *)((char *)this + 4004), (int)&unk_AA0C25, (int)this);
   SetFloatParam((char *)this + 4004, 600.0);
-  sub_439850((int)this + 4004, 400, 320);
+  Camera_Helper_439850((int)this + 4004, 400, 320);
   v31 = (UIWnd *)this + 60;
   v32 = 5;
   do
@@ -5521,9 +5519,9 @@ _DWORD * UIWnd::ctor_57B0(int a2)
     ++*((_DWORD *)this + 1018);
   }
   while ( v32 );
-  sub_439740((UIWnd *)((char *)this + 4312), (int)&unk_AA0C26, (int)this);
+  UIWnd_Helper_439740((UIWnd *)((char *)this + 4312), (int)&unk_AA0C26, (int)this);
   SetFloatParam((char *)this + 4312, 600.0);
-  sub_439850((int)this + 4312, 400, 320);
+  Camera_Helper_439850((int)this + 4312, 400, 320);
   v33 = (UIWnd *)((char *)this + 4388);
   v34 = 5;
   do
@@ -5550,9 +5548,9 @@ _DWORD * UIWnd::ctor_57B0(int a2)
   (*(void (**)(char *, void *, int *, UIWnd *))(v35 + 16))((char *)this + 1776, &unk_AA0C19, &v55, this);
   ((UIWnd *)(UIWnd **)this + 444)->CreateFromTemplate(aSubgameApprais_9, *(_BYTE *)(*((_DWORD *)this + 24800) + 1756));
   (**((void (***)(char *, _DWORD))this + 444))((char *)this + 1776, 0);
-  sub_439740((UIWnd *)((char *)this + 4620), (int)&unk_AA0C27, (int)this);
+  UIWnd_Helper_439740((UIWnd *)((char *)this + 4620), (int)&unk_AA0C27, (int)this);
   SetFloatParam((char *)this + 4620, 580.0);
-  sub_439850((int)this + 4620, 400, 346);
+  Camera_Helper_439850((int)this + 4620, 400, 346);
   v36 = (UIWnd *)((char *)this + 4696);
   v37 = 5;
   do

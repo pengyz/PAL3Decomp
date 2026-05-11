@@ -11,10 +11,8 @@ int sub_407DC0(...);
 int sub_408460(...);
 int sub_4122C0(...);
 int sub_4126D0(...);
-int sub_412D90(...);
 int sub_4132B0(...);
 int sub_413C00(...);
-int sub_4142E0(...);
 int sub_416550(...);
 int sub_416620(...);
 int sub_41C1E0(...);
@@ -823,7 +821,7 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
   float v30; // [esp+40h] [ebp-4h]
 
   if ( a3 == this->m_nState )
-    return sub_412D90((int)this, (float *)a2, a4);
+    return RoleSystem_Helper_412D90(this, (float *)a2, a4);
   m_nState = this->m_nState;
   v6 = (RoleSystem *)UISceneUpdate();
   RolePtr = v6->GetRolePtr(m_nState);
@@ -883,7 +881,7 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
     if ( v24 == v8 && v25 == v15 )
     {
       sub_413C00((int)this, a3, *(_DWORD *)&this->_gap_054C[4]);
-      LOBYTE(v5) = sub_412D90((int)this, v26, a4);
+      LOBYTE(v5) = RoleSystem_Helper_412D90(this, v26, a4);
     }
     else
     {
@@ -911,7 +909,7 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
       }
       else
       {
-        LOBYTE(v5) = sub_4142E0(this);
+        LOBYTE(v5) = RoleSystem_Helper_4142E0(this);
       }
     }
   }
@@ -1283,7 +1281,7 @@ void RoleSystem::UpdateAnimation(int a2)
         v24.x = v21 * v22 + *(float *)(a2 + 4);
         v24.y = v24.y + *(float *)(a2 + 8);
         v24.z = v24.z + *(float *)(a2 + 12);
-        sub_412D90((int)this, &v24.x, 1);
+        RoleSystem_Helper_412D90(this, &v24.x, 1);
       }
       else
       {

@@ -78,7 +78,7 @@ int Scene::LoadConfig(void *pConfig)
     }
     i->Erase(1, pConfig);
     v4->Insert(this->m_pDataEnd, i + 3);
-    nullsub_2(this->m_pDataBegin, this->m_pDataEnd);
+    nullsub_2((int)this->m_pDataBegin, (int)this->m_pDataEnd);
     operator delete(this->m_pDataBegin);
     this->m_pCapacity = &v19[3 * v18];
     v12 = (_BYTE *)this->m_pDataBegin;

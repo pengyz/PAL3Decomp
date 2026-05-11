@@ -20,7 +20,6 @@ int sub_411E00(...);
 int sub_412230(...);
 int sub_4122C0(...);
 int sub_413CD0(...);
-int sub_4142E0(...);
 int sub_4150C0(...);
 int sub_416BC0(...);
 int sub_417420(...);
@@ -581,7 +580,7 @@ LABEL_23:
               *(_DWORD *)(v3 + 168) = v11;
               *(_DWORD *)(v3 + 160) = v9;
               *(float *)(v3 + 164) = v10;
-              sub_4142E0((RoleSystem *)v3);
+              RoleSystem_Helper_4142E0((RoleSystem *)v3);
             }
           }
         }
