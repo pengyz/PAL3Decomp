@@ -72,9 +72,8 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
         if offset > cursor:
             lines.append("    char _gap_%03X[%d];" % (cursor, offset - cursor))
 
-        # 如果是 vfptr 且有 vtable 数据，用 vtbl struct 指针替代
+        # vfptr: 用 vtbl struct 指针（IDA 反编译输出最优）
         if offset == 0 and mname == "vfptr" and virtual_methods:
-            # 找对应的 vtbl struct 名
             vt_struct_name = None
             for vt_name, vt_info in vtables.items():
                 if vt_info.get("class") == name:
@@ -83,7 +82,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
             if vt_struct_name:
                 lines.append("    %s *__vftable;" % vt_struct_name)
             else:
-                lines.append("    int __vftable;")
+                lines.append("    int vfptr;")
             cursor = offset + 4
             continue
 
