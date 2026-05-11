@@ -95,7 +95,27 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
         elif arr_match:
             base_type = mtype[:arr_match.start()].rstrip()
             lines.append("    %s %s%s;" % (base_type, mname, arr_match.group(1)))
-            cursor = next_member_offset(offset)
+            # For pointer/primitive arrays: compute exact size (known)
+            # For struct arrays: use next_member_offset (PAL3A sizes unreliable)
+            elem_size = 0
+            if "*" in base_type:
+                elem_size = 4
+            elif base_type in ("double",):
+                elem_size = 8
+            elif base_type in ("float", "int", "unsigned int", "DWORD", "LONG", "UINT"):
+                elem_size = 4
+            elif base_type in ("short", "unsigned short", "WORD"):
+                elem_size = 2
+            elif base_type in ("char", "unsigned char", "bool", "BYTE"):
+                elem_size = 1
+            if elem_size > 0:
+                dims = [int(d) for d in _re.findall(r'\[(\d+)\]', arr_match.group(1))]
+                total_elems = 1
+                for d in dims:
+                    total_elems *= d
+                cursor = offset + total_elems * elem_size
+            else:
+                cursor = next_member_offset(offset)
         else:
             lines.append("    %s %s;" % (mtype, mname))
             if "*" in mtype:        cursor = offset + 4
@@ -320,8 +340,14 @@ def apply_annotations():
                 short_name = name.split("::")[-1]
             else:
                 short_name = name
-            # Demangle: ?Name@Class@@... → Name
-            if short_name.startswith("?"):
+            # Demangle: ?Name@Class@@... → Name, ??1Class@@... → dtor_Class
+            if short_name.startswith("??1"):
+                m = _re_sig.match(r'\?\?1(\w+)@@', short_name)
+                short_name = ("dtor_" + m.group(1)) if m else "dtor"
+            elif short_name.startswith("??0"):
+                m = _re_sig.match(r'\?\?0(\w+)@@', short_name)
+                short_name = ("ctor_" + m.group(1)) if m else "ctor"
+            elif short_name.startswith("?"):
                 m = _re_sig.match(r'\?(\w+)@', short_name)
                 if m:
                     short_name = m.group(1)
