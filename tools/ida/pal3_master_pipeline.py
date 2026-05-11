@@ -267,12 +267,13 @@ def phase4_export():
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    # Clean old files
+    # Clean old decomp files (preserve annotations.json and _prefixed files)
     import glob
     old_files = glob.glob(os.path.join(OUTPUT_DIR, "*.json"))
     removed = 0
     for f in old_files:
-        if os.path.basename(f).startswith('_'):
+        basename = os.path.basename(f)
+        if basename.startswith('_') or basename == 'annotations.json':
             continue
         os.remove(f)
         removed += 1
