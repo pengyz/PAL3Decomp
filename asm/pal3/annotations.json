@@ -23939,8 +23939,8 @@
       "type": "HANDLE"
     },
     "0x00C05F60": {
-      "name": "g_ScriptSlots",
-      "type": "char[17408]"
+      "name": "g_RoleSystems",
+      "type": "RoleSystem *"
     },
     "0x00C10CC8": {
       "name": "g_nCurrentScriptSlot",
@@ -23977,6 +23977,10 @@
     "0x00BFDBA4": {
       "name": "g_nCurrentEventId",
       "type": "unsigned int"
+    },
+    "0x00BFDB80": {
+      "name": "g_pScriptObjArray",
+      "type": "void **"
     }
   },
   "structs": {
@@ -26020,8 +26024,8 @@
     "SceneMgr": {
       "known_members": {
         "0": {
-          "name": "s_curscene",
-          "type": "SCENE_TYPE",
+          "name": "m_pGfxMgr",
+          "type": "gbGfxManager *",
           "source": "pdb_verified_by_old_ida"
         },
         "4": {
@@ -26099,11 +26103,6 @@
           "type": "gbGeomNode *",
           "source": "gen_headers_9.2"
         },
-        "7076": {
-          "name": "m_ScriptSlots",
-          "type": "ScriptSlot[5]",
-          "source": "binary:stride_8704_x5"
-        },
         "128": {
           "name": "m_nSceneParam",
           "type": "int",
@@ -26113,6 +26112,11 @@
           "name": "m_PlayerAtts",
           "type": "ARC_PlayerAtt[5]",
           "source": "binary:stride_0x580_pattern_5slots"
+        },
+        "7120": {
+          "name": "m_RoleSystems",
+          "type": "RoleSystem[5]",
+          "source": "binary:Render_calls_RenderRole"
         }
       },
       "pdb_size": 1,
@@ -26566,6 +26570,16 @@
           "name": "m_fSnapshotZ",
           "type": "float",
           "source": "binary:raw_snapshot"
+        },
+        "640": {
+          "name": "m_fScale",
+          "type": "float",
+          "source": "binary:RenderRole_0x412400"
+        },
+        "696": {
+          "name": "m_pActor",
+          "type": "gbActor *",
+          "source": "binary:RenderRole_0x412400"
         }
       },
       "note": "not in PDB, needs binary analysis",
@@ -65760,27 +65774,6 @@
           "name": "vfptr",
           "type": "int",
           "source": "binary:vtable_ptr"
-        }
-      }
-    },
-    "ScriptSlot": {
-      "pdb_size": 0,
-      "binary_size": 8704,
-      "known_members": {
-        "48": {
-          "name": "nRolePosX",
-          "type": "int",
-          "source": "binary:RunEvent_read_3_ints"
-        },
-        "52": {
-          "name": "nRolePosY",
-          "type": "int",
-          "source": "binary:RunEvent_read_3_ints"
-        },
-        "56": {
-          "name": "nRolePosZ",
-          "type": "int",
-          "source": "binary:RunEvent_read_3_ints"
         }
       }
     }
