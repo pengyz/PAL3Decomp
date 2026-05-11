@@ -26990,8 +26990,35 @@
       }
     },
     "CGameData": {
-      "known_members": {},
-      "note": "not in PDB, needs binary analysis"
+      "binary_size": 38144,
+      "note": "Large game data container. Not in PAL3A PDB. Size estimated from offset analysis.",
+      "known_members": {
+        "0": {
+          "name": "_vftable",
+          "type": "int",
+          "source": "binary:Destroy vtable call"
+        },
+        "14528": {
+          "name": "m_pDialog",
+          "type": "int",
+          "source": "binary:Init _dF40 pattern"
+        },
+        "14532": {
+          "name": "m_DialogState1",
+          "type": "int",
+          "source": "binary:Render"
+        },
+        "14536": {
+          "name": "m_DialogState2",
+          "type": "int",
+          "source": "binary:Render"
+        },
+        "38156": {
+          "name": "m_nMode",
+          "type": "int",
+          "source": "binary:GetMode [ecx+0x38CC]"
+        }
+      }
     },
     "RenderTarget2": {
       "known_members": {},
