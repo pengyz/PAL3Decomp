@@ -32,7 +32,7 @@ def build_struct_decl(name, struct_info):
     import re as _re
 
     members = struct_info.get("known_members", {})
-    size = struct_info.get("binary_size", struct_info.get("pdb_size", struct_info.get("gen_size", 0)))
+    size = max(struct_info.get("binary_size", 0), struct_info.get("pdb_size", 0), struct_info.get("gen_size", 0))
     base_class = struct_info.get("base_class")
     base_size = struct_info.get("base_size", 0)
 
