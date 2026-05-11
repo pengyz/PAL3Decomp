@@ -1,0 +1,7 @@
+{
+  "name": "UIRenderPar(int,int,int,int,gbColorQuad &,gbTextureArray &,_PlugInfo *)",
+  "address": "0x00541160",
+  "size_bytes": 159,
+  "signature": "void __cdecl(struct tagRECT *a1, struct tagRECT *a2, _BYTE *a3, int a4, struct _PlugInfo *a5)",
+  "decompiled_c": "void __cdecl UIRenderPar(struct tagRECT *a1, struct tagRECT *a2, _BYTE *a3, int a4, struct _PlugInfo *a5)\n{\n  struct gbColorQuad *v6; // edi\n  int v7; // eax\n  unsigned int v8; // [esp+20h] [ebp+10h]\n\n  v6 = *(struct gbColorQuad **)(*(_DWORD *)&gfxMgr->_data[208] + 4 * a4);\n  if ( gbColorQuad::ColorQuadFmt )\n  {\n    BYTE2(v8) = *a3;\n    BYTE1(v8) = a3[1];\n    LOBYTE(v8) = a3[2];\n  }\n  else\n  {\n    *(_WORD *)((char *)&v8 + 1) = *(_WORD *)(a3 + 1);\n    LOBYTE(v8) = *a3;\n  }\n  HIBYTE(v8) = a3[3];\n  v6[3].Color = v8;\n  v7 = 16;\n  switch ( a4 )\n  {\n    case 0:\n      v7 = 12;\n      break;\n    case 1:\n      v7 = 16;\n      break;\n    case 2:\n      v7 = 20;\n      break;\n    case 3:\n      v7 = 24;\n      break;\n    default:\n      break;\n  }\n  UIRenderQuad(a1, a2, v6, v7, a5);\n}\n"
+}

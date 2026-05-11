@@ -1,0 +1,7 @@
+{
+  "name": "sub_4A68D0",
+  "address": "0x004A68D0",
+  "size_bytes": 81,
+  "signature": "char __thiscall(char *this, char *a2)",
+  "decompiled_c": "char __thiscall sub_4A68D0(char *this, char *a2)\n{\n  gbRefObject *v3; // ecx\n  gbTexture *v4; // eax\n\n  v3 = *(gbRefObject **)this;\n  if ( v3 )\n  {\n    gbRefObject::Release(v3);\n    *(_DWORD *)this = 0;\n  }\n  gbImage2D::Release((gbImage2D *)(this + 4));\n  gbImage2D::LoadImageFile((gbImage2D *)(this + 4), a2, 0);\n  v4 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_data + 8))(gfxMgr, a2);\n  *(_DWORD *)this = v4;\n  gbTexture::LoadTexture(v4, 2);\n  return 1;\n}\n"
+}

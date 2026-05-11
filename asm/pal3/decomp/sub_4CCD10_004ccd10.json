@@ -1,0 +1,7 @@
+{
+  "name": "sub_4CCD10",
+  "address": "0x004CCD10",
+  "size_bytes": 144,
+  "signature": "_DWORD *__thiscall(int this, int a2)",
+  "decompiled_c": "// likely CEffMeteor method (near CreateTask, ~CEffMeteor, Create, Init, CEffMeteor)\n_DWORD *__thiscall sub_4CCD10(int this, int a2)\n{\n  gbTexture *v3; // eax\n  _DWORD *result; // eax\n  int v5; // ecx\n  char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF\n  char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF\n\n  v3 = (gbTexture *)(*(int (__thiscall **)(_DWORD, int))(***(_DWORD ***)(this + 4) + 8))(**(_DWORD **)(this + 4), a2);\n  *(_DWORD *)(this + 60) = v3;\n  gbTexture::LoadTexture(v3, 1);\n  result = (_DWORD *)operator new(0x44u);\n  if ( result )\n  {\n    v5 = *(_DWORD *)(this + 60);\n    result[16] = 1;\n    *result = v5;\n  }\n  else\n  {\n    result = 0;\n  }\n  *(_DWORD *)(this + 64) = result;\n  if ( !result )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aCNewFailed_0, aDProjectPal3Co_0, 550), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  return result;\n}\n"
+}

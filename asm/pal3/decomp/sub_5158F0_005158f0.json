@@ -1,0 +1,7 @@
+{
+  "name": "sub_5158F0",
+  "address": "0x005158F0",
+  "size_bytes": 71,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "int __thiscall sub_5158F0(int this, int a2)\n{\n  int v3; // eax\n  int v4; // edi\n\n  v3 = *(_DWORD *)(this + 144);\n  v4 = this + 88 * v3 + 152;\n  if ( !*(_BYTE *)(this + 88 * v3 + 189) )\n  {\n    CCBSystem::GetCmdPtr(*(CCBSystem **)(this + 12), *(_DWORD *)(this + 88 * v3 + 200));\n    *(_BYTE *)(v4 + 37) = 1;\n  }\n  CCBSystem::ClearEffect((CCBSystem *)this, *(_DWORD *)(this + 144));\n  return 0;\n}\n"
+}

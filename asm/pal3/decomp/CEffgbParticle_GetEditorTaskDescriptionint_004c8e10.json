@@ -1,0 +1,7 @@
+{
+  "name": "CEffgbParticle::GetEditorTaskDescription(int)",
+  "address": "0x004C8E10",
+  "size_bytes": 102,
+  "signature": "void __thiscall(CEffgbParticle *this)",
+  "decompiled_c": "void __thiscall CEffgbParticle::GetEditorTaskDescription(CEffgbParticle *this)\n{\n  gbMatrixStack *v2; // edi\n  int v3; // eax\n  float v4; // [esp+0h] [ebp-14h]\n  float v5; // [esp+4h] [ebp-10h]\n  float v6; // [esp+8h] [ebp-Ch]\n\n  if ( !LOBYTE(this->m_fX) )\n  {\n    v2 = *(gbMatrixStack **)(*(_DWORD *)LODWORD(this->m_fSize) + 216);\n    gbMatrixStack::Push(v2);\n    v6 = this[2].m_fY + *(float *)&this[2].m_pEffect;\n    v5 = this[2].m_fX + this[1].m_fPZ;\n    v4 = this[2].m_fSize + this[1].m_fPY;\n    gbMatrixStack::Translate(v2, v4, v5, v6);\n    v3 = sub_4BC8A0((char *)LODWORD(this[1].m_fZ));\n    if ( SLODWORD(this[1].m_fSize) <= 0 && v3 <= 0 )\n      LOBYTE(this->m_fX) = 1;\n    gbMatrixStack::Pop(v2);\n  }\n}\n"
+}

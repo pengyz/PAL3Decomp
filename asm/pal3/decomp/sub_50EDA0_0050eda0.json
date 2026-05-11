@@ -1,0 +1,7 @@
+{
+  "name": "sub_50EDA0",
+  "address": "0x0050EDA0",
+  "size_bytes": 207,
+  "signature": "int __thiscall(void *this, int a2)",
+  "decompiled_c": "int __thiscall sub_50EDA0(void *this, int a2)\n{\n  int v3; // eax\n\n  if ( *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 506) )\n  {\n    if ( !CCBRoleState::IsRoleAlive(*((CCBRoleState **)this + 1), *((_DWORD *)this + 71))\n      || a2 == *((_DWORD *)this + 1661) )\n    {\n      CCBStageRole::ClearBadPushTask((CCBStageRole *)this, 0.0099999998);\n      *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;\n      CCBRoleState::SetRoleFlag(*((CCBRoleState **)this + 1), *((_DWORD *)this + 71), 1);\n    }\n    return 0;\n  }\n  else\n  {\n    CCBStageRole::ClearBadPushTask((CCBStageRole *)this, 0.0099999998);\n    if ( CCBStageRole::IsActive(*((CCBStageRole **)this + 1), *((_DWORD *)this + 71)) )\n    {\n      *((_DWORD *)this + 1642) = 41;\n      CCBStageRole::GetPointerPos((CCBStageRole *)this);\n    }\n    v3 = *((_DWORD *)this + 99);\n    *((_DWORD *)this + 1658) = *((_DWORD *)this + 1659);\n    *((_BYTE *)this + 96 * v3 + 506) = 1;\n    nullsub_3(this);\n    return 0;\n  }\n}\n"
+}

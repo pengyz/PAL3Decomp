@@ -2,6 +2,6 @@
   "name": "UIScene::Destroy2",
   "address": "0x0043A810",
   "size_bytes": 92,
-  "signature": "void __thiscall(UIScene *this)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nvoid __thiscall UIScene::Destroy2(UIScene *this)\n{\n  *(_DWORD *)this = &off_56AC70;\n  UIScene::OnMessage2(this);\n  j_UIWnd::MoveWindow((UIWnd **)this + 29);\n  UIWnd::_UIWnd((UIWnd *)this);\n}\n"
+  "signature": "void __thiscall(std::ios_base *this)",
+  "decompiled_c": "void __thiscall UIScene::Destroy2(std::ios_base *this)\n{\n  this->_State = (int)&off_56AC70;\n  UIScene::OnMessage2((UIWnd **)this);\n  j_UIWnd::MoveWindow(&this[2]._Loc);\n  UIWnd::_UIWnd(this);\n}\n"
 }

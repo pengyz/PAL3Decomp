@@ -1,7 +1,0 @@
-{
-  "name": "?_GetRangeOfTrysToCheck@@YAPBU_s_TryBlockMapEntry@@PBU_s_FuncInfo@@HHPAI1@Z",
-  "address": "0x0055333D",
-  "size_bytes": 123,
-  "signature": "TryBlockMapEntry *__cdecl(const struct _s_FuncInfo *a1, int a2, EXCEPTION_POINTERS *a3, unsigned int *a4, unsigned int *a5)",
-  "decompiled_c": "TryBlockMapEntry *__cdecl _GetRangeOfTrysToCheck(\n        const struct _s_FuncInfo *a1,\n        int a2,\n        EXCEPTION_POINTERS *a3,\n        unsigned int *a4,\n        unsigned int *a5)\n{\n  unsigned int nTryBlocks; // esi\n  TryBlockMapEntry *pTryBlockMap; // ebx\n  unsigned int v8; // eax\n  unsigned int v9; // esi\n  struct _EXCEPTION_POINTERS *v11; // [esp+0h] [ebp-10h]\n  unsigned int v12; // [esp+Ch] [ebp-4h]\n  const struct _s_FuncInfo *v13; // [esp+18h] [ebp+8h]\n\n  nTryBlocks = a1->nTryBlocks;\n  pTryBlockMap = a1->pTryBlockMap;\n  v8 = nTryBlocks;\n  v13 = (const struct _s_FuncInfo *)nTryBlocks;\n  v12 = nTryBlocks;\n  if ( a2 >= 0 )\n  {\n    do\n    {\n      if ( nTryBlocks == -1 )\n        UnhandledExceptionFilter_0(v11);\n      if ( pTryBlockMap[--nTryBlocks].tryHigh < (int)a3 && (int)a3 <= pTryBlockMap[nTryBlocks].catchHigh\n        || nTryBlocks == -1 )\n      {\n        --a2;\n        v12 = (unsigned int)v13;\n        v13 = (const struct _s_FuncInfo *)nTryBlocks;\n      }\n    }\n    while ( a2 >= 0 );\n    v8 = v12;\n  }\n  v9 = nTryBlocks + 1;\n  *a4 = v9;\n  *a5 = v8;\n  if ( v8 > a1->nTryBlocks || v9 > v8 )\n    UnhandledExceptionFilter_0(v11);\n  return &pTryBlockMap[v9];\n}\n"
-}

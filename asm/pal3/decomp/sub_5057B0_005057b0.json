@@ -1,0 +1,7 @@
+{
+  "name": "sub_5057B0",
+  "address": "0x005057B0",
+  "size_bytes": 66,
+  "signature": "char __thiscall(int this, int a2, int a3)",
+  "decompiled_c": "// likely CCCTData method (near SwapTask, ~CCCTData, GetTaskNumInList, GetFreeSpac)\nchar __thiscall sub_5057B0(int this, int a2, int a3)\n{\n  if ( a3 >= CCBStageCam::IsEditorCamValid((CCBStageCam *)this, a2) )\n    return 0;\n  *(_BYTE *)(this + 430012) = 1;\n  CCCTData::Save((CCCTData *)this, a2);\n  *(_DWORD *)(this + 430032) = a2;\n  *(_DWORD *)(this + 430036) = a3;\n  return 1;\n}\n"
+}

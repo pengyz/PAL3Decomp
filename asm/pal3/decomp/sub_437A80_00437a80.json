@@ -1,0 +1,7 @@
+{
+  "name": "sub_437A80",
+  "address": "0x00437A80",
+  "size_bytes": 51,
+  "signature": "void()",
+  "decompiled_c": "void sub_437A80()\n{\n  char *String; // eax\n  unsigned __int8 *v1; // eax\n  unsigned __int8 *v2; // eax\n  int v3; // esi\n  __int16 v4; // [esp-4h] [ebp-8h]\n\n  String = PalScript::GetString();\n  if ( String )\n  {\n    v4 = *((_WORD *)String + 2);\n    v1 = (unsigned __int8 *)sub_4226F0();\n    v2 = sub_421560(v1, v4);\n    v3 = (int)v2;\n    if ( v2 )\n    {\n      sub_42BEA0((int)v2);\n      sub_434C40(v3);\n    }\n  }\n}\n"
+}

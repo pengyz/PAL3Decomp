@@ -1,0 +1,7 @@
+{
+  "name": "sub_4C5DE0",
+  "address": "0x004C5DE0",
+  "size_bytes": 60,
+  "signature": "void __thiscall(int this)",
+  "decompiled_c": "void __thiscall sub_4C5DE0(int this)\n{\n  gbRefObject *v2; // ecx\n\n  v2 = *(gbRefObject **)(this + 245792);\n  if ( v2 )\n  {\n    gbRefObject::Release(v2);\n    *(_DWORD *)(this + 245792) = 0;\n  }\n  if ( *(_DWORD *)(this + 245796) )\n  {\n    operator delete(*(void **)(this + 245796));\n    *(_DWORD *)(this + 245796) = 0;\n  }\n}\n"
+}

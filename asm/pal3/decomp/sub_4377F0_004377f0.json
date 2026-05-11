@@ -1,0 +1,7 @@
+{
+  "name": "sub_4377F0",
+  "address": "0x004377F0",
+  "size_bytes": 228,
+  "signature": "char()",
+  "decompiled_c": "char sub_4377F0()\n{\n  char *String; // esi\n  _DWORD *v1; // eax\n  _DWORD *v2; // edi\n  unsigned __int8 *v3; // eax\n  _DWORD *v4; // esi\n  char v5; // cl\n  __int16 v7; // [esp-4h] [ebp-Ch]\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  v2 = v1;\n  if ( String )\n  {\n    if ( v1 )\n    {\n      v7 = *((_WORD *)String + 2);\n      v3 = (unsigned __int8 *)sub_4226F0();\n      v1 = sub_421560(v3, v7);\n      v4 = v1;\n      if ( v1 )\n      {\n        v5 = *((_BYTE *)v2 + 4);\n        v1[144] = 1;\n        *((_BYTE *)v1 + 173) = v5;\n        if ( !v5 )\n          sub_42C700((int)v1);\n        if ( *((_BYTE *)v4 + 244) == 31 && !_strcmpi(*(const char **)(v4[199] + 16), aM09) )\n          sub_42C0C0(v4, 2, *((_BYTE *)v4 + 173) == 0);\n        LOBYTE(v1) = *((_BYTE *)v4 + 173);\n        if ( (_BYTE)v1 )\n        {\n          if ( v4[22] == 4 )\n          {\n            v1 = (_DWORD *)_strcmpi((const char *)v4 + 176, a4_0);\n            if ( !v1 )\n              LOBYTE(v1) = sub_4B73F0((_DWORD *)v4[23], v4[53], v4[54], v4[55]);\n          }\n        }\n      }\n    }\n  }\n  return (char)v1;\n}\n"
+}

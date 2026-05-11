@@ -1,0 +1,7 @@
+{
+  "name": "___onexitinit",
+  "address": "0x00553053",
+  "size_bytes": 47,
+  "signature": "void *()",
+  "decompiled_c": "void *__onexitinit()\n{\n  _DWORD *v0; // eax\n  void *result; // eax\n\n  v0 = malloc(0x80u);\n  dword_1896CF0 = v0;\n  if ( !v0 )\n    _amsg_exit(0x18u);\n  *v0 = 0;\n  result = dword_1896CF0;\n  dword_1896CEC = (int)dword_1896CF0;\n  return result;\n}\n"
+}

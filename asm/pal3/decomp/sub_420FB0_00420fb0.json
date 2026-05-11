@@ -1,0 +1,7 @@
+{
+  "name": "sub_420FB0",
+  "address": "0x00420FB0",
+  "size_bytes": 98,
+  "signature": "BOOL __thiscall(RoleSystem *this, int index, float *a3, int a4)",
+  "decompiled_c": "BOOL __thiscall sub_420FB0(RoleSystem *this, int index, float *a3, int a4)\n{\n  int RolePtr; // edi\n\n  RolePtr = RoleSystem::GetRolePtr(this, index);\n  return sub_421020(\n           this,\n           index,\n           (int *)(__int64)((*a3 - *(float *)(RolePtr + 128)) / flt_C12B14),\n           (__int64)((a3[2] - *(float *)(RolePtr + 136)) / flt_C12B14),\n           a4);\n}\n"
+}

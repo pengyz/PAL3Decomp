@@ -1,0 +1,7 @@
+{
+  "name": "sub_530F70",
+  "address": "0x00530F70",
+  "size_bytes": 157,
+  "signature": "void __thiscall(int this, float a2)",
+  "decompiled_c": "void __thiscall sub_530F70(int this, float a2)\n{\n  double v3; // st7\n  double v4; // st7\n  void *v5; // ecx\n  double v6; // st7\n  int v7; // edx\n\n  if ( !*(_BYTE *)(this + 797) )\n  {\n    v3 = a2 * *(float *)(this + 792);\n    if ( *(_BYTE *)(this + 796) )\n    {\n      v4 = *(float *)(this + 660) - v3;\n      *(float *)(this + 660) = v4;\n      if ( v4 <= 0.0 )\n      {\n        v5 = *(void **)this;\n        *(_BYTE *)(this + 796) = 0;\n        Actor::LoadAction(v5, off_5F50B4);\n        sub_530BE0((_DWORD *)this, 0);\n      }\n    }\n    else\n    {\n      v6 = v3 + *(float *)(this + 660);\n      *(float *)(this + 660) = v6;\n      if ( v6 >= *(float *)(this + 668) )\n      {\n        v7 = *(_DWORD *)(this + 668);\n        *(_BYTE *)(this + 796) = 1;\n        *(_DWORD *)(this + 660) = v7;\n        *(_BYTE *)(this + 797) = 1;\n      }\n      *(_BYTE *)(this + 799) = 1;\n    }\n  }\n}\n"
+}

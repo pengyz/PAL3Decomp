@@ -1,0 +1,7 @@
+{
+  "name": "sub_438F50",
+  "address": "0x00438F50",
+  "size_bytes": 97,
+  "signature": "char()",
+  "decompiled_c": "char sub_438F50()\n{\n  unsigned __int8 *v0; // eax\n  unsigned __int8 *v1; // eax\n  int *v2; // eax\n\n  LOBYTE(v0) = dword_D8BC38;\n  if ( !(_BYTE)dword_D8BC38 )\n  {\n    if ( UIScene::ProcessInput(aM16, a4) )\n    {\n      v1 = (unsigned __int8 *)sub_4226F0();\n      v0 = sub_421560(v1, 22) + 172;\n    }\n    else\n    {\n      v2 = sub_5394F0();\n      v0 = (unsigned __int8 *)sub_539540(v2, aM16, a4, 22);\n    }\n    if ( v0 )\n      v0[3] = v0[3] == 0;\n    LOBYTE(dword_D8BC38) = 1;\n  }\n  return (char)v0;\n}\n"
+}

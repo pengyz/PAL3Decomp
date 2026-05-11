@@ -1,0 +1,7 @@
+{
+  "name": "sub_55157B",
+  "address": "0x0055157B",
+  "size_bytes": 85,
+  "signature": "__m64 *__stdcall(__m64 *a1, __m64 *a2, __m64 *a3)",
+  "decompiled_c": "__m64 *__stdcall sub_55157B(__m64 *a1, __m64 *a2, __m64 *a3)\n{\n  unsigned __int64 m64_u64; // mm1\n  __m64 v4; // mm0\n  __m64 v5; // mm4\n  __m64 v6; // mm3\n\n  _m_femms();\n  m64_u64 = a2->m64_u64;\n  v4 = _m_punpckldq((__m64)m64_u64, (__m64)m64_u64);\n  v5 = _m_punpckhdq((__m64)m64_u64, (__m64)m64_u64);\n  v6 = _m_pfadd(_m_pfadd(_m_pfmul(v4, a3[1]), a3[7]), _m_pfmul(v5, a3[3]));\n  a1->m64_u64 = (unsigned __int64)_m_pfadd(_m_pfadd(_m_pfmul(v4, (__m64)a3->m64_u64), a3[6]), _m_pfmul(v5, a3[2]));\n  a1[1].m64_u64 = (unsigned __int64)v6;\n  _m_femms();\n  return a1;\n}\n"
+}

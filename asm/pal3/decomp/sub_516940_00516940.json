@@ -1,0 +1,7 @@
+{
+  "name": "sub_516940",
+  "address": "0x00516940",
+  "size_bytes": 230,
+  "signature": "void __thiscall(CCBAIWindow *this)",
+  "decompiled_c": "// likely CCBAIWindow method (near Reset, Destroy, Update, CCBAIWindow, ShowWindow, O)\nvoid __thiscall sub_516940(CCBAIWindow *this)\n{\n  UIWnd ***v2; // edi\n  UIWnd **v3; // ecx\n  UIWnd ***v4; // edi\n  UIWnd **v5; // ecx\n  int v6; // [esp+10h] [ebp-10h] BYREF\n  int v7; // [esp+14h] [ebp-Ch]\n  int v8; // [esp+18h] [ebp-8h]\n  int v9; // [esp+1Ch] [ebp-4h]\n\n  v7 = 0;\n  v2 = (UIWnd ***)&this[3]._tail[195];\n  v8 = 0;\n  v6 = 0;\n  v9 = 0;\n  if ( CCBAIWindow::Reset(this, &this[3]._tail[195]) )\n  {\n    v3 = *v2;\n    v6 = 150;\n    v8 = 406;\n    v7 = -50;\n    v9 = 462;\n    (*(void (__thiscall **)(UIWnd **, int, int *, CCBAIWindow *))&(*v3)->m_wndcolor.Blue)(v3, 800, &v6, this);\n    UIWnd::CreateFromTemplate(*v2, aUiCombatResult_14, 0);\n    ((void (__thiscall *)(UIWnd **, _DWORD))(**v2)->m_fontcolor.ColorQuadFmt)(*v2, 0);\n    v4 = (UIWnd ***)&this[3]._tail[199];\n    if ( CCBAIWindow::Reset(this, &this[3]._tail[199]) )\n    {\n      v5 = *v4;\n      v6 = 150;\n      v8 = 406;\n      v7 = -50;\n      v9 = 462;\n      (*(void (__thiscall **)(UIWnd **, int, int *, CCBAIWindow *))&(*v5)->m_wndcolor.Blue)(v5, 816, &v6, this);\n      UIWnd::CreateFromTemplate(*v4, aUiCombatResult_15, 0);\n      ((void (__thiscall *)(UIWnd **, _DWORD))(**v4)->m_fontcolor.ColorQuadFmt)(*v4, 0);\n    }\n  }\n}\n"
+}

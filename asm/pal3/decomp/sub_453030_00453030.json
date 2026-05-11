@@ -1,0 +1,7 @@
+{
+  "name": "sub_453030",
+  "address": "0x00453030",
+  "size_bytes": 129,
+  "signature": "void __thiscall(std::ios_base *this)",
+  "decompiled_c": "void __thiscall sub_453030(std::ios_base *this)\n{\n  int State; // eax\n  _BYTE *v3; // ecx\n  char v4; // al\n  std::locale::_Locimp *Ptr; // eax\n  char *v6; // ecx\n  char v7; // al\n\n  this->_State = (int)&off_56B200;\n  State = this[2]._State;\n  if ( State )\n  {\n    v3 = (_BYTE *)(State - 1);\n    v4 = *(_BYTE *)(State - 1);\n    if ( !v4 || v4 == -1 )\n      operator delete(v3);\n    else\n      *v3 = v4 - 1;\n  }\n  this[2]._State = 0;\n  this[2]._Except = 0;\n  this[2]._Fmtfl = 0;\n  Ptr = this[1]._Loc._Ptr;\n  if ( Ptr )\n  {\n    v6 = &Ptr[-1]._data[39];\n    v7 = Ptr[-1]._data[39];\n    if ( v7 && v7 != -1 )\n    {\n      *v6 = v7 - 1;\n      this[1]._Loc._Ptr = 0;\n      this[1]._Stdstr = 0;\n      this[1]._Index = 0;\n      UIWnd::_UIWnd(this);\n      return;\n    }\n    operator delete(v6);\n  }\n  this[1]._Loc._Ptr = 0;\n  this[1]._Stdstr = 0;\n  this[1]._Index = 0;\n  UIWnd::_UIWnd(this);\n}\n"
+}

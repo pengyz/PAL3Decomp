@@ -1,0 +1,7 @@
+{
+  "name": "sub_527DC0",
+  "address": "0x00527DC0",
+  "size_bytes": 194,
+  "signature": "int __thiscall(UIWnd *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_527DC0(UIWnd *this, int a2, int a3)\n{\n  int v4; // eax\n  int result; // eax\n\n  v4 = sub_4A1CF0(&this[4].m_rect.right);\n  if ( v4 )\n  {\n    if ( v4 == 1 )\n    {\n      byte_D92785 = 0;\n      sub_527F50(this, 3);\n    }\n  }\n  else\n  {\n    byte_D92785 = 1;\n    sub_527F50(this, 1);\n    BYTE1(dword_DBA250) = 1;\n  }\n  switch ( this[4].m_rect.top )\n  {\n    case 0:\n      UIWnd::HitTest(this, a2, a3);\n      result = 1;\n      break;\n    case 1:\n      (*(void (__thiscall **)(UIWnd *, int, int))(this[21].m_pfather->m_fontcolor.ColorQuadFmt + 8))(\n        this[21].m_pfather,\n        a2,\n        a3);\n      result = 1;\n      break;\n    case 2:\n      (*((void (__thiscall **)(void **, int, int))*this[21].m_childs.m_pData + 2))(this[21].m_childs.m_pData, a2, a3);\n      result = 1;\n      break;\n    case 3:\n      sub_44F610((int)&dword_DB9FD0, this[21].m_childs.m_nMaxSize);\n      goto LABEL_10;\n    default:\nLABEL_10:\n      result = 1;\n      break;\n  }\n  return result;\n}\n"
+}

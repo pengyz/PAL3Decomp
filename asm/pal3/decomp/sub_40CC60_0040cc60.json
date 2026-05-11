@@ -1,0 +1,7 @@
+{
+  "name": "sub_40CC60",
+  "address": "0x0040CC60",
+  "size_bytes": 48,
+  "signature": "int __fastcall(int a1)",
+  "decompiled_c": "int __fastcall sub_40CC60(int a1)\n{\n  int result; // eax\n\n  result = a1;\n  *(_BYTE *)a1 = HIBYTE(a1);\n  *(_DWORD *)(a1 + 4) = 0;\n  *(_DWORD *)(a1 + 8) = 0;\n  *(_DWORD *)(a1 + 12) = 0;\n  *(_BYTE *)(a1 + 20) = HIBYTE(a1);\n  *(_DWORD *)(a1 + 24) = 0;\n  *(_DWORD *)(a1 + 28) = 0;\n  *(_DWORD *)(a1 + 32) = 0;\n  *(_DWORD *)(a1 + 16) = -1;\n  *(_DWORD *)(a1 + 36) = 0;\n  return result;\n}\n"
+}

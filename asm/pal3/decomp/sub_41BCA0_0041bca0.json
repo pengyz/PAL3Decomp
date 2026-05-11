@@ -1,0 +1,7 @@
+{
+  "name": "sub_41BCA0",
+  "address": "0x0041BCA0",
+  "size_bytes": 146,
+  "signature": "int __userpurge@<eax>(_DWORD *this@<ecx>, double a2@<st1>, unsigned __int8 *a3)",
+  "decompiled_c": "int __userpurge sub_41BCA0@<eax>(_DWORD *this@<ecx>, double a2@<st1>, unsigned __int8 *a3)\n{\n  int result; // eax\n  int v6; // edx\n\n  this[158] = *a3;\n  result = this[317];\n  if ( result != 3 )\n  {\n    sub_4125B0(this, a3[16]);\n    if ( this[317] == 3 )\n    {\n      v6 = *((_DWORD *)a3 + 1);\n      this[40] = v6;\n      this[41] = *((_DWORD *)a3 + 2);\n      this[42] = *((_DWORD *)a3 + 3);\n      this[1] = v6;\n      this[2] = this[41];\n      this[3] = this[42];\n      this[2] = 0;\n    }\n    else\n    {\n      sub_416490((int)this, a2, (_DWORD *)a3 + 1);\n    }\n    result = sub_416620((int)this, *((float *)a3 + 5), 1);\n    this[66] = *((_DWORD *)a3 + 6);\n  }\n  return result;\n}\n"
+}

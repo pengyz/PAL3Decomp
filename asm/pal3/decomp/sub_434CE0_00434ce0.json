@@ -1,0 +1,7 @@
+{
+  "name": "sub_434CE0",
+  "address": "0x00434CE0",
+  "size_bytes": 63,
+  "signature": "void()",
+  "decompiled_c": "void sub_434CE0()\n{\n  char *String; // esi\n  int v1; // eax\n  double v2; // st7\n\n  String = PalScript::GetString();\n  if ( String )\n  {\n    v1 = operator new(0x10u);\n    if ( v1 )\n    {\n      v2 = *((float *)String + 1);\n      *(_DWORD *)v1 = &off_56ABC4;\n      *(float *)(v1 + 8) = v2;\n      *(_DWORD *)(v1 + 12) = 0;\n      *(_DWORD *)(v1 + 4) = 1;\n      sub_434C40(v1);\n    }\n  }\n}\n"
+}

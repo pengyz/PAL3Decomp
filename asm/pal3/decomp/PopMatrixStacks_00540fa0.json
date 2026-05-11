@@ -1,7 +1,0 @@
-{
-  "name": "PopMatrixStacks",
-  "address": "0x00540FA0",
-  "size_bytes": 34,
-  "signature": "gbGfxManager *__cdecl()",
-  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\ngbGfxManager *__cdecl PopMatrixStacks()\n{\n  gbMatrixStack *v0; // esi\n  gbGfxManager *result; // eax\n\n  v0 = g_pGfxMgr->pMatrixStack[1];\n  gbMatrixStack::Pop(g_pGfxMgr->pMatrixStack[0]);\n  gbMatrixStack::Pop(v0);\n  return result;\n}\n"
-}

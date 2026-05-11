@@ -1,0 +1,7 @@
+{
+  "name": "CCBAI::HandleEnemyChaos(int)",
+  "address": "0x004D86D0",
+  "size_bytes": 136,
+  "signature": "char __thiscall(CCBAI *this, int a2)",
+  "decompiled_c": "char __thiscall CCBAI::HandleEnemyChaos(CCBAI *this, int a2)\n{\n  CCBRoleState *v3; // ecx\n  int v4; // eax\n  CCBAI *v5; // ecx\n  char result; // al\n  int v7; // [esp-4h] [ebp-10h]\n\n  v3 = *(CCBRoleState **)&this->_data[16];\n  if ( !v3->m_Role[a2].bValid\n    || !CCBRoleState::IsRoleAlive(v3, a2)\n    || !CCBRoleState::InitUI(*(CCBRoleState **)&this->_data[16], a2)->nHP )\n  {\n    return 0;\n  }\n  v7 = a2;\n  v4 = *(_DWORD *)(*(_DWORD *)(*(_DWORD *)&this->_data[12] + 20) + 4 * a2 + 24);\n  v5 = this;\n  *(float *)(v4 + 6632) = *(float *)(v4 + 6636);\n  if ( *(_BYTE *)(892 * a2 + *(_DWORD *)&this->_data[16] + 1388) )\n  {\n    result = CCBAI::HandleFriendAction(this, a2);\n    if ( result )\n      return result;\n    v7 = a2;\n    v5 = this;\n  }\n  return CCBAI::HandleFriendNegative(v5, v7);\n}\n"
+}

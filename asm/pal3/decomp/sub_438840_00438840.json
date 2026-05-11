@@ -1,0 +1,7 @@
+{
+  "name": "sub_438840",
+  "address": "0x00438840",
+  "size_bytes": 126,
+  "signature": "__int8 *()",
+  "decompiled_c": "__int8 *sub_438840()\n{\n  char *String; // esi\n  __int8 *result; // eax\n  __int8 *v2; // ebx\n  unsigned int v3; // esi\n  int v4; // edi\n  int v5; // edx\n  __int8 *m_slot0; // ecx\n  int v7; // eax\n\n  String = PalScript::GetString();\n  result = PalScript::GetString();\n  v2 = result;\n  if ( String )\n  {\n    if ( result )\n    {\n      v3 = *((_DWORD *)String + 1);\n      if ( v3 < 5 )\n      {\n        result = 0;\n        v4 = 0;\n        v5 = 0;\n        m_slot0 = g_SceneMgr.m_slot0;\n        do\n        {\n          if ( v5 != v3 && g_SceneMgr._postSlots[v5 - 576] )\n          {\n            result += *(_DWORD *)m_slot0;\n            ++v4;\n          }\n          m_slot0 += 1408;\n          ++v5;\n        }\n        while ( (int)m_slot0 < (int)g_SceneMgr._postSlots );\n        if ( v4 )\n        {\n          v7 = *((_DWORD *)v2 + 1) + (int)result / v4;\n          if ( *(_DWORD *)&g_SceneMgr.m_slot0[1408 * v3] > v7 )\n            v7 = *(_DWORD *)&g_SceneMgr.m_slot0[1408 * v3];\n          return sub_40FF70(v3, v7);\n        }\n      }\n    }\n  }\n  return result;\n}\n"
+}

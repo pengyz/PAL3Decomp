@@ -1,0 +1,7 @@
+{
+  "name": "sub_423880",
+  "address": "0x00423880",
+  "size_bytes": 319,
+  "signature": "void __thiscall(struct gbActor **this)",
+  "decompiled_c": "void __thiscall sub_423880(struct gbActor **this)\n{\n  struct gbActor *i; // eax\n  struct gbActor *v3; // edi\n  struct gbActor *v4; // eax\n  struct gbActor *v5; // eax\n  struct gbActor *v6; // eax\n  struct gbActor *pBody; // ecx\n  struct gbActor *v8; // [esp-Ch] [ebp-24h]\n\n  *this = (struct gbActor *)&off_56AB34;\n  this[2] = (struct gbActor *)off_56AB28;\n  sub_4243E0((int)this);\n  for ( i = this[218]; i; i = this[218] )\n  {\n    v3 = (struct gbActor *)((char *)this[210] + 76);\n    v4 = (struct gbActor *)((char *)i - 1);\n    this[210] = v3;\n    this[218] = v4;\n    if ( !v4 || v3 == this[209] )\n    {\n      v5 = this[211];\n      this[211] = (struct gbActor *)&v5->curSkin;\n      operator delete(v5->pBody);\n      if ( this[218] )\n      {\n        v6 = this[211];\n        pBody = (struct gbActor *)v6->pBody;\n        this[208] = (struct gbActor *)v6->pBody;\n        this[209] = (struct gbActor *)((char *)pBody + 4028);\n        this[210] = pBody;\n        this[211] = v6;\n      }\n      else\n      {\n        this[208] = 0;\n        this[209] = 0;\n        this[210] = 0;\n        this[211] = 0;\n        this[212] = 0;\n        v8 = this[216];\n        this[213] = 0;\n        this[214] = 0;\n        this[215] = 0;\n        operator delete(v8);\n      }\n    }\n  }\n  sub_429DA0(this + 22);\n  sub_4B6CA0(this != 0 ? this + 2 : 0);\n  *this = (struct gbActor *)&off_56A9C0;\n}\n"
+}

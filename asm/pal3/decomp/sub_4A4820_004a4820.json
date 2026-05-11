@@ -1,0 +1,7 @@
+{
+  "name": "sub_4A4820",
+  "address": "0x004A4820",
+  "size_bytes": 105,
+  "signature": "void __thiscall(_DWORD *this)",
+  "decompiled_c": "void __thiscall sub_4A4820(_DWORD *this)\n{\n  int v1; // [esp-20h] [ebp-68h]\n  int v2; // [esp-1Ch] [ebp-64h]\n  int v3; // [esp-18h] [ebp-60h]\n  int v4; // [esp-14h] [ebp-5Ch]\n  struct gbColorQuad *v5; // [esp-10h] [ebp-58h]\n  int v6; // [esp-Ch] [ebp-54h]\n  int v7; // [esp+0h] [ebp-48h] BYREF\n  struct gbTextureArray v8; // [esp+4h] [ebp-44h] BYREF\n\n  if ( this[44061] )\n  {\n    *(_DWORD *)v8._data = this[44061];\n    *(_DWORD *)&v8._data[64] = 1;\n    *(_WORD *)((char *)&v7 + 1) = -1;\n    LOBYTE(v7) = -1;\n    v6 = this[44063];\n    v5 = (struct gbColorQuad *)this[44062];\n    v4 = this[21];\n    v3 = this[20];\n    v2 = this[19];\n    v1 = this[18];\n    HIBYTE(v7) = 62;\n    UIRenderQuad(v1, v2, v3, v4, v5, v6, &v7, &v8);\n  }\n}\n"
+}

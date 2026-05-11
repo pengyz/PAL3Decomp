@@ -1,0 +1,7 @@
+{
+  "name": "GRPinput::UnacquireMouse(void)",
+  "address": "0x004033F0",
+  "size_bytes": 18,
+  "signature": "void __thiscall(GRPinput *this)",
+  "decompiled_c": "void __thiscall GRPinput::UnacquireMouse(GRPinput *this)\n{\n  *(_DWORD *)this->_data = 0;\n  *(_DWORD *)&this->_data[4] = 0;\n  *(_DWORD *)&this->_data[8] = 0;\n  *(_DWORD *)&this->_data[12] = 0;\n}\n"
+}

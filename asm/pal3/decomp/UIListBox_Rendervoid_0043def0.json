@@ -1,0 +1,7 @@
+{
+  "name": "UIListBox::Render(void)",
+  "address": "0x0043DEF0",
+  "size_bytes": 26,
+  "signature": "int __thiscall(UIListBox **this)",
+  "decompiled_c": "int __thiscall UIListBox::Render(UIListBox **this)\n{\n  UIListBox *v2; // ecx\n  int result; // eax\n\n  v2 = *this;\n  if ( v2 )\n    gbRefObject::Release((gbRefObject *)v2);\n  result = 0;\n  memset(this, 0, 0x48u);\n  return result;\n}\n"
+}

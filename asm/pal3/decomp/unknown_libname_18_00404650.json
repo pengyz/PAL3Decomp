@@ -1,0 +1,7 @@
+{
+  "name": "unknown_libname_18",
+  "address": "0x00404650",
+  "size_bytes": 10,
+  "signature": "void __cdecl()",
+  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\nvoid __cdecl unknown_libname_18()\n{\n  PalScript *v0; // [esp+0h] [ebp-4h] BYREF\n\n  v0 = &stru_8ACD30;\n  sub_430B30(&stru_8ACD30, &v0, *(_DWORD **)stru_8ACD30.m_pinst, stru_8ACD30.m_pinst->_data);\n  operator delete(stru_8ACD30.m_pinst);\n  stru_8ACD30.m_pinst = 0;\n  stru_8ACD30.m_waitobj.m_nSize = 0;\n  if ( !--*(_DWORD *)&String[256] )\n  {\n    operator delete(dword_D8C2B0);\n    dword_D8C2B0 = 0;\n  }\n}\n"
+}

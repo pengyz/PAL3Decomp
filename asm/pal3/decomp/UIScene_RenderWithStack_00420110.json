@@ -2,6 +2,6 @@
   "name": "UIScene::RenderWithStack",
   "address": "0x00420110",
   "size_bytes": 62,
-  "signature": "int __thiscall(UIScene *this, void *pStack)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall UIScene::RenderWithStack(UIScene *this, void *pStack)\n{\n  int v3; // esi\n  int result; // eax\n  RoleSystem *v5; // edi\n\n  v3 = 0;\n  result = *((_DWORD *)this + 14392);\n  if ( result > 0 )\n  {\n    v5 = (RoleSystem *)((char *)this + 57572);\n    do\n    {\n      RoleSystem::RenderRole(v5, pStack, 0);\n      result = *((_DWORD *)this + 14392);\n      ++v3;\n      ++v5;\n    }\n    while ( v3 < result );\n  }\n  return result;\n}\n"
+  "signature": "int __thiscall(void *this, void *pStack)",
+  "decompiled_c": "int __thiscall UIScene::RenderWithStack(void *this, void *pStack)\n{\n  int v3; // esi\n  int result; // eax\n  RoleSystem *v5; // edi\n\n  v3 = 0;\n  result = *((_DWORD *)this + 14392);\n  if ( result > 0 )\n  {\n    v5 = (RoleSystem *)((char *)this + 57572);\n    do\n    {\n      RoleSystem::RenderRole(v5, pStack, 0);\n      result = *((_DWORD *)this + 14392);\n      ++v3;\n      v5 = (RoleSystem *)((char *)v5 + 8704);\n    }\n    while ( v3 < result );\n  }\n  return result;\n}\n"
 }

@@ -1,0 +1,7 @@
+{
+  "name": "sub_53C720",
+  "address": "0x0053C720",
+  "size_bytes": 12,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nint __thiscall sub_53C720(_DWORD *this)\n{\n  int result; // eax\n\n  result = this[3];\n  if ( result )\n    return *(_DWORD *)(result + 4);\n  return result;\n}\n"
+}

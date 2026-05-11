@@ -1,0 +1,7 @@
+{
+  "name": "sub_4018B0",
+  "address": "0x004018B0",
+  "size_bytes": 250,
+  "signature": "OpenNULLFile *__thiscall(gbTexture **this, gbTexture *a2, gbTexture **a3)",
+  "decompiled_c": "// likely OpenNULLFile method (near OpenNULLFile)\nOpenNULLFile *__thiscall sub_4018B0(gbTexture **this, gbTexture *a2, gbTexture **a3)\n{\n  int v3; // edi\n  gbTexture **v5; // ebx\n  gbTexture *v6; // eax\n  OpenBaseFile v8; // [esp+14h] [ebp-114h] BYREF\n  char Buffer[260]; // [esp+18h] [ebp-110h] BYREF\n  int v10; // [esp+124h] [ebp-4h]\n\n  v3 = 0;\n  this[22] = (gbTexture *)gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)&gfxMgr->_data[200], aGfxscriptSprit, 0);\n  this[18] = a2;\n  this[19] = *a3;\n  this[20] = a3[1];\n  this[21] = a3[2];\n  this[17] = 0;\n  OpenBaseFile::OpenBaseFile(&v8);\n  v10 = 0;\n  v5 = this;\n  do\n  {\n    sprintf(Buffer, \"object\\\\BB%02d_%02d.tga\", this[18], v3);\n    if ( !gbVFileSystem::FileExistNum(g_pVFileSys, Buffer) )\n      break;\n    v6 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_data + 8))(gfxMgr, Buffer);\n    *v5 = v6;\n    gbTexture::LoadTexture(v6, 1);\n    ++v3;\n    ++v5;\n  }\n  while ( v3 < 16 );\n  this[16] = (gbTexture *)v3;\n  v10 = -1;\n  return (OpenNULLFile *)OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v8);\n}\n"
+}

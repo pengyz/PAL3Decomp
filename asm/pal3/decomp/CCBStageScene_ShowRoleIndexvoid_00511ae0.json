@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageScene::ShowRoleIndex(void)",
+  "address": "0x00511AE0",
+  "size_bytes": 237,
+  "signature": "char __thiscall(CCBStageScene *this)",
+  "decompiled_c": "char __thiscall CCBStageScene::ShowRoleIndex(CCBStageScene *this)\n{\n  CIniFile v3; // [esp+30h] [ebp-14h] BYREF\n  int v4; // [esp+40h] [ebp-4h]\n\n  if ( (dword_5833BC & 2) == 0 )\n  {\n    CIniFile::CIniFile(&v3);\n    v4 = 0;\n    CIniFile::OpenFileWrite(&v3, aDatascriptComb_1);\n    CIniFile::WriteSection(&v3, aFivelineup);\n    CIniFile::WriteLine(&v3, asc_5D8B80, this->_f378);\n    CIniFile::WriteLine(&v3, (const char *)&dword_5DB9B8, this->_f37C);\n    CIniFile::WriteLine(&v3, (const char *)&dword_5DB9B4, this->_f380);\n    CIniFile::WriteLine(&v3, aRadius, this->_f390);\n    CIniFile::WriteLine(&v3, aRoll, this->_f398);\n    v4 = -1;\n    CIniFile::~CIniFile(&v3);\n  }\n  return 1;\n}\n"
+}

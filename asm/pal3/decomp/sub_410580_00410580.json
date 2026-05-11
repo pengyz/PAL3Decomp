@@ -1,0 +1,7 @@
+{
+  "name": "sub_410580",
+  "address": "0x00410580",
+  "size_bytes": 45,
+  "signature": "int __cdecl(int a1)",
+  "decompiled_c": "int __cdecl sub_410580(int a1)\n{\n  int result; // eax\n\n  result = a1;\n  if ( a1 == 31 )\n    g_SceneMgr._gap_c5e0[849] = 1;\n  else\n    g_SceneMgr.m_slot1[a1 - 1356] = 1;\n  *(_DWORD *)&g_SceneMgr._gap_c93c[4] = 0;\n  return result;\n}\n"
+}

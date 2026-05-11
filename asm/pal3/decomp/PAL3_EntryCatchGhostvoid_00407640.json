@@ -1,0 +1,7 @@
+{
+  "name": "PAL3::EntryCatchGhost(void)",
+  "address": "0x00407640",
+  "size_bytes": 252,
+  "signature": "char()",
+  "decompiled_c": "char PAL3::EntryCatchGhost()\n{\n  int v0; // esi\n  int *i; // edi\n  __int32 m_pCollisionNode; // esi\n  RoleSystem *v4; // eax\n  int RolePtr; // edi\n  int v6; // ebx\n  int v7; // [esp-8h] [ebp-2Ch]\n  int v8; // [esp+8h] [ebp-1Ch] BYREF\n  int v9; // [esp+Ch] [ebp-18h]\n  int v10; // [esp+10h] [ebp-14h]\n  int v11; // [esp+14h] [ebp-10h] BYREF\n  int v12; // [esp+18h] [ebp-Ch]\n  int v13; // [esp+1Ch] [ebp-8h]\n  int v14; // [esp+20h] [ebp-4h]\n\n  v0 = 0;\n  if ( UIScene::ProcessInput(aQ01, 0) )\n  {\n    v8 = 6308;\n    v9 = 6309;\n    v10 = 6310;\n    v12 = 0;\n    v13 = 0;\n    for ( i = &v8; ; ++i )\n    {\n      v11 = *i;\n      if ( sub_40DCF0(&g_SceneMgr.m_slot4[792], &v11) )\n        break;\n      if ( ++v0 >= 3 )\n        return 0;\n    }\n  }\n  else\n  {\n    m_pCollisionNode = g_SceneMgr.m_pCollisionNode;\n    v7 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628);\n    v4 = (RoleSystem *)sub_4226F0();\n    RolePtr = RoleSystem::GetRolePtr(v4, v7);\n    v6 = (__int64)((*(float *)(m_pCollisionNode + 4) - *(float *)(RolePtr + 128)) / flt_BFDA04);\n    v9 = (__int64)((*(float *)(m_pCollisionNode + 12) - *(float *)(RolePtr + 136)) / flt_BFDA04);\n    v8 = v6;\n    v11 = 23;\n    v12 = 93;\n    v13 = 30;\n    v14 = 96;\n    if ( !sub_426E80(&v11, &v8) )\n      return 0;\n  }\n  return 1;\n}\n"
+}

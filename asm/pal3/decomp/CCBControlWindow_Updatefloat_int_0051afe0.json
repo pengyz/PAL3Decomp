@@ -1,0 +1,7 @@
+{
+  "name": "CCBControlWindow::Update(float,int)",
+  "address": "0x0051AFE0",
+  "size_bytes": 73,
+  "signature": "void __thiscall(CCBControlWindow *this)",
+  "decompiled_c": "void __thiscall CCBControlWindow::Update(CCBControlWindow *this)\n{\n  int d050; // ecx\n  int v3; // ecx\n  int v4; // ecx\n\n  UIListBox::SetScrollPos((UIListBox **)this);\n  d050 = this->_d050;\n  if ( d050 )\n  {\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)d050 + 20))(d050, 1);\n    this->_d050 = 0;\n  }\n  v3 = *(_DWORD *)&this->_pad_045[3];\n  if ( v3 )\n  {\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);\n    *(_DWORD *)&this->_pad_045[3] = 0;\n  }\n  v4 = *(_DWORD *)&this->_pad_045[7];\n  if ( v4 )\n  {\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);\n    *(_DWORD *)&this->_pad_045[7] = 0;\n  }\n}\n"
+}

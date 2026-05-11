@@ -1,7 +1,0 @@
-{
-  "name": "??1CCBParabolaWindow@@UAE@XZ",
-  "address": "0x0051B810",
-  "size_bytes": 66,
-  "signature": "int __thiscall(CCBParabolaWindow *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBParabolaWindow::~CCBParabolaWindow(CCBParabolaWindow *this)\n{\n  int result; // eax\n  int v3; // ecx\n  CCBParabolaWindow *v4; // esi\n  int v5; // edi\n\n  result = UIListBox::SetScrollPos((UIListBox **)this);\n  v3 = *((_DWORD *)this + 23);\n  if ( v3 )\n  {\n    result = (*(int (__thiscall **)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);\n    *((_DWORD *)this + 23) = 0;\n  }\n  v4 = (CCBParabolaWindow *)((char *)this + 96);\n  v5 = 5;\n  do\n  {\n    if ( v4->_base._base._vftable )\n    {\n      result = (*((int (__thiscall **)(void **, int))*v4->_base._base._vftable + 5))(v4->_base._base._vftable, 1);\n      v4->_base._base._vftable = 0;\n    }\n    v4 = (CCBParabolaWindow *)((char *)v4 + 4);\n    --v5;\n  }\n  while ( v5 );\n  return result;\n}\n"
-}

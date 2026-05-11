@@ -1,0 +1,7 @@
+{
+  "name": "sub_4CD3A0",
+  "address": "0x004CD3A0",
+  "size_bytes": 37,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_4CD3A0(_DWORD *this)\n{\n  int result; // eax\n\n  for ( result = this[5]; result; result = *(_DWORD *)(result + 32) )\n  {\n    *(_BYTE *)(result + 24) = 0;\n    *(_DWORD *)(result + 12) = 0;\n    *(_DWORD *)(result + 20) = 0;\n    *(_DWORD *)(result + 16) = 0;\n    *(_DWORD *)result = 0;\n    *(_DWORD *)(result + 4) = 0;\n    *(_DWORD *)(result + 8) = 0;\n  }\n  return result;\n}\n"
+}

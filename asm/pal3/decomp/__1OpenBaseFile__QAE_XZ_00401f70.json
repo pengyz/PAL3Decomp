@@ -1,7 +1,0 @@
-{
-  "name": "??1OpenBaseFile@@QAE@XZ",
-  "address": "0x00401F70",
-  "size_bytes": 25,
-  "signature": "_DWORD *__thiscall(OpenBaseFile *this)",
-  "decompiled_c": "// write access to const memory has been detected, the output may be wrong!\n_DWORD *__thiscall OpenBaseFile::~OpenBaseFile(OpenBaseFile *this)\n{\n  this->m_plastsys = g_pVFileSys;\n  g_pVFileSys = (struct gbVFileSystem *)&unk_60BDC8;\n  return &this->m_plastsys;\n}\n"
-}

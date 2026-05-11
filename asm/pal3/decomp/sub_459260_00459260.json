@@ -1,0 +1,7 @@
+{
+  "name": "sub_459260",
+  "address": "0x00459260",
+  "size_bytes": 252,
+  "signature": "void __thiscall(UIWnd *this)",
+  "decompiled_c": "// likely UIWnd method (near ~UIWnd)\nvoid __thiscall sub_459260(UIWnd *this)\n{\n  this->m_fontcolor.ColorQuadFmt = (int)&off_56B394;\n  sub_459360((int)this);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)&this[38].m_bcreateok);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)&this[36].m_benable);\n  UIScene::Destroy2((std::ios_base *)&this[32].m_childs);\n  UIScene::Destroy2((std::ios_base *)&this[28].m_wndcolor.Color);\n  UIScene::Destroy2((std::ios_base *)&this[23].m_bfocus);\n  UIScene::Destroy2((std::ios_base *)&this[19].m_childs.m_nSize);\n  UIScene::Destroy2((std::ios_base *)&this[15].m_rect);\n  `eh vector destructor iterator'(\n    (char *)&this[5].m_bvisible,\n    0x98u,\n    5,\n    (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)&this[3].m_bfocus);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)&this[2].m_fontcolor.Blue);\n  UIWnd::~UIWnd((UIListBox *)this);\n}\n"
+}

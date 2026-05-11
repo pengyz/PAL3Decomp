@@ -1,0 +1,7 @@
+{
+  "name": "sub_53E490",
+  "address": "0x0053E490",
+  "size_bytes": 71,
+  "signature": "void __thiscall(gbAudioManager **this)",
+  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nvoid __thiscall sub_53E490(gbAudioManager **this)\n{\n  if ( (dword_5833BC & 1) != 0 )\n  {\n    if ( dword_BFDA68 )\n    {\n      gbAudioManager::SetListenerPosition(this[202], (const struct gbVec3D *)dword_BFDA68 + 41);\n      gbAudioManager::SetListenerOrientation(\n        this[202],\n        (struct gbVec3D *)dword_BFDA68 + 42,\n        (struct gbVec3D *)dword_BFDA68 + 43);\n    }\n  }\n}\n"
+}

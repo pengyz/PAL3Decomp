@@ -1,0 +1,7 @@
+{
+  "name": "sub_436A60",
+  "address": "0x00436A60",
+  "size_bytes": 72,
+  "signature": "void()",
+  "decompiled_c": "// likely PalScriptMgr method (near PalScriptMgr, IfAnyScriptRunning, IsScriptRuning, )\nvoid sub_436A60()\n{\n  char *String; // eax\n  int *v1; // esi\n  int *v2; // eax\n  int *v3; // eax\n  const char **v4; // [esp-4h] [ebp-8h]\n\n  String = PalScript::GetString();\n  if ( String )\n  {\n    v1 = PalScriptMgr::Destroy(*((_DWORD *)String + 1), 0);\n    v4 = PalScriptMgr::_CON_State((const char *)dword_D8E468);\n    v2 = sub_53D150();\n    if ( sub_53D2F0(v2, (int)v4) )\n    {\n      v3 = sub_53D150();\n      sub_53D1A0((PtrArray *)v3, 0, (int)v1);\n    }\n  }\n}\n"
+}

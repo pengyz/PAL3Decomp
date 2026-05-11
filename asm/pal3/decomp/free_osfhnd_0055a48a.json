@@ -1,0 +1,7 @@
+{
+  "name": "__free_osfhnd",
+  "address": "0x0055A48A",
+  "size_bytes": 122,
+  "signature": "int __cdecl(int a1)",
+  "decompiled_c": "int __cdecl _free_osfhnd(int a1)\n{\n  int v1; // eax\n\n  if ( a1 >= uNumber\n    || (v1 = 8 * (a1 & 0x1F) + *(&g_nUIState + (a1 >> 5)), (*(_BYTE *)(v1 + 4) & 1) == 0)\n    || *(_DWORD *)v1 == -1 )\n  {\n    dword_1895340 = 0;\n    dword_189533C = 9;\n    return -1;\n  }\n  else\n  {\n    if ( dword_60ACA4 == 1 )\n    {\n      if ( a1 )\n      {\n        if ( a1 == 1 )\n        {\n          SetStdHandle(0xFFFFFFF5, 0);\n        }\n        else if ( a1 == 2 )\n        {\n          SetStdHandle(0xFFFFFFF4, 0);\n        }\n      }\n      else\n      {\n        SetStdHandle(0xFFFFFFF6, 0);\n      }\n    }\n    *(_DWORD *)(*(&g_nUIState + (a1 >> 5)) + 8 * (a1 & 0x1F)) = -1;\n    return 0;\n  }\n}\n"
+}

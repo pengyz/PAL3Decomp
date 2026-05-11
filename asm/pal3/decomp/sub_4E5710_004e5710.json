@@ -1,0 +1,7 @@
+{
+  "name": "sub_4E5710",
+  "address": "0x004E5710",
+  "size_bytes": 73,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\nint __thiscall sub_4E5710(_DWORD *this, int a2)\n{\n  int v4; // [esp+8h] [ebp-4h] BYREF\n\n  v4 = -1;\n  if ( sub_4E56E0(this, a2, &v4) == 1 )\n    return this[4 * v4 + 3];\n  else\n    return *(__int16 *)(PAL_GDB::GDB_GetSkillNum((PAL_GDB *)dword_975ED8, a2) + 644);\n}\n"
+}

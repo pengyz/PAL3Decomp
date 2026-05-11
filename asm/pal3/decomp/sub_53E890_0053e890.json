@@ -1,0 +1,7 @@
+{
+  "name": "sub_53E890",
+  "address": "0x0053E890",
+  "size_bytes": 178,
+  "signature": "void __thiscall(_DWORD *this)",
+  "decompiled_c": "// likely std method (near _Eos, do_always_noconv, _Freeze, max_size, _Xran, )\nvoid __thiscall sub_53E890(_DWORD *this)\n{\n  unsigned int v1; // edi\n  int i; // ebp\n  int v4; // eax\n  int v5; // ecx\n  void *v6; // esi\n  _DWORD *v7; // edi\n  _DWORD *v8; // ebp\n  _DWORD *j; // esi\n\n  v1 = 0;\n  for ( i = 0; ; i += 20 )\n  {\n    v4 = this[204];\n    if ( !v4 || v1 >= (this[205] - v4) / 20 )\n      break;\n    v5 = this[204];\n    v6 = *(void **)(v5 + i + 16);\n    if ( v6 )\n    {\n      gbSound2DNode::~gbSound2DNode(*(gbSound2DNode **)(v5 + i + 16));\n      operator delete(v6);\n    }\n    ++v1;\n  }\n  v7 = (_DWORD *)this[204];\n  v8 = (_DWORD *)this[205];\n  for ( j = v7; j != v8; j += 5 )\n    std::string::~string(j);\n  this[205] = v7;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_5381D0",
+  "address": "0x005381D0",
+  "size_bytes": 134,
+  "signature": "char *__thiscall(char *this)",
+  "decompiled_c": "char *__thiscall sub_5381D0(char *this)\n{\n  char *v1; // esi\n  int v2; // ebx\n  char *v3; // eax\n  char *v4; // ebp\n  char *v5; // ebp\n  char *v6; // ebp\n\n  v1 = this + 24;\n  v2 = 4;\n  v3 = this + 60;\n  do\n  {\n    v4 = v3 - 24;\n    *(_DWORD *)v1 = 0;\n    *((_DWORD *)v3 - 8) = 0;\n    *((_DWORD *)v3 - 7) = 0;\n    *(_DWORD *)v4 = 0;\n    v1 += 48;\n    *((_DWORD *)v4 + 1) = 0;\n    *((_DWORD *)v4 + 2) = 0;\n    v5 = v3 - 12;\n    *((_DWORD *)v3 - 3) = 0;\n    *((_DWORD *)v5 + 1) = 0;\n    *((_DWORD *)v5 + 2) = 0;\n    v6 = v3;\n    v3 += 48;\n    --v2;\n    *(_DWORD *)v6 = 0;\n    *((_DWORD *)v6 + 1) = 0;\n    *((_DWORD *)v6 + 2) = 0;\n  }\n  while ( v2 );\n  *this = 0;\n  this[1] = 0;\n  this[2] = 0;\n  this[3] = 0;\n  this[4] = 0;\n  this[5] = 0;\n  this[6] = 0;\n  *((_DWORD *)this + 3) = 0;\n  *((_DWORD *)this + 4) = 0;\n  *((_DWORD *)this + 5) = 0;\n  *((_DWORD *)this + 54) = 0;\n  *((_DWORD *)this + 2) = 1065353216;\n  memset(this + 24, 0, 0xC0u);\n  return this;\n}\n"
+}

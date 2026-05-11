@@ -1,0 +1,7 @@
+{
+  "name": "CEffModel::Render(void)",
+  "address": "0x004D0CE0",
+  "size_bytes": 141,
+  "signature": "_DWORD *__thiscall(CEffModel *this)",
+  "decompiled_c": "_DWORD *__thiscall CEffModel::Render(CEffModel *this)\n{\n  this->m_vecCurPos.x = 0.0;\n  LOBYTE(this->m_vecCurPos.y) = 0;\n  this->m_vecOffsetPos.x = 0.0;\n  this->m_vecOffsetPos.y = 0.0;\n  this->m_vecOffsetPos.z = 0.0;\n  this->m_vecRot.x = NAN;\n  this->m_vecRot.y = NAN;\n  this->m_vecRot.z = 0.0;\n  *(_DWORD *)&this->m_bVisible = 0;\n  this->m_fSizeX = 0.0;\n  LODWORD(this->m_vecCurPos.z) = &off_56FA6C;\n  this[1].m_vecOffsetPos.x = NAN;\n  this->m_pGeomNode = (gbGeomNode *)&off_56FA30;\n  LODWORD(this->m_vecCurPos.z) = &off_56FA24;\n  this->m_fSizeY = 0.0;\n  BYTE2(this->m_fSizeZ) = 0;\n  LOBYTE(this->m_fSizeZ) = 0;\n  BYTE1(this->m_fSizeZ) = 0;\n  this[1].m_pGeomNode = 0;\n  this[1].m_vecCurPos.x = 0.0;\n  this[1].m_vecCurPos.y = 0.0;\n  this[1].m_vecCurPos.z = 0.0;\n  this[2].m_fSizeX = 0.0;\n  this[2].m_fSizeY = 0.0;\n  this[2].m_fSizeZ = 0.0;\n  this[76].m_vecCurPos.y = 0.0;\n  this[76].m_vecCurPos.z = 0.0;\n  memset(&this[3], 0, 0x1000u);\n  return &this->m_pGeomNode;\n}\n"
+}

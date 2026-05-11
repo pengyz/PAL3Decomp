@@ -1,0 +1,7 @@
+{
+  "name": "sub_42C920",
+  "address": "0x0042C920",
+  "size_bytes": 44,
+  "signature": "gbVec3D *__thiscall(gbVec3D *this)",
+  "decompiled_c": "gbVec3D *__thiscall sub_42C920(gbVec3D *this)\n{\n  gbVec3D *v2; // esi\n  int v3; // edi\n\n  v2 = this + 1;\n  v3 = 4;\n  do\n  {\n    ((void (__thiscall *)(gbVec3D *))gbVec3D::`default constructor closure')(v2++);\n    --v3;\n  }\n  while ( v3 );\n  memset(this, 0, 0x4Cu);\n  return this;\n}\n"
+}

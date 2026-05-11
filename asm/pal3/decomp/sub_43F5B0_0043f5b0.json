@@ -1,0 +1,7 @@
+{
+  "name": "sub_43F5B0",
+  "address": "0x0043F5B0",
+  "size_bytes": 139,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nint __thiscall sub_43F5B0(int this, int a2)\n{\n  int v3; // ecx\n  int result; // eax\n  int v5; // [esp-4h] [ebp-Ch]\n\n  if ( a2 < 0 || a2 >= *(_DWORD *)(this + 504) )\n  {\n    *(_DWORD *)(this + 1120) = -1;\n  }\n  else\n  {\n    v3 = *(_DWORD *)(this + 1116);\n    *(_DWORD *)(this + 1120) = a2 - v3;\n    if ( a2 - v3 < 0 )\n      *(_DWORD *)(this + 1120) = 0;\n    if ( *(_DWORD *)(this + 1120) >= UIListBox::SetDefaultSel((UIListBox *)this) )\n      *(_DWORD *)(this + 1120) = UIListBox::SetDefaultSel((UIListBox *)this) - 1;\n    v5 = a2 - *(_DWORD *)(this + 1120);\n    *(_DWORD *)(this + 1116) = v5;\n    sub_442060((_DWORD *)(this + 80), v5);\n  }\n  result = *(_DWORD *)(this + 1120) + *(_DWORD *)(this + 1116);\n  *(_DWORD *)(this + 1124) = result;\n  return result;\n}\n"
+}

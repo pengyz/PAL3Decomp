@@ -1,0 +1,7 @@
+{
+  "name": "sub_4507F0",
+  "address": "0x004507F0",
+  "size_bytes": 268,
+  "signature": "void __thiscall(int this)",
+  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nvoid __thiscall sub_4507F0(int this)\n{\n  int v2; // eax\n  _DWORD v3[4]; // [esp+Ch] [ebp-10h] BYREF\n\n  UIListBox::SetSelTexture((UIListBox *)this, 0, 0, 0, xRight, yBottom, 0);\n  v2 = *(_DWORD *)(this + 72);\n  v3[1] = 520;\n  v3[0] = 206;\n  v3[2] = 570;\n  v3[3] = 548;\n  (*(void (__thiscall **)(int, _DWORD, _DWORD *, int))(v2 + 16))(this + 72, 0, v3, this);\n  UIWnd::GetChildCount((UIWnd **)(this + 72), off_5A6234, 0);\n  UIWnd::GetChildAt((UIWnd **)(this + 72), off_5A6238, 0);\n  sub_43FBC0((_DWORD *)(this + 72), off_5A623C, 0);\n  *(_DWORD *)(this + 268) = 88;\n  *(_DWORD *)(this + 272) = 64;\n  *(_DWORD *)(this + 276) = 0;\n  *(_DWORD *)(this + 280) = -20;\n  UIWnd::SetFrameRate((UIWnd *)(this + 72), 4);\n  UIWnd::GetHeight((UIWnd *)(this + 72), 10);\n  UIWnd::GetPosition((UIWnd *)(this + 72), 6);\n  UIWnd::GetWidth((UIWnd *)(this + 72), 6);\n  *(_DWORD *)(this + 184) = 1086324736;\n  *(_BYTE *)(this + 328) = 0;\n  *(_DWORD *)(this + 316) = 0;\n  *(_DWORD *)(this + 320) = 1;\n}\n"
+}

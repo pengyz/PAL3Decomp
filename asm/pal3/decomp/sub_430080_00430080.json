@@ -1,0 +1,7 @@
+{
+  "name": "sub_430080",
+  "address": "0x00430080",
+  "size_bytes": 31,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_430080(_DWORD *this, int a2, int a3)\n{\n  int result; // eax\n\n  this[2 * this[8]] = a2;\n  this[2 * this[8] + 1] = a3;\n  result = this[8] + 1;\n  this[8] = result;\n  return result;\n}\n"
+}

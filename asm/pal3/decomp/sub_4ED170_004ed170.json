@@ -1,0 +1,7 @@
+{
+  "name": "sub_4ED170",
+  "address": "0x004ED170",
+  "size_bytes": 211,
+  "signature": "char __thiscall(_DWORD *this)",
+  "decompiled_c": "char __thiscall sub_4ED170(_DWORD *this)\n{\n  _BYTE *v1; // ebx\n  int v2; // eax\n  int v3; // ecx\n  int v4; // edi\n  int v5; // ecx\n  int v6; // esi\n  int v7; // edx\n  int v8; // edx\n  _DWORD v10[6]; // [esp+4h] [ebp-18h] BYREF\n\n  v1 = *(_BYTE **)(this[130] + 112);\n  LOBYTE(v2) = v1[80];\n  if ( !(_BYTE)v2 )\n  {\n    LOBYTE(v2) = v1[72];\n    if ( !(_BYTE)v2 )\n    {\n      qmemcpy(v10, v1, sizeof(v10));\n      v3 = g_RandSeed;\n      v4 = 100;\n      do\n      {\n        v5 = 214013 * v3 + 2531011;\n        g_nRandCallCount += 2;\n        v6 = ((v5 >> 16) & 0x7FFF) % 6;\n        v3 = 214013 * v5 + 2531011;\n        g_RandSeed = v3;\n        v2 = ((v3 >> 16) & 0x7FFF) / 6;\n        v7 = ((v3 >> 16) & 0x7FFF) % 6;\n        if ( v6 != v7 )\n        {\n          v2 = (int)&v10[v7];\n          v8 = v10[v6];\n          v10[v6] = *(_DWORD *)v2;\n          *(_DWORD *)v2 = v8;\n          v3 = g_RandSeed;\n        }\n        --v4;\n      }\n      while ( v4 );\n      qmemcpy(v1, v10, 0x18u);\n    }\n  }\n  return v2;\n}\n"
+}

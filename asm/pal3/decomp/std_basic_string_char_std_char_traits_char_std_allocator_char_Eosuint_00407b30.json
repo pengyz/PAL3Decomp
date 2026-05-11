@@ -1,0 +1,7 @@
+{
+  "name": "std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Eos(uint)",
+  "address": "0x00407B30",
+  "size_bytes": 17,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "int __thiscall std::string::_Eos(_DWORD *this, int a2)\n{\n  int result; // eax\n\n  result = a2;\n  this[2] = a2;\n  *(_BYTE *)(this[1] + a2) = 0;\n  return result;\n}\n"
+}

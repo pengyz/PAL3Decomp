@@ -1,0 +1,7 @@
+{
+  "name": "CCBAI::CastReviveSkill(int,int,tagDemand *)",
+  "address": "0x004DB160",
+  "size_bytes": 218,
+  "signature": "char __thiscall(CCBAI *this, int a2)",
+  "decompiled_c": "char __thiscall CCBAI::CastReviveSkill(CCBAI *this, int a2)\n{\n  int v4; // edi\n  CCBRoleState *v5; // ecx\n  int a6[11]; // [esp+Ch] [ebp-2Ch] BYREF\n\n  if ( CCBRoleState::InitUI(*(CCBRoleState **)&this->_data[16], a2)->dwID != 739 )\n    return 0;\n  v4 = sub_4F2C30(*(_DWORD **)&this->_data[16], a2, 0);\n  if ( v4 != sub_4F2C30(*(_DWORD **)&this->_data[16], a2, 1) )\n    return 0;\n  memset(a6, 0, sizeof(a6));\n  v5 = *(CCBRoleState **)&this->_data[16];\n  LOWORD(a6[4]) = 0;\n  LOBYTE(a6[10]) = 1;\n  a6[0] = 261;\n  a6[1] = 7709;\n  a6[2] = a2;\n  a6[3] = -1;\n  CCBRoleState::GetRoleNum(v5, a6);\n  CCBSystem::CreateObj(*(CCBSystem **)&this->_data[12], CCBSystem::GetSameThreadNum, 0, 0, 0, a6);\n  CEffMgr::Init(*(CEffMgr **)(*(_DWORD *)&this->_data[12] + 44), 559, 0, 0, 0, 0);\n  return 1;\n}\n"
+}

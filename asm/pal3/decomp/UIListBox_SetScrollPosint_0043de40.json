@@ -1,0 +1,7 @@
+{
+  "name": "UIListBox::SetScrollPos(int)",
+  "address": "0x0043DE40",
+  "size_bytes": 32,
+  "signature": "int __thiscall(UIListBox **this)",
+  "decompiled_c": "int __thiscall UIListBox::SetScrollPos(UIListBox **this)\n{\n  gbRefObject *v2; // ecx\n  int result; // eax\n\n  v2 = (gbRefObject *)this[17];\n  if ( v2 )\n  {\n    gbRefObject::Release(v2);\n    this[17] = 0;\n  }\n  UIWnd::UpdateChildren((UIWnd *)this);\n  return result;\n}\n"
+}

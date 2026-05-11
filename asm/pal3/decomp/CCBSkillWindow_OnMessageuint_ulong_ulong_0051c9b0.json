@@ -1,0 +1,7 @@
+{
+  "name": "CCBSkillWindow::OnMessage(uint,ulong,ulong)",
+  "address": "0x0051C9B0",
+  "size_bytes": 64,
+  "signature": "int __thiscall(CCBSkillWindow *this, int a2, int a3, int a4)",
+  "decompiled_c": "int __thiscall CCBSkillWindow::OnMessage(CCBSkillWindow *this, int a2, int a3, int a4)\n{\n  if ( a2 == 1001 )\n    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->_d020 + 1160) + 8), a3, a4);\n  return UIWnd::SendMessage(a2, a3, a4);\n}\n"
+}

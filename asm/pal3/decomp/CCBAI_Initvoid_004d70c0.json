@@ -1,0 +1,7 @@
+{
+  "name": "CCBAI::Init(void)",
+  "address": "0x004D70C0",
+  "size_bytes": 64,
+  "signature": "char __thiscall(CCBAI *this)",
+  "decompiled_c": "char __thiscall CCBAI::Init(CCBAI *this)\n{\n  memset(&this->_data[1584], 0, 0x6E0u);\n  memset(&this->_data[3344], 0, 0xA0u);\n  memset(&this->_data[3504], 0, 0xA0u);\n  CCBAI::SetNewRole(this);\n  CCBAI::RepeatPlayerLastOperation(this);\n  return 1;\n}\n"
+}

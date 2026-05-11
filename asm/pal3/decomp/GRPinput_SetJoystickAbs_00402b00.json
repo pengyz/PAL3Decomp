@@ -1,7 +1,0 @@
-{
-  "name": "GRPinput::SetJoystickAbs",
-  "address": "0x00402B00",
-  "size_bytes": 38,
-  "signature": "char __thiscall(GRPinput *this)",
-  "decompiled_c": "char __thiscall GRPinput::SetJoystickAbs(GRPinput *this)\n{\n  int v1; // edx\n  GRP_KEYREG *KeyInfo; // ecx\n  char result; // al\n\n  v1 = 0;\n  KeyInfo = this->KeyInfo;\n  result = 1;\n  while ( KeyInfo->PressTime != 1 || (KeyInfo->Data & 3) == 0 )\n  {\n    ++v1;\n    ++KeyInfo;\n    if ( v1 >= 270 )\n      return 0;\n  }\n  return result;\n}\n"
-}

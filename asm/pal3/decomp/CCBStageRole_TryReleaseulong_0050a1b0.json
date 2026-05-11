@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageRole::TryRelease(ulong)",
+  "address": "0x0050A1B0",
+  "size_bytes": 58,
+  "signature": "void __thiscall(CCBStageRole *this)",
+  "decompiled_c": "void __thiscall CCBStageRole::TryRelease(CCBStageRole *this)\n{\n  if ( CCBRoleState::GetRoleField(*(CCBRoleState **)&this->_data[4], *(_DWORD *)&this->_data[284], 23) )\n    CCBStageRole::ClearAniMsg((int)this, 1, 0.44);\n  else\n    CCBStageRole::ClearAniMsg((int)this, 0, 1.0);\n}\n"
+}

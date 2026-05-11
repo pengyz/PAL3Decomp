@@ -1,0 +1,7 @@
+{
+  "name": "CCBUI::CreateLineupWindow(void)",
+  "address": "0x00518AF0",
+  "size_bytes": 45,
+  "signature": "int __thiscall(CCBUI *this, int a2, char a3)",
+  "decompiled_c": "int __thiscall CCBUI::CreateLineupWindow(CCBUI *this, int a2, char a3)\n{\n  int (__thiscall ***v3)(_DWORD, int); // ecx\n\n  *(_DWORD *)(*(_DWORD *)&this->_data[1132] + 124) = a2;\n  v3 = *(int (__thiscall ****)(_DWORD, int))&this->_data[1132];\n  if ( a3 )\n    return (**v3)(v3, 1);\n  else\n    return (**v3)(v3, 0);\n}\n"
+}

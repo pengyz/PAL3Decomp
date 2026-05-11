@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageRole::IsGrabedBy(ulong)",
+  "address": "0x0050A210",
+  "size_bytes": 70,
+  "signature": "int __thiscall(CCBStageRole *this)",
+  "decompiled_c": "int __thiscall CCBStageRole::IsGrabedBy(CCBStageRole *this)\n{\n  void *v2; // ecx\n  int result; // eax\n\n  v2 = *(void **)&this->_data[292];\n  if ( v2 )\n  {\n    Actor::EnableTransition(v2, *(&bVisible + *(_DWORD *)&this->_data[6568]), this->_data[372] != 0);\n    return Actor::CompareAction(*(void **)&this->_data[292], *(_DWORD *)&this->_data[6568], 0);\n  }\n  return result;\n}\n"
+}

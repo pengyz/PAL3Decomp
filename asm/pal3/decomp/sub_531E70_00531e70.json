@@ -1,0 +1,7 @@
+{
+  "name": "sub_531E70",
+  "address": "0x00531E70",
+  "size_bytes": 223,
+  "signature": "void __thiscall(UIWnd *this)",
+  "decompiled_c": "// likely UIWnd method (near ~UIWnd)\nvoid __thiscall sub_531E70(UIWnd *this)\n{\n  this->m_fontcolor.ColorQuadFmt = (int)&off_570890;\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)&this[92].m_benable);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)&this[91]);\n  UIItem::UIItem(&this[73].m_bvisible);\n  UIItem::UIItem(&this[56].m_childs.m_nGrowBy);\n  `eh vector destructor iterator'(\n    (char *)&this[37].m_rect,\n    0x98u,\n    10,\n    (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);\n  `eh vector destructor iterator'(\n    (char *)&this[18].m_rect,\n    0x98u,\n    10,\n    (void (__thiscall *)(void *))UIFrameWnd::_UIFrameWnd);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)&this[16].m_rect.right);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)&this[4].m_pfather);\n  UIWnd::~UIWnd((UIListBox *)this);\n}\n"
+}

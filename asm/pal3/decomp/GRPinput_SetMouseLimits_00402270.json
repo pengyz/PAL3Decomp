@@ -1,7 +1,0 @@
-{
-  "name": "GRPinput::SetMouseLimits",
-  "address": "0x00402270",
-  "size_bytes": 31,
-  "signature": "int __thiscall(GRPinput *this, int a, int b, int c, int d)",
-  "decompiled_c": "int __thiscall GRPinput::SetMouseLimits(GRPinput *this, int a, int b, int c, int d)\n{\n  this->m_mouseMinX = a;\n  this->m_mouseMinY = b;\n  this->m_mouseMaxX = c;\n  this->m_mouseMaxY = d;\n  return c;\n}\n"
-}

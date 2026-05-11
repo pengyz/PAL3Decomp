@@ -1,0 +1,7 @@
+{
+  "name": "sub_493290",
+  "address": "0x00493290",
+  "size_bytes": 59,
+  "signature": "__int8 *__thiscall(char *this, int a2)",
+  "decompiled_c": "__int8 *__thiscall sub_493290(char *this, int a2)\n{\n  char *v2; // ecx\n  int v3; // edx\n  __int8 *result; // eax\n  int v5; // esi\n\n  v2 = &this[852 * a2 + 205836];\n  v3 = 12;\n  result = &g_SceneMgr.m_slot1[1408 * a2 - 1116];\n  do\n  {\n    v5 = *(_DWORD *)result;\n    result += 4;\n    *(_DWORD *)v2 = v5;\n    v2 += 4;\n    --v3;\n  }\n  while ( v3 );\n  return result;\n}\n"
+}

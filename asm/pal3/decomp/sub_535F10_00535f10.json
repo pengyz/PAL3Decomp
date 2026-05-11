@@ -1,0 +1,7 @@
+{
+  "name": "sub_535F10",
+  "address": "0x00535F10",
+  "size_bytes": 184,
+  "signature": "void __thiscall(struct gbVec3D *this, gbMatrixStack *a2)",
+  "decompiled_c": "void __thiscall sub_535F10(struct gbVec3D *this, gbMatrixStack *a2)\n{\n  double v3; // st7\n  float v4; // ecx\n  float z; // ecx\n  float v6; // [esp+4h] [ebp-20h]\n  float y; // [esp+4h] [ebp-20h]\n  struct gbVec3D v8; // [esp+18h] [ebp-Ch] BYREF\n\n  gbMatrixStack::Push(a2);\n  gbMatrixStack::Translate(a2, this + 14);\n  v3 = this[16].x + 180.0;\n  v8.x = 0.0;\n  v6 = v3;\n  v8.y = 1.0;\n  v8.z = 0.0;\n  gbMatrixStack::Rotate(a2, v6, &v8);\n  y = this[16].y;\n  v8.x = 1.0;\n  v8.y = 0.0;\n  v8.z = 0.0;\n  gbMatrixStack::Rotate(a2, y, &v8);\n  (*(void (__thiscall **)(_DWORD, _DWORD))(*(_DWORD *)LODWORD(this->x) + 16))(LODWORD(this->x), 0);\n  v4 = this->y;\n  if ( v4 != 0.0 )\n    (*(void (__thiscall **)(float, _DWORD))(*(_DWORD *)LODWORD(v4) + 16))(COERCE_FLOAT(LODWORD(v4)), 0);\n  z = this->z;\n  if ( z != 0.0 )\n    (*(void (__thiscall **)(float, _DWORD))(*(_DWORD *)LODWORD(z) + 16))(COERCE_FLOAT(LODWORD(z)), 0);\n  gbMatrixStack::Pop(a2);\n}\n"
+}

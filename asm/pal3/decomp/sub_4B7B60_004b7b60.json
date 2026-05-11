@@ -1,0 +1,7 @@
+{
+  "name": "sub_4B7B60",
+  "address": "0x004B7B60",
+  "size_bytes": 55,
+  "signature": "void __thiscall(int this, float a2)",
+  "decompiled_c": "void __thiscall sub_4B7B60(int this, float a2)\n{\n  double v2; // st7\n  unsigned __int8 v4; // c0\n  unsigned __int8 v5; // c3\n\n  v2 = a2 + *(float *)(this + 96);\n  *(float *)(this + 96) = v2;\n  if ( !(v4 | v5) )\n  {\n    ++*(_DWORD *)(this + 92);\n    *(float *)(this + 96) = v2 - 0.1;\n  }\n  if ( *(int *)(this + 92) >= 16 )\n    *(_DWORD *)(this + 92) = 0;\n}\n"
+}

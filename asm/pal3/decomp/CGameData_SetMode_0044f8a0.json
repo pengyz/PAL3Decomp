@@ -2,6 +2,6 @@
   "name": "CGameData::SetMode",
   "address": "0x0044F8A0",
   "size_bytes": 40,
-  "signature": "int __thiscall(CGameData *this, int mode)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall CGameData::SetMode(CGameData *this, int mode)\n{\n  if ( !mode )\n    return *((_DWORD *)this + 7044);\n  if ( mode == 5 )\n    return *((_DWORD *)this + 7045);\n  return *((_DWORD *)this + 3633);\n}\n"
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "int __thiscall CGameData::SetMode(_DWORD *this, int a2)\n{\n  if ( !a2 )\n    return this[7044];\n  if ( a2 == 5 )\n    return this[7045];\n  return this[3633];\n}\n"
 }

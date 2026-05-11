@@ -1,0 +1,7 @@
+{
+  "name": "GRPinput::Create(void *,void *,int)",
+  "address": "0x00402570",
+  "size_bytes": 194,
+  "signature": "int __thiscall(GRPinput *this)",
+  "decompiled_c": "int __thiscall GRPinput::Create(GRPinput *this)\n{\n  int result; // eax\n  char *v3; // esi\n  char v4; // cl\n\n  memset(&this->_data[3872], 0, 0x10Cu);\n  *(_WORD *)&this->_data[4140] = 0;\n  result = 0;\n  v3 = &this->_data[3969];\n  do\n  {\n    v4 = result++ + 65;\n    *v3++ = v4;\n  }\n  while ( (unsigned __int16)result < 0x1Au );\n  this->_data[3933] = 43;\n  this->_data[3963] = 123;\n  this->_data[3965] = 125;\n  this->_data[3964] = 124;\n  this->_data[3931] = 58;\n  this->_data[3911] = 34;\n  qmemcpy(&this->_data[3916], \"<_>?)!@#$%^&*(\", 14);\n  this->_data[3968] = 126;\n  return result;\n}\n"
+}

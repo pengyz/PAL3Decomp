@@ -1,0 +1,7 @@
+{
+  "name": "sub_42BF90",
+  "address": "0x0042BF90",
+  "size_bytes": 69,
+  "signature": "unsigned __int8 *__usercall@<eax>(int this@<ecx>, double a2@<st0>, double a3@<st1>)",
+  "decompiled_c": "unsigned __int8 *__usercall sub_42BF90@<eax>(int this@<ecx>, double a2@<st0>, double a3@<st1>)\n{\n  __int16 v3; // ax\n  RoleSystem *m_pCollisionNode; // edi\n  unsigned __int8 *v5; // eax\n  unsigned __int8 *v6; // esi\n\n  v3 = *(_WORD *)(this + 500);\n  if ( v3 == -1 )\n    return 0;\n  m_pCollisionNode = (RoleSystem *)g_SceneMgr.m_pCollisionNode;\n  v5 = sub_421560(*(unsigned __int8 **)(*(_DWORD *)(this + 796) + 16), v3);\n  v6 = v5;\n  if ( !v5 )\n    return 0;\n  sub_424C20((int)v5, a2, a3, m_pCollisionNode, 2, 0, 0.001);\n  return v6;\n}\n"
+}

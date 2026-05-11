@@ -1,0 +1,7 @@
+{
+  "name": "sub_4366C0",
+  "address": "0x004366C0",
+  "size_bytes": 73,
+  "signature": "int __cdecl(int a1)",
+  "decompiled_c": "int __cdecl sub_4366C0(int a1)\n{\n  int v1; // eax\n  int v2; // eax\n  int result; // eax\n\n  v1 = *(_DWORD *)(dword_D8E468 + 16);\n  if ( v1 )\n  {\n    v2 = v1 - 1;\n    if ( v2 )\n    {\n      result = v2 - 1;\n      if ( result )\n        return result;\n      if ( !a1 && !*(_DWORD *)(dword_D8E468 + 24) )\n        goto LABEL_6;\n    }\n    else if ( !a1 || !*(_DWORD *)(dword_D8E468 + 24) )\n    {\nLABEL_6:\n      result = 0;\n      *(_DWORD *)(dword_D8E468 + 24) = 0;\n      return result;\n    }\n    result = 1;\n    *(_DWORD *)(dword_D8E468 + 24) = 1;\n  }\n  else\n  {\n    result = a1;\n    *(_DWORD *)(dword_D8E468 + 24) = a1;\n  }\n  return result;\n}\n"
+}

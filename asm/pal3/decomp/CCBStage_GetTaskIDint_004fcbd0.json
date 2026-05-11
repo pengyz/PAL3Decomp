@@ -1,0 +1,7 @@
+{
+  "name": "CCBStage::GetTaskID(int)",
+  "address": "0x004FCBD0",
+  "size_bytes": 58,
+  "signature": "char __thiscall(CCBStage *this, int a2, int a3)",
+  "decompiled_c": "char __thiscall CCBStage::GetTaskID(CCBStage *this, int a2, int a3)\n{\n  char *v3; // eax\n\n  v3 = &this->_data[2632 * a2 + 80 * a3];\n  *((_DWORD *)v3 + 50) = 3;\n  *((float *)v3 + 52) = *(float *)(*(_DWORD *)this->_data + 80);\n  return 1;\n}\n"
+}

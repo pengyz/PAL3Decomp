@@ -1,0 +1,7 @@
+{
+  "name": "sub_52AFC0",
+  "address": "0x0052AFC0",
+  "size_bytes": 40,
+  "signature": "int __thiscall(_DWORD *this, gbMatrixStack *a2)",
+  "decompiled_c": "int __thiscall sub_52AFC0(_DWORD *this, gbMatrixStack *a2)\n{\n  int result; // eax\n\n  result = this[64];\n  if ( result )\n  {\n    sub_52AFF0((int)this, a2);\n    return (*(int (__thiscall **)(_DWORD, _DWORD))(*(_DWORD *)this[64] + 16))(this[64], 0);\n  }\n  return result;\n}\n"
+}

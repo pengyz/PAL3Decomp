@@ -1,0 +1,7 @@
+{
+  "name": "sub_4AF410",
+  "address": "0x004AF410",
+  "size_bytes": 56,
+  "signature": "int __thiscall(int *this)",
+  "decompiled_c": "int __thiscall sub_4AF410(int *this)\n{\n  int v2; // ebx\n  int i; // esi\n  int result; // eax\n\n  v2 = this[2];\n  for ( i = this[1]; i != v2; i += 24 )\n    sub_4A6C70(i);\n  operator delete((void *)this[1]);\n  result = 0;\n  this[1] = 0;\n  this[2] = 0;\n  this[3] = 0;\n  return result;\n}\n"
+}

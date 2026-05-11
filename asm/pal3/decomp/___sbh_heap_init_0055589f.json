@@ -1,7 +1,0 @@
-{
-  "name": "___sbh_heap_init",
-  "address": "0x0055589F",
-  "size_bytes": 62,
-  "signature": "int()",
-  "decompiled_c": "int __sbh_heap_init()\n{\n  int result; // eax\n\n  result = (int)HeapAlloc(hHeap, 0, 0x140u);\n  lpMem = (LPVOID)result;\n  if ( result )\n  {\n    g_SaveData = 0;\n    dword_1896D04 = 0;\n    dword_1896CFC = result;\n    dword_1896CF4 = 16;\n    return 1;\n  }\n  return result;\n}\n"
-}

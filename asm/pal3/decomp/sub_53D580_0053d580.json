@@ -1,0 +1,7 @@
+{
+  "name": "sub_53D580",
+  "address": "0x0053D580",
+  "size_bytes": 68,
+  "signature": "void __thiscall(_DWORD *this)",
+  "decompiled_c": "void __thiscall sub_53D580(_DWORD *this)\n{\n  int v2; // ebp\n  _DWORD *v3; // edi\n  gbRefObject **v4; // esi\n  gbRefObject *v5; // ecx\n\n  v2 = 6;\n  v3 = this + 22;\n  v4 = (gbRefObject **)(this + 22);\n  do\n  {\n    if ( *v4 )\n      gbRefObject::Release(*v4);\n    ++v4;\n    --v2;\n  }\n  while ( v2 );\n  memset(v3, 0, 0x18u);\n  v5 = (gbRefObject *)this[31];\n  if ( v5 )\n  {\n    gbRefObject::Release(v5);\n    this[31] = 0;\n  }\n}\n"
+}

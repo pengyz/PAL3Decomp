@@ -1,0 +1,7 @@
+{
+  "name": "TranslatorGuardHandler(EHExceptionRecord *,TranslatorGuardRN *,void *,void *)",
+  "address": "0x005532C8",
+  "size_bytes": 117,
+  "signature": "int __usercall@<eax>(struct _EXCEPTION_REGISTRATION_RECORD **a1@<ebx>, PEXCEPTION_RECORD ExceptionRecord, PVOID TargetFrame, struct _CONTEXT *a4)",
+  "decompiled_c": "int __usercall TranslatorGuardHandler@<eax>(\n        struct _EXCEPTION_REGISTRATION_RECORD **a1@<ebx>,\n        PEXCEPTION_RECORD ExceptionRecord,\n        PVOID TargetFrame,\n        struct _CONTEXT *a4)\n{\n  if ( (*(_DWORD *)&ExceptionRecord->_data[4] & 0x66) != 0 )\n  {\n    *((_DWORD *)TargetFrame + 9) = 1;\n    return 1;\n  }\n  else\n  {\n    __InternalCxxFrameHandler(\n      ExceptionRecord,\n      *((struct EHRegistrationNode **)TargetFrame + 3),\n      a4,\n      0,\n      *((struct _s_FuncInfo **)TargetFrame + 2),\n      *((_DWORD *)TargetFrame + 4),\n      *((PVOID *)TargetFrame + 5),\n      1);\n    if ( !*((_DWORD *)TargetFrame + 9) )\n      _UnwindNestedFrames(a1, TargetFrame, ExceptionRecord);\n    return (*((int (**)(void))TargetFrame + 6))();\n  }\n}\n"
+}

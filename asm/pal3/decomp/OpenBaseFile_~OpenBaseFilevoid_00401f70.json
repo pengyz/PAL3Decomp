@@ -1,0 +1,7 @@
+{
+  "name": "OpenBaseFile::~OpenBaseFile(void)",
+  "address": "0x00401F70",
+  "size_bytes": 25,
+  "signature": "_DWORD *__thiscall(OpenBaseFile *this)",
+  "decompiled_c": "// write access to const memory has been detected, the output may be wrong!\n_DWORD *__thiscall OpenBaseFile::~OpenBaseFile(OpenBaseFile *this)\n{\n  _DWORD *result; // eax\n\n  result = &this->m_plastsys;\n  this->m_plastsys = g_pVFileSys;\n  g_pVFileSys = (struct gbVFileSystem *)dword_60BDC8;\n  return result;\n}\n"
+}

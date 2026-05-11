@@ -1,0 +1,7 @@
+{
+  "name": "sub_436190",
+  "address": "0x00436190",
+  "size_bytes": 169,
+  "signature": "_DWORD *()",
+  "decompiled_c": "// likely PalScriptMgr method (near PalScriptMgr, IfAnyScriptRunning, IsScriptRuning, )\n_DWORD *sub_436190()\n{\n  char *String; // esi\n  _DWORD *result; // eax\n  _DWORD *v2; // edi\n  float *v3; // esi\n  float v4; // [esp+0h] [ebp-14h]\n  int v5; // [esp+4h] [ebp-10h]\n\n  String = PalScript::GetString();\n  result = PalScript::GetString();\n  v2 = result;\n  if ( String )\n  {\n    if ( result )\n    {\n      result = (_DWORD *)result[1];\n      if ( (unsigned int)result < 8 )\n      {\n        result = sub_434BD0(*((_WORD *)String + 2));\n        v3 = (float *)result;\n        if ( result )\n        {\n          v4 = (float)(45 * v2[1]);\n          result = (_DWORD *)sub_416620((int)result, v4, 1);\n        }\n        if ( v3 == (float *)g_SceneMgr.m_pCollisionNode )\n        {\n          result = (_DWORD *)*((_DWORD *)dword_BFDA68 + 112);\n          if ( result )\n          {\n            result = PalScriptMgr::_CON_State((const char *)dword_D8E468);\n            if ( *(_BYTE *)result )\n            {\n              *(float *)&v5 = v3[2172] * -0.017453292;\n              return (_DWORD *)sub_41D590(dword_BFDA68, v5);\n            }\n          }\n        }\n      }\n    }\n  }\n  return result;\n}\n"
+}

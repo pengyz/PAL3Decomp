@@ -1,7 +1,0 @@
-{
-  "name": "_flsall",
-  "address": "0x005549BD",
-  "size_bytes": 109,
-  "signature": "int __cdecl(int a1)",
-  "decompiled_c": "int __cdecl flsall(int a1)\n{\n  signed int v1; // esi\n  int v2; // ebx\n  int i; // edi\n  FILE *v4; // eax\n  int flag; // ecx\n  int result; // eax\n\n  v1 = 0;\n  v2 = 0;\n  for ( i = 0; v1 < (int)Count; ++v1 )\n  {\n    v4 = *(FILE **)(g_PlayerLevel + 4 * v1);\n    if ( v4 )\n    {\n      flag = v4->_flag;\n      if ( (flag & 0x83) != 0 )\n      {\n        if ( a1 == 1 )\n        {\n          if ( fflush(v4) != -1 )\n            ++v2;\n        }\n        else if ( !a1 && (flag & 2) != 0 && fflush(*(FILE **)(g_PlayerLevel + 4 * v1)) == -1 )\n        {\n          i = -1;\n        }\n      }\n    }\n  }\n  result = v2;\n  if ( a1 != 1 )\n    return i;\n  return result;\n}\n"
-}

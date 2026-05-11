@@ -1,0 +1,7 @@
+{
+  "name": "UIRenderObj::UIRenderObj(void)",
+  "address": "0x00541640",
+  "size_bytes": 203,
+  "signature": "void __thiscall(UIRenderObj *this)",
+  "decompiled_c": "void __thiscall UIRenderObj::UIRenderObj(UIRenderObj *this)\n{\n  int v2; // ecx\n  int v3; // esi\n  int v4; // [esp+4h] [ebp-70h] BYREF\n  _BYTE v5[4]; // [esp+8h] [ebp-6Ch] BYREF\n  struct tagPOINT Point; // [esp+Ch] [ebp-68h] BYREF\n  struct tagPOINT v7; // [esp+14h] [ebp-60h] BYREF\n  int v8; // [esp+1Ch] [ebp-58h]\n  int v9; // [esp+20h] [ebp-54h]\n  struct gbTextureArray v10; // [esp+24h] [ebp-50h] BYREF\n  int v11; // [esp+70h] [ebp-4h]\n\n  if ( this[29]._data[0] )\n  {\n    if ( this[28]._data[0] )\n    {\n      sub_540F60(v5);\n      v11 = 0;\n      GRPinput::GetCursorPos(&Point);\n      v7 = Point;\n      v9 = Point.y + 32;\n      v2 = *(_DWORD *)this[12]._data;\n      v8 = Point.x + 32;\n      v4 = -1;\n      v3 = *(_DWORD *)this[4 * v2 + 16]._data;\n      *(_DWORD *)&v10._data[64] = 1;\n      *(_DWORD *)v10._data = v3;\n      _TextureLib_Data::SetLibFolder(&v7.x, (unsigned int *)&v4, &v10, 0x114u, 0, COERCE_FLOAT(1));\n      v11 = -1;\n      sub_540FA0();\n    }\n  }\n}\n"
+}

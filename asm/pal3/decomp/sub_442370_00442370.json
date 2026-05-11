@@ -1,0 +1,7 @@
+{
+  "name": "sub_442370",
+  "address": "0x00442370",
+  "size_bytes": 30,
+  "signature": "std::ios_base *__thiscall(std::ios_base *Block, char a2)",
+  "decompiled_c": "std::ios_base *__thiscall sub_442370(std::ios_base *Block, char a2)\n{\n  UIFrameWnd::_UIFrameWnd(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+}

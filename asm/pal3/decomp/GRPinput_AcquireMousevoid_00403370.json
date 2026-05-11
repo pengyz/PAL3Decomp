@@ -1,0 +1,7 @@
+{
+  "name": "GRPinput::AcquireMouse(void)",
+  "address": "0x00403370",
+  "size_bytes": 120,
+  "signature": "char *__thiscall(GRPinput *this)",
+  "decompiled_c": "char *__thiscall GRPinput::AcquireMouse(GRPinput *this)\n{\n  `eh vector constructor iterator'(\n    &this->_data[4],\n    0xA4u,\n    2,\n    (void (__thiscall *)(void *))GRPinput::UnacquireJoystick,\n    (void (__thiscall *)(void *))GRPinput::AcquireKeyboard);\n  `eh vector constructor iterator'(\n    &this->_data[332],\n    0x10u,\n    2,\n    (void (__thiscall *)(void *))GRPinput::UnacquireMouse,\n    (void (__thiscall *)(void *))GRPinput::AcquireJoystick);\n  memset(this, 0, 0x16Cu);\n  return this->_data;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_52AF20",
+  "address": "0x0052AF20",
+  "size_bytes": 147,
+  "signature": "char __thiscall(int this, const char *a2)",
+  "decompiled_c": "char __thiscall sub_52AF20(int this, const char *a2)\n{\n  _DWORD *v3; // eax\n  _DWORD *v4; // eax\n\n  sub_52B050((char *)this, a2);\n  v3 = (_DWORD *)operator new(0xF8u);\n  if ( v3 )\n    v4 = sub_4B74A0(v3);\n  else\n    v4 = 0;\n  *(_DWORD *)(this + 264) = v4;\n  (*(void (__thiscall **)(_DWORD *, int))(*v4 + 40))(v4, 3);\n  *(_DWORD *)(this + 268) = -1071225242;\n  *(_DWORD *)(this + 272) = 1090099610;\n  *(_DWORD *)(this + 276) = -1016266752;\n  return 1;\n}\n"
+}

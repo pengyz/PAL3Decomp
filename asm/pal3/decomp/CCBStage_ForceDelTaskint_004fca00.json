@@ -1,0 +1,7 @@
+{
+  "name": "CCBStage::ForceDelTask(int)",
+  "address": "0x004FCA00",
+  "size_bytes": 59,
+  "signature": "char __thiscall(CCBStage *this, int a2)",
+  "decompiled_c": "char __thiscall CCBStage::ForceDelTask(CCBStage *this, int a2)\n{\n  char *v2; // eax\n  int v3; // edx\n\n  v2 = &this->_data[168];\n  v3 = 0;\n  while ( !v2[2628] || a2 != *(_DWORD *)v2 || *((_DWORD *)v2 + 1) == 4 )\n  {\n    ++v3;\n    v2 += 2632;\n    if ( v3 >= 256 )\n      return 0;\n  }\n  return 1;\n}\n"
+}

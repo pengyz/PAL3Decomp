@@ -1,7 +1,0 @@
-{
-  "name": "?Destroy@PalScriptMgr@@SAXXZ",
-  "address": "0x00432170",
-  "size_bytes": 235,
-  "signature": "int *__cdecl(unsigned int a1, char a2)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint *__cdecl PalScriptMgr::Destroy(unsigned int a1, char a2)\n{\n  int *result; // eax\n  int *v3; // edi\n  _DWORD *v4; // eax\n  _DWORD *v5; // esi\n\n  result = (int *)a1;\n  if ( a1 )\n  {\n    if ( a2 )\n      result = sub_433DC0(&g_InputState.m_mouseMinX, a1, 0);\n    else\n      result = a1 >= 0x64 ? sub_433DC0(&g_InputState.m_joystickX, a1, 0) : sub_433DC0(&g_InputState.m_mousept.x, a1, 0);\n    v3 = result;\n    if ( result )\n    {\n      v4 = operator new(0x18u);\n      if ( v4 )\n        v5 = sub_431CB0(v4);\n      else\n        v5 = 0;\n      if ( v5 )\n      {\n        v5[1] = v3;\n        PtrArray::SetAt((PtrArray *)&g_InputState.m_keyStates[8], *(int *)&g_InputState.m_keyStates[12], (int)v5);\n        return v5;\n      }\n      else\n      {\n        sub_433CD0(v3);\n        return 0;\n      }\n    }\n  }\n  return result;\n}\n"
-}

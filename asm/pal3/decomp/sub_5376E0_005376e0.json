@@ -1,0 +1,7 @@
+{
+  "name": "sub_5376E0",
+  "address": "0x005376E0",
+  "size_bytes": 131,
+  "signature": "FILE *__stdcall(int a1, char *a2)",
+  "decompiled_c": "FILE *__stdcall sub_5376E0(int a1, char *a2)\n{\n  FILE *result; // eax\n  FILE *v3; // ebx\n  _BYTE v4[72]; // [esp+4h] [ebp-1E0h] BYREF\n  char v5[80]; // [esp+4Ch] [ebp-198h] BYREF\n  char Buffer[260]; // [esp+E0h] [ebp-104h] BYREF\n\n  sprintf(Buffer, \"save\\\\pal%02d.arc\", a1);\n  result = fopen(Buffer, aRb);\n  v3 = result;\n  if ( result )\n  {\n    fread(v4, 0xDCu, 1u, result);\n    qmemcpy(a2, v5, 0x50u);\n    fclose(v3);\n    return (FILE *)1;\n  }\n  return result;\n}\n"
+}

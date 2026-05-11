@@ -1,0 +1,7 @@
+{
+  "name": "sub_450990",
+  "address": "0x00450990",
+  "size_bytes": 91,
+  "signature": "int __thiscall(char *this, int a2, int a3, int a4)",
+  "decompiled_c": "int __thiscall sub_450990(char *this, int a2, int a3, int a4)\n{\n  char *v5; // esi\n\n  if ( a2 != 1000 )\n    return UIWnd::SendMessage(a2, a3, a4);\n  if ( a3 )\n  {\n    v5 = this + 72;\n    UIWnd::FindChild((int)(this + 72), 100.0);\n    UIWnd::FindChildByName((int)v5, 100.0);\n  }\n  else\n  {\n    sub_43FE90((int)(this + 72));\n  }\n  return 1;\n}\n"
+}

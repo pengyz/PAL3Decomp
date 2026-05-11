@@ -1,0 +1,7 @@
+{
+  "name": "sub_4C15D0",
+  "address": "0x004C15D0",
+  "size_bytes": 102,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_4C15D0(_DWORD *this)\n{\n  int result; // eax\n  int v2; // ebp\n  int v3; // esi\n  int v4; // edi\n  int v5; // eax\n  _DWORD *v6; // edx\n\n  result = this[10];\n  v2 = 0;\n  if ( result > 0 )\n  {\n    v3 = 0;\n    do\n    {\n      if ( *(_BYTE *)(this[6] + v3 + 148) )\n      {\n        v4 = 0;\n        if ( (int)this[11] > 0 )\n        {\n          v5 = 0;\n          do\n          {\n            v6 = (_DWORD *)(v3 + this[6]);\n            if ( *(_BYTE *)(*v6 + v5 + 64) )\n              *(_BYTE *)(*v6 + v5 + 66) = 1;\n            ++v4;\n            v5 += 72;\n          }\n          while ( v4 < this[11] );\n        }\n        *(_BYTE *)(this[6] + v3 + 149) = 1;\n      }\n      result = this[10];\n      ++v2;\n      v3 += 152;\n    }\n    while ( v2 < result );\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_542A71",
+  "address": "0x00542A71",
+  "size_bytes": 240,
+  "signature": "float *__stdcall(float *a1, float *a2, float *a3, float *a4)",
+  "decompiled_c": "float *__stdcall sub_542A71(float *a1, float *a2, float *a3, float *a4)\n{\n  double v6; // st7\n  double v8; // st6\n  double v9; // st7\n  double v10; // st6\n  float *result; // eax\n  float v12; // [esp+8h] [ebp-1Ch]\n  float v13; // [esp+Ch] [ebp-18h]\n  float v14; // [esp+10h] [ebp-14h]\n  float v15; // [esp+14h] [ebp-10h]\n  float v16; // [esp+18h] [ebp-Ch]\n  float v17; // [esp+1Ch] [ebp-8h]\n  float v18; // [esp+20h] [ebp-4h]\n  float v19; // [esp+30h] [ebp+Ch]\n  float v20; // [esp+34h] [ebp+10h]\n  float v21; // [esp+38h] [ebp+14h]\n\n  v6 = a4[3] * a3[2];\n  v8 = a3[3] * a4[2];\n  v20 = a4[3] * a3[1] - a3[3] * a4[1];\n  v17 = a3[1] * a4[2];\n  v18 = a3[2] * a4[1];\n  v12 = (v6 - v8) * a2[1] - v20 * a2[2] + (v17 - v18) * a2[3];\n  v19 = a3[3] * *a4;\n  v21 = a4[3] * *a3;\n  v16 = *a4 * a3[2] - *a3 * a4[2];\n  v13 = (v8 - v6) * *a2 - (v19 - v21) * a2[2] + v16 * a2[3];\n  v9 = *a3 * a4[1];\n  v10 = *a4 * a3[1];\n  v14 = v20 * *a2 - (v21 - v19) * a2[1] + (v9 - v10) * a2[3];\n  result = a1;\n  v15 = (v18 - v17) * *a2 - v16 * a2[1] + (v10 - v9) * a2[2];\n  *a1 = v12;\n  a1[1] = v13;\n  a1[2] = v14;\n  a1[3] = v15;\n  return result;\n}\n"
+}

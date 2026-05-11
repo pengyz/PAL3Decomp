@@ -1,0 +1,7 @@
+{
+  "name": "ObjectCamera::SetCameraRotate(float,float,float)",
+  "address": "0x0047C770",
+  "size_bytes": 110,
+  "signature": "int __thiscall(ObjectCamera *this, float a2, float a3, float a4)",
+  "decompiled_c": "int __thiscall ObjectCamera::SetCameraRotate(ObjectCamera *this, float a2, float a3, float a4)\n{\n  double v5; // st7\n  double v6; // st7\n  gbVec3D v8; // [esp+4h] [ebp-Ch] BYREF\n  float v9; // [esp+14h] [ebp+4h]\n  float v10; // [esp+18h] [ebp+8h]\n  float v11; // [esp+1Ch] [ebp+Ch]\n\n  this->m_camTo.x = a2;\n  this->m_camTo.y = a3;\n  this->m_camTo.z = a4;\n  v9 = this->m_camTo.x - this->m_camFrom.x;\n  v5 = this->m_camTo.y - this->m_camFrom.y;\n  v8.x = v9;\n  v10 = v5;\n  v6 = this->m_camTo.z - this->m_camFrom.z;\n  v8.y = v10;\n  v11 = v6;\n  v8.z = v11;\n  this->m_dist = gbVec3D::Length(&v8);\n  return ObjectCamera::ComputeInfo(this, 1);\n}\n"
+}

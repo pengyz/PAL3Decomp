@@ -1,0 +1,7 @@
+{
+  "name": "UIListBox::SetScroll(char const *,tagRECT &,int,int,bool)",
+  "address": "0x0043DDF0",
+  "size_bytes": 74,
+  "signature": "int __thiscall(UIListBox *this)",
+  "decompiled_c": "int __thiscall UIListBox::SetScroll(UIListBox *this)\n{\n  int result; // eax\n  struct gbTextureArray v3; // [esp+4h] [ebp-44h] BYREF\n\n  result = this->_d038;\n  if ( result )\n  {\n    if ( this->_d044 )\n    {\n      *(_DWORD *)v3._data = this->_d044;\n      *(_DWORD *)&v3._data[64] = 1;\n      _TextureLib_Data::SetLibFolder(\n        (int *)&this->_pad_004[12],\n        (unsigned int *)&this->_pad_004[4],\n        &v3,\n        0x114u,\n        0,\n        COERCE_FLOAT(1));\n    }\n    return UIWnd::GetID((UIWnd *)this);\n  }\n  return result;\n}\n"
+}

@@ -1,7 +1,0 @@
-{
-  "name": "_fseek",
-  "address": "0x00553773",
-  "size_bytes": 140,
-  "signature": "int __cdecl(FILE *Stream, int Offset, int Origin)",
-  "decompiled_c": "int __cdecl fseek(FILE *Stream, int Offset, int Origin)\n{\n  int flag; // eax\n  int v4; // edi\n  int v5; // eax\n\n  flag = Stream->_flag;\n  if ( (flag & 0x83) != 0 && (v4 = Origin, (unsigned int)Origin <= 2) )\n  {\n    LOBYTE(flag) = flag & 0xEF;\n    Stream->_flag = flag;\n    if ( Origin == 1 )\n    {\n      Offset += ftell(Stream);\n      v4 = 0;\n    }\n    _flush(Stream);\n    v5 = Stream->_flag;\n    if ( (v5 & 0x80u) == 0 )\n    {\n      if ( (v5 & 1) != 0 && (v5 & 8) != 0 && (v5 & 0x400) == 0 )\n        Stream->_bufsiz = 512;\n    }\n    else\n    {\n      LOBYTE(v5) = v5 & 0xFC;\n      Stream->_flag = v5;\n    }\n    return (_lseek(Stream->_file, Offset, v4) != -1) - 1;\n  }\n  else\n  {\n    g_PlayerData_33C = 22;\n    return -1;\n  }\n}\n"
-}

@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageScene::~CCBStageScene(void)",
+  "address": "0x005100D0",
+  "size_bytes": 162,
+  "signature": "char __thiscall(CCBStageScene *this)",
+  "decompiled_c": "char __thiscall CCBStageScene::~CCBStageScene(CCBStageScene *this)\n{\n  void (__thiscall ***d268)(_DWORD, int); // ecx\n  void (__thiscall ***d25C)(_DWORD, int); // ecx\n  void (__thiscall ***d260)(_DWORD, int); // ecx\n  char *pad_26C; // esi\n  int v6; // edi\n\n  sub_511630(this);\n  gbRefObject::Release((gbRefObject *)this->_d29C);\n  gbRefObject::Release((gbRefObject *)this->_p298);\n  if ( this->_d2A0 )\n  {\n    operator delete((void *)this->_d2A0);\n    this->_d2A0 = 0;\n  }\n  d268 = (void (__thiscall ***)(_DWORD, int))this->_d268;\n  if ( d268 )\n  {\n    (**d268)(d268, 1);\n    this->_d268 = 0;\n  }\n  d25C = (void (__thiscall ***)(_DWORD, int))this->_d25C;\n  if ( d25C )\n  {\n    (**d25C)(d25C, 1);\n    this->_d25C = 0;\n  }\n  d260 = (void (__thiscall ***)(_DWORD, int))this->_d260;\n  if ( d260 )\n  {\n    (**d260)(d260, 1);\n    this->_d260 = 0;\n  }\n  pad_26C = this->_pad_26C;\n  v6 = 11;\n  do\n  {\n    if ( *(_DWORD *)pad_26C )\n    {\n      (***(void (__thiscall ****)(_DWORD, int))pad_26C)(*(_DWORD *)pad_26C, 1);\n      *(_DWORD *)pad_26C = 0;\n    }\n    pad_26C += 4;\n    --v6;\n  }\n  while ( v6 );\n  return 1;\n}\n"
+}

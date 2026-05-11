@@ -3,5 +3,5 @@
   "address": "0x004DB700",
   "size_bytes": 14,
   "signature": "int __thiscall(CCBSystem *this, int idx)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBSystem::GetCmdValue(CCBSystem *this, int idx)\n{\n  return *((_DWORD *)&this->m_pConfig + 10 * idx);\n}\n"
+  "decompiled_c": "int __thiscall CCBSystem::GetCmdValue(CCBSystem *this, int idx)\n{\n  return *((_DWORD *)&this->m_pConfig + 10 * idx);\n}\n"
 }

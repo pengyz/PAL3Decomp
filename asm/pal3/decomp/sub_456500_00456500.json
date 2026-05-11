@@ -1,0 +1,7 @@
+{
+  "name": "sub_456500",
+  "address": "0x00456500",
+  "size_bytes": 144,
+  "signature": "BOOL __thiscall(UIWnd *this, int a2, int a3)",
+  "decompiled_c": "BOOL __thiscall sub_456500(UIWnd *this, int a2, int a3)\n{\n  int *v5; // eax\n  char *v6; // [esp-8h] [ebp-Ch]\n\n  if ( this[1629].m_rect.bottom )\n    return 1;\n  sub_4562C0((int)this);\n  sub_456280((char *)this);\n  sub_455C40((int)this);\n  if ( sub_4A1CF0(&this[1629].m_pfather) )\n    return UIWnd::HitTest(this, a2, a3);\n  sub_456590(aSoftwareSoftst_0, (DWORD)aSeek, this[1629].m_rect.right);\n  this[1629].m_rect.bottom = 1;\n  v6 = off_5AE3C4[0];\n  v5 = sub_53DF70();\n  CScreenMode::AudioSetPosition(v5, v6, 1);\n  return 1;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "FileSysInit(void)",
+  "address": "0x00401C70",
+  "size_bytes": 304,
+  "signature": "int()",
+  "decompiled_c": "// write access to const memory has been detected, the output may be wrong!\nint FileSysInit()\n{\n  _DWORD (__thiscall *v0)(gbVFileSystem *__hidden, char *); // esi\n  char v2[324]; // [esp+8h] [ebp-944h] BYREF\n  char pExceptionObject[1024]; // [esp+14Ch] [ebp-800h] BYREF\n  char ArgList[1024]; // [esp+54Ch] [ebp-400h] BYREF\n\n  if ( (dword_5833BC & 2) != 0 )\n  {\n    strcpy(v2, aBasedata);\n    strcat(v2, aBasedataCpk);\n    v0 = gbVFileSystem::Init;\n    if ( !gbVFileSystem::Init((gbVFileSystem *)&dword_7CC178, v2) )\n    {\n      qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aBasedataSystem, aDProjectPal3Ga, 23), sizeof(pExceptionObject));\n      _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n    }\n  }\n  else\n  {\n    v0 = gbVFileSystem::Init;\n    if ( !gbVFileSystem::Init((gbVFileSystem *)&dword_7CC178, aBasedata) )\n    {\n      qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aBasedataSystem, aDProjectPal3Ga, 28), sizeof(pExceptionObject));\n      _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n    }\n  }\n  g_pVFileSys = (struct gbVFileSystem *)&dword_7CC178;\n  return v0((gbVFileSystem *)dword_60BDC8, 0);\n}\n"
+}

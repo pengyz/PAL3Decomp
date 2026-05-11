@@ -1,0 +1,7 @@
+{
+  "name": "CCBUI::AddResultWindowAni(void)",
+  "address": "0x0051A090",
+  "size_bytes": 91,
+  "signature": "BOOL __thiscall(CCBUI *this, int a2, int a3)",
+  "decompiled_c": "BOOL __thiscall CCBUI::AddResultWindowAni(CCBUI *this, int a2, int a3)\n{\n  if ( *(_DWORD *)&this->_data[56] == 1\n    && (*(_DWORD *)&g_Input._data[6532] == 1 && (g_Input._data[6520] & 0xF) == 1 || *(_DWORD *)&g_Input._data[6548] == 1) )\n  {\n    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_data[32] + 1160) + 8), 128, -1);\n  }\n  return UIWnd::HitTest((UIWnd *)this, a2, a3);\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_4F69F0",
+  "address": "0x004F69F0",
+  "size_bytes": 40,
+  "signature": "bool __stdcall(int a2)",
+  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\nbool __stdcall sub_4F69F0(int a2)\n{\n  char v1; // al\n\n  v1 = *(_BYTE *)(PAL_GDB::GDB_GetRoleNum((PAL_GDB *)dword_975ED8, a2) + 4);\n  return v1 == 3 || v1 == 2 || v1 == 1;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_528CD0",
+  "address": "0x00528CD0",
+  "size_bytes": 84,
+  "signature": "int __thiscall(int this, int a2, unsigned __int8 a3)",
+  "decompiled_c": "int __thiscall sub_528CD0(int this, int a2, unsigned __int8 a3)\n{\n  int result; // eax\n\n  *(_DWORD *)(32 * a2 + this + 2356) = a3;\n  (**(void (__thiscall ***)(int, _DWORD))(this + 1608))(this + 1608, a3);\n  (**(void (__thiscall ***)(int, _DWORD))(this + 1760))(this + 1760, a3);\n  result = (**(int (__thiscall ***)(int, _DWORD))(this + 352))(this + 352, a3);\n  *(_BYTE *)(this + 2892) = a3;\n  return result;\n}\n"
+}

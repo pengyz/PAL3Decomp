@@ -1,0 +1,7 @@
+{
+  "name": "CUtil::WriteLog(char const *,...)",
+  "address": "0x005231D0",
+  "size_bytes": 30,
+  "signature": "stdiobuf *__thiscall(CUtil *Block, char a2)",
+  "decompiled_c": "stdiobuf *__thiscall CUtil::WriteLog(CUtil *Block, char a2)\n{\n  CUtil::GetFileSize(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return (stdiobuf *)Block;\n}\n"
+}

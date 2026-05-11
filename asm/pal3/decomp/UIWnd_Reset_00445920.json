@@ -3,5 +3,5 @@
   "address": "0x00445920",
   "size_bytes": 8,
   "signature": "int __thiscall(UIWnd *this)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nint __thiscall UIWnd::Reset(UIWnd *this)\n{\n  return UIWnd::MoveWindow((UIWnd **)this + 26);\n}\n"
+  "decompiled_c": "int __thiscall UIWnd::Reset(UIWnd *this)\n{\n  return UIWnd::MoveWindow((UIWnd **)&this[1].m_id);\n}\n"
 }

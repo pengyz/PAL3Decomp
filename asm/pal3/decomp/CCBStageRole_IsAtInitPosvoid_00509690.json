@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageRole::IsAtInitPos(void)",
+  "address": "0x00509690",
+  "size_bytes": 64,
+  "signature": "char __thiscall(CCBStageRole *this)",
+  "decompiled_c": "char __thiscall CCBStageRole::IsAtInitPos(CCBStageRole *this)\n{\n  void *v2; // ecx\n  void *v3; // edi\n\n  v2 = *(void **)&this->_data[292];\n  if ( !v2 )\n    return 1;\n  Actor::UpdateAllActions(v2);\n  v3 = *(void **)&this->_data[292];\n  if ( v3 )\n  {\n    sub_40EE00(*(_DWORD *)&this->_data[292]);\n    operator delete(v3);\n  }\n  *(_DWORD *)&this->_data[292] = 0;\n  return 1;\n}\n"
+}

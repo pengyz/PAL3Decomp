@@ -1,0 +1,7 @@
+{
+  "name": "PalScript::Update(float)",
+  "address": "0x00431FB0",
+  "size_bytes": 233,
+  "signature": "void __thiscall(PalScript *this)",
+  "decompiled_c": "void __thiscall PalScript::Update(PalScript *this)\n{\n  int v1; // eax\n  int v2; // eax\n  char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF\n  char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF\n\n  PalScriptMgr::_CON_ReLoadScript();\n  if ( !sub_432990(aInitScs) )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aScriptSysInitF, aDProjectPal3Sc, 71), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  PtrArray::InsertAt((PtrArray *)dword_D8C2E8, aInitSce);\n  if ( !v1 )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aSystemScriptLo, aDProjectPal3Sc, 73), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  PtrArray::InsertAt((PtrArray *)dword_D8C2C8, aUiBigmapBigmap);\n  if ( !v2 )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aBigmapScriptLo, aDProjectPal3Sc, 75), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n}\n"
+}

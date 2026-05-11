@@ -1,0 +1,7 @@
+{
+  "name": "UIListBox::GetLockSel(void)",
+  "address": "0x0043E3B0",
+  "size_bytes": 136,
+  "signature": "int __thiscall(UIListBox *this, int a2, _DWORD *a3, int a4, int a5, char a6)",
+  "decompiled_c": "int __thiscall UIListBox::GetLockSel(UIListBox *this, int a2, _DWORD *a3, int a4, int a5, char a6)\n{\n  int result; // eax\n  int v8; // ecx\n  int v9; // edx\n\n  if ( a2 )\n    sub_4413C0((UIWnd **)&this->_tail[8], (OpenNULLFile *)a2, a6);\n  *(_DWORD *)&this->_tail[1056] = *a3;\n  *(_DWORD *)&this->_tail[1060] = a3[1];\n  *(_DWORD *)&this->_tail[1064] = a3[2];\n  *(_DWORD *)&this->_tail[1068] = a3[3];\n  *(_DWORD *)&this->_tail[1056] = *(_DWORD *)&this->_tail[1064] - a4;\n  UIWnd::GetRect((UIWnd *)&this->_tail[8], &this->_tail[1056]);\n  result = a5;\n  v8 = *(_DWORD *)&this->_tail[332];\n  v9 = a5 + *(_DWORD *)&this->_tail[316];\n  *(_DWORD *)&this->_tail[164] = a5;\n  *(_DWORD *)&this->_tail[324] = v9;\n  *(_DWORD *)&this->_tail[340] = a5 + v8;\n  *(_DWORD *)&this->_tail[1100] = a4;\n  return result;\n}\n"
+}

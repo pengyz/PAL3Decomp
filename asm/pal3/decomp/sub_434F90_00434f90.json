@@ -1,0 +1,7 @@
+{
+  "name": "sub_434F90",
+  "address": "0x00434F90",
+  "size_bytes": 122,
+  "signature": "void()",
+  "decompiled_c": "void sub_434F90()\n{\n  char *String; // esi\n  char *v1; // edi\n  char *v2; // ebx\n  char *v3; // eax\n  char *v4; // ebp\n  __int8 *v5; // esi\n  int v6; // eax\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  v2 = PalScript::GetString();\n  v3 = PalScript::GetString();\n  v4 = v3;\n  if ( String && v1 && v2 && v3 )\n  {\n    v5 = sub_434BD0(*((_WORD *)String + 2));\n    if ( v5 )\n    {\n      v6 = sub_434F60(*((_DWORD *)v4 + 1));\n      sub_4132B0((int)v5, *((_DWORD *)v1 + 1), *((_DWORD *)v2 + 1), v6);\n      *((_DWORD *)v5 + 365) = 0;\n      sub_434C40((int)(v5 + 56));\n    }\n  }\n}\n"
+}

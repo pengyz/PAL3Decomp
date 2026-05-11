@@ -1,0 +1,7 @@
+{
+  "name": "PAL_GDB::~PAL_GDB(void)",
+  "address": "0x00478FD0",
+  "size_bytes": 105,
+  "signature": "int __thiscall(PAL_GDB *this, int a2)",
+  "decompiled_c": "int __thiscall PAL_GDB::~PAL_GDB(PAL_GDB *this, int a2)\n{\n  int d084; // esi\n  int dC4810; // edx\n\n  if ( !a2 )\n    return 0;\n  d084 = this->_d084;\n  this->_dC4810 = 0;\n  if ( d084 <= 0 )\n    return 0;\n  while ( 1 )\n  {\n    dC4810 = this->_dC4810;\n    if ( a2 == *(_DWORD *)&this->_pad_0A0[852 * dC4810] )\n      break;\n    this->_dC4810 = dC4810 + 1;\n    if ( dC4810 + 1 >= d084 )\n      return 0;\n  }\n  return (int)&this->_pad_0A0[852 * this->_dC4810];\n}\n"
+}

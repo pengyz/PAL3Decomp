@@ -1,0 +1,7 @@
+{
+  "name": "CCBAIWindow::~CCBAIWindow(void)",
+  "address": "0x0051CAA0",
+  "size_bytes": 191,
+  "signature": "int __thiscall(CCBAIWindow *this)",
+  "decompiled_c": "int __thiscall CCBAIWindow::~CCBAIWindow(CCBAIWindow *this)\n{\n  int d010; // ebx\n  void *v3; // edi\n  int d014; // [esp+Ch] [ebp-Ch]\n\n  UIListBox::SetScroll((UIListBox *)this);\n  d010 = this->_d010;\n  d014 = this->_d014;\n  v3 = *(void **)(*(_DWORD *)(*(_DWORD *)(*(_DWORD *)&this->_tail[119] + 1160) + 20) + 68);\n  CCBAIWindow::SetText(v3, d010 + 105, d014 + 51);\n  CCBAIWindow::SetText(v3, d010 + 117, d014 + 76);\n  return CCBAIWindow::SetText(v3, d010 + 107, d014 + 102);\n}\n"
+}

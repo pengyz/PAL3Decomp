@@ -3,5 +3,5 @@
   "address": "0x0041D980",
   "size_bytes": 24,
   "signature": "int __cdecl(int a1)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __cdecl CameraSystem::Init(int a1)\n{\n  int result; // eax\n\n  result = a1;\n  if ( a1 )\n  {\n    g_SceneMgr.m_pCollisionNode = (gbGeomNode *)a1;\n    *(_DWORD *)(a1 + 1264) = 2;\n  }\n  return result;\n}\n"
+  "decompiled_c": "int __cdecl CameraSystem::Init(int a1)\n{\n  int result; // eax\n\n  result = a1;\n  if ( a1 )\n  {\n    g_SceneMgr.m_pCollisionNode = a1;\n    *(_DWORD *)(a1 + 1264) = 2;\n  }\n  return result;\n}\n"
 }

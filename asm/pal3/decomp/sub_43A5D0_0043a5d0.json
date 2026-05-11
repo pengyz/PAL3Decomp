@@ -1,0 +1,7 @@
+{
+  "name": "sub_43A5D0",
+  "address": "0x0043A5D0",
+  "size_bytes": 130,
+  "signature": "OpenNULLFile *__thiscall(UIWnd **this, int a2, UIWnd *a3)",
+  "decompiled_c": "// likely OpenNULLFile method (near OpenNULLFile)\nOpenNULLFile *__thiscall sub_43A5D0(UIWnd **this, int a2, UIWnd *a3)\n{\n  UIWnd **v4; // edi\n  OpenBaseFile v6; // [esp+8h] [ebp-10h] BYREF\n  int v7; // [esp+14h] [ebp-4h]\n\n  v4 = this + 19;\n  UIWnd::MoveWindow(this + 19);\n  OpenBaseFile::OpenBaseFile(&v6);\n  v7 = 0;\n  sub_445ED0(v4, a2, 1);\n  this[40] = (UIWnd *)1;\n  this[37] = a3;\n  sub_43A660(this);\n  v7 = -1;\n  return (OpenNULLFile *)OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v6);\n}\n"
+}

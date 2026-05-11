@@ -1,0 +1,7 @@
+{
+  "name": "CCBItemWindow::OnMessage(uint,ulong,ulong)",
+  "address": "0x0051B5D0",
+  "size_bytes": 67,
+  "signature": "int __thiscall(CCBItemWindow *this, int a2)",
+  "decompiled_c": "int __thiscall CCBItemWindow::OnMessage(CCBItemWindow *this, int a2)\n{\n  int v3; // edi\n  int *p_d04C; // esi\n  void (__thiscall ***v5)(_DWORD, int); // ecx\n\n  if ( a2 == 1 )\n  {\n    v3 = 0;\n    p_d04C = &this->_d04C;\n    do\n    {\n      v5 = (void (__thiscall ***)(_DWORD, int))*p_d04C;\n      if ( *(_DWORD *)&this->_pad_06C[16] == v3 )\n        (**v5)(v5, 1);\n      else\n        (**v5)(v5, 0);\n      ++v3;\n      ++p_d04C;\n    }\n    while ( v3 < 5 );\n  }\n  return UIWnd::Destroy((UIWnd *)this, a2);\n}\n"
+}

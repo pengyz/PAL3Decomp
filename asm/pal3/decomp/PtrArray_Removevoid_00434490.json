@@ -1,0 +1,7 @@
+{
+  "name": "PtrArray::Remove(void *)",
+  "address": "0x00434490",
+  "size_bytes": 83,
+  "signature": "void __thiscall(PtrArray *this)",
+  "decompiled_c": "void __thiscall PtrArray::Remove(PtrArray *this)\n{\n  sub_434670((int)this);\n  operator delete((void *)this->m_nMaxSize);\n  this->m_nMaxSize = 0;\n  this->m_nGrowBy = 0;\n  this[1].m_pData = 0;\n}\n"
+}

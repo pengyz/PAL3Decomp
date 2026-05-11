@@ -1,7 +1,0 @@
-{
-  "name": "Script_Method_431C10",
-  "address": "0x00431C10",
-  "size_bytes": 111,
-  "signature": "char __thiscall(PalScript *String1, char *String2, char *Destination, int a4)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nchar __thiscall Script_Method_431C10(PalScript *String1, char *String2, char *Destination, int a4)\n{\n  int v5; // edi\n\n  sub_431C00(String1);\n  v5 = 0;\n  while ( 1 )\n  {\n    if ( !PalScript::HasNext(String1) )\n      return 0;\n    if ( !_strcmpi(String1->_pad_000, String2) )\n      break;\n    if ( _strcmpi(String1->_pad_000, off_592DA4) )\n    {\n      if ( ++v5 < 1024 )\n        continue;\n    }\n    return 0;\n  }\n  PalScript::LoadNext(String1);\n  strncpy(Destination, String1->_pad_000, a4 - 1);\n  return 1;\n}\n"
-}

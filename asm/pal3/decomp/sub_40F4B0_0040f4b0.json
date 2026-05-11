@@ -1,0 +1,7 @@
+{
+  "name": "sub_40F4B0",
+  "address": "0x0040F4B0",
+  "size_bytes": 360,
+  "signature": "int()",
+  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\nint sub_40F4B0()\n{\n  __int8 *v0; // edi\n  int *v1; // ebx\n  int v2; // esi\n  int i; // esi\n  int v4; // ebp\n  __int8 *v5; // esi\n  int j; // edi\n  int *v7; // esi\n  int result; // eax\n  __int8 *v9; // [esp+10h] [ebp-24h]\n  int v10; // [esp+14h] [ebp-20h]\n  int v11; // [esp+18h] [ebp-1Ch]\n\n  v0 = &g_SceneMgr.m_slot0[720];\n  v11 = 0;\n  v10 = 0;\n  v9 = &g_SceneMgr.m_slot0[720];\n  v1 = g_RoleTeam2;\n  while ( 1 )\n  {\n    v2 = *(v1 - 1);\n    nullsub_2(v2, *v1);\n    *v1 = v2;\n    for ( i = 0; i < 6; ++i )\n    {\n      if ( v0[i - 296] )\n        RoleSystem::CheckVisible(*v1);\n    }\n    v4 = 0;\n    v5 = v0;\n    do\n    {\n      for ( j = 0; j < 8; ++j )\n      {\n        if ( *(v5 - 96) )\n          RoleSystem::CheckVisible(*v1);\n        ++v5;\n      }\n      ++v4;\n    }\n    while ( v4 < 6 );\n    v7 = (int *)*(v1 - 1);\n    for ( result = *v1; v7 != (int *)*v1; v7 += 3 )\n    {\n      v7[2] = PAL_GDB::GDB_GetRoleNum((PAL_GDB *)dword_975ED8, *v7);\n      result = *v1;\n    }\n    v1 += 4;\n    v10 += 352;\n    v9 += 1408;\n    v11 += 44;\n    if ( (int)v1 >= (int)&g_SceneMgr.m_pCamera )\n      break;\n    v0 = v9;\n  }\n  return result;\n}\n"
+}

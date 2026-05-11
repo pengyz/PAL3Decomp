@@ -3,5 +3,5 @@
   "address": "0x004D58A0",
   "size_bytes": 44,
   "signature": "_DWORD *__thiscall(CEffMgr *this)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\n_DWORD *__thiscall CEffMgr::Reset(CEffMgr *this)\n{\n  sub_4D5A00((int *)this->_pad_000);\n  this->_d400 = 1;\n  this->_d404 = timeGetTime();\n  this->_d408 = 0;\n  return this->_pad_000;\n}\n"
+  "decompiled_c": "_DWORD *__thiscall CEffMgr::Reset(CEffMgr *this)\n{\n  sub_4D5A00((int *)this->_data);\n  *(_DWORD *)&this->_data[1024] = 1;\n  *(_DWORD *)&this->_data[1028] = timeGetTime();\n  *(_DWORD *)&this->_data[1032] = 0;\n  return this->_data;\n}\n"
 }

@@ -1,7 +1,0 @@
-{
-  "name": "?CallCatchBlock@@YAPAXPAUEHExceptionRecord@@PAUEHRegistrationNode@@PAU_CONTEXT@@PBU_s_FuncInfo@@PAXHK@Z",
-  "address": "0x00557872",
-  "size_bytes": 268,
-  "signature": "int __cdecl(struct EHExceptionRecord *a1, struct EHRegistrationNode *a2, struct _CONTEXT *a3, const struct _s_FuncInfo *a4, void *a5, int a6, unsigned int a7)",
-  "decompiled_c": "int __cdecl CallCatchBlock(\n        struct EHExceptionRecord *a1,\n        struct EHRegistrationNode *a2,\n        struct _CONTEXT *a3,\n        const struct _s_FuncInfo *a4,\n        void *a5,\n        int a6,\n        unsigned int a7)\n{\n  int v7; // eax\n  int v9; // [esp+Ch] [ebp-2Ch]\n  __ehstate_t state; // [esp+10h] [ebp-28h]\n  int v11; // [esp+18h] [ebp-20h]\n  void *v12; // [esp+1Ch] [ebp-1Ch]\n\n  state = a2[-1].state;\n  v12 = lp;\n  v11 = dword_189538C;\n  lp = a1;\n  dword_189538C = (int)a3;\n  _CallCatchBlock2(a2, a4, a5, a6, a7);\n  v9 = v7;\n  a2[-1].state = state;\n  lp = v12;\n  dword_189538C = v11;\n  if ( a1->ExceptionCode == -529697949 && a1->NumberParameters == 3 && a1->params.magicNumber == 429065504 && v7 )\n  {\n    _abnormal_termination();\n    unknown_libname_530((int)a1);\n  }\n  return v9;\n}\n"
-}

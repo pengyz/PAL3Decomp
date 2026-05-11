@@ -1,0 +1,7 @@
+{
+  "name": "CCBRoleState::RandSetEnemyPos(void)",
+  "address": "0x004EF8B0",
+  "size_bytes": 156,
+  "signature": "void __thiscall(CCBRoleState *this, const void *arg0)",
+  "decompiled_c": "void __thiscall CCBRoleState::RandSetEnemyPos(CCBRoleState *this, const void *arg0)\n{\n  int a2[11]; // [esp+8h] [ebp-2Ch] BYREF\n\n  qmemcpy(a2, arg0, sizeof(a2));\n  switch ( a2[0] )\n  {\n    case 0x103:\n      sub_4F0A10((int)this, (int)a2);\n      break;\n    case 0x104:\n      CCBRoleState::GetDeadRoleNumInForce(this, (enum ECBForce)a2);\n      break;\n    case 0x105:\n      CCBRoleState::GetAliveRoleNumInForce(this, (enum ECBForce)a2);\n      break;\n    case 0x106:\n      CCBRoleState::GetCastFightSkillSuccess(this, (int)a2);\n      break;\n    case 0x10D:\n      CCBRoleState::SetCoAttack(this, (unsigned int)a2);\n      break;\n    case 0x10E:\n      sub_4F1C40(this->m_sCombatDialog, (int)a2);\n      break;\n    default:\n      return;\n  }\n}\n"
+}

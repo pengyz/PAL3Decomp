@@ -1,0 +1,7 @@
+{
+  "name": "sub_4B4C60",
+  "address": "0x004B4C60",
+  "size_bytes": 273,
+  "signature": "void __thiscall(float *this, int a2, int a3, int a4, int a5)",
+  "decompiled_c": "void __thiscall sub_4B4C60(float *this, int a2, int a3, int a4, int a5)\n{\n  int v6; // eax\n  int v7; // ebx\n  int v8; // edi\n  int v9; // eax\n  int v10; // ecx\n  double v11; // st7\n  double v12; // st6\n  double v13; // st6\n  int v14; // ecx\n  double v15; // st7\n  int v16; // [esp+18h] [ebp+4h]\n  float v17; // [esp+18h] [ebp+4h]\n\n  *((_DWORD *)this + 8) = a4 - a2;\n  *((_DWORD *)this + 9) = a5 - a3;\n  *((_DWORD *)this + 4) = (a4 - a2) / 2;\n  *((_DWORD *)this + 5) = (a5 - a3) / 2;\n  *(_DWORD *)this = a2;\n  *((_DWORD *)this + 1) = a3;\n  *((_DWORD *)this + 2) = a4;\n  *((_DWORD *)this + 3) = a5;\n  v6 = rand();\n  v7 = *((_DWORD *)this + 1);\n  v8 = *((_DWORD *)this + 9);\n  this[17] = (float)(*(_DWORD *)this + v6 % *((_DWORD *)this + 8));\n  v9 = rand();\n  v10 = *((_DWORD *)this + 6);\n  v11 = (double)(v7 + v9 % v8);\n  v16 = *((_DWORD *)this + 2) - v10;\n  this[18] = v11;\n  v12 = (double)v16;\n  if ( v12 < this[17] )\n    this[17] = v12;\n  v13 = (double)(*(_DWORD *)this + v10);\n  if ( v13 > this[17] )\n    this[17] = v13;\n  v14 = *((_DWORD *)this + 7);\n  v17 = (float)(*((_DWORD *)this + 3) - v14);\n  if ( v11 > v17 )\n    this[18] = v17;\n  v15 = (double)(v7 + v14);\n  if ( v15 > this[18] )\n    this[18] = v15;\n  this[23] = (double)v8 + this[35];\n}\n"
+}

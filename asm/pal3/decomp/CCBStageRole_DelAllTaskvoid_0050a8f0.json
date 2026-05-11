@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageRole::DelAllTask(void)",
+  "address": "0x0050A8F0",
+  "size_bytes": 46,
+  "signature": "char __thiscall(CCBStageRole *this, int a2, char a3)",
+  "decompiled_c": "char __thiscall CCBStageRole::DelAllTask(CCBStageRole *this, int a2, char a3)\n{\n  char result; // al\n\n  result = 1;\n  if ( this->_data[373] == 1 )\n    return 0;\n  this->_data[373] = 1;\n  this->_data[374] = a3;\n  *(_DWORD *)&this->_data[376] = a2;\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "CCBParabolaWindow::Destroy(void)",
+  "address": "0x0051B920",
+  "size_bytes": 22,
+  "signature": "int __thiscall(CCBParabolaWindow *this)",
+  "decompiled_c": "int __thiscall CCBParabolaWindow::Destroy(CCBParabolaWindow *this)\n{\n  int v2; // ecx\n\n  UIListBox::SetScroll((UIListBox *)this);\n  v2 = *((_DWORD *)&this[8].m_pBack + (int)this[9].m_pItemList);\n  return (*(int (__thiscall **)(int))(*(_DWORD *)v2 + 4))(v2);\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_40F950",
+  "address": "0x0040F950",
+  "size_bytes": 137,
+  "signature": "size_t __thiscall(_DWORD *this, FILE *Stream)",
+  "decompiled_c": "size_t __thiscall sub_40F950(_DWORD *this, FILE *Stream)\n{\n  int v3; // edi\n  int v4; // eax\n  int i; // esi\n  int Buffer; // [esp+10h] [ebp-4h] BYREF\n\n  v3 = 0;\n  v4 = this[1];\n  if ( v4 )\n    Buffer = (this[2] - v4) / 12;\n  else\n    Buffer = 0;\n  fwrite(&Buffer, 4u, 1u, Stream);\n  for ( i = 0; i < Buffer; v3 += 12 )\n  {\n    fwrite((const void *)(this[1] + v3), 0xCu, 1u, Stream);\n    ++i;\n  }\n  return fwrite(this + 9, 4u, 1u, Stream);\n}\n"
+}

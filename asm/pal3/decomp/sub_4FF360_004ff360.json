@@ -1,0 +1,7 @@
+{
+  "name": "sub_4FF360",
+  "address": "0x004FF360",
+  "size_bytes": 100,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "// likely CCBCamControl method (near UpdateCircleSet, HandleInput, SetCircle, DoList, R)\nint __thiscall sub_4FF360(int this, int a2)\n{\n  int v3; // eax\n  int v4; // ecx\n  int v5; // edi\n  unsigned int v6; // eax\n\n  v3 = 2632 * *(_DWORD *)(this + 160);\n  v4 = v3 + 80 * *(_DWORD *)(this + 164);\n  v5 = v4 + this + 184;\n  if ( !*(_BYTE *)(v4 + this + 225) )\n  {\n    v6 = CCBCamControl::KeepCurCam(*(CCBCamControl **)(this + 76), *(_DWORD *)(v3 + this + 2756));\n    *(_DWORD *)(v5 + 56) = v6;\n    CCBCamControl::DoLineMove(*(CCBCamControl ***)(this + 76), v6);\n    *(_BYTE *)(v5 + 41) = 1;\n  }\n  *(_DWORD *)(v5 + 16) = 4;\n  return 0;\n}\n"
+}

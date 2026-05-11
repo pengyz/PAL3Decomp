@@ -1,0 +1,7 @@
+{
+  "name": "exception::what(void)",
+  "address": "0x00555274",
+  "size_bytes": 13,
+  "signature": "const char *__thiscall(exception *this)",
+  "decompiled_c": "const char *__thiscall exception::what(exception *this)\n{\n  const char *result; // eax\n\n  result = (const char *)this->_m_doFree;\n  if ( !result )\n    return \"Unknown exception\";\n  return result;\n}\n"
+}

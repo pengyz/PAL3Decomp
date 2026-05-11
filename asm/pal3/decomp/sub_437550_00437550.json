@@ -1,0 +1,7 @@
+{
+  "name": "sub_437550",
+  "address": "0x00437550",
+  "size_bytes": 143,
+  "signature": "void()",
+  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\nvoid sub_437550()\n{\n  char *String; // edi\n  char *v1; // eax\n  char *v2; // esi\n  int RoleNum; // eax\n  char *v4; // eax\n  char *v5; // [esp-8h] [ebp-110h]\n  int v6; // [esp-4h] [ebp-10Ch]\n  char Buffer[256]; // [esp+8h] [ebp-100h] BYREF\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  v2 = v1;\n  if ( String && v1 )\n  {\n    sub_40E840(*((_DWORD *)String + 1), *((_DWORD *)v1 + 1));\n    RoleNum = PAL_GDB::GDB_GetRoleNum((PAL_GDB *)dword_975ED8, *((_DWORD *)v2 + 1));\n    if ( RoleNum )\n    {\n      v6 = RoleNum + 28;\n      v5 = PalScript::SetAppName(&stru_8ACD30, (&off_56ABA4)[*((_DWORD *)String + 1)]);\n      v4 = PalScript::SetAppName(&stru_8ACD30, aAddskill);\n      _snprintf(Buffer, 0xFFu, v4, v5, v6);\n      sub_410360(Buffer);\n    }\n  }\n}\n"
+}

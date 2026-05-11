@@ -1,0 +1,7 @@
+{
+  "name": "sub_50F310",
+  "address": "0x0050F310",
+  "size_bytes": 245,
+  "signature": "int __userpurge@<eax>(void *a1@<ecx>, enum ECBStageTaskState *a2@<edi>, int a3)",
+  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nint __userpurge sub_50F310@<eax>(void *a1@<ecx>, enum ECBStageTaskState *a2@<edi>, int a3)\n{\n  int v5; // edi\n  bool v6; // bl\n\n  if ( *((_BYTE *)a1 + 96 * *((_DWORD *)a1 + 99) + 506) )\n  {\n    if ( !CCBRoleState::IsRoleAlive(*((CCBRoleState **)a1 + 1), *((_DWORD *)a1 + 71)) || a3 == *((_DWORD *)a1 + 1661) )\n    {\n      v5 = (int)*((float *)a1 + 24 * *((_DWORD *)a1 + 99) + 108);\n      v6 = CCBStageRole::ForceEndTaskByPFN(*(CCBStageRole **)(*(_DWORD *)a1 + 4 * v5 + 24));\n      if ( !CCBRoleState::IsRoleAlive(*((CCBRoleState **)a1 + 1), v5)\n        || !v6\n        || !CCBStage::GetTaskState(*(CCBStage **)a1, v5, a2) )\n      {\n        CCBStageRole::ClearBadPushTask((CCBStageRole *)a1, 0.0099999998);\n        *((_BYTE *)a1 + 96 * *((_DWORD *)a1 + 99) + 505) = 1;\n      }\n    }\n    return 0;\n  }\n  else\n  {\n    CCBStageRole::ClearBadPushTask((CCBStageRole *)a1, 0.25);\n    *((_DWORD *)a1 + 1642) = 42;\n    CCBStageRole::IsGrabedBy((CCBStageRole *)a1);\n    *((_BYTE *)a1 + 96 * *((_DWORD *)a1 + 99) + 506) = 1;\n    nullsub_3(a1);\n    return 0;\n  }\n}\n"
+}

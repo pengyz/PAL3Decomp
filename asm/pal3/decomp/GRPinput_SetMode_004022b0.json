@@ -1,7 +1,0 @@
-{
-  "name": "GRPinput::SetMode",
-  "address": "0x004022B0",
-  "size_bytes": 10,
-  "signature": "int __thiscall(GRPinput *this, int mode)",
-  "decompiled_c": "int __thiscall GRPinput::SetMode(GRPinput *this, int mode)\n{\n  LODWORD(this->m_mouseSensitivity) = mode;\n  return mode;\n}\n"
-}

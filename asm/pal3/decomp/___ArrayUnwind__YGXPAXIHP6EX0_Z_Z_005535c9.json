@@ -1,7 +1,0 @@
-{
-  "name": "?__ArrayUnwind@@YGXPAXIHP6EX0@Z@Z",
-  "address": "0x005535C9",
-  "size_bytes": 94,
-  "signature": "void __stdcall(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *))",
-  "decompiled_c": "void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *))\n{\n  while ( --a3 >= 0 )\n  {\n    a1 -= a2;\n    ((void (*)(void))a4)();\n  }\n}\n"
-}

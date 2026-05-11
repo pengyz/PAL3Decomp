@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageCam::Reset(void)",
+  "address": "0x00505060",
+  "size_bytes": 106,
+  "signature": "char __thiscall(CCBStageCam *this, int a2, const void *a3)",
+  "decompiled_c": "char __thiscall CCBStageCam::Reset(CCBStageCam *this, int a2, const void *a3)\n{\n  int IsCamValid; // esi\n  int IsEditorCamValid; // eax\n  char result; // al\n\n  IsCamValid = CCBStageCam::IsCamValid(this);\n  IsEditorCamValid = CCBStageCam::IsEditorCamValid(this, a2);\n  if ( IsCamValid == -1 )\n    return 0;\n  if ( IsEditorCamValid >= 50 )\n    return 0;\n  *(_DWORD *)&this[109]._pad_000[200 * a2 + 923 + 4 * IsEditorCamValid] = IsCamValid;\n  this[108]._pad_000[IsCamValid + 2676] = 1;\n  result = 1;\n  qmemcpy((char *)this + 204 * IsCamValid, a3, 0xCCu);\n  return result;\n}\n"
+}

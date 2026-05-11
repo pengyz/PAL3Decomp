@@ -1,0 +1,7 @@
+{
+  "name": "GRPinput::SetMouseFreePos(long,long)",
+  "address": "0x00402BF0",
+  "size_bytes": 68,
+  "signature": "void __thiscall(GRPinput *this)",
+  "decompiled_c": "void __thiscall GRPinput::SetMouseFreePos(GRPinput *this)\n{\n  int v2; // eax\n  _BYTE *v3; // ecx\n  char v4; // al\n\n  *(_DWORD *)this->_data = &off_56A620;\n  v2 = *(_DWORD *)&this->_data[12];\n  if ( v2 )\n  {\n    v3 = (_BYTE *)(v2 - 1);\n    v4 = *(_BYTE *)(v2 - 1);\n    if ( !v4 || v4 == -1 )\n      operator delete(v3);\n    else\n      *v3 = v4 - 1;\n  }\n  *(_DWORD *)&this->_data[12] = 0;\n  *(_DWORD *)&this->_data[16] = 0;\n  *(_DWORD *)&this->_data[20] = 0;\n}\n"
+}

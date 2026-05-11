@@ -1,7 +1,0 @@
-{
-  "name": "?_Tidy@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEX_N@Z",
-  "address": "0x00402FB0",
-  "size_bytes": 72,
-  "signature": "void __thiscall(_DWORD *this, char a2)",
-  "decompiled_c": "void __thiscall std::string::_Tidy(_DWORD *this, char a2)\n{\n  int v3; // eax\n  _BYTE *v4; // ecx\n  char v5; // al\n\n  if ( a2 )\n  {\n    v3 = *(this + 1);\n    if ( v3 )\n    {\n      v4 = (_BYTE *)(v3 - 1);\n      v5 = *(_BYTE *)(v3 - 1);\n      if ( !v5 || v5 == -1 )\n        operator delete(v4);\n      else\n        *v4 = v5 - 1;\n    }\n  }\n  *(this + 1) = 0;\n  *(this + 2) = 0;\n  *(this + 3) = 0;\n}\n"
-}

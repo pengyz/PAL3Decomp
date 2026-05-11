@@ -1,0 +1,7 @@
+{
+  "name": "sub_53D030",
+  "address": "0x0053D030",
+  "size_bytes": 67,
+  "signature": "FILE *(char *Format, ...)",
+  "decompiled_c": "FILE *sub_53D030(char *Format, ...)\n{\n  FILE *result; // eax\n  FILE *v2; // esi\n  va_list ArgList; // [esp+Ch] [ebp+8h] BYREF\n\n  va_start(ArgList, Format);\n  vsprintf(byte_17B3AAC, Format, ArgList);\n  result = fopen(\"Pal3Log.txt\", aAt);\n  v2 = result;\n  if ( result )\n  {\n    fprintf(result, byte_17B3AAC);\n    return (FILE *)fclose(v2);\n  }\n  return result;\n}\n"
+}

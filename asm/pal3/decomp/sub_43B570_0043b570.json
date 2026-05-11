@@ -1,0 +1,7 @@
+{
+  "name": "sub_43B570",
+  "address": "0x0043B570",
+  "size_bytes": 235,
+  "signature": "OpenNULLFile *__thiscall(UIWnd **this, int id, void *pRect, OpenNULLFile *parent, LPCSTR lpString, char a6)",
+  "decompiled_c": "// likely Parent_Data method (near spstr, Parent_Data, _CheckStr, GetSize, _CheckKeyW)\nOpenNULLFile *__thiscall sub_43B570(UIWnd **this, int id, void *pRect, OpenNULLFile *parent, LPCSTR lpString, char a6)\n{\n  OpenNULLFile *result; // eax\n  const CHAR *v8; // edi\n  CHAR *v9; // eax\n\n  result = parent;\n  if ( parent )\n  {\n    v8 = lpString;\n    if ( lpString )\n    {\n      OpenBaseFile::OpenBaseFile((OpenBaseFile *)&lpString);\n      this[46] = 0;\n      this[47] = 0;\n      this[48] = 0;\n      this[50] = 0;\n      if ( a6 )\n      {\n        this[46] = (UIWnd *)Parent_Data::Parent_Data((Parent_Data *)dword_1894B78, v8);\n        v9 = _Texture_Info::_CalculateUV((int)dword_1894B78, v8);\n        if ( !sub_445ED0(this + 29, (int)v9, 1) )\n        {\nLABEL_5:\n          UIWnd::MoveWindow(this + 29);\n          return (OpenNULLFile *)OpenNULLFile::OpenNULLFile((OpenNULLFile **)&lpString);\n        }\n      }\n      else if ( !sub_445ED0(this + 29, (int)v8, 2) )\n      {\n        goto LABEL_5;\n      }\n      UIWnd::Create((UIWnd *)this, id, pRect, (int)parent);\n      return (OpenNULLFile *)OpenNULLFile::OpenNULLFile((OpenNULLFile **)&lpString);\n    }\n  }\n  return result;\n}\n"
+}

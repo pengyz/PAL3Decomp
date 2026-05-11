@@ -1,0 +1,7 @@
+{
+  "name": "sub_522030",
+  "address": "0x00522030",
+  "size_bytes": 166,
+  "signature": "_DWORD *__thiscall(_DWORD *this)",
+  "decompiled_c": "_DWORD *__thiscall sub_522030(_DWORD *this)\n{\n  _DWORD *v2; // esi\n  int v3; // ebp\n  void *v4; // edi\n\n  *(_BYTE *)this = 0;\n  ctor_0x431870(this + 1);\n  this[132] = 0;\n  v2 = this + 133;\n  v3 = 5;\n  do\n  {\n    v4 = v2 + 6;\n    ArraySort((int)(v2 + 6), 48, 4, (int)sub_5220E0);\n    *(_BYTE *)v2 = 0;\n    *((_BYTE *)v2 + 1) = 0;\n    *((_BYTE *)v2 + 2) = 0;\n    *((_BYTE *)v2 + 3) = 0;\n    *((_BYTE *)v2 + 4) = 0;\n    *((_BYTE *)v2 + 5) = 0;\n    *((_BYTE *)v2 + 6) = 0;\n    v2[2] = 1065353216;\n    v2[3] = 0;\n    v2[4] = 0;\n    v2[5] = 0;\n    v2[54] = 0;\n    v2 += 55;\n    --v3;\n    memset(v4, 0, 0xC0u);\n  }\n  while ( v3 );\n  return this;\n}\n"
+}

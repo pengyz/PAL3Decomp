@@ -1,0 +1,7 @@
+{
+  "name": "sub_4543C0",
+  "address": "0x004543C0",
+  "size_bytes": 95,
+  "signature": "int __thiscall(int this, unsigned __int8 a2)",
+  "decompiled_c": "int __thiscall sub_4543C0(int this, unsigned __int8 a2)\n{\n  void (__thiscall ***v3)(_DWORD, _DWORD); // edi\n  int v4; // ebp\n\n  (**(void (__thiscall ***)(int, _DWORD))(this + 360))(this + 360, a2);\n  (**(void (__thiscall ***)(int, _DWORD))(this + 512))(this + 512, a2);\n  v3 = (void (__thiscall ***)(_DWORD, _DWORD))(this + 664);\n  v4 = 3;\n  do\n  {\n    (**v3)(v3, a2);\n    v3 += 94;\n    --v4;\n  }\n  while ( v4 );\n  return (**(int (__thiscall ***)(int, _DWORD))(this + 1792))(this + 1792, a2);\n}\n"
+}

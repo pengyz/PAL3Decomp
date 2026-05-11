@@ -1,0 +1,7 @@
+{
+  "name": "sub_4BA230",
+  "address": "0x004BA230",
+  "size_bytes": 57,
+  "signature": "void __thiscall(_DWORD *this)",
+  "decompiled_c": "void __thiscall sub_4BA230(_DWORD *this)\n{\n  int v1; // edx\n  double v2; // st7\n\n  v1 = this[9236];\n  v2 = *(float *)(v1 + 156) - *(float *)(v1 + 160);\n  *((float *)this + 22) = v2;\n  if ( v2 < *((float *)this + 19) )\n  {\n    if ( *(_DWORD *)(v1 + 164) )\n      sub_4B9E50(this);\n    else\n      this[9224] = 0;\n  }\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "CCBRoleState::CheckRoleNimbus(int)",
+  "address": "0x004F2310",
+  "size_bytes": 52,
+  "signature": "char __thiscall(CCBRoleState *this, int a2, unsigned int a3)",
+  "decompiled_c": "char __thiscall CCBRoleState::CheckRoleNimbus(CCBRoleState *this, int a2, unsigned int a3)\n{\n  int SkillNum; // eax\n\n  SkillNum = PAL_GDB::GDB_GetSkillNum((PAL_GDB *)dword_975ED8, *(_DWORD *)(a2 + 4));\n  return CCBRoleState::CheckRoleValid(this, *(_DWORD *)(a2 + 8), a3, *(unsigned __int8 *)(SkillNum + 628));\n}\n"
+}

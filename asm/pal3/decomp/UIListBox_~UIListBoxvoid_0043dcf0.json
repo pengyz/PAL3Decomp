@@ -1,0 +1,7 @@
+{
+  "name": "UIListBox::~UIListBox(void)",
+  "address": "0x0043DCF0",
+  "size_bytes": 30,
+  "signature": "stdiobuf *__thiscall(UIListBox *Block, char a2)",
+  "decompiled_c": "stdiobuf *__thiscall UIListBox::~UIListBox(UIListBox *Block, char a2)\n{\n  UIWnd::~UIWnd(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return (stdiobuf *)Block;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_469D50",
+  "address": "0x00469D50",
+  "size_bytes": 64,
+  "signature": "_DWORD *__thiscall(char *this, _DWORD *a2, int a3, int a4, int a5)",
+  "decompiled_c": "_DWORD *__thiscall sub_469D50(char *this, _DWORD *a2, int a3, int a4, int a5)\n{\n  char *v5; // ecx\n  _DWORD *result; // eax\n\n  v5 = &this[768 * a3 + 62836 + 128 * a4 + 16 * a5];\n  result = a2;\n  *a2 = *(_DWORD *)v5;\n  a2[1] = *((_DWORD *)v5 + 1);\n  a2[2] = *((_DWORD *)v5 + 2);\n  a2[3] = *((_DWORD *)v5 + 3);\n  return result;\n}\n"
+}

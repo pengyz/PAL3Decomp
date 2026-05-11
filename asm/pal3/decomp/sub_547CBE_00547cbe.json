@@ -1,0 +1,7 @@
+{
+  "name": "sub_547CBE",
+  "address": "0x00547CBE",
+  "size_bytes": 126,
+  "signature": "__m128 *__stdcall(__m128 *a1, int a2)",
+  "decompiled_c": "__m128 *__stdcall sub_547CBE(__m128 *a1, int a2)\n{\n  __m128 v2; // xmm1\n  __m128 *result; // eax\n  __m128 v4; // xmm0\n  __m128 v5; // xmm0\n  float v6; // xmm3_4\n  __m128 v7; // xmm0\n  __m128 v8; // [esp+0h] [ebp-10h]\n\n  v2 = _mm_loadh_ps((const double *)(a2 + 8));\n  result = a1;\n  v4 = _mm_mul_ps(v2, v2);\n  v5 = _mm_add_ps(v4, _mm_movehl_ps(v4, v4));\n  v5.m128_f32[0] = v5.m128_f32[0] + _mm_shuffle_ps(v5, v5, 85).m128_f32[0];\n  v8 = v5;\n  v8.m128_f32[0] = 1.0 / v5.m128_f32[0];\n  v6 = (float)(1.0 / v5.m128_f32[0]) * v5.m128_f32[0];\n  v7 = v8;\n  v7.m128_f32[0] = (float)(v7.m128_f32[0] + v7.m128_f32[0]) - (float)(v6 * v8.m128_f32[0]);\n  *a1 = _mm_mul_ps(_mm_mul_ps(v2, (__m128)xmmword_60A330), _mm_shuffle_ps(v7, v7, 0));\n  return result;\n}\n"
+}

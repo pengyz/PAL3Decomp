@@ -1,0 +1,7 @@
+{
+  "name": "sub_53D1A0",
+  "address": "0x0053D1A0",
+  "size_bytes": 46,
+  "signature": "void __thiscall(PtrArray *this, int a3, int arg4)",
+  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nvoid __thiscall sub_53D1A0(PtrArray *this, int a3, int arg4)\n{\n  if ( a3 )\n    PtrArray::SetAt(this, this->m_nSize, a3);\n  if ( arg4 )\n    PtrArray::SetAt(this + 1, this[1].m_nSize, arg4);\n}\n"
+}

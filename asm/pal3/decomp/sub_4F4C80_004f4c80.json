@@ -1,0 +1,7 @@
+{
+  "name": "sub_4F4C80",
+  "address": "0x004F4C80",
+  "size_bytes": 275,
+  "signature": "__int32 __thiscall(CCBRoleState *this, int roleIdx, int a3)",
+  "decompiled_c": "__int32 __thiscall sub_4F4C80(CCBRoleState *this, int roleIdx, int a3)\n{\n  int v4; // ebx\n  int v5; // esi\n  int v7; // eax\n  unsigned int v8; // eax\n  _DWORD pOut[3]; // [esp+10h] [ebp-18h] BYREF\n  _DWORD v10[3]; // [esp+1Ch] [ebp-Ch] BYREF\n\n  CCBRoleState::GetRoleHP(this, roleIdx);\n  v4 = sub_40CCD0(&g_SceneMgr.m_slot4[792]);\n  v5 = 0;\n  if ( v4 <= 0 )\n    return -1;\n  while ( *((int *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_slot4[792], pOut) + 1) <= 0\n       || *(_DWORD *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_slot4[792], v10) != a3 )\n  {\n    if ( ++v5 >= v4 )\n      return -1;\n  }\n  v7 = *((_DWORD *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_slot4[792], v10) + 2);\n  switch ( *(_BYTE *)(v7 + 631) )\n  {\n    case 0:\n      return *(__int16 *)(v7 + 644);\n    case 1:\n      v8 = (int)((unsigned __int64)(1374389535LL * *(__int16 *)(v7 + 644) * this->m_Role[roleIdx].nFullHP) >> 32) >> 5;\n      return (v8 >> 31) + v8;\n    case 2:\n      return this->m_Role[roleIdx].nFullHP - this->m_Role[roleIdx].nHP;\n    default:\n      return 0;\n  }\n}\n"
+}

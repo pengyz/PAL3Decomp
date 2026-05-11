@@ -1,0 +1,7 @@
+{
+  "name": "sub_4325A0",
+  "address": "0x004325A0",
+  "size_bytes": 85,
+  "signature": "int __cdecl(char *String1)",
+  "decompiled_c": "// likely PalScriptMgr method (near PalScriptMgr, IfAnyScriptRunning, IsScriptRuning, )\nint __cdecl sub_4325A0(char *String1)\n{\n  int v1; // esi\n  int i; // edi\n\n  v1 = 0;\n  if ( !(_WORD)dword_D8C31C )\n    return 0;\n  for ( i = 0; _strcmpi(String1, (const char *)(i + dword_D8C320 + 8)); i += 72 )\n  {\n    if ( ++v1 >= (unsigned __int16)dword_D8C31C )\n      return 0;\n  }\n  return *(_DWORD *)(dword_D8C320 + 72 * v1);\n}\n"
+}

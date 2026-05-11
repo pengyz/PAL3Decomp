@@ -1,0 +1,7 @@
+{
+  "name": "sub_54B0C3",
+  "address": "0x0054B0C3",
+  "size_bytes": 212,
+  "signature": "int __userpurge@<eax>(__m128 a1@<xmm0>, __m128 a2@<xmm3>, int a3, int a4, unsigned int a5)",
+  "decompiled_c": "int __userpurge sub_54B0C3@<eax>(__m128 a1@<xmm0>, __m128 a2@<xmm3>, int a3, int a4, unsigned int a5)\n{\n  unsigned int v5; // esi\n  double *v6; // ecx\n  int v7; // edx\n  unsigned int i; // ebx\n  unsigned int v9; // edx\n  int v11; // [esp+10h] [ebp-8h]\n\n  v11 = a3;\n  if ( a5 >= 8 )\n  {\n    v5 = a5 & 0xFFFFFFF8;\n    do\n    {\n      sub_54AF99();\n      _mm_storel_ps(v6, a1);\n      _mm_storeh_ps(v6 + 1, a1);\n      _mm_storel_ps(v6 + 2, a2);\n      _mm_storeh_ps(v6 + 3, a2);\n    }\n    while ( v7 != 8 );\n    _m_empty();\n    a5 -= v5;\n    a4 += 2 * v5;\n    a3 += 4 * v5;\n  }\n  for ( i = 0; i < a5; ++i )\n  {\n    v9 = *(_WORD *)(a4 + 2 * i) & 0x7C00;\n    if ( v9 <= 0x400 )\n      v9 = 1024;\n    *(float *)(a3 + 4 * i) = (double)(*(_WORD *)(a4 + 2 * i) & 0x3FF\n                                    | ((*(_WORD *)(a4 + 2 * i) & 0x7C00) != 0 ? 0x400 : 0))\n                           * COERCE_FLOAT(((*(_WORD *)(a4 + 2 * i) & 0x8000) << 16) | ((v9 + 104448) << 13));\n  }\n  return v11;\n}\n"
+}

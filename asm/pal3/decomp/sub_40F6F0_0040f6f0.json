@@ -1,0 +1,7 @@
+{
+  "name": "sub_40F6F0",
+  "address": "0x0040F6F0",
+  "size_bytes": 99,
+  "signature": "int __thiscall(_DWORD *this, FILE *Stream)",
+  "decompiled_c": "int __thiscall sub_40F6F0(_DWORD *this, FILE *Stream)\n{\n  int v3; // esi\n  int v4; // eax\n  int result; // eax\n  int Buffer; // [esp+Ch] [ebp-4h] BYREF\n\n  v3 = 0;\n  v4 = this[1];\n  if ( v4 )\n    Buffer = (this[2] - v4) >> 2;\n  else\n    Buffer = 0;\n  fwrite(&Buffer, 4u, 1u, Stream);\n  result = Buffer;\n  if ( Buffer > 0 )\n  {\n    do\n    {\n      fwrite((const void *)(this[1] + 4 * v3), 4u, 1u, Stream);\n      result = Buffer;\n      ++v3;\n    }\n    while ( v3 < Buffer );\n  }\n  return result;\n}\n"
+}

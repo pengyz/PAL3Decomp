@@ -1,0 +1,7 @@
+{
+  "name": "sub_55087A",
+  "address": "0x0055087A",
+  "size_bytes": 95,
+  "signature": "__m64 *__stdcall(__m64 *a1, __m64 *a2)",
+  "decompiled_c": "__m64 *__stdcall sub_55087A(__m64 *a1, __m64 *a2)\n{\n  __m64 v2; // mm3\n  __m64 v3; // mm0\n  __m64 v4; // mm0\n  __m64 v5; // mm4\n  __m64 v6; // mm5\n  __m64 *result; // eax\n  __m64 v8; // mm0\n\n  _m_femms();\n  v2 = _mm_cvtsi32_si64(a2[1].m64_u32[0]);\n  v3 = _m_pfadd(_m_pfmul((__m64)a2->m64_u64, (__m64)a2->m64_u64), _m_pfmul(v2, v2));\n  v4 = _m_pfacc(v3, v3);\n  v5 = _m_pfrsqrt(v4);\n  v6 = _m_pfcmpgt(v4, (__m64)0x80000000800000LL);\n  result = a1;\n  v8 = _m_pfrcpit2(_m_pfrsqit1(v4, _m_pfmul(v5, v5)), v5);\n  a1->m64_u64 = (unsigned __int64)_m_pfmul(_m_pand((__m64)a2->m64_u64, v6), v8);\n  a1[1].m64_i32[0] = _mm_cvtsi64_si32(_m_pfmul(_m_pand(v2, v6), v8));\n  _m_femms();\n  return result;\n}\n"
+}

@@ -3,5 +3,5 @@
   "address": "0x00422DF0",
   "size_bytes": 67,
   "signature": "int __cdecl()",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __cdecl UISystem::Destroy()\n{\n  char *v0; // esi\n  char *v1; // esi\n  int result; // eax\n\n  UISceneUpdate();\n  GetGfxManager_3();\n  v0 = unk_C21FE8;\n  do\n  {\n    sub_41F8C0((int)v0);\n    v0 += 493156;\n  }\n  while ( (int)v0 < (int)&byte_D8B314 );\n  v1 = (char *)&unk_D8B318;\n  do\n  {\n    result = sub_4208A0((int)v1);\n    v1 += 392;\n  }\n  while ( (int)v1 < (int)byte_D8B938 );\n  return result;\n}\n"
+  "decompiled_c": "int __cdecl UISystem::Destroy()\n{\n  _DWORD *v0; // eax\n  char *v1; // esi\n  int *v2; // esi\n  int result; // eax\n\n  v0 = (_DWORD *)sub_4226F0();\n  sub_421870(v0);\n  v1 = byte_C21FE8;\n  do\n  {\n    sub_41F8C0((int)v1);\n    v1 += 493156;\n  }\n  while ( (int)v1 < (int)&byte_D8B314 );\n  v2 = dword_D8B318;\n  do\n  {\n    result = sub_4208A0((int)v2);\n    v2 += 98;\n  }\n  while ( (int)v2 < (int)dword_D8B938 );\n  return result;\n}\n"
 }

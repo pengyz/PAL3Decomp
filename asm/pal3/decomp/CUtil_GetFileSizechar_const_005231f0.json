@@ -1,0 +1,7 @@
+{
+  "name": "CUtil::GetFileSize(char const *)",
+  "address": "0x005231F0",
+  "size_bytes": 185,
+  "signature": "void __thiscall(CUtil *this)",
+  "decompiled_c": "void __thiscall CUtil::GetFileSize(CUtil *this)\n{\n  int v2; // ecx\n  int v3; // ecx\n  int v4; // ecx\n  int v5; // ecx\n\n  *(_DWORD *)this->_data = &off_5705F4;\n  v2 = *(_DWORD *)this[1736]._data;\n  if ( v2 )\n  {\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)v2 + 20))(v2, 1);\n    *(_DWORD *)this[1736]._data = 0;\n  }\n  v3 = *(_DWORD *)this[1740]._data;\n  if ( v3 )\n  {\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)v3 + 20))(v3, 1);\n    *(_DWORD *)this[1740]._data = 0;\n  }\n  v4 = *(_DWORD *)this[1744]._data;\n  if ( v4 )\n  {\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)v4 + 20))(v4, 1);\n    *(_DWORD *)this[1744]._data = 0;\n  }\n  v5 = *(_DWORD *)this[1748]._data;\n  if ( v5 )\n  {\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)v5 + 20))(v5, 1);\n    *(_DWORD *)this[1748]._data = 0;\n  }\n  UIItem::UIItem(&this[368]);\n  UIWnd::~UIWnd((UIListBox *)this);\n}\n"
+}

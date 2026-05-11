@@ -1,0 +1,7 @@
+{
+  "name": "__CIpow",
+  "address": "0x00554700",
+  "size_bytes": 25,
+  "signature": "double __usercall@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)",
+  "decompiled_c": "double __usercall _CIpow@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)\n{\n  return sub_554722(\n           HIDWORD(*(unsigned __int64 *)&y),\n           *(double *)&x,\n           y,\n           x,\n           HIDWORD(x),\n           SLODWORD(y),\n           HIDWORD(*(unsigned __int64 *)&y));\n}\n"
+}

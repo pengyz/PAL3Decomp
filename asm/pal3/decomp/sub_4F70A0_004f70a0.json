@@ -1,0 +1,7 @@
+{
+  "name": "sub_4F70A0",
+  "address": "0x004F70A0",
+  "size_bytes": 127,
+  "signature": "char __stdcall(int a1)",
+  "decompiled_c": "char __stdcall sub_4F70A0(int a1)\n{\n  char result; // al\n\n  switch ( *(_DWORD *)(a1 + 4) )\n  {\n    case 0x17E7:\n      if ( !byte_BFDB73 )\n        goto LABEL_16;\n      result = 1;\n      break;\n    case 0x17E8:\n      if ( !(_BYTE)dword_BFDB74 )\n        goto LABEL_16;\n      result = 1;\n      break;\n    case 0x17E9:\n      if ( !byte_BFDB71 )\n        goto LABEL_16;\n      result = 1;\n      break;\n    case 0x17EA:\n      if ( !byte_BFDB72 )\n        goto LABEL_16;\n      result = 1;\n      break;\n    case 0x17EB:\n      if ( !BYTE1(dword_BFDB74) )\n        goto LABEL_16;\n      result = 1;\n      break;\n    case 0x17EC:\n      if ( !HIBYTE(dword_BFDB74) )\n        goto LABEL_16;\n      result = 1;\n      break;\n    case 0x17ED:\n      if ( !BYTE2(dword_BFDB74) )\n        goto LABEL_16;\n      result = 1;\n      break;\n    default:\nLABEL_16:\n      result = 0;\n      break;\n  }\n  return result;\n}\n"
+}

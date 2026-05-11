@@ -1,0 +1,7 @@
+{
+  "name": "sub_53A080",
+  "address": "0x0053A080",
+  "size_bytes": 52,
+  "signature": "_WORD *__thiscall(_DWORD *this, _WORD *a2, __int16 *a3)",
+  "decompiled_c": "_WORD *__thiscall sub_53A080(_DWORD *this, _WORD *a2, __int16 *a3)\n{\n  __int16 *v3; // edx\n  _WORD *result; // eax\n  __int16 *v5; // edi\n  _WORD *v6; // esi\n  __int16 v7; // bx\n\n  v3 = a3;\n  result = a2;\n  v5 = (__int16 *)this[2];\n  v6 = a2;\n  if ( a3 != v5 )\n  {\n    do\n    {\n      v7 = *v3++;\n      *v6++ = v7;\n    }\n    while ( v3 != v5 );\n  }\n  this[2] = v6;\n  return result;\n}\n"
+}

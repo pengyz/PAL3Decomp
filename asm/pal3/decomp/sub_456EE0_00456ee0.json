@@ -1,0 +1,7 @@
+{
+  "name": "sub_456EE0",
+  "address": "0x00456EE0",
+  "size_bytes": 47,
+  "signature": "int __thiscall(char *this)",
+  "decompiled_c": "int __thiscall sub_456EE0(char *this)\n{\n  int v2; // esi\n  char *v3; // edi\n  int result; // eax\n\n  sub_456F10();\n  v2 = 0;\n  v3 = this + 512;\n  do\n  {\n    result = (**(int (__thiscall ***)(char *, _DWORD))v3)(v3, (unsigned __int8)byte_DC3304[v2++]);\n    v3 += 376;\n  }\n  while ( v2 < 52 );\n  return result;\n}\n"
+}

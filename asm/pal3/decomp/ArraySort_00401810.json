@@ -3,5 +3,5 @@
   "address": "0x00401810",
   "size_bytes": 42,
   "signature": "int __stdcall(int base, int count, int elemSize, int compareFunc)",
-  "decompiled_c": "// likely CEffShock method (near Create)\nint __stdcall ArraySort(int base, int count, int elemSize, int compareFunc)\n{\n  int result; // eax\n  int v6; // edi\n\n  result = elemSize - 1;\n  if ( elemSize - 1 >= 0 )\n  {\n    v6 = elemSize;\n    do\n    {\n      result = ((int (__thiscall *)(int))compareFunc)(base);\n      base += count;\n      --v6;\n    }\n    while ( v6 );\n  }\n  return result;\n}\n"
+  "decompiled_c": "int __stdcall ArraySort(int base, int count, int elemSize, int compareFunc)\n{\n  int result; // eax\n  int v6; // edi\n\n  result = elemSize - 1;\n  if ( elemSize - 1 >= 0 )\n  {\n    v6 = elemSize;\n    do\n    {\n      result = ((int (__thiscall *)(int))compareFunc)(base);\n      base += count;\n      --v6;\n    }\n    while ( v6 );\n  }\n  return result;\n}\n"
 }

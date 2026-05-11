@@ -1,0 +1,7 @@
+{
+  "name": "CCBItemWindow::Reset(void)",
+  "address": "0x0051B1D0",
+  "size_bytes": 55,
+  "signature": "int __thiscall(CCBItemWindow *this)",
+  "decompiled_c": "int __thiscall CCBItemWindow::Reset(CCBItemWindow *this)\n{\n  int result; // eax\n\n  result = 0;\n  this->_d048 = 0;\n  this->_d04C = 0;\n  this->_d050 = 0;\n  this->_d054 = 0;\n  this->_d058 = 0;\n  this->_d05C = 0;\n  this->_d060 = 0;\n  this->_d064 = 0;\n  this->_d068 = 0;\n  *(_DWORD *)this->_pad_06C = 0;\n  *(_DWORD *)&this->_pad_06C[4] = 0;\n  *(_DWORD *)&this->_pad_06C[8] = 0;\n  *(_DWORD *)&this->_pad_06C[12] = 0;\n  *(_DWORD *)&this->_pad_06C[16] = -1;\n  return result;\n}\n"
+}

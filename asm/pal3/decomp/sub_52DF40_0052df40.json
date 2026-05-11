@@ -1,0 +1,7 @@
+{
+  "name": "sub_52DF40",
+  "address": "0x0052DF40",
+  "size_bytes": 163,
+  "signature": "void __thiscall(int this, struct gbGfxManager *a2)",
+  "decompiled_c": "void __thiscall sub_52DF40(int this, struct gbGfxManager *a2)\n{\n  gbCamera *v3; // eax\n  gbCamera *v4; // eax\n  _DWORD *v5; // eax\n\n  v3 = (gbCamera *)operator new(0x178u);\n  if ( v3 )\n    v4 = gbCamera::gbCamera(v3, a2);\n  else\n    v4 = 0;\n  *(_DWORD *)this = v4;\n  gbCamera::SetDimention(v4, xRight, yBottom);\n  v5 = *(_DWORD **)this;\n  v5[1] = 0;\n  *v5 = 1112014848;\n  gbCamera::SetLookAt(\n    *(gbCamera **)this,\n    (struct gbVec3D *)(this + 4),\n    (struct gbVec3D *)(this + 16),\n    (struct gbVec3D *)(this + 28));\n  *(_BYTE *)(this + 152) = 0;\n}\n"
+}

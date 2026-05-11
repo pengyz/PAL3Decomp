@@ -1,0 +1,7 @@
+{
+  "name": "sub_44A820",
+  "address": "0x0044A820",
+  "size_bytes": 74,
+  "signature": "int __thiscall(int this, float a2, int a3)",
+  "decompiled_c": "int __thiscall sub_44A820(int this, float a2, int a3)\n{\n  double v4; // st7\n  int v5; // edx\n  int v6; // eax\n\n  if ( !*(_DWORD *)(this + 56) )\n    return 0;\n  v4 = a2 + *(float *)(this + 92);\n  v5 = *(_DWORD *)(this + 88);\n  v6 = *(_DWORD *)(this + 80);\n  *(float *)(this + 92) = v4;\n  if ( v5 > v6 || v4 <= 2.0 )\n    return 1;\n  *(_DWORD *)(this + 92) = 0;\n  *(_DWORD *)(this + 88) = v5 + 1;\n  return 1;\n}\n"
+}

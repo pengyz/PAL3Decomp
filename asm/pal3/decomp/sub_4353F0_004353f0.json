@@ -1,0 +1,7 @@
+{
+  "name": "sub_4353F0",
+  "address": "0x004353F0",
+  "size_bytes": 113,
+  "signature": "void()",
+  "decompiled_c": "void sub_4353F0()\n{\n  char *String; // esi\n  char *v1; // edi\n  char *v2; // ebx\n  char *v3; // eax\n  int v4; // [esp+0h] [ebp-1Ch]\n  int v5; // [esp+4h] [ebp-18h]\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  v2 = PalScript::GetString();\n  v3 = PalScript::GetString();\n  if ( String && v1 && v2 )\n  {\n    if ( v3 )\n    {\n      *(float *)&v5 = *((float *)v1 + 1) * 0.017453292;\n      *(float *)&v4 = *((float *)String + 1) * 0.017453292;\n      sub_41CF20(g_GameData, (int)dword_BFDA68, v4, v5, *((_DWORD *)v2 + 1), *((_DWORD *)v3 + 1));\n      sub_434C40((int)g_GameData);\n    }\n  }\n}\n"
+}

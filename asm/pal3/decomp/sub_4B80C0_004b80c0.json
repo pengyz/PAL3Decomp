@@ -1,0 +1,7 @@
+{
+  "name": "sub_4B80C0",
+  "address": "0x004B80C0",
+  "size_bytes": 223,
+  "signature": "void __thiscall(int this, int a2)",
+  "decompiled_c": "void __thiscall sub_4B80C0(int this, int a2)\n{\n  gbMatrixStack *v2; // edi\n  double v4; // st7\n  struct gbRenderEffect *v5; // eax\n  float v6; // [esp+10h] [ebp-68h]\n  struct gbVec3D v7; // [esp+28h] [ebp-50h] BYREF\n  struct gbTextureArray v8; // [esp+34h] [ebp-44h] BYREF\n\n  v2 = *(gbMatrixStack **)&gfxMgr->_data[216];\n  gbMatrixStack::Push(v2);\n  gbMatrixStack::LoadMatrix(v2, (struct gbMatrix4 *)(a2 + 32));\n  gbMatrixStack::Translate(v2, 0.0, 1.0, 0.0);\n  v4 = *(float *)(this + 92) * -57.29578;\n  v7.x = 0.0;\n  v7.y = 1.0;\n  v6 = v4;\n  v7.z = 0.0;\n  gbMatrixStack::Rotate(v2, v6, &v7);\n  gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&gfxMgr->_data[196], 0x15u);\n  gbDynVertBuf::RenderGeomQuad(\n    (struct gbGeomQuad *)(this + 172),\n    1,\n    *(struct gbRenderEffect **)(this + 168),\n    (struct gbTextureArray *)(this + 96));\n  v5 = *(struct gbRenderEffect **)(this + 168);\n  *(_DWORD *)v8._data = *(_DWORD *)(this + 164);\n  *(_DWORD *)&v8._data[64] = 1;\n  gbDynVertBuf::RenderGeomQuad((struct gbGeomQuad *)(this + 240), 12, v5, &v8);\n  gbMatrixStack::Pop(v2);\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_43D890",
+  "address": "0x0043D890",
+  "size_bytes": 138,
+  "signature": "OpenNULLFile *__thiscall(UIWnd *this, int id, void *pRect, int a4, int a5, int parent)",
+  "decompiled_c": "// likely OpenNULLFile method (near OpenNULLFile)\nOpenNULLFile *__thiscall sub_43D890(UIWnd *this, int id, void *pRect, int a4, int a5, int parent)\n{\n  gbTexture *v7; // eax\n\n  UIWnd::Create(this, id, pRect, parent);\n  OpenBaseFile::OpenBaseFile((OpenBaseFile *)&parent);\n  v7 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_data + 8))(gfxMgr, a4);\n  this->m_bfocus = (int)v7;\n  if ( v7 )\n    gbTexture::LoadTexture(v7, 1);\n  this[1].m_fontcolor.ColorQuadFmt = a5;\n  return (OpenNULLFile *)OpenNULLFile::OpenNULLFile((OpenNULLFile **)&parent);\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_517BA0",
+  "address": "0x00517BA0",
+  "size_bytes": 104,
+  "signature": "void __thiscall(CCBAIWindow *this)",
+  "decompiled_c": "// likely CCBAIWindow method (near Reset, Destroy, Update, CCBAIWindow, ShowWindow, O)\nvoid __thiscall sub_517BA0(CCBAIWindow *this)\n{\n  CCBControlWindow **v2; // esi\n  CCBControlWindow *v3; // ecx\n  int v4; // [esp+8h] [ebp-10h] BYREF\n  int v5; // [esp+Ch] [ebp-Ch]\n  int v6; // [esp+10h] [ebp-8h]\n  int v7; // [esp+14h] [ebp-4h]\n\n  v2 = (CCBControlWindow **)&this[4]._tail[55];\n  if ( CCBAIWindow::ShowWindow(this, (CCBControlWindow **)&this[4]._tail[55]) )\n  {\n    v5 = 0;\n    v6 = 0;\n    v3 = *v2;\n    v4 = 5;\n    v6 = 261;\n    v5 = 237;\n    v7 = 493;\n    CCBControlWindow::OnMessage(v3, &v4, (int)this);\n    (**(void (__thiscall ***)(CCBControlWindow *, _DWORD))(*v2)->_pad_000)(*v2, 0);\n  }\n}\n"
+}

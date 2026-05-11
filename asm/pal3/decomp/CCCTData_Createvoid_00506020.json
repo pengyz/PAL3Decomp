@@ -1,0 +1,7 @@
+{
+  "name": "CCCTData::Create(void)",
+  "address": "0x00506020",
+  "size_bytes": 168,
+  "signature": "bool __thiscall(CCCTData *this, float *a2)",
+  "decompiled_c": "bool __thiscall CCCTData::Create(CCCTData *this, float *a2)\n{\n  int v3; // eax\n  CameraCtrl *v4; // ecx\n  float pPos[2]; // [esp+8h] [ebp-90h] BYREF\n  struct gbVec3D v7; // [esp+10h] [ebp-88h] BYREF\n  gbRay v8; // [esp+1Ch] [ebp-7Ch] BYREF\n  struct gbOBBox v9; // [esp+34h] [ebp-64h] BYREF\n  _BYTE pTarget[24]; // [esp+80h] [ebp-18h] BYREF\n\n  gbMatrix4::gbMatrix4((gbMatrix4 *)&v9);\n  gbGeomNode::GetTotalOBBox(*(gbGeomNode **)&this[105]._b090, &v9);\n  v7.x = *a2;\n  v7.y = a2[1];\n  v7.z = a2[2];\n  gbMatrix4::RightTranslate((gbMatrix4 *)&v9, &v7);\n  v3 = *(_DWORD *)&this[104]._tail[3767];\n  pPos[0] = *(float *)(v3 + 80);\n  v4 = *(CameraCtrl **)&this[104]._tail[3771];\n  pPos[1] = *(float *)(v3 + 84);\n  qmemcpy(&v8, CameraCtrl::GetViewTarget(v4, pTarget, pPos), sizeof(v8));\n  return gbRay::IsColOBB(&v8, &v9) == 1;\n}\n"
+}

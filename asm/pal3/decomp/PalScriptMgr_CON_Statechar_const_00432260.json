@@ -1,0 +1,7 @@
+{
+  "name": "PalScriptMgr::_CON_State(char const *)",
+  "address": "0x00432260",
+  "size_bytes": 56,
+  "signature": "const char **__cdecl(const char *a1)",
+  "decompiled_c": "const char **__cdecl PalScriptMgr::_CON_State(const char *a1)\n{\n  int v1; // ecx\n  void **i; // edx\n  const char **result; // eax\n\n  v1 = 0;\n  if ( stru_D8C328.m_nSize <= 0 )\n    return 0;\n  for ( i = stru_D8C328.m_pData; ; ++i )\n  {\n    if ( v1 >= 0 && v1 < stru_D8C328.m_nSize )\n    {\n      result = (const char **)*i;\n      if ( *i )\n      {\n        if ( result[1] == a1 )\n          break;\n      }\n    }\n    if ( ++v1 >= stru_D8C328.m_nSize )\n      return 0;\n  }\n  return result;\n}\n"
+}

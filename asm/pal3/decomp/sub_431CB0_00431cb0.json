@@ -1,0 +1,7 @@
+{
+  "name": "sub_431CB0",
+  "address": "0x00431CB0",
+  "size_bytes": 25,
+  "signature": "_DWORD *__thiscall(_DWORD *this)",
+  "decompiled_c": "// likely PalScriptMgr method (near PalScriptMgr, IfAnyScriptRunning, IsScriptRuning, )\n_DWORD *__thiscall sub_431CB0(_DWORD *this)\n{\n  PtrArray::Clear((PtrArray *)(this + 2));\n  this[1] = 0;\n  *(_BYTE *)this = 0;\n  return this;\n}\n"
+}

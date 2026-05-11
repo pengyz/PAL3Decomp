@@ -1,0 +1,7 @@
+{
+  "name": "sub_439FE0",
+  "address": "0x00439FE0",
+  "size_bytes": 140,
+  "signature": "struct gbRay *__thiscall(gbCamera **this, struct gbRay *a2, int *a3)",
+  "decompiled_c": "struct gbRay *__thiscall sub_439FE0(gbCamera **this, struct gbRay *a2, int *a3)\n{\n  struct gbRay *result; // eax\n  float v4; // [esp+0h] [ebp-2Ch]\n  float v5; // [esp+4h] [ebp-28h]\n  struct gbRay v6; // [esp+14h] [ebp-18h] BYREF\n\n  memset(&v6, 0, sizeof(v6));\n  v5 = 1.0 - ((double)a3[1] + (double)a3[1]) / (double)yBottom;\n  v4 = ((double)*a3 + (double)*a3) / (double)xRight - 1.0;\n  gbCamera::GetRayToScreen(this[73], v4, v5, &v6);\n  result = a2;\n  qmemcpy(a2, &v6, sizeof(struct gbRay));\n  return result;\n}\n"
+}

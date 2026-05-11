@@ -1,0 +1,7 @@
+{
+  "name": "sub_4410F0",
+  "address": "0x004410F0",
+  "size_bytes": 185,
+  "signature": "_DWORD *__thiscall(UIWnd *this)",
+  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\n_DWORD *__thiscall sub_4410F0(UIWnd *this)\n{\n  UIWnd::UIWnd(this);\n  sub_43D830((UIWnd *)&this->m_benable);\n  UIWnd::DestroyChildren((UIWnd *)((char *)this + 192));\n  this->m_fontcolor.ColorQuadFmt = (int)&off_56ADAC;\n  *(_DWORD *)&this[2].m_fontcolor.Blue = 0;\n  this[2].m_fontcolor.Color = 100;\n  this[2].m_wndcolor.ColorQuadFmt = 0;\n  this[2].m_fontcolor.ColorQuadFmt = 5;\n  LOBYTE(this->m_bvisible) = 0;\n  BYTE1(this->m_bvisible) = 0;\n  this[2].m_rect.left = 10;\n  this[1].m_bfocus = 16;\n  *(_DWORD *)&this[2].m_wndcolor.Blue = 0;\n  this[2].m_wndcolor.Color = 0;\n  this[3].m_childs.m_nGrowBy = 0;\n  *(_DWORD *)&this[4].m_wndcolor.Blue = 0;\n  memset(&this[3].m_wndcolor.Color, 0, 0x28u);\n  return &this->m_fontcolor.ColorQuadFmt;\n}\n"
+}

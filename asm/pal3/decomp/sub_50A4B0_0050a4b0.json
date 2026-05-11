@@ -1,0 +1,7 @@
+{
+  "name": "sub_50A4B0",
+  "address": "0x0050A4B0",
+  "size_bytes": 77,
+  "signature": "bool __thiscall(CCBStageRole *this)",
+  "decompiled_c": "// likely CCBSystem method (near SetAuto, PassCmdToThread, ProcMessage, Message, Se)\nbool __thiscall sub_50A4B0(CCBStageRole *this)\n{\n  int v2; // eax\n  gbRay v4; // [esp-18h] [ebp-44h] BYREF\n  float pPos[2]; // [esp+Ch] [ebp-20h] BYREF\n  _BYTE pTarget[24]; // [esp+14h] [ebp-18h] BYREF\n\n  v2 = *(_DWORD *)this->_data;\n  pPos[0] = *(float *)(*(_DWORD *)this->_data + 80);\n  pPos[1] = *(float *)(v2 + 84);\n  qmemcpy(&v4, CameraCtrl::GetViewTarget(*(CameraCtrl **)(v2 + 12), pTarget, pPos), sizeof(v4));\n  return CCBStageRole::LoadAction(this, v4);\n}\n"
+}

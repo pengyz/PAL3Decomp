@@ -1,0 +1,7 @@
+{
+  "name": "CCBStage::IsSubTaskFinished(int,int)",
+  "address": "0x004FCE70",
+  "size_bytes": 305,
+  "signature": "int __userpurge@<eax>(CCBStage *this@<ecx>, int a2, int a3)",
+  "decompiled_c": "int __userpurge CCBStage::IsSubTaskFinished@<eax>(CCBStage *this@<ecx>, int a2, int a3)\n{\n  int v4; // ecx\n  char *v5; // eax\n  double v6; // st7\n  int v7; // esi\n  double v8; // st7\n  unsigned int v9; // eax\n  unsigned int v10; // ecx\n  float v12; // [esp+1Ch] [ebp-8h]\n  float v13; // [esp+1Ch] [ebp-8h]\n  float v14; // [esp+20h] [ebp-4h]\n  float v15; // [esp+20h] [ebp-4h]\n\n  v4 = 329 * *(_DWORD *)&this->_data[160];\n  v5 = &this->_data[80 * *(_DWORD *)&this->_data[164]];\n  v6 = *(float *)&v5[8 * v4 + 216] * 0.25;\n  v7 = (int)&v5[8 * v4 + 184];\n  v12 = v6;\n  v14 = v6 * 3.0;\n  if ( !v5[8 * v4 + 225] )\n  {\n    *(_DWORD *)&v5[8 * v4 + 248] = 0;\n    v5[8 * v4 + 225] = 1;\n  }\n  CCBStage::EndRound(*(CCBStage **)&this->_data[68]);\n  v8 = *(float *)(*(_DWORD *)this->_data + 80) - *(float *)(v7 + 24);\n  if ( v8 >= v14 )\n  {\n    v13 = (1.0 - (v8 - v14) / v12) * 255.0;\n    v10 = (int)v13;\n    *(_DWORD *)(v7 + 64) = v10;\n    v9 = v10 <= 0xFF ? v10 : 0;\n  }\n  else\n  {\n    v15 = v8 / v14 * 255.0;\n    v9 = (int)v15;\n    *(_DWORD *)(v7 + 64) = v9;\n    if ( v9 > 0xFF )\n      v9 = 255;\n  }\n  *(_DWORD *)(v7 + 64) = v9;\n  if ( *(_BYTE *)(v7 + 43) == 1 || *(float *)(*(_DWORD *)this->_data + 80) - *(float *)(v7 + 24) >= *(float *)(v7 + 32) )\n    *(_DWORD *)(v7 + 16) = 4;\n  return 0;\n}\n"
+}

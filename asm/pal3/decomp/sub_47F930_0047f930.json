@@ -1,0 +1,7 @@
+{
+  "name": "sub_47F930",
+  "address": "0x0047F930",
+  "size_bytes": 59,
+  "signature": "int __thiscall(void *this)",
+  "decompiled_c": "int __thiscall sub_47F930(void *this)\n{\n  int result; // eax\n\n  result = 1;\n  if ( *(_DWORD *)&g_Input._data[6308] == 1 )\n    return (*(int (__thiscall **)(void *, int, char *, _DWORD))(*(_DWORD *)this + 24))(this, 1001, &byte_A00604, 0);\n  if ( *(_DWORD *)&g_Input._data[6324] == 1 )\n    return (*(int (__thiscall **)(void *, int, char *, _DWORD))(*(_DWORD *)this + 24))(this, 1001, &byte_A00605, 0);\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "CEffCylinder::CEffCylinder(void)",
+  "address": "0x004C3DD0",
+  "size_bytes": 223,
+  "signature": "void __fastcall(CEffCylinder *this)",
+  "decompiled_c": "void __fastcall CEffCylinder::CEffCylinder(CEffCylinder *this)\n{\n  char *v2; // edi\n  void *v3; // eax\n  int v4; // ebx\n  gbRefObject *v5; // ecx\n  char *v6; // esi\n  int v7; // eax\n  bool v8; // cc\n  int v9; // edi\n\n  v2 = &this->_data[12];\n  *(_DWORD *)this->_data = &off_56F7C8;\n  *(_DWORD *)&this->_data[12] = &off_56F7BC;\n  v3 = *(void **)&this->_data[48];\n  v4 = 0;\n  if ( v3 )\n    operator delete(v3);\n  v5 = *(gbRefObject **)&this->_data[52];\n  if ( v5 )\n    gbRefObject::Release(v5);\n  if ( *(_DWORD *)&this->_data[56] )\n    operator delete(*(void **)&this->_data[56]);\n  v6 = this != 0 ? v2 : 0;\n  *(_DWORD *)v6 = &off_56F804;\n  v7 = *((_DWORD *)v6 + 7);\n  v8 = v7 <= 0;\n  if ( !v7 )\n  {\n    if ( !*(this != 0 ? (_DWORD *)(v2 + 32) : (_DWORD *)32) )\n      goto LABEL_14;\n    v8 = 1;\n  }\n  if ( !v8 )\n  {\n    v9 = 0;\n    do\n    {\n      operator delete(*(void **)(*((_DWORD *)v6 + 3) + v9));\n      ++v4;\n      *(_DWORD *)(*((_DWORD *)v6 + 3) + v9) = 0;\n      v9 += 152;\n    }\n    while ( v4 < *((_DWORD *)v6 + 7) );\n  }\n  operator delete(*((void **)v6 + 3));\n  *((_DWORD *)v6 + 3) = 0;\n  *((_DWORD *)v6 + 7) = 0;\n  *((_DWORD *)v6 + 8) = 0;\nLABEL_14:\n  *(_DWORD *)this->_data = &off_56F62C;\n}\n"
+}

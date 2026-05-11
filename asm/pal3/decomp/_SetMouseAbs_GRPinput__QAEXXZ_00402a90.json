@@ -1,7 +1,0 @@
-{
-  "name": "?SetMouseAbs@GRPinput@@QAEXXZ",
-  "address": "0x00402A90",
-  "size_bytes": 111,
-  "signature": "int __thiscall(GRPinput *this, int a2, int a3, int a4)",
-  "decompiled_c": "int __thiscall GRPinput::SetMouseAbs(GRPinput *this, int a2, int a3, int a4)\n{\n  GRP_KEYREG *v4; // eax\n  int HoldTime; // ecx\n  int v7; // ecx\n  int PressTime; // ecx\n\n  v4 = &this->KeyInfo[a3];\n  if ( a4 )\n  {\n    if ( this->KeyInfo[a3].HoldTime )\n    {\n      v7 = this->KeyTransformation[this->KeyInfo[a3].CountMode];\n      v4->PressTime = 0;\n      v4->Data = v7;\n      v4->CountMode = v7;\n    }\n    PressTime = v4->PressTime;\n    v4->HoldTime = 0;\n    v4->PressTime = PressTime + 1;\n  }\n  else\n  {\n    HoldTime = this->KeyInfo[a3].HoldTime;\n    v4->PressTime = 0;\n    if ( !HoldTime )\n    {\n      v4->HoldTime = a2;\n      return 0;\n    }\n    v4->Data = 0;\n    if ( (unsigned int)(a2 - HoldTime) > 0x64 )\n    {\n      v4->CountMode = 0;\n      return v4->PressTime;\n    }\n  }\n  return v4->PressTime;\n}\n"
-}

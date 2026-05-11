@@ -1,0 +1,7 @@
+{
+  "name": "sub_4B1C00",
+  "address": "0x004B1C00",
+  "size_bytes": 75,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "int __thiscall sub_4B1C00(int this)\n{\n  int v1; // eax\n  int result; // eax\n\n  v1 = *(_DWORD *)(this + 286372);\n  if ( v1 )\n  {\n    result = v1 - 1;\n    if ( !result )\n    {\n      result = 1;\n      *(_DWORD *)(this + 155124) = 1;\n      *(_BYTE *)(this + 155112) = 1;\n      *(_DWORD *)(this + 154876) = 0;\n      *(_BYTE *)(this + 154864) = 0;\n    }\n  }\n  else\n  {\n    result = 1;\n    *(_DWORD *)(this + 155124) = 0;\n    *(_BYTE *)(this + 155112) = 0;\n    *(_DWORD *)(this + 154876) = 1;\n    *(_BYTE *)(this + 154864) = 1;\n  }\n  return result;\n}\n"
+}

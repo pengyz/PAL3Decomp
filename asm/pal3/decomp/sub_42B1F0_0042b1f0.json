@@ -1,0 +1,7 @@
+{
+  "name": "sub_42B1F0",
+  "address": "0x0042B1F0",
+  "size_bytes": 247,
+  "signature": "BOOL __thiscall(gbVisNode **this)",
+  "decompiled_c": "BOOL __thiscall sub_42B1F0(gbVisNode **this)\n{\n  unsigned int v3; // eax\n  unsigned int v4; // eax\n  struct gbNodeMsgObj v5; // [esp+10h] [ebp-10h] BYREF\n\n  if ( *this == (gbVisNode *)1 )\n  {\n    if ( !gbVisNode::PopMessage(this[1], &v5) )\n      return 0;\n    while ( 1 )\n    {\n      if ( *(_DWORD *)v5._data == 1 )\n      {\n        v4 = gbCrc32Compute(aOver);\n        if ( *(_DWORD *)&v5._data[4] == v4 )\n          break;\n      }\n      if ( !gbVisNode::PopMessage(this[1], &v5) )\n        return 0;\n    }\n    return 1;\n  }\n  if ( *this == (gbVisNode *)3 )\n  {\n    if ( !gbVisNode::PopMessage(this[1], &v5) )\n      return *(_DWORD *)&this[1][2]._data[80] >= 1;\n    while ( 1 )\n    {\n      if ( *(_DWORD *)v5._data == 1 )\n      {\n        v3 = gbCrc32Compute(aOver);\n        if ( *(_DWORD *)&v5._data[4] == v3 )\n          break;\n      }\n      if ( !gbVisNode::PopMessage(this[1], &v5) )\n        return *(_DWORD *)&this[1][2]._data[80] >= 1;\n    }\n    return 1;\n  }\n  return *this != (gbVisNode *)4 || sub_4B7020(this[1]) == -1;\n}\n"
+}

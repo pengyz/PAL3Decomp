@@ -1,0 +1,7 @@
+{
+  "name": "sub_504A80",
+  "address": "0x00504A80",
+  "size_bytes": 36,
+  "signature": "char __thiscall(char *this)",
+  "decompiled_c": "char __thiscall sub_504A80(char *this)\n{\n  int v1; // edx\n  char *v2; // eax\n\n  v1 = 0;\n  v2 = this + 606;\n  while ( *(v2 - 2) != 1 || *v2 != 1 )\n  {\n    ++v1;\n    v2 += 80;\n    if ( v1 >= 50 )\n      return (char)v2;\n  }\n  LOBYTE(v2) = sub_504AB0(this, v1);\n  return (char)v2;\n}\n"
+}

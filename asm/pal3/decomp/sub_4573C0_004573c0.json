@@ -1,0 +1,7 @@
+{
+  "name": "sub_4573C0",
+  "address": "0x004573C0",
+  "size_bytes": 65,
+  "signature": "int __stdcall(LPCSTR lpString1, LPCSTR lpString2)",
+  "decompiled_c": "int __stdcall sub_4573C0(LPCSTR lpString1, LPCSTR lpString2)\n{\n  int i; // ebx\n\n  for ( i = 0; ; ++i )\n  {\n    if ( !lstrcmpA(lpString1, off_592DA4) )\n      return -1;\n    if ( !lstrcmpA(lpString1, lpString2) )\n      break;\n    lpString1 += 30;\n  }\n  return i;\n}\n"
+}

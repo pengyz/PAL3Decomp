@@ -1,0 +1,7 @@
+{
+  "name": "sub_404380",
+  "address": "0x00404380",
+  "size_bytes": 78,
+  "signature": "int __cdecl(int a1, int a2, int *a3)",
+  "decompiled_c": "int __cdecl sub_404380(int a1, int a2, int *a3)\n{\n  int result; // eax\n  int v4; // edi\n  char *v5; // esi\n  int *v6; // ecx\n  _DWORD *v7; // eax\n  int v8; // edx\n  int v9; // ebp\n\n  result = a2;\n  v4 = a1;\n  if ( a1 != a2 )\n  {\n    v5 = (char *)a3 - a1;\n    do\n    {\n      v6 = a3;\n      v7 = (_DWORD *)(v4 + 4);\n      v8 = 3;\n      do\n      {\n        v9 = *v6;\n        v6 += 3;\n        *(v7 - 1) = v9;\n        *v7 = *(_DWORD *)((char *)v7 + (_DWORD)v5);\n        v7[1] = *(v6 - 1);\n        v7 += 3;\n        --v8;\n      }\n      while ( v8 );\n      result = a2;\n      v4 += 36;\n      v5 -= 36;\n    }\n    while ( v4 != a2 );\n  }\n  return result;\n}\n"
+}

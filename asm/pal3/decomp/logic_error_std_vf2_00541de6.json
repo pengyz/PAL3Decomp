@@ -3,5 +3,5 @@
   "address": "0x00541DE6",
   "size_bytes": 29,
   "signature": "void __thiscall __noreturn(struct exception *this)",
-  "decompiled_c": "// between_std_methods (0x541D1B-0x541F47)\nvoid __thiscall __noreturn logic_error_std_vf2(struct exception *this)\n{\n  _BYTE pExceptionObject[28]; // [esp+0h] [ebp-1Ch] BYREF\n\n  std_logic_error_ctor1((exception *)pExceptionObject, this);\n  _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI2_AVlogic_error_std__);\n}\n"
+  "decompiled_c": "void __thiscall __noreturn logic_error_std_vf2(struct exception *this)\n{\n  _BYTE pExceptionObject[28]; // [esp+0h] [ebp-1Ch] BYREF\n\n  std_logic_error_ctor1((exception *)pExceptionObject, this);\n  _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI2_AVlogic_error_std__);\n}\n"
 }

@@ -1,0 +1,7 @@
+{
+  "name": "sub_543A73",
+  "address": "0x00543A73",
+  "size_bytes": 122,
+  "signature": "float *__stdcall(float *a1, float a2)",
+  "decompiled_c": "float *__stdcall sub_543A73(float *a1, float a2)\n{\n  float *result; // eax\n  float v3; // [esp+8h] [ebp-8h]\n  float v4; // [esp+Ch] [ebp-4h]\n\n  v3 = cos(a2);\n  v4 = sin(a2);\n  result = a1;\n  *a1 = 1.0;\n  a1[1] = 0.0;\n  a1[6] = v4;\n  a1[2] = 0.0;\n  a1[3] = 0.0;\n  a1[4] = 0.0;\n  a1[5] = v3;\n  a1[7] = 0.0;\n  a1[8] = 0.0;\n  a1[9] = -v4;\n  a1[10] = v3;\n  a1[11] = 0.0;\n  a1[12] = 0.0;\n  a1[13] = 0.0;\n  a1[14] = 0.0;\n  a1[15] = 1.0;\n  return result;\n}\n"
+}

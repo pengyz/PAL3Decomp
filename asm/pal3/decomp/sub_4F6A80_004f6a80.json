@@ -1,0 +1,7 @@
+{
+  "name": "sub_4F6A80",
+  "address": "0x004F6A80",
+  "size_bytes": 37,
+  "signature": "bool __stdcall(int a2)",
+  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nbool __stdcall sub_4F6A80(int a2)\n{\n  int RoleNum; // eax\n\n  RoleNum = PAL_GDB::GDB_GetRoleNum((PAL_GDB *)dword_975ED8, a2);\n  return !RoleNum || *(_BYTE *)(RoleNum + 577) > 2u;\n}\n"
+}

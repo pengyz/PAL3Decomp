@@ -1,7 +1,0 @@
-{
-  "name": "?GetRoleName@CCBStage@@QAEPADK@Z",
-  "address": "0x004FC7D0",
-  "size_bytes": 218,
-  "signature": "int __thiscall(CCBStage *this, int a2, int a3, int a4, int a5, int a6, _DWORD *a7, int a8, int a9)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBStage::GetRoleName(\n        CCBStage *this,\n        int a2,\n        int a3,\n        int a4,\n        int a5,\n        int a6,\n        _DWORD *a7,\n        int a8,\n        int a9)\n{\n  int v9; // ebp\n  int v10; // ebx\n  char *i; // eax\n  int *v13; // esi\n  _DWORD *v14; // esi\n\n  v9 = 0;\n  v10 = 2632 * a2;\n  for ( i = &this->m_Task[0].SubTask[0].eStats[2632 * a2 + 4]; *i; i += 80 )\n  {\n    if ( ++v9 >= 32 )\n      return -1;\n  }\n  v13 = (int *)((char *)&this->m_nCurTask + 80 * v9 + v10);\n  memset(v13, 0, 0x50u);\n  this->m_Task[0].SubTask[0].eStats[80 * v9 + 5 + v10] = 0;\n  this->m_Task[0].SubTask[0].eStats[80 * v9 + 4 + v10] = 1;\n  *(_DWORD *)&this->m_Task[0].eStats[80 * v9 + 4 + v10] = 2;\n  *v13 = a3;\n  *(int *)((char *)&this->m_nCurSubTask + 80 * v9 + v10) = a4;\n  *(_DWORD *)&this->m_Task[0].eTask[80 * v9 + v10] = a5;\n  *(_DWORD *)&this->m_Task[0].eStats[80 * v9 + v10] = a6;\n  v13[5] = CCBSystem::ProcProtect(this->m_pCBSystem);\n  v13[7] = a8;\n  v13[6] = 0;\n  v13[8] = a9;\n  if ( a7 )\n  {\n    v14 = v13 + 11;\n    *v14 = *a7;\n    v14[1] = a7[1];\n    v14[2] = a7[2];\n  }\n  ++*(_DWORD *)(&this->m_bPaused + v10);\n  return v9;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "String_Assign_4326A0",
-  "address": "0x004326A0",
-  "size_bytes": 208,
-  "signature": "void __thiscall(void *this, char *src, int len)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __thiscall String_Assign_4326A0(void *this, char *src, int len)\n{\n  const void *v5; // eax\n  int v6; // eax\n  char *v7; // eax\n  char *srca; // [esp+10h] [ebp+4h]\n  int lena; // [esp+14h] [ebp+8h]\n\n  if ( len > 0 )\n    *((_DWORD *)this + 3) = len;\n  v5 = *(const void **)this;\n  if ( src )\n  {\n    if ( v5 )\n    {\n      if ( (int)src > *((_DWORD *)this + 2) )\n      {\n        lena = (int)src;\n        if ( (int)src <= *((_DWORD *)this + 3) + *((_DWORD *)this + 1) )\n          lena = *((_DWORD *)this + 3) + *((_DWORD *)this + 1);\n        srca = (char *)malloc(4 * lena);\n        qmemcpy(srca, *(const void **)this, 4 * *((_DWORD *)this + 1));\n        free(*(void **)this);\n        *((_DWORD *)this + 1) = src;\n        *(_DWORD *)this = srca;\n        *((_DWORD *)this + 2) = lena;\n      }\n      else\n      {\n        *((_DWORD *)this + 1) = src;\n      }\n    }\n    else\n    {\n      v6 = *((_DWORD *)this + 3);\n      *((_DWORD *)this + 1) = src;\n      v7 = &src[v6];\n      *((_DWORD *)this + 2) = v7;\n      *(_DWORD *)this = malloc(4 * (_DWORD)v7);\n    }\n  }\n  else\n  {\n    if ( v5 )\n    {\n      free(*(void **)this);\n      *(_DWORD *)this = 0;\n    }\n    *((_DWORD *)this + 2) = 0;\n    *((_DWORD *)this + 1) = 0;\n  }\n}\n"
-}

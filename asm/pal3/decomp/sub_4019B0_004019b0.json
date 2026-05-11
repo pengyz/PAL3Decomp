@@ -1,0 +1,7 @@
+{
+  "name": "sub_4019B0",
+  "address": "0x004019B0",
+  "size_bytes": 54,
+  "signature": "gbRefObject *__thiscall(gbRefObject **this)",
+  "decompiled_c": "gbRefObject *__thiscall sub_4019B0(gbRefObject **this)\n{\n  int v2; // edi\n  gbRefObject **v3; // ebx\n  gbRefObject *result; // eax\n\n  v2 = 0;\n  if ( (int)this[16] <= 0 )\n  {\n    this[16] = 0;\n  }\n  else\n  {\n    v3 = this;\n    do\n    {\n      gbRefObject::Release(*v3);\n      result = this[16];\n      ++v2;\n      ++v3;\n    }\n    while ( v2 < (int)result );\n    this[16] = 0;\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_4DBE60",
+  "address": "0x004DBE60",
+  "size_bytes": 167,
+  "signature": "void __thiscall(int this, int roleIdx)",
+  "decompiled_c": "// likely CCBRoleState method (near GetRole, CCBRoleState, CanAction, UnloadWeaponMode)\nvoid __thiscall sub_4DBE60(int this, int roleIdx)\n{\n  int v3; // edi\n  tagRoleState *inited; // eax\n\n  if ( *(_BYTE *)(*(_DWORD *)(this + 8) + 892 * roleIdx + 577) )\n  {\n    v3 = this + 40 * roleIdx;\n    *(_BYTE *)(v3 + 48) = 1;\n    *(_BYTE *)(v3 + 46) = 0;\n    *(_BYTE *)(v3 + 44) = CCBSystem::CalcSpeed(roleIdx, 0);\n    *(_BYTE *)(v3 + 45) = CCBSystem::CalcSpeed(roleIdx, 1);\n    *(_DWORD *)(v3 + 32) = 0;\n    *(_DWORD *)(v3 + 36) = 0;\n    *(_DWORD *)(this + 8 * (5 * roleIdx + 5)) = 0;\n    inited = CCBRoleState::InitUI(*(CCBRoleState **)(this + 8), roleIdx);\n    sprintf(byte_17A89E8, \"%s\\\\%s.tga\", aUiCombatAttack, inited->sModel);\n    UIWnd::CreateFromTemplate(*(UIWnd ***)(*(_DWORD *)(this + 4) + 4 * roleIdx + 76), byte_17A89E8, 0);\n  }\n}\n"
+}

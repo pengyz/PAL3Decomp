@@ -1,0 +1,7 @@
+{
+  "name": "sub_4CD340",
+  "address": "0x004CD340",
+  "size_bytes": 83,
+  "signature": "int __thiscall(_DWORD *this, _DWORD *a2, int a3)",
+  "decompiled_c": "int __thiscall sub_4CD340(_DWORD *this, _DWORD *a2, int a3)\n{\n  int result; // eax\n\n  result = this[6];\n  this[6] = *(_DWORD *)(result + 28);\n  *(_DWORD *)(*(_DWORD *)(result + 28) + 32) = 0;\n  *(_DWORD *)(result + 28) = 0;\n  *(_DWORD *)(result + 32) = this[5];\n  *(_DWORD *)(this[5] + 28) = result;\n  this[5] = result;\n  *(_BYTE *)(result + 24) = 1;\n  *(_DWORD *)(result + 12) = this[10];\n  *(_DWORD *)(result + 16) = this[12];\n  *(_DWORD *)(result + 20) = a3;\n  *(_DWORD *)result = *a2;\n  *(_DWORD *)(result + 4) = a2[1];\n  *(_DWORD *)(result + 8) = a2[2];\n  return result;\n}\n"
+}

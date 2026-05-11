@@ -1,7 +1,0 @@
-{
-  "name": "OpenSceneFile::OpenSceneFile",
-  "address": "0x00401DF0",
-  "size_bytes": 328,
-  "signature": "void *__thiscall(OpenSceneFile *this, char *String1)",
-  "decompiled_c": "// strings: .cpk\n// write access to const memory has been detected, the output may be wrong!\nvoid *__thiscall OpenSceneFile::OpenSceneFile(OpenSceneFile *this, char *String1)\n{\n  char v4[260]; // [esp+Ch] [ebp-248h] BYREF\n  char Buffer[324]; // [esp+110h] [ebp-144h] BYREF\n\n  if ( _strcmpi(String1, byte_8AC5D8) )\n  {\n    strcpy(byte_8AC5D8, String1);\n    if ( dword_6EBFA0 )\n      gbVFileSystem::Release((gbVFileSystem *)&dword_6EBFA0);\n    strcpy(v4, String1);\n    if ( (g_nGameFlags & 2) != 0 )\n      strcat(v4, aCpk);\n    if ( !gbVFileSystem::Init((gbVFileSystem *)&dword_6EBFA0, v4) )\n    {\n      sprintf(Buffer, \"%s%s\", Data, v4);\n      gbVFileSystem::Init((gbVFileSystem *)&dword_6EBFA0, v4);\n    }\n    g_pVFileSys = (struct gbVFileSystem *)&dword_6EBFA0;\n    return this;\n  }\n  else\n  {\n    g_pVFileSys = (struct gbVFileSystem *)&dword_6EBFA0;\n    return this;\n  }\n}\n"
-}

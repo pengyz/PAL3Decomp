@@ -1,0 +1,7 @@
+{
+  "name": "sub_5014E0",
+  "address": "0x005014E0",
+  "size_bytes": 223,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nint __thiscall sub_5014E0(int this, int a2)\n{\n  int v3; // eax\n  _DWORD *v4; // edi\n  int v5; // ebp\n\n  v3 = 2632 * *(_DWORD *)(this + 160);\n  v4 = (_DWORD *)(v3 + this + 2760);\n  v5 = v3 + 80 * *(_DWORD *)(this + 164) + this + 184;\n  if ( !CCBStageRole::IsReady(*(CCBStageRole **)(this + 4 * *v4 + 24), *(_DWORD *)(v3 + this + 2744)) )\n    goto LABEL_7;\n  if ( !*(_BYTE *)(v5 + 41) && CCBStageRole::ForceDelTaskByPFN(*(CCBStageRole **)(this + 4 * *v4 + 24)) )\n  {\n    CCBStageRole::GetProperCurAction(\n      *(CCBStageRole **)(this + 4 * *v4 + 24),\n      (int)sub_50EDA0,\n      0,\n      0,\n      0,\n      *(_DWORD *)(this + 2632 * *(_DWORD *)(this + 160) + 2744),\n      0,\n      0,\n      1);\n    *(_BYTE *)(v5 + 41) = 1;\n  }\n  CCBStage::ForceDelTask((CCBStage *)this, 12);\n  CCBStage::ForceDelTask((CCBStage *)this, 15);\n  if ( *(_BYTE *)(v5 + 43) == 1 || CCBStageRole::ForceDelTaskByPFN(*(CCBStageRole **)(this + 4 * *v4 + 24)) )\nLABEL_7:\n    *(_DWORD *)(v5 + 16) = 4;\n  return 0;\n}\n"
+}

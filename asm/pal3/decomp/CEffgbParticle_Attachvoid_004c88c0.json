@@ -1,0 +1,7 @@
+{
+  "name": "CEffgbParticle::Attach(void)",
+  "address": "0x004C88C0",
+  "size_bytes": 8,
+  "signature": "char *__thiscall(CEffgbParticle *this, char a2)",
+  "decompiled_c": "char *__thiscall CEffgbParticle::Attach(CEffgbParticle *this, char a2)\n{\n  char *p_m_fPX; // esi\n\n  p_m_fPX = (char *)&this[-1].m_fPX;\n  sub_4C6980((int)&this[-1].m_fPX);\n  if ( (a2 & 1) != 0 )\n    operator delete(p_m_fPX);\n  return p_m_fPX;\n}\n"
+}

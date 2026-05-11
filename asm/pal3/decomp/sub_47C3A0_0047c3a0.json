@@ -1,0 +1,7 @@
+{
+  "name": "sub_47C3A0",
+  "address": "0x0047C3A0",
+  "size_bytes": 124,
+  "signature": "int __fastcall(int a1, int edx0, struct PalScript *a2, int a3)",
+  "decompiled_c": "// likely PalScriptMgr method (near PalScriptMgr, IfAnyScriptRunning, IsScriptRuning, )\nint __fastcall sub_47C3A0(int a1, int edx0, struct PalScript *a2, int a3)\n{\n  int result; // eax\n\n  switch ( *(_DWORD *)(a1 + 124) )\n  {\n    case 0:\n      PalScriptMgr::RunSceneScript(a2);\n      UIWnd::HitTest((UIWnd *)a1, (int)a2, a3);\n      result = 1;\n      break;\n    case 1:\n      (*(void (__thiscall **)(_DWORD, struct PalScript *, int))(**(_DWORD **)(a1 + 120) + 8))(\n        *(_DWORD *)(a1 + 120),\n        a2,\n        a3);\n      result = 1;\n      break;\n    case 2:\n      sub_44F610((int)&dword_DB9FD0, 0);\n      result = 1;\n      break;\n    case 3:\n      sub_44F610((int)&dword_DB9FD0, 4);\n      goto LABEL_6;\n    default:\nLABEL_6:\n      result = 1;\n      break;\n  }\n  return result;\n}\n"
+}

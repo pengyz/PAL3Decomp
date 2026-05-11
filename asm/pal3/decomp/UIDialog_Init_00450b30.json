@@ -3,5 +3,5 @@
   "address": "0x00450B30",
   "size_bytes": 130,
   "signature": "int __thiscall(UIDialog *this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nint __thiscall UIDialog::Init(UIDialog *this)\n{\n  _DWORD pRect[4]; // [esp+8h] [ebp-10h] BYREF\n  int parent; // [esp+1Ch] [ebp+4h]\n\n  pRect[0] = ((int)g_pGameTime - 274) / 2;\n  pRect[1] = 10;\n  pRect[3] = 87;\n  pRect[2] = pRect[0] + 274;\n  UIWnd::Create(&this->_base, 0, pRect, parent);\n  UINote::Create((UINote *)(this + 1), 1, (int)pRect, (int)this, aUiFlexNote_0);\n  UIWnd::GetRect((UIWnd *)(this + 1), pRect);\n  sub_445910((_DWORD *)this + 18, 2);\n  return ((int (__thiscall *)(UIDialog *, _DWORD))*this->_base._vftable)(this, 0);\n}\n"
+  "decompiled_c": "int __thiscall UIDialog::Init(UIDialog *this)\n{\n  _DWORD pRect[4]; // [esp+8h] [ebp-10h] BYREF\n  int parent; // [esp+1Ch] [ebp+4h]\n\n  pRect[0] = (xRight - 274) / 2;\n  pRect[1] = 10;\n  pRect[3] = 87;\n  pRect[2] = pRect[0] + 274;\n  UIWnd::Create((UIWnd *)this, 0, pRect, parent);\n  UINote::Create((UINote *)&this[18], 1, (int)pRect, (int)this, aUiFlexNote_0);\n  UIWnd::GetRect((UIWnd *)&this[18], pRect);\n  sub_445910(&this[18].m_bmodal, 2);\n  return (*(int (__thiscall **)(UIDialog *, _DWORD))this->m_bmodal)(this, 0);\n}\n"
 }

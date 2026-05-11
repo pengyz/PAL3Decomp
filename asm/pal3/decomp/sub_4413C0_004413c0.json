@@ -1,0 +1,7 @@
+{
+  "name": "sub_4413C0",
+  "address": "0x004413C0",
+  "size_bytes": 269,
+  "signature": "OpenNULLFile *__thiscall(UIWnd **this, OpenNULLFile *a2, char a3)",
+  "decompiled_c": "// likely Parent_Data method (near spstr, Parent_Data, _CheckStr, GetSize, _CheckKeyW)\nOpenNULLFile *__thiscall sub_4413C0(UIWnd **this, OpenNULLFile *a2, char a3)\n{\n  OpenNULLFile *result; // eax\n  int v4; // esi\n  UIWnd **v6; // edi\n  UIWnd **v7; // ebx\n  CHAR *v8; // eax\n  OpenBaseFile v9; // [esp+10h] [ebp-114h] BYREF\n  CHAR String1[260]; // [esp+14h] [ebp-110h] BYREF\n  int v11; // [esp+120h] [ebp-4h]\n\n  result = a2;\n  v4 = 0;\n  if ( !a2 )\n    return result;\n  OpenBaseFile::OpenBaseFile(&v9);\n  v6 = this + 48;\n  v11 = 0;\n  UIWnd::MoveWindow(this + 48);\n  v7 = this + 65;\n  while ( 1 )\n  {\n    sprintf(String1, \"%s%d.tga\", (const char *)a2, v4);\n    if ( !a3 )\n      break;\n    *v7 = (UIWnd *)Parent_Data::Parent_Data((Parent_Data *)dword_1894B78, String1);\n    v8 = _Texture_Info::_CalculateUV((int)dword_1894B78, String1);\n    lstrcpyA(String1, v8);\n    if ( !sub_445ED0(v6, (int)String1, 1) )\n      goto LABEL_9;\nLABEL_7:\n    ++v4;\n    ++v7;\n    if ( v4 >= 10 )\n      goto LABEL_10;\n  }\n  if ( sub_445ED0(v6, (int)String1, 1) )\n    goto LABEL_7;\nLABEL_9:\n  UIWnd::MoveWindow(v6);\nLABEL_10:\n  v11 = -1;\n  return (OpenNULLFile *)OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v9);\n}\n"
+}

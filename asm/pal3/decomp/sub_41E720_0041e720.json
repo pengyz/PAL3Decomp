@@ -1,0 +1,7 @@
+{
+  "name": "sub_41E720",
+  "address": "0x0041E720",
+  "size_bytes": 171,
+  "signature": "void __cdecl(int a1)",
+  "decompiled_c": "void __cdecl sub_41E720(int a1)\n{\n  int v1; // eax\n  int *v2; // eax\n  RoleSystem *v3; // esi\n  _DWORD pOut[3]; // [esp+0h] [ebp-Ch] BYREF\n\n  if ( a1 )\n    v1 = dword_58B230 + 1;\n  else\n    v1 = dword_58B230 - 1;\n  dword_58B230 = v1;\n  if ( v1 > 0 )\n  {\n    v3 = (RoleSystem *)&g_SceneMgr.m_slot4[840];\n    do\n    {\n      RoleSystem::GetActiveRole(v3);\n      v3 = (RoleSystem *)((char *)v3 + 8704);\n    }\n    while ( (int)v3 < (int)&g_SceneMgr.m_pGameData );\n    dword_C116F8 = 0;\n  }\n  else\n  {\n    v2 = sub_5415F0();\n    sub_541590((int)v2, 0);\n    PAL3::UIPostProcess();\n    if ( *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1264) == 3 )\n    {\n      memset(pOut, 0, sizeof(pOut));\n      RoleSystem::GetPosition((RoleSystem *)g_SceneMgr.m_pCollisionNode, pOut, 0);\n      *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 1264) = 2;\n    }\n    dword_C116F8 = 0;\n  }\n}\n"
+}

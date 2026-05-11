@@ -1,0 +1,7 @@
+{
+  "name": "sub_502000",
+  "address": "0x00502000",
+  "size_bytes": 195,
+  "signature": "int __thiscall(int *this, int a2)",
+  "decompiled_c": "// likely GRPinput method (near SetMouseLimits, CheckKeyEvents, SetJoystickPos, Se)\nint __thiscall sub_502000(int *this, int a2)\n{\n  int v3; // ecx\n  int v4; // edx\n  int *v5; // esi\n  double v7; // st7\n  float v8; // [esp+8h] [ebp-4h]\n\n  v3 = 329 * this[40];\n  v4 = 20 * this[41];\n  v5 = &this[2 * v3 + 46 + v4];\n  if ( BYTE1(this[2 * v3 + 56 + v4]) )\n  {\n    v7 = (*(float *)(*this + 80) - *(float *)&this[2 * v3 + 52 + v4]) / *(float *)&this[2 * v3 + 54 + v4] * 255.0;\n    v8 = v7;\n    if ( v7 > 255.0 )\n      v8 = 255.0;\n    sub_4DFFF0(this[17], v8, this[2 * v3 + 57 + v4]);\n    if ( *((_BYTE *)v5 + 43) == 1\n      || *(float *)(*this + 80) - *((float *)v5 + 6) > *((float *)v5 + 8)\n      || GRPinput::SetJoystickAbs(&g_Input) )\n    {\n      sub_4DFFF0(this[17], 255.0, v5[11]);\n      v5[4] = 4;\n    }\n    return 0;\n  }\n  else\n  {\n    BYTE1(this[2 * v3 + 56 + v4]) = 1;\n    return 0;\n  }\n}\n"
+}

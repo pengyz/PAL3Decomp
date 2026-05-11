@@ -1,0 +1,7 @@
+{
+  "name": "sub_501F30",
+  "address": "0x00501F30",
+  "size_bytes": 203,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "// likely CCBUI method (near CheckNimbusMove, ShowDialogWindow, Reset, CreateIm)\nint __thiscall sub_501F30(_DWORD *this, int a2)\n{\n  int v3; // ecx\n  int v4; // edx\n  _DWORD *v5; // edi\n  void (__thiscall ***v6)(_DWORD, int); // ecx\n  int *v7; // eax\n  void (__thiscall ***v9)(_DWORD, _DWORD); // ecx\n\n  v3 = 329 * this[40];\n  v4 = 20 * this[41];\n  v5 = &this[2 * v3 + 46 + v4];\n  if ( BYTE1(this[2 * v3 + 56 + v4]) )\n  {\n    if ( HIBYTE(this[2 * v3 + 56 + v4]) == 1\n      || *(float *)(*this + 80) - *(float *)&this[2 * v3 + 52 + v4] > *(float *)&this[2 * v3 + 54 + v4]\n      || GRPinput::SetJoystickAbs(&g_Input) )\n    {\n      v9 = *(void (__thiscall ****)(_DWORD, _DWORD))(*(_DWORD *)(*this + 4) + 1016);\n      (**v9)(v9, 0);\n      v5[4] = 4;\n    }\n    return 0;\n  }\n  else\n  {\n    v6 = *(void (__thiscall ****)(_DWORD, int))(*(_DWORD *)(*this + 4) + 1016);\n    (**v6)(v6, 1);\n    CCBUI::CreateResultWindow(*(CCBUI **)(*this + 4), 0);\n    sub_4DB940(*(_BYTE **)(*this + 12), 0);\n    C2DSpark::CreateStars(*(C2DSpark **)(*this + 52));\n    v7 = sub_53DF70();\n    CScreenMode::AudioSetPosition(v7, aWa013, 1);\n    *((_BYTE *)v5 + 41) = 1;\n    return 0;\n  }\n}\n"
+}

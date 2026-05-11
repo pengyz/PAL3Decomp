@@ -1,0 +1,7 @@
+{
+  "name": "sub_4F9340",
+  "address": "0x004F9340",
+  "size_bytes": 73,
+  "signature": "int __thiscall(char *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_4F9340(char *this, int a2, int a3)\n{\n  int v3; // edi\n  int v4; // edx\n  char *v5; // esi\n  int *i; // ecx\n  int result; // eax\n\n  v3 = 0;\n  v4 = 0;\n  v5 = &this[892 * a2];\n  for ( i = (int *)(v5 + 712); ; ++i )\n  {\n    result = *i;\n    if ( v5[v4 + 736] )\n      ++v3;\n    if ( v3 == a3 + 1 )\n      break;\n    if ( ++v4 >= 6 )\n      return 0;\n  }\n  return result;\n}\n"
+}

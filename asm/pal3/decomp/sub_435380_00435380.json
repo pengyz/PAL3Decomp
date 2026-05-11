@@ -1,0 +1,7 @@
+{
+  "name": "sub_435380",
+  "address": "0x00435380",
+  "size_bytes": 25,
+  "signature": "char *()",
+  "decompiled_c": "char *sub_435380()\n{\n  char *result; // eax\n\n  result = PalScript::GetString();\n  if ( result )\n  {\n    result = (char *)*((_DWORD *)result + 1);\n    *((_DWORD *)dword_BFDA68 + 112) = result;\n  }\n  return result;\n}\n"
+}

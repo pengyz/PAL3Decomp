@@ -1,0 +1,7 @@
+{
+  "name": "sub_420730",
+  "address": "0x00420730",
+  "size_bytes": 148,
+  "signature": "void __thiscall(int this, int a2)",
+  "decompiled_c": "void __thiscall sub_420730(int this, int a2)\n{\n  int v3; // edi\n  __int64 v4; // rax\n  int v5; // ecx\n  int v6; // edx\n\n  if ( g_SceneMgr.m_pCollisionNode )\n  {\n    v3 = *(_DWORD *)(this + 256);\n    v4 = (__int64)((*(float *)(g_SceneMgr.m_pCollisionNode + 12) - *(float *)(v3 + 136)) / flt_C12B14);\n    *(_DWORD *)(this + 20) = (__int64)((*(float *)(g_SceneMgr.m_pCollisionNode + 4) - *(float *)(v3 + 128)) / flt_C12B14);\n    *(_DWORD *)(this + 24) = v4;\n    LODWORD(v4) = *(_DWORD *)(this + 20);\n    v5 = v4 - 16;\n    *(_DWORD *)(this + 36) = v4 + 16;\n    LODWORD(v4) = *(_DWORD *)(this + 24);\n    *(_DWORD *)(this + 28) = v5;\n    v6 = v4 - 16;\n    *(_DWORD *)(this + 40) = v4 + 16;\n    LOBYTE(v4) = *(_BYTE *)(this + 260);\n    *(_DWORD *)(this + 32) = v6;\n    if ( !(_BYTE)v4 )\n      sub_4204B0((_DWORD *)this, v5, v6, *(_DWORD *)(this + 36), *(_DWORD *)(this + 40), 0);\n  }\n}\n"
+}

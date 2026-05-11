@@ -1,0 +1,7 @@
+{
+  "name": "sub_4148C0",
+  "address": "0x004148C0",
+  "size_bytes": 170,
+  "signature": "float *__thiscall(float *this, float *a2, float *a3)",
+  "decompiled_c": "float *__thiscall sub_4148C0(float *this, float *a2, float *a3)\n{\n  float *result; // eax\n  double v5; // st7\n  double v6; // st7\n  double v7; // st6\n  double v8; // st6\n  double v9; // st7\n  double v10; // st6\n  double v11; // st6\n  float v12; // [esp+4h] [ebp-18h]\n  float v13; // [esp+8h] [ebp-14h]\n  float v14; // [esp+10h] [ebp-Ch]\n  float v15; // [esp+10h] [ebp-Ch]\n  float v16; // [esp+14h] [ebp-8h]\n  float v17; // [esp+14h] [ebp-8h]\n  float v18; // [esp+20h] [ebp+4h]\n  float v19; // [esp+24h] [ebp+8h]\n\n  result = a3;\n  v5 = *a2;\n  v12 = v5 * this[8];\n  v13 = v5 * this[9];\n  v6 = v5 * this[10];\n  a3[1] = v13;\n  *a3 = v12;\n  a3[2] = v6;\n  v7 = a2[1];\n  v14 = v7 * this[11];\n  v16 = v7 * this[12];\n  v8 = v7 * this[13];\n  v18 = v14 + v12;\n  *a3 = v18;\n  v19 = v16 + v13;\n  result[1] = v19;\n  v9 = v6 + v8;\n  result[2] = v9;\n  v10 = a2[2];\n  v15 = v10 * this[5];\n  v17 = v10 * this[6];\n  v11 = v10 * this[7];\n  *result = v18 + v15;\n  result[1] = v19 + v17;\n  result[2] = v9 + v11;\n  return result;\n}\n"
+}

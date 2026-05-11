@@ -1,0 +1,7 @@
+{
+  "name": "CEffExplosive::GetEditorObjDescription(int)",
+  "address": "0x004C7B70",
+  "size_bytes": 104,
+  "signature": "int *__thiscall(CEffExplosive *this, int a2)",
+  "decompiled_c": "int *__thiscall CEffExplosive::GetEditorObjDescription(CEffExplosive *this, int a2)\n{\n  int *result; // eax\n\n  switch ( a2 )\n  {\n    case 0:\n      result = dword_5D521C;\n      break;\n    case 1:\n      result = dword_5D5210;\n      break;\n    case 2:\n      result = dword_5D5204;\n      break;\n    case 3:\n      result = dword_5D51F8;\n      break;\n    case 4:\n      result = dword_5D51EC;\n      break;\n    case 5:\n      result = CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffCallBack::*)(unsigned long)>::DelTask;\n      break;\n    case 6:\n      result = dword_5D51D8;\n      break;\n    case 7:\n      result = dword_5D51D0;\n      break;\n    case 8:\n      result = dword_5D51C8;\n      break;\n    case 9:\n      result = dword_5D51BC;\n      break;\n    default:\n      result = dword_5D4D3C;\n      break;\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "UIWnd::~UIWnd(void)",
+  "address": "0x0051ACB0",
+  "size_bytes": 79,
+  "signature": "void __thiscall(CCBControlWindow *this)",
+  "decompiled_c": "void __thiscall UIWnd::~UIWnd(CCBControlWindow *this)\n{\n  *(_DWORD *)this->_pad_000 = &off_57051C;\n  CCBControlWindow::CheckKeyInput(this);\n  UIWnd::~UIWnd((UIListBox *)this);\n}\n"
+}

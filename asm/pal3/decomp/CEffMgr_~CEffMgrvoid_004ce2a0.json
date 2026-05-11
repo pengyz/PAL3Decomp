@@ -1,0 +1,7 @@
+{
+  "name": "CEffMgr::~CEffMgr(void)",
+  "address": "0x004CE2A0",
+  "size_bytes": 153,
+  "signature": "char __thiscall(CEffMgr *this)",
+  "decompiled_c": "char __thiscall CEffMgr::~CEffMgr(CEffMgr *this)\n{\n  FILE *v1; // eax\n  FILE *v2; // esi\n  char pExceptionObject[1024]; // [esp+4h] [ebp-800h] BYREF\n  char ArgList[1024]; // [esp+404h] [ebp-400h] BYREF\n\n  v1 = fopen(FileName, Mode);\n  v2 = v1;\n  if ( !v1 )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aCouldnTOpenCbE, aDProjectPal3Co_3, 521), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  fseek(v1, 0, 0);\n  fwrite(dword_174D330, 0x5A820u, 1u, v2);\n  fwrite(dword_EC9E70, (size_t)dword_8834C0, 1u, v2);\n  fclose(v2);\n  return 1;\n}\n"
+}

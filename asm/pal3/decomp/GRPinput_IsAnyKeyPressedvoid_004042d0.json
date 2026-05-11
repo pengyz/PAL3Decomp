@@ -1,0 +1,7 @@
+{
+  "name": "GRPinput::IsAnyKeyPressed(void)",
+  "address": "0x004042D0",
+  "size_bytes": 33,
+  "signature": "int __thiscall(GRPinput *this)",
+  "decompiled_c": "int __thiscall GRPinput::IsAnyKeyPressed(GRPinput *this)\n{\n  int result; // eax\n\n  result = *(_DWORD *)&this->_data[4];\n  if ( result )\n    return (*(_DWORD *)&this->_data[8] - result) / 36;\n  return result;\n}\n"
+}

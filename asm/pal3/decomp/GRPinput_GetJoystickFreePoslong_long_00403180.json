@@ -1,0 +1,7 @@
+{
+  "name": "GRPinput::GetJoystickFreePos(long *,long *)",
+  "address": "0x00403180",
+  "size_bytes": 74,
+  "signature": "BOOL __thiscall(GRPinput *this, int a2, int a3)",
+  "decompiled_c": "BOOL __thiscall GRPinput::GetJoystickFreePos(GRPinput *this, int a2, int a3)\n{\n  int v3; // eax\n\n  if ( a2 >= 0 && (v3 = *(_DWORD *)&this->_data[152], a2 < v3) && a3 >= 0 && a3 < *(_DWORD *)&this->_data[156] )\n    return *(_BYTE *)(*(_DWORD *)&this->_data[160] + 8 * (a2 + a3 * v3) + 4) > 1u;\n  else\n    return 0;\n}\n"
+}

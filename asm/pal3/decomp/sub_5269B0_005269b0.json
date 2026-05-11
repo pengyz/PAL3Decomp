@@ -1,0 +1,7 @@
+{
+  "name": "sub_5269B0",
+  "address": "0x005269B0",
+  "size_bytes": 144,
+  "signature": "void __cdecl(int a1, UIWnd **a2, UIWnd **arg8, const char *a4, char a3)",
+  "decompiled_c": "void __cdecl sub_5269B0(int a1, UIWnd **a2, UIWnd **arg8, const char *a4, char a3)\n{\n  char Buffer[256]; // [esp+10h] [ebp-100h] BYREF\n\n  sprintf(Buffer, \"%s%d.tga\", a4, a1 / 10);\n  UIWnd::CreateFromTemplate(a2, Buffer, a3);\n  sprintf(Buffer, \"%s%d.tga\", a4, a1 % 10);\n  UIWnd::CreateFromTemplate(arg8, Buffer, a3);\n}\n"
+}

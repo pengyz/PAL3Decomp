@@ -1,0 +1,7 @@
+{
+  "name": "sub_4FFED0",
+  "address": "0x004FFED0",
+  "size_bytes": 140,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nint __thiscall sub_4FFED0(_DWORD *this, int a2)\n{\n  int v3; // ecx\n  int v4; // edx\n  _DWORD *v5; // edi\n  int v6; // eax\n\n  v3 = 329 * this[40];\n  v4 = 20 * this[41];\n  v5 = &this[2 * v3 + 46 + v4];\n  if ( !BYTE1(this[2 * v3 + 56 + v4])\n    && CCBStageRole::ForceDelTaskByPFN((CCBStageRole *)this[this[2 * v3 + 58 + v4] + 6]) )\n  {\n    CCBStageRole::GetCurrentState((CCBStageRole *)this[v5[12] + 6]);\n    v6 = this[v5[12] + 6];\n    *(_DWORD *)(v6 + 6632) = *(_DWORD *)(v6 + 6636);\n    *((_BYTE *)v5 + 41) = 1;\n  }\n  if ( *((_BYTE *)v5 + 43) == 1 || CCBStageRole::ForceDelTaskByPFN((CCBStageRole *)this[v5[12] + 6]) )\n    v5[4] = 4;\n  return 0;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_4180B0",
+  "address": "0x004180B0",
+  "size_bytes": 115,
+  "signature": "int __thiscall(int this, gbRay *a2)",
+  "decompiled_c": "int __thiscall sub_4180B0(int this, gbRay *a2)\n{\n  struct gbOBBox actionId; // [esp+4h] [ebp-4Ch] BYREF\n\n  if ( !*(_DWORD *)(this + 632) )\n    return 0;\n  gbMatrix4::gbMatrix4((gbMatrix4 *)&actionId);\n  Actor::PlayAction((void *)(this + 680), (int)&actionId);\n  *(float *)&actionId._data[48] = *(float *)&actionId._data[48] + *(float *)(this + 160);\n  *(float *)&actionId._data[52] = *(float *)&actionId._data[52] + *(float *)(this + 164);\n  *(float *)&actionId._data[56] = *(float *)&actionId._data[56] + *(float *)(this + 168);\n  return gbRay::IsColOBB_H(a2, &actionId);\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_440BE0",
+  "address": "0x00440BE0",
+  "size_bytes": 255,
+  "signature": "OpenNULLFile *__thiscall(char *this, const char *a2, char a3)",
+  "decompiled_c": "// likely Parent_Data method (near spstr, Parent_Data, _CheckStr, GetSize, _CheckKeyW)\nOpenNULLFile *__thiscall sub_440BE0(char *this, const char *a2, char a3)\n{\n  int v4; // edi\n  char *v5; // esi\n  int v6; // ebp\n  CHAR *v7; // eax\n  OpenBaseFile v9; // [esp+10h] [ebp-114h] BYREF\n  char Buffer[260]; // [esp+14h] [ebp-110h] BYREF\n  int v11; // [esp+120h] [ebp-4h]\n\n  OpenBaseFile::OpenBaseFile(&v9);\n  v4 = 0;\n  v11 = 0;\n  v5 = this + 84;\n  do\n  {\n    if ( *(_DWORD *)v5 )\n      gbRefObject::Release(*(gbRefObject **)v5);\n    sprintf(Buffer, \"%s%d.tga\", a2, v4);\n    if ( a3 )\n    {\n      v6 = *(_DWORD *)gfxMgr->_data;\n      v7 = _Texture_Info::_CalculateUV((int)dword_1894B78, Buffer);\n      *(_DWORD *)v5 = (*(int (__thiscall **)(gbGfxManager *, CHAR *))(v6 + 8))(gfxMgr, v7);\n      *((_DWORD *)v5 + 2) = Parent_Data::Parent_Data((Parent_Data *)dword_1894B78, Buffer);\n    }\n    else\n    {\n      *(_DWORD *)v5 = (*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_data + 8))(gfxMgr, Buffer);\n    }\n    if ( *(_DWORD *)v5 )\n      gbTexture::LoadTexture(*(gbTexture **)v5, 1);\n    ++v4;\n    v5 += 4;\n  }\n  while ( v4 < 2 );\n  v11 = -1;\n  return (OpenNULLFile *)OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v9);\n}\n"
+}

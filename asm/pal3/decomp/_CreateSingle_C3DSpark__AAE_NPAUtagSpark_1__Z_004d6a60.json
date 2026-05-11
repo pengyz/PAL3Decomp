@@ -1,7 +1,0 @@
-{
-  "name": "?CreateSingle@C3DSpark@@AAE_NPAUtagSpark@1@@Z",
-  "address": "0x004D6A60",
-  "size_bytes": 86,
-  "signature": "char __thiscall(C3DSpark *this, const void *a2)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nchar __thiscall C3DSpark::CreateSingle(C3DSpark *this, const void *a2)\n{\n  int v3; // eax\n  char *i; // ecx\n\n  v3 = 0;\n  for ( i = &this->m_Spark[53]; *i; i += 56 )\n  {\n    if ( ++v3 >= 128 )\n      return 0;\n  }\n  qmemcpy((char *)this + 56 * v3, a2, 0x38u);\n  this->m_Spark[56 * v3 + 53] = 1;\n  if ( v3 >= this->m_nCurrentSpark )\n    this->m_nCurrentSpark = v3 + 1;\n  return 1;\n}\n"
-}

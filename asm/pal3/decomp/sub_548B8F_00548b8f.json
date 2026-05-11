@@ -1,0 +1,7 @@
+{
+  "name": "sub_548B8F",
+  "address": "0x00548B8F",
+  "size_bytes": 82,
+  "signature": "double *__stdcall(double *a1, const double *a2, const double *a3, const double *a4, unsigned int a5, unsigned int a6)",
+  "decompiled_c": "double *__stdcall sub_548B8F(\n        double *a1,\n        const double *a2,\n        const double *a3,\n        const double *a4,\n        unsigned int a5,\n        unsigned int a6)\n{\n  __m128 v6; // xmm2\n\n  v6 = _mm_loadh_ps(a2);\n  _mm_storeh_ps(\n    a1,\n    _mm_add_ps(\n      _mm_add_ps(_mm_mul_ps(_mm_sub_ps(_mm_loadh_ps(a3), v6), _mm_shuffle_ps((__m128)a5, (__m128)a5, 0)), v6),\n      _mm_mul_ps(_mm_sub_ps(_mm_loadh_ps(a4), v6), _mm_shuffle_ps((__m128)a6, (__m128)a6, 0))));\n  return a1;\n}\n"
+}

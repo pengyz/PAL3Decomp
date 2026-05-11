@@ -1,0 +1,7 @@
+{
+  "name": "CCBAI::CastAttackMagic(int,int,tagDemand *)",
+  "address": "0x004D9D00",
+  "size_bytes": 283,
+  "signature": "char __thiscall(CCBAI *this, int a2, int a3)",
+  "decompiled_c": "char __thiscall CCBAI::CastAttackMagic(CCBAI *this, int a2, int a3)\n{\n  CCBRoleState *v4; // ecx\n  int RoleHP; // eax\n  int IsForce1; // eax\n  int v7; // edx\n  CCBRoleState *v8; // ecx\n  int a6[11]; // [esp+10h] [ebp-2Ch] BYREF\n\n  v4 = *(CCBRoleState **)&this->_data[16];\n  if ( !v4->m_Role[a2].snSpecStateLast[47] && !CCBRoleState::GetRoleField(v4, a2, 18) )\n    return 0;\n  if ( CCBRoleState::GetRoleField(*(CCBRoleState **)&this->_data[16], a2, 19) )\n    return 0;\n  CCBRoleState::GetRoleHP(*(CCBRoleState **)&this->_data[16], a2);\n  if ( !CCBRoleState::IsRoleAlive(*(CCBRoleState **)&this->_data[16], a2) )\n    return 0;\n  RoleHP = CCBRoleState::GetRoleHP(*(CCBRoleState **)&this->_data[16], a2);\n  IsForce1 = CCBRoleState::IsForce1(RoleHP);\n  if ( !CCBRoleState::CalcMagicAttack(*(CCBRoleState **)&this->_data[16], IsForce1) )\n    return 0;\n  v7 = CCBRoleState::ProcessMagicResult(*(CCBRoleState **)&this->_data[16], a2);\n  if ( !v7 )\n    return 0;\n  memset(a6, 0, sizeof(a6));\n  LOBYTE(a6[10]) = 1;\n  v8 = *(CCBRoleState **)&this->_data[16];\n  LOWORD(a6[4]) = 0;\n  a6[0] = 261;\n  a6[1] = v7;\n  a6[2] = a2;\n  a6[3] = -1;\n  CCBRoleState::GetRoleNum(v8, a6);\n  CCBSystem::CreateObj(*(CCBSystem **)&this->_data[12], CCBSystem::GetSameThreadNum, 0, 0, 0, a6);\n  return 1;\n}\n"
+}

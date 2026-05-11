@@ -1,0 +1,7 @@
+{
+  "name": "C2DSpark::CreateStars(int,int,int,float)",
+  "address": "0x004D61A0",
+  "size_bytes": 28,
+  "signature": "_BYTE *__thiscall(C2DSpark *this)",
+  "decompiled_c": "_BYTE *__thiscall C2DSpark::CreateStars(C2DSpark *this)\n{\n  _BYTE *result; // eax\n  int v2; // edx\n\n  result = &this->_data[41];\n  v2 = 512;\n  do\n  {\n    *result = 0;\n    result += 44;\n    --v2;\n  }\n  while ( v2 );\n  *(_DWORD *)&this->_data[22536] = 0;\n  return result;\n}\n"
+}

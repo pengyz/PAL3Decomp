@@ -1,0 +1,7 @@
+{
+  "name": "sub_429D40",
+  "address": "0x00429D40",
+  "size_bytes": 43,
+  "signature": "int __thiscall(int *this, int a2)",
+  "decompiled_c": "int __thiscall sub_429D40(int *this, int a2)\n{\n  int result; // eax\n\n  result = *this;\n  switch ( *this )\n  {\n    case 1:\n    case 2:\n    case 3:\n      result = (*(int (__thiscall **)(int, int))(*(_DWORD *)this[1] + 16))(this[1], a2);\n      break;\n    case 4:\n      result = (*(int (__thiscall **)(int, _DWORD))(*(_DWORD *)this[1] + 16))(this[1], 0);\n      break;\n    default:\n      return result;\n  }\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_454550",
+  "address": "0x00454550",
+  "size_bytes": 16,
+  "signature": "char __thiscall(UIListBox *this)",
+  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nchar __thiscall sub_454550(UIListBox *this)\n{\n  char result; // al\n\n  result = this[4]._tail[404];\n  if ( !result )\n    return UIListBox::SetScroll(this);\n  return result;\n}\n"
+}

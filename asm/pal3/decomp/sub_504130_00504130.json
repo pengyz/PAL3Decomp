@@ -1,0 +1,7 @@
+{
+  "name": "sub_504130",
+  "address": "0x00504130",
+  "size_bytes": 261,
+  "signature": "void __thiscall(float *this)",
+  "decompiled_c": "void __thiscall sub_504130(float *this)\n{\n  int v2; // ebx\n  float *v3; // esi\n  CIniFile v4; // [esp+38h] [ebp-14h] BYREF\n  int v5; // [esp+48h] [ebp-4h]\n\n  CIniFile::CIniFile(&v4);\n  v2 = 0;\n  v5 = 0;\n  CIniFile::OpenFileRead(&v4, aDatascriptCbca);\n  v3 = this + 1147;\n  do\n  {\n    sprintf(byte_17AAF64, \"EditorCam%d\", v2);\n    CIniFile::ReadStart(&v4);\n    CIniFile::ReadSection(&v4, byte_17AAF64);\n    if ( !CIniFile::ReadLine(&v4, asc_5D8B80, v3 - 1) )\n      break;\n    CIniFile::ReadLine(&v4, (const char *)&dword_5DB9B8, v3);\n    CIniFile::ReadLine(&v4, (const char *)&dword_5DB9B4, v3 + 1);\n    CIniFile::ReadLine(&v4, (const char *)&off_5DB9B0, v3 + 2);\n    CIniFile::ReadLine(&v4, aPitch, v3 + 3);\n    CIniFile::ReadLine(&v4, aRoll, v3 + 4);\n    ++v2;\n    v3 += 6;\n  }\n  while ( v2 < 64 );\n  v5 = -1;\n  CIniFile::~CIniFile(&v4);\n}\n"
+}

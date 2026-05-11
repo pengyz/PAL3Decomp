@@ -1,0 +1,7 @@
+{
+  "name": "sub_541590",
+  "address": "0x00541590",
+  "size_bytes": 41,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nint __thiscall sub_541590(int this, int a2)\n{\n  int result; // eax\n  char v3; // cl\n\n  result = this;\n  if ( a2 != *(_DWORD *)(this + 12) )\n  {\n    v3 = *(_BYTE *)(this + 29);\n    *(_DWORD *)(result + 12) = a2;\n    if ( !v3 )\n      return (*(int (__thiscall **)(gbGfxManager *, _DWORD))(*(_DWORD *)gfxMgr->_data + 100))(\n               gfxMgr,\n               *(_DWORD *)(result + 4 * a2));\n  }\n  return result;\n}\n"
+}

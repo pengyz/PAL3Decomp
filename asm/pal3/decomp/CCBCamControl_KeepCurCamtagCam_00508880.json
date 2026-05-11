@@ -1,0 +1,7 @@
+{
+  "name": "CCBCamControl::KeepCurCam(tagCam *)",
+  "address": "0x00508880",
+  "size_bytes": 74,
+  "signature": "int __thiscall(CCBCamControl *this, int a2)",
+  "decompiled_c": "int __thiscall CCBCamControl::KeepCurCam(CCBCamControl *this, int a2)\n{\n  char *v2; // edx\n  int result; // eax\n  char *i; // esi\n\n  v2 = &this->_data[2444];\n  result = 0;\n  for ( i = &this->_data[2444]; *(_DWORD *)i != a2; i += 60 )\n  {\n    if ( ++result >= 384 )\n    {\n      result = 0;\n      while ( *(_DWORD *)v2 )\n      {\n        ++result;\n        v2 += 60;\n        if ( result >= 384 )\n          return 0;\n      }\n      *(_DWORD *)&this->_data[60 * result + 2444] = a2;\n      return result;\n    }\n  }\n  return result;\n}\n"
+}

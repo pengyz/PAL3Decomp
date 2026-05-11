@@ -1,0 +1,7 @@
+{
+  "name": "sub_543D5D",
+  "address": "0x00543D5D",
+  "size_bytes": 226,
+  "signature": "float *__stdcall(float *a1, float *a2)",
+  "decompiled_c": "float *__stdcall sub_543D5D(float *a1, float *a2)\n{\n  double v3; // st7\n  double v4; // st6\n  double v5; // st5\n  double v6; // st4\n  double v7; // st3\n  float *result; // eax\n  double v9; // st2\n  float v10; // [esp+0h] [ebp-10h]\n  float v11; // [esp+4h] [ebp-Ch]\n  float v12; // [esp+8h] [ebp-8h]\n  float v13; // [esp+Ch] [ebp-4h]\n  float v14; // [esp+Ch] [ebp-4h]\n  float v15; // [esp+18h] [ebp+8h]\n  float v16; // [esp+1Ch] [ebp+Ch]\n  float v17; // [esp+1Ch] [ebp+Ch]\n\n  v13 = *a2 * 2.0;\n  v16 = a2[1] * 2.0;\n  v3 = 2.0 * a2[2];\n  v4 = v13 * a2[3];\n  v5 = v16 * a2[3];\n  v6 = v3 * a2[3];\n  v10 = v13 * *a2;\n  v14 = v16 * *a2;\n  v12 = v3 * *a2;\n  v11 = v16 * a2[1];\n  v17 = v3 * a2[1];\n  v7 = v3 * a2[2];\n  result = a1;\n  *a1 = 1.0 - v11 - v7;\n  a1[1] = v14 + v6;\n  a1[2] = v12 - v5;\n  a1[3] = 0.0;\n  a1[4] = v14 - v6;\n  v9 = 1.0 - v10;\n  v15 = v9;\n  result[5] = v9 - v7;\n  result[6] = v17 + v4;\n  result[7] = 0.0;\n  result[8] = v12 + v5;\n  result[9] = v17 - v4;\n  result[10] = v15 - v11;\n  result[11] = 0.0;\n  result[12] = 0.0;\n  result[13] = 0.0;\n  result[14] = 0.0;\n  result[15] = 1.0;\n  return result;\n}\n"
+}

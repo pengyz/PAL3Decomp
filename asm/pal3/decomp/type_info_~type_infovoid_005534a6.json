@@ -1,0 +1,7 @@
+{
+  "name": "type_info::~type_info(void)",
+  "address": "0x005534A6",
+  "size_bytes": 21,
+  "signature": "void __thiscall(type_info *this)",
+  "decompiled_c": "void __thiscall type_info::~type_info(type_info *this)\n{\n  void *v1; // ecx\n\n  *(_DWORD *)this = &off_5731D4;\n  v1 = (void *)*((_DWORD *)this + 1);\n  if ( v1 )\n    free(v1);\n}\n"
+}

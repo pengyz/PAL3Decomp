@@ -1,0 +1,7 @@
+{
+  "name": "sub_421440",
+  "address": "0x00421440",
+  "size_bytes": 102,
+  "signature": "void __thiscall(RoleSystem *this, int index, float *a3, int *a4, _DWORD *a5)",
+  "decompiled_c": "void __thiscall sub_421440(RoleSystem *this, int index, float *a3, int *a4, _DWORD *a5)\n{\n  int RolePtr; // esi\n  int v7; // ebp\n  __int64 v8; // rax\n\n  RolePtr = RoleSystem::GetRolePtr(this, index);\n  v7 = (__int64)((*a3 - *(float *)(RolePtr + 128)) / flt_C12B14);\n  v8 = (__int64)((a3[2] - *(float *)(RolePtr + 136)) / flt_C12B14);\n  if ( a4 )\n  {\n    *a4 = v7;\n    a4[1] = v8;\n  }\n  sub_421230(this, index, v7, v8, a5);\n}\n"
+}

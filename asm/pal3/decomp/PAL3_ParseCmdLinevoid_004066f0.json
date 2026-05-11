@@ -1,0 +1,7 @@
+{
+  "name": "PAL3::ParseCmdLine(void)",
+  "address": "0x004066F0",
+  "size_bytes": 455,
+  "signature": "char __cdecl(char *lpKeyName)",
+  "decompiled_c": "char __cdecl PAL3::ParseCmdLine(char *lpKeyName)\n{\n  char *v2; // [esp+0h] [ebp-340h]\n  char *v3; // [esp+0h] [ebp-340h]\n  char *v4; // [esp+4h] [ebp-33Ch]\n  char Buffer[32]; // [esp+10h] [ebp-330h] BYREF\n  CHAR FileName[260]; // [esp+30h] [ebp-310h] BYREF\n  char Str[512]; // [esp+134h] [ebp-20Ch] BYREF\n  int v8; // [esp+33Ch] [ebp-4h]\n\n  if ( strlen(lpKeyName) < 0x14 && strlen(GetCommandLineA()) < 0x200 && strlen(GetCommandLineA()) )\n  {\n    strcpy(Str, GetCommandLineA());\n    sprintf(Buffer, aS, lpKeyName);\n    _strlwr(Str);\n    _strlwr(Buffer);\n    if ( strstr(Str, Buffer) )\n      return 1;\n    sprintf(Buffer, off_583A1C, lpKeyName);\n    if ( strstr(Str, Buffer) && strlen(Str) == strstr(Str, Buffer) - Str + strlen(Buffer) )\n      return 1;\n    Config::ReadINIInt(FileName, v2, v4);\n    v8 = 0;\n    Config::ReadINIString(FileName, aConfigIni, v3);\n    Config::ReadINI(FileName, aMisc, lpKeyName);\n    v8 = -1;\n    nullsub_3(FileName);\n  }\n  return 0;\n}\n"
+}

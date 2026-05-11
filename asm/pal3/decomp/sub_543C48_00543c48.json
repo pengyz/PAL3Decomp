@@ -1,0 +1,7 @@
+{
+  "name": "sub_543C48",
+  "address": "0x00543C48",
+  "size_bytes": 258,
+  "signature": "float *__stdcall(float *a1, float *a2, float a3)",
+  "decompiled_c": "float *__stdcall sub_543C48(float *a1, float *a2, float a3)\n{\n  float *result; // eax\n  double v4; // st7\n  double v5; // st6\n  double v6; // st5\n  double v7; // st4\n  double v8; // st3\n  double v9; // st2\n  double v10; // st3\n  float v11; // [esp+8h] [ebp-1Ch] BYREF\n  float v12; // [esp+Ch] [ebp-18h]\n  float v13; // [esp+10h] [ebp-14h]\n  float *v14; // [esp+14h] [ebp-10h]\n  float *v15; // [esp+18h] [ebp-Ch]\n  float v16; // [esp+1Ch] [ebp-8h] BYREF\n  float v17; // [esp+20h] [ebp-4h] BYREF\n  float v18; // [esp+30h] [ebp+Ch]\n  float v19; // [esp+34h] [ebp+10h]\n  float v20; // [esp+34h] [ebp+10h]\n\n  v15 = &v17;\n  v14 = &v16;\n  v17 = cos(a3);\n  v16 = sin(a3);\n  v11 = *a2;\n  v19 = 1.0 - v17;\n  v12 = a2[1];\n  v13 = a2[2];\n  sub_542533((int)&v11, (int)&v11);\n  result = a1;\n  v4 = v19;\n  v20 = v12 * v11 * v19;\n  v5 = v13;\n  v6 = v12 * v13 * v4;\n  v7 = v13 * v11 * v4;\n  *a1 = v11 * v11 * v4 + v17;\n  v8 = v5 * v16;\n  a1[1] = v20 + v8;\n  v9 = v12 * v16;\n  v18 = v9;\n  a1[2] = v7 - v9;\n  a1[3] = 0.0;\n  a1[4] = v20 - v8;\n  a1[5] = v12 * v12 * v4 + v17;\n  v10 = v11 * v16;\n  a1[6] = v10 + v6;\n  a1[7] = 0.0;\n  a1[8] = v18 + v7;\n  a1[9] = v6 - v10;\n  a1[10] = v5 * v5 * v4 + v17;\n  a1[11] = 0.0;\n  a1[12] = 0.0;\n  a1[13] = 0.0;\n  a1[14] = 0.0;\n  a1[15] = 1.0;\n  return result;\n}\n"
+}

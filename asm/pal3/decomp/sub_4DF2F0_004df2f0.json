@@ -1,0 +1,7 @@
+{
+  "name": "sub_4DF2F0",
+  "address": "0x004DF2F0",
+  "size_bytes": 123,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "int __thiscall sub_4DF2F0(int this, int a2)\n{\n  int v3; // eax\n  char v4; // cl\n  _BYTE *v5; // eax\n  int v7; // [esp-4h] [ebp-8h]\n\n  v3 = *(_DWORD *)(this + 104) << 6;\n  v4 = *(_BYTE *)(v3 + this + 173);\n  v5 = (_BYTE *)(v3 + this + 173);\n  if ( !v4 )\n    *v5 = 1;\n  if ( *(_DWORD *)(this + 108) == 1 )\n  {\n    *(_DWORD *)(this + 40) = 0;\n    *(_DWORD *)(this + 44) = 0;\n    *(_DWORD *)(this + 48) = 0;\n    *(_DWORD *)(this + 52) = 0;\n    *(_BYTE *)(this + 36) = 0;\n    CCBSystem::GetDeltaTime(*(CCBSystem **)(this + 4));\n    CCBSystem::SetCmdParam(*(CCBSystem **)(this + 4), *(_DWORD *)(this + 32), 0);\n    *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this + 8) + 4 * *(_DWORD *)(this + 32) + 24) + 280) = 0;\n    v7 = *(_DWORD *)(this + 104);\n    *(_DWORD *)(this + 32) = -1;\n    *(_BYTE *)(this + 37) = 0;\n    sub_4DC720((_DWORD *)this, v7);\n  }\n  return 0;\n}\n"
+}

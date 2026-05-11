@@ -1,7 +1,0 @@
-{
-  "name": "?ProcTurn@CCBStageRole@@QAEKK@Z",
-  "address": "0x0050BBD0",
-  "size_bytes": 256,
-  "signature": "int __thiscall(CCBStageRole *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBStageRole::ProcTurn(CCBStageRole *this)\n{\n  unsigned int m_fBlend_low; // eax\n  CCBRoleState *m_pRoleState; // ecx\n  int v5; // eax\n\n  m_fBlend_low = LODWORD(this->m_fBlend);\n  m_pRoleState = this->m_pRoleState;\n  if ( !*(&m_pRoleState->m_Role[0].bValid + 892 * m_fBlend_low) )\n  {\n    if ( m_fBlend_low <= 4 )\n      return 32;\n    return 50;\n  }\n  if ( !CCBStageRole::IsActive((CCBStageRole *)m_pRoleState, m_fBlend_low) )\n    return 50;\n  if ( CCBRoleState::GetRoleAttr(this->m_pRoleState, LODWORD(this->m_fBlend)) == 5 )\n    return 47;\n  if ( LODWORD(this->m_Task[61].fTemp2) == 4 )\n    return 34;\n  if ( *(_BYTE *)(CCBRoleState::InitUI(this->m_pRoleState, LODWORD(this->m_fBlend)) + 588) )\n  {\n    CCBStageRole::ClearBadPushTask(this, 0.25);\n    return 42;\n  }\n  else if ( CCBRoleState::GetRoleField(this->m_pRoleState, LODWORD(this->m_fBlend), 17)\n         || CCBRoleState::GetRoleField(this->m_pRoleState, LODWORD(this->m_fBlend), 14) )\n  {\n    return 45;\n  }\n  else\n  {\n    v5 = CCBRoleState::GetRoleAttr(this->m_pRoleState, LODWORD(this->m_fBlend)) - 4;\n    if ( v5 )\n    {\n      if ( v5 == 1 )\n        return 47;\n      return 32;\n    }\n    else\n    {\n      return 46;\n    }\n  }\n}\n"
-}

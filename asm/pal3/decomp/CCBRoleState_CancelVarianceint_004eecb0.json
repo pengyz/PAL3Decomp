@@ -1,0 +1,7 @@
+{
+  "name": "CCBRoleState::CancelVariance(int)",
+  "address": "0x004EECB0",
+  "size_bytes": 164,
+  "signature": "void __thiscall(CCBRoleState *this, _DWORD *a2, unsigned int a3)",
+  "decompiled_c": "void __thiscall CCBRoleState::CancelVariance(CCBRoleState *this, _DWORD *a2, unsigned int a3)\n{\n  __int8 *v3; // eax\n\n  if ( a3 <= 0xA )\n  {\n    v3 = &this->m_sCombatDialog[892 * a3];\n    if ( v3[577] )\n    {\n      if ( v3[578] && !v3[1432] && !v3[1431] && (v3[1164] != 1 || a2[1] == 4401) && *a2 == 259 )\n        CCBRoleState::CalSneakAttack(this, a2[2], a3);\n    }\n  }\n}\n"
+}

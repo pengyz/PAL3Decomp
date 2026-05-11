@@ -1,0 +1,7 @@
+{
+  "name": "GRPinput::~GRPinput(void)",
+  "address": "0x004024F0",
+  "size_bytes": 125,
+  "signature": "char __thiscall(GRPinput *this, int a2, int a3)",
+  "decompiled_c": "char __thiscall GRPinput::~GRPinput(GRPinput *this, int a2, int a3)\n{\n  int v4; // eax\n\n  if ( a3 )\n  {\n    LOBYTE(v4) = this->_data[a2 + 104];\n    if ( (unsigned __int8)v4 < 2u )\n    {\n      this->_data[a2 + 104] = 2;\n      *(_DWORD *)&this->_data[4 * a2 + 632] = timeGetTime();\n      v4 = *(_DWORD *)&this->_data[64];\n      *(_DWORD *)&this->_data[8 * a2 + 1712] = v4;\n      *(_DWORD *)&this->_data[8 * a2 + 1716] = *(_DWORD *)&this->_data[68];\n    }\n    else if ( (_BYTE)v4 == 2 )\n    {\n      this->_data[a2 + 104] = 3;\n    }\n  }\n  else\n  {\n    v4 = (unsigned __int8)this->_data[a2 + 104];\n    if ( (_BYTE)v4 == 3 || (_BYTE)v4 == 2 )\n    {\n      this->_data[a2 + 104] = 1;\n    }\n    else if ( (_BYTE)v4 == 1 )\n    {\n      this->_data[a2 + 104] = 0;\n    }\n  }\n  return v4;\n}\n"
+}

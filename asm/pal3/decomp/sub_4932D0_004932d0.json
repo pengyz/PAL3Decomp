@@ -1,0 +1,7 @@
+{
+  "name": "sub_4932D0",
+  "address": "0x004932D0",
+  "size_bytes": 304,
+  "signature": "void __thiscall(int *this, int a2)",
+  "decompiled_c": "void __thiscall sub_4932D0(int *this, int a2)\n{\n  char *v3; // edi\n  __int8 *v4; // ecx\n  __int8 *v5; // edx\n  __int8 *v6; // eax\n  _DWORD v7[3]; // [esp+18h] [ebp-Ch] BYREF\n\n  v3 = 0;\n  if ( UIWnd::CreateChild((UIWnd *)(this + 54353)) >= 0 )\n  {\n    v6 = (__int8 *)sub_40D640(&g_SceneMgr.m_slot4[792], v7, this[92]);\nLABEL_12:\n    v3 = (char *)*((_DWORD *)v6 + 2);\n  }\n  else\n  {\n    switch ( this[93] )\n    {\n      case 0:\n        v4 = &g_SceneMgr.m_slot1[1408 * a2 - 1128];\n        goto LABEL_4;\n      case 1:\n        v5 = &g_SceneMgr.m_slot1[1408 * a2 - 1176];\n        goto LABEL_6;\n      case 2:\n        v6 = &g_SceneMgr.m_slot1[1408 * a2 - 1188];\n        goto LABEL_12;\n      case 3:\n        v4 = &g_SceneMgr.m_slot1[1408 * a2 - 1164];\nLABEL_4:\n        v3 = (char *)*((_DWORD *)v4 + 2);\n        break;\n      case 4:\n        v5 = &g_SceneMgr.m_slot1[1408 * a2 - 1152];\nLABEL_6:\n        v3 = (char *)*((_DWORD *)v5 + 2);\n        break;\n      case 5:\n        v6 = &g_SceneMgr.m_slot1[1408 * a2 - 1140];\n        goto LABEL_12;\n      default:\n        break;\n    }\n  }\n  RoleSystem::LoadData((RoleSystem *)(&g_SceneMgr.m_pAddEffect + 352 * a2), 0);\n  sub_493420((char *)this, a2, v3, *((float *)this + 93));\n}\n"
+}

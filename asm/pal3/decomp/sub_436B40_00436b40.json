@@ -1,0 +1,7 @@
+{
+  "name": "sub_436B40",
+  "address": "0x00436B40",
+  "size_bytes": 131,
+  "signature": "char *()",
+  "decompiled_c": "char *sub_436B40()\n{\n  char *result; // eax\n  char *v1; // esi\n  __int8 *v2; // ebx\n  char *v3; // edx\n  const char *v4; // edi\n\n  result = PalScript::GetString();\n  v1 = result;\n  if ( result )\n  {\n    v2 = sub_434BD0(2u);\n    if ( *((_DWORD *)v1 + 1) )\n    {\n      Actor::LoadModel(v2 + 680);\n      v3 = v2 + 174;\n      v4 = a106;\n    }\n    else\n    {\n      Actor::LoadModel(v2 + 680);\n      v3 = v2 + 174;\n      v4 = dword_586194;\n    }\n    strcpy(v3, v4);\n    return (char *)RoleSystem::UpdateTransform((RoleSystem *)v2);\n  }\n  return result;\n}\n"
+}

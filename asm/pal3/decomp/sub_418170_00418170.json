@@ -1,0 +1,7 @@
+{
+  "name": "sub_418170",
+  "address": "0x00418170",
+  "size_bytes": 110,
+  "signature": "int __thiscall(float *this, struct gbOBBox *a2)",
+  "decompiled_c": "int __thiscall sub_418170(float *this, struct gbOBBox *a2)\n{\n  gbOBBox actionId; // [esp+4h] [ebp-4Ch] BYREF\n\n  gbMatrix4::gbMatrix4((gbMatrix4 *)&actionId);\n  Actor::PlayAction(this + 170, (int)&actionId);\n  *(float *)&actionId._data[48] = *(float *)&actionId._data[48] + this[40];\n  *(float *)&actionId._data[52] = *(float *)&actionId._data[52] + this[41];\n  *(float *)&actionId._data[56] = *(float *)&actionId._data[56] + this[42];\n  *(float *)&actionId._data[64] = *(float *)&actionId._data[64] * 0.60000002;\n  return gbOBBox::IsColOBB(&actionId, a2);\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_462120",
+  "address": "0x00462120",
+  "size_bytes": 232,
+  "signature": "char __thiscall(int this, int a2)",
+  "decompiled_c": "char __thiscall sub_462120(int this, int a2)\n{\n  int v3; // edi\n  int v4; // edx\n  int v5; // eax\n  int v6; // eax\n\n  v3 = 0;\n  v4 = 0;\n  *(_DWORD *)(this + 356) = 0;\n  do\n  {\n    v5 = *(_DWORD *)(this + 356);\n    if ( *(_BYTE *)(v5 + this + 26348) && *(_BYTE *)(*(_DWORD *)(this + 4 * a2 + 15880) + v5 + 614) )\n    {\n      ++v3;\n      v4 = *(_DWORD *)(this + 356);\n    }\n    v6 = v5 + 1;\n    *(_DWORD *)(this + 356) = v6;\n  }\n  while ( v6 < 5 );\n  if ( v3 )\n  {\n    if ( v3 == 1 )\n    {\n      LOBYTE(v6) = *(_BYTE *)(*(_DWORD *)(this + 4 * a2 + 15880) + 612) - 7;\n      switch ( *(_BYTE *)(*(_DWORD *)(this + 4 * a2 + 15880) + 612) )\n      {\n        case 7:\n          LOBYTE(v6) = sub_469EB0(this, v4, 0, a2);\n          break;\n        case 8:\n          LOBYTE(v6) = sub_469EB0(this, v4, 3, a2);\n          break;\n        case 9:\n          LOBYTE(v6) = sub_469EB0(this, v4, 4, a2);\n          break;\n        case 0xB:\n          LOBYTE(v6) = sub_469EB0(this, v4, 1, a2);\n          break;\n        default:\n          return v6;\n      }\n    }\n  }\n  else\n  {\n    sprintf((char *const)(this + 80), \"\\\\n    %s\", (const char *)dword_DD4A3C);\n    UIWnd::SetEnable((UIWnd *)(this + 94380), (const char *)(this + 80), 0);\n    LOBYTE(v6) = sub_4A1530(this + 93924, 1);\n  }\n  return v6;\n}\n"
+}

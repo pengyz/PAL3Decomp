@@ -1,0 +1,7 @@
+{
+  "name": "sub_4DB8E0",
+  "address": "0x004DB8E0",
+  "size_bytes": 46,
+  "signature": "int __thiscall(CCBSystem *this, char a2)",
+  "decompiled_c": "int __thiscall sub_4DB8E0(CCBSystem *this, char a2)\n{\n  int result; // eax\n\n  if ( a2 != this->_rest[368] )\n  {\n    this->_rest[368] = a2;\n    CCBSystem::GetDeltaTime(this);\n    return sub_4DB940(this, a2);\n  }\n  return result;\n}\n"
+}

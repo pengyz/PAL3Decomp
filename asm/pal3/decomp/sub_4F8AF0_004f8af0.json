@@ -1,0 +1,7 @@
+{
+  "name": "sub_4F8AF0",
+  "address": "0x004F8AF0",
+  "size_bytes": 182,
+  "signature": "void __thiscall(int this)",
+  "decompiled_c": "// likely CCBStage method (near ProcShowCombatDialog, Reset, IsTaskValidButNotFini)\nvoid __thiscall sub_4F8AF0(int this)\n{\n  enum ECBStageTask v2; // edi\n  int v3; // ebp\n  _BYTE *v4; // ebx\n  int v5; // ecx\n  int Control; // eax\n\n  v2 = CBST_Null;\n  v3 = 24;\n  v4 = (_BYTE *)(this + 577);\n  do\n  {\n    if ( *v4 )\n    {\n      *(float *)(*(_DWORD *)(*(_DWORD *)(this + 524) + v3) + 6632) = *(float *)(*(_DWORD *)(*(_DWORD *)(this + 524) + v3)\n                                                                              + 6636);\n      *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(this + 524) + v3) + 280) = 0;\n      CCBRoleState::ProcessRound((CCBRoleState *)this, v2);\n      CCBRoleState::ProcessRound((CCBRoleState *)this, v2);\n      CCBRoleState::ProcessRound((CCBRoleState *)this, v2);\n      Control = *(_DWORD *)(this + 520);\n      v5 = *(_DWORD *)(Control + 8);\n      LOBYTE(Control) = *(_BYTE *)(v5 + 36);\n      if ( (_BYTE)Control )\n      {\n        Control = CCBSystem::GetControl((CCBSystem *)v5);\n        if ( Control == v2 )\n          Control = CCBUI::GetState(*(CCBUI **)(*(_DWORD *)(this + 520) + 8));\n      }\n      CCBStage::IsTaskValidButNotFinish(*(CCBStage **)(this + 524), (char *)Control, v2);\n    }\n    v3 += 4;\n    ++v2;\n    v4 += 892;\n  }\n  while ( v3 < 44 );\n}\n"
+}

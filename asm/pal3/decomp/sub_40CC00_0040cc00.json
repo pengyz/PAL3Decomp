@@ -1,0 +1,7 @@
+{
+  "name": "sub_40CC00",
+  "address": "0x0040CC00",
+  "size_bytes": 87,
+  "signature": "int __cdecl(unsigned __int16 a1, int a2)",
+  "decompiled_c": "int __cdecl sub_40CC00(unsigned __int16 a1, int a2)\n{\n  int result; // eax\n  _DWORD *v3; // ecx\n\n  if ( a1 == 6 )\n  {\n    result = 0;\n    v3 = (_DWORD *)(4 * a2 + 12601196);\n    do\n    {\n      if ( g_SceneMgr._postSlots[result - 576] )\n        *v3 = *(v3 - 12);\n      ++result;\n      v3 += 352;\n    }\n    while ( result < 5 );\n  }\n  else\n  {\n    result = 4 * (a2 + 352 * a1);\n    *(_DWORD *)&g_SceneMgr.m_slot1[result - 1068] = *(_DWORD *)&g_SceneMgr.m_slot1[result - 1116];\n  }\n  return result;\n}\n"
+}

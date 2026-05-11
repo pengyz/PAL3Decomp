@@ -1,7 +1,0 @@
-{
-  "name": "unknown_libname_297",
-  "address": "0x00404570",
-  "size_bytes": 10,
-  "signature": "GRPinput *()",
-  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\n// Microsoft VisualC 2-14/net runtime\nGRPinput *unknown_libname_297()\n{\n  g_Input.m_mouseMaxX = 0x7FFFFFFF;\n  g_Input.m_mouseMaxY = 0x7FFFFFFF;\n  g_Input.m_joystickMaxX = 0x7FFFFFFF;\n  g_Input.m_joystickMaxY = 0x7FFFFFFF;\n  g_Input.m_lpDI = 0;\n  g_Input.m_lpDIDKeyboard = 0;\n  g_Input.m_lpDIDMouse = 0;\n  g_Input.m_bMouse = 0;\n  g_Input.m_bKeyboard = 0;\n  g_Input.m_bJoystick = 0;\n  g_Input.m_mouseSensitivity = 1.0;\n  g_Input.m_mouseMinX = 0x80000000;\n  g_Input.m_mouseMinY = 0x80000000;\n  g_Input.m_joystickMinX = 0x80000000;\n  g_Input.m_joystickMinY = 0x80000000;\n  g_Input.m_mouseX = 0;\n  g_Input.m_mouseY = 0;\n  g_Input.m_mouseFreeX = 0;\n  g_Input.m_mouseFreeY = 0;\n  g_Input.m_mouseDeltaX = 0;\n  g_Input.m_mouseDeltaY = 0;\n  g_Input.m_joystickX = 0;\n  g_Input.m_joystickY = 0;\n  g_Input.m_joystickFreeX = 0;\n  g_Input.m_joystickFreeY = 0;\n  g_Input.m_joystickDeltaX = 0;\n  g_Input.m_joystickDeltaY = 0;\n  memset(g_Input.m_keyStates, 0, 0x10Cu);\n  *(_WORD *)&g_Input.m_keyStates[268] = 0;\n  memset(g_Input.m_keyRaw, 0, 0x10Cu);\n  HIWORD(g_Input.m_keyPressTimes[2]) = 0;\n  memset(g_Input.m_keyPressTimes, 0, sizeof(g_Input.m_keyPressTimes));\n  memset(g_Input.m_keyDragStartPositions, 0, sizeof(g_Input.m_keyDragStartPositions));\n  return &g_Input;\n}\n"
-}

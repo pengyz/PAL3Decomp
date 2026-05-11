@@ -1,0 +1,7 @@
+{
+  "name": "GRPinput::SetMousePos(long,long)",
+  "address": "0x00402BA0",
+  "size_bytes": 45,
+  "signature": "GRPinput *__fastcall(GRPinput *this)",
+  "decompiled_c": "GRPinput *__fastcall GRPinput::SetMousePos(GRPinput *this)\n{\n  GRPinput *result; // eax\n\n  result = this;\n  this->_data[8] = HIBYTE(this);\n  *(_DWORD *)&this->_data[12] = 0;\n  *(_DWORD *)&this->_data[16] = 0;\n  *(_DWORD *)&this->_data[20] = 0;\n  *(_DWORD *)this->_data = &off_56A620;\n  this->_data[4] = 0;\n  *(_DWORD *)&this->_data[24] = 0;\n  *(_DWORD *)&this->_data[28] = 0;\n  *(_DWORD *)&this->_data[32] = 10;\n  return result;\n}\n"
+}

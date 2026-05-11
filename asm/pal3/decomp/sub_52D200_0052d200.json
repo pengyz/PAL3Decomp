@@ -1,0 +1,7 @@
+{
+  "name": "sub_52D200",
+  "address": "0x0052D200",
+  "size_bytes": 45,
+  "signature": "char __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "char __thiscall sub_52D200(_DWORD *this, int a2)\n{\n  int v3; // eax\n  _DWORD *i; // ecx\n\n  if ( g_SceneMgr._postSlots[a2 - 576] )\n  {\n    v3 = 0;\n    for ( i = this + 526; *i == a2; ++i )\n    {\n      if ( ++v3 >= 4 )\n        return 1;\n    }\n  }\n  return 0;\n}\n"
+}

@@ -1,7 +1,0 @@
-{
-  "name": "?CreateAttackSequen@CCBUI@@AAE_NXZ",
-  "address": "0x00517C10",
-  "size_bytes": 104,
-  "signature": "char __thiscall(CCBUI *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall CCBUI::CreateAttackSequen(CCBUI *this)\n{\n  UIStatic **p_m_pResultEarthLvup; // esi\n  char result; // al\n  CCBItemWindow *v4; // ecx\n  int pRect; // [esp+8h] [ebp-10h] BYREF\n  int v6; // [esp+Ch] [ebp-Ch]\n  int v7; // [esp+10h] [ebp-8h]\n  int v8; // [esp+14h] [ebp-4h]\n\n  p_m_pResultEarthLvup = &this->m_pResultEarthLvup;\n  result = CCBLineupWindow::CCBLineupWindow(&this->m_pResultEarthLvup);\n  if ( result )\n  {\n    v6 = 0;\n    v7 = 0;\n    v4 = (CCBItemWindow *)*p_m_pResultEarthLvup;\n    pRect = 14;\n    v7 = 172;\n    v6 = 316;\n    v8 = 474;\n    CCBItemWindow::Create(v4, &pRect, (int)this);\n    ((void (__thiscall *)(UIStatic *, _DWORD))*(*p_m_pResultEarthLvup)->_base._vftable)(*p_m_pResultEarthLvup, 0);\n    return 1;\n  }\n  return result;\n}\n"
-}

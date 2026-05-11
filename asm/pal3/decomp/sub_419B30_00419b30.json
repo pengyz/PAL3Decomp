@@ -1,0 +1,7 @@
+{
+  "name": "sub_419B30",
+  "address": "0x00419B30",
+  "size_bytes": 235,
+  "signature": "void __thiscall(int this, float a2)",
+  "decompiled_c": "void __thiscall sub_419B30(int this, float a2)\n{\n  double v3; // st7\n  int v4; // eax\n  _BYTE v5[12]; // [esp+4h] [ebp-18h]\n  gbVec3D v6; // [esp+10h] [ebp-Ch] BYREF\n\n  if ( g_SceneMgr.m_pCollisionNode )\n  {\n    *(float *)v5 = *(float *)(this + 4) - *(float *)(g_SceneMgr.m_pCollisionNode + 4);\n    *(float *)&v5[4] = *(float *)(this + 8) - *(float *)(g_SceneMgr.m_pCollisionNode + 8);\n    v6 = *(gbVec3D *)v5;\n    v3 = gbVec3D::Length(&v6);\n    v4 = *(_DWORD *)(this + 1284);\n    if ( v4 )\n    {\n      if ( v4 == 2 )\n      {\n        if ( v3 <= (double)*(int *)&g_SceneMgr.m_szUIString[8] * 1.4 )\n        {\n          sub_41A1A0(this, a2);\n        }\n        else\n        {\n          *(_DWORD *)(this + 1284) = 0;\n          RoleSystem::UpdateTransform((RoleSystem *)this);\n          *(_DWORD *)(this + 1268) = 0;\n        }\n      }\n    }\n    else if ( v3 < (double)*(int *)&g_SceneMgr.m_szUIString[8] )\n    {\n      *(_DWORD *)(this + 1284) = 2;\n      RoleSystem::UpdateTransform((RoleSystem *)this);\n      *(_DWORD *)(this + 1268) = 6;\n    }\n  }\n}\n"
+}

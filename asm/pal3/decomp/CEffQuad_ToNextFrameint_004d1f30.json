@@ -1,0 +1,7 @@
+{
+  "name": "CEffQuad::ToNextFrame(int)",
+  "address": "0x004D1F30",
+  "size_bytes": 153,
+  "signature": "int *__thiscall(CEffQuad *this, int a2)",
+  "decompiled_c": "int *__thiscall CEffQuad::ToNextFrame(CEffQuad *this, int a2)\n{\n  gbTexture *v3; // eax\n  int *result; // eax\n  int d10A8; // ecx\n  char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF\n  char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF\n\n  v3 = (gbTexture *)(*(int (__thiscall **)(_DWORD, int))(***(_DWORD ***)&this->_pad_000[4] + 8))(\n                      **(_DWORD **)&this->_pad_000[4],\n                      a2);\n  this->_d10A8 = (int)v3;\n  gbTexture::LoadTexture(v3, 1);\n  result = (int *)operator new(0x44u);\n  if ( result )\n  {\n    d10A8 = this->_d10A8;\n    result[16] = 1;\n    *result = d10A8;\n  }\n  else\n  {\n    result = 0;\n  }\n  this->_d10AC = (int)result;\n  if ( !result )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aCNewFailed_0, aDProjectPal3Co_16, 540), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  return result;\n}\n"
+}

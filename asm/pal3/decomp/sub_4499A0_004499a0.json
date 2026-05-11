@@ -1,0 +1,7 @@
+{
+  "name": "sub_4499A0",
+  "address": "0x004499A0",
+  "size_bytes": 271,
+  "signature": "char __thiscall(char *this, unsigned int a2, int a3)",
+  "decompiled_c": "char __thiscall sub_4499A0(char *this, unsigned int a2, int a3)\n{\n  char result; // al\n  char *v4; // esi\n  char *v5; // esi\n  char *v6; // esi\n\n  result = a2;\n  if ( a2 <= 0x25 )\n  {\n    if ( a3 )\n    {\n      if ( a3 == 1 )\n      {\n        v5 = &this[476 * a2];\n        result = v5[984];\n        if ( result )\n        {\n          result = (**((int (__thiscall ***)(int, int))v5 + 152))((int)(v5 + 608), 1);\n          v5[985] = 1;\n        }\n        v5[512] = 1;\n        v5[596] = 0;\n      }\n      else if ( a3 == 2 )\n      {\n        v4 = &this[476 * a2];\n        result = v4[984];\n        if ( result )\n        {\n          result = (**((int (__thiscall ***)(int, int))v4 + 152))((int)(v4 + 608), 1);\n          v4[985] = 1;\n        }\n        v4[512] = 1;\n        v4[596] = 1;\n      }\n    }\n    else\n    {\n      v6 = &this[476 * a2];\n      result = v6[984];\n      if ( result )\n      {\n        result = (**((int (__thiscall ***)(int, _DWORD))v6 + 152))((int)(v6 + 608), 0);\n        v6[985] = 0;\n      }\n      v6[512] = 0;\n      v6[596] = 0;\n    }\n  }\n  return result;\n}\n"
+}

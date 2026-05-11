@@ -1,0 +1,7 @@
+{
+  "name": "sub_44E5E0",
+  "address": "0x0044E5E0",
+  "size_bytes": 120,
+  "signature": "void __thiscall(std::ios_base *this)",
+  "decompiled_c": "void __thiscall sub_44E5E0(std::ios_base *this)\n{\n  std::ios_base::_Fnarray **p_Calls; // edi\n\n  p_Calls = &this[1]._Calls;\n  this->_State = (int)&off_56B050;\n  this[1]._Calls = (std::ios_base::_Fnarray *)&off_56B044;\n  `eh vector destructor iterator'((char *)&this[1]._Index, 0xA4u, 13, (void (__thiscall *)(void *))sub_43A1F0);\n  *(this != 0 ? p_Calls : 0) = (std::ios_base::_Fnarray *)&off_56A9C0;\n  UIWnd::_UIWnd(this);\n}\n"
+}

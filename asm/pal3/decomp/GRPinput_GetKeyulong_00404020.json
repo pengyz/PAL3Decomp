@@ -1,0 +1,7 @@
+{
+  "name": "GRPinput::GetKey(ulong)",
+  "address": "0x00404020",
+  "size_bytes": 61,
+  "signature": "GRPinput *__thiscall(GRPinput *this)",
+  "decompiled_c": "GRPinput *__thiscall GRPinput::GetKey(GRPinput *this)\n{\n  GRPinput *result; // eax\n\n  result = this;\n  *(_DWORD *)this->_data = 0;\n  *(_DWORD *)&this->_data[4] = 0;\n  *(_DWORD *)&this->_data[8] = 0;\n  *(_DWORD *)&this->_data[12] = 0;\n  *(_DWORD *)&this->_data[16] = 0;\n  *(_DWORD *)&this->_data[20] = 0;\n  this->_data[24] = HIBYTE(this);\n  *(_DWORD *)&this->_data[28] = 0;\n  *(_DWORD *)&this->_data[32] = 0;\n  *(_DWORD *)&this->_data[36] = 0;\n  *(_DWORD *)&this->_data[44] = 0;\n  *(_DWORD *)&this->_data[48] = 0;\n  *(_DWORD *)&this->_data[52] = 0;\n  *(_DWORD *)&this->_data[56] = 0;\n  *(_DWORD *)&this->_data[40] = 0;\n  return result;\n}\n"
+}

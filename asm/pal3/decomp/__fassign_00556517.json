@@ -1,7 +1,0 @@
-{
-  "name": "__fassign",
-  "address": "0x00556517",
-  "size_bytes": 62,
-  "signature": "char **__cdecl(int a1, char **a2, char *a3)",
-  "decompiled_c": "char **__cdecl _fassign(int a1, char **a2, char *a3)\n{\n  unsigned int v4[2]; // [esp+0h] [ebp-8h] BYREF\n\n  if ( a1 )\n  {\n    sub_55BAB4(v4, a3);\n    *a2 = (char *)v4[0];\n    a2[1] = (char *)v4[1];\n    return a2;\n  }\n  else\n  {\n    sub_55BAE1((unsigned int *)&a3, a3);\n    *a2 = a3;\n    return a2;\n  }\n}\n"
-}

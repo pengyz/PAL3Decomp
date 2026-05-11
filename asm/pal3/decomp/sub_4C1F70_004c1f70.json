@@ -1,0 +1,7 @@
+{
+  "name": "sub_4C1F70",
+  "address": "0x004C1F70",
+  "size_bytes": 129,
+  "signature": "void *__thiscall(void *Block, char a2)",
+  "decompiled_c": "void *__thiscall sub_4C1F70(void *Block, char a2)\n{\n  int v3; // eax\n  int v4; // ebx\n  int v5; // edi\n\n  v3 = *((_DWORD *)Block + 7);\n  *(_DWORD *)Block = &off_56F6B0;\n  if ( v3 || *((_DWORD *)Block + 8) )\n  {\n    v4 = 0;\n    if ( v3 > 0 )\n    {\n      v5 = 0;\n      do\n      {\n        operator delete(*(void **)(*((_DWORD *)Block + 3) + v5));\n        ++v4;\n        *(_DWORD *)(*((_DWORD *)Block + 3) + v5) = 0;\n        v5 += 152;\n      }\n      while ( v4 < *((_DWORD *)Block + 7) );\n    }\n    operator delete(*((void **)Block + 3));\n    *((_DWORD *)Block + 3) = 0;\n    *((_DWORD *)Block + 7) = 0;\n    *((_DWORD *)Block + 8) = 0;\n  }\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+}

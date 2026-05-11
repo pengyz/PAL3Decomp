@@ -1,0 +1,7 @@
+{
+  "name": "sub_435600",
+  "address": "0x00435600",
+  "size_bytes": 191,
+  "signature": "void()",
+  "decompiled_c": "void sub_435600()\n{\n  char *String; // esi\n  char *v1; // edi\n  char *v2; // ebx\n  char *v3; // ebp\n  char *v4; // eax\n  int v5; // eax\n  int v6; // edx\n  int v7; // [esp+0h] [ebp-38h]\n  int v8; // [esp+4h] [ebp-34h]\n  char *v9; // [esp+24h] [ebp-14h]\n  char *v10; // [esp+28h] [ebp-10h]\n  float v11[3]; // [esp+2Ch] [ebp-Ch] BYREF\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  v2 = PalScript::GetString();\n  v3 = PalScript::GetString();\n  v9 = PalScript::GetString();\n  v10 = PalScript::GetString();\n  v4 = PalScript::GetString();\n  if ( String && v1 && v2 && v3 && v9 && v10 )\n  {\n    if ( v4 )\n    {\n      v11[0] = *((float *)v3 + 1);\n      v5 = *((_DWORD *)v4 + 1);\n      v6 = *((_DWORD *)v2 + 1);\n      v11[1] = *((float *)v9 + 1);\n      v11[2] = *((float *)v10 + 1);\n      *(float *)&v8 = *((float *)v1 + 1) * 0.017453292;\n      *(float *)&v7 = *((float *)String + 1) * 0.017453292;\n      sub_41D070(g_GameData, (int)dword_BFDA68, v7, v8, v6, v11, v5);\n      sub_434C40((int)g_GameData);\n    }\n  }\n}\n"
+}

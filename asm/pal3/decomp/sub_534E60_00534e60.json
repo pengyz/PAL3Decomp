@@ -1,0 +1,7 @@
+{
+  "name": "sub_534E60",
+  "address": "0x00534E60",
+  "size_bytes": 122,
+  "signature": "void __thiscall(float **this, int a2, int a3)",
+  "decompiled_c": "void __thiscall sub_534E60(float **this, int a2, int a3)\n{\n  if ( sub_534DD0(this, 2) )\n  {\n    sub_532D30(*this);\n  }\n  else if ( sub_534DD0(this, 3) )\n  {\n    sub_532D40(*this);\n  }\n  else if ( sub_534E30(this, 2) || sub_534E30(this, 3) )\n  {\n    Concurrency::details::ExternalStatistics::MarkInactive((Concurrency::details::ExternalStatistics *)*this);\n  }\n  if ( sub_534DD0(this, 4) )\n    nullsub_3(*this);\n  if ( sub_534DD0(this, 5) )\n    nullsub_3(*this);\n}\n"
+}

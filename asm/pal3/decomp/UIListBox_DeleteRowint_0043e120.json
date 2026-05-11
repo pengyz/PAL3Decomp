@@ -1,0 +1,7 @@
+{
+  "name": "UIListBox::DeleteRow(int)",
+  "address": "0x0043E120",
+  "size_bytes": 160,
+  "signature": "void __thiscall(std::ios_base *this)",
+  "decompiled_c": "void __thiscall UIListBox::DeleteRow(std::ios_base *this)\n{\n  this->_State = (int)&off_56AD40;\n  UIListBox::GetItemCount((UIListBox **)this);\n  operator delete((void *)this[27]._Fmtfl);\n  this[27]._Fmtfl = 0;\n  this[27]._Prec = 0;\n  this[27]._Wide = 0;\n  `eh vector destructor iterator'((char *)&this[9]._Sync, 0x54u, 8, (void (__thiscall *)(void *))UIListBox::GetItemPos);\n  sub_4411D0((std::ios_base *)((char *)this + 80));\n  UIWnd::_UIWnd(this);\n}\n"
+}

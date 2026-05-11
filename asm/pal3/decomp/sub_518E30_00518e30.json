@@ -1,0 +1,7 @@
+{
+  "name": "sub_518E30",
+  "address": "0x00518E30",
+  "size_bytes": 43,
+  "signature": "BOOL __thiscall(CCBUI *this, int a2, int a3)",
+  "decompiled_c": "// likely CCBUI method (near CheckNimbusMove, ShowDialogWindow, Reset, CreateIm)\nBOOL __thiscall sub_518E30(CCBUI *this, int a2, int a3)\n{\n  sub_519180(this);\n  CCBUI::ShowDialogWindow(this);\n  CCBUI::HideAll(this);\n  return UIWnd::HitTest((UIWnd *)this, a2, a3);\n}\n"
+}

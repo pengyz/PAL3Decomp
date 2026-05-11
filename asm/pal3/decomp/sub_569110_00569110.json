@@ -1,0 +1,7 @@
+{
+  "name": "sub_569110",
+  "address": "0x00569110",
+  "size_bytes": 508,
+  "signature": "void __cdecl(char a1)",
+  "decompiled_c": "void __cdecl sub_569110(char a1)\n{\n  int *v1; // eax\n  int *v2; // eax\n  int *v3; // eax\n  gbAudioManager *v4; // eax\n  __int8 *v5; // esi\n  int *v6; // eax\n  int *v7; // eax\n  char *v8; // [esp-8h] [ebp-8h]\n  _DWORD *v9; // [esp-4h] [ebp-4h]\n  char *v10; // [esp-4h] [ebp-4h]\n\n  flt_58DE64 = 10.0;\n  sub_4208A0((int)dword_D8B318);\n  sub_4208A0((int)dword_D8B4A0);\n  v1 = sub_53D150();\n  sub_53D1D0(v1);\n  PAL3::UIPostProcess();\n  sub_4CE5C0(dword_BFDA78);\n  sub_4CEA80(dword_BFDA78);\n  v2 = sub_4B65A0();\n  sub_4B67E0(v2);\n  dword_D8E488 = 0;\n  byte_BFDA40 = 0;\n  if ( (dword_5833BC & 1) == 0 )\n    JUMPOUT(0x2EE3E9A);\n  v3 = sub_53DF70();\n  v4 = (gbAudioManager *)sub_53E500(v3);\n  gbAudioManager::DetachAll3D(v4);\n  dword_C12B28 = 0;\n  dword_C12B2C = 0;\n  dword_C12B30 = 0;\n  v5 = &g_SceneMgr.m_slot4[840];\n  do\n  {\n    sub_4181E0((int)v5);\n    v5 += 8704;\n  }\n  while ( (int)v5 < (int)&g_SceneMgr.m_pGameData );\n  if ( dword_C9A63C[123289 * (dword_D8BBEC == 1)] )\n  {\n    sub_421870((_DWORD *)(493156 * (dword_D8BBEC == 1) + 12722152));\n    if ( a1 )\n    {\n      v9 = (_DWORD *)(493156 * (dword_D8BBEC == 1) + 12722152);\n      v6 = sub_5394F0();\n      sub_538FA0(v6, v9);\n      v10 = (char *)(493156 * (dword_D8BBEC == 1) + 12722184);\n      v8 = (char *)(493156 * (dword_D8BBEC == 1) + 12722152);\n      v7 = sub_5394F0();\n      sub_539AF0(v7, v8, v10);\n    }\n  }\n}\n"
+}

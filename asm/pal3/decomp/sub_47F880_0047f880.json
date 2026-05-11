@@ -1,0 +1,7 @@
+{
+  "name": "sub_47F880",
+  "address": "0x0047F880",
+  "size_bytes": 173,
+  "signature": "char __thiscall(int this)",
+  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nchar __thiscall sub_47F880(int this)\n{\n  int v2; // eax\n  int i; // edi\n\n  UIListBox::SetScroll((UIListBox *)this);\n  v2 = *(_DWORD *)(this + 154336);\n  if ( *(_BYTE *)(this + v2 + 154328) )\n  {\n    for ( i = 0; i < 16; ++i )\n    {\n      if ( Concurrency::details::VirtualProcessor::IsThrottled((Concurrency::details::VirtualProcessor *)(this + 584 * (i + 16 * *(_DWORD *)(this + 154336)) + 4696)) )\n        sub_4B4DC0(this + 584 * (i + 16 * *(_DWORD *)(this + 154336)) + 4696, 11);\n      LOBYTE(v2) = Concurrency::details::VirtualProcessor::IsThrottled((Concurrency::details::VirtualProcessor *)(this + 584 * (i + 16 * *(_DWORD *)(this + 154336)) + 79448));\n      if ( (_BYTE)v2 )\n        LOBYTE(v2) = sub_4B4DC0(this + 584 * (i + 16 * *(_DWORD *)(this + 154336)) + 79448, 10);\n    }\n  }\n  return v2;\n}\n"
+}

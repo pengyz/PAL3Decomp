@@ -1,0 +1,7 @@
+{
+  "name": "sub_521A80",
+  "address": "0x00521A80",
+  "size_bytes": 113,
+  "signature": "bool __cdecl(int a1)",
+  "decompiled_c": "bool __cdecl sub_521A80(int a1)\n{\n  float v2; // [esp+Ch] [ebp+8h]\n\n  if ( a1 <= 0 )\n    return 0;\n  v2 = (double)a1 * 10.24;\n  ++g_nRandCallCount;\n  g_RandSeed = 214013 * g_RandSeed + 2531011;\n  return ((g_RandSeed >> 16) & 0x3FF) < (int)v2;\n}\n"
+}

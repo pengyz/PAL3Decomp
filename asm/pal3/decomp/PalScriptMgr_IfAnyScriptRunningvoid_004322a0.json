@@ -1,0 +1,7 @@
+{
+  "name": "PalScriptMgr::IfAnyScriptRunning(void)",
+  "address": "0x004322A0",
+  "size_bytes": 20,
+  "signature": "int __thiscall(PalScriptMgr *this, int a2)",
+  "decompiled_c": "int __thiscall PalScriptMgr::IfAnyScriptRunning(PalScriptMgr *this, int a2)\n{\n  int result; // eax\n\n  PtrArray::SetAt((PtrArray *)&this[8], *(_DWORD *)this[12]._data, a2);\n  return result;\n}\n"
+}

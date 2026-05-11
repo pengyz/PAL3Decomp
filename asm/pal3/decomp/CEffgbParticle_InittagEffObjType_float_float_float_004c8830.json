@@ -1,0 +1,7 @@
+{
+  "name": "CEffgbParticle::Init(tagEffObjType *,float,float,float)",
+  "address": "0x004C8830",
+  "size_bytes": 80,
+  "signature": "int __thiscall(CEffgbParticle *this, int a2)",
+  "decompiled_c": "int __thiscall CEffgbParticle::Init(CEffgbParticle *this, int a2)\n{\n  int v2; // edx\n  int v3; // esi\n  int result; // eax\n\n  *(_BYTE *)(LODWORD(this->m_fY) + 152 * a2 + 148) = 0;\n  v2 = 0;\n  if ( (int)this[1].m_pEffect > 0 )\n  {\n    v3 = 0;\n    do\n    {\n      ++v2;\n      v3 += 72;\n      *(_BYTE *)(*(_DWORD *)(LODWORD(this->m_fY) + 152 * a2) + v3 - 8) = 0;\n    }\n    while ( v2 < (int)this[1].m_pEffect->_data );\n  }\n  *(_DWORD *)(LODWORD(this->m_fY) + 152 * a2 + 4) = 0;\n  result = LODWORD(this->m_fPY) - 1;\n  LODWORD(this->m_fPY) = result;\n  return result;\n}\n"
+}

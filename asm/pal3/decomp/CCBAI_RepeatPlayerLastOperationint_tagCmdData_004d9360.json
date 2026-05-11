@@ -1,0 +1,7 @@
+{
+  "name": "CCBAI::RepeatPlayerLastOperation(int,tagCmdData *)",
+  "address": "0x004D9360",
+  "size_bytes": 18,
+  "signature": "void *__thiscall(CCBAI *this)",
+  "decompiled_c": "void *__thiscall CCBAI::RepeatPlayerLastOperation(CCBAI *this)\n{\n  void *result; // eax\n\n  result = byte_1010101;\n  *(_DWORD *)this->_data = byte_1010101;\n  *(_DWORD *)&this->_data[4] = byte_1010101;\n  *(_WORD *)&this->_data[8] = (unsigned __int16)byte_1010101;\n  this->_data[10] = (unsigned __int8)byte_1010101;\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "CCBRoleState::CanAction(int)",
+  "address": "0x004EF710",
+  "size_bytes": 193,
+  "signature": "int __thiscall(CCBRoleState *this, int a2, int a3, int a4)",
+  "decompiled_c": "int __thiscall CCBRoleState::CanAction(CCBRoleState *this, int a2, int a3, int a4)\n{\n  int v5; // eax\n  __int8 *i; // ecx\n  int v7; // edi\n  __int8 *j; // eax\n  int v9; // ebp\n\n  v5 = 1;\n  for ( i = &this->m_Role[a3].byMagicUseTime[78]; !*(_DWORD *)i; i += 4 )\n  {\n    if ( ++v5 >= 6 )\n      return 0;\n  }\n  v7 = 1;\n  for ( j = &this->m_Role[a2].byMagicUseTime[78]; (*(_DWORD *)j & 0xFFFF0000) == 0; j += 4 )\n  {\n    if ( ++v7 >= 6 )\n      return 0;\n  }\n  v9 = CCBRoleState::CheckDeath(this, v7);\n  return (*(_DWORD *)&this->m_Role[a3].byMagicUseTime[4 * v9 + 74] != 0)\n       - (*(_DWORD *)&this->m_Role[a3].byMagicUseTime[4 * sub_4FA700(v7) + 74] != 0);\n}\n"
+}

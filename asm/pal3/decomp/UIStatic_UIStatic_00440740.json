@@ -3,5 +3,5 @@
   "address": "0x00440740",
   "size_bytes": 81,
   "signature": "void __thiscall(UIStatic *this)",
-  "decompiled_c": "// between_std_methods (0x430790-0x445B40)\nvoid __thiscall UIStatic::UIStatic(UIStatic *this)\n{\n  char *v2; // eax\n  int v3; // ecx\n\n  UIWnd::UIWnd(&this->_base);\n  this->_base._vftable = (void **)&off_56AD88;\n  LOBYTE(this->m_bordersize) = 0;\n  BYTE1(this->m_bordersize) = 0;\n  *(_DWORD *)this->_pad_004 = 0;\n  v2 = &this->_pad_004[12];\n  v3 = 2;\n  do\n  {\n    *((_DWORD *)v2 - 2) = 0;\n    *(_DWORD *)v2 = 0;\n    v2 += 4;\n    --v3;\n  }\n  while ( v3 );\n  memset(&this->_pad_004[40], 0, 0x80u);\n  this->pDebugTex = (gbTexture *)1;\n  *(_DWORD *)&this->_pad_004[32] = 0;\n  *(_DWORD *)&this->_pad_004[36] = 0;\n  *(_DWORD *)&this->_pad_004[24] = 0;\n  *(_DWORD *)&this->_pad_004[28] = 0;\n}\n"
+  "decompiled_c": "void __thiscall UIStatic::UIStatic(UIStatic *this)\n{\n  char *v2; // eax\n  int v3; // ecx\n\n  UIWnd::UIWnd((UIWnd *)this);\n  this->_p000 = &off_56AD88;\n  this->_b044 = 0;\n  this->_b045 = 0;\n  this->_d050 = 0;\n  v2 = &this->_pad_054[8];\n  v3 = 2;\n  do\n  {\n    *((_DWORD *)v2 - 2) = 0;\n    *(_DWORD *)v2 = 0;\n    v2 += 4;\n    --v3;\n  }\n  while ( v3 );\n  memset(this->_pad_078, 0, 0x80u);\n  this->_d04C = 1;\n  this->_d070 = 0;\n  this->_d074 = 0;\n  this->_d068 = 0;\n  this->_d06C = 0;\n}\n"
 }

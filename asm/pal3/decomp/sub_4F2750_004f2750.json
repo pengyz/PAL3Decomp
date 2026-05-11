@@ -1,0 +1,7 @@
+{
+  "name": "sub_4F2750",
+  "address": "0x004F2750",
+  "size_bytes": 91,
+  "signature": "int __thiscall(CCBRoleState *this, _DWORD *a2, int roleIdx)",
+  "decompiled_c": "// likely CCBRoleState method (near GetRole, CCBRoleState, CanAction, UnloadWeaponMode)\nint __thiscall sub_4F2750(CCBRoleState *this, _DWORD *a2, int roleIdx)\n{\n  if ( a2[1] != 6230 || CCBRoleState::IsRoleInForce(this, roleIdx) )\n  {\n    CCBRoleState::CheckRoleNimbus(this, (int)a2, roleIdx);\n    CCBRoleState::IsBoss(this, a2, roleIdx);\n    return sub_4EEF20(this, a2, roleIdx);\n  }\n  else\n  {\n    sub_4F2C70((int)this, roleIdx, -99999999, 1, -1);\n    return 0;\n  }\n}\n"
+}

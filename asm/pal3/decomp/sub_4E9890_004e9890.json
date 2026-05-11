@@ -1,0 +1,7 @@
+{
+  "name": "sub_4E9890",
+  "address": "0x004E9890",
+  "size_bytes": 192,
+  "signature": "LRESULT __stdcall(HWND hDlg)",
+  "decompiled_c": "LRESULT __stdcall sub_4E9890(HWND hDlg)\n{\n  HWND DlgItem; // ebx\n  LPARAM v2; // esi\n  int *v3; // edi\n  int v4; // edx\n  LRESULT result; // eax\n  LPARAM lParam[10]; // [esp+10h] [ebp-28h] BYREF\n\n  DlgItem = GetDlgItem(hDlg, 1213);\n  memset(lParam, 0, sizeof(lParam));\n  SendMessageA(DlgItem, 0x1009u, 0, 0);\n  v2 = 0;\n  v3 = dword_EC9E70;\n  do\n  {\n    lParam[0] = 1;\n    lParam[5] = (LPARAM)byte_17A94E4;\n    lParam[1] = v2;\n    lParam[2] = 0;\n    sprintf(byte_17A94E4, \"%03d\", v2);\n    SendMessageA(DlgItem, 0x1007u, 0, (LPARAM)lParam);\n    v4 = *v3;\n    lParam[2] = 1;\n    sprintf(byte_17A94E4, \"%d\", v4);\n    result = SendMessageA(DlgItem, 0x1006u, 0, (LPARAM)lParam);\n    v3 += 3985;\n    ++v2;\n  }\n  while ( (int)v3 < (int)dword_174D330 );\n  return result;\n}\n"
+}

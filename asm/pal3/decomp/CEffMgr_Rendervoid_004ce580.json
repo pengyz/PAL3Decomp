@@ -1,0 +1,7 @@
+{
+  "name": "CEffMgr::Render(void)",
+  "address": "0x004CE580",
+  "size_bytes": 58,
+  "signature": "char __thiscall(CEffMgr *this, int a2)",
+  "decompiled_c": "char __thiscall CEffMgr::Render(CEffMgr *this, int a2)\n{\n  int v2; // edx\n  char *i; // eax\n\n  if ( !a2 )\n    return 0;\n  v2 = 0;\n  for ( i = &this[1]._data[40]; *((_DWORD *)i - 1) != a2 || !*i || i[1]; i += 20 )\n  {\n    if ( ++v2 >= 2048 )\n      return 0;\n  }\n  return 1;\n}\n"
+}

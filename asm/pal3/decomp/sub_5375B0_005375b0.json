@@ -1,0 +1,7 @@
+{
+  "name": "sub_5375B0",
+  "address": "0x005375B0",
+  "size_bytes": 54,
+  "signature": "int __fastcall(int a1)",
+  "decompiled_c": "int __fastcall sub_5375B0(int a1)\n{\n  int result; // eax\n\n  result = a1;\n  *(_BYTE *)a1 = HIBYTE(a1);\n  *(_DWORD *)(a1 + 4) = 0;\n  *(_DWORD *)(a1 + 8) = 0;\n  *(_DWORD *)(a1 + 12) = 0;\n  *(_BYTE *)(a1 + 16) = HIBYTE(a1);\n  *(_DWORD *)(a1 + 20) = 0;\n  *(_DWORD *)(a1 + 24) = 0;\n  *(_DWORD *)(a1 + 28) = 0;\n  *(_BYTE *)(a1 + 32) = HIBYTE(a1);\n  *(_DWORD *)(a1 + 36) = 0;\n  *(_DWORD *)(a1 + 40) = 0;\n  *(_DWORD *)(a1 + 44) = 0;\n  return result;\n}\n"
+}

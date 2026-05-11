@@ -1,0 +1,7 @@
+{
+  "name": "sub_442170",
+  "address": "0x00442170",
+  "size_bytes": 118,
+  "signature": "int __thiscall(_DWORD *this, _DWORD *a2, _DWORD *a3)",
+  "decompiled_c": "int __thiscall sub_442170(_DWORD *this, _DWORD *a2, _DWORD *a3)\n{\n  int v3; // ebx\n  int v4; // eax\n  int v5; // edx\n  int result; // eax\n\n  this[76] = *a2;\n  this[77] = a2[1];\n  this[78] = a2[2];\n  this[79] = a2[3];\n  this[80] = *a3;\n  this[81] = a3[1];\n  this[82] = a3[2];\n  this[83] = a3[3];\n  v3 = a3[1];\n  v4 = a2[3] - a2[1];\n  if ( v4 <= a3[3] - v3 )\n    v4 = a3[3] - v3;\n  v5 = this[4];\n  this[39] = v4;\n  result = *a2 - v5;\n  this[84] = result;\n  return result;\n}\n"
+}

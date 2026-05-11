@@ -1,0 +1,7 @@
+{
+  "name": "CCBParabolaWindow::Update(float,int)",
+  "address": "0x0051B9A0",
+  "size_bytes": 69,
+  "signature": "int __thiscall(CCBParabolaWindow **this, int a2, int a3)",
+  "decompiled_c": "int __thiscall CCBParabolaWindow::Update(CCBParabolaWindow **this, int a2, int a3)\n{\n  int v4; // esi\n  CCBParabolaWindow **i; // edi\n\n  v4 = 0;\n  for ( i = this + 24; (*i)[4].m_pItemList != (UIListBox *)1 || !CCBParabolaWindow::OnMessage(this, v4, a2, a3); ++i )\n  {\n    if ( ++v4 >= 5 )\n      return -1;\n  }\n  return v4;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageCam::ProcCamMove(ulong)",
+  "address": "0x00505820",
+  "size_bytes": 185,
+  "signature": "char __thiscall(CCBStageCam *this)",
+  "decompiled_c": "char __thiscall CCBStageCam::ProcCamMove(CCBStageCam *this)\n{\n  char *v2; // eax\n  char *v3; // ecx\n  int v4; // eax\n  char result; // al\n  int v6; // [esp+4h] [ebp-18h] BYREF\n  int v7; // [esp+8h] [ebp-14h]\n  int v8; // [esp+Ch] [ebp-10h]\n  int v9; // [esp+10h] [ebp-Ch] BYREF\n  int v10; // [esp+14h] [ebp-8h]\n  int v11; // [esp+18h] [ebp-4h]\n\n  v2 = &this[114]._pad_000[2386];\n  v6 = *(_DWORD *)&this[114]._pad_000[2386];\n  v3 = &this[114]._pad_000[2398];\n  v7 = *((_DWORD *)v2 + 1);\n  v4 = *((_DWORD *)v2 + 2);\n  v9 = *(_DWORD *)v3;\n  v8 = v4;\n  v10 = *((_DWORD *)v3 + 1);\n  result = g_Input._data[6516];\n  v11 = *((_DWORD *)v3 + 2);\n  v7 = 0;\n  v10 = 0;\n  if ( *(_DWORD *)&g_Input._data[6516] == 1 )\n  {\n    result = CCCTData::Create((CCCTData *)this, (float *)&v6);\n    if ( result )\n    {\n      this[114]._pad_000[2411] = 1;\n    }\n    else\n    {\n      result = CCCTData::Create((CCCTData *)this, (float *)&v9);\n      if ( result )\n      {\n        this[114]._pad_000[2412] = 1;\n      }\n      else\n      {\n        this[114]._pad_000[2411] = 0;\n        this[114]._pad_000[2412] = 0;\n      }\n    }\n  }\n  if ( (g_Input._data[6504] & 0xF) != 1 )\n  {\n    this[114]._pad_000[2411] = 0;\n    this[114]._pad_000[2412] = 0;\n  }\n  return result;\n}\n"
+}

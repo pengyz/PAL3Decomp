@@ -1,0 +1,7 @@
+{
+  "name": "sub_48CFB0",
+  "address": "0x0048CFB0",
+  "size_bytes": 131,
+  "signature": "bool __stdcall(float a1)",
+  "decompiled_c": "bool __stdcall sub_48CFB0(float a1)\n{\n  int v2; // [esp+Ch] [ebp+8h]\n  float v3; // [esp+Ch] [ebp+8h]\n\n  v2 = (__int64)(a1 * 100.0);\n  if ( v2 <= 0 )\n    return 0;\n  v3 = (double)v2 * 10.24;\n  ++g_nRandCallCount;\n  g_RandSeed = 214013 * g_RandSeed + 2531011;\n  return ((g_RandSeed >> 16) & 0x3FF) < (int)v3;\n}\n"
+}

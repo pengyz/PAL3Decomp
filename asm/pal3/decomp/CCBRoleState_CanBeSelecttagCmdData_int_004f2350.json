@@ -1,0 +1,7 @@
+{
+  "name": "CCBRoleState::CanBeSelect(tagCmdData *,int)",
+  "address": "0x004F2350",
+  "size_bytes": 52,
+  "signature": "char __thiscall(CCBRoleState *this, struct tagCmdData *a2, unsigned int a3)",
+  "decompiled_c": "char __thiscall CCBRoleState::CanBeSelect(CCBRoleState *this, struct tagCmdData *a2, unsigned int a3)\n{\n  int RoleNum; // eax\n\n  RoleNum = PAL_GDB::GDB_GetRoleNum((PAL_GDB *)dword_975ED8, *(_DWORD *)&a2->_data[4]);\n  return CCBRoleState::CheckRoleValid(this, *(_DWORD *)&a2->_data[8], a3, *(unsigned __int8 *)(RoleNum + 578));\n}\n"
+}

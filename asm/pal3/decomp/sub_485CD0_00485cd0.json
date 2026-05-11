@@ -1,0 +1,7 @@
+{
+  "name": "sub_485CD0",
+  "address": "0x00485CD0",
+  "size_bytes": 214,
+  "signature": "char *__thiscall(int this)",
+  "decompiled_c": "char *__thiscall sub_485CD0(int this)\n{\n  int v2; // esi\n  char *result; // eax\n  _BYTE *v4; // edx\n\n  sub_4845F0((_BYTE *)this);\n  v2 = 0;\n  result = &g_SceneMgr.m_slot0[769];\n  v4 = (_BYTE *)(this + 154644);\n  do\n  {\n    if ( *(_BYTE *)(this + v2 + 361) )\n    {\n      *(result - 1) = v4[5] == 2;\n      *result = *v4 == 2;\n      result[2] = v4[1] == 2;\n      result[1] = v4[2] == 2;\n      result[3] = v4[3] == 2;\n      result[4] = v4[4] == 2;\n      switch ( *(_BYTE *)(v2 + this + 154674) )\n      {\n        case 0:\n          result[5] = 1;\n          break;\n        case 1:\n          result[5] = 2;\n          break;\n        case 2:\n          result[5] = 4;\n          break;\n        case 3:\n          result[5] = 3;\n          break;\n        case 4:\n          result[5] = 5;\n          break;\n        case 5:\n          result[5] = 6;\n          break;\n        default:\n          break;\n      }\n    }\n    result += 1408;\n    ++v2;\n    v4 += 6;\n  }\n  while ( (int)result < (int)&g_SceneMgr._postSlots[769] );\n  g_SceneMgr.m_nCameraState = *(_DWORD *)(this + 158188);\n  return result;\n}\n"
+}

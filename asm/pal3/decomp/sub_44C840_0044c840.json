@@ -1,0 +1,7 @@
+{
+  "name": "sub_44C840",
+  "address": "0x0044C840",
+  "size_bytes": 82,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "int __thiscall sub_44C840(int this)\n{\n  int (__thiscall ***v2)(_DWORD, int); // edi\n  int result; // eax\n\n  v2 = (int (__thiscall ***)(_DWORD, int))(this + 14080);\n  *(_DWORD *)(this + 14072) = 1102409892;\n  *(_DWORD *)(this + 14076) = 1140948992;\n  *(_DWORD *)(this + 14060) = 518;\n  *(_DWORD *)(this + 14068) = 1542;\n  UIWnd::GetRect((UIWnd *)(this + 14080), (_DWORD *)(this + 14056));\n  result = (**v2)(v2, 1);\n  *(_BYTE *)(this + 14232) = 1;\n  return result;\n}\n"
+}

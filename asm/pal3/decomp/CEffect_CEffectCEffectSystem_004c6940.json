@@ -1,0 +1,7 @@
+{
+  "name": "CEffect::CEffect(CEffectSystem *)",
+  "address": "0x004C6940",
+  "size_bytes": 27,
+  "signature": "CEffect *__thiscall(CEffect *this)",
+  "decompiled_c": "CEffect *__thiscall CEffect::CEffect(CEffect *this)\n{\n  CEffectSystem *v1; // eax\n\n  v1 = (CEffectSystem *)operator new(0x10C0u);\n  if ( v1 )\n    return (CEffect *)CEffectSystem::FillDefaultUVSet(v1);\n  else\n    return 0;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "CCBAI::SetNewRole(void)",
+  "address": "0x004D9380",
+  "size_bytes": 67,
+  "signature": "_DWORD *__thiscall(CCBAI *this)",
+  "decompiled_c": "_DWORD *__thiscall CCBAI::SetNewRole(CCBAI *this)\n{\n  char *v1; // eax\n  int v2; // esi\n  int v3; // edx\n  _DWORD *result; // eax\n  int v5; // ecx\n\n  v1 = &this->_data[1584];\n  v2 = 11;\n  do\n  {\n    v3 = 10;\n    do\n    {\n      *(_DWORD *)v1 = 100;\n      v1 += 16;\n      --v3;\n    }\n    while ( v3 );\n    --v2;\n  }\n  while ( v2 );\n  result = &this->_data[3504];\n  v5 = 10;\n  do\n  {\n    *(result - 40) = 100;\n    *result = 100;\n    result += 4;\n    --v5;\n  }\n  while ( v5 );\n  return result;\n}\n"
+}

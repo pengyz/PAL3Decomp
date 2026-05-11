@@ -1,0 +1,7 @@
+{
+  "name": "sub_401780",
+  "address": "0x00401780",
+  "size_bytes": 28,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_401780(_DWORD *this)\n{\n  int v1; // ecx\n  int v2; // esi\n  int *v4; // [esp-4h] [ebp-8h]\n\n  v1 = this[4];\n  v4 = *(int **)(v1 + 4);\n  v2 = *v4;\n  *(_DWORD *)(v1 + 4) = v4[1];\n  free(v4);\n  return v2;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_443CA0",
+  "address": "0x00443CA0",
+  "size_bytes": 54,
+  "signature": "char __thiscall(_BYTE *this, float a2)",
+  "decompiled_c": "char __thiscall sub_443CA0(_BYTE *this, float a2)\n{\n  struct tagPOINT Point; // [esp+4h] [ebp-8h] BYREF\n\n  this[120] = 0;\n  GRPinput::GetCursorPos(&Point);\n  return sub_443FC0(this, a2, Point.x, Point.y);\n}\n"
+}

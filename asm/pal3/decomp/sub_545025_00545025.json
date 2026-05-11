@@ -1,0 +1,7 @@
+{
+  "name": "sub_545025",
+  "address": "0x00545025",
+  "size_bytes": 60,
+  "signature": "float *__stdcall(float *a1, float *a2, float *a3)",
+  "decompiled_c": "float *__stdcall sub_545025(float *a1, float *a2, float *a3)\n{\n  double v3; // st7\n  double v4; // st6\n  float *result; // eax\n  float v6; // [esp+0h] [ebp-8h]\n  float v7; // [esp+4h] [ebp-4h]\n\n  v6 = a3[4] * a2[1] + *a2 * *a3;\n  v3 = a3[1] * *a2;\n  v4 = a3[5] * a2[1];\n  result = a1;\n  *a1 = v6;\n  v7 = v3 + v4;\n  a1[1] = v7;\n  return result;\n}\n"
+}

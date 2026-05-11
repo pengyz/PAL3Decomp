@@ -1,0 +1,7 @@
+{
+  "name": "sub_40FC70",
+  "address": "0x0040FC70",
+  "size_bytes": 22,
+  "signature": "int()",
+  "decompiled_c": "int sub_40FC70()\n{\n  int result; // eax\n  int i; // ecx\n\n  result = 0;\n  for ( i = 0; i < 5; ++i )\n  {\n    if ( g_SceneMgr._postSlots[i - 576] )\n      ++result;\n  }\n  return result;\n}\n"
+}

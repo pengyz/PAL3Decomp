@@ -1,0 +1,7 @@
+{
+  "name": "sub_4F1C40",
+  "address": "0x004F1C40",
+  "size_bytes": 121,
+  "signature": "char __thiscall(char *this, int a2)",
+  "decompiled_c": "// likely CCBRoleState method (near GetRole, CCBRoleState, CanAction, UnloadWeaponMode)\nchar __thiscall sub_4F1C40(char *this, int a2)\n{\n  int i; // esi\n\n  for ( i = 0; i < 11; ++i )\n  {\n    if ( *(_BYTE *)(a2 + 17) )\n    {\n      if ( !*(_BYTE *)(i + a2 + 29) )\n        continue;\n    }\n    else if ( *(_DWORD *)(a2 + 12) != i )\n    {\n      continue;\n    }\n    if ( sub_4F27E0((CCBRoleState *)this, (const void *)a2, i) < 0\n      && !CCBSystem::IsCmdEmpty(*(CCBSystem **)(*((_DWORD *)this + 130) + 12), i)\n      && !CCBSystem::IsCmdReady(*(CCBSystem **)(*((_DWORD *)this + 130) + 12), i) )\n    {\n      CCBSystem::GetCmdData(*(CCBSystem **)(*((_DWORD *)this + 130) + 12), i);\n    }\n  }\n  return 1;\n}\n"
+}

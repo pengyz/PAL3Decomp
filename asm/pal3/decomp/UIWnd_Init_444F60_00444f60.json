@@ -1,7 +1,0 @@
-{
-  "name": "UIWnd_Init_444F60",
-  "address": "0x00444F60",
-  "size_bytes": 138,
-  "signature": "UIWnd *__thiscall(UIWnd *this)",
-  "decompiled_c": "// likely std method (near _Freeze, _Split, max_size, allocator<char>>, _Xran)\nUIWnd *__thiscall UIWnd_Init_444F60(UIWnd *this)\n{\n  char v3; // [esp+Bh] [ebp-11h]\n\n  UIWnd::UIWnd(this);\n  *((_BYTE *)this + 72) = v3;\n  *((_DWORD *)this + 19) = 0;\n  *((_DWORD *)this + 20) = 0;\n  *((_DWORD *)this + 21) = 0;\n  UIWnd::DestroyChildren((UIWnd *)((char *)this + 104));\n  *((_DWORD *)this + 44) = 0;\n  BYTE2(this->m_fontcolor) = -1;\n  BYTE1(this->m_fontcolor) = -1;\n  *((_DWORD *)this + 47) = 0;\n  this->_vftable = (void **)&off_56AEA4;\n  *((_DWORD *)this + 43) = 2;\n  LOBYTE(this->m_fontcolor) = -6;\n  *((_DWORD *)this + 17) = 1056964608;\n  return this;\n}\n"
-}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_4356C0",
+  "address": "0x004356C0",
+  "size_bytes": 67,
+  "signature": "char *()",
+  "decompiled_c": "char *sub_4356C0()\n{\n  char *result; // eax\n  char *v1; // esi\n\n  result = PalScript::GetString();\n  v1 = result;\n  if ( result )\n  {\n    sub_4226F0();\n    RoleSystem::SetActive(dword_BFDA68, g_SceneMgr.m_pCollisionNode);\n    result = (char *)sub_41D100(dword_BFDA68, *((_DWORD *)v1 + 1));\n    *((_DWORD *)dword_BFDA68 + 112) = 1;\n  }\n  return result;\n}\n"
+}

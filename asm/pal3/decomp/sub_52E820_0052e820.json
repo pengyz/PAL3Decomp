@@ -1,0 +1,7 @@
+{
+  "name": "sub_52E820",
+  "address": "0x0052E820",
+  "size_bytes": 158,
+  "signature": "char __thiscall(int this, int a2)",
+  "decompiled_c": "char __thiscall sub_52E820(int this, int a2)\n{\n  char result; // al\n  double v3; // st7\n  double v4; // st7\n  int v5; // eax\n\n  result = *(_BYTE *)(this + 308);\n  if ( result )\n  {\n    if ( *(float *)(this + 296) >= (double)*(float *)(this + 300) )\n    {\n      if ( *(float *)(this + 296) <= (double)*(float *)(this + 300) )\n        goto LABEL_8;\n      v4 = *(float *)(this + 296) - *(float *)(this + 304);\n      *(float *)(this + 296) = v4;\n      if ( v4 > *(float *)(this + 300) )\n        goto LABEL_8;\n    }\n    else\n    {\n      v3 = *(float *)(this + 304) + *(float *)(this + 296);\n      *(float *)(this + 296) = v3;\n      if ( v3 < *(float *)(this + 300) )\n      {\nLABEL_8:\n        *(float *)(this + 52) = *(float *)(this + 52) + *(float *)(this + 296);\n        return sub_52E140(this, 1);\n      }\n    }\n    v5 = *(_DWORD *)(this + 300);\n    *(_BYTE *)(this + 308) = 0;\n    *(_DWORD *)(this + 296) = v5;\n    goto LABEL_8;\n  }\n  return result;\n}\n"
+}

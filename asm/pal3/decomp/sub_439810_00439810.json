@@ -1,0 +1,7 @@
+{
+  "name": "sub_439810",
+  "address": "0x00439810",
+  "size_bytes": 62,
+  "signature": "void __thiscall(int this)",
+  "decompiled_c": "void __thiscall sub_439810(int this)\n{\n  int v2; // edi\n  _DWORD *v3; // ebx\n\n  v2 = 0;\n  if ( *(_DWORD *)(this + 292) )\n  {\n    operator delete(*(void **)(this + 292));\n    *(_DWORD *)(this + 292) = 0;\n  }\n  if ( *(int *)(this + 68) > 0 )\n  {\n    v3 = (_DWORD *)(this + 72);\n    do\n    {\n      sub_4391D0(v3);\n      ++v2;\n      v3 += 8;\n    }\n    while ( v2 < *(_DWORD *)(this + 68) );\n  }\n}\n"
+}

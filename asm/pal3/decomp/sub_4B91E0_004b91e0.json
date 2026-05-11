@@ -1,0 +1,7 @@
+{
+  "name": "sub_4B91E0",
+  "address": "0x004B91E0",
+  "size_bytes": 257,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "int __thiscall sub_4B91E0(int this, int a2)\n{\n  double v3; // st7\n  float *v4; // edx\n  int result; // eax\n  float v6; // [esp+0h] [ebp-30h]\n  float v7; // [esp+0h] [ebp-30h]\n  float v8; // [esp+0h] [ebp-30h]\n  float v9; // [esp+4h] [ebp-2Ch]\n  float v10; // [esp+Ch] [ebp-24h]\n  float v11; // [esp+10h] [ebp-20h]\n  float v12; // [esp+14h] [ebp-1Ch]\n  float v13; // [esp+1Ch] [ebp-14h]\n  float v14; // [esp+20h] [ebp-10h]\n  float v15; // [esp+24h] [ebp-Ch]\n  float v16; // [esp+28h] [ebp-8h]\n  float v17; // [esp+2Ch] [ebp-4h]\n\n  v3 = sub_4B8200(*(float *)(this + 36920), *(float *)(this + 36916));\n  v15 = v3 * *(float *)(this + 36904);\n  v16 = v3 * *(float *)(this + 36908);\n  v17 = v3 * *(float *)(this + 36912);\n  v9 = *(float *)(*(_DWORD *)(this + 36944) + 76);\n  v6 = -v9;\n  v13 = *(float *)(*(_DWORD *)(this + 36944) + 80);\n  v14 = *(float *)(*(_DWORD *)(this + 36944) + 84);\n  v10 = sub_4B8200(v6, v9) + v15;\n  v7 = -v13;\n  v11 = sub_4B8200(v7, v13) + v16;\n  v8 = -v14;\n  v12 = sub_4B8200(v8, v14) + v17;\n  v4 = (float *)(this + 92 * a2 + 120);\n  *v4 = v10;\n  result = LODWORD(v12);\n  v4[1] = v11;\n  v4[2] = v12;\n  return result;\n}\n"
+}

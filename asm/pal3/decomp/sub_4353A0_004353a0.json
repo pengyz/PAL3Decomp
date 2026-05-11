@@ -1,0 +1,7 @@
+{
+  "name": "sub_4353A0",
+  "address": "0x004353A0",
+  "size_bytes": 77,
+  "signature": "void()",
+  "decompiled_c": "void sub_4353A0()\n{\n  char *String; // esi\n  char *v1; // edi\n  char *v2; // eax\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  v2 = PalScript::GetString();\n  if ( String && v1 )\n  {\n    if ( v2 )\n    {\n      sub_41CEE0(g_GameData, (int)dword_BFDA68, *((_DWORD *)String + 1), *((_DWORD *)v1 + 1), *((_DWORD *)v2 + 1));\n      sub_434C40((int)g_GameData);\n    }\n  }\n}\n"
+}

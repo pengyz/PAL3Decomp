@@ -1,0 +1,7 @@
+{
+  "name": "sub_451850",
+  "address": "0x00451850",
+  "size_bytes": 137,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nint __thiscall sub_451850(int this)\n{\n  sub_43BB70((UIWnd *)this);\n  *(_DWORD *)(this + 76) = 0;\n  *(_DWORD *)(this + 72) = &off_56A9C0;\n  UIListBox::UpdateKeyCtrl((UIListBox *)(this + 88));\n  sub_444F60((_BYTE *)(this + 1296));\n  *(_DWORD *)this = &off_56B178;\n  *(_DWORD *)(this + 72) = &off_56B16C;\n  *(_DWORD *)(this + 80) = 0;\n  *(_DWORD *)(this + 68) = 1;\n  *(_DWORD *)(this + 84) = -1;\n  return this;\n}\n"
+}

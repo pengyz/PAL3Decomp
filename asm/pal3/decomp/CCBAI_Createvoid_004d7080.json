@@ -1,0 +1,7 @@
+{
+  "name": "CCBAI::Create(void)",
+  "address": "0x004D7080",
+  "size_bytes": 38,
+  "signature": "_DWORD *__thiscall(CCBAI *this, _DWORD *a2)",
+  "decompiled_c": "_DWORD *__thiscall CCBAI::Create(CCBAI *this, _DWORD *a2)\n{\n  memset(this, 0, sizeof(CCBAI));\n  *(_DWORD *)&this->_data[12] = a2;\n  *(_DWORD *)&this->_data[16] = a2[4];\n  *(_DWORD *)&this->_data[20] = *a2;\n  return this->_data;\n}\n"
+}

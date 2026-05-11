@@ -1,0 +1,7 @@
+{
+  "name": "sub_557CA2",
+  "address": "0x00557CA2",
+  "size_bytes": 86,
+  "signature": "void __thiscall __noreturn(EXCEPTION_POINTERS *this)",
+  "decompiled_c": "void __thiscall __noreturn sub_557CA2(EXCEPTION_POINTERS *this)\n{\n  int v1; // [esp-Ch] [ebp-24h] BYREF\n  CPPEH_RECORD ms_exc; // [esp+0h] [ebp-18h]\n\n  ms_exc.registration.ScopeTable = stru_573370;\n  ms_exc.registration.ExceptionHandler = _except_handler3;\n  ms_exc.registration.Next = (struct _EH3_EXCEPTION_REGISTRATION *)NtCurrentTeb()->NtTib.ExceptionList;\n  ms_exc.exc_ptr = this;\n  ms_exc.old_esp = (DWORD)&v1;\n  ms_exc.registration.TryLevel = 0;\n  if ( off_60ACE4 )\n  {\n    ms_exc.registration.TryLevel = 1;\n    off_60ACE4();\n  }\n  ms_exc.registration.TryLevel = -1;\n  sub_557C4C();\n}\n"
+}

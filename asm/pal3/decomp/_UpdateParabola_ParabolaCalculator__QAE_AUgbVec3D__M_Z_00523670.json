@@ -1,7 +1,0 @@
-{
-  "name": "?UpdateParabola@ParabolaCalculator@@QAE?AUgbVec3D@@M@Z",
-  "address": "0x00523670",
-  "size_bytes": 87,
-  "signature": "int __thiscall(ParabolaCalculator *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall ParabolaCalculator::UpdateParabola(ParabolaCalculator *this)\n{\n  int result; // eax\n\n  ParabolaCalculator::CalulateParabola(this);\n  result = *((_DWORD *)this + 438);\n  switch ( result )\n  {\n    case 0:\n      result = UIListBox::SetScroll((UIListBox *)this);\n      break;\n    case 1:\n      result = (*(int (__thiscall **)(_DWORD))(**((_DWORD **)this + 434) + 4))(*((_DWORD *)this + 434));\n      break;\n    case 2:\n      result = (*(int (__thiscall **)(_DWORD))(**((_DWORD **)this + 435) + 4))(*((_DWORD *)this + 435));\n      break;\n    case 3:\n      result = (*(int (__thiscall **)(_DWORD))(**((_DWORD **)this + 436) + 4))(*((_DWORD *)this + 436));\n      break;\n    case 4:\n      result = (*(int (__thiscall **)(_DWORD))(**((_DWORD **)this + 437) + 4))(*((_DWORD *)this + 437));\n      break;\n    default:\n      return result;\n  }\n  return result;\n}\n"
-}

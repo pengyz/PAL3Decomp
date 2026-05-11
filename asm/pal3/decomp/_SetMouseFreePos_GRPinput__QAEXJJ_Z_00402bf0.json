@@ -1,7 +1,0 @@
-{
-  "name": "?SetMouseFreePos@GRPinput@@QAEXJJ@Z",
-  "address": "0x00402BF0",
-  "size_bytes": 68,
-  "signature": "void __thiscall(GRPinput *this)",
-  "decompiled_c": "void __thiscall GRPinput::SetMouseFreePos(GRPinput *this)\n{\n  float m_mouseSensitivity; // eax\n  _BYTE *v3; // ecx\n  char v4; // al\n\n  this->m_lpDI = (IDirectInput8A *)&off_56A620;\n  m_mouseSensitivity = this->m_mouseSensitivity;\n  if ( m_mouseSensitivity != 0.0 )\n  {\n    v3 = (_BYTE *)(LODWORD(m_mouseSensitivity) - 1);\n    v4 = *(_BYTE *)(LODWORD(m_mouseSensitivity) - 1);\n    if ( !v4 || v4 == -1 )\n      operator delete(v3);\n    else\n      *v3 = v4 - 1;\n  }\n  this->m_mouseSensitivity = 0.0;\n  this->m_mouseMinX = 0;\n  this->m_mouseMinY = 0;\n}\n"
-}

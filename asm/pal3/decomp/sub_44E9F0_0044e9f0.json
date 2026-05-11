@@ -1,0 +1,7 @@
+{
+  "name": "sub_44E9F0",
+  "address": "0x0044E9F0",
+  "size_bytes": 278,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_44E9F0(_DWORD *this)\n{\n  int result; // eax\n  RoleSystem *v3; // ecx\n  int v4; // edi\n  int v5; // ebx\n  _DWORD *v6; // eax\n  int v7; // ecx\n  int v8; // kr00_4\n  int v9; // eax\n  float v10; // [esp+Ch] [ebp-34h] BYREF\n  float v11; // [esp+10h] [ebp-30h] BYREF\n  struct gbVec3D pOut; // [esp+14h] [ebp-2Ch] BYREF\n  _DWORD v13[4]; // [esp+20h] [ebp-20h] BYREF\n  _DWORD a2[4]; // [esp+30h] [ebp-10h] BYREF\n\n  result = this[19];\n  if ( result )\n  {\n    v3 = (RoleSystem *)this[553];\n    if ( v3 )\n    {\n      memset(&pOut, 0, sizeof(pOut));\n      RoleSystem::GetDirection(v3, &pOut.x);\n      if ( this[19] == 7 )\n        pOut.y = pOut.y - 20.0;\n      gbCamera::PointWorldToScr((gbCamera *)((char *)dword_BFDA68 + 4), &pOut, &v10, &v11);\n      v4 = (__int64)((v10 + 1.0) * (double)xRight * 0.5);\n      v5 = (__int64)((1.0 - v11) * (double)yBottom * 0.5);\n      v6 = UIWnd::SetRect((UIWnd *)&this[41 * this[19] + 20], a2);\n      v7 = v6[3] - v6[1];\n      v8 = v6[2] - *v6;\n      v9 = this[19];\n      v13[1] = v5 - v7;\n      v13[0] = v4 - v8 / 2;\n      v13[2] = v8 + v13[0];\n      v13[3] = v5;\n      return UIWnd::GetRect((UIWnd *)&this[41 * v9 + 20], v13);\n    }\n  }\n  return result;\n}\n"
+}

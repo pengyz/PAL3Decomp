@@ -1,0 +1,7 @@
+{
+  "name": "_mbtowc",
+  "address": "0x0055D3B5",
+  "size_bytes": 200,
+  "signature": "int __cdecl(wchar_t *DstCh, const char *SrcCh, size_t SrcSizeInBytes)",
+  "decompiled_c": "int __cdecl mbtowc(wchar_t *DstCh, const char *SrcCh, size_t SrcSizeInBytes)\n{\n  unsigned __int8 v3; // al\n  int result; // eax\n  bool v5; // zf\n\n  if ( !SrcCh || !SrcSizeInBytes )\n    return 0;\n  v3 = *SrcCh;\n  if ( !*SrcCh )\n  {\n    if ( DstCh )\n      *DstCh = 0;\n    return 0;\n  }\n  if ( !dword_18953A8 )\n  {\n    if ( DstCh )\n      *DstCh = v3;\n    return 1;\n  }\n  if ( *((char *)g_pVtbl_SceneMgr + 2 * v3 + 1) >= 0 )\n  {\n    if ( MultiByteToWideChar(dword_18953B8, 9u, SrcCh, 1, DstCh, DstCh != 0) )\n      return 1;\n    goto LABEL_18;\n  }\n  result = ::SrcSizeInBytes;\n  if ( (int)::SrcSizeInBytes > 1 )\n  {\n    if ( (int)SrcSizeInBytes >= (int)::SrcSizeInBytes )\n    {\n      v5 = MultiByteToWideChar(dword_18953B8, 9u, SrcCh, ::SrcSizeInBytes, DstCh, DstCh != 0) == 0;\n      result = ::SrcSizeInBytes;\n      if ( !v5 )\n        return result;\n      goto LABEL_16;\n    }\nLABEL_18:\n    dword_189533C = 42;\n    return -1;\n  }\nLABEL_16:\n  if ( SrcSizeInBytes < result || !SrcCh[1] )\n    goto LABEL_18;\n  return result;\n}\n"
+}

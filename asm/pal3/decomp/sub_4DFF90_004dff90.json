@@ -1,0 +1,7 @@
+{
+  "name": "sub_4DFF90",
+  "address": "0x004DFF90",
+  "size_bytes": 81,
+  "signature": "int __thiscall(_DWORD *this, char a2)",
+  "decompiled_c": "// likely CCBStage method (near ProcShowCombatDialog, Reset, IsTaskValidButNotFini)\nint __thiscall sub_4DFF90(_DWORD *this, char a2)\n{\n  int result; // eax\n\n  this[70 * this[4] + 5] = 6;\n  this[70 * this[4] + 70] = this[2];\n  HIBYTE(this[70 * this[4] + 70]) = a2;\n  result = this[4] + 1;\n  this[4] = result;\n  return result;\n}\n"
+}

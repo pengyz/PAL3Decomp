@@ -1,0 +1,7 @@
+{
+  "name": "sub_437120",
+  "address": "0x00437120",
+  "size_bytes": 70,
+  "signature": "void()",
+  "decompiled_c": "void sub_437120()\n{\n  char *String; // eax\n  _DWORD *v1; // eax\n  _DWORD *v2; // eax\n\n  String = PalScript::GetString();\n  if ( String )\n  {\n    dword_DBA248 = *((_DWORD *)String + 1);\n    sub_44F610((int)&dword_DB9FD0, 10);\n    v1 = (_DWORD *)operator new(0xCu);\n    if ( v1 )\n    {\n      v2 = sub_434CA0(v1, 10);\n      sub_434C40((int)v2);\n    }\n    else\n    {\n      sub_434C40(0);\n    }\n  }\n}\n"
+}

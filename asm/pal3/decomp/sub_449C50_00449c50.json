@@ -1,0 +1,7 @@
+{
+  "name": "sub_449C50",
+  "address": "0x00449C50",
+  "size_bytes": 154,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_449C50(_DWORD *this)\n{\n  int v2; // ebp\n  _DWORD *v3; // esi\n  int v4; // eax\n  int v5; // eax\n  int v7; // [esp+Ch] [ebp-4h]\n\n  v7 = 0;\n  v2 = 38;\n  v3 = this + 152;\n  do\n  {\n    if ( *((_BYTE *)v3 - 96) )\n    {\n      v4 = *(v3 - 13);\n      if ( v4 >= this[20] - this[18]\n        || v4 <= -*(v3 - 5)\n        || (v5 = *(v3 - 11), v5 >= this[21] - this[19])\n        || v5 <= -*(v3 - 4) )\n      {\n        if ( *((_BYTE *)v3 + 376) )\n        {\n          (*(void (__thiscall **)(_DWORD *, _DWORD))*v3)(v3, 0);\n          *((_BYTE *)v3 + 377) = 0;\n        }\n      }\n      else\n      {\n        if ( *((_BYTE *)v3 + 376) )\n        {\n          (*(void (__thiscall **)(_DWORD *, int))*v3)(v3, 1);\n          *((_BYTE *)v3 + 377) = 1;\n        }\n        ++v7;\n      }\n    }\n    v3 += 119;\n    --v2;\n  }\n  while ( v2 );\n  return v7;\n}\n"
+}

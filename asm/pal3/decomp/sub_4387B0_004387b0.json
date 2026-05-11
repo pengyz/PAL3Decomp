@@ -1,0 +1,7 @@
+{
+  "name": "sub_4387B0",
+  "address": "0x004387B0",
+  "size_bytes": 23,
+  "signature": "char()",
+  "decompiled_c": "char sub_4387B0()\n{\n  char *String; // eax\n\n  String = PalScript::GetString();\n  if ( String )\n  {\n    LOBYTE(String) = *((_DWORD *)String + 1) != 0;\n    byte_BFDA40 = (char)String;\n  }\n  return (char)String;\n}\n"
+}

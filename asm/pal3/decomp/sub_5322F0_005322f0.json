@@ -1,0 +1,7 @@
+{
+  "name": "sub_5322F0",
+  "address": "0x005322F0",
+  "size_bytes": 111,
+  "signature": "int __thiscall(void (__thiscall ***this)(int, int), int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_5322F0(void (__thiscall ***this)(int, int), int a2, int a3)\n{\n  void (__thiscall ***v4)(int, int); // esi\n  int v5; // edi\n\n  v4 = this + 747;\n  v5 = 10;\n  do\n  {\n    (**(v4 - 380))((int)(v4 - 380), 0);\n    (**v4)((int)v4, 0);\n    v4 += 38;\n    --v5;\n  }\n  while ( v5 );\n  (*this[38 * a2 + 367])((int)&this[38 * a2 + 367], 1);\n  return ((int (__thiscall *)(_DWORD, int))*this[38 * a3 + 747])(&this[38 * a3 + 747], 1);\n}\n"
+}

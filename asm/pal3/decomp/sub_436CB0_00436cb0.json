@@ -1,0 +1,7 @@
+{
+  "name": "sub_436CB0",
+  "address": "0x00436CB0",
+  "size_bytes": 107,
+  "signature": "char *()",
+  "decompiled_c": "char *sub_436CB0()\n{\n  char *result; // eax\n  char *v1; // esi\n  _DWORD *v2; // eax\n  int *v3; // eax\n\n  result = PalScript::GetString();\n  v1 = result;\n  if ( result )\n  {\n    if ( dword_DBD898 == 7 )\n    {\n      v2 = (_DWORD *)CGameData::SetMode(&dword_DB9FD0, 7);\n      v3 = (int *)sub_523E70(v2);\n    }\n    else\n    {\n      v3 = &dword_D92788;\n    }\n    result = (char *)v3[2];\n    switch ( (unsigned int)result )\n    {\n      case 0u:\n        *((_DWORD *)v1 + 1) = 0;\n        break;\n      case 1u:\n        *((_DWORD *)v1 + 1) = 1;\n        break;\n      case 2u:\n        *((_DWORD *)v1 + 1) = 2;\n        break;\n      case 3u:\n        *((_DWORD *)v1 + 1) = 3;\n        break;\n      case 4u:\n        *((_DWORD *)v1 + 1) = 4;\n        break;\n      default:\n        return result;\n    }\n  }\n  return result;\n}\n"
+}

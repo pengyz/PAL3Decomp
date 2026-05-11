@@ -1,0 +1,7 @@
+{
+  "name": "sub_4CDA00",
+  "address": "0x004CDA00",
+  "size_bytes": 8,
+  "signature": "char *__thiscall(char *this, char a2)",
+  "decompiled_c": "// likely CEffMeteor method (near CreateTask, ~CEffMeteor, Create, Init, CEffMeteor)\nchar *__thiscall sub_4CDA00(char *this, char a2)\n{\n  char *v2; // esi\n\n  v2 = this - 12;\n  CEffMeteor::~CEffMeteor((CEffMeteor *)(this - 12));\n  if ( (a2 & 1) != 0 )\n    operator delete(v2);\n  return v2;\n}\n"
+}

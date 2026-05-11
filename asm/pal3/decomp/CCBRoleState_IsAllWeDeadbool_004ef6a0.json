@@ -1,0 +1,7 @@
+{
+  "name": "CCBRoleState::IsAllWeDead(bool)",
+  "address": "0x004EF6A0",
+  "size_bytes": 28,
+  "signature": "int __thiscall(CCBRoleState *this, int a2)",
+  "decompiled_c": "int __thiscall CCBRoleState::IsAllWeDead(CCBRoleState *this, int a2)\n{\n  return *(_DWORD *)&this->m_Role[a2].byMagicUseTime[102];\n}\n"
+}

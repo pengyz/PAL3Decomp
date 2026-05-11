@@ -1,0 +1,7 @@
+{
+  "name": "sub_53EA60",
+  "address": "0x0053EA60",
+  "size_bytes": 30,
+  "signature": "void __thiscall(int this)",
+  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nvoid __thiscall sub_53EA60(int this)\n{\n  char *v1; // eax\n\n  if ( *(_DWORD *)(this + 16) )\n  {\n    v1 = *(char **)(this + 12);\n    if ( !v1 )\n      v1 = (char *)&dword_56A634;\n    sub_53E740((gbAudioManager **)this, v1, *(gbAudioManager **)(this + 24));\n  }\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_5310C0",
+  "address": "0x005310C0",
+  "size_bytes": 157,
+  "signature": "void __thiscall(void *this, float a2)",
+  "decompiled_c": "void __thiscall sub_5310C0(void *this, float a2)\n{\n  double v3; // st7\n  void *v4; // ecx\n\n  if ( *((float *)this + 165) > 0.0 )\n  {\n    v3 = *((float *)this + 165) - a2 * 0.5;\n    *((float *)this + 165) = v3;\n    if ( v3 < 0.0 )\n    {\n      v4 = *(void **)this;\n      *((_DWORD *)this + 165) = 0;\n      Actor::CompareAction(v4, 0, 0);\n    }\n  }\n  if ( sub_52F330(*(_DWORD **)(*((_DWORD *)this + 145) + 1312))\n    && *((float *)this + 165) == 0.0\n    && !*((_BYTE *)this + 706) )\n  {\n    sub_532410(*((_DWORD *)this + 145), *((_BYTE *)this + 770));\n    *((_BYTE *)this + 706) = 1;\n  }\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_4BE590",
+  "address": "0x004BE590",
+  "size_bytes": 51,
+  "signature": "ScreenEffect *__cdecl()",
+  "decompiled_c": "// likely ScreenEffect method (near ScreenEffect)\nScreenEffect *__cdecl sub_4BE590()\n{\n  if ( (byte_DE7E90 & 1) == 0 )\n  {\n    byte_DE7E90 |= 1u;\n    ScreenEffect::ScreenEffect(&stru_DE7DF8);\n    atexit(unknown_libname_144);\n  }\n  return &stru_DE7DF8;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_4B2750",
+  "address": "0x004B2750",
+  "size_bytes": 227,
+  "signature": "FILE *__userpurge@<eax>(_DWORD *this@<ecx>, double a2@<st0>, int Data)",
+  "decompiled_c": "FILE *__userpurge sub_4B2750@<eax>(_DWORD *this@<ecx>, double a2@<st0>, int Data)\n{\n  int *v4; // eax\n  FILE *v5; // edi\n  void *v7; // esi\n  char Buffer[125]; // [esp+10h] [ebp-80h] BYREF\n  __int16 v9; // [esp+8Dh] [ebp-3h]\n  char v10; // [esp+8Fh] [ebp-1h]\n\n  sub_44F610((int)&dword_DB9FD0, 0);\n  v4 = sub_5394F0();\n  v5 = sub_537A90(v4, a2, Data);\n  if ( v5 )\n  {\n    v7 = g_pMiniGame3;\n    if ( g_pMiniGame3 )\n    {\n      sub_534FB0((void **)g_pMiniGame3);\n      operator delete(v7);\n      g_pMiniGame3 = 0;\n      byte_BFDA88 = 0;\n      dword_5A3748 = 1;\n      dword_DC1100 = 0;\n    }\n    sub_4B2840(aSoftwareSoftst_0, (DWORD)aSeek, Data);\n    return v5;\n  }\n  else\n  {\n    memset(Buffer, 0, sizeof(Buffer));\n    v9 = 0;\n    v10 = 0;\n    sprintf(Buffer, \"\\\\n            %s\", (const char *)dword_DDB83C);\n    UIWnd::SetEnable((UIWnd *)(this + 72052), Buffer, 0);\n    sub_4A1530((int)(this + 71938), 1);\n    return 0;\n  }\n}\n"
+}

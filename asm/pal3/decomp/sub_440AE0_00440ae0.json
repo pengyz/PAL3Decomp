@@ -1,0 +1,7 @@
+{
+  "name": "sub_440AE0",
+  "address": "0x00440AE0",
+  "size_bytes": 187,
+  "signature": "OpenNULLFile *__thiscall(_DWORD *this, LPCSTR lpString, char a3)",
+  "decompiled_c": "// likely Parent_Data method (near spstr, Parent_Data, _CheckStr, GetSize, _CheckKeyW)\nOpenNULLFile *__thiscall sub_440AE0(_DWORD *this, LPCSTR lpString, char a3)\n{\n  gbRefObject *v4; // ecx\n  int v5; // ebx\n  CHAR *v6; // eax\n  gbTexture *v7; // ecx\n  OpenBaseFile v9; // [esp+8h] [ebp-10h] BYREF\n  int v10; // [esp+14h] [ebp-4h]\n\n  OpenBaseFile::OpenBaseFile(&v9);\n  v4 = (gbRefObject *)this[22];\n  v10 = 0;\n  if ( v4 )\n    gbRefObject::Release(v4);\n  if ( a3 )\n  {\n    v5 = *(_DWORD *)gfxMgr->_data;\n    v6 = _Texture_Info::_CalculateUV((int)dword_1894B78, lpString);\n    this[22] = (*(int (__thiscall **)(gbGfxManager *, CHAR *))(v5 + 8))(gfxMgr, v6);\n    this[24] = Parent_Data::Parent_Data((Parent_Data *)dword_1894B78, lpString);\n  }\n  else\n  {\n    this[22] = (*(int (__thiscall **)(gbGfxManager *, LPCSTR))(*(_DWORD *)gfxMgr->_data + 8))(gfxMgr, lpString);\n  }\n  v7 = (gbTexture *)this[22];\n  if ( v7 )\n    gbTexture::LoadTexture(v7, 1);\n  v10 = -1;\n  return (OpenNULLFile *)OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v9);\n}\n"
+}

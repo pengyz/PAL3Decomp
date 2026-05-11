@@ -1,0 +1,7 @@
+{
+  "name": "exception::exception(char const * const &)",
+  "address": "0x005551D7",
+  "size_bytes": 61,
+  "signature": "exception *__thiscall(exception *this, const char **a2)",
+  "decompiled_c": "exception *__thiscall exception::exception(exception *this, const char **a2)\n{\n  size_t v3; // eax\n  char *v4; // eax\n\n  this->_m_what = (char *)&exception::`vftable';\n  v3 = strlen(*a2);\n  v4 = (char *)operator new(v3 + 1);\n  this->_m_doFree = (int)v4;\n  if ( v4 )\n    strcpy(v4, *a2);\n  this[1]._m_what = (char *)1;\n  return this;\n}\n"
+}

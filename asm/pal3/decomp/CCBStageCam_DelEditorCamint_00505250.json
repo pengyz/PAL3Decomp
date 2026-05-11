@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageCam::DelEditorCam(int)",
+  "address": "0x00505250",
+  "size_bytes": 52,
+  "signature": "char __thiscall(CCBStageCam *this, int a2)",
+  "decompiled_c": "char __thiscall CCBStageCam::DelEditorCam(CCBStageCam *this, int a2)\n{\n  int v2; // edx\n  char *v3; // eax\n  int v4; // esi\n\n  v2 = 50;\n  v3 = &this[109]._pad_000[200 * a2 + 923];\n  do\n  {\n    v4 = *(_DWORD *)v3;\n    v3 += 4;\n    --v2;\n    this[108]._pad_000[v4 + 2676] = 0;\n    *((_DWORD *)v3 - 1) = -1;\n  }\n  while ( v2 );\n  return 1;\n}\n"
+}

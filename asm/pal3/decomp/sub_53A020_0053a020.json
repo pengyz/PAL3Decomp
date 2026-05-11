@@ -1,0 +1,7 @@
+{
+  "name": "sub_53A020",
+  "address": "0x0053A020",
+  "size_bytes": 52,
+  "signature": "char __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "char __thiscall sub_53A020(_DWORD *this, int a2)\n{\n  int v2; // edx\n  unsigned int i; // eax\n\n  v2 = this[9];\n  for ( i = 0; v2 && i < (this[10] - v2) >> 2; ++i )\n  {\n    if ( *(_DWORD *)(this[9] + 4 * i) == a2 )\n      return 1;\n  }\n  return 0;\n}\n"
+}

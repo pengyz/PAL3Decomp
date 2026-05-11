@@ -1,0 +1,7 @@
+{
+  "name": "sub_44A970",
+  "address": "0x0044A970",
+  "size_bytes": 161,
+  "signature": "OpenNULLFile *__thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "// likely OpenNULLFile method (near OpenNULLFile)\nOpenNULLFile *__thiscall sub_44A970(_DWORD *this, int a2, int a3)\n{\n  gbTexture *v4; // eax\n  int v5; // ecx\n  int v6; // edx\n  void (__thiscall **v7)(_DWORD *, int); // eax\n  OpenBaseFile v9; // [esp+Ch] [ebp-10h] BYREF\n  int v10; // [esp+18h] [ebp-4h]\n\n  (*(void (__thiscall **)(_DWORD *))(*this + 12))(this);\n  this[21] = 42;\n  this[20] = a3;\n  OpenBaseFile::OpenBaseFile(&v9);\n  v10 = 0;\n  v4 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_data + 8))(gfxMgr, a2);\n  this[19] = v4;\n  gbTexture::LoadTexture(v4, 1);\n  v5 = this[19];\n  v6 = this[5];\n  this[23] = 0;\n  this[22] = 0;\n  v7 = (void (__thiscall **)(_DWORD *, int))*this;\n  this[7] = *(_DWORD *)(v5 + 28) + v6;\n  (*v7)(this, 1);\n  v10 = -1;\n  return (OpenNULLFile *)OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v9);\n}\n"
+}

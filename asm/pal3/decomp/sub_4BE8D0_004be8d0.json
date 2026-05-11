@@ -1,0 +1,7 @@
+{
+  "name": "sub_4BE8D0",
+  "address": "0x004BE8D0",
+  "size_bytes": 32,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "// likely ScreenEffect method (near ScreenEffect)\nint __thiscall sub_4BE8D0(int this)\n{\n  RenderTarget::Destroy((RenderTarget *)this);\n  *(_DWORD *)this = &off_56F510;\n  *(_DWORD *)(this + 12) = 1075838976;\n  *(_DWORD *)(this + 24) = 1;\n  return this;\n}\n"
+}

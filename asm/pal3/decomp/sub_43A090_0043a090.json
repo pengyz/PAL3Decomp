@@ -1,0 +1,7 @@
+{
+  "name": "sub_43A090",
+  "address": "0x0043A090",
+  "size_bytes": 76,
+  "signature": "void __thiscall(int this, int a2, float a3)",
+  "decompiled_c": "void __thiscall sub_43A090(int this, int a2, float a3)\n{\n  double v3; // st7\n  double v4; // st6\n\n  v3 = a3 + *(float *)(this + 248);\n  *(_DWORD *)(this + 236) = a2;\n  *(float *)(this + 252) = v3;\n  v4 = v3 * 0.0027777778 * 360.0;\n  if ( v3 > v4 )\n    *(float *)(this + 252) = 360.0 - (v3 - v4) + v3;\n}\n"
+}

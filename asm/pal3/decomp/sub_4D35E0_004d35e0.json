@@ -1,0 +1,7 @@
+{
+  "name": "sub_4D35E0",
+  "address": "0x004D35E0",
+  "size_bytes": 114,
+  "signature": "int __thiscall(int this, int a2)",
+  "decompiled_c": "int __thiscall sub_4D35E0(int this, int a2)\n{\n  int v2; // eax\n  int v3; // edx\n  double v4; // st7\n  double v5; // st6\n  float *v6; // esi\n\n  v2 = *(_DWORD *)(this + 24) + 152 * *(_DWORD *)(this + 28);\n  v3 = *(_DWORD *)v2 + 72 * *(_DWORD *)(this + 32);\n  if ( !*(_BYTE *)(v3 + 65) )\n  {\n    v4 = *(float *)(v2 + 28);\n    v5 = *(float *)(v2 + 32);\n    v6 = *(float **)(*(_DWORD *)(*(_DWORD *)(*(_DWORD *)(this + 4) + 4) + 20) + 16);\n    v6[107519] = *(float *)(v2 + 24);\n    v6[107521] = v5;\n    v6[107520] = v4;\n    *(_BYTE *)(v3 + 65) = 1;\n  }\n  if ( *(_BYTE *)(v3 + 66) == 1 || *(float *)(this + 16) - *(float *)(v3 + 16) >= *(float *)(v3 + 24) )\n    *(_DWORD *)(v3 + 8) = 4;\n  return 0;\n}\n"
+}

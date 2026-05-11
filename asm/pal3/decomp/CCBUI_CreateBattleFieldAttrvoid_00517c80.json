@@ -1,0 +1,7 @@
+{
+  "name": "CCBUI::CreateBattleFieldAttr(void)",
+  "address": "0x00517C80",
+  "size_bytes": 104,
+  "signature": "char __thiscall(CCBUI *this)",
+  "decompiled_c": "char __thiscall CCBUI::CreateBattleFieldAttr(CCBUI *this)\n{\n  char *v2; // esi\n  char result; // al\n  CCBParabolaWindow ***v4; // ecx\n  int a2; // [esp+8h] [ebp-10h] BYREF\n  int v6; // [esp+Ch] [ebp-Ch]\n  int v7; // [esp+10h] [ebp-8h]\n  int v8; // [esp+14h] [ebp-4h]\n\n  v2 = &this->_data[1136];\n  result = CCBLineupWindow::~CCBLineupWindow((CCBLineupWindow *)this, (CCBItemWindow **)&this->_data[1136]);\n  if ( result )\n  {\n    v6 = 0;\n    v7 = 0;\n    v4 = *(CCBParabolaWindow ****)v2;\n    a2 = 9;\n    v7 = 239;\n    v6 = 232;\n    v8 = 482;\n    CCBParabolaWindow::CCBParabolaWindow(v4, &a2, (int)this);\n    (***(void (__thiscall ****)(_DWORD, _DWORD))v2)(*(_DWORD *)v2, 0);\n    return 1;\n  }\n  return result;\n}\n"
+}

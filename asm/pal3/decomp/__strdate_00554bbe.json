@@ -1,7 +1,0 @@
-{
-  "name": "__strdate",
-  "address": "0x00554BBE",
-  "size_bytes": 132,
-  "signature": "char *__cdecl(char *Buffer)",
-  "decompiled_c": "char *__cdecl _strdate(char *Buffer)\n{\n  int v1; // edx\n  int v2; // edi\n  int v3; // eax\n  int v4; // eax\n  int v5; // eax\n  unsigned __int16 SystemTime; // [esp+Ch] [ebp-14h] BYREF\n  unsigned __int16 SystemTime_2; // [esp+Eh] [ebp-12h]\n  unsigned __int16 SystemTime_6; // [esp+12h] [ebp-Eh]\n  int v10; // [esp+1Ch] [ebp-4h]\n\n  GetLocalTime((LPSYSTEMTIME)&SystemTime);\n  v1 = SystemTime % 100;\n  v2 = SystemTime_2;\n  v3 = SystemTime_2;\n  Buffer[8] = 0;\n  Buffer[5] = 47;\n  Buffer[2] = 47;\n  v10 = v1;\n  *Buffer = v3 / 10 + 48;\n  v4 = SystemTime_6;\n  Buffer[1] = v2 % 10 + 48;\n  Buffer[3] = v4 / 10 + 48;\n  v5 = v10;\n  Buffer[4] = SystemTime_6 % 10 + 48;\n  Buffer[6] = v5 / 10 + 48;\n  Buffer[7] = v10 % 10 + 48;\n  return Buffer;\n}\n"
-}

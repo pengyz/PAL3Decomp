@@ -1,0 +1,7 @@
+{
+  "name": "sub_4FA280",
+  "address": "0x004FA280",
+  "size_bytes": 143,
+  "signature": "int __stdcall(int a1, int a2)",
+  "decompiled_c": "int __stdcall sub_4FA280(int a1, int a2)\n{\n  double v2; // st7\n  long double v3; // st7\n  float v5; // [esp+0h] [ebp-4h]\n  float v6; // [esp+10h] [ebp+Ch]\n\n  v2 = (double)a2;\n  v6 = 0.0;\n  v5 = v2;\n  switch ( a1 )\n  {\n    case 0:\n      v3 = sqrt(v5) * 9.0 + 8.0;\n      goto LABEL_7;\n    case 1:\n      v3 = sqrt(v5) * 9.0 + 6.0;\n      goto LABEL_7;\n    case 2:\n      v3 = sqrt(v5) * 9.0 + 7.0;\n      goto LABEL_7;\n    case 3:\n      v3 = sqrt(v5) * 9.0 + 5.0;\n      goto LABEL_7;\n    case 4:\n      v3 = (sqrt(v5) + 1.0) * 9.0;\nLABEL_7:\n      v6 = v3;\n      break;\n    default:\n      return (int)v6;\n  }\n  return (int)v6;\n}\n"
+}

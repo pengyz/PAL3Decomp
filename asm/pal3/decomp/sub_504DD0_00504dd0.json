@@ -1,0 +1,7 @@
+{
+  "name": "sub_504DD0",
+  "address": "0x00504DD0",
+  "size_bytes": 74,
+  "signature": "CCBStageCam *__thiscall(CCBStageCam *this)",
+  "decompiled_c": "// likely CCBStageCam method (near ClearFinishedTask, ~CCBStageCam, Reset, SwitchEdit)\nCCBStageCam *__thiscall sub_504DD0(CCBStageCam *this)\n{\n  int v2; // edx\n  char *v3; // eax\n\n  v2 = 2000;\n  v3 = &this->_pad_000[40];\n  do\n  {\n    *((_DWORD *)v3 - 2) = 0;\n    *((_DWORD *)v3 - 1) = 0;\n    *(_DWORD *)v3 = 0;\n    *((_DWORD *)v3 + 1) = 0;\n    *((_DWORD *)v3 + 2) = 0;\n    *((_DWORD *)v3 + 3) = 0;\n    *((_DWORD *)v3 + 4) = 0;\n    *((_DWORD *)v3 + 5) = 0;\n    *((_DWORD *)v3 + 6) = 0;\n    *((_DWORD *)v3 + 7) = 0;\n    *((_DWORD *)v3 + 8) = 0;\n    *((_DWORD *)v3 + 9) = 0;\n    v3 += 204;\n    --v2;\n  }\n  while ( v2 );\n  sub_504E30((int)this);\n  sub_504E60(this);\n  return this;\n}\n"
+}

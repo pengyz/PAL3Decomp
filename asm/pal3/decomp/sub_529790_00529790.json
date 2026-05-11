@@ -1,0 +1,7 @@
+{
+  "name": "sub_529790",
+  "address": "0x00529790",
+  "size_bytes": 213,
+  "signature": "void __thiscall(UIWnd *this)",
+  "decompiled_c": "// likely UIRenderObj method (near ~UIRenderObj, UIRenderObj)\nvoid __thiscall sub_529790(UIWnd *this)\n{\n  int *v2; // eax\n\n  this->m_fontcolor.ColorQuadFmt = (int)&off_57076C;\n  v2 = sub_5415F0();\n  UIRenderObj::~UIRenderObj((UIRenderObj *)v2, 1u);\n  sub_445010((std::ios_base *)&this[24].m_benable);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)&this[23]);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)&this[17].m_bfocus);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)&this[16].m_fontcolor.Blue);\n  sub_444AC0((std::ios_base *)&this[13].m_id);\n  `eh vector destructor iterator'((char *)&this[6].m_rect.top, 0xB8u, 3, (void (__thiscall *)(void *))sub_442E80);\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)&this[4].m_rect.bottom);\n  UIWnd::~UIWnd((UIListBox *)this);\n}\n"
+}

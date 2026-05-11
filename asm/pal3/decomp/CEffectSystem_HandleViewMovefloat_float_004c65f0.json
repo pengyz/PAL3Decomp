@@ -1,0 +1,7 @@
+{
+  "name": "CEffectSystem::HandleViewMove(float,float)",
+  "address": "0x004C65F0",
+  "size_bytes": 124,
+  "signature": "void __userpurge(CEffectSystem *this@<ecx>, float a2, float a3)",
+  "decompiled_c": "void __userpurge CEffectSystem::HandleViewMove(CEffectSystem *this@<ecx>, float a2, float a3)\n{\n  int v4; // eax\n  gbCamera *v5; // ecx\n\n  if ( this->_data[5] && this->_data[4] )\n  {\n    if ( a2 != 0.0 )\n      *(float *)&this->_data[8] = a2;\n    v4 = *(_DWORD *)&this->_data[52] & 7;\n    *(_DWORD *)&this->_data[56] = v4;\n    (*(void (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_data + 92))(gfxMgr, &this->_data[96 * v4 + 60]);\n    (*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, int, int, int, _DWORD))(**(_DWORD **)&gfxMgr[1]._data[296] + 172))(\n      *(_DWORD *)&gfxMgr[1]._data[296],\n      0,\n      0,\n      3,\n      -16777216,\n      1065353216,\n      0);\n    v5 = *(gbCamera **)&this->_data[8];\n    if ( v5 )\n      gbCamera::SetDimention(v5, 256, 192);\n  }\n}\n"
+}

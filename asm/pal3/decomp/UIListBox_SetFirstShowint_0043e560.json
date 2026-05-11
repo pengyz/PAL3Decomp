@@ -1,0 +1,7 @@
+{
+  "name": "UIListBox::SetFirstShow(int)",
+  "address": "0x0043E560",
+  "size_bytes": 90,
+  "signature": "int __thiscall(_DWORD *this, char *Source, int a3)",
+  "decompiled_c": "int __thiscall UIListBox::SetFirstShow(_DWORD *this, char *Source, int a3)\n{\n  int result; // eax\n\n  strncpy((char *)&this[21 * this[108] + 109], Source, 0x40u);\n  this[21 * this[108] + 129] = a3;\n  result = this[108] + 1;\n  this[108] = result;\n  return result;\n}\n"
+}

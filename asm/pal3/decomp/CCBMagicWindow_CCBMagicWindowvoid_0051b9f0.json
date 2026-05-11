@@ -1,0 +1,7 @@
+{
+  "name": "CCBMagicWindow::CCBMagicWindow(void)",
+  "address": "0x0051B9F0",
+  "size_bytes": 178,
+  "signature": "char __thiscall(CCBMagicWindow **this, int a2, int a3, _DWORD *a4)",
+  "decompiled_c": "char __thiscall CCBMagicWindow::CCBMagicWindow(CCBMagicWindow **this, int a2, int a3, _DWORD *a4)\n{\n  int v4; // eax\n  int *v5; // eax\n  char result; // al\n  int v7; // [esp-14h] [ebp-40h]\n  int v8; // [esp-10h] [ebp-3Ch]\n  int v9; // [esp-Ch] [ebp-38h]\n  int v10; // [esp-8h] [ebp-34h]\n  _DWORD v11[4]; // [esp+Ch] [ebp-20h] BYREF\n  _DWORD v12[4]; // [esp+1Ch] [ebp-10h] BYREF\n\n  v4 = dword_57024C[a2];\n  v7 = v4 + 9;\n  v8 = dword_570268[a2] + 232;\n  v9 = v4 + 49;\n  v10 = dword_570268[a2] + 270;\n  v5 = UIWnd::SetRect((UIWnd *)this[a3 + 24], v12);\n  if ( CCBLineupWindow::SetFaceLineup(*v5, v5[1], v5[2], v5[3], v7, v8, v9, v10, v11) )\n  {\n    *a4 = (v11[3] - v11[1]) * (v11[2] - v11[0]);\n    return 1;\n  }\n  else\n  {\n    result = 0;\n    *a4 = 0;\n  }\n  return result;\n}\n"
+}

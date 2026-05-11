@@ -1,0 +1,7 @@
+{
+  "name": "PalScriptMgr::Update(float)",
+  "address": "0x004320A0",
+  "size_bytes": 201,
+  "signature": "void __cdecl(const char *a1)",
+  "decompiled_c": "void __cdecl PalScriptMgr::Update(const char *a1)\n{\n  int v1; // eax\n  unsigned int v2; // kr04_4\n  unsigned int v3; // ebp\n  char *v4; // edi\n  char v5; // al\n  int v6; // [esp+0h] [ebp-Ch]\n\n  PtrArray::InsertAt((PtrArray *)dword_D8C308, a1);\n  if ( v1 )\n  {\n    v2 = strlen(a1) + 1;\n    v3 = v2 - 1;\n    if ( v2 - 1 > 0xFFFFFFFD )\n      std::_Xlen(v6);\n    v4 = (char *)dword_D8C2BC;\n    if ( dword_D8C2BC && (v5 = *(_BYTE *)(dword_D8C2BC - 1)) != 0 && v5 != -1 )\n    {\n      if ( v2 == 1 )\n      {\n        *(_BYTE *)(dword_D8C2BC - 1) = v5 - 1;\n        dword_D8C2BC = 0;\n        dword_D8C2C0 = 0;\n        dword_D8C2C4 = 0;\n        return;\n      }\n    }\n    else\n    {\n      if ( v2 == 1 )\n      {\n        std::string::_Tidy(&byte_D8C2B8, 1);\n        return;\n      }\n      if ( (unsigned int)dword_D8C2C4 <= 0x1F && dword_D8C2C4 >= v2 - 1 )\n        goto LABEL_15;\n      std::string::_Tidy(&byte_D8C2B8, 1);\n    }\n    GRPinput::GetKeyState((GRPinput *)&byte_D8C2B8, v3);\n    v4 = (char *)dword_D8C2BC;\nLABEL_15:\n    qmemcpy(v4, a1, v3);\n    dword_D8C2C0 = v2 - 1;\n    *(_BYTE *)(dword_D8C2BC + v3) = 0;\n  }\n}\n"
+}

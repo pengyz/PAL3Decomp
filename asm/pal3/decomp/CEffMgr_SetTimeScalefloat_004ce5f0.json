@@ -1,0 +1,7 @@
+{
+  "name": "CEffMgr::SetTimeScale(float)",
+  "address": "0x004CE5F0",
+  "size_bytes": 156,
+  "signature": "int __thiscall(CEffMgr *this, float a2)",
+  "decompiled_c": "int __thiscall CEffMgr::SetTimeScale(CEffMgr *this, float a2)\n{\n  int v2; // esi\n  int v3; // ebx\n  int *v4; // edx\n  int v5; // eax\n  int *v6; // ecx\n  int result; // eax\n  CHAR Text[256]; // [esp+Ch] [ebp-100h] BYREF\n\n  v2 = dword_174D354[70 * LODWORD(a2)];\n  if ( v2 )\n  {\n    v3 = 0;\n    v4 = dword_EC9E74;\n    while ( 2 )\n    {\n      v5 = 0;\n      v6 = v4;\n      do\n      {\n        if ( *v6 == v2 )\n        {\n          sprintf(Text, &byte_5D55AC, v3, v5);\n          return MessageBoxA(0, Text, Caption, 0);\n        }\n        ++v5;\n        ++v6;\n      }\n      while ( v5 < 16 );\n      v4 += 3985;\n      ++v3;\n      if ( (int)v4 < (int)dword_174D334 )\n        continue;\n      break;\n    }\n  }\n  result = 0;\n  memset(&dword_174D330[70 * LODWORD(a2)], 0, 0x118u);\n  return result;\n}\n"
+}

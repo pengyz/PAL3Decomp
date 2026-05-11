@@ -1,0 +1,7 @@
+{
+  "name": "sub_4375E0",
+  "address": "0x004375E0",
+  "size_bytes": 36,
+  "signature": "char *()",
+  "decompiled_c": "char *sub_4375E0()\n{\n  char *String; // esi\n  char *result; // eax\n\n  String = PalScript::GetString();\n  result = PalScript::GetString();\n  if ( String )\n  {\n    if ( result )\n    {\n      result = (char *)*((_DWORD *)result + 1);\n      *((_DWORD *)String + 1) = dword_C04334[(_DWORD)result];\n    }\n  }\n  return result;\n}\n"
+}

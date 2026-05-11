@@ -1,0 +1,7 @@
+{
+  "name": "sub_41C670",
+  "address": "0x0041C670",
+  "size_bytes": 145,
+  "signature": "float *__thiscall(float *this, float *a2, float a3, float a4, float a5)",
+  "decompiled_c": "float *__thiscall sub_41C670(float *this, float *a2, float a3, float a4, float a5)\n{\n  long double v5; // st7\n  float *result; // eax\n  double v7; // st6\n  long double v8; // st7\n  float v9; // [esp+0h] [ebp-18h]\n  float v10; // [esp+0h] [ebp-18h]\n  float v11; // [esp+4h] [ebp-14h]\n  float v12; // [esp+4h] [ebp-14h]\n  float v13; // [esp+8h] [ebp-10h]\n  float v14; // [esp+Ch] [ebp-Ch]\n  float v15; // [esp+10h] [ebp-8h]\n\n  v5 = cos(this[113]);\n  result = a2;\n  v9 = sin(this[114]) * v5;\n  v11 = sin(this[113]);\n  v7 = this[117];\n  v14 = v7 * v9;\n  v15 = v7 * v11;\n  v8 = -(v5 * cos(this[114])) * v7;\n  v10 = a3 - v14;\n  *a2 = v10;\n  v12 = a4 - v15;\n  a2[1] = v12;\n  v13 = a5 - v8;\n  a2[2] = v13;\n  return result;\n}\n"
+}

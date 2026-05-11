@@ -1,0 +1,7 @@
+{
+  "name": "sub_42C810",
+  "address": "0x0042C810",
+  "size_bytes": 129,
+  "signature": "char __thiscall(int this)",
+  "decompiled_c": "char __thiscall sub_42C810(int this)\n{\n  char v1; // al\n  int v2; // edx\n  int v3; // eax\n  int v4; // ebp\n  int v5; // edi\n  int v6; // esi\n\n  v1 = *(_BYTE *)(this + 174);\n  if ( v1 != -1 )\n    *(_BYTE *)(this + 174) = v1 - 1;\n  v2 = *(_DWORD *)(this + 256);\n  LOBYTE(v3) = *(_BYTE *)(this + 175) == 0;\n  *(_BYTE *)(this + 175) = v3;\n  if ( v2 == 1 )\n  {\n    LOBYTE(dword_D8BC38) = (_BYTE)v3 == 0;\n    v4 = 0;\n    v5 = *(_DWORD *)(*(_DWORD *)(this + 796) + 16);\n    v3 = *(_DWORD *)(v5 + 220);\n    if ( v3 > 0 )\n    {\n      v6 = v5 + 224;\n      do\n      {\n        if ( *(_BYTE *)(v6 + 244) == 37 )\n          sub_42C280(v6, dword_D8BC38);\n        v3 = *(_DWORD *)(v5 + 220);\n        ++v4;\n        v6 += 896;\n      }\n      while ( v4 < v3 );\n    }\n  }\n  return v3;\n}\n"
+}

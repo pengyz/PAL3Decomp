@@ -1,0 +1,7 @@
+{
+  "name": "sub_4BEE60",
+  "address": "0x004BEE60",
+  "size_bytes": 193,
+  "signature": "char *__thiscall(char *this)",
+  "decompiled_c": "char *__thiscall sub_4BEE60(char *this)\n{\n  char *v2; // esi\n  int v3; // ebx\n  char *v4; // esi\n  int v5; // ebx\n  char *v6; // esi\n  int v7; // ebx\n\n  sub_4B6F70((int)this);\n  *((_DWORD *)this + 41) = 0;\n  v2 = this + 176;\n  v3 = 6;\n  do\n  {\n    ArraySort((int)v2, 12, 4, gbVec3D::`default constructor closure');\n    v2 += 68;\n    --v3;\n  }\n  while ( v3 );\n  v4 = this + 584;\n  v5 = 6;\n  do\n  {\n    ArraySort((int)v4, 12, 4, gbVec3D::`default constructor closure');\n    v4 += 68;\n    --v5;\n  }\n  while ( v5 );\n  v6 = this + 992;\n  v7 = 4;\n  do\n  {\n    ((void (__thiscall *)(char *))gbVec3D::`default constructor closure')(v6);\n    v6 += 12;\n    --v7;\n  }\n  while ( v7 );\n  sub_4BC760(this + 1108);\n  *(_DWORD *)this = &off_56F580;\n  *((_DWORD *)this + 42) = 0;\n  return this;\n}\n"
+}

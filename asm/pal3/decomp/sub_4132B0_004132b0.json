@@ -1,0 +1,7 @@
+{
+  "name": "sub_4132B0",
+  "address": "0x004132B0",
+  "size_bytes": 212,
+  "signature": "char __thiscall(int this, int a2, int a3, int a4)",
+  "decompiled_c": "char __thiscall sub_4132B0(int this, int a2, int a3, int a4)\n{\n  int v5; // eax\n  RoleSystem *v6; // eax\n  int RolePtr; // edi\n  double v9; // st7\n  double v10; // st6\n  int v11; // [esp-4h] [ebp-28h]\n  float v12; // [esp+Ch] [ebp-18h] BYREF\n  int v13; // [esp+10h] [ebp-14h]\n  float v14; // [esp+14h] [ebp-10h]\n  float v15; // [esp+20h] [ebp-4h]\n\n  v12 = 0.0;\n  v13 = 0;\n  v5 = *(_DWORD *)(this + 628);\n  v14 = 0.0;\n  v11 = v5;\n  v6 = (RoleSystem *)sub_4226F0();\n  RolePtr = RoleSystem::GetRolePtr(v6, v11);\n  if ( (unsigned int)(__int64)((*(float *)(this + 4) - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam) == a2\n    && (unsigned int)(__int64)((*(float *)(this + 12) - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam) == a3 )\n  {\n    return 1;\n  }\n  v9 = ((double)a2 + 0.5) * g_SceneMgr.m_fMoveParam + *(float *)(RolePtr + 128);\n  v10 = ((double)a3 + 0.5) * g_SceneMgr.m_fMoveParam + *(float *)(RolePtr + 136);\n  v13 = 0;\n  v15 = v10;\n  v12 = v9;\n  v14 = v15;\n  return sub_412D90(this, &v12, a4);\n}\n"
+}

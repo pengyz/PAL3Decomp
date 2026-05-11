@@ -1,0 +1,7 @@
+{
+  "name": "sub_44E8B0",
+  "address": "0x0044E8B0",
+  "size_bytes": 203,
+  "signature": "void __thiscall(_DWORD *this, int a2, unsigned int a3)",
+  "decompiled_c": "void __thiscall sub_44E8B0(_DWORD *this, int a2, unsigned int a3)\n{\n  int v4; // ebx\n  _DWORD *v5; // edi\n  void (__thiscall **v6)(_DWORD *, int); // edx\n  int v7; // eax\n  int v8; // ecx\n  int *v9; // eax\n  int *v10; // eax\n\n  v4 = 12;\n  v5 = this + 61;\n  do\n  {\n    (*(void (__thiscall **)(_DWORD *, _DWORD))*v5)(v5, 0);\n    v5 += 41;\n    --v4;\n  }\n  while ( v4 );\n  if ( a3 <= 0xC )\n  {\n    v6 = (void (__thiscall **)(_DWORD *, int))*this;\n    this[553] = a2;\n    this[19] = a3;\n    (*v6)(this, 1);\n    sub_44E9F0(this);\n    (*(void (__thiscall **)(_DWORD *, int))this[41 * this[19] + 20])(&this[41 * this[19] + 20], 1);\n    sub_43A660(&this[41 * this[19] + 20]);\n    v7 = this[19];\n    v8 = this[v7 + 555];\n    this[554] = v8;\n    sub_43A680(&this[41 * v7 + 20], v8);\n  }\n  if ( a3 == 1 )\n  {\n    v10 = sub_53DF70();\n    CScreenMode::AudioSetPosition(v10, aWe06, 1);\n  }\n  else if ( a3 == 11 )\n  {\n    v9 = sub_53DF70();\n    CScreenMode::AudioSetPosition(v9, aWe05, 1);\n  }\n}\n"
+}

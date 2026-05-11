@@ -1,0 +1,7 @@
+{
+  "name": "sub_445720",
+  "address": "0x00445720",
+  "size_bytes": 57,
+  "signature": "int __thiscall(UIWnd *this, int a2)",
+  "decompiled_c": "int __thiscall sub_445720(UIWnd *this, int a2)\n{\n  int result; // eax\n\n  if ( a2 )\n  {\n    this[2].m_wndcolor.ColorQuadFmt = 0;\n    *(_DWORD *)&this[2].m_wndcolor.Blue = 0;\n    return UIWnd::Destroy(this, a2);\n  }\n  else\n  {\n    result = this[2].m_rect.left;\n    this[2].m_wndcolor.ColorQuadFmt = 1;\n    if ( result )\n      this->m_childs.m_nMaxSize = 0;\n  }\n  return result;\n}\n"
+}

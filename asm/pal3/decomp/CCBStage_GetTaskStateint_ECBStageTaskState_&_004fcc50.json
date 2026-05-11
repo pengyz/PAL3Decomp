@@ -1,0 +1,7 @@
+{
+  "name": "CCBStage::GetTaskState(int,ECBStageTaskState &)",
+  "address": "0x004FCC50",
+  "size_bytes": 166,
+  "signature": "char __userpurge@<al>(CCBStage *this@<ecx>, int a2, enum ECBStageTaskState *a3)",
+  "decompiled_c": "char __userpurge CCBStage::GetTaskState@<al>(CCBStage *this@<ecx>, int a2, enum ECBStageTaskState *a3)\n{\n  int v3; // ebx\n  char *i; // edx\n  int v5; // eax\n  int v6; // esi\n  char *v7; // eax\n  int v8; // ecx\n\n  v3 = 0;\n  for ( i = &this->_data[2796]; ; i += 2632 )\n  {\n    if ( *i )\n    {\n      if ( *((_DWORD *)i - 656) != 4 && *((_DWORD *)i - 657) == 11 )\n      {\n        v5 = *((_DWORD *)i - 9);\n        if ( v5 >= 5 && v5 < 11 )\n          break;\n      }\n    }\nLABEL_18:\n    if ( ++v3 >= 256 )\n      return 0;\n  }\n  v6 = 0;\n  v7 = i - 2612;\n  while ( 1 )\n  {\n    if ( *(int (__thiscall **)(CCBStage *, int))v7 == CCBStage::HandleKeyCtrl\n      && (!*(_DWORD *)v7 || !*((_DWORD *)v7 + 1) && !*((_DWORD *)v7 + 2) && !*((_DWORD *)v7 + 3)) )\n    {\n      if ( *((_DWORD *)v7 + 4) == 4 )\n        goto LABEL_18;\n      v8 = *((_DWORD *)i - 8);\n      if ( v8 == a2 || v8 == -1 && i[a2 - 15] )\n        return 1;\n    }\n    ++v6;\n    v7 += 80;\n    if ( v6 >= 32 )\n      goto LABEL_18;\n  }\n}\n"
+}

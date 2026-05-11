@@ -1,0 +1,7 @@
+{
+  "name": "sub_44D680",
+  "address": "0x0044D680",
+  "size_bytes": 244,
+  "signature": "int __thiscall(char *this, int a2)",
+  "decompiled_c": "int __thiscall sub_44D680(char *this, int a2)\n{\n  char *v2; // esi\n  int v4; // [esp+Ch] [ebp+4h]\n\n  v2 = &this[208 * a2];\n  *((_DWORD *)v2 + 2143) = rand() % 40 + 70;\n  v4 = rand() % 120 + 698;\n  *((_DWORD *)v2 + 2142) = v4;\n  *((float *)v2 + 2146) = (float)v4;\n  *((_DWORD *)v2 + 2144) = *((_DWORD *)v2 + 2142) + *((_DWORD *)v2 + 2147);\n  *((_DWORD *)v2 + 2145) = *((_DWORD *)v2 + 2143) + *((_DWORD *)v2 + 2148);\n  *((float *)v2 + 2149) = (double)(rand() % 16) * 0.1 + 1.0;\n  *((float *)v2 + 2150) = (float)(rand() % 255);\n  *((float *)v2 + 2151) = (double)(rand() % 10 + 10) * 0.1;\n  v2[8608] = 1;\n  return UIWnd::GetRect((UIWnd *)(v2 + 8416), (_DWORD *)v2 + 2142);\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "CCBMagicWindow::SetActivePage(int)",
+  "address": "0x0051C1B0",
+  "size_bytes": 89,
+  "signature": "BOOL __thiscall(CCBMagicWindow *this, int a2, int a3)",
+  "decompiled_c": "BOOL __thiscall CCBMagicWindow::SetActivePage(CCBMagicWindow *this, int a2, int a3)\n{\n  if ( this->_d038 == 1\n    && (*(_DWORD *)&g_Input._data[6532] == 1 && (g_Input._data[6520] & 0xF) == 1 || *(_DWORD *)&g_Input._data[6548] == 1) )\n  {\n    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->_d020 + 1160) + 8), 272, -1);\n  }\n  return UIWnd::HitTest((UIWnd *)this, a2, a3);\n}\n"
+}

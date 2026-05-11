@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageRole::GetCurrentTaskIndex(void)",
+  "address": "0x0050A960",
+  "size_bytes": 30,
+  "signature": "int __thiscall(CCBStageRole *this)",
+  "decompiled_c": "int __thiscall CCBStageRole::GetCurrentTaskIndex(CCBStageRole *this)\n{\n  int result; // eax\n\n  CCBStageRole::GetCurrentState(this);\n  result = 0;\n  this->_data[373] = 0;\n  this->_data[374] = 0;\n  *(_DWORD *)&this->_data[376] = 0;\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_4BD970",
+  "address": "0x004BD970",
+  "size_bytes": 25,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_4BD970(_DWORD *this)\n{\n  int (__thiscall ***v2)(_DWORD, int); // ecx\n  int result; // eax\n\n  v2 = (int (__thiscall ***)(_DWORD, int))this[23];\n  if ( v2 )\n  {\n    result = (**v2)(v2, 1);\n    this[23] = 0;\n  }\n  return result;\n}\n"
+}

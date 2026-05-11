@@ -1,0 +1,7 @@
+{
+  "name": "sub_4D5A00",
+  "address": "0x004D5A00",
+  "size_bytes": 50,
+  "signature": "int __fastcall(int *a1)",
+  "decompiled_c": "int __fastcall sub_4D5A00(int *a1)\n{\n  int i; // edx\n  int v2; // esi\n  int result; // eax\n\n  for ( i = 0; i < 256; ++i )\n  {\n    v2 = 8;\n    result = i << 24;\n    do\n    {\n      if ( result >= 0 )\n        result *= 2;\n      else\n        result = (2 * result) ^ 0x4C11DB7;\n      --v2;\n    }\n    while ( v2 );\n    *a1++ = result;\n  }\n  return result;\n}\n"
+}

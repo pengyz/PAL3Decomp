@@ -1,0 +1,7 @@
+{
+  "name": "CCBAIWindow::OnMessage(uint,ulong,ulong)",
+  "address": "0x0051CD90",
+  "size_bytes": 175,
+  "signature": "char __thiscall(CCBAIWindow *this, UIListBox **a2)",
+  "decompiled_c": "char __thiscall CCBAIWindow::OnMessage(CCBAIWindow *this, UIListBox **a2)\n{\n  UIListBox *v2; // eax\n  UIListBox *v3; // eax\n  char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF\n  char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF\n  int v7; // [esp+80Ch] [ebp-4h]\n\n  v2 = (UIListBox *)operator new(0x6Cu);\n  v7 = 0;\n  if ( v2 )\n    v3 = sub_519AF0(v2);\n  else\n    v3 = 0;\n  v7 = -1;\n  *a2 = v3;\n  if ( !v3 )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aCNewFailed, aDProjectPal3Co_12, 1660), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  return 1;\n}\n"
+}

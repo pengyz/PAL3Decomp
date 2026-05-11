@@ -1,0 +1,7 @@
+{
+  "name": "sub_4BA150",
+  "address": "0x004BA150",
+  "size_bytes": 221,
+  "signature": "void __thiscall(int this, float a2, float *a3)",
+  "decompiled_c": "void __thiscall sub_4BA150(int this, float a2, float *a3)\n{\n  double v4; // st7\n  int v5; // ebp\n  int v6; // eax\n  int v7; // esi\n  int v8; // ebx\n  int v9; // esi\n  _DWORD *v10; // ebp\n  _DWORD *v11; // [esp+0h] [ebp-4h]\n  int v12; // [esp+8h] [ebp+4h]\n\n  v4 = a2 + *(float *)(this + 76);\n  *(float *)(this + 72) = a2;\n  *(float *)(this + 76) = v4;\n  sub_4BA230((_DWORD *)this);\n  sub_4B8890(this);\n  if ( *(float *)(this + 72) > 0.0 )\n  {\n    v5 = 0;\n    if ( *(_DWORD *)(this + 36896) )\n    {\n      v6 = sub_4BABC0(this);\n      v12 = v6;\n    }\n    else\n    {\n      v12 = 0;\n      v6 = 0;\n    }\n    v7 = 0;\n    v8 = *(_DWORD *)(*(_DWORD *)(this + 36948) + 362748);\n    if ( v8 > 0 )\n    {\n      v11 = (_DWORD *)(this + 96);\n      do\n      {\n        if ( v5 >= v6 )\n          break;\n        if ( !*v11 )\n        {\n          sub_4B9EA0(this, v7, a3);\n          v6 = v12;\n          ++v5;\n        }\n        ++v7;\n        v11 += 23;\n      }\n      while ( v7 < v8 );\n    }\n    if ( v7 == v8 && v5 < v6 )\n      sub_4BA0B0((float *)this, v6 - v5, a3);\n    v9 = 0;\n    if ( v8 > 0 )\n    {\n      v10 = (_DWORD *)(this + 96);\n      do\n      {\n        if ( *v10 )\n          sub_4B9FA0(this, v9);\n        ++v9;\n        v10 += 23;\n      }\n      while ( v9 < v8 );\n    }\n  }\n}\n"
+}

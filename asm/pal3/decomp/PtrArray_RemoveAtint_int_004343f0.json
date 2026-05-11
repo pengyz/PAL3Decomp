@@ -1,0 +1,7 @@
+{
+  "name": "PtrArray::RemoveAt(int,int)",
+  "address": "0x004343F0",
+  "size_bytes": 113,
+  "signature": "void __thiscall(PtrArray *this, const char *a2)",
+  "decompiled_c": "void __thiscall PtrArray::RemoveAt(PtrArray *this, const char *a2)\n{\n  int v2; // edi\n  const char *v3; // ebp\n\n  v2 = 0;\n  if ( dword_D8E46C > 0 )\n  {\n    v3 = (char *)Block + 8;\n    do\n    {\n      if ( !strcmp(a2, v3) )\n        break;\n      ++v2;\n      v3 += 24;\n    }\n    while ( v2 < dword_D8E46C );\n  }\n}\n"
+}

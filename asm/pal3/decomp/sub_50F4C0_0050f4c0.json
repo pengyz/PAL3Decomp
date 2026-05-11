@@ -1,0 +1,7 @@
+{
+  "name": "sub_50F4C0",
+  "address": "0x0050F4C0",
+  "size_bytes": 193,
+  "signature": "int __thiscall(void *this, int a2)",
+  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nint __thiscall sub_50F4C0(void *this, int a2)\n{\n  if ( *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 506) )\n  {\n    if ( !CCBRoleState::IsRoleAlive(*((CCBRoleState **)this + 1), *((_DWORD *)this + 71))\n      || CCBSystem::IsCmdReady(*(CCBSystem **)(**(_DWORD **)this + 12), *((_DWORD *)this + 71))\n      || CCBSystem::IsCmdEmpty(*(CCBSystem **)(**(_DWORD **)this + 12), *((_DWORD *)this + 71))\n      || (unsigned __int8)CCBRoleState::GetForce(*((CCBRoleState **)this + 1), 0) )\n    {\n      *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;\n    }\n    return 0;\n  }\n  else\n  {\n    CCBStageRole::ClearBadPushTask((CCBStageRole *)this, 0.0099999998);\n    *((_DWORD *)this + 1642) = 48;\n    CCBStageRole::IsGrabedBy((CCBStageRole *)this);\n    *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 506) = 1;\n    nullsub_3(this);\n    return 0;\n  }\n}\n"
+}

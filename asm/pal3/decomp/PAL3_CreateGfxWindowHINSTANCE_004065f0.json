@@ -1,0 +1,7 @@
+{
+  "name": "PAL3::CreateGfxWindow(HINSTANCE__ *)",
+  "address": "0x004065F0",
+  "size_bytes": 249,
+  "signature": "void __cdecl()",
+  "decompiled_c": "void __cdecl PAL3::CreateGfxWindow()\n{\n  int v0; // eax\n  int v1; // eax\n  bool v2; // cc\n  int v3; // eax\n  bool v4; // zf\n  int v5; // eax\n  int v6; // eax\n\n  dword_BFDA8C = (int)GetCommandLineA();\n  if ( dword_BFDA8C )\n  {\n    if ( PAL3::ParseCmdLine(aSc) || PAL3::ParseCmdLine(aSoftcursor) )\n      byte_BFDA91 = 1;\n    if ( PAL3::ParseCmdLine(aXsnd) )\n    {\n      v0 = dword_5833BC;\n      LOBYTE(v0) = dword_5833BC & 0xFE;\n      dword_5833BC = v0;\n    }\n    if ( PAL3::ParseCmdLine(aXmusic) )\n    {\n      v1 = dword_5833BC;\n      LOBYTE(v1) = dword_5833BC & 0xFB;\n      dword_5833BC = v1;\n    }\n    v2 = PAL3::HasCommandLineParam(aSync) <= 0;\n    v3 = dword_5833BC;\n    if ( v2 )\n      LOBYTE(v3) = dword_5833BC & 0xEF;\n    else\n      LOBYTE(v3) = dword_5833BC | 0x10;\n    dword_5833BC = v3;\n    v4 = PAL3::ParseCmdLine(aMotionblur) == 0;\n    v5 = dword_5833BC;\n    if ( v4 )\n      LOBYTE(v5) = dword_5833BC & 0xF7;\n    else\n      LOBYTE(v5) = dword_5833BC | 8;\n    dword_5833BC = v5;\n    if ( PAL3::ParseCmdLine(aScursor) )\n      *((_BYTE *)sub_5415F0() + 29) = 1;\n    v2 = PAL3::HasCommandLineParam(aRate) <= 60;\n    v6 = dword_5833BC;\n    if ( v2 )\n      LOBYTE(v6) = dword_5833BC & 0xDF;\n    else\n      LOBYTE(v6) = dword_5833BC | 0x20;\n    dword_5833BC = v6;\n  }\n}\n"
+}

@@ -1,7 +1,0 @@
-{
-  "name": "?SetJoystickFreePos@GRPinput@@QAEXJJ@Z",
-  "address": "0x00402D00",
-  "size_bytes": 20,
-  "signature": "char __thiscall(GRPinput *this, float a2)",
-  "decompiled_c": "char __thiscall GRPinput::SetJoystickFreePos(GRPinput *this, float a2)\n{\n  char result; // al\n\n  result = (char)this->m_lpDIDKeyboard;\n  if ( result )\n    *(float *)&this->m_mouseMaxX = a2 + *(float *)&this->m_mouseMaxX;\n  return result;\n}\n"
-}

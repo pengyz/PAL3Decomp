@@ -3,5 +3,5 @@
   "address": "0x00445FE0",
   "size_bytes": 36,
   "signature": "_DWORD *__thiscall(UIWnd *this, _DWORD *a2)",
-  "decompiled_c": "// between_std_methods (0x445B40-0x44BDA0)\n_DWORD *__thiscall UIWnd::SetRect(UIWnd *this, _DWORD *a2)\n{\n  int *p_m_rect_left; // ecx\n\n  p_m_rect_left = &this->m_rect_left;\n  *a2 = *p_m_rect_left;\n  a2[1] = p_m_rect_left[1];\n  a2[2] = p_m_rect_left[2];\n  a2[3] = p_m_rect_left[3];\n  return a2;\n}\n"
+  "decompiled_c": "_DWORD *__thiscall UIWnd::SetRect(UIWnd *this, _DWORD *a2)\n{\n  _DWORD *result; // eax\n  unsigned __int8 *p_Blue; // ecx\n\n  result = a2;\n  p_Blue = &this->m_wndcolor.Blue;\n  *a2 = *(_DWORD *)p_Blue;\n  a2[1] = *((_DWORD *)p_Blue + 1);\n  a2[2] = *((_DWORD *)p_Blue + 2);\n  a2[3] = *((_DWORD *)p_Blue + 3);\n  return result;\n}\n"
 }

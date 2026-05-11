@@ -1,0 +1,7 @@
+{
+  "name": "GRPinput::GetMouseSensitivity(void)",
+  "address": "0x00402FA0",
+  "size_bytes": 10,
+  "signature": "int __thiscall(GRPinput *this, int a2)",
+  "decompiled_c": "int __thiscall GRPinput::GetMouseSensitivity(GRPinput *this, int a2)\n{\n  int result; // eax\n\n  result = a2;\n  *(_DWORD *)&this->_data[32] = a2;\n  return result;\n}\n"
+}

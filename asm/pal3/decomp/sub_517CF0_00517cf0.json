@@ -1,0 +1,7 @@
+{
+  "name": "sub_517CF0",
+  "address": "0x00517CF0",
+  "size_bytes": 104,
+  "signature": "void __thiscall(CCBLineupWindow *this)",
+  "decompiled_c": "// likely CCBLineupWindow method (near CCBLineupWindow, RefreshFacePos, Reset, SetFaceLin)\nvoid __thiscall sub_517CF0(CCBLineupWindow *this)\n{\n  CCBMagicWindow **v2; // esi\n  CCBMagicWindow *v3; // ecx\n  int a2; // [esp+8h] [ebp-10h] BYREF\n  int v5; // [esp+Ch] [ebp-Ch]\n  int v6; // [esp+10h] [ebp-8h]\n  int v7; // [esp+14h] [ebp-4h]\n\n  v2 = (CCBMagicWindow **)&this[9]._data[24];\n  if ( CCBLineupWindow::Reset(this, (CCBMagicWindow **)&this[9]._data[24]) )\n  {\n    v5 = 0;\n    v6 = 0;\n    v3 = *v2;\n    a2 = 10;\n    v6 = 240;\n    v5 = 271;\n    v7 = 471;\n    CCBMagicWindow::CreateButton(v3, &a2, (int)this);\n    (*(void (__thiscall **)(CCBMagicWindow *, _DWORD))(*v2)->_p000)(*v2, 0);\n  }\n}\n"
+}

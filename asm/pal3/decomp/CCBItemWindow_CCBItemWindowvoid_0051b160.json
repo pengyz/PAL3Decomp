@@ -1,0 +1,7 @@
+{
+  "name": "CCBItemWindow::CCBItemWindow(void)",
+  "address": "0x0051B160",
+  "size_bytes": 30,
+  "signature": "stdiobuf *__thiscall(CCBItemWindow *Block, char a2)",
+  "decompiled_c": "stdiobuf *__thiscall CCBItemWindow::CCBItemWindow(CCBItemWindow *Block, char a2)\n{\n  UIWnd::~UIWnd(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return (stdiobuf *)Block;\n}\n"
+}

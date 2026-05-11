@@ -1,0 +1,7 @@
+{
+  "name": "__fltin",
+  "address": "0x00558E7C",
+  "size_bytes": 145,
+  "signature": "int *__cdecl(char *a1)",
+  "decompiled_c": "int *__cdecl _fltin(char *a1)\n{\n  int v1; // edi\n  char v2; // bl\n  int v3; // eax\n  unsigned __int16 v5[6]; // [esp+Ch] [ebp-18h] BYREF\n  double v6; // [esp+18h] [ebp-Ch] BYREF\n  char *v7; // [esp+20h] [ebp-4h] BYREF\n\n  v1 = 0;\n  v2 = __strgtold12((int)v5, &v7, a1, 0, 0, 0, 0);\n  if ( (v2 & 4) != 0 )\n  {\n    v1 = 512;\n    v6 = 0.0;\n  }\n  else\n  {\n    v3 = sub_55BA88(v5, (unsigned int *)&v6);\n    if ( (v2 & 2) != 0 || v3 == 1 )\n      v1 = 128;\n    if ( (v2 & 1) != 0 || v3 == 2 )\n      v1 |= 0x100u;\n  }\n  (*off_60AF50)[0] = v1;\n  (*off_60AF50)[1] = v7 - a1;\n  *(double *)&(*off_60AF50)[4] = v6;\n  return (int *)off_60AF50;\n}\n"
+}

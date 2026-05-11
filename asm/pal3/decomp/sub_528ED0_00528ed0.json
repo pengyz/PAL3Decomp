@@ -1,0 +1,7 @@
+{
+  "name": "sub_528ED0",
+  "address": "0x00528ED0",
+  "size_bytes": 125,
+  "signature": "void __thiscall(UIListBox *this)",
+  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nvoid __thiscall sub_528ED0(UIListBox *this)\n{\n  Concurrency::details::VirtualProcessor *v2; // esi\n  int v3; // ebp\n\n  UIListBox::SetScroll(this);\n  if ( this[46]._tail[548] )\n  {\n    v2 = (Concurrency::details::VirtualProcessor *)&this[29]._tail[44];\n    v3 = 36;\n    do\n    {\n      if ( Concurrency::details::VirtualProcessor::IsThrottled((Concurrency::details::VirtualProcessor *)((char *)v2 - 21024)) )\n        sub_4B4DC0((int)v2 - 21024, 10);\n      if ( Concurrency::details::VirtualProcessor::IsThrottled(v2) )\n        sub_4B4DC0((int)v2, 11);\n      v2 = (Concurrency::details::VirtualProcessor *)((char *)v2 + 584);\n      --v3;\n    }\n    while ( v3 );\n    this[46]._tail[548] = 0;\n    this[46]._tail[549] = 1;\n  }\n  else if ( this[46]._tail[549] )\n  {\n    sub_528D50((int)this);\n  }\n}\n"
+}

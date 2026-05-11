@@ -1,0 +1,7 @@
+{
+  "name": "sub_540F60",
+  "address": "0x00540F60",
+  "size_bytes": 58,
+  "signature": "void *__thiscall(void *this)",
+  "decompiled_c": "// likely UIRenderObj method (near ~UIRenderObj, UIRenderObj)\nvoid *__thiscall sub_540F60(void *this)\n{\n  gbMatrixStack *v1; // esi\n  gbMatrixStack *v3; // edi\n\n  v1 = *(gbMatrixStack **)&gfxMgr->_data[216];\n  v3 = *(gbMatrixStack **)&gfxMgr->_data[212];\n  gbMatrixStack::Push(v1);\n  gbMatrixStack::Push(v3);\n  gbMatrixStack::LoadIdentity(v1);\n  gbMatrixStack::LoadIdentity(v3);\n  return this;\n}\n"
+}

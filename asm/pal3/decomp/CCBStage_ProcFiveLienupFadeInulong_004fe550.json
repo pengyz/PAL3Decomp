@@ -1,0 +1,7 @@
+{
+  "name": "CCBStage::ProcFiveLienupFadeIn(ulong)",
+  "address": "0x004FE550",
+  "size_bytes": 163,
+  "signature": "int __thiscall(CCBStage *this, int a2)",
+  "decompiled_c": "int __thiscall CCBStage::ProcFiveLienupFadeIn(CCBStage *this, int a2)\n{\n  int v3; // eax\n  int v4; // ecx\n  char *v5; // edi\n  char *v6; // ebp\n  CCBStageRole *v7; // ecx\n\n  v3 = 2632 * *(_DWORD *)&this->_data[160];\n  v4 = v3 + 80 * *(_DWORD *)&this->_data[164];\n  v5 = &this->_data[v4 + 184];\n  if ( !this->_data[v4 + 225] )\n  {\n    v6 = &this->_data[v3 + 2760];\n    v7 = *(CCBStageRole **)&this->_data[4 * *(_DWORD *)v6 + 24];\n    if ( !v7->_data[373] || !v7->_data[374] )\n    {\n      if ( v7->_data[373] == 1 )\n        CCBStageRole::GetCurrentTaskIndex(v7);\n      CCBStageRole::DelAllTask(\n        *(CCBStageRole **)&this->_data[4 * *(_DWORD *)v6 + 24],\n        *(_DWORD *)&this->_data[2632 * *(_DWORD *)&this->_data[160] + 2744],\n        1);\n      v5[41] = 1;\n      *((_DWORD *)v5 + 4) = 4;\n    }\n  }\n  return 0;\n}\n"
+}

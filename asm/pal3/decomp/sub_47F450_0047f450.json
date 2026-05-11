@@ -1,0 +1,7 @@
+{
+  "name": "sub_47F450",
+  "address": "0x0047F450",
+  "size_bytes": 282,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\nint __thiscall sub_47F450(_DWORD *this)\n{\n  int result; // eax\n  int i; // edi\n  int v4; // eax\n\n  sub_47F390((int)this);\n  memset(this + 40029, 0, 0x960u);\n  result = this[40022];\n  for ( i = 0; i < result; ++i )\n  {\n    v4 = PAL_GDB::~PAL_GDB((PAL_GDB *)dword_975ED8, *(_DWORD *)(this[40021] + 4 * i));\n    switch ( *(_WORD *)(v4 + 4) )\n    {\n      case 1:\n        this[this[40027]++ + 40429] = *(_DWORD *)v4;\n        break;\n      case 2:\n        this[this[40026]++ + 40329] = *(_DWORD *)v4;\n        break;\n      case 3:\n        this[this[40024]++ + 40129] = *(_DWORD *)v4;\n        break;\n      case 4:\n        this[this[40023]++ + 40029] = *(_DWORD *)v4;\n        break;\n      case 5:\n        this[this[40025]++ + 40229] = *(_DWORD *)v4;\n        break;\n      case 6:\n        this[this[40028]++ + 40529] = *(_DWORD *)v4;\n        break;\n      default:\n        break;\n    }\n    result = this[40022];\n  }\n  return result;\n}\n"
+}

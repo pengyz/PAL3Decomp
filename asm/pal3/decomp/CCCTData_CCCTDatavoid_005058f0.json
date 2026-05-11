@@ -1,0 +1,7 @@
+{
+  "name": "CCCTData::CCCTData(void)",
+  "address": "0x005058F0",
+  "size_bytes": 63,
+  "signature": "int __thiscall(CCCTData *this, _DWORD *a2, _DWORD *a3)",
+  "decompiled_c": "int __thiscall CCCTData::CCCTData(CCCTData *this, _DWORD *a2, _DWORD *a3)\n{\n  int result; // eax\n\n  *(_DWORD *)&this[105]._pad_091[3] = *a2;\n  *(_DWORD *)&this[105]._pad_091[7] = a2[1];\n  *(_DWORD *)&this[105]._pad_091[11] = a2[2];\n  *(_DWORD *)&this[105]._pad_091[15] = *a3;\n  *(_DWORD *)&this[105]._pad_091[19] = a3[1];\n  result = a3[2];\n  *(_DWORD *)&this[105]._pad_091[23] = result;\n  return result;\n}\n"
+}

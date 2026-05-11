@@ -1,0 +1,7 @@
+{
+  "name": "__freebuf",
+  "address": "0x00557DE8",
+  "size_bytes": 43,
+  "signature": "int __cdecl(int a1)",
+  "decompiled_c": "int __cdecl _freebuf(int a1)\n{\n  int result; // eax\n\n  result = *(_DWORD *)(a1 + 12);\n  if ( (result & 0x83) != 0 && (result & 8) != 0 )\n  {\n    free(*(void **)(a1 + 8));\n    *(_WORD *)(a1 + 12) &= 0xFBF7u;\n    result = 0;\n    *(_DWORD *)a1 = 0;\n    *(_DWORD *)(a1 + 8) = 0;\n    *(_DWORD *)(a1 + 4) = 0;\n  }\n  return result;\n}\n"
+}

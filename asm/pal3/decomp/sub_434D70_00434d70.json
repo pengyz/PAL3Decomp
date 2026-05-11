@@ -1,0 +1,7 @@
+{
+  "name": "sub_434D70",
+  "address": "0x00434D70",
+  "size_bytes": 22,
+  "signature": "char()",
+  "decompiled_c": "char sub_434D70()\n{\n  char *String; // eax\n\n  String = PalScript::GetString();\n  if ( String )\n  {\n    LOBYTE(String) = String[4];\n    *(_BYTE *)(dword_D8E468 + 4) = (_BYTE)String;\n  }\n  return (char)String;\n}\n"
+}

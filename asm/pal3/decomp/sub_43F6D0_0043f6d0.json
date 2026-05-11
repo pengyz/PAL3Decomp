@@ -1,0 +1,7 @@
+{
+  "name": "sub_43F6D0",
+  "address": "0x0043F6D0",
+  "size_bytes": 165,
+  "signature": "unsigned int __thiscall(_DWORD *this, unsigned int a2)",
+  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nunsigned int __thiscall sub_43F6D0(_DWORD *this, unsigned int a2)\n{\n  int v2; // edx\n  int v3; // eax\n  int v4; // esi\n  int v5; // edx\n  int v6; // eax\n  int v7; // edx\n  unsigned int result; // eax\n  _DWORD *v9; // edx\n\n  v2 = this[299];\n  if ( v2 )\n    v3 = (this[300] - v2) >> 2;\n  else\n    v3 = 0;\n  v4 = a2;\n  if ( a2 >= v3 - 1 )\n  {\n    v5 = this[299];\n    if ( v5 )\n      v6 = (this[300] - v5) >> 2;\n    else\n      v6 = 0;\n    v4 = v6 - 1;\n  }\n  v7 = this[299];\n  for ( result = v4; v7 && result < (this[300] - v7) >> 2; ++result )\n  {\n    if ( *(_DWORD *)(this[299] + 4 * result) )\n      goto LABEL_19;\n  }\n  result = 0;\n  if ( v4 <= 0 )\n  {\nLABEL_18:\n    this[280] = -1;\n    return result;\n  }\n  v9 = (_DWORD *)this[299];\n  while ( !*v9 )\n  {\n    ++result;\n    ++v9;\n    if ( (int)result >= v4 )\n      goto LABEL_18;\n  }\nLABEL_19:\n  result -= this[279];\n  this[280] = result;\n  return result;\n}\n"
+}

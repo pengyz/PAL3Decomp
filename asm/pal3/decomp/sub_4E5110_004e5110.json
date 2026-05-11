@@ -1,0 +1,7 @@
+{
+  "name": "sub_4E5110",
+  "address": "0x004E5110",
+  "size_bytes": 88,
+  "signature": "int()",
+  "decompiled_c": "int sub_4E5110()\n{\n  int *TargetRole; // eax\n  int result; // eax\n  int v2; // [esp+0h] [ebp-18h] BYREF\n  int v3; // [esp+4h] [ebp-14h]\n  int v4; // [esp+8h] [ebp-10h]\n  int pOut[3]; // [esp+Ch] [ebp-Ch] BYREF\n\n  v3 = 0;\n  v4 = 0;\n  v2 = 0xFFFF;\n  TargetRole = (int *)CCBAI::GetTargetRole((CCBAI *)&g_SceneMgr.m_slot4[792], pOut);\n  v2 = *TargetRole;\n  v3 = TargetRole[1];\n  v4 = TargetRole[2];\n  result = sub_40CF60(&g_SceneMgr.m_slot4[792], &v2);\n  byte_17A9946 = 1;\n  return result;\n}\n"
+}

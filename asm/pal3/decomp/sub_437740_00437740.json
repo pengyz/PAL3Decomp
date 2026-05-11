@@ -1,0 +1,7 @@
+{
+  "name": "sub_437740",
+  "address": "0x00437740",
+  "size_bytes": 164,
+  "signature": "char *()",
+  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\nchar *sub_437740()\n{\n  char *result; // eax\n  int v1; // esi\n  int SkillNum; // esi\n\n  result = PalScript::GetString();\n  if ( result )\n  {\n    result = (char *)*((_DWORD *)result + 1);\n    if ( result )\n    {\n      if ( result == (char *)1 )\n      {\n        SkillNum = PAL_GDB::GDB_GetSkillNum((PAL_GDB *)dword_975ED8, 6602);\n        result = *(char **)&g_SceneMgr.m_slot0[288];\n        if ( *(_DWORD *)&g_SceneMgr.m_slot0[288] )\n          result = (char *)sub_40CCF0((int)&g_SceneMgr.m_slot4[792], &g_SceneMgr.m_slot0[280]);\n        *(_DWORD *)&g_SceneMgr.m_slot0[280] = 6602;\n        *(_DWORD *)&g_SceneMgr.m_slot0[288] = SkillNum;\n        *(_DWORD *)&g_SceneMgr.m_slot0[284] = 1;\n      }\n    }\n    else\n    {\n      v1 = PAL_GDB::GDB_GetSkillNum((PAL_GDB *)dword_975ED8, 6603);\n      result = *(char **)&g_SceneMgr.m_slot0[288];\n      if ( *(_DWORD *)&g_SceneMgr.m_slot0[288] )\n        result = (char *)sub_40CCF0((int)&g_SceneMgr.m_slot4[792], &g_SceneMgr.m_slot0[280]);\n      *(_DWORD *)&g_SceneMgr.m_slot0[288] = v1;\n      *(_DWORD *)&g_SceneMgr.m_slot0[280] = 6603;\n      *(_DWORD *)&g_SceneMgr.m_slot0[284] = 1;\n    }\n  }\n  return result;\n}\n"
+}

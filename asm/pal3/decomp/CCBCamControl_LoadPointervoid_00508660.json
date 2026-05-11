@@ -1,0 +1,7 @@
+{
+  "name": "CCBCamControl::LoadPointer(void)",
+  "address": "0x00508660",
+  "size_bytes": 23,
+  "signature": "_DWORD *__thiscall(CCBCamControl *this)",
+  "decompiled_c": "_DWORD *__thiscall CCBCamControl::LoadPointer(CCBCamControl *this)\n{\n  _DWORD *result; // eax\n\n  result = this->_data;\n  *(_DWORD *)&this->_data[52] = 0;\n  *(_DWORD *)&this->_data[56] = 0;\n  *(_DWORD *)&this->_data[60] = 0;\n  *(_DWORD *)&this->_data[64] = 0;\n  *(_DWORD *)&this->_data[68] = 0;\n  *(_DWORD *)&this->_data[72] = 0;\n  return result;\n}\n"
+}

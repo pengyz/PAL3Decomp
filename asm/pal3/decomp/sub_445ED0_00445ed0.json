@@ -1,0 +1,7 @@
+{
+  "name": "sub_445ED0",
+  "address": "0x00445ED0",
+  "size_bytes": 76,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_445ED0(_DWORD *this, int a2, int a3)\n{\n  int result; // eax\n  int v5; // esi\n\n  result = a2;\n  if ( a2 )\n  {\n    result = (*(int (__thiscall **)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_data + 8))(gfxMgr, a2);\n    v5 = result;\n    if ( result )\n    {\n      gbTexture::LoadTexture((gbTexture *)result, a3);\n      this[this[16]++] = v5;\n      return 1;\n    }\n  }\n  return result;\n}\n"
+}

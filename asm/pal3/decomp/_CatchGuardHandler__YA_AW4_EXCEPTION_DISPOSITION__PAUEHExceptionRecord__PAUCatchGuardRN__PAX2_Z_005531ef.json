@@ -1,7 +1,0 @@
-{
-  "name": "?CatchGuardHandler@@YA?AW4_EXCEPTION_DISPOSITION@@PAUEHExceptionRecord@@PAUCatchGuardRN@@PAX2@Z",
-  "address": "0x005531EF",
-  "size_bytes": 37,
-  "signature": "int __cdecl(struct EHExceptionRecord *ExceptionRecord, PVOID TargetFrame, struct _CONTEXT *a3)",
-  "decompiled_c": "int __cdecl CatchGuardHandler(struct EHExceptionRecord *ExceptionRecord, PVOID TargetFrame, struct _CONTEXT *a3)\n{\n  return __InternalCxxFrameHandler(\n           ExceptionRecord,\n           *((struct EHRegistrationNode **)TargetFrame + 3),\n           a3,\n           0,\n           *((EXCEPTION_POINTERS **)TargetFrame + 2),\n           *((_DWORD *)TargetFrame + 4),\n           (struct EHRegistrationNode *)TargetFrame,\n           0);\n}\n"
-}

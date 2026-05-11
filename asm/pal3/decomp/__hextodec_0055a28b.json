@@ -1,7 +1,0 @@
-{
-  "name": "__hextodec",
-  "address": "0x0055A28B",
-  "size_bytes": 55,
-  "signature": "int __cdecl(int C)",
-  "decompiled_c": "int __cdecl _hextodec(int C)\n{\n  int v1; // esi\n  int v2; // eax\n\n  v1 = C;\n  if ( (int)cbMultiByte <= 1 )\n    v2 = *((_BYTE *)g_pVtbl_SceneMgr + 2 * C) & 4;\n  else\n    v2 = _isctype(C, 4);\n  if ( !v2 )\n    return (C & 0xFFFFFFDF) - 7;\n  return v1;\n}\n"
-}

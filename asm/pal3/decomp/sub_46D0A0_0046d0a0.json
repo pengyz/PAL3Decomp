@@ -1,0 +1,7 @@
+{
+  "name": "sub_46D0A0",
+  "address": "0x0046D0A0",
+  "size_bytes": 47,
+  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall sub_46D0A0(_DWORD *this, int a2, int a3)\n{\n  int result; // eax\n\n  if ( a2 < 0 || a2 >= this[126] )\n  {\n    result = 0;\n    MEMORY[0x44] = a3;\n  }\n  else\n  {\n    result = *(_DWORD *)(this[125] + 4 * a2);\n    *(_DWORD *)(result + 68) = a3;\n  }\n  return result;\n}\n"
+}

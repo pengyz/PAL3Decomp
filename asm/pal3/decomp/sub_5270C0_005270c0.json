@@ -1,0 +1,7 @@
+{
+  "name": "sub_5270C0",
+  "address": "0x005270C0",
+  "size_bytes": 103,
+  "signature": "int __thiscall(char *this, int a2)",
+  "decompiled_c": "int __thiscall sub_5270C0(char *this, int a2)\n{\n  int result; // eax\n  int v3; // edx\n  char *v4; // esi\n  char *v5; // edx\n\n  result = 0;\n  v3 = 0;\n  v4 = this + 420;\n  do\n  {\n    if ( !this[v3 + 15013] )\n    {\n      ++result;\n      *((_DWORD *)v4 + 3) = 0;\n      *v4 = 0;\n    }\n    ++v3;\n    v4 += 248;\n  }\n  while ( v3 < 5 );\n  v5 = &this[248 * a2 + 352];\n  *((_DWORD *)v5 + 20) = 1;\n  v5[68] = 1;\n  if ( result )\n  {\n    if ( this[a2 + 15013] )\n      return -1;\n  }\n  return result;\n}\n"
+}

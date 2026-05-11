@@ -1,0 +1,7 @@
+{
+  "name": "sub_517AC0",
+  "address": "0x00517AC0",
+  "size_bytes": 104,
+  "signature": "char __usercall@<al>(CCBAIWindow *this@<ecx>, int a2@<ebx>, int a3@<ebp>)",
+  "decompiled_c": "// likely CCBAIWindow method (near Reset, Destroy, Update, CCBAIWindow, ShowWindow, O)\nchar __usercall sub_517AC0@<al>(CCBAIWindow *this@<ecx>, int a2@<ebx>, int a3@<ebp>)\n{\n  CCBUI **v4; // esi\n  char result; // al\n  CCBUI *v6; // ecx\n  int v7; // [esp+8h] [ebp-10h] BYREF\n  int v8; // [esp+Ch] [ebp-Ch]\n  int v9; // [esp+10h] [ebp-8h]\n  int v10; // [esp+14h] [ebp-4h]\n\n  v4 = (CCBUI **)&this[4]._tail[47];\n  result = CCBAIWindow::OnMessage(this, (UIListBox **)&this[4]._tail[47]);\n  if ( result )\n  {\n    v8 = 0;\n    v9 = 0;\n    v6 = *v4;\n    v7 = 6;\n    v9 = 255;\n    v8 = 278;\n    v10 = 484;\n    CCBUI::CreateButton(v6, a2, a3, (int)this, (int)v4, (struct UIButton **)&v7, (int)this);\n    (**(void (__thiscall ***)(CCBUI *, _DWORD))(*v4)->_data)(*v4, 0);\n    return 1;\n  }\n  return result;\n}\n"
+}

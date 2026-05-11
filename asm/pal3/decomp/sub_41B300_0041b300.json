@@ -1,0 +1,7 @@
+{
+  "name": "sub_41B300",
+  "address": "0x0041B300",
+  "size_bytes": 277,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "int __thiscall sub_41B300(_DWORD *this)\n{\n  int result; // eax\n  int *v3; // eax\n  int v4; // ebx\n  int v5; // ecx\n  void **v6; // eax\n  int *v7; // eax\n  int v8; // ecx\n  void *v9; // [esp-10h] [ebp-34h]\n  int v10; // [esp+8h] [ebp-1Ch]\n  int v11; // [esp+Ch] [ebp-18h]\n  int v12; // [esp+10h] [ebp-14h]\n\n  for ( result = this[35]; result; result = this[35] )\n  {\n    v3 = (int *)this[27];\n    v4 = *v3;\n    v10 = v3[1];\n    v12 = v3[3];\n    v11 = v3[2];\n    v5 = this[35] - 1;\n    this[27] = v3 + 4;\n    this[35] = v5;\n    if ( !v5 || v3 + 4 == (int *)this[26] )\n    {\n      v6 = (void **)this[28];\n      this[28] = v6 + 1;\n      operator delete(*v6);\n      if ( this[35] )\n      {\n        v7 = (int *)this[28];\n        v8 = *v7;\n        this[25] = *v7;\n        this[26] = v8 + 4096;\n        this[27] = v8;\n        this[28] = v7;\n      }\n      else\n      {\n        this[25] = 0;\n        this[26] = 0;\n        this[27] = 0;\n        this[28] = 0;\n        this[29] = 0;\n        v9 = (void *)this[33];\n        this[30] = 0;\n        this[31] = 0;\n        this[32] = 0;\n        operator delete(v9);\n      }\n    }\n    if ( v4 == 1 )\n    {\n      sub_4163B0(this, v10, v11);\n    }\n    else if ( v4 == 2 )\n    {\n      this[158] = v12;\n    }\n  }\n  return result;\n}\n"
+}

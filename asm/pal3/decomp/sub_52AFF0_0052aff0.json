@@ -1,0 +1,7 @@
+{
+  "name": "sub_52AFF0",
+  "address": "0x0052AFF0",
+  "size_bytes": 57,
+  "signature": "void __thiscall(int this, gbMatrixStack *a2)",
+  "decompiled_c": "void __thiscall sub_52AFF0(int this, gbMatrixStack *a2)\n{\n  gbMatrixStack::Push(a2);\n  gbMatrixStack::Translate(a2, (struct gbVec3D *)(this + 268));\n  (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(this + 264) + 16))(*(_DWORD *)(this + 264), 0);\n  gbMatrixStack::Pop(a2);\n}\n"
+}

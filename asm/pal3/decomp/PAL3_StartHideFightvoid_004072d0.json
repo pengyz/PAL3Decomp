@@ -1,0 +1,7 @@
+{
+  "name": "PAL3::StartHideFight(void)",
+  "address": "0x004072D0",
+  "size_bytes": 41,
+  "signature": "int()",
+  "decompiled_c": "int PAL3::StartHideFight()\n{\n  int (__thiscall ***v0)(_DWORD, _DWORD); // eax\n\n  dword_BFDA6C = 8;\n  flt_BFDA58 = 0.0;\n  v0 = (int (__thiscall ***)(_DWORD, _DWORD))CGameData::SetMode(&dword_DB9FD0, 0);\n  return (**v0)(v0, 0);\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_50FA20",
+  "address": "0x0050FA20",
+  "size_bytes": 140,
+  "signature": "int __thiscall(CCBStageRole *this, int a2)",
+  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nint __thiscall sub_50FA20(CCBStageRole *this, int a2)\n{\n  if ( this->_data[96 * *(_DWORD *)&this->_data[396] + 506] )\n  {\n    if ( a2 == *(_DWORD *)&this->_data[6644] )\n    {\n      CCBStageRole::ClearBadPushTask(this, 0.0099999998);\n      this->_data[96 * *(_DWORD *)&this->_data[396] + 505] = 1;\n    }\n    return 0;\n  }\n  else\n  {\n    CCBStageRole::ClearBadPushTask(this, 0.25);\n    *(_DWORD *)&this->_data[6568] = 49;\n    CCBStageRole::GetPointerPos(this);\n    this->_data[96 * *(_DWORD *)&this->_data[396] + 506] = 1;\n    nullsub_3(this);\n    return 0;\n  }\n}\n"
+}

@@ -2,6 +2,6 @@
   "name": "Object3D::SetupCamera",
   "address": "0x0047D9D0",
   "size_bytes": 139,
-  "signature": "void *__thiscall(Object3D *this)",
-  "decompiled_c": "// between_std_methods (0x44BDA0-0x4A7690)\nvoid *__thiscall Object3D::SetupCamera(Object3D *this)\n{\n  float v2; // [esp+0h] [ebp-2Ch]\n  float v3; // [esp+4h] [ebp-28h]\n  struct gbRay v4; // [esp+14h] [ebp-18h] BYREF\n  struct gbRay *v5; // [esp+30h] [ebp+4h]\n  int *v6; // [esp+34h] [ebp+8h]\n\n  memset(&v4, 0, sizeof(v4));\n  v3 = 1.0 - ((double)v6[1] + (double)v6[1]) / (double)(int)g_pAbsTime;\n  v2 = ((double)*v6 + (double)*v6) / (double)(int)g_pGameTime - 1.0;\n  gbCamera::GetRayToScreen(**(gbCamera ***)&this->m_visible, v2, v3, &v4);\n  qmemcpy(v5, &v4, sizeof(struct gbRay));\n  return v5;\n}\n"
+  "signature": "void *__thiscall(void *this)",
+  "decompiled_c": "void *__thiscall Object3D::SetupCamera(void *this)\n{\n  void *result; // eax\n  float v2; // [esp+0h] [ebp-2Ch]\n  float v3; // [esp+4h] [ebp-28h]\n  struct gbRay v4; // [esp+14h] [ebp-18h] BYREF\n  struct gbRay *v5; // [esp+30h] [ebp+4h]\n  int *v6; // [esp+34h] [ebp+8h]\n\n  memset(&v4, 0, sizeof(v4));\n  v3 = 1.0 - ((double)v6[1] + (double)v6[1]) / (double)yBottom;\n  v2 = ((double)*v6 + (double)*v6) / (double)xRight - 1.0;\n  gbCamera::GetRayToScreen(**((gbCamera ***)this + 21), v2, v3, &v4);\n  result = v5;\n  qmemcpy(v5, &v4, sizeof(struct gbRay));\n  return result;\n}\n"
 }

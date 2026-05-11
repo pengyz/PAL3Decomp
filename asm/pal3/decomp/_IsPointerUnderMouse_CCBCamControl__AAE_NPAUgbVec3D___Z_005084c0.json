@@ -1,7 +1,0 @@
-{
-  "name": "?IsPointerUnderMouse@CCBCamControl@@AAE_NPAUgbVec3D@@@Z",
-  "address": "0x005084C0",
-  "size_bytes": 403,
-  "signature": "char __thiscall(CCBCamControl *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall CCBCamControl::IsPointerUnderMouse(CCBCamControl *this)\n{\n  _DWORD *v2; // esi\n\n  CCBStageEffect::CCBStageEffect((CCBStageEffect *)this);\n  v2 = operator new(0xD8u);\n  if ( v2 )\n  {\n    v2[1] = 1;\n    *v2 = gbRefObject::`vftable';\n    *v2 = gbVolumeModifier::`vftable';\n    v2[24] = 0;\n    v2[25] = 0;\n    v2[26] = 0;\n    CCBCamControl::LoadPointer((CCBCamControl *)(v2 + 27));\n    *v2 = &off_56A694;\n  }\n  else\n  {\n    v2 = 0;\n  }\n  gbLightObj::Init(v2, 0);\n  v2[7] = 1008981770;\n  v2[8] = 1008981770;\n  v2[9] = 1008981770;\n  v2[10] = 1065353216;\n  v2[17] = 1;\n  v2[18] = 1133903872;\n  v2[21] = 1056964608;\n  v2[3] = 1008981770;\n  v2[11] = 1;\n  v2[12] = 1;\n  v2[4] = 1008981770;\n  v2[13] = 0;\n  v2[14] = 0;\n  v2[5] = 1008981770;\n  v2[15] = 0x40000000;\n  v2[16] = 1133903872;\n  v2[6] = 1065353216;\n  gbVolModNode::SetVolModObj((gbVolModNode *)&this->m_CCT._p0000[16], (struct gbVolumeModifier *)v2);\n  gbRefObject::Release((gbRefObject *)v2);\n  *(_DWORD *)&this->m_CCT._p0000[2436] = gbEffectMgr::NewRenderEffect(g_pGfxMgr->pEffectMgr, aGfxscriptGeomD, 0x401u);\n  *(_DWORD *)&this->m_CCT._p0000[2440] = gbEffectMgr::NewRenderEffect(g_pGfxMgr->pEffectMgr, aGfxscriptGeomD_0, 0x441u);\n  return 1;\n}\n"
-}

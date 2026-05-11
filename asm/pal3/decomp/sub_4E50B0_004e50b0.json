@@ -1,0 +1,7 @@
+{
+  "name": "sub_4E50B0",
+  "address": "0x004E50B0",
+  "size_bytes": 94,
+  "signature": "_DWORD *()",
+  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\n_DWORD *sub_4E50B0()\n{\n  _DWORD *result; // eax\n  int v1[3]; // [esp+4h] [ebp-Ch] BYREF\n\n  v1[0] = sub_4791B0(dword_975ED8, dword_5D8804);\n  v1[2] = PAL_GDB::GDB_GetSkillNum((PAL_GDB *)dword_975ED8, v1[0]);\n  v1[1] = 1;\n  result = sub_40CCF0((int)&g_SceneMgr.m_slot4[792], v1);\n  byte_17A9946 = 1;\n  return result;\n}\n"
+}

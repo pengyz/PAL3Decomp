@@ -1,0 +1,7 @@
+{
+  "name": "sub_4C27C0",
+  "address": "0x004C27C0",
+  "size_bytes": 8,
+  "signature": "char *__thiscall(_DWORD *this, char a2)",
+  "decompiled_c": "char *__thiscall sub_4C27C0(_DWORD *this, char a2)\n{\n  _DWORD *v2; // esi\n\n  v2 = this - 3;\n  sub_4C20D0(this - 3);\n  if ( (a2 & 1) != 0 )\n    operator delete(v2);\n  return (char *)v2;\n}\n"
+}

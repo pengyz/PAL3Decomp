@@ -1,0 +1,7 @@
+{
+  "name": "sub_4C5C60",
+  "address": "0x004C5C60",
+  "size_bytes": 104,
+  "signature": "int __stdcall(float *a1, int a2, int a3)",
+  "decompiled_c": "int __stdcall sub_4C5C60(float *a1, int a2, int a3)\n{\n  double v3; // st7\n  int result; // eax\n  double v5; // st6\n  double v6; // st7\n  float v7; // [esp+10h] [ebp+Ch]\n\n  v3 = (double)a3;\n  result = a2 / (256 / a3);\n  v5 = (double)(a2 % (256 / a3)) * v3 * 0.00390625;\n  *a1 = v5;\n  v7 = v3 * 0.00390625;\n  a1[2] = v3 * 0.00390625 + v5;\n  v6 = v3 * (double)result * 0.00390625;\n  a1[1] = v6;\n  a1[3] = v6 + v7;\n  return result;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "sub_41D100",
+  "address": "0x0041D100",
+  "size_bytes": 268,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nint __thiscall sub_41D100(_DWORD *this, int a2)\n{\n  switch ( a2 )\n  {\n    case 0:\n      this[2] = 0;\n      this[1] = 1104150528;\n      this[120] = 0;\n      this[121] = 0;\n      this[122] = 0;\n      this[117] = 1150222336;\n      this[114] = -1083490798;\n      this[113] = -1090015724;\n      break;\n    case 1:\n      this[120] = 0;\n      this[121] = 0;\n      this[122] = 0;\n      this[2] = 0;\n      this[1] = 1103128166;\n      this[117] = 1143734272;\n      this[114] = 1058309259;\n      goto LABEL_6;\n    case 2:\n      this[120] = 0;\n      this[121] = 0;\n      this[122] = 0;\n      this[2] = 0;\n      this[1] = 1103128166;\n      this[117] = 1143734272;\n      this[114] = -1089174389;\n      goto LABEL_6;\n    case 3:\n      this[120] = 0;\n      this[121] = 0;\n      this[122] = 0;\n      this[2] = 0;\n      this[1] = 1103128166;\n      this[117] = 1143734272;\n      this[114] = 0;\nLABEL_6:\n      this[113] = -1095887749;\n      break;\n    default:\n      break;\n  }\n  this[115] = 0;\n  sub_41C1E0((int)this);\n  return InputSystem::ProcessKeyboard(1);\n}\n"
+}

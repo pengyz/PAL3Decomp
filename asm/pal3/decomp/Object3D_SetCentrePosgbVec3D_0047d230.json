@@ -1,0 +1,7 @@
+{
+  "name": "Object3D::SetCentrePos(gbVec3D)",
+  "address": "0x0047D230",
+  "size_bytes": 229,
+  "signature": "long double __thiscall(Object3D *this)",
+  "decompiled_c": "long double __thiscall Object3D::SetCentrePos(Object3D *this)\n{\n  double v2; // st7\n  double v3; // st6\n  double v4; // st6\n  gbVec3D v6; // [esp+4h] [ebp-24h] BYREF\n  float v7; // [esp+10h] [ebp-18h]\n  float v8; // [esp+14h] [ebp-14h]\n  float v9; // [esp+18h] [ebp-10h]\n  float v10; // [esp+20h] [ebp-8h]\n  float v11; // [esp+24h] [ebp-4h]\n\n  v7 = 0.0;\n  v8 = 0.0;\n  v2 = this->m_height - this->m_position.z;\n  v3 = this->m_position.x - this->RelativePos.x;\n  v9 = 1.0;\n  v10 = v3;\n  v4 = this->m_position.y - this->RelativePos.y;\n  v6.y = v10;\n  v11 = v4;\n  v6.x = v2;\n  v6.z = v11;\n  gbVec3D::Normalize(&v6);\n  if ( this->m_height >= (double)this->m_position.z )\n    return Object3D::IsOverCVD(v6.x, v6.y, v6.z, v7, v8, v9);\n  else\n    return 360.0 - Object3D::IsOverCVD(v6.x, v6.y, v6.z, v7, v8, v9);\n}\n"
+}

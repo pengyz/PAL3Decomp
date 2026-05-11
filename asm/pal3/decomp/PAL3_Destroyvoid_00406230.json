@@ -1,0 +1,7 @@
+{
+  "name": "PAL3::Destroy(void)",
+  "address": "0x00406230",
+  "size_bytes": 219,
+  "signature": "void()",
+  "decompiled_c": "void PAL3::Destroy()\n{\n  int *v0; // eax\n  int *v1; // eax\n  int *v2; // eax\n  _TextureLib_Data *v3; // ecx\n  CCBSystem *v4; // esi\n  void *v5; // esi\n  int *v6; // eax\n\n  v0 = sub_4BDB10();\n  sub_4BDED0(v0);\n  v1 = sub_4BFD20();\n  sub_4C0400(v1);\n  v2 = sub_5415F0();\n  sub_5415C0((gbRefObject **)v2);\n  ScriptSystem::Destroy();\n  UISystem::Destroy();\n  _TextureLib_Data::_TextureLib_Data(v3);\n  PalScriptMgr::_CON_ReLoadScript();\n  if ( dword_BFDA74 )\n  {\n    CCBSystem::ProcFling(dword_BFDA74);\n    v4 = dword_BFDA74;\n    if ( dword_BFDA74 )\n    {\n      nullsub_3(dword_BFDA74);\n      operator delete(v4);\n    }\n    dword_BFDA74 = 0;\n  }\n  sub_44F430((UIWnd *)&dword_DB9FD0);\n  PAL3::DestroyEffectSystem();\n  if ( dword_BFDA68 )\n  {\n    (**(void (__thiscall ***)(CameraCtrl *, int))dword_BFDA68)(dword_BFDA68, 1);\n    dword_BFDA68 = 0;\n  }\n  v5 = dword_BFDA64;\n  if ( dword_BFDA64 )\n  {\n    gbActorMgr::~gbActorMgr((gbActorMgr *)dword_BFDA64);\n    operator delete(v5);\n    dword_BFDA64 = 0;\n  }\n  if ( gfxMgr )\n  {\n    (**(void (__thiscall ***)(gbGfxManager *, int))gfxMgr->_data)(gfxMgr, 1);\n    gfxMgr = 0;\n  }\n  FileSysDestory();\n  v6 = sub_53DF70();\n  sub_53DEF0((gbAudioManager **)v6);\n}\n"
+}

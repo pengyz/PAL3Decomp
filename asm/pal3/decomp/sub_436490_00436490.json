@@ -1,0 +1,7 @@
+{
+  "name": "sub_436490",
+  "address": "0x00436490",
+  "size_bytes": 79,
+  "signature": "void()",
+  "decompiled_c": "void sub_436490()\n{\n  char *String; // eax\n\n  String = PalScript::GetString();\n  if ( String )\n  {\n    sub_451200((int)&stru_DBAF10, *((const char **)String + 1), 0);\n    (*(void (__thiscall **)(UIWnd *, int))stru_DBAF10.m_fontcolor.ColorQuadFmt)(&stru_DBAF10, 1);\n    (*(void (__thiscall **)(UIWnd *, _DWORD, _DWORD))(stru_DBAF10.m_fontcolor.ColorQuadFmt + 8))(&stru_DBAF10, 0, 0);\n    sub_434C40(&stru_DBAF10 != 0 ? (unsigned int)&stru_DBAF10.m_benable : 0);\n  }\n}\n"
+}

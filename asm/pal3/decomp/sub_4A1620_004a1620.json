@@ -1,0 +1,7 @@
+{
+  "name": "sub_4A1620",
+  "address": "0x004A1620",
+  "size_bytes": 159,
+  "signature": "char __thiscall(int this)",
+  "decompiled_c": "char __thiscall sub_4A1620(int this)\n{\n  char result; // al\n  int v3; // eax\n  int v4; // eax\n\n  result = *(_BYTE *)(this + 1364);\n  if ( result )\n  {\n    (**(void (__thiscall ***)(int, _DWORD))(this + 456))(this + 456, 0);\n    v3 = *(_DWORD *)(this + 1324);\n    if ( v3 )\n    {\n      v4 = v3 - 2;\n      if ( v4 )\n      {\n        if ( v4 == 1 )\n          (**(void (__thiscall ***)(int, _DWORD))(this + 112))(this + 112, 0);\n      }\n      else\n      {\n        (**(void (__thiscall ***)(int, _DWORD))(this + 632))(this + 632, 0);\n        (**(void (__thiscall ***)(int, _DWORD))(this + 976))(this + 976, 0);\n      }\n    }\n    else\n    {\n      (**(void (__thiscall ***)(int, _DWORD))(this + 632))(this + 632, 0);\n    }\n    --dword_DE5CE4;\n    *(_DWORD *)(this + 68) = 0;\n    *(_BYTE *)(this + 1341) = 0;\n    *(_BYTE *)(this + 1340) = 0;\n    return UIWnd::Destroy((UIWnd *)this, 0);\n  }\n  return result;\n}\n"
+}

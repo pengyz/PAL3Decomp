@@ -1,0 +1,7 @@
+{
+  "name": "sub_4F6B70",
+  "address": "0x004F6B70",
+  "size_bytes": 52,
+  "signature": "bool __stdcall(int a2)",
+  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\nbool __stdcall sub_4F6B70(int a2)\n{\n  int SkillNum; // eax\n\n  SkillNum = PAL_GDB::GDB_GetSkillNum((PAL_GDB *)dword_975ED8, a2);\n  return *(_BYTE *)(SkillNum + 612) == 2 && *(_BYTE *)(SkillNum + 631) <= 1u && *(__int16 *)(SkillNum + 644) < 0;\n}\n"
+}

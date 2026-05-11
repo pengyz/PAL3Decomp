@@ -1,0 +1,7 @@
+{
+  "name": "CCBMagicWindow::Reset(void)",
+  "address": "0x0051BB00",
+  "size_bytes": 53,
+  "signature": "int __thiscall(CCBMagicWindow *this, int a2, int a3)",
+  "decompiled_c": "int __thiscall CCBMagicWindow::Reset(CCBMagicWindow *this, int a2, int a3)\n{\n  int *p_d048; // eax\n  int v4; // esi\n\n  p_d048 = &this->_d048;\n  v4 = 5;\n  do\n  {\n    if ( *p_d048 == a3 )\n      *p_d048 = *(_DWORD *)&this->_pad_03C[4 * a2 + 12];\n    ++p_d048;\n    --v4;\n  }\n  while ( v4 );\n  *(_DWORD *)&this->_pad_03C[4 * a2 + 12] = a3;\n  sub_51BB50((char *)this);\n  return -1;\n}\n"
+}

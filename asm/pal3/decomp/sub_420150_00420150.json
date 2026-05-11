@@ -1,0 +1,7 @@
+{
+  "name": "sub_420150",
+  "address": "0x00420150",
+  "size_bytes": 163,
+  "signature": "int __thiscall(_DWORD *this, double a2)",
+  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nint __thiscall sub_420150(_DWORD *this, double a2)\n{\n  int result; // eax\n  int v4; // ecx\n  int v5; // edi\n  _DWORD *v6; // ebx\n  int v7; // edi\n  _DWORD *v8; // ebx\n  float dt; // [esp+10h] [ebp-4h]\n  int dta; // [esp+10h] [ebp-4h]\n\n  result = this[123285];\n  if ( result )\n  {\n    v4 = this[123284];\n    if ( v4 )\n      (*(void (__thiscall **)(int))(*(_DWORD *)v4 + 20))(v4);\n    result = this[14392];\n    v5 = 0;\n    if ( result > 0 )\n    {\n      v6 = this + 14393;\n      do\n      {\n        dt = a2;\n        ScriptSystem::UpdateTimers(dt);\n        result = this[14392];\n        ++v5;\n        v6 += 2176;\n      }\n      while ( v5 < result );\n    }\n    if ( dword_BFDA6C != 9 )\n    {\n      result = this[55];\n      v7 = 0;\n      if ( result > 0 )\n      {\n        v8 = this + 56;\n        do\n        {\n          *(float *)&dta = a2;\n          sub_426EB0((int)v8, a2, dta);\n          result = this[55];\n          ++v7;\n          v8 += 224;\n        }\n        while ( v7 < result );\n      }\n    }\n  }\n  return result;\n}\n"
+}

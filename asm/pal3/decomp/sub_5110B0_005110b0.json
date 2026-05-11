@@ -1,0 +1,7 @@
+{
+  "name": "sub_5110B0",
+  "address": "0x005110B0",
+  "size_bytes": 87,
+  "signature": "void __thiscall(int this, char a2)",
+  "decompiled_c": "void __thiscall sub_5110B0(int this, char a2)\n{\n  struct gbTextureArray *v3; // edx\n\n  gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&gfxMgr->_data[196], 0x15u);\n  v3 = *(struct gbTextureArray **)(this + 672);\n  *(_BYTE *)(this + 886) = -1;\n  *(_BYTE *)(this + 885) = -1;\n  *(_BYTE *)(this + 884) = -1;\n  *(_BYTE *)(this + 887) = a2;\n  gbDynVertBuf::RenderGeomQuad((struct gbGeomQuad *)(this + 820), 1, *(struct gbRenderEffect **)(this + 664), v3);\n}\n"
+}

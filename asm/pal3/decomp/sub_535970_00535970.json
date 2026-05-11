@@ -1,0 +1,7 @@
+{
+  "name": "sub_535970",
+  "address": "0x00535970",
+  "size_bytes": 51,
+  "signature": "void __stdcall(gbMatrixStack *a2)",
+  "decompiled_c": "void __stdcall sub_535970(gbMatrixStack *a2)\n{\n  void *v1; // eax\n  void *v2; // eax\n\n  gbMatrixStack::Push(a2);\n  v1 = (void *)sub_4226F0();\n  UIScene::Render(v1, (int)a2);\n  v2 = (void *)sub_4226F0();\n  UIScene::RenderWithStack(v2, a2);\n  gbMatrixStack::Pop(a2);\n}\n"
+}

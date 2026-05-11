@@ -1,0 +1,7 @@
+{
+  "name": "sub_43F410",
+  "address": "0x0043F410",
+  "size_bytes": 263,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nint __thiscall sub_43F410(_DWORD *this, int a2)\n{\n  int result; // eax\n  PtrArray *v5; // edi\n  void *v6; // ebp\n  _DWORD *v7; // ecx\n  _DWORD *i; // eax\n  int v9; // eax\n  int a2a; // [esp+Ch] [ebp+4h]\n\n  result = this[108];\n  if ( result > 0 && a2 >= 0 && a2 < this[126] )\n  {\n    a2a = 0;\n    v5 = (PtrArray *)(this + 125);\n    do\n    {\n      if ( a2 < v5->m_nSize )\n      {\n        v6 = v5->m_pData[a2];\n        if ( v6 )\n        {\n          UIListBox::Render((UIListBox **)v5->m_pData[a2]);\n          operator delete(v6);\n        }\n      }\n      PtrArray::InsertAt(v5, a2, 1);\n      v5 = (PtrArray *)((char *)v5 + 84);\n      ++a2a;\n    }\n    while ( a2a < this[108] );\n    sub_43F520((int)this);\n    this[280] = -1;\n    v7 = (_DWORD *)this[300];\n    for ( i = (_DWORD *)(this[299] + 4 * a2 + 4); i != v7; ++i )\n      *(i - 1) = *i;\n    this[300] -= 4;\n    result = this[279];\n    if ( a2 <= result )\n    {\n      this[279] = result - 1;\n      v9 = this[126] - 1;\n      if ( this[279] > v9 )\n        this[279] = v9;\n      result = this[279];\n      if ( result < 0 )\n        this[279] = 0;\n    }\n  }\n  return result;\n}\n"
+}

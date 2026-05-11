@@ -1,0 +1,7 @@
+{
+  "name": "sub_4E2C10",
+  "address": "0x004E2C10",
+  "size_bytes": 61,
+  "signature": "LRESULT __thiscall(void *this)",
+  "decompiled_c": "// likely CCBRoleState method (near GetRole, CCBRoleState, CanAction, UnloadWeaponMode)\nLRESULT __thiscall sub_4E2C10(void *this)\n{\n  LRESULT result; // eax\n  HWND DlgItem; // esi\n  tagRoleState *inited; // eax\n\n  result = dword_17A990C;\n  if ( dword_17A990C == 2 )\n  {\n    DlgItem = GetDlgItem(dword_BFDA54, 1206);\n    inited = CCBRoleState::InitUI(*(CCBRoleState **)(*(_DWORD *)this + 16), 0);\n    return sub_4E5390(DlgItem, inited->nMoney);\n  }\n  return result;\n}\n"
+}

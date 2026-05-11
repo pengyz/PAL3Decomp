@@ -1,0 +1,7 @@
+{
+  "name": "CCBStageRole::ProcCatchED(ulong)",
+  "address": "0x0050B360",
+  "size_bytes": 194,
+  "signature": "int __thiscall(CCBStageRole *this)",
+  "decompiled_c": "int __thiscall CCBStageRole::ProcCatchED(CCBStageRole *this)\n{\n  int result; // eax\n\n  if ( *(int *)&this->_data[284] < 5 )\n  {\n    Actor::GetAnimDuration(*(void **)&this->_data[292], (int)aZ01);\n    Actor::GetAnimDuration(*(void **)&this->_data[292], (int)aZ09);\n    Actor::GetAnimDuration(*(void **)&this->_data[292], (int)aZ06);\n    Actor::GetAnimDuration(*(void **)&this->_data[292], (int)aZ03);\n    Actor::GetAnimDuration(*(void **)&this->_data[292], (int)aZ04);\n    Actor::GetAnimDuration(*(void **)&this->_data[292], (int)aZ05);\n    Actor::GetAnimDuration(*(void **)&this->_data[292], (int)&dword_5888D0);\n    Actor::GetAnimDuration(*(void **)&this->_data[292], (int)&dword_5888C8);\n    Actor::GetAnimDuration(*(void **)&this->_data[292], (int)&dword_5888C4);\n    return Actor::GetAnimDuration(*(void **)&this->_data[292], (int)&aNghOpenObjD);\n  }\n  return result;\n}\n"
+}

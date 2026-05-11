@@ -2,6 +2,6 @@
   "name": "CCBStageScene::Update",
   "address": "0x0050FE50",
   "size_bytes": 132,
-  "signature": "int __thiscall(CCBStageScene *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBStageScene::Update(CCBStageScene *this)\n{\n  this->_f3B4 = 0.0;\n  this->_f3B8 = 0.0;\n  this->_f3BC = 0.0;\n  this->_pad_3C0[1] = 1;\n  this->_pad_3C0[2] = 1;\n  this->_pad_3C0[3] = 1;\n  this->_d3C8 = 0;\n  this->_pad_3C0[0] = 0;\n  this->_pad_3C0[4] = 0;\n  this->_d2DC = 0;\n  this->_d2E0 = 0;\n  this->_d2E4 = 1065353216;\n  this->_d2E8 = 1065353216;\n  this->_d364 = 0;\n  this->_d368 = 0;\n  this->_d36C = 1065353216;\n  this->_d370 = 1065353216;\n  this->_d320 = 0;\n  this->_d324 = 0;\n  this->_d328 = 1065353216;\n  this->_d32C = 1065353216;\n  return 0;\n}\n"
+  "signature": "int __thiscall(void *this)",
+  "decompiled_c": "int __thiscall CCBStageScene::Update(void *this)\n{\n  int result; // eax\n\n  result = 0;\n  *((_DWORD *)this + 237) = 0;\n  *((_DWORD *)this + 238) = 0;\n  *((_DWORD *)this + 239) = 0;\n  *((_BYTE *)this + 961) = 1;\n  *((_BYTE *)this + 962) = 1;\n  *((_BYTE *)this + 963) = 1;\n  *((_DWORD *)this + 242) = 0;\n  *((_BYTE *)this + 960) = 0;\n  *((_BYTE *)this + 964) = 0;\n  *((_DWORD *)this + 183) = 0;\n  *((_DWORD *)this + 184) = 0;\n  *((_DWORD *)this + 185) = 1065353216;\n  *((_DWORD *)this + 186) = 1065353216;\n  *((_DWORD *)this + 217) = 0;\n  *((_DWORD *)this + 218) = 0;\n  *((_DWORD *)this + 219) = 1065353216;\n  *((_DWORD *)this + 220) = 1065353216;\n  *((_DWORD *)this + 200) = 0;\n  *((_DWORD *)this + 201) = 0;\n  *((_DWORD *)this + 202) = 1065353216;\n  *((_DWORD *)this + 203) = 1065353216;\n  return result;\n}\n"
 }

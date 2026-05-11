@@ -1,0 +1,7 @@
+{
+  "name": "sub_4370C0",
+  "address": "0x004370C0",
+  "size_bytes": 21,
+  "signature": "char *()",
+  "decompiled_c": "char *sub_4370C0()\n{\n  char *result; // eax\n\n  result = PalScript::GetString();\n  if ( result )\n    *((_DWORD *)result + 1) = (unsigned __int8)byte_D92784;\n  return result;\n}\n"
+}

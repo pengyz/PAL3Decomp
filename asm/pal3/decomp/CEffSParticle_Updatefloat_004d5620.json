@@ -1,0 +1,7 @@
+{
+  "name": "CEffSParticle::Update(float)",
+  "address": "0x004D5620",
+  "size_bytes": 88,
+  "signature": "int *__thiscall(CEffSParticle *this, float a2)",
+  "decompiled_c": "int *__thiscall CEffSParticle::Update(CEffSParticle *this, float a2)\n{\n  int *result; // eax\n\n  switch ( LODWORD(a2) )\n  {\n    case 0:\n      result = dword_5D576C;\n      break;\n    case 1:\n    case 3:\n      result = dword_5D5760;\n      break;\n    case 2:\n    case 4:\n      result = dword_5D5758;\n      break;\n    case 9:\n      result = dword_5D4DF4;\n      break;\n    case 0x14:\n      result = dword_5D4D7C;\n      break;\n    case 0x16:\n      result = dword_5D5744;\n      break;\n    case 0x17:\n      result = dword_5D572C;\n      break;\n    default:\n      result = dword_5D4D3C;\n      break;\n  }\n  return result;\n}\n"
+}

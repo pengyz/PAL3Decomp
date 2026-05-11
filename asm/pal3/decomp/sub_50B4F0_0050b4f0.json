@@ -1,0 +1,7 @@
+{
+  "name": "sub_50B4F0",
+  "address": "0x0050B4F0",
+  "size_bytes": 58,
+  "signature": "int __thiscall(int this)",
+  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nint __thiscall sub_50B4F0(int this)\n{\n  int result; // eax\n  int v3; // esi\n  _DWORD *v4; // ebx\n\n  result = *(_DWORD *)(this + 392);\n  if ( result > 1 )\n  {\n    v3 = 1;\n    v4 = (_DWORD *)(this + 596);\n    do\n    {\n      if ( *v4 == 3 )\n        CCBStageRole::SetForceFinishThrowingWeapon((CCBStageRole *)this, v3);\n      result = *(_DWORD *)(this + 392);\n      ++v3;\n      v4 += 24;\n    }\n    while ( v3 < result );\n  }\n  return result;\n}\n"
+}

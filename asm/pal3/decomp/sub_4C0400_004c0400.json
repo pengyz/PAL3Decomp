@@ -1,0 +1,7 @@
+{
+  "name": "sub_4C0400",
+  "address": "0x004C0400",
+  "size_bytes": 65,
+  "signature": "int __thiscall(_DWORD *this)",
+  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nint __thiscall sub_4C0400(_DWORD *this)\n{\n  int v2; // eax\n  int v3; // eax\n  int result; // eax\n\n  v2 = this[2];\n  if ( v2 )\n  {\n    (*(void (__stdcall **)(int))(*(_DWORD *)v2 + 8))(v2);\n    this[2] = 0;\n  }\n  v3 = this[1];\n  if ( v3 )\n  {\n    (*(void (__stdcall **)(_DWORD))(*(_DWORD *)v3 + 8))(this[1]);\n    this[1] = 0;\n  }\n  result = this[3];\n  if ( result )\n  {\n    result = (*(int (__stdcall **)(_DWORD))(*(_DWORD *)result + 8))(this[3]);\n    this[3] = 0;\n  }\n  return result;\n}\n"
+}

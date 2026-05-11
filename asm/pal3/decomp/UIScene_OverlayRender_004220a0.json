@@ -2,6 +2,6 @@
   "name": "UIScene::OverlayRender",
   "address": "0x004220A0",
   "size_bytes": 68,
-  "signature": "int __thiscall(UIScene *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall UIScene::OverlayRender(UIScene *this, int a2)\n{\n  int v3; // edi\n  int result; // eax\n  char *v5; // esi\n\n  v3 = 0;\n  result = *((_DWORD *)this + 55);\n  if ( result > 0 )\n  {\n    v5 = (char *)this + 224;\n    do\n    {\n      if ( *((_DWORD *)v5 + 22) == 4 )\n        sub_424570((int)v5, (gbMatrixStack *)a2, 0);\n      result = *((_DWORD *)this + 55);\n      ++v3;\n      v5 += 896;\n    }\n    while ( v3 < result );\n  }\n  return result;\n}\n"
+  "signature": "int __thiscall(void *this, int a2)",
+  "decompiled_c": "int __thiscall UIScene::OverlayRender(void *this, int a2)\n{\n  int v3; // edi\n  int result; // eax\n  char *v5; // esi\n\n  v3 = 0;\n  result = *((_DWORD *)this + 55);\n  if ( result > 0 )\n  {\n    v5 = (char *)this + 224;\n    do\n    {\n      if ( *((_DWORD *)v5 + 22) == 4 )\n        sub_424570((int)v5, (gbMatrixStack *)a2, 0);\n      result = *((_DWORD *)this + 55);\n      ++v3;\n      v5 += 896;\n    }\n    while ( v3 < result );\n  }\n  return result;\n}\n"
 }

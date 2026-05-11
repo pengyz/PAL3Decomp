@@ -1,0 +1,7 @@
+{
+  "name": "sub_504B50",
+  "address": "0x00504B50",
+  "size_bytes": 244,
+  "signature": "char __thiscall(_DWORD *this, int a2, int a3, int a4, int a5, int a6, float a7, const void *a8, const void *a9)",
+  "decompiled_c": "char __thiscall sub_504B50(\n        _DWORD *this,\n        int a2,\n        int a3,\n        int a4,\n        int a5,\n        int a6,\n        float a7,\n        const void *a8,\n        const void *a9)\n{\n  int v10; // ecx\n  _DWORD *v12; // edx\n\n  v10 = this[144];\n  if ( v10 >= 49 )\n    return 0;\n  BYTE1(this[20 * v10 + 151]) = 0;\n  BYTE2(this[20 * this[144] + 151]) = 0;\n  LOBYTE(this[20 * this[144] + 151]) = 1;\n  *(float *)&this[20 * this[144] + 153] = a7;\n  this[20 * this[144] + 150] = a6;\n  qmemcpy(&this[20 * this[144] + 154], a8, 0x18u);\n  qmemcpy(&this[20 * this[144] + 160], a9, 0x18u);\n  v12 = &this[20 * this[144] + 146];\n  *v12 = a2;\n  v12[1] = a3;\n  v12[2] = a4;\n  v12[3] = a5;\n  ++this[144];\n  return 1;\n}\n"
+}

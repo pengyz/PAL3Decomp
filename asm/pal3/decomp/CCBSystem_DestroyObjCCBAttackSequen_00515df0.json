@@ -1,0 +1,7 @@
+{
+  "name": "CCBSystem::DestroyObj(CCBAttackSequen * *)",
+  "address": "0x00515DF0",
+  "size_bytes": 30,
+  "signature": "void *__thiscall(CCBSystem *Block, char a2)",
+  "decompiled_c": "void *__thiscall CCBSystem::DestroyObj(CCBSystem *Block, char a2)\n{\n  sub_4E0330(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+}

@@ -3,13 +3,13 @@
 
 #include "DLG_MSG.h"
 #include "DLG_TYPE.h"
-#include "MUIDialogMgr.h"
 #include "UIButton.h"
 #include "UIDialog.h"
 #include "UIStatic.h"
 #include "UIStaticFlex.h"
 #include "_TimeMgr.h"
 
+class MUIDialogMgr;
 class UIWnd;
 
 class MUIDialog : public UIDialog, public MUIDialogMgr {

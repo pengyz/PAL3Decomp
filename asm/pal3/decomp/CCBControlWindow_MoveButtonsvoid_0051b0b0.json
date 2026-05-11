@@ -1,0 +1,7 @@
+{
+  "name": "CCBControlWindow::MoveButtons(void)",
+  "address": "0x0051B0B0",
+  "size_bytes": 91,
+  "signature": "BOOL __thiscall(CCBControlWindow *this, int a2, int a3)",
+  "decompiled_c": "BOOL __thiscall CCBControlWindow::MoveButtons(CCBControlWindow *this, int a2, int a3)\n{\n  if ( *(_DWORD *)&this->_pad_000[56] == 1\n    && (*(_DWORD *)&g_Input._data[6532] == 1 && (g_Input._data[6520] & 0xF) == 1 || *(_DWORD *)&g_Input._data[6548] == 1) )\n  {\n    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(*(_DWORD *)&this->_pad_000[32] + 1160) + 8), 160, -1);\n  }\n  return UIWnd::HitTest((UIWnd *)this, a2, a3);\n}\n"
+}

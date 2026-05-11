@@ -1,0 +1,7 @@
+{
+  "name": "C2DSpark::CreateMore(int,int,gbColorQuad)",
+  "address": "0x004D6050",
+  "size_bytes": 330,
+  "signature": "char __thiscall(C2DSpark *this, int a2, int a3, int a4, int a5)",
+  "decompiled_c": "char __thiscall C2DSpark::CreateMore(C2DSpark *this, int a2, int a3, int a4, int a5)\n{\n  double v5; // st7\n  double v7; // st7\n  float v9; // [esp+0h] [ebp-4h]\n  float a2a; // [esp+8h] [ebp+4h]\n  float a3a; // [esp+Ch] [ebp+8h]\n\n  v5 = *(float *)&a5 * 0.5;\n  dword_17A8170 = a5;\n  dword_17A8168 = 1128792064;\n  dword_17A8158 = 0;\n  dword_17A815C = -1054867456;\n  dword_17A8160 = 0;\n  dword_17A8164 = -1035468800;\n  v9 = (double)a2 - v5;\n  dword_17A816C = -1027080192;\n  dword_17A8174 = 0;\n  byte_17A8178 = 2;\n  a3a = (double)a3 - v5;\n  *(float *)&dword_17A8168 = 250.0 - (double)(rand() % 50);\n  a2a = (float)a4;\n  flt_17A8150 = (double)(rand() % a4) + v9 - a2a * 0.5;\n  flt_17A8154 = (double)(rand() % (2 * a4)) + a3a - a2a;\n  if ( *(float *)&a5 >= 19.0 )\n    v7 = (double)-(rand() % 100);\n  else\n    v7 = (double)-(rand() % 50);\n  *(float *)&dword_17A8164 = v7;\n  return C2DSpark::CreateSingle(this, &flt_17A8150);\n}\n"
+}

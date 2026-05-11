@@ -1,0 +1,7 @@
+{
+  "name": "sub_52B2A0",
+  "address": "0x0052B2A0",
+  "size_bytes": 162,
+  "signature": "void __thiscall(int this)",
+  "decompiled_c": "// likely Object3D method (near GetScreenDegree, GetMouseRay, Object3D, Destroy, L)\nvoid __thiscall sub_52B2A0(int this)\n{\n  ObjectCamera **v2; // ecx\n  void *v3; // edi\n  void (__thiscall ***v4)(_DWORD, int); // ecx\n\n  v2 = *(ObjectCamera ***)(this + 12);\n  if ( v2 )\n  {\n    ObjectCamera::Destroy(v2);\n    v3 = *(void **)(this + 12);\n    if ( v3 )\n    {\n      ObjectCamera::GetCameraDirect(*(ObjectCamera ***)(this + 12));\n      operator delete(v3);\n    }\n    *(_DWORD *)(this + 12) = 0;\n  }\n  v4 = *(void (__thiscall ****)(_DWORD, int))(this + 8);\n  if ( v4 )\n  {\n    (**v4)(v4, 1);\n    *(_DWORD *)(this + 8) = 0;\n  }\n  Object3D::Object3D((Object3D *)(this + 856));\n  `eh vector destructor iterator'((char *)(this + 16), 0x98u, 5, (void (__thiscall *)(void *))Object3D::Object3D);\n}\n"
+}

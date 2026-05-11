@@ -1,0 +1,7 @@
+{
+  "name": "sub_4BD880",
+  "address": "0x004BD880",
+  "size_bytes": 125,
+  "signature": "int __thiscall(_DWORD *this, int a2)",
+  "decompiled_c": "int __thiscall sub_4BD880(_DWORD *this, int a2)\n{\n  gbParticleEffect *v3; // eax\n  gbParticleEffect *v4; // esi\n  gbParticleEffect *v5; // ecx\n  int result; // eax\n\n  v3 = (gbParticleEffect *)operator new(0x160u);\n  v4 = v3;\n  v5 = 0;\n  if ( v3 )\n  {\n    gbParticleEffect::gbParticleEffect(v3);\n    *(_DWORD *)v4->_data = &off_56A784;\n    v5 = v4;\n  }\n  this[23] = v5;\n  gbParticleEffect::LoadFromFile(v5, aEffectGbpartic_0);\n  result = this[23];\n  *(_DWORD *)(result + 280) = 1107296256;\n  return result;\n}\n"
+}
