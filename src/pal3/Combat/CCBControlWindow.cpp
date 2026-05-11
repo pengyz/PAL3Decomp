@@ -283,7 +283,7 @@ int CCBControlWindow::HandleInput(int a2)
 LABEL_10:
       *(_DWORD *)v11->m_drawrc = 1;
       v11->m_hasDBclk = 1;
-      ((UIWnd *)&this->m_pBack->_base)->SetEnable(&g_SceneMgr.m_RoleSystem[4]._tail[3008], 0);
+      ((UIWnd *)&this->m_pBack->_base)->SetEnable(g_SceneMgr.m_szUIString, 0);
       result = (***((int (****)(_DWORD, int))&this->m_pButtonAttack + a2))(
                  *((_DWORD *)&this->m_pButtonAttack + a2),
                  1);

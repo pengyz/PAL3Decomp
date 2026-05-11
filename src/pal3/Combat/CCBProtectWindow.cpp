@@ -114,10 +114,10 @@ int CCBProtectWindow::Create()
   while ( 1 )
   {
     v2->_base._base._vftable = 0;
-    lstrcpyA(v3 - 32, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v3, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v3 + 30, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v3 + 60, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
+    lstrcpyA(v3 - 32, g_SceneMgr.m_szUIString);
+    lstrcpyA(v3, g_SceneMgr.m_szUIString);
+    lstrcpyA(v3 + 30, g_SceneMgr.m_szUIString);
+    lstrcpyA(v3 + 60, g_SceneMgr.m_szUIString);
     v3[576] = 0;
     memset(v3 + 608, 0, 0x18u);
     v3[764] = 0;
@@ -192,10 +192,10 @@ int CCBProtectWindow::Create()
   while ( 1 )
   {
     v9->_base._base._vftable = 0;
-    lstrcpyA(v10 - 32, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v10, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v10 + 30, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v10 + 60, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
+    lstrcpyA(v10 - 32, g_SceneMgr.m_szUIString);
+    lstrcpyA(v10, g_SceneMgr.m_szUIString);
+    lstrcpyA(v10 + 30, g_SceneMgr.m_szUIString);
+    lstrcpyA(v10 + 60, g_SceneMgr.m_szUIString);
     v10[576] = 0;
     memset(v10 + 608, 0, 0x18u);
     v10[764] = 0;
@@ -259,10 +259,10 @@ int CCBProtectWindow::Create()
   while ( 1 )
   {
     v16->_base._base._vftable = 0;
-    lstrcpyA(v17 - 32, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v17, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v17 + 30, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v17 + 60, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
+    lstrcpyA(v17 - 32, g_SceneMgr.m_szUIString);
+    lstrcpyA(v17, g_SceneMgr.m_szUIString);
+    lstrcpyA(v17 + 30, g_SceneMgr.m_szUIString);
+    lstrcpyA(v17 + 60, g_SceneMgr.m_szUIString);
     v17[576] = 0;
     memset(v17 + 608, 0, 0x18u);
     v17[764] = 0;

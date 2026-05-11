@@ -2,6 +2,10 @@
 #include "pal3/globals.h"
 #include "pal3/gen/SoundSystem.h"
 
+// Unnamed globals (extern)
+extern int dword_C11360;
+extern int dword_C113C0;
+
 // 0x0041ED00
 int SoundSystem::Init()
 {
@@ -16,8 +20,8 @@ int SoundSystem::Init()
   char Buffer[256]; // [esp+14h] [ebp-10Ch] BYREF
   int v9; // [esp+11Ch] [ebp-4h]
 
-  memset(&g_SceneMgr.m_RoleSystem[4]._tail[4680], 0, 0x60u);
-  memset(&g_SceneMgr.m_RoleSystem[4]._tail[4584], 0, 0x60u);
+  memset(dword_C113C0, 0, sizeof(dword_C113C0));
+  memset(dword_C11360, 0, sizeof(dword_C11360));
   v0 = 97;
   g_pSceneNode = 0;
   v1 = 0;
@@ -31,9 +35,9 @@ int SoundSystem::Init()
     else
       v3 = 0;
     v9 = -1;
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[v1 + 4680] = v3;
+    dword_C113C0[v1] = (int)v3;
     v3->LoadFromFile(Buffer);
-    *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[v1 + 4680] + 8) = 0;
+    *(_DWORD *)(dword_C113C0[v1] + 8) = 0;
     v4 = (gbSound2DNode *)operator new(0x10u);
     v9 = 1;
     if ( v4 )
@@ -41,12 +45,12 @@ int SoundSystem::Init()
     else
       v5 = 0;
     v9 = -1;
-    *(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[v1 + 4584] = v5;
+    dword_C11360[v1] = (int)v5;
     sprintf(Buffer, "snd\\we022%c.wav", v0);
-    result = ((gbSound2DNode *)*(gbSound2DNode **)&g_SceneMgr.m_RoleSystem[4]._tail[v1 + 4584])->LoadFromFile(Buffer);
-    v7 = *(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[v1 + 4584];
+    result = ((gbSound2DNode *)dword_C11360[v1])->LoadFromFile(Buffer);
+    v7 = dword_C11360[v1];
     ++v0;
-    v1 += 4;
+    ++v1;
     *(_DWORD *)(v7 + 8) = 0;
   }
   while ( v0 - 97 < 4 );

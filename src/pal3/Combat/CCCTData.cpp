@@ -141,37 +141,37 @@ CCCTData::CCCTData(_DWORD *a2, _DWORD *a3)
 {
   int result; // eax
 
-  *(_DWORD *)&this->_data[430228] = *a2;
-  *(_DWORD *)&this->_data[430232] = a2[1];
-  *(_DWORD *)&this->_data[430236] = a2[2];
-  *(_DWORD *)&this->_data[430240] = *a3;
-  *(_DWORD *)&this->_data[430244] = a3[1];
+  this->_d69094 = *a2;
+  this->_f69098 = (float)a2[1];
+  this->_f6909C = (float)a2[2];
+  this->_f690A0 = *(float *)a3;
+  this->_d690A4 = a3[1];
   result = a3[2];
-  *(_DWORD *)&this->_data[430248] = result;
+  this->_d690A8 = result;
   result;
 }
 
 // 0x00505930
 CCCTData::~CCCTData()
 {
-  char *v2; // ebp
+  int *p_d69094; // ebp
   struct gbRenderEffect *v3; // ebx
   float *v4; // esi
   _BYTE *v5; // esi
   unsigned int *p_Color; // esi
   double v7; // st7
   float v8; // edx
-  int v9; // eax
-  int v10; // ecx
-  double v11; // st7
+  float f69098; // eax
+  int f6909C_low; // ecx
+  double f690A0; // st7
   float v12; // edx
-  int v13; // eax
-  int v14; // ecx
+  int d690A4; // eax
+  int d690A8; // ecx
   float v15; // edx
   float v16; // eax
   float v17; // ecx
   int v18; // edx
-  float *v19; // edi
+  float *d68FB4; // edi
   double v20; // st7
   double v21; // st6
   unsigned int v22; // edx
@@ -179,7 +179,7 @@ CCCTData::~CCCTData()
   gbColorQuad v24; // [esp+40h] [ebp-A8h] BYREF
   int v25; // [esp+4Ch] [ebp-9Ch]
   int v26; // [esp+64h] [ebp-84h]
-  int v27; // [esp+68h] [ebp-80h]
+  float f6909C; // [esp+68h] [ebp-80h]
   int v28; // [esp+6Ch] [ebp-7Ch]
   int v29; // [esp+70h] [ebp-78h]
   int v30; // [esp+74h] [ebp-74h]
@@ -188,19 +188,19 @@ CCCTData::~CCCTData()
   float v33; // [esp+88h] [ebp-60h]
   float v34; // [esp+8Ch] [ebp-5Ch]
   float v35; // [esp+90h] [ebp-58h]
-  int v36; // [esp+94h] [ebp-54h]
+  float v36; // [esp+94h] [ebp-54h]
   int ColorQuadFmt; // [esp+98h] [ebp-50h]
   _BYTE v38[64]; // [esp+9Ch] [ebp-4Ch] BYREF
   float v39; // [esp+DCh] [ebp-Ch]
   float v40; // [esp+E0h] [ebp-8h]
   float v41; // [esp+E4h] [ebp-4h]
 
-  if ( this->_data[430252] )
+  if ( this->_tail[0] )
   {
     ((gbMatrix4 *)v38)->gbMatrix4();
-    ((gbGeomNode *)*(gbGeomNode **)&this->_data[430224])->GetTotalOBBox((struct gbOBBox *)v38);
-    v2 = (char *)&this->_data[430228];
-    ((gbMatrix4 *)v38)->RightTranslate((struct gbVec3D *)&this->_data[430228]);
+    ((gbGeomNode *)this->_d69090)->GetTotalOBBox((struct gbOBBox *)v38);
+    p_d69094 = (int *)&this->_d69094;
+    ((gbMatrix4 *)v38)->RightTranslate((struct gbVec3D *)&this->_d69094);
     v3 = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewTrivalEffect(3);
     *(_DWORD *)&v32.Blue = ((gbVertPoolMgr *)g_pGfxMgr->pVertPoolMgr)->GetDynVertBuf(0x15u);
     if ( (byte_17AAEE0 & 1) == 0 )
@@ -295,7 +295,7 @@ CCCTData::~CCCTData()
     dword_17AAEB8 = v29;
     dword_17AAEBC = v28;
     v26 = v29;
-    v27 = v28;
+    f6909C = *(float *)&v28;
     dword_17AAEC4 = v29;
     dword_17AAEC8 = v28;
     v5 = (_BYTE *)&unk_17AAD89;
@@ -321,73 +321,73 @@ CCCTData::~CCCTData()
       --v28;
     }
     while ( *(float *)&v28 != 0.0 );
-    v7 = *(float *)v2;
-    v8 = *(float *)v2;
-    v9 = *(_DWORD *)&this->_data[430232];
-    v27 = *(int *)&this->_data[430236];
+    v7 = *(float *)p_d69094;
+    v8 = *(float *)p_d69094;
+    f69098 = this->_f69098;
+    f6909C = this->_f6909C;
     v35 = v8;
     *(float *)&v32.Color = v7;
-    v34 = *(float *)&v27;
-    v10 = *(_DWORD *)&this->_data[430236];
+    v34 = f6909C;
+    f6909C_low = LODWORD(this->_f6909C);
     v25 = (int)v3;
     v24.Color = 2;
     *(_DWORD *)&v24.Blue = &v32.Color;
-    v36 = v9;
-    v24.ColorQuadFmt = v10;
-    ColorQuadFmt = v10;
+    v36 = f69098;
+    v24.ColorQuadFmt = f6909C_low;
+    ColorQuadFmt = f6909C_low;
     v32.ColorQuadFmt = 1358954495;
     v33 = 0.0;
     ((gbColorQuad *)&v24)->gbColorQuad(&v32);
     ((gbDynVertBuf *)LODWORD(v35))->RenderLineStrip();
-    v11 = *(float *)&this->_data[430240];
-    v12 = *(float *)&this->_data[430240];
-    v13 = *(_DWORD *)&this->_data[430244];
-    v27 = *(int *)&this->_data[430248];
+    f690A0 = this->_f690A0;
+    v12 = this->_f690A0;
+    d690A4 = this->_d690A4;
+    f6909C = *(float *)&this->_d690A8;
     v35 = v12;
-    *(float *)&v32.Color = v11;
-    v34 = *(float *)&v27;
-    v14 = *(_DWORD *)&this->_data[430248];
+    *(float *)&v32.Color = f690A0;
+    v34 = f6909C;
+    d690A8 = this->_d690A8;
     v25 = (int)v3;
     v24.Color = 2;
     *(_DWORD *)&v24.Blue = &v32.Color;
-    v36 = v13;
-    v24.ColorQuadFmt = v14;
-    ColorQuadFmt = v14;
+    v36 = *(float *)&d690A4;
+    v24.ColorQuadFmt = d690A8;
+    ColorQuadFmt = d690A8;
     v33 = 0.0;
     ((gbColorQuad *)&v24)->gbColorQuad(&v32);
     ((gbDynVertBuf *)LODWORD(v35))->RenderLineStrip();
-    v15 = *(float *)&this->_data[430232];
-    v16 = *(float *)&this->_data[430236];
-    v32.Color = *(_DWORD *)v2;
-    v17 = *(float *)&this->_data[430240];
+    v15 = this->_f69098;
+    v16 = this->_f6909C;
+    v32.Color = *p_d69094;
+    v17 = this->_f690A0;
     v33 = v15;
-    v18 = *(_DWORD *)&this->_data[430244];
+    v18 = this->_d690A4;
     v35 = v17;
     v25 = (int)v3;
     v24.Color = 2;
     *(_DWORD *)&v24.Blue = &v32.Color;
-    v36 = v18;
+    v36 = *(float *)&v18;
     v24.ColorQuadFmt = (int)&v32.Color;
     v34 = v16;
-    ColorQuadFmt = *(_DWORD *)&this->_data[430248];
+    ColorQuadFmt = this->_d690A8;
     ((gbColorQuad *)&v24)->gbColorQuad(&v32);
     ((gbDynVertBuf *)LODWORD(v35))->RenderLineStrip();
-    v19 = (float *)*(float **)&this->_data[430004];
-    v20 = v19[123] + 1.0;
-    v21 = v19[124] + 1.0;
-    v22 = *(unsigned int *)v2;
+    d68FB4 = (float *)this->_d68FB4;
+    v20 = d68FB4[123] + 1.0;
+    v21 = d68FB4[124] + 1.0;
+    v22 = *p_d69094;
     v25 = (int)v3;
     v24.Color = 2;
     *(float *)&v26 = v21;
-    v23 = v19[125];
+    v23 = d68FB4[125];
     v35 = *(float *)&v22;
     v33 = *(float *)&v26;
-    v36 = *((_DWORD *)v2 + 1);
-    *(float *)&v27 = v23 + 1.0;
+    v36 = *((float *)p_d69094 + 1);
+    f6909C = v23 + 1.0;
     *(_DWORD *)&v24.Blue = &v32.Color;
     *(float *)&v32.Color = v20;
-    v34 = *(float *)&v27;
-    v24.ColorQuadFmt = *((_DWORD *)v2 + 2);
+    v34 = f6909C;
+    v24.ColorQuadFmt = p_d69094[2];
     ColorQuadFmt = v24.ColorQuadFmt;
     ((gbColorQuad *)&v24)->gbColorQuad(&v32);
     ((gbDynVertBuf *)LODWORD(v35))->RenderLineStrip();
@@ -398,8 +398,8 @@ CCCTData::~CCCTData()
 // 0x00506020
 bool CCCTData::Create(float *a2)
 {
-  int v3; // eax
-  CameraCtrl *v4; // ecx
+  int d68FB0; // eax
+  CameraCtrl *d68FB4; // ecx
   float pPos[2]; // [esp+8h] [ebp-90h] BYREF
   struct gbVec3D v7; // [esp+10h] [ebp-88h] BYREF
   gbRay v8; // [esp+1Ch] [ebp-7Ch] BYREF
@@ -407,16 +407,16 @@ bool CCCTData::Create(float *a2)
   _BYTE pTarget[24]; // [esp+80h] [ebp-18h] BYREF
 
   ((gbMatrix4 *)v9)->gbMatrix4();
-  ((gbGeomNode *)*(gbGeomNode **)&this->_data[430224])->GetTotalOBBox((struct gbOBBox *)v9);
+  ((gbGeomNode *)this->_d69090)->GetTotalOBBox((struct gbOBBox *)v9);
   v7.x = *a2;
   v7.y = a2[1];
   v7.z = a2[2];
   ((gbMatrix4 *)v9)->RightTranslate(&v7);
-  v3 = *(_DWORD *)&this->_data[430000];
-  pPos[0] = *(float *)(v3 + 80);
-  v4 = (CameraCtrl *)*(CameraCtrl **)&this->_data[430004];
-  pPos[1] = *(float *)(v3 + 84);
-  qmemcpy(&v8, v4->GetViewTarget(pTarget, pPos), sizeof(v8));
+  d68FB0 = this->_d68FB0;
+  pPos[0] = *(float *)(d68FB0 + 80);
+  d68FB4 = (CameraCtrl *)this->_d68FB4;
+  pPos[1] = *(float *)(d68FB0 + 84);
+  qmemcpy(&v8, d68FB4->GetViewTarget(pTarget, pPos), sizeof(v8));
   return ((gbRay *)&v8)->IsColOBB((struct gbOBBox *)v9) == 1;
 }
 
@@ -444,7 +444,7 @@ char CCCTData::Destroy()
     v4 = 0;
   }
   v8 = -1;
-  *(_DWORD *)&this->_data[430224] = v4;
+  this->_d69090 = (int)v4;
   if ( !v4 )
   {
     qmemcpy(
@@ -460,26 +460,26 @@ char CCCTData::Destroy()
 // 0x005061A0
 void CCCTData::Init()
 {
-  int v2; // edx
-  int v3; // ebp
+  int d68FD0; // edx
+  int d68FD4; // ebp
   int v4; // ecx
   char *v5; // edi
 
-  v2 = *(_DWORD *)&this->_data[430032];
-  v3 = *(_DWORD *)&this->_data[430036];
-  v4 = *(_DWORD *)&this->_data[200 * v2 + 410000 + 4 * v3];
+  d68FD0 = this->_d68FD0;
+  d68FD4 = this->_d68FD4;
+  v4 = *(_DWORD *)&this->_p0000[200 * d68FD0 + 410000 + 4 * d68FD4];
   if ( v4 == -1 )
     v5 = 0;
   else
-    v5 = (char *)&this->_data[204 * v4];
+    v5 = (char *)&this->_p0000[204 * v4];
   if ( v5[22] )
   {
-    *(_DWORD *)&this->_data[430036] = v3 + 1;
-    if ( *(_DWORD *)&this->_data[430036] >= ((CCBStageCam *)this)->IsEditorCamValid(v2) )
+    this->_d68FD4 = d68FD4 + 1;
+    if ( this->_d68FD4 >= ((CCBStageCam *)this)->IsEditorCamValid(d68FD0) )
     {
-      this->_data[430012] = 0;
-      *(_DWORD *)&this->_data[430036] = -1;
-      *(_DWORD *)&this->_data[430032] = -1;
+      this->_p68FB8[4] = 0;
+      this->_d68FD4 = -1;
+      this->_d68FD0 = -1;
     }
   }
   else
@@ -509,18 +509,18 @@ int CCCTData::Save(int a2)
   if ( result > 0 )
   {
     v4 = result;
-    v5 = (char *)&this->_data[200 * a2 + 410000];
+    v5 = (char *)&this->_p0000[200 * a2 + 410000];
     do
     {
       if ( *(_DWORD *)v5 == -1 )
         v6 = 0;
       else
-        v6 = (char *)&this->_data[204 * *(_DWORD *)v5];
+        v6 = (char *)&this->_p0000[204 * *(_DWORD *)v5];
       v6[21] = 0;
       if ( *(_DWORD *)v5 == -1 )
         result = 0;
       else
-        result = (int)&this->_data[204 * *(_DWORD *)v5];
+        result = (int)&this->_p0000[204 * *(_DWORD *)v5];
       v5 += 4;
       --v4;
       *(_BYTE *)(result + 22) = 0;
@@ -533,7 +533,7 @@ int CCCTData::Save(int a2)
 // 0x005062D0
 int CCCTData::Load(int a2)
 {
-  int v2; // eax
+  int d68FB4; // eax
   double v3; // st7
   double v4; // st6
   int v5; // ecx
@@ -541,13 +541,13 @@ int CCCTData::Load(int a2)
   int v8; // [esp+0h] [ebp-10h]
   int v9; // [esp+4h] [ebp-Ch]
 
-  v2 = *(_DWORD *)&this->_data[430004];
-  v3 = *(float *)(v2 + 496);
-  v4 = *(float *)(v2 + 492);
-  v8 = *(_DWORD *)(v2 + 500);
-  v5 = *(_DWORD *)(v2 + 452);
-  v9 = *(_DWORD *)(v2 + 456);
-  v6 = *(_DWORD *)(v2 + 464);
+  d68FB4 = this->_d68FB4;
+  v3 = *(float *)(d68FB4 + 496);
+  v4 = *(float *)(d68FB4 + 492);
+  v8 = *(_DWORD *)(d68FB4 + 500);
+  v5 = *(_DWORD *)(d68FB4 + 452);
+  v9 = *(_DWORD *)(d68FB4 + 456);
+  v6 = *(_DWORD *)(d68FB4 + 464);
   *(_DWORD *)(a2 + 8) = v8;
   *(_DWORD *)(a2 + 12) = v9;
   *(_DWORD *)(a2 + 16) = v5;
@@ -565,7 +565,7 @@ void CCCTData::InsertTaskToList()
   int v4; // ecx
   char *v5; // ebx
   double v6; // st7
-  double v7; // st7
+  double f69014; // st7
   char v9; // c0
   double v10; // st7
   double v11; // st7
@@ -580,23 +580,23 @@ void CCCTData::InsertTaskToList()
   double v21; // st7
   double v22; // st7
   double v23; // st7
-  double v24; // st7
+  double f69038; // st7
   char v25; // cl
   unsigned int v26; // eax
   float *v27; // eax
   float v28; // edx
   float *v29; // eax
   float v30; // edx
-  float *v31; // esi
+  float *p_f69020; // esi
   unsigned __int8 v33; // c0
   unsigned __int8 v34; // c3
-  float v35; // [esp+1Ch] [ebp-80h]
+  float f68FF8; // [esp+1Ch] [ebp-80h]
   float v36; // [esp+20h] [ebp-7Ch]
   float v37; // [esp+24h] [ebp-78h]
   float v38; // [esp+28h] [ebp-74h]
-  float v39; // [esp+2Ch] [ebp-70h]
+  float f6903C; // [esp+2Ch] [ebp-70h]
   float v40; // [esp+2Ch] [ebp-70h]
-  float v41; // [esp+30h] [ebp-6Ch]
+  float f69040; // [esp+30h] [ebp-6Ch]
   float v42; // [esp+30h] [ebp-6Ch]
   float v43; // [esp+34h] [ebp-68h]
   float v44; // [esp+34h] [ebp-68h]
@@ -609,76 +609,76 @@ void CCCTData::InsertTaskToList()
   gbQuaternion v51; // [esp+4Ch] [ebp-50h] BYREF
   _BYTE v52[64]; // [esp+5Ch] [ebp-40h] BYREF
 
-  v1 = *(_DWORD *)&this->_data[200 * *(_DWORD *)&this->_data[430032] + 410000 + 4 * *(_DWORD *)&this->_data[430036]];
+  v1 = *(_DWORD *)&this->_p0000[200 * this->_d68FD0 + 410000 + 4 * this->_d68FD4];
   if ( v1 == -1 )
     v2 = 0;
   else
-    v2 = (char *)&this->_data[204 * v1];
+    v2 = (char *)&this->_p0000[204 * v1];
   if ( v2[89] && v2[91] )
   {
     if ( !v2[90] )
     {
-      v4 = *(_DWORD *)&this->_data[200 * *(_DWORD *)&this->_data[430032] + 410000 + 4 * *(_DWORD *)&this->_data[430036]];
+      v4 = *(_DWORD *)&this->_p0000[200 * this->_d68FD0 + 410000 + 4 * this->_d68FD4];
       if ( v4 == -1 )
         v5 = 0;
       else
-        v5 = (char *)&this->_data[204 * v4];
+        v5 = (char *)&this->_p0000[204 * v4];
       if ( !v5[21] )
       {
         if ( !v5[88] )
           this->Load((int)(v5 + 32));
         if ( v5[96] )
-          v6 = *(float *)(**(_DWORD **)&this->_data[430000] + 104);
+          v6 = *(float *)(*(_DWORD *)this->_d68FB0 + 104);
         else
-          v6 = *(float *)(**(_DWORD **)&this->_data[430000] + 80);
+          v6 = *(float *)(*(_DWORD *)this->_d68FB0 + 80);
         *((float *)v5 + 6) = v6;
-        qmemcpy(&this->_data[430088], v5 + 32, 0x18u);
+        qmemcpy(&this->_f69008, v5 + 32, 0x18u);
         if ( v5[97] )
         {
-          if ( *((float *)v5 + 17) - *(float *)&this->_data[430100] <= 0.0 )
+          if ( *((float *)v5 + 17) - this->_f69014 <= 0.0 )
           {
-            v7 = *(float *)&this->_data[430100];
+            f69014 = this->_f69014;
             if ( v9 )
-              v7 = v7 - 6.2831855;
+              f69014 = f69014 - 6.2831855;
           }
           else
           {
-            v7 = *(float *)&this->_data[430100] + 6.2831855;
+            f69014 = this->_f69014 + 6.2831855;
           }
-          *(float *)&this->_data[430100] = v7;
+          this->_f69014 = f69014;
         }
-        *(_DWORD *)&this->_data[430072] = *((_DWORD *)v5 + 33);
-        *(_DWORD *)&this->_data[430040] = *((_DWORD *)v5 + 34);
+        this->_f68FF8 = *((float *)v5 + 33);
+        this->_f68FD8 = *((float *)v5 + 34);
         v5[21] = 1;
       }
       if ( v5[96] )
-        v10 = *(float *)(**(_DWORD **)&this->_data[430000] + 104);
+        v10 = *(float *)(*(_DWORD *)this->_d68FB0 + 104);
       else
-        v10 = *(float *)(**(_DWORD **)&this->_data[430000] + 80);
+        v10 = *(float *)(*(_DWORD *)this->_d68FB0 + 80);
       v11 = v10 - *((float *)v5 + 6);
       v36 = v11;
-      v35 = v11 * *(float *)&this->_data[430040];
+      f68FF8 = v11 * this->_f68FD8;
       if ( v36 >= (double)*((float *)v5 + 29) )
       {
         v12 = v36 - *((float *)v5 + 29);
-        v35 = v12 * *((float *)v5 + 31) * v12 * 0.5 + v35;
+        f68FF8 = v12 * *((float *)v5 + 31) * v12 * 0.5 + f68FF8;
       }
       if ( v36 >= (double)*((float *)v5 + 30) )
       {
         v13 = v36 - *((float *)v5 + 30);
-        v35 = (*((float *)v5 + 32) + *((float *)v5 + 31)) * v13 * v13 * 0.5 + v35;
+        f68FF8 = (*((float *)v5 + 32) + *((float *)v5 + 31)) * v13 * v13 * 0.5 + f68FF8;
       }
       if ( v15 | v16 )
       {
-        if ( v35 < (double)*(float *)&this->_data[430072] )
-          v35 = *(float *)&this->_data[430072];
+        if ( f68FF8 < (double)this->_f68FF8 )
+          f68FF8 = this->_f68FF8;
       }
-      else if ( v35 > (double)*(float *)&this->_data[430072] )
+      else if ( f68FF8 > (double)this->_f68FF8 )
       {
-        v35 = *(float *)&this->_data[430072];
+        f68FF8 = this->_f68FF8;
       }
       v17 = *((float *)v5 + 39) - *((float *)v5 + 36);
-      v18 = v35 / *(float *)&this->_data[430072];
+      v18 = f68FF8 / this->_f68FF8;
       memset(&v51, 0, 12);
       v51.w = 1.0;
       v37 = v17 * v18;
@@ -689,28 +689,28 @@ void CCCTData::InsertTaskToList()
       v19 = *((float *)v5 + 8) - v43;
       v49 = *((float *)v5 + 9) - v45;
       v20 = *((float *)v5 + 10) - v47;
-      *(float *)&this->_data[430140] = v49;
+      this->_f6903C = v49;
       v50 = v20;
-      *(float *)&this->_data[430136] = v19;
-      *(float *)&this->_data[430144] = v50;
-      ((gbQuaternion *)&v51)->SetYawPitchRoll(v35, 0.0, 0.0);
+      this->_f69038 = v19;
+      this->_f69040 = v50;
+      ((gbQuaternion *)&v51)->SetYawPitchRoll(f68FF8, 0.0, 0.0);
       ((gbQuaternion *)&v51)->GetMatrix((struct gbMatrix4 *)v52);
-      ((gbMatrix4 *)v52)->RotateIn((struct gbVec3D *)&this->_data[430136]);
-      v21 = v43 + *(float *)&this->_data[430136];
+      ((gbMatrix4 *)v52)->RotateIn((struct gbVec3D *)&this->_f69038);
+      v21 = v43 + this->_f69038;
       v44 = 0.0;
-      *(float *)&this->_data[430136] = v21;
-      v22 = v45 + *(float *)&this->_data[430140];
+      this->_f69038 = v21;
+      v22 = v45 + this->_f6903C;
       v46 = 0.0;
-      *(float *)&this->_data[430140] = v22;
-      v23 = v47 + *(float *)&this->_data[430144];
+      this->_f6903C = v22;
+      v23 = v47 + this->_f69040;
       v48 = 0.0;
-      *(float *)&this->_data[430144] = v23;
-      *(float *)&this->_data[430140] = v37 + *(float *)&this->_data[430140];
-      v24 = *(float *)&this->_data[430136];
-      v38 = *(float *)&this->_data[430136];
-      v39 = *(float *)&this->_data[430140];
+      this->_f69040 = v23;
+      this->_f6903C = v37 + this->_f6903C;
+      f69038 = this->_f69038;
+      v38 = this->_f69038;
+      f6903C = this->_f6903C;
       v25 = v5[102];
-      v41 = *(float *)&this->_data[430144];
+      f69040 = this->_f69040;
       if ( v25 || v5[101] )
       {
         v26 = *((_DWORD *)v5 + 26);
@@ -718,7 +718,7 @@ void CCCTData::InsertTaskToList()
         {
           if ( v26 == -1 )
           {
-            v29 = (float *)*(float **)(*(_DWORD *)&this->_data[430000] + 20);
+            v29 = (float *)*(float **)(this->_d68FB0 + 20);
             v30 = v29[225];
             v29 += 225;
             v44 = v30;
@@ -734,7 +734,7 @@ void CCCTData::InsertTaskToList()
         }
         else
         {
-          v27 = (float *)*(float **)(*(_DWORD *)&this->_data[430000] + 4 * v26 + 24);
+          v27 = (float *)*(float **)(this->_d68FB0 + 4 * v26 + 24);
           v28 = v27[1646];
           v27 += 1646;
           v44 = v28;
@@ -744,44 +744,44 @@ void CCCTData::InsertTaskToList()
       }
       if ( v25 )
       {
-        v40 = v39 + v46;
-        v42 = v41 + v48;
-        v24 = v24 + v44 - *((float *)v5 + 46);
-        v38 = v24;
-        v39 = v40 - *((float *)v5 + 47);
-        v41 = v42 - *((float *)v5 + 48);
+        v40 = f6903C + v46;
+        v42 = f69040 + v48;
+        f69038 = f69038 + v44 - *((float *)v5 + 46);
+        v38 = f69038;
+        f6903C = v40 - *((float *)v5 + 47);
+        f69040 = v42 - *((float *)v5 + 48);
       }
-      v31 = (float *)&this->_data[430112];
+      p_f69020 = (float *)&this->_f69020;
       if ( v5[101] )
       {
-        *(float *)&this->_data[430116] = v39;
-        *(float *)&this->_data[430120] = v41;
-        *v31 = v24;
-        v38->CalcDist(v39);
+        this->_f69024 = f6903C;
+        this->_f69028 = f69040;
+        *p_f69020 = f69038;
+        v38->CalcDist(f6903C);
       }
       else
       {
-        * v31 = (*)*(float *)&this->_data[430088];
-        *(_DWORD *)&this->_data[430116] = *(_DWORD *)&this->_data[430092];
-        *(_DWORD *)&this->_data[430120] = *(_DWORD *)&this->_data[430096];
-        *(_DWORD *)&this->_data[430124] = *(_DWORD *)&this->_data[430100];
-        *(_DWORD *)&this->_data[430128] = *(_DWORD *)&this->_data[430104];
-        *(_DWORD *)&this->_data[430132] = *(_DWORD *)&this->_data[430108];
-        *(float *)&this->_data[430116] = v39;
-        *v31 = v24;
-        *(float *)&this->_data[430120] = v41;
+        *p_f69020 = this->_f69008;
+        this->_f69024 = this->_f6900C;
+        this->_f69028 = this->_f69010;
+        this->_f6902C = this->_f69014;
+        this->_f69030 = this->_f69018;
+        this->_f69034 = this->_f6901C;
+        this->_f69024 = f6903C;
+        *p_f69020 = f69038;
+        this->_f69028 = f69040;
       }
-      ((CCCTData *)*(CCCTData **)&this->_data[430004])->UpdateCamera((int)&this->_data[430112]);
-      ((CameraCtrl *)*(CameraCtrl **)&this->_data[430004])->SetAsCurrent(3);
+      ((CCCTData *)this->_d68FB4)->UpdateCamera((int)&this->_f69020);
+      ((CameraCtrl *)this->_d68FB4)->SetAsCurrent(3);
       if ( v33 | v34 )
       {
-        if ( v35 <= (double)*(float *)&this->_data[430072] )
+        if ( f68FF8 <= (double)this->_f68FF8 )
         {
           *((float *)v5 + 7) = v36;
           v5[22] = 1;
         }
       }
-      else if ( v35 >= (double)*(float *)&this->_data[430072] )
+      else if ( f68FF8 >= (double)this->_f68FF8 )
       {
         *((float *)v5 + 7) = v36;
         v5[22] = 1;
@@ -800,7 +800,7 @@ void CCCTData::SwapTask()
   int v2; // ecx
   char *v3; // ebx
   float *v4; // edx
-  int v5; // eax
+  int d68FD4; // eax
   int v6; // ecx
   char *v7; // eax
   double v8; // st7
@@ -809,9 +809,9 @@ void CCCTData::SwapTask()
   float v11; // ecx
   int v12; // ecx
   double v13; // st7
-  double v14; // st7
+  double f69014; // st7
   char v16; // c0
-  int v17; // edx
+  int d68FB0; // edx
   double v18; // st7
   int v19; // eax
   double v20; // st7
@@ -819,7 +819,7 @@ void CCCTData::SwapTask()
   double v22; // st7
   double v23; // st6
   double v24; // st6
-  double v25; // st7
+  double f69038; // st7
   char v26; // cl
   unsigned int v27; // eax
   float *v28; // eax
@@ -871,26 +871,26 @@ void CCCTData::SwapTask()
   float v74; // [esp+50h] [ebp-8h]
   float v75; // [esp+54h] [ebp-4h]
 
-  v2 = *(_DWORD *)&this->_data[200 * *(_DWORD *)&this->_data[430032] + 410000 + 4 * *(_DWORD *)&this->_data[430036]];
+  v2 = *(_DWORD *)&this->_p0000[200 * this->_d68FD0 + 410000 + 4 * this->_d68FD4];
   if ( v2 == -1 )
     v3 = 0;
   else
-    v3 = (char *)&this->_data[204 * v2];
+    v3 = (char *)&this->_p0000[204 * v2];
   if ( !v3[21] )
   {
     if ( !v3[88] )
       this->Load((int)(v3 + 32));
     v4 = (float *)(v3 + 32);
-    qmemcpy(&this->_data[430088], v3 + 32, 0x18u);
-    *(_DWORD *)&this->_data[430136] = *((_DWORD *)v3 + 8);
-    *(_DWORD *)&this->_data[430140] = *((_DWORD *)v3 + 9);
-    v5 = *(_DWORD *)&this->_data[430036];
-    *(_DWORD *)&this->_data[430144] = *((_DWORD *)v3 + 10);
-    if ( !v5
-      || v5 > 0
-      && ((v6 = *(_DWORD *)&this->_data[200 * *(_DWORD *)&this->_data[430032] + 409996 + 4 * v5], v6 == -1)
+    qmemcpy(&this->_f69008, v3 + 32, 0x18u);
+    this->_f69038 = *((float *)v3 + 8);
+    this->_f6903C = *((float *)v3 + 9);
+    d68FD4 = this->_d68FD4;
+    this->_f69040 = *((float *)v3 + 10);
+    if ( !d68FD4
+      || d68FD4 > 0
+      && ((v6 = *(_DWORD *)&this->_p0000[200 * this->_d68FD0 + 409996 + 4 * d68FD4], v6 == -1)
         ? (v7 = 0)
-        : (v7 = &this->_data[204 * v6]),
+        : (v7 = &this->_p0000[204 * v6]),
           !v7[94]) )
     {
       v8 = *((float *)v3 + 14) - *v4;
@@ -899,19 +899,19 @@ void CCCTData::SwapTask()
       if ( *((float *)v3 + 7) <= 0.0 )
       {
         v9 = *((float *)v3 + 16) - *((float *)v3 + 10);
-        *(float *)&this->_data[430048] = v8;
-        *(float *)&this->_data[430052] = v51;
+        this->_f68FE0 = v8;
+        this->_f68FE4 = v51;
       }
       else
       {
         v35 = 1.0 / *((float *)v3 + 7);
         v40 = v51 * v35;
-        *(float *)&this->_data[430052] = v40;
+        this->_f68FE4 = v40;
         v45 = v58 * v35;
         v9 = v45;
-        *(float *)&this->_data[430048] = v8 * v35;
+        this->_f68FE0 = v8 * v35;
       }
-      *(float *)&this->_data[430056] = v9;
+      this->_f68FE8 = v9;
     }
     v10 = *((float *)v3 + 14) - *v4;
     v52 = *((float *)v3 + 15) - *((float *)v3 + 9);
@@ -919,51 +919,51 @@ void CCCTData::SwapTask()
     if ( *((float *)v3 + 7) <= 0.0 )
     {
       v11 = *((float *)v3 + 16) - *((float *)v3 + 10);
-      *(float *)&this->_data[430060] = v10;
-      *(float *)&this->_data[430064] = v52;
+      this->_f68FEC = v10;
+      this->_f68FF0 = v52;
     }
     else
     {
       v36 = 1.0 / *((float *)v3 + 7);
       v41 = v52 * v36;
-      *(float *)&this->_data[430064] = v41;
+      this->_f68FF0 = v41;
       v46 = v59 * v36;
       v11 = v46;
-      *(float *)&this->_data[430060] = v10 * v36;
+      this->_f68FEC = v10 * v36;
     }
-    *(float *)&this->_data[430068] = v11;
-    v12 = **(_DWORD **)&this->_data[430000];
+    this->_f68FF4 = v11;
+    v12 = *(_DWORD *)this->_d68FB0;
     if ( v3[96] )
       v13 = *(float *)(v12 + 104);
     else
       v13 = *(float *)(v12 + 80);
     *((float *)v3 + 6) = v13;
-    qmemcpy(&this->_data[430112], v4, 0x18u);
+    qmemcpy(&this->_f69020, v4, 0x18u);
     if ( v3[97] )
     {
-      if ( *((float *)v3 + 17) - *(float *)&this->_data[430100] <= 0.0 )
+      if ( *((float *)v3 + 17) - this->_f69014 <= 0.0 )
       {
-        v14 = *(float *)&this->_data[430100];
+        f69014 = this->_f69014;
         if ( v16 )
-          v14 = v14 - 6.2831855;
+          f69014 = f69014 - 6.2831855;
       }
       else
       {
-        v14 = *(float *)&this->_data[430100] + 6.2831855;
+        f69014 = this->_f69014 + 6.2831855;
       }
-      *(float *)&this->_data[430100] = v14;
+      this->_f69014 = f69014;
     }
     v3[21] = 1;
   }
   if ( v3[96] )
   {
-    v17 = *(_DWORD *)&this->_data[430000];
-    v37 = *(double *)(*(_DWORD *)v17 + 88);
-    v18 = *(float *)(*(_DWORD *)v17 + 104);
+    d68FB0 = this->_d68FB0;
+    v37 = *(double *)(*(_DWORD *)d68FB0 + 88);
+    v18 = *(float *)(*(_DWORD *)d68FB0 + 104);
   }
   else
   {
-    v19 = **(_DWORD **)&this->_data[430000];
+    v19 = *(_DWORD *)this->_d68FB0;
     v37 = *(double *)(v19 + 64);
     v18 = *(float *)(v19 + 80);
   }
@@ -971,36 +971,36 @@ void CCCTData::SwapTask()
     v34 = (v18 - *((float *)v3 + 6)) / (*((float *)v3 + 43) + *((float *)v3 + 7));
   else
     v34 = 1.0;
-  v38 = ((gbVec3D *)&this->_data[430048])->Length();
-  v53 = v37 * *(float *)&this->_data[430064];
-  v60 = v37 * *(float *)&this->_data[430068];
-  v20 = v37 * *(float *)&this->_data[430060] + *(float *)&this->_data[430048];
-  v42 = v53 + *(float *)&this->_data[430052];
-  v21 = v60 + *(float *)&this->_data[430056];
-  *(float *)&this->_data[430052] = v42;
+  v38 = ((gbVec3D *)&this->_f68FE0)->Length();
+  v53 = v37 * this->_f68FF0;
+  v60 = v37 * this->_f68FF4;
+  v20 = v37 * this->_f68FEC + this->_f68FE0;
+  v42 = v53 + this->_f68FE4;
+  v21 = v60 + this->_f68FE8;
+  this->_f68FE4 = v42;
   v47 = v21;
-  *(float *)&this->_data[430048] = v20;
-  *(float *)&this->_data[430056] = v47;
-  ((gbVec3D *)&this->_data[430048])->Normalize();
+  this->_f68FE0 = v20;
+  this->_f68FE8 = v47;
+  ((gbVec3D *)&this->_f68FE0)->Normalize();
   v50 = 0.0;
-  *(float *)&this->_data[430048] = v38 * *(float *)&this->_data[430048];
-  *(float *)&this->_data[430052] = v38 * *(float *)&this->_data[430052];
-  *(float *)&this->_data[430056] = v38 * *(float *)&this->_data[430056];
-  v54 = v37 * *(float *)&this->_data[430052];
-  v61 = v37 * *(float *)&this->_data[430056];
-  v22 = v37 * *(float *)&this->_data[430048] + *(float *)&this->_data[430136];
-  v23 = v54 + *(float *)&this->_data[430140];
+  this->_f68FE0 = v38 * this->_f68FE0;
+  this->_f68FE4 = v38 * this->_f68FE4;
+  this->_f68FE8 = v38 * this->_f68FE8;
+  v54 = v37 * this->_f68FE4;
+  v61 = v37 * this->_f68FE8;
+  v22 = v37 * this->_f68FE0 + this->_f69038;
+  v23 = v54 + this->_f6903C;
   v55 = 0.0;
   v43 = v23;
-  v24 = v61 + *(float *)&this->_data[430144];
+  v24 = v61 + this->_f69040;
   v62 = 0.0;
-  *(float *)&this->_data[430140] = v43;
+  this->_f6903C = v43;
   v48 = v24;
-  *(float *)&this->_data[430136] = v22;
-  *(float *)&this->_data[430144] = v48;
-  v25 = *(float *)&this->_data[430136];
+  this->_f69038 = v22;
+  this->_f69040 = v48;
+  f69038 = this->_f69038;
   v26 = v3[102];
-  v39 = *(float *)&this->_data[430136];
+  v39 = this->_f69038;
   if ( v26 || v3[101] )
   {
     v27 = *((_DWORD *)v3 + 26);
@@ -1008,7 +1008,7 @@ void CCCTData::SwapTask()
     {
       if ( v27 == -1 )
       {
-        v30 = (float *)*(float **)(*(_DWORD *)&this->_data[430000] + 20);
+        v30 = (float *)*(float **)(this->_d68FB0 + 20);
         v31 = v30[225];
         v30 += 225;
         v50 = v31;
@@ -1024,7 +1024,7 @@ void CCCTData::SwapTask()
     }
     else
     {
-      v28 = (float *)*(float **)(*(_DWORD *)&this->_data[430000] + 4 * v27 + 24);
+      v28 = (float *)*(float **)(this->_d68FB0 + 4 * v27 + 24);
       v29 = v28[1646];
       v28 += 1646;
       v50 = v29;
@@ -1036,49 +1036,49 @@ void CCCTData::SwapTask()
   {
     v44 = v55 + v43;
     v49 = v62 + v48;
-    v25 = v25 + v50 - *((float *)v3 + 46);
-    v39 = v25;
+    f69038 = f69038 + v50 - *((float *)v3 + 46);
+    v39 = f69038;
     v43 = v44 - *((float *)v3 + 47);
     v48 = v49 - *((float *)v3 + 48);
   }
   if ( v3[101] )
   {
-    *(float *)&this->_data[430116] = v43;
-    *(float *)&this->_data[430120] = v48;
-    *(float *)&this->_data[430112] = v25;
+    this->_f69024 = v43;
+    this->_f69028 = v48;
+    this->_f69020 = f69038;
     v39->CalcDist(v43);
   }
   else
   {
-    v56 = *((float *)v3 + 15) - *(float *)&this->_data[430092];
-    v63 = *((float *)v3 + 16) - *(float *)&this->_data[430096];
-    v65 = *((float *)v3 + 17) - *(float *)&this->_data[430100];
-    v67 = *((float *)v3 + 18) - *(float *)&this->_data[430104];
-    v69 = *((float *)v3 + 19) - *(float *)&this->_data[430108];
+    v56 = *((float *)v3 + 15) - this->_f6900C;
+    v63 = *((float *)v3 + 16) - this->_f69010;
+    v65 = *((float *)v3 + 17) - this->_f69014;
+    v67 = *((float *)v3 + 18) - this->_f69018;
+    v69 = *((float *)v3 + 19) - this->_f6901C;
     v71 = v56 * v34;
     v72 = v63 * v34;
     v73 = v65 * v34;
     v74 = v67 * v34;
     v75 = v69 * v34;
-    v32 = (*((float *)v3 + 14) - *(float *)&this->_data[430088]) * v34 + *(float *)&this->_data[430088];
-    v57 = v71 + *(float *)&this->_data[430092];
-    v64 = v72 + *(float *)&this->_data[430096];
-    v66 = v73 + *(float *)&this->_data[430100];
-    v68 = v74 + *(float *)&this->_data[430104];
-    v33 = v75 + *(float *)&this->_data[430108];
-    *(float *)&this->_data[430116] = v57;
-    *(float *)&this->_data[430120] = v64;
-    *(float *)&this->_data[430124] = v66;
-    *(float *)&this->_data[430128] = v68;
+    v32 = (*((float *)v3 + 14) - this->_f69008) * v34 + this->_f69008;
+    v57 = v71 + this->_f6900C;
+    v64 = v72 + this->_f69010;
+    v66 = v73 + this->_f69014;
+    v68 = v74 + this->_f69018;
+    v33 = v75 + this->_f6901C;
+    this->_f69024 = v57;
+    this->_f69028 = v64;
+    this->_f6902C = v66;
+    this->_f69030 = v68;
     v70 = v33;
-    *(float *)&this->_data[430112] = v32;
-    *(float *)&this->_data[430132] = v70;
-    *(float *)&this->_data[430112] = v25;
-    *(float *)&this->_data[430116] = v43;
-    *(float *)&this->_data[430120] = v48;
+    this->_f69020 = v32;
+    this->_f69034 = v70;
+    this->_f69020 = f69038;
+    this->_f69024 = v43;
+    this->_f69028 = v48;
   }
-  ((CCCTData *)*(CCCTData **)&this->_data[430004])->UpdateCamera((int)&this->_data[430112]);
-  ((CameraCtrl *)*(CameraCtrl **)&this->_data[430004])->SetAsCurrent(3);
+  ((CCCTData *)this->_d68FB4)->UpdateCamera((int)&this->_f69020);
+  ((CameraCtrl *)this->_d68FB4)->SetAsCurrent(3);
   if ( v34 >= 1.0 )
     v3[22] = 1;
 }

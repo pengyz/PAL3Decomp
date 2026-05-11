@@ -1831,7 +1831,7 @@ LABEL_16:
       do
       {
         if ( a3 == *v14 )
-          ((UIWnd *)((char *)this + 512))->SetEnable(&g_SceneMgr.m_RoleSystem[4]._tail[3008], 0);
+          ((UIWnd *)((char *)this + 512))->SetEnable(g_SceneMgr.m_szUIString, 0);
         ++v14;
       }
       while ( (int)v14 < (int)&off_56B22C );
@@ -2000,7 +2000,7 @@ int UIWnd::ctor_7070(int a2, int a3, int a4)
         if ( (int)++v12 >= (int)&off_56B364 )
           return 1;
       }
-      ((UIWnd *)((char *)this + 20408))->SetEnable(&g_SceneMgr.m_RoleSystem[4]._tail[3008], 0);
+      ((UIWnd *)((char *)this + 20408))->SetEnable(g_SceneMgr.m_szUIString, 0);
 LABEL_20:
       result = 1;
       break;
@@ -2106,10 +2106,10 @@ int UIWnd::ctor_A7B0()
   {
     v2->_vftable = 0;
     *((_WORD *)v3 - 428) = 0;
-    lstrcpyA((LPSTR)v3 - 854, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA((LPSTR)v3 - 342, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA((LPSTR)v3 - 312, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA((LPSTR)v3 - 260, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
+    lstrcpyA((LPSTR)v3 - 854, g_SceneMgr.m_szUIString);
+    lstrcpyA((LPSTR)v3 - 342, g_SceneMgr.m_szUIString);
+    lstrcpyA((LPSTR)v3 - 312, g_SceneMgr.m_szUIString);
+    lstrcpyA((LPSTR)v3 - 260, g_SceneMgr.m_szUIString);
     memset(v3 - 56, 0, 0x30u);
     *(v3 - 20) = 0;
     *(v3 - 2) = 0xFFFF;
@@ -2609,7 +2609,7 @@ int UIWnd::ctor_A60()
   memset((char *)this + 39628, 0, 0x1C08u);
   memset((char *)this + 89888, 0, 0x1C08u);
   memset((char *)this + 46804, 0, 0x18u);
-  lstrcpyA((LPSTR)this + 104764, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
+  lstrcpyA((LPSTR)this + 104764, g_SceneMgr.m_szUIString);
   v6 = *((_DWORD *)this + 19);
   *((_DWORD *)this + 25606) = 68;
   *((_DWORD *)this + 25608) = 65;
@@ -2812,7 +2812,7 @@ int UIWnd::ctor_7BB0(int arg0, int a3, int a4)
         else
           (**(void (***)(char *, _DWORD))v11)(v11, 0);
       }
-      sprintf((char *const)this + 80, "%s %d", byte_DC5F3C, *(_DWORD *)g_SceneMgr._gap_1ba4);
+      sprintf((char *const)this + 80, "%s %d", byte_DC5F3C, *(_DWORD *)&g_SceneMgr._gap_1BA4[32]);
       ((UIWnd *)((char *)this + 123908))->SetEnable((const char *)this + 80, 0);
       *((_BYTE *)this + 121869) = 1;
       *((_BYTE *)this + 121868) = 1;
@@ -2854,7 +2854,7 @@ int UIWnd::ctor_7BB0(int arg0, int a3, int a4)
               {
                 if ( v16 == 1 )
                 {
-                  ((UIWnd *)((char *)this + 104596))->SetEnable(&g_SceneMgr.m_RoleSystem[4]._tail[3008], 0);
+                  ((UIWnd *)((char *)this + 104596))->SetEnable(g_SceneMgr.m_szUIString, 0);
                   (**((void (***)(char *, _DWORD))this + 25355))((char *)this + 101420, 0);
                 }
               }
@@ -2886,7 +2886,7 @@ LABEL_34:
               v61.ColorQuadFmt = *((_DWORD *)this + 30279);
               sub_476ED0((int)this, v61);
 LABEL_31:
-              ((UIWnd *)((char *)this + 104596))->SetEnable(&g_SceneMgr.m_RoleSystem[4]._tail[3008], 0);
+              ((UIWnd *)((char *)this + 104596))->SetEnable(g_SceneMgr.m_szUIString, 0);
               (**((void (***)(char *, _DWORD))this + 25355))((char *)this + 101420, 0);
               result = 1;
               break;
@@ -2898,7 +2898,7 @@ LABEL_31:
       }
       UIObj_SetState((UIWnd *)((char *)this + 344 * (_DWORD)v13 + 105020), 0);
       sub_473520((char *)this, v13);
-      ((UIWnd *)((char *)this + 104596))->SetEnable(&g_SceneMgr.m_RoleSystem[4]._tail[3008], 0);
+      ((UIWnd *)((char *)this + 104596))->SetEnable(g_SceneMgr.m_szUIString, 0);
       (**((void (***)(char *, _DWORD))this + 25355))((char *)this + 101420, 0);
       v58 = off_5B9DE4;
 LABEL_35:
@@ -2916,7 +2916,7 @@ LABEL_36:
       *((_DWORD *)this + 148) = a4;
       if ( a4 <= -1 )
       {
-        ((UIWnd *)this + 1815)->SetEnable(&g_SceneMgr.m_RoleSystem[4]._tail[3008], 0);
+        ((UIWnd *)this + 1815)->SetEnable(g_SceneMgr.m_szUIString, 0);
         *((_DWORD *)this + 25973) = 0;
         (**((void (***)(char *, _DWORD))this + 30289))((char *)this + 121156, 0);
         (**((void (***)(char *, _DWORD))this + 30375))((char *)this + 121500, 0);
@@ -2924,7 +2924,7 @@ LABEL_36:
       }
       else
       {
-        ((UIWnd *)((char *)this + 104596))->SetEnable(&g_SceneMgr.m_RoleSystem[4]._tail[3008], 0);
+        ((UIWnd *)((char *)this + 104596))->SetEnable(g_SceneMgr.m_szUIString, 0);
         (**((void (***)(char *, _DWORD))this + 25355))((char *)this + 101420, 0);
         sub_477A90((int)this, *((_DWORD *)this + 30279), *((_DWORD *)this + 148));
         v18 = (int *)*((_DWORD *)this + 897 * *((_DWORD *)this + 30279) + 3 * *((_DWORD *)this + 148) + 11710);
@@ -2955,7 +2955,7 @@ LABEL_36:
         if ( !strcmp(
                 (const char *)(*((_DWORD *)this + 897 * *((_DWORD *)this + 30279) + 3 * *((_DWORD *)this + 148) + 11710)
                              + 36),
-                &g_SceneMgr.m_RoleSystem[4]._tail[3008]) )
+                g_SceneMgr.m_szUIString) )
         {
           sprintf((char *const)this + 80, "%s", aNone);
         }
@@ -2969,7 +2969,7 @@ LABEL_36:
         v21 = *((_DWORD *)this + 897 * *((_DWORD *)this + 30279) + 3 * *((_DWORD *)this + 148) + 11710);
         v22 = (const char *)(v21 + 36);
         v63 = (const char *)(v21 + 66);
-        if ( !strcmp((const char *)(v21 + 36), &g_SceneMgr.m_RoleSystem[4]._tail[3008]) )
+        if ( !strcmp((const char *)(v21 + 36), g_SceneMgr.m_szUIString) )
         {
           sprintf((char *const)this + 80, "%s", aNone);
         }
@@ -3182,7 +3182,7 @@ LABEL_95:
           && v57 > *((_DWORD *)this + 26188)
           && v57 < *((_DWORD *)this + 26190) )
         {
-          ((UIWnd *)((char *)this + 104596))->SetEnable(&g_SceneMgr.m_RoleSystem[4]._tail[3008], 0);
+          ((UIWnd *)((char *)this + 104596))->SetEnable(g_SceneMgr.m_szUIString, 0);
           (**((void (***)(char *, _DWORD))this + 25355))((char *)this + 101420, 0);
         }
       }
@@ -4016,10 +4016,10 @@ int UIWnd::ctor_9F0()
   {
     v2->_vftable = 0;
     *((_WORD *)v3 - 1) = 0;
-    lstrcpyA(v3, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v3 + 512, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v3 + 542, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v3 + 594, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
+    lstrcpyA(v3, g_SceneMgr.m_szUIString);
+    lstrcpyA(v3 + 512, g_SceneMgr.m_szUIString);
+    lstrcpyA(v3 + 542, g_SceneMgr.m_szUIString);
+    lstrcpyA(v3 + 594, g_SceneMgr.m_szUIString);
     memset(v3 + 630, 0, 0x30u);
     *(_DWORD *)(v3 + 774) = 0;
     v3 += 852;
@@ -4402,8 +4402,8 @@ int UIWnd::ctor_6F10()
   while ( 1 )
   {
     v2->_vftable = 0;
-    lstrcpyA(v3 - 32, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
-    lstrcpyA(v3, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
+    lstrcpyA(v3 - 32, g_SceneMgr.m_szUIString);
+    lstrcpyA(v3, g_SceneMgr.m_szUIString);
     memset(v3 + 532, 0, 0x18u);
     v3 += 760;
     v4 = v7 == 1;
@@ -5892,7 +5892,7 @@ LABEL_21:
             pOut = v31;
             SkillNum = ((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(v31);
             pOut2 = 1;
-            CCBStageRole_GetAlive((int)&g_SceneMgr.m_extraSlot[760], &pOut);
+            CCBStageRole_GetAlive((int)&g_SceneMgr.m_pCBRoleStateData, &pOut);
           }
           ++v19;
           v20 += 402;

@@ -27,8 +27,8 @@ unsigned int NPC::Create(int index)
   int indexa; // [esp+14h] [ebp+4h]
 
   v2 = 0;
-  v3 = (char *)&g_SceneMgr.m_slot[0]._tail[1408 * index + 152];
-  memset(&g_SceneMgr.m_slot[0]._tail[1408 * index + 128], 0, 0x18u);
+  v3 = (char *)&g_SceneMgr.m_slotData[1408 * index + 424];
+  memset(&g_SceneMgr.m_slotData[1408 * index + 400], 0, 0x18u);
   *(_DWORD *)v3 = 0;
   *((_WORD *)v3 + 2) = 0;
   result = ((Concurrency *)&g_GDB)->details::VirtualProcessor::GetExecutionResourceId();
@@ -43,7 +43,7 @@ unsigned int NPC::Create(int index)
       {
         v8 = v2 + 352 * index;
         ++v2;
-        *(_DWORD *)&g_SceneMgr.m_slot[0]._tail[4 * v8 + 128] = v6;
+        *(_DWORD *)&g_SceneMgr.m_slotData[4 * v8 + 400] = v6;
       }
     }
     result = indexa;
@@ -76,10 +76,10 @@ void * NPC::Init(int index)
   v2 = 0;
   memset(v18, 0, sizeof(v18));
   v17 = 1408 * index;
-  memset(&g_SceneMgr.m_slot[0]._tail[1408 * index + 160], 0, 0xC0u);
-  memset(&g_SceneMgr.m_slot[0]._tail[1408 * index + 352], 0, 0x30u);
-  memset(&g_SceneMgr.m_slot[0]._tail[1408 * index + 400], 0, 0x30u);
-  memset(&g_SceneMgr.m_slot[0]._tail[1408 * index + 448], 0, 0x30u);
+  memset(&g_SceneMgr.m_slotData[1408 * index + 432], 0, 0xC0u);
+  memset(&g_SceneMgr.m_slotData[1408 * index + 624], 0, 0x30u);
+  memset(&g_SceneMgr.m_slotData[1408 * index + 672], 0, 0x30u);
+  memset(&g_SceneMgr.m_slotData[1408 * index + 720], 0, 0x30u);
   indexa = ((Concurrency *)&g_GDB)->details::VirtualProcessor::GetExecutionResourceId();
   if ( indexa > 0 )
   {
@@ -111,15 +111,15 @@ void * NPC::Init(int index)
               {
                 if ( i == 2 )
                 {
-                  *(_DWORD *)&g_SceneMgr.m_slot[0]._tail[1408 * index + 256 + 4 * v18[2]] = v3;
+                  *(_DWORD *)&g_SceneMgr.m_slotData[1408 * index + 528 + 4 * v18[2]] = v3;
                 }
                 else if ( i == 3 )
                 {
-                  *(_DWORD *)&g_SceneMgr.m_slot[0]._tail[1408 * index + 224 + 4 * v18[3]] = v3;
+                  *(_DWORD *)&g_SceneMgr.m_slotData[1408 * index + 496 + 4 * v18[3]] = v3;
                 }
                 else
                 {
-                  *(_DWORD *)&g_SceneMgr.m_slot[0]._tail[1408 * index + 160 + 32 * i + 4 * v18[i]] = v3;
+                  *(_DWORD *)&g_SceneMgr.m_slotData[1408 * index + 432 + 32 * i + 4 * v18[i]] = v3;
                 }
                 ++v18[i];
               }
@@ -129,7 +129,7 @@ void * NPC::Init(int index)
           {
             v9 = v18[5] + 352 * index;
             ++v18[5];
-            *(_DWORD *)&g_SceneMgr.m_slot[0]._tail[4 * v9 + 320] = v3;
+            *(_DWORD *)&g_SceneMgr.m_slotData[4 * v9 + 592] = v3;
           }
         }
       }
@@ -141,7 +141,7 @@ void * NPC::Init(int index)
   {
     v11 = 1;
     v12 = 6;
-    v13 = (char *)&g_SceneMgr.m_slot[0]._tail[v17 + 164];
+    v13 = (char *)&g_SceneMgr.m_slotData[v17 + 436];
     do
     {
       result = v13;
@@ -176,7 +176,7 @@ int NPC::SetParams(int a1)
 {
   int result; // eax
 
-  *(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[2900] = a1;
+  *(_DWORD *)g_SceneMgr._gap_C93C = a1;
   result = a1;
   if ( a1 )
   {
@@ -226,7 +226,7 @@ int * NPC::InitAll()
 
   result = g_RoleTeam2;
   v11 = 0;
-  v1 = (char *)&g_SceneMgr.m_slot[0]._tail[152];
+  v1 = (char *)&g_SceneMgr.m_slotData[424];
   v12 = g_RoleTeam2;
   do
   {
@@ -261,9 +261,9 @@ int * NPC::InitAll()
             if ( v3 == *(_DWORD *)v9 )
             {
               v10 = v8 + 8 * (v6 + v11);
-              g_SceneMgr.m_slot[0]._tail[v10 + 352] = 1;
-              g_SceneMgr.m_slot[0]._tail[v10 + 448] = *((_BYTE *)v2 + 4);
-              g_SceneMgr.m_slot[0]._tail[v10 + 400] = *((_BYTE *)v2 + 6);
+              g_SceneMgr.m_slotData[v10 + 624] = 1;
+              g_SceneMgr.m_slotData[v10 + 720] = *((_BYTE *)v2 + 4);
+              g_SceneMgr.m_slotData[v10 + 672] = *((_BYTE *)v2 + 6);
               goto LABEL_14;
             }
             ++v8;

@@ -9,6 +9,7 @@ int sub_41A070(...);
 int sub_429A90(...);
 
 // Unnamed globals (extern)
+extern int dword_C116EC;
 extern int dword_C300C8;
 
 // 0x00420CD0
@@ -19,7 +20,7 @@ int UICamera::GetViewMode(int a1)
   int v3; // ebx
   int v4; // edi
   int v5; // eax
-  int v6; // ecx
+  float *v6; // ecx
   int v7; // esi
   float v8; // eax
   float v9; // eax
@@ -42,29 +43,29 @@ int UICamera::GetViewMode(int a1)
   v15 = 3.4028235e38;
   if ( v5 <= 0 )
     return 0;
-  v6 = *(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492];
+  v6 = (float *)dword_C116EC;
   v7 = v2 + 272;
   do
   {
     if ( *(_BYTE *)(v7 + 125)
       && (*(_BYTE *)(v7 + 160) & 2) != 0
       && *(_BYTE *)(v7 + 126)
-      && *(unsigned __int8 *)(v7 + 198) == *(_DWORD *)(v6 + 628) )
+      && *(unsigned __int8 *)(v7 + 198) == *((_DWORD *)v6 + 157) )
     {
       v8 = *(float *)v7;
       v16 = *(float *)(v7 - 8);
       v18 = v8;
       v17 = 0.0;
-      if ( sub_41A070((float *)v6, &v16, 1) )
+      if ( sub_41A070(v6, &v16, 1) )
       {
         v9 = *(float *)(v7 - 8);
         v18 = *(float *)v7;
-        v6 = *(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492];
+        v6 = (float *)dword_C116EC;
         v16 = v9;
         v17 = 0.0;
-        v16 = v9 - *(float *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 4);
-        v17 = -*(float *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 8);
-        v10 = v18 - *(float *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 12);
+        v16 = v9 - *((float *)dword_C116EC + 1);
+        v17 = -*((float *)dword_C116EC + 2);
+        v10 = v18 - *((float *)dword_C116EC + 3);
         v18 = v10;
         v11 = v10 * v18 + v16 * v16 + v17 * v17;
         v14 = v11;
@@ -76,7 +77,7 @@ int UICamera::GetViewMode(int a1)
       }
       else
       {
-        v6 = *(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492];
+        v6 = (float *)dword_C116EC;
       }
     }
     ++v4;
@@ -177,15 +178,15 @@ int UICamera::GetState()
       {
         if ( *(_DWORD *)(v3 - 24) )
         {
-          if ( *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 628) == *(_DWORD *)(v3 + 460) )
+          if ( *((_DWORD *)dword_C116EC + 157) == *(_DWORD *)(v3 + 460) )
           {
-            if ( sub_419EF0(*(int *)&g_SceneMgr.m_RoleSystem[4]._tail[5492], (float *)(v3 - 164)) )
+            if ( sub_419EF0((int)dword_C116EC, (float *)(v3 - 164)) )
             {
-              v14 = *(float *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 160) - *(float *)(v3 - 8);
-              v4 = *(float *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 164) - *(float *)(v3 - 4);
+              v14 = *((float *)dword_C116EC + 40) - *(float *)(v3 - 8);
+              v4 = *((float *)dword_C116EC + 41) - *(float *)(v3 - 4);
               v20.x = v14;
               v16 = v4;
-              v5 = *(float *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 168) - *(float *)v3;
+              v5 = *((float *)dword_C116EC + 42) - *(float *)v3;
               v20.y = v16;
               v18 = v5;
               v20.z = v18;
@@ -205,20 +206,20 @@ int UICamera::GetState()
     while ( v1 < *(_DWORD *)(v2 + 57568) );
   }
   v7 = 0;
-  v8 = (char *)&g_SceneMgr.m_RoleSystem[0]._p018[112];
+  v8 = (char *)&g_SceneMgr.m_RoleSystemData[168];
   do
   {
-    if ( v7 != *(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[2896] )
+    if ( v7 != g_SceneMgr.m_nCameraState )
     {
       if ( *((_DWORD *)v8 + 116) )
       {
-        if ( sub_41A070(*(float **)&g_SceneMgr.m_RoleSystem[4]._tail[5492], (float *)v8 - 41, 1) )
+        if ( sub_41A070((float *)dword_C116EC, (float *)v8 - 41, 1) )
         {
-          v15 = *(float *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 160) - *((float *)v8 - 2);
-          v9 = *(float *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 164) - *((float *)v8 - 1);
+          v15 = *((float *)dword_C116EC + 40) - *((float *)v8 - 2);
+          v9 = *((float *)dword_C116EC + 41) - *((float *)v8 - 1);
           v20.x = v15;
           v17 = v9;
-          v10 = *(float *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 168) - *(float *)v8;
+          v10 = *((float *)dword_C116EC + 42) - *(float *)v8;
           v20.y = v17;
           v19 = v10;
           v20.z = v19;
@@ -234,7 +235,7 @@ int UICamera::GetState()
     v8 += 8704;
     ++v7;
   }
-  while ( (int)v8 < (int)&g_SceneMgr.m_RoleSystem[4]._tail[2192] );
+  while ( (int)v8 < (int)&g_SceneMgr.m_camBlock[152] );
   if ( v0 && 12.0 * 4.5 < v13 - *(float *)(v0 + 16) )
     return 0;
   else
@@ -296,10 +297,10 @@ int UICamera::GetTarget(float *pMat)
     while ( v1 < *(_DWORD *)(v3 + 57568) );
   }
   v9 = 0;
-  v10 = (char *)&g_SceneMgr.m_RoleSystem[0]._p018[112];
+  v10 = (char *)&g_SceneMgr.m_RoleSystemData[168];
   do
   {
-    if ( v9 != *(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[2896] )
+    if ( v9 != g_SceneMgr.m_nCameraState )
     {
       if ( *((_DWORD *)v10 + 116) )
       {
@@ -321,10 +322,10 @@ int UICamera::GetTarget(float *pMat)
     v10 += 8704;
     ++v9;
   }
-  while ( (int)v10 < (int)&g_SceneMgr.m_RoleSystem[4]._tail[2192] );
+  while ( (int)v10 < (int)&g_SceneMgr.m_camBlock[152] );
   if ( v17 < 0 )
     return 0;
   if ( v2 )
     return 8704 * v17 + v3 + 57572;
-  return (int)&g_SceneMgr._gap_1ba4[8704 * v17 + 12];
+  return (int)&g_SceneMgr.m_RoleSystemData[8704 * v17];
 }

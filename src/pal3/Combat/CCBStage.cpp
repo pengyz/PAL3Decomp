@@ -126,8 +126,8 @@ int CCBStage::InitRound()
   *((float *)&this->m_Task[0].SubTask[0].bEff1Started + 70 * (int)this->m_pCamControl) = v4;
   *((_DWORD *)&this->m_pScene + 70 * (int)this->m_pCamControl) = 1;
   *(&this->m_Task[0].SubTask[0].dwTemp1 + 70 * (int)this->m_pCamControl) = 1103101952;
-  *((_DWORD *)&this->m_pCBSystem + 70 * (int)&this->m_pCamControl->m_CCT._data[1]) = v5;
-  result = (int)&this->m_pCamControl->m_CCT._data[1];
+  *((_DWORD *)&this->m_pCBSystem + 70 * (int)&this->m_pCamControl->m_CCT._p0000[1]) = v5;
+  result = (int)&this->m_pCamControl->m_CCT._p0000[1];
   this->m_pCamControl = (CCBCamControl *)result;
   return result;
 }
@@ -147,9 +147,9 @@ int CCBStage::EndRound()
   *((float *)&this->m_Task[0].SubTask[0].nTemp1 + 70 * (int)this->m_pCamControl) = v4;
   *((float *)&this->m_Task[0].SubTask[0].dwTemp1 + 70 * (int)this->m_pCamControl) = v5;
   *((_DWORD *)&this->m_pScene + 70 * (int)this->m_pCamControl) = 5;
-  *((_DWORD *)&this->m_pCBSystem + 70 * (int)&this->m_pCamControl->m_CCT._data[1]) = this->m_pEditor;
+  *((_DWORD *)&this->m_pCBSystem + 70 * (int)&this->m_pCamControl->m_CCT._p0000[1]) = this->m_pEditor;
   *((_BYTE *)&this->m_Task[0].SubTask[0].param.f3 + 280 * (int)this->m_pCamControl + 3) = v6;
-  result = (int)&this->m_pCamControl->m_CCT._data[1];
+  result = (int)&this->m_pCamControl->m_CCT._p0000[1];
   this->m_pCamControl = (CCBCamControl *)result;
   return result;
 }
@@ -2084,7 +2084,7 @@ int CCBStage::ProcWait(int a2)
   }
   else
   {
-    strcpy(Buffer, &g_SceneMgr.m_RoleSystem[4]._tail[3008]);
+    strcpy(Buffer, g_SceneMgr.m_szUIString);
     v2 = v19;
   }
   ((CCBStage *)v2->m_TempStorageNGH)->InitRound();
@@ -2273,7 +2273,7 @@ int CCBStage::ProcShowSneakAttackState(int _74)
   {
     this->ResetAll();
     v7 = *((_DWORD *)v4 + 2);
-    if ( v7 <= 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slot[0]._tail[1408 * v7 + 16] + 613) == 5
+    if ( v7 <= 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slotData[1408 * v7 + 288] + 613) == 5
       || *(_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(*((_DWORD *)v4 + 2)) == 7366 )
     {
       a4 = *((_DWORD *)v4 + 3);
@@ -3008,7 +3008,7 @@ int CCBStage::ResetAll()
       *((float *)&g_bRoleActive + 2) = z;
       ((gbVec3D *)&g_bRoleActive)->Normalize();
       v19 = *(_DWORD *)(a2 + 8);
-      if ( v19 == 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_extraSlot[256] + 613) == 1 )
+      if ( v19 == 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_extraSlot[288] + 613) == 1 )
       {
         ((CCBStageRole *)this->m_pRole[4])->GetStatus(v49);
         __asm { fstp    [esp+2Ch+a2] }

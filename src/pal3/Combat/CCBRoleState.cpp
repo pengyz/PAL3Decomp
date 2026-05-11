@@ -215,7 +215,7 @@ CCBRoleState::CCBRoleState()
   char *v26; // [esp+14h] [ebp-4h]
 
   v1 = (char *)&this->m_Role[0]._rest[484];
-  v2 = (char *)&g_SceneMgr.m_slot[0]._tail[16];
+  v2 = (char *)&g_SceneMgr.m_slotData[288];
   v26 = (char *)&this->m_Role[0]._rest[484];
   do
   {
@@ -224,7 +224,7 @@ CCBRoleState::CCBRoleState()
     if ( (_BYTE)v3 )
     {
       memset(v4, 0, 0x1Cu);
-      if ( (int)v2 < (int)&g_SceneMgr.m_slot[0]._tail[16] || (int)v2 >= (int)&g_SceneMgr.m_RoleSystem[0]._p278[196] )
+      if ( (int)v2 < (int)&g_SceneMgr.m_slotData[288] || (int)v2 >= (int)&g_SceneMgr.m_RoleSystemData[856] )
       {
         v21 = 580;
         v25 = v1;
@@ -320,7 +320,7 @@ CCBRoleState::CCBRoleState()
     v1 += 892;
     v26 = v1;
   }
-  while ( (int)v2 < (int)&g_SceneMgr.m_RoleSystem[0]._tail[7776] );
+  while ( (int)v2 < (int)&g_SceneMgr.m_RoleSystemData[9304] );
   v3;
 }
 
@@ -328,120 +328,125 @@ CCBRoleState::CCBRoleState()
 char CCBRoleState::_CCBRoleState()
 {
   int v2; // ebp
-  int *p_d0F0; // edi
+  char *v3; // edi
   char *v4; // esi
   char result; // al
 
   v2 = 0;
-  p_d0F0 = (int *)&g_SceneMgr.m_slot[0]._d0F0;
+  v3 = (char *)&g_SceneMgr.m_slotData[240];
   v4 = (char *)&this->m_Role[0]._rest[28];
   do
   {
     result = *(v4 - 79);
     if ( result )
     {
-      if ( *(p_d0F0 - 5) )
+      if ( *((_DWORD *)v3 - 5) )
       {
-        *(float *)v4 = (double)*(__int16 *)(*(p_d0F0 - 3) + 768) + *(float *)v4;
-        *((float *)v4 + 1) = (double)*(__int16 *)(*(p_d0F0 - 3) + 770) + *((float *)v4 + 1);
-        *((float *)v4 + 3) = (double)*(__int16 *)(*(p_d0F0 - 3) + 774) + *((float *)v4 + 3);
-        *((float *)v4 + 2) = (double)*(__int16 *)(*(p_d0F0 - 3) + 772) + *((float *)v4 + 2);
-        *((float *)v4 + 4) = (double)*(__int16 *)(*(p_d0F0 - 3) + 644) + *((float *)v4 + 4);
-        *((float *)v4 + 5) = (double)*(__int16 *)(*(p_d0F0 - 3) + 646) + *((float *)v4 + 5);
-        *((float *)v4 + 6) = (double)*(__int16 *)(*(p_d0F0 - 3) + 648) + *((float *)v4 + 6);
-        if ( *(_WORD *)(*(p_d0F0 - 3) + 750) )
+        *(float *)v4 = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 768) + *(float *)v4;
+        *((float *)v4 + 1) = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 770) + *((float *)v4 + 1);
+        *((float *)v4 + 3) = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 774) + *((float *)v4 + 3);
+        *((float *)v4 + 2) = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 772) + *((float *)v4 + 2);
+        *((float *)v4 + 4) = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 644) + *((float *)v4 + 4);
+        *((float *)v4 + 5) = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 646) + *((float *)v4 + 5);
+        *((float *)v4 + 6) = (double)*(__int16 *)(*((_DWORD *)v3 - 3) + 648) + *((float *)v4 + 6);
+        if ( *(_WORD *)(*((_DWORD *)v3 - 3) + 750) )
         {
           v4[511] = 1;
           *((_WORD *)v4 + 309) = 0x7FFF;
         }
-        this->Reset(v2, (float *)*(unsigned __int8 *)(*(p_d0F0 - 3) + 628));
+        this->Reset(v2, (float *)*(unsigned __int8 *)(*((_DWORD *)v3 - 3) + 628));
       }
-      if ( *(p_d0F0 - 2) )
+      if ( *((_DWORD *)v3 - 2) )
       {
-        *(float *)v4 = (double)*(__int16 *)(*p_d0F0 + 768) + *(float *)v4;
-        *((float *)v4 + 1) = (double)*(__int16 *)(*p_d0F0 + 770) + *((float *)v4 + 1);
-        *((float *)v4 + 3) = (double)*(__int16 *)(*p_d0F0 + 774) + *((float *)v4 + 3);
-        *((float *)v4 + 2) = (double)*(__int16 *)(*p_d0F0 + 772) + *((float *)v4 + 2);
-        *((float *)v4 + 4) = (double)*(__int16 *)(*p_d0F0 + 644) + *((float *)v4 + 4);
-        *((float *)v4 + 5) = (double)*(__int16 *)(*p_d0F0 + 646) + *((float *)v4 + 5);
-        *((float *)v4 + 6) = (double)*(__int16 *)(*p_d0F0 + 648) + *((float *)v4 + 6);
-        if ( *(_WORD *)(*p_d0F0 + 750) )
+        *(float *)v4 = (double)*(__int16 *)(*(_DWORD *)v3 + 768) + *(float *)v4;
+        *((float *)v4 + 1) = (double)*(__int16 *)(*(_DWORD *)v3 + 770) + *((float *)v4 + 1);
+        *((float *)v4 + 3) = (double)*(__int16 *)(*(_DWORD *)v3 + 774) + *((float *)v4 + 3);
+        *((float *)v4 + 2) = (double)*(__int16 *)(*(_DWORD *)v3 + 772) + *((float *)v4 + 2);
+        *((float *)v4 + 4) = (double)*(__int16 *)(*(_DWORD *)v3 + 644) + *((float *)v4 + 4);
+        *((float *)v4 + 5) = (double)*(__int16 *)(*(_DWORD *)v3 + 646) + *((float *)v4 + 5);
+        *((float *)v4 + 6) = (double)*(__int16 *)(*(_DWORD *)v3 + 648) + *((float *)v4 + 6);
+        if ( *(_WORD *)(*(_DWORD *)v3 + 750) )
         {
           v4[511] = 1;
           *((_WORD *)v4 + 309) = 0x7FFF;
         }
-        this->Reset(v2, (float *)*(unsigned __int8 *)(*p_d0F0 + 628));
+        this->Reset(v2, (float *)*(unsigned __int8 *)(*(_DWORD *)v3 + 628));
       }
-      if ( p_d0F0[1] )
+      if ( *((_DWORD *)v3 + 1) )
       {
-        *(float *)v4 = (double)*(__int16 *)(p_d0F0[3] + 768) + *(float *)v4;
-        *((float *)v4 + 1) = (double)*(__int16 *)(p_d0F0[3] + 770) + *((float *)v4 + 1);
-        *((float *)v4 + 3) = (double)*(__int16 *)(p_d0F0[3] + 774) + *((float *)v4 + 3);
-        *((float *)v4 + 2) = (double)*(__int16 *)(p_d0F0[3] + 772) + *((float *)v4 + 2);
-        *((float *)v4 + 4) = (double)*(__int16 *)(p_d0F0[3] + 644) + *((float *)v4 + 4);
-        *((float *)v4 + 5) = (double)*(__int16 *)(p_d0F0[3] + 646) + *((float *)v4 + 5);
-        *((float *)v4 + 6) = (double)*(__int16 *)(p_d0F0[3] + 648) + *((float *)v4 + 6);
-        if ( *(_WORD *)(p_d0F0[3] + 750) )
+        *(float *)v4 = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 768) + *(float *)v4;
+        *((float *)v4 + 1) = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 770) + *((float *)v4 + 1);
+        *((float *)v4 + 3) = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 774) + *((float *)v4 + 3);
+        *((float *)v4 + 2) = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 772) + *((float *)v4 + 2);
+        *((float *)v4 + 4) = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 644) + *((float *)v4 + 4);
+        *((float *)v4 + 5) = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 646) + *((float *)v4 + 5);
+        *((float *)v4 + 6) = (double)*(__int16 *)(*((_DWORD *)v3 + 3) + 648) + *((float *)v4 + 6);
+        if ( *(_WORD *)(*((_DWORD *)v3 + 3) + 750) )
         {
           v4[511] = 1;
           *((_WORD *)v4 + 309) = 0x7FFF;
         }
-        this->Reset(v2, (float *)*(unsigned __int8 *)(p_d0F0[3] + 628));
+        this->Reset(v2, (float *)*(unsigned __int8 *)(*((_DWORD *)v3 + 3) + 628));
       }
-      if ( p_d0F0[4] )
+      if ( *((_DWORD *)v3 + 4) )
       {
-        *(float *)v4 = (double)*(__int16 *)(p_d0F0[6] + 768) + *(float *)v4;
-        *((float *)v4 + 1) = (double)*(__int16 *)(p_d0F0[6] + 770) + *((float *)v4 + 1);
-        *((float *)v4 + 3) = (double)*(__int16 *)(p_d0F0[6] + 774) + *((float *)v4 + 3);
-        *((float *)v4 + 2) = (double)*(__int16 *)(p_d0F0[6] + 772) + *((float *)v4 + 2);
-        *((float *)v4 + 4) = (double)*(__int16 *)(p_d0F0[6] + 644) + *((float *)v4 + 4);
-        *((float *)v4 + 5) = (double)*(__int16 *)(p_d0F0[6] + 646) + *((float *)v4 + 5);
-        *((float *)v4 + 6) = (double)*(__int16 *)(p_d0F0[6] + 648) + *((float *)v4 + 6);
-        if ( *(_WORD *)(p_d0F0[6] + 750) )
+        *(float *)v4 = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 768) + *(float *)v4;
+        *((float *)v4 + 1) = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 770) + *((float *)v4 + 1);
+        *((float *)v4 + 3) = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 774) + *((float *)v4 + 3);
+        *((float *)v4 + 2) = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 772) + *((float *)v4 + 2);
+        *((float *)v4 + 4) = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 644) + *((float *)v4 + 4);
+        *((float *)v4 + 5) = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 646) + *((float *)v4 + 5);
+        *((float *)v4 + 6) = (double)*(__int16 *)(*((_DWORD *)v3 + 6) + 648) + *((float *)v4 + 6);
+        if ( *(_WORD *)(*((_DWORD *)v3 + 6) + 750) )
         {
           v4[511] = 1;
           *((_WORD *)v4 + 309) = 0x7FFF;
         }
-        this->Reset(v2, (float *)*(unsigned __int8 *)(p_d0F0[6] + 628));
+        this->Reset(v2, (float *)*(unsigned __int8 *)(*((_DWORD *)v3 + 6) + 628));
       }
-      if ( p_d0F0[7] )
+      if ( *((_DWORD *)v3 + 7) )
       {
-        *(float *)v4 = (double)*(__int16 *)(p_d0F0[9] + 768) + *(float *)v4;
-        *((float *)v4 + 1) = (double)*(__int16 *)(p_d0F0[9] + 770) + *((float *)v4 + 1);
-        *((float *)v4 + 3) = (double)*(__int16 *)(p_d0F0[9] + 774) + *((float *)v4 + 3);
-        *((float *)v4 + 2) = (double)*(__int16 *)(p_d0F0[9] + 772) + *((float *)v4 + 2);
-        *((float *)v4 + 4) = (double)*(__int16 *)(p_d0F0[9] + 644) + *((float *)v4 + 4);
-        *((float *)v4 + 5) = (double)*(__int16 *)(p_d0F0[9] + 646) + *((float *)v4 + 5);
-        *((float *)v4 + 6) = (double)*(__int16 *)(p_d0F0[9] + 648) + *((float *)v4 + 6);
-        if ( *(_WORD *)(p_d0F0[9] + 750) )
+        *(float *)v4 = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 768) + *(float *)v4;
+        *((float *)v4 + 1) = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 770) + *((float *)v4 + 1);
+        *((float *)v4 + 3) = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 774) + *((float *)v4 + 3);
+        *((float *)v4 + 2) = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 772) + *((float *)v4 + 2);
+        *((float *)v4 + 4) = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 644) + *((float *)v4 + 4);
+        *((float *)v4 + 5) = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 646) + *((float *)v4 + 5);
+        *((float *)v4 + 6) = (double)*(__int16 *)(*((_DWORD *)v3 + 9) + 648) + *((float *)v4 + 6);
+        if ( *(_WORD *)(*((_DWORD *)v3 + 9) + 750) )
         {
           v4[511] = 1;
           *((_WORD *)v4 + 309) = 0x7FFF;
         }
-        this->Reset(v2, (float *)*(unsigned __int8 *)(p_d0F0[9] + 628));
+        this->Reset(v2, (float *)*(unsigned __int8 *)(*((_DWORD *)v3 + 9) + 628));
       }
-      if ( *(p_d0F0 - 5) == 80015 )
+      if ( *((_DWORD *)v3 - 5) == 80015 )
       {
-        if ( *(p_d0F0 - 2) == 84018 && p_d0F0[1] == 83012 && p_d0F0[4] == 8153 && p_d0F0[7] == 8154 )
+        if ( *((_DWORD *)v3 - 2) == 84018
+          && *((_DWORD *)v3 + 1) == 83012
+          && *((_DWORD *)v3 + 4) == 8153
+          && *((_DWORD *)v3 + 7) == 8154 )
+        {
           v4[44] = 1;
-        if ( *(p_d0F0 - 5) == 80015
-          && *(p_d0F0 - 2) == 84018
-          && p_d0F0[1] == 83012
-          && p_d0F0[4] == 8154
-          && p_d0F0[7] == 8153 )
+        }
+        if ( *((_DWORD *)v3 - 5) == 80015
+          && *((_DWORD *)v3 - 2) == 84018
+          && *((_DWORD *)v3 + 1) == 83012
+          && *((_DWORD *)v3 + 4) == 8154
+          && *((_DWORD *)v3 + 7) == 8153 )
         {
           v4[44] = 1;
         }
       }
       result = -82;
-      if ( p_d0F0[4] == 8110 || p_d0F0[7] == 8110 )
+      if ( *((_DWORD *)v3 + 4) == 8110 || *((_DWORD *)v3 + 7) == 8110 )
         v4[45] = 1;
     }
-    p_d0F0 += 352;
+    v3 += 1408;
     ++v2;
     v4 += 892;
   }
-  while ( (int)p_d0F0 < (int)&g_SceneMgr.m_RoleSystem[0]._p278[148] );
+  while ( (int)v3 < (int)&g_SceneMgr.m_RoleSystemData[808] );
   return result;
 }
 
@@ -502,7 +507,7 @@ char CCBRoleState::Create()
   char v16[1024]; // [esp+E14h] [ebp-40Ch] BYREF
   int v17; // [esp+121Ch] [ebp-4h]
 
-  v1 = (char *)&g_SceneMgr.m_slot[0]._tail[16];
+  v1 = (char *)&g_SceneMgr.m_slotData[288];
   v2 = (gbGeomNode **)(this + 350);
   do
   {
@@ -574,7 +579,7 @@ char CCBRoleState::Create()
     v1 += 1408;
     v2 += 223;
   }
-  while ( (int)v1 < (int)&g_SceneMgr.m_RoleSystem[0]._p278[196] );
+  while ( (int)v1 < (int)&g_SceneMgr.m_RoleSystemData[856] );
   return v3;
 }
 
@@ -1110,7 +1115,7 @@ int CCBRoleState::SetCanAction(unsigned int dmg, int roleIdx, int a4)
   result = this->ApplyDamage(7, dmg);
   if ( dmg <= 4 )
   {
-    v6 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_slot[0]._tail[1408 * dmg + 16] + 764);
+    v6 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_slotData[1408 * dmg + 288] + 764);
     if ( v6 > 1 )
       result /= v6;
   }
@@ -2186,7 +2191,7 @@ char CCBRoleState::GetFirstAliveRoleInForce(int roleIdx, int arg4)
     v18 = *((_DWORD *)v6 + 275);
     v20 = SkillNum;
     v19 = v11;
-    CCBStageRole_GetAlive((int)&g_SceneMgr.m_extraSlot[760], &v18);
+    CCBStageRole_GetAlive((int)&g_SceneMgr.m_pCBRoleStateData, &v18);
   }
   if ( v4 != -1 )
   {
@@ -2422,12 +2427,12 @@ char CCBRoleState::CheckRoleValid(int a2, unsigned int roleIdx, int a4)
     case 28:
       if ( roleIdx > 4 )
         return 1;
-      if ( CCBStageRole_CheckValid((int *)&g_SceneMgr.m_extraSlot[760], 14) <= 0 )
+      if ( CCBStageRole_CheckValid(&g_SceneMgr.m_pCBRoleStateData, 14) <= 0 )
         goto LABEL_6;
       ++g_nRandCallCount;
       g_RandSeed = 214013 * g_RandSeed + 2531011;
-      TargetRole = ((CCBAI *)&g_SceneMgr.m_extraSlot[760])->GetTargetRole(pOut);
-      CCBStageRole_PassCmd(&g_SceneMgr.m_extraSlot[760], TargetRole);
+      TargetRole = ((CCBAI *)&g_SceneMgr.m_pCBRoleStateData)->GetTargetRole(pOut);
+      CCBStageRole_PassCmd(&g_SceneMgr.m_pCBRoleStateData, TargetRole);
       result = 1;
       break;
     case 29:
@@ -2518,13 +2523,13 @@ int CCBRoleState::SetRoleHP(int roleIdx, int value)
         break;
       case 16:
         v7 = 6113;
-        result = (int)CCBStageRole_GetByIndex(&g_SceneMgr.m_extraSlot[760], &v7);
+        result = (int)CCBStageRole_GetByIndex(&g_SceneMgr.m_pCBRoleStateData, &v7);
         if ( result )
         {
           v9 = *(_DWORD *)(result + 8);
           v8 = 1;
           v7 = 6113;
-          CCBStageRole_PassCmd(&g_SceneMgr.m_extraSlot[760], &v7);
+          CCBStageRole_PassCmd(&g_SceneMgr.m_pCBRoleStateData, &v7);
           result = ((CCBStage *)this->m_pStage)->GetRoleIndex(8, 0, 1);
           v6 = result;
           if ( result != -1 )
@@ -4086,18 +4091,18 @@ int CCBRoleState::ProcessSkillEffect(int roleIdx)
   v15[2] = roleIdx;
   v15[3] = -1;
   LOWORD(v15[4]) = 0;
-  v14 = sub_40CCD0((int *)&g_SceneMgr.m_extraSlot[760]);
+  v14 = sub_40CCD0(&g_SceneMgr.m_pCBRoleStateData);
   if ( v14 <= 0 )
     return 0;
   while ( 1 )
   {
-    if ( *((int *)((CCBAI *)&g_SceneMgr.m_extraSlot[760])->GetTargetRole(pOut) + 1) > 0 )
+    if ( *((int *)((CCBAI *)&g_SceneMgr.m_pCBRoleStateData)->GetTargetRole(pOut) + 1) > 0 )
     {
-      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr.m_extraSlot[760])->GetTargetRole(v19);
+      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr.m_pCBRoleStateData)->GetTargetRole(v19);
       v15[1] = v6;
       if ( v2->GetRoleAI(v15) )
       {
-        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr.m_extraSlot[760])->GetTargetRole(v16) + 2) + 629);
+        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr.m_pCBRoleStateData)->GetTargetRole(v16) + 2) + 629);
         if ( v20 )
         {
           if ( v7 == 1 || v7 == 3 )
@@ -4134,7 +4139,7 @@ LABEL_21:
   if ( v13 == -1 )
     return 0;
   else
-    return *(_DWORD *)((CCBAI *)&g_SceneMgr.m_extraSlot[760])->GetTargetRole(v16);
+    return *(_DWORD *)((CCBAI *)&g_SceneMgr.m_pCBRoleStateData)->GetTargetRole(v16);
 }
 
 // 0x004F5B70
@@ -4165,18 +4170,18 @@ int CCBRoleState::ProcessItemEffect(int roleIdx)
   v14[2] = roleIdx;
   v14[3] = -1;
   LOWORD(v14[4]) = 0;
-  v10 = sub_40CCD0((int *)&g_SceneMgr.m_extraSlot[760]);
+  v10 = sub_40CCD0(&g_SceneMgr.m_pCBRoleStateData);
   if ( v10 <= 0 )
     return 0;
   for ( i = 0; i < v10; ++i )
   {
-    if ( *((int *)((CCBAI *)&g_SceneMgr.m_extraSlot[760])->GetTargetRole(pOut) + 1) > 0 )
+    if ( *((int *)((CCBAI *)&g_SceneMgr.m_pCBRoleStateData)->GetTargetRole(pOut) + 1) > 0 )
     {
-      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr.m_extraSlot[760])->GetTargetRole(v12);
+      v6 = *(_DWORD *)((CCBAI *)&g_SceneMgr.m_pCBRoleStateData)->GetTargetRole(v12);
       v14[1] = v6;
       if ( this->GetRoleAI(v14) )
       {
-        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr.m_extraSlot[760])->GetTargetRole(v13) + 2) + 629);
+        v7 = *(_BYTE *)(*((_DWORD *)((CCBAI *)&g_SceneMgr.m_pCBRoleStateData)->GetTargetRole(v13) + 2) + 629);
         if ( v15 )
         {
           if ( v7 == 1 || v7 == 3 )
@@ -4201,7 +4206,7 @@ int CCBRoleState::ProcessItemEffect(int roleIdx)
   if ( v9 == -1 )
     return 0;
   else
-    return *(_DWORD *)((CCBAI *)&g_SceneMgr.m_extraSlot[760])->GetTargetRole(v13);
+    return *(_DWORD *)((CCBAI *)&g_SceneMgr.m_pCBRoleStateData)->GetTargetRole(v13);
 }
 
 // 0x004F7500

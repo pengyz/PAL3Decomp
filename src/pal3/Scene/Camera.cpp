@@ -12,6 +12,10 @@ int sub_41AEA0(...);
 int sub_420A10(...);
 int sub_420F50(...);
 
+// Unnamed globals (extern)
+extern int dword_C116C4;
+extern int dword_C116EC;
+
 // 0x004125D0
 void Camera::SetParams(int a2)
 {
@@ -98,12 +102,12 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
       return 1;
     }
   }
-  if ( !*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] )
+  if ( !dword_C116EC )
     return 0;
   pTarget[0].x = 0.0;
   pTarget[0].y = 1.0;
   pTarget[0].z = 0.0;
-  v17 = *(struct gbVec3D *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 160);
+  v17 = *(struct gbVec3D *)((char *)dword_C116EC + 160);
   v13 = ((gbRay *)&v19)->IntersectPlane(pTarget, &v17);
   if ( v13 == 3.4028235e38 )
     return 0;
@@ -150,7 +154,7 @@ int Camera::CheckCollision2(void *pPos, int rolePtr, void *pBounds)
   v11.x = 0.0;
   v11.y = 1.0;
   v11.z = 0.0;
-  v7 = ((gbRay *)&v15)->IntersectPlane(&v11, (struct gbVec3D *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 160));
+  v7 = ((gbRay *)&v15)->IntersectPlane(&v11, (struct gbVec3D *)((char *)dword_C116EC + 160));
   if ( v7 >= 3.4028235e38 )
     return 0;
   v11.y = v15.Direction.y * v7;
@@ -179,14 +183,12 @@ char Camera::IsTransitioning()
   int v8; // [esp-4h] [ebp-10h]
   int v9; // [esp-4h] [ebp-10h]
 
-  v8 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 628);
+  v8 = *((_DWORD *)dword_C116EC + 157);
   v0 = (RoleSystem *)UISceneUpdate();
   RolePtr = v0->GetRolePtr(v8);
-  v9 = (__int64)((*(float *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 12) - *(float *)(RolePtr + 136))
-               / *(float *)&g_SceneMgr.m_RoleSystem[4]._tail[5452]);
-  v7 = (__int64)((*(float *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 4) - *(float *)(RolePtr + 128))
-               / *(float *)&g_SceneMgr.m_RoleSystem[4]._tail[5452]);
-  v6 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] + 628);
+  v9 = (__int64)((*((float *)dword_C116EC + 3) - *(float *)(RolePtr + 136)) / *(float *)&dword_C116C4);
+  v7 = (__int64)((*((float *)dword_C116EC + 1) - *(float *)(RolePtr + 128)) / *(float *)&dword_C116C4);
+  v6 = *((_DWORD *)dword_C116EC + 157);
   v2 = (_DWORD *)UISceneUpdate();
   v3 = (_DWORD *)sub_420A10(v2, v6, v7, v9);
   if ( !v3 )
