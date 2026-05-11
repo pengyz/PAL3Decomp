@@ -150,32 +150,21 @@ def apply_annotations():
             if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                 renamed += 1
         if sig:
-            # IDA SetType 需要函数名: "RetType __cc FuncName(params)"
+            # IDA SetType 需要: "RetType __cc FuncName(params)"
+            # 我们存的是: "RetType __cc(params)" (无函数名)
             sig_clean = sig.strip().rstrip(";")
-            # 去除 struct/class 关键字
             sig_clean = sig_clean.replace("struct ", "").replace("class ", "")
-            # 分离: "RetType [__cc] [FuncName] (params)"
+            # 跳过复杂签名（函数指针返回值，多个括号无法安全插入名字）
+            if sig_clean.count("(") > 1:
+                continue
             paren_idx = sig_clean.find("(")
             if paren_idx > 0:
-                prefix = sig_clean[:paren_idx].rstrip()
-                params = sig_clean[paren_idx:]
-                # prefix 可能是 "void __thiscall" 或 "int __cdecl FuncName" 或 "int"
-                # 检查最后一个 token 是否是函数名（不是调用约定也不是类型）
-                tokens = prefix.split()
-                cc_keywords = {"__thiscall", "__cdecl", "__stdcall", "__fastcall", "__userpurge", "__usercall"}
-                type_keywords = {"int", "void", "char", "float", "double", "short", "long",
-                                 "unsigned", "signed", "bool", "BOOL", "BYTE", "WORD", "DWORD",
-                                 "HRESULT", "UINT", "LPVOID", "__int64", "_DWORD", "_BYTE", "_WORD"}
-                last = tokens[-1] if tokens else ""
-                has_func_name = (last not in cc_keywords and last not in type_keywords
-                                 and not last.endswith("*") and last != "")
-                if not has_func_name:
-                    short_name = name.split("::")[-1] if "::" in name else name
-                    # 清理非法字符
-                    short_name = _re_fn.sub(r'[^a-zA-Z0-9_]', '_', short_name)
-                    sig_clean = "%s %s%s" % (prefix, short_name, params)
-                else:
-                    sig_clean = "%s%s" % (prefix, params)
+                short_name = name.split("::")[-1] if "::" in name else name
+                short_name = short_name.replace("~", "_dtor_").replace(" ", "_")
+                # 去掉签名中已有的函数名（如果有的话），统一重新插入
+                before = sig_clean[:paren_idx].rstrip()
+                after = sig_clean[paren_idx:]
+                sig_clean = before + " " + short_name + after
             if idc.SetType(addr, sig_clean):
                 sig_ok += 1
 
