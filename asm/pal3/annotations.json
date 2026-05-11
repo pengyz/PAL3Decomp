@@ -23937,6 +23937,14 @@
     "0x01896D0C": {
       "name": "hHeap",
       "type": "HANDLE"
+    },
+    "0x00C05F60": {
+      "name": "g_ScriptSlots",
+      "type": "char[17408]"
+    },
+    "0x00C10CC8": {
+      "name": "g_nCurrentScriptSlot",
+      "type": "int"
     }
   },
   "structs": {
@@ -25958,10 +25966,16 @@
           "name": "m_pCollisionNode",
           "type": "gbGeomNode *",
           "source": "gen_headers_9.2"
+        },
+        "7076": {
+          "name": "m_ScriptSlots",
+          "type": "char[17408]",
+          "source": "binary:Execute g_SceneMgr._gap_1BA4[8704*index]"
         }
       },
       "pdb_size": 1,
-      "gen_size": 54116
+      "gen_size": 54116,
+      "note": " ScriptSystem[2] embedded at +0x1BA4."
     },
     "RoleSystem": {
       "known_members": {
@@ -64435,6 +64449,122 @@
           "name": "m_OriginY",
           "type": "int",
           "source": "pdb_batch_fill"
+        }
+      }
+    },
+    "ScriptSystem": {
+      "binary_size": 8704,
+      "note": "NOT a class. Global array at dword_C05F60, stride=8704. Cdecl functions. Each slot mirrors RoleSystem state.",
+      "known_members": {
+        "0": {
+          "name": "m_nSlotID",
+          "type": "int",
+          "source": "binary:sub_4181E0 called with &slot[0]"
+        },
+        "4": {
+          "name": "m_vPos_x",
+          "type": "float",
+          "source": "binary:Execute dword_C05F64=v2[1], v2=g_pRoleSystem"
+        },
+        "8": {
+          "name": "m_vPos_y",
+          "type": "float",
+          "source": "binary:Execute dword_C05F68=v2[2]"
+        },
+        "12": {
+          "name": "m_vPos_z",
+          "type": "float",
+          "source": "binary:Execute dword_C05F6C=v2[3]"
+        },
+        "20": {
+          "name": "m_nField_14",
+          "type": "int",
+          "source": "binary:Execute dword_C05F74=v2[5], from RoleSystem+0x14"
+        },
+        "24": {
+          "name": "m_nField_18",
+          "type": "int",
+          "source": "binary:Execute dword_C05F78=v2[6]"
+        },
+        "28": {
+          "name": "m_nField_1C",
+          "type": "int",
+          "source": "binary:Execute dword_C05F7C=v2[7]"
+        },
+        "32": {
+          "name": "m_nField_20",
+          "type": "int",
+          "source": "binary:Execute dword_C05F80=v2[8]"
+        },
+        "36": {
+          "name": "m_nField_24",
+          "type": "int",
+          "source": "binary:Execute dword_C05F84=v2[9]"
+        },
+        "40": {
+          "name": "m_nField_28",
+          "type": "int",
+          "source": "binary:Execute dword_C05F88=v2[10]"
+        },
+        "148": {
+          "name": "m_vRot_x",
+          "type": "float",
+          "source": "binary:Execute dword_C05FF4=v2[37], from RoleSystem+0x94"
+        },
+        "152": {
+          "name": "m_vRot_y",
+          "type": "float",
+          "source": "binary:Execute dword_C05FF8=v2[38]"
+        },
+        "156": {
+          "name": "m_vRot_z",
+          "type": "float",
+          "source": "binary:Execute dword_C05FFC=v2[39]"
+        },
+        "160": {
+          "name": "m_vDir_x",
+          "type": "float",
+          "source": "binary:Execute dword_C06000=v2[40], from RoleSystem+0xA0"
+        },
+        "164": {
+          "name": "m_vDir_y",
+          "type": "float",
+          "source": "binary:Execute dword_C06004=v2[41]"
+        },
+        "168": {
+          "name": "m_vDir_z",
+          "type": "float",
+          "source": "binary:Execute dword_C06008=v2[42]"
+        },
+        "628": {
+          "name": "m_nActionID",
+          "type": "int",
+          "source": "binary:Execute dword_C061D4=v2[157], from RoleSystem+0x274"
+        },
+        "632": {
+          "name": "m_bActive",
+          "type": "int",
+          "source": "binary:Execute dword_C061D8=0/1"
+        },
+        "8688": {
+          "name": "m_nSaveRot_x",
+          "type": "float",
+          "source": "binary:Execute dword_C08150=v2[2172], from RoleSystem+0x21F0"
+        },
+        "8692": {
+          "name": "m_nSaveRot_y",
+          "type": "float",
+          "source": "binary:Execute dword_C08154=v2[2173]"
+        },
+        "8696": {
+          "name": "m_nSaveRot_z",
+          "type": "float",
+          "source": "binary:Execute dword_C08158=v2[2174]"
+        },
+        "8700": {
+          "name": "m_nSaveDir",
+          "type": "int",
+          "source": "binary:Execute dword_C0815C=v2[2175]"
         }
       }
     }
