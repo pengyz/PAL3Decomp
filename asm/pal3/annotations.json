@@ -8536,6 +8536,90 @@
     "0x0045A220": {
       "name": "UIWnd::OnPaint",
       "signature": "void __thiscall UIWnd::OnPaint(int nParam)"
+    },
+    "0x00413CD0": {
+      "name": "RoleSystem::PathFollowUpdate",
+      "signature": "void __thiscall RoleSystem::PathFollowUpdate(void)"
+    },
+    "0x00416490": {
+      "name": "RoleSystem::SetTargetRotation",
+      "signature": "void __thiscall RoleSystem::SetTargetRotation(gbVec3D *pTarget)"
+    },
+    "0x004125B0": {
+      "name": "RoleSystem::NotifySceneChange",
+      "signature": "int __thiscall RoleSystem::NotifySceneChange(int nSceneID)"
+    },
+    "0x0042B1F0": {
+      "name": "Object3D::IsVisible",
+      "signature": "BOOL __thiscall Object3D::IsVisible(void)"
+    },
+    "0x00414E30": {
+      "name": "RoleSystem::GetActionByIndex",
+      "signature": "int __thiscall RoleSystem::GetActionByIndex(int nActionType, int nParam)"
+    },
+    "0x0049F9B0": {
+      "name": "UIInventory::SetGroupVisible",
+      "signature": "int __thiscall UIInventory::SetGroupVisible(unsigned char bVisible)"
+    },
+    "0x0049FBE0": {
+      "name": "UIInventory::UpdateDisplay",
+      "signature": "BOOL __thiscall UIInventory::UpdateDisplay(int nPage, int nSlot)"
+    },
+    "0x00478880": {
+      "name": "UIFrameWnd::ProcessTimer",
+      "signature": "BOOL __thiscall UIFrameWnd::ProcessTimer(BOOL bEnable, BOOL bReset, int nInterval, int nParam)"
+    },
+    "0x00469EB0": {
+      "name": "UIListView::HandleInput",
+      "signature": "BOOL __thiscall UIListView::HandleInput(int nInputID, int nParam, int nFlags)"
+    },
+    "0x00445760": {
+      "name": "UIWnd::UpdateChildLayout",
+      "signature": "void __thiscall UIWnd::UpdateChildLayout(RECT *pRect, unsigned int nFlags)"
+    },
+    "0x00444D20": {
+      "name": "UIWnd::SetDirty",
+      "signature": "void __thiscall UIWnd::SetDirty(void)"
+    },
+    "0x004209F0": {
+      "name": "TileMap::GetTile",
+      "signature": "char __thiscall TileMap::GetTile(int nX, int nY)"
+    },
+    "0x00424C20": {
+      "name": "PalScriptMgr::ExecuteBlock",
+      "signature": "void __thiscall PalScriptMgr::ExecuteBlock(void)"
+    },
+    "0x0042CD90": {
+      "name": "ScriptVM::CallFunction",
+      "signature": "int __thiscall ScriptVM::CallFunction(unsigned char nFuncID, int nArgCount)"
+    },
+    "0x004366C0": {
+      "name": "ScriptVM::GetObjectByID",
+      "signature": "int __cdecl ScriptVM::GetObjectByID(int nObjID)"
+    },
+    "0x004B8200": {
+      "name": "Math_SmoothStep",
+      "signature": "double __cdecl Math_SmoothStep(float fFrom, float fTo)"
+    },
+    "0x00413800": {
+      "name": "Vec3D_Cross",
+      "signature": "gbVec3D *__cdecl Vec3D_Cross(gbVec3D *pOut, gbVec3D *pA, gbVec3D *pB)"
+    },
+    "0x005374E0": {
+      "name": "Vec3D_CopyStruct",
+      "signature": "gbVec3D *__stdcall Vec3D_CopyStruct(gbVec3D *pDst, gbVec3D *pSrc, gbVec3D *pExtra)"
+    },
+    "0x004BE830": {
+      "name": "ScreenEffect::CopyParams",
+      "signature": "void __thiscall ScreenEffect::CopyParams(int nSrcIdx, int *pParams)"
+    },
+    "0x0053B720": {
+      "name": "VideoPlayer_SetRegion",
+      "signature": "void __cdecl VideoPlayer_SetRegion(int nX, int nY)"
+    },
+    "0x00434CA0": {
+      "name": "PalScriptMgr::InitVtable",
+      "signature": "void __thiscall PalScriptMgr::InitVtable(int nType)"
     }
   },
   "globals": {
