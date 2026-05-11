@@ -23945,6 +23945,10 @@
     "0x00C10CC8": {
       "name": "g_nCurrentScriptSlot",
       "type": "int"
+    },
+    "0x00C05F58": {
+      "name": "g_ScriptSlotFlags",
+      "type": "char[8]"
     }
   },
   "structs": {
@@ -64565,6 +64569,66 @@
           "name": "m_nSaveDir",
           "type": "int",
           "source": "binary:Execute dword_C0815C=v2[2175]"
+        },
+        "144": {
+          "name": "m_nMoveState",
+          "type": "int",
+          "source": "binary:UpdateTimers this+144, checked != 0"
+        },
+        "680": {
+          "name": "m_Object3D",
+          "type": "int",
+          "source": "binary:UpdateTimers sub_536FB0(this+680), Object3D method"
+        },
+        "1264": {
+          "name": "m_nActionState",
+          "type": "int",
+          "source": "binary:UpdateTimers this+1264 ==4 check"
+        },
+        "1268": {
+          "name": "m_nMoveMode",
+          "type": "int",
+          "source": "binary:UpdateTimers this+1268 ==12 check"
+        },
+        "1284": {
+          "name": "m_nSceneState",
+          "type": "int",
+          "source": "binary:UpdateObjects this+1284 = dword_C08664"
+        },
+        "1296": {
+          "name": "m_vSavePos1_x",
+          "type": "float",
+          "source": "binary:UpdateTimers this+1296 = this+1308"
+        },
+        "1300": {
+          "name": "m_vSavePos1_y",
+          "type": "float",
+          "source": "binary:UpdateTimers this+1300 = this+1312"
+        },
+        "1304": {
+          "name": "m_vSavePos1_z",
+          "type": "float",
+          "source": "binary:UpdateTimers this+1304 = this+1316"
+        },
+        "1308": {
+          "name": "m_vSrcPos_x",
+          "type": "float",
+          "source": "binary:UpdateTimers copied to +1296"
+        },
+        "1312": {
+          "name": "m_vSrcPos_y",
+          "type": "float",
+          "source": "binary:UpdateTimers copied to +1300"
+        },
+        "1316": {
+          "name": "m_vSrcPos_z",
+          "type": "float",
+          "source": "binary:UpdateTimers copied to +1304"
+        },
+        "1344": {
+          "name": "m_vTargetPos",
+          "type": "float",
+          "source": "binary:UpdateObjects sub_419090(this+1344)"
         }
       }
     }
