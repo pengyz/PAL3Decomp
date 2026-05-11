@@ -101,7 +101,19 @@ struct SceneMgrSlot;
 
     DECL = """
 struct RoleSystem { char _data[8704]; };
-struct SceneMgrSlot { char _data[1408]; };
+struct SceneMgrSlot {
+  int _vtable;
+  int _d004; int _d008; int _d00C; int _d010;
+  int _d014; int _d018; int _d01C; int _d020;
+  int _d024; int _d028; int _d02C; int _d030;
+  char _pad034[27];
+  char _b04F; char _b050; char _b051; char _b052;
+  char _pad053[25]; int _d06C; char _pad070[108];
+  int _d0DC; int _d0E0; int _d0E4; int _d0E8;
+  int _d0EC; int _d0F0; int _d0F4; int _d0F8;
+  int _d0FC; int _d100; int _d104; int _d108; int _d10C;
+  char _tail[1144];
+};
 struct SceneMgr {
   gbGfxManager *m_pGfxMgr;         // +0x0000
   gbSceneGraph *m_pSceneRoot;      // +0x0004
