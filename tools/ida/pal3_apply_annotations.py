@@ -301,6 +301,7 @@ def apply_annotations():
     print("[5] Vtable .rdata typed: %d/%d" % (vt_applied, len(vtables)))
 
     # --- 6. Function signatures (after structs so types are resolved) ---
+    import re as _re_sig
     sig_ok = 0
     for addr_str, info in funcs.items():
         addr = int(addr_str, 16)
@@ -314,8 +315,23 @@ def apply_annotations():
             continue
         paren_idx = sig_clean.find("(")
         if paren_idx > 0:
-            short_name = name.split("::")[-1] if "::" in name else name
+            # Extract a valid C identifier for the function name
+            if "::" in name:
+                short_name = name.split("::")[-1]
+            else:
+                short_name = name
+            # Demangle: ?Name@Class@@... → Name
+            if short_name.startswith("?"):
+                m = _re_sig.match(r'\?(\w+)@', short_name)
+                if m:
+                    short_name = m.group(1)
+                else:
+                    short_name = _re_sig.sub(r'[^a-zA-Z0-9_]', '_', short_name)
             short_name = short_name.replace("~", "_dtor_").replace(" ", "_")
+            # Sanitize: only keep valid C identifier chars
+            short_name = _re_sig.sub(r'[^a-zA-Z0-9_]', '_', short_name)
+            if not short_name or short_name[0].isdigit():
+                short_name = "fn_" + short_name
             before = sig_clean[:paren_idx].rstrip()
             after = sig_clean[paren_idx:]
             sig_clean = before + " " + short_name + after
