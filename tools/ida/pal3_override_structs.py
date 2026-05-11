@@ -177,6 +177,7 @@ struct gbSceneGraph;
 struct gbRenderEffect;
 struct gbCamera;
 struct RoleSystem;
+struct RoleAtt;
 """
     idc.parse_decls(FWD, idc.PT_TYP)
 
@@ -207,13 +208,13 @@ struct SceneMgrSlot;
         (0x0A8, "float", "m_fPosZ"),
         (0x274, "int", "m_nState"),
         (0x27C, "int[12]", "m_nBaseStats", 48),            # base stat values [12]
-        # Equipment pointers (stride 12, each points to item struct with stats)
-        (0x35C, "int", "m_pEquip0"),                   # equip slot 0 (void*)
-        (0x368, "int", "m_pEquip1"),                   # equip slot 1
-        (0x374, "int", "m_pEquip2"),                   # equip slot 2
-        (0x380, "int", "m_pEquip3"),                   # equip slot 3
-        (0x38C, "int", "m_pEquip4"),                   # equip slot 4
-        (0x398, "int", "m_pEquip5"),                   # equip slot 5
+        # Role attribute pointers (6 slots, stride 12, each → RoleAtt)
+        (0x35C, "RoleAtt *", "m_pRoleAtt0"),
+        (0x368, "RoleAtt *", "m_pRoleAtt1"),
+        (0x374, "RoleAtt *", "m_pRoleAtt2"),
+        (0x380, "RoleAtt *", "m_pRoleAtt3"),
+        (0x38C, "RoleAtt *", "m_pRoleAtt4"),
+        (0x398, "RoleAtt *", "m_pRoleAtt5"),
         (0x39C, "int[12]", "m_nComputedStats", 48),    # computed stats [12]
         (0x3CC, "int[12]", "m_nDisplayStats", 48),     # display/effective stats [12]
         (0x4CC, "int", "m_nPathState"),
