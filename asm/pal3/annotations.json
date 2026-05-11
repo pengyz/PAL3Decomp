@@ -24905,6 +24905,71 @@
           "name": "m_dwAniFlagOver",
           "type": "unsigned long",
           "source": "pdb_verified_by_old_ida"
+        },
+        "152": {
+          "name": "m_nStageStatus",
+          "type": "unsigned char",
+          "source": "binary:raw_Update_check"
+        },
+        "396": {
+          "name": "m_nField18C",
+          "type": "int",
+          "source": "binary:raw_3votes"
+        },
+        "448": {
+          "name": "m_fField1C0",
+          "type": "int",
+          "source": "binary:raw_1vote"
+        },
+        "452": {
+          "name": "m_fCamDistMax",
+          "type": "float",
+          "source": "binary:raw_3votes"
+        },
+        "456": {
+          "name": "m_fCamDistMin",
+          "type": "float",
+          "source": "binary:raw_4votes"
+        },
+        "464": {
+          "name": "m_fCamHeight",
+          "type": "float",
+          "source": "binary:raw_3votes"
+        },
+        "468": {
+          "name": "m_fCamPitch",
+          "type": "float",
+          "source": "binary:raw_3votes"
+        },
+        "480": {
+          "name": "m_fField1E0",
+          "type": "float",
+          "source": "binary:raw_2votes"
+        },
+        "484": {
+          "name": "m_fField1E4",
+          "type": "float",
+          "source": "binary:raw_2votes"
+        },
+        "488": {
+          "name": "m_fField1E8",
+          "type": "float",
+          "source": "binary:raw_2votes"
+        },
+        "544": {
+          "name": "m_nField220",
+          "type": "int",
+          "source": "binary:raw_5votes"
+        },
+        "552": {
+          "name": "m_fField228",
+          "type": "float",
+          "source": "binary:raw_3votes"
+        },
+        "556": {
+          "name": "m_fField22C",
+          "type": "float",
+          "source": "binary:raw_3votes"
         }
       },
       "pdb_size": 673992,
@@ -26654,6 +26719,66 @@
           "name": "m_curact",
           "type": "char[8]",
           "source": "pdb_verified_by_old_ida"
+        },
+        "4": {
+          "name": "m_pRoleSystem",
+          "type": "int",
+          "source": "binary:raw_FastInit_0"
+        },
+        "8": {
+          "name": "m_pScene",
+          "type": "int",
+          "source": "binary:raw_FastInit_0"
+        },
+        "12": {
+          "name": "m_nActorID",
+          "type": "int",
+          "source": "binary:raw_FastInit_0"
+        },
+        "544": {
+          "name": "m_nField220",
+          "type": "int",
+          "source": "binary:raw_FastInit_0"
+        },
+        "345": {
+          "name": "m_bInitialized",
+          "type": "unsigned char",
+          "source": "binary:raw_InitComponents"
+        },
+        "348": {
+          "name": "m_nHP",
+          "type": "int",
+          "source": "binary:raw_1000"
+        },
+        "352": {
+          "name": "m_nMaxHP",
+          "type": "int",
+          "source": "binary:raw_1000"
+        },
+        "356": {
+          "name": "m_bHPVisible",
+          "type": "unsigned char",
+          "source": "binary:raw_hp_check"
+        },
+        "332": {
+          "name": "m_nActionType",
+          "type": "int",
+          "source": "binary:raw_action"
+        },
+        "336": {
+          "name": "m_nActionParam",
+          "type": "int",
+          "source": "binary:raw_action"
+        },
+        "340": {
+          "name": "m_nActionState",
+          "type": "int",
+          "source": "binary:raw_action"
+        },
+        "344": {
+          "name": "m_nActionResult",
+          "type": "int",
+          "source": "binary:raw_action"
         }
       },
       "gen_size": 596
@@ -40691,6 +40816,61 @@
           "name": "m_bigmapsce",
           "type": "scSCEFile",
           "source": "gen_headers_9.2"
+        },
+        "8": {
+          "name": "m_nField08",
+          "type": "int",
+          "source": "binary:raw_1vote"
+        },
+        "40": {
+          "name": "m_fCamX",
+          "type": "float",
+          "source": "binary:raw_31votes"
+        },
+        "44": {
+          "name": "m_fCamY",
+          "type": "float",
+          "source": "binary:raw_29votes"
+        },
+        "56": {
+          "name": "m_fField38",
+          "type": "float",
+          "source": "binary:raw_14votes"
+        },
+        "60": {
+          "name": "m_fField3C",
+          "type": "float",
+          "source": "binary:raw_12votes"
+        },
+        "64": {
+          "name": "m_fField40",
+          "type": "float",
+          "source": "binary:raw_11votes"
+        },
+        "68": {
+          "name": "m_fField44",
+          "type": "float",
+          "source": "binary:raw_14votes"
+        },
+        "72": {
+          "name": "m_fField48",
+          "type": "float",
+          "source": "binary:raw_18votes"
+        },
+        "84": {
+          "name": "m_nField54",
+          "type": "int",
+          "source": "binary:raw_10votes"
+        },
+        "88": {
+          "name": "m_nField58",
+          "type": "int",
+          "source": "binary:raw_5votes"
+        },
+        "92": {
+          "name": "m_nField5C",
+          "type": "int",
+          "source": "binary:raw_7votes"
         }
       },
       "pdb_size": 1,
@@ -46617,6 +46797,81 @@
           "name": "m_rowenable",
           "type": "std::vector<int,std::allocator<int> >",
           "source": "pdb_fill"
+        },
+        "108": {
+          "name": "m_nField6C",
+          "type": "int",
+          "source": "binary:raw_1vote"
+        },
+        "116": {
+          "name": "m_nField74",
+          "type": "int",
+          "source": "binary:raw_1vote"
+        },
+        "124": {
+          "name": "m_nField7C",
+          "type": "int",
+          "source": "binary:raw_1vote"
+        },
+        "160": {
+          "name": "m_bFieldA0",
+          "type": "unsigned char",
+          "source": "binary:raw_1vote"
+        },
+        "220": {
+          "name": "m_nFieldDC",
+          "type": "int",
+          "source": "binary:raw_1vote"
+        },
+        "224": {
+          "name": "m_nFieldE0",
+          "type": "int",
+          "source": "binary:raw_1vote"
+        },
+        "236": {
+          "name": "m_bFieldEC",
+          "type": "unsigned char",
+          "source": "binary:raw_1vote"
+        },
+        "237": {
+          "name": "m_bFieldED",
+          "type": "unsigned char",
+          "source": "binary:raw_1vote"
+        },
+        "238": {
+          "name": "m_bFieldEE",
+          "type": "unsigned char",
+          "source": "binary:raw_1vote"
+        },
+        "432": {
+          "name": "m_nField1B0",
+          "type": "int",
+          "source": "binary:raw_3votes"
+        },
+        "504": {
+          "name": "m_nField1F8",
+          "type": "int",
+          "source": "binary:raw_3votes"
+        },
+        "1108": {
+          "name": "m_nField454",
+          "type": "int",
+          "source": "binary:raw_1vote"
+        },
+        "1116": {
+          "name": "m_nField45C",
+          "type": "int",
+          "source": "binary:raw_4votes"
+        },
+        "1120": {
+          "name": "m_nField460",
+          "type": "int",
+          "source": "binary:raw_7votes"
+        },
+        "1124": {
+          "name": "m_nField464",
+          "type": "int",
+          "source": "binary:raw_1vote"
         }
       },
       "pdb_size": 1288,
@@ -65319,6 +65574,139 @@
     "_D3DDISPLAYMODE": {
       "pdb_size": 16,
       "known_members": {}
+    },
+    "UIScene": {
+      "known_members": {
+        "4": {
+          "name": "m_pField04",
+          "type": "int",
+          "source": "binary:raw_1vote"
+        },
+        "12": {
+          "name": "m_nField0C",
+          "type": "int",
+          "source": "binary:raw_6votes"
+        },
+        "16": {
+          "name": "m_nField10",
+          "type": "int",
+          "source": "binary:raw_1vote"
+        },
+        "20": {
+          "name": "m_nField14",
+          "type": "int",
+          "source": "binary:raw_3votes"
+        },
+        "24": {
+          "name": "m_nField18",
+          "type": "int",
+          "source": "binary:raw_3votes"
+        },
+        "28": {
+          "name": "m_nField1C",
+          "type": "int",
+          "source": "binary:raw_3votes"
+        },
+        "32": {
+          "name": "m_nField20",
+          "type": "int",
+          "source": "binary:raw_6votes"
+        },
+        "56": {
+          "name": "m_nField38",
+          "type": "int",
+          "source": "binary:raw_2votes"
+        },
+        "60": {
+          "name": "m_nField3C",
+          "type": "int",
+          "source": "binary:raw_3votes"
+        },
+        "68": {
+          "name": "m_bField44",
+          "type": "unsigned char",
+          "source": "binary:raw_1vote"
+        },
+        "72": {
+          "name": "m_fField48",
+          "type": "float",
+          "source": "binary:raw_4votes"
+        },
+        "76": {
+          "name": "m_fField4C",
+          "type": "float",
+          "source": "binary:raw_4votes"
+        },
+        "96": {
+          "name": "m_nField60",
+          "type": "int",
+          "source": "binary:raw_16votes"
+        },
+        "100": {
+          "name": "m_bField64",
+          "type": "unsigned char",
+          "source": "binary:raw_1vote"
+        },
+        "148": {
+          "name": "m_nField94",
+          "type": "int",
+          "source": "binary:raw_2votes"
+        },
+        "196": {
+          "name": "m_bFieldCC",
+          "type": "unsigned char",
+          "source": "binary:raw_5votes"
+        },
+        "200": {
+          "name": "m_nFieldD0",
+          "type": "int",
+          "source": "binary:raw_2votes"
+        }
+      }
+    },
+    "CScreenMode": {
+      "known_members": {
+        "4": {
+          "name": "m_nField04",
+          "type": "int",
+          "source": "binary:raw_7votes"
+        },
+        "8": {
+          "name": "m_nField08",
+          "type": "int",
+          "source": "binary:raw_1vote"
+        },
+        "12": {
+          "name": "m_nField0C",
+          "type": "int",
+          "source": "binary:raw_4votes"
+        },
+        "16": {
+          "name": "m_nField10",
+          "type": "int",
+          "source": "binary:raw_4votes"
+        },
+        "20": {
+          "name": "m_nField14",
+          "type": "int",
+          "source": "binary:raw_6votes"
+        },
+        "24": {
+          "name": "m_nField18",
+          "type": "int",
+          "source": "binary:raw_2votes"
+        },
+        "808": {
+          "name": "m_nField328",
+          "type": "int",
+          "source": "binary:raw_8votes"
+        },
+        "828": {
+          "name": "m_nField33C",
+          "type": "int",
+          "source": "binary:raw_1vote"
+        }
+      }
     }
   },
   "enums": {}
