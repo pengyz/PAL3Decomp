@@ -350,6 +350,54 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
     lines.append("class %s%s {" % (cls_name, bases_str))
     lines.append("public:")
 
+    # Virtual methods from vtable (must be first, order matches vtable layout)
+    try:
+        ann_data_vt = json.load(open(str(ANNOTATIONS_FILE), 'r', encoding='utf-8'))
+        vtables_data = ann_data_vt.get('vtables', {})
+        # Find the vtable for this class (smallest = base class vtable)
+        cls_vtables = [(name, info) for name, info in vtables_data.items()
+                       if info.get('class') == cls_name]
+        if cls_vtables:
+            cls_vtables.sort(key=lambda x: len(x[1].get('methods', [])))
+            vt_name, vt_info = cls_vtables[0]
+            vt_methods = vt_info.get('methods', [])
+            if vt_methods and not base_names:
+                lines.append("    // vtable (%s, %d methods)" % (vt_name, len(vt_methods)))
+                seen_vnames = set()
+                for vm in vt_methods:
+                    vm_name = vm.get('name', '')
+                    vm_sig = vm.get('signature', '')
+                    short = 'unknown'
+                    if '::' in vm_name:
+                        short = vm_name.split('::')[-1]
+                        short = re.sub(r'[^a-zA-Z0-9_]', '_', short)
+                    elif vm_name.startswith('sub_'):
+                        short = vm_name
+                    if short in seen_vnames:
+                        short = '%s_%s' % (short, vm.get('address', '0')[-4:])
+                    seen_vnames.add(short)
+                    # Parse signature to extract return type and params
+                    if vm_sig:
+                        sig_clean = vm_sig.strip().rstrip(';')
+                        # Match "rettype [__cc] funcname(args)"
+                        fp_match = re.match(r'^(.+?)(?:\s+__\w+)?\s+\w+\s*(\(.*\))$', sig_clean)
+                        if fp_match:
+                            ret = fp_match.group(1).strip()
+                            args = fp_match.group(2)
+                            # Remove this pointer from args
+                            arg_str = args.strip('()')
+                            arg_list = [a.strip() for a in arg_str.split(',') if a.strip()]
+                            if arg_list and ('this' in arg_list[0] or '*this' in arg_list[0]):
+                                arg_list = arg_list[1:]
+                            lines.append("    virtual %s %s(%s);" % (ret, short, ', '.join(arg_list)))
+                        else:
+                            lines.append("    virtual int %s();" % short)
+                    else:
+                        lines.append("    virtual int %s();" % short)
+                lines.append("")
+    except:
+        pass
+
     # Data members
     # Determine base class size to skip inherited members
     base_size = 0
