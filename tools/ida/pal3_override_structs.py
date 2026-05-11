@@ -35,7 +35,15 @@ def build_struct(name, total_size, members):
     Args:
         name: struct name
         total_size: exact total size in bytes
-        members: list of (offset, type_str, member_name)
+        members: list of tuples, either:
+            (offset, type_str, member_name)          — size auto-computed for primitives/pointers
+            (offset, type_str, member_name, size)    — explicit size (for typed arrays/sub-structs)
+
+    Type examples:
+        "int", "float", "char", "double"           — primitives (size auto)
+        "CGameData *"                               — pointer (size=4 auto)
+        "char[620]"                                 — char array (size auto = 620)
+        "CameraParam[25]"                           — typed array (MUST provide size=400)
 
     Returns: True if successful (size matches).
     """
@@ -49,9 +57,16 @@ def build_struct(name, total_size, members):
     lines = ["struct %s {" % name]
     prev_end = 0
 
-    for offset, type_str, mname in sorted(members, key=lambda x: x[0]):
+    for item in sorted(members, key=lambda x: x[0]):
+        offset = item[0]
+        type_str = item[1]
+        mname = item[2]
+        explicit_size = item[3] if len(item) > 3 else None
+
         # Calculate member size
-        if '*' in type_str:
+        if explicit_size is not None:
+            msize = explicit_size
+        elif '*' in type_str:
             msize = 4
         elif type_str in SIZE_MAP:
             msize = SIZE_MAP[type_str]
@@ -59,7 +74,13 @@ def build_struct(name, total_size, members):
             arr_match = _re.search(r'\[(\d+)\]', type_str)
             if arr_match:
                 base = _re.sub(r'\[\d+\]', '', type_str).strip()
-                msize = SIZE_MAP.get(base, 1) * int(arr_match.group(1))
+                elem_size = SIZE_MAP.get(base, None)
+                if elem_size is not None:
+                    msize = elem_size * int(arr_match.group(1))
+                else:
+                    # Unknown base type in array — caller MUST provide explicit size
+                    log("  [!] %s.%s: unknown array elem type '%s', need explicit size" % (name, mname, base))
+                    msize = 4
             else:
                 msize = 4
 
@@ -67,7 +88,7 @@ def build_struct(name, total_size, members):
         if offset > prev_end:
             lines.append("  char _gap_%04X[%d];" % (prev_end, offset - prev_end))
 
-        # Member declaration (handle array syntax)
+        # Member declaration
         arr_match = _re.search(r'^(.+?)\[(\d+)\]$', type_str)
         if arr_match:
             lines.append("  %s %s[%s];" % (arr_match.group(1), mname, arr_match.group(2)))
@@ -218,36 +239,16 @@ struct SceneMgrSlot;
     # m_nCurrentScene at +0x338: used as m_slot[N]/m_RoleSystem[N] index
     idc.parse_decls("struct CameraParam { int nID; int _reserved; int nParam1; int nParam2; };", idc.PT_TYP)
     idc.parse_decls("struct CameraCmd { int nCmdID; int nValue; };", idc.PT_TYP)
-    # Use parse_decls directly for CamBlock (needs CameraParam/CameraCmd already defined)
-    idc.parse_decls("""
-struct SceneMgrCamBlock {
-  char m_CameraList[160];
-  CameraParam m_Params[25];
-  CameraCmd m_Cmds[33];
-  char _gap_338[2];
-  int m_nCurrentScene;
-  char _gap_33E[14];
-  int m_pCameraScript;
-  char m_bCameraFlags[2];
-  char m_nActiveCamera[4];
-};
-""", idc.PT_TYP)
-    # Verify
-    til_v = ida_typeinf.get_idati()
-    tif_v = ida_typeinf.tinfo_t()
-    if tif_v.get_named_type(til_v, "SceneMgrCamBlock"):
-        sz = tif_v.get_size()
-        if sz != 856:
-            log("  [WARN] SceneMgrCamBlock size=%d, fixing with build_struct" % sz)
-            build_struct("SceneMgrCamBlock", 856, [
-                (0x000, "char[160]", "m_CameraList"),
-                (0x0A0, "char[400]", "m_Params"),
-                (0x230, "char[264]", "m_Cmds"),
-                (0x338, "int", "m_nCurrentScene"),
-                (0x34C, "int", "m_pCameraScript"),
-                (0x350, "char[2]", "m_bCameraFlags"),
-                (0x352, "char[4]", "m_nActiveCamera"),
-            ])
+    # SceneMgrCamBlock with properly typed sub-struct arrays
+    build_struct("SceneMgrCamBlock", 856, [
+        (0x000, "char[160]", "m_CameraList"),
+        (0x0A0, "CameraParam[25]", "m_Params", 400),   # 25*16=400
+        (0x230, "CameraCmd[33]", "m_Cmds", 264),       # 33*8=264
+        (0x338, "int", "m_nCurrentScene"),
+        (0x34C, "int", "m_pCameraScript"),
+        (0x350, "char[2]", "m_bCameraFlags"),
+        (0x352, "char[4]", "m_nActiveCamera"),
+    ])
     idc.parse_decls("struct SceneMgrSlot { char _data[1408]; };", idc.PT_TYP)
 
     if build_struct("SceneMgr", 54116, [
