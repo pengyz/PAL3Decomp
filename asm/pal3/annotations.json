@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "description": "Diff layer over master_pipeline (PDB types + FLIRT + PAL3A globals). Apply AFTER master_pipeline.",
+  "description": "Diff layer: ALL game-meaningful annotations. master_pipeline only provides PDB types + FLIRT + compiler symbols (RTTI/labels). All game function names, game global variables, struct corrections are HERE.",
   "functions": {
     "0x004014F0": {
       "name": "CCBAI::Thunk_GetValue",
