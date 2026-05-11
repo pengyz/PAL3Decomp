@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageCam::Destroy",
-  "address": "0x00505490",
-  "size_bytes": 26,
-  "signature": "char __thiscall(CCBStageCam *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall CCBStageCam::Destroy(CCBStageCam *this)\n{\n  CCBStageCam::Create(this);\n  CCBStageCam::~CCBStageCam(this);\n  CCCTData::Destroy((CCCTData *)this);\n  return 1;\n}\n"
-}

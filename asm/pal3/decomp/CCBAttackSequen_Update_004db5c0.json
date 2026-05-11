@@ -1,7 +1,0 @@
-{
-  "name": "CCBAttackSequen::Update",
-  "address": "0x004DB5C0",
-  "size_bytes": 115,
-  "signature": "int __thiscall(CCBAttackSequen *this)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBAttackSequen::Update(CCBAttackSequen *this)\n{\n  float *v2; // eax\n  int v3; // ecx\n  float *p_fLastTime; // eax\n  int v5; // ecx\n\n  if ( this->m_bPause || !this->m_bEnable )\n  {\n    p_fLastTime = &this->m_Sequen[0].fLastTime;\n    v5 = 11;\n    do\n    {\n      *(p_fLastTime - 1) = 0.0;\n      p_fLastTime += 10;\n      --v5;\n      *(p_fLastTime - 10) = this->m_pCBSystem->m_fTimeFund;\n    }\n    while ( v5 );\n  }\n  else\n  {\n    v2 = &this->m_Sequen[0].fLastTime;\n    v3 = 11;\n    do\n    {\n      if ( *((_BYTE *)v2 + 31) )\n        *(v2 - 1) = 0.0;\n      else\n        *(v2 - 1) = this->m_pCBSystem->m_fTimeFund - *v2;\n      v2 += 10;\n      --v3;\n      *(v2 - 10) = this->m_pCBSystem->m_fTimeFund;\n    }\n    while ( v3 );\n  }\n  CCBAttackSequen::ProcessQueue(this);\n  CCBAttackSequen::CheckComplete(this);\n  return CCBAttackSequen::AdvanceStep(this);\n}\n"
-}

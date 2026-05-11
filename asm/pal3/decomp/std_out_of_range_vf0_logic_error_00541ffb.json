@@ -1,7 +1,0 @@
-{
-  "name": "std_out_of_range_vf0_logic_error",
-  "address": "0x00541FFB",
-  "size_bytes": 28,
-  "signature": "_DWORD *__thiscall(_DWORD *Block, char a2)",
-  "decompiled_c": "_DWORD *__thiscall std_out_of_range_vf0_logic_error(_DWORD *Block, char a2)\n{\n  unknown_libname_527(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
-}

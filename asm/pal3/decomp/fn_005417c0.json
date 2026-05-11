@@ -1,7 +1,0 @@
-{
-  "name": "fn",
-  "address": "0x005417C0",
-  "size_bytes": 121,
-  "signature": "LRESULT __stdcall(int code, WPARAM wParam, int *lParam)",
-  "decompiled_c": "LRESULT __stdcall fn(int code, WPARAM wParam, int *lParam)\n{\n  int v3; // eax\n  LRESULT result; // eax\n\n  if ( code )\n    return CallNextHookEx(0, code, wParam, (LPARAM)lParam);\n  switch ( wParam )\n  {\n    case 0x100u:\n    case 0x101u:\n    case 0x104u:\n    case 0x105u:\n      v3 = *lParam;\n      if ( *lParam != 91\n        && v3 != 92\n        && v3 != 93\n        && (v3 != 9 || (lParam[2] & 0x20) == 0)\n        && (v3 != 27 || (lParam[2] & 0x20) == 0 && (((unsigned __int16)GetKeyState(17) >> 8) & 0x80u) == 0) )\n      {\n        return CallNextHookEx(0, code, wParam, (LPARAM)lParam);\n      }\n      result = 1;\n      break;\n    default:\n      return CallNextHookEx(0, code, wParam, (LPARAM)lParam);\n  }\n  return result;\n}\n"
-}

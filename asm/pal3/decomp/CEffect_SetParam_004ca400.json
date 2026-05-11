@@ -1,7 +1,0 @@
-{
-  "name": "CEffect::SetParam",
-  "address": "0x004CA400",
-  "size_bytes": 76,
-  "signature": "int __thiscall(CEffect *this, int a2)",
-  "decompiled_c": "// between_std_methods (0x4C2840-0x4D70B0)\nint __thiscall CEffect::SetParam(CEffect *this, int a2)\n{\n  int v2; // edx\n  char v3; // bl\n  int v4; // edx\n\n  v2 = *(_DWORD *)(this->m_nPartical + 152 * (int)this->m_Partical[0].pPic);\n  v3 = *(_BYTE *)(v2 + 72 * this->m_Partical[0].nQuadIndex + 65);\n  v4 = v2 + 72 * this->m_Partical[0].nQuadIndex;\n  if ( !v3 )\n    *(_BYTE *)(v4 + 65) = 1;\n  if ( *(_BYTE *)(v4 + 66) == 1 || *(float *)&this->m_DeltaTime - *(float *)(v4 + 16) >= *(float *)(v4 + 24) )\n    *(_DWORD *)(v4 + 8) = 4;\n  return 0;\n}\n"
-}

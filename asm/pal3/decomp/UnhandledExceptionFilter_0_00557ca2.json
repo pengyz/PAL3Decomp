@@ -1,7 +1,0 @@
-{
-  "name": "UnhandledExceptionFilter_0",
-  "address": "0x00557CA2",
-  "size_bytes": 86,
-  "signature": "LONG __stdcall __noreturn(struct _EXCEPTION_POINTERS *ExceptionInfo)",
-  "decompiled_c": "LONG __stdcall __noreturn UnhandledExceptionFilter_0(struct _EXCEPTION_POINTERS *ExceptionInfo)\n{\n  EXCEPTION_POINTERS *v1; // ecx\n  int v2; // [esp-Ch] [ebp-24h] BYREF\n  CPPEH_RECORD ms_exc; // [esp+0h] [ebp-18h]\n\n  ms_exc.registration.ScopeTable = stru_573370;\n  ms_exc.registration.ExceptionHandler = _except_handler3;\n  ms_exc.registration.Next = (struct _EH3_EXCEPTION_REGISTRATION *)NtCurrentTeb()->NtTib.ExceptionList;\n  ms_exc.exc_ptr = v1;\n  ms_exc.old_esp = (DWORD)&v2;\n  ms_exc.registration.TryLevel = 0;\n  if ( off_60ACE4 )\n  {\n    ms_exc.registration.TryLevel = 1;\n    off_60ACE4();\n  }\n  ms_exc.registration.TryLevel = -1;\n  sub_557C4C();\n}\n"
-}

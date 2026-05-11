@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::Update",
-  "address": "0x004ECB00",
-  "size_bytes": 24,
-  "signature": "int __thiscall(CCBRoleState *this)",
-  "decompiled_c": "// between_std_methods (0x4D70B0-0x504E20)\nint __thiscall CCBRoleState::Update(CCBRoleState *this)\n{\n  CCBRoleState::CheckStatus(this);\n  CCBRoleState::ProcessActions(this);\n  return CCBRoleState::UpdateEffects(this);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::RenderCheck",
-  "address": "0x00513120",
-  "size_bytes": 40,
-  "signature": "char __thiscall(CCBSystem *this)",
-  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nchar __thiscall CCBSystem::RenderCheck(CCBSystem *this)\n{\n  char result; // al\n\n  result = HIBYTE(this->m_nTimesOfCombat);\n  if ( result )\n  {\n    HIBYTE(this->m_nTimesOfCombat) = 0;\n  }\n  else\n  {\n    CCBStage::EditorUpdate(this->m_pStage);\n    return C2DSpark::DestroyAll(this->m_p2DSpark);\n  }\n  return result;\n}\n"
-}
