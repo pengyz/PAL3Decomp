@@ -377,6 +377,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
             if not mname:
                 mname = '_field_%04X' % moffset
 
+            # Skip vtable members (IDA internal, not part of C++ source)
+            if '__vftable' in mname or 'vtbl_' in mtype or '_vtbl' in mtype:
+                continue
+
             # Remap IDA internal types to C types
             for ida_type, c_type in TYPE_REMAP.items():
                 if ida_type in mtype:
@@ -449,6 +453,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
 
             # Skip invalid method names and calling conventions
             if '`' in method_name or ' ' in method_name or '?' in method_name:
+                continue
+            # Skip methods with vtable types in signature (IDA internal)
+            if 'vtbl_' in ret or 'vtbl_' in params or '__vftable' in sig:
+                lines.append("    // [IDA_VTABLE] %s; // %s" % (method_name, addr))
                 continue
             if '__userpurge' in sig or '__usercall' in sig:
                 lines.append("    // [IDA_USERPURGE] %s; // %s" % (method_name, addr))
