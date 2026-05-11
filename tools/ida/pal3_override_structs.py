@@ -218,15 +218,36 @@ struct SceneMgrSlot;
     # m_nCurrentScene at +0x338: used as m_slot[N]/m_RoleSystem[N] index
     idc.parse_decls("struct CameraParam { int nID; int _reserved; int nParam1; int nParam2; };", idc.PT_TYP)
     idc.parse_decls("struct CameraCmd { int nCmdID; int nValue; };", idc.PT_TYP)
-    build_struct("SceneMgrCamBlock", 856, [
-        (0x000, "char[160]", "m_CameraList"),
-        (0x0A0, "char[400]", "m_Params"),       # CameraParam[25], 25*16=400
-        (0x230, "char[264]", "m_Cmds"),         # CameraCmd[33], 33*8=264
-        (0x338, "int", "m_nCurrentScene"),
-        (0x34C, "int", "m_pCameraScript"),
-        (0x350, "char[2]", "m_bCameraFlags"),   # [0]=transition, [1]=reset
-        (0x352, "char[4]", "m_nActiveCamera"),   # int as char[4] to avoid alignment
-    ])
+    # Use parse_decls directly for CamBlock (needs CameraParam/CameraCmd already defined)
+    idc.parse_decls("""
+struct SceneMgrCamBlock {
+  char m_CameraList[160];
+  CameraParam m_Params[25];
+  CameraCmd m_Cmds[33];
+  char _gap_338[2];
+  int m_nCurrentScene;
+  char _gap_33E[14];
+  int m_pCameraScript;
+  char m_bCameraFlags[2];
+  char m_nActiveCamera[4];
+};
+""", idc.PT_TYP)
+    # Verify
+    til_v = ida_typeinf.get_idati()
+    tif_v = ida_typeinf.tinfo_t()
+    if tif_v.get_named_type(til_v, "SceneMgrCamBlock"):
+        sz = tif_v.get_size()
+        if sz != 856:
+            log("  [WARN] SceneMgrCamBlock size=%d, fixing with build_struct" % sz)
+            build_struct("SceneMgrCamBlock", 856, [
+                (0x000, "char[160]", "m_CameraList"),
+                (0x0A0, "char[400]", "m_Params"),
+                (0x230, "char[264]", "m_Cmds"),
+                (0x338, "int", "m_nCurrentScene"),
+                (0x34C, "int", "m_pCameraScript"),
+                (0x350, "char[2]", "m_bCameraFlags"),
+                (0x352, "char[4]", "m_nActiveCamera"),
+            ])
     idc.parse_decls("struct SceneMgrSlot { char _data[1408]; };", idc.PT_TYP)
 
     if build_struct("SceneMgr", 54116, [

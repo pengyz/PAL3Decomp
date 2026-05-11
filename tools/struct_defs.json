@@ -1,0 +1,69 @@
+{
+  "_comment": "PAL3 struct definitions (single source of truth for IDA and gen_headers)",
+  "SceneMgrCamBlock": {
+    "size": 856,
+    "members": [
+      [0, "char[160]", "m_CameraList"],
+      [160, "CameraParam[25]", "m_Params"],
+      [560, "CameraCmd[33]", "m_Cmds"],
+      [824, "int", "m_nCurrentScene"],
+      [844, "int", "m_pCameraScript"],
+      [848, "char", "m_bCameraTransition"],
+      [849, "char", "m_bCameraReset"],
+      [850, "int", "m_nActiveCamera"]
+    ]
+  },
+  "CameraParam": {
+    "size": 16,
+    "members": [
+      [0, "int", "nID"],
+      [4, "int", "_reserved"],
+      [8, "int", "nParam1"],
+      [12, "int", "nParam2"]
+    ]
+  },
+  "CameraCmd": {
+    "size": 8,
+    "members": [
+      [0, "int", "nCmdID"],
+      [4, "int", "nValue"]
+    ]
+  },
+  "RoleSystem": {
+    "size": 8704,
+    "members": [
+      [4, "float", "m_fTargetX"],
+      [8, "float", "m_fTargetY"],
+      [12, "float", "m_fTargetZ"],
+      [16, "int", "_d010"],
+      [20, "int", "_d014"],
+      [160, "float", "m_fPosX"],
+      [164, "float", "m_fPosY"],
+      [168, "float", "m_fPosZ"],
+      [628, "int", "m_nState"],
+      [1284, "int", "m_nCoreState"],
+      [1288, "int", "_d508"],
+      [1292, "float", "_f50C"],
+      [1296, "float", "_f510"],
+      [1300, "float", "_f514"],
+      [1304, "float", "_f518"],
+      [1308, "int", "_d51C"],
+      [1312, "int", "_d520"],
+      [1228, "int", "m_nPathState"],
+      [1232, "int", "m_nPathStep"],
+      [1240, "int", "m_vPathTarget_x"],
+      [1244, "float", "m_vPathTarget_y"],
+      [1248, "int", "m_vPathTarget_z"],
+      [1260, "int", "m_nPrevMode"],
+      [1264, "int", "m_nMoveMode"],
+      [1268, "int", "_d4F4"],
+      [1344, "float", "_f540"],
+      [1348, "float", "_f544"],
+      [1352, "float", "_f548"],
+      [1388, "int", "_d56C"],
+      [1392, "int", "m_nRoleCount"],
+      [1464, "int", "_d5B8"],
+      [1488, "int", "_d5D0"]
+    ]
+  }
+}

@@ -26,6 +26,7 @@ PDB_FILE = PROJECT_ROOT / "asm" / "pal3a" / "pdb_export.json"
 IDA_STRUCTS_FILE = PROJECT_ROOT / "asm" / "pal3" / "ida_structs.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 OUTPUT_DIR = PROJECT_ROOT / "include" / "pal3" / "gen"
+OVERRIDES_DIR = PROJECT_ROOT / "include" / "pal3" / "overrides"
 
 # Skip STL/CRT/Windows types (already defined by system headers)
 SKIP_CLASSES = {
