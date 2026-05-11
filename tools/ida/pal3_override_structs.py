@@ -100,7 +100,30 @@ struct SceneMgrSlot;
     idc.parse_decls(FWD_SM, idc.PT_TYP)
 
     DECL = """
-struct RoleSystem { char _data[8704]; };
+struct RoleSystem {
+  char _p000[4];
+  int _d004; float _f008; float _f00C; float _f010; int _d014;
+  char _p018[136];
+  float _f0A0; float _f0A4; float _f0A8;
+  char _p0AC[452];
+  int _d274;
+  char _p278[600];
+  int _d4CC; int _d4D0; int _d4D4; int _d4D8;
+  float _f4DC; int _d4E0;
+  float _f4E4; int _d4E8; int _d4EC; int _d4F0; int _d4F4;
+  char _p4F8[12];
+  int _d504; int _d508; float _f50C; float _f510; float _f514;
+  float _f518; int _d51C; int _d520;
+  char _p524[28];
+  float _f540; float _f544; float _f548;
+  char _p54C[36];
+  int _d56C; int _d570;
+  char _p574[68];
+  int _d5B8;
+  char _p5BC[20];
+  int _d5D0;
+  char _tail[8496];
+};
 struct CameraParam { int nID; int _reserved; int nParam1; int nParam2; };
 struct CameraCmd { int nCmdID; int nValue; };
 struct SceneMgrCamBlock {
