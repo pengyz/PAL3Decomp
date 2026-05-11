@@ -71,7 +71,7 @@ void UIManager::Render()
   }
   if ( g_nGameState != 9 )
   {
-    v7 = (char *)&g_SceneMgr.m_RoleSystem[0]._data[144];
+    v7 = (char *)&g_SceneMgr.m_RoleSystem[0]._p018[88];
     v8 = (_DWORD *)((char *)this + 68 * v4 + 64);
     do
     {
@@ -92,7 +92,7 @@ void UIManager::Render()
       }
       v7 += 8704;
     }
-    while ( (int)v7 < (int)&g_SceneMgr.m_camBlock._p000[128] );
+    while ( (int)v7 < (int)&g_SceneMgr.m_RoleSystem[4]._tail[2168] );
     v13 = v4;
   }
   if ( v4 > 0 )

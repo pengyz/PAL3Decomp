@@ -1,0 +1,7 @@
+{
+  "name": "start",
+  "address": "0x0055507C",
+  "size_bytes": 246,
+  "signature": "void __noreturn()",
+  "decompiled_c": "void __noreturn start()\n{\n  DWORD Version; // eax\n  int wShowWindow; // eax\n  HMODULE ModuleHandleA; // eax\n  int v3; // [esp-4h] [ebp-78h]\n  CHAR *lpCmdLine; // [esp+10h] [ebp-64h]\n  int v5; // [esp+14h] [ebp-60h]\n  struct _STARTUPINFOA StartupInfo; // [esp+18h] [ebp-5Ch] BYREF\n  CPPEH_RECORD ms_exc; // [esp+5Ch] [ebp-18h]\n\n  Version = GetVersion();\n  dword_1895354 = BYTE1(Version);\n  dword_1895350 = (unsigned __int8)Version;\n  dword_189534C = BYTE1(Version) + ((unsigned __int8)Version << 8);\n  dword_1895348 = HIWORD(Version);\n  if ( !_heap_init(0) )\n    fast_error_exit(0x1Cu);\n  ms_exc.registration.TryLevel = 0;\n  _ioinit();\n  dword_1896D10 = (int)GetCommandLineA();\n  Str = __crtGetEnvironmentStringsA();\n  _setargv();\n  _setenvp();\n  _cinit();\n  StartupInfo.dwFlags = 0;\n  GetStartupInfoA(&StartupInfo);\n  lpCmdLine = _wincmdln();\n  if ( (StartupInfo.dwFlags & 1) != 0 )\n    wShowWindow = StartupInfo.wShowWindow;\n  else\n    wShowWindow = 10;\n  v3 = wShowWindow;\n  ModuleHandleA = GetModuleHandleA(0);\n  v5 = WinMain(ModuleHandleA, 0, lpCmdLine, v3);\n  exit(v5);\n}\n"
+}

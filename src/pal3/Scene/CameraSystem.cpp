@@ -10,7 +10,7 @@ int CameraSystem::Init(int a1)
   result = a1;
   if ( a1 )
   {
-    g_SceneMgr.m_pCollisionNode = (gbGeomNode *)a1;
+    *(_DWORD *)&g_SceneMgr.m_RoleSystem[4]._tail[5492] = a1;
     *(_DWORD *)(a1 + 1264) = 2;
   }
   return result;

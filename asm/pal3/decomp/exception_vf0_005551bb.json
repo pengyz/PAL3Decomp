@@ -1,0 +1,7 @@
+{
+  "name": "exception_vf0",
+  "address": "0x005551BB",
+  "size_bytes": 28,
+  "signature": "void *__thiscall(void *Block, char a2)",
+  "decompiled_c": "void *__thiscall exception_vf0(void *Block, char a2)\n{\n  exception_ctor(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
+}

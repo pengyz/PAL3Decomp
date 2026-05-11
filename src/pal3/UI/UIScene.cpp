@@ -74,7 +74,7 @@ int UIScene::RenderWithStack(void *pStack)
       v5->RenderRole(pStack, 0);
       result = *((_DWORD *)this + 14392);
       ++v3;
-      ++v5;
+      v5 = (RoleSystem *)((char *)v5 + 8704);
     }
     while ( v3 < result );
   }

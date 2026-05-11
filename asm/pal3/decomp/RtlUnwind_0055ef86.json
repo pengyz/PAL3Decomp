@@ -1,0 +1,7 @@
+{
+  "name": "RtlUnwind",
+  "address": "0x0055EF86",
+  "size_bytes": 6,
+  "signature": "void __stdcall(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue)",
+  "decompiled_c": "// attributes: thunk\nvoid __stdcall RtlUnwind(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue)\n{\n  __imp_RtlUnwind(TargetFrame, TargetIp, ExceptionRecord, ReturnValue);\n}\n"
+}

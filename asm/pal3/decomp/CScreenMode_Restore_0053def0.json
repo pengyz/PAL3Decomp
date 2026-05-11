@@ -1,0 +1,7 @@
+{
+  "name": "CScreenMode::Restore",
+  "address": "0x0053DEF0",
+  "size_bytes": 49,
+  "signature": "void __thiscall(CScreenMode *this)",
+  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nvoid __thiscall CScreenMode::Restore(CScreenMode *this)\n{\n  void *v2; // esi\n\n  sub_53E890(this);\n  v2 = (void *)*((_DWORD *)this + 202);\n  if ( v2 )\n  {\n    gbAudioManager::~gbAudioManager(*((gbAudioManager **)this + 202));\n    operator delete(v2);\n    *((_DWORD *)this + 202) = 0;\n  }\n}\n"
+}

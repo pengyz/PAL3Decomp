@@ -1,0 +1,7 @@
+{
+  "name": "UIWnd::ctor_7950",
+  "address": "0x00527950",
+  "size_bytes": 122,
+  "signature": "int __thiscall(UIWnd *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall UIWnd::ctor_7950(UIWnd *this)\n{\n  UIListBox::UIListBox((UIListBox *)this);\n  *((_DWORD *)this + 22) = 800;\n  *((_DWORD *)this + 23) = 600;\n  *((_DWORD *)this + 88) = 0;\n  UIItem::Refresh((UIItem *)this + 356);\n  *((_DWORD *)this + 431) = 0;\n  *((_DWORD *)this + 432) = 0;\n  *((_DWORD *)this + 436) = 0;\n  this->_vftable = (void **)&off_5706EC;\n  *((_BYTE *)this + 1756) = 1;\n  return (int)this;\n}\n"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "CCBStage::ProcessCommand",
+  "address": "0x0050E0D0",
+  "size_bytes": 133,
+  "signature": "int __thiscall(CCBStage *this)",
+  "decompiled_c": "// between_std_methods (0x504E20-0x53C2B0)\nint __thiscall CCBStage::ProcessCommand(CCBStage *this)\n{\n  char *v2; // eax\n  int nEffLinker; // edx\n\n  v2 = (char *)this + 96 * this->m_Task[0].SubTask[1].param.n2;\n  if ( !v2[506] )\n  {\n    nEffLinker = this->m_Task[0].SubTask[0].nEffLinker;\n    this->m_Task[1].SubTask[14].nTemp2 = *((_DWORD *)v2 + 108);\n    if ( CCBStageRole::IsActive((CCBStageRole *)this->m_pRoleState, nEffLinker) )\n      this->m_Task[1].SubTask[14].dwReturn = 32;\n    else\n      this->m_Task[1].SubTask[14].dwReturn = 50;\n    CCBStageRole::IsGrabedBy((CCBStageRole *)this);\n    *((_BYTE *)&this->m_Task[0].SubTask[2].fWaitTime + 96 * this->m_Task[0].SubTask[1].param.n2 + 2) = 1;\n    *((_BYTE *)&this->m_Task[0].SubTask[2].fWaitTime + 96 * this->m_Task[0].SubTask[1].param.n2 + 1) = 1;\n  }\n  return 0;\n}\n"
+}

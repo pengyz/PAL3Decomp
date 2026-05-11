@@ -254,7 +254,7 @@ void * CGameData::Init()
   Object3D *v7; // eax
   CGameData *v8; // edi
   int v9; // ebp
-  RoleSystem *m_RoleSystem; // ebp
+  char *v10; // ebp
   UIDialog *v11; // edi
   int d104; // edx
   OpenBaseFile v14; // [esp+18h] [ebp-24h] BYREF
@@ -322,17 +322,17 @@ void * CGameData::Init()
   v18 = pRect + 800;
   ((UIBigDialog *)&this->_dF40)->Create(1001, &pRect, 0, tex);
   (*(void (**)(int *, _DWORD))this->_dF40)(&this->_dF40, 0);
-  m_RoleSystem = (RoleSystem *)g_SceneMgr.m_RoleSystem;
+  v10 = (char *)&g_SceneMgr._gap_1ba4[12];
   v11 = (UIDialog *)&this->_pad_694[460];
   do
   {
     v11->Create(1002, 180, 50, (int)this, aUiDlgHeadbkTga);
     v11->Show();
     ((void (*)(UIDialog *, _DWORD))*v11->_base._vftable)(v11, 0);
-    ++m_RoleSystem;
+    v10 += 8704;
     v11 = (UIDialog *)((char *)v11 + 352);
   }
-  while ( (int)m_RoleSystem < (int)&g_SceneMgr.m_pGameData );
+  while ( (int)v10 < (int)&g_SceneMgr.m_RoleSystem[4]._tail[2024] );
   pRect = 0;
   v18 = 414;
   v17 = 0;

@@ -1,0 +1,7 @@
+{
+  "name": "CScreenMode::AudioUpdate",
+  "address": "0x0053E490",
+  "size_bytes": 71,
+  "signature": "void __thiscall(CScreenMode *this)",
+  "decompiled_c": "// between_std_methods (0x53C2D0-0x541D1B)\nvoid __thiscall CScreenMode::AudioUpdate(CScreenMode *this)\n{\n  if ( (g_nGameFlags & 1) != 0 )\n  {\n    if ( g_pCameraCtrl )\n    {\n      gbAudioManager::SetListenerPosition(*((gbAudioManager **)this + 202), (const struct gbVec3D *)g_pCameraCtrl + 41);\n      gbAudioManager::SetListenerOrientation(\n        *((gbAudioManager **)this + 202),\n        (struct gbVec3D *)g_pCameraCtrl + 42,\n        (struct gbVec3D *)g_pCameraCtrl + 43);\n    }\n  }\n}\n"
+}

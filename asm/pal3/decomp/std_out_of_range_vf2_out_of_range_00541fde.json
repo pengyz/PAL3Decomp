@@ -1,0 +1,7 @@
+{
+  "name": "std_out_of_range_vf2_out_of_range",
+  "address": "0x00541FDE",
+  "size_bytes": 29,
+  "signature": "void __thiscall __noreturn(struct exception *this)",
+  "decompiled_c": "void __thiscall __noreturn std_out_of_range_vf2_out_of_range(struct exception *this)\n{\n  _BYTE pExceptionObject[28]; // [esp+0h] [ebp-1Ch] BYREF\n\n  std_out_of_range_ctor((exception *)pExceptionObject, this);\n  _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI3_AVout_of_range_std__);\n}\n"
+}

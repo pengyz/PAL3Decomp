@@ -2008,8 +2008,8 @@ LABEL_9:
       *((_BYTE *)v8 + 68) = 1;
       break;
   }
-  ((UIWnd *)&this->m_pAttackSequenBack->_base)->SetEnable(g_SceneMgr.m_szUIString, 0);
-  ((UIWnd *)&this->pPanel->_base)->SetEnable(g_SceneMgr.m_szUIString, 0);
+  ((UIWnd *)&this->m_pAttackSequenBack->_base)->SetEnable(&g_SceneMgr.m_RoleSystem[4]._tail[3008], 0);
+  ((UIWnd *)&this->pPanel->_base)->SetEnable(&g_SceneMgr.m_RoleSystem[4]._tail[3008], 0);
   result = (**(int (***)(void *, int))this->m_pBattleFieldAttr[a2])(this->m_pBattleFieldAttr[a2], 1);
   this->m_pAttackSequenFace[0] = (void *)a2;
   return result;
