@@ -138,6 +138,7 @@ def apply_annotations():
         data = json.load(f)
 
     # --- 1. Functions ---
+    import re as _re_fn
     funcs = data.get("functions", {})
     renamed = 0
     sig_ok = 0
@@ -149,7 +150,33 @@ def apply_annotations():
             if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                 renamed += 1
         if sig:
-            if idc.SetType(addr, sig):
+            # IDA SetType 需要函数名: "RetType __cc FuncName(params)"
+            sig_clean = sig.strip().rstrip(";")
+            # 去除 struct/class 关键字
+            sig_clean = sig_clean.replace("struct ", "").replace("class ", "")
+            # 分离: "RetType [__cc] [FuncName] (params)"
+            paren_idx = sig_clean.find("(")
+            if paren_idx > 0:
+                prefix = sig_clean[:paren_idx].rstrip()
+                params = sig_clean[paren_idx:]
+                # prefix 可能是 "void __thiscall" 或 "int __cdecl FuncName" 或 "int"
+                # 检查最后一个 token 是否是函数名（不是调用约定也不是类型）
+                tokens = prefix.split()
+                cc_keywords = {"__thiscall", "__cdecl", "__stdcall", "__fastcall", "__userpurge", "__usercall"}
+                type_keywords = {"int", "void", "char", "float", "double", "short", "long",
+                                 "unsigned", "signed", "bool", "BOOL", "BYTE", "WORD", "DWORD",
+                                 "HRESULT", "UINT", "LPVOID", "__int64", "_DWORD", "_BYTE", "_WORD"}
+                last = tokens[-1] if tokens else ""
+                has_func_name = (last not in cc_keywords and last not in type_keywords
+                                 and not last.endswith("*") and last != "")
+                if not has_func_name:
+                    short_name = name.split("::")[-1] if "::" in name else name
+                    # 清理非法字符
+                    short_name = _re_fn.sub(r'[^a-zA-Z0-9_]', '_', short_name)
+                    sig_clean = "%s %s%s" % (prefix, short_name, params)
+                else:
+                    sig_clean = "%s%s" % (prefix, params)
+            if idc.SetType(addr, sig_clean):
                 sig_ok += 1
 
     print("[1] Functions: renamed=%d/%d, signatures=%d" % (renamed, len(funcs), sig_ok))
