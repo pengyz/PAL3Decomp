@@ -1,28 +1,14 @@
 {
+  "version": 2,
+  "description": "Diff layer over master_pipeline (PDB types + FLIRT + PAL3A globals). Apply AFTER master_pipeline.",
   "functions": {
     "0x004014F0": {
       "name": "CCBAI::Thunk_GetValue",
       "signature": "char __stdcall(int a1, int a2)"
     },
-    "0x00401800": {
-      "name": "nullsub_1",
-      "signature": "void __cdecl()"
-    },
     "0x00401810": {
       "name": "ArraySort",
       "signature": "int __stdcall(int base, int count, int elemSize, int compareFunc)"
-    },
-    "0x00401C30": {
-      "name": "$E153",
-      "signature": "int()"
-    },
-    "0x00401C40": {
-      "name": "$E158",
-      "signature": "gbVFileSystem *()"
-    },
-    "0x00401C60": {
-      "name": "$E163",
-      "signature": "void __cdecl()"
     },
     "0x00401C70": {
       "name": "?FileSysInit@@YAXXZ",
@@ -55,10 +41,6 @@
     "0x004022E0": {
       "name": "GRPinput::GetCursorPos",
       "signature": "BOOL __stdcall(void *pPoint)"
-    },
-    "0x004022F0": {
-      "name": "GRPinput::GetMousePos",
-      "signature": "int __thiscall(void *this, void *pOut, void *pOut2)"
     },
     "0x00402310": {
       "name": "GRPinput::AcquireDevices",
@@ -214,41 +196,6 @@
       "name": "?IsAnyKeyPressed@GRPinput@@QAE_NXZ",
       "signature": "int __thiscall(GRPinput *this)"
     },
-    "0x00404300": {
-      "name": "nullsub_2"
-    },
-    "0x00404620": {
-      "name": "$E187",
-      "signature": "int()"
-    },
-    "0x00404660": {
-      "name": "$E202",
-      "signature": "int()"
-    },
-    "0x00404670": {
-      "name": "$E207",
-      "signature": "gbImage2D *()"
-    },
-    "0x00404690": {
-      "name": "$E212",
-      "signature": "void __cdecl()"
-    },
-    "0x004046B0": {
-      "name": "$E217",
-      "signature": "int __thiscall(void *this)"
-    },
-    "0x004046C0": {
-      "name": "$E222",
-      "signature": "int __fastcall(int)"
-    },
-    "0x004046F0": {
-      "name": "$E228",
-      "signature": "void __cdecl()"
-    },
-    "0x00404750": {
-      "name": "$E233",
-      "signature": "void __thiscall(PAL3 *this)"
-    },
     "0x00404760": {
       "name": "??0PAL3@@QAE@XZ"
     },
@@ -364,10 +311,6 @@
       "name": "?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z",
       "signature": "int __thiscall(_DWORD *this, int)"
     },
-    "0x00407B50": {
-      "name": "SceneObj::Update",
-      "signature": "char __thiscall(void *this, unsigned int a2)"
-    },
     "0x00407C70": {
       "name": "?_Split@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ",
       "signature": "void __thiscall(int this)"
@@ -383,10 +326,6 @@
     "0x00408BC0": {
       "name": "??0Iostream_init@@QAE@XZ",
       "signature": "Iostream_init *__thiscall(Iostream_init *__hidden this)"
-    },
-    "0x00408BD0": {
-      "name": "nullsub_3",
-      "signature": "void __thiscall(void *)"
     },
     "0x00408BE0": {
       "name": "PAL3::InitSubsystems",
@@ -516,17 +455,9 @@
       "name": "ScriptSystem::UpdateTimers",
       "signature": "int __cdecl(float dt)"
     },
-    "0x004123F0": {
-      "name": "nullsub_4",
-      "signature": "void __cdecl()"
-    },
     "0x00412400": {
       "name": "RoleSystem::RenderRole",
       "signature": "void __thiscall(RoleSystem *this, void *pStack, int a3)"
-    },
-    "0x004125A0": {
-      "name": "nullsub_5",
-      "signature": "void __cdecl()"
     },
     "0x004125D0": {
       "name": "Camera::SetParams",
@@ -551,10 +482,6 @@
     "0x00413010": {
       "name": "RoleSystem::UpdateRole",
       "signature": "char __thiscall(RoleSystem *this, int a2, int a3, int a4)"
-    },
-    "0x00414970": {
-      "name": "nullsub_6",
-      "signature": "void __cdecl()"
     },
     "0x00414980": {
       "name": "RoleSystem::GetPosition",
@@ -716,22 +643,6 @@
       "name": "UIScene::ProcessInput",
       "signature": "BOOL __cdecl(char *String1, char *)"
     },
-    "0x00424BE0": {
-      "name": "nullsub_7",
-      "signature": "void __cdecl()"
-    },
-    "0x00424BF0": {
-      "name": "nullsub_8",
-      "signature": "void __cdecl()"
-    },
-    "0x00424C00": {
-      "name": "nullsub_9",
-      "signature": "void __cdecl()"
-    },
-    "0x00424C10": {
-      "name": "nullsub_10",
-      "signature": "void __cdecl()"
-    },
     "0x0042FDA0": {
       "name": "Config::ReadINIInt",
       "signature": "int __thiscall(void *this, char *filename, char *key)"
@@ -778,22 +689,6 @@
     },
     "0x00431D80": {
       "name": "??0PalScript@@QAE@XZ"
-    },
-    "0x00431DC0": {
-      "name": "$E58",
-      "signature": "int()"
-    },
-    "0x00431DF0": {
-      "name": "$E69",
-      "signature": "void __cdecl()"
-    },
-    "0x00431E10": {
-      "name": "$E74",
-      "signature": "int()"
-    },
-    "0x00431E40": {
-      "name": "$E84",
-      "signature": "void __cdecl()"
     },
     "0x00431E60": {
       "name": "??0PalScriptMgr@@QAE@XZ"
@@ -873,14 +768,6 @@
       "name": "PtrArray::Clear",
       "signature": "_DWORD *__thiscall(PtrArray *this)"
     },
-    "0x00432770": {
-      "name": "PtrArray::SetAt",
-      "signature": "void __thiscall(PtrArray *this, int a2, int a3)"
-    },
-    "0x004327B0": {
-      "name": "PtrArray::InsertAt",
-      "signature": "int __thiscall(PtrArray *this, int a2, int a3)"
-    },
     "0x00434130": {
       "name": "??0PtrArray@@QAE@XZ",
       "signature": "PtrArray *__cdecl(int, int, char)"
@@ -918,9 +805,6 @@
     },
     "0x004386A0": {
       "name": "j_nullsub_103"
-    },
-    "0x004386B0": {
-      "name": "nullsub_103"
     },
     "0x00438E90": {
       "name": "??_Gfilebuf@@UAEPAXI@Z",
@@ -1110,10 +994,6 @@
       "name": "UIWnd::FindChild",
       "signature": "void __thiscall(int this, float)"
     },
-    "0x0043FDB0": {
-      "name": "UIWnd::SetFrameRate",
-      "signature": "void __thiscall(UIWnd *this, int a2)"
-    },
     "0x0043FDC0": {
       "name": "UIWnd::GetWidth",
       "signature": "void __thiscall(UIWnd *this, int a2)"
@@ -1130,14 +1010,6 @@
       "name": "UIWnd::FindChildByName",
       "signature": "void __thiscall(int this, float)"
     },
-    "0x0043FEC0": {
-      "name": "UIWnd::AddChild",
-      "signature": "int __thiscall(UIWnd *this, _DWORD *a2)"
-    },
-    "0x00440740": {
-      "name": "UIStatic::UIStatic",
-      "signature": "void __thiscall(UIStatic *this)"
-    },
     "0x004407C0": {
       "name": "??1UIWnd@@UAE@XZ_2",
       "signature": "void __thiscall(std::ios_base *this)"
@@ -1145,18 +1017,6 @@
     "0x00440BA0": {
       "name": "UIStatic::OnMessage",
       "signature": "int __thiscall(UIStatic **this)"
-    },
-    "0x00440DD0": {
-      "name": "UIStatic::Update",
-      "signature": "BOOL __thiscall(int this, int, int)"
-    },
-    "0x00440F30": {
-      "name": "UIStatic::Render",
-      "signature": "int __thiscall(int this)"
-    },
-    "0x004422E0": {
-      "name": "UIFrameWnd::UIFrameWnd",
-      "signature": "void __thiscall(UIFrameWnd *this)"
     },
     "0x00442390": {
       "name": "UIFrameWnd::_UIFrameWnd",
@@ -1178,10 +1038,6 @@
       "name": "UIWnd::SetEnable",
       "signature": "void __thiscall(UIWnd *this, const char *a2, int a3)"
     },
-    "0x00442890": {
-      "name": "UIFrameWnd::Render",
-      "signature": "int __thiscall(int this)"
-    },
     "0x00442AD0": {
       "name": "UIFrameWnd::Update",
       "signature": "BOOL __thiscall(int this, int, int)"
@@ -1194,10 +1050,6 @@
       "name": "??1UIWnd@@UAE@XZ_3",
       "signature": "void __thiscall(std::ios_base *this)"
     },
-    "0x004450A0": {
-      "name": "UINote::Create",
-      "signature": "void *__thiscall(UINote *this, int id, int a3, int a4, char *tex)"
-    },
     "0x00445920": {
       "name": "UIWnd::Reset",
       "signature": "int __thiscall(UIWnd *this)"
@@ -1206,17 +1058,9 @@
       "name": "UIWnd::SetState",
       "signature": "int __thiscall(UIWnd *this, int state)"
     },
-    "0x00445AA0": {
-      "name": "UIWnd::UIWnd",
-      "signature": "_DWORD *__thiscall(UIWnd *this)"
-    },
     "0x00445B40": {
       "name": "UIWnd::_UIWnd",
       "signature": "void __thiscall(std::ios_base *__hidden this)"
-    },
-    "0x00445B90": {
-      "name": "UIWnd::Create",
-      "signature": "int __thiscall(UIWnd *this, int id, void *pRect, int parent)"
     },
     "0x00445C10": {
       "name": "UIWnd::UpdateChildren",
@@ -1234,21 +1078,9 @@
       "name": "UIWnd::SendMessage",
       "signature": "int __stdcall(int, int, int)"
     },
-    "0x00445D20": {
-      "name": "UIWnd::ScreenToClient",
-      "signature": "int __thiscall(UIWnd *this, int a2, int a3)"
-    },
-    "0x00445D40": {
-      "name": "UIWnd::ClientToScreen",
-      "signature": "int __thiscall(UIWnd *this, int a2, int a3)"
-    },
     "0x00445DB0": {
       "name": "UIWnd::SetVisible",
       "signature": "int __thiscall(UIWnd *this, int bVisible)"
-    },
-    "0x00445E70": {
-      "name": "UIWnd::Destroy",
-      "signature": "int __thiscall(UIWnd *this, int a2)"
     },
     "0x00445EA0": {
       "name": "UIWnd::DestroyChildren",
@@ -1258,17 +1090,9 @@
       "name": "j_UIWnd::MoveWindow",
       "signature": "int __thiscall(void *this)"
     },
-    "0x00445F20": {
-      "name": "UIWnd::MoveWindow",
-      "signature": "int __thiscall(UIWnd **this)"
-    },
     "0x00445FA0": {
       "name": "UIWnd::GetRect",
       "signature": "int __thiscall(UIWnd *this, _DWORD *a2)"
-    },
-    "0x00445FE0": {
-      "name": "UIWnd::SetRect",
-      "signature": "_DWORD *__thiscall(UIWnd *this, _DWORD *a2)"
     },
     "0x00446010": {
       "name": "UIWnd::GetChild",
@@ -1333,17 +1157,9 @@
       "name": "UISelectDialog::Create",
       "signature": "int __thiscall(UISelectDialog *this, int id, void *pRect, int parent, char *tex)"
     },
-    "0x00452580": {
-      "name": "PropUI::Create",
-      "signature": "int __thiscall(PropUI *this)"
-    },
     "0x00452670": {
       "name": "PropUI::Init",
       "signature": "void __thiscall(PropUI *this)"
-    },
-    "0x00452D20": {
-      "name": "nullsub_74",
-      "signature": "void __cdecl()"
     },
     "0x00457410": {
       "name": "PAL_GDB::LoadLanguage",
@@ -1539,10 +1355,6 @@
       "name": "UIItem::Create",
       "signature": "int __thiscall(void *this, int id, int a3)"
     },
-    "0x004A1E40": {
-      "name": "EquipUI::Create",
-      "signature": "int __thiscall(EquipUI *this)"
-    },
     "0x004A3900": {
       "name": "UIBase::SetItemData",
       "signature": "int __thiscall(void *this, int id, unsigned int data)"
@@ -1559,17 +1371,9 @@
       "name": "EquipUI::InitSlots",
       "signature": "void __thiscall(EquipUI *this)"
     },
-    "0x004A4960": {
-      "name": "StateUI::Create",
-      "signature": "int __thiscall(StateUI *this)"
-    },
     "0x004A4A10": {
       "name": "StateUI::Init",
       "signature": "void __thiscall(StateUI *this)"
-    },
-    "0x004A4AC0": {
-      "name": "MagicUI::Create",
-      "signature": "int __thiscall(MagicUI *this)"
     },
     "0x004A4B70": {
       "name": "MagicUI::Init",
@@ -1578,9 +1382,6 @@
     "0x004A7690": {
       "name": "??1UIWnd@@UAE@XZ_1_0",
       "signature": "void __thiscall(std::ios_base *__hidden this)"
-    },
-    "0x004AF760": {
-      "name": "nullsub_73"
     },
     "0x004B4830": {
       "name": "?IsThrottled@VirtualProcessor@details@Concurrency@@QBE_NXZ",
@@ -1610,9 +1411,6 @@
       "name": "??1UIWnd@@UAE@XZ_5",
       "signature": "void __thiscall(UIWnd *this)"
     },
-    "0x004B7F70": {
-      "name": "nullsub_11"
-    },
     "0x004BDAC0": {
       "name": "??0RenderTarget@@QAE@XZ",
       "signature": "void __thiscall(RenderTarget *this)"
@@ -1637,10 +1435,6 @@
       "name": "??0ScreenEffect@@QAE@XZ",
       "signature": "_BYTE *__thiscall(ScreenEffect *this)"
     },
-    "0x004BE4A0": {
-      "name": "ScreenEffectMgr::Render",
-      "signature": "void __thiscall(ScreenEffectMgr *this)"
-    },
     "0x004BEF50": {
       "name": "??1UIWnd@@UAE@XZ_2_0",
       "signature": "void __thiscall(std::ios_base *__hidden this)"
@@ -1657,28 +1451,9 @@
       "name": "RenderTarget2::Resolve",
       "signature": "void __thiscall(void *this)"
     },
-    "0x004C0610": {
-      "name": "nullsub_75"
-    },
     "0x004C0620": {
       "name": "??_Gfacet@locale@std@@UAEPAXI@Z_1",
       "signature": "std::locale::facet *__thiscall(std::locale::facet *this, char)"
-    },
-    "0x004C1230": {
-      "name": "nullsub_12",
-      "signature": "void __cdecl()"
-    },
-    "0x004C1240": {
-      "name": "nullsub_13",
-      "signature": "void __cdecl()"
-    },
-    "0x004C1250": {
-      "name": "nullsub_14",
-      "signature": "void __cdecl()"
-    },
-    "0x004C1260": {
-      "name": "nullsub_15",
-      "signature": "void __cdecl()"
     },
     "0x004C2840": {
       "name": "?do_always_noconv@codecvt_base@std@@MBE_NXZ",
@@ -1702,18 +1477,6 @@
     },
     "0x004C4370": {
       "name": "?Destroy@CEffCylinder@@UAEXXZ"
-    },
-    "0x004C4570": {
-      "name": "nullsub_76",
-      "signature": "void __cdecl()"
-    },
-    "0x004C4580": {
-      "name": "nullsub_77",
-      "signature": "void __cdecl()"
-    },
-    "0x004C4590": {
-      "name": "nullsub_78",
-      "signature": "void __cdecl()"
     },
     "0x004C45A0": {
       "name": "?CreateTask@CEffCylinder@@UAEXPAUtagEffTaskParam@@@Z",
@@ -1742,9 +1505,6 @@
     "0x004C52C0": {
       "name": "?LoadTexture@CEffCylinder@@IAEXPAD@Z",
       "signature": "_DWORD *__thiscall(CEffCylinder *this, char *)"
-    },
-    "0x004C5E70": {
-      "name": "nullsub_79"
     },
     "0x004C61A0": {
       "name": "??0CEffectSystem@@QAE@PAVgbGfxManager@@@Z",
@@ -1806,10 +1566,6 @@
       "name": "?Update@CEffectSystem@@QAEXN@Z",
       "signature": "char __thiscall(CEffectSystem *this)"
     },
-    "0x004C6830": {
-      "name": "nullsub_16",
-      "signature": "void __cdecl()"
-    },
     "0x004C6870": {
       "name": "?FillDefaultUVSet@CEffectSystem@@AAEXXZ",
       "signature": "_DWORD *__thiscall(CEffectSystem *this)"
@@ -1828,18 +1584,6 @@
     },
     "0x004C6F20": {
       "name": "?Destroy@CEffExplosive@@UAEXXZ"
-    },
-    "0x004C7120": {
-      "name": "nullsub_80",
-      "signature": "void __cdecl()"
-    },
-    "0x004C7130": {
-      "name": "nullsub_81",
-      "signature": "void __cdecl()"
-    },
-    "0x004C7140": {
-      "name": "nullsub_82",
-      "signature": "void __cdecl()"
     },
     "0x004C7150": {
       "name": "?CreateOnePartical@CEffect@@QAE_NPAUtagPartical@@@Z",
@@ -1928,18 +1672,6 @@
       "name": "?Create@CEffGrid@@UAE_NPAUtagEffObjType@@@Z",
       "signature": "char __thiscall(CEffGrid *this, struct tagEffObjType *)"
     },
-    "0x004C9EA0": {
-      "name": "nullsub_83",
-      "signature": "void __cdecl()"
-    },
-    "0x004C9EB0": {
-      "name": "nullsub_84",
-      "signature": "void __cdecl()"
-    },
-    "0x004C9EC0": {
-      "name": "nullsub_85",
-      "signature": "void __cdecl()"
-    },
     "0x004CA400": {
       "name": "CEffect::SetParam",
       "signature": "int __thiscall(void *this, int a2)"
@@ -1962,18 +1694,6 @@
     "0x004CB800": {
       "name": "?Create@CEffMeteor@@UAE_NPAUtagEffObjType@@@Z",
       "signature": "char __thiscall(CEffMeteor *this, struct tagEffObjType *)"
-    },
-    "0x004CBF90": {
-      "name": "nullsub_17",
-      "signature": "void __cdecl()"
-    },
-    "0x004CBFA0": {
-      "name": "nullsub_18",
-      "signature": "void __cdecl()"
-    },
-    "0x004CBFB0": {
-      "name": "nullsub_19",
-      "signature": "void __cdecl()"
     },
     "0x004CBFC0": {
       "name": "?CreateTask@CEffMeteor@@UAEXPAUtagEffTaskParam@@@Z",
@@ -2011,10 +1731,6 @@
       "name": "?Init@CEffMgr@@QAE_NXZ",
       "signature": "int __thiscall(CEffMgr *this, int a2, int a3, int a4, int a5, int a6)"
     },
-    "0x004CE460": {
-      "name": "CEffect::Render",
-      "signature": "int __thiscall(void *this, int a2)"
-    },
     "0x004CE580": {
       "name": "?Render@CEffMgr@@QAEXXZ",
       "signature": "char __thiscall(CEffMgr *this, int)"
@@ -2027,10 +1743,6 @@
       "name": "?CreateEff@CEffMgr@@AAEHPBDKMMM@Z",
       "signature": "char __userpurge@<al>(CEffMgr *this@<ecx>, const char *, unsigned int, float, float, float)"
     },
-    "0x004CEAF0": {
-      "name": "$E68",
-      "signature": "char __thiscall(_DWORD *this)"
-    },
     "0x004CEDA0": {
       "name": "?RunEffGroup@CEffMgr@@QAEKHMMMK@Z",
       "signature": "int __userpurge@<eax>(CEffMgr *this@<ecx>, char *, float, char *, float, unsigned int)"
@@ -2042,18 +1754,6 @@
     "0x004CF7C0": {
       "name": "?CopyObjInGroup@CEffMgr@@QAEXHHH@Z",
       "signature": "int __thiscall(CEffMgr *this, char *, int, char *)"
-    },
-    "0x004D0360": {
-      "name": "nullsub_86",
-      "signature": "void __cdecl()"
-    },
-    "0x004D0370": {
-      "name": "nullsub_87",
-      "signature": "void __cdecl()"
-    },
-    "0x004D0380": {
-      "name": "nullsub_88",
-      "signature": "void __cdecl()"
     },
     "0x004D0CE0": {
       "name": "?Render@CEffModel@@UAEXXZ",
@@ -2070,18 +1770,6 @@
     "0x004D1090": {
       "name": "?Create@CEffQuad@@UAE_NPAUtagEffObjType@@@Z_0",
       "signature": "char __thiscall(CEffQuad *this, struct tagEffObjType *)"
-    },
-    "0x004D17A0": {
-      "name": "nullsub_89",
-      "signature": "void __cdecl()"
-    },
-    "0x004D17B0": {
-      "name": "nullsub_90",
-      "signature": "void __cdecl()"
-    },
-    "0x004D17C0": {
-      "name": "nullsub_91",
-      "signature": "void __cdecl()"
     },
     "0x004D1BE0": {
       "name": "?DestroyOneQuad@CEffQuad@@QAEXH@Z",
@@ -2121,18 +1809,6 @@
     "0x004D3AD0": {
       "name": "?Create@CEffShock@@UAE_NPAUtagEffObjType@@@Z_0",
       "signature": "char __thiscall(CEffShock *this, struct tagEffObjType *)"
-    },
-    "0x004D4310": {
-      "name": "nullsub_92",
-      "signature": "void __cdecl()"
-    },
-    "0x004D4320": {
-      "name": "nullsub_93",
-      "signature": "void __cdecl()"
-    },
-    "0x004D4330": {
-      "name": "nullsub_94",
-      "signature": "void __cdecl()"
     },
     "0x004D45D0": {
       "name": "?StartShock@CEffShock@@AAEXH@Z",
@@ -2492,10 +2168,6 @@
       "name": "CCBSystem::DestroySubsystems",
       "signature": "char __thiscall(CCBSystem *this)"
     },
-    "0x004DB5C0": {
-      "name": "CCBAttackSequen::Update",
-      "signature": "int __thiscall(CCBAttackSequen *this)"
-    },
     "0x004DB640": {
       "name": "CCBSystem::CalcSpeed",
       "signature": "int __stdcall(int roleIdx, int a2)"
@@ -2548,10 +2220,6 @@
       "name": "CCBSystem::GetCmdString",
       "signature": "char *__thiscall(CCBSystem *this, int idx)"
     },
-    "0x004DB910": {
-      "name": "CCBSystem::GetDeltaTime",
-      "signature": "double __thiscall(CCBSystem *this)"
-    },
     "0x004DB920": {
       "name": "CCBSystem::SetCmdParam",
       "signature": "int __thiscall(CCBSystem *this, int idx, int value)"
@@ -2568,17 +2236,9 @@
       "name": "CCBAttackSequen::AdvanceStep",
       "signature": "int __thiscall(CCBAttackSequen *this)"
     },
-    "0x004DC240": {
-      "name": "CCBControl::Update",
-      "signature": "int __thiscall(CCBControl *this)"
-    },
     "0x004DC560": {
       "name": "CCBUI::GetState",
       "signature": "int __thiscall(CCBUI *this)"
-    },
-    "0x004DC5B0": {
-      "name": "CCBSystem::GetControl",
-      "signature": "int __thiscall(CCBSystem *this)"
     },
     "0x004DC5C0": {
       "name": "CCBUI::SetParam",
@@ -2600,10 +2260,6 @@
       "name": "CCBStage::EndRound",
       "signature": "int __thiscall(CCBStage *this)"
     },
-    "0x004E04C0": {
-      "name": "CCBUI::Update",
-      "signature": "int __thiscall(CCBUI *this)"
-    },
     "0x004E0690": {
       "name": "CCBUI::UpdateInput",
       "signature": "char __thiscall(CCBUI *this)"
@@ -2623,10 +2279,6 @@
     "0x004E0A30": {
       "name": "DialogFunc",
       "signature": "INT_PTR __stdcall(HWND, UINT, WPARAM, LPARAM)"
-    },
-    "0x004ECB00": {
-      "name": "CCBRoleState::Update",
-      "signature": "int __thiscall(CCBRoleState *this)"
     },
     "0x004ED010": {
       "name": "CCBRoleState::IsRoleAlive",
@@ -2908,10 +2560,6 @@
       "name": "CCBRoleState::IsPlayerTeam",
       "signature": "char __stdcall(int force)"
     },
-    "0x004F3C70": {
-      "name": "CCBRoleState::GetRoleForce",
-      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
-    },
     "0x004F3CC0": {
       "name": "CCBRoleState::IsRoleInForce",
       "signature": "bool __thiscall(CCBRoleState *this, int roleIdx)"
@@ -2923,10 +2571,6 @@
     "0x004F3D90": {
       "name": "CCBRoleState::GetRoleField",
       "signature": "char __thiscall(CCBRoleState *this, int roleIdx, int fieldOff)"
-    },
-    "0x004F3DC0": {
-      "name": "CCBRoleState::GetRoleSpeed",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
     },
     "0x004F3E20": {
       "name": "CCBRoleState::ProcessRound",
@@ -3007,10 +2651,6 @@
     "0x004FBF90": {
       "name": "?Destroy@CCBStage@@QAE_NXZ",
       "signature": "char __thiscall(CCBStage *this)"
-    },
-    "0x004FC0A0": {
-      "name": "CCBStage::Update",
-      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x004FC150": {
       "name": "?Update@CCBStage@@QAEXXZ",
@@ -3120,10 +2760,6 @@
       "name": "?HasNormalAttackRole@CCBStage@@QAE_NH@Z",
       "signature": "int __thiscall(CCBStage *this, int)"
     },
-    "0x004FD870": {
-      "name": "nullsub_20",
-      "signature": "void __cdecl()"
-    },
     "0x004FD880": {
       "name": "?ClearRoleAllTask@CCBStage@@QAEXH@Z",
       "signature": "int __thiscall(CCBStage *this, int a2)"
@@ -3168,10 +2804,6 @@
       "name": "?HandleKeyCtrl@CCBStage@@QAEXAAHHHHK@Z",
       "signature": "int __thiscall(CCBStage *this, int a2)"
     },
-    "0x004FEE50": {
-      "name": "nullsub_21",
-      "signature": "void __cdecl()"
-    },
     "0x004FEE60": {
       "name": "?HandleKeyFriend@CCBStage@@QAE_NAAHPAUtagStageTask@@PAUtagStageSubTask@@@Z",
       "signature": "int __thiscall(CCBStage *this, int a2)"
@@ -3204,45 +2836,9 @@
       "name": "CCBSystem::EndBattle",
       "signature": "int __thiscall(CCBSystem *this)"
     },
-    "0x00500D40": {
-      "name": "nullsub_22",
-      "signature": "void __cdecl()"
-    },
-    "0x005011A0": {
-      "name": "nullsub_23",
-      "signature": "void __cdecl()"
-    },
-    "0x00501320": {
-      "name": "nullsub_24",
-      "signature": "void __cdecl()"
-    },
-    "0x00501CD0": {
-      "name": "nullsub_25",
-      "signature": "void __cdecl()"
-    },
-    "0x00501CE0": {
-      "name": "nullsub_26",
-      "signature": "void __cdecl()"
-    },
-    "0x00501E50": {
-      "name": "nullsub_27",
-      "signature": "void __cdecl()"
-    },
     "0x00503020": {
       "name": "CCBStage::ResetAll",
       "signature": "int __thiscall(CCBStage *this)"
-    },
-    "0x00503650": {
-      "name": "nullsub_28",
-      "signature": "void __cdecl()"
-    },
-    "0x00503660": {
-      "name": "nullsub_29",
-      "signature": "void __cdecl()"
-    },
-    "0x00503670": {
-      "name": "nullsub_30",
-      "signature": "void __cdecl()"
     },
     "0x00503CF0": {
       "name": "CCBStage::UpdatePhysics",
@@ -3349,10 +2945,6 @@
     },
     "0x00505930": {
       "name": "??1CCCTData@@QAE@XZ"
-    },
-    "0x00506010": {
-      "name": "nullsub_31",
-      "signature": "void __cdecl()"
     },
     "0x00506020": {
       "name": "?Create@CCCTData@@QAE_NXZ",
@@ -3580,10 +3172,6 @@
       "name": "?IsDoTask@CCBStageRole@@QAE_NP81@AEKK@Z@Z",
       "signature": "void __thiscall(int *this, gbMatrixStack *)"
     },
-    "0x0050A170": {
-      "name": "nullsub_32",
-      "signature": "void __cdecl()"
-    },
     "0x0050A180": {
       "name": "?Grab@CCBStageRole@@QAE_NK_N@Z",
       "signature": "int __userpurge@<eax>(CCBStageRole *this@<ecx>, int, bool)"
@@ -3616,18 +3204,6 @@
       "name": "?SetBladeTime@CCBStageRole@@QAEXM@Z",
       "signature": "void __thiscall(CCBStageRole *this, int a2)"
     },
-    "0x0050A480": {
-      "name": "nullsub_33",
-      "signature": "void __cdecl()"
-    },
-    "0x0050A490": {
-      "name": "nullsub_34",
-      "signature": "void __cdecl()"
-    },
-    "0x0050A4A0": {
-      "name": "nullsub_35",
-      "signature": "void __cdecl()"
-    },
     "0x0050A500": {
       "name": "?LoadAction@CCBStageRole@@QAEXH@Z",
       "signature": "bool __thiscall(CCBStageRole *this, gbRay)"
@@ -3643,10 +3219,6 @@
     "0x0050A5D0": {
       "name": "?AddTask@CCBStageRole@@QAE_NP81@AEKK@ZKPAUgbVec3D@@PAUtagCmdData@@W4ECBRoleTaskMode@@@Z",
       "signature": "double __thiscall(CCBStageRole *this, float *a2)"
-    },
-    "0x0050A6E0": {
-      "name": "nullsub_36",
-      "signature": "void __cdecl()"
     },
     "0x0050A6F0": {
       "name": "?ForceDelTaskByPFN@CCBStageRole@@QAEXP81@AEKK@Z@Z",
@@ -3684,10 +3256,6 @@
       "name": "?DoTask@CCBStageRole@@AAEXK@Z",
       "signature": "tagRoleState *__thiscall(CCBStageRole *this, struct gbVec3D *)"
     },
-    "0x0050AA50": {
-      "name": "nullsub_37",
-      "signature": "void __cdecl()"
-    },
     "0x0050AA60": {
       "name": "?ClearBadPushTask@CCBStageRole@@AAEXXZ",
       "signature": "void __thiscall(CCBStageRole *this, float)"
@@ -3708,33 +3276,9 @@
       "name": "?GetProperCurAction@CCBStageRole@@AAE?AW4ACTION_KIND@@XZ",
       "signature": "char __thiscall(CCBStageRole *this, int, int, int, int, int, int *, const void *, int)"
     },
-    "0x0050B040": {
-      "name": "nullsub_38",
-      "signature": "void __cdecl()"
-    },
-    "0x0050B050": {
-      "name": "nullsub_39",
-      "signature": "void __cdecl()"
-    },
-    "0x0050B060": {
-      "name": "nullsub_40",
-      "signature": "void __cdecl()"
-    },
     "0x0050B070": {
       "name": "?ProcTransportRun@CCBStageRole@@QAEKK@Z",
       "signature": "char __thiscall(CCBStageRole *this, unsigned int, int, int, int, int *, const void *, int)"
-    },
-    "0x0050B260": {
-      "name": "nullsub_41",
-      "signature": "void __cdecl()"
-    },
-    "0x0050B270": {
-      "name": "nullsub_42",
-      "signature": "void __cdecl()"
-    },
-    "0x0050B280": {
-      "name": "nullsub_43",
-      "signature": "void __cdecl()"
     },
     "0x0050B290": {
       "name": "?SetForceFinishThrowingWeapon@CCBStageRole@@QAEX_N@Z",
@@ -3764,125 +3308,25 @@
       "name": "?ProcTurnToRole@CCBStageRole@@QAEKK@Z",
       "signature": "int __thiscall(CCBStageRole *this, int a2)"
     },
-    "0x0050C2F0": {
-      "name": "nullsub_44",
-      "signature": "void __cdecl()"
-    },
-    "0x0050C300": {
-      "name": "nullsub_45",
-      "signature": "void __cdecl()"
-    },
-    "0x0050C310": {
-      "name": "nullsub_46",
-      "signature": "void __cdecl()"
-    },
     "0x0050C320": {
       "name": "?ProcBlock@CCBStageRole@@QAEKK@Z",
       "signature": "int __thiscall(CCBStageRole *this, int a2)"
-    },
-    "0x0050C940": {
-      "name": "nullsub_47",
-      "signature": "void __cdecl()"
-    },
-    "0x0050C950": {
-      "name": "nullsub_48",
-      "signature": "void __cdecl()"
-    },
-    "0x0050C960": {
-      "name": "nullsub_49",
-      "signature": "void __cdecl()"
     },
     "0x0050C970": {
       "name": "?ProcMagic@CCBStageRole@@QAEKK@Z",
       "signature": "int __thiscall(CCBStageRole *this, unsigned int)"
     },
-    "0x0050CDC0": {
-      "name": "nullsub_50",
-      "signature": "void __cdecl()"
-    },
-    "0x0050CDD0": {
-      "name": "nullsub_51",
-      "signature": "void __cdecl()"
-    },
     "0x0050CDE0": {
       "name": "?ProcUseRecoverItem@CCBStageRole@@QAEKK@Z",
       "signature": "int __thiscall(CCBStageRole *this, float a2)"
-    },
-    "0x0050D410": {
-      "name": "nullsub_52",
-      "signature": "void __cdecl()"
-    },
-    "0x0050D420": {
-      "name": "nullsub_53",
-      "signature": "void __cdecl()"
-    },
-    "0x0050D430": {
-      "name": "nullsub_54",
-      "signature": "void __cdecl()"
     },
     "0x0050D440": {
       "name": "CCBStage::CheckAllDone",
       "signature": "int __thiscall(CCBStage *this)"
     },
-    "0x0050DA60": {
-      "name": "nullsub_55",
-      "signature": "void __cdecl()"
-    },
-    "0x0050DA70": {
-      "name": "nullsub_56",
-      "signature": "void __cdecl()"
-    },
-    "0x0050DA80": {
-      "name": "nullsub_57",
-      "signature": "void __cdecl()"
-    },
-    "0x0050E0A0": {
-      "name": "nullsub_58",
-      "signature": "void __cdecl()"
-    },
-    "0x0050E0B0": {
-      "name": "nullsub_59",
-      "signature": "void __cdecl()"
-    },
-    "0x0050E0C0": {
-      "name": "nullsub_60",
-      "signature": "void __cdecl()"
-    },
     "0x0050E0D0": {
       "name": "CCBStage::ProcessCommand",
       "signature": "int __thiscall(CCBStage *this)"
-    },
-    "0x0050E340": {
-      "name": "nullsub_61",
-      "signature": "void __cdecl()"
-    },
-    "0x0050E350": {
-      "name": "nullsub_62",
-      "signature": "void __cdecl()"
-    },
-    "0x0050E530": {
-      "name": "nullsub_63",
-      "signature": "void __cdecl()"
-    },
-    "0x0050E540": {
-      "name": "nullsub_64",
-      "signature": "void __cdecl()"
-    },
-    "0x0050F9F0": {
-      "name": "nullsub_65",
-      "signature": "void __cdecl()"
-    },
-    "0x0050FA00": {
-      "name": "nullsub_66",
-      "signature": "void __cdecl()"
-    },
-    "0x0050FA10": {
-      "name": "nullsub_67",
-      "signature": "void __cdecl()"
-    },
-    "0x0050FE50": {
-      "name": "CCBStageScene::Update",
-      "signature": "int __thiscall(void *this)"
     },
     "0x0050FEE0": {
       "name": "??0CCBStageScene@@QAE@PAVCCBStage@@@Z",
@@ -4062,10 +3506,6 @@
       "name": "?CanBeHandleNGH_R@CCBSystem@@QAE_NXZ",
       "signature": "int __thiscall(CCBSystem *this)"
     },
-    "0x00512500": {
-      "name": "CCBSystem::CCBSystem",
-      "signature": "int __thiscall(CCBSystem *this)"
-    },
     "0x00512580": {
       "name": "?ProcDialog@CCBSystem@@QAEKK@Z",
       "signature": "int __thiscall(CCBSystem *this)"
@@ -4121,10 +3561,6 @@
     "0x00513430": {
       "name": "?ProcDefence@CCBSystem@@QAEKK@Z",
       "signature": "char __thiscall(CCBSystem *this)"
-    },
-    "0x005135F0": {
-      "name": "nullsub_68",
-      "signature": "void __cdecl()"
     },
     "0x00513600": {
       "name": "?ProcAI@CCBSystem@@QAEKK@Z",
@@ -4826,22 +4262,6 @@
       "name": "MiniGame1::Render",
       "signature": "void __thiscall(void *this)"
     },
-    "0x005301E0": {
-      "name": "nullsub_69",
-      "signature": "void __cdecl()"
-    },
-    "0x005301F0": {
-      "name": "nullsub_70",
-      "signature": "void __cdecl()"
-    },
-    "0x00531C90": {
-      "name": "nullsub_71",
-      "signature": "void __cdecl()"
-    },
-    "0x00531CA0": {
-      "name": "nullsub_72",
-      "signature": "void __cdecl()"
-    },
     "0x005329BE": {
       "name": "_DllMain@12_3",
       "signature": "BOOL __stdcall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)"
@@ -4929,10 +4349,6 @@
     "0x00536A80": {
       "name": "Actor::FastInit",
       "signature": "int __fastcall(int a1)"
-    },
-    "0x00536AC0": {
-      "name": "Actor::LoadAction",
-      "signature": "int __thiscall(void *this, char *name)"
     },
     "0x00536C50": {
       "name": "Actor::CompareAction",
@@ -5149,9 +4565,6 @@
       "name": "?Init@UICursor@@QAEXXZ",
       "signature": "UINT __thiscall(UICursor *this)"
     },
-    "0x005418E0": {
-      "name": "nullsub_95"
-    },
     "0x00541900": {
       "name": "_WinMain@16",
       "signature": "int __stdcall(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)"
@@ -5216,10 +4629,6 @@
     "0x00542017": {
       "name": "std_out_of_range_ctor",
       "signature": "exception *__thiscall(exception *this, struct exception *)"
-    },
-    "0x00542071": {
-      "name": "nullsub_96",
-      "signature": "void __cdecl()"
     },
     "0x00542072": {
       "name": "?EnableShadow@gbGeomNode@@UAEXH@Z",
@@ -5349,40 +4758,13 @@
       "name": "??3@YAXPAX@Z_0",
       "signature": "void __cdecl()"
     },
-    "0x00552ED8": {
-      "name": "_calloc",
-      "signature": "void *__cdecl(size_t Count, size_t Size)"
-    },
-    "0x00552F55": {
-      "name": "_free",
-      "signature": "void __cdecl(void *Block)"
-    },
     "0x00552F84": {
       "name": "__fpmath",
       "signature": "unsigned int()"
     },
-    "0x00552F9B": {
-      "name": "nullsub_97"
-    },
     "0x00552F9C": {
       "name": "__cfltcvt_init",
       "signature": "char *(__cdecl *())(double *, char *Src, int, char *Size, int)"
-    },
-    "0x00552FD4": {
-      "name": "__onexit",
-      "signature": "_onexit_t __cdecl(_onexit_t Func)"
-    },
-    "0x00553041": {
-      "name": "_atexit",
-      "signature": "int __cdecl(void (__cdecl *)())"
-    },
-    "0x00553053": {
-      "name": "___onexitinit",
-      "signature": "void *()"
-    },
-    "0x00553082": {
-      "name": "_sprintf",
-      "signature": "int(char *const Buffer, const char *const Format, ...)"
     },
     "0x005530D4": {
       "name": "?_JumpToContinuation@@YGXPAXPAUEHRegistrationNode@@@Z",
@@ -5472,88 +4854,9 @@
       "name": "??_L@YGXPAXIHP6EX0@Z1@Z",
       "signature": "void __stdcall(char *, unsigned int, int, void (__thiscall *)(void *), void (__thiscall *)(void *))"
     },
-    "0x005536A9": {
-      "name": "_malloc",
-      "signature": "void *__cdecl(size_t Size)"
-    },
-    "0x005536BB": {
-      "name": "__nh_malloc",
-      "signature": "_DWORD *__cdecl(size_t Size, int)"
-    },
-    "0x005536E7": {
-      "name": "__heap_alloc",
-      "signature": "_DWORD *__cdecl(unsigned int)"
-    },
-    "0x0055371D": {
-      "name": "_fclose",
-      "signature": "int __cdecl(FILE *Stream)"
-    },
-    "0x00553773": {
-      "name": "_fseek",
-      "signature": "int __cdecl(FILE *Stream, int Offset, int Origin)"
-    },
-    "0x005537FF": {
-      "name": "_ftell",
-      "signature": "int __cdecl(FILE *Stream)"
-    },
-    "0x00553957": {
-      "name": "_fwrite",
-      "signature": "size_t __cdecl(const void *Buffer, size_t ElementSize, size_t ElementCount, FILE *Stream)"
-    },
-    "0x00553A61": {
-      "name": "__fsopen",
-      "signature": "FILE *__cdecl(const char *FileName, const char *Mode, int ShFlag)"
-    },
-    "0x00553A81": {
-      "name": "_fopen",
-      "signature": "FILE *__cdecl(const char *FileName, const char *Mode)"
-    },
-    "0x00553AA0": {
-      "name": "_strncat",
-      "signature": "char *__cdecl(char *Destination, const char *Source, size_t Count)"
-    },
-    "0x00553BD0": {
-      "name": "__alloca_probe",
-      "signature": "void __usercall(unsigned int@<eax>, char)"
-    },
-    "0x00553C00": {
-      "name": "_strstr",
-      "signature": "char *__cdecl(const char *Str, const char *SubStr)"
-    },
     "0x00553C80": {
       "name": "__strlwr",
       "signature": "char *__cdecl(char *String)"
-    },
-    "0x00553D20": {
-      "name": "_memcpy",
-      "signature": "void *__cdecl(void *, const void *Src, size_t Size)"
-    },
-    "0x00554055": {
-      "name": "_atol",
-      "signature": "int __cdecl(const char *String)"
-    },
-    "0x005540E0": {
-      "name": "_atoi",
-      "signature": "int __cdecl(const char *String)"
-    },
-    "0x005540F0": {
-      "name": "_strncpy",
-      "signature": "char *__cdecl(char *Destination, const char *Source, size_t Count)"
-    },
-    "0x005541F8": {
-      "name": "_rand",
-      "signature": "int __cdecl()"
-    },
-    "0x00554216": {
-      "name": "_fread",
-      "signature": "size_t __cdecl(void *Buffer, size_t ElementSize, size_t ElementCount, FILE *Stream)"
-    },
-    "0x005542FE": {
-      "name": "__snprintf",
-      "signature": "int(char *const Buffer, const size_t BufferCount, const char *const Format, ...)"
-    },
-    "0x0055434F": {
-      "name": "__purecall"
     },
     "0x00554360": {
       "name": "__CIacos",
@@ -5571,26 +4874,6 @@
       "name": "_asin",
       "signature": "double __cdecl(double X)"
     },
-    "0x005544FB": {
-      "name": "_atof",
-      "signature": "double __cdecl(const char *String)"
-    },
-    "0x00554560": {
-      "name": "_strchr",
-      "signature": "char *__cdecl(const char *Str, int Val)"
-    },
-    "0x0055461C": {
-      "name": "_vsprintf",
-      "signature": "int __cdecl(char *const Buffer, const char *const Format, va_list ArgList)"
-    },
-    "0x00554670": {
-      "name": "_strrchr",
-      "signature": "char *__cdecl(const char *Str, int Ch)"
-    },
-    "0x00554697": {
-      "name": "__mbsrchr",
-      "signature": "unsigned __int8 *__cdecl(const unsigned __int8 *String, unsigned int C)"
-    },
     "0x00554700": {
       "name": "__CIpow",
       "signature": "double __usercall@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)"
@@ -5598,14 +4881,6 @@
     "0x00554719": {
       "name": "_pow",
       "signature": "double __cdecl(double X, double Y)"
-    },
-    "0x0055491D": {
-      "name": "_fflush",
-      "signature": "int __cdecl(FILE *Stream)"
-    },
-    "0x00554958": {
-      "name": "__flush",
-      "signature": "int __cdecl(_DWORD *)"
     },
     "0x005549BD": {
       "name": "_flsall",
@@ -5619,47 +4894,12 @@
       "name": "_fscanf",
       "signature": "int(FILE *const Stream, const char *const Format, ...)"
     },
-    "0x00554AA0": {
-      "name": "_memchr",
-      "signature": "void *__cdecl(const void *Buf, int Val, size_t MaxCount)"
-    },
-    "0x00554B45": {
-      "name": "__strtime",
-      "signature": "char *__cdecl(char *Buffer)"
-    },
-    "0x00554BBE": {
-      "name": "__strdate",
-      "signature": "char *__cdecl(char *Buffer)"
-    },
-    "0x00554C42": {
-      "name": "_fprintf",
-      "signature": "int(FILE *const Stream, const char *const Format, ...)"
-    },
-    "0x00554C74": {
-      "name": "__close",
-      "signature": "int __cdecl(int FileHandle)"
-    },
-    "0x00554D27": {
-      "name": "__sopen",
-      "signature": "int(const char *FileName, int OpenFlag, int ShareFlag, ...)"
-    },
-    "0x00554FE0": {
-      "name": "_strtok",
-      "signature": "char *__cdecl(char *String, const char *Delimiter)"
-    },
     "0x0055507C": {
       "name": "start"
-    },
-    "0x00555172": {
-      "name": "__amsg_exit",
-      "signature": "void __cdecl __noreturn(DWORD NumberOfBytesWritten)"
     },
     "0x00555197": {
       "name": "_fast_error_exit",
       "signature": "void __cdecl __noreturn(DWORD NumberOfBytesWritten)"
-    },
-    "0x005551BA": {
-      "name": "nullsub_98"
     },
     "0x005551BB": {
       "name": "exception_vf0",
@@ -5680,10 +4920,6 @@
     "0x00555274": {
       "name": "?what@exception@@UBEPBDXZ",
       "signature": "const char *__thiscall(exception *__hidden this)"
-    },
-    "0x00555290": {
-      "name": "_strlen",
-      "signature": "size_t __cdecl(const char *Str)"
     },
     "0x0055530C": {
       "name": "__EH_prolog",
@@ -5708,50 +4944,6 @@
     "0x005557D1": {
       "name": "__seh_longjmp_unwind@4",
       "signature": "int __stdcall(int *)"
-    },
-    "0x005557F0": {
-      "name": "_memset",
-      "signature": "void *__cdecl(void *, int Val, size_t Size)"
-    },
-    "0x00555848": {
-      "name": "__callnewh",
-      "signature": "int __cdecl(size_t Size)"
-    },
-    "0x00555863": {
-      "name": "__heap_init",
-      "signature": "int __cdecl(int)"
-    },
-    "0x0055589F": {
-      "name": "___sbh_heap_init",
-      "signature": "int()"
-    },
-    "0x005558DD": {
-      "name": "___sbh_find_block",
-      "signature": "char *__cdecl(int)"
-    },
-    "0x00555908": {
-      "name": "___sbh_free_block",
-      "signature": "_DWORD *__cdecl(_DWORD *, unsigned int)"
-    },
-    "0x00555C33": {
-      "name": "___sbh_alloc_block",
-      "signature": "_DWORD *__cdecl(int)"
-    },
-    "0x00555F3C": {
-      "name": "___sbh_alloc_new_region",
-      "signature": "char *()"
-    },
-    "0x00555FED": {
-      "name": "___sbh_alloc_new_group",
-      "signature": "int __cdecl(_DWORD *)"
-    },
-    "0x005560E8": {
-      "name": "___sbh_resize_block",
-      "signature": "int __cdecl(_DWORD *, int, int)"
-    },
-    "0x005563DE": {
-      "name": "__setdefaultprecision",
-      "signature": "unsigned int()"
     },
     "0x005563F0": {
       "name": "__ms_p5_test_fdiv",
@@ -5805,22 +4997,6 @@
       "name": "__shift",
       "signature": "void __cdecl(const char *Src, int)"
     },
-    "0x00556892": {
-      "name": "_realloc",
-      "signature": "void *__cdecl(void *Block, size_t Size)"
-    },
-    "0x005569B2": {
-      "name": "__cinit",
-      "signature": "void()"
-    },
-    "0x005569DF": {
-      "name": "_exit",
-      "signature": "void __cdecl __noreturn(int Code)"
-    },
-    "0x005569F0": {
-      "name": "__exit",
-      "signature": "void __cdecl __noreturn(int Code)"
-    },
     "0x00556A01": {
       "name": "_doexit",
       "signature": "void __cdecl(UINT uExitCode, int, int)"
@@ -5828,18 +5004,6 @@
     "0x00556A9A": {
       "name": "__initterm",
       "signature": "void __cdecl(_PVFV *First, _PVFV *Last)"
-    },
-    "0x00556AB4": {
-      "name": "__msize",
-      "signature": "size_t __cdecl(void *Block)"
-    },
-    "0x00556ADD": {
-      "name": "__flsbuf",
-      "signature": "int __cdecl(int Ch, FILE *File)"
-    },
-    "0x00556BF2": {
-      "name": "__output",
-      "signature": "int __cdecl(FILE *File, char *, int)"
     },
     "0x00557333": {
       "name": "_write_char",
@@ -5909,69 +5073,13 @@
       "name": "__CallSettingFrame@12",
       "signature": "void __stdcall(int, int, int)"
     },
-    "0x00557D00": {
-      "name": "_strcmp",
-      "signature": "int __cdecl(const char *Str1, const char *Str2)"
-    },
     "0x00557D84": {
       "name": "?__CxxUnhandledExceptionFilter@@YGJPAU_EXCEPTION_POINTERS@@@Z",
       "signature": "LONG __stdcall(struct _EXCEPTION_POINTERS *ExceptionInfo)"
     },
-    "0x00557DE8": {
-      "name": "__freebuf",
-      "signature": "int __cdecl(int)"
-    },
-    "0x00557E13": {
-      "name": "__lseek",
-      "signature": "int __cdecl(int FileHandle, int Offset, int Origin)"
-    },
-    "0x00557EAD": {
-      "name": "__ioinit",
-      "signature": "UINT()"
-    },
-    "0x00558058": {
-      "name": "__write",
-      "signature": "int __cdecl(int FileHandle, const void *Buf, unsigned int MaxCharCount)"
-    },
-    "0x00558205": {
-      "name": "__openfile",
-      "signature": "_DWORD *__cdecl(char *FileName, _BYTE *, int ShareFlag, _DWORD *)"
-    },
-    "0x00558375": {
-      "name": "__getstream",
-      "signature": "_DWORD *()"
-    },
-    "0x005583F0": {
-      "name": "_strcpy",
-      "signature": "char *__cdecl(char *Destination, const char *Source)"
-    },
-    "0x00558400": {
-      "name": "_strcat",
-      "signature": "char *__cdecl(char *Destination, const char *Source)"
-    },
-    "0x005584E0": {
-      "name": "___crtLCMapStringA",
-      "signature": "int __cdecl(LCID Locale, DWORD dwMapFlags, CHAR *lpSrcStr, _BYTE *cchSrc, LPSTR lpDestStr, int cchDest, UINT CodePage, int)"
-    },
     "0x00558704": {
       "name": "_strncnt",
       "signature": "_BYTE *__cdecl(_BYTE *, int)"
-    },
-    "0x0055872F": {
-      "name": "__isctype",
-      "signature": "int __cdecl(int C, int Type)"
-    },
-    "0x005587B0": {
-      "name": "__allmul",
-      "signature": "__int64 __stdcall(__int64, __int64)"
-    },
-    "0x005587E4": {
-      "name": "__filbuf",
-      "signature": "int __cdecl(FILE *File)"
-    },
-    "0x005588BD": {
-      "name": "__read",
-      "signature": "int __cdecl(int FileHandle, void *DstBuf, unsigned int MaxCharCount)"
     },
     "0x00558AC0": {
       "name": "__trandisp1",
@@ -6025,10 +5133,6 @@
       "name": "__fltin",
       "signature": "int *__cdecl(char *)"
     },
-    "0x00558F0D": {
-      "name": "__setmbcp",
-      "signature": "int __cdecl(int CodePage)"
-    },
     "0x005590A6": {
       "name": "_getSystemCP",
       "signature": "UINT __cdecl(UINT)"
@@ -6044,10 +5148,6 @@
     "0x0055914C": {
       "name": "_setSBUpLow",
       "signature": "unsigned int()"
-    },
-    "0x005592D1": {
-      "name": "___initmbctable",
-      "signature": "int()"
     },
     "0x005593D7": {
       "name": "zerotoxdone",
@@ -6089,37 +5189,9 @@
       "name": "__d_inttype",
       "signature": "int __cdecl(double)"
     },
-    "0x0055968C": {
-      "name": "__commit",
-      "signature": "int __cdecl(int FileHandle)"
-    },
-    "0x005596E3": {
-      "name": "___initstdio",
-      "signature": "int()"
-    },
-    "0x00559788": {
-      "name": "___endstdio",
-      "signature": "int()"
-    },
-    "0x0055979C": {
-      "name": "__stbuf",
-      "signature": "int __cdecl(int)"
-    },
-    "0x00559829": {
-      "name": "__ftbuf",
-      "signature": "int __cdecl(int, int)"
-    },
-    "0x00559866": {
-      "name": "__input",
-      "signature": "int __cdecl(FILE *Stream, char *, int)"
-    },
     "0x0055A28B": {
       "name": "__hextodec",
       "signature": "unsigned int __cdecl(int C)"
-    },
-    "0x0055A2C2": {
-      "name": "_fgetc",
-      "signature": "int __cdecl(FILE *Stream)"
     },
     "0x0055A2DC": {
       "name": "__un_inc",
@@ -6129,65 +5201,13 @@
       "name": "__whiteout",
       "signature": "int __cdecl(_DWORD *, FILE *Stream)"
     },
-    "0x0055A317": {
-      "name": "__dosmaperr",
-      "signature": "int *__cdecl(unsigned int)"
-    },
-    "0x0055A37E": {
-      "name": "__alloc_osfhnd",
-      "signature": "int()"
-    },
-    "0x0055A413": {
-      "name": "__set_osfhnd",
-      "signature": "int __cdecl(int, HANDLE hHandle)"
-    },
-    "0x0055A48A": {
-      "name": "__free_osfhnd",
-      "signature": "int __cdecl(int)"
-    },
-    "0x0055A504": {
-      "name": "__get_osfhandle",
-      "signature": "intptr_t __cdecl(int FileHandle)"
-    },
-    "0x0055A541": {
-      "name": "__chsize",
-      "signature": "int __cdecl(int FileHandle, int Size)"
-    },
-    "0x0055A687": {
-      "name": "__XcptFilter",
-      "signature": "LONG __cdecl(int, struct _EXCEPTION_POINTERS *ExceptionInfo)"
-    },
     "0x0055A7C8": {
       "name": "_xcptlookup",
       "signature": "int *__cdecl(int)"
     },
-    "0x0055A80B": {
-      "name": "__wincmdln",
-      "signature": "_BYTE *()"
-    },
-    "0x0055A863": {
-      "name": "__setenvp",
-      "signature": "void()"
-    },
-    "0x0055A91C": {
-      "name": "__setargv",
-      "signature": "int()"
-    },
     "0x0055A9B5": {
       "name": "_parse_cmdline",
       "signature": "_DWORD *__cdecl(unsigned __int8 *, unsigned __int8 **, unsigned __int8 *, _DWORD *, _DWORD *)"
-    },
-    "0x0055AB69": {
-      "name": "___crtGetEnvironmentStringsA",
-      "signature": "CHAR *()"
-    },
-    "0x0055AC9B": {
-      "name": "__FF_MSGBANNER",
-      "signature": "int *()"
-    },
-    "0x0055ACD4": {
-      "name": "__NMSG_WRITE",
-      "signature": "int *__cdecl(DWORD NumberOfBytesWritten)"
     },
     "0x0055AE27": {
       "name": "__set_exp",
@@ -6245,10 +5265,6 @@
       "name": "__hw_cw",
       "signature": "char __cdecl(int)"
     },
-    "0x0055B657": {
-      "name": "_tolower",
-      "signature": "int __cdecl(int C)"
-    },
     "0x0055B722": {
       "name": "__ZeroTail",
       "signature": "int __cdecl(int, int)"
@@ -6281,10 +5297,6 @@
       "name": "__ld12cvt",
       "signature": "int __cdecl(unsigned __int16 *, unsigned int *, int *)"
     },
-    "0x0055BB0E": {
-      "name": "__fptostr",
-      "signature": "char *__cdecl(char *, char *, int)"
-    },
     "0x0055BB85": {
       "name": "__fltout",
       "signature": "int *__cdecl(int)"
@@ -6292,29 +5304,6 @@
     "0x0055BBE9": {
       "name": "___dtold",
       "signature": "int __usercall@<eax>(unsigned int@<eax>, int, int *)"
-    },
-    "0x0055BC9F": {
-      "name": "__fptrap"
-    },
-    "0x0055BCA8": {
-      "name": "__getbuf",
-      "signature": "int __cdecl(_DWORD *)"
-    },
-    "0x0055BCEC": {
-      "name": "__isatty",
-      "signature": "int __cdecl(int FileHandle)"
-    },
-    "0x0055BD12": {
-      "name": "_wctomb",
-      "signature": "int __cdecl(char *MbCh, wchar_t WCh)"
-    },
-    "0x0055BD80": {
-      "name": "__aulldiv",
-      "signature": "unsigned int __stdcall(unsigned __int64, __int64)"
-    },
-    "0x0055BDF0": {
-      "name": "__aullrem",
-      "signature": "unsigned __int64 __stdcall(unsigned __int64, __int64)"
     },
     "0x0055BE65": {
       "name": "?_ValidateRead@@YAHPBXI@Z",
@@ -6328,14 +5317,6 @@
       "name": "?_ValidateExecute@@YAHP6GHXZ@Z",
       "signature": "BOOL __cdecl(FARPROC lpfn)"
     },
-    "0x0055BEB5": {
-      "name": "_abort",
-      "signature": "void __cdecl __noreturn()"
-    },
-    "0x0055BECC": {
-      "name": "___crtGetStringTypeA",
-      "signature": "BOOL __cdecl(DWORD dwInfoType, LPCSTR lpSrcStr, int cchSrc, LPWORD lpCharType, UINT CodePage, LCID Locale, int)"
-    },
     "0x0055C015": {
       "name": "__87except",
       "signature": "int __cdecl(int, int, int)"
@@ -6348,41 +5329,9 @@
       "name": "__frnd",
       "signature": "double __cdecl(double)"
     },
-    "0x0055D35D": {
-      "name": "__fcloseall",
-      "signature": "int __cdecl()"
-    },
-    "0x0055D3B5": {
-      "name": "_mbtowc",
-      "signature": "int __cdecl(wchar_t *DstCh, const char *SrcCh, size_t SrcSizeInBytes)"
-    },
-    "0x0055D47D": {
-      "name": "_isspace",
-      "signature": "int __cdecl(int C)"
-    },
-    "0x0055D4B0": {
-      "name": "__allshl",
-      "signature": "int __usercall@<eax>(__int64@<edx:eax>, unsigned __int8@<cl>)"
-    },
-    "0x0055D4CF": {
-      "name": "_ungetc",
-      "signature": "int __cdecl(int Character, FILE *Stream)"
-    },
-    "0x0055D53D": {
-      "name": "__setmode",
-      "signature": "int __cdecl(int FileHandle, int Mode)"
-    },
-    "0x0055D5B3": {
-      "name": "__ismbblead",
-      "signature": "int __cdecl(unsigned int Ch)"
-    },
     "0x0055D5C4": {
       "name": "_x_ismbbtype",
       "signature": "int __cdecl(unsigned __int8, int, unsigned __int8)"
-    },
-    "0x0055D5F5": {
-      "name": "___crtMessageBoxA",
-      "signature": "int __cdecl(const CHAR *, const CHAR *, UINT)"
     },
     "0x0055D681": {
       "name": "___addl",
@@ -6408,10 +5357,6 @@
       "name": "_$I10_OUTPUT",
       "signature": "int __cdecl(__int64, int, int, char, int)"
     },
-    "0x0055DAB5": {
-      "name": "_raise",
-      "signature": "int __cdecl(int Signal)"
-    },
     "0x0055DBE2": {
       "name": "_siglookup",
       "signature": "int *__cdecl(int)"
@@ -6424,18 +5369,6 @@
       "name": "___multtenpow12",
       "signature": "void __cdecl(_WORD *, int, int)"
     },
-    "0x0055EAF4": {
-      "name": "nullsub_99"
-    },
-    "0x0055EB04": {
-      "name": "nullsub_100"
-    },
-    "0x0055EB74": {
-      "name": "nullsub_101"
-    },
-    "0x0055EB84": {
-      "name": "nullsub_102"
-    },
     "0x0055EF80": {
       "name": "DirectInput8Create",
       "signature": "HRESULT __stdcall(HINSTANCE hinst, DWORD dwVersion, const IID *const riidltf, LPVOID *ppvOut, LPUNKNOWN punkOuter)"
@@ -6443,10 +5376,6 @@
     "0x0055EF86": {
       "name": "RtlUnwind",
       "signature": "void __stdcall(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue)"
-    },
-    "0x0055EF90": {
-      "name": "__strcmpi",
-      "signature": "int __cdecl(const char *String1, const char *String2)"
     }
   },
   "globals": {
@@ -6562,9 +5491,6 @@
     "0x0056D4A0": {
       "name": "aUiGamemainuiEq_25"
     },
-    "0x0056D60C": {
-      "name": "$L122807"
-    },
     "0x0056D6A8": {
       "name": "aUiGamemainuiCo_5"
     },
@@ -6594,12 +5520,6 @@
     },
     "0x0056DFA8": {
       "name": "aUiGamemainuiCo_99"
-    },
-    "0x0056E188": {
-      "name": "$L122873"
-    },
-    "0x0056E1FC": {
-      "name": "aUiGamemainuiCo_0"
     },
     "0x0056E2FC": {
       "name": "aUiGamemainuiCo_100"
@@ -6640,10 +5560,6 @@
     },
     "0x0056EF18": {
       "name": "aUiGamemainuiSt_10"
-    },
-    "0x0056F060": {
-      "name": "$L122968",
-      "type": "const LPCSTR"
     },
     "0x0056F4A8": {
       "name": "dbl_56F4A8"
@@ -6905,14 +5821,8 @@
     "0x00573730": {
       "name": "aCeil"
     },
-    "0x00573744": {
-      "name": "aSqrt"
-    },
     "0x0057374C": {
       "name": "aAtan2"
-    },
-    "0x00573754": {
-      "name": "aAtan"
     },
     "0x0057375C": {
       "name": "aAcos_0"
@@ -7042,17 +5952,11 @@
     "0x00574E1C": {
       "name": "aUiBigmapSpirit_0_0"
     },
-    "0x00574E44": {
-      "name": "aUiBigmapMapDad_0"
-    },
     "0x00575098": {
       "name": "ValueName_0"
     },
     "0x005750E4": {
       "name": "aAssislangLang_0"
-    },
-    "0x00575184": {
-      "name": "?AdjustHeadPos@MainPropUI@@AAEXHAAUtagRECT@@@Z"
     },
     "0x00575288": {
       "name": "aRegisterclassF_0"
@@ -7069,9 +5973,6 @@
     "0x005752E0": {
       "name": "aSoftcursor_0"
     },
-    "0x00575304": {
-      "name": "aSnapPal3aSnap0"
-    },
     "0x00575348": {
       "name": "aExceptionInitC_0"
     },
@@ -7080,27 +5981,6 @@
     },
     "0x00575380": {
       "name": "aD_6"
-    },
-    "0x00577288": {
-      "name": "$L122693"
-    },
-    "0x00577B58": {
-      "name": "aEffectSparAbcP"
-    },
-    "0x00577BA8": {
-      "name": "pCmd"
-    },
-    "0x00577BB0": {
-      "name": "a104"
-    },
-    "0x00577BB8": {
-      "name": "a102"
-    },
-    "0x00577BC0": {
-      "name": "mode"
-    },
-    "0x00577BD8": {
-      "name": "a107"
     },
     "0x00577C18": {
       "name": "aXuejian_0"
@@ -7123,17 +6003,8 @@
     "0x0057A404": {
       "name": "aTagWeapon1_0"
     },
-    "0x0057A410": {
-      "name": "aTagHeadpos"
-    },
     "0x0057A420": {
       "name": "aZ4_0"
-    },
-    "0x0057A438": {
-      "name": "aZ1"
-    },
-    "0x0057A440": {
-      "name": "aZ3"
     },
     "0x0057A448": {
       "name": "aOutdist_0"
@@ -7150,9 +6021,6 @@
     "0x0057A470": {
       "name": "aB_0"
     },
-    "0x0057A4A8": {
-      "name": "aWeaponSSPol_0"
-    },
     "0x0057AAB0": {
       "name": "aPal3Timenotefi_8_0"
     },
@@ -7164,13 +6032,6 @@
     },
     "0x0057B908": {
       "name": "__CT??_R0?AVlength_error@std@@@8_541F2F"
-    },
-    "0x0057B928": {
-      "name": "__CTA3?AVlength_error@std@@"
-    },
-    "0x0057B938": {
-      "name": "__TI3?AVlength_error@std@@",
-      "type": "const _ThrowInfo"
     },
     "0x0057B998": {
       "name": "__CTA2?AVlogic_error@std@@"
@@ -7188,9 +6049,6 @@
     "0x0057BA60": {
       "name": "__TI3?AVout_of_range@std@@",
       "type": "const _ThrowInfo"
-    },
-    "0x0057BB8C": {
-      "name": "?SetZX@MainPropUI@@QAEX_N@Z"
     },
     "0x0057BC00": {
       "name": "__IMPORT_DESCRIPTOR_ADVAPI32"
@@ -7240,66 +6098,15 @@
     "0x0057F16A": {
       "name": "aGbengineDll"
     },
-    "0x0058018C": {
-      "name": "$L124005_0"
-    },
-    "0x005804AC": {
-      "name": "$L124040"
-    },
-    "0x005806A0": {
-      "name": "$L124059"
-    },
-    "0x00580900": {
-      "name": "$L124080"
-    },
-    "0x005809C4": {
-      "name": "$L124090_0"
-    },
-    "0x005809EC": {
-      "name": "First",
-      "type": "_PVFV"
-    },
-    "0x00580A00": {
-      "name": "Last",
-      "type": "_PVFV"
-    },
-    "0x00580A40": {
-      "name": "aPal3Timenotefi"
-    },
     "0x00580A88": {
       "name": "Format",
       "type": "char[]"
     },
-    "0x00580AA0": {
-      "name": "aGfxscriptSprit"
-    },
-    "0x00580AB8": {
-      "name": "aPal3Timenotefi_0"
-    },
-    "0x00580AD0": {
-      "name": "aBasedata"
-    },
     "0x00580AE0": {
       "name": "??_R0?AV_Exception@@@8"
     },
-    "0x00580AFC": {
-      "name": "aBasedataSystem"
-    },
     "0x00580B1C": {
       "name": "aDProjectPal3Ga"
-    },
-    "0x00580B44": {
-      "name": "aBasedataCpk"
-    },
-    "0x00580B54": {
-      "name": "aSS_0",
-      "type": "char[]"
-    },
-    "0x00580B5C": {
-      "name": "aCpk"
-    },
-    "0x00580B64": {
-      "name": "aPal3Timenotefi_1"
     },
     "0x00580B80": {
       "name": "aTName_0"
@@ -7325,15 +6132,9 @@
     "0x00580CC0": {
       "name": "aEndKey_0"
     },
-    "0x00580CE4": {
-      "name": "aPal3Timenotefi_2"
-    },
     "0x00580D00": {
       "name": "Mode",
       "type": "char[3]"
-    },
-    "0x00580D04": {
-      "name": "aPal3Timenotefi_3"
     },
     "0x00580D1C": {
       "name": "aSt"
@@ -7377,9 +6178,6 @@
     "0x00581064": {
       "name": "aHarshquantum"
     },
-    "0x00581074": {
-      "name": "a8"
-    },
     "0x005810A0": {
       "name": "aHarshtalk2"
     },
@@ -7412,30 +6210,6 @@
     },
     "0x0058127C": {
       "name": "aEndKey_1"
-    },
-    "0x00581328": {
-      "name": "aUiGamemainuiLi_11"
-    },
-    "0x00581428": {
-      "name": "aUiGamemainuiLi_12"
-    },
-    "0x00581528": {
-      "name": "aUiGamemainuiLi_13"
-    },
-    "0x00581628": {
-      "name": "aUiGamemainuiLi_14"
-    },
-    "0x00581728": {
-      "name": "aUiGamemainuiLi_15"
-    },
-    "0x00581828": {
-      "name": "aUiGamemainuiLi_16"
-    },
-    "0x00581928": {
-      "name": "aUiGamemainuiLi_17"
-    },
-    "0x00581A28": {
-      "name": "aUiGamemainuiLi_18"
     },
     "0x00581B28": {
       "name": "aUiGamemainuiLi_19"
@@ -7581,21 +6355,6 @@
     "0x005834D4": {
       "name": "aSkeePath"
     },
-    "0x005834E0": {
-      "name": "aUiBigmapElemen"
-    },
-    "0x005834F4": {
-      "name": "aUiBigmapSpirit_2"
-    },
-    "0x00583508": {
-      "name": "aUiBigmapSpirit_1"
-    },
-    "0x0058351C": {
-      "name": "aUiBigmapSpirit_0"
-    },
-    "0x00583530": {
-      "name": "aUiBigmapSpirit"
-    },
     "0x00583544": {
       "name": "aUiBigmapElemen_0"
     },
@@ -7605,53 +6364,17 @@
     "0x0058357C": {
       "name": "aSubgameHocksho_0"
     },
-    "0x0058359C": {
-      "name": "aUiAssistantDea_1"
-    },
-    "0x005835B8": {
-      "name": "aUiAssistantDea_0"
-    },
-    "0x005835D4": {
-      "name": "aUiAssistantDea"
-    },
-    "0x005835F0": {
-      "name": "aUiGamemainuiLi_9"
-    },
-    "0x00583610": {
-      "name": "aUiGamemainuiLi_8"
-    },
-    "0x00583634": {
-      "name": "aMusicPi24Mp3"
-    },
     "0x00583644": {
       "name": "aMusicPi01Mp3"
     },
     "0x00583654": {
       "name": "aMusicPi23Mp3"
     },
-    "0x00583664": {
-      "name": "aWd006"
-    },
-    "0x0058366C": {
-      "name": "aWd003"
-    },
-    "0x00583674": {
-      "name": "aWd002"
-    },
-    "0x0058367C": {
-      "name": "aWd001"
-    },
     "0x00583684": {
       "name": "aWa040"
     },
     "0x0058368C": {
       "name": "aWa039"
-    },
-    "0x00583694": {
-      "name": "aWa038"
-    },
-    "0x0058369C": {
-      "name": "aWa036"
     },
     "0x005836A4": {
       "name": "aWa034"
@@ -7662,84 +6385,8 @@
     "0x005836B4": {
       "name": "aWa032"
     },
-    "0x005836BC": {
-      "name": "aWa031"
-    },
-    "0x005836C4": {
-      "name": "aWa030"
-    },
-    "0x005836CC": {
-      "name": "aWa029"
-    },
-    "0x005836D4": {
-      "name": "aWa028"
-    },
-    "0x005836DC": {
-      "name": "aWa027"
-    },
-    "0x005836E4": {
-      "name": "aWa026"
-    },
-    "0x005836EC": {
-      "name": "aWa025"
-    },
-    "0x005836F4": {
-      "name": "aWa024"
-    },
-    "0x005836FC": {
-      "name": "aWa016"
-    },
-    "0x00583704": {
-      "name": "aWa010"
-    },
-    "0x0058370C": {
-      "name": "aWa009"
-    },
-    "0x00583714": {
-      "name": "aWa008"
-    },
-    "0x0058371C": {
-      "name": "aWa007"
-    },
-    "0x00583724": {
-      "name": "aWa006"
-    },
-    "0x0058372C": {
-      "name": "aWa005"
-    },
-    "0x00583734": {
-      "name": "aWa004"
-    },
-    "0x0058373C": {
-      "name": "aWa003"
-    },
-    "0x00583744": {
-      "name": "aWa002"
-    },
-    "0x0058374C": {
-      "name": "aWa001"
-    },
     "0x00583754": {
       "name": "aV104"
-    },
-    "0x0058375C": {
-      "name": "aMovieLogoBik"
-    },
-    "0x0058376C": {
-      "name": "aObjectG03Cvd"
-    },
-    "0x0058377C": {
-      "name": "aObjectG02Cvd"
-    },
-    "0x0058378C": {
-      "name": "aCouldNotAlloca_0"
-    },
-    "0x005837B4": {
-      "name": "aCouldNotAlloca"
-    },
-    "0x005837E4": {
-      "name": "aGameCreateOk",
-      "type": "char[]"
     },
     "0x005837F8": {
       "name": "aSBulidSS",
@@ -7755,21 +6402,12 @@
       "name": "path",
       "type": "char[]"
     },
-    "0x00583830": {
-      "name": "aFightDatabaseL"
-    },
-    "0x0058384C": {
-      "name": "aInputDeviceCre"
-    },
     "0x00583868": {
       "name": "aDProjectPal3Ga_0"
     },
     "0x0058388C": {
       "name": "name",
       "type": "char[]"
-    },
-    "0x00583894": {
-      "name": "aDatascriptLang"
     },
     "0x005838A8": {
       "name": "filename",
@@ -7778,144 +6416,23 @@
     "0x005838C4": {
       "name": "aCNewFailed"
     },
-    "0x005838D4": {
-      "name": "aCreateActorman"
-    },
-    "0x005838F0": {
-      "name": "aCreateGfxManag"
-    },
-    "0x0058390C": {
-      "name": "aCouldnTMallocM"
-    },
-    "0x00583938": {
-      "name": "aEffectSnowTga"
-    },
-    "0x00583948": {
-      "name": "a03d",
-      "type": "char[]"
-    },
-    "0x00583950": {
-      "name": "aWindowCreateFa"
-    },
-    "0x00583968": {
-      "name": "aRate",
-      "type": "CHAR[]"
-    },
-    "0x00583970": {
-      "name": "aDepthbits",
-      "type": "CHAR[]"
-    },
-    "0x0058397C": {
-      "name": "aColorbits",
-      "type": "CHAR[]"
-    },
-    "0x00583988": {
-      "name": "aHeight",
-      "type": "CHAR[]"
-    },
-    "0x00583990": {
-      "name": "aDisplay",
-      "type": "CHAR[]"
-    },
     "0x00583998": {
       "name": "section",
       "type": "CHAR[]"
-    },
-    "0x005839A0": {
-      "name": "aConfigIni",
-      "type": "char[]"
-    },
-    "0x005839AC": {
-      "name": "aRegisterclassF"
-    },
-    "0x005839C4": {
-      "name": "WindowName",
-      "type": "CHAR[]"
-    },
-    "0x005839D8": {
-      "name": "aScursor",
-      "type": "CHAR[]"
-    },
-    "0x005839E0": {
-      "name": "aMotionblur",
-      "type": "CHAR[]"
-    },
-    "0x005839EC": {
-      "name": "aSync",
-      "type": "CHAR[]"
-    },
-    "0x005839F4": {
-      "name": "aXmusic",
-      "type": "CHAR[]"
-    },
-    "0x005839FC": {
-      "name": "aXsnd",
-      "type": "CHAR[]"
-    },
-    "0x00583A04": {
-      "name": "aSoftcursor",
-      "type": "CHAR[]"
-    },
-    "0x00583A10": {
-      "name": "aSc",
-      "type": "CHAR[]"
-    },
-    "0x00583A14": {
-      "name": "aMisc",
-      "type": "CHAR[]"
-    },
-    "0x00583A20": {
-      "name": "aS",
-      "type": "char[]"
     },
     "0x00583A28": {
       "name": "aSoftwareSoftst",
       "type": "CHAR[]"
     },
-    "0x00583A48": {
-      "name": "aSGameA",
-      "type": "CHAR[]"
-    },
-    "0x00583A54": {
-      "name": "aWriteRegError",
-      "type": "CHAR[]"
-    },
-    "0x00583A64": {
-      "name": "aCreateKeyError",
-      "type": "CHAR[]"
-    },
-    "0x00583A78": {
-      "name": "aExceptionInitC",
-      "type": "char[]"
-    },
     "0x00583A9C": {
       "name": "dir",
-      "type": "char[]"
-    },
-    "0x00583AA8": {
-      "name": "aDefault",
-      "type": "char[]"
-    },
-    "0x00583AB0": {
-      "name": "aD",
-      "type": "char[]"
-    },
-    "0x00583AB4": {
-      "name": "aSS",
       "type": "char[]"
     },
     "0x00583ABC": {
       "name": "aZ27"
     },
-    "0x00583AC0": {
-      "name": "aQ01",
-      "type": "char[]"
-    },
     "0x00583AC4": {
       "name": "aPal3Timenotefi_4"
-    },
-    "0x00583ADC": {
-      "name": "aPal3Timenotefi_5"
     },
     "0x00583AF8": {
       "name": "aTName_2"
@@ -8006,9 +6523,6 @@
     },
     "0x00584600": {
       "name": "aUiGamemainuiLi_32"
-    },
-    "0x00584700": {
-      "name": "aUiGamemainuiLi_10"
     },
     "0x00584800": {
       "name": "aUiGamemainuiLi_33"
@@ -8112,29 +6626,6 @@
     "0x005857B8": {
       "name": "aQ07_1"
     },
-    "0x00586160": {
-      "name": "aUiFlexNote_0",
-      "type": "char[]"
-    },
-    "0x00586170": {
-      "name": "aUiSceneTiao",
-      "type": "char[]"
-    },
-    "0x005861A0": {
-      "name": "aWa048"
-    },
-    "0x005861A8": {
-      "name": "aGetmoney",
-      "type": "char[]"
-    },
-    "0x005861B4": {
-      "name": "aLossmoney",
-      "type": "char[]"
-    },
-    "0x005861C0": {
-      "name": "aLossallmoney",
-      "type": "char[]"
-    },
     "0x005861D0": {
       "name": "aWe019"
     },
@@ -8146,19 +6637,6 @@
     },
     "0x005861E8": {
       "name": "aWe016"
-    },
-    "0x005861F0": {
-      "name": "aWe015"
-    },
-    "0x005861FC": {
-      "name": "aEffectGbpartic"
-    },
-    "0x00586218": {
-      "name": "aYlfSS",
-      "type": "char[]"
-    },
-    "0x00586224": {
-      "name": "aPal3Timenotefi_6"
     },
     "0x00586240": {
       "name": "aTName_3"
@@ -8361,20 +6839,11 @@
     "0x00587F80": {
       "name": "aQ02_0"
     },
-    "0x00587FC0": {
-      "name": "aM01"
-    },
     "0x00588000": {
       "name": "aM22_1"
     },
-    "0x00588040": {
-      "name": "aM18"
-    },
     "0x00588080": {
       "name": "aM04_0"
-    },
-    "0x005880C0": {
-      "name": "aM05_0"
     },
     "0x00588100": {
       "name": "aM03"
@@ -8388,17 +6857,11 @@
     "0x005881C0": {
       "name": "aQ12"
     },
-    "0x00588200": {
-      "name": "aM10"
-    },
     "0x00588240": {
       "name": "aQ14_0"
     },
     "0x00588280": {
       "name": "aM23"
-    },
-    "0x005882C0": {
-      "name": "aM21"
     },
     "0x00588300": {
       "name": "aM24"
@@ -8406,29 +6869,11 @@
     "0x00588340": {
       "name": "aM08_0"
     },
-    "0x00588380": {
-      "name": "aM02_0"
-    },
     "0x005883C0": {
       "name": "aQ09"
     },
     "0x00588400": {
       "name": "aQ11"
-    },
-    "0x00588440": {
-      "name": "aM15_0"
-    },
-    "0x00588480": {
-      "name": "aQ04"
-    },
-    "0x005884C0": {
-      "name": "aM06"
-    },
-    "0x00588500": {
-      "name": "aM09_0"
-    },
-    "0x00588540": {
-      "name": "aM20"
     },
     "0x00588580": {
       "name": "aQ10"
@@ -8438,18 +6883,6 @@
     },
     "0x00588600": {
       "name": "aQ08_0"
-    },
-    "0x00588640": {
-      "name": "aM11"
-    },
-    "0x00588680": {
-      "name": "aM17"
-    },
-    "0x005886C0": {
-      "name": "aQ05"
-    },
-    "0x00588700": {
-      "name": "aM19"
     },
     "0x00588740": {
       "name": "aM25_0"
@@ -8465,24 +6898,6 @@
     },
     "0x00588840": {
       "name": "aQ03"
-    },
-    "0x00588880": {
-      "name": "aWpxFailObjD"
-    },
-    "0x00588890": {
-      "name": "aXxFailObjD"
-    },
-    "0x005888A0": {
-      "name": "aLygFailObjD"
-    },
-    "0x005888B0": {
-      "name": "aSSDS_0"
-    },
-    "0x005888BC": {
-      "name": "aNghOpenObjD"
-    },
-    "0x005888CC": {
-      "name": "aWhOpenObjD"
     },
     "0x005888D4": {
       "name": "aZ142"
@@ -8522,9 +6937,6 @@
     },
     "0x00588910": {
       "name": "aZ03"
-    },
-    "0x00588914": {
-      "name": "aZ02"
     },
     "0x00588918": {
       "name": "aZ01"
@@ -8607,79 +7019,6 @@
     "0x00588984": {
       "name": "aC15"
     },
-    "0x00588988": {
-      "name": "aC03"
-    },
-    "0x0058898C": {
-      "name": "aC02"
-    },
-    "0x00588990": {
-      "name": "aC01"
-    },
-    "0x00588994": {
-      "name": "aHold"
-    },
-    "0x0058899C": {
-      "name": "aTagWeapon2"
-    },
-    "0x005889A8": {
-      "name": "aTagWeapon1"
-    },
-    "0x005889B4": {
-      "name": "aZ0",
-      "type": "char[]"
-    },
-    "0x005889B8": {
-      "name": "aZ4",
-      "type": "char[]"
-    },
-    "0x005889BC": {
-      "name": "aOver"
-    },
-    "0x005889C4": {
-      "name": "aHolds"
-    },
-    "0x005889CC": {
-      "name": "aOutdist",
-      "type": "char[]"
-    },
-    "0x005889D4": {
-      "name": "aRoleSSTga",
-      "type": "char[]"
-    },
-    "0x005889E4": {
-      "name": "aS4",
-      "type": "char[]"
-    },
-    "0x005889EC": {
-      "name": "aGetitem",
-      "type": "char[]"
-    },
-    "0x005889F4": {
-      "name": "aS2"
-    },
-    "0x005889FC": {
-      "name": "aGetexp",
-      "type": "char[]"
-    },
-    "0x00588A04": {
-      "name": "aS3",
-      "type": "char[]"
-    },
-    "0x00588A0C": {
-      "name": "aS1"
-    },
-    "0x00588A14": {
-      "name": "aWeaponSSSTga",
-      "type": "char[]"
-    },
-    "0x00588A28": {
-      "name": "aWeaponSSPol",
-      "type": "char[]"
-    },
-    "0x00588A3C": {
-      "name": "aPal3Timenotefi_7"
-    },
     "0x00588A58": {
       "name": "aTName_4"
     },
@@ -8703,9 +7042,6 @@
     },
     "0x00588B98": {
       "name": "aEndKey_4"
-    },
-    "0x00588BB8": {
-      "name": "aPal3Timenotefi_8"
     },
     "0x00588BD4": {
       "name": "aTName_5"
@@ -8910,70 +7246,11 @@
       "name": "aSndWe021CWav",
       "type": "char[]"
     },
-    "0x0058B264": {
-      "name": "aFreeranges",
-      "type": "char[]"
-    },
-    "0x0058B278": {
-      "name": "aFreerangem"
-    },
-    "0x0058B28C": {
-      "name": "aFreerangel"
-    },
-    "0x0058B2A0": {
-      "name": "aFreespeeds"
-    },
-    "0x0058B2B4": {
-      "name": "aFreespeedm"
-    },
-    "0x0058B2C8": {
-      "name": "aFreespeedl"
-    },
     "0x0058B2DC": {
       "name": "aFindfov"
     },
-    "0x0058B2F0": {
-      "name": "aFindradiuss"
-    },
-    "0x0058B304": {
-      "name": "aFindradiusm"
-    },
-    "0x0058B318": {
-      "name": "aFindradiusl"
-    },
-    "0x0058B32C": {
-      "name": "aAttackspeeds"
-    },
-    "0x0058B340": {
-      "name": "aAttackspeedm"
-    },
-    "0x0058B354": {
-      "name": "aAttackspeedl"
-    },
-    "0x0058B368": {
-      "name": "aAttackrange"
-    },
-    "0x0058B37C": {
-      "name": "aTalkrange",
-      "type": "char[]"
-    },
-    "0x0058B390": {
-      "name": "aWalkspeed"
-    },
     "0x0058B3A4": {
       "name": "aRunspeed"
-    },
-    "0x0058B3B8": {
-      "name": "aWalkforce"
-    },
-    "0x0058B3CC": {
-      "name": "aRunforce"
-    },
-    "0x0058B3E0": {
-      "name": "aPwalkspeed"
-    },
-    "0x0058B3F4": {
-      "name": "aPrunspeed"
     },
     "0x0058B408": {
       "name": "aJumpheight"
@@ -8983,17 +7260,6 @@
     },
     "0x0058B430": {
       "name": "aGforce"
-    },
-    "0x0058B44C": {
-      "name": "aRole",
-      "type": "char[]"
-    },
-    "0x0058B454": {
-      "name": "aDatascriptScen_0",
-      "type": "char[]"
-    },
-    "0x0058B46C": {
-      "name": "aPal3Timenotefi_9"
     },
     "0x0058B484": {
       "name": "aViewm"
@@ -9028,26 +7294,11 @@
     "0x0058B584": {
       "name": "aTOriy_5"
     },
-    "0x0058B5A8": {
-      "name": "aUiMenuQcymA4Tg"
-    },
-    "0x0058B5E4": {
-      "name": "aUiMenuQcymA1Tg"
-    },
     "0x0058B604": {
       "name": "aEnd_6"
     },
-    "0x0058B60C": {
-      "name": "aUiMenuQcymDtTg"
-    },
     "0x0058B624": {
       "name": "aEndKey_6"
-    },
-    "0x0058B654": {
-      "name": "aUiMenuBackgrou"
-    },
-    "0x0058B66C": {
-      "name": "BestNode"
     },
     "0x0058B670": {
       "name": "aZ02_0"
@@ -9104,10 +7355,6 @@
       "name": "aN05",
       "type": "char[]"
     },
-    "0x0058B780": {
-      "name": "aQ02",
-      "type": "char[4]"
-    },
     "0x0058B784": {
       "name": "a1n07a",
       "type": "char[]"
@@ -9116,23 +7363,8 @@
       "name": "aM26",
       "type": "char[]"
     },
-    "0x0058B790": {
-      "name": "aSSLgt",
-      "type": "char[]"
-    },
-    "0x0058B79C": {
-      "name": "aS1SLgt"
-    },
-    "0x0058B7A8": {
-      "name": "aSSCvd",
-      "type": "char[]"
-    },
     "0x0058B7B4": {
       "name": "aSSPol_0",
-      "type": "char[]"
-    },
-    "0x0058B7C0": {
-      "name": "aS1SPol",
       "type": "char[]"
     },
     "0x0058B7CC": {
@@ -9345,10 +7577,6 @@
     "0x0058D4C8": {
       "name": "aQ07_4"
     },
-    "0x0058DE68": {
-      "name": "aM02",
-      "type": "char[4]"
-    },
     "0x0058DE6C": {
       "name": "aSSce",
       "type": "char[]"
@@ -9364,21 +7592,6 @@
     "0x0058DE84": {
       "name": "aQ08",
       "type": "char[]"
-    },
-    "0x0058DE88": {
-      "name": "aM25",
-      "type": "char[]"
-    },
-    "0x0058DE8C": {
-      "name": "aM20_0",
-      "type": "char[]"
-    },
-    "0x0058DE90": {
-      "name": "aM19_0",
-      "type": "char[]"
-    },
-    "0x0058DE94": {
-      "name": "aPal3Timenotefi_12"
     },
     "0x0058DEB0": {
       "name": "aTName_8"
@@ -9575,39 +7788,8 @@
     "0x0058FB70": {
       "name": "aQ07_5"
     },
-    "0x00590538": {
-      "name": "a4_0",
-      "type": "char[3]"
-    },
-    "0x0059053C": {
-      "name": "aObjectS",
-      "type": "char[]"
-    },
-    "0x00590548": {
-      "name": "aItemSSPol_0",
-      "type": "char[]"
-    },
     "0x00590558": {
       "name": "aAPol"
-    },
-    "0x00590560": {
-      "name": "aSS_1",
-      "type": "char[]"
-    },
-    "0x00590568": {
-      "name": "aSndSWav",
-      "type": "char[]"
-    },
-    "0x00590574": {
-      "name": "aLessweight",
-      "type": "char[]"
-    },
-    "0x00590580": {
-      "name": "aCantopen"
-    },
-    "0x0059058C": {
-      "name": "aM09",
-      "type": "char[]"
     },
     "0x00590590": {
       "name": "aNothing",
@@ -9647,126 +7829,17 @@
       "name": "aThrow1",
       "type": "char[]"
     },
-    "0x005905E8": {
-      "name": "aChestNotopen",
-      "type": "char[]"
-    },
-    "0x005905F8": {
-      "name": "aChestFailed",
-      "type": "char[]"
-    },
     "0x00590608": {
       "name": "aObjectWz20DCvd",
-      "type": "char[]"
-    },
-    "0x0059061C": {
-      "name": "aPol",
-      "type": "char[]"
-    },
-    "0x00590624": {
-      "name": "aCvd",
       "type": "char[]"
     },
     "0x0059062C": {
       "name": "aM22",
       "type": "char[]"
     },
-    "0x00590630": {
-      "name": "a3",
-      "type": "CHAR[]"
-    },
-    "0x00590634": {
-      "name": "aM15",
-      "type": "char[]"
-    },
-    "0x00590638": {
-      "name": "a2",
-      "type": "CHAR[]"
-    },
-    "0x0059063C": {
-      "name": "aG01Cvd",
-      "type": "char[]"
-    },
-    "0x00590644": {
-      "name": "a3_0",
-      "type": "char[]"
-    },
-    "0x00590648": {
-      "name": "a2Pol"
-    },
     "0x00590650": {
       "name": "aM22_0",
       "type": "char[]"
-    },
-    "0x00590654": {
-      "name": "a4",
-      "type": "char[]"
-    },
-    "0x00590658": {
-      "name": "aWg011"
-    },
-    "0x00590660": {
-      "name": "aWc014"
-    },
-    "0x00590668": {
-      "name": "aWg005_0"
-    },
-    "0x00590670": {
-      "name": "aWg008"
-    },
-    "0x00590678": {
-      "name": "aWc007"
-    },
-    "0x00590680": {
-      "name": "aWg005"
-    },
-    "0x00590688": {
-      "name": "aWg009"
-    },
-    "0x00590690": {
-      "name": "aWg010"
-    },
-    "0x00590698": {
-      "name": "aWg001"
-    },
-    "0x005906A0": {
-      "name": "aWb002"
-    },
-    "0x005906A8": {
-      "name": "aWe030"
-    },
-    "0x005906B0": {
-      "name": "aWe029"
-    },
-    "0x005906B8": {
-      "name": "aWe028"
-    },
-    "0x005906C0": {
-      "name": "aWe027"
-    },
-    "0x005906C8": {
-      "name": "aWe026"
-    },
-    "0x005906D0": {
-      "name": "aWe025"
-    },
-    "0x005906D8": {
-      "name": "aWg004"
-    },
-    "0x005906E0": {
-      "name": "aWg007"
-    },
-    "0x005906E8": {
-      "name": "aWg006"
-    },
-    "0x005906F0": {
-      "name": "a4C1Cvd"
-    },
-    "0x005906FC": {
-      "name": "a4CCvd"
-    },
-    "0x00590708": {
-      "name": "aPal3Timenotefi_13"
     },
     "0x00590724": {
       "name": "aTName_9"
@@ -9963,68 +8036,8 @@
     "0x005923E4": {
       "name": "aQ07_6"
     },
-    "0x00592D80": {
-      "name": "lpDefault",
-      "type": "LPCSTR"
-    },
-    "0x00592D84": {
-      "name": "aPal3lang",
-      "type": "char[]"
-    },
-    "0x00592D90": {
-      "name": "aLangNull"
-    },
-    "0x00592D9C": {
-      "name": "aBegin",
-      "type": "char[]"
-    },
-    "0x00592DA8": {
-      "name": "aBigmapScriptLo"
-    },
-    "0x00592DC4": {
-      "name": "aUiBigmapBigmap"
-    },
-    "0x00592DDC": {
-      "name": "aSystemScriptLo"
-    },
-    "0x00592DF8": {
-      "name": "aInitSce"
-    },
-    "0x00592E04": {
-      "name": "aScriptSysInitF"
-    },
     "0x00592E1C": {
       "name": "aDProjectPal3Sc"
-    },
-    "0x00592E44": {
-      "name": "aInitScs"
-    },
-    "0x00592E50": {
-      "name": "aSS_5",
-      "type": "char[]"
-    },
-    "0x00592E60": {
-      "name": "aChangqing",
-      "type": "char[]"
-    },
-    "0x00592E6C": {
-      "name": "aZixuan",
-      "type": "char[]"
-    },
-    "0x00592E74": {
-      "name": "aLongkui",
-      "type": "char[]"
-    },
-    "0x00592E7C": {
-      "name": "aXuejian",
-      "type": "char[]"
-    },
-    "0x00592E84": {
-      "name": "aJingtian",
-      "type": "char[]"
-    },
-    "0x00592E90": {
-      "name": "aPal3Timenotefi_14"
     },
     "0x00592EAC": {
       "name": "aTName_10"
@@ -10225,23 +8238,11 @@
       "name": "aPal3op",
       "type": "char[]"
     },
-    "0x005956E8": {
-      "name": "aSuoyaotaXTga"
-    },
-    "0x00595760": {
-      "name": "aLvluoshanXTga"
-    },
     "0x005957F8": {
       "name": "aSuoyaotaTga_0"
     },
-    "0x0059588C": {
-      "name": "aDimaimenhuTga"
-    },
     "0x005958C8": {
       "name": "aDatascriptScen_1"
-    },
-    "0x005958E8": {
-      "name": "Str1"
     },
     "0x00595960": {
       "name": "a13i2"
@@ -10429,28 +8430,8 @@
     "0x005961C4": {
       "name": "aUiMenuQcymBack"
     },
-    "0x005961E0": {
-      "name": "aRemoveteam",
-      "type": "char[]"
-    },
-    "0x005961EC": {
-      "name": "aAddteam",
-      "type": "char[]"
-    },
-    "0x005961F4": {
-      "name": "aLoseitem",
-      "type": "char[]"
-    },
     "0x00596200": {
       "name": "a106"
-    },
-    "0x00596204": {
-      "name": "aAddskill",
-      "type": "char[]"
-    },
-    "0x00596210": {
-      "name": "aM08",
-      "type": "char[]"
     },
     "0x00596214": {
       "name": "aD1",
@@ -10468,56 +8449,17 @@
       "name": "aA1",
       "type": "char[]"
     },
-    "0x00596224": {
-      "name": "aD_5",
-      "type": "char[]"
-    },
-    "0x00596228": {
-      "name": "aC_0",
-      "type": "char[]"
-    },
-    "0x0059622C": {
-      "name": "aB",
-      "type": "char[]"
-    },
     "0x00596230": {
       "name": "aA",
-      "type": "char[]"
-    },
-    "0x00596234": {
-      "name": "aCaptionSTga",
       "type": "char[]"
     },
     "0x00596244": {
       "name": "aMovieSBik",
       "type": "char[]"
     },
-    "0x00596254": {
-      "name": "aEnd",
-      "type": "CHAR[]"
-    },
     "0x0059625C": {
       "name": "aMovieB",
       "type": "CHAR[]"
-    },
-    "0x00596264": {
-      "name": "aSoftwareSoftst_2",
-      "type": "CHAR[]"
-    },
-    "0x00596284": {
-      "name": "ValueName",
-      "type": "CHAR[]"
-    },
-    "0x0059628C": {
-      "name": "aEffectscn104sT",
-      "type": "CHAR[]"
-    },
-    "0x005962A0": {
-      "name": "aM16",
-      "type": "char[]"
-    },
-    "0x005962A4": {
-      "name": "aPal3Timenotefi_15"
     },
     "0x005962C0": {
       "name": "aTName_11"
@@ -10542,9 +8484,6 @@
     },
     "0x00596400": {
       "name": "aEndKey_11"
-    },
-    "0x00596428": {
-      "name": "aPal3Timenotefi_16"
     },
     "0x00596444": {
       "name": "aTName_12"
@@ -10686,9 +8625,6 @@
     "0x00596C8C": {
       "name": "aEndKey_16"
     },
-    "0x00596CAC": {
-      "name": "aPal3Timenotefi_21"
-    },
     "0x00596CC8": {
       "name": "aTName_17"
     },
@@ -10712,9 +8648,6 @@
     },
     "0x00596E08": {
       "name": "aEndKey_17"
-    },
-    "0x00596E28": {
-      "name": "aPal3Timenotefi_22"
     },
     "0x00596E44": {
       "name": "aTName_18"
@@ -10767,9 +8700,6 @@
     "0x00597100": {
       "name": "aEndKey_19"
     },
-    "0x005971A4": {
-      "name": "aUiCommonScroll"
-    },
     "0x005971B8": {
       "name": "aDProjectPal3Ui"
     },
@@ -10799,9 +8729,6 @@
     },
     "0x00597338": {
       "name": "aEndKey_20"
-    },
-    "0x00597358": {
-      "name": "aPal3Timenotefi_25"
     },
     "0x00597374": {
       "name": "aTName_21"
@@ -10857,9 +8784,6 @@
     "0x005976D4": {
       "name": "aUiFlexScrollTg"
     },
-    "0x005976E8": {
-      "name": "aPal3Timenotefi_27"
-    },
     "0x00597704": {
       "name": "aTName_23"
     },
@@ -10883,13 +8807,6 @@
     },
     "0x00597844": {
       "name": "aEndKey_23"
-    },
-    "0x00597864": {
-      "name": "String2",
-      "type": "CHAR[]"
-    },
-    "0x00597888": {
-      "name": "aPal3Timenotefi_28"
     },
     "0x005978A4": {
       "name": "aTName_24"
@@ -10915,9 +8832,6 @@
     "0x005979E4": {
       "name": "aEndKey_24"
     },
-    "0x00597A04": {
-      "name": "aPal3Timenotefi_29"
-    },
     "0x00597A20": {
       "name": "aTName_25"
     },
@@ -10941,9 +8855,6 @@
     },
     "0x00597B60": {
       "name": "aEndKey_25"
-    },
-    "0x005985A0": {
-      "name": "aPal3Timenotefi_30"
     },
     "0x005985BC": {
       "name": "aTName_26"
@@ -11216,18 +9127,11 @@
     "0x0059AFEC": {
       "name": "aLoUnhockplus_7"
     },
-    "0x0059AFFC": {
-      "name": "aUiUiYnnXjtmBtn"
-    },
     "0x0059B028": {
       "name": "aHiUnhockplus_7"
     },
     "0x0059B064": {
       "name": "aSubgameHocksho_14"
-    },
-    "0x0059B08C": {
-      "name": "aDatascriptScen",
-      "type": "char[]"
     },
     "0x0059B0A8": {
       "name": "aJiulongpoTga"
@@ -11286,9 +9190,6 @@
     "0x0059B1B8": {
       "name": "aBinhuaTga"
     },
-    "0x0059B1C4": {
-      "name": "aTangjiabaoTga"
-    },
     "0x0059B1D4": {
       "name": "aAnningchunTga"
     },
@@ -11304,14 +9205,8 @@
     "0x0059B218": {
       "name": "aFengduTga"
     },
-    "0x0059B224": {
-      "name": "aYuzhouTga"
-    },
     "0x0059B230": {
       "name": "aXingsenTga"
-    },
-    "0x0059B23C": {
-      "name": "aShushangudaoTg"
     },
     "0x0059B250": {
       "name": "aPilitangTga"
@@ -11331,33 +9226,17 @@
     "0x0059B2A0": {
       "name": "aXinxianjieTga"
     },
-    "0x0059B2B0": {
-      "name": "aSuoyaotaTga"
-    },
-    "0x0059B2C0": {
-      "name": "aShushanTga"
-    },
     "0x0059B2CC": {
       "name": "aDeyangTga"
     },
     "0x0059B2D8": {
       "name": "aXuelingzhenTga"
     },
-    "0x0059B2E8": {
-      "name": "aSSS_0",
-      "type": "char[]"
-    },
-    "0x0059B2F0": {
-      "name": "aPal3Timenotefi_34"
-    },
     "0x0059B30C": {
       "name": "aTName_30"
     },
     "0x0059B32C": {
       "name": "aTLib_29"
-    },
-    "0x0059B334": {
-      "name": "aUi1024MenuDitu"
     },
     "0x0059B34C": {
       "name": "aTLibw_29"
@@ -11373,9 +9252,6 @@
     },
     "0x0059B3B4": {
       "name": "aUiMenuTaijibTg_0"
-    },
-    "0x0059B40C": {
-      "name": "aUiMenuBtnXjtm0"
     },
     "0x0059B42C": {
       "name": "aEnd_31"
@@ -11510,9 +9386,6 @@
     "0x0059C590": {
       "name": "aUiGamemainuiLi_164"
     },
-    "0x0059C5B0": {
-      "name": "$L123560"
-    },
     "0x0059C690": {
       "name": "aUiGamemainuiLi_165"
     },
@@ -11596,10 +9469,6 @@
     },
     "0x0059DAEC": {
       "name": "aNSDS_0",
-      "type": "char[]"
-    },
-    "0x0059DB00": {
-      "name": "aSec1",
       "type": "char[]"
     },
     "0x0059DB08": {
@@ -11800,32 +9669,14 @@
     "0x0059F8BC": {
       "name": "aQ07_9"
     },
-    "0x005A02E0": {
-      "name": "??0EffectInfo@@QAE@XZ"
-    },
-    "0x005A0320": {
-      "name": "??0EffectItem@@QAE@XZ"
-    },
     "0x005A032C": {
       "name": "aPal3op_0"
-    },
-    "0x005A04B0": {
-      "name": "?IsRotateTo@UI3DCtrl@@QAE_NXZ"
-    },
-    "0x005A04D0": {
-      "name": "??0?$vector@UEffectInfo@@V?$allocator@UEffectInfo@@@std@@@std@@QAE@ABV?$allocator@UEffectInfo@@@1@@Z"
-    },
-    "0x005A05A0": {
-      "name": "??A?$vector@UEffectInfo@@V?$allocator@UEffectInfo@@@std@@@std@@QAEAAUEffectInfo@@I@Z"
     },
     "0x005A06B0": {
       "name": "a13i2_0"
     },
     "0x005A0728": {
       "name": "a14i1_0"
-    },
-    "0x005A0780": {
-      "name": "?begin@?$vector@UEffectInfo@@V?$allocator@UEffectInfo@@@std@@@std@@QAEPAUEffectInfo@@XZ"
     },
     "0x005A07A0": {
       "name": "a15b1_0"
@@ -11848,56 +9699,11 @@
     "0x005A0944": {
       "name": "aEnd_34"
     },
-    "0x005A0980": {
-      "name": "?insert@?$vector@UEffectInfo@@V?$allocator@UEffectInfo@@@std@@@std@@QAEXPAUEffectInfo@@IABU3@@Z"
-    },
     "0x005A09A0": {
       "name": "aUiMenuJdhyBack"
     },
-    "0x005A09BC": {
-      "name": "aUiGamemainuiCo_17"
-    },
-    "0x005A09E0": {
-      "name": "aUiMenuBbtyBtn"
-    },
-    "0x005A09F4": {
-      "name": "aUiMenuBbtySdct"
-    },
-    "0x005A0A0C": {
-      "name": "aUiMenuBbtyJdTg"
-    },
-    "0x005A0A20": {
-      "name": "aUiMenuBbtyHxTg"
-    },
-    "0x005A0A34": {
-      "name": "aUiMenuBbtyXyxH"
-    },
-    "0x005A0A4C": {
-      "name": "aUiMenuBbtyXyxJ"
-    },
-    "0x005A0A64": {
-      "name": "aUiMenuBbtyMoun"
-    },
-    "0x005A0A80": {
-      "name": "aUiMenuBbtyNoTg"
-    },
-    "0x005A0A94": {
-      "name": "aUiMenuBbtyBack"
-    },
     "0x005A0AB0": {
       "name": "aUiUilibZzqTga"
-    },
-    "0x005A0AC4": {
-      "name": "aUiMenuSubExit"
-    },
-    "0x005A0AD8": {
-      "name": "aUiMenuLog0Tga"
-    },
-    "0x005A0AEC": {
-      "name": "aUiMenuTaijibTg"
-    },
-    "0x005A0B00": {
-      "name": "aUiMenuTaijiaTg"
     },
     "0x005A0B14": {
       "name": "aUiMenuBtnJiude"
@@ -11917,17 +9723,8 @@
     "0x005A0B90": {
       "name": "aUiMenuBtnXinde"
     },
-    "0x005A0BA8": {
-      "name": "aUiMenuYun17Tga"
-    },
-    "0x005A0BBC": {
-      "name": "aUiMenuYun16Tga"
-    },
     "0x005A0BD0": {
       "name": "aUiMenuYun15Tga"
-    },
-    "0x005A0BE4": {
-      "name": "aUiMenuYun14Tga"
     },
     "0x005A0BF8": {
       "name": "aUiMenuYun13Tga"
@@ -11935,20 +9732,11 @@
     "0x005A0C0C": {
       "name": "aUiMenuYun12Tga"
     },
-    "0x005A0C20": {
-      "name": "aUiMenuYun11Tga"
-    },
-    "0x005A0C34": {
-      "name": "aUiMenuYun10Tga"
-    },
     "0x005A0C48": {
       "name": "aUiMenuYun9Tga"
     },
     "0x005A0C5C": {
       "name": "aUiMenuYun8Tga"
-    },
-    "0x005A0C70": {
-      "name": "aUiMenuYun7Tga"
     },
     "0x005A0C84": {
       "name": "aUiMenuYun6Tga"
@@ -11956,43 +9744,11 @@
     "0x005A0C98": {
       "name": "aUiMenuYun5Tga"
     },
-    "0x005A0CAC": {
-      "name": "aUiMenuYun4Tga"
-    },
     "0x005A0CC0": {
       "name": "aUiMenuYun3Tga"
     },
-    "0x005A0CD4": {
-      "name": "aUiMenuYun2Tga"
-    },
-    "0x005A0CE8": {
-      "name": "aUiMenuYun1Tga"
-    },
     "0x005A0CFC": {
       "name": "aUiMenuYun0Tga"
-    },
-    "0x005A0D10": {
-      "name": "aUiMenuMountain_0"
-    },
-    "0x005A0D28": {
-      "name": "aUiMenuMountain"
-    },
-    "0x005A0D40": {
-      "name": "aUiMenuBeijingT"
-    },
-    "0x005A0D54": {
-      "name": "aUiMenuDituTga"
-    },
-    "0x005A0D68": {
-      "name": "aSGameC",
-      "type": "CHAR[]"
-    },
-    "0x005A0D74": {
-      "name": "aSGameB",
-      "type": "CHAR[]"
-    },
-    "0x005A0D80": {
-      "name": "aPal3Timenotefi_37"
     },
     "0x005A0D9C": {
       "name": "aTName_33"
@@ -12018,27 +9774,11 @@
     "0x005A0EDC": {
       "name": "aEndKey_33"
     },
-    "0x005A0F40": {
-      "name": "?size@?$vector@UEffectInfo@@V?$allocator@UEffectInfo@@@std@@@std@@QBEIXZ"
-    },
     "0x005A0F58": {
       "name": "aUiGameoverDiTg_0"
     },
     "0x005A0F6C": {
       "name": "aPal3Timenotefi_30_0"
-    },
-    "0x005A0F80": {
-      "name": "aUiEmoteEm02dTg",
-      "type": "char[]"
-    },
-    "0x005A0F98": {
-      "name": "aWe06"
-    },
-    "0x005A0FA0": {
-      "name": "aWe05"
-    },
-    "0x005A0FA8": {
-      "name": "aPal3Timenotefi_38"
     },
     "0x005A0FC4": {
       "name": "aTName_34"
@@ -12063,9 +9803,6 @@
     },
     "0x005A1104": {
       "name": "aEndKey_34"
-    },
-    "0x005A1130": {
-      "name": "?construct@?$allocator@UEffectInfo@@@std@@QAEXPAUEffectInfo@@ABU3@@Z"
     },
     "0x005A11E4": {
       "name": "aMId_21"
@@ -12238,14 +9975,6 @@
     "0x005A2C84": {
       "name": "aQ07_10"
     },
-    "0x005A374C": {
-      "name": "aUiDlgSelbkTga",
-      "type": "char[]"
-    },
-    "0x005A3760": {
-      "name": "aUiDlgHeadbkTga",
-      "type": "char[]"
-    },
     "0x005A3774": {
       "name": "tex",
       "type": "char[]"
@@ -12253,13 +9982,6 @@
     "0x005A3788": {
       "name": "aUiUilibUiOptTl",
       "type": "char[]"
-    },
-    "0x005A379C": {
-      "name": "aUiUilib",
-      "type": "CHAR[]"
-    },
-    "0x005A37A8": {
-      "name": "aPal3Timenotefi_39"
     },
     "0x005A37C4": {
       "name": "aTName_35"
@@ -12456,10 +10178,6 @@
     "0x005A5484": {
       "name": "aQ07_11"
     },
-    "0x005A5E20": {
-      "name": "aUiGameoverDiTg",
-      "type": "CHAR[]"
-    },
     "0x005A5E34": {
       "name": "aPal3Timenotefi_40"
     },
@@ -12514,9 +10232,6 @@
     "0x005A6190": {
       "name": "aEndKey_37"
     },
-    "0x005A6248": {
-      "name": "aPal3Timenotefi_42"
-    },
     "0x005A6264": {
       "name": "aTName_38"
     },
@@ -12540,9 +10255,6 @@
     },
     "0x005A63A4": {
       "name": "aEndKey_38"
-    },
-    "0x005A6448": {
-      "name": "aPal3Timenotefi_43"
     },
     "0x005A6464": {
       "name": "aTName_39"
@@ -12588,9 +10300,6 @@
       "name": "aUiFlexDlg",
       "type": "char[]"
     },
-    "0x005A66A4": {
-      "name": "aPal3Timenotefi_44"
-    },
     "0x005A66C0": {
       "name": "aTName_40"
     },
@@ -12621,9 +10330,6 @@
     "0x005A68B8": {
       "name": "aSeldlg",
       "type": "char[]"
-    },
-    "0x005A68C0": {
-      "name": "aPal3Timenotefi_45"
     },
     "0x005A68DC": {
       "name": "aTName_41"
@@ -12820,37 +10526,6 @@
     "0x005A859C": {
       "name": "aQ07_12"
     },
-    "0x005A8F38": {
-      "name": "aUiSceneFaceJjT"
-    },
-    "0x005A8F50": {
-      "name": "aUiSceneFaceSyT"
-    },
-    "0x005A8F68": {
-      "name": "aUiSceneFaceTmT"
-    },
-    "0x005A8F80": {
-      "name": "aUiSceneFaceBxT"
-    },
-    "0x005A8F98": {
-      "name": "aUiSceneFaceHpT",
-      "type": "CHAR[]"
-    },
-    "0x005A8FB0": {
-      "name": "aUiSceneFaceMpT",
-      "type": "CHAR[]"
-    },
-    "0x005A8FC8": {
-      "name": "aUiSceneFaceBkT",
-      "type": "CHAR[]"
-    },
-    "0x005A8FE0": {
-      "name": "aUiSceneFaceFac",
-      "type": "char[]"
-    },
-    "0x005A9004": {
-      "name": "aPal3Timenotefi_46"
-    },
     "0x005A9020": {
       "name": "aTName_42"
     },
@@ -13046,9 +10721,6 @@
     "0x005AACE0": {
       "name": "aQ07_13"
     },
-    "0x005AB67C": {
-      "name": "aPal3Timenotefi_47"
-    },
     "0x005AB698": {
       "name": "aTName_43"
     },
@@ -13091,9 +10763,6 @@
     "0x005AB8D0": {
       "name": "aUiSceneRoleTga"
     },
-    "0x005AB8E4": {
-      "name": "aPal3Timenotefi_48"
-    },
     "0x005AB900": {
       "name": "aTName_44"
     },
@@ -13121,9 +10790,6 @@
     "0x005ABA60": {
       "name": "aP"
     },
-    "0x005ABA64": {
-      "name": "aPal3Timenotefi_49"
-    },
     "0x005ABA80": {
       "name": "aTName_45"
     },
@@ -13141,9 +10807,6 @@
     },
     "0x005ABB20": {
       "name": "aTOriy_44"
-    },
-    "0x005ABB60": {
-      "name": "?SetDragRadius@UIDragBar@@QAEXH@Z"
     },
     "0x005ABBA0": {
       "name": "aEnd_47"
@@ -13192,9 +10855,6 @@
     },
     "0x005ABFE8": {
       "name": "aHarshtalk2_14"
-    },
-    "0x005AC004": {
-      "name": "$E70_18"
     },
     "0x005AC024": {
       "name": "aForceacpttalkt_14"
@@ -13332,9 +10992,6 @@
     "0x005AE1F4": {
       "name": "aSNSNSNS",
       "type": "char[]"
-    },
-    "0x005AE204": {
-      "name": "aPal3Timenotefi_50"
     },
     "0x005AE220": {
       "name": "aTName_46"
@@ -13525,9 +11182,6 @@
     "0x005AFE7C": {
       "name": "aHiUnhockplus_15"
     },
-    "0x005AFE8C": {
-      "name": "aSavePal304dJpg_0"
-    },
     "0x005AFEB8": {
       "name": "aSubgameHocksho_22"
     },
@@ -13564,34 +11218,6 @@
     "0x005B0A6C": {
       "name": "aUiGamemainuiSy_17"
     },
-    "0x005B0A88": {
-      "name": "aUiGamemainuiSy_3",
-      "type": "CHAR[]"
-    },
-    "0x005B0AA8": {
-      "name": "aUiGamemainuiCo"
-    },
-    "0x005B0AD0": {
-      "name": "aUiGamemainuiSy_2"
-    },
-    "0x005B0AEC": {
-      "name": "aUiGamemainuiSy_1"
-    },
-    "0x005B0B08": {
-      "name": "aUiGamemainuiSy_0",
-      "type": "CHAR[]"
-    },
-    "0x005B0B2C": {
-      "name": "aUiGamemainuiSy",
-      "type": "CHAR[]"
-    },
-    "0x005B0B4C": {
-      "name": "aUiGamemainuiSy_5",
-      "type": "char[]"
-    },
-    "0x005B0B6C": {
-      "name": "aUiGamemainuiSy_4"
-    },
     "0x005B0B88": {
       "name": "aUiGamemainuiSy_16",
       "type": "CHAR[]"
@@ -13600,29 +11226,6 @@
       "name": "aNS_3",
       "type": "char[]"
     },
-    "0x005B0BAC": {
-      "name": "aNS_0",
-      "type": "char[]"
-    },
-    "0x005B0BB8": {
-      "name": "aSavePal304dJpg",
-      "type": "char[]"
-    },
-    "0x005B0BCC": {
-      "name": "aSS_4",
-      "type": "char[]"
-    },
-    "0x005B0BD4": {
-      "name": "aSD",
-      "type": "char[]"
-    },
-    "0x005B0BDC": {
-      "name": "aS02d02d02d",
-      "type": "char[]"
-    },
-    "0x005B0BF0": {
-      "name": "aS03d02d02d"
-    },
     "0x005B0C04": {
       "name": "aSoftwareSoftst_0",
       "type": "CHAR[]"
@@ -13630,9 +11233,6 @@
     "0x005B0C20": {
       "name": "aSeek",
       "type": "CHAR[]"
-    },
-    "0x005B0C28": {
-      "name": "aPal3Timenotefi_51"
     },
     "0x005B0C44": {
       "name": "aTName_47"
@@ -13651,9 +11251,6 @@
     },
     "0x005B0CE4": {
       "name": "aTOriy_46"
-    },
-    "0x005B0D44": {
-      "name": "$E66_29"
     },
     "0x005B0D64": {
       "name": "aEnd_49"
@@ -13739,17 +11336,6 @@
     "0x005B19EA": {
       "name": "aForceacpttalkb_16"
     },
-    "0x005B1A28": {
-      "name": "aMovieSBik_0",
-      "type": "char[]"
-    },
-    "0x005B1A38": {
-      "name": "aPal3Timenotefi_52"
-    },
-    "0x005B1A50": {
-      "name": "aSt_0",
-      "type": "CHAR[]"
-    },
     "0x005B1A8C": {
       "name": "aMId_34"
     },
@@ -13777,10 +11363,6 @@
     "0x005B1CA8": {
       "name": "aProp_17"
     },
-    "0x005B1CE4": {
-      "name": "aAcptquantum",
-      "type": "CHAR[]"
-    },
     "0x005B1D20": {
       "name": "aAcpttalk2_17"
     },
@@ -13799,44 +11381,9 @@
     "0x005B1E2E": {
       "name": "aForceacpttalkb_17"
     },
-    "0x005B1E6C": {
-      "name": "aItemId",
-      "type": "CHAR[]"
-    },
-    "0x005B1E78": {
-      "name": "aS10",
-      "type": "char[]"
-    },
-    "0x005B1E84": {
-      "name": "aSD_4",
-      "type": "char[]"
-    },
-    "0x005B1E90": {
-      "name": "aSD_3",
-      "type": "char[]"
-    },
-    "0x005B1E98": {
-      "name": "aSD_2",
-      "type": "char[]"
-    },
-    "0x005B1EA0": {
-      "name": "aSD_1",
-      "type": "char[]"
-    },
-    "0x005B1EA8": {
-      "name": "aSD_0",
-      "type": "char[]"
-    },
-    "0x005B1EB4": {
-      "name": "aS_1",
-      "type": "char[]"
-    },
     "0x005B1EB8": {
       "name": "aSS_8",
       "type": "char[]"
-    },
-    "0x005B1EC0": {
-      "name": "aPal3Timenotefi_53"
     },
     "0x005B1EDC": {
       "name": "aTName_48"
@@ -13861,9 +11408,6 @@
     },
     "0x005B201C": {
       "name": "aEndKey_48"
-    },
-    "0x005B2080": {
-      "name": "?Set_Color@UIParticle@@QAEXHHH@Z"
     },
     "0x005B20FC": {
       "name": "aMId_35"
@@ -14036,9 +11580,6 @@
     "0x005B3B9C": {
       "name": "aQ07_16"
     },
-    "0x005B4538": {
-      "name": "aPal3Timenotefi_54"
-    },
     "0x005B4554": {
       "name": "aTName_49"
     },
@@ -14060,14 +11601,8 @@
     "0x005B4674": {
       "name": "aEnd_52"
     },
-    "0x005B4679": {
-      "name": "?UIPar_bomb@UIParticle@@AAEXUtagRECT@@@Z"
-    },
     "0x005B4694": {
       "name": "aEndKey_49"
-    },
-    "0x005B471C": {
-      "name": "??0UIPar_Star@@QAE@XZ"
     },
     "0x005B4774": {
       "name": "aMId_37"
@@ -14189,9 +11724,6 @@
     "0x005B5E0C": {
       "name": "aMeloncutting_17"
     },
-    "0x005B5E1C": {
-      "name": "aTga"
-    },
     "0x005B5E48": {
       "name": "aInvest_17"
     },
@@ -14243,9 +11775,6 @@
     "0x005B6214": {
       "name": "aQ07_17"
     },
-    "0x005B6B14": {
-      "name": "$E70_21"
-    },
     "0x005B6BB0": {
       "name": "aUiAssistantEqu_28"
     },
@@ -14276,66 +11805,6 @@
     "0x005B6CB0": {
       "name": "aUiAssistantEqu_19"
     },
-    "0x005B6CC8": {
-      "name": "aUiAssistantEqu_18"
-    },
-    "0x005B6CE4": {
-      "name": "aUiAssistantEqu_17"
-    },
-    "0x005B6D04": {
-      "name": "aUiAssistantEqu_16"
-    },
-    "0x005B6D24": {
-      "name": "aUiAssistantEqu_15"
-    },
-    "0x005B6D44": {
-      "name": "aUiAssistantEqu_14"
-    },
-    "0x005B6D64": {
-      "name": "aUiAssistantEqu_13"
-    },
-    "0x005B6D84": {
-      "name": "aUiAssistantEqu_12"
-    },
-    "0x005B6DA0": {
-      "name": "aUiAssistantEqu_11"
-    },
-    "0x005B6DBC": {
-      "name": "aUiAssistantEqu_10"
-    },
-    "0x005B6DD8": {
-      "name": "aUiAssistantEqu_9"
-    },
-    "0x005B6DF4": {
-      "name": "aUiAssistantEqu_8"
-    },
-    "0x005B6E18": {
-      "name": "aUiAssistantEqu_7"
-    },
-    "0x005B6E38": {
-      "name": "aUiAssistantEqu_6"
-    },
-    "0x005B6E5C": {
-      "name": "aUiAssistantEqu_5"
-    },
-    "0x005B6E78": {
-      "name": "aUiAssistantEqu_4"
-    },
-    "0x005B6E9C": {
-      "name": "aUiAssistantEqu_3"
-    },
-    "0x005B6EBC": {
-      "name": "aUiAssistantEqu_2"
-    },
-    "0x005B6EE0": {
-      "name": "aUiAssistantEqu_1"
-    },
-    "0x005B6F00": {
-      "name": "aUiAssistantEqu_0"
-    },
-    "0x005B6F24": {
-      "name": "aUiAssistantEqu"
-    },
     "0x005B6F44": {
       "name": "aUiGamemainuiCo_71"
     },
@@ -14348,122 +11817,17 @@
     "0x005B6FC8": {
       "name": "aUiGamemainuiCo_68"
     },
-    "0x005B6FF4": {
-      "name": "aUiGamemainuiCo_15"
-    },
-    "0x005B7020": {
-      "name": "aUiAssistantCom_8"
-    },
-    "0x005B7040": {
-      "name": "aUiAssistantCom_7"
-    },
-    "0x005B7060": {
-      "name": "aUiAssistantCom_6"
-    },
-    "0x005B707C": {
-      "name": "aUiAssistantCom_5"
-    },
-    "0x005B7098": {
-      "name": "aUiAssistantCom_4"
-    },
-    "0x005B70BC": {
-      "name": "aUiAssistantCom_3"
-    },
-    "0x005B70DC": {
-      "name": "aUiGamemainuiCo_54"
-    },
-    "0x005B7100": {
-      "name": "aUiGamemainuiCo_53"
-    },
-    "0x005B7124": {
-      "name": "aUiGamemainuiCo_52"
-    },
-    "0x005B7148": {
-      "name": "aUiGamemainuiCo_51"
-    },
-    "0x005B716C": {
-      "name": "aUiGamemainuiCo_50"
-    },
-    "0x005B7194": {
-      "name": "aUiGamemainuiCo_14"
-    },
-    "0x005B71BC": {
-      "name": "aUiAssistantCom_2"
-    },
-    "0x005B71E0": {
-      "name": "aUiAssistantCom_1"
-    },
-    "0x005B7200": {
-      "name": "aUiAssistantCom_0"
-    },
-    "0x005B7224": {
-      "name": "aUiAssistantCom"
-    },
-    "0x005B724C": {
-      "name": "aUiGamemainuiCo_13"
-    },
-    "0x005B7270": {
-      "name": "aUiGamemainuiCo_12"
-    },
-    "0x005B729C": {
-      "name": "aUiGamemainuiMu_3"
-    },
-    "0x005B72C4": {
-      "name": "aUiGamemainuiMu_2"
-    },
-    "0x005B72F0": {
-      "name": "aUiGamemainuiMu_1"
-    },
-    "0x005B7314": {
-      "name": "aUiGamemainuiMu_0"
-    },
-    "0x005B7338": {
-      "name": "aUiGamemainuiCo_11"
-    },
     "0x005B7360": {
       "name": "aUiFlexFramebar"
     },
     "0x005B7378": {
       "name": "aUiGamemainuiEq_0"
     },
-    "0x005B739C": {
-      "name": "aUiGamemainuiCo_10"
-    },
-    "0x005B73BC": {
-      "name": "aUiGamemainuiCo_9"
-    },
-    "0x005B73F0": {
-      "name": "aUiGamemainuiCo_8"
-    },
     "0x005B7424": {
       "name": "aUiGamemainuiCo_7"
     },
-    "0x005B7458": {
-      "name": "aItemSSPol",
-      "type": "char[]"
-    },
-    "0x005B7468": {
-      "name": "aNone",
-      "type": "char[]"
-    },
     "0x005B7470": {
       "name": "aD16"
-    },
-    "0x005B7474": {
-      "name": "aNum1",
-      "type": "char[]"
-    },
-    "0x005B747C": {
-      "name": "aPrice",
-      "type": "char[]"
-    },
-    "0x005B7484": {
-      "name": "aName",
-      "type": "char[]"
-    },
-    "0x005B748C": {
-      "name": "aSSS",
-      "type": "char[]"
     },
     "0x005B74A8": {
       "name": "aNS_4",
@@ -14472,13 +11836,6 @@
     "0x005B74BC": {
       "name": "aSD_10",
       "type": "char[]"
-    },
-    "0x005B74C4": {
-      "name": "aItemSSTga",
-      "type": "char[]"
-    },
-    "0x005B74D4": {
-      "name": "aPal3Timenotefi_55"
     },
     "0x005B74F0": {
       "name": "aTName_50"
@@ -14498,23 +11855,11 @@
     "0x005B7590": {
       "name": "aTOriy_49"
     },
-    "0x005B75B0": {
-      "name": "??A?$vector@PAVGlowObj@@V?$allocator@PAVGlowObj@@@std@@@std@@QAEAAPAVGlowObj@@I@Z"
-    },
     "0x005B7610": {
       "name": "aEnd_53"
     },
     "0x005B7630": {
       "name": "aEndKey_50"
-    },
-    "0x005B7680": {
-      "name": "?clear@?$vector@PAVGlowObj@@V?$allocator@PAVGlowObj@@@std@@@std@@QAEXXZ"
-    },
-    "0x005B76B0": {
-      "name": "?end@?$vector@PAVGlowObj@@V?$allocator@PAVGlowObj@@@std@@@std@@QAEPAPAVGlowObj@@XZ"
-    },
-    "0x005B76D0": {
-      "name": "?insert@?$vector@PAVGlowObj@@V?$allocator@PAVGlowObj@@@std@@@std@@QAEPAPAVGlowObj@@PAPAV3@ABQAV3@@Z"
     },
     "0x005B7710": {
       "name": "aMId_39"
@@ -14524,9 +11869,6 @@
     },
     "0x005B77C4": {
       "name": "aEntrysale_20"
-    },
-    "0x005B77D0": {
-      "name": "?deallocate@?$allocator@PAVGlowObj@@@std@@QAEXPAXI@Z"
     },
     "0x005B7800": {
       "name": "aNormalcnsltalk_20"
@@ -14573,9 +11915,6 @@
     "0x005B7BF8": {
       "name": "aUiGamemainuiLi_315"
     },
-    "0x005B7C20": {
-      "name": "?copy_backward@std@@YAPAPAVGlowObj@@PAPAV2@00@Z"
-    },
     "0x005B7CF8": {
       "name": "aUiGamemainuiLi_316"
     },
@@ -14608,9 +11947,6 @@
     },
     "0x005B86F8": {
       "name": "aUiGamemainuiLi_326"
-    },
-    "0x005B8715": {
-      "name": "$E73_27"
     },
     "0x005B87F8": {
       "name": "aUiGamemainuiLi_327"
@@ -14696,30 +12032,6 @@
     "0x005B91B0": {
       "name": "aQ07_18"
     },
-    "0x005B9B4C": {
-      "name": "aUiGamemainuiCo_57"
-    },
-    "0x005B9B74": {
-      "name": "aUiGamemainuiCo_18"
-    },
-    "0x005B9B9C": {
-      "name": "aUiGamemainuiCo_56"
-    },
-    "0x005B9BC8": {
-      "name": "aUiGamemainuiCo_16"
-    },
-    "0x005B9BF0": {
-      "name": "aUiGamemainuiCo_48"
-    },
-    "0x005B9C18": {
-      "name": "aUiGamemainuiCo_55"
-    },
-    "0x005B9C40": {
-      "name": "aUiGamemainuiCo_43"
-    },
-    "0x005B9C68": {
-      "name": "aPal3Timenotefi_56"
-    },
     "0x005B9C84": {
       "name": "aTName_51"
     },
@@ -14758,9 +12070,6 @@
     },
     "0x005B9FD0": {
       "name": "aLeave_21"
-    },
-    "0x005B9FD8": {
-      "name": "?Render@MXSavePoint@@UAEXPAUgbRenderInfoObj@@@Z"
     },
     "0x005BA00C": {
       "name": "aFive_21"
@@ -14924,58 +12233,6 @@
     "0x005BB944": {
       "name": "aQ07_19"
     },
-    "0x005BC2E0": {
-      "name": "aUiAssistantCom_10"
-    },
-    "0x005BC304": {
-      "name": "aUiAssistantCom_9"
-    },
-    "0x005BC328": {
-      "name": "aUiGamemainuiPr_9"
-    },
-    "0x005BC348": {
-      "name": "aUiGamemainuiPr_8"
-    },
-    "0x005BC364": {
-      "name": "aUiGamemainuiPr_7"
-    },
-    "0x005BC384": {
-      "name": "aUiGamemainuiPr_6"
-    },
-    "0x005BC3A0": {
-      "name": "aUiGamemainuiPr_5"
-    },
-    "0x005BC3C0": {
-      "name": "aUiGamemainuiPr_4"
-    },
-    "0x005BC3DC": {
-      "name": "aUiGamemainuiPr_3"
-    },
-    "0x005BC400": {
-      "name": "aUiGamemainuiPr_2"
-    },
-    "0x005BC41C": {
-      "name": "aUiGamemainuiPr_1"
-    },
-    "0x005BC43C": {
-      "name": "aUiGamemainuiPr_0"
-    },
-    "0x005BC458": {
-      "name": "aUiGamemainuiEq_2"
-    },
-    "0x005BC478": {
-      "name": "aUiGamemainuiEq_1"
-    },
-    "0x005BC494": {
-      "name": "aUiFlexBarTga"
-    },
-    "0x005BC4AC": {
-      "name": "aSSSS",
-      "type": "char[]"
-    },
-    "0x005BC4C8": {
-      "name": "aPal3Timenotefi_57"
-    },
     "0x005BC4E4": {
       "name": "aTName_52"
     },
@@ -15000,26 +12257,14 @@
     "0x005BC624": {
       "name": "aEndKey_52"
     },
-    "0x005BC6C8": {
-      "name": "aPal3Timenotefi_58"
-    },
-    "0x005BC6E0": {
-      "name": "aCombatDataCoul"
-    },
     "0x005BC6FC": {
       "name": "aDProjectPal3Fi"
-    },
-    "0x005BC720": {
-      "name": "aUiAssistantCom_11"
     },
     "0x005BC748": {
       "name": "aUiAssistantSme_0"
     },
     "0x005BC76C": {
       "name": "aUiAssistantSme"
-    },
-    "0x005BC790": {
-      "name": "aPal3Timenotefi_59"
     },
     "0x005BC7AC": {
       "name": "aTName_53"
@@ -15219,9 +12464,6 @@
     "0x005BE3AC": {
       "name": "aQ07_20"
     },
-    "0x005BEE08": {
-      "name": "aUiGamemainuiMa"
-    },
     "0x005BEE2C": {
       "name": "aSmelt",
       "type": "char[]"
@@ -15230,16 +12472,9 @@
       "name": "aBone",
       "type": "char[]"
     },
-    "0x005BEE3C": {
-      "name": "aUiGamemainuiPa",
-      "type": "CHAR[]"
-    },
     "0x005BEE60": {
       "name": "aNSSNSSS",
       "type": "char[]"
-    },
-    "0x005BEE84": {
-      "name": "aPal3Timenotefi_60"
     },
     "0x005BEEA0": {
       "name": "aTName_54"
@@ -15439,9 +12674,6 @@
     "0x005C1400": {
       "name": "aMRestend_21"
     },
-    "0x005C14FC": {
-      "name": "aPal3Timenotefi_61"
-    },
     "0x005C1518": {
       "name": "aTName_55"
     },
@@ -15465,9 +12697,6 @@
     },
     "0x005C1658": {
       "name": "aEndKey_55"
-    },
-    "0x005C1678": {
-      "name": "aPal3Timenotefi_62"
     },
     "0x005C1694": {
       "name": "aTName_56"
@@ -15513,9 +12742,6 @@
     },
     "0x005C1A58": {
       "name": "aSeven_24"
-    },
-    "0x005C1A60": {
-      "name": "??0D3DXCOLOR@@QAE@XZ"
     },
     "0x005C1A94": {
       "name": "aNine_24"
@@ -15661,9 +12887,6 @@
     "0x005C32F0": {
       "name": "aHiUnhockplus_22"
     },
-    "0x005C3300": {
-      "name": "?get_bitmap_filename@sg_particle@@QAEPADXZ"
-    },
     "0x005C332C": {
       "name": "aSubgameHocksho_29"
     },
@@ -15675,10 +12898,6 @@
     },
     "0x005C3CF0": {
       "name": "aSubgameHocksho_1",
-      "type": "char[]"
-    },
-    "0x005C3D18": {
-      "name": "aUiFlexNote",
       "type": "char[]"
     },
     "0x005C3D28": {
@@ -15754,9 +12973,6 @@
     "0x005C4374": {
       "name": "aHarshtalk2_25"
     },
-    "0x005C4380": {
-      "name": "??0ScreenEffectMgr@@QAE@XZ"
-    },
     "0x005C43B0": {
       "name": "aForceacpttalkt_25"
     },
@@ -15820,56 +13036,8 @@
     "0x005C5614": {
       "name": "aUiGamemainuiJu_22"
     },
-    "0x005C5714": {
-      "name": "aUiGamemainuiCo_60"
-    },
     "0x005C5744": {
       "name": "aUiGamemainuiCo_59"
-    },
-    "0x005C5770": {
-      "name": "aUiGamemainuiCo_58"
-    },
-    "0x005C57A0": {
-      "name": "aUiGamemainuiCo_32"
-    },
-    "0x005C57C8": {
-      "name": "aUiGamemainuiCo_31"
-    },
-    "0x005C57F4": {
-      "name": "aUiGamemainuiCo_30"
-    },
-    "0x005C5820": {
-      "name": "aUiGamemainuiCo_29"
-    },
-    "0x005C5844": {
-      "name": "aUiGamemainuiCo_28"
-    },
-    "0x005C5868": {
-      "name": "aUiGamemainuiCo_27"
-    },
-    "0x005C588C": {
-      "name": "aUiGamemainuiCo_26"
-    },
-    "0x005C58B0": {
-      "name": "aUiGamemainuiCo_25"
-    },
-    "0x005C58D4": {
-      "name": "aUiGamemainuiCo_24"
-    },
-    "0x005C5900": {
-      "name": "aUiGamemainuiCo_23"
-    },
-    "0x005C5928": {
-      "name": "aUiGamemainuiCo_22"
-    },
-    "0x005C5954": {
-      "name": "aUiGamemainuiCo_21"
-    },
-    "0x005C5980": {
-      "name": "aUiGamemainuiCo_20"
-    },
-    "0x005C59AC": {
-      "name": "aUiGamemainuiCo_19"
     },
     "0x005C59D4": {
       "name": "aUiGamemainuiJu_9"
@@ -15902,13 +13070,6 @@
     },
     "0x005C5B00": {
       "name": "aUiGamemainuiJu_0"
-    },
-    "0x005C5B20": {
-      "name": "a02d02d02d",
-      "type": "char[]"
-    },
-    "0x005C5B30": {
-      "name": "a03d02d02d"
     },
     "0x005C5B40": {
       "name": "aUiGamemainuiJu_21",
@@ -15958,17 +13119,6 @@
       "name": "aUiGamemainuiJu_10",
       "type": "CHAR[]"
     },
-    "0x005C5D30": {
-      "name": "aD_4",
-      "type": "char[]"
-    },
-    "0x005C5D38": {
-      "name": "aSD_8",
-      "type": "char[]"
-    },
-    "0x005C5D40": {
-      "name": "aPal3Timenotefi_64"
-    },
     "0x005C5D58": {
       "name": "aSD_5_0"
     },
@@ -15977,9 +13127,6 @@
     },
     "0x005C5D7C": {
       "name": "aTLib_57"
-    },
-    "0x005C5D84": {
-      "name": "aUiSubgameJusti_22"
     },
     "0x005C5D9C": {
       "name": "aTLibw_57"
@@ -15993,20 +13140,11 @@
     "0x005C5DFC": {
       "name": "aTOriy_57"
     },
-    "0x005C5E1C": {
-      "name": "aUiSubgameJusti_18"
-    },
     "0x005C5E7C": {
       "name": "aEnd_61"
     },
     "0x005C5E9C": {
       "name": "aEndKey_58"
-    },
-    "0x005C5EE4": {
-      "name": "aUiSubgameJusti_13"
-    },
-    "0x005C5F08": {
-      "name": "aUiSubgameJusti_12"
     },
     "0x005C5F30": {
       "name": "aPal3Timenotefi_49_0"
@@ -16059,9 +13197,6 @@
     "0x005C63DE": {
       "name": "aForceacpttalkb_26"
     },
-    "0x005C6424": {
-      "name": "aUiGamemainuiLi_0"
-    },
     "0x005C6524": {
       "name": "aUiGamemainuiLi_410"
     },
@@ -16074,9 +13209,6 @@
     "0x005C6824": {
       "name": "aUiGamemainuiLi_413"
     },
-    "0x005C6924": {
-      "name": "aUiGamemainuiLi"
-    },
     "0x005C6A24": {
       "name": "aUiGamemainuiLi_414"
     },
@@ -16088,9 +13220,6 @@
     },
     "0x005C6D24": {
       "name": "aUiGamemainuiLi_417"
-    },
-    "0x005C6E24": {
-      "name": "aUiGamemainuiLi_5"
     },
     "0x005C6F24": {
       "name": "aUiGamemainuiLi_418"
@@ -16107,27 +13236,8 @@
     "0x005C7324": {
       "name": "aUiGamemainuiLi_422"
     },
-    "0x005C7424": {
-      "name": "aUiGamemainuiLi_6"
-    },
-    "0x005C7448": {
-      "name": "aUiGamemainuiLi_7"
-    },
-    "0x005C7468": {
-      "name": "aUiGamemainuiCo_61"
-    },
-    "0x005C749C": {
-      "name": "aUiGamemainuiLi_2"
-    },
-    "0x005C74C0": {
-      "name": "aUiGamemainuiLi_1"
-    },
     "0x005C74DC": {
       "name": "aUiGamemainuiLi_4",
-      "type": "CHAR[]"
-    },
-    "0x005C7500": {
-      "name": "aUiGamemainuiLi_3",
       "type": "CHAR[]"
     },
     "0x005C7524": {
@@ -16145,12 +13255,6 @@
     },
     "0x005C7598": {
       "name": "aUiGamemainuiCo_80"
-    },
-    "0x005C75BC": {
-      "name": "aUiGamemainuiCo_42"
-    },
-    "0x005C75E0": {
-      "name": "aPal3Timenotefi_65"
     },
     "0x005C75FC": {
       "name": "aTName_59"
@@ -16320,15 +13424,6 @@
     "0x005C8E78": {
       "name": "aUiGamemainuiMa_6"
     },
-    "0x005C8E94": {
-      "name": "aUiGamemainuiCo_41"
-    },
-    "0x005C8EC8": {
-      "name": "aUiGamemainuiCo_40"
-    },
-    "0x005C8EFC": {
-      "name": "aUiGamemainuiCo_39"
-    },
     "0x005C8F30": {
       "name": "aUiGamemainuiMa_5"
     },
@@ -16344,48 +13439,12 @@
     "0x005C8FB4": {
       "name": "aUiGamemainuiMa_1"
     },
-    "0x005C8FD8": {
-      "name": "aUiGamemainuiMa_0"
-    },
-    "0x005C8FF8": {
-      "name": "aUiGamemainuiCo_38"
-    },
-    "0x005C9020": {
-      "name": "aUiGamemainuiCo_37"
-    },
-    "0x005C904C": {
-      "name": "aUiGamemainuiCo_36"
-    },
-    "0x005C9078": {
-      "name": "aUiGamemainuiCo_35"
-    },
-    "0x005C90A4": {
-      "name": "aUiGamemainuiCo_34"
-    },
-    "0x005C90C4": {
-      "name": "aUiGamemainuiCo_33"
-    },
-    "0x005C90E8": {
-      "name": "aUiGamemainuiCo_62"
-    },
-    "0x005C9114": {
-      "name": "aDD",
-      "type": "char[]"
-    },
-    "0x005C911C": {
-      "name": "aNS",
-      "type": "char[]"
-    },
     "0x005C912C": {
       "name": "aSSSN",
       "type": "char[]"
     },
     "0x005C913C": {
       "name": "aNNSSSDSN",
-      "type": "char[]"
-    },
-    "0x005C9154": {
-      "name": "aD_0",
       "type": "char[]"
     },
     "0x005C915C": {
@@ -16413,14 +13472,6 @@
     },
     "0x005C91B0": {
       "name": "aCom1",
-      "type": "char[]"
-    },
-    "0x005C91B8": {
-      "name": "aUsetimes",
-      "type": "char[]"
-    },
-    "0x005C91C4": {
-      "name": "aLv",
       "type": "char[]"
     },
     "0x005C91CC": {
@@ -16457,9 +13508,6 @@
     },
     "0x005C934C": {
       "name": "aEndKey_60"
-    },
-    "0x005C9390": {
-      "name": "?Import3DS@CLoad3DS@@QAE_NPAVt3DModel@@PAD@Z"
     },
     "0x005C94EC": {
       "name": "aMId_52"
@@ -16562,91 +13610,6 @@
     },
     "0x005CA8FC": {
       "name": "aUiGamemainuiEq_20"
-    },
-    "0x005CA91C": {
-      "name": "aUiGamemainuiEq_19"
-    },
-    "0x005CA940": {
-      "name": "aUiGamemainuiEq_18"
-    },
-    "0x005CA960": {
-      "name": "aUiGamemainuiEq_17"
-    },
-    "0x005CA984": {
-      "name": "aUiGamemainuiEq_16"
-    },
-    "0x005CA9A8": {
-      "name": "aUiGamemainuiEq_15"
-    },
-    "0x005CA9CC": {
-      "name": "aUiGamemainuiEq_14"
-    },
-    "0x005CA9EC": {
-      "name": "aUiGamemainuiEq_13"
-    },
-    "0x005CAA10": {
-      "name": "aUiGamemainuiEq_12"
-    },
-    "0x005CAA30": {
-      "name": "aUiGamemainuiEq_11"
-    },
-    "0x005CAA4C": {
-      "name": "aUiGamemainuiEq_10"
-    },
-    "0x005CAA6C": {
-      "name": "aUiGamemainuiEq_9"
-    },
-    "0x005CAA88": {
-      "name": "aUiGamemainuiEq_8"
-    },
-    "0x005CAAA8": {
-      "name": "aUiGamemainuiEq_7"
-    },
-    "0x005CAAC4": {
-      "name": "aUiGamemainuiEq_6"
-    },
-    "0x005CAAE4": {
-      "name": "aUiGamemainuiEq_5"
-    },
-    "0x005CAAFC": {
-      "name": "aUiGamemainuiCo_47"
-    },
-    "0x005CAB30": {
-      "name": "aUiGamemainuiEq_4"
-    },
-    "0x005CAB54": {
-      "name": "aUiGamemainuiEq_3"
-    },
-    "0x005CAB74": {
-      "name": "aUiGamemainuiCo_46"
-    },
-    "0x005CAB94": {
-      "name": "aUiGamemainuiCo_45"
-    },
-    "0x005CABB8": {
-      "name": "aUiGamemainuiCo_44"
-    },
-    "0x005CABD8": {
-      "name": "aUiGamemainuiCo_63"
-    },
-    "0x005CAC04": {
-      "name": "aD_3",
-      "type": "char[]"
-    },
-    "0x005CAC10": {
-      "name": "aD_2",
-      "type": "char[]"
-    },
-    "0x005CAC20": {
-      "name": "aD_1",
-      "type": "char[]"
-    },
-    "0x005CAC2C": {
-      "name": "aSS_6",
-      "type": "char[]"
-    },
-    "0x005CAC48": {
-      "name": "aPal3Timenotefi_67"
     },
     "0x005CAC64": {
       "name": "aTName_61"
@@ -16774,25 +13737,8 @@
     "0x005CC34C": {
       "name": "aUiGamemainuiPr_11"
     },
-    "0x005CC368": {
-      "name": "aUiGamemainuiPr_10"
-    },
-    "0x005CC388": {
-      "name": "aUiGamemainuiCo_64"
-    },
-    "0x005CC3B4": {
-      "name": "aNS_1"
-    },
     "0x005CC3BC": {
       "name": "aNSS",
-      "type": "char[]"
-    },
-    "0x005CC3C8": {
-      "name": "aNSSSNNS",
-      "type": "char[]"
-    },
-    "0x005CC3E0": {
-      "name": "aSS_7",
       "type": "char[]"
     },
     "0x005CC3FC": {
@@ -16821,9 +13767,6 @@
     },
     "0x005CC558": {
       "name": "aEndKey_62"
-    },
-    "0x005CC5FC": {
-      "name": "aUiGamemainuiMu"
     },
     "0x005CC630": {
       "name": "aPal3Timenotefi_69"
@@ -16923,9 +13866,6 @@
     },
     "0x005CD214": {
       "name": "aUiGamemainuiLi_476"
-    },
-    "0x005CD230": {
-      "name": "?ForceEndAllTask@CEffObj@@UAEXXZ"
     },
     "0x005CD314": {
       "name": "aUiGamemainuiLi_477"
@@ -17044,28 +13984,12 @@
     "0x005CE60C": {
       "name": "aQ07_23"
     },
-    "0x005CEFAC": {
-      "name": "aUiGamemainuiSt_3"
-    },
-    "0x005CEFD0": {
-      "name": "aUiGamemainuiSt_2"
-    },
-    "0x005CEFF0": {
-      "name": "aUiGamemainuiSt_1"
-    },
-    "0x005CF010": {
-      "name": "aUiGamemainuiCo_65"
-    },
     "0x005CF03C": {
       "name": "aSNS_0",
       "type": "char[]"
     },
     "0x005CF048": {
       "name": "aSND",
-      "type": "char[]"
-    },
-    "0x005CF054": {
-      "name": "aSDSDSDSD",
       "type": "char[]"
     },
     "0x005CF06C": {
@@ -17197,141 +14121,6 @@
     "0x005D0770": {
       "name": "aUiGamemainuiSw_43"
     },
-    "0x005D07A0": {
-      "name": "aUiGamemainuiSw_42"
-    },
-    "0x005D07C8": {
-      "name": "aUiGamemainuiSw_41"
-    },
-    "0x005D07F8": {
-      "name": "aUiGamemainuiSw_40"
-    },
-    "0x005D082C": {
-      "name": "aUiGamemainuiSw_39"
-    },
-    "0x005D0858": {
-      "name": "aUiGamemainuiSw_38"
-    },
-    "0x005D088C": {
-      "name": "aUiGamemainuiSw_37"
-    },
-    "0x005D08B4": {
-      "name": "aUiGamemainuiSw_36"
-    },
-    "0x005D08E4": {
-      "name": "aUiGamemainuiSw_35"
-    },
-    "0x005D0918": {
-      "name": "aUiGamemainuiSw_34"
-    },
-    "0x005D0944": {
-      "name": "aUiGamemainuiSw_33"
-    },
-    "0x005D0978": {
-      "name": "aUiGamemainuiSw_32"
-    },
-    "0x005D09A4": {
-      "name": "aUiGamemainuiSw_31"
-    },
-    "0x005D09D4": {
-      "name": "aUiGamemainuiSw_30"
-    },
-    "0x005D0A0C": {
-      "name": "aUiGamemainuiSw_29"
-    },
-    "0x005D0A38": {
-      "name": "aUiGamemainuiSw_28"
-    },
-    "0x005D0A6C": {
-      "name": "aUiGamemainuiSw_27"
-    },
-    "0x005D0A94": {
-      "name": "aUiGamemainuiSw_26"
-    },
-    "0x005D0AC4": {
-      "name": "aUiGamemainuiSw_25"
-    },
-    "0x005D0AF8": {
-      "name": "aUiGamemainuiSw_24"
-    },
-    "0x005D0B24": {
-      "name": "aUiGamemainuiSw_23"
-    },
-    "0x005D0B58": {
-      "name": "aUiGamemainuiSw_22"
-    },
-    "0x005D0B84": {
-      "name": "aUiGamemainuiSw_21"
-    },
-    "0x005D0BB4": {
-      "name": "aUiGamemainuiSw_20"
-    },
-    "0x005D0BEC": {
-      "name": "aUiGamemainuiSw_19"
-    },
-    "0x005D0C18": {
-      "name": "aUiGamemainuiSw_18"
-    },
-    "0x005D0C3C": {
-      "name": "aUiGamemainuiSw_17"
-    },
-    "0x005D0C60": {
-      "name": "aUiGamemainuiSw_16"
-    },
-    "0x005D0C84": {
-      "name": "aUiGamemainuiSw_15"
-    },
-    "0x005D0CA8": {
-      "name": "aUiGamemainuiSw_14"
-    },
-    "0x005D0CCC": {
-      "name": "aUiGamemainuiSw_13"
-    },
-    "0x005D0CF0": {
-      "name": "aUiGamemainuiSw_12"
-    },
-    "0x005D0D14": {
-      "name": "aUiGamemainuiSw_11"
-    },
-    "0x005D0D3C": {
-      "name": "aUiGamemainuiSw_10"
-    },
-    "0x005D0D58": {
-      "name": "aUiGamemainuiSw_9"
-    },
-    "0x005D0D78": {
-      "name": "aUiGamemainuiSw_8"
-    },
-    "0x005D0D9C": {
-      "name": "aUiGamemainuiSw_7"
-    },
-    "0x005D0DC0": {
-      "name": "aUiGamemainuiSw_6"
-    },
-    "0x005D0DE4": {
-      "name": "aUiGamemainuiSw_5"
-    },
-    "0x005D0E08": {
-      "name": "aUiGamemainuiSw_4"
-    },
-    "0x005D0E2C": {
-      "name": "aUiGamemainuiSw_3"
-    },
-    "0x005D0E50": {
-      "name": "aUiGamemainuiSw_2"
-    },
-    "0x005D0E74": {
-      "name": "aUiGamemainuiSw_1"
-    },
-    "0x005D0E90": {
-      "name": "aUiGamemainuiCo_66"
-    },
-    "0x005D0EBC": {
-      "name": "aUiFlexBigbarTg"
-    },
-    "0x005D0ED0": {
-      "name": "aUiFlexSmallbar"
-    },
     "0x005D0EE8": {
       "name": "aGu",
       "type": "char[]"
@@ -17340,35 +14129,13 @@
       "name": "aSSSS_0",
       "type": "char[]"
     },
-    "0x005D0F08": {
-      "name": "aNNS",
-      "type": "char[]"
-    },
     "0x005D0F18": {
       "name": "aNSNS_0",
-      "type": "char[]"
-    },
-    "0x005D0F28": {
-      "name": "aSS_3",
-      "type": "char[]"
-    },
-    "0x005D0F34": {
-      "name": "aSD_5",
       "type": "char[]"
     },
     "0x005D0F44": {
       "name": "aN",
       "type": "CHAR[]"
-    },
-    "0x005D0F48": {
-      "name": "aSS_2",
-      "type": "char[]"
-    },
-    "0x005D0F58": {
-      "name": "aUiGamemainuiSw_0"
-    },
-    "0x005D0F80": {
-      "name": "aUiGamemainuiSw"
     },
     "0x005D0FA8": {
       "name": "aUiGamemainuiPa_0",
@@ -17578,9 +14345,6 @@
     "0x005D2B88": {
       "name": "aAncient_24"
     },
-    "0x005D2B90": {
-      "name": "?DestroyTaskBuffer@?$CTaskTpl@UtagEffTaskParam@@P8CEffBink@@AEKK@Z@@IAEXXZ"
-    },
     "0x005D2BC4": {
       "name": "aLoPeriodplus_25"
     },
@@ -17612,53 +14376,13 @@
       "name": "aUiGamemainuiSy_14",
       "type": "CHAR[]"
     },
-    "0x005D3728": {
-      "name": "aUiGamemainuiSy_13",
-      "type": "CHAR[]"
-    },
-    "0x005D374C": {
-      "name": "aUiGamemainuiSy_12",
-      "type": "CHAR[]"
-    },
-    "0x005D3778": {
-      "name": "aUiGamemainuiSy_11",
-      "type": "CHAR[]"
-    },
-    "0x005D379C": {
-      "name": "aUiGamemainuiSy_10"
-    },
-    "0x005D37BC": {
-      "name": "aUiGamemainuiSy_9",
-      "type": "CHAR[]"
-    },
-    "0x005D37DC": {
-      "name": "aUiGamemainuiSy_8"
-    },
-    "0x005D37F8": {
-      "name": "aUiGamemainuiSy_7",
-      "type": "CHAR[]"
-    },
-    "0x005D3818": {
-      "name": "aUiGamemainuiSy_6"
-    },
     "0x005D3834": {
       "name": "aUiGamemainuiSy_19",
       "type": "CHAR[]"
     },
-    "0x005D3850": {
-      "name": "aM05",
-      "type": "CHAR[4]"
-    },
-    "0x005D3854": {
-      "name": "aM04",
-      "type": "CHAR[4]"
-    },
     "0x005D3858": {
       "name": "aDS_1",
       "type": "char[]"
-    },
-    "0x005D3860": {
-      "name": "aPal3Timenotefi_72"
     },
     "0x005D387C": {
       "name": "aTName_66"
@@ -17684,24 +14408,6 @@
     "0x005D39BC": {
       "name": "aEndKey_66"
     },
-    "0x005D3A00": {
-      "name": "$L100985"
-    },
-    "0x005D3A1C": {
-      "name": "$L100993"
-    },
-    "0x005D3A38": {
-      "name": "$L101001"
-    },
-    "0x005D3A54": {
-      "name": "$L101009"
-    },
-    "0x005D3A60": {
-      "name": "aPal3Timenotefi_73"
-    },
-    "0x005D3A77": {
-      "name": "$L101019"
-    },
     "0x005D3A7C": {
       "name": "aTName_67"
     },
@@ -17725,9 +14431,6 @@
     },
     "0x005D3BBC": {
       "name": "aEndKey_67"
-    },
-    "0x005D3D20": {
-      "name": "aPal3Timenotefi_74"
     },
     "0x005D3D3C": {
       "name": "aTName_68"
@@ -17792,9 +14495,6 @@
     "0x005D4058": {
       "name": "aPal3Timenotefi_76"
     },
-    "0x005D4070": {
-      "name": "aPal3Timenotefi_77"
-    },
     "0x005D4088": {
       "name": "aEffectFlare4Bm"
     },
@@ -17819,30 +14519,6 @@
     "0x005D4144": {
       "name": "aGfxscriptAddit"
     },
-    "0x005D4160": {
-      "name": "aPal3Timenotefi_78"
-    },
-    "0x005D4178": {
-      "name": "aEffectStonePol"
-    },
-    "0x005D418C": {
-      "name": "aEffectRayTga"
-    },
-    "0x005D419C": {
-      "name": "aEffectSaveTga"
-    },
-    "0x005D41C4": {
-      "name": "aUntitledPartic"
-    },
-    "0x005D41D8": {
-      "name": "aUntitledEmitte"
-    },
-    "0x005D41F0": {
-      "name": "aUntitledEmissi"
-    },
-    "0x005D420C": {
-      "name": "aSgpar"
-    },
     "0x005D4214": {
       "name": "aNotSupportedFi",
       "type": "CHAR[]"
@@ -17851,55 +14527,11 @@
       "name": "aInfo",
       "type": "CHAR[]"
     },
-    "0x005D4238": {
-      "name": "aCouldnotOpenPa",
-      "type": "CHAR[]"
-    },
-    "0x005D4254": {
-      "name": "Caption",
-      "type": "CHAR[]"
-    },
-    "0x005D425C": {
-      "name": "aSizeGraphMT"
-    },
-    "0x005D426C": {
-      "name": "aRotationGraphD"
-    },
-    "0x005D4280": {
-      "name": "aVertexalphaGra"
-    },
-    "0x005D4298": {
-      "name": "aRgbcolorGraphD"
-    },
-    "0x005D42AC": {
-      "name": "aRedXGreenYBlue"
-    },
-    "0x005D42C4": {
-      "name": "aDirectionemitt"
-    },
-    "0x005D42E4": {
-      "name": "aElementrandomv"
-    },
-    "0x005D4308": {
-      "name": "aEmissionrateGr"
-    },
-    "0x005D4324": {
-      "name": "aElementlifetim"
-    },
     "0x005D4340": {
       "name": "aSizemultiplier"
     },
-    "0x005D435C": {
-      "name": "aRotationmultip"
-    },
-    "0x005D437C": {
-      "name": "aPal3Timenotefi_79"
-    },
     "0x005D4394": {
       "name": "aEffectGbpartic_0"
-    },
-    "0x005D43B4": {
-      "name": "aPal3Timenotefi_80"
     },
     "0x005D43D0": {
       "name": "aTName_70"
@@ -17928,14 +14560,8 @@
     "0x005D4510": {
       "name": "aEndKey_70"
     },
-    "0x005D4530": {
-      "name": "aLockBackBuffer"
-    },
     "0x005D454C": {
       "name": "aDProjectPal3Ef"
-    },
-    "0x005D4574": {
-      "name": "aPal3Timenotefi_81"
     },
     "0x005D4590": {
       "name": "aTName_71"
@@ -18015,9 +14641,6 @@
     "0x005D49C8": {
       "name": "aEndKey_73"
     },
-    "0x005D49E8": {
-      "name": "aPal3Timenotefi_84"
-    },
     "0x005D4A04": {
       "name": "aTName_74"
     },
@@ -18041,18 +14664,6 @@
     },
     "0x005D4B44": {
       "name": "aEndKey_74"
-    },
-    "0x005D4B64": {
-      "name": "aPal3Timenotefi_85"
-    },
-    "0x005D4B7C": {
-      "name": "aEffectTransTga"
-    },
-    "0x005D4B90": {
-      "name": "aGfxscriptGeomF"
-    },
-    "0x005D4BA8": {
-      "name": "aPal3Timenotefi_86"
     },
     "0x005D4BC4": {
       "name": "aTName_75"
@@ -18078,20 +14689,6 @@
     "0x005D4D04": {
       "name": "aEndKey_75"
     },
-    "0x005D4D24": {
-      "name": "aPal3Timenotefi_87"
-    },
-    "0x005D4E54": {
-      "name": "aS03d",
-      "type": "char[]"
-    },
-    "0x005D4EBC": {
-      "name": "aS03dBik",
-      "type": "char[]"
-    },
-    "0x005D4F60": {
-      "name": "aPal3Timenotefi_88"
-    },
     "0x005D4F84": {
       "name": "aNewFailInCeffc"
     },
@@ -18104,114 +14701,20 @@
     "0x005D5104": {
       "name": "aDProjectPal3Ef_0"
     },
-    "0x005D512C": {
-      "name": "aPal3Timenotefi_89"
-    },
-    "0x005D5144": {
-      "name": "aGfxscriptTrail"
-    },
-    "0x005D5158": {
-      "name": "aNewFailInCeffe"
-    },
     "0x005D517C": {
       "name": "aDProjectPal3Co_13"
-    },
-    "0x005D51E0": {
-      "name": "?DelTask@?$CTaskTpl@UtagEffTaskParam@@P8CEffCallBack@@AEKK@Z@@IAEXH@Z"
-    },
-    "0x005D5234": {
-      "name": "aNewFailInCeffg"
     },
     "0x005D5254": {
       "name": "aDProjectPal3Co_14"
     },
-    "0x005D52B8": {
-      "name": "aPal3Timenotefi_90"
-    },
-    "0x005D52D0": {
-      "name": "aNewFailInCeffm"
-    },
     "0x005D52F0": {
       "name": "aDProjectPal3Co_0"
-    },
-    "0x005D5394": {
-      "name": "aCouldNotMalloc_1"
-    },
-    "0x005D53C0": {
-      "name": "aCouldNotMalloc_0"
-    },
-    "0x005D53E8": {
-      "name": "aCouldNotMalloc"
-    },
-    "0x005D5410": {
-      "name": "aFewOfNodeInMet"
-    },
-    "0x005D542C": {
-      "name": "aGfxscriptAlpha_0"
-    },
-    "0x005D5448": {
-      "name": "aGfxscriptAddit_0"
-    },
-    "0x005D5468": {
-      "name": "aGfxscriptAlpha"
-    },
-    "0x005D5484": {
-      "name": "aQuake"
-    },
-    "0x005D548C": {
-      "name": "aBink"
-    },
-    "0x005D5494": {
-      "name": "aShock"
-    },
-    "0x005D549C": {
-      "name": "aAudio"
-    },
-    "0x005D54A4": {
-      "name": "aMeteor"
-    },
-    "0x005D54AC": {
-      "name": "aExplosive"
-    },
-    "0x005D54B8": {
-      "name": "aGrid"
-    },
-    "0x005D54C0": {
-      "name": "aCallback"
-    },
-    "0x005D54CC": {
-      "name": "aModel"
-    },
-    "0x005D54D4": {
-      "name": "aCylinder"
-    },
-    "0x005D54E0": {
-      "name": "aTime"
-    },
-    "0x005D54E8": {
-      "name": "aCamera"
-    },
-    "0x005D54F0": {
-      "name": "aAction"
-    },
-    "0x005D54F8": {
-      "name": "aQuad",
-      "type": "unsigned __int8"
-    },
-    "0x005D5500": {
-      "name": "aParticle"
-    },
-    "0x005D550C": {
-      "name": "aCouldnTOpenEff"
     },
     "0x005D5534": {
       "name": "aDProjectPal3Co_3"
     },
     "0x005D5558": {
       "name": "aCbdataFlexeffD"
-    },
-    "0x005D556C": {
-      "name": "aCouldnTOpenCbE"
     },
     "0x005D558C": {
       "name": "FileName",
@@ -18220,29 +14723,11 @@
     "0x005D55D4": {
       "name": "aDProjectPal3Co_15"
     },
-    "0x005D55F8": {
-      "name": "aNewFailInCeffq"
-    },
     "0x005D5618": {
       "name": "aDProjectPal3Co_16"
     },
-    "0x005D5648": {
-      "name": "aPal3Timenotefi_91"
-    },
-    "0x005D5660": {
-      "name": "?GetFreeTaskID@?$CTaskTpl@UtagEffTaskParam@@P8CEffCallBack@@AEKK@Z@@IAEKXZ"
-    },
-    "0x005D5684": {
-      "name": "aNewFailInCeffs"
-    },
     "0x005D56A4": {
       "name": "aDProjectPal3Co_17"
-    },
-    "0x005D5714": {
-      "name": "aPal3Timenotefi_92"
-    },
-    "0x005D577C": {
-      "name": "aPal3Timenotefi_93"
     },
     "0x005D5794": {
       "name": "aEffectFlarebri"
@@ -18265,20 +14750,8 @@
     "0x005D5834": {
       "name": "aGfxscriptTlAdd"
     },
-    "0x005D5858": {
-      "name": "aPal3Timenotefi_94"
-    },
     "0x005D5870": {
       "name": "aDProjectPal3Co_11"
-    },
-    "0x005D5898": {
-      "name": "aPal3Timenotefi_95"
-    },
-    "0x005D58B0": {
-      "name": "aUiCombatAttack"
-    },
-    "0x005D58C8": {
-      "name": "aPal3Timenotefi_96"
     },
     "0x005D58E4": {
       "name": "aTName_76"
@@ -18298,21 +14771,11 @@
     "0x005D5984": {
       "name": "aTOriy_75"
     },
-    "0x005D59C4": {
-      "name": "?ProcInitTask@CEffCamera@@QAEKK@Z"
-    },
     "0x005D5A04": {
       "name": "aEnd_79"
     },
     "0x005D5A24": {
       "name": "aEndKey_76"
-    },
-    "0x005D5A44": {
-      "name": "aSSTga",
-      "type": "char[]"
-    },
-    "0x005D5A50": {
-      "name": "aPal3Timenotefi_97"
     },
     "0x005D5A6C": {
       "name": "aTName_77"
@@ -18365,9 +14828,6 @@
     "0x005D5E24": {
       "name": "aProp_33"
     },
-    "0x005D5E40": {
-      "name": "?GetCamControl@CCBStage@@QAEPAVCCBCamControl@@XZ"
-    },
     "0x005D5E60": {
       "name": "aAcptquantum_33"
     },
@@ -18388,13 +14848,6 @@
     },
     "0x005D5FAA": {
       "name": "aForceacpttalkb_33"
-    },
-    "0x005D5FF0": {
-      "name": "format",
-      "type": "char[]"
-    },
-    "0x005D5FFC": {
-      "name": "aPal3Timenotefi_98"
     },
     "0x005D6018": {
       "name": "aTName_78"
@@ -18419,9 +14872,6 @@
     },
     "0x005D6158": {
       "name": "aEndKey_78"
-    },
-    "0x005D6178": {
-      "name": "aPal3Timenotefi_99"
     },
     "0x005D6194": {
       "name": "aTName_79"
@@ -18621,60 +15071,12 @@
     "0x005D7E54": {
       "name": "aQ07_25"
     },
-    "0x005D87E8": {
-      "name": "$E66_46"
-    },
     "0x005D87F4": {
       "name": "roleIdx",
       "type": "unsigned int"
     },
-    "0x005D880C": {
-      "name": "aDatascriptComb_0"
-    },
-    "0x005D8824": {
-      "name": "aPal3CombatSyst"
-    },
-    "0x005D883C": {
-      "name": "aSpeed12f",
-      "type": "char[]"
-    },
-    "0x005D8890": {
-      "name": "aStopped",
-      "type": "char[]"
-    },
-    "0x005D8898": {
-      "name": "a03d03d",
-      "type": "char[]"
-    },
-    "0x005D88A4": {
-      "name": "aSBuildSSReleas",
-      "type": "char[]"
-    },
     "0x005D88BC": {
       "name": "a164229"
-    },
-    "0x005D88FC": {
-      "name": "Text",
-      "type": "CHAR"
-    },
-    "0x005D8924": {
-      "name": "aBasedataCbscen",
-      "type": "CHAR[]"
-    },
-    "0x005D8938": {
-      "name": "aMp"
-    },
-    "0x005D893C": {
-      "name": "aGp"
-    },
-    "0x005D8940": {
-      "name": "aHp"
-    },
-    "0x005D8944": {
-      "name": "aV"
-    },
-    "0x005D8948": {
-      "name": "aRole_0"
     },
     "0x005D8968": {
       "name": "a03dS",
@@ -18717,10 +15119,6 @@
     },
     "0x005D89F8": {
       "name": "aBoss"
-    },
-    "0x005D8A10": {
-      "name": "aDS",
-      "type": "char[]"
     },
     "0x005D8AAC": {
       "name": "aWarning",
@@ -18768,106 +15166,11 @@
     "0x005D8DA0": {
       "name": "aEndKey_80"
     },
-    "0x005D8E00": {
-      "name": "aDatascriptComb_1"
-    },
-    "0x005D8E18": {
-      "name": "aLevel",
-      "type": "char[]"
-    },
-    "0x005D8E50": {
-      "name": "aFailToCreateWe"
-    },
     "0x005D8E70": {
       "name": "aDProjectPal3Co_2"
     },
-    "0x005D8EB0": {
-      "name": "aWd018"
-    },
-    "0x005D8EB8": {
-      "name": "aWd017"
-    },
-    "0x005D8EC0": {
-      "name": "aWd019"
-    },
-    "0x005D8F28": {
-      "name": "aWd020"
-    },
-    "0x005D8F30": {
-      "name": "aWd004"
-    },
-    "0x005D8F38": {
-      "name": "aWd015"
-    },
-    "0x005D8F40": {
-      "name": "aWd014"
-    },
-    "0x005D8F48": {
-      "name": "aWd013"
-    },
-    "0x005D8F50": {
-      "name": "aWd016"
-    },
-    "0x005D8F58": {
-      "name": "aWd011"
-    },
-    "0x005D8F60": {
-      "name": "aWd012"
-    },
-    "0x005D8F68": {
-      "name": "aWd010"
-    },
-    "0x005D8F70": {
-      "name": "aWd009"
-    },
-    "0x005D8F78": {
-      "name": "aWd008"
-    },
-    "0x005D8F80": {
-      "name": "aWd007"
-    },
-    "0x005D8F88": {
-      "name": "aWd022"
-    },
-    "0x005D8F90": {
-      "name": "aWd021"
-    },
-    "0x005D8F98": {
-      "name": "aWd005"
-    },
-    "0x005D8FA0": {
-      "name": "aGpfullD",
-      "type": "char[]"
-    },
-    "0x005D8FAC": {
-      "name": "aSsleepD",
-      "type": "char[]"
-    },
-    "0x005D8FB8": {
-      "name": "aPoisonD",
-      "type": "char[]"
-    },
-    "0x005D8FC4": {
-      "name": "aShplowD",
-      "type": "char[]"
-    },
-    "0x005D8FD0": {
-      "name": "aDyingD",
-      "type": "char[]"
-    },
-    "0x005D8FD8": {
-      "name": "aSCombatdialog",
-      "type": "char[]"
-    },
     "0x005D8FE8": {
       "name": "aZ39"
-    },
-    "0x005D8FF0": {
-      "name": "aD02d",
-      "type": "char[]"
-    },
-    "0x005D8FF8": {
-      "name": "aPal3Timenotefi_101"
     },
     "0x005D9014": {
       "name": "aTName_81"
@@ -18913,9 +15216,6 @@
     },
     "0x005D93D8": {
       "name": "aSeven_35"
-    },
-    "0x005D93E0": {
-      "name": "?Clone@CEffCustomShape@@UAEPAVCEffObj@@XZ"
     },
     "0x005D9414": {
       "name": "aNine_35"
@@ -19070,97 +15370,18 @@
     "0x005DAE14": {
       "name": "aDirectionemitt_0"
     },
-    "0x005DB670": {
-      "name": "aMiss"
-    },
-    "0x005DB678": {
-      "name": "aNewFailedAtCre"
-    },
     "0x005DB6A0": {
       "name": "aDProjectPal3Co_5"
     },
-    "0x005DB708": {
-      "name": "aEnemysneakatta",
-      "type": "char[]"
-    },
-    "0x005DB71C": {
-      "name": "aWesneakattacke",
-      "type": "char[]"
-    },
-    "0x005DB730": {
-      "name": "aSD_6",
-      "type": "char[]"
-    },
-    "0x005DB738": {
-      "name": "aWitch",
-      "type": "char[]"
-    },
-    "0x005DB740": {
-      "name": "aMoney",
-      "type": "char[]"
-    },
-    "0x005DB748": {
-      "name": "aWa012"
-    },
-    "0x005DB750": {
-      "name": "aWa013"
-    },
-    "0x005DB758": {
-      "name": "aFleefail",
-      "type": "char[]"
-    },
     "0x005DB764": {
       "name": "aFleesuccess"
-    },
-    "0x005DB770": {
-      "name": "aWa014"
-    },
-    "0x005DB778": {
-      "name": "aSSDS",
-      "type": "char[]"
-    },
-    "0x005DB784": {
-      "name": "aLevelup",
-      "type": "char[]"
-    },
-    "0x005DB78C": {
-      "name": "aSSD",
-      "type": "char[]"
-    },
-    "0x005DB798": {
-      "name": "aSDS_0",
-      "type": "char[]"
-    },
-    "0x005DB7A4": {
-      "name": "aGetitem_0",
-      "type": "char[]"
-    },
-    "0x005DB7AC": {
-      "name": "aWa015"
     },
     "0x005DB7B4": {
       "name": "aSSS_1",
       "type": "char[]"
     },
-    "0x005DB7BC": {
-      "name": "aMastered",
-      "type": "char[]"
-    },
-    "0x005DB7C8": {
-      "name": "aSSSDS",
-      "type": "char[]"
-    },
-    "0x005DB7D8": {
-      "name": "aUiCombatPointe"
-    },
     "0x005DB7F8": {
       "name": "aCbdataFlexcamD"
-    },
-    "0x005DB80C": {
-      "name": "aDatascriptCbca"
-    },
-    "0x005DB824": {
-      "name": "aPal3Timenotefi_102"
     },
     "0x005DB840": {
       "name": "aTName_82"
@@ -19186,37 +15407,8 @@
     "0x005DB980": {
       "name": "aEndKey_82"
     },
-    "0x005DB9A0": {
-      "name": "aRoll"
-    },
-    "0x005DB9A8": {
-      "name": "aPitch"
-    },
-    "0x005DB9BC": {
-      "name": "aEditorcamD",
-      "type": "char[]"
-    },
-    "0x005DB9C8": {
-      "name": "aCamFovF",
-      "type": "char[]"
-    },
-    "0x005DB9D4": {
-      "name": "aCamYawFPitchFR",
-      "type": "char[]"
-    },
-    "0x005DB9F4": {
-      "name": "aCamXFYFZF",
-      "type": "char[]"
-    },
-    "0x005DBA0C": {
-      "name": "aCouldnTOpenCbC"
-    },
     "0x005DBA30": {
       "name": "aDProjectPal3Co_6"
-    },
-    "0x005DBA58": {
-      "name": "aBasedataCbdata_0",
-      "type": "char[]"
     },
     "0x005DBA74": {
       "name": "aPal3Timenotefi_103"
@@ -19245,23 +15437,8 @@
     "0x005DBBD0": {
       "name": "aEndKey_83"
     },
-    "0x005DBBF0": {
-      "name": "aGfxscriptGeomD_0"
-    },
-    "0x005DBC10": {
-      "name": "aGfxscriptGeomD"
-    },
-    "0x005DBC2C": {
-      "name": "aCouldnTOpenEff_0"
-    },
     "0x005DBC54": {
       "name": "aDProjectPal3Co_7"
-    },
-    "0x005DBC80": {
-      "name": "aCbdataEfflinke"
-    },
-    "0x005DBC98": {
-      "name": "aCouldnTOpenCbE_0"
     },
     "0x005DBCBC": {
       "name": "aPal3Timenotefi_104"
@@ -19322,16 +15499,8 @@
       "name": "aWe011b",
       "type": "char[]"
     },
-    "0x005DBEBC": {
-      "name": "aWe011",
-      "type": "char[]"
-    },
     "0x005DBEC4": {
       "name": "aZ02d",
-      "type": "char[]"
-    },
-    "0x005DBECC": {
-      "name": "aWe014",
       "type": "char[]"
     },
     "0x005DBED4": {
@@ -19342,41 +15511,11 @@
       "name": "aWe012",
       "type": "char[]"
     },
-    "0x005DBEE4": {
-      "name": "aWd"
-    },
     "0x005DBEE8": {
       "name": "aWd029"
     },
-    "0x005DBEF0": {
-      "name": "aWd026"
-    },
-    "0x005DBEF8": {
-      "name": "aWd027"
-    },
-    "0x005DBF00": {
-      "name": "aWd024"
-    },
-    "0x005DBF08": {
-      "name": "aWd030"
-    },
-    "0x005DBF10": {
-      "name": "aWd028"
-    },
     "0x005DBF18": {
       "name": "aWd025"
-    },
-    "0x005DBF20": {
-      "name": "aWd023"
-    },
-    "0x005DBF28": {
-      "name": "aWe020"
-    },
-    "0x005DBF30": {
-      "name": "aWe"
-    },
-    "0x005DBF34": {
-      "name": "aWe033"
     },
     "0x005DBF3C": {
       "name": "aPal3Timenotefi_105"
@@ -19395,10 +15534,6 @@
     },
     "0x005DBFE8": {
       "name": "aGfxscriptAddit_1"
-    },
-    "0x005DC004": {
-      "name": "aItemSSSTga",
-      "type": "char[]"
     },
     "0x005DC018": {
       "name": "aDS_0",
@@ -19574,9 +15709,6 @@
     "0x005DD088": {
       "name": "aUiGamemainuiLi_559"
     },
-    "0x005DD0A4": {
-      "name": "aEffectTransMTg"
-    },
     "0x005DD188": {
       "name": "aUiGamemainuiLi_560"
     },
@@ -19685,9 +15817,6 @@
     "0x005DE040": {
       "name": "aM22_2"
     },
-    "0x005DE080": {
-      "name": "aM18_0"
-    },
     "0x005DE0C0": {
       "name": "aM04_1"
     },
@@ -19745,9 +15874,6 @@
     "0x005DE4C0": {
       "name": "aQ04_0"
     },
-    "0x005DE500": {
-      "name": "aM06_0"
-    },
     "0x005DE540": {
       "name": "aM09_1"
     },
@@ -19784,58 +15910,15 @@
     "0x005DE800": {
       "name": "aQ15_0"
     },
-    "0x005DE840": {
-      "name": "aQ01_1"
-    },
     "0x005DE880": {
       "name": "aQ03_0"
-    },
-    "0x005DE8DC": {
-      "name": "aEffectCombat10"
     },
     "0x005DE8FC": {
       "name": "aDProjectPal3Co_4"
     },
-    "0x005DE920": {
-      "name": "aRoleDXFZFRotF",
-      "type": "char[]"
-    },
-    "0x005DE93C": {
-      "name": "aEffectTimerF",
-      "type": "char[]"
-    },
     "0x005DE94C": {
       "name": "aEffectObjectsD",
       "type": "char[]"
-    },
-    "0x005DE960": {
-      "name": "aDeltatimeF",
-      "type": "char[]"
-    },
-    "0x005DE970": {
-      "name": "aTimefundF",
-      "type": "char[]"
-    },
-    "0x005DE97C": {
-      "name": "aTimesOfCombatD",
-      "type": "char[]"
-    },
-    "0x005DE990": {
-      "name": "aThreadDStageta",
-      "type": "char[]"
-    },
-    "0x005DE9A8": {
-      "name": "aS_3",
-      "type": "char[3]"
-    },
-    "0x005DE9BC": {
-      "name": "aTooManyCharact"
-    },
-    "0x005DEA00": {
-      "name": "aUiCombatResult_15"
-    },
-    "0x005DEA20": {
-      "name": "aUiCombatResult_14"
     },
     "0x005DEA3C": {
       "name": "aUiCombatStateS_21"
@@ -19845,54 +15928,6 @@
     },
     "0x005DEA8C": {
       "name": "aUiCombatStateS_19"
-    },
-    "0x005DEAB0": {
-      "name": "aUiCombatStateS_18"
-    },
-    "0x005DEAD4": {
-      "name": "aUiCombatStateS_17"
-    },
-    "0x005DEAFC": {
-      "name": "aUiCombatStateS_16"
-    },
-    "0x005DEB20": {
-      "name": "aUiCombatStateS_15"
-    },
-    "0x005DEB44": {
-      "name": "aUiCombatStateS_14"
-    },
-    "0x005DEB68": {
-      "name": "aUiCombatStateS_13"
-    },
-    "0x005DEB90": {
-      "name": "aUiCombatStateS_12"
-    },
-    "0x005DEBB4": {
-      "name": "aUiCombatStateS_11"
-    },
-    "0x005DEBDC": {
-      "name": "aUiCombatStateS_10"
-    },
-    "0x005DEC04": {
-      "name": "aUiCombatStateS_9"
-    },
-    "0x005DEC2C": {
-      "name": "aUiCombatStateS_8"
-    },
-    "0x005DEC54": {
-      "name": "aUiCombatStateS_7"
-    },
-    "0x005DEC7C": {
-      "name": "aUiCombatStateS_6"
-    },
-    "0x005DECA8": {
-      "name": "aUiCombatStateS_5"
-    },
-    "0x005DECD4": {
-      "name": "aUiCombatStateS_4"
-    },
-    "0x005DECFC": {
-      "name": "aUiCombatStateS_3"
     },
     "0x005DED24": {
       "name": "aUiCombatStateC_0"
@@ -19924,318 +15959,6 @@
     "0x005DEE40": {
       "name": "aUiCombatStateJ"
     },
-    "0x005DEE60": {
-      "name": "aUiCombatStateP_2"
-    },
-    "0x005DEE80": {
-      "name": "aUiCombatStateP_1"
-    },
-    "0x005DEEA0": {
-      "name": "aUiCombatStateP_0"
-    },
-    "0x005DEEC0": {
-      "name": "aUiCombatStateP"
-    },
-    "0x005DEEDC": {
-      "name": "aUiCombatStateS_2"
-    },
-    "0x005DEEFC": {
-      "name": "aUiCombatStateS_1"
-    },
-    "0x005DEF18": {
-      "name": "aUiCombatContro_55"
-    },
-    "0x005DEF44": {
-      "name": "aUiCombatContro_54"
-    },
-    "0x005DEF70": {
-      "name": "aUiCombatContro_53"
-    },
-    "0x005DEF9C": {
-      "name": "aUiCombatDialog"
-    },
-    "0x005DEFB4": {
-      "name": "aUiCombatTrickn_0"
-    },
-    "0x005DEFD4": {
-      "name": "aUiCombatTrickn"
-    },
-    "0x005DEFF0": {
-      "name": "aUiCombatContro_52"
-    },
-    "0x005DF010": {
-      "name": "aUiCombatContro_51"
-    },
-    "0x005DF02C": {
-      "name": "aUiCombatContro_50"
-    },
-    "0x005DF048": {
-      "name": "aUiCombatContro_49"
-    },
-    "0x005DF060": {
-      "name": "aUiCombatContro_48"
-    },
-    "0x005DF07C": {
-      "name": "aUiCombatContro_47"
-    },
-    "0x005DF094": {
-      "name": "aUiCombatContro_46"
-    },
-    "0x005DF0B4": {
-      "name": "aUiCombatContro_45"
-    },
-    "0x005DF0D0": {
-      "name": "aUiCombatContro_44"
-    },
-    "0x005DF0F0": {
-      "name": "aUiCombatContro_43"
-    },
-    "0x005DF10C": {
-      "name": "aUiCombatContro_42"
-    },
-    "0x005DF124": {
-      "name": "aUiCombatContro_41"
-    },
-    "0x005DF140": {
-      "name": "aUiCombatContro_40"
-    },
-    "0x005DF158": {
-      "name": "aUiCombatContro_39"
-    },
-    "0x005DF178": {
-      "name": "aUiCombatContro_38"
-    },
-    "0x005DF190": {
-      "name": "aUiCombatContro_37"
-    },
-    "0x005DF1B0": {
-      "name": "aUiCombatContro_36"
-    },
-    "0x005DF1C8": {
-      "name": "aUiCombatContro_35"
-    },
-    "0x005DF1E8": {
-      "name": "aUiCombatContro_34"
-    },
-    "0x005DF204": {
-      "name": "aUiCombatContro_33"
-    },
-    "0x005DF220": {
-      "name": "aUiCombatAttack_5"
-    },
-    "0x005DF240": {
-      "name": "aUiCombatAttack_4"
-    },
-    "0x005DF260": {
-      "name": "aUiCombatAttack_3"
-    },
-    "0x005DF280": {
-      "name": "aUiCombatAttack_2"
-    },
-    "0x005DF2A0": {
-      "name": "aUiCombatAttack_1"
-    },
-    "0x005DF2C0": {
-      "name": "aUiCombatAttack_0"
-    },
-    "0x005DF2E0": {
-      "name": "aUiCombatStateS_0"
-    },
-    "0x005DF300": {
-      "name": "aUiCombatStateS"
-    },
-    "0x005DF320": {
-      "name": "aUiCombatResult_13"
-    },
-    "0x005DF348": {
-      "name": "aUiCombatResult_12"
-    },
-    "0x005DF370": {
-      "name": "aUiCombatResult_11"
-    },
-    "0x005DF394": {
-      "name": "aUiCombatResult_10"
-    },
-    "0x005DF3BC": {
-      "name": "aUiCombatResult_9"
-    },
-    "0x005DF3E4": {
-      "name": "aUiCombatResult_8"
-    },
-    "0x005DF408": {
-      "name": "aUiCombatResult_7"
-    },
-    "0x005DF42C": {
-      "name": "aUiCombatResult_6"
-    },
-    "0x005DF450": {
-      "name": "aUiCombatResult_5"
-    },
-    "0x005DF474": {
-      "name": "aUiCombatResult_4"
-    },
-    "0x005DF494": {
-      "name": "aUiCombatResult_3"
-    },
-    "0x005DF4B4": {
-      "name": "aUiCombatResult_2"
-    },
-    "0x005DF4D4": {
-      "name": "aUiCombatResult_1"
-    },
-    "0x005DF4F4": {
-      "name": "aUiCombatResult_19"
-    },
-    "0x005DF510": {
-      "name": "aUiCombatResult_18"
-    },
-    "0x005DF52C": {
-      "name": "aUiCombatResult_17"
-    },
-    "0x005DF548": {
-      "name": "aUiCombatResult_16"
-    },
-    "0x005DF564": {
-      "name": "aUiCombatResult_0"
-    },
-    "0x005DF580": {
-      "name": "aUiCombatResult"
-    },
-    "0x005DF59C": {
-      "name": "aUiCombatContro_32"
-    },
-    "0x005DF5BC": {
-      "name": "aUiCombatContro_31"
-    },
-    "0x005DF5E0": {
-      "name": "aUiCombatContro_30"
-    },
-    "0x005DF608": {
-      "name": "aUiCombatContro_29"
-    },
-    "0x005DF634": {
-      "name": "aUiCombatContro_28"
-    },
-    "0x005DF65C": {
-      "name": "aUiCombatContro_27"
-    },
-    "0x005DF684": {
-      "name": "aUiCombatContro_26"
-    },
-    "0x005DF6AC": {
-      "name": "aUiCombatContro_25"
-    },
-    "0x005DF6D0": {
-      "name": "aUiCombatContro_24"
-    },
-    "0x005DF6F4": {
-      "name": "aUiCombatContro_23"
-    },
-    "0x005DF718": {
-      "name": "aUiCombatContro_22"
-    },
-    "0x005DF73C": {
-      "name": "aUiCombatContro_21"
-    },
-    "0x005DF760": {
-      "name": "aUiCombatContro_67"
-    },
-    "0x005DF78C": {
-      "name": "aUiCombatContro_66"
-    },
-    "0x005DF7B4": {
-      "name": "aUiCombatContro_65"
-    },
-    "0x005DF7DC": {
-      "name": "aUiCombatContro_64"
-    },
-    "0x005DF804": {
-      "name": "aUiCombatContro_20"
-    },
-    "0x005DF82C": {
-      "name": "aUiCombatContro_63"
-    },
-    "0x005DF854": {
-      "name": "aUiCombatContro_62"
-    },
-    "0x005DF878": {
-      "name": "aUiCombatContro_61"
-    },
-    "0x005DF8A0": {
-      "name": "aUiCombatContro_60"
-    },
-    "0x005DF8C8": {
-      "name": "aUiCombatContro_19"
-    },
-    "0x005DF8F0": {
-      "name": "aUiCombatContro_18"
-    },
-    "0x005DF910": {
-      "name": "aUiCombatContro_17"
-    },
-    "0x005DF928": {
-      "name": "aUiCombatContro_16"
-    },
-    "0x005DF940": {
-      "name": "aUiCombatContro_15"
-    },
-    "0x005DF964": {
-      "name": "aUiCombatContro_14"
-    },
-    "0x005DF980": {
-      "name": "aUiCombatContro_13"
-    },
-    "0x005DF99C": {
-      "name": "aUiCombatContro_12"
-    },
-    "0x005DF9B8": {
-      "name": "aUiCombatContro_11"
-    },
-    "0x005DF9D4": {
-      "name": "aUiCombatContro_59"
-    },
-    "0x005DF9F8": {
-      "name": "aUiCombatContro_58"
-    },
-    "0x005DFA18": {
-      "name": "aUiCombatContro_57"
-    },
-    "0x005DFA3C": {
-      "name": "aUiCombatContro_56"
-    },
-    "0x005DFA60": {
-      "name": "aUiCombatContro_10"
-    },
-    "0x005DFA84": {
-      "name": "aUiCombatContro_9"
-    },
-    "0x005DFAA8": {
-      "name": "aUiCombatContro_8"
-    },
-    "0x005DFACC": {
-      "name": "aUiCombatContro_7"
-    },
-    "0x005DFAF0": {
-      "name": "aUiCombatContro_6"
-    },
-    "0x005DFB14": {
-      "name": "aUiCombatContro_5"
-    },
-    "0x005DFB38": {
-      "name": "aUiCombatContro_4"
-    },
-    "0x005DFB5C": {
-      "name": "aUiCombatContro_3"
-    },
-    "0x005DFB80": {
-      "name": "aUiCombatContro_2"
-    },
-    "0x005DFBA4": {
-      "name": "aUiCombatContro_1"
-    },
-    "0x005DFBC8": {
-      "name": "aUiCombatContro_0"
-    },
     "0x005DFBF0": {
       "name": "aPal3Timenotefi_108"
     },
@@ -20266,34 +15989,12 @@
     "0x005DFD6C": {
       "name": "aDProjectPal3Co_12"
     },
-    "0x005DFD8C": {
-      "name": "aUiCombatContro"
-    },
-    "0x005DFDB4": {
-      "name": "aQuantity",
-      "type": "char[]"
-    },
-    "0x005DFDC0": {
-      "name": "aLevelcost",
-      "type": "char[]"
-    },
-    "0x005DFDCC": {
-      "name": "aCost",
-      "type": "char[]"
-    },
     "0x005DFDD4": {
       "name": "aPal3Timenotefi_109"
     },
     "0x005DFDEC": {
       "name": "g_RandSeed",
       "type": "int"
-    },
-    "0x005DFDF8": {
-      "name": "aDebugTxt"
-    },
-    "0x005DFE04": {
-      "name": "aWt",
-      "type": "char[3]"
     },
     "0x005DFE08": {
       "name": "aRb",
@@ -20836,9 +16537,6 @@
     "0x005E522C": {
       "name": "aEndKey_90"
     },
-    "0x005E52B0": {
-      "name": "?AddSubTask@?$CTaskTpl@UtagEffTaskParam@@P8CEffExplosive@@AEKK@Z@@IAEHHP8CEffExplosive@@AEKK@ZPAUtag4DWORD@@MM@Z"
-    },
     "0x005E530C": {
       "name": "aMId_70"
     },
@@ -21028,9 +16726,6 @@
     "0x005E6DAC": {
       "name": "aQ07_29"
     },
-    "0x005E766C": {
-      "name": "aWd051"
-    },
     "0x005E7748": {
       "name": "aSubgameHocksho_5"
     },
@@ -21209,10 +16904,6 @@
     },
     "0x005E9068": {
       "name": "aSubgameApprais_18"
-    },
-    "0x005E9084": {
-      "name": "aSSPol",
-      "type": "char[]"
     },
     "0x005E909C": {
       "name": "aNNSNN",
@@ -21394,9 +17085,6 @@
     "0x005EAAE0": {
       "name": "aDismaxnum_32"
     },
-    "0x005EAAFC": {
-      "name": "aDPal3aPal3Comb_8"
-    },
     "0x005EAB1C": {
       "name": "aChandlery_32"
     },
@@ -21414,9 +17102,6 @@
     },
     "0x005EAC68": {
       "name": "aAncient_32"
-    },
-    "0x005EAC84": {
-      "name": "aUiCombatContro_69"
     },
     "0x005EACA4": {
       "name": "aLoPeriodplus_32"
@@ -21442,14 +17127,8 @@
     "0x005EAFB8": {
       "name": "aUiCombatStateS_15_0"
     },
-    "0x005EB2B8": {
-      "name": "aUiCombatStateT_3"
-    },
     "0x005EB4F8": {
       "name": "aUiCombatContro_51_0"
-    },
-    "0x005EB780": {
-      "name": "aUiCombatContro_91"
     },
     "0x005EB794": {
       "name": "aNS_7",
@@ -21536,9 +17215,6 @@
     "0x005EBF88": {
       "name": "aUiGamemainuiLi_648"
     },
-    "0x005EBFB0": {
-      "name": "?DoTask@?$CTaskTpl@UtagEffTaskParam@@P8CEffGrid@@AEKK@Z@@IAEXK@Z"
-    },
     "0x005EC088": {
       "name": "aUiGamemainuiLi_649"
     },
@@ -21571,9 +17247,6 @@
     },
     "0x005EC988": {
       "name": "aUiGamemainuiLi_658"
-    },
-    "0x005EC9A8": {
-      "name": "aUiCombatContro_78"
     },
     "0x005ECA88": {
       "name": "aUiGamemainuiLi_659"
@@ -21822,10 +17495,6 @@
     "0x005EF450": {
       "name": "aPal3Timenotefi_87_0"
     },
-    "0x005EF66C": {
-      "name": "aSD_7",
-      "type": "char[]"
-    },
     "0x005EF674": {
       "name": "aNNSDSNSD",
       "type": "char[]"
@@ -21890,9 +17559,6 @@
     },
     "0x005EFA48": {
       "name": "aEndKey_96"
-    },
-    "0x005EFAB4": {
-      "name": "aCgObj_1"
     },
     "0x005EFAEC": {
       "name": "aSubgameEncampm_4"
@@ -22094,9 +17760,6 @@
     },
     "0x005F1608": {
       "name": "aHlA_34"
-    },
-    "0x005F1610": {
-      "name": "??1?$CTaskTpl@UtagEffTaskParam@@P8CEffMeteor@@AEKK@Z@@MAE@XZ"
     },
     "0x005F1644": {
       "name": "aSale_34"
@@ -22414,9 +18077,6 @@
     "0x005F43C0": {
       "name": "aM05_2"
     },
-    "0x005F43C4": {
-      "name": "aWd037"
-    },
     "0x005F4400": {
       "name": "aM03_1"
     },
@@ -22527,12 +18187,6 @@
     },
     "0x005F4C5C": {
       "name": "aTOriy_98"
-    },
-    "0x005F4CA0": {
-      "name": "?IsIdle@CEffObj@@QAE_NXZ"
-    },
-    "0x005F4CC0": {
-      "name": "?SetMgr@CEffObj@@QAEXPAVCEffMgr@@@Z"
     },
     "0x005F4CDC": {
       "name": "aEnd_102"
@@ -22918,17 +18572,11 @@
     "0x005F8B60": {
       "name": "aUiGamemainuiLi_742"
     },
-    "0x005F8C64": {
-      "name": "?GetEditorTaskDescription@CEffModel@@UAEPADH@Z"
-    },
     "0x005F8C70": {
       "name": "aMId_85"
     },
     "0x005F8CAC": {
       "name": "aMRestprice_36"
-    },
-    "0x005F8CB8": {
-      "name": "$L101760"
     },
     "0x005F8CE8": {
       "name": "aMEnough_36"
@@ -22998,15 +18646,6 @@
     },
     "0x005F9318": {
       "name": "aQ07_35"
-    },
-    "0x005F931C": {
-      "name": "aUiSubgameZgSjb"
-    },
-    "0x005F9558": {
-      "name": "aUiSubgameZgZg2_0"
-    },
-    "0x005F9618": {
-      "name": "aUiSubgameZgZg2"
     },
     "0x005F9758": {
       "name": "aPal3Timenotefi_91_0"
@@ -23229,26 +18868,8 @@
     "0x005FBA04": {
       "name": "aQ07_36"
     },
-    "0x005FBA08": {
-      "name": "$E54_8"
-    },
-    "0x005FC184": {
-      "name": "aSecD"
-    },
-    "0x005FC1C4": {
-      "name": "aCancomposePic"
-    },
-    "0x005FC244": {
-      "name": "aHaskeyNo"
-    },
-    "0x005FC284": {
-      "name": "aSSD_0"
-    },
     "0x005FC3AC": {
       "name": "aSubgameRowShip"
-    },
-    "0x005FC3C4": {
-      "name": "aUiGamemainuiCo_49"
     },
     "0x005FC3E8": {
       "name": "aSubgameRowQ17Q"
@@ -23457,9 +19078,6 @@
     "0x005FE10C": {
       "name": "aQ07_37"
     },
-    "0x005FE74C": {
-      "name": "aUiAssistantDea_3"
-    },
     "0x005FEAB4": {
       "name": "aQ17Pol"
     },
@@ -23586,9 +19204,6 @@
     "0x005FFFE0": {
       "name": "aUiGamemainuiLi_790"
     },
-    "0x00600000": {
-      "name": "?IsAllSubTaskFinish@?$CTaskTpl@UtagEffTaskParam@@P8CEffQuad@@AEKK@Z@@IAE_NH@Z"
-    },
     "0x006000F0": {
       "name": "aMId_91"
     },
@@ -23664,10 +19279,6 @@
     "0x00600798": {
       "name": "aQ07_38"
     },
-    "0x00601138": {
-      "name": "a1",
-      "type": "CHAR[2]"
-    },
     "0x00601140": {
       "name": "aPal3Timenotefi_132"
     },
@@ -23694,9 +19305,6 @@
     },
     "0x0060129C": {
       "name": "aEndKey_106"
-    },
-    "0x006012E0": {
-      "name": "?DoTask@?$CTaskTpl@UtagEffTaskParam@@P8CEffQuake@@AEKK@Z@@IAEXK@Z"
     },
     "0x00601348": {
       "name": "aPal3Timenotefi_133"
@@ -23725,9 +19333,6 @@
     "0x006014A4": {
       "name": "aEndKey_107"
     },
-    "0x00601514": {
-      "name": "aSavePal3a02dAr"
-    },
     "0x00601528": {
       "name": "PathName_0"
     },
@@ -23755,9 +19360,6 @@
     },
     "0x006016F8": {
       "name": "aFive_51"
-    },
-    "0x00601714": {
-      "name": "$L111394"
     },
     "0x00601734": {
       "name": "aSeven_51"
@@ -23912,19 +19514,12 @@
     "0x00603030": {
       "name": "aQ07_39"
     },
-    "0x006030B0": {
-      "name": "$L101163_0"
-    },
     "0x006039CC": {
       "name": "aSNS",
       "type": "char[]"
     },
     "0x006039E4": {
       "name": "aPal3Timenotefi_134"
-    },
-    "0x006039FC": {
-      "name": "aRoleS02dIni",
-      "type": "char[]"
     },
     "0x00603A10": {
       "name": "aPal3Timenotefi_135"
@@ -23968,9 +19563,6 @@
     "0x00603D78": {
       "name": "aLeave_52"
     },
-    "0x00603D80": {
-      "name": "?ForceEndAllTask@CEffShock@@UAEXXZ"
-    },
     "0x00603DB4": {
       "name": "aFive_52"
     },
@@ -24003,9 +19595,6 @@
     },
     "0x00603FEE": {
       "name": "aForceacpttalkb_52"
-    },
-    "0x00604030": {
-      "name": "?AddTask@?$CTaskTpl@UtagEffTaskParam@@P8CEffShock@@AEKK@Z@@IAEHKPAUtagEffTaskParam@@_N@Z"
     },
     "0x00604034": {
       "name": "aUiGamemainuiLi_807"
@@ -24124,25 +19713,15 @@
     "0x00605688": {
       "name": "aHiUnhockplus_42"
     },
-    "0x00605698": {
-      "name": "??_R0?AVios_base@std@@@8"
-    },
     "0x006056C4": {
       "name": "aSubgameHocksho_48"
     },
     "0x006056EC": {
       "name": "aQ07_40"
     },
-    "0x006056F0": {
-      "name": "??_R0?AV?$basic_istream@DU?$char_traits@D@std@@@std@@@8"
-    },
     "0x00606088": {
       "name": "aSavePal02dArc",
       "type": "char[]"
-    },
-    "0x0060609C": {
-      "name": "PathName",
-      "type": "CHAR[]"
     },
     "0x006060A4": {
       "name": "aPal"
@@ -24173,12 +19752,6 @@
     },
     "0x00606204": {
       "name": "aEndKey_109"
-    },
-    "0x00606224": {
-      "name": "aMovieMovieEndC"
-    },
-    "0x00606238": {
-      "name": "aMovieMovieCpk"
     },
     "0x00606248": {
       "name": "aPal3Timenotefi_137"
@@ -24378,19 +19951,8 @@
     "0x00607F24": {
       "name": "aQ07_41"
     },
-    "0x00608124": {
-      "name": "$L100996"
-    },
     "0x006088C0": {
       "name": "aPal3ConsoleV10"
-    },
-    "0x006088DC": {
-      "name": "aConsoleErrorCo",
-      "type": "char[]"
-    },
-    "0x00608900": {
-      "name": "aBadCommandOrFi",
-      "type": "char[]"
     },
     "0x0060891C": {
       "name": "aSD_9",
@@ -24399,36 +19961,12 @@
     "0x00608924": {
       "name": "aHuaying"
     },
-    "0x0060892C": {
-      "name": "aFv",
-      "type": "char[]"
-    },
     "0x0060895C": {
       "name": "aExceptionS",
       "type": "char[]"
     },
-    "0x00608970": {
-      "name": "aSDS",
-      "type": "char[]"
-    },
     "0x0060897C": {
       "name": "aSDSS",
-      "type": "char[]"
-    },
-    "0x0060898C": {
-      "name": "aLogAtS",
-      "type": "char[]"
-    },
-    "0x00608998": {
-      "name": "aS_0",
-      "type": "char[]"
-    },
-    "0x006089A4": {
-      "name": "aSLogAt",
-      "type": "char[]"
-    },
-    "0x006089B0": {
-      "name": "aEnginelogTxt",
       "type": "char[]"
     },
     "0x006089C0": {
@@ -24473,25 +20011,9 @@
       "name": "aMusicSMp3",
       "type": "char[]"
     },
-    "0x00608B1C": {
-      "name": "aScene",
-      "type": "char[]"
-    },
-    "0x00608B24": {
-      "name": "aCombat",
-      "type": "char[]"
-    },
-    "0x00608B2C": {
-      "name": "aLuLuMp3",
-      "type": "char[]"
-    },
     "0x00608B3C": {
       "name": "lpString1",
       "type": "LPCSTR"
-    },
-    "0x00608B40": {
-      "name": "aTName",
-      "type": "CHAR[]"
     },
     "0x00608B60": {
       "name": "aTLib_110"
@@ -24559,9 +20081,6 @@
     "0x00608E58": {
       "name": "aEndKey_112"
     },
-    "0x00608E78": {
-      "name": "aGfxscriptGeomN"
-    },
     "0x00608E98": {
       "name": "aGfxscriptUiAdd"
     },
@@ -24577,30 +20096,8 @@
     "0x00608F08": {
       "name": "aGfxscriptUiTex"
     },
-    "0x00608F24": {
-      "name": "aGfxscriptUiNot_0"
-    },
-    "0x00608F3C": {
-      "name": "aGfxscriptUiNot"
-    },
-    "0x00608F58": {
-      "name": "aGfxscriptUiTlG"
-    },
-    "0x00608F6C": {
-      "name": "aUiCursorSbNTga"
-    },
-    "0x00608F80": {
-      "name": "aUiCursorSbSTga"
-    },
-    "0x00608F94": {
-      "name": "aUiCursorJtTga"
-    },
     "0x00608FA8": {
       "name": "aPal3Timenotefi_141"
-    },
-    "0x00608FC0": {
-      "name": "aC",
-      "type": "char[]"
     },
     "0x00608FC8": {
       "name": "aPal3Exception",
@@ -24610,48 +20107,9 @@
       "name": "aPal3",
       "type": "CHAR[]"
     },
-    "0x00608FE4": {
-      "name": "aPleaseInsertDi",
-      "type": "char[]"
-    },
     "0x00609008": {
       "name": "aSmovie",
       "type": "char[]"
-    },
-    "0x00609010": {
-      "name": "aSoftwareSoftst_1",
-      "type": "CHAR[]"
-    },
-    "0x00609028": {
-      "name": "aCdriver",
-      "type": "CHAR[]"
-    },
-    "0x00609030": {
-      "name": "??_R0?AVexception@@@8"
-    },
-    "0x00609038": {
-      "name": "aAvexception"
-    },
-    "0x00609048": {
-      "name": "??_R0?AVlogic_error@std@@@8"
-    },
-    "0x00609050": {
-      "name": "aAvlogicErrorSt"
-    },
-    "0x00609068": {
-      "name": "??_R0?AVlength_error@std@@@8"
-    },
-    "0x00609070": {
-      "name": "aAvlengthErrorS"
-    },
-    "0x00609088": {
-      "name": "??_R0?AVout_of_range@std@@@8"
-    },
-    "0x00609090": {
-      "name": "aAvoutOfRangeSt"
-    },
-    "0x00609234": {
-      "name": "$L101563"
     },
     "0x0060A330": {
       "name": "xmmword_60A330"
@@ -24757,12 +20215,6 @@
     },
     "0x0060A660": {
       "name": "xmmword_60A660"
-    },
-    "0x0060A670": {
-      "name": "?GetAbsDeltaTime@CCBSystem@@QAENXZ"
-    },
-    "0x0060A6C0": {
-      "name": "?CreateTaskBuffer@?$CTaskTpl@UtagEffTaskParam@@P8CEffTime@@AEKK@Z@@IAE_NHH@Z"
     },
     "0x0060A840": {
       "name": "xmmword_60A840"
@@ -24881,27 +20333,11 @@
     "0x0060AAB0": {
       "name": "xmmword_60AAB0"
     },
-    "0x0060AC40": {
-      "name": "??_R0?AVtype_info@@@8"
-    },
-    "0x0060AC48": {
-      "name": "aAvtypeInfo"
-    },
-    "0x0060AC70": {
-      "name": "aAcos"
-    },
-    "0x0060AC80": {
-      "name": "aAsin"
-    },
     "0x0060AC90": {
       "name": "dbl_60AC90"
     },
     "0x0060AD00": {
       "name": "g_pVtbl_SceneMgr"
-    },
-    "0x0060AD08": {
-      "name": "__ctype",
-      "type": "unsigned __int16[]"
     },
     "0x0060AF0C": {
       "name": "SrcSizeInBytes",
@@ -24915,9 +20351,6 @@
     },
     "0x0060AF34": {
       "name": "dbl_60AF34"
-    },
-    "0x0060B040": {
-      "name": "?DoTask@?$CTaskTpl@UtagEffTaskParam@@P8CEffTime@@AEKK@Z@@IAEXK@Z"
     },
     "0x0060B050": {
       "name": "tbyte_60B050"
@@ -24943,23 +20376,11 @@
     "0x0060B5E8": {
       "name": "dbl_60B5E8"
     },
-    "0x0060B5F0": {
-      "name": "??0?$CTaskTpl@UtagEffTaskParam@@P8CEffTime@@AEKK@Z@@IAE@XZ"
-    },
-    "0x0060B670": {
-      "name": "??1?$CTaskTpl@UtagEffTaskParam@@P8CEffTime@@AEKK@Z@@MAE@XZ"
-    },
-    "0x0060B6A0": {
-      "name": "??_G?$CTaskTpl@UtagEffTaskParam@@P8CEffTime@@AEKK@Z@@MAEPAXI@Z"
-    },
     "0x0060B6C8": {
       "name": "tbyte_60B6C8"
     },
     "0x0060B6D4": {
       "name": "tbyte_60B6D4"
-    },
-    "0x0060B6E0": {
-      "name": "?DestroyTaskBuffer@?$CTaskTpl@UtagEffTaskParam@@P8CEffTime@@AEKK@Z@@IAEXXZ"
     },
     "0x0060B744": {
       "name": "dbl_60B744"
@@ -24975,9 +20396,6 @@
     },
     "0x0060B76E": {
       "name": "jpt_55C6DD"
-    },
-    "0x0060B880": {
-      "name": "?EndTask@?$CTaskTpl@UtagEffTaskParam@@P8CEffTime@@AEKK@Z@@IAEXH_N@Z"
     },
     "0x008ACBF8": {
       "name": "g_PAL3Data"
@@ -25081,19 +20499,11 @@
       "name": "Block",
       "type": "void *"
     },
-    "0x00D8E480": {
-      "name": "a5",
-      "type": "int"
-    },
     "0x00D8E4C0": {
       "name": "g_GameData"
     },
     "0x00DBA25D": {
       "name": "algn_DBA25D"
-    },
-    "0x00DE333C": {
-      "name": "String1",
-      "type": "CHAR"
     },
     "0x017A8AE8": {
       "name": "Buffer",
@@ -25186,5 +20596,19 @@
       "name": "hHeap",
       "type": "HANDLE"
     }
-  }
+  },
+  "structs": {
+    "CCBSystem": {
+      "note": "PAL3 layout differs from PAL3A PDB",
+      "corrections": {
+        "28": {
+          "name": "m_pStage",
+          "type": "CCBStage *",
+          "pdb_offset": 20,
+          "evidence": "binary:0x513380 [ecx+0x1C]"
+        }
+      }
+    }
+  },
+  "enums": {}
 }
