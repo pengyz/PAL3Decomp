@@ -23,6 +23,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent
 PDB_FILE = PROJECT_ROOT / "asm" / "pal3a" / "pdb_export.json"
+ANNOTATIONS_FILE = PROJECT_ROOT / "asm" / "pal3" / "annotations.json"
 IDA_STRUCTS_FILE = PROJECT_ROOT / "asm" / "pal3" / "ida_structs.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 OUTPUT_DIR = PROJECT_ROOT / "include" / "pal3" / "gen"
@@ -318,23 +319,48 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
         lines.append("")
 
     # Class declaration with inheritance
+    # Source 1: PDB base_classes
+    # Source 2: annotations.json base_class field (fallback when PDB is empty)
     bases_str = ""
+    base_names = []
     if pdb_class and pdb_class.get('bases'):
-        base_names = []
         for b in pdb_class['bases']:
             bname = b['name']
-            # Simplify template base names for compilation
             if '<' in bname:
-                # Extract the template class name only (e.g. CTaskTpl<...> -> CTaskTpl)
                 bname = bname.split('<')[0]
             base_names.append(bname)
-        if base_names:
-            bases_str = " : " + ", ".join("public %s" % b for b in base_names)
+
+    if not base_names:
+        # Fallback: read from annotations.json
+        try:
+            ann_data = json.load(open(str(ANNOTATIONS_FILE), 'r', encoding='utf-8'))
+            ann_struct = ann_data.get('structs', {}).get(cls_name, {})
+            base = ann_struct.get('base_class')
+            if base:
+                base_names.append(base)
+        except:
+            pass
+
+    if base_names:
+        bases_str = " : " + ", ".join("public %s" % b for b in base_names)
+        for b in base_names:
+            if b not in fwd_types and b not in include_types:
+                fwd_types.add(b)
 
     lines.append("class %s%s {" % (cls_name, bases_str))
     lines.append("public:")
 
     # Data members
+    # Determine base class size to skip inherited members
+    base_size = 0
+    if base_names:
+        try:
+            ann_data = json.load(open(str(ANNOTATIONS_FILE), 'r', encoding='utf-8'))
+            ann_struct = ann_data.get('structs', {}).get(cls_name, {})
+            base_size = ann_struct.get('base_size', 0)
+        except:
+            pass
+
     if pdb_class and pdb_class.get('data_members'):
         members = pdb_class['data_members']
         size = pdb_class.get('size', 0)
@@ -343,6 +369,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
             mname = m.get('name', '')
             mtype = m.get('type', 'int')
             moffset = m.get('offset', 0)
+
+            # Skip members that belong to base class
+            if base_size > 0 and moffset < base_size:
+                continue
 
             if not mname:
                 mname = '_field_%04X' % moffset
