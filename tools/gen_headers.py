@@ -589,8 +589,14 @@ def main():
     # Generate headers for all classes that have either members or methods
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
+    # Load annotations for vtable info
+    ann_data_all = json.load(open(str(ANNOTATIONS_FILE), 'r', encoding='utf-8'))
+    vtable_classes = set(v.get('class', '') for v in ann_data_all.get('vtables', {}).values())
+    vtable_classes.discard('')
+    vtable_classes -= {'crt_internal', 'std_locale_facet'}
+
     generated = 0
-    all_classes = set(pdb_classes.keys()) | set(methods_by_class.keys())
+    all_classes = set(pdb_classes.keys()) | set(methods_by_class.keys()) | vtable_classes
 
     # Pre-compute set of all class names that will have headers generated
     classes_with_headers = set()
@@ -619,10 +625,11 @@ def main():
         pdb_class = pdb_classes.get(cls_name)
         methods = methods_by_class.get(cls_name, [])
 
-        # Skip if no useful content
+        # Skip if no useful content (but keep if has vtable)
         has_members = pdb_class and pdb_class.get('data_members') and pdb_class.get('size', 0) > 1
         has_methods = len(methods) >= 1
-        if not has_members and not has_methods:
+        has_vtable = any(v.get('class') == cls_name for v in ann_data_all.get('vtables', {}).values())
+        if not has_members and not has_methods and not has_vtable:
             continue
 
         content = generate_header(cls_name, pdb_class, methods, classes_with_headers)

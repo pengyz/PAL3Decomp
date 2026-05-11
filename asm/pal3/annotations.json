@@ -60174,6 +60174,11 @@
           "name": "m_ParamHandle",
           "type": "unsigned int[8]",
           "source": "pdb_batch_fill"
+        },
+        "0": {
+          "name": "vfptr",
+          "type": "int",
+          "source": "binary:vtable_ptr"
         }
       }
     },
@@ -61309,6 +61314,11 @@
           "name": "pXTagBlade",
           "type": "gbTagXBladeNode *",
           "source": "pdb_batch_fill"
+        },
+        "0": {
+          "name": "vfptr",
+          "type": "int",
+          "source": "binary:vtable_ptr"
         }
       }
     },
@@ -61469,6 +61479,11 @@
           "name": "m_BakedLight",
           "type": "int",
           "source": "pdb_batch_fill"
+        },
+        "0": {
+          "name": "vfptr",
+          "type": "int",
+          "source": "binary:vtable_ptr"
         }
       }
     },
@@ -64371,6 +64386,11 @@
           "name": "RefCount",
           "type": "int",
           "source": "pdb_batch_fill"
+        },
+        "0": {
+          "name": "vfptr",
+          "type": "int",
+          "source": "binary:vtable_ptr"
         }
       }
     },
@@ -65405,7 +65425,7 @@
       "note": "Common base for all CEffXxx classes (non-Track). Not in PDB. 48 bytes.",
       "known_members": {
         "0": {
-          "name": "m_vtable",
+          "name": "vfptr",
           "type": "int",
           "source": "binary:all CEffXxx first_off=0x30"
         },
@@ -65800,6 +65820,62 @@
       }
     },
     "CEffQuake": {
+      "known_members": {
+        "0": {
+          "name": "vfptr",
+          "type": "int",
+          "source": "binary:vtable_ptr"
+        }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
+    },
+    "gbRenderEffect_D3D": {
+      "known_members": {
+        "0": {
+          "name": "vfptr",
+          "type": "int",
+          "source": "binary:vtable_ptr"
+        }
+      }
+    },
+    "gbSceneNode": {
+      "known_members": {
+        "0": {
+          "name": "vfptr",
+          "type": "int",
+          "source": "binary:vtable_ptr"
+        }
+      }
+    },
+    "gbFileStream": {
+      "known_members": {
+        "0": {
+          "name": "vfptr",
+          "type": "int",
+          "source": "binary:vtable_ptr"
+        }
+      }
+    },
+    "gbMesh": {
+      "known_members": {
+        "0": {
+          "name": "vfptr",
+          "type": "int",
+          "source": "binary:vtable_ptr"
+        }
+      }
+    },
+    "gbMeshData": {
+      "known_members": {
+        "0": {
+          "name": "vfptr",
+          "type": "int",
+          "source": "binary:vtable_ptr"
+        }
+      }
+    },
+    "UITitle": {
       "known_members": {
         "0": {
           "name": "vfptr",
@@ -71574,6 +71650,87 @@
           "address": "0x00454353",
           "name": "sub_454353",
           "signature": ""
+        }
+      ]
+    },
+    "vtbl_CEffBase": {
+      "address": "0x0056F5E4",
+      "class": "CEffBase",
+      "methods": [
+        {
+          "address": "0x004C0540",
+          "name": "loc_4C0540",
+          "signature": ""
+        },
+        {
+          "address": "0x004C0650",
+          "name": "sub_4C0650",
+          "signature": "int __stdcall(int)"
+        },
+        {
+          "address": "0x004C0640",
+          "name": "sub_4C0640",
+          "signature": "int __stdcall(int, int, int, int)"
+        },
+        {
+          "address": "0x00408BD0",
+          "name": "nullsub_3",
+          "signature": "int()"
+        },
+        {
+          "address": "0x00408BD0",
+          "name": "nullsub_3",
+          "signature": "int()"
+        },
+        {
+          "address": "0x004C0740",
+          "name": "sub_4C0740",
+          "signature": "int __stdcall(int a2)"
+        },
+        {
+          "address": "0x00408BD0",
+          "name": "nullsub_3",
+          "signature": "int()"
+        },
+        {
+          "address": "0x004C0520",
+          "name": "sub_4C0520",
+          "signature": "int()"
+        },
+        {
+          "address": "0x004C0500",
+          "name": "sub_4C0500",
+          "signature": "int()"
+        },
+        {
+          "address": "0x004C0920",
+          "name": "sub_4C0920",
+          "signature": "int __stdcall(int)"
+        },
+        {
+          "address": "0x004C0510",
+          "name": "sub_4C0510",
+          "signature": "int __stdcall(int)"
+        },
+        {
+          "address": "0x004AF760",
+          "name": "nullsub_73",
+          "signature": "int __stdcall(int)"
+        },
+        {
+          "address": "0x004C09E0",
+          "name": "sub_4C09E0",
+          "signature": "int __stdcall(int)"
+        },
+        {
+          "address": "0x004C15D0",
+          "name": "sub_4C15D0",
+          "signature": "int()"
+        },
+        {
+          "address": "0x004C1270",
+          "name": "sub_4C1270",
+          "signature": "int __stdcall(int)"
         }
       ]
     }
