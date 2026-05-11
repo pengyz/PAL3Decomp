@@ -62329,7 +62329,9 @@
           "type": "int",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffAudio": {
       "pdb_size": 688,
@@ -62344,7 +62346,9 @@
           "type": "char[128][4]",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffBink": {
       "pdb_size": 304,
@@ -62359,7 +62363,9 @@
           "type": "char[128]",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffCallBack": {
       "pdb_size": 64,
@@ -62384,7 +62390,9 @@
           "type": "unsigned long",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffCustomShape": {
       "pdb_size": 172,
@@ -62499,7 +62507,9 @@
           "type": "std::vector<gbVec2D,std::allocator<gbVec2D> >",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffCylinder": {
       "pdb_size": 4292,
@@ -62679,7 +62689,9 @@
           "type": "tagUV[256]",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffExplosive": {
       "pdb_size": 4288,
@@ -62844,7 +62856,9 @@
           "type": "tagUV[256]",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffgbParticle": {
       "pdb_size": 80,
@@ -62889,7 +62903,9 @@
           "type": "float",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffGrid": {
       "pdb_size": 4280,
@@ -63054,7 +63070,9 @@
           "type": "tagUV[256]",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffMeteor": {
       "pdb_size": 4304,
@@ -63229,7 +63247,9 @@
           "type": "tagUV[256]",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffSParticle": {
       "pdb_size": 100,
@@ -63289,7 +63309,9 @@
           "type": "float",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffQuad": {
       "pdb_size": 4272,
@@ -63389,7 +63411,9 @@
           "type": "gbTextureArray *",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffModel": {
       "pdb_size": 104,
@@ -63444,7 +63468,9 @@
           "type": "float",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "CEffShock": {
       "pdb_size": 4272,
@@ -63594,7 +63620,9 @@
           "type": "float",
           "source": "pdb_batch_fill"
         }
-      }
+      },
+      "base_class": "CEffBase",
+      "base_size": 48
     },
     "gbRefObject": {
       "pdb_size": 8,
@@ -64629,6 +64657,27 @@
           "name": "m_vTargetPos",
           "type": "float",
           "source": "binary:UpdateObjects sub_419090(this+1344)"
+        }
+      }
+    },
+    "CEffBase": {
+      "binary_size": 48,
+      "note": "Common base for all CEffXxx classes (non-Track). Not in PDB. 48 bytes.",
+      "known_members": {
+        "0": {
+          "name": "m_vtable",
+          "type": "int",
+          "source": "binary:all CEffXxx first_off=0x30"
+        },
+        "4": {
+          "name": "m_pEffectSystem",
+          "type": "CEffectSystem *",
+          "source": "binary:CEffObj+0x4"
+        },
+        "8": {
+          "name": "m_eKind",
+          "type": "int",
+          "source": "inferred:EEffect enum"
         }
       }
     }
