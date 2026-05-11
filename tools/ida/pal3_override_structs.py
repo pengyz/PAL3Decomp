@@ -137,7 +137,11 @@ struct SceneMgr {
   gbCamera *m_pCamera;             // +0x0018
   char _preArray[620];             // +0x001C
   SceneMgrSlot m_slot[4];          // +0x0288 (4 x 1408 bytes)
-  char _gap_1888[840];             // +0x1888
+  char m_extraSlot[792];           // +0x1888 (5th slot variant, smaller)
+  int m_pCBRoleStateData;          // +0x1BA0 (CCBRoleState this-ptr target, 325 refs)
+  char _gap_1ba4[36];              // +0x1BA4
+  char m_bGameFlags[5];            // +0x1BC8 (5 state flags, byte-level access)
+  char _gap_1bcd[3];              // +0x1BCD
   RoleSystem m_RoleSystem[5];      // +0x1BD0 (5 x 8704 to +0xC5D0)
   CGameData *m_pGameData;          // +0xC5D0
   void *_c5d4;                     // +0xC5D4
