@@ -1151,7 +1151,7 @@ char CCBSystem::ProcMagicWait(int a2, char a3)
   v9 = this->ProcWeaponSkill();
   UICursor::IRender();
   v5 = 0;
-  v6 = (char *)&g_SceneMgr.m_slotData[268];
+  v6 = (char *)&g_SceneMgr.m_slot[0]._data[268];
   v8 = 0;
   do
   {
@@ -1166,7 +1166,7 @@ char CCBSystem::ProcMagicWait(int a2, char a3)
     ++v5;
     v8 += 892;
   }
-  while ( (int)v6 < (int)&g_SceneMgr.m_RoleSystemData[836] );
+  while ( (int)v6 < (int)&g_SceneMgr.m_RoleSystem[0]._gap_0278[204] );
   return v9;
 }
 

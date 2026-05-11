@@ -1570,10 +1570,10 @@ void __cdecl unknown_libname_318()
 // between_std_methods (0x407D40-0x411B80)
 __int8 *__cdecl ScriptUpdate(int dt)
 {
-  char *m_RoleSystemData; // esi
+  RoleSystem *m_RoleSystem; // esi
   double v2; // st7
   double v3; // st7
-  char *v4; // ecx
+  float *p_m_fTargetX; // ecx
   double v5; // st7
   double v6; // st7
   __int8 *result; // eax
@@ -1585,16 +1585,16 @@ __int8 *__cdecl ScriptUpdate(int dt)
   _BYTE v13[12]; // [esp+20h] [ebp-18h]
   gbVec3D v14; // [esp+2Ch] [ebp-Ch] BYREF
 
-  m_RoleSystemData = g_SceneMgr.m_RoleSystemData;
+  m_RoleSystem = g_SceneMgr.m_RoleSystem;
   do
   {
     ScriptSystem::UpdateTimers(*(float *)&dt);
-    m_RoleSystemData += 8704;
+    ++m_RoleSystem;
   }
-  while ( (int)m_RoleSystemData < (int)&g_SceneMgr.m_pGameData );
+  while ( (int)m_RoleSystem < (int)&g_SceneMgr.m_pGameData );
   if ( dword_C025EC == 10 )
   {
-    if ( *(_DWORD *)&g_SceneMgr.m_RoleSystemData[9336] )
+    if ( *(_DWORD *)g_SceneMgr.m_RoleSystem[1]._gap_0278 )
       ScriptSystem::UpdateObjects(*(float *)&dt);
   }
   else if ( dword_C025EC == 11 )
@@ -1644,7 +1644,7 @@ __int8 *__cdecl ScriptUpdate(int dt)
             break;
           case 3:
             ScriptSystem::RunScript(
-              (__int64)((double)*(int *)&g_SceneMgr.m_slotData[1408 * g_SceneMgr.m_nCameraState + 292] * 0.050000001),
+              (__int64)((double)*(int *)&g_SceneMgr.m_slot[g_SceneMgr.m_nCameraState]._data[292] * 0.050000001),
               0,
               1);
             break;
@@ -1662,11 +1662,11 @@ __int8 *__cdecl ScriptUpdate(int dt)
       switch ( g_nScreenH )
       {
         case 0:
-          v2 = (double)*(int *)&g_SceneMgr.m_slotData[1408 * g_SceneMgr.m_nCameraState + 340] * 0.5;
+          v2 = (double)*(int *)&g_SceneMgr.m_slot[g_SceneMgr.m_nCameraState]._data[340] * 0.5;
           if ( v2 < 1.0 )
             v2 = 1.0;
           ScriptSystem::RunScript(
-            *(_DWORD *)&g_SceneMgr.m_slotData[1408 * g_SceneMgr.m_nCameraState + 340] - (__int64)v2,
+            *(_DWORD *)&g_SceneMgr.m_slot[g_SceneMgr.m_nCameraState]._data[340] - (__int64)v2,
             1,
             1);
           break;
@@ -1676,12 +1676,12 @@ __int8 *__cdecl ScriptUpdate(int dt)
           break;
         case 3:
           ScriptSystem::RunScript(
-            (__int64)((double)*(int *)&g_SceneMgr.m_slotData[1408 * g_SceneMgr.m_nCameraState + 292] * 0.050000001),
+            (__int64)((double)*(int *)&g_SceneMgr.m_slot[g_SceneMgr.m_nCameraState]._data[292] * 0.050000001),
             1,
             1);
           break;
         case 4:
-          flt_BFDBA8 = (double)*(int *)&g_SceneMgr.m_slotData[1408 * g_SceneMgr.m_nCameraState + 292] * 0.5;
+          flt_BFDBA8 = (double)*(int *)&g_SceneMgr.m_slot[g_SceneMgr.m_nCameraState]._data[292] * 0.5;
           ScriptSystem::RunScript((__int64)flt_BFDBA8, 1, 1);
           break;
         default:
@@ -1689,11 +1689,11 @@ __int8 *__cdecl ScriptUpdate(int dt)
       }
     }
     g_pSoundMgr = (char *)g_pSoundMgr + 1;
-    v4 = &g_SceneMgr.m_RoleSystemData[8704 * g_SceneMgr.m_nCameraState + 4];
-    v10 = *(_DWORD *)v4;
-    v11 = *((int *)v4 + 1);
-    *(float *)v13 = *(float *)v4 - *(float *)&g_hWnd;
-    v12 = *((int *)v4 + 2);
+    p_m_fTargetX = &g_SceneMgr.m_RoleSystem[g_SceneMgr.m_nCameraState].m_fTargetX;
+    v10 = *(_DWORD *)p_m_fTargetX;
+    v11 = *((int *)p_m_fTargetX + 1);
+    *(float *)v13 = *p_m_fTargetX - *(float *)&g_hWnd;
+    v12 = *((int *)p_m_fTargetX + 2);
     *(float *)&v13[4] = *(float *)&v11 - *(float *)&g_hInstance;
     *(float *)&v13[8] = *(float *)&v12 - *(float *)&g_nScreenW;
     v14 = *(gbVec3D *)v13;
@@ -1709,19 +1709,19 @@ __int8 *__cdecl ScriptUpdate(int dt)
   *(float *)&g_SceneMgr._gap_C93C[4] = v6;
   if ( v6 >= 60.0 )
   {
-    g_SceneMgr.m_slotData[79] = 0;
-    g_SceneMgr.m_slotData[80] = 0;
-    g_SceneMgr.m_slotData[81] = 0;
-    g_SceneMgr.m_slotData[82] = 0;
-    g_SceneMgr.m_camBlock[849] = 0;
+    g_SceneMgr.m_slot[0]._data[79] = 0;
+    g_SceneMgr.m_slot[0]._data[80] = 0;
+    g_SceneMgr.m_slot[0]._data[81] = 0;
+    g_SceneMgr.m_slot[0]._data[82] = 0;
+    g_SceneMgr.m_camBlock.m_bCameraFlags[1] = 0;
   }
   NPCAnimUpdate(*(float *)&dt);
   result = (__int8 *)sub_43A3E0((int)&g_SceneMgr.m_pCameraCtrl, dt, 0);
-  if ( g_SceneMgr.m_camBlock[848] )
+  if ( g_SceneMgr.m_camBlock.m_bCameraFlags[0] )
   {
     v8 = 1;
     v9 = 0;
-    result = &g_SceneMgr.m_RoleSystemData[1228];
+    result = (__int8 *)&g_SceneMgr.m_RoleSystem[0]._d4CC;
     do
     {
       if ( v9 != g_SceneMgr.m_nCameraState )
@@ -1732,12 +1732,12 @@ __int8 *__cdecl ScriptUpdate(int dt)
     while ( (int)result < (int)&g_SceneMgr.m_szUIString[244] );
     if ( v8 )
     {
-      g_SceneMgr.m_camBlock[848] = 0;
+      g_SceneMgr.m_camBlock.m_bCameraFlags[0] = 0;
       result = (__int8 *)sub_41D5C0(g_pCameraCtrl, dword_586154);
     }
   }
-  if ( *(_DWORD *)&g_SceneMgr.m_camBlock[844] )
-    return (*(__int8 *(__thiscall **)(_DWORD))(**(_DWORD **)&g_SceneMgr.m_camBlock[844] + 20))(*(_DWORD *)&g_SceneMgr.m_camBlock[844]);
+  if ( g_SceneMgr.m_camBlock.m_pCameraScript )
+    return (*(__int8 *(__thiscall **)(int))(*(_DWORD *)g_SceneMgr.m_camBlock.m_pCameraScript + 20))(g_SceneMgr.m_camBlock.m_pCameraScript);
   return result;
 }
 
@@ -2628,7 +2628,7 @@ void __cdecl CameraUpdate_Internal(float a1)
   Instance = (CScreenMode *)SoundContext::GetInstance();
   CScreenMode::SetAudioParam(Instance);
   v6 = (CScreenMode *)SoundContext::GetInstance();
-  if ( CScreenMode::IsAudioReady(v6) && !g_SceneMgr.m_camBlock[848] )
+  if ( CScreenMode::IsAudioReady(v6) && !g_SceneMgr.m_camBlock.m_bCameraFlags[0] )
   {
     if ( g_nGameState == 2
       && g_GameDataFlags == 2
@@ -3317,8 +3317,8 @@ void __cdecl EffectUpdate(float a1)
   int v7; // eax
   _DWORD *v8; // esi
   int v9; // ebx
-  char *m_RoleSystemData; // ebx
-  char *v11; // esi
+  RoleSystem *m_RoleSystem; // ebx
+  int *p_d4F0; // esi
   int v12; // edi
   int v13; // edi
   _DWORD *v14; // esi
@@ -3392,20 +3392,20 @@ void __cdecl EffectUpdate(float a1)
       if ( g_GameDataFlags != 2 )
       {
         v17 = 0;
-        m_RoleSystemData = g_SceneMgr.m_RoleSystemData;
+        m_RoleSystem = g_SceneMgr.m_RoleSystem;
         do
         {
-          if ( *((_DWORD *)m_RoleSystemData + 158) && *((_DWORD *)m_RoleSystemData + 316) != 4 )
+          if ( *(_DWORD *)m_RoleSystem->_gap_0278 && m_RoleSystem->_d4F0 != 4 )
           {
-            if ( (int)m_RoleSystemData < (int)&g_SceneMgr.m_RoleSystemData[34816] )
+            if ( (int)m_RoleSystem < (int)&g_SceneMgr.m_RoleSystem[4] )
             {
-              v11 = &g_SceneMgr.m_RoleSystemData[36080];
+              p_d4F0 = &g_SceneMgr.m_RoleSystem[4]._d4F0;
               v12 = 4 - v17;
               do
               {
-                if ( *((_DWORD *)v11 - 158) && *(_DWORD *)v11 != 4 )
-                  sub_416220((int)m_RoleSystemData, (int)(v11 - 1264));
-                v11 -= 8704;
+                if ( *(p_d4F0 - 158) && *p_d4F0 != 4 )
+                  sub_416220((int)m_RoleSystem, (int)(p_d4F0 - 316));
+                p_d4F0 -= 2176;
                 --v12;
               }
               while ( v12 );
@@ -3417,17 +3417,17 @@ void __cdecl EffectUpdate(float a1)
               do
               {
                 if ( v14[122] && *v14 )
-                  sub_416220((int)m_RoleSystemData, (int)(v14 - 36));
+                  sub_416220((int)m_RoleSystem, (int)(v14 - 36));
                 ++v13;
                 v14 += 2176;
               }
               while ( v13 < *(_DWORD *)(v18 + 57568) );
             }
           }
-          m_RoleSystemData += 8704;
+          ++m_RoleSystem;
           ++v17;
         }
-        while ( (int)m_RoleSystemData < (int)&g_SceneMgr.m_pGameData );
+        while ( (int)m_RoleSystem < (int)&g_SceneMgr.m_pGameData );
         v2 = v18;
       }
       if ( dword_C116EC && *((_DWORD *)dword_C116EC + 316) != 4 )
@@ -6433,7 +6433,7 @@ char __thiscall CCBStage_Method_4FA930(CCBRoleState *_this, char arg0, int a2)
     p_bAlive = &_this->m_Role[0].bAlive;
     v6 = &_this->m_Role[0].bAlive;
     v65 = 0;
-    v69 = &g_SceneMgr.m_slotData[8];
+    v69 = &g_SceneMgr.m_slot[0]._data[8];
     v61 = -578 - (_DWORD)_this;
     do
     {
@@ -6714,7 +6714,7 @@ LABEL_26:
       result = (_BYTE)v69 + 0x80;
       ++v3;
       v6 = p_bAlive + 892;
-      v32 = (int)(v69 + 1408) < (int)&g_SceneMgr.m_RoleSystemData[576];
+      v32 = (int)(v69 + 1408) < (int)&g_SceneMgr.m_RoleSystem[0]._gap_00AC[404];
       v68 = v3;
       v69 += 1408;
       p_bAlive += 892;

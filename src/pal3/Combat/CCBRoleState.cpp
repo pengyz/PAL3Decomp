@@ -215,7 +215,7 @@ CCBRoleState::CCBRoleState()
   char *v26; // [esp+14h] [ebp-4h]
 
   v1 = (char *)&this->m_Role[0]._rest[484];
-  v2 = (char *)&g_SceneMgr.m_slotData[288];
+  v2 = (char *)&g_SceneMgr.m_slot[0]._data[288];
   v26 = (char *)&this->m_Role[0]._rest[484];
   do
   {
@@ -224,7 +224,7 @@ CCBRoleState::CCBRoleState()
     if ( (_BYTE)v3 )
     {
       memset(v4, 0, 0x1Cu);
-      if ( (int)v2 < (int)&g_SceneMgr.m_slotData[288] || (int)v2 >= (int)&g_SceneMgr.m_RoleSystemData[856] )
+      if ( (int)v2 < (int)&g_SceneMgr.m_slot[0]._data[288] || (int)v2 >= (int)&g_SceneMgr.m_RoleSystem[0]._gap_0278[224] )
       {
         v21 = 580;
         v25 = v1;
@@ -320,7 +320,7 @@ CCBRoleState::CCBRoleState()
     v1 += 892;
     v26 = v1;
   }
-  while ( (int)v2 < (int)&g_SceneMgr.m_RoleSystemData[9304] );
+  while ( (int)v2 < (int)&g_SceneMgr.m_RoleSystem[1]._gap_00AC[428] );
   v3;
 }
 
@@ -333,7 +333,7 @@ char CCBRoleState::_CCBRoleState()
   char result; // al
 
   v2 = 0;
-  v3 = (char *)&g_SceneMgr.m_slotData[240];
+  v3 = (char *)&g_SceneMgr.m_slot[0]._data[240];
   v4 = (char *)&this->m_Role[0]._rest[28];
   do
   {
@@ -446,7 +446,7 @@ char CCBRoleState::_CCBRoleState()
     ++v2;
     v4 += 892;
   }
-  while ( (int)v3 < (int)&g_SceneMgr.m_RoleSystemData[808] );
+  while ( (int)v3 < (int)&g_SceneMgr.m_RoleSystem[0]._gap_0278[176] );
   return result;
 }
 
@@ -507,7 +507,7 @@ char CCBRoleState::Create()
   char v16[1024]; // [esp+E14h] [ebp-40Ch] BYREF
   int v17; // [esp+121Ch] [ebp-4h]
 
-  v1 = (char *)&g_SceneMgr.m_slotData[288];
+  v1 = (char *)&g_SceneMgr.m_slot[0]._data[288];
   v2 = (gbGeomNode **)(this + 350);
   do
   {
@@ -579,7 +579,7 @@ char CCBRoleState::Create()
     v1 += 1408;
     v2 += 223;
   }
-  while ( (int)v1 < (int)&g_SceneMgr.m_RoleSystemData[856] );
+  while ( (int)v1 < (int)&g_SceneMgr.m_RoleSystem[0]._gap_0278[224] );
   return v3;
 }
 
@@ -1115,7 +1115,7 @@ int CCBRoleState::SetCanAction(unsigned int dmg, int roleIdx, int a4)
   result = this->ApplyDamage(7, dmg);
   if ( dmg <= 4 )
   {
-    v6 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_slotData[1408 * dmg + 288] + 764);
+    v6 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr.m_slot[dmg]._data[288] + 764);
     if ( v6 > 1 )
       result /= v6;
   }

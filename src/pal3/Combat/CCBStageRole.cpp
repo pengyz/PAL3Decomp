@@ -1081,7 +1081,7 @@ LABEL_64:
       v13 = ((CCBRoleState *)this->m_pRoleState)->InitUI(LODWORD(this->m_fBlend));
       (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)(v13 + 860) + 16))(*(_DWORD *)(v13 + 860), 0);
       a2->Pop();
-      if ( LODWORD(this->m_fBlend) == 3 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slotData[4512] + 613) == 3 )
+      if ( LODWORD(this->m_fBlend) == 3 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slot[3]._data[288] + 613) == 3 )
       {
         v14 = ((CCBRoleState *)this->m_pRoleState)->InitUI(3);
         LastBladePos = (int *)((gbGeomNode *)*(gbGeomNode **)(v14 + 860))->GetLastBladePos(0);

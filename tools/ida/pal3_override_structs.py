@@ -260,16 +260,16 @@ struct SceneMgrSlot;
         (0x0014, "gbRenderEffect *", "m_pAlphaEffect"),
         (0x0018, "gbCamera *", "m_pCamera"),
         (0x001C, "char[620]", "_preArray"),
-        (0x0288, "char[5632]", "m_slotData"),   # 4*1408
+        (0x0288, "SceneMgrSlot[4]", "m_slot", 5632),   # 4*1408
         (0x1888, "char[792]", "m_extraSlot"),
         (0x1BA0, "int", "m_pCBRoleStateData"),
         (0x1BC8, "char[5]", "m_bGameFlags"),
-        (0x1BD0, "char[43520]", "m_RoleSystemData"),  # 5*8704
+        (0x1BD0, "RoleSystem[5]", "m_RoleSystem", 43520),  # 5*8704
         (0xC5D0, "CGameData *", "m_pGameData"),
         (0xC5D4, "int", "_unkC5D4"),
         (0xC5D8, "CameraCtrl *", "m_pCameraCtrl"),
         (0xC5DC, "PalScriptMgr *", "m_pScriptCtrl"),
-        (0xC5E0, "char[856]", "m_camBlock"),
+        (0xC5E0, "SceneMgrCamBlock", "m_camBlock", 856),
         (0xC938, "int", "m_nCameraState"),
         (0xC9A8, "char[512]", "m_szUIString"),
         (0xCD0C, "float", "m_fMoveParam"),

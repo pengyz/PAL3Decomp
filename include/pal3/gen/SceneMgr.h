@@ -1,6 +1,10 @@
 #pragma once
 // Auto-generated: SceneMgr
 
+#include "RoleSystem.h"
+#include "SceneMgrCamBlock.h"
+#include "SceneMgrSlot.h"
+
 class CGameData;
 class CameraCtrl;
 class PalScriptMgr;
@@ -15,18 +19,18 @@ public:
     gbRenderEffect * m_pAlphaEffect; // +0x14
     gbCamera * m_pCamera; // +0x18
     char _preArray[620]; // +0x1C
-    char m_slotData[5632]; // +0x288
+    SceneMgrSlot m_slot[4]; // +0x288
     char m_extraSlot[792]; // +0x1888
     int m_pCBRoleStateData; // +0x1BA0
     char _gap_1BA4[36]; // +0x1BA4
     char m_bGameFlags[5]; // +0x1BC8
     char _gap_1BCD[3]; // +0x1BCD
-    char m_RoleSystemData[43520]; // +0x1BD0
+    RoleSystem m_RoleSystem[5]; // +0x1BD0
     CGameData * m_pGameData; // +0xC5D0
     int _unkC5D4; // +0xC5D4
     CameraCtrl * m_pCameraCtrl; // +0xC5D8
     PalScriptMgr * m_pScriptCtrl; // +0xC5DC
-    char m_camBlock[856]; // +0xC5E0
+    SceneMgrCamBlock m_camBlock; // +0xC5E0
     int m_nCameraState; // +0xC938
     char _gap_C93C[108]; // +0xC93C
     char m_szUIString[512]; // +0xC9A8

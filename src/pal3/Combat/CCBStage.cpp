@@ -2273,7 +2273,7 @@ int CCBStage::ProcShowSneakAttackState(int _74)
   {
     this->ResetAll();
     v7 = *((_DWORD *)v4 + 2);
-    if ( v7 <= 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slotData[1408 * v7 + 288] + 613) == 5
+    if ( v7 <= 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slot[v7]._data[288] + 613) == 5
       || *(_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(*((_DWORD *)v4 + 2)) == 7366 )
     {
       a4 = *((_DWORD *)v4 + 3);
