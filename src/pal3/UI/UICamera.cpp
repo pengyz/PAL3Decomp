@@ -234,7 +234,7 @@ int UICamera::GetState()
     v8 += 8704;
     ++v7;
   }
-  while ( (int)v8 < (int)&g_SceneMgr._gap_c5e0[152] );
+  while ( (int)v8 < (int)&g_SceneMgr.m_camBlock._p000[152] );
   if ( v0 && 12.0 * 4.5 < v13 - *(float *)(v0 + 16) )
     return 0;
   else
@@ -321,7 +321,7 @@ int UICamera::GetTarget(float *pMat)
     v10 += 8704;
     ++v9;
   }
-  while ( (int)v10 < (int)&g_SceneMgr._gap_c5e0[152] );
+  while ( (int)v10 < (int)&g_SceneMgr.m_camBlock._p000[152] );
   if ( v17 < 0 )
     return 0;
   if ( v2 )

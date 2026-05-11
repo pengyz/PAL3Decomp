@@ -92,7 +92,7 @@ void UIManager::Render()
       }
       v7 += 8704;
     }
-    while ( (int)v7 < (int)&g_SceneMgr._gap_c5e0[128] );
+    while ( (int)v7 < (int)&g_SceneMgr.m_camBlock._p000[128] );
     v13 = v4;
   }
   if ( v4 > 0 )

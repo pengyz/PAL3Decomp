@@ -110,15 +110,13 @@ void ScriptSystem::Render(void *a1)
   }
   ((RoleSystem *)&g_pNPCSystem)->RenderRole(a1, 0);
   ((RoleSystem *)&g_pActorSystem)->RenderRole(a1, 0);
-  if ( *(_DWORD *)&g_SceneMgr._gap_c5e0[844] )
+  if ( g_SceneMgr.m_camBlock._d34C )
   {
     v7 = *(struct gbVec3D *)&g_SceneMgr.m_RoleSystem[g_SceneMgr.m_nCameraState]._data[160];
     ((gbMatrixStack *)a1)->Push();
     v7.y = v7.y + 40.0;
     ((gbMatrixStack *)a1)->Translate(&v7);
-    (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)&g_SceneMgr._gap_c5e0[844] + 16))(
-      *(_DWORD *)&g_SceneMgr._gap_c5e0[844],
-      0);
+    (*(void (**)(int, _DWORD))(*(_DWORD *)g_SceneMgr.m_camBlock._d34C + 16))(g_SceneMgr.m_camBlock._d34C, 0);
     ((gbMatrixStack *)a1)->Pop();
   }
 }
