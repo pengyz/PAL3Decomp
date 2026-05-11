@@ -8091,99 +8091,99 @@
     },
     "0x0043F5B0": {
       "name": "UIListBox::GetItem",
-      "signature": "int __thiscall(int this, int index)"
+      "signature": "int __thiscall UIListBox::GetItem(int nIndex)"
     },
     "0x004E5300": {
       "name": "EditBox_SetReadOnly",
-      "signature": "LRESULT __cdecl(HWND hWnd, char bReadOnly)"
+      "signature": "LRESULT __cdecl EditBox_SetReadOnly(HWND hWnd, BOOL bReadOnly)"
     },
     "0x0043F360": {
-      "name": "UIListBox::GetCount",
-      "signature": "int __thiscall(_DWORD *this)"
+      "name": "UIListBox::GetItemCount",
+      "signature": "int __thiscall UIListBox::GetItemCount(void)"
     },
     "0x004E5430": {
       "name": "EditBox_GetFloat",
-      "signature": "double __cdecl(HWND hWnd)"
+      "signature": "double __cdecl EditBox_GetFloat(HWND hWnd)"
     },
     "0x004E5350": {
       "name": "EditBox_SetFloat",
-      "signature": "LRESULT __cdecl(HWND hWnd, float value)"
+      "signature": "LRESULT __cdecl EditBox_SetFloat(HWND hWnd, float fValue)"
     },
     "0x004E5330": {
       "name": "EditBox_IsModified",
-      "signature": "bool __cdecl(HWND hWnd)"
+      "signature": "BOOL __cdecl EditBox_IsModified(HWND hWnd)"
     },
     "0x0042FD40": {
-      "name": "Vec3D_Set",
-      "signature": "_DWORD *__thiscall(_DWORD *this, int a2, _DWORD *a3)"
+      "name": "Vec3D_Copy",
+      "signature": "gbVec3D *__thiscall Vec3D_Copy(gbVec3D *this, int nSrcIndex, gbVec3D *pSrc)"
     },
     "0x0040D640": {
-      "name": "Array_GetAt",
-      "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *a2, unsigned int index)"
+      "name": "PtrArray::GetAt",
+      "signature": "void *__thiscall PtrArray::GetAt(void *pOut, unsigned int nIndex)"
     },
     "0x00434C40": {
       "name": "PalScriptMgr::NotifyEvent",
-      "signature": "void __cdecl(int event)"
+      "signature": "void __cdecl PalScriptMgr::NotifyEvent(int nEventID)"
     },
     "0x00546F41": {
-      "name": "CRT_delete",
-      "signature": "int __stdcall(DWORD Type)"
+      "name": "CRT_scalar_delete",
+      "signature": "int __stdcall CRT_scalar_delete(void *pBlock)"
     },
     "0x00439230": {
-      "name": "UIObj_LoadGeomNode",
-      "signature": "void *__thiscall(_DWORD *this, const char *filename, int actionIdx)"
+      "name": "UIObj_LoadModel",
+      "signature": "gbGeomNode *__thiscall UIObj_LoadModel(int this, const char *szFilename, int nActionIdx)"
     },
     "0x0043F650": {
-      "name": "UIListBox::GetSelectedData",
-      "signature": "int __thiscall(int *this)"
+      "name": "UIListBox::GetItemData",
+      "signature": "int __thiscall UIListBox::GetItemData(void)"
     },
     "0x0040D620": {
-      "name": "Array_GetSize",
-      "signature": "int __thiscall(_DWORD *this)"
+      "name": "PtrArray::GetSize",
+      "signature": "int __thiscall PtrArray::GetSize(void)"
     },
     "0x00449980": {
-      "name": "UIWnd::SetData",
-      "signature": "int __thiscall(_DWORD *this, int a2)"
+      "name": "UIWnd::SetUserData",
+      "signature": "void __thiscall UIWnd::SetUserData(int nData)"
     },
     "0x0043F640": {
       "name": "UIListBox::SetLockSel",
-      "signature": "int __thiscall(_DWORD *this, int a2)"
+      "signature": "void __thiscall UIListBox::SetLockSel(int nIndex)"
     },
     "0x0043AFA0": {
-      "name": "UIObj_SetName",
-      "signature": "char *__thiscall(char *this, char *name)"
+      "name": "UIObj::SetTooltipText",
+      "signature": "void __thiscall UIObj::SetTooltipText(const char *szText)"
     },
     "0x00434BD0": {
       "name": "GetSceneObject",
-      "signature": "__int8 *__cdecl(unsigned __int16 index)"
+      "signature": "void *__cdecl GetSceneObject(unsigned short nObjID)"
     },
     "0x004E5390": {
       "name": "EditBox_SetInt",
-      "signature": "LRESULT __cdecl(HWND hWnd, int value)"
+      "signature": "LRESULT __cdecl EditBox_SetInt(HWND hWnd, int nValue)"
     },
     "0x00543092": {
-      "name": "CRT_purecall",
-      "signature": "int()"
+      "name": "_purecall",
+      "signature": "void __cdecl _purecall(void)"
     },
     "0x0046D0A0": {
-      "name": "UIWnd::SetItemData",
-      "signature": "int __thiscall(_DWORD *this, int index, int data)"
+      "name": "UIWnd::SetItemParam",
+      "signature": "int __thiscall UIWnd::SetItemParam(int nIndex, int nParam)"
     },
     "0x004DC720": {
       "name": "CCBRoleState::IsAlive",
-      "signature": "char __thiscall(_DWORD *this, int roleIdx)"
+      "signature": "BOOL __thiscall CCBRoleState::IsAlive(int nRoleIndex)"
     },
     "0x0043FE90": {
       "name": "UIListBox::GetCurSel",
-      "signature": "int __thiscall(int this)"
+      "signature": "int __thiscall UIListBox::GetCurSel(void)"
     },
     "0x00445F60": {
-      "name": "UIWnd::GetChild",
-      "signature": "int __thiscall(_DWORD *this, unsigned int index)"
+      "name": "UIWnd::GetChildByIndex",
+      "signature": "UIWnd *__thiscall UIWnd::GetChildByIndex(unsigned int nIndex)"
     },
     "0x00440AE0": {
       "name": "UIWnd::LoadTexture",
-      "signature": "void *__thiscall(_DWORD *this, LPCSTR filename, char flag)"
+      "signature": "void __thiscall UIWnd::LoadTexture(const char *szFilename, BOOL bAlpha)"
     }
   },
   "globals": {
