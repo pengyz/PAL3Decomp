@@ -3,5 +3,5 @@
   "address": "0x00406980",
   "size_bytes": 141,
   "signature": "int()",
-  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nint PAL3::GetCommandLineParam()\n{\n  if ( !g_SceneMgr._gap_1888[800]\n    && !g_SceneMgr._gap_1888[801]\n    && !g_SceneMgr._gap_1888[802]\n    && !g_SceneMgr._gap_1888[803]\n    && !g_SceneMgr._gap_1888[804] )\n  {\n    g_SceneMgr._gap_1888[800] = 1;\n    g_SceneMgr._gap_1888[801] = 1;\n    g_SceneMgr._gap_1888[802] = 0;\n    g_SceneMgr._gap_1888[803] = 1;\n    g_SceneMgr._gap_1888[804] = 0;\n  }\n  if ( !dword_C11718 )\n    PAL3::UpdateSubsystems();\n  CCBSystem::ProcMagicWait(g_pCBSystem, (int)dword_C11700, 1);\n  return CGameData_Load((int)&g_GameData, (CUtil *)6);\n}\n"
+  "decompiled_c": "// between_std_methods (0x402FB0-0x407AB0)\nint PAL3::GetCommandLineParam()\n{\n  if ( !g_SceneMgr._gap_1888[832]\n    && !g_SceneMgr._gap_1888[833]\n    && !g_SceneMgr._gap_1888[834]\n    && !g_SceneMgr._gap_1888[835]\n    && !g_SceneMgr._gap_1888[836] )\n  {\n    g_SceneMgr._gap_1888[832] = 1;\n    g_SceneMgr._gap_1888[833] = 1;\n    g_SceneMgr._gap_1888[834] = 0;\n    g_SceneMgr._gap_1888[835] = 1;\n    g_SceneMgr._gap_1888[836] = 0;\n  }\n  if ( !dword_C11718 )\n    PAL3::UpdateSubsystems();\n  CCBSystem::ProcMagicWait(g_pCBSystem, (int)dword_C11700, 1);\n  return CGameData_Load((int)&g_GameData, (CUtil *)6);\n}\n"
 }

@@ -16,8 +16,8 @@ int SoundSystem::Init()
   char Buffer[256]; // [esp+14h] [ebp-10Ch] BYREF
   int v9; // [esp+11Ch] [ebp-4h]
 
-  memset(&g_SceneMgr._gap_cd10[768], 0, 0x60u);
-  memset(&g_SceneMgr._gap_cd10[672], 0, 0x60u);
+  memset(&g_SceneMgr._gap_cd10[800], 0, 0x60u);
+  memset(&g_SceneMgr._gap_cd10[704], 0, 0x60u);
   v0 = 97;
   g_pSceneNode = 0;
   v1 = 0;
@@ -31,9 +31,9 @@ int SoundSystem::Init()
     else
       v3 = 0;
     v9 = -1;
-    *(_DWORD *)&g_SceneMgr._gap_cd10[v1 + 768] = v3;
+    *(_DWORD *)&g_SceneMgr._gap_cd10[v1 + 800] = v3;
     v3->LoadFromFile(Buffer);
-    *(_DWORD *)(*(_DWORD *)&g_SceneMgr._gap_cd10[v1 + 768] + 8) = 0;
+    *(_DWORD *)(*(_DWORD *)&g_SceneMgr._gap_cd10[v1 + 800] + 8) = 0;
     v4 = (gbSound2DNode *)operator new(0x10u);
     v9 = 1;
     if ( v4 )
@@ -41,10 +41,10 @@ int SoundSystem::Init()
     else
       v5 = 0;
     v9 = -1;
-    *(_DWORD *)&g_SceneMgr._gap_cd10[v1 + 672] = v5;
+    *(_DWORD *)&g_SceneMgr._gap_cd10[v1 + 704] = v5;
     sprintf(Buffer, "snd\\we022%c.wav", v0);
-    result = ((gbSound2DNode *)*(gbSound2DNode **)&g_SceneMgr._gap_cd10[v1 + 672])->LoadFromFile(Buffer);
-    v7 = *(_DWORD *)&g_SceneMgr._gap_cd10[v1 + 672];
+    result = ((gbSound2DNode *)*(gbSound2DNode **)&g_SceneMgr._gap_cd10[v1 + 704])->LoadFromFile(Buffer);
+    v7 = *(_DWORD *)&g_SceneMgr._gap_cd10[v1 + 704];
     ++v0;
     v1 += 4;
     *(_DWORD *)(v7 + 8) = 0;

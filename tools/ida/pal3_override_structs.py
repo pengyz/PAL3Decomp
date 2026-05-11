@@ -90,36 +90,43 @@ struct RoleSystem;
 """
     idc.parse_decls(FWD, idc.PT_TYP)
 
+    FWD_SM = """
+struct CGameData;
+struct CameraCtrl;
+struct PalScriptMgr;
+struct gbGeomNode;
+struct SceneMgrSlot;
+"""
+    idc.parse_decls(FWD_SM, idc.PT_TYP)
+
     DECL = """
 struct RoleSystem { char _data[8704]; };
+struct SceneMgrSlot { char _data[1408]; };
 struct SceneMgr {
-  gbGfxManager *m_pGfxMgr;       // +0x0000
-  gbSceneGraph *m_pSceneRoot;    // +0x0004
-  gbRenderEffect *m_pAddEffect2; // +0x0008
-  gbRenderEffect *m_pAlphaEffect2;// +0x000C
-  gbRenderEffect *m_pAddEffect;  // +0x0010
-  gbRenderEffect *m_pAlphaEffect;// +0x0014
-  gbCamera *m_pCamera;           // +0x0018
-  char _preArray[620];           // +0x001C
-  char m_slot0[1408];            // +0x0288
-  char m_slot1[1408];            // +0x0808
-  char m_slot2[1408];            // +0x0D88
-  char m_slot3[1408];            // +0x1308
-  char _gap_1888[840];           // +0x1888
-  RoleSystem m_RoleSystem[5];    // +0x1BD0 (stride=8704, 5 elements to +0xC5D0)
-  int m_pGameData;               // +0xC5D0
-  int _c5d4;                     // +0xC5D4
-  int m_pCameraCtrl;             // +0xC5D8
-  int m_pScriptCtrl;             // +0xC5DC
-  char _gap_c5e0[856];           // +0xC5E0
-  int m_nCameraState;            // +0xC938
-  char _gap_c93c[108];           // +0xC93C
-  char m_szUIString[512];        // +0xC9A8
-  char _gap_cba8[356];           // +0xCBA8
-  float m_fMoveParam;            // +0xCD0C
-  char _gap_cd10[1612];          // +0xCD10
-  int m_pCollisionNode;          // +0xD35C
-  char _tail[4];                 // +0xD360
+  gbGfxManager *m_pGfxMgr;         // +0x0000
+  gbSceneGraph *m_pSceneRoot;      // +0x0004
+  gbRenderEffect *m_pAddEffect2;   // +0x0008
+  gbRenderEffect *m_pAlphaEffect2; // +0x000C
+  gbRenderEffect *m_pAddEffect;    // +0x0010
+  gbRenderEffect *m_pAlphaEffect;  // +0x0014
+  gbCamera *m_pCamera;             // +0x0018
+  char _preArray[620];             // +0x001C
+  SceneMgrSlot m_slot[4];          // +0x0288 (4 x 1408 bytes)
+  char _gap_1888[840];             // +0x1888
+  RoleSystem m_RoleSystem[5];      // +0x1BD0 (5 x 8704 to +0xC5D0)
+  CGameData *m_pGameData;          // +0xC5D0
+  void *_c5d4;                     // +0xC5D4
+  CameraCtrl *m_pCameraCtrl;      // +0xC5D8
+  PalScriptMgr *m_pScriptCtrl;    // +0xC5DC
+  char _gap_c5e0[856];             // +0xC5E0
+  int m_nCameraState;              // +0xC938
+  char _gap_c93c[108];             // +0xC93C
+  char m_szUIString[512];          // +0xC9A8
+  char _gap_cba8[356];             // +0xCBA8
+  float m_fMoveParam;              // +0xCD0C
+  char _gap_cd10[1612];            // +0xCD10
+  gbGeomNode *m_pCollisionNode;    // +0xD35C
+  char _tail[4];                   // +0xD360
 };
 """
     if idc.parse_decls(DECL, idc.PT_TYP) == 0:

@@ -2084,7 +2084,7 @@ int CCBStage::ProcWait(int a2)
   }
   else
   {
-    strcpy(Buffer, &g_SceneMgr._gap_c93c[76]);
+    strcpy(Buffer, g_SceneMgr.m_szUIString);
     v2 = v19;
   }
   ((CCBStage *)v2->m_TempStorageNGH)->InitRound();
@@ -2273,7 +2273,7 @@ int CCBStage::ProcShowSneakAttackState(int _74)
   {
     this->ResetAll();
     v7 = *((_DWORD *)v4 + 2);
-    if ( v7 <= 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slot[0]._tail[1408 * v7 + 16] + 613) == 5
+    if ( v7 <= 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr.m_slot[v7]._data[288] + 613) == 5
       || *(_DWORD *)((CCBRoleState *)this->m_pRoleState)->InitUI(*((_DWORD *)v4 + 2)) == 7366 )
     {
       a4 = *((_DWORD *)v4 + 3);
@@ -3008,7 +3008,7 @@ int CCBStage::ResetAll()
       *((float *)&g_bRoleActive + 2) = z;
       ((gbVec3D *)&g_bRoleActive)->Normalize();
       v19 = *(_DWORD *)(a2 + 8);
-      if ( v19 == 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr._gap_1888[256] + 613) == 1 )
+      if ( v19 == 4 && *(_BYTE *)(*(_DWORD *)&g_SceneMgr._gap_1888[288] + 613) == 1 )
       {
         ((CCBStageRole *)this->m_pRole[4])->GetStatus(v49);
         __asm { fstp    [esp+2Ch+a2] }

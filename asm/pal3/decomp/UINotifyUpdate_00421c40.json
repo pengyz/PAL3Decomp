@@ -3,5 +3,5 @@
   "address": "0x00421C40",
   "size_bytes": 88,
   "signature": "int __thiscall(int *this)",
-  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall UINotifyUpdate(int *this)\n{\n  int v1; // ebx\n  int v3; // edi\n  int *i; // esi\n\n  v1 = *(_DWORD *)&g_SceneMgr._gap_cd10[1580];\n  v3 = 0;\n  if ( *(this + 14392) <= 0 )\n    return 0;\n  for ( i = this + 14393; *((_BYTE *)i + 173) != 4 || !sub_419EF0((int)i, (float *)(v1 + 4)); i += 2176 )\n  {\n    if ( ++v3 >= *(this + 14392) )\n      return 0;\n  }\n  return 1;\n}\n"
+  "decompiled_c": "// between_std_methods (0x411BB0-0x430790)\nint __thiscall UINotifyUpdate(int *this)\n{\n  gbGeomNode *m_pCollisionNode; // ebx\n  int v3; // edi\n  int *i; // esi\n\n  m_pCollisionNode = g_SceneMgr.m_pCollisionNode;\n  v3 = 0;\n  if ( *(this + 14392) <= 0 )\n    return 0;\n  for ( i = this + 14393; *((_BYTE *)i + 173) != 4 || !sub_419EF0((int)i, (float *)&m_pCollisionNode->_base[4]); i += 2176 )\n  {\n    if ( ++v3 >= *(this + 14392) )\n      return 0;\n  }\n  return 1;\n}\n"
 }

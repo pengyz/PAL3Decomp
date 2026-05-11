@@ -188,15 +188,15 @@ void PtrArray::SetSize()
 }
 
 // 0x004343B0
-char * PtrArray::SetAtGrow(signed __int16 a1, int a2)
+char * PtrArray::SetAtGrow(unsigned __int16 a1, int a2)
 {
   int CountMode; // ecx
 
   CountMode = a2;
   if ( !a2 )
     CountMode = g_InputState.KeyInfo[147].CountMode;
-  if ( a1 >= 0 )
-    return (char *)(*(_DWORD *)(CountMode + 76) + 8 * (unsigned __int16)a1);
+  if ( (a1 & 0x8000u) == 0 )
+    return (char *)(*(_DWORD *)(CountMode + 76) + 8 * a1);
   else
     return (char *)(g_InputState.KeyInfo[148].Data + 24 * (a1 & 0x7FFF));
 }

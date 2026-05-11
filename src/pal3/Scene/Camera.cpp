@@ -98,12 +98,12 @@ int Camera::CheckCollision1(void *pPos, void *pBounds, float *pDist)
       return 1;
     }
   }
-  if ( !*(_DWORD *)&g_SceneMgr._gap_cd10[1580] )
+  if ( !g_SceneMgr.m_pCollisionNode )
     return 0;
   pTarget[0].x = 0.0;
   pTarget[0].y = 1.0;
   pTarget[0].z = 0.0;
-  v17 = *(struct gbVec3D *)(*(_DWORD *)&g_SceneMgr._gap_cd10[1580] + 160);
+  v17 = *(struct gbVec3D *)&g_SceneMgr.m_pCollisionNode->OffMat[8];
   v13 = ((gbRay *)&v19)->IntersectPlane(pTarget, &v17);
   if ( v13 == 3.4028235e38 )
     return 0;
@@ -150,7 +150,7 @@ int Camera::CheckCollision2(void *pPos, int rolePtr, void *pBounds)
   v11.x = 0.0;
   v11.y = 1.0;
   v11.z = 0.0;
-  v7 = ((gbRay *)&v15)->IntersectPlane(&v11, (struct gbVec3D *)(*(_DWORD *)&g_SceneMgr._gap_cd10[1580] + 160));
+  v7 = ((gbRay *)&v15)->IntersectPlane(&v11, (struct gbVec3D *)&g_SceneMgr.m_pCollisionNode->OffMat[8]);
   if ( v7 >= 3.4028235e38 )
     return 0;
   v11.y = v15.Direction.y * v7;
@@ -179,14 +179,14 @@ char Camera::IsTransitioning()
   int v8; // [esp-4h] [ebp-10h]
   int v9; // [esp-4h] [ebp-10h]
 
-  v8 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr._gap_cd10[1580] + 628);
+  v8 = *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52];
   v0 = (RoleSystem *)UISceneUpdate();
   RolePtr = v0->GetRolePtr(v8);
-  v9 = (__int64)((*(float *)(*(_DWORD *)&g_SceneMgr._gap_cd10[1580] + 12) - *(float *)(RolePtr + 136))
-               / *(float *)&g_SceneMgr._gap_cd10[1540]);
-  v7 = (__int64)((*(float *)(*(_DWORD *)&g_SceneMgr._gap_cd10[1580] + 4) - *(float *)(RolePtr + 128))
-               / *(float *)&g_SceneMgr._gap_cd10[1540]);
-  v6 = *(_DWORD *)(*(_DWORD *)&g_SceneMgr._gap_cd10[1580] + 628);
+  v9 = (__int64)((*(float *)&g_SceneMgr.m_pCollisionNode->_base[12] - *(float *)(RolePtr + 136))
+               / *(float *)&g_SceneMgr._gap_cd10[1572]);
+  v7 = (__int64)((*(float *)&g_SceneMgr.m_pCollisionNode->_base[4] - *(float *)(RolePtr + 128))
+               / *(float *)&g_SceneMgr._gap_cd10[1572]);
+  v6 = *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52];
   v2 = (_DWORD *)UISceneUpdate();
   v3 = (_DWORD *)sub_420A10(v2, v6, v7, v9);
   if ( !v3 )
