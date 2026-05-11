@@ -219,31 +219,31 @@ struct SceneMgrSlot;
         (0x398, "RoleAtt *", "m_pSelfAtt"),      # this role's base RoleAtt
         (0x39C, "int[12]", "m_nComputedStats", 48),    # computed stats [12]
         (0x3CC, "int[12]", "m_nDisplayStats", 48),     # display/effective stats [12]
-        (0x4CC, "int", "m_nPathState"),
-        (0x4D0, "int", "_d4D0"),
+        (0x4CC, "int", "m_nPathState"),             # 0=idle, 11=special
+        (0x4D0, "int", "m_nPathStep"),              # cleared on path start
         (0x4D4, "int", "_d4D4"),
-        (0x4D8, "int", "_d4D8"),
-        (0x4DC, "float", "_f4DC"),
-        (0x4E0, "int", "_d4E0"),
+        (0x4D8, "float", "m_fPathTargetX"),         # path destination vec3
+        (0x4DC, "float", "m_fPathTargetY"),
+        (0x4E0, "float", "m_fPathTargetZ"),
         (0x4E4, "float", "_f4E4"),
         (0x4E8, "int", "_d4E8"),
-        (0x4EC, "int", "_d4EC"),
-        (0x4F0, "int", "_d4F0"),
-        (0x4F4, "int", "_d4F4"),
-        (0x504, "int", "m_nCoreState"),
-        (0x508, "int", "_d508"),
+        (0x4EC, "int", "m_nPrevMoveMode"),          # saved before mode change
+        (0x4F0, "int", "m_nMoveMode"),              # 4=pathfind
+        (0x4F4, "int", "m_nMoveSubMode"),           # 7=special sub-mode
+        (0x504, "int", "m_nCoreState"),             # state machine (switch 0-0x3A)
+        (0x508, "int", "m_nTransformState"),        # updated in UpdateTransform
         (0x50C, "float", "_f50C"),
-        (0x510, "float", "_f510"),
-        (0x514, "float", "_f514"),
-        (0x518, "float", "_f518"),
+        (0x510, "float", "m_fRotAxisX"),            # rotation axis for Rotate()
+        (0x514, "float", "m_fRotAxisY"),
+        (0x518, "float", "m_fRotAxisZ"),
         (0x51C, "int", "_d51C"),
         (0x520, "int", "_d520"),
-        (0x540, "float", "_f540"),
+        (0x540, "float", "m_fRotAngle"),            # rotation angle for Rotate()
         (0x544, "float", "_f544"),
         (0x548, "float", "_f548"),
         (0x56C, "int", "_d56C"),
         (0x570, "int", "m_nRoleCount"),
-        (0x5B8, "int", "_d5B8"),
+        (0x5B8, "int", "m_nRetryCount"),            # incremented, reset to 0 (max 30)
         (0x5D0, "int", "_d5D0"),
     ])
     # SceneMgrCamBlock: 856 bytes
