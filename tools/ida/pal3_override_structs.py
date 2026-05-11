@@ -206,6 +206,9 @@ struct SceneMgrSlot;
         (0x0A0, "float", "m_fPosX"),
         (0x0A4, "float", "m_fPosY"),
         (0x0A8, "float", "m_fPosZ"),
+        (0x0AC, "char", "m_nFacing"),               # direction/facing (byte, passed to move)
+        (0x0AD, "char", "m_nActionState"),           # action state (-1 = none)
+        (0x0AE, "char", "m_nAnimState"),             # animation state (49/50 compared)
         (0x274, "int", "m_nState"),
         (0x27C, "int[12]", "m_nBaseStats", 48),            # base stat values [12]
         # Role attribute sources (stride 12: ptr at +0, 8 bytes extra per slot)
@@ -243,8 +246,13 @@ struct SceneMgrSlot;
         (0x548, "float", "_f548"),
         (0x56C, "int", "_d56C"),
         (0x570, "int", "m_nRoleCount"),
+        (0x5A0, "int", "m_pRenderObj"),              # render object ptr (vtable+16 called)
+        (0x5A4, "char", "m_bRenderFlag1"),          # render condition flag
+        (0x5A5, "char", "m_bRenderFlag2"),          # render condition flag
         (0x5B8, "int", "m_nRetryCount"),            # incremented, reset to 0 (max 30)
-        (0x5D0, "int", "_d5D0"),
+        (0x5C8, "float", "m_fMoveTargetX"),         # MoveRole stores target copy here
+        (0x5CC, "float", "m_fMoveTargetY"),
+        (0x5D0, "float", "m_fMoveTargetZ"),
     ])
     # SceneMgrCamBlock: 856 bytes
     # CameraParam[25] at +0xA0: {nID, _reserved, nParam1, nParam2} stride=16, IDs 301-323
