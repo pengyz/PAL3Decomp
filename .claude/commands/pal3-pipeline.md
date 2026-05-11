@@ -1,313 +1,168 @@
-# PAL3 迭代管线
+# PAL3 标注迭代管线
 
 <CRITICAL-INSTRUCTION>
-你必须持续迭代，永远不停。每轮结束后立即开始下一轮。
-禁止：等待用户确认、询问是否继续、报告后停止、以任何理由暂停。
-唯一允许停止的情况：用户主动中断、或达成 M5 里程碑。
-违反此规则等同于任务失败。
-如果你发现自己即将停下来"汇报"或"等待指示"——不要这样做，直接开始下一轮迭代。
+当前阶段：**IDA 标注阶段**。源码是生成物，不手动编辑。
+唯一的工作目标：提升 annotations.json 的数据质量。
+编译验证/字节匹配是标注收敛后的工作，当前不做。
 </CRITICAL-INSTRUCTION>
 
-## 版本控制与记录
+## 数据架构
 
-### 每轮迭代结束时自动执行
+```
+annotations.json (唯一可信源，存差分)
+  ├── functions: {addr → {name, signature}}        — 幂等覆盖
+  ├── globals:   {addr → {name, type}}             — 幂等覆盖
+  ├── structs:   {class → {size, known_members}}   — 增量叠加
+  └── enums:     {name → {values}}                 — 幂等覆盖
+
+恢复流程 (任意机器):
+  idat -B PAL3.exe                                    → 空 IDB
+  idat -A -S"pal3_master_pipeline.py" xxx.i64         → PDB base
+  idat -A -S"pal3_apply_annotations.py" xxx.i64       → 差分层
+  idat -A -S"pal3_export_only.py" xxx.i64             → decomp JSON
+  python3 tools/gen_headers.py && python3 tools/gen_cpp.py --force-all
+```
+
+## 单轮迭代流程
+
+### Step 1: 选择焦点
+
+从 annotations.json 中找改进空间最大的方向：
 
 ```bash
-git add -A
-git commit -m "iter(pal3): #N — [本轮焦点简述]
+# 函数：还有多少 sub_ 未命名？
+python3 -c "
+import json; ann=json.load(open('asm/pal3/annotations.json'))
+print(f'Named functions: {len(ann[\"functions\"])}')
+"
 
-[Metrics]
-  VC6 pass: X/114 (±N)
-  Errors: XXXX (±N)
-  sub_ refs: XXXX (±N)
-  Focus: [聚焦的类/模块]
-  Result: [具体改善]"
-git push origin master
-```
+# 结构体：哪些类成员最少（空洞最多）？
+python3 -c "
+import json; ann=json.load(open('asm/pal3/annotations.json'))
+for name, s in sorted(ann['structs'].items(), key=lambda x: len(x[1].get('known_members',{}))):
+    n = len(s.get('known_members', {}))
+    if n < 5: print(f'  {name}: {n} members')
+" | head -20
 
-### 里程碑达成时
-
-在 commit message 中用 `milestone(pal3): M1/M2/M3...` 前缀标记，正文包含完整指标快照：
-
-```bash
-git commit -m "milestone(pal3): M1 — 核心类结构完整
-
-[Snapshot]
-  VC6 pass: XX/114
-  Named functions: XXXX/5413
-  CCBSystem: 全部成员访问用字段名 ✓
-  CCBStage: 全部成员访问用字段名 ✓
-  ...
-[Next] M2: 函数签名完善"
-```
-
-### 迭代记录文件
-
-每轮迭代写入 `.claude/iterations/pal3_iterN.md`（不提交到 git，本地记录）：
-
-```markdown
-# Iteration N (YYYY-MM-DD HH:MM)
-## Baseline
-  VC6 pass: X/114, errors: XXXX, sub_: XXXX
-## Focus
-  [本轮做了什么]
-## Actions
-  - [具体 IDA 脚本/操作]
-## Result
-  VC6 pass: X/114 (±N), errors: XXXX (±N)
-## Next
-  [下轮方向]
-```
-
-### 用户随时可查
-
-用户发送"汇报"或"进度"时，读取最近 N 个迭代记录，输出总结：
-- 从哪个基线开始
-- 经过了几轮迭代
-- 当前在哪个里程碑
-- 关键指标变化趋势
-- 下一步计划
-
-## 核心原则（不可违背）
-
-1. **质量优先于通过率** — 宁可一个高质量文件，不要十个 hack 通过的文件
-2. **IDA 是唯一的质量来源** — 代码中的类型/偏移/命名问题，只通过 IDA 标注解决，不在后处理中编造信息
-3. **ROI 驱动选择** — 每轮迭代选收益最大的改进点，不做边角优化
-4. **不降级** — 禁止任何让代码信息量减少的操作（void* 替代具体类型、char[] 替代结构体、注释掉继承等）
-5. **可重复** — `gen_cpp.py --force-all` 任何时候跑都应该得到同样或更好的结果
-6. **问题标记不隐藏** — 当管线无法正确处理某个 IDA 输出时，必须在生成代码中留下规范标签标明问题，便于后续按类型查找和批量修复
-
-## 问题标签规范
-
-管线生成代码时遇到无法正确处理的情况，必须在输出中留下标准化注释标签：
-
-| 标签 | 含义 | 后续修复方向 |
-|------|------|-------------|
-| `[IDA_USERPURGE]` | IDA 无法确定调用约定 | IDA 中修正函数边界/签名 |
-| `[IDA_REGPARAM]` | IDA 使用了寄存器参数标注 @<reg> | IDA 中修正为标准调用约定 |
-| `[IDA_COMPLEX_RET]` | 函数指针返回类型，gen 无法解析 | IDA 中简化函数签名 |
-| `[IDA_WRONG_THIS]` | this 类型不是正确的 ClassName* | IDA 中 SetType 修正签名 |
-| `[IDA_MISTYPE]` | 类型误判 (stdiobuf→UIWnd 等) | IDA 中修正类型/删除错误传播 |
-| `[GEN_NESTED_TYPE]` | 嵌套/模板成员类型无法直接声明 | 扩展类型导出或手动定义 |
-| `[GEN_CTOR_RET]` | 构造函数有返回类型 (IDA 输出) | IDA 中修正构造函数识别 |
-
-使用方式：
-```bash
-# 查找所有某类问题
-grep -r "\[IDA_USERPURGE\]" include/pal3/gen/
-grep -r "\[IDA_COMPLEX_RET\]" include/pal3/gen/
-
-# 统计各类问题数量
-grep -roh "\[.*\]" include/pal3/gen/ src/pal3/ | sort | uniq -c | sort -rn
-```
-
-## 进度控制
-
-### 量化指标（每轮迭代必须记录）
-
-```
-=== Iteration #N (YYYY-MM-DD) ===
-[IDA]   Named functions: XXXX / 5413
-[IDA]   Structs with full layout: XXX / 869
-[GEN]   Generated cpp: XXX files, XXXX functions
-[VC6]   Compile pass: XX / XXX
-[Quality]
-  sub_ refs in code: XXXX
-  unnamed globals (dword_/byte_): XXXX
-  hardcoded offsets *(this+N): XXXX
-  void* params (named funcs): XX / XXXX
-  stdiobuf/ios_base refs: XXX
-[Focus] 本轮聚焦: (e.g. "CCBRoleState 结构体成员完善")
-[Result] 改善: (e.g. "CCBRoleState 相关 12 个函数从偏移访问变为成员名")
-```
-
-### 里程碑
-
-| 阶段 | 目标 | 衡量标准 |
-|------|------|----------|
-| M1 | 核心类结构完整 | CCBSystem/Stage/RoleState/UI 的成员访问全部用字段名 |
-| M2 | 函数签名完善 | void* 参数 < 20，sub_ 引用 < 500 |
-| M3 | 核心逻辑可编译 | Combat/ + Script/ + Scene/ 全部 VC6 通过 |
-| M4 | 全量可编译 | 113 文件全部 VC6 通过 |
-| M5 | 字节匹配验证 | 核心函数 binary compare 通过 |
-
-## 终止条件
-
-### 单轮迭代终止
-
-- 本轮标注完成（脚本已跑、IDB 已保存）
-- 导出完成（decomp JSON 已更新）
-- 重新生成完成（cpp/headers 已刷新）
-- 编译结果已记录
-- 质量指标已对比上轮
-- **如果某项指标没有改善或回退**：停下来分析原因，不继续盲目迭代
-
-### 管线整体终止
-
-达到 M3（核心逻辑可编译）后转入字节匹配阶段，工作流从"IDA 标注循环"变为"单函数字节匹配循环"。
-
-## 反馈循环
-
-### 从编译错误到 IDA 动作的映射
-
-```
-编译错误 → 根因分析 → IDA 修复动作
-    ↓
-C2027 "未定义类型 XXX"
-  → 找到 XXX 的 PDB 定义 (dia_export_structs.py)
-  → 写 IDA 脚本导入结构体 (udt_type_data_t)
-  → 验证: Hex-Rays 输出中 *(this+N) 变为 this->field
-
-C2440 "void* 转 TypedPtr*"
-  → 找到该函数的 IDA 签名
-  → 用 DIA 或调用上下文确定正确参数类型
-  → idc.SetType(addr, corrected_sig)
-  → 验证: Hex-Rays 输出参数类型正确
-
-C2065 "未声明标识符 dword_XXX"
-  → 在 IDA 中找到该地址
-  → 分析 xref 确定变量的类型和含义
-  → ida_name.set_name + apply_tinfo
-  → 验证: 导出代码中用正确变量名
-
-C2065 "未声明标识符 sub_XXX"
-  → 在 IDA 中分析该函数
-  → 从 callers 的 this-source 或 vtable 确定类归属
-  → set_name 标注
-  → 验证: 导出代码中用 Class::Method 名
-```
-
-### 从质量指标到优先级的映射
-
-```
-"hardcoded offsets 多" (*(this+N) 模式)
-  → 优先完善对应类的结构体成员定义
-  → 选影响面最大的类（被最多函数引用的）
-
-"sub_ refs 多"
-  → 优先标注高频 sub_（从调用统计中选 top N）
-  → 通过 vtable 分析批量标注同一类的方法
-
-"void* params 多"
-  → 优先修正高频函数的签名
-  → 从调用者传入的实参类型反推参数类型
-
-"某个类的代码质量特别差"
-  → 集中处理该类: 结构体导入 → 签名修正 → 重新生成 → 验证
-```
-
-### 自检清单（每轮迭代结束前）
-
-- [ ] 本轮标注是否基于数据分析（不是猜测）？
-- [ ] 有没有做任何降级操作？
-- [ ] 新增的修复是否在管线脚本中（可重复）？
-- [ ] 指标是否改善？如果没有，原因是什么？
-- [ ] 下一轮的改进方向是否明确？
-
-## 单轮迭代详细流程
-
-### Step 1: 质量评估（全局 + 局部）
-
-每轮迭代**必须**先跑全局评估，记录基线。
-
-```bash
-# 全局编译评估（CMake 整编，几十秒完成）
-cmake --build build/pal3 -- -k 0 2>&1 | tee build/pal3/build_log.txt
-# 从日志统计: 通过文件数、错误总数、错误码分布
-
-# 全局代码质量指标
-python -c "
-import os, re
-src = 'src/pal3'
-metrics = {'sub_': 0, 'unnamed_globals': 0, 'offset_access': 0, 'void_ptr': 0, 'stdiobuf': 0}
-for root, _, files in os.walk(src):
-    for f in files:
-        if not f.endswith('.cpp'): continue
-        c = open(os.path.join(root, f)).read()
-        metrics['sub_'] += len(re.findall(r'\bsub_[0-9A-Fa-f]+', c))
-        metrics['unnamed_globals'] += len(re.findall(r'\b(dword|byte|word|off|stru)_[0-9A-Fa-f]+', c))
-        metrics['offset_access'] += len(re.findall(r'\*\(\(_DWORD \*\)\w+ \+', c))
-        metrics['void_ptr'] += len(re.findall(r'void \*\w+', c))
-        metrics['stdiobuf'] += c.count('stdiobuf') + c.count('ios_base')
-for k, v in sorted(metrics.items()):
-    print(f'  {k}: {v}')
+# 全局变量：多少缺类型？
+python3 -c "
+import json; ann=json.load(open('asm/pal3/annotations.json'))
+no_type = sum(1 for g in ann['globals'].values() if not g.get('type'))
+print(f'Globals without type: {no_type}/{len(ann[\"globals\"])}')
 "
 ```
 
-**全局质量原则**：
-- **轮次结束时**全局指标不劣于轮次开始时（允许中间过程波动）
-- 允许计划内的暂时劣化（如：导入新结构体暴露更多类型错误，重新生成后消失）
-- 暂时劣化前必须明确预期（"这步会导致 +N 错误"）和恢复路径（"完成 X 后恢复"）
-- 如果轮次结束时仍然劣化且无法恢复：回退变更，重新分析方案
+选择策略（按 ROI 排序）：
+1. **高引用 sub_ 函数命名** — 从 xref 找被最多函数引用的 sub_，分析其逻辑命名
+2. **核心类结构体填充** — CCBSystem/Stage/RoleState/UI 的空洞成员
+3. **全局变量类型标注** — 高引用的无类型全局变量
+4. **函数签名修正** — void* 参数 → 具体类型
 
-**局部评估**：对本轮聚焦的类/模块，深入看代码质量（成员访问是否用字段名、调用是否用方法名）。
+### Step 2: 分析 + 标注
 
-### Step 2: 确定本轮焦点
-
-基于指标选择**一个**改进方向（不贪多）：
-- 如果某个类被大量硬编码偏移引用 → 完善该类结构体
-- 如果某些高频 sub_ 可以通过 vtable 分析批量标注 → 做 vtable 扫描
-- 如果某个函数的签名导致大量 void* 传播 → 修正该签名
-
-### Step 3: IDA 标注
+**工作方式**：读 decomp JSON + 二进制字节 → 推断信息 → 更新 annotations.json
 
 ```bash
-# 写脚本 tools/ida/pal3_iter_NNN.py
-# 内容根据 Step 2 确定的焦点
+# 读取函数反编译
+python3 -c "
+import json, os
+for f in os.listdir('asm/pal3/decomp'):
+    if 'TARGET' in f:
+        print(json.load(open(f'asm/pal3/decomp/{f}'))['decompiled_c'][:500])
+"
 
-# 执行
-idat.exe -A -S"tools/ida/pal3_iter_NNN.py" original/PAL3.exe.i64
+# 读取二进制字节 (确认偏移)
+python3 -c "
+with open('original/PAL3.exe','rb') as f:
+    f.seek(ADDR - 0x400000)
+    print(f.read(SIZE).hex(' '))
+"
 
-# 检查结果
-cat tools/ida/_logs/pal3_iter_NNN_log.txt
+# 查询 xref
+python3 tools/pal3_callgraph.py xref QUERY
+
+# 查询 PDB 类定义 (参考，偏移需验证)
+python3 -c "
+import json
+for c in json.load(open('asm/pal3a/pdb_export.json'))['classes']:
+    if c['name'] == 'TARGET':
+        for m in c['data_members']:
+            print(f'+0x{m[\"offset\"]:04X} {m[\"type\"]:30s} {m[\"name\"]}')
+"
 ```
 
-### Step 4: 导出 + 生成
+### Step 3: 更新 annotations.json
+
+直接编辑 JSON 或用脚本更新：
+
+```python
+# 添加函数名
+ann['functions']['0x00XXXXXX'] = {"name": "ClassName::MethodName", "signature": "..."}
+
+# 添加全局变量类型
+ann['globals']['0x00XXXXXX']['type'] = "ClassName *"
+
+# 添加结构体成员 (增量)
+ann['structs']['ClassName']['known_members']['OFFSET'] = {
+    "name": "m_fieldName", "type": "int", "source": "binary:EVIDENCE"
+}
+```
+
+### Step 4: 验证 (apply → export → 检查质量)
 
 ```bash
-# 导出
-idat.exe -A -S"tools/ida/pal3_export_only.py" original/PAL3.exe.i64
+# Apply 到 IDA
+~/ida-pro-9.1/idat -A -S"tools/ida/pal3_apply_annotations.py" original/PAL3.exe.91.i64
 
-# 生成
-python tools/gen_headers.py
-python tools/gen_cpp.py --force-all
+# 重新导出
+~/ida-pro-9.1/idat -A -S"tools/ida/pal3_export_only.py" original/PAL3.exe.91.i64
+
+# 检查改进：目标函数的 decomp 是否用了成员名
+python3 -c "
+import json
+d = json.load(open('asm/pal3/decomp/TARGET_ADDR.json'))
+print(d['decompiled_c'][:1000])
+"
 ```
 
-### Step 5: 验证
+### Step 5: 提交
 
 ```bash
-# VC6 编译
-# 重点验证本轮焦点涉及的文件
+git add -f asm/pal3/annotations.json
+git commit -m "iter(pal3): #N — [本轮焦点简述]
 
-# 质量对比
-# 对比 Step 1 的指标，确认改善
+[Metrics]
+  Functions named: XXXX
+  Struct members: XXXX
+  Focus: [聚焦的类/模块]
+  Result: [具体改善]"
+git push
 ```
 
-### Step 6: 记录 + 规划下轮
+## 质量指标
 
-记录本轮结果到迭代日志，确定下一轮方向。
-
-## 工具命令速查
-
-```bash
-# === 构建 (CMake + VC6 + Ninja) ===
-cmake -B build/pal3 -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-vc6.cmake -DBUILD_TARGET=pal3 -G Ninja
-cmake --build build/pal3              # 编译到第一个错误就停
-cmake --build build/pal3 -- -k 0     # 编译所有文件（不停止）
-
-# === IDA ===
-idat.exe -A -S"tools/ida/SCRIPT.py" original/PAL3.exe.i64
-
-# === DIA SDK ===
-python tools/dia_export_structs.py   # 导出所有结构体+成员（含类型递归解析）
-python tools/dia_export_bases.py     # 导出继承关系
-
-# === 代码生成 ===
-python tools/gen_headers.py          # 头文件（总是全量）
-python tools/gen_cpp.py --force-all  # cpp 全量
-python tools/gen_cpp.py ClassName    # cpp 单类（不覆盖其他手动修改）
-
-# === 质量统计 ===
-# 编译通过率从 cmake 输出直接获取
-# 代码指标用 python 脚本扫描 src/pal3/
 ```
+=== annotations.json status ===
+functions: XXXX (目标: 覆盖所有有意义的函数)
+globals:   XXXX with type / XXXX total
+structs:   XXX classes, XXXX members
+  verified: XXXX (pdb_verified / binary / gen_headers)
+  unverified: XXXX
+```
+
+## 核心原则
+
+1. **annotations.json 是唯一输出** — 每轮迭代的成果必须体现在 JSON 中
+2. **PDB 是参考不是权威** — 偏移需要从 PAL3 二进制验证
+3. **增量叠加** — 结构体成员只加不删，新发现的字段直接追加
+4. **不做编译修复** — 那是标注收敛后的工作
+5. **ROI 驱动** — 选收益最大的改进点，不做边角优化
+
+## 退出条件
+
+当以下指标趋于稳定（边际收益递减）时，结束标注阶段：
+- sub_ 函数数量不再下降
+- 结构体空洞不再减少
+- 新增函数名/类型的速度明显放缓
+
+然后切换到：编译修复 → 字节匹配阶段。
