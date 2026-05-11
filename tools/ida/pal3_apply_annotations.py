@@ -72,21 +72,18 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
         if offset > cursor:
             lines.append("    char _gap_%03X[%d];" % (cursor, offset - cursor))
 
-        # 如果是 vfptr 且有 vtable 数据，生成 virtual 方法声明
+        # 如果是 vfptr 且有 vtable 数据，用 vtbl struct 指针替代
         if offset == 0 and mname == "vfptr" and virtual_methods:
-            for vm in virtual_methods:
-                vm_name = vm.get("name", "")
-                vm_sig = vm.get("signature", "")
-                if vm_sig:
-                    sig = vm_sig.lstrip()
-                    if not sig.startswith("virtual "):
-                        sig = "virtual " + sig
-                    lines.append("    %s;" % sig)
-                elif "::" in vm_name:
-                    short = vm_name.split("::")[-1]
-                    lines.append("    virtual int %s();" % short)
-                else:
-                    lines.append("    virtual int __unk_%s();" % vm.get("address", "0")[2:])
+            # 找对应的 vtbl struct 名
+            vt_struct_name = None
+            for vt_name, vt_info in vtables.items():
+                if vt_info.get("class") == name:
+                    vt_struct_name = "vtbl_%s" % vt_info["address"][2:]
+                    break
+            if vt_struct_name:
+                lines.append("    %s *__vftable;" % vt_struct_name)
+            else:
+                lines.append("    int __vftable;")
             cursor = offset + 4
             continue
 
@@ -215,6 +212,47 @@ def apply_annotations():
 
     vtables = data.get("vtables", {})
 
+    # Pre-create vtable structs so class structs can reference them
+    import re as _re3
+    vt_pre = 0
+    for vt_name, vt_info in vtables.items():
+        methods = vt_info.get("methods", [])
+        if not methods:
+            continue
+        struct_name = "vtbl_%s" % vt_info["address"][2:]
+        lines = []
+        seen_names = set()
+        for i, m in enumerate(methods):
+            sig = m.get("signature", "")
+            mname = m.get("name", "")
+            short = "method_%d" % i
+            if "::" in mname:
+                short = mname.split("::")[-1]
+                short = _re3.sub(r'[^a-zA-Z0-9_]', '_', short)
+            elif mname.startswith("sub_"):
+                short = mname
+            if short in seen_names:
+                short = "%s_%d" % (short, i)
+            seen_names.add(short)
+            if sig:
+                sig_clean = sig.strip().rstrip(";")
+                fp_match = _re3.match(r'^(.+?)(\s+__\w+)?\s+\w+\s*(\(.*\))$', sig_clean)
+                if fp_match:
+                    ret = fp_match.group(1).strip()
+                    cc = fp_match.group(2) or ""
+                    args = fp_match.group(3)
+                    lines.append("    %s (%s*%s)%s;" % (ret, cc.strip() + " " if cc.strip() else "", short, args))
+                else:
+                    lines.append("    int (*%s)();" % short)
+            else:
+                lines.append("    int (*%s)();" % short)
+        decl = "struct %s {\n%s\n};" % (struct_name, "\n".join(lines))
+        tinfo = ida_typeinf.tinfo_t()
+        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
+            tinfo.set_named_type(til, struct_name, ida_typeinf.NTF_REPLACE)
+            vt_pre += 1
+    print("[3a] Vtable structs pre-created: %d/%d" % (vt_pre, len(vtables)))
+
     s_ok = 0
     s_fail = []
     for sname, sinfo in ordered:
@@ -247,6 +285,19 @@ def apply_annotations():
             e_ok += 1
 
     print("[4] Enums: applied=%d/%d" % (e_ok, len(enums)))
+
+    # --- 5. Vtable .rdata typing ---
+    vt_applied = 0
+    for vt_name, vt_info in vtables.items():
+        methods = vt_info.get("methods", [])
+        if not methods:
+            continue
+        vt_addr = int(vt_info["address"], 16)
+        struct_name = "vtbl_%s" % vt_info["address"][2:]
+        if idc.SetType(vt_addr, "%s x;" % struct_name):
+            vt_applied += 1
+
+    print("[5] Vtable .rdata typed: %d/%d" % (vt_applied, len(vtables)))
 
     idc.save_database(idc.get_idb_path(), 0)
     print("[*] Done. Database saved.")
