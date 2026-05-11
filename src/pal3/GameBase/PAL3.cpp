@@ -925,7 +925,7 @@ LABEL_59:
     case 6:
       UIQuadManager::GetInstance();
       UIQuadManager_Reset();
-      MiniGame3Update((int *)dword_BFDA84->_data, *(float *)&a1);
+      MiniGame3Update((int *)dword_BFDA84->_gap_0000, *(float *)&a1);
 LABEL_63:
       NPCAnimUpdate(*(float *)&a1);
       goto LABEL_64;

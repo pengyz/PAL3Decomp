@@ -3,5 +3,5 @@
   "address": "0x0040BE50",
   "size_bytes": 43,
   "signature": "int *__thiscall(RoleSystem *this)",
-  "decompiled_c": "// between_std_methods (0x407D40-0x411B80)\nint *__thiscall RoleSystem::Init(RoleSystem *this)\n{\n  int *result; // eax\n  int v2; // esi\n  int v3; // edx\n\n  result = (int *)&this->_data[972];\n  v2 = 12;\n  do\n  {\n    v3 = *(result - 12);\n    if ( *result < v3 )\n    {\n      if ( *result <= 0 )\n        *result = 0;\n    }\n    else\n    {\n      *result = v3;\n    }\n    ++result;\n    --v2;\n  }\n  while ( v2 );\n  return result;\n}\n"
+  "decompiled_c": "// between_std_methods (0x407D40-0x411B80)\nint *__thiscall RoleSystem::Init(RoleSystem *this)\n{\n  int *result; // eax\n  int v2; // esi\n  int v3; // edx\n\n  result = (int *)&this->_gap_0278[340];\n  v2 = 12;\n  do\n  {\n    v3 = *(result - 12);\n    if ( *result < v3 )\n    {\n      if ( *result <= 0 )\n        *result = 0;\n    }\n    else\n    {\n      *result = v3;\n    }\n    ++result;\n    --v2;\n  }\n  while ( v2 );\n  return result;\n}\n"
 }

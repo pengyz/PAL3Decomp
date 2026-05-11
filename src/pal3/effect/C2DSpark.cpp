@@ -52,47 +52,47 @@ C2DSpark::C2DSpark(int a2, int a3)
 {
   gbTexture *v4; // eax
   _DWORD *v5; // eax
-  int v6; // ecx
+  int d5820; // ecx
   gbTexture *v7; // eax
   _DWORD *v8; // eax
-  int v9; // ecx
+  int d5838; // ecx
   gbTexture *v10; // eax
   _DWORD *v11; // eax
-  int v12; // ecx
+  int d5830; // ecx
   gbTexture *v13; // eax
   _DWORD *v14; // eax
-  int v15; // ecx
+  int d5828; // ecx
   gbTexture *v16; // eax
   _DWORD *v17; // eax
-  int v18; // ecx
+  int d5840; // ecx
   _BYTE v20[1056]; // [esp+30h] [ebp-800h] BYREF
   char ArgList[992]; // [esp+450h] [ebp-3E0h] BYREF
 
-  *(_DWORD *)&this->_data[22636] = -1;
-  *(_DWORD *)&this->_data[22632] = 0;
+  this->_nBlendMode = -1;
+  this->_nTexture = 0;
   memset(this, 0, sizeof(C2DSpark));
-  *(float *)&this->_data[22528] = (float)a2;
-  *(float *)&this->_data[22532] = (float)a3;
-  this->_data[22552] = 0;
-  *(_DWORD *)&this->_data[22556] = ((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptTlAdd, 0);
+  this->_fTimeDelta = (float)a2;
+  this->_fTimeAccum = (float)a3;
+  this->_gap_5818[0] = 0;
+  this->_nActive = (int)((gbEffectMgr *)g_pGfxMgr->pEffectMgr)->NewRenderEffect(aGfxscriptTlAdd, 0);
   v4 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_vftable + 8))(
                       g_pGfxMgr,
                       aEffectFlare3Bm);
   *(_DWORD *)&v20[12] = 1;
-  *(_DWORD *)&this->_data[22560] = v4;
+  this->_d5820 = (int)v4;
   v4->LoadTexture(*(_DWORD *)&v20[12]);
   v5 = (_DWORD *)operator new(0x44u);
   if ( v5 )
   {
-    v6 = *(_DWORD *)&this->_data[22560];
+    d5820 = this->_d5820;
     v5[16] = 1;
-    *v5 = v6;
+    *v5 = d5820;
   }
   else
   {
     v5 = 0;
   }
-  *(_DWORD *)&this->_data[22564] = v5;
+  this->_d5824 = (int)v5;
   if ( !v5 )
   {
     qmemcpy(&v20[32], ((Logger *)ArgList)->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 41), 0x400u);
@@ -102,20 +102,20 @@ C2DSpark::C2DSpark(int a2, int a3)
                       g_pGfxMgr,
                       aEffectFlare2Bm);
   *(_DWORD *)&v20[8] = 1;
-  *(_DWORD *)&this->_data[22584] = v7;
+  this->_d5838 = (int)v7;
   v7->LoadTexture(*(_DWORD *)&v20[8]);
   v8 = (_DWORD *)operator new(0x44u);
   if ( v8 )
   {
-    v9 = *(_DWORD *)&this->_data[22584];
+    d5838 = this->_d5838;
     v8[16] = 1;
-    *v8 = v9;
+    *v8 = d5838;
   }
   else
   {
     v8 = 0;
   }
-  *(_DWORD *)&this->_data[22588] = v8;
+  this->_d583C = (int)v8;
   if ( !v8 )
   {
     qmemcpy(&v20[24], ((Logger *)&v20[1048])->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 46), 0x400u);
@@ -125,21 +125,21 @@ C2DSpark::C2DSpark(int a2, int a3)
                        g_pGfxMgr,
                        aEffectFlaregre);
   *(_DWORD *)v20 = 1;
-  *(_DWORD *)&this->_data[22576] = v10;
+  this->_d5830 = (int)v10;
   v10->LoadTexture(*(_DWORD *)v20);
   v11 = (_DWORD *)operator new(0x44u);
   if ( v11 )
   {
-    v12 = *(_DWORD *)&this->_data[22576];
+    d5830 = this->_d5830;
     v11[16] = 1;
-    *v11 = v12;
+    *v11 = d5830;
   }
   else
   {
     v11 = 0;
   }
-  *(_DWORD *)&this->_data[22580] = v11;
-  if ( !*(_DWORD *)&this->_data[22588] )
+  this->_d5834 = (int)v11;
+  if ( !this->_d583C )
   {
     qmemcpy(&v20[16], ((Logger *)&v20[1040])->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 51), 0x400u);
     _CxxThrowException(&v20[16], (_ThrowInfo *)&_TI1_AV_Exception__);
@@ -147,20 +147,20 @@ C2DSpark::C2DSpark(int a2, int a3)
   v13 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_vftable + 8))(
                        g_pGfxMgr,
                        aEffectFlareblu);
-  *(_DWORD *)&this->_data[22568] = v13;
+  this->_d5828 = (int)v13;
   v13->LoadTexture(1);
   v14 = (_DWORD *)operator new(0x44u);
   if ( v14 )
   {
-    v15 = *(_DWORD *)&this->_data[22568];
+    d5828 = this->_d5828;
     v14[16] = 1;
-    *v14 = v15;
+    *v14 = d5828;
   }
   else
   {
     v14 = 0;
   }
-  *(_DWORD *)&this->_data[22572] = v14;
+  this->_d582C = (int)v14;
   if ( !v14 )
   {
     qmemcpy(&v20[8], ((Logger *)&v20[1032])->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 56), 0x400u);
@@ -169,104 +169,104 @@ C2DSpark::C2DSpark(int a2, int a3)
   v16 = (gbTexture *)(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)g_pGfxMgr->_vftable + 8))(
                        g_pGfxMgr,
                        aEffectFlarebri);
-  *(_DWORD *)&this->_data[22592] = v16;
+  this->_d5840 = (int)v16;
   v16->LoadTexture(1);
   v17 = (_DWORD *)operator new(0x44u);
   if ( v17 )
   {
-    v18 = *(_DWORD *)&this->_data[22592];
+    d5840 = this->_d5840;
     v17[16] = 1;
-    *v17 = v18;
+    *v17 = d5840;
   }
   else
   {
     v17 = 0;
   }
-  *(_DWORD *)&this->_data[22596] = v17;
+  this->_d5844 = (int)v17;
   if ( !v17 )
   {
     qmemcpy(v20, ((Logger *)&v20[1024])->FormatException(aCNewFailed_0, aDProjectPal3Co_10, 61), 0x400u);
     _CxxThrowException(v20, (_ThrowInfo *)&_TI1_AV_Exception__);
   }
-  *(_DWORD *)&this->_data[22636] = -1;
-  *(_DWORD *)&this->_data[22628] = 1065353216;
-  *(_DWORD *)&this->_data[22624] = 1065353216;
-  *(_DWORD *)&this->_data[22620] = 0;
-  *(_DWORD *)&this->_data[22616] = 0;
-  *(_DWORD *)&this->_data[22632] = 1056964608;
+  this->_nBlendMode = -1;
+  this->_nColorA = 1065353216;
+  this->_nColorB = 1065353216;
+  this->_nColorG = 0;
+  this->_nColorR = 0;
+  this->_nTexture = 1056964608;
   this;
 }
 
 // 0x004D5DC0
 C2DSpark::~C2DSpark()
 {
-  gbRefObject *v2; // ecx
-  gbRefObject *v3; // ecx
-  gbRefObject *v4; // ecx
-  gbRefObject *v5; // ecx
-  gbRefObject *v6; // ecx
-  gbRefObject *v7; // ecx
+  gbRefObject *nActive; // ecx
+  gbRefObject *d5820; // ecx
+  gbRefObject *d5830; // ecx
+  gbRefObject *d5828; // ecx
+  gbRefObject *d5838; // ecx
+  gbRefObject *d5840; // ecx
 
-  v2 = (gbRefObject *)*(gbRefObject **)&this->_data[22556];
-  if ( v2 )
+  nActive = (gbRefObject *)this->_nActive;
+  if ( nActive )
   {
-    v2->Release();
-    *(_DWORD *)&this->_data[22556] = 0;
+    nActive->Release();
+    this->_nActive = 0;
   }
-  v3 = (gbRefObject *)*(gbRefObject **)&this->_data[22560];
-  if ( v3 )
+  d5820 = (gbRefObject *)this->_d5820;
+  if ( d5820 )
   {
-    v3->Release();
-    *(_DWORD *)&this->_data[22560] = 0;
+    d5820->Release();
+    this->_d5820 = 0;
   }
-  v4 = (gbRefObject *)*(gbRefObject **)&this->_data[22576];
-  if ( v4 )
+  d5830 = (gbRefObject *)this->_d5830;
+  if ( d5830 )
   {
-    v4->Release();
-    *(_DWORD *)&this->_data[22576] = 0;
+    d5830->Release();
+    this->_d5830 = 0;
   }
-  v5 = (gbRefObject *)*(gbRefObject **)&this->_data[22568];
-  if ( v5 )
+  d5828 = (gbRefObject *)this->_d5828;
+  if ( d5828 )
   {
-    v5->Release();
-    *(_DWORD *)&this->_data[22568] = 0;
+    d5828->Release();
+    this->_d5828 = 0;
   }
-  v6 = (gbRefObject *)*(gbRefObject **)&this->_data[22584];
-  if ( v6 )
+  d5838 = (gbRefObject *)this->_d5838;
+  if ( d5838 )
   {
-    v6->Release();
-    *(_DWORD *)&this->_data[22584] = 0;
+    d5838->Release();
+    this->_d5838 = 0;
   }
-  v7 = (gbRefObject *)*(gbRefObject **)&this->_data[22592];
-  if ( v7 )
+  d5840 = (gbRefObject *)this->_d5840;
+  if ( d5840 )
   {
-    v7->Release();
-    *(_DWORD *)&this->_data[22592] = 0;
+    d5840->Release();
+    this->_d5840 = 0;
   }
-  if ( *(_DWORD *)&this->_data[22564] )
+  if ( this->_d5824 )
   {
-    operator delete(*(void **)&this->_data[22564]);
-    *(_DWORD *)&this->_data[22564] = 0;
+    operator delete((void *)this->_d5824);
+    this->_d5824 = 0;
   }
-  if ( *(_DWORD *)&this->_data[22580] )
+  if ( this->_d5834 )
   {
-    operator delete(*(void **)&this->_data[22580]);
-    *(_DWORD *)&this->_data[22580] = 0;
+    operator delete((void *)this->_d5834);
+    this->_d5834 = 0;
   }
-  if ( *(_DWORD *)&this->_data[22572] )
+  if ( this->_d582C )
   {
-    operator delete(*(void **)&this->_data[22572]);
-    *(_DWORD *)&this->_data[22572] = 0;
+    operator delete((void *)this->_d582C);
+    this->_d582C = 0;
   }
-  if ( *(_DWORD *)&this->_data[22588] )
+  if ( this->_d583C )
   {
-    operator delete(*(void **)&this->_data[22588]);
-    *(_DWORD *)&this->_data[22588] = 0;
+    operator delete((void *)this->_d583C);
+    this->_d583C = 0;
   }
-  if ( *(_DWORD *)&this->_data[22596] )
+  if ( this->_d5844 )
   {
-    operator delete(*(void **)&this->_data[22596]);
-    *(_DWORD *)&this->_data[22596] = 0;
+    operator delete((void *)this->_d5844);
+    this->_d5844 = 0;
   }
 }
 
@@ -277,23 +277,23 @@ char C2DSpark::CreateSingle(const void *a2)
   char *i; // ecx
 
   v3 = 0;
-  for ( i = &this->_data[41]; *i; i += 44 )
+  for ( i = &this->_gap_0000[41]; *i; i += 44 )
   {
     if ( ++v3 >= 512 )
       return 0;
   }
   qmemcpy((char *)this + 44 * v3, a2, 0x2Cu);
-  this->_data[44 * v3 + 41] = 1;
-  if ( v3 >= *(_DWORD *)&this->_data[22536] )
-    *(_DWORD *)&this->_data[22536] = v3 + 1;
+  this->_gap_0000[44 * v3 + 41] = 1;
+  if ( v3 >= this->_nState )
+    this->_nState = v3 + 1;
   return 1;
 }
 
 // 0x004D5F20
 char C2DSpark::CreateTrack(char a2)
 {
-  *(_DWORD *)&this->_data[22540] = 0;
-  this->_data[22552] = a2;
+  this->_fParam1 = 0.0;
+  this->_gap_5818[0] = a2;
   return a2;
 }
 
@@ -325,9 +325,9 @@ int C2DSpark::SetEnableMouseTrack(int a2, int a3)
     ++v4;
   }
   while ( v4 < 60 );
-  *(_DWORD *)&this->_data[22540] = 1132068864;
-  *(_DWORD *)&this->_data[22544] = a2;
-  *(_DWORD *)&this->_data[22548] = a3;
+  this->_fParam1 = 250.0;
+  this->_nCount = a2;
+  this->_nMaxCount = a3;
   return a3;
 }
 
@@ -370,7 +370,7 @@ _BYTE * C2DSpark::CreateStars()
   _BYTE *result; // eax
   int v2; // edx
 
-  result = (_BYTE *)&this->_data[41];
+  result = (_BYTE *)&this->_gap_0000[41];
   v2 = 512;
   do
   {
@@ -379,7 +379,7 @@ _BYTE * C2DSpark::CreateStars()
     --v2;
   }
   while ( v2 );
-  *(_DWORD *)&this->_data[22536] = 0;
+  this->_nState = 0;
   return result;
 }
 
@@ -391,22 +391,22 @@ int C2DSpark::DestroyAll()
   int x; // eax
   double v5; // st7
   double v6; // st7
-  struct gbRenderEffect *v7; // ecx
+  struct gbRenderEffect *nActive; // ecx
   int result; // eax
   char *v9; // edi
-  struct gbTextureArray *v10; // ecx
+  int d583C; // ecx
   struct gbRenderEffect *v11; // ecx
-  int v12; // ecx
+  int nState; // ecx
   struct gbTextureArray *v13; // [esp-4h] [ebp-20h]
   struct tagPOINT Point; // [esp+Ch] [ebp-10h] BYREF
   float v15; // [esp+14h] [ebp-8h]
   int v16; // [esp+18h] [ebp-4h]
 
   DynVertBuf = ((gbVertPoolMgr *)g_pGfxMgr->pVertPoolMgr)->GetDynVertBuf(0x114u);
-  if ( *(float *)&this->_data[22540] > 2.0 )
+  if ( this->_fParam1 > 2.0 )
   {
     ((GRPinput *)&Point)->GetCursorPos();
-    if ( this->_data[22552] )
+    if ( this->_gap_5818[0] )
     {
       GetCursorPos(&Point);
       y = Point.y;
@@ -414,29 +414,29 @@ int C2DSpark::DestroyAll()
     }
     else
     {
-      x = *(_DWORD *)&this->_data[22544];
-      y = *(_DWORD *)&this->_data[22548];
+      x = this->_nCount;
+      y = this->_nMaxCount;
       Point.x = x;
       Point.y = y;
     }
     v16 = y - 64;
-    *(float *)&this->_data[22600] = (float)(x - 64);
+    this->_fPosX = (float)(x - 64);
     v5 = (double)v16;
     v16 = x + 64;
-    *(float *)&this->_data[22604] = v5;
+    this->_fPosY = v5;
     v6 = (double)v16;
     v16 = y + 64;
-    *(float *)&this->_data[22608] = v6;
-    *(float *)&this->_data[22612] = (float)v16;
-    v7 = (struct gbRenderEffect *)*(struct gbRenderEffect **)&this->_data[22556];
-    this->_data[22639] = (__int64)*(float *)&this->_data[22540];
-    DynVertBuf->RenderUIQuad((struct gbUIQuad *)&this->_data[22600], 1, v7, *(struct gbTextureArray **)&this->_data[22564]);
+    this->_fVelX = v6;
+    this->_fVelY = (float)v16;
+    nActive = (struct gbRenderEffect *)this->_nActive;
+    HIBYTE(this->_nBlendMode) = (__int64)this->_fParam1;
+    DynVertBuf->RenderUIQuad((struct gbUIQuad *)&this->_fPosX, 1, nActive, (struct gbTextureArray *)this->_d5824);
   }
-  result = *(_DWORD *)&this->_data[22536];
+  result = this->_nState;
   v16 = 0;
   if ( result > 0 )
   {
-    v9 = (char *)&this->_data[32];
+    v9 = (char *)&this->_gap_0000[32];
     do
     {
       if ( v9[9] )
@@ -445,38 +445,38 @@ int C2DSpark::DestroyAll()
         switch ( v9[8] )
         {
           case 0:
-            v10 = (struct gbTextureArray *)*(struct gbTextureArray **)&this->_data[22588];
+            d583C = this->_d583C;
             goto LABEL_14;
           case 1:
-            v10 = (struct gbTextureArray *)*(struct gbTextureArray **)&this->_data[22580];
+            d583C = this->_d5834;
             goto LABEL_14;
           case 2:
-            v10 = (struct gbTextureArray *)*(struct gbTextureArray **)&this->_data[22572];
+            d583C = this->_d582C;
             goto LABEL_14;
           case 3:
-            v10 = (struct gbTextureArray *)*(struct gbTextureArray **)&this->_data[22596];
+            d583C = this->_d5844;
 LABEL_14:
-            *(_DWORD *)&this->_data[22600] = *((_DWORD *)v9 - 8);
-            *(_DWORD *)&this->_data[22604] = *((_DWORD *)v9 - 7);
-            *(float *)&this->_data[22608] = *(float *)v9 + *((float *)v9 - 8);
-            *(float *)&this->_data[22612] = *(float *)v9 + *((float *)v9 - 7);
+            this->_fPosX = *((float *)v9 - 8);
+            this->_fPosY = *((float *)v9 - 7);
+            this->_fVelX = *(float *)v9 + *((float *)v9 - 8);
+            this->_fVelY = *(float *)v9 + *((float *)v9 - 7);
             v15 = *((float *)v9 - 2);
             Point.y = (int)v15;
-            v13 = v10;
-            v11 = (struct gbRenderEffect *)*(struct gbRenderEffect **)&this->_data[22556];
-            this->_data[22639] = Point.y;
-            DynVertBuf->RenderUIQuad((struct gbUIQuad *)&this->_data[22600], 1, v11, v13);
+            v13 = (struct gbTextureArray *)d583C;
+            v11 = (struct gbRenderEffect *)this->_nActive;
+            HIBYTE(this->_nBlendMode) = Point.y;
+            DynVertBuf->RenderUIQuad((struct gbUIQuad *)&this->_fPosX, 1, v11, v13);
             break;
           default:
             return result;
         }
       }
-      v12 = *(_DWORD *)&this->_data[22536];
+      nState = this->_nState;
       result = v16 + 1;
       v9 += 44;
       ++v16;
     }
-    while ( v16 < v12 );
+    while ( v16 < nState );
   }
   return result;
 }
@@ -493,7 +493,7 @@ int C2DSpark::Render(float a2)
   struct tagPOINT Point; // [esp+8h] [ebp-Ch] BYREF
   int v10; // [esp+10h] [ebp-4h]
 
-  if ( this->_data[22552] )
+  if ( this->_gap_5818[0] )
   {
     ((GRPinput *)&Point)->GetCursorPos();
     if ( Point != qword_17A8438 )
@@ -522,16 +522,16 @@ int C2DSpark::Render(float a2)
       while ( v3 );
       qword_17A8438 = (__int64)Point;
       v10 = (unsigned __int8)rand();
-      *(float *)&this->_data[22540] = (float)v10;
+      this->_fParam1 = (float)v10;
     }
   }
-  if ( *(float *)&this->_data[22540] > 2.0 )
-    *(float *)&this->_data[22540] = *(float *)&this->_data[22540] - a2 * 200.0;
-  result = *(_DWORD *)&this->_data[22536];
+  if ( this->_fParam1 > 2.0 )
+    this->_fParam1 = this->_fParam1 - a2 * 200.0;
+  result = this->_nState;
   v6 = 0;
   if ( result > 0 )
   {
-    v7 = (char *)&this->_data[8];
+    v7 = (char *)&this->_gap_0000[8];
     do
     {
       if ( v7[33] )
@@ -543,21 +543,21 @@ int C2DSpark::Render(float a2)
         *((float *)v7 + 4) = a2 * *((float *)v7 + 5) + *((float *)v7 + 4);
         *(float *)&v10 = a2 * *((float *)v7 + 7) + *((float *)v7 + 6);
         *((float *)v7 + 6) = *(float *)&v10;
-        if ( *((float *)v7 - 2) >= (double)*(float *)&this->_data[22528]
+        if ( *((float *)v7 - 2) >= (double)this->_fTimeDelta
           || (*(float *)&Point.x = -*(float *)&v10, *((float *)v7 - 2) <= (double)*(float *)&Point.x)
-          || *((float *)v7 - 1) >= (double)*(float *)&this->_data[22532]
+          || *((float *)v7 - 1) >= (double)this->_fTimeAccum
           || *((float *)v7 - 1) <= (double)*(float *)&Point.x
           || *((float *)v7 + 4) <= 1.0
           || *((float *)v7 + 4) > 255.0
           || *(float *)&v10 < 0.0099999998 )
         {
           v7[33] = 0;
-          v8 = *(_DWORD *)&this->_data[22536] - 1;
+          v8 = this->_nState - 1;
           if ( v6 == v8 )
-            *(_DWORD *)&this->_data[22536] = v8;
+            this->_nState = v8;
         }
       }
-      result = *(_DWORD *)&this->_data[22536];
+      result = this->_nState;
       ++v6;
       v7 += 44;
     }
