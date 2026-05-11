@@ -27,9 +27,11 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 ANNOTATIONS_FILE = os.path.join(PROJECT_ROOT, "asm", "pal3", "annotations.json")
 
 
-def build_struct_decl(name, struct_info):
+def build_struct_decl(name, struct_info, all_structs=None):
     """从 known_members + size 生成带 gap 填充的 C struct 声明。支持基类继承和数组类型。"""
     import re as _re
+    if all_structs is None:
+        all_structs = {}
 
     members = struct_info.get("known_members", {})
     size = max(struct_info.get("binary_size", 0), struct_info.get("pdb_size", 0), struct_info.get("gen_size", 0))
@@ -77,7 +79,14 @@ def build_struct_decl(name, struct_info):
             elif mtype == "float":  cursor = offset + 4
             elif mtype in ("char", "unsigned char", "bool", "BYTE"): cursor = offset + 1
             elif mtype in ("short", "unsigned short", "WORD"):       cursor = offset + 2
-            else:                   cursor = offset + 4
+            else:
+                # Look up type size from all_structs
+                clean = mtype.replace("class ", "").replace("struct ", "").strip()
+                ref_size = 0
+                if clean in all_structs:
+                    ref = all_structs[clean]
+                    ref_size = max(ref.get("pdb_size", 0), ref.get("binary_size", 0))
+                cursor = offset + (ref_size if ref_size > 0 else 4)
 
     if size > 0 and cursor < size:
         lines.append("    char _tail_%03X[%d];" % (cursor, size - cursor))
@@ -179,7 +188,7 @@ def apply_annotations():
     s_ok = 0
     s_fail = []
     for sname, sinfo in ordered:
-        decl = build_struct_decl(sname, sinfo)
+        decl = build_struct_decl(sname, sinfo, structs)
         if not decl:
             continue
         tinfo = ida_typeinf.tinfo_t()
