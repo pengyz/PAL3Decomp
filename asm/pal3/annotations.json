@@ -24400,7 +24400,9 @@
           "source": "pdb_verified_by_old_ida"
         }
       },
-      "pdb_size": 3552
+      "pdb_size": 3552,
+      "base_class": "UIFrameWnd",
+      "base_size": 72
     },
     "Scene": {
       "note": "Verified from binary. PDB size was 1094164 (wrong/different version)",
@@ -27989,7 +27991,9 @@
           "source": "pdb_verified_by_old_ida"
         }
       },
-      "gen_size": 72
+      "gen_size": 72,
+      "base_class": "UIWnd",
+      "base_size": 68
     },
     "CCBControl": {
       "pdb_size": 1392,
@@ -30404,8 +30408,14 @@
           "name": "m_Quad",
           "type": "gbUIQuad",
           "source": "gen_headers_9.2"
+        },
+        "0": {
+          "name": "m_Spark",
+          "type": "C2DSpark::tagSpark[512]",
+          "source": "pdb_fill"
         }
-      }
+      },
+      "pdb_size": 24688
     },
     "C3DSpark": {
       "gen_size": 15920,
@@ -30560,7 +30570,9 @@
           "type": "int",
           "source": "gen_headers_9.2"
         }
-      }
+      },
+      "base_class": "UIFrameWnd",
+      "base_size": 72
     },
     "CCBControlWindow": {
       "gen_size": 116,
@@ -30620,7 +30632,9 @@
           "type": "int",
           "source": "gen_headers_9.2"
         }
-      }
+      },
+      "base_class": "UIFrameWnd",
+      "base_size": 72
     },
     "CCBDisplayChain": {
       "gen_size": 17944,
@@ -30785,7 +30799,9 @@
           "type": "int",
           "source": "gen_headers_9.2"
         }
-      }
+      },
+      "base_class": "UIFrameWnd",
+      "base_size": 72
     },
     "CCBLineupWindow": {
       "gen_size": 124,
@@ -30805,7 +30821,9 @@
           "type": "CCBUI *",
           "source": "gen_headers_9.2"
         }
-      }
+      },
+      "base_class": "UIFrameWnd",
+      "base_size": 72
     },
     "CCBMagicWindow": {
       "gen_size": 128,
@@ -30850,7 +30868,9 @@
           "type": "int",
           "source": "gen_headers_9.2"
         }
-      }
+      },
+      "base_class": "UIFrameWnd",
+      "base_size": 72
     },
     "CCBParabolaWindow": {
       "gen_size": 84,
@@ -30905,7 +30925,9 @@
           "type": "UIButton *",
           "source": "gen_headers_9.2"
         }
-      }
+      },
+      "base_class": "UIFrameWnd",
+      "base_size": 72
     },
     "CCBResultWindow": {
       "gen_size": 180,
@@ -30990,7 +31012,9 @@
           "type": "BYTE",
           "source": "gen_headers_9.2"
         }
-      }
+      },
+      "base_class": "UIFrameWnd",
+      "base_size": 72
     },
     "CCBSkillWindow": {
       "gen_size": 84,
@@ -31004,8 +31028,16 @@
           "name": "m_pDescription",
           "type": "UIStatic *",
           "source": "gen_headers_9.2"
+        },
+        "80": {
+          "name": "m_pSkillList",
+          "type": "UIListBox *[1]",
+          "source": "pdb_fill"
         }
-      }
+      },
+      "pdb_size": 84,
+      "base_class": "UIFrameWnd",
+      "base_size": 72
     },
     "CCBStageCam": {
       "gen_size": 6272,
@@ -31044,8 +31076,19 @@
           "name": "m_nCurTask",
           "type": "int",
           "source": "gen_headers_9.2"
+        },
+        "736": {
+          "name": "m_Task",
+          "type": "tagCamTask[50]",
+          "source": "pdb_fill"
+        },
+        "4736": {
+          "name": "m_EditorCam",
+          "type": "tagCam[64]",
+          "source": "pdb_fill"
         }
-      }
+      },
+      "pdb_size": 6272
     },
     "CCBStageEffect": {
       "gen_size": 25488,
@@ -31269,8 +31312,39 @@
           "name": "m_eBFAForce",
           "type": "ECBForce",
           "source": "gen_headers_9.2"
+        },
+        "8": {
+          "name": "m_vecFiveLineup",
+          "type": "gbVec3D[7]",
+          "source": "pdb_fill"
+        },
+        "92": {
+          "name": "m_vecInitFiveLineup",
+          "type": "gbVec3D[7]",
+          "source": "pdb_fill"
+        },
+        "176": {
+          "name": "m_vecEnemyLineup",
+          "type": "gbVec3D[7]",
+          "source": "pdb_fill"
+        },
+        "260": {
+          "name": "m_vecInitEnemyLineup",
+          "type": "gbVec3D[7]",
+          "source": "pdb_fill"
+        },
+        "345": {
+          "name": "m_sLastScene",
+          "type": "char[256]",
+          "source": "pdb_fill"
+        },
+        "620": {
+          "name": "m_pCorpse",
+          "type": "gbGeomNode *[11]",
+          "source": "pdb_fill"
         }
-      }
+      },
+      "pdb_size": 1012
     },
     "CCBStageShadow": {
       "gen_size": 1556,
@@ -43314,8 +43388,21 @@
           "name": "m_movesel",
           "type": "int",
           "source": "gen_headers_9.2"
+        },
+        "452": {
+          "name": "m_column",
+          "type": "UILBColumn[8]",
+          "source": "pdb_fill"
+        },
+        "1272": {
+          "name": "m_rowenable",
+          "type": "std::vector<int,std::allocator<int> >",
+          "source": "pdb_fill"
         }
-      }
+      },
+      "pdb_size": 1288,
+      "base_class": "UIWnd",
+      "base_size": 68
     },
     "UILoadingFrm": {
       "gen_size": 332,
@@ -53046,6 +53133,26 @@
           "source": "gen_headers_9.2"
         }
       }
+    },
+    "CCCTData": {
+      "known_members": {
+        "0": {
+          "name": "m_Pool",
+          "type": "tagCCT[2000]",
+          "source": "pdb_fill"
+        },
+        "408000": {
+          "name": "m_bPoolInUse",
+          "type": "unsigned char[2000]",
+          "source": "pdb_fill"
+        },
+        "410000": {
+          "name": "m_nCCTIndex",
+          "type": "int[50][100]",
+          "source": "pdb_fill"
+        }
+      },
+      "pdb_size": 430000
     }
   },
   "enums": {}
