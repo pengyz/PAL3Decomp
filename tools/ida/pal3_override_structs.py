@@ -169,7 +169,49 @@ struct SceneMgrSlot;
     idc.parse_decls(FWD_SM, idc.PT_TYP)
 
     # Use build_struct for guaranteed correct sizes
-    idc.parse_decls("struct RoleSystem { char _data[8704]; };", idc.PT_TYP)
+    # RoleSystem: 8704 bytes, PAL3-only class (not in PDB)
+    # Key members from Hex-Rays analysis:
+    #   +0x004: float position (MoveRole: subtract from RolePtr+128)
+    #   +0x0A0-0x0A8: float vec3 (position/direction)
+    #   +0x274: int state (13 refs)
+    #   +0x504: int core state (17 refs, most accessed)
+    build_struct("RoleSystem", 8704, [
+        (0x004, "float", "m_fTargetX"),
+        (0x008, "float", "m_fTargetY"),
+        (0x00C, "float", "m_fTargetZ"),
+        (0x010, "int", "_d010"),
+        (0x014, "int", "_d014"),
+        (0x0A0, "float", "m_fPosX"),
+        (0x0A4, "float", "m_fPosY"),
+        (0x0A8, "float", "m_fPosZ"),
+        (0x274, "int", "m_nState"),
+        (0x4CC, "int", "_d4CC"),
+        (0x4D0, "int", "_d4D0"),
+        (0x4D4, "int", "_d4D4"),
+        (0x4D8, "int", "_d4D8"),
+        (0x4DC, "float", "_f4DC"),
+        (0x4E0, "int", "_d4E0"),
+        (0x4E4, "float", "_f4E4"),
+        (0x4E8, "int", "_d4E8"),
+        (0x4EC, "int", "_d4EC"),
+        (0x4F0, "int", "_d4F0"),
+        (0x4F4, "int", "_d4F4"),
+        (0x504, "int", "m_nCoreState"),
+        (0x508, "int", "_d508"),
+        (0x50C, "float", "_f50C"),
+        (0x510, "float", "_f510"),
+        (0x514, "float", "_f514"),
+        (0x518, "float", "_f518"),
+        (0x51C, "int", "_d51C"),
+        (0x520, "int", "_d520"),
+        (0x540, "float", "_f540"),
+        (0x544, "float", "_f544"),
+        (0x548, "float", "_f548"),
+        (0x56C, "int", "_d56C"),
+        (0x570, "int", "m_nRoleCount"),
+        (0x5B8, "int", "_d5B8"),
+        (0x5D0, "int", "_d5D0"),
+    ])
     # SceneMgrCamBlock: 856 bytes
     # CameraParam[25] at +0xA0: {nID, _reserved, nParam1, nParam2} stride=16, IDs 301-323
     # CameraCmd[33] at +0x230: {nCmdID, nValue} stride=8, IDs 4101-4304
@@ -367,13 +409,39 @@ struct gbGfxManager {
     # =========================================================================
     # OVERRIDE 6: C2DSpark (22640 bytes, PAL3A=24688)
     # Evidence: C2DSpark constructor has memset(this, 0, 0x5870)
+    # Members extracted from Hex-Rays (27 offsets in +0x5800-0x586C region)
     # =========================================================================
-    DECL = """
-struct C2DSpark { char _data[22640]; };
-"""
-    if idc.parse_decls(DECL, idc.PT_TYP) == 0:
+    if build_struct("C2DSpark", 22640, [
+        (0x5800, "float", "_fTimeDelta"),
+        (0x5804, "float", "_fTimeAccum"),
+        (0x5808, "int", "_nState"),
+        (0x580C, "float", "_fParam1"),
+        (0x5810, "int", "_nCount"),
+        (0x5814, "int", "_nMaxCount"),
+        (0x581C, "int", "_nActive"),
+        (0x5820, "int", "_d5820"),
+        (0x5824, "int", "_d5824"),
+        (0x5828, "int", "_d5828"),
+        (0x582C, "int", "_d582C"),
+        (0x5830, "int", "_d5830"),
+        (0x5834, "int", "_d5834"),
+        (0x5838, "int", "_d5838"),
+        (0x583C, "int", "_d583C"),
+        (0x5840, "int", "_d5840"),
+        (0x5844, "int", "_d5844"),
+        (0x5848, "float", "_fPosX"),
+        (0x584C, "float", "_fPosY"),
+        (0x5850, "float", "_fVelX"),
+        (0x5854, "float", "_fVelY"),
+        (0x5858, "int", "_nColorR"),
+        (0x585C, "int", "_nColorG"),
+        (0x5860, "int", "_nColorB"),
+        (0x5864, "int", "_nColorA"),
+        (0x5868, "int", "_nTexture"),
+        (0x586C, "int", "_nBlendMode"),
+    ]):
         applied += 1
-        log("[+] C2DSpark: 22640 bytes (PAL3A=24688)")
+        log("[+] C2DSpark: 22640 bytes, 27 typed members")
     else:
         errors += 1
         log("[!] C2DSpark: FAILED")
