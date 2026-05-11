@@ -24150,6 +24150,56 @@
           "name": "m_Player",
           "type": "tagPlayerSet[11]",
           "source": "pdb_verified_by_old_ida"
+        },
+        "60": {
+          "name": "m_pStage2",
+          "type": "int",
+          "source": "binary:raw_null_check"
+        },
+        "76": {
+          "name": "m_nTurnCount",
+          "type": "int",
+          "source": "binary:raw_Init"
+        },
+        "84": {
+          "name": "m_nMaxTurn",
+          "type": "int",
+          "source": "binary:raw_compare"
+        },
+        "156": {
+          "name": "m_nFrameCount",
+          "type": "int",
+          "source": "binary:raw_counter"
+        },
+        "160": {
+          "name": "m_nCurFrame",
+          "type": "int",
+          "source": "binary:raw_frame"
+        },
+        "164": {
+          "name": "m_nMaxFrame",
+          "type": "int",
+          "source": "binary:raw_limit"
+        },
+        "168": {
+          "name": "m_fFrameTime",
+          "type": "float",
+          "source": "binary:raw_float_add"
+        },
+        "172": {
+          "name": "m_bAnimating",
+          "type": "unsigned char",
+          "source": "binary:raw_byte_flag"
+        },
+        "173": {
+          "name": "m_bPaused",
+          "type": "unsigned char",
+          "source": "binary:raw_byte_flag"
+        },
+        "174": {
+          "name": "m_bLoopMode",
+          "type": "unsigned char",
+          "source": "binary:raw_byte_flag"
         }
       },
       "pdb_size": 90840
@@ -24466,6 +24516,136 @@
           "name": "m_pImbibeNimbus",
           "type": "tagImbibeNimbus *",
           "source": "pdb_verified_by_old_ida"
+        },
+        "96": {
+          "name": "m_nPosX",
+          "type": "int",
+          "source": "binary:raw_position"
+        },
+        "100": {
+          "name": "m_nPosY",
+          "type": "int",
+          "source": "binary:raw_position"
+        },
+        "108": {
+          "name": "m_nField6C",
+          "type": "int",
+          "source": "binary:raw_layout"
+        },
+        "128": {
+          "name": "m_nWidth",
+          "type": "int",
+          "source": "binary:raw_layout"
+        },
+        "132": {
+          "name": "m_nHeight",
+          "type": "int",
+          "source": "binary:raw_layout"
+        },
+        "136": {
+          "name": "m_nField88",
+          "type": "int",
+          "source": "binary:raw_layout"
+        },
+        "158": {
+          "name": "m_wFlag9E",
+          "type": "short",
+          "source": "binary:raw_short"
+        },
+        "160": {
+          "name": "m_wFlagA0",
+          "type": "short",
+          "source": "binary:raw_short"
+        },
+        "340": {
+          "name": "m_nField154",
+          "type": "int",
+          "source": "binary:raw_init_zero"
+        },
+        "352": {
+          "name": "m_nField160",
+          "type": "int",
+          "source": "binary:raw_init_zero"
+        },
+        "356": {
+          "name": "m_nRoundState",
+          "type": "int",
+          "source": "binary:raw_286votes"
+        },
+        "360": {
+          "name": "m_nField168",
+          "type": "int",
+          "source": "binary:raw_init_zero"
+        },
+        "364": {
+          "name": "m_nField16C",
+          "type": "int",
+          "source": "binary:raw_init_zero"
+        },
+        "368": {
+          "name": "m_bField170",
+          "type": "unsigned char",
+          "source": "binary:raw_byte"
+        },
+        "372": {
+          "name": "m_fScale",
+          "type": "float",
+          "source": "binary:raw_4.0f"
+        },
+        "376": {
+          "name": "m_nField178",
+          "type": "int",
+          "source": "binary:raw_init_zero"
+        },
+        "378": {
+          "name": "m_wField17A",
+          "type": "short",
+          "source": "binary:raw_short"
+        },
+        "3268": {
+          "name": "m_pRolePanel",
+          "type": "int",
+          "source": "binary:raw_qmemcpy"
+        },
+        "14272": {
+          "name": "m_nField37C0",
+          "type": "int",
+          "source": "binary:raw_init_zero"
+        },
+        "14276": {
+          "name": "m_nField37C4",
+          "type": "int",
+          "source": "binary:raw_init_zero"
+        },
+        "17880": {
+          "name": "m_nField45D8",
+          "type": "int",
+          "source": "binary:raw_init_zero"
+        },
+        "24924": {
+          "name": "m_nDispX",
+          "type": "int",
+          "source": "binary:raw_rect"
+        },
+        "24928": {
+          "name": "m_nDispY",
+          "type": "int",
+          "source": "binary:raw_rect"
+        },
+        "24932": {
+          "name": "m_nDispW",
+          "type": "int",
+          "source": "binary:raw_800"
+        },
+        "24936": {
+          "name": "m_nDispH",
+          "type": "int",
+          "source": "binary:raw_600"
+        },
+        "105904": {
+          "name": "m_pCombatObj",
+          "type": "int",
+          "source": "binary:raw_93votes"
         }
       },
       "pdb_size": 3552,
@@ -25975,6 +26155,11 @@
           "name": "m_ScriptSlots",
           "type": "char[17408]",
           "source": "binary:Execute g_SceneMgr._gap_1BA4[8704*index]"
+        },
+        "128": {
+          "name": "m_nSceneParam",
+          "type": "int",
+          "source": "binary:raw_this32"
         }
       },
       "pdb_size": 1,
@@ -25999,13 +26184,13 @@
           "source": "gen_headers_9.2"
         },
         "16": {
-          "name": "_d010",
-          "type": "int",
+          "name": "m_fField10",
+          "type": "float",
           "source": "gen_headers_9.2"
         },
         "20": {
-          "name": "_d014",
-          "type": "int",
+          "name": "m_fDirX",
+          "type": "float",
           "source": "gen_headers_9.2"
         },
         "160": {
@@ -26109,8 +26294,8 @@
           "source": "gen_headers_9.2"
         },
         "1256": {
-          "name": "_d4E8",
-          "type": "int",
+          "name": "m_fPathSpeed",
+          "type": "float",
           "source": "gen_headers_9.2"
         },
         "1260": {
@@ -26227,6 +26412,206 @@
           "name": "m_fMoveTargetZ",
           "type": "float",
           "source": "gen_headers_9.2"
+        },
+        "24": {
+          "name": "m_fDirY",
+          "type": "float",
+          "source": "binary:raw_UpdatePosition"
+        },
+        "28": {
+          "name": "m_fDirZ",
+          "type": "float",
+          "source": "binary:raw_UpdatePosition"
+        },
+        "32": {
+          "name": "m_fRightX",
+          "type": "float",
+          "source": "binary:raw_UpdatePosition"
+        },
+        "36": {
+          "name": "m_fRightY",
+          "type": "float",
+          "source": "binary:raw_UpdatePosition"
+        },
+        "40": {
+          "name": "m_fRightZ",
+          "type": "float",
+          "source": "binary:raw_UpdatePosition"
+        },
+        "44": {
+          "name": "m_fUpX",
+          "type": "float",
+          "source": "binary:raw_UpdatePosition"
+        },
+        "48": {
+          "name": "m_fUpY",
+          "type": "float",
+          "source": "binary:raw_UpdatePosition"
+        },
+        "52": {
+          "name": "m_fUpZ",
+          "type": "float",
+          "source": "binary:raw_UpdatePosition"
+        },
+        "56": {
+          "name": "m_pActor",
+          "type": "int",
+          "source": "binary:raw_vtable_call"
+        },
+        "100": {
+          "name": "m_pPathPoints",
+          "type": "int",
+          "source": "binary:raw_path_array"
+        },
+        "104": {
+          "name": "m_nPathCount",
+          "type": "int",
+          "source": "binary:raw_path_count"
+        },
+        "108": {
+          "name": "m_pPathCurrent",
+          "type": "int",
+          "source": "binary:raw_path_iter"
+        },
+        "112": {
+          "name": "m_pPathNext",
+          "type": "int",
+          "source": "binary:raw_path_next"
+        },
+        "116": {
+          "name": "m_nPathField74",
+          "type": "int",
+          "source": "binary:raw_path_misc"
+        },
+        "120": {
+          "name": "m_nPathField78",
+          "type": "int",
+          "source": "binary:raw_path_misc"
+        },
+        "124": {
+          "name": "m_nPathField7C",
+          "type": "int",
+          "source": "binary:raw_path_misc"
+        },
+        "128": {
+          "name": "m_nPathField80",
+          "type": "int",
+          "source": "binary:raw_path_misc"
+        },
+        "132": {
+          "name": "m_nPathField84",
+          "type": "int",
+          "source": "binary:raw_path_misc"
+        },
+        "140": {
+          "name": "m_pPathListHead",
+          "type": "int",
+          "source": "binary:raw_path_list"
+        },
+        "144": {
+          "name": "m_nField90",
+          "type": "int",
+          "source": "binary:raw_decomp"
+        },
+        "148": {
+          "name": "m_nField94",
+          "type": "int",
+          "source": "binary:raw_decomp"
+        },
+        "152": {
+          "name": "m_nField98",
+          "type": "int",
+          "source": "binary:raw_decomp"
+        },
+        "156": {
+          "name": "m_nField9C",
+          "type": "int",
+          "source": "binary:raw_decomp"
+        },
+        "1316": {
+          "name": "m_fPathDirX",
+          "type": "float",
+          "source": "binary:raw_PathFollowUpdate"
+        },
+        "1320": {
+          "name": "m_fPathDirY",
+          "type": "float",
+          "source": "binary:raw_PathFollowUpdate"
+        },
+        "1324": {
+          "name": "m_fPathDirZ",
+          "type": "float",
+          "source": "binary:raw_PathFollowUpdate"
+        },
+        "1328": {
+          "name": "m_fPathUpX",
+          "type": "float",
+          "source": "binary:raw_PathFollowUpdate"
+        },
+        "1356": {
+          "name": "m_nWanderTarget",
+          "type": "int",
+          "source": "binary:raw_PathFollowUpdate"
+        },
+        "1360": {
+          "name": "m_nWanderParam",
+          "type": "int",
+          "source": "binary:raw_PathFollowUpdate"
+        },
+        "1376": {
+          "name": "m_fWanderDirX",
+          "type": "float",
+          "source": "binary:raw_PathFollowUpdate"
+        },
+        "1380": {
+          "name": "m_fWanderDirY",
+          "type": "float",
+          "source": "binary:raw_PathFollowUpdate"
+        },
+        "1384": {
+          "name": "m_fWanderDirZ",
+          "type": "float",
+          "source": "binary:raw_PathFollowUpdate"
+        },
+        "1424": {
+          "name": "m_fAnimSpeed",
+          "type": "float",
+          "source": "binary:raw_1126170624=3.0f"
+        },
+        "1468": {
+          "name": "m_fCachePosX",
+          "type": "float",
+          "source": "binary:raw_cached_pos"
+        },
+        "1472": {
+          "name": "m_fCachePosY",
+          "type": "float",
+          "source": "binary:raw_cached_pos"
+        },
+        "1476": {
+          "name": "m_fCachePosZ",
+          "type": "float",
+          "source": "binary:raw_cached_pos"
+        },
+        "8688": {
+          "name": "m_fFacingAngle",
+          "type": "float",
+          "source": "binary:raw_acos_angle"
+        },
+        "8692": {
+          "name": "m_fSnapshotX",
+          "type": "float",
+          "source": "binary:raw_snapshot"
+        },
+        "8696": {
+          "name": "m_fSnapshotY",
+          "type": "float",
+          "source": "binary:raw_snapshot"
+        },
+        "8700": {
+          "name": "m_fSnapshotZ",
+          "type": "float",
+          "source": "binary:raw_snapshot"
         }
       },
       "note": "not in PDB, needs binary analysis",
@@ -28336,6 +28721,16 @@
           "name": "_dF40",
           "type": "int",
           "source": "gen_headers_9.2"
+        },
+        "24": {
+          "name": "m_pItemData",
+          "type": "int",
+          "source": "binary:raw_this6"
+        },
+        "28": {
+          "name": "m_pMagicData",
+          "type": "int",
+          "source": "binary:raw_this7"
         }
       }
     },
@@ -64919,10 +65314,6 @@
     },
     "uint": {
       "pdb_size": 4,
-      "known_members": {}
-    },
-    "std::basic_string<char,std::char_traits<char>,std::allocator<char> >": {
-      "pdb_size": 16,
       "known_members": {}
     },
     "_D3DDISPLAYMODE": {
