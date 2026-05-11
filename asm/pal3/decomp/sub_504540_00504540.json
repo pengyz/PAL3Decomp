@@ -1,7 +1,0 @@
-{
-  "name": "sub_504540",
-  "address": "0x00504540",
-  "size_bytes": 111,
-  "signature": "char __thiscall(CameraCtrl *this)",
-  "decompiled_c": "// likely CCBStage method (near ProcShowCombatDialog, Reset, IsTaskValidButNotFini)\nchar __thiscall sub_504540(CameraCtrl *this)\n{\n  _DWORD pParams[3]; // [esp+4h] [ebp-Ch] BYREF\n\n  sub_41CA90((int)this, xRight, yBottom);\n  *((_DWORD *)this + 2) = 0;\n  *((_DWORD *)this + 1) = 1112014848;\n  pParams[0] = 0;\n  pParams[1] = -1018691584;\n  pParams[2] = 0;\n  CameraCtrl::InitParams(this, pParams);\n  sub_41C630((int)this, 3);\n  *((_DWORD *)this + 117) = 1176256512;\n  InputSystem::ProcessKeyboard(0);\n  return 1;\n}\n"
-}

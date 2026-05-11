@@ -1,7 +1,0 @@
-{
-  "name": "sub_421F20",
-  "address": "0x00421F20",
-  "size_bytes": 67,
-  "signature": "size_t __thiscall(const void **this, FILE *Stream)",
-  "decompiled_c": "size_t __thiscall sub_421F20(const void **this, FILE *Stream)\n{\n  const void **v3; // edi\n\n  v3 = this + 1;\n  fwrite(this + 1, 4u, 1u, Stream);\n  fwrite(this + 2, 4u, 1u, Stream);\n  return fwrite(this[3], (_DWORD)*v3 * (_DWORD)this[2], 1u, Stream);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_52CA10",
-  "address": "0x0052CA10",
-  "size_bytes": 222,
-  "signature": "int __thiscall(int this, int a2, char *a3, int a4)",
-  "decompiled_c": "int __thiscall sub_52CA10(int this, int a2, char *a3, int a4)\n{\n  switch ( a2 )\n  {\n    case 1000:\n      if ( a3 )\n      {\n        *(_DWORD *)(this + 12948) = 0;\n        sub_52C8A0(this);\n      }\n      break;\n    case 1009:\n      if ( a3 == &byte_80AC01 )\n      {\n        if ( *(_BYTE *)(this + 1157) )\n        {\n          if ( !*(_BYTE *)(this + 1158) )\n            *(_BYTE *)(this + 1159) = 1;\n        }\n        if ( !*(_BYTE *)(this + 10200) )\n        {\n          *(_BYTE *)(this + 10188) = 0;\n          *(_BYTE *)(this + 1156) = 1;\n          return 1;\n        }\n      }\n      else if ( a3 - &byte_80AC01 == 6 )\n      {\n        (**(void (__thiscall ***)(int, _DWORD))(this + 2120))(this + 2120, 0);\n        (**(void (__thiscall ***)(int, _DWORD))(this + 2272))(this + 2272, 0);\n        sub_4A1530(this + 11576, 1);\n        return 1;\n      }\n      break;\n    case 1010:\n      break;\n    default:\n      return UIWnd::SendMessage(a2, (int)a3, a4);\n  }\n  return 1;\n}\n"
-}

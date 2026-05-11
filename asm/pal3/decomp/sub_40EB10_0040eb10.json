@@ -1,7 +1,0 @@
-{
-  "name": "sub_40EB10",
-  "address": "0x0040EB10",
-  "size_bytes": 118,
-  "signature": "void __cdecl(int a1, int a2)",
-  "decompiled_c": "void __cdecl sub_40EB10(int a1, int a2)\n{\n  int *v2; // eax\n  int *v3; // eax\n  int *v4; // eax\n\n  dword_C04334[a1] += a2;\n  if ( a2 )\n  {\n    if ( a2 >= 0 )\n    {\n      if ( a2 > 3 )\n      {\n        v4 = sub_53DF70();\n        if ( a2 > 5 )\n          CScreenMode::AudioSetPosition(v4, aWa010, 1);\n        else\n          CScreenMode::AudioSetPosition(v4, aWa009, 1);\n      }\n      else\n      {\n        v3 = sub_53DF70();\n        CScreenMode::AudioSetPosition(v3, aWa008, 1);\n      }\n    }\n    else\n    {\n      v2 = sub_53DF70();\n      CScreenMode::AudioSetPosition(v2, aWa048, 1);\n    }\n  }\n}\n"
-}

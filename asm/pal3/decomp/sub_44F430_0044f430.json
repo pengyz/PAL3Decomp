@@ -1,7 +1,0 @@
-{
-  "name": "sub_44F430",
-  "address": "0x0044F430",
-  "size_bytes": 136,
-  "signature": "int __thiscall(UIWnd *this)",
-  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nint __thiscall sub_44F430(UIWnd *this)\n{\n  int v2; // ecx\n  unsigned int Color; // ecx\n  int result; // eax\n  int m_nSize; // ecx\n\n  UIWnd::UpdateChildren(this);\n  sub_4573A0(&stru_8ACD30.m_waitobj.m_nMaxSize);\n  (*(void (__thiscall **)(int *))(this[48].m_bcreateok + 12))(&this[48].m_bcreateok);\n  v2 = *(_DWORD *)&this[352].m_wndcolor.Blue;\n  if ( v2 )\n  {\n    (*(void (__thiscall **)(int, int))(*(_DWORD *)v2 + 20))(v2, 1);\n    *(_DWORD *)&this[352].m_wndcolor.Blue = 0;\n  }\n  Color = this[352].m_wndcolor.Color;\n  if ( Color )\n  {\n    (*(void (__thiscall **)(unsigned int, int))(*(_DWORD *)Color + 20))(Color, 1);\n    this[352].m_wndcolor.Color = 0;\n  }\n  result = this[181].m_childs.m_nMaxSize;\n  if ( result != 6 && result && result != 5 )\n  {\n    m_nSize = this[181].m_childs.m_nSize;\n    if ( m_nSize )\n      result = (*(int (__thiscall **)(int, int))(*(_DWORD *)m_nSize + 20))(m_nSize, 1);\n    this[181].m_childs.m_nSize = 0;\n  }\n  return result;\n}\n"
-}

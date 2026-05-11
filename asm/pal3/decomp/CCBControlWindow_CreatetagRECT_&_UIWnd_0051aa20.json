@@ -1,7 +1,0 @@
-{
-  "name": "CCBControlWindow::Create(tagRECT &,UIWnd *)",
-  "address": "0x0051AA20",
-  "size_bytes": 214,
-  "signature": "char __thiscall(CCBControlWindow *this, struct tagRECT *a2, struct UIWnd *a3, int a4, int a5)",
-  "decompiled_c": "char __thiscall CCBControlWindow::Create(CCBControlWindow *this, struct tagRECT *a2, struct UIWnd *a3, int a4, int a5)\n{\n  UIStatic *v6; // eax\n  int v7; // eax\n  char pExceptionObject[1024]; // [esp+8h] [ebp-80Ch] BYREF\n  char ArgList[1024]; // [esp+408h] [ebp-40Ch] BYREF\n  int v11; // [esp+810h] [ebp-4h]\n\n  v6 = (UIStatic *)operator new(0xF8u);\n  v11 = 0;\n  if ( v6 )\n    UIStatic::UIStatic(v6);\n  else\n    v7 = 0;\n  v11 = -1;\n  a2->left = v7;\n  if ( !v7 )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aCNewFailed, aDProjectPal3Co_12, 2875), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  (*(void (__thiscall **)(int, struct UIWnd *, int, CCBControlWindow *, int, _DWORD))(*(_DWORD *)v7 + 28))(\n    v7,\n    a3,\n    a4,\n    this,\n    a5,\n    0);\n  return 1;\n}\n"
-}

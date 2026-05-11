@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::GetAttackBonus",
-  "address": "0x004F37A0",
-  "size_bytes": 121,
-  "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
-  "decompiled_c": "int __thiscall CCBRoleState::GetAttackBonus(CCBRoleState *this, int roleIdx)\n{\n  __int8 *v2; // eax\n  int v3; // eax\n  int result; // eax\n  char v5; // cl\n  float roleIdxa; // [esp+Ch] [ebp+8h]\n  float roleIdxb; // [esp+Ch] [ebp+8h]\n\n  v2 = &this->m_sCombatDialog[892 * roleIdx];\n  if ( v2[1147] )\n  {\n    v3 = *((_DWORD *)v2 + 153);\n    roleIdxa = (double)v3 * 0.25;\n    return (int)roleIdxa + v3;\n  }\n  else\n  {\n    v5 = v2[1148];\n    result = *((_DWORD *)v2 + 153);\n    if ( v5 )\n    {\n      roleIdxb = (double)result * -0.25;\n      result += (int)roleIdxb;\n    }\n  }\n  return result;\n}\n"
-}

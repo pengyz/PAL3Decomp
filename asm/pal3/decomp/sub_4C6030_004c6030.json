@@ -1,7 +1,0 @@
-{
-  "name": "sub_4C6030",
-  "address": "0x004C6030",
-  "size_bytes": 174,
-  "signature": "float *__thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "float *__thiscall sub_4C6030(_DWORD *this, int a2)\n{\n  float *result; // eax\n  int v3; // edx\n  float *v4; // ecx\n\n  result = (float *)&this[12 * a2 + 7];\n  v3 = this[12 * a2 + 13];\n  v4 = (float *)&this[17 * this[12 * a2 + 8]];\n  *((_DWORD *)v4 + 24600) = v3;\n  v4[24584] = result[7] - result[10];\n  v4[24587] = result[10] + result[7];\n  v4[24590] = result[10] + result[7];\n  v4[24593] = result[7] - result[10];\n  v4[24585] = result[8];\n  v4[24588] = result[8];\n  v4[24591] = result[8];\n  v4[24594] = result[8];\n  v4[24586] = result[10] + result[9];\n  v4[24589] = result[10] + result[9];\n  v4[24592] = result[9] - result[10];\n  v4[24595] = result[9] - result[10];\n  return result;\n}\n"
-}

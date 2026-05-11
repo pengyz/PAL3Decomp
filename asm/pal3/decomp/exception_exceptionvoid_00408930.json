@@ -1,7 +1,0 @@
-{
-  "name": "exception::exception(void)",
-  "address": "0x00408930",
-  "size_bytes": 17,
-  "signature": "exception *__thiscall(exception *this)",
-  "decompiled_c": "exception *__thiscall exception::exception(exception *this)\n{\n  exception *result; // eax\n\n  result = this;\n  this->_m_what = (char *)0xFFFF;\n  this->_m_doFree = 0;\n  this[1]._m_what = 0;\n  return result;\n}\n"
-}

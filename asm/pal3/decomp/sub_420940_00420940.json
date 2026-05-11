@@ -1,7 +1,0 @@
-{
-  "name": "sub_420940",
-  "address": "0x00420940",
-  "size_bytes": 155,
-  "signature": "int __thiscall(int this, RoleSystem *a2, int index)",
-  "decompiled_c": "int __thiscall sub_420940(int this, RoleSystem *a2, int index)\n{\n  int RolePtr; // eax\n  int v5; // ebp\n  int result; // eax\n  int *v7; // edi\n\n  RolePtr = RoleSystem::GetRolePtr(a2, index);\n  sub_4202A0((void (__thiscall ***)(void *))this, RolePtr);\n  memset(*(void **)(this + 12), 0xFFu, *(_DWORD *)(this + 4) * *(_DWORD *)(this + 8));\n  v5 = 0;\n  *(_DWORD *)(this + 16) = a2;\n  result = *((_DWORD *)a2 + 55);\n  if ( result > 0 )\n  {\n    v7 = (int *)((char *)a2 + 224);\n    do\n    {\n      if ( *((unsigned __int8 *)v7 + 246) == index && !sub_42AD40((int)v7, this, v5) && (v7[52] & 1) != 0 )\n        sub_420320((_DWORD *)this, v7 + 57, v5);\n      result = *((_DWORD *)a2 + 55);\n      ++v5;\n      v7 += 224;\n    }\n    while ( v5 < result );\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_436ED0",
-  "address": "0x00436ED0",
-  "size_bytes": 100,
-  "signature": "char *()",
-  "decompiled_c": "char *sub_436ED0()\n{\n  char *result; // eax\n  char *v1; // esi\n  int v2; // ecx\n\n  result = PalScript::GetString();\n  v1 = result;\n  if ( result )\n  {\n    result = PalScript::GetString();\n    if ( result )\n    {\n      v2 = *((_DWORD *)v1 + 1);\n      if ( v2 )\n      {\n        if ( v2 == 1 )\n          dword_5A3748 = 3;\n      }\n      else\n      {\n        dword_5A3748 = 1;\n      }\n      dword_DC1100 = 0;\n      dword_D92780 = dword_5A3748;\n      dword_DBA24C = *((_DWORD *)result + 1);\n      return (char *)sub_44F610((int)&dword_DB9FD0, 12);\n    }\n  }\n  return result;\n}\n"
-}

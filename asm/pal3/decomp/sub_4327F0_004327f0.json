@@ -1,7 +1,0 @@
-{
-  "name": "sub_4327F0",
-  "address": "0x004327F0",
-  "size_bytes": 59,
-  "signature": "int __thiscall(PtrArray *this, void *a2)",
-  "decompiled_c": "int __thiscall sub_4327F0(PtrArray *this, void *a2)\n{\n  int m_nSize; // esi\n  int result; // eax\n  void *v4; // edx\n\n  m_nSize = this->m_nSize;\n  result = 0;\n  if ( m_nSize > 0 )\n  {\n    while ( 1 )\n    {\n      v4 = result < 0 || result >= m_nSize ? 0 : this->m_pData[result];\n      if ( a2 == v4 )\n        break;\n      if ( ++result >= m_nSize )\n        return result;\n    }\n    return PtrArray::InsertAt(this, result, 1);\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_43AFE0",
-  "address": "0x0043AFE0",
-  "size_bytes": 115,
-  "signature": "unsigned __int8 __thiscall(_DWORD *this, int a2, int a3, int a4, int a5)",
-  "decompiled_c": "unsigned __int8 __thiscall sub_43AFE0(_DWORD *this, int a2, int a3, int a4, int a5)\n{\n  _DWORD *v5; // edx\n  gbTexture_D3D *v6; // eax\n  unsigned int v8; // [esp-Ch] [ebp-14h]\n  int v9; // [esp-8h] [ebp-10h]\n\n  if ( a3 < 0 )\n    return 0;\n  v5 = (_DWORD *)this[a2 + 46];\n  if ( (unsigned int)a3 >= v5[260] || a4 < 0 || (unsigned int)a4 >= v5[261] )\n    return 0;\n  v9 = a5 + 4 * (v5[258] + a3);\n  v8 = v5[259] - v5[257] - a4 + 1024;\n  v6 = (gbTexture_D3D *)sub_445F60(this + 29, 0);\n  return gbTexture_D3D::GetByte(v6, v8, v9);\n}\n"
-}

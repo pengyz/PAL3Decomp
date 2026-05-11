@@ -1,7 +1,0 @@
-{
-  "name": "sub_484140",
-  "address": "0x00484140",
-  "size_bytes": 107,
-  "signature": "int __thiscall(char *this, int a2, unsigned __int8 a3)",
-  "decompiled_c": "int __thiscall sub_484140(char *this, int a2, unsigned __int8 a3)\n{\n  char *v3; // edi\n  int (__thiscall ***v4)(_DWORD, _DWORD); // edi\n  int v5; // ebx\n  int result; // eax\n\n  v3 = &this[1944 * a2];\n  (**((void (__thiscall ***)(int, _DWORD))v3 + 40380))((int)(v3 + 161520), a3);\n  (**((void (__thiscall ***)(int, _DWORD))v3 + 40456))((int)(v3 + 161824), a3);\n  (**((void (__thiscall ***)(int, _DWORD))v3 + 40418))((int)(v3 + 161672), a3);\n  v4 = (int (__thiscall ***)(_DWORD, _DWORD))(v3 + 161976);\n  v5 = 6;\n  do\n  {\n    result = (**v4)(v4, a3);\n    v4 += 62;\n    --v5;\n  }\n  while ( v5 );\n  return result;\n}\n"
-}

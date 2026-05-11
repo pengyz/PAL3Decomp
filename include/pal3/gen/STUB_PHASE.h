@@ -1,9 +1,0 @@
-#pragma once
-// Auto-generated: STUB_PHASE enum
-
-enum STUB_PHASE {
-    STUB_UNMARSHAL = 0,
-    STUB_CALL_SERVER = 1,
-    STUB_MARSHAL = 2,
-    STUB_CALL_SERVER_NO_HRESULT = 3,
-};

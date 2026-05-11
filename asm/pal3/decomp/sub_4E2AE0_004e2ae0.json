@@ -1,7 +1,0 @@
-{
-  "name": "sub_4E2AE0",
-  "address": "0x004E2AE0",
-  "size_bytes": 292,
-  "signature": "LRESULT __thiscall(int *this, LPARAM a2)",
-  "decompiled_c": "// likely CCBRoleState method (near GetRole, CCBRoleState, CanAction, UnloadWeaponMode)\nLRESULT __thiscall sub_4E2AE0(int *this, LPARAM a2)\n{\n  LRESULT result; // eax\n  HWND DlgItem; // ebx\n  int v5; // edx\n  tagRoleState *inited; // eax\n  int v7; // eax\n  tagRoleState *v8; // eax\n  int v9; // ecx\n  tagRoleState *v10; // eax\n  LPARAM lParam[10]; // [esp+Ch] [ebp-A8h] BYREF\n  char Buffer[128]; // [esp+34h] [ebp-80h] BYREF\n\n  result = dword_17A990C;\n  if ( dword_17A990C == 2 )\n  {\n    DlgItem = GetDlgItem(dword_BFDA54, 1000);\n    result = dword_17A990C;\n    if ( dword_17A990C == 2 )\n    {\n      v5 = *this;\n      memset(lParam, 0, sizeof(lParam));\n      lParam[0] = 1;\n      lParam[1] = a2;\n      lParam[5] = (LPARAM)Buffer;\n      lParam[2] = 2;\n      inited = CCBRoleState::InitUI(*(CCBRoleState **)(v5 + 16), a2);\n      sprintf(Buffer, \"%d\", inited->nHP);\n      SendMessageA(DlgItem, 0x1006u, 0, (LPARAM)lParam);\n      v7 = *this;\n      lParam[2] = 3;\n      v8 = CCBRoleState::InitUI(*(CCBRoleState **)(v7 + 16), a2);\n      sprintf(Buffer, \"%d\", v8->nGP);\n      SendMessageA(DlgItem, 0x1006u, 0, (LPARAM)lParam);\n      v9 = *this;\n      lParam[2] = 4;\n      v10 = CCBRoleState::InitUI(*(CCBRoleState **)(v9 + 16), a2);\n      sprintf(Buffer, \"%d\", v10->nMP);\n      return SendMessageA(DlgItem, 0x1006u, 0, (LPARAM)lParam);\n    }\n  }\n  return result;\n}\n"
-}

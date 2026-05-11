@@ -1,7 +1,0 @@
-{
-  "name": "PalScriptMgr::FindScript(scScriptInstance *)",
-  "address": "0x00431EE0",
-  "size_bytes": 31,
-  "signature": "void __cdecl()",
-  "decompiled_c": "void __cdecl PalScriptMgr::FindScript()\n{\n  if ( (byte_D8C324 & 8) == 0 )\n  {\n    byte_D8C324 |= 8u;\n    PtrArray::Remove((PtrArray *)dword_D8C2C8);\n  }\n}\n"
-}

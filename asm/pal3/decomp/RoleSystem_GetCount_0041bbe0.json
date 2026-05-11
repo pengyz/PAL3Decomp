@@ -1,7 +1,0 @@
-{
-  "name": "RoleSystem::GetCount",
-  "address": "0x0041BBE0",
-  "size_bytes": 78,
-  "signature": "int __thiscall(RoleSystem *this)",
-  "decompiled_c": "int __thiscall RoleSystem::GetCount(RoleSystem *this)\n{\n  int result; // eax\n\n  result = *((_DWORD *)this + 316);\n  if ( result != 4 )\n  {\n    *((_DWORD *)this + 315) = result;\n    *((_DWORD *)this + 316) = 4;\n    *((_DWORD *)this + 313) = 0x40000000;\n    *((_DWORD *)this + 314) = 0;\n    *((_DWORD *)this + 307) = 44;\n    Actor::SetVisible((char *)this + 680, (int)aC08);\n  }\n  return result;\n}\n"
-}

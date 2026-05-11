@@ -1,7 +1,0 @@
-{
-  "name": "CCBLineupWindow::Create(tagRECT &,UIWnd *)",
-  "address": "0x0051D1D0",
-  "size_bytes": 178,
-  "signature": "char __userpurge@<al>(CCBLineupWindow *this@<ecx>, struct tagRECT *a2, struct UIWnd *a3)",
-  "decompiled_c": "char __userpurge CCBLineupWindow::Create@<al>(CCBLineupWindow *this@<ecx>, struct tagRECT *a2, struct UIWnd *a3)\n{\n  CCBMagicWindow *v3; // eax\n  _DWORD *ActivePage; // eax\n  char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF\n  char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF\n  int v8; // [esp+80Ch] [ebp-4h]\n\n  v3 = (CCBMagicWindow *)operator new(0xB4u);\n  v8 = 0;\n  if ( v3 )\n    ActivePage = CCBMagicWindow::GetActivePage(v3);\n  else\n    ActivePage = 0;\n  v8 = -1;\n  a2->left = (int)ActivePage;\n  if ( !ActivePage )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aCNewFailed, aDProjectPal3Co_12, 1660), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  return 1;\n}\n"
-}

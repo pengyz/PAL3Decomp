@@ -1,7 +1,0 @@
-{
-  "name": "sub_420200",
-  "address": "0x00420200",
-  "size_bytes": 77,
-  "signature": "unsigned __int8 *__thiscall(unsigned __int8 *this, __int16 a2)",
-  "decompiled_c": "unsigned __int8 *__thiscall sub_420200(unsigned __int8 *this, __int16 a2)\n{\n  int v2; // esi\n  int v3; // eax\n  unsigned __int8 *i; // edx\n\n  v2 = *((_DWORD *)this + 14392);\n  v3 = 0;\n  if ( v2 <= 0 )\n    return 0;\n  for ( i = this + 57744; *i != a2; i += 8704 )\n  {\n    if ( ++v3 >= v2 )\n      return 0;\n  }\n  return &this[8704 * v3 + 57572];\n}\n"
-}

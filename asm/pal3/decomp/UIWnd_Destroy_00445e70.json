@@ -1,7 +1,0 @@
-{
-  "name": "UIWnd::Destroy",
-  "address": "0x00445E70",
-  "size_bytes": 37,
-  "signature": "int __thiscall(UIWnd *this, int a2)",
-  "decompiled_c": "int __thiscall UIWnd::Destroy(UIWnd *this, int a2)\n{\n  int result; // eax\n  int ColorQuadFmt; // edx\n\n  result = this->m_childs.m_nSize;\n  if ( result )\n  {\n    result = a2;\n    if ( this->m_childs.m_nMaxSize != a2 )\n    {\n      ColorQuadFmt = this->m_fontcolor.ColorQuadFmt;\n      this->m_childs.m_nMaxSize = a2;\n      return (*(int (__stdcall **)(int, int, _DWORD))(ColorQuadFmt + 24))(1000, a2, 0);\n    }\n  }\n  return result;\n}\n"
-}

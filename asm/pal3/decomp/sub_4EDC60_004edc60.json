@@ -1,7 +1,0 @@
-{
-  "name": "sub_4EDC60",
-  "address": "0x004EDC60",
-  "size_bytes": 253,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall sub_4EDC60(int this)\n{\n  int v1; // eax\n  int result; // eax\n\n  v1 = *(_DWORD *)(this + 520);\n  *(_BYTE *)(this + 537) = 0;\n  *(_BYTE *)(this + 536) = 0;\n  result = *(_DWORD *)(v1 + 112);\n  if ( !*(_BYTE *)(result + 80) )\n  {\n    result = *(_DWORD *)(result + 68);\n    if ( result == 1 )\n    {\n      ++g_nRandCallCount;\n      g_RandSeed = 214013 * g_RandSeed + 2531011;\n      result = (g_RandSeed >> 16) & 0x3FF;\n      if ( result < (int)512.0 )\n        *(_BYTE *)(this + 537) = 1;\n    }\n    else if ( result == 2 )\n    {\n      ++g_nRandCallCount;\n      g_RandSeed = 214013 * g_RandSeed + 2531011;\n      result = (g_RandSeed >> 16) & 0x3FF;\n      if ( result < (int)512.0 )\n        *(_BYTE *)(this + 536) = 1;\n    }\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_412A50",
-  "address": "0x00412A50",
-  "size_bytes": 63,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall sub_412A50(int this)\n{\n  int result; // eax\n\n  *(_DWORD *)(this + 1268) = 1;\n  *(_DWORD *)(this + 1284) = 1;\n  result = RoleSystem::UpdateTransform((RoleSystem *)this);\n  *(float *)(this + 1288) = *(float *)(this + 1288) * 0.5;\n  *(float *)(this + 1292) = *(float *)(this + 1292) * 0.5;\n  return result;\n}\n"
-}

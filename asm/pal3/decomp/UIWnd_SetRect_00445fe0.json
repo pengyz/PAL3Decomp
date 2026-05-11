@@ -1,7 +1,0 @@
-{
-  "name": "UIWnd::SetRect",
-  "address": "0x00445FE0",
-  "size_bytes": 36,
-  "signature": "_DWORD *__thiscall(UIWnd *this, _DWORD *a2)",
-  "decompiled_c": "_DWORD *__thiscall UIWnd::SetRect(UIWnd *this, _DWORD *a2)\n{\n  _DWORD *result; // eax\n  unsigned __int8 *p_Blue; // ecx\n\n  result = a2;\n  p_Blue = &this->m_wndcolor.Blue;\n  *a2 = *(_DWORD *)p_Blue;\n  a2[1] = *((_DWORD *)p_Blue + 1);\n  a2[2] = *((_DWORD *)p_Blue + 2);\n  a2[3] = *((_DWORD *)p_Blue + 3);\n  return result;\n}\n"
-}

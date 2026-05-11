@@ -1,7 +1,0 @@
-{
-  "name": "sub_436910",
-  "address": "0x00436910",
-  "size_bytes": 38,
-  "signature": "char *()",
-  "decompiled_c": "char *sub_436910()\n{\n  char *result; // eax\n\n  result = PalScript::GetString();\n  if ( result )\n  {\n    if ( !*(_DWORD *)(dword_D8E468 + 24) )\n      *(_DWORD *)(dword_D8E468 + 8) = *((_DWORD *)result + 1) + *(_DWORD *)(*(_DWORD *)dword_D8E468 + 72);\n  }\n  return result;\n}\n"
-}

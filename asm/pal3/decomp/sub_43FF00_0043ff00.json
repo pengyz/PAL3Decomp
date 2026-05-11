@@ -1,7 +1,0 @@
-{
-  "name": "sub_43FF00",
-  "address": "0x0043FF00",
-  "size_bytes": 106,
-  "signature": "int __thiscall(int this, int id, _DWORD *pRect, int parent)",
-  "decompiled_c": "int __thiscall sub_43FF00(int this, int id, _DWORD *pRect, int parent)\n{\n  int v4; // ebx\n  double v5; // st7\n\n  *(_DWORD *)(this + 16) = *pRect;\n  *(_DWORD *)(this + 20) = pRect[1];\n  *(_DWORD *)(this + 24) = pRect[2];\n  *(_DWORD *)(this + 28) = pRect[3];\n  *(_DWORD *)(this + 76) = *pRect;\n  *(_DWORD *)(this + 80) = pRect[1];\n  *(_DWORD *)(this + 84) = pRect[2];\n  v4 = *(_DWORD *)(this + 16);\n  *(_DWORD *)(this + 88) = pRect[3];\n  v5 = (double)(*(_DWORD *)(this + 24) - v4);\n  *(float *)(this + 120) = v5;\n  *(float *)(this + 124) = v5;\n  return UIWnd::Create((UIWnd *)this, id, pRect, parent);\n}\n"
-}

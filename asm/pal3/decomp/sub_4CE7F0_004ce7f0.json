@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CE7F0",
-  "address": "0x004CE7F0",
-  "size_bytes": 166,
-  "signature": "int __stdcall(int a1, int a2)",
-  "decompiled_c": "int __stdcall sub_4CE7F0(int a1, int a2)\n{\n  int result; // eax\n  int v3; // ebp\n  int *v4; // edi\n  int v5; // edx\n  _DWORD *v6; // eax\n\n  result = a1;\n  v3 = 3985 * a1;\n  if ( a2 < dword_EC9E70[3985 * a1] )\n  {\n    if ( a2 < 15 )\n    {\n      v4 = &dword_EC9EB4[248 * a2 + v3];\n      v5 = 15 - a2;\n      v6 = (_DWORD *)(4 * (3984 * a1 + a2 + a1) + 15507060);\n      do\n      {\n        *v6 = v6[1];\n        ++v6;\n        qmemcpy(v4, v4 + 248, 0x3E0u);\n        --v5;\n        v4 += 248;\n      }\n      while ( v5 );\n    }\n    dword_EC9EB0[3985 * a1] = 0;\n    memset(&dword_ECD8D4[v3], 0, 0x3E0u);\n    result = dword_EC9E70[3985 * a1] - 1;\n    dword_EC9E70[3985 * a1] = result;\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "PAL_GDB::LoadLanguage",
-  "address": "0x00457410",
-  "size_bytes": 122,
-  "signature": "char __thiscall(PAL_GDB *this, char *path)",
-  "decompiled_c": "char __thiscall PAL_GDB::LoadLanguage(PAL_GDB *this, char *path)\n{\n  PalScript *v3; // esi\n  char *v4; // edi\n  char result; // al\n\n  v3 = (PalScript *)&this[1]._pad_0A0[372];\n  PalScript::LoadFromFile((PalScript *)&this[1]._pad_0A0[372], path);\n  PalScript::SetDirectory(v3, aSec1);\n  if ( PalScript::HasNext(v3) )\n  {\n    v4 = byte_DC333C;\n    do\n    {\n      if ( !_strcmpi(off_58B448, (const char *)v3) )\n        break;\n      PalScript::LoadNext(v3);\n      strncpy(v4, (const char *)v3, 0x100u);\n      v4 += 256;\n    }\n    while ( PalScript::HasNext(v3) );\n  }\n  result = 1;\n  this[1]._pad_0A0[368] = 1;\n  return result;\n}\n"
-}

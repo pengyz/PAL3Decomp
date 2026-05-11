@@ -1,7 +1,0 @@
-{
-  "name": "sub_438390",
-  "address": "0x00438390",
-  "size_bytes": 163,
-  "signature": "unsigned __int8 *()",
-  "decompiled_c": "unsigned __int8 *sub_438390()\n{\n  char **v0; // esi\n  int v1; // edi\n  int v2; // eax\n  int v3; // edi\n  char *v4; // esi\n  unsigned __int8 *result; // eax\n  int *v6; // eax\n  const char *v7; // [esp-8h] [ebp-1Ch]\n  int v8; // [esp-4h] [ebp-18h]\n  int v9; // [esp+8h] [ebp-Ch] BYREF\n  int v10; // [esp+Ch] [ebp-8h]\n  int v11; // [esp+10h] [ebp-4h]\n\n  v0 = (char **)&v9;\n  v1 = 3;\n  do\n  {\n    *v0++ = PalScript::GetString();\n    --v1;\n  }\n  while ( v1 );\n  v2 = sub_4226F0();\n  v3 = v9;\n  v4 = (char *)v2;\n  if ( _strcmpi((const char *)(v2 + 32), *(const char **)(v9 + 4)) )\n  {\n    v8 = *(_DWORD *)(v10 + 4);\n    v7 = *(const char **)(v3 + 4);\n    v6 = sub_5394F0();\n    result = (unsigned __int8 *)sub_539540(v6, v4, v7, v8);\n    if ( result )\n    {\n      *(_DWORD *)(v11 + 4) = result[3];\n      return result;\n    }\n  }\n  else\n  {\n    result = sub_421560((unsigned __int8 *)v4, *(_WORD *)(v10 + 4));\n    if ( result )\n    {\n      *(_DWORD *)(v11 + 4) = result[175];\n      return result;\n    }\n  }\n  result = (unsigned __int8 *)v11;\n  *(_DWORD *)(v11 + 4) = 0;\n  return result;\n}\n"
-}

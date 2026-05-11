@@ -1,7 +1,0 @@
-{
-  "name": "sub_450670",
-  "address": "0x00450670",
-  "size_bytes": 32,
-  "signature": "void __thiscall(UIWnd *this)",
-  "decompiled_c": "void __thiscall sub_450670(UIWnd *this)\n{\n  gbRefObject *ColorQuadFmt; // ecx\n\n  ColorQuadFmt = (gbRefObject *)this[1].m_wndcolor.ColorQuadFmt;\n  if ( ColorQuadFmt )\n  {\n    gbRefObject::Release(ColorQuadFmt);\n    this[1].m_wndcolor.ColorQuadFmt = 0;\n  }\n  UIWnd::UpdateChildren(this);\n}\n"
-}

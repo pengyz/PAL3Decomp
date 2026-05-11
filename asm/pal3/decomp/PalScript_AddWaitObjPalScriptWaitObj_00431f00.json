@@ -1,7 +1,0 @@
-{
-  "name": "PalScript::AddWaitObj(PalScriptWaitObj *)",
-  "address": "0x00431F00",
-  "size_bytes": 10,
-  "signature": "int __thiscall(PalScript *this)",
-  "decompiled_c": "int __thiscall PalScript::AddWaitObj(PalScript *this)\n{\n  PalScript::AddCamObj(this);\n  return atexit(PalScript::ClearAllCamObj);\n}\n"
-}

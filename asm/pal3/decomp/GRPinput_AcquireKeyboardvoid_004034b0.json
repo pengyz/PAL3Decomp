@@ -1,7 +1,0 @@
-{
-  "name": "GRPinput::AcquireKeyboard(void)",
-  "address": "0x004034B0",
-  "size_bytes": 33,
-  "signature": "void __thiscall(GRPinput **this)",
-  "decompiled_c": "void __thiscall GRPinput::AcquireKeyboard(GRPinput **this)\n{\n  if ( this[40] )\n    free(this[40]);\n  memset(this, 0, 0xA4u);\n}\n"
-}

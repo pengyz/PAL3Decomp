@@ -1,7 +1,0 @@
-{
-  "name": "sub_423500",
-  "address": "0x00423500",
-  "size_bytes": 58,
-  "signature": "int()",
-  "decompiled_c": "int sub_423500()\n{\n  int result; // eax\n  int v1; // edx\n  _DWORD *v2; // ecx\n\n  result = sub_4226F0();\n  v1 = 0;\n  if ( *(int *)(result + 57568) > 0 )\n  {\n    v2 = (_DWORD *)(result + 58204);\n    do\n    {\n      if ( *((_BYTE *)v2 - 459) == 2 )\n        *v2 = 0;\n      ++v1;\n      v2 += 2176;\n    }\n    while ( v1 < *(_DWORD *)(result + 57568) );\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "UIWnd::CreateChild",
-  "address": "0x0043F560",
-  "size_bytes": 34,
-  "signature": "int __thiscall(UIWnd *this)",
-  "decompiled_c": "int __thiscall UIWnd::CreateChild(UIWnd *this)\n{\n  int ColorQuadFmt; // edx\n\n  if ( this[5].m_rect.top <= 0 )\n    return -1;\n  ColorQuadFmt = this[14].m_fontcolor.ColorQuadFmt;\n  if ( ColorQuadFmt == -1 )\n    return -1;\n  else\n    return ColorQuadFmt + this[13].m_bfocus;\n}\n"
-}

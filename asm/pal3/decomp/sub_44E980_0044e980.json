@@ -1,7 +1,0 @@
-{
-  "name": "sub_44E980",
-  "address": "0x0044E980",
-  "size_bytes": 97,
-  "signature": "BOOL __thiscall(UIWnd *this, int a2, int a3)",
-  "decompiled_c": "BOOL __thiscall sub_44E980(UIWnd *this, int a2, int a3)\n{\n  int m_nMaxSize; // ecx\n\n  if ( !this->m_childs.m_nMaxSize )\n    return 0;\n  if ( this->m_bfocus )\n  {\n    if ( this[27].m_childs.m_nSize )\n    {\n      sub_44E9F0(this);\n      m_nMaxSize = this[27].m_childs.m_nMaxSize;\n      if ( m_nMaxSize > 0 && *(&this[2].m_benable + 41 * this->m_bfocus) >= m_nMaxSize )\n        (*(void (__thiscall **)(UIWnd *, _DWORD))this->m_fontcolor.ColorQuadFmt)(this, 0);\n    }\n  }\n  return UIWnd::HitTest(this, a2, a3);\n}\n"
-}

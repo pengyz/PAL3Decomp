@@ -1,7 +1,0 @@
-{
-  "name": "sub_44DAC0",
-  "address": "0x0044DAC0",
-  "size_bytes": 111,
-  "signature": "void __thiscall(int this)",
-  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nvoid __thiscall sub_44DAC0(int this)\n{\n  int v1; // ecx\n  int v2; // [esp+0h] [ebp-4h] BYREF\n\n  v2 = this;\n  switch ( *(_DWORD *)(this + 13868) )\n  {\n    case 0:\n      UIListBox::SetScroll((UIListBox *)this);\n      break;\n    case 1:\n      v1 = *(_DWORD *)(this + 13856);\n      goto LABEL_6;\n    case 3:\n      (*(void (__thiscall **)(_DWORD, int))(**(_DWORD **)(this + 13860) + 4))(*(_DWORD *)(this + 13860), v2);\n      break;\n    case 4:\n      v1 = *(_DWORD *)(this + 13864);\nLABEL_6:\n      (*(void (__thiscall **)(int, int))(*(_DWORD *)v1 + 4))(v1, v2);\n      break;\n    default:\n      break;\n  }\n  v2 = -1;\n  UIRenderQuad(60, 18, (int)aV104, &v2, 16);\n}\n"
-}

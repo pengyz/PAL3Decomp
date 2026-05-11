@@ -1,7 +1,0 @@
-{
-  "name": "sub_436FB0",
-  "address": "0x00436FB0",
-  "size_bytes": 38,
-  "signature": "char *()",
-  "decompiled_c": "char *sub_436FB0()\n{\n  char *result; // eax\n  bool v1; // bl\n\n  result = PalScript::GetString();\n  if ( result )\n  {\n    v1 = *((_DWORD *)result + 1) != 0;\n    result = (char *)CGameData::SetMode(&dword_DB9FD0, 5);\n    byte_DE5F92 = v1;\n  }\n  return result;\n}\n"
-}

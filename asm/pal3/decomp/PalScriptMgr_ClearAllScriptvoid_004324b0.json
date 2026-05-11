@@ -1,7 +1,0 @@
-{
-  "name": "PalScriptMgr::ClearAllScript(void)",
-  "address": "0x004324B0",
-  "size_bytes": 67,
-  "signature": "int __cdecl(void *a1)",
-  "decompiled_c": "int __cdecl PalScriptMgr::ClearAllScript(void *a1)\n{\n  int v1; // eax\n  void **i; // esi\n  void *v3; // ecx\n\n  if ( !a1 )\n    return 0;\n  v1 = 0;\n  if ( stru_D8C328.m_nSize <= 0 )\n    return 0;\n  for ( i = stru_D8C328.m_pData; ; ++i )\n  {\n    v3 = v1 < 0 || v1 >= stru_D8C328.m_nSize ? 0 : *i;\n    if ( v3 == a1 )\n      break;\n    if ( ++v1 >= stru_D8C328.m_nSize )\n      return 0;\n  }\n  return 1;\n}\n"
-}

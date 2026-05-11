@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::GetRoleType",
-  "address": "0x004ED060",
-  "size_bytes": 60,
-  "signature": "char __thiscall(CCBRoleState *this, int roleIdx)",
-  "decompiled_c": "char __thiscall CCBRoleState::GetRoleType(CCBRoleState *this, int roleIdx)\n{\n  __int8 *v2; // eax\n\n  v2 = &this->m_sCombatDialog[892 * roleIdx];\n  if ( !v2[577] )\n    return 0;\n  if ( v2[579] == 1 )\n    return 0;\n  return v2[580];\n}\n"
-}

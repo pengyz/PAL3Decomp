@@ -1,7 +1,0 @@
-{
-  "name": "CCBStage::CCBStage(CCBSystem *)",
-  "address": "0x004FB9A0",
-  "size_bytes": 65,
-  "signature": "_DWORD *__thiscall(CCBStage *this, int a2)",
-  "decompiled_c": "_DWORD *__thiscall CCBStage::CCBStage(CCBStage *this, int a2)\n{\n  char *v2; // edx\n  int v3; // esi\n  char *v4; // edi\n\n  v2 = &this->_data[2752];\n  v3 = 256;\n  do\n  {\n    v4 = v2;\n    v2 += 2632;\n    --v3;\n    memset(v4, 0, 0x2Cu);\n  }\n  while ( v3 );\n  memset(this, 0, 0xA48B0u);\n  *(_DWORD *)this->_data = a2;\n  *(_DWORD *)&this->_data[4] = *(_DWORD *)(a2 + 16);\n  return this->_data;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_4A6930",
-  "address": "0x004A6930",
-  "size_bytes": 36,
-  "signature": "char __thiscall(int this, char *a2)",
-  "decompiled_c": "char __thiscall sub_4A6930(int this, char *a2)\n{\n  gbImage2D *v2; // esi\n\n  v2 = (gbImage2D *)(this + 204);\n  gbImage2D::Release((gbImage2D *)(this + 204));\n  gbImage2D::LoadImageFile(v2, a2, 0);\n  return 1;\n}\n"
-}

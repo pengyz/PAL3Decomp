@@ -1,7 +1,0 @@
-{
-  "name": "sub_5279F0",
-  "address": "0x005279F0",
-  "size_bytes": 144,
-  "signature": "void __thiscall(UIWnd *this)",
-  "decompiled_c": "// likely UIWnd method (near ~UIWnd)\nvoid __thiscall sub_5279F0(UIWnd *this)\n{\n  UIWnd *m_pfather; // ecx\n  void **m_pData; // ecx\n\n  this->m_fontcolor.ColorQuadFmt = (int)&off_5706EC;\n  m_pfather = this[21].m_pfather;\n  if ( m_pfather )\n  {\n    (*(void (__thiscall **)(UIWnd *, int))(m_pfather->m_fontcolor.ColorQuadFmt + 20))(m_pfather, 1);\n    this[21].m_pfather = 0;\n  }\n  m_pData = this[21].m_childs.m_pData;\n  if ( m_pData )\n  {\n    (*((void (__thiscall **)(void **, int))*m_pData + 5))(m_pData, 1);\n    this[21].m_childs.m_pData = 0;\n  }\n  UIItem::UIItem(&this[4].m_rect.right);\n  UIWnd::~UIWnd((UIListBox *)this);\n}\n"
-}

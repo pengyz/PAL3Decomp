@@ -1,7 +1,0 @@
-{
-  "name": "sub_450AB0",
-  "address": "0x00450AB0",
-  "size_bytes": 30,
-  "signature": "void *__thiscall(void *Block, char a2)",
-  "decompiled_c": "void *__thiscall sub_450AB0(void *Block, char a2)\n{\n  sub_450AD0((int)Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
-}

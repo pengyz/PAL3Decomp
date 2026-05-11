@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::InitCmd",
-  "address": "0x004DB490",
-  "size_bytes": 38,
-  "signature": "void *__thiscall(CCBSystem *this, int a2)",
-  "decompiled_c": "void *__thiscall CCBSystem::InitCmd(CCBSystem *this, int a2)\n{\n  memset(this, 0, 0x1C8u);\n  this->m_pUtil = (CCBSystem *)a2;\n  this->m_pUI = *(CCBUI **)(a2 + 4);\n  this->m_pControl = *(CCBControl **)(a2 + 16);\n  return this;\n}\n"
-}

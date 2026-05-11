@@ -1,7 +1,0 @@
-{
-  "name": "PalScript::Reset",
-  "address": "0x0043A250",
-  "size_bytes": 20,
-  "signature": "int __thiscall(PalScript *this)",
-  "decompiled_c": "int __thiscall PalScript::Reset(PalScript *this)\n{\n  int result; // eax\n\n  UIWnd::MoveWindow((UIWnd **)&this[1].m_CamObj.m_nGrowBy);\n  UIWnd::UpdateChildren((UIWnd *)this);\n  return result;\n}\n"
-}

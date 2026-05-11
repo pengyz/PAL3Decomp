@@ -1,7 +1,0 @@
-{
-  "name": "sub_450560",
-  "address": "0x00450560",
-  "size_bytes": 226,
-  "signature": "BOOL __thiscall(const RECT *this, int a2, int a3)",
-  "decompiled_c": "BOOL __thiscall sub_450560(const RECT *this, int a2, int a3)\n{\n  int left; // eax\n  int v6; // edi\n  int v7; // ecx\n  int top; // kr00_4\n  int right; // eax\n  float v10; // [esp+Ch] [ebp-14h] BYREF\n  float v11; // [esp+10h] [ebp-10h] BYREF\n  struct gbVec3D v12; // [esp+14h] [ebp-Ch] BYREF\n\n  if ( !this[3].right )\n    return 0;\n  left = this[5].left;\n  if ( left )\n  {\n    v12 = *(struct gbVec3D *)(left + 160);\n    v12.y = v12.y + 80.0;\n    gbCamera::PointWorldToScr((gbCamera *)((char *)dword_BFDA68 + 4), &v12, &v10, &v11);\n    v6 = (__int64)((v10 + 1.0) * (double)xRight * 0.5);\n    v7 = (__int64)((1.0 - v11) * (double)yBottom * 0.5);\n    top = this[5].top;\n    this[1].right = v6 + top / 2;\n    right = this[5].right;\n    this[1].left = v6 - top / 2;\n    right /= 2;\n    this[1].top = v7 - right;\n    this[1].bottom = v7 + right;\n  }\n  return sub_43BBC0(this, a2, a3);\n}\n"
-}

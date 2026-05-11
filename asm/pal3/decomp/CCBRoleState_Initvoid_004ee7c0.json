@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::Init(void)",
-  "address": "0x004EE7C0",
-  "size_bytes": 162,
-  "signature": "int __thiscall(CCBRoleState *this, int a2, char a3)",
-  "decompiled_c": "int __thiscall CCBRoleState::Init(CCBRoleState *this, int a2, char a3)\n{\n  int v3; // esi\n\n  v3 = *(_DWORD *)(this->m_pCBSystem + 4);\n  if ( a3 == 1 )\n  {\n    if ( !a2 )\n      (***(void (__thiscall ****)(_DWORD, int))(v3 + 1068))(*(_DWORD *)(v3 + 1068), 1);\n    (***(void (__thiscall ****)(_DWORD, int))(v3 + 4 * a2 + 120))(*(_DWORD *)(v3 + 4 * a2 + 120), 1);\n    (***(void (__thiscall ****)(_DWORD, int))(v3 + 4 * a2 + 1020))(*(_DWORD *)(v3 + 4 * a2 + 1020), 1);\n    (***(void (__thiscall ****)(_DWORD, int))(v3 + 4 * a2 + 1052))(*(_DWORD *)(v3 + 4 * a2 + 1052), 1);\n    return (***(int (__thiscall ****)(_DWORD, int))(v3 + 4 * a2 + 1036))(*(_DWORD *)(v3 + 4 * a2 + 1036), 1);\n  }\n  else\n  {\n    if ( !a2 )\n      (***(void (__thiscall ****)(_DWORD, _DWORD))(v3 + 1068))(*(_DWORD *)(v3 + 1068), 0);\n    (***(void (__thiscall ****)(_DWORD, _DWORD))(v3 + 4 * a2 + 120))(*(_DWORD *)(v3 + 4 * a2 + 120), 0);\n    (***(void (__thiscall ****)(_DWORD, _DWORD))(v3 + 4 * a2 + 1020))(*(_DWORD *)(v3 + 4 * a2 + 1020), 0);\n    (***(void (__thiscall ****)(_DWORD, _DWORD))(v3 + 4 * a2 + 1052))(*(_DWORD *)(v3 + 4 * a2 + 1052), 0);\n    return (***(int (__thiscall ****)(_DWORD, _DWORD))(v3 + 4 * a2 + 1036))(*(_DWORD *)(v3 + 4 * a2 + 1036), 0);\n  }\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_53CF80",
-  "address": "0x0053CF80",
-  "size_bytes": 174,
-  "signature": "FILE *()",
-  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nFILE *sub_53CF80()\n{\n  FILE *v0; // esi\n  FILE *result; // eax\n  FILE *v2; // edi\n  CHAR Filename[512]; // [esp+8h] [ebp-200h] BYREF\n\n  v0 = fopen(\"Pal3Log.txt\", aWt);\n  result = fopen(aEnginelogTxt, aWt);\n  v2 = result;\n  if ( v0 )\n  {\n    if ( result )\n    {\n      GetModuleFileNameA(0, Filename, 0x200u);\n      fprintf(v0, \"[%s Log at \", Filename);\n      _strdate(Filename);\n      fprintf(v0, Filename);\n      _strtime(Filename);\n      fprintf(v0, \" %s]\\r\\n\\r\\n\", Filename);\n      fclose(v0);\n      fprintf(v2, \"Log At:%s\\r\\n\", Filename);\n      return (FILE *)fclose(v2);\n    }\n  }\n  return result;\n}\n"
-}

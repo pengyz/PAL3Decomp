@@ -1,7 +1,0 @@
-{
-  "name": "sub_51AB00",
-  "address": "0x0051AB00",
-  "size_bytes": 91,
-  "signature": "BOOL __thiscall(UIWnd *this, int a2, int a3)",
-  "decompiled_c": "BOOL __thiscall sub_51AB00(UIWnd *this, int a2, int a3)\n{\n  if ( this->m_childs.m_nMaxSize == 1\n    && (*(_DWORD *)&g_Input._data[6532] == 1 && (g_Input._data[6520] & 0xF) == 1 || *(_DWORD *)&g_Input._data[6548] == 1) )\n  {\n    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->m_rect.top + 1160) + 8), 144, -1);\n  }\n  return UIWnd::HitTest(this, a2, a3);\n}\n"
-}

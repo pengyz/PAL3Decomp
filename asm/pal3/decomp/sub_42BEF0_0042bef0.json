@@ -1,7 +1,0 @@
-{
-  "name": "sub_42BEF0",
-  "address": "0x0042BEF0",
-  "size_bytes": 145,
-  "signature": "void __cdecl(int a2)",
-  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\nvoid __cdecl sub_42BEF0(int a2)\n{\n  char *v1; // eax\n  int *v2; // eax\n  int v3; // [esp-4h] [ebp-110h]\n  int v4; // [esp+0h] [ebp-10Ch] BYREF\n  int v5; // [esp+4h] [ebp-108h]\n  int SkillNum; // [esp+8h] [ebp-104h]\n  char Buffer[256]; // [esp+Ch] [ebp-100h] BYREF\n\n  v4 = a2;\n  v5 = 1;\n  SkillNum = PAL_GDB::GDB_GetSkillNum((PAL_GDB *)dword_975ED8, a2);\n  if ( SkillNum )\n  {\n    sub_40CCF0((int)&g_SceneMgr.m_slot4[792], &v4);\n    v3 = SkillNum + 4;\n    v1 = PalScript::SetAppName(&stru_8ACD30, aGetitem);\n    _snprintf(Buffer, 0xFFu, v1, v3, v4, v5);\n    sub_410360(Buffer);\n    v2 = sub_53DF70();\n    CScreenMode::AudioSetPosition(v2, aWa006, 1);\n  }\n}\n"
-}

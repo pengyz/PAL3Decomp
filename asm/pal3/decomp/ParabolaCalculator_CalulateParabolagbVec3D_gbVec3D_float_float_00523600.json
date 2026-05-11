@@ -1,7 +1,0 @@
-{
-  "name": "ParabolaCalculator::CalulateParabola(gbVec3D,gbVec3D,float,float)",
-  "address": "0x00523600",
-  "size_bytes": 105,
-  "signature": "int __thiscall(ParabolaCalculator *this)",
-  "decompiled_c": "int __thiscall ParabolaCalculator::CalulateParabola(ParabolaCalculator *this)\n{\n  int result; // eax\n  int v2; // [esp-20h] [ebp-68h]\n  int v3; // [esp-1Ch] [ebp-64h]\n  int v4; // [esp-18h] [ebp-60h]\n  int v5; // [esp-14h] [ebp-5Ch]\n  struct gbColorQuad *v6; // [esp-10h] [ebp-58h]\n  int v7; // [esp-Ch] [ebp-54h]\n  int v8; // [esp+0h] [ebp-48h] BYREF\n  struct gbTextureArray v9; // [esp+4h] [ebp-44h] BYREF\n\n  result = *(_DWORD *)&this[3]._tail[155];\n  if ( result )\n  {\n    *(_DWORD *)v9._data = *(_DWORD *)&this[3]._tail[155];\n    *(_DWORD *)&v9._data[64] = 1;\n    *(_WORD *)((char *)&v8 + 1) = -1;\n    LOBYTE(v8) = -1;\n    v7 = *(_DWORD *)&this[3]._tail[163];\n    v6 = *(struct gbColorQuad **)&this[3]._tail[159];\n    v5 = *(_DWORD *)&this->_tail[19];\n    v4 = *(_DWORD *)&this->_tail[15];\n    v3 = *(_DWORD *)&this->_tail[11];\n    v2 = *(_DWORD *)&this->_tail[7];\n    HIBYTE(v8) = 62;\n    UIRenderQuad(v2, v3, v4, v5, v6, v7, &v8, &v9);\n  }\n  return result;\n}\n"
-}

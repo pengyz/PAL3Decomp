@@ -1,7 +1,0 @@
-{
-  "name": "sub_439850",
-  "address": "0x00439850",
-  "size_bytes": 224,
-  "signature": "void __thiscall(int this, int a2, int a3)",
-  "decompiled_c": "void __thiscall sub_439850(int this, int a2, int a3)\n{\n  gbCamera *v4; // ecx\n  double v5; // st7\n  float y; // eax\n  float z; // edx\n  struct gbVec3D v8; // [esp+Ch] [ebp-24h] BYREF\n  struct gbVec3D v9; // [esp+18h] [ebp-18h] BYREF\n  struct gbVec3D v10; // [esp+24h] [ebp-Ch] BYREF\n  float v11; // [esp+34h] [ebp+4h]\n\n  v4 = *(gbCamera **)(this + 292);\n  v10.x = 0.0;\n  v10.y = 1.0;\n  v10.z = 0.0;\n  v9.z = 1600.0;\n  v8.z = 0.0;\n  v5 = (((double)a2 + (double)a2) / (double)xRight - 1.0) * *(float *)(this + 232);\n  v8.y = (1.0 - ((double)a3 + (double)a3) / (double)yBottom) * *(float *)(this + 232);\n  v9.x = -v5;\n  v11 = -v8.y;\n  v9.y = v11;\n  v8.y = v11;\n  v8.x = v9.x;\n  gbCamera::SetLookAt(v4, &v9, &v8, &v10);\n  y = v8.y;\n  *(float *)(this + 296) = v8.x;\n  z = v8.z;\n  *(float *)(this + 300) = y;\n  *(float *)(this + 304) = z;\n  *(float *)(this + 296) = *(float *)(this + 296) - v9.x;\n  *(float *)(this + 300) = *(float *)(this + 300) - v9.y;\n  *(float *)(this + 304) = *(float *)(this + 304) - v9.z;\n  gbVec3D::Normalize((gbVec3D *)(this + 296));\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "PAL3::GetCommandLineParam(char *)",
-  "address": "0x00406980",
-  "size_bytes": 141,
-  "signature": "int()",
-  "decompiled_c": "int PAL3::GetCommandLineParam()\n{\n  if ( !g_SceneMgr.m_slot4[832]\n    && !g_SceneMgr.m_slot4[833]\n    && !g_SceneMgr.m_slot4[834]\n    && !g_SceneMgr.m_slot4[835]\n    && !g_SceneMgr.m_slot4[836] )\n  {\n    g_SceneMgr.m_slot4[832] = 1;\n    g_SceneMgr.m_slot4[833] = 1;\n    g_SceneMgr.m_slot4[834] = 0;\n    g_SceneMgr.m_slot4[835] = 1;\n    g_SceneMgr.m_slot4[836] = 0;\n  }\n  if ( !dword_C11718 )\n    PAL3::UpdateSubsystems();\n  CCBSystem::ProcMagicWait(dword_BFDA74, (unsigned int)dword_C11700, 1);\n  return sub_44F610((int)&dword_DB9FD0, 6);\n}\n"
-}

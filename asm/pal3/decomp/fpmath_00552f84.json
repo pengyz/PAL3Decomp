@@ -1,7 +1,0 @@
-{
-  "name": "__fpmath",
-  "address": "0x00552F84",
-  "size_bytes": 23,
-  "signature": "unsigned int()",
-  "decompiled_c": "unsigned int _fpmath()\n{\n  unsigned int result; // eax\n\n  _cfltcvt_init();\n  dword_1895310 = _ms_p5_mp_test_fdiv();\n  result = _setdefaultprecision();\n  __asm { fnclex }\n  return result;\n}\n"
-}

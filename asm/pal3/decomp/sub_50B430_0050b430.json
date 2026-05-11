@@ -1,7 +1,0 @@
-{
-  "name": "sub_50B430",
-  "address": "0x0050B430",
-  "size_bytes": 142,
-  "signature": "int (__thiscall *__thiscall(int this, int a2))(int, int)",
-  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nint (__thiscall *__thiscall sub_50B430(int this, int a2))(int, int)\n{\n  int v3; // eax\n  _BYTE *i; // ecx\n  int (__thiscall *result)(int, int); // eax\n\n  v3 = 0;\n  for ( i = (_BYTE *)(this + 505); !*(i - 1) || *i; i += 96 )\n  {\n    if ( ++v3 >= 64 )\n    {\n      *(_DWORD *)(this + 6568) = CCBStageRole::ProcTurn((CCBStageRole *)this);\n      result = (int (__thiscall *)(int, int))CCBStageRole::IsGrabedBy((CCBStageRole *)this);\n      *(_DWORD *)(this + 396) = -1;\n      return result;\n    }\n  }\n  *(_DWORD *)(this + 396) = v3;\n  *(_DWORD *)(this + 400) = *(_DWORD *)(96 * v3 + this + 416);\n  *(_DWORD *)(this + 404) = *(_DWORD *)(96 * v3 + this + 420);\n  *(_DWORD *)(this + 408) = *(_DWORD *)(96 * v3 + this + 424);\n  *(_DWORD *)(this + 412) = *(_DWORD *)(96 * v3 + this + 428);\n  result = *(int (__thiscall **)(int, int))(this + 400);\n  if ( result )\n    return (int (__thiscall *)(int, int))result(this + *(_DWORD *)(this + 404), a2);\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "UIWnd::SetShow",
-  "address": "0x004427A0",
-  "size_bytes": 28,
-  "signature": "int __thiscall(UIWnd *this, int a2)",
-  "decompiled_c": "int __thiscall UIWnd::SetShow(UIWnd *this, int a2)\n{\n  int result; // eax\n\n  result = a2;\n  if ( a2 )\n    this[1].m_wndcolor.ColorQuadFmt = 2;\n  else\n    this[1].m_wndcolor.ColorQuadFmt = 1;\n  return result;\n}\n"
-}

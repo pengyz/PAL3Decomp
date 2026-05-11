@@ -1,7 +1,0 @@
-{
-  "name": "sub_532C80",
-  "address": "0x00532C80",
-  "size_bytes": 110,
-  "signature": "void __thiscall(float *this, int a2)",
-  "decompiled_c": "void __thiscall sub_532C80(float *this, int a2)\n{\n  int RolePtr; // edi\n  double v4; // st7\n\n  if ( a2 )\n  {\n    *((_DWORD *)this + 1) = a2;\n    *this = *(float *)(a2 + 4);\n    RolePtr = RoleSystem::GetRolePtr(*(RoleSystem **)a2, 0);\n    *((_DWORD *)this + 2) = RolePtr;\n    v4 = sub_421230(\n           (RoleSystem *)**((_DWORD **)this + 1),\n           0,\n           (__int64)((this[9] - *(float *)(RolePtr + 128)) / flt_17B02EC),\n           (__int64)((this[11] - *(float *)(RolePtr + 136)) / flt_17B02EC),\n           0)\n       + this[18];\n    this[10] = v4;\n    this[19] = v4;\n  }\n}\n"
-}

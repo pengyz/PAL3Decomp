@@ -1,7 +1,0 @@
-{
-  "name": "ScreenEffect::ScreenEffect(void)",
-  "address": "0x004BDFB0",
-  "size_bytes": 163,
-  "signature": "_BYTE *__thiscall(ScreenEffect *this)",
-  "decompiled_c": "_BYTE *__thiscall ScreenEffect::ScreenEffect(ScreenEffect *this)\n{\n  char v3; // [esp+Bh] [ebp-11h]\n\n  sub_4BE8D0((int)&this->m_life);\n  sub_4BEA60((int)&this[2]);\n  sub_4BEBB0((int)&this[3].m_age);\n  sub_4BED00((int)&this[5]);\n  LOBYTE(this[6].m_age) = v3;\n  *(_DWORD *)&this[6].m_hold = 0;\n  this[7].m_blive = 0;\n  this[7].m_life = 0.0;\n  this[7].m_age = 0.0;\n  *(_DWORD *)&this[7].m_hold = 0;\n  this[8].m_blive = 0;\n  this[8].m_life = 0.0;\n  this[8].m_age = 0.0;\n  *(_DWORD *)&this[8].m_hold = 0;\n  this[9].m_blive = 0;\n  this[9].m_life = 0.0;\n  this->m_blive = (int)&off_56F508;\n  return this;\n}\n"
-}

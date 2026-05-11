@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageScene::SetBattleFieldAttr(ECBBattleFieldAttr,ECBForce)",
-  "address": "0x00510C80",
-  "size_bytes": 25,
-  "signature": "int __thiscall(CCBStageScene *this)",
-  "decompiled_c": "int __thiscall CCBStageScene::SetBattleFieldAttr(CCBStageScene *this)\n{\n  int result; // eax\n  int d268; // ecx\n\n  result = CCBStageScene::Init(this);\n  d268 = this->_d268;\n  if ( d268 )\n    return (*(int (__thiscall **)(int))(*(_DWORD *)d268 + 20))(d268);\n  return result;\n}\n"
-}

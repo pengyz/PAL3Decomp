@@ -1,7 +1,0 @@
-{
-  "name": "UICursor::IRender(void)",
-  "address": "0x00541CC0",
-  "size_bytes": 22,
-  "signature": "int __thiscall(UICursor *this)",
-  "decompiled_c": "int __thiscall UICursor::IRender(UICursor *this)\n{\n  int result; // eax\n\n  gbUpdateCurTime();\n  result = LODWORD(g_CurrentTime);\n  dbl_1895070 = g_CurrentTime;\n  return result;\n}\n"
-}

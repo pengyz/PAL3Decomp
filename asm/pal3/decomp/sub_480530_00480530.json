@@ -1,7 +1,0 @@
-{
-  "name": "sub_480530",
-  "address": "0x00480530",
-  "size_bytes": 204,
-  "signature": "_DWORD *__thiscall(int this, float a2)",
-  "decompiled_c": "_DWORD *__thiscall sub_480530(int this, float a2)\n{\n  double v3; // st7\n  int v4; // ebx\n  int v5; // ebp\n  UIWnd *v6; // ebx\n  int v7; // ebp\n\n  v3 = a2 * 120.0 + *(float *)(this + 162764);\n  *(float *)(this + 162764) = v3;\n  if ( v3 >= 255.0 )\n  {\n    *(_DWORD *)(this + 162764) = 1132396544;\n    *(_BYTE *)(this + 162768) = 0;\n  }\n  *(_BYTE *)(this + 162763) = (__int64)*(float *)(this + 162764);\n  UIWnd::GetChild((UIWnd *)(this + 154956), this + 162760);\n  UIWnd::GetChild((UIWnd *)(this + 155108), this + 162760);\n  UIWnd::GetChild((UIWnd *)(this + 155260), this + 162760);\n  v4 = this + 155412;\n  v5 = 5;\n  do\n  {\n    UIWnd::GetChild((UIWnd *)(v4 + 760), this + 162760);\n    UIWnd::GetChild((UIWnd *)v4, this + 162760);\n    v4 += 152;\n    --v5;\n  }\n  while ( v5 );\n  v6 = (UIWnd *)(this + 156932);\n  v7 = 4;\n  do\n  {\n    UIWnd::GetChild(v6, this + 162760);\n    v6 = (UIWnd *)((char *)v6 + 152);\n    --v7;\n  }\n  while ( v7 );\n  return (_DWORD *)UIWnd::GetChild((UIWnd *)(this + 157604), this + 162760);\n}\n"
-}

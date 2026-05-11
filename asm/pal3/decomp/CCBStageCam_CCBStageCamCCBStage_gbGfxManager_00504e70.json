@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageCam::CCBStageCam(CCBStage *,gbGfxManager *)",
-  "address": "0x00504E70",
-  "size_bytes": 202,
-  "signature": "char __thiscall(CCBStageCam *Buffer)",
-  "decompiled_c": "char __thiscall CCBStageCam::CCBStageCam(CCBStageCam *Buffer)\n{\n  FILE *v2; // esi\n  char *v3; // eax\n  int v4; // ecx\n  char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF\n  char ArgList[1024]; // [esp+408h] [ebp-400h] BYREF\n\n  v2 = fopen(aBasedataCbdata_0, Mode);\n  if ( !v2 )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aCouldnTOpenCbC, aDProjectPal3Co_6, 702), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  v3 = &Buffer->_pad_000[176];\n  v4 = 2000;\n  do\n  {\n    *((_DWORD *)v3 + 1) = 1112014848;\n    *(_DWORD *)v3 = 1112014848;\n    v3 += 204;\n    --v4;\n  }\n  while ( v4 );\n  fseek(v2, 0, 0);\n  fwrite(Buffer, 0x639C0u, 1u, v2);\n  fwrite(&Buffer[108]._pad_000[2676], 0x7D0u, 1u, v2);\n  fwrite(&Buffer[109]._pad_000[923], 0x4E20u, 1u, v2);\n  fclose(v2);\n  return 1;\n}\n"
-}

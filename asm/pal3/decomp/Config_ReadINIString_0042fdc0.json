@@ -1,7 +1,0 @@
-{
-  "name": "Config::ReadINIString",
-  "address": "0x0042FDC0",
-  "size_bytes": 27,
-  "signature": "char *__thiscall(void *this, char *filename, char *key)",
-  "decompiled_c": "char *__thiscall Config::ReadINIString(void *this, char *filename, char *key)\n{\n  return (char *)sprintf((char *const)this, \"%s\\\\%s\", Filename, filename);\n}\n"
-}

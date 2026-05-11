@@ -1,7 +1,0 @@
-{
-  "name": "PAL3::IfHideFightSucceed(bool)",
-  "address": "0x00407740",
-  "size_bytes": 69,
-  "signature": "int __cdecl(int a1)",
-  "decompiled_c": "int __cdecl PAL3::IfHideFightSucceed(int a1)\n{\n  int result; // eax\n  int *v2; // eax\n  gbAudioManager *v3; // eax\n  int *v4; // eax\n\n  result = a1 - 2;\n  if ( a1 == 2 )\n  {\n    if ( (dword_5833BC & 1) != 0 )\n    {\n      v2 = sub_53DF70();\n      v3 = (gbAudioManager *)sub_53E500(v2);\n      gbAudioManager::DetachAll3D(v3);\n    }\n    PAL3::UIPostProcess();\n    sub_4181E0(g_SceneMgr.m_pCollisionNode);\n    v4 = sub_5415F0();\n    return sub_541590((int)v4, 0);\n  }\n  return result;\n}\n"
-}

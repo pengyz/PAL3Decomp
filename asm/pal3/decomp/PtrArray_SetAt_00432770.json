@@ -1,7 +1,0 @@
-{
-  "name": "PtrArray::SetAt",
-  "address": "0x00432770",
-  "size_bytes": 52,
-  "signature": "void __thiscall(PtrArray *this, int a2, int a3)",
-  "decompiled_c": "void __thiscall PtrArray::SetAt(PtrArray *this, int a2, int a3)\n{\n  if ( a2 >= this->m_nSize )\n    sub_4326A0((int)this, a2 + 1, -1);\n  this->m_pData[a2] = (void *)a3;\n}\n"
-}

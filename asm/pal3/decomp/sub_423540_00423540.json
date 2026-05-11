@@ -1,7 +1,0 @@
-{
-  "name": "sub_423540",
-  "address": "0x00423540",
-  "size_bytes": 101,
-  "signature": "gbGfxManager *()",
-  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\ngbGfxManager *sub_423540()\n{\n  gbGfxManager *result; // eax\n\n  result = (gbGfxManager *)sub_4226F0();\n  if ( *(_DWORD *)&result->_data[100] != 1\n    || (result = (gbGfxManager *)UIScene::ProcessInput(aM19_0, 0), (_BYTE)result)\n    || (result = (gbGfxManager *)UIScene::ProcessInput(aM20_0, 0), (_BYTE)result)\n    || (result = (gbGfxManager *)UIScene::ProcessInput(aM25, 0), (_BYTE)result) )\n  {\n    *(_DWORD *)&gfxMgr->_data[444] = 1060320051;\n  }\n  else\n  {\n    result = gfxMgr;\n    *(_DWORD *)&gfxMgr->_data[444] = 0;\n  }\n  return result;\n}\n"
-}

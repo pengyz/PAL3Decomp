@@ -1,7 +1,0 @@
-{
-  "name": "sub_504D60",
-  "address": "0x00504D60",
-  "size_bytes": 108,
-  "signature": "char __thiscall(int this, int a2, int a3, float a4)",
-  "decompiled_c": "// likely CCBSystem method (near SetAuto, PassCmdToThread, ProcMessage, Message, Se)\nchar __thiscall sub_504D60(int this, int a2, int a3, float a4)\n{\n  int v5; // eax\n  const void *v7; // [esp-8h] [ebp-28h]\n  const void *v8; // [esp-4h] [ebp-24h]\n\n  v8 = (const void *)(this + 8 * (3 * a3 + 573));\n  v7 = (const void *)(this + 8 * (3 * a2 + 573));\n  v5 = CCBSystem::ProcProtect(**(CCBSystem ***)(this + 544));\n  sub_504B50((_DWORD *)this, (int)sub_504C50, 0, 0, 0, v5, a4, v7, v8);\n  return 1;\n}\n"
-}

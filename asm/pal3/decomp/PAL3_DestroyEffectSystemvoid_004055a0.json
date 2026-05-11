@@ -1,7 +1,0 @@
-{
-  "name": "PAL3::DestroyEffectSystem(void)",
-  "address": "0x004055A0",
-  "size_bytes": 41,
-  "signature": "char()",
-  "decompiled_c": "char PAL3::DestroyEffectSystem()\n{\n  void *v0; // esi\n\n  v0 = dword_BFDA70;\n  if ( dword_BFDA70 )\n  {\n    sub_4C5840((int)dword_BFDA70);\n    operator delete(v0);\n  }\n  dword_BFDA70 = 0;\n  return 1;\n}\n"
-}

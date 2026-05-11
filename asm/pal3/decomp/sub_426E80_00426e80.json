@@ -1,7 +1,0 @@
-{
-  "name": "sub_426E80",
-  "address": "0x00426E80",
-  "size_bytes": 48,
-  "signature": "BOOL __cdecl(_DWORD *a1, _DWORD *a2)",
-  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nBOOL __cdecl sub_426E80(_DWORD *a1, _DWORD *a2)\n{\n  int v2; // ecx\n  BOOL result; // eax\n\n  result = 0;\n  if ( *a2 >= *a1 && *a2 <= a1[2] )\n  {\n    v2 = a2[1];\n    if ( v2 >= a1[1] && v2 <= a1[3] )\n      return 1;\n  }\n  return result;\n}\n"
-}

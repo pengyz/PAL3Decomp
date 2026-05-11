@@ -1,7 +1,0 @@
-{
-  "name": "CCBUI::Update",
-  "address": "0x004E04C0",
-  "size_bytes": 106,
-  "signature": "int __thiscall(CCBUI *this)",
-  "decompiled_c": "int __thiscall CCBUI::Update(CCBUI *this)\n{\n  int result; // eax\n\n  CCBSystem::ProcAI(*(_DWORD *)this->_data, flt_17A95F8);\n  if ( *(_BYTE *)(*(_DWORD *)this->_data + 132) != byte_17A9924 )\n    CCBSystem::SetRenderFlag(*(CCBSystem **)this->_data, byte_17A9924);\n  *(_BYTE *)(*(_DWORD *)this->_data + 134) = byte_5D87F0;\n  if ( byte_17A9926 )\n  {\n    CCBSystem::GetRenderFlag();\n    byte_17A9926 = 0;\n  }\n  CCBUI::UpdateInput(this);\n  CCBUI::UpdateDisplay(this);\n  CCBUI::UpdateAnimation(this);\n  LOBYTE(result) = CCBUI::UpdateState(this);\n  return result;\n}\n"
-}

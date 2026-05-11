@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageCam::ClearFinishedTask(void)",
-  "address": "0x00505770",
-  "size_bytes": 63,
-  "signature": "char __thiscall(CCBStageCam *this, int a2)",
-  "decompiled_c": "char __thiscall CCBStageCam::ClearFinishedTask(CCBStageCam *this, int a2)\n{\n  if ( !CCBStageCam::IsEditorCamValid(this, a2) )\n    return 0;\n  this[114]._pad_000[2170] = 1;\n  CCCTData::Save((CCCTData *)this, a2);\n  *(_DWORD *)&this[114]._pad_000[2190] = a2;\n  *(_DWORD *)&this[114]._pad_000[2194] = 0;\n  return 1;\n}\n"
-}

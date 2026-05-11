@@ -1,7 +1,0 @@
-{
-  "name": "UIWnd::SetState",
-  "address": "0x00445930",
-  "size_bytes": 57,
-  "signature": "int __thiscall(UIWnd *this, int state)",
-  "decompiled_c": "int __thiscall UIWnd::SetState(UIWnd *this, int state)\n{\n  int result; // eax\n\n  result = state;\n  this[2].m_rect.left = state;\n  if ( state )\n  {\n    this[2].m_wndcolor.ColorQuadFmt = 2;\n    this[1].m_fontcolor.Color = *(_DWORD *)&this->m_wndcolor.Blue;\n    this[1].m_wndcolor.ColorQuadFmt = this->m_wndcolor.Color;\n    *(_DWORD *)&this[1].m_wndcolor.Blue = this->m_id;\n    result = this->m_rect.left;\n    this[1].m_wndcolor.Color = result;\n  }\n  return result;\n}\n"
-}

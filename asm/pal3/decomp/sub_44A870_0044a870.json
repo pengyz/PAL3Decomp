@@ -1,7 +1,0 @@
-{
-  "name": "sub_44A870",
-  "address": "0x0044A870",
-  "size_bytes": 245,
-  "signature": "void __thiscall(float *this)",
-  "decompiled_c": "void __thiscall sub_44A870(float *this)\n{\n  int v2; // ebp\n  int v3; // eax\n  int v4; // edi\n  double v5; // st7\n  double v6; // st7\n  int v7; // edi\n\n  if ( *((_DWORD *)this + 14) )\n  {\n    if ( *((_DWORD *)this + 19) )\n    {\n      v2 = *((_DWORD *)this + 20);\n      if ( v2 > 0 )\n      {\n        v3 = *((_DWORD *)this + 22);\n        if ( v3 > v2 )\n        {\n          v5 = this[23] - 5.0;\n          if ( v5 <= 0.0 )\n            v5 = 0.0;\n          v6 = 1.0 - v5 * 0.33333334;\n          if ( v6 < 0.0 )\n            v6 = 0.0;\n          v7 = 0;\n          do\n            sub_44AA20((int *)this, v7++, (__int64)(v6 * 255.0));\n          while ( v7 <= *((_DWORD *)this + 20) );\n          if ( !(unsigned __int8)(__int64)(v6 * 255.0) )\n          {\n            (*(void (__thiscall **)(float *))(*(_DWORD *)this + 12))(this);\n            (**(void (__thiscall ***)(float *, _DWORD))this)(this, 0);\n          }\n        }\n        else\n        {\n          v4 = 0;\n          if ( v3 > 0 )\n          {\n            do\n              sub_44AA20((int *)this, v4++, 255);\n            while ( v4 < *((_DWORD *)this + 22) );\n          }\n          sub_44AA20((int *)this, *((_DWORD *)this + 22), (__int64)(this[23] / 2.0 * 255.0));\n        }\n      }\n    }\n  }\n}\n"
-}

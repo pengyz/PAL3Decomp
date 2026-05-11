@@ -1,7 +1,0 @@
-{
-  "name": "sub_421150",
-  "address": "0x00421150",
-  "size_bytes": 217,
-  "signature": "BOOL __thiscall(RoleSystem *this, char arg0, int index, int *a2, int a3)",
-  "decompiled_c": "// likely GRPinput method (near SetMouseLimits, CheckKeyEvents, SetJoystickPos, Se)\nBOOL __thiscall sub_421150(RoleSystem *this, char arg0, int index, int *a2, int a3)\n{\n  int RolePtr; // eax\n  unsigned __int8 v9; // al\n  char *v10; // ebx\n  char v11; // al\n  BOOL indexa; // [esp+14h] [ebp+8h]\n\n  RolePtr = RoleSystem::GetRolePtr(this, index);\n  if ( (int)a2 < 0 || (int)a2 >= *(_DWORD *)(RolePtr + 152) || a3 < 0 || a3 >= *(_DWORD *)(RolePtr + 156) )\n    return 0;\n  indexa = GRPinput::GetJoystickFreePos((GRPinput *)RolePtr, (int)a2, a3);\n  v9 = sub_4209F0((_DWORD *)this + 5 * index + 45, (int)a2, a3);\n  if ( v9 == 0xFF || v9 == arg0 )\n    return indexa;\n  v10 = (char *)this + 896 * v9;\n  v11 = v10[468];\n  if ( v11 == 22 || v11 == 5 )\n  {\n    if ( !indexa )\n    {\n      indexa = 0;\n      if ( !v10[433] )\n        return indexa;\n    }\n  }\n  else if ( !indexa || !v10[433] )\n  {\n    return 0;\n  }\n  return 1;\n}\n"
-}

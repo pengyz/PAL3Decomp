@@ -1,7 +1,0 @@
-{
-  "name": "sub_451AF0",
-  "address": "0x00451AF0",
-  "size_bytes": 70,
-  "signature": "int __thiscall(int *this, char *Source, int a3)",
-  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nint __thiscall sub_451AF0(int *this, char *Source, int a3)\n{\n  UIWnd *v4; // esi\n  unsigned int v5; // eax\n  unsigned int v6; // kr04_4\n  int result; // eax\n\n  v4 = (UIWnd *)(this + 22);\n  v5 = UIListBox::SetItemOffset((UIListBox *)(this + 22), Source, 0);\n  sub_43F6A0(v4, v5, a3);\n  sub_43F5B0((int)v4, -1);\n  v6 = strlen(Source) + 1;\n  result = this[21];\n  if ( (int)(v6 - 1) > result )\n    this[21] = v6 - 1;\n  return result;\n}\n"
-}

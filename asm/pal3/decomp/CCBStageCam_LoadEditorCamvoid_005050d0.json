@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageCam::LoadEditorCam(void)",
-  "address": "0x005050D0",
-  "size_bytes": 169,
-  "signature": "char __thiscall(CCBStageCam *this, int a2, int a3, const void *a4)",
-  "decompiled_c": "char __thiscall CCBStageCam::LoadEditorCam(CCBStageCam *this, int a2, int a3, const void *a4)\n{\n  int IsEditorCamValid; // eax\n  char result; // al\n  int IsCamValid; // eax\n  char *v8; // edx\n  int v9; // ecx\n  int v10; // ecx\n\n  IsEditorCamValid = CCBStageCam::IsEditorCamValid(this, a2);\n  if ( a3 >= IsEditorCamValid )\n    return CCBStageCam::Reset(this, a2, a4);\n  if ( IsEditorCamValid >= 50 )\n    return 0;\n  IsCamValid = CCBStageCam::IsCamValid(this);\n  if ( IsCamValid == -1 )\n    return 0;\n  if ( a3 < 49 )\n  {\n    v8 = &this[109]._pad_000[200 * a2 + 1119];\n    v9 = 49 - a3;\n    do\n    {\n      *(_DWORD *)v8 = *((_DWORD *)v8 - 1);\n      v8 -= 4;\n      --v9;\n    }\n    while ( v9 );\n  }\n  *(_DWORD *)&this[109]._pad_000[200 * a2 + 923 + 4 * a3] = IsCamValid;\n  v10 = 17 * IsCamValid;\n  this[108]._pad_000[IsCamValid + 2676] = 1;\n  result = 1;\n  qmemcpy((char *)this + 12 * v10, a4, 0xCCu);\n  return result;\n}\n"
-}

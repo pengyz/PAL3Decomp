@@ -1,7 +1,0 @@
-{
-  "name": "ParabolaCalculator::UpdateParabola(float)",
-  "address": "0x00523670",
-  "size_bytes": 87,
-  "signature": "int __thiscall(ParabolaCalculator *this)",
-  "decompiled_c": "int __thiscall ParabolaCalculator::UpdateParabola(ParabolaCalculator *this)\n{\n  int result; // eax\n\n  ParabolaCalculator::CalulateParabola(this);\n  result = *(_DWORD *)&this[3]._tail[151];\n  switch ( result )\n  {\n    case 0:\n      result = UIListBox::SetScroll((UIListBox *)this);\n      break;\n    case 1:\n      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)&this[3]._tail[135] + 4))(*(_DWORD *)&this[3]._tail[135]);\n      break;\n    case 2:\n      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)&this[3]._tail[139] + 4))(*(_DWORD *)&this[3]._tail[139]);\n      break;\n    case 3:\n      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)&this[3]._tail[143] + 4))(*(_DWORD *)&this[3]._tail[143]);\n      break;\n    case 4:\n      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)&this[3]._tail[147] + 4))(*(_DWORD *)&this[3]._tail[147]);\n      break;\n    default:\n      return result;\n  }\n  return result;\n}\n"
-}

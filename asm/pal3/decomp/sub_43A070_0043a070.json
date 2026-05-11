@@ -1,7 +1,0 @@
-{
-  "name": "sub_43A070",
-  "address": "0x0043A070",
-  "size_bytes": 32,
-  "signature": "int __thiscall(int this, float a2)",
-  "decompiled_c": "int __thiscall sub_43A070(int this, float a2)\n{\n  int result; // eax\n  int v3; // ecx\n\n  result = LODWORD(a2);\n  *(float *)(this + 232) = a2;\n  v3 = *(_DWORD *)(this + 292);\n  *(float *)(v3 + 4) = a2;\n  *(_DWORD *)v3 = 0;\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_429A90",
-  "address": "0x00429A90",
-  "size_bytes": 88,
-  "signature": "int __thiscall(int this, gbRay *a2)",
-  "decompiled_c": "int __thiscall sub_429A90(int this, gbRay *a2)\n{\n  char v3; // al\n  struct gbOBBox v5; // [esp+4h] [ebp-4Ch] BYREF\n\n  v3 = *(_BYTE *)(this + 244);\n  if ( v3 == 20 || v3 == 27 )\n    return gbRay::IsColAABB(a2, (struct gbAABBox *)(this + 536));\n  gbMatrix4::gbMatrix4((gbMatrix4 *)&v5);\n  sub_429EE0(this, (gbMatrix4 *)&v5);\n  return gbRay::IsColOBB_H(a2, &v5);\n}\n"
-}

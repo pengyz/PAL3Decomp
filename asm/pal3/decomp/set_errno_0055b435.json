@@ -1,7 +1,0 @@
-{
-  "name": "__set_errno",
-  "address": "0x0055B435",
-  "size_bytes": 38,
-  "signature": "errno_t __cdecl(int Value)",
-  "decompiled_c": "errno_t __cdecl _set_errno(int Value)\n{\n  errno_t result; // eax\n\n  result = Value;\n  if ( Value == 1 )\n  {\n    dword_189533C = 33;\n  }\n  else if ( Value > 1 && Value <= 3 )\n  {\n    dword_189533C = 34;\n  }\n  return result;\n}\n"
-}

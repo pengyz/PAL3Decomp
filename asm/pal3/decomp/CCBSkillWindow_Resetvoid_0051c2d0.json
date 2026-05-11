@@ -1,7 +1,0 @@
-{
-  "name": "CCBSkillWindow::Reset(void)",
-  "address": "0x0051C2D0",
-  "size_bytes": 88,
-  "signature": "int __thiscall(CCBSkillWindow *this)",
-  "decompiled_c": "int __thiscall CCBSkillWindow::Reset(CCBSkillWindow *this)\n{\n  int result; // eax\n\n  result = 0;\n  *(_DWORD *)&this->_pad_054[84] = 0;\n  *(_DWORD *)&this->_pad_054[88] = -1;\n  this->_d048 = 0;\n  this->_d04C = 0;\n  this->_d050 = 0;\n  *(_DWORD *)this->_pad_054 = 0;\n  *(_DWORD *)&this->_pad_054[4] = 0;\n  *(_DWORD *)&this->_pad_054[8] = 0;\n  *(_DWORD *)&this->_pad_054[12] = 0;\n  *(_DWORD *)&this->_pad_054[16] = 0;\n  *(_DWORD *)&this->_pad_054[20] = 0;\n  memset(&this->_pad_054[24], 0, 0x2Cu);\n  *(_DWORD *)&this->_pad_054[68] = 0;\n  *(_DWORD *)&this->_pad_054[72] = 0;\n  *(_DWORD *)&this->_pad_054[76] = 0;\n  *(_DWORD *)&this->_pad_054[80] = 0;\n  return result;\n}\n"
-}

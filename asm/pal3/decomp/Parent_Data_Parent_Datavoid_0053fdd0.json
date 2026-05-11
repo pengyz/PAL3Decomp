@@ -1,7 +1,0 @@
-{
-  "name": "Parent_Data::Parent_Data(void)",
-  "address": "0x0053FDD0",
-  "size_bytes": 118,
-  "signature": "Parent_Data *__thiscall(Parent_Data *this, LPCSTR lpString)",
-  "decompiled_c": "Parent_Data *__thiscall Parent_Data::Parent_Data(Parent_Data *this, LPCSTR lpString)\n{\n  int v3; // edi\n  int i; // ebx\n\n  if ( !this[133]._data[0] )\n    return 0;\n  if ( lstrlenA(lpString) <= 0 )\n    return 0;\n  v3 = 0;\n  if ( *(_DWORD *)&this[131] <= 0 )\n    return 0;\n  for ( i = 0; _strcmpi(lpString, (const char *)(i + *(_DWORD *)&this[132])); i += 1088 )\n  {\n    if ( ++v3 >= *(_DWORD *)&this[131] )\n      return 0;\n  }\n  return (Parent_Data *)(*(_DWORD *)&this[132] + 1088 * v3);\n}\n"
-}

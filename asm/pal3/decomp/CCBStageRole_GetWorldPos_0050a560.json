@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageRole::GetWorldPos",
-  "address": "0x0050A560",
-  "size_bytes": 100,
-  "signature": "float *__thiscall(CCBStageRole *this)",
-  "decompiled_c": "float *__thiscall CCBStageRole::GetWorldPos(CCBStageRole *this)\n{\n  gbMatrix4 v3; // [esp+8h] [ebp-40h] BYREF\n\n  gbMatrix4::gbMatrix4(&v3);\n  Actor::PlayAction(*(void **)&this->_data[292], (int)&this->_data[296]);\n  gbMatrix4::LoadIdentity(&v3);\n  gbMatrix4::SetAxisAngle(&v3, GB_AXIS_Y, *(float *)&this->_data[6632]);\n  gbMatrix4::RightMultiply((gbMatrix4 *)&this->_data[296], &v3);\n  gbMatrix4::RightTranslate((gbMatrix4 *)&this->_data[296], (struct gbVec3D *)&this->_data[6584]);\n  return (float *)&this->_data[296];\n}\n"
-}

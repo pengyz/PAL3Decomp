@@ -1,7 +1,0 @@
-{
-  "name": "UIListBox::SetItemHeight(int)",
-  "address": "0x0043E480",
-  "size_bytes": 160,
-  "signature": "int __thiscall(UIListBox *this, int a2, int a3, int a4)",
-  "decompiled_c": "int __thiscall UIListBox::SetItemHeight(UIListBox *this, int a2, int a3, int a4)\n{\n  int v6; // edi\n  int Child; // eax\n  int v8; // ecx\n  int v9; // ecx\n\n  if ( a2 != 1005 )\n    return UIWnd::SendMessage(a2, a3, a4);\n  if ( *(_DWORD *)&this->_tail[1116] )\n  {\n    v6 = *(_DWORD *)&this->_tail[1044];\n    *(_DWORD *)&this->_tail[1044] = a4;\n    Child = UIWnd::CreateChild((UIWnd *)this);\n    if ( Child == -1 )\n    {\n      *(_DWORD *)&this->_tail[1044] = v6;\n    }\n    else if ( *(_DWORD *)(*(_DWORD *)&this->_tail[1124] + 4 * Child) )\n    {\n      v8 = *(_DWORD *)&this->_pad_004[28];\n      if ( v8 )\n        (*(void (__thiscall **)(int, int, _DWORD, int))(*(_DWORD *)v8 + 24))(\n          v8,\n          1006,\n          *(_DWORD *)&this->_pad_004[8],\n          Child);\n    }\n  }\n  else\n  {\n    *(_DWORD *)&this->_tail[1044] = a4;\n  }\n  v9 = *(_DWORD *)&this->_pad_004[28];\n  if ( v9 )\n    (*(void (__thiscall **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1005, 0, 0);\n  return 1;\n}\n"
-}

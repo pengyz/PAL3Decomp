@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageShadow::Reset(void)",
-  "address": "0x00511FC0",
-  "size_bytes": 178,
-  "signature": "char __thiscall(CCBStageShadow *this)",
-  "decompiled_c": "char __thiscall CCBStageShadow::Reset(CCBStageShadow *this)\n{\n  int v2; // ebx\n  int v3; // ecx\n  float *v4; // edi\n  float *WorldPos; // esi\n  double v6; // st7\n  gbMatrix4 v8; // [esp+14h] [ebp-4Ch] BYREF\n  float v9; // [esp+54h] [ebp-Ch]\n  int v10; // [esp+58h] [ebp-8h]\n  float v11; // [esp+5Ch] [ebp-4h]\n\n  sub_511E80(this);\n  gbMatrix4::gbMatrix4(&v8);\n  v2 = 0;\n  v3 = -1488 - (_DWORD)this;\n  v4 = (float *)&this->_data[1512];\n  do\n  {\n    if ( *(_BYTE *)(*(_DWORD *)(**(_DWORD **)this->_data + 16) + v2 + 577) )\n    {\n      WorldPos = CCBStageRole::GetWorldPos(*(CCBStageRole **)((char *)v4 + v3 + *(_DWORD *)this->_data));\n      gbMatrix4::operator=(&v8, WorldPos);\n      v9 = WorldPos[16];\n      v10 = *((_DWORD *)WorldPos + 17);\n      v11 = WorldPos[18];\n      if ( v9 >= (double)v11 )\n        v6 = v11;\n      else\n        v6 = v9;\n      *v4 = v6;\n      v3 = -1488 - (_DWORD)this;\n    }\n    else\n    {\n      *v4 = 0.5;\n    }\n    v2 += 892;\n    ++v4;\n  }\n  while ( v2 < 9812 );\n  CCBStageShadow::Destroy(this);\n  return 1;\n}\n"
-}

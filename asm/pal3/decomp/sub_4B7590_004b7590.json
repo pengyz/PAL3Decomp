@@ -1,7 +1,0 @@
-{
-  "name": "sub_4B7590",
-  "address": "0x004B7590",
-  "size_bytes": 178,
-  "signature": "void __thiscall(int this, int a2)",
-  "decompiled_c": "void __thiscall sub_4B7590(int this, int a2)\n{\n  int v3; // eax\n  int v4; // ebx\n  struct gbRenderInfoObj *v5; // edi\n  int v6; // eax\n  gbMatrix4 *Top; // eax\n\n  v3 = *(_DWORD *)(this + 92);\n  *(_DWORD *)(this + 232) = 1;\n  v4 = this + 168;\n  *(_DWORD *)(this + 168) = *(_DWORD *)(this + 4 * v3 + 104);\n  v5 = gbSceneGraph::NewOneRenderObj(*(gbSceneGraph **)&gfxMgr->_data[448], (struct gbVisNode *)this);\n  *(_DWORD *)&v5->_data[24] = 0;\n  *(_DWORD *)&v5->_data[8] = 0;\n  v6 = *(_DWORD *)(this + 100);\n  *(_DWORD *)&v5->_data[16] = v4;\n  *(_DWORD *)&v5->_data[12] = v6;\n  Top = gbMatrixStack::GetTop(*(gbMatrixStack **)&gfxMgr->_data[216]);\n  gbMatrix4::Transform(Top);\n  *(_DWORD *)&v5->_data[20] = 1;\n  *(_DWORD *)&v5->_data[4] = 0;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_53E9C0",
-  "address": "0x0053E9C0",
-  "size_bytes": 78,
-  "signature": "unsigned int __thiscall(_DWORD *this)",
-  "decompiled_c": "unsigned int __thiscall sub_53E9C0(_DWORD *this)\n{\n  unsigned int v1; // edi\n  int i; // ebx\n  unsigned int result; // eax\n  int v5; // ecx\n\n  v1 = 0;\n  for ( i = 0; ; i += 20 )\n  {\n    result = this[204];\n    if ( !result )\n      break;\n    v5 = this[205] - result;\n    result = (unsigned int)((unsigned __int64)(1717986919LL * v5) >> 32) >> 31;\n    if ( v1 >= v5 / 20 )\n      break;\n    gbSound2DNode::Pause(*(gbSound2DNode **)(this[204] + i + 16));\n    ++v1;\n  }\n  return result;\n}\n"
-}

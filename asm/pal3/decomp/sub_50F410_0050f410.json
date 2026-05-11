@@ -1,7 +1,0 @@
-{
-  "name": "sub_50F410",
-  "address": "0x0050F410",
-  "size_bytes": 171,
-  "signature": "int __thiscall(void *this, int a2)",
-  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nint __thiscall sub_50F410(void *this, int a2)\n{\n  int v3; // ecx\n\n  if ( *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 506) )\n  {\n    if ( !CCBRoleState::IsRoleAlive(*((CCBRoleState **)this + 1), *((_DWORD *)this + 71))\n      || a2 == *((_DWORD *)this + 1661) )\n    {\n      CCBStageRole::ClearBadPushTask((CCBStageRole *)this, 0.0099999998);\n      *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;\n    }\n    return 0;\n  }\n  else\n  {\n    CCBStageRole::ClearBadPushTask((CCBStageRole *)this, 0.25);\n    v3 = *((_DWORD *)this + 1659);\n    *((_DWORD *)this + 1642) = 40;\n    *((_DWORD *)this + 1658) = v3;\n    CCBStageRole::GetPointerPos((CCBStageRole *)this);\n    *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 506) = 1;\n    nullsub_3(this);\n    return 0;\n  }\n}\n"
-}

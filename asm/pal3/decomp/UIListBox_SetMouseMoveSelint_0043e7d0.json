@@ -1,7 +1,0 @@
-{
-  "name": "UIListBox::SetMouseMoveSel(int)",
-  "address": "0x0043E7D0",
-  "size_bytes": 196,
-  "signature": "struct gbVFileSystem *__thiscall(UIListBox *this, int a2, int a3, char *Source, int a5)",
-  "decompiled_c": "struct gbVFileSystem *__thiscall UIListBox::SetMouseMoveSel(UIListBox *this, int a2, int a3, char *Source, int a5)\n{\n  int v5; // esi\n  gbTexture *v6; // eax\n\n  if ( a3 < 0 || a3 >= *(_DWORD *)&this->_tail[84 * a2 + 432] )\n    v5 = 0;\n  else\n    v5 = *(_DWORD *)(*(_DWORD *)&this->_tail[84 * a2 + 428] + 4 * a3);\n  if ( !a5 )\n    return (struct gbVFileSystem *)strncpy((char *)(v5 + 4), Source, 0x40u);\n  OpenBaseFile::OpenBaseFile((OpenBaseFile *)&a2);\n  v6 = (gbTexture *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_data + 8))(gfxMgr, Source);\n  *(_DWORD *)v5 = v6;\n  if ( v6 )\n    gbTexture::LoadTexture(v6, 1);\n  return OpenNULLFile::OpenNULLFile((OpenNULLFile **)&a2);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "CScreenMode::AudioSetPosition",
-  "address": "0x0053E2E0",
-  "size_bytes": 45,
-  "signature": "void __thiscall(_DWORD *this, const void *a2, int a3)",
-  "decompiled_c": "void __thiscall CScreenMode::AudioSetPosition(_DWORD *this, const void *a2, int a3)\n{\n  int v3; // eax\n\n  if ( (dword_5833BC & 1) != 0 )\n  {\n    v3 = sub_53DFB0(this, a2);\n    if ( v3 )\n    {\n      *(_DWORD *)(*(_DWORD *)(v3 + 16) + 8) = a3;\n      gbSound2DNode::Play(*(gbSound2DNode **)(v3 + 16));\n    }\n  }\n}\n"
-}

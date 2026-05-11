@@ -1,7 +1,0 @@
-{
-  "name": "PAL3::UIPostProcess",
-  "address": "0x0041EE40",
-  "size_bytes": 27,
-  "signature": "int __cdecl()",
-  "decompiled_c": "int __cdecl PAL3::UIPostProcess()\n{\n  int result; // eax\n\n  if ( dword_C116F4 )\n  {\n    gbSound2DNode::Stop((gbSound2DNode *)dword_C116F4);\n    dword_C116F4 = 0;\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_4B1FB0",
-  "address": "0x004B1FB0",
-  "size_bytes": 263,
-  "signature": "char __thiscall(char *this, char a2)",
-  "decompiled_c": "char __thiscall sub_4B1FB0(char *this, char a2)\n{\n  int v3; // ebx\n  int v4; // eax\n  int v5; // eax\n  int *v6; // eax\n  int *v8; // edi\n  int v9; // eax\n  int *v10; // eax\n  char *v11; // [esp-4h] [ebp-14h]\n  char *v12; // [esp-4h] [ebp-14h]\n  float v13; // [esp+0h] [ebp-10h]\n\n  v3 = 0;\n  --*((_DWORD *)this + 71590);\n  if ( a2 )\n  {\n    v4 = *((_DWORD *)this + 71375) - 1;\n    *((_DWORD *)this + 71375) = v4;\n    if ( v4 <= 0 )\n      *((_DWORD *)this + 71375) = 0;\n    v5 = *((_DWORD *)this + 71375) * *((_DWORD *)this + 71588) - 28;\n    *((_DWORD *)this + 71374) = v5;\n    if ( v5 < 0 )\n      *((_DWORD *)this + 71374) = 0;\n    v13 = (float)*((int *)this + 71374);\n    sub_43C550((int)(this + 285224), v13);\n  }\n  if ( *((int *)this + 71590) >= 0 )\n  {\n    sub_4B1C50(this);\n    v8 = (int *)(this + 156364);\n    do\n    {\n      v9 = *((_DWORD *)this + 71588) + *v8;\n      *v8 = v9;\n      v8[2] = v9 + *((_DWORD *)this + 71588);\n      sub_4B19E0(this, v3++, *(v8 - 1), *v8, v8[1], v8[2]);\n      v8 += 890;\n    }\n    while ( v3 < 36 );\n    v12 = off_5D11E0[0];\n    v10 = sub_53DF70();\n    CScreenMode::AudioSetPosition(v10, v12, 1);\n    return 1;\n  }\n  else\n  {\n    *((_DWORD *)this + 71590) = 0;\n    v11 = off_5D11C4[0];\n    v6 = sub_53DF70();\n    CScreenMode::AudioSetPosition(v6, v11, 1);\n    return 0;\n  }\n}\n"
-}

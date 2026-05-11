@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageRole::ClearBadPushTask(void)",
-  "address": "0x0050AA60",
-  "size_bytes": 128,
-  "signature": "void __thiscall(CCBStageRole *this, float a2)",
-  "decompiled_c": "void __thiscall CCBStageRole::ClearBadPushTask(CCBStageRole *this, float a2)\n{\n  unsigned int v3; // eax\n  tagRoleState *inited; // eax\n  tagRoleState *v5; // eax\n\n  v3 = *(_DWORD *)&this->_data[284];\n  if ( v3 <= 4 )\n  {\n    if ( *(_DWORD *)&CCBRoleState::InitUI(*(CCBRoleState **)&this->_data[4], v3)->nSpecStateRound[8] )\n    {\n      inited = CCBRoleState::InitUI(*(CCBRoleState **)&this->_data[4], *(_DWORD *)&this->_data[284]);\n      gbGeomNode::SetBladeTime(*(gbGeomNode **)&inited->nSpecStateRound[8], a2);\n    }\n    if ( *(_DWORD *)&CCBRoleState::InitUI(*(CCBRoleState **)&this->_data[4], *(_DWORD *)&this->_data[284])->nSpecStateRound[20] )\n    {\n      v5 = CCBRoleState::InitUI(*(CCBRoleState **)&this->_data[4], *(_DWORD *)&this->_data[284]);\n      gbGeomNode::SetBladeTime(*(gbGeomNode **)&v5->nSpecStateRound[20], a2);\n    }\n  }\n}\n"
-}

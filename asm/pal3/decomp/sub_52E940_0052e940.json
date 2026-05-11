@@ -1,7 +1,0 @@
-{
-  "name": "sub_52E940",
-  "address": "0x0052E940",
-  "size_bytes": 121,
-  "signature": "double __thiscall(int this)",
-  "decompiled_c": "double __thiscall sub_52E940(int this)\n{\n  long double v1; // st7\n  long double v3; // st7\n\n  if ( *(_BYTE *)(this + 290) )\n  {\n    v1 = *(float *)(this + 264) + *(float *)(this + 272);\n    *(float *)(this + 272) = v1;\n    if ( *(float *)(this + 248) <= fabs(v1) )\n    {\n      *(_DWORD *)(this + 272) = 0;\n      *(_BYTE *)(this + 290) = 0;\n      return *(float *)(this + 272);\n    }\n  }\n  else\n  {\n    v3 = *(float *)(this + 272) - *(float *)(this + 264);\n    *(float *)(this + 272) = v3;\n    if ( *(float *)(this + 248) >= fabs(v3) )\n    {\n      *(_DWORD *)(this + 272) = 0;\n      *(_BYTE *)(this + 290) = 1;\n    }\n  }\n  return *(float *)(this + 272);\n}\n"
-}

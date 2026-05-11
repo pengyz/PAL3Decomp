@@ -1,7 +1,0 @@
-{
-  "name": "CEffectSystem::Reset(void)",
-  "address": "0x004C6260",
-  "size_bytes": 30,
-  "signature": "_DWORD *__thiscall(CEffectSystem *Block, char a2)",
-  "decompiled_c": "_DWORD *__thiscall CEffectSystem::Reset(CEffectSystem *Block, char a2)\n{\n  CEffectSystem::Init(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block->_data;\n}\n"
-}

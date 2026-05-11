@@ -1,7 +1,0 @@
-{
-  "name": "CCBUI::ShowControlWindow(bool)",
-  "address": "0x00519080",
-  "size_bytes": 241,
-  "signature": "int __thiscall(CCBUI *this, int a2)",
-  "decompiled_c": "int __thiscall CCBUI::ShowControlWindow(CCBUI *this, int a2)\n{\n  char *v2; // esi\n  double v3; // st6\n  float v5; // [esp+8h] [ebp-8h]\n  float v6; // [esp+Ch] [ebp-4h]\n\n  v2 = &this->_data[72 * *(_DWORD *)&this->_data[2628] + 1168];\n  if ( !this->_data[72 * *(_DWORD *)&this->_data[2628] + 1185] )\n  {\n    *(float *)&this->_data[72 * *(_DWORD *)&this->_data[2628] + 1192] = *(float *)(*(_DWORD *)&this->_data[1160] + 80);\n    v2[17] = 1;\n  }\n  v3 = *((float *)v2 + 7) + *((float *)v2 + 6);\n  if ( *(float *)(*(_DWORD *)&this->_data[1160] + 80) <= v3 )\n    return 0;\n  v6 = (*(float *)(*(_DWORD *)&this->_data[1160] + 80) - v3) / *((float *)v2 + 8);\n  v5 = (*((float *)v2 + 12) - *((float *)v2 + 10)) * v6 + *((float *)v2 + 10);\n  sprintf(byte_17ACB08, \"%d\", (int)v5);\n  UIWnd::SetEnable(*((UIWnd **)v2 + 9), byte_17ACB08, 1);\n  if ( v6 < 1.0 )\n    return 0;\n  sprintf(byte_17ACB08, \"%d\", (int)*((float *)v2 + 12));\n  UIWnd::SetEnable(*((UIWnd **)v2 + 9), byte_17ACB08, 1);\n  v2[18] = 1;\n  return 0;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_40E0A0",
-  "address": "0x0040E0A0",
-  "size_bytes": 107,
-  "signature": "void __cdecl(int a1)",
-  "decompiled_c": "void __cdecl sub_40E0A0(int a1)\n{\n  __int32 m_pCollisionNode; // edi\n  int v2; // ebx\n  __int8 *v3; // esi\n  int v4; // eax\n\n  m_pCollisionNode = g_SceneMgr.m_pCollisionNode;\n  sub_4181E0(g_SceneMgr.m_pCollisionNode);\n  v2 = 0;\n  v3 = &g_SceneMgr.m_slot4[840];\n  do\n  {\n    if ( g_SceneMgr._postSlots[v2 - 576] )\n    {\n      if ( *((_DWORD *)v3 + 158) )\n      {\n        if ( v3 != (__int8 *)m_pCollisionNode )\n        {\n          sub_416FE0((RoleSystem *)v3, (float *)(m_pCollisionNode + 4));\n          if ( a1 )\n          {\n            if ( v3 )\n              v4 = (int)(v3 + 56);\n            else\n              v4 = 0;\n            sub_434C40(v4);\n          }\n        }\n      }\n    }\n    v3 += 8704;\n    ++v2;\n  }\n  while ( v3 < (__int8 *)&g_SceneMgr.m_pGameData );\n}\n"
-}

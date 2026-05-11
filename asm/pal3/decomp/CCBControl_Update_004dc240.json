@@ -1,7 +1,0 @@
-{
-  "name": "CCBControl::Update",
-  "address": "0x004DC240",
-  "size_bytes": 13,
-  "signature": "int __thiscall(CCBControl *this)",
-  "decompiled_c": "int __thiscall CCBControl::Update(CCBControl *this)\n{\n  int result; // eax\n\n  LOBYTE(result) = this->_data[36];\n  if ( (_BYTE)result )\n    LOBYTE(result) = sub_4DC610(this);\n  return result;\n}\n"
-}

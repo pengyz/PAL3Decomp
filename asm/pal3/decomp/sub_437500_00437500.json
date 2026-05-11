@@ -1,7 +1,0 @@
-{
-  "name": "sub_437500",
-  "address": "0x00437500",
-  "size_bytes": 78,
-  "signature": "char *()",
-  "decompiled_c": "char *sub_437500()\n{\n  char *result; // eax\n  _DWORD *v1; // eax\n  _DWORD v2[3]; // [esp+0h] [ebp-Ch] BYREF\n\n  result = PalScript::GetString();\n  if ( result )\n  {\n    v2[0] = 0xFFFF;\n    v2[1] = 0;\n    v2[2] = 0;\n    v2[0] = *((_DWORD *)result + 1);\n    v1 = sub_40DCF0(&g_SceneMgr.m_slot4[792], v2);\n    return (char *)sub_4366C0(v1 != 0);\n  }\n  return result;\n}\n"
-}

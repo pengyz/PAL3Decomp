@@ -1,7 +1,0 @@
-{
-  "name": "sub_53E680",
-  "address": "0x0053E680",
-  "size_bytes": 148,
-  "signature": "void __thiscall(int this, char *String2)",
-  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nvoid __thiscall sub_53E680(int this, char *String2)\n{\n  char Destination[256]; // [esp+8h] [ebp-200h] BYREF\n  char Buffer[256]; // [esp+108h] [ebp-100h] BYREF\n\n  if ( (dword_5833BC & 4) != 0 )\n  {\n    PalScript::SetDirectory((PalScript *)(this + 284), aCombat);\n    if ( sub_431C10((PalScript *)(this + 284), String2, Destination, 256) )\n    {\n      sprintf(Buffer, \"music\\\\%s.mp3\", Destination);\n      gbAudioManager::StopSoundStream(*(gbAudioManager **)(this + 808), 0);\n      gbAudioManager::StopSoundStream(*(gbAudioManager **)(this + 808), 2);\n      sub_53EA80(this, 1, Buffer, 0);\n    }\n  }\n}\n"
-}

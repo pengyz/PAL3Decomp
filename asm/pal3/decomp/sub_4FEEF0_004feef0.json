@@ -1,7 +1,0 @@
-{
-  "name": "sub_4FEEF0",
-  "address": "0x004FEEF0",
-  "size_bytes": 179,
-  "signature": "int __thiscall(int this, int a2)",
-  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nint __thiscall sub_4FEEF0(int this, int a2)\n{\n  int v3; // eax\n  int v4; // ecx\n  int v5; // edi\n  int *v6; // ebp\n\n  v3 = 2632 * *(_DWORD *)(this + 160);\n  v4 = v3 + 80 * *(_DWORD *)(this + 164);\n  v5 = v4 + this + 184;\n  if ( !*(_BYTE *)(v4 + this + 225) )\n  {\n    v6 = (int *)(v3 + this + 2760);\n    if ( !CCBRoleState::GetRoleField(*(CCBRoleState **)(this + 4), *v6, 17)\n      && !CCBRoleState::GetRoleField(*(CCBRoleState **)(this + 4), *v6, 14) )\n    {\n      CCBStageRole::ProcTransportRun(\n        *(CCBStageRole **)(this + 4 * *v6 + 24),\n        (unsigned int)sub_50EE70,\n        0,\n        0,\n        0,\n        0,\n        0,\n        3);\n    }\n    *(_BYTE *)(v5 + 41) = 1;\n    *(_DWORD *)(v5 + 16) = 4;\n  }\n  if ( *(_BYTE *)(v5 + 43) == 1 )\n    *(_DWORD *)(v5 + 16) = 4;\n  return 0;\n}\n"
-}

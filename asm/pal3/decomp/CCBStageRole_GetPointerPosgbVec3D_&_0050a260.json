@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageRole::GetPointerPos(gbVec3D &)",
-  "address": "0x0050A260",
-  "size_bytes": 79,
-  "signature": "void __thiscall(CCBStageRole *this)",
-  "decompiled_c": "void __thiscall CCBStageRole::GetPointerPos(CCBStageRole *this)\n{\n  void *v2; // ecx\n\n  v2 = *(void **)&this->_data[292];\n  if ( v2 )\n  {\n    Actor::EnableTransition(v2, *(&bVisible + *(_DWORD *)&this->_data[6568]), this->_data[372] != 0);\n    Actor::SetVisible(*(void **)&this->_data[292], *(&bVisible + *(_DWORD *)&this->_data[6568]));\n  }\n}\n"
-}

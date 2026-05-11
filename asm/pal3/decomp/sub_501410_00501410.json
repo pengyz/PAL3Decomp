@@ -1,7 +1,0 @@
-{
-  "name": "sub_501410",
-  "address": "0x00501410",
-  "size_bytes": 202,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nint __thiscall sub_501410(_DWORD *this, int a2)\n{\n  int v3; // ecx\n  int v4; // edx\n  float *v5; // esi\n  double v6; // st7\n  double v7; // st7\n  float v9; // [esp+0h] [ebp-Ch]\n\n  v3 = 329 * this[40];\n  v4 = 20 * this[41];\n  v5 = (float *)&this[2 * v3 + 46 + v4];\n  if ( !BYTE1(this[2 * v3 + 56 + v4]) )\n  {\n    v6 = CCBStageRole::PushBackAllTask((CCBStageRole *)this[this[2 * v3 + 58 + v4] + 6]);\n    v5[16] = v6;\n    *((_BYTE *)v5 + 41) = 1;\n    if ( v6 >= 0.99000001 )\n      goto LABEL_7;\n  }\n  v7 = (*(float *)(*this + 80) - v5[6]) / v5[8];\n  if ( v7 > 1.0 )\n    v7 = 1.0;\n  v9 = (1.0 - v5[16]) * v7 + v5[16];\n  CCBStageRole::ClearAniMsg(this[*((_DWORD *)v5 + 12) + 6], 1, v9);\n  if ( *(float *)(*this + 80) - v5[6] > v5[8] )\n  {\n    CCBStageRole::ClearAniMsg(this[*((_DWORD *)v5 + 12) + 6], 0, 1.0);\nLABEL_7:\n    *((_DWORD *)v5 + 4) = 4;\n  }\n  return 0;\n}\n"
-}

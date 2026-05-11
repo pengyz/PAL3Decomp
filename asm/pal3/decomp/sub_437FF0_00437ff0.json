@@ -1,7 +1,0 @@
-{
-  "name": "sub_437FF0",
-  "address": "0x00437FF0",
-  "size_bytes": 55,
-  "signature": "void()",
-  "decompiled_c": "void sub_437FF0()\n{\n  char *String; // esi\n  char *v1; // eax\n  char *v2; // edi\n  __int8 *v3; // eax\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  v2 = v1;\n  if ( String && v1 )\n  {\n    v3 = sub_434BD0(*((_WORD *)String + 2));\n    if ( v3 )\n      sub_41A150(v3, *((const char **)v2 + 1));\n  }\n}\n"
-}

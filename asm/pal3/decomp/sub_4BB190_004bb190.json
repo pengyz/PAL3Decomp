@@ -1,7 +1,0 @@
-{
-  "name": "sub_4BB190",
-  "address": "0x004BB190",
-  "size_bytes": 103,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "int __thiscall sub_4BB190(_DWORD *this, int a2)\n{\n  int v3; // edi\n  float *v4; // ebx\n  int result; // eax\n  int v6; // edi\n  _DWORD *v7; // ebx\n\n  v3 = 0;\n  if ( (int)this[66] > 0 )\n  {\n    v4 = (float *)(this + 58599);\n    do\n    {\n      sub_4BB0F0(v4, *(float *)&a2);\n      ++v3;\n      v4 += 8022;\n    }\n    while ( v3 < this[66] );\n  }\n  result = this[65];\n  v6 = 0;\n  if ( result > 0 )\n  {\n    v7 = this + 37027;\n    do\n    {\n      sub_4BB180(v7, a2);\n      result = this[65];\n      ++v6;\n      v7 += 5393;\n    }\n    while ( v6 < result );\n  }\n  return result;\n}\n"
-}

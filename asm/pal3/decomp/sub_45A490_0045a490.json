@@ -1,7 +1,0 @@
-{
-  "name": "sub_45A490",
-  "address": "0x0045A490",
-  "size_bytes": 74,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nint __thiscall sub_45A490(int this)\n{\n  int result; // eax\n\n  sub_459900((_DWORD *)this);\n  result = *(_DWORD *)(this + 3256);\n  switch ( result )\n  {\n    case 0:\n      result = UIListBox::SetScroll((UIListBox *)this);\n      break;\n    case 1:\n      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)(this + 3260) + 4))(*(_DWORD *)(this + 3260));\n      break;\n    case 2:\n      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)(this + 3264) + 4))(*(_DWORD *)(this + 3264));\n      break;\n    case 3:\n      result = (*(int (__thiscall **)(_DWORD))(**(_DWORD **)(this + 3268) + 4))(*(_DWORD *)(this + 3268));\n      break;\n    default:\n      return result;\n  }\n  return result;\n}\n"
-}

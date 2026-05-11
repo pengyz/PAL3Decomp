@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::GetStageRole",
-  "address": "0x004FC8F0",
-  "size_bytes": 68,
-  "signature": "char __thiscall(CCBSystem *this, int idx)",
-  "decompiled_c": "char __thiscall CCBSystem::GetStageRole(CCBSystem *this, int idx)\n{\n  char *v2; // esi\n\n  v2 = (char *)this + 2632 * idx;\n  v2[2796] = 0;\n  memset(v2 + 184, 0, 0xA00u);\n  *((_DWORD *)v2 + 44) = 0;\n  --*(_DWORD *)&this->_rest[72];\n  return 1;\n}\n"
-}

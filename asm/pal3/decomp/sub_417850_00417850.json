@@ -1,7 +1,0 @@
-{
-  "name": "sub_417850",
-  "address": "0x00417850",
-  "size_bytes": 75,
-  "signature": "int __thiscall(RoleSystem *this)",
-  "decompiled_c": "int __thiscall sub_417850(RoleSystem *this)\n{\n  if ( g_SceneMgr.m_slot0[80] )\n  {\n    *((_DWORD *)this + 317) = 6;\n    *((_DWORD *)this + 321) = 1;\n    return RoleSystem::UpdateTransform(this);\n  }\n  else\n  {\n    RoleSystem::MoveRole(\n      this,\n      (float *)(g_SceneMgr.m_pCollisionNode + 4),\n      *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628),\n      1,\n      1);\n    return RoleSystem::UpdateTransform(this);\n  }\n}\n"
-}

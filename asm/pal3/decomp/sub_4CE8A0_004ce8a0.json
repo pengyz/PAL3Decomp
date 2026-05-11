@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CE8A0",
-  "address": "0x004CE8A0",
-  "size_bytes": 206,
-  "signature": "int __stdcall(int a1, int a2, int a3)",
-  "decompiled_c": "int __stdcall sub_4CE8A0(int a1, int a2, int a3)\n{\n  int result; // eax\n  int v4; // edi\n\n  result = a1;\n  v4 = dword_EC9E70[3985 * a1];\n  if ( v4 )\n  {\n    if ( a3 == -1 || !byte_174D404[280 * a3] )\n      dword_EC9E74[3985 * a1 + v4] = dword_EC9E74[3985 * a1 + a2];\n    else\n      dword_EC9E74[3984 * a1 + v4 + a1] = dword_174D354[70 * a3];\n    qmemcpy(&dword_EC9EB4[3985 * a1 + 248 * v4], &dword_EC9EB4[3985 * a1 + 248 * a2], 0x3E0u);\n    result = dword_EC9E70[3985 * a1] + 1;\n    dword_EC9E70[3985 * a1] = result;\n  }\n  return result;\n}\n"
-}

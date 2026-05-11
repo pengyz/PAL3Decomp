@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::GetRoleField",
-  "address": "0x004F3D90",
-  "size_bytes": 35,
-  "signature": "char __thiscall(CCBRoleState *this, int roleIdx, int fieldOff)",
-  "decompiled_c": "char __thiscall CCBRoleState::GetRoleField(CCBRoleState *this, int roleIdx, int fieldOff)\n{\n  return this->m_Role[roleIdx].byMagicUseTime[fieldOff + 107];\n}\n"
-}

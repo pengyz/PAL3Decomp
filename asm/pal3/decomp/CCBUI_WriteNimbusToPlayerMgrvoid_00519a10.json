@@ -1,7 +1,0 @@
-{
-  "name": "CCBUI::WriteNimbusToPlayerMgr(void)",
-  "address": "0x00519A10",
-  "size_bytes": 216,
-  "signature": "char __thiscall(CCBUI *this, _DWORD *a2, int a3, int a4, int a5)",
-  "decompiled_c": "char __thiscall CCBUI::WriteNimbusToPlayerMgr(CCBUI *this, _DWORD *a2, int a3, int a4, int a5)\n{\n  _DWORD *v6; // eax\n  int v7; // eax\n  char pExceptionObject[1024]; // [esp+8h] [ebp-80Ch] BYREF\n  char ArgList[1024]; // [esp+408h] [ebp-40Ch] BYREF\n  int v11; // [esp+810h] [ebp-4h]\n\n  v6 = (_DWORD *)operator new(0x158u);\n  v11 = 0;\n  if ( v6 )\n    UIScene::_UIScene(v6);\n  else\n    v7 = 0;\n  v11 = -1;\n  *a2 = v7;\n  if ( !v7 )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aCNewFailed, aDProjectPal3Co_12, 2306), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  (*(void (__thiscall **)(int, int, int, CCBUI *, int, int, _DWORD))(*(_DWORD *)v7 + 28))(v7, a3, a4, this, a5, 1, 0);\n  return 1;\n}\n"
-}

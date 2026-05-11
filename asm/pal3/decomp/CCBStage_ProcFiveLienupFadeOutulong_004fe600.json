@@ -1,7 +1,0 @@
-{
-  "name": "CCBStage::ProcFiveLienupFadeOut(ulong)",
-  "address": "0x004FE600",
-  "size_bytes": 92,
-  "signature": "int __thiscall(CCBStage *this, int a2)",
-  "decompiled_c": "int __thiscall CCBStage::ProcFiveLienupFadeOut(CCBStage *this, int a2)\n{\n  int v2; // eax\n  int v3; // edx\n  char *v4; // esi\n\n  v2 = 2632 * *(_DWORD *)&this->_data[160];\n  v3 = v2 + 80 * *(_DWORD *)&this->_data[164];\n  v4 = &this->_data[v3 + 184];\n  if ( !this->_data[v3 + 225] )\n  {\n    CCBStageRole::GetCurrentTask(\n      *(_DWORD *)&this->_data[4 * *(_DWORD *)&this->_data[v2 + 2760] + 24],\n      *(_DWORD *)&this->_data[v2 + 2744]);\n    v4[41] = 1;\n    *((_DWORD *)v4 + 4) = 4;\n  }\n  return 0;\n}\n"
-}

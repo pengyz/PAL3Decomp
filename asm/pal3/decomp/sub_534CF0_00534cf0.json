@@ -1,7 +1,0 @@
-{
-  "name": "sub_534CF0",
-  "address": "0x00534CF0",
-  "size_bytes": 95,
-  "signature": "void __thiscall(int this, int a2, int a3)",
-  "decompiled_c": "void __thiscall sub_534CF0(int this, int a2, int a3)\n{\n  struct gbVec3D *v4; // ebx\n  const struct gbVec3D *v5; // ebp\n  int *v6; // eax\n  gbAudioManager *v7; // eax\n  gbAudioManager *v8; // edi\n\n  v4 = (struct gbVec3D *)(this + 688);\n  v5 = (const struct gbVec3D *)(this + 664);\n  gbCamera::SetLookAt(\n    (gbCamera *)(this + 4),\n    (struct gbVec3D *)(this + 664),\n    (struct gbVec3D *)(this + 676),\n    (struct gbVec3D *)(this + 688));\n  if ( (dword_5833BC & 4) != 0 )\n  {\n    v6 = sub_53DF70();\n    v7 = (gbAudioManager *)sub_53E500(v6);\n    v8 = v7;\n    if ( v7 )\n    {\n      gbAudioManager::SetListenerPosition(v7, v5);\n      gbAudioManager::SetListenerOrientation(v8, (struct gbVec3D *)(this + 640), v4);\n    }\n  }\n}\n"
-}

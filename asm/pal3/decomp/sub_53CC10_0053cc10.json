@@ -1,7 +1,0 @@
-{
-  "name": "sub_53CC10",
-  "address": "0x0053CC10",
-  "size_bytes": 92,
-  "signature": "char *__thiscall(char *this, int a2, char *Source, char *a4)",
-  "decompiled_c": "char *__thiscall sub_53CC10(char *this, int a2, char *Source, char *a4)\n{\n  char *result; // eax\n  char *v6; // edi\n\n  if ( *(int *)this >= 34 )\n    return sub_53CC70(this, aConsoleErrorCo);\n  v6 = &this[136 * *(_DWORD *)this + 4];\n  *((_DWORD *)v6 + 33) = a2;\n  strncpy(v6, Source, 0x20u);\n  strncpy(v6 + 32, a4, 0x64u);\n  result = (char *)(*(_DWORD *)this + 1);\n  *(_DWORD *)this = result;\n  return result;\n}\n"
-}

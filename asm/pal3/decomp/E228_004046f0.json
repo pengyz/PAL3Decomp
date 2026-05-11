@@ -1,7 +1,0 @@
-{
-  "name": "$E228",
-  "address": "0x004046F0",
-  "size_bytes": 89,
-  "signature": "void __cdecl()",
-  "decompiled_c": "void __cdecl _E228()\n{\n  char v0; // al\n\n  if ( (byte_8ACC08 & 2) == 0 )\n  {\n    byte_8ACC08 |= 2u;\n    if ( dword_8ACBFC )\n    {\n      v0 = *(_BYTE *)(dword_8ACBFC - 1);\n      if ( !v0 || v0 == -1 )\n        operator delete((void *)(dword_8ACBFC - 1));\n      else\n        *(_BYTE *)(dword_8ACBFC - 1) = v0 - 1;\n    }\n    dword_8ACBFC = 0;\n    dword_8ACC00 = 0;\n    dword_8ACC04 = 0;\n  }\n}\n"
-}

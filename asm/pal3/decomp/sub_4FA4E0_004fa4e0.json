@@ -1,7 +1,0 @@
-{
-  "name": "sub_4FA4E0",
-  "address": "0x004FA4E0",
-  "size_bytes": 33,
-  "signature": "int __thiscall(unsigned int *this, unsigned int a2)",
-  "decompiled_c": "int __thiscall sub_4FA4E0(unsigned int *this, unsigned int a2)\n{\n  int result; // eax\n  unsigned int *i; // ecx\n\n  result = 0;\n  for ( i = this + 5044; *i <= a2; ++i )\n  {\n    if ( ++result >= 100 )\n      return 100;\n  }\n  return result;\n}\n"
-}

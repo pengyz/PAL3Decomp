@@ -1,7 +1,0 @@
-{
-  "name": "sub_4BEC00",
-  "address": "0x004BEC00",
-  "size_bytes": 140,
-  "signature": "void __thiscall(float *this)",
-  "decompiled_c": "void __thiscall sub_4BEC00(float *this)\n{\n  gbDynVertBuf *DynVertBuf; // eax\n  int v2; // [esp+0h] [ebp-2Ch]\n  struct gbUIQuad v3; // [esp+4h] [ebp-28h] BYREF\n\n  LOBYTE(v2) = (__int64)(this[4] / this[3] * 255.0);\n  BYTE1(v2) = v2;\n  BYTE2(v2) = v2;\n  *(float *)&v3._data[8] = (float)xRight;\n  HIBYTE(v2) = -1;\n  *(_DWORD *)&v3._data[32] = 0;\n  *(_DWORD *)&v3._data[36] = v2;\n  *(float *)&v3._data[4] = (float)yBottom;\n  *(_DWORD *)v3._data = 0;\n  *(_DWORD *)&v3._data[12] = 0;\n  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&gfxMgr->_data[196], 0x114u);\n  gbDynVertBuf::RenderUIQuad(DynVertBuf, &v3, 1, (struct gbRenderEffect *)dword_1895064, 0);\n}\n"
-}

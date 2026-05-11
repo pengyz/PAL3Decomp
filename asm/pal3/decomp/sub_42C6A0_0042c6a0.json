@@ -1,7 +1,0 @@
-{
-  "name": "sub_42C6A0",
-  "address": "0x0042C6A0",
-  "size_bytes": 51,
-  "signature": "void __thiscall(void *this, struct gbAABBox *a2)",
-  "decompiled_c": "void __thiscall sub_42C6A0(void *this, struct gbAABBox *a2)\n{\n  gbOBBox v3; // [esp+4h] [ebp-4Ch] BYREF\n\n  gbMatrix4::gbMatrix4((gbMatrix4 *)&v3);\n  sub_429EE0((int)this - 8, (gbMatrix4 *)&v3);\n  gbOBBox::GetAABBox(&v3, a2);\n}\n"
-}

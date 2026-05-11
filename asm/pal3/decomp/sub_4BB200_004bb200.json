@@ -1,7 +1,0 @@
-{
-  "name": "sub_4BB200",
-  "address": "0x004BB200",
-  "size_bytes": 85,
-  "signature": "float *__thiscall(float *this, float *a2, float *a3)",
-  "decompiled_c": "float *__thiscall sub_4BB200(float *this, float *a2, float *a3)\n{\n  double v3; // st7\n  float *result; // eax\n\n  v3 = (flt_5D41B8 - a2[1]) / flt_5D41BC * (this[54] - this[51]) + this[51];\n  result = a3;\n  *a3 = (*a2 - *(float *)&dword_5D41B0) / flt_5D41B4 * (this[53] - this[50]) + this[50];\n  a3[1] = v3;\n  return result;\n}\n"
-}

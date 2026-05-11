@@ -1,7 +1,0 @@
-{
-  "name": "TextureLib::SetPath",
-  "address": "0x0053F920",
-  "size_bytes": 63,
-  "signature": "char *__thiscall(TextureLib *this, char *path)",
-  "decompiled_c": "char *__thiscall TextureLib::SetPath(TextureLib *this, char *path)\n{\n  char *result; // eax\n\n  result = (char *)lstrlenA(path);\n  if ( (int)result > 0 )\n  {\n    lstrcpyA((LPSTR)this + 12, path);\n    result = (char *)lstrlenA((LPCSTR)this + 12);\n    if ( *((_BYTE *)this + (_DWORD)result + 11) != 92 )\n      return lstrcatA((LPSTR)this + 12, asc_5D41EC);\n  }\n  return result;\n}\n"
-}

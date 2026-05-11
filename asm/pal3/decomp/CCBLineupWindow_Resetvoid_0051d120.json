@@ -1,7 +1,0 @@
-{
-  "name": "CCBLineupWindow::Reset(void)",
-  "address": "0x0051D120",
-  "size_bytes": 175,
-  "signature": "char __thiscall(CCBLineupWindow *this, CCBMagicWindow **a2)",
-  "decompiled_c": "char __thiscall CCBLineupWindow::Reset(CCBLineupWindow *this, CCBMagicWindow **a2)\n{\n  CCBMagicWindow *v2; // eax\n  CCBMagicWindow *v3; // eax\n  char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF\n  char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF\n  int v7; // [esp+80Ch] [ebp-4h]\n\n  v2 = (CCBMagicWindow *)operator new(0x68u);\n  v7 = 0;\n  if ( v2 )\n    v3 = (CCBMagicWindow *)CCBMagicWindow::ForbidPage(v2);\n  else\n    v3 = 0;\n  v7 = -1;\n  *a2 = v3;\n  if ( !v3 )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aCNewFailed, aDProjectPal3Co_12, 1660), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  return 1;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::ClearEffect",
-  "address": "0x00515C50",
-  "size_bytes": 50,
-  "signature": "char __thiscall(CCBSystem *this, int idx)",
-  "decompiled_c": "char __thiscall CCBSystem::ClearEffect(CCBSystem *this, int idx)\n{\n  memset(&this->_rest[88 * idx + 68], 0, 0x58u);\n  --*(_DWORD *)&this->_rest[56];\n  return 1;\n}\n"
-}

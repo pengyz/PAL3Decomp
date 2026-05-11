@@ -1,7 +1,0 @@
-{
-  "name": "sub_419690",
-  "address": "0x00419690",
-  "size_bytes": 247,
-  "signature": "void __thiscall(int this, float a2)",
-  "decompiled_c": "void __thiscall sub_419690(int this, float a2)\n{\n  void *v3; // edi\n  double v4; // st7\n  char v6; // c0\n  long double v7; // st7\n\n  v3 = (void *)(this + 680);\n  Actor::QueryState((void *)(this + 680));\n  v4 = a2 + *(float *)(this + 1256);\n  *(float *)(this + 1256) = v4;\n  if ( v6 )\n  {\n    v7 = (1.0 - cos(v4 / *(float *)(this + 1252) * 3.1415927)) * 0.5;\n    *(float *)(this + 160) = *(float *)(this + 1364) * (1.0 - v7) + *(float *)(this + 1344) * v7;\n    *(float *)(this + 164) = *(float *)(this + 1368) * (1.0 - v7) + *(float *)(this + 1348) * v7;\n    *(float *)(this + 168) = *(float *)(this + 1372) * (1.0 - v7) + *(float *)(this + 1352) * v7;\n  }\n  else\n  {\n    *(_DWORD *)(this + 160) = *(_DWORD *)(this + 1344);\n    *(_DWORD *)(this + 164) = *(_DWORD *)(this + 1348);\n    *(_DWORD *)(this + 168) = *(_DWORD *)(this + 1352);\n    *(_DWORD *)(this + 1268) = 0;\n    Actor::CompareAction(v3, 0, 0);\n  }\n}\n"
-}

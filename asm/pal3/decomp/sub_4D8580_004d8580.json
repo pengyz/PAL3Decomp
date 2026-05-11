@@ -1,7 +1,0 @@
-{
-  "name": "sub_4D8580",
-  "address": "0x004D8580",
-  "size_bytes": 299,
-  "signature": "void __thiscall(int this, int a2)",
-  "decompiled_c": "// likely CCBAI method (near DemandChecker, CastBFAAttackMagic, CastAttackBigMa)\nvoid __thiscall sub_4D8580(int this, int a2)\n{\n  int v2; // esi\n  int i; // ebx\n  int v4; // edx\n\n  v2 = g_RandSeed;\n  for ( i = 0; i < 512; ++i )\n  {\n    ++g_nRandCallCount;\n    v2 = 214013 * v2 + 2531011;\n    g_RandSeed = v2;\n    v4 = ((v2 >> 16) & 0x7FFF) % 11;\n    if ( *(_BYTE *)(*(_DWORD *)(this + 16) + 892 * v4 + 577) && v4 != a2 )\n      break;\n  }\n  if ( *(_BYTE *)(*(_DWORD *)(this + 16) + 892 * v4 + 577) )\n  {\n    ++g_nRandCallCount;\n    g_RandSeed = 214013 * v2 + 2531011;\n    switch ( (g_RandSeed >> 16) & 7 )\n    {\n      case 1:\n        CCBAI::CastRecoverMagic((CCBAI *)this, a2, 0);\n        break;\n      case 2:\n        CCBAI::CastNormalAttack((CCBAI *)this, a2, ((v2 >> 16) & 0x7FFF) % 11, 0);\n        break;\n      case 4:\n        CCBAI::CastAttackMagic((CCBAI *)this, a2, 0);\n        break;\n      case 5:\n        CCBAI::CastRecoverBigMagic((CCBAI *)this, a2, ((v2 >> 16) & 0x7FFF) % 11, 0);\n        break;\n      default:\n        CCBAI::DemandChecker((CCBAI *)this, a2, ((v2 >> 16) & 0x7FFF) % 11, 0);\n        break;\n    }\n  }\n}\n"
-}

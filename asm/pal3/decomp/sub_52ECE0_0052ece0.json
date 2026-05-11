@@ -1,7 +1,0 @@
-{
-  "name": "sub_52ECE0",
-  "address": "0x0052ECE0",
-  "size_bytes": 71,
-  "signature": "BOOL __stdcall(int a2)",
-  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\nBOOL __stdcall sub_52ECE0(int a2)\n{\n  _DWORD v2[3]; // [esp+0h] [ebp-Ch] BYREF\n\n  v2[0] = a2;\n  v2[2] = PAL_GDB::GDB_GetSkillNum((PAL_GDB *)dword_975ED8, a2);\n  v2[1] = 1;\n  return sub_40DCF0(&g_SceneMgr.m_slot4[792], v2) != 0;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_547FBD",
-  "address": "0x00547FBD",
-  "size_bytes": 55,
-  "signature": "double *__stdcall(double *a1, unsigned int *a2, __m128 *a3)",
-  "decompiled_c": "double *__stdcall sub_547FBD(double *a1, unsigned int *a2, __m128 *a3)\n{\n  _mm_storel_ps(\n    a1,\n    _mm_add_ps(\n      _mm_mul_ps(_mm_shuffle_ps((__m128)*a2, (__m128)*a2, 0), *a3),\n      _mm_mul_ps(_mm_shuffle_ps((__m128)a2[1], (__m128)a2[1], 0), a3[1])));\n  return a1;\n}\n"
-}

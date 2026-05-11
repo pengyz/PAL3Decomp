@@ -1,7 +1,0 @@
-{
-  "name": "sub_458F70",
-  "address": "0x00458F70",
-  "size_bytes": 143,
-  "signature": "CHAR *__cdecl(LPCSTR lpString, int a2, LPSTR lpString1)",
-  "decompiled_c": "CHAR *__cdecl sub_458F70(LPCSTR lpString, int a2, LPSTR lpString1)\n{\n  LPCSTR v3; // ebx\n  int v4; // eax\n  int v5; // edi\n  int v6; // ebp\n  int v7; // ecx\n  LPCSTR v8; // esi\n  int i; // ecx\n  CHAR v10; // dl\n\n  lstrcpyA(&String1, g_SceneMgr.m_szUIString);\n  lstrcpyA(lpString1, g_SceneMgr.m_szUIString);\n  v3 = lpString;\n  v4 = lstrlenA(lpString);\n  v5 = 0;\n  v6 = 0;\n  v7 = 0;\n  if ( v4 > 0 )\n  {\n    v8 = lpString;\n    while ( *v8 != 36 )\n    {\n      ++v6;\n      ++v7;\n      v8[lpString1 - lpString] = *v8;\n      ++v8;\n      if ( v7 >= v4 )\n        goto LABEL_9;\n      v3 = lpString;\n    }\n    for ( i = v7 + 1; i < v4; ++v5 )\n    {\n      v10 = v3[i++];\n      *(&String1 + v5) = v10;\n    }\n  }\nLABEL_9:\n  lpString1[v6] = 0;\n  *(&String1 + v5) = 0;\n  return &String1;\n}\n"
-}

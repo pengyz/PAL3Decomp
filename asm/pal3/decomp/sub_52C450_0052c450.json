@@ -1,7 +1,0 @@
-{
-  "name": "sub_52C450",
-  "address": "0x0052C450",
-  "size_bytes": 42,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nint __thiscall sub_52C450(int this)\n{\n  ScreenEffect *v2; // eax\n\n  if ( !*(_DWORD *)(this + 12948) )\n  {\n    v2 = sub_4BE590();\n    *(_DWORD *)(this + 12948) = sub_4BE1A0((int)v2, 2);\n  }\n  return UIListBox::SetScroll((UIListBox *)this);\n}\n"
-}

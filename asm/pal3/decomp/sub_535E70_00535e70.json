@@ -1,7 +1,0 @@
-{
-  "name": "sub_535E70",
-  "address": "0x00535E70",
-  "size_bytes": 155,
-  "signature": "int __thiscall(int this, int a2, int a3, int a4, int a5)",
-  "decompiled_c": "int __thiscall sub_535E70(int this, int a2, int a3, int a4, int a5)\n{\n  double v6; // st7\n  double v7; // st6\n  int result; // eax\n  float v9; // [esp+Ch] [ebp+8h]\n  float v10; // [esp+10h] [ebp+Ch]\n\n  *(_DWORD *)(this + 180) = *(_DWORD *)(this + 168);\n  *(_DWORD *)(this + 184) = *(_DWORD *)(this + 172);\n  *(_DWORD *)(this + 188) = *(_DWORD *)(this + 176);\n  *(_DWORD *)(this + 168) = a2;\n  *(_DWORD *)(this + 172) = a3;\n  *(_DWORD *)(this + 176) = a4;\n  v6 = *(float *)(this + 168) - *(float *)(this + 180);\n  v9 = *(float *)(this + 172) - *(float *)(this + 184);\n  v7 = *(float *)(this + 176) - *(float *)(this + 188);\n  *(float *)(this + 160) = v9;\n  v10 = v7;\n  *(float *)(this + 156) = v6;\n  *(float *)(this + 164) = v10;\n  gbVec3D::Normalize((gbVec3D *)(this + 156));\n  result = a5;\n  *(_DWORD *)(this + 192) = a5;\n  return result;\n}\n"
-}

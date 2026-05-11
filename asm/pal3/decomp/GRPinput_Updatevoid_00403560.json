@@ -1,7 +1,0 @@
-{
-  "name": "GRPinput::Update(void)",
-  "address": "0x00403560",
-  "size_bytes": 209,
-  "signature": "int __thiscall(GRPinput *this)",
-  "decompiled_c": "int __thiscall GRPinput::Update(GRPinput *this)\n{\n  char *v2; // esi\n  void **v3; // ebx\n  void *v4; // edi\n  char *v5; // ecx\n  int result; // eax\n  int v7; // [esp+4h] [ebp-4h]\n\n  v7 = 0;\n  if ( *(int *)this->_data <= 0 )\n  {\n    *(_DWORD *)this->_data = 0;\n  }\n  else\n  {\n    v2 = &this->_data[340];\n    v3 = (void **)&this->_data[164];\n    do\n    {\n      if ( *v3 )\n        free(*v3);\n      memset(v3 - 40, 0, 0xA4u);\n      if ( *((_DWORD *)v2 - 1) )\n      {\n        free(*((void **)v2 - 1));\n        *((_DWORD *)v2 - 1) = 0;\n      }\n      if ( *(_DWORD *)v2 )\n      {\n        free(*(void **)v2);\n        *(_DWORD *)v2 = 0;\n      }\n      v4 = (void *)*((_DWORD *)v2 + 1);\n      if ( v4 )\n      {\n        GRPinput::GetCharKey(*((GRPinput **)v2 + 1));\n        operator delete(v4);\n        *((_DWORD *)v2 + 1) = 0;\n      }\n      v5 = v2 - 8;\n      v3 += 41;\n      v2 += 16;\n      *(_DWORD *)v5 = 0;\n      *((_DWORD *)v5 + 1) = 0;\n      *((_DWORD *)v5 + 2) = 0;\n      *((_DWORD *)v5 + 3) = 0;\n      result = ++v7;\n    }\n    while ( v7 < *(_DWORD *)this->_data );\n    *(_DWORD *)this->_data = 0;\n  }\n  return result;\n}\n"
-}

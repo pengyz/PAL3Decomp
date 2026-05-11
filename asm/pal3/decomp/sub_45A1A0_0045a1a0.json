@@ -1,7 +1,0 @@
-{
-  "name": "sub_45A1A0",
-  "address": "0x0045A1A0",
-  "size_bytes": 118,
-  "signature": "char __thiscall(_BYTE *this, unsigned __int8 a2)",
-  "decompiled_c": "char __thiscall sub_45A1A0(_BYTE *this, unsigned __int8 a2)\n{\n  char result; // al\n\n  if ( sub_459F80(this) < 5 )\n  {\n    sub_45B680(*((_DWORD *)this + 815), a2);\n    sub_46DBF0(*((_DWORD *)this + 816), a2);\n    result = sub_4714E0(*((_DWORD *)this + 817), a2);\n  }\n  else\n  {\n    sub_45B680(*((_DWORD *)this + 815), 0);\n    sub_46DBF0(*((_DWORD *)this + 816), 0);\n    sub_4714E0(*((_DWORD *)this + 817), 0);\n    result = a2;\n  }\n  this[157] = a2;\n  return result;\n}\n"
-}

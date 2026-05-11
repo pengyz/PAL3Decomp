@@ -1,7 +1,0 @@
-{
-  "name": "UIRenderQuad(int,int,int,int,gbColorQuad &)",
-  "address": "0x00540D20",
-  "size_bytes": 158,
-  "signature": "void __cdecl(int a1, int a2, int a3, int a4, struct gbColorQuad *a5, int a6, _DWORD *a7, struct gbTextureArray *a8)",
-  "decompiled_c": "void __cdecl UIRenderQuad(\n        int a1,\n        int a2,\n        int a3,\n        int a4,\n        struct gbColorQuad *a5,\n        int a6,\n        _DWORD *a7,\n        struct gbTextureArray *a8)\n{\n  gbDynVertBuf *DynVertBuf; // eax\n  struct gbUIQuad v9; // [esp+4h] [ebp-28h] BYREF\n\n  *(_DWORD *)&v9._data[32] = 0;\n  *(_DWORD *)&v9._data[16] = 0;\n  *(float *)&v9._data[12] = (float)a2;\n  *(_DWORD *)&v9._data[36] = *a7;\n  *(_DWORD *)&v9._data[20] = a5;\n  *(float *)&v9._data[8] = (float)a3;\n  *(_DWORD *)&v9._data[24] = 1065353216;\n  *(_DWORD *)&v9._data[28] = 0;\n  *(float *)&v9._data[4] = (float)a4;\n  *(float *)v9._data = (double)a1 - -0.5;\n  *(float *)&v9._data[8] = *(float *)&v9._data[8] - -0.5;\n  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&gfxMgr->_data[196], 0x114u);\n  gbDynVertBuf::RenderUIQuad(DynVertBuf, &v9, 1, (struct gbRenderEffect *)dword_1895058, a8);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageRole::GetStatus",
-  "address": "0x0050A520",
-  "size_bytes": 52,
-  "signature": "int __thiscall(CCBStageRole *this, int index)",
-  "decompiled_c": "int __thiscall CCBStageRole::GetStatus(CCBStageRole *this, int index)\n{\n  Actor::PlayAction(*(void **)&this->_data[292], (int)&this->_data[296]);\n  return *(_DWORD *)&this->_data[284];\n}\n"
-}

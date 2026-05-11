@@ -1,7 +1,0 @@
-{
-  "name": "sub_41F9F0",
-  "address": "0x0041F9F0",
-  "size_bytes": 114,
-  "signature": "void()",
-  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nvoid sub_41F9F0()\n{\n  DWORD Time; // eax\n  float DeltaTime; // [esp+4h] [ebp-4h]\n\n  Time = timeGetTime();\n  if ( Time - dword_C12B20 >= 0x32 )\n  {\n    dword_C12B20 = Time;\n    if ( dword_DC10FC )\n    {\n      UIWnd::FindChild(dword_DC10FC + 72, 1.0);\n      UIWnd::FindChildByName(dword_DC10FC + 72, *(float *)&dword_C12B1C);\n      DeltaTime = gbGfxManager::GetDeltaTime(gfxMgr);\n      (*(void (__thiscall **)(int, _DWORD, int))(*(_DWORD *)dword_DC10FC + 8))(dword_DC10FC, LODWORD(DeltaTime), 1);\n      PAL3::Render();\n    }\n  }\n}\n"
-}

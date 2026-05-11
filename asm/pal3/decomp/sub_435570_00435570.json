@@ -1,7 +1,0 @@
-{
-  "name": "sub_435570",
-  "address": "0x00435570",
-  "size_bytes": 136,
-  "signature": "char *()",
-  "decompiled_c": "char *sub_435570()\n{\n  char *String; // esi\n  char *v1; // edi\n  char *v2; // ebx\n  char *v3; // ebp\n  char *result; // eax\n  int v5; // [esp+0h] [ebp-30h]\n  int v6; // [esp+4h] [ebp-2Ch]\n  char *v7; // [esp+2Ch] [ebp-4h]\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  v2 = PalScript::GetString();\n  v3 = PalScript::GetString();\n  v7 = PalScript::GetString();\n  result = PalScript::GetString();\n  if ( String && v1 && v2 && v3 && v7 )\n  {\n    if ( result )\n    {\n      *(float *)&v6 = *((float *)v1 + 1) * 0.017453292;\n      *(float *)&v5 = *((float *)String + 1) * 0.017453292;\n      return (char *)sub_41C9A0(\n                       dword_BFDA68,\n                       v5,\n                       v6,\n                       *((_DWORD *)v2 + 1),\n                       *((_DWORD *)v3 + 1),\n                       *((_DWORD *)v7 + 1),\n                       *((_DWORD *)result + 1),\n                       1);\n    }\n  }\n  return result;\n}\n"
-}

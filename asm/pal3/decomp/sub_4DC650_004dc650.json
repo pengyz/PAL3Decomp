@@ -1,7 +1,0 @@
-{
-  "name": "sub_4DC650",
-  "address": "0x004DC650",
-  "size_bytes": 193,
-  "signature": "int __thiscall(int this, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11)",
-  "decompiled_c": "// likely CCBSystem method (near SetAuto, PassCmdToThread, ProcMessage, Message, Se)\nint __thiscall sub_4DC650(int this, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11)\n{\n  int v12; // edi\n  _BYTE *i; // eax\n  int v15; // esi\n  _DWORD *v16; // edx\n\n  v12 = 0;\n  for ( i = (_BYTE *)(this + 172); *i; i += 64 )\n  {\n    if ( ++v12 >= 20 )\n      return -1;\n  }\n  v15 = (v12 << 6) + this;\n  *(_DWORD *)(v15 + 112) = a2;\n  *(_DWORD *)(v15 + 116) = a3;\n  *(_DWORD *)(v15 + 120) = a4;\n  *(_DWORD *)(v15 + 124) = a5;\n  v16 = (_DWORD *)(this + ((v12 + 2) << 6));\n  *v16 = a6;\n  v16[1] = a7;\n  v16[2] = a8;\n  v16[3] = a9;\n  *(_BYTE *)(v15 + 172) = 1;\n  *(_BYTE *)(v15 + 173) = 0;\n  *(_DWORD *)(v15 + 148) = 0;\n  *(_DWORD *)(v15 + 152) = a10;\n  *(_DWORD *)(v15 + 156) = a11;\n  *(_DWORD *)(v15 + 160) = 0;\n  *(_DWORD *)(v15 + 144) = CCBSystem::ProcProtect(*(CCBSystem **)this);\n  *(_DWORD *)(v15 + 164) = -1;\n  ++*(_DWORD *)(this + 108);\n  return v12;\n}\n"
-}

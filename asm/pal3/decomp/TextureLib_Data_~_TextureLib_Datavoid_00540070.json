@@ -1,7 +1,0 @@
-{
-  "name": "_TextureLib_Data::~_TextureLib_Data(void)",
-  "address": "0x00540070",
-  "size_bytes": 104,
-  "signature": "void __cdecl(int a1, int a2, int a3, int a4, _DWORD *a5)",
-  "decompiled_c": "void __cdecl _TextureLib_Data::~_TextureLib_Data(int a1, int a2, int a3, int a4, _DWORD *a5)\n{\n  gbDynVertBuf *DynVertBuf; // eax\n  struct gbUIQuad v6; // [esp+4h] [ebp-28h] BYREF\n\n  *(_DWORD *)&v6._data[32] = 0;\n  *(float *)v6._data = (float)a1;\n  *(_DWORD *)&v6._data[36] = *a5;\n  *(float *)&v6._data[12] = (float)a2;\n  *(float *)&v6._data[8] = (float)a3;\n  *(float *)&v6._data[4] = (float)a4;\n  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&gfxMgr->_data[196], 0x114u);\n  gbDynVertBuf::RenderUIQuad(DynVertBuf, &v6, 1, (struct gbRenderEffect *)dword_1895050, 0);\n}\n"
-}

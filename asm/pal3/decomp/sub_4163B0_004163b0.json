@@ -1,7 +1,0 @@
-{
-  "name": "sub_4163B0",
-  "address": "0x004163B0",
-  "size_bytes": 216,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall sub_4163B0(_DWORD *this, int a2, int a3)\n{\n  RoleSystem *v4; // eax\n  int RolePtr; // eax\n  double v6; // st7\n  int v7; // ecx\n  int v8; // ecx\n  int v9; // edx\n  int result; // eax\n  int v11; // [esp-4h] [ebp-24h]\n  float v12; // [esp+8h] [ebp-18h]\n  float v13; // [esp+Ch] [ebp-14h]\n  float v14; // [esp+10h] [ebp-10h]\n  _DWORD v15[3]; // [esp+14h] [ebp-Ch] BYREF\n\n  v11 = this[157];\n  v4 = (RoleSystem *)sub_4226F0();\n  RolePtr = RoleSystem::GetRolePtr(v4, v11);\n  v13 = 0.0;\n  v6 = ((double)a3 + 0.5) * g_SceneMgr.m_fMoveParam + *(float *)(RolePtr + 136);\n  v14 = v6;\n  if ( a2 >= 0 )\n  {\n    v7 = *(_DWORD *)(RolePtr + 152);\n    if ( a2 < v7 && a3 >= 0 && a3 < *(_DWORD *)(RolePtr + 156) )\n    {\n      v8 = a2 + a3 * v7;\n      v9 = *(_DWORD *)(RolePtr + 160);\n      v6 = *(float *)(v9 + 8 * v8);\n      v13 = *(float *)(v9 + 8 * v8);\n    }\n  }\n  v12 = ((double)a2 + 0.5) * g_SceneMgr.m_fMoveParam + *(float *)(RolePtr + 128);\n  *(float *)v15 = v12;\n  *(float *)&v15[1] = v13;\n  *(float *)&v15[2] = v14;\n  sub_416490((int)this, v6, v15);\n  result = g_SceneMgr.m_pCollisionNode;\n  if ( this == (_DWORD *)g_SceneMgr.m_pCollisionNode )\n  {\n    result = *((_DWORD *)dword_BFDA68 + 112);\n    if ( result )\n      return sub_41C1E0((int)dword_BFDA68);\n  }\n  return result;\n}\n"
-}

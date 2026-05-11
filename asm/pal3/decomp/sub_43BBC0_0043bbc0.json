@@ -1,7 +1,0 @@
-{
-  "name": "sub_43BBC0",
-  "address": "0x0043BBC0",
-  "size_bytes": 161,
-  "signature": "BOOL __thiscall(const RECT *this, int a2, int a3)",
-  "decompiled_c": "BOOL __thiscall sub_43BBC0(const RECT *this, int a2, int a3)\n{\n  BOOL result; // eax\n  BOOL v5; // ebx\n  POINT pt; // [esp+8h] [ebp-8h] BYREF\n\n  if ( !this[3].right )\n    return 0;\n  if ( !this[3].bottom )\n    return 0;\n  if ( this[4].top )\n  {\n    UIWnd::HitTest((UIWnd *)this, a2, 1);\n    return 1;\n  }\n  result = UIWnd::HitTest((UIWnd *)this, a2, a3);\n  v5 = result;\n  if ( a3 )\n  {\n    GRPinput::GetCursorPos(&pt);\n    result = PtInRect(this + 1, pt);\n    if ( result || v5 )\n      return 1;\n  }\n  return result;\n}\n"
-}

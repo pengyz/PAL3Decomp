@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageScene::SetFlingRotX(float)",
-  "address": "0x005112B0",
-  "size_bytes": 53,
-  "signature": "int __thiscall(CCBStageScene *this)",
-  "decompiled_c": "int __thiscall CCBStageScene::SetFlingRotX(CCBStageScene *this)\n{\n  float v1; // edx\n  char *pad_384; // eax\n  float *p_f378; // ecx\n  int result; // eax\n\n  v1 = *(float *)this->_pad_39C;\n  this->_f390 = *(float *)this->_pad_394;\n  pad_384 = this->_pad_384;\n  this->_f398 = v1;\n  p_f378 = &this->_f378;\n  *p_f378 = *(float *)pad_384;\n  p_f378[1] = *((float *)pad_384 + 1);\n  result = *((_DWORD *)pad_384 + 2);\n  *((_DWORD *)p_f378 + 2) = result;\n  return result;\n}\n"
-}

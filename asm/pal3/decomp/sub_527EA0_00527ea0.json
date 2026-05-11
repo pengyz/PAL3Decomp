@@ -1,7 +1,0 @@
-{
-  "name": "sub_527EA0",
-  "address": "0x00527EA0",
-  "size_bytes": 166,
-  "signature": "int __thiscall(int this, int a2, int a3, int a4)",
-  "decompiled_c": "int __thiscall sub_527EA0(int this, int a2, int a3, int a4)\n{\n  int *v6; // eax\n  char *v7; // [esp-Ch] [ebp-10h]\n\n  if ( a2 != 1000 )\n    return UIWnd::SendMessage(a2, a3, a4);\n  if ( a3 )\n  {\n    if ( *(_DWORD *)(this + 1736) )\n    {\n      byte_D92785 = 1;\n      sub_527F50((_DWORD *)this, 1);\n      BYTE1(dword_DBA250) = 1;\n      return 1;\n    }\n    sprintf((char *const)(this + 96), \"\\\\n         %s\", (const char *)dword_DC843C);\n    UIWnd::SetEnable((UIWnd *)(this + 812), (const char *)(this + 96), 0);\n    sub_4A1530(this + 356, 1);\n    v7 = off_5E92A0[0];\n    v6 = sub_53DF70();\n    CScreenMode::AudioSetPosition(v6, v7, 1);\n  }\n  return 1;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "UIScene::NotifyRender",
-  "address": "0x00421A10",
-  "size_bytes": 44,
-  "signature": "int __thiscall(void *this)",
-  "decompiled_c": "int __thiscall UIScene::NotifyRender(void *this)\n{\n  int v2; // esi\n  int result; // eax\n\n  v2 = 0;\n  result = *((_DWORD *)this + 42);\n  if ( result > 0 )\n  {\n    do\n    {\n      sub_4019F0(*(_DWORD *)(*((_DWORD *)this + 41) + 4 * v2));\n      result = *((_DWORD *)this + 42);\n      ++v2;\n    }\n    while ( v2 < result );\n  }\n  return result;\n}\n"
-}

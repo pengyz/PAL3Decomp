@@ -1,7 +1,0 @@
-{
-  "name": "sub_4ED870",
-  "address": "0x004ED870",
-  "size_bytes": 77,
-  "signature": "char __thiscall(CCBRoleState *this)",
-  "decompiled_c": "char __thiscall sub_4ED870(CCBRoleState *this)\n{\n  int v2; // ebx\n  __int8 *v3; // edi\n  __int32 *p_nHP; // esi\n  __int32 v5; // eax\n\n  v2 = 0;\n  v3 = &g_SceneMgr.m_slot0[340];\n  p_nHP = &this->m_Role[0].nHP;\n  do\n  {\n    LOBYTE(v5) = *((_BYTE *)p_nHP - 11);\n    if ( (_BYTE)v5 )\n    {\n      if ( *p_nHP <= 0 )\n      {\n        *p_nHP = 1;\n        CCBRoleState::CanUseSkill(this, v2);\n      }\n      v5 = *p_nHP;\n      *(_DWORD *)v3 = *p_nHP;\n    }\n    v3 += 1408;\n    ++v2;\n    p_nHP += 223;\n  }\n  while ( (int)v3 < (int)&g_SceneMgr._postSlots[340] );\n  return v5;\n}\n"
-}

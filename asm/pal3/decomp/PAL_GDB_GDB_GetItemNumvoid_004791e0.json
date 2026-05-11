@@ -1,7 +1,0 @@
-{
-  "name": "PAL_GDB::GDB_GetItemNum(void)",
-  "address": "0x004791E0",
-  "size_bytes": 97,
-  "signature": "int __thiscall(PAL_GDB *this, int a2)",
-  "decompiled_c": "int __thiscall PAL_GDB::GDB_GetItemNum(PAL_GDB *this, int a2)\n{\n  int d09C; // edx\n  int dC4810; // eax\n  int v4; // eax\n\n  if ( !a2 )\n    return 0;\n  d09C = this->_d09C;\n  this->_dC4810 = 0;\n  if ( d09C <= 0 )\n    return 0;\n  while ( 1 )\n  {\n    dC4810 = this->_dC4810;\n    if ( a2 == *(_DWORD *)&this->_pad_0A0[632 * dC4810 + 798432] )\n      break;\n    v4 = dC4810 + 1;\n    this->_dC4810 = v4;\n    if ( v4 >= d09C )\n      return 0;\n  }\n  return (int)&this->_pad_0A0[632 * this->_dC4810 + 798400];\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_50F200",
-  "address": "0x0050F200",
-  "size_bytes": 259,
-  "signature": "int __thiscall(CCBStageRole *this, int a2)",
-  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nint __thiscall sub_50F200(CCBStageRole *this, int a2)\n{\n  char *v3; // eax\n  int v4; // eax\n  int *v5; // eax\n\n  v3 = &this->_data[96 * *(_DWORD *)&this->_data[396]];\n  if ( v3[506] )\n  {\n    if ( !CCBRoleState::IsRoleAlive(*(CCBRoleState **)&this->_data[4], *(_DWORD *)&this->_data[284])\n      || a2 == *(_DWORD *)&this->_data[6644] )\n    {\n      CCBStageRole::ClearBadPushTask(this, 0.0099999998);\n      this->_data[96 * *(_DWORD *)&this->_data[396] + 505] = 1;\n    }\n    return 0;\n  }\n  else\n  {\n    if ( sub_4F7050((int)(v3 + 444)) )\n    {\n      this->_data[96 * *(_DWORD *)&this->_data[396] + 506] = 1;\n      this->_data[96 * *(_DWORD *)&this->_data[396] + 505] = 1;\n    }\n    else\n    {\n      CCBStageRole::ClearBadPushTask(this, 0.25);\n      v4 = *(_DWORD *)&this->_data[6636];\n      *(_DWORD *)&this->_data[6568] = 39;\n      *(_DWORD *)&this->_data[6632] = v4;\n      CCBStageRole::GetPointerPos(this);\n      nullsub_3(this);\n      v5 = sub_53DF70();\n      CScreenMode::AudioSetPosition(v5, aWe033, 1);\n    }\n    this->_data[96 * *(_DWORD *)&this->_data[396] + 506] = 1;\n    return 0;\n  }\n}\n"
-}

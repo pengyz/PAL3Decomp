@@ -1,7 +1,0 @@
-{
-  "name": "sub_413C00",
-  "address": "0x00413C00",
-  "size_bytes": 207,
-  "signature": "int __thiscall(int this, int index, int a3)",
-  "decompiled_c": "int __thiscall sub_413C00(int this, int index, int a3)\n{\n  RoleSystem *v4; // eax\n  int RolePtr; // esi\n  _DWORD *v6; // ecx\n  __int64 v7; // rax\n  double v8; // st7\n  int result; // eax\n  float v10; // [esp+14h] [ebp-4h]\n\n  *(_DWORD *)(this + 628) = index;\n  v4 = (RoleSystem *)sub_4226F0();\n  RolePtr = RoleSystem::GetRolePtr(v4, index);\n  v6 = (_DWORD *)(16 * a3 + RolePtr);\n  v7 = *v6 + v6[2];\n  v8 = ((double)(((int)v7 - HIDWORD(v7)) >> 1) + 0.5) * g_SceneMgr.m_fMoveParam + *(float *)(RolePtr + 128);\n  v10 = ((double)((v6[1] + v6[3]) / 2) + 0.5) * g_SceneMgr.m_fMoveParam + *(float *)(RolePtr + 136);\n  *(_DWORD *)(this + 8) = 0;\n  *(float *)(this + 4) = v8;\n  *(float *)(this + 12) = v10;\n  result = *(_DWORD *)(this + 4);\n  *(_DWORD *)(this + 8692) = result;\n  *(_DWORD *)(this + 8696) = *(_DWORD *)(this + 8);\n  *(_DWORD *)(this + 8700) = *(_DWORD *)(this + 12);\n  return result;\n}\n"
-}

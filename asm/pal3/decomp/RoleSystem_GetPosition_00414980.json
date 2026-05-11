@@ -1,7 +1,0 @@
-{
-  "name": "RoleSystem::GetPosition",
-  "address": "0x00414980",
-  "size_bytes": 122,
-  "signature": "void __thiscall(RoleSystem *this, void *pOut, int a3)",
-  "decompiled_c": "void __thiscall RoleSystem::GetPosition(RoleSystem *this, void *pOut, int a3)\n{\n  gbVec3D *v4; // esi\n  double v5; // st7\n\n  v4 = (gbVec3D *)((char *)this + 1308);\n  *((_DWORD *)this + 327) = *(_DWORD *)pOut;\n  *((_DWORD *)this + 328) = *((_DWORD *)pOut + 1);\n  *((_DWORD *)this + 329) = *((_DWORD *)pOut + 2);\n  *((_DWORD *)this + 321) = a3;\n  RoleSystem::UpdateTransform(this);\n  if ( a3 )\n  {\n    *((_DWORD *)this + 328) = 0;\n    gbVec3D::Normalize(v4);\n    v5 = *((float *)this + 322);\n    v4->x = v5 * v4->x;\n    v4->y = v5 * v4->y;\n    v4->z = v5 * v4->z;\n    *((_DWORD *)this + 317) = 12;\n  }\n  else\n  {\n    *((_DWORD *)this + 317) = 0;\n  }\n}\n"
-}

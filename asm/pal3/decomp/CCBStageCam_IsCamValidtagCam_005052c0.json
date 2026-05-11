@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageCam::IsCamValid(tagCam *)",
-  "address": "0x005052C0",
-  "size_bytes": 29,
-  "signature": "int __thiscall(CCBStageCam *this)",
-  "decompiled_c": "int __thiscall CCBStageCam::IsCamValid(CCBStageCam *this)\n{\n  int result; // eax\n\n  result = 0;\n  while ( this[108]._pad_000[result + 2676] )\n  {\n    if ( ++result >= 2000 )\n      return -1;\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::ResetFlags",
-  "address": "0x004DB4C0",
-  "size_bytes": 37,
-  "signature": "int __thiscall(CCBSystem *this)",
-  "decompiled_c": "int __thiscall CCBSystem::ResetFlags(CCBSystem *this)\n{\n  int result; // eax\n\n  this->_rest[368] = 1;\n  this->_rest[369] = 1;\n  this->_rest[370] = 1;\n  result = 0;\n  memset(&this->m_pAttackSequen, 0, 0x1B8u);\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_421CA0",
-  "address": "0x00421CA0",
-  "size_bytes": 109,
-  "signature": "unsigned __int8 *__thiscall(int this)",
-  "decompiled_c": "unsigned __int8 *__thiscall sub_421CA0(int this)\n{\n  int v2; // ebp\n  bool v3; // bl\n  _BYTE *v4; // esi\n  char v5; // al\n  unsigned __int8 *result; // eax\n\n  v2 = 0;\n  v3 = 1;\n  if ( *(int *)(this + 220) > 0 )\n  {\n    v4 = (_BYTE *)(this + 468);\n    do\n    {\n      if ( *(v4 - 72) != 32 && *v4 == 25 )\n      {\n        v5 = sub_40DD30(&g_SceneMgr.m_slot4[792], v4 - 68);\n        *(v4 - 71) = v5;\n        v3 = v3 && v5;\n      }\n      ++v2;\n      v4 += 896;\n    }\n    while ( v2 < *(_DWORD *)(this + 220) );\n  }\n  result = sub_421560((unsigned __int8 *)this, 32);\n  if ( result )\n    result[173] = v3;\n  return result;\n}\n"
-}

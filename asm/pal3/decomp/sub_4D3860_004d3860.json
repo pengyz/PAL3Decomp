@@ -1,7 +1,0 @@
-{
-  "name": "sub_4D3860",
-  "address": "0x004D3860",
-  "size_bytes": 8,
-  "signature": "char *__thiscall(char *this, char a2)",
-  "decompiled_c": "// likely CEffQuake method (near Update, Destroy)\nchar *__thiscall sub_4D3860(char *this, char a2)\n{\n  char *v2; // esi\n\n  v2 = this - 12;\n  CEffQuake::Update((CEffQuake *)(this - 12));\n  if ( (a2 & 1) != 0 )\n    operator delete(v2);\n  return v2;\n}\n"
-}

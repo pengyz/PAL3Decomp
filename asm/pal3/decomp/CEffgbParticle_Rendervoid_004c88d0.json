@@ -1,7 +1,0 @@
-{
-  "name": "CEffgbParticle::Render(void)",
-  "address": "0x004C88D0",
-  "size_bytes": 82,
-  "signature": "_DWORD *__thiscall(CEffgbParticle *this)",
-  "decompiled_c": "_DWORD *__thiscall CEffgbParticle::Render(CEffgbParticle *this)\n{\n  _DWORD *result; // eax\n\n  result = &this->m_pEffect;\n  this->m_fSize = 0.0;\n  LOBYTE(this->m_fX) = 0;\n  this->m_fZ = 0.0;\n  this->m_fPX = 0.0;\n  this->m_fPY = 0.0;\n  this->m_fPZ = NAN;\n  this[1].m_pEffect = (ParticleEffect *)-1;\n  this[1].m_fSize = 0.0;\n  this[1].m_fX = 0.0;\n  this[1].m_fY = 0.0;\n  LODWORD(this->m_fY) = &off_56F908;\n  this->m_pEffect = (ParticleEffect *)&off_56F8CC;\n  LODWORD(this->m_fY) = &off_56F8C0;\n  this[1].m_fZ = 0.0;\n  this[1].m_fPX = 0.0;\n  this[2].m_pEffect = 0;\n  this[1].m_fPZ = 0.0;\n  this[1].m_fPY = 0.0;\n  this[2].m_fY = 0.0;\n  this[2].m_fX = 0.0;\n  this[2].m_fSize = 0.0;\n  return result;\n}\n"
-}

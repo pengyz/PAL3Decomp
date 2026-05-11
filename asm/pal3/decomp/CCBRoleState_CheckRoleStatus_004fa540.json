@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::CheckRoleStatus",
-  "address": "0x004FA540",
-  "size_bytes": 27,
-  "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
-  "decompiled_c": "int __thiscall CCBRoleState::CheckRoleStatus(CCBRoleState *this, int roleIdx)\n{\n  int result; // eax\n  int v3; // [esp+8h] [ebp+8h]\n  int v4; // [esp+Ch] [ebp+Ch]\n  int v5; // [esp+10h] [ebp+10h]\n\n  result = roleIdx;\n  *(_DWORD *)roleIdx = v3;\n  *(_DWORD *)(roleIdx + 4) = v4;\n  *(_DWORD *)(roleIdx + 8) = v5;\n  return result;\n}\n"
-}

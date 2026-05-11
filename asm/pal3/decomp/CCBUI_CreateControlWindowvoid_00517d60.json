@@ -1,7 +1,0 @@
-{
-  "name": "CCBUI::CreateControlWindow(void)",
-  "address": "0x00517D60",
-  "size_bytes": 132,
-  "signature": "char __thiscall(CCBUI *this)",
-  "decompiled_c": "char __thiscall CCBUI::CreateControlWindow(CCBUI *this)\n{\n  int v1; // esi\n  struct tagRECT *i; // edi\n  CCBSkillWindow *left; // ecx\n  struct UIWnd *v6; // [esp+0h] [ebp-1Ch]\n  int pRect; // [esp+Ch] [ebp-10h] BYREF\n  int v8; // [esp+10h] [ebp-Ch]\n  int v9; // [esp+14h] [ebp-8h]\n  int v10; // [esp+18h] [ebp-4h]\n\n  v1 = 0;\n  v8 = 0;\n  v9 = 0;\n  pRect = 0;\n  v10 = 0;\n  for ( i = (struct tagRECT *)&this->_data[1144];\n        CCBLineupWindow::Create((CCBLineupWindow *)this, i, v6);\n        i = (struct tagRECT *)((char *)i + 4) )\n  {\n    v9 = v1 + 256;\n    left = (CCBSkillWindow *)i->left;\n    pRect = v1;\n    v8 = 0;\n    v10 = 256;\n    CCBSkillWindow::Create(left, &pRect, (int)this);\n    (**(void (__thiscall ***)(int, _DWORD))i->left)(i->left, 0);\n    v1 += 200;\n    if ( v1 >= 800 )\n      return 1;\n  }\n  return 0;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "CCBStage::StartSubTask(int,int)",
-  "address": "0x004FCE00",
-  "size_bytes": 111,
-  "signature": "int __thiscall(CCBStage *this, int a2)",
-  "decompiled_c": "int __thiscall CCBStage::StartSubTask(CCBStage *this, int a2)\n{\n  int v2; // eax\n  char *v3; // esi\n\n  v2 = 80 * *(_DWORD *)&this->_data[164];\n  v3 = &this->_data[2632 * *(_DWORD *)&this->_data[160] + 184 + v2];\n  if ( this->_data[2632 * *(_DWORD *)&this->_data[160] + 225 + v2] )\n  {\n    if ( this->_data[2632 * *(_DWORD *)&this->_data[160] + 227 + v2] == 1\n      || *(float *)(*(_DWORD *)this->_data + 80) - *((float *)v3 + 6) >= *((float *)v3 + 8)\n      || GRPinput::SetJoystickAbs(&g_Input) )\n    {\n      *((_DWORD *)v3 + 4) = 4;\n    }\n    return 0;\n  }\n  else\n  {\n    this->_data[2632 * *(_DWORD *)&this->_data[160] + 225 + v2] = 1;\n    return 0;\n  }\n}\n"
-}

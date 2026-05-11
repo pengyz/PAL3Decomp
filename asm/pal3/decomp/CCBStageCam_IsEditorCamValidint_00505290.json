@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageCam::IsEditorCamValid(int)",
-  "address": "0x00505290",
-  "size_bytes": 41,
-  "signature": "int __thiscall(CCBStageCam *this, int a2)",
-  "decompiled_c": "int __thiscall CCBStageCam::IsEditorCamValid(CCBStageCam *this, int a2)\n{\n  __int64 v2; // rax\n  char *v3; // ecx\n\n  v2 = 0;\n  v3 = &this[109]._pad_000[200 * a2 + 923];\n  do\n  {\n    if ( *(_DWORD *)v3 == -1 )\n      break;\n    LODWORD(v2) = v2 + 1;\n    ++HIDWORD(v2);\n    v3 += 4;\n  }\n  while ( SHIDWORD(v2) < 50 );\n  return v2;\n}\n"
-}

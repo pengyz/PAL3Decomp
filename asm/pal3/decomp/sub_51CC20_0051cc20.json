@@ -1,7 +1,0 @@
-{
-  "name": "sub_51CC20",
-  "address": "0x0051CC20",
-  "size_bytes": 178,
-  "signature": "char __stdcall(_DWORD *a1)",
-  "decompiled_c": "char __stdcall sub_51CC20(_DWORD *a1)\n{\n  UIWnd *v1; // eax\n  _DWORD *v2; // eax\n  char pExceptionObject[1024]; // [esp+4h] [ebp-80Ch] BYREF\n  char ArgList[1024]; // [esp+404h] [ebp-40Ch] BYREF\n  int v6; // [esp+80Ch] [ebp-4h]\n\n  v1 = (UIWnd *)operator new(0xF4u);\n  v6 = 0;\n  if ( v1 )\n    v2 = sub_43F7F0(v1);\n  else\n    v2 = 0;\n  v6 = -1;\n  *a1 = v2;\n  if ( !v2 )\n  {\n    qmemcpy(pExceptionObject, sub_53CEF0(ArgList, aCNewFailed, aDProjectPal3Co_12, 1660), sizeof(pExceptionObject));\n    _CxxThrowException(pExceptionObject, (_ThrowInfo *)&_TI1_AV_Exception__);\n  }\n  return 1;\n}\n"
-}

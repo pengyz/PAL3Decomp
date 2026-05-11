@@ -1,7 +1,0 @@
-{
-  "name": "CCBCamControl::DoLineMove(void)",
-  "address": "0x005088D0",
-  "size_bytes": 84,
-  "signature": "int __thiscall(CCBCamControl **this, unsigned int a2)",
-  "decompiled_c": "int __thiscall CCBCamControl::DoLineMove(CCBCamControl **this, unsigned int a2)\n{\n  int result; // eax\n  CCBCamControl **v4; // esi\n  int v5; // esi\n\n  result = a2;\n  if ( a2 < 0x180 )\n  {\n    v4 = &this[15 * a2];\n    result = (int)v4[612];\n    if ( result != -1 )\n      result = CEffect::Render(*(void **)(*(_DWORD *)this[2]->_data + 44), (int)v4[612]);\n    v5 = (int)v4[619];\n    if ( v5 != -1 )\n      return CEffect::Render(*(void **)(*(_DWORD *)this[2]->_data + 44), v5);\n  }\n  return result;\n}\n"
-}

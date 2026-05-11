@@ -1,7 +1,0 @@
-{
-  "name": "sub_46ADF0",
-  "address": "0x0046ADF0",
-  "size_bytes": 169,
-  "signature": "char __thiscall(_BYTE *this)",
-  "decompiled_c": "char __thiscall sub_46ADF0(_BYTE *this)\n{\n  char result; // al\n\n  result = this[95265];\n  if ( !result )\n  {\n    result = g_Input._data[6388];\n    if ( *(_DWORD *)&g_Input._data[6388] == 1 )\n      result = (*(int (__thiscall **)(_BYTE *, int, int, _DWORD))(*(_DWORD *)this + 24))(this, 1001, 262, 0);\n    if ( *(_DWORD *)&g_Input._data[6436] == 1 )\n    {\n      return (*(int (__thiscall **)(_BYTE *, int, int, _DWORD))(*(_DWORD *)this + 24))(this, 1001, 405, 0);\n    }\n    else if ( *(_DWORD *)&g_Input._data[6420] == 1 )\n    {\n      return (*(int (__thiscall **)(_BYTE *, int, int, _DWORD))(*(_DWORD *)this + 24))(this, 1001, 406, 0);\n    }\n    else if ( *(_DWORD *)&g_Input._data[6372] == 1 )\n    {\n      return (*(int (__thiscall **)(_BYTE *, int, int, int))(*(_DWORD *)this + 24))(this, 1009, 265, 30933628);\n    }\n    else if ( *(_DWORD *)&g_Input._data[6404] == 1 )\n    {\n      return (*(int (__thiscall **)(_BYTE *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 264, 0, 0);\n    }\n  }\n  return result;\n}\n"
-}

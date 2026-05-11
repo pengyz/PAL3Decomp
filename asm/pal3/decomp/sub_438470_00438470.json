@@ -1,7 +1,0 @@
-{
-  "name": "sub_438470",
-  "address": "0x00438470",
-  "size_bytes": 61,
-  "signature": "char *()",
-  "decompiled_c": "char *sub_438470()\n{\n  char *String; // esi\n  char *result; // eax\n  int *v2; // eax\n  char *v3; // [esp-8h] [ebp-Ch]\n  gbAudioManager *v4; // [esp-4h] [ebp-8h]\n\n  String = PalScript::GetString();\n  result = PalScript::GetString();\n  if ( String && result )\n  {\n    if ( (dword_5833BC & 4) != 0 )\n    {\n      v4 = (gbAudioManager *)*((_DWORD *)result + 1);\n      v3 = (char *)*((_DWORD *)String + 1);\n      v2 = sub_53DF70();\n      sub_53E740((gbAudioManager **)v2, v3, v4);\n    }\n    result = (char *)sub_53DF70();\n    result[4] = 1;\n  }\n  return result;\n}\n"
-}

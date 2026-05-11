@@ -1,7 +1,0 @@
-{
-  "name": "CCBStage::GetRoleIndex(ulong)",
-  "address": "0x004FC700",
-  "size_bytes": 204,
-  "signature": "int __thiscall(CCBStage *this, int a2, const void *a3, char a4)",
-  "decompiled_c": "int __thiscall CCBStage::GetRoleIndex(CCBStage *this, int a2, const void *a3, char a4)\n{\n  int v5; // ebp\n  char *i; // eax\n  char *v8; // edi\n\n  if ( *(int *)&this->_data[156] >= 246 )\n    CCBSystem::CreateObj(*(CCBSystem **)this->_data, (struct CCBUI **)dword_5DB6C4, 0, 0x30u);\n  v5 = 0;\n  for ( i = &this->_data[2796]; *i; i += 2632 )\n  {\n    if ( ++v5 >= 256 )\n      return -1;\n  }\n  v8 = &this->_data[2632 * v5];\n  *((_DWORD *)v8 + 43) = 2;\n  v8[2796] = 1;\n  v8[2797] = a4;\n  *((_DWORD *)v8 + 686) = CCBSystem::ProcProtect(*(CCBSystem **)this->_data);\n  *((_DWORD *)v8 + 44) = 0;\n  *((_DWORD *)v8 + 42) = a2;\n  *((_DWORD *)v8 + 687) = 0;\n  if ( a3 )\n    qmemcpy(v8 + 2752, a3, 0x2Cu);\n  else\n    *((_DWORD *)v8 + 690) = -1;\n  ++*(_DWORD *)&this->_data[156];\n  return v5;\n}\n"
-}

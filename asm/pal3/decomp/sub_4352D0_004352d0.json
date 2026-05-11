@@ -1,7 +1,0 @@
-{
-  "name": "sub_4352D0",
-  "address": "0x004352D0",
-  "size_bytes": 79,
-  "signature": "char *()",
-  "decompiled_c": "char *sub_4352D0()\n{\n  char *String; // esi\n  char *v1; // edi\n  char *result; // eax\n  float pParams[3]; // [esp+8h] [ebp-Ch] BYREF\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  result = PalScript::GetString();\n  if ( String && v1 )\n  {\n    if ( result )\n    {\n      pParams[0] = *((float *)String + 1);\n      pParams[1] = *((float *)v1 + 1);\n      pParams[2] = *((float *)result + 1);\n      return (char *)CameraCtrl::InitParams(dword_BFDA68, pParams);\n    }\n  }\n  return result;\n}\n"
-}

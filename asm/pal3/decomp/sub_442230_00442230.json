@@ -1,7 +1,0 @@
-{
-  "name": "sub_442230",
-  "address": "0x00442230",
-  "size_bytes": 58,
-  "signature": "int __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "// likely CCBUI method (near CheckNimbusMove, ShowDialogWindow, Reset, CreateIm)\nint __thiscall sub_442230(_DWORD *this, int a2, int a3)\n{\n  int v3; // edx\n  int v4; // esi\n  int result; // eax\n\n  v3 = this[79];\n  v4 = this[85];\n  this[86] = a2;\n  this[87] = a3;\n  result = v3 + v4 + a3 / 2;\n  this[45] = result;\n  this[44] = result;\n  return result;\n}\n"
-}

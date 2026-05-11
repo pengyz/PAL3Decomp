@@ -1,7 +1,0 @@
-{
-  "name": "sub_4554D0",
-  "address": "0x004554D0",
-  "size_bytes": 158,
-  "signature": "_DWORD *__thiscall(char *this)",
-  "decompiled_c": "_DWORD *__thiscall sub_4554D0(char *this)\n{\n  int v2; // eax\n  int v3; // esi\n  int v4; // ebx\n  UIWnd **v5; // ebp\n  int v7; // [esp+18h] [ebp-8h]\n\n  v2 = 64;\n  v3 = *((_DWORD *)this + 32585) + 64;\n  v7 = *((_DWORD *)this + 32586) + 80;\n  v4 = 0;\n  v5 = (UIWnd **)(this + 1404);\n  do\n  {\n    sub_455570(this, v4, 80, v2, v7, v3);\n    sub_445E50(v5 - 124, 1);\n    UIWnd::CreateFromTemplate(v5, aUiGamemainuiSy_16, byte_5B0958);\n    v2 = v3;\n    v3 += *((_DWORD *)this + 32585);\n    ++v4;\n    v5 += 890;\n  }\n  while ( v4 < 36 );\n  sub_445E50((_DWORD *)this + 227, 0);\n  return sub_455790(this);\n}\n"
-}

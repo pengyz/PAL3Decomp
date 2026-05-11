@@ -1,7 +1,0 @@
-{
-  "name": "RenderTarget::Destroy(void)",
-  "address": "0x004BDF10",
-  "size_bytes": 30,
-  "signature": "_DWORD *__thiscall(RenderTarget *this)",
-  "decompiled_c": "_DWORD *__thiscall RenderTarget::Destroy(RenderTarget *this)\n{\n  _DWORD *result; // eax\n\n  result = this->_data;\n  *(_DWORD *)&this->_data[4] = 0;\n  *(_DWORD *)this->_data = &off_56F4F0;\n  *(_DWORD *)&this->_data[8] = 1;\n  *(_DWORD *)&this->_data[16] = 0;\n  *(_DWORD *)&this->_data[12] = 0;\n  this->_data[20] = 0;\n  return result;\n}\n"
-}

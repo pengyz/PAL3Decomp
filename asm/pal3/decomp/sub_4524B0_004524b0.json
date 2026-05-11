@@ -1,7 +1,0 @@
-{
-  "name": "sub_4524B0",
-  "address": "0x004524B0",
-  "size_bytes": 82,
-  "signature": "void __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "void __thiscall sub_4524B0(_DWORD *this, int a2)\n{\n  int v2; // esi\n  _DWORD *v3; // edi\n  char Buffer[260]; // [esp+Ch] [ebp-104h] BYREF\n\n  v2 = 0;\n  v3 = this + 139;\n  do\n  {\n    sprintf(Buffer, \"ui\\\\scene\\\\face\\\\face%d\\\\face%02d.tga\", a2, v2);\n    sub_442480(v3, Buffer, 0);\n    ++v2;\n    v3 += 38;\n  }\n  while ( v2 < 3 );\n}\n"
-}

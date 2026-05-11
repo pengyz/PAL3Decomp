@@ -1,7 +1,0 @@
-{
-  "name": "sub_413390",
-  "address": "0x00413390",
-  "size_bytes": 142,
-  "signature": "void __thiscall(gbVec3D *this, float a2)",
-  "decompiled_c": "void __thiscall sub_413390(gbVec3D *this, float a2)\n{\n  double v3; // st7\n  gbVec3D *v4; // esi\n  double v5; // st6\n  double v6; // st7\n  float v7; // [esp+Ch] [ebp-8h]\n  float v8; // [esp+10h] [ebp-4h]\n\n  v3 = this[112].x - this->y;\n  v4 = this + 109;\n  v7 = this[112].y - this->z;\n  v5 = this[112].z - this[1].x;\n  this[109].y = v7;\n  v8 = v5;\n  this[109].x = v3;\n  this[109].z = v8;\n  v6 = this[107].y / gbVec3D::Length(this + 109);\n  v4->x = v6 * v4->x;\n  v4->y = v6 * v4->y;\n  v4->z = v6 * v4->z;\n  v4->x = a2 * v4->x;\n  v4->y = a2 * v4->y;\n  v4->z = a2 * v4->z;\n  sub_414250(this, &v4->x);\n}\n"
-}

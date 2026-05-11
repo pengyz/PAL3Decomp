@@ -1,7 +1,0 @@
-{
-  "name": "sub_4B65F0",
-  "address": "0x004B65F0",
-  "size_bytes": 55,
-  "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nchar __thiscall sub_4B65F0(_DWORD *this)\n{\n  gbEffectMgr *v1; // edi\n\n  v1 = *(gbEffectMgr **)&gfxMgr->_data[200];\n  *this = gbEffectMgr::NewRenderEffect(v1, aGfxscriptGlowG, 0);\n  this[1] = gbEffectMgr::NewRenderEffect(v1, aGfxscriptGeomG, 1u);\n  return 1;\n}\n"
-}

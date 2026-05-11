@@ -1,7 +1,0 @@
-{
-  "name": "ObjectCamera::SetCameraAtPosition(gbVec3D)",
-  "address": "0x0047C6E0",
-  "size_bytes": 137,
-  "signature": "void __thiscall(ObjectCamera *this, struct gbVec3D a2, char a3)",
-  "decompiled_c": "void __thiscall ObjectCamera::SetCameraAtPosition(ObjectCamera *this, struct gbVec3D a2, char a3)\n{\n  float y; // ecx\n  double v5; // st7\n  double v6; // st7\n  gbVec3D v7; // [esp+4h] [ebp-Ch] BYREF\n  float v8; // [esp+14h] [ebp+4h]\n  float v9; // [esp+18h] [ebp+8h]\n  float v10; // [esp+1Ch] [ebp+Ch]\n\n  this->m_camFrom = a2;\n  if ( a3 )\n  {\n    y = this->m_camFrom.y;\n    this->m_camTo.x = this->m_camFrom.x;\n    this->m_camTo.y = y;\n    this->m_camTo.z = 0.0;\n  }\n  v8 = this->m_camTo.x - this->m_camFrom.x;\n  v5 = this->m_camTo.y - this->m_camFrom.y;\n  v7.x = v8;\n  v9 = v5;\n  v6 = this->m_camTo.z - this->m_camFrom.z;\n  v7.y = v9;\n  v10 = v6;\n  v7.z = v10;\n  this->m_dist = gbVec3D::Length(&v7);\n  ObjectCamera::ComputeInfo(this, 1);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "CEffectSystem::SetVisible(EEffect,bool)",
-  "address": "0x004C65C0",
-  "size_bytes": 40,
-  "signature": "void __thiscall(CEffectSystem *this, float a2)",
-  "decompiled_c": "void __thiscall CEffectSystem::SetVisible(CEffectSystem *this, float a2)\n{\n  double v2; // st7\n  char v4; // c0\n\n  v2 = a2 + *(float *)this->_data;\n  *(float *)this->_data = v2;\n  if ( !v4 )\n  {\n    ++*(_DWORD *)&this->_data[52];\n    *(float *)this->_data = v2 - 0.02;\n  }\n}\n"
-}

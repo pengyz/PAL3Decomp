@@ -1,7 +1,0 @@
-{
-  "name": "sub_4BF680",
-  "address": "0x004BF680",
-  "size_bytes": 49,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "int __thiscall sub_4BF680(_DWORD *this, int a2)\n{\n  int result; // eax\n\n  this[22] = a2;\n  result = a2 - 1;\n  if ( a2 == 1 )\n  {\n    result = 0;\n    memset(this + 265, 0, 0x20u);\n    this[273] = 0;\n    this[274] = 0;\n    this[275] = 0;\n    this[276] = 0;\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_4B6300",
-  "address": "0x004B6300",
-  "size_bytes": 137,
-  "signature": "__int64 __thiscall(int this, char *a2, int a3, _TextureLib_Data *a4, int a5)",
-  "decompiled_c": "// likely _TextureLib_Data method (near _TextureLib_Data, SetLibFolder, _GetItemNum, ~_Tex)\n__int64 __thiscall sub_4B6300(int this, char *a2, int a3, _TextureLib_Data *a4, int a5)\n{\n  double v6; // st7\n  __int64 result; // rax\n  struct gbTextureArray v8; // [esp+4h] [ebp-44h] BYREF\n\n  *(_DWORD *)v8._data = *(_DWORD *)(this + 416);\n  *(_DWORD *)&v8._data[64] = 1;\n  _TextureLib_Data::GetLib(a2, a3, (int)a4, a5, (int *)(this + 124), &v8, 0);\n  v6 = (double)*(unsigned __int8 *)(this + 127) - *(float *)(this + 580) * *(float *)(this + 132);\n  if ( v6 <= 0.0 )\n  {\n    v6 = 0.0;\n    *(_BYTE *)(this + 128) = 0;\n    *(_BYTE *)(this + 127) = 0;\n  }\n  result = (__int64)v6;\n  *(_BYTE *)(this + 127) = (__int64)v6;\n  return result;\n}\n"
-}

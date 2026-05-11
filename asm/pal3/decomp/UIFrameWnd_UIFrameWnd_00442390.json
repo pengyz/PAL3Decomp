@@ -1,7 +1,0 @@
-{
-  "name": "UIFrameWnd::_UIFrameWnd",
-  "address": "0x00442390",
-  "size_bytes": 136,
-  "signature": "void __thiscall(std::ios_base *this)",
-  "decompiled_c": "void __thiscall UIFrameWnd::_UIFrameWnd(std::ios_base *this)\n{\n  int Prec; // eax\n  _BYTE *v3; // ecx\n  char v4; // al\n\n  this->_State = (int)&off_56ADD0;\n  UIFrameWnd::OnMessage((UIFrameWnd **)this);\n  Prec = this[2]._Prec;\n  if ( Prec )\n  {\n    v3 = (_BYTE *)(Prec - 1);\n    v4 = *(_BYTE *)(Prec - 1);\n    if ( !v4 || v4 == -1 )\n      operator delete(v3);\n    else\n      *v3 = v4 - 1;\n  }\n  this[2]._Prec = 0;\n  this[2]._Wide = 0;\n  this[2]._Arr = 0;\n  UIWnd::_UIWnd(this);\n}\n"
-}

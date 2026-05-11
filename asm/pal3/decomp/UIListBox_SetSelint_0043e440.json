@@ -1,7 +1,0 @@
-{
-  "name": "UIListBox::SetSel(int)",
-  "address": "0x0043E440",
-  "size_bytes": 55,
-  "signature": "int __thiscall(UIListBox *this, int a2)",
-  "decompiled_c": "int __thiscall UIListBox::SetSel(UIListBox *this, int a2)\n{\n  int v3; // eax\n\n  sub_43F520((int)this);\n  v3 = a2;\n  if ( a2 >= *(_DWORD *)&this->_tail[176] )\n    v3 = *(_DWORD *)&this->_tail[176];\n  if ( v3 <= *(_DWORD *)&this->_tail[172] )\n    v3 = *(_DWORD *)&this->_tail[172];\n  *(_DWORD *)&this->_tail[1044] = v3;\n  return sub_442060(&this->_tail[8], v3);\n}\n"
-}

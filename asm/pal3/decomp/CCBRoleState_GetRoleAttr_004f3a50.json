@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::GetRoleAttr",
-  "address": "0x004F3A50",
-  "size_bytes": 118,
-  "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
-  "decompiled_c": "int __thiscall CCBRoleState::GetRoleAttr(CCBRoleState *this, int roleIdx)\n{\n  int v3; // ecx\n  __int32 nFullHP; // esi\n\n  v3 = CCBRoleState::SetRoleField(this, roleIdx, 0);\n  nFullHP = this->m_Role[roleIdx].nFullHP;\n  if ( v3 == nFullHP )\n    return 1;\n  if ( v3 >= nFullHP / 2 && v3 < nFullHP )\n    return 2;\n  if ( v3 < nFullHP / 4 )\n    return (v3 <= 0) + 4;\n  return 3;\n}\n"
-}

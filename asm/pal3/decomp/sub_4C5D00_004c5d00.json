@@ -1,7 +1,0 @@
-{
-  "name": "sub_4C5D00",
-  "address": "0x004C5D00",
-  "size_bytes": 80,
-  "signature": "_DWORD *__thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "// likely CEffectSystem method (near IsVisible, CreateEffect, Reset, GetEffect, ~CEffec)\n_DWORD *__thiscall sub_4C5D00(_DWORD *this, int a2)\n{\n  _DWORD *v3; // esi\n  int v4; // edi\n  _DWORD *result; // eax\n\n  v3 = this + 24584;\n  v4 = 2048;\n  do\n  {\n    ArraySort((int)v3, 12, 4, gbVec3D::`default constructor closure');\n    v3 += 17;\n    --v4;\n  }\n  while ( v4 );\n  *this = &off_56F824;\n  memset(this, 0, 0x3C028u);\n  sub_4C5D80((int)this);\n  result = this;\n  dword_DE9384 = a2;\n  return result;\n}\n"
-}

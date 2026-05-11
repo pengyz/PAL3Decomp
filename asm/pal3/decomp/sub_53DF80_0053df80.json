@@ -1,7 +1,0 @@
-{
-  "name": "sub_53DF80",
-  "address": "0x0053DF80",
-  "size_bytes": 48,
-  "signature": "BOOL __cdecl(int a1, int a2)",
-  "decompiled_c": "BOOL __cdecl sub_53DF80(int a1, int a2)\n{\n  const char *v2; // eax\n  const char *v3; // ecx\n\n  v2 = *(const char **)(a2 + 4);\n  if ( !v2 )\n    v2 = (const char *)&dword_56A634;\n  v3 = *(const char **)(a1 + 4);\n  if ( !v3 )\n    v3 = (const char *)&dword_56A634;\n  return _strcmpi(v3, v2) == 0;\n}\n"
-}

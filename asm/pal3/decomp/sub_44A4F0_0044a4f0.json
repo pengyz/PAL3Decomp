@@ -1,7 +1,0 @@
-{
-  "name": "sub_44A4F0",
-  "address": "0x0044A4F0",
-  "size_bytes": 79,
-  "signature": "void __thiscall(_DWORD *this, unsigned int a2)",
-  "decompiled_c": "// likely PalScriptMgr method (near PalScriptMgr, IfAnyScriptRunning, IsScriptRuning, )\nvoid __thiscall sub_44A4F0(_DWORD *this, unsigned int a2)\n{\n  if ( a2 <= 0x25 )\n  {\n    if ( *((_BYTE *)sub_53DF70() + 4) )\n      *((_BYTE *)sub_53DF70() + 4) = 0;\n    PalScriptMgr::Destroy(a2 + 100, 1);\n    this[4709] = -1;\n    sub_44F610((int)&dword_DB9FD0, 0);\n  }\n}\n"
-}

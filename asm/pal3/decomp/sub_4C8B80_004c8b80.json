@@ -1,7 +1,0 @@
-{
-  "name": "sub_4C8B80",
-  "address": "0x004C8B80",
-  "size_bytes": 103,
-  "signature": "_DWORD *__thiscall(int this, float *a2, float a3, float a4, float a5)",
-  "decompiled_c": "_DWORD *__thiscall sub_4C8B80(int this, float *a2, float a3, float a4, float a5)\n{\n  int v7; // ecx\n  _DWORD *result; // eax\n  double v9; // st7\n  float v10; // [esp+10h] [ebp+4h]\n\n  *(_BYTE *)(this + 8) = 0;\n  v7 = *(_DWORD *)(this + 48);\n  v10 = a2[50];\n  *(float *)(this + 52) = v10;\n  sub_4BD7C0(v7, SLODWORD(v10));\n  result = sub_4BD7A0(*(_DWORD **)(this + 48), 0);\n  *(float *)(this + 56) = a3 + a2[46];\n  *(float *)(this + 60) = a4 + a2[47];\n  v9 = a5 + a2[48];\n  *(_DWORD *)(this + 68) = 0;\n  *(_DWORD *)(this + 72) = 0;\n  *(_DWORD *)(this + 76) = 0;\n  *(float *)(this + 64) = v9;\n  return result;\n}\n"
-}

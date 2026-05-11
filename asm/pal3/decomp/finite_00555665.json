@@ -1,7 +1,0 @@
-{
-  "name": "__finite",
-  "address": "0x00555665",
-  "size_bytes": 20,
-  "signature": "int __cdecl(double X)",
-  "decompiled_c": "int __cdecl _finite(double X)\n{\n  return (HIWORD(X) & 0x7FF0) != 32752;\n}\n"
-}

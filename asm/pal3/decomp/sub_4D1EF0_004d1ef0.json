@@ -1,7 +1,0 @@
-{
-  "name": "sub_4D1EF0",
-  "address": "0x004D1EF0",
-  "size_bytes": 52,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "// likely CEffQuad method (near ToNextFrame, CreateTask, SetQuad, Create, DestroyA)\nint __thiscall sub_4D1EF0(_DWORD *this)\n{\n  int result; // eax\n  int v2; // edx\n\n  result = 0;\n  if ( (int)this[17] > 0 )\n  {\n    v2 = 0;\n    do\n    {\n      ++result;\n      *(_BYTE *)(v2 + this[39] + 4) = 0;\n      v2 += 80;\n    }\n    while ( result < this[17] );\n  }\n  this[15] = 0;\n  this[16] = 0;\n  this[18] = -1;\n  return result;\n}\n"
-}

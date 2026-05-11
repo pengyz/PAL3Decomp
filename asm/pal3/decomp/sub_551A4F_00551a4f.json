@@ -1,7 +1,0 @@
-{
-  "name": "sub_551A4F",
-  "address": "0x00551A4F",
-  "size_bytes": 113,
-  "signature": "__m64 *__stdcall(__m64 *a1, __m64 *a2, __m64 *a3, __m64 *a4, unsigned int a5, unsigned int a6)",
-  "decompiled_c": "__m64 *__stdcall sub_551A4F(__m64 *a1, __m64 *a2, __m64 *a3, __m64 *a4, unsigned int a5, unsigned int a6)\n{\n  __m64 v6; // mm6\n  __m64 v7; // mm7\n  __m64 *result; // eax\n  __m64 v9; // mm6\n  __m64 v10; // mm7\n  __m64 v11; // mm1\n\n  v6 = _mm_cvtsi32_si64(a5);\n  v7 = _mm_cvtsi32_si64(a6);\n  result = a1;\n  v9 = _m_punpckldq(v6, v6);\n  v10 = _m_punpckldq(v7, v7);\n  v11 = _m_pfadd(_m_pfadd(_m_pfmul(_m_pfsub(a3[1], a2[1]), v9), a2[1]), _m_pfmul(_m_pfsub(a4[1], a2[1]), v10));\n  a1->m64_u64 = (unsigned __int64)_m_pfadd(\n                                    _m_pfadd(\n                                      _m_pfmul(_m_pfsub((__m64)a3->m64_u64, (__m64)a2->m64_u64), v9),\n                                      (__m64)a2->m64_u64),\n                                    _m_pfmul(_m_pfsub((__m64)a4->m64_u64, (__m64)a2->m64_u64), v10));\n  a1[1].m64_u64 = (unsigned __int64)v11;\n  _m_femms();\n  return result;\n}\n"
-}

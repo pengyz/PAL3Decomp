@@ -1,7 +1,0 @@
-{
-  "name": "sub_410840",
-  "address": "0x00410840",
-  "size_bytes": 179,
-  "signature": "int __cdecl(int a1)",
-  "decompiled_c": "int __cdecl sub_410840(int a1)\n{\n  int result; // eax\n  gbParticleEffect *v2; // eax\n  gbParticleEffect *v3; // esi\n  gbParticleEffect *v4; // ecx\n\n  result = a1;\n  if ( a1 )\n  {\n    v2 = (gbParticleEffect *)operator new(0x160u);\n    v3 = v2;\n    if ( v2 )\n    {\n      gbParticleEffect::gbParticleEffect(v2);\n      *(_DWORD *)v3->_data = &off_56A784;\n      v4 = v3;\n    }\n    else\n    {\n      v4 = 0;\n    }\n    *(_DWORD *)&g_SceneMgr._gap_c5e0[844] = v4;\n    gbParticleEffect::LoadFromFile(v4, aEffectGbpartic);\n    result = *(_DWORD *)&g_SceneMgr._gap_c5e0[844];\n    *(_DWORD *)(*(_DWORD *)&g_SceneMgr._gap_c5e0[844] + 280) = 1090519040;\n  }\n  else\n  {\n    if ( *(_DWORD *)&g_SceneMgr._gap_c5e0[844] )\n      result = (***(int (__thiscall ****)(_DWORD, int))&g_SceneMgr._gap_c5e0[844])(\n                 *(_DWORD *)&g_SceneMgr._gap_c5e0[844],\n                 1);\n    *(_DWORD *)&g_SceneMgr._gap_c5e0[844] = 0;\n  }\n  return result;\n}\n"
-}

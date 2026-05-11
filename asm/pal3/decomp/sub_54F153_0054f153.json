@@ -1,7 +1,0 @@
-{
-  "name": "sub_54F153",
-  "address": "0x0054F153",
-  "size_bytes": 220,
-  "signature": "__m64 *__stdcall(__m64 *a1, __m64 *a2)",
-  "decompiled_c": "__m64 *__stdcall sub_54F153(__m64 *a1, __m64 *a2)\n{\n  __m64 *result; // eax\n  __m64 v3; // mm3\n  __m64 v4; // mm0\n  __m64 v5; // mm1\n  __m64 v6; // mm6\n  __m64 v7; // mm4\n  __m64 v8; // mm6\n  __m64 v9; // mm4\n  __m64 v10; // mm6\n  __m64 v11; // [esp+0h] [ebp-14h] BYREF\n  __m64 v12; // [esp+8h] [ebp-Ch]\n\n  _m_femms();\n  sub_551E4B(&v11, a2);\n  result = a1;\n  v3 = v12;\n  v4 = _m_pfmul(v11, (__m64)0xC0000000C0000000uLL);\n  v5 = _m_pfmul(v12, (__m64)0x3F800000C0000000LL);\n  v6 = v11;\n  v7 = _m_punpckldq(v6, v6);\n  v8 = _m_punpckhdq(v6, v6);\n  a1->m64_u64 = (unsigned __int64)_m_pfadd(_m_pfmul(v7, v4), (__m64)1065353216LL);\n  a1[1].m64_u64 = (unsigned __int64)_m_pfmul(_m_psrlqi(v7, 0x20u), v5);\n  a1[2].m64_u64 = (unsigned __int64)_m_pfadd(_m_pfmul(v8, v4), (__m64)0x3F80000000000000LL);\n  a1[3].m64_u64 = (unsigned __int64)_m_pfmul(_m_psrlqi(v8, 0x20u), v5);\n  v9 = _m_punpckldq(v3, v3);\n  v10 = _m_punpckhdq(v3, v3);\n  a1[4].m64_u64 = (unsigned __int64)_m_pfmul(v9, v4);\n  a1[5].m64_u64 = (unsigned __int64)_m_pfadd(_m_pfmul(_m_psrlqi(v9, 0x20u), v5), (__m64)1065353216LL);\n  a1[6].m64_u64 = (unsigned __int64)_m_pfmul(v10, v4);\n  a1[7].m64_u64 = (unsigned __int64)_m_pfadd(_m_pfmul(_m_psrlqi(v10, 0x20u), v5), (__m64)0x3F80000000000000LL);\n  _m_femms();\n  return result;\n}\n"
-}

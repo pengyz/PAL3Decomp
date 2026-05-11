@@ -1,7 +1,0 @@
-{
-  "name": "sub_547A54",
-  "address": "0x00547A54",
-  "size_bytes": 142,
-  "signature": "char *__stdcall(char *a1, char *a2, char *a3)",
-  "decompiled_c": "char *__stdcall sub_547A54(char *a1, char *a2, char *a3)\n{\n  char *v3; // eax\n  int v6; // edi\n  float *v8; // ebx\n  char *result; // eax\n  char v11; // [esp+0h] [ebp-44h] BYREF\n  char *v12; // [esp+40h] [ebp-4h]\n\n  v3 = a1;\n  if ( a1 == a2 || a1 == a3 )\n    v3 = &v11;\n  v12 = v3;\n  _ECX = a2;\n  _EDX = a3;\n  v6 = -4;\n  do\n  {\n    _ESI = -4;\n    v8 = (float *)&v3[4 * v6 + 16];\n    __asm\n    {\n      fld     dword ptr [ecx]\n      fld     dword ptr [ecx+4]\n      fld     dword ptr [ecx+8]\n      fld     dword ptr [ecx+0Ch]\n    }\n    do\n    {\n      __asm\n      {\n        fld     st(3)\n        fmul    dword ptr [edx+esi*4+10h]\n        fld     st(3)\n        fmul    dword ptr [edx+esi*4+20h]\n        fld     st(3)\n        fmul    dword ptr [edx+esi*4+30h]\n        fld     st(3)\n        fmul    dword ptr [edx+esi*4+40h]\n        fxch    st(3)\n        faddp   st(1), st\n        fxch    st(2)\n        faddp   st(1), st\n        faddp   st(1), st\n        fstp    dword ptr [ebx]\n      }\n      *v8 = _ET1;\n      v8 += 4;\n      ++_ESI;\n    }\n    while ( _ESI );\n    __asm\n    {\n      ffree   st(3)\n      ffree   st(2)\n      ffree   st(1)\n      ffree   st\n    }\n    _ECX += 16;\n    ++v6;\n  }\n  while ( v6 );\n  result = a1;\n  if ( v12 != a1 )\n    qmemcpy(a1, v12, 0x40u);\n  return result;\n}\n"
-}

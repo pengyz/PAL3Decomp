@@ -1,7 +1,0 @@
-{
-  "name": "CCBStage::Update",
-  "address": "0x004FC0A0",
-  "size_bytes": 162,
-  "signature": "int __thiscall(CCBStage *this)",
-  "decompiled_c": "int __thiscall CCBStage::Update(CCBStage *this)\n{\n  int *v2; // esi\n  int v3; // ebx\n  int *v4; // eax\n  int result; // eax\n  float a2; // [esp+0h] [ebp-10h]\n\n  if ( this->_data[152] != 1 )\n  {\n    GRPinput::GetCursorPos(&this->_data[80]);\n    CCBStageScene::SetBattleFieldAttr(*(CCBStageScene **)&this->_data[20]);\n    if ( dword_17A990C == 1 )\n      CCBStage::Update(this);\n    else\n      CCBStage::Render(this);\n    v2 = (int *)&this->_data[24];\n    v3 = 11;\n    do\n    {\n      if ( *(_BYTE *)(*v2 + 264) )\n        CCBStageRole::IsTaskFinished(*v2, (BOOL)this);\n      ++v2;\n      --v3;\n    }\n    while ( v3 );\n    CCBStage::ProcessTurn(*(CCBStage **)&this->_data[12]);\n    CCBStageCam::DoTask(*(CCBStageCam ***)&this->_data[16]);\n    nullsub_3(*(void **)&this->_data[68]);\n    nullsub_3(*(void **)&this->_data[72]);\n    CCBStage::UpdatePhysics(this);\n    a2 = *(double *)(*(_DWORD *)this->_data + 64);\n    v4 = CEffectSystem::DestroyAllEffect(*(CEffectSystem **)this->_data);\n    CEffectSystem::SetVisible((CEffectSystem *)v4, a2);\n  }\n  return result;\n}\n"
-}

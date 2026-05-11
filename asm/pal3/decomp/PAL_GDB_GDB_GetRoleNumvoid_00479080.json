@@ -1,7 +1,0 @@
-{
-  "name": "PAL_GDB::GDB_GetRoleNum(void)",
-  "address": "0x00479080",
-  "size_bytes": 97,
-  "signature": "int __thiscall(PAL_GDB *this, int a2)",
-  "decompiled_c": "int __thiscall PAL_GDB::GDB_GetRoleNum(PAL_GDB *this, int a2)\n{\n  int d08C; // edx\n  int dC4810; // eax\n  int v4; // eax\n\n  if ( !a2 )\n    return 0;\n  d08C = this->_d08C;\n  this->_dC4810 = 0;\n  if ( d08C <= 0 )\n    return 0;\n  while ( 1 )\n  {\n    dC4810 = this->_dC4810;\n    if ( a2 == *(_DWORD *)&this->_pad_0A0[760 * dC4810 + 170400] )\n      break;\n    v4 = dC4810 + 1;\n    this->_dC4810 = v4;\n    if ( v4 >= d08C )\n      return 0;\n  }\n  return (int)&this->_pad_0A0[760 * this->_dC4810 + 170400];\n}\n"
-}

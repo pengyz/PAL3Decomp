@@ -1,9 +1,0 @@
-#pragma once
-// Auto-generated: tagCOINIT enum
-
-enum tagCOINIT {
-    COINIT_MULTITHREADED = 0,
-    COINIT_APARTMENTTHREADED = 2,
-    COINIT_DISABLE_OLE1DDE = 4,
-    COINIT_SPEED_OVER_MEMORY = 8,
-};

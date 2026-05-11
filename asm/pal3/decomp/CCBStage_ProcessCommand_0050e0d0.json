@@ -1,7 +1,0 @@
-{
-  "name": "CCBStage::ProcessCommand",
-  "address": "0x0050E0D0",
-  "size_bytes": 133,
-  "signature": "int __thiscall(CCBStage *this)",
-  "decompiled_c": "int __thiscall CCBStage::ProcessCommand(CCBStage *this)\n{\n  char *v2; // eax\n  int v3; // edx\n\n  v2 = &this->_data[96 * *(_DWORD *)&this->_data[396]];\n  if ( !v2[506] )\n  {\n    v3 = *(_DWORD *)&this->_data[284];\n    *(_DWORD *)&this->_data[6632] = *((_DWORD *)v2 + 108);\n    if ( CCBStageRole::IsActive(*(CCBStageRole **)&this->_data[4], v3) )\n      *(_DWORD *)&this->_data[6568] = 32;\n    else\n      *(_DWORD *)&this->_data[6568] = 50;\n    CCBStageRole::IsGrabedBy((CCBStageRole *)this);\n    this->_data[96 * *(_DWORD *)&this->_data[396] + 506] = 1;\n    this->_data[96 * *(_DWORD *)&this->_data[396] + 505] = 1;\n  }\n  return 0;\n}\n"
-}

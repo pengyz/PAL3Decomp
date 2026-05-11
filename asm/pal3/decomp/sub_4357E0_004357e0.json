@@ -1,7 +1,0 @@
-{
-  "name": "sub_4357E0",
-  "address": "0x004357E0",
-  "size_bytes": 77,
-  "signature": "char *()",
-  "decompiled_c": "char *sub_4357E0()\n{\n  char *String; // esi\n  char *v1; // edi\n  char *result; // eax\n  char *v3; // ebx\n  int v4; // eax\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  result = PalScript::GetString();\n  v3 = result;\n  if ( String && v1 )\n  {\n    if ( result )\n    {\n      v4 = sub_40CBB0(*((_WORD *)String + 2), *((_DWORD *)v1 + 1));\n      return (char *)sub_40CBD0(*((_WORD *)String + 2), *((_DWORD *)v1 + 1), v4 + *((_DWORD *)v3 + 1));\n    }\n  }\n  return result;\n}\n"
-}

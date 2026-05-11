@@ -1,7 +1,0 @@
-{
-  "name": "sub_42BFE0",
-  "address": "0x0042BFE0",
-  "size_bytes": 74,
-  "signature": "bool __thiscall(int this)",
-  "decompiled_c": "bool __thiscall sub_42BFE0(int this)\n{\n  int v2; // ecx\n\n  if ( *(_BYTE *)(this + 81) )\n  {\n    if ( *(_BYTE *)(this + 81) == 1 )\n      return *(_DWORD *)(this + 804) == 2;\n    else\n      return *(_BYTE *)(this + 81) != 2 || *(_DWORD *)(this + 804) == 3;\n  }\n  else\n  {\n    v2 = *(_DWORD *)(this + 804);\n    return v2 == 2 || v2 == 3;\n  }\n}\n"
-}

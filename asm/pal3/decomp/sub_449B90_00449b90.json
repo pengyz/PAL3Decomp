@@ -1,7 +1,0 @@
-{
-  "name": "sub_449B90",
-  "address": "0x00449B90",
-  "size_bytes": 66,
-  "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "char __thiscall sub_449B90(_DWORD *this)\n{\n  unsigned int v2; // edi\n  const char *v3; // esi\n  int v4; // eax\n\n  v2 = 0;\n  v3 = aQ07;\n  while ( 1 )\n  {\n    v4 = _strcmpi(v3, byte_C12B48);\n    if ( !v4 )\n      break;\n    v3 += 64;\n    ++v2;\n    if ( (int)v3 >= (int)off_599594 )\n      return v4;\n  }\n  sub_449AB0((int)this, v2);\n  LOBYTE(v4) = sub_449BE0(this, v2);\n  return v4;\n}\n"
-}

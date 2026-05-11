@@ -1,7 +1,0 @@
-{
-  "name": "sub_51F130",
-  "address": "0x0051F130",
-  "size_bytes": 120,
-  "signature": "int __thiscall(int *this)",
-  "decompiled_c": "int __thiscall sub_51F130(int *this)\n{\n  int v1; // eax\n  __int64 v2; // rax\n  int result; // eax\n\n  if ( this[2011] > 0 )\n  {\n    v1 = this[82011];\n    v2 = (__int64)((*(float *)(this[2012] + 4 * (this[82009] + 4 * (3 * v1 + 3)))\n                  + *(float *)(this[2012] + 4 * (12 * v1 + this[82010]) + 60)\n                  + *(float *)(this[2012] + 4 * (12 * v1 + this[82008]) + 36))\n                 * (double)this[82006]\n                 + (double)this[82006]);\n    this[82007] = v2;\n    this[126860] = v2;\n  }\n  result = this[82007];\n  this[82007] = 0;\n  return result;\n}\n"
-}

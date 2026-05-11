@@ -1,7 +1,0 @@
-{
-  "name": "sub_4460D0",
-  "address": "0x004460D0",
-  "size_bytes": 213,
-  "signature": "_DWORD *__thiscall(UIWnd *this)",
-  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\n_DWORD *__thiscall sub_4460D0(UIWnd *this)\n{\n  UIListBox::UIListBox((UIListBox *)this);\n  sub_4434C0((UIWnd *)((char *)this + 360));\n  `eh vector constructor iterator'(\n    (char *)&this[6].m_rect.top,\n    0x1DCu,\n    38,\n    (void (__thiscall *)(void *))sub_4461B0,\n    (void (__thiscall *)(void *))sub_4461F0);\n  sub_43A160((UIWnd *)((char *)this + 18616));\n  this[235].m_rect.right = 38;\n  UIItem::Refresh(&this[235].m_rect.bottom);\n  UIItem::Refresh(&this[252].m_childs);\n  ctor_0x431870(&this[269].m_childs.m_nMaxSize);\n  this->m_fontcolor.ColorQuadFmt = (int)&off_56AF80;\n  this->m_bfocus = 0;\n  this->m_benable = 0;\n  this[1].m_fontcolor.ColorQuadFmt = 800;\n  *(_DWORD *)&this[1].m_fontcolor.Blue = 600;\n  return &this->m_fontcolor.ColorQuadFmt;\n}\n"
-}

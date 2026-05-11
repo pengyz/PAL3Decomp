@@ -1,7 +1,0 @@
-{
-  "name": "sub_503FA0",
-  "address": "0x00503FA0",
-  "size_bytes": 184,
-  "signature": "int __thiscall(int this, _DWORD **a2, struct gbGfxManager *a3)",
-  "decompiled_c": "// likely CCBStage method (near ProcShowCombatDialog, Reset, IsTaskValidButNotFini)\nint __thiscall sub_503FA0(int this, _DWORD **a2, struct gbGfxManager *a3)\n{\n  _DWORD *v4; // eax\n  int v5; // edx\n  _DWORD *v6; // eax\n  int v7; // edx\n  int result; // eax\n\n  sub_41BE80((char *)this, a3);\n  v4 = (_DWORD *)(this + 624);\n  v5 = 50;\n  do\n  {\n    *(v4 - 2) = 0;\n    *(v4 - 1) = 0;\n    *v4 = 0;\n    v4[1] = 0;\n    v4[2] = 0;\n    v4[3] = 0;\n    v4[4] = 0;\n    v4[5] = 0;\n    v4[6] = 0;\n    v4[7] = 0;\n    v4[8] = 0;\n    v4[9] = 0;\n    v4 += 20;\n    --v5;\n  }\n  while ( v5 );\n  v6 = (_DWORD *)(this + 4584);\n  v7 = 64;\n  do\n  {\n    *v6 = 0;\n    v6[1] = 0;\n    v6[2] = 0;\n    v6[3] = 0;\n    v6[4] = 0;\n    v6[5] = 0;\n    v6 += 6;\n    --v7;\n  }\n  while ( v7 );\n  *(_DWORD *)this = &off_56FD78;\n  sub_5040D0((_DWORD *)this);\n  *(_DWORD *)(this + 544) = a2;\n  result = this;\n  *(_DWORD *)(this + 548) = **a2;\n  return result;\n}\n"
-}

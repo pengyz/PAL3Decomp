@@ -1,7 +1,0 @@
-{
-  "name": "Actor::InitComponents",
-  "address": "0x005364B0",
-  "size_bytes": 168,
-  "signature": "int __thiscall(void *this)",
-  "decompiled_c": "int __thiscall Actor::InitComponents(void *this)\n{\n  int v2; // eax\n  void (__thiscall **v3)(char *, bool); // edx\n  float v5; // [esp+0h] [ebp-Ch]\n  float v6; // [esp+0h] [ebp-Ch]\n\n  *((_BYTE *)this + 345) = 0;\n  UIWnd::SetEnable((UIWnd *)((char *)this + 2184), dword_DDAD3C, 0);\n  sub_4A1530((int)this + 1728, 1);\n  *((_DWORD *)this + 87) = 1000;\n  *((_DWORD *)this + 88) = 1000;\n  sub_43FE90((int)this + 3096);\n  v5 = (float)*((int *)this + 88);\n  UIWnd::FindChild((int)this + 3096, v5);\n  v6 = (float)*((int *)this + 87);\n  UIWnd::FindChildByName((int)this + 3096, v6);\n  v2 = *((_DWORD *)this + 87);\n  v3 = (void (__thiscall **)(char *, bool))*((_DWORD *)this + 774);\n  *((_BYTE *)this + 356) = v2 <= 0;\n  (*v3)((char *)this + 3096, v2 > 0);\n  return (**((int (__thiscall ***)(char *, bool))this + 835))((char *)this + 3340, *((_DWORD *)this + 87) > 0);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_4C0920",
-  "address": "0x004C0920",
-  "size_bytes": 182,
-  "signature": "unsigned int __thiscall(_DWORD *this, float *a2)",
-  "decompiled_c": "unsigned int __thiscall sub_4C0920(_DWORD *this, float *a2)\n{\n  unsigned int result; // eax\n  unsigned int v4; // [esp+4h] [ebp-4h]\n  int v5; // [esp+10h] [ebp+8h]\n\n  result = this[1];\n  if ( *(_DWORD *)(result + 4) )\n  {\n    if ( (byte_1895561 & 1) == 0 )\n    {\n      byte_1895561 |= 1u;\n      CEffMgr::Reset((CEffMgr *)&g_nCursorState);\n      atexit(nullsub_1);\n    }\n    v4 = (int)a2[21];\n    if ( (byte_1895561 & 1) == 0 )\n    {\n      byte_1895561 |= 1u;\n      CEffMgr::Reset((CEffMgr *)&g_nCursorState);\n      atexit(nullsub_1);\n    }\n    v5 = (int)*a2;\n    result = v4;\n    if ( v4 <= 0xA && v5 > 0 )\n      return sub_50ACF0(*(void ***)(*(_DWORD *)(*(_DWORD *)(this[1] + 4) + 20) + 4 * v4 + 24), v5);\n  }\n  return result;\n}\n"
-}

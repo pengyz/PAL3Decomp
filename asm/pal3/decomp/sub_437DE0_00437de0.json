@@ -1,7 +1,0 @@
-{
-  "name": "sub_437DE0",
-  "address": "0x00437DE0",
-  "size_bytes": 117,
-  "signature": "void __cdecl(int a1)",
-  "decompiled_c": "void __cdecl sub_437DE0(int a1)\n{\n  int v1; // edi\n  int v2; // esi\n  int i; // ecx\n  int v4; // eax\n  int v5; // ecx\n  char *v6; // eax\n\n  if ( a1 < 52 )\n  {\n    sub_437F40();\n    byte_D8EBBC[a1] = 1;\n    v1 = 0;\n    v2 = 0;\n    for ( i = 0; i < 32; ++i )\n      v1 |= (unsigned __int8)byte_D8EBBC[i] << i;\n    v4 = i;\n    v5 = 0;\n    v6 = &byte_D8EBBC[v4];\n    do\n    {\n      v2 |= (unsigned __int8)*v6++ << v5;\n      if ( (int)v6 >= (int)dword_D8EBF0 )\n        break;\n      ++v5;\n    }\n    while ( v5 < 32 );\n    sub_437E60(aSoftwareSoftst_2, (DWORD)ValueName, v1);\n    sub_437E60(aSoftwareSoftst_2, (DWORD)aMovieB, v2);\n  }\n}\n"
-}

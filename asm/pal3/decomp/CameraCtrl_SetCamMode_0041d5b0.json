@@ -1,7 +1,0 @@
-{
-  "name": "CameraCtrl::SetCamMode",
-  "address": "0x0041D5B0",
-  "size_bytes": 13,
-  "signature": "int __thiscall(CameraCtrl *this, int mode)",
-  "decompiled_c": "int __thiscall CameraCtrl::SetCamMode(CameraCtrl *this, int mode)\n{\n  int result; // eax\n\n  result = mode;\n  *((_DWORD *)this + 115) = mode;\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "CCBUI::ShowBattleFieldAttr(ECBBattleFieldAttr,ECBForce)",
-  "address": "0x00518FE0",
-  "size_bytes": 152,
-  "signature": "int __thiscall(CCBUI *this, int a2)",
-  "decompiled_c": "int __thiscall CCBUI::ShowBattleFieldAttr(CCBUI *this, int a2)\n{\n  char *v2; // esi\n  int v3; // ecx\n  double v4; // st6\n  double v5; // st7\n  double v6; // st7\n\n  v2 = &this->_data[72 * *(_DWORD *)&this->_data[2628] + 1168];\n  if ( !this->_data[72 * *(_DWORD *)&this->_data[2628] + 1185] )\n  {\n    *(float *)&this->_data[72 * *(_DWORD *)&this->_data[2628] + 1192] = *(float *)(*(_DWORD *)&this->_data[1160] + 80);\n    v2[17] = 1;\n  }\n  v3 = *(_DWORD *)&this->_data[1160];\n  v4 = *((float *)v2 + 7) + *((float *)v2 + 6);\n  if ( *(float *)(v3 + 80) <= v4 )\n    return 0;\n  v5 = *(float *)(v3 + 80) - v4;\n  v6 = v5 * (v5 * *((float *)v2 + 8)) * 0.5 + *((float *)v2 + 11);\n  if ( v6 > *((float *)v2 + 13) )\n  {\n    v6 = *((float *)v2 + 13);\n    v2[18] = 1;\n  }\n  UIWnd::ScreenToClient(*((UIWnd **)v2 + 9), (__int64)*((float *)v2 + 10), (__int64)v6);\n  return 0;\n}\n"
-}

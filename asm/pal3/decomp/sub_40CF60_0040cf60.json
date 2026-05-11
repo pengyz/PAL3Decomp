@@ -1,7 +1,0 @@
-{
-  "name": "sub_40CF60",
-  "address": "0x0040CF60",
-  "size_bytes": 128,
-  "signature": "int __thiscall(_DWORD *this, _DWORD *a2)",
-  "decompiled_c": "// likely CCBSystem method (near SetAuto, PassCmdToThread, ProcMessage, Message, Se)\nint __thiscall sub_40CF60(_DWORD *this, _DWORD *a2)\n{\n  _DWORD *v3; // eax\n  int v4; // ecx\n  _DWORD *v5; // edx\n  _DWORD *v6; // eax\n  _DWORD *v7; // ecx\n  _DWORD *v8; // edi\n  _DWORD *v9; // ebx\n\n  v3 = sub_40DCF0(this, a2);\n  if ( !v3 )\n    return 0;\n  v4 = v3[1] - a2[1];\n  v3[1] = v4;\n  if ( v4 > 0 )\n    return 1;\n  v5 = (_DWORD *)this[2];\n  v6 = v3 + 3;\n  if ( v6 != v5 )\n  {\n    v7 = v6 - 3;\n    do\n    {\n      v8 = v6;\n      v9 = v7;\n      v6 += 3;\n      v7 += 3;\n      *v9 = *v8;\n      v9[1] = v8[1];\n      v9[2] = v8[2];\n    }\n    while ( v6 != v5 );\n  }\n  this[2] -= 12;\n  return 2;\n}\n"
-}

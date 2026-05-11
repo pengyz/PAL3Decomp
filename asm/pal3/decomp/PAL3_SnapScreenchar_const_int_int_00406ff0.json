@@ -1,7 +1,0 @@
-{
-  "name": "PAL3::SnapScreen(char const *,int,int)",
-  "address": "0x00406FF0",
-  "size_bytes": 164,
-  "signature": "int __cdecl(const char *a1)",
-  "decompiled_c": "int __cdecl PAL3::SnapScreen(const char *a1)\n{\n  __int8 *midRegion; // esi\n  int (__thiscall ***v2)(_DWORD, _DWORD); // eax\n  int result; // eax\n\n  dword_BFDA30 = 0;\n  dword_BFDA2C = (int)a1;\n  if ( a1 )\n  {\n    *((_DWORD *)dword_BFDA68 + 112) = 1;\n    RoleSystem::SetActive(dword_BFDA68, (int)&g_SceneMgr.m_slot4[840]);\n  }\n  sub_4070A0(aSoftwareSoftst, (DWORD)aSGameA, 1);\n  PalScriptMgr::Destroy(0x63u, 0);\n  midRegion = g_SceneMgr._midRegion;\n  do\n  {\n    sub_419AE0(midRegion);\n    midRegion += 8704;\n  }\n  while ( (int)midRegion < (int)&g_SceneMgr.m_pGameData );\n  ScriptSystem::Execute(0, 1);\n  dword_BFDA6C = 7;\n  v2 = (int (__thiscall ***)(_DWORD, _DWORD))CGameData::SetMode(&dword_DB9FD0, 0);\n  result = (**v2)(v2, 0);\n  flt_BFDA58 = 0.0;\n  return result;\n}\n"
-}

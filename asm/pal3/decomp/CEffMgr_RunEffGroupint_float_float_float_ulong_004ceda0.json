@@ -1,7 +1,0 @@
-{
-  "name": "CEffMgr::RunEffGroup(int,float,float,float,ulong)",
-  "address": "0x004CEDA0",
-  "size_bytes": 276,
-  "signature": "int __userpurge@<eax>(CEffMgr *this@<ecx>, char *a2, float a3, char *a4, float a5, unsigned int a6)",
-  "decompiled_c": "int __userpurge CEffMgr::RunEffGroup@<eax>(\n        CEffMgr *this@<ecx>,\n        char *a2,\n        float a3,\n        char *a4,\n        float a5,\n        unsigned int a6)\n{\n  int v6; // ebp\n  char *i; // eax\n  char *v9; // ebx\n  __int8 *m_szUIString; // edi\n  _DWORD *v11; // eax\n  _DWORD *v12; // eax\n\n  v6 = 0;\n  for ( i = &this->_data[88]; *i; i += 72 )\n  {\n    if ( ++v6 >= 32 )\n      return -1;\n  }\n  v9 = &this->_data[72 * v6];\n  strcpy(v9 + 28, a2);\n  m_szUIString = a4;\n  if ( !a4 )\n    m_szUIString = g_SceneMgr.m_szUIString;\n  strcpy(v9 + 58, m_szUIString);\n  v9[88] = 1;\n  v11 = (_DWORD *)operator new(0x34u);\n  if ( v11 )\n    v12 = sub_4C04C0(v11);\n  else\n    v12 = 0;\n  *((_DWORD *)v9 + 24) = v12;\n  if ( (g_bCursorVisible & 1) == 0 )\n  {\n    g_bCursorVisible |= 1u;\n    CEffMgr::Reset((CEffMgr *)&g_nCursorState);\n    atexit(nullsub_1);\n  }\n  *((_DWORD *)v9 + 23) = CEffSParticle::GetEditorTaskDescription(\n                           (CEffSParticle *)&g_nCursorState,\n                           (unsigned __int8 *)a2);\n  return v6;\n}\n"
-}

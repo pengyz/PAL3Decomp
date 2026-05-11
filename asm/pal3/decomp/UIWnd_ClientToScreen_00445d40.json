@@ -1,7 +1,0 @@
-{
-  "name": "UIWnd::ClientToScreen",
-  "address": "0x00445D40",
-  "size_bytes": 103,
-  "signature": "int __thiscall(UIWnd *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall UIWnd::ClientToScreen(UIWnd *this, int a2, int a3)\n{\n  int v4; // ebp\n  unsigned int m_id; // edi\n  unsigned int Color; // edx\n  int left; // ecx\n  int result; // eax\n  int i; // edi\n\n  v4 = *(_DWORD *)&this->m_wndcolor.Blue;\n  m_id = this->m_id;\n  Color = this->m_wndcolor.Color;\n  left = this->m_rect.left;\n  *(_DWORD *)&this->m_wndcolor.Blue = a2 + v4;\n  this->m_id = a2 + m_id;\n  this->m_wndcolor.Color = a3 + Color;\n  this->m_rect.left = a3 + left;\n  if ( this )\n    (*(void (__thiscall **)(UIWnd *, int, _DWORD, _DWORD))(this->m_fontcolor.ColorQuadFmt + 24))(this, 1022, 0, 0);\n  result = this->m_rect.bottom;\n  for ( i = 0; i < result; ++i )\n  {\n    UIWnd::ClientToScreen(*(UIWnd **)(this->m_rect.right + 4 * i), a2, a3);\n    result = this->m_rect.bottom;\n  }\n  return result;\n}\n"
-}

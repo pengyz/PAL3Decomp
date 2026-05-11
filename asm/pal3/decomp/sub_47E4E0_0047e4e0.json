@@ -1,7 +1,0 @@
-{
-  "name": "sub_47E4E0",
-  "address": "0x0047E4E0",
-  "size_bytes": 86,
-  "signature": "int __thiscall(void *this, HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)",
-  "decompiled_c": "int __thiscall sub_47E4E0(void *this, HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)\n{\n  int v5; // edx\n  int *v6; // eax\n\n  if ( hinstDLL == (HINSTANCE)1000 )\n    return DllMain((HINSTANCE)0x3E8, fdwReason, lpvReserved);\n  if ( hinstDLL != (HINSTANCE)1001 )\n    return UIWnd::SendMessage((int)hinstDLL, fdwReason, (int)lpvReserved);\n  v5 = 0;\n  v6 = dword_56B884;\n  while ( fdwReason != *v6 )\n  {\n    ++v6;\n    ++v5;\n    if ( (int)v6 >= (int)&off_56B898 )\n      return 1;\n  }\n  sub_47E190((int)this, v5);\n  return 1;\n}\n"
-}

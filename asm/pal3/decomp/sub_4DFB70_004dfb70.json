@@ -1,7 +1,0 @@
-{
-  "name": "sub_4DFB70",
-  "address": "0x004DFB70",
-  "size_bytes": 193,
-  "signature": "int __thiscall(_DWORD *this, const char *a2, float a3, float a4, float a5)",
-  "decompiled_c": "// likely CCBStageScene method (near GetBFASubdueFM, SetBattleFieldAttr, Reset, CCBStag)\nint __thiscall sub_4DFB70(_DWORD *this, const char *a2, float a3, float a4, float a5)\n{\n  int result; // eax\n\n  strcpy((char *)&this[70 * this[4] + 6], a2);\n  *(float *)&this[70 * this[4] + 71] = a3;\n  *(float *)&this[70 * this[4] + 72] = a4;\n  this[70 * this[4] + 5] = 1;\n  *(float *)&this[70 * this[4] + 74] = a5;\n  this[70 * this[4] + 70] = this[2];\n  result = this[4] + 1;\n  this[4] = result;\n  return result;\n}\n"
-}

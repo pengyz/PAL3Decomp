@@ -1,7 +1,0 @@
-{
-  "name": "sub_5375F0",
-  "address": "0x005375F0",
-  "size_bytes": 226,
-  "signature": "void __thiscall(int this)",
-  "decompiled_c": "void __thiscall sub_5375F0(int this)\n{\n  int v2; // edi\n  int i; // [esp+10h] [ebp-10h]\n\n  operator delete(*(void **)(this + 36));\n  *(_DWORD *)(this + 36) = 0;\n  *(_DWORD *)(this + 40) = 0;\n  *(_DWORD *)(this + 44) = 0;\n  operator delete(*(void **)(this + 20));\n  *(_DWORD *)(this + 20) = 0;\n  *(_DWORD *)(this + 24) = 0;\n  *(_DWORD *)(this + 28) = 0;\n  v2 = *(_DWORD *)(this + 4);\n  for ( i = *(_DWORD *)(this + 8); v2 != i; v2 += 164 )\n  {\n    nullsub_2(*(_DWORD *)(v2 + 152), *(_DWORD *)(v2 + 156));\n    operator delete(*(void **)(v2 + 152));\n    *(_DWORD *)(v2 + 152) = 0;\n    *(_DWORD *)(v2 + 156) = 0;\n    *(_DWORD *)(v2 + 160) = 0;\n    sub_410960((void **)(v2 + 132));\n  }\n  operator delete(*(void **)(this + 4));\n  *(_DWORD *)(this + 4) = 0;\n  *(_DWORD *)(this + 8) = 0;\n  *(_DWORD *)(this + 12) = 0;\n}\n"
-}

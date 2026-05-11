@@ -1,7 +1,0 @@
-{
-  "name": "RoleSystem::SetActive",
-  "address": "0x0041C170",
-  "size_bytes": 32,
-  "signature": "int __thiscall(RoleSystem *this, int a2)",
-  "decompiled_c": "int __thiscall RoleSystem::SetActive(RoleSystem *this, int a2)\n{\n  int result; // eax\n\n  result = a2;\n  *((_DWORD *)this + 96) = 0;\n  *((_DWORD *)this + 95) = a2;\n  if ( !a2 )\n    return sub_41C1E0((int)this);\n  return result;\n}\n"
-}

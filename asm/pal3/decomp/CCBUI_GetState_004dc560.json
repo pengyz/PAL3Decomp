@@ -1,7 +1,0 @@
-{
-  "name": "CCBUI::GetState",
-  "address": "0x004DC560",
-  "size_bytes": 74,
-  "signature": "int __thiscall(CCBUI *this)",
-  "decompiled_c": "int __thiscall CCBUI::GetState(CCBUI *this)\n{\n  int result; // eax\n\n  LOBYTE(result) = this->_data[37];\n  if ( !(_BYTE)result )\n  {\n    this->_data[37] = 1;\n    return sub_4DC650((int)this, (int)sub_4DF2F0, 0, 0, 0, 0, 0, 0, -1, 0, 0);\n  }\n  return result;\n}\n"
-}

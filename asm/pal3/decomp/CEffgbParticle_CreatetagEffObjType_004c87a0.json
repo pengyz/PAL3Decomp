@@ -1,7 +1,0 @@
-{
-  "name": "CEffgbParticle::Create(tagEffObjType *)",
-  "address": "0x004C87A0",
-  "size_bytes": 129,
-  "signature": "void *__thiscall(CEffgbParticle *Block, char a2)",
-  "decompiled_c": "void *__thiscall CEffgbParticle::Create(CEffgbParticle *Block, char a2)\n{\n  float m_fPZ; // eax\n  int v4; // ebx\n  int v5; // edi\n\n  m_fPZ = Block->m_fPZ;\n  Block->m_pEffect = (ParticleEffect *)&off_56F8B4;\n  if ( m_fPZ != 0.0 || Block[1].m_pEffect )\n  {\n    v4 = 0;\n    if ( SLODWORD(m_fPZ) > 0 )\n    {\n      v5 = 0;\n      do\n      {\n        operator delete(*(void **)(LODWORD(Block->m_fY) + v5));\n        ++v4;\n        *(_DWORD *)(LODWORD(Block->m_fY) + v5) = 0;\n        v5 += 152;\n      }\n      while ( v4 < SLODWORD(Block->m_fPZ) );\n    }\n    operator delete((void *)LODWORD(Block->m_fY));\n    Block->m_fY = 0.0;\n    Block->m_fPZ = 0.0;\n    Block[1].m_pEffect = 0;\n  }\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
-}

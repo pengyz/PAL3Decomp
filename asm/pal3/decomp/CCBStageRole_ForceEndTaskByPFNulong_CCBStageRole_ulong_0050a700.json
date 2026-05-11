@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageRole::ForceEndTaskByPFN(ulong (CCBStageRole::*)(ulong))",
-  "address": "0x0050A700",
-  "size_bytes": 102,
-  "signature": "bool __thiscall(CCBStageRole *this)",
-  "decompiled_c": "bool __thiscall CCBStageRole::ForceEndTaskByPFN(CCBStageRole *this)\n{\n  double v1; // st7\n  double v2; // st6\n  float v4; // [esp+4h] [ebp-14h]\n  float v5; // [esp+8h] [ebp-10h]\n  gbVec3D v6; // [esp+Ch] [ebp-Ch] BYREF\n\n  v1 = *(float *)&this->_data[6584] - *(float *)&this->_data[6596];\n  v4 = *(float *)&this->_data[6588] - *(float *)&this->_data[6600];\n  v2 = *(float *)&this->_data[6592] - *(float *)&this->_data[6604];\n  v6.y = v4;\n  v5 = v2;\n  v6.x = v1;\n  v6.z = v5;\n  return gbVec3D::Length(&v6) <= 13.0;\n}\n"
-}

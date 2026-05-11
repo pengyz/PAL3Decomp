@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::SetVisible(int,bool)",
-  "address": "0x004F0750",
-  "size_bytes": 123,
-  "signature": "bool __userpurge@<al>(CCBRoleState *this@<ecx>, int roleIdx, bool a3)",
-  "decompiled_c": "bool __userpurge CCBRoleState::SetVisible@<al>(CCBRoleState *this@<ecx>, int roleIdx, bool a3)\n{\n  if ( !this->m_Role[roleIdx].bAlive )\n    return 0;\n  if ( CCBRoleState::GetRoleField(this, roleIdx, 14) )\n    return 0;\n  if ( CCBRoleState::GetRoleField(this, roleIdx, 18) )\n    return 0;\n  if ( CCBRoleState::GetRoleField(this, roleIdx, 19) )\n    return 0;\n  return CCBRoleState::GetRoleField(this, roleIdx, 17) == 0;\n}\n"
-}

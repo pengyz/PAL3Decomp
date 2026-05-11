@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::GetCmdPtr",
-  "address": "0x004DB710",
-  "size_bytes": 24,
-  "signature": "char *__thiscall(CCBSystem *this, int idx)",
-  "decompiled_c": "char *__thiscall CCBSystem::GetCmdPtr(CCBSystem *this, int idx)\n{\n  char *result; // eax\n\n  result = (char *)this + 40 * idx;\n  *((_DWORD *)result + 8) = 0;\n  *((_DWORD *)result + 9) = 0;\n  result[46] = 0;\n  return result;\n}\n"
-}

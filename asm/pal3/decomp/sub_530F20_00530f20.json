@@ -1,7 +1,0 @@
-{
-  "name": "sub_530F20",
-  "address": "0x00530F20",
-  "size_bytes": 69,
-  "signature": "bool __thiscall(int this)",
-  "decompiled_c": "bool __thiscall sub_530F20(int this)\n{\n  int v2; // ecx\n  gbOBBox *v3; // eax\n  long double v5; // [esp+0h] [ebp-8h]\n\n  v2 = *(_DWORD *)(this + 776);\n  v5 = fabs(*(float *)(this + 656) - *(float *)(v2 + 3728));\n  v3 = (gbOBBox *)sub_52FBD0(v2);\n  return gbOBBox::GetRadius(v3) > v5;\n}\n"
-}

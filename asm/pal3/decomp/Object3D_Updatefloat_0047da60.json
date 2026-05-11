@@ -1,7 +1,0 @@
-{
-  "name": "Object3D::Update(float)",
-  "address": "0x0047DA60",
-  "size_bytes": 213,
-  "signature": "bool __thiscall(Object3D *this)",
-  "decompiled_c": "bool __thiscall Object3D::Update(Object3D *this)\n{\n  void *v2; // esi\n  unsigned int m_type; // eax\n  unsigned int v4; // eax\n  unsigned int v5; // eax\n  struct tagPOINT Point; // [esp+4h] [ebp-84h] BYREF\n  int actionId[19]; // [esp+Ch] [ebp-7Ch] BYREF\n  gbRay v9; // [esp+58h] [ebp-30h] BYREF\n\n  if ( !LOBYTE(this->m_dropz) || BYTE1(this->m_degreeToScreen) || *(_DWORD *)&g_Input._data[6276] != 1 )\n    return 0;\n  gbMatrix4::gbMatrix4((gbMatrix4 *)actionId);\n  GRPinput::GetCursorPos(&Point);\n  v2 = Object3D::SetupCamera(this);\n  m_type = this->m_type;\n  qmemcpy(&v9, v2, sizeof(v9));\n  v4 = m_type - 1;\n  if ( v4 )\n  {\n    v5 = v4 - 1;\n    if ( v5 )\n    {\n      if ( v5 != 1 )\n        return gbRay::IsColOBB(&v9, (struct gbOBBox *)actionId) != 0;\n      gbGeomNode::GetTotalOBBox(this->m_pol, (struct gbOBBox *)actionId);\n    }\n    else\n    {\n      Actor::PlayAction(this->m_pol, (int)actionId);\n    }\n  }\n  else\n  {\n    gbGeomNode::GetOBBox(this->m_pol, (struct gbOBBox *)actionId);\n  }\n  gbMatrix4::RightTranslate((gbMatrix4 *)actionId, (struct gbVec3D *)&this->m_height);\n  return gbRay::IsColOBB(&v9, (struct gbOBBox *)actionId) != 0;\n}\n"
-}

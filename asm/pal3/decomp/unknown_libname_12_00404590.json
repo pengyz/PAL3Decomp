@@ -1,7 +1,0 @@
-{
-  "name": "unknown_libname_12",
-  "address": "0x00404590",
-  "size_bytes": 10,
-  "signature": "void __cdecl()",
-  "decompiled_c": "// Microsoft VisualC 2-14/net runtime\nvoid __cdecl unknown_libname_12()\n{\n  if ( *(_DWORD *)g_Input._data )\n  {\n    if ( *(_DWORD *)&g_Input._data[4] )\n    {\n      EnumJoystick((int)&g_Input);\n      (*(void (__stdcall **)(_DWORD))(**(_DWORD **)&g_Input._data[4] + 8))(*(_DWORD *)&g_Input._data[4]);\n      *(_DWORD *)&g_Input._data[4] = 0;\n    }\n    if ( *(_DWORD *)&g_Input._data[8] )\n    {\n      sub_402360(&g_Input);\n      (*(void (__stdcall **)(_DWORD))(**(_DWORD **)&g_Input._data[8] + 8))(*(_DWORD *)&g_Input._data[8]);\n      *(_DWORD *)&g_Input._data[8] = 0;\n    }\n    (*(void (__stdcall **)(_DWORD))(**(_DWORD **)g_Input._data + 8))(*(_DWORD *)g_Input._data);\n    *(_DWORD *)g_Input._data = 0;\n  }\n}\n"
-}

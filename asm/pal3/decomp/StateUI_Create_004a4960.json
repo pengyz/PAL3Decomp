@@ -1,7 +1,0 @@
-{
-  "name": "StateUI::Create",
-  "address": "0x004A4960",
-  "size_bytes": 161,
-  "signature": "int __thiscall(StateUI *this)",
-  "decompiled_c": "int __thiscall StateUI::Create(StateUI *this)\n{\n  unsigned int data; // [esp+8h] [ebp+4h]\n\n  if ( UIBase::GetSelected(this) < 5 )\n  {\n    this->_data[362] = data;\n    UIBase::SetItemData(this, 1, data);\n    sub_48A310(*(char **)&this[1]._data[13764], data);\n    sub_4945E0(*(char **)&this[1]._data[13768], data);\n    sub_49E860(*(char **)&this[1]._data[13772], data);\n    return sub_484E90(*(char **)&this[1]._data[13760], data);\n  }\n  else\n  {\n    this->_data[362] = 0;\n    UIBase::SetItemData(this, 1, 0);\n    sub_48A310(*(char **)&this[1]._data[13764], 0);\n    sub_4945E0(*(char **)&this[1]._data[13768], 0);\n    sub_49E860(*(char **)&this[1]._data[13772], 0);\n    return sub_484E90(*(char **)&this[1]._data[13760], 0);\n  }\n}\n"
-}

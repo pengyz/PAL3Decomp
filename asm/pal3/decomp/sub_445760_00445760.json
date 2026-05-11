@@ -1,7 +1,0 @@
-{
-  "name": "sub_445760",
-  "address": "0x00445760",
-  "size_bytes": 244,
-  "signature": "void __thiscall(_DWORD *this, int *a2, unsigned int a3)",
-  "decompiled_c": "void __thiscall sub_445760(_DWORD *this, int *a2, unsigned int a3)\n{\n  _DWORD *v4; // esi\n  int v5; // eax\n  int v6; // edx\n  gbDynVertBuf *DynVertBuf; // edi\n  int v8; // [esp+Ch] [ebp-74h]\n  int v9; // [esp+10h] [ebp-70h]\n  struct gbUIQuad v10; // [esp+14h] [ebp-6Ch] BYREF\n  struct gbTextureArray v11; // [esp+3Ch] [ebp-44h] BYREF\n\n  *(_DWORD *)&v10._data[36] = -1;\n  *(_DWORD *)&v10._data[32] = 0;\n  v4 = this + 26;\n  v8 = *(_DWORD *)(sub_445F60(this + 26, a3) + 24);\n  v5 = sub_445F60(v4, a3);\n  v6 = this[2];\n  v9 = *(_DWORD *)(v5 + 28);\n  *(_DWORD *)&v10._data[16] = 0;\n  *(_DWORD *)&v10._data[20] = 0;\n  *(_DWORD *)&v10._data[36] = v6;\n  *(float *)&v10._data[24] = 1.0 - 0.5 / (double)v8;\n  *(float *)&v10._data[28] = 1.0 - 0.5 / (double)v9;\n  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&gfxMgr->_data[196], 0x114u);\n  *(float *)v10._data = (float)*a2;\n  *(float *)&v10._data[12] = (float)a2[1];\n  *(float *)&v10._data[8] = (float)a2[2];\n  *(float *)&v10._data[4] = (float)a2[3];\n  *(_DWORD *)v11._data = sub_445F60(v4, a3);\n  *(_DWORD *)&v11._data[64] = 1;\n  gbDynVertBuf::RenderUIQuad(DynVertBuf, &v10, 1, (struct gbRenderEffect *)dword_189504C, &v11);\n}\n"
-}

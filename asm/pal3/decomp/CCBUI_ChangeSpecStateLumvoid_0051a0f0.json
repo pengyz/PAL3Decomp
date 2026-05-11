@@ -1,7 +1,0 @@
-{
-  "name": "CCBUI::ChangeSpecStateLum(void)",
-  "address": "0x0051A0F0",
-  "size_bytes": 214,
-  "signature": "int __thiscall(CCBUI *this)",
-  "decompiled_c": "int __thiscall CCBUI::ChangeSpecStateLum(CCBUI *this)\n{\n  char *v2; // edi\n  int v4; // [esp+8h] [ebp-10h] BYREF\n  int v5; // [esp+Ch] [ebp-Ch]\n  int v6; // [esp+10h] [ebp-8h]\n  int v7; // [esp+14h] [ebp-4h]\n\n  v2 = &this->_data[92];\n  v4 = 40;\n  v6 = 72;\n  v5 = 27;\n  v7 = 59;\n  CCBUI::LineMove(this, &this->_data[92], 181, (int)&v4, (int)aUiCombatContro_1);\n  (***(void (__thiscall ****)(_DWORD, int))v2)(*(_DWORD *)v2, 1);\n  v4 = 72;\n  v6 = 104;\n  v5 = 27;\n  v7 = 59;\n  CCBUI::LineMove(this, &this->_data[96], 182, (int)&v4, (int)aUiCombatContro_2);\n  (***(void (__thiscall ****)(_DWORD, int))&this->_data[96])(*(_DWORD *)&this->_data[96], 1);\n  v4 = 104;\n  v6 = 136;\n  v5 = 27;\n  v7 = 59;\n  CCBUI::LineMove(this, &this->_data[100], 183, (int)&v4, (int)aUiCombatContro_3);\n  return (***(int (__thiscall ****)(_DWORD, int))&this->_data[100])(*(_DWORD *)&this->_data[100], 1);\n}\n"
-}

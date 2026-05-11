@@ -1,7 +1,0 @@
-{
-  "name": "sub_4BABC0",
-  "address": "0x004BABC0",
-  "size_bytes": 224,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall sub_4BABC0(int this)\n{\n  double v1; // st7\n  __int64 v2; // rax\n  double v3; // st7\n  float v5; // [esp+0h] [ebp-10h]\n  float v6; // [esp+8h] [ebp-8h]\n  float v7; // [esp+Ch] [ebp-4h]\n\n  v6 = (float)*(int *)(this + 36924);\n  v7 = (float)*(int *)(this + 36928);\n  if ( v6 >= 1.0 && v7 == v6 )\n  {\n    v1 = v6 * *(float *)(this + 72) + flt_DE7814;\n    v2 = (__int64)v1;\n    flt_DE7814 = v1 - (double)(int)(__int64)v1;\n  }\n  else if ( v6 == 0.0 )\n  {\n    LODWORD(v2) = 0;\n  }\n  else if ( v6 <= 1.0 )\n  {\n    v5 = v6 - v7;\n    LODWORD(v2) = sub_4B8250(v5);\n  }\n  else\n  {\n    v3 = sub_4B8200(v7, v6) * *(float *)(this + 72) + flt_DE7814;\n    v2 = (__int64)v3;\n    flt_DE7814 = v3 - (double)(int)(__int64)v3;\n  }\n  return v2;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "SceneObj::DestroyInternal",
-  "address": "0x00536310",
-  "size_bytes": 133,
-  "signature": "void __thiscall(void *this)",
-  "decompiled_c": "void __thiscall SceneObj::DestroyInternal(void *this)\n{\n  *(_DWORD *)this = &off_5708E8;\n  UIFrameWnd::_UIFrameWnd((std::ios_base *)((char *)this + 3340));\n  UIWnd::~UIWnd((std::ios_base *)((char *)this + 3096));\n  UIItem::UIItem((char *)this + 1728);\n  UIItem::UIItem((char *)this + 360);\n  UIWnd::~UIWnd((UIListBox *)this);\n}\n"
-}

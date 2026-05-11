@@ -1,7 +1,0 @@
-{
-  "name": "sub_41D7F0",
-  "address": "0x0041D7F0",
-  "size_bytes": 174,
-  "signature": "unsigned int __thiscall(unsigned int *this, int a2)",
-  "decompiled_c": "unsigned int __thiscall sub_41D7F0(unsigned int *this, int a2)\n{\n  int v2; // edi\n  unsigned int result; // eax\n  unsigned int *v4; // ebx\n  unsigned int v5; // edx\n  unsigned int v6; // edi\n\n  v2 = (int)(this[2] + 28 * a2 - *this) / 28;\n  if ( v2 < 0 )\n    result = -((145 - v2) / 0x92u);\n  else\n    result = v2 / 0x92u;\n  if ( result )\n  {\n    v4 = (unsigned int *)(4 * result + this[3]);\n    this[3] = (unsigned int)v4;\n    v5 = *v4;\n    *this = *v4;\n    this[1] = v5 + 4088;\n    v6 = v2 - 146 * result;\n    result = *this;\n    this[2] = *this + 28 * v6;\n  }\n  else\n  {\n    this[2] += 28 * a2;\n  }\n  return result;\n}\n"
-}

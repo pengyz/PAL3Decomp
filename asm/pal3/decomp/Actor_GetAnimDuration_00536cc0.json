@@ -1,7 +1,0 @@
-{
-  "name": "Actor::GetAnimDuration",
-  "address": "0x00536CC0",
-  "size_bytes": 17,
-  "signature": "unsigned int __thiscall(void *this, int animId)",
-  "decompiled_c": "unsigned int __thiscall Actor::GetAnimDuration(void *this, int animId)\n{\n  return gbActor::GetActionDuration(*((gbActor **)this + 4), (char *)animId);\n}\n"
-}

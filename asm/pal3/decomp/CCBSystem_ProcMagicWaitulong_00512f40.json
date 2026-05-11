@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::ProcMagicWait(ulong)",
-  "address": "0x00512F40",
-  "size_bytes": 276,
-  "signature": "char __thiscall(CCBSystem *this, unsigned int a2, char a3)",
-  "decompiled_c": "char __thiscall CCBSystem::ProcMagicWait(CCBSystem *this, unsigned int a2, char a3)\n{\n  int v4; // ecx\n  UICursor *v5; // ecx\n  unsigned int v6; // ebx\n  __int8 *v7; // edi\n  int v9; // [esp+1Ch] [ebp+8h]\n  char v10; // [esp+23h] [ebp+Fh]\n\n  CCBSystem::ProcDialog(this);\n  v4 = *(_DWORD *)&this->_rest[44] + 1;\n  this->_rest[49] = a3;\n  this->_rest[32] = 0;\n  *(_DWORD *)&this->_rest[36] = 2;\n  *(_DWORD *)&this->_rest[40] = 1;\n  *(_DWORD *)&this->_rest[44] = v4;\n  ++*(_DWORD *)&g_SceneMgr._gap_c93c[8];\n  *(_DWORD *)&this->_rest[28] = a2;\n  v10 = CCBSystem::ProcWeaponSkill(this);\n  UICursor::IRender(v5);\n  v6 = 0;\n  v7 = &g_SceneMgr.m_slot0[268];\n  v9 = 0;\n  do\n  {\n    if ( this->m_pRoleState->m_Role[v9].bValid && (*((_DWORD *)v7 - 3) == 8114 || *(_DWORD *)v7 == 8114) )\n    {\n      ++g_nRandCallCount;\n      g_RandSeed = 214013 * g_RandSeed + 2531011;\n      if ( ((g_RandSeed >> 16) & 0x3FF) < (int)102.39999 )\n        CCBRoleState::ProcessRound(this->m_pRoleState, v6);\n    }\n    v7 += 1408;\n    ++v6;\n    ++v9;\n  }\n  while ( (int)v7 < (int)&g_SceneMgr._postSlots[268] );\n  return v10;\n}\n"
-}

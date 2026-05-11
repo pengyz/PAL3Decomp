@@ -1,7 +1,0 @@
-{
-  "name": "sub_429CA0",
-  "address": "0x00429CA0",
-  "size_bytes": 93,
-  "signature": "void __thiscall(struct gbActor **this)",
-  "decompiled_c": "void __thiscall sub_429CA0(struct gbActor **this)\n{\n  struct gbActor *v2; // ecx\n  struct gbActor *v3; // ecx\n\n  switch ( (unsigned int)*this )\n  {\n    case 1u:\n      if ( this[1] )\n      {\n        gbActorMgr::DestroyActor((gbActorMgr *)dword_BFDA64, this[1]);\n        this[1] = 0;\n      }\n      goto LABEL_4;\n    case 2u:\n    case 3u:\nLABEL_4:\n      v2 = this[1];\n      if ( v2 )\n      {\n        ((void (__thiscall *)(struct gbActor *, int))v2->pBody->_data[0])(v2, 1);\n        this[1] = 0;\n      }\n      goto LABEL_6;\n    case 4u:\nLABEL_6:\n      v3 = this[1];\n      if ( v3 )\n      {\n        ((void (__thiscall *)(struct gbActor *, int))v3->pBody->_data[0])(v3, 1);\n        this[1] = 0;\n      }\n      break;\n    default:\n      break;\n  }\n  *this = 0;\n}\n"
-}

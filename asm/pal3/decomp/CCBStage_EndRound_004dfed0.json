@@ -1,7 +1,0 @@
-{
-  "name": "CCBStage::EndRound",
-  "address": "0x004DFED0",
-  "size_bytes": 185,
-  "signature": "int __thiscall(CCBStage *this)",
-  "decompiled_c": "int __thiscall CCBStage::EndRound(CCBStage *this)\n{\n  int result; // eax\n  float v2; // [esp+4h] [ebp+4h]\n  float v3; // [esp+8h] [ebp+8h]\n  float v4; // [esp+Ch] [ebp+Ch]\n  float v5; // [esp+10h] [ebp+10h]\n  char v6; // [esp+14h] [ebp+14h]\n\n  *(float *)&this->_data[280 * *(_DWORD *)&this->_data[16] + 284] = v2;\n  *(float *)&this->_data[280 * *(_DWORD *)&this->_data[16] + 288] = v3;\n  *(float *)&this->_data[280 * *(_DWORD *)&this->_data[16] + 292] = v4;\n  *(float *)&this->_data[280 * *(_DWORD *)&this->_data[16] + 296] = v5;\n  *(_DWORD *)&this->_data[280 * *(_DWORD *)&this->_data[16] + 20] = 5;\n  *(_DWORD *)&this->_data[280 * *(_DWORD *)&this->_data[16] + 280] = *(_DWORD *)&this->_data[8];\n  this->_data[280 * *(_DWORD *)&this->_data[16] + 283] = v6;\n  result = *(_DWORD *)&this->_data[16] + 1;\n  *(_DWORD *)&this->_data[16] = result;\n  return result;\n}\n"
-}

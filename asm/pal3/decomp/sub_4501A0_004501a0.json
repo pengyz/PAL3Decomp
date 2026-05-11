@@ -1,7 +1,0 @@
-{
-  "name": "sub_4501A0",
-  "address": "0x004501A0",
-  "size_bytes": 136,
-  "signature": "int __thiscall(float *this, float a2, int a3)",
-  "decompiled_c": "int __thiscall sub_4501A0(float *this, float a2, int a3)\n{\n  int result; // eax\n\n  if ( (*(_DWORD *)&g_Input._data[6276] == 1 && (g_Input._data[6264] & 0xF) == 1\n     || *(_DWORD *)&g_Input._data[6276] == 1 && (g_Input._data[6264] & 0xF) == 2\n     || *(_DWORD *)&g_Input._data[6372] == 1 && (g_Input._data[6360] & 0xF) == 1\n     || *(_DWORD *)&g_Input._data[6372] == 1 && (g_Input._data[6360] & 0xF) == 2)\n    && this[57] >= 4.5 )\n  {\n    sub_44F610((int)&dword_DB9FD0, 4);\n  }\n  result = 1;\n  this[57] = a2 + this[57];\n  return result;\n}\n"
-}

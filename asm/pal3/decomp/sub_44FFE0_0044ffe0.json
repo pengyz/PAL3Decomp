@@ -1,7 +1,0 @@
-{
-  "name": "sub_44FFE0",
-  "address": "0x0044FFE0",
-  "size_bytes": 142,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nint __thiscall sub_44FFE0(int this)\n{\n  int result; // eax\n\n  UIListBox::UIListBox((UIListBox *)this);\n  UIFrameWnd::UIFrameWnd((UIFrameWnd *)(this + 76));\n  *(_DWORD *)this = &off_56B0B4;\n  *(_DWORD *)(this + 72) = 0;\n  if ( gbColorQuad::ColorQuadFmt )\n  {\n    *(_DWORD *)(this + 8) = -1;\n    return this;\n  }\n  else\n  {\n    result = this;\n    *(_DWORD *)(this + 8) = -1;\n  }\n  return result;\n}\n"
-}

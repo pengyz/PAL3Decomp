@@ -1,7 +1,0 @@
-{
-  "name": "sub_526300",
-  "address": "0x00526300",
-  "size_bytes": 177,
-  "signature": "OpenNULLFile *__thiscall(char *this)",
-  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\nOpenNULLFile *__thiscall sub_526300(char *this)\n{\n  char *v1; // esi\n  int *v2; // edi\n  char *v3; // ebx\n  int v4; // ebp\n  int SkillNum; // eax\n  int v6; // eax\n  int v7; // eax\n  OpenNULLFile *result; // eax\n\n  v1 = this + 96;\n  v2 = (int *)(this + 6964);\n  v3 = this + 4384;\n  v4 = 5;\n  do\n  {\n    SkillNum = PAL_GDB::GDB_GetSkillNum((PAL_GDB *)dword_975ED8, *v2);\n    sprintf(v1, \"SubGame\\\\Appraise\\\\Exhibit\\\\Data\\\\%s.pol\", (const char *)(SkillNum + 36));\n    sub_439230((_DWORD *)v3 - 77, v1, 0);\n    v6 = PAL_GDB::GDB_GetSkillNum((PAL_GDB *)dword_975ED8, v2[1]);\n    sprintf(v1, \"SubGame\\\\Appraise\\\\Exhibit\\\\Data\\\\%s.pol\", (const char *)(v6 + 36));\n    sub_439230(v3, v1, 0);\n    v7 = PAL_GDB::GDB_GetSkillNum((PAL_GDB *)dword_975ED8, *v2);\n    sprintf(v1, \"SubGame\\\\Appraise\\\\Exhibit\\\\Data\\\\%s.pol\", (const char *)(v7 + 36));\n    result = sub_439230((_DWORD *)v3 + 77, v1, 0);\n    v2 += 402;\n    v3 += 32;\n    --v4;\n  }\n  while ( v4 );\n  return result;\n}\n"
-}

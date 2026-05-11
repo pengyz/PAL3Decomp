@@ -1,7 +1,0 @@
-{
-  "name": "sub_44AA20",
-  "address": "0x0044AA20",
-  "size_bytes": 214,
-  "signature": "void __thiscall(int *this, int a2, char a3)",
-  "decompiled_c": "void __thiscall sub_44AA20(int *this, int a2, char a3)\n{\n  int v3; // edx\n  double v4; // st7\n  double v5; // st6\n  double v6; // st5\n  double v7; // st6\n  gbDynVertBuf *DynVertBuf; // eax\n  int v9; // [esp+0h] [ebp-70h]\n  int v10; // [esp+0h] [ebp-70h]\n  struct gbUIQuad v11; // [esp+4h] [ebp-6Ch] BYREF\n  struct gbTextureArray v12; // [esp+2Ch] [ebp-44h] BYREF\n\n  v3 = this[19];\n  v9 = this[21];\n  v4 = (double)v9;\n  v5 = v4 / (double)*(int *)(v3 + 24);\n  v10 = this[6] - a2 * v9;\n  *(_WORD *)&v11._data[36] = -1;\n  v11._data[38] = -1;\n  *(_DWORD *)&v11._data[32] = 0;\n  *(_DWORD *)&v11._data[20] = 0;\n  *(_DWORD *)&v11._data[28] = 1065353216;\n  v11._data[39] = a3;\n  *(_DWORD *)&v12._data[64] = 1;\n  *(_DWORD *)v12._data = v3;\n  v6 = 1.0 - (double)a2 * v5;\n  *(float *)&v11._data[24] = v6;\n  *(float *)&v11._data[16] = v6 - v5;\n  v7 = (double)v10;\n  *(float *)&v11._data[8] = v7;\n  *(float *)v11._data = v7 - v4;\n  *(float *)&v11._data[12] = (float)this[5];\n  *(float *)&v11._data[4] = (float)this[7];\n  DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&gfxMgr->_data[196], 0x114u);\n  gbDynVertBuf::RenderUIQuad(DynVertBuf, &v11, 1, (struct gbRenderEffect *)dword_189504C, &v12);\n}\n"
-}

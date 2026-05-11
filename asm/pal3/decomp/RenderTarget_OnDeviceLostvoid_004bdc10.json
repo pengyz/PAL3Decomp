@@ -1,7 +1,0 @@
-{
-  "name": "RenderTarget::OnDeviceLost(void)",
-  "address": "0x004BDC10",
-  "size_bytes": 40,
-  "signature": "void __thiscall(RenderTarget *this, int a2)",
-  "decompiled_c": "void __thiscall RenderTarget::OnDeviceLost(RenderTarget *this, int a2)\n{\n  int v2; // eax\n\n  if ( *(_DWORD *)&this->_data[196] != 1 )\n  {\n    v2 = a2;\n    if ( (a2 == 1 || a2 == 2) && !*(_DWORD *)&this->_data[184] )\n      v2 = 0;\n    *(_DWORD *)this->_data = v2;\n  }\n}\n"
-}

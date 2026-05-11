@@ -1,7 +1,0 @@
-{
-  "name": "___sbh_find_block",
-  "address": "0x005558DD",
-  "size_bytes": 43,
-  "signature": "char *__cdecl(int a1)",
-  "decompiled_c": "char *__cdecl __sbh_find_block(int a1)\n{\n  char *result; // eax\n\n  for ( result = (char *)lpMem; result < (char *)lpMem + 20 * dword_1896D04; result += 20 )\n  {\n    if ( (unsigned int)(a1 - *((_DWORD *)result + 3)) < 0x100000 )\n      return result;\n  }\n  return 0;\n}\n"
-}

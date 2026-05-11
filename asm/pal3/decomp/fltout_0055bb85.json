@@ -1,7 +1,0 @@
-{
-  "name": "__fltout",
-  "address": "0x0055BB85",
-  "size_bytes": 100,
-  "signature": "int *__cdecl(int a1)",
-  "decompiled_c": "int *__cdecl _fltout(int a1)\n{\n  int v2; // [esp-10h] [ebp-24h]\n  __int64 v3; // [esp+8h] [ebp-Ch] BYREF\n  __int16 v4; // [esp+10h] [ebp-4h]\n\n  __dtold((unsigned int)&v3, (int)&v3, &a1);\n  LOWORD(v2) = v4;\n  dword_1895528 = _I10_OUTPUT(v3, v2, 17, 0, (int)&word_1895500);\n  dword_1895520 = byte_1895502;\n  dword_1895524 = word_1895500;\n  dword_189552C = (int)dword_1895504;\n  return &dword_1895520;\n}\n"
-}

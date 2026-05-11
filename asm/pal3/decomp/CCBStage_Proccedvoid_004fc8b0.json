@@ -1,7 +1,0 @@
-{
-  "name": "CCBStage::Procced(void)",
-  "address": "0x004FC8B0",
-  "size_bytes": 57,
-  "signature": "char __thiscall(CCBStage *this, int a2)",
-  "decompiled_c": "char __thiscall CCBStage::Procced(CCBStage *this, int a2)\n{\n  char *v2; // edx\n  int v3; // ecx\n  _BYTE *v4; // eax\n\n  v2 = &this->_data[2632 * a2];\n  v3 = 32;\n  v4 = v2 + 227;\n  do\n  {\n    if ( *(v4 - 3) )\n      *v4 = 1;\n    v4 += 80;\n    --v3;\n  }\n  while ( v3 );\n  v2[2797] = 1;\n  return 1;\n}\n"
-}

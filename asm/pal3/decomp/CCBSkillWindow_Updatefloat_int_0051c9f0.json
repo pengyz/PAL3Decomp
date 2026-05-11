@@ -1,7 +1,0 @@
-{
-  "name": "CCBSkillWindow::Update(float,int)",
-  "address": "0x0051C9F0",
-  "size_bytes": 81,
-  "signature": "BOOL __thiscall(CCBSkillWindow *this, int a2, int a3)",
-  "decompiled_c": "BOOL __thiscall CCBSkillWindow::Update(CCBSkillWindow *this, int a2, int a3)\n{\n  if ( this->_d038 == 1 && *(_DWORD *)&g_Input._data[6532] == 1 && (g_Input._data[6520] & 0xF) == 1 )\n    CCBUI::SetParam(*(CCBUI **)(*(_DWORD *)(this->_d020 + 1160) + 8), 513, -1);\n  return UIWnd::HitTest((UIWnd *)this, a2, a3);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_462220",
-  "address": "0x00462220",
-  "size_bytes": 93,
-  "signature": "int __thiscall(int this, unsigned __int8 a2)",
-  "decompiled_c": "int __thiscall sub_462220(int this, unsigned __int8 a2)\n{\n  void (__thiscall ***v3)(_DWORD, _DWORD); // edi\n\n  v3 = (void (__thiscall ***)(_DWORD, _DWORD))(this + 96604);\n  if ( a2 )\n    UIWnd::SetEnable((UIWnd *)(this + 96604), (const char *)dword_DC3B3C, 0);\n  else\n    UIWnd::SetEnable((UIWnd *)(this + 96604), g_SceneMgr.m_szUIString, 0);\n  (**v3)(v3, a2);\n  (**(void (__thiscall ***)(int, _DWORD))(this + 95916))(this + 95916, a2);\n  return (**(int (__thiscall ***)(int, _DWORD))(this + 96260))(this + 96260, a2);\n}\n"
-}

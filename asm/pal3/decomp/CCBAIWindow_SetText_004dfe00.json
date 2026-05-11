@@ -1,7 +1,0 @@
-{
-  "name": "CCBAIWindow::SetText",
-  "address": "0x004DFE00",
-  "size_bytes": 204,
-  "signature": "int __thiscall(void *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall CCBAIWindow::SetText(void *this, int a2, int a3)\n{\n  int result; // eax\n  int v5; // [esp+10h] [ebp+Ch]\n  int v6; // [esp+14h] [ebp+10h]\n\n  sprintf((char *const)this + 280 * *((_DWORD *)this + 4) + 24, \"%d\", v5);\n  *((float *)this + 70 * *((_DWORD *)this + 4) + 71) = ((double)a2 + (double)a2) / (double)xRight - 1.0;\n  *((float *)this + 70 * *((_DWORD *)this + 4) + 72) = 1.0 - ((double)a3 + (double)a3) / (double)yBottom;\n  *((_DWORD *)this + 70 * *((_DWORD *)this + 4) + 5) = 2;\n  *((_DWORD *)this + 70 * *((_DWORD *)this + 4) + 74) = 1094713344;\n  *((_DWORD *)this + 70 * *((_DWORD *)this + 4) + 70) = v6;\n  result = *((_DWORD *)this + 4) + 1;\n  *((_DWORD *)this + 4) = result;\n  return result;\n}\n"
-}

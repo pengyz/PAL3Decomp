@@ -1,7 +1,0 @@
-{
-  "name": "sub_530280",
-  "address": "0x00530280",
-  "size_bytes": 161,
-  "signature": "OpenNULLFile *__thiscall(gbGeomNode **this, const char *a2)",
-  "decompiled_c": "// likely OpenNULLFile method (near OpenNULLFile)\nOpenNULLFile *__thiscall sub_530280(gbGeomNode **this, const char *a2)\n{\n  gbGeomNode *v3; // eax\n  gbGeomNode *v4; // esi\n  gbGeomNode *v5; // ecx\n  OpenBaseFile v7; // [esp+Ch] [ebp-60h] BYREF\n  gbGeomNode *v8; // [esp+10h] [ebp-5Ch]\n  gbMatrix4 v9; // [esp+14h] [ebp-58h] BYREF\n  int v10; // [esp+68h] [ebp-4h]\n\n  OpenBaseFile::OpenBaseFile(&v7);\n  v10 = 0;\n  gbMatrix4::gbMatrix4(&v9);\n  v3 = (gbGeomNode *)operator new(0x118u);\n  v4 = v3;\n  v8 = v3;\n  LOBYTE(v10) = 1;\n  if ( v3 )\n  {\n    gbGeomNode::gbGeomNode(v3);\n    *(_DWORD *)v4->CacheToW._data = &off_56A66C;\n    v5 = v4;\n  }\n  else\n  {\n    v5 = 0;\n  }\n  LOBYTE(v10) = 0;\n  *this = v5;\n  gbGeomNode::LoadFromFile(v5, a2, 0, 0);\n  v10 = -1;\n  return (OpenNULLFile *)OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v7);\n}\n"
-}

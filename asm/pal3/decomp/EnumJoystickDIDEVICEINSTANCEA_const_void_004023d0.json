@@ -1,7 +1,0 @@
-{
-  "name": "EnumJoystick(DIDEVICEINSTANCEA const *,void *)",
-  "address": "0x004023D0",
-  "size_bytes": 33,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall EnumJoystick(int this)\n{\n  int result; // eax\n  int v3; // esi\n\n  result = sub_402220((_WORD *)this);\n  *(_DWORD *)(this + 6256) = 0;\n  v3 = *(_DWORD *)(this + 4);\n  if ( v3 )\n    return (*(int (__stdcall **)(int))(*(_DWORD *)v3 + 32))(v3);\n  return result;\n}\n"
-}

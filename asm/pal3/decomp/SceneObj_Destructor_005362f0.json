@@ -1,7 +1,0 @@
-{
-  "name": "SceneObj::Destructor",
-  "address": "0x005362F0",
-  "size_bytes": 30,
-  "signature": "void *__thiscall(void *this)",
-  "decompiled_c": "void *__thiscall SceneObj::Destructor(void *this)\n{\n  char v3; // [esp+8h] [ebp+4h]\n\n  SceneObj::DestroyInternal(this);\n  if ( (v3 & 1) != 0 )\n    operator delete(this);\n  return this;\n}\n"
-}

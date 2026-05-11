@@ -1,7 +1,0 @@
-{
-  "name": "Actor::CompareAction",
-  "address": "0x00536C50",
-  "size_bytes": 106,
-  "signature": "int __thiscall(void *this, int actionIdx, int a3)",
-  "decompiled_c": "int __thiscall Actor::CompareAction(void *this, int actionIdx, int a3)\n{\n  if ( !strcmp((&off_570904)[actionIdx], (const char *)this + 540) )\n    return 1;\n  else\n    return Actor::LoadAction(this, (&off_570904)[actionIdx]);\n}\n"
-}

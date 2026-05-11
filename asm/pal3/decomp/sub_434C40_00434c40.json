@@ -1,7 +1,0 @@
-{
-  "name": "sub_434C40",
-  "address": "0x00434C40",
-  "size_bytes": 54,
-  "signature": "void __cdecl(int a2)",
-  "decompiled_c": "// likely PalScriptMgr method (near PalScriptMgr, IfAnyScriptRunning, IsScriptRuning, )\nvoid __cdecl sub_434C40(int a2)\n{\n  const char **v1; // eax\n\n  if ( a2 )\n  {\n    v1 = PalScriptMgr::_CON_State((const char *)dword_D8E468);\n    if ( v1 )\n    {\n      PalScriptMgr::IfAnyScriptRunning((PalScriptMgr *)v1, a2);\n    }\n    else if ( *(_DWORD *)(a2 + 4) )\n    {\n      (**(void (__thiscall ***)(int, int))a2)(a2, 1);\n    }\n  }\n}\n"
-}

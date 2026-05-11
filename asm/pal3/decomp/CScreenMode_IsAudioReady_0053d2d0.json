@@ -1,7 +1,0 @@
-{
-  "name": "CScreenMode::IsAudioReady",
-  "address": "0x0053D2D0",
-  "size_bytes": 23,
-  "signature": "char __thiscall(void *this)",
-  "decompiled_c": "char __thiscall CScreenMode::IsAudioReady(void *this)\n{\n  return *((int *)this + 1) <= 0 && *((int *)this + 5) <= 0;\n}\n"
-}

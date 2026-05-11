@@ -1,7 +1,0 @@
-{
-  "name": "sub_417BC0",
-  "address": "0x00417BC0",
-  "size_bytes": 131,
-  "signature": "void __thiscall(int this)",
-  "decompiled_c": "void __thiscall sub_417BC0(int this)\n{\n  int v2; // eax\n\n  if ( *(_BYTE *)(this + 1280) )\n  {\n    v2 = *(_DWORD *)(this + 1264);\n    *(_DWORD *)(this + 1256) = 0;\n    if ( v2 != 4 )\n      *(_DWORD *)(this + 1260) = v2;\n    *(_DWORD *)(this + 1264) = 4;\n    *(_DWORD *)(this + 1228) = 21;\n    Actor::SetVisible((void *)(this + 680), 0);\n    Actor::SetTimeScale((void *)(this + 680), 1.0);\n    *(_BYTE *)(this + 1280) = 0;\n  }\n  else\n  {\n    *(_DWORD *)(this + 1264) = *(_DWORD *)(this + 1260);\n    sub_4142E0((RoleSystem *)this);\n    *(_BYTE *)(this + 1280) = 0;\n  }\n}\n"
-}

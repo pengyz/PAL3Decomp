@@ -1,7 +1,0 @@
-{
-  "name": "PtrArray::Clear",
-  "address": "0x00432660",
-  "size_bytes": 20,
-  "signature": "_DWORD *__thiscall(PtrArray *this)",
-  "decompiled_c": "_DWORD *__thiscall PtrArray::Clear(PtrArray *this)\n{\n  _DWORD *result; // eax\n\n  result = &this->m_pData;\n  this->m_pData = 0;\n  this->m_nMaxSize = 0;\n  this->m_nSize = 0;\n  this->m_nGrowBy = 32;\n  return result;\n}\n"
-}

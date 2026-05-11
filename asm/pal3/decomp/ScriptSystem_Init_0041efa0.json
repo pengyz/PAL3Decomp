@@ -1,7 +1,0 @@
-{
-  "name": "ScriptSystem::Init",
-  "address": "0x0041EFA0",
-  "size_bytes": 372,
-  "signature": "void()",
-  "decompiled_c": "void ScriptSystem::Init()\n{\n  int v0; // edi\n  const char *v1; // esi\n  int v2; // edi\n  const char *v3; // esi\n  PalScript String[13]; // [esp+8h] [ebp-218h] BYREF\n  int v5; // [esp+21Ch] [ebp-4h]\n\n  ctor_0x431870(String);\n  v5 = 0;\n  PalScript::LoadFromFile(String, aDatascriptScen_0);\n  PalScript::SetDirectory(String, aRole);\n  while ( PalScript::HasNext(String) )\n  {\n    if ( !_strcmpi((const char *)String, off_58B448) )\n      break;\n    v0 = 0;\n    v1 = aTalkrange;\n    while ( _strcmpi((const char *)String, v1) )\n    {\n      v1 += 20;\n      ++v0;\n      if ( (int)v1 >= (int)&off_58B444 )\n        goto LABEL_8;\n    }\n    PalScript::LoadNext(String);\n    flt_58B378[5 * v0] = atof((const char *)String);\nLABEL_8:\n    ;\n  }\n  PalScript::SetDirectory(String, dword_58B440);\n  while ( PalScript::HasNext(String) )\n  {\n    if ( !_strcmpi((const char *)String, off_58B448) )\n      break;\n    v2 = 0;\n    v3 = aFreeranges;\n    while ( _strcmpi((const char *)String, v3) )\n    {\n      v3 += 20;\n      ++v2;\n      if ( (int)v3 >= (int)aTalkrange )\n        goto LABEL_16;\n    }\n    PalScript::LoadNext(String);\n    *(float *)&dword_58B260[5 * v2] = atof((const char *)String);\nLABEL_16:\n    ;\n  }\n  v5 = -1;\n  sub_4318A0((int)String);\n}\n"
-}

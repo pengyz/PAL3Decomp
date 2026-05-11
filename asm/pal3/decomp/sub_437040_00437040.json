@@ -1,7 +1,0 @@
-{
-  "name": "sub_437040",
-  "address": "0x00437040",
-  "size_bytes": 54,
-  "signature": "void()",
-  "decompiled_c": "void sub_437040()\n{\n  char *String; // eax\n\n  String = PalScript::GetString();\n  if ( String )\n  {\n    sub_47E030(dword_DC0DE8, *((_DWORD *)String + 1));\n    if ( dword_DC0DE8 )\n      sub_434C40(dword_DC0DE8 + 72);\n    else\n      sub_434C40(0);\n  }\n}\n"
-}

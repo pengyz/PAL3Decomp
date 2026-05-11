@@ -1,7 +1,0 @@
-{
-  "name": "UIFrameWnd::SetPosition",
-  "address": "0x00442C60",
-  "size_bytes": 17,
-  "signature": "int __thiscall(UIFrameWnd *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall UIFrameWnd::SetPosition(UIFrameWnd *this, int a2, int a3)\n{\n  int result; // eax\n\n  result = a2;\n  *(_DWORD *)&this->_pad_041[19] = a2;\n  *(_DWORD *)&this->_pad_041[23] = a3;\n  return result;\n}\n"
-}

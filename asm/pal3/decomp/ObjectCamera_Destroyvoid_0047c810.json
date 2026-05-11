@@ -1,7 +1,0 @@
-{
-  "name": "ObjectCamera::Destroy(void)",
-  "address": "0x0047C810",
-  "size_bytes": 26,
-  "signature": "void __thiscall(ObjectCamera **this)",
-  "decompiled_c": "void __thiscall ObjectCamera::Destroy(ObjectCamera **this)\n{\n  if ( *this )\n  {\n    operator delete(*this);\n    *this = 0;\n  }\n}\n"
-}

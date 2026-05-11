@@ -1,7 +1,0 @@
-{
-  "name": "sub_4E7280",
-  "address": "0x004E7280",
-  "size_bytes": 194,
-  "signature": "LRESULT __thiscall(int *this)",
-  "decompiled_c": "// likely CCBStageCam method (near ClearFinishedTask, ~CCBStageCam, Reset, SwitchEdit)\nLRESULT __thiscall sub_4E7280(int *this)\n{\n  HWND DlgItem; // edi\n  int i; // esi\n  int v4; // edx\n  int IsEditorCamValid; // eax\n  LRESULT result; // eax\n  LPARAM lParam[10]; // [esp+10h] [ebp-28h] BYREF\n\n  memset(lParam, 0, sizeof(lParam));\n  DlgItem = GetDlgItem(dword_BFDA54, 1151);\n  SendMessageA(DlgItem, 0x1009u, 0, 0);\n  for ( i = 0; i < 100; ++i )\n  {\n    lParam[0] = 1;\n    lParam[5] = (LPARAM)byte_17A94E4;\n    lParam[1] = i;\n    lParam[2] = 0;\n    sprintf(byte_17A94E4, \"%03d\", i);\n    SendMessageA(DlgItem, 0x1007u, 0, (LPARAM)lParam);\n    v4 = *this;\n    lParam[2] = 1;\n    IsEditorCamValid = CCBStageCam::IsEditorCamValid(*(CCBStageCam **)(*(_DWORD *)(v4 + 20) + 16), i);\n    sprintf(byte_17A94E4, \"%d\", IsEditorCamValid);\n    result = SendMessageA(DlgItem, 0x1006u, 0, (LPARAM)lParam);\n  }\n  return result;\n}\n"
-}

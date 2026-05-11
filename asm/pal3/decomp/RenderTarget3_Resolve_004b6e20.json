@@ -1,7 +1,0 @@
-{
-  "name": "RenderTarget3::Resolve",
-  "address": "0x004B6E20",
-  "size_bytes": 282,
-  "signature": "void __thiscall(void *this)",
-  "decompiled_c": "void __thiscall RenderTarget3::Resolve(void *this)\n{\n  gbDynVertBuf *DynVertBuf; // eax\n  int v3; // esi\n  int v4; // [esp+20h] [ebp-7Ch] BYREF\n  struct gbUIQuad v5; // [esp+24h] [ebp-78h] BYREF\n  struct gbTextureArray v6; // [esp+4Ch] [ebp-50h] BYREF\n  int v7; // [esp+98h] [ebp-4h]\n\n  if ( *(_BYTE *)this )\n  {\n    (*(void (__stdcall **)(_DWORD, int, int))(**(_DWORD **)&gfxMgr[1]._data[296] + 228))(\n      *(_DWORD *)&gfxMgr[1]._data[296],\n      168,\n      7);\n    if ( *((_DWORD *)this + 1) )\n    {\n      if ( dword_C11760 )\n      {\n        *(_DWORD *)&v5._data[32] = 0;\n        *(_DWORD *)&v5._data[36] = -1;\n        *(_DWORD *)&v5._data[20] = 0;\n        *(_DWORD *)&v5._data[16] = 0;\n        *(_DWORD *)&v5._data[24] = 1065353216;\n        *(_DWORD *)&v5._data[28] = 1065353216;\n        *(_DWORD *)v5._data = -1082130432;\n        *(_DWORD *)&v5._data[12] = 1065353216;\n        *(_DWORD *)&v5._data[8] = 1065353216;\n        *(_DWORD *)&v5._data[4] = -1082130432;\n        sub_540F60(&v4);\n        v7 = 0;\n        DynVertBuf = gbVertPoolMgr::GetDynVertBuf(*(gbVertPoolMgr **)&gfxMgr->_data[196], 0x15u);\n        v3 = *((_DWORD *)this + 1);\n        *(_DWORD *)&v6._data[64] = 1;\n        *(_DWORD *)v6._data = v3;\n        gbDynVertBuf::RenderUIQuad(DynVertBuf, &v5, 1, (struct gbRenderEffect *)dword_C11760, &v6);\n        v7 = -1;\n        sub_540FA0();\n      }\n    }\n  }\n}\n"
-}

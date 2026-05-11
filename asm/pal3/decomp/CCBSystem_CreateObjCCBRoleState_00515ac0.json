@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::CreateObj(CCBRoleState * *)",
-  "address": "0x00515AC0",
-  "size_bytes": 84,
-  "signature": "char __thiscall(CCBSystem *this, struct CCBRoleState **a2)",
-  "decompiled_c": "char __thiscall CCBSystem::CreateObj(CCBSystem *this, struct CCBRoleState **a2)\n{\n  int v2; // edx\n  char *i; // eax\n\n  v2 = 0;\n  for ( i = &this->_rest[68];\n        !i[36]\n     || *(int (__userpurge **)@<eax>(CCBSystem *@<ecx>, int, struct tagCmdData *))i != CCBSystem::PassCmdToThread\n     || *(_DWORD *)i && (*((_DWORD *)i + 1) || *((_DWORD *)i + 2) || *((_DWORD *)i + 3))\n     || *((struct CCBRoleState ***)i + 12) != a2;\n        i += 88 )\n  {\n    if ( ++v2 >= 1024 )\n      return 0;\n  }\n  return 1;\n}\n"
-}

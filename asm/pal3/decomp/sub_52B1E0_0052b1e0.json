@@ -1,7 +1,0 @@
-{
-  "name": "sub_52B1E0",
-  "address": "0x0052B1E0",
-  "size_bytes": 187,
-  "signature": "_DWORD *__thiscall(_DWORD *this)",
-  "decompiled_c": "// likely Object3D method (near GetScreenDegree, GetMouseRay, Object3D, Destroy, L)\n_DWORD *__thiscall sub_52B1E0(_DWORD *this)\n{\n  _DWORD *v2; // edi\n  int v3; // ebx\n\n  `eh vector constructor iterator'(\n    (char *)this + 16,\n    0x98u,\n    5,\n    (void (__thiscall *)(void *))ObjectCamera::Update,\n    (void (__thiscall *)(void *))Object3D::Object3D);\n  v2 = this + 194;\n  v3 = 5;\n  do\n  {\n    ((void (__thiscall *)(_DWORD *))gbVec3D::`default constructor closure')(v2);\n    v2 += 3;\n    --v3;\n  }\n  while ( v3 );\n  ObjectCamera::Update((ObjectCamera *)(this + 214));\n  this[252] = 0;\n  this[253] = 0;\n  this[254] = 0;\n  this[255] = 0;\n  this[256] = 0;\n  this[257] = 0;\n  this[258] = 0;\n  this[259] = 0;\n  this[260] = 0;\n  sub_52B350(this);\n  return this;\n}\n"
-}

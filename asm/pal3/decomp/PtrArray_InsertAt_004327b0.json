@@ -1,7 +1,0 @@
-{
-  "name": "PtrArray::InsertAt",
-  "address": "0x004327B0",
-  "size_bytes": 59,
-  "signature": "int __thiscall(PtrArray *this, int a2, int a3)",
-  "decompiled_c": "int __thiscall PtrArray::InsertAt(PtrArray *this, int a2, int a3)\n{\n  int v4; // eax\n  int result; // eax\n\n  v4 = this->m_nSize - a2 - a3;\n  if ( v4 )\n    memcpy(&this->m_pData[a2], &this->m_pData[a2] + a3, 4 * v4);\n  result = this->m_nSize - a3;\n  this->m_nSize = result;\n  return result;\n}\n"
-}

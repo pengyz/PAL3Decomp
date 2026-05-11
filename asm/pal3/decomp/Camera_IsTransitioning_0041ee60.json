@@ -1,7 +1,0 @@
-{
-  "name": "Camera::IsTransitioning",
-  "address": "0x0041EE60",
-  "size_bytes": 128,
-  "signature": "char __cdecl()",
-  "decompiled_c": "char __cdecl Camera::IsTransitioning()\n{\n  RoleSystem *v0; // eax\n  int RolePtr; // eax\n  _DWORD *v2; // eax\n  _DWORD *v3; // eax\n  char v5; // al\n  int v6; // [esp-Ch] [ebp-18h]\n  int v7; // [esp-8h] [ebp-14h]\n  int v8; // [esp-4h] [ebp-10h]\n  int v9; // [esp-4h] [ebp-10h]\n\n  v8 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628);\n  v0 = (RoleSystem *)sub_4226F0();\n  RolePtr = RoleSystem::GetRolePtr(v0, v8);\n  v9 = (__int64)((*(float *)(g_SceneMgr.m_pCollisionNode + 12) - *(float *)(RolePtr + 136))\n               / *(float *)&g_SceneMgr._gap_cd10[1572]);\n  v7 = (__int64)((*(float *)(g_SceneMgr.m_pCollisionNode + 4) - *(float *)(RolePtr + 128))\n               / *(float *)&g_SceneMgr._gap_cd10[1572]);\n  v6 = *(_DWORD *)(g_SceneMgr.m_pCollisionNode + 628);\n  v2 = (_DWORD *)sub_4226F0();\n  v3 = sub_420A10(v2, v6, v7, v9);\n  if ( !v3 )\n    return 0;\n  v5 = *((_BYTE *)v3 + 244);\n  return v5 == 44 || v5 == 38;\n}\n"
-}

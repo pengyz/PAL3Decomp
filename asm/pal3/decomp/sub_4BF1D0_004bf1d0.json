@@ -1,7 +1,0 @@
-{
-  "name": "sub_4BF1D0",
-  "address": "0x004BF1D0",
-  "size_bytes": 129,
-  "signature": "int __thiscall(struct gbVisNode *this, int a2)",
-  "decompiled_c": "int __thiscall sub_4BF1D0(struct gbVisNode *this, int a2)\n{\n  struct gbVisNode *v2; // edi\n  struct gbRenderInfoObj *v3; // esi\n  int v4; // ecx\n  gbMatrix4 *Top; // eax\n  int result; // eax\n\n  v2 = this;\n  v3 = gbSceneGraph::NewOneRenderObj(*(gbSceneGraph **)&gfxMgr->_data[448], this);\n  v2 = (struct gbVisNode *)((char *)v2 + 100);\n  *(_DWORD *)&v3->_data[24] = 0;\n  *(_DWORD *)&v3->_data[8] = 0;\n  v4 = *(_DWORD *)&v2->_data[68];\n  *(_DWORD *)&v3->_data[16] = v2;\n  *(_DWORD *)&v3->_data[12] = v4;\n  Top = gbMatrixStack::GetTop(*(gbMatrixStack **)&gfxMgr->_data[216]);\n  gbMatrix4::Transform(Top);\n  result = 0;\n  *(_DWORD *)&v3->_data[20] = 1;\n  *(_DWORD *)&v3->_data[4] = 0;\n  return result;\n}\n"
-}

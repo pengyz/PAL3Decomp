@@ -1,7 +1,0 @@
-{
-  "name": "sub_457F00",
-  "address": "0x00457F00",
-  "size_bytes": 129,
-  "signature": "void __thiscall(char *this)",
-  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\nvoid __thiscall sub_457F00(char *this)\n{\n  int v2; // ebx\n  char *v3; // edi\n  int v4; // ebx\n  char *v5; // edi\n\n  if ( *this && PAL_GDB::PAL_GDB((PAL_GDB *)(this + 528)) )\n  {\n    v2 = 0;\n    if ( *((int *)this + 205023) > 0 )\n    {\n      v3 = this + 821700;\n      do\n      {\n        *(_DWORD *)v3 = PAL_GDB::GDB_GetSkillNum((PAL_GDB *)(this + 528), *((_DWORD *)v3 - 400));\n        ++v2;\n        v3 += 4;\n      }\n      while ( v2 < *((_DWORD *)this + 205023) );\n    }\n    v4 = 0;\n    if ( *((int *)this + 205024) > 0 )\n    {\n      v5 = this + 822500;\n      do\n      {\n        *(_DWORD *)v5 = PAL_GDB::GDB_GetSkillNum((PAL_GDB *)(this + 528), *((_DWORD *)v5 - 400));\n        ++v4;\n        v5 += 4;\n      }\n      while ( v4 < *((_DWORD *)this + 205024) );\n    }\n  }\n}\n"
-}

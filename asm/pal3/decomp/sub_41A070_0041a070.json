@@ -1,7 +1,0 @@
-{
-  "name": "sub_41A070",
-  "address": "0x0041A070",
-  "size_bytes": 210,
-  "signature": "BOOL __thiscall(float *this, float *a2, char a3)",
-  "decompiled_c": "BOOL __thiscall sub_41A070(float *this, float *a2, char a3)\n{\n  double v4; // st7\n  double v5; // st6\n  gbVec3D v7; // [esp+4h] [ebp-18h] BYREF\n  float v8; // [esp+14h] [ebp-8h]\n  float v9; // [esp+18h] [ebp-4h]\n  float v10; // [esp+20h] [ebp+4h]\n\n  v4 = *a2 - this[1];\n  v8 = a2[1] - this[2];\n  v5 = a2[2] - this[3];\n  v7.y = v8;\n  v9 = v5;\n  v7.x = v4;\n  v7.z = v9;\n  v10 = gbVec3D::Length(&v7);\n  if ( 0.87 * 500.0 < v10 )\n    return 0;\n  if ( a3 && 12.0 * 8.0 > v10 )\n    return 1;\n  return v7.z / v10 * this[7] + v7.y / v10 * this[6] + v7.x / v10 * this[5] > 0.87;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_446200",
-  "address": "0x00446200",
-  "size_bytes": 188,
-  "signature": "void __thiscall(UIWnd *this)",
-  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nvoid __thiscall sub_446200(UIWnd *this)\n{\n  this->m_fontcolor.ColorQuadFmt = (int)&off_56AF80;\n  UIListBox::SetScrollPos((UIListBox **)this);\n  sub_4318A0((int)&this[269].m_childs.m_nMaxSize);\n  UIItem::UIItem(&this[252].m_childs);\n  UIItem::UIItem(&this[235].m_rect.bottom);\n  sub_43A1F0((std::ios_base *)&this[232].m_childs.m_nMaxSize);\n  `eh vector destructor iterator'((char *)&this[6].m_rect.top, 0x1DCu, 38, (void (__thiscall *)(void *))sub_4461F0);\n  UIWnd::~UIWnd((std::ios_base *)&this[4].m_rect.bottom);\n  UIWnd::~UIWnd((UIListBox *)this);\n}\n"
-}

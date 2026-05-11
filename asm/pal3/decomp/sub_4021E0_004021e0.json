@@ -1,7 +1,0 @@
-{
-  "name": "sub_4021E0",
-  "address": "0x004021E0",
-  "size_bytes": 63,
-  "signature": "int __thiscall(GRPinput *this, int a2, int a3, int a4)",
-  "decompiled_c": "int __thiscall sub_4021E0(GRPinput *this, int a2, int a3, int a4)\n{\n  *(_DWORD *)&this->_data[6252] = a2;\n  if ( a2 )\n    GRPinput::AcquireDevices(this);\n  else\n    sub_402360(this);\n  *(_DWORD *)&this->_data[6256] = a3;\n  if ( a3 )\n    return GRPinput::ReleaseDevices(this);\n  else\n    return EnumJoystick((int)this);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_4C9540",
-  "address": "0x004C9540",
-  "size_bytes": 8,
-  "signature": "char *__thiscall(char *this, char a2)",
-  "decompiled_c": "// likely CEffgbParticle method (near SetTimeScale, ProcCommonTask, Attach, Destroy, ~CE)\nchar *__thiscall sub_4C9540(char *this, char a2)\n{\n  char *v2; // esi\n\n  v2 = this - 12;\n  CEffgbParticle::Destroy((CEffgbParticle *)(this - 12));\n  if ( (a2 & 1) != 0 )\n    operator delete(v2);\n  return v2;\n}\n"
-}

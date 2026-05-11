@@ -1,7 +1,0 @@
-{
-  "name": "UIWnd::SetVisible",
-  "address": "0x00445DB0",
-  "size_bytes": 96,
-  "signature": "int __thiscall(UIWnd *this, int bVisible)",
-  "decompiled_c": "int __thiscall UIWnd::SetVisible(UIWnd *this, int bVisible)\n{\n  int v2; // ebx\n  int v3; // edx\n  int v4; // esi\n  int v5; // edi\n\n  if ( bVisible )\n  {\n    v4 = *(_DWORD *)(bVisible + 16);\n    v5 = *(_DWORD *)(bVisible + 20);\n    v2 = *(_DWORD *)(bVisible + 24);\n    v3 = *(_DWORD *)(bVisible + 28);\n  }\n  else\n  {\n    v2 = xRight;\n    v3 = yBottom;\n    v4 = 0;\n    v5 = 0;\n  }\n  return UIWnd::ScreenToClient(\n           this,\n           v4 + (signed int)(v2 + *(_DWORD *)&this->m_wndcolor.Blue - this->m_id - v4) / 2,\n           v5 + (signed int)(v3 + this->m_wndcolor.Color - this->m_rect.left - v5) / 2);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "UICursor::Init(void)",
-  "address": "0x00541860",
-  "size_bytes": 118,
-  "signature": "UINT __thiscall(UICursor *this)",
-  "decompiled_c": "UINT __thiscall UICursor::Init(UICursor *this)\n{\n  char v1; // bl\n  UINT result; // eax\n  unsigned __int8 v3; // [esp+8h] [ebp-Ch]\n  CHAR RootPathName[8]; // [esp+Ch] [ebp-8h] BYREF\n\n  v1 = 65;\n  v3 = 65;\n  while ( 1 )\n  {\n    sprintf(RootPathName, \"%c:\\\\\", v3);\n    result = GetDriveTypeA(RootPathName);\n    if ( result == 5 )\n      break;\n    v3 = ++v1;\n    if ( (unsigned __int8)v1 > 0x5Au )\n      return result;\n  }\n  result = strlen(RootPathName) + 1;\n  qmemcpy(&Data, RootPathName, result);\n  return result;\n}\n"
-}

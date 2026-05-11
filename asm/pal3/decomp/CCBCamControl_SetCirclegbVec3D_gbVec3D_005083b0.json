@@ -1,7 +1,0 @@
-{
-  "name": "CCBCamControl::SetCircle(gbVec3D *,gbVec3D *)",
-  "address": "0x005083B0",
-  "size_bytes": 161,
-  "signature": "char *__thiscall(char *this, int a2)",
-  "decompiled_c": "char *__thiscall CCBCamControl::SetCircle(char *this, int a2)\n{\n  char *v3; // eax\n  int v4; // ecx\n\n  gbVolModNode::gbVolModNode(this + 16);\n  `eh vector constructor iterator'(this + 236, 0xDCu, 10, gbVolModNode::gbVolModNode, gbVolModNode::~gbVolModNode);\n  v3 = this + 2464;\n  v4 = 384;\n  do\n  {\n    *((_DWORD *)v3 - 2) = 0;\n    *((_DWORD *)v3 - 1) = 0;\n    *(_DWORD *)v3 = 0;\n    *((_DWORD *)v3 + 5) = 0;\n    *((_DWORD *)v3 + 6) = 0;\n    *((_DWORD *)v3 + 7) = 0;\n    v3 += 60;\n    --v4;\n  }\n  while ( v4 );\n  nullsub_3(this);\n  *((_DWORD *)this + 609) = 0;\n  *((_DWORD *)this + 610) = 0;\n  *((_DWORD *)this + 2) = a2;\n  return this;\n}\n"
-}

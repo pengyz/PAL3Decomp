@@ -1,7 +1,0 @@
-{
-  "name": "Array::Copy",
-  "address": "0x00411240",
-  "size_bytes": 29,
-  "signature": "void *__cdecl(void *dst, void *src)",
-  "decompiled_c": "void *__cdecl Array::Copy(void *dst, void *src)\n{\n  void *result; // eax\n\n  result = dst;\n  if ( dst )\n  {\n    *(_DWORD *)dst = *(_DWORD *)src;\n    *((_DWORD *)dst + 1) = *((_DWORD *)src + 1);\n    *((_DWORD *)dst + 2) = *((_DWORD *)src + 2);\n  }\n  return result;\n}\n"
-}

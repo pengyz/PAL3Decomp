@@ -1,7 +1,0 @@
-{
-  "name": "PAL_GDB::GDB_GetRole(ulong)",
-  "address": "0x00479050",
-  "size_bytes": 42,
-  "signature": "int __thiscall(PAL_GDB *this, unsigned int a2)",
-  "decompiled_c": "int __thiscall PAL_GDB::GDB_GetRole(PAL_GDB *this, unsigned int a2)\n{\n  if ( a2 > 0xC8 )\n    return 0;\n  else\n    return *(_DWORD *)&this->_pad_0A0[852 * a2];\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CEA80",
-  "address": "0x004CEA80",
-  "size_bytes": 108,
-  "signature": "char __thiscall(_DWORD *this)",
-  "decompiled_c": "char __thiscall sub_4CEA80(_DWORD *this)\n{\n  int v2; // ebx\n  _DWORD *v3; // esi\n  int v4; // eax\n  _DWORD *v5; // edx\n\n  v2 = 2048;\n  v3 = this + 587;\n  do\n  {\n    LOBYTE(v4) = *((_BYTE *)v3 - 4);\n    if ( (_BYTE)v4 )\n    {\n      (*(void (__thiscall **)(_DWORD))(*(_DWORD *)*v3 + 12))(*v3);\n      if ( !*((_BYTE *)v3 - 2) && !(*(unsigned __int8 (__thiscall **)(_DWORD))(*(_DWORD *)*v3 + 32))(*v3) && *v3 )\n        (**(void (__thiscall ***)(_DWORD, int))*v3)(*v3, 1);\n      *v3 = 0;\n      v4 = this[10823] - 1;\n      v5 = v3 - 4;\n      this[10823] = v4;\n      *v5 = 0;\n      v5[1] = 0;\n      v5[2] = 0;\n      v5[3] = 0;\n      *v3 = 0;\n    }\n    v3 += 5;\n    --v2;\n  }\n  while ( v2 );\n  return v4;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "PalScriptMgr::IfHaveScript(ulong)",
-  "address": "0x00432550",
-  "size_bytes": 77,
-  "signature": "void()",
-  "decompiled_c": "void PalScriptMgr::IfHaveScript()\n{\n  int m_nSize; // eax\n  int i; // edi\n  void *v2; // esi\n\n  m_nSize = stru_D8C328.m_nSize;\n  for ( i = 0; i < m_nSize; ++i )\n  {\n    if ( i >= 0 && i < m_nSize )\n    {\n      v2 = stru_D8C328.m_pData[i];\n      if ( v2 )\n      {\n        sub_431CD0((void **)stru_D8C328.m_pData[i]);\n        operator delete(v2);\n        m_nSize = stru_D8C328.m_nSize;\n      }\n    }\n  }\n  sub_4326A0((int)&stru_D8C328, 0, -1);\n}\n"
-}

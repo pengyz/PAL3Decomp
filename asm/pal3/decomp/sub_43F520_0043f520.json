@@ -1,7 +1,0 @@
-{
-  "name": "sub_43F520",
-  "address": "0x0043F520",
-  "size_bytes": 60,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nint __thiscall sub_43F520(int this)\n{\n  int v2; // esi\n  int v3; // eax\n\n  if ( *(int *)(this + 432) <= 0 )\n    return sub_441240((_DWORD *)(this + 80), 0, 0);\n  v2 = *(_DWORD *)(this + 504);\n  v3 = UIListBox::SetDefaultSel((UIListBox *)this);\n  if ( v2 <= v3 )\n    return sub_441240((_DWORD *)(this + 80), 0, 0);\n  else\n    return sub_441240((_DWORD *)(this + 80), 0, v2 - v3);\n}\n"
-}

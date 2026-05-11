@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CFE20",
-  "address": "0x004CFE20",
-  "size_bytes": 132,
-  "signature": "int __thiscall(int this, int a2, float a3, float a4, float a5)",
-  "decompiled_c": "int __thiscall sub_4CFE20(int this, int a2, float a3, float a4, float a5)\n{\n  int result; // eax\n  int v6; // ecx\n\n  *(_BYTE *)(this + 8) = 0;\n  *(_BYTE *)(this + 88) = 0;\n  *(float *)(this + 52) = a3 + *(float *)(a2 + 184);\n  *(float *)(this + 56) = a4 + *(float *)(a2 + 188);\n  *(float *)(this + 60) = a5 + *(float *)(a2 + 192);\n  *(_DWORD *)(this + 72) = 0;\n  *(_DWORD *)(this + 68) = 0;\n  *(_DWORD *)(this + 64) = 0;\n  *(_DWORD *)(this + 76) = *(_DWORD *)(a2 + 216);\n  *(_DWORD *)(this + 80) = *(_DWORD *)(a2 + 196);\n  *(_DWORD *)(this + 84) = *(_DWORD *)(a2 + 220);\n  *(_DWORD *)(this + 92) = *(_DWORD *)(a2 + 200);\n  *(_DWORD *)(this + 96) = *(_DWORD *)(a2 + 200);\n  result = *(_DWORD *)(a2 + 200);\n  *(_DWORD *)(this + 100) = result;\n  v6 = *(_DWORD *)(this + 48);\n  if ( v6 )\n    return (*(int (__thiscall **)(int, _DWORD))(*(_DWORD *)v6 + 24))(v6, 0);\n  return result;\n}\n"
-}

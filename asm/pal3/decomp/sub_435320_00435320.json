@@ -1,7 +1,0 @@
-{
-  "name": "sub_435320",
-  "address": "0x00435320",
-  "size_bytes": 35,
-  "signature": "char *()",
-  "decompiled_c": "char *sub_435320()\n{\n  char *result; // eax\n  __int8 *v1; // eax\n\n  result = PalScript::GetString();\n  if ( result )\n  {\n    v1 = sub_434BD0(*((_WORD *)result + 2));\n    return (char *)RoleSystem::SetActive(dword_BFDA68, (int)v1);\n  }\n  return result;\n}\n"
-}

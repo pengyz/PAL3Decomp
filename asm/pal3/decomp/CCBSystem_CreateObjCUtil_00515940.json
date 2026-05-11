@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::CreateObj(CUtil * *)",
-  "address": "0x00515940",
-  "size_bytes": 90,
-  "signature": "int __thiscall(CCBSystem *this, int a2)",
-  "decompiled_c": "int __thiscall CCBSystem::CreateObj(CCBSystem *this, int a2)\n{\n  int v3; // eax\n  char *v4; // edi\n  int Obj; // edi\n\n  v3 = *(_DWORD *)&this->_rest[60];\n  v4 = &this->_rest[88 * v3 + 68];\n  if ( this->_rest[88 * v3 + 105] )\n  {\n    Obj = CCBSystem::CreateObj(this, 0, 0, 0x40u);\n    CCBSystem::ClearEffect(this, *(_DWORD *)&this->_rest[60]);\n    return Obj;\n  }\n  else\n  {\n    CCBSystem::ProcAI((int)this, 0.0);\n    v4[37] = 1;\n    return 0;\n  }\n}\n"
-}

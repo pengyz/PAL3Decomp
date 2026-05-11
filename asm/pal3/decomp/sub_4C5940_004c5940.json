@@ -1,7 +1,0 @@
-{
-  "name": "sub_4C5940",
-  "address": "0x004C5940",
-  "size_bytes": 59,
-  "signature": "int __thiscall(_DWORD *this, int a2)",
-  "decompiled_c": "int __thiscall sub_4C5940(_DWORD *this, int a2)\n{\n  int v3; // edx\n  int result; // eax\n  _DWORD *i; // ecx\n\n  if ( !sub_4C5B50(this, a2) )\n    return -1;\n  v3 = this[69];\n  result = 0;\n  if ( v3 <= 0 )\n    return -1;\n  for ( i = this + 70; *(_DWORD *)(*i + 8) != a2; ++i )\n  {\n    if ( ++result >= v3 )\n      return -1;\n  }\n  return result;\n}\n"
-}

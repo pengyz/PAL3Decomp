@@ -1,7 +1,0 @@
-{
-  "name": "sub_4F2660",
-  "address": "0x004F2660",
-  "size_bytes": 44,
-  "signature": "int __thiscall(CCBRoleState *this, struct tagCmdData *a2, unsigned int a3)",
-  "decompiled_c": "// likely CCBRoleState method (near GetRole, CCBRoleState, CanAction, UnloadWeaponMode)\nint __thiscall sub_4F2660(CCBRoleState *this, struct tagCmdData *a2, unsigned int a3)\n{\n  CCBRoleState::CanBeSelect(this, a2, a3);\n  CCBRoleState::IsBoss(this, a2, a3);\n  return sub_4EEF20(this, a2, a3);\n}\n"
-}

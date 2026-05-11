@@ -1,7 +1,0 @@
-{
-  "name": "CCBUI::UpdateState",
-  "address": "0x004E0980",
-  "size_bytes": 165,
-  "signature": "char __thiscall(CCBUI *this)",
-  "decompiled_c": "char __thiscall CCBUI::UpdateState(CCBUI *this)\n{\n  char result; // al\n  int v2; // esi\n  HWND DlgItem; // edi\n\n  result = dword_17A990C;\n  v2 = *(_DWORD *)(*(_DWORD *)(*(_DWORD *)this->_data + 20) + 16);\n  if ( dword_17A990C == 4 )\n  {\n    DlgItem = GetDlgItem(dword_BFDA54, 1201);\n    result = *(_BYTE *)(v2 + 430012);\n    if ( result )\n    {\n      byte_5D8808 = 1;\n      sprintf(byte_17A94E4, \"%03d-%03d\", *(_DWORD *)(v2 + 430032), *(_DWORD *)(v2 + 430036));\n      return SendMessageA(DlgItem, 0xCu, 0, (LPARAM)byte_17A94E4);\n    }\n    else if ( byte_5D8808 == 1 )\n    {\n      byte_5D8808 = 0;\n      sprintf(byte_17A94E4, aStopped);\n      return SendMessageA(DlgItem, 0xCu, 0, (LPARAM)byte_17A94E4);\n    }\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "UIWnd::AddChild",
-  "address": "0x0043FEC0",
-  "size_bytes": 63,
-  "signature": "int __thiscall(UIWnd *this, _DWORD *a2)",
-  "decompiled_c": "int __thiscall UIWnd::AddChild(UIWnd *this, _DWORD *a2)\n{\n  int *p_m_bfocus; // edx\n  unsigned __int8 *p_Blue; // ecx\n  int result; // eax\n\n  p_m_bfocus = &this->m_bfocus;\n  p_Blue = &this->m_wndcolor.Blue;\n  *p_m_bfocus = *a2;\n  p_m_bfocus[1] = a2[1];\n  p_m_bfocus[2] = a2[2];\n  p_m_bfocus[3] = a2[3];\n  *(_DWORD *)p_Blue = *a2;\n  *((_DWORD *)p_Blue + 1) = a2[1];\n  *((_DWORD *)p_Blue + 2) = a2[2];\n  result = a2[3];\n  *((_DWORD *)p_Blue + 3) = result;\n  return result;\n}\n"
-}

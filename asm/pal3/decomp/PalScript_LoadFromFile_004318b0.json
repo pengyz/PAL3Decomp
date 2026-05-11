@@ -1,7 +1,0 @@
-{
-  "name": "PalScript::LoadFromFile",
-  "address": "0x004318B0",
-  "size_bytes": 266,
-  "signature": "void *__thiscall(PalScript *this, char *filename)",
-  "decompiled_c": "void *__thiscall PalScript::LoadFromFile(PalScript *this, char *filename)\n{\n  struct gbVFile *v3; // eax\n  struct gbVFile *v4; // esi\n  unsigned int v5; // ebp\n  void *v6; // edi\n  OpenBaseFile v8; // [esp+34h] [ebp-10h] BYREF\n  int v9; // [esp+40h] [ebp-4h]\n\n  sub_4319C0((int)this);\n  OpenBaseFile::OpenBaseFile(&v8);\n  v9 = 0;\n  v3 = gbVFileSystem::OpenFile(g_pVFileSys, filename, 0x201u);\n  v4 = v3;\n  if ( v3 )\n  {\n    gbVFileSystem::Seek(g_pVFileSys, v3, 0, 3);\n    v5 = gbVFileSystem::TellPos(g_pVFileSys, v4);\n    gbVFileSystem::Seek(g_pVFileSys, v4, 0, 1);\n    v6 = malloc(v5 + 1);\n    this[12].m_CamObj.m_nMaxSize = (int)v6;\n    if ( v6 )\n    {\n      memset(v6, 0, v5 + 1);\n      gbVFileSystem::Read(g_pVFileSys, (void *)this[12].m_CamObj.m_nMaxSize, v5, v4);\n      this[12].m_CamObj.m_nGrowBy = this[12].m_CamObj.m_nMaxSize;\n      gbVFileSystem::CloseFile(g_pVFileSys, v4);\n    }\n  }\n  v9 = -1;\n  return OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v8);\n}\n"
-}

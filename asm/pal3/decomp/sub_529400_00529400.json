@@ -1,7 +1,0 @@
-{
-  "name": "sub_529400",
-  "address": "0x00529400",
-  "size_bytes": 62,
-  "signature": "_DWORD *__fastcall(_DWORD *a1)",
-  "decompiled_c": "_DWORD *__fastcall sub_529400(_DWORD *a1)\n{\n  _DWORD *result; // eax\n  int v2; // esi\n  _DWORD *v3; // edx\n\n  result = (_DWORD *)a1[495];\n  v2 = 0;\n  if ( (int)result > 0 )\n  {\n    v3 = a1 + 503;\n    result = a1 + 557;\n    do\n    {\n      ++v2;\n      *(v3 - 2) = *(result - 2);\n      *(v3 - 1) = *(result - 1);\n      *v3 = *result;\n      result += 3;\n      v3 += 8;\n    }\n    while ( v2 < a1[495] );\n  }\n  return result;\n}\n"
-}

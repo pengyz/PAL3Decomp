@@ -1,7 +1,0 @@
-{
-  "name": "DirectInput8Create",
-  "address": "0x0055EF80",
-  "size_bytes": 6,
-  "signature": "HRESULT __stdcall(HINSTANCE hinst, DWORD dwVersion, const IID *const riidltf, LPVOID *ppvOut, LPUNKNOWN punkOuter)",
-  "decompiled_c": "// attributes: thunk\nHRESULT __stdcall DirectInput8Create(\n        HINSTANCE hinst,\n        DWORD dwVersion,\n        const IID *const riidltf,\n        LPVOID *ppvOut,\n        LPUNKNOWN punkOuter)\n{\n  return __imp_DirectInput8Create(hinst, dwVersion, riidltf, ppvOut, punkOuter);\n}\n"
-}

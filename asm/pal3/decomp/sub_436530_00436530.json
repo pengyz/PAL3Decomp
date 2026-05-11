@@ -1,7 +1,0 @@
-{
-  "name": "sub_436530",
-  "address": "0x00436530",
-  "size_bytes": 103,
-  "signature": "void()",
-  "decompiled_c": "void sub_436530()\n{\n  char *String; // esi\n  char *v1; // eax\n  char *v2; // esi\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  if ( String && v1 )\n  {\n    v2 = (char *)&dword_DBA830[88 * *((unsigned __int16 *)String + 2)];\n    sub_450650(v2, *((char **)v1 + 1));\n    (**(void (__thiscall ***)(char *, int))v2)(v2, 1);\n    (*(void (__thiscall **)(char *, _DWORD, _DWORD))(*(_DWORD *)v2 + 8))(v2, 0, 0);\n    if ( v2 )\n      sub_434C40((int)(v2 + 72));\n    else\n      sub_434C40(0);\n  }\n}\n"
-}

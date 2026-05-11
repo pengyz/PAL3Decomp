@@ -1,7 +1,0 @@
-{
-  "name": "sub_449C20",
-  "address": "0x00449C20",
-  "size_bytes": 43,
-  "signature": "int __thiscall(UIListBox *this)",
-  "decompiled_c": "// likely UIListBox method (near SetFirstShow, GetLockSel, CalHeightCount, AddRow, )\nint __thiscall sub_449C20(UIListBox *this)\n{\n  char *v2; // esi\n  int v3; // edi\n\n  v2 = &this->_tail[536];\n  v3 = 38;\n  do\n  {\n    (*(void (__thiscall **)(char *))(*(_DWORD *)v2 + 4))(v2);\n    v2 += 476;\n    --v3;\n  }\n  while ( v3 );\n  return UIListBox::SetScroll(this);\n}\n"
-}

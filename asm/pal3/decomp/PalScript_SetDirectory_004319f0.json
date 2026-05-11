@@ -1,7 +1,0 @@
-{
-  "name": "PalScript::SetDirectory",
-  "address": "0x004319F0",
-  "size_bytes": 112,
-  "signature": "int __thiscall(PalScript *this, char *dir)",
-  "decompiled_c": "int __thiscall PalScript::SetDirectory(PalScript *this, char *dir)\n{\n  BOOL v3; // edi\n  int result; // eax\n\n  v3 = 0;\n  *(_DWORD *)&this[13].m_bLoadSceneScript = this[12].m_CamObj.m_nMaxSize;\n  for ( result = PalScript::HasNext(this); result; result = PalScript::HasNext(this) )\n  {\n    if ( v3 )\n    {\n      result = _strcmpi((const char *)this, dir);\n      if ( !result )\n      {\n        this[12].m_CamObj.m_nGrowBy = *(_DWORD *)&this[13].m_bLoadSceneScript;\n        return result;\n      }\n      v3 = 0;\n    }\n    else\n    {\n      v3 = _strcmpi((const char *)this, aBegin) == 0;\n    }\n  }\n  return result;\n}\n"
-}

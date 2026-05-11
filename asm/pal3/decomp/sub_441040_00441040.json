@@ -1,7 +1,0 @@
-{
-  "name": "sub_441040",
-  "address": "0x00441040",
-  "size_bytes": 43,
-  "signature": "char *__thiscall(char *this, char *Source)",
-  "decompiled_c": "char *__thiscall sub_441040(char *this, char *Source)\n{\n  char *result; // eax\n\n  result = Source;\n  if ( Source )\n    return strncpy(this + 120, Source, 0x7Fu);\n  memset(this + 120, 0, 0x80u);\n  return result;\n}\n"
-}

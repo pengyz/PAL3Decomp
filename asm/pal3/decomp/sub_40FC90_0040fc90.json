@@ -1,7 +1,0 @@
-{
-  "name": "sub_40FC90",
-  "address": "0x0040FC90",
-  "size_bytes": 242,
-  "signature": "void __cdecl(int a1)",
-  "decompiled_c": "void __cdecl sub_40FC90(int a1)\n{\n  int v1; // ecx\n  char *v2; // eax\n  char *v3; // eax\n  int *v4; // eax\n  int v5; // [esp-4h] [ebp-104h]\n  int v6; // [esp-4h] [ebp-104h]\n  char Buffer[256]; // [esp+0h] [ebp-100h] BYREF\n\n  v1 = *(_DWORD *)&g_SceneMgr.m_slot4[828];\n  *(_DWORD *)&g_SceneMgr.m_slot4[828] = *(_DWORD *)&g_SceneMgr.m_slot4[828] + a1 < 0\n                                      ? 0\n                                      : *(_DWORD *)&g_SceneMgr.m_slot4[828] + a1;\n  if ( *(_DWORD *)&g_SceneMgr.m_slot4[828] )\n  {\n    if ( *(_DWORD *)&g_SceneMgr.m_slot4[828] - v1 >= 0 )\n    {\n      v6 = *(_DWORD *)&g_SceneMgr.m_slot4[828] - v1;\n      v3 = PalScript::SetAppName(&stru_8ACD30, aGetmoney);\n      _snprintf(Buffer, 0xFFu, v3, v6);\n      v4 = sub_53DF70();\n      CScreenMode::AudioSetPosition(v4, aWa006, 1);\n    }\n    else\n    {\n      v5 = v1 - *(_DWORD *)&g_SceneMgr.m_slot4[828];\n      v2 = PalScript::SetAppName(&stru_8ACD30, aLossmoney);\n      _snprintf(Buffer, 0xFFu, v2, v5);\n    }\n    sub_410360(Buffer);\n  }\n  else\n  {\n    strcpy(Buffer, PalScript::SetAppName(&stru_8ACD30, aLossallmoney));\n    sub_410360(Buffer);\n  }\n}\n"
-}

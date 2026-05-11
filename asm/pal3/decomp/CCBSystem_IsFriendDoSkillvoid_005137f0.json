@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::IsFriendDoSkill(void)",
-  "address": "0x005137F0",
-  "size_bytes": 70,
-  "signature": "int __thiscall(CCBSystem *this)",
-  "decompiled_c": "int __thiscall CCBSystem::IsFriendDoSkill(CCBSystem *this)\n{\n  int v2; // ebp\n  char *v3; // esi\n  int result; // eax\n\n  v2 = 0;\n  v3 = &this->_rest[68];\n  do\n  {\n    if ( v3[36] == 1 )\n    {\n      *(_DWORD *)&this->_rest[60] = v2;\n      result = (*(int (__thiscall **)(char *, _DWORD))v3)((char *)this + *((_DWORD *)v3 + 1), 0);\n      *(_DWORD *)&this->_rest[60] = -1;\n    }\n    ++v2;\n    v3 += 88;\n  }\n  while ( v2 < 1024 );\n  *(_DWORD *)&this->_rest[60] = -1;\n  return result;\n}\n"
-}

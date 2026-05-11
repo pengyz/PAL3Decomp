@@ -1,7 +1,0 @@
-{
-  "name": "CCBStage::IsTaskFinished(int)",
-  "address": "0x004FCD00",
-  "size_bytes": 78,
-  "signature": "int __thiscall(CCBStage *this, int a2)",
-  "decompiled_c": "int __thiscall CCBStage::IsTaskFinished(CCBStage *this, int a2)\n{\n  int result; // eax\n  char *v4; // edx\n  int v5; // ebx\n\n  CCBStageRole::GetCurrentState(*(CCBStageRole **)&this->_data[4 * a2 + 24]);\n  v4 = &this->_data[2760];\n  v5 = 256;\n  do\n  {\n    LOBYTE(result) = v4[36];\n    if ( (_BYTE)result )\n    {\n      if ( *(_DWORD *)v4 == a2 )\n      {\n        result = 0;\n        memset(v4 - 2592, 0, 0xA48u);\n        --*(_DWORD *)&this->_data[156];\n      }\n    }\n    v4 += 2632;\n    --v5;\n  }\n  while ( v5 );\n  return result;\n}\n"
-}

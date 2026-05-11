@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageRole::DoTask(ulong)",
-  "address": "0x0050A9B0",
-  "size_bytes": 160,
-  "signature": "tagRoleState *__thiscall(CCBStageRole *this, struct gbVec3D *a2)",
-  "decompiled_c": "tagRoleState *__thiscall CCBStageRole::DoTask(CCBStageRole *this, struct gbVec3D *a2)\n{\n  float *WorldPos; // eax\n  tagRoleState *result; // eax\n  struct gbVec3D v5; // [esp+8h] [ebp-Ch] BYREF\n\n  if ( (byte_17AB874 & 1) == 0 )\n  {\n    byte_17AB874 |= 1u;\n    gbMatrix4::gbMatrix4((gbMatrix4 *)dword_17AB828);\n    atexit(nullsub_37);\n  }\n  WorldPos = CCBStageRole::GetWorldPos(this);\n  *a2 = *gbOBBox::GetCenter((gbOBBox *)WorldPos, &v5);\n  a2->y = *(float *)&this->_data[364] * 0.5 + a2->y + 10.0;\n  result = CCBRoleState::InitUI(*(CCBRoleState **)&this->_data[4], *(_DWORD *)&this->_data[284]);\n  if ( result->dwID == 707 )\n    a2->y = a2->y - 80.0;\n  return result;\n}\n"
-}

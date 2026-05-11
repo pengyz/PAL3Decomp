@@ -1,7 +1,0 @@
-{
-  "name": "sub_410920",
-  "address": "0x00410920",
-  "size_bytes": 56,
-  "signature": "int *__thiscall(void *this)",
-  "decompiled_c": "// likely PalScriptMgr method (near PalScriptMgr, IfAnyScriptRunning, IsScriptRuning, )\nint *__thiscall sub_410920(void *this)\n{\n  const char *v1; // eax\n  unsigned int v2; // eax\n  char Buffer[128]; // [esp+0h] [ebp-80h] BYREF\n\n  v1 = (const char *)sub_4226F0();\n  sprintf(Buffer, \"_ylf_%s_%s\", v1, v1 + 32);\n  v2 = sub_4325A0(Buffer);\n  return PalScriptMgr::Destroy(v2, 0);\n}\n"
-}

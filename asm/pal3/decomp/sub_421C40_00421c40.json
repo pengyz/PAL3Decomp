@@ -1,7 +1,0 @@
-{
-  "name": "sub_421C40",
-  "address": "0x00421C40",
-  "size_bytes": 88,
-  "signature": "int __thiscall(int *this)",
-  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nint __thiscall sub_421C40(int *this)\n{\n  __int32 m_pCollisionNode; // ebx\n  int v3; // edi\n  int *i; // esi\n\n  m_pCollisionNode = g_SceneMgr.m_pCollisionNode;\n  v3 = 0;\n  if ( this[14392] <= 0 )\n    return 0;\n  for ( i = this + 14393; *((_BYTE *)i + 173) != 4 || !sub_419EF0((int)i, (float *)(m_pCollisionNode + 4)); i += 2176 )\n  {\n    if ( ++v3 >= this[14392] )\n      return 0;\n  }\n  return 1;\n}\n"
-}

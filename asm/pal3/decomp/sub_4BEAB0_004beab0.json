@@ -1,7 +1,0 @@
-{
-  "name": "sub_4BEAB0",
-  "address": "0x004BEAB0",
-  "size_bytes": 139,
-  "signature": "void __thiscall(float *this)",
-  "decompiled_c": "// likely _TextureLib_Data method (near _TextureLib_Data, SetLibFolder, _GetItemNum, ~_Tex)\nvoid __thiscall sub_4BEAB0(float *this)\n{\n  double v2; // st7\n  int v3; // [esp+8h] [ebp-14h] BYREF\n  _BYTE v4[4]; // [esp+Ch] [ebp-10h] BYREF\n  int v5; // [esp+18h] [ebp-4h]\n\n  sub_540F60(v4);\n  v2 = this[4] / this[3];\n  v5 = 0;\n  LOWORD(v3) = 0;\n  BYTE2(v3) = 0;\n  HIBYTE(v3) = (__int64)(v2 * 255.0);\n  _TextureLib_Data::~_TextureLib_Data(0, 0, xRight, yBottom, &v3);\n  v5 = -1;\n  sub_540FA0();\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_40C9A0",
-  "address": "0x0040C9A0",
-  "size_bytes": 152,
-  "signature": "int __cdecl(int a1)",
-  "decompiled_c": "int __cdecl sub_40C9A0(int a1)\n{\n  __int8 *v1; // edi\n  int result; // eax\n\n  v1 = &g_SceneMgr._postSlots[8704 * a1 - 568];\n  if ( sub_4164E0(v1) )\n    sub_41B120(v1, 1);\n  else\n    *(_DWORD *)&g_SceneMgr._postSlots[8704 * a1 + 64] = 1;\n  result = *(_DWORD *)&g_SceneMgr._postSlots[8704 * a1 + 64];\n  if ( !result )\n    result = sub_4181E0((int)v1);\n  if ( a1 == 1 && (*(_DWORD *)g_SceneMgr._gap_c93c == 1 || dword_C025EC == 10) )\n  {\n    sub_419090((float *)&dword_C02198);\n    sub_416620((int)dword_C020F8, *(float *)&g_SceneMgr._midRegion[8688], 1);\n    dword_C025FC = 0;\n    return RoleSystem::UpdateTransform((RoleSystem *)dword_C020F8);\n  }\n  return result;\n}\n"
-}

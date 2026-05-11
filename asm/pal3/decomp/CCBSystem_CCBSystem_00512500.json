@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::CCBSystem",
-  "address": "0x00512500",
-  "size_bytes": 114,
-  "signature": "int __thiscall(CCBSystem *this)",
-  "decompiled_c": "int __thiscall CCBSystem::CCBSystem(CCBSystem *this)\n{\n  char *v1; // esi\n  int v2; // ebx\n  char *v3; // edi\n  char *v4; // esi\n  int v5; // ebx\n  char *v6; // edi\n\n  v1 = &this->_rest[108];\n  v2 = 1024;\n  do\n  {\n    v3 = v1;\n    v1 += 88;\n    --v2;\n    memset(v3, 0, 0x2Cu);\n  }\n  while ( v2 );\n  v4 = &this->_rest[90180];\n  v5 = 11;\n  do\n  {\n    v6 = v4;\n    v4 += 52;\n    --v5;\n    memset(v6, 0, 0x2Cu);\n  }\n  while ( v5 );\n  memset(this, 0, 0x162D8u);\n  *(_DWORD *)&this->_rest[40] = 0;\n  this->_rest[48] = 0;\n  this->_rest[49] = 0;\n  *(_DWORD *)&this->_rest[44] = 0;\n  this->_rest[32] = 1;\n  *(_DWORD *)&this->_rest[36] = 1;\n  this->_rest[50] = 1;\n  return (int)this;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "PalScript::OpenScript",
-  "address": "0x0043AA00",
-  "size_bytes": 251,
-  "signature": "struct gbVFileSystem *__thiscall(PalScript **this, const char *a2, char a3)",
-  "decompiled_c": "struct gbVFileSystem *__thiscall PalScript::OpenScript(PalScript **this, const char *a2, char a3)\n{\n  gbRefObject *v4; // ecx\n  int v5; // edi\n  CHAR *v6; // eax\n  gbTexture *v7; // ecx\n  OpenBaseFile v9; // [esp+8h] [ebp-110h] BYREF\n  char Buffer[256]; // [esp+Ch] [ebp-10Ch] BYREF\n  int v11; // [esp+114h] [ebp-4h]\n\n  OpenBaseFile::OpenBaseFile(&v9);\n  v11 = 0;\n  sprintf(Buffer, \"%s\", a2);\n  v4 = (gbRefObject *)this[49];\n  if ( v4 )\n    gbRefObject::Release(v4);\n  if ( a3 )\n  {\n    v5 = *(_DWORD *)gfxMgr->_data;\n    v6 = _Texture_Info::_CalculateUV((int)dword_1894B78, Buffer);\n    this[49] = (PalScript *)(*(int (__thiscall **)(gbGfxManager *, CHAR *))(v5 + 8))(gfxMgr, v6);\n    this[50] = (PalScript *)Parent_Data::Parent_Data((Parent_Data *)dword_1894B78, Buffer);\n  }\n  else\n  {\n    this[49] = (PalScript *)(*(int (__thiscall **)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_data + 8))(\n                              gfxMgr,\n                              Buffer);\n  }\n  v7 = (gbTexture *)this[49];\n  if ( v7 )\n    gbTexture::LoadTexture(v7, 1);\n  v11 = -1;\n  return OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v9);\n}\n"
-}

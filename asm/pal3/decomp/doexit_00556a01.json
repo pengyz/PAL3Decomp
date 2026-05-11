@@ -1,7 +1,0 @@
-{
-  "name": "_doexit",
-  "address": "0x00556A01",
-  "size_bytes": 153,
-  "signature": "void __cdecl(UINT uExitCode, int a2, int a3)",
-  "decompiled_c": "void __cdecl doexit(UINT uExitCode, int a2, int a3)\n{\n  HANDLE CurrentProcess; // eax\n  void (**v4)(void); // esi\n\n  if ( dword_1895384 == 1 )\n  {\n    CurrentProcess = GetCurrentProcess();\n    TerminateProcess(CurrentProcess, uExitCode);\n  }\n  dword_1895380 = 1;\n  byte_189537C = a3;\n  if ( !a2 )\n  {\n    if ( dword_1896CF0 )\n    {\n      v4 = (void (**)(void))(dword_1896CEC - 4);\n      if ( dword_1896CEC - 4 >= (unsigned int)dword_1896CF0 )\n      {\n        do\n        {\n          if ( *v4 )\n            (*v4)();\n          --v4;\n        }\n        while ( v4 >= dword_1896CF0 );\n      }\n    }\n    _initterm(&dword_580A04, &dword_580A0C);\n  }\n  _initterm(&dword_580A10, &dword_580A18);\n  if ( !a3 )\n  {\n    dword_1895384 = 1;\n    ExitProcess(uExitCode);\n  }\n}\n"
-}

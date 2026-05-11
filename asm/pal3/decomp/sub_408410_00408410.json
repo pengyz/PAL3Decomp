@@ -1,7 +1,0 @@
-{
-  "name": "sub_408410",
-  "address": "0x00408410",
-  "size_bytes": 67,
-  "signature": "char __thiscall(_DWORD *this, int a2, int a3)",
-  "decompiled_c": "char __thiscall sub_408410(_DWORD *this, int a2, int a3)\n{\n  _DWORD *v3; // eax\n\n  v3 = (_DWORD *)this[6];\n  if ( a2 >= 0 && a2 < v3[38] && a3 >= 0 && a3 < v3[39] )\n    return *(_BYTE *)(v3[40] + 8 * (a2 + a3 * v3[38]) + 4);\n  else\n    return 0;\n}\n"
-}

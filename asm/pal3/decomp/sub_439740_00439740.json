@@ -1,7 +1,0 @@
-{
-  "name": "sub_439740",
-  "address": "0x00439740",
-  "size_bytes": 195,
-  "signature": "_DWORD *__thiscall(UIWnd *this, int id, int parent)",
-  "decompiled_c": "_DWORD *__thiscall sub_439740(UIWnd *this, int id, int parent)\n{\n  gbCamera *v4; // eax\n  gbCamera *v5; // eax\n  _DWORD *result; // eax\n  _DWORD pRect[4]; // [esp+8h] [ebp-1Ch] BYREF\n  int v8; // [esp+20h] [ebp-4h]\n\n  memset(pRect, 0, sizeof(pRect));\n  UIWnd::Create(this, id, pRect, parent);\n  v4 = (gbCamera *)operator new(0x178u);\n  v8 = 0;\n  if ( v4 )\n    v5 = gbCamera::gbCamera(v4, gfxMgr);\n  else\n    v5 = 0;\n  this[3].m_childs.m_nSize = (int)v5;\n  v8 = -1;\n  gbCamera::SetDimention(v5, xRight, yBottom);\n  result = (_DWORD *)this[3].m_childs.m_nSize;\n  this[2].m_benable = 1161527296;\n  result[1] = 1161527296;\n  *result = 0;\n  this[3].m_fontcolor.Color = 0;\n  return result;\n}\n"
-}

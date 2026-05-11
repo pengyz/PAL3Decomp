@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageRole::SetParam(tagParam *,ulong,ulong,ulong)",
-  "address": "0x0050AC50",
-  "size_bytes": 156,
-  "signature": "int __thiscall(CCBStageRole *this, int a2, char a3)",
-  "decompiled_c": "int __thiscall CCBStageRole::SetParam(CCBStageRole *this, int a2, char a3)\n{\n  int result; // eax\n  void *v5; // ecx\n\n  result = a2;\n  if ( a2 > 0 )\n  {\n    sprintf(byte_17AB818, \"z%02d\", a2);\n    if ( (byte_1895558 & 1) == 0 )\n    {\n      byte_1895558 |= 1u;\n      CEffMgr::Reset((CEffMgr *)&g_nCursorState);\n      atexit(nullsub_1);\n    }\n    result = CEffSParticle::GetEditorTaskDescription((CEffSParticle *)&g_nCursorState, (unsigned __int8 *)byte_17AB818);\n    if ( a3 || result != *(_DWORD *)&this->_data[6672] )\n    {\n      v5 = *(void **)&this->_data[292];\n      *(_DWORD *)&this->_data[6672] = result;\n      Actor::SetVisible(v5, (int)byte_17AB818);\n      return (*(int (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(*(_DWORD *)&this->_data[292] + 16) + 24))(\n               *(_DWORD *)(*(_DWORD *)&this->_data[292] + 16),\n               0);\n    }\n  }\n  return result;\n}\n"
-}

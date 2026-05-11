@@ -1,7 +1,0 @@
-{
-  "name": "sub_44D470",
-  "address": "0x0044D470",
-  "size_bytes": 263,
-  "signature": "int __thiscall(char *this, int a2)",
-  "decompiled_c": "int __thiscall sub_44D470(char *this, int a2)\n{\n  DWORD Time; // eax\n  char *v4; // esi\n  int v6; // [esp+Ch] [ebp+4h]\n\n  Time = timeGetTime();\n  sub_5541EE(Time);\n  v4 = &this[208 * a2];\n  *((_DWORD *)v4 + 167) = rand() % 160 + 238;\n  v6 = rand() % 120 + 698;\n  *((_DWORD *)v4 + 166) = v6;\n  *((float *)v4 + 170) = (float)v6;\n  *((_DWORD *)v4 + 168) = *((_DWORD *)v4 + 166) + *((_DWORD *)v4 + 171);\n  *((_DWORD *)v4 + 169) = *((_DWORD *)v4 + 167) + *((_DWORD *)v4 + 172);\n  *((float *)v4 + 173) = (double)(rand() % 16) * 0.1 + 1.0;\n  *((float *)v4 + 174) = (float)(rand() % 255);\n  *((float *)v4 + 175) = (double)(rand() % 10 + 10) * 0.1;\n  v4[704] = 1;\n  return UIWnd::GetRect((UIWnd *)(v4 + 512), (_DWORD *)v4 + 166);\n}\n"
-}

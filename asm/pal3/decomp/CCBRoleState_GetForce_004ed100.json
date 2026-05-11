@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::GetForce",
-  "address": "0x004ED100",
-  "size_bytes": 106,
-  "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
-  "decompiled_c": "int __thiscall CCBRoleState::GetForce(CCBRoleState *this, int roleIdx)\n{\n  int v2; // edx\n  int result; // eax\n\n  v2 = 5;\n  if ( (_BYTE)roleIdx )\n  {\n    result = (int)&this->m_Role[5].nHP;\n    while ( !*(_BYTE *)(result - 11) || *(int *)result <= 0 || *(_BYTE *)(result + 844) )\n    {\n      ++v2;\n      result += 892;\n      if ( v2 >= 11 )\n      {\n        LOBYTE(result) = 1;\n        return result;\n      }\n    }\n  }\n  else\n  {\n    result = (int)&this->m_Role[5].bAlive;\n    while ( !*(_BYTE *)(result - 1) || *(_BYTE *)result != 1 || *(_BYTE *)(result + 854) )\n    {\n      ++v2;\n      result += 892;\n      if ( v2 >= 11 )\n      {\n        LOBYTE(result) = 1;\n        return result;\n      }\n    }\n  }\n  LOBYTE(result) = 0;\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_47B140",
-  "address": "0x0047B140",
-  "size_bytes": 180,
-  "signature": "void __thiscall(int this, int a2)",
-  "decompiled_c": "void __thiscall sub_47B140(int this, int a2)\n{\n  CHAR *v3; // ebx\n  CHAR *v4; // ebp\n  CHAR *v5; // eax\n  CHAR String1[253]; // [esp+10h] [ebp-100h] BYREF\n  __int16 v7; // [esp+10Dh] [ebp-3h]\n  char v8; // [esp+10Fh] [ebp-1h]\n\n  v3 = (CHAR *)(this + 104);\n  sprintf((char *const)(this + 104), g_SceneMgr.m_szUIString);\n  memset(String1, 0, sizeof(String1));\n  v7 = 0;\n  v8 = 0;\n  v4 = sub_458F70((LPCSTR)(*(_DWORD *)(this + 12 * a2 + 2744) + 96), (int)asc_5B74B8, String1);\n  if ( lstrlenA(v4) <= 0 )\n  {\n    v5 = sub_457F90(*(_DWORD *)(this + 12 * a2 + 2744));\n    lstrcatA(v3, v5);\n  }\n  else\n  {\n    lstrcpyA(v3, v4);\n  }\n  UIWnd::SetEnable((UIWnd *)(this + 164192), v3, 0);\n  UIWnd::SetEnable((UIWnd *)(this + 164040), String1, 0);\n}\n"
-}

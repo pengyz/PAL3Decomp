@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::SetRenderFlag",
-  "address": "0x00513390",
-  "size_bytes": 132,
-  "signature": "int __thiscall(CCBSystem *this, char flag)",
-  "decompiled_c": "int __thiscall CCBSystem::SetRenderFlag(CCBSystem *this, char flag)\n{\n  int v3; // edi\n  int result; // eax\n\n  v3 = 0;\n  this->_rest[48] = flag;\n  do\n  {\n    CCBRoleState::InitUI(this->m_pRoleState, v3)->snSpecStateLast[51] = this->_rest[48];\n    CCBRoleState::InitUI(this->m_pRoleState, v3)->snSpecStateLast[46] = this->_rest[48];\n    CCBRoleState::InitUI(this->m_pRoleState, v3)->snSpecStateLast[47] = this->_rest[48];\n    CCBRoleState::InitUI(this->m_pRoleState, v3)->snSpecStateLast[48] = this->_rest[48];\n    result = (int)CCBRoleState::InitUI(this->m_pRoleState, v3++);\n    *(_BYTE *)(result + 835) = this->_rest[48];\n  }\n  while ( v3 < 5 );\n  return result;\n}\n"
-}

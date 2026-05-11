@@ -1,7 +1,0 @@
-{
-  "name": "sub_52F800",
-  "address": "0x0052F800",
-  "size_bytes": 214,
-  "signature": "OpenNULLFile *__thiscall(char *this, const char *a2)",
-  "decompiled_c": "// likely OpenNULLFile method (near OpenNULLFile)\nOpenNULLFile *__thiscall sub_52F800(char *this, const char *a2)\n{\n  int v3; // esi\n  gbGeomNode *v4; // edi\n  struct gbOBBox *v5; // ebp\n  OpenBaseFile v7; // [esp+10h] [ebp-15Ch] BYREF\n  char Buffer[253]; // [esp+14h] [ebp-158h] BYREF\n  __int16 v9; // [esp+111h] [ebp-5Bh]\n  char v10; // [esp+113h] [ebp-59h]\n  gbMatrix4 v11; // [esp+114h] [ebp-58h] BYREF\n  int v12; // [esp+168h] [ebp-4h]\n\n  OpenBaseFile::OpenBaseFile(&v7);\n  v3 = 0;\n  v12 = 0;\n  gbMatrix4::gbMatrix4(&v11);\n  memset(Buffer, 0, sizeof(Buffer));\n  v9 = 0;\n  v10 = 0;\n  v4 = (gbGeomNode *)this;\n  v5 = (struct gbOBBox *)(this + 1752);\n  do\n  {\n    sprintf(Buffer, \"%s%s%d.pol\", off_5F4D20[0], a2, v3);\n    gbGeomNode::LoadFromFile(v4, Buffer, 0, 0);\n    gbGeomNode::GetOBBox(v4, v5);\n    ++v3;\n    ++v5;\n    v4 = (gbGeomNode *)((char *)v4 + 280);\n  }\n  while ( v3 < 6 );\n  v12 = -1;\n  return (OpenNULLFile *)OpenNULLFile::OpenNULLFile((OpenNULLFile **)&v7);\n}\n"
-}

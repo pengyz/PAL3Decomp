@@ -1,7 +1,0 @@
-{
-  "name": "sub_420430",
-  "address": "0x00420430",
-  "size_bytes": 30,
-  "signature": "char *__thiscall(char *Block, char a2)",
-  "decompiled_c": "char *__thiscall sub_420430(char *Block, char a2)\n{\n  sub_420450(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
-}

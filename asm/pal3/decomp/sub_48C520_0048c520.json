@@ -1,7 +1,0 @@
-{
-  "name": "sub_48C520",
-  "address": "0x0048C520",
-  "size_bytes": 227,
-  "signature": "BOOL __stdcall(int a1, int a2)",
-  "decompiled_c": "BOOL __stdcall sub_48C520(int a1, int a2)\n{\n  _WORD *v2; // ebx\n  int v3; // esi\n  int v4; // edx\n  __int16 *v5; // edi\n\n  v2 = *(_WORD **)(a1 + 8);\n  v3 = 0;\n  v4 = 0;\n  v5 = v2 + 296;\n  do\n  {\n    if ( *v5 > 0 )\n      v3 += *(_DWORD *)&g_SceneMgr.m_slot1[1408 * a2 - 1116 + 4 * v4]\n          - *(_DWORD *)&g_SceneMgr.m_slot1[1408 * a2 - 1068 + 4 * v4];\n    ++v4;\n    ++v5;\n  }\n  while ( v4 < 12 );\n  if ( v2[311] )\n    v3 += (unsigned __int8)g_SceneMgr.m_slot1[1408 * a2 - 1354];\n  if ( v2[312] )\n    v3 += (unsigned __int8)g_SceneMgr.m_slot1[1408 * a2 - 1353];\n  if ( v2[309] )\n    v3 += (unsigned __int8)g_SceneMgr.m_slot1[1408 * a2 - 1356];\n  if ( v2[310] )\n    v3 += (unsigned __int8)g_SceneMgr.m_slot1[1408 * a2 - 1355];\n  if ( v2[313] )\n    v3 += (unsigned __int8)g_SceneMgr.m_slot1[1408 * a2 - 1352];\n  return v3 > 0;\n}\n"
-}

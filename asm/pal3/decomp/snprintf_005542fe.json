@@ -1,7 +1,0 @@
-{
-  "name": "__snprintf",
-  "address": "0x005542FE",
-  "size_bytes": 81,
-  "signature": "int(char *const Buffer, const size_t BufferCount, const char *const Format, ...)",
-  "decompiled_c": "int _snprintf(char *const Buffer, const size_t BufferCount, const char *const Format, ...)\n{\n  int v3; // eax\n  bool v4; // sf\n  int v5; // esi\n  FILE File; // [esp+4h] [ebp-20h] BYREF\n  va_list va; // [esp+38h] [ebp+14h] BYREF\n\n  va_start(va, Format);\n  File._base = Buffer;\n  File._ptr = Buffer;\n  File._flag = 66;\n  File._cnt = BufferCount;\n  v3 = _output(&File, (char *)Format, (int)va);\n  v4 = --File._cnt < 0;\n  v5 = v3;\n  if ( v4 )\n    _flsbuf(0, &File);\n  else\n    *File._ptr = 0;\n  return v5;\n}\n"
-}

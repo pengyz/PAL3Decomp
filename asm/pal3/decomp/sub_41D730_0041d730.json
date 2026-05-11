@@ -1,7 +1,0 @@
-{
-  "name": "sub_41D730",
-  "address": "0x0041D730",
-  "size_bytes": 142,
-  "signature": "void __thiscall(int *this)",
-  "decompiled_c": "void __thiscall sub_41D730(int *this)\n{\n  void **v2; // eax\n  void **v3; // eax\n  int *v4; // eax\n  int *v5; // esi\n  int v6; // edx\n  void *v7; // [esp-8h] [ebp-10h]\n\n  v2 = (void **)this[8];\n  this[8] = (int)(v2 - 1);\n  operator delete(*v2);\n  if ( this[11] )\n  {\n    v4 = (int *)this[8];\n    v5 = this + 5;\n    v6 = *v4;\n    *v5 = *v4;\n    v5[1] = v6 + 4088;\n    v5[2] = v6 + 4088;\n    v5[3] = (int)v4;\n  }\n  else\n  {\n    v3 = (void **)this[4];\n    if ( v3 == (void **)this[8] )\n      operator delete(*v3);\n    this[1] = 0;\n    this[2] = 0;\n    this[3] = 0;\n    this[4] = 0;\n    this[5] = 0;\n    this[6] = 0;\n    v7 = (void *)this[9];\n    this[7] = 0;\n    this[8] = 0;\n    operator delete(v7);\n  }\n}\n"
-}

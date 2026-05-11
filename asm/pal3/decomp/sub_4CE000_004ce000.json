@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CE000",
-  "address": "0x004CE000",
-  "size_bytes": 48,
-  "signature": "int __stdcall(int a1)",
-  "decompiled_c": "int __stdcall sub_4CE000(int a1)\n{\n  int result; // eax\n  int *v2; // ecx\n\n  result = 0;\n  v2 = dword_174D354;\n  while ( !*((_BYTE *)v2 + 176) || *v2 != a1 )\n  {\n    v2 += 70;\n    ++result;\n    if ( (int)v2 >= (int)&dword_17A7B74 )\n      return -1;\n  }\n  return result;\n}\n"
-}

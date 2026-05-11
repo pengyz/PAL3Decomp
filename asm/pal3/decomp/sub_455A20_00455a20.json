@@ -1,7 +1,0 @@
-{
-  "name": "sub_455A20",
-  "address": "0x00455A20",
-  "size_bytes": 267,
-  "signature": "char __thiscall(char *this, char a2)",
-  "decompiled_c": "char __thiscall sub_455A20(char *this, char a2)\n{\n  int v3; // eax\n  int *v4; // eax\n  int v6; // ebx\n  int *v7; // esi\n  int v8; // eax\n  int *v9; // eax\n  char *v10; // [esp-4h] [ebp-14h]\n  char *v11; // [esp-4h] [ebp-14h]\n  float v12; // [esp+0h] [ebp-10h]\n  int v13; // [esp+14h] [ebp+4h]\n\n  ++*((_DWORD *)this + 32587);\n  if ( a2 )\n  {\n    v3 = *((_DWORD *)this + 32584) + 1;\n    *((_DWORD *)this + 32584) = v3;\n    if ( v3 > 32 )\n      *((_DWORD *)this + 32584) = 32;\n    v13 = *((_DWORD *)this + 32584) * *((_DWORD *)this + 32585) - 28;\n    *((_DWORD *)this + 32583) = v13;\n    v12 = (float)v13;\n    sub_43C550((int)(this + 130060), v12);\n  }\n  if ( *((int *)this + 32587) <= 31 )\n  {\n    sub_455790(this);\n    v6 = 0;\n    v7 = (int *)(this + 896);\n    do\n    {\n      v8 = *v7 - *((_DWORD *)this + 32585);\n      *v7 = v8;\n      v7[2] = v8 + *((_DWORD *)this + 32585);\n      sub_455570(this, v6++, *(v7 - 1), *v7, v7[1], v7[2]);\n      v7 += 890;\n    }\n    while ( v6 < 36 );\n    v11 = off_5AE3A8[0];\n    v9 = sub_53DF70();\n    CScreenMode::AudioSetPosition(v9, v11, 1);\n    return 1;\n  }\n  else\n  {\n    *((_DWORD *)this + 32587) = 31;\n    v10 = off_5AE38C[0];\n    v4 = sub_53DF70();\n    CScreenMode::AudioSetPosition(v4, v10, 1);\n    return 0;\n  }\n}\n"
-}

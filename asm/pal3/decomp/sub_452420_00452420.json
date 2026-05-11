@@ -1,7 +1,0 @@
-{
-  "name": "sub_452420",
-  "address": "0x00452420",
-  "size_bytes": 139,
-  "signature": "int __thiscall(int this, int a2, int a3, int a4)",
-  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nint __thiscall sub_452420(int this, int a2, int a3, int a4)\n{\n  int *v5; // eax\n  char *v7; // [esp-8h] [ebp-Ch]\n\n  if ( a2 == 1009 && (a3 == 2 || a3 == 3) )\n  {\n    *(_DWORD *)(this + 1164) = 0;\n    *(_DWORD *)(this + 1168) = 1;\n    v7 = off_5A6A3C[0];\n    v5 = sub_53DF70();\n    CScreenMode::AudioSetPosition(v5, v7, 1);\n    (**(void (__thiscall ***)(int, _DWORD))(this + 556))(this + 556, 0);\n    (**(void (__thiscall ***)(int, _DWORD))(this + 708))(this + 708, 0);\n    (**(void (__thiscall ***)(int, int))(this + 860))(this + 860, 1);\n    PAL3::DefaultKeyMap(0, 64, 64);\n  }\n  return 1;\n}\n"
-}

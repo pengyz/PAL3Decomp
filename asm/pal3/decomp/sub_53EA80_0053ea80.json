@@ -1,7 +1,0 @@
-{
-  "name": "sub_53EA80",
-  "address": "0x0053EA80",
-  "size_bytes": 201,
-  "signature": "void __thiscall(int this, int a2, char *a3, int a4)",
-  "decompiled_c": "// likely CUtil method (near RectIntersection, ~CUtil, CreateLog, Destroy, GetF)\nvoid __thiscall sub_53EA80(int this, int a2, char *a3, int a4)\n{\n  struct CPKFile *v5; // eax\n  struct CPKFile *v6; // esi\n  char Buffer[260]; // [esp+10h] [ebp-104h] BYREF\n\n  if ( *(_BYTE *)(this + 918504) )\n  {\n    v5 = CPK::Open((CPK *)(this + 832), a3);\n    v6 = v5;\n    if ( v5 )\n    {\n      sprintf(Buffer, \"\\\\\\\\\\\\\\\\%lu,%lu.mp3\", *(_DWORD *)(this + 918508), v5->dwFileSize);\n      CPK::Seek((CPK *)(this + 832), v6, 0, 0);\n      gbAudioManager::PlaySoundStream(*(gbAudioManager **)(this + 808), a2, Buffer, a4);\n      CPK::Close((CPK *)(this + 832), v6);\n    }\n  }\n  else\n  {\n    gbAudioManager::PlaySoundStream(*(gbAudioManager **)(this + 808), a2, a3, a4);\n  }\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "CCBStage::InitRound",
-  "address": "0x004DFAA0",
-  "size_bytes": 194,
-  "signature": "int __thiscall(CCBStage *this)",
-  "decompiled_c": "int __thiscall CCBStage::InitRound(CCBStage *this)\n{\n  int result; // eax\n  const char *v2; // [esp+10h] [ebp+4h]\n  float v3; // [esp+14h] [ebp+8h]\n  float v4; // [esp+18h] [ebp+Ch]\n  int v5; // [esp+1Ch] [ebp+10h]\n\n  strcpy(&this->_data[280 * *(_DWORD *)&this->_data[16] + 24], v2);\n  *(float *)&this->_data[280 * *(_DWORD *)&this->_data[16] + 284] = v3;\n  *(float *)&this->_data[280 * *(_DWORD *)&this->_data[16] + 288] = v4;\n  *(_DWORD *)&this->_data[280 * *(_DWORD *)&this->_data[16] + 20] = 1;\n  *(_DWORD *)&this->_data[280 * *(_DWORD *)&this->_data[16] + 296] = 1103101952;\n  *(_DWORD *)&this->_data[280 * *(_DWORD *)&this->_data[16] + 280] = v5;\n  result = *(_DWORD *)&this->_data[16] + 1;\n  *(_DWORD *)&this->_data[16] = result;\n  return result;\n}\n"
-}

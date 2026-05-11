@@ -1,7 +1,0 @@
-{
-  "name": "RoleSystem::GetDirection",
-  "address": "0x00419A80",
-  "size_bytes": 81,
-  "signature": "int __thiscall(RoleSystem *this, float *pOut)",
-  "decompiled_c": "int __thiscall RoleSystem::GetDirection(RoleSystem *this, float *pOut)\n{\n  int result; // eax\n  gbMatrix4 v4; // [esp+8h] [ebp-4Ch] BYREF\n  float v5; // [esp+4Ch] [ebp-8h]\n\n  *pOut = *((float *)this + 40);\n  pOut[1] = *((float *)this + 41);\n  pOut[2] = *((float *)this + 42);\n  gbMatrix4::gbMatrix4(&v4);\n  result = Actor::PlayAction((char *)this + 680, (int)&v4);\n  pOut[1] = v5 + pOut[1];\n  return result;\n}\n"
-}

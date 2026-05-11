@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CB0C0",
-  "address": "0x004CB0C0",
-  "size_bytes": 101,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall sub_4CB0C0(int this)\n{\n  int v1; // edi\n  int v2; // ebx\n  int result; // eax\n  int v4; // esi\n  int v5; // edx\n  double v6; // st6\n  float *v7; // eax\n  int v8; // [esp+8h] [ebp-4h]\n\n  v1 = 0;\n  v2 = 0;\n  result = *(_DWORD *)(this + 116) + 1;\n  if ( result > 0 )\n  {\n    do\n    {\n      v4 = 0;\n      v8 = 0;\n      if ( *(_DWORD *)(this + 112) + 1 > 0 )\n      {\n        v5 = 12 * v1;\n        do\n        {\n          v6 = (double)v8;\n          ++v4;\n          ++v1;\n          v8 = v4;\n          v7 = (float *)(*(_DWORD *)(this + 52) + v5 + 4);\n          v5 += 12;\n          *v7 = sin(*(float *)(this + 140) * *(float *)(this + 16) + v6) * *(float *)(this + 136) + *v7;\n          result = *(_DWORD *)(this + 112) + 1;\n        }\n        while ( v4 < result );\n      }\n      ++v2;\n    }\n    while ( v2 < *(_DWORD *)(this + 116) + 1 );\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "UIStatic::OnMessage",
-  "address": "0x00440BA0",
-  "size_bytes": 52,
-  "signature": "int __thiscall(UIStatic **this)",
-  "decompiled_c": "int __thiscall UIStatic::OnMessage(UIStatic **this)\n{\n  gbRefObject **v2; // esi\n  int v3; // ebx\n  int result; // eax\n\n  v2 = (gbRefObject **)(this + 21);\n  v3 = 2;\n  do\n  {\n    if ( *v2 )\n    {\n      gbRefObject::Release(*v2);\n      *v2 = 0;\n    }\n    ++v2;\n    --v3;\n  }\n  while ( v3 );\n  UIWnd::UpdateChildren((UIWnd *)this);\n  return result;\n}\n"
-}

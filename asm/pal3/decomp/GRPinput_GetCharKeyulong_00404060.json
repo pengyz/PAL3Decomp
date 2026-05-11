@@ -1,7 +1,0 @@
-{
-  "name": "GRPinput::GetCharKey(ulong)",
-  "address": "0x00404060",
-  "size_bytes": 235,
-  "signature": "int __thiscall(GRPinput *this)",
-  "decompiled_c": "int __thiscall GRPinput::GetCharKey(GRPinput *this)\n{\n  char *v2; // ebx\n  GRPinput **v3; // edi\n  GRPinput *v4; // ebp\n  int result; // eax\n  int v6; // [esp+10h] [ebp-18h]\n\n  v2 = &this->_data[44];\n  v3 = (GRPinput **)&this->_data[44];\n  v6 = 4;\n  do\n  {\n    v4 = *v3;\n    if ( *v3 )\n    {\n      GRPinput::GetCharKey(*v3);\n      operator delete(v4);\n    }\n    ++v3;\n    --v6;\n  }\n  while ( v6 );\n  *(_DWORD *)v2 = 0;\n  *((_DWORD *)v2 + 1) = 0;\n  *((_DWORD *)v2 + 2) = 0;\n  *((_DWORD *)v2 + 3) = 0;\n  *(_DWORD *)&this->_data[40] = 0;\n  *(_DWORD *)&this->_data[32] = *(_DWORD *)&this->_data[28];\n  operator delete(*(void **)&this->_data[28]);\n  result = 0;\n  *(_DWORD *)&this->_data[28] = 0;\n  *(_DWORD *)&this->_data[32] = 0;\n  *(_DWORD *)&this->_data[36] = 0;\n  return result;\n}\n"
-}

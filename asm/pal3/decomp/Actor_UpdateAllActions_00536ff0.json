@@ -1,7 +1,0 @@
-{
-  "name": "Actor::UpdateAllActions",
-  "address": "0x00536FF0",
-  "size_bytes": 109,
-  "signature": "int __thiscall(void *this)",
-  "decompiled_c": "int __thiscall Actor::UpdateAllActions(void *this)\n{\n  unsigned int i; // edi\n  int v3; // eax\n  int result; // eax\n  _DWORD *v5; // esi\n\n  for ( i = 0; ; ++i )\n  {\n    v3 = *((_DWORD *)this + 1);\n    if ( !v3 || i >= (*((_DWORD *)this + 2) - v3) >> 2 )\n      break;\n    gbActorMgr::DestroyActor((gbActorMgr *)dword_BFDA64, *(struct gbActor **)(v3 + 4 * i));\n  }\n  result = *((_DWORD *)this + 2);\n  *((_DWORD *)this + 2) = *((_DWORD *)this + 1);\n  *((_DWORD *)this + 4) = 0;\n  v5 = (char *)this + 540;\n  *v5 = 0;\n  v5[1] = 0;\n  return result;\n}\n"
-}

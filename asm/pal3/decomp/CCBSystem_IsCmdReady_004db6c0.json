@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::IsCmdReady",
-  "address": "0x004DB6C0",
-  "size_bytes": 21,
-  "signature": "bool __thiscall(CCBSystem *this, int idx)",
-  "decompiled_c": "bool __thiscall CCBSystem::IsCmdReady(CCBSystem *this, int idx)\n{\n  return *((_DWORD *)&this->m_pEffectSimple + 10 * idx) >= 11500;\n}\n"
-}

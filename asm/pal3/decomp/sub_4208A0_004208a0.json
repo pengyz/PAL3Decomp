@@ -1,7 +1,0 @@
-{
-  "name": "sub_4208A0",
-  "address": "0x004208A0",
-  "size_bytes": 74,
-  "signature": "int __thiscall(int this)",
-  "decompiled_c": "int __thiscall sub_4208A0(int this)\n{\n  gbRefObject *v2; // ecx\n  int result; // eax\n\n  v2 = *(gbRefObject **)(this + 52);\n  if ( v2 )\n  {\n    gbRefObject::Release(v2);\n    *(_DWORD *)(this + 52) = 0;\n  }\n  gbImage2D::Release((gbImage2D *)(this + 56));\n  sub_4202F0(this);\n  result = 0;\n  *(_DWORD *)(this + 256) = 0;\n  memset((void *)(this + 261), 0, 0x80u);\n  *(_BYTE *)(this + 260) = 0;\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_529C80",
-  "address": "0x00529C80",
-  "size_bytes": 103,
-  "signature": "void __thiscall(_DWORD *this)",
-  "decompiled_c": "void __thiscall sub_529C80(_DWORD *this)\n{\n  struct gbColorQuad *v1; // [esp-10h] [ebp-58h]\n  int v2; // [esp-Ch] [ebp-54h]\n  int v3; // [esp+0h] [ebp-48h] BYREF\n  struct gbTextureArray v4; // [esp+4h] [ebp-44h] BYREF\n\n  if ( this[547] )\n  {\n    *(_DWORD *)v4._data = this[547];\n    *(_DWORD *)&v4._data[64] = 1;\n    *(_WORD *)((char *)&v3 + 1) = -1;\n    LOBYTE(v3) = -1;\n    v2 = this[549];\n    v1 = (struct gbColorQuad *)this[548];\n    HIBYTE(v3) = 62;\n    UIRenderQuad(0, 0, 800, 600, v1, v2, &v3, &v4);\n  }\n}\n"
-}

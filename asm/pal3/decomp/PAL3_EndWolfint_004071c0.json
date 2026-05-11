@@ -1,7 +1,0 @@
-{
-  "name": "PAL3::EndWolf(int)",
-  "address": "0x004071C0",
-  "size_bytes": 259,
-  "signature": "void __cdecl(int a1)",
-  "decompiled_c": "void __cdecl PAL3::EndWolf(int a1)\n{\n  __int8 *v1; // esi\n  void (__thiscall ***v2)(_DWORD, int); // eax\n  int *v3; // eax\n  int *v4; // eax\n  int *v5; // [esp-4h] [ebp-18h]\n  int *v6; // [esp-4h] [ebp-18h]\n  _DWORD v7[5]; // [esp+0h] [ebp-14h]\n  void *retaddr; // [esp+14h] [ebp+0h]\n\n  v1 = &g_SceneMgr._midRegion[1264];\n  do\n  {\n    sub_4181E0((int)(v1 - 1264));\n    *(_DWORD *)v1 = 2;\n    v1 += 8704;\n  }\n  while ( (int)v1 < (int)&g_SceneMgr.m_szUIString[280] );\n  if ( dword_BFDA2C )\n  {\n    v7[0] = 0;\n    if ( a1 == -1 )\n      dword_BFDA30 = (int)PalScriptMgr::Destroy(0x5Fu, v7[0]);\n    else\n      dword_BFDA30 = (int)PalScriptMgr::Destroy(0x60u, v7[0]);\n  }\n  else\n  {\n    dword_BFDA6C = 2;\n    v2 = (void (__thiscall ***)(_DWORD, int))CGameData::SetMode(&dword_DB9FD0, 0);\n    (**v2)(v2, 1);\n    if ( retaddr == (void *)-1 )\n    {\n      v6 = PalScriptMgr::Destroy(0x61u, 0);\n      v4 = sub_53D150();\n      sub_53D1A0((PtrArray *)v4, 0, (int)v6);\n    }\n    else\n    {\n      v5 = PalScriptMgr::Destroy(0x62u, 0);\n      v3 = sub_53D150();\n      sub_53D1A0((PtrArray *)v3, 0, (int)v5);\n      if ( (unsigned int)dword_BFDA44 < 4 )\n      {\n        v7[0] = 80015;\n        v7[1] = 83012;\n        v7[2] = 8153;\n        v7[3] = 8154;\n        sub_42BEF0(v7[dword_BFDA44]);\n      }\n      ++dword_BFDA44;\n    }\n  }\n}\n"
-}

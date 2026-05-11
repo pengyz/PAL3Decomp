@@ -1,7 +1,0 @@
-{
-  "name": "CCBUI::DoTask(void)",
-  "address": "0x0051A390",
-  "size_bytes": 30,
-  "signature": "stdiobuf *__thiscall(CCBUI *Block, char a2)",
-  "decompiled_c": "stdiobuf *__thiscall CCBUI::DoTask(CCBUI *Block, char a2)\n{\n  UIWnd::~UIWnd((UIListBox *)Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return (stdiobuf *)Block;\n}\n"
-}

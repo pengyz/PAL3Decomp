@@ -1,7 +1,0 @@
-{
-  "name": "sub_53CEF0",
-  "address": "0x0053CEF0",
-  "size_bytes": 61,
-  "signature": "char *__thiscall(char *ArgList, const char *a2, const char *a3, int a4)",
-  "decompiled_c": "// likely CCBLineupWindow method (near CCBLineupWindow, RefreshFacePos, Reset, SetFaceLin)\nchar *__thiscall sub_53CEF0(char *ArgList, const char *a2, const char *a3, int a4)\n{\n  ArgList[1023] = 0;\n  _snprintf(ArgList, 0x400u, \"%s(%d):%s\", a3, a4, a2);\n  sub_53D030(\"_Exception: %s\\r\\n\", ArgList);\n  return ArgList;\n}\n"
-}

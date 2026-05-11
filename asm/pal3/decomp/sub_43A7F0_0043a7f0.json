@@ -1,7 +1,0 @@
-{
-  "name": "sub_43A7F0",
-  "address": "0x0043A7F0",
-  "size_bytes": 30,
-  "signature": "std::ios_base *__thiscall(std::ios_base *Block, char a2)",
-  "decompiled_c": "std::ios_base *__thiscall sub_43A7F0(std::ios_base *Block, char a2)\n{\n  UIScene::Destroy2(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return Block;\n}\n"
-}

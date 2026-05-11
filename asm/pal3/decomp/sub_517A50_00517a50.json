@@ -1,7 +1,0 @@
-{
-  "name": "sub_517A50",
-  "address": "0x00517A50",
-  "size_bytes": 104,
-  "signature": "void __thiscall(CCBAIWindow *this)",
-  "decompiled_c": "// likely CCBAIWindow method (near Reset, Destroy, Update, CCBAIWindow, ShowWindow, O)\nvoid __thiscall sub_517A50(CCBAIWindow *this)\n{\n  CCBUI **v2; // esi\n  CCBUI *v3; // ecx\n  int v4; // [esp+8h] [ebp-10h] BYREF\n  int v5; // [esp+Ch] [ebp-Ch]\n  int v6; // [esp+10h] [ebp-8h]\n  int v7; // [esp+14h] [ebp-4h]\n\n  v2 = (CCBUI **)&this[4]._tail[43];\n  if ( CCBAIWindow::Destroy(this, (UIListBox **)&this[4]._tail[43]) )\n  {\n    v5 = 0;\n    v6 = 0;\n    v3 = *v2;\n    v4 = 10;\n    v6 = 266;\n    v5 = 225;\n    v7 = 481;\n    CCBUI::CreateImbibeNimbus(v3, &v4, (int)this);\n    (**(void (__thiscall ***)(CCBUI *, _DWORD))(*v2)->_data)(*v2, 0);\n  }\n}\n"
-}

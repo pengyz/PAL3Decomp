@@ -1,7 +1,0 @@
-{
-  "name": "CEffectSystem::DestroyEffect(int)",
-  "address": "0x004C6370",
-  "size_bytes": 114,
-  "signature": "CEffectSystem *__thiscall(CEffectSystem *this)",
-  "decompiled_c": "CEffectSystem *__thiscall CEffectSystem::DestroyEffect(CEffectSystem *this)\n{\n  *(_DWORD *)&this->_data[48] = -1;\n  *(_DWORD *)&this->_data[44] = 0;\n  `eh vector constructor iterator'(\n    &this->_data[60],\n    0x60u,\n    8,\n    gbTexture_D3D::gbTexture_D3D,\n    gbTexture_D3D::~gbTexture_D3D);\n  *(_DWORD *)&this[2]._data[144] = 0;\n  *(_DWORD *)&this->_data[52] = 0;\n  *(_DWORD *)&this->_data[56] = 0;\n  this->_data[4] = 0;\n  this->_data[5] = 0;\n  *(_DWORD *)&this->_data[8] = 0;\n  *(_DWORD *)&this[2]._data[140] = 0;\n  *(_DWORD *)&this->_data[28] = 0;\n  *(_DWORD *)&this->_data[32] = 1061158912;\n  *(_DWORD *)&this->_data[36] = 1065353216;\n  *(_DWORD *)&this->_data[40] = 0;\n  *(_DWORD *)&this->_data[12] = 0;\n  *(_DWORD *)&this->_data[24] = 0;\n  *(_DWORD *)&this->_data[20] = 1145569280;\n  *(_DWORD *)&this->_data[16] = 1142292480;\n  return this;\n}\n"
-}

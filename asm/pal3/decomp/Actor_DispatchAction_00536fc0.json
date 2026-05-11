@@ -1,7 +1,0 @@
-{
-  "name": "Actor::DispatchAction",
-  "address": "0x00536FC0",
-  "size_bytes": 16,
-  "signature": "int __thiscall(void *this, int actionId)",
-  "decompiled_c": "int __thiscall Actor::DispatchAction(void *this, int actionId)\n{\n  return (*(int (__thiscall **)(_DWORD, int))(**((_DWORD **)this + 4) + 16))(*((_DWORD *)this + 4), actionId);\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "sub_436280",
-  "address": "0x00436280",
-  "size_bytes": 66,
-  "signature": "float *()",
-  "decompiled_c": "float *sub_436280()\n{\n  char *String; // esi\n  float *result; // eax\n  float *v2; // edi\n  float v3; // [esp+0h] [ebp-10h]\n\n  String = PalScript::GetString();\n  result = (float *)PalScript::GetString();\n  v2 = result;\n  if ( String && result )\n  {\n    result = (float *)sub_434BD0(*((_WORD *)String + 2));\n    if ( result )\n    {\n      v3 = (double)*((int *)v2 + 1) + result[2172];\n      return (float *)sub_416620((int)result, v3, 1);\n    }\n  }\n  return result;\n}\n"
-}

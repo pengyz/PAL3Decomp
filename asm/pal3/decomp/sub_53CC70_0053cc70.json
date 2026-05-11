@@ -1,7 +1,0 @@
-{
-  "name": "sub_53CC70",
-  "address": "0x0053CC70",
-  "size_bytes": 128,
-  "signature": "char *(char *a1, char *Format, ...)",
-  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nchar *sub_53CC70(char *a1, char *Format, ...)\n{\n  char *result; // eax\n  va_list ArgList; // [esp+1Ch] [ebp+Ch] BYREF\n\n  va_start(ArgList, Format);\n  vsprintf(Source, Format, ArgList);\n  memcpy(a1 + 4756, a1 + 4856, 0x640u);\n  strncpy(a1 + 6356, Source, 0x63u);\n  result = 0;\n  if ( (int)(strlen(Source) - 99) > 0 )\n  {\n    memcpy(a1 + 4756, a1 + 4856, 0x640u);\n    return strncpy(a1 + 6356, byte_17B1D23, 0x63u);\n  }\n  return result;\n}\n"
-}

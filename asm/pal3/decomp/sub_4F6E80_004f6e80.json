@@ -1,7 +1,0 @@
-{
-  "name": "sub_4F6E80",
-  "address": "0x004F6E80",
-  "size_bytes": 301,
-  "signature": "char __thiscall(_DWORD *this, _DWORD *a2)",
-  "decompiled_c": "// likely PAL_GDB method (near GDB_GetItemNum, GDB_GetComboID, GDB_GetRoleNum, GD)\nchar __thiscall sub_4F6E80(_DWORD *this, _DWORD *a2)\n{\n  unsigned int v3; // edx\n  int v4; // esi\n  int v5; // eax\n  _DWORD *j; // edx\n  int v7; // eax\n  int v8; // ebx\n  int v9; // esi\n  _DWORD *v10; // edi\n  int v11; // eax\n  int v12; // ecx\n  _DWORD *i; // eax\n  int v14; // [esp+18h] [ebp+4h]\n\n  if ( *a2 != 262 )\n  {\n    v3 = a2[2];\n    v4 = 0;\n    if ( v3 > 4 )\n    {\n      v11 = PAL_GDB::~PAL_GDB((PAL_GDB *)dword_975ED8, this[223 * v3 + 138]);\n      v12 = 0;\n      for ( i = (_DWORD *)(v11 + 760); *i != a2[1]; ++i )\n      {\n        if ( ++v12 >= 4 )\n          return 0;\n      }\n    }\n    else if ( *a2 == 260 )\n    {\n      v5 = 223 * v3;\n      for ( j = &this[223 * v3 + 178]; *j != a2[1] || !*((_BYTE *)&this[v5 + 184] + v4); ++j )\n      {\n        if ( ++v4 >= 6 )\n          return 0;\n      }\n    }\n    else\n    {\n      v7 = a2[1];\n      v14 = 0;\n      v8 = 936;\nLABEL_11:\n      v9 = 0;\n      v10 = &this[223 * v3 + 186 + v14];\n      while ( *v10 != v7 || !*((_BYTE *)&this[223 * v3] + v9 + v8) )\n      {\n        ++v9;\n        ++v10;\n        if ( v9 >= 8 )\n        {\n          v8 += 8;\n          v14 += 8;\n          if ( v8 < 984 )\n            goto LABEL_11;\n          return 0;\n        }\n      }\n    }\n  }\n  return 1;\n}\n"
-}

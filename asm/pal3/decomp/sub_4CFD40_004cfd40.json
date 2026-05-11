@@ -1,7 +1,0 @@
-{
-  "name": "sub_4CFD40",
-  "address": "0x004CFD40",
-  "size_bytes": 210,
-  "signature": "int __fastcall(_DWORD *a1)",
-  "decompiled_c": "// likely CEffCylinder method (near InitDefaultUVSet, ProcCommonTask, Destroy, CreateT)\nint __fastcall sub_4CFD40(_DWORD *a1)\n{\n  _DWORD *v2; // edi\n  _DWORD *v3; // esi\n  int result; // eax\n  int v5; // ebx\n  int v6; // edi\n\n  v2 = a1 + 3;\n  *a1 = &off_56F9DC;\n  a1[3] = &off_56F9D0;\n  sub_4D0A60(a1);\n  v3 = a1 != 0 ? v2 : 0;\n  *v3 = &off_56FA18;\n  result = v3[7];\n  if ( result || *(a1 != 0 ? v2 + 8 : (_DWORD *)32) )\n  {\n    v5 = 0;\n    if ( result > 0 )\n    {\n      v6 = 0;\n      do\n      {\n        operator delete(*(void **)(v3[3] + v6));\n        ++v5;\n        *(_DWORD *)(v3[3] + v6) = 0;\n        v6 += 152;\n      }\n      while ( v5 < v3[7] );\n    }\n    operator delete((void *)v3[3]);\n    result = 0;\n    v3[3] = 0;\n    v3[7] = 0;\n    v3[8] = 0;\n    *a1 = &off_56F62C;\n  }\n  else\n  {\n    *a1 = &off_56F62C;\n  }\n  return result;\n}\n"
-}

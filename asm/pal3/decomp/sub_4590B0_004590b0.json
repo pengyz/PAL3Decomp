@@ -1,7 +1,0 @@
-{
-  "name": "sub_4590B0",
-  "address": "0x004590B0",
-  "size_bytes": 31,
-  "signature": "int *()",
-  "decompiled_c": "int *sub_4590B0()\n{\n  int *result; // eax\n  int v1; // ecx\n\n  result = dword_DE3448;\n  v1 = 6;\n  do\n  {\n    *(result - 2) = 0xFFFF;\n    *(result - 1) = 0;\n    *result = 0;\n    result += 3;\n    --v1;\n  }\n  while ( v1 );\n  return result;\n}\n"
-}

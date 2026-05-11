@@ -1,7 +1,0 @@
-{
-  "name": "std_out_of_range_ctor",
-  "address": "0x00542017",
-  "size_bytes": 24,
-  "signature": "exception *__thiscall(exception *this, struct exception *a2)",
-  "decompiled_c": "exception *__thiscall std_out_of_range_ctor(exception *this, struct exception *a2)\n{\n  std_logic_error_ctor1(this, a2);\n  this->_m_what = (char *)&std::out_of_range::`vftable';\n  return this;\n}\n"
-}

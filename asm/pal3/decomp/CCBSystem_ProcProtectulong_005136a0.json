@@ -1,7 +1,0 @@
-{
-  "name": "CCBSystem::ProcProtect(ulong)",
-  "address": "0x005136A0",
-  "size_bytes": 37,
-  "signature": "int __thiscall(CCBSystem *this)",
-  "decompiled_c": "int __thiscall CCBSystem::ProcProtect(CCBSystem *this)\n{\n  unsigned int v1; // eax\n\n  v1 = *(_DWORD *)&this->_rest[52] + 1;\n  *(_DWORD *)&this->_rest[52] = v1;\n  if ( v1 >= 0x7FFFFFFF )\n    *(_DWORD *)&this->_rest[52] = 1;\n  return *(_DWORD *)&this->_rest[52];\n}\n"
-}

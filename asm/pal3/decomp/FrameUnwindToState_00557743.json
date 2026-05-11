@@ -1,7 +1,0 @@
-{
-  "name": "___FrameUnwindToState",
-  "address": "0x00557743",
-  "size_bytes": 158,
-  "signature": "void __cdecl(int a1, int a2, int a3, int a4)",
-  "decompiled_c": "void __cdecl __FrameUnwindToState(int a1, int a2, int a3, int a4)\n{\n  EXCEPTION_POINTERS *v4; // ecx\n  int i; // esi\n  int v6; // eax\n\n  for ( i = *(_DWORD *)(a1 + 8); i != a4; i = *(_DWORD *)(*(_DWORD *)(a3 + 8) + 8 * i) )\n  {\n    if ( i <= -1 || i >= *(_DWORD *)(a3 + 4) )\n      sub_557CA2(v4);\n    v6 = *(_DWORD *)(*(_DWORD *)(a3 + 8) + 8 * i + 4);\n    if ( v6 )\n      _CallSettingFrame(v6, a1, 259);\n  }\n  *(_DWORD *)(a1 + 8) = i;\n}\n"
-}

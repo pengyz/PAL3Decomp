@@ -1,7 +1,0 @@
-{
-  "name": "CCCTData::Init(void)",
-  "address": "0x005061A0",
-  "size_bytes": 185,
-  "signature": "void __thiscall(CCCTData *this)",
-  "decompiled_c": "void __thiscall CCCTData::Init(CCCTData *this)\n{\n  int v2; // edx\n  int v3; // ebp\n  CEffectSystem *v4; // ecx\n  char *v5; // edi\n\n  v2 = *(_DWORD *)&this[104]._tail[3799];\n  v3 = *(_DWORD *)&this[104]._tail[3803];\n  v4 = *(CEffectSystem **)&this[100]._tail[200 * v2 + 151 + 4 * v3];\n  if ( v4 == (CEffectSystem *)-1 )\n    v5 = 0;\n  else\n    v5 = &this->_pad_000[204 * (_DWORD)v4];\n  if ( v5[22] )\n  {\n    *(_DWORD *)&this[104]._tail[3803] = v3 + 1;\n    if ( *(_DWORD *)&this[104]._tail[3803] >= CCBStageCam::IsEditorCamValid((CCBStageCam *)this, v2) )\n    {\n      this[104]._tail[3779] = 0;\n      *(_DWORD *)&this[104]._tail[3803] = -1;\n      *(_DWORD *)&this[104]._tail[3799] = -1;\n    }\n  }\n  else\n  {\n    if ( v5[100] )\n      *((_BYTE *)CEffectSystem::DestroyAllEffect(v4) + 5) = 1;\n    else\n      *((_BYTE *)CEffectSystem::DestroyAllEffect(v4) + 5) = 0;\n    if ( v5[92] )\n      sub_506340((int)this);\n    if ( v5[93] )\n      CCCTData::InsertTaskToList(this);\n    if ( v5[94] )\n      CCCTData::SwapTask(this);\n  }\n}\n"
-}

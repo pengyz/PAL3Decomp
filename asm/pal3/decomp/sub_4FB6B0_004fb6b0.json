@@ -1,7 +1,0 @@
-{
-  "name": "sub_4FB6B0",
-  "address": "0x004FB6B0",
-  "size_bytes": 131,
-  "signature": "int __stdcall(int a1)",
-  "decompiled_c": "// likely CCBAI method (near DemandChecker, CastBFAAttackMagic, CastAttackBigMa)\nint __stdcall sub_4FB6B0(int a1)\n{\n  int result; // eax\n\n  if ( a1 != 7711 )\n    return a1;\n  ++g_nRandCallCount;\n  g_RandSeed = 214013 * g_RandSeed + 2531011;\n  switch ( ((g_RandSeed >> 16) & 0x7FFF) % 5 )\n  {\n    case 0:\n      result = 207;\n      break;\n    case 1:\n      result = 215;\n      break;\n    case 2:\n      result = 232;\n      break;\n    case 3:\n      result = 224;\n      break;\n    case 4:\n      result = 240;\n      break;\n    default:\n      return a1;\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "C3DSpark::DestroyAll(void)",
-  "address": "0x004D6BA0",
-  "size_bytes": 28,
-  "signature": "_BYTE *__thiscall(C3DSpark *this)",
-  "decompiled_c": "_BYTE *__thiscall C3DSpark::DestroyAll(C3DSpark *this)\n{\n  _BYTE *result; // eax\n  int v2; // edx\n\n  result = &this->_data[53];\n  v2 = 128;\n  do\n  {\n    *result = 0;\n    result += 56;\n    --v2;\n  }\n  while ( v2 );\n  *(_DWORD *)&this->_data[7168] = 0;\n  return result;\n}\n"
-}

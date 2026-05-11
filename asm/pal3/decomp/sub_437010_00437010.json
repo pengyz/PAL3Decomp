@@ -1,7 +1,0 @@
-{
-  "name": "sub_437010",
-  "address": "0x00437010",
-  "size_bytes": 38,
-  "signature": "char()",
-  "decompiled_c": "char sub_437010()\n{\n  char *String; // eax\n  char v2; // [esp-4h] [ebp-4h]\n\n  String = PalScript::GetString();\n  if ( String )\n  {\n    v2 = *((_DWORD *)String + 1) != 0;\n    CGameData::SetMode(&dword_DB9FD0, 5);\n    LOBYTE(String) = sub_4A4770(v2);\n  }\n  return (char)String;\n}\n"
-}

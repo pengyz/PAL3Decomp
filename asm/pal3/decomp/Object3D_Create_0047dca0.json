@@ -1,7 +1,0 @@
-{
-  "name": "Object3D::Create",
-  "address": "0x0047DCA0",
-  "size_bytes": 189,
-  "signature": "int __thiscall(Object3D *this)",
-  "decompiled_c": "int __thiscall Object3D::Create(Object3D *this)\n{\n  UIListBox::UIListBox((UIListBox *)this);\n  LODWORD(this->m_dropx) = &off_56A9C0;\n  this->m_dropy = 0.0;\n  LODWORD(this->m_pitch) = 800;\n  LODWORD(this->m_roll) = 600;\n  this[2].m_dropx = 0.0;\n  LOBYTE(this[2].m_dropy) = 0;\n  sub_444F60(&this[2].m_dropz);\n  UIFrameWnd::UIFrameWnd((UIFrameWnd *)&this[3].m_forward.z);\n  `eh vector constructor iterator'(\n    (char *)&this[4].m_forward.y,\n    0x158u,\n    5,\n    (void (__thiscall *)(void *))UIScene::_UIScene,\n    (void (__thiscall *)(void *))UIScene::Destroy2);\n  UIItem::Refresh(&this[15].m_forward.z);\n  *(_DWORD *)&this->m_isLoadObj = &off_56B8A4;\n  LODWORD(this->m_dropx) = &off_56B898;\n  return (int)this;\n}\n"
-}

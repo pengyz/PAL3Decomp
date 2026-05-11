@@ -1,7 +1,0 @@
-{
-  "name": "CEffectSystem::DestroyAllEffect(void)",
-  "address": "0x004C6410",
-  "size_bytes": 51,
-  "signature": "int *__thiscall(CEffectSystem *this)",
-  "decompiled_c": "int *__thiscall CEffectSystem::DestroyAllEffect(CEffectSystem *this)\n{\n  if ( (byte_DE96F4 & 1) == 0 )\n  {\n    byte_DE96F4 |= 1u;\n    CEffectSystem::DestroyEffect((CEffectSystem *)dword_DE93B0);\n    atexit(unknown_libname_160);\n  }\n  return dword_DE93B0;\n}\n"
-}

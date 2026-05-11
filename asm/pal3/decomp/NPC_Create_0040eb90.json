@@ -1,7 +1,0 @@
-{
-  "name": "NPC::Create",
-  "address": "0x0040EB90",
-  "size_bytes": 143,
-  "signature": "unsigned int __cdecl(int index)",
-  "decompiled_c": "unsigned int __cdecl NPC::Create(int index)\n{\n  int v2; // ebp\n  __int8 *v3; // edx\n  unsigned int result; // eax\n  signed int v5; // ebx\n  int v6; // edi\n  int RoleNum; // eax\n  int v8; // ecx\n  int indexa; // [esp+14h] [ebp+4h]\n\n  v2 = 0;\n  v3 = &g_SceneMgr.m_slot1[1408 * index - 984];\n  memset(&g_SceneMgr.m_slot1[1408 * index - 1008], 0, 0x18u);\n  *(_DWORD *)v3 = 0;\n  *((_WORD *)v3 + 2) = 0;\n  result = Concurrency::details::VirtualProcessor::GetExecutionResourceId((Concurrency::details::VirtualProcessor *)dword_975ED8);\n  v5 = 0;\n  for ( indexa = result; v5 < indexa; ++v5 )\n  {\n    v6 = sub_479100(dword_975ED8, v5);\n    RoleNum = PAL_GDB::GDB_GetRoleNum((PAL_GDB *)dword_975ED8, v6);\n    if ( *(_BYTE *)(index + RoleNum + 572) )\n    {\n      if ( !*(_BYTE *)(RoleNum + 4) )\n      {\n        v8 = v2 + 352 * index;\n        ++v2;\n        *(_DWORD *)&g_SceneMgr.m_slot1[4 * v8 - 1008] = v6;\n      }\n    }\n    result = indexa;\n  }\n  return result;\n}\n"
-}

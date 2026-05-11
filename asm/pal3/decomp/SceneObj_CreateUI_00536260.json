@@ -1,7 +1,0 @@
-{
-  "name": "SceneObj::CreateUI",
-  "address": "0x00536260",
-  "size_bytes": 144,
-  "signature": "int __thiscall(void *this)",
-  "decompiled_c": "int __thiscall SceneObj::CreateUI(void *this)\n{\n  UIListBox::UIListBox((UIListBox *)this);\n  UIItem::Refresh((char *)this + 360);\n  UIItem::Refresh((char *)this + 1728);\n  sub_43F7F0((UIWnd *)((char *)this + 3096));\n  UIFrameWnd::UIFrameWnd((UIFrameWnd *)((char *)this + 3340));\n  *(_DWORD *)this = &off_5708E8;\n  Actor::ResetState(this);\n  *((_BYTE *)this + 3492) = 1;\n  return (int)this;\n}\n"
-}

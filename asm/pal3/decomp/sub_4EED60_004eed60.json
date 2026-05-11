@@ -1,7 +1,0 @@
-{
-  "name": "sub_4EED60",
-  "address": "0x004EED60",
-  "size_bytes": 243,
-  "signature": "char __thiscall(int this, int roleIdx)",
-  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nchar __thiscall sub_4EED60(int this, int roleIdx)\n{\n  int v3; // eax\n  char result; // al\n  int v5; // esi\n  int v6; // esi\n\n  v3 = *(_DWORD *)(this + 636);\n  if ( !v3 )\n    return 0;\n  if ( v3 != roleIdx )\n    return 0;\n  result = CCBRoleState::IsRoleAlive((CCBRoleState *)this, 0);\n  if ( result )\n  {\n    v5 = CCBRoleState::SetRoleField((CCBRoleState *)this, 0, 1) / 2;\n    if ( CCBRoleState::SetRoleField((CCBRoleState *)this, 0, 0) >= v5 )\n    {\n      v6 = CCBRoleState::SetRoleField((CCBRoleState *)this, roleIdx, 1) / 10;\n      if ( CCBRoleState::SetRoleField((CCBRoleState *)this, roleIdx, 0) <= v6 )\n      {\n        if ( *(_DWORD *)(this + 1136) == 6 )\n        {\n          result = CCBStageRole::ForceDelTaskByPFN(*(CCBStageRole **)(*(_DWORD *)(this + 524) + 24));\n          if ( result )\n          {\n            result = CCBStageRole::ForceEndTaskByPFN(*(CCBStageRole **)(*(_DWORD *)(this + 524) + 24));\n            if ( result )\n              return CCBStageRole::ForceEndTaskByPFN(*(CCBStageRole **)(*(_DWORD *)(this + 524) + 4 * roleIdx + 24));\n          }\n        }\n        else\n        {\n          return 0;\n        }\n      }\n      else\n      {\n        return 0;\n      }\n    }\n    else\n    {\n      return 0;\n    }\n  }\n  return result;\n}\n"
-}

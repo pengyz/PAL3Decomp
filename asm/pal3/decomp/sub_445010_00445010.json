@@ -1,7 +1,0 @@
-{
-  "name": "sub_445010",
-  "address": "0x00445010",
-  "size_bytes": 139,
-  "signature": "void __thiscall(std::ios_base *this)",
-  "decompiled_c": "// likely std method (near _Eos, do_always_noconv, _Freeze, max_size, _Xran, )\nvoid __thiscall sub_445010(std::ios_base *this)\n{\n  unsigned int Stdstr; // eax\n  _BYTE *v3; // ecx\n  char v4; // al\n\n  this->_State = (int)&off_56AEA4;\n  j_UIWnd::MoveWindow(&this[2]._Wide);\n  Stdstr = this[1]._Stdstr;\n  if ( Stdstr )\n  {\n    v3 = (_BYTE *)(Stdstr - 1);\n    v4 = *(_BYTE *)(Stdstr - 1);\n    if ( !v4 || v4 == -1 )\n      operator delete(v3);\n    else\n      *v3 = v4 - 1;\n  }\n  this[1]._Stdstr = 0;\n  this[1]._Index = 0;\n  *(_DWORD *)&this[1]._Sync = 0;\n  UIWnd::_UIWnd(this);\n}\n"
-}

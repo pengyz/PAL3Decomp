@@ -1,7 +1,0 @@
-{
-  "name": "UIWnd::GetRect",
-  "address": "0x00445FA0",
-  "size_bytes": 52,
-  "signature": "int __thiscall(UIWnd *this, _DWORD *a2)",
-  "decompiled_c": "int __thiscall UIWnd::GetRect(UIWnd *this, _DWORD *a2)\n{\n  int result; // eax\n\n  result = (int)&this->m_wndcolor.Blue;\n  *(_DWORD *)&this->m_wndcolor.Blue = *a2;\n  this->m_wndcolor.Color = a2[1];\n  this->m_id = a2[2];\n  this->m_rect.left = a2[3];\n  if ( this )\n    return (*(int (__thiscall **)(UIWnd *, int, _DWORD, _DWORD))(this->m_fontcolor.ColorQuadFmt + 24))(this, 1022, 0, 0);\n  return result;\n}\n"
-}

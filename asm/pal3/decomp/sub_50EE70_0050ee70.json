@@ -1,7 +1,0 @@
-{
-  "name": "sub_50EE70",
-  "address": "0x0050EE70",
-  "size_bytes": 230,
-  "signature": "int __thiscall(void *this, int a2)",
-  "decompiled_c": "// likely CCBStageRole method (near GetOBBox, ProcPursueRole, Grab, SetVisible, SetAli)\nint __thiscall sub_50EE70(void *this, int a2)\n{\n  if ( *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 506) )\n  {\n    if ( !CCBRoleState::IsRoleAlive(*((CCBRoleState **)this + 1), *((_DWORD *)this + 71))\n      || a2 == *((_DWORD *)this + 1661) )\n    {\n      CCBStageRole::ClearBadPushTask((CCBStageRole *)this, 0.0099999998);\n      *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 505) = 1;\n      if ( !CCBRoleState::IsRoleAlive(*((CCBRoleState **)this + 1), *((_DWORD *)this + 71)) )\n        *((_BYTE *)this + 272) = 0;\n    }\n    return 0;\n  }\n  else\n  {\n    CCBStageRole::ClearBadPushTask((CCBStageRole *)this, 0.25);\n    if ( *((_DWORD *)this + 1642) == 44 )\n    {\n      (*(void (__thiscall **)(_DWORD, _DWORD))(**(_DWORD **)(*((_DWORD *)this + 73) + 16) + 24))(\n        *(_DWORD *)(*((_DWORD *)this + 73) + 16),\n        0);\n    }\n    else if ( CCBStageRole::IsActive(*((CCBStageRole **)this + 1), *((_DWORD *)this + 71)) )\n    {\n      *((_DWORD *)this + 1642) = 44;\n      CCBStageRole::GetPointerPos((CCBStageRole *)this);\n    }\n    *((_BYTE *)this + 96 * *((_DWORD *)this + 99) + 506) = 1;\n    nullsub_3(this);\n    return 0;\n  }\n}\n"
-}

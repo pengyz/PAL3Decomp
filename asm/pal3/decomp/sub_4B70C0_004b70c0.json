@@ -1,7 +1,0 @@
-{
-  "name": "sub_4B70C0",
-  "address": "0x004B70C0",
-  "size_bytes": 329,
-  "signature": "_DWORD *__stdcall(int a1)",
-  "decompiled_c": "_DWORD *__stdcall sub_4B70C0(int a1)\n{\n  _DWORD *result; // eax\n  _DWORD *v2; // eax\n  char *v3; // eax\n  _DWORD *v4; // eax\n  _DWORD *v5; // eax\n  _DWORD *v6; // eax\n\n  result = 0;\n  switch ( a1 )\n  {\n    case 0:\n      v2 = (_DWORD *)operator new(0x60u);\n      if ( !v2 )\n        goto LABEL_12;\n      result = sub_4BD830(v2);\n      break;\n    case 1:\n      v3 = (char *)operator new(0x58DC0u);\n      if ( !v3 )\n        goto LABEL_12;\n      result = sub_4BEE60(v3);\n      break;\n    case 2:\n      v4 = (_DWORD *)operator new(0x424u);\n      if ( !v4 )\n        goto LABEL_12;\n      result = sub_4B7C30(v4);\n      break;\n    case 3:\n      v5 = (_DWORD *)operator new(0xF8u);\n      if ( !v5 )\n        goto LABEL_12;\n      result = sub_4B74A0(v5);\n      break;\n    case 4:\n      v6 = (_DWORD *)operator new(0x74u);\n      if ( v6 )\n        result = sub_4B72E0(v6);\n      else\nLABEL_12:\n        result = 0;\n      break;\n    default:\n      return result;\n  }\n  return result;\n}\n"
-}

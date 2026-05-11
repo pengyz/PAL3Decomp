@@ -1,7 +1,0 @@
-{
-  "name": "ScriptSystem::Cleanup",
-  "address": "0x0040C790",
-  "size_bytes": 56,
-  "signature": "int __cdecl()",
-  "decompiled_c": "int __cdecl ScriptSystem::Cleanup()\n{\n  int i; // esi\n  void (__thiscall ***v1)(void *, int); // ecx\n  int result; // eax\n\n  for ( i = 0; i < stru_BFDB80.m_nSize; ++i )\n  {\n    v1 = (void (__thiscall ***)(void *, int))stru_BFDB80.m_pData[i];\n    if ( v1 )\n      (**v1)(v1, 1);\n  }\n  sub_4326A0((int)&stru_BFDB80, 0, -1);\n  return result;\n}\n"
-}

@@ -1,8 +1,0 @@
-#pragma once
-// Auto-generated: IMPORT_OBJECT_TYPE enum
-
-enum IMPORT_OBJECT_TYPE {
-    IMPORT_OBJECT_CODE = 0,
-    IMPORT_OBJECT_DATA = 1,
-    IMPORT_OBJECT_CONST = 2,
-};

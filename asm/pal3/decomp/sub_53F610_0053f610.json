@@ -1,7 +1,0 @@
-{
-  "name": "sub_53F610",
-  "address": "0x0053F610",
-  "size_bytes": 98,
-  "signature": "int __stdcall(char *String)",
-  "decompiled_c": "int __stdcall sub_53F610(char *String)\n{\n  int v1; // ebx\n  char *v2; // eax\n  char *v3; // esi\n\n  v1 = 0;\n  v2 = strtok(String, Delimiter);\n  if ( !lstrcmpA(v2, aEndfile) )\n    return 0;\n  do\n  {\n    v3 = strtok(0, Delimiter);\n    if ( !lstrcmpA(v3, aEnd) )\n      ++v1;\n  }\n  while ( lstrcmpA(v3, aEndfile) );\n  return v1;\n}\n"
-}

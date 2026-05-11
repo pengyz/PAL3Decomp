@@ -1,7 +1,0 @@
-{
-  "name": "sub_429F90",
-  "address": "0x00429F90",
-  "size_bytes": 122,
-  "signature": "void __thiscall(float *this, gbMatrix4 *a2, struct gbVec3D *a3)",
-  "decompiled_c": "void __thiscall sub_429F90(float *this, gbMatrix4 *a2, struct gbVec3D *a3)\n{\n  gbMatrix4 v4; // [esp+14h] [ebp-40h] BYREF\n\n  sub_429DB0((int)this, (int)a2);\n  gbMatrix4::gbMatrix4(&v4);\n  gbMatrix4::LoadIdentity(&v4);\n  gbMatrix4::SetAxisAngle(&v4, GB_AXIS_X, this[140]);\n  gbMatrix4::RightMultiply(a2, &v4);\n  gbMatrix4::SetAxisAngle(&v4, GB_AXIS_Y, this[56]);\n  gbMatrix4::RightMultiply(a2, &v4);\n  gbMatrix4::RightTranslate(a2, a3);\n}\n"
-}

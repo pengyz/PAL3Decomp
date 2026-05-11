@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::IsAllEnemyDead(bool)",
-  "address": "0x004EF6C0",
-  "size_bytes": 78,
-  "signature": "_DWORD *__thiscall(CCBRoleState *this, int a2, int *a3, int *a4)",
-  "decompiled_c": "_DWORD *__thiscall CCBRoleState::IsAllEnemyDead(CCBRoleState *this, int a2, int *a3, int *a4)\n{\n  int RoleNum; // eax\n  int v5; // ecx\n  _DWORD *result; // eax\n\n  RoleNum = PAL_GDB::GDB_GetRoleNum((PAL_GDB *)dword_975ED8, a2);\n  v5 = 1;\n  result = (_DWORD *)(RoleNum + 8);\n  *a4 = 0;\n  *a3 = 0;\n  do\n  {\n    if ( *result == 1 )\n    {\n      if ( *a3 )\n        *a4 = v5;\n      else\n        *a3 = v5;\n    }\n    ++result;\n    ++v5;\n  }\n  while ( v5 - 1 <= 4 );\n  return result;\n}\n"
-}

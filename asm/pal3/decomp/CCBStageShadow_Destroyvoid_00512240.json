@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageShadow::Destroy(void)",
-  "address": "0x00512240",
-  "size_bytes": 110,
-  "signature": "float *__thiscall(CCBStageShadow *this)",
-  "decompiled_c": "float *__thiscall CCBStageShadow::Destroy(CCBStageShadow *this)\n{\n  float *v1; // edx\n  float *result; // eax\n  int v3; // esi\n  double v4; // st7\n  float v5; // [esp+8h] [ebp-1Ch]\n\n  v1 = (float *)&this->_data[1512];\n  result = (float *)&this->_data[24];\n  v3 = 11;\n  do\n  {\n    v4 = *v1;\n    v5 = -v4;\n    *(result - 2) = v5;\n    *(result - 1) = 0.5;\n    ++v1;\n    *result = v4;\n    result[2] = 0.5;\n    result[1] = v4;\n    result[3] = v4;\n    result[5] = 0.5;\n    result += 17;\n    --v3;\n    *(result - 13) = v4;\n    *(result - 11) = v5;\n    *(result - 10) = v5;\n    *(result - 9) = 0.5;\n    *(result - 8) = v5;\n  }\n  while ( v3 );\n  return result;\n}\n"
-}

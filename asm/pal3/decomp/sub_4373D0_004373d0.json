@@ -1,7 +1,0 @@
-{
-  "name": "sub_4373D0",
-  "address": "0x004373D0",
-  "size_bytes": 110,
-  "signature": "void()",
-  "decompiled_c": "// likely PAL3 method (near HasCommandLineParam, EndHideFight, ~PAL3, StartWol)\nvoid sub_4373D0()\n{\n  int v0; // esi\n  char *String; // eax\n  _DWORD *v2; // eax\n  _DWORD *v3; // eax\n  unsigned int v4[12]; // [esp+4h] [ebp-30h] BYREF\n\n  v0 = 0;\n  while ( 1 )\n  {\n    String = PalScript::GetString();\n    v4[v0 + 6] = (unsigned int)String;\n    if ( !String )\n      break;\n    v4[v0++] = *((_DWORD *)String + 1);\n    if ( v0 >= 6 )\n    {\n      byte_C11750 = 1;\n      PAL3::StartCombat(v4, 0, 0, 1);\n      v2 = (_DWORD *)operator new(0xCu);\n      if ( v2 )\n      {\n        v3 = sub_434CA0(v2, 6);\n        sub_434C40((int)v3);\n      }\n      else\n      {\n        sub_434C40(0);\n      }\n      return;\n    }\n  }\n}\n"
-}

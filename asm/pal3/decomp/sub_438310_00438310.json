@@ -1,7 +1,0 @@
-{
-  "name": "sub_438310",
-  "address": "0x00438310",
-  "size_bytes": 61,
-  "signature": "void()",
-  "decompiled_c": "void sub_438310()\n{\n  char *String; // esi\n  char *v1; // eax\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  if ( String )\n  {\n    if ( v1 )\n    {\n      sub_41CFC0(g_GameData, dword_BFDA68, *((_DWORD *)String + 1), *((_DWORD *)v1 + 1));\n      sub_434C40((int)g_GameData);\n    }\n  }\n}\n"
-}

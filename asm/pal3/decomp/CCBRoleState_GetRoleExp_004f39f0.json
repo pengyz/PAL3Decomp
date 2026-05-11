@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::GetRoleExp",
-  "address": "0x004F39F0",
-  "size_bytes": 56,
-  "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
-  "decompiled_c": "int __thiscall CCBRoleState::GetRoleExp(CCBRoleState *this, int roleIdx)\n{\n  int result; // eax\n  int i; // edx\n  int v4; // [esp+10h] [ebp+8h]\n\n  result = 0;\n  for ( i = 0; i < 8; ++i )\n    result += (unsigned __int8)this->m_Role[roleIdx].bMagicMastered[8 * v4 + 4 + i];\n  return result;\n}\n"
-}

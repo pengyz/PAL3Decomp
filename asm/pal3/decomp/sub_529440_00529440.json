@@ -1,7 +1,0 @@
-{
-  "name": "sub_529440",
-  "address": "0x00529440",
-  "size_bytes": 113,
-  "signature": "int __thiscall(char *this, char *filename)",
-  "decompiled_c": "int __thiscall sub_529440(char *this, char *filename)\n{\n  PalScript *v3; // esi\n  int result; // eax\n  char *v5; // edi\n\n  v3 = (PalScript *)(this + 2900);\n  PalScript::LoadFromFile((PalScript *)(this + 2900), filename);\n  PalScript::SetDirectory(v3, aSec1);\n  result = PalScript::HasNext(v3);\n  if ( result )\n  {\n    v5 = this + 3424;\n    do\n    {\n      result = _strcmpi(off_58B448, (const char *)v3);\n      if ( !result )\n        break;\n      PalScript::LoadNext(v3);\n      strncpy(v5, (const char *)v3, 0x100u);\n      v5 += 256;\n      result = PalScript::HasNext(v3);\n    }\n    while ( result );\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "CEffSParticle::CreateTask(tagEffTaskParam *)",
-  "address": "0x004D5860",
-  "size_bytes": 8,
-  "signature": "char *__thiscall(CEffSParticle *this, char a2)",
-  "decompiled_c": "char *__thiscall CEffSParticle::CreateTask(CEffSParticle *this, char a2)\n{\n  char *v2; // esi\n\n  v2 = &this[-1]._tail[36];\n  CEffSParticle::~CEffSParticle((CEffSParticle *)((char *)this - 12));\n  if ( (a2 & 1) != 0 )\n    operator delete(v2);\n  return v2;\n}\n"
-}

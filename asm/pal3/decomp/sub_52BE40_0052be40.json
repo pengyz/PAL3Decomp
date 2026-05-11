@@ -1,7 +1,0 @@
-{
-  "name": "sub_52BE40",
-  "address": "0x0052BE40",
-  "size_bytes": 105,
-  "signature": "int __thiscall(char *this)",
-  "decompiled_c": "int __thiscall sub_52BE40(char *this)\n{\n  PalScript *v2; // esi\n  int result; // eax\n\n  v2 = (PalScript *)(this + 352);\n  PalScript::LoadFromFile((PalScript *)(this + 352), aSubgameEncampm_5);\n  PalScript::SetDirectory(v2, aSec1);\n  for ( result = PalScript::HasNext(v2); result; result = PalScript::HasNext(v2) )\n  {\n    result = _strcmpi(off_58B448, (const char *)v2);\n    if ( !result )\n      break;\n    PalScript::LoadNext(v2);\n    strncpy(this + 876, (const char *)v2, 0x100u);\n  }\n  return result;\n}\n"
-}

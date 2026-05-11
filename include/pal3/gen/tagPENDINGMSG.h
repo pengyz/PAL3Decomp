@@ -1,8 +1,0 @@
-#pragma once
-// Auto-generated: tagPENDINGMSG enum
-
-enum tagPENDINGMSG {
-    PENDINGMSG_CANCELCALL = 0,
-    PENDINGMSG_WAITNOPROCESS = 1,
-    PENDINGMSG_WAITDEFPROCESS = 2,
-};

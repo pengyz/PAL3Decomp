@@ -1,7 +1,0 @@
-{
-  "name": "sub_43F6A0",
-  "address": "0x0043F6A0",
-  "size_bytes": 45,
-  "signature": "unsigned int __thiscall(UIWnd *this, unsigned int a2, int a3)",
-  "decompiled_c": "unsigned int __thiscall sub_43F6A0(UIWnd *this, unsigned int a2, int a3)\n{\n  unsigned int result; // eax\n\n  *(_DWORD *)(this[14].m_bfocus + 4 * a2) = a3;\n  result = UIWnd::CreateChild(this);\n  if ( a2 == result )\n    return sub_43F6D0(this, a2);\n  return result;\n}\n"
-}

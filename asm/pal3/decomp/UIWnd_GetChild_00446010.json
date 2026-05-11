@@ -1,7 +1,0 @@
-{
-  "name": "UIWnd::GetChild",
-  "address": "0x00446010",
-  "size_bytes": 12,
-  "signature": "int __thiscall(UIWnd *this, int id)",
-  "decompiled_c": "int __thiscall UIWnd::GetChild(UIWnd *this, int id)\n{\n  int result; // eax\n\n  result = id;\n  *(_DWORD *)&this->m_fontcolor.Blue = *(_DWORD *)id;\n  return result;\n}\n"
-}

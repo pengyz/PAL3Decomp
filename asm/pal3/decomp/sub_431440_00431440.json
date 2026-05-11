@@ -1,7 +1,0 @@
-{
-  "name": "sub_431440",
-  "address": "0x00431440",
-  "size_bytes": 81,
-  "signature": "_DWORD *__thiscall(void *this)",
-  "decompiled_c": "_DWORD *__thiscall sub_431440(void *this)\n{\n  _DWORD *v1; // eax\n  _DWORD *result; // eax\n  _DWORD *v3; // edx\n\n  v1 = *(_DWORD **)this;\n  if ( *(_DWORD *)(*(_DWORD *)this + 44) || *(_DWORD **)(v1[1] + 4) != v1 )\n  {\n    v3 = (_DWORD *)*v1;\n    if ( (void *)*v1 == dword_D8C2B0 )\n    {\n      for ( result = (_DWORD *)v1[1]; *(_DWORD *)this == *result; result = (_DWORD *)result[1] )\n        *(_DWORD *)this = result;\n      *(_DWORD *)this = result;\n    }\n    else\n    {\n      for ( result = (_DWORD *)v3[2]; result != dword_D8C2B0; result = (_DWORD *)result[2] )\n        v3 = result;\n      *(_DWORD *)this = v3;\n    }\n  }\n  else\n  {\n    result = (_DWORD *)v1[2];\n    *(_DWORD *)this = result;\n  }\n  return result;\n}\n"
-}

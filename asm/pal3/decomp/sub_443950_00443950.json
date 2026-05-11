@@ -1,7 +1,0 @@
-{
-  "name": "sub_443950",
-  "address": "0x00443950",
-  "size_bytes": 24,
-  "signature": "int __thiscall(UIWnd *this)",
-  "decompiled_c": "int __thiscall sub_443950(UIWnd *this)\n{\n  int result; // eax\n\n  result = this->m_childs.m_nMaxSize;\n  if ( result )\n  {\n    sub_443A00(this);\n    return UIWnd::GetID(this);\n  }\n  return result;\n}\n"
-}

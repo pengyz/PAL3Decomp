@@ -1,7 +1,0 @@
-{
-  "name": "sub_53CB10",
-  "address": "0x0053CB10",
-  "size_bytes": 255,
-  "signature": "int __thiscall(int this, char a2)",
-  "decompiled_c": "int __thiscall sub_53CB10(int this, char a2)\n{\n  int result; // eax\n  unsigned int v4; // ecx\n  _BYTE *v5; // ebx\n  int v6; // ecx\n\n  if ( a2 == 96 )\n  {\n    result = *(_DWORD *)(this + 4644) == 0;\n    *(_DWORD *)(this + 4644) = result;\n  }\n  else\n  {\n    result = *(_DWORD *)(this + 4644);\n    if ( result )\n    {\n      switch ( a2 )\n      {\n        case 8:\n          result = 0;\n          v6 = strlen((const char *)(this + 4656));\n          if ( v6 >= 2 )\n          {\n            *(_BYTE *)(v6 + this + 4655) = 0;\n            *(_BYTE *)(v6 + this + 4654) = 95;\n          }\n          break;\n        case 13:\n          v5 = (_BYTE *)(this + 4656);\n          *(_BYTE *)(strlen((const char *)(this + 4656)) + this + 4655) = 0;\n          sub_53CC70((char *)this, off_6088D8, this + 4656);\n          sub_53CCF0(this);\n          result = 0;\n          memset(v5, 0, 0x64u);\n          *v5 = 95;\n          break;\n        case 27:\n          result = 0;\n          memset((void *)(this + 4656), 0, 0x64u);\n          *(_BYTE *)(this + 4656) = 95;\n          break;\n        default:\n          result = 0;\n          v4 = strlen((const char *)(this + 4656));\n          if ( v4 < 0x63 )\n          {\n            *(_BYTE *)(v4 + this + 4655) = a2;\n            *(_BYTE *)(v4 + this + 4656) = 95;\n          }\n          break;\n      }\n    }\n  }\n  return result;\n}\n"
-}

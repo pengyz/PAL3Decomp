@@ -1,7 +1,0 @@
-{
-  "name": "SceneMgr::Create",
-  "address": "0x004CDA10",
-  "size_bytes": 196,
-  "signature": "void *__thiscall(SceneMgr *this, int gfxMgr, int cam, int a4)",
-  "decompiled_c": "void *__thiscall SceneMgr::Create(SceneMgr *this, int gfxMgr, int cam, int a4)\n{\n  gbGfxManager *m_pGfxMgr; // eax\n  gbRenderEffect *v6; // eax\n  gbGfxManager *v7; // ecx\n  gbRenderEffect *v8; // eax\n  gbGfxManager *v9; // edx\n\n  this->m_pGfxMgr = (gbGfxManager *)gfxMgr;\n  this->m_pCamera = (gbCamera *)cam;\n  this->m_pAddEffect = 0;\n  this->m_pAlphaEffect = 0;\n  this->m_pSceneRoot = (gbSceneGraph *)a4;\n  memset(this->_preArray, 0, 0x900u);\n  memset(&this->m_slot1[276], 0, 0xA000u);\n  m_pGfxMgr = this->m_pGfxMgr;\n  this->m_lightDirX = 0.0;\n  this->m_lightDirY = 0.0;\n  this->m_lightDirZ = 0.0;\n  this->m_upX = 0.0;\n  this->m_upY = 1.0;\n  v6 = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)&m_pGfxMgr->_data[200], aGfxscriptAddit, 0);\n  v7 = this->m_pGfxMgr;\n  this->m_pAddEffect = v6;\n  v8 = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)&v7->_data[200], aGfxscriptAlpha, 0);\n  v9 = this->m_pGfxMgr;\n  this->m_pAlphaEffect = v8;\n  this->m_pAddEffect2 = gbEffectMgr::NewRenderEffect(*(gbEffectMgr **)&v9->_data[200], aGfxscriptAddit_0, 0);\n  this->m_pAlphaEffect2 = gbEffectMgr::NewRenderEffect(\n                            *(gbEffectMgr **)&this->m_pGfxMgr->_data[200],\n                            aGfxscriptAlpha_0,\n                            0);\n  sub_4CDED0(this);\n  CEffMgr::CEffMgr((CEffMgr *)this);\n  return this;\n}\n"
-}

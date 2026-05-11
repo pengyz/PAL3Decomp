@@ -1,7 +1,0 @@
-{
-  "name": "CMeteorChain::CMeteorChain(void)",
-  "address": "0x004CD0A0",
-  "size_bytes": 46,
-  "signature": "void __thiscall(void *this)",
-  "decompiled_c": "void __thiscall CMeteorChain::CMeteorChain(void *this)\n{\n  _DWORD *v2; // esi\n  void *v3; // eax\n\n  v2 = (_DWORD *)*((_DWORD *)this + 5);\n  while ( v2 )\n  {\n    v3 = v2;\n    v2 = (_DWORD *)v2[8];\n    operator delete(v3);\n  }\n  if ( *((_DWORD *)this + 1) )\n    operator delete(*((void **)this + 1));\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::InitRoleSpecEquipAttrib(int,int)",
-  "address": "0x004F0640",
-  "size_bytes": 116,
-  "signature": "void __thiscall(CCBRoleState *this, int a2)",
-  "decompiled_c": "void __thiscall CCBRoleState::InitRoleSpecEquipAttrib(CCBRoleState *this, int a2)\n{\n  unsigned int v2; // eax\n  int v3; // edx\n  __int32 *p_nHP; // eax\n\n  v2 = *(_DWORD *)(a2 + 12);\n  if ( v2 > 0xA )\n  {\n    v3 = 0;\n    p_nHP = &this->m_Role[0].nHP;\n    do\n    {\n      if ( *(_BYTE *)(a2 + v3 + 29) && *((_BYTE *)p_nHP - 11) && *p_nHP > 0 && !*((_BYTE *)p_nHP + 844) )\n        break;\n      ++v3;\n      p_nHP += 223;\n    }\n    while ( v3 < 11 );\n  }\n}\n"
-}

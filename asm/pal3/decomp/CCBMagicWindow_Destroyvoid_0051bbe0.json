@@ -1,7 +1,0 @@
-{
-  "name": "CCBMagicWindow::Destroy(void)",
-  "address": "0x0051BBE0",
-  "size_bytes": 30,
-  "signature": "stdiobuf *__thiscall(CCBMagicWindow *Block, char a2)",
-  "decompiled_c": "stdiobuf *__thiscall CCBMagicWindow::Destroy(CCBMagicWindow *Block, char a2)\n{\n  UIWnd::~UIWnd(Block);\n  if ( (a2 & 1) != 0 )\n    operator delete(Block);\n  return (stdiobuf *)Block;\n}\n"
-}

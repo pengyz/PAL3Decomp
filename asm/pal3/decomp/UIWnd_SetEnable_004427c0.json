@@ -1,7 +1,0 @@
-{
-  "name": "UIWnd::SetEnable",
-  "address": "0x004427C0",
-  "size_bytes": 205,
-  "signature": "void __thiscall(UIWnd *this, const char *a2, int a3)",
-  "decompiled_c": "void __thiscall UIWnd::SetEnable(UIWnd *this, const char *a2, int a3)\n{\n  unsigned __int8 *p_Blue; // ebp\n  unsigned int v4; // kr04_4\n  unsigned int v5; // ebx\n  int v6; // ecx\n  char v7; // al\n  unsigned int v8; // eax\n  int v9; // ecx\n  int v10; // [esp-8h] [ebp-14h]\n\n  if ( a2 )\n  {\n    p_Blue = &this[1].m_wndcolor.Blue;\n    v4 = strlen(a2) + 1;\n    v5 = v4 - 1;\n    if ( v4 - 1 > 0xFFFFFFFD )\n      std::_Xlen(v10);\n    v6 = *((_DWORD *)p_Blue + 1);\n    if ( v6 && (v7 = *(_BYTE *)(v6 - 1)) != 0 && v7 != -1 )\n    {\n      if ( v4 == 1 )\n      {\n        *(_BYTE *)(v6 - 1) = v7 - 1;\n        *((_DWORD *)p_Blue + 1) = 0;\n        *((_DWORD *)p_Blue + 2) = 0;\n        *((_DWORD *)p_Blue + 3) = 0;\n        goto LABEL_16;\n      }\n    }\n    else\n    {\n      if ( v4 == 1 )\n      {\n        std::string::_Tidy(p_Blue, 1);\n        goto LABEL_16;\n      }\n      v8 = *((_DWORD *)p_Blue + 3);\n      if ( v8 <= 0x1F && v8 >= v5 )\n      {\nLABEL_15:\n        qmemcpy(*((void **)p_Blue + 1), a2, v5);\n        v9 = *((_DWORD *)p_Blue + 1);\n        *((_DWORD *)p_Blue + 2) = v5;\n        *(_BYTE *)(v9 + v5) = 0;\nLABEL_16:\n        if ( a3 )\n          this->m_benable = 1;\n        else\n          this->m_benable = 0;\n        return;\n      }\n      std::string::_Tidy(p_Blue, 1);\n    }\n    GRPinput::GetKeyState((GRPinput *)p_Blue, v5);\n    goto LABEL_15;\n  }\n}\n"
-}

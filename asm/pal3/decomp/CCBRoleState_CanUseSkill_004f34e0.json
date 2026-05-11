@@ -1,7 +1,0 @@
-{
-  "name": "CCBRoleState::CanUseSkill",
-  "address": "0x004F34E0",
-  "size_bytes": 133,
-  "signature": "char __thiscall(CCBRoleState *this, int roleIdx)",
-  "decompiled_c": "char __thiscall CCBRoleState::CanUseSkill(CCBRoleState *this, int roleIdx)\n{\n  char result; // al\n  __int32 *p_nLove; // esi\n  bool v4; // sf\n  int *v5; // eax\n  int *v6; // eax\n  int v7; // [esp+Ch] [ebp+8h]\n\n  result = this->m_Role[0].bValid;\n  if ( result )\n  {\n    result = roleIdx;\n    if ( roleIdx != 4 )\n    {\n      p_nLove = &this->m_Role[roleIdx].nLove;\n      v4 = v7 < 0;\n      *p_nLove += v7;\n      if ( v7 > 0 )\n      {\n        v5 = sub_53DF70();\n        CScreenMode::AudioSetPosition(v5, aWa010, 1);\n        v4 = v7 < 0;\n      }\n      if ( v4 )\n      {\n        v6 = sub_53DF70();\n        CScreenMode::AudioSetPosition(v6, aWa048, 1);\n      }\n      if ( *p_nLove < 0 )\n        *p_nLove = 0;\n      if ( *p_nLove > 999 )\n        *p_nLove = 999;\n    }\n  }\n  return result;\n}\n"
-}

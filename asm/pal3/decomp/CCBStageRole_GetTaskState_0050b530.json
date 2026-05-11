@@ -1,7 +1,0 @@
-{
-  "name": "CCBStageRole::GetTaskState",
-  "address": "0x0050B530",
-  "size_bytes": 68,
-  "signature": "int __thiscall(CCBStageRole *this)",
-  "decompiled_c": "int __thiscall CCBStageRole::GetTaskState(CCBStageRole *this)\n{\n  int result; // eax\n  int v2; // edx\n  char *v3; // edi\n\n  result = *(_DWORD *)&this->_data[392];\n  if ( result )\n  {\n    if ( result > 0 )\n    {\n      v2 = *(_DWORD *)&this->_data[392];\n      v3 = &this->_data[96 * result + 416];\n      do\n      {\n        --v2;\n        qmemcpy(v3, v3 - 96, 0x60u);\n        v3 -= 96;\n      }\n      while ( v2 );\n    }\n    result = 0;\n    memset(&this->_data[416], 0, 0x60u);\n  }\n  return result;\n}\n"
-}

@@ -1,7 +1,0 @@
-{
-  "name": "GRPinput::UnacquireJoystick(void)",
-  "address": "0x00403470",
-  "size_bytes": 54,
-  "signature": "void __thiscall(GRPinput *this)",
-  "decompiled_c": "void __thiscall GRPinput::UnacquireJoystick(GRPinput *this)\n{\n  *(_DWORD *)&this->_data[128] = 0;\n  *(_DWORD *)&this->_data[132] = 0;\n  *(_DWORD *)&this->_data[136] = 0;\n  *(_DWORD *)&this->_data[140] = 0;\n  *(_DWORD *)&this->_data[144] = 0;\n  *(_DWORD *)&this->_data[148] = 0;\n  memset(this, 0, 0xA4u);\n}\n"
-}

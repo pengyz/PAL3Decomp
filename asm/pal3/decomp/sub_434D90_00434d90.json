@@ -1,7 +1,0 @@
-{
-  "name": "sub_434D90",
-  "address": "0x00434D90",
-  "size_bytes": 187,
-  "signature": "int *()",
-  "decompiled_c": "int *sub_434D90()\n{\n  char *String; // edi\n  char *v1; // ebx\n  int *result; // eax\n  int *v3; // ebp\n  int *v4; // esi\n\n  String = PalScript::GetString();\n  v1 = PalScript::GetString();\n  result = (int *)PalScript::GetString();\n  v3 = result;\n  if ( String )\n  {\n    if ( v1 )\n    {\n      if ( result )\n      {\n        result = (int *)sub_434BD0(*((_WORD *)String + 2));\n        v4 = result;\n        if ( result )\n        {\n          if ( result == dword_C020F8 )\n          {\n            if ( *(_DWORD *)&g_SceneMgr._midRegion[632] )\n            {\n              result[157] = *(_DWORD *)&g_SceneMgr._midRegion[628];\n            }\n            else if ( result[157] >= *(_DWORD *)(sub_4226F0() + 492772) )\n            {\n              v4[157] = 0;\n            }\n          }\n          if ( *((_DWORD *)String + 1) < 5u && sub_4164E0(v4) )\n            return (int *)sub_41AF50(v4, *((_DWORD *)v1 + 1), v3[1]);\n          else\n            return (int *)sub_4163B0(v4, *((_DWORD *)v1 + 1), v3[1]);\n        }\n      }\n    }\n  }\n  return result;\n}\n"
-}

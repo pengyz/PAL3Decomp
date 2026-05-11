@@ -1,7 +1,0 @@
-{
-  "name": "sub_4326A0",
-  "address": "0x004326A0",
-  "size_bytes": 208,
-  "signature": "void __thiscall(int this, int a2, int a3)",
-  "decompiled_c": "// likely PtrArray method (near SetSize, RemoveAt, SetAtGrow, Remove, InsertAt, Pt)\nvoid __thiscall sub_4326A0(int this, int a2, int a3)\n{\n  const void *v5; // eax\n  int v6; // eax\n  int v7; // eax\n  void *v8; // [esp+10h] [ebp+4h]\n  int v9; // [esp+14h] [ebp+8h]\n\n  if ( a3 > 0 )\n    *(_DWORD *)(this + 12) = a3;\n  v5 = *(const void **)this;\n  if ( a2 )\n  {\n    if ( v5 )\n    {\n      if ( a2 > *(_DWORD *)(this + 8) )\n      {\n        v9 = a2;\n        if ( a2 <= *(_DWORD *)(this + 12) + *(_DWORD *)(this + 4) )\n          v9 = *(_DWORD *)(this + 12) + *(_DWORD *)(this + 4);\n        v8 = malloc(4 * v9);\n        qmemcpy(v8, *(const void **)this, 4 * *(_DWORD *)(this + 4));\n        free(*(void **)this);\n        *(_DWORD *)(this + 4) = a2;\n        *(_DWORD *)this = v8;\n        *(_DWORD *)(this + 8) = v9;\n      }\n      else\n      {\n        *(_DWORD *)(this + 4) = a2;\n      }\n    }\n    else\n    {\n      v6 = *(_DWORD *)(this + 12);\n      *(_DWORD *)(this + 4) = a2;\n      v7 = a2 + v6;\n      *(_DWORD *)(this + 8) = v7;\n      *(_DWORD *)this = malloc(4 * v7);\n    }\n  }\n  else\n  {\n    if ( v5 )\n    {\n      free(*(void **)this);\n      *(_DWORD *)this = 0;\n    }\n    *(_DWORD *)(this + 8) = 0;\n    *(_DWORD *)(this + 4) = 0;\n  }\n}\n"
-}

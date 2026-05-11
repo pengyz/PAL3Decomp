@@ -1,7 +1,0 @@
-{
-  "name": "PAL3::PAL3(void)",
-  "address": "0x00404760",
-  "size_bytes": 131,
-  "signature": "PAL3 *__thiscall(PAL3 *this)",
-  "decompiled_c": "PAL3 *__thiscall PAL3::PAL3(PAL3 *this)\n{\n  int v1; // eax\n  PAL3 *result; // eax\n\n  memset(&dword_BFD6C8, 0, 0xB8u);\n  dword_5833B8 = 1;\n  PAL3::TestCombat();\n  dword_BFDA74 = 0;\n  dword_BFDA8C = 0;\n  byte_BFDA90 = 0;\n  v1 = dword_5833BC;\n  dword_A3A6EC = 0;\n  LOBYTE(v1) = dword_5833BC & 0xF4 | 3;\n  dword_5833BC = v1;\n  result = (PAL3 *)dword_8ACBF0;\n  dword_A3A6F0 = 0;\n  return result;\n}\n"
-}

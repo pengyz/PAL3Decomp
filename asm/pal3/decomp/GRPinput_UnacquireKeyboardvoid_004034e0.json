@@ -1,7 +1,0 @@
-{
-  "name": "GRPinput::UnacquireKeyboard(void)",
-  "address": "0x004034E0",
-  "size_bytes": 113,
-  "signature": "void __thiscall(GRPinput *this)",
-  "decompiled_c": "void __thiscall GRPinput::UnacquireKeyboard(GRPinput *this)\n{\n  GRPinput::Update(this);\n  `eh vector destructor iterator'(&this->_data[332], 0x10u, 2, (void (__thiscall *)(void *))GRPinput::AcquireJoystick);\n  `eh vector destructor iterator'(&this->_data[4], 0xA4u, 2, (void (__thiscall *)(void *))GRPinput::AcquireKeyboard);\n}\n"
-}

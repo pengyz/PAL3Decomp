@@ -1,7 +1,0 @@
-{
-  "name": "sub_52AA50",
-  "address": "0x0052AA50",
-  "size_bytes": 81,
-  "signature": "int __thiscall(_DWORD *this)",
-  "decompiled_c": "int __thiscall sub_52AA50(_DWORD *this)\n{\n  *(_DWORD *)&g_SceneMgr.m_slot4[828] += this[407];\n  *(_DWORD *)&g_SceneMgr.m_slot0[340] -= this[312];\n  if ( *(int *)&g_SceneMgr.m_slot0[340] <= 0 )\n    *(_DWORD *)&g_SceneMgr.m_slot0[340] = 1;\n  if ( this[89] == 2 )\n    this[89] = 1;\n  return sub_44F610((int)&dword_DB9FD0, 0);\n}\n"
-}
