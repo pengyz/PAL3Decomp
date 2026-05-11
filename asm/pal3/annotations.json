@@ -8426,16 +8426,16 @@
       "signature": "int __thiscall UIListBox::Method_9870(int nParam)"
     },
     "0x00494D70": {
-      "name": "UICursor::Method_4d70",
-      "signature": "int __thiscall UICursor::Method_4d70(int nParam)"
+      "name": "UIInventory::HandleInput",
+      "signature": "void __thiscall UIInventory::HandleInput(int nInputID, int nParam)"
     },
     "0x004E7350": {
       "name": "CCBStageCam::Method_7350",
       "signature": "int __thiscall CCBStageCam::Method_7350(int nParam)"
     },
     "0x004DC250": {
-      "name": "CCBUI::Method_c250",
-      "signature": "int __thiscall CCBUI::Method_c250(int nParam)"
+      "name": "CCBUI::UpdatePanel",
+      "signature": "int __thiscall CCBUI::UpdatePanel(BOOL bRefresh)"
     },
     "0x00460A90": {
       "name": "PAL_GDB::Method_0a90",
@@ -8444,6 +8444,98 @@
     "0x004DC7A0": {
       "name": "CCBRoleState::Method_c7a0",
       "signature": "int __thiscall CCBRoleState::Method_c7a0(int nParam)"
+    },
+    "0x00552A20": {
+      "name": "CRT_abs_int",
+      "signature": "unsigned int __cdecl CRT_abs_int(int nValue)"
+    },
+    "0x0054212C": {
+      "name": "Float_AlmostEqual",
+      "signature": "BOOL __stdcall Float_AlmostEqual(float fA, float fB)"
+    },
+    "0x00521F30": {
+      "name": "CCBStageRole::DispatchUpdate_0",
+      "signature": "int __thiscall CCBStageRole::DispatchUpdate_0(unsigned char nFlag)"
+    },
+    "0x00521F70": {
+      "name": "CCBStageRole::DispatchUpdate_1",
+      "signature": "int __thiscall CCBStageRole::DispatchUpdate_1(unsigned char nFlag)"
+    },
+    "0x00521EF0": {
+      "name": "CCBStageRole::DispatchUpdate_2",
+      "signature": "int __thiscall CCBStageRole::DispatchUpdate_2(unsigned char nFlag)"
+    },
+    "0x00521E60": {
+      "name": "CCBStageRole::DispatchUpdate_3",
+      "signature": "int __thiscall CCBStageRole::DispatchUpdate_3(unsigned char nFlag)"
+    },
+    "0x00521EB0": {
+      "name": "CCBStageRole::DispatchUpdate_4",
+      "signature": "int __thiscall CCBStageRole::DispatchUpdate_4(unsigned char nFlag)"
+    },
+    "0x00423600": {
+      "name": "GetRoleDataOffset",
+      "signature": "int __cdecl GetRoleDataOffset(int nRoleIndex)"
+    },
+    "0x00412B60": {
+      "name": "RoleSystem::SetMoveTarget",
+      "signature": "void __thiscall RoleSystem::SetMoveTarget(float *pTargetPos, int nFlags)"
+    },
+    "0x00416550": {
+      "name": "RoleSystem::CalcDirection",
+      "signature": "void __thiscall RoleSystem::CalcDirection(float *pTargetPos, int nMode)"
+    },
+    "0x00429EE0": {
+      "name": "Object3D::SetTransform",
+      "signature": "void __thiscall Object3D::SetTransform(gbMatrix4 *pMatrix)"
+    },
+    "0x00537060": {
+      "name": "Object3D::GetVisNode",
+      "signature": "gbVisNode *__thiscall Object3D::GetVisNode(void)"
+    },
+    "0x0041CBF0": {
+      "name": "CameraCtrl::GetLerpPos",
+      "signature": "gbVec3D *__thiscall CameraCtrl::GetLerpPos(gbVec3D *pOut, float fFactor)"
+    },
+    "0x0043DC40": {
+      "name": "UIObj::SetPosition",
+      "signature": "void __thiscall UIObj::SetPosition(int nX, int nY)"
+    },
+    "0x00402220": {
+      "name": "GRPinput::Reset",
+      "signature": "void __thiscall GRPinput::Reset(void)"
+    },
+    "0x00445ED0": {
+      "name": "UIWnd::SetItemVisible",
+      "signature": "int __thiscall UIWnd::SetItemVisible(int nIndex, BOOL bVisible)"
+    },
+    "0x004BE1A0": {
+      "name": "ScreenEffectMgr::ProcessEffect",
+      "signature": "int __thiscall ScreenEffectMgr::ProcessEffect(int nEffectID)"
+    },
+    "0x004B4C60": {
+      "name": "RenderTarget::Render",
+      "signature": "void __thiscall RenderTarget::Render(int nX, int nY, int nWidth, int nHeight)"
+    },
+    "0x005541EE": {
+      "name": "CRT_set_new_handler",
+      "signature": "void __cdecl CRT_set_new_handler(int pfnHandler)"
+    },
+    "0x00456FC0": {
+      "name": "ReadRegistryString",
+      "signature": "BOOL __cdecl ReadRegistryString(const char *szSubKey, const char *szValueName, char *szOutBuf)"
+    },
+    "0x004BB260": {
+      "name": "RenderTarget::LoadFromFile",
+      "signature": "void __thiscall RenderTarget::LoadFromFile(gbVFile *pFile)"
+    },
+    "0x00416620": {
+      "name": "RoleSystem::UpdateMovement",
+      "signature": "int __thiscall RoleSystem::UpdateMovement(float fDeltaTime, int nMode)"
+    },
+    "0x0045A220": {
+      "name": "UIWnd::OnPaint",
+      "signature": "void __thiscall UIWnd::OnPaint(int nParam)"
     }
   },
   "globals": {
