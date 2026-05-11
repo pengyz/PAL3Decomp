@@ -1,6 +1,8 @@
 #pragma once
 // Auto-generated: RoleSystem
 
+class RoleAtt;
+
 class RoleSystem {
 public:
     char _gap_0000[4]; // +0x0
@@ -13,40 +15,65 @@ public:
     float m_fPosX; // +0xA0
     float m_fPosY; // +0xA4
     float m_fPosZ; // +0xA8
-    char _gap_00AC[456]; // +0xAC
+    char m_nFacing; // +0xAC
+    char m_nActionState; // +0xAD
+    char m_nAnimState; // +0xAE
+    char _gap_00AF[453]; // +0xAF
     int m_nState; // +0x274
-    char _gap_0278[596]; // +0x278
-    int _d4CC; // +0x4CC
-    int _d4D0; // +0x4D0
+    char _gap_0278[4]; // +0x278
+    int m_nBaseStats[12]; // +0x27C
+    char _gap_02AC[176]; // +0x2AC
+    RoleAtt * m_pEquipAtt0; // +0x35C
+    char _gap_0360[8]; // +0x360
+    RoleAtt * m_pEquipAtt1; // +0x368
+    char _gap_036C[8]; // +0x36C
+    RoleAtt * m_pEquipAtt2; // +0x374
+    char _gap_0378[8]; // +0x378
+    RoleAtt * m_pEquipAtt3; // +0x380
+    char _gap_0384[8]; // +0x384
+    RoleAtt * m_pEquipAtt4; // +0x38C
+    char _gap_0390[8]; // +0x390
+    RoleAtt * m_pSelfAtt; // +0x398
+    int m_nComputedStats[12]; // +0x39C
+    int m_nDisplayStats[12]; // +0x3CC
+    char _gap_03FC[208]; // +0x3FC
+    int m_nPathState; // +0x4CC
+    int m_nPathStep; // +0x4D0
     int _d4D4; // +0x4D4
-    int _d4D8; // +0x4D8
-    float _f4DC; // +0x4DC
-    int _d4E0; // +0x4E0
+    float m_fPathTargetX; // +0x4D8
+    float m_fPathTargetY; // +0x4DC
+    float m_fPathTargetZ; // +0x4E0
     float _f4E4; // +0x4E4
     int _d4E8; // +0x4E8
-    int _d4EC; // +0x4EC
-    int _d4F0; // +0x4F0
-    int _d4F4; // +0x4F4
+    int m_nPrevMoveMode; // +0x4EC
+    int m_nMoveMode; // +0x4F0
+    int m_nMoveSubMode; // +0x4F4
     char _gap_04F8[12]; // +0x4F8
     int m_nCoreState; // +0x504
-    int _d508; // +0x508
+    int m_nTransformState; // +0x508
     float _f50C; // +0x50C
-    float _f510; // +0x510
-    float _f514; // +0x514
-    float _f518; // +0x518
+    float m_fRotAxisX; // +0x510
+    float m_fRotAxisY; // +0x514
+    float m_fRotAxisZ; // +0x518
     int _d51C; // +0x51C
     int _d520; // +0x520
     char _gap_0524[28]; // +0x524
-    float _f540; // +0x540
+    float m_fRotAngle; // +0x540
     float _f544; // +0x544
     float _f548; // +0x548
     char _gap_054C[32]; // +0x54C
     int _d56C; // +0x56C
     int m_nRoleCount; // +0x570
-    char _gap_0574[68]; // +0x574
-    int _d5B8; // +0x5B8
-    char _gap_05BC[20]; // +0x5BC
-    int _d5D0; // +0x5D0
+    char _gap_0574[44]; // +0x574
+    int m_pRenderObj; // +0x5A0
+    char m_bRenderFlag1; // +0x5A4
+    char m_bRenderFlag2; // +0x5A5
+    char _gap_05A6[18]; // +0x5A6
+    int m_nRetryCount; // +0x5B8
+    char _gap_05BC[12]; // +0x5BC
+    float m_fMoveTargetX; // +0x5C8
+    float m_fMoveTargetY; // +0x5CC
+    float m_fMoveTargetZ; // +0x5D0
     char _end[7212]; // +0x5D4
     // total size: 0x2200 (8704)
 

@@ -176,8 +176,11 @@ struct gbGfxManager;
 struct gbSceneGraph;
 struct gbRenderEffect;
 struct gbCamera;
+struct gbGeomNode;
 struct RoleSystem;
 struct RoleAtt;
+struct CCBAI;
+struct PalScript;
 """
     idc.parse_decls(FWD, idc.PT_TYP)
 
@@ -246,7 +249,7 @@ struct SceneMgrSlot;
         (0x548, "float", "_f548"),
         (0x56C, "int", "_d56C"),
         (0x570, "int", "m_nRoleCount"),
-        (0x5A0, "int", "m_pRenderObj"),              # render object ptr (vtable+16 called)
+        (0x5A0, "gbGeomNode *", "m_pRenderObj"),      # render object (vtable+16 = Render)
         (0x5A4, "char", "m_bRenderFlag1"),          # render condition flag
         (0x5A5, "char", "m_bRenderFlag2"),          # render condition flag
         (0x5B8, "int", "m_nRetryCount"),            # incremented, reset to 0 (max 30)
@@ -266,7 +269,7 @@ struct SceneMgrSlot;
         (0x0A0, "CameraParam[25]", "m_Params", 400),   # 25*16=400
         (0x230, "CameraCmd[33]", "m_Cmds", 264),       # 33*8=264
         (0x338, "int", "m_nCurrentScene"),
-        (0x34C, "int", "m_pCameraScript"),
+        (0x34C, "PalScript *", "m_pCameraScript"),    # camera script object
         (0x350, "char[2]", "m_bCameraFlags"),
         (0x352, "char[4]", "m_nActiveCamera"),
     ])
@@ -283,7 +286,7 @@ struct SceneMgrSlot;
         (0x001C, "char[620]", "_preArray"),
         (0x0288, "SceneMgrSlot[4]", "m_slot", 5632),   # 4*1408
         (0x1888, "char[792]", "m_extraSlot"),
-        (0x1BA0, "int", "m_pCBRoleStateData"),
+        (0x1BA0, "CCBAI *", "m_pCombatAI"),           # used as CCBAI this (325 refs)
         (0x1BC8, "char[5]", "m_bGameFlags"),
         (0x1BD0, "RoleSystem[5]", "m_RoleSystem", 43520),  # 5*8704
         (0xC5D0, "CGameData *", "m_pGameData"),
