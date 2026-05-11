@@ -23947,8 +23947,8 @@
       "type": "int"
     },
     "0x00C05F58": {
-      "name": "g_ScriptSlotFlags",
-      "type": "char[8]"
+      "name": "g_bSlotValid",
+      "type": "unsigned char[5]"
     },
     "0x00BFDB84": {
       "name": "g_pScriptEventObj",
@@ -26105,13 +26105,18 @@
         },
         "132": {
           "name": "m_PlayerAtts",
-          "type": "char[6988]",
-          "source": "binary:from_0x84_to_RoleSystems_0x1BD0"
+          "type": "char[6980]",
+          "source": "binary:5_slots_stride_1408_overlaps_tail"
         },
         "7120": {
           "name": "m_RoleSystems",
           "type": "RoleSystem[5]",
           "source": "binary:Render_calls_RenderRole"
+        },
+        "7112": {
+          "name": "m_bSlotValid",
+          "type": "unsigned char[5]",
+          "source": "binary:RunWithDelay_byte_C05F58"
         }
       },
       "pdb_size": 1,
@@ -29605,6 +29610,11 @@
           "name": "nScriptCounter",
           "type": "int",
           "source": "binary:RunScript_0x4100A0"
+        },
+        "808": {
+          "name": "nScriptSpeed",
+          "type": "int",
+          "source": "binary:RunWithDelay_v5_minus_12"
         }
       },
       "pdb_size": 1408
