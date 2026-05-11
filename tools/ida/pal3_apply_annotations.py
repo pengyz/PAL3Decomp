@@ -28,21 +28,23 @@ ANNOTATIONS_FILE = os.path.join(PROJECT_ROOT, "asm", "pal3", "annotations.json")
 
 
 def build_struct_decl(name, struct_info):
-    """从 known_members + size 生成带 gap 填充的 C struct 声明。"""
+    """从 known_members + size 生成带 gap 填充的 C struct 声明。支持基类继承。"""
     members = struct_info.get("known_members", {})
-    size = struct_info.get("binary_size", 0)
+    size = struct_info.get("binary_size", struct_info.get("pdb_size", struct_info.get("gen_size", 0)))
+    base_class = struct_info.get("base_class")
+    base_size = struct_info.get("base_size", 0)
 
     if not members and not size:
         return None
 
-    # Sort members by offset
+    # Sort members by offset, skip base class region
     sorted_members = sorted(
-        [(int(off), info) for off, info in members.items()],
+        [(int(off), info) for off, info in members.items() if int(off) >= base_size],
         key=lambda x: x[0]
     )
 
     lines = []
-    cursor = 0
+    cursor = base_size  # start after base class
 
     for offset, info in sorted_members:
         mname = info["name"]
@@ -55,11 +57,40 @@ def build_struct_decl(name, struct_info):
 
         # Emit member
         # Clean type for IDA C parser
+        import re as _re
         clean_type = mtype.replace("class ", "").replace("struct ", "")
-        lines.append("    %s %s;" % (clean_type, mname))
+
+        # Handle array types: "Type *[N]" → "Type * name[N]", "Type[N]" → "Type name[N]"
+        arr_match = _re.search(r'(\[\d+\](?:\[\d+\])*)$', clean_type)
+        # Handle STL types → replace with char[estimated_size]
+        if 'std::' in clean_type or '::' in clean_type or '<' in clean_type:
+            # Calculate size to next member or use 16 as default
+            next_off = None
+            for no, _ in sorted_members:
+                if no > offset:
+                    next_off = no
+                    break
+            est_size = (next_off - offset) if next_off else 16
+            lines.append("    char %s[%d]; // %s" % (mname, est_size, mtype))
+            cursor = offset + est_size
+            continue
+        elif arr_match:
+            arr_part = arr_match.group(1)
+            base_type = clean_type[:arr_match.start()].rstrip()
+            lines.append("    %s %s%s;" % (base_type, mname, arr_part))
+        else:
+            lines.append("    %s %s;" % (clean_type, mname))
 
         # Estimate member size (pointers=4, double=8, float=4, int=4, char=1)
-        if "*" in mtype:
+        if arr_match:
+            # Parse array dimensions
+            dims = [int(x) for x in _re.findall(r'\[(\d+)\]', arr_match.group(1))]
+            elem_size = 4 if '*' in mtype else 4
+            msize = 1
+            for d in dims:
+                msize *= d
+            msize *= elem_size
+        elif "*" in mtype:
             msize = 4
         elif mtype == "double":
             msize = 8
@@ -80,10 +111,13 @@ def build_struct_decl(name, struct_info):
 
     if not lines:
         if size > 0:
+            if base_class:
+                return "struct %s : public %s { char _data[%d]; };" % (name, base_class, size - base_size)
             return "struct %s { char _data[%d]; };" % (name, size)
         return None
 
-    return "struct %s {\n%s\n};" % (name, "\n".join(lines))
+    inherit = " : public %s" % base_class if base_class else ""
+    return "struct %s%s {\n%s\n};" % (name, inherit, "\n".join(lines))
 
 
 def apply_annotations():
@@ -131,11 +165,30 @@ def apply_annotations():
 
     print("[2] Globals: named=%d/%d, typed=%d" % (g_named, len(globs), g_typed))
 
-    # --- 3. Structs (gap-filling build) ---
+    # --- 3. Structs (gap-filling build, base classes first) ---
     structs = data.get("structs", {})
     til = ida_typeinf.get_idati()
+
+    # Topological sort: base classes before derived
+    ordered = []
+    remaining = dict(structs)
+    done = set()
+    for _ in range(10):  # max depth
+        batch = []
+        for sname, sinfo in list(remaining.items()):
+            base = sinfo.get("base_class")
+            if not base or base in done or base not in remaining:
+                batch.append(sname)
+        for sname in batch:
+            ordered.append((sname, remaining.pop(sname)))
+            done.add(sname)
+        if not remaining:
+            break
+    ordered.extend(remaining.items())
+
     s_ok = 0
-    for sname, sinfo in structs.items():
+    s_fail = []
+    for sname, sinfo in ordered:
         decl = build_struct_decl(sname, sinfo)
         if not decl:
             continue
@@ -145,7 +198,11 @@ def apply_annotations():
             tinfo.set_named_type(til, sname, ida_typeinf.NTF_REPLACE)
             s_ok += 1
         else:
-            print("    [!] struct %s parse failed" % sname)
+            s_fail.append(sname)
+
+    if s_fail and len(s_fail) <= 10:
+        for sn in s_fail:
+            print("    [!] struct %s parse failed" % sn)
 
     print("[3] Structs: applied=%d/%d" % (s_ok, len(structs)))
 
