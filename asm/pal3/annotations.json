@@ -25199,6 +25199,1803 @@
         }
       },
       "pdb_size": 1
+    },
+    "RoleSystem": {
+      "known_members": {},
+      "note": "not in PDB, needs binary analysis"
+    },
+    "Actor": {
+      "pdb_size": 596,
+      "known_members": {
+        "0": {
+          "name": "m_actarray",
+          "type": "std::vector<gbActor *,std::allocator<gbActor *> >",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "16": {
+          "name": "m_pact",
+          "type": "gbActor *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "20": {
+          "name": "m_name",
+          "type": "char[260]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "280": {
+          "name": "m_szTexture",
+          "type": "char[260]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "540": {
+          "name": "m_dwMatMsg",
+          "type": "unsigned long[11]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "584": {
+          "name": "m_bChangedMat",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "585": {
+          "name": "m_curact",
+          "type": "char[8]",
+          "source": "pdb_verified_by_old_ida"
+        }
+      }
+    },
+    "EquipUI": {
+      "pdb_size": 120484,
+      "known_members": {
+        "72": {
+          "name": "bkWndX",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "76": {
+          "name": "bkWndY",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "80": {
+          "name": "buf",
+          "type": "char[256]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "336": {
+          "name": "m_SelNum",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "340": {
+          "name": "m_ListNum",
+          "type": "int *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "344": {
+          "name": "m_x",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "348": {
+          "name": "m_y",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "352": {
+          "name": "m_Sum",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "356": {
+          "name": "i",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "360": {
+          "name": "j",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "364": {
+          "name": "k",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "368": {
+          "name": "_isCreatable",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "372": {
+          "name": "_flashSpeed",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "376": {
+          "name": "m_EquipData",
+          "type": "st_Manager",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "17880": {
+          "name": "p_DealData",
+          "type": "PlayerItem *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "17884": {
+          "name": "m_TempData",
+          "type": "PlayerAtt[5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "25504": {
+          "name": "rc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "25520": {
+          "name": "m_Frame",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "25680": {
+          "name": "m_FrameBar",
+          "type": "UIFlexBar",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "25764": {
+          "name": "m_Flag",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "25924": {
+          "name": "m_OutFrameT",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "26084": {
+          "name": "m_OutFrameR",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "26244": {
+          "name": "m_OutFrameL",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "26404": {
+          "name": "m_OutFrameB",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "26564": {
+          "name": "m_ani",
+          "type": "UIAnimateCtrl",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "26728": {
+          "name": "m_Role",
+          "type": "UIStatic[5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27528": {
+          "name": "m_RoleRc",
+          "type": "tagRECT[5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27608": {
+          "name": "RoleX",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27612": {
+          "name": "RoleY",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27616": {
+          "name": "HeadW",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27620": {
+          "name": "HeadH",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27624": {
+          "name": "m_Is",
+          "type": "unsigned char[5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27632": {
+          "name": "m_Arrow",
+          "type": "UIStatic[8][6][5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "66032": {
+          "name": "m_ArrowNum",
+          "type": "UIStatic[8][2][5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "78832": {
+          "name": "m_ArrowRc",
+          "type": "tagRECT[8][6][5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "82672": {
+          "name": "m_IsArrow",
+          "type": "unsigned char[8][6][5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "82912": {
+          "name": "m_OldSelect",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "82916": {
+          "name": "m_IsMove",
+          "type": "unsigned char[8][6][5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "83156": {
+          "name": "m_AnimateRc",
+          "type": "tagRECT[8][6][5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "86996": {
+          "name": "m_ArrowMove",
+          "type": "UIAnimate[8][6][5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "99476": {
+          "name": "m_Icon",
+          "type": "UIStaticRM[6][5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "105116": {
+          "name": "m_Select",
+          "type": "UIStatic[6][5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "109916": {
+          "name": "m_IsControlEquip",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "109917": {
+          "name": "m_IsEquip",
+          "type": "unsigned char[6][5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "109947": {
+          "name": "m_IsMsg",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "109948": {
+          "name": "m_EquipingNum",
+          "type": "int *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "109952": {
+          "name": "m_Equiping",
+          "type": "int[6][5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "110072": {
+          "name": "m_UnEquipingNum",
+          "type": "int *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "110076": {
+          "name": "m_MaxNum",
+          "type": "int *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "110080": {
+          "name": "m_Adorn",
+          "type": "unsigned char[2][5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "110092": {
+          "name": "m_3DObj",
+          "type": "UI3DCtrl",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "110400": {
+          "name": "m_Msg",
+          "type": "MUIDialog",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "111784": {
+          "name": "m_TalkFrame",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "111944": {
+          "name": "m_Ready",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "112104": {
+          "name": "m_ReadyRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "112120": {
+          "name": "mb_EquipYes",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "112464": {
+          "name": "mb_EquipNo",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "112808": {
+          "name": "m_EquipTalk",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "112968": {
+          "name": "m_EquipRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "112984": {
+          "name": "m_ListFrame",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "113144": {
+          "name": "m_ListGrid",
+          "type": "UIStatic[14]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "115384": {
+          "name": "m_ScrollHB",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "115544": {
+          "name": "m_EquipFlag",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "115704": {
+          "name": "m_ListEquipTitle",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "115864": {
+          "name": "ml_ListEquip",
+          "type": "UIListBox",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "117152": {
+          "name": "ml_ListEquipRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "117168": {
+          "name": "m_btnGroup",
+          "type": "BtnGroup",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "117908": {
+          "name": "m_ctrlTime",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "117912": {
+          "name": "m_bCanUpdate1",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "117913": {
+          "name": "m_bCanUpdate2",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "117916": {
+          "name": "m_EquipRemarkBk",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "118076": {
+          "name": "m_EquipRemark",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "118236": {
+          "name": "m_EquipRemarkRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "118252": {
+          "name": "m_EquipAtt",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "118412": {
+          "name": "m_EquipAttRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "118428": {
+          "name": "m_MoneyRemark",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "118588": {
+          "name": "m_MoneyRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "118604": {
+          "name": "m_SumEquip",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "118764": {
+          "name": "m_SumRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "118780": {
+          "name": "mb_OK",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "119124": {
+          "name": "mb_OKRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "119140": {
+          "name": "m_IsDicker",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "119144": {
+          "name": "mb_Cancel",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "119488": {
+          "name": "mb_CancelRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "119504": {
+          "name": "mb_Exit",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "119848": {
+          "name": "mb_ExitRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "119864": {
+          "name": "m_TabBtn",
+          "type": "UITabBtn",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "119888": {
+          "name": "mb_DKRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "119904": {
+          "name": "haveRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "119920": {
+          "name": "m_isCancelTalk",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "119921": {
+          "name": "m_IsRefuse",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "119922": {
+          "name": "m_strIn",
+          "type": "char[256][2]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120434": {
+          "name": "m_IsTalk",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120436": {
+          "name": "m_TalkCount",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120440": {
+          "name": "m_talker",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120444": {
+          "name": "m_TalkFlag",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120448": {
+          "name": "m_bDK",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120452": {
+          "name": "m_DkNum",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120456": {
+          "name": "mb_DkFlag",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120460": {
+          "name": "m_DealID",
+          "type": "unsigned long *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120464": {
+          "name": "DealNum",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120468": {
+          "name": "curID",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120472": {
+          "name": "m_IsUse",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120473": {
+          "name": "m_IsDeal",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120476": {
+          "name": "pDealUI",
+          "type": "DealUI *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120480": {
+          "name": "m_isSetData",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        }
+      }
+    },
+    "PtrArray": {
+      "pdb_size": 16,
+      "known_members": {
+        "0": {
+          "name": "m_pData",
+          "type": "void * *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "4": {
+          "name": "m_nSize",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "8": {
+          "name": "m_nMaxSize",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "12": {
+          "name": "m_nGrowBy",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        }
+      }
+    },
+    "UIStatic": {
+      "pdb_size": 160,
+      "known_members": {
+        "68": {
+          "name": "m_bordersize",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "72": {
+          "name": "m_align",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "0": {
+          "name": "pDebugTex",
+          "type": "gbTexture *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "76": {
+          "name": "m_ratiow",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "80": {
+          "name": "m_ratioh",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "84": {
+          "name": "m_textx",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "88": {
+          "name": "m_texty",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "92": {
+          "name": "m_fonttype",
+          "type": "gbFontType",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "96": {
+          "name": "m_text",
+          "type": "std::basic_string<char,std::char_traits<char>,std::allocator<char> >",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "112": {
+          "name": "m_pbk",
+          "type": "gbTexture *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "116": {
+          "name": "m_pbkInfo",
+          "type": "_PlugInfo *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "120": {
+          "name": "m_ppic",
+          "type": "gbTexture *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "124": {
+          "name": "m_ppicInfo",
+          "type": "_PlugInfo *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "128": {
+          "name": "m_disablepic",
+          "type": "gbTexture *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "132": {
+          "name": "m_disablepicInfo",
+          "type": "_PlugInfo *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "136": {
+          "name": "m_pbk2",
+          "type": "gbTexture *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "140": {
+          "name": "m_mouseoff",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "144": {
+          "name": "m_FVF",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "148": {
+          "name": "m_nTextW",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "152": {
+          "name": "m_PureColor",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "156": {
+          "name": "m_richtext",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        }
+      }
+    },
+    "CCBCamControl": {
+      "pdb_size": 430256,
+      "known_members": {
+        "0": {
+          "name": "m_CCT",
+          "type": "CCCTData",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430000": {
+          "name": "m_pStage",
+          "type": "CCBStage *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430004": {
+          "name": "m_pCam",
+          "type": "CCBStageCam *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430008": {
+          "name": "m_pUtil",
+          "type": "CUtil *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430012": {
+          "name": "m_bRunning",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430016": {
+          "name": "m_fp",
+          "type": "void * *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430032": {
+          "name": "m_nCurList",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430036": {
+          "name": "m_nCurTask",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430040": {
+          "name": "m_fStartSpeed",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430044": {
+          "name": "m_fNextSpeed",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430048": {
+          "name": "m_vecSpeed",
+          "type": "gbVec3D",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430060": {
+          "name": "m_vecNextSpeed",
+          "type": "gbVec3D",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430072": {
+          "name": "m_fDistance",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430076": {
+          "name": "m_fQuake",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430080": {
+          "name": "m_fQuakeDec",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430084": {
+          "name": "m_fQuakeFre",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430088": {
+          "name": "m_StartPos",
+          "type": "tagCam",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430112": {
+          "name": "m_CurPos",
+          "type": "tagCam",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430136": {
+          "name": "m_vecCurPos",
+          "type": "gbVec3D",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430148": {
+          "name": "m_OBBox",
+          "type": "gbOBBox",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430224": {
+          "name": "m_pPointer",
+          "type": "gbGeomNode *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430228": {
+          "name": "m_vecCircleCenter",
+          "type": "gbVec3D",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430240": {
+          "name": "m_vecCircleEnd",
+          "type": "gbVec3D",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430252": {
+          "name": "m_bShowCircleSet",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430253": {
+          "name": "m_bCircleCenterSelected",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "430254": {
+          "name": "m_bCircleEndSelected",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        }
+      }
+    },
+    "StateUI": {
+      "pdb_size": 162296,
+      "known_members": {
+        "72": {
+          "name": "rc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "88": {
+          "name": "bkWndX",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "92": {
+          "name": "bkWndY",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "96": {
+          "name": "i",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "100": {
+          "name": "j",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "104": {
+          "name": "buf",
+          "type": "char[256]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "360": {
+          "name": "m_IsMsg",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "361": {
+          "name": "m_Is",
+          "type": "unsigned char[5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "368": {
+          "name": "m_CtrlRole",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "372": {
+          "name": "m_IsActive",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "373": {
+          "name": "m_IsCreateable",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "376": {
+          "name": "m_Frame",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "536": {
+          "name": "m_TimeMoney",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "696": {
+          "name": "m_OutFrameT",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "856": {
+          "name": "m_OutFrameR",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "1016": {
+          "name": "m_OutFrameL",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "1176": {
+          "name": "m_OutFrameB",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "1336": {
+          "name": "stp_BarL",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "1496": {
+          "name": "stp_BarM",
+          "type": "UIFlexBar",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "1580": {
+          "name": "stp_BarR",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "1740": {
+          "name": "stp_State",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "2084": {
+          "name": "stp_Magic",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "2428": {
+          "name": "stp_Equip",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "2772": {
+          "name": "stp_Prop",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "3116": {
+          "name": "stp_BattleArray",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "3460": {
+          "name": "stp_TaskBook",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "3804": {
+          "name": "stp_System",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "4148": {
+          "name": "stp_Exit",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "4492": {
+          "name": "stp_Effect",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "4652": {
+          "name": "stp_Rect",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "4668": {
+          "name": "m_GameTime",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "4828": {
+          "name": "m_GameMoney",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "4988": {
+          "name": "m_par",
+          "type": "UIParticle[16][7]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "71292": {
+          "name": "m_par2",
+          "type": "UIParticle[16][7]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "137596": {
+          "name": "m_parRc",
+          "type": "tagRECT[7]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "137708": {
+          "name": "_isParBtn",
+          "type": "unsigned char[7]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "137716": {
+          "name": "_curParEffect",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "137720": {
+          "name": "m_PortraitRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "137736": {
+          "name": "m_Portrait",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "137896": {
+          "name": "m_TeamState",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "138056": {
+          "name": "m_Time",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "138216": {
+          "name": "m_Money",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "138376": {
+          "name": "m_TeamStateRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "138392": {
+          "name": "m_RoleState",
+          "type": "s_RoleState[5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "158132": {
+          "name": "m_State",
+          "type": "UIStatic[4]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "158772": {
+          "name": "m_Alignment",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "158932": {
+          "name": "m_AlignmentRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "158948": {
+          "name": "m_Head",
+          "type": "UIStatic[5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "159748": {
+          "name": "m_HeadRc",
+          "type": "tagRECT[5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "159828": {
+          "name": "m_TopFrame",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "159988": {
+          "name": "m_LeaveHere",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "160332": {
+          "name": "m_LeaveRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "160348": {
+          "name": "m_3DObj",
+          "type": "UI3DCtrl",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "160656": {
+          "name": "m_DlgEx",
+          "type": "MUIDialog",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162040": {
+          "name": "p_LineupUI",
+          "type": "LineupUI *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162044": {
+          "name": "p_MagicUI",
+          "type": "MagicUI *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162048": {
+          "name": "p_mEquipUI",
+          "type": "MainEquipUI *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162052": {
+          "name": "p_mPropUI",
+          "type": "MainPropUI *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162056": {
+          "name": "p_SwordUI",
+          "type": "SwordUI *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162060": {
+          "name": "p_JusticeBookUI",
+          "type": "JusticeBookUI *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162064": {
+          "name": "p_TaskBookUI",
+          "type": "TaskBookUI *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162068": {
+          "name": "p_SystemUI",
+          "type": "SystemUI *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162072": {
+          "name": "m_curRender",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162076": {
+          "name": "m_saveflag_note",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162077": {
+          "name": "m_isSeekSAVELOAD",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162080": {
+          "name": "m_test",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162240": {
+          "name": "pInterceptTex",
+          "type": "gbTexture *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162244": {
+          "name": "sv",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162248": {
+          "name": "ev",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "0": {
+          "name": "m_isJusticeBook",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162252": {
+          "name": "m_isExit",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "162256": {
+          "name": "m_SpecialPropItem",
+          "type": "s_SpecialPropItem[5]",
+          "source": "pdb_verified_by_old_ida"
+        }
+      }
+    },
+    "UINote": {
+      "pdb_size": 268,
+      "known_members": {
+        "72": {
+          "name": "m_static",
+          "type": "UIStaticFlex",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "264": {
+          "name": "time",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        }
+      }
+    },
+    "CMeteorChain": {
+      "pdb_size": 56,
+      "known_members": {
+        "0": {
+          "name": "m_pEM",
+          "type": "CEffMgr *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "4": {
+          "name": "m_pGeomQuad",
+          "type": "gbGeomQuad *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "8": {
+          "name": "m_bHaveTexture",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "12": {
+          "name": "m_pTextureArray",
+          "type": "gbTextureArray *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "16": {
+          "name": "m_nNumOfNode",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "20": {
+          "name": "m_pFirstNode",
+          "type": "tagMeteorNode *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "24": {
+          "name": "m_pLastNode",
+          "type": "tagMeteorNode *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "28": {
+          "name": "m_fCurTime",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "32": {
+          "name": "m_fLastTime",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "36": {
+          "name": "m_dwColor",
+          "type": "unsigned long",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "40": {
+          "name": "m_fMaxLum",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "44": {
+          "name": "m_fLumDecSpeed",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "48": {
+          "name": "m_fMaxWidth",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "52": {
+          "name": "m_fWidthDecSpeed",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        }
+      }
+    },
+    "PropUI": {
+      "pdb_size": 29384,
+      "known_members": {
+        "72": {
+          "name": "bkWndX",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "76": {
+          "name": "bkWndY",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "80": {
+          "name": "m_ListWidth",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "84": {
+          "name": "m_ListHeight",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "88": {
+          "name": "m_PropData",
+          "type": "st_Manager",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "17592": {
+          "name": "p_DealData",
+          "type": "PlayerItem *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "17596": {
+          "name": "buf",
+          "type": "char[256]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "17852": {
+          "name": "remarkbuf",
+          "type": "char[256]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18108": {
+          "name": "m_SelNum",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18112": {
+          "name": "m_ListSelNum",
+          "type": "int *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18116": {
+          "name": "m_MaxNum",
+          "type": "int *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18120": {
+          "name": "m_x",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18124": {
+          "name": "m_y",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18128": {
+          "name": "m_Sum",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18132": {
+          "name": "i",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18136": {
+          "name": "j",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18140": {
+          "name": "_isCreatable",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18144": {
+          "name": "m_Frame",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18304": {
+          "name": "m_FrameBar",
+          "type": "UIFlexBar",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18388": {
+          "name": "m_Flag",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18548": {
+          "name": "m_OutFrameT",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18708": {
+          "name": "m_OutFrameR",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "18868": {
+          "name": "m_OutFrameL",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "19028": {
+          "name": "m_OutFrameB",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "19188": {
+          "name": "mb_ExitRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "19204": {
+          "name": "mb_Exit",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "19548": {
+          "name": "m_ani",
+          "type": "UIAnimateCtrl",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "19712": {
+          "name": "m_Role",
+          "type": "UIStatic[5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "20512": {
+          "name": "m_RoleRc",
+          "type": "tagRECT[5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "20592": {
+          "name": "RoleX",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "20596": {
+          "name": "RoleY",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "20600": {
+          "name": "HeadW",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "20604": {
+          "name": "HeadH",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "20608": {
+          "name": "m_Is",
+          "type": "unsigned char[5]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "20616": {
+          "name": "m_Msg",
+          "type": "MUIDialog",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "22000": {
+          "name": "m_3DObj",
+          "type": "UI3DCtrl",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "22308": {
+          "name": "m_Dlg",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "22468": {
+          "name": "m_DlgRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "22484": {
+          "name": "m_TalkFrame",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "22644": {
+          "name": "m_Ready",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "22804": {
+          "name": "m_ReadyRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "22820": {
+          "name": "m_ListFrame",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "22980": {
+          "name": "m_ListGrid",
+          "type": "UIStatic[14]",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "25220": {
+          "name": "m_ScrollHB",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "25380": {
+          "name": "m_EquipFlag",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "25540": {
+          "name": "m_ListPropTitle",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "25700": {
+          "name": "m_ListPropTitleRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "25716": {
+          "name": "ml_ListProp",
+          "type": "UIListBox",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27004": {
+          "name": "ml_ListPropRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27020": {
+          "name": "m_btnGroup",
+          "type": "BtnGroup",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27760": {
+          "name": "m_ctrlTime",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27764": {
+          "name": "m_bCanUpdate1",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27765": {
+          "name": "m_bCanUpdate2",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27768": {
+          "name": "m_PropRemarkBk",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "27928": {
+          "name": "m_PropRemark",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "28088": {
+          "name": "m_PropAtt",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "28248": {
+          "name": "m_MoneyRemark",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "28408": {
+          "name": "m_MoneyRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "28424": {
+          "name": "m_SumProp",
+          "type": "UIStatic",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "28584": {
+          "name": "m_SumRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "28600": {
+          "name": "mb_OK",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "28944": {
+          "name": "mb_OKRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "28960": {
+          "name": "m_IsDeal",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "28964": {
+          "name": "mb_Cancel",
+          "type": "UIButton",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "29308": {
+          "name": "mb_CancelRc",
+          "type": "tagRECT",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "29324": {
+          "name": "m_DealID",
+          "type": "unsigned long *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "29328": {
+          "name": "DealNum",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "29332": {
+          "name": "curID",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "29336": {
+          "name": "m_isBuy",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "29337": {
+          "name": "b_IsExterior",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "29340": {
+          "name": "exterior_num",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "29344": {
+          "name": "discount_price",
+          "type": "float",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "29348": {
+          "name": "m_extmode",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "29352": {
+          "name": "pDealUI",
+          "type": "DealUI *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "29356": {
+          "name": "m_TabBtn",
+          "type": "UITabBtn",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "29380": {
+          "name": "m_opt",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        }
+      }
+    },
+    "PAL3": {
+      "pdb_size": 1,
+      "known_members": {
+        "0": {
+          "name": "m_snaph",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        }
+      }
+    },
+    "UIFrameWnd": {
+      "pdb_size": 72,
+      "known_members": {
+        "68": {
+          "name": "m_pbktex",
+          "type": "gbTexture *",
+          "source": "pdb_verified_by_old_ida"
+        }
+      }
+    },
+    "CCBControl": {
+      "pdb_size": 1392,
+      "known_members": {
+        "0": {
+          "name": "m_pCBSystem",
+          "type": "CCBSystem *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "4": {
+          "name": "m_pAttackSequen",
+          "type": "CCBAttackSequen *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "8": {
+          "name": "m_pStage",
+          "type": "CCBStage *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "12": {
+          "name": "m_pRoleState",
+          "type": "CCBRoleState *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "16": {
+          "name": "m_pUI",
+          "type": "CCBUI *",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "24": {
+          "name": "m_DeltaTime",
+          "type": "double",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "32": {
+          "name": "m_nController",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "36": {
+          "name": "m_bActive",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "37": {
+          "name": "m_bForceRelease",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "40": {
+          "name": "m_InputData",
+          "type": "tagControlData",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "56": {
+          "name": "m_CmdData",
+          "type": "tagCmdData",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "100": {
+          "name": "m_bShowRightPanel",
+          "type": "unsigned char",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "104": {
+          "name": "m_nCurThread",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "108": {
+          "name": "m_nThread",
+          "type": "int",
+          "source": "pdb_verified_by_old_ida"
+        },
+        "112": {
+          "name": "m_Thread",
+          "type": "tagControlThread[20]",
+          "source": "pdb_verified_by_old_ida"
+        }
+      }
+    },
+    "CGameData": {
+      "known_members": {},
+      "note": "not in PDB, needs binary analysis"
+    },
+    "RenderTarget2": {
+      "known_members": {},
+      "note": "not in PDB, needs binary analysis"
     }
   },
   "enums": {}
