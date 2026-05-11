@@ -26033,31 +26033,6 @@
           "type": "gbSceneGraph *",
           "source": "gen_headers_9.2"
         },
-        "8": {
-          "name": "m_pAddEffect2",
-          "type": "gbRenderEffect *",
-          "source": "gen_headers_9.2"
-        },
-        "12": {
-          "name": "m_pAlphaEffect2",
-          "type": "gbRenderEffect *",
-          "source": "gen_headers_9.2"
-        },
-        "16": {
-          "name": "m_pAddEffect",
-          "type": "gbRenderEffect *",
-          "source": "gen_headers_9.2"
-        },
-        "20": {
-          "name": "m_pAlphaEffect",
-          "type": "gbRenderEffect *",
-          "source": "gen_headers_9.2"
-        },
-        "24": {
-          "name": "m_pCamera",
-          "type": "gbCamera *",
-          "source": "gen_headers_9.2"
-        },
         "50640": {
           "name": "m_pGameData",
           "type": "CGameData *",
@@ -26098,25 +26073,40 @@
           "type": "gbGeomNode *",
           "source": "gen_headers_9.2"
         },
-        "128": {
-          "name": "m_nSceneParam",
-          "type": "int",
-          "source": "binary:raw_this32"
+        "8": {
+          "name": "m_pAddEffect2",
+          "type": "gbRenderEffect *",
+          "source": "binary:Create"
         },
-        "132": {
-          "name": "m_PlayerAtts",
-          "type": "char[6980]",
-          "source": "binary:5_slots_stride_1408_overlaps_tail"
+        "12": {
+          "name": "m_pAlphaEffect2",
+          "type": "gbRenderEffect *",
+          "source": "binary:Create"
+        },
+        "16": {
+          "name": "m_pAddEffect",
+          "type": "gbRenderEffect *",
+          "source": "binary:Create"
+        },
+        "20": {
+          "name": "m_pAlphaEffect",
+          "type": "gbRenderEffect *",
+          "source": "binary:Create"
+        },
+        "24": {
+          "name": "m_pCamera",
+          "type": "gbCamera *",
+          "source": "binary:Create"
+        },
+        "80": {
+          "name": "m_PlayerSlots",
+          "type": "ARC_PlayerAtt[5]",
+          "source": "binary:stride_1408_x5"
         },
         "7120": {
           "name": "m_RoleSystems",
           "type": "RoleSystem[5]",
-          "source": "binary:Render_calls_RenderRole"
-        },
-        "7112": {
-          "name": "m_bSlotValid",
-          "type": "unsigned char[5]",
-          "source": "binary:RunWithDelay_byte_C05F58"
+          "source": "binary:stride_8704_x5"
         }
       },
       "pdb_size": 1,
@@ -29481,143 +29471,29 @@
     "ARC_PlayerAtt": {
       "gen_size": 1408,
       "known_members": {
-        "852": {
-          "name": "hat",
-          "type": "ARC_PlayerItem",
-          "source": "gen_headers_9.2"
-        },
-        "864": {
-          "name": "cloth",
-          "type": "ARC_PlayerItem",
-          "source": "gen_headers_9.2"
-        },
-        "876": {
-          "name": "shoes",
-          "type": "ARC_PlayerItem",
-          "source": "gen_headers_9.2"
-        },
-        "912": {
-          "name": "weapon",
-          "type": "ARC_PlayerItem",
-          "source": "gen_headers_9.2"
-        },
-        "1020": {
-          "name": "dwWeaponSkillID",
-          "type": "DWORD",
-          "source": "gen_headers_9.2"
-        },
-        "1024": {
-          "name": "dwCleanCent",
-          "type": "DWORD",
-          "source": "gen_headers_9.2"
-        },
-        "1028": {
-          "name": "fWeaponSkillMass",
-          "type": "float",
-          "source": "gen_headers_9.2"
-        },
-        "1400": {
-          "name": "bAutoCtrl",
-          "type": "BYTE",
-          "source": "gen_headers_9.2"
-        },
-        "1401": {
-          "name": "bAIAttack",
-          "type": "BYTE",
-          "source": "gen_headers_9.2"
-        },
-        "1402": {
-          "name": "bAIMagic",
-          "type": "BYTE",
-          "source": "gen_headers_9.2"
-        },
-        "1403": {
-          "name": "bAISkill",
-          "type": "BYTE",
-          "source": "gen_headers_9.2"
-        },
-        "1404": {
-          "name": "bAIUseItem",
-          "type": "BYTE",
-          "source": "gen_headers_9.2"
-        },
-        "1405": {
-          "name": "bAINegative",
-          "type": "BYTE",
-          "source": "gen_headers_9.2"
-        },
-        "1406": {
-          "name": "byLineup",
-          "type": "BYTE",
-          "source": "gen_headers_9.2"
-        },
-        "888": {
-          "name": "wear",
-          "type": "ARC_PlayerItem[2]",
-          "source": "pdb_fill_incomplete"
-        },
-        "924": {
-          "name": "maxrolevalue",
-          "type": "int[12]",
-          "source": "pdb_fill_incomplete"
-        },
-        "972": {
-          "name": "currolevalue",
-          "type": "int[12]",
-          "source": "pdb_fill_incomplete"
-        },
-        "1032": {
-          "name": "dwSkillID",
-          "type": "unsigned long[6]",
-          "source": "pdb_fill_incomplete"
-        },
-        "1056": {
-          "name": "bSkillMastered",
-          "type": "unsigned char[6]",
-          "source": "pdb_fill_incomplete"
-        },
-        "1064": {
-          "name": "dwMagicID",
-          "type": "unsigned long[8][6]",
-          "source": "pdb_fill_incomplete"
-        },
-        "1256": {
-          "name": "bMagicMastered",
-          "type": "unsigned char[8][6]",
-          "source": "pdb_fill_incomplete"
-        },
-        "1304": {
-          "name": "byMagicUseTime",
-          "type": "unsigned char[8][6]",
-          "source": "pdb_fill_incomplete"
-        },
-        "1352": {
-          "name": "byMagicLevel",
-          "type": "unsigned char[8][6]",
-          "source": "pdb_fill_incomplete"
-        },
-        "568": {
+        "620": {
           "name": "byEventFlags",
           "type": "unsigned char[5]",
           "source": "binary:RunEvent_0x410470"
         },
-        "593": {
+        "645": {
           "name": "bScriptActive",
           "type": "unsigned char",
           "source": "binary:RunEvent_0x410470"
         },
-        "856": {
+        "908": {
           "name": "nScriptCounter",
           "type": "int",
           "source": "binary:RunScript_0x4100A0"
         },
-        "808": {
+        "860": {
           "name": "nScriptSpeed",
           "type": "int",
           "source": "binary:RunWithDelay_v5_minus_12"
         }
       },
-      "pdb_size": 1408
+      "pdb_size": 1408,
+      "binary_size": 1408
     },
     "ARC_PlayerItem": {
       "gen_size": 12,
@@ -32615,57 +32491,57 @@
         "0": {
           "name": "m_pDisplay",
           "type": "gbGfxManager *",
-          "source": "gen_headers_9.2"
+          "source": "pdb:PAL3A"
         },
         "4": {
           "name": "m_pCBSystem",
           "type": "CCBSystem *",
-          "source": "gen_headers_9.2"
+          "source": "pdb:PAL3A"
         },
         "8": {
           "name": "m_pAdditiveBlendNoZ",
           "type": "gbRenderEffect *",
-          "source": "gen_headers_9.2"
+          "source": "pdb:PAL3A"
         },
         "12": {
           "name": "m_pAlphaBlendNoZ",
           "type": "gbRenderEffect *",
-          "source": "gen_headers_9.2"
+          "source": "pdb:PAL3A"
         },
         "16": {
           "name": "m_pAdditiveBlend",
           "type": "gbRenderEffect *",
-          "source": "gen_headers_9.2"
+          "source": "pdb:PAL3A"
         },
         "20": {
           "name": "m_pAlphaBlend",
           "type": "gbRenderEffect *",
-          "source": "gen_headers_9.2"
+          "source": "pdb:PAL3A"
         },
         "24": {
           "name": "m_pCam",
           "type": "gbCamera *",
-          "source": "gen_headers_9.2"
+          "source": "pdb:PAL3A"
         },
         "43292": {
           "name": "m_nEff",
           "type": "int",
-          "source": "gen_headers_9.2"
+          "source": "pdb:PAL3A"
         },
         "43296": {
           "name": "m_fCurTime",
           "type": "float",
-          "source": "gen_headers_9.2"
+          "source": "pdb:PAL3A"
         },
         "43300": {
           "name": "m_fDeltaTime",
           "type": "float",
-          "source": "gen_headers_9.2"
+          "source": "pdb:PAL3A"
         },
         "43304": {
           "name": "m_fTimer",
           "type": "float",
-          "source": "gen_headers_9.2"
+          "source": "pdb:PAL3A"
         },
         "43308": {
           "name": "m_fTimeScale",
@@ -32675,15 +32551,26 @@
         "28": {
           "name": "m_EffClass",
           "type": "tagEffClass[32]",
-          "source": "pdb_fill_incomplete"
+          "source": "pdb:PAL3A"
         },
         "2332": {
           "name": "m_EffTable",
           "type": "tagEffObj[2048]",
-          "source": "pdb_fill_incomplete"
+          "source": "pdb:PAL3A"
+        },
+        "64": {
+          "name": "m_PlayerSlots",
+          "type": "ARC_PlayerAtt[5]",
+          "source": "binary:PAL3_stride_1408_x5"
+        },
+        "7104": {
+          "name": "m_RoleSystems",
+          "type": "RoleSystem[5]",
+          "source": "binary:PAL3_stride_8704_x5"
         }
       },
-      "pdb_size": 43312
+      "pdb_size": 43312,
+      "binary_size": 43312
     },
     "CEffObj": {
       "gen_size": 12,
