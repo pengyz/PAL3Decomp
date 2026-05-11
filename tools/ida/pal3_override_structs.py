@@ -29,6 +29,75 @@ def log(msg):
     print(msg)
 
 
+def build_struct(name, total_size, members):
+    """Generate C struct declaration with correct padding and apply via parse_decls.
+
+    Args:
+        name: struct name
+        total_size: exact total size in bytes
+        members: list of (offset, type_str, member_name)
+
+    Returns: True if successful (size matches).
+    """
+    import re as _re
+
+    SIZE_MAP = {
+        'int': 4, 'unsigned int': 4, 'float': 4, 'double': 8,
+        'char': 1, 'unsigned char': 1, 'short': 2, 'unsigned short': 2,
+    }
+
+    lines = ["struct %s {" % name]
+    prev_end = 0
+
+    for offset, type_str, mname in sorted(members, key=lambda x: x[0]):
+        # Calculate member size
+        if '*' in type_str:
+            msize = 4
+        elif type_str in SIZE_MAP:
+            msize = SIZE_MAP[type_str]
+        else:
+            arr_match = _re.search(r'\[(\d+)\]', type_str)
+            if arr_match:
+                base = _re.sub(r'\[\d+\]', '', type_str).strip()
+                msize = SIZE_MAP.get(base, 1) * int(arr_match.group(1))
+            else:
+                msize = 4
+
+        # Padding
+        if offset > prev_end:
+            lines.append("  char _gap_%04X[%d];" % (prev_end, offset - prev_end))
+
+        # Member declaration (handle array syntax)
+        arr_match = _re.search(r'^(.+?)\[(\d+)\]$', type_str)
+        if arr_match:
+            lines.append("  %s %s[%s];" % (arr_match.group(1), mname, arr_match.group(2)))
+        else:
+            lines.append("  %s %s;" % (type_str, mname))
+
+        prev_end = offset + msize
+
+    # Tail padding
+    if prev_end < total_size:
+        lines.append("  char _end[%d];" % (total_size - prev_end))
+    lines.append("};")
+
+    decl = '\n'.join(lines)
+    nerr = idc.parse_decls(decl, idc.PT_TYP)
+    if nerr != 0:
+        log("  [!] %s: parse_decls error %d" % (name, nerr))
+        return False
+
+    # Verify size
+    til = ida_typeinf.get_idati()
+    tif = ida_typeinf.tinfo_t()
+    tif.get_named_type(til, name)
+    actual = tif.get_size()
+    if actual != total_size:
+        log("  [WARN] %s: size=%d, expected=%d" % (name, actual, total_size))
+        return False
+    return True
+
+
 def main():
     ida_auto.auto_wait()
     log("[*] PAL3 struct overrides")
@@ -99,94 +168,40 @@ struct SceneMgrSlot;
 """
     idc.parse_decls(FWD_SM, idc.PT_TYP)
 
-    DECL = """
-struct RoleSystem {
-  char _p000[4];
-  int _d004; float _f008; float _f00C; float _f010; int _d014;
-  char _p018[136];
-  float _f0A0; float _f0A4; float _f0A8;
-  char _p0AC[452];
-  int _d274;
-  char _p278[600];
-  int _d4CC; int _d4D0; int _d4D4; int _d4D8;
-  float _f4DC; int _d4E0;
-  float _f4E4; int _d4E8; int _d4EC; int _d4F0; int _d4F4;
-  char _p4F8[12];
-  int _d504; int _d508; float _f50C; float _f510; float _f514;
-  float _f518; int _d51C; int _d520;
-  char _p524[28];
-  float _f540; float _f544; float _f548;
-  char _p54C[36];
-  int _d56C; int _d570;
-  char _p574[68];
-  int _d5B8;
-  char _p5BC[20];
-  int _d5D0;
-  char _tail[8496];
-};
-struct CameraParam { int nID; int _reserved; int nParam1; int nParam2; };
-struct CameraCmd { int nCmdID; int nValue; };
-struct SceneMgrCamBlock {
-  char m_CameraList[160];
-  CameraParam m_Params[25];
-  CameraCmd m_Cmds[33];
-  int m_nCurrentScene;
-  char _gap33C[16];
-  void *m_pCameraScript;
-  char m_bCameraTransition;
-  char m_bCameraReset;
-  int m_nActiveCamera;
-};
-struct SceneMgrSlot {
-  int _vtable;
-  int _d004; int _d008; int _d00C; int _d010;
-  int _d014; int _d018; int _d01C; int _d020;
-  int _d024; int _d028; int _d02C; int _d030;
-  char _pad034[27];
-  char _b04F; char _b050; char _b051; char _b052;
-  char _pad053[25]; int _d06C; char _pad070[108];
-  int _d0DC; int _d0E0; int _d0E4; int _d0E8;
-  int _d0EC; int _d0F0; int _d0F4; int _d0F8;
-  int _d0FC; int _d100; int _d104; int _d108; int _d10C;
-  char _tail[1144];
-};
-struct SceneMgr {
-  gbGfxManager *m_pGfxMgr;         // +0x0000
-  gbSceneGraph *m_pSceneRoot;      // +0x0004
-  gbRenderEffect *m_pAddEffect2;   // +0x0008
-  gbRenderEffect *m_pAlphaEffect2; // +0x000C
-  gbRenderEffect *m_pAddEffect;    // +0x0010
-  gbRenderEffect *m_pAlphaEffect;  // +0x0014
-  gbCamera *m_pCamera;             // +0x0018
-  char _preArray[620];             // +0x001C
-  SceneMgrSlot m_slot[4];          // +0x0288 (4 x 1408 bytes)
-  char m_extraSlot[792];           // +0x1888 (5th slot variant, smaller)
-  int m_pCBRoleStateData;          // +0x1BA0 (CCBRoleState this-ptr target, 325 refs)
-  char _gap_1ba4[36];              // +0x1BA4
-  char m_bGameFlags[5];            // +0x1BC8 (5 state flags, byte-level access)
-  char _gap_1bcd[3];              // +0x1BCD
-  RoleSystem m_RoleSystem[5];      // +0x1BD0 (5 x 8704 to +0xC5D0)
-  CGameData *m_pGameData;          // +0xC5D0
-  void *_c5d4;                     // +0xC5D4
-  CameraCtrl *m_pCameraCtrl;      // +0xC5D8
-  PalScriptMgr *m_pScriptCtrl;    // +0xC5DC
-  SceneMgrCamBlock m_camBlock;     // +0xC5E0 (856 bytes, to +0xC938)
-  int m_nCameraState;              // +0xC938
-  char _gap_c93c[108];             // +0xC93C
-  char m_szUIString[512];          // +0xC9A8
-  char _gap_cba8[356];             // +0xCBA8
-  float m_fMoveParam;              // +0xCD0C
-  char _gap_cd10[1612];            // +0xCD10
-  gbGeomNode *m_pCollisionNode;    // +0xD35C
-  char _tail[4];                   // +0xD360
-};
-"""
-    if idc.parse_decls(DECL, idc.PT_TYP) == 0:
+    # Use build_struct for guaranteed correct sizes
+    idc.parse_decls("struct RoleSystem { char _data[8704]; };", idc.PT_TYP)
+    idc.parse_decls("struct SceneMgrCamBlock { char _data[856]; };", idc.PT_TYP)
+    idc.parse_decls("struct SceneMgrSlot { char _data[1408]; };", idc.PT_TYP)
+
+    if build_struct("SceneMgr", 54116, [
+        (0x0000, "gbGfxManager *", "m_pGfxMgr"),
+        (0x0004, "gbSceneGraph *", "m_pSceneRoot"),
+        (0x0008, "gbRenderEffect *", "m_pAddEffect2"),
+        (0x000C, "gbRenderEffect *", "m_pAlphaEffect2"),
+        (0x0010, "gbRenderEffect *", "m_pAddEffect"),
+        (0x0014, "gbRenderEffect *", "m_pAlphaEffect"),
+        (0x0018, "gbCamera *", "m_pCamera"),
+        (0x001C, "char[620]", "_preArray"),
+        (0x0288, "char[5632]", "m_slotData"),   # 4*1408
+        (0x1888, "char[792]", "m_extraSlot"),
+        (0x1BA0, "int", "m_pCBRoleStateData"),
+        (0x1BC8, "char[5]", "m_bGameFlags"),
+        (0x1BD0, "char[43520]", "m_RoleSystemData"),  # 5*8704
+        (0xC5D0, "CGameData *", "m_pGameData"),
+        (0xC5D4, "int", "_unkC5D4"),
+        (0xC5D8, "CameraCtrl *", "m_pCameraCtrl"),
+        (0xC5DC, "PalScriptMgr *", "m_pScriptCtrl"),
+        (0xC5E0, "char[856]", "m_camBlock"),
+        (0xC938, "int", "m_nCameraState"),
+        (0xC9A8, "char[512]", "m_szUIString"),
+        (0xCD0C, "float", "m_fMoveParam"),
+        (0xD35C, "gbGeomNode *", "m_pCollisionNode"),
+    ]):
         applied += 1
-        log("[+] SceneMgr: 54116 bytes + RoleSystem[5]")
+        log("[+] SceneMgr: 54116 bytes (offset-based)")
     else:
         errors += 1
-        log("[!] SceneMgr: FAILED")
+        log("[!] SceneMgr: size mismatch")
 
     # =========================================================================
     # OVERRIDE 3: Scene (placeholder, PAL3A=1094164 but PAL3 uses ~96 bytes actively)
