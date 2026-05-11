@@ -206,7 +206,17 @@ struct SceneMgrSlot;
         (0x0A4, "float", "m_fPosY"),
         (0x0A8, "float", "m_fPosZ"),
         (0x274, "int", "m_nState"),
-        (0x4CC, "int", "_d4CC"),
+        (0x27C, "int[12]", "m_nBaseStats", 48),            # base stat values [12]
+        # Equipment pointers (stride 12, each points to item struct with stats)
+        (0x35C, "int", "m_pEquip0"),                   # equip slot 0 (void*)
+        (0x368, "int", "m_pEquip1"),                   # equip slot 1
+        (0x374, "int", "m_pEquip2"),                   # equip slot 2
+        (0x380, "int", "m_pEquip3"),                   # equip slot 3
+        (0x38C, "int", "m_pEquip4"),                   # equip slot 4
+        (0x398, "int", "m_pEquip5"),                   # equip slot 5
+        (0x39C, "int[12]", "m_nComputedStats", 48),    # computed stats [12]
+        (0x3CC, "int[12]", "m_nDisplayStats", 48),     # display/effective stats [12]
+        (0x4CC, "int", "m_nPathState"),
         (0x4D0, "int", "_d4D0"),
         (0x4D4, "int", "_d4D4"),
         (0x4D8, "int", "_d4D8"),
