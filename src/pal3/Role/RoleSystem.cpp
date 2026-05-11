@@ -28,7 +28,6 @@ int sub_424C20(...);
 // Unnamed globals (extern)
 extern char aTagWeapon1[];
 extern char aTagWeapon2[];
-extern unsigned char byte_C116EA;
 extern int dword_58615C;
 extern int dword_58B29C;
 extern int dword_58B2B0;
@@ -43,7 +42,6 @@ extern int dword_58B3DC;
 extern int dword_58B3F0;
 extern int dword_5D0750;
 extern int nullsub_5;
-extern int unk_C1109C;
 
 // 0x0040BE50
 int * RoleSystem::Init()
@@ -561,7 +559,7 @@ void RoleSystem::RenderRole(void *pStack, int a3)
       ((gbMatrixStack *)pStack)->Rotate(this->m_fRotAngle, (struct gbVec3D *)&this->m_fRotAxisX);
     ((gbMatrixStack *)pStack)->Rotate(*(float *)&this->_end[7196], (struct gbVec3D *)&g_SceneMgr.m_szUIString[80]);
     ((gbMatrixStack *)pStack)->Scale(*(float *)&this->m_nBaseStats[1], *(float *)&this->m_nBaseStats[1], *(float *)&this->m_nBaseStats[1]);
-    *(_DWORD *)&this->_gap_0018[120] = ((Actor *)&this->m_nBaseStats[11])->DispatchAction(a3);
+    *(_DWORD *)&this->_gap_002C[100] = ((Actor *)&this->m_nBaseStats[11])->DispatchAction(a3);
     if ( this->m_pRenderObj )
     {
       ((gbMatrix4 *)v4)->gbMatrix4();
@@ -626,15 +624,15 @@ LABEL_7:
       }
       if ( m_nActionState == 2 )
       {
-        if ( *(_DWORD *)&this->_gap_0574[20] == 1 )
+        if ( *(_DWORD *)&this->_gap_0584[4] == 1 )
         {
-          if ( *(_BYTE *)(*(_DWORD *)&this->_gap_0574[24] + 756) == 1 )
+          if ( *((_BYTE *)this->m_pActorData + 756) == 1 )
           {
             v5 = this->m_nCoreState;
             this->m_nTransformState = dword_58B33C;
             return this->UpdatePath(v5);
           }
-          else if ( *(_BYTE *)(*(_DWORD *)&this->_gap_0574[24] + 756) == 2 )
+          else if ( *((_BYTE *)this->m_pActorData + 756) == 2 )
           {
             this->m_nTransformState = dword_58B350;
             return this->UpdatePath(this->m_nCoreState);
@@ -648,7 +646,7 @@ LABEL_7:
         }
         else
         {
-          switch ( *(_BYTE *)(*(_DWORD *)&this->_gap_0574[24] + 755) )
+          switch ( *((_BYTE *)this->m_pActorData + 755) )
           {
             case 0:
               goto LABEL_7;
@@ -768,10 +766,10 @@ int RoleSystem::MoveRole(float *pPos, int a3, int a4, int a5)
     m_nState = this->m_nState;
     v8 = (RoleSystem *)UISceneUpdate();
     RolePtr = v8->GetRolePtr(m_nState);
-    v17 = (__int64)((pPos[2] - *(float *)(RolePtr + 136)) / unk_C1109C);
-    v15 = (__int64)((*pPos - *(float *)(RolePtr + 128)) / unk_C1109C);
-    v14 = (__int64)((this->m_fTargetZ - *(float *)(RolePtr + 136)) / unk_C1109C);
-    v13 = (__int64)((this->m_fTargetX - *(float *)(RolePtr + 128)) / unk_C1109C);
+    v17 = (__int64)((pPos[2] - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam);
+    v15 = (__int64)((*pPos - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam);
+    v14 = (__int64)((this->m_fTargetZ - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam);
+    v13 = (__int64)((this->m_fTargetX - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam);
     v12 = this->m_nState;
     v10 = (RoleSystem *)UISceneUpdate();
     if ( sub_4215B0(v10, v12, v13, v14, v15, v17) )
@@ -830,10 +828,10 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
   v6 = (RoleSystem *)UISceneUpdate();
   RolePtr = v6->GetRolePtr(m_nState);
   v21 = RolePtr;
-  v24 = (__int64)((this->m_fTargetX - *(float *)(RolePtr + 128)) / unk_C1109C);
+  v24 = (__int64)((this->m_fTargetX - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam);
   v8 = v22;
   v9 = 0x7FFFF;
-  v25 = (__int64)((this->m_fTargetZ - *(float *)(RolePtr + 136)) / unk_C1109C);
+  v25 = (__int64)((this->m_fTargetZ - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam);
   v20 = 0x7FFFF;
   v19 = 0;
   v10 = (int *)(RolePtr + 8);
@@ -867,8 +865,8 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
   if ( v9 <= 32 )
   {
     v29 = 0.0;
-    v28 = ((double)v22 + 0.5) * unk_C1109C + *(float *)(RolePtr + 128);
-    v30 = ((double)v23 + 0.5) * unk_C1109C + *(float *)(RolePtr + 136);
+    v28 = ((double)v22 + 0.5) * g_SceneMgr.m_fMoveParam + *(float *)(RolePtr + 128);
+    v30 = ((double)v23 + 0.5) * g_SceneMgr.m_fMoveParam + *(float *)(RolePtr + 136);
     if ( v8 < 0 || (v14 = *(_DWORD *)(RolePtr + 152), v8 >= v14) )
     {
       v15 = v23;
@@ -1043,18 +1041,18 @@ int RoleSystem::PathFind(float *pTarget)
   v11 = (RoleSystem *)UISceneUpdate();
   sub_421440(v11, m_nState, p_m_fPathTargetX, 0, 0);
   this->m_fPathTargetY = v7;
-  if ( !byte_C116EA )
+  if ( !g_SceneMgr._gap_CD10[1610] )
   {
     v42 = this->m_nState;
     v12 = (RoleSystem *)UISceneUpdate();
     RolePtr = v12->GetRolePtr(v42);
-    v14 = (__int64)((this->m_fTargetX - *(float *)(RolePtr + 128)) / unk_C1109C);
+    v14 = (__int64)((this->m_fTargetX - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam);
     v15 = *p_m_fPathTargetX - *(float *)(RolePtr + 128);
-    LODWORD(v47) = (__int64)((this->m_fTargetZ - *(float *)(RolePtr + 136)) / unk_C1109C);
-    v16 = (__int64)(v15 / unk_C1109C);
+    LODWORD(v47) = (__int64)((this->m_fTargetZ - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam);
+    v16 = (__int64)(v15 / g_SceneMgr.m_fMoveParam);
     v17 = p_m_fPathTargetX[2] - *(float *)(RolePtr + 136);
     v45 = v16;
-    v40 = (__int64)(v17 / unk_C1109C);
+    v40 = (__int64)(v17 / g_SceneMgr.m_fMoveParam);
     v38 = v16;
     v36 = LODWORD(v47);
     v34 = this->m_nState;
@@ -1064,8 +1062,8 @@ int RoleSystem::PathFind(float *pTarget)
       v19 = 0.0;
       v20 = v43;
       v21 = v44;
-      v46 = ((double)v43 + 0.5) * unk_C1109C + *(float *)(RolePtr + 128);
-      v48 = ((double)v44 + 0.5) * unk_C1109C + *(float *)(RolePtr + 136);
+      v46 = ((double)v43 + 0.5) * g_SceneMgr.m_fMoveParam + *(float *)(RolePtr + 128);
+      v48 = ((double)v44 + 0.5) * g_SceneMgr.m_fMoveParam + *(float *)(RolePtr + 136);
       if ( v43 >= 0 )
       {
         v22 = *(_DWORD *)(RolePtr + 152);
@@ -1193,15 +1191,15 @@ void RoleSystem::UpdateAnimation(int a2)
         v27 = v12;
         v28 = *(float *)(a2 + 20);
         v13 = *(_DWORD *)(a2 + 24);
-        a2c = unk_C1109C + unk_C1109C;
+        a2c = g_SceneMgr.m_fMoveParam + g_SceneMgr.m_fMoveParam;
         v30 = v12;
         v29 = v13;
         v27 = v12 * a2c;
         v25 = v11 * a2c + *(float *)(a2 + 4);
         v26 = *(float *)(a2 + 8) + 0.0;
         v27 = v27 + *(float *)(a2 + 12);
-        v28 = unk_C1109C * v28;
-        v30 = v12 * unk_C1109C;
+        v28 = g_SceneMgr.m_fMoveParam * v28;
+        v30 = v12 * g_SceneMgr.m_fMoveParam;
         v14 = (RoleSystem *)UISceneUpdate();
         RolePtr = v14->GetRolePtr(*(_DWORD *)(a2 + 628));
         a2b = 0;
@@ -1211,8 +1209,8 @@ void RoleSystem::UpdateAnimation(int a2)
           if ( sub_421020(
                  v14,
                  this->m_nState,
-                 (__int64)((v25 - *(float *)(RolePtr + 128)) / unk_C1109C),
-                 (__int64)((v27 - *(float *)(RolePtr + 136)) / unk_C1109C),
+                 (__int64)((v25 - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam),
+                 (__int64)((v27 - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam),
                  v15) )
           {
             break;
@@ -1225,8 +1223,8 @@ void RoleSystem::UpdateAnimation(int a2)
         v27 = v30 + v27;
         sub_4132B0(
           (int)this,
-          (__int64)((v28 + v25 - *(float *)(RolePtr + 128)) / unk_C1109C),
-          (__int64)((v27 - *(float *)(RolePtr + 136)) / unk_C1109C),
+          (__int64)((v28 + v25 - *(float *)(RolePtr + 128)) / g_SceneMgr.m_fMoveParam),
+          (__int64)((v27 - *(float *)(RolePtr + 136)) / g_SceneMgr.m_fMoveParam),
           1);
       }
       else
@@ -1257,9 +1255,9 @@ void RoleSystem::UpdateAnimation(int a2)
         v19 = *(_DWORD *)(v18 + 1268);
         if ( v19 != 3 )
         {
-          *(_DWORD *)&this->_gap_0574[4] = v19;
-          *(_DWORD *)&this->_gap_0574[12] = *(_DWORD *)(v18 + 8688);
-          *(_DWORD *)&this->_gap_0574[8] = *(_DWORD *)(v18 + 1284);
+          this->_d578 = v19;
+          this->_d580 = *(_DWORD *)(v18 + 8688);
+          *(_DWORD *)this->_gap_057C = *(_DWORD *)(v18 + 1284);
           *(float *)(v18 + 1296) = this->m_fTargetX;
           *(float *)(v18 + 1300) = this->m_fTargetY;
           *(float *)(v18 + 1304) = this->m_fTargetZ;
@@ -1306,9 +1304,9 @@ int RoleSystem::GetActiveRole()
   {
     if ( *(_BYTE *)(result + 173) != 1 && !*(_DWORD *)(result + 500) && *(_DWORD *)(result + 1268) != 3 )
     {
-      *(_DWORD *)(result + 1284) = *(_DWORD *)&this->_gap_0574[8];
-      *(_DWORD *)(this->m_nRoleCount + 1268) = *(_DWORD *)&this->_gap_0574[4];
-      sub_416620(this->m_nRoleCount, *(float *)&this->_gap_0574[12], 1);
+      *(_DWORD *)(result + 1284) = *(_DWORD *)this->_gap_057C;
+      *(_DWORD *)(this->m_nRoleCount + 1268) = this->_d578;
+      sub_416620(this->m_nRoleCount, *(float *)&this->_d580, 1);
       result = ((RoleSystem *)this->m_nRoleCount)->UpdateTransform();
     }
     *(_DWORD *)(this->m_nRoleCount + 1388) = 0;

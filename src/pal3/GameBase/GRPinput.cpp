@@ -10,7 +10,6 @@ int sub_403B80(...);
 // Unnamed globals (extern)
 extern unsigned char byte_56A634;
 extern unsigned char byte_8AC5D8;
-extern int dword_C116EC;
 extern float flt_8ACBEC;
 extern void *off_56A620;
 extern void *off_580CFC;
@@ -575,13 +574,13 @@ char GRPinput::SetMouseSensitivity()
     }
     else
     {
-      LOBYTE(v2) = (_BYTE)dword_C116EC;
+      LOBYTE(v2) = g_SceneMgr.m_pCollisionNode;
       v18 = *(float *)&this->m_mouseMaxX * 0.40000001;
-      if ( dword_C116EC )
+      if ( g_SceneMgr.m_pCollisionNode )
       {
-        v22.Color = *((_DWORD *)dword_C116EC + 40);
-        v23 = *((float *)dword_C116EC + 41);
-        v24 = *((_DWORD *)dword_C116EC + 42);
+        v22.Color = *(_DWORD *)&g_SceneMgr.m_pCollisionNode->OffMat[8];
+        v23 = *(float *)&g_SceneMgr.m_pCollisionNode->OffMat[12];
+        v24 = *(_DWORD *)&g_SceneMgr.m_pCollisionNode->OffMat[16];
         v23 = v18 * 20.0 + v23 + 64.0;
         ((gbCamera *)((char *)g_pCameraCtrl + 4))->PointWorldToScr((struct gbVec3D *)&v22.Color, (float *)&v22.ColorQuadFmt, (float *)&v20);
         v9 = 1.0 - v18;

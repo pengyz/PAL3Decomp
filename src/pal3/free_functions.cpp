@@ -161,7 +161,6 @@ extern unsigned char byte_60B710;
 extern unsigned char byte_60B72C;
 extern unsigned char byte_BFDA88;
 extern unsigned char byte_BFDA91;
-extern unsigned char byte_C116EA;
 extern unsigned char byte_D8B938;
 extern unsigned char byte_D92784;
 extern unsigned char byte_D92785;
@@ -263,13 +262,6 @@ extern int dword_C002A0;
 extern int dword_C020F8;
 extern int dword_C02370;
 extern int dword_C025EC;
-extern int dword_C11360;
-extern int dword_C113C0;
-extern int dword_C11420;
-extern int dword_C11428;
-extern int dword_C116C4;
-extern int dword_C116EC;
-extern int dword_C116F0;
 extern int dword_C12B38;
 extern int dword_C12B3C;
 extern int dword_C12B40;
@@ -366,8 +358,6 @@ extern int unk_8ACD3C;
 extern int unk_A3A7D8;
 extern int unk_BFDAA4;
 extern int unk_BFDAB0;
-extern int unk_C11430;
-extern int unk_C11438;
 extern int unk_DBA258;
 extern int unk_DBB364;
 extern int unk_DBD894;
@@ -2500,7 +2490,7 @@ int unknown_libname_323()
 // Microsoft VisualC 2-14/net runtime
 Iostream_init *unknown_libname_324()
 {
-  return Iostream_init::Iostream_init((Iostream_init *)&unk_C11438);
+  return Iostream_init::Iostream_init((Iostream_init *)&g_SceneMgr._gap_CD10[920]);
 }
 
 // 0x0041D940
@@ -2508,7 +2498,7 @@ Iostream_init *unknown_libname_324()
 // Microsoft VisualC 2-14/net runtime
 void __cdecl unknown_libname_325()
 {
-  nullsub_3(&unk_C11438);
+  nullsub_3(&g_SceneMgr._gap_CD10[920]);
 }
 
 // 0x0041D9A0
@@ -2522,7 +2512,7 @@ void __cdecl CameraUpdate_Internal(float a1)
   CScreenMode *Instance; // eax
   CScreenMode *v6; // eax
   int v7; // eax
-  _DWORD *v8; // esi
+  gbGeomNode *m_pCollisionNode; // esi
   GRP_KEYREG *KeyInfo; // eax
   int v10; // edx
   int v11; // ebp
@@ -2562,9 +2552,9 @@ void __cdecl CameraUpdate_Internal(float a1)
   struct gbVec3D pOut[2]; // [esp+2Ch] [ebp-30h] BYREF
   float pMat[6]; // [esp+44h] [ebp-18h] BYREF
 
-  if ( dword_58B230 <= 0 || !dword_C116EC )
+  if ( dword_58B230 <= 0 || !g_SceneMgr.m_pCollisionNode )
     return;
-  GRPinput::GetCursorPos(&unk_C11430);
+  GRPinput::GetCursorPos(&g_SceneMgr._gap_CD10[912]);
   if ( dword_58B234 && g_GameDataFlags != 1 )
   {
     v41 = *(_DWORD *)&g_Input.MouseState[8];
@@ -2593,7 +2583,7 @@ void __cdecl CameraUpdate_Internal(float a1)
       CameraCtrl::SetCamMode(g_pCameraCtrl, -1113336054);
     }
   }
-  if ( dword_C116F0 )
+  if ( *(_DWORD *)g_SceneMgr._end )
   {
     v2 = 0.0;
     if ( (g_Input.KeyInfo[4].Data & 0xF) == 1 )
@@ -2634,7 +2624,7 @@ void __cdecl CameraUpdate_Internal(float a1)
       && g_GameDataFlags == 2
       && g_Input.KeyInfo[12].PressTime == 1
       && (g_Input.KeyInfo[12].Data & 0xF) == 1
-      && !(*(int (__thiscall **)(char *))(*((_DWORD *)dword_C116EC + 14) + 4))((char *)dword_C116EC + 56) )
+      && !(*(int (__thiscall **)(char *))(*(_DWORD *)&g_SceneMgr.m_pCollisionNode->_base[56] + 4))(&g_SceneMgr.m_pCollisionNode->_base[56]) )
     {
       v7 = g_SceneMgr.m_nCameraState + 1;
       if ( g_SceneMgr.m_nCameraState + 1 > 4 )
@@ -2650,10 +2640,10 @@ void __cdecl CameraUpdate_Internal(float a1)
       }
       ScriptSystem::Execute(v7, 1);
     }
-    v8 = dword_C116EC;
-    if ( *((_DWORD *)dword_C116EC + 316) != 4 )
+    m_pCollisionNode = g_SceneMgr.m_pCollisionNode;
+    if ( *(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[24] != 4 )
       goto LABEL_51;
-    if ( *((_DWORD *)dword_C116EC + 307) == 44 )
+    if ( *(_DWORD *)&g_SceneMgr.m_pCollisionNode[4]._base[76] == 44 )
     {
       KeyInfo = g_Input.KeyInfo;
       v10 = 0;
@@ -2664,11 +2654,11 @@ void __cdecl CameraUpdate_Internal(float a1)
         if ( v10 >= 656 )
           goto LABEL_50;
       }
-      RoleSystemNotify((int)dword_C116EC);
-      v8 = dword_C116EC;
+      RoleSystemNotify((int)g_SceneMgr.m_pCollisionNode->_base);
+      m_pCollisionNode = g_SceneMgr.m_pCollisionNode;
     }
 LABEL_50:
-    if ( v8[316] != 4 )
+    if ( *(_DWORD *)&m_pCollisionNode[4].CacheToW[24] != 4 )
     {
 LABEL_51:
       LOBYTE(v41) = 0;
@@ -2678,7 +2668,7 @@ LABEL_51:
       if ( (_BYTE)v41 )
       {
         memset(pOut, 0, 12);
-        RoleSystem::GetDirection((RoleSystem *)dword_C116EC, &pOut[0].x);
+        RoleSystem::GetDirection((RoleSystem *)g_SceneMgr.m_pCollisionNode, &pOut[0].x);
         pOut[0].y = pOut[0].y + 10.0;
         gbCamera::PointWorldToScr((gbCamera *)((char *)g_pCameraCtrl + 4), pOut, &v43, &pOut2);
         UIWnd::ScreenToClient(
@@ -2689,7 +2679,7 @@ LABEL_51:
       v11 = 0;
       v12 = 0;
       pDist = 0.0;
-      qmemcpy(pMat, CameraCtrl::GetViewTarget(g_pCameraCtrl, pOut, (float *)&unk_C11430.x), sizeof(pMat));
+      qmemcpy(pMat, CameraCtrl::GetViewTarget(g_pCameraCtrl, pOut, (float *)&g_SceneMgr._gap_CD10[912]), sizeof(pMat));
       if ( g_nGameState != 2 && g_nGameState != 8 )
         goto LABEL_107;
       Target = UICamera::GetTarget(pMat);
@@ -2724,16 +2714,16 @@ LABEL_90:
           goto LABEL_108;
         if ( v14 )
         {
-          RoleSystem::UpdateAnimation((RoleSystem *)dword_C116EC, v14);
+          RoleSystem::UpdateAnimation((RoleSystem *)g_SceneMgr.m_pCollisionNode, v14);
           v11 = 1;
         }
         else
         {
-          RoleSystem::GetActiveRole((RoleSystem *)dword_C116EC);
+          RoleSystem::GetActiveRole((RoleSystem *)g_SceneMgr.m_pCollisionNode);
         }
         if ( v16 )
         {
-          RoleSystem::SetState((RoleSystem *)dword_C116EC, v16);
+          RoleSystem::SetState((RoleSystem *)g_SceneMgr.m_pCollisionNode, v16);
           goto LABEL_153;
         }
         if ( v11 )
@@ -2756,53 +2746,69 @@ LABEL_109:
           goto LABEL_153;
         }
 LABEL_115:
-        if ( !Camera::CheckCollision1(&unk_C11430, &dword_C11420, &pDist)
-          && !Camera::CheckCollision2(&unk_C11430, *((_DWORD *)dword_C116EC + 157), &dword_C11420) )
+        if ( !Camera::CheckCollision1(&g_SceneMgr._gap_CD10[912], &g_SceneMgr._gap_CD10[896], &pDist)
+          && !Camera::CheckCollision2(
+                &g_SceneMgr._gap_CD10[912],
+                *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52],
+                &g_SceneMgr._gap_CD10[896]) )
         {
           goto LABEL_153;
         }
-        LODWORD(a2.x) = dword_C11420;
-        LODWORD(a2.z) = dword_C11428;
+        a2.x = *(float *)&g_SceneMgr._gap_CD10[896];
+        a2.z = *(float *)&g_SceneMgr._gap_CD10[904];
         a2.y = 0.0;
         v26 = 0;
         GRPinput::GetMousePos(&g_Input, &v43, &pOut2);
         if ( v43 != 0.0 || pOut2 != 0.0 )
           v26 = 1;
-        *((_DWORD *)dword_C116EC + 365) = 0;
+        *(_DWORD *)&g_SceneMgr.m_pCollisionNode[5]._base[20] = 0;
         if ( g_Input.KeyInfo[0].PressTime == 1 && (g_Input.KeyInfo[0].Data & 0xF) == 1 )
         {
-          RoleSystem::UpdateRole((RoleSystem *)dword_C116EC, (int)&a2, SLODWORD(pDist), 1);
-          v27 = *((_DWORD *)dword_C116EC + 157);
+          RoleSystem::UpdateRole((RoleSystem *)g_SceneMgr.m_pCollisionNode, (int)&a2, SLODWORD(pDist), 1);
+          v27 = *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52];
           if ( LODWORD(pDist) != v27
-            && !*((_DWORD *)dword_C116EC + 317)
-            && Camera::CheckCollision2(&unk_C11430, v27, &a2) )
+            && !*(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[28]
+            && Camera::CheckCollision2(&g_SceneMgr._gap_CD10[912], v27, &a2) )
           {
             a2.y = 0.0;
-            RoleSystem::UpdateRole((RoleSystem *)dword_C116EC, (int)&a2, *((_DWORD *)dword_C116EC + 157), 1);
+            RoleSystem::UpdateRole(
+              (RoleSystem *)g_SceneMgr.m_pCollisionNode,
+              (int)&a2,
+              *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52],
+              1);
           }
         }
         else if ( (g_Input.KeyInfo[0].Data & 0xF) == 1 && (double)g_Input.KeyInfo[0].PressTime * a1 > 0.5 )
         {
-          RoleSystem::MoveRole((RoleSystem *)dword_C116EC, &a2.x, SLODWORD(pDist), 1, v26);
-          v28 = *((_DWORD *)dword_C116EC + 157);
+          RoleSystem::MoveRole((RoleSystem *)g_SceneMgr.m_pCollisionNode, &a2.x, SLODWORD(pDist), 1, v26);
+          v28 = *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52];
           if ( LODWORD(pDist) != v28
-            && !*((_DWORD *)dword_C116EC + 317)
-            && Camera::CheckCollision2(&unk_C11430, v28, &a2) )
+            && !*(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[28]
+            && Camera::CheckCollision2(&g_SceneMgr._gap_CD10[912], v28, &a2) )
           {
             a2.y = 0.0;
-            RoleSystem::MoveRole((RoleSystem *)dword_C116EC, &a2.x, *((_DWORD *)dword_C116EC + 157), 1, 1);
+            RoleSystem::MoveRole(
+              (RoleSystem *)g_SceneMgr.m_pCollisionNode,
+              &a2.x,
+              *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52],
+              1,
+              1);
           }
         }
         else if ( g_Input.KeyInfo[0].PressTime == 1 && (g_Input.KeyInfo[0].Data & 0xF) == 2 )
         {
-          RoleSystem::UpdateRole((RoleSystem *)dword_C116EC, (int)&a2, SLODWORD(pDist), 2);
-          v29 = *((_DWORD *)dword_C116EC + 157);
+          RoleSystem::UpdateRole((RoleSystem *)g_SceneMgr.m_pCollisionNode, (int)&a2, SLODWORD(pDist), 2);
+          v29 = *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52];
           if ( LODWORD(pDist) != v29
-            && !*((_DWORD *)dword_C116EC + 317)
-            && Camera::CheckCollision2(&unk_C11430, v29, &a2) )
+            && !*(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[28]
+            && Camera::CheckCollision2(&g_SceneMgr._gap_CD10[912], v29, &a2) )
           {
             a2.y = 0.0;
-            RoleSystem::UpdateRole((RoleSystem *)dword_C116EC, (int)&a2, *((_DWORD *)dword_C116EC + 157), 2);
+            RoleSystem::UpdateRole(
+              (RoleSystem *)g_SceneMgr.m_pCollisionNode,
+              (int)&a2,
+              *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52],
+              2);
           }
         }
         else
@@ -2810,12 +2816,12 @@ LABEL_115:
           if ( (g_Input.KeyInfo[0].Data & 0xFu) <= 1 || (double)g_Input.KeyInfo[0].PressTime * a1 <= 0.5 )
           {
 LABEL_145:
-            if ( (byte_C116EA || (_BYTE)v41 && g_GameDataFlags == 2)
+            if ( (g_SceneMgr._gap_CD10[1610] || (_BYTE)v41 && g_GameDataFlags == 2)
               && g_Input.KeyInfo[1].PressTime == 1
               && (g_Input.KeyInfo[1].Data & 0xF) == 1
-              && *((_DWORD *)dword_C116EC + 157) == LODWORD(pDist) )
+              && *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52] == LODWORD(pDist) )
             {
-              RoleSystem::PathFind((RoleSystem *)dword_C116EC, &a2.x);
+              RoleSystem::PathFind((RoleSystem *)g_SceneMgr.m_pCollisionNode, &a2.x);
               v12 = 4;
               goto LABEL_166;
             }
@@ -2832,14 +2838,14 @@ LABEL_153:
                 if ( State && *(_DWORD *)(State + 1264) != 7 )
                 {
                   if ( *(_BYTE *)(State + 173) != 2 && *(_DWORD *)(State + 264) )
-                    RoleSystem::UpdateAnimation((RoleSystem *)dword_C116EC, State);
+                    RoleSystem::UpdateAnimation((RoleSystem *)g_SceneMgr.m_pCollisionNode, State);
                 }
                 else
                 {
                   UISceneUpdate();
                   ViewMode = UICamera::GetViewMode(v39);
                   if ( ViewMode )
-                    RoleSystem::SetState((RoleSystem *)dword_C116EC, ViewMode);
+                    RoleSystem::SetState((RoleSystem *)g_SceneMgr.m_pCollisionNode, ViewMode);
                 }
               }
               goto LABEL_163;
@@ -2900,17 +2906,17 @@ LABEL_177:
                     if ( v12 != 3 )
                     {
 LABEL_163:
-                      if ( *((_DWORD *)dword_C116EC + 316) == 3 )
+                      if ( *(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[24] == 3 )
                       {
                         memset(pOut, 0, 12);
-                        RoleSystem::GetPosition((RoleSystem *)dword_C116EC, pOut, 0);
+                        RoleSystem::GetPosition((RoleSystem *)g_SceneMgr.m_pCollisionNode, pOut, 0);
                       }
                       v38 = flt_C116F8[0] + a1;
                       flt_C116F8[0] = v38;
                       if ( v38 > flt_58B238 )
                       {
                         flt_C116F8[0] = 0.0;
-                        RoleSystem::GetCount((RoleSystem *)dword_C116EC);
+                        RoleSystem::GetCount((RoleSystem *)g_SceneMgr.m_pCollisionNode);
                         flt_58B238 = (float)(rand() % 30 + 30);
                       }
                       return;
@@ -2945,12 +2951,12 @@ LABEL_163:
                   a2.y = a2.y + pOut[0].y;
                   a2.z = a2.z + pOut[0].z;
                 }
-                RoleSystem::GetActiveRole((RoleSystem *)dword_C116EC);
-                if ( *((_DWORD *)dword_C116EC + 321) == 2 )
+                RoleSystem::GetActiveRole((RoleSystem *)g_SceneMgr.m_pCollisionNode);
+                if ( *(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[44] == 2 )
                   v31 = 2;
-                RoleSystem::GetPosition((RoleSystem *)dword_C116EC, &a2, v31);
+                RoleSystem::GetPosition((RoleSystem *)g_SceneMgr.m_pCollisionNode, &a2, v31);
 LABEL_166:
-                *((_DWORD *)dword_C116EC + 316) = v12;
+                *(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[24] = v12;
                 flt_C116F8[0] = 0.0;
                 return;
               }
@@ -2965,14 +2971,19 @@ LABEL_166:
             v31 = 2;
             goto LABEL_176;
           }
-          RoleSystem::MoveRole((RoleSystem *)dword_C116EC, &a2.x, SLODWORD(pDist), 2, v26);
-          v30 = *((_DWORD *)dword_C116EC + 157);
+          RoleSystem::MoveRole((RoleSystem *)g_SceneMgr.m_pCollisionNode, &a2.x, SLODWORD(pDist), 2, v26);
+          v30 = *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52];
           if ( LODWORD(pDist) != v30
-            && !*((_DWORD *)dword_C116EC + 317)
-            && Camera::CheckCollision2(&unk_C11430, v30, &a2) )
+            && !*(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[28]
+            && Camera::CheckCollision2(&g_SceneMgr._gap_CD10[912], v30, &a2) )
           {
             a2.y = 0.0;
-            RoleSystem::MoveRole((RoleSystem *)dword_C116EC, &a2.x, *((_DWORD *)dword_C116EC + 157), 2, 1);
+            RoleSystem::MoveRole(
+              (RoleSystem *)g_SceneMgr.m_pCollisionNode,
+              &a2.x,
+              *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52],
+              2,
+              1);
           }
         }
         v12 = 2;
@@ -2980,20 +2991,20 @@ LABEL_166:
       }
       if ( v14 )
       {
-        pOut[0].x = *((float *)dword_C116EC + 40) - v15[10];
-        v17 = *((float *)dword_C116EC + 41) - v15[11];
+        pOut[0].x = *(float *)&g_SceneMgr.m_pCollisionNode->OffMat[8] - v15[10];
+        v17 = *(float *)&g_SceneMgr.m_pCollisionNode->OffMat[12] - v15[11];
         a2.x = pOut[0].x;
         pOut[0].y = v17;
-        v18 = *((float *)dword_C116EC + 42) - v15[12];
+        v18 = *(float *)&g_SceneMgr.m_pCollisionNode->OffMat[16] - v15[12];
         a2.y = pOut[0].y;
         pOut[0].z = v18;
         a2.z = pOut[0].z;
         v43 = gbVec3D::Length(&a2);
-        pOut[0].x = *((float *)dword_C116EC + 40) - *(float *)(v14 + 160);
-        v19 = *((float *)dword_C116EC + 41) - *(float *)(v14 + 164);
+        pOut[0].x = *(float *)&g_SceneMgr.m_pCollisionNode->OffMat[8] - *(float *)(v14 + 160);
+        v19 = *(float *)&g_SceneMgr.m_pCollisionNode->OffMat[12] - *(float *)(v14 + 164);
         a2.x = pOut[0].x;
         pOut[0].y = v19;
-        v20 = *((float *)dword_C116EC + 42) - *(float *)(v14 + 168);
+        v20 = *(float *)&g_SceneMgr.m_pCollisionNode->OffMat[16] - *(float *)(v14 + 168);
         a2.y = pOut[0].y;
         pOut[0].z = v20;
         a2.z = pOut[0].z;
@@ -3009,7 +3020,7 @@ LABEL_89:
       if ( *(_BYTE *)(v16 + 173) )
       {
         v22 = *(_BYTE *)(v16 + 244);
-        if ( v22 != 14 || *(unsigned __int8 *)(v16 + 246) == *((_DWORD *)dword_C116EC + 157) )
+        if ( v22 != 14 || *(unsigned __int8 *)(v16 + 246) == *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52] )
         {
           v23 = v22 == 11
              || v22 == 12
@@ -3047,13 +3058,15 @@ void __thiscall UIPostUpdate(void *_this)
   gbSound2DNode *v7; // esi
   int v8; // [esp-8h] [ebp-10h]
 
-  if ( dword_C116EC )
+  if ( g_SceneMgr.m_pCollisionNode )
   {
-    v8 = *((_DWORD *)dword_C116EC + 157);
+    v8 = *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52];
     v1 = (RoleSystem *)UISceneUpdate();
     RolePtr = RoleSystem::GetRolePtr(v1, v8);
-    v3 = (__int64)((*((float *)dword_C116EC + 1) - *(float *)(RolePtr + 128)) / *(float *)&dword_C116C4);
-    v4 = (__int64)((*((float *)dword_C116EC + 3) - *(float *)(RolePtr + 136)) / *(float *)&dword_C116C4);
+    v3 = (__int64)((*(float *)&g_SceneMgr.m_pCollisionNode->_base[4] - *(float *)(RolePtr + 128))
+                 / *(float *)&g_SceneMgr._gap_CD10[1572]);
+    v4 = (__int64)((*(float *)&g_SceneMgr.m_pCollisionNode->_base[12] - *(float *)(RolePtr + 136))
+                 / *(float *)&g_SceneMgr._gap_CD10[1572]);
     if ( v3 < 0 || (v5 = *(_DWORD *)(RolePtr + 152), v3 >= v5) || (int)v4 < 0 || (int)v4 >= *(_DWORD *)(RolePtr + 156) )
     {
       v6 = 2;
@@ -3079,15 +3092,15 @@ void __thiscall UIPostUpdate(void *_this)
     if ( (g_nGameFlags & 1) != 0 )
     {
       v7 = 0;
-      if ( *((_DWORD *)dword_C116EC + 321) )
+      if ( *(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[44] )
       {
-        if ( *((_DWORD *)dword_C116EC + 321) == 1 )
+        if ( *(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[44] == 1 )
         {
-          v7 = (gbSound2DNode *)dword_C113C0[sub_41EB50(v6)];
+          v7 = *(gbSound2DNode **)&g_SceneMgr._gap_CD10[4 * sub_41EB50(v6) + 800];
         }
-        else if ( *((_DWORD *)dword_C116EC + 321) == 2 )
+        else if ( *(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[44] == 2 )
         {
-          v7 = (gbSound2DNode *)dword_C11360[sub_41EB50(v6)];
+          v7 = *(gbSound2DNode **)&g_SceneMgr._gap_CD10[4 * sub_41EB50(v6) + 704];
         }
       }
       else
@@ -3242,15 +3255,15 @@ gbGfxManager *__cdecl GetGfxManager_3()
 // between_std_methods (0x411BB0-0x430790)
 int __thiscall UINotifyUpdate(int *_this)
 {
-  float *v1; // ebx
+  gbGeomNode *m_pCollisionNode; // ebx
   int v3; // edi
   int *i; // esi
 
-  v1 = (float *)dword_C116EC;
+  m_pCollisionNode = g_SceneMgr.m_pCollisionNode;
   v3 = 0;
   if ( *(_this + 14392) <= 0 )
     return 0;
-  for ( i = _this + 14393; *((_BYTE *)i + 173) != 4 || !sub_419EF0((int)i, v1 + 1); i += 2176 )
+  for ( i = _this + 14393; *((_BYTE *)i + 173) != 4 || !sub_419EF0((int)i, (float *)&m_pCollisionNode->_base[4]); i += 2176 )
   {
     if ( ++v3 >= *(_this + 14392) )
       return 0;
@@ -3332,7 +3345,7 @@ void __cdecl EffectUpdate(float a1)
   {
     if ( (_BYTE)dword_C12B38 == 6 || (_BYTE)dword_C12B38 == 14 )
     {
-      sub_418130(dword_C116EC, 0);
+      sub_418130(g_SceneMgr.m_pCollisionNode->_base, 0);
       v1 = dword_C12B40;
       if ( *(_DWORD *)(dword_C12B40 + 88) == 3 )
       {
@@ -3430,8 +3443,8 @@ void __cdecl EffectUpdate(float a1)
         while ( (int)m_RoleSystem < (int)&g_SceneMgr.m_pGameData );
         v2 = v18;
       }
-      if ( dword_C116EC && *((_DWORD *)dword_C116EC + 316) != 4 )
-        sub_420B40((float *)v2, (RoleSystem *)dword_C116EC, a1, 0);
+      if ( g_SceneMgr.m_pCollisionNode && *(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[24] != 4 )
+        sub_420B40((float *)v2, (RoleSystem *)g_SceneMgr.m_pCollisionNode, a1, 0);
     }
   }
   if ( g_GameDataFlags != 1 )
@@ -9586,7 +9599,7 @@ enum _EXCEPTION_DISPOSITION __usercall TranslatorGuardHandler@<eax>(
       *((EXCEPTION_POINTERS **)TargetFrame + 2),
       *((_DWORD *)TargetFrame + 4),
       *((struct EHRegistrationNode **)TargetFrame + 5),
-      1);
+      1u);
     if ( !*((_DWORD *)TargetFrame + 9) )
       _UnwindNestedFrames(a1, TargetFrame, (PEXCEPTION_RECORD)ExceptionRecord);
     return (*((enum _EXCEPTION_DISPOSITION (**)(void))TargetFrame + 6))();
@@ -9746,12 +9759,12 @@ __int64 __usercall _ftol@<edx:eax>(double a1@<st0>)
 }
 
 // 0x005535C9
-void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (*a4)(void))
+void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *))
 {
   while ( --a3 >= 0 )
   {
     a1 -= a2;
-    a4();
+    ((void (*)(void))a4)();
   }
 }
 
@@ -10963,16 +10976,9 @@ LABEL_10:
 }
 
 // 0x00554700
-long double __usercall _CIpow@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)
+long double __usercall _CIpow@<st0>(double x@<st0>, unsigned __int64 y@<st1>)
 {
-  return sub_554722(
-           HIDWORD(*(unsigned __int64 *)&y),
-           *(double *)&x,
-           y,
-           x,
-           HIDWORD(x),
-           SLODWORD(y),
-           HIDWORD(*(unsigned __int64 *)&y));
+  return sub_554722(HIDWORD(y), x, *(long double *)&y, SLODWORD(x), HIDWORD(*(unsigned __int64 *)&x), y, HIDWORD(y));
 }
 
 // 0x00554719
@@ -13901,7 +13907,7 @@ int __cdecl __InternalCxxFrameHandler(
         EXCEPTION_POINTERS *a5,
         int a6,
         struct EHRegistrationNode *TargetFrame,
-        unsigned __int8 a8)
+        char a8)
 {
   int (__cdecl *pForwardCompat)(); // ecx
   struct _EXCEPTION_POINTERS *v10; // [esp+0h] [ebp-8h]
@@ -13930,7 +13936,7 @@ int __cdecl __InternalCxxFrameHandler(
                  a5,
                  a6,
                  TargetFrame,
-                 a8);
+                 (unsigned __int8)a8);
     }
     FindHandler(ExceptionRecord, a2, a3, a4, a5, a8, a6, TargetFrame);
   }
@@ -15852,9 +15858,9 @@ int __initmbctable()
 }
 
 // 0x005592F0
-long double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
+double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
 {
-  long double result; // st7
+  double result; // st7
   long double v6; // st6
   long double v7; // st7
   long double v8; // st7
@@ -17167,7 +17173,7 @@ LABEL_256:
 }
 
 // 0x0055A28B
-unsigned int __cdecl _hextodec(int C)
+int __cdecl _hextodec(int C)
 {
   int v1; // esi
   int v2; // eax

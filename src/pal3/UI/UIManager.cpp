@@ -71,7 +71,7 @@ void UIManager::Render()
   }
   if ( g_nGameState != 9 )
   {
-    v7 = (char *)&g_SceneMgr.m_RoleSystem[0]._gap_0018[120];
+    v7 = (char *)&g_SceneMgr.m_RoleSystem[0]._gap_002C[100];
     v8 = (_DWORD *)((char *)this + 68 * v4 + 64);
     do
     {

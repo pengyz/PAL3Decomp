@@ -246,7 +246,6 @@ extern int dword_C0436C;
 extern int dword_C0437C;
 extern int dword_C04380;
 extern int dword_C0438C;
-extern int dword_C116EC;
 extern int dword_C11700;
 extern int dword_C11718;
 extern int dword_C1171C;
@@ -755,7 +754,7 @@ int PAL3::Update(int a1)
   int v7; // ebx
   int v8; // eax
   _DWORD *v9; // eax
-  float *v10; // ebp
+  float *base; // ebp
   int v11; // ebx
   float *p_m_fTargetZ; // esi
   double v13; // st7
@@ -954,18 +953,18 @@ LABEL_63:
         goto LABEL_64;
       if ( !v7 )
         CameraUpdate_Internal(*(float *)&a1);
-      v10 = (float *)dword_C116EC;
+      base = (float *)g_SceneMgr.m_pCollisionNode->_base;
       v11 = 1;
       p_m_fTargetZ = (float *)&g_SceneMgr.m_RoleSystem[1].m_fTargetZ;
       while ( 1 )
       {
         if ( *((_DWORD *)p_m_fTargetZ + 155) )
         {
-          dt = v10[1] - *(p_m_fTargetZ - 2);
-          v13 = v10[2] - *(p_m_fTargetZ - 1);
+          dt = base[1] - *(p_m_fTargetZ - 2);
+          v13 = base[2] - *(p_m_fTargetZ - 1);
           v38.x = dt;
           dt_4 = v13;
-          v14 = v10[3] - *p_m_fTargetZ;
+          v14 = base[3] - *p_m_fTargetZ;
           v38.y = dt_4;
           v37 = v14;
           v38.z = v37;
@@ -983,7 +982,7 @@ LABEL_63:
       if ( PAL3::EntryCatchGhost() )
       {
         PAL3::EndHideFight();
-        RoleSystemNotify((int)dword_C116EC);
+        RoleSystemNotify((int)g_SceneMgr.m_pCollisionNode->_base);
         v15 = ((PalScriptMgr *)0x6A5u)->Destroy(0);
 LABEL_33:
         v34 = (int)v15;
@@ -1005,13 +1004,13 @@ LABEL_33:
       if ( !v7 )
         CameraUpdate_Internal(*(float *)&a1);
       UIPostUpdate(v18);
-      if ( *((_DWORD *)dword_C116EC + 316) != 4 )
+      if ( *(_DWORD *)&g_SceneMgr.m_pCollisionNode[4].CacheToW[24] != 4 )
       {
         v19 = (int *)UISceneUpdate();
         if ( UINotifyUpdate(v19) )
         {
 LABEL_32:
-          RoleSystemNotify((int)dword_C116EC);
+          RoleSystemNotify((int)g_SceneMgr.m_pCollisionNode->_base);
           PAL3::EndHideFight();
           v15 = ((PalScriptMgr *)0x6A6u)->Destroy(0);
           goto LABEL_33;
@@ -2051,7 +2050,7 @@ int PAL3::EndHideFight()
 char PAL3::StartCombat(int a1, int a2, int a3, char a4)
 {
   char result; // al
-  float *v5; // ebx
+  gbGeomNode *m_pCollisionNode; // ebx
   RoleSystem *v6; // eax
   int RolePtr; // esi
   int v8; // edi
@@ -2071,13 +2070,13 @@ char PAL3::StartCombat(int a1, int a2, int a3, char a4)
   v20 = 0;
   v19 = (int *)&v17;
   result = PAL3::UIPostProcess();
-  v5 = (float *)dword_C116EC;
-  if ( dword_C116EC )
+  m_pCollisionNode = (gbGeomNode *)g_SceneMgr.m_pCollisionNode;
+  if ( g_SceneMgr.m_pCollisionNode )
   {
     v6 = (RoleSystem *)UISceneUpdate();
-    RolePtr = v6->GetRolePtr(*((_DWORD *)v5 + 157));
-    v8 = (__int64)((v5[1] - *(float *)(RolePtr + 128)) / *(float *)&dword_BFDA04);
-    v9 = (__int64)((v5[3] - *(float *)(RolePtr + 136)) / *(float *)&dword_BFDA04);
+    RolePtr = v6->GetRolePtr(*(_DWORD *)&m_pCollisionNode[2]._base[52]);
+    v8 = (__int64)((*(float *)&m_pCollisionNode->_base[4] - *(float *)(RolePtr + 128)) / *(float *)&dword_BFDA04);
+    v9 = (__int64)((*(float *)&m_pCollisionNode->_base[12] - *(float *)(RolePtr + 136)) / *(float *)&dword_BFDA04);
     if ( v8 < 0 || (v10 = *(_DWORD *)(RolePtr + 152), v8 >= v10) || (int)v9 < 0 || (int)v9 >= *(_DWORD *)(RolePtr + 156) )
       v11 = 2;
     else
@@ -2153,7 +2152,7 @@ char PAL3::EntryCatchGhost()
 {
   int v0; // esi
   int *i; // edi
-  float *v3; // esi
+  gbGeomNode *m_pCollisionNode; // esi
   RoleSystem *v4; // eax
   int RolePtr; // edi
   int v6; // ebx
@@ -2185,12 +2184,12 @@ char PAL3::EntryCatchGhost()
   }
   else
   {
-    v3 = (float *)dword_C116EC;
-    v7 = *((_DWORD *)dword_C116EC + 157);
+    m_pCollisionNode = (gbGeomNode *)g_SceneMgr.m_pCollisionNode;
+    v7 = *(_DWORD *)&g_SceneMgr.m_pCollisionNode[2]._base[52];
     v4 = (RoleSystem *)UISceneUpdate();
     RolePtr = v4->GetRolePtr(v7);
-    v6 = (__int64)((v3[1] - *(float *)(RolePtr + 128)) / *(float *)&dword_BFDA04);
-    v9 = (__int64)((v3[3] - *(float *)(RolePtr + 136)) / *(float *)&dword_BFDA04);
+    v6 = (__int64)((*(float *)&m_pCollisionNode->_base[4] - *(float *)(RolePtr + 128)) / *(float *)&dword_BFDA04);
+    v9 = (__int64)((*(float *)&m_pCollisionNode->_base[12] - *(float *)(RolePtr + 136)) / *(float *)&dword_BFDA04);
     v8 = v6;
     v11 = 23;
     v12 = 93;
@@ -2219,7 +2218,7 @@ gbGfxManager * PAL3::IfHideFightSucceed(int a1)
       AudioManager->DetachAll3D();
     }
     PAL3::UIPostProcess();
-    RoleSystemNotify((int)dword_C116EC);
+    RoleSystemNotify((int)g_SceneMgr.m_pCollisionNode->_base);
     UIQuadManager::GetInstance();
     return UIQuadManager_Reset();
   }
