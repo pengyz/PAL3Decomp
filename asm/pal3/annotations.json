@@ -75,7 +75,8 @@
       "signature": "char __thiscall(GRPinput *this)"
     },
     "0x00402B60": {
-      "name": "?RunJoystickControlPanel@GRPinput@@QAEXPAX@Z"
+      "name": "?RunJoystickControlPanel@GRPinput@@QAEXPAX@Z",
+      "signature": "int __thiscall RunJoystickControlPanel@GRPinput(void)"
     },
     "0x00402B70": {
       "name": "?ClearKeyBuffer@GRPinput@@QAEXXZ",
@@ -162,7 +163,8 @@
       "signature": "void __thiscall(GRPinput **this)"
     },
     "0x004034E0": {
-      "name": "?UnacquireKeyboard@GRPinput@@AAEXXZ"
+      "name": "?UnacquireKeyboard@GRPinput@@AAEXXZ",
+      "signature": "int __cdecl ?UnacquireKeyboard@GRPinput@@AAEXXZ(void)"
     },
     "0x00403560": {
       "name": "?Update@GRPinput@@QAEXXZ",
@@ -197,7 +199,8 @@
       "signature": "int __thiscall(GRPinput *this)"
     },
     "0x00404760": {
-      "name": "??0PAL3@@QAE@XZ"
+      "name": "??0PAL3@@QAE@XZ",
+      "signature": "int __thiscall 0PAL3(void)"
     },
     "0x004047F0": {
       "name": "??1PAL3@@QAE@XZ",
@@ -688,10 +691,12 @@
       "signature": "int __thiscall(PalScript *this)"
     },
     "0x00431D80": {
-      "name": "??0PalScript@@QAE@XZ"
+      "name": "??0PalScript@@QAE@XZ",
+      "signature": "int __thiscall 0PalScript(void)"
     },
     "0x00431E60": {
-      "name": "??0PalScriptMgr@@QAE@XZ"
+      "name": "??0PalScriptMgr@@QAE@XZ",
+      "signature": "int __thiscall 0PalScriptMgr(void)"
     },
     "0x00431EB0": {
       "name": "?OpenSCE@PalScriptMgr@@SAXPBD@Z",
@@ -714,7 +719,8 @@
       "signature": "void __cdecl()"
     },
     "0x00431FA0": {
-      "name": "?ClearAllWaitObj@PalScript@@QAEXXZ"
+      "name": "?ClearAllWaitObj@PalScript@@QAEXXZ",
+      "signature": "int __thiscall ClearAllWaitObj@PalScript(void)"
     },
     "0x00431FB0": {
       "name": "?Update@PalScript@@QAEHM@Z",
@@ -801,10 +807,12 @@
       "signature": "char *()"
     },
     "0x00437C30": {
-      "name": "j_?StartHideFight@PAL3@@SAXXZ"
+      "name": "j_?StartHideFight@PAL3@@SAXXZ",
+      "signature": "int __cdecl j_?StartHideFight@PAL3(void)"
     },
     "0x004386A0": {
-      "name": "j_nullsub_103"
+      "name": "j_nullsub_103",
+      "signature": "int __cdecl j_nullsub_103(void)"
     },
     "0x00438E90": {
       "name": "??_Gfilebuf@@UAEPAXI@Z",
@@ -851,16 +859,20 @@
       "signature": "void __thiscall(std::ios_base *this)"
     },
     "0x0043DC90": {
-      "name": "??1UILBItem@@QAE@XZ"
+      "name": "??1UILBItem@@QAE@XZ",
+      "signature": "int __thiscall 1UILBItem(void)"
     },
     "0x0043DCA0": {
-      "name": "??0UILBColumn@@QAE@XZ"
+      "name": "??0UILBColumn@@QAE@XZ",
+      "signature": "int __thiscall 0UILBColumn(void)"
     },
     "0x0043DCB0": {
-      "name": "??1UILBColumn@@QAE@XZ"
+      "name": "??1UILBColumn@@QAE@XZ",
+      "signature": "int __thiscall 1UILBColumn(void)"
     },
     "0x0043DCC0": {
-      "name": "?Destroy@UILBColumn@@QAEXXZ"
+      "name": "?Destroy@UILBColumn@@QAEXXZ",
+      "signature": "int __thiscall Destroy@UILBColumn(void)"
     },
     "0x0043DCD0": {
       "name": "??0UIListBox@@QAE@XZ",
@@ -1103,7 +1115,8 @@
       "signature": "int __cdecl(int a1)"
     },
     "0x00449990": {
-      "name": "j_?SetScrollPos@UIListBox@@QAEXH@Z"
+      "name": "j_?SetScrollPos@UIListBox@@QAEXH@Z",
+      "signature": "int __thiscall j_?SetScrollPos@UIListBox(void)"
     },
     "0x0044ADE0": {
       "name": "CGameData::InitRoles",
@@ -1210,10 +1223,12 @@
       "signature": "int()"
     },
     "0x0047C570": {
-      "name": "??0ObjectCamera@@QAE@XZ"
+      "name": "??0ObjectCamera@@QAE@XZ",
+      "signature": "int __thiscall 0ObjectCamera(void)"
     },
     "0x0047C580": {
-      "name": "??1ObjectCamera@@QAE@XZ"
+      "name": "??1ObjectCamera@@QAE@XZ",
+      "signature": "int __thiscall 1ObjectCamera(void)"
     },
     "0x0047C590": {
       "name": "?Create@ObjectCamera@@QAEXPAVgbGfxManager@@@Z",
@@ -1476,7 +1491,8 @@
       "signature": "char __thiscall(CEffCylinder *this, struct tagEffObjType *)"
     },
     "0x004C4370": {
-      "name": "?Destroy@CEffCylinder@@UAEXXZ"
+      "name": "?Destroy@CEffCylinder@@UAEXXZ",
+      "signature": "int __cdecl ?Destroy@CEffCylinder@@UAEXXZ(void)"
     },
     "0x004C45A0": {
       "name": "?CreateTask@CEffCylinder@@UAEXPAUtagEffTaskParam@@@Z",
@@ -1583,7 +1599,8 @@
       "signature": "char __thiscall(CEffExplosive *this, struct tagEffObjType *)"
     },
     "0x004C6F20": {
-      "name": "?Destroy@CEffExplosive@@UAEXXZ"
+      "name": "?Destroy@CEffExplosive@@UAEXXZ",
+      "signature": "int __cdecl ?Destroy@CEffExplosive@@UAEXXZ(void)"
     },
     "0x004C7150": {
       "name": "?CreateOnePartical@CEffect@@QAE_NPAUtagPartical@@@Z",
@@ -1662,7 +1679,8 @@
       "signature": "void __thiscall(CEffgbParticle *this)"
     },
     "0x004C9610": {
-      "name": "??0CEffGrid@@QAE@XZ"
+      "name": "??0CEffGrid@@QAE@XZ",
+      "signature": "int __thiscall 0CEffGrid(void)"
     },
     "0x004C9650": {
       "name": "??1CEffGrid@@UAE@XZ",
@@ -1681,7 +1699,8 @@
       "signature": "int *__thiscall(CEffGrid *this, int)"
     },
     "0x004CB480": {
-      "name": "??0CEffMeteor@@QAE@XZ"
+      "name": "??0CEffMeteor@@QAE@XZ",
+      "signature": "int __thiscall 0CEffMeteor(void)"
     },
     "0x004CB4C0": {
       "name": "??1CEffMeteor@@UAE@XZ",
@@ -1800,7 +1819,8 @@
       "signature": "int __thiscall(CEffQuake *this)"
     },
     "0x004D3910": {
-      "name": "??0CEffShock@@QAE@XZ"
+      "name": "??0CEffShock@@QAE@XZ",
+      "signature": "int __thiscall 0CEffShock(void)"
     },
     "0x004D3A50": {
       "name": "?Init@CEffShock@@UAEXPAUtagEffObjType@@MMM@Z",
@@ -1823,7 +1843,8 @@
       "signature": "int __thiscall(CEffShock *this, int a2, int a3, int a4, _DWORD *a5, int a6, int a7)"
     },
     "0x004D4EE0": {
-      "name": "??0CEffSParticle@@QAE@XZ"
+      "name": "??0CEffSParticle@@QAE@XZ",
+      "signature": "int __thiscall 0CEffSParticle(void)"
     },
     "0x004D4F20": {
       "name": "??1CEffSParticle@@UAE@XZ",
@@ -1870,7 +1891,8 @@
       "signature": "C2DSpark *__thiscall(C2DSpark *this, int, int)"
     },
     "0x004D5DC0": {
-      "name": "??1C2DSpark@@QAE@XZ"
+      "name": "??1C2DSpark@@QAE@XZ",
+      "signature": "int __thiscall 1C2DSpark(void)"
     },
     "0x004D5EC0": {
       "name": "?CreateSingle@C2DSpark@@AAE_NPAUtagSpark@1@@Z",
@@ -1905,7 +1927,8 @@
       "signature": "_DWORD *__thiscall(C3DSpark *this)"
     },
     "0x004D6960": {
-      "name": "??1C3DSpark@@QAE@XZ"
+      "name": "??1C3DSpark@@QAE@XZ",
+      "signature": "int __thiscall 1C3DSpark(void)"
     },
     "0x004D6A60": {
       "name": "?CreateSingle@C3DSpark@@AAE_NPAUtagSpark@1@@Z",
@@ -1928,14 +1951,16 @@
       "signature": "int __thiscall(C3DSpark *this, float a2)"
     },
     "0x004D6FE0": {
-      "name": "j_??0CCBAI@@QAE@PAVCCBSystem@@@Z"
+      "name": "j_??0CCBAI@@QAE@PAVCCBSystem@@@Z",
+      "signature": "int __thiscall j_??0CCBAI(void)"
     },
     "0x004D6FF0": {
       "name": "??0CCBAI@@QAE@PAVCCBSystem@@@Z",
       "signature": "CCBAI *__thiscall(CCBAI *this)"
     },
     "0x004D7030": {
-      "name": "??1CCBAI@@QAE@XZ"
+      "name": "??1CCBAI@@QAE@XZ",
+      "signature": "int __thiscall 1CCBAI(void)"
     },
     "0x004D7040": {
       "name": "?Reset@CCBAI@@AAEXXZ",
@@ -2118,7 +2143,8 @@
       "signature": "int()"
     },
     "0x004DB300": {
-      "name": "?AddValueItem@CCBAI@@AAE_NHK@Z"
+      "name": "?AddValueItem@CCBAI@@AAE_NHK@Z",
+      "signature": "int __cdecl ?AddValueItem@CCBAI@@AAE_NHK@Z(void)"
     },
     "0x004DB310": {
       "name": "?DestroyValueAutomation@CCBAI@@AAE_NXZ",
@@ -2921,7 +2947,8 @@
       "signature": "char __thiscall(CCBStageCam *this)"
     },
     "0x005054F0": {
-      "name": "?DoTask@CCBStageCam@@AAEXXZ"
+      "name": "?DoTask@CCBStageCam@@AAEXXZ",
+      "signature": "int __cdecl ?DoTask@CCBStageCam@@AAEXXZ(void)"
     },
     "0x00505770": {
       "name": "?ClearFinishedTask@CCBStageCam@@AAEXXZ",
@@ -2944,7 +2971,8 @@
       "signature": "int __thiscall(CCCTData *this, _DWORD *a2, _DWORD *a3)"
     },
     "0x00505930": {
-      "name": "??1CCCTData@@QAE@XZ"
+      "name": "??1CCCTData@@QAE@XZ",
+      "signature": "int __thiscall 1CCCTData(void)"
     },
     "0x00506020": {
       "name": "?Create@CCCTData@@QAE_NXZ",
@@ -2999,14 +3027,16 @@
       "signature": "int __thiscall(CCBCamControl *this)"
     },
     "0x00508220": {
-      "name": "?Reset@CCBCamControl@@QAEXXZ"
+      "name": "?Reset@CCBCamControl@@QAEXXZ",
+      "signature": "int __thiscall Reset@CCBCamControl(void)"
     },
     "0x00508230": {
       "name": "?Create@CCBCamControl@@QAE_NXZ",
       "signature": "int __thiscall(CCBCamControl *this)"
     },
     "0x00508270": {
-      "name": "?Destroy@CCBCamControl@@QAE_NXZ"
+      "name": "?Destroy@CCBCamControl@@QAE_NXZ",
+      "signature": "int __thiscall Destroy@CCBCamControl(void)"
     },
     "0x00508280": {
       "name": "?Init@CCBCamControl@@QAE_NXZ",
@@ -3021,14 +3051,16 @@
       "signature": "int __thiscall(CCBCamControl *this)"
     },
     "0x00508310": {
-      "name": "?StartList@CCBCamControl@@QAE_NHH@Z"
+      "name": "?StartList@CCBCamControl@@QAE_NHH@Z",
+      "signature": "int __thiscall StartList@CCBCamControl(void)"
     },
     "0x00508320": {
       "name": "?StopList@CCBCamControl@@QAEXXZ",
       "signature": "int __thiscall(CCBCamControl *this)"
     },
     "0x00508360": {
-      "name": "?HandleInput@CCBCamControl@@AAEXXZ"
+      "name": "?HandleInput@CCBCamControl@@AAEXXZ",
+      "signature": "int __cdecl ?HandleInput@CCBCamControl@@AAEXXZ(void)"
     },
     "0x00508370": {
       "name": "?UpdateCircleSet@CCBCamControl@@AAEXXZ",
@@ -3075,7 +3107,8 @@
       "signature": "char __thiscall(CCBStageEffect *this)"
     },
     "0x00509050": {
-      "name": "?Create@CCBStageEffect@@QAE_NXZ"
+      "name": "?Create@CCBStageEffect@@QAE_NXZ",
+      "signature": "int __thiscall Create@CCBStageEffect(void)"
     },
     "0x00509060": {
       "name": "?Destroy@CCBStageEffect@@QAE_NXZ",
@@ -3102,7 +3135,8 @@
       "signature": "int __thiscall(CCBStageRole *this)"
     },
     "0x00509130": {
-      "name": "?SetAlive@CCBStageRole@@QAEX_N@Z"
+      "name": "?SetAlive@CCBStageRole@@QAEX_N@Z",
+      "signature": "int __thiscall SetAlive@CCBStageRole(void)"
     },
     "0x00509140": {
       "name": "?SetMaxBlend@CCBStageRole@@QAEXXZ",
@@ -3401,20 +3435,24 @@
       "signature": "char __thiscall(CCBStageScene *this)"
     },
     "0x00511C00": {
-      "name": "?ShowEnemyFiveLineupEx@CCBStageScene@@QAEXE@Z"
+      "name": "?ShowEnemyFiveLineupEx@CCBStageScene@@QAEXE@Z",
+      "signature": "int __thiscall ShowEnemyFiveLineupEx@CCBStageScene(void)"
     },
     "0x00511C10": {
       "name": "?IsFiveLineupUnderMouse@CCBStageScene@@QAE_NXZ",
       "signature": "int __thiscall(CCBStageScene *this)"
     },
     "0x00511C20": {
-      "name": "?ResetFiveLineupToInit@CCBStageScene@@QAEXXZ"
+      "name": "?ResetFiveLineupToInit@CCBStageScene@@QAEXXZ",
+      "signature": "int __thiscall ResetFiveLineupToInit@CCBStageScene(void)"
     },
     "0x00511C30": {
-      "name": "?ResetRolePosToInit@CCBStageScene@@QAEXXZ"
+      "name": "?ResetRolePosToInit@CCBStageScene@@QAEXXZ",
+      "signature": "int __thiscall ResetRolePosToInit@CCBStageScene(void)"
     },
     "0x00511C40": {
-      "name": "?LoadScene@CCBStageScene@@QAE_NQBD@Z"
+      "name": "?LoadScene@CCBStageScene@@QAE_NQBD@Z",
+      "signature": "int __thiscall LoadScene@CCBStageScene(void)"
     },
     "0x00511C50": {
       "name": "?DestroyScene@CCBStageScene@@QAEXXZ",
@@ -3425,7 +3463,8 @@
       "signature": "int()"
     },
     "0x00511CE0": {
-      "name": "?LoadFiveLineupData@CCBStageScene@@QAE_NXZ"
+      "name": "?LoadFiveLineupData@CCBStageScene@@QAE_NXZ",
+      "signature": "int __thiscall LoadFiveLineupData@CCBStageScene(void)"
     },
     "0x00511CF0": {
       "name": "?SaveFiveLineupDate@CCBStageScene@@QAE_NXZ",
@@ -3452,17 +3491,20 @@
       "signature": "float *__thiscall(CCBStageShadow *this)"
     },
     "0x005122E0": {
-      "name": "?Update@CCBStageShadow@@QAEXXZ"
+      "name": "?Update@CCBStageShadow@@QAEXXZ",
+      "signature": "int __thiscall Update@CCBStageShadow(void)"
     },
     "0x005122F0": {
       "name": "?Render@CCBStageShadow@@QAEXXZ",
       "signature": "int __thiscall(CCBStageShadow *this)"
     },
     "0x00512300": {
-      "name": "?FillShadowQuad@CCBStageShadow@@AAEXXZ"
+      "name": "?FillShadowQuad@CCBStageShadow@@AAEXXZ",
+      "signature": "int __cdecl ?FillShadowQuad@CCBStageShadow@@AAEXXZ(void)"
     },
     "0x00512310": {
-      "name": "?HandleInput@CCBSystem@@QAEXXZ"
+      "name": "?HandleInput@CCBSystem@@QAEXXZ",
+      "signature": "int __thiscall HandleInput@CCBSystem(void)"
     },
     "0x00512320": {
       "name": "?SetQuitFlag@CCBSystem@@QAEX_N@Z",
@@ -3493,14 +3535,16 @@
       "signature": "int()"
     },
     "0x00512460": {
-      "name": "?DelAllTaskAndThread@CCBSystem@@QAEXXZ"
+      "name": "?DelAllTaskAndThread@CCBSystem@@QAEXXZ",
+      "signature": "int __thiscall DelAllTaskAndThread@CCBSystem(void)"
     },
     "0x00512470": {
       "name": "?Proceed@CCBSystem@@AAEXXZ",
       "signature": "int __thiscall(CCBSystem *this)"
     },
     "0x005124B0": {
-      "name": "?CanBeHandleWPX_R@CCBSystem@@QAE_NXZ"
+      "name": "?CanBeHandleWPX_R@CCBSystem@@QAE_NXZ",
+      "signature": "int __thiscall CanBeHandleWPX_R@CCBSystem(void)"
     },
     "0x005124C0": {
       "name": "?CanBeHandleNGH_R@CCBSystem@@QAE_NXZ",
@@ -3607,7 +3651,8 @@
       "signature": "int __thiscall(CCBSystem *this, unsigned int)"
     },
     "0x00514D60": {
-      "name": "?GetThreadIndex@CCBSystem@@QAEHK@Z"
+      "name": "?GetThreadIndex@CCBSystem@@QAEHK@Z",
+      "signature": "int __thiscall GetThreadIndex@CCBSystem(void)"
     },
     "0x00514FE0": {
       "name": "?PassCmdToThread@CCBSystem@@AAE_NH@Z",
@@ -3646,7 +3691,8 @@
       "signature": "char __thiscall(CCBSystem *this, int idx)"
     },
     "0x00515D10": {
-      "name": "?CreateObj@CCBSystem@@AAE_NPAPAVCCBEditor@@@Z"
+      "name": "?CreateObj@CCBSystem@@AAE_NPAPAVCCBEditor@@@Z",
+      "signature": "int __cdecl ?CreateObj@CCBSystem@@AAE_NPAPAVCCBEditor@@@Z(void)"
     },
     "0x00515DD0": {
       "name": "?DestroyObj@CCBSystem@@AAE_NPAPAVCCBStage@@@Z",
@@ -3889,7 +3935,8 @@
       "signature": "char __thiscall(CCBControlWindow *this, _DWORD *, int)"
     },
     "0x0051A700": {
-      "name": "??0CCBControlWindow@@QAE@XZ"
+      "name": "??0CCBControlWindow@@QAE@XZ",
+      "signature": "int __thiscall 0CCBControlWindow(void)"
     },
     "0x0051A880": {
       "name": "??1CCBControlWindow@@UAE@XZ",
@@ -4168,16 +4215,20 @@
       "signature": "char __cdecl(int, int, int, int, int, int, int, int, _DWORD *)"
     },
     "0x0051D6D0": {
-      "name": "?RefreshFacePos@CCBLineupWindow@@QAEXXZ"
+      "name": "?RefreshFacePos@CCBLineupWindow@@QAEXXZ",
+      "signature": "int __thiscall RefreshFacePos@CCBLineupWindow(void)"
     },
     "0x0051D6E0": {
-      "name": "??0CCBProtectWindow@@QAE@XZ"
+      "name": "??0CCBProtectWindow@@QAE@XZ",
+      "signature": "int __thiscall 0CCBProtectWindow(void)"
     },
     "0x0051D6F0": {
-      "name": "??1CCBProtectWindow@@UAE@XZ"
+      "name": "??1CCBProtectWindow@@UAE@XZ",
+      "signature": "int __cdecl ??1CCBProtectWindow@@UAE@XZ(void)"
     },
     "0x0051D700": {
-      "name": "?Reset@CCBProtectWindow@@AAEXXZ"
+      "name": "?Reset@CCBProtectWindow@@AAEXXZ",
+      "signature": "int __cdecl ?Reset@CCBProtectWindow@@AAEXXZ(void)"
     },
     "0x0051D710": {
       "name": "?Create@CCBProtectWindow@@QAE_NAAUtagRECT@@PAVUIWnd@@@Z",
@@ -4256,7 +4307,8 @@
       "signature": "int __thiscall(ParabolaCalculator *this, struct PalScript *, int)"
     },
     "0x00524970": {
-      "name": "j_?SetScroll@UIListBox@@QAEXPBDAAUtagRECT@@HH_N@Z"
+      "name": "j_?SetScroll@UIListBox@@QAEXPBDAAUtagRECT@@HH_N@Z",
+      "signature": "int __thiscall j_?SetScroll@UIListBox(void)"
     },
     "0x0052B860": {
       "name": "MiniGame1::Render",
@@ -4551,7 +4603,8 @@
       "signature": "int()"
     },
     "0x005417A0": {
-      "name": "?UIDrawRichText@@YAXPBDABUtagRECT@@H@Z"
+      "name": "?UIDrawRichText@@YAXPBDABUtagRECT@@H@Z",
+      "signature": "int __cdecl ?UIDrawRichText@@YAXPBDABUtagRECT@@H@Z(void)"
     },
     "0x005417B0": {
       "name": "??0UICursor@@QAE@XZ",
@@ -4594,7 +4647,8 @@
       "signature": "int *__thiscall(_DWORD *this)"
     },
     "0x00541DE6": {
-      "name": "logic_error@std_vf2"
+      "name": "logic_error@std_vf2",
+      "signature": "void __cdecl logic_error@std_vf2(void)"
     },
     "0x00541E40": {
       "name": "std_logic_error_vf0_logic_error",
@@ -4605,7 +4659,8 @@
       "signature": "exception *__thiscall(exception *this, struct exception *)"
     },
     "0x00541EF6": {
-      "name": "std_length_error_vf2_length_error"
+      "name": "std_length_error_vf2_length_error",
+      "signature": "void __cdecl std_length_error_vf2_length_error(void)"
     },
     "0x00541F13": {
       "name": "std_length_error_vf0_logic_error",
@@ -4620,7 +4675,8 @@
       "signature": "void __cdecl __noreturn()"
     },
     "0x00541FDE": {
-      "name": "std_out_of_range_vf2_out_of_range"
+      "name": "std_out_of_range_vf2_out_of_range",
+      "signature": "void __cdecl std_out_of_range_vf2_out_of_range(void)"
     },
     "0x00541FFB": {
       "name": "std_out_of_range_vf0_logic_error",
@@ -4895,7 +4951,8 @@
       "signature": "int(FILE *const Stream, const char *const Format, ...)"
     },
     "0x0055507C": {
-      "name": "start"
+      "name": "start",
+      "signature": "void __cdecl start(void)"
     },
     "0x00555197": {
       "name": "_fast_error_exit",
@@ -23973,9 +24030,9 @@
           "source": "fix_ccbsystem_full"
         },
         "80": {
-          "name": "m_pFightInfo",
-          "type": "FightInfo *",
-          "source": "fix_verified_sizes"
+          "name": "m_fTimeFund",
+          "type": "float",
+          "source": "fix_ccbsystem_full"
         },
         "88": {
           "name": "m_AbsDeltaTime",
@@ -27975,7 +28032,7 @@
           "source": "gen_headers_9.2"
         },
         "712": {
-          "name": "m_snaph",
+          "name": "m_snaph_2",
           "type": "int",
           "source": "gen_headers_9.2"
         }

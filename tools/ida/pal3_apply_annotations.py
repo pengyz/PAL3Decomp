@@ -28,7 +28,9 @@ ANNOTATIONS_FILE = os.path.join(PROJECT_ROOT, "asm", "pal3", "annotations.json")
 
 
 def build_struct_decl(name, struct_info):
-    """从 known_members + size 生成带 gap 填充的 C struct 声明。支持基类继承。"""
+    """从 known_members + size 生成带 gap 填充的 C struct 声明。支持基类继承和数组类型。"""
+    import re as _re
+
     members = struct_info.get("known_members", {})
     size = struct_info.get("binary_size", struct_info.get("pdb_size", struct_info.get("gen_size", 0)))
     base_class = struct_info.get("base_class")
@@ -37,83 +39,54 @@ def build_struct_decl(name, struct_info):
     if not members and not size:
         return None
 
-    # Sort members by offset, skip base class region
     sorted_members = sorted(
         [(int(off), info) for off, info in members.items() if int(off) >= base_size],
         key=lambda x: x[0]
     )
 
+    def next_member_offset(current_offset):
+        for off, _ in sorted_members:
+            if off > current_offset:
+                return off
+        return size if size > 0 else current_offset
+
     lines = []
-    cursor = base_size  # start after base class
+    cursor = base_size
 
     for offset, info in sorted_members:
         mname = info["name"]
-        mtype = info["type"]
+        mtype = info["type"].replace("class ", "").replace("struct ", "")
 
-        # Fill gap before this member
         if offset > cursor:
-            gap = offset - cursor
-            lines.append("    char _gap_%03X[%d];" % (cursor, gap))
+            lines.append("    char _gap_%03X[%d];" % (cursor, offset - cursor))
 
-        # Emit member
-        # Clean type for IDA C parser
-        import re as _re
-        clean_type = mtype.replace("class ", "").replace("struct ", "")
+        arr_match = _re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
 
-        # Handle array types: "Type *[N]" → "Type * name[N]", "Type[N]" → "Type name[N]"
-        arr_match = _re.search(r'(\[\d+\](?:\[\d+\])*)$', clean_type)
-        # Handle STL types → replace with char[estimated_size]
-        if 'std::' in clean_type or '::' in clean_type or '<' in clean_type:
-            # Calculate size to next member or use 16 as default
-            next_off = None
-            for no, _ in sorted_members:
-                if no > offset:
-                    next_off = no
-                    break
-            est_size = (next_off - offset) if next_off else 16
-            lines.append("    char %s[%d]; // %s" % (mname, est_size, mtype))
-            cursor = offset + est_size
-            continue
+        if 'std::' in mtype or '::' in mtype or '<' in mtype:
+            span = next_member_offset(offset) - offset
+            lines.append("    char %s[%d]; // %s" % (mname, max(span, 4), mtype))
+            cursor = offset + max(span, 4)
         elif arr_match:
-            arr_part = arr_match.group(1)
-            base_type = clean_type[:arr_match.start()].rstrip()
-            lines.append("    %s %s%s;" % (base_type, mname, arr_part))
+            base_type = mtype[:arr_match.start()].rstrip()
+            lines.append("    %s %s%s;" % (base_type, mname, arr_match.group(1)))
+            cursor = next_member_offset(offset)
         else:
-            lines.append("    %s %s;" % (clean_type, mname))
+            lines.append("    %s %s;" % (mtype, mname))
+            if "*" in mtype:        cursor = offset + 4
+            elif mtype == "double": cursor = offset + 8
+            elif mtype == "float":  cursor = offset + 4
+            elif mtype in ("char", "unsigned char", "bool", "BYTE"): cursor = offset + 1
+            elif mtype in ("short", "unsigned short", "WORD"):       cursor = offset + 2
+            else:                   cursor = offset + 4
 
-        # Estimate member size (pointers=4, double=8, float=4, int=4, char=1)
-        if arr_match:
-            # Parse array dimensions
-            dims = [int(x) for x in _re.findall(r'\[(\d+)\]', arr_match.group(1))]
-            elem_size = 4 if '*' in mtype else 4
-            msize = 1
-            for d in dims:
-                msize *= d
-            msize *= elem_size
-        elif "*" in mtype:
-            msize = 4
-        elif mtype == "double":
-            msize = 8
-        elif mtype == "float":
-            msize = 4
-        elif mtype in ("char", "unsigned char", "bool"):
-            msize = 1
-        elif mtype in ("short", "unsigned short"):
-            msize = 2
-        else:
-            msize = 4
-
-        cursor = offset + msize
-
-    # Fill trailing gap to reach target size
     if size > 0 and cursor < size:
         lines.append("    char _tail_%03X[%d];" % (cursor, size - cursor))
 
     if not lines:
         if size > 0:
-            if base_class:
-                return "struct %s : public %s { char _data[%d]; };" % (name, base_class, size - base_size)
-            return "struct %s { char _data[%d]; };" % (name, size)
+            inherit = " : public %s" % base_class if base_class else ""
+            data_size = size - base_size if base_class else size
+            return "struct %s%s { char _data[%d]; };" % (name, inherit, data_size)
         return None
 
     inherit = " : public %s" % base_class if base_class else ""
@@ -169,21 +142,38 @@ def apply_annotations():
     structs = data.get("structs", {})
     til = ida_typeinf.get_idati()
 
-    # Topological sort: base classes before derived
+    # Topological sort: dependencies (base classes + value-type members) first
+    import re as _re2
+    all_struct_names = set(structs.keys())
+
+    def get_deps(sinfo):
+        deps = set()
+        base = sinfo.get("base_class")
+        if base and base in all_struct_names:
+            deps.add(base)
+        for off, m in sinfo.get("known_members", {}).items():
+            mtype = m["type"].replace("class ", "").replace("struct ", "")
+            if "*" in mtype:
+                continue
+            base_type = _re2.sub(r'\[.*\]', '', mtype).strip()
+            if base_type in all_struct_names:
+                deps.add(base_type)
+        return deps
+
     ordered = []
     remaining = dict(structs)
     done = set()
-    for _ in range(10):  # max depth
+    for _ in range(20):
         batch = []
         for sname, sinfo in list(remaining.items()):
-            base = sinfo.get("base_class")
-            if not base or base in done or base not in remaining:
+            deps = get_deps(sinfo)
+            if deps <= done:
                 batch.append(sname)
+        if not batch:
+            break
         for sname in batch:
             ordered.append((sname, remaining.pop(sname)))
             done.add(sname)
-        if not remaining:
-            break
     ordered.extend(remaining.items())
 
     s_ok = 0
@@ -198,11 +188,8 @@ def apply_annotations():
             tinfo.set_named_type(til, sname, ida_typeinf.NTF_REPLACE)
             s_ok += 1
         else:
-            s_fail.append(sname)
+            s_fail.append((sname, sinfo))
 
-    if s_fail and len(s_fail) <= 10:
-        for sn in s_fail:
-            print("    [!] struct %s parse failed" % sn)
 
     print("[3] Structs: applied=%d/%d" % (s_ok, len(structs)))
 
