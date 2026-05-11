@@ -206,6 +206,11 @@ struct SceneMgrSlot;
         (0x00C, "float", "m_fTargetZ"),
         (0x010, "int", "_d010"),
         (0x014, "int", "_d014"),
+        (0x018, "int", "m_nSceneParam0"),             # init'd from script data
+        (0x01C, "int", "m_nSceneParam1"),
+        (0x020, "int", "m_nSceneParam2"),
+        (0x024, "int", "m_nSceneParam3"),
+        (0x028, "int", "m_nSceneParam4"),
         (0x0A0, "float", "m_fPosX"),
         (0x0A4, "float", "m_fPosY"),
         (0x0A8, "float", "m_fPosZ"),
@@ -249,6 +254,9 @@ struct SceneMgrSlot;
         (0x548, "float", "_f548"),
         (0x56C, "int", "_d56C"),
         (0x570, "int", "m_nRoleCount"),
+        (0x578, "int", "_d578"),                     # assigned in movement logic
+        (0x580, "int", "_d580"),
+        (0x58C, "void *", "m_pActorData"),           # ptr, dereferences +755/+756
         (0x5A0, "gbGeomNode *", "m_pRenderObj"),      # render object (vtable+16 = Render)
         (0x5A4, "char", "m_bRenderFlag1"),          # render condition flag
         (0x5A5, "char", "m_bRenderFlag2"),          # render condition flag
