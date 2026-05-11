@@ -18,7 +18,6 @@
 #include "pal3/gen/UIWnd.h"
 
 // Forward declarations for unnamed functions
-int sub_40CCD0(...);
 int sub_43FE90(...);
 int sub_479260(...);
 int sub_4DB940(...);
@@ -37,7 +36,6 @@ int sub_4F2690(...);
 int sub_4F2750(...);
 int sub_4F27B0(...);
 int sub_4F2BF0(...);
-int sub_4F4820(...);
 int sub_4F4B90(...);
 int sub_4F4C80(...);
 int sub_4F6A40(...);
@@ -66,7 +64,6 @@ int sub_501410(...);
 int sub_501CF0(...);
 int sub_501E60(...);
 int sub_501F30(...);
-int sub_502000(...);
 int sub_5021C0(...);
 int sub_502300(...);
 int sub_502430(...);
@@ -3309,7 +3306,7 @@ LABEL_41:
         v21 = aWd022;
         break;
       case 14:
-        sub_4F4820((int)this, a2);
+        Combat_Func_4F4820((int)this, a2);
         LOBYTE(v3) = v28;
         *(_WORD *)&this->m_Role[0]._rest[2 * v10 + 594] = 4;
         if ( !v28 )
@@ -3331,7 +3328,7 @@ LABEL_41:
         v21 = aWd009;
         break;
       case 17:
-        sub_4F4820((int)this, a2);
+        Combat_Func_4F4820((int)this, a2);
         ++g_nRandCallCount;
         g_RandSeed = 214013 * g_RandSeed + 2531011;
         LOBYTE(v3) = v28;
@@ -3341,7 +3338,7 @@ LABEL_41:
         v21 = aWd010;
         break;
       case 18:
-        sub_4F4820((int)this, a2);
+        Combat_Func_4F4820((int)this, a2);
         ((CCBStageRole *)this->m_pStage->m_pRole[a2])->DangerForceRelease(0);
         LOBYTE(v3) = v28;
         *(_WORD *)&this->m_Role[0]._rest[2 * v10 + 594] = 0x7FFF;
@@ -3350,7 +3347,7 @@ LABEL_41:
         v21 = aWd012;
         break;
       case 19:
-        sub_4F4820((int)this, a2);
+        Combat_Func_4F4820((int)this, a2);
         LOBYTE(v3) = v28;
         *(_WORD *)&this->m_Role[0]._rest[2 * v10 + 594] = 0x7FFF;
         if ( !v28 )
@@ -4091,7 +4088,7 @@ int CCBRoleState::ProcessSkillEffect(int roleIdx)
   v15[2] = roleIdx;
   v15[3] = -1;
   LOWORD(v15[4]) = 0;
-  v14 = sub_40CCD0((int *)&g_SceneMgr.m_pCombatAI);
+  v14 = Combat_Func_40CCD0((int *)&g_SceneMgr.m_pCombatAI);
   if ( v14 <= 0 )
     return 0;
   while ( 1 )
@@ -4170,7 +4167,7 @@ int CCBRoleState::ProcessItemEffect(int roleIdx)
   v14[2] = roleIdx;
   v14[3] = -1;
   LOWORD(v14[4]) = 0;
-  v10 = sub_40CCD0((int *)&g_SceneMgr.m_pCombatAI);
+  v10 = Combat_Func_40CCD0((int *)&g_SceneMgr.m_pCombatAI);
   if ( v10 <= 0 )
     return 0;
   for ( i = 0; i < v10; ++i )
@@ -4350,7 +4347,7 @@ void * CCBRoleState::ProcessActions()
     {
       ((CCBStage *)this->m_pStage)->GetRoleName(RoleIndex, (int)sub_502300, 0, 0, 0, 0, -1082130432, 1056964608);
       ((CCBStage *)this->m_pStage)->GetRoleName(RoleIndex, (int)sub_501F30, 0, 0, 0, 0, -1082130432, 1084227584);
-      ((CCBStage *)this->m_pStage)->GetRoleName(RoleIndex, (int)sub_502000, 0, 0, 0, 0, -1082130432, 1065353216);
+      ((CCBStage *)this->m_pStage)->GetRoleName(RoleIndex, (int)Combat_Func_502000, 0, 0, 0, 0, -1082130432, 1065353216);
       ((CCBStage *)this->m_pStage)->GetRoleName(RoleIndex, (int)sub_5021C0, 0, 0, 0, 0, -1082130432, 1045220557);
       ((CCBSystem *)this->m_pStage)->GetStageRoleByIdx(RoleIndex);
     }
@@ -4419,7 +4416,7 @@ void * CCBRoleState::ProcessActions()
       sub_4FB370(this, v9);
       ((CCBStage *)this->m_pStage)->GetRoleName(v9, (int)CCBStage::StartSubTask, 0, 0, 0, 0, -1082130432, 1084227584);
       ((CCBStage *)this->m_pStage)->GetRoleName(v9, (int)sub_5021C0, 0, 0, 0, 0, -1082130432, 1045220557);
-      ((CCBStage *)this->m_pStage)->GetRoleName(v9, (int)sub_502000, 0, 0, 0, 0, -1082130432, 1065353216);
+      ((CCBStage *)this->m_pStage)->GetRoleName(v9, (int)Combat_Func_502000, 0, 0, 0, 0, -1082130432, 1065353216);
       ((CCBSystem *)this->m_pStage)->GetStageRoleByIdx(v9);
       *(_DWORD *)&this->m_dwEXPTable[312] = ((CCBStage *)this->m_pStage)->EndTask(v9);
     }

@@ -1,0 +1,7 @@
+{
+  "name": "Combat_Func_40CCD0",
+  "address": "0x0040CCD0",
+  "size_bytes": 32,
+  "signature": "int __thiscall(int *this)",
+  "decompiled_c": "// between_std_methods (0x407D40-0x411B80)\nint __thiscall Combat_Func_40CCD0(int *this)\n{\n  int result; // eax\n\n  result = *(this + 1);\n  if ( result )\n    return (*(this + 2) - result) / 12;\n  return result;\n}\n"
+}

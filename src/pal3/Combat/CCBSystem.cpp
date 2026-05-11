@@ -26,10 +26,6 @@
 int SceneMgrUpdate(...);
 int sub_4C5980(...);
 int sub_4C6170(...);
-int sub_4CDAE0(...);
-int sub_4CDB60(...);
-int sub_4CDC50(...);
-int sub_4CEA80(...);
 int sub_4DB730(...);
 int sub_4DB9C0(...);
 int sub_4DB9F0(...);
@@ -55,9 +51,7 @@ int sub_4F7050(...);
 int sub_4F7140(...);
 int sub_4F76C0(...);
 int sub_4F7820(...);
-int sub_4F7FC0(...);
 int sub_4FF360(...);
-int sub_4FF560(...);
 int sub_4FFA90(...);
 int sub_4FFCB0(...);
 int sub_4FFED0(...);
@@ -69,8 +63,6 @@ int sub_5007A0(...);
 int sub_500C20(...);
 int sub_500D50(...);
 int sub_5014E0(...);
-int sub_502000(...);
-int sub_5020D0(...);
 int sub_5024D0(...);
 int sub_50A4B0(...);
 int sub_512420(...);
@@ -1014,14 +1006,14 @@ char CCBSystem::ProcFling()
   this->m_pUtil = 0;
   if ( m_pEffMgr )
   {
-    sub_4CDAE0(m_pEffMgr);
+    Combat_Func_4CDAE0(m_pEffMgr);
     operator delete(m_pEffMgr);
     this->m_pEffMgr = 0;
   }
   m_pATSEffMgr = (CEffMgr *)this->m_pATSEffMgr;
   if ( m_pATSEffMgr )
   {
-    sub_4CDAE0((gbRefObject **)this->m_pATSEffMgr);
+    Combat_Func_4CDAE0((gbRefObject **)this->m_pATSEffMgr);
     operator delete(m_pATSEffMgr);
     this->m_pATSEffMgr = 0;
   }
@@ -1093,10 +1085,10 @@ char CCBSystem::ProcWeaponSkill()
       return 0;
   }
   m_pEffMgr = (CEffMgr *)this->m_pEffMgr;
-  if ( !m_pEffMgr || !sub_4CDB60(m_pEffMgr) )
+  if ( !m_pEffMgr || !Combat_Func_4CDB60(m_pEffMgr) )
     return 0;
   m_pATSEffMgr = (CEffMgr *)this->m_pATSEffMgr;
-  if ( !m_pATSEffMgr || !sub_4CDB60(m_pATSEffMgr) )
+  if ( !m_pATSEffMgr || !Combat_Func_4CDB60(m_pATSEffMgr) )
     return 0;
   ((C2DSpark *)this->m_p2DSpark)->CreateTrack(0);
   ((C2DSpark *)this->m_p2DSpark)->CreateStars();
@@ -1351,8 +1343,8 @@ int CCBSystem::GetRenderFlag()
   if ( v4 == 1 )
   {
     ((gbSceneGraph *)g_pGfxMgr->pSceneGraph)->ResetBladeMgr();
-    sub_4CEA80(*(_DWORD **)(v2 + 44));
-    LOBYTE(result) = sub_4CEA80(*(_DWORD **)(v2 + 48));
+    Combat_Func_4CEA80(*(_DWORD **)(v2 + 44));
+    LOBYTE(result) = Combat_Func_4CEA80(*(_DWORD **)(v2 + 48));
     if ( *(_DWORD *)(v2 + 124) == 3 )
     {
       LOBYTE(result) = *(_BYTE *)(*(_DWORD *)(v2 + 112) + 72);
@@ -1459,10 +1451,10 @@ void CCBSystem::ProcAI(float a2)
   m_pES->m_fTimeScale = a2;
   m_pEffMgr = (CEffMgr *)this->m_pEffMgr;
   if ( m_pEffMgr )
-    sub_4CDC50(m_pEffMgr, SLODWORD(a2));
+    Combat_Func_4CDC50(m_pEffMgr, SLODWORD(a2));
   m_pATSEffMgr = (CEffMgr *)this->m_pATSEffMgr;
   if ( m_pATSEffMgr )
-    sub_4CDC50(m_pATSEffMgr, 1065353216);
+    Combat_Func_4CDC50(m_pATSEffMgr, 1065353216);
   v6 = 0;
   for ( i = 24; i < 68; i += 4 )
   {
@@ -1629,7 +1621,7 @@ int CCBSystem::CheckBattleEnd()
           && !((CCBRoleState *)this->m_pRoleState)->GetRoleField(v5, 18)
           && !((CCBRoleState *)this->m_pRoleState)->GetRoleField(v5, 19) )
         {
-          sub_4F7FC0((int)this->m_pRoleState->m_sCombatDialog, v5);
+          Combat_Func_4F7FC0(this->m_pRoleState, v5);
           if ( !*(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v5) + 877)
             || (v6 = ((CCBAI *)this->m_pAI)->HandleFriendAffirmative(v5, 1),
                 *(_BYTE *)(((CCBRoleState *)this->m_pRoleState)->InitUI(v5) + 877) = 0,
@@ -1662,7 +1654,7 @@ int CCBSystem::CheckBattleEnd()
           }
           goto LABEL_39;
         }
-        sub_4F7FC0((int)this->m_pRoleState->m_sCombatDialog, v5);
+        Combat_Func_4F7FC0(this->m_pRoleState, v5);
         ((CCBAI *)this->m_pAI)->HandleEnemyChaos(v5);
       }
       if ( ((CCBSystem *)this->m_pAttackSequen)->GetCmdType(v5) != 1
@@ -1899,20 +1891,20 @@ int CCBSystem::AddThread(int a2)
     v12 = *((_DWORD *)v4 + 13);
     ((CCBStage *)this->m_pStage)->GetRoleName(RoleIndex, (int)CCBStage::ProcFiveLienupFadeIn, 0, 0, 0, &a7, -1082130432, 0);
     a7 = -1;
-    ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)sub_502000, 0, 0, 0, &a7, -1082130432, 1065353216);
+    ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)Combat_Func_502000, 0, 0, 0, &a7, -1082130432, 1065353216);
     a7 = 0;
     ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)sub_4FF360, 0, 0, 0, &a7, -1082130432, 0);
     ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)CCBStage::ProcShowDamage, 0, 0, 0, &a7, -1082130432, 0);
     a7 = -1;
-    ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)sub_5020D0, 0, 0, 0, &a7, -1082130432, 1065353216);
+    ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)Combat_Func_5020D0, 0, 0, 0, &a7, -1082130432, 1065353216);
     a7 = 0;
     ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)CCBStage::ClearRoleAllTask, 0, 0, 0, &a7, -1082130432, 1065353216);
-    ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)sub_4FF560, 0, 0, 0, &a7, 0, 0);
+    ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)Combat_Func_4FF560, 0, 0, 0, &a7, 0, 0);
     ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)CCBStage::ProcShowCost, 0, 0, 0, &a7, -1082130432, 0);
-    ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)sub_4FF560, 0, 0, 0, &a7, -1082130432, 0);
-    ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)sub_502000, 0, 0, 0, &a7, -1082130432, 1065353216);
+    ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)Combat_Func_4FF560, 0, 0, 0, &a7, -1082130432, 0);
+    ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)Combat_Func_502000, 0, 0, 0, &a7, -1082130432, 1065353216);
     ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)CCBStage::ProcShowCombatDialog, 0, 0, 0, &a7, -1082130432, 0);
-    ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)sub_5020D0, 0, 0, 0, &a7, -1082130432, 1065353216);
+    ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)Combat_Func_5020D0, 0, 0, 0, &a7, -1082130432, 1065353216);
     ((CCBStage *)this->m_pStage)->GetRoleName(v6, (int)CCBStage::ProcFiveLienupFadeOut, 0, 0, 0, &a7, -1082130432, 0);
     ((CCBSystem *)this->m_pStage)->GetStageRoleByIdx(v6);
     ((CCBSystem *)this->m_pAttackSequen)->GetCmdPtr(*((_DWORD *)v4 + 12));

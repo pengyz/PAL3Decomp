@@ -26,7 +26,6 @@ int sub_402220(...);
 int sub_4083D0(...);
 int sub_408460(...);
 int sub_40CC60(...);
-int sub_40CCD0(...);
 int sub_40DCD0(...);
 int sub_410BD0(...);
 int sub_410DF0(...);
@@ -72,6 +71,7 @@ int sub_478C00(...);
 int sub_4B70B0(...);
 int sub_4BE080(...);
 int sub_4BE1A0(...);
+int sub_4DFFF0(...);
 int sub_4E0A60(...);
 int sub_4F6C60(...);
 int sub_4F6DA0(...);
@@ -81,6 +81,7 @@ int sub_4FA330(...);
 int sub_4FA3A0(...);
 int sub_4FA440(...);
 int sub_4FA4E0(...);
+int sub_4FA560(...);
 int sub_5025C0(...);
 int sub_502950(...);
 int sub_502CC0(...);
@@ -128,6 +129,7 @@ extern char aBasedata[];
 extern char aBasedataCpk[];
 extern char aCdriver[];
 extern char aDProjectPal3Ui_0[];
+extern char aDatascriptComb_1[];
 extern char aEnginelogTxt[];
 extern char aNotFoundSInUiO[];
 extern char aPal3[];
@@ -1749,6 +1751,18 @@ void __thiscall CCBStageRole_Init(int _this)
   *(_DWORD *)(_this + 12) = 0;
 }
 
+// 0x0040CCD0
+// between_std_methods (0x407D40-0x411B80)
+int __thiscall Combat_Func_40CCD0(int *_this)
+{
+  int result; // eax
+
+  result = *(_this + 1);
+  if ( result )
+    return (*(_this + 2) - result) / 12;
+  return result;
+}
+
 // 0x0040CCF0
 // between_std_methods (0x407D40-0x411B80)
 char *__thiscall CCBStageRole_GetAlive(int _this, _DWORD *pConfig)
@@ -1933,7 +1947,7 @@ int __thiscall CCBStageRole_CheckValid(int *_this, int a2)
   v3 = _this + 5;
   sub_410DF0(_this + 5, (_DWORD *)*(_this + 6), (_DWORD *)*(_this + 7));
   v4 = 0;
-  v42 = sub_40CCD0(v2);
+  v42 = Combat_Func_40CCD0(v2);
   v39 = 0;
   if ( v42 > 0 )
   {
@@ -6492,6 +6506,63 @@ int unknown_libname_451()
   return atexit(nullsub_1);
 }
 
+// 0x004CDAE0
+// between_std_methods (0x4C2840-0x4D70B0)
+char __thiscall Combat_Func_4CDAE0(gbRefObject **_this)
+{
+  gbRefObject **v2; // esi
+  int v3; // ebx
+  gbRefObject **v4; // esi
+  int v5; // edi
+  char result; // al
+
+  gbRefObject::Release(*(_this + 4));
+  gbRefObject::Release(*(_this + 5));
+  gbRefObject::Release(*(_this + 2));
+  gbRefObject::Release(*(_this + 3));
+  v2 = _this + 24;
+  v3 = 32;
+  do
+  {
+    if ( *((_BYTE *)v2 - 8) )
+    {
+      if ( !*((_BYTE *)v2 - 7) )
+      {
+        (*(void (__thiscall **)(gbRefObject *))(*(_DWORD *)(*v2)->_pad_0000 + 12))(*v2);
+        if ( *v2 )
+          (**(void (__thiscall ***)(gbRefObject *, int))(*v2)->_pad_0000)(*v2, 1);
+      }
+    }
+    v2 += 18;
+    --v3;
+  }
+  while ( v3 );
+  v4 = _this + 587;
+  v5 = 2048;
+  do
+  {
+    result = *((_BYTE *)v4 - 4);
+    if ( result )
+    {
+      result = (*(int (__thiscall **)(gbRefObject *))(*(_DWORD *)(*v4)->_pad_0000 + 12))(*v4);
+      if ( *v4 )
+        result = (**(int (__thiscall ***)(gbRefObject *, int))(*v4)->_pad_0000)(*v4, 1);
+    }
+    v4 += 5;
+    --v5;
+  }
+  while ( v5 );
+  return result;
+}
+
+// 0x004CDB60
+// between_std_methods (0x4C2840-0x4D70B0)
+char __thiscall Combat_Func_4CDB60(_DWORD *_this)
+{
+  Combat_Func_4CEA80(_this);
+  return 1;
+}
+
 // 0x004CDB70
 // between_std_methods (0x4C2840-0x4D70B0)
 char __thiscall SceneMgrUpdate(float *_this, float a2)
@@ -6527,6 +6598,70 @@ char __thiscall SceneMgrUpdate(float *_this, float a2)
   }
   while ( v4 );
   return v5;
+}
+
+// 0x004CDC50
+// between_std_methods (0x4C2840-0x4D70B0)
+char __thiscall Combat_Func_4CDC50(_DWORD *_this, int a2)
+{
+  _DWORD *v2; // esi
+  int v3; // ebx
+  char result; // al
+
+  *(_this + 10827) = a2;
+  v2 = _this + 587;
+  v3 = 2048;
+  do
+  {
+    result = *((_BYTE *)v2 - 4);
+    if ( result )
+    {
+      if ( *(v2 - 4) == -211379188 )
+        result = (*(int (__thiscall **)(_DWORD, int))(*(_DWORD *)*v2 + 44))(*v2, a2);
+      if ( *(v2 - 4) == 1140548963 )
+        result = (*(int (__thiscall **)(_DWORD, int))(*(_DWORD *)*v2 + 44))(*v2, a2);
+    }
+    v2 += 5;
+    --v3;
+  }
+  while ( v3 );
+  return result;
+}
+
+// 0x004CEA80
+// between_std_methods (0x4C2840-0x4D70B0)
+char __thiscall Combat_Func_4CEA80(_DWORD *_this)
+{
+  int v2; // ebx
+  _DWORD *v3; // esi
+  int v4; // eax
+  _DWORD *v5; // edx
+
+  v2 = 2048;
+  v3 = _this + 587;
+  do
+  {
+    LOBYTE(v4) = *((_BYTE *)v3 - 4);
+    if ( (_BYTE)v4 )
+    {
+      (*(void (__thiscall **)(_DWORD))(*(_DWORD *)*v3 + 12))(*v3);
+      if ( !*((_BYTE *)v3 - 2) && !(*(unsigned __int8 (__thiscall **)(_DWORD))(*(_DWORD *)*v3 + 32))(*v3) && *v3 )
+        (**(void (__thiscall ***)(_DWORD, int))*v3)(*v3, 1);
+      *v3 = 0;
+      v4 = *(_this + 10823) - 1;
+      v5 = v3 - 4;
+      *(_this + 10823) = v4;
+      *v5 = 0;
+      v5[1] = 0;
+      v5[2] = 0;
+      v5[3] = 0;
+      *v3 = 0;
+    }
+    v3 += 5;
+    --v2;
+  }
+  while ( v2 );
+  return v4;
 }
 
 // 0x004CEAF0
@@ -6778,6 +6913,39 @@ void *__thiscall CCBRoleState_GetRole(CCBRoleState *_this, int index)
     return (void *)*(&_this->m_Role[0].nMP + 223 * index);
 }
 
+// 0x004F4820
+// between_std_methods (0x4D70B0-0x504E20)
+unsigned __int8 __thiscall Combat_Func_4F4820(int _this, int idx)
+{
+  int v3; // ecx
+  int v4; // eax
+  _BYTE *v5; // ecx
+  unsigned __int8 result; // al
+
+  v3 = *(_DWORD *)(*(_DWORD *)(_this + 520) + 8);
+  if ( *(_BYTE *)(v3 + 36) && CCBSystem::GetControl((CCBSystem *)v3) == idx )
+  {
+    CCBUI::GetState(*(CCBUI **)(*(_DWORD *)(_this + 520) + 8));
+    v4 = 24;
+    v5 = (_BYTE *)(_this + 577);
+    do
+    {
+      if ( *v5 )
+      {
+        *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(_this + 524) + v4) + 280) = 0;
+        *(_BYTE *)(*(_DWORD *)(*(_DWORD *)(_this + 524) + v4) + 274) = 0;
+      }
+      v4 += 4;
+      v5 += 892;
+    }
+    while ( v4 < 68 );
+  }
+  result = CCBSystem::IsCmdEmpty(*(CCBSystem **)(*(_DWORD *)(_this + 520) + 12), idx);
+  if ( !result && !*(_BYTE *)(_this + 549) )
+    return (unsigned __int8)CCBSystem::GetCmdPtr(*(CCBSystem **)(*(_DWORD *)(_this + 520) + 12), idx);
+  return result;
+}
+
 // 0x004F4AA0
 // between_std_methods (0x4D70B0-0x504E20)
 CCBStageRole *__thiscall CCBStage_GetRole(CCBStage *_this, int index)
@@ -6820,6 +6988,147 @@ CCBStageRole *__thiscall CCBStage_GetRole(CCBStage *_this, int index)
   }
   RoleNum = PAL_GDB::GDB_GetRoleNum(&g_GDB, a2);
   return (CCBStageRole *)*(__int16 *)(RoleNum + 592);
+}
+
+// 0x004F7FC0
+// between_std_methods (0x4D70B0-0x504E20)
+void __thiscall Combat_Func_4F7FC0(CCBRoleState *_this, unsigned int a2)
+{
+  int v3; // esi
+  int *v4; // ebp
+  int v5; // ecx
+  int v6; // edi
+  CCBRoleState *v7; // ebx
+  CCBStage *m_pStage; // ecx
+  int RoleIndex; // esi
+  int v10; // [esp+38h] [ebp-39Ch]
+  CIniFile v11; // [esp+3Ch] [ebp-398h] BYREF
+  CCBRoleState *v12; // [esp+44h] [ebp-390h]
+  int v13; // [esp+48h] [ebp-38Ch]
+  int v14; // [esp+4Ch] [ebp-388h]
+  _DWORD a3[11]; // [esp+50h] [ebp-384h] BYREF
+  int roleIdx[3]; // [esp+7Ch] [ebp-358h] BYREF
+  char v17[32]; // [esp+88h] [ebp-34Ch] BYREF
+  char v18[32]; // [esp+A8h] [ebp-32Ch] BYREF
+  char v19[256]; // [esp+C8h] [ebp-30Ch] BYREF
+  char v20[256]; // [esp+1C8h] [ebp-20Ch] BYREF
+  char Buffer[256]; // [esp+2C8h] [ebp-10Ch] BYREF
+  int v22; // [esp+3D0h] [ebp-4h]
+
+  v3 = 0;
+  ++g_nRandCallCount;
+  v12 = _this;
+  v14 = 0;
+  v13 = 0;
+  g_RandSeed = 214013 * g_RandSeed + 2531011;
+  memset(a3, 0, sizeof(a3));
+  if ( !_this->m_bCombatDialog
+    || a2 > 4
+    || *(&_this->m_Role[0].nHP + 223 * a2) <= 0
+    || _this->m_pCBSystem->m_fTimeFund - _this->m_fLastDialogTime < 10.0 )
+  {
+    return;
+  }
+  CIniFile::CIniFile(&v11);
+  v22 = 0;
+  CIniFile::OpenFileRead(&v11, aDatascriptComb_1);
+  sub_4FA560(a2, v18);
+  sprintf(Buffer, "%s-CombatDialog", v18);
+  CIniFile::ReadSection(&v11, Buffer);
+  CCBRoleState::GetRoleMP(_this, 1);
+  v10 = v14;
+  if ( v14 >= v13 )
+    goto LABEL_29;
+  v4 = &_this->m_Role[0].nFullHP + 223 * v14;
+  v5 = g_RandSeed;
+  while ( 1 )
+  {
+    ++g_nRandCallCount;
+    v5 = 214013 * v5 + 2531011;
+    g_RandSeed = v5;
+    v6 = ((v5 >> 16) & 0x7FFF) % 10;
+    if ( *((_BYTE *)v4 - 15) )
+    {
+      if ( *((_BYTE *)v4 - 14) )
+        break;
+    }
+LABEL_24:
+    v4 += 223;
+    if ( ++v10 >= v13 )
+      goto LABEL_25;
+  }
+  sub_4FA560(v10, v17);
+  if ( v10 != a2 )
+  {
+    if ( *(v4 - 1) < 3 * *v4 / 10 )
+    {
+      sprintf(v19, "%sHPLow%d", v17, v6);
+      v3 = CIniFile::ReadLine(&v11, v19, v20, 255);
+      if ( v3 )
+        goto LABEL_26;
+    }
+    goto LABEL_15;
+  }
+  if ( *(v4 - 1) >= *v4 / 10 || (sprintf(v19, "Dying%d", v6), v3 = CIniFile::ReadLine(&v11, v19, v20, 255), v3 != 1) )
+  {
+LABEL_15:
+    if ( CCBRoleState::IsRoleInForce(v12, v10) )
+    {
+      sprintf(v19, "Poison%d", v6);
+      v3 = CIniFile::ReadLine(&v11, v19, v20, 255);
+      if ( v3 )
+        goto LABEL_26;
+    }
+    if ( *((_BYTE *)v4 + 566) || *((_BYTE *)v4 + 567) || *((_BYTE *)v4 + 568) )
+    {
+      sprintf(v19, "%sSleep%d", v17, v6);
+      v3 = CIniFile::ReadLine(&v11, v19, v20, 255);
+      if ( v3 )
+        goto LABEL_26;
+    }
+    if ( v4[1] == v4[2] )
+    {
+      sprintf(v19, "GPFull%d", v6);
+      v3 = CIniFile::ReadLine(&v11, v19, v20, 255);
+      if ( v3 )
+        goto LABEL_26;
+    }
+    v5 = g_RandSeed;
+    goto LABEL_24;
+  }
+LABEL_25:
+  if ( !v3 )
+    goto LABEL_29;
+LABEL_26:
+  v7 = v12;
+  a3[2] = a2;
+  strcpy(v12->m_sCombatDialog, v20);
+  a3[3] = a2;
+  m_pStage = v7->m_pStage;
+  LOBYTE(a3[10]) = 1;
+  a3[0] = 259;
+  a3[1] = 0;
+  LOWORD(a3[4]) = 0;
+  RoleIndex = CCBStage::GetRoleIndex(m_pStage, 29, a3, 1);
+  if ( RoleIndex != -1 )
+  {
+    CCBRoleState::CheckRoleStatus(v7, (int)roleIdx);
+    CCBStage::GetRoleName(
+      v7->m_pStage,
+      RoleIndex,
+      (int)CCBStage::ProcShowFiveLineup,
+      0,
+      0,
+      0,
+      roleIdx,
+      -1082130432,
+      0x40000000);
+    CCBSystem::GetStageRoleByIdx((CCBSystem *)v7->m_pStage, RoleIndex);
+  }
+  v7->m_fLastDialogTime = v7->m_pCBSystem->m_fTimeFund;
+LABEL_29:
+  v22 = -1;
+  CIniFile::~CIniFile(&v11);
 }
 
 // 0x004FA930
@@ -7222,6 +7531,111 @@ int unknown_libname_470()
   if ( (g_bInitFlags & 1) == 0 )
     g_bInitFlags |= 1u;
   return atexit(nullsub_1);
+}
+
+// 0x004FF560
+// between_std_methods (0x4D70B0-0x504E20)
+int __thiscall Combat_Func_4FF560(_DWORD *_this, int a2)
+{
+  int v2; // eax
+  int v3; // edx
+  char *v4; // esi
+
+  v2 = 2632 * *(_this + 40);
+  v3 = v2 + 80 * *(_this + 41);
+  v4 = (char *)_this + v3 + 184;
+  if ( !*((_BYTE *)_this + v3 + 225) )
+    *((_BYTE *)_this + v3 + 225) = 1;
+  if ( *((_BYTE *)_this + v3 + 227) == 1
+    || CCBStageRole::ForceDelTaskByPFN((CCBStageRole *)*(_this + *(_DWORD *)((char *)_this + v2 + 2760) + 6)) )
+  {
+    *((_DWORD *)v4 + 4) = 4;
+  }
+  return 0;
+}
+
+// 0x00502000
+// between_std_methods (0x4D70B0-0x504E20)
+int __thiscall Combat_Func_502000(int *_this, int a2)
+{
+  int v3; // ecx
+  int v4; // edx
+  char *v5; // esi
+  double v7; // st7
+  float v8; // [esp+8h] [ebp-4h]
+
+  v3 = 329 * *(_this + 40);
+  v4 = 80 * *(_this + 41);
+  v5 = (char *)_this + 8 * v3 + v4 + 184;
+  if ( *((_BYTE *)_this + 8 * v3 + v4 + 225) )
+  {
+    v7 = (*(float *)(*_this + 80) - *(float *)((char *)_this + 8 * v3 + v4 + 208))
+       / *(float *)((char *)_this + 8 * v3 + v4 + 216)
+       * 255.0;
+    v8 = v7;
+    if ( v7 > 255.0 )
+      v8 = 255.0;
+    sub_4DFFF0(*(_this + 17), v8, *(int *)((char *)_this + 8 * v3 + v4 + 228));
+    if ( v5[43] == 1
+      || *(float *)(*_this + 80) - *((float *)v5 + 6) > *((float *)v5 + 8)
+      || GRPinput::SetJoystickAbs(&g_Input) )
+    {
+      sub_4DFFF0(*(_this + 17), 255.0, *((_DWORD *)v5 + 11));
+      *((_DWORD *)v5 + 4) = 4;
+    }
+    return 0;
+  }
+  else
+  {
+    *((_BYTE *)_this + 8 * v3 + v4 + 225) = 1;
+    return 0;
+  }
+}
+
+// 0x005020D0
+// between_std_methods (0x4D70B0-0x504E20)
+int __thiscall Combat_Func_5020D0(int *_this, int a2)
+{
+  int v3; // ecx
+  int v4; // edx
+  char *v5; // edi
+  double v7; // st7
+  float v8; // [esp+8h] [ebp-4h]
+
+  v3 = 329 * *(_this + 40);
+  v4 = 80 * *(_this + 41);
+  v5 = (char *)_this + 8 * v3 + v4 + 184;
+  if ( *((_BYTE *)_this + 8 * v3 + v4 + 225) )
+  {
+    v7 = (1.0
+        - (*(float *)(*_this + 80) - *(float *)((char *)_this + 8 * v3 + v4 + 208))
+        / *(float *)((char *)_this + 8 * v3 + v4 + 216))
+       * 255.0;
+    v8 = v7;
+    if ( v7 <= 255.0 )
+    {
+      if ( v8 < 0.0 )
+        v8 = 0.0;
+      sub_4DFFF0(*(_this + 17), v8, *(int *)((char *)_this + 8 * v3 + v4 + 228));
+    }
+    else
+    {
+      sub_4DFFF0(*(_this + 17), 255.0, *(int *)((char *)_this + 8 * v3 + v4 + 228));
+    }
+    if ( v5[43] == 1
+      || *(float *)(*_this + 80) - *((float *)v5 + 6) > *((float *)v5 + 8)
+      || GRPinput::SetJoystickAbs(&g_Input) )
+    {
+      sub_4DFFF0(*(_this + 17), 0.0, *((_DWORD *)v5 + 11));
+      *((_DWORD *)v5 + 4) = 4;
+    }
+    return 0;
+  }
+  else
+  {
+    *((_BYTE *)_this + 8 * v3 + v4 + 225) = 1;
+    return 0;
+  }
 }
 
 // 0x00503AE0
@@ -10075,7 +10489,7 @@ enum _EXCEPTION_DISPOSITION __usercall TranslatorGuardHandler@<eax>(
       *((EXCEPTION_POINTERS **)TargetFrame + 2),
       *((_DWORD *)TargetFrame + 4),
       *((struct EHRegistrationNode **)TargetFrame + 5),
-      1);
+      1u);
     if ( !*((_DWORD *)TargetFrame + 9) )
       _UnwindNestedFrames(a1, TargetFrame, (PEXCEPTION_RECORD)ExceptionRecord);
     return (*((enum _EXCEPTION_DISPOSITION (**)(void))TargetFrame + 6))();
@@ -10235,12 +10649,12 @@ __int64 __usercall _ftol@<edx:eax>(double a1@<st0>)
 }
 
 // 0x005535C9
-void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (*a4)(void))
+void __stdcall __ArrayUnwind(char *a1, unsigned int a2, int a3, void (__thiscall *a4)(void *))
 {
   while ( --a3 >= 0 )
   {
     a1 -= a2;
-    a4();
+    ((void (*)(void))a4)();
   }
 }
 
@@ -11452,16 +11866,9 @@ LABEL_10:
 }
 
 // 0x00554700
-long double __usercall _CIpow@<st0>(unsigned __int64 x@<st0>, long double y@<st1>)
+long double __usercall _CIpow@<st0>(double x@<st0>, unsigned __int64 y@<st1>)
 {
-  return sub_554722(
-           HIDWORD(*(unsigned __int64 *)&y),
-           *(double *)&x,
-           y,
-           x,
-           HIDWORD(x),
-           SLODWORD(y),
-           HIDWORD(*(unsigned __int64 *)&y));
+  return sub_554722(HIDWORD(y), x, *(long double *)&y, SLODWORD(x), HIDWORD(*(unsigned __int64 *)&x), y, HIDWORD(y));
 }
 
 // 0x00554719
@@ -14390,7 +14797,7 @@ int __cdecl __InternalCxxFrameHandler(
         EXCEPTION_POINTERS *a5,
         int a6,
         struct EHRegistrationNode *TargetFrame,
-        unsigned __int8 a8)
+        char a8)
 {
   int (__cdecl *pForwardCompat)(); // ecx
   struct _EXCEPTION_POINTERS *v10; // [esp+0h] [ebp-8h]
@@ -14419,7 +14826,7 @@ int __cdecl __InternalCxxFrameHandler(
                  a5,
                  a6,
                  TargetFrame,
-                 a8);
+                 (unsigned __int8)a8);
     }
     FindHandler(ExceptionRecord, a2, a3, a4, a5, a8, a6, TargetFrame);
   }
@@ -16341,9 +16748,9 @@ int __initmbctable()
 }
 
 // 0x005592F0
-long double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
+double __usercall fFYTOX@<st0>(int a1@<ebp>, char a2@<ch>, long double a3@<st1>, long double a4@<st0>)
 {
-  long double result; // st7
+  double result; // st7
   long double v6; // st6
   long double v7; // st7
   long double v8; // st7
@@ -17656,7 +18063,7 @@ LABEL_256:
 }
 
 // 0x0055A28B
-unsigned int __cdecl _hextodec(int C)
+int __cdecl _hextodec(int C)
 {
   int v1; // esi
   int v2; // eax
