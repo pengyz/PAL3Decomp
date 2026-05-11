@@ -208,13 +208,15 @@ struct SceneMgrSlot;
         (0x0A8, "float", "m_fPosZ"),
         (0x274, "int", "m_nState"),
         (0x27C, "int[12]", "m_nBaseStats", 48),            # base stat values [12]
-        # Role attribute pointers (6 slots, stride 12, each → RoleAtt)
-        (0x35C, "RoleAtt *", "m_pRoleAtt0"),
-        (0x368, "RoleAtt *", "m_pRoleAtt1"),
-        (0x374, "RoleAtt *", "m_pRoleAtt2"),
-        (0x380, "RoleAtt *", "m_pRoleAtt3"),
-        (0x38C, "RoleAtt *", "m_pRoleAtt4"),
-        (0x398, "RoleAtt *", "m_pRoleAtt5"),
+        # Role attribute sources (stride 12: ptr at +0, 8 bytes extra per slot)
+        # [228..276] = 5 equipment attribute contributions
+        (0x35C, "RoleAtt *", "m_pEquipAtt0"),    # equipment slot 0
+        (0x368, "RoleAtt *", "m_pEquipAtt1"),    # equipment slot 1
+        (0x374, "RoleAtt *", "m_pEquipAtt2"),    # equipment slot 2
+        (0x380, "RoleAtt *", "m_pEquipAtt3"),    # equipment slot 3
+        (0x38C, "RoleAtt *", "m_pEquipAtt4"),    # equipment slot 4
+        # [288] = self (current role's own attributes, ID checked for special logic)
+        (0x398, "RoleAtt *", "m_pSelfAtt"),      # this role's base RoleAtt
         (0x39C, "int[12]", "m_nComputedStats", 48),    # computed stats [12]
         (0x3CC, "int[12]", "m_nDisplayStats", 48),     # display/effective stats [12]
         (0x4CC, "int", "m_nPathState"),
