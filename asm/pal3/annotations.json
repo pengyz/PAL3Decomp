@@ -26107,6 +26107,31 @@
           "name": "m_RoleSystems",
           "type": "RoleSystem[5]",
           "source": "binary:stride_8704_x5"
+        },
+        "53252": {
+          "name": "m_vCameraTarget",
+          "type": "float[3]",
+          "source": "binary:CameraUpdate_CheckCollision"
+        },
+        "53268": {
+          "name": "m_vCameraPos",
+          "type": "float[3]",
+          "source": "binary:CameraUpdate_GetCursorPos"
+        },
+        "53968": {
+          "name": "m_pControlledRole",
+          "type": "RoleSystem *",
+          "source": "binary:CameraUpdate_RoleSystem_calls"
+        },
+        "53972": {
+          "name": "m_bCameraActive",
+          "type": "int",
+          "source": "binary:CameraUpdate_flag"
+        },
+        "51624": {
+          "name": "m_szUIBuffer",
+          "type": "char[512]",
+          "source": "binary:296_refs_string_for_UI"
         }
       },
       "pdb_size": 1,

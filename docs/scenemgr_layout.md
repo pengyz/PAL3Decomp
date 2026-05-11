@@ -1,128 +1,123 @@
-# SceneMgr Binary Layout Analysis (PAL3.exe)
+# SceneMgr 内存布局 (PAL3.exe, 非 PAL3A)
 
-## Summary
+## 概要
 
-`g_SceneMgr` @ `0x00C04390` in `.data` section.
+`g_SceneMgr` @ `0x00C04390`, size = 54116 bytes (0xD364)
 
-**Size**: approximately **0xFE108 bytes (1,040,648 bytes ≈ 1016 KB)**
+SceneMgr 本质上是 CEffMgr 的超集。其中间区域 (+0x00~+0xA940) 同时被特效系统
+和角色系统以不同 stride 访问——这是通过 inline accessor + reinterpret_cast 实现的。
 
-This is consistent with PAL3A PDB where Scene alone is 1,094,164 bytes.
-SceneMgr contains one or more Scene objects plus management overhead.
+## 真实 C++ 布局 (编译器视角)
 
-## Reference Density Map
+```cpp
+class SceneMgr {
+    // === CEffMgr 部分 ===
+    tagEffClass m_EffClass[32];       // +0x0000, 32*72=2304
+    char _pad_900[44];                // +0x0900
+    tagEffObj m_EffTable[2048];       // +0x092C, 2048*20=40960
+    int m_nEff;                       // +0xA92C
+    float m_fCurTime;                 // +0xA930
+    float m_fDeltaTime;              // +0xA934
+    float m_fTimer;                   // +0xA938
+    float m_fTimeScale;              // +0xA93C (init 1.0f)
+    // === CEffMgr 结束 (+0xA940) ===
 
-```
-+0x00000-0x01FFF:  1621 refs  ████████████████████  HEADER + MAIN ARRAY
-+0x02000-0x0BFFF:    63 refs  ▒                     sparse (large data buffers)
-+0x0C000-0x0EFFF:  1085 refs  █████████████████     SECOND HOT ZONE
-+0x0F000-0x1FFFF:    23 refs  ▒                     sparse
-+0x20000-0xFFFFF:   ~250 refs ░                     long tail (NPC/Role data?)
-```
-
-## Confirmed Layout (from binary disassembly)
-
-### Header (+0x0000 — +0x001C): Runtime Pointers
-
-| Offset | Type | Name | Refs | Source |
-|--------|------|------|------|--------|
-| +0x0000 | `gbGfxManager*` | m_pGfxMgr | 22 | Create param 1 |
-| +0x0004 | `void*` | m_pSceneRoot | 16 | Create param 3 |
-| +0x0008 | `gbRenderEffect*` | m_pAddEffect2 | 25 | NewRenderEffect("additive_0") |
-| +0x000C | `gbRenderEffect*` | m_pAlphaEffect2 | 6 | NewRenderEffect("alpha_0") |
-| +0x0010 | `gbRenderEffect*` | m_pAddEffect | 30 | NewRenderEffect("additive") |
-| +0x0014 | `gbRenderEffect*` | m_pAlphaEffect | 2 | NewRenderEffect("alpha") |
-| +0x0018 | `gbCamera*` | m_pCamera | 3 | Create param 2 |
-
-### Pre-Array Region (+0x001C — +0x0288)
-
-Zeroed in `SceneMgr::Create` via `memset(this+0x1C, 0, 0x900)`.
-Contains 620 bytes (0x26C) of unidentified data before the array.
-
-### Main Array (+0x0288 — +0x1E08): stride=0x580, 5 elements
-
-Detected from binary pattern: identical initialization at offsets
-+0x0288, +0x0808, +0x0D88, +0x1308, +0x1888.
-
-Each element is **1408 bytes (0x580)**. Key internal offsets:
-
-| Elem Offset | Refs | Type | Notes |
-|-------------|------|------|-------|
-| +0x000 | 53 | DWORD | first field (highly accessed) |
-| +0x004-0x034 | ~12ea | DWORDs | init block (13 DWORDs) |
-| +0x034-0x038 | 14 | BYTE[4] | flags (byte-level access) |
-| +0x06C | 19 | DWORD | |
-| +0x0DC | 16 | DWORD | indexed pair (sub_460A90) |
-| +0x0E4 | 23 | DWORD | |
-| +0x0F0 | 22 | DWORD | |
-| +0x286 | varies | BYTE | flag (sub_4E5800) |
-| +0x288 | varies | DWORD | counter/state |
-| +0x308 | varies | ptr | lea target |
-
-**Element[4]+0x318 = SceneMgr+0x1BA0**: This is the embedded **CCBAI** (or related combat)
-object's address. 325 references, all from CCBRoleState/CCBAI methods. Confirmed via
-`MOV ECX, 0xC05F30` instruction pattern (ECX = this for thiscall).
-
-### Second Hot Zone (+0xC000 — +0xEFFF)
-
-| Offset | Refs | Access | Functions |
-|--------|------|--------|-----------|
-| +0xC5D0 | 15 | various | CGameData, EffectUpdate, PAL3::SnapScreen |
-| +0xC5D8 | 12 | lea/ptr | CameraUpdate, PAL3::InitSubsystems |
-| +0xC938 | 59 | mov_eax | CameraUpdate_Internal, ScriptSystem |
-| +0xC9A8 | 296 | push_addr | CCBControlWindow (STRING buffer!) |
-| +0xCD0C | 70 | fop_mem | RoleSystem::MoveRole/PathFind (float) |
-| +0xD35C | 152 | mov_r1 | Camera::CheckCollision (pointer) |
-
-The +0xC9A8 offset (296 refs) stores a **string** passed to UI functions.
-The +0xD35C offset (152 refs) stores a **pointer** used by Camera collision.
-The +0xCD0C offset (70 refs) stores a **float** used by RoleSystem path/movement.
-
-### Rendering Data (+0xA91C — +0xA930)
-
-Set in `SceneMgr::Create`:
-```c
-this+0xA91C = 0.0f;  // light direction X
-this+0xA920 = 0.0f;  // light direction Y
-this+0xA924 = 0.0f;  // light direction Z
-this+0xA928 = 0.0f;  // up vector X
-this+0xA92C = 1.0f;  // up vector Y (Y-up)
+    // === SceneMgr 自有数据 ===
+    char _gap_A940[0xC5D0-0xA940];   // +0xA940, 7312 bytes TODO
+    CGameData *m_pGameData;           // +0xC5D0
+    int _unkC5D4;                     // +0xC5D4
+    CameraCtrl *m_pCameraCtrl;        // +0xC5D8
+    PalScriptMgr *m_pScriptCtrl;      // +0xC5DC
+    SceneMgrCamBlock m_camBlock;      // +0xC5E0, 856 bytes
+    int m_nCurrentScriptSlot;         // +0xC938
+    char _gap_C93C[0xCD0C-0xC93C];   // +0xC93C, 976 bytes TODO
+    float m_fMoveParam;              // +0xCD0C
+    char _gap_CD10[0xD35C-0xCD10];   // +0xCD10, 1612 bytes TODO
+    gbGeomNode *m_pCollisionNode;     // +0xD35C
+    char _tail[4];                    // +0xD360
+};
 ```
 
-## PAL3A PDB Cross-Reference
+## 多视图访问模式
 
-PAL3A PDB has SceneMgr **forward-declared** (size=1, all member offsets=0).
-Member names from PDB (offset unknown for PAL3):
+### 视图 A: 特效系统 (真实内存布局)
+- `m_EffClass[32]`: base=+0x00, stride=72, count=32
+- `m_EffTable[2048]`: base=+0x92C, stride=20, count=2048
+- 用于: RenderAll, RenderUpdate, CreateEffect 等
 
-| Member | PAL3A Type | PAL3A Size | Notes |
-|--------|-----------|------------|-------|
-| s_curscene | SCENE_TYPE | 4 | enum (STORYA/STORYB/FIGHT) |
-| s_scene[3] | Scene | 3×1,094,164 | Scene = 1MB each in PAL3A! |
-| s_scnfile | SCNFile | 187,596 | |
-| m_objscript | SceneObjScript | 12 | |
-| m_fHurtTime | float | 4 | |
-| s_map[4] | SceneMapPlayer | 4×392 | Only 392 in PAL3A, 1408 in PAL3? |
-| m_specialvariable_m17water | int | 4 | |
-| m_specialvariable_m13unite | int | 4 | |
-| m_GeomNote[10] | GeomNote | 10×7 | |
+### 视图 B: 角色/脚本系统 (reinterpret_cast 访问)
+- `ARC_PlayerAtt[5]`: base=+0x50, stride=1408, count=5
+- `RoleSystem[5]`: base=+0x1BD0, stride=8704, count=5
+- 用于: RunEvent, RunScript, Render, UpdateTimers 等
 
-**Key Discrepancy**: PAL3A Scene is 1,094,164 bytes. If PAL3 has Scene[1] embedded
-(not [3]), that alone explains the ~1MB size of SceneMgr in PAL3 binary.
+### 原始代码实现方式
 
-## Recommendations for IDA
+```cpp
+// SceneMgr.h 中的 inline accessor
+inline ARC_PlayerAtt* SceneMgr::GetPlayerSlot(int i) {
+    return (ARC_PlayerAtt*)((char*)this + 0x50 + i * sizeof(ARC_PlayerAtt));
+}
+inline RoleSystem* SceneMgr::GetRoleSystem(int i) {
+    return (RoleSystem*)((char*)this + 0x1BD0 + i * sizeof(RoleSystem));
+}
+```
 
-1. **Do NOT import PAL3A's SceneMgr struct** — it's forward-declared and useless
-2. **Create a minimal SceneMgr struct** with the 7 header pointers + opaque regions
-3. **Focus on the high-frequency offsets** for naming:
-   - +0x1BA0: rename to `m_AI` or `m_RoleState` (CCBAI embedded)
-   - +0xC9A8: rename to `m_szUIBuffer` (char[])
-   - +0xD35C: rename to `m_pGeomNode` (gbGeomNode*)
-   - +0xCD0C: rename to `m_fMoveParam` (float)
-4. **The array at +0x288** (5×1408) may be `s_map[5]` (extended from PAL3A's [4])
-   or a completely different organization
+## 需要视图转换的函数
 
-## Open Questions
+以下函数以**视图 B (角色系统)** 访问数据，在编译阶段需要转换为 cast 表达式:
 
-1. What is the actual SceneMgr end boundary? (no next global found in data)
-2. Are offsets >0x10000 from embedded Scene object or separate arrays?
-3. The 5-element array: is it s_map (PAL3A has [4]) or something else entirely?
-4. Relationship between memset regions in Create and the array structure
+| 地址 | 函数名 | 访问方式 | 转换目标 |
+|------|--------|----------|----------|
+| 0x410470 | ScriptSystem::RunEvent | PlayerSlots[slot].byEventFlags | GetPlayerSlot(slot)->byEventFlags |
+| 0x4100A0 | ScriptSystem::RunScript | PlayerSlots[slot].nScriptCounter | GetPlayerSlot(slot)->nScriptCounter |
+| 0x4101F0 | ScriptSystem::RunWithDelay | PlayerSlots[slot].nScriptSpeed/Counter | GetPlayerSlot(slot)->... |
+| 0x40C630 | ScriptSystem::Render | RoleSystems[slot].m_fTargetX | GetRoleSystem(slot)->... |
+| 0x40C630 | ScriptSystem::Render | RoleSystems[slot] (RenderRole call) | GetRoleSystem(slot)->RenderRole(...) |
+| 0x40C790 | ScriptSystem::Cleanup | iterate RoleSystems | GetRoleSystem(i)->... |
+| 0x40C960 | ScriptSystem::Destroy | iterate RoleSystems | GetRoleSystem(i)->... |
+| 0x411F60 | ScriptSystem::UpdateTimers | RoleSystem fields | GetRoleSystem(slot)->... |
+| 0x4194C0 | ScriptSystem::UpdateObjects | RoleSystem fields | GetRoleSystem(slot)->... |
+
+以下函数以**视图 A (特效系统)** 直接访问 m_EffTable，无需转换:
+
+| 地址 | 函数名 | 访问方式 |
+|------|--------|----------|
+| 0x4CDBF0 | SceneMgr::RenderAll | m_EffTable[i] 遍历 |
+| 0x4CDC20 | SceneMgr::RenderUpdate | m_EffTable[i] 遍历 |
+| 0x4CDCA0 | CEffMgr::CreateEffect | m_EffTable[i] 查找/分配 |
+| 0x4CDED0 | CEffMgr::InitEffClass | m_EffClass[i] 注册 |
+| 0x4CE100 | CEffMgr::LoadEffData | 加载 effect 配置文件 |
+
+## 偏移对齐验证
+
+```
+PlayerAtts:  +0x50 + 5*1408 = +0x50 + 0x1B80 = +0x1BD0 (= RoleSystems base, 完美对齐)
+RoleSystems: +0x1BD0 + 5*8704 = +0x1BD0 + 0xAA00 = +0xC5D0 (= m_pGameData, 完美对齐)
+EffTable:    +0x92C + 2048*20 = +0x92C + 0xA000 = +0xA92C (= m_nEff)
+EffClass:    +0x00 + 32*72 = +0x900 (= _pad before EffTable)
+```
+
+## 二进制证据
+
+- stride 1408: `add esi, 580h` at RunWithDelay+0x86
+- stride 8704: Render loop `v3 += 2176` DWORDs
+- stride 20: RenderAll `v1 += 5` DWORDs, `mov edi, 800h` (2048)
+- stride 72: sub_4CDCA0 `this + 18*classIdx` (18 DWORDs = 72 bytes)
+- tagEffClass size=72: PAL3A PDB confirmed
+- tagEffObj size=20: PAL3A PDB confirmed, fields: {CRC, CRC, RunGroupID, bValid, bIdle, ...}
+- ARC_PlayerAtt size=1408: PAL3A PDB confirmed, stride from binary confirmed
+- RoleSystem size=8704: gen_size from annotations, stride from binary confirmed
+- CEffMgr size=43312 (PAL3A): 28(header) + 2304(EffClass) + 44(pad) + 40960(EffTable) + 16(tail) ≈ 43352... 需要细化
+
+## IDA 标注策略 (当前阶段)
+
+选择**视图 B** (PlayerAtts[5] + RoleSystems[5]) 作为 SceneMgr struct 的主表示,
+因为 90%+ 的函数从此视角访问. RenderAll 等少数特效函数显示为 raw 偏移.
+
+## 编译阶段处理方案
+
+1. SceneMgr.h: 用真实布局 (CEffMgr 视图) 定义 struct
+2. SceneMgr.h: 添加 inline GetPlayerSlot/GetRoleSystem accessor
+3. gen_cpp 后处理: 识别 `m_PlayerSlots[N].field` / `m_RoleSystems[N].field` 模式
+   转换为 `GetPlayerSlot(N)->field` / `GetRoleSystem(N)->field`
+4. 手动验证所有视图转换函数的字节匹配
