@@ -170,7 +170,21 @@ struct SceneMgrSlot;
 
     # Use build_struct for guaranteed correct sizes
     idc.parse_decls("struct RoleSystem { char _data[8704]; };", idc.PT_TYP)
-    idc.parse_decls("struct SceneMgrCamBlock { char _data[856]; };", idc.PT_TYP)
+    # SceneMgrCamBlock: 856 bytes
+    # CameraParam[25] at +0xA0: {nID, _reserved, nParam1, nParam2} stride=16, IDs 301-323
+    # CameraCmd[33] at +0x230: {nCmdID, nValue} stride=8, IDs 4101-4304
+    # m_nCurrentScene at +0x338: used as m_slot[N]/m_RoleSystem[N] index
+    idc.parse_decls("struct CameraParam { int nID; int _reserved; int nParam1; int nParam2; };", idc.PT_TYP)
+    idc.parse_decls("struct CameraCmd { int nCmdID; int nValue; };", idc.PT_TYP)
+    build_struct("SceneMgrCamBlock", 856, [
+        (0x000, "char[160]", "m_CameraList"),
+        (0x0A0, "char[400]", "m_Params"),       # CameraParam[25], 25*16=400
+        (0x230, "char[264]", "m_Cmds"),         # CameraCmd[33], 33*8=264
+        (0x338, "int", "m_nCurrentScene"),
+        (0x34C, "int", "m_pCameraScript"),
+        (0x350, "char[2]", "m_bCameraFlags"),   # [0]=transition, [1]=reset
+        (0x352, "char[4]", "m_nActiveCamera"),   # int as char[4] to avoid alignment
+    ])
     idc.parse_decls("struct SceneMgrSlot { char _data[1408]; };", idc.PT_TYP)
 
     if build_struct("SceneMgr", 54116, [
