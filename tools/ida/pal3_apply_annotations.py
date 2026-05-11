@@ -137,38 +137,18 @@ def apply_annotations():
     with open(ANNOTATIONS_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # --- 1. Functions ---
+    # --- 1. Functions (rename only, signatures deferred to step 6) ---
     import re as _re_fn
     funcs = data.get("functions", {})
     renamed = 0
-    sig_ok = 0
     for addr_str, info in funcs.items():
         addr = int(addr_str, 16)
         name = info.get("name", "")
-        sig = info.get("signature", "")
         if name:
             if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                 renamed += 1
-        if sig:
-            # IDA SetType 需要: "RetType __cc FuncName(params)"
-            # 我们存的是: "RetType __cc(params)" (无函数名)
-            sig_clean = sig.strip().rstrip(";")
-            sig_clean = sig_clean.replace("struct ", "").replace("class ", "")
-            # 跳过复杂签名（函数指针返回值，多个括号无法安全插入名字）
-            if sig_clean.count("(") > 1:
-                continue
-            paren_idx = sig_clean.find("(")
-            if paren_idx > 0:
-                short_name = name.split("::")[-1] if "::" in name else name
-                short_name = short_name.replace("~", "_dtor_").replace(" ", "_")
-                # 去掉签名中已有的函数名（如果有的话），统一重新插入
-                before = sig_clean[:paren_idx].rstrip()
-                after = sig_clean[paren_idx:]
-                sig_clean = before + " " + short_name + after
-            if idc.SetType(addr, sig_clean):
-                sig_ok += 1
 
-    print("[1] Functions: renamed=%d/%d, signatures=%d" % (renamed, len(funcs), sig_ok))
+    print("[1] Functions: renamed=%d/%d" % (renamed, len(funcs)))
 
     # --- 2. Globals ---
     globs = data.get("globals", {})
@@ -313,6 +293,33 @@ def apply_annotations():
             vt_applied += 1
 
     print("[5] Vtable .rdata typed: %d/%d" % (vt_applied, len(vtables)))
+
+    # --- 6. Function signatures (after structs so types are resolved) ---
+    sig_ok = 0
+    for addr_str, info in funcs.items():
+        addr = int(addr_str, 16)
+        sig = info.get("signature", "")
+        name = info.get("name", "")
+        if not sig:
+            continue
+        sig_clean = sig.strip().rstrip(";")
+        sig_clean = sig_clean.replace("struct ", "").replace("class ", "")
+        if sig_clean.count("(") > 1:
+            continue
+        paren_idx = sig_clean.find("(")
+        if paren_idx > 0:
+            short_name = name.split("::")[-1] if "::" in name else name
+            short_name = short_name.replace("~", "_dtor_").replace(" ", "_")
+            before = sig_clean[:paren_idx].rstrip()
+            after = sig_clean[paren_idx:]
+            sig_clean = before + " " + short_name + after
+        if idc.SetType(addr, sig_clean):
+            sig_ok += 1
+
+    print("[6] Signatures: %d/%d" % (sig_ok, len([f for f in funcs.values() if f.get("signature")])))
+
+    # --- 7. Trigger reanalysis for type propagation ---
+    ida_auto.auto_wait()
 
     idc.save_database(idc.get_idb_path(), 0)
     print("[*] Done. Database saved.")
