@@ -5,6 +5,7 @@
 #include "SceneMgrCamBlock.h"
 #include "SceneMgrSlot.h"
 
+class CCBAI;
 class CGameData;
 class CameraCtrl;
 class PalScriptMgr;
@@ -21,7 +22,7 @@ public:
     char _preArray[620]; // +0x1C
     SceneMgrSlot m_slot[4]; // +0x288
     char m_extraSlot[792]; // +0x1888
-    int m_pCBRoleStateData; // +0x1BA0
+    CCBAI * m_pCombatAI; // +0x1BA0
     char _gap_1BA4[36]; // +0x1BA4
     char m_bGameFlags[5]; // +0x1BC8
     char _gap_1BCD[3]; // +0x1BCD

@@ -2177,7 +2177,7 @@ char PAL3::EntryCatchGhost()
     for ( i = &v8; ; ++i )
     {
       v11 = *i;
-      if ( CCBStageRole_GetByIndex(&g_SceneMgr.m_pCBRoleStateData, &v11) )
+      if ( CCBStageRole_GetByIndex(&g_SceneMgr.m_pCombatAI, &v11) )
         break;
       if ( ++v0 >= 3 )
         return 0;
@@ -2264,7 +2264,7 @@ int PAL3::FullInit()
 {
   int *v0; // eax
   int *v1; // edx
-  char *v2; // esi
+  char *p_m_nAnimState; // esi
   int *v3; // ebp
   const char *v4; // edi
   int v5; // eax
@@ -2431,7 +2431,9 @@ int PAL3::FullInit()
   memset(byte_DE5220, 0, 0x28u);
   if ( g_SceneMgr.m_camBlock.m_pCameraScript )
   {
-    (**(void (***)(int, int))g_SceneMgr.m_camBlock.m_pCameraScript)(g_SceneMgr.m_camBlock.m_pCameraScript, 1);
+    (**(void (***)(PalScript *, int))g_SceneMgr.m_camBlock.m_pCameraScript)(
+      g_SceneMgr.m_camBlock.m_pCameraScript,
+      1);
     g_SceneMgr.m_camBlock.m_pCameraScript = 0;
   }
   memset(dword_C02050, 0, 0xA0u);
@@ -2456,7 +2458,7 @@ int PAL3::FullInit()
   dword_C020EC = 84018;
   *(_DWORD *)&g_SceneMgr._gap_C93C[8] = 0;
   *(_DWORD *)g_SceneMgr._gap_C93C = 0;
-  CCBStageRole_Reset(&g_SceneMgr.m_pCBRoleStateData);
+  CCBStageRole_Reset(&g_SceneMgr.m_pCombatAI);
   *(_DWORD *)&g_SceneMgr.m_extraSlot[784] = *(_DWORD *)&g_SceneMgr.m_extraSlot[780];
   dword_586158 = 35;
   v1 = g_RoleTeam2;
@@ -2477,23 +2479,23 @@ int PAL3::FullInit()
   v164[3] = &dword_586190;
   v164[4] = dword_58618C;
   v145 = 0;
-  v2 = (char *)&g_SceneMgr.m_RoleSystem[0]._gap_00AC[2];
+  p_m_nAnimState = (char *)&g_SceneMgr.m_RoleSystem[0].m_nAnimState;
   v3 = v164;
   do
   {
     v4 = (const char *)*v3;
-    ((Camera *)(v2 - 174))->SetParams(*v3);
-    strncpy(v2, v4, 0x1Fu);
-    *(_DWORD *)(v2 + 1090) = 1;
-    *(_DWORD *)(v2 + 1086) = 1;
-    *(_DWORD *)(v2 + 458) = 0;
-    *(v2 - 1) = -1;
-    *(v2 - 2) = v145;
-    v2 += 8704;
+    ((Camera *)(p_m_nAnimState - 174))->SetParams(*v3);
+    strncpy(p_m_nAnimState, v4, 0x1Fu);
+    *(_DWORD *)(p_m_nAnimState + 1090) = 1;
+    *(_DWORD *)(p_m_nAnimState + 1086) = 1;
+    *(_DWORD *)(p_m_nAnimState + 458) = 0;
+    *(p_m_nAnimState - 1) = -1;
+    *(p_m_nAnimState - 2) = v145;
+    p_m_nAnimState += 8704;
     ++v3;
     ++v145;
   }
-  while ( (int)v2 < (int)&g_SceneMgr.m_camBlock.m_CameraList[158] );
+  while ( (int)p_m_nAnimState < (int)&g_SceneMgr.m_camBlock.m_CameraList[158] );
   ((Camera *)dword_C020F8)->SetParams((int)"109");
   byte_C021A4 = 5;
   v5 = *(_DWORD *)g_SceneMgr._gap_C93C;

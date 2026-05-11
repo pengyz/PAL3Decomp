@@ -5892,7 +5892,7 @@ LABEL_21:
             pOut = v31;
             SkillNum = ((PAL_GDB *)&g_GDB)->GDB_GetSkillNum(v31);
             pOut2 = 1;
-            CCBStageRole_GetAlive((int)&g_SceneMgr.m_pCBRoleStateData, &pOut);
+            CCBStageRole_GetAlive((int)&g_SceneMgr.m_pCombatAI, &pOut);
           }
           ++v19;
           v20 += 402;

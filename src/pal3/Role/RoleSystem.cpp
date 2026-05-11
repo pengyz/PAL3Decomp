@@ -562,27 +562,23 @@ void RoleSystem::RenderRole(void *pStack, int a3)
     ((gbMatrixStack *)pStack)->Rotate(*(float *)&this->_end[7196], (struct gbVec3D *)&g_SceneMgr.m_szUIString[80]);
     ((gbMatrixStack *)pStack)->Scale(*(float *)&this->m_nBaseStats[1], *(float *)&this->m_nBaseStats[1], *(float *)&this->m_nBaseStats[1]);
     *(_DWORD *)&this->_gap_0018[120] = ((Actor *)&this->m_nBaseStats[11])->DispatchAction(a3);
-    if ( *(_DWORD *)&this->_gap_0574[44] )
+    if ( this->m_pRenderObj )
     {
       ((gbMatrix4 *)v4)->gbMatrix4();
-      if ( this->_gap_0574[49] )
+      if ( this->m_bRenderFlag2 )
       {
         ((gbMatrixStack *)pStack)->Push();
         ((gbActor *)*(gbActor **)&this->_gap_02AC[12])->GetTagNodeTM((struct gbMatrix4 *)v4, aTagWeapon1);
         ((gbMatrixStack *)pStack)->MultMatrix((struct gbMatrix4 *)v4);
-        (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)&this->_gap_0574[44] + 16))(
-          *(_DWORD *)&this->_gap_0574[44],
-          0);
+        (*(void (**)(gbGeomNode *, _DWORD))(*(_DWORD *)this->m_pRenderObj + 16))(this->m_pRenderObj, 0);
         ((gbMatrixStack *)pStack)->Pop();
       }
-      if ( this->_gap_0574[48] )
+      if ( this->m_bRenderFlag1 )
       {
         ((gbMatrixStack *)pStack)->Push();
         ((gbActor *)*(gbActor **)&this->_gap_02AC[12])->GetTagNodeTM((struct gbMatrix4 *)v4, aTagWeapon2);
         ((gbMatrixStack *)pStack)->MultMatrix((struct gbMatrix4 *)v4);
-        (*(void (**)(_DWORD, _DWORD))(**(_DWORD **)&this->_gap_0574[44] + 16))(
-          *(_DWORD *)&this->_gap_0574[44],
-          0);
+        (*(void (**)(gbGeomNode *, _DWORD))(*(_DWORD *)this->m_pRenderObj + 16))(this->m_pRenderObj, 0);
         ((gbMatrixStack *)pStack)->Pop();
       }
     }
@@ -594,7 +590,7 @@ void RoleSystem::RenderRole(void *pStack, int a3)
 int RoleSystem::UpdateTransform()
 {
   __int64 m_nCoreState; // rax
-  char v3; // al
+  char m_nActionState; // al
   int v4; // [esp-4h] [ebp-Ch]
   int v5; // [esp-4h] [ebp-Ch]
   int v6; // [esp-4h] [ebp-Ch]
@@ -620,15 +616,15 @@ int RoleSystem::UpdateTransform()
     case 1:
     case 3:
       LODWORD(this->_f50C) = dword_58B3B4;
-      v3 = this->_gap_00AC[1];
-      if ( v3 == -1 )
+      m_nActionState = this->m_nActionState;
+      if ( m_nActionState == -1 )
       {
         HIDWORD(m_nCoreState) = dword_58B3DC;
 LABEL_7:
         this->m_nTransformState = HIDWORD(m_nCoreState);
         return this->UpdatePath(this->m_nCoreState);
       }
-      if ( v3 == 2 )
+      if ( m_nActionState == 2 )
       {
         if ( *(_DWORD *)&this->_gap_0574[20] == 1 )
         {
@@ -671,7 +667,7 @@ LABEL_7:
       }
       else
       {
-        LODWORD(m_nCoreState) = *(_DWORD *)&this->_gap_00AC[336];
+        LODWORD(m_nCoreState) = *(_DWORD *)&this->_gap_00AF[333];
         v7 = this->m_nCoreState;
         if ( (_DWORD)m_nCoreState == HIDWORD(m_nCoreState) )
           this->m_nTransformState = dword_58B38C;
@@ -696,16 +692,16 @@ int RoleSystem::UpdatePath(int a2)
   int result; // eax
   int v6; // [esp-8h] [ebp-14h]
 
-  if ( this->_gap_00AC[2] == 49 )
+  if ( this->m_nAnimState == 49 )
   {
     ((Actor *)&this->m_nBaseStats[11])->CompareAction(a2, 2);
     ((Actor *)&this->m_nBaseStats[11])->SetTimeScale(1.0);
-    this->_gap_0574[49] = 0;
-    this->_gap_0574[48] = 0;
+    this->m_bRenderFlag2 = 0;
+    this->m_bRenderFlag1 = 0;
     return result;
   }
-  v3 = sub_4126D0(a2, this->_gap_00AC[1]);
-  if ( this->_gap_00AC[2] == 50 )
+  v3 = sub_4126D0(a2, this->m_nActionState);
+  if ( this->m_nAnimState == 50 )
     goto LABEL_10;
   if ( v3 == 50 )
   {
@@ -733,8 +729,8 @@ LABEL_12:
     v4->SetTimeScale(2.4000001);
   else
     v4->SetTimeScale(1.0);
-  this->_gap_0574[49] = 0;
-  this->_gap_0574[48] = 0;
+  this->m_bRenderFlag2 = 0;
+  this->m_bRenderFlag1 = 0;
   return result;
 }
 
@@ -760,7 +756,7 @@ int RoleSystem::MoveRole(float *pPos, int a3, int a4, int a5)
   this->_f548 = pPos[2];
   m_nMoveSubMode = this->m_nMoveSubMode;
   *(_DWORD *)this->_gap_054C = a3;
-  *(_DWORD *)&this->_gap_0574[64] = 1;
+  *(_DWORD *)&this->_gap_05A6[14] = 1;
   if ( m_nMoveSubMode != 2 )
   {
     LOBYTE(result) = this->UpdateRole((int)pPos, a3, a4);
@@ -781,13 +777,13 @@ int RoleSystem::MoveRole(float *pPos, int a3, int a4, int a5)
     if ( sub_4215B0(v10, v12, v13, v14, v15, v17) )
     {
       *(_DWORD *)&this->_end[3060] = 2;
-      *(float *)&this->_gap_05BC[12] = this->m_fTargetX;
-      *(float *)&this->_gap_05BC[16] = this->m_fTargetY;
-      this->_d5D0 = LODWORD(this->m_fTargetZ);
+      this->m_fMoveTargetX = this->m_fTargetX;
+      this->m_fMoveTargetY = this->m_fTargetY;
+      this->m_fMoveTargetZ = this->m_fTargetZ;
       *(float *)this->_end = *pPos;
       *(float *)&this->_end[4] = pPos[1];
       *(float *)&this->_end[8] = pPos[2];
-      return sub_407DC0((float *)&this->_gap_05BC[12]);
+      return sub_407DC0(&this->m_fMoveTargetX);
     }
     result = a3;
   }
@@ -902,8 +898,8 @@ char RoleSystem::UpdateRole(int a2, int a3, int a4)
              this->m_nState,
              &this->m_fTargetX,
              v26,
-             (float *)&this->_gap_05BC[12],
-             this->_gap_00AC[0]) )
+             &this->m_fMoveTargetX,
+             this->m_nFacing) )
       {
         this->m_nMoveSubMode = 7;
         this->m_nCoreState = a4;
@@ -1211,7 +1207,7 @@ void RoleSystem::UpdateAnimation(int a2)
         a2b = 0;
         do
         {
-          LOBYTE(v15) = this->_gap_00AC[0];
+          LOBYTE(v15) = this->m_nFacing;
           if ( sub_421020(
                  v14,
                  this->m_nState,
@@ -1363,7 +1359,7 @@ LABEL_7:
       {
         v8 = v16;
         v9 = v16 + *(_DWORD *)(state + 232);
-        LOBYTE(v8) = this->_gap_00AC[0];
+        LOBYTE(v8) = this->m_nFacing;
         v10 = *(_DWORD *)(state + 228) + statea;
         v15 = v8;
         v13 = this->m_nState;
@@ -1426,8 +1422,8 @@ int RoleSystem::SetActive(int a2)
   int result; // eax
 
   result = a2;
-  *(_DWORD *)&this->_gap_00AC[212] = 0;
-  *(_DWORD *)&this->_gap_00AC[208] = a2;
+  *(_DWORD *)&this->_gap_00AF[209] = 0;
+  *(_DWORD *)&this->_gap_00AF[205] = a2;
   if ( !a2 )
     return sub_41C1E0((int)this);
   return result;

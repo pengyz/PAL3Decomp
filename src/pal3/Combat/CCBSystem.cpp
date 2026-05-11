@@ -2228,7 +2228,7 @@ int CCBSystem::PassCmdToThread(int a2)
     if ( sub_4F7050((int)(v4 + 40)) )
       sub_4F7140((int)(v4 + 40));
     else
-      CCBStageRole_PassCmd(&g_SceneMgr.m_pCBRoleStateData, &v12);
+      CCBStageRole_PassCmd(&g_SceneMgr.m_pCombatAI, &v12);
     v4[37] = 1;
   }
   ((CCBStage *)this->m_pStage)->DelTask(*((_DWORD *)v4 + 5), &a3, &a4);

@@ -65,7 +65,7 @@ public:
     int _d56C; // +0x56C
     int m_nRoleCount; // +0x570
     char _gap_0574[44]; // +0x574
-    int m_pRenderObj; // +0x5A0
+    gbGeomNode * m_pRenderObj; // +0x5A0
     char m_bRenderFlag1; // +0x5A4
     char m_bRenderFlag2; // +0x5A5
     char _gap_05A6[18]; // +0x5A6

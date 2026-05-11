@@ -117,7 +117,7 @@ void ScriptSystem::Render(void *a1)
     ((gbMatrixStack *)a1)->Push();
     v7.y = v7.y + 40.0;
     ((gbMatrixStack *)a1)->Translate(&v7);
-    (*(void (**)(int, _DWORD))(*(_DWORD *)g_SceneMgr.m_camBlock.m_pCameraScript + 16))(
+    (*(void (**)(PalScript *, _DWORD))(*(_DWORD *)g_SceneMgr.m_camBlock.m_pCameraScript + 16))(
       g_SceneMgr.m_camBlock.m_pCameraScript,
       0);
     ((gbMatrixStack *)a1)->Pop();
@@ -271,10 +271,10 @@ int ScriptSystem::Execute(int a1, char a2)
   m_nCameraState = g_SceneMgr.m_nCameraState;
   if ( g_SceneMgr.m_nCameraState == 2 )
   {
-    if ( _strcmpi(&g_SceneMgr.m_RoleSystem[2]._gap_00AC[2], dword_586194) )
+    if ( _strcmpi(&g_SceneMgr.m_RoleSystem[2].m_nAnimState, dword_586194) )
     {
       ((Actor *)&g_SceneMgr.m_RoleSystem[2].m_nBaseStats[11])->LoadModel();
-      strcpy(&g_SceneMgr.m_RoleSystem[2]._gap_00AC[2], dword_586194);
+      strcpy(&g_SceneMgr.m_RoleSystem[2].m_nAnimState, dword_586194);
       ((RoleSystem *)&g_SceneMgr.m_RoleSystem[2])->UpdateTransform();
     }
     m_nCameraState = g_SceneMgr.m_nCameraState;
