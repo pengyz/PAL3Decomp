@@ -24970,6 +24970,21 @@
           "name": "m_fField22C",
           "type": "float",
           "source": "binary:raw_3votes"
+        },
+        "153": {
+          "name": "m_bFlag99",
+          "type": "unsigned char",
+          "source": "binary:byte_after_status"
+        },
+        "154": {
+          "name": "m_bFlag9A",
+          "type": "unsigned char",
+          "source": "binary:byte_flag"
+        },
+        "155": {
+          "name": "m_bFlag9B",
+          "type": "unsigned char",
+          "source": "binary:byte_flag"
         }
       },
       "pdb_size": 673992,
@@ -34555,6 +34570,11 @@
           "name": "m_pDefaultString",
           "type": "char *",
           "source": "gen_headers_9.2"
+        },
+        "20": {
+          "name": "m_szLogPath",
+          "type": "char[260]",
+          "source": "binary:MAX_PATH_buffer_0x104"
         }
       },
       "pdb_size": 1,
@@ -57174,6 +57194,11 @@
           "name": "SubTask",
           "type": "tagStageSubTask[32]",
           "source": "pdb_fill_incomplete"
+        },
+        "12": {
+          "name": "nReserved",
+          "type": "int",
+          "source": "binary:gap_between_nSubTask_and_SubTask"
         }
       },
       "pdb_size": 2632
