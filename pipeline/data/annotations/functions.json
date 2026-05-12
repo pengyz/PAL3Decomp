@@ -1097,7 +1097,7 @@
   },
   "0x00445EC0": {
     "name": "j_UIWnd::MoveWindow",
-    "signature": "int __thiscall(UIWnd *this)"
+    "signature": "int __thiscall(j_UIWnd *this)"
   },
   "0x00445FA0": {
     "name": "UIWnd::GetRect",
@@ -1121,7 +1121,7 @@
   },
   "0x0044B460": {
     "name": "j_UIWnd::GetID",
-    "signature": "int __thiscall(UIWnd *this)"
+    "signature": "int __thiscall(j_UIWnd *this)"
   },
   "0x0044BDA0": {
     "name": "??1UIWnd@@UAE@XZ_0_0",
@@ -1129,7 +1129,7 @@
   },
   "0x0044BE70": {
     "name": "j_UIFrameWnd::_UIFrameWnd",
-    "signature": "void __thiscall(UIFrameWnd *this)"
+    "signature": "void __thiscall(j_UIFrameWnd *this)"
   },
   "0x0044E660": {
     "name": "CGameData::InitItems",
@@ -1357,7 +1357,7 @@
   },
   "0x004A14C0": {
     "name": "j_UIWnd::UpdateChildren",
-    "signature": "void __thiscall(UIWnd *this)"
+    "signature": "void __thiscall(j_UIWnd *this)"
   },
   "0x004A14D0": {
     "name": "UIItem::SetData",
@@ -8845,7 +8845,7 @@
   },
   "0x00517AC0": {
     "name": "CCBAIWindow::_nearby_517ac0",
-    "signature": "char __usercall@<al>(CCBAIWindow *this@<ecx>, int@<ebx>, int@<ebp>)"
+    "signature": "char __thiscall(CCBAIWindow *this, int, int)"
   },
   "0x0052AA50": {
     "name": "UIWnd::_nearby_52aa50",
@@ -8905,7 +8905,7 @@
   },
   "0x00411E00": {
     "name": "ScriptSystem::_sub_411E00",
-    "signature": "void __thiscall(RoleSystem *this, double, int, float, char)"
+    "signature": "void __thiscall(ScriptSystem *this, double, int, float, char)"
   },
   "0x00412A90": {
     "name": "RoleSystem::_sub_412A90",
@@ -8917,7 +8917,7 @@
   },
   "0x00413850": {
     "name": "RoleSystem::_sub_413850",
-    "signature": "double __usercall@<st0>(int this@<ecx>, double result@<st0>)"
+    "signature": "double __thiscall(RoleSystem *this, double result)"
   },
   "0x00414250": {
     "name": "gbVec3D::_sub_414250",
@@ -9289,11 +9289,11 @@
   },
   "0x00535930": {
     "name": "UIWnd::_nearby_535930",
-    "signature": "struct gbVFileSystem * __thiscall(_DWORD *this, double, int)"
+    "signature": "struct gbVFileSystem * __thiscall(UIWnd *this, double, int)"
   },
   "0x005359B0": {
     "name": "UIWnd::_nearby_5359b0",
-    "signature": "double __thiscall(char *this, double st7_0, double)"
+    "signature": "double __thiscall(UIWnd *this, double st7_0, double)"
   },
   "0x00535E70": {
     "name": "UIAnimateCtrlEX::_method_535e70",
@@ -9305,7 +9305,7 @@
   },
   "0x00538D60": {
     "name": "UISceneObj::_auto_538d60",
-    "signature": "void __thiscall(_DWORD *this, double, _DWORD *)"
+    "signature": "void __thiscall(UISceneObj *this, double, _DWORD *)"
   },
   "0x00539540": {
     "name": "Actor::_nearby_539540",
@@ -9473,7 +9473,7 @@
   },
   "0x00419A20": {
     "name": "RoleSystem::_nearby_419a20",
-    "signature": "void __thiscall(_DWORD *this, double, int, int, int)"
+    "signature": "void __thiscall(RoleSystem *this, double, int, int, int)"
   },
   "0x00419B00": {
     "name": "RoleSystem::_nearby_419b00",
@@ -9509,7 +9509,7 @@
   },
   "0x0041CA30": {
     "name": "j_InputSystem::ProcessKeyboard",
-    "signature": "int __thiscall(InputSystem *this, int, int, int, int, int, int)"
+    "signature": "int __thiscall(j_InputSystem *this, int, int, int, int, int, int)"
   },
   "0x0041CBC0": {
     "name": "CameraCtrl::_nearby_41cbc0",
@@ -9521,7 +9521,7 @@
   },
   "0x0041D590": {
     "name": "j_InputSystem::ProcessKeyboard_2",
-    "signature": "int __thiscall(InputSystem *this, int)"
+    "signature": "int __thiscall(j_InputSystem *this, int)"
   },
   "0x0041D8F0": {
     "name": "CameraCtrl::_nearby_41d8f0",
@@ -10405,7 +10405,7 @@
   },
   "0x0044F8D0": {
     "name": "BYTE::_init_44f8d0",
-    "signature": "CCBUI * __thiscall(_DWORD *this, double, int)"
+    "signature": "CCBUI * __thiscall(BYTE *this, double, int)"
   },
   "0x0044FF20": {
     "name": "CCBAI::_method_44ff20",
@@ -10997,7 +10997,7 @@
   },
   "0x004A1A80": {
     "name": "UIWnd::_sub_4A1A80",
-    "signature": "void *__thiscall(UIItem *this, void *Block, char)"
+    "signature": "void *__thiscall(UIWnd *this, void *Block, char)"
   },
   "0x004A1AA0": {
     "name": "UIScene::_init_4a1aa0",
@@ -11117,7 +11117,7 @@
   },
   "0x004B2750": {
     "name": "UIWnd::_auto_4b2750",
-    "signature": "FILE * __thiscall(_DWORD *this, double, int Data)"
+    "signature": "FILE * __thiscall(UIWnd *this, double, int Data)"
   },
   "0x004B2840": {
     "name": "PAL3::_auto_4b2840",
@@ -11997,7 +11997,7 @@
   },
   "0x005044F0": {
     "name": "j_CCCTData::UpdateCamera",
-    "signature": "int __thiscall(CCCTData *this, int)"
+    "signature": "int __thiscall(j_CCCTData *this, int)"
   },
   "0x00504A80": {
     "name": "CCBStage::Method_504A80",
@@ -12057,7 +12057,7 @@
   },
   "0x0050F310": {
     "name": "CCBStage::_nearby_50f310",
-    "signature": "int __thiscall(void *, enum ECBStageTaskState *, int)"
+    "signature": "int __thiscall(CCBStage *this, enum ECBStageTaskState *, int)"
   },
   "0x0050F410": {
     "name": "CCBStage::_nearby_50f410",
@@ -12377,11 +12377,11 @@
   },
   "0x005350C0": {
     "name": "UIWnd::_nearby_5350c0",
-    "signature": "void __usercall(int this@<ecx>, double@<st1>)"
+    "signature": "void __thiscall(UIWnd *this, double)"
   },
   "0x00535120": {
     "name": "UIWnd::UICursor_535120",
-    "signature": "void __usercall(int *this@<ecx>, double@<st1>)"
+    "signature": "void __thiscall(UIWnd *this, double)"
   },
   "0x005355E0": {
     "name": "UIWnd::_nearby_5355e0",
@@ -12401,7 +12401,7 @@
   },
   "0x00537A90": {
     "name": "Actor::_nearby_537a90",
-    "signature": "FILE * __thiscall(_DWORD *, double, int)"
+    "signature": "FILE * __thiscall(Actor *this, double, int)"
   },
   "0x00539E70": {
     "name": "Actor::_nearby_539e70",
@@ -12597,7 +12597,7 @@
   },
   "0x005495B8": {
     "name": "double::_nearby_5495b8",
-    "signature": "__m128 * __thiscall(__m128 *this, __int128 _XMM0, unsigned int *)"
+    "signature": "__m128 * __thiscall(double *this, __int128 _XMM0, unsigned int *)"
   },
   "0x00549732": {
     "name": "double::_nearby_549732",
@@ -15549,7 +15549,7 @@
   },
   "0x00485DC0": {
     "name": "j_NPC::UpdateAnim",
-    "signature": "int __thiscall(NPC *this, int, int)"
+    "signature": "int __thiscall(j_NPC *this, int, int)"
   },
   "0x00485DF0": {
     "name": "CScreenMode::_init_485df0",
