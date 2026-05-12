@@ -76,18 +76,6 @@
       "type": "gbCamera *",
       "source": "binary:Create"
     },
-    "80": {
-      "name": "m_PlayerSlots",
-      "type": "ARC_PlayerAtt[5]",
-      "source": "view_B:accessor_cast",
-      "note": "NOT a real member - reinterpret_cast view of EffClass/EffTable region"
-    },
-    "7120": {
-      "name": "m_RoleSystems",
-      "type": "RoleSystem[5]",
-      "source": "view_B:accessor_cast",
-      "note": "NOT a real member - reinterpret_cast view of EffTable region"
-    },
     "53252": {
       "name": "m_vCameraTarget",
       "type": "float[3]",
@@ -167,41 +155,6 @@
       "name": "m_nCollisionFlags",
       "type": "int",
       "source": "binary:5refs_+0xD334"
-    },
-    "28": {
-      "name": "m_EffClass",
-      "type": "tagEffClass[32]",
-      "source": "binary:rep_stosd_0x240_at_1C"
-    },
-    "2332": {
-      "name": "m_EffTable",
-      "type": "tagEffObj[2048]",
-      "source": "binary:rep_stosd_0x2800_at_91C"
-    },
-    "43292": {
-      "name": "m_nEff",
-      "type": "int",
-      "source": "binary:Create_zeroed"
-    },
-    "43296": {
-      "name": "m_fCurTime",
-      "type": "float",
-      "source": "binary:Create_zeroed"
-    },
-    "43300": {
-      "name": "m_fDeltaTime",
-      "type": "float",
-      "source": "binary:Create_zeroed"
-    },
-    "43304": {
-      "name": "m_fTimer",
-      "type": "float",
-      "source": "binary:Create_zeroed"
-    },
-    "43308": {
-      "name": "m_fTimeScale",
-      "type": "float",
-      "source": "binary:Create_init_1.0f"
     }
   },
   "pdb_size": 1,
