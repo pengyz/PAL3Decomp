@@ -49,21 +49,20 @@ def export_incremental():
 
     os.makedirs(DECOMP_DIR, exist_ok=True)
 
-    # 建立已有 decomp 文件的索引: addr → (filename, old_sig)
+    # 建立已有 decomp 文件的索引: addr → (filename, old_sig, old_name)
     existing = {}
     for fname in os.listdir(DECOMP_DIR):
         if not fname.endswith('.json'):
             continue
-        # 从文件名提取地址
         m = re.search(r'_([0-9a-f]{8})\.json$', fname)
         if m:
             addr = int(m.group(1), 16)
             fpath = os.path.join(DECOMP_DIR, fname)
             try:
                 d = json.load(open(fpath))
-                existing[addr] = (fpath, d.get('signature', ''))
+                existing[addr] = (fpath, d.get('signature', ''), d.get('name', ''))
             except:
-                existing[addr] = (fpath, '')
+                existing[addr] = (fpath, '', '')
 
     # 扫描所有函数，对比签名
     total = 0
@@ -87,11 +86,11 @@ def export_incremental():
         cur_sig = get_func_sig(ea)
 
         if ea in existing:
-            old_path, old_sig = existing[ea]
-            if cur_sig == old_sig:
+            old_path, old_sig, old_name = existing[ea]
+            if cur_sig == old_sig and name == old_name:
                 skipped += 1
                 continue
-            # 签名变化，需要重新反编译
+            # 签名或名称变化，需要重新反编译
             out_path = old_path
         else:
             # 新函数
