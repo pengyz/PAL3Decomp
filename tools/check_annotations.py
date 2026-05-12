@@ -17,25 +17,25 @@ import sys
 import os
 import re
 
-ANN_FILE = os.path.join(os.path.dirname(__file__), '..', 'asm', 'pal3', 'annotations.json')
 ANN_DIR = os.path.join(os.path.dirname(__file__), '..', 'asm', 'pal3', 'annotations')
 
 def load_annotations():
-    """加载标注：优先拆分目录，fallback 单文件。"""
-    manifest = os.path.join(ANN_DIR, 'manifest.json')
-    if os.path.exists(manifest):
-        funcs = json.load(open(os.path.join(ANN_DIR, 'functions.json'), encoding='utf-8'))
-        globs = json.load(open(os.path.join(ANN_DIR, 'globals.json'), encoding='utf-8'))
-        structs = {}
-        structs_dir = os.path.join(ANN_DIR, 'structs')
-        for fname in os.listdir(structs_dir):
-            if fname.endswith('.json'):
-                sdata = json.load(open(os.path.join(structs_dir, fname), encoding='utf-8'))
-                sname = sdata.pop('name', fname.replace('.json', ''))
-                structs[sname] = sdata
-        vtables = json.load(open(os.path.join(ANN_DIR, 'vtables.json'), encoding='utf-8'))
-        return {'functions': funcs, 'globals': globs, 'structs': structs, 'vtables': vtables, 'enums': {}}
-    return json.load(open(ANN_FILE, 'r', encoding='utf-8'))
+    """从拆分目录加载标注数据。"""
+    funcs = json.load(open(os.path.join(ANN_DIR, 'functions.json'), encoding='utf-8'))
+    globs = json.load(open(os.path.join(ANN_DIR, 'globals.json'), encoding='utf-8'))
+    structs = {}
+    structs_dir = os.path.join(ANN_DIR, 'structs')
+    for fname in os.listdir(structs_dir):
+        if fname.endswith('.json'):
+            sdata = json.load(open(os.path.join(structs_dir, fname), encoding='utf-8'))
+            sname = sdata.pop('name', fname.replace('.json', ''))
+            structs[sname] = sdata
+    vtables = json.load(open(os.path.join(ANN_DIR, 'vtables.json'), encoding='utf-8'))
+    enums = {}
+    enums_path = os.path.join(ANN_DIR, 'enums.json')
+    if os.path.exists(enums_path):
+        enums = json.load(open(enums_path, encoding='utf-8'))
+    return {'functions': funcs, 'globals': globs, 'structs': structs, 'vtables': vtables, 'enums': enums}
 
 def check():
     errors = []
