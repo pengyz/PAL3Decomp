@@ -394,7 +394,7 @@ def collect_undefined_refs(code):
 
 
 def generate_forward_decls(all_code):
-    """Generate forward declarations for sub_ and unnamed globals."""
+    """Generate minimal forward declarations: only what this file actually references."""
     lines = []
     subs = collect_sub_refs(all_code)
     if subs:
@@ -413,7 +413,7 @@ def generate_forward_decls(all_code):
                 lines.append("extern unsigned char %s;" % u)
             elif u.startswith('off_'):
                 lines.append("extern void *%s;" % u)
-            elif u.startswith('a') and u[1].isupper():
+            elif u.startswith('a') and len(u) > 1 and u[1].isupper():
                 lines.append('extern char %s[];' % u)
             else:
                 lines.append("extern int %s;" % u)
