@@ -31,9 +31,14 @@ OUTPUT_DIR = PROJECT_ROOT / "include" / "pal3" / "gen"
 OVERRIDES_DIR = PROJECT_ROOT / "include" / "pal3" / "overrides"
 
 
+_annotations_cache = None
+
 def load_annotations_data():
-    """从拆分目录加载标注数据。"""
-    ann_dir = ANNOTATIONS_DIR  # actually a directory path
+    """从拆分目录加载标注数据（带缓存）。"""
+    global _annotations_cache
+    if _annotations_cache is not None:
+        return _annotations_cache
+    ann_dir = ANNOTATIONS_DIR
     structs = {}
     structs_dir = ann_dir / "structs"
     if structs_dir.exists():
@@ -45,7 +50,8 @@ def load_annotations_data():
     vt_file = ann_dir / "vtables.json"
     if vt_file.exists():
         vtables = json.load(open(vt_file, encoding='utf-8'))
-    return {'structs': structs, 'vtables': vtables}
+    _annotations_cache = {'structs': structs, 'vtables': vtables}
+    return _annotations_cache
 
 
 # Skip STL/CRT/Windows types (already defined by system headers)

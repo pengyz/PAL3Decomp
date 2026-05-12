@@ -380,22 +380,23 @@ def apply_annotations():
     # --- 6. Function signatures (after structs so types are resolved) ---
     import re as _re_sig
     sig_ok = 0
+    sig_fail = []
     for addr_str, info in funcs.items():
         addr = int(addr_str, 16)
         sig = info.get("signature", "")
         name = info.get("name", "")
         if not sig:
             continue
-        sig_clean = sig.strip().rstrip(";")
-        sig_clean = sig_clean.replace("struct ", "").replace("class ", "")
-        if sig_clean.count("(") > 1:
+        sig_raw = sig.strip().rstrip(";")
+        if sig_raw.count("(") > 1:
             continue
-        # __usercall/__userpurge: strip calling convention and register annotations
-        if "__usercall" in sig_clean or "__userpurge" in sig_clean:
-            sig_clean = _re_sig.sub(r'__usercall|__userpurge', '', sig_clean)
-            sig_clean = _re_sig.sub(r'@<\w+>', '', sig_clean)
-            sig_clean = sig_clean.strip()
-        paren_idx = sig_clean.find("(")
+        # Strip IDA-specific modifiers that SetType doesn't accept
+        sig_raw = _re_sig.sub(r'__usercall|__userpurge', '', sig_raw)
+        sig_raw = _re_sig.sub(r'@<[\w:]+>', '', sig_raw)  # register annotations
+        sig_raw = sig_raw.replace(' __noreturn', '')
+        sig_raw = _re_sig.sub(r'\s*__spoils<[^>]*>', '', sig_raw)
+        sig_raw = sig_raw.strip()
+        paren_idx = sig_raw.find("(")
         if paren_idx > 0:
             # Extract a valid C identifier for the function name
             if "::" in name:
@@ -420,11 +421,10 @@ def apply_annotations():
             short_name = _re_sig.sub(r'[^a-zA-Z0-9_]', '_', short_name)
             if not short_name or short_name[0].isdigit():
                 short_name = "fn_" + short_name
-            before = sig_clean[:paren_idx].rstrip()
-            after = sig_clean[paren_idx:]
+            before = sig_raw[:paren_idx].rstrip()
+            after = sig_raw[paren_idx:]
             # 检测 ( 前是否已有函数名
-            # 去掉 * 和调用约定后，看最后一个 token 是否是类型关键字
-            before_normalized = before.replace("*", "* ")  # 确保 * 和后面分开
+            before_normalized = before.replace("*", "* ")
             tokens = before_normalized.split()
             _type_and_cc = {
                 "__thiscall", "__cdecl", "__stdcall", "__fastcall",
@@ -435,18 +435,36 @@ def apply_annotations():
             last_meaningful = tokens[-1] if tokens else ""
             needs_name = last_meaningful in _type_and_cc
             if needs_name:
-                sig_clean = before + " " + short_name + after
+                sig_with_name = before + " " + short_name + after
             else:
-                sig_clean = before + after
-        if idc.SetType(addr, sig_clean):
-            sig_ok += 1
+                sig_with_name = before + after
+            # Try original (with struct/class keywords), fallback to stripped
+            if idc.SetType(addr, sig_with_name):
+                sig_ok += 1
+            else:
+                stripped = sig_with_name.replace("struct ", "").replace("class ", "")
+                if stripped != sig_with_name and idc.SetType(addr, stripped):
+                    sig_ok += 1
+                else:
+                    sig_fail.append((addr_str, name, sig_with_name))
 
-    print("[6] Signatures: %d/%d" % (sig_ok, len([f for f in funcs.values() if f.get("signature")])))
+    print("[6] Signatures: %d/%d (fail=%d)" % (sig_ok, len([f for f in funcs.values() if f.get("signature")]), len(sig_fail)))
 
     # --- 7. Trigger full reanalysis for type propagation ---
-    # plan_and_wait 重新分析所有已标注函数，传播类型信息
     ida_auto.plan_and_wait(0x00401000, 0x00560000)
     ida_auto.auto_wait()
+
+    # --- 8. Re-apply failed signatures (types may now be resolved after propagation) ---
+    sig_retry = 0
+    for addr_str, fname, sig_str in sig_fail:
+        addr = int(addr_str, 16)
+        if idc.SetType(addr, sig_str):
+            sig_retry += 1
+        else:
+            stripped = sig_str.replace("struct ", "").replace("class ", "")
+            if idc.SetType(addr, stripped):
+                sig_retry += 1
+    print("[8] Signature retry: %d/%d recovered" % (sig_retry, len(sig_fail)))
 
     idc.save_database(idc.get_idb_path(), 0)
     print("[*] Done. Database saved.")
