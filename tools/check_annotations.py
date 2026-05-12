@@ -88,6 +88,11 @@ def check():
         if base and base not in all_struct_names:
             warnings.append(f"structs[{sname}]: base_class '{base}' not in structs (may be in PDB)")
 
+        # Check struct has size
+        size = max(sinfo.get('binary_size', 0), sinfo.get('pdb_size', 0), sinfo.get('gen_size', 0))
+        if size == 0 and members:
+            warnings.append(f"structs[{sname}]: no size (has {len(members)} members but size=0)")
+
     return errors, warnings
 
 
