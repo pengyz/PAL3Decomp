@@ -18,6 +18,24 @@ import os
 import re
 
 ANN_FILE = os.path.join(os.path.dirname(__file__), '..', 'asm', 'pal3', 'annotations.json')
+ANN_DIR = os.path.join(os.path.dirname(__file__), '..', 'asm', 'pal3', 'annotations')
+
+def load_annotations():
+    """加载标注：优先拆分目录，fallback 单文件。"""
+    manifest = os.path.join(ANN_DIR, 'manifest.json')
+    if os.path.exists(manifest):
+        funcs = json.load(open(os.path.join(ANN_DIR, 'functions.json'), encoding='utf-8'))
+        globs = json.load(open(os.path.join(ANN_DIR, 'globals.json'), encoding='utf-8'))
+        structs = {}
+        structs_dir = os.path.join(ANN_DIR, 'structs')
+        for fname in os.listdir(structs_dir):
+            if fname.endswith('.json'):
+                sdata = json.load(open(os.path.join(structs_dir, fname), encoding='utf-8'))
+                sname = sdata.pop('name', fname.replace('.json', ''))
+                structs[sname] = sdata
+        vtables = json.load(open(os.path.join(ANN_DIR, 'vtables.json'), encoding='utf-8'))
+        return {'functions': funcs, 'globals': globs, 'structs': structs, 'vtables': vtables, 'enums': {}}
+    return json.load(open(ANN_FILE, 'r', encoding='utf-8'))
 
 def check():
     errors = []
@@ -25,7 +43,7 @@ def check():
 
     # 1. Load JSON
     try:
-        ann = json.load(open(ANN_FILE, 'r', encoding='utf-8'))
+        ann = load_annotations()
     except Exception as e:
         errors.append(f"JSON parse error: {e}")
         return errors, warnings

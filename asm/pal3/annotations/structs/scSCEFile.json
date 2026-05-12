@@ -1,0 +1,27 @@
+{
+  "name": "scSCEFile",
+  "gen_size": 28,
+  "known_members": {
+    "0": {
+      "name": "m_fp",
+      "type": "gbVFile *",
+      "source": "gen_headers_9.2"
+    },
+    "20": {
+      "name": "m_blocknum",
+      "type": "WORD",
+      "source": "gen_headers_9.2"
+    },
+    "24": {
+      "name": "m_pindex",
+      "type": "SceIndex *",
+      "source": "gen_headers_9.2"
+    },
+    "4": {
+      "name": "m_blocks",
+      "type": "std::vector<scScriptBlock *,std::allocator<scScriptBlock *> >[4]",
+      "source": "pdb_fill_incomplete"
+    }
+  },
+  "pdb_size": 28
+}

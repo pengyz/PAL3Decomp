@@ -1,0 +1,211 @@
+{
+  "name": "SceneMgr",
+  "known_members": {
+    "0": {
+      "name": "m_pGfxMgr",
+      "type": "gbGfxManager *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "4": {
+      "name": "m_pSceneRoot",
+      "type": "gbSceneGraph *",
+      "source": "gen_headers_9.2"
+    },
+    "50640": {
+      "name": "m_pGameData",
+      "type": "CGameData *",
+      "source": "gen_headers_9.2"
+    },
+    "50644": {
+      "name": "_unkC5D4",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "50648": {
+      "name": "m_pCameraCtrl",
+      "type": "CameraCtrl *",
+      "source": "gen_headers_9.2"
+    },
+    "50652": {
+      "name": "m_pScriptCtrl",
+      "type": "PalScriptMgr *",
+      "source": "gen_headers_9.2"
+    },
+    "50656": {
+      "name": "m_camBlock",
+      "type": "SceneMgrCamBlock",
+      "source": "gen_headers_9.2"
+    },
+    "51512": {
+      "name": "m_nCurrentScriptSlot",
+      "type": "int",
+      "source": "binary:RunEvent_used_as_slot_index"
+    },
+    "52492": {
+      "name": "m_fMoveParam",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "54108": {
+      "name": "m_pCollisionNode",
+      "type": "gbGeomNode *",
+      "source": "gen_headers_9.2"
+    },
+    "8": {
+      "name": "m_pAddEffect2",
+      "type": "gbRenderEffect *",
+      "source": "binary:Create"
+    },
+    "12": {
+      "name": "m_pAlphaEffect2",
+      "type": "gbRenderEffect *",
+      "source": "binary:Create"
+    },
+    "16": {
+      "name": "m_pAddEffect",
+      "type": "gbRenderEffect *",
+      "source": "binary:Create"
+    },
+    "20": {
+      "name": "m_pAlphaEffect",
+      "type": "gbRenderEffect *",
+      "source": "binary:Create"
+    },
+    "24": {
+      "name": "m_pCamera",
+      "type": "gbCamera *",
+      "source": "binary:Create"
+    },
+    "80": {
+      "name": "m_PlayerSlots",
+      "type": "ARC_PlayerAtt[5]",
+      "source": "view_B:accessor_cast",
+      "note": "NOT a real member - reinterpret_cast view of EffClass/EffTable region"
+    },
+    "7120": {
+      "name": "m_RoleSystems",
+      "type": "RoleSystem[5]",
+      "source": "view_B:accessor_cast",
+      "note": "NOT a real member - reinterpret_cast view of EffTable region"
+    },
+    "53252": {
+      "name": "m_vCameraTarget",
+      "type": "float[3]",
+      "source": "binary:CameraUpdate_CheckCollision"
+    },
+    "53268": {
+      "name": "m_vCameraPos",
+      "type": "float[3]",
+      "source": "binary:CameraUpdate_GetCursorPos"
+    },
+    "53968": {
+      "name": "m_pControlledRole",
+      "type": "RoleSystem *",
+      "source": "binary:CameraUpdate_RoleSystem_calls"
+    },
+    "53972": {
+      "name": "m_bCameraActive",
+      "type": "int",
+      "source": "binary:CameraUpdate_flag"
+    },
+    "51624": {
+      "name": "m_szUIBuffer",
+      "type": "char[512]",
+      "source": "binary:296_refs_string_for_UI"
+    },
+    "51516": {
+      "name": "m_nSceneState",
+      "type": "int",
+      "source": "binary:7refs_first_after_slot"
+    },
+    "51520": {
+      "name": "m_nSceneMode",
+      "type": "int",
+      "source": "binary:8refs"
+    },
+    "51524": {
+      "name": "m_nSceneFlags",
+      "type": "int",
+      "source": "binary:5refs"
+    },
+    "51528": {
+      "name": "m_SceneParams",
+      "type": "int[23]",
+      "source": "binary:consecutive_1ref_each"
+    },
+    "51632": {
+      "name": "m_nUIState",
+      "type": "int",
+      "source": "binary:5refs_+0xC9B0"
+    },
+    "51636": {
+      "name": "m_nUIMode",
+      "type": "int",
+      "source": "binary:6refs_+0xC9B4"
+    },
+    "53200": {
+      "name": "m_fCamFOV",
+      "type": "float",
+      "source": "binary:5refs_+0xCFD0"
+    },
+    "53296": {
+      "name": "m_vCamLookAt",
+      "type": "float[3]",
+      "source": "binary:4refs_+0xD030"
+    },
+    "53392": {
+      "name": "m_CamMatrix",
+      "type": "float[4]",
+      "source": "binary:cluster_+0xD090"
+    },
+    "53408": {
+      "name": "m_fCamDist",
+      "type": "float",
+      "source": "binary:8refs_+0xD0A0"
+    },
+    "53556": {
+      "name": "m_nCollisionFlags",
+      "type": "int",
+      "source": "binary:5refs_+0xD334"
+    },
+    "28": {
+      "name": "m_EffClass",
+      "type": "tagEffClass[32]",
+      "source": "binary:rep_stosd_0x240_at_1C"
+    },
+    "2332": {
+      "name": "m_EffTable",
+      "type": "tagEffObj[2048]",
+      "source": "binary:rep_stosd_0x2800_at_91C"
+    },
+    "43292": {
+      "name": "m_nEff",
+      "type": "int",
+      "source": "binary:Create_zeroed"
+    },
+    "43296": {
+      "name": "m_fCurTime",
+      "type": "float",
+      "source": "binary:Create_zeroed"
+    },
+    "43300": {
+      "name": "m_fDeltaTime",
+      "type": "float",
+      "source": "binary:Create_zeroed"
+    },
+    "43304": {
+      "name": "m_fTimer",
+      "type": "float",
+      "source": "binary:Create_zeroed"
+    },
+    "43308": {
+      "name": "m_fTimeScale",
+      "type": "float",
+      "source": "binary:Create_init_1.0f"
+    }
+  },
+  "pdb_size": 1,
+  "gen_size": 54116,
+  "note": "CEffMgr embedded at +0 (ends at +0xA930). SceneMgr-own fields from +0xA940. View B (PlayerSlots/RoleSystems) is reinterpret_cast overlay on EffClass+EffTable region.",
+  "binary_size": 54116
+}

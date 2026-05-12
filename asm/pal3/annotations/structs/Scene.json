@@ -1,0 +1,113 @@
+{
+  "name": "Scene",
+  "note": "Verified from binary. PDB size was 1094164 (wrong/different version)",
+  "known_members": {
+    "0": {
+      "name": "_vftable",
+      "type": "int",
+      "source": "fix_scene_struct"
+    },
+    "4": {
+      "name": "m_pDataBegin",
+      "type": "void *",
+      "source": "fix_scene_struct"
+    },
+    "8": {
+      "name": "m_pDataEnd",
+      "type": "void *",
+      "source": "fix_scene_struct"
+    },
+    "12": {
+      "name": "m_pCapacity",
+      "type": "void *[30]",
+      "source": "fix_scene_struct"
+    },
+    "132": {
+      "name": "m_geomnode",
+      "type": "gbGeomNode *",
+      "source": "gen_headers_9.2"
+    },
+    "136": {
+      "name": "m_lights",
+      "type": "gbVisNode *",
+      "source": "gen_headers_9.2"
+    },
+    "140": {
+      "name": "m_aabb",
+      "type": "gbAABBox",
+      "source": "gen_headers_9.2"
+    },
+    "164": {
+      "name": "m_bbArray",
+      "type": "PtrArray",
+      "source": "gen_headers_9.2"
+    },
+    "220": {
+      "name": "m_numobj",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "456928": {
+      "name": "m_numnpc",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1093412": {
+      "name": "m_nav",
+      "type": "NavigationInfo",
+      "source": "gen_headers_9.2"
+    },
+    "1093776": {
+      "name": "m_cvd",
+      "type": "gbGeomNode *",
+      "source": "gen_headers_9.2"
+    },
+    "1093780": {
+      "name": "m_CamCollide",
+      "type": "NavigationInfo",
+      "source": "gen_headers_9.2"
+    },
+    "1094144": {
+      "name": "m_bHasNavCollide",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "1094148": {
+      "name": "m_bLoad",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1094152": {
+      "name": "m_battached",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1094156": {
+      "name": "m_lastobj",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "1094160": {
+      "name": "m_bStar",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "180": {
+      "name": "m_objmap",
+      "type": "SceneMapObj[2]",
+      "source": "pdb_fill_incomplete"
+    },
+    "224": {
+      "name": "m_obj",
+      "type": "SceneObj[256]",
+      "source": "pdb_fill_incomplete"
+    },
+    "456932": {
+      "name": "m_npc",
+      "type": "Role[72]",
+      "source": "pdb_fill_incomplete"
+    }
+  },
+  "gen_size": 1094164,
+  "pdb_size": 1094164
+}

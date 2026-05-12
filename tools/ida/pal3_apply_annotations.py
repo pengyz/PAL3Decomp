@@ -146,16 +146,57 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
     return "struct %s%s {\n%s\n};" % (name, inherit, "\n".join(lines))
 
 
+def load_annotations():
+    """加载标注数据：优先读拆分目录，fallback 到单文件。"""
+    ann_dir = os.path.join(PROJECT_ROOT, "asm", "pal3", "annotations")
+    manifest = os.path.join(ann_dir, "manifest.json")
+
+    if os.path.exists(manifest):
+        print("[*] Loading from split directory: %s" % ann_dir)
+        with open(os.path.join(ann_dir, "functions.json"), "r", encoding="utf-8") as f:
+            functions = json.load(f)
+        with open(os.path.join(ann_dir, "globals.json"), "r", encoding="utf-8") as f:
+            globals_data = json.load(f)
+        structs = {}
+        structs_dir = os.path.join(ann_dir, "structs")
+        for fname in os.listdir(structs_dir):
+            if not fname.endswith(".json"):
+                continue
+            with open(os.path.join(structs_dir, fname), "r", encoding="utf-8") as f:
+                sdata = json.load(f)
+            sname = sdata.pop("name", fname.replace(".json", ""))
+            structs[sname] = sdata
+        with open(os.path.join(ann_dir, "vtables.json"), "r", encoding="utf-8") as f:
+            vtables = json.load(f)
+        enums = {}
+        enums_path = os.path.join(ann_dir, "enums.json")
+        if os.path.exists(enums_path):
+            with open(enums_path, "r", encoding="utf-8") as f:
+                enums = json.load(f)
+        return {
+            "functions": functions,
+            "globals": globals_data,
+            "structs": structs,
+            "enums": enums,
+            "vtables": vtables,
+        }
+
+    if os.path.exists(ANNOTATIONS_FILE):
+        print("[*] Loading from single file: %s" % ANNOTATIONS_FILE)
+        with open(ANNOTATIONS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+
+    return None
+
+
 def apply_annotations():
     ida_auto.auto_wait()
 
-    if not os.path.exists(ANNOTATIONS_FILE):
-        print("[!] Not found: %s" % ANNOTATIONS_FILE)
+    data = load_annotations()
+    if data is None:
+        print("[!] No annotations found")
         idc.qexit(1)
         return
-
-    with open(ANNOTATIONS_FILE, "r", encoding="utf-8") as f:
-        data = json.load(f)
 
     # --- 1. Functions (ensure exist + rename, signatures deferred to step 6) ---
     import re as _re_fn

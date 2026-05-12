@@ -1,0 +1,22 @@
+{
+  "name": "CEffBase",
+  "binary_size": 48,
+  "note": "Common base for all CEffXxx classes (non-Track). Not in PDB. 48 bytes.",
+  "known_members": {
+    "0": {
+      "name": "vfptr",
+      "type": "int",
+      "source": "binary:all CEffXxx first_off=0x30"
+    },
+    "4": {
+      "name": "m_pEffectSystem",
+      "type": "CEffectSystem *",
+      "source": "binary:CEffObj+0x4"
+    },
+    "8": {
+      "name": "m_eKind",
+      "type": "int",
+      "source": "inferred:EEffect enum"
+    }
+  }
+}

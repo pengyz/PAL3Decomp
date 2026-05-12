@@ -1,0 +1,502 @@
+{
+  "name": "tagRoleState",
+  "gen_size": 1040,
+  "known_members": {
+    "0": {
+      "name": "dwID",
+      "type": "DWORD",
+      "source": "gen_headers_9.2"
+    },
+    "4": {
+      "name": "nIndex",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "24": {
+      "name": "byUIIndex",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "25": {
+      "name": "bValid",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "26": {
+      "name": "bAlive",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "27": {
+      "name": "bFriend",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "28": {
+      "name": "bBoss",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "29": {
+      "name": "bCanAction",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "30": {
+      "name": "bWaitForFlee",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "31": {
+      "name": "bEnemyFriend",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "32": {
+      "name": "nLevel",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "36": {
+      "name": "nHP",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "40": {
+      "name": "nFullHP",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "44": {
+      "name": "nGP",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "48": {
+      "name": "nFullGP",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "52": {
+      "name": "nMP",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "56": {
+      "name": "nFullMP",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "60": {
+      "name": "nAttack",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "64": {
+      "name": "nDefence",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "68": {
+      "name": "nSpeed",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "72": {
+      "name": "nLuck",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "76": {
+      "name": "nLove",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "80": {
+      "name": "nMoney",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "84": {
+      "name": "nProtectRole",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "88": {
+      "name": "dwAttackMode",
+      "type": "DWORD",
+      "source": "gen_headers_9.2"
+    },
+    "92": {
+      "name": "nGPInc",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "96": {
+      "name": "byWeaponType",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "97": {
+      "name": "bAttackRow",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "98": {
+      "name": "bAttackColumn",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "99": {
+      "name": "bAttackAll",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "100": {
+      "name": "bMagicSword",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "104": {
+      "name": "fGPCostDec",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "108": {
+      "name": "fMPCostDec",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "112": {
+      "name": "fPunchPowerInc",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "116": {
+      "name": "fSkillCentInc",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "120": {
+      "name": "fHPIncPerRound",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "124": {
+      "name": "fGPIncPerRound",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "128": {
+      "name": "fGPIncPerRoundBak",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "132": {
+      "name": "fMPIncPerRound",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "136": {
+      "name": "fEXPIncPerCombat",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "140": {
+      "name": "fMoneyIncPerCombat",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "144": {
+      "name": "fRecoverItemPowerInc",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "148": {
+      "name": "nStealCent",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "152": {
+      "name": "bLostMoneyGetLife",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "153": {
+      "name": "bMirror",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "156": {
+      "name": "nEXP",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "160": {
+      "name": "nCombatEXP",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "644": {
+      "name": "dwWeaponSkillID",
+      "type": "DWORD",
+      "source": "gen_headers_9.2"
+    },
+    "648": {
+      "name": "dwCleanCent",
+      "type": "DWORD",
+      "source": "gen_headers_9.2"
+    },
+    "652": {
+      "name": "fWeaponSkillMass",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "656": {
+      "name": "dwCorpse",
+      "type": "DWORD",
+      "source": "gen_headers_9.2"
+    },
+    "660": {
+      "name": "nMoneyCanBeSteal",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "664": {
+      "name": "dwItemCanBeSteal",
+      "type": "DWORD",
+      "source": "gen_headers_9.2"
+    },
+    "668": {
+      "name": "nItemCanBeSteal",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "700": {
+      "name": "Lineup",
+      "type": "ECBFiveLineup",
+      "source": "gen_headers_9.2"
+    },
+    "704": {
+      "name": "bDefence",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "948": {
+      "name": "bAIAttack",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "949": {
+      "name": "bAIMagic",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "950": {
+      "name": "bAISkill",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "951": {
+      "name": "bAIUseItem",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "952": {
+      "name": "bAINegative",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "953": {
+      "name": "bAI",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "954": {
+      "name": "bAbsorbHPWorm",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "955": {
+      "name": "byAbsorbHPWormRound",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "956": {
+      "name": "nKiller",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "960": {
+      "name": "fDeadTime",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "964": {
+      "name": "bDeadImbibeNimbus",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "965": {
+      "name": "bVariance",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "966": {
+      "name": "bVarianceRun",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "968": {
+      "name": "nBeforeVarianceHP",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "972": {
+      "name": "nBeforeVarianceFullHP",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "976": {
+      "name": "nBeforeVarianceDef",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "980": {
+      "name": "nCurVarianceRound",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "984": {
+      "name": "nMaxVarianceRound",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "988": {
+      "name": "nBFARound",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "992": {
+      "name": "nMaxBFARound",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1020": {
+      "name": "nRound",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1024": {
+      "name": "bRepeatLastOperation",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "1025": {
+      "name": "bDoNormalAttack",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "1026": {
+      "name": "bDoFlee",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "1027": {
+      "name": "bTransMtl",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "1028": {
+      "name": "bFleeing",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "1029": {
+      "name": "bFleed",
+      "type": "BYTE",
+      "source": "gen_headers_9.2"
+    },
+    "1032": {
+      "name": "nFleeCent",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1036": {
+      "name": "pHPSign",
+      "type": "char *",
+      "source": "gen_headers_9.2"
+    },
+    "8": {
+      "name": "sModel",
+      "type": "char[16]",
+      "source": "pdb_fill_incomplete"
+    },
+    "164": {
+      "name": "dwSkillID",
+      "type": "unsigned long[9]",
+      "source": "pdb_fill_incomplete"
+    },
+    "200": {
+      "name": "bSkillMastered",
+      "type": "unsigned char[9]",
+      "source": "pdb_fill_incomplete"
+    },
+    "212": {
+      "name": "dwMagicID",
+      "type": "unsigned long[9][6]",
+      "source": "pdb_fill_incomplete"
+    },
+    "428": {
+      "name": "bMagicMastered",
+      "type": "unsigned char[9][6]",
+      "source": "pdb_fill_incomplete"
+    },
+    "482": {
+      "name": "byMagicUseTime",
+      "type": "unsigned short[9][6]",
+      "source": "pdb_fill_incomplete"
+    },
+    "590": {
+      "name": "byMagicLevel",
+      "type": "unsigned char[9][6]",
+      "source": "pdb_fill_incomplete"
+    },
+    "672": {
+      "name": "dwFiveMagic",
+      "type": "unsigned long[7]",
+      "source": "pdb_fill_incomplete"
+    },
+    "705": {
+      "name": "bSpecState",
+      "type": "unsigned char[27]",
+      "source": "pdb_fill_incomplete"
+    },
+    "732": {
+      "name": "snSpecStateLurk",
+      "type": "short[27]",
+      "source": "pdb_fill_incomplete"
+    },
+    "786": {
+      "name": "snSpecStateLast",
+      "type": "short[27]",
+      "source": "pdb_fill_incomplete"
+    },
+    "840": {
+      "name": "nSpecStateRound",
+      "type": "int[27]",
+      "source": "pdb_fill_incomplete"
+    },
+    "996": {
+      "name": "pLeftWeapon",
+      "type": "gbGeomNode *[3]",
+      "source": "pdb_fill_incomplete"
+    },
+    "1008": {
+      "name": "pRightWeapon",
+      "type": "gbGeomNode *[3]",
+      "source": "pdb_fill_incomplete"
+    }
+  },
+  "pdb_size": 1040
+}

@@ -1,0 +1,253 @@
+{
+  "name": "CCBSystem",
+  "binary_size": 90840,
+  "note": "Two fix scripts progressively refined this. Offsets verified from PAL3 binary.",
+  "known_members": {
+    "0": {
+      "name": "m_pUtil",
+      "type": "CCBSystem *",
+      "source": "fix_ccbsystem_full"
+    },
+    "4": {
+      "name": "m_pUI",
+      "type": "CCBUI *",
+      "source": "fix_ccbsystem_full"
+    },
+    "8": {
+      "name": "m_pControl",
+      "type": "CCBControl *",
+      "source": "fix_ccbsystem_full"
+    },
+    "12": {
+      "name": "m_pAttackSequen",
+      "type": "CCBAttackSequen *",
+      "source": "fix_ccbsystem_full"
+    },
+    "16": {
+      "name": "m_pRoleState",
+      "type": "CCBRoleState *",
+      "source": "fix_ccbsystem_full"
+    },
+    "20": {
+      "name": "m_pStage",
+      "type": "CCBStage *",
+      "source": "fix_ccbsystem_full"
+    },
+    "24": {
+      "name": "m_pAI",
+      "type": "CCBAI *",
+      "source": "fix_ccbsystem_full"
+    },
+    "28": {
+      "name": "m_pEditor",
+      "type": "CCBEditor *",
+      "source": "fix_ccbsystem_full"
+    },
+    "32": {
+      "name": "m_pES",
+      "type": "CEffectSystem *",
+      "source": "fix_ccbsystem_full"
+    },
+    "36": {
+      "name": "m_pEffectSimple",
+      "type": "CEffectSimple *",
+      "source": "fix_ccbsystem_full"
+    },
+    "40": {
+      "name": "m_pConfig",
+      "type": "TxtFile *",
+      "source": "fix_ccbsystem_full"
+    },
+    "44": {
+      "name": "m_pEffMgr",
+      "type": "CEffMgr *",
+      "source": "fix_ccbsystem_full"
+    },
+    "48": {
+      "name": "m_pATSEffMgr",
+      "type": "CEffMgr *",
+      "source": "fix_ccbsystem_full"
+    },
+    "52": {
+      "name": "m_p2DSpark",
+      "type": "C2DSpark *",
+      "source": "fix_ccbsystem_full"
+    },
+    "56": {
+      "name": "m_p3DSpark",
+      "type": "C3DSpark *[2]",
+      "source": "fix_ccbsystem_full"
+    },
+    "64": {
+      "name": "m_DeltaTime",
+      "type": "double",
+      "source": "fix_ccbsystem_full"
+    },
+    "72": {
+      "name": "m_dTimeFund",
+      "type": "double",
+      "source": "fix_ccbsystem_full"
+    },
+    "80": {
+      "name": "m_fTimeFund",
+      "type": "float",
+      "source": "fix_ccbsystem_full"
+    },
+    "88": {
+      "name": "m_AbsDeltaTime",
+      "type": "double",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "96": {
+      "name": "m_dAbsTimeFund",
+      "type": "double",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "104": {
+      "name": "m_fAbsTimeFund",
+      "type": "float",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "108": {
+      "name": "m_fTimeScale",
+      "type": "float",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "112": {
+      "name": "m_pFightInfo",
+      "type": "FightInfo *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "116": {
+      "name": "m_bQuitFlag",
+      "type": "unsigned char",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "117": {
+      "name": "m_bPause",
+      "type": "unsigned char",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "120": {
+      "name": "m_eState",
+      "type": "ECBCombatState",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "124": {
+      "name": "m_eResult",
+      "type": "ECBCombatResult",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "128": {
+      "name": "m_bFiveNimbus",
+      "type": "unsigned char",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "129": {
+      "name": "m_bPXVariance",
+      "type": "unsigned char",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "132": {
+      "name": "m_nTimesOfCombat",
+      "type": "int",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "136": {
+      "name": "m_bAuto",
+      "type": "unsigned char",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "137": {
+      "name": "m_bEditor",
+      "type": "unsigned char",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "138": {
+      "name": "m_bLockCam",
+      "type": "unsigned char",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "139": {
+      "name": "m_bFirstRender",
+      "type": "unsigned char",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "140": {
+      "name": "m_dwIDHolder",
+      "type": "unsigned long",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "144": {
+      "name": "m_nThread",
+      "type": "int",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "148": {
+      "name": "m_nCurThread",
+      "type": "int",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "152": {
+      "name": "m_Thread",
+      "type": "tagThread[1024]",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "90264": {
+      "name": "m_Player",
+      "type": "tagPlayerSet[11]",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "60": {
+      "name": "m_pStage2",
+      "type": "int",
+      "source": "binary:raw_null_check"
+    },
+    "76": {
+      "name": "m_nTurnCount",
+      "type": "int",
+      "source": "binary:raw_Init"
+    },
+    "84": {
+      "name": "m_nMaxTurn",
+      "type": "int",
+      "source": "binary:raw_compare"
+    },
+    "156": {
+      "name": "m_nFrameCount",
+      "type": "int",
+      "source": "binary:raw_counter"
+    },
+    "160": {
+      "name": "m_nCurFrame",
+      "type": "int",
+      "source": "binary:raw_frame"
+    },
+    "164": {
+      "name": "m_nMaxFrame",
+      "type": "int",
+      "source": "binary:raw_limit"
+    },
+    "168": {
+      "name": "m_fFrameTime",
+      "type": "float",
+      "source": "binary:raw_float_add"
+    },
+    "172": {
+      "name": "m_bAnimating",
+      "type": "unsigned char",
+      "source": "binary:raw_byte_flag"
+    },
+    "173": {
+      "name": "m_bPaused",
+      "type": "unsigned char",
+      "source": "binary:raw_byte_flag"
+    },
+    "174": {
+      "name": "m_bLoopMode",
+      "type": "unsigned char",
+      "source": "binary:raw_byte_flag"
+    }
+  },
+  "pdb_size": 90840
+}
