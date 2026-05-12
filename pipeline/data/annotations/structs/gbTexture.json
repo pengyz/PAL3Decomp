@@ -3,34 +3,66 @@
   "pdb_size": 84,
   "known_members": {
     "0": {
-      "name": "pGfxMgr",
-      "type": "gbGfxManager *[6]",
-      "source": "pdb_batch_fill"
+      "name": "vfptr",
+      "type": "int",
+      "source": "binary:vtable_ptr"
+    },
+    "4": {
+      "name": "RefCount",
+      "type": "int",
+      "source": "pdb:gbRefObject"
+    },
+    "8": {
+      "name": "m_pGfxMgr",
+      "type": "gbGfxManager *",
+      "source": "pdb:gbTexture"
+    },
+    "12": {
+      "name": "m_nFlags",
+      "type": "int",
+      "source": "binary:flag_field"
+    },
+    "16": {
+      "name": "m_nFormat",
+      "type": "int",
+      "source": "binary"
+    },
+    "20": {
+      "name": "m_nMipLevels",
+      "type": "int",
+      "source": "binary"
     },
     "24": {
       "name": "Width",
       "type": "int",
-      "source": "pdb_batch_fill"
+      "source": "pdb"
     },
     "28": {
       "name": "Height",
       "type": "int",
-      "source": "pdb_batch_fill"
+      "source": "pdb"
     },
     "32": {
       "name": "pTexImage",
       "type": "gbImage2D *",
-      "source": "pdb_batch_fill"
+      "source": "pdb"
     },
     "36": {
       "name": "InFmt",
-      "type": "gbPixelFormat",
-      "source": "pdb_batch_fill"
+      "type": "int[10]",
+      "source": "pdb:gbPixelFormat=40bytes"
     },
-    "80": {
+    "76": {
       "name": "nLevels",
       "type": "int",
-      "source": "pdb_batch_fill"
+      "source": "pdb"
+    },
+    "80": {
+      "name": "m_nField50",
+      "type": "int",
+      "source": "binary"
     }
-  }
+  },
+  "base_class": null,
+  "base_size": 0
 }
