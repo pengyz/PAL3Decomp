@@ -373,6 +373,7 @@ def transform_method_code(cls_name, method_name, code, sig):
     code = replace_thunks(code)
     code = replace_literals(code)
 
+
     return code
 
 
@@ -538,6 +539,7 @@ def generate_free_funcs_cpp(funcs):
         code = f['code'].strip()
         code = replace_thunks(code)
         code = replace_literals(code)
+    
         # In free functions, 'this' is not a valid parameter name in C++
         # Rename to '_this' to avoid syntax errors
         code = re.sub(r'\bthis\b', '_this', code)
