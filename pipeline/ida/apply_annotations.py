@@ -388,8 +388,13 @@ def apply_annotations():
             continue
         sig_clean = sig.strip().rstrip(";")
         sig_clean = sig_clean.replace("struct ", "").replace("class ", "")
-        if sig_clean.count("(") > 1 or "__usercall" in sig_clean or "__userpurge" in sig_clean:
+        if sig_clean.count("(") > 1:
             continue
+        # __usercall/__userpurge: strip calling convention and register annotations
+        if "__usercall" in sig_clean or "__userpurge" in sig_clean:
+            sig_clean = _re_sig.sub(r'__usercall|__userpurge', '', sig_clean)
+            sig_clean = _re_sig.sub(r'@<\w+>', '', sig_clean)
+            sig_clean = sig_clean.strip()
         paren_idx = sig_clean.find("(")
         if paren_idx > 0:
             # Extract a valid C identifier for the function name
