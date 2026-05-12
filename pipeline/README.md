@@ -32,8 +32,6 @@ pipeline/
 │       ├── pdb_export.json       # PAL3A.PDB 完整类导出 (1251 classes)
 │       └── globals_export.json   # PAL3A 全局变量名
 ├── check_annotations.py          # 校验标注数据合法性
-├── split_annotations.py          # 拆分 annotations.json → 目录
-├── merge_annotations.py          # 合并目录 → annotations.json
 ├── compare.py                    # 字节对比工具
 ├── callgraph.py                  # 调用图管理
 └── README.md                     # 本文件
