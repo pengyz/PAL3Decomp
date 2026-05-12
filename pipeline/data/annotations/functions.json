@@ -8905,7 +8905,7 @@
   },
   "0x00411E00": {
     "name": "ScriptSystem::_sub_411E00",
-    "signature": "void __userpurge(RoleSystem *this@<ecx>, double@<st0>, int@<esi>, float, char)"
+    "signature": "void __thiscall(RoleSystem *this, double, int, float, char)"
   },
   "0x00412A90": {
     "name": "RoleSystem::_sub_412A90",
@@ -8913,7 +8913,7 @@
   },
   "0x00413420": {
     "name": "RoleSystem::_nearby_413420",
-    "signature": "int __userpurge@<eax>(int this@<ecx>, double@<st0>, float)"
+    "signature": "int __thiscall(RoleSystem *this, double, float)"
   },
   "0x00413850": {
     "name": "RoleSystem::_sub_413850",
@@ -8925,7 +8925,7 @@
   },
   "0x00414350": {
     "name": "RoleSystem::_auto_414350",
-    "signature": "double __userpurge@<st0>(int this@<ecx>, double result@<st0>, gbVec3D *pB)"
+    "signature": "double __thiscall(RoleSystem *this, double result, gbVec3D *pB)"
   },
   "0x00414E50": {
     "name": "Actor::_auto_414e50",
@@ -8957,7 +8957,7 @@
   },
   "0x00417C50": {
     "name": "RoleSystem::_nearby_417c50",
-    "signature": "double __userpurge@<st0>(int this@<ecx>, double result@<st0>, float)"
+    "signature": "double __thiscall(RoleSystem *this, double result, float)"
   },
   "0x00418170": {
     "name": "float::_auto_418170",
@@ -9057,7 +9057,7 @@
   },
   "0x0042B5B0": {
     "name": "PalScriptMgr::_nearby_42b5b0",
-    "signature": "double __userpurge@<st0>(int this@<ecx>, double@<st1>, int, int)"
+    "signature": "double __thiscall(PalScriptMgr *this, double, int, int)"
   },
   "0x0042BEF0": {
     "name": "PAL3_Helper_42BEF0",
@@ -9129,7 +9129,7 @@
   },
   "0x0044DB70": {
     "name": "gbAudioManager::_init_44db70",
-    "signature": "void __userpurge(int this@<ecx>, double st6_0@<st1>, float, int)"
+    "signature": "void __thiscall(gbAudioManager *this, double st6_0, float, int)"
   },
   "0x004501A0": {
     "name": "float::_method_4501a0",
@@ -9145,7 +9145,7 @@
   },
   "0x004520A0": {
     "name": "NPC::_init_4520a0",
-    "signature": "double __userpurge@<st0>(int this@<ecx>, double result@<st0>, int arg0, int)"
+    "signature": "double __thiscall(NPC *this, double result, int arg0, int)"
   },
   "0x00452DF0": {
     "name": "UIWnd::Render_452df0",
@@ -9273,11 +9273,11 @@
   },
   "0x00529E40": {
     "name": "CScreenMode::_init_529e40",
-    "signature": "double __userpurge@<st0>(int this@<ecx>, double st6_0@<st1>, double result@<st0>, int arg0, int)"
+    "signature": "double __thiscall(CScreenMode *this, double st6_0, double result, int arg0, int)"
   },
   "0x0052C480": {
     "name": "CScreenMode::_init_52c480",
-    "signature": "double __userpurge@<st0>(int this@<ecx>, int edi0@<edi>, double result@<st0>, int, int)"
+    "signature": "double __thiscall(CScreenMode *this, int edi0, double result, int, int)"
   },
   "0x0052F6C0": {
     "name": "char::_auto_52f6c0",
@@ -9285,15 +9285,15 @@
   },
   "0x00533250": {
     "name": "CScreenMode::_init_533250",
-    "signature": "double __userpurge@<st0>(int this@<ecx>, double result@<st0>, float)"
+    "signature": "double __thiscall(CScreenMode *this, double result, float)"
   },
   "0x00535930": {
     "name": "UIWnd::_nearby_535930",
-    "signature": "struct gbVFileSystem *__userpurge@<eax>(_DWORD *this@<ecx>, double@<st1>, int)"
+    "signature": "struct gbVFileSystem * __thiscall(_DWORD *this, double, int)"
   },
   "0x005359B0": {
     "name": "UIWnd::_nearby_5359b0",
-    "signature": "double __userpurge@<st0>(char *this@<ecx>, double st7_0@<st0>, double)"
+    "signature": "double __thiscall(char *this, double st7_0, double)"
   },
   "0x00535E70": {
     "name": "UIAnimateCtrlEX::_method_535e70",
@@ -9305,7 +9305,7 @@
   },
   "0x00538D60": {
     "name": "UISceneObj::_auto_538d60",
-    "signature": "void __userpurge(_DWORD *this@<ecx>, double@<st1>, _DWORD *)"
+    "signature": "void __thiscall(_DWORD *this, double, _DWORD *)"
   },
   "0x00539540": {
     "name": "Actor::_nearby_539540",
@@ -9473,7 +9473,7 @@
   },
   "0x00419A20": {
     "name": "RoleSystem::_nearby_419a20",
-    "signature": "void __userpurge(_DWORD *this@<ecx>, double@<st0>, int, int, int)"
+    "signature": "void __thiscall(_DWORD *this, double, int, int, int)"
   },
   "0x00419B00": {
     "name": "RoleSystem::_nearby_419b00",
@@ -10309,7 +10309,7 @@
   },
   "0x0044A1B0": {
     "name": "CScreenMode::_method_44a1b0",
-    "signature": "BOOL __userpurge@<eax>(int this@<ecx>, double st6_0@<st1>, struct PalScript *, int)"
+    "signature": "BOOL __thiscall(CScreenMode *this, double st6_0, struct PalScript *, int)"
   },
   "0x0044A770": {
     "name": "UIWnd::_nearby_44a770",
@@ -10405,7 +10405,7 @@
   },
   "0x0044F8D0": {
     "name": "BYTE::_init_44f8d0",
-    "signature": "CCBUI *__userpurge@<eax>(_DWORD *this@<ecx>, double@<st1>, int)"
+    "signature": "CCBUI * __thiscall(_DWORD *this, double, int)"
   },
   "0x0044FF20": {
     "name": "CCBAI::_method_44ff20",
@@ -10573,7 +10573,7 @@
   },
   "0x00454CA0": {
     "name": "UIScene::_init_454ca0",
-    "signature": "void *__userpurge@<eax>(int@<ecx>, __int128)"
+    "signature": "void * __thiscall(UIScene *this, __int128)"
   },
   "0x004554D0": {
     "name": "CG_UI::_method_4554d0",
@@ -10749,11 +10749,11 @@
   },
   "0x004765F0": {
     "name": "UIListBox::_init_4765f0",
-    "signature": "void __userpurge(int@<ecx>, __int128)"
+    "signature": "void __thiscall(UIListBox *this, __int128)"
   },
   "0x00476ED0": {
     "name": "UIListBox::_init_476ed0",
-    "signature": "void __userpurge(int@<ecx>, __int128)"
+    "signature": "void __thiscall(UIListBox *this, __int128)"
   },
   "0x00478860": {
     "name": "UIWnd::_nearby_478860",
@@ -10985,7 +10985,7 @@
   },
   "0x0049F2E0": {
     "name": "UIListBox::_method_49f2e0",
-    "signature": "void *__userpurge@<eax>(int@<ecx>, int@<ebp>, int arg0)"
+    "signature": "void * __thiscall(UIListBox *this, int, int arg0)"
   },
   "0x0049FE00": {
     "name": "UIListBox::_sub_49FE00",
@@ -11037,7 +11037,7 @@
   },
   "0x004A5B30": {
     "name": "gbAudioManager::_init_4a5b30",
-    "signature": "int __userpurge@<eax>(int this@<ecx>, double st6_0@<st1>, int, int)"
+    "signature": "int __thiscall(gbAudioManager *this, double st6_0, int, int)"
   },
   "0x004A6710": {
     "name": "UIWnd::_nearby_4a6710",
@@ -11069,7 +11069,7 @@
   },
   "0x004ADC30": {
     "name": "CScreenMode::_init_4adc30",
-    "signature": "int __userpurge@<eax>(int@<ecx>, int@<ebp>, UIWnd *@<edi>, int, char *, int)"
+    "signature": "int __thiscall(CScreenMode *this, int, UIWnd *, int, char *, int)"
   },
   "0x004AF760": {
     "name": "nullsub_73",
@@ -11117,7 +11117,7 @@
   },
   "0x004B2750": {
     "name": "UIWnd::_auto_4b2750",
-    "signature": "FILE *__userpurge@<eax>(_DWORD *this@<ecx>, double@<st1>, int Data)"
+    "signature": "FILE * __thiscall(_DWORD *this, double, int Data)"
   },
   "0x004B2840": {
     "name": "PAL3::_auto_4b2840",
@@ -12057,7 +12057,7 @@
   },
   "0x0050F310": {
     "name": "CCBStage::_nearby_50f310",
-    "signature": "int __userpurge@<eax>(void *@<ecx>, enum ECBStageTaskState *@<edi>, int)"
+    "signature": "int __thiscall(void *, enum ECBStageTaskState *, int)"
   },
   "0x0050F410": {
     "name": "CCBStage::_nearby_50f410",
@@ -12389,7 +12389,7 @@
   },
   "0x00535710": {
     "name": "PalScript::_method_535710",
-    "signature": "struct gbVFileSystem *__userpurge@<eax>(int this@<ecx>, double@<st1>, char *String2, char *)"
+    "signature": "struct gbVFileSystem * __thiscall(PalScript *this, double, char *String2, char *)"
   },
   "0x00535A50": {
     "name": "UIWnd::_nearby_535a50",
@@ -12401,7 +12401,7 @@
   },
   "0x00537A90": {
     "name": "Actor::_nearby_537a90",
-    "signature": "FILE *__userpurge@<eax>(_DWORD *@<ecx>, double@<st1>, int)"
+    "signature": "FILE * __thiscall(_DWORD *, double, int)"
   },
   "0x00539E70": {
     "name": "Actor::_nearby_539e70",
@@ -12597,7 +12597,7 @@
   },
   "0x005495B8": {
     "name": "double::_nearby_5495b8",
-    "signature": "__m128 *__userpurge@<eax>(__m128 *this@<ecx>, __int128 _XMM0@<xmm0>, unsigned int *)"
+    "signature": "__m128 * __thiscall(__m128 *this, __int128 _XMM0, unsigned int *)"
   },
   "0x00549732": {
     "name": "double::_nearby_549732",
@@ -12629,7 +12629,7 @@
   },
   "0x0054A36F": {
     "name": "double::_nearby_54a36f",
-    "signature": "double **__userpurge@<eax>(int@<ecx>, int@<edx>, __int128 _XMM0@<xmm0>, int, int, unsigned int *, int, double **, double **, unsigned int, double **, int *, int)"
+    "signature": "double ** __thiscall(double *this, int, __int128 _XMM0, int, int, unsigned int *, int, double **, double **, unsigned int, double **, int *, int)"
   },
   "0x0054AA09": {
     "name": "double::_nearby_54aa09",
@@ -13237,7 +13237,7 @@
   },
   "0x00418260": {
     "name": "UIManager::_sub_418260",
-    "signature": "int __userpurge@<eax>(int@<ecx>, int, float *)"
+    "signature": "int __thiscall(UIManager *this, int, float *)"
   },
   "0x00418970": {
     "name": "RoleSystem::_nearby_418970",
@@ -13261,7 +13261,7 @@
   },
   "0x00419200": {
     "name": "ScriptSystem::_sub_419200",
-    "signature": "int __userpurge@<eax>(int@<ecx>, float, float, float, float)"
+    "signature": "int __thiscall(ScriptSystem *this, float, float, float, float)"
   },
   "0x00419690": {
     "name": "Actor::_auto_419690",
@@ -15485,7 +15485,7 @@
   },
   "0x00484360": {
     "name": "LineupUI::_method_484360",
-    "signature": "int __userpurge@<eax>(int@<ecx>, int@<ebp>, unsigned int)"
+    "signature": "int __thiscall(LineupUI *this, int, unsigned int)"
   },
   "0x004844A0": {
     "name": "MainEquipUI::_method_4844a0",
@@ -15581,7 +15581,7 @@
   },
   "0x00487F80": {
     "name": "ArcSceneMonster::_method_487f80",
-    "signature": "_DWORD *__userpurge@<eax>(int@<ecx>, int@<ebx>, int@<ebp>, int, int *, int)"
+    "signature": "_DWORD * __thiscall(ArcSceneMonster *this, int, int, int, int *, int)"
   },
   "0x00488660": {
     "name": "MainPropUI::_method_488660",
@@ -15721,7 +15721,7 @@
   },
   "0x00491F20": {
     "name": "ArcSceneMonster::_method_491f20",
-    "signature": "_DWORD *__userpurge@<eax>(int@<ecx>, int@<ebx>, int@<ebp>, int, int *, int)"
+    "signature": "_DWORD * __thiscall(ArcSceneMonster *this, int, int, int, int *, int)"
   },
   "0x004929E0": {
     "name": "char::_method_4929e0",
@@ -15793,7 +15793,7 @@
   },
   "0x00499CC0": {
     "name": "ArcSceneMonster::_method_499cc0",
-    "signature": "_DWORD *__userpurge@<eax>(int@<ecx>, int@<ebx>, int@<ebp>, int, int *, int)"
+    "signature": "_DWORD * __thiscall(ArcSceneMonster *this, int, int, int, int *, int)"
   },
   "0x0049A6E0": {
     "name": "UIWnd::Layout_49a6e0",
@@ -15981,7 +15981,7 @@
   },
   "0x004A8260": {
     "name": "UIWnd::_auto_4a8260",
-    "signature": "char __userpurge@<al>(int@<ecx>, int@<ebx>, int@<ebp>, int@<edi>, char, int, int, unsigned __int8)"
+    "signature": "char __thiscall(UIWnd *this, int, int, int, char, int, int, unsigned __int8)"
   },
   "0x004A8770": {
     "name": "UIListBox::_init_4a8770",
