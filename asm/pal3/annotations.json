@@ -1728,7 +1728,7 @@
     },
     "0x004CDA10": {
       "name": "SceneMgr::Create",
-      "signature": "void *__thiscall(SceneMgr *this, int gfxMgr, int cam, int a4)"
+      "signature": "void *__thiscall SceneMgr::Create(gbGfxManager *pGfxMgr, gbCamera *pCam, gbSceneGraph *pSceneRoot)"
     },
     "0x004CDBF0": {
       "name": "SceneMgr::RenderAll",
@@ -2227,8 +2227,8 @@
       "signature": "char *__thiscall(CCBSystem *this, int idx)"
     },
     "0x004DB730": {
-      "name": "CCBSystem::sub_4DB730",
-      "signature": "char *__thiscall(CCBSystem *this, int)"
+      "name": "CCBSystem::ClearCmdSlot",
+      "signature": "void __thiscall CCBSystem::ClearCmdSlot(int nSlot)"
     },
     "0x004DB750": {
       "name": "CCBSystem::GetCmdData",
@@ -8096,7 +8096,7 @@
     },
     "0x004CDB70": {
       "name": "SceneMgrUpdate",
-      "signature": "char __thiscall(float *this, float a2)"
+      "signature": "void __cdecl SceneMgrUpdate(SceneMgr *pSceneMgr, float fDeltaTime)"
     },
     "0x004E0080": {
       "name": "unknown_libname_468",
@@ -8677,6 +8677,62 @@
     "0x00434CA0": {
       "name": "PalScriptMgr::InitVtable",
       "signature": "void __thiscall(PalScriptMgr *this)"
+    },
+    "0x004CDED0": {
+      "name": "CEffMgr::InitEffClass",
+      "signature": "void __thiscall CEffMgr::InitEffClass()"
+    },
+    "0x00487610": {
+      "name": "CameraCtrl::LoadRoleParams",
+      "signature": "void __thiscall CameraCtrl::LoadRoleParams()"
+    },
+    "0x0048D040": {
+      "name": "CameraCtrl::UpdateBlendWeight",
+      "signature": "void __thiscall CameraCtrl::UpdateBlendWeight(int nParamIdx, int a3)"
+    },
+    "0x004F7050": {
+      "name": "CCBSystem::IsMagicSlotMsg",
+      "signature": "bool __stdcall CCBSystem::IsMagicSlotMsg(int nMsgID)"
+    },
+    "0x004F7140": {
+      "name": "CCBSystem::HandleMagicSlotInput",
+      "signature": "char __stdcall CCBSystem::HandleMagicSlotInput(int nMsgID)"
+    },
+    "0x004DB9C0": {
+      "name": "CCBSystem::InvokeThreadMethod",
+      "signature": "int __thiscall CCBSystem::InvokeThreadMethod(int nThreadIdx, char bParam)"
+    },
+    "0x0050A4B0": {
+      "name": "CCBStageRole::CheckViewTarget",
+      "signature": "bool __thiscall CCBStageRole::CheckViewTarget()"
+    },
+    "0x0053E970": {
+      "name": "SoundContext::StopAll",
+      "signature": "void __thiscall SoundContext::StopAll()"
+    },
+    "0x004E2AE0": {
+      "name": "CCBUI::HandleRoleStateDialog",
+      "signature": "LRESULT __thiscall CCBUI::HandleRoleStateDialog(LPARAM lParam)"
+    },
+    "0x005024D0": {
+      "name": "CCBStage::ProcessRoleEffect",
+      "signature": "int __thiscall CCBStage::ProcessRoleEffect(int nParam)"
+    },
+    "0x004DC160": {
+      "name": "CCBSystem::CopyCmdData",
+      "signature": "void __thiscall CCBSystem::CopyCmdData(void *pDest)"
+    },
+    "0x004DC1B0": {
+      "name": "CCBSystem::GetState",
+      "signature": "int __thiscall CCBSystem::GetState()"
+    },
+    "0x004DC220": {
+      "name": "CCBUI::IsActive",
+      "signature": "char __thiscall CCBUI::IsActive()"
+    },
+    "0x004DC3F0": {
+      "name": "CCBSystem::StartRoleThread",
+      "signature": "char __thiscall CCBSystem::StartRoleThread(int nParam)"
     }
   },
   "globals": {
@@ -23981,6 +24037,42 @@
     "0x00BFDB80": {
       "name": "g_pScriptObjArray",
       "type": "void **"
+    },
+    "0x00C01FB0": {
+      "name": "g_fCamRoleParams",
+      "type": "float[40]"
+    },
+    "0x00C02050": {
+      "name": "g_ScriptCounters",
+      "type": "ScriptCounter[10]"
+    },
+    "0x00BFDA8C": {
+      "name": "g_nCombatMode",
+      "type": "int"
+    },
+    "0x00BFDA90": {
+      "name": "g_bTestCombat",
+      "type": "unsigned char"
+    },
+    "0x00BFDA94": {
+      "name": "g_hCursor",
+      "type": "HCURSOR"
+    },
+    "0x00A3A6EC": {
+      "name": "g_nRenderFlags",
+      "type": "int"
+    },
+    "0x00A3A6F0": {
+      "name": "g_nRenderMode",
+      "type": "int"
+    },
+    "0x00BFDB70": {
+      "name": "g_nMagicSlotCountA",
+      "type": "int"
+    },
+    "0x00BFDB74": {
+      "name": "g_nMagicSlotCountB",
+      "type": "int"
     }
   },
   "structs": {
@@ -26101,12 +26193,14 @@
         "80": {
           "name": "m_PlayerSlots",
           "type": "ARC_PlayerAtt[5]",
-          "source": "binary:stride_1408_x5"
+          "source": "view_B:accessor_cast",
+          "note": "NOT a real member - reinterpret_cast view of EffClass/EffTable region"
         },
         "7120": {
           "name": "m_RoleSystems",
           "type": "RoleSystem[5]",
-          "source": "binary:stride_8704_x5"
+          "source": "view_B:accessor_cast",
+          "note": "NOT a real member - reinterpret_cast view of EffTable region"
         },
         "53252": {
           "name": "m_vCameraTarget",
@@ -26187,11 +26281,46 @@
           "name": "m_nCollisionFlags",
           "type": "int",
           "source": "binary:5refs_+0xD334"
+        },
+        "28": {
+          "name": "m_EffClass",
+          "type": "tagEffClass[32]",
+          "source": "binary:rep_stosd_0x240_at_1C"
+        },
+        "2332": {
+          "name": "m_EffTable",
+          "type": "tagEffObj[2048]",
+          "source": "binary:rep_stosd_0x2800_at_91C"
+        },
+        "43292": {
+          "name": "m_nEff",
+          "type": "int",
+          "source": "binary:Create_zeroed"
+        },
+        "43296": {
+          "name": "m_fCurTime",
+          "type": "float",
+          "source": "binary:Create_zeroed"
+        },
+        "43300": {
+          "name": "m_fDeltaTime",
+          "type": "float",
+          "source": "binary:Create_zeroed"
+        },
+        "43304": {
+          "name": "m_fTimer",
+          "type": "float",
+          "source": "binary:Create_zeroed"
+        },
+        "43308": {
+          "name": "m_fTimeScale",
+          "type": "float",
+          "source": "binary:Create_init_1.0f"
         }
       },
       "pdb_size": 1,
       "gen_size": 54116,
-      "note": " ScriptSystem[2] embedded at +0x1BA4.",
+      "note": "CEffMgr embedded at +0 (ends at +0xA930). SceneMgr-own fields from +0xA940. View B (PlayerSlots/RoleSystems) is reinterpret_cast overlay on EffClass+EffTable region.",
       "binary_size": 54116
     },
     "RoleSystem": {
@@ -32637,20 +32766,11 @@
           "name": "m_EffTable",
           "type": "tagEffObj[2048]",
           "source": "pdb:PAL3A"
-        },
-        "64": {
-          "name": "m_PlayerSlots",
-          "type": "ARC_PlayerAtt[5]",
-          "source": "binary:PAL3_stride_1408_x5"
-        },
-        "7104": {
-          "name": "m_RoleSystems",
-          "type": "RoleSystem[5]",
-          "source": "binary:PAL3_stride_8704_x5"
         }
       },
       "pdb_size": 43312,
-      "binary_size": 43312
+      "binary_size": 43312,
+      "note": "PAL3A layout. In PAL3, CEffMgr is embedded in SceneMgr; +4 is m_pSceneRoot (not m_pCBSystem)"
     },
     "CEffObj": {
       "gen_size": 12,
@@ -54980,40 +55100,40 @@
       "pdb_size": 16
     },
     "tagEffClass": {
-      "gen_size": 72,
+      "size": 72,
+      "pdb_size": 72,
       "known_members": {
-        "60": {
-          "name": "bValid",
-          "type": "BYTE",
-          "source": "gen_headers_9.2"
-        },
-        "61": {
-          "name": "bClassObjUsed",
-          "type": "BYTE",
-          "source": "gen_headers_9.2"
-        },
-        "64": {
-          "name": "dwNameCRC",
-          "type": "DWORD",
-          "source": "gen_headers_9.2"
-        },
-        "68": {
-          "name": "pClassObj",
-          "type": "CEffObj *",
-          "source": "gen_headers_9.2"
-        },
         "0": {
           "name": "szName",
           "type": "char[30]",
-          "source": "pdb_fill_incomplete"
+          "source": "pdb:PAL3A"
         },
         "30": {
           "name": "szChineseName",
           "type": "char[30]",
-          "source": "pdb_fill_incomplete"
+          "source": "pdb:PAL3A"
+        },
+        "60": {
+          "name": "bValid",
+          "type": "unsigned char",
+          "source": "pdb:PAL3A"
+        },
+        "61": {
+          "name": "bClassObjUsed",
+          "type": "unsigned char",
+          "source": "pdb:PAL3A"
+        },
+        "64": {
+          "name": "dwNameCRC",
+          "type": "unsigned long",
+          "source": "pdb:PAL3A"
+        },
+        "68": {
+          "name": "pClassObj",
+          "type": "CEffObj *",
+          "source": "pdb:PAL3A"
         }
-      },
-      "pdb_size": 72
+      }
     },
     "tagEffGroup": {
       "gen_size": 324,
@@ -55128,45 +55248,45 @@
       "pdb_size": 60
     },
     "tagEffObj": {
-      "gen_size": 20,
+      "size": 20,
+      "pdb_size": 20,
       "known_members": {
         "0": {
           "name": "dwClassNameCRC",
-          "type": "DWORD",
-          "source": "gen_headers_9.2"
+          "type": "unsigned long",
+          "source": "pdb:PAL3A"
         },
         "4": {
           "name": "dwTypeNameCRC",
-          "type": "DWORD",
-          "source": "gen_headers_9.2"
+          "type": "unsigned long",
+          "source": "pdb:PAL3A"
         },
         "8": {
           "name": "dwRunGroupID",
-          "type": "DWORD",
-          "source": "gen_headers_9.2"
+          "type": "unsigned long",
+          "source": "pdb:PAL3A"
         },
         "12": {
           "name": "bValid",
-          "type": "BYTE",
-          "source": "gen_headers_9.2"
+          "type": "unsigned char",
+          "source": "pdb:PAL3A"
         },
         "13": {
           "name": "bIdle",
-          "type": "BYTE",
-          "source": "gen_headers_9.2"
+          "type": "unsigned char",
+          "source": "pdb:PAL3A"
         },
         "14": {
           "name": "bClassObj",
-          "type": "BYTE",
-          "source": "gen_headers_9.2"
+          "type": "unsigned char",
+          "source": "pdb:PAL3A"
         },
         "16": {
           "name": "pEffect",
           "type": "CEffObj *",
-          "source": "gen_headers_9.2"
+          "source": "pdb:PAL3A"
         }
-      },
-      "pdb_size": 20
+      }
     },
     "tagEffObjType": {
       "gen_size": 280,
@@ -65746,6 +65866,31 @@
           "name": "vfptr",
           "type": "int",
           "source": "binary:vtable_ptr"
+        }
+      }
+    },
+    "ScriptCounter": {
+      "size": 16,
+      "known_members": {
+        "0": {
+          "name": "nMaxCount",
+          "type": "int",
+          "source": "binary:FullInit_init_30_20"
+        },
+        "4": {
+          "name": "nState",
+          "type": "int",
+          "source": "binary:sub_41A450_zeroed"
+        },
+        "8": {
+          "name": "nCurCount",
+          "type": "int",
+          "source": "binary:sub_41A450_compared"
+        },
+        "12": {
+          "name": "nResourceID",
+          "type": "int",
+          "source": "binary:FullInit_6701_6705"
         }
       }
     }
