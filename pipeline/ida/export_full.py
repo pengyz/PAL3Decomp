@@ -29,10 +29,20 @@ def main():
             if not os.path.basename(f).startswith('_'):
                 os.remove(f)
 
+        # Load skip list
+        skip_addrs = set()
+        skip_file = os.path.join(PROJECT_ROOT, "pipeline", "data", "annotations", "skip_functions.json")
+        if os.path.exists(skip_file):
+            import json as _json
+            skip_data = _json.load(open(skip_file))
+            skip_addrs = set(int(a, 16) for a in skip_data.keys())
+
         targets = []
         for ea in idautils.Functions(TEXT_START, TEXT_END):
             name = ida_name.get_name(ea) or ""
             if not name or name.startswith("nullsub_") or name.startswith("j_"):
+                continue
+            if ea in skip_addrs:
                 continue
             func = ida_funcs.get_func(ea)
             if not func or func.size() <= 1:

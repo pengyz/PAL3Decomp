@@ -27,12 +27,39 @@ GAME_CLASSES = set()
 for h in HEADER_DIR.glob("*.h"):
     GAME_CLASSES.add(h.stem)
 
+# Thunk address → target name mapping (for call replacement)
+THUNK_MAP = {}  # "sub_XXXXXX" → "TargetFunc"
+_skip_file = PIPELINE_ROOT / "data" / "annotations" / "skip_functions.json"
+if _skip_file.exists():
+    _skip_data = json.load(open(_skip_file))
+    for _addr, _info in _skip_data.items():
+        if _info.get('reason') == 'thunk' and _info.get('target_name'):
+            _hex = _addr[2:].lstrip('0').lower() or '0'
+            # IDA 可能用 sub_XXXX 或 j_XXX 引用 thunk
+            _target = _info['target_name']
+            THUNK_MAP["sub_%s" % _hex] = _target
+            THUNK_MAP[_info['name']] = _target
+            # Also handle ~ → _ variant (gen_cpp replaces ~ with _)
+            THUNK_MAP[_info['name'].replace('~', '_')] = _target.replace('~', '_')
+
+# Thunk class names to skip (these are just jump trampolines)
+THUNK_CLASSES = set()
+if _skip_file.exists():
+    for _info in _skip_data.values():
+        if _info.get('reason') == 'thunk':
+            _n = _info.get('name', '')
+            if '::' in _n:
+                THUNK_CLASSES.add(_n.split('::')[0])
+    # Also catch j_std from j_?method@class@std@@
+    THUNK_CLASSES.add('j_std')
+    THUNK_CLASSES.add('j_j_codecvt_base')
+
 # Classes to skip entirely (CRT, STL, gbengine wrappers)
 SKIP_CLASSES = {
     'std', 'stdiobuf', 'exception', 'type_info', 'filebuf',
     'Iostream_init', 'Concurrency',
     'gbGeomNode', 'gbLightObj', 'gbParticleEffect', 'gbRain', 'gbSnow', 'gbVisNode',
-}
+} | THUNK_CLASSES
 
 # Organize classes into subdirectories by category
 CLASS_DIRS = {
@@ -341,6 +368,9 @@ def transform_method_code(cls_name, method_name, code, sig):
         new_lines.append(line)
     code = '\n'.join(new_lines)
 
+    # Final: replace thunk references (after OOP transform may have created j_Class casts)
+    code = replace_thunks(code)
+
     return code
 
 
@@ -362,6 +392,20 @@ def split_params_simple(s):
     if current.strip():
         result.append(current)
     return result
+
+
+def replace_thunks(code):
+    """Replace thunk calls and type casts with direct target equivalents."""
+    for thunk_name, target_name in THUNK_MAP.items():
+        if thunk_name in code:
+            code = code.replace(thunk_name, target_name)
+    # Also replace thunk class type casts: (j_ClassName *) → (ClassName *)
+    for cls in THUNK_CLASSES:
+        if cls in code:
+            real_cls = cls[2:] if cls.startswith('j_') else cls  # j_UIWnd → UIWnd
+            code = code.replace(cls + ' *', real_cls + ' *')
+            code = code.replace(cls + ' **', real_cls + ' **')
+    return code
 
 
 def collect_sub_refs(code):
@@ -490,6 +534,7 @@ def generate_free_funcs_cpp(funcs):
     transformed = []
     for f in funcs:
         code = f['code'].strip()
+        code = replace_thunks(code)
         code = replace_memory_refs(code)
         # In free functions, 'this' is not a valid parameter name in C++
         # Rename to '_this' to avoid syntax errors
