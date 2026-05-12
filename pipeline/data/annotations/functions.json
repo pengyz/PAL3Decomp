@@ -9077,7 +9077,7 @@
   },
   "0x0042C950": {
     "name": "ScriptVM::ExecuteOpcode",
-    "signature": "int __thiscall(ScriptVM *this, _DWORD *, int, unsigned __int8, unsigned __int8)"
+    "signature": "int __thiscall(ScriptVM *this, void *pData, unsigned char nType, int nCount)"
   },
   "0x0042CF60": {
     "name": "PalScriptMgr::RoleCmd_42cf60",
@@ -10349,7 +10349,7 @@
   },
   "0x0044B8A0": {
     "name": "PalScript::_auto_44b8a0",
-    "signature": "LPSTR __thiscall(PalScript *this, String1, CHAR *lpString2)"
+    "signature": "LPSTR __thiscall(PalScript *this, CHAR *String1, CHAR *lpString2)"
   },
   "0x0044BA40": {
     "name": "UIWnd::_nearby_44ba40",
@@ -11001,7 +11001,7 @@
   },
   "0x004A1A80": {
     "name": "UIWnd::_sub_4A1A80",
-    "signature": "int __thiscall(UIWnd *this)"
+    "signature": "void *__thiscall(UIItem *this, void *Block, char)"
   },
   "0x004A1AA0": {
     "name": "UIScene::_init_4a1aa0",
@@ -12041,19 +12041,19 @@
   },
   "0x0050EB00": {
     "name": "CCBStage::_nearby_50eb00",
-    "signature": "int __thiscall(CCBStage *this *, int)"
+    "signature": "int __thiscall(CCBStage *this, int)"
   },
   "0x0050EF60": {
     "name": "CCBStage::_nearby_50ef60",
-    "signature": "int __thiscall(CCBStage *this *, float)"
+    "signature": "int __thiscall(CCBStage *this, float)"
   },
   "0x0050F080": {
     "name": "CCBStage::_nearby_50f080",
-    "signature": "int __thiscall(CCBStage *this *, int)"
+    "signature": "int __thiscall(CCBStage *this, int)"
   },
   "0x0050F150": {
     "name": "CCBStage::_nearby_50f150",
-    "signature": "int __thiscall(CCBStage *this *, int)"
+    "signature": "int __thiscall(CCBStage *this, int)"
   },
   "0x0050F200": {
     "name": "CCBStageRole::_sub_50F200",
@@ -12065,11 +12065,11 @@
   },
   "0x0050F410": {
     "name": "CCBStage::_nearby_50f410",
-    "signature": "int __thiscall(CCBStage *this *, int)"
+    "signature": "int __thiscall(CCBStage *this, int)"
   },
   "0x0050F4C0": {
     "name": "CCBStage::_nearby_50f4c0",
-    "signature": "int __thiscall(CCBStage *this *, int)"
+    "signature": "int __thiscall(CCBStage *this, int)"
   },
   "0x0050F590": {
     "name": "CCBStage::_nearby_50f590",
@@ -16633,7 +16633,7 @@
   },
   "0x004C1490": {
     "name": "RenderTarget2::_nearby_4c1490",
-    "signature": "void *__thiscall(RenderTarget2 *this, Block, char)"
+    "signature": "void *__thiscall(RenderTarget2 *this, void *Block, char)"
   },
   "0x004C1560": {
     "name": "?::_sdtor_31",
@@ -16669,7 +16669,7 @@
   },
   "0x004C1F70": {
     "name": "RenderTarget2::_nearby_4c1f70",
-    "signature": "void *__thiscall(RenderTarget2 *this, Block, char)"
+    "signature": "void *__thiscall(RenderTarget2 *this, void *Block, char)"
   },
   "0x004C2040": {
     "name": "?::_sdtor_32",
@@ -16701,7 +16701,7 @@
   },
   "0x004C2700": {
     "name": "RenderTarget2::_nearby_4c2700",
-    "signature": "void *__thiscall(RenderTarget2 *this, Block, char)"
+    "signature": "void *__thiscall(RenderTarget2 *this, void *Block, char)"
   },
   "0x004C27C0": {
     "name": "?::_sdtor_33",
@@ -16741,7 +16741,7 @@
   },
   "0x004C3340": {
     "name": "RenderTarget2::_nearby_4c3340",
-    "signature": "void *__thiscall(RenderTarget2 *this, Block, char)"
+    "signature": "void *__thiscall(RenderTarget2 *this, void *Block, char)"
   },
   "0x004C3400": {
     "name": "?::_sdtor_34",
@@ -16777,7 +16777,7 @@
   },
   "0x004C3BB0": {
     "name": "RenderTarget2::_nearby_4c3bb0",
-    "signature": "void *__thiscall(RenderTarget2 *this, Block, char)"
+    "signature": "void *__thiscall(RenderTarget2 *this, void *Block, char)"
   },
   "0x004C3C80": {
     "name": "?::_sdtor_35",
@@ -17077,7 +17077,7 @@
   },
   "0x004CD930": {
     "name": "SceneMgr::_nearby_4cd930",
-    "signature": "void *__thiscall(SceneMgr *this, Block, char)"
+    "signature": "void *__thiscall(SceneMgr *this, void *Block, char)"
   },
   "0x004CDA00": {
     "name": "?::_sdtor_37",
@@ -17185,7 +17185,7 @@
   },
   "0x004D0BD0": {
     "name": "char::_nearby_4d0bd0",
-    "signature": "void *__thiscall(char *this, Block, char)"
+    "signature": "void *__thiscall(char *this, void *Block, char)"
   },
   "0x004D0CA0": {
     "name": "?::_sdtor_38",
@@ -18549,7 +18549,7 @@
   },
   "0x0052B050": {
     "name": "gbGeomNode::_method_52b050",
-    "signature": "char __thiscall(gbGeomNode *this, Buffer, const char *)"
+    "signature": "char __thiscall(gbGeomNode *this, void *Buffer, const char *)"
   },
   "0x0052B1D0": {
     "name": "UIWnd::_nearby_52b1d0",
@@ -19181,11 +19181,11 @@
   },
   "0x00539700": {
     "name": "Actor::_nearby_539700",
-    "signature": "void __thiscall(Actor *this **Buffer, int Stream)"
+    "signature": "void __thiscall(Actor *this, void **Buffer, int Stream)"
   },
   "0x00539810": {
     "name": "gbAABBox::_auto_539810",
-    "signature": "void __thiscall(gbAABBox *this, Buffer, FILE *Stream)"
+    "signature": "void __thiscall(gbAABBox *this, void *Buffer, FILE *Stream)"
   },
   "0x005399E0": {
     "name": "Actor::_nearby_5399e0",
@@ -20189,7 +20189,7 @@
   },
   "0x00557DDB": {
     "name": "sub_557DDB",
-    "signature": "LPTOP_LEVEL_EXCEPTION_FILTER()"
+    "signature": "int __cdecl()"
   },
   "0x0055BA88": {
     "name": "sub_55BA88",
