@@ -16,7 +16,8 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).parent.parent
+PIPELINE_ROOT = Path(__file__).parent.parent
+PROJECT_ROOT = PIPELINE_ROOT.parent
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 OUTPUT_DIR = PROJECT_ROOT / "src" / "pal3"
 HEADER_DIR = PROJECT_ROOT / "include" / "pal3" / "gen"

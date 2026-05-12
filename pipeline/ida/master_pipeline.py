@@ -32,8 +32,8 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
 
-PDB_EXPORT = os.path.join(PROJECT_ROOT, "asm", "pal3a", "pdb_export.json")
-GLOBALS_FILE = os.path.join(PROJECT_ROOT, "asm", "pal3a", "globals_export.json")
+PDB_EXPORT = os.path.join(PROJECT_ROOT, "pipeline", "data", "pdb", "pdb_export.json")
+GLOBALS_FILE = os.path.join(PROJECT_ROOT, "pipeline", "data", "pdb", "globals_export.json")
 OUTPUT_DIR = os.path.join(PROJECT_ROOT, "asm", "pal3")
 SIG_NAME = "pal3a_text"
 

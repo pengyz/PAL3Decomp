@@ -22,7 +22,7 @@ import sys
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OLD_FILE = os.path.join(PROJECT_ROOT, "asm", "pal3", "annotations.json")
-OUT_DIR = os.path.join(PROJECT_ROOT, "asm", "pal3", "annotations")
+OUT_DIR = os.path.join(PROJECT_ROOT, "pipeline", "data", "annotations")
 
 
 def split():

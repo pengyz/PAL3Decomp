@@ -17,7 +17,7 @@ import sys
 import os
 import re
 
-ANN_DIR = os.path.join(os.path.dirname(__file__), '..', 'asm', 'pal3', 'annotations')
+ANN_DIR = os.path.join(os.path.dirname(__file__), 'data', 'annotations')
 
 def load_annotations():
     """从拆分目录加载标注数据。"""

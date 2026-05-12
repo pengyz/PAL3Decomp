@@ -21,13 +21,32 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).parent.parent
-PDB_FILE = PROJECT_ROOT / "asm" / "pal3a" / "pdb_export.json"
-ANNOTATIONS_FILE = PROJECT_ROOT / "asm" / "pal3" / "annotations.json"
+PIPELINE_ROOT = Path(__file__).parent.parent
+PROJECT_ROOT = PIPELINE_ROOT.parent
+PDB_FILE = PIPELINE_ROOT / "data" / "pdb" / "pdb_export.json"
+ANNOTATIONS_DIR = PIPELINE_ROOT / "data" / "annotations"
 IDA_STRUCTS_FILE = PROJECT_ROOT / "asm" / "pal3" / "ida_structs.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 OUTPUT_DIR = PROJECT_ROOT / "include" / "pal3" / "gen"
 OVERRIDES_DIR = PROJECT_ROOT / "include" / "pal3" / "overrides"
+
+
+def load_annotations_data():
+    """从拆分目录加载标注数据。"""
+    ann_dir = ANNOTATIONS_DIR  # actually a directory path
+    structs = {}
+    structs_dir = ann_dir / "structs"
+    if structs_dir.exists():
+        for f in structs_dir.glob("*.json"):
+            sdata = json.load(open(f, encoding='utf-8'))
+            sname = sdata.pop('name', f.stem)
+            structs[sname] = sdata
+    vtables = {}
+    vt_file = ann_dir / "vtables.json"
+    if vt_file.exists():
+        vtables = json.load(open(vt_file, encoding='utf-8'))
+    return {'structs': structs, 'vtables': vtables}
+
 
 # Skip STL/CRT/Windows types (already defined by system headers)
 SKIP_CLASSES = {
@@ -333,7 +352,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
     if not base_names:
         # Fallback: read from annotations.json
         try:
-            ann_data = json.load(open(str(ANNOTATIONS_FILE), 'r', encoding='utf-8'))
+            ann_data = load_annotations_data()
             ann_struct = ann_data.get('structs', {}).get(cls_name, {})
             base = ann_struct.get('base_class')
             if base:
@@ -352,7 +371,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
 
     # Virtual methods from vtable (must be first, order matches vtable layout)
     try:
-        ann_data_vt = json.load(open(str(ANNOTATIONS_FILE), 'r', encoding='utf-8'))
+        ann_data_vt = load_annotations_data()
         vtables_data = ann_data_vt.get('vtables', {})
         # Find the vtable for this class (smallest = base class vtable)
         cls_vtables = [(name, info) for name, info in vtables_data.items()
@@ -403,7 +422,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
     base_size = 0
     if base_names:
         try:
-            ann_data = json.load(open(str(ANNOTATIONS_FILE), 'r', encoding='utf-8'))
+            ann_data = load_annotations_data()
             ann_struct = ann_data.get('structs', {}).get(cls_name, {})
             base_size = ann_struct.get('base_size', 0)
         except:
@@ -590,7 +609,7 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     # Load annotations for vtable info
-    ann_data_all = json.load(open(str(ANNOTATIONS_FILE), 'r', encoding='utf-8'))
+    ann_data_all = load_annotations_data()
     vtable_classes = set(v.get('class', '') for v in ann_data_all.get('vtables', {}).values())
     vtable_classes.discard('')
     vtable_classes -= {'crt_internal', 'std_locale_facet'}
