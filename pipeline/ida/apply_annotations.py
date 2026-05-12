@@ -321,6 +321,27 @@ def apply_annotations():
         else:
             s_fail.append((sname, sinfo))
 
+    # Retry failed structs (dependencies may now be resolved)
+    for retry in range(3):
+        if not s_fail:
+            break
+        still_fail = []
+        for sname, sinfo in s_fail:
+            decl = build_struct_decl(sname, sinfo, structs, vtables)
+            if not decl:
+                continue
+            tinfo = ida_typeinf.tinfo_t()
+            result = ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP)
+            if result is not None:
+                tinfo.set_named_type(til, sname, ida_typeinf.NTF_REPLACE)
+                s_ok += 1
+            else:
+                still_fail.append((sname, sinfo))
+        s_fail = still_fail
+
+    if s_fail:
+        for sname, _ in s_fail:
+            print("[!] Struct failed: %s" % sname)
 
     print("[3] Structs: applied=%d/%d" % (s_ok, len(structs)))
 

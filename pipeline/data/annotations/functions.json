@@ -73,7 +73,7 @@
   },
   "0x00402B60": {
     "name": "?RunJoystickControlPanel@GRPinput@@QAEXPAX@Z",
-    "signature": "int __thiscall RunJoystickControlPanel@GRPinput(void)"
+    "signature": "void __thiscall(GRPinput *__hidden this, void *)"
   },
   "0x00402B70": {
     "name": "?ClearKeyBuffer@GRPinput@@QAEXXZ",
@@ -161,7 +161,7 @@
   },
   "0x004034E0": {
     "name": "?UnacquireKeyboard@GRPinput@@AAEXXZ",
-    "signature": "int __cdecl ?UnacquireKeyboard@GRPinput@@AAEXXZ(void)"
+    "signature": "void __thiscall(GRPinput *__hidden this)"
   },
   "0x00403560": {
     "name": "?Update@GRPinput@@QAEXXZ",
@@ -197,7 +197,7 @@
   },
   "0x00404760": {
     "name": "??0PAL3@@QAE@XZ",
-    "signature": "int __thiscall 0PAL3(void)"
+    "signature": "PAL3 *(void)"
   },
   "0x004047F0": {
     "name": "??1PAL3@@QAE@XZ",
@@ -429,7 +429,7 @@
   },
   "0x004111C0": {
     "name": "Array::Size",
-    "signature": "int __thiscall(Array *this)"
+    "signature": "int __thiscall(int *this)"
   },
   "0x004111E0": {
     "name": "Array::Erase",
@@ -465,7 +465,7 @@
   },
   "0x00412680": {
     "name": "ScriptObj::Destroy",
-    "signature": "int __thiscall(ScriptObj *this)"
+    "signature": "int __thiscall(void *this)"
   },
   "0x00412710": {
     "name": "RoleSystem::UpdateTransform",
@@ -645,15 +645,15 @@
   },
   "0x0042FDA0": {
     "name": "Config::ReadINIInt",
-    "signature": "int __thiscall(Config *this, char *filename, char *key)"
+    "signature": "int __thiscall(void *this, char *filename, char *key)"
   },
   "0x0042FDC0": {
     "name": "Config::ReadINIString",
-    "signature": "char *__thiscall(Config *this, char *filename, char *key)"
+    "signature": "char *__thiscall(void *this, char *filename, char *key)"
   },
   "0x0042FDE0": {
     "name": "Config::ReadINI",
-    "signature": "bool __thiscall(Config *this, char *filename, char *section)"
+    "signature": "bool __thiscall(void *this, char *filename, char *section)"
   },
   "0x00430290": {
     "name": "PalScript::LoadScript",
@@ -689,11 +689,11 @@
   },
   "0x00431D80": {
     "name": "??0PalScript@@QAE@XZ",
-    "signature": "int __thiscall 0PalScript(void)"
+    "signature": "PalScript *__thiscall(PalScript *__hidden this)"
   },
   "0x00431E60": {
     "name": "??0PalScriptMgr@@QAE@XZ",
-    "signature": "int __thiscall 0PalScriptMgr(void)"
+    "signature": "PalScriptMgr *__thiscall(PalScriptMgr *__hidden this)"
   },
   "0x00431EB0": {
     "name": "?OpenSCE@PalScriptMgr@@SAXPBD@Z",
@@ -717,7 +717,7 @@
   },
   "0x00431FA0": {
     "name": "?ClearAllWaitObj@PalScript@@QAEXXZ",
-    "signature": "int __thiscall ClearAllWaitObj@PalScript(void)"
+    "signature": "void __thiscall(PalScript *__hidden this)"
   },
   "0x00431FB0": {
     "name": "?Update@PalScript@@QAEHM@Z",
@@ -805,7 +805,7 @@
   },
   "0x00437C30": {
     "name": "j_?StartHideFight@PAL3@@SAXXZ",
-    "signature": "int __cdecl j_?StartHideFight@PAL3(void)"
+    "signature": "void __cdecl()"
   },
   "0x004386A0": {
     "name": "j_nullsub_103",
@@ -857,19 +857,19 @@
   },
   "0x0043DC90": {
     "name": "??1UILBItem@@QAE@XZ",
-    "signature": "int __thiscall 1UILBItem(void)"
+    "signature": "UILBColumn *__thiscall(UILBItem *__hidden this)"
   },
   "0x0043DCA0": {
     "name": "??0UILBColumn@@QAE@XZ",
-    "signature": "int __thiscall 0UILBColumn(void)"
+    "signature": "UILBColumn *__thiscall(UILBColumn *__hidden this)"
   },
   "0x0043DCB0": {
     "name": "??1UILBColumn@@QAE@XZ",
-    "signature": "int __thiscall 1UILBColumn(void)"
+    "signature": "void __thiscall(UILBColumn *__hidden this)"
   },
   "0x0043DCC0": {
     "name": "?Destroy@UILBColumn@@QAEXXZ",
-    "signature": "int __thiscall Destroy@UILBColumn(void)"
+    "signature": "void __thiscall(UILBColumn *__hidden this)"
   },
   "0x0043DCD0": {
     "name": "??0UIListBox@@QAE@XZ",
@@ -1097,7 +1097,7 @@
   },
   "0x00445EC0": {
     "name": "j_UIWnd::MoveWindow",
-    "signature": "int __thiscall(j_UIWnd *this)"
+    "signature": "int __thiscall(UIWnd **this)"
   },
   "0x00445FA0": {
     "name": "UIWnd::GetRect",
@@ -1113,7 +1113,7 @@
   },
   "0x00449990": {
     "name": "j_?SetScrollPos@UIListBox@@QAEXH@Z",
-    "signature": "int __thiscall j_?SetScrollPos@UIListBox(void)"
+    "signature": "void __thiscall(UIListBox **this, int)"
   },
   "0x0044ADE0": {
     "name": "CGameData::InitRoles",
@@ -1121,7 +1121,7 @@
   },
   "0x0044B460": {
     "name": "j_UIWnd::GetID",
-    "signature": "int __thiscall(j_UIWnd *this)"
+    "signature": "int __thiscall(UIWnd *this)"
   },
   "0x0044BDA0": {
     "name": "??1UIWnd@@UAE@XZ_0_0",
@@ -1129,7 +1129,7 @@
   },
   "0x0044BE70": {
     "name": "j_UIFrameWnd::_UIFrameWnd",
-    "signature": "void __thiscall(j_UIFrameWnd *this)"
+    "signature": "void __thiscall(void *)"
   },
   "0x0044E660": {
     "name": "CGameData::InitItems",
@@ -1221,11 +1221,11 @@
   },
   "0x0047C570": {
     "name": "??0ObjectCamera@@QAE@XZ",
-    "signature": "int __thiscall 0ObjectCamera(void)"
+    "signature": "ObjectCamera *__thiscall(ObjectCamera *__hidden this)"
   },
   "0x0047C580": {
     "name": "??1ObjectCamera@@QAE@XZ",
-    "signature": "int __thiscall 1ObjectCamera(void)"
+    "signature": "void __thiscall(ObjectCamera *__hidden this)"
   },
   "0x0047C590": {
     "name": "?Create@ObjectCamera@@QAEXPAVgbGfxManager@@@Z",
@@ -1309,7 +1309,7 @@
   },
   "0x0047D440": {
     "name": "?GetScreenDegree@Object3D@@QAEMUgbVec3D@@@Z",
-    "signature": "void __userpurge(Object3D *this@<ecx>, struct gbVec3D, gbMatrixStack *)"
+    "signature": "void __userpurge(Object3D *this@<ecx>, gbVec3D, gbMatrixStack *)"
   },
   "0x0047D690": {
     "name": "?CaculateRelative@Object3D@@IAEXXZ",
@@ -1325,7 +1325,7 @@
   },
   "0x0047DB40": {
     "name": "?GetMouseRay@Object3D@@IAE?AUgbRay@@AAUtagPOINT@@@Z",
-    "signature": "bool __userpurge@<al>(Object3D *this@<ecx>, struct gbRay *retstr, struct tagPOINT *)"
+    "signature": "bool __userpurge@<al>(Object3D *this@<ecx>, gbRay *retstr, tagPOINT *)"
   },
   "0x0047DC60": {
     "name": "?CheckMouseLPressed@Object3D@@QAE_NXZ",
@@ -1349,27 +1349,27 @@
   },
   "0x004A12F0": {
     "name": "UIItem::Refresh",
-    "signature": "int __thiscall(UIItem *this)"
+    "signature": "int __thiscall(void *this)"
   },
   "0x004A1410": {
     "name": "UIItem::UIItem",
-    "signature": "void __thiscall(UIItem *this)"
+    "signature": "void __thiscall(void *this)"
   },
   "0x004A14C0": {
     "name": "j_UIWnd::UpdateChildren",
-    "signature": "void __thiscall(j_UIWnd *this)"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004A14D0": {
     "name": "UIItem::SetData",
-    "signature": "void *__thiscall(UIItem *this, char a2)"
+    "signature": "void *__thiscall(void *this, char a2)"
   },
   "0x004A16C0": {
     "name": "UIItem::Create",
-    "signature": "int __thiscall(UIItem *this, int id, int a3)"
+    "signature": "int __thiscall(void *this, int id, int a3)"
   },
   "0x004A3900": {
     "name": "UIBase::SetItemData",
-    "signature": "int __thiscall(UIBase *this, int id, unsigned int data)"
+    "signature": "int __thiscall(void *this, int id, unsigned int data)"
   },
   "0x004A4220": {
     "name": "EquipUI::Init",
@@ -1377,7 +1377,7 @@
   },
   "0x004A4890": {
     "name": "UIBase::GetSelected",
-    "signature": "int __thiscall(UIBase *this)"
+    "signature": "int __thiscall(void *this)"
   },
   "0x004A48B0": {
     "name": "EquipUI::InitSlots",
@@ -1401,11 +1401,11 @@
   },
   "0x004B6630": {
     "name": "RenderTarget3::Begin",
-    "signature": "int __thiscall(RenderTarget3 *this)"
+    "signature": "int __thiscall(void *this)"
   },
   "0x004B6D80": {
     "name": "RenderTarget4::Init",
-    "signature": "void *__thiscall(RenderTarget4 *this)"
+    "signature": "void *__thiscall(void *this)"
   },
   "0x004B6DF0": {
     "name": "RenderTarget3::End",
@@ -1413,7 +1413,7 @@
   },
   "0x004B6E20": {
     "name": "RenderTarget3::Resolve",
-    "signature": "void __thiscall(RenderTarget3 *this)"
+    "signature": "void __thiscall(void *this)"
   },
   "0x004B7510": {
     "name": "??1UIWnd@@UAE@XZ_4",
@@ -1453,7 +1453,7 @@
   },
   "0x004BF780": {
     "name": "RenderTarget2::Init",
-    "signature": "int __thiscall(RenderTarget2 *this)"
+    "signature": "int __thiscall(void *this)"
   },
   "0x004BFD70": {
     "name": "RenderTarget2::Begin",
@@ -1461,7 +1461,7 @@
   },
   "0x004BFDD0": {
     "name": "RenderTarget2::Resolve",
-    "signature": "void __thiscall(RenderTarget2 *this)"
+    "signature": "void __thiscall(void *this)"
   },
   "0x004C0620": {
     "name": "??_Gfacet@locale@std@@UAEPAXI@Z_1",
@@ -1489,7 +1489,7 @@
   },
   "0x004C4370": {
     "name": "?Destroy@CEffCylinder@@UAEXXZ",
-    "signature": "int __cdecl ?Destroy@CEffCylinder@@UAEXXZ(void)"
+    "signature": "void __thiscall(CEffCylinder *__hidden this)"
   },
   "0x004C45A0": {
     "name": "?CreateTask@CEffCylinder@@UAEXPAUtagEffTaskParam@@@Z",
@@ -1597,7 +1597,7 @@
   },
   "0x004C6F20": {
     "name": "?Destroy@CEffExplosive@@UAEXXZ",
-    "signature": "int __cdecl ?Destroy@CEffExplosive@@UAEXXZ(void)"
+    "signature": "void __thiscall(CEffExplosive *__hidden this)"
   },
   "0x004C7150": {
     "name": "?CreateOnePartical@CEffect@@QAE_NPAUtagPartical@@@Z",
@@ -1677,7 +1677,7 @@
   },
   "0x004C9610": {
     "name": "??0CEffGrid@@QAE@XZ",
-    "signature": "int __thiscall 0CEffGrid(void)"
+    "signature": "CEffGrid *__thiscall(CEffGrid *__hidden this)"
   },
   "0x004C9650": {
     "name": "??1CEffGrid@@UAE@XZ",
@@ -1697,7 +1697,7 @@
   },
   "0x004CB480": {
     "name": "??0CEffMeteor@@QAE@XZ",
-    "signature": "int __thiscall 0CEffMeteor(void)"
+    "signature": "CEffMeteor *__thiscall(CEffMeteor *__hidden this)"
   },
   "0x004CB4C0": {
     "name": "??1CEffMeteor@@UAE@XZ",
@@ -1725,7 +1725,7 @@
   },
   "0x004CDA10": {
     "name": "SceneMgr::Create",
-    "signature": "void *__thiscall SceneMgr::Create(gbGfxManager *pGfxMgr, gbCamera *pCam, gbSceneGraph *pSceneRoot)"
+    "signature": "void *__thiscall(SceneMgr *this, int gfxMgr, int cam, int a4)"
   },
   "0x004CDBF0": {
     "name": "SceneMgr::RenderAll",
@@ -1817,7 +1817,7 @@
   },
   "0x004D3910": {
     "name": "??0CEffShock@@QAE@XZ",
-    "signature": "int __thiscall 0CEffShock(void)"
+    "signature": "CEffShock *__thiscall(CEffShock *__hidden this)"
   },
   "0x004D3A50": {
     "name": "?Init@CEffShock@@UAEXPAUtagEffObjType@@MMM@Z",
@@ -1841,7 +1841,7 @@
   },
   "0x004D4EE0": {
     "name": "??0CEffSParticle@@QAE@XZ",
-    "signature": "int __thiscall 0CEffSParticle(void)"
+    "signature": "CEffSParticle *__thiscall(CEffSParticle *__hidden this)"
   },
   "0x004D4F20": {
     "name": "??1CEffSParticle@@UAE@XZ",
@@ -1889,7 +1889,7 @@
   },
   "0x004D5DC0": {
     "name": "??1C2DSpark@@QAE@XZ",
-    "signature": "int __thiscall 1C2DSpark(void)"
+    "signature": "void __thiscall(C2DSpark *__hidden this)"
   },
   "0x004D5EC0": {
     "name": "?CreateSingle@C2DSpark@@AAE_NPAUtagSpark@1@@Z",
@@ -1897,7 +1897,7 @@
   },
   "0x004D5F20": {
     "name": "?CreateTrack@C2DSpark@@QAEXHHUgbColorQuad@@@Z",
-    "signature": "char __userpurge@<al>(C2DSpark *this@<ecx>, char, int, struct gbColorQuad)"
+    "signature": "char __userpurge@<al>(C2DSpark *this@<ecx>, char, int, gbColorQuad)"
   },
   "0x004D5F40": {
     "name": "?SetEnableMouseTrack@C2DSpark@@QAEX_N@Z",
@@ -1925,7 +1925,7 @@
   },
   "0x004D6960": {
     "name": "??1C3DSpark@@QAE@XZ",
-    "signature": "int __thiscall 1C3DSpark(void)"
+    "signature": "void __thiscall(C3DSpark *__hidden this)"
   },
   "0x004D6A60": {
     "name": "?CreateSingle@C3DSpark@@AAE_NPAUtagSpark@1@@Z",
@@ -1941,7 +1941,7 @@
   },
   "0x004D6BC0": {
     "name": "?Render@C3DSpark@@QAEXXZ",
-    "signature": "void __usercall(C3DSpark *this@<ecx>, struct gbVec3D *@<edi>)"
+    "signature": "void __usercall(C3DSpark *this@<ecx>, gbVec3D *@<edi>)"
   },
   "0x004D6D30": {
     "name": "?Update@C3DSpark@@QAEXM@Z",
@@ -1949,7 +1949,7 @@
   },
   "0x004D6FE0": {
     "name": "j_??0CCBAI@@QAE@PAVCCBSystem@@@Z",
-    "signature": "int __thiscall j_??0CCBAI(void)"
+    "signature": "CCBAI *__thiscall(CCBAI *__hidden this, struct CCBSystem *)"
   },
   "0x004D6FF0": {
     "name": "??0CCBAI@@QAE@PAVCCBSystem@@@Z",
@@ -1957,7 +1957,7 @@
   },
   "0x004D7030": {
     "name": "??1CCBAI@@QAE@XZ",
-    "signature": "int __thiscall 1CCBAI(void)"
+    "signature": "void __thiscall(CCBAI *__hidden this)"
   },
   "0x004D7040": {
     "name": "?Reset@CCBAI@@AAEXXZ",
@@ -2141,7 +2141,7 @@
   },
   "0x004DB300": {
     "name": "?AddValueItem@CCBAI@@AAE_NHK@Z",
-    "signature": "int __cdecl ?AddValueItem@CCBAI@@AAE_NHK@Z(void)"
+    "signature": "bool __thiscall(CCBAI *__hidden this, int, unsigned int)"
   },
   "0x004DB310": {
     "name": "?DestroyValueAutomation@CCBAI@@AAE_NXZ",
@@ -2225,7 +2225,7 @@
   },
   "0x004DB730": {
     "name": "CCBSystem::ClearCmdSlot",
-    "signature": "void __thiscall CCBSystem::ClearCmdSlot(int nSlot)"
+    "signature": "char *__thiscall(CCBSystem *this, int)"
   },
   "0x004DB750": {
     "name": "CCBSystem::GetCmdData",
@@ -2945,7 +2945,7 @@
   },
   "0x005054F0": {
     "name": "?DoTask@CCBStageCam@@AAEXXZ",
-    "signature": "int __cdecl ?DoTask@CCBStageCam@@AAEXXZ(void)"
+    "signature": "void __thiscall(CCBStageCam *__hidden this)"
   },
   "0x00505770": {
     "name": "?ClearFinishedTask@CCBStageCam@@AAEXXZ",
@@ -2969,7 +2969,7 @@
   },
   "0x00505930": {
     "name": "??1CCCTData@@QAE@XZ",
-    "signature": "int __thiscall 1CCCTData(void)"
+    "signature": "void __thiscall(CCCTData *__hidden this)"
   },
   "0x00506020": {
     "name": "?Create@CCCTData@@QAE_NXZ",
@@ -3025,7 +3025,7 @@
   },
   "0x00508220": {
     "name": "?Reset@CCBCamControl@@QAEXXZ",
-    "signature": "int __thiscall Reset@CCBCamControl(void)"
+    "signature": "void __thiscall(CCBCamControl *__hidden this)"
   },
   "0x00508230": {
     "name": "?Create@CCBCamControl@@QAE_NXZ",
@@ -3033,7 +3033,7 @@
   },
   "0x00508270": {
     "name": "?Destroy@CCBCamControl@@QAE_NXZ",
-    "signature": "int __thiscall Destroy@CCBCamControl(void)"
+    "signature": "bool __thiscall(CCBCamControl *__hidden this)"
   },
   "0x00508280": {
     "name": "?Init@CCBCamControl@@QAE_NXZ",
@@ -3049,7 +3049,7 @@
   },
   "0x00508310": {
     "name": "?StartList@CCBCamControl@@QAE_NHH@Z",
-    "signature": "int __thiscall StartList@CCBCamControl(void)"
+    "signature": "bool __thiscall(CCBCamControl *__hidden this, int, int)"
   },
   "0x00508320": {
     "name": "?StopList@CCBCamControl@@QAEXXZ",
@@ -3057,7 +3057,7 @@
   },
   "0x00508360": {
     "name": "?HandleInput@CCBCamControl@@AAEXXZ",
-    "signature": "int __cdecl ?HandleInput@CCBCamControl@@AAEXXZ(void)"
+    "signature": "void __thiscall(CCBCamControl *__hidden this)"
   },
   "0x00508370": {
     "name": "?UpdateCircleSet@CCBCamControl@@AAEXXZ",
@@ -3105,7 +3105,7 @@
   },
   "0x00509050": {
     "name": "?Create@CCBStageEffect@@QAE_NXZ",
-    "signature": "int __thiscall Create@CCBStageEffect(void)"
+    "signature": "bool __thiscall(CCBStageEffect *__hidden this)"
   },
   "0x00509060": {
     "name": "?Destroy@CCBStageEffect@@QAE_NXZ",
@@ -3133,7 +3133,7 @@
   },
   "0x00509130": {
     "name": "?SetAlive@CCBStageRole@@QAEX_N@Z",
-    "signature": "int __thiscall SetAlive@CCBStageRole(void)"
+    "signature": "void __thiscall(CCBStageRole *__hidden this, bool)"
   },
   "0x00509140": {
     "name": "?SetMaxBlend@CCBStageRole@@QAEXXZ",
@@ -3433,7 +3433,7 @@
   },
   "0x00511C00": {
     "name": "?ShowEnemyFiveLineupEx@CCBStageScene@@QAEXE@Z",
-    "signature": "int __thiscall ShowEnemyFiveLineupEx@CCBStageScene(void)"
+    "signature": "void __thiscall(CCBStageScene *__hidden this, unsigned __int8)"
   },
   "0x00511C10": {
     "name": "?IsFiveLineupUnderMouse@CCBStageScene@@QAE_NXZ",
@@ -3441,15 +3441,15 @@
   },
   "0x00511C20": {
     "name": "?ResetFiveLineupToInit@CCBStageScene@@QAEXXZ",
-    "signature": "int __thiscall ResetFiveLineupToInit@CCBStageScene(void)"
+    "signature": "void __thiscall(CCBStageScene *__hidden this)"
   },
   "0x00511C30": {
     "name": "?ResetRolePosToInit@CCBStageScene@@QAEXXZ",
-    "signature": "int __thiscall ResetRolePosToInit@CCBStageScene(void)"
+    "signature": "void __thiscall(CCBStageScene *__hidden this)"
   },
   "0x00511C40": {
     "name": "?LoadScene@CCBStageScene@@QAE_NQBD@Z",
-    "signature": "int __thiscall LoadScene@CCBStageScene(void)"
+    "signature": "bool __thiscall(CCBStageScene *__hidden this, const char *const)"
   },
   "0x00511C50": {
     "name": "?DestroyScene@CCBStageScene@@QAEXXZ",
@@ -3461,7 +3461,7 @@
   },
   "0x00511CE0": {
     "name": "?LoadFiveLineupData@CCBStageScene@@QAE_NXZ",
-    "signature": "int __thiscall LoadFiveLineupData@CCBStageScene(void)"
+    "signature": "bool __thiscall(CCBStageScene *__hidden this)"
   },
   "0x00511CF0": {
     "name": "?SaveFiveLineupDate@CCBStageScene@@QAE_NXZ",
@@ -3489,7 +3489,7 @@
   },
   "0x005122E0": {
     "name": "?Update@CCBStageShadow@@QAEXXZ",
-    "signature": "int __thiscall Update@CCBStageShadow(void)"
+    "signature": "void __thiscall(CCBStageShadow *__hidden this)"
   },
   "0x005122F0": {
     "name": "?Render@CCBStageShadow@@QAEXXZ",
@@ -3497,11 +3497,11 @@
   },
   "0x00512300": {
     "name": "?FillShadowQuad@CCBStageShadow@@AAEXXZ",
-    "signature": "int __cdecl ?FillShadowQuad@CCBStageShadow@@AAEXXZ(void)"
+    "signature": "void __thiscall(CCBStageShadow *__hidden this)"
   },
   "0x00512310": {
     "name": "?HandleInput@CCBSystem@@QAEXXZ",
-    "signature": "int __thiscall HandleInput@CCBSystem(void)"
+    "signature": "void __thiscall(CCBSystem *__hidden this)"
   },
   "0x00512320": {
     "name": "?SetQuitFlag@CCBSystem@@QAEX_N@Z",
@@ -3533,7 +3533,7 @@
   },
   "0x00512460": {
     "name": "?DelAllTaskAndThread@CCBSystem@@QAEXXZ",
-    "signature": "int __thiscall DelAllTaskAndThread@CCBSystem(void)"
+    "signature": "void __thiscall(CCBSystem *__hidden this)"
   },
   "0x00512470": {
     "name": "?Proceed@CCBSystem@@AAEXXZ",
@@ -3541,7 +3541,7 @@
   },
   "0x005124B0": {
     "name": "?CanBeHandleWPX_R@CCBSystem@@QAE_NXZ",
-    "signature": "int __thiscall CanBeHandleWPX_R@CCBSystem(void)"
+    "signature": "bool __thiscall(CCBSystem *__hidden this)"
   },
   "0x005124C0": {
     "name": "?CanBeHandleNGH_R@CCBSystem@@QAE_NXZ",
@@ -3649,7 +3649,7 @@
   },
   "0x00514D60": {
     "name": "?GetThreadIndex@CCBSystem@@QAEHK@Z",
-    "signature": "int __thiscall GetThreadIndex@CCBSystem(void)"
+    "signature": "int __thiscall(CCBSystem *__hidden this, unsigned int)"
   },
   "0x00514FE0": {
     "name": "?PassCmdToThread@CCBSystem@@AAE_NH@Z",
@@ -3657,7 +3657,7 @@
   },
   "0x00515200": {
     "name": "?PassCmdToThread@CCBSystem@@AAE_NHPAUtagCmdData@@@Z",
-    "signature": "int __userpurge@<eax>(CCBSystem *this@<ecx>, int, struct tagCmdData *)"
+    "signature": "int __userpurge@<eax>(CCBSystem *this@<ecx>, int, tagCmdData *)"
   },
   "0x005155D0": {
     "name": "?PassCmdToTask@CCBSystem@@AAE_NHH@Z",
@@ -3689,7 +3689,7 @@
   },
   "0x00515D10": {
     "name": "?CreateObj@CCBSystem@@AAE_NPAPAVCCBEditor@@@Z",
-    "signature": "int __cdecl ?CreateObj@CCBSystem@@AAE_NPAPAVCCBEditor@@@Z(void)"
+    "signature": "bool __thiscall(CCBSystem *__hidden this, struct CCBEditor **)"
   },
   "0x00515DD0": {
     "name": "?DestroyObj@CCBSystem@@AAE_NPAPAVCCBStage@@@Z",
@@ -3889,7 +3889,7 @@
   },
   "0x00519BD0": {
     "name": "?CreateButton@CCBUI@@AAE_NPAPAVUIButton@@IAAUtagRECT@@PBD@Z",
-    "signature": "char __userpurge@<al>(CCBUI *this@<ecx>, int@<ebx>, int@<ebp>, int@<edi>, int@<esi>, struct UIButton **, int)"
+    "signature": "char __userpurge@<al>(CCBUI *this@<ecx>, int@<ebx>, int@<ebp>, int@<edi>, int@<esi>, UIButton **, int)"
   },
   "0x00519F50": {
     "name": "?DeleteUIObj@CCBUI@@AAEXPAVUIWnd@@@Z",
@@ -3933,7 +3933,7 @@
   },
   "0x0051A700": {
     "name": "??0CCBControlWindow@@QAE@XZ",
-    "signature": "int __thiscall 0CCBControlWindow(void)"
+    "signature": "CCBControlWindow *__thiscall(CCBControlWindow *__hidden this)"
   },
   "0x0051A880": {
     "name": "??1CCBControlWindow@@UAE@XZ",
@@ -4169,7 +4169,7 @@
   },
   "0x0051D1D0": {
     "name": "?Create@CCBLineupWindow@@QAE_NAAUtagRECT@@PAVUIWnd@@@Z",
-    "signature": "char __userpurge@<al>(CCBLineupWindow *this@<ecx>, struct tagRECT *, struct UIWnd *)"
+    "signature": "char __userpurge@<al>(CCBLineupWindow *this@<ecx>, tagRECT *, UIWnd *)"
   },
   "0x0051D290": {
     "name": "?Destroy@CCBLineupWindow@@UAEXXZ",
@@ -4213,19 +4213,19 @@
   },
   "0x0051D6D0": {
     "name": "?RefreshFacePos@CCBLineupWindow@@QAEXXZ",
-    "signature": "int __thiscall RefreshFacePos@CCBLineupWindow(void)"
+    "signature": "CCBProtectWindow *__thiscall(CCBLineupWindow *__hidden this)"
   },
   "0x0051D6E0": {
     "name": "??0CCBProtectWindow@@QAE@XZ",
-    "signature": "int __thiscall 0CCBProtectWindow(void)"
+    "signature": "CCBProtectWindow *__thiscall(CCBProtectWindow *__hidden this)"
   },
   "0x0051D6F0": {
     "name": "??1CCBProtectWindow@@UAE@XZ",
-    "signature": "int __cdecl ??1CCBProtectWindow@@UAE@XZ(void)"
+    "signature": "void __thiscall(CCBProtectWindow *__hidden this)"
   },
   "0x0051D700": {
     "name": "?Reset@CCBProtectWindow@@AAEXXZ",
-    "signature": "int __cdecl ?Reset@CCBProtectWindow@@AAEXXZ(void)"
+    "signature": "void __thiscall(CCBProtectWindow *__hidden this)"
   },
   "0x0051D710": {
     "name": "?Create@CCBProtectWindow@@QAE_NAAUtagRECT@@PAVUIWnd@@@Z",
@@ -4305,7 +4305,7 @@
   },
   "0x00524970": {
     "name": "j_?SetScroll@UIListBox@@QAEXPBDAAUtagRECT@@HH_N@Z",
-    "signature": "int __thiscall j_?SetScroll@UIListBox(void)"
+    "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
   },
   "0x0052B860": {
     "name": "MiniGame1::Render",
@@ -4601,7 +4601,7 @@
   },
   "0x005417A0": {
     "name": "?UIDrawRichText@@YAXPBDABUtagRECT@@H@Z",
-    "signature": "int __cdecl ?UIDrawRichText@@YAXPBDABUtagRECT@@H@Z(void)"
+    "signature": "void __cdecl(const char *, const struct tagRECT *, int)"
   },
   "0x005417B0": {
     "name": "??0UICursor@@QAE@XZ",
@@ -4821,15 +4821,15 @@
   },
   "0x005530D4": {
     "name": "?_JumpToContinuation@@YGXPAXPAUEHRegistrationNode@@@Z",
-    "signature": "void __stdcall(void (__stdcall *)(void *, struct EHRegistrationNode *), struct EHRegistrationNode *)"
+    "signature": "void __stdcall(void (__stdcall *)(void *, EHRegistrationNode *), EHRegistrationNode *)"
   },
   "0x00553116": {
     "name": "?_UnwindNestedFrames@@YGXPAUEHRegistrationNode@@PAUEHExceptionRecord@@@Z",
-    "signature": "void __userpurge(struct _EXCEPTION_REGISTRATION_RECORD **@<ebx>, PVOID TargetFrame, PEXCEPTION_RECORD ExceptionRecord)"
+    "signature": "void __userpurge(_EXCEPTION_REGISTRATION_RECORD **@<ebx>, PVOID TargetFrame, PEXCEPTION_RECORD ExceptionRecord)"
   },
   "0x00553165": {
     "name": "___CxxFrameHandler",
-    "signature": "int __usercall@<eax>(struct _s_FuncInfo *@<eax>, PEXCEPTION_RECORD ExceptionRecord, struct EHRegistrationNode *, struct _CONTEXT *, void *)"
+    "signature": "int __usercall@<eax>(_s_FuncInfo *@<eax>, PEXCEPTION_RECORD ExceptionRecord, EHRegistrationNode *, _CONTEXT *, void *)"
   },
   "0x0055319B": {
     "name": "?_CallCatchBlock2@@YAPAXPAUEHRegistrationNode@@PBU_s_FuncInfo@@PAXHK@Z",
@@ -4845,7 +4845,7 @@
   },
   "0x005532C8": {
     "name": "?TranslatorGuardHandler@@YA?AW4_EXCEPTION_DISPOSITION@@PAUEHExceptionRecord@@PAUTranslatorGuardRN@@PAX2@Z",
-    "signature": "int __usercall@<eax>(struct _EXCEPTION_REGISTRATION_RECORD **@<ebx>, PEXCEPTION_RECORD ExceptionRecord, PVOID TargetFrame, struct _CONTEXT *)"
+    "signature": "int __usercall@<eax>(_EXCEPTION_REGISTRATION_RECORD **@<ebx>, PEXCEPTION_RECORD ExceptionRecord, PVOID TargetFrame, _CONTEXT *)"
   },
   "0x0055333D": {
     "name": "?_GetRangeOfTrysToCheck@@YAPBU_s_TryBlockMapEntry@@PBU_s_FuncInfo@@HHPAI1@Z",
@@ -5137,7 +5137,7 @@
   },
   "0x00558AC0": {
     "name": "__trandisp1",
-    "signature": "int __usercall@<eax>(int@<edx>, __int16@<cx>, int@<ebp>, __int16@<fpstat>, double _ST7@<st0>)"
+    "signature": "int __usercall@<eax>(int@<edx>, __int16@<cx>, int@<ebp>, __int16@<fpstat>, double ST7@<st0>)"
   },
   "0x00558C79": {
     "name": "__rttosnpopde",
@@ -5213,7 +5213,7 @@
   },
   "0x0055944E": {
     "name": "__ffexpm1",
-    "signature": "void __usercall(char@<ch>, int _EBP@<ebp>)"
+    "signature": "void __usercall(char@<ch>, int EBP@<ebp>)"
   },
   "0x00559491": {
     "name": "_isintTOS",
@@ -7417,7 +7417,7 @@
   },
   "0x00557CA2": {
     "name": "UnhandledExceptionFilter_0",
-    "signature": "LONG __stdcall __noreturn(struct _EXCEPTION_POINTERS *ExceptionInfo)"
+    "signature": "LONG __stdcall __noreturn(_EXCEPTION_POINTERS *ExceptionInfo)"
   },
   "0x004022B0": {
     "name": "GRPinput::SetMode",
@@ -8093,7 +8093,7 @@
   },
   "0x004CDB70": {
     "name": "SceneMgrUpdate",
-    "signature": "void __cdecl SceneMgrUpdate(SceneMgr *pSceneMgr, float fDeltaTime)"
+    "signature": "char __thiscall(float *this, float a2)"
   },
   "0x004E0080": {
     "name": "unknown_libname_468",
@@ -8205,7 +8205,7 @@
   },
   "0x0043AFA0": {
     "name": "UIObj::SetTooltipText",
-    "signature": "void __thiscall(UIObj *this, const char *szText)"
+    "signature": "void __thiscall(const char *szText)"
   },
   "0x00434BD0": {
     "name": "GetSceneObject",
@@ -8261,7 +8261,7 @@
   },
   "0x004421F0": {
     "name": "CCBUI::SetCurPlayer",
-    "signature": "void __thiscall(CCBUI *this, int nPlayer)"
+    "signature": "void __thiscall(CCBUI *this)"
   },
   "0x004DC650": {
     "name": "CCBSystem::FindFreeThread",
@@ -8373,7 +8373,7 @@
   },
   "0x0043C550": {
     "name": "UIAnimCtrl::SetProgress",
-    "signature": "int __thiscall(UIAnimCtrl *this, float fProgress)"
+    "signature": "int __thiscall(float fProgress)"
   },
   "0x0040E050": {
     "name": "Vec3D_Lerp",
@@ -8381,11 +8381,11 @@
   },
   "0x0042FB60": {
     "name": "ScriptVM::GetString",
-    "signature": "const char *__thiscall(ScriptVM *this)"
+    "signature": "char *__thiscall(int this)"
   },
   "0x004A1CF0": {
     "name": "UIParabolaCtrl::GetState",
-    "signature": "int __thiscall(UIParabolaCtrl *this)"
+    "signature": "int __thiscall(_DWORD *this)"
   },
   "0x0049CA70": {
     "name": "PAL_GDB::IsValidItem",
@@ -8409,7 +8409,7 @@
   },
   "0x00421560": {
     "name": "UISceneObj::SetAction",
-    "signature": "void __thiscall(UISceneObj *this, short nActionID)"
+    "signature": "void __thiscall(__int16 nActionID)"
   },
   "0x00421020": {
     "name": "RoleSystem::CheckCollision",
@@ -8417,7 +8417,7 @@
   },
   "0x0042CB70": {
     "name": "ScriptVM::PushParam",
-    "signature": "int __thiscall(ScriptVM *this, unsigned char nType, int nCount)"
+    "signature": "int __thiscall(int *pData, unsigned __int8 nType, int nCount)"
   },
   "0x0040DBD0": {
     "name": "PtrArray::Find",
@@ -8425,7 +8425,7 @@
   },
   "0x00461FD0": {
     "name": "UISlider::SetValue",
-    "signature": "int __thiscall(UISlider *this, unsigned char nValue)"
+    "signature": "int __thiscall(unsigned __int8 nValue)"
   },
   "0x0048C610": {
     "name": "UIFrameWnd::HandleEvent",
@@ -8433,19 +8433,19 @@
   },
   "0x00523820": {
     "name": "UIParabolaCtrl::Update",
-    "signature": "int __thiscall(UIParabolaCtrl *this)"
+    "signature": "int __thiscall(int nDelta)"
   },
   "0x00469D50": {
     "name": "UIListView::AddItem",
-    "signature": "void __thiscall(UIListView *this, void *pData, int nCol, int nRow, int nFlags)"
+    "signature": "void __thiscall(void *pData, int nCol, int nRow, int nFlags)"
   },
   "0x00462220": {
     "name": "UISlider::GetValue",
-    "signature": "int __thiscall(UISlider *this, unsigned char nIndex)"
+    "signature": "int __thiscall(unsigned __int8 nIndex)"
   },
   "0x0042C1A0": {
     "name": "ScriptVM::IsRunning",
-    "signature": "BOOL __thiscall(ScriptVM *this)"
+    "signature": "BOOL __thiscall(int this)"
   },
   "0x00456670": {
     "name": "ShowMessageBox",
@@ -8453,7 +8453,7 @@
   },
   "0x00462080": {
     "name": "UISlider::SetRange",
-    "signature": "int __thiscall(UISlider *this, unsigned char nMax)"
+    "signature": "int __thiscall(unsigned __int8 nMax)"
   },
   "0x004F2C70": {
     "name": "CCBSystem::AddCommand",
@@ -8461,11 +8461,11 @@
   },
   "0x00469D00": {
     "name": "UIListView::SetItemData",
-    "signature": "int __thiscall(UIListView *this, int nRow, int nData, int nFlags)"
+    "signature": "int __thiscall(int nCol, int nRow, int nData, int nFlags)"
   },
   "0x00494040": {
     "name": "UIInventory::UpdateSlot",
-    "signature": "void __thiscall(UIInventory *this, int nItemID, int nCount)"
+    "signature": "void __thiscall(int nSlotIdx, int nItemID, int nCount)"
   },
   "0x00432680": {
     "name": "UIListBox::Method_2680",
@@ -8481,7 +8481,7 @@
   },
   "0x00494D70": {
     "name": "UIInventory::HandleInput",
-    "signature": "void __thiscall(UIInventory *this, int nParam)"
+    "signature": "void __thiscall(int nInputID, int nParam)"
   },
   "0x004E7350": {
     "name": "CCBStageCam::Method_7350",
@@ -8553,7 +8553,7 @@
   },
   "0x0043DC40": {
     "name": "UIObj::SetPosition",
-    "signature": "void __thiscall(UIObj *this, int nY)"
+    "signature": "void __thiscall(int nX, int nY)"
   },
   "0x00402220": {
     "name": "GRPinput::Reset",
@@ -8613,11 +8613,11 @@
   },
   "0x0049F9B0": {
     "name": "UIInventory::SetGroupVisible",
-    "signature": "int __thiscall(UIInventory *this, unsigned char bVisible)"
+    "signature": "int __thiscall(unsigned __int8 bVisible)"
   },
   "0x0049FBE0": {
     "name": "UIInventory::UpdateDisplay",
-    "signature": "BOOL __thiscall(UIInventory *this, int nSlot)"
+    "signature": "BOOL __thiscall(int nPage, int nSlot)"
   },
   "0x00478880": {
     "name": "UIFrameWnd::ProcessTimer",
@@ -8625,7 +8625,7 @@
   },
   "0x00469EB0": {
     "name": "UIListView::HandleInput",
-    "signature": "BOOL __thiscall(UIListView *this, int nParam, int nFlags)"
+    "signature": "BOOL __thiscall(int nInputID, int nParam, int nFlags)"
   },
   "0x00445760": {
     "name": "UIWnd::UpdateChildLayout",
@@ -8637,7 +8637,7 @@
   },
   "0x004209F0": {
     "name": "TileMap::GetTile",
-    "signature": "char __thiscall(TileMap *this, int nY)"
+    "signature": "char __thiscall(int nX, int nY)"
   },
   "0x00424C20": {
     "name": "PalScriptMgr::ExecuteBlock",
@@ -8645,7 +8645,7 @@
   },
   "0x0042CD90": {
     "name": "ScriptVM::CallFunction",
-    "signature": "int __thiscall(ScriptVM *this, unsigned char nFuncID, int nArgCount)"
+    "signature": "int __thiscall(unsigned __int8 nFuncID, int nArgCount)"
   },
   "0x004366C0": {
     "name": "ScriptVM::GetObjectByID",
@@ -8677,7 +8677,7 @@
   },
   "0x004CDED0": {
     "name": "CEffMgr::InitEffClass",
-    "signature": "void __thiscall CEffMgr::InitEffClass()"
+    "signature": "int __thiscall(_DWORD)"
   },
   "0x00487610": {
     "name": "CameraCtrl::LoadRoleParams",
@@ -8685,23 +8685,23 @@
   },
   "0x0048D040": {
     "name": "CameraCtrl::UpdateBlendWeight",
-    "signature": "void __thiscall CameraCtrl::UpdateBlendWeight(int nParamIdx, int a3)"
+    "signature": "void __thiscall(int this, int, int)"
   },
   "0x004F7050": {
     "name": "CCBSystem::IsMagicSlotMsg",
-    "signature": "bool __stdcall CCBSystem::IsMagicSlotMsg(int nMsgID)"
+    "signature": "bool __stdcall(int)"
   },
   "0x004F7140": {
     "name": "CCBSystem::HandleMagicSlotInput",
-    "signature": "char __stdcall CCBSystem::HandleMagicSlotInput(int nMsgID)"
+    "signature": "char __stdcall(int)"
   },
   "0x004DB9C0": {
     "name": "CCBSystem::InvokeThreadMethod",
-    "signature": "int __thiscall CCBSystem::InvokeThreadMethod(int nThreadIdx, char bParam)"
+    "signature": "int __thiscall(_DWORD *this, int, char)"
   },
   "0x0050A4B0": {
     "name": "CCBStageRole::CheckViewTarget",
-    "signature": "bool __thiscall CCBStageRole::CheckViewTarget()"
+    "signature": "bool __thiscall(CCBStageRole *this)"
   },
   "0x0053E970": {
     "name": "SoundContext::StopAll",
@@ -8709,27 +8709,27 @@
   },
   "0x004E2AE0": {
     "name": "CCBUI::HandleRoleStateDialog",
-    "signature": "LRESULT __thiscall CCBUI::HandleRoleStateDialog(LPARAM lParam)"
+    "signature": "LRESULT __thiscall(int *this, int)"
   },
   "0x005024D0": {
     "name": "CCBStage::ProcessRoleEffect",
-    "signature": "int __thiscall CCBStage::ProcessRoleEffect(int nParam)"
+    "signature": "int __thiscall(_DWORD *this, int)"
   },
   "0x004DC160": {
     "name": "CCBSystem::CopyCmdData",
-    "signature": "void __thiscall CCBSystem::CopyCmdData(void *pDest)"
+    "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *)"
   },
   "0x004DC1B0": {
     "name": "CCBSystem::GetState",
-    "signature": "int __thiscall CCBSystem::GetState()"
+    "signature": "int __thiscall(int this)"
   },
   "0x004DC220": {
     "name": "CCBUI::IsActive",
-    "signature": "char __thiscall CCBUI::IsActive()"
+    "signature": "char __thiscall(CCBUI *this)"
   },
   "0x004DC3F0": {
     "name": "CCBSystem::StartRoleThread",
-    "signature": "char __thiscall CCBSystem::StartRoleThread(int nParam)"
+    "signature": "char __thiscall(char *this, int)"
   },
   "0x00407790": {
     "name": "sub_407790",
@@ -8737,431 +8737,431 @@
   },
   "0x00412A50": {
     "name": "sub_412A50",
-    "signature": "double()"
+    "signature": "int __thiscall(int this)"
   },
   "0x004178A0": {
     "name": "sub_4178A0",
-    "signature": "double()"
+    "signature": "BOOL __thiscall(int this)"
   },
   "0x0041ABE0": {
     "name": "sub_41ABE0",
-    "signature": "double()"
+    "signature": "void __thiscall(int this)"
   },
   "0x0041AD40": {
     "name": "sub_41AD40",
-    "signature": "double()"
+    "signature": "void __thiscall(int this)"
   },
   "0x0041B300": {
     "name": "sub_41B300",
-    "signature": "double()"
+    "signature": "int __thiscall(gbVec3D *this)"
   },
   "0x0041BDE0": {
     "name": "sub_41BDE0",
-    "signature": "double()"
+    "signature": "_DWORD *__thiscall(_DWORD *this)"
   },
   "0x0041CBD0": {
     "name": "sub_41CBD0",
-    "signature": "double()"
+    "signature": "BOOL __thiscall(float *this)"
   },
   "0x00421CA0": {
     "name": "sub_421CA0",
-    "signature": "int __fastcall(__int16 nActionID)"
+    "signature": "void __thiscall(_DWORD *this)"
   },
   "0x0042AF80": {
     "name": "sub_42AF80",
-    "signature": "double()"
+    "signature": "char __thiscall(int this)"
   },
   "0x0042B350": {
     "name": "sub_42B350",
-    "signature": "double()"
+    "signature": "void __thiscall(int this)"
   },
   "0x0042BF90": {
     "name": "sub_42BF90",
-    "signature": "double()"
+    "signature": "PalScriptMgr *__thiscall(int this)"
   },
   "0x0042BFE0": {
     "name": "sub_42BFE0",
-    "signature": "double()"
+    "signature": "bool __thiscall(int this)"
   },
   "0x0042C1C0": {
     "name": "sub_42C1C0",
-    "signature": "double()"
+    "signature": "void __thiscall(_BYTE *this)"
   },
   "0x0042C730": {
     "name": "sub_42C730",
-    "signature": "double()"
+    "signature": "struct gbVFileSystem *__thiscall(int this)"
   },
   "0x0042C810": {
     "name": "sub_42C810",
-    "signature": "double()"
+    "signature": "char __thiscall(int this)"
   },
   "0x0042E6C0": {
     "name": "sub_42E6C0",
-    "signature": "double()"
+    "signature": "int __thiscall(float *this)"
   },
   "0x0042FCC0": {
     "name": "sub_42FCC0",
-    "signature": "double()"
+    "signature": "void __thiscall(int *this)"
   },
   "0x00435170": {
     "name": "sub_435170",
-    "signature": "double()"
+    "signature": "void()"
   },
   "0x004378E0": {
     "name": "sub_4378E0",
-    "signature": "double()"
+    "signature": "void()"
   },
   "0x004384B0": {
     "name": "sub_4384B0",
-    "signature": "double()"
+    "signature": "void()"
   },
   "0x00451AD0": {
     "name": "sub_451AD0",
-    "signature": "double()"
+    "signature": "int __thiscall(_DWORD *this)"
   },
   "0x004615F0": {
     "name": "sub_4615F0",
-    "signature": "int __fastcall(unsigned __int8 nValue)"
+    "signature": "int __thiscall(int this)"
   },
   "0x0046ACD0": {
     "name": "sub_46ACD0",
-    "signature": "int __fastcall(unsigned __int8 nIndex)"
+    "signature": "int __thiscall(int this)"
   },
   "0x00494660": {
     "name": "sub_494660",
-    "signature": "int __thiscall(int nInputID)"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0049AC70": {
     "name": "sub_49AC70",
-    "signature": "double()"
+    "signature": "int __thiscall(int this)"
   },
   "0x00504510": {
     "name": "sub_504510",
-    "signature": "int __thiscall(CameraCtrl *this)"
+    "signature": "char __thiscall(CameraCtrl *this)"
   },
   "0x00504540": {
     "name": "sub_504540",
-    "signature": "int __thiscall(CameraCtrl *this)"
+    "signature": "char __thiscall(CameraCtrl *this)"
   },
   "0x00517A50": {
     "name": "sub_517A50",
-    "signature": "int __thiscall(int)"
+    "signature": "void __thiscall(CCBAIWindow *this)"
   },
   "0x00517AC0": {
     "name": "sub_517AC0",
-    "signature": "int __thiscall(int)"
+    "signature": "char __usercall@<al>(CCBAIWindow *this@<ecx>, int@<ebx>, int@<ebp>)"
   },
   "0x0052AA50": {
     "name": "sub_52AA50",
-    "signature": "double()"
+    "signature": "int __thiscall(_DWORD *this)"
   },
   "0x0052D0F0": {
     "name": "sub_52D0F0",
-    "signature": "double()"
+    "signature": "int __thiscall(char *this)"
   },
   "0x0052D230": {
     "name": "sub_52D230",
-    "signature": "double()"
+    "signature": "char __thiscall(int this)"
   },
   "0x0052D5B0": {
     "name": "sub_52D5B0",
-    "signature": "double()"
+    "signature": "int __thiscall(int this)"
   },
   "0x00532B40": {
     "name": "sub_532B40",
-    "signature": "double()"
+    "signature": "void __thiscall(UICursor *this)"
   },
   "0x00533B50": {
     "name": "sub_533B50",
-    "signature": "double()"
+    "signature": "bool __thiscall(int this)"
   },
   "0x00533EA0": {
     "name": "sub_533EA0",
-    "signature": "int __thiscall(CameraCtrl *this)"
+    "signature": "char __thiscall(CameraCtrl *this)"
   },
   "0x005548F5": {
     "name": "sub_5548F5",
-    "signature": "double()"
+    "signature": "void __usercall(double@<st0>)"
   },
   "0x004080F0": {
     "name": "sub_4080F0",
-    "signature": "double __stdcall(float, int)"
+    "signature": "void __thiscall(int this, float, float *)"
   },
   "0x0040EB10": {
     "name": "sub_40EB10",
-    "signature": "double __cdecl(int, int)"
+    "signature": "void __cdecl(int, int)"
   },
   "0x0040F9E0": {
     "name": "sub_40F9E0",
-    "signature": "int __thiscall(int *this, FILE *Stream)"
+    "signature": "size_t __thiscall(int this, FILE *Stream)"
   },
   "0x0040FC90": {
     "name": "sub_40FC90",
-    "signature": "double __cdecl(int)"
+    "signature": "void __cdecl(int)"
   },
   "0x00410580": {
     "name": "sub_410580",
-    "signature": "double __cdecl(int)"
+    "signature": "int __cdecl(int)"
   },
   "0x00410BD0": {
     "name": "sub_410BD0",
-    "signature": "int __thiscall(int *this, void *arr, void *src)"
+    "signature": "int __thiscall(int this, char *arr, _DWORD *src)"
   },
   "0x00411E00": {
     "name": "sub_411E00",
-    "signature": "double __thiscall(RoleSystem *this, float, char)"
+    "signature": "void __userpurge(RoleSystem *this@<ecx>, double@<st0>, int@<esi>, float, char)"
   },
   "0x00412A90": {
     "name": "sub_412A90",
-    "signature": "int __thiscall(RoleSystem *this, __int64, int)"
+    "signature": "void __thiscall(RoleSystem *this, __int64, int)"
   },
   "0x00413420": {
     "name": "sub_413420",
-    "signature": "double __stdcall(float)"
+    "signature": "int __userpurge@<eax>(int this@<ecx>, double@<st0>, float)"
   },
   "0x00413850": {
     "name": "sub_413850",
-    "signature": "double __thiscall(RoleSystem *this)"
+    "signature": "double __usercall@<st0>(int this@<ecx>, double result@<st0>)"
   },
   "0x00414250": {
     "name": "sub_414250",
-    "signature": "double __stdcall(int)"
+    "signature": "void __thiscall(gbVec3D *this, float *)"
   },
   "0x00414350": {
     "name": "sub_414350",
-    "signature": "double __thiscall(RoleSystem *this, gbVec3D *pB)"
+    "signature": "double __userpurge@<st0>(int this@<ecx>, double result@<st0>, gbVec3D *pB)"
   },
   "0x00414E50": {
     "name": "sub_414E50",
-    "signature": "double __stdcall(int, int)"
+    "signature": "int __thiscall(int this, _DWORD *, int)"
   },
   "0x004150C0": {
     "name": "sub_4150C0",
-    "signature": "double __thiscall(RoleSystem *this, float)"
+    "signature": "void __thiscall(int this, float)"
   },
   "0x004163B0": {
     "name": "sub_4163B0",
-    "signature": "double __thiscall(RoleSystem *this, int, int)"
+    "signature": "RoleSystem *__thiscall(gbVec3D *this, int, int)"
   },
   "0x00416FA0": {
     "name": "sub_416FA0",
-    "signature": "int __stdcall(int nFlags)"
+    "signature": "void __thiscall(RoleSystem *this, float *nFlags)"
   },
   "0x00416FE0": {
     "name": "sub_416FE0",
-    "signature": "int __thiscall(RoleSystem *this, int nFlags)"
+    "signature": "void __thiscall(RoleSystem *this, float *)"
   },
   "0x00417420": {
     "name": "sub_417420",
-    "signature": "double __thiscall(Role *, int)"
+    "signature": "void __thiscall(int this, float arg0)"
   },
   "0x00417850": {
     "name": "sub_417850",
-    "signature": "double __thiscall(RoleSystem *this)"
+    "signature": "int __thiscall(RoleSystem *this)"
   },
   "0x00417C50": {
     "name": "sub_417C50",
-    "signature": "double __thiscall(RoleSystem *this, float)"
+    "signature": "double __userpurge@<st0>(int this@<ecx>, double result@<st0>, float)"
   },
   "0x00418170": {
     "name": "sub_418170",
-    "signature": "double __stdcall(int)"
+    "signature": "int __thiscall(float *this, struct gbOBBox *)"
   },
   "0x0041A1A0": {
     "name": "sub_41A1A0",
-    "signature": "double __stdcall(float)"
+    "signature": "void __thiscall(int this, float)"
   },
   "0x0041A450": {
     "name": "sub_41A450",
-    "signature": "double __thiscall(RoleSystem *this, float)"
+    "signature": "void __thiscall(int this, float)"
   },
   "0x0041CC50": {
     "name": "sub_41CC50",
-    "signature": "double __thiscall(CameraCtrl *this, float)"
+    "signature": "int __thiscall(int this, float)"
   },
   "0x0041CFC0": {
     "name": "sub_41CFC0",
-    "signature": "double __stdcall(int, int, int)"
+    "signature": "int __thiscall(_DWORD *this, _DWORD *, int, int)"
   },
   "0x0041D010": {
     "name": "sub_41D010",
-    "signature": "double __stdcall(int, int, int, int)"
+    "signature": "int __thiscall(_DWORD *this, int, _DWORD *, int, int)"
   },
   "0x0041E720": {
     "name": "sub_41E720",
-    "signature": "double __cdecl(int)"
+    "signature": "void __cdecl(int)"
   },
   "0x0041F120": {
     "name": "sub_41F120",
-    "signature": "double __stdcall(float, int, int)"
+    "signature": "_DWORD *__thiscall(char *this, float, float *, _DWORD *)"
   },
   "0x00420320": {
     "name": "sub_420320",
-    "signature": "double __stdcall(int, char)"
+    "signature": "int __thiscall(_DWORD *this, int *, char)"
   },
   "0x00420730": {
     "name": "sub_420730",
-    "signature": "double __stdcall(int)"
+    "signature": "void __thiscall(int this, int)"
   },
   "0x00420A10": {
     "name": "sub_420A10",
-    "signature": "int __stdcall(int, int nY, int)"
+    "signature": "_DWORD *__thiscall(_DWORD *this, int, int, int)"
   },
   "0x00420A90": {
     "name": "sub_420A90",
-    "signature": "double __stdcall(float, int, float, int)"
+    "signature": "void __thiscall(float *this, float, int, float, int)"
   },
   "0x00420B40": {
     "name": "sub_420B40",
-    "signature": "double __stdcall(RoleSystem *, float, char)"
+    "signature": "void __thiscall(_BYTE *this, RoleSystem *, float, char)"
   },
   "0x00420FB0": {
     "name": "sub_420FB0",
-    "signature": "double __thiscall(RoleSystem *this, int index, int, int)"
+    "signature": "BOOL __thiscall(RoleSystem *this, int *index, float *, int)"
   },
   "0x00421150": {
     "name": "sub_421150",
-    "signature": "double __stdcall(char, int index, int a2, int a3)"
+    "signature": "BOOL __thiscall(RoleSystem *this, char arg0, int index, int *, int)"
   },
   "0x00421230": {
     "name": "sub_421230",
-    "signature": "double __stdcall(int index, int nY, int, int)"
+    "signature": "double __thiscall(RoleSystem *this, int index, int, int, _DWORD *)"
   },
   "0x004214B0": {
     "name": "sub_4214B0",
-    "signature": "int __stdcall(int index, int nY, int)"
+    "signature": "BOOL __thiscall(RoleSystem *this, int index, int, int)"
   },
   "0x00421BF0": {
     "name": "sub_421BF0",
-    "signature": "double __stdcall(int)"
+    "signature": "char *__thiscall(char *this, int)"
   },
   "0x00426EB0": {
     "name": "sub_426EB0",
-    "signature": "double __thiscall(RoleSystem *this, float dt)"
+    "signature": "double __userpurge@<st0>(int this@<ecx>, double result@<st0>, double@<st1>, int dt)"
   },
   "0x00429AF0": {
     "name": "sub_429AF0",
-    "signature": "double __stdcall(int, int)"
+    "signature": "void __thiscall(char *this, const char *, int)"
   },
   "0x00429D10": {
     "name": "sub_429D10",
-    "signature": "double __stdcall(int)"
+    "signature": "_DWORD *__thiscall(_DWORD **this, int)"
   },
   "0x00429DB0": {
     "name": "sub_429DB0",
-    "signature": "double __stdcall(int)"
+    "signature": "void __thiscall(int this, gbMatrix4 *)"
   },
   "0x0042A950": {
     "name": "sub_42A950",
-    "signature": "double __stdcall(int)"
+    "signature": "BOOL __thiscall(int this, struct gbVec3D *)"
   },
   "0x0042B510": {
     "name": "sub_42B510",
-    "signature": "double __thiscall(RoleSystem *this)"
+    "signature": "void __thiscall(int this)"
   },
   "0x0042B5B0": {
     "name": "sub_42B5B0",
-    "signature": "double __thiscall(RoleSystem *this, int, int)"
+    "signature": "double __userpurge@<st0>(int this@<ecx>, double@<st1>, int, int)"
   },
   "0x0042BEF0": {
     "name": "sub_42BEF0",
-    "signature": "double __cdecl(int a2)"
+    "signature": "void __cdecl(int)"
   },
   "0x0042C0C0": {
     "name": "sub_42C0C0",
-    "signature": "double __stdcall(int, int)"
+    "signature": "_DWORD *__thiscall(_DWORD *this, int, int)"
   },
   "0x0042C280": {
     "name": "sub_42C280",
-    "signature": "double __thiscall(RoleSystem *this, char)"
+    "signature": "struct gbVFileSystem *__thiscall(int this, char)"
   },
   "0x0042C950": {
     "name": "sub_42C950",
-    "signature": "double __stdcall(int, int, int, int)"
+    "signature": "int __thiscall(float *this, _DWORD *, int, unsigned __int8, unsigned __int8)"
   },
   "0x0042CF60": {
     "name": "sub_42CF60",
-    "signature": "double __stdcall(int, int)"
+    "signature": "int __thiscall(float *this, int, unsigned __int8)"
   },
   "0x0042D130": {
     "name": "sub_42D130",
-    "signature": "double __stdcall(int)"
+    "signature": "int __thiscall(float *this, unsigned __int8)"
   },
   "0x0042D2F0": {
     "name": "sub_42D2F0",
-    "signature": "double __stdcall(int)"
+    "signature": "int __thiscall(float *this, unsigned __int8)"
   },
   "0x0042D670": {
     "name": "sub_42D670",
-    "signature": "double __stdcall(int)"
+    "signature": "int __thiscall(float *this, unsigned __int8)"
   },
   "0x0042D830": {
     "name": "sub_42D830",
-    "signature": "double __stdcall(int)"
+    "signature": "int __thiscall(float *this, unsigned __int8)"
   },
   "0x0042D9F0": {
     "name": "sub_42D9F0",
-    "signature": "double __stdcall(int)"
+    "signature": "int __thiscall(float *this, _DWORD *)"
   },
   "0x0042E870": {
     "name": "sub_42E870",
-    "signature": "double __stdcall(int)"
+    "signature": "int __thiscall(float *this, int)"
   },
   "0x0042F460": {
     "name": "sub_42F460",
-    "signature": "double __thiscall(PalScriptMgr *this, float)"
+    "signature": "void __thiscall(int this, float)"
   },
   "0x0042FB40": {
     "name": "sub_42FB40",
-    "signature": "double __stdcall(char)"
+    "signature": "char __thiscall(int this, char)"
   },
   "0x00432600": {
     "name": "sub_432600",
-    "signature": "double __cdecl(int)"
+    "signature": "char __cdecl(int)"
   },
   "0x0044B0F0": {
     "name": "sub_44B0F0",
-    "signature": "int __thiscall(UIWnd *this, int a2, int a3)"
+    "signature": "int __thiscall(int this, struct PalScript *, int)"
   },
   "0x0044C8A0": {
     "name": "sub_44C8A0",
-    "signature": "double __stdcall(float)"
+    "signature": "char __thiscall(int this, float)"
   },
   "0x0044DA30": {
     "name": "sub_44DA30",
-    "signature": "double __stdcall(float)"
+    "signature": "char __thiscall(int this, float)"
   },
   "0x0044DB70": {
     "name": "sub_44DB70",
-    "signature": "double __thiscall(UIWnd *this, int a2, int a3)"
+    "signature": "void __userpurge(int this@<ecx>, double st6_0@<st1>, float, int)"
   },
   "0x004501A0": {
     "name": "sub_4501A0",
-    "signature": "double __stdcall(float, int)"
+    "signature": "void __thiscall(float *this, float, int)"
   },
   "0x00450BC0": {
     "name": "sub_450BC0",
-    "signature": "double __thiscall(int bVisible, int)"
+    "signature": "int __thiscall(char *this, const char *)"
   },
   "0x00451AF0": {
     "name": "sub_451AF0",
-    "signature": "double __stdcall(char *Source, int)"
+    "signature": "int __thiscall(int *this, char *Source, int)"
   },
   "0x004520A0": {
     "name": "sub_4520A0",
-    "signature": "double __thiscall(UIWnd *this, int, int a3)"
+    "signature": "double __userpurge@<st0>(int this@<ecx>, double result@<st0>, int arg0, int)"
   },
   "0x00452DF0": {
     "name": "sub_452DF0",
-    "signature": "int __stdcall(int, int nRoleIndex)"
+    "signature": "void __stdcall(int *, int)"
   },
   "0x00456200": {
     "name": "sub_456200",
-    "signature": "double __cdecl(int)"
+    "signature": "FILE *__usercall@<eax>(double@<st1>, int)"
   },
   "0x0045A4F0": {
     "name": "sub_45A4F0",
-    "signature": "int __thiscall(UIWnd *this, int a2, int a3)"
+    "signature": "int __thiscall(int this, struct PalScript *, int)"
   },
   "0x0045B990": {
     "name": "sub_45B990",
@@ -9169,15 +9169,15 @@
   },
   "0x00461BF0": {
     "name": "sub_461BF0",
-    "signature": "int __userpurge@<eax>(unsigned __int8 nMax@<cl>, int)"
+    "signature": "int __thiscall(_DWORD *this, int)"
   },
   "0x00462120": {
     "name": "sub_462120",
-    "signature": "int __thiscall(int nInputID, int)"
+    "signature": "int __thiscall(int this, int)"
   },
   "0x004623A0": {
     "name": "sub_4623A0",
-    "signature": "int __thiscall(void *pData, int)"
+    "signature": "int __thiscall(_DWORD *this, int)"
   },
   "0x0046A8B0": {
     "name": "sub_46A8B0",
@@ -9189,146 +9189,3678 @@
   },
   "0x00473B50": {
     "name": "sub_473B50",
-    "signature": "int __stdcall(UIListBox *, int nParam)"
+    "signature": "UIListBox *__thiscall(int this, UIListBox *, unsigned int *arg4)"
   },
   "0x0047C3A0": {
     "name": "sub_47C3A0",
-    "signature": "int __thiscall(UIWnd *this, int a2, int a3)"
+    "signature": "int __thiscall(int this, struct PalScript *, int)"
   },
   "0x004947E0": {
     "name": "sub_4947E0",
-    "signature": "int __stdcall(unsigned int, int, char)"
+    "signature": "char __thiscall(int this, unsigned int, int, char)"
   },
   "0x00494880": {
     "name": "sub_494880",
-    "signature": "int __stdcall(int nParam)"
+    "signature": "void __thiscall(int this, int)"
   },
   "0x004974A0": {
     "name": "sub_4974A0",
-    "signature": "int __thiscall(int nSlotIdx, int, int, int nItemID)"
+    "signature": "int __thiscall(int this, int, char *, int)"
   },
   "0x0049A360": {
     "name": "sub_49A360",
-    "signature": "double __stdcall(int)"
+    "signature": "void __thiscall(char *this, int)"
   },
   "0x0049AEA0": {
     "name": "sub_49AEA0",
-    "signature": "double __stdcall(int)"
+    "signature": "void __thiscall(char *this, int)"
   },
   "0x0049B2E0": {
     "name": "sub_49B2E0",
-    "signature": "double __stdcall(int, char)"
+    "signature": "void __thiscall(int this, int arg0, char arg4)"
   },
   "0x0049C2C0": {
     "name": "sub_49C2C0",
-    "signature": "double __stdcall(unsigned int, char)"
+    "signature": "char __thiscall(int this, unsigned int, char)"
   },
   "0x0049C660": {
     "name": "sub_49C660",
-    "signature": "double __stdcall(unsigned int)"
+    "signature": "int __thiscall(char *this, int)"
   },
   "0x0049CF80": {
     "name": "sub_49CF80",
-    "signature": "double __userpurge@<st0>(unsigned __int8 bVisible@<cl>, void *elem)"
+    "signature": "double __fastcall(int *, int, int elem)"
   },
   "0x0049FA10": {
     "name": "sub_49FA10",
-    "signature": "double __stdcall(int)"
+    "signature": "int __thiscall(_DWORD *this, int)"
   },
   "0x004A0370": {
     "name": "sub_4A0370",
-    "signature": "double __userpurge@<st0>(unsigned __int8 bVisible@<cl>, int, int, unsigned int)"
+    "signature": "void __thiscall(int this, int, char *, int)"
   },
   "0x004A4C20": {
     "name": "sub_4A4C20",
-    "signature": "int __thiscall(void *this)"
+    "signature": "int __thiscall(EquipUI *this)"
   },
   "0x004A4FC0": {
     "name": "sub_4A4FC0",
-    "signature": "double __thiscall(UIWnd *this)"
+    "signature": "BOOL __thiscall(int this)"
   },
   "0x004AD540": {
     "name": "sub_4AD540",
-    "signature": "int __thiscall(UIWnd *this, int a2, int a3)"
+    "signature": "BOOL __thiscall(int this, int, int)"
   },
   "0x004E1190": {
     "name": "sub_4E1190",
-    "signature": "int __stdcall(int, HWND hDlg, int, BOOL bReadOnly, int)"
+    "signature": "int __stdcall(void *, HWND hDlg, unsigned int, int, int)"
   },
   "0x004E6020": {
     "name": "sub_4E6020",
-    "signature": "int __stdcall(int nParam, HWND hDlg, int, int, int)"
+    "signature": "int __stdcall(CCBStageCam *nParam, HWND hDlg, int arg8, int argC, int)"
   },
   "0x004ECB20": {
     "name": "sub_4ECB20",
-    "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+    "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
   },
   "0x004EEF20": {
     "name": "sub_4EEF20",
-    "signature": "int __stdcall(int, int roleIdx)"
+    "signature": "int __thiscall(CCBRoleState *this, const void *, unsigned int roleIdx)"
   },
   "0x004F2690": {
     "name": "sub_4F2690",
-    "signature": "int __thiscall(CCBSystem *this, _DWORD *arg0, int roleIdx)"
+    "signature": "int __thiscall(CCBRoleState *this, _DWORD *, int)"
   },
   "0x00523B90": {
     "name": "sub_523B90",
-    "signature": "int __thiscall(int nDelta, int, int, int)"
+    "signature": "int __thiscall(int this, int, int, int)"
   },
   "0x00529E40": {
     "name": "sub_529E40",
-    "signature": "double __thiscall(UIWnd *this, int, int a3)"
+    "signature": "double __userpurge@<st0>(int this@<ecx>, double st6_0@<st1>, double result@<st0>, int arg0, int)"
   },
   "0x0052C480": {
     "name": "sub_52C480",
-    "signature": "double __thiscall(UIWnd *this, int a2, int a3)"
+    "signature": "double __userpurge@<st0>(int this@<ecx>, int edi0@<edi>, double result@<st0>, int, int)"
   },
   "0x0052F6C0": {
     "name": "sub_52F6C0",
-    "signature": "int __thiscall(char *)"
+    "signature": "char *__thiscall(char *this)"
   },
   "0x00533250": {
     "name": "sub_533250",
-    "signature": "double __stdcall(float)"
+    "signature": "double __userpurge@<st0>(int this@<ecx>, double result@<st0>, float)"
   },
   "0x00535930": {
     "name": "sub_535930",
-    "signature": "double __stdcall(int)"
+    "signature": "struct gbVFileSystem *__userpurge@<eax>(_DWORD *this@<ecx>, double@<st1>, int)"
   },
   "0x005359B0": {
     "name": "sub_5359B0",
-    "signature": "double __stdcall(double a3)"
+    "signature": "double __userpurge@<st0>(char *this@<ecx>, double st7_0@<st0>, double)"
   },
   "0x00535E70": {
     "name": "sub_535E70",
-    "signature": "double __stdcall(int, int, int, int)"
+    "signature": "int __thiscall(int this, int, int, int, int)"
   },
   "0x00537070": {
     "name": "sub_537070",
-    "signature": "double __stdcall(int)"
+    "signature": "int __thiscall(gbVisNode **this, const char *)"
   },
   "0x00538D60": {
     "name": "sub_538D60",
-    "signature": "int __stdcall(__int16 nActionID)"
+    "signature": "void __userpurge(_DWORD *this@<ecx>, double@<st1>, _DWORD *)"
   },
   "0x00539540": {
     "name": "sub_539540",
-    "signature": "double __stdcall(int, int, int)"
+    "signature": "int __thiscall(_DWORD *this, const char *, const char *, int)"
   },
   "0x0053A0C0": {
     "name": "sub_53A0C0",
-    "signature": "int __stdcall(int, int nY)"
+    "signature": "int __thiscall(_DWORD *this, _DWORD *, char **)"
   },
   "0x0053A8D0": {
     "name": "sub_53A8D0",
-    "signature": "int __stdcall(int, int nX, int nY)"
+    "signature": "unsigned int __thiscall(_DWORD *this, char *, unsigned int nX, char *nY)"
   },
   "0x0053AF30": {
     "name": "sub_53AF30",
-    "signature": "int __stdcall(int nY, int, int nX)"
+    "signature": "int __stdcall(int, int, int)"
   },
   "0x0053AF70": {
     "name": "sub_53AF70",
-    "signature": "int __stdcall(int nX, int, int nY)"
+    "signature": "void __stdcall(int, int, int)"
+  },
+  "0x004012A0": {
+    "name": "sub_4012A0",
+    "signature": "int __thiscall(_DWORD *this, int, int, int, int, int)"
+  },
+  "0x00401860": {
+    "name": "sub_401860",
+    "signature": "void()"
+  },
+  "0x004018A0": {
+    "name": "sub_4018A0",
+    "signature": "gbRefObject *__thiscall(gbRefObject **this)"
+  },
+  "0x004018B0": {
+    "name": "sub_4018B0",
+    "signature": "gbVFileSystem *__thiscall(gbTexture **this, gbTexture *, gbTexture **)"
+  },
+  "0x00401B90": {
+    "name": "sub_401B90",
+    "signature": "void()"
+  },
+  "0x00403B80": {
+    "name": "sub_403B80",
+    "signature": "int __thiscall(char *this, char *)"
+  },
+  "0x00404300": {
+    "name": "nullsub_2",
+    "signature": "void __stdcall(int, int)"
+  },
+  "0x00404480": {
+    "name": "sub_404480",
+    "signature": "void()"
+  },
+  "0x004070A0": {
+    "name": "sub_4070A0",
+    "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+  },
+  "0x00407DA0": {
+    "name": "sub_407DA0",
+    "signature": "void()"
+  },
+  "0x00407EC0": {
+    "name": "sub_407EC0",
+    "signature": "BOOL __userpurge@<eax>(float *this@<ecx>, double@<st0>, double@<st2>, float *, float *, _DWORD *)"
+  },
+  "0x00408010": {
+    "name": "sub_408010",
+    "signature": "void __userpurge(float *this@<ecx>, double@<st1>, float *)"
+  },
+  "0x004083E0": {
+    "name": "sub_4083E0",
+    "signature": "BOOL __thiscall(_DWORD *this, int *nFlag, int)"
+  },
+  "0x00408690": {
+    "name": "sub_408690",
+    "signature": "void()"
+  },
+  "0x004089E0": {
+    "name": "sub_4089E0",
+    "signature": "void()"
+  },
+  "0x00408B00": {
+    "name": "sub_408B00",
+    "signature": "void()"
+  },
+  "0x0040CB80": {
+    "name": "sub_40CB80",
+    "signature": "RoleSystem *__cdecl(unsigned __int16)"
+  },
+  "0x0040DE10": {
+    "name": "sub_40DE10",
+    "signature": "char *__cdecl(char *)"
+  },
+  "0x0040E0A0": {
+    "name": "sub_40E0A0",
+    "signature": "void __cdecl(int)"
+  },
+  "0x0040E840": {
+    "name": "sub_40E840",
+    "signature": "int *__cdecl(int, int)"
+  },
+  "0x0040FF70": {
+    "name": "sub_40FF70",
+    "signature": "__int8 *__cdecl(int, int)"
+  },
+  "0x00410430": {
+    "name": "sub_410430",
+    "signature": "void __cdecl(void *pStack)"
+  },
+  "0x00410840": {
+    "name": "sub_410840",
+    "signature": "PalScript *__cdecl(PalScript *)"
+  },
+  "0x00410920": {
+    "name": "sub_410920",
+    "signature": "int *__thiscall(void *this)"
+  },
+  "0x00411290": {
+    "name": "sub_411290",
+    "signature": "unsigned int __cdecl(char *, char *, void **)"
+  },
+  "0x00411770": {
+    "name": "sub_411770",
+    "signature": "void()"
+  },
+  "0x004117D0": {
+    "name": "sub_4117D0",
+    "signature": "void()"
+  },
+  "0x00411B70": {
+    "name": "sub_411B70",
+    "signature": "void __thiscall(vtbl_0056A9CC **this)"
+  },
+  "0x00411BA0": {
+    "name": "sub_411BA0",
+    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+  },
+  "0x004132B0": {
+    "name": "sub_4132B0",
+    "signature": "char __thiscall(RoleSystem *this, int, int, int)"
+  },
+  "0x00413390": {
+    "name": "sub_413390",
+    "signature": "void __thiscall(gbVec3D *this, float)"
+  },
+  "0x00414A00": {
+    "name": "sub_414A00",
+    "signature": "void()"
+  },
+  "0x00416760": {
+    "name": "sub_416760",
+    "signature": "void()"
+  },
+  "0x00417040": {
+    "name": "sub_417040",
+    "signature": "void __thiscall(int this, int)"
+  },
+  "0x00417BC0": {
+    "name": "sub_417BC0",
+    "signature": "void __thiscall(RoleSystem *this)"
+  },
+  "0x004189C0": {
+    "name": "sub_4189C0",
+    "signature": "int __thiscall(int this, char *, int, char *, int, float, int)"
+  },
+  "0x00419A20": {
+    "name": "sub_419A20",
+    "signature": "void __userpurge(_DWORD *this@<ecx>, double@<st0>, int, int, int)"
+  },
+  "0x00419B00": {
+    "name": "sub_419B00",
+    "signature": "__int64()"
+  },
+  "0x00419B30": {
+    "name": "sub_419B30",
+    "signature": "void __thiscall(RoleSystem *this, float)"
+  },
+  "0x0041A150": {
+    "name": "sub_41A150",
+    "signature": "void __thiscall(const char *this, const char *)"
+  },
+  "0x0041B6C0": {
+    "name": "sub_41B6C0",
+    "signature": "char __thiscall(RoleSystem *this, int)"
+  },
+  "0x0041B9F0": {
+    "name": "sub_41B9F0",
+    "signature": "unsigned int __thiscall(int this, int animId)"
+  },
+  "0x0041BCA0": {
+    "name": "sub_41BCA0",
+    "signature": "int __thiscall(gbVec3D *this, unsigned __int8 *)"
+  },
+  "0x0041BE60": {
+    "name": "sub_41BE60",
+    "signature": "void()"
+  },
+  "0x0041C9A0": {
+    "name": "sub_41C9A0",
+    "signature": "int __thiscall(_DWORD *this, int, int, int, int, int, int, int)"
+  },
+  "0x0041CA30": {
+    "name": "sub_41CA30",
+    "signature": "int __thiscall(_DWORD *this, int, int, int, int, int, int)"
+  },
+  "0x0041CBC0": {
+    "name": "sub_41CBC0",
+    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+  },
+  "0x0041D100": {
+    "name": "sub_41D100",
+    "signature": "int __thiscall(_DWORD *this, int)"
+  },
+  "0x0041D590": {
+    "name": "sub_41D590",
+    "signature": "int __thiscall(_DWORD *this, int)"
+  },
+  "0x0041D8F0": {
+    "name": "sub_41D8F0",
+    "signature": "void()"
+  },
+  "0x0041D950": {
+    "name": "sub_41D950",
+    "signature": "void()"
+  },
+  "0x0041F2A0": {
+    "name": "sub_41F2A0",
+    "signature": "void()"
+  },
+  "0x0041F2D0": {
+    "name": "sub_41F2D0",
+    "signature": "char *()"
+  },
+  "0x0041F6D0": {
+    "name": "sub_41F6D0",
+    "signature": "void()"
+  },
+  "0x0041F6F0": {
+    "name": "sub_41F6F0",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x0041F8C0": {
+    "name": "sub_41F8C0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x0041F9F0": {
+    "name": "sub_41F9F0",
+    "signature": "void()"
+  },
+  "0x0041FA70": {
+    "name": "sub_41FA70",
+    "signature": "void __cdecl(int, int)"
+  },
+  "0x0041FA90": {
+    "name": "sub_41FA90",
+    "signature": "void __userpurge(char *String1@<ecx>, double@<st1>, const char *, int)"
+  },
+  "0x00420200": {
+    "name": "sub_420200",
+    "signature": "unsigned __int8 *__thiscall(unsigned __int8 *this, __int16)"
+  },
+  "0x00420250": {
+    "name": "sub_420250",
+    "signature": "vtbl_0056AAD8 **__thiscall(vtbl_0056AAD8 **this)"
+  },
+  "0x00420270": {
+    "name": "sub_420270",
+    "signature": "vtbl_0056AAD8 **__thiscall(vtbl_0056AAD8 **Block, char)"
+  },
+  "0x00420290": {
+    "name": "sub_420290",
+    "signature": "void __thiscall(vtbl_0056AAD8 **this)"
+  },
+  "0x004202A0": {
+    "name": "sub_4202A0",
+    "signature": "void (__thiscall **__thiscall(void (__thiscall ***this)(void *), int))(void *)"
+  },
+  "0x00420430": {
+    "name": "sub_420430",
+    "signature": "char *__thiscall(char *Block, char)"
+  },
+  "0x004208F0": {
+    "name": "sub_4208F0",
+    "signature": "void __thiscall(vtbl_0056AAD8 **this)"
+  },
+  "0x00420910": {
+    "name": "sub_420910",
+    "signature": "vtbl_0056AAD8 **__thiscall(vtbl_0056AAD8 **Block, char)"
+  },
+  "0x00420930": {
+    "name": "sub_420930",
+    "signature": "void __thiscall(vtbl_0056AAD8 **this)"
+  },
+  "0x00420940": {
+    "name": "sub_420940",
+    "signature": "int __thiscall(int this, RoleSystem *, int index)"
+  },
+  "0x00420F70": {
+    "name": "sub_420F70",
+    "signature": "BOOL __thiscall(RoleSystem *this, int index, int *, int)"
+  },
+  "0x00421440": {
+    "name": "sub_421440",
+    "signature": "void __thiscall(RoleSystem *this, int index, float *, int *, _DWORD *)"
+  },
+  "0x004215B0": {
+    "name": "sub_4215B0",
+    "signature": "int __thiscall(RoleSystem *this, int *pResult, char *nFlag, int, char *, int)"
+  },
+  "0x00421710": {
+    "name": "sub_421710",
+    "signature": "int __thiscall(RoleSystem *this, int *pResult, int *nFlag, int *, int, int, int **)"
+  },
+  "0x004218B0": {
+    "name": "sub_4218B0",
+    "signature": "BOOL __thiscall(RoleSystem *this, int *pResult, int *nFlag, int *, char *, int, int **)"
+  },
+  "0x00421A90": {
+    "name": "sub_421A90",
+    "signature": "int __thiscall(RoleSystem *this, char, int, char *, int, char *, int)"
+  },
+  "0x00421D10": {
+    "name": "sub_421D10",
+    "signature": "int *__thiscall(_DWORD *this, int *, char)"
+  },
+  "0x00421EA0": {
+    "name": "sub_421EA0",
+    "signature": "void __thiscall(_DWORD *this)"
+  },
+  "0x00422050": {
+    "name": "sub_422050",
+    "signature": "_DWORD *__thiscall(_DWORD *this, char)"
+  },
+  "0x00422530": {
+    "name": "sub_422530",
+    "signature": "void()"
+  },
+  "0x00422730": {
+    "name": "sub_422730",
+    "signature": "void()"
+  },
+  "0x00422950": {
+    "name": "sub_422950",
+    "signature": "struct gbVFileSystem *__usercall@<eax>(double@<st1>, char *String2, char *, char, char)"
+  },
+  "0x00423680": {
+    "name": "sub_423680",
+    "signature": "void()"
+  },
+  "0x004236D0": {
+    "name": "sub_4236D0",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x00423880": {
+    "name": "sub_423880",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x0042AAE0": {
+    "name": "sub_42AAE0",
+    "signature": "BOOL __thiscall(int this, int *, int, struct gbVec3D *)"
+  },
+  "0x0042BEA0": {
+    "name": "sub_42BEA0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x0042C030": {
+    "name": "sub_42C030",
+    "signature": "void __thiscall(int this, int)"
+  },
+  "0x0042C6A0": {
+    "name": "sub_42C6A0",
+    "signature": "void __thiscall(char *this, struct gbAABBox *)"
+  },
+  "0x0042C8D0": {
+    "name": "sub_42C8D0",
+    "signature": "struct gbActor **__thiscall(struct gbActor **this, char)"
+  },
+  "0x0042C900": {
+    "name": "sub_42C900",
+    "signature": "void()"
+  },
+  "0x0042D4B0": {
+    "name": "sub_42D4B0",
+    "signature": "int __thiscall(float *this, unsigned __int8)"
+  },
+  "0x0042DBD0": {
+    "name": "sub_42DBD0",
+    "signature": "int __thiscall(float *this)"
+  },
+  "0x0042DD80": {
+    "name": "sub_42DD80",
+    "signature": "int __thiscall(float *this)"
+  },
+  "0x0042DF30": {
+    "name": "sub_42DF30",
+    "signature": "int __thiscall(float *this, int, unsigned __int8)"
+  },
+  "0x0042E100": {
+    "name": "sub_42E100",
+    "signature": "int __thiscall(float *this, unsigned __int8)"
+  },
+  "0x0042E2C0": {
+    "name": "sub_42E2C0",
+    "signature": "char *__thiscall(float *this, int, float, float, unsigned __int8)"
+  },
+  "0x0042E4D0": {
+    "name": "sub_42E4D0",
+    "signature": "int __thiscall(float *this, int)"
+  },
+  "0x0042E690": {
+    "name": "sub_42E690",
+    "signature": "void()"
+  },
+  "0x0042EA30": {
+    "name": "sub_42EA30",
+    "signature": "int __thiscall(float *this)"
+  },
+  "0x0042FF40": {
+    "name": "sub_42FF40",
+    "signature": "BOOL __thiscall(int *this, int, int, int *, int *)"
+  },
+  "0x004309D0": {
+    "name": "sub_4309D0",
+    "signature": "_DWORD *__thiscall(int this, _DWORD *, char *)"
+  },
+  "0x00431040": {
+    "name": "sub_431040",
+    "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *, int)"
+  },
+  "0x00431100": {
+    "name": "sub_431100",
+    "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *, void *, _DWORD *, char *)"
+  },
+  "0x00431CD0": {
+    "name": "sub_431CD0",
+    "signature": "void __thiscall(void **this)"
+  },
+  "0x00431D20": {
+    "name": "sub_431D20",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x004327F0": {
+    "name": "sub_4327F0",
+    "signature": "int __thiscall(PtrArray *this, void *)"
+  },
+  "0x00432870": {
+    "name": "sub_432870",
+    "signature": "unsigned __int8 *()"
+  },
+  "0x00432980": {
+    "name": "sub_432980",
+    "signature": "void __thiscall(PtrArray *this)"
+  },
+  "0x00432990": {
+    "name": "sub_432990",
+    "signature": "int __cdecl(const char *)"
+  },
+  "0x00433DC0": {
+    "name": "sub_433DC0",
+    "signature": "_DWORD *__cdecl(_DWORD *, int, int)"
+  },
+  "0x00434B70": {
+    "name": "sub_434B70",
+    "signature": "void()"
+  },
+  "0x00434D70": {
+    "name": "sub_434D70",
+    "signature": "char()"
+  },
+  "0x00434D90": {
+    "name": "sub_434D90",
+    "signature": "RoleSystem *()"
+  },
+  "0x00434E50": {
+    "name": "sub_434E50",
+    "signature": "char *()"
+  },
+  "0x00434E90": {
+    "name": "sub_434E90",
+    "signature": "char *()"
+  },
+  "0x004350F0": {
+    "name": "sub_4350F0",
+    "signature": "char *()"
+  },
+  "0x004351A0": {
+    "name": "sub_4351A0",
+    "signature": "void()"
+  },
+  "0x00435830": {
+    "name": "sub_435830",
+    "signature": "void()"
+  },
+  "0x00435BF0": {
+    "name": "sub_435BF0",
+    "signature": "void()"
+  },
+  "0x004360F0": {
+    "name": "sub_4360F0",
+    "signature": "void()"
+  },
+  "0x00436120": {
+    "name": "sub_436120",
+    "signature": "void()"
+  },
+  "0x00436130": {
+    "name": "sub_436130",
+    "signature": "unsigned int()"
+  },
+  "0x00436190": {
+    "name": "sub_436190",
+    "signature": "unsigned int()"
+  },
+  "0x00436280": {
+    "name": "sub_436280",
+    "signature": "RoleSystem *()"
+  },
+  "0x00436470": {
+    "name": "sub_436470",
+    "signature": "void()"
+  },
+  "0x004364E0": {
+    "name": "sub_4364E0",
+    "signature": "struct gbVFileSystem *__usercall@<eax>(double@<st1>)"
+  },
+  "0x004365A0": {
+    "name": "sub_4365A0",
+    "signature": "char *()"
+  },
+  "0x004365B0": {
+    "name": "sub_4365B0",
+    "signature": "void()"
+  },
+  "0x00436600": {
+    "name": "sub_436600",
+    "signature": "char *()"
+  },
+  "0x00436680": {
+    "name": "sub_436680",
+    "signature": "char *()"
+  },
+  "0x00436A60": {
+    "name": "sub_436A60",
+    "signature": "void()"
+  },
+  "0x00436AB0": {
+    "name": "sub_436AB0",
+    "signature": "char *()"
+  },
+  "0x00436C00": {
+    "name": "sub_436C00",
+    "signature": "void()"
+  },
+  "0x00437010": {
+    "name": "sub_437010",
+    "signature": "char()"
+  },
+  "0x00437550": {
+    "name": "sub_437550",
+    "signature": "void()"
+  },
+  "0x00437630": {
+    "name": "sub_437630",
+    "signature": "void()"
+  },
+  "0x00437650": {
+    "name": "sub_437650",
+    "signature": "void()"
+  },
+  "0x004377F0": {
+    "name": "sub_4377F0",
+    "signature": "void()"
+  },
+  "0x00437AE0": {
+    "name": "sub_437AE0",
+    "signature": "char *()"
+  },
+  "0x00437C40": {
+    "name": "sub_437C40",
+    "signature": "void()"
+  },
+  "0x00437C50": {
+    "name": "sub_437C50",
+    "signature": "void()"
+  },
+  "0x00437E60": {
+    "name": "sub_437E60",
+    "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+  },
+  "0x00437FF0": {
+    "name": "sub_437FF0",
+    "signature": "void()"
+  },
+  "0x004381B0": {
+    "name": "sub_4381B0",
+    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+  },
+  "0x00438350": {
+    "name": "sub_438350",
+    "signature": "void()"
+  },
+  "0x00438390": {
+    "name": "sub_438390",
+    "signature": "void()"
+  },
+  "0x004386B0": {
+    "name": "nullsub_103",
+    "signature": "void()"
+  },
+  "0x00438840": {
+    "name": "sub_438840",
+    "signature": "__int8 *()"
+  },
+  "0x00438900": {
+    "name": "sub_438900",
+    "signature": "void()"
+  },
+  "0x004389D0": {
+    "name": "sub_4389D0",
+    "signature": "char *()"
+  },
+  "0x00438B00": {
+    "name": "sub_438B00",
+    "signature": "char *()"
+  },
+  "0x00438B60": {
+    "name": "sub_438B60",
+    "signature": "PalScript *()"
+  },
+  "0x00438D00": {
+    "name": "sub_438D00",
+    "signature": "char *()"
+  },
+  "0x00438F10": {
+    "name": "sub_438F10",
+    "signature": "void()"
+  },
+  "0x00438F30": {
+    "name": "sub_438F30",
+    "signature": "_DWORD *()"
+  },
+  "0x00439010": {
+    "name": "sub_439010",
+    "signature": "void()"
+  },
+  "0x00439110": {
+    "name": "sub_439110",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00439A20": {
+    "name": "sub_439A20",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x0043A140": {
+    "name": "sub_43A140",
+    "signature": "void()"
+  },
+  "0x0043A1D0": {
+    "name": "sub_43A1D0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x0043A270": {
+    "name": "sub_43A270",
+    "signature": "int __thiscall(UIWnd *this)"
+  },
+  "0x0043A3E0": {
+    "name": "sub_43A3E0",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x0043A5D0": {
+    "name": "sub_43A5D0",
+    "signature": "gbVFileSystem *__thiscall(UIWnd **this, BOOL bVisible, UIWnd *)"
+  },
+  "0x0043A6E0": {
+    "name": "sub_43A6E0",
+    "signature": "void()"
+  },
+  "0x0043A750": {
+    "name": "sub_43A750",
+    "signature": "void()"
+  },
+  "0x0043A7F0": {
+    "name": "sub_43A7F0",
+    "signature": "UIScene *__thiscall(UIScene *Block, char)"
+  },
+  "0x0043A870": {
+    "name": "sub_43A870",
+    "signature": "gbVFileSystem *__thiscall(int this, int id, void *pRect, gbVFileSystem *parent, const char *, char, char)"
+  },
+  "0x0043AFE0": {
+    "name": "sub_43AFE0",
+    "signature": "unsigned __int8 __thiscall(_DWORD *this, int, unsigned int, unsigned int, int)"
+  },
+  "0x0043B060": {
+    "name": "sub_43B060",
+    "signature": "gbVFileSystem *__thiscall(UIWnd **this, int id, void *pRect, gbVFileSystem *parent, const char *, char)"
+  },
+  "0x0043B1E0": {
+    "name": "sub_43B1E0",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x0043B4B0": {
+    "name": "sub_43B4B0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x0043B500": {
+    "name": "sub_43B500",
+    "signature": "unsigned __int8 __thiscall(_DWORD *this, unsigned int, unsigned int, int)"
+  },
+  "0x0043B570": {
+    "name": "sub_43B570",
+    "signature": "gbVFileSystem *__thiscall(UIWnd **this, int id, void *pRect, gbVFileSystem *parent, LPCSTR lpString, char)"
+  },
+  "0x0043B900": {
+    "name": "sub_43B900",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x0043BB50": {
+    "name": "sub_43BB50",
+    "signature": "void()"
+  },
+  "0x0043BB90": {
+    "name": "sub_43BB90",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x0043BBC0": {
+    "name": "sub_43BBC0",
+    "signature": "BOOL __thiscall(const RECT *this, int, int)"
+  },
+  "0x0043BCC0": {
+    "name": "sub_43BCC0",
+    "signature": "void()"
+  },
+  "0x0043C7B0": {
+    "name": "sub_43C7B0",
+    "signature": "gbVFileSystem *__thiscall(int this, int id, _DWORD *, int parent, gbVFileSystem *, char)"
+  },
+  "0x0043D1A0": {
+    "name": "sub_43D1A0",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x0043D810": {
+    "name": "sub_43D810",
+    "signature": "void()"
+  },
+  "0x0043D860": {
+    "name": "sub_43D860",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x0043D890": {
+    "name": "sub_43D890",
+    "signature": "gbVFileSystem *__thiscall(UIWnd *this, int id, void *pRect, int, unsigned int, int parent)"
+  },
+  "0x0043D940": {
+    "name": "sub_43D940",
+    "signature": "void __thiscall(int *this)"
+  },
+  "0x0043EBE0": {
+    "name": "sub_43EBE0",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x0043F080": {
+    "name": "sub_43F080",
+    "signature": "int __thiscall(int this)"
+  },
+  "0x0043F520": {
+    "name": "sub_43F520",
+    "signature": "int __thiscall(int this)"
+  },
+  "0x0043F6A0": {
+    "name": "sub_43F6A0",
+    "signature": "unsigned int __thiscall(UIWnd *this, unsigned int, int)"
+  },
+  "0x0043F6D0": {
+    "name": "sub_43F6D0",
+    "signature": "int __thiscall(_DWORD *this, unsigned int)"
+  },
+  "0x0043F7D0": {
+    "name": "sub_43F7D0",
+    "signature": "void()"
+  },
+  "0x0043F950": {
+    "name": "sub_43F950",
+    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+  },
+  "0x00440560": {
+    "name": "sub_440560",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x00440720": {
+    "name": "sub_440720",
+    "signature": "void()"
+  },
+  "0x004407A0": {
+    "name": "sub_4407A0",
+    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+  },
+  "0x00440810": {
+    "name": "sub_440810",
+    "signature": "gbVFileSystem *__thiscall(UIWnd *this, int id, void *pRect, gbVFileSystem *parent, const char *, char)"
+  },
+  "0x00440960": {
+    "name": "sub_440960",
+    "signature": "gbVFileSystem *__thiscall(_DWORD *this, LPCSTR lpString, char)"
+  },
+  "0x00440A20": {
+    "name": "sub_440A20",
+    "signature": "gbVFileSystem *__thiscall(_DWORD *this, LPCSTR lpString, char)"
+  },
+  "0x00440BE0": {
+    "name": "sub_440BE0",
+    "signature": "gbVFileSystem *__thiscall(char *this, const char *, char)"
+  },
+  "0x00440CE0": {
+    "name": "sub_440CE0",
+    "signature": "gbVFileSystem *__thiscall(_DWORD *this, LPCSTR lpString, char)"
+  },
+  "0x004410D0": {
+    "name": "sub_4410D0",
+    "signature": "void()"
+  },
+  "0x004411B0": {
+    "name": "sub_4411B0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x004412C0": {
+    "name": "sub_4412C0",
+    "signature": "char *__thiscall(_DWORD *this, int id, void *pRect, int parent, char *, int, char)"
+  },
+  "0x004413C0": {
+    "name": "sub_4413C0",
+    "signature": "gbVFileSystem *__thiscall(UIWnd **this, gbVFileSystem *, char)"
+  },
+  "0x004414D0": {
+    "name": "sub_4414D0",
+    "signature": "void __thiscall(UIWnd **this)"
+  },
+  "0x004414F0": {
+    "name": "sub_4414F0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x00441730": {
+    "name": "sub_441730",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x00441E30": {
+    "name": "sub_441E30",
+    "signature": "int __thiscall(const RECT *this, unsigned int *)"
+  },
+  "0x004422C0": {
+    "name": "sub_4422C0",
+    "signature": "void()"
+  },
+  "0x00442370": {
+    "name": "sub_442370",
+    "signature": "UIFrameWnd *__thiscall(UIFrameWnd *Block, char)"
+  },
+  "0x00442540": {
+    "name": "sub_442540",
+    "signature": "gbVFileSystem *__thiscall(_DWORD *this, int)"
+  },
+  "0x00442CE0": {
+    "name": "sub_442CE0",
+    "signature": "void()"
+  },
+  "0x00442D00": {
+    "name": "sub_442D00",
+    "signature": "UIFrameWnd *__thiscall(UIFrameWnd *this)"
+  },
+  "0x00442D20": {
+    "name": "sub_442D20",
+    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+  },
+  "0x00442DF0": {
+    "name": "sub_442DF0",
+    "signature": "void()"
+  },
+  "0x00442E60": {
+    "name": "sub_442E60",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00442FF0": {
+    "name": "sub_442FF0",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x004431B0": {
+    "name": "sub_4431B0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00443380": {
+    "name": "sub_443380",
+    "signature": "UIFrameWnd *__thiscall(UIFrameWnd *this)"
+  },
+  "0x004433A0": {
+    "name": "sub_4433A0",
+    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+  },
+  "0x004433D0": {
+    "name": "sub_4433D0",
+    "signature": "void **__thiscall(UIWnd *this)"
+  },
+  "0x004434C0": {
+    "name": "sub_4434C0",
+    "signature": "UIWnd *__thiscall(UIWnd *this)"
+  },
+  "0x00443530": {
+    "name": "sub_443530",
+    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+  },
+  "0x004435A0": {
+    "name": "sub_4435A0",
+    "signature": "gbVFileSystem *__thiscall(int this, int id, int, int, int, int, int, int, const char *, int parent)"
+  },
+  "0x004438F0": {
+    "name": "sub_4438F0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x00443950": {
+    "name": "sub_443950",
+    "signature": "void **__thiscall(UIWnd *this)"
+  },
+  "0x00443970": {
+    "name": "sub_443970",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x00443CA0": {
+    "name": "sub_443CA0",
+    "signature": "char __thiscall(_BYTE *this, float)"
+  },
+  "0x00443FC0": {
+    "name": "sub_443FC0",
+    "signature": "char __thiscall(_DWORD *this, float, int, int)"
+  },
+  "0x00444AA0": {
+    "name": "sub_444AA0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00444D30": {
+    "name": "sub_444D30",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x00444F40": {
+    "name": "sub_444F40",
+    "signature": "void()"
+  },
+  "0x00444FF0": {
+    "name": "sub_444FF0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00445170": {
+    "name": "sub_445170",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x00445500": {
+    "name": "sub_445500",
+    "signature": "void __thiscall(struct tagRECT *this)"
+  },
+  "0x00445720": {
+    "name": "sub_445720",
+    "signature": "unsigned int __thiscall(UIWnd *this, int)"
+  },
+  "0x00445860": {
+    "name": "sub_445860",
+    "signature": "void __thiscall(char *this, const char *)"
+  },
+  "0x004459C0": {
+    "name": "sub_4459C0",
+    "signature": "void()"
+  },
+  "0x00445A30": {
+    "name": "sub_445A30",
+    "signature": "void()"
+  },
+  "0x00445A50": {
+    "name": "sub_445A50",
+    "signature": "char()"
+  },
+  "0x004460B0": {
+    "name": "sub_4460B0",
+    "signature": "void()"
+  },
+  "0x004461B0": {
+    "name": "sub_4461B0",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x004461D0": {
+    "name": "sub_4461D0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x004462C0": {
+    "name": "sub_4462C0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x00449B90": {
+    "name": "sub_449B90",
+    "signature": "char __thiscall(_DWORD *this)"
+  },
+  "0x00449C20": {
+    "name": "sub_449C20",
+    "signature": "int __thiscall(UIListBox *this)"
+  },
+  "0x0044A1B0": {
+    "name": "sub_44A1B0",
+    "signature": "BOOL __userpurge@<eax>(int this@<ecx>, double st6_0@<st1>, struct PalScript *, int)"
+  },
+  "0x0044A770": {
+    "name": "sub_44A770",
+    "signature": "void()"
+  },
+  "0x0044A790": {
+    "name": "sub_44A790",
+    "signature": "UIWnd *__thiscall(UIWnd *this)"
+  },
+  "0x0044A7D0": {
+    "name": "sub_44A7D0",
+    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+  },
+  "0x0044A870": {
+    "name": "sub_44A870",
+    "signature": "void __thiscall(float *this)"
+  },
+  "0x0044A970": {
+    "name": "sub_44A970",
+    "signature": "gbVFileSystem *__thiscall(_DWORD *this, int, int)"
+  },
+  "0x0044AB70": {
+    "name": "sub_44AB70",
+    "signature": "void()"
+  },
+  "0x0044ACC0": {
+    "name": "sub_44ACC0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x0044B630": {
+    "name": "sub_44B630",
+    "signature": "int __thiscall(int this, CHAR *lpString2, int, int, int)"
+  },
+  "0x0044B8A0": {
+    "name": "sub_44B8A0",
+    "signature": "LPSTR __thiscall(char *String1, CHAR *lpString2)"
+  },
+  "0x0044BA40": {
+    "name": "sub_44BA40",
+    "signature": "void()"
+  },
+  "0x0044BE40": {
+    "name": "sub_44BE40",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x0044C120": {
+    "name": "sub_44C120",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x0044C910": {
+    "name": "sub_44C910",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x0044DAC0": {
+    "name": "sub_44DAC0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x0044DFC0": {
+    "name": "sub_44DFC0",
+    "signature": "int __thiscall(int this, UICursor *, int, int)"
+  },
+  "0x0044E2B0": {
+    "name": "sub_44E2B0",
+    "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+  },
+  "0x0044E510": {
+    "name": "sub_44E510",
+    "signature": "void()"
+  },
+  "0x0044E530": {
+    "name": "sub_44E530",
+    "signature": "void __thiscall(void *)"
+  },
+  "0x0044E5E0": {
+    "name": "sub_44E5E0",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x0044E8B0": {
+    "name": "sub_44E8B0",
+    "signature": "void __thiscall(_DWORD *this, int, unsigned int)"
+  },
+  "0x0044E980": {
+    "name": "sub_44E980",
+    "signature": "BOOL __thiscall(UIWnd *this, int, int)"
+  },
+  "0x0044EB70": {
+    "name": "sub_44EB70",
+    "signature": "void()"
+  },
+  "0x0044F030": {
+    "name": "sub_44F030",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x0044F8D0": {
+    "name": "sub_44F8D0",
+    "signature": "CCBUI *__userpurge@<eax>(_DWORD *this@<ecx>, double@<st1>, int)"
+  },
+  "0x0044FF20": {
+    "name": "sub_44FF20",
+    "signature": "_DWORD *__thiscall(_DWORD *this)"
+  },
+  "0x0044FFC0": {
+    "name": "sub_44FFC0",
+    "signature": "void()"
+  },
+  "0x00450070": {
+    "name": "sub_450070",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x004500F0": {
+    "name": "sub_4500F0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x00450300": {
+    "name": "sub_450300",
+    "signature": "void()"
+  },
+  "0x00450320": {
+    "name": "sub_450320",
+    "signature": "void __thiscall(UIWnd *this)"
+  },
+  "0x00450370": {
+    "name": "sub_450370",
+    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+  },
+  "0x00450390": {
+    "name": "sub_450390",
+    "signature": "void __thiscall(UIWnd *this)"
+  },
+  "0x00450560": {
+    "name": "sub_450560",
+    "signature": "BOOL __thiscall(const RECT *this, int, int)"
+  },
+  "0x00450670": {
+    "name": "sub_450670",
+    "signature": "void __thiscall(UIWnd *this)"
+  },
+  "0x004506F0": {
+    "name": "sub_4506F0",
+    "signature": "void()"
+  },
+  "0x00450770": {
+    "name": "sub_450770",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00450990": {
+    "name": "sub_450990",
+    "signature": "int __thiscall(char *this, int, int, int)"
+  },
+  "0x00450A40": {
+    "name": "sub_450A40",
+    "signature": "void()"
+  },
+  "0x00450A60": {
+    "name": "sub_450A60",
+    "signature": "UIWnd *__thiscall(UIWnd *this)"
+  },
+  "0x00450C90": {
+    "name": "sub_450C90",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x00450DA0": {
+    "name": "sub_450DA0",
+    "signature": "void()"
+  },
+  "0x00451200": {
+    "name": "sub_451200",
+    "signature": "int __thiscall(int this, const char *arg0, int)"
+  },
+  "0x004512F0": {
+    "name": "sub_4512F0",
+    "signature": "void **__thiscall(UIWnd *this)"
+  },
+  "0x00451320": {
+    "name": "sub_451320",
+    "signature": "void __thiscall(UIWnd *this)"
+  },
+  "0x00451830": {
+    "name": "sub_451830",
+    "signature": "void()"
+  },
+  "0x00451CA0": {
+    "name": "sub_451CA0",
+    "signature": "void()"
+  },
+  "0x00451D80": {
+    "name": "sub_451D80",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00452560": {
+    "name": "sub_452560",
+    "signature": "void()"
+  },
+  "0x004525E0": {
+    "name": "sub_4525E0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x004526C0": {
+    "name": "sub_4526C0",
+    "signature": "BOOL __thiscall(UIWnd *this, int, int)"
+  },
+  "0x004526F0": {
+    "name": "sub_4526F0",
+    "signature": "int __thiscall(UIListBox *this)"
+  },
+  "0x00452770": {
+    "name": "sub_452770",
+    "signature": "void()"
+  },
+  "0x00452830": {
+    "name": "sub_452830",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00452AA0": {
+    "name": "sub_452AA0",
+    "signature": "void **__thiscall(UIWnd *this)"
+  },
+  "0x00452FB0": {
+    "name": "sub_452FB0",
+    "signature": "void()"
+  },
+  "0x00453010": {
+    "name": "sub_453010",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x004530C0": {
+    "name": "sub_4530C0",
+    "signature": "void __thiscall(_DWORD *this, const char *)"
+  },
+  "0x00453A70": {
+    "name": "sub_453A70",
+    "signature": "SceneObj *__thiscall(SceneObj *this, SceneObj *, unsigned int, unsigned int)"
+  },
+  "0x00453CF0": {
+    "name": "sub_453CF0",
+    "signature": "void()"
+  },
+  "0x00453E50": {
+    "name": "sub_453E50",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00454550": {
+    "name": "sub_454550",
+    "signature": "char __thiscall(UIListBox *this)"
+  },
+  "0x00454560": {
+    "name": "sub_454560",
+    "signature": "BOOL __thiscall(UIWnd *this, int, int)"
+  },
+  "0x00454810": {
+    "name": "sub_454810",
+    "signature": "void()"
+  },
+  "0x00454980": {
+    "name": "sub_454980",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x004549A0": {
+    "name": "sub_4549A0",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x00454CA0": {
+    "name": "sub_454CA0",
+    "signature": "void *__userpurge@<eax>(int@<ecx>, __int128)"
+  },
+  "0x004554D0": {
+    "name": "sub_4554D0",
+    "signature": "_DWORD *__thiscall(char *this)"
+  },
+  "0x00455790": {
+    "name": "sub_455790",
+    "signature": "_DWORD *__thiscall(_DWORD *this)"
+  },
+  "0x00455A20": {
+    "name": "sub_455A20",
+    "signature": "char __thiscall(char *this, char)"
+  },
+  "0x00455B30": {
+    "name": "sub_455B30",
+    "signature": "char __thiscall(char *this, char)"
+  },
+  "0x00455C40": {
+    "name": "sub_455C40",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x00456220": {
+    "name": "sub_456220",
+    "signature": "int __thiscall(char *this)"
+  },
+  "0x00456280": {
+    "name": "sub_456280",
+    "signature": "char __thiscall(char *this)"
+  },
+  "0x004562C0": {
+    "name": "sub_4562C0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x00456500": {
+    "name": "sub_456500",
+    "signature": "BOOL __thiscall(UIWnd *this, int, int)"
+  },
+  "0x00456590": {
+    "name": "sub_456590",
+    "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+  },
+  "0x00456A90": {
+    "name": "sub_456A90",
+    "signature": "void()"
+  },
+  "0x00456B60": {
+    "name": "sub_456B60",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00457340": {
+    "name": "sub_457340",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x00457490": {
+    "name": "sub_457490",
+    "signature": "LPSTR __thiscall(char *this, CHAR *lpString2)"
+  },
+  "0x00457F00": {
+    "name": "sub_457F00",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x00459050": {
+    "name": "sub_459050",
+    "signature": "void()"
+  },
+  "0x00459070": {
+    "name": "sub_459070",
+    "signature": "int *()"
+  },
+  "0x004590A0": {
+    "name": "sub_4590A0",
+    "signature": "int *()"
+  },
+  "0x00459240": {
+    "name": "sub_459240",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00459360": {
+    "name": "sub_459360",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x004593C0": {
+    "name": "sub_4593C0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x00459860": {
+    "name": "sub_459860",
+    "signature": "char __thiscall(_DWORD *this)"
+  },
+  "0x00459900": {
+    "name": "sub_459900",
+    "signature": "void __thiscall(_DWORD *this)"
+  },
+  "0x00459FA0": {
+    "name": "sub_459FA0",
+    "signature": "char __thiscall(_BYTE *this, unsigned __int8)"
+  },
+  "0x0045A020": {
+    "name": "sub_45A020",
+    "signature": "char __thiscall(_BYTE *this, unsigned __int8)"
+  },
+  "0x0045A0A0": {
+    "name": "sub_45A0A0",
+    "signature": "char __thiscall(_BYTE *this, unsigned __int8)"
+  },
+  "0x0045A120": {
+    "name": "sub_45A120",
+    "signature": "char __thiscall(_BYTE *this, unsigned __int8)"
+  },
+  "0x0045A1A0": {
+    "name": "sub_45A1A0",
+    "signature": "char __thiscall(_BYTE *this, unsigned __int8)"
+  },
+  "0x0045A600": {
+    "name": "sub_45A600",
+    "signature": "int __thiscall(UIWnd *this, int, int, int)"
+  },
+  "0x0045A790": {
+    "name": "sub_45A790",
+    "signature": "void()"
+  },
+  "0x0045AE40": {
+    "name": "sub_45AE40",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x0046B040": {
+    "name": "sub_46B040",
+    "signature": "int __thiscall(UIWnd *this, int, int)"
+  },
+  "0x0046D120": {
+    "name": "sub_46D120",
+    "signature": "void()"
+  },
+  "0x0046D4C0": {
+    "name": "sub_46D4C0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x0046ECC0": {
+    "name": "sub_46ECC0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x0046F2C0": {
+    "name": "sub_46F2C0",
+    "signature": "void __thiscall(_DWORD *this)"
+  },
+  "0x0046F620": {
+    "name": "sub_46F620",
+    "signature": "int __thiscall(UIWnd *this, int, int)"
+  },
+  "0x0046F650": {
+    "name": "sub_46F650",
+    "signature": "int __thiscall(char *this, int arg0, int, unsigned int)"
+  },
+  "0x00470A40": {
+    "name": "sub_470A40",
+    "signature": "void()"
+  },
+  "0x00470F20": {
+    "name": "sub_470F20",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00473520": {
+    "name": "sub_473520",
+    "signature": "void __thiscall(char *this, UIListBox *)"
+  },
+  "0x00474C50": {
+    "name": "sub_474C50",
+    "signature": "int __thiscall(UIWnd *this, int, int)"
+  },
+  "0x00475FC0": {
+    "name": "sub_475FC0",
+    "signature": "void __thiscall(_DWORD *this)"
+  },
+  "0x004765F0": {
+    "name": "sub_4765F0",
+    "signature": "void __userpurge(int@<ecx>, __int128)"
+  },
+  "0x00476ED0": {
+    "name": "sub_476ED0",
+    "signature": "void __userpurge(int@<ecx>, __int128)"
+  },
+  "0x00478860": {
+    "name": "sub_478860",
+    "signature": "void()"
+  },
+  "0x004792E0": {
+    "name": "sub_4792E0",
+    "signature": "void()"
+  },
+  "0x00479660": {
+    "name": "sub_479660",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00479890": {
+    "name": "sub_479890",
+    "signature": "int __thiscall(int this, int)"
+  },
+  "0x0047A400": {
+    "name": "sub_47A400",
+    "signature": "int __thiscall(float *this)"
+  },
+  "0x0047B200": {
+    "name": "sub_47B200",
+    "signature": "char __thiscall(UIListBox *this)"
+  },
+  "0x0047BBD0": {
+    "name": "sub_47BBD0",
+    "signature": "void()"
+  },
+  "0x0047BD00": {
+    "name": "sub_47BD00",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x0047BDF0": {
+    "name": "sub_47BDF0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x0047BE20": {
+    "name": "sub_47BE20",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x0047C1C0": {
+    "name": "sub_47C1C0",
+    "signature": "char __thiscall(_DWORD *this)"
+  },
+  "0x0047C260": {
+    "name": "sub_47C260",
+    "signature": "void __thiscall(_DWORD *this)"
+  },
+  "0x0047DC80": {
+    "name": "sub_47DC80",
+    "signature": "void()"
+  },
+  "0x0047E190": {
+    "name": "sub_47E190",
+    "signature": "void __thiscall(int this, int)"
+  },
+  "0x0047E5A0": {
+    "name": "sub_47E5A0",
+    "signature": "void()"
+  },
+  "0x0047E8F0": {
+    "name": "sub_47E8F0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x0047F880": {
+    "name": "sub_47F880",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x00480070": {
+    "name": "sub_480070",
+    "signature": "int __thiscall(int this, int, unsigned __int8, int)"
+  },
+  "0x004819A0": {
+    "name": "sub_4819A0",
+    "signature": "OpenNULLFile *__thiscall(int this, OpenNULLFile *, int)"
+  },
+  "0x00481CB0": {
+    "name": "sub_481CB0",
+    "signature": "void __thiscall(int this, int)"
+  },
+  "0x00481EB0": {
+    "name": "sub_481EB0",
+    "signature": "void __thiscall(int this, int, int)"
+  },
+  "0x00482BB0": {
+    "name": "sub_482BB0",
+    "signature": "int __thiscall(PalScript **this)"
+  },
+  "0x00482EB0": {
+    "name": "sub_482EB0",
+    "signature": "void()"
+  },
+  "0x00483260": {
+    "name": "sub_483260",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00483300": {
+    "name": "sub_483300",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x00483650": {
+    "name": "sub_483650",
+    "signature": "void *__thiscall(int this, int)"
+  },
+  "0x00484D20": {
+    "name": "sub_484D20",
+    "signature": "int __thiscall(PalScript **this)"
+  },
+  "0x004850E0": {
+    "name": "sub_4850E0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x004867D0": {
+    "name": "sub_4867D0",
+    "signature": "void()"
+  },
+  "0x00486D00": {
+    "name": "sub_486D00",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00486EF0": {
+    "name": "sub_486EF0",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x00487B60": {
+    "name": "sub_487B60",
+    "signature": "int __thiscall(PalScript **this)"
+  },
+  "0x00489BA0": {
+    "name": "sub_489BA0",
+    "signature": "void __thiscall(int this, int, int)"
+  },
+  "0x0048A010": {
+    "name": "sub_48A010",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x0048D5D0": {
+    "name": "sub_48D5D0",
+    "signature": "void *__thiscall(int this, int)"
+  },
+  "0x0048E600": {
+    "name": "sub_48E600",
+    "signature": "int __thiscall(float *this)"
+  },
+  "0x004909D0": {
+    "name": "sub_4909D0",
+    "signature": "void()"
+  },
+  "0x00490E70": {
+    "name": "sub_490E70",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00490E90": {
+    "name": "sub_490E90",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x004910B0": {
+    "name": "sub_4910B0",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x00491B40": {
+    "name": "sub_491B40",
+    "signature": "int __thiscall(PalScript **this)"
+  },
+  "0x00492850": {
+    "name": "sub_492850",
+    "signature": "void __thiscall(UIWnd *this, int)"
+  },
+  "0x00492BB0": {
+    "name": "sub_492BB0",
+    "signature": "void __thiscall(UIWnd **this, int, int)"
+  },
+  "0x004930E0": {
+    "name": "sub_4930E0",
+    "signature": "void __thiscall(UIWnd *this, int)"
+  },
+  "0x00493290": {
+    "name": "sub_493290",
+    "signature": "__int8 *__thiscall(char *this, int)"
+  },
+  "0x004932D0": {
+    "name": "sub_4932D0",
+    "signature": "void __thiscall(int *this, int)"
+  },
+  "0x004945C0": {
+    "name": "sub_4945C0",
+    "signature": "int __thiscall(char *this, char)"
+  },
+  "0x004945E0": {
+    "name": "sub_4945E0",
+    "signature": "int __thiscall(char *this, char)"
+  },
+  "0x00494600": {
+    "name": "sub_494600",
+    "signature": "int __thiscall(char *this, char)"
+  },
+  "0x00494620": {
+    "name": "sub_494620",
+    "signature": "int __thiscall(char *this, char)"
+  },
+  "0x00494640": {
+    "name": "sub_494640",
+    "signature": "int __thiscall(char *this, char)"
+  },
+  "0x00496190": {
+    "name": "sub_496190",
+    "signature": "void *__thiscall(int this, int)"
+  },
+  "0x00496FA0": {
+    "name": "sub_496FA0",
+    "signature": "void __thiscall(UIListBox *this)"
+  },
+  "0x00498800": {
+    "name": "sub_498800",
+    "signature": "void()"
+  },
+  "0x00498C70": {
+    "name": "sub_498C70",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00498E60": {
+    "name": "sub_498E60",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x004998E0": {
+    "name": "sub_4998E0",
+    "signature": "int __thiscall(PalScript **this)"
+  },
+  "0x0049F2E0": {
+    "name": "sub_49F2E0",
+    "signature": "void *__userpurge@<eax>(int@<ecx>, int@<ebp>, int arg0)"
+  },
+  "0x0049FE00": {
+    "name": "sub_49FE00",
+    "signature": "void __thiscall(UIListBox *this)"
+  },
+  "0x004A12D0": {
+    "name": "sub_4A12D0",
+    "signature": "void()"
+  },
+  "0x004A1A80": {
+    "name": "sub_4A1A80",
+    "signature": "int __thiscall(UIWnd *this)"
+  },
+  "0x004A1AA0": {
+    "name": "sub_4A1AA0",
+    "signature": "BOOL __thiscall(int this, int, int)"
+  },
+  "0x004A1E20": {
+    "name": "sub_4A1E20",
+    "signature": "void()"
+  },
+  "0x004A2150": {
+    "name": "sub_4A2150",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x004A22E0": {
+    "name": "sub_4A22E0",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x004A4780": {
+    "name": "sub_4A4780",
+    "signature": "char __thiscall(_DWORD *this)"
+  },
+  "0x004A4820": {
+    "name": "sub_4A4820",
+    "signature": "void __thiscall(_DWORD *this)"
+  },
+  "0x004A4ED0": {
+    "name": "sub_4A4ED0",
+    "signature": "int __thiscall(PalScript **this)"
+  },
+  "0x004A5930": {
+    "name": "sub_4A5930",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x004A5A80": {
+    "name": "sub_4A5A80",
+    "signature": "int __thiscall(UIWnd *this)"
+  },
+  "0x004A5B30": {
+    "name": "sub_4A5B30",
+    "signature": "int __userpurge@<eax>(int this@<ecx>, double st6_0@<st1>, int, int)"
+  },
+  "0x004A6710": {
+    "name": "sub_4A6710",
+    "signature": "void()"
+  },
+  "0x004A8150": {
+    "name": "sub_4A8150",
+    "signature": "int __thiscall(PalScript **this)"
+  },
+  "0x004AA9C0": {
+    "name": "sub_4AA9C0",
+    "signature": "void __thiscall(_DWORD *this)"
+  },
+  "0x004AB2B0": {
+    "name": "sub_4AB2B0",
+    "signature": "void __thiscall(int *this, int)"
+  },
+  "0x004ACDE0": {
+    "name": "sub_4ACDE0",
+    "signature": "int __thiscall(float *this)"
+  },
+  "0x004ACF90": {
+    "name": "sub_4ACF90",
+    "signature": "int __thiscall(float *this)"
+  },
+  "0x004AD140": {
+    "name": "sub_4AD140",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x004ADC30": {
+    "name": "sub_4ADC30",
+    "signature": "int __userpurge@<eax>(int@<ecx>, int@<ebp>, UIWnd *@<edi>, int, char *, int)"
+  },
+  "0x004AF760": {
+    "name": "nullsub_73",
+    "signature": "void __stdcall(int)"
+  },
+  "0x004AF770": {
+    "name": "sub_4AF770",
+    "signature": "_DWORD *__thiscall(_DWORD *this, char *, unsigned int, int)"
+  },
+  "0x004AFB60": {
+    "name": "sub_4AFB60",
+    "signature": "_DWORD *__thiscall(_DWORD *this, _DWORD *)"
+  },
+  "0x004B01B0": {
+    "name": "sub_4B01B0",
+    "signature": "void()"
+  },
+  "0x004B0520": {
+    "name": "sub_4B0520",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x004B1580": {
+    "name": "sub_4B1580",
+    "signature": "int __thiscall(char *this, int)"
+  },
+  "0x004B1920": {
+    "name": "sub_4B1920",
+    "signature": "_DWORD *__thiscall(char *this, int)"
+  },
+  "0x004B1C50": {
+    "name": "sub_4B1C50",
+    "signature": "_DWORD *__thiscall(_DWORD *this)"
+  },
+  "0x004B1EA0": {
+    "name": "sub_4B1EA0",
+    "signature": "char __thiscall(char *this, char)"
+  },
+  "0x004B1FB0": {
+    "name": "sub_4B1FB0",
+    "signature": "char __thiscall(char *this, char)"
+  },
+  "0x004B20C0": {
+    "name": "sub_4B20C0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x004B2750": {
+    "name": "sub_4B2750",
+    "signature": "FILE *__userpurge@<eax>(_DWORD *this@<ecx>, double@<st1>, int Data)"
+  },
+  "0x004B2840": {
+    "name": "sub_4B2840",
+    "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+  },
+  "0x004B2C70": {
+    "name": "sub_4B2C70",
+    "signature": "void __thiscall(UIListBox *this)"
+  },
+  "0x004B2D20": {
+    "name": "sub_4B2D20",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x004B30C0": {
+    "name": "sub_4B30C0",
+    "signature": "char __thiscall(char *this)"
+  },
+  "0x004B3DA0": {
+    "name": "sub_4B3DA0",
+    "signature": "int __thiscall(UIWnd **this)"
+  },
+  "0x004B42F0": {
+    "name": "sub_4B42F0",
+    "signature": "int __thiscall(PalScript **this)"
+  },
+  "0x004B4600": {
+    "name": "sub_4B4600",
+    "signature": "void()"
+  },
+  "0x004B4670": {
+    "name": "sub_4B4670",
+    "signature": "void()"
+  },
+  "0x004B4FE0": {
+    "name": "sub_4B4FE0",
+    "signature": "__int64 __thiscall(float *this, char *, int, _TextureLib_Data *, int)"
+  },
+  "0x004B51A0": {
+    "name": "sub_4B51A0",
+    "signature": "__int64 __thiscall(char *this, char *, _TextureLib_Data *, int, int)"
+  },
+  "0x004B5380": {
+    "name": "sub_4B5380",
+    "signature": "__int64 __thiscall(int this, char *, int, _TextureLib_Data *, int)"
+  },
+  "0x004B5450": {
+    "name": "sub_4B5450",
+    "signature": "__int64 __thiscall(int this, char *, int, _TextureLib_Data *, int)"
+  },
+  "0x004B5570": {
+    "name": "sub_4B5570",
+    "signature": "__int64 __thiscall(int this, char *, int, _TextureLib_Data *, int)"
+  },
+  "0x004B5750": {
+    "name": "sub_4B5750",
+    "signature": "__int64 __thiscall(int this, char *, int, _TextureLib_Data *, int)"
+  },
+  "0x004B5830": {
+    "name": "sub_4B5830",
+    "signature": "__int64 __thiscall(float *this, char *, int, _TextureLib_Data *, int)"
+  },
+  "0x004B59B0": {
+    "name": "sub_4B59B0",
+    "signature": "__int64 __thiscall(char *this, char *, _TextureLib_Data *, int, int)"
+  },
+  "0x004B5BB0": {
+    "name": "sub_4B5BB0",
+    "signature": "__int64 __thiscall(float *this, char *, int, _TextureLib_Data *, int)"
+  },
+  "0x004B5D20": {
+    "name": "sub_4B5D20",
+    "signature": "void __thiscall(unsigned __int8 *this, int, int, int, int)"
+  },
+  "0x004B5EE0": {
+    "name": "sub_4B5EE0",
+    "signature": "char __thiscall(float *this, char *, int, _TextureLib_Data *, int)"
+  },
+  "0x004B60F0": {
+    "name": "sub_4B60F0",
+    "signature": "char __thiscall(float *this, char *, int, _TextureLib_Data *, int)"
+  },
+  "0x004B6300": {
+    "name": "sub_4B6300",
+    "signature": "__int64 __thiscall(int this, char *, int, _TextureLib_Data *, int)"
+  },
+  "0x004B6530": {
+    "name": "sub_4B6530",
+    "signature": "void()"
+  },
+  "0x004B66B0": {
+    "name": "sub_4B66B0",
+    "signature": "bool __usercall@<al>(int@<edi>, int@<esi>)"
+  },
+  "0x004B67B0": {
+    "name": "sub_4B67B0",
+    "signature": "void()"
+  },
+  "0x004B6C20": {
+    "name": "sub_4B6C20",
+    "signature": "vtbl_0056F36C **__thiscall(vtbl_0056F36C **this)"
+  },
+  "0x004B6C80": {
+    "name": "sub_4B6C80",
+    "signature": "vtbl_0056F36C **__thiscall(vtbl_0056F36C **Block, char)"
+  },
+  "0x004B6CA0": {
+    "name": "sub_4B6CA0",
+    "signature": "void __thiscall(vtbl_0056F36C **this)"
+  },
+  "0x004B6D00": {
+    "name": "sub_4B6D00",
+    "signature": "void()"
+  },
+  "0x004B6F70": {
+    "name": "sub_4B6F70",
+    "signature": "gbVisNode *__thiscall(gbVisNode *this)"
+  },
+  "0x004B70C0": {
+    "name": "sub_4B70C0",
+    "signature": "_DWORD *__stdcall(int)"
+  },
+  "0x004B72C0": {
+    "name": "sub_4B72C0",
+    "signature": "void()"
+  },
+  "0x004B72E0": {
+    "name": "sub_4B72E0",
+    "signature": "gbVisNode *__thiscall(gbVisNode *this)"
+  },
+  "0x004B7480": {
+    "name": "sub_4B7480",
+    "signature": "void()"
+  },
+  "0x004B74A0": {
+    "name": "sub_4B74A0",
+    "signature": "gbVisNode *__thiscall(gbVisNode *this)"
+  },
+  "0x004B7C10": {
+    "name": "sub_4B7C10",
+    "signature": "void()"
+  },
+  "0x004B7C30": {
+    "name": "sub_4B7C30",
+    "signature": "gbVisNode *__thiscall(gbVisNode *this)"
+  },
+  "0x004B7D30": {
+    "name": "sub_4B7D30",
+    "signature": "gbVFileSystem *__thiscall(char *this, int)"
+  },
+  "0x004B7F70": {
+    "name": "nullsub_11",
+    "signature": "void __stdcall(int)"
+  },
+  "0x004B82B0": {
+    "name": "sub_4B82B0",
+    "signature": "_DWORD *__thiscall(_DWORD *this)"
+  },
+  "0x004B86E0": {
+    "name": "sub_4B86E0",
+    "signature": "void __thiscall(_DWORD *this)"
+  },
+  "0x004B9E50": {
+    "name": "sub_4B9E50",
+    "signature": "void __thiscall(_DWORD *this)"
+  },
+  "0x004B9EA0": {
+    "name": "sub_4B9EA0",
+    "signature": "int __thiscall(int this, int, float *)"
+  },
+  "0x004BA0B0": {
+    "name": "sub_4BA0B0",
+    "signature": "int __thiscall(float *this, int, float *)"
+  },
+  "0x004BA150": {
+    "name": "sub_4BA150",
+    "signature": "void __thiscall(int this, float, float *)"
+  },
+  "0x004BA270": {
+    "name": "sub_4BA270",
+    "signature": "char *__thiscall(char *this)"
+  },
+  "0x004BA800": {
+    "name": "sub_4BA800",
+    "signature": "float *__thiscall(_DWORD *this, int, float *)"
+  },
+  "0x004BACA0": {
+    "name": "sub_4BACA0",
+    "signature": "void __thiscall(int this, struct gbVFile *)"
+  },
+  "0x004BAE60": {
+    "name": "sub_4BAE60",
+    "signature": "void __thiscall(int this, struct gbVFile *)"
+  },
+  "0x004BC740": {
+    "name": "sub_4BC740",
+    "signature": "void()"
+  },
+  "0x004BC760": {
+    "name": "sub_4BC760",
+    "signature": "char *__thiscall(char *this)"
+  },
+  "0x004BC7B0": {
+    "name": "sub_4BC7B0",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x004BC8A0": {
+    "name": "sub_4BC8A0",
+    "signature": "int __thiscall(char *this)"
+  },
+  "0x004BD830": {
+    "name": "sub_4BD830",
+    "signature": "gbVisNode *__thiscall(gbVisNode *this)"
+  },
+  "0x004BDA40": {
+    "name": "sub_4BDA40",
+    "signature": "void()"
+  },
+  "0x004BE080": {
+    "name": "sub_4BE080",
+    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+  },
+  "0x004BE810": {
+    "name": "sub_4BE810",
+    "signature": "_DWORD *__thiscall(_DWORD *this)"
+  },
+  "0x004BE8B0": {
+    "name": "sub_4BE8B0",
+    "signature": "void()"
+  },
+  "0x004BE8D0": {
+    "name": "sub_4BE8D0",
+    "signature": "int __thiscall(int this)"
+  },
+  "0x004BE8F0": {
+    "name": "sub_4BE8F0",
+    "signature": "vtbl_0056A9C0 **__thiscall(vtbl_0056A9C0 **Block, char)"
+  },
+  "0x004BE910": {
+    "name": "sub_4BE910",
+    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+  },
+  "0x004BE920": {
+    "name": "sub_4BE920",
+    "signature": "void __thiscall(float *this)"
+  },
+  "0x004BEA40": {
+    "name": "sub_4BEA40",
+    "signature": "void()"
+  },
+  "0x004BEA60": {
+    "name": "sub_4BEA60",
+    "signature": "RenderTarget *__thiscall(RenderTarget *this)"
+  },
+  "0x004BEAA0": {
+    "name": "sub_4BEAA0",
+    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+  },
+  "0x004BEAB0": {
+    "name": "sub_4BEAB0",
+    "signature": "void __thiscall(float *this)"
+  },
+  "0x004BEB90": {
+    "name": "sub_4BEB90",
+    "signature": "void()"
+  },
+  "0x004BEBB0": {
+    "name": "sub_4BEBB0",
+    "signature": "RenderTarget *__thiscall(RenderTarget *this)"
+  },
+  "0x004BEBF0": {
+    "name": "sub_4BEBF0",
+    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+  },
+  "0x004BECE0": {
+    "name": "sub_4BECE0",
+    "signature": "void()"
+  },
+  "0x004BED00": {
+    "name": "sub_4BED00",
+    "signature": "RenderTarget *__thiscall(RenderTarget *this)"
+  },
+  "0x004BED40": {
+    "name": "sub_4BED40",
+    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+  },
+  "0x004BEE40": {
+    "name": "sub_4BEE40",
+    "signature": "void()"
+  },
+  "0x004BEE60": {
+    "name": "sub_4BEE60",
+    "signature": "char *__thiscall(char *this)"
+  },
+  "0x004BEFB0": {
+    "name": "sub_4BEFB0",
+    "signature": "gbVFileSystem *__thiscall(char *this, int)"
+  },
+  "0x004BF740": {
+    "name": "sub_4BF740",
+    "signature": "void()"
+  },
+  "0x004C04A0": {
+    "name": "sub_4C04A0",
+    "signature": "void()"
+  },
+  "0x004C04C0": {
+    "name": "sub_4C04C0",
+    "signature": "vtbl_0056F5E4 **__thiscall(vtbl_0056F5E4 **this)"
+  },
+  "0x004C0520": {
+    "name": "sub_4C0520",
+    "signature": "vtbl_0056F5E4 **()"
+  },
+  "0x004C0610": {
+    "name": "nullsub_75",
+    "signature": "void __stdcall(int, int, int, int)"
+  },
+  "0x004C0740": {
+    "name": "sub_4C0740",
+    "signature": "void __fastcall(int, float)"
+  },
+  "0x004C1570": {
+    "name": "sub_4C1570",
+    "signature": "vtbl_0056F674 **__thiscall(vtbl_0056F674 **this)"
+  },
+  "0x004C15B0": {
+    "name": "sub_4C15B0",
+    "signature": "vtbl_0056F674 **()"
+  },
+  "0x004C2050": {
+    "name": "sub_4C2050",
+    "signature": "vtbl_0056F6C8 **__thiscall(vtbl_0056F6C8 **this)"
+  },
+  "0x004C2090": {
+    "name": "sub_4C2090",
+    "signature": "vtbl_0056F6C8 **()"
+  },
+  "0x004C27D0": {
+    "name": "sub_4C27D0",
+    "signature": "vtbl_0056F71C **__thiscall(vtbl_0056F71C **this)"
+  },
+  "0x004C2820": {
+    "name": "sub_4C2820",
+    "signature": "vtbl_0056F71C **()"
+  },
+  "0x004C2BA0": {
+    "name": "sub_4C2BA0",
+    "signature": "void __thiscall(void **this, float *)"
+  },
+  "0x004C3430": {
+    "name": "sub_4C3430",
+    "signature": "void()"
+  },
+  "0x004C3450": {
+    "name": "sub_4C3450",
+    "signature": "vtbl_0056F774 **__thiscall(vtbl_0056F774 **this)"
+  },
+  "0x004C3490": {
+    "name": "sub_4C3490",
+    "signature": "vtbl_0056F774 **()"
+  },
+  "0x004C3C90": {
+    "name": "sub_4C3C90",
+    "signature": "vtbl_0056F7C8 **__thiscall(vtbl_0056F7C8 **this)"
+  },
+  "0x004C3D90": {
+    "name": "sub_4C3D90",
+    "signature": "vtbl_0056F7C8 **()"
+  },
+  "0x004C5820": {
+    "name": "sub_4C5820",
+    "signature": "char *__thiscall(char *this, int)"
+  },
+  "0x004C5840": {
+    "name": "sub_4C5840",
+    "signature": "int __thiscall(char *this)"
+  },
+  "0x004C58C0": {
+    "name": "sub_4C58C0",
+    "signature": "char __thiscall(float *this)"
+  },
+  "0x004C5910": {
+    "name": "sub_4C5910",
+    "signature": "int __thiscall(char *this)"
+  },
+  "0x004C5D00": {
+    "name": "sub_4C5D00",
+    "signature": "vtbl_0056F824 **__thiscall(vtbl_0056F824 **this, int)"
+  },
+  "0x004C5D50": {
+    "name": "sub_4C5D50",
+    "signature": "_DWORD *__thiscall(_DWORD *Block, char)"
+  },
+  "0x004C5D70": {
+    "name": "sub_4C5D70",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x004C5E70": {
+    "name": "nullsub_79",
+    "signature": "void __stdcall(int, int)"
+  },
+  "0x004C5E80": {
+    "name": "sub_4C5E80",
+    "signature": "_DWORD *__fastcall(_DWORD *, double)"
+  },
+  "0x004C6030": {
+    "name": "sub_4C6030",
+    "signature": "float *__thiscall(_DWORD *this, int)"
+  },
+  "0x004C9540": {
+    "name": "sub_4C9540",
+    "signature": "char *__thiscall(char *this, char)"
+  },
+  "0x004C9550": {
+    "name": "sub_4C9550",
+    "signature": "vtbl_0056F920 **__thiscall(vtbl_0056F920 **this)"
+  },
+  "0x004CB380": {
+    "name": "sub_4CB380",
+    "signature": "void()"
+  },
+  "0x004CB3A0": {
+    "name": "sub_4CB3A0",
+    "signature": "vtbl_0056F978 **__thiscall(vtbl_0056F978 **this)"
+  },
+  "0x004CC290": {
+    "name": "sub_4CC290",
+    "signature": "void __thiscall(_DWORD *this, int *)"
+  },
+  "0x004CEB60": {
+    "name": "sub_4CEB60",
+    "signature": "int __thiscall(char *this, char *, int, char *)"
+  },
+  "0x004CEC80": {
+    "name": "sub_4CEC80",
+    "signature": "int __thiscall(char *this, char *, int, char *)"
+  },
+  "0x004CEEC0": {
+    "name": "sub_4CEEC0",
+    "signature": "int __thiscall(char *this, char *, int, char *)"
+  },
+  "0x004CEFE0": {
+    "name": "sub_4CEFE0",
+    "signature": "int __thiscall(char *this, char *, int, char *)"
+  },
+  "0x004CF220": {
+    "name": "sub_4CF220",
+    "signature": "int __thiscall(char *this, char *, int, char *)"
+  },
+  "0x004CF340": {
+    "name": "sub_4CF340",
+    "signature": "int __thiscall(char *this, char *, int, char *)"
+  },
+  "0x004CF460": {
+    "name": "sub_4CF460",
+    "signature": "int __thiscall(char *this, char *, int, char *)"
+  },
+  "0x004CF580": {
+    "name": "sub_4CF580",
+    "signature": "int __thiscall(char *this, char *, int, char *)"
+  },
+  "0x004CF6A0": {
+    "name": "sub_4CF6A0",
+    "signature": "int __thiscall(char *this, char *, int, char *)"
+  },
+  "0x004CF8E0": {
+    "name": "sub_4CF8E0",
+    "signature": "int __thiscall(char *this, char *, int, char *)"
+  },
+  "0x004CFA00": {
+    "name": "sub_4CFA00",
+    "signature": "int __thiscall(char *this, char *, int, char *)"
+  },
+  "0x004CFB20": {
+    "name": "sub_4CFB20",
+    "signature": "int __thiscall(char *this, char *, int, char *)"
+  },
+  "0x004CFC70": {
+    "name": "sub_4CFC70",
+    "signature": "vtbl_0056F9DC **__thiscall(vtbl_0056F9DC **this)"
+  },
+  "0x004CFD00": {
+    "name": "sub_4CFD00",
+    "signature": "vtbl_0056F9DC **()"
+  },
+  "0x004CFEB0": {
+    "name": "sub_4CFEB0",
+    "signature": "bool __thiscall(int this, int)"
+  },
+  "0x004CFFA0": {
+    "name": "sub_4CFFA0",
+    "signature": "int __thiscall(_DWORD *this)"
+  },
+  "0x004D2E10": {
+    "name": "sub_4D2E10",
+    "signature": "int __thiscall(int this, int)"
+  },
+  "0x004D3260": {
+    "name": "sub_4D3260",
+    "signature": "void()"
+  },
+  "0x004D3280": {
+    "name": "sub_4D3280",
+    "signature": "vtbl_0056FA88 **__thiscall(vtbl_0056FA88 **this)"
+  },
+  "0x004D35E0": {
+    "name": "sub_4D35E0",
+    "signature": "int __thiscall(int this, int)"
+  },
+  "0x004D3860": {
+    "name": "sub_4D3860",
+    "signature": "CEffQuake *__thiscall(CEffQuake *this, char)"
+  },
+  "0x004D3870": {
+    "name": "sub_4D3870",
+    "signature": "vtbl_0056FADC **__thiscall(vtbl_0056FADC **this)"
+  },
+  "0x004D3DC0": {
+    "name": "sub_4D3DC0",
+    "signature": "void __fastcall(int, float)"
+  },
+  "0x004D4340": {
+    "name": "sub_4D4340",
+    "signature": "void __thiscall(_DWORD *this, int *)"
+  },
+  "0x004D4570": {
+    "name": "sub_4D4570",
+    "signature": "int __thiscall(CEffShock *this, int)"
+  },
+  "0x004D4E80": {
+    "name": "sub_4D4E80",
+    "signature": "void()"
+  },
+  "0x004D4EA0": {
+    "name": "sub_4D4EA0",
+    "signature": "vtbl_0056FB34 **__thiscall(vtbl_0056FB34 **this)"
+  },
+  "0x004D5A90": {
+    "name": "sub_4D5A90",
+    "signature": "void()"
+  },
+  "0x004D6650": {
+    "name": "sub_4D6650",
+    "signature": "void()"
+  },
+  "0x004D6E80": {
+    "name": "sub_4D6E80",
+    "signature": "void()"
+  },
+  "0x004D8580": {
+    "name": "sub_4D8580",
+    "signature": "void __thiscall(CCBAI *this, int)"
+  },
+  "0x004DB8E0": {
+    "name": "sub_4DB8E0",
+    "signature": "int __thiscall(CCBSystem *this, char)"
+  },
+  "0x004DBE60": {
+    "name": "sub_4DBE60",
+    "signature": "void __thiscall(int this, int)"
+  },
+  "0x004DBF60": {
+    "name": "sub_4DBF60",
+    "signature": "void()"
+  },
+  "0x004DC510": {
+    "name": "sub_4DC510",
+    "signature": "double __thiscall(int this, int)"
+  },
+  "0x004DCF80": {
+    "name": "sub_4DCF80",
+    "signature": "int __thiscall(char *this, int _14C)"
+  },
+  "0x004DDC90": {
+    "name": "sub_4DDC90",
+    "signature": "int __thiscall(int this, int _B4)"
+  },
+  "0x004DF3D0": {
+    "name": "sub_4DF3D0",
+    "signature": "char __thiscall(CCBRoleState **this)"
+  },
+  "0x004DF4B0": {
+    "name": "sub_4DF4B0",
+    "signature": "void()"
+  },
+  "0x004DF710": {
+    "name": "sub_4DF710",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x004DFA10": {
+    "name": "sub_4DFA10",
+    "signature": "int __thiscall(int this)"
+  },
+  "0x004E0010": {
+    "name": "sub_4E0010",
+    "signature": "void __thiscall(unsigned int *this)"
+  },
+  "0x004E00D0": {
+    "name": "sub_4E00D0",
+    "signature": "void()"
+  },
+  "0x004E0430": {
+    "name": "sub_4E0430",
+    "signature": "char __thiscall(int *this)"
+  },
+  "0x004E0A60": {
+    "name": "sub_4E0A60",
+    "signature": "int __stdcall(WPARAM *, HWND hDlg, unsigned int, unsigned __int16, int)"
+  },
+  "0x004E1A10": {
+    "name": "sub_4E1A10",
+    "signature": "INT_PTR __userpurge@<eax>(double@<st1>, HWND hDlg, UINT, WPARAM, LPARAM)"
+  },
+  "0x004E1A40": {
+    "name": "sub_4E1A40",
+    "signature": "int __stdcall(int, HWND hDlg, unsigned int, int, int)"
+  },
+  "0x004E1F70": {
+    "name": "sub_4E1F70",
+    "signature": "INT_PTR __stdcall(HWND hDlg, unsigned int, WPARAM, LPARAM)"
+  },
+  "0x004E24C0": {
+    "name": "sub_4E24C0",
+    "signature": "int __stdcall(_DWORD *, HWND hDlg, int, int, int)"
+  },
+  "0x004E2C10": {
+    "name": "sub_4E2C10",
+    "signature": "LRESULT __thiscall(void *this)"
+  },
+  "0x004E2C50": {
+    "name": "sub_4E2C50",
+    "signature": "LRESULT __thiscall(CCBRoleState **this)"
+  },
+  "0x004E30E0": {
+    "name": "sub_4E30E0",
+    "signature": "unsigned __int8 __thiscall(CCBRoleState **this)"
+  },
+  "0x004E3A20": {
+    "name": "sub_4E3A20",
+    "signature": "LRESULT __thiscall(CCBRoleState **this)"
+  },
+  "0x004E3D90": {
+    "name": "sub_4E3D90",
+    "signature": "void __thiscall(CCBRoleState **this)"
+  },
+  "0x004E40B0": {
+    "name": "sub_4E40B0",
+    "signature": "LRESULT __thiscall(_DWORD *this)"
+  },
+  "0x004E4A80": {
+    "name": "sub_4E4A80",
+    "signature": "LRESULT __thiscall(_DWORD *this)"
+  },
+  "0x004E4D70": {
+    "name": "sub_4E4D70",
+    "signature": "LRESULT __thiscall(_DWORD *this)"
+  },
+  "0x004E50B0": {
+    "name": "sub_4E50B0",
+    "signature": "char *()"
+  },
+  "0x004E7060": {
+    "name": "sub_4E7060",
+    "signature": "LRESULT __thiscall(int *this, HWND hDlg)"
+  },
+  "0x004E7280": {
+    "name": "sub_4E7280",
+    "signature": "LRESULT __thiscall(int *this)"
+  },
+  "0x004E74E0": {
+    "name": "sub_4E74E0",
+    "signature": "void __thiscall(_DWORD *this)"
+  },
+  "0x004E75E0": {
+    "name": "sub_4E75E0",
+    "signature": "char __thiscall(_DWORD *this)"
+  },
+  "0x004E8480": {
+    "name": "sub_4E8480",
+    "signature": "int __stdcall(float *, HWND hDlg, int, int, int)"
+  },
+  "0x004EA5C0": {
+    "name": "sub_4EA5C0",
+    "signature": "int __stdcall(WPARAM *, HWND hDlg, int, __int16, int)"
+  },
+  "0x004EB230": {
+    "name": "sub_4EB230",
+    "signature": "INT_PTR __stdcall(HWND hDlg, UINT, WPARAM, WPARAM *)"
+  },
+  "0x004EB260": {
+    "name": "sub_4EB260",
+    "signature": "int __stdcall(WPARAM *, HWND hDlg, int, int, WPARAM *)"
+  },
+  "0x004EB6F0": {
+    "name": "sub_4EB6F0",
+    "signature": "void __thiscall(WPARAM *this, HWND hDlg)"
+  },
+  "0x004EB8D0": {
+    "name": "sub_4EB8D0",
+    "signature": "WPARAM *__thiscall(WPARAM *this, HWND hDlg)"
+  },
+  "0x004EC480": {
+    "name": "sub_4EC480",
+    "signature": "void()"
+  },
+  "0x004EC910": {
+    "name": "sub_4EC910",
+    "signature": "int __thiscall(CCBRoleState *this)"
+  },
+  "0x004ED250": {
+    "name": "sub_4ED250",
+    "signature": "int __fastcall(CCBRoleState *)"
+  },
+  "0x004ED870": {
+    "name": "sub_4ED870",
+    "signature": "char __thiscall(CCBRoleState *this)"
+  },
+  "0x004EE910": {
+    "name": "sub_4EE910",
+    "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+  },
+  "0x004F0A10": {
+    "name": "sub_4F0A10",
+    "signature": "char __thiscall(CCBRoleState *this, int)"
+  },
+  "0x004F1C40": {
+    "name": "sub_4F1C40",
+    "signature": "char __thiscall(char *this, int)"
+  },
+  "0x004F2390": {
+    "name": "sub_4F2390",
+    "signature": "char __thiscall(int this)"
+  },
+  "0x004F2560": {
+    "name": "sub_4F2560",
+    "signature": "char __thiscall(CCBRoleState *this, unsigned int arg0, unsigned int)"
+  },
+  "0x004F2660": {
+    "name": "sub_4F2660",
+    "signature": "int __thiscall(CCBRoleState *this, struct tagCmdData *, unsigned int)"
+  },
+  "0x004F2750": {
+    "name": "sub_4F2750",
+    "signature": "int __thiscall(CCBRoleState *this, _DWORD *, int roleIdx)"
+  },
+  "0x004F27B0": {
+    "name": "sub_4F27B0",
+    "signature": "int __thiscall(CCBRoleState *this, _DWORD *, unsigned int)"
+  },
+  "0x004F27E0": {
+    "name": "sub_4F27E0",
+    "signature": "int __thiscall(CCBRoleState *this, const void *, unsigned int)"
+  },
+  "0x004F2800": {
+    "name": "sub_4F2800",
+    "signature": "int __thiscall(CCBRoleState *this, int, int)"
+  },
+  "0x004F48C0": {
+    "name": "sub_4F48C0",
+    "signature": "void __thiscall(_DWORD *this, int roleIdx)"
+  },
+  "0x004F4B90": {
+    "name": "sub_4F4B90",
+    "signature": "unsigned int __thiscall(CCBRoleState *this, int roleIdx, int)"
+  },
+  "0x004F4C80": {
+    "name": "sub_4F4C80",
+    "signature": "unsigned int __thiscall(CCBRoleState *this, int roleIdx, int)"
+  },
+  "0x004F5330": {
+    "name": "sub_4F5330",
+    "signature": "int __thiscall(CCBRoleState *this, int roleIdx, char)"
+  },
+  "0x004F5D00": {
+    "name": "sub_4F5D00",
+    "signature": "int __thiscall(CCBRoleState *this, unsigned int roleIdx, char, int)"
+  },
+  "0x004F6000": {
+    "name": "sub_4F6000",
+    "signature": "int __thiscall(CCBRoleState *this, unsigned int roleIdx, char, int)"
+  },
+  "0x004F61D0": {
+    "name": "sub_4F61D0",
+    "signature": "int __thiscall(CCBRoleState *this, unsigned int roleIdx, char, int)"
+  },
+  "0x004F6370": {
+    "name": "sub_4F6370",
+    "signature": "int __thiscall(CCBRoleState *this, unsigned int roleIdx, int, char)"
+  },
+  "0x004F6690": {
+    "name": "sub_4F6690",
+    "signature": "int __thiscall(CCBRoleState *this, unsigned int roleIdx, int, char)"
+  },
+  "0x004F6860": {
+    "name": "sub_4F6860",
+    "signature": "int __thiscall(CCBRoleState *this, unsigned int roleIdx, int, char)"
+  },
+  "0x004F7200": {
+    "name": "sub_4F7200",
+    "signature": "char __thiscall(CCBRoleState *this, int)"
+  },
+  "0x004F8AF0": {
+    "name": "sub_4F8AF0",
+    "signature": "void __thiscall(CCBRoleState *this)"
+  },
+  "0x004F8FA0": {
+    "name": "sub_4F8FA0",
+    "signature": "char __thiscall(_DWORD *this, int)"
+  },
+  "0x004F8FD0": {
+    "name": "sub_4F8FD0",
+    "signature": "char __thiscall(CCBRoleState *this, int, int)"
+  },
+  "0x004F90F0": {
+    "name": "sub_4F90F0",
+    "signature": "__int8 *__thiscall(CCBRoleState *this, int roleIdx)"
+  },
+  "0x004F91B0": {
+    "name": "sub_4F91B0",
+    "signature": "__int8 *__thiscall(CCBRoleState *this, int)"
+  },
+  "0x004F9390": {
+    "name": "sub_4F9390",
+    "signature": "unsigned int __thiscall(CCBRoleState *this, int)"
+  },
+  "0x004FB370": {
+    "name": "sub_4FB370",
+    "signature": "int __thiscall(CCBStage **this, int)"
+  },
+  "0x004FB7A0": {
+    "name": "sub_4FB7A0",
+    "signature": "void()"
+  },
+  "0x004FF360": {
+    "name": "sub_4FF360",
+    "signature": "int __thiscall(int this, int)"
+  },
+  "0x004FFA90": {
+    "name": "sub_4FFA90",
+    "signature": "int __thiscall(char *this, int)"
+  },
+  "0x004FFCB0": {
+    "name": "sub_4FFCB0",
+    "signature": "int __thiscall(int this, int)"
+  },
+  "0x004FFF60": {
+    "name": "sub_4FFF60",
+    "signature": "int __thiscall(char *this, int)"
+  },
+  "0x00500220": {
+    "name": "sub_500220",
+    "signature": "int __thiscall(char *this, int)"
+  },
+  "0x00500550": {
+    "name": "sub_500550",
+    "signature": "int __thiscall(char *this, int)"
+  },
+  "0x00500D50": {
+    "name": "sub_500D50",
+    "signature": "int __thiscall(int this, int)"
+  },
+  "0x00503680": {
+    "name": "sub_503680",
+    "signature": "unsigned int __thiscall(CCBRoleState **this, char, unsigned int *)"
+  },
+  "0x00503DA0": {
+    "name": "sub_503DA0",
+    "signature": "void()"
+  },
+  "0x00504240": {
+    "name": "sub_504240",
+    "signature": "int __thiscall(float *this)"
+  },
+  "0x00504440": {
+    "name": "sub_504440",
+    "signature": "bool __thiscall(char *this, int)"
+  },
+  "0x005044F0": {
+    "name": "sub_5044F0",
+    "signature": "int __thiscall(CCCTData *this, int)"
+  },
+  "0x00504A80": {
+    "name": "sub_504A80",
+    "signature": "char __thiscall(char *this)"
+  },
+  "0x00504DD0": {
+    "name": "sub_504DD0",
+    "signature": "CCBStageCam *__thiscall(CCBStageCam *this)"
+  },
+  "0x00504E60": {
+    "name": "sub_504E60",
+    "signature": "char __thiscall(CCBStageCam *this)"
+  },
+  "0x00508460": {
+    "name": "sub_508460",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x0050ACF0": {
+    "name": "sub_50ACF0",
+    "signature": "unsigned int __thiscall(void **this, int)"
+  },
+  "0x0050B430": {
+    "name": "sub_50B430",
+    "signature": "int (__thiscall *__thiscall(int this, int))(int, int)"
+  },
+  "0x0050B4C0": {
+    "name": "sub_50B4C0",
+    "signature": "char __thiscall(CCBStageRole *this)"
+  },
+  "0x0050B4F0": {
+    "name": "sub_50B4F0",
+    "signature": "int __thiscall(int this)"
+  },
+  "0x0050DA90": {
+    "name": "sub_50DA90",
+    "signature": "int __thiscall(int this, int)"
+  },
+  "0x0050EB00": {
+    "name": "sub_50EB00",
+    "signature": "int __thiscall(void *, int)"
+  },
+  "0x0050EF60": {
+    "name": "sub_50EF60",
+    "signature": "int __thiscall(void *, float)"
+  },
+  "0x0050F080": {
+    "name": "sub_50F080",
+    "signature": "int __thiscall(void *, int)"
+  },
+  "0x0050F150": {
+    "name": "sub_50F150",
+    "signature": "int __thiscall(void *, int)"
+  },
+  "0x0050F200": {
+    "name": "sub_50F200",
+    "signature": "int __thiscall(CCBStageRole *this, int)"
+  },
+  "0x0050F310": {
+    "name": "sub_50F310",
+    "signature": "int __userpurge@<eax>(void *@<ecx>, enum ECBStageTaskState *@<edi>, int)"
+  },
+  "0x0050F410": {
+    "name": "sub_50F410",
+    "signature": "int __thiscall(void *, int)"
+  },
+  "0x0050F4C0": {
+    "name": "sub_50F4C0",
+    "signature": "int __thiscall(void *, int)"
+  },
+  "0x0050F590": {
+    "name": "sub_50F590",
+    "signature": "int __thiscall(int this, int)"
+  },
+  "0x0050FA20": {
+    "name": "sub_50FA20",
+    "signature": "int __thiscall(CCBStageRole *this, int)"
+  },
+  "0x0050FB00": {
+    "name": "sub_50FB00",
+    "signature": "void()"
+  },
+  "0x0050FD00": {
+    "name": "sub_50FD00",
+    "signature": "CCBStageScene *__thiscall(CCBStageScene *this, CCBStage *)"
+  },
+  "0x00511E80": {
+    "name": "sub_511E80",
+    "signature": "float *__thiscall(CCBStageShadow *this)"
+  },
+  "0x00516100": {
+    "name": "sub_516100",
+    "signature": "UIListBox *__thiscall(UIListBox *Block, char)"
+  },
+  "0x005163D0": {
+    "name": "sub_5163D0",
+    "signature": "void __usercall(UIListBox *this@<ecx>, int@<ebp>)"
+  },
+  "0x005164D0": {
+    "name": "sub_5164D0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x00516940": {
+    "name": "sub_516940",
+    "signature": "void __thiscall(CCBAIWindow *this)"
+  },
+  "0x00517BA0": {
+    "name": "sub_517BA0",
+    "signature": "void __thiscall(CCBAIWindow *this)"
+  },
+  "0x00517CF0": {
+    "name": "sub_517CF0",
+    "signature": "void __thiscall(CCBLineupWindow *this)"
+  },
+  "0x005184E0": {
+    "name": "sub_5184E0",
+    "signature": "int __thiscall(CCBUI *this, int _128)"
+  },
+  "0x00518E30": {
+    "name": "sub_518E30",
+    "signature": "BOOL __thiscall(CCBUI *this, int, int)"
+  },
+  "0x00519AF0": {
+    "name": "sub_519AF0",
+    "signature": "UIListBox *__thiscall(UIListBox *this)"
+  },
+  "0x0051AB00": {
+    "name": "sub_51AB00",
+    "signature": "BOOL __thiscall(UIWnd *this, int, int)"
+  },
+  "0x0051B8C0": {
+    "name": "sub_51B8C0",
+    "signature": "BOOL __thiscall(UIWnd *this, int, int)"
+  },
+  "0x00522010": {
+    "name": "sub_522010",
+    "signature": "void()"
+  },
+  "0x00522120": {
+    "name": "sub_522120",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x00522130": {
+    "name": "sub_522130",
+    "signature": "char __thiscall(char *this, char *filename)"
+  },
+  "0x00523F10": {
+    "name": "sub_523F10",
+    "signature": "void()"
+  },
+  "0x00524110": {
+    "name": "sub_524110",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00524980": {
+    "name": "sub_524980",
+    "signature": "int __thiscall(UIWnd *this, int, int)"
+  },
+  "0x00525100": {
+    "name": "sub_525100",
+    "signature": "void()"
+  },
+  "0x00525520": {
+    "name": "sub_525520",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00526300": {
+    "name": "sub_526300",
+    "signature": "gbGeomNode *__thiscall(char *this)"
+  },
+  "0x00526660": {
+    "name": "sub_526660",
+    "signature": "void __thiscall(UIListBox *this)"
+  },
+  "0x005269B0": {
+    "name": "sub_5269B0",
+    "signature": "void __cdecl(int, UIWnd **, UIWnd **arg8, const char *, char)"
+  },
+  "0x005273D0": {
+    "name": "sub_5273D0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x00527930": {
+    "name": "sub_527930",
+    "signature": "void()"
+  },
+  "0x005279D0": {
+    "name": "sub_5279D0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00527CD0": {
+    "name": "sub_527CD0",
+    "signature": "void __thiscall(_DWORD *this)"
+  },
+  "0x00527DC0": {
+    "name": "sub_527DC0",
+    "signature": "int __thiscall(UIWnd *this, int, int)"
+  },
+  "0x00528190": {
+    "name": "sub_528190",
+    "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+  },
+  "0x005282C0": {
+    "name": "sub_5282C0",
+    "signature": "void()"
+  },
+  "0x005284C0": {
+    "name": "sub_5284C0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00528ED0": {
+    "name": "sub_528ED0",
+    "signature": "void __thiscall(UIListBox *this)"
+  },
+  "0x00529440": {
+    "name": "sub_529440",
+    "signature": "int __thiscall(char *this, char *filename)"
+  },
+  "0x005294C0": {
+    "name": "sub_5294C0",
+    "signature": "char *__thiscall(char *this)"
+  },
+  "0x005295D0": {
+    "name": "sub_5295D0",
+    "signature": "void()"
+  },
+  "0x00529770": {
+    "name": "sub_529770",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00529870": {
+    "name": "sub_529870",
+    "signature": "char __thiscall(int this)"
+  },
+  "0x00529C80": {
+    "name": "sub_529C80",
+    "signature": "void __thiscall(_DWORD *this)"
+  },
+  "0x00529CF0": {
+    "name": "sub_529CF0",
+    "signature": "int __thiscall(UIListBox *this)"
+  },
+  "0x0052AED0": {
+    "name": "sub_52AED0",
+    "signature": "void()"
+  },
+  "0x0052AF20": {
+    "name": "sub_52AF20",
+    "signature": "char __thiscall(int this, const char *)"
+  },
+  "0x0052AFC0": {
+    "name": "sub_52AFC0",
+    "signature": "int __thiscall(_DWORD *this, gbMatrixStack *)"
+  },
+  "0x0052B1C0": {
+    "name": "sub_52B1C0",
+    "signature": "void()"
+  },
+  "0x0052B2A0": {
+    "name": "sub_52B2A0",
+    "signature": "void __thiscall(int this)"
+  },
+  "0x0052B3B0": {
+    "name": "sub_52B3B0",
+    "signature": "char __thiscall(char *this, int)"
+  },
+  "0x0052B9F0": {
+    "name": "sub_52B9F0",
+    "signature": "void()"
+  },
+  "0x0052BBB0": {
+    "name": "sub_52BBB0",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x0052BBD0": {
+    "name": "sub_52BBD0",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x0052BC90": {
+    "name": "sub_52BC90",
+    "signature": "void __thiscall(char *this)"
+  },
+  "0x0052C450": {
+    "name": "sub_52C450",
+    "signature": "int __thiscall(UIListBox *this)"
+  },
+  "0x0052DD40": {
+    "name": "sub_52DD40",
+    "signature": "void()"
+  },
+  "0x0052EC70": {
+    "name": "sub_52EC70",
+    "signature": "void()"
+  },
+  "0x0052ED30": {
+    "name": "sub_52ED30",
+    "signature": "void __thiscall(int *this)"
+  },
+  "0x0052F2E0": {
+    "name": "sub_52F2E0",
+    "signature": "void __thiscall(char **this)"
+  },
+  "0x0052F570": {
+    "name": "sub_52F570",
+    "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+  },
+  "0x0052F6A0": {
+    "name": "sub_52F6A0",
+    "signature": "void()"
+  },
+  "0x0052F800": {
+    "name": "sub_52F800",
+    "signature": "gbVFileSystem *__thiscall(char *this, const char *)"
+  },
+  "0x0052F8E0": {
+    "name": "sub_52F8E0",
+    "signature": "gbVFileSystem *__thiscall(_DWORD *this, int)"
+  },
+  "0x0052FA50": {
+    "name": "sub_52FA50",
+    "signature": "gbVFileSystem *__thiscall(int this)"
+  },
+  "0x0052FB70": {
+    "name": "sub_52FB70",
+    "signature": "gbVFileSystem *__thiscall(char *this)"
+  },
+  "0x00530250": {
+    "name": "sub_530250",
+    "signature": "void()"
+  },
+  "0x00530280": {
+    "name": "sub_530280",
+    "signature": "gbVFileSystem *__thiscall(gbGeomNode **this, const char *)"
+  },
+  "0x00530330": {
+    "name": "sub_530330",
+    "signature": "gbVFileSystem *__thiscall(gbGeomNode **this)"
+  },
+  "0x00530420": {
+    "name": "sub_530420",
+    "signature": "void()"
+  },
+  "0x005306A0": {
+    "name": "sub_5306A0",
+    "signature": "gbVFileSystem *__thiscall(int this, int)"
+  },
+  "0x005310C0": {
+    "name": "sub_5310C0",
+    "signature": "void __thiscall(void *this, float)"
+  },
+  "0x00531260": {
+    "name": "sub_531260",
+    "signature": "void __thiscall(gbVisNode ***this, float)"
+  },
+  "0x00531D00": {
+    "name": "sub_531D00",
+    "signature": "void()"
+  },
+  "0x00531E50": {
+    "name": "sub_531E50",
+    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+  },
+  "0x00532A20": {
+    "name": "sub_532A20",
+    "signature": "void()"
+  },
+  "0x00533C90": {
+    "name": "sub_533C90",
+    "signature": "void()"
+  },
+  "0x00534DA0": {
+    "name": "sub_534DA0",
+    "signature": "void()"
+  },
+  "0x00534F30": {
+    "name": "sub_534F30",
+    "signature": "void()"
+  },
+  "0x005350C0": {
+    "name": "sub_5350C0",
+    "signature": "void __usercall(int this@<ecx>, double@<st1>)"
+  },
+  "0x00535120": {
+    "name": "sub_535120",
+    "signature": "void __usercall(int *this@<ecx>, double@<st1>)"
+  },
+  "0x005355E0": {
+    "name": "sub_5355E0",
+    "signature": "void()"
+  },
+  "0x00535710": {
+    "name": "sub_535710",
+    "signature": "struct gbVFileSystem *__userpurge@<eax>(int this@<ecx>, double@<st1>, char *String2, char *)"
+  },
+  "0x00535A50": {
+    "name": "sub_535A50",
+    "signature": "void()"
+  },
+  "0x00537590": {
+    "name": "sub_537590",
+    "signature": "void()"
+  },
+  "0x00537A90": {
+    "name": "sub_537A90",
+    "signature": "FILE *__userpurge@<eax>(_DWORD *@<ecx>, double@<st1>, int)"
+  },
+  "0x00539E70": {
+    "name": "sub_539E70",
+    "signature": "char *__thiscall(_DWORD *this, float)"
+  },
+  "0x0053A340": {
+    "name": "sub_53A340",
+    "signature": "void __thiscall(_DWORD *this, char *, unsigned int, char *)"
+  },
+  "0x0053B010": {
+    "name": "sub_53B010",
+    "signature": "char **__usercall@<eax>(int@<edi>, unsigned int *, unsigned int *, char **)"
+  },
+  "0x0053B2A0": {
+    "name": "sub_53B2A0",
+    "signature": "int *__cdecl(int *, int *, int *)"
+  },
+  "0x0053B2D0": {
+    "name": "sub_53B2D0",
+    "signature": "_DWORD *__usercall@<eax>(int@<esi>, _DWORD *, _DWORD *, char **)"
+  },
+  "0x0053B4D0": {
+    "name": "sub_53B4D0",
+    "signature": "char **__usercall@<eax>(int@<edi>, int, int, char **)"
+  },
+  "0x0053C230": {
+    "name": "sub_53C230",
+    "signature": "void()"
+  },
+  "0x0053C860": {
+    "name": "sub_53C860",
+    "signature": "void()"
+  },
+  "0x0053D0B0": {
+    "name": "sub_53D0B0",
+    "signature": "PtrArray *__thiscall(PtrArray *this)"
+  },
+  "0x0053D380": {
+    "name": "sub_53D380",
+    "signature": "void()"
+  },
+  "0x0053D460": {
+    "name": "sub_53D460",
+    "signature": "gbVFileSystem *__thiscall(_DWORD *this, int, int, int, int)"
+  },
+  "0x0053DB70": {
+    "name": "sub_53DB70",
+    "signature": "void()"
+  },
+  "0x0053E4E0": {
+    "name": "sub_53E4E0",
+    "signature": "void __thiscall(CScreenMode *this, void *, int)"
+  },
+  "0x0053E680": {
+    "name": "sub_53E680",
+    "signature": "void __thiscall(int this, char *String2)"
+  },
+  "0x0053E720": {
+    "name": "sub_53E720",
+    "signature": "unsigned int __thiscall(int this)"
+  },
+  "0x0053EB90": {
+    "name": "sub_53EB90",
+    "signature": "int __thiscall(int this, char *, char *)"
+  },
+  "0x0053EDF0": {
+    "name": "sub_53EDF0",
+    "signature": "_DWORD *__stdcall(_DWORD *, _DWORD *, _DWORD *)"
+  },
+  "0x0053EE30": {
+    "name": "sub_53EE30",
+    "signature": "void __stdcall(_DWORD *, int, _DWORD *)"
+  },
+  "0x0053EE60": {
+    "name": "sub_53EE60",
+    "signature": "char *__cdecl(SceneObj *, char *, char *)"
+  },
+  "0x0053F060": {
+    "name": "sub_53F060",
+    "signature": "void __cdecl(SceneObj *, SceneObj *)"
+  },
+  "0x0053F4C0": {
+    "name": "sub_53F4C0",
+    "signature": "vtbl_00570A58 **__thiscall(vtbl_00570A58 **this)"
+  },
+  "0x0053F4D0": {
+    "name": "sub_53F4D0",
+    "signature": "vtbl_00570A58 **__thiscall(vtbl_00570A58 **Block, char)"
+  },
+  "0x0053F4F0": {
+    "name": "sub_53F4F0",
+    "signature": "void __thiscall(vtbl_00570A58 **this)"
+  },
+  "0x0053F5C0": {
+    "name": "sub_53F5C0",
+    "signature": "vtbl_00570A58 **__thiscall(vtbl_00570A58 **Block, char)"
+  },
+  "0x0053F5E0": {
+    "name": "sub_53F5E0",
+    "signature": "void __thiscall(vtbl_00570A58 **this)"
+  },
+  "0x005418E0": {
+    "name": "nullsub_95",
+    "signature": "void()"
+  },
+  "0x00542526": {
+    "name": "sub_542526",
+    "signature": "int __cdecl(int, int)"
+  },
+  "0x00542798": {
+    "name": "sub_542798",
+    "signature": "int __cdecl(int, int, int)"
+  },
+  "0x00542E2C": {
+    "name": "sub_542E2C",
+    "signature": "int __cdecl(int, int, int)"
+  },
+  "0x005435A4": {
+    "name": "sub_5435A4",
+    "signature": "float *__stdcall(float *, float *, float *)"
+  },
+  "0x00547042": {
+    "name": "sub_547042",
+    "signature": "__m128 *(__stdcall **__cdecl(__m128 *(__stdcall **)(__m128 *, unsigned int *, __m128 *)))(__m128 *, unsigned int *, __m128 *)"
+  },
+  "0x005471BA": {
+    "name": "sub_5471BA",
+    "signature": "__m128 *(__stdcall **__cdecl(__m128 *(__stdcall **)(__m128 *, unsigned int *, __m128 *)))(__m128 *, unsigned int *, __m128 *)"
+  },
+  "0x0054740C": {
+    "name": "sub_54740C",
+    "signature": "int __cdecl(__m64 *(__stdcall **)(__m64 *, __m64 *, __m64 *))"
+  },
+  "0x00547724": {
+    "name": "sub_547724",
+    "signature": "float *__stdcall(float *, float *, float *)"
+  },
+  "0x005477AF": {
+    "name": "sub_5477AF",
+    "signature": "float *__stdcall(float *, float *, float *)"
+  },
+  "0x0054780E": {
+    "name": "sub_54780E",
+    "signature": "float *__stdcall(float *, float *, float *)"
+  },
+  "0x00547FF4": {
+    "name": "sub_547FF4",
+    "signature": "__m128 *__stdcall(__m128 *, __m128 *, __int128 *)"
+  },
+  "0x0054849A": {
+    "name": "sub_54849A",
+    "signature": "double *__stdcall(double *, unsigned int *, const double *)"
+  },
+  "0x0054873A": {
+    "name": "sub_54873A",
+    "signature": "int __stdcall(int, const double *, const double *, const double *, const double *, unsigned int)"
+  },
+  "0x005487EC": {
+    "name": "sub_5487EC",
+    "signature": "double *__stdcall(double *, int, const double *, int, const double *, unsigned int)"
+  },
+  "0x00548871": {
+    "name": "sub_548871",
+    "signature": "__m128 *__stdcall(__m128 *, __m128 *, __m128 *, __m128 *, __m128 *, unsigned int)"
+  },
+  "0x00548916": {
+    "name": "sub_548916",
+    "signature": "int __stdcall(int, const double *, const double *, const double *, const double *, unsigned int)"
+  },
+  "0x005489C9": {
+    "name": "sub_5489C9",
+    "signature": "__m128 *__stdcall(__m128 *, __m128 *, __m128 *, __m128 *, __m128 *, unsigned int)"
+  },
+  "0x00548A63": {
+    "name": "sub_548A63",
+    "signature": "double *__stdcall(double *, int, const double *, int, const double *, unsigned int)"
+  },
+  "0x00548BE1": {
+    "name": "sub_548BE1",
+    "signature": "int __stdcall(int, __m128 *, const double *, const double *)"
+  },
+  "0x00548D77": {
+    "name": "sub_548D77",
+    "signature": "double *__stdcall(double *, __m128 *, __m128 *)"
+  },
+  "0x00548F41": {
+    "name": "sub_548F41",
+    "signature": "const double *__userpurge@<eax>(int@<ebp>, __int128 _XMM0@<xmm0>, const double *, unsigned int *, int, __m128 *, const double *, const double *, const double *, unsigned int)"
+  },
+  "0x005494B5": {
+    "name": "sub_5494B5",
+    "signature": "int __stdcall(int, int, _OWORD *)"
+  },
+  "0x005495B8": {
+    "name": "sub_5495B8",
+    "signature": "__m128 *__userpurge@<eax>(__m128 *this@<ecx>, __int128 _XMM0@<xmm0>, unsigned int *)"
+  },
+  "0x00549732": {
+    "name": "sub_549732",
+    "signature": "__m128 *__userpurge@<eax>(__int128@<xmm0>, __m128 *, int, int, int, unsigned int *, unsigned int)"
+  },
+  "0x00549935": {
+    "name": "sub_549935",
+    "signature": "double *__userpurge@<eax>(__int128@<xmm0>, double *, int, int, int, unsigned int *, unsigned int)"
+  },
+  "0x00549AC0": {
+    "name": "sub_549AC0",
+    "signature": "double *__userpurge@<eax>(__int128@<xmm0>, double *, int, int, int, unsigned int *, unsigned int)"
+  },
+  "0x00549C26": {
+    "name": "sub_549C26",
+    "signature": "double *__userpurge@<eax>(__int128@<xmm0>, double *, int, int, int, unsigned int *, unsigned int)"
+  },
+  "0x00549D36": {
+    "name": "sub_549D36",
+    "signature": "__m128 *__userpurge@<eax>(__int128@<xmm0>, __m128 *, int, __m128 *, int, unsigned int *, unsigned int)"
+  },
+  "0x00549F6E": {
+    "name": "sub_549F6E",
+    "signature": "int __userpurge@<eax>(__int128@<xmm0>, __int128 _XMM4@<xmm4>, int, int, int, int, unsigned int *, unsigned int)"
+  },
+  "0x0054A13E": {
+    "name": "sub_54A13E",
+    "signature": "int __userpurge@<eax>(__int128@<xmm0>, __int128 _XMM3@<xmm3>, int, int, int, int, unsigned int *, unsigned int)"
+  },
+  "0x0054A36F": {
+    "name": "sub_54A36F",
+    "signature": "double **__userpurge@<eax>(int@<ecx>, int@<edx>, __int128 _XMM0@<xmm0>, int, int, unsigned int *, int, double **, double **, unsigned int, double **, int *, int)"
+  },
+  "0x0054AA09": {
+    "name": "sub_54AA09",
+    "signature": "double **__userpurge@<eax>(__int128 _XMM0@<xmm0>, __int128 _XMM4@<xmm4>, __int128 _XMM5@<xmm5>, int, int, unsigned int *, double *, int, int, double **, double **, unsigned int, double **, int *, int)"
+  },
+  "0x0054B0C3": {
+    "name": "sub_54B0C3",
+    "signature": "int __stdcall(int, int, unsigned int)"
+  },
+  "0x0054B197": {
+    "name": "sub_54B197",
+    "signature": "__m128 *__userpurge@<eax>(__int128@<xmm0>, __m128 *, int, int, int, unsigned int *, unsigned int)"
+  },
+  "0x0054B39A": {
+    "name": "sub_54B39A",
+    "signature": "double *__userpurge@<eax>(__int128@<xmm0>, double *, int, int, int, unsigned int *, unsigned int)"
+  },
+  "0x0054B525": {
+    "name": "sub_54B525",
+    "signature": "double *__userpurge@<eax>(__int128@<xmm0>, double *, int, int, int, unsigned int *, unsigned int)"
+  },
+  "0x0054B68B": {
+    "name": "sub_54B68B",
+    "signature": "double *__userpurge@<eax>(__int128@<xmm0>, double *, int, int, int, unsigned int *, unsigned int)"
+  },
+  "0x0054B79B": {
+    "name": "sub_54B79B",
+    "signature": "__m128 *__userpurge@<eax>(__int128@<xmm0>, __m128 *, int, __m128 *, int, unsigned int *, unsigned int)"
+  },
+  "0x0054B9D3": {
+    "name": "sub_54B9D3",
+    "signature": "int __userpurge@<eax>(__int128@<xmm0>, __int128 _XMM4@<xmm4>, int, int, int, int, unsigned int *, unsigned int)"
+  },
+  "0x0054BBA3": {
+    "name": "sub_54BBA3",
+    "signature": "int __userpurge@<eax>(__int128@<xmm0>, __int128 _XMM3@<xmm3>, int, int, int, int, unsigned int *, unsigned int)"
+  },
+  "0x0054BEC5": {
+    "name": "sub_54BEC5",
+    "signature": "int __stdcall(int, int, unsigned int)"
+  },
+  "0x0054C2BD": {
+    "name": "sub_54C2BD",
+    "signature": "double __userpurge@<st0>(int@<ebp>, __int128 _XMM0@<xmm0>, __int128 _XMM1@<xmm1>, __int128 _XMM2@<xmm2>, __int128 _XMM7@<xmm7>, __int128 *)"
+  },
+  "0x0054C479": {
+    "name": "sub_54C479",
+    "signature": "double *__stdcall(double *, __m128 *, __m128 *)"
+  },
+  "0x0054C643": {
+    "name": "sub_54C643",
+    "signature": "int __stdcall(int, int, _OWORD *)"
+  },
+  "0x0054C718": {
+    "name": "sub_54C718",
+    "signature": "__m128 *__stdcall(__m128 *, int, __int128 *)"
+  },
+  "0x0054CA00": {
+    "name": "sub_54CA00",
+    "signature": "__m128 *__userpurge@<eax>(__m128 _XMM0@<xmm0>, __int128 _XMM1@<xmm1>, __int128 _XMM2@<xmm2>, __int128 _XMM3@<xmm3>, __m128 *, int, unsigned int *, int, __m128 *, int)"
+  },
+  "0x0054CAC0": {
+    "name": "sub_54CAC0",
+    "signature": "__m128 *__userpurge@<eax>(__m128 _XMM0@<xmm0>, __int128 _XMM1@<xmm1>, __int128 _XMM2@<xmm2>, __int128 _XMM3@<xmm3>, __m128 *, int, unsigned int *, int, __m128 *, int)"
+  },
+  "0x0054D200": {
+    "name": "sub_54D200",
+    "signature": "__m128 *__userpurge@<eax>(__m128 _XMM0@<xmm0>, __int128 _XMM1@<xmm1>, __int128 _XMM2@<xmm2>, __m128 *, int, unsigned int *, int, __m128 *, int)"
+  },
+  "0x0054D83C": {
+    "name": "sub_54D83C",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *)"
+  },
+  "0x0054D8D5": {
+    "name": "sub_54D8D5",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *)"
+  },
+  "0x0054D932": {
+    "name": "sub_54D932",
+    "signature": "void __stdcall(__m64 *, __m64 *, _DWORD *)"
+  },
+  "0x0054DE6C": {
+    "name": "sub_54DE6C",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, unsigned int)"
+  },
+  "0x0054E239": {
+    "name": "sub_54E239",
+    "signature": "__m64 *__userpurge@<eax>(int@<esi>, __m64 *, __m64 *)"
+  },
+  "0x0054E2DE": {
+    "name": "sub_54E2DE",
+    "signature": "__m64 *__userpurge@<eax>(int@<esi>, __m64 *, __m64 *, __m64 *, __m64 *, __m64 *, __m64 *, __m64 *)"
+  },
+  "0x0054F068": {
+    "name": "sub_54F068",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *)"
+  },
+  "0x0054F153": {
+    "name": "sub_54F153",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *)"
+  },
+  "0x0054F586": {
+    "name": "sub_54F586",
+    "signature": "__m64 *__userpurge@<eax>(int@<esi>, __m64 *, __m64, __m64)"
+  },
+  "0x0054FD78": {
+    "name": "sub_54FD78",
+    "signature": "__m64 *__stdcall(__m64 *, _DWORD *, __m64 *)"
+  },
+  "0x00550452": {
+    "name": "sub_550452",
+    "signature": "__m64 *__stdcall(__m64 *, _DWORD *, __m64 *)"
+  },
+  "0x005507A2": {
+    "name": "sub_5507A2",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *)"
+  },
+  "0x00550813": {
+    "name": "sub_550813",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *)"
+  },
+  "0x00550B93": {
+    "name": "sub_550B93",
+    "signature": "int __stdcall(int, int, int)"
+  },
+  "0x00550D5F": {
+    "name": "sub_550D5F",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, int, __m64 *, __m64 *, __m64 *)"
+  },
+  "0x00550EE7": {
+    "name": "sub_550EE7",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, int, __m64 *, __m64 *, __m64 *)"
+  },
+  "0x0055110D": {
+    "name": "sub_55110D",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, int, __m64 *, __m64 *, __m64 *)"
+  },
+  "0x005512C0": {
+    "name": "sub_5512C0",
+    "signature": "__m64 *__stdcall(__m64 *, unsigned int *, signed int)"
+  },
+  "0x00551400": {
+    "name": "sub_551400",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, signed int)"
+  },
+  "0x0055157B": {
+    "name": "sub_55157B",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *)"
+  },
+  "0x005515D0": {
+    "name": "sub_5515D0",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *)"
+  },
+  "0x00551609": {
+    "name": "sub_551609",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *)"
+  },
+  "0x0055166D": {
+    "name": "sub_55166D",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *, __m64 *, __m64 *, unsigned int)"
+  },
+  "0x00551705": {
+    "name": "sub_551705",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *, __m64 *, unsigned int, unsigned int)"
+  },
+  "0x0055174E": {
+    "name": "sub_55174E",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *)"
+  },
+  "0x00551791": {
+    "name": "sub_551791",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *, __m64 *, __m64 *, unsigned int)"
+  },
+  "0x0055183C": {
+    "name": "sub_55183C",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *)"
+  },
+  "0x005518BE": {
+    "name": "sub_5518BE",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *)"
+  },
+  "0x00551C66": {
+    "name": "sub_551C66",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *)"
+  },
+  "0x00551CA9": {
+    "name": "sub_551CA9",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *, __m64 *)"
+  },
+  "0x00551D8D": {
+    "name": "sub_551D8D",
+    "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *, __m64 *)"
+  },
+  "0x00552B20": {
+    "name": "sub_552B20",
+    "signature": "unsigned int()"
+  },
+  "0x00552F9B": {
+    "name": "nullsub_97",
+    "signature": "void()"
+  },
+  "0x00554722": {
+    "name": "sub_554722",
+    "signature": "double __usercall@<st0>(int@<eax>, double@<st1>, double result@<st0>, int, int, int, int)"
+  },
+  "0x005551BA": {
+    "name": "nullsub_98",
+    "signature": "void()"
+  },
+  "0x0055BAB4": {
+    "name": "sub_55BAB4",
+    "signature": "int __cdecl(unsigned int *, char *)"
+  },
+  "0x0055BAE1": {
+    "name": "sub_55BAE1",
+    "signature": "int __cdecl(unsigned int *, char *)"
+  },
+  "0x0055EAF4": {
+    "name": "nullsub_99",
+    "signature": "void()"
+  },
+  "0x0055EB04": {
+    "name": "nullsub_100",
+    "signature": "void()"
+  },
+  "0x00569320": {
+    "name": "sub_569320",
+    "signature": "int __cdecl(_DWORD *, FILE *Stream, _DWORD *)"
   }
 }
