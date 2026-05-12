@@ -311,6 +311,10 @@
     "name": "g_dwGameFlags",
     "type": "unsigned long"
   },
+  "0x005833C0": {
+    "name": "g_bFullScreen",
+    "type": "unsigned char"
+  },
   "0x005833C2": {
     "name": "g_bGameFlag2",
     "type": "unsigned char"
@@ -326,6 +330,10 @@
   "0x005833CC": {
     "name": "g_nKeyMap3",
     "type": "int"
+  },
+  "0x005833D0": {
+    "name": "g_szGamePath",
+    "type": "char[256]"
   },
   "0x005834CC": {
     "name": "a101h",
@@ -651,6 +659,10 @@
     "name": "g_nSyncMode",
     "type": "int"
   },
+  "0x00BFD6F0": {
+    "name": "g_bSoftCursor",
+    "type": "unsigned char"
+  },
   "0x00BFD770": {
     "name": "g_hInstance",
     "type": "HINSTANCE"
@@ -848,11 +860,11 @@
     "type": "SceneMgr"
   },
   "0x00C05F58": {
-    "name": "g_bSlotValid",
-    "type": "unsigned char[5]"
+    "name": "g_bRoleSlotValid",
+    "type": "unsigned char[8]"
   },
   "0x00C05F60": {
-    "name": "g_RoleSystems",
+    "name": "g_pRoleSystems",
     "type": "RoleSystem *"
   },
   "0x00C10CC8": {
@@ -955,9 +967,53 @@
     "name": "g_CCBStageState",
     "type": "unsigned char"
   },
+  "0x017AA880": {
+    "name": "g_nCBStageFlags",
+    "type": "int[8]"
+  },
+  "0x017AA8A0": {
+    "name": "g_nCBRoleAnimData",
+    "type": "int[24]"
+  },
   "0x017AAF64": {
     "name": "g_CCBCamControlData",
     "type": "unsigned char"
+  },
+  "0x017AB588": {
+    "name": "g_nCBFormation1",
+    "type": "int[12]"
+  },
+  "0x017AB5E8": {
+    "name": "g_nCBFormation2",
+    "type": "int[16]"
+  },
+  "0x017AB658": {
+    "name": "g_nCBFormation3",
+    "type": "int[12]"
+  },
+  "0x017AB6B8": {
+    "name": "g_nCBFormation4",
+    "type": "int[12]"
+  },
+  "0x017AB6E8": {
+    "name": "g_nCBRoleAttackTable",
+    "type": "int[44]"
+  },
+  "0x017AB7A8": {
+    "name": "g_nCBRoleMoveTable",
+    "type": "int[24]"
+  },
+  "0x017AB874": {
+    "name": "g_nCBRoleHitTable",
+    "type": "int[18]"
+  },
+  "0x017ABCBC": {
+    "name": "g_nCBStageParam1",
+    "type": "int"
+  },
+  "0x017ABCC0": {
+    "name": "g_nCBStageParam2",
+    "type": "int"
   },
   "0x017ABF00": {
     "name": "g_CCBStageSceneData",
