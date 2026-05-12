@@ -315,6 +315,18 @@
     "name": "g_bGameFlag2",
     "type": "unsigned char"
   },
+  "0x005833C4": {
+    "name": "g_nKeyMap1",
+    "type": "int"
+  },
+  "0x005833C8": {
+    "name": "g_nKeyMap2",
+    "type": "int"
+  },
+  "0x005833CC": {
+    "name": "g_nKeyMap3",
+    "type": "int"
+  },
   "0x005834CC": {
     "name": "a101h",
     "type": "char[]"
@@ -342,6 +354,14 @@
   "0x00583A9C": {
     "name": "dir",
     "type": "char[]"
+  },
+  "0x00586158": {
+    "name": "g_nFrameRate",
+    "type": "int"
+  },
+  "0x0058618C": {
+    "name": "g_pfnUpdateFuncs",
+    "type": "void *[5]"
   },
   "0x0058B784": {
     "name": "a1n07a",
@@ -603,6 +623,14 @@
     "name": "g_Input",
     "type": "GRPinput"
   },
+  "0x00BFD6C8": {
+    "name": "g_nDisplayAdapter",
+    "type": "int"
+  },
+  "0x00BFD6CC": {
+    "name": "g_nDisplayMode",
+    "type": "int"
+  },
   "0x00BFD6D0": {
     "name": "xRight",
     "type": "int"
@@ -611,9 +639,49 @@
     "name": "yBottom",
     "type": "int"
   },
+  "0x00BFD6E0": {
+    "name": "g_nColorBits",
+    "type": "int"
+  },
+  "0x00BFD6E4": {
+    "name": "g_nDepthBits",
+    "type": "int"
+  },
+  "0x00BFD6E8": {
+    "name": "g_nSyncMode",
+    "type": "int"
+  },
+  "0x00BFD770": {
+    "name": "g_hInstance",
+    "type": "HINSTANCE"
+  },
   "0x00BFD774": {
     "name": "hWnd",
     "type": "HWND"
+  },
+  "0x00BFD778": {
+    "name": "g_nScreenWidth",
+    "type": "int"
+  },
+  "0x00BFD77C": {
+    "name": "g_nScreenHeight",
+    "type": "int"
+  },
+  "0x00BFDA04": {
+    "name": "g_nGameTime",
+    "type": "int"
+  },
+  "0x00BFDA2C": {
+    "name": "g_nTickCount",
+    "type": "int"
+  },
+  "0x00BFDA30": {
+    "name": "g_fDeltaTime",
+    "type": "float"
+  },
+  "0x00BFDA34": {
+    "name": "g_fGameSpeed",
+    "type": "float"
   },
   "0x00BFDA48": {
     "name": "hInstance",
@@ -859,6 +927,10 @@
     "name": "Buffer",
     "type": "char[1008]"
   },
+  "0x017A9180": {
+    "name": "g_fCBTimer",
+    "type": "float"
+  },
   "0x017A94E4": {
     "name": "g_CCBStageCamBuffer",
     "type": "unsigned char"
@@ -895,6 +967,42 @@
     "name": "uType",
     "type": "UINT"
   },
+  "0x017AC5DC": {
+    "name": "g_bCBFlag",
+    "type": "unsigned char"
+  },
+  "0x017AC7DC": {
+    "name": "g_fCBDeltaTime",
+    "type": "float"
+  },
+  "0x017AC7E0": {
+    "name": "g_nCBRoundCount",
+    "type": "int[3]"
+  },
+  "0x017AC7EC": {
+    "name": "g_fCBSpeed",
+    "type": "float"
+  },
+  "0x017AC7F0": {
+    "name": "g_bCBActive",
+    "type": "unsigned char"
+  },
+  "0x017ACA78": {
+    "name": "g_fCBTimeScale",
+    "type": "float"
+  },
+  "0x017ACA80": {
+    "name": "g_nCBRolePos",
+    "type": "int[32]"
+  },
+  "0x017ACE10": {
+    "name": "g_fCBCamParam",
+    "type": "float"
+  },
+  "0x017ACE14": {
+    "name": "g_nCBCamState",
+    "type": "int[24]"
+  },
   "0x017AD310": {
     "name": "g_nRandCallCount",
     "type": "int"
@@ -906,6 +1014,10 @@
   "0x017B1CC0": {
     "name": "Source",
     "type": "char[99]"
+  },
+  "0x017B30E4": {
+    "name": "g_nCBResultState",
+    "type": "int"
   },
   "0x01894970": {
     "name": "Data",
