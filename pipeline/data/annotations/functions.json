@@ -113,7 +113,7 @@
   },
   "0x00402FB0": {
     "name": "?_Tidy@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEX_N@Z",
-    "signature": "void __thiscall(_DWORD *this, char _Built)"
+    "signature": "void __thiscall(string *this, char _Built)"
   },
   "0x00403000": {
     "name": "?GetKeyState@GRPinput@@QAEGG@Z",
@@ -309,7 +309,7 @@
   },
   "0x00407B30": {
     "name": "?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z",
-    "signature": "int __thiscall(_DWORD *this, int _N)"
+    "signature": "int __thiscall(string *this, int _N)"
   },
   "0x00407C70": {
     "name": "?_Split@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ",
@@ -953,7 +953,7 @@
   },
   "0x0043E560": {
     "name": "?SetFirstShow@UIListBox@@QAEXH@Z",
-    "signature": "int __thiscall(_DWORD *this, char *Source, int a3)"
+    "signature": "int __thiscall(UIListBox *this, char *Source, int a3)"
   },
   "0x0043E5C0": {
     "name": "?SetItemOffset@UIListBox@@QAEXHH@Z",
@@ -989,23 +989,23 @@
   },
   "0x0043FCA0": {
     "name": "UIWnd::FindChild",
-    "signature": "void __thiscall(UIWnd *this, float a2)"
+    "signature": "void __thiscall(UIWnd *this, float fValue)"
   },
   "0x0043FDC0": {
     "name": "UIWnd::GetWidth",
-    "signature": "void __thiscall(UIWnd *this, int a2)"
+    "signature": "void __thiscall(UIWnd *this, int nWidth)"
   },
   "0x0043FDD0": {
     "name": "UIWnd::GetHeight",
-    "signature": "void __thiscall(UIWnd *this, int a2)"
+    "signature": "void __thiscall(UIWnd *this, int nHeight)"
   },
   "0x0043FDE0": {
     "name": "UIWnd::GetPosition",
-    "signature": "void __thiscall(UIWnd *this, int a2)"
+    "signature": "void __thiscall(UIWnd *this, int pPos)"
   },
   "0x0043FDF0": {
     "name": "UIWnd::FindChildByName",
-    "signature": "void __thiscall(UIWnd *this, float a2)"
+    "signature": "void __thiscall(UIWnd *this, float fValue)"
   },
   "0x004407C0": {
     "name": "??1UIWnd@@UAE@XZ_2",
@@ -1029,11 +1029,11 @@
   },
   "0x004427A0": {
     "name": "UIWnd::SetShow",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "signature": "int __thiscall(UIWnd *this, int bShow)"
   },
   "0x004427C0": {
     "name": "UIWnd::SetEnable",
-    "signature": "void __thiscall(UIWnd *this, const char *a2, int a3)"
+    "signature": "void __thiscall(UIWnd *this, const char *szName, int bEnable)"
   },
   "0x00442AD0": {
     "name": "UIFrameWnd::Update",
@@ -1065,7 +1065,7 @@
   },
   "0x00445C60": {
     "name": "UIWnd::HitTest",
-    "signature": "BOOL __thiscall(UIWnd *this, int a2, int a3)"
+    "signature": "BOOL __thiscall(UIWnd *this, int x, int y)"
   },
   "0x00445CD0": {
     "name": "UIWnd::GetID",
@@ -1073,7 +1073,7 @@
   },
   "0x00445D10": {
     "name": "UIWnd::SendMessage",
-    "signature": "int __stdcall(int a1, int a2, int a3)"
+    "signature": "int __stdcall(int a1, int nMsg, int wParam)"
   },
   "0x00445DB0": {
     "name": "UIWnd::SetVisible",
@@ -1085,7 +1085,7 @@
   },
   "0x00445FA0": {
     "name": "UIWnd::GetRect",
-    "signature": "int __thiscall(UIWnd *this, _DWORD *a2)"
+    "signature": "int __thiscall(UIWnd *this, _DWORD *pRect)"
   },
   "0x00446010": {
     "name": "UIWnd::GetChild",
@@ -1249,7 +1249,7 @@
   },
   "0x0047CD70": {
     "name": "?LoadObject@Object3D@@QAEXPBDW4ACTION_KIND@@@Z",
-    "signature": "unsigned __int8 __thiscall(void *this, const char *filename, int act)"
+    "signature": "unsigned __int8 __thiscall(gbGeomNode *this, const char *filename, int act)"
   },
   "0x0047CEE0": {
     "name": "?LoadSubObject@Object3D@@QAEXPBDW4ACTION_KIND@@@Z",
@@ -1685,7 +1685,7 @@
   },
   "0x004CD0A0": {
     "name": "??0CMeteorChain@@QAE@XZ",
-    "signature": "void __thiscall(void *this)"
+    "signature": "void __thiscall(CMeteorChain *this)"
   },
   "0x004CD7E0": {
     "name": "?Update@CMeteorChain@@QAEXM@Z",
@@ -2673,7 +2673,7 @@
   },
   "0x004FC980": {
     "name": "?IsDoTask@CCBStage@@QAE_NW4ECBStageTask@@H@Z",
-    "signature": "int __thiscall(void *this, int eTask)"
+    "signature": "int __thiscall(CCBStage *this, int eTask)"
   },
   "0x004FC9A0": {
     "name": "?EndTask@CCBStage@@QAE_NH@Z",
@@ -5625,7 +5625,7 @@
   },
   "0x00445D20": {
     "name": "UIWnd::ScreenToClient",
-    "signature": "int __thiscall(UIWnd *this, int a2, int a3)"
+    "signature": "int __thiscall(UIWnd *this, int px, int py)"
   },
   "0x004C6840": {
     "name": "unknown_libname_447",
@@ -5681,7 +5681,7 @@
   },
   "0x00541EB9": {
     "name": "unknown_libname_526",
-    "signature": "void __thiscall(_DWORD *this)"
+    "signature": "void __thiscall(string *this)"
   },
   "0x0055CDC6": {
     "name": "unknown_libname_545",
@@ -5789,7 +5789,7 @@
   },
   "0x0041EB80": {
     "name": "UIPostUpdate",
-    "signature": "void __thiscall(void *this)"
+    "signature": "void __thiscall(gbSound2DNode *this)"
   },
   "0x00408AC0": {
     "name": "unknown_libname_315",
@@ -5913,7 +5913,7 @@
   },
   "0x00445D40": {
     "name": "UIWnd::ClientToScreen",
-    "signature": "int __thiscall(UIWnd *this, int a2, int a3)"
+    "signature": "int __thiscall(UIWnd *this, int px, int py)"
   },
   "0x00553082": {
     "name": "_sprintf",
@@ -6017,7 +6017,7 @@
   },
   "0x0043FDB0": {
     "name": "UIWnd::SetFrameRate",
-    "signature": "void __thiscall(UIWnd *this, int a2)"
+    "signature": "void __thiscall(UIWnd *this, int nRate)"
   },
   "0x00452790": {
     "name": "UIAnimateCtrlEX::ctor_2790",
@@ -6197,7 +6197,7 @@
   },
   "0x00541E03": {
     "name": "unknown_libname_525",
-    "signature": "void __thiscall(_DWORD *this)"
+    "signature": "void __thiscall(string *this)"
   },
   "0x00432830": {
     "name": "unknown_libname_346",
@@ -6285,7 +6285,7 @@
   },
   "0x004B73D0": {
     "name": "?SetComponent@MvcController@@UAEXPAVMvcVisualComponent@@@Z",
-    "signature": "int __thiscall(_DWORD *this, int a2)"
+    "signature": "int __thiscall(MvcController *this, int a2)"
   },
   "0x0043A1F0": {
     "name": "PalScript::ctor_A1F0",
@@ -6461,7 +6461,7 @@
   },
   "0x0043FEC0": {
     "name": "UIWnd::AddChild",
-    "signature": "int __thiscall(UIWnd *this, _DWORD *a2)"
+    "signature": "int __thiscall(UIWnd *this, _DWORD *pChild)"
   },
   "0x0041B6A0": {
     "name": "GetGfxManager_1",
@@ -6645,7 +6645,7 @@
   },
   "0x0043A4B0": {
     "name": "?SetController@MvcViewport@@UAEXPAVMvcController@@@Z",
-    "signature": "int __thiscall(_DWORD *this, int a2)"
+    "signature": "int __thiscall(MvcViewport *this, int a2)"
   },
   "0x00408640": {
     "name": "unknown_libname_306",
@@ -6669,7 +6669,7 @@
   },
   "0x00445FE0": {
     "name": "UIWnd::SetRect",
-    "signature": "_DWORD *__thiscall(UIWnd *this, _DWORD *a2)"
+    "signature": "_DWORD *__thiscall(UIWnd *this, _DWORD *pRect)"
   },
   "0x005540E0": {
     "name": "_atoi",
@@ -6825,7 +6825,7 @@
   },
   "0x00445E70": {
     "name": "UIWnd::Destroy",
-    "signature": "int __thiscall(Actor *this, int a2)"
+    "signature": "int __thiscall(Actor *this, int nFlags)"
   },
   "0x00422110": {
     "name": "unknown_libname_329",
@@ -7081,7 +7081,7 @@
   },
   "0x00541FA1": {
     "name": "unknown_libname_527",
-    "signature": "void __thiscall(_DWORD *this)"
+    "signature": "void __thiscall(string *this)"
   },
   "0x0044FF70": {
     "name": "unknown_libname_376",
@@ -7477,7 +7477,7 @@
   },
   "0x004FF560": {
     "name": "Combat_Func_4FF560",
-    "signature": "int __thiscall(_DWORD *this, int a2)"
+    "signature": "int __thiscall(CCBStageRole *this, int a2)"
   },
   "0x00444AC0": {
     "name": "UIFrameWnd_Destructor_444AC0",
@@ -7549,7 +7549,7 @@
   },
   "0x00420150": {
     "name": "UIUpdate",
-    "signature": "double(_DWORD *this, double result, double a3)"
+    "signature": "double(ScriptSystem *this, double result, double a3)"
   },
   "0x0043D880": {
     "name": "UI3DCtrl::ctor_D880",
@@ -8933,7 +8933,7 @@
   },
   "0x0041F120": {
     "name": "PathObj::GetPosition",
-    "signature": "_DWORD *__thiscall(PathObj *this, float a2, float *a3, _DWORD *a4)"
+    "signature": "_DWORD *__thiscall(PathObj *this, float pPos, float *a3, _DWORD *a4)"
   },
   "0x00420320": {
     "name": "RoleSystem::_sub_420320",
@@ -10049,7 +10049,7 @@
   },
   "0x00440A20": {
     "name": "UIWnd::LoadResource",
-    "signature": "gbVFileSystem *__thiscall(UIWnd *this, LPCSTR lpString, char a3)"
+    "signature": "gbVFileSystem *__thiscall(UIWnd *this, LPCSTR lpString, char nFlags)"
   },
   "0x00440BE0": {
     "name": "UIWnd::LoadResourceEx",
@@ -11209,11 +11209,11 @@
   },
   "0x004B82B0": {
     "name": "sub_4B82B0",
-    "signature": "_DWORD *__thiscall(_DWORD *this)"
+    "signature": "_DWORD *__thiscall(RenderTarget *this)"
   },
   "0x004B86E0": {
     "name": "sub_4B86E0",
-    "signature": "void __thiscall(_DWORD *this)"
+    "signature": "void __thiscall(RenderTarget *this)"
   },
   "0x004B9E50": {
     "name": "sub_4B9E50",
@@ -12377,7 +12377,7 @@
   },
   "0x0053D460": {
     "name": "sub_53D460",
-    "signature": "gbVFileSystem *__thiscall(_DWORD *this, int a2, int a3, int a4, int a5)"
+    "signature": "gbVFileSystem *__thiscall(gbRefObject *this, int a2, int a3, int a4, int a5)"
   },
   "0x0053DB70": {
     "name": "CScreenMode::_nearby_53db70",
@@ -12801,7 +12801,7 @@
   },
   "0x00401070": {
     "name": "sub_401070",
-    "signature": "int __thiscall(_DWORD *this, int a2, int a3, int a4, int a5)"
+    "signature": "int __thiscall(AStarPathFinder *this, int a2, int a3, int a4, int a5)"
   },
   "0x004014B0": {
     "name": "sub_4014B0",
@@ -13393,7 +13393,7 @@
   },
   "0x004204B0": {
     "name": "sub_4204B0",
-    "signature": "char __thiscall(_DWORD *this, int a2, int a3, int a4, int a5, char a6)"
+    "signature": "char __thiscall(RoleSystem *this, int a2, int a3, int a4, int a5, char a6)"
   },
   "0x004206F0": {
     "name": "sub_4206F0",
@@ -14301,7 +14301,7 @@
   },
   "0x0043F690": {
     "name": "UIWnd::SetItemData",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "signature": "int __thiscall(UIWnd *this, int nData)"
   },
   "0x0043F7E0": {
     "name": "UIWnd::_nearby_43f7e0",
@@ -16745,7 +16745,7 @@
   },
   "0x004C5AA0": {
     "name": "sub_4C5AA0",
-    "signature": "int __thiscall(_DWORD *this, int a2)"
+    "signature": "int __thiscall(CCBSystem *this, int a2)"
   },
   "0x004C5B30": {
     "name": "sub_4C5B30",
@@ -17017,7 +17017,7 @@
   },
   "0x004CE030": {
     "name": "sub_4CE030",
-    "signature": "char __thiscall(_DWORD *this, int *a2, int a3)"
+    "signature": "char __thiscall(CEffMgr *this, int *a2, int a3)"
   },
   "0x004CE0D0": {
     "name": "CPK::_auto_4ce0d0",
@@ -18209,7 +18209,7 @@
   },
   "0x0051B030": {
     "name": "sub_51B030",
-    "signature": "int __thiscall(_DWORD *this, int arg0, int a2, int a3)"
+    "signature": "int __thiscall(CCBUI *this, int arg0, int a2, int a3)"
   },
   "0x0051B6E0": {
     "name": "sub_51B6E0",
