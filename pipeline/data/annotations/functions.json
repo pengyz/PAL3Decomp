@@ -5685,7 +5685,7 @@
   },
   "0x0055BEB5": {
     "name": "_abort",
-    "signature": "void __cdecl __noreturn()"
+    "signature": "void __cdecl()"
   },
   "0x00412D90": {
     "name": "RoleSystem_Helper_412D90",
@@ -8373,7 +8373,7 @@
   },
   "0x0043C550": {
     "name": "UIAnimCtrl::SetProgress",
-    "signature": "int __thiscall(UIAnimCtrl *this, fProgress)"
+    "signature": "int __thiscall(UIAnimCtrl *this, float fProgress)"
   },
   "0x0040E050": {
     "name": "Vec3D_Lerp",
@@ -8417,7 +8417,7 @@
   },
   "0x0042CB70": {
     "name": "ScriptVM::PushParam",
-    "signature": "int __thiscall(ScriptVM *this, pData, unsigned __int8 nType, int nCount)"
+    "signature": "int __thiscall(ScriptVM *this, void *pData, unsigned char nType, int nCount)"
   },
   "0x0040DBD0": {
     "name": "PtrArray::Find",
@@ -8433,11 +8433,11 @@
   },
   "0x00523820": {
     "name": "UIParabolaCtrl::Update",
-    "signature": "int __thiscall(UIParabolaCtrl *this, nDelta)"
+    "signature": "int __thiscall(UIParabolaCtrl *this, float nDelta)"
   },
   "0x00469D50": {
     "name": "UIListView::AddItem",
-    "signature": "void __thiscall(UIListView *this, pData, int nCol, int nRow, int nFlags)"
+    "signature": "void __thiscall(UIListView *this, void *pData, int nCol, int nRow, int nFlags)"
   },
   "0x00462220": {
     "name": "UISlider::GetValue",
@@ -8461,11 +8461,11 @@
   },
   "0x00469D00": {
     "name": "UIListView::SetItemData",
-    "signature": "int __thiscall(UIListView *this, nCol, int nRow, int nData, int nFlags)"
+    "signature": "int __thiscall(UIListView *this, int nCol, int nRow, int nData, int nFlags)"
   },
   "0x00494040": {
     "name": "UIInventory::UpdateSlot",
-    "signature": "void __thiscall(UIInventory *this, nSlotIdx, int nItemID, int nCount)"
+    "signature": "void __thiscall(UIInventory *this, int nSlotIdx, int nItemID, int nCount)"
   },
   "0x00432680": {
     "name": "UIListBox::Method_2680",
@@ -8481,7 +8481,7 @@
   },
   "0x00494D70": {
     "name": "UIInventory::HandleInput",
-    "signature": "void __thiscall(UIInventory *this, nInputID, int nParam)"
+    "signature": "void __thiscall(UIInventory *this, int nInputID, int nParam)"
   },
   "0x004E7350": {
     "name": "CCBStageCam::Method_7350",
@@ -8553,7 +8553,7 @@
   },
   "0x0043DC40": {
     "name": "UIObj::SetPosition",
-    "signature": "void __thiscall(UIObj *this, nX, int nY)"
+    "signature": "void __thiscall(UIObj *this, int nX, int nY)"
   },
   "0x00402220": {
     "name": "GRPinput::Reset",
@@ -8617,7 +8617,7 @@
   },
   "0x0049FBE0": {
     "name": "UIInventory::UpdateDisplay",
-    "signature": "BOOL __thiscall(UIInventory *this, nPage, int nSlot)"
+    "signature": "BOOL __thiscall(UIInventory *this, int nPage, int nSlot)"
   },
   "0x00478880": {
     "name": "UIFrameWnd::ProcessTimer",
@@ -8625,7 +8625,7 @@
   },
   "0x00469EB0": {
     "name": "UIListView::HandleInput",
-    "signature": "BOOL __thiscall(UIListView *this, nInputID, int nParam, int nFlags)"
+    "signature": "BOOL __thiscall(UIListView *this, int nInputID, int nParam, int nFlags)"
   },
   "0x00445760": {
     "name": "UIWnd::UpdateChildLayout",
@@ -8637,7 +8637,7 @@
   },
   "0x004209F0": {
     "name": "TileMap::GetTile",
-    "signature": "char __thiscall(TileMap *this, nX, int nY)"
+    "signature": "char __thiscall(TileMap *this, int nX, int nY)"
   },
   "0x00424C20": {
     "name": "PalScriptMgr::ExecuteBlock",
@@ -15881,7 +15881,7 @@
   },
   "0x004A13F0": {
     "name": "UIItem::_sdtor",
-    "signature": "void *__thiscall(UIItem *this, Block, char)"
+    "signature": "void *__thiscall(UIItem *this, void *Block, char a3)"
   },
   "0x004A1620": {
     "name": "MUIDialog::_method_4a1620",
