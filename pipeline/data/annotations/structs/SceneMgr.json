@@ -47,9 +47,9 @@
       "source": "gen_headers_9.2"
     },
     "54108": {
-      "name": "m_pCollisionNode",
-      "type": "gbGeomNode *",
-      "source": "gen_headers_9.2"
+      "name": "m_pRoleSystem",
+      "type": "RoleSystem *",
+      "source": "decomp_context"
     },
     "8": {
       "name": "m_pAddEffect2",
@@ -395,6 +395,26 @@
       "name": "_field_0D340",
       "type": "float",
       "source": "binary:scenemgr_high"
+    },
+    "7112": {
+      "name": "m_g_bSlotValid",
+      "type": "unsigned char[5]",
+      "source": "globals_merge"
+    },
+    "7120": {
+      "name": "m_g_RoleSystems",
+      "type": "RoleSystem *",
+      "source": "globals_merge"
+    },
+    "54106": {
+      "name": "m_bPathEnabled",
+      "type": "unsigned char",
+      "source": "decomp_context"
+    },
+    "54112": {
+      "name": "m_nCameraFlags",
+      "type": "int",
+      "source": "decomp_context"
     }
   },
   "pdb_size": 1,

@@ -192,36 +192,6 @@ def collect_functions():
     return by_class, free_funcs
 
 
-# MEMORY[addr] -> global variable name mapping
-MEMORY_MAP = {
-    0x00BFDA60: 'g_pGfxManager',
-    0x00BFDA64: 'g_pActorMgr',
-    0x00BFDA68: 'g_pCamera',
-    0x00BFDA6C: 'g_nGameState',
-    0x00BFDA70: 'g_pSceneMgr',
-    0x00BFDA74: 'g_pCBSystem',
-    0x00BFDA78: 'g_pGameData',
-    0x00BFDA7C: 'g_pScreenMode',
-    0x00BFDA80: 'g_pInput',
-    0x00BFDA84: 'g_pRoleSystem',
-    0x00BFDA8C: 'g_pUIManager',
-    0x00BFDA90: 'g_pEffMgr',
-    0x00BFDA94: 'g_pLogger',
-    0x00BFDA98: 'g_pPalScript',
-    0x00BFDA9C: 'g_pConfig',
-    0x00BFDAA0: 'g_pTextureLib',
-}
-
-
-def replace_memory_refs(code):
-    """Replace MEMORY[0xADDR] with named globals."""
-    def mem_replace(match):
-        addr = int(match.group(1), 16)
-        if addr in MEMORY_MAP:
-            return MEMORY_MAP[addr]
-        return match.group(0)
-    return re.sub(r'MEMORY\[0x([0-9A-Fa-f]+)\]', mem_replace, code)
-
 
 def transform_method_code(cls_name, method_name, code, sig):
     """Post-process Hex-Rays output into cleaner C++."""
@@ -293,9 +263,6 @@ def transform_method_code(cls_name, method_name, code, sig):
 
     # 4. Remove variable declarations for 'this' pointer
     code = re.sub(r'^\s*%s\s*\*\s*this\s*;.*$' % re.escape(cls_name), '', code, flags=re.MULTILINE)
-
-    # 5. Replace MEMORY[0xADDR] with named globals
-    code = replace_memory_refs(code)
 
     # 6b. Fix IDA type misidentification: stdiobuf/ios_base -> UIWnd in game code
     code = code.replace('stdiobuf *', 'UIWnd *')
@@ -535,7 +502,6 @@ def generate_free_funcs_cpp(funcs):
     for f in funcs:
         code = f['code'].strip()
         code = replace_thunks(code)
-        code = replace_memory_refs(code)
         # In free functions, 'this' is not a valid parameter name in C++
         # Rename to '_this' to avoid syntax errors
         code = re.sub(r'\bthis\b', '_this', code)
