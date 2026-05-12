@@ -580,20 +580,20 @@
     "signature": "void()"
   },
   "0x0041F370": {
-    "name": "UIManager::Render",
-    "signature": "void __thiscall(UIManager *this)"
+    "name": "UIBigMap::Render",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x0041F5E0": {
-    "name": "UIManager::LoadShadowTexture",
-    "signature": "void *__thiscall(UIManager *this)"
+    "name": "UIBigMap::LoadShadowTexture",
+    "signature": "void *__thiscall(UIBigMap *this)"
   },
   "0x004200A0": {
-    "name": "UIScene::Render",
-    "signature": "int __thiscall(UIScene *this, int a2)"
+    "name": "SystemUI::Render",
+    "signature": "int __thiscall(SystemUI *this, int a2)"
   },
   "0x00420110": {
-    "name": "UIScene::RenderWithStack",
-    "signature": "int __thiscall(UIScene *this, void *pStack)"
+    "name": "RoleSystem::RenderWithStack",
+    "signature": "int __thiscall(RoleSystem *this, void *pStack)"
   },
   "0x00420CD0": {
     "name": "UICamera::GetViewMode",
@@ -612,8 +612,8 @@
     "signature": "int __thiscall(UIScene *this)"
   },
   "0x00421C00": {
-    "name": "UIScene::EffectRender",
-    "signature": "int __thiscall(UIScene *this)"
+    "name": "RoleSystem::EffectRender",
+    "signature": "int __thiscall(RoleSystem *this)"
   },
   "0x004220A0": {
     "name": "UIScene::OverlayRender",
@@ -972,8 +972,8 @@
     "signature": "int __thiscall(UIListBox *this)"
   },
   "0x0043F560": {
-    "name": "UIWnd::CreateChild",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::CreateChild",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x0043F970": {
     "name": "??1UIWnd@@UAE@XZ_1",
@@ -1004,8 +1004,8 @@
     "signature": "void __thiscall(UIWnd *this, int pPos)"
   },
   "0x0043FDF0": {
-    "name": "UIWnd::FindChildByName",
-    "signature": "void __thiscall(UIWnd *this, float fValue)"
+    "name": "UIBigMap::FindChildByName",
+    "signature": "void __thiscall(UIBigMap *this, float fValue)"
   },
   "0x004407C0": {
     "name": "??1UIWnd@@UAE@XZ_2",
@@ -1028,8 +1028,8 @@
     "signature": "void __thiscall(UIWnd **this, LPCSTR lpString1, char a3)"
   },
   "0x004427A0": {
-    "name": "UIWnd::SetShow",
-    "signature": "int __thiscall(UIWnd *this, int bShow)"
+    "name": "UIBigMap::SetShow",
+    "signature": "int __thiscall(UIBigMap *this, int bShow)"
   },
   "0x004427C0": {
     "name": "UIWnd::SetEnable",
@@ -1052,8 +1052,8 @@
     "signature": "int __thiscall(UIAnimateCtrlEX *this)"
   },
   "0x00445930": {
-    "name": "UIWnd::SetState",
-    "signature": "int __thiscall(UIWnd *this, int state)"
+    "name": "UIBigMap::SetState",
+    "signature": "int __thiscall(UIBigMap *this, int state)"
   },
   "0x00445B40": {
     "name": "UIWnd::_UIWnd",
@@ -1120,24 +1120,24 @@
     "signature": "int __thiscall(CGameData *this, int a2)"
   },
   "0x004503D0": {
-    "name": "UIDialog::Create",
-    "signature": "void __thiscall(UIDialog *this, int id, int x, int y, int parent, char *tex)"
+    "name": "UIBigMap::Create",
+    "signature": "void __thiscall(UIBigMap *this, int id, int x, int y, int parent, char *tex)"
   },
   "0x00450550": {
-    "name": "UIDialog::Show",
-    "signature": "void __thiscall(UIDialog *this)"
+    "name": "UIBigMap::Show",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x00450B30": {
     "name": "UIDialog::Init",
     "signature": "int __thiscall(UIDialog *this)"
   },
   "0x00450F90": {
-    "name": "UIBigDialog::Create",
-    "signature": "int __thiscall(UIBigDialog *this, int id, void *pRect, int parent, char *tex)"
+    "name": "UIBigMap::Create",
+    "signature": "int __thiscall(UIBigMap *this, int id, void *pRect, int parent, char *tex)"
   },
   "0x00451980": {
-    "name": "UISelectDialog::Create",
-    "signature": "int __thiscall(UISelectDialog *this, int id, void *pRect, int parent, char *tex)"
+    "name": "UIBigMap::Create",
+    "signature": "int __thiscall(UIBigMap *this, int id, void *pRect, int parent, char *tex)"
   },
   "0x00452670": {
     "name": "PropUI::Init",
@@ -1320,8 +1320,8 @@
     "signature": "BOOL __stdcall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)"
   },
   "0x004A12F0": {
-    "name": "UIItem::Refresh",
-    "signature": "int __thiscall(UIItem *this)"
+    "name": "UIBigMap::Refresh",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x004A1410": {
     "name": "UIItem::UIItem",
@@ -1332,8 +1332,8 @@
     "signature": "void *__thiscall(UIItem *this, char a2)"
   },
   "0x004A16C0": {
-    "name": "UIItem::Create",
-    "signature": "int __thiscall(UIItem *this, int id, int a3)"
+    "name": "UIBigMap::Create",
+    "signature": "int __thiscall(UIBigMap *this, int id, int a3)"
   },
   "0x004A3900": {
     "name": "UIBase::SetItemData",
@@ -1344,8 +1344,8 @@
     "signature": "void __thiscall(EquipUI *this)"
   },
   "0x004A4890": {
-    "name": "UIBase::GetSelected",
-    "signature": "int __thiscall(UIBase *this)"
+    "name": "UIBigMap::GetSelected",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x004A48B0": {
     "name": "EquipUI::InitSlots",
@@ -4560,8 +4560,8 @@
     "signature": "int __thiscall(PropUI *this)"
   },
   "0x00470A60": {
-    "name": "UIListBox::ctor_A60",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "TaskBookUI::ctor_A60",
+    "signature": "int __thiscall(TaskBookUI *this)"
   },
   "0x004709F0": {
     "name": "unknown_libname_393",
@@ -4676,8 +4676,8 @@
     "signature": "void()"
   },
   "0x004909F0": {
-    "name": "UIBigMap::ctor_9F0",
-    "signature": "int __thiscall(UIBigMap *this)"
+    "name": "CEffect::ctor_9F0",
+    "signature": "int __thiscall(CEffect *this)"
   },
   "0x004045F0": {
     "name": "unknown_libname_301",
@@ -4792,8 +4792,8 @@
     "signature": "int()"
   },
   "0x00442E10": {
-    "name": "UIFrameWnd::ctor_2E10",
-    "signature": "void __thiscall(UIFrameWnd *this)"
+    "name": "UIBigMap::ctor_2E10",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x0047BBF0": {
     "name": "UITitle_ArcSave::ctor_BBF0",
@@ -4812,8 +4812,8 @@
     "signature": "int()"
   },
   "0x0043BCE0": {
-    "name": "UIScene::ctor_BCE0",
-    "signature": "_DWORD *__thiscall(UIScene *this)"
+    "name": "UIBigMap::ctor_BCE0",
+    "signature": "_DWORD *__thiscall(UIBigMap *this)"
   },
   "0x004B65F0": {
     "name": "RenderTarget3::Init",
@@ -4920,8 +4920,8 @@
     "signature": "int()"
   },
   "0x0044BE80": {
-    "name": "UIScene::ctor_BE80",
-    "signature": "void __thiscall(UIScene *this)"
+    "name": "UIScenePanel::ctor_BE80",
+    "signature": "void __thiscall(UIScenePanel *this)"
   },
   "0x00453030": {
     "name": "SceneObj::ctor_3030",
@@ -4976,8 +4976,8 @@
     "signature": "void __thiscall(UIWnd *this, int nRate)"
   },
   "0x00452790": {
-    "name": "UIAnimateCtrlEX::ctor_2790",
-    "signature": "int __thiscall(UIAnimateCtrlEX *this)"
+    "name": "UIBigMap::ctor_2790",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x004D0CB0": {
     "name": "unknown_libname_454",
@@ -5012,8 +5012,8 @@
     "signature": "void __thiscall(UIListBox *this)"
   },
   "0x00470F40": {
-    "name": "UIListBox::ctor_F40",
-    "signature": "void __thiscall(UIListBox *this)"
+    "name": "TaskBookUI::ctor_F40",
+    "signature": "void __thiscall(TaskBookUI *this)"
   },
   "0x00432630": {
     "name": "unknown_libname_345",
@@ -5052,8 +5052,8 @@
     "signature": "int()"
   },
   "0x00477BB0": {
-    "name": "UIListBox::ctor_7BB0",
-    "signature": "int __thiscall(UIListBox *this, int arg0, int a3, int a4)"
+    "name": "TaskBookUI::ctor_7BB0",
+    "signature": "int __thiscall(TaskBookUI *this, int arg0, int a3, int a4)"
   },
   "0x0053DF70": {
     "name": "CScreenMode::GetInstance",
@@ -5436,8 +5436,8 @@
     "signature": "int()"
   },
   "0x00454590": {
-    "name": "UIListBox::SendMessage",
-    "signature": "int __thiscall(UIListBox *this, int a2, int a3, int a4)"
+    "name": "UIBigMap::SendMessage",
+    "signature": "int __thiscall(UIBigMap *this, int a2, int a3, int a4)"
   },
   "0x00445010": {
     "name": "UIWnd_Destructor",
@@ -5504,8 +5504,8 @@
     "signature": "int __thiscall(int this, char a2)"
   },
   "0x0046D4E0": {
-    "name": "UIListBox::ctor_D4E0",
-    "signature": "void __thiscall(UIListBox *this)"
+    "name": "PropUI::ctor_D4E0",
+    "signature": "void __thiscall(PropUI *this)"
   },
   "0x00525540": {
     "name": "CCBUI::ctor_5540",
@@ -5556,8 +5556,8 @@
     "signature": "int()"
   },
   "0x0045AE60": {
-    "name": "UIListBox::ctor_AE60",
-    "signature": "void __thiscall(UIListBox *this)"
+    "name": "SaleUI::ctor_AE60",
+    "signature": "void __thiscall(SaleUI *this)"
   },
   "0x00456A40": {
     "name": "unknown_libname_388",
@@ -5744,8 +5744,8 @@
     "signature": "void()"
   },
   "0x004410F0": {
-    "name": "UIMap::ctor_10F0",
-    "signature": "_DWORD *__thiscall(UIMap *this)"
+    "name": "UIBigMap::ctor_10F0",
+    "signature": "_DWORD *__thiscall(UIBigMap *this)"
   },
   "0x004B6390": {
     "name": "unknown_libname_411",
@@ -5820,8 +5820,8 @@
     "signature": "int __thiscall(CCBUI *this, int a2, int a3, int a4)"
   },
   "0x00439030": {
-    "name": "UIWnd::ctor_9030",
-    "signature": "_DWORD *__thiscall(UIWnd *this)"
+    "name": "UIBigMap::ctor_9030",
+    "signature": "_DWORD *__thiscall(UIBigMap *this)"
   },
   "0x00432770": {
     "name": "PtrArray::SetAt",
@@ -5880,8 +5880,8 @@
     "signature": "_DWORD *__thiscall(_DWORD *this)"
   },
   "0x00453D10": {
-    "name": "UIListBox::ctor_3D10",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "UIBigMap::ctor_3D10",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x004045B0": {
     "name": "unknown_libname_299",
@@ -6012,8 +6012,8 @@
     "signature": "int()"
   },
   "0x004B01D0": {
-    "name": "UIListBox::ctor_1D0",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "sg_particle_scene::ctor_1D0",
+    "signature": "int __thiscall(sg_particle_scene *this)"
   },
   "0x0044ED80": {
     "name": "unknown_libname_375",
@@ -6252,8 +6252,8 @@
     "signature": "int __thiscall(int this, int a2, int a3)"
   },
   "0x0045A7B0": {
-    "name": "UIListBox::ctor_A7B0",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "SaleUI::ctor_A7B0",
+    "signature": "int __thiscall(SaleUI *this)"
   },
   "0x004C9500": {
     "name": "unknown_libname_449",
@@ -6292,8 +6292,8 @@
     "signature": "_DWORD *__thiscall(UIWnd *this)"
   },
   "0x0046D140": {
-    "name": "UIListBox::ctor_D140",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "PropUI::ctor_D140",
+    "signature": "int __thiscall(PropUI *this)"
   },
   "0x005295F0": {
     "name": "UIRoleSelectDialog::ctor_95F0",
@@ -6312,8 +6312,8 @@
     "signature": "int()"
   },
   "0x0044AB90": {
-    "name": "UITitle::ctor_AB90",
-    "signature": "int __thiscall(UITitle *this)"
+    "name": "UIBigMap::ctor_AB90",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x0047BB80": {
     "name": "unknown_libname_397",
@@ -6552,8 +6552,8 @@
     "signature": "int __thiscall(PtrArray *this)"
   },
   "0x00449980": {
-    "name": "UIWnd::SetUserData",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "UIBigMap::SetUserData",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x0043F640": {
     "name": "UIListBox::SetLockSel",
@@ -6572,8 +6572,8 @@
     "signature": "LRESULT __cdecl(HWND hWnd, int nValue)"
   },
   "0x0046D0A0": {
-    "name": "UIWnd::SetItemParam",
-    "signature": "int __thiscall(UIWnd *this, int nParam)"
+    "name": "UIBigMap::SetItemParam",
+    "signature": "int __thiscall(UIBigMap *this, int nParam)"
   },
   "0x004DC720": {
     "name": "CCBRoleState::IsAlive",
@@ -6588,12 +6588,12 @@
     "signature": "UIWnd *__thiscall(UIWnd *this, unsigned int nIndex)"
   },
   "0x00440AE0": {
-    "name": "UIWnd::LoadTexture",
-    "signature": "void __thiscall(UIWnd *this, const char *szFilename, BOOL bAlpha)"
+    "name": "UIBigMap::LoadTexture",
+    "signature": "void __thiscall(UIBigMap *this, const char *szFilename, BOOL bAlpha)"
   },
   "0x004A5010": {
-    "name": "UIWnd::HandleMessage",
-    "signature": "BOOL __thiscall(UIWnd *this)"
+    "name": "SCNFile::HandleMessage",
+    "signature": "BOOL __thiscall(SCNFile *this)"
   },
   "0x0047FD90": {
     "name": "Object3D::LoadFromFile",
@@ -6736,8 +6736,8 @@
     "signature": "char *__thiscall(ScriptVM *this)"
   },
   "0x004A1CF0": {
-    "name": "UIParabolaCtrl::GetState",
-    "signature": "int __thiscall(UIParabolaCtrl *this)"
+    "name": "UIBigMap::GetState",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x0049CA70": {
     "name": "PAL_GDB::IsValidItem",
@@ -6784,8 +6784,8 @@
     "signature": "BOOL __thiscall(CEffect *this, int nParam, BOOL bFlag)"
   },
   "0x00523820": {
-    "name": "UIParabolaCtrl::Update",
-    "signature": "int __thiscall(UIParabolaCtrl *this, float nDelta)"
+    "name": "UIBigMap::Update",
+    "signature": "int __thiscall(UIBigMap *this, float nDelta)"
   },
   "0x00469D50": {
     "name": "CCBUI::AddItem",
@@ -6828,8 +6828,8 @@
     "signature": "int __thiscall(CUtil *this)"
   },
   "0x004A9870": {
-    "name": "UIListBox::Method_9870",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "CCCTData::Method_9870",
+    "signature": "int __thiscall(CCCTData *this)"
   },
   "0x00494D70": {
     "name": "EquipUI::HandleInput",
@@ -6928,8 +6928,8 @@
     "signature": "int __thiscall(RoleSystem *this, float fDeltaTime, int nMode)"
   },
   "0x0045A220": {
-    "name": "UIWnd::OnPaint",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "UIBigMap::OnPaint",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x00413CD0": {
     "name": "RoleSystem::PathFollowUpdate",
@@ -7184,8 +7184,8 @@
     "signature": "char __thiscall(CCBAIWindow *this, int thisa, int a3)"
   },
   "0x0052AA50": {
-    "name": "UIWnd::_nearby_52aa50",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_52aa50",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x0052D0F0": {
     "name": "UIWnd::_auto_52d0f0",
@@ -7496,32 +7496,32 @@
     "signature": "int __thiscall(CCBUI *this, int deltatime, int haveinput)"
   },
   "0x0046B4B0": {
-    "name": "UIListBox::SendMessage",
-    "signature": "int __thiscall(UIListBox *this, int a2, char *a3, int a4)"
+    "name": "SaleUI::SendMessage",
+    "signature": "int __thiscall(SaleUI *this, int a2, char *a3, int a4)"
   },
   "0x00473B50": {
-    "name": "UIListBox::_init_473b50",
-    "signature": "UIListBox *__thiscall(UIListBox *this, UIListBox *a2, unsigned int *arg4)"
+    "name": "TaskBookUI::_init_473b50",
+    "signature": "UIListBox *__thiscall(TaskBookUI *this, UIListBox *a2, unsigned int *arg4)"
   },
   "0x0047C3A0": {
     "name": "CCBMagicWindow::Update",
     "signature": "int __thiscall(CCBMagicWindow *this, struct PalScript *deltatime, int haveinput)"
   },
   "0x004974A0": {
-    "name": "UIBigMap::SendMessage",
-    "signature": "int __thiscall(UIBigMap *this, int a2, char *a3, int nItemID)"
+    "name": "CEffect::SendMessage",
+    "signature": "int __thiscall(CEffect *this, int a2, char *a3, int nItemID)"
   },
   "0x0049A360": {
     "name": "StateUI::_method_49a360",
     "signature": "void __thiscall(StateUI *this, int a2)"
   },
   "0x0049AEA0": {
-    "name": "UIListBox::_init_49aea0",
-    "signature": "void __thiscall(UIListBox *this, int arg0)"
+    "name": "CLoad3DS::_init_49aea0",
+    "signature": "void __thiscall(CLoad3DS *this, int arg0)"
   },
   "0x0049B2E0": {
-    "name": "UIListBox::_init_49b2e0",
-    "signature": "void __thiscall(UIListBox *this, int arg0, char arg4)"
+    "name": "CLoad3DS::_init_49b2e0",
+    "signature": "void __thiscall(CLoad3DS *this, int arg0, char arg4)"
   },
   "0x0049C2C0": {
     "name": "PAL_GDB::_init_49c2c0",
@@ -7856,12 +7856,12 @@
     "signature": "void()"
   },
   "0x004236D0": {
-    "name": "UIScene::_nearby_4236d0",
-    "signature": "void __thiscall(UIScene *this)"
+    "name": "UIBigMap::_nearby_4236d0",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x00423880": {
-    "name": "UIScene::_nearby_423880",
-    "signature": "void __thiscall(UIScene *this)"
+    "name": "UIBigMap::_nearby_423880",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x0042AAE0": {
     "name": "PalScriptMgr::_nearby_42aae0",
@@ -8160,8 +8160,8 @@
     "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)"
   },
   "0x0043A270": {
-    "name": "UIFrameWnd::_init_43a270",
-    "signature": "int __thiscall(UIFrameWnd *this)"
+    "name": "UIBigMap::_init_43a270",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x0043A3E0": {
     "name": "CCBFiveNimbusWindow::_method_43a3e0",
@@ -8264,12 +8264,12 @@
     "signature": "int __thiscall(UIListBox *this)"
   },
   "0x0043F6A0": {
-    "name": "UIWnd::_sub_43F6A0",
-    "signature": "unsigned int __thiscall(UIWnd *this, unsigned int a2, int a3)"
+    "name": "UIBigMap::_sub_43F6A0",
+    "signature": "unsigned int __thiscall(UIBigMap *this, unsigned int a2, int a3)"
   },
   "0x0043F6D0": {
-    "name": "UIWnd::SetFirstShow_43f6d0",
-    "signature": "int __thiscall(UIWnd *this, unsigned int a2)"
+    "name": "UIBigMap::SetFirstShow_43f6d0",
+    "signature": "int __thiscall(UIBigMap *this, unsigned int a2)"
   },
   "0x0043F7D0": {
     "name": "UIWnd::_nearby_43f7d0",
@@ -8288,20 +8288,20 @@
     "signature": "gbVFileSystem *__thiscall(UIStatic *this, int id, void *pRect, gbVFileSystem *parent, const char *a5, char a6)"
   },
   "0x00440960": {
-    "name": "UIWnd::spstr_440960",
-    "signature": "gbVFileSystem *__thiscall(UIWnd *this, LPCSTR lpString, char a3)"
+    "name": "UIBigMap::spstr_440960",
+    "signature": "gbVFileSystem *__thiscall(UIBigMap *this, LPCSTR lpString, char a3)"
   },
   "0x00440A20": {
-    "name": "UIWnd::LoadResource",
-    "signature": "gbVFileSystem *__thiscall(UIWnd *this, LPCSTR lpString, char nFlags)"
+    "name": "UIBigMap::LoadResource",
+    "signature": "gbVFileSystem *__thiscall(UIBigMap *this, LPCSTR lpString, char nFlags)"
   },
   "0x00440BE0": {
     "name": "UIWnd::LoadResourceEx",
     "signature": "gbVFileSystem *__thiscall(UIWnd *this, const char *a2, char a3)"
   },
   "0x00440CE0": {
-    "name": "UIWnd::spstr_440ce0",
-    "signature": "gbVFileSystem *__thiscall(UIWnd *this, LPCSTR lpString, char a3)"
+    "name": "UIBigMap::spstr_440ce0",
+    "signature": "gbVFileSystem *__thiscall(UIBigMap *this, LPCSTR lpString, char a3)"
   },
   "0x004410D0": {
     "name": "UIWnd::_nearby_4410d0",
@@ -8364,8 +8364,8 @@
     "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)"
   },
   "0x00442FF0": {
-    "name": "UIFrameWnd::_auto_442ff0",
-    "signature": "BOOL __thiscall(UIFrameWnd *this, int a2, int a3)"
+    "name": "UIBigMap::_auto_442ff0",
+    "signature": "BOOL __thiscall(UIBigMap *this, int a2, int a3)"
   },
   "0x00443380": {
     "name": "UIFrameWnd::_sub_443380",
@@ -8376,8 +8376,8 @@
     "signature": "void **__thiscall(UIFrameWnd *this)"
   },
   "0x004434C0": {
-    "name": "UIWnd::Layout_4434c0",
-    "signature": "UIWnd *__thiscall(UIWnd *this)"
+    "name": "UIBigMap::Layout_4434c0",
+    "signature": "UIWnd *__thiscall(UIBigMap *this)"
   },
   "0x004435A0": {
     "name": "CCBFiveNimbusWindow::_method_4435a0",
@@ -8396,8 +8396,8 @@
     "signature": "BOOL __thiscall(CCBFiveNimbusWindow *this, int a2, int a3)"
   },
   "0x00443FC0": {
-    "name": "UIWnd::_nearby_443fc0",
-    "signature": "char __thiscall(UIWnd *this, float a2, int a3, int a4)"
+    "name": "UIBigMap::_nearby_443fc0",
+    "signature": "char __thiscall(UIBigMap *this, float a2, int a3, int a4)"
   },
   "0x00444D30": {
     "name": "CCBResultWindow::_method_444d30",
@@ -8468,8 +8468,8 @@
     "signature": "void()"
   },
   "0x0044A790": {
-    "name": "UIWnd::Layout_44a790",
-    "signature": "UIWnd *__thiscall(UIWnd *this)"
+    "name": "UIBigMap::Layout_44a790",
+    "signature": "UIWnd *__thiscall(UIBigMap *this)"
   },
   "0x0044A870": {
     "name": "CCBProtectWindow::GetID",
@@ -8508,12 +8508,12 @@
     "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x0044C910": {
-    "name": "UIListBox::_auto_44c910",
-    "signature": "void __thiscall(UIListBox *this)"
+    "name": "UIScenePanel::_auto_44c910",
+    "signature": "void __thiscall(UIScenePanel *this)"
   },
   "0x0044DAC0": {
-    "name": "UIListBox::_auto_44dac0",
-    "signature": "void __thiscall(UIListBox *this)"
+    "name": "UIScenePanel::_auto_44dac0",
+    "signature": "void __thiscall(UIScenePanel *this)"
   },
   "0x0044DFC0": {
     "name": "CScreenMode::_init_44dfc0",
@@ -8528,8 +8528,8 @@
     "signature": "void()"
   },
   "0x0044E530": {
-    "name": "UIParticle::_method_44e530",
-    "signature": "void __thiscall(UIParticle *this)"
+    "name": "UIBigMap::_method_44e530",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x0044E5E0": {
     "name": "scScriptInstance::_method_44e5e0",
@@ -8540,8 +8540,8 @@
     "signature": "void __thiscall(CScreenMode *this, int a2, unsigned int a3)"
   },
   "0x0044E980": {
-    "name": "UIWnd::Layout_44e980",
-    "signature": "BOOL __thiscall(UIWnd *this, int a2, int a3)"
+    "name": "UIBigMap::Layout_44e980",
+    "signature": "BOOL __thiscall(UIBigMap *this, int a2, int a3)"
   },
   "0x0044EB70": {
     "name": "UIWnd::_nearby_44eb70",
@@ -8572,8 +8572,8 @@
     "signature": "void()"
   },
   "0x00450320": {
-    "name": "UIWnd::Layout_450320",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "UIBigMap::Layout_450320",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x00450390": {
     "name": "UIWnd::_sub_450390",
@@ -8584,8 +8584,8 @@
     "signature": "BOOL __thiscall(gbCamera *this, int a2, int a3)"
   },
   "0x00450670": {
-    "name": "UIDialog::UpdateChildren",
-    "signature": "void __thiscall(UIDialog *this)"
+    "name": "UIBigMap::UpdateChildren",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x004506F0": {
     "name": "UIWnd::_nearby_4506f0",
@@ -8664,8 +8664,8 @@
     "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)"
   },
   "0x00452AA0": {
-    "name": "UIAnimateCtrlEX::GetID",
-    "signature": "void **__thiscall(UIAnimateCtrlEX *this)"
+    "name": "UIBigMap::GetID",
+    "signature": "void **__thiscall(UIBigMap *this)"
   },
   "0x00452FB0": {
     "name": "UIWnd::_nearby_452fb0",
@@ -8712,8 +8712,8 @@
     "signature": "void __thiscall(UIFrameWnd *this)"
   },
   "0x00454CA0": {
-    "name": "UIScene::_init_454ca0",
-    "signature": "void *__thiscall(UIScene *this, __int128 a2)"
+    "name": "TaskBookUI::_init_454ca0",
+    "signature": "void *__thiscall(TaskBookUI *this, __int128 a2)"
   },
   "0x004554D0": {
     "name": "CG_UI::_method_4554d0",
@@ -8804,8 +8804,8 @@
     "signature": "char __thiscall(PAL3 *this)"
   },
   "0x00459900": {
-    "name": "UIWnd::Render_459900",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "UIBigMap::Render_459900",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x0045A600": {
     "name": "UISceneFrm::SendMessage",
@@ -8820,8 +8820,8 @@
     "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)"
   },
   "0x0046B040": {
-    "name": "UIFrameWnd::_init_46b040",
-    "signature": "int __thiscall(UIFrameWnd *this, int a2, int a3)"
+    "name": "UIBigMap::Update",
+    "signature": "int __thiscall(UIBigMap *this, int deltatime, int haveinput)"
   },
   "0x0046D120": {
     "name": "UIWnd::_nearby_46d120",
@@ -8836,16 +8836,16 @@
     "signature": "void __thiscall(PropUI *this)"
   },
   "0x0046F2C0": {
-    "name": "UIWnd::Render_46f2c0",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "PropUI::Render_46f2c0",
+    "signature": "void __thiscall(PropUI *this)"
   },
   "0x0046F620": {
     "name": "UIListBox::_sub_46F620",
     "signature": "int __thiscall(UIListBox *this, int a2, int a3)"
   },
   "0x0046F650": {
-    "name": "UIListBox::OnMessage",
-    "signature": "int __thiscall(UIListBox *this, int msg, int wparam, unsigned int lparam)"
+    "name": "CCBRoleState::OnMessage",
+    "signature": "int __thiscall(CCBRoleState *this, int msg, int wparam, unsigned int lparam)"
   },
   "0x00470A40": {
     "name": "UIWnd::_nearby_470a40",
@@ -8856,24 +8856,24 @@
     "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)"
   },
   "0x00473520": {
-    "name": "UIListBox::_init_473520",
-    "signature": "void __thiscall(UIListBox *this, UIListBox *a2)"
+    "name": "TaskBookUI::_init_473520",
+    "signature": "void __thiscall(TaskBookUI *this, UIListBox *a2)"
   },
   "0x00474C50": {
     "name": "UIListBox::_sub_474C50",
     "signature": "int __thiscall(UIListBox *this, int a2, int a3)"
   },
   "0x00475FC0": {
-    "name": "UIListBox::_method_475fc0",
-    "signature": "void __thiscall(UIListBox *this)"
+    "name": "TaskBookUI::_method_475fc0",
+    "signature": "void __thiscall(TaskBookUI *this)"
   },
   "0x004765F0": {
-    "name": "UIListBox::_init_4765f0",
-    "signature": "void __thiscall(UIListBox *this, __int128 a2)"
+    "name": "TaskBookUI::_init_4765f0",
+    "signature": "void __thiscall(TaskBookUI *this, __int128 a2)"
   },
   "0x00476ED0": {
-    "name": "UIListBox::_init_476ed0",
-    "signature": "void __thiscall(UIListBox *this, __int128 a2)"
+    "name": "TaskBookUI::_init_476ed0",
+    "signature": "void __thiscall(TaskBookUI *this, __int128 a2)"
   },
   "0x00478860": {
     "name": "UIWnd::_nearby_478860",
@@ -8920,8 +8920,8 @@
     "signature": "char __thiscall(PAL3 *this)"
   },
   "0x0047C260": {
-    "name": "UIWnd::Render_47c260",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "UIBigMap::Render_47c260",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x0047DC80": {
     "name": "Object3D::_nearby_47dc80",
@@ -8944,8 +8944,8 @@
     "signature": "void __thiscall(LineupUI *this)"
   },
   "0x00480070": {
-    "name": "UIFrameWnd::_auto_480070",
-    "signature": "int __thiscall(UIFrameWnd *this, int a2, unsigned __int8 a3, int bFlag)"
+    "name": "SCNFile::_auto_480070",
+    "signature": "int __thiscall(SCNFile *this, int a2, unsigned __int8 a3, int bFlag)"
   },
   "0x004819A0": {
     "name": "Object3D::_init_4819a0",
@@ -9000,8 +9000,8 @@
     "signature": "int __thiscall(PalScript **this)"
   },
   "0x00489BA0": {
-    "name": "UIFrameWnd::_init_489ba0",
-    "signature": "void __thiscall(UIFrameWnd *this, int a2, int a3)"
+    "name": "UIBigMap::SetElementVisible",
+    "signature": "void __thiscall(UIBigMap *this, int element, int visible)"
   },
   "0x0048A010": {
     "name": "CEffect::_auto_48a010",
@@ -9072,8 +9072,8 @@
     "signature": "int __thiscall(MagicUI *this, char a2)"
   },
   "0x00496FA0": {
-    "name": "UIBigMap::GetID",
-    "signature": "void __thiscall(UIBigMap *this)"
+    "name": "LineupUI::GetID",
+    "signature": "void __thiscall(LineupUI *this)"
   },
   "0x00498800": {
     "name": "UIWnd::_nearby_498800",
@@ -9092,12 +9092,12 @@
     "signature": "int __thiscall(PalScript **this)"
   },
   "0x0049F2E0": {
-    "name": "UIListBox::_method_49f2e0",
-    "signature": "void *__thiscall(UIListBox *this, int a2, int _FC)"
+    "name": "CLoad3DS::_method_49f2e0",
+    "signature": "void *__thiscall(CLoad3DS *this, int a2, int _FC)"
   },
   "0x0049FE00": {
-    "name": "UIListBox::_sub_49FE00",
-    "signature": "void __thiscall(UIListBox *this)"
+    "name": "LineupUI::_sub_49FE00",
+    "signature": "void __thiscall(LineupUI *this)"
   },
   "0x004A12D0": {
     "name": "UIItem::_nearby_4a12d0",
@@ -9108,8 +9108,8 @@
     "signature": "void *__thiscall(UIItem *this, void *Block, char a3)"
   },
   "0x004A1AA0": {
-    "name": "UIScene::_init_4a1aa0",
-    "signature": "BOOL __thiscall(UIScene *this, int a2, int a3)"
+    "name": "UIBigMap::_init_4a1aa0",
+    "signature": "BOOL __thiscall(UIBigMap *this, int a2, int a3)"
   },
   "0x004A1E20": {
     "name": "UIWnd::_nearby_4a1e20",
@@ -9128,20 +9128,20 @@
     "signature": "char __thiscall(PAL3 *this)"
   },
   "0x004A4820": {
-    "name": "UIWnd::Render_4a4820",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "SCNFile::Render_4a4820",
+    "signature": "void __thiscall(SCNFile *this)"
   },
   "0x004A4ED0": {
     "name": "PalScript::Update",
     "signature": "int __thiscall(PalScript **this)"
   },
   "0x004A5930": {
-    "name": "UIGameFrm::GetID",
-    "signature": "void __thiscall(UIGameFrm *this)"
+    "name": "SCNFile::GetID",
+    "signature": "void __thiscall(SCNFile *this)"
   },
   "0x004A5A80": {
-    "name": "UIWnd::Layout_4a5a80",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "SCNFile::Layout_4a5a80",
+    "signature": "int __thiscall(SCNFile *this)"
   },
   "0x004A5B30": {
     "name": "gbAudioManager::_init_4a5b30",
@@ -9232,8 +9232,8 @@
     "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
   },
   "0x004B2C70": {
-    "name": "UIListBox::_sub_4B2C70",
-    "signature": "void __thiscall(UIListBox *this)"
+    "name": "LineupUI::_sub_4B2C70",
+    "signature": "void __thiscall(LineupUI *this)"
   },
   "0x004B2D20": {
     "name": "CScreenMode::_init_4b2d20",
@@ -10092,8 +10092,8 @@
     "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)"
   },
   "0x00527CD0": {
-    "name": "UIWnd::Render_527cd0",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "UIBigMap::Render_527cd0",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x00527DC0": {
     "name": "CScreenMode::_method_527dc0",
@@ -10136,8 +10136,8 @@
     "signature": "char __thiscall(UIEmote *this)"
   },
   "0x00529C80": {
-    "name": "UIWnd::Render_529c80",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "UIBigMap::Render_529c80",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x00529CF0": {
     "name": "UIRoleSelectDialog::GetID",
@@ -10152,8 +10152,8 @@
     "signature": "char __thiscall(UI3DCtrl *this, const char *a2)"
   },
   "0x0052AFC0": {
-    "name": "UIWnd::_nearby_52afc0",
-    "signature": "int __thiscall(UIWnd *this, gbMatrixStack *a2)"
+    "name": "UIBigMap::_nearby_52afc0",
+    "signature": "int __thiscall(UIBigMap *this, gbMatrixStack *a2)"
   },
   "0x0052B1C0": {
     "name": "UIWnd::_nearby_52b1c0",
@@ -10612,8 +10612,8 @@
     "signature": "int __thiscall(UICamera *this, gbRay *a2)"
   },
   "0x00418260": {
-    "name": "UIManager::_sub_418260",
-    "signature": "int __thiscall(UIManager *this, int a2, float *a3)"
+    "name": "UIBigMap::_sub_418260",
+    "signature": "int __thiscall(UIBigMap *this, int a2, float *a3)"
   },
   "0x00418970": {
     "name": "RoleSystem::_nearby_418970",
@@ -10872,16 +10872,16 @@
     "signature": "void()"
   },
   "0x00423A70": {
-    "name": "UIScene::_nearby_423a70",
-    "signature": "void __thiscall(UIScene *this, int arg0, const char *a3)"
+    "name": "UIBigMap::SetElementVisible",
+    "signature": "void __thiscall(UIBigMap *this, int element, const char *visible)"
   },
   "0x004243E0": {
-    "name": "UIScene::_nearby_4243e0",
-    "signature": "void __thiscall(UIScene *this)"
+    "name": "UIBigMap::_nearby_4243e0",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x00424570": {
-    "name": "UIScene::_sub_424570",
-    "signature": "void __thiscall(UIScene *this, gbMatrixStack *pStack, int a3)"
+    "name": "UIBigMap::_sub_424570",
+    "signature": "void __thiscall(UIBigMap *this, gbMatrixStack *pStack, int a3)"
   },
   "0x00424BE0": {
     "name": "nullsub_7",
@@ -10940,8 +10940,8 @@
     "signature": "BOOL __thiscall Actor::IsIdle(Actor *this)"
   },
   "0x0042C3A0": {
-    "name": "UIScene::_auto_42c3a0",
-    "signature": "bool __thiscall(UIScene *this)"
+    "name": "UIBigMap::_auto_42c3a0",
+    "signature": "bool __thiscall(UIBigMap *this)"
   },
   "0x0042C700": {
     "name": "gbSound3DNode::_auto_42c700",
@@ -11572,20 +11572,20 @@
     "signature": "struct gbRay *__thiscall(gbCamera **this, struct gbRay *a2, int *a3)"
   },
   "0x0043A0E0": {
-    "name": "UIWnd::_nearby_43a0e0",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::_nearby_43a0e0",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x0043A150": {
     "name": "UIWnd::_nearby_43a150",
     "signature": "void()"
   },
   "0x0043A660": {
-    "name": "UIWnd::_nearby_43a660",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_43a660",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x0043A680": {
-    "name": "UIWnd::_nearby_43a680",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::_nearby_43a680",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x0043A6F0": {
     "name": "UIWnd::_nearby_43a6f0",
@@ -11596,8 +11596,8 @@
     "signature": "void()"
   },
   "0x0043B660": {
-    "name": "UIScene::_nearby_43b660",
-    "signature": "int __thiscall(UIScene *this)"
+    "name": "UIBigMap::_nearby_43b660",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x0043BB60": {
     "name": "UIScene::_nearby_43bb60",
@@ -11616,24 +11616,24 @@
     "signature": "void __thiscall(UIScene *this, LPCSTR lpString, char a3)"
   },
   "0x0043BF90": {
-    "name": "UIScene::_nearby_43bf90",
-    "signature": "int __thiscall(UIScene *this, int a2, int a3)"
+    "name": "UIBigMap::Update",
+    "signature": "int __thiscall(UIBigMap *this, int deltatime, int haveinput)"
   },
   "0x0043C0F0": {
-    "name": "UIScene::_nearby_43c0f0",
-    "signature": "void __thiscall(UIScene *this, float a2)"
+    "name": "UIBigMap::_nearby_43c0f0",
+    "signature": "void __thiscall(UIBigMap *this, float a2)"
   },
   "0x0043C330": {
-    "name": "UIScene::_nearby_43c330",
-    "signature": "int __thiscall(UIScene *this)"
+    "name": "UIBigMap::_nearby_43c330",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x0043C9D0": {
-    "name": "UIScene::_nearby_43c9d0",
-    "signature": "int __thiscall(UIScene *this, int a2)"
+    "name": "UIBigMap::_nearby_43c9d0",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x0043CBD0": {
-    "name": "UIScene::_nearby_43cbd0",
-    "signature": "int __thiscall(UIScene *this, int a2)"
+    "name": "UIBigMap::_nearby_43cbd0",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x0043CDF0": {
     "name": "UIScene::_nearby_43cdf0",
@@ -11648,8 +11648,8 @@
     "signature": "void __thiscall(CCBProtectWindow *this)"
   },
   "0x0043DAB0": {
-    "name": "UIWnd::Render_43dab0",
-    "signature": "void __thiscall(UIWnd *this, int *a2, int a3)"
+    "name": "UIBigMap::Render_43dab0",
+    "signature": "void __thiscall(UIBigMap *this, int *a2, int a3)"
   },
   "0x0043DF70": {
     "name": "UIListBox::_auto_43df70",
@@ -11668,8 +11668,8 @@
     "signature": "int __thiscall(UIListBox *this, int a2, int a3)"
   },
   "0x0043F690": {
-    "name": "UIWnd::SetItemData",
-    "signature": "int __thiscall(UIWnd *this, int nData)"
+    "name": "UIBigMap::SetItemData",
+    "signature": "int __thiscall(UIBigMap *this, int nData)"
   },
   "0x0043F7E0": {
     "name": "UIWnd::_nearby_43f7e0",
@@ -11680,8 +11680,8 @@
     "signature": "void __thiscall(UIButton *this)"
   },
   "0x0043FBC0": {
-    "name": "UIWnd::spstr_43fbc0",
-    "signature": "void __thiscall(UIWnd *this, LPCSTR lpString, char a3)"
+    "name": "UIBigMap::spstr_43fbc0",
+    "signature": "void __thiscall(UIBigMap *this, LPCSTR lpString, char a3)"
   },
   "0x0043FD20": {
     "name": "CCBFiveNimbusWindow::GetNimbusNum",
@@ -11704,8 +11704,8 @@
     "signature": "void()"
   },
   "0x00441240": {
-    "name": "UIMap::Update",
-    "signature": "int __thiscall(UIMap *this, int deltatime, int haveinput)"
+    "name": "UIBigMap::Update",
+    "signature": "int __thiscall(UIBigMap *this, int deltatime, int haveinput)"
   },
   "0x00441D50": {
     "name": "UIAnimateCtrlEX::_method_441d50",
@@ -11716,20 +11716,20 @@
     "signature": "int __thiscall(UIAnimateCtrlEX *this)"
   },
   "0x00442000": {
-    "name": "UIWnd::_nearby_442000",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_442000",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00442060": {
-    "name": "UIWnd::SetFirstShow_442060",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::SetFirstShow_442060",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x004420C0": {
     "name": "UIMap::SendMessage",
     "signature": "int __thiscall(UIMap *this, int a2, int a3, int a4)"
   },
   "0x00442100": {
-    "name": "UIWnd::_nearby_442100",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_442100",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00442200": {
     "name": "CCBUI::_sub_442200",
@@ -11768,8 +11768,8 @@
     "signature": "void __thiscall(UIFrameWnd *this)"
   },
   "0x004431E0": {
-    "name": "UIWnd::Update",
-    "signature": "int __thiscall(UIWnd *this, int deltatime, int haveinput)"
+    "name": "UIBigMap::Update",
+    "signature": "int __thiscall(UIBigMap *this, int deltatime, int haveinput)"
   },
   "0x00443200": {
     "name": "UIFrameWnd::GetID",
@@ -11784,8 +11784,8 @@
     "signature": "int __thiscall(_TextureLib_Data *this)"
   },
   "0x00443A90": {
-    "name": "UIWnd::_nearby_443a90",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_443a90",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00443AF0": {
     "name": "CCBFiveNimbusWindow::GetChangeRound",
@@ -11852,8 +11852,8 @@
     "signature": "void()"
   },
   "0x00445910": {
-    "name": "UIWnd::_nearby_445910",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::_nearby_445910",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x004459D0": {
     "name": "UIWnd::_nearby_4459d0",
@@ -11904,16 +11904,16 @@
     "signature": "char __thiscall(UIParticle *this, int a2)"
   },
   "0x00449E60": {
-    "name": "UIScene::_auto_449e60",
-    "signature": "void __thiscall(UIScene *this, int a2, int a3)"
+    "name": "sg_particle::_auto_449e60",
+    "signature": "void __thiscall(sg_particle *this, int a2, int a3)"
   },
   "0x00449F00": {
     "name": "CCBRoleState::_method_449f00",
     "signature": "__int64 __thiscall(CCBRoleState *this, int a2, int a3)"
   },
   "0x00449F70": {
-    "name": "UIWnd::_nearby_449f70",
-    "signature": "unsigned int __thiscall(UIWnd *this, unsigned int a2)"
+    "name": "UIBigMap::_nearby_449f70",
+    "signature": "unsigned int __thiscall(UIBigMap *this, unsigned int a2)"
   },
   "0x00449FE0": {
     "name": "CCBRoleState::_method_449fe0",
@@ -11948,8 +11948,8 @@
     "signature": "int __thiscall(CCBProtectWindow *this, float deltatime, int haveinput)"
   },
   "0x0044AA20": {
-    "name": "UIWnd::Render_44aa20",
-    "signature": "void __thiscall(UIWnd *this, int a2, char a3)"
+    "name": "UIBigMap::Render_44aa20",
+    "signature": "void __thiscall(UIBigMap *this, int a2, char a3)"
   },
   "0x0044AB00": {
     "name": "UIWnd::_nearby_44ab00",
@@ -12048,8 +12048,8 @@
     "signature": "void()"
   },
   "0x0044E9F0": {
-    "name": "UIWnd::Layout_44e9f0",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::Layout_44e9f0",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x0044EB80": {
     "name": "UIWnd::_nearby_44eb80",
@@ -12076,8 +12076,8 @@
     "signature": "int __thiscall(UIWnd *this)"
   },
   "0x00450440": {
-    "name": "UIDialog::_sub_450440",
-    "signature": "int __thiscall(UIDialog *this)"
+    "name": "UIBigMap::_sub_450440",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00450650": {
     "name": "CCBItemWindow::_method_450650",
@@ -12140,8 +12140,8 @@
     "signature": "int __thiscall(UISceneMap *this, int deltatime, int haveinput)"
   },
   "0x00451730": {
-    "name": "UIWnd::_nearby_451730",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_451730",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00451740": {
     "name": "CCBFiveNimbusWindow::Destroy",
@@ -12172,16 +12172,16 @@
     "signature": "int __thiscall(UILoadingFrm *this, int arg0)"
   },
   "0x00451C10": {
-    "name": "UILoadingFrm::_method_451c10",
-    "signature": "int __thiscall(UILoadingFrm *this)"
+    "name": "UIBigMap::_method_451c10",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00451CB0": {
     "name": "UIWnd::_nearby_451cb0",
     "signature": "void()"
   },
   "0x00451E50": {
-    "name": "UI3DCtrl::_method_451e50",
-    "signature": "int __thiscall(UI3DCtrl *this, int parent)"
+    "name": "UIBigMap::_method_451e50",
+    "signature": "int __thiscall(UIBigMap *this, int parent)"
   },
   "0x00452420": {
     "name": "UITitle_BBTY::SendMessage",
@@ -12200,8 +12200,8 @@
     "signature": "void()"
   },
   "0x004528F0": {
-    "name": "UIGameOver::Update",
-    "signature": "int __thiscall(UIGameOver *this, int id, int parent)"
+    "name": "UIBigMap::Update",
+    "signature": "int __thiscall(UIBigMap *this, int id, int parent)"
   },
   "0x00452D20": {
     "name": "nullsub_74",
@@ -12212,8 +12212,8 @@
     "signature": "BOOL __thiscall(RoleAtt *this, int a2, int a3)"
   },
   "0x00452DA0": {
-    "name": "UIAnimateCtrlEX::_method_452da0",
-    "signature": "int __thiscall(UIAnimateCtrlEX *this, int a2, int a3, int a4)"
+    "name": "UIBigMap::OnMessage",
+    "signature": "int __thiscall(UIBigMap *this, int msg, int wparam, int lparam)"
   },
   "0x00452FC0": {
     "name": "UIWnd::_nearby_452fc0",
@@ -12228,8 +12228,8 @@
     "signature": "int __thiscall(CCCTData *this, int nListIndex)"
   },
   "0x004538D0": {
-    "name": "UIWnd::_nearby_4538d0",
-    "signature": "BOOL __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_4538d0",
+    "signature": "BOOL __thiscall(UIBigMap *this)"
   },
   "0x004538E0": {
     "name": "SceneObj::_init_4538e0",
@@ -12260,8 +12260,8 @@
     "signature": "void()"
   },
   "0x00455190": {
-    "name": "UIWnd::_nearby_455190",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::_nearby_455190",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x004551A0": {
     "name": "TaskBookUI::_method_4551a0",
@@ -12308,8 +12308,8 @@
     "signature": "BOOL __thiscall(CCBRoleState *this, int a2, int a3)"
   },
   "0x00457260": {
-    "name": "UIWnd::_nearby_457260",
-    "signature": "_DWORD *__thiscall(UIWnd *this)"
+    "name": "DealData::_nearby_457260",
+    "signature": "_DWORD *__thiscall(DealData *this)"
   },
   "0x004573A0": {
     "name": "PalScript::_method_4573a0",
@@ -12452,28 +12452,28 @@
     "signature": "int __thiscall(UIListBox *this, const void *arg0)"
   },
   "0x0046DF10": {
-    "name": "UIWnd::_nearby_46df10",
-    "signature": "char __thiscall(UIWnd *this, int a2)"
+    "name": "UIScenePanel::_nearby_46df10",
+    "signature": "char __thiscall(UIScenePanel *this, int a2)"
   },
   "0x0046DF40": {
-    "name": "UIListBox::_init_46df40",
-    "signature": "int __thiscall(UIListBox *this, int a2)"
+    "name": "PropUI::_init_46df40",
+    "signature": "int __thiscall(PropUI *this, int a2)"
   },
   "0x0046EC30": {
-    "name": "UIWnd::RectIntersection_46ec30",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "PropUI::RectIntersection_46ec30",
+    "signature": "int __thiscall(PropUI *this, int a2)"
   },
   "0x0046EC50": {
-    "name": "UIWnd::_nearby_46ec50",
-    "signature": "bool __thiscall(UIWnd *this, unsigned int a2)"
+    "name": "PropUI::_nearby_46ec50",
+    "signature": "bool __thiscall(PropUI *this, unsigned int a2)"
   },
   "0x0046EC70": {
     "name": "RoleSystem::_method_46ec70",
     "signature": "int __thiscall(RoleSystem *this, unsigned __int8 a2)"
   },
   "0x0046F160": {
-    "name": "UIListBox::_init_46f160",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "PropUI::CheckRealRole",
+    "signature": "int __thiscall(PropUI *this)"
   },
   "0x0046F300": {
     "name": "PropUI::_method_46f300",
@@ -12512,40 +12512,40 @@
     "signature": "char __thiscall(CCBUI *this, unsigned __int8 a2)"
   },
   "0x00471590": {
-    "name": "UIListBox::_init_471590",
-    "signature": "int __thiscall(UIListBox *this, int a2)"
+    "name": "TaskBookUI::_init_471590",
+    "signature": "int __thiscall(TaskBookUI *this, int a2)"
   },
   "0x00472A80": {
-    "name": "UIWnd::RectIntersection_472a80",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "TaskBookUI::RectIntersection_472a80",
+    "signature": "int __thiscall(TaskBookUI *this, int a2)"
   },
   "0x00472AA0": {
-    "name": "UIListBox::_init_472aa0",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "TaskBookUI::_init_472aa0",
+    "signature": "int __thiscall(TaskBookUI *this)"
   },
   "0x004739F0": {
-    "name": "UIWnd::_sub_4739F0",
-    "signature": "void __thiscall(UIWnd *this, int a2)"
+    "name": "TaskBookUI::_sub_4739F0",
+    "signature": "void __thiscall(TaskBookUI *this, int a2)"
   },
   "0x00474AB0": {
     "name": "GRPinput::_auto_474ab0",
     "signature": "void __thiscall(GRPinput *this, float a2)"
   },
   "0x00474C80": {
-    "name": "UIListBox::_init_474c80",
-    "signature": "char __thiscall(UIListBox *this, int a2)"
+    "name": "TaskBookUI::_init_474c80",
+    "signature": "char __thiscall(TaskBookUI *this, int a2)"
   },
   "0x00476010": {
-    "name": "UIListBox::_init_476010",
-    "signature": "int __thiscall(UIListBox *this, int a2)"
+    "name": "TaskBookUI::_init_476010",
+    "signature": "int __thiscall(TaskBookUI *this, int a2)"
   },
   "0x004765D0": {
     "name": "UIWnd::_nearby_4765d0",
     "signature": "int __thiscall(UIWnd *this)"
   },
   "0x004777B0": {
-    "name": "UIListBox::_init_4777b0",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "TaskBookUI::_init_4777b0",
+    "signature": "int __thiscall(TaskBookUI *this)"
   },
   "0x00477A90": {
     "name": "TaskBookUI::_method_477a90",
@@ -12568,8 +12568,8 @@
     "signature": "int __thiscall(PAL_GDB *this, unsigned int a2)"
   },
   "0x00479260": {
-    "name": "UIWnd::GetRole_479260",
-    "signature": "int __thiscall(UIWnd *this, unsigned int a2)"
+    "name": "UIBigMap::GetRole_479260",
+    "signature": "int __thiscall(UIBigMap *this, unsigned int a2)"
   },
   "0x004792F0": {
     "name": "UIWnd::_nearby_4792f0",
@@ -12580,12 +12580,12 @@
     "signature": "int __thiscall(MainEquipUI *this)"
   },
   "0x0047AAB0": {
-    "name": "UIListBox::_init_47aab0",
-    "signature": "void __thiscall(UIListBox *this, int arg0)"
+    "name": "SCNFile::_init_47aab0",
+    "signature": "void __thiscall(SCNFile *this, int arg0)"
   },
   "0x0047ADF0": {
-    "name": "UIListBox::_init_47adf0",
-    "signature": "void __thiscall(UIListBox *this, int a2)"
+    "name": "SCNFile::_init_47adf0",
+    "signature": "void __thiscall(SCNFile *this, int a2)"
   },
   "0x0047B0E0": {
     "name": "Comp_DonateUI::_method_47b0e0",
@@ -12788,8 +12788,8 @@
     "signature": "int __thiscall(SceneMgr *this)"
   },
   "0x00487650": {
-    "name": "UICoverFrm::_method_487650",
-    "signature": "int __thiscall(UICoverFrm *this)"
+    "name": "CEffect::_method_487650",
+    "signature": "int __thiscall(CEffect *this)"
   },
   "0x00487C40": {
     "name": "UIWnd::Update",
@@ -12872,8 +12872,8 @@
     "signature": "char __thiscall(CEffect *this, int arg0, int a3)"
   },
   "0x0048CEE0": {
-    "name": "UIFrameWnd::_nearby_48cee0",
-    "signature": "int __thiscall(UIFrameWnd *this)"
+    "name": "CEffect::_nearby_48cee0",
+    "signature": "int __thiscall(CEffect *this)"
   },
   "0x0048CF10": {
     "name": "MainPropUI::_method_48cf10",
@@ -13004,8 +13004,8 @@
     "signature": "int __stdcall(int a1, int a2)"
   },
   "0x0049E670": {
-    "name": "UIListBox::_init_49e670",
-    "signature": "void __thiscall(UIListBox *this)"
+    "name": "CLoad3DS::_init_49e670",
+    "signature": "void __thiscall(CLoad3DS *this)"
   },
   "0x0049E840": {
     "name": "EquipUI::_sub_49E840",
@@ -13028,8 +13028,8 @@
     "signature": "int __thiscall(MagicUI *this, unsigned __int8 a2)"
   },
   "0x0049E8E0": {
-    "name": "UIListBox::_init_49e8e0",
-    "signature": "int __thiscall(UIListBox *this, int *a2)"
+    "name": "CLoad3DS::GetString",
+    "signature": "int __thiscall(CLoad3DS *this, int *pBuffer)"
   },
   "0x0049FF90": {
     "name": "EquipUI::_nearby_49ff90",
@@ -13100,12 +13100,12 @@
     "signature": "int __thiscall(LineupUI *this, int a2)"
   },
   "0x004A6120": {
-    "name": "UIGameFrm::SendMessage",
-    "signature": "int __thiscall(UIGameFrm *this, int a2, int a3, int a4)"
+    "name": "LineupUI::SendMessage",
+    "signature": "int __thiscall(LineupUI *this, int a2, int a3, int a4)"
   },
   "0x004A6600": {
-    "name": "UIGameFrm::UpdateChildren",
-    "signature": "int __thiscall(UIGameFrm *this)"
+    "name": "SCNFile::UpdateChildren",
+    "signature": "int __thiscall(SCNFile *this)"
   },
   "0x004A6720": {
     "name": "UIWnd::_nearby_4a6720",
@@ -13148,32 +13148,32 @@
     "signature": "unsigned int __thiscall(UIWnd *this, unsigned int a2, int a3)"
   },
   "0x004A8260": {
-    "name": "UIWnd::_auto_4a8260",
-    "signature": "char __thiscall(UIWnd *this, int a2, int a3, int a4, char a5, int a6, int a7, unsigned __int8 a8)"
+    "name": "SwordUI::_auto_4a8260",
+    "signature": "char __thiscall(SwordUI *this, int a2, int a3, int a4, char a5, int a6, int a7, unsigned __int8 a8)"
   },
   "0x004A8770": {
-    "name": "UIListBox::_init_4a8770",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "CCCTData::GetFreeSpaceInPool",
+    "signature": "int __thiscall(CCCTData *this)"
   },
   "0x004A9ED0": {
-    "name": "UIListBox::_auto_4a9ed0",
-    "signature": "int __thiscall(UIListBox *this, int a2)"
+    "name": "CCBRoleState::_auto_4a9ed0",
+    "signature": "int __thiscall(CCBRoleState *this, int a2)"
   },
   "0x004AA1B0": {
-    "name": "UIListBox::_auto_4aa1b0",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "CCBRoleState::_auto_4aa1b0",
+    "signature": "int __thiscall(CCBRoleState *this)"
   },
   "0x004AA230": {
-    "name": "UIListBox::_init_4aa230",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "CCBRoleState::_init_4aa230",
+    "signature": "int __thiscall(CCBRoleState *this)"
   },
   "0x004AA320": {
-    "name": "UIListBox::_init_4aa320",
-    "signature": "void __thiscall(UIListBox *this, int arg0)"
+    "name": "CCCTData::_init_4aa320",
+    "signature": "void __thiscall(CCCTData *this, int arg0)"
   },
   "0x004AA680": {
-    "name": "UIListBox::_init_4aa680",
-    "signature": "void __thiscall(UIListBox *this, int a2)"
+    "name": "CCBRoleState::_init_4aa680",
+    "signature": "void __thiscall(CCBRoleState *this, int a2)"
   },
   "0x004AAD90": {
     "name": "SwordUI::_method_4aad90",
@@ -13184,8 +13184,8 @@
     "signature": "bool __thiscall(UIWnd *this, int a2, int a3)"
   },
   "0x004AB5E0": {
-    "name": "UIWnd::_nearby_4ab5e0",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "SwordUI::_nearby_4ab5e0",
+    "signature": "int __thiscall(SwordUI *this)"
   },
   "0x004AB6B0": {
     "name": "EquipUI::_init_4ab6b0",
@@ -13224,8 +13224,8 @@
     "signature": "void()"
   },
   "0x004B0820": {
-    "name": "UIScene::_init_4b0820",
-    "signature": "_DWORD *__thiscall(UIScene *this, int a2)"
+    "name": "sg_particle_scene::_init_4b0820",
+    "signature": "_DWORD *__thiscall(sg_particle_scene *this, int a2)"
   },
   "0x004B15F0": {
     "name": "UITitle_JDHY::IsLoading",
@@ -13256,8 +13256,8 @@
     "signature": "int __thiscall(CScreenMode *this)"
   },
   "0x004B3470": {
-    "name": "UIListBox::SendMessage",
-    "signature": "int __thiscall(UIListBox *this, int a2, char *a3, int a4)"
+    "name": "sg_particle_scene::SendMessage",
+    "signature": "int __thiscall(sg_particle_scene *this, int a2, char *a3, int a4)"
   },
   "0x004B43E0": {
     "name": "LineupUI::_auto_4b43e0",
@@ -14848,16 +14848,16 @@
     "signature": "int __thiscall(CCBStageRole *this, int ActKind)"
   },
   "0x00523E60": {
-    "name": "UIWnd::_nearby_523e60",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_523e60",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00523E70": {
-    "name": "UIWnd::_nearby_523e70",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_523e70",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00523E80": {
-    "name": "UIWnd::_nearby_523e80",
-    "signature": "int __thiscall(UIWnd *this, _DWORD *a2)"
+    "name": "UIBigMap::_nearby_523e80",
+    "signature": "int __thiscall(UIBigMap *this, _DWORD *a2)"
   },
   "0x00523F20": {
     "name": "UIWnd::_nearby_523f20",
@@ -14868,8 +14868,8 @@
     "signature": "char __thiscall(UIScene *this, int a2)"
   },
   "0x00524960": {
-    "name": "UIWnd::RectIntersection_524960",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::RectIntersection_524960",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x005249A0": {
     "name": "CScreenMode::_init_5249a0",
@@ -14884,12 +14884,12 @@
     "signature": "int __thiscall(RoleShadow *this)"
   },
   "0x00525080": {
-    "name": "UIWnd::_nearby_525080",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_525080",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00525090": {
-    "name": "UIParticle::_method_525090",
-    "signature": "int __thiscall(UIParticle *this)"
+    "name": "UIBigMap::_method_525090",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00525110": {
     "name": "UIWnd::_nearby_525110",
@@ -15012,8 +15012,8 @@
     "signature": "void()"
   },
   "0x0052AEF0": {
-    "name": "UIWnd::_nearby_52aef0",
-    "signature": "_DWORD *__thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_52aef0",
+    "signature": "_DWORD *__thiscall(UIBigMap *this)"
   },
   "0x0052AFF0": {
     "name": "gbMatrixStack::_auto_52aff0",
@@ -15036,8 +15036,8 @@
     "signature": "_DWORD *__thiscall(ObjectCamera *this)"
   },
   "0x0052B350": {
-    "name": "UIWnd::_nearby_52b350",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_52b350",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x0052BA00": {
     "name": "UIWnd::_nearby_52ba00",
@@ -15048,8 +15048,8 @@
     "signature": "int __thiscall(PalScript *this)"
   },
   "0x0052BEB0": {
-    "name": "UIItem::_init_52beb0",
-    "signature": "void __thiscall(UIItem *this)"
+    "name": "Camera::_init_52beb0",
+    "signature": "void __thiscall(Camera *this)"
   },
   "0x0052C8A0": {
     "name": "UIBigMap::_method_52c8a0",
@@ -15108,8 +15108,8 @@
     "signature": "int __thiscall(RoleCameraCtrl *this, int a2, int a3, int a4)"
   },
   "0x0052E0F0": {
-    "name": "UIWnd::OnMessage",
-    "signature": "int __thiscall(UIWnd *this, int msg, int wparam, int lparam)"
+    "name": "UIBigMap::OnMessage",
+    "signature": "int __thiscall(UIBigMap *this, int msg, int wparam, int lparam)"
   },
   "0x0052E120": {
     "name": "UIWnd::_nearby_52e120",
@@ -15168,8 +15168,8 @@
     "signature": "BOOL __stdcall(int a2)"
   },
   "0x0052F300": {
-    "name": "UIWnd::_nearby_52f300",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::_nearby_52f300",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x0052F310": {
     "name": "ScreenEffectMgr::_auto_52f310",
@@ -15188,8 +15188,8 @@
     "signature": "char __thiscall(s_RoleState *this, int a2, char a3)"
   },
   "0x0052FBA0": {
-    "name": "UIWnd::_nearby_52fba0",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::_nearby_52fba0",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x0052FBB0": {
     "name": "UIFrameWnd::_init_52fbb0",
@@ -15252,12 +15252,12 @@
     "signature": "int __thiscall(gbVolModNode *this)"
   },
   "0x00530570": {
-    "name": "UIGameOver::_method_530570",
-    "signature": "int __thiscall(UIGameOver *this)"
+    "name": "UIBigMap::_method_530570",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x005305A0": {
-    "name": "UIWnd::_nearby_5305a0",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_5305a0",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00530660": {
     "name": "UIWnd::_nearby_530660",
@@ -15272,8 +15272,8 @@
     "signature": "int __thiscall(RoleAtt *this, int *a2)"
   },
   "0x00530990": {
-    "name": "UIWnd::_nearby_530990",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::_nearby_530990",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x005309A0": {
     "name": "Actor::_auto_5309a0",
@@ -15284,8 +15284,8 @@
     "signature": "int __thiscall(CCBFiveNimbusWindow *this, int type)"
   },
   "0x00530BE0": {
-    "name": "UIWnd::_nearby_530be0",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::_nearby_530be0",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x00530C00": {
     "name": "Actor::_auto_530c00",
@@ -15324,16 +15324,16 @@
     "signature": "void()"
   },
   "0x00531F50": {
-    "name": "UIItem::_init_531f50",
-    "signature": "int __thiscall(UIItem *this)"
+    "name": "UIBigMap::_init_531f50",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x005322D0": {
-    "name": "UIWnd::_nearby_5322d0",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::_nearby_5322d0",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x005322E0": {
-    "name": "UIWnd::_nearby_5322e0",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::_nearby_5322e0",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x005322F0": {
     "name": "RoleAtt::_method_5322f0",
@@ -15372,8 +15372,8 @@
     "signature": "void()"
   },
   "0x00532A40": {
-    "name": "UIWnd::_nearby_532a40",
-    "signature": "_DWORD *__thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_532a40",
+    "signature": "_DWORD *__thiscall(UIBigMap *this)"
   },
   "0x00532C80": {
     "name": "RoleSystem::_auto_532c80",
@@ -15384,8 +15384,8 @@
     "signature": "long double __stdcall(__int128 a1, float a2, float a3)"
   },
   "0x00532D30": {
-    "name": "UIWnd::_nearby_532d30",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_532d30",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00532D60": {
     "name": "UIScene::_method_532d60",
@@ -15504,8 +15504,8 @@
     "signature": "char *__thiscall(PalScriptIdleObj *this)"
   },
   "0x00535630": {
-    "name": "UIWnd::_nearby_535630",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIBigMap::_nearby_535630",
+    "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x00535650": {
     "name": "UISceneFrm::_method_535650",
@@ -15540,8 +15540,8 @@
     "signature": "char __thiscall(gbGeomNode *this, const char *a2, const char *a3, const char *a4)"
   },
   "0x00535E50": {
-    "name": "UIWnd::_nearby_535e50",
-    "signature": "int __thiscall(UIWnd *this, int a2)"
+    "name": "UIBigMap::_nearby_535e50",
+    "signature": "int __thiscall(UIBigMap *this, int a2)"
   },
   "0x00535F10": {
     "name": "gbMatrixStack::_auto_535f10",
