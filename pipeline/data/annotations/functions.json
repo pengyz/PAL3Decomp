@@ -1097,7 +1097,7 @@
   },
   "0x00445EC0": {
     "name": "j_UIWnd::MoveWindow",
-    "signature": "int __thiscall(UIWnd **this)"
+    "signature": "int __thiscall(j_UIWnd *this)"
   },
   "0x00445FA0": {
     "name": "UIWnd::GetRect",
@@ -1121,7 +1121,7 @@
   },
   "0x0044B460": {
     "name": "j_UIWnd::GetID",
-    "signature": "int __thiscall(UIWnd *this)"
+    "signature": "int __thiscall(j_UIWnd *this)"
   },
   "0x0044BDA0": {
     "name": "??1UIWnd@@UAE@XZ_0_0",
@@ -1357,7 +1357,7 @@
   },
   "0x004A14C0": {
     "name": "j_UIWnd::UpdateChildren",
-    "signature": "void __thiscall(UIWnd *this)"
+    "signature": "void __thiscall(j_UIWnd *this)"
   },
   "0x004A14D0": {
     "name": "UIItem::SetData",
@@ -7669,7 +7669,7 @@
   },
   "0x005415C0": {
     "name": "UIQuadManager::Destroy",
-    "signature": "void __thiscall(gbRefObject **this)"
+    "signature": "void __thiscall(UIQuadManager *this)"
   },
   "0x005587B0": {
     "name": "__allmul",
@@ -8205,7 +8205,7 @@
   },
   "0x0043AFA0": {
     "name": "UIObj::SetTooltipText",
-    "signature": "void __thiscall(const char *szText)"
+    "signature": "void __thiscall(UIObj *this)"
   },
   "0x00434BD0": {
     "name": "GetSceneObject",
@@ -8409,7 +8409,7 @@
   },
   "0x00421560": {
     "name": "UISceneObj::SetAction",
-    "signature": "void __thiscall(__int16 nActionID)"
+    "signature": "void __thiscall(UISceneObj *this)"
   },
   "0x00421020": {
     "name": "RoleSystem::CheckCollision",
@@ -8829,7 +8829,7 @@
   },
   "0x00494660": {
     "name": "UIObj::_method_494660",
-    "signature": "void __thiscall(UIWnd *this)"
+    "signature": "void __thiscall(UIObj *this)"
   },
   "0x0049AC70": {
     "name": "StateUI::_method_49ac70",
@@ -9441,11 +9441,11 @@
   },
   "0x00411B70": {
     "name": "Array::_nearby_411b70",
-    "signature": "void __thiscall(vtbl_0056A9CC **this)"
+    "signature": "void __thiscall(Array *this)"
   },
   "0x00411BA0": {
     "name": "Array::_nearby_411ba0",
-    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+    "signature": "void __thiscall(Array *this)"
   },
   "0x004132B0": {
     "name": "RoleSystem::_sub_4132B0",
@@ -9453,7 +9453,7 @@
   },
   "0x00413390": {
     "name": "RoleSystem::_sub_413390",
-    "signature": "void __thiscall(gbVec3D *this, float)"
+    "signature": "void __thiscall(RoleSystem *this, float)"
   },
   "0x00414A00": {
     "name": "RoleSystem::_nearby_414a00",
@@ -9489,7 +9489,7 @@
   },
   "0x0041A150": {
     "name": "RoleSystem::_nearby_41a150",
-    "signature": "void __thiscall(const char *this, const char *)"
+    "signature": "void __thiscall(RoleSystem *this, const char *)"
   },
   "0x0041B6C0": {
     "name": "RoleSystem::_sub_41B6C0",
@@ -9517,7 +9517,7 @@
   },
   "0x0041CBC0": {
     "name": "CameraCtrl::_nearby_41cbc0",
-    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+    "signature": "void __thiscall(CameraCtrl *this)"
   },
   "0x0041D100": {
     "name": "InputSystem::_auto_41d100",
@@ -9577,7 +9577,7 @@
   },
   "0x00420270": {
     "name": "?::_sdtor",
-    "signature": "vtbl_0056AAD8 **__thiscall(vtbl_0056AAD8 **Block, char)"
+    "signature": "vtbl_0056AAD8 **__thiscall(? *this, char)"
   },
   "0x00420290": {
     "name": "sub_420290",
@@ -9589,7 +9589,7 @@
   },
   "0x00420430": {
     "name": "?::_sdtor_2",
-    "signature": "char *__thiscall(char *Block, char)"
+    "signature": "char *__thiscall(? *this, char)"
   },
   "0x004208F0": {
     "name": "sub_4208F0",
@@ -9597,7 +9597,7 @@
   },
   "0x00420910": {
     "name": "?::_sdtor_3",
-    "signature": "vtbl_0056AAD8 **__thiscall(vtbl_0056AAD8 **Block, char)"
+    "signature": "vtbl_0056AAD8 **__thiscall(? *this, char)"
   },
   "0x00420930": {
     "name": "sub_420930",
@@ -9685,7 +9685,7 @@
   },
   "0x0042C8D0": {
     "name": "?::_sdtor_4",
-    "signature": "struct gbActor **__thiscall(struct gbActor **this, char)"
+    "signature": "struct gbActor **__thiscall(? *this, char)"
   },
   "0x0042C900": {
     "name": "ScriptVM::_nearby_42c900",
@@ -9905,7 +9905,7 @@
   },
   "0x004381B0": {
     "name": "PalScript::_nearby_4381b0",
-    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438350": {
     "name": "PalScript::_nearby_438350",
@@ -9973,7 +9973,7 @@
   },
   "0x0043A270": {
     "name": "UIFrameWnd::_init_43a270",
-    "signature": "int __thiscall(UIWnd *this)"
+    "signature": "int __thiscall(UIFrameWnd *this)"
   },
   "0x0043A3E0": {
     "name": "CCBFiveNimbusWindow::_method_43a3e0",
@@ -9981,7 +9981,7 @@
   },
   "0x0043A5D0": {
     "name": "SceneMapObj::_method_43a5d0",
-    "signature": "gbVFileSystem *__thiscall(UIWnd **this, BOOL bVisible, UIWnd *)"
+    "signature": "gbVFileSystem *__thiscall(SceneMapObj *this, BOOL bVisible, UIWnd *)"
   },
   "0x0043A6E0": {
     "name": "UIWnd::_nearby_43a6e0",
@@ -10005,7 +10005,7 @@
   },
   "0x0043B060": {
     "name": "UIScene::_nearby_43b060",
-    "signature": "gbVFileSystem *__thiscall(UIWnd **this, int id, void *pRect, gbVFileSystem *parent, const char *, char)"
+    "signature": "gbVFileSystem *__thiscall(UIScene *this, int id, void *pRect, gbVFileSystem *parent, const char *, char)"
   },
   "0x0043B1E0": {
     "name": "UIScene::_nearby_43b1e0",
@@ -10013,7 +10013,7 @@
   },
   "0x0043B4B0": {
     "name": "?::_sdtor_5",
-    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+    "signature": "UIWnd *__thiscall(? *this, char)"
   },
   "0x0043B500": {
     "name": "UIScene::_nearby_43b500",
@@ -10021,7 +10021,7 @@
   },
   "0x0043B570": {
     "name": "UIScene::_nearby_43b570",
-    "signature": "gbVFileSystem *__thiscall(UIWnd **this, int id, void *pRect, gbVFileSystem *parent, LPCSTR lpString, char)"
+    "signature": "gbVFileSystem *__thiscall(UIScene *this, int id, void *pRect, gbVFileSystem *parent, LPCSTR lpString, char)"
   },
   "0x0043B900": {
     "name": "UIScene::_nearby_43b900",
@@ -10037,7 +10037,7 @@
   },
   "0x0043BBC0": {
     "name": "UIScene::_nearby_43bbc0",
-    "signature": "BOOL __thiscall(const RECT *this, int, int)"
+    "signature": "BOOL __thiscall(UIScene *this, int, int)"
   },
   "0x0043BCC0": {
     "name": "UIScene::_nearby_43bcc0",
@@ -10093,7 +10093,7 @@
   },
   "0x0043F950": {
     "name": "?::_sdtor_6",
-    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+    "signature": "std::ios_base *__thiscall(? *this, char)"
   },
   "0x00440560": {
     "name": "UIGameOver::_method_440560",
@@ -10105,7 +10105,7 @@
   },
   "0x004407A0": {
     "name": "?::_sdtor_7",
-    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+    "signature": "std::ios_base *__thiscall(? *this, char)"
   },
   "0x00440810": {
     "name": "UIWnd::spstr_440810",
@@ -10141,11 +10141,11 @@
   },
   "0x004413C0": {
     "name": "RoleCameraCtrl::_method_4413c0",
-    "signature": "gbVFileSystem *__thiscall(UIWnd **this, gbVFileSystem *, char)"
+    "signature": "gbVFileSystem *__thiscall(RoleCameraCtrl *this, gbVFileSystem *, char)"
   },
   "0x004414D0": {
     "name": "ArcPastScene::_method_4414d0",
-    "signature": "void __thiscall(UIWnd **this)"
+    "signature": "void __thiscall(ArcPastScene *this)"
   },
   "0x004414F0": {
     "name": "_TextureLib_Data::_init_4414f0",
@@ -10157,7 +10157,7 @@
   },
   "0x00441E30": {
     "name": "ArcSceneMonster::_method_441e30",
-    "signature": "int __thiscall(const RECT *this, unsigned int *)"
+    "signature": "int __thiscall(ArcSceneMonster *this, unsigned int *)"
   },
   "0x004422C0": {
     "name": "CCBUI::_nearby_4422c0",
@@ -10181,7 +10181,7 @@
   },
   "0x00442D20": {
     "name": "?::_sdtor_8",
-    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+    "signature": "std::ios_base *__thiscall(? *this, char)"
   },
   "0x00442DF0": {
     "name": "UIFrameWnd::_nearby_442df0",
@@ -10197,7 +10197,7 @@
   },
   "0x004431B0": {
     "name": "?::_sdtor_9",
-    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+    "signature": "UIWnd *__thiscall(? *this, char)"
   },
   "0x00443380": {
     "name": "UIFrameWnd::_sub_443380",
@@ -10205,7 +10205,7 @@
   },
   "0x004433A0": {
     "name": "?::_sdtor_10",
-    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+    "signature": "std::ios_base *__thiscall(? *this, char)"
   },
   "0x004433D0": {
     "name": "UIWnd::Layout_4433d0",
@@ -10217,7 +10217,7 @@
   },
   "0x00443530": {
     "name": "?::_sdtor_11",
-    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+    "signature": "std::ios_base *__thiscall(? *this, char)"
   },
   "0x004435A0": {
     "name": "CCBFiveNimbusWindow::_method_4435a0",
@@ -10245,7 +10245,7 @@
   },
   "0x00444AA0": {
     "name": "?::_sdtor_12",
-    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+    "signature": "UIWnd *__thiscall(? *this, char)"
   },
   "0x00444D30": {
     "name": "CCBResultWindow::_method_444d30",
@@ -10257,7 +10257,7 @@
   },
   "0x00444FF0": {
     "name": "?::_sdtor_13",
-    "signature": "UIWnd *__thiscall(UIWnd *Block, char)"
+    "signature": "UIWnd *__thiscall(? *this, char)"
   },
   "0x00445170": {
     "name": "UIAnimateCtrlEX::_method_445170",
@@ -10265,7 +10265,7 @@
   },
   "0x00445500": {
     "name": "ArcSceneMonster::_method_445500",
-    "signature": "void __thiscall(struct tagRECT *this)"
+    "signature": "void __thiscall(ArcSceneMonster *this)"
   },
   "0x00445720": {
     "name": "UIWnd::_sub_445720",
@@ -10325,7 +10325,7 @@
   },
   "0x0044A7D0": {
     "name": "?::_sdtor_14",
-    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+    "signature": "std::ios_base *__thiscall(? *this, char)"
   },
   "0x0044A870": {
     "name": "ArcLocaleRole::_method_44a870",
@@ -10437,7 +10437,7 @@
   },
   "0x00450370": {
     "name": "?::_sdtor_15",
-    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+    "signature": "std::ios_base *__thiscall(? *this, char)"
   },
   "0x00450390": {
     "name": "UIWnd::_sub_450390",
@@ -10445,7 +10445,7 @@
   },
   "0x00450560": {
     "name": "gbCamera::_auto_450560",
-    "signature": "BOOL __thiscall(const RECT *this, int, int)"
+    "signature": "BOOL __thiscall(gbCamera *this, int, int)"
   },
   "0x00450670": {
     "name": "UIWnd::Layout_450670",
@@ -10469,7 +10469,7 @@
   },
   "0x00450A60": {
     "name": "RoleCameraCtrl::_method_450a60",
-    "signature": "UIWnd *__thiscall(UIWnd *this)"
+    "signature": "UIWnd *__thiscall(RoleCameraCtrl *this)"
   },
   "0x00450C90": {
     "name": "UINote::_method_450c90",
@@ -10529,7 +10529,7 @@
   },
   "0x00452AA0": {
     "name": "gbMatrixStack::_init_452aa0",
-    "signature": "void **__thiscall(UIWnd *this)"
+    "signature": "void **__thiscall(gbMatrixStack *this)"
   },
   "0x00452FB0": {
     "name": "UIWnd::_nearby_452fb0",
@@ -10613,7 +10613,7 @@
   },
   "0x00456500": {
     "name": "CScreenMode::_method_456500",
-    "signature": "BOOL __thiscall(UIWnd *this, int, int)"
+    "signature": "BOOL __thiscall(CScreenMode *this, int, int)"
   },
   "0x00456590": {
     "name": "PAL3::_auto_456590",
@@ -10693,7 +10693,7 @@
   },
   "0x0045A600": {
     "name": "CScreenMode::_init_45a600",
-    "signature": "int __thiscall(UIWnd *this, int, int, int)"
+    "signature": "int __thiscall(CScreenMode *this, int, int, int)"
   },
   "0x0045A790": {
     "name": "UIWnd::_nearby_45a790",
@@ -10705,7 +10705,7 @@
   },
   "0x0046B040": {
     "name": "UIFrameWnd::_init_46b040",
-    "signature": "int __thiscall(UIWnd *this, int, int)"
+    "signature": "int __thiscall(UIFrameWnd *this, int, int)"
   },
   "0x0046D120": {
     "name": "UIWnd::_nearby_46d120",
@@ -10925,15 +10925,15 @@
   },
   "0x00492850": {
     "name": "UIBigMap::_method_492850",
-    "signature": "void __thiscall(UIWnd *this, int)"
+    "signature": "void __thiscall(UIBigMap *this, int)"
   },
   "0x00492BB0": {
     "name": "SceneMgr::_method_492bb0",
-    "signature": "void __thiscall(UIWnd **this, int, int)"
+    "signature": "void __thiscall(SceneMgr *this, int, int)"
   },
   "0x004930E0": {
     "name": "UIObj::_init_4930e0",
-    "signature": "void __thiscall(UIWnd *this, int)"
+    "signature": "void __thiscall(UIObj *this, int)"
   },
   "0x00493290": {
     "name": "char::_method_493290",
@@ -11141,7 +11141,7 @@
   },
   "0x004B3DA0": {
     "name": "UISceneMap::_method_4b3da0",
-    "signature": "int __thiscall(UIWnd **this)"
+    "signature": "int __thiscall(UISceneMap *this)"
   },
   "0x004B42F0": {
     "name": "PalScript::_auto_4b42f0",
@@ -11221,15 +11221,15 @@
   },
   "0x004B6C20": {
     "name": "RenderTarget3::_nearby_4b6c20",
-    "signature": "vtbl_0056F36C **__thiscall(vtbl_0056F36C **this)"
+    "signature": "vtbl_0056F36C **__thiscall(RenderTarget3 *this)"
   },
   "0x004B6C80": {
     "name": "?::_sdtor_16",
-    "signature": "vtbl_0056F36C **__thiscall(vtbl_0056F36C **Block, char)"
+    "signature": "vtbl_0056F36C **__thiscall(? *this, char)"
   },
   "0x004B6CA0": {
     "name": "RenderTarget3::_nearby_4b6ca0",
-    "signature": "void __thiscall(vtbl_0056F36C **this)"
+    "signature": "void __thiscall(RenderTarget3 *this)"
   },
   "0x004B6D00": {
     "name": "RenderTarget3::_nearby_4b6d00",
@@ -11341,7 +11341,7 @@
   },
   "0x004BE080": {
     "name": "ScreenEffectMgr::_nearby_4be080",
-    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BE810": {
     "name": "ScreenEffectMgr::_nearby_4be810",
@@ -11357,11 +11357,11 @@
   },
   "0x004BE8F0": {
     "name": "?::_sdtor_17",
-    "signature": "vtbl_0056A9C0 **__thiscall(vtbl_0056A9C0 **Block, char)"
+    "signature": "vtbl_0056A9C0 **__thiscall(? *this, char)"
   },
   "0x004BE910": {
     "name": "ScreenEffectMgr::_nearby_4be910",
-    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BE920": {
     "name": "ScreenEffectMgr::_nearby_4be920",
@@ -11377,7 +11377,7 @@
   },
   "0x004BEAA0": {
     "name": "ScreenEffectMgr::_nearby_4beaa0",
-    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BEAB0": {
     "name": "ScreenEffectMgr::_nearby_4beab0",
@@ -11393,7 +11393,7 @@
   },
   "0x004BEBF0": {
     "name": "ScreenEffectMgr::_nearby_4bebf0",
-    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BECE0": {
     "name": "ScreenEffectMgr::_nearby_4bece0",
@@ -11405,7 +11405,7 @@
   },
   "0x004BED40": {
     "name": "ScreenEffectMgr::_nearby_4bed40",
-    "signature": "void __thiscall(vtbl_0056A9C0 **this)"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BEE40": {
     "name": "ScreenEffectMgr::_nearby_4bee40",
@@ -11429,7 +11429,7 @@
   },
   "0x004C04C0": {
     "name": "RenderTarget2::_nearby_4c04c0",
-    "signature": "vtbl_0056F5E4 **__thiscall(vtbl_0056F5E4 **this)"
+    "signature": "vtbl_0056F5E4 **__thiscall(RenderTarget2 *this)"
   },
   "0x004C0520": {
     "name": "RenderTarget2::_nearby_4c0520",
@@ -11445,7 +11445,7 @@
   },
   "0x004C1570": {
     "name": "RenderTarget2::_nearby_4c1570",
-    "signature": "vtbl_0056F674 **__thiscall(vtbl_0056F674 **this)"
+    "signature": "vtbl_0056F674 **__thiscall(RenderTarget2 *this)"
   },
   "0x004C15B0": {
     "name": "RenderTarget2::_nearby_4c15b0",
@@ -11453,7 +11453,7 @@
   },
   "0x004C2050": {
     "name": "RenderTarget2::_nearby_4c2050",
-    "signature": "vtbl_0056F6C8 **__thiscall(vtbl_0056F6C8 **this)"
+    "signature": "vtbl_0056F6C8 **__thiscall(RenderTarget2 *this)"
   },
   "0x004C2090": {
     "name": "RenderTarget2::_nearby_4c2090",
@@ -11461,7 +11461,7 @@
   },
   "0x004C27D0": {
     "name": "RenderTarget2::_nearby_4c27d0",
-    "signature": "vtbl_0056F71C **__thiscall(vtbl_0056F71C **this)"
+    "signature": "vtbl_0056F71C **__thiscall(RenderTarget2 *this)"
   },
   "0x004C2820": {
     "name": "RenderTarget2::_nearby_4c2820",
@@ -11477,7 +11477,7 @@
   },
   "0x004C3450": {
     "name": "RenderTarget2::_nearby_4c3450",
-    "signature": "vtbl_0056F774 **__thiscall(vtbl_0056F774 **this)"
+    "signature": "vtbl_0056F774 **__thiscall(RenderTarget2 *this)"
   },
   "0x004C3490": {
     "name": "RenderTarget2::_nearby_4c3490",
@@ -11485,7 +11485,7 @@
   },
   "0x004C3C90": {
     "name": "RenderTarget2::_nearby_4c3c90",
-    "signature": "vtbl_0056F7C8 **__thiscall(vtbl_0056F7C8 **this)"
+    "signature": "vtbl_0056F7C8 **__thiscall(RenderTarget2 *this)"
   },
   "0x004C3D90": {
     "name": "RenderTarget2::_nearby_4c3d90",
@@ -11513,7 +11513,7 @@
   },
   "0x004C5D50": {
     "name": "?::_sdtor_18",
-    "signature": "_DWORD *__thiscall(_DWORD *Block, char)"
+    "signature": "_DWORD *__thiscall(? *this, char)"
   },
   "0x004C5D70": {
     "name": "sub_4C5D70",
@@ -11601,7 +11601,7 @@
   },
   "0x004CFC70": {
     "name": "char::_nearby_4cfc70",
-    "signature": "vtbl_0056F9DC **__thiscall(vtbl_0056F9DC **this)"
+    "signature": "vtbl_0056F9DC **__thiscall(char *this)"
   },
   "0x004CFD00": {
     "name": "char::_nearby_4cfd00",
@@ -11753,19 +11753,19 @@
   },
   "0x004E2C50": {
     "name": "CCBUI::InitUI_4E2C50",
-    "signature": "LRESULT __thiscall(CCBRoleState **this)"
+    "signature": "LRESULT __thiscall(CCBUI *this)"
   },
   "0x004E30E0": {
     "name": "int::InitUI_4E30E0",
-    "signature": "unsigned __int8 __thiscall(CCBRoleState **this)"
+    "signature": "unsigned __int8 __thiscall(int *this)"
   },
   "0x004E3A20": {
     "name": "CCBUI::InitUI_4E3A20",
-    "signature": "LRESULT __thiscall(CCBRoleState **this)"
+    "signature": "LRESULT __thiscall(CCBUI *this)"
   },
   "0x004E3D90": {
     "name": "CCBUI::InitUI_4E3D90",
-    "signature": "void __thiscall(CCBRoleState **this)"
+    "signature": "void __thiscall(CCBUI *this)"
   },
   "0x004E40B0": {
     "name": "CCBRoleState::_auto_4e40b0",
@@ -11949,7 +11949,7 @@
   },
   "0x004FB370": {
     "name": "CCBRoleState::_sub_4FB370",
-    "signature": "int __thiscall(CCBStage **this, int)"
+    "signature": "int __thiscall(CCBRoleState *this, int)"
   },
   "0x004FB7A0": {
     "name": "CCBRoleState::_nearby_4fb7a0",
@@ -11985,7 +11985,7 @@
   },
   "0x00503680": {
     "name": "CCBStage::Method_503680",
-    "signature": "unsigned int __thiscall(CCBRoleState **this, char, unsigned int *)"
+    "signature": "unsigned int __thiscall(CCBStage *this, char, unsigned int *)"
   },
   "0x00503DA0": {
     "name": "CCBStage::_nearby_503da0",
@@ -12001,7 +12001,7 @@
   },
   "0x005044F0": {
     "name": "j_CCCTData::UpdateCamera",
-    "signature": "int __thiscall(CCCTData *this, int)"
+    "signature": "int __thiscall(j_CCCTData *this, int)"
   },
   "0x00504A80": {
     "name": "CCBStage::Method_504A80",
@@ -12093,7 +12093,7 @@
   },
   "0x00516100": {
     "name": "?::_sdtor_19",
-    "signature": "UIListBox *__thiscall(UIListBox *Block, char)"
+    "signature": "UIListBox *__thiscall(? *this, char)"
   },
   "0x005163D0": {
     "name": "sub_5163D0",
@@ -12197,7 +12197,7 @@
   },
   "0x00527DC0": {
     "name": "CScreenMode::_method_527dc0",
-    "signature": "int __thiscall(UIWnd *this, int, int)"
+    "signature": "int __thiscall(CScreenMode *this, int, int)"
   },
   "0x00528190": {
     "name": "PAL3::_auto_528190",
@@ -12353,7 +12353,7 @@
   },
   "0x00531260": {
     "name": "Actor::_init_531260",
-    "signature": "void __thiscall(gbVisNode ***this, float)"
+    "signature": "void __thiscall(Actor *this, float)"
   },
   "0x00531D00": {
     "name": "UIWnd::_nearby_531d00",
@@ -12489,23 +12489,23 @@
   },
   "0x0053F4C0": {
     "name": "CScreenMode::_nearby_53f4c0",
-    "signature": "vtbl_00570A58 **__thiscall(vtbl_00570A58 **this)"
+    "signature": "vtbl_00570A58 **__thiscall(CScreenMode *this)"
   },
   "0x0053F4D0": {
     "name": "?::_sdtor_20",
-    "signature": "vtbl_00570A58 **__thiscall(vtbl_00570A58 **Block, char)"
+    "signature": "vtbl_00570A58 **__thiscall(? *this, char)"
   },
   "0x0053F4F0": {
     "name": "SceneObj::_nearby_53f4f0",
-    "signature": "void __thiscall(vtbl_00570A58 **this)"
+    "signature": "void __thiscall(SceneObj *this)"
   },
   "0x0053F5C0": {
     "name": "?::_sdtor_21",
-    "signature": "vtbl_00570A58 **__thiscall(vtbl_00570A58 **Block, char)"
+    "signature": "vtbl_00570A58 **__thiscall(? *this, char)"
   },
   "0x0053F5E0": {
     "name": "TextureLib::_nearby_53f5e0",
-    "signature": "void __thiscall(vtbl_00570A58 **this)"
+    "signature": "void __thiscall(TextureLib *this)"
   },
   "0x005418E0": {
     "name": "nullsub_95",
@@ -13341,7 +13341,7 @@
   },
   "0x0041BE30": {
     "name": "?::_sdtor_22",
-    "signature": "char *__thiscall(_DWORD *this, char)"
+    "signature": "char *__thiscall(? *this, char)"
   },
   "0x0041BE70": {
     "name": "RoleSystem::_nearby_41be70",
@@ -13497,7 +13497,7 @@
   },
   "0x00421F20": {
     "name": "RoleSystem::_nearby_421f20",
-    "signature": "size_t __thiscall(const void **this, FILE *Stream)"
+    "signature": "size_t __thiscall(RoleSystem *this, FILE *Stream)"
   },
   "0x00421F70": {
     "name": "RoleSystem::_nearby_421f70",
@@ -13505,7 +13505,7 @@
   },
   "0x00422000": {
     "name": "RoleSystem::_nearby_422000",
-    "signature": "BOOL __thiscall(const char *this, const char *)"
+    "signature": "BOOL __thiscall(RoleSystem *this, const char *)"
   },
   "0x004220F0": {
     "name": "RoleSystem::_nearby_4220f0",
@@ -13701,7 +13701,7 @@
   },
   "0x00431760": {
     "name": "?::_sdtor_23",
-    "signature": "_DWORD *__thiscall(_DWORD *Block, char)"
+    "signature": "_DWORD *__thiscall(? *this, char)"
   },
   "0x00431780": {
     "name": "PalScript::_nearby_431780",
@@ -13765,7 +13765,7 @@
   },
   "0x004348E0": {
     "name": "gbVFileSystem::_auto_4348e0",
-    "signature": "struct gbVFile *__thiscall(struct gbVFile **this, int)"
+    "signature": "struct gbVFile *__thiscall(gbVFileSystem *this, int)"
   },
   "0x00434B80": {
     "name": "sub_434B80",
@@ -14465,7 +14465,7 @@
   },
   "0x00442D40": {
     "name": "UIFrameWnd::_auto_442d40",
-    "signature": "void __thiscall(std::ios_base *this)"
+    "signature": "void __thiscall(UIFrameWnd *this)"
   },
   "0x00442E00": {
     "name": "UIFrameWnd::_nearby_442e00",
@@ -14485,7 +14485,7 @@
   },
   "0x004433C0": {
     "name": "UIFrameWnd::_auto_4433c0",
-    "signature": "void __thiscall(std::ios_base *this)"
+    "signature": "void __thiscall(UIFrameWnd *this)"
   },
   "0x00443A00": {
     "name": "_TextureLib_Data::_auto_443a00",
@@ -14657,7 +14657,7 @@
   },
   "0x0044A7F0": {
     "name": "UIWnd::_auto_44a7f0",
-    "signature": "void __thiscall(std::ios_base *this)"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044A820": {
     "name": "CCBProtectWindow::_method_44a820",
@@ -14693,7 +14693,7 @@
   },
   "0x0044BE00": {
     "name": "?::_sdtor_24",
-    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+    "signature": "std::ios_base *__thiscall(? *this, char)"
   },
   "0x0044C840": {
     "name": "UICoverFrm::_method_44c840",
@@ -14769,7 +14769,7 @@
   },
   "0x0044E5C0": {
     "name": "?::_sdtor_25",
-    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+    "signature": "std::ios_base *__thiscall(? *this, char)"
   },
   "0x0044E9F0": {
     "name": "UIWnd::Layout_44e9f0",
@@ -14825,7 +14825,7 @@
   },
   "0x00450AB0": {
     "name": "?::_sdtor_26",
-    "signature": "void *__thiscall(void *Block, char)"
+    "signature": "void *__thiscall(? *this, char)"
   },
   "0x00450AD0": {
     "name": "RoleCameraCtrl::_method_450ad0",
@@ -14849,7 +14849,7 @@
   },
   "0x00450E90": {
     "name": "?::_sdtor_27",
-    "signature": "void *__thiscall(void *Block, char)"
+    "signature": "void *__thiscall(? *this, char)"
   },
   "0x00450EB0": {
     "name": "RoleAtt::_method_450eb0",
@@ -14893,7 +14893,7 @@
   },
   "0x004518E0": {
     "name": "?::_sdtor_28",
-    "signature": "void *__thiscall(void *Block, char)"
+    "signature": "void *__thiscall(? *this, char)"
   },
   "0x00451900": {
     "name": "UIListBox::_init_451900",
@@ -15389,7 +15389,7 @@
   },
   "0x0047DD70": {
     "name": "?::_sdtor_29",
-    "signature": "stdiobuf *__thiscall(stdiobuf *Block, char)"
+    "signature": "stdiobuf *__thiscall(? *this, char)"
   },
   "0x0047DD90": {
     "name": "stdiobuf::_sub_47DD90",
@@ -15973,7 +15973,7 @@
   },
   "0x004A7670": {
     "name": "?::_sdtor_30",
-    "signature": "std::ios_base *__thiscall(std::ios_base *Block, char)"
+    "signature": "std::ios_base *__thiscall(? *this, char)"
   },
   "0x004A7C40": {
     "name": "RoleSystem::_method_4a7c40",
@@ -16129,7 +16129,7 @@
   },
   "0x004B6820": {
     "name": "RenderTarget3::_nearby_4b6820",
-    "signature": "int __thiscall(struct gbRenderEffect **this, int)"
+    "signature": "int __thiscall(RenderTarget3 *this, int)"
   },
   "0x004B6D10": {
     "name": "RenderTarget3::_nearby_4b6d10",
@@ -16541,7 +16541,7 @@
   },
   "0x004BF1D0": {
     "name": "ScreenEffectMgr::_nearby_4bf1d0",
-    "signature": "int __thiscall(struct gbVisNode *this, int)"
+    "signature": "int __thiscall(ScreenEffectMgr *this, int)"
   },
   "0x004BF260": {
     "name": "ScreenEffectMgr::_nearby_4bf260",
@@ -16637,7 +16637,7 @@
   },
   "0x004C1560": {
     "name": "?::_sdtor_31",
-    "signature": "char *__thiscall(_DWORD *this, char)"
+    "signature": "char *__thiscall(? *this, char)"
   },
   "0x004C15D0": {
     "name": "RenderTarget2::_nearby_4c15d0",
@@ -16673,7 +16673,7 @@
   },
   "0x004C2040": {
     "name": "?::_sdtor_32",
-    "signature": "char *__thiscall(_DWORD *this, char)"
+    "signature": "char *__thiscall(? *this, char)"
   },
   "0x004C20D0": {
     "name": "RenderTarget2::_nearby_4c20d0",
@@ -16705,7 +16705,7 @@
   },
   "0x004C27C0": {
     "name": "?::_sdtor_33",
-    "signature": "char *__thiscall(_DWORD *this, char)"
+    "signature": "char *__thiscall(? *this, char)"
   },
   "0x004C2850": {
     "name": "RenderTarget2::_nearby_4c2850",
@@ -16745,7 +16745,7 @@
   },
   "0x004C3400": {
     "name": "?::_sdtor_34",
-    "signature": "char *__thiscall(_DWORD *this, char)"
+    "signature": "char *__thiscall(? *this, char)"
   },
   "0x004C3440": {
     "name": "RenderTarget2::_nearby_4c3440",
@@ -16781,7 +16781,7 @@
   },
   "0x004C3C80": {
     "name": "?::_sdtor_35",
-    "signature": "char *__thiscall(_DWORD *this, char)"
+    "signature": "char *__thiscall(? *this, char)"
   },
   "0x004C4570": {
     "name": "nullsub_76",
@@ -17001,7 +17001,7 @@
   },
   "0x004CB350": {
     "name": "?::_sdtor_36",
-    "signature": "char *__thiscall(char *this, char)"
+    "signature": "char *__thiscall(? *this, char)"
   },
   "0x004CB390": {
     "name": "sub_4CB390",
@@ -17081,7 +17081,7 @@
   },
   "0x004CDA00": {
     "name": "?::_sdtor_37",
-    "signature": "char *__thiscall(char *this, char)"
+    "signature": "char *__thiscall(? *this, char)"
   },
   "0x004CDCA0": {
     "name": "CEffMgr::CreateEffect",
@@ -17189,7 +17189,7 @@
   },
   "0x004D0CA0": {
     "name": "?::_sdtor_38",
-    "signature": "char *__thiscall(_DWORD *this, char)"
+    "signature": "char *__thiscall(? *this, char)"
   },
   "0x004D0DB0": {
     "name": "gbRefObject::_auto_4d0db0",
@@ -17241,7 +17241,7 @@
   },
   "0x004D3230": {
     "name": "?::_sdtor_39",
-    "signature": "char *__thiscall(char *this, char)"
+    "signature": "char *__thiscall(? *this, char)"
   },
   "0x004D3270": {
     "name": "sub_4D3270",
@@ -17317,7 +17317,7 @@
   },
   "0x004D4DF0": {
     "name": "?::_sdtor_40",
-    "signature": "char *__thiscall(char *this, char)"
+    "signature": "char *__thiscall(? *this, char)"
   },
   "0x004D4E90": {
     "name": "sub_4D4E90",
@@ -18421,7 +18421,7 @@
   },
   "0x005254C0": {
     "name": "ArcSceneObject::_method_5254c0",
-    "signature": "CHAR *__thiscall(CHAR *this)"
+    "signature": "CHAR *__thiscall(ArcSceneObject *this)"
   },
   "0x005263C0": {
     "name": "RenderTarget::_auto_5263c0",
@@ -18769,7 +18769,7 @@
   },
   "0x00530350": {
     "name": "gbMatrixStack::_method_530350",
-    "signature": "void __thiscall(struct gbCamera ***this)"
+    "signature": "void __thiscall(gbMatrixStack *this)"
   },
   "0x005303C0": {
     "name": "ArcLocaleRole::_method_5303c0",
@@ -19381,7 +19381,7 @@
   },
   "0x0053E740": {
     "name": "CScreenMode::_nearby_53e740",
-    "signature": "void __thiscall(gbAudioManager **this, char *String2, gbAudioManager *)"
+    "signature": "void __thiscall(CScreenMode *this, char *String2, gbAudioManager *)"
   },
   "0x0053E890": {
     "name": "CScreenMode::_nearby_53e890",
