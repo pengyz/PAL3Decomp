@@ -8,59 +8,59 @@
       "source": "binary:vtable_ptr"
     },
     "4": {
-      "name": "RefCount",
+      "name": "refCount",
       "type": "int",
-      "source": "pdb:gbRefObject"
+      "source": "gbRefObject:+0x04"
     },
     "8": {
-      "name": "m_pGfxMgr",
-      "type": "gbGfxManager *",
-      "source": "pdb:gbTexture"
+      "name": "name",
+      "type": "char *",
+      "source": "gbResource:+0x08"
     },
     "12": {
-      "name": "m_nFlags",
-      "type": "int",
-      "source": "binary:flag_field"
+      "name": "nameCrc",
+      "type": "unsigned int",
+      "source": "gbResource:+0x0C"
     },
     "16": {
-      "name": "m_nFormat",
+      "name": "isLoaded",
       "type": "int",
-      "source": "binary"
+      "source": "gbResource:+0x10"
     },
     "20": {
-      "name": "m_nMipLevels",
-      "type": "int",
-      "source": "binary"
+      "name": "manager",
+      "type": "gbResManager *",
+      "source": "gbResource:+0x14"
     },
     "24": {
       "name": "Width",
       "type": "int",
-      "source": "pdb"
+      "source": "pdb:gbTexture"
     },
     "28": {
       "name": "Height",
       "type": "int",
-      "source": "pdb"
+      "source": "pdb:gbTexture"
     },
     "32": {
       "name": "pTexImage",
       "type": "gbImage2D *",
-      "source": "pdb"
+      "source": "pdb:gbTexture"
     },
     "36": {
       "name": "InFmt",
-      "type": "int[10]",
-      "source": "pdb:gbPixelFormat=40bytes"
+      "type": "gbPixelFormat",
+      "source": "pdb:gbTexture"
     },
     "76": {
       "name": "nLevels",
       "type": "int",
-      "source": "pdb"
+      "source": "pdb:gbTexture"
     },
     "80": {
       "name": "m_nField50",
       "type": "int",
-      "source": "binary"
+      "source": "binary:tail"
     }
   },
   "base_class": null,
