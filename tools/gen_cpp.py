@@ -151,6 +151,7 @@ def collect_functions():
                 'code': code,
                 'addr': addr,
                 'sig': sig,
+                '_source_file': str(f),
             })
         else:
             free_funcs.append({
@@ -551,11 +552,17 @@ def main():
 
         out_path = out_dir / ("%s.cpp" % cls_name)
 
-        # Skip if file exists and not forced
+        # Skip if output is newer than all source decomp files
         if out_path.exists() and not force_all and cls_name not in force_files:
-            skipped += 1
-            total_funcs += len(methods)
-            continue
+            out_mtime = out_path.stat().st_mtime
+            source_newer = any(
+                os.path.getmtime(m['_source_file']) > out_mtime
+                for m in methods if '_source_file' in m
+            )
+            if not source_newer:
+                skipped += 1
+                total_funcs += len(methods)
+                continue
 
         content = generate_class_cpp(cls_name, methods)
         try:
