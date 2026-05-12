@@ -209,22 +209,17 @@ def apply_annotations():
 
     print("[1] Functions: created=%d, renamed=%d/%d" % (created, renamed, len(funcs)))
 
-    # --- 2. Globals ---
+    # --- 2. Globals (names only; types deferred to step 6b after structs) ---
     globs = data.get("globals", {})
     g_named = 0
-    g_typed = 0
     for addr_str, info in globs.items():
         addr = int(addr_str, 16)
         name = info.get("name", "")
-        typ = info.get("type", "")
         if name:
             if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                 g_named += 1
-        if typ:
-            if idc.SetType(addr, typ + ";"):
-                g_typed += 1
 
-    print("[2] Globals: named=%d/%d, typed=%d" % (g_named, len(globs), g_typed))
+    print("[2] Globals: named=%d/%d (types deferred)" % (g_named, len(globs)))
 
     # --- 3. Structs (gap-filling build, base classes first) ---
     structs = data.get("structs", {})
@@ -450,6 +445,25 @@ def apply_annotations():
 
     print("[6] Signatures: %d/%d (fail=%d)" % (sig_ok, len([f for f in funcs.values() if f.get("signature")]), len(sig_fail)))
 
+    # --- 6b. Global types (after structs so struct types are resolved) ---
+    g_typed = 0
+    g_type_fail = []
+    for addr_str, info in globs.items():
+        addr = int(addr_str, 16)
+        typ = info.get("type", "")
+        if typ:
+            type_str = typ.rstrip(";") + ";"
+            if idc.SetType(addr, type_str):
+                g_typed += 1
+            else:
+                stripped = type_str.replace("struct ", "").replace("class ", "")
+                if stripped != type_str and idc.SetType(addr, stripped):
+                    g_typed += 1
+                else:
+                    g_type_fail.append((addr_str, info.get("name", ""), typ))
+
+    print("[6b] Global types: %d/%d (fail=%d)" % (g_typed, len([g for g in globs.values() if g.get("type")]), len(g_type_fail)))
+
     # --- 7. Trigger full reanalysis for type propagation ---
     ida_auto.plan_and_wait(0x00401000, 0x00560000)
     ida_auto.auto_wait()
@@ -465,6 +479,19 @@ def apply_annotations():
             if idc.SetType(addr, stripped):
                 sig_retry += 1
     print("[8] Signature retry: %d/%d recovered" % (sig_retry, len(sig_fail)))
+
+    # --- 8b. Re-apply failed global types ---
+    g_type_retry = 0
+    for addr_str, gname, typ in g_type_fail:
+        addr = int(addr_str, 16)
+        type_str = typ.rstrip(";") + ";"
+        if idc.SetType(addr, type_str):
+            g_type_retry += 1
+        else:
+            stripped = type_str.replace("struct ", "").replace("class ", "")
+            if idc.SetType(addr, stripped):
+                g_type_retry += 1
+    print("[8b] Global type retry: %d/%d recovered" % (g_type_retry, len(g_type_fail)))
 
     idc.save_database(idc.get_idb_path(), 0)
     print("[*] Done. Database saved.")
