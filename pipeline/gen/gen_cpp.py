@@ -42,6 +42,40 @@ if _skip_file.exists():
             # Also handle ~ → _ variant (gen_cpp replaces ~ with _)
             THUNK_MAP[_info['name'].replace('~', '_')] = _target.replace('~', '_')
 
+# .rdata literal constants: flt_XXXX → inline value replacement
+# Read float literals directly from binary (like thunk transparency)
+import struct as _struct
+LITERAL_MAP = {}  # "flt_XXXXXX" → "0.5f"
+_exe_path = PROJECT_ROOT / "original" / "PAL3.exe"
+if _exe_path.exists():
+    _exe_data = open(_exe_path, 'rb').read()
+    _rdata_start = 0x56A000
+    _rdata_end = 0x571000
+    for _off in range(_rdata_start - 0x400000, _rdata_end - 0x400000, 4):
+        _va = _off + 0x400000
+        _val = _struct.unpack_from('<f', _exe_data, _off)[0]
+        if abs(_val) < 1e10 and (abs(_val) > 1e-10 or _val == 0.0):
+            _hex = '%X' % _va
+            _key = 'flt_%s' % _hex
+            if _val == int(_val) and abs(_val) < 1000000:
+                LITERAL_MAP[_key] = '%d.0f' % int(_val)
+            else:
+                LITERAL_MAP[_key] = '%.7gf' % _val
+    # Also handle some well-known dword constants that are actually floats
+    # loaded via integer registers
+    del _exe_data
+
+
+def replace_literals(code):
+    """Replace .rdata float literal references with inline values."""
+    if not LITERAL_MAP:
+        return code
+    def _repl(m):
+        name = m.group(0)
+        return LITERAL_MAP.get(name, name)
+    return re.sub(r'\bflt_[0-9A-Fa-f]+\b', _repl, code)
+
+
 # Thunk class names to skip (these are just jump trampolines)
 THUNK_CLASSES = set()
 if _skip_file.exists():
@@ -337,6 +371,7 @@ def transform_method_code(cls_name, method_name, code, sig):
 
     # Final: replace thunk references (after OOP transform may have created j_Class casts)
     code = replace_thunks(code)
+    code = replace_literals(code)
 
     return code
 
@@ -394,7 +429,7 @@ def collect_undefined_refs(code):
     refs.update(re.findall(r'\b(dword_[0-9A-Fa-f]+)\b', code))
     refs.update(re.findall(r'\b(byte_[0-9A-Fa-f]+)\b', code))
     refs.update(re.findall(r'\b(word_[0-9A-Fa-f]+)\b', code))
-    refs.update(re.findall(r'\b(flt_[0-9A-Fa-f]+)\b', code))
+    refs.update(r for r in re.findall(r'\b(flt_[0-9A-Fa-f]+)\b', code) if r not in LITERAL_MAP)
     refs.update(re.findall(r'\b(off_[0-9A-Fa-f]+)\b', code))
     refs.update(re.findall(r'\b(unk_[0-9A-Fa-f]+)\b', code))
     refs.update(re.findall(r'\b(stru_[0-9A-Fa-f]+)\b', code))
@@ -502,6 +537,7 @@ def generate_free_funcs_cpp(funcs):
     for f in funcs:
         code = f['code'].strip()
         code = replace_thunks(code)
+        code = replace_literals(code)
         # In free functions, 'this' is not a valid parameter name in C++
         # Rename to '_this' to avoid syntax errors
         code = re.sub(r'\bthis\b', '_this', code)
