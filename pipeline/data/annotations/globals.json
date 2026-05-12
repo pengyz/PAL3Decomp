@@ -1,23 +1,7 @@
 {
-  "0x0056A610": {
-    "name": "g_fHalf",
-    "type": "float"
-  },
   "0x0056A634": {
     "name": "g_bActorFlag",
     "type": "unsigned char"
-  },
-  "0x0056A638": {
-    "name": "g_f255",
-    "type": "float"
-  },
-  "0x0056A63C": {
-    "name": "g_fOne",
-    "type": "float"
-  },
-  "0x0056A644": {
-    "name": "g_fZero",
-    "type": "float"
   },
   "0x0056A660": {
     "name": "ArgList",
@@ -27,25 +11,9 @@
     "name": "off_vtbl_Actor",
     "type": "void *"
   },
-  "0x0056A984": {
-    "name": "g_fTwelve",
-    "type": "float"
-  },
   "0x0056A9C0": {
     "name": "off_vtbl_Actor2",
     "type": "void *"
-  },
-  "0x0056A9D8": {
-    "name": "g_fRad2Deg",
-    "type": "float"
-  },
-  "0x0056A9DC": {
-    "name": "g_fTwoPi",
-    "type": "float"
-  },
-  "0x0056AA5C": {
-    "name": "g_fTwo",
-    "type": "float"
   },
   "0x0056C57C": {
     "name": "g_ArcSceneMonsterTable",
@@ -367,9 +335,17 @@
     "name": "g_nFrameRate",
     "type": "int"
   },
+  "0x0058615C": {
+    "name": "g_nUpdateInterval",
+    "type": "int"
+  },
   "0x0058618C": {
     "name": "g_pfnUpdateFuncs",
     "type": "void *[5]"
+  },
+  "0x0058B230": {
+    "name": "g_nCameraUpdateCount",
+    "type": "int"
   },
   "0x0058B784": {
     "name": "a1n07a",
@@ -439,6 +415,10 @@
     "name": "a15h1_0",
     "type": "char[]"
   },
+  "0x005A0998": {
+    "name": "g_bSceneLoaded",
+    "type": "unsigned char"
+  },
   "0x005A3748": {
     "name": "g_nMiniGameParam",
     "type": "int"
@@ -450,6 +430,14 @@
   "0x005ABA60": {
     "name": "aP",
     "type": "char[]"
+  },
+  "0x005AE1E4": {
+    "name": "g_bAudioEnabled",
+    "type": "unsigned char"
+  },
+  "0x005B0958": {
+    "name": "g_bEffectEnabled",
+    "type": "unsigned char"
   },
   "0x005B1280": {
     "name": "a13i2_1",
@@ -493,14 +481,6 @@
   },
   "0x005D41B4": {
     "name": "g_fConst400",
-    "type": "float"
-  },
-  "0x005D41B8": {
-    "name": "g_fConst220",
-    "type": "float"
-  },
-  "0x005D41BC": {
-    "name": "g_fConst200",
     "type": "float"
   },
   "0x005D4D3C": {
@@ -915,6 +895,14 @@
     "name": "algn_DBA25D",
     "type": "char"
   },
+  "0x00DC3C3C": {
+    "name": "g_bSlotFlag",
+    "type": "unsigned char[768]"
+  },
+  "0x00DC5F3C": {
+    "name": "g_bSaveFlag",
+    "type": "unsigned char"
+  },
   "0x00DCAE3C": {
     "name": "g_szCombatFieldName",
     "type": "char"
@@ -923,8 +911,20 @@
     "name": "g_ArcSceneObjBuffer",
     "type": "unsigned char"
   },
+  "0x00DE5F92": {
+    "name": "g_bRoleFlag1",
+    "type": "unsigned char"
+  },
+  "0x00DE5F93": {
+    "name": "g_bRoleFlag2",
+    "type": "unsigned char"
+  },
   "0x00DE5F98": {
     "name": "g_nActorState",
+    "type": "int"
+  },
+  "0x00DE5FA0": {
+    "name": "g_nRoleParam",
     "type": "int"
   },
   "0x00EC9E70": {
@@ -975,6 +975,14 @@
     "name": "g_nCBRoleAnimData",
     "type": "int[24]"
   },
+  "0x017AA8B0": {
+    "name": "g_nCBQueueHead",
+    "type": "int"
+  },
+  "0x017AAD48": {
+    "name": "g_fCBAnimTime",
+    "type": "float"
+  },
   "0x017AAF64": {
     "name": "g_CCBCamControlData",
     "type": "unsigned char"
@@ -991,13 +999,33 @@
     "name": "g_nCBFormation3",
     "type": "int[12]"
   },
+  "0x017AB678": {
+    "name": "g_nCBRoleIndex",
+    "type": "int"
+  },
   "0x017AB6B8": {
     "name": "g_nCBFormation4",
     "type": "int[12]"
   },
+  "0x017AB6D8": {
+    "name": "g_nCBTargetIndex",
+    "type": "int"
+  },
   "0x017AB6E8": {
     "name": "g_nCBRoleAttackTable",
     "type": "int[44]"
+  },
+  "0x017AB708": {
+    "name": "g_nCBActionType",
+    "type": "int"
+  },
+  "0x017AB758": {
+    "name": "g_nCBDamageValue",
+    "type": "int"
+  },
+  "0x017AB788": {
+    "name": "g_nCBHealValue",
+    "type": "int"
   },
   "0x017AB7A8": {
     "name": "g_nCBRoleMoveTable",
