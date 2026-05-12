@@ -353,6 +353,9 @@ def apply_annotations():
 
     print("[5] Vtable .rdata typed: %d/%d" % (vt_applied, len(vtables)))
 
+    # Wait for type system to settle before applying signatures
+    ida_auto.auto_wait()
+
     # --- 6. Function signatures (after structs so types are resolved) ---
     import re as _re_sig
     sig_ok = 0
@@ -364,7 +367,7 @@ def apply_annotations():
             continue
         sig_clean = sig.strip().rstrip(";")
         sig_clean = sig_clean.replace("struct ", "").replace("class ", "")
-        if sig_clean.count("(") > 1:
+        if sig_clean.count("(") > 1 or "__usercall" in sig_clean or "__userpurge" in sig_clean:
             continue
         paren_idx = sig_clean.find("(")
         if paren_idx > 0:
@@ -393,7 +396,22 @@ def apply_annotations():
                 short_name = "fn_" + short_name
             before = sig_clean[:paren_idx].rstrip()
             after = sig_clean[paren_idx:]
-            sig_clean = before + " " + short_name + after
+            # 检测 ( 前是否已有函数名
+            # 去掉 * 和调用约定后，看最后一个 token 是否是类型关键字
+            before_normalized = before.replace("*", "* ")  # 确保 * 和后面分开
+            tokens = before_normalized.split()
+            _type_and_cc = {
+                "__thiscall", "__cdecl", "__stdcall", "__fastcall",
+                "int", "void", "char", "float", "double", "short", "long",
+                "unsigned", "signed", "bool", "BOOL", "BYTE", "WORD", "DWORD",
+                "HRESULT", "UINT", "__int64", "_DWORD", "_BYTE", "_WORD", "*",
+            }
+            last_meaningful = tokens[-1] if tokens else ""
+            needs_name = last_meaningful in _type_and_cc
+            if needs_name:
+                sig_clean = before + " " + short_name + after
+            else:
+                sig_clean = before + after
         if idc.SetType(addr, sig_clean):
             sig_ok += 1
 
