@@ -8932,8 +8932,8 @@
     "signature": "void __cdecl(int)"
   },
   "0x0041F120": {
-    "name": "sub_41F120",
-    "signature": "_DWORD *__thiscall(char *this, float, float *, _DWORD *)"
+    "name": "PathObj::GetPosition",
+    "signature": "gbVec3D *__thiscall(PathObj *this, float fParam, gbVec3D *pPos, int *pSegIndex)"
   },
   "0x00420320": {
     "name": "RoleSystem::_sub_420320",
@@ -8984,8 +8984,8 @@
     "signature": "void __thiscall(char *this, const char *, int)"
   },
   "0x00429D10": {
-    "name": "sub_429D10",
-    "signature": "_DWORD *__thiscall(_DWORD **this, int)"
+    "name": "PalScript::GetCount",
+    "signature": "int __thiscall(int *this, int nParam)"
   },
   "0x00429DB0": {
     "name": "PalScriptMgr::_sub_429DB0",
@@ -9272,8 +9272,8 @@
     "signature": "void __stdcall(int, int, int)"
   },
   "0x004012A0": {
-    "name": "sub_4012A0",
-    "signature": "int __thiscall(_DWORD *this, int, int, int, int, int)"
+    "name": "AStarPathFinder::TryExpand",
+    "signature": "int __thiscall(AStarPathFinder *this, int pNode, int nX, int nY, int nTargetX, int nTargetY)"
   },
   "0x00401860": {
     "name": "sub_401860",
@@ -9488,7 +9488,7 @@
     "signature": "void __thiscall(int this)"
   },
   "0x0041F9F0": {
-    "name": "sub_41F9F0",
+    "name": "PAL3::LoadingTimerCallback",
     "signature": "void()"
   },
   "0x0041FA70": {
@@ -9512,8 +9512,8 @@
     "signature": "void *__thiscall(void *this, char a2)"
   },
   "0x00420290": {
-    "name": "sub_420290",
-    "signature": "void __thiscall(vtbl_0056AAD8 **this)"
+    "name": "RoleSystem::RoleSystem",
+    "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x004202A0": {
     "name": "sub_4202A0",
@@ -12756,7 +12756,7 @@
     "signature": "__m64 *__stdcall(__m64 *, __m64 *, __m64 *, __m64 *)"
   },
   "0x00552B20": {
-    "name": "sub_552B20",
+    "name": "ftol_3dnow",
     "signature": "unsigned int()"
   },
   "0x00552F9B": {
@@ -12840,8 +12840,8 @@
     "signature": "int __thiscall(_DWORD *this)"
   },
   "0x004017A0": {
-    "name": "sub_4017A0",
-    "signature": "int __thiscall(int this)"
+    "name": "AStarPathFinder::Reset",
+    "signature": "int __thiscall(AStarPathFinder *this)"
   },
   "0x00401800": {
     "name": "Func",
@@ -12924,8 +12924,8 @@
     "signature": "void()"
   },
   "0x00407DC0": {
-    "name": "sub_407DC0",
-    "signature": "int __thiscall(float *this)"
+    "name": "PathObj::CalcLength",
+    "signature": "int __thiscall(PathObj *this)"
   },
   "0x00408190": {
     "name": "sub_408190",
@@ -13404,8 +13404,8 @@
     "signature": "unsigned __int8 *__thiscall(gbImage2D *this, int, const char *)"
   },
   "0x004208A0": {
-    "name": "sub_4208A0",
-    "signature": "int __thiscall(int this)"
+    "name": "SceneMapObj::Reset",
+    "signature": "int __thiscall(SceneMapObj *this)"
   },
   "0x004209E0": {
     "name": "RoleSystem::_nearby_4209e0",
@@ -13508,8 +13508,8 @@
     "signature": "int __thiscall(int this, gbRay *)"
   },
   "0x00429D40": {
-    "name": "sub_429D40",
-    "signature": "int __thiscall(int *this, int)"
+    "name": "PalScript::SetIndex",
+    "signature": "int __thiscall(int *this, int nIndex)"
   },
   "0x00429D80": {
     "name": "PalScriptMgr::_nearby_429d80",
@@ -13684,8 +13684,8 @@
     "signature": "void __cdecl(int *Block)"
   },
   "0x00434670": {
-    "name": "sub_434670",
-    "signature": "int __thiscall(int this)"
+    "name": "PtrArray::RemoveAll",
+    "signature": "int __thiscall(PtrArray *this)"
   },
   "0x00434760": {
     "name": "sub_434760",
@@ -15248,8 +15248,8 @@
     "signature": "int __thiscall(NPC *this, unsigned int)"
   },
   "0x004791B0": {
-    "name": "sub_4791B0",
-    "signature": "int __thiscall(_DWORD *this, unsigned int)"
+    "name": "PAL_GDB::GDB_GetItemID",
+    "signature": "int __thiscall(PAL_GDB *this, unsigned int nIndex)"
   },
   "0x00479260": {
     "name": "UIWnd::GetRole_479260",
@@ -16384,12 +16384,12 @@
     "signature": "_DWORD *__thiscall(gbTexture_D3D *this)"
   },
   "0x004BDD90": {
-    "name": "sub_4BDD90",
-    "signature": "int __thiscall(_DWORD *this)"
+    "name": "RenderTarget::RenderToScreen",
+    "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BDEB0": {
-    "name": "sub_4BDEB0",
-    "signature": "_DWORD *__thiscall(_DWORD *this)"
+    "name": "RenderTarget::GetActiveTexture",
+    "signature": "gbTexture_D3D *__thiscall(RenderTarget *this)"
   },
   "0x004BDF30": {
     "name": "sub_4BDF30",
@@ -16796,8 +16796,8 @@
     "signature": "_DWORD *__thiscall(_DWORD *this, int)"
   },
   "0x004C6170": {
-    "name": "sub_4C6170",
-    "signature": "_BYTE *__thiscall(_DWORD *this)"
+    "name": "CCBSystem::GetThreadBase",
+    "signature": "tagThread *__thiscall(CCBSystem *this)"
   },
   "0x004C6830": {
     "name": "nullsub_16",
@@ -17008,12 +17008,12 @@
     "signature": "int __thiscall(CEffMgr *this, int, int, int, int, int)"
   },
   "0x004CDFD0": {
-    "name": "sub_4CDFD0",
-    "signature": "int __thiscall(_DWORD *this, int)"
+    "name": "CEffMgr::FindEffSlot",
+    "signature": "int __thiscall(CEffMgr *this, int nID)"
   },
   "0x004CE000": {
-    "name": "sub_4CE000",
-    "signature": "int __stdcall(int)"
+    "name": "CEffMgr::FindEffByID",
+    "signature": "int __stdcall(int nEffID)"
   },
   "0x004CE030": {
     "name": "sub_4CE030",
@@ -18160,8 +18160,8 @@
     "signature": "void __thiscall(int this, char)"
   },
   "0x00511340": {
-    "name": "sub_511340",
-    "signature": "char __thiscall(int this, const char *)"
+    "name": "CCBStageScene::LoadModel",
+    "signature": "char __thiscall(CCBStageScene *this, const char *szFileName)"
   },
   "0x00511630": {
     "name": "sub_511630",
@@ -18196,8 +18196,8 @@
     "signature": "char __thiscall(CCBAIWindow *this)"
   },
   "0x00518E10": {
-    "name": "sub_518E10",
-    "signature": "int __thiscall(_DWORD *this, char)"
+    "name": "CCBStageRole::SetAction",
+    "signature": "int __thiscall(CCBStageRole *this, char bFlag)"
   },
   "0x00519180": {
     "name": "sub_519180",
@@ -19404,8 +19404,8 @@
     "signature": "float *__stdcall(float *, float *, float *, float *, float, float)"
   },
   "0x00542533": {
-    "name": "sub_542533",
-    "signature": "int __stdcall(int, int)"
+    "name": "j_D3DXVec3TransformCoord",
+    "signature": "int __stdcall(int pOut, int pV)"
   },
   "0x00542539": {
     "name": "sub_542539",
@@ -19644,8 +19644,8 @@
     "signature": "int __stdcall(int, int, int, float)"
   },
   "0x00544771": {
-    "name": "sub_544771",
-    "signature": "int __stdcall(int, int, int, float)"
+    "name": "j_D3DXMatrixMultiply",
+    "signature": "int __stdcall(int pOut, int pM1, int pM2, float fUnused)"
   },
   "0x00544777": {
     "name": "sub_544777",
@@ -19780,8 +19780,8 @@
     "signature": "_DWORD **__stdcall(int, int, int, float *, _DWORD **, int, _DWORD *, float **, unsigned int, int, float *, int)"
   },
   "0x00546A71": {
-    "name": "sub_546A71",
-    "signature": "float *__stdcall(float *, float *, float *, float, float *)"
+    "name": "gbVec3ProjectPlane",
+    "signature": "float *__stdcall(float *pSrc, float *pOrigin, float *pNormal, float fScale, float *pResult)"
   },
   "0x00546B0E": {
     "name": "sub_546B0E",
@@ -20076,7 +20076,7 @@
     "signature": "void()"
   },
   "0x00552440": {
-    "name": "sub_552440",
+    "name": "frsqrt_3dnow",
     "signature": "void()"
   },
   "0x00552640": {
