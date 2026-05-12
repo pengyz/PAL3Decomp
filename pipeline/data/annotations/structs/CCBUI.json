@@ -53,9 +53,9 @@
       "source": "pdb_verified_by_old_ida"
     },
     "336": {
-      "name": "m_pRoleStateDefenceDec",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
+      "name": "m_nTargetOffsetX",
+      "type": "int",
+      "source": "binary:SetTargetPos_result"
     },
     "380": {
       "name": "m_pRoleStateLuckInc",
@@ -296,6 +296,46 @@
       "name": "_field_034",
       "type": "unsigned char",
       "source": "binary:raw_batch"
+    },
+    "304": {
+      "name": "m_vTargetPos",
+      "type": "float[4]",
+      "source": "binary:SetTargetPos_pPos"
+    },
+    "320": {
+      "name": "m_vTargetDir",
+      "type": "float[4]",
+      "source": "binary:SetTargetPos_pDir"
+    },
+    "340": {
+      "name": "m_nTargetParam1",
+      "type": "int",
+      "source": "binary:SetSelection"
+    },
+    "344": {
+      "name": "m_nTargetParam2",
+      "type": "int",
+      "source": "binary:SetSelection"
+    },
+    "348": {
+      "name": "m_nTargetParam3",
+      "type": "int",
+      "source": "binary:SetSelection"
+    },
+    "156": {
+      "name": "m_nTargetHeight",
+      "type": "int",
+      "source": "binary:SetTargetPos"
+    },
+    "176": {
+      "name": "m_nWindowX",
+      "type": "int",
+      "source": "binary:SetSelection"
+    },
+    "180": {
+      "name": "m_nWindowY",
+      "type": "int",
+      "source": "binary:SetSelection"
     }
   },
   "pdb_size": 3552,
