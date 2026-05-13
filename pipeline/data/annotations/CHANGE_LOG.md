@@ -591,3 +591,20 @@
   3. [A] 30 个条目有 abs_ref 二进制证据（`66 89 3D`=mov word, `89 0CC5`=mov [ecx*8+addr] 等）
 - **新增结构体**: tagScriptCmd {short cmd_id; short _pad; int handler; int param; int flags;} size=16
 - **影响**: ScriptSystemData 成员 556→185, 总 _field_ 991→619, 命名率 86.0%→89.6%
+
+### [2026-05-13] 最后 2 个函数命名 → 100%
+
+- **变更**: sub_569110 → PAL3_ResetForNewScene, sub_5694F0 → CScreenMode_OpenBinkVideo
+- **置信度**: 70
+- **证据**:
+  1. [C] PAL3_ResetForNewScene: 调用者 RoleSystem::_nearby_422950（场景加载）；函数体重置 ScriptSystemData/Audio/CombatUI/RenderTarget
+  2. [C] CScreenMode_OpenBinkVideo: 被 CScreenMode::CreateDevice 直接转发调用；函数体调用 BinkOpen + CPK fallback
+- **影响**: 函数标注 3968/3970 → 3970/3970 (100%)
+
+### [2026-05-13] 伪语义命名清理（270 个回退 _todo_）
+
+- **变更**: 270 个地址后缀伪语义名（如 m_nAllDone_19D0, m_fInit_338）回退为 _todo_
+- **置信度**: N/A（质量清理）
+- **根因**: 这些名字的后缀等于偏移十六进制值，没有语义信息（规则 #6）
+- **影响结构体**: CGameData(109), CCBStageRole(30), PalScriptMgr(27), CCBStageScene(20), CScreenMode(17), RoleSystem(15), Object3D(10), CameraCtrl(9), CCBStage(7), +11 others
+- **影响**: 命名率 87.7% → 84.7%（诚实优于虚假精度）
