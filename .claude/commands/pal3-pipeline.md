@@ -9,7 +9,7 @@
 ## 环境
 
 ```
-IDA:         ~/ida-pro-9.1/idat
+IDA:         $IDA (首次使用时从系统中搜索 idat 路径并设置)
 IDB:         original/PAL3.exe.i64 (可重建，不提交到 git)
 Annotations: pipeline/data/annotations/ (唯一可信源)
   ├── functions.json      — 函数名 + 签名
@@ -42,7 +42,7 @@ pipeline/data/annotations/ (唯一手工编辑的数据源)
 IDB 是生成物，可随时从 annotations 重建：
 
 ```bash
-IDA=~/ida-pro-9.1/idat
+IDA=$IDA
 $IDA -B -o original/PAL3.exe.i64 original/PAL3.exe
 $IDA -A -S"pipeline/ida/master_pipeline.py" original/PAL3.exe.i64
 $IDA -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64
