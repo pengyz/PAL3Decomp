@@ -123,6 +123,10 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
                 for d in dims:
                     total_elems *= d
                 cursor = offset + total_elems * elem_size
+                # Clamp: array may be smaller in PAL3 than PAL3A PDB
+                nmo = next_member_offset(offset)
+                if cursor > nmo:
+                    cursor = nmo
             else:
                 cursor = next_member_offset(offset)
         else:
@@ -140,6 +144,10 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
                     ref = all_structs[clean]
                     ref_size = max(ref.get("pdb_size", 0), ref.get("binary_size", 0))
                 cursor = offset + (ref_size if ref_size > 0 else 4)
+                # Clamp: PAL3A PDB size may differ from PAL3 actual layout
+                nmo = next_member_offset(offset)
+                if cursor > nmo:
+                    cursor = nmo
 
     if size > 0 and cursor < size:
         lines.append("    char _tail_%03X[%d];" % (cursor, size - cursor))
@@ -248,15 +256,30 @@ def apply_annotations():
     structs = data.get("structs", {})
     til = ida_typeinf.get_idati()
 
-    # Forward-declare ALL struct names so pointer members can resolve
+    # Forward-declare ALL type names referenced in struct members
+    import re as _re_fwd
+    _primitives = {
+        "char", "int", "float", "double", "short", "long", "unsigned",
+        "unsigned char", "unsigned short", "unsigned int", "unsigned long",
+        "void", "bool", "BYTE", "WORD", "DWORD", "UINT", "LONG", "BOOL",
+        "HRESULT", "__int64", "_DWORD", "_BYTE", "_WORD",
+    }
+    fwd_names = set(structs.keys())
+    for sinfo in structs.values():
+        for m in sinfo.get("known_members", {}).values():
+            mtype = m["type"].replace("class ", "").replace("struct ", "")
+            # Extract base type (strip pointers and arrays)
+            base = _re_fwd.sub(r'\[.*\]', '', mtype).replace("*", "").strip()
+            if base and base not in _primitives:
+                fwd_names.add(base)
     fwd_ok = 0
-    for sname in structs:
-        fwd_decl = "struct %s;" % sname
+    for name in sorted(fwd_names):
+        fwd_decl = "struct %s;" % name
         tinfo = ida_typeinf.tinfo_t()
         if ida_typeinf.parse_decl(tinfo, til, fwd_decl, ida_typeinf.PT_TYP) is not None:
-            tinfo.set_named_type(til, sname, ida_typeinf.NTF_REPLACE)
+            tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
             fwd_ok += 1
-    print("[3a] Forward declarations: %d/%d" % (fwd_ok, len(structs)))
+    print("[3a] Forward declarations: %d/%d" % (fwd_ok, len(fwd_names)))
 
     # Topological sort: dependencies (base classes + value-type members) first
     import re as _re2
@@ -349,11 +372,12 @@ def apply_annotations():
         else:
             s_fail.append((sname, sinfo))
 
-    # Retry failed structs (dependencies may now be resolved)
-    for retry in range(3):
+    # Retry failed structs until no more progress
+    for retry in range(50):
         if not s_fail:
             break
         still_fail = []
+        resolved = 0
         for sname, sinfo in s_fail:
             decl = build_struct_decl(sname, sinfo, structs, vtables)
             if not decl:
@@ -363,9 +387,12 @@ def apply_annotations():
             if result is not None:
                 tinfo.set_named_type(til, sname, ida_typeinf.NTF_REPLACE)
                 s_ok += 1
+                resolved += 1
             else:
                 still_fail.append((sname, sinfo))
         s_fail = still_fail
+        if resolved == 0:
+            break  # no progress, stop retrying
 
     if s_fail:
         for sname, sinfo in s_fail:
