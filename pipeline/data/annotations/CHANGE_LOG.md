@@ -869,3 +869,13 @@
   - build_struct_decl 中引用成员类型 size 改为 `binary_size or pdb_size`（binary 优先），不再 `max(pdb, binary)`
 - **置信度**: 85（span=4→指针: 确定性; 数组计数: span/elem_size clean division; binary_size: 多处嵌入 span 一致）
 - **结果**: 布局错误 36 → **8**（剩余 8 个需二进制验证 element size/count）
+
+### [2026-05-14] 布局错误修复第三轮（520→5）
+
+- **变更**:
+  1. SceneMgr: 删除 m_nActiveRoleCount(+7108), m_bSlotValid(+7112)——在 ARC_PlayerAtt[4] 尾部内（overlay 视图成员，不是独立 SceneMgr 字段）
+  2. ARC_PlayerAtt: binary_size=1408（binary stride `add esi,580h` 确认）
+  3. PAL_GDB: 删除 _todo_C4A24(+805412), m_nLoadLanguage(+805416)——在 FightItem[512] 数组内
+  4. EquipUI: UIStatic[5]→UIStatic[4]（4*160=640 ≤ span=752）
+- **置信度**: 90（SceneMgr stride: binary + docs 双重确认; PAL_GDB: 398560+512*800=808160=m_ComboData 偏移精确匹配; EquipUI: count=4 是最大不超 span 的整数）
+- **结果**: 布局错误 **520 → 5**（剩余 5 个需 IDA stride 验证：tagCamTask, tagRoleTask, tagThread, PlayerAtt, RoleAtt 的 PAL3 element size/count）
