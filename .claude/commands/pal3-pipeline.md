@@ -2,211 +2,187 @@
 
 <CRITICAL-INSTRUCTION>
 当前阶段：**IDA 标注阶段**。源码是生成物，不手动编辑。
-唯一的工作目标：提升 annotations.json 的数据质量。
-编译验证/字节匹配是标注收敛后的工作，当前不做。
+唯一的工作目标：提升 `pipeline/data/annotations/` 的数据质量。
+所有结构体字段修改必须有 PAL3.exe 二进制直接证据。
 </CRITICAL-INSTRUCTION>
 
 ## 环境
 
 ```
-IDA:         $IDA  (从 CLAUDE.md 或用户环境获取，典型值: idat.exe 的完整路径)
-IDB:         original/PAL3.exe.i64
-Annotations: asm/pal3/annotations.json
-Decomp:      asm/pal3/decomp/*.json
-Scripts:     tools/ida/pal3_*.py
-```
-
-首次使用时，确认 IDA 路径并设置变量：
-```powershell
-# 确认 IDA 安装位置（用户提供或搜索）
-$IDA = (Get-ChildItem "D:\Program Files\IDA*","C:\Program Files\IDA*" -Filter "idat.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1).FullName
-$I64 = "D:\workspace\PAL3Decomp\original\PAL3.exe.i64"
+IDA:         ~/ida-pro-9.1/idat
+IDB:         original/PAL3.exe.i64 (可重建，不提交到 git)
+Annotations: pipeline/data/annotations/ (唯一可信源)
+  ├── functions.json      — 函数名 + 签名
+  ├── globals.json        — 全局变量名 + 类型
+  ├── skip_functions.json — 排除的函数（CRT/库/thunk）
+  ├── vtables.json        — 虚函数表
+  ├── structs/            — 每个类一个 JSON 文件
+  └── CHANGE_LOG.md       — 变更记录（含置信度和证据）
+Decomp:      asm/pal3/decomp/*.json (IDA 导出，gitignored)
+PDB参考:     pipeline/data/pdb/     (PAL3A，只读参考)
+Scripts:     pipeline/ida/          (IDAPython 脚本)
+Tools:       pipeline/verify_offset.py (二进制偏移验证)
 ```
 
 ## 数据架构
 
 ```
-annotations.json (唯一可信源，存差分)
-  ├── functions: {addr → {name, signature}}        — 幂等覆盖
-  ├── globals:   {addr → {name, type}}             — 幂等覆盖
-  ├── structs:   {class → {size, known_members}}   — 增量叠加
-  └── enums:     {name → {values}}                 — 幂等覆盖
+pipeline/data/annotations/ (唯一手工编辑的数据源)
+  ├── functions.json        — {addr: {name, signature}}
+  ├── globals.json          — {addr: {name, type}}
+  ├── skip_functions.json   — {addr: {name, reason}}
+  ├── vtables.json          — {vtbl_name: {address, class, methods}}
+  ├── structs/              — 每个类一个 JSON
+  │     └── ClassName.json  — {name, binary_size, known_members: {offset: {name, type, source}}}
+  └── CHANGE_LOG.md         — 变更审计记录
 ```
 
-## 单轮迭代流程
+## IDB 重建流程（从零）
 
-### Step 1: 选择焦点
+IDB 是生成物，可随时从 annotations 重建：
 
-从 annotations.json 中找改进空间最大的方向：
-
-```powershell
-# 函数统计
-python -c "import json; ann=json.load(open('asm/pal3/annotations.json')); print('Named functions:', len(ann['functions']))"
-
-# 结构体空洞
-python -c "import json; ann=json.load(open('asm/pal3/annotations.json')); [print('  %s: %d members' % (n, len(s.get('known_members',{})))) for n,s in sorted(ann['structs'].items(), key=lambda x: len(x[1].get('known_members',{}))) if len(s.get('known_members',{})) < 5]"
-
-# 全局变量缺类型
-python -c "import json; ann=json.load(open('asm/pal3/annotations.json')); print('Globals without type:', sum(1 for g in ann['globals'].values() if not g.get('type')), '/', len(ann['globals']))"
+```bash
+IDA=~/ida-pro-9.1/idat
+$IDA -B -o original/PAL3.exe.i64 original/PAL3.exe
+$IDA -A -S"pipeline/ida/master_pipeline.py" original/PAL3.exe.i64
+$IDA -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64
+$IDA -A -S"pipeline/ida/export_full.py" original/PAL3.exe.i64
 ```
 
-选择策略（按 ROI 排序）：
-1. **高引用 sub_ 函数命名** — 从 xref 找被最多函数引用的 sub_，分析其逻辑命名
-2. **核心类结构体填充** — CCBSystem/Stage/RoleState/UI 的空洞成员
-3. **全局变量类型标注** — 高引用的无类型全局变量
-4. **函数签名修正** — void* 参数 → 具体类型
+## 代码生成
 
-### Step 2: 分析 + 标注
+```bash
+python3 pipeline/gen/gen_headers.py
+python3 pipeline/gen/gen_cpp.py --force-all
+```
 
-**工作方式**：读 decomp JSON + 二进制字节 → 推断信息 → 更新 annotations.json
+## 标注变更工作流
 
-```powershell
-# 读取函数反编译（从已有 decomp JSON）
-python -c "import json; d=json.load(open('asm/pal3/decomp/FILENAME.json')); print(d['decompiled_c'][:1000])"
+### 置信度规则
 
-# 读取二进制字节 (确认偏移，注意 file_offset = VA - 0x400000)
-python -c "
-with open('original/PAL3.exe','rb') as f:
-    f.seek(0xVA_ADDR - 0x400000)
-    print(f.read(SIZE).hex(' '))
+所有标注变更必须有 **PAL3.exe 二进制直接分析证据（A 级）**。
+
+| 证据等级 | 类型 | 分值 |
+|---------|------|------|
+| A | 二进制指令直接提取（绝对地址 / reg+disp） | 85-90 |
+| B | 多处交叉验证 / PDB + 二进制确认 | 80 |
+| C | Hex-Rays 反编译推断（可能因布局错误偏移不准） | 50 |
+| D | 命名/上下文推断（无偏移验证） | 30 |
+
+**提交阈值**：偏移修改 ≥80，类型修改 ≥70，命名 ≥60，size 修改 ≥85。
+**PDB 是参考不是权威**——PAL3A PDB 的偏移/结构必须从 PAL3 二进制验证。
+
+### 结构体字段验证流程
+
+```bash
+# 1. 找引用该字段的函数
+python3 -c "
+import json, os
+for fname in os.listdir('asm/pal3/decomp'):
+    if fname.endswith('.json') and not fname.startswith('_'):
+        d = json.load(open('asm/pal3/decomp/' + fname))
+        if '_field_TARGET' in d.get('decompiled_c', ''):
+            print(f'{d[\"name\"]} @ {d[\"address\"]}')
+            break
 "
 
-# 查询 PDB 类定义 (PAL3A 参考，偏移需从 PAL3 二进制验证)
-python -c "import json; [print('+0x%04X %-30s %s' % (m['offset'], m['type'], m['name'])) for c in json.load(open('asm/pal3a/pdb_export.json'))['classes'] if c['name']=='TARGET' for m in c.get('data_members',[])]"
+# 2. 读取函数二进制，搜索 displacement
+python3 -c "
+import struct
+with open('original/PAL3.exe', 'rb') as f:
+    f.seek(FUNC_VA - 0x400000)
+    code = f.read(FUNC_SIZE)
+# 搜索 disp32 值
+needle = struct.pack('<I', EXPECTED_OFFSET)
+for i in range(len(code)):
+    if code[i:i+4] == needle:
+        pre = code[max(0,i-2):i]
+        print(f'offset={i} pre={pre.hex()} disp={needle.hex()}')
+"
+
+# 3. 确认 this 来源（thiscall: ecx → 通常 mov esi/edi, ecx）
+# 4. 读取完整指令确认访问模式和宽度
+# 5. 记录到 CHANGE_LOG.md
 ```
 
-### Step 3: 更新 annotations.json
+### 全局变量/函数验证流程
 
-<HARD-REQUIREMENT>
-**函数标注必须同时包含：名字 + 完整签名（返回类型、调用约定、类限定、参数类型、参数名）。**
-**全局变量标注必须同时包含：语义名 + 类型。**
-缺少任何一项不得提交。禁止提交 `_DWORD *this, int a2` 这种 IDA 原始参数名。
-</HARD-REQUIREMENT>
+```bash
+# 用 verify_offset.py 搜索绝对地址引用
+python3 pipeline/verify_offset.py --global BASE_ADDR StructName FIELD_OFFSET
 
-```python
-# 函数：必须有 name + signature（含类限定名、参数类型、参数名）
-ann['functions']['0x00XXXXXX'] = {
-    "name": "UIListBox::GetItem",
-    "signature": "int __thiscall UIListBox::GetItem(int nIndex)"
-    # 禁止: "int __thiscall(_DWORD *this, int a2)"
-}
-
-# 全局变量：必须有 name + type
-ann['globals']['0x00XXXXXX'] = {
-    "name": "g_pGfxManager",
-    "type": "gbGfxManager *"
-    # 禁止: {"name": "dword_BFDA60"} 或 {"name": "g_pGfxManager"} (缺type)
-}
-
-# 结构体成员 (增量叠加)
-ann['structs']['ClassName']['known_members']['OFFSET'] = {
-    "name": "m_fieldName", "type": "int", "source": "binary:EVIDENCE"
-}
+# 或搜索全局变量的直接引用
+python3 -c "
+import struct
+with open('original/PAL3.exe', 'rb') as f:
+    data = f.read()
+needle = struct.pack('<I', GLOBAL_ADDR)
+# 在 .text 段搜索
+"
 ```
 
-### Step 4: 验证
+### 迭代步骤
 
-验证分两种模式。**日常迭代用快速验证**，只在需要全量重生成代码时才做全量导出。
+1. **选择焦点**：统计 `_field_` 引用频率，选最高的开始
+2. **二进制验证**：从 PAL3.exe 提取真实偏移和访问宽度
+3. **记录证据**：写入 `CHANGE_LOG.md`，包含指令地址、字节、置信度
+4. **修改 annotations**：只在置信度达标时修改
+5. **校验**：`python3 pipeline/check_annotations.py`
+6. **提交**：
 
-#### 4a. 快速验证（单函数，~15 秒）
+```bash
+git add pipeline/data/annotations/
+git commit -m "iter(annotations): [描述]
 
-Apply annotations 后，用 `pal3_quick_decompile.py` 验证目标函数的 Hex-Rays 输出是否改善：
-
-```powershell
-# 1. Apply annotations 到 IDB（修改 i64，~30s）
-& $IDA -A "-Stools\ida\pal3_apply_annotations.py" $I64
-
-# 2. 快速反编译目标函数查看效果（不修改 decomp JSON）
-$env:PAL3_VERIFY_ADDR = "0x004CDA10"
-& $IDA -A "-Stools\ida\pal3_quick_decompile.py" $I64
-```
-
-验证要点：
-- 函数名、参数类型是否正确显示
-- 结构体成员访问是否用了语义名（不再是 `_gap_XXX` 或 `field_XXX`）
-- `sub_XXXXXX` 调用是否变成了有意义的名字
-
-#### 4b. 全量导出（更新所有 decomp JSON + 重生成代码，~3 分钟）
-
-仅在以下情况执行：
-- 一轮标注完成，准备提交并观察整体改进效果
-- 需要重新生成 .cpp/.h 文件
-
-```powershell
-# 1. Apply annotations（如果 4a 还没做）
-& $IDA -A "-Stools\ida\pal3_apply_annotations.py" $I64
-
-# 2. 全量导出 decomp JSON（~130s，5400+ 函数）
-& $IDA -A "-Stools\ida\pal3_export_only.py" $I64
-
-# 3. 重生成头文件 + 源码
-python tools/gen_headers.py
-python tools/gen_cpp.py --force-all
-
-# 4. 检查改善效果
-# sub_ 前向声明数量
-Select-String -Path "src\pal3\**\*.cpp" -Pattern "^int sub_" | Measure-Object
-# 未命名全局变量数量
-Select-String -Path "src\pal3\**\*.cpp" -Pattern "^extern.*dword_" | Measure-Object
-```
-
-### Step 5: 提交
-
-```powershell
-git add asm/pal3/annotations.json
-git commit -m "iter(pal3): #N — [本轮焦点简述]
-
-[Metrics]
-  Functions named: XXXX
-  Struct members: XXXX
-  Focus: [聚焦的类/模块]
-  Result: [具体改善]
+Evidence: [关键二进制证据摘要]
+Confidence: [最低置信度]
 
 Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>"
 git push
 ```
 
-## IDA 脚本清单
-
-| 脚本 | 用途 | 耗时 | 调用方式 |
-|------|------|------|----------|
-| `pal3_apply_annotations.py` | 把 annotations.json 写入 IDB | ~30s | `& $IDA -A "-Stools\ida\pal3_apply_annotations.py" $I64` |
-| `pal3_quick_decompile.py` | 快速反编译单函数（验证） | ~15s | 设 `$env:PAL3_VERIFY_ADDR="0xADDR"` 后调用 |
-| `pal3_export_only.py` | 全量导出 decomp JSON | ~130s | `& $IDA -A "-Stools\ida\pal3_export_only.py" $I64` |
-| `pal3_master_pipeline.py` | 从零搭建 IDB（PDB 基础层） | 一次性 | 仅首次或重建时 |
-
-## 恢复流程（从空 IDB 重建）
-
-```powershell
-# Layer 1-3: PDB base + FLIRT + basic names
-& $IDA -A "-Stools\ida\pal3_master_pipeline.py" $I64
-
-# Layer 4: annotations 差分层
-& $IDA -A "-Stools\ida\pal3_apply_annotations.py" $I64
-
-# Layer 5: 导出
-& $IDA -A "-Stools\ida\pal3_export_only.py" $I64
-
-# Layer 6: 代码生成
-python tools/gen_headers.py
-python tools/gen_cpp.py --force-all
-```
-
 ## 核心原则
 
-1. **annotations.json 是唯一输出** — 每轮迭代的成果必须体现在 JSON 中
-2. **函数标注 = 名字 + 签名** — 禁止只标名字不标签名，签名必须有语义参数名和正确类型
-3. **全局变量标注 = 名字 + 类型** — 禁止只标名字不标类型
-4. **PDB 是参考不是权威** — PAL3A PDB 的偏移/结构需从 PAL3 二进制验证
-5. **增量叠加** — 结构体成员只加不删，新发现的字段直接追加
-6. **快速验证优先** — 日常用 quick_decompile 验证单函数，全量导出仅在提交前
-7. **ROI 驱动** — 选收益最大的改进点，不做边角优化
+1. **annotations 是唯一输出** — 所有逆向进度必须落入 annotations
+2. **二进制是唯一权威** — PAL3.exe 中的指令是最终真相
+3. **PDB 是参考不是权威** — PAL3A 偏移/结构需从 PAL3 二进制验证
+4. **IDB 是生成物** — 可随时从 annotations 重建
+5. **Hex-Rays 不可信** — 反编译输出依赖 IDA 结构体定义，可能偏移错误
+6. **置信度先行** — 无 A 级证据不得修改偏移/类型
+7. **MSVC 6.0 对齐** — 默认 4 字节自然对齐，int/float/ptr 不可能在非 4 倍偏移
+
+## 质量指标
+
+```bash
+# 检查 annotations 合法性
+python3 pipeline/check_annotations.py
+
+# 统计 _field_ 残留
+python3 -c "
+import json, os, re
+total = unnamed = 0
+for f in os.listdir('pipeline/data/annotations/structs'):
+    if f.endswith('.json'):
+        d = json.load(open('pipeline/data/annotations/structs/' + f))
+        for m in d.get('known_members', {}).values():
+            total += 1
+            if re.match(r'^_field_', m['name']): unnamed += 1
+print(f'命名率: {(total-unnamed)/total*100:.1f}% ({total-unnamed}/{total})')
+"
+
+# 统计对齐违规
+python3 -c "
+import json, os
+# ... (见 verify_offset.py)
+"
+```
 
 ## 退出条件
 
-当以下指标趋于稳定（边际收益递减）时，结束标注阶段：
-- sub_ 函数数量不再下降
-- 结构体空洞不再减少
-- 新增函数名/类型的速度明显放缓
+标注阶段结束条件：
+- `_field_` 字段数趋于稳定
+- 对齐违规降至 0
+- sub_ 前向声明趋于稳定
+- 重建一致性 ≥95%
 
 然后切换到：编译修复 → 字节匹配阶段。
