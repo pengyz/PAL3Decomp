@@ -819,3 +819,22 @@
 - **受影响结构体**: CGameData(-55), Camera(-3), CScreenMode(-2), TextureLib(-2), RenderTarget2(-1), UIListBox(-1), UIScene(-1)
 - **排除**: 95 个虽 source 弱但有 binary disp32 命中的字段保留
 - **影响**: 命名率 89.4% → **90.0%**，未命名 964→**899**
+
+### [2026-05-14] apply_annotations 修复：前向声明 + enum 前置 + 依赖补全
+
+- **变更（pipeline）**:
+  1. 前向声明：对所有成员引用类型做 `struct XXX;`，但**跳过 IDA til 中已存在的类型**（避免 struct 前向声明覆盖 enum）
+  2. enum 前置：将 enum apply 从 step 4（struct 之后）移到 step 3b（struct 之前），解决 struct 成员引用 enum 类型时 parse_decl 失败
+  3. progressive retry：retry 循环改为无进展时停止（was: 固定 3 次）
+  4. cursor clamp：值类型成员 size 超过实际 span 时 clamp 到 next_member_offset（PAL3A PDB size ≠ PAL3 实际 span）
+- **变更（annotations）**:
+  1. 导入 46 个 PDB enum 到 enums.json（ECPKMode, DLG_TYPE, PGR_MODE, ERoleActState 等——struct 成员引用的枚举类型）
+  2. 添加 18 个 stub struct（pdb_size only, 0 members）:
+     - `ScreenFadeOut/White/White2` (24B) — 屏幕特效
+     - `D3DDriverBug` (4B) — D3D 驱动问题标记
+     - `*_emitter_graph`, `*_particle_graph` (5300B each, 14 个) — 粒子系统图形数据
+     - `m_RoleState/p_RoleState/s_RoleState` (3948-4292B) — MSVC 匿名嵌套 struct（PDB 变量名作类型名）
+     - `gbVolumeModifier` (8B) — gbLightObj 基类
+  3. 删除 `_BYTE.json`, `__int8.json`（IDA 内建类型，不是真实结构体）
+- **置信度**: 90（stub struct 的 size 来自 PAL3A PDB，可能与 PAL3 不同；struct 声明解析是确定性结果）
+- **结果**: struct apply OK: 537 → **826/826 (100%)**，Empty: 87 → **0**，Missing: 205 → **0**
