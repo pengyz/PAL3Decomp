@@ -60,3 +60,44 @@
   2. [A] 同函数中 7 处 `[esi+0xD1]` / `[reg+0xD1]` 引用，全部指向 this+0xD0 的 BYTE1
   3. 0xD0 % 4 = 0（满足 int 自然对齐），0xCE % 4 = 2（不满足）
 - **根因**: annotations 导出时 IDA 的 _field_ 名称中的十六进制后缀可能来自未对齐的内部表示
+
+### [2026-05-13] RoleSystem._field_0D8 偏移修正
+
+- **变更**: offset 216 (0xD8) → 220 (0xDC), type float (不变)
+- **置信度**: 85
+- **证据**:
+  1. [A] 0x00420A59: `8B 8E DC000000` = `mov ecx, [esi+0xDC]`, ESI=this（RoleSystem::_auto_420a10）
+  2. 0xDC % 4 = 0 ✓, 0xD8 % 4 = 0（也对齐，但二进制证据指向 0xDC）
+- **判定**: 通过。二进制中 disp32=0xDC 而非 0xD8
+
+### [2026-05-13] Actor._field_215 偏移修正
+
+- **变更**: offset 533 (0x215) → 536 (0x218), type float (不变)
+- **置信度**: 90
+- **证据**:
+  1. [A] 0x005318DD: `D9 85 18020000` = `fld float [ebp+0x218]`, EBP=this（从 `8B E9 mov ebp,ecx` @ 0x531268 确认）
+  2. [A] 0x005318E5, 0x00531A01, 0x00531A10: 另外 3 处 `fld [ebp+0x218]`（共 4 条 A 级证据）
+  3. 0x218 % 4 = 0 ✓, 0x215 % 4 = 1 ✗（float 不可能在非 4 对齐偏移）
+  4. [A] 0x215 的 disp32 在同函数中无任何内存访问引用
+- **判定**: 通过。4 条独立指令确认偏移 0x218
+
+### [2026-05-13] SCNHeader/SceHeader/NavHeader 标记 pack=1
+
+- **变更**: 三个文件格式头结构体添加 "pack": 1 字段
+- **置信度**: 85
+- **证据**:
+  1. [A] SCNHeader gen_size=18: WORD(+4)+WORD(+6)+DWORD(+8)+WORD(+12)+DWORD(+14) = 紧凑布局，如果有对齐 DWORD 会在 +16 导致 size=20
+  2. [A] SceHeader gen_size=7: flag[4]+BYTE(+4)+WORD(+5) = 7，对齐后 size≥8
+  3. [A] NavHeader gen_size=14: magic[4]+BYTE(+4)+BYTE(+5)+DWORD(+6)+DWORD(+10) = 14，对齐后 DWORD 在 +8 导致 size≥16
+  4. 三个都是文件 I/O 结构（magic 头、偏移表），pack(1) 是 MSVC 中此类结构的标准做法
+- **判定**: 通过。size 与紧凑布局精确匹配，对齐布局会产生更大的 size
+
+### [2026-05-13] PAL3._field_085, UIListBox._field_139, _Item_List_Info._field_009F
+
+- **变更**: 无（保留在 known_violations 中）
+- **置信度**: < 80（不达标）
+- **证据**:
+  1. PAL3+0x85: 0x8ACBF8+0x85=0x8ACC7D 和 +0x88=0x8ACC80 均无绝对地址引用
+  2. UIListBox+0x139: disp32=0x139 和 0x13C 在 UIListBox::_init_474c80 函数体中均未出现
+  3. _Item_List_Info+0x9F: 无 decomp 引用
+- **判定**: 不通过。无 A 级证据，不得修改

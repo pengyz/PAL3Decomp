@@ -52,6 +52,20 @@ def validate_struct(data):
     if not members:
         return True, []
 
+    # pack(1/2) 结构体跳过对齐检查（文件格式头等）
+    if data.get('pack'):
+        # 仍然检查重叠，但跳过对齐
+        sorted_m = sorted([(int(off), members[off]) for off in members], key=lambda x: x[0])
+        prev_end = 0
+        prev_name = ''
+        for off, m in sorted_m:
+            sz = get_member_size(m.get('type', ''))
+            if off < prev_end:
+                errors.append(f"OVERLAP: +{off} {m.get('name','')} conflicts with {prev_name}")
+            prev_end = off + sz
+            prev_name = m.get('name', '')
+        return len(errors) == 0, errors
+
     sorted_m = sorted([(int(off), members[off]) for off in members], key=lambda x: x[0])
 
     # 对齐

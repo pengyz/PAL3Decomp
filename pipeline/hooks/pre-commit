@@ -35,6 +35,8 @@ def scan_violations(structs_dir):
         if not fname.endswith('.json'): continue
         sname = fname[:-5]
         d = json.load(open(os.path.join(structs_dir, fname)))
+        if d.get('pack'):
+            continue
         members = d.get('known_members', {})
         sorted_m = sorted([(int(off), members[off]) for off in members], key=lambda x: x[0])
         prev_end = 0
