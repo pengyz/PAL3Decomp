@@ -574,6 +574,13 @@
 - **优势**: 比 disp32 二进制扫描更精确——Hex-Rays 直接给出类型（float/int/byte/short），不需要从 opcode 推断
 - **影响**: _todo_ 297→543（新增 246 个待命名成员），结构体 gap 覆盖显著提升
 
+### [2026-05-13] raw decomp 新增字段即时命名（244/246）
+
+- **变更**: 对上一步新增的 246 个 `_todo_` 字段立即应用 raw decomp 上下文命名
+- **置信度**: 70（函数名上下文 + strcpy/memset 模式 + 类型前缀推断）
+- **方法**: 同前次 _todo_ 命名——从 raw decomp 中提取 `this+offset` 所在行的函数名和操作模式，生成 m_nXxx/m_fXxx/m_bXxx 语义名
+- **结果**: 244 个命名成功，2 个无法推断保留 _todo_，总 _todo_ 回到 297（均为早期遗留）
+
 ### [2026-05-13] ScriptSystemData 命令表数组化（-372 _field_）
 
 - **变更**: 将 ScriptSystemData 偏移 4432-7852 的 372 个独立 _field_ 替换为 `m_CmdTable tagScriptCmd[213]`
