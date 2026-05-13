@@ -684,3 +684,23 @@
 - **方法**: 新建 `query_highref_fields.py`，对 refs>=3 但无 decomp context 的字段强制 Hex-Rays 反编译。44/50 个高引用字段获得了上下文。
 - **证据类型**: [A] binary disp32 + [C] IDA Hex-Rays decomp context（函数名+操作模式）
 - **影响**: 命名率 86.0% → 86.1%
+
+### [2026-05-14] 全类反编译批量命名（Camera, RenderTarget, CameraCtrl, CCBStageScene 等）
+
+- **变更**: 51 个 _todo_ 字段命名
+  - RenderTarget: 15 个（m_nRenderX/Y, m_nHalfW/H, m_nWidth/Height, m_fRenderX/Y, m_szPath, m_nColor, m_bVisible 等）
+  - CCBStageScene: 15 个（m_fBlendRectA/B/C XY/WH — 0/0/1.0/1.0 初始化模式, m_Object3D 嵌入对象）
+  - CameraCtrl: 9 个（m_fMinDist, m_fTargetAngle/CurAngle, m_nCamState, m_bAutoRotate, m_nTickCount）
+  - PalScript: 6 个（m_fBlendFactor, m_nState, m_nFrameCount, m_bEnabled, m_fScaleX）
+  - RenderTarget2: 4 个（m_pSurface, m_bActive, m_nFallbackMode, m_fBlendParam）
+  - Camera: 1 个（m_Actor — 嵌入 Actor 对象）
+  - SceneMgr: 1 个（m_aSceneSlots — memset 2304 字节清零）
+- **置信度**: 75-85
+- **方法**: 新建 `query_class_full.py`，对指定类的全部方法做 Hex-Rays 反编译，提取所有 `this->_todo_XXX` 和 `*(type*)(this+N)` 模式。
+- **关键证据**:
+  1. [A] CCBStageScene: 三组相同 (0,0,0x3F800000,0x3F800000) 初始化 → blend rect XYWH
+  2. [A] CameraCtrl+16/20: clamp+accumulate 模式 → target/current 插值对
+  3. [A] RenderTarget+88: ctor=800, Read 64 bytes, strcat → 路径字符串
+  4. [A] Camera+680: Actor::LoadModel(&this) → 嵌入 Actor 对象
+  5. [A] SceneMgr+28: memset(this, 0, 0x900) → 2304 字节数组槽位
+- **影响**: 命名率 86.1% → 86.7%

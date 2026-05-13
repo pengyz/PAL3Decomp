@@ -8,9 +8,9 @@
       "source": "binary:inferred from CameraCtrl context"
     },
     "4": {
-      "name": "_field_004",
-      "type": "int",
-      "source": "binary:9x access"
+      "name": "m_fMinDist",
+      "type": "float",
+      "source": "ida_decomp:_nearby_41cbd0 this+5<this+4 compare"
     },
     "8": {
       "name": "m_pTarget",
@@ -23,19 +23,19 @@
       "source": "binary:17x access"
     },
     "16": {
-      "name": "_field_010",
-      "type": "int",
-      "source": "binary:10x access"
+      "name": "m_fTargetAngle",
+      "type": "float",
+      "source": "ida_decomp:_nearby_41cc50 v3>=this clamp, 8 refs"
     },
     "20": {
-      "name": "_field_014",
-      "type": "int",
-      "source": "binary:12x access"
+      "name": "m_fCurAngle",
+      "type": "float",
+      "source": "ida_decomp:_nearby_41cc50 a2+this accumulate, 8 refs"
     },
     "24": {
-      "name": "_field_018",
+      "name": "m_nCamState",
       "type": "int",
-      "source": "binary:6x access"
+      "source": "ida_decomp:_nearby_48b370 =0, counter/state, 10 refs"
     },
     "28": {
       "name": "_field_01C",
@@ -58,9 +58,9 @@
       "source": "binary:8x access"
     },
     "44": {
-      "name": "_field_02C",
+      "name": "m_bCamFlag",
       "type": "int",
-      "source": "binary:7x access"
+      "source": "ida_decomp:_nearby_41d5d0 if(this), 1 ref but unique"
     },
     "48": {
       "name": "_field_030",
@@ -238,9 +238,9 @@
       "source": "binary:1x access"
     },
     "888": {
-      "name": "_field_378",
+      "name": "m_bPageMode",
       "type": "unsigned char",
-      "source": "binary:1x access"
+      "source": "ida_decomp:_nearby_48ef80 if(byte this), 1 ref"
     },
     "896": {
       "name": "_field_380",
@@ -253,9 +253,9 @@
       "source": "binary:9x access"
     },
     "912": {
-      "name": "_field_390",
+      "name": "m_bAutoRotate",
       "type": "unsigned char",
-      "source": "binary:2x access"
+      "source": "ida_decomp:_nearby_48c9a0 toggle 0/1, 2 refs"
     },
     "916": {
       "name": "m_nBlendTimer",
@@ -283,9 +283,9 @@
       "source": "ida_decomp:UpdateBlendWeight set 1, 5 refs"
     },
     "3340": {
-      "name": "_field_D0C",
+      "name": "m_nTickCount",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:_nearby_48ef80 = TickCount, 2 refs"
     },
     "3344": {
       "name": "m_nTickStamp",
@@ -318,9 +318,9 @@
       "source": "binary:disp32_2hits_2funcs"
     },
     "892": {
-      "name": "_todo_37C",
+      "name": "m_nPageParam",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:_nearby_48a390 = a2, 1 ref"
     },
     "910": {
       "name": "m_bBlendWeight",

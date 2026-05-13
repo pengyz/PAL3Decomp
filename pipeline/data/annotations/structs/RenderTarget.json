@@ -23,24 +23,24 @@
       "source": "gen_headers_9.2"
     },
     "8": {
-      "name": "_field_008",
+      "name": "m_nRenderX",
       "type": "int",
-      "source": "binary:7x access in RenderTarget:: methods"
+      "source": "ida_decomp:UpdateTransform store/load, 10 refs"
     },
     "12": {
-      "name": "_field_00C",
+      "name": "m_nRenderY",
       "type": "int",
-      "source": "binary:8x access in RenderTarget:: methods"
+      "source": "ida_decomp:UpdateTransform a2/a3 calc, 10 refs"
     },
     "16": {
-      "name": "_field_010",
+      "name": "m_nHalfW",
       "type": "int",
-      "source": "binary:2x access in RenderTarget:: methods"
+      "source": "ida_decomp:Render (a4-a2)/2, _sub_4B4B10 = v20, 5 refs"
     },
     "20": {
-      "name": "_field_014",
-      "type": "unsigned char",
-      "source": "binary:4x access in RenderTarget:: methods"
+      "name": "m_nHalfH",
+      "type": "int",
+      "source": "ida_decomp:Render (a5-a3)/2, _sub_4B4B10 = a3/2, 6 refs"
     },
     "24": {
       "name": "m_nHalfWidth",
@@ -53,14 +53,14 @@
       "source": "binary:SetSize(0x4B48E0) sar eax,1; mov [ecx+0x1C],eax — param2/2"
     },
     "32": {
-      "name": "_field_020",
+      "name": "m_nWidth",
       "type": "int",
-      "source": "binary:3x access in RenderTarget:: methods"
+      "source": "ida_decomp:UpdateTransform /2, %this, _sub_4B4B10 = a2, 6 refs"
     },
     "36": {
-      "name": "_field_024",
+      "name": "m_nHeight",
       "type": "int",
-      "source": "binary:4x access in RenderTarget:: methods"
+      "source": "ida_decomp:UpdateTransform v9, _sub_4B4B10 = a3, 6 refs"
     },
     "40": {
       "name": "_field_028",
@@ -93,24 +93,24 @@
       "source": "binary:1x access in RenderTarget:: methods"
     },
     "64": {
-      "name": "_field_040",
-      "type": "float",
-      "source": "binary:3x access in RenderTarget:: methods"
+      "name": "m_fileHeader",
+      "type": "int",
+      "source": "ida_decomp:_nearby_4bae60 Read(g_pVFileSys,this,12,a2)"
     },
     "68": {
-      "name": "_field_044",
+      "name": "m_fRenderX",
       "type": "float",
-      "source": "binary:9x access in RenderTarget:: methods"
+      "source": "ida_decomp:Render (float *)this+17 = pos calc, 5 refs"
     },
     "72": {
-      "name": "_field_048",
+      "name": "m_fRenderY",
       "type": "float",
-      "source": "binary:9x access in RenderTarget:: methods"
+      "source": "ida_decomp:Render store/compare/clamp, 10 refs"
     },
     "76": {
-      "name": "_field_04C",
-      "type": "float",
-      "source": "binary:2x access in RenderTarget:: methods"
+      "name": "m_fileData",
+      "type": "int",
+      "source": "ida_decomp:_nearby_4bae60 Read(g_pVFileSys,this,12,a2)"
     },
     "80": {
       "name": "_field_050",
@@ -118,29 +118,29 @@
       "source": "binary:2x access in RenderTarget:: methods"
     },
     "84": {
-      "name": "_field_054",
-      "type": "float",
-      "source": "binary:3x access in RenderTarget:: methods"
+      "name": "m_nColor",
+      "type": "int",
+      "source": "ida_decomp:SetColor = result"
     },
     "88": {
-      "name": "_field_058",
+      "name": "m_szPath",
       "type": "int",
-      "source": "binary:1x access in RenderTarget:: methods"
+      "source": "ida_decomp:ctor = 800, Read 64 bytes, strcat as string"
     },
     "92": {
-      "name": "_field_05C",
-      "type": "float",
-      "source": "binary:8x access in RenderTarget:: methods"
+      "name": "m_nDefaultH",
+      "type": "int",
+      "source": "ida_decomp:ctor = 600, also deref+16 vtable call"
     },
     "124": {
-      "name": "_field_07C",
-      "type": "unsigned char",
-      "source": "binary:1x access in RenderTarget:: methods"
+      "name": "m_nAlpha",
+      "type": "int",
+      "source": "ida_decomp:SetColor = a4"
     },
     "128": {
-      "name": "_field_080",
-      "type": "unsigned char",
-      "source": "binary:1x access in RenderTarget:: methods"
+      "name": "m_bVisible",
+      "type": "int",
+      "source": "ida_decomp:SetVisible = a2"
     },
     "132": {
       "name": "_field_084",

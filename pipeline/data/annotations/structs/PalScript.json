@@ -23,19 +23,19 @@
       "source": "gen_headers_9.2"
     },
     "12": {
-      "name": "_field_00C",
-      "type": "int",
-      "source": "binary:raw_final"
+      "name": "m_fBlendFactor",
+      "type": "float",
+      "source": "ida_decomp:_sub_430500 = 0, _nearby_438110 (1-v3)*this"
     },
     "16": {
-      "name": "_field_010",
-      "type": "unsigned char",
-      "source": "binary:raw_final"
+      "name": "m_nState",
+      "type": "int",
+      "source": "ida_decomp:_sub_430500/439a20 = 0"
     },
     "20": {
-      "name": "_field_014",
+      "name": "m_nFrameCount",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_439a20 loaded 6x, used as counter"
     },
     "28": {
       "name": "_field_01C",
@@ -43,14 +43,14 @@
       "source": "binary:raw_final"
     },
     "32": {
-      "name": "_field_020",
+      "name": "m_bEnabled",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_439a20 if(!this)"
     },
     "220": {
-      "name": "_field_0DC",
+      "name": "m_fTimeScale",
       "type": "int",
-      "source": "binary:3x access"
+      "source": "ida_decomp:_nearby_439a20 (double)this * float * a2"
     },
     "236": {
       "name": "_field_0EC",
@@ -68,9 +68,9 @@
       "source": "binary:5x access"
     },
     "252": {
-      "name": "_field_0FC",
+      "name": "m_fScaleX",
       "type": "float",
-      "source": "binary:2x access"
+      "source": "ida_decomp:_nearby_439410 gbMatrixStack::Scale(v2,this,...)"
     },
     "292": {
       "name": "_field_124",

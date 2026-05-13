@@ -73,24 +73,24 @@
       "source": "binary:disp32_2hits_1funcs"
     },
     "4": {
-      "name": "_todo_004",
+      "name": "m_pSurface",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:Resolve device+416 call, _nearby_4c04c0 = 0, 10 refs"
     },
     "8": {
-      "name": "_todo_008",
+      "name": "m_bActive",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:Resolve if(this), _nearby_4c04c0 = 0, 10 refs"
     },
     "16": {
-      "name": "_todo_010",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_nFallbackMode",
+      "type": "int",
+      "source": "ida_decomp:Init = 0, set 1 on GPU fail, LODWORD check, 10 refs"
     },
     "20": {
-      "name": "_todo_014",
+      "name": "m_fBlendParam",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_4c04c0 = 0.0, _nearby_4c0c10 loaded, 10 refs"
     },
     "24": {
       "name": "m_pTargetArray",
