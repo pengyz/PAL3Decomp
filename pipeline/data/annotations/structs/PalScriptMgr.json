@@ -92,14 +92,14 @@
       "source": "binary:6x access"
     },
     "216": {
-      "name": "_todo_D8",
+      "name": "m_nSavedDataA",
       "type": "int",
-      "source": "binary:6x access"
+      "source": "ida_decomp:ExecuteBlock *60 = *216, 12 refs"
     },
     "220": {
-      "name": "_todo_DC",
+      "name": "m_nSavedDataB",
       "type": "int",
-      "source": "binary:6x access"
+      "source": "ida_decomp:ExecuteBlock *64 = *220, 16 refs"
     },
     "224": {
       "name": "m_fAngle",
@@ -107,24 +107,24 @@
       "source": "binary:3x access"
     },
     "244": {
-      "name": "_todo_F4",
+      "name": "m_nCmdType",
       "type": "unsigned char",
-      "source": "binary:3x access"
+      "source": "ida_decomp:RunCommand/ExecuteBlock switch(this), 11 refs"
     },
     "248": {
-      "name": "_todo_F8",
+      "name": "m_nCmdValue",
       "type": "int",
-      "source": "binary:3x access"
+      "source": "ida_decomp:RunCommand switch(), ExecuteBlock ==1, 25 refs"
     },
     "252": {
-      "name": "_todo_FC",
+      "name": "m_nCmdParam0",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:ExecuteBlock param, 11 refs"
     },
     "256": {
-      "name": "_todo_100",
+      "name": "m_nCmdParam1",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:ExecuteBlock param, also as float, 7 refs"
     },
     "264": {
       "name": "_field_108",
@@ -132,14 +132,14 @@
       "source": "binary:1x access"
     },
     "300": {
-      "name": "_field_12C",
+      "name": "m_pScriptObj",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "ida_decomp:ExecuteBlock Destroy(this), if(this), 10 refs"
     },
     "304": {
-      "name": "_todo_130",
+      "name": "m_nScriptDepth",
       "type": "int",
-      "source": "binary:3x access"
+      "source": "ida_decomp:ExecuteOpcode +1, >0 check, 4 refs"
     },
     "320": {
       "name": "m_fExecuteBlock",
@@ -162,24 +162,24 @@
       "source": "binary:1x access"
     },
     "536": {
-      "name": "_todo_218",
+      "name": "m_fPosAX",
       "type": "float",
-      "source": "binary:1x access"
+      "source": "ida_decomp:ExecuteBlock = this+548 + this, 3 refs"
     },
     "548": {
-      "name": "_todo_224",
+      "name": "m_fPosBX",
       "type": "float",
-      "source": "binary:1x access"
+      "source": "ida_decomp:ExecuteBlock added to posA, 3 refs"
     },
     "552": {
-      "name": "_todo_228",
+      "name": "m_fPosBY",
       "type": "float",
-      "source": "binary:2x access"
+      "source": "ida_decomp:ExecuteBlock added to posA, 3 refs"
     },
     "556": {
-      "name": "_todo_22C",
+      "name": "m_fPosBZ",
       "type": "float",
-      "source": "binary:2x access"
+      "source": "ida_decomp:ExecuteBlock added to posA, 3 refs"
     },
     "560": {
       "name": "_field_230",
@@ -192,9 +192,9 @@
       "source": "binary:1x access"
     },
     "796": {
-      "name": "_field_31C",
+      "name": "m_pSceneMgr",
       "type": "int",
-      "source": "binary:20x access"
+      "source": "ida_decomp:ExecuteOpcode GetRolePtr(*(this+16)), 33 refs"
     },
     "800": {
       "name": "m_bRoleCmd_42ac80",
@@ -202,9 +202,9 @@
       "source": "binary:3x access"
     },
     "804": {
-      "name": "_todo_324",
+      "name": "m_nExecState",
       "type": "int",
-      "source": "binary:7x access"
+      "source": "ida_decomp:ExecuteBlock = 1/2, 8 refs"
     },
     "812": {
       "name": "_field_32C",
@@ -227,39 +227,39 @@
       "source": "binary:2x access"
     },
     "832": {
-      "name": "_todo_340",
-      "type": "int",
-      "source": "binary:2x access"
+      "name": "m_fScriptCamX",
+      "type": "float",
+      "source": "ida_decomp:ExecuteOpcode v64.x = this, 13 refs"
     },
     "840": {
-      "name": "_todo_348",
+      "name": "m_pScriptBlock",
       "type": "int",
-      "source": "binary:11x access"
+      "source": "ida_decomp:ExecuteOpcode = this+76, 11 refs"
     },
     "844": {
-      "name": "_todo_34C",
+      "name": "m_pExecObj",
       "type": "int",
-      "source": "binary:11x access"
+      "source": "ida_decomp:ExecuteOpcode deref as void***, 12 refs"
     },
     "848": {
-      "name": "_todo_350",
-      "type": "int",
-      "source": "binary:4x access"
+      "name": "m_fExecParam",
+      "type": "float",
+      "source": "ida_decomp:ExecuteOpcode = v52/v39, 8 refs"
     },
     "864": {
-      "name": "_todo_360",
+      "name": "m_pWaitObj",
       "type": "int",
-      "source": "binary:4x access"
+      "source": "ida_decomp:ExecuteOpcode deref as void**, 4 refs"
     },
     "872": {
-      "name": "_todo_368",
+      "name": "m_nWaitCount",
       "type": "int",
-      "source": "binary:21x access"
+      "source": "ida_decomp:ExecuteOpcode if(this), this-1, 21 refs"
     },
     "884": {
-      "name": "_todo_374",
+      "name": "m_nScriptResult",
       "type": "int",
-      "source": "binary:6x access"
+      "source": "ida_decomp:ExecuteOpcode = Destroy(v2+64), 12 refs"
     },
     "3284": {
       "name": "_field_CD4",
@@ -267,9 +267,9 @@
       "source": "binary:3x access"
     },
     "3288": {
-      "name": "_field_CD8",
+      "name": "m_nScreenEffect",
       "type": "int",
-      "source": "binary:4x access"
+      "source": "ida_decomp:_init_44b0f0 = ProcessEffect(2), 4 refs"
     },
     "3292": {
       "name": "_field_CDC",
@@ -277,19 +277,19 @@
       "source": "binary:2x access"
     },
     "3296": {
-      "name": "_field_CE0",
+      "name": "m_nTickStamp",
       "type": "int",
-      "source": "binary:3x access"
+      "source": "ida_decomp:_init_44b0f0 = TickCount, 3 refs"
     },
     "3300": {
-      "name": "_field_CE4",
+      "name": "m_bEffectInit",
       "type": "unsigned char",
-      "source": "binary:3x access"
+      "source": "ida_decomp:_init_44b0f0 if(!this) set 1, 3 refs"
     },
     "3304": {
-      "name": "_field_CE8",
+      "name": "m_bEffectActive",
       "type": "unsigned char",
-      "source": "binary:5x access"
+      "source": "ida_decomp:_init_44b0f0 set 0, if(this), 8 refs"
     },
     "156": {
       "name": "_todo_09C",
@@ -302,14 +302,14 @@
       "source": "binary:disp32_23hits_1funcs"
     },
     "175": {
-      "name": "_todo_AF",
+      "name": "m_bScriptPause",
       "type": "unsigned char",
-      "source": "binary:disp32_9hits_2funcs"
+      "source": "ida_decomp:ExecuteBlock if(!this) + toggle, 13 refs"
     },
     "209": {
-      "name": "_todo_D1",
+      "name": "m_bOpcodeFlag",
       "type": "unsigned char",
-      "source": "binary:disp32_5hits_4funcs"
+      "source": "ida_decomp:ExecuteOpcode = v2+60, ExecuteBlock = _bScriptPause, 9 refs"
     },
     "228": {
       "name": "_todo_0E4",
@@ -332,9 +332,9 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "260": {
-      "name": "_todo_104",
+      "name": "m_nCmdParam2",
       "type": "int",
-      "source": "binary:disp32_2hits_1funcs"
+      "source": "ida_decomp:ExecuteBlock param, also as float, 3 refs"
     },
     "308": {
       "name": "_todo_134",
@@ -357,14 +357,14 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "540": {
-      "name": "_todo_21C",
+      "name": "m_fPosAY",
       "type": "float",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:ExecuteBlock = this+552 + this, 3 refs"
     },
     "544": {
-      "name": "_todo_220",
+      "name": "m_fPosAZ",
       "type": "float",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:ExecuteBlock = this+556 + this, 3 refs"
     },
     "808": {
       "name": "_todo_328",
@@ -377,9 +377,9 @@
       "source": "binary:disp32_12hits_10funcs"
     },
     "836": {
-      "name": "_todo_344",
-      "type": "int",
-      "source": "binary:disp32_4hits_2funcs"
+      "name": "m_fScriptCamY",
+      "type": "float",
+      "source": "ida_decomp:ExecuteOpcode v64.y = this, compared, 4 refs"
     },
     "880": {
       "name": "_todo_370",

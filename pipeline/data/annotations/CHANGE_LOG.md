@@ -649,3 +649,21 @@
   9. [A] CCBRoleState+0x5658: `+= 10` 滚动累加模式，10 refs
 - **工具改进**: 新增 `pipeline/ida/query_todo_fields.py` IDAPython 脚本
 - **影响**: 命名率 84.8% → 85.2%
+
+### [2026-05-14] IDA 辅助批量命名第二轮（7 个类，71 个字段）
+
+- **变更**: 71 个 _todo_ 字段命名
+  - PalScriptMgr: 31 个（脚本引擎核心：m_nCmdType/Value/Param, m_pSceneMgr, m_nWaitCount 等）
+  - UIScene: 10 个（UI 矩形/位置：m_nRectX/Y/W/H, m_bVisible 等）
+  - CEffMgr: 8 个（特效参数：m_fPosX/Y/Z, m_fScaleX/Y/Z, m_vecRotAxis）
+  - Object3D: 7 个（对话框/提示框：m_wndNote, m_wndDialog, m_wndItem）
+  - CameraCtrl: 5 个（混合权重：m_nBlendTimer, m_bBlendActive, m_nTickStamp）
+  - ScriptSystem: 3 个（执行标志：m_bOpcodeFlag, m_bExecFlag, m_bBlockFlag）
+  - CScreenMode: 2 个（进度条：m_fProgressRatio, m_fProgressMax）
+  - CCBStageRole: 1 个（m_fYawAngle）
+  - Actor: 1 个（m_fBlendWeight）
+  - CGameData: 1 个（m_pGameObj）
+  - ScreenEffectMgr: 2 个（m_pEffect, m_nEffectCount）
+- **置信度**: 75-85
+- **方法**: 利用 query_todo_fields.py 输出的 IDA 反编译上下文，匹配已知 API 模式（gbMatrix4::SetAxisAngle, sprintf, switch, Destroy, GetTickCount）和数值模式（角度常数 0.0043633231, 0.017453292, 累加器 += 10, stride 乘法）
+- **影响**: 命名率 85.2% → 86.0%

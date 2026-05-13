@@ -258,9 +258,9 @@
       "source": "binary:2x access"
     },
     "916": {
-      "name": "_todo_394",
+      "name": "m_nBlendTimer",
       "type": "int",
-      "source": "binary:15x access"
+      "source": "ida_decomp:UpdateBlendWeight <=0 check, set 0, 15 refs"
     },
     "1192": {
       "name": "_field_4A8",
@@ -278,9 +278,9 @@
       "source": "binary:2x access"
     },
     "3336": {
-      "name": "_todo_D08",
+      "name": "m_bBlendActive",
       "type": "unsigned char",
-      "source": "binary:5x access"
+      "source": "ida_decomp:UpdateBlendWeight set 1, 5 refs"
     },
     "3340": {
       "name": "_field_D0C",
@@ -288,14 +288,14 @@
       "source": "binary:2x access"
     },
     "3344": {
-      "name": "_field_D10",
+      "name": "m_nTickStamp",
       "type": "int",
-      "source": "binary:3x access"
+      "source": "ida_decomp:_nearby_48ef80 = TickCount, delta = now-this, 3 refs"
     },
     "3348": {
-      "name": "_field_D14",
+      "name": "m_bTickInit",
       "type": "unsigned char",
-      "source": "binary:3x access"
+      "source": "ida_decomp:_nearby_48ef80 if(!this) set 1, 3 refs"
     },
     "480": {
       "name": "m_nAsCurrent",
@@ -358,9 +358,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "3337": {
-      "name": "_todo_D09",
+      "name": "m_bBlendPause",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:UpdateBlendWeight set 0, 5 refs"
     }
   },
   "binary_size": 4088

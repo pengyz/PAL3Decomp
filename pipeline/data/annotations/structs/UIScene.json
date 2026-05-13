@@ -97,14 +97,14 @@
       "source": "binary:lea [this+0x74]→ecx→UIWnd::GetChildByIndex"
     },
     "128": {
-      "name": "_field_080",
+      "name": "m_nRectX",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:_nearby_43c7b0 = v10, 35 refs"
     },
     "132": {
-      "name": "_field_084",
+      "name": "m_nRectY",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:_nearby_43c7b0 = v8+HIDWORD, 34 refs"
     },
     "136": {
       "name": "_field_088",
@@ -112,19 +112,19 @@
       "source": "binary:gap_access"
     },
     "140": {
-      "name": "_field_08C",
+      "name": "m_nRectH",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:_nearby_43d1a0 loaded, 33 refs"
     },
     "144": {
-      "name": "_field_090",
+      "name": "m_nRectW",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:_nearby_43c7b0 = a3[2], 26 refs"
     },
     "156": {
-      "name": "_field_09C",
+      "name": "m_nPosY",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:_nearby_43cdf0 = lerp result, 8 refs"
     },
     "160": {
       "name": "m_nLoadResource",
@@ -152,14 +152,14 @@
       "source": "binary:gap_access"
     },
     "184": {
-      "name": "_field_0B8",
+      "name": "m_pChildData",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:_nearby_43a870 used as Parent_Data**, 14 refs"
     },
     "188": {
-      "name": "_field_0BC",
-      "type": "int",
-      "source": "binary:gap_access"
+      "name": "m_fAngle",
+      "type": "float",
+      "source": "ida_decomp:_method_52e140 (this+56)*0.01745, 4 refs"
     },
     "192": {
       "name": "_field_0C0",
@@ -167,9 +167,9 @@
       "source": "binary:gap_access"
     },
     "152": {
-      "name": "_field_098",
+      "name": "m_nPosX",
       "type": "int",
-      "source": "binary:6x access"
+      "source": "ida_decomp:_nearby_43c7b0 = *a3, _nearby_43cdf0 = lerp, 8 refs"
     },
     "176": {
       "name": "_field_0B0",
@@ -177,9 +177,9 @@
       "source": "binary:5x access"
     },
     "204": {
-      "name": "_field_0CC",
+      "name": "m_bVisible",
       "type": "unsigned char",
-      "source": "binary:15x access"
+      "source": "ida_decomp:_UIScene set 1, Update2 if(!this), 22 refs"
     },
     "208": {
       "name": "_field_0D0",
@@ -187,9 +187,9 @@
       "source": "binary:3x access"
     },
     "212": {
-      "name": "_field_0D4",
+      "name": "m_bEnabled",
       "type": "unsigned char",
-      "source": "binary:4x access"
+      "source": "ida_decomp:_nearby_43b660 if(this), 7 refs"
     },
     "216": {
       "name": "_field_0D8",
