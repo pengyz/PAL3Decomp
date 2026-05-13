@@ -117,3 +117,16 @@
 - **排除**: +7373→+7376 误匹配（6A 05 E8 中 rel32 碰巧匹配地址，非内存引用），未修改
 - **判定**: 通过。31 个字段均有独立 A 级证据
 - **影响**: known_violations 107→76
+
+### [2026-05-13] RoleSystem test_bad 清理 + ScriptSystem+897 修正
+
+- **变更**:
+  1. RoleSystem+207 (test_bad): 删除（前次测试残留数据）
+  2. ScriptSystem+897 (0x381) → +900 (0x384), type int
+- **置信度**: 90 (ScriptSystem), N/A (RoleSystem 清理)
+- **证据**:
+  1. [A] ScriptSystem::_init_4890a0 中 7 处 `8B xx 84030000` = `mov reg, [reg+0x384]`，reg=this 通过 `8BE9 mov ebp,ecx` 确认，多个寄存器（ebp/ebx/esi）均指向同偏移
+  2. +877(0x370) 和 +909(0x390): 所有 ScriptSystem 函数中 disp32 搜索无结果，不修改
+  3. CGameData+769, +18129: 绝对地址匹配为误报（3D imm32=cmp, B8 imm32=mov eax），非内存访问，不修改
+- **判定**: ScriptSystem+897 通过; 其余保留 known_violations
+- **影响**: known_violations 76→73
