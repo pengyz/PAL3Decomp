@@ -440,3 +440,12 @@
 - **命名约定**: 新增字段用 `_todo_XXX` 前缀，方便 `grep _todo_` 追踪待命名字段
 - **高频字段**: +828(0x33C) 5funcs, +7432(0x1D08) 8hits/4funcs, +7280(0x1C70) 7hits/4funcs
 - **影响**: RoleSystem 成员 208→233
+
+### [2026-05-13] 5 个结构体 disp32 重扫描（+125 新 _todo_ 成员）
+
+- **变更**: Actor(+20), CScreenMode(+39), UIListBox(+48), PAL3(+15), ScreenEffectMgr(+1) 添加二进制验证的占位成员
+- **置信度**: 85（偏移+类型），50（_todo_ 占位名）
+- **方法**: 同 RoleSystem 重扫描方法——识别 this 寄存器后搜索 `[this_reg+disp32]`，过滤对齐、排除 overlap
+- **排除**: Actor +217(byte 子访问 overlap +216 int), +544(overlap m_dwMatMsg[11])
+- **未扫描**: SceneMgrCamBlock/UIScene/UIAnimateCtrlEX(0 新成员), CCBUI/gbVolModNode(无 binary_size), _Item_List_Info(无函数)
+- **影响**: 全部 _todo_ 字段总计 148 个（`grep -r '_todo_' structs/`）
