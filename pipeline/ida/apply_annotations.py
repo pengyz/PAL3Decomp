@@ -471,6 +471,9 @@ def apply_annotations():
                 else:
                     sig_fail.append((addr_str, name, sig_with_name))
 
+    if sig_fail:
+        for addr_str, fname, sig_str in sig_fail[:10]:
+            print("[!] Sig failed: %s %s → %s" % (addr_str, fname, sig_str[:60]))
     print("[6] Signatures: %d/%d (fail=%d)" % (sig_ok, len([f for f in funcs.values() if f.get("signature")]), len(sig_fail)))
 
     # --- 6b. Global types (after structs so struct types are resolved) ---
