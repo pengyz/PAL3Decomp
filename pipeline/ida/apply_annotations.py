@@ -95,19 +95,24 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
         elif arr_match:
             base_type = mtype[:arr_match.start()].rstrip()
             lines.append("    %s %s%s;" % (base_type, mname, arr_match.group(1)))
-            # For pointer/primitive arrays: compute exact size (known)
-            # For struct arrays: use next_member_offset (PAL3A sizes unreliable)
             elem_size = 0
             if "*" in base_type:
                 elem_size = 4
             elif base_type in ("double",):
                 elem_size = 8
-            elif base_type in ("float", "int", "unsigned int", "DWORD", "LONG", "UINT"):
+            elif base_type in ("float", "int", "unsigned int", "DWORD", "LONG", "UINT",
+                               "unsigned long"):
                 elem_size = 4
             elif base_type in ("short", "unsigned short", "WORD"):
                 elem_size = 2
             elif base_type in ("char", "unsigned char", "bool", "BYTE"):
                 elem_size = 1
+            else:
+                clean = base_type.replace("class ", "").replace("struct ", "").strip()
+                if clean in all_structs:
+                    ref = all_structs[clean]
+                    elem_size = max(ref.get("pdb_size", 0), ref.get("binary_size", 0),
+                                    ref.get("gen_size", 0), ref.get("size", 0))
             if elem_size > 0:
                 dims = [int(d) for d in _re.findall(r'\[(\d+)\]', arr_match.group(1))]
                 total_elems = 1

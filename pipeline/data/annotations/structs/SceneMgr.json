@@ -156,41 +156,6 @@
       "type": "int",
       "source": "binary:5refs_+0xD334"
     },
-    "2348": {
-      "name": "m_EffTable",
-      "type": "tagEffObj[2048]",
-      "source": "doc:scenemgr_layout"
-    },
-    "43308": {
-      "name": "m_nEffCount",
-      "type": "int",
-      "source": "doc:CEffMgr_tail"
-    },
-    "28": {
-      "name": "m_EffClass",
-      "type": "tagEffClass[32]",
-      "source": "doc:scenemgr_layout"
-    },
-    "43312": {
-      "name": "m_fEffCurTime",
-      "type": "float",
-      "source": "doc:CEffMgr_tail"
-    },
-    "43316": {
-      "name": "m_fEffDeltaTime",
-      "type": "float",
-      "source": "doc:CEffMgr_tail"
-    },
-    "43320": {
-      "name": "m_fEffTimer",
-      "type": "float",
-      "source": "doc:CEffMgr_tail"
-    },
-    "43324": {
-      "name": "m_fEffTimeScale",
-      "type": "float",
-      "source": "doc:CEffMgr_tail"
-    },
     "51644": {
       "name": "_field_0C9BC",
       "type": "int",
@@ -396,16 +361,6 @@
       "type": "float",
       "source": "binary:scenemgr_high"
     },
-    "7112": {
-      "name": "m_g_bSlotValid",
-      "type": "unsigned char[5]",
-      "source": "globals_merge"
-    },
-    "7120": {
-      "name": "m_g_RoleSystems",
-      "type": "RoleSystem *",
-      "source": "globals_merge"
-    },
     "54106": {
       "name": "m_bPathEnabled",
       "type": "unsigned char",
@@ -415,6 +370,16 @@
       "name": "m_nCameraFlags",
       "type": "int",
       "source": "decomp_context"
+    },
+    "80": {
+      "name": "m_PlayerAtts",
+      "type": "ARC_PlayerAtt[5]",
+      "source": "binary:scenemgr_layout.md"
+    },
+    "7120": {
+      "name": "m_RoleSystems",
+      "type": "RoleSystem[5]",
+      "source": "binary:scenemgr_layout.md"
     }
   },
   "pdb_size": 1,
