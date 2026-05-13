@@ -332,3 +332,15 @@
   3. [A] GetControl(0x4DC5B0): `8B 41 20 C3` = mov eax,[ecx+0x20]; ret. CCBControl+0x20(32)=m_nController(int) 完美匹配
   4. [A] 调用者通过 this->m_pControl(CCBControl*) 传入
 - **累计 CCB 修正**: 6 个函数（GetStageRole/ByIdx + GetState/SetParam + GetDeltaTime + GetControl）
+
+### [2026-05-13] CCBStageRole::IsActive → CCBRoleState（stride-892 扫描）
+
+- **变更**: CCBStageRole::IsActive → CCBRoleState::IsActive
+- **置信度**: 90
+- **方法**: 搜索 .text 段中所有 stride=892 乘法链模式 `8D14C5 00000000 2BD0 C1E205 2BD0`，找到 33 处。其中 9 个函数非 CCBRoleState 归属，逐个验证后只有 IsActive 确认错分。
+- **证据**:
+  1. [A] IsActive(0x4ED040): 函数体使用 stride=892 乘法链访问 tagRoleState 数组 → this=CCBRoleState*
+  2. [A] 调用者 CCBStageRole::ProcBlock 通过 this->m_pRoleState(CCBRoleState*) 传入
+- **排除**:
+  - HandleRoleStateDialog: 非 __thiscall（首条指令 A1=mov eax,[abs]），通过全局指针访问
+  - DelTask: 函数开头 mov [ecx+0x19A4] → CCBStageRole 成员，stride-892 在函数后部（调用链）
