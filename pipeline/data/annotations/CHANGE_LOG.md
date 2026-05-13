@@ -283,3 +283,25 @@
 
 - **变更**: 失败的结构体现在打印 decl_len、member count、声明 preview
 - **置信度**: N/A (工具改进)
+
+### [2026-05-13] CCB 函数类归属修正 + 类型别名 + CCBSystem.m_pUtil
+
+- **变更**:
+  1. CCBSystem::GetStageRole → CCBStage::GetStageRole (sig this: CCBSystem*→CCBStage*)
+  2. CCBSystem::GetStageRoleByIdx → CCBStage::GetStageRoleByIdx (sig this: CCBSystem*→CCBStage*)
+  3. 10 个函数签名中 gbengine 类型别名修正 (GeomNode→gbGeomNode 等)
+  4. CCBSystem+0 m_pUtil 类型 CCBSystem*→CUtil*
+  5. 3 个占位结构体 (CCBUIPanel, MvcController, MvcViewport)
+- **置信度**: 90 (函数归属), 90 (类型别名), 90 (m_pUtil)
+- **证据 (函数归属)**:
+  1. [A] GetStageRoleByIdx(0x4FC940): 函数体 `lea eax,[ecx+eax*8]` stride=2632 → CCBStage 的 task 数组
+  2. [A] 同函数 `8B 09`=mov ecx,[ecx] 取 this[0]=CCBStage.m_pCBSystem(CCBSystem*)
+  3. [A] 然后 `D9 41 50`=fld [ecx+0x50] → CCBSystem.m_fTimeFund (float) 确认
+  4. [A] GetStageRole(0x4FC8F0): 同样 stride=2632 模式
+  5. [A] CalcAttackPower 调用链: `8B 8B 0C020000`=mov ecx,[ebx+0x20C] → CCBRoleState.m_pStage(CCBStage*) → 调用 GetStageRoleByIdx
+- **证据 (类型别名)**:
+  1. [B] PDB 中 gbGeomNode/gbMatrix4/gbOBBox 等确认 gb 前缀
+  2. [B] gbengine headers 中 class gbGeomNode/gbMatrix4 定义确认
+- **证据 (m_pUtil)**:
+  1. [B] PDB: CCBSystem+0x0 = CUtil * m_pUtil (非 CCBSystem *)
+- **影响**: 签名失败 25→4, 战斗系统 cast 错误减少
