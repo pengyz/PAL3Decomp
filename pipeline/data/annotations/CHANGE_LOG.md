@@ -508,3 +508,14 @@
 - **方法**: 额外 F5 178 个函数（raw IDB 总计 1120 个），用同样的 `this + offset` 匹配 + 上下文推断
 - **过滤**: 排除泛型名称（m_f_XXX/m_obj_XXX/m_szStr_XXX），只保留有明确语义的命名
 - **影响**: _field_ 1140→991，命名率 84.4%→86.0%
+
+### [2026-05-13] ScriptSystemData 命令表数组化（-372 _field_）
+
+- **变更**: 将 ScriptSystemData 偏移 4432-7852 的 372 个独立 _field_ 替换为 `m_CmdTable tagScriptCmd[213]`
+- **置信度**: 90
+- **证据**:
+  1. [A] stride-16 模式: 51 个条目有 short(+0)+int(+4)+int(+8) 一致结构
+  2. [A] 从 CHANGE_LOG 早期记录: sub_4329B0 命令表区域，stride=16，赋值全用绝对地址
+  3. [A] 30 个条目有 abs_ref 二进制证据（`66 89 3D`=mov word, `89 0CC5`=mov [ecx*8+addr] 等）
+- **新增结构体**: tagScriptCmd {short cmd_id; short _pad; int handler; int param; int flags;} size=16
+- **影响**: ScriptSystemData 成员 556→185, 总 _field_ 991→619, 命名率 86.0%→89.6%

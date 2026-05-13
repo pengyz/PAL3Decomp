@@ -1,0 +1,27 @@
+{
+  "name": "tagScriptCmd",
+  "gen_size": 16,
+  "binary_size": 16,
+  "known_members": {
+    "0": {
+      "name": "cmd_id",
+      "type": "short",
+      "source": "binary:stride16_ScriptSystemData_cmdtable"
+    },
+    "4": {
+      "name": "handler",
+      "type": "int",
+      "source": "binary:stride16_ScriptSystemData_cmdtable"
+    },
+    "8": {
+      "name": "param",
+      "type": "int",
+      "source": "binary:stride16_ScriptSystemData_cmdtable"
+    },
+    "12": {
+      "name": "flags",
+      "type": "int",
+      "source": "binary:stride16_ScriptSystemData_cmdtable"
+    }
+  }
+}
