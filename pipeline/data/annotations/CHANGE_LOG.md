@@ -530,6 +530,18 @@
   2. [A] 使用模式: `== 2`, `== 1`, `== 0` 整数比较 → 状态枚举，非浮点值
 - **影响**: 消除生成代码中 132 个 LODWORD(this->m_fBlend) 包装
 
+### [2026-05-13] PAL3::FullInit 全局变量补充（10 个）
+
+- **变更**: 为 PAL3::FullInit 核心初始化函数补充 10 个全局变量到 globals.json
+- **置信度**: 80
+- **证据**:
+  1. [A] 0x586180-58619C: raw decomp 中 `sub_4125D0(dword_BFDBB0, &off_586180)` + `strcpy(word_BFDC5E, off_586180)` → 场景名字符串指针
+  2. [A] 0xDE5220: `memset(byte_DE5220, 0, 0x28)` → 40 字节存档标记数组
+  3. [A] 0xC04334: `memset32(dword_C04334, 20, 6)` → 6 元素 int 数组（角色初始等级=20）
+  4. [A] 0xC020F0: `while (v0 < &byte_C020F0)` → ScriptCounter 数组结束边界
+- **背景**: FullInit 引用 465 个全局地址，其中 369 个在 g_SceneMgr 内部（需编译阶段视图转换），70 个独立全局变量缺失（已补 10 个，剩 14 个需更多上下文分析）
+- **影响**: FullInit 中 dword_ 残留减少
+
 ### [2026-05-13] ScriptSystemData 命令表数组化（-372 _field_）
 
 - **变更**: 将 ScriptSystemData 偏移 4432-7852 的 372 个独立 _field_ 替换为 `m_CmdTable tagScriptCmd[213]`
