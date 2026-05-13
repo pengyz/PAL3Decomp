@@ -305,3 +305,17 @@
 - **证据 (m_pUtil)**:
   1. [B] PDB: CCBSystem+0x0 = CUtil * m_pUtil (非 CCBSystem *)
 - **影响**: 签名失败 25→4, 战斗系统 cast 错误减少
+
+### [2026-05-13] CCBUI::GetState/SetParam → CCBControl（二进制验证）
+
+- **变更**: 2 个函数从 CCBUI 重分类到 CCBControl
+- **置信度**: 90
+- **证据**:
+  1. [A] GetState(0x4DC560): `8A 41 25` = mov al,[ecx+0x25], ecx=this. CCBControl+0x25(37)=m_bForceRelease(unsigned char) 完美匹配
+  2. [A] 调用者 CCBSystem::ProcMessage 通过 this->m_pControl(CCBControl*) 传入
+  3. [A] SetParam(0x4DC5C0): `89 51 2C` = mov [ecx+0x2C],edx. CCBControl+0x2C(44)=tagControlData 区域
+- **CCB cast 分析总结**:
+  - 948 处 CCB cast 中: ~169 是 Hex-Rays 对大结构体内嵌 UIWnd 子对象的正常表示（(CCBUI*)((char*)this+offset)）
+  - ~56 是通过 this->member 的跨类调用（部分归属错误，部分是正常的子系统委托）
+  - 已修正 4 个函数归属（GetStageRole/ByIdx + GetState/SetParam）
+  - 剩余高频 cast 需要逐个从二进制验证调用链
