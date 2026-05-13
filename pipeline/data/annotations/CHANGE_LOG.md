@@ -486,3 +486,17 @@
   - CCBStageScene: -4 → 114 成员
   - PalScriptMgr: -2 → 87 成员
 - **影响**: _todo_ 字段总计 1044→649（净增 497 个有效新成员）
+
+### [2026-05-13] 数组内部伪成员清理 + raw IDB 语义命名
+
+- **变更**:
+  1. 删除 213 个落在已知数组内部的 _todo_ 字段（GRPinput:148, CCBStageScene:32, Actor:20 等）
+  2. 使用 raw IDB（无结构体导入）对 943 个函数做 Hex-Rays F5，获取原始偏移的反编译上下文
+  3. 从 raw decomp 上下文推断 139 个 _todo_ 字段的语义名
+- **置信度**: 95（数组清理），70（语义命名——基于 raw decomp 文本模式匹配）
+- **方法**:
+  - 数组清理：计算每个已知成员的覆盖范围（含数组），删除范围内的 _todo_
+  - 语义命名：生成 raw IDB → F5 特定地址 → 匹配 `this + offset` 模式 → 从 strcpy/strlen/SetXxx 等上下文推断字段含义
+  - 只保留高质量名称（排除 m_f_XXX/m_obj_XXX 等泛型模式）
+- **命名策略**: strcpy→m_szXxx, sin/cos→m_fAngle, SetProgress→m_fProgressParam, byte flag→m_bXxx
+- **影响**: _todo_ 649→436→297（最终剩余 297 个无法从上下文确定语义的字段）
