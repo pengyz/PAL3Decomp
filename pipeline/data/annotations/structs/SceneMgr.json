@@ -162,9 +162,9 @@
       "source": "binary:scenemgr_high"
     },
     "51648": {
-      "name": "_field_0C9C0",
+      "name": "m_fScrollParam",
       "type": "float",
-      "source": "binary:scenemgr_high"
+      "source": "binary:2x abs refs in RoleSystem::_auto_414350, 8B(dword)"
     },
     "51652": {
       "name": "_field_0C9C4",
@@ -217,9 +217,9 @@
       "source": "binary:scenemgr_high"
     },
     "51696": {
-      "name": "_field_0C9F0",
-      "type": "float",
-      "source": "binary:scenemgr_high"
+      "name": "m_bRoleVisible",
+      "type": "unsigned char",
+      "source": "binary:3x abs refs, A0/88(byte) in RoleSystem::_auto_414350"
     },
     "51700": {
       "name": "_field_0C9F4",
@@ -227,9 +227,9 @@
       "source": "binary:scenemgr_high"
     },
     "51704": {
-      "name": "_field_0C9F8",
+      "name": "m_nRenderMode",
       "type": "int",
-      "source": "binary:scenemgr_high"
+      "source": "binary:2x abs refs, C7 05(store imm32) in RoleSystem::RenderRole"
     },
     "51708": {
       "name": "_field_0C9FC",
@@ -237,14 +237,14 @@
       "source": "binary:scenemgr_high"
     },
     "51716": {
-      "name": "_field_0CA04",
-      "type": "int",
-      "source": "binary:scenemgr_high"
+      "name": "m_bRenderFlag",
+      "type": "unsigned char",
+      "source": "binary:2x abs refs, 8A/88(byte) in RoleSystem::RenderRole"
     },
     "51720": {
-      "name": "_field_0CA08",
-      "type": "int",
-      "source": "binary:scenemgr_high"
+      "name": "m_fRenderParam",
+      "type": "float",
+      "source": "binary:2x abs refs, D9 05(fld float) in RoleSystem::UpdatePosition"
     },
     "51724": {
       "name": "_field_0CA0C",

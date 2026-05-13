@@ -200,3 +200,24 @@
   3. [A] +220 `m_nConfigFlags`: 7x abs refs
   4. [A] +640-642 `m_bFlag280/281/282`: 5-6x abs refs each, byte access (A0/A2/88/8A)
   5. [A] +728 `m_nBattleResult`: 5x abs refs
+
+### [2026-05-13] SceneMgr/CGameData/ScriptSystemData 继续命名
+
+- **变更**: 19 个字段命名 + 3 个类型修正
+- **置信度**: 85
+- **SceneMgr (5 字段)**:
+  1. [A] +51696 `m_bRoleVisible` unsigned char: 3x refs, A0/88=byte (原标 float→修正)
+  2. [A] +51648 `m_fScrollParam` float: 2x refs, 8B=dword in RoleSystem::_auto_414350
+  3. [A] +51704 `m_nRenderMode` int: 2x refs, C7 05=store imm32
+  4. [A] +51716 `m_bRenderFlag` unsigned char: 2x refs, 8A/88=byte
+  5. [A] +51720 `m_fRenderParam` float: 2x refs, D9 05=fld float
+- **CGameData (3 字段)**:
+  1. [A] +736 `m_nMissionState` int: 4x dword refs
+  2. [A] +3976 `m_nUIFlags` int: 4x refs
+  3. [A] +624 `m_nPlayerMoney` int: 3x store/load refs
+- **ScriptSystemData (11 字段)**:
+  1. [A] +4008 `m_nCmdFA8` int: type unsigned char→int (binary confirms dword access)
+  2. [A] +4104 `m_nCmd1008` int: type unsigned char→int
+  3. [A] +4080 `m_pCmdTableFF0` int: 5x B9=mov ecx,addr (array base load)
+  4. [A] +4172 `m_pCmdArray104C` int: 5x BF+[ecx*8+addr] (stride-8 array)
+  5. 其余 7 个: 3-4x abs refs each, named with m_nCmd prefix

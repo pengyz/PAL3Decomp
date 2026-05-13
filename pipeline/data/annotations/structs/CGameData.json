@@ -343,9 +343,9 @@
       "source": "binary:gamedata_gap"
     },
     "624": {
-      "name": "_field_0270",
+      "name": "m_nPlayerMoney",
       "type": "int",
-      "source": "binary:gamedata_gap"
+      "source": "binary:3x abs refs, store/load eax(dword)"
     },
     "628": {
       "name": "_field_0274",
@@ -388,14 +388,14 @@
       "source": "binary:5x abs refs (0x2D8)"
     },
     "736": {
-      "name": "_field_02E0",
+      "name": "m_nMissionState",
       "type": "int",
-      "source": "binary:gamedata_gap"
+      "source": "binary:4x abs refs, dword access in PalScriptMgr"
     },
     "3976": {
-      "name": "_field_0F88",
+      "name": "m_nUIFlags",
       "type": "int",
-      "source": "binary:gamedata_gap"
+      "source": "binary:4x abs refs, A1(load eax) + others"
     },
     "14524": {
       "name": "_field_38BC",

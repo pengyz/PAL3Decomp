@@ -433,9 +433,9 @@
       "source": "binary:32x abs refs, malloc(48)+store pattern (0xF98)"
     },
     "4000": {
-      "name": "_field_FA0",
+      "name": "m_nCmdFA0",
       "type": "short",
-      "source": "binary:stru_D8B318_gap"
+      "source": "binary:4x abs refs (0xFA0)"
     },
     "4004": {
       "name": "m_nScriptState",
@@ -443,14 +443,14 @@
       "source": "binary:7x abs refs (0xFA4)"
     },
     "4008": {
-      "name": "_field_FA8",
-      "type": "unsigned char",
-      "source": "binary:stru_D8B318_gap"
+      "name": "m_nCmdFA8",
+      "type": "int",
+      "source": "binary:4x abs refs, 4-byte access"
     },
     "4016": {
-      "name": "_field_FB0",
+      "name": "m_nCmdFB0",
       "type": "short",
-      "source": "binary:stru_D8B318_gap"
+      "source": "binary:4x abs refs (0xFB0)"
     },
     "4020": {
       "name": "_field_FB4",
@@ -478,9 +478,9 @@
       "source": "binary:stru_D8B318_gap"
     },
     "4048": {
-      "name": "_field_FD0",
+      "name": "m_nCmdFD0",
       "type": "short",
-      "source": "binary:stru_D8B318_gap"
+      "source": "binary:4x abs refs (0xFD0)"
     },
     "4052": {
       "name": "_field_FD4",
@@ -508,9 +508,9 @@
       "source": "binary:stru_D8B318_gap"
     },
     "4080": {
-      "name": "_field_FF0",
-      "type": "short",
-      "source": "binary:stru_D8B318_gap"
+      "name": "m_pCmdTableFF0",
+      "type": "int",
+      "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array)"
     },
     "4084": {
       "name": "_field_FF4",
@@ -523,14 +523,14 @@
       "source": "binary:stru_D8B318_gap"
     },
     "4100": {
-      "name": "_field_1004",
+      "name": "m_nCmd1004",
       "type": "int",
-      "source": "binary:stru_D8B318_gap"
+      "source": "binary:3x abs refs (0x1004)"
     },
     "4104": {
-      "name": "_field_1008",
-      "type": "unsigned char",
-      "source": "binary:stru_D8B318_gap"
+      "name": "m_nCmd1008",
+      "type": "int",
+      "source": "binary:3x abs refs, 4-byte access"
     },
     "4116": {
       "name": "m_nScriptParam",
@@ -548,9 +548,9 @@
       "source": "binary:stru_D8B318_gap"
     },
     "4136": {
-      "name": "_field_1028",
+      "name": "m_nCmd1028",
       "type": "unsigned char",
-      "source": "binary:stru_D8B318_gap"
+      "source": "binary:4x abs refs, 1-byte access"
     },
     "4137": {
       "name": "_field_1029",
@@ -563,9 +563,9 @@
       "source": "binary:6x abs refs, dword access (0x1030)"
     },
     "4148": {
-      "name": "_field_1034",
+      "name": "m_nCmd1034",
       "type": "int",
-      "source": "binary:stru_D8B318_gap"
+      "source": "binary:3x abs refs, 4-byte access"
     },
     "4152": {
       "name": "_field_1038",
@@ -598,9 +598,9 @@
       "source": "binary:15x abs refs, dword access (0x1048)"
     },
     "4176": {
-      "name": "_field_1050",
+      "name": "m_nCmd1050",
       "type": "short",
-      "source": "binary:stru_D8B318_gap"
+      "source": "binary:3x abs refs (0x1050)"
     },
     "4180": {
       "name": "_field_1054",
@@ -2628,9 +2628,9 @@
       "source": "binary:10x abs refs, byte access 8A/88 (0x100C)"
     },
     "4172": {
-      "name": "_field_104C",
+      "name": "m_pCmdArray104C",
       "type": "int",
-      "source": "binary:abs_ref@g_ScriptSystemData+0x104c"
+      "source": "binary:5x abs refs, BF=mov edi,addr + [ecx*8+addr] (stride-8 array base)"
     },
     "4476": {
       "name": "_field_117C",
