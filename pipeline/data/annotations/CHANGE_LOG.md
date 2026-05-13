@@ -521,6 +521,15 @@
 - **排除**: RoleSystem+4/8/12 (m_fTargetX/Y/Z) 有 260+ float 用法和 500+ int 用法，是 union 模式，保留 float
 - **影响**: 消除生成代码中 ~200 个 LODWORD() 包装
 
+### [2026-05-13] CCBStageRole.m_fBlend float→int（最大 LODWORD 贡献者）
+
+- **变更**: CCBStageRole+284 m_fBlend float → m_nBlendState int
+- **置信度**: 90
+- **证据**:
+  1. [A] raw decomp 中 51 次 `*(_DWORD*)(this+284)` vs 1 次 `*(float*)(this+284)`
+  2. [A] 使用模式: `== 2`, `== 1`, `== 0` 整数比较 → 状态枚举，非浮点值
+- **影响**: 消除生成代码中 132 个 LODWORD(this->m_fBlend) 包装
+
 ### [2026-05-13] ScriptSystemData 命令表数组化（-372 _field_）
 
 - **变更**: 将 ScriptSystemData 偏移 4432-7852 的 372 个独立 _field_ 替换为 `m_CmdTable tagScriptCmd[213]`
