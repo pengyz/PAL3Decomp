@@ -262,29 +262,29 @@
       "source": "binary:camblock_gap"
     },
     "412": {
-      "name": "_field_19C",
-      "type": "int",
-      "source": "binary:camblock_gap"
+      "name": "m_pFocusRole",
+      "type": "RoleSystem *",
+      "source": "binary:used as RoleSystem* in 228 refs"
     },
     "416": {
-      "name": "_field_1A0",
+      "name": "m_nFocusRoleSlot",
       "type": "int",
-      "source": "binary:camblock_gap"
+      "source": "binary:index into RoleSystem array"
     },
     "424": {
-      "name": "_field_1A8",
-      "type": "int",
-      "source": "binary:camblock_gap"
+      "name": "m_fCameraTime",
+      "type": "float",
+      "source": "binary:accumulator in CameraUpdate"
     },
     "428": {
-      "name": "_field_1AC",
+      "name": "m_bCameraLocked",
       "type": "int",
-      "source": "binary:camblock_gap"
+      "source": "binary:flag checked in CameraUpdate"
     },
     "432": {
-      "name": "_field_1B0",
-      "type": "int",
-      "source": "binary:camblock_gap"
+      "name": "m_RoleTeam",
+      "type": "int[5]",
+      "source": "binary:StartCombat assigns role IDs"
     },
     "440": {
       "name": "_field_1B8",
@@ -302,19 +302,19 @@
       "source": "binary:camblock_gap"
     },
     "456": {
-      "name": "_field_1C8",
+      "name": "m_nTeamCount",
       "type": "int",
-      "source": "binary:camblock_gap"
+      "source": "binary:counter paired with m_RoleTeam"
     },
     "460": {
-      "name": "_field_1CC",
+      "name": "m_nTargetMonster",
       "type": "int",
-      "source": "binary:camblock_gap"
+      "source": "binary:set to 0x7FFFFFFF or result"
     },
     "464": {
-      "name": "_field_1D0",
-      "type": "int",
-      "source": "binary:camblock_gap"
+      "name": "m_szBattleField",
+      "type": "char[32]",
+      "source": "binary:strcpy destination in StartCombat"
     },
     "472": {
       "name": "_field_1D8",
@@ -342,29 +342,29 @@
       "source": "binary:camblock_gap"
     },
     "496": {
-      "name": "_field_1F0",
+      "name": "m_nCombatMode",
       "type": "int",
-      "source": "binary:camblock_gap"
+      "source": "binary:atoi result in StartCombat"
     },
     "504": {
-      "name": "_field_1F8",
-      "type": "int",
-      "source": "binary:camblock_gap"
+      "name": "m_bFightPending",
+      "type": "unsigned char",
+      "source": "binary:LOBYTE flag set 0/1"
     },
     "508": {
-      "name": "_field_1FC",
-      "type": "int",
-      "source": "binary:camblock_gap"
+      "name": "m_bInCombat",
+      "type": "unsigned char",
+      "source": "binary:BYTE1 of combat flags"
     },
     "512": {
-      "name": "_field_200",
+      "name": "m_CombatFlags",
       "type": "int",
-      "source": "binary:camblock_gap"
+      "source": "binary:multi-byte flags in StartCombat"
     },
     "520": {
-      "name": "_field_208",
+      "name": "m_UIManager",
       "type": "int",
-      "source": "binary:camblock_gap"
+      "source": "binary:UIManager::Render/LoadShadowTexture target"
     },
     "524": {
       "name": "_field_20C",
@@ -372,9 +372,9 @@
       "source": "binary:camblock_gap"
     },
     "528": {
-      "name": "_field_210",
+      "name": "m_pPostEffect",
       "type": "int",
-      "source": "binary:camblock_gap"
+      "source": "binary:gbRenderEffect* for post-processing"
     },
     "536": {
       "name": "_field_218",

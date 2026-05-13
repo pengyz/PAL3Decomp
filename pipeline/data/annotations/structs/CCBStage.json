@@ -167,19 +167,19 @@
       "source": "binary:between_float_and_status"
     },
     "160": {
-      "name": "_field_0A0",
+      "name": "m_nCurTaskIndex",
       "type": "int",
-      "source": "binary:gap_clean"
+      "source": "binary:index into m_Task array, stride 329/2632"
     },
     "164": {
-      "name": "_field_0A4",
+      "name": "m_nCurSubTaskIndex",
       "type": "int",
-      "source": "binary:gap_clean"
+      "source": "binary:sub-index with stride 80"
     },
     "168": {
-      "name": "_field_0A8",
-      "type": "int",
-      "source": "binary:gap_clean"
+      "name": "m_TaskData",
+      "type": "char[0xA4800]",
+      "source": "binary:memset target, large task buffer"
     }
   },
   "pdb_size": 673992,

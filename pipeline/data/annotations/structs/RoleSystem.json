@@ -1152,9 +1152,9 @@
       "source": "binary:gap_r2"
     },
     "624": {
-      "name": "_field_270",
-      "type": "int",
-      "source": "binary:gap_r2"
+      "name": "m_pPath",
+      "type": "PathObj *",
+      "source": "binary:used in PathFind"
     },
     "2100": {
       "name": "_field_834",
@@ -1407,19 +1407,19 @@
       "source": "binary:gap_clean"
     },
     "712": {
-      "name": "_field_2C8",
+      "name": "m_fDesiredY",
       "type": "float",
-      "source": "binary:gap_clean"
+      "source": "binary:assigned y coordinate in movement"
     },
     "716": {
-      "name": "_field_2CC",
+      "name": "m_fDesiredZ",
       "type": "float",
-      "source": "binary:gap_clean"
+      "source": "binary:assigned z coordinate in movement"
     },
     "720": {
-      "name": "_field_2D0",
-      "type": "int",
-      "source": "binary:gap_clean"
+      "name": "m_vRenderPos",
+      "type": "gbVec3D",
+      "source": "binary:GetPosition assigns pOut to this"
     },
     "724": {
       "name": "_field_2D4",
@@ -1432,19 +1432,19 @@
       "source": "binary:gap_clean"
     },
     "732": {
-      "name": "_field_2DC",
+      "name": "m_fMoveSpeed",
       "type": "float",
-      "source": "binary:gap_clean"
+      "source": "binary:multiplied by direction vector"
     },
     "736": {
-      "name": "_field_2E0",
+      "name": "m_fMoveSpeedY",
       "type": "float",
-      "source": "binary:gap_clean"
+      "source": "binary:velocity Y component"
     },
     "740": {
-      "name": "_field_2E4",
+      "name": "m_fMoveSpeedZ",
       "type": "float",
-      "source": "binary:gap_clean"
+      "source": "binary:velocity Z component"
     },
     "744": {
       "name": "_field_2E8",
@@ -1462,9 +1462,9 @@
       "source": "binary:gap_clean"
     },
     "756": {
-      "name": "_field_2F4",
-      "type": "float",
-      "source": "binary:gap_clean"
+      "name": "m_vVelocity",
+      "type": "gbVec3D",
+      "source": "binary:assigned from a2[0..2] in movement"
     },
     "760": {
       "name": "_field_2F8",
@@ -1482,9 +1482,9 @@
       "source": "binary:gap_clean"
     },
     "776": {
-      "name": "_field_308",
-      "type": "float",
-      "source": "binary:gap_clean"
+      "name": "m_vLastPos",
+      "type": "gbVec3D",
+      "source": "binary:saved from m_fPosX/Y/Z each frame"
     },
     "780": {
       "name": "_field_30C",
@@ -1497,19 +1497,19 @@
       "source": "binary:gap_clean"
     },
     "788": {
-      "name": "_field_314",
+      "name": "m_fSteerX",
       "type": "float",
-      "source": "binary:gap_clean"
+      "source": "binary:steering force X"
     },
     "792": {
-      "name": "_field_318",
+      "name": "m_fSteerZ",
       "type": "float",
-      "source": "binary:gap_clean"
+      "source": "binary:steering force Z"
     },
     "804": {
-      "name": "_field_324",
+      "name": "m_pScriptInstance",
       "type": "int",
-      "source": "binary:gap_clean"
+      "source": "binary:ptr, accessed +1388 for script state"
     },
     "832": {
       "name": "_field_340",
@@ -1532,9 +1532,9 @@
       "source": "binary:gap_clean"
     },
     "848": {
-      "name": "_field_350",
-      "type": "int",
-      "source": "binary:gap_clean"
+      "name": "m_fAnimTime",
+      "type": "float",
+      "source": "binary:accumulator for animation"
     },
     "852": {
       "name": "_field_354",
@@ -1662,9 +1662,9 @@
       "source": "binary:gap_clean"
     },
     "8088": {
-      "name": "_field_1F98",
+      "name": "m_fRotation",
       "type": "float",
-      "source": "binary:gap_clean"
+      "source": "binary:multiplied by deg2rad 0.017453292"
     },
     "8092": {
       "name": "_field_1F9C",

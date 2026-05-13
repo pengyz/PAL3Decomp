@@ -223,9 +223,9 @@
       "source": "binary:raw_final"
     },
     "164": {
-      "name": "_field_0A4",
+      "name": "m_nItemCount",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "binary:bounds check a2 < field"
     },
     "172": {
       "name": "_field_0AC",
@@ -233,19 +233,19 @@
       "source": "binary:gap_access"
     },
     "176": {
-      "name": "_field_0B0",
+      "name": "m_nFirstVisible",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "binary:++/-- for scrolling"
     },
     "180": {
-      "name": "_field_0B4",
+      "name": "m_nLastVisible",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "binary:++/-- paired with FirstVisible"
     },
     "184": {
-      "name": "_field_0B8",
+      "name": "m_nScrollOffset",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "binary:adjusted by item height"
     },
     "188": {
       "name": "_field_0BC",
@@ -263,14 +263,14 @@
       "source": "binary:gap_access"
     },
     "200": {
-      "name": "_field_0C8",
+      "name": "m_nBottomLine",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "binary:--/++ scroll paired"
     },
     "204": {
-      "name": "_field_0CC",
+      "name": "m_nTopLine",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "binary:--/++ scroll position"
     },
     "244": {
       "name": "_field_0F4",
@@ -278,9 +278,9 @@
       "source": "binary:gap_access"
     },
     "252": {
-      "name": "_field_0FC",
+      "name": "m_nSelIndex",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "binary:set to -1, selection index"
     },
     "268": {
       "name": "_field_10C",
@@ -288,9 +288,9 @@
       "source": "binary:gap_access"
     },
     "296": {
-      "name": "_field_128",
+      "name": "m_nScrollMode",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "binary:set 0/1/2 state machine"
     },
     "300": {
       "name": "_field_12C",
