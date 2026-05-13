@@ -838,3 +838,23 @@
   3. 删除 `_BYTE.json`, `__int8.json`（IDA 内建类型，不是真实结构体）
 - **置信度**: 90（stub struct 的 size 来自 PAL3A PDB，可能与 PAL3 不同；struct 声明解析是确定性结果）
 - **结果**: struct apply OK: 537 → **826/826 (100%)**，Empty: 87 → **0**，Missing: 205 → **0**
+
+### [2026-05-14] 修复结构体布局错误（binary_size 修正 + 指针类型修正）
+
+- **变更（annotations）**:
+  1. 4 个结构体设置 PAL3 binary_size（覆盖错误的 PDB size）:
+     - UIStatic: 248 → **160**（436 处嵌入 span 一致为 160）
+     - UIListBox: 1760 → **1288**（29 处嵌入 span 一致为 1288）
+     - SceneObj: 3496 → **1784**（2 处嵌入 span 一致为 1784）
+     - tagRoleState: 1040 → **600**（1 处嵌入 span=600）
+  2. 18 个成员类型从值类型修正为指针（span=4 证明是指针非嵌入）:
+     - CCBStageRole: gbVec3D→*, tagCmdData→*, gbOBBox→*
+     - CCBStageScene: gbVec3D→*(4处), gbGeomQuad→*(3处), Object3D→*
+     - PalScript: PtrArray→*(2处)
+     - PalScriptMgr: scSCEFile→*(2处)
+     - RenderTarget: gbTexture_D3D→*
+     - scAsmDecoder: scVarStack→*
+- **变更（pipeline）**:
+  - build_struct_decl 遇到 type_size > span 时 raise RuntimeError 中断（不允许静默 fallback）
+- **置信度**: 90（binary_size: 多处嵌入 span 一致→PAL3 真实 size；指针修正: span=4 对大类型是确定性证据）
+- **结果**: 布局错误 520 → **36**（剩余需逐个分析）

@@ -123,10 +123,13 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
                 for d in dims:
                     total_elems *= d
                 cursor = offset + total_elems * elem_size
-                # Clamp: array may be smaller in PAL3 than PAL3A PDB
+                # FATAL: type size exceeds span — annotations data error
                 nmo = next_member_offset(offset)
-                if cursor > nmo:
-                    cursor = nmo
+                if nmo > offset and cursor > nmo:
+                    raise RuntimeError(
+                        "LAYOUT ERROR in %s: member '%s %s%s' at +%d has type_size=%d but span=%d (next member at +%d). "
+                        "Fix: correct the type or offset in pipeline/data/annotations/structs/%s.json"
+                        % (name, base_type, mname, arr_match.group(1), offset, total_elems * elem_size, nmo - offset, nmo, name))
             else:
                 cursor = next_member_offset(offset)
         else:
@@ -144,10 +147,13 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
                     ref = all_structs[clean]
                     ref_size = max(ref.get("pdb_size", 0), ref.get("binary_size", 0))
                 cursor = offset + (ref_size if ref_size > 0 else 4)
-                # Clamp: PAL3A PDB size may differ from PAL3 actual layout
+                # FATAL: type size exceeds span — annotations data error
                 nmo = next_member_offset(offset)
-                if cursor > nmo:
-                    cursor = nmo
+                if nmo > offset and cursor > nmo:
+                    raise RuntimeError(
+                        "LAYOUT ERROR in %s: member '%s %s' at +%d has type_size=%d but span=%d (next member at +%d). "
+                        "Fix: correct the type or offset in pipeline/data/annotations/structs/%s.json"
+                        % (name, mtype, mname, offset, ref_size if ref_size > 0 else 4, nmo - offset, nmo, name))
 
     if size > 0 and cursor < size:
         lines.append("    char _tail_%03X[%d];" % (cursor, size - cursor))

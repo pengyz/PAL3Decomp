@@ -44,13 +44,13 @@
     },
     "668": {
       "name": "m_vecFling",
-      "type": "gbVec3D",
-      "source": "gen_headers_9.2"
+      "type": "gbVec3D *",
+      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "680": {
       "name": "m_rotFling",
-      "type": "gbVec3D",
-      "source": "gen_headers_9.2"
+      "type": "gbVec3D *",
+      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "692": {
       "name": "m_bShowFling",
@@ -84,28 +84,28 @@
     },
     "716": {
       "name": "m_FiveLineupQuad",
-      "type": "gbGeomQuad",
-      "source": "gen_headers_9.2"
+      "type": "gbGeomQuad *",
+      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "784": {
       "name": "m_FiveLineupCenterQuad",
-      "type": "gbGeomQuad",
-      "source": "gen_headers_9.2"
+      "type": "gbGeomQuad *",
+      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "852": {
       "name": "m_EnemyFiveLineupQuad",
-      "type": "gbGeomQuad",
-      "source": "gen_headers_9.2"
+      "type": "gbGeomQuad *",
+      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "920": {
       "name": "m_vecFiveLineupPos",
-      "type": "gbVec3D",
-      "source": "gen_headers_9.2"
+      "type": "gbVec3D *",
+      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "932": {
       "name": "m_vecFiveLineupInitPos",
-      "type": "gbVec3D",
-      "source": "gen_headers_9.2"
+      "type": "gbVec3D *",
+      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "944": {
       "name": "m_fFiveLineupRadius",
@@ -129,8 +129,8 @@
     },
     "960": {
       "name": "m_vecEnemyFiveLineupPos",
-      "type": "gbVec3D",
-      "source": "gen_headers_9.2"
+      "type": "gbVec3D *",
+      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "972": {
       "name": "m_fEnemyFiveLineupRadius",
@@ -504,8 +504,8 @@
     },
     "856": {
       "name": "m_Object3D",
-      "type": "Object3D",
-      "source": "ida_decomp:_method_52b2a0 Object3D::Object3D(this)"
+      "type": "Object3D *",
+      "source": "ida_decomp:_method_52b2a0 Object3D::Object3D(this) | type_fix:value→ptr(span=4)"
     },
     "860": {
       "name": "_todo_35C",

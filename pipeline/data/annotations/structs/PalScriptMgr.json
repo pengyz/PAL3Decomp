@@ -18,8 +18,8 @@
     },
     "48": {
       "name": "m_scesys",
-      "type": "scSCEFile",
-      "source": "gen_headers_9.2"
+      "type": "scSCEFile *",
+      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "76": {
       "name": "m_scepath",
@@ -28,8 +28,8 @@
     },
     "80": {
       "name": "m_bigmapsce",
-      "type": "scSCEFile",
-      "source": "gen_headers_9.2"
+      "type": "scSCEFile *",
+      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "40": {
       "name": "m_fCamX",

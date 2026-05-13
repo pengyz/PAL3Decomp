@@ -128,8 +128,8 @@
     },
     "360": {
       "name": "m_vecLen",
-      "type": "gbVec3D",
-      "source": "pdb_verified_by_old_ida"
+      "type": "gbVec3D *",
+      "source": "pdb_verified_by_old_ida | type_fix:value→ptr(span=4)"
     },
     "372": {
       "name": "m_bShowWeaponModel",
@@ -168,13 +168,13 @@
     },
     "396": {
       "name": "m_ThrowCmdData",
-      "type": "tagCmdData",
-      "source": "pdb_verified_by_old_ida"
+      "type": "tagCmdData *",
+      "source": "pdb_verified_by_old_ida | type_fix:value→ptr(span=4)"
     },
     "440": {
       "name": "m_OBBox",
-      "type": "gbOBBox",
-      "source": "pdb_verified_by_old_ida"
+      "type": "gbOBBox *",
+      "source": "pdb_verified_by_old_ida | type_fix:value→ptr(span=4)"
     },
     "516": {
       "name": "m_bTransMtl",
