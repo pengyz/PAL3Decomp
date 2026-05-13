@@ -1,1 +1,559 @@
-{}
+{
+  "ARC_WuLing": {
+    "values": {
+      "ARC_ATT_SHUI": "0",
+      "ARC_ATT_HUO": "1",
+      "ARC_ATT_FENG": "2",
+      "ARC_ATT_LEI": "3",
+      "ARC_ATT_TU": "4",
+      "ARC_ATT_NUM": "5"
+    }
+  },
+  "ArrayListType": {
+    "values": {
+      "AL_VALUE": "0",
+      "AL_REFERENCE": "1"
+    }
+  },
+  "CG_PROPINFO": {
+    "values": {
+      "CG_BLOOD_CANTRIP": "0",
+      "CG_TARTAREAN_MONEY": "1",
+      "CG_FIRE_SIGNAL": "2",
+      "CG_RATTRAP": "3",
+      "CG_MIRROR": "4",
+      "CG_PROP_NUM": "5"
+    }
+  },
+  "CURSOR_TYPE": {
+    "values": {
+      "CURSOR_NORMAL": "0",
+      "CURSOR_TALK": "1",
+      "CURSOR_CHECK": "2",
+      "CURSOR_NUM": "3"
+    }
+  },
+  "CollisionType": {
+    "values": {
+      "CT_NONE": "0",
+      "CT_SURFACE": "1",
+      "CT_EDGE": "2",
+      "CT_POINT": "3",
+      "CT_EMBEDDED": "4"
+    }
+  },
+  "Comp_DonateUI::CDState": {
+    "values": {
+      "CD_NONE": "0",
+      "CD_HASKEY": "1",
+      "CD_DONATED": "2",
+      "CD_NOSOURCE": "3",
+      "CD_NOINTIMACY": "4",
+      "CD_CANCOMPOSE": "5",
+      "CD_COMPOSED": "6",
+      "CD_NUM": "7"
+    }
+  },
+  "DLG_MSG": {
+    "values": {
+      "DLG_MSG_NONE": "-1",
+      "DLG_BT_YES": "0",
+      "DLG_BT_NO": "1",
+      "DLG_MSG_END": "2",
+      "DLG_MSG_NUM": "3"
+    }
+  },
+  "DLG_TYPE": {
+    "values": {
+      "DLG_YES": "0",
+      "DLG_NO": "1",
+      "DLG_YESNO": "2",
+      "DLG_MSGBOX": "3",
+      "DLG_TYPENUM": "4"
+    }
+  },
+  "ECPKMode": {
+    "values": {
+      "CPKM_Null": "0",
+      "CPKM_Normal": "1",
+      "CPKM_FileMapping": "2",
+      "CPKM_Overlapped": "3",
+      "CPKM_End": "4"
+    }
+  },
+  "ERoleActState": {
+    "values": {
+      "ERAS_Null": "0",
+      "ERAS_Pause": "1",
+      "ERAS_Normal": "2",
+      "ERAS_Dying": "3",
+      "ERAS_MagicWait": "4",
+      "ERAS_Win": "5",
+      "ERAS_End": "6"
+    }
+  },
+  "JB_STATE": {
+    "values": {
+      "JB_CLOSE": "0",
+      "JB_PGDW": "1",
+      "JB_PGUP": "2",
+      "JB_NONE": "3"
+    }
+  },
+  "JB_TYPE": {
+    "values": {
+      "JB_NULL": "-1",
+      "JB_GODS": "0",
+      "JB_IMMORTAL": "1",
+      "JB_GHOST": "2",
+      "JB_DEMON": "3",
+      "JB_HUMAN": "4",
+      "JB_MAGIC": "5",
+      "JB_NUM": "6"
+    }
+  },
+  "MENU_TYPE": {
+    "values": {
+      "MENU_COVER": "0",
+      "MENU_QCYM": "1",
+      "MENU_LEAVE": "2",
+      "MENU_JDHY": "3",
+      "MENU_SCENE": "4",
+      "MENU_YXXX": "5",
+      "MENU_XJTM": "6",
+      "MENU_ARCSAVE": "7",
+      "MENU_NONE": "8"
+    }
+  },
+  "NOTE_STATE": {
+    "values": {
+      "NOTE_SAVE": "0",
+      "NOTE_LOAD": "1",
+      "NOTE_DELETE": "2",
+      "NOTE_AVALID": "3"
+    }
+  },
+  "NameSys::NAMEFLAG": {
+    "values": {
+      "FLAGNULL": "0",
+      "SMC": "1",
+      "XBSB": "2",
+      "WMNZ": "3",
+      "WYST": "4",
+      "MSKK": "5",
+      "XHJS": "6",
+      "SHYW": "7",
+      "PMSL_NGH": "8",
+      "PMSL_WH": "9",
+      "PMSL_WPX": "10",
+      "PMSL_XX": "11",
+      "PMSL_LYG": "12",
+      "YMWD_NGH": "13",
+      "YMWD_WH": "14",
+      "YMWD_WPX": "15",
+      "YMWD_XX": "16",
+      "YMWD_LYG": "17",
+      "DFBB": "18",
+      "FMNBS": "19",
+      "SCGM": "20",
+      "MXGZ": "21",
+      "WLZS": "22",
+      "BBXR": "23",
+      "HFHY": "24",
+      "HHSZ": "25",
+      "JXXK": "26",
+      "QLDS": "27",
+      "REFNUM": "28",
+      "ZZCC": "29",
+      "YX": "30",
+      "ZNDX": "31",
+      "YWD": "32",
+      "GSWS": "33",
+      "CSY": "34",
+      "QS": "35",
+      "XZDZ": "36",
+      "DFXS": "37",
+      "SLKT": "38",
+      "ZBZJ": "39",
+      "DFW": "40",
+      "FLJK": "41",
+      "ZYFY": "42",
+      "WQJK": "43",
+      "JCWG": "44",
+      "JBZS": "45",
+      "JHSR": "46",
+      "XSTT": "47",
+      "FLAGNUM": "48"
+    }
+  },
+  "NodeBlend": {
+    "values": {
+      "BLEND_NONE": "0",
+      "BLEND_ALPHA": "1",
+      "BLEND_ADD": "2"
+    }
+  },
+  "PGR_MODE": {
+    "values": {
+      "NORMAL_PGR": "0",
+      "ALPHA_PGR": "1"
+    }
+  },
+  "ParabolaCalculator::PRBL_STATE": {
+    "values": {
+      "CLIMB": "0",
+      "FALLING": "1"
+    }
+  },
+  "PlayerItem_Type": {
+    "values": {
+      "IT_RESUME": "0",
+      "IT_TREASURE": "1",
+      "IT_ATTACK": "2",
+      "IT_ATTACK_ONLY": "3",
+      "IT_SMELT": "4",
+      "IT_COMPOSE": "5",
+      "IT_ANCIENT": "6",
+      "IT_SPECIAL": "7",
+      "IT_EQUIP": "8",
+      "IT_WEAPON": "9",
+      "IT_DEFENCE": "10",
+      "IT_ADORN": "11",
+      "IT_BONE": "12",
+      "IT_CLOTH": "13",
+      "IT_HAT": "14",
+      "IT_SHOES": "15",
+      "IT_RECOVER_AND_REVIVE": "16",
+      "IT_SPEC_STATE": "17",
+      "IT_ALL_BUT_COMPOSE": "18"
+    }
+  },
+  "RCC_TYPE": {
+    "values": {
+      "RCC_NONE": "0",
+      "RCC_PUSH": "1",
+      "RCC_ROTATE": "2",
+      "RCC_MOVE": "3",
+      "RCC_WAG": "4",
+      "RCC_SET": "5",
+      "RCC_INTERPOLATE": "6",
+      "RCC_HORIZONROTATE": "7",
+      "RCC_VERTICALROTATE": "8",
+      "RCC_QUAKE": "9",
+      "RCC_FOCUS_ROLE": "10"
+    }
+  },
+  "ROLE_CTRL": {
+    "values": {
+      "CTRL_NONE": "0",
+      "CTRL_NPC": "1",
+      "CTRL_MOUSE": "2",
+      "CTRL_KEYBOARD": "3",
+      "CTRL_SPECIAL_ACTION": "4",
+      "CTRL_MONSTER": "5",
+      "CTRL_WOLF": "6",
+      "CTRL_STAR": "7",
+      "CTRL_FYS": "8"
+    }
+  },
+  "UIButton::UIBUTTON_STATE": {
+    "values": {
+      "NORMAL": "0",
+      "MOUSEON": "1",
+      "MOUSEDOWN": "2",
+      "NUMSTATE": "3"
+    }
+  },
+  "UIEMOTE": {
+    "values": {
+      "EM_NONE": "0",
+      "EM_SHUI": "1",
+      "EM_JING": "2",
+      "EM_YI": "3",
+      "EM_NU": "4",
+      "EM_XI": "5",
+      "EM_XIN": "6",
+      "EM_HAN": "7",
+      "EM_LUAN": "8",
+      "EM_JI": "9",
+      "EM_QI": "10",
+      "EM_YUN": "11",
+      "EM_SHENG": "12",
+      "EM_BEI": "13",
+      "EM_NUM": "14"
+    }
+  },
+  "UIPushButton::UIPUSHBUTTON_STATE": {
+    "values": {
+      "PUSH_UP": "0",
+      "PUSH_DOWN": "1",
+      "NUMSTATE": "2"
+    }
+  },
+  "UIS_RM_Mode": {
+    "values": {
+      "RM_DEFAULT": "0",
+      "RM_ALPHA": "1"
+    }
+  },
+  "UIScrollBar::SB_AREA": {
+    "values": {
+      "UPBTN": "0",
+      "DOWNBTN": "1",
+      "SLIDER": "2",
+      "PAGEUP": "3",
+      "PAGEDOWN": "4",
+      "NONE": "5"
+    }
+  },
+  "UIStaticFlex::State": {
+    "values": {
+      "OPENING": "0",
+      "CLOSING": "1",
+      "NORMAL": "2"
+    }
+  },
+  "VertexProcessingType": {
+    "values": {
+      "SOFTWARE_VP": "0",
+      "MIXED_VP": "1",
+      "HARDWARE_VP": "2",
+      "PURE_HARDWARE_VP": "3"
+    }
+  },
+  "WuLing": {
+    "values": {
+      "ATT_SHUI": "0",
+      "ATT_HUO": "1",
+      "ATT_FENG": "2",
+      "ATT_LEI": "3",
+      "ATT_TU": "4",
+      "ATT_NUM": "5"
+    }
+  },
+  "_BGM": {
+    "values": {
+      "_BGM_UPDW": "0",
+      "_BGM_LR": "1"
+    }
+  },
+  "_BIGMAP_ELEMENT": {
+    "values": {
+      "_invalid": "-1",
+      "_tangjiabao": "0",
+      "_dengyunlu": "1",
+      "_shushan": "2",
+      "_dimaimenhu": "3",
+      "_lvluozhang": "4",
+      "_lvluoshan": "5",
+      "_lishushan": "6",
+      "_shengzhou": "7",
+      "_nalingheyuan": "8",
+      "_jingcheng": "9",
+      "_shicun": "10",
+      "_shushangudao": "11",
+      "_suoyaota": "12",
+      "_yuzhou": "13",
+      "_shidong": "14",
+      "_yuguangcheng": "15",
+      "_ELEMENT_NUM": "16"
+    }
+  },
+  "_D3DFORMAT": {
+    "values": {
+      "D3DFMT_UNKNOWN": "0",
+      "D3DFMT_R8G8B8": "20",
+      "D3DFMT_A8R8G8B8": "21",
+      "D3DFMT_X8R8G8B8": "22",
+      "D3DFMT_R5G6B5": "23",
+      "D3DFMT_X1R5G5B5": "24",
+      "D3DFMT_A1R5G5B5": "25",
+      "D3DFMT_A4R4G4B4": "26",
+      "D3DFMT_R3G3B2": "27",
+      "D3DFMT_A8": "28",
+      "D3DFMT_A8R3G3B2": "29",
+      "D3DFMT_X4R4G4B4": "30",
+      "D3DFMT_A2B10G10R10": "31",
+      "D3DFMT_A8B8G8R8": "32",
+      "D3DFMT_X8B8G8R8": "33",
+      "D3DFMT_G16R16": "34",
+      "D3DFMT_A2R10G10B10": "35",
+      "D3DFMT_A16B16G16R16": "36",
+      "D3DFMT_A8P8": "40",
+      "D3DFMT_P8": "41",
+      "D3DFMT_L8": "50",
+      "D3DFMT_A8L8": "51",
+      "D3DFMT_A4L4": "52",
+      "D3DFMT_V8U8": "60",
+      "D3DFMT_L6V5U5": "61",
+      "D3DFMT_X8L8V8U8": "62",
+      "D3DFMT_Q8W8V8U8": "63",
+      "D3DFMT_V16U16": "64",
+      "D3DFMT_A2W10V10U10": "67",
+      "D3DFMT_UYVY": "1498831189",
+      "D3DFMT_R8G8_B8G8": "1195525970",
+      "D3DFMT_YUY2": "844715353",
+      "D3DFMT_G8R8_G8B8": "1111970375",
+      "D3DFMT_DXT1": "827611204",
+      "D3DFMT_DXT2": "844388420",
+      "D3DFMT_DXT3": "861165636",
+      "D3DFMT_DXT4": "877942852",
+      "D3DFMT_DXT5": "894720068",
+      "D3DFMT_D16_LOCKABLE": "70",
+      "D3DFMT_D32": "71",
+      "D3DFMT_D15S1": "73",
+      "D3DFMT_D24S8": "75",
+      "D3DFMT_D24X8": "77",
+      "D3DFMT_D24X4S4": "79",
+      "D3DFMT_D16": "80",
+      "D3DFMT_D32F_LOCKABLE": "82",
+      "D3DFMT_D24FS8": "83",
+      "D3DFMT_L16": "81",
+      "D3DFMT_VERTEXDATA": "100",
+      "D3DFMT_INDEX16": "101",
+      "D3DFMT_INDEX32": "102",
+      "D3DFMT_Q16W16V16U16": "110",
+      "D3DFMT_MULTI2_ARGB8": "827606349",
+      "D3DFMT_R16F": "111",
+      "D3DFMT_G16R16F": "112",
+      "D3DFMT_A16B16G16R16F": "113",
+      "D3DFMT_R32F": "114",
+      "D3DFMT_G32R32F": "115",
+      "D3DFMT_A32B32G32R32F": "116",
+      "D3DFMT_CxV8U8": "117",
+      "D3DFMT_FORCE_DWORD": "2147483647"
+    }
+  },
+  "_D3DMULTISAMPLE_TYPE": {
+    "values": {
+      "D3DMULTISAMPLE_NONE": "0",
+      "D3DMULTISAMPLE_NONMASKABLE": "1",
+      "D3DMULTISAMPLE_2_SAMPLES": "2",
+      "D3DMULTISAMPLE_3_SAMPLES": "3",
+      "D3DMULTISAMPLE_4_SAMPLES": "4",
+      "D3DMULTISAMPLE_5_SAMPLES": "5",
+      "D3DMULTISAMPLE_6_SAMPLES": "6",
+      "D3DMULTISAMPLE_7_SAMPLES": "7",
+      "D3DMULTISAMPLE_8_SAMPLES": "8",
+      "D3DMULTISAMPLE_9_SAMPLES": "9",
+      "D3DMULTISAMPLE_10_SAMPLES": "10",
+      "D3DMULTISAMPLE_11_SAMPLES": "11",
+      "D3DMULTISAMPLE_12_SAMPLES": "12",
+      "D3DMULTISAMPLE_13_SAMPLES": "13",
+      "D3DMULTISAMPLE_14_SAMPLES": "14",
+      "D3DMULTISAMPLE_15_SAMPLES": "15",
+      "D3DMULTISAMPLE_16_SAMPLES": "16",
+      "D3DMULTISAMPLE_FORCE_DWORD": "2147483647"
+    }
+  },
+  "_FLIP": {
+    "values": {
+      "STATIC_LEFT_FLIP": "0",
+      "STATIC_RIGHT_FLIP": "1"
+    }
+  },
+  "eSkyEffPos": {
+    "values": {
+      "eRand": "0",
+      "eLT": "1",
+      "eMT": "2",
+      "eRT": "3",
+      "eLM": "4",
+      "eMiddle": "5",
+      "eRM": "6",
+      "eLB": "7",
+      "eMB": "8",
+      "eRB": "9"
+    }
+  },
+  "gbFogParam::gbFogMode": {
+    "values": {
+      "FOGMODE_LINEAR": "0",
+      "FOGMODE_EXP": "1",
+      "FOGMODE_EXP2": "2"
+    }
+  },
+  "gbFogParam::gbFogType": {
+    "values": {
+      "FOGTYPE_NULL": "0",
+      "FOGTYPE_DIST": "1",
+      "FOGTYPE_PLANE": "2",
+      "FOGTYPE_SPHERE": "3"
+    }
+  },
+  "gbKeyType": {
+    "values": {
+      "GB_KEY_TCB": "1",
+      "GB_KEY_BEZIER": "2",
+      "GB_KEY_LINEAR": "3"
+    }
+  },
+  "gbLight::gbLightType": {
+    "values": {
+      "GBLIGHT_POINT": "1",
+      "GBLIGHT_SPOT": "2",
+      "GBLIGHT_DIRECT": "3"
+    }
+  },
+  "gbLightObj::DECAY_TYPE": {
+    "values": {
+      "DECAY_NONE": "0",
+      "DECAY_DIST": "1",
+      "DECAY_SQUARE": "2"
+    }
+  },
+  "gbLightObj::LIGHT_SHAPE": {
+    "values": {
+      "SHAPE_CONE": "0",
+      "SHAPE_SQUARE": "1"
+    }
+  },
+  "gbLightObj::LIGHT_TYPE": {
+    "values": {
+      "LGT_OMNI": "0",
+      "LGT_SPOT": "1",
+      "LGT_DIRECT": "2"
+    }
+  },
+  "gbMixActInfo::__unnamed": {
+    "values": {
+      "ACT_STATE_NULL": "0",
+      "ACT_STATE_INC": "1",
+      "ACT_STATE_DEC": "2",
+      "ACT_STATE_LOCK": "3"
+    }
+  },
+  "gbPixelFmtType": {
+    "values": {
+      "GB_PFT_UNKNOWN": "0",
+      "GB_PFT_R8G8B8": "1",
+      "GB_PFT_A8R8G8B8": "2",
+      "GB_PFT_R5G6B5": "3",
+      "GB_PFT_A1R5G5B5": "4",
+      "GB_PFT_A4R4G4B4": "5",
+      "GB_PFT_P8": "6",
+      "GB_PFT_A8": "7",
+      "GB_PFT_X8R8G8B8": "8",
+      "GB_PFT_X1R5G5B5": "9",
+      "GB_PFT_X4R4G4B4": "10"
+    }
+  },
+  "gbPrimType": {
+    "values": {
+      "GB_PRIM_NULL": "0",
+      "GB_PRIM_TRIANGLE_LIST": "1",
+      "GB_PRIM_TRIANGLE_FAN": "2",
+      "GB_PRIM_TRIANGLE_STRIP": "3",
+      "GB_PRIM_LINE_LIST": "4",
+      "GB_PRIM_LINE_STRIP": "5",
+      "GB_PRIM_POINT_LIST": "6"
+    }
+  },
+  "gbVFileSystem::__unnamed": {
+    "values": {
+      "VFSYS_DISKFILE": "0",
+      "VFSYS_PACKFILE": "1",
+      "VFSYS_MEMIMAGE": "2"
+    }
+  }
+}

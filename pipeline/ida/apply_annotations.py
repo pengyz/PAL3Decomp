@@ -273,13 +273,34 @@ def apply_annotations():
             if base and base not in _primitives:
                 fwd_names.add(base)
     fwd_ok = 0
+    fwd_skip = 0
     for name in sorted(fwd_names):
+        # Skip if type already exists in til (could be enum, typedef, or PDB-imported struct)
+        existing = ida_typeinf.tinfo_t()
+        if existing.get_named_type(til, name):
+            fwd_skip += 1
+            continue
         fwd_decl = "struct %s;" % name
         tinfo = ida_typeinf.tinfo_t()
         if ida_typeinf.parse_decl(tinfo, til, fwd_decl, ida_typeinf.PT_TYP) is not None:
             tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
             fwd_ok += 1
-    print("[3a] Forward declarations: %d/%d" % (fwd_ok, len(fwd_names)))
+    print("[3a] Forward declarations: %d new, %d skipped (already in til)" % (fwd_ok, fwd_skip))
+
+    # --- 3b. Enums (BEFORE structs — struct members may reference enum types) ---
+    enums = data.get("enums", {})
+    e_ok = 0
+    for ename, einfo in enums.items():
+        values = einfo.get("values", {})
+        if not values:
+            continue
+        member_strs = ["    %s = %s" % (k, v) for k, v in values.items()]
+        decl = "enum %s {\n%s\n};" % (ename, ",\n".join(member_strs))
+        tinfo = ida_typeinf.tinfo_t()
+        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
+            tinfo.set_named_type(til, ename, ida_typeinf.NTF_REPLACE)
+            e_ok += 1
+    print("[3b] Enums: applied=%d/%d" % (e_ok, len(enums)))
 
     # Topological sort: dependencies (base classes + value-type members) first
     import re as _re2
@@ -405,21 +426,7 @@ def apply_annotations():
 
     print("[3] Structs: applied=%d/%d" % (s_ok, len(structs)))
 
-    # --- 4. Enums ---
-    enums = data.get("enums", {})
-    e_ok = 0
-    for ename, einfo in enums.items():
-        values = einfo.get("values", {})
-        if not values:
-            continue
-        member_strs = ["    %s = %s" % (k, v) for k, v in values.items()]
-        decl = "enum %s {\n%s\n};" % (ename, ",\n".join(member_strs))
-        tinfo = ida_typeinf.tinfo_t()
-        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
-            tinfo.set_named_type(til, ename, ida_typeinf.NTF_REPLACE)
-            e_ok += 1
-
-    print("[4] Enums: applied=%d/%d" % (e_ok, len(enums)))
+    # (Enums already applied in step 3b, before structs)
 
     # --- 5. Vtable .rdata typing ---
     vt_applied = 0
