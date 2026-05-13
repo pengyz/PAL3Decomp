@@ -879,3 +879,14 @@
   4. EquipUI: UIStatic[5]→UIStatic[4]（4*160=640 ≤ span=752）
 - **置信度**: 90（SceneMgr stride: binary + docs 双重确认; PAL_GDB: 398560+512*800=808160=m_ComboData 偏移精确匹配; EquipUI: count=4 是最大不超 span 的整数）
 - **结果**: 布局错误 **520 → 5**（剩余 5 个需 IDA stride 验证：tagCamTask, tagRoleTask, tagThread, PlayerAtt, RoleAtt 的 PAL3 element size/count）
+
+### [2026-05-14] 布局错误最终修复（520→0）
+
+- **变更**: 删除 118 个数组内部幽灵成员（最后 5 个数组的 "next member" 全在数组内部）
+  - CCBStageRole.m_Task: -64 幽灵（tagRoleTask[64], stride=96 binary confirmed by `i+=96`）
+  - PAL_GDB.m_RoleData: -43 幽灵（RoleAtt[200], elem=852）
+  - EquipUI.m_TempData: -7 幽灵（PlayerAtt[5], elem=1524）
+  - CCBSystem.m_Thread: -3 幽灵（tagThread[1024], elem=88）
+  - CCBStageCam.m_Task: -1 幽灵（tagCamTask[50], elem=80）
+- **置信度**: 95（PDB count * elem_size 的 array_end 之后的成员偏移精确匹配已知成员；CCBStageRole stride=96 由 Hex-Rays `i += 96` 二进制确认）
+- **结果**: **布局错误 520 → 0 (全部清零)**
