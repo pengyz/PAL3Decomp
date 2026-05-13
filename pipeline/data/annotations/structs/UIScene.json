@@ -107,9 +107,9 @@
       "source": "ida_decomp:_nearby_43c7b0 = v8+HIDWORD, 34 refs"
     },
     "136": {
-      "name": "_field_088",
+      "name": "m_nClipW",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:_nearby_43c0f0 +244 calc, 10 refs"
     },
     "140": {
       "name": "m_nRectH",
@@ -162,9 +162,9 @@
       "source": "ida_decomp:_method_52e140 (this+56)*0.01745, 4 refs"
     },
     "192": {
-      "name": "_field_0C0",
-      "type": "int",
-      "source": "binary:gap_access"
+      "name": "m_fCameraOffset",
+      "type": "float",
+      "source": "ida_decomp:_nearby_43b570 =0, _method_52e140 += this+60, 4 refs"
     },
     "152": {
       "name": "m_nPosX",
@@ -202,54 +202,54 @@
       "source": "binary:19x access"
     },
     "8": {
-      "name": "_todo_008",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_pRenderTarget",
+      "type": "int",
+      "source": "ida_decomp:_nearby_4236d0 RenderTarget3 call, vtable at off_56AB28, 8 refs"
     },
     "36": {
-      "name": "_todo_024",
+      "name": "m_fDirZ",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_method_52e140 cross product calc, 3 refs"
     },
     "52": {
-      "name": "_todo_034",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_nMode",
+      "type": "int",
+      "source": "ida_decomp:_UIScene =1, _nearby_4243e0 vtable deref, 8 refs"
     },
     "64": {
-      "name": "_todo_040",
+      "name": "m_fTransParam",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_method_52e140 loaded as float, 2 refs"
     },
     "80": {
-      "name": "_todo_050",
+      "name": "m_nViewX",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_43c7b0 = this+124, 10 refs"
     },
     "84": {
-      "name": "_todo_054",
+      "name": "m_nViewY",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_43c7b0 = a3[2], 10 refs"
     },
     "88": {
-      "name": "_todo_058",
+      "name": "m_nViewW",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_43c7b0 = a3[3], PalScriptMgr call, 9 refs"
     },
     "92": {
-      "name": "_todo_05C",
+      "name": "m_nViewH",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:ctor_BCE0 = 32, used in rect calc, 10 refs"
     },
     "104": {
-      "name": "_todo_068",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_nScrollState",
+      "type": "int",
+      "source": "ida_decomp:_nearby_43a870 =0, _nearby_43d1a0 byte toggle, 10 refs"
     },
     "108": {
-      "name": "_todo_06C",
+      "name": "m_nScrollIdx",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_43a870 =0, _nearby_43cdf0 loaded, 8 refs"
     },
     "112": {
       "name": "_todo_070",
@@ -257,14 +257,14 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "120": {
-      "name": "_todo_078",
+      "name": "m_nClipX",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_43c0f0 computed, 10 refs"
     },
     "124": {
-      "name": "_todo_07C",
+      "name": "m_nClipY",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_43c0f0 computed, 10 refs"
     },
     "217": {
       "name": "_todo_0D9",

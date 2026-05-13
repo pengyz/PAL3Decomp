@@ -704,3 +704,13 @@
   4. [A] Camera+680: Actor::LoadModel(&this) → 嵌入 Actor 对象
   5. [A] SceneMgr+28: memset(this, 0, 0x900) → 2304 字节数组槽位
 - **影响**: 命名率 86.1% → 86.7%
+
+### [2026-05-14] 第二批全类反编译命名（Actor, UIScene, CCBStageRole, PAL3）
+
+- **变更**: 24 个 _todo_ 字段命名
+  - UIScene: 14 个（m_nViewX/Y/W/H 视口, m_nClipX/Y/W 裁剪, m_nScrollState/Idx, m_fCameraOffset）
+  - CCBStageRole: 5 个（m_pPanelA/B/C 嵌入 UI 面板, m_fRotStart 旋转起始角, m_fRotCopy）
+  - Actor: 4 个（m_nCloneParam/State/Flag1/Flag2 — 从另一 Actor 复制的属性）
+  - PAL3: 1 个（m_fViewParam）
+- **置信度**: 75
+- **影响**: 命名率 86.7% → 87.0%
