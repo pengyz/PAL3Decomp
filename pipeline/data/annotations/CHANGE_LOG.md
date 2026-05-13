@@ -714,3 +714,20 @@
   - PAL3: 1 个（m_fViewParam）
 - **置信度**: 75
 - **影响**: 命名率 86.7% → 87.0%
+
+### [2026-05-14] 第三批全类反编译命名（NPC, Object3D, SceneObj, CCBUI, UIFrameWnd）
+
+- **变更**: 28 个 _todo_ 字段命名
+  - NPC: 11 个（m_pBuffer/BufStart/BufEnd 缓冲区三元组, m_wndHPBar/NameLabel/Dialog/Tooltip 嵌入 UI, m_fAnimTimer）→ NPC 100% 完成
+  - Object3D: 8 个（m_fYawAngle — SetAxisAngle, m_wndTemplate/Template2/TextArea 嵌入 UI, m_nDialogMode）
+  - UIFrameWnd: 4 个（m_nFrameData, m_bFrameInit, m_nBorderColor=276, m_nBorderStyle=-1）
+  - SceneObj: 3 个（m_pData, m_nDataSize, m_nObjState）
+  - CCBUI: 2 个（m_nSelOffset, m_nChildUpdateCount）
+- **置信度**: 75
+- **证据**:
+  1. [A+] NPC._todo_004: Hex-Rays `operator delete(this->_todo_004)` + `this->_todo_004 = 0` → 堆指针
+  2. [A+] NPC._todo_00C: `(this->_todo_00C - todo_008) >> 2` → (end-start)/4 = 元素数
+  3. [A+] NPC._todo_22C: `UIWnd::SetRect(&this->_todo_22C, v26)` → 嵌入 UIWnd
+  4. [A+] Object3D._todo_E0: `gbMatrix4::SetAxisAngle(v3, 1, *(this+224))` → Y 轴旋转角
+  5. [A+] UIFrameWnd._todo_90: `= 276` 常量 + 作为 gbColorQuad 加载 → 边框颜色
+- **影响**: 命名率 87.0% → 87.3%

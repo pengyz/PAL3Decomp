@@ -172,9 +172,9 @@
       "source": "pdb_verified_by_old_ida"
     },
     "224": {
-      "name": "_todo_E0",
-      "type": "int",
-      "source": "binary:1x access in Object3D:: methods"
+      "name": "m_fYawAngle",
+      "type": "float",
+      "source": "ida_decomp:SetTransform gbMatrix4::SetAxisAngle axis=1"
     },
     "244": {
       "name": "m_bTransform",
@@ -192,9 +192,9 @@
       "source": "ida_decomp:Init = 170, +10 adjust, 4 refs"
     },
     "376": {
-      "name": "_todo_178",
+      "name": "m_nTooltipPosY",
       "type": "int",
-      "source": "binary:1x access in Object3D:: methods"
+      "source": "ida_decomp:Init/nearby = 468"
     },
     "380": {
       "name": "m_nTooltipHeight",
@@ -227,9 +227,9 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "564": {
-      "name": "_todo_234",
+      "name": "m_nDialogMode",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:_nearby_47e3e0 ==2 check"
     },
     "584": {
       "name": "m_nCreate",
@@ -247,9 +247,9 @@
       "source": "ida_decomp:Create UIItem::Refresh, Init UIItem::Create, 4 refs"
     },
     "2912": {
-      "name": "_todo_B60",
+      "name": "m_wndTextArea",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:_nearby_47e190 UIWnd::SetEnable"
     },
     "3829": {
       "name": "m_bInit",
@@ -262,24 +262,24 @@
       "source": "ida_decomp:Init = 0, _nearby = 0, 6 refs"
     },
     "520": {
-      "name": "_todo_208",
+      "name": "m_wndTemplate",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_483650 UIWnd::CreateFromTemplate, 2 refs"
     },
     "672": {
-      "name": "_todo_2A0",
+      "name": "m_wndTemplate2",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_483650 UIWnd::CreateFromTemplate, 2 refs"
     },
     "3824": {
-      "name": "_todo_EF0",
+      "name": "m_nDialogCounter",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_47e030 = 0"
     },
     "3828": {
-      "name": "_todo_EF4",
+      "name": "m_bDialogShown",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_47e030 = 0 byte"
     }
   },
   "pdb_size": 152,

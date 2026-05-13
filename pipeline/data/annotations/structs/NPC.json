@@ -3,59 +3,59 @@
   "pdb_size": 4,
   "known_members": {
     "312": {
-      "name": "_todo_138",
+      "name": "m_wndHPBar",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:_init_4520a0 UIWnd::FindChild(&this), 2 refs"
     },
     "556": {
-      "name": "_todo_22C",
+      "name": "m_wndNameLabel",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:_init_4520a0 UIWnd::SetRect(&this), 4 refs"
     },
     "708": {
-      "name": "_todo_2C4",
+      "name": "m_wndDialog",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:_init_4520a0 vtable call, 3 refs"
     },
     "860": {
-      "name": "_todo_35C",
+      "name": "m_wndTooltip",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:_init_4520a0 vtable call, 2 refs"
     },
     "1164": {
-      "name": "_todo_48C",
+      "name": "m_fAnimTimer",
       "type": "float",
-      "source": "binary:disp32_3hits_1funcs"
+      "source": "ida_decomp:_init_4520a0 += result, 3 refs"
     },
     "1168": {
-      "name": "_todo_490",
+      "name": "m_bAnimActive",
       "type": "int",
-      "source": "binary:disp32_2hits_1funcs"
+      "source": "ida_decomp:_init_4520a0 if(this) =0, 2 refs"
     },
     "4": {
-      "name": "_todo_004",
+      "name": "m_pBuffer",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_40ee00 delete(this), =0, 10 refs"
     },
     "8": {
-      "name": "_todo_008",
+      "name": "m_nBufStart",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_40ee00 =0, _nearby_40ee30 subtracted, 10 refs"
     },
     "12": {
-      "name": "_todo_00C",
+      "name": "m_nBufEnd",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_40ee30 (this-start)>>2 = count, 8 refs"
     },
     "56": {
-      "name": "_todo_038",
+      "name": "m_pConditionA",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4520a0 if(this && _todo_03C), 1 ref"
     },
     "60": {
-      "name": "_todo_03C",
+      "name": "m_pConditionB",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4520a0 if(_todo_038 && this), 1 ref"
     }
   },
   "binary_size": 1172
