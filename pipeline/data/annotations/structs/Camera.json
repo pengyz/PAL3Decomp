@@ -89,8 +89,8 @@
     },
     "680": {
       "name": "m_Actor",
-      "type": "Actor",
-      "source": "ida_decomp:SetParams Actor::LoadModel(&this), Actor::PlayAction(&this)"
+      "type": "Actor *",
+      "source": "ida_decomp:SetParams Actor::LoadModel(&this), Actor::PlayAction(&this) | layout_fix:span_mismatch"
     },
     "688": {
       "name": "_todo_2B0",

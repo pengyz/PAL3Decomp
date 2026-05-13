@@ -19,8 +19,8 @@
     },
     "80": {
       "name": "m_scrollbar",
-      "type": "UIScrollBar",
-      "source": "gen_headers_9.2"
+      "type": "UIScrollBar *",
+      "source": "gen_headers_9.2 | layout_fix:span_mismatch"
     },
     "448": {
       "name": "m_numcol",
@@ -114,8 +114,8 @@
     },
     "452": {
       "name": "m_column",
-      "type": "UILBColumn[8]",
-      "source": "pdb_fill"
+      "type": "UILBColumn *",
+      "source": "pdb_fill | layout_fix:span_mismatch"
     },
     "1272": {
       "name": "m_rowenable",

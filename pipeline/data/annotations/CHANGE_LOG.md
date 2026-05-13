@@ -858,3 +858,14 @@
   - build_struct_decl 遇到 type_size > span 时 raise RuntimeError 中断（不允许静默 fallback）
 - **置信度**: 90（binary_size: 多处嵌入 span 一致→PAL3 真实 size；指针修正: span=4 对大类型是确定性证据）
 - **结果**: 布局错误 520 → **36**（剩余需逐个分析）
+
+### [2026-05-14] 布局错误修复第二轮 + build_struct_decl size 优先级修正
+
+- **变更（annotations）**:
+  1. 更多 span=4 指针修正（8 个）: CCBStage.m_Task→*, Camera.m_Actor→*, CScreenMode.m_scriptMusic→*, UIListBox.m_scrollbar→*, UIListBox.m_column→*, RoleSystem.m_Actor→*, ARC_PlayerAtt.hat→*, PathObj.normal→*
+  2. 数组计数修正: CCBAI.m_EnemyDemand[10]→[5], CCBAI.m_FriendDemand[10]→[5], CCBStageScene.m_vecInitFiveLineup[7]→[3], ScriptSystemData.m_String CHAR[260]→char[96]
+  3. 9 个结构体 binary_size 设置: tagEffClass(4), Object3D(152), st_Manager(244), SceneMgrCamBlock(844), scSCEFile(20), gbTexture_D3D(24), gbGfxDriverInfo(149), gbPixelFormat(40), ARC_PlayerItem(10)
+- **变更（pipeline）**:
+  - build_struct_decl 中引用成员类型 size 改为 `binary_size or pdb_size`（binary 优先），不再 `max(pdb, binary)`
+- **置信度**: 85（span=4→指针: 确定性; 数组计数: span/elem_size clean division; binary_size: 多处嵌入 span 一致）
+- **结果**: 布局错误 36 → **8**（剩余 8 个需二进制验证 element size/count）

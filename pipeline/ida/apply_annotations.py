@@ -36,7 +36,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
         vtables = {}
 
     members = struct_info.get("known_members", {})
-    size = max(struct_info.get("binary_size", 0), struct_info.get("pdb_size", 0), struct_info.get("gen_size", 0))
+    size = struct_info.get("binary_size") or struct_info.get("pdb_size") or struct_info.get("gen_size") or 0
     base_class = struct_info.get("base_class")
     base_size = struct_info.get("base_size", 0)
 
@@ -115,8 +115,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
                 clean = base_type.replace("class ", "").replace("struct ", "").strip()
                 if clean in all_structs:
                     ref = all_structs[clean]
-                    elem_size = max(ref.get("pdb_size", 0), ref.get("binary_size", 0),
-                                    ref.get("gen_size", 0), ref.get("size", 0))
+                    elem_size = ref.get("binary_size") or ref.get("pdb_size") or ref.get("gen_size") or ref.get("size") or 0
             if elem_size > 0:
                 dims = [int(d) for d in _re.findall(r'\[(\d+)\]', arr_match.group(1))]
                 total_elems = 1
@@ -145,7 +144,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
                 ref_size = 0
                 if clean in all_structs:
                     ref = all_structs[clean]
-                    ref_size = max(ref.get("pdb_size", 0), ref.get("binary_size", 0))
+                    ref_size = ref.get("binary_size") or ref.get("pdb_size") or 0
                 cursor = offset + (ref_size if ref_size > 0 else 4)
                 # FATAL: type size exceeds span — annotations data error
                 nmo = next_member_offset(offset)
