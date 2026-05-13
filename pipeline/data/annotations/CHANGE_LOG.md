@@ -130,3 +130,23 @@
   3. CGameData+769, +18129: 绝对地址匹配为误报（3D imm32=cmp, B8 imm32=mov eax），非内存访问，不修改
 - **判定**: ScriptSystem+897 通过; 其余保留 known_violations
 - **影响**: known_violations 76→73
+
+### [2026-05-13] ScriptSystemData +5017→+5020, +5721→+5724
+
+- **变更**: 2 个字段偏移修正 + 类型改为 short
+- **置信度**: 85
+- **证据**:
+  1. [A] +5020: VA=0x432F59 `66 89 3D B4C6D800` = mov word [0xD8C6B4], di (2-byte store, 0xD8C6B4 = base+0x139C)
+  2. [A] +5724: VA=0x433376 `66 89 3D 74C9D800` = mov word [0xD8C974], di (2-byte store, 0xD8C974 = base+0x165C)
+- **判定**: 通过
+
+### [2026-05-13] ScriptSystemData 48 字段类型降级 unsigned char
+
+- **变更**: 48 个无引用字段类型从 int/short 降级为 unsigned char
+- **置信度**: 70（保守降级，非正向验证）
+- **证据**:
+  1. 48 个字段在 .text 段无绝对地址引用（base+orig_offset 和 base+aligned_offset 均无）
+  2. 48 个字段在 decomp JSON 中无任何函数引用
+  3. 无证据支持这些字段是 int/short → 降级为最保守类型 unsigned char（1字节，无对齐要求）
+- **判定**: 通过（基于"无证据证明宽类型"的逻辑降级，非偏移变更）
+- **影响**: known_violations 73→23
