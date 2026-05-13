@@ -401,3 +401,32 @@
 - **排除**:
   - HandleRoleStateDialog: 非 __thiscall（首条指令 A1=mov eax,[abs]），通过全局指针访问
   - DelTask: 函数开头 mov [ecx+0x19A4] → CCBStageRole 成员，stride-892 在函数后部（调用链）
+
+### [2026-05-13] PDB 偏移伪影批量清理（345 个伪字段删除，12 个结构体）
+
+- **变更**: 从 12 个 this-pointer 结构体中删除 345 个无二进制访问证据的 gap 来源字段
+- **置信度**: 95（删除操作：字段在二进制中无访问即为伪影）
+- **根因**: PAL3A.pdb 与 PAL3.exe 的结构体布局不匹配。PDB 导入 IDA 后产生的结构体偏移被 gap-fill 阶段用于插值，但这些偏移在 PAL3 二进制中不存在对应的 `[this_reg+disp32]` 访问指令。
+- **验证方法**: 对每个结构体的所有 gap 来源字段（source 含 `gap_clean`/`gap_access`/`camblock_gap`），在该类所有方法的 .text 段二进制中搜索 `disp32` 作为 ModRM(mod=10) 操作数。无命中 → 伪字段。
+- **证据**:
+  1. [A] RoleSystem: IDA _field_2CC(offset 716) 在 154 个 RoleSystem 函数中 0 命中；CalcDirection 二进制实际访问 this+0x510（差值 0x244），确认 IDA 布局偏移
+  2. [A] SceneMgrCamBlock: 140 个 gap 字段中仅 5 个有二进制命中（3.6%）
+  3. [A] CCBStageScene: 16 个 gap 字段全部有二进制命中（0 伪字段），作为对照组确认方法可靠
+
+| 结构体 | 清理前 | 清理后 | 删除数 | 伪影率 |
+|--------|--------|--------|--------|--------|
+| RoleSystem | 361 | 208 | 153 | 84% |
+| SceneMgrCamBlock | 142 | 7 | 135 | 96% |
+| CScreenMode | 122 | 109 | 13 | 48% |
+| UIScene | 52 | 40 | 12 | 46% |
+| UIListBox | 61 | 52 | 9 | 60% |
+| UIAnimateCtrlEX | 24 | 12 | 12 | 85% |
+| Actor | 49 | 42 | 7 | 28% |
+| _Item_List_Info | 19 | 12 | 7 | 100% |
+| ScreenEffectMgr | 20 | 15 | 5 | 83% |
+| gbVolModNode | 8 | 3 | 5 | 100% |
+| CCBUI | 78 | 76 | 2 | 50% |
+| PAL3 | 32 | 30 | 2 | 50% |
+
+- **影响**: 总成员数 968→606（-362），消除错误偏移字段对 IDA 结构体布局和代码生成的污染
+- **后续**: 需要基于二进制分析重新填充这些结构体的有效成员（disp8 搜索、SIB 模式、间接访问链等方法）
