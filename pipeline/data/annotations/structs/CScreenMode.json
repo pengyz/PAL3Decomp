@@ -47,9 +47,9 @@
       "source": "binary:SetPosition(0x43DC40) mov [ecx+0x48],edx — param nY"
     },
     "244": {
-      "name": "_todo_F4",
+      "name": "m_nBarTotalSize",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:SetProgress +this in rect calc, 4 refs"
     },
     "272": {
       "name": "m_nArrayCapacity",
@@ -62,9 +62,9 @@
       "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs"
     },
     "284": {
-      "name": "_field_11C",
-      "type": "int",
-      "source": "binary:gap_access"
+      "name": "m_scriptMusic",
+      "type": "PalScript",
+      "source": "ida_decomp:_nearby_53dc50 Cleanup, SetMode LoadFromFile(music), 7 refs"
     },
     "292": {
       "name": "_field_124",
@@ -122,9 +122,9 @@
       "source": "binary:first_member"
     },
     "128": {
-      "name": "_todo_80",
-      "type": "float",
-      "source": "binary:9x access"
+      "name": "m_nProgressPos",
+      "type": "int",
+      "source": "ida_decomp:SetProgress = HIDWORD+offset, 10 refs"
     },
     "132": {
       "name": "m_nProgress",
@@ -132,14 +132,14 @@
       "source": "binary:4x access"
     },
     "136": {
-      "name": "_todo_88",
+      "name": "m_nBarWidth",
       "type": "int",
-      "source": "binary:4x access"
+      "source": "ida_decomp:SetProgress this+244-HIDWORD(v13), 5 refs"
     },
     "140": {
-      "name": "_todo_8C",
+      "name": "m_nBarHeight",
       "type": "int",
-      "source": "binary:3x access"
+      "source": "ida_decomp:SetProgress this+244-v18, 4 refs"
     },
     "144": {
       "name": "_todo_90",
@@ -397,9 +397,9 @@
       "source": "binary:2x access"
     },
     "1596": {
-      "name": "_field_63C",
+      "name": "m_rcClickRegion",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "ida_decomp:_init_529e40 PtInRect(this,pt), 9 refs"
     },
     "1600": {
       "name": "_field_640",
@@ -417,9 +417,9 @@
       "source": "binary:2x access"
     },
     "1624": {
-      "name": "_field_658",
+      "name": "m_nPageCounter",
       "type": "int",
-      "source": "binary:4x access"
+      "source": "ida_decomp:_init_529e40 ++, 7 refs"
     },
     "1628": {
       "name": "_field_65C",
@@ -437,14 +437,14 @@
       "source": "binary:2x access"
     },
     "1692": {
-      "name": "_field_69C",
+      "name": "m_nItemCount",
       "type": "int",
-      "source": "binary:4x access"
+      "source": "ida_decomp:_init_529e40 >0 check, 8 refs"
     },
     "1708": {
-      "name": "_field_6AC",
+      "name": "m_nMarginSize",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:_init_529e40 2*this subtracted, this added, 5 refs"
     },
     "1724": {
       "name": "_field_6BC",
@@ -707,9 +707,9 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "28": {
-      "name": "_todo_01C",
+      "name": "m_fFadeAlpha",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_533250 >= v47 compare, 10 refs"
     },
     "36": {
       "name": "_todo_024",
@@ -717,9 +717,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "40": {
-      "name": "_todo_028",
+      "name": "m_fCountdown",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_533250 -= 0.5, 8 refs"
     },
     "44": {
       "name": "_todo_02C",
@@ -757,29 +757,29 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "80": {
-      "name": "_todo_050",
+      "name": "m_nUIState",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4593c0 = 0, passed as arg, 4 refs"
     },
     "84": {
-      "name": "_todo_054",
+      "name": "m_nUIMode",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4593c0 = 0, 7 refs"
     },
     "88": {
-      "name": "_todo_058",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_nScreenWidth",
+      "type": "int",
+      "source": "ida_decomp:_init_4593c0 = 800, 10 refs"
     },
     "92": {
-      "name": "_todo_05C",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_nScreenParam",
+      "type": "int",
+      "source": "ida_decomp:SetProgress HIDWORD calc, 9 refs"
     },
     "96": {
-      "name": "_todo_060",
+      "name": "m_nProgressBase",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:SetProgress loaded, 10 refs"
     },
     "100": {
       "name": "_todo_064",
@@ -787,14 +787,14 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "104": {
-      "name": "_todo_068",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_nLayoutOffX",
+      "type": "int",
+      "source": "ida_decomp:_init_4593c0 = v3+68, 7 refs"
     },
     "108": {
-      "name": "_todo_06C",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_nLayoutOffY",
+      "type": "int",
+      "source": "ida_decomp:_init_4593c0 = v4+32, 7 refs"
     },
     "113": {
       "name": "_todo_071",
@@ -802,14 +802,14 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "120": {
-      "name": "_todo_078",
+      "name": "m_nProgressValA",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:SetProgress = v11/v14, 5 refs"
     },
     "124": {
-      "name": "_todo_07C",
+      "name": "m_nProgressValB",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:SetProgress = v10/v13, 4 refs"
     },
     "152": {
       "name": "_todo_098",
@@ -842,9 +842,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "1228": {
-      "name": "_todo_4CC",
+      "name": "m_wndTooltipA",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4593c0 SetTooltipText, vtable+28 call, 4 refs"
     },
     "1232": {
       "name": "_todo_4D0",
@@ -862,9 +862,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "1916": {
-      "name": "_todo_77C",
+      "name": "m_wndTooltipB",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4593c0 SetTooltipText, vtable+28 call, 4 refs"
     },
     "2232": {
       "name": "_todo_8B8",
@@ -897,9 +897,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "3284": {
-      "name": "_todo_CD4",
+      "name": "m_bDebugMode",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4593c0 CreateFromTemplate 3rd param, 8 refs"
     },
     "3868": {
       "name": "_todo_F1C",
@@ -912,9 +912,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "4000": {
-      "name": "_todo_FA0",
+      "name": "m_bDebugModeB",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_47be20 CreateFromTemplate 3rd param, 6 refs"
     },
     "4653": {
       "name": "_todo_122D",

@@ -731,3 +731,24 @@
   4. [A+] Object3D._todo_E0: `gbMatrix4::SetAxisAngle(v3, 1, *(this+224))` → Y 轴旋转角
   5. [A+] UIFrameWnd._todo_90: `= 276` 常量 + 作为 gbColorQuad 加载 → 边框颜色
 - **影响**: 命名率 87.0% → 87.3%
+
+### [2026-05-14] 大类全量反编译命名（RoleSystem 30, CScreenMode 24）
+
+- **变更**: 54 个 _todo_ 字段命名
+  - RoleSystem: 30 个
+    - 导航系统: m_fWaypointX/Z, m_nInitMoveMode, m_fPathAngle, m_bPathActive, m_nMoveSlot, m_fMoveThreshold, m_fMoveNormX/Y/Z
+    - 角色控制: m_nRoleAction, m_nRoleSlot, m_nActionParam, m_szModelPath, m_nSpawnParam
+    - 变换/动画: m_fSavedRotX, m_nTransformMode, m_nAnimCopy1/2/3
+    - 链接对象: m_pScene, m_pLinkedRole, m_pLinkedSystem
+    - UI 嵌入: m_wndFrameA, m_wndFrameB
+    - 状态: m_nVisState, m_bVisFlag, m_bRoleFlag, m_nMoveReset, m_nActionTimer
+  - CScreenMode: 24 个
+    - 进度条: m_nProgressBase/Pos/ValA/ValB, m_nBarWidth/Height/TotalSize
+    - 屏幕布局: m_nScreenWidth=800, m_nLayoutOffX/Y, m_nScreenParam
+    - 音乐脚本: m_scriptMusic (PalScript, LoadFromFile music)
+    - UI 组件: m_wndTooltipA/B (SetTooltipText), m_rcClickRegion (PtInRect)
+    - 交互: m_nPageCounter(++), m_nItemCount(>0), m_nMarginSize
+    - 渐变: m_fFadeAlpha, m_fCountdown(-=0.5)
+    - 调试: m_bDebugMode, m_bDebugModeB (CreateFromTemplate 参数)
+- **置信度**: 80 (A+ 级 — IDA apply 后 Hex-Rays 偏移)
+- **影响**: 命名率 87.3% → 87.9%
