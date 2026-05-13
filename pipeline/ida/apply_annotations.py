@@ -248,6 +248,16 @@ def apply_annotations():
     structs = data.get("structs", {})
     til = ida_typeinf.get_idati()
 
+    # Forward-declare ALL struct names so pointer members can resolve
+    fwd_ok = 0
+    for sname in structs:
+        fwd_decl = "struct %s;" % sname
+        tinfo = ida_typeinf.tinfo_t()
+        if ida_typeinf.parse_decl(tinfo, til, fwd_decl, ida_typeinf.PT_TYP) is not None:
+            tinfo.set_named_type(til, sname, ida_typeinf.NTF_REPLACE)
+            fwd_ok += 1
+    print("[3a] Forward declarations: %d/%d" % (fwd_ok, len(structs)))
+
     # Topological sort: dependencies (base classes + value-type members) first
     import re as _re2
     all_struct_names = set(structs.keys())
