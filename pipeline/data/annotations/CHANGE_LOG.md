@@ -500,3 +500,11 @@
   - 只保留高质量名称（排除 m_f_XXX/m_obj_XXX 等泛型模式）
 - **命名策略**: strcpy→m_szXxx, sin/cos→m_fAngle, SetProgress→m_fProgressParam, byte flag→m_bXxx
 - **影响**: _todo_ 649→436→297（最终剩余 297 个无法从上下文确定语义的字段）
+
+### [2026-05-13] _field_ 旧占位 raw decomp 语义命名（149 个）
+
+- **变更**: 对 363 个有 raw decomp 上下文的 _field_ 字段应用语义命名，149 个获得高质量名称
+- **置信度**: 70（基于 raw Hex-Rays 文本模式匹配——strcpy/SetXxx/gbVec3D 等上下文）
+- **方法**: 额外 F5 178 个函数（raw IDB 总计 1120 个），用同样的 `this + offset` 匹配 + 上下文推断
+- **过滤**: 排除泛型名称（m_f_XXX/m_obj_XXX/m_szStr_XXX），只保留有明确语义的命名
+- **影响**: _field_ 1140→991，命名率 84.4%→86.0%
