@@ -449,3 +449,22 @@
 - **排除**: Actor +217(byte 子访问 overlap +216 int), +544(overlap m_dwMatMsg[11])
 - **未扫描**: SceneMgrCamBlock/UIScene/UIAnimateCtrlEX(0 新成员), CCBUI/gbVolModNode(无 binary_size), _Item_List_Info(无函数)
 - **影响**: 全部 _todo_ 字段总计 148 个（`grep -r '_todo_' structs/`）
+
+### [2026-05-13] 21 个结构体批量 disp32 重扫描（+896 新 _todo_ 成员）
+
+- **变更**: 对 21 个未扫描结构体执行 disp32 二进制全量扫描
+- **置信度**: 85（偏移+类型），50（_todo_ 占位名）
+- **方法**: 同前——识别 this 寄存器后搜索 `[this_reg+disp32]`，过滤对齐、排除 overlap
+- **主要结果**:
+  - Scene: +171（91 funcs，struct size=1094164）
+  - GRPinput: +148（54 funcs，size=10584）
+  - CCBRoleState: +100（204 funcs，size=23904）
+  - PAL_GDB: +94（49 funcs，size=814524）
+  - CCBStageRole: +74（106 funcs，size=6848）
+  - CCBStage: +63（119 funcs，size=673992）
+  - CCBStageScene: +48, PalScriptMgr: +29, EquipUI: +27, CEffMgr: +25
+  - Camera: +22, CCBSystem: +21, RenderTarget2: +14, CCBAI: +13
+  - CameraCtrl: +11, TextureLib: +11, Object3D: +9, NPC: +6, UIFrameWnd: +6
+  - CCBStageCam: +3, RenderTarget: +1
+- **未命中**: UIWnd(0), PalScript(0) — 已有成员已覆盖大部分访问
+- **影响**: _todo_ 字段总计 148→1044
