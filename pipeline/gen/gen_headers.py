@@ -731,6 +731,104 @@ def main():
     print("  Enums: %d" % enum_count)
     print("  Template stubs: %d" % tmpl_count)
 
+    # --- Generate globals.h from annotations ---
+    generate_globals()
+
+
+def generate_globals():
+    """Generate include/pal3/globals.h from globals.json + binary initial values."""
+    import struct as _st
+
+    globals_json = PIPELINE_ROOT / "data" / "annotations" / "globals.json"
+    if not globals_json.exists():
+        return
+
+    exe_path = PROJECT_ROOT / "original" / "PAL3.exe"
+    exe_data = open(exe_path, 'rb').read() if exe_path.exists() else None
+
+    globs = json.load(open(globals_json, 'r', encoding='utf-8'))
+
+    # PE section info for reading initial values
+    DATA_VA = 0x580000
+    RDATA_VA = 0x56A000
+    RDATA_END = 0x57F178
+    BSS_START = 0xBF0000  # approximate: .bss starts around here (uninitialized)
+
+    def read_init_value(addr, typ):
+        """Read initial value from .data section of binary."""
+        if exe_data is None:
+            return None
+        foff = addr - 0x400000
+        if foff < 0 or foff + 8 > len(exe_data):
+            return None
+        # .rdata and .data have file backing; .bss does not
+        if addr >= BSS_START:
+            return None  # uninitialized, default 0
+        if 'float' in typ:
+            val = _st.unpack_from('<f', exe_data, foff)[0]
+            if val == 0.0:
+                return None  # skip zero-init (default)
+            if val == int(val) and abs(val) < 1e6:
+                return '%d.0f' % int(val)
+            return '%.7gf' % val
+        if 'double' in typ:
+            val = _st.unpack_from('<d', exe_data, foff)[0]
+            if val == 0.0:
+                return None
+            return '%.15g' % val
+        if any(t in typ for t in ['int', 'DWORD', 'LONG', 'UINT', 'BOOL', 'unsigned long']):
+            val = _st.unpack_from('<I', exe_data, foff)[0]
+            if val == 0:
+                return None
+            if val > 0x7FFFFFFF:
+                return '0x%X' % val
+            return str(val)
+        return None
+
+    # Sort by address
+    sorted_globs = sorted(globs.items(), key=lambda x: int(x[0], 16))
+
+    # Generate globals.h (extern declarations)
+    h_lines = [
+        '#pragma once',
+        '// PAL3 global variables with known types',
+        '// Auto-generated from pipeline/data/annotations/globals.json',
+        '',
+        '// %d typed globals' % len(sorted_globs),
+        '',
+    ]
+
+    type_map = {
+        'int': 'int', 'float': 'float', 'double': 'double',
+        'unsigned char': 'unsigned char', 'BYTE': 'unsigned char',
+        'DWORD': 'DWORD', 'unsigned long': 'unsigned long',
+        'BOOL': 'BOOL', 'UINT': 'UINT', 'short': 'short',
+        'unsigned short': 'unsigned short', 'WORD': 'WORD',
+    }
+
+    for addr_str, g in sorted_globs:
+        name = g.get('name', '')
+        typ = g.get('type', 'int')
+        if not name:
+            continue
+        # Skip IDA default names in header (they go in per-file forward decls)
+        if re.match(r'^(dword|byte|flt|word|off|stru|unk|asc)_', name):
+            continue
+        # Pointer types
+        if '*' in typ:
+            h_lines.append('extern %s %s; // %s' % (typ, name, addr_str))
+        elif '[]' in typ:
+            base = typ.replace('[]', '').strip()
+            h_lines.append('extern %s %s[]; // %s' % (base, name, addr_str))
+        else:
+            h_lines.append('extern %s %s; // %s' % (typ, name, addr_str))
+
+    globals_h = PROJECT_ROOT / "include" / "pal3" / "globals.h"
+    with open(globals_h, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(h_lines) + '\n')
+
+    print("  Globals: %d in globals.h" % (len(h_lines) - 6))
+
 
 if __name__ == '__main__':
     main()

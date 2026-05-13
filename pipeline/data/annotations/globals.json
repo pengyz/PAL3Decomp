@@ -1253,5 +1253,60 @@
     "name": "g_nScriptCounter",
     "type": "int",
     "source": "binary:12 decomp refs"
+  },
+  "0x00BFDAA0": {
+    "name": "g_fGameTimer",
+    "type": "float",
+    "source": "binary:13 hits, D9 05=fld float; Actor/EquipUI/CScreenMode usage"
+  },
+  "0x00BFDA58": {
+    "name": "g_fFadeAngle",
+    "type": "float",
+    "source": "binary:10 hits, D9 05=fld; PAL3::Render 180.0-flt pattern"
+  },
+  "0x00C12B14": {
+    "name": "g_fTileScale",
+    "type": "float",
+    "source": "binary:11 hits; used as divisor in RoleSystem position calc"
+  },
+  "0x00BFDAAC": {
+    "name": "g_fPathScale",
+    "type": "float",
+    "source": "binary:7 hits; set to 12.0, used as divisor like g_fTileScale"
+  },
+  "0x0058DE64": {
+    "name": "g_fEffectTimer",
+    "type": "float",
+    "source": "binary:13 hits, D9 05=fld; accumulates += dt, reset to 10.0"
+  },
+  "0x017AAD54": {
+    "name": "g_fCombatHalfParam",
+    "type": "float",
+    "source": "binary:1 hit, D9 1D=fstp; CCCTData assigns v42*0.5"
+  },
+  "0x017ABCDC": {
+    "name": "g_fCombatTimer",
+    "type": "float",
+    "source": "binary:8 hits, D9 1D=fstp float"
+  },
+  "0x008ACBEC": {
+    "name": "g_fPAL3Timer",
+    "type": "float",
+    "source": "binary:5 hits; near g_PAL3Data"
+  },
+  "0x00BFDA5C": {
+    "name": "g_fTimeScale",
+    "type": "float",
+    "source": "binary:3+ decomp refs; PAL3 time control"
+  },
+  "0x005A099C": {
+    "name": "g_fDefaultFOV",
+    "type": "float",
+    "source": "binary:3 decomp refs; .data init=20.0"
+  },
+  "0x0058B238": {
+    "name": "g_fCameraDefaultDist",
+    "type": "float",
+    "source": "binary:2 decomp refs; .data init=30.0"
   }
 }
