@@ -108,13 +108,13 @@
     },
     "52": {
       "name": "_field_034",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "float",
+      "source": "binary:gap_access; type_fix:float(2x fld > 1x mov)"
     },
     "80": {
       "name": "_field_050",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "float",
+      "source": "binary:gap_access; type_fix:float(4x fld > 3x mov)"
     },
     "84": {
       "name": "_field_054",
@@ -123,8 +123,8 @@
     },
     "88": {
       "name": "_field_058",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "float",
+      "source": "binary:gap_access; type_fix:float(5x fld > 2x mov)"
     },
     "92": {
       "name": "_field_05C",
@@ -133,8 +133,8 @@
     },
     "104": {
       "name": "_field_068",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "unsigned char",
+      "source": "binary:gap_access; type_fix:byte(8x > 0x)"
     },
     "112": {
       "name": "_field_070",
