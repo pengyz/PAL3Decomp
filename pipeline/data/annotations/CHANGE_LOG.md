@@ -561,6 +561,19 @@
   - g_pRoleTeam0_Capacity @ 0xC0435C, g_pRoleTeam1_Capacity @ 0xC0436C
 - **影响**: FullInit 中 14 个独立全局变量全部标注完成
 
+### [2026-05-13] raw decomp 类型推断批量填充（+246 新成员，17 个结构体）
+
+- **变更**: 从 raw IDB Hex-Rays 输出中提取精确类型信息填充结构体成员
+- **置信度**: 85（Hex-Rays 类型 cast 直接反映二进制访问模式：`*(float*)(this+N)` → float，`*(_DWORD*)(this+N)` → int）
+- **方法**: 对每个类的所有函数的 raw decomp 文本，解析 `*(TYPE*)(this+N)` 模式提取偏移和类型。过滤对齐、排除与已知成员 overlap。
+- **主要结果**:
+  - CScreenMode: +45, CameraCtrl: +2, EquipUI: +14, CCBRoleState: +18
+  - CCBStage: +23, CCBStageScene: +29, PalScriptMgr: +19, UIScene: +17
+  - UIListBox: +15, Camera: +18, RenderTarget2: +13, TextureLib: +13
+  - ScriptSystem: +8, NPC: +5, Object3D: +4, CCBStageRole: +2, RoleSystem: +1
+- **优势**: 比 disp32 二进制扫描更精确——Hex-Rays 直接给出类型（float/int/byte/short），不需要从 opcode 推断
+- **影响**: _todo_ 297→543（新增 246 个待命名成员），结构体 gap 覆盖显著提升
+
 ### [2026-05-13] ScriptSystemData 命令表数组化（-372 _field_）
 
 - **变更**: 将 ScriptSystemData 偏移 4432-7852 的 372 个独立 _field_ 替换为 `m_CmdTable tagScriptCmd[213]`
