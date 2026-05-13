@@ -795,3 +795,18 @@
   - EquipUI: 1 个 (m_bEquipFlagA)
 - **置信度**: 75-80
 - **影响**: 命名率 88.6% → 89.1%，**未命名跌破 1000 (994)**
+
+### [2026-05-14] PalScriptMgr 深度命名 + SceneMgr 布局验证
+
+- **变更**: 30 个 PalScriptMgr _todo_ 字段命名
+  - 执行范围: m_nExecRangeA-D（脚本执行区间计算）
+  - 位置系统: m_fPrevPosX/Y, m_fCurPosY（delta 计算模式）
+  - 脚本控制: m_nScriptID(==0xFFFF哨兵), m_bScriptByte(!=0xFF), m_nBlockHandle
+  - 循环计数: m_nLoopCountA(-1)/B(+1)/C(+1)
+  - 执行状态: m_fExecPosY/Z, m_nExecState2, m_fDirNeg(取反), m_nExecHandle
+  - 脚本实例: m_pScriptInstA/B/C + m_nScriptResultA/B/C（Destroy→result 模式）
+  - UI: m_ctrlParabola(GetState), m_wndTextDisplay(SetEnable)
+  - 计时: m_nEffectTick(=TickCount), m_nCapacity(>=比较)
+- **SceneMgr 布局注意**: 参照 docs/scenemgr_layout.md，SceneMgr 的自有数据区 (+0xC5D0~) 的 36 个 _todo_ 中，25 个无绝对地址引用（仅通过 RoleSystem 方法间接访问），11 个有 1-2 次引用但语义不明确。保留为 _todo_。
+- **置信度**: 75
+- **影响**: 命名率 89.1% → 89.4% (964 remaining)
