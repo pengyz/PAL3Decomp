@@ -40,6 +40,10 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
     base_class = struct_info.get("base_class")
     base_size = struct_info.get("base_size", 0)
 
+    # IDA parse_decl cannot handle C++ template base classes
+    if base_class and ('<' in base_class or '>' in base_class):
+        base_class = None  # drop template inheritance, use gap instead
+
     if not members and not size:
         return None
 
