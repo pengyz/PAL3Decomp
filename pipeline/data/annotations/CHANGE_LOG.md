@@ -320,6 +320,23 @@
   - 已修正 4 个函数归属（GetStageRole/ByIdx + GetState/SetParam）
   - 剩余高频 cast 需要逐个从二进制验证调用链
 
+### [2026-05-13] 结构体成员批量填充（218 个新成员，8 个类）
+
+- **变更**: 从二进制指令中提取 this+offset 访问，填充缺失的结构体成员
+- **置信度**: 85 (偏移+类型从二进制确认), 50 (名字为 _field_ 占位)
+- **方法**: 对每个类的所有 ClassName:: 方法，扫描函数体中 `[this_reg+disp8/disp32]` 模式，提取偏移和访问宽度（8B/89=dword, D9/DD=float, 8A/88=byte）
+- **类和新增数**:
+  1. CameraCtrl: 0→26 成员 (size=4088, 45 个方法, 56 个唯一偏移, 299 次访问)
+  2. CScreenMode: 37→121 (+84) 成员 (size=4660)
+  3. PalScriptMgr: +41 成员
+  4. RenderTarget: 4→36 (+32) 成员 (size=200)
+  5. PalScript: 9→25 (+16) 成员
+  6. Object3D: 34→43 (+9) 成员
+  7. UIScene: 45→52 (+7) 成员
+  8. EquipUI: +3 成员
+- **影响**: 消除大量 `this[N]` 越界访问（CameraCtrl 1695 处, CScreenMode 1636 处等）
+- **注意**: 218 个新成员全部有 A 级二进制证据（指令中的 disp 值确认偏移），但名字是占位的，需要后续从代码语义推断命名
+
 ### [2026-05-13] CCBSystem::GetDeltaTime/GetControl 重分类
 
 - **变更**:
