@@ -467,4 +467,22 @@
   - CameraCtrl: +11, TextureLib: +11, Object3D: +9, NPC: +6, UIFrameWnd: +6
   - CCBStageCam: +3, RenderTarget: +1
 - **未命中**: UIWnd(0), PalScript(0) — 已有成员已覆盖大部分访问
-- **影响**: _todo_ 字段总计 148→1044
+- **影响**: _todo_ 字段总计 148→1044（扫描原始数）
+
+### [2026-05-13] 结构体数组/嵌入成员 overlap 修复（-399 伪成员）
+
+- **变更**: 从 10 个结构体中删除 399 个落在已知数组/嵌入结构体内部的 _todo_ 字段
+- **置信度**: 95（overlap 是确定性错误）
+- **根因**: disp32 扫描找到的偏移可能是数组元素内部的成员访问（如 `this->m_obj[i].field`），表现为 `[this_reg + base_offset + i*stride + field_offset]`，被误认为顶层成员
+- **修复明细**:
+  - Scene: -167（m_obj[256] SceneObj 覆盖 224-456928, m_npc[72] Role 覆盖 456932+）→ 21 成员
+  - CCBRoleState: -95（tagRoleState 数组内部）→ 27 成员
+  - PAL_GDB: -49 → 51 成员
+  - CCBStage: -36 → 63 成员
+  - CCBSystem: -18 → 45 成员
+  - CEffMgr: -16 → 24 成员
+  - CCBAI: -8 → 15 成员
+  - CCBStageRole: -4 → 149 成员
+  - CCBStageScene: -4 → 114 成员
+  - PalScriptMgr: -2 → 87 成员
+- **影响**: _todo_ 字段总计 1044→649（净增 497 个有效新成员）
