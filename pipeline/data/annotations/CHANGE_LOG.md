@@ -162,3 +162,11 @@
   4. sub_4329B0 命令表区域（+4432 起始，stride=16）的赋值全用绝对地址，而违规偏移 3961-4395 在表前区域，从未被绝对地址引用
 - **判定**: 通过（无证据证明宽类型）
 - **影响**: known_violations 23→11, ScriptSystemData 违规清零
+
+### [2026-05-13] 最后 11 个违规清零
+
+- **变更**: 11 个字段类型降级为 unsigned char（10x int, 1x LINEUP_SEQUENCE）
+- **置信度**: 70
+- **证据**: 全部 11 个字段在 .text 段无绝对地址引用（同前述方法验证），无法确认宽类型
+- **结构体**: CGameData(2), RoleSystem(3), ScriptSystem(2), PAL3(1), UIListBox(1), LineupUI(1), _Item_List_Info(1)
+- **影响**: **known_violations 11→0, 全部对齐违规清零 ✓**
