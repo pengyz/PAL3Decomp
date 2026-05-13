@@ -423,14 +423,14 @@
       "source": "binary:stru_D8B318_gap"
     },
     "3988": {
-      "name": "_field_F94",
+      "name": "m_nScriptBlockCount",
       "type": "int",
-      "source": "binary:stru_D8B318_gap"
+      "source": "binary:4x abs refs, inc+store pattern (0xF94)"
     },
     "3992": {
-      "name": "_field_F98",
-      "type": "unsigned char",
-      "source": "binary:stru_D8B318_gap"
+      "name": "m_pCurrentBlock",
+      "type": "int",
+      "source": "binary:32x abs refs, malloc(48)+store pattern (0xF98)"
     },
     "4000": {
       "name": "_field_FA0",
@@ -438,9 +438,9 @@
       "source": "binary:stru_D8B318_gap"
     },
     "4004": {
-      "name": "_field_FA4",
+      "name": "m_nScriptState",
       "type": "int",
-      "source": "binary:stru_D8B318_gap"
+      "source": "binary:7x abs refs (0xFA4)"
     },
     "4008": {
       "name": "_field_FA8",
@@ -533,9 +533,9 @@
       "source": "binary:stru_D8B318_gap"
     },
     "4116": {
-      "name": "_field_1014",
+      "name": "m_nScriptParam",
       "type": "int",
-      "source": "binary:stru_D8B318_gap"
+      "source": "binary:11x abs refs (0x1014)"
     },
     "4128": {
       "name": "_field_1020",
@@ -558,9 +558,9 @@
       "source": "binary:stru_D8B318_gap"
     },
     "4144": {
-      "name": "_field_1030",
-      "type": "short",
-      "source": "binary:stru_D8B318_gap"
+      "name": "m_nScriptMode",
+      "type": "int",
+      "source": "binary:6x abs refs, dword access (0x1030)"
     },
     "4148": {
       "name": "_field_1034",
@@ -593,14 +593,9 @@
       "source": "binary:stru_D8B318_gap"
     },
     "4168": {
-      "name": "_field_1048",
-      "type": "unsigned char",
-      "source": "binary:stru_D8B318_gap"
-    },
-    "4169": {
-      "name": "_field_1049",
-      "type": "unsigned char",
-      "source": "binary:stru_D8B318_gap"
+      "name": "m_nScriptResult",
+      "type": "int",
+      "source": "binary:15x abs refs, dword access (0x1048)"
     },
     "4176": {
       "name": "_field_1050",
@@ -2623,14 +2618,14 @@
       "source": "globals_merge"
     },
     "4012": {
-      "name": "_field_0FAC",
+      "name": "m_pScriptData",
       "type": "int",
-      "source": "binary:abs_ref@g_ScriptSystemData+0xfac"
+      "source": "binary:4x abs refs (0xFAC)"
     },
     "4108": {
-      "name": "_field_100C",
+      "name": "m_bScriptFlag",
       "type": "unsigned char",
-      "source": "binary:abs_ref@g_ScriptSystemData+0x100c"
+      "source": "binary:10x abs refs, byte access 8A/88 (0x100C)"
     },
     "4172": {
       "name": "_field_104C",

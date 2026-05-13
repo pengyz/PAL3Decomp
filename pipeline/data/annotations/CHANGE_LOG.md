@@ -180,3 +180,23 @@
   2. [A] +7112 (0x1BC8) `m_bSlotValid` unsigned char[5]: 49x 绝对地址引用，8A(byte load)/C6(byte store) 模式确认 1 字节访问。
   3. [A] +51508 (0xC934) `m_nCombatUIState` int: 14x 绝对地址引用，CCBUI::_init 中 store imm 9/0。
   4. [A] +51500 (0xC92C) `m_nSceneFlag` int: 4x 绝对地址引用。
+
+### [2026-05-13] ScriptSystemData + CGameData 字段命名 + 类型修正
+
+- **变更**: 8 个 ScriptSystemData 字段 + 7 个 CGameData 字段命名；ScriptSystemData+4144 short→int, +3992 unsigned char→int
+- **置信度**: 85-90
+- **ScriptSystemData 证据**:
+  1. [A] +3988 `m_nScriptBlockCount`: VA=0x4301DC inc edi; mov [0xD8C2AC], edi — 计数器递增
+  2. [A] +3992 `m_pCurrentBlock`: VA=0x4301AE-CC malloc(48)+store 模式，32x abs refs
+  3. [A] +4004 `m_nScriptState`: 7x abs refs
+  4. [A] +4012 `m_pScriptData`: 4x abs refs
+  5. [A] +4108 `m_bScriptFlag`: 10x abs refs, 8A/88 byte access confirmed
+  6. [A] +4116 `m_nScriptParam`: 11x abs refs
+  7. [A] +4144 `m_nScriptMode`: 6x abs refs, 83 3D(cmp dword) 确认 int（原标 short 错误）
+  8. [A] +4168 `m_nScriptResult`: 15x abs refs
+- **CGameData 证据**:
+  1. [A] +656 `m_nGameMode`: 17x abs refs, 4-byte access
+  2. [A] +356 `m_nSaveSlot`: 10x abs refs
+  3. [A] +220 `m_nConfigFlags`: 7x abs refs
+  4. [A] +640-642 `m_bFlag280/281/282`: 5-6x abs refs each, byte access (A0/A2/88/8A)
+  5. [A] +728 `m_nBattleResult`: 5x abs refs
