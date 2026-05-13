@@ -380,6 +380,26 @@
       "name": "m_RoleSystems",
       "type": "RoleSystem[5]",
       "source": "binary:scenemgr_layout.md"
+    },
+    "7108": {
+      "name": "m_nActiveRoleCount",
+      "type": "int",
+      "source": "binary:75x abs refs, 4-byte load/store"
+    },
+    "7112": {
+      "name": "m_bSlotValid",
+      "type": "unsigned char[5]",
+      "source": "binary:49x abs refs, byte load/store (8A/C6)"
+    },
+    "51508": {
+      "name": "m_nCombatUIState",
+      "type": "int",
+      "source": "binary:14x abs refs, store imm 0/9 in CCBUI::_init"
+    },
+    "51500": {
+      "name": "m_nSceneFlag",
+      "type": "int",
+      "source": "binary:4x abs refs at +0xC92C"
     }
   },
   "pdb_size": 1,

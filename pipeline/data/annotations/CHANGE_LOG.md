@@ -170,3 +170,13 @@
 - **证据**: 全部 11 个字段在 .text 段无绝对地址引用（同前述方法验证），无法确认宽类型
 - **结构体**: CGameData(2), RoleSystem(3), ScriptSystem(2), PAL3(1), UIListBox(1), LineupUI(1), _Item_List_Info(1)
 - **影响**: **known_violations 11→0, 全部对齐违规清零 ✓**
+
+### [2026-05-13] SceneMgr 新字段命名（二进制验证）
+
+- **变更**: 添加 4 个新成员到 SceneMgr
+- **置信度**: 85-90
+- **证据**:
+  1. [A] +7108 (0x1BC4) `m_nActiveRoleCount` int: 75x 绝对地址引用（load/store dword），被 NPC/ScriptSystem/CCBRoleState 大量使用。位于 m_PlayerAtts[5] 之后、m_RoleSystems 之前。
+  2. [A] +7112 (0x1BC8) `m_bSlotValid` unsigned char[5]: 49x 绝对地址引用，8A(byte load)/C6(byte store) 模式确认 1 字节访问。
+  3. [A] +51508 (0xC934) `m_nCombatUIState` int: 14x 绝对地址引用，CCBUI::_init 中 store imm 9/0。
+  4. [A] +51500 (0xC92C) `m_nSceneFlag` int: 4x 绝对地址引用。
