@@ -810,3 +810,12 @@
 - **SceneMgr 布局注意**: 参照 docs/scenemgr_layout.md，SceneMgr 的自有数据区 (+0xC5D0~) 的 36 个 _todo_ 中，25 个无绝对地址引用（仅通过 RoleSystem 方法间接访问），11 个有 1-2 次引用但语义不明确。保留为 _todo_。
 - **置信度**: 75
 - **影响**: 命名率 89.1% → 89.4% (964 remaining)
+
+### [2026-05-14] 清理无二进制证据的幻影字段（-65 字段）
+
+- **变更**: 删除 65 个结构体字段（来自 Hex-Rays 类型推断或全局 gap 插值，在 .text 段中无任何 [reg+disp32] 二进制访问证据）
+- **置信度**: 95（删除操作：无二进制引用 = 字段在 PAL3 中不存在）
+- **方法**: 对所有 source 为 `raw_decomp:Hex-Rays_type_cast` 或 `globals_merge` 且不在 query_todo_fields 输出中的 _todo_ 字段，扫描 .text 段全部 disp32 搜索（ModRM mod=10 匹配）。65/160 个无命中。
+- **受影响结构体**: CGameData(-55), Camera(-3), CScreenMode(-2), TextureLib(-2), RenderTarget2(-1), UIListBox(-1), UIScene(-1)
+- **排除**: 95 个虽 source 弱但有 binary disp32 命中的字段保留
+- **影响**: 命名率 89.4% → **90.0%**，未命名 964→**899**
