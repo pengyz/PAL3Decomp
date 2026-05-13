@@ -777,3 +777,21 @@
     - 矩阵: m_fMatrixA-F (0/1.0f 初始化模式 — 单位矩阵分量)
 - **置信度**: 75-80 (A+ IDA decomp + 模式匹配)
 - **影响**: 命名率 87.9% → 88.6%，未命名跌破 1100
+
+### [2026-05-14] UIListBox/CGameData/EquipUI 全量反编译命名（39 字段）
+
+- **变更**: 39 个 _todo_ 字段命名
+  - UIListBox: 20 个
+    - 列表核心: m_nCurItem(796*idx), m_nTotalRowWidth, m_nColumnCount/Start/Active
+    - 滚动: m_nScrollByte, m_nScrollValue, m_nVisibleCount, m_nPageCountA/B
+    - 布局: m_nRowBaseY, m_pColumnData, m_nLayoutSum(=a+b), m_nHeaderHeight, m_nAccumWidth
+    - 缓冲: m_aItemBuffer(memset 17504 bytes), m_nCacheA/B, m_nMsgData, m_bSelLock
+  - CGameData: 18 个
+    - 角色数据: m_RoleDataA/B/C(vtable+28 调用模式), m_UITitle(UITitle::ctor)
+    - 物品栏: m_ItemSlotA/B/C/D(UIItem::Create+SetData)
+    - 数组: m_aDialogs(UIWnd[5] stride=0x160), m_aItemData([6] stride=0x8E0)
+    - 脚本: m_nScriptHandleA-F(6 个清零句柄)
+    - 其他: m_pGameObjB, m_subObjA
+  - EquipUI: 1 个 (m_bEquipFlagA)
+- **置信度**: 75-80
+- **影响**: 命名率 88.6% → 89.1%，**未命名跌破 1000 (994)**

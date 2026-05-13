@@ -173,9 +173,9 @@
       "source": "binary:raw_3votes"
     },
     "12": {
-      "name": "_field_00C",
+      "name": "m_nMsgData",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_43ebe0 passed to vtable+24(1006,this), 3 refs"
     },
     "16": {
       "name": "m_nItemPos",
@@ -183,9 +183,9 @@
       "source": "binary:raw_final"
     },
     "20": {
-      "name": "_field_014",
+      "name": "m_nRowBaseY",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_43ebe0 rect calc, pt-this-1184-8, 8 refs"
     },
     "24": {
       "name": "_field_018",
@@ -198,9 +198,9 @@
       "source": "binary:raw_final"
     },
     "32": {
-      "name": "_field_020",
+      "name": "m_pColumnData",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_43ebe0 deref as int**, 6 refs"
     },
     "56": {
       "name": "_field_038",
@@ -218,9 +218,9 @@
       "source": "binary:raw_final"
     },
     "352": {
-      "name": "_field_160",
+      "name": "m_nTotalRowWidth",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:SendMessage = *v26 * col_width, accumulated, 10 refs"
     },
     "176": {
       "name": "_field_0B0",
@@ -248,9 +248,9 @@
       "source": "binary_setter_SetSel"
     },
     "300": {
-      "name": "_field_12C",
+      "name": "m_nScrollByte",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:_unverified_43F360 = this+299, loaded, 4 refs"
     },
     "592": {
       "name": "m_nSelIndex",
@@ -273,19 +273,19 @@
       "source": "binary_setter_SetSel"
     },
     "356": {
-      "name": "_todo_164",
+      "name": "m_nColumnCount",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:SendMessage = 1, incremented, 10 refs"
     },
     "360": {
-      "name": "_todo_168",
+      "name": "m_nColumnStart",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:SendMessage = 0, loaded, 10 refs"
     },
     "364": {
-      "name": "_todo_16C",
+      "name": "m_nColumnActive",
       "type": "int",
-      "source": "binary:disp32_8hits_1funcs"
+      "source": "ida_decomp:SendMessage = 1, ==1 check, 8 refs"
     },
     "436": {
       "name": "m_nKeyCtrl",
@@ -313,14 +313,14 @@
       "source": "binary:disp32_8hits_4funcs"
     },
     "520": {
-      "name": "_todo_208",
+      "name": "m_nVisibleCount",
       "type": "int",
-      "source": "binary:disp32_4hits_3funcs"
+      "source": "ida_decomp:_init_4aa320 ++, _init_4aa680 --, 3 refs"
     },
     "524": {
-      "name": "_todo_20C",
+      "name": "m_nAccumWidth",
       "type": "int",
-      "source": "binary:disp32_4hits_3funcs"
+      "source": "ida_decomp:_init_4aa320 += short(v12+650), 3 refs"
     },
     "528": {
       "name": "_todo_210",
@@ -328,9 +328,9 @@
       "source": "binary:disp32_5hits_3funcs"
     },
     "532": {
-      "name": "_todo_214",
+      "name": "m_nScrollValue",
       "type": "int",
-      "source": "binary:disp32_5hits_3funcs"
+      "source": "ida_decomp:_init_4aa320 loaded, updated, 3 refs"
     },
     "536": {
       "name": "_todo_218",
@@ -338,14 +338,14 @@
       "source": "binary:disp32_4hits_3funcs"
     },
     "540": {
-      "name": "_todo_21C",
+      "name": "m_nPageCountA",
       "type": "int",
-      "source": "binary:disp32_5hits_3funcs"
+      "source": "ida_decomp:_init_4aa320 += 1, 4 refs"
     },
     "544": {
-      "name": "_todo_220",
+      "name": "m_nPageCountB",
       "type": "int",
-      "source": "binary:disp32_5hits_3funcs"
+      "source": "ida_decomp:_init_4aa320 += 1, 4 refs"
     },
     "608": {
       "name": "_todo_260",
@@ -363,9 +363,9 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "636": {
-      "name": "_todo_27C",
+      "name": "m_bSelLock",
       "type": "int",
-      "source": "binary:disp32_6hits_1funcs"
+      "source": "ida_decomp:_init_49aea0 = 0/1 toggle, 6 refs"
     },
     "640": {
       "name": "_todo_280",
@@ -418,9 +418,9 @@
       "source": "binary:disp32_32hits_8funcs"
     },
     "1124": {
-      "name": "_todo_464",
+      "name": "m_nLayoutSum",
       "type": "int",
-      "source": "binary:disp32_14hits_4funcs"
+      "source": "ida_decomp:_nearby_43ebe0 = this+1120 + this+1116, 6 refs"
     },
     "1128": {
       "name": "_todo_468",
@@ -478,9 +478,9 @@
       "source": "ida_decomp:_nearby_43f670 = a2, 3 refs"
     },
     "1184": {
-      "name": "_todo_4A0",
+      "name": "m_nHeaderHeight",
       "type": "int",
-      "source": "binary:disp32_5hits_2funcs"
+      "source": "ida_decomp:_nearby_43ebe0 subtracted in row calc, 3 refs"
     },
     "1652": {
       "name": "_todo_674",
@@ -488,14 +488,14 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "1724": {
-      "name": "_todo_6BC",
+      "name": "m_nCacheA",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:ctor_7950 =0, ctor_79F0 loaded, 4 refs"
     },
     "1728": {
-      "name": "_todo_6C0",
+      "name": "m_nCacheB",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "ida_decomp:ctor_7950 =0, ctor_79F0 loaded, 4 refs"
     },
     "1736": {
       "name": "m_nSendMessage_3",
@@ -508,9 +508,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "88": {
-      "name": "_todo_058",
+      "name": "m_aItemBuffer",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_auto_46dd10 memset(this,0,0x4460), 4 refs"
     },
     "92": {
       "name": "_todo_05C",
@@ -518,9 +518,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "96": {
-      "name": "_todo_060",
+      "name": "m_nCurItem",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_47aab0 =0, 796*this+5896 index, 10 refs"
     },
     "336": {
       "name": "m_nSendMessage_1",
