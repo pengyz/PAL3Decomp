@@ -1198,5 +1198,60 @@
   "0x01896D0C": {
     "name": "hHeap",
     "type": "HANDLE"
+  },
+  "0x00C04380": {
+    "name": "g_SceneArray",
+    "type": "void *",
+    "source": "binary:99 decomp refs, mov reg(addr load), near g_SceneMgr"
+  },
+  "0x00C04360": {
+    "name": "g_RoleTeamArray",
+    "type": "void *",
+    "source": "binary:22 decomp refs, mov reg(addr load), near g_RoleTeam2"
+  },
+  "0x005D41B8": {
+    "name": "g_fConst220",
+    "type": "float",
+    "source": "binary:39 decomp refs, D9 05=fld float (.rdata constant)"
+  },
+  "0x005D41BC": {
+    "name": "g_fConst200",
+    "type": "float",
+    "source": "binary:39 decomp refs, D8 35=fdiv float (.rdata constant)"
+  },
+  "0x00BFDA78": {
+    "name": "g_pSceneManager",
+    "type": "void *",
+    "source": "binary:12 decomp refs, A3=store eax, near gfxMgr/g_pCBSystem"
+  },
+  "0x00DE5FA4": {
+    "name": "g_nRoleState",
+    "type": "int",
+    "source": "binary:12 decomp refs, A3=store eax, near g_nActorState"
+  },
+  "0x0017B1EC0": {
+    "name": "g_InputState",
+    "type": "int",
+    "source": "binary:12 decomp refs"
+  },
+  "0x00DE90BC": {
+    "name": "g_nCombatParam1",
+    "type": "int",
+    "source": "binary:12 decomp refs"
+  },
+  "0x00DE90B8": {
+    "name": "g_nCombatParam2",
+    "type": "int",
+    "source": "binary:12 decomp refs"
+  },
+  "0x00DE90B4": {
+    "name": "g_nCombatParam3",
+    "type": "int",
+    "source": "binary:12 decomp refs"
+  },
+  "0x0017A7E88": {
+    "name": "g_nScriptCounter",
+    "type": "int",
+    "source": "binary:12 decomp refs"
   }
 }

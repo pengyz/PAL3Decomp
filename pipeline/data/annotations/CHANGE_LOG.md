@@ -221,3 +221,17 @@
   3. [A] +4080 `m_pCmdTableFF0` int: 5x B9=mov ecx,addr (array base load)
   4. [A] +4172 `m_pCmdArray104C` int: 5x BF+[ecx*8+addr] (stride-8 array)
   5. 其余 7 个: 3-4x abs refs each, named with m_nCmd prefix
+
+### [2026-05-13] 全局变量命名（11 个高引用）
+
+- **变更**: 添加 11 个全局变量到 globals.json
+- **置信度**: 80-85
+- **证据**:
+  1. [A] 0xC04380 `g_SceneArray` void*: 99 decomp refs, BF=mov reg,addr（基址加载）
+  2. [A] 0xC04360 `g_RoleTeamArray` void*: 22 refs, 类似模式
+  3. [A] 0x5D41B8 `g_fConst220` float: 39 refs, D9 05=fld; binary 读取值=220.0
+  4. [A] 0x5D41BC `g_fConst200` float: 39 refs, D8 35=fdiv; binary 读取值=200.0
+  5. [A] 0xBFDA78 `g_pSceneManager` void*: 12 refs, A3=store eax, 邻近 gfxMgr/g_pCBSystem
+  6. [A] 0xDE5FA4 `g_nRoleState` int: 12 refs, A3=store eax
+  7. 其余 5 个: 12 refs each, dword 访问确认 int 类型
+- **float 值验证**: 直接读取 .rdata 段 binary 确认常量值（220.0/200.0）
