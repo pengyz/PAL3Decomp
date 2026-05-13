@@ -47,9 +47,9 @@
       "source": "binary:gap_access"
     },
     "72": {
-      "name": "_field_048",
+      "name": "m_nPosY",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "binary:SetPosition(0x43DC40) mov [ecx+0x48],edx — param nY"
     },
     "76": {
       "name": "_field_04C",
@@ -232,9 +232,9 @@
       "source": "binary:1x access"
     },
     "232": {
-      "name": "_field_0E8",
+      "name": "m_fProgress",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "binary:param_assign — CScreenMode::SetProgress: mov [this+0xe8], fProgress"
     },
     "240": {
       "name": "_field_0F0",
@@ -592,9 +592,9 @@
       "source": "binary:1x access"
     },
     "4644": {
-      "name": "_field_1224",
+      "name": "m_state",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "binary:param_assign — CScreenMode::SetState: mov [ecx+0x1224],eax=state"
     },
     "4648": {
       "name": "_field_1228",
@@ -605,6 +605,11 @@
       "name": "_field_122C",
       "type": "unsigned char",
       "source": "binary:1x access"
+    },
+    "68": {
+      "name": "m_nPosX",
+      "type": "int",
+      "source": "binary:SetPosition(0x43DC40) mov [ecx+0x44],eax — param nX"
     }
   },
   "binary_size": 4660

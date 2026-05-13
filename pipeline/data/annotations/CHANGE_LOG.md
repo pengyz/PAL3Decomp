@@ -349,6 +349,27 @@
   3. 函数签名 `void __thiscall(CameraCtrl *this, int w, int h)` 确认参数语义
 - **回退**: m_pTarget/m_fFOV/m_nViewMode 等 5 个推断命名因仅有 D 级证据（领域知识推断）不达标，保留 _field_ 占位
 
+### [2026-05-13] 结构体成员语义命名（12 个，二进制指令链验证）
+
+- **变更**: 12 个 _field_ 成员从 setter 函数的二进制指令链中推断语义名
+- **置信度**: 90
+- **方法**: 读取 Set*/Init* 函数的完整指令链，追踪参数如何存入 this+offset
+- **RenderTarget (6 个)**:
+  1. [A] +24 `m_nHalfWidth`: SetSize(0x4B48E0) `mov eax,[esp+4]; cdq; sub eax,edx; sar eax,1; mov [ecx+0x18],eax` — param1/2
+  2. [A] +28 `m_nHalfHeight`: 同函数 param2/2
+  3. [A] +144 `m_nOffsetX`: SetOffset(0x4B4D80) `mov [ecx+0x90],eax` — param1
+  4. [A] +148 `m_nOffsetY`: 同函数 `mov [ecx+0x94],edx` — param2
+  5. [A] +152 `m_nScaleX`: SetScale(0x4B4DA0) `mov [ecx+0x98],eax` — param1
+  6. [A] +156 `m_nScaleY`: 同函数 `mov [ecx+0x9C],edx` — param2
+- **CScreenMode (3 个)**:
+  1. [A] +68 `m_nPosX`: SetPosition(0x43DC40) `mov [ecx+0x44],eax` — param nX
+  2. [A] +72 `m_nPosY`: 同函数 `mov [ecx+0x48],edx` — param nY
+  3. [A] +4644 `m_state`: SetState `mov [ecx+0x1224],eax` — param state
+- **CameraCtrl (3 个)**:
+  1. [A] +460 `m_mode`: SetCamMode(0x41D5B0) `mov [ecx+0x1CC],eax` — param mode
+  2. [A] +472 `m_nWidth`: SetDimention(0x41CA90) `mov [ecx+0x1D8],eax` — param w
+  3. [A] +476 `m_nHeight`: 同函数 `mov [ecx+0x1DC],edx` — param h
+
 ### [2026-05-13] CCBSystem::GetDeltaTime/GetControl 重分类
 
 - **变更**:
