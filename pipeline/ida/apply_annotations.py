@@ -204,7 +204,6 @@ def apply_annotations():
     for addr_str, info in funcs.items():
         addr = int(addr_str, 16)
         name = info.get("name", "")
-        # 确保函数边界存在
         if not _ida_funcs.get_func(addr):
             if _ida_funcs.add_func(addr):
                 created += 1
@@ -212,7 +211,22 @@ def apply_annotations():
             if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                 renamed += 1
 
-    print("[1] Functions: created=%d, renamed=%d/%d" % (created, renamed, len(funcs)))
+    # Also name skip_functions (not decompiled, but callers need their names)
+    skip_path = os.path.join(ANNOTATIONS_DIR, "skip_functions.json")
+    skip_named = 0
+    if os.path.exists(skip_path):
+        with open(skip_path, "r", encoding="utf-8") as f:
+            skip_funcs = json.load(f)
+        for addr_str, info in skip_funcs.items():
+            name = info.get("name", "")
+            if name and not name.startswith("sub_"):
+                addr = int(addr_str, 16)
+                if not _ida_funcs.get_func(addr):
+                    _ida_funcs.add_func(addr)
+                if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+                    skip_named += 1
+
+    print("[1] Functions: created=%d, renamed=%d/%d, skip_named=%d" % (created, renamed, len(funcs), skip_named))
 
     # --- 2. Globals (names only; types deferred to step 6b after structs) ---
     globs = data.get("globals", {})
