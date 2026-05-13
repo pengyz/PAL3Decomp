@@ -88,6 +88,38 @@ inline RoleSystem* SceneMgr::GetRoleSystem(int i) {
 | 0x4CDED0 | CEffMgr::InitEffClass | m_EffClass[i] 注册 |
 | 0x4CE100 | CEffMgr::LoadEffData | 加载 effect 配置文件 |
 
+## 完整受影响函数列表（自动扫描 2026-05-13）
+
+188 个函数包含视图 B 错乱访问（`PlayerAtts[4/5].byMagicLevel[...]` 或 `m_camBlock._field_`），
+共 839 处引用。**这些函数需要在编译阶段手动修复视图转换。**
+
+Top 20（按引用数）：
+
+| 地址 | 函数名 | 引用数 |
+|------|--------|--------|
+| 0x0041D9A0 | CameraUpdate_Internal | 60 |
+| 0x00408FD0 | PAL3::FullInit | 51 |
+| 0x0049B2E0 | UIListBox::_init_49b2e0 | 39 |
+| 0x004A9870 | UIListBox::Method_9870 | 25 |
+| 0x00474C80 | UIListBox::_init_474c80 | 24 |
+| 0x00473B50 | UIListBox::_init_473b50 | 24 |
+| 0x00472AA0 | UIListBox::_init_472aa0 | 23 |
+| 0x00460A90 | PAL_GDB::Method_0a90 | 16 |
+| 0x00424C20 | PalScriptMgr::ExecuteBlock | 16 |
+| 0x00435830 | PalScript::_nearby_435830 | 14 |
+| 0x0040E5F0 | ScriptSystem::Execute | 14 |
+| 0x0041A450 | RoleSystem::_nearby_41a450 | 14 |
+| 0x00435BF0 | PalScript::_nearby_435bf0 | 14 |
+| 0x004E5800 | PAL_GDB::_auto_4e5800 | 13 |
+| 0x00494D70 | EquipUI::HandleInput | 12 |
+| 0x0042F460 | PalScriptMgr::_nearby_42f460 | 12 |
+| 0x0042EBE0 | PalScriptMgr::ExecuteOpcode | 12 |
+| 0x00417420 | RoleSystem::_nearby_417420 | 11 |
+| 0x0048D040 | CameraCtrl::UpdateBlendWeight | 11 |
+| 0x00407320 | PAL3::StartCombat | 11 |
+
+状态：**跳过自动修复，标记为手动修复阶段处理。**
+
 ## 偏移对齐验证
 
 ```
