@@ -163,9 +163,9 @@
       "source": "binary:2x access"
     },
     "456": {
-      "name": "_todo_1C8",
+      "name": "m_fOrbitAngle",
       "type": "float",
-      "source": "binary:2x access"
+      "source": "ida_decomp:_nearby_41c670 sin(this)*v5, cos(this)*v7, 5 refs"
     },
     "460": {
       "name": "m_mode",
@@ -173,9 +173,9 @@
       "source": "binary:param_assign — CameraCtrl::SetCamMode: mov [ecx+0x1cc],eax=mode"
     },
     "468": {
-      "name": "_field_1D4",
+      "name": "m_fCamDist",
       "type": "float",
-      "source": "binary:3x access"
+      "source": "ida_decomp:_sub_504540 = 50.0f, used as multiplier, 6 refs"
     },
     "472": {
       "name": "m_nWidth",

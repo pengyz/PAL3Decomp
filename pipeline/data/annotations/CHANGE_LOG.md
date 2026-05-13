@@ -667,3 +667,20 @@
 - **置信度**: 75-85
 - **方法**: 利用 query_todo_fields.py 输出的 IDA 反编译上下文，匹配已知 API 模式（gbMatrix4::SetAxisAngle, sprintf, switch, Destroy, GetTickCount）和数值模式（角度常数 0.0043633231, 0.017453292, 累加器 += 10, stride 乘法）
 - **影响**: 命名率 85.2% → 86.0%
+
+### [2026-05-14] IDA 高引用字段强制反编译命名（8 个类，17 个字段）
+
+- **变更**: 17 个 _todo_ 字段命名
+  - CScreenMode: 4 个（m_nArrayCapacity, m_pArrayData, m_nDisplayMode, m_pItemList）
+  - CCBStage: 3 个（m_nTaskCount, m_nRoleSlot, m_nResetState）
+  - CameraCtrl: 2 个（m_fOrbitAngle — sin/cos 模式, m_fCamDist — 50.0f 常量）
+  - UIListBox: 2 个（m_pDynBuffer — delete 模式, m_nLockValue）
+  - RenderTarget: 2 个（m_fOffsetParam, m_fInvScale — 1.0/x 模式）
+  - Actor: 1 个（m_fAnimDelta — += *v6 累加）
+  - RoleSystem: 1 个（m_fTileHeight — Tile>=this 比较）
+  - PalScriptMgr: 1 个（m_pSubScript — 传给子函数）
+  - PAL3: 1 个（m_pCollisionObj — deref+16 碰撞检测）
+- **置信度**: 75
+- **方法**: 新建 `query_highref_fields.py`，对 refs>=3 但无 decomp context 的字段强制 Hex-Rays 反编译。44/50 个高引用字段获得了上下文。
+- **证据类型**: [A] binary disp32 + [C] IDA Hex-Rays decomp context（函数名+操作模式）
+- **影响**: 命名率 86.0% → 86.1%

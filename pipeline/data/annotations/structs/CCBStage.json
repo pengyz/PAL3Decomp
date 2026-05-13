@@ -172,9 +172,9 @@
       "source": "binary:gap_clean"
     },
     "164": {
-      "name": "_todo_A4",
+      "name": "m_nRoleSlot",
       "type": "int",
-      "source": "binary:gap_clean"
+      "source": "ida_decomp:ProcTaskSlot 80*this, ProcessRoleEffect 20*this, 6 refs"
     },
     "168": {
       "name": "m_nForceDelTask",
@@ -317,9 +317,9 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "156": {
-      "name": "_todo_09C",
+      "name": "m_nTaskCount",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:GetStageRole --this, GetActiveTaskCount used, 3 refs"
     },
     "273": {
       "name": "m_bAllDone",
@@ -427,9 +427,9 @@
       "source": "ida_decomp:ProcessTurn delta = y - prev, store new, 3 refs"
     },
     "580": {
-      "name": "_todo_244",
+      "name": "m_nResetState",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_nearby_5040d0 = -1, 4 refs"
     }
   },
   "pdb_size": 673992,
