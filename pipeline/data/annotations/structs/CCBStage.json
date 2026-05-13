@@ -222,49 +222,49 @@
       "source": "binary:disp32_24hits_12funcs"
     },
     "6584": {
-      "name": "_todo_19B8",
+      "name": "m_fCurPosX",
       "type": "float",
-      "source": "binary:disp32_16hits_6funcs"
+      "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6608, 16 refs"
     },
     "6588": {
-      "name": "_todo_19BC",
+      "name": "m_fCurPosY",
       "type": "float",
-      "source": "binary:disp32_13hits_5funcs"
+      "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6612, 13 refs"
     },
     "6592": {
-      "name": "_todo_19C0",
+      "name": "m_fCurPosZ",
       "type": "float",
-      "source": "binary:disp32_14hits_6funcs"
+      "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6616, 14 refs"
     },
     "6608": {
-      "name": "_todo_19D0",
-      "type": "int",
-      "source": "binary:disp32_18hits_5funcs"
+      "name": "m_fTargetPosX",
+      "type": "float",
+      "source": "ida_decomp:CheckAllDone from array[idx]+432, 18 refs"
     },
     "6612": {
-      "name": "_todo_19D4",
-      "type": "int",
-      "source": "binary:disp32_17hits_5funcs"
+      "name": "m_fTargetPosY",
+      "type": "float",
+      "source": "ida_decomp:CheckAllDone from array[idx]+436, 17 refs"
     },
     "6616": {
-      "name": "_todo_19D8",
-      "type": "int",
-      "source": "binary:disp32_17hits_5funcs"
+      "name": "m_fTargetPosZ",
+      "type": "float",
+      "source": "ida_decomp:CheckAllDone from array[idx]+440, 17 refs"
     },
     "6620": {
-      "name": "_todo_19DC",
+      "name": "m_fVelX",
       "type": "float",
-      "source": "binary:disp32_12hits_3funcs"
+      "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs"
     },
     "6624": {
-      "name": "_todo_19E0",
+      "name": "m_fVelY",
       "type": "float",
-      "source": "binary:disp32_12hits_3funcs"
+      "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs"
     },
     "6628": {
-      "name": "_todo_19E4",
+      "name": "m_fVelZ",
       "type": "float",
-      "source": "binary:disp32_12hits_3funcs"
+      "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs"
     },
     "6632": {
       "name": "_todo_19E8",
@@ -327,14 +327,14 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "284": {
-      "name": "_todo_11C",
+      "name": "m_nActiveIdx",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:CheckAllDone IsActive(this+284)=roleIdx, 44 refs"
     },
     "396": {
-      "name": "_todo_18C",
+      "name": "m_nActionIdx",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:CheckAllDone 96*this+396=array_stride_idx, 64 refs"
     },
     "448": {
       "name": "_todo_1C0",
@@ -342,24 +342,24 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "452": {
-      "name": "_todo_1C4",
+      "name": "m_fRotPitch",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:ProcessTurn -= v16*0.0043633231, 3 refs"
     },
     "456": {
-      "name": "_todo_1C8",
+      "name": "m_fRotYaw",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:ProcessTurn += v15*0.0043633231, 7 refs"
     },
     "464": {
-      "name": "_todo_1D0",
+      "name": "m_fTimeAccum",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:ProcessTurn += v11*0.001, 3 refs"
     },
     "468": {
-      "name": "_todo_1D4",
+      "name": "m_fTimerRaw",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:ProcessTurn += v11, set to 100.0, 3 refs"
     },
     "480": {
       "name": "_todo_1E0",
@@ -412,19 +412,19 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "544": {
-      "name": "_todo_220",
+      "name": "m_pController",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs"
     },
     "552": {
-      "name": "_todo_228",
+      "name": "m_fPrevRotX",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:ProcessTurn delta = x - prev, store new, 3 refs"
     },
     "556": {
-      "name": "_todo_22C",
+      "name": "m_fPrevRotY",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:ProcessTurn delta = y - prev, store new, 3 refs"
     },
     "580": {
       "name": "_todo_244",

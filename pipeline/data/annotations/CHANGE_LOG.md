@@ -628,3 +628,24 @@
   2. [A] this+4/8/12 = m_fTargetX/Y/Z（已知成员），确认 1364/1368/1372 是位置副本
   3. +1352 = target Z（第 3 分量），+1368 = origin Y（从 m_fTargetY 复制），+1372 = origin Z（从 m_fTargetZ 复制）
 - **影响**: 命名率 84.7% → 84.8%
+
+### [2026-05-14] IDA 辅助批量字段命名（RenderTarget2, CCBStage, CCBRoleState）
+
+- **变更**: 36 个 _todo_ 字段命名
+  - RenderTarget2: 5 个（m_pTargetArray, m_nCurTarget, m_nCurPass, m_nMaxTargets, m_nMaxPasses）
+  - CCBStage: 18 个（m_nActiveIdx, m_nActionIdx, m_fRotPitch/Yaw, m_fCurPos/TargetPos/Vel XYZ 等）
+  - CCBRoleState: 13 个（m_fLerpCurX/Y, m_nLerpTarget/Dest, m_fLerpSpeed, m_nScrollOffset 等）
+- **置信度**: 80
+- **方法**: 新建 IDAPython 脚本 `query_todo_fields.py`，从 IDB 中批量查询 _todo_ 字段的二进制 xref + Hex-Rays 反编译上下文。774 个字段有二进制引用，239 个有反编译上下文。
+- **证据**:
+  1. [A] RenderTarget2+0x18: `89 46 18` = mov [esi+0x18],eax（alloc 1216 字节），stride-152 循环 8 次
+  2. [A] RenderTarget2+0x28: `C7 46 28 08000000` = mov [esi+0x28],8（最大目标数）
+  3. [A] CCBStage+0x11C: 44 次二进制引用，传给 IsActive(roleIdx)
+  4. [A] CCBStage+0x18C: 64 次引用，`96 * this[0x18C]` stride 模式
+  5. [A] CCBStage+0x1C8: 角度 `* 0.0043633231`（π/720 弧度常数）累加模式
+  6. [A] CCBStage+0x19D0-0x19E4: XYZ 坐标对，delta + lerp 插值模式，16-18 refs/字段
+  7. [A] CCBRoleState+0x495C: `speed * dt * dir + cur` 线性插值模式，7 refs
+  8. [A] CCBRoleState+0x496C: `_method_449f00` 直接存入参数 a2，转 float 后存回
+  9. [A] CCBRoleState+0x5658: `+= 10` 滚动累加模式，10 refs
+- **工具改进**: 新增 `pipeline/ida/query_todo_fields.py` IDAPython 脚本
+- **影响**: 命名率 84.8% → 85.2%

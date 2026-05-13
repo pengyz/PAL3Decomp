@@ -93,29 +93,29 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "24": {
-      "name": "_todo_018",
+      "name": "m_pTargetArray",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "binary:alloc 1216 bytes, mov [esi+0x18],eax + stride-152 loop"
     },
     "28": {
-      "name": "_todo_01C",
+      "name": "m_nCurTarget",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "decomp:152*this->_todo_01C as array index, init=-1"
     },
     "32": {
-      "name": "_todo_020",
+      "name": "m_nCurPass",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "decomp:72*this->_todo_020 as index, init=-1"
     },
     "40": {
-      "name": "_todo_028",
+      "name": "m_nMaxTargets",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "binary:C7 46 28 08=mov [esi+0x28],8 + loop bound"
     },
     "44": {
-      "name": "_todo_02C",
+      "name": "m_nMaxPasses",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "decomp:set to 10, used as loop bound in _nearby_4c0650"
     },
     "48": {
       "name": "_todo_030",
