@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 .claude/hooks/validate-struct-edit.py"
+            "command": "python3 .claude/hooks/validate-annotations.py"
           }
         ]
       },
@@ -15,7 +15,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 .claude/hooks/validate-struct-edit.py"
+            "command": "python3 .claude/hooks/validate-annotations.py"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/validate-annotations.py"
           }
         ]
       }

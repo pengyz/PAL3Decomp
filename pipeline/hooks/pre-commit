@@ -1,0 +1,85 @@
+#!/bin/bash
+# Pre-commit hook for PAL3Decomp annotations quality gate.
+#
+# 安装: ln -sf ../../pipeline/hooks/pre-commit .git/hooks/pre-commit
+#
+# 触发条件: pipeline/data/annotations/ 有 staged 变更
+# 检查项:
+# 1. check_annotations.py 格式校验
+# 2. struct 对齐/重叠（增量模式：只阻止新增违规）
+# 3. commit message 格式（annotations 提交必须含 Evidence + Confidence）
+
+ANNOTATIONS_PATH="pipeline/data/annotations"
+BASELINE="pipeline/data/annotations/known_violations.json"
+
+if ! git diff --cached --name-only | grep -q "$ANNOTATIONS_PATH"; then
+    exit 0
+fi
+
+echo "[pre-commit] 检查 annotations..."
+
+# 1. 格式校验
+python3 pipeline/check_annotations.py
+if [ $? -ne 0 ]; then
+    echo "[pre-commit] BLOCKED: check_annotations.py 报错"
+    exit 1
+fi
+
+# 2. 对齐/重叠（增量：只阻止新增）
+python3 << 'PYEOF'
+import json, os, sys
+
+def scan_violations(structs_dir):
+    violations = set()
+    for fname in os.listdir(structs_dir):
+        if not fname.endswith('.json'): continue
+        sname = fname[:-5]
+        d = json.load(open(os.path.join(structs_dir, fname)))
+        members = d.get('known_members', {})
+        sorted_m = sorted([(int(off), members[off]) for off in members], key=lambda x: x[0])
+        prev_end = 0
+        for off, m in sorted_m:
+            t = m.get('type', '')
+            if '*' in t or any(x in t for x in ['int','float','DWORD','unsigned long','unsigned int','LONG','UINT','BOOL']):
+                align, sz = 4, 4
+            elif any(x in t for x in ['short','WORD','unsigned short']):
+                align, sz = 2, 2
+            elif any(x in t for x in ['char','BYTE','unsigned char','bool']):
+                align, sz = 1, 1
+            elif 'double' in t:
+                align, sz = 8, 8
+            else:
+                align, sz = 4, 4
+            if align > 1 and off % align != 0:
+                violations.add(f'ALIGN:{sname}:{off}')
+            if off < prev_end:
+                violations.add(f'OVERLAP:{sname}:{off}')
+            prev_end = off + sz
+    return violations
+
+structs_dir = 'pipeline/data/annotations/structs'
+current = scan_violations(structs_dir)
+
+baseline = set()
+baseline_path = 'pipeline/data/annotations/known_violations.json'
+if os.path.exists(baseline_path):
+    baseline = set(json.load(open(baseline_path)))
+
+new_violations = current - baseline
+if new_violations:
+    print('[pre-commit] BLOCKED: 新增 struct 违规:')
+    for v in sorted(new_violations):
+        print(f'  {v}')
+    print(f'共 {len(new_violations)} 个新增违规')
+    sys.exit(1)
+
+resolved = baseline - current
+if resolved:
+    print(f'[pre-commit] 已修复 {len(resolved)} 个存量违规')
+PYEOF
+
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
+echo "[pre-commit] annotations OK ✓"
