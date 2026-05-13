@@ -82,9 +82,9 @@
       "source": "binary:raw_final"
     },
     "80": {
-      "name": "_field_050",
+      "name": "m_nStateMode",
       "type": "unsigned char",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_auto_42b510 ==2/if(this), 2 refs"
     },
     "84": {
       "name": "_field_054",
@@ -202,9 +202,9 @@
       "source": "gen_headers_9.2"
     },
     "175": {
-      "name": "_field_0AF",
+      "name": "m_bActionPause",
       "type": "unsigned char",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_auto_42ad40 copied to +209, if(!this), 2 refs"
     },
     "176": {
       "name": "m_szModelName",
@@ -232,9 +232,9 @@
       "source": "ida_decomp:_auto_420a10 if(Tile>=this), 7 refs"
     },
     "224": {
-      "name": "_field_0E0",
+      "name": "m_nSpawnData",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:LoadData deref as byte*, copied to +888, 2 refs"
     },
     "236": {
       "name": "_field_0EC",
@@ -242,9 +242,9 @@
       "source": "binary:gap_r2"
     },
     "240": {
-      "name": "_field_0F0",
+      "name": "m_nSpawnFlags",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_417040 = a2+68"
     },
     "244": {
       "name": "m_nRoleAction",
@@ -277,14 +277,14 @@
       "source": "ida_decomp:_nearby_417040 =a2+88, copied to +1268"
     },
     "264": {
-      "name": "_field_108",
+      "name": "m_nSpawnExtra",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_417040 = a2+92, copied to a2+24, 2 refs"
     },
     "268": {
-      "name": "_field_10C",
+      "name": "m_nSpawnParam2",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_417040 = a2+96"
     },
     "272": {
       "name": "m_szModelPath",
@@ -297,14 +297,14 @@
       "source": "binary:gap_access"
     },
     "300": {
-      "name": "_field_12C",
+      "name": "m_bSpawnByteA",
       "type": "unsigned char",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_417040 = byte(a2+128)"
     },
     "301": {
-      "name": "_field_12D",
+      "name": "m_bSpawnByteB",
       "type": "unsigned char",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_417040 = byte(a2+129)"
     },
     "304": {
       "name": "m_nSpawnParam",
@@ -317,9 +317,9 @@
       "source": "ida_decomp:_sub_416FA0/416FE0 = 0"
     },
     "352": {
-      "name": "_field_160",
+      "name": "m_nSavedState",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:ctor_1D20 =0, _method_532710 =v7, 3 refs"
     },
     "356": {
       "name": "m_nVisState",
@@ -332,9 +332,9 @@
       "source": "ida_decomp:ctor_1D20 =0, _method_532710 if(!this)"
     },
     "364": {
-      "name": "_field_16C",
+      "name": "m_wndFrame",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:ctor_1D20 UIFrameWnd init, GetChild, 3 refs"
     },
     "380": {
       "name": "m_nActive",
@@ -437,14 +437,14 @@
       "source": "binary:raw_final"
     },
     "500": {
-      "name": "_field_1F4",
+      "name": "m_nCachedA",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_417040 = a2+328"
     },
     "504": {
-      "name": "_field_1F8",
+      "name": "m_nCachedB",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_417040 = a2+332"
     },
     "508": {
       "name": "m_nTransform",
@@ -452,14 +452,14 @@
       "source": "binary:raw_batch"
     },
     "516": {
-      "name": "_todo_204",
+      "name": "m_bUIFlagA",
       "type": "unsigned char",
-      "source": "binary:disp32_method_532710"
+      "source": "ida_decomp:_method_532710 if(this) then =0, 2 refs"
     },
     "517": {
-      "name": "_todo_205",
+      "name": "m_bUIFlagB",
       "type": "unsigned char",
-      "source": "binary:disp32_3hits_method_532710"
+      "source": "ida_decomp:_method_532710 if(this) then =0, 3 refs"
     },
     "520": {
       "name": "_field_208",
@@ -517,19 +517,19 @@
       "source": "binary:RenderRole_0x412400"
     },
     "644": {
-      "name": "_field_284",
-      "type": "int",
-      "source": "binary:raw_final"
+      "name": "m_fMatrixA",
+      "type": "float",
+      "source": "ida_decomp:_nearby_41bad0 =0"
     },
     "648": {
-      "name": "_field_288",
-      "type": "int",
-      "source": "binary:raw_final"
+      "name": "m_fMatrixB",
+      "type": "float",
+      "source": "ida_decomp:_nearby_41bad0 =1.0f(0x3F800000)"
     },
     "652": {
-      "name": "_field_28C",
-      "type": "int",
-      "source": "binary:raw_final"
+      "name": "m_fMatrixC",
+      "type": "float",
+      "source": "ida_decomp:_nearby_41bad0 =0"
     },
     "656": {
       "name": "_field_290",
@@ -547,14 +547,14 @@
       "source": "binary:raw_final"
     },
     "668": {
-      "name": "_field_29C",
-      "type": "int",
-      "source": "binary:raw_final"
+      "name": "m_fMatrixE",
+      "type": "float",
+      "source": "ida_decomp:_nearby_41bad0 =1.0f(0x3F800000)"
     },
     "672": {
-      "name": "_field_2A0",
-      "type": "int",
-      "source": "binary:raw_final"
+      "name": "m_fMatrixF",
+      "type": "float",
+      "source": "ida_decomp:_nearby_41bad0 =0"
     },
     "676": {
       "name": "_field_2A4",
@@ -592,9 +592,9 @@
       "source": "ida_decomp:ProcessAction passed to sub_420320/421DD0"
     },
     "808": {
-      "name": "_field_328",
+      "name": "m_nActionData",
       "type": "int",
-      "source": "binary:raw_batch"
+      "source": "ida_decomp:ProcessAction = v21, passed to _sub_420320, 2 refs"
     },
     "812": {
       "name": "_field_32C",
@@ -707,14 +707,14 @@
       "source": "gen_headers_9.2"
     },
     "1272": {
-      "name": "_field_4F8",
+      "name": "m_nCollisionState",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_sub_413850 checked, _nearby_41bad0 =0, 2 refs"
     },
     "1276": {
-      "name": "_field_4FC",
+      "name": "m_nCollisionParam",
       "type": "int",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_4150c0 loaded, _nearby_41bad0 =1, 2 refs"
     },
     "1280": {
       "name": "m_bPathActive",
@@ -902,14 +902,14 @@
       "source": "binary:raw_1126170624=3.0f"
     },
     "1428": {
-      "name": "_field_594",
+      "name": "m_fMoveRadius",
       "type": "float",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_417040 =v25, _nearby_417420 Length<=this, 3 refs"
     },
     "1432": {
-      "name": "_field_598",
+      "name": "m_fMoveSpeed",
       "type": "float",
-      "source": "binary:raw_final"
+      "source": "ida_decomp:_nearby_417040 =dword_58B314, *1.4>=Length, 3 refs"
     },
     "1436": {
       "name": "m_nMoveReset",
@@ -987,14 +987,14 @@
       "source": "binary:raw_batch"
     },
     "1496": {
-      "name": "_todo_5D8",
+      "name": "m_fMoveParamY",
       "type": "float",
-      "source": "binary:raw_batch"
+      "source": "ida_decomp:MoveRole = a2[1]"
     },
     "1500": {
-      "name": "_todo_5DC",
+      "name": "m_fMoveParamZ",
       "type": "float",
-      "source": "binary:raw_batch"
+      "source": "ida_decomp:MoveRole = a2[2]"
     },
     "1572": {
       "name": "_todo_624",
@@ -1002,9 +1002,9 @@
       "source": "binary:disp32_method_44b470"
     },
     "2988": {
-      "name": "_todo_BAC",
+      "name": "m_wndPanel",
       "type": "int",
-      "source": "binary:disp32_method_532410"
+      "source": "ida_decomp:ctor_1D20, _method_532410 vtable call, 2 refs"
     },
     "4088": {
       "name": "_field_FF8",
@@ -1047,9 +1047,9 @@
       "source": "binary:_method_532710"
     },
     "4540": {
-      "name": "_todo_11BC",
+      "name": "m_ctrlParabolaA",
       "type": "int",
-      "source": "binary:disp32_2funcs"
+      "source": "ida_decomp:ctor_1D20 UIItem::Refresh, GetState==2, 2 refs"
     },
     "4552": {
       "name": "m_nMoveSlot",
@@ -1062,14 +1062,14 @@
       "source": "ida_decomp:_nearby_413420 v11>=this, _sub_413850 v12<this, 3 refs"
     },
     "4996": {
-      "name": "_todo_1384",
+      "name": "m_wndLabel",
       "type": "int",
-      "source": "binary:disp32_method_532410"
+      "source": "ida_decomp:_method_532410 UIWnd::SetEnable(text), 2 refs"
     },
     "5908": {
-      "name": "_todo_1714",
+      "name": "m_ctrlParabolaB",
       "type": "int",
-      "source": "binary:disp32_method_532710"
+      "source": "ida_decomp:ctor_1D20 UIItem::Refresh, GetState==2, 2 refs"
     },
     "7276": {
       "name": "m_bStateFlag1",

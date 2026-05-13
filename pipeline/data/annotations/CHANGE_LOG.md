@@ -752,3 +752,28 @@
     - 调试: m_bDebugMode, m_bDebugModeB (CreateFromTemplate 参数)
 - **置信度**: 80 (A+ 级 — IDA apply 后 Hex-Rays 偏移)
 - **影响**: 命名率 87.3% → 87.9%
+
+### [2026-05-14] 大类深度命名第二轮（CScreenMode 39, RoleSystem 30）
+
+- **变更**: 69 个 _todo_ 字段命名
+  - CScreenMode: 39 个
+    - 进度条续: m_nBarPosX/Y, m_fBarOffsetX/Y/W, m_nBarParam
+    - 渐变/动画: m_fFadeSpeed(+=dt), m_fFadeParam(累加), m_bFadeActive(toggle)
+    - UI 布局: m_nLayoutParam, m_nLayoutState, m_wndAssistA
+    - 嵌入控件: m_pParabolaCtrl(GetState), m_wndChild1/2, m_wndDirty(SetDirty), m_uiScene(UIScene::ctor)
+    - 提示框: m_wndTooltipC/D/E
+    - 计时器: m_nTickStampA/B, m_bTimerInitA/B, m_nTimerValue
+    - 滚动系统: m_nScrollPosX/Y, m_nScrollMinX, m_nScrollMaxX/Y, m_nScrollAccum, m_bScrollInit
+    - 列表控件: m_pUIListA/B/C
+    - 菜单: m_nMenuParam, m_nMenuState, m_nParabolaState
+    - 其他: m_bTransitionActive, m_nChildUpdateCount
+  - RoleSystem: 30 个
+    - 移动: m_fMoveRadius(<=Length), m_fMoveSpeed(*1.4>=Length), m_fMoveParamY/Z
+    - UI: m_wndFrame, m_wndPanel, m_ctrlParabolaA/B, m_wndLabel
+    - 状态字节: m_nStateMode(==2), m_bActionPause, m_bUIFlagA/B
+    - 生成参数: m_nSpawnData/Flags/Extra/Param2, m_bSpawnByteA/B (从 a2 结构体复制)
+    - 缓存: m_nSavedState, m_nCachedA/B, m_nActionData
+    - 碰撞: m_nCollisionState, m_nCollisionParam
+    - 矩阵: m_fMatrixA-F (0/1.0f 初始化模式 — 单位矩阵分量)
+- **置信度**: 75-80 (A+ IDA decomp + 模式匹配)
+- **影响**: 命名率 87.9% → 88.6%，未命名跌破 1100

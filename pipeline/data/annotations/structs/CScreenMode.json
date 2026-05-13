@@ -77,14 +77,14 @@
       "source": "ida_decomp:_init_52ed30 !=4/==4 check, 3 refs"
     },
     "352": {
-      "name": "_field_160",
+      "name": "m_nParabolaState",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:_method_527dc0 switch(this), byte check, 4 refs"
     },
     "360": {
-      "name": "_field_168",
+      "name": "m_nMenuParam",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "ida_decomp:_init_4adc30 =v8[1]/=0, 6 refs"
     },
     "512": {
       "name": "_field_200",
@@ -142,14 +142,14 @@
       "source": "ida_decomp:SetProgress this+244-v18, 4 refs"
     },
     "144": {
-      "name": "_todo_90",
+      "name": "m_nBarPosX",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:SetProgress +244-HIDWORD, 3 refs"
     },
     "148": {
-      "name": "_todo_94",
+      "name": "m_nBarPosY",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "ida_decomp:SetProgress loaded, cast to float→m_fProgressMax, 2 refs"
     },
     "220": {
       "name": "m_fProgressRatio",
@@ -182,9 +182,9 @@
       "source": "binary:1x access"
     },
     "268": {
-      "name": "_todo_10C",
+      "name": "m_nBarParam",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:SetProgress loaded twice, 2 refs"
     },
     "364": {
       "name": "_field_16C",
@@ -192,9 +192,9 @@
       "source": "binary:1x access"
     },
     "368": {
-      "name": "_field_170",
+      "name": "m_nMenuState",
       "type": "int",
-      "source": "binary:3x access"
+      "source": "ida_decomp:_init_494250 =-1, _method_494660 =0, 3 refs"
     },
     "372": {
       "name": "_field_174",
@@ -302,9 +302,9 @@
       "source": "binary:3x access"
     },
     "1064": {
-      "name": "_field_428",
+      "name": "m_wndDirty",
       "type": "int",
-      "source": "binary:3x access"
+      "source": "ida_decomp:_init_529e40 UIWnd::SetDirty, vtable call, 2 refs"
     },
     "1068": {
       "name": "_field_42C",
@@ -337,19 +337,19 @@
       "source": "binary:1x access"
     },
     "1252": {
-      "name": "_field_4E4",
+      "name": "m_nTickStampA",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:_init_529e40 =TickCount, 2 refs"
     },
     "1256": {
-      "name": "_field_4E8",
+      "name": "m_nTickStampB",
       "type": "int",
-      "source": "binary:3x access"
+      "source": "ida_decomp:_init_529e40 =TickCount, delta=now-this, 3 refs"
     },
     "1260": {
-      "name": "_field_4EC",
+      "name": "m_bTimerInitA",
       "type": "unsigned char",
-      "source": "binary:3x access"
+      "source": "ida_decomp:_init_529e40 if(!this) =1, 3 refs"
     },
     "1264": {
       "name": "_field_4F0",
@@ -362,19 +362,19 @@
       "source": "binary:1x access"
     },
     "1272": {
-      "name": "_field_4F8",
+      "name": "m_uiScene",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:ctor_3F30 UIScene::ctor_BCE0, _init_529e40 =v9, 3 refs"
     },
     "1276": {
-      "name": "_field_4FC",
+      "name": "m_nTimerValue",
       "type": "int",
-      "source": "binary:3x access"
+      "source": "ida_decomp:_init_529e40 =v9, loaded, 3 refs"
     },
     "1280": {
-      "name": "_field_500",
+      "name": "m_bTimerInitB",
       "type": "unsigned char",
-      "source": "binary:3x access"
+      "source": "ida_decomp:_init_529e40 if(!this) =1, 3 refs"
     },
     "1284": {
       "name": "m_wndPanel1",
@@ -387,14 +387,14 @@
       "source": "binary:lea [this+0x59C]→ecx→UIWnd::GetRect"
     },
     "1588": {
-      "name": "_field_634",
+      "name": "m_nScrollPosX",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:_init_529e40 /2 for center calc, 2 refs"
     },
     "1592": {
-      "name": "_field_638",
+      "name": "m_nScrollPosY",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:_init_529e40 loaded, 2 refs"
     },
     "1596": {
       "name": "m_rcClickRegion",
@@ -402,19 +402,19 @@
       "source": "ida_decomp:_init_529e40 PtInRect(this,pt), 9 refs"
     },
     "1600": {
-      "name": "_field_640",
+      "name": "m_nScrollMinX",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "ida_decomp:_init_529e40 subtracted from +1608, rand()%range, 3 refs"
     },
     "1604": {
-      "name": "_field_644",
+      "name": "m_nScrollMaxY",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:_init_529e40 subtracted from +1604, rect calc, 2 refs"
     },
     "1608": {
-      "name": "_field_648",
+      "name": "m_nScrollMaxX",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:_init_529e40 -2*margin, range endpoint, 3 refs"
     },
     "1624": {
       "name": "m_nPageCounter",
@@ -422,9 +422,9 @@
       "source": "ida_decomp:_init_529e40 ++, 7 refs"
     },
     "1628": {
-      "name": "_field_65C",
+      "name": "m_nScrollAccum",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "ida_decomp:_init_529e40 += array[v8], loaded, 3 refs"
     },
     "1632": {
       "name": "_field_660",
@@ -462,9 +462,9 @@
       "source": "binary:3x access"
     },
     "1836": {
-      "name": "_field_72C",
+      "name": "m_bScrollInit",
       "type": "unsigned char",
-      "source": "binary:4x access"
+      "source": "ida_decomp:_init_529e40 byte toggle, 4 refs"
     },
     "2184": {
       "name": "_field_888",
@@ -557,19 +557,19 @@
       "source": "binary:disp32_8hits_1funcs"
     },
     "248": {
-      "name": "_todo_F8",
+      "name": "m_fBarOffsetX",
       "type": "float",
-      "source": "binary:disp32_2hits_1funcs"
+      "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
     },
     "252": {
-      "name": "_todo_FC",
+      "name": "m_fBarOffsetY",
       "type": "float",
-      "source": "binary:disp32_2hits_1funcs"
+      "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
     },
     "256": {
-      "name": "_todo_100",
+      "name": "m_fBarOffsetW",
       "type": "float",
-      "source": "binary:disp32_2hits_1funcs"
+      "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
     },
     "260": {
       "name": "_todo_104",
@@ -577,9 +577,9 @@
       "source": "binary:disp32_2hits_1funcs"
     },
     "356": {
-      "name": "_todo_164",
+      "name": "m_pParabolaCtrl",
       "type": "int",
-      "source": "binary:disp32_4hits_2funcs"
+      "source": "ida_decomp:_method_527dc0 UIParabolaCtrl::GetState(this), 4 refs"
     },
     "856": {
       "name": "_todo_358",
@@ -592,9 +592,9 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "896": {
-      "name": "_todo_380",
+      "name": "m_wndChild2",
       "type": "int",
-      "source": "binary:disp32_3hits_3funcs"
+      "source": "ida_decomp:_auto_455a20/455b30 pointer, 3 refs"
     },
     "972": {
       "name": "_todo_3CC",
@@ -602,9 +602,9 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "1156": {
-      "name": "_todo_484",
+      "name": "m_bTransitionActive",
       "type": "unsigned char",
-      "source": "binary:disp32_5hits_1funcs"
+      "source": "ida_decomp:_init_52c480 =1/if(!this), 3 refs"
     },
     "1157": {
       "name": "_todo_485",
@@ -712,9 +712,9 @@
       "source": "ida_decomp:_init_533250 >= v47 compare, 10 refs"
     },
     "36": {
-      "name": "_todo_024",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_fFadeSpeed",
+      "type": "float",
+      "source": "ida_decomp:_init_533250 += this+12, accumulated, 3 refs"
     },
     "40": {
       "name": "m_fCountdown",
@@ -722,9 +722,9 @@
       "source": "ida_decomp:_init_533250 -= 0.5, 8 refs"
     },
     "44": {
-      "name": "_todo_02C",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_fFadeParam",
+      "type": "float",
+      "source": "ida_decomp:_init_533250 = this+20 + this, accumulated, 3 refs"
     },
     "48": {
       "name": "_todo_030",
@@ -742,9 +742,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "60": {
-      "name": "_todo_03C",
+      "name": "m_bFadeActive",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_533250 byte toggle 1/0, 3 refs"
     },
     "64": {
       "name": "_todo_040",
@@ -752,9 +752,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "76": {
-      "name": "_todo_04C",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_nLayoutParam",
+      "type": "int",
+      "source": "ida_decomp:_init_47be20 =0, passed as arg, 4 refs"
     },
     "80": {
       "name": "m_nUIState",
@@ -782,9 +782,9 @@
       "source": "ida_decomp:SetProgress loaded, 10 refs"
     },
     "100": {
-      "name": "_todo_064",
+      "name": "m_nLayoutState",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4593c0 =v4, ctor_3F30 =0, 2 refs"
     },
     "104": {
       "name": "m_nLayoutOffX",
@@ -817,14 +817,14 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "164": {
-      "name": "_todo_0A4",
+      "name": "m_wndAssistA",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4593c0 UIWnd::CreateFromTemplate(assistantDea), 2 refs"
     },
     "888": {
-      "name": "_todo_378",
+      "name": "m_wndChild1",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_47be20 UIWnd::GetChild, 3 refs"
     },
     "992": {
       "name": "_todo_3E0",
@@ -847,9 +847,9 @@
       "source": "ida_decomp:_init_4593c0 SetTooltipText, vtable+28 call, 4 refs"
     },
     "1232": {
-      "name": "_todo_4D0",
+      "name": "m_wndTooltipC",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_47be20 vtable+28, UIWnd::GetChild, 3 refs"
     },
     "1680": {
       "name": "_todo_690",
@@ -872,29 +872,29 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "2260": {
-      "name": "_todo_8D4",
+      "name": "m_wndTooltipD",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4593c0 SetTooltipText, 4 refs"
     },
     "2608": {
-      "name": "_todo_A30",
+      "name": "m_wndTooltipE",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4593c0 SetTooltipText, 4 refs"
     },
     "3260": {
-      "name": "_todo_CBC",
+      "name": "m_pUIListA",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4593c0 =v13, loaded, 2 refs"
     },
     "3264": {
-      "name": "_todo_CC0",
+      "name": "m_pUIListB",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4593c0 =v15, UIListBox::_init_46df40, 2 refs"
     },
     "3268": {
-      "name": "_todo_CC4",
+      "name": "m_pUIListC",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "ida_decomp:_init_4593c0 =v17, UIListBox::_init_471590, 2 refs"
     },
     "3284": {
       "name": "m_bDebugMode",
