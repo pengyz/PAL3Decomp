@@ -337,6 +337,18 @@
 - **影响**: 消除大量 `this[N]` 越界访问（CameraCtrl 1695 处, CScreenMode 1636 处等）
 - **注意**: 218 个新成员全部有 A 级二进制证据（指令中的 disp 值确认偏移），但名字是占位的，需要后续从代码语义推断命名
 
+### [2026-05-13] CameraCtrl 补充偏移 + 语义命名
+
+- **变更**:
+  1. CameraCtrl 补充 33 个新偏移（修正扫描方法，覆盖 ecx 直接访问），总成员 26→59
+  2. 2 个确认命名：m_nWidth(+472), m_nHeight(+476)
+- **置信度**: 85 (偏移), 90 (命名: m_nWidth/m_nHeight)
+- **证据 (命名)**:
+  1. [A] SetDimention(0x41CA90): `89 81 D8010000` = mov [ecx+0x1D8],eax — 参数1(w)直接存入 +472
+  2. [A] 同函数 `89 91 DC010000` = mov [ecx+0x1DC],edx — 参数2(h)直接存入 +476
+  3. 函数签名 `void __thiscall(CameraCtrl *this, int w, int h)` 确认参数语义
+- **回退**: m_pTarget/m_fFOV/m_nViewMode 等 5 个推断命名因仅有 D 级证据（领域知识推断）不达标，保留 _field_ 占位
+
 ### [2026-05-13] CCBSystem::GetDeltaTime/GetControl 重分类
 
 - **变更**:
