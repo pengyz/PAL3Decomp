@@ -354,8 +354,13 @@ def apply_annotations():
         s_fail = still_fail
 
     if s_fail:
-        for sname, _ in s_fail:
-            print("[!] Struct failed: %s" % sname)
+        for sname, sinfo in s_fail:
+            decl = build_struct_decl(sname, sinfo, structs, vtables)
+            decl_preview = (decl[:200] + '...') if decl and len(decl) > 200 else decl
+            print("[!] Struct failed: %s (decl_len=%d, members=%d)" % (
+                sname, len(decl) if decl else 0, len(sinfo.get('known_members', {}))))
+            if decl:
+                print("    preview: %s" % decl_preview)
 
     print("[3] Structs: applied=%d/%d" % (s_ok, len(structs)))
 
