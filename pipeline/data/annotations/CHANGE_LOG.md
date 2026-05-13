@@ -890,3 +890,14 @@
   - CCBStageCam.m_Task: -1 幽灵（tagCamTask[50], elem=80）
 - **置信度**: 95（PDB count * elem_size 的 array_end 之后的成员偏移精确匹配已知成员；CCBStageRole stride=96 由 Hex-Rays `i += 96` 二进制确认）
 - **结果**: **布局错误 520 → 0 (全部清零)**
+
+### [2026-05-14] gap-fill: 从 IDA decomp 的 _gap_ 访问中提取 590 个缺失成员
+
+- **变更**: 590 个 _todo_ 成员添加到 52 个结构体（从生成代码中 `this->_gap_XXX[Y]` 模式提取实际访问偏移）
+  - CScreenMode: +131, PropUI: +78, RoleSystem: +42, Camera: +36
+  - CCBStage: +31, PalScriptMgr: +28, UIListBox: +18, PAL3: +18
+  - SaleUI: +20, EquipUI: +16, CCBCamControl: +16, UIFrameWnd: +14
+  - CCBUI: +12, RenderTarget2: +11, CCBFiveNimbusWindow: +10, 其他 37 个类
+- **置信度**: 85（IDA Hex-Rays decomp 在正确 struct 定义下访问这些偏移 = A+ 级证据）
+- **类型推断**: 4-aligned → int, 2-aligned → short, 其他 → unsigned char
+- **影响**: struct 中 gap 区域被填充，_gap_ 访问应大幅减少
