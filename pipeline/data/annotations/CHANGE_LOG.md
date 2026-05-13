@@ -608,3 +608,23 @@
 - **根因**: 这些名字的后缀等于偏移十六进制值，没有语义信息（规则 #6）
 - **影响结构体**: CGameData(109), CCBStageRole(30), PalScriptMgr(27), CCBStageScene(20), CScreenMode(17), RoleSystem(15), Object3D(10), CameraCtrl(9), CCBStage(7), +11 others
 - **影响**: 命名率 87.7% → 84.7%（诚实优于虚假精度）
+
+### [2026-05-14] IDB 重建 + setter 字段命名（UIListBox, RoleSystem）
+
+- **变更**:
+  1. IDB 重建: raw i64 → apply_annotations → export_full（4365 函数反编译）
+  2. UIListBox: _field_0F4 → m_nMinSel, _todo_0F8 → m_nMaxSel
+  3. RoleSystem: _todo_548 → m_fMoveDestZ, _todo_558 → m_fMoveOriginY, _todo_55C → m_fMoveOriginZ
+- **置信度**: 85
+- **证据 (UIListBox)**:
+  1. [A] SetSel @ 0x43E440+16: `8B 8E F8000000` = mov ecx,[esi+0xF8] — 上界 clamp
+  2. [A] SetSel @ 0x43E440+22: `8B 96 F4000000` = mov edx,[esi+0xF4] — 下界 clamp
+  3. [A] SetSel @ 0x43E440+37: `89 86 5C040000` = mov [esi+0x45C],eax — 存储 clamp 后的选中值
+  4. 函数语义: SetSel(int nSel) 将 nSel clamp 到 [this+0xF4, this+0xF8] 范围
+- **证据 (RoleSystem)**:
+  1. [A] SetMoveTarget @ 0x412B60: 新 decomp（IDA 正确结构体后）显示:
+     - `*(float*)(this+1344) = a2[0]`, `*(float*)(this+1348) = a2[1]`, `*(float*)(this+1352) = a2[2]` → 目标 XYZ
+     - `*(_DWORD*)(this+1364) = this+4`, `*(_DWORD*)(this+1368) = this+8`, `*(_DWORD*)(this+1372) = this+12` → 保存当前位置
+  2. [A] this+4/8/12 = m_fTargetX/Y/Z（已知成员），确认 1364/1368/1372 是位置副本
+  3. +1352 = target Z（第 3 分量），+1368 = origin Y（从 m_fTargetY 复制），+1372 = origin Z（从 m_fTargetZ 复制）
+- **影响**: 命名率 84.7% → 84.8%
