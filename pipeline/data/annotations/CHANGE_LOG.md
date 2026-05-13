@@ -319,3 +319,16 @@
   - ~56 是通过 this->member 的跨类调用（部分归属错误，部分是正常的子系统委托）
   - 已修正 4 个函数归属（GetStageRole/ByIdx + GetState/SetParam）
   - 剩余高频 cast 需要逐个从二进制验证调用链
+
+### [2026-05-13] CCBSystem::GetDeltaTime/GetControl 重分类
+
+- **变更**:
+  1. CCBSystem::GetDeltaTime → CCBAttackSequen::SetFlag_1C5
+  2. CCBSystem::GetControl → CCBControl::GetControl
+- **置信度**: 90
+- **证据**:
+  1. [A] GetDeltaTime(0x4DB910): 完整函数体 `8A 44 24 04 88 81 C5010000 C2 0400` = mov al,[esp+4]; mov [ecx+0x1C5],al; ret 4. 这是一个 1-byte setter，不是 GetDeltaTime。CCBAttackSequen+0x1C5=tagAttackSequen[11]之后的 flag 字段。
+  2. [A] 调用者 CCBSystem::ProcWeaponSkill 通过 this->m_pAttackSequen(CCBAttackSequen*) 传入
+  3. [A] GetControl(0x4DC5B0): `8B 41 20 C3` = mov eax,[ecx+0x20]; ret. CCBControl+0x20(32)=m_nController(int) 完美匹配
+  4. [A] 调用者通过 this->m_pControl(CCBControl*) 传入
+- **累计 CCB 修正**: 6 个函数（GetStageRole/ByIdx + GetState/SetParam + GetDeltaTime + GetControl）
