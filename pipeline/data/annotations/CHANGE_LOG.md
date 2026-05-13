@@ -235,3 +235,29 @@
   6. [A] 0xDE5FA4 `g_nRoleState` int: 12 refs, A3=store eax
   7. 其余 5 个: 12 refs each, dword 访问确认 int 类型
 - **float 值验证**: 直接读取 .rdata 段 binary 确认常量值（220.0/200.0）
+
+### [2026-05-13] .data 段 float 全局变量 (11 个)
+
+- **变更**: 11 个 .data 段 float 全局变量添加到 globals.json
+- **置信度**: 85
+- **证据**:
+  1. [A] g_fGameTimer(0xBFDAA0): 13 hits, D9 05=fld float; Actor/EquipUI/CScreenMode 使用
+  2. [A] g_fFadeAngle(0xBFDA58): 10 hits, D9 05=fld; PAL3::Render 中 `180.0 - flt` 模式
+  3. [A] g_fTileScale(0xC12B14): 11 hits, 用作位置计算除数
+  4. [A] g_fEffectTimer(0x58DE64): 13 hits, 累加 += dt, 重置 10.0
+  5. 其余 7 个: 2-8 hits each
+- **注意**: .rdata 常量（0x56A000-0x571000）由 gen_cpp LITERAL_MAP 处理，不在 globals.json 中
+
+### [2026-05-13] .data 全局变量批量添加 (143 个)
+
+- **变更**: 143 个 .data/.bss 段全局变量添加到 globals.json
+- **置信度**: 85 (20 个手工命名), 70 (123 个自动命名 g_dword_/g_byte_ 模式)
+- **方法**: 在 .text 段搜索 abs addr → 指令前缀解码确认访问宽度 → 3+ decomp refs 阈值
+- **手工命名 (20 个)**: 从 decomp 上下文推断
+  - [A] g_nEffShockCount (0x17A7E88): `++dword_` 模式 → 计数器
+  - [A] g_pEffectSystem (0xBFDA70): PAL3::DestroyEffectSystem 读取 → 指针
+  - [A] g_nRoleMoveParam (0xC02370): RoleSystem 读取
+  - 其余 17 个效果/渲染/战斗计数器（++counter 模式）
+- **自动命名 (123 个)**: g_dword_ADDR / g_byte_ADDR 格式
+  - 有 binary 访问验证但 decomp 上下文不足以推断语义
+  - 保留 IDA 地址后缀便于后续从代码中识别
