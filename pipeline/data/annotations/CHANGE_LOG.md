@@ -261,3 +261,25 @@
 - **自动命名 (123 个)**: g_dword_ADDR / g_byte_ADDR 格式
   - 有 binary 访问验证但 decomp 上下文不足以推断语义
   - 保留 IDA 地址后缀便于后续从代码中识别
+
+### [2026-05-13] 123 个自动命名全局变量细化
+
+- **变更**: 所有 g_dword_XXX/g_byte_XXX 模式替换为类上下文命名
+- **置信度**: 75
+- **方法**: 对每个变量在 decomp 中搜索引用函数，提取主要类名+使用模式（counter/flag/ptr/check），生成 g_n{Class}_{suffix} / g_b{Class}_{suffix} / g_pRenderEffect_{suffix} 等
+- **类型修正**: 3x int→float（Rotate 上下文），5x int→gbRenderEffect*
+
+### [2026-05-13] CEffMgr/st_Manager 清理 char[] 伪成员
+
+- **变更**: CEffMgr 删除 418 个 char[] 伪成员（434→16），st_Manager 删除 14 个（26→12）
+- **置信度**: 95
+- **证据**:
+  1. [A] CEffMgr 的 418 个 char[] 成员名字如 m_aDProjectPal3Co_3, m_aEndKey_87 等，是 IDA 自动标注的 .rdata 字符串常量地址被误认为结构体成员
+  2. [A] CEffMgr 清理前 IDA parse_decl 失败（decl_len=21703，超过处理能力），清理后成功（decl_len~400）
+  3. apply 日志确认：structs applied 802/806 → 803/806
+- **全量扫描**: 检查所有 806 个结构体，确认仅 CEffMgr 和 st_Manager 有此问题；其余 175 个 char[N] 成员均为合法字段（name, ModelID, Remark 等）
+
+### [2026-05-13] apply_annotations 错误报告增强
+
+- **变更**: 失败的结构体现在打印 decl_len、member count、声明 preview
+- **置信度**: N/A (工具改进)
