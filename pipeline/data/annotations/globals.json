@@ -792,8 +792,8 @@
     "type": "ScriptCounter[10]"
   },
   "0x00C020F8": {
-    "name": "g_SceneMgrLocal",
-    "type": "int"
+    "name": "g_RoleSystemMain",
+    "type": "RoleSystem"
   },
   "0x00C04350": {
     "name": "g_SceneMgrPrefix",
@@ -1614,11 +1614,6 @@
     "type": "int",
     "source": "binary:5 decomp refs, 4-byte access; cls=Actor, 4 funcs"
   },
-  "0x00C00028": {
-    "name": "g_nsub_40CA40_C00028",
-    "type": "int",
-    "source": "binary:5 decomp refs, 4-byte access; cls=sub_40CA40, 5 funcs"
-  },
   "0x00DE5F9C": {
     "name": "g_nActor_DE5F9C",
     "type": "int",
@@ -1733,11 +1728,6 @@
     "name": "g_nParent_Data_189506C",
     "type": "int",
     "source": "binary:4 decomp refs, 4-byte access; cls=Parent_Data, 2 funcs"
-  },
-  "0x00BFDE28": {
-    "name": "g_nPAL3_BFDE28",
-    "type": "int",
-    "source": "binary:4 decomp refs, 4-byte access; cls=PAL3, 3 funcs"
   },
   "0x00D8E488": {
     "name": "g_nPAL3_D8E488",
@@ -2063,5 +2053,29 @@
   "0x00C020F0": {
     "name": "g_ScriptCountersEnd",
     "type": "unsigned char"
+  },
+  "0x00BFDBB0": {
+    "name": "g_RoleSystemExtra0",
+    "type": "RoleSystem"
+  },
+  "0x00BFFDB0": {
+    "name": "g_RoleSystemExtra1",
+    "type": "RoleSystem"
+  },
+  "0x00C02374": {
+    "name": "g_nPathEnabled",
+    "type": "int"
+  },
+  "0x00C025E8": {
+    "name": "g_nRoleMoveLock",
+    "type": "int"
+  },
+  "0x00C0435C": {
+    "name": "g_pRoleTeam0_Capacity",
+    "type": "int"
+  },
+  "0x00C0436C": {
+    "name": "g_pRoleTeam1_Capacity",
+    "type": "int"
   }
 }

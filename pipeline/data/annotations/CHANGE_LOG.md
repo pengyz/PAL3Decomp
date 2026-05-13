@@ -542,6 +542,25 @@
 - **背景**: FullInit 引用 465 个全局地址，其中 369 个在 g_SceneMgr 内部（需编译阶段视图转换），70 个独立全局变量缺失（已补 10 个，剩 14 个需更多上下文分析）
 - **影响**: FullInit 中 dword_ 残留减少
 
+### [2026-05-13] FullInit 独立 RoleSystem 实例发现（+7 全局变量）
+
+- **变更**: 发现 3 个独立 RoleSystem 全局实例 + 4 个相关全局变量
+- **置信度**: 90
+- **证据**:
+  1. [A] 0xBFDBB0 与 0xBFFDB0 相隔 8704 字节 = RoleSystem size → 连续两个 RoleSystem 实例
+  2. [A] BFDBB0+174=BFDC5E → `strcpy(word_BFDC5E, scene_name)` 确认 name 字段位置
+  3. [A] BFDBB0+1264=BFE0A0 → `dword_BFE0A0 = 1` 对应 RoleSystem.m_nMoveMode (+1264)
+  4. [A] BFDBB0+632=BFDE28 → 对应 RoleSystem.m_pRoleObj (+632)
+  5. [A] C020F8+174=C021A6 → `strcpy(word_C021A6, scene_name)` 确认第三个实例
+  6. [A] C020F8+172=C021A4 → `byte_C021A4 = 5` 对应 RoleSystem.m_nFacing (+172)
+- **新增全局变量**:
+  - g_RoleSystemExtra0 @ 0xBFDBB0 (RoleSystem)
+  - g_RoleSystemExtra1 @ 0xBFFDB0 (RoleSystem)
+  - g_RoleSystemMain @ 0xC020F8 (RoleSystem)
+  - g_nPathEnabled @ 0xC02374, g_nRoleMoveLock @ 0xC025E8
+  - g_pRoleTeam0_Capacity @ 0xC0435C, g_pRoleTeam1_Capacity @ 0xC0436C
+- **影响**: FullInit 中 14 个独立全局变量全部标注完成
+
 ### [2026-05-13] ScriptSystemData 命令表数组化（-372 _field_）
 
 - **变更**: 将 ScriptSystemData 偏移 4432-7852 的 372 个独立 _field_ 替换为 `m_CmdTable tagScriptCmd[213]`
