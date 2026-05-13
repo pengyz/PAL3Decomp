@@ -365,6 +365,13 @@
   1. [A] +68 `m_nPosX`: SetPosition(0x43DC40) `mov [ecx+0x44],eax` — param nX
   2. [A] +72 `m_nPosY`: 同函数 `mov [ecx+0x48],edx` — param nY
   3. [A] +4644 `m_state`: SetState `mov [ecx+0x1224],eax` — param state
+- **CScreenMode (2 个, lea→call 推断)**:
+  4. [A] +1284 `m_wndPanel1` UIWnd: lea [this+0x504]→ecx→call UIWnd::GetRect 确认嵌入 UIWnd
+  5. [A] +1436 `m_wndPanel2` UIWnd: lea [this+0x59C]→ecx→call UIWnd::GetRect
+- **UIScene (1 个, lea→call 推断)**:
+  6. [A] +116 `m_pChildWnd` UIWnd*: lea [this+0x74]→ecx→call UIWnd::GetChildByIndex
+- **UIScene (4 个, 类型修正)**:
+  7. [A] 4 个 _field_ 类型 int→float: 二进制 fld 指令计数超过 mov dword 计数
 - **CameraCtrl (3 个)**:
   1. [A] +460 `m_mode`: SetCamMode(0x41D5B0) `mov [ecx+0x1CC],eax` — param mode
   2. [A] +472 `m_nWidth`: SetDimention(0x41CA90) `mov [ecx+0x1D8],eax` — param w
