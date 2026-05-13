@@ -509,6 +509,18 @@
 - **过滤**: 排除泛型名称（m_f_XXX/m_obj_XXX/m_szStr_XXX），只保留有明确语义的命名
 - **影响**: _field_ 1140→991，命名率 84.4%→86.0%
 
+### [2026-05-13] LODWORD 驱动的 float→int 类型修正（29 个字段）
+
+- **变更**: 29 个标注为 float 但 raw decomp 中仅被 `*(_DWORD*)` 访问（0 次 float 访问，3+ 次 int 访问）的字段修正为 int
+- **置信度**: 85（raw Hex-Rays 无结构体偏见，type cast 直接反映二进制访问模式）
+- **方法**: 对每个 float 字段，在 1120 个 raw decomp 函数中计数 `*(float*)(this+N)` vs `*(_DWORD*)(this+N)` 出现次数。仅修正 float_uses=0 且 int_uses>=3 的确定性案例
+- **典型修正**:
+  - CCBStageRole+528 m_fLeftWeapon: 14x int, 0x float → int
+  - CEffectSystem+336 m_fWindDirection: 45x int, 0x float → int
+  - Role+1392 m_curforce: 20x int, 0x float → int
+- **排除**: RoleSystem+4/8/12 (m_fTargetX/Y/Z) 有 260+ float 用法和 500+ int 用法，是 union 模式，保留 float
+- **影响**: 消除生成代码中 ~200 个 LODWORD() 包装
+
 ### [2026-05-13] ScriptSystemData 命令表数组化（-372 _field_）
 
 - **变更**: 将 ScriptSystemData 偏移 4432-7852 的 372 个独立 _field_ 替换为 `m_CmdTable tagScriptCmd[213]`

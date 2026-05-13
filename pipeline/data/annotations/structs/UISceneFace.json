@@ -19,8 +19,8 @@
     },
     "1196": {
       "name": "m_clicktime",
-      "type": "float",
-      "source": "gen_headers_9.2"
+      "type": "int",
+      "source": "gen_headers_9.2 | type_fix:float→int_raw_decomp"
     },
     "1200": {
       "name": "m_onclick",

@@ -573,8 +573,8 @@
     },
     "732": {
       "name": "_field_2DC",
-      "type": "float",
-      "source": "binary:gap_clean"
+      "type": "int",
+      "source": "binary:gap_clean | type_fix:float→int_raw_decomp"
     },
     "756": {
       "name": "_field_2F4",
@@ -953,13 +953,13 @@
     },
     "1468": {
       "name": "m_fCachePosX",
-      "type": "float",
-      "source": "binary:raw_cached_pos"
+      "type": "int",
+      "source": "binary:raw_cached_pos | type_fix:float→int_raw_decomp"
     },
     "1472": {
       "name": "m_fCachePosY",
-      "type": "float",
-      "source": "binary:raw_cached_pos"
+      "type": "int",
+      "source": "binary:raw_cached_pos | type_fix:float→int_raw_decomp"
     },
     "1476": {
       "name": "m_fCachePosZ",
@@ -973,8 +973,8 @@
     },
     "1484": {
       "name": "m_fMoveTargetY",
-      "type": "float",
-      "source": "gen_headers_9.2"
+      "type": "int",
+      "source": "gen_headers_9.2 | type_fix:float→int_raw_decomp"
     },
     "1488": {
       "name": "m_fMoveTargetZ",
