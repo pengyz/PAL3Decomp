@@ -4,7 +4,7 @@ IDAPython: Pure export - no modifications to IDB. Just export all functions.
 Usage:
   idat.exe -A -S"pal3_export_only.py" original/PAL3.exe.i64
 """
-import ida_auto, ida_funcs, ida_hexrays, ida_name, idautils, idc
+import ida_auto, ida_funcs, ida_hexrays, ida_name, ida_typeinf, idautils, idc
 import json, os, time, glob
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -87,6 +87,10 @@ def main():
             except: pass
 
         log("[*] Exported: %d (%.1fs)" % (exported, time.time()-t0))
+
+        # Export struct definitions from IDB (authoritative source for gen_headers)
+        export_structs(log)
+
         log("[*] Done")
     except Exception as e:
         log("[!] %s" % str(e))
@@ -95,6 +99,69 @@ def main():
     with open(LOG_FILE, 'w', encoding='utf-8') as f:
         f.write("\n".join(log_lines))
     idc.qexit(0)
+
+
+def export_structs(log):
+    """Export all struct definitions from IDB to ida_structs.json."""
+    import idautils
+    structs_path = os.path.join(PROJECT_ROOT, "asm", "pal3", "ida_structs.json")
+    result = {}
+    count = 0
+
+    for idx, sid, name in idautils.Structs():
+        size = idc.get_struc_size(sid)
+        if size <= 0:
+            continue
+
+        members = []
+        for offset, mname, msize in idautils.StructMembers(sid):
+            mtype_str = 'int'
+            stinfo = ida_typeinf.tinfo_t()
+            if stinfo.get_named_type(ida_typeinf.get_idati(), name):
+                udt = ida_typeinf.udt_type_data_t()
+                if stinfo.get_udt_details(udt):
+                    for mi in range(udt.size()):
+                        um = udt[mi]
+                        if um.offset // 8 == offset:
+                            mtype_str = um.type.dstr() if um.type else 'int'
+                            break
+                    else:
+                        mtype_str = 'char[%d]' % msize if msize > 4 else 'int'
+
+            members.append({'name': mname, 'type': mtype_str, 'offset': offset})
+
+        # Detect base class
+        bases = []
+        stinfo = ida_typeinf.tinfo_t()
+        if stinfo.get_named_type(ida_typeinf.get_idati(), name):
+            udt = ida_typeinf.udt_type_data_t()
+            if stinfo.get_udt_details(udt):
+                for mi in range(udt.size()):
+                    um = udt[mi]
+                    umname = um.name
+                    if umname and ('baseclass' in umname.lower() or umname.startswith('__parent')):
+                        base_type = um.type.dstr() if um.type else ''
+                        for prefix in ('struct ', 'class '):
+                            if base_type.startswith(prefix):
+                                base_type = base_type[len(prefix):]
+                        if base_type:
+                            bases.append({'name': base_type, 'offset': um.offset // 8})
+
+        # Filter out baseclass/vtable from members
+        filtered = [m for m in members
+                    if not any(x in m['name'].lower() for x in ('baseclass', '__parent', '__vftable', 'vtbl'))]
+
+        result[name] = {
+            'size': size,
+            'kind': 'struct',
+            'data_members': filtered,
+            'bases': bases,
+        }
+        count += 1
+
+    with open(structs_path, 'w', encoding='utf-8') as f:
+        json.dump(result, f, indent=2, ensure_ascii=False)
+    log("[*] Structs exported: %d → ida_structs.json" % count)
 
 if __name__ == '__main__':
     main()
