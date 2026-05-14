@@ -1052,6 +1052,19 @@
   - string(45): std::string 伪类型，应加入 SKIP
 - **剩余 C2065(536) 分布**: IDA 内部标识符泄漏（eh, constructor, destructor, vtbl_XXXX）
 
+### [2026-05-14] 删除 3 个空壳 RoleState annotation + string SKIP
+
+- **变更**:
+  1. 删除 s_RoleState/m_RoleState/p_RoleState annotation（0 个 known_members）
+  2. gen_headers SKIP_CLASSES 添加 string/strstreambuf/ios_base/facet/codecvt_base
+- **置信度**: 95
+- **root cause**: annotation 文件有 gen_size 但 0 个 known_members，apply_annotations 用空结构体覆盖了 PDB 的 20+ 成员定义，导致 IDB 中结构体变成只有 `_tail_000` 的空壳
+- **证据**:
+  1. [A] s_RoleState: annotation 0 members, PDB 20 members → 删除 annotation 后 PDB 数据恢复
+  2. [A] C2039 `_tail_000 not a member of s_RoleState`: 104 个 → 0
+- **影响**: 编译错误 8931→8774 (-157)
+- **新 C2039 分布**: st_Manager(125), UIWnd(54), CCBUIPanel(53), tagRECT(50), UIStatic(37)
+
 ### [2026-05-14] 68 个 overlap 违规修复 + 18 个语义命名
 
 - **变更**:
