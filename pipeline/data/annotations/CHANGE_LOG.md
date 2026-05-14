@@ -51,6 +51,28 @@
 
 ## 变更记录
 
+### [2026-05-14] codegen 管线清理 — vtbl/backtick/VC6 兼容性 (8636→6882 errors)
+
+- **变更**: gen_headers.py + gen_cpp.py 管线修改，消除 IDA 内部类型污染
+- **置信度**: 95
+- **证据**:
+  1. [A] VC6 编译 `cmake --build build -- -k` 全量错误统计：8636→6882 (-1754, -20.3%)
+  2. [A] vtbl_*.h 语法无效（函数指针声明语法错误），124 个文件全部删除
+  3. [A] C2238 (cast via vtbl type) 531→0，C2018 (backtick char 0x60) 163→0
+  4. [B] `eh vector constructor/destructor iterator` 是 MSVC 编译器对数组成员 ctor/dtor 的内部实现，C++ 源码中不存在
+  5. [B] `this->__vftable = &off_XXXX` 是编译器在 ctor/dtor 中自动生成的 vtable 初始化
+- **具体改动**:
+  - gen_headers.py: `vtbl_` 加入 SKIP_PREFIXES，不生成 vtbl_*.h，不 forward declare
+  - gen_cpp.py: `vtbl_[0-9A-Fa-f]+` → `void`（IDA 内部类型替换）
+  - gen_cpp.py: 删除 backtick 编译器内部调用（`eh vector ctor/dtor iterator` 等，含多行参数跟踪）
+  - gen_cpp.py: 删除 `this->__vftable = ...` 和 `LOBYTE(this->__vftable) = ...`（vtable 初始化）
+  - gen_cpp.py: `0xNNNuLL`→`ui64`, `0xNNNLL`→`i64`（VC6 不支持 LL 后缀）
+  - gen_cpp.py: `(*)var`→`(*var)`（Hex-Rays 反编译产物修正）
+  - gen_cpp.py: globals.h 已声明变量不再重复生成 `extern int`（避免类型覆盖）
+  - 删除 124 个 include/pal3/gen/vtbl_*.h 文件
+- **剩余 top 错误**: C2273 (316, ctor-as-method), C2059 (256, 语法残留), C2228 (287, stru_ 成员访问), C2673 (184, this 指针), C2039 (140, __vftable 成员不存在) — 均为 IDA 结构体标注不完整导致
+- **影响**: 纯 codegen 等价变换，不改变语义。所有替换/删除的内容均为编译器自动生成的代码或 IDA 内部类型表示
+
 ### [2026-05-13] RoleSystem._field_0CE 偏移修正
 
 - **变更**: offset 206 (0xCE) → 208 (0xD0), type int (不变)
