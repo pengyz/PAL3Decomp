@@ -14,6 +14,8 @@ class gbAnimNodeGroup;
 // IDA: called as (**pCurve)(&result, time) in Update, virtual dtor in ~gbGeomNode
 class gbAnimCurve {
 public:
+    // vtable at +0x0 (has virtual GetValue + virtual dtor)
+    // sizeof = 4 (just the vfptr)
     virtual void GetValue(void* result, float time) = 0;
     virtual ~gbAnimCurve() {}
 };

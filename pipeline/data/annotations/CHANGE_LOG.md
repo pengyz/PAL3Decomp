@@ -78,6 +78,27 @@
 - **影响**: 确认这 47 个 IDA 全局是安全的替换候选。正确修复路径是在 IDA 中对 g_Input 和 g_RoleSystemExtra0 应用结构体类型后重新导出。
 - **待修正**: RoleSystem.json 中 +0xAE (m_nAnimState) 和 +0x278 (m_pRoleObj) 的成员名需要复核
 
+### [2026-05-15] fix(pipeline): import_gbengine_types 完整修复 — 0 errors, 148 types
+
+- **变更**: 修复 import_gbengine_types.py，实现 gbengine 类型零错误导入 IDA
+- **置信度**: 95
+- **证据**:
+  1. [A] 修复前: 7 parse errors, gbGfxManager/gbGfxManager_D3D 为 forward decl (size=-1)
+  2. [A] 根因1: gbengine_internal.h 未被包含 → gbLight/gbMatrixStack 未定义 → gbGfxManager 解析失败（含 `gbLight AllLight[8]` 值类型数组）
+  3. [A] 根因2: flatten 函数用 `open()` 无 encoding 参数 → Windows GBK 环境下 UTF-8 头文件读取失败
+  4. [A] 根因3: 方法 strip 逻辑粗暴删除所有含 `()` 的行 → 纯虚类 gbAnimCurve body 被清空后 `{` 未闭合
+  5. [A] 根因4: 多行方法参数残片未清理 → 破坏后续 struct 解析上下文
+  6. [A] 根因5: IDA TIL 中残留 forward decl stubs (size=0xFFFF...) 阻止完整定义写入
+- **修复内容**:
+  - 加入 `gbengine_internal.h` 到 parse_order（含 gbLight, gbMatrixStack 等）
+  - `open(hpath, encoding='utf-8', errors='replace')` 修复编码
+  - 重写方法 strip：保留 struct 结构完整性，正确处理多行方法和空 body
+  - 补充 DirectX/Windows 前向声明 (IDirect3DBaseTexture9, HWND, D3DCAPS9 等)
+  - Step 0 删除 forward-decl stubs (size=-1) 后再 parse
+  - 去除 gbResManager.h 重复、清理孤立参数残片
+- **结果**: `idc.parse_decls: 0 errors`, `148 found in TIL, 0 missing`
+- **影响**: gbGfxManager._gap_0A1 编译错误 137→0, tagRECT/tagPOINT._tail_000 清零
+
 ### [2026-05-15] g_EffMgr 地址修正 + gen_cpp 全局名替换 + gen_headers PDB stub/gap-fill
 
 - **变更**:
