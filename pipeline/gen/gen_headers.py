@@ -443,9 +443,37 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
     lines.append("public:")
 
     # Virtual methods from vtable (must be first, order matches vtable layout)
+    vtable_method_names = set()  # track names declared via vtable (including inherited)
     try:
         ann_data_vt = load_annotations_data()
         vtables_data = ann_data_vt.get('vtables', {})
+
+        # Collect inherited vtable method names from base classes
+        def _collect_base_vtable_names(class_name, visited=None):
+            if visited is None:
+                visited = set()
+            if class_name in visited:
+                return set()
+            visited.add(class_name)
+            names = set()
+            for vt_name, vt_info in vtables_data.items():
+                if vt_info.get('class') == class_name:
+                    for vm in vt_info.get('methods', []):
+                        vm_name = vm.get('name', '')
+                        if '::' in vm_name:
+                            names.add(vm_name.split('::')[-1])
+                        elif vm_name.startswith('sub_'):
+                            names.add(vm_name)
+            # Recurse into base classes
+            ann_s = ann_data_vt.get('structs', {}).get(class_name, {})
+            base = ann_s.get('base_class')
+            if base:
+                names |= _collect_base_vtable_names(base, visited)
+            return names
+
+        for bn in base_names:
+            vtable_method_names |= _collect_base_vtable_names(bn)
+
         # Find the vtable for this class (smallest = base class vtable)
         cls_vtables = [(name, info) for name, info in vtables_data.items()
                        if info.get('class') == cls_name]
@@ -468,6 +496,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
                     if short in seen_vnames:
                         short = '%s_%s' % (short, vm.get('address', '0')[-4:])
                     seen_vnames.add(short)
+                    vtable_method_names.add(short)
                     # Parse signature to extract return type and params
                     if vm_sig:
                         sig_clean = vm_sig.strip().rstrip(';')
@@ -608,6 +637,18 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
                     param_list = param_list[1:]
                 params = ', '.join(param_list)
 
+            # Fix invalid parameter names (starting with digit like "int 14C")
+            if params:
+                def _fix_param(p):
+                    p = p.strip()
+                    # Match: "type [*] name" where name starts with digit
+                    m = re.match(r'^(.+?[\s\*])(\d\w*)$', p)
+                    if m:
+                        return '%s a_%s' % (m.group(1), m.group(2))
+                    return p
+                param_list = split_params(params)
+                params = ', '.join(_fix_param(p) for p in param_list)
+
             # Build declaration
             if is_ctor:
                 decl = "    %s(%s);" % (cls_name, params)
@@ -631,11 +672,15 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
             if '@<' in sig:
                 lines.append("    // [IDA_REGPARAM] %s; // %s" % (method_name, addr))
                 continue
-            # Complex signatures (function pointer return types) -> simplify
+            # Complex signatures (function pointer return types) -> skip
             if sig.count('(') > 2:
                 lines.append("    // [IDA_COMPLEX_RET] original: %s" % sig[:80])
-                ret = 'int'
-                params = ''
+                continue
+
+            # Skip methods already declared in vtable (avoids signature conflicts)
+            if method_name in vtable_method_names:
+                lines.append("    // [VTABLE_DUP] %s; // %s" % (decl.strip(), addr))
+                continue
 
             # Deduplicate: skip if same method name+params already declared
             method_key = "%s(%s)" % (method_name, params)
