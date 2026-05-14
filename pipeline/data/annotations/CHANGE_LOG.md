@@ -1004,3 +1004,18 @@
   6. [A+] ScriptSystem+1352 = `m_fTargetDir`: 与 m_vDir_z 比较, 赋给 m_nSaveDir — 目标方向
   7. [A+] CameraCtrl+3352 = `m_CamBlocks`: `memset 0xBA40(47680)` 字节 — 大型数组/缓冲区
 - **影响**: 消除 pre-commit 违规，annotations 恢复 PASS 状态
+
+### [2026-05-14] 编译错误驱动的 annotation 修复（256 gen_size + 14 结构体 stub）
+
+- **变更**:
+  1. 256 个结构体从 pdb_size 补充 gen_size（gen_headers 需要此字段才生成头文件）
+  2. ScreenFadeOut/White/White2: 添加 `base_class: ScreenEffect`（size=24 匹配 ScreenEffect）
+  3. PMFN: 添加 `int pfn` 成员（4 字节函数指针，用作嵌入成员）
+  4. 10 个粒子图表结构体: 添加 `int vfptr` 最小成员（gen_headers 需要至少 1 个成员才生成类定义）
+- **置信度**: 85（ScreenFade 继承推断），90（gen_size=pdb_size 复制）
+- **证据**:
+  1. [A] ScreenEffect gen_size=24 = ScreenFadeOut/White/White2 pdb_size=24 → 继承且无额外成员
+  2. [B] PDB 中 PMFN size=4，是 "Pointer to Member Function" 的标准 MSVC 内部类型
+  3. 编译错误 C2079 "uses undefined class" 直接指向缺失的头文件
+- **root cause**: gen_headers 只为有 gen_size 且有成员的结构体生成头文件。256 个结构体只有 pdb_size 被跳过
+- **影响**: 编译错误 4724→4704（头文件级 C2079 基本消除，剩余主要是 C2039 成员缺失）
