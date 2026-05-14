@@ -1065,6 +1065,17 @@
 - **影响**: 编译错误 8931→8774 (-157)
 - **新 C2039 分布**: st_Manager(125), UIWnd(54), CCBUIPanel(53), tagRECT(50), UIStatic(37)
 
+### [2026-05-14] 清理 31 个 Windows/D3D/CRT 系统类型 annotation
+
+- **变更**: 删除 tagRECT, tagPOINT, D3DMATRIX, GUID, _FILETIME 等 31 个系统类型 annotation 文件
+- **置信度**: 95
+- **root cause**: 与 RoleState 问题相同——annotation 文件（有 gen_size 但成员来自 PDB 没有额外信息）覆盖了 IDA 已有的正确系统类型定义。系统类型应由 windows.h/d3d9.h 等系统头文件提供，不应在 annotation 中管理。
+- **证据**:
+  1. [A] tagRECT: annotation 有 4 成员 + gen_size=16，但 apply_annotations 创建的 IDB 结构体只有 `_tail_000`
+  2. [A] 50 个 `tagRECT._tail_000 not a member` 错误消除
+- **影响**: 编译错误 8774→8688 (-86)
+- **累计**: 10238→8688 (-15%)
+
 ### [2026-05-14] 68 个 overlap 违规修复 + 18 个语义命名
 
 - **变更**:
