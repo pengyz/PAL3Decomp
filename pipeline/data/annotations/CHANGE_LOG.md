@@ -123,6 +123,28 @@
 - **用途**: Hex-Rays 在无类型信息时输出纯偏移访问（`*(DWORD*)(a1 + 0x278)`），可用于验证 struct 布局
 - **工具**: `pipeline/ida/_raw_query_flex.py` — 输入地址列表，输出 raw 反编译结果
 
+### [2026-05-15] SceneMgr/ARC_PlayerAtt 布局错误根因定位
+
+- **变更**: 定位并修正 SceneMgr 偏移错误的根因链
+- **置信度**: 95
+- **根因链**:
+  1. [A] IDA TIL 中 ARC_PlayerAtt size=1424（应为 1408），RoleSystem size=8712（应为 8704）
+  2. [A] 导致 SceneMgr.m_RoleSystems 偏移从 +0x1BD0 偏移到 +0x1C20（+80 bytes）
+  3. [A] 导致 188 个函数的反编译输出偏移错误（如 `((ScriptSystem *)31)->RunEvent`）
+  4. [A] 根因是 IDA struct alignment padding：apply_annotations 生成的 struct 被 IDA 自动对齐
+  5. [A] 修复方向：`#pragma pack(push, 1)` 包裹所有 struct 定义
+- **ARC_PlayerItem size 验证**:
+  1. [A] cloth(+0x360)→shoes(+0x36C)=12 stride（含 2-byte gap，不是 ARC_PlayerItem 自身=12）
+  2. [A] wear[2](+0x378)→nScriptCounter(+0x38C)=20=2*10 → **wear 数组元素 stride=10**
+  3. [A] sizeof(ARC_PlayerItem)=10，不是 12。第三个成员是 short(2) 不是 pointer(4)
+  4. [A] cloth/shoes 之间的 12-byte 间距 = ARC_PlayerItem(10) + 2-byte explicit gap in ARC_PlayerAtt
+  5. **结论**: `ARC_PlayerItem.binary_size=10` 是正确的（之前错误修改为 12，已回退）
+- **pack(1) 修复效果**:
+  - 加入 pack(1) 后 ARC_PlayerAtt 从 1424→1412（减少了对齐 padding）
+  - 但仍有 4 bytes 差异：因为 IDA 把连续 char 成员合并，且某些内部 struct 的 size 计算仍受对齐影响
+  - **RoleSystem 仍差 8 bytes**（8712 vs 8704），需继续追查
+- **影响**: SceneMgr 布局问题影响 188 函数 839 处引用，是当前最大的系统性错误源
+
 ### [2026-05-15] 函数标注批量修正 — 9087→6315 errors (-30.5%)
 
 - **变更**: 函数签名修正 + 命名规范化 + CRT 类型兼容
