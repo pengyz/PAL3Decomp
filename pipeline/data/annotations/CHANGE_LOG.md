@@ -999,6 +999,27 @@
 - **6 个剩余失败**: CPK, LIGHT_TYPE, gbCursorRes, gbEffectMgr, gbGfxManager_D3D, gbVFileSystem
   - 原因：forward-only 定义(gbCursorRes)、空 body(gbEffectMgr)、Windows 类型依赖(RECT)、复杂 friend(CPK)
 
+### [2026-05-14] gbengine IDA 导入完善 + 编译错误基线
+
+- **变更**:
+  1. import_gbengine_types.py 最终方案：idc.parse_decls + parse_decl fallback → 140/143 类型
+  2. 修复类型降级：D3DXHANDLE=const char*（非 int），COM 接口用 forward declare（非 void*）
+  3. 修复解析顺序：gbResManager.h 移到 gbRenderEffect.h 之前
+  4. 宏展开：CPK_MAX_TABLE_NUM→0x8000，bool→unsigned char
+  5. 正确外部类型：RECT struct, LIGHT_TYPE enum, CONFIRMDEVICECALLBACK 函数指针 typedef
+- **置信度**: 95
+- **证据**:
+  1. [A] gbGfxManager 编译错误 85→1（gbengine 类型导入生效的直接证据）
+  2. [A] C1083 缺失头文件 0 个（所有 include 路径正确）
+  3. [A] D3DXHANDLE=LPCSTR 来自 tools/vc6/Include/d3dx9shader.h
+  4. [A] CPK size=917948 在 IDA TIL 中验证（0x8000*28+444=917948）
+- **编译基线**: 10238 错误, 0/197 文件通过
+  - C2039(成员缺失): 3438, top: SceneMgr(508), UIFrameWnd(196), UIListBox(109)
+  - C2228/C2227(不完整类型访问): 1919
+  - C2440(类型转换): 623
+  - C2065(未声明标识符): 536
+  - Root cause 分析: SceneMgr 视图 B(508), 结构体成员不完整(~2000), codegen 标识符泄漏(~500)
+
 ### [2026-05-14] 68 个 overlap 违规修复 + 18 个语义命名
 
 - **变更**:
