@@ -67,8 +67,12 @@ typedef int BOOL;
 #define SLODWORD(x) (*((_DWORD*)&(x)))
 #define SHIDWORD(x) (*(((_DWORD*)&(x))+1))
 #define COERCE_FLOAT(x) (*(float*)&(x))
+#define __PAIR64__(high, low) (((unsigned __int64)(high) << 32) | (unsigned int)(low))
 #define NAN (*(float*)&_nan_bytes)
 static unsigned int _nan_bytes = 0x7FC00000;
+
+// MSVC internal exception throw info (used by _CxxThrowException)
+extern char _TI1_AV_Exception__;
 
 // Forward declarations for common game/engine types used in generated code
 class gbMatrixStack;
