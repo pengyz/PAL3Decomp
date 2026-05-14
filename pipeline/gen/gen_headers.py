@@ -730,14 +730,18 @@ def main():
             pdb_classes[name] = c
 
     # Override PDB data with IDA struct exports
-    # Strategy: Use IDA struct when PDB is broken (size<=1) OR when IDA has
-    # typed pointer members that PDB doesn't have (higher quality).
-    # Do NOT override if PDB has good data and IDA just has primitives.
+    # IDB is the authoritative source: PDB (PAL3A) + gbengine headers + annotations
+    # IDA structs always take priority over PDB when they have more/better data
     ida_override_count = 0
     if IDA_STRUCTS_FILE.exists():
         ida_data = json.load(open(IDA_STRUCTS_FILE, encoding='utf-8'))
-        for s in ida_data.get('structs', []):
-            sname = s.get('name', '')
+        # Support both formats: dict {name: {...}} or list [{name, ...}]
+        if isinstance(ida_data, dict):
+            ida_items = [(k, v) for k, v in ida_data.items() if isinstance(v, dict)]
+        else:
+            ida_items = [(s.get('name', ''), s) for s in ida_data.get('structs', [])]
+
+        for sname, s in ida_items:
             ssize = s.get('size', 0)
             if not sname or ssize <= 1 or should_skip_class(sname):
                 continue
@@ -748,15 +752,18 @@ def main():
 
             pdb_entry = pdb_classes.get(sname)
             pdb_size = pdb_entry.get('size', 0) if pdb_entry else 0
+            ida_members = len(s.get('data_members', []))
 
-            # Override if PDB is broken (forward-declared, size<=1)
-            if pdb_size <= 1:
+            # IDA struct overrides PDB when:
+            # 1. PDB has no data (size<=1)
+            # 2. IDA has larger size (binary_size > pdb_size)
+            # 3. IDA has more members (annotation filled gaps)
+            pdb_members = len(pdb_entry.get('data_members', [])) if pdb_entry else 0
+            if pdb_size <= 1 or ssize > pdb_size or ida_members > pdb_members:
                 pdb_classes[sname] = s
                 ida_override_count += 1
-            # Don't override PDB with IDA if PDB already has layout
-            # (PDB types are from source code, IDA types may have wrong offsets for PAL3)
 
-        print("  IDA struct overrides: %d (PDB broken only)" % ida_override_count)
+        print("  IDA struct overrides: %d" % ida_override_count)
 
     # Collect methods from decomp
     methods_by_class = collect_methods()
