@@ -427,6 +427,11 @@ def transform_method_code(cls_name, method_name, code, sig):
     # Fix Hex-Rays broken dereference: (*)var → (*var)
     code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
 
+    # Replace ctor return pattern: "return &this->__vftable;" → "return this;"
+    code = re.sub(r'return\s+&this->__vftable\s*;', 'return this;', code)
+    # Also: "return (Type *)&this->__vftable;" → "return this;"
+    code = re.sub(r'return\s+\([^)]+\)\s*&this->__vftable\s*;', 'return this;', code)
+
     # Remove compiler-internal calls and vtable init
     code = _replace_ida_internals(code)
 
