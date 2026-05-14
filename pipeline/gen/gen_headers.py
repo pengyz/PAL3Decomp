@@ -264,26 +264,44 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
                   '__int64', 'unsigned char', 'unsigned int', 'unsigned long',
                   'unsigned short', 'unsigned __int64', 'wchar_t',
                   '__int8', '__int16', '__int32', 'unsigned __int8',
-                  'unsigned __int16', 'unsigned __int32'}
+                  'unsigned __int16', 'unsigned __int32',
+                  '_BYTE', '_WORD', '_DWORD', '_QWORD', '_UNKNOWN',
+                  'CHAR', 'WCHAR', 'LONG', 'ULONG', 'INT', 'UINT',
+                  'BOOL', 'SIZE_T', 'size_t', 'LPCSTR', 'LPSTR',
+                  'LPCWSTR', 'LPWSTR', 'LPVOID',
+                  'const', 'signed', 'unsigned __int8',
+                  'struct', 'class', 'enum', 'union', 'static', 'extern',
+                  'virtual', 'inline', 'register', 'volatile', 'mutable',
+                  '__thiscall', '__cdecl', '__stdcall', '__fastcall'}
 
-    # Types provided by system headers (windows.h, CRT, gbengine) - never include/fwd-declare
-    SYSTEM_TYPES = SKIP_CLASSES | {
+    # Types provided by windows.h / CRT — already available, no include/fwd needed
+    # NOTE: Do NOT include gbengine types here — they need include/fwd-declare
+    WINDOWS_CRT_TYPES = {
+        'std', 'stdiobuf', 'exception', 'type_info', 'filebuf',
         'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG', 'RECT', 'POINT', 'SIZE',
         'HWND', 'HINSTANCE', 'HICON', 'HBRUSH', 'HDC', 'HANDLE', 'LPVOID',
         'WNDCLASSA', 'tagWNDCLASSA', 'tagOFNA', '_GUID', 'GUID', 'IID',
-        '_iobuf', 'FILE', '_DIMOUSESTATE2', '_FILETIME', '_SYSTEMTIME',
+        '_iobuf', 'FILE', '_cpinfo', '_EXCEPTION_RECORD', 'EXCEPTION_RECORD',
+        '_DIMOUSESTATE2', '_FILETIME', '_SYSTEMTIME', '_MEMORYSTATUS',
+        '_SECURITY_ATTRIBUTES', '_OSVERSIONINFOA', '_STARTUPINFOA',
+        '_WIN32_FIND_DATAA',
         'CRITICAL_SECTION', 'HRESULT', 'BOOL', 'LPCSTR', 'LPSTR',
-        'gbVec3D', 'gbMatrix4', 'gbColorQuad', 'gbOBBox', 'gbSphere',
-        'gbGeomQuad', 'gbUIQuad', 'gbColorFlt', 'gbAABBox',
-        'gbGfxManager', 'gbActorMgr', 'gbCamera', 'gbActor',
-        'gbVFileSystem', 'gbRenderEffect', 'gbSceneGraph', 'gbTexture',
-        'gbGeomNode', 'gbPrintFont', 'gbPrintFontMgr', 'gbMatrixStack',
-        'gbRefObject', 'gbAudioManager', 'gbBinkVideo', 'gbImage2D',
-        'gbTexture_D3D', 'gbDynVertBuf', 'gbVertPoolMgr', 'gbCursorRes',
-        'gbIndexPool', 'gbVertexPool', 'gbSoundData', 'gbResManager',
-        'gbLight', 'gbMaterial', 'gbPixelFormat', 'gbRay',
+        'HICON__', 'LRESULT', 'HCURSOR', 'LPARAM', 'WPARAM', 'LCID',
         'IDirectInput8A', 'IDirectInputDevice8A',
     }
+    SYSTEM_TYPES = WINDOWS_CRT_TYPES
+
+    # gbengine types — have headers in include/gbengine/, need include or fwd-declare
+    # Build mapping: type_name -> header file path (relative to include/)
+    GBENGINE_HEADER_DIR = PROJECT_ROOT / "include" / "gbengine"
+    _gbengine_type_to_header = {}
+    if GBENGINE_HEADER_DIR.exists():
+        for hf in GBENGINE_HEADER_DIR.glob("*.h"):
+            with open(hf, 'r', encoding='utf-8', errors='replace') as fh:
+                for line in fh:
+                    m = re.match(r'^(?:class|struct)\s+(\w+)', line)
+                    if m:
+                        _gbengine_type_to_header.setdefault(m.group(1), "gbengine/%s" % hf.name)
 
     if pdb_class:
         # Inheritance -> include (simplify template names same as in class declaration)
@@ -313,31 +331,80 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
             else:
                 include_types.add(base)
 
+    # Also scan annotation known_members for type references
+    try:
+        ann_data_ref = load_annotations_data()
+        ann_struct_ref = ann_data_ref.get('structs', {}).get(cls_name, {})
+        for m in ann_struct_ref.get('known_members', {}).values():
+            mtype = m.get('type', '')
+            is_ptr = '*' in mtype
+            base = re.sub(r'\[\d+\]', '', mtype).replace('*', '').strip()
+            if not base or base == cls_name or base in PRIMITIVES or base in SYSTEM_TYPES:
+                continue
+            if '::' in base or '<' in base:
+                continue
+            if is_ptr:
+                fwd_types.add(base)
+            else:
+                include_types.add(base)
+    except:
+        pass
+
+    # Also scan method signatures for type references (all pointer/ref -> fwd_types)
+    if methods:
+        for method_name, sig, addr in methods:
+            # Extract all type names from signature
+            all_types_in_sig = re.findall(r'\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\*', sig)
+            for t in all_types_in_sig:
+                if t == cls_name or t in PRIMITIVES or t in SYSTEM_TYPES:
+                    continue
+                if '::' in t or '<' in t:
+                    continue
+                fwd_types.add(t)
+            # Also check return type and value params (non-pointer custom types)
+            ret_match = re.match(r'^(?:static\s+)?(\w+)\s', sig)
+            if ret_match:
+                rt = ret_match.group(1)
+                if rt not in PRIMITIVES and rt not in SYSTEM_TYPES and rt != cls_name and rt != 'void':
+                    fwd_types.add(rt)
+
     # Don't forward-declare what we're including
     fwd_types -= include_types
     # Remove system types from both sets
     include_types -= SYSTEM_TYPES
     fwd_types -= SYSTEM_TYPES
+    # Remove invalid identifiers (anonymous PDB types like $S28, keywords, etc.)
+    def _valid_type_name(t):
+        return bool(re.match(r'^[A-Za-z_][A-Za-z0-9_]*$', t)) and '$' not in t
+    include_types = {t for t in include_types if _valid_type_name(t)}
+    fwd_types = {t for t in fwd_types if _valid_type_name(t)}
 
-    # Only include types that will have a header file; demote others to fwd_types
+    # Resolve include paths: gbengine types -> "gbengine/xxx.h", pal3 gen types -> "xxx.h"
+    # Types needing full definition but no header -> demote to fwd_types
     if known_classes is not None:
-        existing_includes = set()
-        missing_includes = set()
+        resolved_includes = set()
         for t in include_types:
-            if t in known_classes:
-                existing_includes.add(t)
+            if t in _gbengine_type_to_header:
+                resolved_includes.add(t)
+            elif t in known_classes:
+                resolved_includes.add(t)
             else:
-                missing_includes.add(t)
-        include_types = existing_includes
-        fwd_types |= missing_includes
+                fwd_types.add(t)
+        include_types = resolved_includes
+
+    # Also resolve gbengine fwd types — if they have a header, we can fwd-declare
+    # (pointer-only usage doesn't need the header)
 
     # Emit includes
     for t in sorted(include_types):
-        lines.append('#include "%s.h"' % t)
+        if t in _gbengine_type_to_header:
+            lines.append('#include "%s"' % _gbengine_type_to_header[t])
+        else:
+            lines.append('#include "%s.h"' % t)
     if include_types:
         lines.append("")
 
-    # Emit forward declarations
+    # Emit forward declarations (gbengine pointer types don't need include)
     for t in sorted(fwd_types):
         lines.append("class %s;" % t)
     if fwd_types:
@@ -489,6 +556,33 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
         if size > 0:
             lines.append("    // total size: 0x%X (%d)" % (size, size))
         lines.append("")
+    elif not pdb_class or not pdb_class.get('data_members'):
+        # Fallback: generate from annotation known_members
+        try:
+            ann_data_fb = load_annotations_data()
+            ann_struct_fb = ann_data_fb.get('structs', {}).get(cls_name, {})
+            ann_members = ann_struct_fb.get('known_members', {})
+            ann_size = ann_struct_fb.get('binary_size')
+            if ann_members:
+                sorted_members = sorted(ann_members.items(), key=lambda x: int(x[0]))
+                for off_str, m in sorted_members:
+                    mname = m.get('name', '_field_%04X' % int(off_str))
+                    mtype = m.get('type', 'int')
+                    off = int(off_str)
+                    if base_size > 0 and off < base_size:
+                        continue
+                    arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
+                    if arr_match:
+                        arr_part = arr_match.group(1)
+                        base_type = mtype[:arr_match.start()].rstrip()
+                        lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, off))
+                    else:
+                        lines.append("    %s %s; // +0x%X" % (mtype, mname, off))
+                if ann_size and ann_size != '?':
+                    lines.append("    // total size: 0x%X (%d)" % (int(ann_size), int(ann_size)))
+                lines.append("")
+        except:
+            pass
 
     # Methods (deduplicate by name+params to avoid C2535)
     if methods:
@@ -621,7 +715,8 @@ def main():
     vtable_classes -= {'crt_internal', 'std_locale_facet'}
 
     generated = 0
-    all_classes = set(pdb_classes.keys()) | set(methods_by_class.keys()) | vtable_classes
+    ann_structs = set(ann_data_all.get('structs', {}).keys())
+    all_classes = set(pdb_classes.keys()) | set(methods_by_class.keys()) | vtable_classes | ann_structs
 
     # Pre-compute set of all class names that will have headers generated
     classes_with_headers = set()
@@ -632,7 +727,9 @@ def main():
         methods_list = methods_by_class.get(cls_name, [])
         has_members = pdb_class and pdb_class.get('data_members') and pdb_class.get('size', 0) > 1
         has_methods = len(methods_list) >= 1
-        if has_members or has_methods:
+        ann_s = ann_data_all.get('structs', {}).get(cls_name, {})
+        has_ann = bool(ann_s.get('known_members'))
+        if has_members or has_methods or has_ann:
             classes_with_headers.add(cls_name)
     # Also include template stubs and enums
     for base_name in template_classes:
@@ -650,11 +747,13 @@ def main():
         pdb_class = pdb_classes.get(cls_name)
         methods = methods_by_class.get(cls_name, [])
 
-        # Skip if no useful content (but keep if has vtable)
+        # Skip if no useful content (but keep if has vtable or annotation members)
         has_members = pdb_class and pdb_class.get('data_members') and pdb_class.get('size', 0) > 1
         has_methods = len(methods) >= 1
         has_vtable = any(v.get('class') == cls_name for v in ann_data_all.get('vtables', {}).values())
-        if not has_members and not has_methods and not has_vtable:
+        ann_struct = ann_data_all.get('structs', {}).get(cls_name, {})
+        has_ann_members = bool(ann_struct.get('known_members'))
+        if not has_members and not has_methods and not has_vtable and not has_ann_members:
             continue
 
         content = generate_header(cls_name, pdb_class, methods, classes_with_headers)
@@ -794,34 +893,82 @@ def generate_globals():
         '// PAL3 global variables with known types',
         '// Auto-generated from pipeline/data/annotations/globals.json',
         '',
+        '#include <windows.h>',
+        '',
         '// %d typed globals' % len(sorted_globs),
         '',
     ]
 
-    type_map = {
-        'int': 'int', 'float': 'float', 'double': 'double',
-        'unsigned char': 'unsigned char', 'BYTE': 'unsigned char',
-        'DWORD': 'DWORD', 'unsigned long': 'unsigned long',
-        'BOOL': 'BOOL', 'UINT': 'UINT', 'short': 'short',
-        'unsigned short': 'unsigned short', 'WORD': 'WORD',
-    }
+    # includes_needed: types that need full definition (#include header)
+    # fwd_classes: types that only need forward declaration (pointers only)
+    includes_needed = set()
+    fwd_classes = set()
+    gen_header_dir = PROJECT_ROOT / "include" / "pal3" / "gen"
+
+    def extract_base_type(t):
+        """Extract base type name from a type string."""
+        b = t.replace('const ', '').replace('*', '').replace('[]', '').strip()
+        return re.sub(r'\[\d+\]', '', b).strip()
 
     for addr_str, g in sorted_globs:
         name = g.get('name', '')
         typ = g.get('type', 'int')
         if not name:
             continue
-        # Skip IDA default names in header (they go in per-file forward decls)
+        # Skip IDA default names (they go in per-file forward decls)
         if re.match(r'^(dword|byte|flt|word|off|stru|unk|asc)_', name):
             continue
-        # Pointer types
-        if '*' in typ:
-            h_lines.append('extern %s %s; // %s' % (typ, name, addr_str))
+
+        base_typ = extract_base_type(typ)
+        is_pointer_only = '*' in typ and '[' not in typ
+        has_header = (gen_header_dir / ("%s.h" % base_typ)).exists()
+        has_struct = (PIPELINE_ROOT / "data" / "annotations" / "structs" / ("%s.json" % base_typ)).exists()
+
+        # Track types needing full definition vs forward declaration
+        if has_struct and not is_pointer_only:
+            if has_header:
+                includes_needed.add(base_typ)
+            else:
+                fwd_classes.add(base_typ)
+        elif has_struct and is_pointer_only:
+            if base_typ not in includes_needed:
+                fwd_classes.add(base_typ)
+
+        # Emit extern declaration with correct C syntax
+        arr_match = re.match(r'^(.+?)(\[\d*\])$', typ)
+        ptr_arr_match = re.match(r'^(.+\*)\s*(\[\d+\])$', typ)
+
+        if ptr_arr_match:
+            base, arr = ptr_arr_match.group(1).strip(), ptr_arr_match.group(2)
+            h_lines.append('extern %s %s%s; // %s' % (base, name, arr, addr_str))
+        elif arr_match and '*' not in typ:
+            base, arr = arr_match.group(1).strip(), arr_match.group(2)
+            h_lines.append('extern %s %s%s; // %s' % (base, name, arr, addr_str))
         elif '[]' in typ:
             base = typ.replace('[]', '').strip()
             h_lines.append('extern %s %s[]; // %s' % (base, name, addr_str))
+        elif '*' in typ:
+            h_lines.append('extern %s %s; // %s' % (typ, name, addr_str))
         else:
             h_lines.append('extern %s %s; // %s' % (typ, name, addr_str))
+
+    # Remove from fwd_classes anything already in includes_needed
+    fwd_classes -= includes_needed
+
+    # Insert #include for types needing full definition
+    insert_pos = 8  # after #include <windows.h> and blank line
+    if includes_needed:
+        for cls in sorted(includes_needed):
+            h_lines.insert(insert_pos, '#include "pal3/gen/%s.h"' % cls)
+            insert_pos += 1
+        h_lines.insert(insert_pos, '')
+        insert_pos += 1
+    # Insert forward declarations for pointer-only types
+    if fwd_classes:
+        for cls in sorted(fwd_classes):
+            h_lines.insert(insert_pos, 'class %s;' % cls)
+            insert_pos += 1
+        h_lines.insert(insert_pos, '')
 
     globals_h = PROJECT_ROOT / "include" / "pal3" / "globals.h"
     with open(globals_h, 'w', encoding='utf-8') as f:

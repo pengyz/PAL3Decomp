@@ -901,3 +901,38 @@
 - **置信度**: 85（IDA Hex-Rays decomp 在正确 struct 定义下访问这些偏移 = A+ 级证据）
 - **类型推断**: 4-aligned → int, 2-aligned → short, 其他 → unsigned char
 - **影响**: struct 中 gap 区域被填充，_gap_ 访问应大幅减少
+
+## [2026-05-14] globals.json 清理 + structs/ 垃圾删除
+
+- **变更**:
+  1. 从 globals.json 删除 43 个无效条目 (479 → 436)：
+     - 36 个 MSVC mangled name（`??_7length_error@std@@6B@` 等 RTTI/vtable 符号）
+     - 7 个 `__IMPORT_DESCRIPTOR_*`（PE 导入表内部结构）
+     - 18 个 PE/CRT 内部类型（IMAGE_IMPORT_DESCRIPTOR、_CatchableType、_ThrowInfo 等）
+  2. 从 structs/ 删除 6 个原始类型的垃圾 JSON 文件：
+     - char.json、UINT.json、LPARAM.json、size_t.json、double.json、long.json
+     - 这些是 PDB 导入时产生的空壳文件（0 个有效成员），会干扰 codegen 前向声明判断
+- **置信度**: 95（这些条目明确不属于游戏逻辑：mangled name 是编译器内部符号，PE 描述符是链接器产物，原始类型不是结构体）
+- **证据**:
+  1. [A] VC6 编译报 `error C2018: unknown character '0x40'`——`@` 在 mangled name 中不是合法 C 标识符
+  2. [A] `IMAGE_IMPORT_DESCRIPTOR` 等类型未在 VC6 Include 中定义，且属于 PE 格式内部结构
+  3. [A] char.json 等 struct 文件 binary_size=?，known_members=0，无实际逆向价值
+- **影响**: globals.h 生成时不再包含非法标识符，编译可继续推进
+
+### [2026-05-14] globals.json 清理 — 第二轮 (CRT 内部变量)
+
+- **变更**: 从 globals.json 再删除 7 个非游戏逻辑条目 (436 → 429)：
+  - `SrcSizeInBytes` (0x0060AF0C, size_t) — CRT 内部
+  - `lpfn` (0x01895398, LPTOP_LEVEL_EXCEPTION_FILTER) — CRT SEH
+  - `g_bCursorVisible` (0x01895560, unsigned __int8) — CRT 内部
+  - `Count` (0x018969A0, size_t) — CRT 内部
+  - `Locale` (0x01896BC4, LCID) — CRT 内部
+  - `lpMem` (0x01896D08, LPVOID) — CRT 内部
+  - `riidltf` (0x00573860, const IID) — .rdata 中的 COM GUID
+- 重命名 `g_GameData` (0x00DB9FD0) → `g_GameData2`（消除同名冲突）
+- **置信度**: 95（0x0189xxxx 范围是 .bss 尾部的 CRT 运行时区域，非游戏逻辑）
+- **证据**:
+  1. [A] 地址 0x0189xxxx 在 .bss 段末尾，远超游戏数据区 (0x580000-0xDF0000)
+  2. [A] `riidltf` 位于 .rdata 段的 COM IID 区域 (0x00573860)
+  3. [B] 变量名 SrcSizeInBytes/Count/lpMem/lpfn 均为 CRT 函数内部变量名模式
+- **未降级**：g_hCursor (HCURSOR), dwInitParam (LPARAM), g_UIScene (std::ios_base) 保留原始类型——codegen 层通过 `#include <windows.h>` 和头文件生成来解决
