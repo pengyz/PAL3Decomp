@@ -78,6 +78,33 @@
 - **影响**: 确认这 47 个 IDA 全局是安全的替换候选。正确修复路径是在 IDA 中对 g_Input 和 g_RoleSystemExtra0 应用结构体类型后重新导出。
 - **待修正**: RoleSystem.json 中 +0xAE (m_nAnimState) 和 +0x278 (m_pRoleObj) 的成员名需要复核
 
+### [2026-05-15] fix(gen_cpp): 删除编译器生成的 ctor/dtor 调用 — C2273 352→146
+
+- **变更**: gen_cpp.py `_replace_ida_internals` 新增 ctor/dtor 调用删除
+- **置信度**: 90
+- **证据**:
+  1. [A] `((UIListBox *)this)->UIListBox();` — IDA 反编译输出的编译器自动生成的 ctor 调用，C++ 源码中由编译器隐式处理
+  2. [A] 模式: `((TypeName *)expr)->TypeName(args);` 其中方法名==类型名 → 构造函数调用
+  3. [A] 同理析构: `((TypeName *)expr)->~TypeName();`
+  4. [B] 剩余 146 个 C2273 是 `this->ClassName(args)` 模式 — IDA 把方法错误命名为类名，需在 functions.json 修正
+- **影响**: C2273 352→146 (-206), 总错误 6595→6465 (-130)
+
+### [2026-05-15] 创建 raw IDB 用于偏移验证
+
+- **变更**: `original/raw/PAL3.exe.i64` — 纯自动分析 IDB，无任何类型导入
+- **用途**: Hex-Rays 在无类型信息时输出纯偏移访问（`*(DWORD*)(a1 + 0x278)`），可用于验证 struct 布局
+- **工具**: `pipeline/ida/_raw_query_flex.py` — 输入地址列表，输出 raw 反编译结果
+
+### [2026-05-15] fix(pipeline): tagPOINT/tagRECT 补充 — 150 types, tagPOINT._tail_000 清零
+
+- **变更**: 在 import_gbengine_types.py preamble 中添加 `struct tagPOINT { int x; int y; }` 和 `struct tagRECT`
+- **置信度**: 95
+- **证据**:
+  1. [A] tagPOINT._tail_000 错误 40 个，全部来自 `*(_DWORD*)&pt._tail_000[4]` 模式 — 实际是 `pt.y` (POINT.y at offset 4)
+  2. [A] IDA TIL 中 tagPOINT 为 forward decl，导致反编译器输出 `_tail_` 而非成员名
+  3. [A] 导入后 `parse_decls: 0 errors, 150 found, 0 missing`
+- **影响**: tagPOINT._tail_000 40→0
+
 ### [2026-05-15] fix(pipeline): import_gbengine_types 完整修复 — 0 errors, 148 types
 
 - **变更**: 修复 import_gbengine_types.py，实现 gbengine 类型零错误导入 IDA

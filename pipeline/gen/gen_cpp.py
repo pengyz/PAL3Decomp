@@ -461,6 +461,16 @@ def _replace_ida_internals(code):
         if re.match(r'\s*LOBYTE\s*\(\s*\w.*->__vftable\s*\)\s*=', s) or \
            re.match(r'\s*LOBYTE\s*\(\s*this->__vftable\s*\)\s*=', s):
             continue
+        # Delete compiler-generated ctor/dtor calls:
+        #   ((Type *)expr)->Type(args);  or  ((Type *)expr)->~Type();
+        # Key: method name must match the cast type name (ctor = ClassName())
+        _ctor_m = re.match(r'\s*\(\((\w+)\s*\*\)\s*[^)]*\)\s*->\s*~?(\w+)\s*\([^)]*\)\s*;', s)
+        if _ctor_m and _ctor_m.group(1) == _ctor_m.group(2):
+            continue
+        # Double-cast variant: ((Type *)(Type *)expr)->Type(args);
+        _ctor_m2 = re.match(r'\s*\(\((\w+)\s*\*\)\s*\(\w+\s*\*\)\s*[^)]*\)\s*->\s*~?(\w+)\s*\([^)]*\)\s*;', s)
+        if _ctor_m2 and _ctor_m2.group(1) == _ctor_m2.group(2):
+            continue
         out.append(line)
     return '\n'.join(out)
 
