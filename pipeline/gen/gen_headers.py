@@ -251,6 +251,46 @@ def collect_methods():
     return classes
 
 
+def _estimate_member_size(mtype):
+    """Estimate size of a member from its type string."""
+    # Pointer types
+    if '*' in mtype:
+        return 4
+    # Array types: "Type[N]" or "Type[N][M]"
+    arr_match = re.search(r'\[(\d+)\](?:\[(\d+)\])?$', mtype)
+    if arr_match:
+        base = mtype[:arr_match.start()].strip()
+        count = int(arr_match.group(1))
+        count2 = int(arr_match.group(2)) if arr_match.group(2) else 1
+        return _estimate_member_size(base) * count * count2
+    # Known sizes
+    t = mtype.strip()
+    if t in ('char', 'unsigned char', 'BYTE', '_BYTE', 'bool'):
+        return 1
+    if t in ('short', 'unsigned short', 'WORD', '_WORD', 'wchar_t'):
+        return 2
+    if t in ('int', 'unsigned int', 'long', 'unsigned long', 'DWORD',
+             '_DWORD', 'UINT', 'LONG', 'BOOL', 'HRESULT', 'float', 'HWND',
+             'HANDLE', 'HINSTANCE', 'HDC', 'LPVOID'):
+        return 4
+    if t in ('double', '__int64', 'LONGLONG', 'ULONGLONG'):
+        return 8
+    # Struct/class - check if we have its size from annotations or headers
+    ann_struct_dir = Path(__file__).parent.parent / 'data' / 'annotations' / 'structs'
+    struct_file = ann_struct_dir / ('%s.json' % t)
+    if struct_file.exists():
+        try:
+            import json as _json
+            sd = _json.load(open(struct_file, encoding='utf-8'))
+            sz = sd.get('binary_size') or sd.get('gen_size')
+            if sz and sz != '?':
+                return int(sz)
+        except:
+            pass
+    # Default: assume 4 bytes (int-sized)
+    return 4
+
+
 def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names=None):
     """Generate a complete header for one class."""
     lines = []
@@ -544,7 +584,23 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
         except:
             pass
 
+    # Detect PDB stubs: if annotation has much larger binary_size, PDB is just a forward decl
+    use_pdb_members = False
     if pdb_class and pdb_class.get('data_members'):
+        pdb_size = pdb_class.get('size', 0)
+        ann_bsize = 0
+        try:
+            _ann_d = load_annotations_data()
+            _ann_s = _ann_d.get('structs', {}).get(cls_name, {})
+            ann_bsize = _ann_s.get('binary_size') or _ann_s.get('gen_size') or 0
+        except:
+            pass
+        if ann_bsize > 0 and pdb_size > 0 and ann_bsize > pdb_size * 4 and _ann_s.get('known_members'):
+            use_pdb_members = False
+        else:
+            use_pdb_members = True
+
+    if use_pdb_members:
         members = pdb_class['data_members']
         size = pdb_class.get('size', 0)
 
@@ -599,21 +655,27 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
         if size > 0:
             lines.append("    // total size: 0x%X (%d)" % (size, size))
         lines.append("")
-    elif not pdb_class or not pdb_class.get('data_members'):
-        # Fallback: generate from annotation known_members
+    if not use_pdb_members:
+        # Fallback: generate from annotation known_members with gap filling
         try:
             ann_data_fb = load_annotations_data()
             ann_struct_fb = ann_data_fb.get('structs', {}).get(cls_name, {})
             ann_members = ann_struct_fb.get('known_members', {})
-            ann_size = ann_struct_fb.get('binary_size')
+            ann_size = ann_struct_fb.get('binary_size') or ann_struct_fb.get('gen_size')
             if ann_members:
                 sorted_members = sorted(ann_members.items(), key=lambda x: int(x[0]))
+                start_off = base_size
                 for off_str, m in sorted_members:
                     mname = m.get('name', '_field_%04X' % int(off_str))
                     mtype = m.get('type', 'int')
                     off = int(off_str)
-                    if base_size > 0 and off < base_size:
+                    if off < start_off:
                         continue
+                    # Insert gap padding before this member if needed
+                    if off > start_off:
+                        gap_size = off - start_off
+                        lines.append("    char _gap_%03X[%d]; // +0x%X" % (start_off, gap_size, start_off))
+                    # Emit member
                     arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
                     if arr_match:
                         arr_part = arr_match.group(1)
@@ -621,11 +683,18 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                         lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, off))
                     else:
                         lines.append("    %s %s; // +0x%X" % (mtype, mname, off))
+                    # Estimate member size to compute next start_off
+                    member_size = _estimate_member_size(mtype)
+                    start_off = off + member_size
+                # Tail padding to reach total size
+                if ann_size and ann_size != '?' and int(ann_size) > start_off:
+                    tail_size = int(ann_size) - start_off
+                    lines.append("    char _tail_%03X[%d]; // +0x%X" % (start_off, tail_size, start_off))
                 if ann_size and ann_size != '?':
                     lines.append("    // total size: 0x%X (%d)" % (int(ann_size), int(ann_size)))
                 lines.append("")
-        except:
-            pass
+        except Exception as e:
+            import traceback; traceback.print_exc()
 
     # Methods (deduplicate by name+params to avoid C2535)
     if methods:

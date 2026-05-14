@@ -51,6 +51,49 @@
 
 ## 变更记录
 
+### [2026-05-15] 全局变量子成员重叠验证 — 47/47 确认
+
+- **变更**: 验证所有 IDA 命名的全局变量与已标注全局结构体的地址重叠关系
+- **置信度**: 90
+- **方法**: tools/analyze_global_overlaps.py 扫描 src/pal3/ 中 1390 个 IDA 全局名，对比 globals.json 中 31 个结构体/数组全局的地址范围
+- **结论**: 47 个未标注 IDA 全局变量落在 2 个父级结构体内，全部确认为真子成员访问
+- **证据**:
+
+  **g_RoleSystemExtra0 (RoleSystem, 8704 bytes @ 0xBFDBB0) — 5/5 确认:**
+  1. [A] byte_BFDC50 (+0xA0) = m_fPosX: `*(gbVec3D*)byte_BFDC50 = pTarget` — 写入位置向量(float[3])
+  2. [A] flt_BFDC54 (+0xA4) = m_fPosY: `flt_BFDC54 + 80.0` — float 运算一致
+  3. [B] byte_BFDC5E (+0xAE) = 字符缓冲区: `strcpy(byte_BFDC5E, scene)` — 确认在 struct 内，但标注名 m_nAnimState 可能错误（应为 char[]）
+  4. [B] dword_BFDE28 (+0x278) = flag: `= 0; = 1; if()` — 确认在 struct 内，但标注名 m_pRoleObj 可能错误（行为是 bool flag）
+  5. [A] dword_BFE0A0 (+0x4F0) = m_nMoveMode: `= 1; != 4` — enum/mode 值一致
+
+  **g_Input (GRPinput, 10584 bytes @ 0xBFAD70) — 42/42 确认:**
+  1. [A] unk_BFB420 (+0x6B0) = m_keyDragStartPositions: `memset(&unk_BFB420, 0, 0x870)` — 清零大小 0x870 = sizeof(ulong[2][270]) 精确匹配
+  2. [A] unk_BFC1A8/dword_BFC1A8 (+0x1438) = MouseState.lZ: `/120` 是 Windows 鼠标滚轮标准处理
+  3. [A] unk_BFC5DC/E0/E4 (+0x186C/1870/1874) = m_bMouse/m_bKeyboard/m_bJoystick: 设备标志位
+  4. [A] byte_BFC5E8 (+0x1878) = KeyInfo[0]: `& 0xF` 按键状态位检查
+  5. [A] dword_BFC5F4 (+0x1884) = KeyInfo[0].PressTime: GRP_KEYREG(16B) 的 +12 偏移
+  6. [A] unk_BFC5F8~BFC868 (+0x1888~0x1AF8): KeyInfo[1]~KeyInfo[N]，16字节步长，交替访问 Data(+0) 和 PressTime(+12)
+
+- **排除的误报**: 分析初期发现 95 个"已标注"全局变量落在范围内（如 g_nCBDamageValue 落在 g_nCBRoleAttackTable 内）。这些是**数组标注错误**——标注为 `int[44]` 的实际上是多个独立 int 全局变量恰好地址相邻。已通过"已有独立标注则跳过"逻辑排除。
+- **影响**: 确认这 47 个 IDA 全局是安全的替换候选。正确修复路径是在 IDA 中对 g_Input 和 g_RoleSystemExtra0 应用结构体类型后重新导出。
+- **待修正**: RoleSystem.json 中 +0xAE (m_nAnimState) 和 +0x278 (m_pRoleObj) 的成员名需要复核
+
+### [2026-05-15] g_EffMgr 地址修正 + gen_cpp 全局名替换 + gen_headers PDB stub/gap-fill
+
+- **变更**:
+  1. globals.json: g_EffMgr 地址 0x5D54F0 → 0x5D5484
+  2. gen_cpp.py: 新增 GLOBALS_NAME_MAP，IDA 默认名精确替换为标注名
+  3. gen_headers.py: PDB stub 检测（annotation binary_size >> PDB size 时优先 annotations）
+  4. gen_headers.py: 结构体 gap-filling（自动生成 _gap_XXX/_tail_XXX padding）
+  5. gen_headers.py: 修复 _BGM.h 枚举生成、gbFontType.h → gbengine/gbPrintFont.h
+- **置信度**: 95
+- **证据**:
+  1. [A] g_EffMgr: CEffMgr 构造函数中 `stru_5D5484.m_EffClass[2].szChineseName[10]`，m_EffClass 始于 +0x1C，tagEffClass=0x48，m_EffTable 始于 +0x91C，全部与 base=0x5D5484 一致
+  2. [A] SceneMgr: PDB 中 size=1（forward decl stub），annotation binary_size=54116，PDB 生成全部 +0x0 偏移的假成员
+  3. [A] gap-fill: SceneMgrCamBlock 的 IDA 代码访问 `._gap_2B4[N]`，需要 char 数组成员才能编译
+  4. [A] 编译验证: 9087→8606 errors (-5.3%)，10 个 .cpp 从 0 通过
+- **剩余问题**: 多个数组标注（g_nCBRoleAttackTable[44] 等）实际是相邻独立变量，需要拆分
+
 ### [2026-05-14] codegen 管线清理 — vtbl/backtick/VC6 兼容性 (8636→6882 errors)
 
 - **变更**: gen_headers.py + gen_cpp.py 管线修改，消除 IDA 内部类型污染

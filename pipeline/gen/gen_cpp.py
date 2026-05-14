@@ -86,6 +86,38 @@ def replace_literals(code):
     return re.sub(r'\bflt_[0-9A-Fa-f]+\b', _repl, code)
 
 
+# Globals name map: IDA default name (stru_5D5484) → proper name from globals.json
+# Only exact address matches — sub-access replacement requires manual verification
+GLOBALS_NAME_MAP = {}  # "stru_5D5484" → "g_EffMgr"
+_globals_json = PIPELINE_ROOT / "data" / "annotations" / "globals.json"
+if _globals_json.exists():
+    _gdata = json.load(open(_globals_json, encoding='utf-8'))
+    _ida_prefixes = ('dword', 'byte', 'word', 'stru', 'off', 'unk', 'flt')
+    for _addr_str, _ginfo in _gdata.items():
+        _gname = _ginfo.get('name', '')
+        if not _gname:
+            continue
+        if any(_gname.startswith(p + '_') for p in _ida_prefixes):
+            continue
+        _addr_int = int(_addr_str, 16)
+        _addr_hex = '%X' % _addr_int
+        for _pfx in _ida_prefixes:
+            GLOBALS_NAME_MAP['%s_%s' % (_pfx, _addr_hex)] = _gname
+
+
+def replace_global_names(code):
+    """Replace IDA default global names with annotated proper names (exact match only)."""
+    if not GLOBALS_NAME_MAP:
+        return code
+    _pat = re.compile(r'\b((?:dword|byte|word|stru|off|unk|flt)_[0-9A-Fa-f]+)\b')
+    def _repl(m):
+        name = m.group(0)
+        pfx, hexpart = name.split('_', 1)
+        key = '%s_%s' % (pfx, hexpart.upper())
+        return GLOBALS_NAME_MAP.get(key, name)
+    return _pat.sub(_repl, code)
+
+
 # Thunk class names to skip (these are just jump trampolines)
 THUNK_CLASSES = set()
 if _skip_file.exists():
@@ -382,6 +414,7 @@ def transform_method_code(cls_name, method_name, code, sig):
     # Final: replace thunk references (after OOP transform may have created j_Class casts)
     code = replace_thunks(code)
     code = replace_literals(code)
+    code = replace_global_names(code)
 
     # Replace IDA vtable struct types with void (not real C++ types)
     code = re.sub(r'\bvtbl_[0-9A-Fa-f]+\b', 'void', code)
@@ -623,7 +656,8 @@ def generate_free_funcs_cpp(funcs):
         code = f['code'].strip()
         code = replace_thunks(code)
         code = replace_literals(code)
-    
+        code = replace_global_names(code)
+
         # In free functions, 'this' is not a valid parameter name in C++
         # Rename to '_this' to avoid syntax errors
         code = re.sub(r'\bthis\b', '_this', code)
