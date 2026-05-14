@@ -730,13 +730,12 @@ def main():
         elif '::' not in name:
             pdb_classes[name] = c
 
-    # Override PDB data with IDA struct exports
-    # IDB is the authoritative source: PDB (PAL3A) + gbengine headers + annotations
-    # IDA structs always take priority over PDB when they have more/better data
+    # IDB is the sole authoritative source for struct layout.
+    # PDB data is already in IDB (imported by master_pipeline), annotation is the diff on top.
+    # IDB export = PDB + annotation merged. Always use IDB data over raw PDB.
     ida_override_count = 0
     if IDA_STRUCTS_FILE.exists():
         ida_data = json.load(open(IDA_STRUCTS_FILE, encoding='utf-8'))
-        # Support both formats: dict {name: {...}} or list [{name, ...}]
         if isinstance(ida_data, dict):
             ida_items = [(k, v) for k, v in ida_data.items() if isinstance(v, dict)]
         else:
@@ -751,20 +750,11 @@ def main():
             if not sname[0].isalpha() and sname[0] != '_':
                 continue
 
-            pdb_entry = pdb_classes.get(sname)
-            pdb_size = pdb_entry.get('size', 0) if pdb_entry else 0
-            ida_members = len(s.get('data_members', []))
+            # IDB always overrides PDB — IDB = PDB + annotation + gbengine merged
+            pdb_classes[sname] = s
+            ida_override_count += 1
 
-            # IDA struct overrides PDB when:
-            # 1. PDB has no data (size<=1)
-            # 2. IDA has larger size (binary_size > pdb_size)
-            # 3. IDA has more members (annotation filled gaps)
-            pdb_members = len(pdb_entry.get('data_members', [])) if pdb_entry else 0
-            if pdb_size <= 1 or ssize > pdb_size or ida_members > pdb_members:
-                pdb_classes[sname] = s
-                ida_override_count += 1
-
-        print("  IDA struct overrides: %d" % ida_override_count)
+        print("  IDA struct overrides: %d (IDB is authoritative)" % ida_override_count)
 
     # Collect methods from decomp
     methods_by_class = collect_methods()
