@@ -37,7 +37,7 @@
   },
   "0x004022E0": {
     "name": "GRPinput::GetCursorPos",
-    "signature": "BOOL __stdcall(void *pPoint)"
+    "signature": "BOOL __thiscall(GRPinput *this)"
   },
   "0x00402310": {
     "name": "GRPinput::AcquireDevices",
@@ -413,7 +413,7 @@
   },
   "0x00410470": {
     "name": "ScriptSystem::RunEvent",
-    "signature": "int __cdecl(int eventId, int a2, int a3)"
+    "signature": "int __thiscall(ScriptSystem *this, int eventId, int a2)"
   },
   "0x00410990": {
     "name": "Scene::LoadConfig",
@@ -6741,7 +6741,7 @@
   },
   "0x0049CA70": {
     "name": "PAL_GDB::IsValidItem",
-    "signature": "BOOL __stdcall(int *pGDB, int nItemID)"
+    "signature": "BOOL __thiscall(PAL_GDB *this, int nItemID)"
   },
   "0x004E5460": {
     "name": "EditBox_GetInt",
