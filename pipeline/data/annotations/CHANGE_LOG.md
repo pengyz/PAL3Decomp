@@ -983,3 +983,24 @@
   3. [A] 二进制搜索 PRNG 常数 214013 (0x343FD) 确认 `mov [0x5DFDEC], eax` 和 `mov [0x60AC60], eax`（两处不同 PRNG seed）
 - **发现**: 0x5DFDEC 落在 g_EffMgr (0x5D54F0, CEffMgr size=43312) 范围内，偏移 0xA8FC = m_EffTable[2046].dwRunGroupID。annotated IDB 中 IDA 把此地址误解析为 `stru_5D5484.m_EffTable[1943].dwClassNameCRC`（因为 0x5D5484 被 IDA 自动创建为结构体，覆盖了该区域的字符串常量 "quake"/"bink"/"shock"/"audio"）
 - **待修复**: stru_5D5484 的根因是 CEffMgr 区域的结构体 overlap，需要进一步调查 CEffMgr 布局
+
+### [2026-05-14] 68 个 overlap 违规修复 + 18 个语义命名
+
+- **变更**:
+  1. 修复 68 个从远端 gap-fill 引入的结构体 overlap 违规（15 个结构体）
+  2. 从 query_todo_fields 上下文命名 18 个 _todo_ 字段
+- **置信度**: 95（overlap 修复），75（语义命名）
+- **Overlap 修复方法**: 检测 int(4字节)/UIWnd(152字节)/char[N] 等成员覆盖范围，删除范围内的 _todo_/_field_ 子条目
+- **修复明细**:
+  - CScreenMode: -22, EquipUI: -7, PropUI: -7, PalScriptMgr: -6+2手动
+  - _TextureLib_Data: -6, SaleUI: -5, UIBigMap: -2, UICoverFrm: -2
+  - PalScript: -2, CCBStage: -1+1手动, CCBUI: -1, UIListBox: -1, 等
+- **语义命名证据**:
+  1. [A+] RoleSystem+0 = `m_pVtable`: decomp `this->_field_000 = (int)&stru_570890` — vtable 赋值
+  2. [A+] UIListBox+516 = `m_nItemCount`: `++this->_todo_204` / `--this->_todo_204` — 计数器增减
+  3. [A+] UIListBox+368 = `m_wndScrollBar`: `UIFrameWnd::ctor/dtor` 在该偏移调用 — 嵌入 UIFrameWnd
+  4. [A+] UIScene+168 = `m_dwColor`: `= -16776961` (0xFF0000FF) — ARGB 颜色常量
+  5. [A+] TextureLib+528 = `m_pTexture`: LoadFromFile 存指针, _nearby 释放+置零 — 指针生命周期
+  6. [A+] ScriptSystem+1352 = `m_fTargetDir`: 与 m_vDir_z 比较, 赋给 m_nSaveDir — 目标方向
+  7. [A+] CameraCtrl+3352 = `m_CamBlocks`: `memset 0xBA40(47680)` 字节 — 大型数组/缓冲区
+- **影响**: 消除 pre-commit 违规，annotations 恢复 PASS 状态
