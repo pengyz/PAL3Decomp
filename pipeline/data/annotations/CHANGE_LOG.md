@@ -949,3 +949,24 @@
   2. [A] 名字与 Win32 API 完全匹配（MessageBoxA、GetActiveWindow、GetLastActivePopup）
   3. [B] 类型为函数指针——IAT 存储的正是函数指针
 - **影响**: globals.h 不再生成无法编译的函数指针 extern 声明
+
+### [2026-05-14] functions.json 修正 __int128 签名 + skip_functions 添加 CRT 函数
+
+- **变更**:
+  1. functions.json: 修正 4 个函数签名中的 `__int128` → 展开为 4 个 `int` 参数
+     - UIListBox::_init_4765f0 (0x004765F0)
+     - UIListBox::_init_476ed0 (0x00476ED0)
+     - UIScene::_init_454ca0 (0x00454CA0)
+     - ECBRoleSpecState::_method_532cf0 (0x00532CF0)
+  2. skip_functions.json: 添加 4 个 CRT Concurrency Runtime 内部函数
+     - Concurrency::details::VirtualProcessor::GetExecutionResourceId (0x004790F0)
+     - Concurrency::details::InternalContextBase::GetProxy (0x00479250)
+     - Concurrency::details::VirtualProcessor::IsThrottled (0x004B4830)
+     - Concurrency::details::ExternalStatistics::MarkInactive (0x00532D50)
+- **置信度**: 90
+  - __int128 修正: IDA Hex-Rays 在 32-bit 代码中生成了不可能的 128-bit 类型，实际是多个 32-bit 参数被错误合并
+  - CRT 函数: 函数名明确属于 MSVC Concurrency Runtime (非游戏逻辑)
+- **证据**:
+  1. [A] 32-bit PE (PAL3.exe) 不可能有 __int128 指令——这是 IDA 反编译 artifact
+  2. [A] `Concurrency::details::` 命名空间是 MSVC CRT 内部实现
+- **影响**: IDB rebuild 后 decomp JSON 中不再包含 __int128 签名；Concurrency 类不再生成头文件和源码
