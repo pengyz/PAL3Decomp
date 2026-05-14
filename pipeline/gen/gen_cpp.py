@@ -27,6 +27,16 @@ GAME_CLASSES = set()
 for h in HEADER_DIR.glob("*.h"):
     GAME_CLASSES.add(h.stem)
 
+# Globals already declared in globals.h (don't re-declare as extern int)
+GLOBALS_H = PROJECT_ROOT / "include" / "pal3" / "globals.h"
+_DECLARED_GLOBALS = set()
+if GLOBALS_H.exists():
+    import re as _re
+    for _line in open(GLOBALS_H, encoding='utf-8', errors='replace'):
+        _m = _re.search(r'extern\s+\S.*?\b(\w+)\s*(?:\[|;)', _line)
+        if _m:
+            _DECLARED_GLOBALS.add(_m.group(1))
+
 # Thunk address → target name mapping (for call replacement)
 THUNK_MAP = {}  # "sub_XXXXXX" → "TargetFunc"
 _skip_file = PIPELINE_ROOT / "data" / "annotations" / "skip_functions.json"
@@ -373,8 +383,53 @@ def transform_method_code(cls_name, method_name, code, sig):
     code = replace_thunks(code)
     code = replace_literals(code)
 
+    # Replace IDA vtable struct types with void (not real C++ types)
+    code = re.sub(r'\bvtbl_[0-9A-Fa-f]+\b', 'void', code)
+
+    # VC6 compatibility: LL suffix → i64, uLL → ui64
+    code = re.sub(r'(\b0x[0-9A-Fa-f]+)uLL\b', r'\1ui64', code)
+    code = re.sub(r'(\b0x[0-9A-Fa-f]+)LL\b', r'\1i64', code)
+    code = re.sub(r'(\b\d+)LL\b', r'\1i64', code)
+
+    # Fix Hex-Rays broken dereference: (*)var → (*var)
+    code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
+
+    # Remove compiler-internal calls and vtable init
+    code = _replace_ida_internals(code)
 
     return code
+
+
+def _replace_ida_internals(code):
+    """Remove IDA backtick-quoted compiler-internal calls (compiler auto-generates these)."""
+    _BACKTICK_PATTERNS = (
+        "`eh vector constructor iterator'",
+        "`eh vector destructor iterator'",
+        "`default constructor closure'",
+        "`scalar deleting destructor'",
+        "`vftable'",
+    )
+    lines = code.split('\n')
+    out = []
+    skip_until_semicolon = False
+    for line in lines:
+        s = line.strip()
+        if skip_until_semicolon:
+            if ';' in s:
+                skip_until_semicolon = False
+            continue
+        if any(p in s for p in _BACKTICK_PATTERNS):
+            if ';' not in s:
+                skip_until_semicolon = True
+            continue
+        # Delete vtable pointer init (compiler-generated in ctor/dtor)
+        if re.match(r'\s*\w.*->__vftable\s*=\s*', s) or re.match(r'\s*this->__vftable\s*=', s):
+            continue
+        if re.match(r'\s*LOBYTE\s*\(\s*\w.*->__vftable\s*\)\s*=', s) or \
+           re.match(r'\s*LOBYTE\s*\(\s*this->__vftable\s*\)\s*=', s):
+            continue
+        out.append(line)
+    return '\n'.join(out)
 
 
 def split_params_simple(s):
@@ -453,6 +508,7 @@ def generate_forward_decls(all_code):
         lines.append("")
 
     undef = collect_undefined_refs(all_code)
+    undef -= _DECLARED_GLOBALS
     if undef:
         lines.append("// Unnamed globals (extern)")
         for u in sorted(undef):
@@ -520,6 +576,8 @@ def generate_class_cpp(cls_name, methods):
     needed_classes |= indirect
 
     for c in sorted(needed_classes):
+        if c.startswith('vtbl_'):
+            continue
         lines.append('#include "pal3/gen/%s.h"' % c)
 
     lines.append("")
@@ -573,6 +631,14 @@ def generate_free_funcs_cpp(funcs):
         code = code.replace('stdiobuf *', 'UIWnd *')
         code = code.replace('stdiobuf::', 'UIWnd::')
         code = code.replace('std::ios_base *', 'UIWnd *')
+        # Replace IDA vtable struct types
+        code = re.sub(r'\bvtbl_[0-9A-Fa-f]+\b', 'void', code)
+        # VC6 compatibility
+        code = re.sub(r'(\b0x[0-9A-Fa-f]+)uLL\b', r'\1ui64', code)
+        code = re.sub(r'(\b0x[0-9A-Fa-f]+)LL\b', r'\1i64', code)
+        code = re.sub(r'(\b\d+)LL\b', r'\1i64', code)
+        code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
+        code = _replace_ida_internals(code)
         transformed.append((f['addr'], code))
 
     # Forward declarations

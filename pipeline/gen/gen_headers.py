@@ -84,6 +84,7 @@ SKIP_PREFIXES = (
     'CD3D',  # D3D helper classes from SDK samples
     'D3DX',  # D3DX math types
     'gb',    # gbengine types (all start with gb)
+    'vtbl_', # IDA vtable structs (not real C++ types)
 )
 
 
@@ -416,7 +417,8 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 lines.append('#include "%s.h"' % t)
         fwd_types -= enum_fwd
 
-    # Emit forward declarations for class types
+    # Emit forward declarations for class types (skip IDA vtable structs)
+    fwd_types = {t for t in fwd_types if not t.startswith('vtbl_')}
     for t in sorted(fwd_types):
         lines.append("class %s;" % t)
     if fwd_types:
