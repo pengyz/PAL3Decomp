@@ -75,6 +75,9 @@ def flatten_gbengine_headers(header_dir):
 
     full = '\n'.join(output)
 
+    # Step 3b: Replace 'class' with 'struct' (IDA C parser prefers struct)
+    full = re.sub(r'\bclass\b', 'struct', full)
+
     # Step 4: Flatten anonymous unions/structs for IDA
     # Pattern: union { struct { members }; struct { members }; scalar; };
     # Replace with just the scalar or first struct's members
@@ -185,6 +188,7 @@ def main():
             tinfo = ida_typeinf.tinfo_t()
             result = ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP)
             if result is not None:
+                tinfo.set_named_type(til, name)
                 pass_ok += 1
                 total_ok += 1
             else:
