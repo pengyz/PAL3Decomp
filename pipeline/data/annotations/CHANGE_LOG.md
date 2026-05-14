@@ -970,3 +970,16 @@
   1. [A] 32-bit PE (PAL3.exe) 不可能有 __int128 指令——这是 IDA 反编译 artifact
   2. [A] `Concurrency::details::` 命名空间是 MSVC CRT 内部实现
 - **影响**: IDB rebuild 后 decomp JSON 中不再包含 __int128 签名；Concurrency 类不再生成头文件和源码
+
+### [2026-05-14] globals.json 添加 PRNG 全局变量
+
+- **变更**: 添加 2 个全局变量
+  - `g_nCombatRandSeed` (0x005DFDEC, `unsigned long`) — 战斗 AI PRNG 种子
+  - `g_nRandCallCount` (0x017AD310, `int`) — 随机数调用计数器
+- **置信度**: 95
+- **证据**:
+  1. [A] raw IDB 反编译 HandleEnemyAction (0x4D71E0) 中：`dword_5DFDEC = 214013 * dword_5DFDEC + 2531011` — 经典 MSVC LCG PRNG 常数
+  2. [A] raw IDB 中 `++dword_17AD310` 与 PRNG 调用总是配对出现
+  3. [A] 二进制搜索 PRNG 常数 214013 (0x343FD) 确认 `mov [0x5DFDEC], eax` 和 `mov [0x60AC60], eax`（两处不同 PRNG seed）
+- **发现**: 0x5DFDEC 落在 g_EffMgr (0x5D54F0, CEffMgr size=43312) 范围内，偏移 0xA8FC = m_EffTable[2046].dwRunGroupID。annotated IDB 中 IDA 把此地址误解析为 `stru_5D5484.m_EffTable[1943].dwClassNameCRC`（因为 0x5D5484 被 IDA 自动创建为结构体，覆盖了该区域的字符串常量 "quake"/"bink"/"shock"/"audio"）
+- **待修复**: stru_5D5484 的根因是 CEffMgr 区域的结构体 overlap，需要进一步调查 CEffMgr 布局
