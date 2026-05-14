@@ -51,6 +51,34 @@
 
 ## 变更记录
 
+### [2026-05-15] 完整管线重建总结 — 9087→6466 errors (-28.8%)
+
+- **变更**: 完整管线重建（import_gbengine → apply → export → gen → VC6 compile）
+- **置信度**: 95
+- **改进汇总**:
+
+  | 改动 | 错误变化 | 关键指标 |
+  |------|---------|---------|
+  | gen_cpp 全局名替换 + g_EffMgr 地址修正 | 9087→8606 | 1057 处 stru_5D5484 消除 |
+  | gen_headers PDB stub 检测 + gap-fill | −190 | SceneMgr 等大结构体恢复 |
+  | import_gbengine_types 完整修复 | 8606→6595 | 150 types 零错误导入 |
+  | tagPOINT/tagRECT 补充 | −40 | _tail_000 清零 |
+  | gen_cpp ctor/dtor 调用删除 | 6595→6465 | C2273: 352→146 |
+  | gen_cpp return __vftable 替换 | → 6466 | 43 处 ctor return 修正 |
+
+- **当前编译状态**: 14/197 .cpp 通过 VC6 编译, 6466 errors
+- **证据**:
+  1. [A] import_gbengine: `parse_decls: 0 errors, 150 found, 0 missing`（根因: gbengine_internal.h 缺失、方法 strip 破坏 struct body、forward-decl stubs 阻塞）
+  2. [A] gbGfxManager._gap_0A1: 137→0（gbLight/gbMatrixStack 导入后 IDA 正确解析成员）
+  3. [A] g_EffMgr 地址: CEffMgr 构造函数中 stru_5D5484.m_EffClass 访问确认 base=0x5D5484
+  4. [A] ctor 删除: `((TypeName*)expr)->TypeName()` 模式匹配精确（方法名==类型名），不误删正常方法调用
+- **剩余阻塞分析**:
+  - C2227/C2664/C2440 (2492): IDA 函数签名错误 → 需逐个修正 functions.json
+  - C2673 (673): VTABLE_DUP 导致 override 方法声明缺失 → 需重构 gen_headers vtable/method 去重
+  - C2039 (565): __vftable 访问(184) + STL 内部调用(42) + 结构体成员缺失(339)
+  - C2273 (146): IDA 把方法名错误命名为类名 → functions.json 修正
+  - C2065 (447): 缺少 forward decl / 函数未声明
+
 ### [2026-05-15] 全局变量子成员重叠验证 — 47/47 确认
 
 - **变更**: 验证所有 IDA 命名的全局变量与已标注全局结构体的地址重叠关系
