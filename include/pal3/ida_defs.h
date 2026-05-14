@@ -71,8 +71,8 @@ typedef int BOOL;
 #define NAN (*(float*)&_nan_bytes)
 static unsigned int _nan_bytes = 0x7FC00000;
 
-// MSVC internal exception throw info (used by _CxxThrowException)
-extern char _TI1_AV_Exception__;
+// MSVC internal exception throw info
+extern _s__ThrowInfo _TI1_AV_Exception__;
 
 // Forward declarations for common game/engine types used in generated code
 class gbMatrixStack;

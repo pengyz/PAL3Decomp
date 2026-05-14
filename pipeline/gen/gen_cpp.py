@@ -419,6 +419,9 @@ def transform_method_code(cls_name, method_name, code, sig):
     # Replace IDA vtable struct types with void (not real C++ types)
     code = re.sub(r'\bvtbl_[0-9A-Fa-f]+\b', 'void', code)
 
+    # Fix IDA exception type name: _ThrowInfo → _s__ThrowInfo (MSVC6 CRT)
+    code = code.replace('(_ThrowInfo *)', '(_s__ThrowInfo *)')
+
     # VC6 compatibility: LL suffix → i64, uLL → ui64
     code = re.sub(r'(\b0x[0-9A-Fa-f]+)uLL\b', r'\1ui64', code)
     code = re.sub(r'(\b0x[0-9A-Fa-f]+)LL\b', r'\1i64', code)
