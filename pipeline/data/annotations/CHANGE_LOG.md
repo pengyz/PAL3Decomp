@@ -936,3 +936,16 @@
   2. [A] `riidltf` 位于 .rdata 段的 COM IID 区域 (0x00573860)
   3. [B] 变量名 SrcSizeInBytes/Count/lpMem/lpfn 均为 CRT 函数内部变量名模式
 - **未降级**：g_hCursor (HCURSOR), dwInitParam (LPARAM), g_UIScene (std::ios_base) 保留原始类型——codegen 层通过 `#include <windows.h>` 和头文件生成来解决
+
+### [2026-05-14] globals.json 清理 — 第三轮 (IAT 函数指针)
+
+- **变更**: 从 globals.json 删除 3 个 IAT 函数指针 (429 → 426)：
+  - `MessageBoxA_0` (0x01895538, `int (__stdcall *)(...)`)
+  - `GetActiveWindow_0` (0x0189553C, `HWND (__stdcall *)()`)
+  - `GetLastActivePopup` (0x01895540, `HWND (__stdcall *)(...)`)
+- **置信度**: 95（0x0189xxxx 是 CRT .bss 区域，这些是 Win32 API 的 Import Address Table thunk）
+- **证据**:
+  1. [A] 地址 0x018955xx 属于 .bss 段 CRT 区域
+  2. [A] 名字与 Win32 API 完全匹配（MessageBoxA、GetActiveWindow、GetLastActivePopup）
+  3. [B] 类型为函数指针——IAT 存储的正是函数指针
+- **影响**: globals.h 不再生成无法编译的函数指针 extern 声明
