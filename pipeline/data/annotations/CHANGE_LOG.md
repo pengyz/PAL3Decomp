@@ -1020,6 +1020,24 @@
   - C2065(未声明标识符): 536
   - Root cause 分析: SceneMgr 视图 B(508), 结构体成员不完整(~2000), codegen 标识符泄漏(~500)
 
+### [2026-05-14] gen_headers 数据流修正: PDB → IDB
+
+- **变更**:
+  1. 新建 export_structs.py：从 IDB 导出 969 个结构体定义到 `asm/pal3/ida_structs.json`
+  2. gen_headers 改为优先读取 IDB 导出数据，仅在 IDB 无数据时 fallback PDB
+  3. 覆盖条件：IDA size > PDB size 或 IDA members > PDB members → 581 个结构体覆盖
+- **置信度**: 95
+- **root cause**: gen_headers 原来从 PAL3A PDB 读取结构体布局，但 PDB 缺少：
+  - annotation 通过 apply_annotations 导入 IDA 的额外成员（UIFrameWnd +72~+120）
+  - gbengine 头文件导入 IDA 的类型定义
+  - binary_size > pdb_size 的真实结构体大小
+  IDB 是 PDB + gbengine + annotation 的全集，应该是 gen_headers 的唯一数据源。
+- **证据**:
+  1. [A] UIFrameWnd: PDB 只有 1 个成员(m_pbktex +0x44, size=72)，IDB 有 23 个成员(size=152)
+  2. [A] 编译错误: 10238→8931 (-1307, -13%)
+  3. [A] C2039 成员缺失: 3438→920 (-73%)，SceneMgr(508→0), UIFrameWnd(196→29)
+- **完整管线**: IDB rebuild → export_structs → export_full → gen_headers(读 ida_structs.json) → gen_cpp
+
 ### [2026-05-14] 68 个 overlap 违规修复 + 18 个语义命名
 
 - **变更**:
