@@ -1036,7 +1036,21 @@
   1. [A] UIFrameWnd: PDB 只有 1 个成员(m_pbktex +0x44, size=72)，IDB 有 23 个成员(size=152)
   2. [A] 编译错误: 10238→8931 (-1307, -13%)
   3. [A] C2039 成员缺失: 3438→920 (-73%)，SceneMgr(508→0), UIFrameWnd(196→29)
-- **完整管线**: IDB rebuild → export_structs → export_full → gen_headers(读 ida_structs.json) → gen_cpp
+- **完整管线**: import_gbengine → apply_annotations → export_full(decomp + structs) → gen_headers(读 ida_structs.json) → gen_cpp
+
+### [2026-05-14] export_structs 集成到 export_full + 编译错误分析
+
+- **变更**: export_structs 逻辑合并到 export_full.py（不增加管线步骤）
+- **置信度**: 95
+- **当前编译基线**: 8931 错误
+- **剩余 C2039(920) 分布**:
+  - st_Manager(125): gbengine/topo 管理器类，IDB 结构体不完整
+  - s_RoleState(104): 未在 annotations 中定义，IDB 缺成员
+  - UIWnd(54): 基类某些成员在子类中引用时缺失
+  - CCBUIPanel(53): 结构体不完整
+  - tagRECT(50): Windows 类型，gen_headers skip 但代码引用成员未 include windows.h
+  - string(45): std::string 伪类型，应加入 SKIP
+- **剩余 C2065(536) 分布**: IDA 内部标识符泄漏（eh, constructor, destructor, vtbl_XXXX）
 
 ### [2026-05-14] 68 个 overlap 违规修复 + 18 个语义命名
 
