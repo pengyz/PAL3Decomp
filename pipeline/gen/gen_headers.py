@@ -63,8 +63,9 @@ SKIP_CLASSES = {
     '_FILETIME', '_SYSTEMTIME', '_MEMORYSTATUS', '_SECURITY_ATTRIBUTES',
     '_OSVERSIONINFOA', '_STARTUPINFOA', '_WIN32_FIND_DATAA',
     '_GUID', 'GUID', 'IID',
-    # CRT
+    # CRT / Runtime
     '_iobuf', 'FILE', '_cpinfo', '_EXCEPTION_RECORD', 'EXCEPTION_RECORD',
+    'Concurrency',
     # DirectX / DirectInput
     '_DIMOUSESTATE2',
     # gbengine (separate library)
@@ -248,7 +249,7 @@ def collect_methods():
     return classes
 
 
-def generate_header(cls_name, pdb_class, methods, known_classes=None):
+def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names=None):
     """Generate a complete header for one class."""
     lines = []
     lines.append("#pragma once")
@@ -404,7 +405,17 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None):
     if include_types:
         lines.append("")
 
-    # Emit forward declarations (gbengine pointer types don't need include)
+    # Enums can't be forward-declared in VC6 — promote to include
+    if enum_names:
+        enum_fwd = fwd_types & enum_names
+        for t in sorted(enum_fwd):
+            if t in _gbengine_type_to_header:
+                lines.append('#include "%s"' % _gbengine_type_to_header[t])
+            else:
+                lines.append('#include "%s.h"' % t)
+        fwd_types -= enum_fwd
+
+    # Emit forward declarations for class types
     for t in sorted(fwd_types):
         lines.append("class %s;" % t)
     if fwd_types:
@@ -780,10 +791,12 @@ def main():
     for base_name in template_classes:
         if not should_skip_class(base_name):
             classes_with_headers.add(base_name)
+    enum_names = set()
     for e in pdb.get('enums', []):
         ename = e.get('name', '')
-        if ename and ename[0].isalpha() and '<' not in ename and '::' not in ename:
+        if ename and (ename[0].isalpha() or ename[0] == '_') and '<' not in ename and '::' not in ename:
             classes_with_headers.add(ename)
+            enum_names.add(ename)
 
     for cls_name in sorted(all_classes):
         if should_skip_class(cls_name):
@@ -801,7 +814,7 @@ def main():
         if not has_members and not has_methods and not has_vtable and not has_ann_members:
             continue
 
-        content = generate_header(cls_name, pdb_class, methods, classes_with_headers)
+        content = generate_header(cls_name, pdb_class, methods, classes_with_headers, enum_names)
         output_path = OUTPUT_DIR / ("%s.h" % cls_name)
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(content)
@@ -815,6 +828,8 @@ def main():
         if not name or '<' in name or '::' in name:
             continue
         if not name[0].isalpha():
+            continue
+        if should_skip_class(name):
             continue
 
         lines = ['#pragma once', '// Auto-generated: %s enum' % name, '']

@@ -483,16 +483,42 @@ def generate_class_cpp(cls_name, methods):
         lines.append('#include "pal3/gen/%s.h"' % cls_name)
 
     # Auto-detect additional includes needed from code content
-    # Look for ClassName:: or ClassName * patterns that need the class definition
     all_code_preview = '\n'.join(m['code'] for m in methods)
     needed_classes = set()
+    # ClassName:: static calls
     for match in re.finditer(r'\b([A-Z]\w+)::', all_code_preview):
         c = match.group(1)
         if c != cls_name and (HEADER_DIR / ("%s.h" % c)).exists():
             needed_classes.add(c)
-    # Also detect "this->m_pXXX->" patterns where m_pXXX is a typed pointer member
-    for match in re.finditer(r'->(\w+)\(', all_code_preview):
-        pass  # method calls already handled by Class:: detection
+    # (ClassName *) casts — accessing members requires full definition
+    for match in re.finditer(r'\((\w+)\s*\*+\s*\)', all_code_preview):
+        c = match.group(1)
+        if c != cls_name and (HEADER_DIR / ("%s.h" % c)).exists():
+            needed_classes.add(c)
+    # Any word that matches a known header file name in the code
+    known_headers = {f.stem for f in HEADER_DIR.glob("*.h")}
+    for match in re.finditer(r'\b([A-Za-z_]\w+)\b', all_code_preview):
+        c = match.group(1)
+        if c != cls_name and c in known_headers and c not in needed_classes:
+            needed_classes.add(c)
+    # Resolve indirect dependencies: if code dereferences a forward-declared
+    # pointer member (ptr->field), include that type's header too.
+    indirect = set()
+    all_included = needed_classes | {cls_name}
+    for inc_cls in list(all_included):
+        hpath = HEADER_DIR / ("%s.h" % inc_cls)
+        if not hpath.exists():
+            continue
+        with open(hpath, 'r', encoding='utf-8', errors='replace') as hf:
+            for hline in hf:
+                m = re.match(r'\s+(\w+)\s*\*\s*(\w+)\s*;', hline)
+                if m:
+                    ptr_type, ptr_name = m.group(1), m.group(2)
+                    if ptr_type in known_headers and ptr_type not in all_included:
+                        if re.search(r'\b' + re.escape(ptr_name) + r'\s*->', all_code_preview):
+                            indirect.add(ptr_type)
+    needed_classes |= indirect
+
     for c in sorted(needed_classes):
         lines.append('#include "pal3/gen/%s.h"' % c)
 
