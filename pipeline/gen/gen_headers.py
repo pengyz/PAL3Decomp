@@ -300,7 +300,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
         for hf in GBENGINE_HEADER_DIR.glob("*.h"):
             with open(hf, 'r', encoding='utf-8', errors='replace') as fh:
                 for line in fh:
-                    m = re.match(r'^(?:class|struct)\s+(\w+)', line)
+                    m = re.match(r'^(?:class|struct|enum)\s+(\w+)', line)
                     if m:
                         _gbengine_type_to_header.setdefault(m.group(1), "gbengine/%s" % hf.name)
 
@@ -827,7 +827,9 @@ def main():
         values = e.get('values', {})
         if not name or '<' in name or '::' in name:
             continue
-        if not name[0].isalpha():
+        # Allow _-prefixed game enums, skip system _-prefixed ones
+        GAME_ENUMS_UNDERSCORE = {'_BGM', '_FLIP', '_BIGMAP_ELEMENT', '_MU_R_STATE'}
+        if not name[0].isalpha() and name not in GAME_ENUMS_UNDERSCORE:
             continue
         if should_skip_class(name):
             continue
