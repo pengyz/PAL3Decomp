@@ -984,6 +984,21 @@
 - **发现**: 0x5DFDEC 落在 g_EffMgr (0x5D54F0, CEffMgr size=43312) 范围内，偏移 0xA8FC = m_EffTable[2046].dwRunGroupID。annotated IDB 中 IDA 把此地址误解析为 `stru_5D5484.m_EffTable[1943].dwClassNameCRC`（因为 0x5D5484 被 IDA 自动创建为结构体，覆盖了该区域的字符串常量 "quake"/"bink"/"shock"/"audio"）
 - **待修复**: stru_5D5484 的根因是 CEffMgr 区域的结构体 overlap，需要进一步调查 CEffMgr 布局
 
+### [2026-05-14] gbengine 头文件 IDA 导入 + union 清除 + annotation 清理
+
+- **变更**:
+  1. gbengine 头文件去除匿名 union（gbColorQuad/gbColorFlt/gbMatrix4/gbUIQuad），保留主要成员名
+  2. import_gbengine_types.py：idc.parse_decls + parse_decl fallback → 133/139 类型导入 IDA
+  3. 删除 95 个 gb\* annotation 文件（gbengine 头文件为权威源）
+  4. gen_headers 修复：gbengine enum 映射正则加 `enum`，`_BGM` 等游戏 enum 白名单
+- **置信度**: 95（gbengine 头文件是源码级权威），90（union 清除后 gbengine 编译通过验证）
+- **证据**:
+  1. [A] gbengine 编译 0 错误（union 清除 + 别名替换后）
+  2. [A] IDA TIL 验证：133 个 gbengine 类型通过 get_named_type 确认注册
+  3. [A] C1083 编译错误 86→0（gbFontType.h 等缺失头文件全部消除）
+- **6 个剩余失败**: CPK, LIGHT_TYPE, gbCursorRes, gbEffectMgr, gbGfxManager_D3D, gbVFileSystem
+  - 原因：forward-only 定义(gbCursorRes)、空 body(gbEffectMgr)、Windows 类型依赖(RECT)、复杂 friend(CPK)
+
 ### [2026-05-14] 68 个 overlap 违规修复 + 18 个语义命名
 
 - **变更**:
