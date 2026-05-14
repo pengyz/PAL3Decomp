@@ -56,7 +56,8 @@ def load_annotations_data():
 
 # Skip STL/CRT/Windows types (already defined by system headers)
 SKIP_CLASSES = {
-    'std', 'stdiobuf', 'exception', 'type_info', 'filebuf',
+    'std', 'stdiobuf', 'exception', 'type_info', 'filebuf', 'string',
+    'strstreambuf', 'ios_base', 'facet', 'codecvt_base',
     # Windows types
     'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG', 'RECT', 'POINT', 'SIZE',
     'WNDCLASSA', 'tagWNDCLASSA', 'tagOFNA',
