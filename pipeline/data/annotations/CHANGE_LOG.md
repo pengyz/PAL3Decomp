@@ -123,6 +123,23 @@
 - **用途**: Hex-Rays 在无类型信息时输出纯偏移访问（`*(DWORD*)(a1 + 0x278)`），可用于验证 struct 布局
 - **工具**: `pipeline/ida/_raw_query_flex.py` — 输入地址列表，输出 raw 反编译结果
 
+### [2026-05-15] 函数标注批量修正 — 9087→6315 errors (-30.5%)
+
+- **变更**: 函数签名修正 + 命名规范化 + CRT 类型兼容
+- **置信度**: 90
+- **修正内容**:
+  1. UIWnd::GetRect: `_DWORD *pRect` → `RECT *pRect` — 消除 113 C2664
+  2. 9 个 stdiobuf 误标函数 → UIWnd（IDA 类型误判已知问题）
+  3. `_ThrowInfo` → `_s__ThrowInfo`（IDA 类型名 vs MSVC6 CRT 名）— 消除 61 C2664
+  4. 9 个非标准命名函数 → `Class::Method` 格式 — 消除 78 C2065
+  5. `__PAIR64__` 宏 + `_TI1_AV_Exception__` extern
+- **证据**:
+  1. [A] raw IDB 验证: `sub_445FA0` 签名 `void __thiscall(gbRefObject**, LPCSTR, char)` 确认 GetRect 接收 RECT*
+  2. [A] raw IDB 验证: `UIObj_SetState` 等均为 `__thiscall`，确认是类成员方法
+  3. [A] MSVC6 `<ehdata.h>` 定义 `_s__ThrowInfo`，IDA TIL 用 `_ThrowInfo` — 名字差异不是 annotation 错误
+- **收敛分析**: 剩余 6315 errors 中 ~2500 是类型传播链问题（上游签名不对→下游局部变量类型错→C2227/C2664/C2440），需迭代修正关键函数签名→IDA 重反编译→级联传播
+- **当前状态**: 82→83/266 pass (31%), 9087→6315 (-30.5%)
+
 ### [2026-05-15] fix(pipeline): tagPOINT/tagRECT 补充 — 150 types, tagPOINT._tail_000 清零
 
 - **变更**: 在 import_gbengine_types.py preamble 中添加 `struct tagPOINT { int x; int y; }` 和 `struct tagRECT`
