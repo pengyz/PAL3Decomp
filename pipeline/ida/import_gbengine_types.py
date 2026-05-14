@@ -113,6 +113,8 @@ def flatten_gbengine_headers(header_dir):
         'typedef const char * D3DXHANDLE;\n'
         'typedef unsigned int UINT;\n'
         # Windows types
+        'struct tagPOINT { int x; int y; };\n'
+        'struct tagRECT { int left; int top; int right; int bottom; };\n'
         'struct RECT { int left; int top; int right; int bottom; };\n'
         # CONFIRMDEVICECALLBACK: function pointer (D3DCAPS9* simplified to void*)
         'typedef unsigned char (__cdecl *CONFIRMDEVICECALLBACK)(void* pCaps, int vertexProcessingType, int adapterFormat, int backBufferFormat);\n'
