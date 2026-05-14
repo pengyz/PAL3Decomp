@@ -16,7 +16,8 @@ def flatten_gbengine_headers(header_dir):
     """Read gbengine headers and produce IDA-compatible C declarations."""
     parse_order = [
         "gbengine_types.h", "gbengine_export.h", "gbMisc.h", "gbChain.h",
-        "gbTexture.h", "gbMesh.h", "gbRenderEffect.h", "gbGeomNode.h",
+        "gbTexture.h", "gbMesh.h", "gbResManager.h",
+        "gbRenderEffect.h", "gbGeomNode.h",
         "gbSceneGraph.h", "gbCamera.h", "gbActor.h", "gbActorMgr.h",
         "gbAudio.h", "gbGfxManager.h", "gbParticle.h", "gbPrintFont.h",
         "gbResManager.h", "gbVFileSystem.h", "gbVisNode.h",
@@ -59,20 +60,38 @@ def flatten_gbengine_headers(header_dir):
     # Replace 'class' with 'struct'
     full = re.sub(r'\bclass\b', 'struct', full)
 
-    # Add typedefs for external types IDA doesn't know
+    # Add correct typedefs and forward declarations for external types
     preamble = (
+        # DirectX enums (IDA doesn't have SDK headers — use int-sized typedefs)
         'typedef int D3DDEVTYPE;\n'
         'typedef int D3DFORMAT;\n'
         'typedef int D3DSWAPEFFECT;\n'
         'typedef int D3DMULTISAMPLE_TYPE;\n'
-        'typedef int CONFIRMDEVICECALLBACK;\n'
+        # D3DXHANDLE is LPCSTR per d3dx9shader.h
+        'typedef const char * D3DXHANDLE;\n'
         'typedef unsigned int UINT;\n'
+        # Windows types
+        'struct RECT { int left; int top; int right; int bottom; };\n'
+        # CONFIRMDEVICECALLBACK: function pointer (D3DCAPS9* simplified to void*)
+        'typedef unsigned char (__cdecl *CONFIRMDEVICECALLBACK)(void* pCaps, int vertexProcessingType, int adapterFormat, int backBufferFormat);\n'
+        # Forward declarations for COM interfaces (only used as pointers)
+        'struct IDirect3D9;\n'
+        'struct ID3DXEffect;\n'
+        'struct IDirect3DVertexDeclaration9;\n'
+        # Forward declare for pointer-only usage
+        'struct CArrayList;\n'
+        'struct gbCursorRes;\n'
+        # gbengine internal enum defined inside gbLightObj class
+        'enum LIGHT_TYPE { LIGHT_POINT = 0, LIGHT_SPOT = 1, LIGHT_DIRECTIONAL = 2 };\n'
     )
     full = preamble + full
 
-    # Replace unknown pointer types
-    full = re.sub(r'\bCArrayList\s*\*', 'void *', full)
-    full = re.sub(r'\bIDirect3D9\s*\*', 'void *', full)
+    # Expand macros that #define can't handle in parse_decls
+    full = full.replace('CPK_MAX_TABLE_NUM', '0x8000')
+    full = full.replace('CPK_MAX_OPEN_FILES', '8')
+
+    # Replace C++ bool with unsigned char (IDA C parser compatibility)
+    full = re.sub(r'\bbool\b', 'unsigned char', full)
 
     full = re.sub(r'\n{3,}', '\n\n', full)
     return full
@@ -136,8 +155,12 @@ def main():
     ok = fail = 0
     fail_list = []
     for name in sorted(type_names):
+        # Try multiple verification methods
         tinfo = ida_typeinf.tinfo_t()
-        if tinfo.get_named_type(til, name):
+        found = tinfo.get_named_type(til, name)
+        if not found:
+            found = bool(ida_typeinf.get_named_type(til, name, ida_typeinf.NTF_TYPE))
+        if found:
             ok += 1
         else:
             fail += 1
