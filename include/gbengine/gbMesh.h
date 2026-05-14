@@ -380,8 +380,8 @@ private:
 // [0] x1 (left), [1] y1 (top), [2] x2 (right), [3] y2 (bottom)
 // [4] u1, [5] v1, [6] u2, [7] v2, [8] z (depth), [9] color (as uint)
 struct gbUIQuad {
-    union { struct { float sx, sy, ex, ey; }; struct { float x1, y1, x2, y2; }; };
-    union { struct { float su, sv, eu, ev; }; struct { float u1, v1, u2, v2; }; };
+    float sx, sy, ex, ey;
+    float su, sv, eu, ev;
     float z;
     unsigned int color;
 };

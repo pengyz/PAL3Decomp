@@ -54,11 +54,7 @@ struct gbVec4D {
 };
 
 struct gbColorQuad {
-    union {
-        struct { unsigned char Blue, Green, Red, Alpha; };
-        struct { unsigned char b, g, r, a; };  // legacy source name aliases
-        unsigned int Color;
-    };
+    unsigned char Blue, Green, Red, Alpha;
 
     // Methods (auto-generated)
     gbColorQuad(struct gbColorQuad & p0);
@@ -70,10 +66,7 @@ struct gbColorQuad {
 };
 
 struct gbColorFlt {
-    union {
-        struct { float Red, Green, Blue, Alpha; };
-        struct { float r, g, b, a; };  // legacy source name aliases
-    };
+    float Red, Green, Blue, Alpha;
 
     // Methods (auto-generated)
     gbColorFlt(float p0, float p1, float p2);
@@ -85,10 +78,7 @@ struct gbColorFlt {
 };
 
 struct gbMatrix4 {
-    union {
-        float m[4][4];
-        struct { float xx, xy, xz, xw, yx, yy, yz, yw, zx, zy, zz, zw, wx, wy, wz, ww; };
-    };
+    float m[4][4];
 
     // Methods (auto-generated)
     gbMatrix4();

@@ -172,32 +172,32 @@ void gbDynVertBuf::RenderUIQuad(gbUIQuad* quads, int numQuads,
         gbUIQuad* q = quads;
         for (int i = 0; i < numQuads; i++, q++) {
             // Vertex 0: top-left
-            pVerts[0] = q->x1; pVerts[1] = q->y1; pVerts[2] = q->z;
+            pVerts[0] = q->sx; pVerts[1] = q->sy; pVerts[2] = q->z;
             pVerts[3] = 1.0f;
             *(unsigned int*)&pVerts[4] = q->color;
             pVerts[5] = q->su; pVerts[6] = q->sv;
             // Vertex 1: top-right
-            pVerts[7] = q->x2; pVerts[8] = q->y1; pVerts[9] = q->z;
+            pVerts[7] = q->ex; pVerts[8] = q->sy; pVerts[9] = q->z;
             pVerts[10] = 1.0f;
             *(unsigned int*)&pVerts[11] = q->color;
             pVerts[12] = q->eu; pVerts[13] = q->sv;
             // Vertex 2: bottom-left
-            pVerts[14] = q->x1; pVerts[15] = q->y2; pVerts[16] = q->z;
+            pVerts[14] = q->sx; pVerts[15] = q->ey; pVerts[16] = q->z;
             pVerts[17] = 1.0f;
             *(unsigned int*)&pVerts[18] = q->color;
             pVerts[19] = q->su; pVerts[20] = q->ev;
             // Vertex 3: bottom-left (duplicate for 2nd triangle)
-            pVerts[21] = q->x1; pVerts[22] = q->y2; pVerts[23] = q->z;
+            pVerts[21] = q->sx; pVerts[22] = q->ey; pVerts[23] = q->z;
             pVerts[24] = 1.0f;
             *(unsigned int*)&pVerts[25] = q->color;
             pVerts[26] = q->su; pVerts[27] = q->ev;
             // Vertex 4: top-right (duplicate for 2nd triangle)
-            pVerts[28] = q->x2; pVerts[29] = q->y1; pVerts[30] = q->z;
+            pVerts[28] = q->ex; pVerts[29] = q->sy; pVerts[30] = q->z;
             pVerts[31] = 1.0f;
             *(unsigned int*)&pVerts[32] = q->color;
             pVerts[33] = q->eu; pVerts[34] = q->sv;
             // Vertex 5: bottom-right
-            pVerts[35] = q->x2; pVerts[36] = q->y2; pVerts[37] = q->z;
+            pVerts[35] = q->ex; pVerts[36] = q->ey; pVerts[37] = q->z;
             pVerts[38] = 1.0f;
             *(unsigned int*)&pVerts[39] = q->color;
             pVerts[40] = q->eu; pVerts[41] = q->ev;
@@ -211,27 +211,27 @@ void gbDynVertBuf::RenderUIQuad(gbUIQuad* quads, int numQuads,
         gbUIQuad* q = quads;
         for (int i = 0; i < numQuads; i++, q++) {
             // Vertex 0: top-left
-            pVerts[0] = q->x1; pVerts[1] = q->y1; pVerts[2] = q->z;
+            pVerts[0] = q->sx; pVerts[1] = q->sy; pVerts[2] = q->z;
             *(unsigned int*)&pVerts[3] = q->color;
             pVerts[4] = q->su; pVerts[5] = q->sv;
             // Vertex 1: top-right
-            pVerts[6] = q->x2; pVerts[7] = q->y1; pVerts[8] = q->z;
+            pVerts[6] = q->ex; pVerts[7] = q->sy; pVerts[8] = q->z;
             *(unsigned int*)&pVerts[9] = q->color;
             pVerts[10] = q->eu; pVerts[11] = q->sv;
             // Vertex 2: bottom-left
-            pVerts[12] = q->x1; pVerts[13] = q->y2; pVerts[14] = q->z;
+            pVerts[12] = q->sx; pVerts[13] = q->ey; pVerts[14] = q->z;
             *(unsigned int*)&pVerts[15] = q->color;
             pVerts[16] = q->su; pVerts[17] = q->ev;
             // Vertex 3: bottom-left (duplicate for 2nd triangle)
-            pVerts[18] = q->x1; pVerts[19] = q->y2; pVerts[20] = q->z;
+            pVerts[18] = q->sx; pVerts[19] = q->ey; pVerts[20] = q->z;
             *(unsigned int*)&pVerts[21] = q->color;
             pVerts[22] = q->su; pVerts[23] = q->ev;
             // Vertex 4: top-right (duplicate for 2nd triangle)
-            pVerts[24] = q->x2; pVerts[25] = q->y1; pVerts[26] = q->z;
+            pVerts[24] = q->ex; pVerts[25] = q->sy; pVerts[26] = q->z;
             *(unsigned int*)&pVerts[27] = q->color;
             pVerts[28] = q->eu; pVerts[29] = q->sv;
             // Vertex 5: bottom-right
-            pVerts[30] = q->x2; pVerts[31] = q->y2; pVerts[32] = q->z;
+            pVerts[30] = q->ex; pVerts[31] = q->ey; pVerts[32] = q->z;
             *(unsigned int*)&pVerts[33] = q->color;
             pVerts[34] = q->eu; pVerts[35] = q->ev;
             pVerts += 36;

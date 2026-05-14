@@ -817,15 +817,15 @@ namespace {
     // Helper to handle ColorQuadFmt byte ordering
     inline void SetColorQuadBytes(gbColorQuad* cq, unsigned char r, unsigned char g, unsigned char b, unsigned char a) {
         if (gbColorQuad_ColorQuadFmt == 0) {
-            cq->b = b;
-            cq->g = g;
-            cq->r = r;
-            cq->a = a;
+            cq->Blue = b;
+            cq->Green = g;
+            cq->Red = r;
+            cq->Alpha = a;
         } else {
-            cq->b = r;
-            cq->g = g;
-            cq->r = b;
-            cq->a = a;
+            cq->Blue = r;
+            cq->Green = g;
+            cq->Red = b;
+            cq->Alpha = a;
         }
     }
 }
@@ -833,10 +833,10 @@ namespace {
 // gbColorQuad constructors
 void gbColorQuad_DefaultCtor(gbColorQuad* This)
 {
-    This->b = 0;
-    This->g = 0;
-    This->r = 0;
-    This->a = 0;
+    This->Blue = 0;
+    This->Green = 0;
+    This->Red = 0;
+    This->Alpha = 0;
 }
 
 void gbColorQuad_RGBCtor(gbColorQuad* This, unsigned char r, unsigned char g, unsigned char b)
@@ -851,18 +851,18 @@ void gbColorQuad_RGBACtor(gbColorQuad* This, unsigned char r, unsigned char g, u
 
 void gbColorQuad_CopyCtor(gbColorQuad* This, const gbColorQuad* other)
 {
-    This->b = other->b;
-    This->g = other->g;
-    This->r = other->r;
-    This->a = other->a;
+    This->Blue = other->Blue;
+    This->Green = other->Green;
+    This->Red = other->Red;
+    This->Alpha = other->Alpha;
 }
 
 gbColorQuad* gbColorQuad_Assign(gbColorQuad* This, const gbColorQuad* other)
 {
-    This->b = other->b;
-    This->g = other->g;
-    This->r = other->r;
-    This->a = other->a;
+    This->Blue = other->Blue;
+    This->Green = other->Green;
+    This->Red = other->Red;
+    This->Alpha = other->Alpha;
     return This;
 }
 
@@ -870,49 +870,49 @@ gbColorQuad* gbColorQuad_Assign(gbColorQuad* This, const gbColorQuad* other)
 
 void gbColorFlt_DefaultCtor(gbColorFlt* This)
 {
-    This->r = 0.0f;
-    This->g = 0.0f;
-    This->b = 0.0f;
-    This->a = 0.0f;
+    This->Red = 0.0f;
+    This->Green = 0.0f;
+    This->Blue = 0.0f;
+    This->Alpha = 0.0f;
 }
 
 void gbColorFlt_RGBCtor(gbColorFlt* This, float r, float g, float b)
 {
-    This->r = r;
-    This->g = g;
-    This->b = b;
-    This->a = 1.0f;
+    This->Red = r;
+    This->Green = g;
+    This->Blue = b;
+    This->Alpha = 1.0f;
 }
 
 void gbColorFlt_RGBACtor(gbColorFlt* This, float r, float g, float b, float a)
 {
-    This->r = r;
-    This->g = g;
-    This->b = b;
-    This->a = a;
+    This->Red = r;
+    This->Green = g;
+    This->Blue = b;
+    This->Alpha = a;
 }
 
 gbColorFlt* gbColorFlt_Assign(gbColorFlt* This, const gbColorFlt* other)
 {
-    This->r = other->r;
-    This->g = other->g;
-    This->b = other->b;
-    This->a = other->a;
+    This->Red = other->Red;
+    This->Green = other->Green;
+    This->Blue = other->Blue;
+    This->Alpha = other->Alpha;
     return This;
 }
 
 int gbColorFlt_NotEqual(gbColorFlt* This, gbColorFlt* other)
 {
-    return (This->r != other->r || This->g != other->g ||
-            This->b != other->b || This->a != other->a) ? 1 : 0;
+    return (This->Red != other->Red || This->Green != other->Green ||
+            This->Blue != other->Blue || This->Alpha != other->Alpha) ? 1 : 0;
 }
 
 gbColorFlt* gbColorFlt_AddAssign(gbColorFlt* This, const gbColorFlt* other)
 {
-    This->r += other->r;
-    This->g += other->g;
-    This->b += other->b;
-    This->a += other->a;
+    This->Red += other->Red;
+    This->Green += other->Green;
+    This->Blue += other->Blue;
+    This->Alpha += other->Alpha;
     return This;
 }
 
