@@ -160,9 +160,42 @@ def main():
 
     til = ida_typeinf.get_idati()
 
-    # Parse all declarations at once
-    errs = ida_typeinf.idc_parse_types(content, 0)
-    log("[*] idc_parse_types returned: %s" % str(errs))
+    # Parse individual type declarations with multi-pass for dependency resolution
+    # Extract all type declarations
+    decl_pattern = re.compile(
+        r'((?:struct|class|enum)\s+(\w+)\s*(?::\s*[^{]*?)?\s*\{[^}]*(?:\{[^}]*\}[^}]*)*\}\s*;)',
+        re.DOTALL
+    )
+    decls = [(m.group(2), m.group(1)) for m in decl_pattern.finditer(content)]
+
+    # Also parse forward declarations and typedefs first
+    for line in content.split('\n'):
+        stripped = line.strip()
+        if re.match(r'(class|struct)\s+\w+\s*;', stripped) or stripped.startswith('typedef '):
+            tinfo = ida_typeinf.tinfo_t()
+            ida_typeinf.parse_decl(tinfo, til, stripped, ida_typeinf.PT_TYP)
+
+    # Multi-pass: resolve dependencies iteratively
+    remaining = list(decls)
+    total_ok = 0
+    for pass_num in range(5):
+        still_fail = []
+        pass_ok = 0
+        for name, decl in remaining:
+            tinfo = ida_typeinf.tinfo_t()
+            result = ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP)
+            if result is not None:
+                pass_ok += 1
+                total_ok += 1
+            else:
+                still_fail.append((name, decl))
+        log("[*] Pass %d: %d ok, %d fail" % (pass_num + 1, pass_ok, len(still_fail)))
+        remaining = still_fail
+        if not remaining:
+            break
+
+    if remaining:
+        log("[!] Final failures: %s" % ', '.join(n for n, _ in remaining[:30]))
 
     # Verify which types are now in TIL
     ok = 0
