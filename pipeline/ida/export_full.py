@@ -14,6 +14,36 @@ LOG_FILE = os.path.join(SCRIPT_DIR, "_logs", "pal3_export_only_log.txt")
 TEXT_START = 0x00401000
 TEXT_END = 0x005695D0
 
+RDATA_START = 0x0056A000
+RDATA_END = 0x0057F178
+
+class PAL3Optimizer(ida_hexrays.optinsn_t):
+    def __init__(self):
+        ida_hexrays.optinsn_t.__init__(self)
+        self.vftable_nops = 0
+
+    def func(self, blk, ins, optflags):
+        return self._nop_vftable_init(blk, ins)
+
+    def _nop_vftable_init(self, blk, ins):
+        if ins.opcode != ida_hexrays.m_stx:
+            return 0
+        src = ins.l
+        if src.t != ida_hexrays.mop_n:
+            return 0
+        try:
+            val = src.nnn.value
+        except:
+            return 0
+        if not (RDATA_START <= val <= RDATA_END):
+            return 0
+        if blk:
+            blk.make_nop(ins)
+        else:
+            ins._make_nop()
+        self.vftable_nops += 1
+        return 1
+
 log_lines = []
 def log(msg):
     log_lines.append(str(msg))
@@ -49,6 +79,10 @@ def main():
                 continue
             targets.append((ea, name, func.size()))
         targets.sort()
+
+        opt = PAL3Optimizer()
+        opt.install()
+        log("[*] Microcode optimizer installed")
 
         named = sum(1 for _, n, _ in targets if not n.startswith("sub_"))
         log("[*] Targets: %d (named: %d, sub_: %d)" % (len(targets), named, len(targets)-named))
@@ -104,6 +138,9 @@ def main():
                     json.dump(data, f, indent=2, ensure_ascii=False)
                 exported += 1
             except: pass
+
+        opt.remove()
+        log("[*] Optimizer: %d vftable inits NOPed" % opt.vftable_nops)
 
         log("[*] Exported: %d (%.1fs)" % (exported, time.time()-t0))
 
