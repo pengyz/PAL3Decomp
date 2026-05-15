@@ -15,6 +15,8 @@ annotations.json 是 PDB base 之上的纯差分层，存储所有人工标注�
 """
 
 import ida_auto
+import ida_funcs
+import ida_hexrays
 import ida_name
 import ida_typeinf
 import idautils
@@ -574,6 +576,69 @@ def apply_annotations():
             if idc.SetType(addr, stripped):
                 g_type_retry += 1
     print("[8b] Global type retry: %d/%d recovered" % (g_type_retry, len(g_type_fail)))
+
+    # --- 9. Local variable names/types (requires Hex-Rays) ---
+    lvar_ok = 0
+    lvar_fail = 0
+    lvar_total = 0
+    for addr_str, info in funcs.items():
+        lvars_ann = info.get("local_vars")
+        if not lvars_ann:
+            continue
+        addr = int(addr_str, 16)
+        lvar_total += len(lvars_ann)
+
+        func = ida_funcs.get_func(addr)
+        if not func:
+            lvar_fail += len(lvars_ann)
+            continue
+
+        try:
+            cfunc = ida_hexrays.decompile(func)
+        except:
+            lvar_fail += len(lvars_ann)
+            continue
+
+        if not cfunc:
+            lvar_fail += len(lvars_ann)
+            continue
+
+        ann_by_stkoff = {}
+        for lv_ann in lvars_ann:
+            stkoff = lv_ann.get("stack_offset")
+            if stkoff is not None:
+                ann_by_stkoff[stkoff] = lv_ann
+
+        modified = False
+        lvars = cfunc.lvars
+        for lvar in lvars:
+            loc = lvar.location
+            if not loc.is_stkoff():
+                continue
+            soff = loc.stkoff()
+            if soff not in ann_by_stkoff:
+                continue
+
+            ann = ann_by_stkoff[soff]
+            new_name = ann.get("name")
+            new_type = ann.get("type")
+
+            if new_name and lvar.name != new_name:
+                lvar.name = new_name
+                modified = True
+
+            if new_type:
+                tif = ida_typeinf.tinfo_t()
+                if ida_typeinf.parse_decl(tif, None, new_type + ";", 0):
+                    lvar.set_lvar_type(tif)
+                    modified = True
+
+            lvar_ok += 1
+
+        if modified:
+            cfunc.save_user_lvars()
+
+    print("[9] Lvars: %d/%d applied (fail=%d)" % (lvar_ok, lvar_total, lvar_fail))
 
     idc.save_database(idc.get_idb_path(), 0)
     print("[*] Done. Database saved.")

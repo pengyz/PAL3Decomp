@@ -79,10 +79,29 @@ def main():
                 safe = safe.strip('_')
                 if len(safe) > 100: safe = safe[:100]
                 filename = '%s_%08x.json' % (safe, ea)
+
+                # Collect local variable info
+                lvar_info = []
+                try:
+                    for lvar in cfunc.lvars:
+                        loc = lvar.location
+                        if loc.is_stkoff():
+                            lvar_info.append({
+                                "name": lvar.name,
+                                "type": lvar.type().dstr() if lvar.type() else "",
+                                "stack_offset": loc.stkoff(),
+                            })
+                except:
+                    pass
+
+                data = {'name': display_name, 'address': '0x%08X' % ea,
+                        'size_bytes': size, 'signature': sig,
+                        'decompiled_c': code}
+                if lvar_info:
+                    data['local_vars'] = lvar_info
+
                 with open(os.path.join(OUTPUT_DIR, filename), 'w', encoding='utf-8') as f:
-                    json.dump({'name': display_name, 'address': '0x%08X' % ea,
-                               'size_bytes': size, 'signature': sig,
-                               'decompiled_c': code}, f, indent=2, ensure_ascii=False)
+                    json.dump(data, f, indent=2, ensure_ascii=False)
                 exported += 1
             except: pass
 
