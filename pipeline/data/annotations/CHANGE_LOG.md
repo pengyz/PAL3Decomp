@@ -1530,3 +1530,16 @@
   2. [A] gbAudioManager 被 128 处引用，导致 C2027 (34 errors)
   3. [A] cmake --build -- -k: C2027 从 116 降至 <10, C2227 -74, C2039 -63
 - **设计决策**: 不在 annotations 中重复定义 gbengine 类型（如 Matrix4=gbMatrix4），直接 include gbengine 头文件。IDA 中的短名（Matrix4/OBBox）与 gen_headers 生成的类声明有冲突，typedef 方案暂缓。
+
+### [2026-05-15] CCBUIPanel 布局修复 + 59 个 gb* 误归属函数清理
+
+- **变更**:
+  1. CCBUIPanel: gen_size 4→22088, base_class=UIListBox, 11 个成员标注
+  2. functions.json: 移除 59 个 gb* 误归属函数（gbMatrixStack/gbVec3D/gbCamera 等）
+- **置信度**: 85
+- **证据**:
+  1. [A] CCBUIPanel 构造函数 0x4460D0: `sub_43DCD0()` = UIListBox ctor, `this[4709]=38`, 析构 0x446200 访问 `this+21576`
+  2. [A] Raw IDB 对比: 这 59 个函数的 `this` 在无标注 IDB 中为 `int/float*/_DWORD*`，不是 gb* 类型
+  3. [A] PAL3.exe 动态链接 gbengine.dll，不应包含 gbengine 类方法的实现
+- **根因**: import_gbengine_types 导入结构体后 IDA 类型传播把某些函数的 this 推断为 gb 类型，自动归属到 gb* 类
+- **待办**: apply_annotations.py 需要增加"反向清理"功能：对 IDB 中已命名但 functions.json 中不存在的函数恢复默认名
