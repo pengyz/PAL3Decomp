@@ -15774,5 +15774,109 @@
   "0x0053EA10": {
     "name": "CCBStageRole::ResumeSound",
     "signature": "unsigned int __thiscall(CCBStageRole *this)"
+  },
+  "0x004019B0": {
+    "name": "PtrArray::ReleaseAndClear",
+    "signature": "void *__thiscall(PtrArray *this)"
+  },
+  "0x00401BC0": {
+    "name": "PAL3::InitVFileSystem",
+    "signature": "void *()"
+  },
+  "0x00401C00": {
+    "name": "PAL3::InitVFileSystem2",
+    "signature": "void *()"
+  },
+  "0x00404530": {
+    "name": "PAL3::InitVolModNode",
+    "signature": "void()"
+  },
+  "0x004163B0": {
+    "name": "RoleSystem::CalcTileDistance",
+    "signature": "int __thiscall(RoleSystem *this, int nTileX, int nTileY)"
+  },
+  "0x0041B300": {
+    "name": "RoleSystem::GetCurrentTile",
+    "signature": "int __thiscall(RoleSystem *this)"
+  },
+  "0x004203C0": {
+    "name": "RoleSystem::InitRoleImage",
+    "signature": "void __thiscall(RoleSystem *this)"
+  },
+  "0x00433C50": {
+    "name": "PtrArray::ReadFromVFile",
+    "signature": "void __cdecl(unsigned __int16 *pBuf, struct gbVFile *pFile)"
+  },
+  "0x0044DB70": {
+    "name": "SoundSystem::StopAllSounds",
+    "signature": "int __thiscall(SoundSystem *this, float fFade, int nFlags)"
+  },
+  "0x00450560": {
+    "name": "CameraCtrl::WorldToScreen",
+    "signature": "int __thiscall(CameraCtrl *this, int nX, int nY)"
+  },
+  "0x004932D0": {
+    "name": "UIScene::GetNodeByIndex",
+    "signature": "int __thiscall(UIScene *this, int nIndex)"
+  },
+  "0x004A5B30": {
+    "name": "SoundSystem::PlayWithFade",
+    "signature": "int __thiscall(SoundSystem *this, int nChannel, int nFlags)"
+  },
+  "0x004A67B0": {
+    "name": "UIWnd::DestroyImage",
+    "signature": "void __thiscall(UIWnd *this)"
+  },
+  "0x004A6930": {
+    "name": "TextureLib::LoadTexture",
+    "signature": "char __thiscall(TextureLib *this, char *pszPath)"
+  },
+  "0x004A6960": {
+    "name": "TextureLib::CreateFromFile",
+    "signature": "gbTexture *__thiscall(TextureLib *this)"
+  },
+  "0x004A6CA0": {
+    "name": "TextureLib::CreateFromMemory",
+    "signature": "gbTexture *__thiscall(TextureLib *this, _BYTE *pData, int nSize, char nFormat)"
+  },
+  "0x004B7F80": {
+    "name": "Object3D::RenderTransformed",
+    "signature": "int __thiscall(Object3D *this, int nLOD)"
+  },
+  "0x004BB050": {
+    "name": "RenderTarget::ReadVFile",
+    "signature": "void __thiscall(RenderTarget *this, struct gbVFile *pFile)"
+  },
+  "0x004C5DE0": {
+    "name": "CEffect::ReleaseParticle",
+    "signature": "void __thiscall(CEffect *this)"
+  },
+  "0x004D01C0": {
+    "name": "SceneMgr::RenderScenePass",
+    "signature": "void __thiscall(SceneMgr *this)"
+  },
+  "0x004D0DB0": {
+    "name": "CEffect::UpdateCallback",
+    "signature": "void __fastcall(CEffect *this)"
+  },
+  "0x004D3950": {
+    "name": "CEffect::DestroyCallback",
+    "signature": "void __fastcall(CEffect *this)"
+  },
+  "0x00527A80": {
+    "name": "SoundContext::SetVolume",
+    "signature": "void __thiscall(SoundContext *this, int nVolume)"
+  },
+  "0x0052EBE0": {
+    "name": "CameraCtrl::SetViewport",
+    "signature": "void __thiscall(CameraCtrl *this, int nFlags)"
+  },
+  "0x0052EC90": {
+    "name": "SceneMgr::GetCurrentNode",
+    "signature": "_DWORD *__thiscall(SceneMgr *this)"
+  },
+  "0x0053D580": {
+    "name": "CEffect::ReleaseResources",
+    "signature": "void __thiscall(CEffect *this)"
   }
 }

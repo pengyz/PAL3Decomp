@@ -216,9 +216,27 @@ def apply_annotations():
         idc.qexit(1)
         return
 
+    # --- 0. Un-name functions no longer in annotations (revert to sub_XXXXXX) ---
+    import ida_funcs as _ida_funcs
+    _ann_addrs = set()
+    for _k in data.get("functions", {}):
+        _ann_addrs.add(int(_k, 16))
+    _skip_path = os.path.join(ANNOTATIONS_DIR, "skip_functions.json")
+    if os.path.exists(_skip_path):
+        for _k in json.load(open(_skip_path, encoding="utf-8")):
+            _ann_addrs.add(int(_k, 16))
+    _unnamed = 0
+    for ea in idautils.Functions(0x00401000, 0x00560000):
+        cur = ida_name.get_name(ea) or ""
+        if cur.startswith("sub_") or not cur:
+            continue
+        if ea not in _ann_addrs:
+            ida_name.set_name(ea, "", ida_name.SN_NOWARN)
+            _unnamed += 1
+    print("[0] Un-named %d stale functions" % _unnamed)
+
     # --- 1. Functions (ensure exist + rename, signatures deferred to step 6) ---
     import re as _re_fn
-    import ida_funcs as _ida_funcs
     funcs = data.get("functions", {})
     created = 0
     renamed = 0

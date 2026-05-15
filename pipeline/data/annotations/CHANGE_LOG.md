@@ -1611,3 +1611,21 @@
   3. [A] raw IDB this 类型对比: 33 个函数 this 从 int/_DWORD*/float* 修正为 ClassName*
   4. [B] IDA CodeRefsTo caller 分析确定函数归属类
 - **残留问题**: IDB 中 22 个已删除的 gb* 函数名仍然残留（apply_annotations 无 un-name 功能），贡献 ~514 个 gb* 错误
+
+### [2026-05-15] 完整管线验证：26 个残余函数归属 + un-name 机制 — 5692→5343 (-6.1%)
+
+- **变更**:
+  1. 26 个之前无调用者的 gb* 函数通过深入函数体分析完成归属和命名
+  2. apply_annotations.py 新增 Step 0: un-name 不在 annotations 中的函数（恢复 sub_XXXXXX）
+  3. 所有 59 个原 gb* 误归属函数现已处理：33 个通过 caller 分析归属，26 个通过函数体分析归属
+- **置信度**: 75
+- **证据**:
+  1. [A] 函数体中的 gbengine API 调用推断语义: `gbAudioManager::DetachAll3D` → SoundSystem::StopAllSounds
+  2. [A] export 验证: 26 个函数全部以新名称出现在 decomp JSON 中
+  3. [A] cmake --build -- -k: 5692→5343 (-349)
+  4. [B] apply_annotations Step 0 un-name 机制: 清除 IDB 中不在 annotations 的残留函数名
+- **残留**: 21 个 gb* decomp 文件因 IDA 类型传播在 step 7 后重新生成，需要进一步在签名中固定 this 类型来防止
+- **新增命名示例**:
+  - 0x0044DB70: `SoundSystem::StopAllSounds` (调用 gbAudioManager::DetachAll3D+StopSoundStream)
+  - 0x004D01C0: `SceneMgr::RenderScenePass` (调用 gbMatrixStack::Push/Translate/Rotate)
+  - 0x004A6960: `TextureLib::CreateFromFile` (创建 gbTexture 对象)
