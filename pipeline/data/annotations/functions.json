@@ -177,7 +177,7 @@
   },
   "0x004039D0": {
     "name": "GRPinput::InitDIKToKEY",
-    "signature": "void __thiscall(GRPinput *this, unsigned __int16 *pwVal)"
+    "signature": "void __thiscall(GRPinput *this, unsigned short *pwVal)"
   },
   "0x00404020": {
     "name": "GRPinput::GetKey",
@@ -781,7 +781,7 @@
   },
   "0x004343B0": {
     "name": "PtrArray::SetAtGrow",
-    "signature": "char *__cdecl(unsigned __int16 pData, _DWORD *nIndex)"
+    "signature": "char *__cdecl(unsigned short pData, _DWORD *nIndex)"
   },
   "0x004343F0": {
     "name": "PtrArray::RemoveAt",
@@ -1249,7 +1249,7 @@
   },
   "0x0047CD70": {
     "name": "Object3D::LoadObject",
-    "signature": "unsigned __int8 __thiscall(Object3D *this, const char *filename, int act)"
+    "signature": "unsigned char __thiscall(Object3D *this, const char *filename, int act)"
   },
   "0x0047CEE0": {
     "name": "Object3D::LoadSubObject",
@@ -1849,7 +1849,7 @@
   },
   "0x004D58D0": {
     "name": "CEffSParticle::GetEditorTaskDescription",
-    "signature": "int __thiscall(CEffSParticle *this, unsigned __int8 *nIndex)"
+    "signature": "int __thiscall(CEffSParticle *this, unsigned char *nIndex)"
   },
   "0x004D5AB0": {
     "name": "C2DSpark::C2DSpark",
@@ -2409,7 +2409,7 @@
   },
   "0x004F0830": {
     "name": "CCBRoleState::GetRoleNum",
-    "signature": "unsigned __int8 __thiscall(CCBRoleState *this, int *pnVal)"
+    "signature": "unsigned char __thiscall(CCBRoleState *this, int *pnVal)"
   },
   "0x004F1070": {
     "name": "CCBRoleState::GetAliveRoleNumInForce",
@@ -3389,7 +3389,7 @@
   },
   "0x00511C00": {
     "name": "CCBStageScene::ShowEnemyFiveLineupEx",
-    "signature": "void __thiscall(CCBStageScene *this, unsigned __int8 byAlpha)"
+    "signature": "void __thiscall(CCBStageScene *this, unsigned char byAlpha)"
   },
   "0x00511C10": {
     "name": "CCBStageScene::IsFiveLineupUnderMouse",
@@ -5097,7 +5097,7 @@
   },
   "0x004543C0": {
     "name": "UIWnd_sub_4543C0",
-    "signature": "int __thiscall(int this, unsigned __int8 pData)"
+    "signature": "int __thiscall(int this, unsigned char pData)"
   },
   "0x00483380": {
     "name": "CScreenMode::ctor_3380",
@@ -5777,7 +5777,7 @@
   },
   "0x0040C230": {
     "name": "ScriptUpdate",
-    "signature": "__int8 *__cdecl(int dt)"
+    "signature": "char *__cdecl(int dt)"
   },
   "0x0053C8B0": {
     "name": "unknown_libname_510",
@@ -5853,7 +5853,7 @@
   },
   "0x004117A0": {
     "name": "unknown_libname_320",
-    "signature": "__int8 *()"
+    "signature": "char *()"
   },
   "0x004A2F90": {
     "name": "UIWnd_FindChild",
@@ -6037,7 +6037,7 @@
   },
   "0x004022C0": {
     "name": "GRPinput::GetKeyState",
-    "signature": "__int16 __thiscall(GRPinput *this, unsigned __int16 key)"
+    "signature": "short __thiscall(GRPinput *this, unsigned short key)"
   },
   "0x004117C0": {
     "name": "unknown_libname_321",
@@ -6273,7 +6273,7 @@
   },
   "0x004F4820": {
     "name": "Combat_Func_4F4820",
-    "signature": "unsigned __int8 __thiscall(int this, int idx)"
+    "signature": "unsigned char __thiscall(int this, int idx)"
   },
   "0x004A1530": {
     "name": "UIWnd::SetByte",
@@ -6565,7 +6565,7 @@
   },
   "0x00434BD0": {
     "name": "GetSceneObject",
-    "signature": "void *__cdecl(unsigned __int16 nObjID)"
+    "signature": "void *__cdecl(unsigned short nObjID)"
   },
   "0x004E5390": {
     "name": "EditBox_SetInt",
@@ -6665,11 +6665,11 @@
   },
   "0x004B4850": {
     "name": "RenderTarget::SetColor",
-    "signature": "void __thiscall(RenderTarget *this, unsigned __int8 r, unsigned __int8 g, unsigned __int8 b)"
+    "signature": "void __thiscall(RenderTarget *this, unsigned char r, unsigned char g, unsigned char b)"
   },
   "0x004B48B0": {
     "name": "RenderTarget::SetAlpha",
-    "signature": "void __thiscall(RenderTarget *this, unsigned __int8 nAlpha)"
+    "signature": "void __thiscall(RenderTarget *this, unsigned char nAlpha)"
   },
   "0x004B4840": {
     "name": "RenderTarget::_unverified_4B4840",
@@ -6757,7 +6757,7 @@
   },
   "0x0048C4A0": {
     "name": "CameraCtrl::SetPage",
-    "signature": "int __thiscall(CameraCtrl *this, unsigned __int8 nPageIdx)"
+    "signature": "int __thiscall(CameraCtrl *this, unsigned char nPageIdx)"
   },
   "0x00421560": {
     "name": "PalScript::SetAction",
@@ -6769,7 +6769,7 @@
   },
   "0x0042CB70": {
     "name": "ScriptVM::PushParam",
-    "signature": "int __thiscall(ScriptVM *this, void *pData, unsigned __int8 nType, int nCount)"
+    "signature": "int __thiscall(ScriptVM *this, void *pData, unsigned char nType, int nCount)"
   },
   "0x0040DBD0": {
     "name": "PtrArray::Find",
@@ -6777,7 +6777,7 @@
   },
   "0x00461FD0": {
     "name": "PAL3::SetValue",
-    "signature": "int __thiscall(PAL3 *this, unsigned __int8 nValue)"
+    "signature": "int __thiscall(PAL3 *this, unsigned char nValue)"
   },
   "0x0048C610": {
     "name": "CameraCtrl::HandleEvent",
@@ -6793,7 +6793,7 @@
   },
   "0x00462220": {
     "name": "PAL3::GetValue",
-    "signature": "int __thiscall(PAL3 *this, unsigned __int8 nIndex)"
+    "signature": "int __thiscall(PAL3 *this, unsigned char nIndex)"
   },
   "0x0042C1A0": {
     "name": "ScriptVM::IsRunning",
@@ -6805,7 +6805,7 @@
   },
   "0x00462080": {
     "name": "PAL3::SetRange",
-    "signature": "int __thiscall(PAL3 *this, unsigned __int8 nMax)"
+    "signature": "int __thiscall(PAL3 *this, unsigned char nMax)"
   },
   "0x004F2C70": {
     "name": "CCBSystem::AddCommand",
@@ -6853,23 +6853,23 @@
   },
   "0x00521F30": {
     "name": "CCBStageRole::DispatchUpdate_0",
-    "signature": "int __thiscall(CCBStageRole *this, unsigned __int8 nFlag)"
+    "signature": "int __thiscall(CCBStageRole *this, unsigned char nFlag)"
   },
   "0x00521F70": {
     "name": "CCBStageRole::DispatchUpdate_1",
-    "signature": "int __thiscall(CCBStageRole *this, unsigned __int8 nFlag)"
+    "signature": "int __thiscall(CCBStageRole *this, unsigned char nFlag)"
   },
   "0x00521EF0": {
     "name": "CCBStageRole::DispatchUpdate_2",
-    "signature": "int __thiscall(CCBStageRole *this, unsigned __int8 nFlag)"
+    "signature": "int __thiscall(CCBStageRole *this, unsigned char nFlag)"
   },
   "0x00521E60": {
     "name": "CCBStageRole::DispatchUpdate_3",
-    "signature": "int __thiscall(CCBStageRole *this, unsigned __int8 nFlag)"
+    "signature": "int __thiscall(CCBStageRole *this, unsigned char nFlag)"
   },
   "0x00521EB0": {
     "name": "CCBStageRole::DispatchUpdate_4",
-    "signature": "int __thiscall(CCBStageRole *this, unsigned __int8 nFlag)"
+    "signature": "int __thiscall(CCBStageRole *this, unsigned char nFlag)"
   },
   "0x00423600": {
     "name": "GetRoleDataOffset",
@@ -6953,7 +6953,7 @@
   },
   "0x0049F9B0": {
     "name": "EquipUI::SetGroupVisible",
-    "signature": "int __thiscall(EquipUI *this, unsigned __int8 bVisible)"
+    "signature": "int __thiscall(EquipUI *this, unsigned char bVisible)"
   },
   "0x0049FBE0": {
     "name": "EquipUI::UpdateDisplay",
@@ -6985,7 +6985,7 @@
   },
   "0x0042CD90": {
     "name": "ScriptVM::CallFunction",
-    "signature": "int __thiscall(ScriptVM *this, unsigned __int8 nFuncID, int nArgCount)"
+    "signature": "int __thiscall(ScriptVM *this, unsigned char nFuncID, int nArgCount)"
   },
   "0x004366C0": {
     "name": "ScriptVM::GetObjectByID",
@@ -7381,27 +7381,27 @@
   },
   "0x0042C950": {
     "name": "ScriptVM::ExecuteOpcode",
-    "signature": "int __thiscall(ScriptVM *this, void *pData, unsigned __int8 nType, int nCount)"
+    "signature": "int __thiscall(ScriptVM *this, void *pData, unsigned char nType, int nCount)"
   },
   "0x0042CF60": {
     "name": "PalScriptMgr::RoleCmd_42cf60",
-    "signature": "int __thiscall(PalScriptMgr *this, int nVal, unsigned __int8 pData)"
+    "signature": "int __thiscall(PalScriptMgr *this, int nVal, unsigned char pData)"
   },
   "0x0042D130": {
     "name": "PalScriptMgr::RoleCmd_42d130",
-    "signature": "int __thiscall(PalScriptMgr *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(PalScriptMgr *this, unsigned char pData)"
   },
   "0x0042D2F0": {
     "name": "PalScriptMgr::RoleCmd_42d2f0",
-    "signature": "int __thiscall(PalScriptMgr *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(PalScriptMgr *this, unsigned char pData)"
   },
   "0x0042D670": {
     "name": "ScriptHelper::GetRolePosition",
-    "signature": "int __thiscall(ScriptHelper *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(ScriptHelper *this, unsigned char pData)"
   },
   "0x0042D830": {
     "name": "PalScriptMgr::RoleCmd_42d830",
-    "signature": "int __thiscall(PalScriptMgr *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(PalScriptMgr *this, unsigned char pData)"
   },
   "0x0042D9F0": {
     "name": "RoleSystem::_auto_42d9f0",
@@ -7637,7 +7637,7 @@
   },
   "0x0040CB80": {
     "name": "ScriptSystem::_nearby_40cb80",
-    "signature": "RoleSystem *__cdecl(unsigned __int16 pData)"
+    "signature": "RoleSystem *__cdecl(unsigned short pData)"
   },
   "0x0040DE10": {
     "name": "PtrArray::_nearby_40de10",
@@ -7653,7 +7653,7 @@
   },
   "0x0040FF70": {
     "name": "NPC::_nearby_40ff70",
-    "signature": "__int8 *__cdecl(int nVal, int nVal2)"
+    "signature": "char *__cdecl(int nVal, int nVal2)"
   },
   "0x00410430": {
     "name": "PAL3_Helper_410430",
@@ -7865,7 +7865,7 @@
   },
   "0x0042D4B0": {
     "name": "ScriptHelper::SetRolePosition",
-    "signature": "int __thiscall(ScriptHelper *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(ScriptHelper *this, unsigned char pData)"
   },
   "0x0042DBD0": {
     "name": "RoleSystem::_auto_42dbd0",
@@ -7877,15 +7877,15 @@
   },
   "0x0042DF30": {
     "name": "PalScriptMgr::RoleCmd_42df30",
-    "signature": "int __thiscall(PalScriptMgr *this, int nVal, unsigned __int8 pData)"
+    "signature": "int __thiscall(PalScriptMgr *this, int nVal, unsigned char pData)"
   },
   "0x0042E100": {
     "name": "PalScriptMgr::RoleCmd_42e100",
-    "signature": "int __thiscall(PalScriptMgr *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(PalScriptMgr *this, unsigned char pData)"
   },
   "0x0042E2C0": {
     "name": "PalScriptMgr::CameraCmd_42e2c0",
-    "signature": "char *__thiscall(PalScriptMgr *this, int nVal, float fVal, float fVal2, unsigned __int8 pData)"
+    "signature": "char *__thiscall(PalScriptMgr *this, int nVal, float fVal, float fVal2, unsigned char pData)"
   },
   "0x0042E4D0": {
     "name": "PalScriptMgr::RoleCmd_42e4d0",
@@ -7929,7 +7929,7 @@
   },
   "0x00432870": {
     "name": "PtrArray::_nearby_432870",
-    "signature": "unsigned __int8 *()"
+    "signature": "unsigned char *()"
   },
   "0x00432980": {
     "name": "PtrArray::_sub_432980",
@@ -8089,7 +8089,7 @@
   },
   "0x00438840": {
     "name": "PalScript::_auto_438840",
-    "signature": "__int8 *()"
+    "signature": "char *()"
   },
   "0x00438900": {
     "name": "PalScript::_nearby_438900",
@@ -8169,7 +8169,7 @@
   },
   "0x0043AFE0": {
     "name": "UIScene::_nearby_43afe0",
-    "signature": "unsigned __int8 __thiscall(UIScene *this, int nVal, unsigned int dwVal, unsigned int dwVal2, int nVal2)"
+    "signature": "unsigned char __thiscall(UIScene *this, int nVal, unsigned int dwVal, unsigned int dwVal2, int nVal2)"
   },
   "0x0043B060": {
     "name": "UIScene::_nearby_43b060",
@@ -8181,7 +8181,7 @@
   },
   "0x0043B500": {
     "name": "UIScene::_nearby_43b500",
-    "signature": "unsigned __int8 __thiscall(UIScene *this, unsigned int dwVal, unsigned int dwVal2, int nVal)"
+    "signature": "unsigned char __thiscall(UIScene *this, unsigned int dwVal, unsigned int dwVal2, int nVal)"
   },
   "0x0043B570": {
     "name": "UIScene::_nearby_43b570",
@@ -8921,7 +8921,7 @@
   },
   "0x00480070": {
     "name": "UIFrameWnd::_auto_480070",
-    "signature": "int __thiscall(UIFrameWnd *this, int nVal, unsigned __int8 pData, UIWnd *bFlag)"
+    "signature": "int __thiscall(UIFrameWnd *this, int nVal, unsigned char pData, UIWnd *bFlag)"
   },
   "0x004819A0": {
     "name": "Object3D::_init_4819a0",
@@ -9661,7 +9661,7 @@
   },
   "0x004E30E0": {
     "name": "CCBRoleState::InitUI_4E30E0",
-    "signature": "unsigned __int8 __thiscall(CCBRoleState *this)"
+    "signature": "unsigned char __thiscall(CCBRoleState *this)"
   },
   "0x004E3A20": {
     "name": "CCBUI::InitUI_4E3A20",
@@ -9817,11 +9817,11 @@
   },
   "0x004F90F0": {
     "name": "CCBRoleState::_sub_4F90F0",
-    "signature": "__int8 *__thiscall(CCBRoleState *this, int roleIdx)"
+    "signature": "char *__thiscall(CCBRoleState *this, int roleIdx)"
   },
   "0x004F91B0": {
     "name": "CCBRoleState::_sub_4F91B0",
-    "signature": "__int8 *__thiscall(CCBRoleState *this, int nVal)"
+    "signature": "char *__thiscall(CCBRoleState *this, int nVal)"
   },
   "0x004F9390": {
     "name": "CCBRoleState::_sub_4F9390",
@@ -10401,15 +10401,15 @@
   },
   "0x0040CBB0": {
     "name": "ScriptSystem::_nearby_40cbb0",
-    "signature": "int __cdecl(unsigned __int16 pData, int nVal)"
+    "signature": "int __cdecl(unsigned short pData, int nVal)"
   },
   "0x0040CBD0": {
     "name": "ScriptSystem::_nearby_40cbd0",
-    "signature": "int __cdecl(unsigned __int16 pData, int nVal, int nVal2)"
+    "signature": "int __cdecl(unsigned short pData, int nVal, int nVal2)"
   },
   "0x0040CC00": {
     "name": "ScriptSystem::_nearby_40cc00",
-    "signature": "int __cdecl(unsigned __int16 pData, int nVal)"
+    "signature": "int __cdecl(unsigned short pData, int nVal)"
   },
   "0x0040CC60": {
     "name": "ScriptSystem::_nearby_40cc60",
@@ -10509,7 +10509,7 @@
   },
   "0x004126D0": {
     "name": "RoleSystem_Helper_4126D0",
-    "signature": "int __cdecl(int nVal, unsigned __int8 pData)"
+    "signature": "int __cdecl(int nVal, unsigned char pData)"
   },
   "0x00412C30": {
     "name": "RoleSystem::_nearby_412c30",
@@ -10569,7 +10569,7 @@
   },
   "0x00418DC0": {
     "name": "RoleSystem::_nearby_418dc0",
-    "signature": "char __thiscall(RoleSystem *this, __int16 pData, int nVal)"
+    "signature": "char __thiscall(RoleSystem *this, short pData, int nVal)"
   },
   "0x00419030": {
     "name": "RoleSystem::_nearby_419030",
@@ -11825,7 +11825,7 @@
   },
   "0x0044A180": {
     "name": "CCBFiveNimbusWindow::_method_44a180",
-    "signature": "int __thiscall(CCBFiveNimbusWindow *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(CCBFiveNimbusWindow *this, unsigned char pData)"
   },
   "0x0044A2E0": {
     "name": "CCBRoleState::_method_44a2e0",
@@ -12153,7 +12153,7 @@
   },
   "0x00454420": {
     "name": "RoleShadow::_method_454420",
-    "signature": "int __thiscall(RoleShadow *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(RoleShadow *this, unsigned char pData)"
   },
   "0x004544F0": {
     "name": "UIScrollBar::_method_4544f0",
@@ -12197,7 +12197,7 @@
   },
   "0x00456E20": {
     "name": "CScreenMode::_init_456e20",
-    "signature": "void __thiscall(void (__thiscall ***this)(_DWORD, _DWORD), unsigned __int8 pData)"
+    "signature": "void __thiscall(void (__thiscall ***this)(_DWORD, _DWORD), unsigned char pData)"
   },
   "0x00456EE0": {
     "name": "Actor::_init_456ee0",
@@ -12249,11 +12249,11 @@
   },
   "0x00459970": {
     "name": "UITitle_YXXX::_method_459970",
-    "signature": "int __thiscall(UITitle_YXXX *this, unsigned __int16 arg0)"
+    "signature": "int __thiscall(UITitle_YXXX *this, unsigned short arg0)"
   },
   "0x00459F30": {
     "name": "CCBUI::_method_459f30",
-    "signature": "__int16 __thiscall(CCBUI *this, _WORD *p_WORD)"
+    "signature": "short __thiscall(CCBUI *this, _WORD *p_WORD)"
   },
   "0x0045A490": {
     "name": "UISceneFrm::GetID",
@@ -12269,27 +12269,27 @@
   },
   "0x0045B200": {
     "name": "PropUI::_method_45b200",
-    "signature": "int __thiscall(PropUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(PropUI *this, unsigned char pData)"
   },
   "0x0045B320": {
     "name": "PropUI::_method_45b320",
-    "signature": "int __thiscall(PropUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(PropUI *this, unsigned char pData)"
   },
   "0x0045B440": {
     "name": "PropUI::_method_45b440",
-    "signature": "int __thiscall(PropUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(PropUI *this, unsigned char pData)"
   },
   "0x0045B560": {
     "name": "PropUI::_method_45b560",
-    "signature": "int __thiscall(PropUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(PropUI *this, unsigned char pData)"
   },
   "0x0045B680": {
     "name": "PropUI::_method_45b680",
-    "signature": "int __thiscall(PropUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(PropUI *this, unsigned char pData)"
   },
   "0x0045B7A0": {
     "name": "CCBUI::_init_45b7a0",
-    "signature": "unsigned __int8 __thiscall(CCBUI *this, const void *arg0)"
+    "signature": "unsigned char __thiscall(CCBUI *this, const void *arg0)"
   },
   "0x0045E9F0": {
     "name": "CCBUIPanel::Layout_45e9f0",
@@ -12305,11 +12305,11 @@
   },
   "0x00462030": {
     "name": "PAL3::_sub_462030",
-    "signature": "int __thiscall(PAL3 *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(PAL3 *this, unsigned char pData)"
   },
   "0x004620E0": {
     "name": "CCBUI::_init_4620e0",
-    "signature": "int __thiscall(CCBUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(CCBUI *this, unsigned char pData)"
   },
   "0x00462280": {
     "name": "CCBSystem::_method_462280",
@@ -12333,23 +12333,23 @@
   },
   "0x0046D770": {
     "name": "CCBRoleState::_method_46d770",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
   },
   "0x0046D890": {
     "name": "CCBRoleState::_method_46d890",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
   },
   "0x0046D9B0": {
     "name": "CCBRoleState::_method_46d9b0",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
   },
   "0x0046DAD0": {
     "name": "CCBRoleState::_method_46dad0",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
   },
   "0x0046DBF0": {
     "name": "CCBRoleState::_method_46dbf0",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
   },
   "0x0046DD10": {
     "name": "UIListBox::_auto_46dd10",
@@ -12373,7 +12373,7 @@
   },
   "0x0046EC70": {
     "name": "RoleSystem::_method_46ec70",
-    "signature": "int __thiscall(RoleSystem *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(RoleSystem *this, unsigned char pData)"
   },
   "0x0046F160": {
     "name": "PropUI::_unverified_46F160",
@@ -12385,7 +12385,7 @@
   },
   "0x0046F390": {
     "name": "CCBRoleState::_method_46f390",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
   },
   "0x0046F480": {
     "name": "GRPinput::_auto_46f480",
@@ -12397,23 +12397,23 @@
   },
   "0x00471220": {
     "name": "CCBUI::_init_471220",
-    "signature": "char __thiscall(CCBUI *this, unsigned __int8 pData)"
+    "signature": "char __thiscall(CCBUI *this, unsigned char pData)"
   },
   "0x004712D0": {
     "name": "CCBUI::_init_4712d0",
-    "signature": "char __thiscall(CCBUI *this, unsigned __int8 pData)"
+    "signature": "char __thiscall(CCBUI *this, unsigned char pData)"
   },
   "0x00471380": {
     "name": "CCBUI::_init_471380",
-    "signature": "char __thiscall(CCBUI *this, unsigned __int8 pData)"
+    "signature": "char __thiscall(CCBUI *this, unsigned char pData)"
   },
   "0x00471430": {
     "name": "CCBUI::_init_471430",
-    "signature": "char __thiscall(CCBUI *this, unsigned __int8 pData)"
+    "signature": "char __thiscall(CCBUI *this, unsigned char pData)"
   },
   "0x004714E0": {
     "name": "CCBUI::_init_4714e0",
-    "signature": "char __thiscall(CCBUI *this, unsigned __int8 pData)"
+    "signature": "char __thiscall(CCBUI *this, unsigned char pData)"
   },
   "0x00471590": {
     "name": "UIListBox::_init_471590",
@@ -12529,7 +12529,7 @@
   },
   "0x0047DD60": {
     "name": "Object3D::_nearby_47dd60",
-    "signature": "int __thiscall(Object3D *this, unsigned __int8 *thisa)"
+    "signature": "int __thiscall(Object3D *this, unsigned char *thisa)"
   },
   "0x0047DD90": {
     "name": "UIWnd::_sub_47DD90",
@@ -12593,7 +12593,7 @@
   },
   "0x00481BA0": {
     "name": "MainEquipUI::_method_481ba0",
-    "signature": "unsigned __int8 __thiscall(MainEquipUI *this, unsigned __int8 pData)"
+    "signature": "unsigned char __thiscall(MainEquipUI *this, unsigned char pData)"
   },
   "0x00482140": {
     "name": "MainEquipUI::_method_482140",
@@ -12641,23 +12641,23 @@
   },
   "0x00484E70": {
     "name": "EquipUI::_sub_484E70",
-    "signature": "int __thiscall(EquipUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(EquipUI *this, unsigned char pData)"
   },
   "0x00484E90": {
     "name": "StateUI::_sub_484E90",
-    "signature": "int __thiscall(StateUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
   },
   "0x00484EB0": {
     "name": "StateUI::_sub_484EB0",
-    "signature": "int __thiscall(StateUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
   },
   "0x00484ED0": {
     "name": "MagicUI::_sub_484ED0",
-    "signature": "int __thiscall(MagicUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
   },
   "0x00484EF0": {
     "name": "MagicUI::_sub_484EF0",
-    "signature": "int __thiscall(MagicUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
   },
   "0x00484F10": {
     "name": "RenderTarget::_auto_484f10",
@@ -12733,23 +12733,23 @@
   },
   "0x0048A2F0": {
     "name": "EquipUI::_sub_48A2F0",
-    "signature": "int __thiscall(EquipUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(EquipUI *this, unsigned char pData)"
   },
   "0x0048A310": {
     "name": "StateUI::_sub_48A310",
-    "signature": "int __thiscall(StateUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
   },
   "0x0048A330": {
     "name": "StateUI::_sub_48A330",
-    "signature": "int __thiscall(StateUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
   },
   "0x0048A350": {
     "name": "MagicUI::_sub_48A350",
-    "signature": "int __thiscall(MagicUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
   },
   "0x0048A370": {
     "name": "MagicUI::_sub_48A370",
-    "signature": "int __thiscall(MagicUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
   },
   "0x0048A390": {
     "name": "CameraCtrl::_nearby_48a390",
@@ -12913,23 +12913,23 @@
   },
   "0x0049E840": {
     "name": "EquipUI::_sub_49E840",
-    "signature": "int __thiscall(EquipUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(EquipUI *this, unsigned char pData)"
   },
   "0x0049E860": {
     "name": "StateUI::_sub_49E860",
-    "signature": "int __thiscall(StateUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
   },
   "0x0049E880": {
     "name": "StateUI::_sub_49E880",
-    "signature": "int __thiscall(StateUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
   },
   "0x0049E8A0": {
     "name": "MagicUI::_sub_49E8A0",
-    "signature": "int __thiscall(MagicUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
   },
   "0x0049E8C0": {
     "name": "MagicUI::_sub_49E8C0",
-    "signature": "int __thiscall(MagicUI *this, unsigned __int8 pData)"
+    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
   },
   "0x0049E8E0": {
     "name": "CLoad3DS::_unverified_49E8E0",
@@ -13033,7 +13033,7 @@
   },
   "0x004A8260": {
     "name": "UIWnd::_auto_4a8260",
-    "signature": "char __thiscall(UIWnd *this, int nVal, int nVal2, int nVal3, char pData, int nVal4, int nVal5, unsigned __int8 pData)"
+    "signature": "char __thiscall(UIWnd *this, int nVal, int nVal2, int nVal3, char pData, int nVal4, int nVal5, unsigned char pData)"
   },
   "0x004A8770": {
     "name": "CCCTData::_unverified_4A8770",
@@ -13901,11 +13901,11 @@
   },
   "0x004E16F0": {
     "name": "CCBUI::_nearby_4e16f0",
-    "signature": "unsigned __int8 *__stdcall(HWND hDlg)"
+    "signature": "unsigned char *__stdcall(HWND hDlg)"
   },
   "0x004E1870": {
     "name": "CCBUI::_nearby_4e1870",
-    "signature": "unsigned __int8 *__thiscall(CCBUI *this, int nVal)"
+    "signature": "unsigned char *__thiscall(CCBUI *this, int nVal)"
   },
   "0x004E2430": {
     "name": "CCBUI::_nearby_4e2430",
@@ -14801,7 +14801,7 @@
   },
   "0x00528CD0": {
     "name": "UISceneFrm::_method_528cd0",
-    "signature": "int __thiscall(UISceneFrm *this, int nVal, unsigned __int8 pData)"
+    "signature": "int __thiscall(UISceneFrm *this, int nVal, unsigned char pData)"
   },
   "0x00528D30": {
     "name": "UINote::_method_528d30",
@@ -15437,7 +15437,7 @@
   },
   "0x0053A080": {
     "name": "Actor::_nearby_53a080",
-    "signature": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, __int16 *pnVal)"
+    "signature": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, short *pnVal)"
   },
   "0x0053A2E0": {
     "name": "Actor::_nearby_53a2e0",
@@ -15657,11 +15657,11 @@
   },
   "0x0041BCA0": {
     "name": "Actor::SetActionByName",
-    "signature": "int __thiscall(Actor *this, unsigned __int8 *pbyName)"
+    "signature": "int __thiscall(Actor *this, unsigned char *pbyName)"
   },
   "0x004207D0": {
     "name": "RoleSystem::LoadRoleImage",
-    "signature": "unsigned __int8 *__thiscall(RoleSystem *this, int nIndex, const char *pszPath)"
+    "signature": "unsigned char *__thiscall(RoleSystem *this, int nIndex, const char *pszPath)"
   },
   "0x0042C700": {
     "name": "PalScript::StopSound3D",
@@ -15685,7 +15685,7 @@
   },
   "0x00445F80": {
     "name": "UIScene::GetPixelChannel",
-    "signature": "unsigned __int8 __thiscall(UIScene *this, int nX, int nY, int nW, int nH)"
+    "signature": "unsigned char __thiscall(UIScene *this, int nX, int nY, int nW, int nH)"
   },
   "0x004A6730": {
     "name": "CCCTData::InitImages",
@@ -15805,7 +15805,7 @@
   },
   "0x00433C50": {
     "name": "PtrArray::ReadFromVFile",
-    "signature": "void __cdecl(unsigned __int16 *pBuf, struct gbVFile *pFile)"
+    "signature": "void __cdecl(unsigned short *pBuf, struct gbVFile *pFile)"
   },
   "0x0044DB70": {
     "name": "SoundSystem::StopAllSounds",

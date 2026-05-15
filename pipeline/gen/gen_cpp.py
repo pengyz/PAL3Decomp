@@ -417,6 +417,14 @@ def transform_method_code(cls_name, method_name, code, sig):
     code = re.sub(r'(\b0x[0-9A-Fa-f]+)LL\b', r'\1i64', code)
     code = re.sub(r'(\b\d+)LL\b', r'\1i64', code)
 
+    # IDA type names → standard C types (equivalent, IDA internal naming)
+    code = code.replace('unsigned __int8', 'unsigned char')
+    code = code.replace('signed __int8', 'signed char')
+    code = code.replace('unsigned __int16', 'unsigned short')
+    code = code.replace('signed __int16', 'short')
+    code = re.sub(r'\b__int8\b', 'char', code)
+    code = re.sub(r'\b__int16\b', 'short', code)
+
     # Fix Hex-Rays broken dereference: (*)var → (*var)
     code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
 
@@ -769,6 +777,12 @@ def generate_free_funcs_cpp(funcs):
         code = re.sub(r'(\b0x[0-9A-Fa-f]+)uLL\b', r'\1ui64', code)
         code = re.sub(r'(\b0x[0-9A-Fa-f]+)LL\b', r'\1i64', code)
         code = re.sub(r'(\b\d+)LL\b', r'\1i64', code)
+        code = code.replace('unsigned __int8', 'unsigned char')
+        code = code.replace('signed __int8', 'signed char')
+        code = code.replace('unsigned __int16', 'unsigned short')
+        code = code.replace('signed __int16', 'short')
+        code = re.sub(r'\b__int8\b', 'char', code)
+        code = re.sub(r'\b__int16\b', 'short', code)
         code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
         code = _replace_ida_internals(code)
         transformed.append((f['addr'], code))

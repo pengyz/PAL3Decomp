@@ -51,6 +51,18 @@
 
 ## 变更记录
 
+### [2026-05-16] iter(annotations+codegen): IDA type normalization + 102 signature fixes — 5662→5573
+
+- **变更**:
+  1. **annotations**: 102 个函数签名中 `unsigned __int8`→`unsigned char`, `__int16`→`short`（IDA 内部类型名 → 标准 C 类型）
+  2. **codegen**: gen_cpp.py 新增 `__int8`→`char`, `__int16`→`short` 文本替换（等价变换：IDA 内部类型名在 VC6 中不可用但语义相同）
+- **置信度**: 95（`unsigned __int8` 和 `unsigned char` 在 C 中是完全相同的类型，仅 IDA 命名差异）
+- **证据**:
+  1. [A] cmake: C2440 926→819 (-107), 总错误 5662→5573 (-89)
+  2. [A] `C2440: cannot convert from 'unsigned char *' to 'unsigned __int8 *'` 归零
+  3. [A] 新增 4 个 PASS 文件 (MiniGame1, PalScriptWaitObj, SceneProp, SystemUI)
+- **为什么 codegen 层必要**: IDA Hex-Rays 在反编译输出中使用 `__int8`/`__int16` 作为类型名，这是 IDA 内部类型系统的命名，不受 annotations 中函数签名的影响。annotation 层修复了签名中的类型名，但反编译器输出的局部变量/表达式类型仍使用 IDA 命名。
+
 ### [2026-05-15] iter(annotations): re-attribute 20 gb* functions to PAL3 classes — PASS 19→25/205
 
 - **变更**: 20 个被 IDA 错误归属到 gbVisNode/gbGeomNode/gbParticleEffect 类的函数重新归属到正确的 PAL3 类
