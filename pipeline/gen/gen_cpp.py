@@ -240,7 +240,7 @@ def collect_functions():
                     at_pos2 = rest.find('@')
                     if at_pos2 > 0:
                         cls = rest[:at_pos2]
-            if cls and ('$' in cls or '<' in cls or not cls[0].isalpha()):
+            if cls and ('$' in cls or '<' in cls or not (cls[0].isalpha() or cls[0] == '_')):
                 cls = None
         elif '::' in name:
             cls = name.split('::')[0]
@@ -277,17 +277,25 @@ def transform_method_code(cls_name, method_name, code, sig):
     lines = [l for l in lines if not l.strip().startswith('// between_std_methods')]
 
     # Find the actual function definition line (may not be lines[0] if IDA comments precede it)
+    # IDA may strip leading underscores from class names in decompiled output
+    cls_variants = [cls_name]
+    if cls_name.startswith('_'):
+        cls_variants.append(cls_name[1:])
     func_line_idx = 0
     for idx, l in enumerate(lines):
-        if '(' in l and (cls_name + '::' in l or 'sub_' in l):
+        if '(' in l and (any(cv + '::' in l for cv in cls_variants) or 'sub_' in l):
             func_line_idx = idx
             break
 
-    # Fix function definition line: replace sub_XXXXX with ClassName::MethodName
+    # Fix function definition line: replace sub_XXXXX or IDA-mangled class name with correct name
     if lines and method_name:
         first_line = lines[func_line_idx]
         full_method = '%s::%s' % (cls_name, method_name)
         first_line = re.sub(r'\bsub_[0-9A-Fa-f]+\b', full_method, first_line, count=1)
+        # Fix IDA stripping leading underscore from class name
+        for cv in cls_variants:
+            if cv != cls_name and cv + '::' in first_line:
+                first_line = first_line.replace(cv + '::', cls_name + '::')
 
         # If this is a constructor or destructor, remove the return type
         is_ctor = (method_name == cls_name)

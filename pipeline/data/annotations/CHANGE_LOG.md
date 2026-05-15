@@ -1629,3 +1629,15 @@
   - 0x0044DB70: `SoundSystem::StopAllSounds` (调用 gbAudioManager::DetachAll3D+StopSoundStream)
   - 0x004D01C0: `SceneMgr::RenderScenePass` (调用 gbMatrixStack::Push/Translate/Rotate)
   - 0x004A6960: `TextureLib::CreateFromFile` (创建 gbTexture 对象)
+
+### [2026-05-15] gen_cpp 修复 _TextureLib_Data 类名 + 26 函数归属 + un-name 机制 — 5343→5331
+
+- **变更**:
+  1. gen_cpp: 修复 IDA Hex-Rays 剥离前导下划线的 bug（`_TextureLib_Data` → `TextureLib_Data`）
+  2. 26 个无调用者的 gb* 函数通过函数体分析完成归属和命名
+  3. apply_annotations Step 0: un-name 不在 annotations 中的 IDB 残留函数名
+- **置信度**: 85
+- **证据**:
+  1. [A] IDA Hex-Rays decompiled_c 输出中 `_TextureLib_Data` 变为 `TextureLib_Data`（IDA 内部行为，无法在 IDA 标注层修正）
+  2. [A] cmake --build: _TextureLib_Data 从 99 错误降至 98（C2653 消除）
+  3. [A] 26 个函数的 gbengine API 调用模式分析确定语义和归属
