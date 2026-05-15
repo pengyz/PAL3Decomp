@@ -1567,3 +1567,20 @@
   - CCBStageRole: 2 函数 (0x53E9C0, 0x53EA10)
   - CCCTData/RenderTarget/CEffgbParticle: 各 1 函数
 - **未归属**: 22 个函数无调用者或调用者不唯一，暂不标注（保留为 sub_XXXXXX）
+
+### [2026-05-15] 33 个重归属函数：语义化命名 + 正确签名
+
+- **变更**: 对 33 个从 gb* 重归属到 PAL3 类的函数，逐个分析函数体设置语义化名称和正确的 this 类型签名
+- **置信度**: 75
+- **方法**: 分析 raw IDB 反编译代码中的方法调用、字符串引用、成员访问模式推断函数语义
+- **证据**:
+  1. [A] 函数体中的 gbengine API 调用模式推断语义：如调用 `gbSound2DNode::Pause` → `PauseSound`
+  2. [A] 函数体中的 `gbRefObject::Release` 调用 → `ReleaseTexture`/`CleanupTextures`
+  3. [B] 调用者上下文：被 RoleSystem 方法调用的向量操作 → `NormalizeDirection`/`ScaleVector`
+  4. [B] this 类型从 raw IDB 的 `_DWORD*`/`float*`/`int` 修正为正确的 `ClassName *this`
+- **命名示例**:
+  - `gbVec3D::_sub_414250` → `RoleSystem::NormalizeDirection`
+  - `gbRefObject::_auto_43be80` → `UIWnd::ReleaseTexture`
+  - `gbMatrixStack::_init_52fc60` → `MatrixStack::BeginScene`
+  - `gbSound2DNode::_auto_53ea10` → `CCBStageRole::ResumeSound`
+  - `gbCamera::_auto_52df40` → `CScreenMode::InitCamera`

@@ -15644,135 +15644,135 @@
     "signature": "int __cdecl(CScreenMode *pScreen, const char *szFilename, int nVal, int nVal2, int nFlags)"
   },
   "0x00414250": {
-    "name": "RoleSystem::_sub_414250",
-    "signature": "void __thiscall(float *this, float *a2)"
+    "name": "RoleSystem::NormalizeDirection",
+    "signature": "void __thiscall(RoleSystem *this, float *pfDir)"
   },
   "0x004161E0": {
-    "name": "RoleSystem::_static_4161E0",
-    "signature": "void __cdecl(float *a1, float a2)"
+    "name": "RoleSystem::ScaleVector",
+    "signature": "void __cdecl(float *pVec, float fScale)"
   },
   "0x00419C20": {
-    "name": "UIScene::_auto_419c20",
-    "signature": "int __thiscall(int this)"
+    "name": "UIScene::RenderVertexPool",
+    "signature": "int __thiscall(UIScene *this)"
   },
   "0x0041BCA0": {
-    "name": "Actor::_sub_41BCA0",
-    "signature": "int __thiscall(_DWORD *this, unsigned __int8 *a2)"
+    "name": "Actor::SetActionByName",
+    "signature": "int __thiscall(Actor *this, unsigned __int8 *pbyName)"
   },
   "0x004207D0": {
-    "name": "RoleSystem::_auto_4207d0",
-    "signature": "unsigned __int8 *__thiscall(char *this, int a2, const char *a3)"
+    "name": "RoleSystem::LoadRoleImage",
+    "signature": "unsigned __int8 *__thiscall(RoleSystem *this, int nIndex, const char *pszPath)"
   },
   "0x0042C700": {
-    "name": "PalScript::_auto_42c700",
-    "signature": "void __thiscall(int this)"
+    "name": "PalScript::StopSound3D",
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004339F0": {
-    "name": "PtrArray::_auto_4339f0",
-    "signature": "int __cdecl(const char *a1)"
+    "name": "PtrArray::LoadFromFile",
+    "signature": "int __cdecl(const char *pszFilename)"
   },
   "0x004348E0": {
-    "name": "PtrArray::_auto_4348e0",
-    "signature": "struct gbVFile *__thiscall(struct gbVFile **this, int a2)"
+    "name": "PtrArray::ReadFileSection",
+    "signature": "struct gbVFile *__thiscall(PtrArray *this, int nSection)"
   },
   "0x00439FE0": {
-    "name": "PalScript::_auto_439fe0",
-    "signature": "void *__thiscall(gbCamera **this, void *a2, int *a3)"
+    "name": "PalScript::GetRayToScreen",
+    "signature": "void *__thiscall(PalScript *this, void *pRay, int *pResult)"
   },
   "0x0043BE80": {
-    "name": "UIWnd::_auto_43be80",
-    "signature": "void __thiscall(gbRefObject **this)"
+    "name": "UIWnd::ReleaseTexture",
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00445F80": {
-    "name": "UIScene::_method_445f80",
-    "signature": "unsigned __int8 __thiscall(gbTexture **this, int a2, int a3, int a4, int a5)"
+    "name": "UIScene::GetPixelChannel",
+    "signature": "unsigned __int8 __thiscall(UIScene *this, int nX, int nY, int nW, int nH)"
   },
   "0x004A6730": {
-    "name": "CCCTData::_auto_4a6730",
-    "signature": "char *__thiscall(char *this)"
+    "name": "CCCTData::InitImages",
+    "signature": "char *__thiscall(CCCTData *this)"
   },
   "0x004AC8B0": {
-    "name": "CScreenMode::_init_4ac8b0",
-    "signature": "void __thiscall(int this)"
+    "name": "CScreenMode::ReplaceTextures",
+    "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x004B7AF0": {
-    "name": "UIWnd::_auto_4b7af0",
-    "signature": "void __thiscall(gbRefObject **this)"
+    "name": "UIWnd::ReleaseAllTextures",
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004B7F00": {
-    "name": "UIWnd::_auto_4b7f00",
-    "signature": "void __thiscall(_DWORD *this)"
+    "name": "UIWnd::ReleaseResources",
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004BA510": {
-    "name": "RenderTarget::_auto_4ba510",
-    "signature": "char __thiscall(char *this, const char *a2)"
+    "name": "RenderTarget::LoadSceneFile",
+    "signature": "char __thiscall(RenderTarget *this, const char *pszPath)"
   },
   "0x004BDA60": {
-    "name": "PAL3::_auto_4bda60",
-    "signature": "_DWORD *__thiscall(_DWORD *this)"
+    "name": "PAL3::CreateTextures",
+    "signature": "_DWORD *__thiscall(PAL3 *this)"
   },
   "0x004BF170": {
-    "name": "UIWnd::_auto_4bf170",
-    "signature": "void __thiscall(_DWORD *this)"
+    "name": "UIWnd::CleanupTextures",
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004C58C0": {
-    "name": "PAL3::_auto_4c58c0",
-    "signature": "char __thiscall(_DWORD *this)"
+    "name": "PAL3::CreateRenderEffects",
+    "signature": "char __thiscall(PAL3 *this)"
   },
   "0x004C6980": {
-    "name": "CEffgbParticle::_auto_4c6980",
-    "signature": "void __fastcall(int a1)"
+    "name": "CEffgbParticle::ReleaseEffect",
+    "signature": "void __fastcall(CEffgbParticle *this)"
   },
   "0x0052AFF0": {
-    "name": "UIWnd::_auto_52aff0",
-    "signature": "void __thiscall(_DWORD **this, gbMatrixStack *a2)"
+    "name": "UIWnd::RenderWithStack",
+    "signature": "void __thiscall(UIWnd *this, gbMatrixStack *pStack)"
   },
   "0x0052DF40": {
-    "name": "CScreenMode::_auto_52df40",
-    "signature": "void __thiscall(int this, struct gbGfxManager *a2)"
+    "name": "CScreenMode::InitCamera",
+    "signature": "void __thiscall(CScreenMode *this, struct gbGfxManager *pGfx)"
   },
   "0x0052FC60": {
-    "name": "MatrixStack::_init_52fc60",
-    "signature": "void __thiscall(int this)"
+    "name": "MatrixStack::BeginScene",
+    "signature": "void __thiscall(MatrixStack *this)"
   },
   "0x00530350": {
-    "name": "MatrixStack::_method_530350",
-    "signature": "void __thiscall(struct gbCamera ***this)"
+    "name": "MatrixStack::RenderScenePass",
+    "signature": "void __thiscall(MatrixStack *this)"
   },
   "0x00530440": {
-    "name": "CScreenMode::_auto_530440",
-    "signature": "int __thiscall(int this)"
+    "name": "CScreenMode::CreateVolModNode",
+    "signature": "int __thiscall(CScreenMode *this)"
   },
   "0x00530C70": {
-    "name": "MatrixStack::_init_530c70",
-    "signature": "void __thiscall(char *this)"
+    "name": "MatrixStack::BeginSceneWithRotation",
+    "signature": "void __thiscall(MatrixStack *this)"
   },
   "0x00530F20": {
-    "name": "Actor::_auto_530f20",
-    "signature": "bool __thiscall(int this)"
+    "name": "Actor::GetBoundRadius",
+    "signature": "bool __thiscall(Actor *this)"
   },
   "0x00533FD0": {
-    "name": "MiniGame3::_auto_533fd0",
-    "signature": "void __thiscall(int this)"
+    "name": "MiniGame3::SetCameraActive",
+    "signature": "void __thiscall(MiniGame3 *this)"
   },
   "0x00535970": {
-    "name": "MiniGame3::_static_535970",
-    "signature": "void __stdcall(gbMatrixStack *a1)"
+    "name": "MiniGame3::PushPopStack",
+    "signature": "void __stdcall(gbMatrixStack *pStack)"
   },
   "0x00535F10": {
-    "name": "MiniGame3::_auto_535f10",
-    "signature": "void __thiscall(float *this, gbMatrixStack *a2)"
+    "name": "MiniGame3::RenderWithTransform",
+    "signature": "void __thiscall(MiniGame3 *this, gbMatrixStack *pStack)"
   },
   "0x00538FA0": {
-    "name": "Actor::_auto_538fa0",
-    "signature": "void __thiscall(_DWORD *this, _DWORD *a2)"
+    "name": "Actor::BuildCollisionData",
+    "signature": "void __thiscall(Actor *this, _DWORD *pOut)"
   },
   "0x0053E9C0": {
-    "name": "CCBStageRole::_auto_53e9c0",
-    "signature": "unsigned int __thiscall(_DWORD *this)"
+    "name": "CCBStageRole::PauseSound",
+    "signature": "unsigned int __thiscall(CCBStageRole *this)"
   },
   "0x0053EA10": {
-    "name": "CCBStageRole::_auto_53ea10",
-    "signature": "unsigned int __thiscall(_DWORD *this)"
+    "name": "CCBStageRole::ResumeSound",
+    "signature": "unsigned int __thiscall(CCBStageRole *this)"
   }
 }
