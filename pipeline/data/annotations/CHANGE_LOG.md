@@ -123,6 +123,23 @@
 - **用途**: Hex-Rays 在无类型信息时输出纯偏移访问（`*(DWORD*)(a1 + 0x278)`），可用于验证 struct 布局
 - **工具**: `pipeline/ida/_raw_query_flex.py` — 输入地址列表，输出 raw 反编译结果
 
+### [2026-05-15] SceneMgr 布局完全修复 — IDA TIL 全成员对齐 (修正 pack 策略)
+
+- **变更**: 回退 blanket `#pragma pack(1)`，仅对二进制证据证实的 packed struct 使用
+- **置信度**: 95
+- **关键修正**:
+  1. `apply_annotations.py`: 回退 blanket pack(1)。只对 annotation 中 `"pack": 1` 的 struct 使用
+  2. `ARC_PlayerItem`: 标记 `"pack": 1` — **二进制证据**: wear[2] 数组 stride=10，sizeof 必须为 10
+     - MSVC 自然对齐下 sizeof(ARC_PlayerItem)=12（DWORD+int+short 对齐到 4-byte boundary）
+     - 但二进制 stride=10 → 原始代码使用了 `#pragma pack(1)`（存档/序列化结构体，合理）
+  3. 大部分 C++ 类**不用 pack(1)**（MSVC6 默认自然对齐是正确的）
+- **原则**: `#pragma pack(1)` 不是"修复 IDA 对齐问题"的手段。当 IDA size ≠ annotation size 时，应修正 annotation 的 binary_size 或成员偏移，不是用 pack(1) 回避。只有二进制证据（数组 stride、文件格式头）证明原始代码确实 packed 时才标记
+- **验证结果** (无 blanket pack, 仅 ARC_PlayerItem pack):
+  ```
+  ARC_PlayerAtt: 1408 ✓   RoleSystem: 8704 ✓   SceneMgrCamBlock: 848 ✓
+  SceneMgr: 54124 ✓ (ALL NAMED MEMBERS MATCH)
+  ```
+
 ### [2026-05-15] SceneMgr 布局完全修复 — IDA TIL 全成员对齐
 
 - **变更**: 修复 SceneMgr 及其所有子结构的 IDA TIL 布局，实现全成员偏移匹配
