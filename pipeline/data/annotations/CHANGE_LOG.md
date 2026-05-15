@@ -1387,3 +1387,15 @@
   - 0x004CBFC0: CEffMeteor::CreateTask
   - 0x004D0EC0: CEffModel::ProcInitTask
   - ... (25 more)
+
+### [2026-05-15] Phase 1.2: PAL3A cross-reference (3 functions)
+- **变更**: 3 个函数通过 PAL3A 反编译签名改进参数类型
+- **置信度**: 70
+- **证据**:
+  1. [A] PAL3A 官方 PDB 包含完整类型信息
+  2. [B] 函数名完全匹配，参数个数一致
+  3. [C] 仅替换 PAL3 中的泛化类型 (int/void*) 为 PAL3A 的具体类型
+- **函数列表**: 3 个函数已改进
+  - 0x00407740: PAL3::IfHideFightSucceed
+  - 0x00440DD0: UIStatic::Update
+  - 0x005249A0: UIBigMap::OnMessage
