@@ -365,7 +365,7 @@
   },
   "0x0040C630": {
     "name": "ScriptSystem::Render",
-    "signature": "void __cdecl(void *a1)"
+    "signature": "void __cdecl(gbMatrixStack *a1)"
   },
   "0x0040C790": {
     "name": "ScriptSystem::Cleanup",
@@ -457,7 +457,7 @@
   },
   "0x00412400": {
     "name": "RoleSystem::RenderRole",
-    "signature": "void __thiscall(RoleSystem *this, void *pStack, int a3)"
+    "signature": "void __thiscall(RoleSystem *this, gbMatrixStack *pStack, int a3)"
   },
   "0x004125D0": {
     "name": "Camera::SetParams",
@@ -481,11 +481,11 @@
   },
   "0x00413010": {
     "name": "RoleSystem::UpdateRole",
-    "signature": "char __thiscall(RoleSystem *this, int a2, int a3, int a4)"
+    "signature": "char __thiscall(RoleSystem *this, float *a2, int a3, int a4)"
   },
   "0x00414980": {
     "name": "RoleSystem::GetPosition",
-    "signature": "void __thiscall(RoleSystem *this, void *pOut, int a3)"
+    "signature": "void __thiscall(RoleSystem *this, float *pOut, int a3)"
   },
   "0x00414A30": {
     "name": "RoleSystem::PathFind",
@@ -493,7 +493,7 @@
   },
   "0x00416790": {
     "name": "RoleSystem::UpdateAnimation",
-    "signature": "void __thiscall(RoleSystem *this, int a2)"
+    "signature": "void __thiscall(RoleSystem *this, float *a2)"
   },
   "0x00416F10": {
     "name": "RoleSystem::GetActiveRole",
@@ -553,11 +553,11 @@
   },
   "0x0041E7D0": {
     "name": "Camera::CheckCollision1",
-    "signature": "int __cdecl(void *pPos, void *pBounds, float *pDist)"
+    "signature": "int __cdecl(float *pPos, void *pBounds, float *pDist)"
   },
   "0x0041EA00": {
     "name": "Camera::CheckCollision2",
-    "signature": "int __cdecl(void *pPos, int rolePtr, void *pBounds)"
+    "signature": "int __cdecl(float *pPos, int rolePtr, void *pBounds)"
   },
   "0x0041ED00": {
     "name": "SoundSystem::Init",
@@ -1449,7 +1449,7 @@
   },
   "0x004C3EC0": {
     "name": "CEffCylinder::Init",
-    "signature": "int __thiscall(CEffCylinder *this, int pType, float fx, float fy, float fz)"
+    "signature": "int __thiscall(CEffCylinder *this, float *pType, float fx, float fy, float fz)"
   },
   "0x004C4060": {
     "name": "CEffCylinder::Create",
@@ -1557,7 +1557,7 @@
   },
   "0x004C6A70": {
     "name": "CEffect::Reset",
-    "signature": "void __thiscall(CEffect *this, int a2, float a3, float a4, float a5)"
+    "signature": "void __thiscall(CEffect *this, float *a2, float a3, float a4, float a5)"
   },
   "0x004C6C10": {
     "name": "CEffExplosive::Create",
@@ -1673,7 +1673,7 @@
   },
   "0x004CB5E0": {
     "name": "CEffMeteor::Init",
-    "signature": "int __thiscall(CEffMeteor *this, int pType, float fx, float fy, float fz)"
+    "signature": "int __thiscall(CEffMeteor *this, float *pType, float fx, float fy, float fz)"
   },
   "0x004CB800": {
     "name": "CEffMeteor::Create",
@@ -1749,7 +1749,7 @@
   },
   "0x004D0EC0": {
     "name": "CEffModel::ProcInitTask",
-    "signature": "int __thiscall(CEffModel *this, int dwParam, float a3, float a4, float a5)"
+    "signature": "int __thiscall(CEffModel *this, float *dwParam, float a3, float a4, float a5)"
   },
   "0x004D1090": {
     "name": "CEffQuad::Create",
@@ -1789,7 +1789,7 @@
   },
   "0x004D3A50": {
     "name": "CEffShock::Init",
-    "signature": "int __thiscall(CEffShock *this, int pType, float fx, float fy, float fz)"
+    "signature": "int __thiscall(CEffShock *this, float *pType, float fx, float fy, float fz)"
   },
   "0x004D3AD0": {
     "name": "CEffShock::Create",
@@ -2237,7 +2237,7 @@
   },
   "0x004DFD20": {
     "name": "Combat::LogMessage",
-    "signature": "char __cdecl(int a1, int a2, int a3, char *format)"
+    "signature": "char __cdecl(float *a1, int a2, int a3, char *format)"
   },
   "0x004DFE00": {
     "name": "CCBAIWindow::SetText",
@@ -2945,7 +2945,7 @@
   },
   "0x005062D0": {
     "name": "CCCTData::Load",
-    "signature": "int __thiscall(CCCTData *this, int a2)"
+    "signature": "int __thiscall(CCCTData *this, float *a2)"
   },
   "0x005075E0": {
     "name": "CCCTData::InsertTaskToList",
@@ -4757,7 +4757,7 @@
   },
   "0x00416220": {
     "name": "RoleSystem_Helper_416220",
-    "signature": "void __thiscall(int this, int a2)"
+    "signature": "void __thiscall(int this, float *a2)"
   },
   "0x004C5BB0": {
     "name": "CombatEffectUpdate",
@@ -5029,7 +5029,7 @@
   },
   "0x00445B90": {
     "name": "UIWnd::_unverified_445B90",
-    "signature": "int __thiscall(UIWnd *this, int id, void *pRect, int parent)"
+    "signature": "int __thiscall(UIWnd *this, int id, tagRECT *pRect, int parent)"
   },
   "0x0053CEF0": {
     "name": "Logger::FormatException",
@@ -6125,7 +6125,7 @@
   },
   "0x004020E0": {
     "name": "GRPinput::Create",
-    "signature": "int __thiscall(GRPinput *this, void *hInst, int hwnd, int flag)"
+    "signature": "int __thiscall(GRPinput *this, HINSTANCE *hInst, int hwnd, int flag)"
   },
   "0x0041EEF0": {
     "name": "unknown_libname_326",
@@ -7489,7 +7489,7 @@
   },
   "0x004623A0": {
     "name": "CCBUIPanel::_nearby_4623a0",
-    "signature": "int __thiscall(CCBUIPanel *this, int arg0)"
+    "signature": "int __thiscall(CCBUIPanel *this, vtbl_0056AF80 *arg0)"
   },
   "0x0046A8B0": {
     "name": "SaleUI::_unverified_46A8B0",
@@ -7557,11 +7557,11 @@
   },
   "0x004E1190": {
     "name": "CEffectSystem::_auto_4e1190",
-    "signature": "int __stdcall(void *a1, HWND hDlg, unsigned int a3, int bReadOnly, int a5)"
+    "signature": "int __stdcall(CCBUI *a1, HWND hDlg, unsigned int a3, int bReadOnly, int a5)"
   },
   "0x004E6020": {
     "name": "CCBStageCam::_static_4E6020",
-    "signature": "int __stdcall(CCBStageCam *nParam, HWND hDlg, int arg8, int argC, int a5)"
+    "signature": "int __stdcall(CCBStageCam *nParam, HWND hDlg, int arg8, int argC, float *a5)"
   },
   "0x004ECB20": {
     "name": "CCBRoleState::ProcessCombatAction",
@@ -7721,7 +7721,7 @@
   },
   "0x00417040": {
     "name": "RoleSystem::_nearby_417040",
-    "signature": "void __thiscall(RoleSystem *this, int a2)"
+    "signature": "void __thiscall(RoleSystem *this, float *a2)"
   },
   "0x00417BC0": {
     "name": "RoleSystem::_sub_417BC0",
@@ -8945,7 +8945,7 @@
   },
   "0x00480070": {
     "name": "UIFrameWnd::_auto_480070",
-    "signature": "int __thiscall(UIFrameWnd *this, int a2, unsigned __int8 a3, int bFlag)"
+    "signature": "int __thiscall(UIFrameWnd *this, int a2, unsigned __int8 a3, UIWnd *bFlag)"
   },
   "0x004819A0": {
     "name": "Object3D::_init_4819a0",
@@ -9481,7 +9481,7 @@
   },
   "0x004C0740": {
     "name": "RenderTarget2::_nearby_4c0740",
-    "signature": "void __fastcall(int a1, float a2)"
+    "signature": "void __fastcall(float *a1, float a2)"
   },
   "0x004C1570": {
     "name": "RenderTarget2::_nearby_4c1570",
@@ -10705,7 +10705,7 @@
   },
   "0x0041BC30": {
     "name": "RoleSystem::_nearby_41bc30",
-    "signature": "int __thiscall(RoleSystem *this, int a2)"
+    "signature": "int __thiscall(RoleSystem *this, float *a2)"
   },
   "0x0041BD40": {
     "name": "RoleSystem::_nearby_41bd40",
@@ -10933,7 +10933,7 @@
   },
   "0x0042B450": {
     "name": "PalScriptMgr::_nearby_42b450",
-    "signature": "BOOL __thiscall(PalScriptMgr *this, int a2)"
+    "signature": "BOOL __thiscall(PalScriptMgr *this, float *a2)"
   },
   "0x0042BEE0": {
     "name": "Actor::IsIdle",
@@ -11009,7 +11009,7 @@
   },
   "0x004314F0": {
     "name": "PalScript::_nearby_4314f0",
-    "signature": "void __cdecl(int a1, char *a2)"
+    "signature": "void __cdecl(PalScript *a1, char *a2)"
   },
   "0x00431640": {
     "name": "PalScript::_nearby_431640",
@@ -12121,7 +12121,7 @@
   },
   "0x00450EB0": {
     "name": "RoleAtt::_method_450eb0",
-    "signature": "void __fastcall(int a1)"
+    "signature": "void __fastcall(UIWnd *a1)"
   },
   "0x00450F80": {
     "name": "UIWnd::_nearby_450f80",
@@ -12161,7 +12161,7 @@
   },
   "0x00451900": {
     "name": "UIListBox::_init_451900",
-    "signature": "void __fastcall(int a1)"
+    "signature": "void __fastcall(UIWnd *a1)"
   },
   "0x00451AA0": {
     "name": "UILoadingFrm::SendMessage_1aa0",
@@ -13805,7 +13805,7 @@
   },
   "0x004C9750": {
     "name": "CEffMgr::_auto_4c9750",
-    "signature": "int __thiscall(CEffMgr *this, int a2, float a3, float a4, float a5)"
+    "signature": "int __thiscall(CEffMgr *this, float *a2, float a3, float a4, float a5)"
   },
   "0x004C9EA0": {
     "name": "nullsub_83",
@@ -15633,7 +15633,7 @@
   },
   "0x00539810": {
     "name": "UIBigMap::SetElementVisible",
-    "signature": "void __thiscall(UIBigMap *this, void *Buffer, FILE *Stream)"
+    "signature": "void __thiscall(UIBigMap *this, FILE *Buffer, FILE *Stream)"
   },
   "0x005399E0": {
     "name": "Actor::_nearby_5399e0",

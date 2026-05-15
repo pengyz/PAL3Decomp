@@ -1399,3 +1399,41 @@
   - 0x00407740: PAL3::IfHideFightSucceed
   - 0x00440DD0: UIStatic::Update
   - 0x005249A0: UIBigMap::OnMessage
+
+### [2026-05-15] Phase 1.3: void* parameter type inference (9 functions)
+- **变更**: 9 个函数的签名已改进
+- **置信度**: 80
+- **证据**:
+  1. [A] 函数体中显式 cast 为特定类型
+  2. [B] 跳过泛化类型 (void/char/int/_DWORD/_BYTE)
+  3. [C] 选取出现频率最高的 cast 目标类型
+- **函数列表**: 9 个函数已修正
+  - 0x0040C630: ScriptSystem::Render
+  - 0x00412400: RoleSystem::RenderRole
+  - 0x00414980: RoleSystem::GetPosition
+  - 0x0041E7D0: Camera::CheckCollision1
+  - 0x0041EA00: Camera::CheckCollision2
+  - 0x00445B90: UIWnd::_unverified_445B90
+  - 0x004020E0: GRPinput::Create
+  - 0x004E1190: CEffectSystem::_auto_4e1190
+  - 0x00539810: UIBigMap::SetElementVisible
+
+### [2026-05-15] Phase 1.4: int parameter pointer inference (21 functions)
+- **变更**: 21 个函数的签名已改进
+- **置信度**: 80
+- **证据**:
+  1. [A] 函数体中 int 参数被 cast 为指针类型
+  2. [B] Cast 出现 ≥2 次才接受（置信度 80）
+  3. [C] 跳过泛化类型 (void/char/int/_DWORD/_BYTE)
+- **函数列表**: 21 个函数已修正
+  - 0x00413010: RoleSystem::UpdateRole
+  - 0x00416790: RoleSystem::UpdateAnimation
+  - 0x004C3EC0: CEffCylinder::Init
+  - 0x004C6A70: CEffect::Reset
+  - 0x004CB5E0: CEffMeteor::Init
+  - 0x004D0EC0: CEffModel::ProcInitTask
+  - 0x004D3A50: CEffShock::Init
+  - 0x004DFD20: Combat::LogMessage
+  - 0x005062D0: CCCTData::Load
+  - 0x00416220: RoleSystem_Helper_416220
+  - ... (11 more)

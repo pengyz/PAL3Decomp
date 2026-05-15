@@ -421,26 +421,280 @@ def cross_ref_pal3a(pal3_funcs_path, pal3a_funcs_path, dry_run=True):
     return changes
 
 
-def write_change_log(changes, changelog_path, phase="1.1"):
+def load_decomp_bodies():
+    """
+    Load all decomp JSON files and return {address: decompiled_c} mapping.
+
+    Returns:
+        dict: Mapping from address (e.g., "0x00401234") to decompiled C code.
+    """
+    project_root = Path(__file__).parent.parent
+    decomp_dir = project_root / "asm" / "pal3" / "decomp"
+    bodies = {}
+
+    for f in decomp_dir.glob("*.json"):
+        try:
+            data = json.loads(f.read_text(encoding="utf-8"))
+            addr = data.get("address", "")
+            body = data.get("decompiled_c", "")
+            if addr and body:
+                bodies[addr] = body
+        except:
+            continue
+
+    return bodies
+
+
+def is_trivial_cast_type(type_str):
+    """Check if a type is trivial/generic and should be skipped."""
+    type_str = type_str.strip()
+    trivial_types = [
+        'void', 'char', 'int', 'unsigned', 'long',
+        '_DWORD', '_BYTE', '_WORD', '_QWORD',
+        'DWORD', 'BYTE', 'WORD'
+    ]
+    return type_str in trivial_types
+
+
+def infer_void_star_types(functions_json_path, decomp_bodies, dry_run=True):
+    """
+    Infer actual types for void* parameters by analyzing cast patterns in function bodies.
+
+    Args:
+        functions_json_path: Path to functions.json
+        decomp_bodies: Dict mapping address to decompiled_c
+        dry_run: If True, don't modify the file
+
+    Returns:
+        List of changes made
+    """
+    with open(functions_json_path, 'r') as f:
+        data = json.load(f)
+
+    changes = []
+
+    for address, info in data.items():
+        signature = info.get("signature", "")
+        name = info.get("name", "")
+
+        if "void *" not in signature:
+            continue
+
+        # Get function body
+        body = decomp_bodies.get(address, "")
+        if not body:
+            continue
+
+        # Parse signature
+        try:
+            parsed = parse_signature(signature)
+        except:
+            continue
+
+        # Find void* parameters (skip 'this')
+        for i, param in enumerate(parsed["params"]):
+            param_type = param["type"]
+            param_name = param["name"]
+
+            # Skip 'this' parameter
+            if param_name == "this":
+                continue
+
+            # Only process void* parameters
+            if param_type not in ["void *", "void*"]:
+                continue
+
+            if not param_name:
+                continue
+
+            # Search for cast patterns: (ClassName *)param_name
+            cast_pattern = re.compile(r'\((\w+(?:\s*\*+)?)\s*\)' + re.escape(param_name) + r'\b')
+            casts = cast_pattern.findall(body)
+
+            if not casts:
+                continue
+
+            # Count cast occurrences, filter out trivial types
+            cast_counts = {}
+            for cast_type in casts:
+                cast_type = cast_type.strip()
+                # Remove pointer markers for type checking
+                base_type = cast_type.rstrip('*').strip()
+                if is_trivial_cast_type(base_type):
+                    continue
+                cast_counts[cast_type] = cast_counts.get(cast_type, 0) + 1
+
+            if not cast_counts:
+                continue
+
+            # Pick the most common cast type
+            most_common = max(cast_counts.items(), key=lambda x: x[1])
+            inferred_type = most_common[0]
+
+            # Ensure it ends with * if not already
+            if not inferred_type.endswith('*'):
+                inferred_type += ' *'
+
+            # Update parameter type
+            old_sig = signature
+            parsed["params"][i]["type"] = inferred_type
+            new_sig = rebuild_signature(parsed)
+
+            changes.append({
+                "address": address,
+                "name": name,
+                "param_name": param_name,
+                "old_type": param_type,
+                "new_type": inferred_type,
+                "cast_count": most_common[1],
+                "old_signature": old_sig,
+                "new_signature": new_sig
+            })
+
+            if not dry_run:
+                data[address]["signature"] = new_sig
+
+            # Only fix one parameter per function per run (for safety)
+            break
+
+    if not dry_run and changes:
+        with open(functions_json_path, 'w') as f:
+            json.dump(data, f, indent=2)
+
+    return changes
+
+
+def infer_int_pointer_types(functions_json_path, decomp_bodies, dry_run=True):
+    """
+    Infer that int parameters are actually pointers by analyzing cast patterns.
+
+    Args:
+        functions_json_path: Path to functions.json
+        decomp_bodies: Dict mapping address to decompiled_c
+        dry_run: If True, don't modify the file
+
+    Returns:
+        List of changes made
+    """
+    with open(functions_json_path, 'r') as f:
+        data = json.load(f)
+
+    changes = []
+
+    for address, info in data.items():
+        signature = info.get("signature", "")
+        name = info.get("name", "")
+
+        # Get function body
+        body = decomp_bodies.get(address, "")
+        if not body:
+            continue
+
+        # Parse signature
+        try:
+            parsed = parse_signature(signature)
+        except:
+            continue
+
+        # Find int parameters (skip 'this')
+        for i, param in enumerate(parsed["params"]):
+            param_type = param["type"]
+            param_name = param["name"]
+
+            # Skip 'this' parameter
+            if param_name == "this":
+                continue
+
+            # Only process int parameters
+            if param_type != "int":
+                continue
+
+            if not param_name:
+                continue
+
+            # Pattern 1: (Type *)param - direct cast
+            # Pattern 2: (Type *)(param + offset) - cast with offset/arithmetic
+            # Pattern 3: ((Type *)param)-> - dereference (subset of pattern 1)
+            # Match: (Type *) followed by param or (param...)
+            pattern1 = re.compile(r'\((\w+)\s*\*+\s*\)' + re.escape(param_name) + r'\b')
+            pattern2 = re.compile(r'\((\w+)\s*\*+\s*\)\s*\(' + re.escape(param_name) + r'\b')
+
+            casts1 = pattern1.findall(body)
+            casts2 = pattern2.findall(body)
+            all_casts = casts1 + casts2
+
+            if not all_casts:
+                continue
+
+            # Count cast occurrences, filter out trivial types
+            cast_counts = {}
+            for cast_type in all_casts:
+                cast_type = cast_type.strip()
+                if is_trivial_cast_type(cast_type):
+                    continue
+                cast_counts[cast_type] = cast_counts.get(cast_type, 0) + 1
+
+            if not cast_counts:
+                continue
+
+            # Pick the most common cast type
+            most_common = max(cast_counts.items(), key=lambda x: x[1])
+
+            # Only accept if cast appears >= 2 times (confidence 80)
+            if most_common[1] < 2:
+                continue
+
+            inferred_type = most_common[0] + ' *'
+
+            # Update parameter type
+            old_sig = signature
+            parsed["params"][i]["type"] = inferred_type
+            new_sig = rebuild_signature(parsed)
+
+            changes.append({
+                "address": address,
+                "name": name,
+                "param_name": param_name,
+                "old_type": param_type,
+                "new_type": inferred_type,
+                "cast_count": most_common[1],
+                "old_signature": old_sig,
+                "new_signature": new_sig
+            })
+
+            if not dry_run:
+                data[address]["signature"] = new_sig
+
+            # Only fix one parameter per function per run (for safety)
+            break
+
+    if not dry_run and changes:
+        with open(functions_json_path, 'w') as f:
+            json.dump(data, f, indent=2)
+
+    return changes
+
+
+def write_change_log(changes, changelog_path, phase_label, description, confidence):
+    """
+    Write a change log entry.
+
+    Args:
+        changes: List of change records
+        changelog_path: Path to CHANGE_LOG.md
+        phase_label: e.g., "Phase 1.1: int this → ClassName *this"
+        description: List of evidence/description lines
+        confidence: Confidence score (integer)
+    """
     today = datetime.now().strftime("%Y-%m-%d")
 
-    if phase == "1.1":
-        entry = f"\n### [{today}] Phase 1.1: int this → ClassName *this ({len(changes)} functions)\n"
-        entry += f"- **变更**: {len(changes)} 个 __thiscall 函数的 this 参数从 int 修正为 ClassName *\n"
-        entry += f"- **置信度**: 95\n"
-        entry += f"- **证据**:\n"
-        entry += f"  1. [A] __thiscall 调用约定要求 ECX=this，参数类型必为类指针\n"
-        entry += f"  2. [B] 函数名 ClassName:: 前缀匹配\n"
-        entry += f"- **函数列表**: {len(changes)} 个函数已修正\n"
-    elif phase == "1.2":
-        entry = f"\n### [{today}] Phase 1.2: PAL3A cross-reference ({len(changes)} functions)\n"
-        entry += f"- **变更**: {len(changes)} 个函数通过 PAL3A 反编译签名改进参数类型\n"
-        entry += f"- **置信度**: 70\n"
-        entry += f"- **证据**:\n"
-        entry += f"  1. [A] PAL3A 官方 PDB 包含完整类型信息\n"
-        entry += f"  2. [B] 函数名完全匹配，参数个数一致\n"
-        entry += f"  3. [C] 仅替换 PAL3 中的泛化类型 (int/void*) 为 PAL3A 的具体类型\n"
-        entry += f"- **函数列表**: {len(changes)} 个函数已改进\n"
+    entry = f"\n### [{today}] {phase_label} ({len(changes)} functions)\n"
+    entry += f"- **变更**: {len(changes)} 个函数的签名已改进\n"
+    entry += f"- **置信度**: {confidence}\n"
+    entry += f"- **证据**:\n"
+    for i, desc in enumerate(description, 1):
+        entry += f"  {i}. {desc}\n"
+    entry += f"- **函数列表**: {len(changes)} 个函数已修正\n"
 
     for change in changes[:10]:
         entry += f"  - {change['address']}: {change['name']}\n"
@@ -462,6 +716,12 @@ def main():
     cross_ref_parser = subparsers.add_parser("cross-ref-pal3a", help="Cross-reference with PAL3A to improve parameter types")
     cross_ref_parser.add_argument("--apply", action="store_true", help="Apply changes to files")
 
+    infer_void_parser = subparsers.add_parser("infer-void-star", help="Infer void* parameter types from cast patterns")
+    infer_void_parser.add_argument("--apply", action="store_true", help="Apply changes to files")
+
+    infer_int_parser = subparsers.add_parser("infer-int-params", help="Infer int parameters that are actually pointers")
+    infer_int_parser.add_argument("--apply", action="store_true", help="Apply changes to files")
+
     args = parser.parse_args()
 
     project_root = Path(__file__).parent.parent
@@ -482,7 +742,15 @@ def main():
             print(f"    → {change['new_signature']}")
 
         if args.apply:
-            write_change_log(changes, changelog, phase="1.1")
+            write_change_log(
+                changes, changelog,
+                phase_label="Phase 1.1: int this → ClassName *this",
+                description=[
+                    "[A] __thiscall 调用约定要求 ECX=this，参数类型必为类指针",
+                    "[B] 函数名 ClassName:: 前缀匹配"
+                ],
+                confidence=95
+            )
             print(f"\n✓ Applied changes to {functions_json}")
             print(f"✓ Updated {changelog}")
         else:
@@ -511,7 +779,88 @@ def main():
             print(f"  ... ({len(changes) - 20} more)")
 
         if args.apply:
-            write_change_log(changes, changelog, phase="1.2")
+            write_change_log(
+                changes, changelog,
+                phase_label="Phase 1.2: PAL3A cross-reference",
+                description=[
+                    "[A] PAL3A 官方 PDB 包含完整类型信息",
+                    "[B] 函数名完全匹配，参数个数一致",
+                    "[C] 仅替换 PAL3 中的泛化类型 (int/void*) 为 PAL3A 的具体类型"
+                ],
+                confidence=70
+            )
+            print(f"\n✓ Applied {len(changes)} changes to {functions_json}")
+            print(f"✓ Updated {changelog}")
+        else:
+            print("\nDry run mode. Use --apply to write changes.")
+
+    elif args.command == "infer-void-star":
+        print("Loading decomp bodies...")
+        decomp_bodies = load_decomp_bodies()
+        print(f"Loaded {len(decomp_bodies)} function bodies")
+
+        changes = infer_void_star_types(functions_json, decomp_bodies, dry_run=not args.apply)
+
+        if not changes:
+            print("No void* parameters to infer.")
+            return
+
+        print(f"Found {len(changes)} void* parameters to infer:")
+        for change in changes[:20]:
+            print(f"  {change['address']}: {change['name']}")
+            print(f"    Parameter '{change['param_name']}': {change['old_type']} → {change['new_type']}")
+            print(f"    Cast count: {change['cast_count']}")
+
+        if len(changes) > 20:
+            print(f"  ... ({len(changes) - 20} more)")
+
+        if args.apply:
+            write_change_log(
+                changes, changelog,
+                phase_label="Phase 1.3: void* parameter type inference",
+                description=[
+                    "[A] 函数体中显式 cast 为特定类型",
+                    "[B] 跳过泛化类型 (void/char/int/_DWORD/_BYTE)",
+                    "[C] 选取出现频率最高的 cast 目标类型"
+                ],
+                confidence=80
+            )
+            print(f"\n✓ Applied {len(changes)} changes to {functions_json}")
+            print(f"✓ Updated {changelog}")
+        else:
+            print("\nDry run mode. Use --apply to write changes.")
+
+    elif args.command == "infer-int-params":
+        print("Loading decomp bodies...")
+        decomp_bodies = load_decomp_bodies()
+        print(f"Loaded {len(decomp_bodies)} function bodies")
+
+        changes = infer_int_pointer_types(functions_json, decomp_bodies, dry_run=not args.apply)
+
+        if not changes:
+            print("No int parameters inferred as pointers.")
+            return
+
+        print(f"Found {len(changes)} int parameters inferred as pointers:")
+        for change in changes[:20]:
+            print(f"  {change['address']}: {change['name']}")
+            print(f"    Parameter '{change['param_name']}': {change['old_type']} → {change['new_type']}")
+            print(f"    Cast count: {change['cast_count']}")
+
+        if len(changes) > 20:
+            print(f"  ... ({len(changes) - 20} more)")
+
+        if args.apply:
+            write_change_log(
+                changes, changelog,
+                phase_label="Phase 1.4: int parameter pointer inference",
+                description=[
+                    "[A] 函数体中 int 参数被 cast 为指针类型",
+                    "[B] Cast 出现 ≥2 次才接受（置信度 80）",
+                    "[C] 跳过泛化类型 (void/char/int/_DWORD/_BYTE)"
+                ],
+                confidence=80
+            )
             print(f"\n✓ Applied {len(changes)} changes to {functions_json}")
             print(f"✓ Updated {changelog}")
         else:

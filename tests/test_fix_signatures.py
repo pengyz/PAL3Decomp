@@ -12,7 +12,10 @@ from fix_signatures import (
     rebuild_signature,
     extract_class_from_function_name,
     demangle_msvc_params,
-    is_generic_type
+    is_generic_type,
+    is_trivial_cast_type,
+    infer_void_star_types,
+    infer_int_pointer_types
 )
 
 
@@ -140,6 +143,231 @@ class TestCrossRefPal3a(unittest.TestCase):
         # they should NOT match (because thiscall excludes this from count)
         # This is tested indirectly through the implementation
         pass
+
+
+class TestIsTrivialCastType(unittest.TestCase):
+    def test_trivial_types(self):
+        self.assertTrue(is_trivial_cast_type("void"))
+        self.assertTrue(is_trivial_cast_type("char"))
+        self.assertTrue(is_trivial_cast_type("int"))
+        self.assertTrue(is_trivial_cast_type("_DWORD"))
+        self.assertTrue(is_trivial_cast_type("_BYTE"))
+
+    def test_specific_types(self):
+        self.assertFalse(is_trivial_cast_type("Scene"))
+        self.assertFalse(is_trivial_cast_type("UIWnd"))
+        self.assertFalse(is_trivial_cast_type("Actor"))
+
+
+class TestInferVoidStar(unittest.TestCase):
+    def test_detect_explicit_cast(self):
+        """Test detection of (ClassName *)param_name pattern"""
+        import tempfile
+        import json
+
+        # Create test data
+        functions_data = {
+            "0x00401000": {
+                "name": "TestFunc",
+                "signature": "void __cdecl(void *pConfig)"
+            }
+        }
+
+        decomp_bodies = {
+            "0x00401000": """
+                void __cdecl TestFunc(void *pConfig)
+                {
+                    Scene *pScene = (Scene *)pConfig;
+                    ((Scene *)pConfig)->Init();
+                }
+            """
+        }
+
+        # Write to temp file
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(functions_data, f)
+            temp_path = f.name
+
+        try:
+            changes = infer_void_star_types(temp_path, decomp_bodies, dry_run=True)
+
+            self.assertEqual(len(changes), 1)
+            self.assertEqual(changes[0]["param_name"], "pConfig")
+            self.assertEqual(changes[0]["new_type"], "Scene *")
+            self.assertEqual(changes[0]["cast_count"], 2)
+        finally:
+            Path(temp_path).unlink()
+
+    def test_skip_trivial_casts(self):
+        """Test that trivial casts like (void*)/(int*) are skipped"""
+        import tempfile
+        import json
+
+        functions_data = {
+            "0x00401000": {
+                "name": "TestFunc",
+                "signature": "void __cdecl(void *pData)"
+            }
+        }
+
+        decomp_bodies = {
+            "0x00401000": """
+                void __cdecl TestFunc(void *pData)
+                {
+                    int x = (int)pData;
+                    char c = (char)pData;
+                }
+            """
+        }
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(functions_data, f)
+            temp_path = f.name
+
+        try:
+            changes = infer_void_star_types(temp_path, decomp_bodies, dry_run=True)
+            # Should find no changes because only trivial casts
+            self.assertEqual(len(changes), 0)
+        finally:
+            Path(temp_path).unlink()
+
+    def test_skip_this_parameter(self):
+        """Test that 'this' parameter is not modified"""
+        import tempfile
+        import json
+
+        functions_data = {
+            "0x00401000": {
+                "name": "TestClass::Method",
+                "signature": "void __thiscall(void *this)"
+            }
+        }
+
+        decomp_bodies = {
+            "0x00401000": """
+                void __thiscall TestClass::Method(void *this)
+                {
+                    ((TestClass *)this)->member = 0;
+                }
+            """
+        }
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(functions_data, f)
+            temp_path = f.name
+
+        try:
+            changes = infer_void_star_types(temp_path, decomp_bodies, dry_run=True)
+            # Should find no changes because 'this' is skipped
+            self.assertEqual(len(changes), 0)
+        finally:
+            Path(temp_path).unlink()
+
+
+class TestInferIntParams(unittest.TestCase):
+    def test_detect_int_cast_to_pointer(self):
+        """Test detection of int parameter cast to pointer"""
+        import tempfile
+        import json
+
+        functions_data = {
+            "0x00401000": {
+                "name": "TestFunc",
+                "signature": "void __thiscall(TestClass *this, int a2)"
+            }
+        }
+
+        decomp_bodies = {
+            "0x00401000": """
+                void __thiscall TestFunc(TestClass *this, int a2)
+                {
+                    *(_DWORD *)(a2 + 4) = 0;
+                    *(_BYTE *)(a2 + 16) = 1;
+                    ((Actor *)a2)->Init();
+                    ((Actor *)a2)->Update();
+                    return ((Actor *)a2)->GetState();
+                }
+            """
+        }
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(functions_data, f)
+            temp_path = f.name
+
+        try:
+            changes = infer_int_pointer_types(temp_path, decomp_bodies, dry_run=True)
+
+            self.assertEqual(len(changes), 1)
+            self.assertEqual(changes[0]["param_name"], "a2")
+            self.assertEqual(changes[0]["new_type"], "Actor *")
+            self.assertGreaterEqual(changes[0]["cast_count"], 2)
+        finally:
+            Path(temp_path).unlink()
+
+    def test_require_multiple_casts(self):
+        """Test that single cast is not enough (need >= 2)"""
+        import tempfile
+        import json
+
+        functions_data = {
+            "0x00401000": {
+                "name": "TestFunc",
+                "signature": "void __cdecl(int a1)"
+            }
+        }
+
+        decomp_bodies = {
+            "0x00401000": """
+                void __cdecl TestFunc(int a1)
+                {
+                    ((Scene *)a1)->Init();
+                }
+            """
+        }
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(functions_data, f)
+            temp_path = f.name
+
+        try:
+            changes = infer_int_pointer_types(temp_path, decomp_bodies, dry_run=True)
+            # Should find no changes because only 1 cast (need >= 2)
+            self.assertEqual(len(changes), 0)
+        finally:
+            Path(temp_path).unlink()
+
+    def test_skip_this_parameter(self):
+        """Test that 'this' parameter is not modified even if int"""
+        import tempfile
+        import json
+
+        functions_data = {
+            "0x00401000": {
+                "name": "TestClass::Method",
+                "signature": "void __thiscall(int this)"
+            }
+        }
+
+        decomp_bodies = {
+            "0x00401000": """
+                void __thiscall TestClass::Method(int this)
+                {
+                    *(_DWORD *)(this + 4) = 0;
+                    *(_DWORD *)(this + 8) = 0;
+                }
+            """
+        }
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(functions_data, f)
+            temp_path = f.name
+
+        try:
+            changes = infer_int_pointer_types(temp_path, decomp_bodies, dry_run=True)
+            # Should find no changes because 'this' is skipped
+            self.assertEqual(len(changes), 0)
+        finally:
+            Path(temp_path).unlink()
 
 
 if __name__ == "__main__":
