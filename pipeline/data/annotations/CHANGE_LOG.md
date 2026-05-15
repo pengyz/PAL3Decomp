@@ -1694,3 +1694,11 @@
   2. [A] C2273 从 121 降到 3（-118），消除了"function-style cast"整类错误
   3. [A] cmake --build: 5263→5251（-12 净效果，C2440 +49 因部分 ctor→init 语法不兼容 VC6）
 - **架构改进**: 正则 → AST 迁移第一步，后续更多 regex 规则将迁移到 tree-sitter
+
+### [2026-05-15] 回退 AST ctor 替换 — 恢复 5263 baseline
+
+- **变更**: 回退 `replace_explicit_ctor_calls()` AST 替换
+- **原因**: `((Type *)expr)->Type(args)` 是 IDA 对 placement new / 构造函数调用的翻译。正确还原需要数据流分析（追踪 expr 是否来自 operator new），tree-sitter 只做语法分析无法实现。libclang 需要代码能编译才能给出类型信息，不适用于有 5000+ 错误的代码。
+- **正确解法**: Hex-Rays microcode callback，在反编译器输出 C 代码之前修正 ctor 调用表示
+- **影响**: C2273 恢复到 121 个（待后续 microcode 方案解决）
+- **保留**: apply_annotations Step 10 final un-name（合法修复，不是 workaround）
