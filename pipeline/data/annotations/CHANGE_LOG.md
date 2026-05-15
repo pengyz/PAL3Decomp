@@ -1457,3 +1457,33 @@
   - 0x00406B80: PAL3::DefaultKeyMap
   - 0x00406FF0: PAL3::SnapScreen
   - ... (1268 more)
+
+### [2026-05-15] Phase 1 集成验证 — 6234→6090 errors (-2.3%), C2228 -64%
+
+- **变更**: Phase 1 全部 5 个子阶段完成后，IDA 管线重建验证
+- **置信度**: 95
+- **管线执行**:
+  1. `fix_signatures.py` Phase 1.1-1.5 共修正 1346 个函数签名
+  2. `apply_annotations.py` → IDA SetType 应用新签名
+  3. `export_full.py` → 4357 decomp JSONs (含 lvar 信息)
+  4. `gen_headers.py` + `gen_cpp.py --force-all` → 197 .cpp, 834 .h
+  5. `cmake --build -- -k` → 6090 errors
+- **错误变化对比**:
+
+  | 错误码 | 修正前 | 修正后 | 变化 |
+  |--------|--------|--------|------|
+  | C2228 (.非struct) | 848 | 305 | **-543 (-64%)** |
+  | C2664 (类型不匹配) | 818 | 667 | -151 |
+  | C2673 (vtable) | 751 | 665 | -86 |
+  | C2227 (->非指针) | 699 | 739 | +40 |
+  | C2440 (类型转换) | 779 | 846 | +67 |
+  | C2039 (成员缺失) | 599 | 625 | +26 |
+  | C2065 (未声明) | 390 | 325 | -65 |
+  | 总计 | 6234 | 6090 | **-144** |
+
+- **分析**: C2228 大幅下降是 int this→Class *this 的直接效果。C2440/C2227 略升是因为原来的 "int 不是 struct" 错误转化为更精确的 "Class * 到 xxx 的类型转换" 错误。净减 144 错误，签名质量显著提升。
+- **证据**:
+  1. [A] cmake --build -- -k 全量编译统计
+  2. [A] IDA apply_annotations 成功应用所有签名（IDB 时间戳更新）
+- **新增工具**: tools/fix_signatures.py (7 subcommands), lvars 管线扩展
+- **剩余最高 ROI 目标**: gen_headers vtable 去重 (C2673 665), IDA 侧签名修正 (C2440/C2227/C2664)
