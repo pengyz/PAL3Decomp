@@ -15,7 +15,10 @@ from fix_signatures import (
     is_generic_type,
     is_trivial_cast_type,
     infer_void_star_types,
-    infer_int_pointer_types
+    infer_int_pointer_types,
+    simplify_class_name,
+    get_semantic_param_name,
+    rename_params_in_file
 )
 
 
@@ -366,6 +369,241 @@ class TestInferIntParams(unittest.TestCase):
             changes = infer_int_pointer_types(temp_path, decomp_bodies, dry_run=True)
             # Should find no changes because 'this' is skipped
             self.assertEqual(len(changes), 0)
+        finally:
+            Path(temp_path).unlink()
+
+
+class TestSimplifyClassName(unittest.TestCase):
+    def test_remove_gb_prefix(self):
+        self.assertEqual(simplify_class_name("gbMatrixStack *"), "MatrixStack")
+        self.assertEqual(simplify_class_name("gbVector3 *"), "Vector3")
+
+    def test_remove_c_prefix(self):
+        self.assertEqual(simplify_class_name("CEffect *"), "Effect")
+        self.assertEqual(simplify_class_name("CUtil *"), "Util")
+
+    def test_remove_tag_prefix(self):
+        self.assertEqual(simplify_class_name("tagEffObjType *"), "EffObjType")
+
+    def test_remove_ui_prefix(self):
+        self.assertEqual(simplify_class_name("UIWnd *"), "Wnd")
+
+    def test_preserve_non_prefixed(self):
+        self.assertEqual(simplify_class_name("Scene *"), "Scene")
+        self.assertEqual(simplify_class_name("Actor *"), "Actor")
+
+    def test_dont_remove_lowercase(self):
+        # Should NOT remove 'C' from 'char'
+        self.assertEqual(simplify_class_name("char"), "char")
+
+
+class TestGetSemanticParamName(unittest.TestCase):
+    def test_const_char_pointer(self):
+        self.assertEqual(get_semantic_param_name("const char *", 1), "pszName")
+        self.assertEqual(get_semantic_param_name("const char *", 2), "pszName2")
+
+    def test_char_pointer(self):
+        self.assertEqual(get_semantic_param_name("char *", 1), "pszBuf")
+        self.assertEqual(get_semantic_param_name("char *", 2), "pszBuf2")
+
+    def test_float(self):
+        self.assertEqual(get_semantic_param_name("float", 1), "fVal")
+        self.assertEqual(get_semantic_param_name("float", 2), "fVal2")
+
+    def test_int(self):
+        self.assertEqual(get_semantic_param_name("int", 1), "nVal")
+        self.assertEqual(get_semantic_param_name("int", 2), "nVal2")
+
+    def test_unsigned_int(self):
+        self.assertEqual(get_semantic_param_name("unsigned int", 1), "dwVal")
+        self.assertEqual(get_semantic_param_name("DWORD", 1), "dwVal")
+
+    def test_bool(self):
+        self.assertEqual(get_semantic_param_name("BOOL", 1), "bFlag")
+        self.assertEqual(get_semantic_param_name("bool", 1), "bFlag")
+
+    def test_byte(self):
+        self.assertEqual(get_semantic_param_name("BYTE", 1), "byVal")
+        self.assertEqual(get_semantic_param_name("unsigned char", 1), "byVal")
+
+    def test_word(self):
+        self.assertEqual(get_semantic_param_name("WORD", 1), "wVal")
+        self.assertEqual(get_semantic_param_name("unsigned short", 1), "wVal")
+
+    def test_class_pointers(self):
+        self.assertEqual(get_semantic_param_name("gbMatrixStack *", 1), "pMatrixStack")
+        self.assertEqual(get_semantic_param_name("CEffect *", 1), "pEffect")
+        self.assertEqual(get_semantic_param_name("Scene *", 1), "pScene")
+        self.assertEqual(get_semantic_param_name("UIWnd *", 1), "pWnd")
+
+    def test_primitive_pointers(self):
+        self.assertEqual(get_semantic_param_name("float *", 1), "pfVal")
+        self.assertEqual(get_semantic_param_name("int *", 1), "pnVal")
+        self.assertEqual(get_semantic_param_name("unsigned int *", 1), "pdwVal")
+        self.assertEqual(get_semantic_param_name("void *", 1), "pData")
+
+    def test_multiple_same_type(self):
+        self.assertEqual(get_semantic_param_name("float", 1), "fVal")
+        self.assertEqual(get_semantic_param_name("float", 2), "fVal2")
+        self.assertEqual(get_semantic_param_name("float", 3), "fVal3")
+
+
+class TestRenameParams(unittest.TestCase):
+    def test_rename_generic_params(self):
+        """Test basic renaming of generic parameters"""
+        import tempfile
+        import json
+
+        functions_data = {
+            "0x00401000": {
+                "name": "TestFunc",
+                "signature": "void __thiscall(TestClass *this, float a2, int a3)"
+            }
+        }
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(functions_data, f)
+            temp_path = f.name
+
+        try:
+            changes = rename_params_in_file(temp_path, dry_run=True)
+
+            self.assertEqual(len(changes), 1)
+            self.assertEqual(changes[0]["new_signature"], "void __thiscall(TestClass *this, float fVal, int nVal)")
+            self.assertEqual(len(changes[0]["renames"]), 2)
+            self.assertEqual(changes[0]["renames"][0]["old"], "a2")
+            self.assertEqual(changes[0]["renames"][0]["new"], "fVal")
+            self.assertEqual(changes[0]["renames"][1]["old"], "a3")
+            self.assertEqual(changes[0]["renames"][1]["new"], "nVal")
+        finally:
+            Path(temp_path).unlink()
+
+    def test_preserve_semantic_names(self):
+        """Test that semantic names like fAngle, pStack are not changed"""
+        import tempfile
+        import json
+
+        functions_data = {
+            "0x00401000": {
+                "name": "TestFunc",
+                "signature": "void __cdecl(float fAngle, gbMatrixStack *pStack)"
+            }
+        }
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(functions_data, f)
+            temp_path = f.name
+
+        try:
+            changes = rename_params_in_file(temp_path, dry_run=True)
+            # Should find no changes because parameters already have semantic names
+            self.assertEqual(len(changes), 0)
+        finally:
+            Path(temp_path).unlink()
+
+    def test_skip_this_parameter(self):
+        """Test that 'this' parameter is never renamed"""
+        import tempfile
+        import json
+
+        functions_data = {
+            "0x00401000": {
+                "name": "TestClass::Method",
+                "signature": "void __thiscall(int this, int a2)"
+            }
+        }
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(functions_data, f)
+            temp_path = f.name
+
+        try:
+            changes = rename_params_in_file(temp_path, dry_run=True)
+
+            self.assertEqual(len(changes), 1)
+            # 'this' should remain unchanged, only a2 should be renamed
+            self.assertIn("int this", changes[0]["new_signature"])
+            self.assertIn("int nVal", changes[0]["new_signature"])
+            self.assertEqual(len(changes[0]["renames"]), 1)
+            self.assertEqual(changes[0]["renames"][0]["old"], "a2")
+        finally:
+            Path(temp_path).unlink()
+
+    def test_multiple_same_type_disambiguation(self):
+        """Test that multiple parameters of the same type get numbered suffixes"""
+        import tempfile
+        import json
+
+        functions_data = {
+            "0x00401000": {
+                "name": "TestFunc",
+                "signature": "void __cdecl(float a1, float a2, float a3)"
+            }
+        }
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(functions_data, f)
+            temp_path = f.name
+
+        try:
+            changes = rename_params_in_file(temp_path, dry_run=True)
+
+            self.assertEqual(len(changes), 1)
+            self.assertEqual(changes[0]["new_signature"], "void __cdecl(float fVal, float fVal2, float fVal3)")
+            self.assertEqual(len(changes[0]["renames"]), 3)
+        finally:
+            Path(temp_path).unlink()
+
+    def test_class_pointer_naming(self):
+        """Test Hungarian naming for class pointers"""
+        import tempfile
+        import json
+
+        functions_data = {
+            "0x00401000": {
+                "name": "TestFunc",
+                "signature": "void __cdecl(gbMatrixStack *a1, CEffect *a2, Scene *a3)"
+            }
+        }
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(functions_data, f)
+            temp_path = f.name
+
+        try:
+            changes = rename_params_in_file(temp_path, dry_run=True)
+
+            self.assertEqual(len(changes), 1)
+            sig = changes[0]["new_signature"]
+            self.assertIn("gbMatrixStack *pMatrixStack", sig)
+            self.assertIn("CEffect *pEffect", sig)
+            self.assertIn("Scene *pScene", sig)
+        finally:
+            Path(temp_path).unlink()
+
+    def test_string_pointer_naming(self):
+        """Test Hungarian naming for string pointers"""
+        import tempfile
+        import json
+
+        functions_data = {
+            "0x00401000": {
+                "name": "TestFunc",
+                "signature": "void __cdecl(const char *a1, char *a2)"
+            }
+        }
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(functions_data, f)
+            temp_path = f.name
+
+        try:
+            changes = rename_params_in_file(temp_path, dry_run=True)
+
+            self.assertEqual(len(changes), 1)
+            sig = changes[0]["new_signature"]
+            self.assertIn("const char *pszName", sig)
+            self.assertIn("char *pszBuf", sig)
         finally:
             Path(temp_path).unlink()
 

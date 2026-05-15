@@ -1437,3 +1437,23 @@
   - 0x005062D0: CCCTData::Load
   - 0x00416220: RoleSystem_Helper_416220
   - ... (11 more)
+
+### [2026-05-15] Phase 1.5: Parameter semantic naming (1278 functions)
+- **变更**: 1278 个函数的签名已改进
+- **置信度**: 60
+- **证据**:
+  1. [A] 将泛化参数名 (a1, a2, ...) 替换为语义化的 Hungarian 风格命名
+  2. [B] 保留已有语义名 (如 fAngle, pStack) 和 this 参数
+  3. [C] 根据参数类型应用命名规则 (p前缀指针, f前缀浮点, n前缀整数等)
+- **函数列表**: 1278 个函数已修正
+  - 0x004014F0: CCBAI::Thunk_GetValue
+  - 0x004024F0: GRPinput::~GRPinput
+  - 0x00402A90: GRPinput::SetMouseAbs
+  - 0x00402FA0: GRPinput::GetMouseSensitivity
+  - 0x004038F0: GRPinput::InitShiftedKeys
+  - 0x004039D0: GRPinput::InitDIKToKEY
+  - 0x004055D0: PAL3::Update
+  - 0x00406310: PAL3::CheckSystemRequire
+  - 0x00406B80: PAL3::DefaultKeyMap
+  - 0x00406FF0: PAL3::SnapScreen
+  - ... (1268 more)

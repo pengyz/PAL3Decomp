@@ -675,6 +675,199 @@ def infer_int_pointer_types(functions_json_path, decomp_bodies, dry_run=True):
     return changes
 
 
+def simplify_class_name(type_str):
+    """
+    Simplify a class/type name for Hungarian notation parameter naming.
+
+    Args:
+        type_str: Type string (e.g., "gbMatrixStack *", "CEffect *", "const char *")
+
+    Returns:
+        Simplified name (e.g., "Stack", "Effect", "Name")
+    """
+    # Remove pointer markers and const/volatile qualifiers
+    base = type_str.replace('*', '').replace('const', '').replace('volatile', '').strip()
+
+    # Remove common prefixes
+    prefixes = ['gb', 'C', 'tag', 'Arc', 'UI']
+    for prefix in prefixes:
+        if base.startswith(prefix) and len(base) > len(prefix):
+            remainder = base[len(prefix):]
+            # Only remove if remainder starts with uppercase (CEffect -> Effect, not char -> har)
+            if remainder and remainder[0].isupper():
+                return remainder
+
+    return base
+
+
+def get_semantic_param_name(param_type, index):
+    """
+    Generate a semantic parameter name based on Hungarian notation.
+
+    Args:
+        param_type: Parameter type string (e.g., "float", "gbMatrixStack *", "const char *")
+        index: Parameter index for disambiguation (1-based)
+
+    Returns:
+        Semantic parameter name (e.g., "fVal1", "pStack1", "pszName1")
+    """
+    param_type = param_type.strip()
+
+    # String types
+    if param_type in ('const char *', 'const char*', 'LPCSTR'):
+        return f"pszName{index}" if index > 1 else "pszName"
+    if param_type in ('char *', 'char*', 'LPSTR'):
+        return f"pszBuf{index}" if index > 1 else "pszBuf"
+
+    # Pointer types (class/struct)
+    if '*' in param_type:
+        # Extract class name
+        base = param_type.replace('*', '').replace('const', '').replace('volatile', '').strip()
+
+        # Check if base type is a primitive type
+        primitive_pointers = {
+            'float': 'pfVal',
+            'int': 'pnVal',
+            'unsigned int': 'pdwVal',
+            'unsigned long': 'pdwVal',
+            'long': 'pnVal',
+            'short': 'pnVal',
+            'unsigned short': 'pwVal',
+            'unsigned char': 'pbyVal',
+            'void': 'pData',
+            'DWORD': 'pdwVal',
+            'BYTE': 'pbyVal',
+            'WORD': 'pwVal',
+            'BOOL': 'pbFlag',
+            'bool': 'pbFlag',
+            # MSVC-specific types
+            '__int8': 'pnVal',
+            'unsigned __int8': 'pbyVal',
+            '__int16': 'pnVal',
+            'unsigned __int16': 'pwVal',
+            '__int32': 'pnVal',
+            'unsigned __int32': 'pdwVal',
+            '__int64': 'pnVal',
+            'unsigned __int64': 'pdwVal',
+        }
+
+        if base in primitive_pointers:
+            base_name = primitive_pointers[base]
+            return f"{base_name}{index}" if index > 1 else base_name
+
+        # Otherwise it's a class/struct pointer
+        simplified = simplify_class_name(base)
+        suffix = f"{index}" if index > 1 else ""
+        return f"p{simplified}{suffix}"
+
+    # Basic types
+    type_map = {
+        'float': 'fVal',
+        'int': 'nVal',
+        'unsigned int': 'dwVal',
+        'DWORD': 'dwVal',
+        'unsigned long': 'dwVal',
+        'BOOL': 'bFlag',
+        'bool': 'bFlag',
+        'BYTE': 'byVal',
+        'unsigned char': 'byVal',
+        'WORD': 'wVal',
+        'unsigned short': 'wVal',
+    }
+
+    if param_type in type_map:
+        base_name = type_map[param_type]
+        return f"{base_name}{index}" if index > 1 else base_name
+
+    # Fallback for unknown types
+    return f"pData{index}" if index > 1 else "pData"
+
+
+def rename_params_in_file(json_path, dry_run=True):
+    """
+    Rename generic parameter names (a1, a2, ...) to semantic Hungarian-style names.
+
+    Args:
+        json_path: Path to functions.json
+        dry_run: If True, don't modify the file
+
+    Returns:
+        List of changes made
+    """
+    with open(json_path, 'r') as f:
+        data = json.load(f)
+
+    changes = []
+    generic_param_pattern = re.compile(r'^[a-z]\d+$')
+
+    for address, info in data.items():
+        signature = info.get("signature", "")
+        name = info.get("name", "")
+
+        if not signature:
+            continue
+
+        # Parse signature
+        try:
+            parsed = parse_signature(signature)
+        except:
+            continue
+
+        # Track changes for this function
+        param_renames = []
+        type_counts = {}  # Track count per type for disambiguation
+
+        for i, param in enumerate(parsed["params"]):
+            param_name = param["name"]
+            param_type = param["type"]
+
+            # Skip 'this' parameter
+            if param_name == "this":
+                continue
+
+            # Skip if not a generic name (a1, a2, ...)
+            if not param_name or not generic_param_pattern.match(param_name):
+                continue
+
+            # Count occurrences of this type for disambiguation
+            type_counts[param_type] = type_counts.get(param_type, 0) + 1
+            type_index = type_counts[param_type]
+
+            # Generate semantic name
+            new_name = get_semantic_param_name(param_type, type_index)
+
+            # Update parameter
+            old_name = param_name
+            parsed["params"][i]["name"] = new_name
+            param_renames.append({
+                "old": old_name,
+                "new": new_name,
+                "type": param_type
+            })
+
+        # If any parameters were renamed, record the change
+        if param_renames:
+            old_sig = signature
+            new_sig = rebuild_signature(parsed)
+
+            changes.append({
+                "address": address,
+                "name": name,
+                "old_signature": old_sig,
+                "new_signature": new_sig,
+                "renames": param_renames
+            })
+
+            if not dry_run:
+                data[address]["signature"] = new_sig
+
+    if not dry_run and changes:
+        with open(json_path, 'w') as f:
+            json.dump(data, f, indent=2)
+
+    return changes
+
+
 def write_change_log(changes, changelog_path, phase_label, description, confidence):
     """
     Write a change log entry.
@@ -721,6 +914,9 @@ def main():
 
     infer_int_parser = subparsers.add_parser("infer-int-params", help="Infer int parameters that are actually pointers")
     infer_int_parser.add_argument("--apply", action="store_true", help="Apply changes to files")
+
+    rename_params_parser = subparsers.add_parser("rename-params", help="Rename generic parameter names (a1, a2, ...) to semantic Hungarian-style names")
+    rename_params_parser.add_argument("--apply", action="store_true", help="Apply changes to files")
 
     args = parser.parse_args()
 
@@ -860,6 +1056,38 @@ def main():
                     "[C] 跳过泛化类型 (void/char/int/_DWORD/_BYTE)"
                 ],
                 confidence=80
+            )
+            print(f"\n✓ Applied {len(changes)} changes to {functions_json}")
+            print(f"✓ Updated {changelog}")
+        else:
+            print("\nDry run mode. Use --apply to write changes.")
+
+    elif args.command == "rename-params":
+        changes = rename_params_in_file(functions_json, dry_run=not args.apply)
+
+        if not changes:
+            print("No generic parameter names found to rename.")
+            return
+
+        print(f"Found {len(changes)} functions with generic parameter names:")
+        for change in changes[:20]:
+            print(f"  {change['address']}: {change['name']}")
+            renames_str = ", ".join([f"{r['old']}→{r['new']}" for r in change['renames']])
+            print(f"    {renames_str}")
+
+        if len(changes) > 20:
+            print(f"  ... ({len(changes) - 20} more)")
+
+        if args.apply:
+            write_change_log(
+                changes, changelog,
+                phase_label="Phase 1.5: Parameter semantic naming",
+                description=[
+                    "[A] 将泛化参数名 (a1, a2, ...) 替换为语义化的 Hungarian 风格命名",
+                    "[B] 保留已有语义名 (如 fAngle, pStack) 和 this 参数",
+                    "[C] 根据参数类型应用命名规则 (p前缀指针, f前缀浮点, n前缀整数等)"
+                ],
+                confidence=60
             )
             print(f"\n✓ Applied {len(changes)} changes to {functions_json}")
             print(f"✓ Updated {changelog}")
