@@ -536,11 +536,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             vt_name, vt_info = cls_vtables[0]
             vt_methods = vt_info.get('methods', [])
             if vt_methods and not base_names:
-                lines.append("    // vtable (%s, %d methods)" % (vt_name, len(vt_methods)))
+                lines.append("    // vtable (%s, %d methods) — signatures from IDA vtable, not authoritative" % (vt_name, len(vt_methods)))
                 seen_vnames = set()
                 for vm in vt_methods:
                     vm_name = vm.get('name', '')
-                    vm_sig = vm.get('signature', '')
                     short = 'unknown'
                     if '::' in vm_name:
                         short = vm_name.split('::')[-1]
@@ -551,24 +550,6 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                         short = '%s_%s' % (short, vm.get('address', '0')[-4:])
                     seen_vnames.add(short)
                     vtable_method_names.add(short)
-                    # Parse signature to extract return type and params
-                    if vm_sig:
-                        sig_clean = vm_sig.strip().rstrip(';')
-                        # Match "rettype [__cc] funcname(args)"
-                        fp_match = re.match(r'^(.+?)(?:\s+__\w+)?\s+\w+\s*(\(.*\))$', sig_clean)
-                        if fp_match:
-                            ret = fp_match.group(1).strip()
-                            args = fp_match.group(2)
-                            # Remove this pointer from args
-                            arg_str = args.strip('()')
-                            arg_list = [a.strip() for a in arg_str.split(',') if a.strip()]
-                            if arg_list and ('this' in arg_list[0] or '*this' in arg_list[0]):
-                                arg_list = arg_list[1:]
-                            lines.append("    virtual %s %s(%s);" % (ret, short, ', '.join(arg_list)))
-                        else:
-                            lines.append("    virtual int %s();" % short)
-                    else:
-                        lines.append("    virtual int %s();" % short)
                 lines.append("")
     except:
         pass
@@ -760,10 +741,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 lines.append("    // [IDA_COMPLEX_RET] original: %s" % sig[:80])
                 continue
 
-            # Skip methods already declared in vtable (avoids signature conflicts)
+            # Virtual override: method inherited from base vtable but this class has its own impl.
+            # Declare it normally (not as VTABLE_DUP) — the .cpp has the implementation.
             if method_name in vtable_method_names:
-                lines.append("    // [VTABLE_DUP] %s; // %s" % (decl.strip(), addr))
-                continue
+                pass  # fall through to normal declaration below
 
             # Deduplicate: skip if same method name+params already declared
             method_key = "%s(%s)" % (method_name, params)
