@@ -214,29 +214,18 @@ def main():
 
     til = ida_typeinf.get_idati()
 
-    # Step 0: Remove pre-existing gbengine types that we will redefine
-    # Skip system/preamble types that IDA's TIL provides (FILE, RECT, HWND, DirectX, etc.)
-    _KEEP_TYPES = {
-        'FILE', 'RECT', 'tagRECT', 'tagPOINT', 'HWND', 'HANDLE', 'HINSTANCE', 'HDC',
-        'LARGE_INTEGER', 'ULONG', 'UINT',
-        'IDirect3D9', 'IDirect3DDevice9', 'IDirect3DBaseTexture9',
-        'IDirect3DVertexDeclaration9', 'IDirect3DSurface9',
-        'IDirect3DVertexBuffer9', 'IDirect3DIndexBuffer9', 'ID3DXEffect',
-        'D3DCAPS9', 'D3DPRESENT_PARAMETERS', 'D3DSURFACE_DESC',
-        'D3DDISPLAYMODE', 'D3DADAPTER_IDENTIFIER9',
-        'CONFIRMDEVICECALLBACK',
-    }
+    # Step 0: Remove forward-declaration stubs (size=-1) that block full definitions
     type_names_in_content = set(re.findall(r'(?:struct|enum)\s+(\w+)\s*[{:]', content))
-    removed = 0
+    stubs_removed = 0
     for tname in type_names_in_content:
-        if tname in _KEEP_TYPES:
-            continue
         tinfo = ida_typeinf.tinfo_t()
         if tinfo.get_named_type(til, tname):
-            ida_typeinf.del_named_type(til, tname, ida_typeinf.NTF_TYPE)
-            removed += 1
-    if removed:
-        log("[*] Step 0: removed %d pre-existing gbengine types from TIL" % removed)
+            sz = tinfo.get_size()
+            if sz == 0xFFFFFFFFFFFFFFFF or sz == 0:
+                ida_typeinf.del_named_type(til, tname, ida_typeinf.NTF_TYPE)
+                stubs_removed += 1
+    if stubs_removed:
+        log("[*] Step 0: removed %d forward-decl stubs from TIL" % stubs_removed)
 
     # Step 1: Bulk parse (two passes — second catches ordering-dependent failures)
     errs = idc.parse_decls(content, 0)
