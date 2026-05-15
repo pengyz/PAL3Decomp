@@ -1702,3 +1702,20 @@
 - **正确解法**: Hex-Rays microcode callback，在反编译器输出 C 代码之前修正 ctor 调用表示
 - **影响**: C2273 恢复到 121 个（待后续 microcode 方案解决）
 - **保留**: apply_annotations Step 10 final un-name（合法修复，不是 workaround）
+
+### [2026-05-15] 管线重构：gen_cpp 精简 + Microcode Optimizer Phase 1
+
+- **变更**:
+  1. gen_cpp: 删除 6 条 Category B workaround 规则（-75 行）
+     - B1 stdiobuf→UIWnd, B2 *(this+N) cast, B3 int this rename
+     - B4 void* cast logic (42行), B5 double-deref, B6 STL comment
+  2. export_full.py: Phase 1 microcode optimizer (optinsn_t)
+     - 匹配 `m_stx` 指令中 `mop_a→mop_v` 的 .rdata vtable 地址
+     - 成功 NOP 405 个 vtable 初始化指令
+- **置信度**: 90
+- **证据**:
+  1. [A] microcode 调试: `stx &($stru_56AF80).4, ds.2, esi.4` 中 `l.t=mop_a, a.t=mop_v, a.g=0x56AF80` (in .rdata)
+  2. [A] optimizer 日志: "405 vftable inits NOPed"
+  3. [A] __vftable 在 source 中从 ~4196 降到 333（NOP 后 Hex-Rays 不再输出这些赋值）
+  4. [A] cmake --build: 5263→5288 (+25，gen_cpp workaround 删除暴露的标注问题，预期内）
+- **架构改进**: 从 gen_cpp 文本后处理迁移到 Hex-Rays microcode 层——正确、可靠、可维护

@@ -29,13 +29,15 @@ class PAL3Optimizer(ida_hexrays.optinsn_t):
         if ins.opcode != ida_hexrays.m_stx:
             return 0
         src = ins.l
-        if src.t != ida_hexrays.mop_n:
+        if src.t != ida_hexrays.mop_a:
             return 0
         try:
-            val = src.nnn.value
+            if src.a.t != ida_hexrays.mop_v:
+                return 0
+            addr = src.a.g
         except:
             return 0
-        if not (RDATA_START <= val <= RDATA_END):
+        if not (RDATA_START <= addr <= RDATA_END):
             return 0
         if blk:
             blk.make_nop(ins)
