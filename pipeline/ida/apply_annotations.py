@@ -163,9 +163,11 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
         return None
 
     inherit = " : public %s" % base_class if base_class else ""
-    # Use #pragma pack(1) to prevent IDA from adding alignment padding
-    # (PAL3 structs have known binary sizes; alignment would break offsets in containers)
-    return "#pragma pack(push, 1)\nstruct %s%s {\n%s\n};\n#pragma pack(pop)" % (name, inherit, "\n".join(lines))
+    # Only use pack(1) for structs explicitly marked (file format headers, etc.)
+    pack = struct_info.get("pack")
+    if pack == 1:
+        return "#pragma pack(push, 1)\nstruct %s%s {\n%s\n};\n#pragma pack(pop)" % (name, inherit, "\n".join(lines))
+    return "struct %s%s {\n%s\n};" % (name, inherit, "\n".join(lines))
 
 
 def load_annotations():
