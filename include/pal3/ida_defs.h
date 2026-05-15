@@ -14,6 +14,17 @@
 #include "gbengine/gbMesh.h"
 #include "gbengine/gbCamera.h"
 #include "gbengine/gbActor.h"
+#include "gbengine/gbActorMgr.h"
+#include "gbengine/gbAudio.h"
+#include "gbengine/gbGeomNode.h"
+#include "gbengine/gbGfxManager.h"
+#include "gbengine/gbMisc.h"
+#include "gbengine/gbParticle.h"
+#include "gbengine/gbPrintFont.h"
+#include "gbengine/gbRenderEffect.h"
+#include "gbengine/gbSceneGraph.h"
+#include "gbengine/gbVFileSystem.h"
+#include "gbengine/gbVisNode.h"
 
 typedef unsigned char _BYTE;
 typedef unsigned short _WORD;
