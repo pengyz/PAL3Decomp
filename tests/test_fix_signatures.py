@@ -18,7 +18,8 @@ from fix_signatures import (
     infer_int_pointer_types,
     simplify_class_name,
     get_semantic_param_name,
-    rename_params_in_file
+    rename_params_in_file,
+    find_functions_for_file
 )
 
 
@@ -606,6 +607,79 @@ class TestRenameParams(unittest.TestCase):
             self.assertIn("char *pszBuf", sig)
         finally:
             Path(temp_path).unlink()
+
+
+class TestFindFunctionsForFile(unittest.TestCase):
+    def test_find_cpp_style_functions(self):
+        """Test finding functions with Class::Method naming"""
+        functions_data = {
+            "0x00401000": {"name": "CCBAI::Init", "signature": "void __thiscall(CCBAI *this)"},
+            "0x00401100": {"name": "CCBAI::Update", "signature": "void __thiscall(CCBAI *this)"},
+            "0x00401200": {"name": "CEffect::Render", "signature": "void __thiscall(CEffect *this)"},
+            "0x00401300": {"name": "GlobalFunction", "signature": "void()"}
+        }
+
+        # Find CCBAI functions
+        matches = find_functions_for_file(functions_data, "CCBAI.cpp")
+        self.assertEqual(len(matches), 2)
+        addresses = [addr for addr, _ in matches]
+        self.assertIn("0x00401000", addresses)
+        self.assertIn("0x00401100", addresses)
+
+        # Find CEffect functions
+        matches = find_functions_for_file(functions_data, "CEffect.cpp")
+        self.assertEqual(len(matches), 1)
+        self.assertEqual(matches[0][0], "0x00401200")
+
+    def test_find_mangled_functions(self):
+        """Test finding functions with mangled names"""
+        functions_data = {
+            "0x00401000": {"name": "?Init@CCBAI@@QAEHXZ", "signature": "int __thiscall(int this)"},
+            "0x00401100": {"name": "?Update@CCBAI@@QAEHXZ", "signature": "void __thiscall(int this)"},
+            "0x00401200": {"name": "?Render@CEffect@@QAEHXZ", "signature": "void __thiscall(int this)"},
+        }
+
+        # Find CCBAI functions
+        matches = find_functions_for_file(functions_data, "CCBAI.cpp")
+        self.assertEqual(len(matches), 2)
+        addresses = [addr for addr, _ in matches]
+        self.assertIn("0x00401000", addresses)
+        self.assertIn("0x00401100", addresses)
+
+    def test_find_mixed_naming(self):
+        """Test finding functions with both C++ and mangled names"""
+        functions_data = {
+            "0x00401000": {"name": "CCBAI::Init", "signature": "void __thiscall(CCBAI *this)"},
+            "0x00401100": {"name": "?Update@CCBAI@@QAEHXZ", "signature": "void __thiscall(int this)"},
+            "0x00401200": {"name": "CCBAI::Render", "signature": "void __thiscall(CCBAI *this)"},
+        }
+
+        matches = find_functions_for_file(functions_data, "CCBAI.cpp")
+        self.assertEqual(len(matches), 3)
+
+    def test_no_matches(self):
+        """Test when no functions match the file"""
+        functions_data = {
+            "0x00401000": {"name": "CEffect::Init", "signature": "void __thiscall(CEffect *this)"},
+            "0x00401100": {"name": "GlobalFunction", "signature": "void()"}
+        }
+
+        matches = find_functions_for_file(functions_data, "CCBAI.cpp")
+        self.assertEqual(len(matches), 0)
+
+    def test_extract_class_from_filename(self):
+        """Test class name extraction from various file formats"""
+        functions_data = {
+            "0x00401000": {"name": "CCBAI::Init", "signature": "void __thiscall(CCBAI *this)"}
+        }
+
+        # Test with .cpp extension
+        matches = find_functions_for_file(functions_data, "CCBAI.cpp")
+        self.assertEqual(len(matches), 1)
+
+        # Test without extension (should still work via Path.stem)
+        matches = find_functions_for_file(functions_data, "CCBAI")
+        self.assertEqual(len(matches), 1)
 
 
 if __name__ == "__main__":
