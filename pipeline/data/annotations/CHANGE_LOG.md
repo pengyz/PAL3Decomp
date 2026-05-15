@@ -123,6 +123,41 @@
 - **用途**: Hex-Rays 在无类型信息时输出纯偏移访问（`*(DWORD*)(a1 + 0x278)`），可用于验证 struct 布局
 - **工具**: `pipeline/ida/_raw_query_flex.py` — 输入地址列表，输出 raw 反编译结果
 
+### [2026-05-15] 完整 session 最终状态 — 9087→6234 (-31.4%), 80/266 pass
+
+- **变更**: 从零重建 IDB 的完整管线验证
+- **置信度**: 95
+- **管线执行**:
+  1. `idat -B` → 全新 IDB (24.6 MB)
+  2. `master_pipeline.py` → PDB + FLIRT + Hex-Rays first pass (116s)
+  3. `import_gbengine_types.py` → **0 errors, 161 types, 0 missing**
+  4. `apply_annotations.py` → 函数/全局/结构体/虚表标注
+  5. `export_full.py` → 4358 decomp JSONs (121s)
+  6. `gen_headers.py` + `gen_cpp.py` → 684 .h, 197 .cpp
+  7. `cmake --build` (VC6) → **6234 errors, 80/266 pass**
+- **import_gbengine 修复历程**:
+  - 原始: 7 errors, 148 types
+  - 修复编码 + gbengine_internal.h + 方法strip + forward-decl stubs: 0 errors, 150 types
+  - 保留全局 enum (gbVFSType 等) + 只删 LIGHT_TYPE 嵌套重复: 0 errors, 161 types
+  - "全删重建"策略导致 +203 regression → 回退为"只删 forward-decl stubs"
+- **SceneMgr 布局修复历程**:
+  - 发现: IDA TIL 中 ARC_PlayerAtt=1424 (应 1408), RoleSystem=8712 (应 8704)
+  - 根因: IDA struct alignment padding + annotation 数据错误
+  - 修复: ARC_PlayerItem pack(1) (binary stride=10 证实), 移除 RoleSystem 重叠成员, SceneMgrCamBlock=848, SceneMgr +4 shift
+  - blanket pack(1) 尝试 → 回退 (不是正确做法, 只对有二进制证据的 struct 使用)
+  - 最终: ALL NAMED MEMBERS MATCH
+- **收敛分析**:
+
+  | 错误类别 | 数量 | 占比 | 修复方向 |
+  |---------|------|------|---------|
+  | C2227+C2440+C2664 (类型传播) | 2486 | 40% | 逐函数 IDA 签名修正 |
+  | C2673 (VTABLE_DUP) | 679 | 11% | IDA 层虚方法返回类型统一 |
+  | C2039 (缺失成员) | 569 | 9% | struct annotation 补全 |
+  | C2065 (未声明) | 372 | 6% | 函数命名 + forward decl |
+  | C2228+C2059+其他 | 2128 | 34% | 混合 |
+
+  **错误已收敛到逐函数级别**——系统性管线/布局问题已基本解决，剩余需要 IDA 中逐个函数修正类型。
+
 ### [2026-05-15] SceneMgr 布局完全修复 — IDA TIL 全成员对齐 (修正 pack 策略)
 
 - **变更**: 回退 blanket `#pragma pack(1)`，仅对二进制证据证实的 packed struct 使用
