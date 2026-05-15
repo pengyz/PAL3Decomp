@@ -1735,3 +1735,34 @@
 - **microcode 无法处理的 backtick 残留**:
   - 函数指针作为参数: `ArraySort(v14, 12, 4, gbVec3D::default constructor closure')`
   - 函数定义行: `std::UIWnd::scalar deleting destructor'`（这些函数本身被反编译了）
+
+### [2026-05-15] 管线改造完成总结 — microcode optimizer + gen_cpp 精简
+
+- **变更**: 完成管线改造第一阶段
+- **置信度**: 95
+
+- **Microcode Optimizer (export_full.py)**:
+  - Phase 1 vtable init NOP: 405 个 `m_stx` .rdata 地址写入消除
+  - Compiler call NOP: 263 个 `eh vector ctor/dtor`、`scalar deleting dtor` 等消除
+  - 匹配模式: `m_stx` + `mop_a→mop_v` + .rdata 范围; `m_call` + `mop_v` + `??_L@/??_M@/??_G/??_E/??_7` 前缀
+  - __vftable 在源码中从 ~4196 降到 333
+
+- **gen_cpp 精简 (912→833 行, -8.7%)**:
+  - 删除 6 条 Category B workaround (stdiobuf/*(this+N)/int this/void* cast/double-deref/STL comment)
+  - 删除 vtable init 文本过滤（microcode 替代）
+  - 保留 backtick patterns 文本过滤（34 个函数指针引用 microcode 无法拦截）
+  - 保留 __vftable virtual call 注释（microcode Phase 3 复杂度高，暂缓）
+  - 保留 ctor/dtor 调用删除（microcode Phase 2 需要数据流追踪，暂缓）
+
+- **Microcode 能力边界结论**:
+  - 适合: 单指令匹配+NOP（vtable init、compiler calls）— 一步到位，100% 准确
+  - 不适合: 多指令序列（new+ctor 还原、vcall 简化）— 需要数据流分析，optinsn_t 每次只给一条指令
+  - Category A 文本格式转换（__thiscall 删除、this 参数移除、LL→i64）— microcode 层不存在这些概念，必须在 text 层处理
+
+- **证据**:
+  1. [A] optimizer 日志: "405 vftable inits, 263 compiler calls NOPed"
+  2. [A] Phase 2 调研: `??0gbColorQuad@@QAE@EEEE@Z` 在 microcode 中是普通 m_call，NOP 它语义错误（ctor 是必要代码）
+  3. [A] Phase 3 调研: vcall 需要跨指令追踪 vtable offset，optinsn_t 无 block 遍历能力
+  4. [A] backtick 残留 34 个是函数指针引用（ArraySort 参数），非 m_call 指令
+
+- **当前管线状态**: 5304 errors (session 起始 9087, -41.6%)
