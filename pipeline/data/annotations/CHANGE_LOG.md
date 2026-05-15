@@ -1666,3 +1666,16 @@
 - **结果**: 5336 errors
 - **证据**: [A] cmake --build -- -k 全量编译
 - **对比**: session 起始 9087 → 当前 5336（-41.3%）
+
+### [2026-05-15] Matrix4/OBBox/GeomNode 结构体成员定义 — 5336→5263 (-73)
+
+- **变更**: 三个 PAL3 gbengine 包装类添加完整成员定义
+  1. Matrix4: `float m[4][4]` (64 bytes) — 对应 gbMatrix4 布局
+  2. OBBox: `Matrix4 trans; float xlen,ylen,zlen;` (76 bytes) — 对应 gbOBBox 布局
+  3. GeomNode: `pNext, pParent, children, worldTransform, staticTransform, mesh` (288 bytes) — 对应 gbGeomNode 布局
+- **置信度**: 90
+- **证据**:
+  1. [A] gbMatrix4 IDA struct: size=64, 与 D3DMATRIX 布局一致（float m[4][4]）
+  2. [A] gbOBBox IDA struct: `trans(gbMatrix4,+0) xlen(+64) ylen(+68) zlen(+72)`，已在 gbengine_types.h 确认
+  3. [A] gbGeomNode IDA struct: 继承 gbVisNode(92) → gbNBTreeNode(24)，pParent=+4, pNext=+0
+  4. [A] cmake --build: Matrix4.m C2039 34→0, OBBox.trans C2039 9→0
