@@ -17,13 +17,25 @@ TEXT_END = 0x005695D0
 RDATA_START = 0x0056A000
 RDATA_END = 0x0057F178
 
+_COMPILER_GENERATED_NAMES = (
+    '??_L@',   # `eh vector constructor iterator'
+    '??_M@',   # `eh vector destructor iterator'
+    '??_G',    # `scalar deleting destructor'
+    '??_E',    # `vector deleting destructor'
+    '??_7',    # `vftable'
+)
+
 class PAL3Optimizer(ida_hexrays.optinsn_t):
     def __init__(self):
         ida_hexrays.optinsn_t.__init__(self)
         self.vftable_nops = 0
+        self.compiler_call_nops = 0
 
     def func(self, blk, ins, optflags):
-        return self._nop_vftable_init(blk, ins)
+        n = 0
+        n += self._nop_vftable_init(blk, ins)
+        n += self._nop_compiler_calls(blk, ins)
+        return n
 
     def _nop_vftable_init(self, blk, ins):
         if ins.opcode != ida_hexrays.m_stx:
@@ -44,6 +56,25 @@ class PAL3Optimizer(ida_hexrays.optinsn_t):
         else:
             ins._make_nop()
         self.vftable_nops += 1
+        return 1
+
+    def _nop_compiler_calls(self, blk, ins):
+        if ins.opcode != ida_hexrays.m_call:
+            return 0
+        if ins.l.t != ida_hexrays.mop_v:
+            return 0
+        try:
+            addr = ins.l.g
+            name = ida_name.get_name(addr) or ''
+        except:
+            return 0
+        if not any(name.startswith(p) for p in _COMPILER_GENERATED_NAMES):
+            return 0
+        if blk:
+            blk.make_nop(ins)
+        else:
+            ins._make_nop()
+        self.compiler_call_nops += 1
         return 1
 
 log_lines = []
@@ -142,7 +173,7 @@ def main():
             except: pass
 
         opt.remove()
-        log("[*] Optimizer: %d vftable inits NOPed" % opt.vftable_nops)
+        log("[*] Optimizer: %d vftable inits, %d compiler calls NOPed" % (opt.vftable_nops, opt.compiler_call_nops))
 
         log("[*] Exported: %d (%.1fs)" % (exported, time.time()-t0))
 

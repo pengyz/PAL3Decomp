@@ -1719,3 +1719,19 @@
   3. [A] __vftable 在 source 中从 ~4196 降到 333（NOP 后 Hex-Rays 不再输出这些赋值）
   4. [A] cmake --build: 5263→5288 (+25，gen_cpp workaround 删除暴露的标注问题，预期内）
 - **架构改进**: 从 gen_cpp 文本后处理迁移到 Hex-Rays microcode 层——正确、可靠、可维护
+
+### [2026-05-15] Microcode optimizer 扩展 + gen_cpp vtable filter 迁移
+
+- **变更**:
+  1. microcode optimizer: 新增 `_nop_compiler_calls` — NOP eh vector ctor/dtor、scalar deleting dtor 等编译器生成调用
+  2. gen_cpp: 删除 `__vftable =` 赋值文本过滤（microcode Phase 1 已替代）
+  3. gen_cpp: 保留 backtick patterns 文本过滤（microcode 覆盖 88.6%，剩余 34 个是函数指针引用/函数定义，microcode 无法拦截）
+- **置信度**: 90
+- **证据**:
+  1. [A] optimizer 日志: "405 vftable inits, 263 compiler calls NOPed"
+  2. [A] backtick patterns: 从 227 降到 34（函数指针引用和函数定义，非 m_call 指令）
+  3. [A] gen_cpp 从 912→815 行（-97 行，-10.6%）
+  4. [A] cmake: 5304 errors（+16 vs 5288，来自 17 个 IDA 误解的非 vtable DWORD 写入暴露）
+- **microcode 无法处理的 backtick 残留**:
+  - 函数指针作为参数: `ArraySort(v14, 12, 4, gbVec3D::default constructor closure')`
+  - 函数定义行: `std::UIWnd::scalar deleting destructor'`（这些函数本身被反编译了）

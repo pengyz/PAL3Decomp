@@ -457,7 +457,14 @@ def _comment_out_explicit_ctor_calls(code):
 
 
 def _replace_ida_internals(code):
-    """Remove IDA backtick-quoted compiler-internal calls (compiler auto-generates these)."""
+    """Remove IDA compiler-internal artifacts from decompiled output.
+
+    Microcode optimizer handles: vtable pointer init NOP (m_stx to .rdata).
+    This function handles text-level patterns:
+    - Backtick compiler calls (eh vector ctor/dtor, scalar deleting dtor, etc.)
+    - __vftable virtual calls
+    - Explicit ctor/dtor calls
+    """
     _BACKTICK_PATTERNS = (
         "`eh vector constructor iterator'",
         "`eh vector destructor iterator'",
@@ -478,28 +485,17 @@ def _replace_ida_internals(code):
             if ';' not in s:
                 skip_until_semicolon = True
             continue
-        # Delete vtable pointer init (compiler-generated in ctor/dtor)
-        if re.match(r'\s*\w.*->__vftable\s*=\s*', s) or re.match(r'\s*this->__vftable\s*=', s):
-            continue
-        if re.match(r'\s*this\[\d+\]\.__vftable\s*=\s*', s):
-            continue
-        if re.match(r'\s*LOBYTE\s*\(\s*\w.*->__vftable\s*\)\s*=', s) or \
-           re.match(r'\s*LOBYTE\s*\(\s*this->__vftable\s*\)\s*=', s):
-            continue
+        s = line.strip()
         # Comment out __vftable-based virtual calls (IDA artifact, not valid C++)
-        # Pattern: ((cast)obj->__vftable->Method)(args);  or  ((cast)obj->__vftable)(args);
         if ('->__vftable->' in s or '->__vftable)' in s) and s.endswith(';') \
                 and not s.startswith('//'):
             indent = line[:len(line) - len(line.lstrip())]
             out.append(indent + '// [IDA_VFTABLE] ' + s)
             continue
-        # Delete compiler-generated ctor/dtor calls:
-        #   ((Type *)expr)->Type(args);  or  ((Type *)expr)->~Type();
-        # Key: method name must match the cast type name (ctor = ClassName())
+        # Delete standalone explicit ctor/dtor calls: ((Type *)expr)->Type(args);
         _ctor_m = re.match(r'\s*\(\((\w+)\s*\*\)\s*[^)]*\)\s*->\s*~?(\w+)\s*\([^)]*\)\s*;', s)
         if _ctor_m and _ctor_m.group(1) == _ctor_m.group(2):
             continue
-        # Double-cast variant: ((Type *)(Type *)expr)->Type(args);
         _ctor_m2 = re.match(r'\s*\(\((\w+)\s*\*\)\s*\(\w+\s*\*\)\s*[^)]*\)\s*->\s*~?(\w+)\s*\([^)]*\)\s*;', s)
         if _ctor_m2 and _ctor_m2.group(1) == _ctor_m2.group(2):
             continue
