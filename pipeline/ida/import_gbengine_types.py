@@ -164,10 +164,9 @@ def flatten_gbengine_headers(header_dir):
 
     # IDA's parse_decls supports C++ inheritance syntax natively
 
-    # Nested enum inside struct: IDA can't handle. Pull them out before the struct.
-    # Pattern: "enum NAME { ... };" inside a struct body
-    # For now, just remove nested enums (they're defined elsewhere)
-    full = re.sub(r'\s*enum\s+\w+\s*\{[^}]*\}\s*;', '', full)
+    # Remove known duplicate nested enum (LIGHT_TYPE is defined globally in gbMisc.h
+    # AND nested inside gbLightObj — the nested copy causes parse errors)
+    full = re.sub(r'enum\s+LIGHT_TYPE\s*\{[^}]*\}\s*;', '', full)
 
     full = re.sub(r'\n{3,}', '\n\n', full)
     return full
@@ -215,26 +214,39 @@ def main():
 
     til = ida_typeinf.get_idati()
 
-    # Step 0: Remove forward-declaration stubs that block full definitions
-    # (IDA keeps forward decls with size=-1 that prevent inheritance parsing)
+    # Step 0: Remove pre-existing gbengine types that we will redefine
+    # Skip system/preamble types that IDA's TIL provides (FILE, RECT, HWND, DirectX, etc.)
+    _KEEP_TYPES = {
+        'FILE', 'RECT', 'tagRECT', 'tagPOINT', 'HWND', 'HANDLE', 'HINSTANCE', 'HDC',
+        'LARGE_INTEGER', 'ULONG', 'UINT',
+        'IDirect3D9', 'IDirect3DDevice9', 'IDirect3DBaseTexture9',
+        'IDirect3DVertexDeclaration9', 'IDirect3DSurface9',
+        'IDirect3DVertexBuffer9', 'IDirect3DIndexBuffer9', 'ID3DXEffect',
+        'D3DCAPS9', 'D3DPRESENT_PARAMETERS', 'D3DSURFACE_DESC',
+        'D3DDISPLAYMODE', 'D3DADAPTER_IDENTIFIER9',
+        'CONFIRMDEVICECALLBACK',
+    }
     type_names_in_content = set(re.findall(r'(?:struct|enum)\s+(\w+)\s*[{:]', content))
-    stubs_removed = 0
+    removed = 0
     for tname in type_names_in_content:
+        if tname in _KEEP_TYPES:
+            continue
         tinfo = ida_typeinf.tinfo_t()
         if tinfo.get_named_type(til, tname):
-            sz = tinfo.get_size()
-            if sz == 0xFFFFFFFFFFFFFFFF or sz == 0:
-                ida_typeinf.del_named_type(til, tname, ida_typeinf.NTF_TYPE)
-                stubs_removed += 1
-    if stubs_removed:
-        log("[*] Step 0: removed %d forward-decl stubs from TIL" % stubs_removed)
+            ida_typeinf.del_named_type(til, tname, ida_typeinf.NTF_TYPE)
+            removed += 1
+    if removed:
+        log("[*] Step 0: removed %d pre-existing gbengine types from TIL" % removed)
 
     # Step 1: Bulk parse (two passes — second catches ordering-dependent failures)
     errs = idc.parse_decls(content, 0)
     log("[*] Step 1 idc.parse_decls pass 1: %d errors" % errs)
-    if errs > 0:
-        errs2 = idc.parse_decls(content, 0)
-        log("[*] Step 1 idc.parse_decls pass 2: %d errors" % errs2)
+    # Multiple passes: each pass resolves types that depended on types defined in previous pass
+    for pass_num in range(2, 6):
+        if errs == 0:
+            break
+        errs = idc.parse_decls(content, 0)
+        log("[*] Step 1 idc.parse_decls pass %d: %d errors" % (pass_num, errs))
 
     # Step 1b: Identify which declarations fail by testing each block
     if errs > 0:
