@@ -1584,3 +1584,30 @@
   - `gbMatrixStack::_init_52fc60` → `MatrixStack::BeginScene`
   - `gbSound2DNode::_auto_53ea10` → `CCBStageRole::ResumeSound`
   - `gbCamera::_auto_52df40` → `CScreenMode::InitCamera`
+
+### [2026-05-15] 完整管线验证：gb* 重归属 + CCBUIPanel — 5692→5320 (-6.5%)
+
+- **变更**: CCBUIPanel 布局修复 + 59 个 gb* 误归属函数处理（33 个正确归属+命名，22 个移除，4 个清理）后完整管线重建
+- **置信度**: 85
+- **管线执行**:
+  1. `apply_annotations.py` → 33 个函数设置新名称和签名
+  2. `export_full.py` → 4357 decomp JSONs
+  3. `gen_headers.py` + `gen_cpp.py --force-all` → 197 .cpp
+  4. `cmake --build -- -k` → 5320 errors (was 5692)
+- **错误变化**:
+
+  | 错误码 | 修正前 | 修正后 | 变化 |
+  |--------|--------|--------|------|
+  | C2673 (vtable override) | 523 | 322 | **-201** |
+  | C2228 (.member 非 struct) | 273 | 192 | **-81** |
+  | C2039 (member 缺失) | 533 | 469 | **-64** |
+  | C2227 (->member 非指针) | 625 | 591 | **-34** |
+  | gb* 文件错误 | 938 | 514 | **-424** |
+  | 总计 | 5692 | 5320 | **-372** |
+
+- **证据**:
+  1. [A] cmake --build -- -k 全量编译 before/after
+  2. [A] CCBUIPanel ctor 0x4460D0 分析: UIListBox 继承, size=22088
+  3. [A] raw IDB this 类型对比: 33 个函数 this 从 int/_DWORD*/float* 修正为 ClassName*
+  4. [B] IDA CodeRefsTo caller 分析确定函数归属类
+- **残留问题**: IDB 中 22 个已删除的 gb* 函数名仍然残留（apply_annotations 无 un-name 功能），贡献 ~514 个 gb* 错误
