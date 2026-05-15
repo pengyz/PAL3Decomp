@@ -342,7 +342,7 @@ def transform_method_code(cls_name, method_name, code, sig):
     # 3. AST-based OOP conversion: Class::Method(obj, ...) -> obj->Method(...)
     import sys, os
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from ast_transform import transform_oop_calls
+    from ast_transform import transform_oop_calls, replace_explicit_ctor_calls
     code = transform_oop_calls(code)
 
     # 4. Remove variable declarations for 'this' pointer
@@ -456,9 +456,18 @@ def transform_method_code(cls_name, method_name, code, sig):
     code = re.sub(r'return\s+\([^)]+\)\s*&this->__vftable\s*;', 'return this;', code)
 
     # VC6: explicit constructor calls via ->ClassName() are illegal in C++.
-    # IDA emits these for placement-like ctor calls. Comment them out.
-    # Pattern: ((Type *)expr)->ClassName()  where ClassName is a known class
-    code = _comment_out_explicit_ctor_calls(code)
+    # IDA Hex-Rays emits these for placement-like initialization.
+    # Use AST-based replacement (handles both standalone and in-expression forms)
+    _all_known_types = GAME_CLASSES | {n for n in dir() if n.startswith('gb')}
+    # Build known types: game classes + all gbengine types from headers
+    _gb_types = set()
+    for _gh in (PROJECT_ROOT / "include" / "gbengine").glob("*.h"):
+        with open(_gh, encoding='utf-8', errors='replace') as _gf:
+            for _gl in _gf:
+                _gm = re.match(r'(?:class|struct)\s+(gb\w+)', _gl)
+                if _gm:
+                    _gb_types.add(_gm.group(1))
+    code = replace_explicit_ctor_calls(code, GAME_CLASSES | _gb_types)
 
     # VC6: LODWORD(x) = &symbol  -- assigning pointer to unsigned long
     # Add (unsigned long) cast for LODWORD/HIDWORD assignments from address-of expressions
@@ -490,44 +499,8 @@ def transform_method_code(cls_name, method_name, code, sig):
     return code
 
 
-def _comment_out_explicit_ctor_calls(code):
-    """Comment out illegal explicit constructor calls: ((Type*)expr)->ClassName().
-
-    In C++, you cannot explicitly call a constructor via ->. IDA Hex-Rays
-    emits these for placement-like initialization. We comment them out since
-    the compiler generates these automatically.
-    """
-    # Match patterns like:
-    #   ((ClassName *)expr)->ClassName();
-    #   ((ClassName *)expr)->ClassName(args);
-    # where ClassName matches a known header file (indicating a real class)
-    def _repl(m):
-        indent = m.group(1)
-        full = m.group(0)
-        return indent + '// [AUTO-COMMENTED] ' + full.strip()
-
-    # Build pattern: ->ClassName( where ClassName is in GAME_CLASSES
-    # We do line-by-line to handle this properly
-    lines = code.split('\n')
-    out = []
-    for line in lines:
-        stripped = line.strip()
-        # Check for ->ClassName() or ->ClassName(args) where ClassName is a known class
-        m = re.search(r'->\s*([A-Z_]\w+)\s*\(', stripped)
-        if m:
-            called_name = m.group(1)
-            # Only comment out if it's a constructor call (name matches a class)
-            # and the line is a standalone statement (not part of assignment or condition)
-            if called_name in GAME_CLASSES:
-                # Check it's a statement, not part of a larger expression
-                # Heuristic: line ends with ; and doesn't have = or return before the call
-                if stripped.endswith(';') and '=' not in stripped and not stripped.startswith('return') \
-                        and not stripped.startswith('if') and not stripped.startswith('while'):
-                    indent = line[:len(line) - len(line.lstrip())]
-                    out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
-                    continue
-        out.append(line)
-    return '\n'.join(out)
+    # _comment_out_explicit_ctor_calls removed — replaced by AST-based
+    # replace_explicit_ctor_calls() in ast_transform.py
 
 
 def _replace_ida_internals(code):

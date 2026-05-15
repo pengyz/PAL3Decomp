@@ -111,18 +111,103 @@ def transform_oop_calls(code):
     return result.decode('utf-8')
 
 
+def replace_explicit_ctor_calls(code, known_types):
+    """Replace explicit constructor calls via -> with appropriate forms.
+
+    IDA Hex-Rays outputs placement-like ctor as: expr->ClassName(args)
+    In C++, you can't explicitly call a constructor through a pointer.
+
+    Transforms:
+    - Standalone: ((Type*)expr)->Type(args);  →  // [CTOR] ...
+    - In assignment: var = ((Type*)&x)->Type(a,b);  →  var = Type(a,b);
+      (VC6 allows Type(args) as aggregate init for POD types)
+    - In expression: ... expr->Type(args) ...  →  ... Type(args) ...
+
+    known_types: set of type names (both game classes and gbengine types)
+    """
+    code_bytes = code.encode('utf-8')
+    tree = _parser.parse(code_bytes)
+
+    replacements = []
+
+    def _is_ctor_call(node):
+        """Check if a call_expression is an explicit ctor: expr->ClassName(args)"""
+        if node.type != 'call_expression':
+            return None
+        func = node.child_by_field_name('function')
+        if not func or func.type != 'field_expression':
+            return None
+        field = func.child_by_field_name('field')
+        if not field:
+            return None
+        method_name = field.text.decode('utf-8')
+        if method_name not in known_types:
+            return None
+        args = node.child_by_field_name('arguments')
+        return method_name, args
+
+    def process_node(node):
+        result = _is_ctor_call(node)
+        if result:
+            ctor_name, args_node = result
+            args_text = args_node.text.decode('utf-8') if args_node else '()'
+
+            parent = node.parent
+            if parent and parent.type == 'expression_statement':
+                # Standalone statement → comment out the whole line
+                line_start = parent.start_byte
+                line_end = parent.end_byte
+                original = code_bytes[line_start:line_end].decode('utf-8')
+                indent = ''
+                for ch in original:
+                    if ch in ' \t':
+                        indent += ch
+                    else:
+                        break
+                replacements.append((line_start, line_end,
+                    indent + '// [CTOR] ' + original.strip()))
+            else:
+                # In expression context → replace expr->Type(args) with Type(args)
+                replacements.append((node.start_byte, node.end_byte,
+                    '%s%s' % (ctor_name, args_text)))
+            return
+
+        for child in node.children:
+            process_node(child)
+
+    process_node(tree.root_node)
+
+    result = code_bytes
+    for start, end, new_text in sorted(replacements, reverse=True):
+        result = result[:start] + new_text.encode('utf-8') + result[end:]
+
+    return result.decode('utf-8')
+
+
 if __name__ == '__main__':
-    # Test
+    # Test OOP transform
     test_code = """
 int CCBRoleState::Update()
 {
   CCBRoleState::CheckStatus(this);
-  CCBRoleState::ProcessActions(this);
   CCBStage::Update((CCBStage *)this->m_pStage);
-  CCBControl::Update(v3);
-  sub_4F3020(this, 3);
   return CCBRoleState::UpdateEffects(this);
 }
 """
     result = transform_oop_calls(test_code)
+    print("=== OOP transform ===")
     print(result)
+
+    # Test ctor replacement
+    test_ctor = """
+void foo()
+{
+  ((gbColorQuad *)&v9)->gbColorQuad(0xFF, 0xFF, 0xFF, alpha);
+  v8 = ((gbColorQuad *)&v9)->gbColorQuad(0xFF, 0xFF, 0xFF, alpha);
+  v4->gbGeomNode();
+}
+"""
+    known = {'gbColorQuad', 'gbGeomNode', 'gbVec3D'}
+    result2 = replace_explicit_ctor_calls(test_ctor, known)
+    print("=== ctor replace ===")
+    print(result2)

@@ -1679,3 +1679,18 @@
   2. [A] gbOBBox IDA struct: `trans(gbMatrix4,+0) xlen(+64) ylen(+68) zlen(+72)`，已在 gbengine_types.h 确认
   3. [A] gbGeomNode IDA struct: 继承 gbVisNode(92) → gbNBTreeNode(24)，pParent=+4, pNext=+0
   4. [A] cmake --build: Matrix4.m C2039 34→0, OBBox.trans C2039 9→0
+
+### [2026-05-15] AST 替换显式构造函数调用 + Step 10 un-name — 5263→5251
+
+- **变更**:
+  1. ast_transform.py: 新增 `replace_explicit_ctor_calls()`，用 tree-sitter AST 解析替代 regex
+     - standalone ctor 调用 `expr->Type(args);` → 注释掉
+     - 赋值中的 ctor 调用 `var = expr->Type(args);` → `var = Type(args);`
+  2. gen_cpp.py: 删除旧的 regex `_comment_out_explicit_ctor_calls`，改用 AST 版本
+  3. apply_annotations.py: 新增 Step 10 最终 un-name（在 type propagation 后执行）
+- **置信度**: 90
+- **证据**:
+  1. [A] tree-sitter AST 精确匹配 `field_expression` → `call_expression` 节点，无误判风险
+  2. [A] C2273 从 121 降到 3（-118），消除了"function-style cast"整类错误
+  3. [A] cmake --build: 5263→5251（-12 净效果，C2440 +49 因部分 ctor→init 语法不兼容 VC6）
+- **架构改进**: 正则 → AST 迁移第一步，后续更多 regex 规则将迁移到 tree-sitter

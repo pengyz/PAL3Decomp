@@ -658,6 +658,18 @@ def apply_annotations():
 
     print("[9] Lvars: %d/%d applied (fail=%d)" % (lvar_ok, lvar_total, lvar_fail))
 
+    # --- 10. Final un-name pass (type propagation in step 7 may re-name functions) ---
+    _unnamed2 = 0
+    for ea in idautils.Functions(0x00401000, 0x00560000):
+        cur = ida_name.get_name(ea) or ""
+        if cur.startswith("sub_") or not cur:
+            continue
+        if ea not in _ann_addrs:
+            ida_name.set_name(ea, "", ida_name.SN_NOWARN)
+            _unnamed2 += 1
+    if _unnamed2:
+        print("[10] Final un-name: %d stale functions (post-propagation)" % _unnamed2)
+
     idc.save_database(idc.get_idb_path(), 0)
     print("[*] Done. Database saved.")
     idc.qexit(0)
