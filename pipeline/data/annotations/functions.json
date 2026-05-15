@@ -101,7 +101,7 @@
   },
   "0x00402D00": {
     "name": "GRPinput::SetJoystickFreePos",
-    "signature": "char __thiscall(int this, float x)"
+    "signature": "char __thiscall(GRPinput *this, float x)"
   },
   "0x00402D20": {
     "name": "GRPinput::SetMouseSensitivity",
@@ -929,7 +929,7 @@
   },
   "0x0043E1C0": {
     "name": "UIListBox::CalScrollBarRange",
-    "signature": "int __thiscall(int this, int id, _DWORD *a3, int parent, LPCSTR lpString, int a6, char a7)"
+    "signature": "int __thiscall(UIListBox *this, int id, _DWORD *a3, int parent, LPCSTR lpString, int a6, char a7)"
   },
   "0x0043E330": {
     "name": "UIListBox::GetSel",
@@ -1285,7 +1285,7 @@
   },
   "0x0047D690": {
     "name": "Object3D::CaculateRelative",
-    "signature": "void __thiscall(int this, float a2)"
+    "signature": "void __thiscall(Object3D *this, float a2)"
   },
   "0x0047D9D0": {
     "name": "Object3D::SetupCamera",
@@ -1449,7 +1449,7 @@
   },
   "0x004C3EC0": {
     "name": "CEffCylinder::Init",
-    "signature": "int __thiscall(int this, int pType, float fx, float fy, float fz)"
+    "signature": "int __thiscall(CEffCylinder *this, int pType, float fx, float fy, float fz)"
   },
   "0x004C4060": {
     "name": "CEffCylinder::Create",
@@ -1461,7 +1461,7 @@
   },
   "0x004C45A0": {
     "name": "CEffCylinder::CreateTask",
-    "signature": "void __thiscall(int this, float p)"
+    "signature": "void __thiscall(CEffCylinder *this, float p)"
   },
   "0x004C48D0": {
     "name": "CEffCylinder::ProcInitTask",
@@ -1557,7 +1557,7 @@
   },
   "0x004C6A70": {
     "name": "CEffect::Reset",
-    "signature": "void __thiscall(int this, int a2, float a3, float a4, float a5)"
+    "signature": "void __thiscall(CEffect *this, int a2, float a3, float a4, float a5)"
   },
   "0x004C6C10": {
     "name": "CEffExplosive::Create",
@@ -1569,7 +1569,7 @@
   },
   "0x004C7150": {
     "name": "CEffect::CreateOnePartical",
-    "signature": "void __thiscall(int this, float pPartical)"
+    "signature": "void __thiscall(CEffect *this, float pPartical)"
   },
   "0x004C7450": {
     "name": "CEffect::FillQuadByPartical",
@@ -1673,7 +1673,7 @@
   },
   "0x004CB5E0": {
     "name": "CEffMeteor::Init",
-    "signature": "int __thiscall(int this, int pType, float fx, float fy, float fz)"
+    "signature": "int __thiscall(CEffMeteor *this, int pType, float fx, float fy, float fz)"
   },
   "0x004CB800": {
     "name": "CEffMeteor::Create",
@@ -1681,7 +1681,7 @@
   },
   "0x004CBFC0": {
     "name": "CEffMeteor::CreateTask",
-    "signature": "void __thiscall(int this, int arg0)"
+    "signature": "void __thiscall(CEffMeteor *this, int arg0)"
   },
   "0x004CD0A0": {
     "name": "CMeteorChain::CMeteorChain",
@@ -1749,7 +1749,7 @@
   },
   "0x004D0EC0": {
     "name": "CEffModel::ProcInitTask",
-    "signature": "int __thiscall(int this, int dwParam, float a3, float a4, float a5)"
+    "signature": "int __thiscall(CEffModel *this, int dwParam, float a3, float a4, float a5)"
   },
   "0x004D1090": {
     "name": "CEffQuad::Create",
@@ -1789,7 +1789,7 @@
   },
   "0x004D3A50": {
     "name": "CEffShock::Init",
-    "signature": "int __thiscall(int this, int pType, float fx, float fy, float fz)"
+    "signature": "int __thiscall(CEffShock *this, int pType, float fx, float fy, float fz)"
   },
   "0x004D3AD0": {
     "name": "CEffShock::Create",
@@ -1817,7 +1817,7 @@
   },
   "0x004D4FC0": {
     "name": "CEffSParticle::Create",
-    "signature": "int __thiscall(int this, float pType)"
+    "signature": "int __thiscall(CEffSParticle *this, float pType)"
   },
   "0x004D51B0": {
     "name": "CEffSParticle::Init",
@@ -1885,7 +1885,7 @@
   },
   "0x004D6380": {
     "name": "C2DSpark::Render",
-    "signature": "int __thiscall(int this, float a2)"
+    "signature": "int __thiscall(C2DSpark *this, float a2)"
   },
   "0x004D6670": {
     "name": "C3DSpark::C3DSpark",
@@ -2909,7 +2909,7 @@
   },
   "0x00505800": {
     "name": "CCBStageCam::AddTask",
-    "signature": "int __thiscall(int this)"
+    "signature": "int __thiscall(CCBStageCam *this)"
   },
   "0x00505820": {
     "name": "CCBStageCam::ProcCamMove",
@@ -3229,7 +3229,7 @@
   },
   "0x0050A920": {
     "name": "CCBStageRole::GetCurrentTask",
-    "signature": "char __thiscall(int this, int a2)"
+    "signature": "char __thiscall(CCBStageRole *this, int a2)"
   },
   "0x0050A960": {
     "name": "CCBStageRole::GetCurrentTaskIndex",
@@ -3253,7 +3253,7 @@
   },
   "0x0050AB10": {
     "name": "CCBStageRole::ClearAniMsg",
-    "signature": "void __thiscall(int this, char a2, float a3)"
+    "signature": "void __thiscall(CCBStageRole *this, char a2, float a3)"
   },
   "0x0050AC50": {
     "name": "CCBStageRole::SetParam",
@@ -3561,7 +3561,7 @@
   },
   "0x00513600": {
     "name": "CCBSystem::ProcAI",
-    "signature": "void __thiscall(int this, float __formal)"
+    "signature": "void __thiscall(CCBSystem *this, float __formal)"
   },
   "0x005136A0": {
     "name": "CCBSystem::ProcProtect",
@@ -3589,7 +3589,7 @@
   },
   "0x00514220": {
     "name": "CCBSystem::AddThread",
-    "signature": "int __thiscall(int this, int fp)"
+    "signature": "int __thiscall(CCBSystem *this, int fp)"
   },
   "0x00514610": {
     "name": "CCBSystem::DelThread",
@@ -3597,7 +3597,7 @@
   },
   "0x00514870": {
     "name": "CCBSystem::GetSameThreadNum",
-    "signature": "int __thiscall(int this, int fp)"
+    "signature": "int __thiscall(CCBSystem *this, int fp)"
   },
   "0x00514AE0": {
     "name": "CCBSystem::IsThreadExist",
@@ -4229,7 +4229,7 @@
   },
   "0x00523130": {
     "name": "CUtil::CreateLog",
-    "signature": "int __thiscall(int this)"
+    "signature": "int __thiscall(CUtil *this)"
   },
   "0x005231D0": {
     "name": "CUtil::WriteLog",
@@ -4437,7 +4437,7 @@
   },
   "0x0053FCF0": {
     "name": "_Texture_Info::_CalculateUV",
-    "signature": "CHAR *__thiscall(int this, LPCSTR lpString)"
+    "signature": "CHAR *__thiscall(_Texture_Info *this, LPCSTR lpString)"
   },
   "0x0053FDD0": {
     "name": "Parent_Data::Parent_Data",
@@ -5361,7 +5361,7 @@
   },
   "0x0044F610": {
     "name": "CGameData::Load",
-    "signature": "int __thiscall(int this, CUtil *a2)"
+    "signature": "int __thiscall(CGameData *this, CUtil *a2)"
   },
   "0x0044F050": {
     "name": "CGameData::ctor_F050",
@@ -6085,7 +6085,7 @@
   },
   "0x004181E0": {
     "name": "RoleSystem::Notify",
-    "signature": "int __thiscall(int this)"
+    "signature": "int __thiscall(RoleSystem *this)"
   },
   "0x004B6F40": {
     "name": "unknown_libname_417",
@@ -6541,7 +6541,7 @@
   },
   "0x00439230": {
     "name": "UIWnd::LoadModel",
-    "signature": "gbGeomNode *__thiscall(int this, const char *szFilename, int nActionIdx)"
+    "signature": "gbGeomNode *__thiscall(UIWnd *this, const char *szFilename, int nActionIdx)"
   },
   "0x0043F650": {
     "name": "UIListBox::GetItemData",
@@ -8325,7 +8325,7 @@
   },
   "0x004414F0": {
     "name": "UIMap::GetID",
-    "signature": "void __thiscall(int this)"
+    "signature": "void __thiscall(UIMap *this)"
   },
   "0x00441730": {
     "name": "GRPinput::_init_441730",
@@ -9269,19 +9269,19 @@
   },
   "0x004B5380": {
     "name": "_TextureLib_Data::_auto_4b5380",
-    "signature": "__int64 __thiscall(int this, char *a2, int a3, _TextureLib_Data *a4, int a5)"
+    "signature": "__int64 __thiscall(_TextureLib_Data *this, char *a2, int a3, _TextureLib_Data *a4, int a5)"
   },
   "0x004B5450": {
     "name": "_TextureLib_Data::_auto_4b5450",
-    "signature": "__int64 __thiscall(int this, char *a2, int a3, _TextureLib_Data *a4, int a5)"
+    "signature": "__int64 __thiscall(_TextureLib_Data *this, char *a2, int a3, _TextureLib_Data *a4, int a5)"
   },
   "0x004B5570": {
     "name": "_TextureLib_Data::_auto_4b5570",
-    "signature": "__int64 __thiscall(int this, char *a2, int a3, _TextureLib_Data *a4, int a5)"
+    "signature": "__int64 __thiscall(_TextureLib_Data *this, char *a2, int a3, _TextureLib_Data *a4, int a5)"
   },
   "0x004B5750": {
     "name": "_TextureLib_Data::_auto_4b5750",
-    "signature": "__int64 __thiscall(int this, char *a2, int a3, _TextureLib_Data *a4, int a5)"
+    "signature": "__int64 __thiscall(_TextureLib_Data *this, char *a2, int a3, _TextureLib_Data *a4, int a5)"
   },
   "0x004B5830": {
     "name": "_TextureLib_Data::_auto_4b5830",
@@ -9309,7 +9309,7 @@
   },
   "0x004B6300": {
     "name": "_TextureLib_Data::_auto_4b6300",
-    "signature": "__int64 __thiscall(int this, char *a2, int a3, _TextureLib_Data *a4, int a5)"
+    "signature": "__int64 __thiscall(_TextureLib_Data *this, char *a2, int a3, _TextureLib_Data *a4, int a5)"
   },
   "0x004B6530": {
     "name": "RenderTarget3::_nearby_4b6530",
@@ -10397,7 +10397,7 @@
   },
   "0x004017A0": {
     "name": "AStarPathFinder::Reset",
-    "signature": "int __thiscall(int this)"
+    "signature": "int __thiscall(AStarPathFinder *this)"
   },
   "0x00401800": {
     "name": "Func",
@@ -10805,7 +10805,7 @@
   },
   "0x004208A0": {
     "name": "SceneMapObj::Reset",
-    "signature": "int __thiscall(int this)"
+    "signature": "int __thiscall(SceneMapObj *this)"
   },
   "0x004209E0": {
     "name": "RoleSystem::_nearby_4209e0",
@@ -11069,7 +11069,7 @@
   },
   "0x00434670": {
     "name": "PtrArray::_unverified_434670",
-    "signature": "int __thiscall(int this)"
+    "signature": "int __thiscall(PtrArray *this)"
   },
   "0x004348E0": {
     "name": "gbVFileSystem::_auto_4348e0",
@@ -12893,7 +12893,7 @@
   },
   "0x0048EB40": {
     "name": "RenderTarget::_sub_48EB40",
-    "signature": "char __thiscall(int this)"
+    "signature": "char __thiscall(RenderTarget *this)"
   },
   "0x0048EE60": {
     "name": "CameraCtrl::_nearby_48ee60",
@@ -14781,7 +14781,7 @@
   },
   "0x00511340": {
     "name": "CCBStageScene::LoadModel",
-    "signature": "char __thiscall(int this, const char *a2)"
+    "signature": "char __thiscall(CCBStageScene *this, const char *a2)"
   },
   "0x005135F0": {
     "name": "nullsub_68",

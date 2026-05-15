@@ -1368,3 +1368,22 @@
   3. 编译错误 C2079 "uses undefined class" 直接指向缺失的头文件
 - **root cause**: gen_headers 只为有 gen_size 且有成员的结构体生成头文件。256 个结构体只有 pdb_size 被跳过
 - **影响**: 编译错误 4724→4704（头文件级 C2079 基本消除，剩余主要是 C2039 成员缺失）
+
+### [2026-05-15] Phase 1.1: int this → ClassName *this (35 functions)
+- **变更**: 35 个 __thiscall 函数的 this 参数从 int 修正为 ClassName *
+- **置信度**: 95
+- **证据**:
+  1. [A] __thiscall 调用约定要求 ECX=this，参数类型必为类指针
+  2. [B] 函数名 ClassName:: 前缀匹配
+- **函数列表**: 35 个函数已修正
+  - 0x00402D00: GRPinput::SetJoystickFreePos
+  - 0x0043E1C0: UIListBox::CalScrollBarRange
+  - 0x0047D690: Object3D::CaculateRelative
+  - 0x004C3EC0: CEffCylinder::Init
+  - 0x004C45A0: CEffCylinder::CreateTask
+  - 0x004C6A70: CEffect::Reset
+  - 0x004C7150: CEffect::CreateOnePartical
+  - 0x004CB5E0: CEffMeteor::Init
+  - 0x004CBFC0: CEffMeteor::CreateTask
+  - 0x004D0EC0: CEffModel::ProcInitTask
+  - ... (25 more)
