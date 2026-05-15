@@ -71,19 +71,63 @@ if _exe_path.exists():
                 LITERAL_MAP[_key] = '%d.0f' % int(_val)
             else:
                 LITERAL_MAP[_key] = '%.7gf' % _val
-    # Also handle some well-known dword constants that are actually floats
-    # loaded via integer registers
+    # .rdata string constants: dword_XXXX → "\"string\""
+    # Only build map for addresses actually referenced in decomp output (lazy: done at replace time).
+    # Store raw exe data for on-demand string lookup.
+    _RDATA_STR_END = 0x5D6000
+    _EXE_DATA_FOR_STRINGS = bytes(_exe_data)  # keep a copy
+
     del _exe_data
 
 
+def _try_read_rdata_string(va):
+    """Try to read a null-terminated string at a .rdata virtual address."""
+    off = va - 0x400000
+    if off < 0 or off >= len(_EXE_DATA_FOR_STRINGS):
+        return None
+    end = _EXE_DATA_FOR_STRINGS.find(b'\x00', off)
+    if end <= off or end - off > 260:
+        return None
+    raw = _EXE_DATA_FOR_STRINGS[off:end]
+    if len(raw) < 2:
+        return None
+    try:
+        s = raw.decode('gbk')
+    except (UnicodeDecodeError, ValueError):
+        return None
+    if not all(c == '\t' or c == '\n' or ('\x20' <= c) for c in s):
+        return None
+    return s
+
+
 def replace_literals(code):
-    """Replace .rdata float literal references with inline values."""
+    """Replace .rdata literal references (floats + strings) with inline values."""
     if not LITERAL_MAP:
         return code
-    def _repl(m):
+    def _repl_flt(m):
+        return LITERAL_MAP.get(m.group(0), m.group(0))
+
+    def _repl_dword(m):
         name = m.group(0)
-        return LITERAL_MAP.get(name, name)
-    return re.sub(r'\bflt_[0-9A-Fa-f]+\b', _repl, code)
+        if name in LITERAL_MAP:
+            return LITERAL_MAP[name]
+        # On-demand: try reading .rdata string at this address
+        try:
+            va = int(name.split('_')[1], 16)
+        except (IndexError, ValueError):
+            return name
+        if 0x56A000 <= va <= _RDATA_STR_END and va % 4 == 0:
+            s = _try_read_rdata_string(va)
+            if s is not None and len(s) >= 2:
+                escaped = s.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
+                replacement = '"%s"' % escaped
+                LITERAL_MAP[name] = replacement
+                return replacement
+        return name
+
+    code = re.sub(r'\bflt_[0-9A-Fa-f]+\b', _repl_flt, code)
+    code = re.sub(r'\bdword_[0-9A-Fa-f]+\b', _repl_dword, code)
+    return code
 
 
 # Globals name map: IDA default name (stru_5D5484) → proper name from globals.json
@@ -557,7 +601,8 @@ def collect_undefined_refs(code):
     # IDA string constants: aXxxxx
     refs.update(re.findall(r'\b(a[A-Z]\w{3,})\b', code))
     # IDA unnamed globals: dword_XXX, byte_XXX, etc (only as identifiers, not types)
-    refs.update(re.findall(r'\b(dword_[0-9A-Fa-f]+)\b', code))
+    # Exclude dword_/flt_ that are already replaced by LITERAL_MAP (string/float constants)
+    refs.update(r for r in re.findall(r'\b(dword_[0-9A-Fa-f]+)\b', code) if r not in LITERAL_MAP)
     refs.update(re.findall(r'\b(byte_[0-9A-Fa-f]+)\b', code))
     refs.update(re.findall(r'\b(word_[0-9A-Fa-f]+)\b', code))
     refs.update(r for r in re.findall(r'\b(flt_[0-9A-Fa-f]+)\b', code) if r not in LITERAL_MAP)
