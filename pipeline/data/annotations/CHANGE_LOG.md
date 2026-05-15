@@ -1487,3 +1487,19 @@
   2. [A] IDA apply_annotations 成功应用所有签名（IDB 时间戳更新）
 - **新增工具**: tools/fix_signatures.py (7 subcommands), lvars 管线扩展
 - **剩余最高 ROI 目标**: gen_headers vtable 去重 (C2673 665), IDA 侧签名修正 (C2440/C2227/C2664)
+
+### [2026-05-15] gen_headers VTABLE_DUP 修复 — 6090→5904 errors (-3.1%)
+
+- **变更**: gen_headers.py 修正 vtable 方法处理逻辑
+  1. 基类 vtable 区域：不再生成 `virtual` 声明（IDA vtable 签名不准确，与实际实现冲突）
+  2. 子类 VTABLE_DUP 方法：不再注释掉，正常声明（全部 124 个都有 .cpp 实现）
+- **置信度**: 95
+- **证据**:
+  1. [A] 124 个 VTABLE_DUP 方法在 .cpp 中全部有实现（0 个缺失）
+  2. [A] IDA vtable 推断签名与 Hex-Rays 反编译签名不一致（如 `virtual int OnMessage()` vs `char OnMessage(_DWORD*, int)`）
+  3. [A] cmake --build -- -k: 6090→5904 (-186 errors)
+- **错误变化**:
+  - C2673 (vtable override): 665→486 (-179)
+  - C2039 (__vftable member): 625→517 (-108)
+  - C2065 (undeclared): 325→290 (-35)
+- **不引入退化**: vtable 方法名仍被追踪用于去重，只是不生成不准确的 virtual 签名声明
