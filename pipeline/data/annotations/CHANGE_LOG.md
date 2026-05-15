@@ -1657,3 +1657,12 @@
   2. [A] raw IDB 对比: 0x47DD90 的 this 在 IDA 中被 TIL 推断为 stdiobuf，annotation SetType 可覆盖
   3. [A] cmake --build -- -k: 重建后 5430 错误
 - **设计决策**: stdiobuf→UIWnd 替换规则暂保留在 gen_cpp 作为防御层（IDA TIL 可能在未来重新引入），后续随 gen_cpp 清理一起移除
+
+### [2026-05-15] IDB 重建验证结果 — 5336 errors
+
+- **变更**: 全新 IDB 完整管线验证（无 FLIRT + stdiobuf annotation 修正后）
+- **置信度**: 95
+- **管线执行**: -B → master_pipeline(无FLIRT) → import_gbengine → apply_annotations(含un-name+stdiobuf修正) → export → gen → build
+- **结果**: 5336 errors
+- **证据**: [A] cmake --build -- -k 全量编译
+- **对比**: session 起始 9087 → 当前 5336（-41.3%）
