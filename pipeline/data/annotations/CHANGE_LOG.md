@@ -1518,3 +1518,15 @@
   3. [A] __vftable 虚调用: C++ 中不存在 `->__vftable->Method()` 访问模式，这是 IDA 内部表示
   4. [A] cmake --build -- -k: C2039 -78 (vftable member), C2059+C2143 语法错误大幅消除
 - **未修改**: `this[N].__vftable` 索引访问（3636 处）——这些是 IDA 结构体布局误解，需要在 IDA 侧修复
+
+### [2026-05-15] 补全 gbengine include — 5777→5692 errors (-1.5%)
+
+- **变更**: ida_defs.h 补全 11 个缺失的 gbengine 头文件 include
+  - 新增: gbActorMgr, gbAudio, gbGeomNode, gbGfxManager, gbMisc, gbParticle, gbPrintFont, gbRenderEffect, gbSceneGraph, gbVFileSystem, gbVisNode
+  - 原有: gbengine_types, gbTexture, gbMesh, gbCamera, gbActor
+- **置信度**: 95
+- **证据**:
+  1. [A] gbGeomNode 被 203 处引用但只有 forward declaration，导致 C2027 (36 errors)
+  2. [A] gbAudioManager 被 128 处引用，导致 C2027 (34 errors)
+  3. [A] cmake --build -- -k: C2027 从 116 降至 <10, C2227 -74, C2039 -63
+- **设计决策**: 不在 annotations 中重复定义 gbengine 类型（如 Matrix4=gbMatrix4），直接 include gbengine 头文件。IDA 中的短名（Matrix4/OBBox）与 gen_headers 生成的类声明有冲突，typedef 方案暂缓。
