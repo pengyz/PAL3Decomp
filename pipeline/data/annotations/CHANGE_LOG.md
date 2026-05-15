@@ -1543,3 +1543,27 @@
   3. [A] PAL3.exe 动态链接 gbengine.dll，不应包含 gbengine 类方法的实现
 - **根因**: import_gbengine_types 导入结构体后 IDA 类型传播把某些函数的 this 推断为 gb 类型，自动归属到 gb* 类
 - **待办**: apply_annotations.py 需要增加"反向清理"功能：对 IDB 中已命名但 functions.json 中不存在的函数恢复默认名
+
+### [2026-05-15] 33 个 gb* 误归属函数重新归属到正确 PAL3 类
+
+- **变更**: 通过 IDA xref 分析调用者，将 33 个被错误归属到 gbengine 类的函数重新归属到 PAL3 类
+- **置信度**: 80
+- **方法**: 对每个函数查询 IDA CodeRefsTo 获取调用者，当所有调用者属于同一个 PAL3 类时归属到该类
+- **证据**:
+  1. [A] Raw IDB 对比: 这些函数的 this 在无标注 IDB 中为 int/_DWORD*/float*，不是 gb* 类型
+  2. [A] PAL3.exe 动态链接 gbengine.dll，不应包含 gbengine 类方法实现
+  3. [B] Caller 分析: 37 个函数有明确调用者，33 个归属到唯一 PAL3 类（HIGH confidence）
+- **归属结果汇总**:
+  - UIWnd: 5 函数 (0x43BE80, 0x4B7AF0, 0x4B7F00, 0x4BF170, 0x52AFF0)
+  - RoleSystem: 3 函数 (0x414250, 0x4161E0, 0x4207D0)
+  - Actor: 3 函数 (0x41BCA0, 0x530F20, 0x538FA0)
+  - CScreenMode: 3 函数 (0x4AC8B0, 0x52DF40, 0x530440)
+  - MatrixStack: 3 函数 (0x52FC60, 0x530350, 0x530C70)
+  - MiniGame3: 3 函数 (0x533FD0, 0x535970, 0x535F10)
+  - PAL3: 2 函数 (0x4BDA60, 0x4C58C0)
+  - PalScript: 2 函数 (0x42C700, 0x439FE0)
+  - UIScene: 2 函数 (0x419C20, 0x445F80)
+  - PtrArray: 2 函数 (0x4339F0, 0x4348E0)
+  - CCBStageRole: 2 函数 (0x53E9C0, 0x53EA10)
+  - CCCTData/RenderTarget/CEffgbParticle: 各 1 函数
+- **未归属**: 22 个函数无调用者或调用者不唯一，暂不标注（保留为 sub_XXXXXX）
