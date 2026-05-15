@@ -43,21 +43,24 @@ pipeline/
 
 ```bash
 # 1. 创建 IDB
-~/ida-pro-9.1/idat -B -o original/PAL3.exe.i64 original/PAL3.exe
+~/ida/idat -B original/PAL3.exe
+cp original/PAL3.exe.i64 original/PAL3.exe.raw.i64  # 保留 raw 副本
 
 # 2. master pipeline: PDB 导入 + FLIRT + 全局变量 + 首次 Hex-Rays 导出
 #    Phase 4 的 decompile 让 Hex-Rays 推断函数返回类型（如 double），不可跳过
-~/ida-pro-9.1/idat -A -S"pipeline/ida/master_pipeline.py" original/PAL3.exe.i64
+~/ida/idat -A -S"pipeline/ida/master_pipeline.py" original/PAL3.exe.i64
 
-# 3. 应用标注层 (函数名、签名、结构体、vtable)
-~/ida-pro-9.1/idat -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64
+# 3. 应用标注层 (gbengine 类型导入 + 函数名、签名、结构体、vtable)
+#    gbengine 类型导入已集成到 apply_annotations.py 内部（Step [gb]）
+~/ida/idat -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64
 
 # 4. 重新导出（apply 改变了类型信息，需要 Hex-Rays 用新类型重新反编译）
-~/ida-pro-9.1/idat -A -S"pipeline/ida/export_full.py" original/PAL3.exe.i64
+#    含 microcode optimizer (vtable init NOP + compiler call NOP)
+~/ida/idat -A -S"pipeline/ida/export_full.py" original/PAL3.exe.i64
 
 # 5. 生成 C++ 头文件和源码
-python3 pipeline/gen/gen_headers.py
-python3 pipeline/gen/gen_cpp.py --force-all
+python pipeline/gen/gen_headers.py
+python pipeline/gen/gen_cpp.py --force-all
 ```
 
 注意：Step 2 和 Step 4 都会执行全量 decompile（各 ~4 分钟），不可合并。
@@ -70,15 +73,15 @@ Step 2 让 Hex-Rays 首次推断类型，Step 4 用标注后的类型重新推�
 vim pipeline/data/annotations/structs/CCBSystem.json
 
 # 2. 校验
-python3 pipeline/check_annotations.py
+python pipeline/check_annotations.py
 
-# 3. 应用到 IDA + 增量导出
-~/ida-pro-9.1/idat -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64
-~/ida-pro-9.1/idat -A -S"pipeline/ida/export_incremental.py" original/PAL3.exe.i64
+# 3. 应用到 IDA（含 gbengine 类型 + 标注层）+ 增量导出
+~/ida/idat -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64
+~/ida/idat -A -S"pipeline/ida/export_incremental.py" original/PAL3.exe.i64
 
 # 4. 增量生成（只重新生成变化的文件）
-python3 pipeline/gen/gen_headers.py
-python3 pipeline/gen/gen_cpp.py
+python pipeline/gen/gen_headers.py
+python pipeline/gen/gen_cpp.py
 ```
 
 ### 编译验证

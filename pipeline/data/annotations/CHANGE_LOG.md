@@ -51,6 +51,23 @@
 
 ## 变更记录
 
+### [2026-05-15] fix(pipeline): integrate import_gbengine_types into apply_annotations — 6659→5677 (-14.7%)
+
+- **变更**: 将 `import_gbengine_types.py` 的逻辑集成到 `apply_annotations.py` 中作为 `[gb]` 步骤，在 Step 0 之前自动执行。管线从 4 步 IDA 调用简化为 3 步。
+- **置信度**: 95
+- **根因**: 之前 `import_gbengine_types.py` 是独立脚本，未被 `apply_annotations.py` 或 `master_pipeline.py` 调用，也未在 `pipeline/README.md` 中列出。从 raw IDB 完整重建时遗漏此步骤，导致 gbengine 类型未导入 IDA TIL → 1085 个结构体全部 0 members → C2039 regression +1181。
+- **修复内容**:
+  1. `apply_annotations.py`: 新增 `import_gbengine_types()` 函数，通过 `from import_gbengine_types import flatten_gbengine_headers` 复用已有逻辑
+  2. `apply_annotations.py`: 在 `apply_annotations()` 入口、Step 0 之前调用 `import_gbengine_types()`
+  3. `pipeline/README.md`: 更新管线文档，标注 gbengine 导入已集成
+- **证据**:
+  1. [A] 未导入时 ida_structs.json: 1085 structs, 0 有 data_members → gbGfxManager 只有 `_data char[1520]`
+  2. [A] 导入后 ida_structs.json: 1126 structs, 1120 有 data_members → gbGfxManager 有 29 个正确成员
+  3. [A] cmake --build: C2039 1669→488 (-70.8%), 总错误 6659→5677 (-14.7%)
+  4. [A] gbColorQuad.Color(321→0), gbGfxManager._data(277→0), gbGeomQuad._data(125→0) 全部消除
+- **管线简化**: `master_pipeline → import_gbengine → apply_annotations → export_full` 变为 `master_pipeline → apply_annotations(含gb导入) → export_full`
+- **当前编译状态**: 19/198 .cpp 通过 VC6 编译, 5677 errors
+
 ### [2026-05-15] 完整管线重建总结 — 9087→6466 errors (-28.8%)
 
 - **变更**: 完整管线重建（import_gbengine → apply → export → gen → VC6 compile）

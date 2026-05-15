@@ -23,6 +23,7 @@ import idautils
 import idc
 import json
 import os
+import re
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
@@ -207,8 +208,76 @@ def load_annotations():
     }
 
 
+def import_gbengine_types():
+    """Import gbengine struct/enum definitions into IDA TIL.
+
+    Integrated from pipeline/ida/import_gbengine_types.py so the full pipeline
+    runs in a single apply_annotations invocation.
+    """
+    from import_gbengine_types import flatten_gbengine_headers
+
+    header_dir = os.path.join(PROJECT_ROOT, "include", "gbengine")
+    if not os.path.isdir(header_dir):
+        print("[gb] SKIP — gbengine header dir not found: %s" % header_dir)
+        return
+
+    content = flatten_gbengine_headers(header_dir)
+
+    # Write flattened header for debugging
+    log_dir = os.path.join(SCRIPT_DIR, "_logs")
+    os.makedirs(log_dir, exist_ok=True)
+    with open(os.path.join(log_dir, "gbengine_flat_ida.h"), 'w') as f:
+        f.write(content)
+
+    til = ida_typeinf.get_idati()
+
+    # Remove forward-declaration stubs (size=-1) that block full definitions
+    type_names_in_content = set(re.findall(r'(?:struct|enum)\s+(\w+)\s*[{:]', content))
+    stubs_removed = 0
+    for tname in type_names_in_content:
+        tinfo = ida_typeinf.tinfo_t()
+        if tinfo.get_named_type(til, tname):
+            sz = tinfo.get_size()
+            if sz == 0xFFFFFFFFFFFFFFFF or sz == 0:
+                ida_typeinf.del_named_type(til, tname, ida_typeinf.NTF_TYPE)
+                stubs_removed += 1
+
+    # Bulk parse (multiple passes for ordering-dependent types)
+    errs = idc.parse_decls(content, 0)
+    for pass_num in range(2, 6):
+        if errs == 0:
+            break
+        errs = idc.parse_decls(content, 0)
+
+    # Recover individually-parseable types missed by bulk parse
+    decl_pattern = re.compile(
+        r'((?:struct|enum)\s+(\w+)\s*(?::\s*[^{]*?)?\s*\{[^}]*(?:\{[^}]*\}[^}]*)*\}\s*;)',
+        re.DOTALL
+    )
+    recovered = 0
+    for m in decl_pattern.finditer(content):
+        name = m.group(2)
+        decl = m.group(1)
+        tinfo = ida_typeinf.tinfo_t()
+        if not tinfo.get_named_type(til, name):
+            tinfo2 = ida_typeinf.tinfo_t()
+            result = ida_typeinf.parse_decl(tinfo2, til, decl, ida_typeinf.PT_TYP)
+            if result is not None:
+                tinfo2.set_named_type(til, name)
+                recovered += 1
+
+    # Verify
+    type_names = set(re.findall(r'(?:struct|enum)\s+(\w+)\s*[{:;]', content))
+    ok = sum(1 for n in type_names if ida_typeinf.tinfo_t().get_named_type(til, n))
+    print("[gb] gbengine types: %d imported (%d stubs cleared, %d recovered, %d errors)"
+          % (ok, stubs_removed, recovered, errs))
+
+
 def apply_annotations():
     ida_auto.auto_wait()
+
+    # --- Import gbengine types FIRST (structs depend on gb* types) ---
+    import_gbengine_types()
 
     data = load_annotations()
     if data is None:
