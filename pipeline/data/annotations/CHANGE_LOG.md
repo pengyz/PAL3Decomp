@@ -123,6 +123,31 @@
 - **用途**: Hex-Rays 在无类型信息时输出纯偏移访问（`*(DWORD*)(a1 + 0x278)`），可用于验证 struct 布局
 - **工具**: `pipeline/ida/_raw_query_flex.py` — 输入地址列表，输出 raw 反编译结果
 
+### [2026-05-15] SceneMgr 布局完全修复 — IDA TIL 全成员对齐
+
+- **变更**: 修复 SceneMgr 及其所有子结构的 IDA TIL 布局，实现全成员偏移匹配
+- **置信度**: 95
+- **修复内容**:
+  1. `apply_annotations.py`: 所有 struct 加 `#pragma pack(push, 1)` 防止 IDA 自动对齐
+  2. `ARC_PlayerItem`: binary_size 保持 10（非 12）。三个成员 DWORD+int+short=10
+     - [A] 证据: wear[2] stride=10 (nScriptCounter at +0x38C = wear_start+20 = +0x378+2*10)
+     - [A] 证据: cloth→shoes=12 是 ARC_PlayerItem(10) + 2-byte explicit gap
+  3. `RoleSystem`: 移除 `_field_378`(+0x378) — 该成员落在 m_pEquipAtt2(RoleAtt*[3], +0x374~+0x380) 内部
+     - [A] 证据: IDA 正确计算 RoleAtt*[3]=12 bytes, +0x374+12=+0x380, 与下一个 m_pEquipAtt3(+0x380) 精确对齐
+     - [A] 修复后: RoleSystem IDA size 8712→8704
+  4. `SceneMgrCamBlock`: binary_size 844→848 — 最后成员 m_pCameraScript(PalScript*, 4bytes) 未计入
+  5. `SceneMgr`: 64 个成员偏移 +4（m_camBlock size 从 844→848 导致后续成员全部偏移）
+     - binary_size: 54116→54124
+- **IDA TIL 验证结果**:
+  ```
+  ARC_PlayerAtt: 1408 ✓   RoleSystem: 8704 ✓   SceneMgrCamBlock: 848 ✓
+  SceneMgr: 54124 ✓ (ALL NAMED MEMBERS MATCH)
+  m_PlayerAtts: +0x50 (7040) ✓   m_RoleSystems: +0x1BD0 (43520) ✓
+  m_pGameData: +0xC5D0 ✓   m_camBlock: +0xC5E0 (848) ✓
+  m_nCurrentScriptSlot: +0xC93C ✓
+  ```
+- **影响**: SceneMgr 是游戏最核心全局对象，188 函数 839 处引用。布局对齐后 IDA 反编译这些函数时能正确解析成员访问。但已有的错误反编译结果需要重新 export 才能体现。
+
 ### [2026-05-15] SceneMgr/ARC_PlayerAtt 布局错误根因定位
 
 - **变更**: 定位并修正 SceneMgr 偏移错误的根因链
