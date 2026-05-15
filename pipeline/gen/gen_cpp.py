@@ -348,13 +348,6 @@ def transform_method_code(cls_name, method_name, code, sig):
     # 4. Remove variable declarations for 'this' pointer
     code = re.sub(r'^\s*%s\s*\*\s*this\s*;.*$' % re.escape(cls_name), '', code, flags=re.MULTILINE)
 
-    # 6b. Fix IDA type misidentification: stdiobuf/ios_base -> UIWnd in game code
-    code = code.replace('stdiobuf *', 'UIWnd *')
-    code = code.replace('stdiobuf::', 'UIWnd::')
-    code = code.replace('(stdiobuf *)', '(UIWnd *)')
-    code = code.replace('std::ios_base *', 'UIWnd *')
-    code = code.replace('(std::ios_base *)', '(UIWnd *)')
-
     # 6c. Fix broken operator new: ((operator *)0xNNu)->new() -> operator new(0xNN)
     code = re.sub(r'\(\(operator \*\)(0x[0-9A-Fa-f]+u?)\)->new\(\)',
                   r'operator new(\1)', code)
@@ -363,61 +356,6 @@ def transform_method_code(cls_name, method_name, code, sig):
     code = re.sub(r'__thiscall\s+', '', code)
     code = re.sub(r'__userpurge\s+', '', code)
     code = re.sub(r'__usercall\s+', '', code)
-
-    # 6. Fix *(this + N) -> *((_DWORD *)this + N) for pointer arithmetic on typed this
-    code = re.sub(r'\*\(\s*this\s*\+\s*(\d+)\s*\)', r'*((_DWORD *)this + \1)', code)
-    code = re.sub(r'\*\(\s*this\s*-\s*(\d+)\s*\)', r'*((_DWORD *)this - \1)', code)
-
-    # 6c. If 'this' appears as a non-pointer parameter (e.g. "int this"), rename to _this
-    # This handles cases where IDA named a parameter 'this' but it's not a real C++ this
-    code = re.sub(r'\bint\s+this\b', 'int _this', code)
-    code = re.sub(r'\bchar\s+this\b', 'char _this', code)
-    code = re.sub(r'\b_DWORD\s+this\b', '_DWORD _this', code)
-    # Also: &this[N] -> &((_DWORD *)this)[N]  and  this[N] -> ((_DWORD *)this)[N]
-    # But be careful not to break this->member access
-
-    # 7. Fix void* implicit conversion
-    # VC6 also doesn't allow void* -> typed pointer without cast
-    # Pattern 1: "Type *var = expr;" where var is assigned from a void* expression
-    # Pattern 2: "var = expr;" where var is already declared as typed pointer
-    # We add cast for common patterns
-    # Simple approach: any assignment to a _DWORD*, _BYTE* etc from a function call gets a cast
-    def fix_ptr_assign(line):
-        # Match: "  TypePtr *varname = funcall(...);"
-        m = re.match(r'(\s*)([\w ]+\*)\s*(\w+)\s*=\s*(.+);', line)
-        if m:
-            indent, ptype, var, expr = m.group(1), m.group(2), m.group(3), m.group(4)
-            # Don't cast if already has a cast, or if RHS is just a variable/number
-            if expr.startswith('(') and ')' in expr.split('(')[1]:
-                return line  # already has cast
-            if re.match(r'^[\w.>\-]+$', expr):
-                return line  # simple variable, might be same type
-            if re.match(r'^\d+$', expr) or expr in ('0', 'NULL', 'nullptr'):
-                return line
-            # Add cast
-            return '%s%s %s = (%s)%s;' % (indent, ptype, var, ptype.strip(), expr)
-        return line
-
-    # Also handle standalone assignments: "var = expr;" where var was declared as Type*
-    # Simple tracking: find all "Type *var;" declarations, then cast assignments to those vars
-    ptr_vars = {}  # var_name -> type string
-    for m in re.finditer(r'^\s*([\w ]+\*)\s*(\w+)\s*;', code, re.MULTILINE):
-        ptr_vars[m.group(2)] = m.group(1).strip()
-
-    new_lines = []
-    for line in code.split('\n'):
-        line = fix_ptr_assign(line)
-        # Check standalone assignment: "  var = expr;"
-        m2 = re.match(r'(\s*)(\w+)\s*=\s*(.+);', line)
-        if m2 and m2.group(2) in ptr_vars:
-            var = m2.group(2)
-            expr = m2.group(3)
-            ptype = ptr_vars[var]
-            # Don't cast if already cast or simple var or 0/NULL
-            if not (expr.startswith('(') or re.match(r'^[\d\w]+$', expr) or expr in ('0','NULL')):
-                line = '%s%s = (%s)%s;' % (m2.group(1), var, ptype, expr)
-        new_lines.append(line)
-    code = '\n'.join(new_lines)
 
     # Final: replace thunk references (after OOP transform may have created j_Class casts)
     code = replace_thunks(code)
@@ -437,18 +375,6 @@ def transform_method_code(cls_name, method_name, code, sig):
 
     # Fix Hex-Rays broken dereference: (*)var → (*var)
     code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
-
-    # Fix IDA double-deref: (*)*(expr) → *(expr) — only in assignment context
-    # e.g. "* p = (*)*(_DWORD *)&this->member;" → "* p = *(_DWORD *)&this->member;"
-    code = re.sub(r'= \(\*\)\*\(', '= *(', code)
-
-    # Comment out STL internal calls that VC6 can't compile
-    # Pattern: ((std *)&expr)->string::Method(args);
-    # Pattern: ((std *)expr)->codecvt_base::Method();
-    def _comment_std(m):
-        return m.group(1) + '// [IDA_STL] ' + m.group(2)
-    code = re.sub(r'(\n[ \t]*)((?:\(\(std \*\)|result = \(\(std \*\)).*?;)', _comment_std, code)
-    code = re.sub(r'(\n[ \t]*)(.*?codecvt_base::\w+\(\).*?;)', _comment_std, code)
 
     # Replace ctor return pattern: "return &this->__vftable;" → "return this;"
     code = re.sub(r'return\s+&this->__vftable\s*;', 'return this;', code)
