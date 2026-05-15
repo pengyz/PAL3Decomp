@@ -293,9 +293,9 @@
       "source": "binary:disp32_2hits_2funcs"
     },
     "500": {
-      "name": "_todo_1F4",
+      "name": "m_nStatTotal",
       "type": "int",
-      "source": "binary:disp32_2hits_2funcs"
+      "source": "binary:disp32_2hits_2funcs | annotate_todo"
     },
     "504": {
       "name": "m_nItemData",
@@ -368,9 +368,9 @@
       "source": "ida_decomp:_init_49aea0 = 0/1 toggle, 6 refs"
     },
     "640": {
-      "name": "_todo_280",
+      "name": "m_subWnd",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
     },
     "653": {
       "name": "_todo_28D",
@@ -398,9 +398,9 @@
       "source": "binary:disp32_2hits_1funcs"
     },
     "1084": {
-      "name": "_todo_43C",
+      "name": "m_nRowHeight",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
     },
     "1108": {
       "name": "m_dwSelColor",
@@ -408,9 +408,9 @@
       "source": "binary:disp32_5hits_2funcs"
     },
     "1112": {
-      "name": "_todo_458",
+      "name": "m_nScrollRange",
       "type": "int",
-      "source": "binary:disp32_2hits_1funcs"
+      "source": "binary:disp32_2hits_1funcs | annotate_todo"
     },
     "1116": {
       "name": "m_nItem",
@@ -423,14 +423,14 @@
       "source": "ida_decomp:_nearby_43ebe0 = this+1120 + this+1116, 6 refs"
     },
     "1128": {
-      "name": "_todo_468",
+      "name": "m_pHeaderTexture",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
     },
     "1136": {
-      "name": "_todo_470",
+      "name": "m_nHeaderX",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
     },
     "1144": {
       "name": "m_nChildren",
@@ -443,19 +443,19 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "1152": {
-      "name": "_todo_480",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "name": "m_headerColor",
+      "type": "gbColorQuad",
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
     },
     "1160": {
-      "name": "_todo_488",
+      "name": "m_nDrawOffsetY",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
     },
     "1164": {
-      "name": "_todo_48C",
+      "name": "m_bHasHeader",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
     },
     "1168": {
       "name": "_todo_490",
@@ -463,14 +463,14 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "1172": {
-      "name": "_todo_494",
+      "name": "m_pItemEnabled",
       "type": "int",
-      "source": "binary:disp32_3hits_3funcs"
+      "source": "binary:disp32_3hits_3funcs | annotate_todo"
     },
     "1176": {
-      "name": "_todo_498",
+      "name": "m_pItemEnabledEnd",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
     },
     "1180": {
       "name": "m_nLockValue",
@@ -528,9 +528,9 @@
       "source": "ida_decomp:ctor_AE60 delete(this), =0, 23 refs"
     },
     "344": {
-      "name": "_todo_158",
+      "name": "m_frameWnd",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo"
     },
     "348": {
       "name": "_todo_15C",
@@ -548,9 +548,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "1140": {
-      "name": "_todo_474",
+      "name": "m_nHeaderY",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo"
     },
     "1744": {
       "name": "_todo_6D0",
@@ -563,9 +563,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "84": {
-      "name": "_todo_54",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_szItemPath",
+      "type": "char[260]",
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "104": {
       "name": "_todo_68",
@@ -578,9 +578,9 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "388": {
-      "name": "_todo_184",
+      "name": "m_nScrollPos",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "396": {
       "name": "_todo_18C",
@@ -613,9 +613,9 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "612": {
-      "name": "_todo_264",
+      "name": "m_nColumnType",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "664": {
       "name": "_todo_298",
@@ -648,9 +648,9 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "1156": {
-      "name": "_todo_484",
+      "name": "m_nDrawOffsetX",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     }
   },
   "pdb_size": 1288,

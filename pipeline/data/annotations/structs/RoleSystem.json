@@ -538,8 +538,8 @@
     },
     "664": {
       "name": "_field_298",
-      "type": "int",
-      "source": "binary:raw_final"
+      "type": "float",
+      "source": "binary:raw_final | type_fix"
     },
     "668": {
       "name": "m_fMatrixE",
@@ -1138,18 +1138,18 @@
     },
     "76": {
       "name": "_todo_4C",
-      "type": "int",
+      "type": "float",
       "source": "gap_fill:ida_decomp_access"
     },
     "96": {
-      "name": "_todo_60",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_szInputPath",
+      "type": "char[260]",
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "180": {
-      "name": "_todo_B4",
+      "name": "m_mapData",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "206": {
       "name": "_todo_CE",
@@ -1232,9 +1232,9 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "1220": {
-      "name": "_todo_4C4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_szSceneName",
+      "type": "char[260]",
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "1224": {
       "name": "_todo_4C8",

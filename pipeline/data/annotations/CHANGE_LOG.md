@@ -51,6 +51,24 @@
 
 ## 变更记录
 
+### [2026-05-15] iter(annotations): 80 field annotations + 31 this-pointer fixes — 5677→5617
+
+- **变更**: 8 个类的结构体字段标注 + 函数签名 this 指针类型修正
+- **置信度**: 80（字段命名从 IDA decomp 上下文推断）, 95（this-pointer 类型修正）
+- **字段标注 (80 changes, 8 classes)**:
+  - **类型修正 (15 fields)**: int→float（从 `*(float *)&this->field` cast 确认）
+  - **语义命名 (65 fields)**: 从 IDA Hex-Rays decomp 上下文推断 + PDB 参考
+  - 主要类: CCBStageScene(8), CameraCtrl(20), UIListBox(17), PalScriptMgr(14), Camera(5), RoleSystem(4), Actor(3), PalScript(9)
+  - 命名方法: sprintf→char[260], gbVec3D cast→m_vecXxx, CIniFile::ReadLine→m_fConfigParam, sin/cos→m_fAngle
+- **this-pointer 修正 (31 functions)**:
+  - 根因: IDA 类型传播将 this 推断为 gbengine 类型（std::ios_base, gbGeomNode, gbMatrix4 等）
+  - 修复: 从函数名 `Class::Method` 提取 Class 名，替换签名中 `TYPE *this` → `Class *this`
+- **证据**:
+  1. [A] cmake --build: 5677→5617 (-60), C2039 -19, C2228 -6, C2440 -9
+  2. [A+] 类型修正: IDA apply 后 Hex-Rays 输出 `*(float *)&this->_todo_XXX` 确认 float 类型
+  3. [A] this-pointer: __thiscall 约定要求 ECX=this 为类指针，std::ios_base/gbGeomNode 等是 IDA 误推断
+- **命名率**: 84.7% → 85.5%
+
 ### [2026-05-15] fix(pipeline): integrate import_gbengine_types into apply_annotations — 6659→5677 (-14.7%)
 
 - **变更**: 将 `import_gbengine_types.py` 的逻辑集成到 `apply_annotations.py` 中作为 `[gb]` 步骤，在 Step 0 之前自动执行。管线从 4 步 IDA 调用简化为 3 步。

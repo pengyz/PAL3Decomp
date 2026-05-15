@@ -222,9 +222,9 @@
       "source": "ida_decomp:this+1, increment"
     },
     "824": {
-      "name": "_todo_338",
+      "name": "m_nSavedPosX",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "binary:2x access | annotate_todo"
     },
     "832": {
       "name": "m_fScriptCamX",
@@ -372,7 +372,7 @@
       "source": "ida_decomp:PAL3_Helper_426E80(this,&a2)"
     },
     "828": {
-      "name": "m_pSubScript",
+      "name": "m_pSubScriptB",
       "type": "int",
       "source": "ida_decomp:ExecuteOpcode _sub_42FCC0(this), 12 refs"
     },
@@ -407,12 +407,12 @@
       "source": "ida_decomp:Destroy(this)→+9500, 2 refs"
     },
     "9492": {
-      "name": "m_pScriptInstB",
+      "name": "m_pScriptInstD",
       "type": "int",
       "source": "ida_decomp:Destroy(this)→+9504, 2 refs"
     },
     "9496": {
-      "name": "m_pScriptInstC",
+      "name": "m_pScriptInstE",
       "type": "int",
       "source": "ida_decomp:Destroy(this), 2 refs"
     },
@@ -432,9 +432,9 @@
       "source": "ida_decomp:= 0, if+ClearAllScript, 2 refs"
     },
     "208": {
-      "name": "_todo_0D0",
+      "name": "m_pSavedIndex",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo"
     },
     "245": {
       "name": "_todo_0F5",
@@ -532,9 +532,9 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "168": {
-      "name": "_todo_A8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_szScriptFile",
+      "type": "char[100]",
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "200": {
       "name": "_todo_C8",
@@ -542,9 +542,9 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "204": {
-      "name": "_todo_CC",
+      "name": "m_nSavedBlockNum",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "268": {
       "name": "_todo_10C",
@@ -552,14 +552,14 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "292": {
-      "name": "_todo_124",
+      "name": "m_pSubScript",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "296": {
-      "name": "_todo_128",
+      "name": "m_nScriptCount",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "492": {
       "name": "_todo_1EC",
@@ -567,14 +567,14 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "526": {
-      "name": "_todo_20E",
+      "name": "m_nRoleIndex",
       "type": "short",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "528": {
-      "name": "_todo_210",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_fPosAYTarget",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "568": {
       "name": "_todo_238",
@@ -582,14 +582,14 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "788": {
-      "name": "_todo_314",
+      "name": "m_pRoleSystem",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "876": {
-      "name": "_todo_36C",
+      "name": "m_pScriptInst",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "1908": {
       "name": "_todo_774",
@@ -607,24 +607,24 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "3280": {
-      "name": "_todo_CD0",
+      "name": "m_pScreenEffect",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "8452": {
-      "name": "_todo_2104",
+      "name": "m_nCost",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "9480": {
-      "name": "_todo_2508",
+      "name": "m_pScriptInstB",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "9484": {
-      "name": "_todo_250C",
+      "name": "m_pScriptInstC",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     }
   },
   "pdb_size": 1,

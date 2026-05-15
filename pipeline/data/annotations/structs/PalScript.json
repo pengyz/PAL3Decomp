@@ -53,19 +53,19 @@
       "source": "ida_decomp:_nearby_439a20 (double)this * float * a2"
     },
     "236": {
-      "name": "_field_0EC",
+      "name": "m_nCamMode",
       "type": "int",
-      "source": "binary:3x access"
+      "source": "binary:3x access | annotate_todo"
     },
     "240": {
-      "name": "_field_0F0",
-      "type": "unsigned char",
-      "source": "binary:3x access"
+      "name": "m_bCamActive",
+      "type": "int",
+      "source": "binary:3x access | annotate_todo"
     },
     "248": {
-      "name": "_field_0F8",
+      "name": "m_fCamScale",
       "type": "float",
-      "source": "binary:5x access"
+      "source": "binary:5x access | annotate_todo"
     },
     "252": {
       "name": "m_fScaleX",
@@ -73,9 +73,9 @@
       "source": "ida_decomp:_nearby_439410 gbMatrixStack::Scale(v2,this,...)"
     },
     "292": {
-      "name": "_field_124",
-      "type": "int",
-      "source": "binary:2x access"
+      "name": "m_pCamera",
+      "type": "gbCamera *",
+      "source": "binary:2x access | annotate_todo"
     },
     "512": {
       "name": "m_nLoadFromFile",
@@ -93,19 +93,19 @@
       "source": "binary:17x access"
     },
     "528": {
-      "name": "_field_210",
+      "name": "m_nConfigIndex",
       "type": "int",
-      "source": "binary:30x access"
+      "source": "binary:30x access | annotate_todo"
     },
     "780": {
-      "name": "_field_30C",
+      "name": "m_nDialogData",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "binary:2x access | annotate_todo"
     },
     "1040": {
-      "name": "_field_410",
+      "name": "m_nDialogResult",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "binary:2x access | annotate_todo"
     },
     "1044": {
       "name": "_field_414",
@@ -113,14 +113,14 @@
       "source": "binary:1x access"
     },
     "1300": {
-      "name": "_field_514",
-      "type": "unsigned char",
-      "source": "binary:1x access"
+      "name": "m_szDialog1",
+      "type": "char[256]",
+      "source": "binary:1x access | annotate_todo"
     },
     "1556": {
-      "name": "_field_614",
-      "type": "unsigned char",
-      "source": "binary:1x access"
+      "name": "m_szDialog2",
+      "type": "char[256]",
+      "source": "binary:1x access | annotate_todo"
     },
     "1812": {
       "name": "_field_714",

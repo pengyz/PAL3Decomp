@@ -39,13 +39,13 @@
     },
     "28": {
       "name": "_field_01C",
-      "type": "int",
-      "source": "binary:5x access"
+      "type": "float",
+      "source": "binary:5x access | type_fix"
     },
     "32": {
       "name": "_field_020",
-      "type": "int",
-      "source": "binary:11x access"
+      "type": "float",
+      "source": "binary:11x access | type_fix"
     },
     "36": {
       "name": "m_fFOV",
@@ -54,8 +54,8 @@
     },
     "40": {
       "name": "_field_028",
-      "type": "int",
-      "source": "binary:8x access"
+      "type": "float",
+      "source": "binary:8x access | type_fix"
     },
     "44": {
       "name": "m_bCamFlag",
@@ -64,18 +64,18 @@
     },
     "48": {
       "name": "_field_030",
-      "type": "int",
-      "source": "binary:5x access"
+      "type": "float",
+      "source": "binary:5x access | type_fix"
     },
     "52": {
       "name": "_field_034",
-      "type": "int",
-      "source": "binary:6x access"
+      "type": "float",
+      "source": "binary:6x access | type_fix"
     },
     "56": {
       "name": "_field_038",
-      "type": "int",
-      "source": "binary:5x access"
+      "type": "float",
+      "source": "binary:5x access | type_fix"
     },
     "60": {
       "name": "_field_03C",
@@ -84,18 +84,18 @@
     },
     "64": {
       "name": "_field_040",
-      "type": "int",
-      "source": "binary:4x access"
+      "type": "float",
+      "source": "binary:4x access | type_fix"
     },
     "68": {
       "name": "_field_044",
-      "type": "int",
-      "source": "binary:4x access"
+      "type": "float",
+      "source": "binary:4x access | type_fix"
     },
     "72": {
       "name": "_field_048",
-      "type": "int",
-      "source": "binary:4x access"
+      "type": "float",
+      "source": "binary:4x access | type_fix"
     },
     "76": {
       "name": "_field_04C",
@@ -138,24 +138,24 @@
       "source": "binary:1x access"
     },
     "384": {
-      "name": "_todo_180",
+      "name": "m_nParamState",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "binary:1x access | annotate_todo"
     },
     "388": {
-      "name": "_todo_184",
+      "name": "m_nParamA",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "binary:1x access | annotate_todo"
     },
     "392": {
-      "name": "_todo_188",
+      "name": "m_nParamB",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "binary:1x access | annotate_todo"
     },
     "396": {
-      "name": "_todo_18C",
+      "name": "m_nParamC",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "binary:1x access | annotate_todo"
     },
     "452": {
       "name": "m_fAngle",
@@ -189,8 +189,8 @@
     },
     "556": {
       "name": "_field_22C",
-      "type": "int",
-      "source": "binary:1x access"
+      "type": "float",
+      "source": "binary:1x access | type_fix"
     },
     "564": {
       "name": "_field_234",
@@ -199,8 +199,8 @@
     },
     "568": {
       "name": "_field_238",
-      "type": "int",
-      "source": "binary:1x access"
+      "type": "float",
+      "source": "binary:1x access | type_fix"
     },
     "572": {
       "name": "_field_23C",
@@ -303,14 +303,14 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "492": {
-      "name": "_todo_1EC",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "name": "m_vecLookAt",
+      "type": "gbVec3D",
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
     },
     "516": {
-      "name": "_todo_204",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "name": "m_vecUpDir",
+      "type": "gbVec3D",
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
     },
     "616": {
       "name": "m_szText",
@@ -353,9 +353,9 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "889": {
-      "name": "_todo_379",
+      "name": "m_bCamDirty",
       "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo"
     },
     "3337": {
       "name": "m_bBlendPause",
@@ -363,9 +363,9 @@
       "source": "ida_decomp:UpdateBlendWeight set 0, 5 refs"
     },
     "104": {
-      "name": "_todo_68",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_szCamPath",
+      "type": "char[260]",
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "700": {
       "name": "_todo_2BC",
@@ -378,9 +378,9 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "1200": {
-      "name": "_todo_4B0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_roleParams",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
     }
   },
   "binary_size": 4088,
