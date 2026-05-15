@@ -430,6 +430,18 @@ def transform_method_code(cls_name, method_name, code, sig):
     # Fix Hex-Rays broken dereference: (*)var → (*var)
     code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
 
+    # Fix IDA double-deref: (*)*(expr) → *(expr) — only in assignment context
+    # e.g. "* p = (*)*(_DWORD *)&this->member;" → "* p = *(_DWORD *)&this->member;"
+    code = re.sub(r'= \(\*\)\*\(', '= *(', code)
+
+    # Comment out STL internal calls that VC6 can't compile
+    # Pattern: ((std *)&expr)->string::Method(args);
+    # Pattern: ((std *)expr)->codecvt_base::Method();
+    def _comment_std(m):
+        return m.group(1) + '// [IDA_STL] ' + m.group(2)
+    code = re.sub(r'(\n[ \t]*)((?:\(\(std \*\)|result = \(\(std \*\)).*?;)', _comment_std, code)
+    code = re.sub(r'(\n[ \t]*)(.*?codecvt_base::\w+\(\).*?;)', _comment_std, code)
+
     # Replace ctor return pattern: "return &this->__vftable;" → "return this;"
     code = re.sub(r'return\s+&this->__vftable\s*;', 'return this;', code)
     # Also: "return (Type *)&this->__vftable;" → "return this;"
@@ -535,8 +547,17 @@ def _replace_ida_internals(code):
         # Delete vtable pointer init (compiler-generated in ctor/dtor)
         if re.match(r'\s*\w.*->__vftable\s*=\s*', s) or re.match(r'\s*this->__vftable\s*=', s):
             continue
+        if re.match(r'\s*this\[\d+\]\.__vftable\s*=\s*', s):
+            continue
         if re.match(r'\s*LOBYTE\s*\(\s*\w.*->__vftable\s*\)\s*=', s) or \
            re.match(r'\s*LOBYTE\s*\(\s*this->__vftable\s*\)\s*=', s):
+            continue
+        # Comment out __vftable-based virtual calls (IDA artifact, not valid C++)
+        # Pattern: ((cast)obj->__vftable->Method)(args);  or  ((cast)obj->__vftable)(args);
+        if ('->__vftable->' in s or '->__vftable)' in s) and s.endswith(';') \
+                and not s.startswith('//'):
+            indent = line[:len(line) - len(line.lstrip())]
+            out.append(indent + '// [IDA_VFTABLE] ' + s)
             continue
         # Delete compiler-generated ctor/dtor calls:
         #   ((Type *)expr)->Type(args);  or  ((Type *)expr)->~Type();
