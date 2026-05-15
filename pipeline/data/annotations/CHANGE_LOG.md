@@ -1641,3 +1641,19 @@
   1. [A] IDA Hex-Rays decompiled_c 输出中 `_TextureLib_Data` 变为 `TextureLib_Data`（IDA 内部行为，无法在 IDA 标注层修正）
   2. [A] cmake --build: _TextureLib_Data 从 99 错误降至 98（C2653 消除）
   3. [A] 26 个函数的 gbengine API 调用模式分析确定语义和归属
+
+### [2026-05-15] IDB 重建 + FLIRT 移除 + stdiobuf 标注修正
+
+- **变更**:
+  1. master_pipeline.py: 禁用 FLIRT Phase 2（+0 贡献，日志确认 709→709 命名）
+  2. functions.json: 0x47DD90 的 `stdiobuf *this` → `UIWnd *this`（在 annotation 层修正，不依赖 gen_cpp 替换）
+  3. 从零重建 IDB（-B → master_pipeline → import_gbengine → apply_annotations → export）
+  4. apply_annotations Step 0 un-name 机制
+  5. gen_cpp: 修复前导下划线类名（_TextureLib_Data）
+  6. 26 个 gb* 函数正确归属+命名
+- **置信度**: 90
+- **证据**:
+  1. [A] master_pipeline 日志: FLIRT 签名应用前后 709→709，+0 贡献
+  2. [A] raw IDB 对比: 0x47DD90 的 this 在 IDA 中被 TIL 推断为 stdiobuf，annotation SetType 可覆盖
+  3. [A] cmake --build -- -k: 重建后 5430 错误
+- **设计决策**: stdiobuf→UIWnd 替换规则暂保留在 gen_cpp 作为防御层（IDA TIL 可能在未来重新引入），后续随 gen_cpp 清理一起移除

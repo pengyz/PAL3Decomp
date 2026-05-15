@@ -379,7 +379,7 @@ def main():
         phase1_import_types()
         idc.save_database(idc.get_idb_path(), 0)
 
-        phase2_apply_flirt()
+        # phase2_apply_flirt()  # disabled: +0 contribution, TIL causes stdiobuf misattribution
         idc.save_database(idc.get_idb_path(), 0)
 
         phase3_apply_globals()
