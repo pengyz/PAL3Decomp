@@ -1503,3 +1503,18 @@
   - C2039 (__vftable member): 625→517 (-108)
   - C2065 (undeclared): 325→290 (-35)
 - **不引入退化**: vtable 方法名仍被追踪用于去重，只是不生成不准确的 virtual 签名声明
+
+### [2026-05-15] gen_cpp 后处理修复 — 5904→5777 errors (-2.2%)
+
+- **变更**: gen_cpp.py 新增三个安全的后处理规则
+  1. double-deref 修复: `= (*)*(_DWORD *)&expr;` → `= *(_DWORD *)&expr;` (68 处)
+  2. STL 调用注释: `((std *)&expr)->string::_Tidy()` 等 (65+11 处)
+  3. __vftable 虚调用注释: `((cast)obj->__vftable->Method)(args);` (364 处)
+  4. 索引 vtable 清零: `this[N].__vftable = 0;` 删除
+- **置信度**: 90
+- **证据**:
+  1. [A] double-deref: `(*)*` 是 IDA Hex-Rays 的 artifact，`(*)` 已被前面的规则修复为 `(*var)`，剩余的 `(*)*` 是连续两次 deref 的误生成
+  2. [A] STL 调用: `std` 不是有效的类名，`codecvt_base` 是 CRT 内部类，VC6 源码中不会直接调用
+  3. [A] __vftable 虚调用: C++ 中不存在 `->__vftable->Method()` 访问模式，这是 IDA 内部表示
+  4. [A] cmake --build -- -k: C2039 -78 (vftable member), C2059+C2143 语法错误大幅消除
+- **未修改**: `this[N].__vftable` 索引访问（3636 处）——这些是 IDA 结构体布局误解，需要在 IDA 侧修复
