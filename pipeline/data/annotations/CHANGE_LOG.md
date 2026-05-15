@@ -1766,3 +1766,16 @@
   4. [A] backtick 残留 34 个是函数指针引用（ArraySort 参数），非 m_call 指令
 
 - **当前管线状态**: 5304 errors (session 起始 9087, -41.6%)
+
+### [2026-05-15] 129 个全局变量类型修正 — 5304→5175 (-2.4%)
+
+- **变更**: globals.json 新增 129 个全局变量类型标注
+  1. 75 个 byte_ → char[256]：IDA 默认为 unsigned char，实际是 string buffer（被 lstrcpyA/_strcmpi 等使用）
+  2. 54 个 off_ → const char *：IDA 默认为 void*，实际是 .rdata 字符串指针（被 CreateFromTemplate/OpenFile 使用）
+- **置信度**: 85
+- **证据**:
+  1. [A] byte_DC3F3C 等被 lstrcpyA 第二个参数使用，lstrcpyA 要求 const char*
+  2. [A] off_5B0E28 → 0x5961C4 → "UI\Menu\QCYM\background.tga"（.rdata 字符串指针）
+  3. [A] 相邻地址 stride 0x100 = 256 bytes，确认 char[256] buffer 大小
+  4. [A] cmake: C2664 lstrcpyA 从 56 降到 ~0
+- **方法**: 在 gen_cpp 输出中搜索 byte_/off_ 与字符串函数的交叉引用，批量添加
