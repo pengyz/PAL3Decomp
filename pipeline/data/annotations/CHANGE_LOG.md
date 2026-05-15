@@ -51,6 +51,28 @@
 
 ## 变更记录
 
+### [2026-05-15] iter(annotations): re-attribute 20 gb* functions to PAL3 classes — PASS 19→25/205
+
+- **变更**: 20 个被 IDA 错误归属到 gbVisNode/gbGeomNode/gbParticleEffect 类的函数重新归属到正确的 PAL3 类
+- **置信度**: 80（从函数体分析 + 调用者上下文推断归属）
+- **根因**: `import_gbengine_types` 导入 gb* 类型定义后，IDA 类型传播将某些 PAL3 函数的 this 推断为 gb* 类型，自动归属到 gbengine 类
+- **重归属结果**:
+  - gbVisNode (10): → PAL3VisNode(ctor), CEffGroupNode(ctor), UI3DModelNode(ctor), ScreenEffectNode(ctor), RenderTargetNode(ctor), CScreenModeNode(ctor), RoleSystem::SetBlendMode, PalScript::CheckAnimOver, CEffect::SetChildTimeScale, Object3D::CheckMessage
+  - gbGeomNode (8): → SceneObj::LoadGeomNode/LoadDefaultModel, RoleSystem::LoadWeaponModel, Object3D::GetOrientedOBBox, UI3DCtrl::LoadEncampModel, MiniGame2Scene::GetOBBox/Update, MiniGame3::LoadModels
+  - gbParticleEffect (2): → RenderTarget::CreateParticleEffect/UpdateParticleEffect
+- **证据**:
+  1. [A] PAL3.exe 动态链接 gbengine.dll，不含 gbengine 类方法实现
+  2. [A] 函数体分析：操作 PAL3 结构体成员、调用 PAL3 方法
+  3. [B] 邻近函数上下文：0x4BD880 在 RenderTarget 函数群中
+- **影响**: PASS 文件 19→25/205，gbVisNode/gbGeomNode/gbParticleEffect .cpp 文件消除
+
+### [2026-05-15] feat(gen_cpp): .rdata string literal replacement for dword_ references
+
+- **变更**: 在 gen_cpp 中新增 .rdata 段字符串字面量替换（同 flt_ 浮点替换机制）
+- **置信度**: 95（codegen 等价变换：dword_5D4D7C 就是地址 0x5D4D7C 处的 GBK 字符串）
+- **实现**: 按需查找——只对源码中出现的 `dword_XXXXXX` 检查是否在 .rdata 段（0x56A000-0x5D6000）且内容为有效 GBK/ASCII 字符串（>=2 字符，4 对齐）
+- **影响**: CEffCylinder/CEffGrid 中的 `dword_5D4D7C` 等替换为中文字符串字面量
+
 ### [2026-05-15] iter(annotations): 80 field annotations + 31 this-pointer fixes — 5677→5617
 
 - **变更**: 8 个类的结构体字段标注 + 函数签名 this 指针类型修正

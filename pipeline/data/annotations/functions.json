@@ -7588,8 +7588,8 @@
     "signature": "int __thiscall(UIAnimateCtrlEX *this, int nVal, int nVal2, int nVal3, int nVal4)"
   },
   "0x00537070": {
-    "name": "gbVisNode::_auto_537070",
-    "signature": "int __thiscall(gbVisNode **this, const char *pszName)"
+    "name": "Object3D::CheckMessage",
+    "signature": "int __thiscall(Object3D *this, const char *pszMsgName)"
   },
   "0x00538D60": {
     "name": "PalScript::_auto_538d60",
@@ -9304,20 +9304,20 @@
     "signature": "void()"
   },
   "0x004B6F70": {
-    "name": "gbVisNode::_sub_4B6F70",
-    "signature": "gbVisNode *__thiscall(gbVisNode *this)"
+    "name": "PAL3VisNode::PAL3VisNode",
+    "signature": "PAL3VisNode *__thiscall(PAL3VisNode *this)"
   },
   "0x004B72E0": {
-    "name": "gbVisNode::_sub_4B72E0",
-    "signature": "gbVisNode *__thiscall(gbVisNode *this)"
+    "name": "CEffGroupNode::CEffGroupNode",
+    "signature": "CEffGroupNode *__thiscall(CEffGroupNode *this)"
   },
   "0x004B74A0": {
-    "name": "gbVisNode::_sub_4B74A0",
-    "signature": "gbVisNode *__thiscall(gbVisNode *this)"
+    "name": "UI3DModelNode::UI3DModelNode",
+    "signature": "UI3DModelNode *__thiscall(UI3DModelNode *this)"
   },
   "0x004B7C30": {
-    "name": "gbVisNode::_sub_4B7C30",
-    "signature": "gbVisNode *__thiscall(gbVisNode *this)"
+    "name": "ScreenEffectNode::ScreenEffectNode",
+    "signature": "ScreenEffectNode *__thiscall(ScreenEffectNode *this)"
   },
   "0x004B7F70": {
     "name": "nullsub_11",
@@ -9344,8 +9344,8 @@
     "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BD830": {
-    "name": "gbVisNode::_sub_4BD830",
-    "signature": "gbVisNode *__thiscall(gbVisNode *this)"
+    "name": "RenderTargetNode::RenderTargetNode",
+    "signature": "RenderTargetNode *__thiscall(RenderTargetNode *this)"
   },
   "0x004BDA40": {
     "name": "RenderTarget::_nearby_4bda40",
@@ -10196,12 +10196,12 @@
     "signature": "void()"
   },
   "0x00530280": {
-    "name": "gbGeomNode::_method_530280",
-    "signature": "gbVFileSystem *__thiscall(gbGeomNode **this, const char *pszName)"
+    "name": "SceneObj::LoadGeomNode",
+    "signature": "gbGeomNode *__thiscall(SceneObj *this, const char *pszFilename)"
   },
   "0x00530330": {
-    "name": "gbGeomNode::_method_530330",
-    "signature": "gbVFileSystem *__thiscall(gbGeomNode **this)"
+    "name": "SceneObj::LoadDefaultModel",
+    "signature": "gbGeomNode *__thiscall(SceneObj *this)"
   },
   "0x00530420": {
     "name": "UIWnd::_nearby_530420",
@@ -10612,8 +10612,8 @@
     "signature": "BOOL __thiscall(UICamera *this, float *pfVal, char pData)"
   },
   "0x0041AEA0": {
-    "name": "gbVisNode::_auto_41aea0",
-    "signature": "void __thiscall(gbVisNode **this, float fVal)"
+    "name": "RoleSystem::SetBlendMode",
+    "signature": "void __thiscall(RoleSystem *this, float fAlpha)"
   },
   "0x0041AEE0": {
     "name": "RoleSystem::_nearby_41aee0",
@@ -10628,8 +10628,8 @@
     "signature": "int __thiscall(RoleSystem *this, int nVal)"
   },
   "0x0041B420": {
-    "name": "gbGeomNode::_auto_41b420",
-    "signature": "void __thiscall(gbGeomNode *this, char *String1)"
+    "name": "RoleSystem::LoadWeaponModel",
+    "signature": "void __thiscall(RoleSystem *this, char *pszRoleName)"
   },
   "0x0041B640": {
     "name": "Actor::UpdateBoundingBox",
@@ -10860,8 +10860,8 @@
     "signature": "int __thiscall(PalScriptMgr *this)"
   },
   "0x0042B2F0": {
-    "name": "gbGeomNode::_auto_42b2f0",
-    "signature": "void __thiscall(gbGeomNode *this, struct gbOBBox *pstruct gbOBBox)"
+    "name": "Object3D::GetOrientedOBBox",
+    "signature": "void __thiscall(Object3D *this, gbOBBox *pOBBox)"
   },
   "0x0042B450": {
     "name": "PalScriptMgr::_nearby_42b450",
@@ -11472,8 +11472,8 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004393A0": {
-    "name": "gbVisNode::_auto_4393a0",
-    "signature": "char __thiscall(gbVisNode *this)"
+    "name": "PalScript::CheckAnimOver",
+    "signature": "char __thiscall(PalScript *this)"
   },
   "0x00439410": {
     "name": "PalScript::_nearby_439410",
@@ -13280,12 +13280,12 @@
     "signature": "void __thiscall(RenderTarget *this)"
   },
   "0x004BD880": {
-    "name": "gbParticleEffect::_auto_4bd880",
-    "signature": "int __thiscall(gbParticleEffect *this, int nVal)"
+    "name": "RenderTarget::CreateParticleEffect",
+    "signature": "gbParticleEffect *__thiscall(RenderTarget *this, int nVal)"
   },
   "0x004BD900": {
-    "name": "gbParticleEffect::_auto_4bd900",
-    "signature": "struct gbParticleGroup *__thiscall(gbParticleEffect *this, int nVal)"
+    "name": "RenderTarget::UpdateParticleEffect",
+    "signature": "struct gbParticleGroup *__thiscall(RenderTarget *this, int nVal)"
   },
   "0x004BD950": {
     "name": "RenderTarget::_nearby_4bd950",
@@ -13720,8 +13720,8 @@
     "signature": "void __cdecl()"
   },
   "0x004D0390": {
-    "name": "gbVisNode::_auto_4d0390",
-    "signature": "void __thiscall(gbVisNode *this, float fVal)"
+    "name": "CEffect::SetChildTimeScale",
+    "signature": "void __thiscall(CEffect *this, float fVal)"
   },
   "0x004D05E0": {
     "name": "Matrix4::_nearby_4d05e0",
@@ -14848,8 +14848,8 @@
     "signature": "int __thiscall(UIWnd *this, double pData)"
   },
   "0x0052B050": {
-    "name": "gbGeomNode::_method_52b050",
-    "signature": "char __thiscall(gbGeomNode *this, void *Buffer, const char *pszName)"
+    "name": "UI3DCtrl::LoadEncampModel",
+    "signature": "char __thiscall(UI3DCtrl *this, const char *pszModelName, const char *pszName)"
   },
   "0x0052B1D0": {
     "name": "UIWnd::_nearby_52b1d0",
@@ -15008,8 +15008,8 @@
     "signature": "int __thiscall(UIFrameWnd *this, int nVal)"
   },
   "0x0052FBD0": {
-    "name": "gbGeomNode::_auto_52fbd0",
-    "signature": "int __thiscall(gbGeomNode *this)"
+    "name": "MiniGame2Scene::GetOBBox",
+    "signature": "gbOBBox *__thiscall(MiniGame2Scene *this)"
   },
   "0x0052FC30": {
     "name": "UIFrameWnd::_init_52fc30",
@@ -15020,8 +15020,8 @@
     "signature": "int __thiscall(UIWnd *this, int nVal)"
   },
   "0x0052FE30": {
-    "name": "gbGeomNode::_auto_52fe30",
-    "signature": "void __thiscall(gbGeomNode *this, float fVal)"
+    "name": "MiniGame2Scene::Update",
+    "signature": "void __thiscall(MiniGame2Scene *this, float fDeltaTime)"
   },
   "0x005301E0": {
     "name": "nullsub_69",
@@ -15320,8 +15320,8 @@
     "signature": "int __thiscall(UIScene *this)"
   },
   "0x00535C30": {
-    "name": "gbGeomNode::_init_535c30",
-    "signature": "char __thiscall(gbGeomNode *this, const char *pszName, const char *pszName2, const char *pszName3)"
+    "name": "MiniGame3::LoadModels",
+    "signature": "char __thiscall(MiniGame3 *this, const char *pszModel1, const char *pszModel2, const char *pszModel3)"
   },
   "0x00535E50": {
     "name": "UIWnd::_nearby_535e50",
@@ -15548,8 +15548,8 @@
     "signature": "void __thiscall(UIListBox *this)"
   },
   "0x0053D3A0": {
-    "name": "gbVisNode::_auto_53d3a0",
-    "signature": "int __thiscall(gbVisNode *this)"
+    "name": "CScreenModeNode::CScreenModeNode",
+    "signature": "CScreenModeNode *__thiscall(CScreenModeNode *this)"
   },
   "0x0053DB80": {
     "name": "CScreenMode::_nearby_53db80",
