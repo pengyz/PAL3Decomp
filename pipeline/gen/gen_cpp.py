@@ -435,10 +435,79 @@ def transform_method_code(cls_name, method_name, code, sig):
     # Also: "return (Type *)&this->__vftable;" → "return this;"
     code = re.sub(r'return\s+\([^)]+\)\s*&this->__vftable\s*;', 'return this;', code)
 
+    # VC6: explicit constructor calls via ->ClassName() are illegal in C++.
+    # IDA emits these for placement-like ctor calls. Comment them out.
+    # Pattern: ((Type *)expr)->ClassName()  where ClassName is a known class
+    code = _comment_out_explicit_ctor_calls(code)
+
+    # VC6: LODWORD(x) = &symbol  -- assigning pointer to unsigned long
+    # Add (unsigned long) cast for LODWORD/HIDWORD assignments from address-of expressions
+    code = re.sub(
+        r'((?:LODWORD|HIDWORD)\s*\([^)]+\))\s*=\s*(&\w+)',
+        r'\1 = (unsigned long)\2',
+        code
+    )
+
+    # VC6: (int)Class::Method -- casting member function pointer to int is illegal
+    # Use union-based cast helper to extract function address as int
+    def _fix_mfp_cast(m):
+        cls_method = m.group(1)
+        # Extract hex address from method name if available (e.g., Method_4DF2F0 → 0x4DF2F0)
+        addr_m = re.search(r'_([0-9A-Fa-f]{5,})$', cls_method.split('::')[-1])
+        if addr_m:
+            return '0x%s' % addr_m.group(1)
+        # Fallback: use 0 as placeholder
+        return '0 /* TODO: (int)%s */' % cls_method
+    code = re.sub(
+        r'\(int\)\s*(\w+::(?:~?\w+))\b(?!\s*\()',
+        _fix_mfp_cast,
+        code
+    )
+
     # Remove compiler-internal calls and vtable init
     code = _replace_ida_internals(code)
 
     return code
+
+
+def _comment_out_explicit_ctor_calls(code):
+    """Comment out illegal explicit constructor calls: ((Type*)expr)->ClassName().
+
+    In C++, you cannot explicitly call a constructor via ->. IDA Hex-Rays
+    emits these for placement-like initialization. We comment them out since
+    the compiler generates these automatically.
+    """
+    # Match patterns like:
+    #   ((ClassName *)expr)->ClassName();
+    #   ((ClassName *)expr)->ClassName(args);
+    # where ClassName matches a known header file (indicating a real class)
+    def _repl(m):
+        indent = m.group(1)
+        full = m.group(0)
+        return indent + '// [AUTO-COMMENTED] ' + full.strip()
+
+    # Build pattern: ->ClassName( where ClassName is in GAME_CLASSES
+    # We do line-by-line to handle this properly
+    lines = code.split('\n')
+    out = []
+    for line in lines:
+        stripped = line.strip()
+        # Check for ->ClassName() or ->ClassName(args) where ClassName is a known class
+        m = re.search(r'->\s*([A-Z_]\w+)\s*\(', stripped)
+        if m:
+            called_name = m.group(1)
+            # Only comment out if it's a constructor call (name matches a class)
+            # and the line is a standalone statement (not part of assignment or condition)
+            if called_name in GAME_CLASSES:
+                # Check it's a statement, not part of a larger expression
+                # Heuristic: line ends with ; and doesn't have = or return before the call
+                if stripped.endswith(';') and '=' not in stripped and not stripped.startswith('return') \
+                        and not stripped.startswith('if') and not stripped.startswith('while'):
+                    indent = line[:len(line) - len(line.lstrip())]
+                    out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
+                    continue
+        out.append(line)
+    return '\n'.join(out)
 
 
 def _replace_ida_internals(code):
@@ -522,7 +591,11 @@ def collect_sub_refs(code):
     refs = set(re.findall(r'\b(sub_[0-9A-Fa-f]+)\b', code))
     # Also find named functions called as standalone (not Class::Method)
     # Pattern: identifier( where it's not preceded by . or -> or ::
-    for m in re.finditer(r'(?<![.>:])\b([A-Z][a-zA-Z]+(?:Update|Init|Create|Destroy|Render|Sort|Check|Process))\s*\(', code):
+    # Broadened to catch any PascalCase or underscore-prefixed game function call
+    for m in re.finditer(r'(?<![.>:])\b([A-Z][a-zA-Z0-9_]*(?:Update|Init|Create|Destroy|Render|Sort|Check|Process|SetState|GetState|Reset|Load|Save|Release|Free|Manager|Info))\s*\(', code):
+        refs.add(m.group(1))
+    # Also catch specific patterns: UIObj_XXX, GetXxxManager_N, Texture_Info_XXXX
+    for m in re.finditer(r'(?<![.>:])(?<!\w)\b((?:UIObj_\w+|Get\w+Manager(?:_\d+)?|Texture_Info_\w+|GetGfxManager_\d+))\s*\(', code):
         refs.add(m.group(1))
     return refs
 
@@ -560,6 +633,15 @@ def generate_forward_decls(all_code):
 
     undef = collect_undefined_refs(all_code)
     undef -= _DECLARED_GLOBALS
+    # Detect off_ variables used as arrays (subscripted or address-taken with subscript)
+    off_as_array = set()
+    for u in undef:
+        if u.startswith('off_'):
+            # Check if used as: off_XXX[, (&off_XXX)[, or compared with (int) cast
+            if re.search(r'\b' + re.escape(u) + r'\s*\[', all_code) or \
+               re.search(r'&' + re.escape(u) + r'\s*\)\s*\[', all_code) or \
+               re.search(r'&' + re.escape(u) + r'\s*\)\s*[<>]', all_code):
+                off_as_array.add(u)
     if undef:
         lines.append("// Unnamed globals (extern)")
         for u in sorted(undef):
@@ -567,6 +649,8 @@ def generate_forward_decls(all_code):
                 lines.append("extern float %s;" % u)
             elif u.startswith('byte_'):
                 lines.append("extern unsigned char %s;" % u)
+            elif u.startswith('off_') and u in off_as_array:
+                lines.append("extern void *%s[];" % u)
             elif u.startswith('off_'):
                 lines.append("extern void *%s;" % u)
             elif u.startswith('a') and len(u) > 1 and u[1].isupper():
