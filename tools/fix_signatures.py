@@ -104,13 +104,19 @@ def extract_class_from_function_name(name):
     return None
 
 
-def fix_this_type_in_file(json_path, dry_run=True):
-    with open(json_path, 'r') as f:
-        data = json.load(f)
+def fix_this_type_in_funcs(funcs_data):
+    """
+    Fix int this → ClassName *this in function signatures (in-memory).
 
+    Args:
+        funcs_data: Dictionary of functions (address -> info)
+
+    Returns:
+        List of changes made
+    """
     changes = []
 
-    for address, info in data.items():
+    for address, info in funcs_data.items():
         signature = info.get("signature", "")
         name = info.get("name", "")
 
@@ -139,8 +145,26 @@ def fix_this_type_in_file(json_path, dry_run=True):
             "class_name": class_name
         })
 
-        if not dry_run:
-            data[address]["signature"] = new_sig
+        funcs_data[address]["signature"] = new_sig
+
+    return changes
+
+
+def fix_this_type_in_file(json_path, dry_run=True):
+    """
+    Fix int this → ClassName *this in function signatures (file version).
+
+    Args:
+        json_path: Path to functions.json
+        dry_run: If True, don't modify the file
+
+    Returns:
+        List of changes made
+    """
+    with open(json_path, 'r') as f:
+        data = json.load(f)
+
+    changes = fix_this_type_in_funcs(data)
 
     if not dry_run and changes:
         with open(json_path, 'w') as f:
@@ -323,15 +347,17 @@ def is_generic_type(type_str):
     return type_str in generic_types
 
 
-def cross_ref_pal3a(pal3_funcs_path, pal3a_funcs_path, dry_run=True):
+def cross_ref_pal3a_in_funcs(pal3_data, pal3a_data):
     """
-    Cross-reference PAL3 functions with PAL3A to improve parameter types.
-    """
-    with open(pal3_funcs_path, 'r') as f:
-        pal3_data = json.load(f)
+    Cross-reference PAL3 functions with PAL3A to improve parameter types (in-memory).
 
-    with open(pal3a_funcs_path, 'r') as f:
-        pal3a_data = json.load(f)
+    Args:
+        pal3_data: Dictionary of PAL3 functions (address -> info)
+        pal3a_data: Dictionary with 'functions' key containing PAL3A function list
+
+    Returns:
+        List of changes made
+    """
 
     # Build PAL3A lookup by Class::Method name
     pal3a_lookup = {}
@@ -411,8 +437,30 @@ def cross_ref_pal3a(pal3_funcs_path, pal3a_funcs_path, dry_run=True):
                 "pal3a_mangled": pal3a_mangled
             })
 
-            if not dry_run:
-                pal3_data[address]["signature"] = new_sig
+            pal3_data[address]["signature"] = new_sig
+
+    return changes
+
+
+def cross_ref_pal3a(pal3_funcs_path, pal3a_funcs_path, dry_run=True):
+    """
+    Cross-reference PAL3 functions with PAL3A to improve parameter types (file version).
+
+    Args:
+        pal3_funcs_path: Path to PAL3 functions.json
+        pal3a_funcs_path: Path to PAL3A func_bytes_dump.json
+        dry_run: If True, don't modify the file
+
+    Returns:
+        List of changes made
+    """
+    with open(pal3_funcs_path, 'r') as f:
+        pal3_data = json.load(f)
+
+    with open(pal3a_funcs_path, 'r') as f:
+        pal3a_data = json.load(f)
+
+    changes = cross_ref_pal3a_in_funcs(pal3_data, pal3a_data)
 
     if not dry_run and changes:
         with open(pal3_funcs_path, 'w') as f:
@@ -456,24 +504,20 @@ def is_trivial_cast_type(type_str):
     return type_str in trivial_types
 
 
-def infer_void_star_types(functions_json_path, decomp_bodies, dry_run=True):
+def infer_void_star_types_in_funcs(funcs_data, decomp_bodies):
     """
-    Infer actual types for void* parameters by analyzing cast patterns in function bodies.
+    Infer actual types for void* parameters by analyzing cast patterns (in-memory).
 
     Args:
-        functions_json_path: Path to functions.json
+        funcs_data: Dictionary of functions (address -> info)
         decomp_bodies: Dict mapping address to decompiled_c
-        dry_run: If True, don't modify the file
 
     Returns:
         List of changes made
     """
-    with open(functions_json_path, 'r') as f:
-        data = json.load(f)
-
     changes = []
 
-    for address, info in data.items():
+    for address, info in funcs_data.items():
         signature = info.get("signature", "")
         name = info.get("name", "")
 
@@ -551,22 +595,18 @@ def infer_void_star_types(functions_json_path, decomp_bodies, dry_run=True):
                 "new_signature": new_sig
             })
 
-            if not dry_run:
-                data[address]["signature"] = new_sig
+            funcs_data[address]["signature"] = new_sig
 
             # Only fix one parameter per function per run (for safety)
             break
 
-    if not dry_run and changes:
-        with open(functions_json_path, 'w') as f:
-            json.dump(data, f, indent=2)
 
     return changes
 
 
-def infer_int_pointer_types(functions_json_path, decomp_bodies, dry_run=True):
+def infer_void_star_types(functions_json_path, decomp_bodies, dry_run=True):
     """
-    Infer that int parameters are actually pointers by analyzing cast patterns.
+    Infer actual types for void* parameters by analyzing cast patterns (file version).
 
     Args:
         functions_json_path: Path to functions.json
@@ -579,9 +619,29 @@ def infer_int_pointer_types(functions_json_path, decomp_bodies, dry_run=True):
     with open(functions_json_path, 'r') as f:
         data = json.load(f)
 
+    changes = infer_void_star_types_in_funcs(data, decomp_bodies)
+
+    if not dry_run and changes:
+        with open(functions_json_path, 'w') as f:
+            json.dump(data, f, indent=2)
+
+    return changes
+
+
+def infer_int_pointer_types_in_funcs(funcs_data, decomp_bodies):
+    """
+    Infer that int parameters are actually pointers by analyzing cast patterns (in-memory).
+
+    Args:
+        funcs_data: Dictionary of functions (address -> info)
+        decomp_bodies: Dict mapping address to decompiled_c
+
+    Returns:
+        List of changes made
+    """
     changes = []
 
-    for address, info in data.items():
+    for address, info in funcs_data.items():
         signature = info.get("signature", "")
         name = info.get("name", "")
 
@@ -662,11 +722,30 @@ def infer_int_pointer_types(functions_json_path, decomp_bodies, dry_run=True):
                 "new_signature": new_sig
             })
 
-            if not dry_run:
-                data[address]["signature"] = new_sig
+            funcs_data[address]["signature"] = new_sig
 
             # Only fix one parameter per function per run (for safety)
             break
+
+    return changes
+
+
+def infer_int_pointer_types(functions_json_path, decomp_bodies, dry_run=True):
+    """
+    Infer that int parameters are actually pointers by analyzing cast patterns (file version).
+
+    Args:
+        functions_json_path: Path to functions.json
+        decomp_bodies: Dict mapping address to decompiled_c
+        dry_run: If True, don't modify the file
+
+    Returns:
+        List of changes made
+    """
+    with open(functions_json_path, 'r') as f:
+        data = json.load(f)
+
+    changes = infer_int_pointer_types_in_funcs(data, decomp_bodies)
 
     if not dry_run and changes:
         with open(functions_json_path, 'w') as f:
@@ -783,24 +862,20 @@ def get_semantic_param_name(param_type, index):
     return f"pData{index}" if index > 1 else "pData"
 
 
-def rename_params_in_file(json_path, dry_run=True):
+def rename_params_in_funcs(funcs_data):
     """
-    Rename generic parameter names (a1, a2, ...) to semantic Hungarian-style names.
+    Rename generic parameter names (a1, a2, ...) to semantic Hungarian-style names (in-memory).
 
     Args:
-        json_path: Path to functions.json
-        dry_run: If True, don't modify the file
+        funcs_data: Dictionary of functions (address -> info)
 
     Returns:
         List of changes made
     """
-    with open(json_path, 'r') as f:
-        data = json.load(f)
-
     changes = []
     generic_param_pattern = re.compile(r'^[a-z]\d+$')
 
-    for address, info in data.items():
+    for address, info in funcs_data.items():
         signature = info.get("signature", "")
         name = info.get("name", "")
 
@@ -858,14 +933,64 @@ def rename_params_in_file(json_path, dry_run=True):
                 "renames": param_renames
             })
 
-            if not dry_run:
-                data[address]["signature"] = new_sig
+            funcs_data[address]["signature"] = new_sig
+
+    return changes
+
+
+def rename_params_in_file(json_path, dry_run=True):
+    """
+    Rename generic parameter names (a1, a2, ...) to semantic Hungarian-style names (file version).
+
+    Args:
+        json_path: Path to functions.json
+        dry_run: If True, don't modify the file
+
+    Returns:
+        List of changes made
+    """
+    with open(json_path, 'r') as f:
+        data = json.load(f)
+
+    changes = rename_params_in_funcs(data)
 
     if not dry_run and changes:
         with open(json_path, 'w') as f:
             json.dump(data, f, indent=2)
 
     return changes
+
+
+def find_functions_for_file(functions_data, cpp_filename):
+    """
+    Find all functions belonging to a class based on the cpp filename.
+
+    Args:
+        functions_data: Dict of function data from functions.json
+        cpp_filename: Name of the cpp file (e.g., "CCBAI.cpp")
+
+    Returns:
+        List of (address, info) tuples for matching functions
+    """
+    # Extract class name from filename (e.g., "CCBAI.cpp" -> "CCBAI")
+    class_name = Path(cpp_filename).stem
+
+    # Find all functions that belong to this class
+    matching_funcs = []
+    for address, info in functions_data.items():
+        name = info.get("name", "")
+
+        # Match Class::Method pattern
+        if name.startswith(f"{class_name}::"):
+            matching_funcs.append((address, info))
+            continue
+
+        # Match mangled names: ?Method@Class@@...
+        if name.startswith('?') and f"@{class_name}@@" in name:
+            matching_funcs.append((address, info))
+            continue
+
+    return matching_funcs
 
 
 def write_change_log(changes, changelog_path, phase_label, description, confidence):
@@ -917,6 +1042,13 @@ def main():
 
     rename_params_parser = subparsers.add_parser("rename-params", help="Rename generic parameter names (a1, a2, ...) to semantic Hungarian-style names")
     rename_params_parser.add_argument("--apply", action="store_true", help="Apply changes to files")
+
+    fix_file_parser = subparsers.add_parser("fix-file", help="Run all Phase 1 fixes on functions for a specific .cpp file")
+    fix_file_parser.add_argument("cpp_file", help="Name of the cpp file (e.g., CCBAI.cpp)")
+    fix_file_parser.add_argument("--apply", action="store_true", help="Apply changes to files")
+
+    run_all_parser = subparsers.add_parser("run-all", help="Run all Phase 1 fixes sequentially")
+    run_all_parser.add_argument("--apply", action="store_true", help="Apply changes to files")
 
     args = parser.parse_args()
 
@@ -1093,6 +1225,310 @@ def main():
             print(f"✓ Updated {changelog}")
         else:
             print("\nDry run mode. Use --apply to write changes.")
+
+    elif args.command == "run-all":
+        print("=" * 70)
+        print("Running all Phase 1 signature fixes")
+        print("=" * 70)
+
+        # Load functions.json once
+        with open(functions_json, 'r') as f:
+            funcs_data = json.load(f)
+
+        # Load PAL3A data for cross-reference
+        pal3a_funcs_path = project_root / "asm/pal3a/func_bytes_dump.json"
+        if not pal3a_funcs_path.exists():
+            print(f"Warning: PAL3A data not found at {pal3a_funcs_path}")
+            print("Skipping cross-ref-pal3a step.")
+            pal3a_data = None
+        else:
+            with open(pal3a_funcs_path, 'r') as f:
+                pal3a_data = json.load(f)
+
+        # Load decomp bodies for inference steps
+        print("\nLoading decomp bodies...")
+        decomp_bodies = load_decomp_bodies()
+        print(f"Loaded {len(decomp_bodies)} function bodies\n")
+
+        # Track all changes
+        all_changes = {}
+
+        # Step 1: fix-this-type
+        print("\n[1/5] Running fix-this-type...")
+        changes1 = fix_this_type_in_funcs(funcs_data)
+        all_changes["fix-this-type"] = changes1
+        print(f"      Fixed {len(changes1)} functions")
+
+        # Step 2: cross-ref-pal3a
+        print("\n[2/5] Running cross-ref-pal3a...")
+        if pal3a_data:
+            changes2 = cross_ref_pal3a_in_funcs(funcs_data, pal3a_data)
+            all_changes["cross-ref-pal3a"] = changes2
+            print(f"      Improved {len(changes2)} functions")
+        else:
+            all_changes["cross-ref-pal3a"] = []
+            print("      Skipped (PAL3A data not available)")
+
+        # Step 3: infer-void-star
+        print("\n[3/5] Running infer-void-star...")
+        changes3 = infer_void_star_types_in_funcs(funcs_data, decomp_bodies)
+        all_changes["infer-void-star"] = changes3
+        print(f"      Inferred {len(changes3)} void* parameters")
+
+        # Step 4: infer-int-params
+        print("\n[4/5] Running infer-int-params...")
+        changes4 = infer_int_pointer_types_in_funcs(funcs_data, decomp_bodies)
+        all_changes["infer-int-params"] = changes4
+        print(f"      Inferred {len(changes4)} int parameters as pointers")
+
+        # Step 5: rename-params
+        print("\n[5/5] Running rename-params...")
+        changes5 = rename_params_in_funcs(funcs_data)
+        all_changes["rename-params"] = changes5
+        print(f"      Renamed parameters in {len(changes5)} functions")
+
+        # Print summary table
+        print("\n" + "=" * 70)
+        print("Summary")
+        print("=" * 70)
+        print(f"{'Step':<25} {'Changes':<10}")
+        print("-" * 70)
+        print(f"{'1. fix-this-type':<25} {len(all_changes['fix-this-type']):<10}")
+        print(f"{'2. cross-ref-pal3a':<25} {len(all_changes['cross-ref-pal3a']):<10}")
+        print(f"{'3. infer-void-star':<25} {len(all_changes['infer-void-star']):<10}")
+        print(f"{'4. infer-int-params':<25} {len(all_changes['infer-int-params']):<10}")
+        print(f"{'5. rename-params':<25} {len(all_changes['rename-params']):<10}")
+        print("-" * 70)
+        total_changes = sum(len(changes) for changes in all_changes.values())
+        print(f"{'Total':<25} {total_changes:<10}")
+        print("=" * 70)
+
+        # Write to file if --apply
+        if args.apply:
+            print(f"\nWriting changes to {functions_json}...")
+            with open(functions_json, 'w') as f:
+                json.dump(funcs_data, f, indent=2)
+
+            # Write change logs for each step
+            if all_changes["fix-this-type"]:
+                write_change_log(
+                    all_changes["fix-this-type"], changelog,
+                    phase_label="Phase 1.1: int this → ClassName *this",
+                    description=[
+                        "[A] __thiscall 调用约定要求 ECX=this，参数类型必为类指针",
+                        "[B] 函数名 ClassName:: 前缀匹配"
+                    ],
+                    confidence=95
+                )
+
+            if all_changes["cross-ref-pal3a"]:
+                write_change_log(
+                    all_changes["cross-ref-pal3a"], changelog,
+                    phase_label="Phase 1.2: PAL3A cross-reference",
+                    description=[
+                        "[A] PAL3A 官方 PDB 包含完整类型信息",
+                        "[B] 函数名完全匹配，参数个数一致",
+                        "[C] 仅替换 PAL3 中的泛化类型 (int/void*) 为 PAL3A 的具体类型"
+                    ],
+                    confidence=70
+                )
+
+            if all_changes["infer-void-star"]:
+                write_change_log(
+                    all_changes["infer-void-star"], changelog,
+                    phase_label="Phase 1.3: void* parameter type inference",
+                    description=[
+                        "[A] 函数体中显式 cast 为特定类型",
+                        "[B] 跳过泛化类型 (void/char/int/_DWORD/_BYTE)",
+                        "[C] 选取出现频率最高的 cast 目标类型"
+                    ],
+                    confidence=80
+                )
+
+            if all_changes["infer-int-params"]:
+                write_change_log(
+                    all_changes["infer-int-params"], changelog,
+                    phase_label="Phase 1.4: int parameter pointer inference",
+                    description=[
+                        "[A] 函数体中 int 参数被 cast 为指针类型",
+                        "[B] Cast 出现 ≥2 次才接受（置信度 80）",
+                        "[C] 跳过泛化类型 (void/char/int/_DWORD/_BYTE)"
+                    ],
+                    confidence=80
+                )
+
+            if all_changes["rename-params"]:
+                write_change_log(
+                    all_changes["rename-params"], changelog,
+                    phase_label="Phase 1.5: Parameter semantic naming",
+                    description=[
+                        "[A] 将泛化参数名 (a1, a2, ...) 替换为语义化的 Hungarian 风格命名",
+                        "[B] 保留已有语义名 (如 fAngle, pStack) 和 this 参数",
+                        "[C] 根据参数类型应用命名规则 (p前缀指针, f前缀浮点, n前缀整数等)"
+                    ],
+                    confidence=60
+                )
+
+            print(f"✓ Applied {total_changes} changes to {functions_json}")
+            print(f"✓ Updated {changelog}")
+        else:
+            print("\nDry run mode. Use --apply to write changes.")
+
+
+    elif args.command == "fix-file":
+        # Load all functions
+        with open(functions_json, 'r') as f:
+            all_funcs = json.load(f)
+
+        # Find functions for this file
+        matching_funcs = find_functions_for_file(all_funcs, args.cpp_file)
+
+        if not matching_funcs:
+            print(f"No functions found for file {args.cpp_file}")
+            return
+
+        class_name = Path(args.cpp_file).stem
+        print(f"Found {len(matching_funcs)} functions for {args.cpp_file} (class: {class_name})")
+
+        # Create a subset dict for processing
+        subset = {addr: dict(info) for addr, info in matching_funcs}
+
+        # Track all changes
+        all_changes = {
+            "fix-this-type": [],
+            "infer-void-star": [],
+            "infer-int-params": [],
+            "rename-params": []
+        }
+
+        # Phase 1: Fix this type
+        print(f"\n=== Phase 1: fix-this-type ===")
+        changes = fix_this_type_in_funcs(subset)
+        all_changes["fix-this-type"] = changes
+        if changes:
+            print(f"  Fixed {len(changes)} functions")
+            for change in changes[:5]:
+                print(f"    {change['name']}")
+            if len(changes) > 5:
+                print(f"    ... and {len(changes) - 5} more")
+        else:
+            print("  No changes")
+
+        # Phase 2: Infer void* types
+        print(f"\n=== Phase 2: infer-void-star ===")
+        decomp_bodies = load_decomp_bodies()
+        void_star_changes = infer_void_star_types_in_funcs(subset, decomp_bodies)
+        all_changes["infer-void-star"] = void_star_changes
+        if void_star_changes:
+            print(f"  Inferred {len(void_star_changes)} void* parameters")
+            for change in void_star_changes[:5]:
+                print(f"    {change['name']}: {change['param_name']} → {change['new_type']}")
+            if len(void_star_changes) > 5:
+                print(f"    ... and {len(void_star_changes) - 5} more")
+        else:
+            print("  No changes")
+
+        # Phase 3: Infer int pointer types
+        print(f"\n=== Phase 3: infer-int-params ===")
+        int_param_changes = infer_int_pointer_types_in_funcs(subset, decomp_bodies)
+        all_changes["infer-int-params"] = int_param_changes
+        if int_param_changes:
+            print(f"  Inferred {len(int_param_changes)} int parameters as pointers")
+            for change in int_param_changes[:5]:
+                print(f"    {change['name']}: {change['param_name']} → {change['new_type']}")
+            if len(int_param_changes) > 5:
+                print(f"    ... and {len(int_param_changes) - 5} more")
+        else:
+            print("  No changes")
+
+        # Phase 4: Rename parameters
+        print(f"\n=== Phase 4: rename-params ===")
+        rename_changes = rename_params_in_funcs(subset)
+        all_changes["rename-params"] = rename_changes
+        if rename_changes:
+            print(f"  Renamed parameters in {len(rename_changes)} functions")
+            for change in rename_changes[:5]:
+                renames_str = ", ".join([f"{r['old']}→{r['new']}" for r in change['renames']])
+                print(f"    {change['name']}: {renames_str}")
+            if len(rename_changes) > 5:
+                print(f"    ... and {len(rename_changes) - 5} more")
+        else:
+            print("  No changes")
+
+        # Summary
+        total_changes = sum(len(v) for v in all_changes.values())
+        print(f"\n=== Summary ===")
+        print(f"Total changes: {total_changes}")
+        for phase, changes in all_changes.items():
+            if changes:
+                print(f"  {phase}: {len(changes)}")
+
+        # Apply changes if requested
+        if args.apply and total_changes > 0:
+            # Merge subset back into all_funcs
+            for address, info in subset.items():
+                all_funcs[address] = info
+
+            # Write back
+            with open(functions_json, 'w') as f:
+                json.dump(all_funcs, f, indent=2)
+
+            # Write changelog entries for each phase that had changes
+            for phase, changes in all_changes.items():
+                if not changes:
+                    continue
+
+                phase_labels = {
+                    "fix-this-type": f"Phase 1.1: int this → ClassName *this [{class_name}]",
+                    "infer-void-star": f"Phase 1.3: void* parameter inference [{class_name}]",
+                    "infer-int-params": f"Phase 1.4: int parameter pointer inference [{class_name}]",
+                    "rename-params": f"Phase 1.5: Parameter semantic naming [{class_name}]"
+                }
+
+                phase_descs = {
+                    "fix-this-type": [
+                        "[A] __thiscall 调用约定要求 ECX=this，参数类型必为类指针",
+                        "[B] 函数名 ClassName:: 前缀匹配"
+                    ],
+                    "infer-void-star": [
+                        "[A] 函数体中显式 cast 为特定类型",
+                        "[B] 跳过泛化类型 (void/char/int/_DWORD/_BYTE)",
+                        "[C] 选取出现频率最高的 cast 目标类型"
+                    ],
+                    "infer-int-params": [
+                        "[A] 函数体中 int 参数被 cast 为指针类型",
+                        "[B] Cast 出现 ≥2 次才接受（置信度 80）",
+                        "[C] 跳过泛化类型 (void/char/int/_DWORD/_BYTE)"
+                    ],
+                    "rename-params": [
+                        "[A] 将泛化参数名 (a1, a2, ...) 替换为语义化的 Hungarian 风格命名",
+                        "[B] 保留已有语义名 (如 fAngle, pStack) 和 this 参数",
+                        "[C] 根据参数类型应用命名规则 (p前缀指针, f前缀浮点, n前缀整数等)"
+                    ]
+                }
+
+                phase_confidence = {
+                    "fix-this-type": 95,
+                    "infer-void-star": 80,
+                    "infer-int-params": 80,
+                    "rename-params": 60
+                }
+
+                write_change_log(
+                    changes, changelog,
+                    phase_label=phase_labels[phase],
+                    description=phase_descs[phase],
+                    confidence=phase_confidence[phase]
+                )
+
+            print(f"\n✓ Applied changes to {functions_json}")
+            print(f"✓ Updated {changelog}")
+        elif args.apply:
+            print("\nNo changes to apply.")
+        else:
+            print("\nDry run mode. Use --apply to write changes.")
+
+
 
     else:
         parser.print_help()
