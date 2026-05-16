@@ -51,6 +51,16 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(annotations): CCBStage::UpdateRoleMP → CCBRoleState::UpdateRoleMP
+
+- **变更**: 函数 0x004FA930 类归属 `CCBStage` → `CCBRoleState`
+- **置信度**: 90
+- **证据**:
+  1. [A] 函数签名 `char __thiscall(CCBRoleState *this, char arg0, int nVal)` — this 类型是 CCBRoleState
+  2. [A+] IDA decomp: 函数体调用 `CCBRoleState::GetRoleMP(this, ...)`, 访问 `this->m_Role[0].bAlive` — 全部是 CCBRoleState 成员
+  3. [A+] 函数内调用的 `_nearby_4fa210`~`_nearby_4fa4e0` 全部在 functions.json 中归属 CCBRoleState
+- **消除**: C2039 "not a member of CCBStage" 20→0, 失败单元 14→13
+
 ### [2026-05-16] iter(annotations): 44 global arrays typed (C2109 subscript 21→0)
 
 - **变更**: 44 个全局变量从标量 `int`/`unsigned char` 改为数组类型 `int[N]`/`unsigned char[N]`
