@@ -51,6 +51,21 @@
 
 ## 变更记录
 
+### [2026-05-17] iter(annotations): RoleSystem 6 类型修正 (Actor 嵌入 + 4 float + char 缓冲)
+
+- **变更**: RoleSystem 6 个字段类型修正
+- **置信度**: 85
+
+- **证据**:
+  1. [A+] offset 424 (_todo_1A8): `Actor::DispatchAction((Actor *)&this->_todo_1A8)` → 嵌入 Actor 对象。int → Actor
+  2. [A+] offset 72 (_field_048): `*(float *)&this->_field_048` → 显式 float 指针转换。unsigned char → float
+  3. [A] offset 408 (_field_198): decomp 赋值 `1065353216` = `0x3F800000` = IEEE 754 float `1.0`。int → float
+  4. [A] offset 412 (_field_19C): 同上 `1065353216` = `1.0f`。int → float
+  5. [A+] offset 384 (_todo_180): `gbMatrixStack::Scale(pStack, *(float *)&this->_todo_180, ...)` → 显式 float 转换。int → float
+  6. [A+] offset 964 (_todo_3C4): `_strcmpi((const char *)&this->_todo_3C4, "C07")` → char 字符串缓冲。int → char[4]
+
+- **新方法论**: IEEE 754 常量识别——decomp 中 `this->field = 1065353216` (0x3F800000 = 1.0f) 等整数赋值可暴露 float 类型（已加入 skill）
+
 ### [2026-05-17] iter(annotations): CameraCtrl GetLerpPos 签名修正 + _field_03C float + 3 mode 函数解码
 
 - **变更**:
