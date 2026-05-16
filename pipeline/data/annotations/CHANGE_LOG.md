@@ -51,6 +51,19 @@
 
 ## 变更记录
 
+### [2026-05-17] iter(annotations): RenderTarget2 5 type fixes + UIFrameWnd LOBYTE
+
+- **变更**:
+  - RenderTarget2: 3 IEEE754 float + 1 sprintf char[4] + 1 REVERT (矛盾证据)
+  - UIFrameWnd._todo_78 (off 120): int → unsigned char (7 LOBYTE refs + binary BYTE)
+- **置信度**: 85
+- **证据**:
+  - [A] RenderTarget2 off 104: 1135869952 = 0x43B40000 = 360.0f (旋转角度上界)
+  - [A] RenderTarget2 off 128/124: 1112014848 = 0x42480000 = 50.0f
+  - [A+] RenderTarget2 off 176: sprintf((char*)&this->_todo_0B0, "%s%03d", ...)
+  - **REVERT** RenderTarget2 off 48: float→int — *(float*)& 和 (char*)& 两种 cast 共存，类型不确定
+  - [A+] UIFrameWnd off 120: LOBYTE(this->_todo_78) 在 7 个函数中出现 + binary mov BYTE [esi+0x8C]
+
 ### [2026-05-17] iter(annotations): 跨库全局扫描——18 类型修正 (10 classes)
 
 - **变更**: 3 轮全局扫描共修正 18 个字段类型
