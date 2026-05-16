@@ -51,6 +51,21 @@
 
 ## 变更记录
 
+### [2026-05-16] iter(annotations): batch signature fixes — 4735→4732, PASS 27→30
+
+- **变更**: 批量修正 functions.json 中的函数签名
+  - 26 个 ctor/dtor 返回类型修正（`_DWORD*`/`gbVFileSystem*` → `ClassName*`/`void`）
+  - 36 个 `__cdecl` → `__thiscall` 调用约定修正（类方法已有 this 参数但标为 cdecl）
+  - PtrArray ctor/dtor: `__cdecl(int,int,char)` → `__thiscall(PtrArray*,int,int,char)`
+  - OpenBaseFile/OpenSceneFile/OpenNULLFile: 修正返回类型和参数
+  - 新增 CEffShock::GetEditorTaskDescription (0x4D3280)
+- **置信度**: 85
+- **证据**:
+  1. [A] __thiscall 调用约定要求 ECX=this，函数签名已有 `ClassName *this` 参数但标为 __cdecl
+  2. [A] ctor 返回类型必须是 ClassName*（编译器约定），dtor 必须是 void
+  3. [A] cmake: 4735→4732 (-3), PASS 27→30 (+3)
+- **注**: 签名修正对错误数影响小——需要 IDA 重新反编译调用者才能传播到局部变量类型
+
 ### [2026-05-16] feat(gen_cpp): auto-cleanup stale .cpp files + delete 17 gb* — 5570→4735 (-835)
 
 - **变更**:

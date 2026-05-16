@@ -17,23 +17,23 @@
   },
   "0x00401DF0": {
     "name": "OpenSceneFile::OpenSceneFile",
-    "signature": "OpenSceneFile *__thiscall(OpenSceneFile *this, char *String1)"
+    "signature": "OpenSceneFile *__thiscall(OpenSceneFile *this, char *pszPath)"
   },
   "0x00401F40": {
     "name": "OpenSceneFile::~OpenSceneFile",
-    "signature": "gbVFileSystem *__thiscall(OpenSceneFile *this)"
+    "signature": "void __thiscall(OpenSceneFile *this)"
   },
   "0x00401F50": {
     "name": "OpenBaseFile::OpenBaseFile",
-    "signature": "_DWORD *__thiscall(OpenBaseFile *this)"
+    "signature": "OpenBaseFile *__thiscall(OpenBaseFile *this)"
   },
   "0x00401F70": {
     "name": "OpenBaseFile::~OpenBaseFile",
-    "signature": "_DWORD *__thiscall(OpenBaseFile *this)"
+    "signature": "void __thiscall(OpenBaseFile *this)"
   },
   "0x00401F90": {
     "name": "OpenNULLFile::OpenNULLFile",
-    "signature": "gbVFileSystem *__thiscall(OpenNULLFile **this)"
+    "signature": "OpenNULLFile *__thiscall(OpenNULLFile *this)"
   },
   "0x004022E0": {
     "name": "GRPinput::GetCursorPos",
@@ -57,7 +57,7 @@
   },
   "0x004024F0": {
     "name": "GRPinput::~GRPinput",
-    "signature": "char __thiscall(GRPinput *this, int nVal, int nVal2)"
+    "signature": "void __thiscall(GRPinput *this, int nVal, int nVal2)"
   },
   "0x00402570": {
     "name": "GRPinput::Create_2570",
@@ -769,11 +769,11 @@
   },
   "0x00434130": {
     "name": "PtrArray::PtrArray",
-    "signature": "PtrArray *__cdecl(int nVal, int nVal2, char pData)"
+    "signature": "PtrArray *__thiscall(PtrArray *this, int nInitSize, int nGrowBy, char bOwned)"
   },
   "0x004341E0": {
     "name": "PtrArray::~PtrArray",
-    "signature": "int __cdecl(int nVal)"
+    "signature": "void __thiscall(PtrArray *this)"
   },
   "0x00434240": {
     "name": "PtrArray::SetSize",
@@ -1149,11 +1149,11 @@
   },
   "0x00478E00": {
     "name": "PAL_GDB::PAL_GDB",
-    "signature": "char __thiscall(PAL_GDB *this)"
+    "signature": "PAL_GDB *__thiscall(PAL_GDB *this)"
   },
   "0x00478FD0": {
     "name": "PAL_GDB::~PAL_GDB",
-    "signature": "int __thiscall(PAL_GDB *this, int nVal)"
+    "signature": "void __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x00479040": {
     "name": "PAL_GDB::GDB_LoadFile",
@@ -1605,7 +1605,7 @@
   },
   "0x004C8650": {
     "name": "CEffgbParticle::~CEffgbParticle",
-    "signature": "int __thiscall(CEffgbParticle *this, int nVal, int nVal2, int nVal3, _DWORD *p_DWORD, int nVal4, int nVal5)"
+    "signature": "void __thiscall(CEffgbParticle *this, int nVal, int nVal2, int nVal3, _DWORD *p_DWORD, int nVal4, int nVal5)"
   },
   "0x004C87A0": {
     "name": "CEffgbParticle::Create",
@@ -1709,7 +1709,7 @@
   },
   "0x004CE2A0": {
     "name": "CEffMgr::~CEffMgr",
-    "signature": "char __thiscall(CEffMgr *this)"
+    "signature": "void __thiscall(CEffMgr *this)"
   },
   "0x004CE340": {
     "name": "CEffMgr::Init",
@@ -1813,7 +1813,7 @@
   },
   "0x004D4F20": {
     "name": "CEffSParticle::~CEffSParticle",
-    "signature": "int __thiscall(CEffSParticle *this)"
+    "signature": "void __thiscall(CEffSParticle *this)"
   },
   "0x004D4FC0": {
     "name": "CEffSParticle::Create",
@@ -2289,7 +2289,7 @@
   },
   "0x004EDF10": {
     "name": "CCBRoleState::~CCBRoleState",
-    "signature": "char __thiscall(CCBRoleState *this)"
+    "signature": "void __thiscall(CCBRoleState *this)"
   },
   "0x004EE430": {
     "name": "CCBRoleState::Reset",
@@ -2845,11 +2845,11 @@
   },
   "0x00504E70": {
     "name": "CCBStageCam::CCBStageCam",
-    "signature": "char __thiscall(CCBStageCam *Buffer)"
+    "signature": "CCBStageCam *__thiscall(CCBStageCam *Buffer)"
   },
   "0x00504F40": {
     "name": "CCBStageCam::~CCBStageCam",
-    "signature": "char __thiscall(CCBStageCam *this)"
+    "signature": "void __thiscall(CCBStageCam *this)"
   },
   "0x00505060": {
     "name": "CCBStageCam::Reset",
@@ -2921,7 +2921,7 @@
   },
   "0x005058F0": {
     "name": "CCCTData::CCCTData",
-    "signature": "int __thiscall(CCCTData *this, _DWORD *p_DWORD, _DWORD *p_DWORD2)"
+    "signature": "CCCTData *__thiscall(CCCTData *this, _DWORD *p_DWORD, _DWORD *p_DWORD2)"
   },
   "0x00505930": {
     "name": "CCCTData::~CCCTData",
@@ -2977,7 +2977,7 @@
   },
   "0x005081E0": {
     "name": "CCBCamControl::~CCBCamControl",
-    "signature": "int __thiscall(CCBCamControl *this)"
+    "signature": "void __thiscall(CCBCamControl *this)"
   },
   "0x00508220": {
     "name": "CCBCamControl::Reset",
@@ -3049,7 +3049,7 @@
   },
   "0x00508930": {
     "name": "CCBStageRole::~CCBStageRole",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal, int nVal2, _DWORD *p_DWORD)"
+    "signature": "void __thiscall(CCBStageRole *this, int nVal, int nVal2, _DWORD *p_DWORD)"
   },
   "0x00508E30": {
     "name": "CCBStageEffect::CCBStageEffect",
@@ -3057,7 +3057,7 @@
   },
   "0x00508F30": {
     "name": "CCBStageEffect::~CCBStageEffect",
-    "signature": "char __thiscall(CCBStageEffect *this)"
+    "signature": "void __thiscall(CCBStageEffect *this)"
   },
   "0x00509050": {
     "name": "CCBStageEffect::Create",
@@ -3317,11 +3317,11 @@
   },
   "0x0050FEE0": {
     "name": "CCBStageScene::CCBStageScene",
-    "signature": "char __thiscall(CCBStageScene *this)"
+    "signature": "CCBStageScene *__thiscall(CCBStageScene *this)"
   },
   "0x005100D0": {
     "name": "CCBStageScene::~CCBStageScene",
-    "signature": "char __thiscall(CCBStageScene *this)"
+    "signature": "void __thiscall(CCBStageScene *this)"
   },
   "0x00510180": {
     "name": "CCBStageScene::Reset",
@@ -3425,11 +3425,11 @@
   },
   "0x00511EE0": {
     "name": "CCBStageShadow::CCBStageShadow",
-    "signature": "char __thiscall(CCBStageShadow *this)"
+    "signature": "CCBStageShadow *__thiscall(CCBStageShadow *this)"
   },
   "0x00511F90": {
     "name": "CCBStageShadow::~CCBStageShadow",
-    "signature": "char __thiscall(CCBStageShadow *this)"
+    "signature": "void __thiscall(CCBStageShadow *this)"
   },
   "0x00511FC0": {
     "name": "CCBStageShadow::Reset",
@@ -3985,11 +3985,11 @@
   },
   "0x0051B710": {
     "name": "CCBParabolaWindow::CCBParabolaWindow",
-    "signature": "char __thiscall(CCBParabolaWindow ***this, int *pnVal, int nVal)"
+    "signature": "CCBParabolaWindow *__thiscall(CCBParabolaWindow ***this, int *pnVal, int nVal)"
   },
   "0x0051B810": {
     "name": "CCBParabolaWindow::~CCBParabolaWindow",
-    "signature": "int __thiscall(CCBParabolaWindow *this)"
+    "signature": "void __thiscall(CCBParabolaWindow *this)"
   },
   "0x0051B860": {
     "name": "CCBMagicWindow::SendMessage",
@@ -4009,11 +4009,11 @@
   },
   "0x0051B9F0": {
     "name": "CCBMagicWindow::CCBMagicWindow",
-    "signature": "char __thiscall(CCBMagicWindow **this, int nVal, int nVal2, _DWORD *p_DWORD)"
+    "signature": "CCBMagicWindow *__thiscall(CCBMagicWindow **this, int nVal, int nVal2, _DWORD *p_DWORD)"
   },
   "0x0051BAB0": {
     "name": "CCBMagicWindow::~CCBMagicWindow",
-    "signature": "int __thiscall(CCBMagicWindow **this, int nVal)"
+    "signature": "void __thiscall(CCBMagicWindow **this, int nVal)"
   },
   "0x0051BB00": {
     "name": "CCBMagicWindow::Reset",
@@ -4117,7 +4117,7 @@
   },
   "0x0051D070": {
     "name": "CCBLineupWindow::~CCBLineupWindow",
-    "signature": "char __thiscall(CCBLineupWindow *this, CCBItemWindow **a2)"
+    "signature": "void __thiscall(CCBLineupWindow *this, CCBItemWindow **a2)"
   },
   "0x0051D120": {
     "name": "CCBLineupWindow::Reset",
@@ -4201,11 +4201,11 @@
   },
   "0x0051F080": {
     "name": "CCBResultWindow::CCBResultWindow",
-    "signature": "int __thiscall(CCBResultWindow *this, int nVal)"
+    "signature": "CCBResultWindow *__thiscall(CCBResultWindow *this, int nVal)"
   },
   "0x0051F090": {
     "name": "CCBResultWindow::~CCBResultWindow",
-    "signature": "int __thiscall(CCBResultWindow *this, int nVal)"
+    "signature": "void __thiscall(CCBResultWindow *this, int nVal)"
   },
   "0x0051F0A0": {
     "name": "CCBResultWindow::Reset",
@@ -5865,7 +5865,7 @@
   },
   "0x00512500": {
     "name": "CCBSystem::CCBSystem",
-    "signature": "int __thiscall(CCBSystem *this)"
+    "signature": "CCBSystem *__thiscall(CCBSystem *this)"
   },
   "0x0044BA60": {
     "name": "UIScenePanel::ctor_BA60",
@@ -7661,7 +7661,7 @@
   },
   "0x00410840": {
     "name": "PalScript::_static_410840",
-    "signature": "PalScript *__cdecl(PalScript *pPalScript)"
+    "signature": "PalScript *__thiscall(PalScript *pPalScript)"
   },
   "0x00410920": {
     "name": "PalScriptMgr::_auto_410920",
@@ -10337,11 +10337,11 @@
   },
   "0x0053EE60": {
     "name": "SceneObj::_static_53EE60",
-    "signature": "char *__cdecl(SceneObj *pSceneObj, char *pszBuf, char *pszBuf2)"
+    "signature": "char *__thiscall(SceneObj *pSceneObj, char *pszBuf, char *pszBuf2)"
   },
   "0x0053F060": {
     "name": "SceneObj::_static_53F060",
-    "signature": "void __cdecl(SceneObj *pSceneObj, SceneObj *pSceneObj2)"
+    "signature": "void __thiscall(SceneObj *pSceneObj, SceneObj *pSceneObj2)"
   },
   "0x0053F4C0": {
     "name": "CScreenMode::_nearby_53f4c0",
@@ -10937,7 +10937,7 @@
   },
   "0x004314F0": {
     "name": "PalScript::_nearby_4314f0",
-    "signature": "void __cdecl(PalScript *pPalScript, char *pszBuf)"
+    "signature": "void __thiscall(PalScript *pPalScript, char *pszBuf)"
   },
   "0x00431640": {
     "name": "PalScript::_nearby_431640",
@@ -15878,5 +15878,9 @@
   "0x0053D580": {
     "name": "CEffect::ReleaseResources",
     "signature": "void __thiscall(CEffect *this)"
+  },
+  "0x004D3280": {
+    "name": "CEffShock::GetEditorTaskDescription",
+    "signature": "const char *__thiscall(CEffShock *this, int nIndex)"
   }
 }
