@@ -51,6 +51,38 @@
 
 ## 变更记录
 
+### [2026-05-17] iter(annotations): 14 函数语义重命名 + PalScript binary_size 修复
+
+- **变更**: 14 个函数语义重命名 + 3 个类归属修正 + PalScript binary_size None→1816
+- **置信度**: 60-90
+
+  **CameraCtrl mode 函数 (置信度 65)**
+  - [A] 0x41CEE0: `C7 41 0C 01` → **SetupFollow** (mode 1: target 跟随)
+  - [A] 0x41CF20: `C7 41 0C 02` → **SetupOrbit** (mode 2: FOV/距离)
+  - [A] 0x41D010: `C7 41 0C 03` → **SetupLerp** (mode 3: 2×gbVec3D 插值)
+
+  **PalScript 归属修正 (置信度 90)**
+  - [A] 0x43A3E0: `[ecx+0x38]` 访问 PalScript._todo_38 → **PalScript::UpdateTimer**（从 CCBFiveNimbusWindow 修正）
+  - [A] 0x43A270: `[esi+0x38]+[esi+0x94]` 访问 PalScript guard+m_nMaxRepeats → **PalScript::Render**（从 UIFrameWnd 修正）
+  - [A] 0x40DD30: `mov esi,ecx` __thiscall → **CCBStageRole::Find**（格式修正 _ → ::）
+
+  **构造函数命名 (置信度 80)**
+  - CScreenMode::ctor_3F30 → **CScreenMode::CScreenMode** (vtable init + UIFrameWnd[6] + UIScene[3])
+  - CScreenMode::ctor_4130 → **CScreenMode::_CScreenMode**
+  - PalScript::ctor_A160 → **PalScript::PalScript** (vtable off_56AC4C init)
+
+  **Raw IDB decomp 语义分析 (置信度 60-65)**
+  - [C] 0x53B230: `return (*(this+2) - *(this+1)) / 656` → **Actor::GetCount** (数组计数模式)
+  - [C] 0x43F6A0: `*(*(this+1196)+4*idx)=val` → **UIWnd::SetChildParam** (索引数组 setter)
+  - [C] 0x458F70: `lstrlenA(lpString)` + __cdecl → **ParseResourcePath** (字符串解析辅助)
+  - [C] 0x4C9540: `Destroy + operator delete` → **CEffgbParticle::DestroyEffect**
+  - [C] 0x529440: `LoadFromFile` → **PalScript::LoadResource**
+
+  **PalScript binary_size 修复 (置信度 85)**
+  - 根因: `build_struct_decl` 使用 binary_size 确定 IDB struct 大小，PalScript 为 None → struct 不完整
+  - 修复: binary_size=1816（覆盖最高成员偏移 1812 + 4）
+  - 效果: raw cast 592→533 (-10%)，成员解析率回升到 73.8%
+
 ### [2026-05-17] iter(annotations): 9 函数命名 + 3 归属修正
 
 - **变更**: 9 个函数语义重命名 + 3 个类归属修正
