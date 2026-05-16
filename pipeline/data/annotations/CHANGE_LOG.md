@@ -51,6 +51,21 @@
 
 ## 变更记录
 
+### [2026-05-16] iter(annotations): 26 struct field type fixes + naming (4 classes)
+
+- **变更**: 4 个结构体的 _todo_ 字段类型修正和语义命名
+  - CCBStageScene: 21 字段（10 int→float 类型修正 + 全部命名）
+  - ScriptSystem: 4 字段（1 int→char[40] + 3 int→float, m_vMoveDir xyz 向量）
+  - NPC: 1 字段（int→UIWnd 嵌入对象, `UIWnd::FindChild` 调用确认）
+- **置信度**: 75（A+ 级：IDA apply 后 Hex-Rays 输出的类型 cast 和 API 调用模式）
+- **证据**:
+  1. [A+] `*(float *)&this->_todo_XXX` pattern → float 类型
+  2. [A+] `LODWORD(this->vecFiveLineup[N].y) = this->_todo_084` → lineup 坐标
+  3. [A+] `sprintf((char *)&this->_field_068, "%d", ...)` → char[40] buffer
+  4. [A+] `UIWnd::FindChild((UIWnd *)&this->_todo_44)` → UIWnd 嵌入对象
+  5. [A+] `sin(v8)*20.0 + this->_todo_378` → axis position Y
+- **保留 _todo_**: 18 个 CCBStageScene 字段 + 3 个 ScriptSystem 字段 + 1 NPC + 4 PalScript — 上下文不足以确定明确语义
+
 ### [2026-05-16] iter(annotations): 69 functions semantic rename from decomp analysis
 
 - **变更**: 69 个自动命名函数（`_auto_`/`_sub_`/`_nearby_`/`_init_`/`_method_`）从 decomp 代码分析后获得语义名

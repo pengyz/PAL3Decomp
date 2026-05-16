@@ -63,9 +63,9 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "68": {
-      "name": "_todo_44",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_wndBase",
+      "type": "UIWnd",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→UIWnd(UIWnd::FindChild/FindChildByName(&this->_todo_44,...))"
     }
   },
   "binary_size": 1172,

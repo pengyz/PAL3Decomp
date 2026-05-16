@@ -313,9 +313,9 @@
       "source": "binary:gap_r2"
     },
     "780": {
-      "name": "_todo_30C",
+      "name": "m_fInitBlend",
       "type": "float",
-      "source": "binary:gap_r2"
+      "source": "binary:gap_r2 | name_fix:=0.0_in_Init"
     },
     "820": {
       "name": "_todo_334",
@@ -323,9 +323,9 @@
       "source": "binary:gap_r2"
     },
     "824": {
-      "name": "_todo_338",
+      "name": "m_fBlendC",
       "type": "float",
-      "source": "binary:gap_r2 | type_fix:float→int_raw_decomp"
+      "source": "binary:gap_r2 | type_fix:float→int_raw_decomp | name_fix:=0.0_then_=0.5_blend_factor"
     },
     "828": {
       "name": "_todo_33C",
@@ -338,9 +338,9 @@
       "source": "binary:gap_r2"
     },
     "836": {
-      "name": "_todo_344",
+      "name": "m_fBlendD",
       "type": "float",
-      "source": "binary:gap_r2"
+      "source": "binary:gap_r2 | name_fix:=0.0_then_=0.5_blend_factor"
     },
     "840": {
       "name": "_todo_348",
@@ -353,9 +353,9 @@
       "source": "binary:gap_r2"
     },
     "848": {
-      "name": "_todo_350",
+      "name": "m_fBlendE",
       "type": "float",
-      "source": "binary:gap_r2"
+      "source": "binary:gap_r2 | name_fix:=0.0_then_=0.5_blend_factor"
     },
     "748": {
       "name": "m_bLoadPointer",
@@ -383,9 +383,9 @@
       "source": "binary:disp32_5hits_1funcs"
     },
     "888": {
-      "name": "_todo_378",
+      "name": "m_fAxisPosY",
       "type": "float",
-      "source": "binary:disp32_3hits_3funcs"
+      "source": "binary:disp32_3hits_3funcs | name_fix:sin(v8)*20+this, this-v12.y in LoadFlingNode"
     },
     "892": {
       "name": "m_nShowAxis",
@@ -393,24 +393,24 @@
       "source": "binary:disp32_3hits_3funcs"
     },
     "896": {
-      "name": "_todo_380",
+      "name": "m_fAxisPosX",
       "type": "float",
-      "source": "binary:disp32_3hits_3funcs"
+      "source": "binary:disp32_3hits_3funcs | name_fix:cos(v8)*20+this, this-Direction.x in LoadFlingNode"
     },
     "900": {
-      "name": "_todo_384",
+      "name": "m_fAxisSaveY",
       "type": "float",
-      "source": "binary:disp32_1hits_1funcs | type_fix"
+      "source": "binary:disp32_1hits_1funcs | type_fix | name_fix:ReadLine→ShowAxis,assigned_to_378"
     },
     "904": {
-      "name": "_todo_388",
+      "name": "m_fAxisSaveZ",
       "type": "float",
-      "source": "binary:disp32_1hits_1funcs | type_fix"
+      "source": "binary:disp32_1hits_1funcs | type_fix | name_fix:ReadLine in ShowAxis"
     },
     "908": {
-      "name": "_todo_38C",
+      "name": "m_fAxisSaveX",
       "type": "float",
-      "source": "binary:disp32_1hits_1funcs | type_fix"
+      "source": "binary:disp32_1hits_1funcs | type_fix | name_fix:ReadLine in ShowAxis,assigned_to_380"
     },
     "128": {
       "name": "m_nRender",
@@ -418,14 +418,14 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "132": {
-      "name": "_todo_084",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_fLineupCamY",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(assigned_to_vecFiveLineup[N].y_in_Reset)"
     },
     "136": {
-      "name": "_todo_088",
+      "name": "m_fLineupCamZ",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:assigned_to_vecFiveLineup[N].z_in_Reset"
     },
     "140": {
       "name": "m_fRender",
@@ -433,29 +433,29 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "144": {
-      "name": "_todo_090",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_fLineupPrevY",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[N].y)"
     },
     "148": {
-      "name": "_todo_094",
+      "name": "m_fLineupPrevZ",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:assigned_to_vecFiveLineup[N].z,=_todo_088_in_Render"
     },
     "164": {
-      "name": "_todo_0A4",
+      "name": "m_fLineupExtraX",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:assigned_to_vecFiveLineup[6].x_in_Reset"
     },
     "168": {
-      "name": "_todo_0A8",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_fLineupExtraY",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[6].y)"
     },
     "172": {
-      "name": "_todo_0AC",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_fLineupExtraZ",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[6].z)"
     },
     "672": {
       "name": "m_nLoadPointer",
@@ -468,9 +468,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "688": {
-      "name": "_todo_2B0",
+      "name": "m_fBlendA",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:=0.0_then_=0.5_blend_factor"
     },
     "720": {
       "name": "_todo_2D0",
@@ -478,9 +478,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "724": {
-      "name": "_todo_2D4",
+      "name": "m_fBlendB",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:=0.0_then_=0.5_blend_factor"
     },
     "728": {
       "name": "_todo_2D8",
@@ -508,9 +508,9 @@
       "source": "ida_decomp:_method_52b2a0 Object3D::Object3D(this) | type_fix:value→ptr(span=4)"
     },
     "860": {
-      "name": "_todo_35C",
+      "name": "m_fBlendF",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:=0.0_then_=0.5_blend_factor"
     },
     "864": {
       "name": "_todo_360",
@@ -518,34 +518,34 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "912": {
-      "name": "_todo_390",
+      "name": "m_fAxisRotY",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:rotation_calc_in_Init,WriteLine_in_ShowRoleIndex"
     },
     "916": {
-      "name": "_todo_394",
+      "name": "m_fAxisRotYTarget",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | type_fix"
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix | name_fix:ReadLine_in_ShowAxis,assigned_to_390"
     },
     "924": {
-      "name": "_todo_39C",
+      "name": "m_fAxisRotX",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | type_fix"
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix | name_fix:ReadLine_in_ShowAxis,SetFlingRotX"
     },
     "928": {
-      "name": "_todo_3A0",
+      "name": "m_fAxisTargetY",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:ReadLine_in_ShowAxis,added_to_pos_in_Init"
     },
     "936": {
-      "name": "_todo_3A8",
+      "name": "m_fAxisTargetX",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:ReadLine_in_ShowAxis,added_to_pos_in_Init"
     },
     "940": {
-      "name": "_todo_3AC",
+      "name": "m_fAxisRotXTarget",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:ReadLine_in_ShowAxis,used_in_Init_rotation_calc"
     },
     "964": {
       "name": "m_bUpdateFlag",
@@ -558,19 +558,19 @@
       "source": "ida_decomp:Update =0"
     },
     "152": {
-      "name": "_todo_98",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_fLineupDefaultX",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[1-5].x)"
     },
     "156": {
-      "name": "_todo_9C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_fLineupDefaultY",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[1-5].y)"
     },
     "160": {
-      "name": "_todo_A0",
+      "name": "m_fLineupDefaultZ",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | name_fix:assigned_to_vecFiveLineup[1-5].z"
     },
     "676": {
       "name": "_todo_2A4",

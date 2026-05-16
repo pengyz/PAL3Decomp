@@ -174,9 +174,9 @@
       "source": "binary:UpdateObjects sub_419090(this+1344)"
     },
     "104": {
-      "name": "_field_068",
-      "type": "int",
-      "source": "binary:gap_r2"
+      "name": "m_szFmtBuf",
+      "type": "char[40]",
+      "source": "binary:gap_r2 | type_fix:int→char[40](sprintf(&this->_field_068,\"%d\",...))"
     },
     "904": {
       "name": "_field_388",
@@ -234,19 +234,19 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "1320": {
-      "name": "_todo_528",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_vMoveDir_x",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, gbVec3D::Length)"
     },
     "1324": {
-      "name": "_todo_52C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_vMoveDir_y",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, /fVal, *v16)"
     },
     "1328": {
-      "name": "_todo_530",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_vMoveDir_z",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, /fVal, *v16)"
     },
     "1480": {
       "name": "_todo_5C8",
