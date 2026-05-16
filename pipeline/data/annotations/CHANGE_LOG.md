@@ -51,6 +51,23 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(codegen): gbengine reference parameter & removal — C2664 -22
+
+- **变更**: gen_cpp.py 新增对已知 gbengine 引用参数方法的 `&` 移除
+- **置信度**: 95（等价变换：C++ 中调用引用参数函数不需要 `&`，IDA 加 `&` 是因为它输出 C 代码）
+- **根因调研**:
+  1. `flatten_gbengine_headers` 删除方法声明 → IDA TIL 无方法签名 → 尝试保留
+  2. 保留全部方法：gbGfxManager 等大类 parse 失败（成员丢失） → 只保留含 `&` 的方法
+  3. 保留引用方法：TIL 记录了签名，但 Hex-Rays 不使用（它查 IAT 地址上的类型）
+  4. SetType on IAT：data 地址设类型失败（返回 None）
+  5. **结论**: Hex-Rays 是 C 反编译器，对引用参数**总是**生成 `&var`，无法在 IDA 层修复
+- **实现**: 对 16 个已知 gbengine 方法（Rotate/Translate/Scale/RightMultiply 等），用确定性正则去掉参数中的 `&`
+- **证据**:
+  1. [A] C2664 gbMatrixStack::Rotate 41→29, Translate 27→22, RightMultiply 7→1
+  2. [A] 总 C2664 引用错误 79→57 (-22)
+  3. [A] 测试确认 IDA `parse_decls` 支持方法声明+引用参数（0 errors），但 Hex-Rays 输出不受影响
+- **残留**: 57 个错误来自复杂模式（`(struct Type *)&expr`），需要后续处理
+
 ### [2026-05-16] iter(annotations+codegen): IDA type normalization + 102 signature fixes — 5662→5573
 
 - **变更**:

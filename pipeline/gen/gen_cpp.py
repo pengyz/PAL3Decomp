@@ -425,6 +425,72 @@ def transform_method_code(cls_name, method_name, code, sig):
     code = re.sub(r'\b__int8\b', 'char', code)
     code = re.sub(r'\b__int16\b', 'short', code)
 
+    # gbengine reference parameters: IDA outputs &var for reference params because
+    # it generates C (not C++). Remove & for known reference-param method calls.
+    # Pattern: ->Method(args, &var) or ::Method(obj, args, &var) where Method takes refs.
+    # Also handles: (struct Type *)&expr → *(struct Type *)&expr (pointer-to-ref conversion)
+    _REF_METHODS = {
+        'Rotate': {1, 2},        # (this, float, gbVec3D&) or (this, gbQuaternion&)
+        'Translate': {1},        # (this, gbVec3D&)
+        'Scale': {1},            # (this, gbVec3D&)
+        'RightMultiply': {1},    # (this, const gbMatrix4&)
+        'LeftMultiply': {1},     # (this, const gbMatrix4&)
+        'RightTranslate': {1},   # (this, gbVec3D&)
+        'LeftTranslate': {1},    # (this, gbVec3D&)
+        'MakeMatrix': {1, 2, 3}, # (this, gbVec3D&, gbVec3D&, gbVec3D&)
+        'IntersectPlane': {1, 2},# (this, gbVec3D&, gbVec3D&)
+        'IsColTriangle': {1, 2, 3, 4}, # (this, gbVec3D& x4)
+        'IsColOBB': {1},         # (this, gbOBBox&)
+        'IsColOBB_H': {1},       # (this, gbOBBox&)
+        'IsColAABB': {1},        # (this, gbAABBox&)
+    }
+    # Direct regex for each known pattern:
+    # ->Rotate(x, &var) → ->Rotate(x, var)
+    # ->Translate(&var) → ->Translate(var)
+    for method_name, ref_pos in _REF_METHODS.items():
+        if ref_pos == {1}:
+            # Single ref arg at position 1: ->Method(&var) → ->Method(var)
+            code = re.sub(
+                r'(->' + re.escape(method_name) + r'\s*\()&(\w)',
+                r'\1\2', code)
+            # ::Method(obj, &var) → ::Method(obj, var)
+            code = re.sub(
+                r'(::' + re.escape(method_name) + r'\s*\([^,]+,\s*)&(\w)',
+                r'\1\2', code)
+        elif ref_pos == {1, 2}:
+            # Two ref args: ->Method(&a, &b)
+            code = re.sub(
+                r'(->' + re.escape(method_name) + r'\s*\()&(\w)',
+                r'\1\2', code)
+            code = re.sub(
+                r'(->' + re.escape(method_name) + r'\s*\([^,]+,\s*)&(\w)',
+                r'\1\2', code)
+        elif ref_pos == {2}:
+            # Ref at position 2 only: ->Method(x, &var) → ->Method(x, var)
+            code = re.sub(
+                r'(->' + re.escape(method_name) + r'\s*\([^,]+,\s*)&(\w)',
+                r'\1\2', code)
+        elif ref_pos == {1, 2, 3}:
+            # Three ref args
+            code = re.sub(
+                r'(->' + re.escape(method_name) + r'\s*\()&(\w)',
+                r'\1\2', code)
+            code = re.sub(
+                r'(->' + re.escape(method_name) + r'\s*\([^,]+,\s*)&(\w)',
+                r'\1\2', code)
+            code = re.sub(
+                r'(->' + re.escape(method_name) + r'\s*\([^,]+,[^,]+,\s*)&(\w)',
+                r'\1\2', code)
+        elif ref_pos == {1, 2, 3, 4}:
+            # Four ref args (IsColTriangle)
+            for _ in range(4):
+                code = re.sub(
+                    r'(->' + re.escape(method_name) + r'\([^)]*),\s*&(\w)',
+                    r'\1, \2', code)
+                code = re.sub(
+                    r'(->' + re.escape(method_name) + r'\s*\()&(\w)',
+                    r'\1\2', code)
+
     # Fix Hex-Rays broken dereference: (*)var → (*var)
     code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
 
