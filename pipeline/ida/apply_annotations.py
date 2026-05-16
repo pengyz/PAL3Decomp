@@ -272,6 +272,60 @@ def import_gbengine_types():
     print("[gb] gbengine types: %d imported (%d stubs cleared, %d recovered, %d errors)"
           % (ok, stubs_removed, recovered, errs))
 
+    # Set correct function types on gbengine IAT entries (data pointers in .idata).
+    # Hex-Rays reads the type from the IAT address when decompiling indirect calls.
+    # Without this, reference params (gbVec3D &) appear as pointer-pass (&var).
+    _GB_IMPORT_SIGS = {
+        "?Rotate@gbMatrixStack@@QAEXMAAUgbVec3D@@@Z":
+            "void __thiscall(gbMatrixStack *, float, gbVec3D &);",
+        "?Rotate@gbMatrixStack@@QAEXAAUgbQuaternion@@@Z":
+            "void __thiscall(gbMatrixStack *, gbQuaternion &);",
+        "?Translate@gbMatrixStack@@QAEXAAUgbVec3D@@@Z":
+            "void __thiscall(gbMatrixStack *, gbVec3D &);",
+        "?Scale@gbMatrixStack@@QAEXAAUgbVec3D@@@Z":
+            "void __thiscall(gbMatrixStack *, gbVec3D &);",
+        "?RightMultiply@gbMatrix4@@QAEXABUgbMatrix4@@@Z":
+            "void __thiscall(gbMatrix4 *, const gbMatrix4 &);",
+        "?RightMultiply@gbMatrix4@@QAEXABUgbQuaternion@@@Z":
+            "void __thiscall(gbMatrix4 *, const gbQuaternion &);",
+        "?LeftMultiply@gbMatrix4@@QAEXABUgbMatrix4@@@Z":
+            "void __thiscall(gbMatrix4 *, const gbMatrix4 &);",
+        "?LeftMultiply@gbMatrix4@@QAEXABUgbQuaternion@@@Z":
+            "void __thiscall(gbMatrix4 *, const gbQuaternion &);",
+        "?RightTranslate@gbMatrix4@@QAEXAAUgbVec3D@@@Z":
+            "void __thiscall(gbMatrix4 *, gbVec3D &);",
+        "?LeftTranslate@gbMatrix4@@QAEXAAUgbVec3D@@@Z":
+            "void __thiscall(gbMatrix4 *, gbVec3D &);",
+        "?MakeMatrix@gbMatrix4@@QAEXAAUgbVec3D@@00@Z":
+            "void __thiscall(gbMatrix4 *, gbVec3D &, gbVec3D &, gbVec3D &);",
+        "?IsColTriangle@gbRay@@QAEHAAUgbVec3D@@000@Z":
+            "int __thiscall(gbRay *, gbVec3D &, gbVec3D &, gbVec3D &, gbVec3D &);",
+        "?IntersectPlane@gbRay@@QAEMAAUgbVec3D@@0@Z":
+            "float __thiscall(gbRay *, gbVec3D &, gbVec3D &);",
+        "?IsColOBB@gbRay@@QAEHAAUgbOBBox@@@Z":
+            "int __thiscall(gbRay *, gbOBBox &);",
+        "?IsColOBB_H@gbRay@@QAEHAAUgbOBBox@@@Z":
+            "int __thiscall(gbRay *, gbOBBox &);",
+        "?IsColAABB@gbRay@@QAEHAAUgbAABBox@@@Z":
+            "int __thiscall(gbRay *, gbAABBox &);",
+    }
+    import ida_nalt
+    gb_sig_ok = 0
+    nimps = ida_nalt.get_import_module_qty()
+    for i in range(nimps):
+        mod = ida_nalt.get_import_module_name(i)
+        if not mod or 'gbengine' not in mod.lower():
+            continue
+        def _set_import_type(ea, name, ordinal):
+            nonlocal gb_sig_ok
+            if name and name in _GB_IMPORT_SIGS:
+                if idc.SetType(ea, _GB_IMPORT_SIGS[name]):
+                    gb_sig_ok += 1
+            return True
+        ida_nalt.enum_import_names(i, _set_import_type)
+    if gb_sig_ok:
+        print("[gb] gbengine import function types set: %d" % gb_sig_ok)
+
 
 def apply_annotations():
     ida_auto.auto_wait()
@@ -309,6 +363,7 @@ def apply_annotations():
     funcs = data.get("functions", {})
     created = 0
     renamed = 0
+    rename_fail = []
     for addr_str, info in funcs.items():
         addr = int(addr_str, 16)
         name = info.get("name", "")
@@ -316,8 +371,17 @@ def apply_annotations():
             if _ida_funcs.add_func(addr):
                 created += 1
         if name:
+            cur = ida_name.get_name(addr) or ""
+            if cur == name:
+                renamed += 1
+                continue
+            # Delete existing name first (required for mangled names like ?xxx@yyy@@)
+            if cur and cur != name:
+                ida_name.set_name(addr, "", ida_name.SN_NOWARN)
             if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                 renamed += 1
+            else:
+                rename_fail.append((addr_str, cur, name))
 
     # Also name skip_functions (not decompiled, but callers need their names)
     skip_path = os.path.join(ANNOTATIONS_DIR, "skip_functions.json")
@@ -334,7 +398,11 @@ def apply_annotations():
                 if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                     skip_named += 1
 
-    print("[1] Functions: created=%d, renamed=%d/%d, skip_named=%d" % (created, renamed, len(funcs), skip_named))
+    print("[1] Functions: created=%d, renamed=%d/%d, skip_named=%d, rename_fail=%d" %
+          (created, renamed, len(funcs), skip_named, len(rename_fail)))
+    if rename_fail:
+        for _addr, _old, _new in rename_fail[:10]:
+            print("    [!] %s: '%s' → '%s' FAILED" % (_addr, _old[:40], _new[:40]))
 
     # --- 2. Globals (names only; types deferred to step 6b after structs) ---
     globs = data.get("globals", {})
