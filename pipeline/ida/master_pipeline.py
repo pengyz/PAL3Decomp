@@ -103,10 +103,23 @@ def phase1_import_types():
 
     log("[*] 枚举导入: %d / %d" % (enum_ok, len(enums)))
 
+    # System types provided by SDK headers — do NOT import from PDB (creates blobs)
+    _SKIP_SYSTEM_TYPES = {
+        '_DIMOUSESTATE', '_DIMOUSESTATE2', '_DIJOYSTATE', '_DIJOYSTATE2',
+        '_DIDEVCAPS', '_DIDEVICEINSTANCEA', '_DIDEVICEOBJECTINSTANCEA',
+        'DIMOUSESTATE', 'DIMOUSESTATE2', 'DIJOYSTATE', 'DIJOYSTATE2',
+        'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG', 'RECT', 'POINT', 'SIZE',
+        'WNDCLASSA', 'tagWNDCLASSA', '_WIN32_FIND_DATAA',
+        '_FILETIME', '_SYSTEMTIME', '_MEMORYSTATUS', '_SECURITY_ATTRIBUTES',
+        '_OSVERSIONINFOA', '_STARTUPINFOA', '_GUID', 'GUID', 'IID',
+        'D3DMATRIX', '_D3DMATRIX', 'D3DVECTOR', '_D3DVECTOR',
+        '_iobuf', 'FILE',
+    }
+
     # Forward declarations
     for cls in classes:
         name = cls.get('name', '')
-        if name:
+        if name and name not in _SKIP_SYSTEM_TYPES:
             decl = 'struct %s;' % name
             tinfo = ida_typeinf.tinfo_t()
             if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
@@ -119,6 +132,9 @@ def phase1_import_types():
         size = cls.get('size', 0)
         data_members = cls.get('data_members', [])
         if not name:
+            continue
+        # Skip system types (SDK headers provide complete definitions)
+        if name in _SKIP_SYSTEM_TYPES:
             continue
         # Skip names with template chars that IDA can't handle
         if '<' in name or '>' in name:

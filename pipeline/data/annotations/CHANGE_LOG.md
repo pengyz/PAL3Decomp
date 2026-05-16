@@ -51,6 +51,17 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(master_pipeline): skip system types in PDB import — _DIMOUSESTATE2 8→0
+
+- **变更**: master_pipeline.py 在 PDB 类型导入时过滤已知系统类型（DirectInput/Windows/D3D）
+- **置信度**: 95
+- **根因**: master_pipeline 从 PAL3A.PDB 导入所有类型，对 `_DIMOUSESTATE2` 等系统类型只有 size 没有成员，创建了 `_data[20]` blob 覆盖了 SDK `<dinput.h>` 的完整定义。Hex-Rays 反编译时使用 TIL blob → 生成 `MouseState._data[4]` 而非 `MouseState.lY`。
+- **修复**: 在源头（master_pipeline）的 PDB 导入循环中跳过 `_SKIP_SYSTEM_TYPES` 集合中的类型。这些类型由 SDK 头文件提供完整定义。
+- **证据**:
+  1. [A] IDB 中 `_DIMOUSESTATE2` size=20 members=1(_data) — PDB blob
+  2. [A] `<dinput.h>` 含完整定义（lX,lY,lZ,rgbButtons）需 DIRECTINPUT_VERSION>=0x0700
+  3. [A] cmake: _DIMOUSESTATE2 C2039 8→0
+
 ### [2026-05-16] fix(annotations): remove 24 incorrectly skipped game functions — export +24
 
 - **变更**: 从 skip_functions.json 移除 24 个被错误标记为 `crt_runtime` 的游戏函数
