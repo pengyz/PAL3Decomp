@@ -51,6 +51,31 @@
 
 ## 变更记录
 
+### [2026-05-16] feat(gen_cpp): auto-cleanup stale .cpp files + delete 17 gb* — 5570→4735 (-835)
+
+- **变更**:
+  1. gen_cpp.py 新增自动清理功能：生成后遍历 `src/pal3/` 目录，删除不在当前生成列表中的 .cpp 文件
+  2. 手动删除 14 + 自动清理 3 = 17 个废弃 gb*.cpp 文件
+- **置信度**: 95
+- **根因**: gen_cpp --force-all 只覆盖已有文件，不删除无函数的废弃文件。函数重归属后旧类的 .cpp 残留被 cmake 继续编译。
+- **实现**: 收集所有生成的 .cpp 路径到 `generated_files` 集合，遍历 OUTPUT_DIR 删除不在集合中的 .cpp
+- **证据**:
+  1. [A] cmake: 5570→4735 (-835), C2673 521→~70
+  2. [A] 17 个 gb*.cpp 删除后文件数 205→188
+- **影响**: 管线幂等性提升——重复运行 gen_cpp 不会有残留文件干扰编译
+
+### [2026-05-16] fix(build): delete 14 stale gb*.cpp files — 5570→4837 (-733)
+
+- **变更**: 删除 14 个废弃的 `src/pal3/Misc/gb*.cpp` 文件
+- **置信度**: 95
+- **根因**: 之前 IDA 类型传播把 PAL3 函数错误归属到 gbengine 类，gen_cpp 生成了 gb*.cpp 文件。后来函数被正确归属（SoundSystem, CScreenMode, RoleSystem 等），但旧 .cpp 文件**残留在 src/ 目录中**被 cmake 继续编译。gen_cpp --force-all 不删除无函数的废弃文件。
+- **删除文件**: gbMatrixStack, gbAudioManager, gbVFileSystem, gbRefObject, gbCamera, gbImage2D, gbTexture, gbTexture_D3D, gbEffectMgr, gbSceneGraph, gbSound2DNode, gbSound3DNode, gbVertPoolMgr, gbVolModNode
+- **证据**:
+  1. [A] 文件时间戳 May 15 09:57（旧 session），当前 gen_cpp 不再生成这些文件
+  2. [A] decomp JSON 中对应函数已改名（Object3D::RenderTransformed 等），不再以 gbMatrixStack:: 前缀
+  3. [A] cmake: 5570→4837 (-733), C2673 521→168 (-353)
+- **影响**: 14 个文件从构建目标中移除，191 个文件参与编译
+
 ### [2026-05-16] fix(annotations): add w/h screen globals + pfVal/szFilename — 5607→5570
 
 - **变更**: globals.json 新增 4 个全局变量

@@ -954,6 +954,24 @@ def main():
             skipped += 1
         total_funcs += len(free_funcs)
 
+    # Clean stale .cpp files not in current generation set
+    generated_files = set()
+    for cls_name in by_class:
+        subdir = get_class_dir(cls_name)
+        generated_files.add(str((OUTPUT_DIR / subdir / ("%s.cpp" % cls_name)).resolve()))
+    if free_funcs:
+        generated_files.add(str((OUTPUT_DIR / "free_functions.cpp").resolve()))
+    removed = 0
+    for root, dirs, files in os.walk(OUTPUT_DIR):
+        for fn in files:
+            if fn.endswith('.cpp'):
+                fpath = str(Path(root, fn).resolve())
+                if fpath not in generated_files:
+                    os.remove(os.path.join(root, fn))
+                    removed += 1
+    if removed:
+        print("  Cleaned %d stale .cpp files" % removed)
+
     print("\nGenerated %d .cpp files (%d skipped, %d functions) in %s" % (
         generated, skipped, total_funcs, OUTPUT_DIR))
     if skipped > 0:
