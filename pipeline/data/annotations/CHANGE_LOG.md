@@ -51,6 +51,17 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(pipeline): full rebuild with type corrections — 4546→4497 (-49)
+
+- **变更**: 完整管线重建（master→apply→export→gen→build），让 apply_annotations 的类型设置传播到 Hex-Rays 反编译
+- **置信度**: 95
+- **根因**: 之前只重跑了 gen_cpp 没有重跑 IDA 管线。apply_annotations 把 `g_ScriptSlots (int[132])` 类型设到 0xBFAB60 后需要 export_full 重新反编译才能改变 Hex-Rays 输出
+- **证据**:
+  1. [A] m_nConfigIndex C2228: 38→0（IDA 不再把 0xBFAB60 当 PalScript 访问）
+  2. [A] _gap_214 C2228: 32→0
+  3. [A] cmake: 4546→4497 (-49)
+  4. [A] 480 个签名修正的类型传播效果也在此次重建中生效
+
 ### [2026-05-16] fix(annotations): add 3 global struct instances — 4641→4546 (-95)
 
 - **变更**: globals.json 添加 3 个 IDA 识别的全局结构体实例
