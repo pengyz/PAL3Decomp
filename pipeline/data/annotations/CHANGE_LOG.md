@@ -51,6 +51,26 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(annotations): remove 24 incorrectly skipped game functions — export +24
+
+- **变更**: 从 skip_functions.json 移除 24 个被错误标记为 `crt_runtime` 的游戏函数
+- **置信度**: 95
+- **根因定位过程**:
+  1. 发现 0x540440 (`_TextureLib_Data::SetLibFolder`) export_full 不导出
+  2. 排除：名字正确 ✓，在 Functions() 中 ✓，decompile 成功 ✓
+  3. 排除：optimizer 干扰 ✗，mangled name 覆盖 ✗（Step 11 修复了）
+  4. **确认：`skip_functions.json` 含 `0x00540440` 标记为 `crt_runtime`**
+  5. 发现共 24 个游戏函数被错误 skip（_TextureLib_Data 8 个, UIRender 7 个, UICursor 4 个, UIQuadManager 3 个, UIRenderObj 2 个）
+- **证据**:
+  1. [A] `skip_functions.json["0x00540440"] = {reason: "crt_runtime"}` — 明确数据错误
+  2. [A] 函数体包含游戏逻辑（纹理加载、UI 渲染）——不是 CRT
+  3. [A] 修复后 Targets 4369→4393 (+24), Exported 4364→4388 (+24)
+  4. [A] `TextureLib_Data_SetLibFolder_00540440.json` 文件生成 ✓
+- **附加修复**:
+  - apply_annotations Step 11: force-rename 覆盖 IDA 类型传播产生的 mangled name
+  - apply_annotations: `set_auto_state(False)` 在修改期间冻结自动分析
+  - export_full: 清除 debug 代码
+
 ### [2026-05-16] Session 最终状态：6659→4442 (-33.3%), 15→32 PASS
 
 - **完整管线重建基线**: 4442 errors, 32/188 PASS

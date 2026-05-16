@@ -330,6 +330,11 @@ def import_gbengine_types():
 def apply_annotations():
     ida_auto.auto_wait()
 
+    # Disable auto-analysis during bulk modifications.
+    # IDA's type propagation can override user-set names with mangled names
+    # when SetType matches a TIL method declaration. Freezing prevents this.
+    ida_auto.set_auto_state(False)
+
     # --- Import gbengine types FIRST (structs depend on gb* types) ---
     import_gbengine_types()
 
@@ -703,7 +708,11 @@ def apply_annotations():
 
     print("[6b] Global types: %d/%d (fail=%d)" % (g_typed, len([g for g in globs.values() if g.get("type")]), len(g_type_fail)))
 
-    # --- 7. Trigger full reanalysis for type propagation ---
+    # --- 7. Re-enable auto-analysis + trigger full type propagation ---
+    # All modifications are done. Now let IDA propagate types.
+    # This may override some function names with mangled versions (IDA C++ resolution).
+    # Step 11 will fix those after propagation completes.
+    ida_auto.set_auto_state(True)
     ida_auto.plan_and_wait(0x00401000, 0x00560000)
     ida_auto.auto_wait()
 
@@ -806,6 +815,21 @@ def apply_annotations():
             _unnamed2 += 1
     if _unnamed2:
         print("[10] Final un-name: %d stale functions (post-propagation)" % _unnamed2)
+
+    # --- 11. Force-rename: type propagation may override our names with mangled versions ---
+    _force_renamed = 0
+    for addr_str, info in funcs.items():
+        addr = int(addr_str, 16)
+        desired = info.get("name", "")
+        if not desired:
+            continue
+        cur = ida_name.get_name(addr) or ""
+        if cur != desired:
+            ida_name.set_name(addr, "", ida_name.SN_NOWARN)
+            if ida_name.set_name(addr, desired, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+                _force_renamed += 1
+    if _force_renamed:
+        print("[11] Force-renamed %d functions (type propagation override)" % _force_renamed)
 
     idc.save_database(idc.get_idb_path(), 0)
     print("[*] Done. Database saved.")
