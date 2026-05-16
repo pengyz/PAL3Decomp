@@ -51,6 +51,23 @@
 
 ## 变更记录
 
+### [2026-05-16] Session 最终状态：6659→4442 (-33.3%), 15→32 PASS
+
+- **完整管线重建基线**: 4442 errors, 32/188 PASS
+- **Session 总进展**: 6659→4442 (-2217, -33.3%), PASS 15→32 (+17)
+- **主要里程碑**:
+  1. import_gbengine 集成到 apply_annotations (-982)
+  2. 废弃 gb*.cpp 自动清理 (-835)
+  3. DAG 拓扑排序 + strip const 方法 (-98)
+  4. 全局结构体实例 (g_PAL3, g_RoleSystemInstance) (-95)
+  5. 480 函数签名修正 (C2660 -41, 假阴性暴露 +47)
+  6. __int8→char 类型规范化 (-89)
+  7. gbengine 引用参数 & 移除 (-22)
+  8. w/h 全局变量 (-37)
+  9. IDA 新函数调查 12 个 (-26)
+  10. aXxx/asc_ 字符串字面量 (-10)
+  11. abs32/memset32/__OFSUB__/COERCE_DOUBLE 定义
+
 ### [2026-05-16] IDA export_full 间歇性失败根因定位
 
 - **问题**: 0x540440 (`_TextureLib_Data::SetLibFolder`) 等函数在 export_full 批量导出时不产生 decomp JSON
