@@ -78,8 +78,8 @@
     },
     "360": {
       "name": "m_nMenuParam",
-      "type": "int",
-      "source": "ida_decomp:_init_4adc30 =v8[1]/=0, 6 refs"
+      "type": "UIFrameWnd",
+      "source": "binary:ctor_3F30 lea ecx,[esi+0x168]; call UIFrameWnd::_unverified_4422E0(0x4422E0)"
     },
     "512": {
       "name": "_field_200",
@@ -734,12 +734,12 @@
     "88": {
       "name": "m_nScreenWidth",
       "type": "int",
-      "source": "ida_decomp:_init_4593c0 = 800, 10 refs"
+      "source": "binary:ctor_3F30 C7 46 58 20 03 00 00 = mov [esi+0x58],800"
     },
     "92": {
-      "name": "m_nScreenParam",
+      "name": "m_nScreenHeight",
       "type": "int",
-      "source": "ida_decomp:SetProgress HIDWORD calc, 9 refs"
+      "source": "binary:ctor_3F30 C7 46 5C 58 02 00 00 = mov [esi+0x5C],600"
     },
     "96": {
       "name": "m_nProgressBase",
