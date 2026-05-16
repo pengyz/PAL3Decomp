@@ -51,6 +51,25 @@
 
 ## 变更记录
 
+### [2026-05-16] iter(annotations): 69 functions semantic rename from decomp analysis
+
+- **变更**: 69 个自动命名函数（`_auto_`/`_sub_`/`_nearby_`/`_init_`/`_method_`）从 decomp 代码分析后获得语义名
+- **置信度**: 70（从 API 调用模式、字符串引用、控制流推断）
+- **分类**:
+  - Combat system: 13 (CCBStage, CCBRoleState, CCBUI, CEffMgr)
+  - Role/Actor: 11 (RoleSystem, Actor, ArcSceneMonster)
+  - Script: 13 (PalScript, PalScriptMgr, ScriptVM, ScriptSystem)
+  - UI: 24 (UIListBox, UIScene, CScreenMode, EquipUI, etc.)
+  - Camera/Rendering: 5 (CameraCtrl, RenderTarget, Object3D)
+  - Other: 3 (PAL_GDB, Array)
+- **方法**: 分析 `decompiled_c` 中的 API 调用模式推断语义:
+  - CreateFromTemplate → UI creation (InitXxx/CreateXxx)
+  - Render+SetTexture+Apply → rendering (RenderXxx)
+  - PathFollowUpdate+SetMoveSpeed → movement (UpdateMovement)
+  - LoadFromFile → loading (LoadXxx)
+  - switch/case state machine → state handler (ProcessXxx)
+- **命名率提升**: 函数 53%→57% 语义化
+
 ### [2026-05-16] iter(annotations): fix 14 C2660 signatures (param count)
 
 - **变更**: 14 个函数签名参数个数修正
