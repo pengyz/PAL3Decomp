@@ -51,6 +51,24 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(gen_pipeline): 5 codegen tool bugs causing cascading compile errors
+
+- **变更**: pipeline/gen/ 三个文件修复，消除 4 类编译错误
+  1. `gen_headers.py`: 函数指针返回类型解析 — `int (__thiscall *__thiscall(Class *this, int))(char*, int)` 格式现在正确生成 `int (* method(int))(char*, int)` 声明
+  2. `gen_headers.py`: __thiscall 第一参数无条件去除 — IDA 有时命名为 "Block"/"Buffer" 而非 "this"，导致头文件多出假参数
+  3. `gen_headers.py`: 跳过 CRT 内部类型 `_ThrowInfo`/`_CatchableType`（编译器隐式定义，重定义冲突）
+  4. `gen_cpp.py` + `ast_transform.py`: __cdecl (static) 方法跳过 OOP 转换 — `CCBLineupWindow::Render(&field)` 不再被错误转为 `field->Render()`
+  5. `gen_cpp.py`: include 解析过滤 CRT 类型（不再引入已删除的 `_ThrowInfo.h`）
+- **置信度**: 95（工具 bug 修复，编译验证通过）
+- **证据**:
+  1. [A] CCBStageRole.h:201 产生 `int ( _auto_50b430(int);` 语法错误 — 级联影响 5+ 编译单元。函数签名 `"int (__thiscall *__thiscall(CCBStageRole *this, int a2))(char *, int)"` 中 parse_signature 的第一个 `__thiscall` 匹配错误
+  2. [A] UISceneMap::UpdateChildren 签名 `void __thiscall(void *)` — 参数名无 "this" 导致未去除，头文件产生 `void UpdateChildren(void *)` 而调用方传 0 参数
+  3. [A] `_ThrowInfo` 由 MSVC CRT 在编译器内部 TI 文件中预定义（C2373 重定义），5 个编译单元受影响
+  4. [A] 0x0051D4A0 (CCBLineupWindow::Render) 二进制开头 `6A FF 68...` (SEH prolog)，无 `mov esi,ecx`；IDA 标注为 `__cdecl` — 第一个参数是 `_DWORD*` 输出参数非 this 指针。调用者通过 stack push 传参（非 ECX）
+  5. [A] 140 个 __cdecl 类方法在 functions.json 中确认为 static（gen_cpp 加载后传入 ast_transform 跳过集合）
+- **消除的错误类别**: C2143 语法错误, C2373 重定义, C2660 参数数量不匹配, C2511 overloaded member not found
+- **编译结果**: 14→13 失败单元
+
 ### [2026-05-16] iter(annotations): 26 struct field type fixes + naming (4 classes)
 
 - **变更**: 4 个结构体的 _todo_ 字段类型修正和语义命名
