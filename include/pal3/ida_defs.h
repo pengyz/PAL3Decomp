@@ -81,6 +81,13 @@ typedef int BOOL;
 #define COERCE_DOUBLE(x) (*(double*)&(x))
 #define __PAIR64__(high, low) (((unsigned __int64)(high) << 32) | (unsigned int)(low))
 #define __OFSUB__(x, y) (((x) ^ ((x) - (y))) & ((x) ^ (y)))
+
+// IDA helper functions
+inline int abs32(int x) { return x < 0 ? -x : x; }
+inline void memset32(void *dst, unsigned long val, unsigned int count) {
+    unsigned long *p = (unsigned long *)dst;
+    while (count--) *p++ = val;
+}
 #define NAN (*(float*)&_nan_bytes)
 static unsigned int _nan_bytes = 0x7FC00000;
 

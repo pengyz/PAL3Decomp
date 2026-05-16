@@ -99,7 +99,7 @@ def _try_read_rdata_string(va):
     if end <= off or end - off > 260:
         return None
     raw = _EXE_DATA_FOR_STRINGS[off:end]
-    if len(raw) < 2:
+    if len(raw) < 1:
         return None
     try:
         s = raw.decode('gbk')
@@ -138,9 +138,27 @@ def replace_literals(code):
     def _repl_astring(m):
         return LITERAL_MAP.get(m.group(0), m.group(0))
 
+    def _repl_asc(m):
+        name = m.group(0)
+        if name in LITERAL_MAP:
+            return LITERAL_MAP[name]
+        try:
+            va = int(name.split('_')[1], 16)
+        except (IndexError, ValueError):
+            return name
+        if 0x56A000 <= va <= _RDATA_STR_END:
+            s = _try_read_rdata_string(va)
+            if s is not None:
+                escaped = s.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
+                replacement = '"%s"' % escaped
+                LITERAL_MAP[name] = replacement
+                return replacement
+        return name
+
     code = re.sub(r'\bflt_[0-9A-Fa-f]+\b', _repl_flt, code)
     code = re.sub(r'\bdword_[0-9A-Fa-f]+\b', _repl_dword, code)
     code = re.sub(r'\ba[A-Z]\w+\b', _repl_astring, code)
+    code = re.sub(r'\basc_[0-9A-Fa-f]+\b', _repl_asc, code)
     return code
 
 

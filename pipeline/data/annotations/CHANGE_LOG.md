@@ -51,6 +51,18 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(ida_defs+codegen): abs32/memset32 + asc_ strings — 4779→4763
+
+- **变更**:
+  - ida_defs.h: 添加 `abs32()` (IDA 整数绝对值) 和 `memset32()` (DWORD memset) 定义
+  - gen_cpp: 添加 `asc_XXXXX` 字符串字面量替换（单字符/特殊字符串如 `"$"`, `"#"`, `" "`）
+  - annotations: 4 个签名修正（PAL3 ctor, Create, CheckSystemRequire, CCBStageRole::IsTaskFinished）
+- **置信度**: 95
+- **证据**:
+  1. [A] C2065 'abs32'/'memset32'/'asc_' 全部归零
+  2. [A] C2065 总计 299→280 (-19)
+  3. [A] cmake 4779→4763 (-16)
+
 ### [2026-05-16] iter(annotations): 480 empty signatures → __thiscall — 4732→4779 (+47), C2660 -41
 
 - **变更**: 批量修正 functions.json 中 480 个类方法的空签名

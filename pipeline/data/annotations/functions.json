@@ -197,7 +197,7 @@
   },
   "0x00404760": {
     "name": "PAL3::PAL3",
-    "signature": "PAL3 *(void)"
+    "signature": "PAL3 *__thiscall(PAL3 *this)"
   },
   "0x004047F0": {
     "name": "PAL3::~PAL3",
@@ -205,7 +205,7 @@
   },
   "0x00404800": {
     "name": "PAL3::Create",
-    "signature": "OpenNULLFile *(char *hInstance, HINSTANCE hinst)"
+    "signature": "OpenNULLFile *__cdecl(char *hInstance, HINSTANCE hinst)"
   },
   "0x00404D60": {
     "name": "?WinProc@@YGJPAUHWND__@@IIJ@Z",
@@ -237,7 +237,7 @@
   },
   "0x00406310": {
     "name": "PAL3::CheckSystemRequire",
-    "signature": "void(char *hInstance, char *pszBuf, HINSTANCE pData)"
+    "signature": "void __cdecl(char *hInstance, char *pszBuf, HINSTANCE pData)"
   },
   "0x004065F0": {
     "name": "PAL3::CreateGfxWindow",
@@ -3153,7 +3153,7 @@
   },
   "0x005099A0": {
     "name": "CCBStageRole::IsTaskFinished",
-    "signature": "char(int nVal, BOOL fpTask)"
+    "signature": "char __thiscall(CCBStageRole *this, int nVal, BOOL fpTask)"
   },
   "0x00509B90": {
     "name": "CCBStageRole::IsDoTask",
