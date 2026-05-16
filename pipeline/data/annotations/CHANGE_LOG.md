@@ -51,6 +51,18 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(gen_headers): handle function pointer params in method declarations
+
+- **变更**: gen_headers.py 不再跳过含函数指针参数的签名（`sig.count('(') > 2`）
+- **置信度**: 95
+- **根因**: gen_headers 原来对 `(` 数量 > 2 的签名直接 skip（标记 `[IDA_COMPLEX_RET]`）。实际上 `split_params` 已能正确处理嵌套括号，问题仅在 VC6 不支持函数指针声明中的 `__thiscall` 关键字
+- **修复**:
+  1. 移除 `sig.count('(') > 2` 的 skip 逻辑
+  2. 对含嵌套函数指针的 params，strip `__thiscall`/`__cdecl`/`__stdcall` 修饰符
+  3. 重命名嵌套参数中的 `this` → `_this`
+- **调研**: 确认 IDA 标注 `__thiscall` 回调是正确的（CreateObj_5b20 存储成员函数指针并与 CCBSystem::CheckBattleEnd 比较）。VC6 函数指针语法不支持 CC 修饰符，但这是语法层适配不是类型降级
+- **证据**: [A] `int (__thiscall *a2)(CCBSystem *this)` → `int (*a2)(CCBSystem *_this)` 编译通过
+
 ### [2026-05-16] fix(import_gbengine): DAG topo sort + strip const method — 4763→4665 (-98)
 
 - **变更**:

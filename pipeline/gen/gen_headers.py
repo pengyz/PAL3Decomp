@@ -713,20 +713,9 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 param_list = split_params(params)
                 params = ', '.join(_fix_param(p) for p in param_list)
 
-            # Build declaration
-            if is_ctor:
-                decl = "    %s(%s);" % (cls_name, params)
-            elif is_dtor:
-                decl = "    ~%s();" % cls_name
-            elif is_static:
-                decl = "    static %s %s(%s);" % (ret, method_name, params)
-            else:
-                decl = "    %s %s(%s);" % (ret, method_name, params)
-
             # Skip invalid method names and calling conventions
             if '`' in method_name or ' ' in method_name or '?' in method_name:
                 continue
-            # Skip methods with vtable types in signature (IDA internal)
             if 'vtbl_' in ret or 'vtbl_' in params or '__vftable' in sig:
                 lines.append("    // [IDA_VTABLE] %s; // %s" % (method_name, addr))
                 continue
@@ -736,10 +725,26 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             if '@<' in sig:
                 lines.append("    // [IDA_REGPARAM] %s; // %s" % (method_name, addr))
                 continue
-            # Complex signatures (function pointer return types) -> skip
+
+            # Function pointer parameters: VC6 doesn't support __thiscall in fp type decls.
+            # Strip calling conventions from nested function pointer types and rename 'this'.
             if sig.count('(') > 2:
-                lines.append("    // [IDA_COMPLEX_RET] original: %s" % sig[:80])
-                continue
+                params = re.sub(r'__thiscall\s*\*', '*', params)
+                params = re.sub(r'__cdecl\s*\*', '*', params)
+                params = re.sub(r'__stdcall\s*\*', '*', params)
+                def _fix_nested_this(m):
+                    return m.group(0).replace(' this', ' _this').replace('*this', '*_this')
+                params = re.sub(r'\([^)]*\bthis\b[^)]*\)', _fix_nested_this, params)
+
+            # Build declaration
+            if is_ctor:
+                decl = "    %s(%s);" % (cls_name, params)
+            elif is_dtor:
+                decl = "    ~%s();" % cls_name
+            elif is_static:
+                decl = "    static %s %s(%s);" % (ret, method_name, params)
+            else:
+                decl = "    %s %s(%s);" % (ret, method_name, params)
 
             # Virtual override: method inherited from base vtable but this class has its own impl.
             # Declare it normally (not as VTABLE_DUP) — the .cpp has the implementation.
