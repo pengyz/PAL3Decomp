@@ -51,6 +51,17 @@
 
 ## 变更记录
 
+### [2026-05-16] iter(annotations): fix 14 C2660 signatures (param count)
+
+- **变更**: 14 个函数签名参数个数修正
+  - 3 个 UpdateChildren: `UIListBox **this` → `ClassName *this`（双星号修正）
+  - 8 个 Destroy: 错误额外参数移除 → `void __thiscall(Class *this)`
+  - UIWnd::_nearby_4517a0: `__stdcall(2)` → `__thiscall(UIWnd*, char)`
+  - Actor::_sub_537510: `__stdcall(3)` → `__thiscall(Actor*, int, int)`
+  - ScriptSystem::_sub_419090: `__stdcall(float*)` → `__thiscall(ScriptSystem*)`
+- **置信度**: 80
+- **证据**: C2660 报告被调用的参数个数与声明不匹配。`Destroy()` 被调用 0 个参数但声明有 1-5 个——标准 Destroy 是无参虚方法。`UpdateChildren` 的 `**this` 是 IDA 反编译 artifact。
+
 ### [2026-05-16] fix(master_pipeline): skip system types in PDB import — _DIMOUSESTATE2 8→0
 
 - **变更**: master_pipeline.py 在 PDB 类型导入时过滤已知系统类型（DirectInput/Windows/D3D）
