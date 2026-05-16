@@ -48,9 +48,9 @@
       "source": "ida_decomp:_nearby_439a20 if(!this)"
     },
     "220": {
-      "name": "m_fTimeScale",
+      "name": "m_nRoleCount",
       "type": "int",
-      "source": "ida_decomp:_nearby_439a20 (double)this * float * a2"
+      "source": "binary:0x421560 mov esi,[ecx+0xDC] as loop count for 896-byte stride array at [ecx+0x18C]"
     },
     "236": {
       "name": "m_nCamMode",
