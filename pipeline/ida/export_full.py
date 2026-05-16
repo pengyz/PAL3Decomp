@@ -170,7 +170,8 @@ def main():
                 with open(os.path.join(OUTPUT_DIR, filename), 'w', encoding='utf-8') as f:
                     json.dump(data, f, indent=2, ensure_ascii=False)
                 exported += 1
-            except: pass
+            except Exception as _e:
+                log("[!] FAIL 0x%08X %s: %s" % (ea, name[:40], str(_e)[:60]))
 
         opt.remove()
         log("[*] Optimizer: %d vftable inits, %d compiler calls NOPed" % (opt.vftable_nops, opt.compiler_call_nops))
