@@ -78,7 +78,9 @@ typedef int BOOL;
 #define SLODWORD(x) (*((_DWORD*)&(x)))
 #define SHIDWORD(x) (*(((_DWORD*)&(x))+1))
 #define COERCE_FLOAT(x) (*(float*)&(x))
+#define COERCE_DOUBLE(x) (*(double*)&(x))
 #define __PAIR64__(high, low) (((unsigned __int64)(high) << 32) | (unsigned int)(low))
+#define __OFSUB__(x, y) (((x) ^ ((x) - (y))) & ((x) ^ (y)))
 #define NAN (*(float*)&_nan_bytes)
 static unsigned int _nan_bytes = 0x7FC00000;
 
