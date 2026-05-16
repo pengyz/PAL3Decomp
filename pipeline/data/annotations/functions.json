@@ -1,7 +1,7 @@
 {
   "0x004014F0": {
     "name": "CCBAI::Thunk_GetValue",
-    "signature": "char __stdcall(int nVal, int nVal2)"
+    "signature": "char __thiscall(CCBAI *this, int nVal, int nVal2)"
   },
   "0x00401810": {
     "name": "ArraySort",
@@ -533,7 +533,7 @@
   },
   "0x0041C900": {
     "name": "CCCTData::CalcDist",
-    "signature": "void __stdcall(float fVal, float fVal2)"
+    "signature": "void __thiscall(CCCTData *this, float fVal, float fVal2)"
   },
   "0x0041CAC0": {
     "name": "CameraCtrl::GetViewTarget",
@@ -1073,7 +1073,7 @@
   },
   "0x00445D10": {
     "name": "UIWnd::SendMessage",
-    "signature": "int __stdcall(int nVal, int nMsg, int wParam)"
+    "signature": "int __thiscall(UIWnd *this, int nVal, int nMsg, int wParam)"
   },
   "0x00445DB0": {
     "name": "UIWnd::SetVisible",
@@ -1261,7 +1261,7 @@
   },
   "0x0047CFB0": {
     "name": "Object3D::IsOverCVD",
-    "signature": "long double __stdcall(float fVal, float fVal2, float fVal3, float fVal4, float fVal5, float fVal6)"
+    "signature": "long double __thiscall(Object3D *this, float fVal, float fVal2, float fVal3, float fVal4, float fVal5, float fVal6)"
   },
   "0x0047D030": {
     "name": "Object3D::VecAngle",
@@ -2157,7 +2157,7 @@
   },
   "0x004DB640": {
     "name": "CCBSystem::CalcSpeed",
-    "signature": "int __stdcall(int roleIdx, int nVal)"
+    "signature": "int __thiscall(CCBSystem *this, int roleIdx, int nVal)"
   },
   "0x004DB660": {
     "name": "CCBSystem::GetCmdSlot",
@@ -2389,7 +2389,7 @@
   },
   "0x004F05A0": {
     "name": "CCBRoleState::sub_4F05A0",
-    "signature": "char __stdcall(_DWORD *p_DWORD)"
+    "signature": "char __thiscall(CCBRoleState *this, _DWORD *p_DWORD)"
   },
   "0x004F0640": {
     "name": "CCBRoleState::InitRoleSpecEquipAttrib",
@@ -2541,11 +2541,11 @@
   },
   "0x004F3C00": {
     "name": "CCBRoleState::IsForce1",
-    "signature": "int __stdcall(int force)"
+    "signature": "int __thiscall(CCBRoleState *this, int force)"
   },
   "0x004F3C20": {
     "name": "CCBRoleState::IsPlayerTeam",
-    "signature": "char __stdcall(int force)"
+    "signature": "char __thiscall(CCBRoleState *this, int force)"
   },
   "0x004F3CC0": {
     "name": "CCBRoleState::IsRoleInForce",
@@ -7029,11 +7029,11 @@
   },
   "0x004F7050": {
     "name": "CCBSystem::IsMagicSlotMsg",
-    "signature": "bool __stdcall(int nVal)"
+    "signature": "bool __thiscall(CCBSystem *this, int nVal)"
   },
   "0x004F7140": {
     "name": "CCBSystem::HandleMagicSlotInput",
-    "signature": "char __stdcall(int nVal)"
+    "signature": "char __thiscall(CCBSystem *this, int nVal)"
   },
   "0x004DB9C0": {
     "name": "CCBSystem::InvokeThreadMethod",
@@ -7449,7 +7449,7 @@
   },
   "0x00452DF0": {
     "name": "UIWnd::Render_452df0",
-    "signature": "void __stdcall(int *pnVal, int nRoleIndex)"
+    "signature": "void __thiscall(UIWnd *this, int *pnVal, int nRoleIndex)"
   },
   "0x00456200": {
     "name": "UIWnd::_nearby_456200",
@@ -7541,11 +7541,11 @@
   },
   "0x004E1190": {
     "name": "CEffectSystem::_auto_4e1190",
-    "signature": "int __stdcall(CCBUI *pCBUI, HWND hDlg, unsigned int dwVal, int bReadOnly, int nVal)"
+    "signature": "int __thiscall(CEffectSystem *this, CCBUI *pCBUI, HWND hDlg, unsigned int dwVal, int bReadOnly, int nVal)"
   },
   "0x004E6020": {
     "name": "CCBStageCam::_static_4E6020",
-    "signature": "int __stdcall(CCBStageCam *nParam, HWND hDlg, int arg8, int argC, float *pfVal)"
+    "signature": "int __thiscall(CCBStageCam *this, CCBStageCam *nParam, HWND hDlg, int arg8, int argC, float *pfVal)"
   },
   "0x004ECB20": {
     "name": "CCBRoleState::ProcessCombatAction",
@@ -7609,11 +7609,11 @@
   },
   "0x0053AF30": {
     "name": "Actor::_nearby_53af30",
-    "signature": "int __stdcall(int nY, int nVal, int nX)"
+    "signature": "int __thiscall(Actor *this, int nY, int nVal, int nX)"
   },
   "0x0053AF70": {
     "name": "Actor::_nearby_53af70",
-    "signature": "void __stdcall(int nX, int nVal, int nY)"
+    "signature": "void __thiscall(Actor *this, int nX, int nVal, int nY)"
   },
   "0x004012A0": {
     "name": "AStarPathFinder::TryExpand",
@@ -9641,15 +9641,15 @@
   },
   "0x004E1A40": {
     "name": "CCBRoleState::_auto_4e1a40",
-    "signature": "int __stdcall(int nVal, HWND hDlg, unsigned int dwVal, int nVal2, int nVal3)"
+    "signature": "int __thiscall(CCBRoleState *this, int nVal, HWND hDlg, unsigned int dwVal, int nVal2, int nVal3)"
   },
   "0x004E1F70": {
     "name": "CCBUI::_nearby_4e1f70",
-    "signature": "int __stdcall(HWND hDlg, unsigned int dwVal, WPARAM pData, LPARAM pData)"
+    "signature": "int __thiscall(CCBUI *this, HWND hDlg, unsigned int dwVal, WPARAM pData, LPARAM pData)"
   },
   "0x004E24C0": {
     "name": "CCBUI::_nearby_4e24c0",
-    "signature": "int __stdcall(_DWORD *p_DWORD, HWND hDlg, int nVal, int nVal2, int nVal3)"
+    "signature": "int __thiscall(CCBUI *this, _DWORD *p_DWORD, HWND hDlg, int nVal, int nVal2, int nVal3)"
   },
   "0x004E2C10": {
     "name": "CCBRoleState::_auto_4e2c10",
@@ -9705,7 +9705,7 @@
   },
   "0x004E8480": {
     "name": "CCBStageCam::_nearby_4e8480",
-    "signature": "int __stdcall(float *pfVal, HWND hDlg, int nVal, int nVal2, int nVal3)"
+    "signature": "int __thiscall(CCBStageCam *this, float *pfVal, HWND hDlg, int nVal, int nVal2, int nVal3)"
   },
   "0x004EC910": {
     "name": "CCBRoleState::_sub_4EC910",
@@ -10329,11 +10329,11 @@
   },
   "0x0053EDF0": {
     "name": "CScreenMode::_nearby_53edf0",
-    "signature": "_DWORD *__stdcall(_DWORD *p_DWORD, _DWORD *p_DWORD2, _DWORD *p_DWORD3)"
+    "signature": "_DWORD * __thiscall(CScreenMode *this, _DWORD *p_DWORD, _DWORD *p_DWORD2, _DWORD *p_DWORD3)"
   },
   "0x0053EE30": {
     "name": "CScreenMode::_nearby_53ee30",
-    "signature": "void __stdcall(_DWORD *p_DWORD, int nVal, _DWORD *p_DWORD2)"
+    "signature": "void __thiscall(CScreenMode *this, _DWORD *p_DWORD, int nVal, _DWORD *p_DWORD2)"
   },
   "0x0053EE60": {
     "name": "SceneObj::_static_53EE60",
@@ -10369,7 +10369,7 @@
   },
   "0x00402290": {
     "name": "GRPinput::_sub_402290",
-    "signature": "BOOL __stdcall(int X, int Y)"
+    "signature": "BOOL __thiscall(GRPinput *this, int X, int Y)"
   },
   "0x00402640": {
     "name": "GRPinput::_nearby_402640",
@@ -10897,7 +10897,7 @@
   },
   "0x004300A0": {
     "name": "Config::_nearby_4300a0",
-    "signature": "bool __stdcall(int nVal, int *pnVal, int *pnVal2, _DWORD *p_DWORD)"
+    "signature": "bool __thiscall(Config *this, int nVal, int *pnVal, int *pnVal2, _DWORD *p_DWORD)"
   },
   "0x00430500": {
     "name": "PalScript::_sub_430500",
@@ -10921,7 +10921,7 @@
   },
   "0x00431060": {
     "name": "string::_auto_431060",
-    "signature": "void *__stdcall(_DWORD *Block)"
+    "signature": "void * __thiscall(string *this, _DWORD *Block)"
   },
   "0x00431390": {
     "name": "PalScript::_nearby_431390",
@@ -12221,7 +12221,7 @@
   },
   "0x004573C0": {
     "name": "UIWnd::_nearby_4573c0",
-    "signature": "int __stdcall(LPCSTR lpString1, LPCSTR lpString2)"
+    "signature": "int __thiscall(UIWnd *this, LPCSTR lpString1, LPCSTR lpString2)"
   },
   "0x00457F90": {
     "name": "RoleAtt::_method_457f90",
@@ -12297,7 +12297,7 @@
   },
   "0x00460A00": {
     "name": "CCBUI::_nearby_460a00",
-    "signature": "bool __stdcall(float fVal)"
+    "signature": "bool __thiscall(CCBUI *this, float fVal)"
   },
   "0x00461C50": {
     "name": "CCBUI::_init_461c50",
@@ -12717,7 +12717,7 @@
   },
   "0x00489030": {
     "name": "UIWnd::_nearby_489030",
-    "signature": "int __stdcall(int nVal, float fVal)"
+    "signature": "int __thiscall(UIWnd *this, int nVal, float fVal)"
   },
   "0x004890A0": {
     "name": "ScriptSystem::_init_4890a0",
@@ -12785,7 +12785,7 @@
   },
   "0x0048CFB0": {
     "name": "UIFrameWnd::_nearby_48cfb0",
-    "signature": "bool __stdcall(float fVal)"
+    "signature": "bool __thiscall(UIFrameWnd *this, float fVal)"
   },
   "0x0048E780": {
     "name": "CEffect::_unverified_48E780",
@@ -12901,11 +12901,11 @@
   },
   "0x0049CEC0": {
     "name": "MUIDialog::_method_49cec0",
-    "signature": "int __stdcall(int nVal, int nVal2)"
+    "signature": "int __thiscall(MUIDialog *this, int nVal, int nVal2)"
   },
   "0x0049CF20": {
     "name": "UIListBox::_init_49cf20",
-    "signature": "int __stdcall(int nVal, int nVal2)"
+    "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2)"
   },
   "0x0049E670": {
     "name": "UIListBox::_init_49e670",
@@ -12997,7 +12997,7 @@
   },
   "0x004A4770": {
     "name": "UIWnd::_nearby_4a4770",
-    "signature": "char __stdcall(char pData)"
+    "signature": "char __thiscall(UIWnd *this, char pData)"
   },
   "0x004A5760": {
     "name": "RenderTarget::_auto_4a5760",
@@ -13301,7 +13301,7 @@
   },
   "0x004BD9C0": {
     "name": "RenderTarget::_nearby_4bd9c0",
-    "signature": "int __stdcall(int nVal)"
+    "signature": "int __thiscall(RenderTarget *this, int nVal)"
   },
   "0x004BDA50": {
     "name": "RenderTarget::_nearby_4bda50",
@@ -13393,7 +13393,7 @@
   },
   "0x004BF6C0": {
     "name": "ScreenEffectMgr::_nearby_4bf6c0",
-    "signature": "int __stdcall(int nVal)"
+    "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)"
   },
   "0x004BF750": {
     "name": "ScreenEffectMgr::_nearby_4bf750",
@@ -13413,7 +13413,7 @@
   },
   "0x004C0510": {
     "name": "RenderTarget2::_nearby_4c0510",
-    "signature": "int *__stdcall(int nVal)"
+    "signature": "int * __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C0560": {
     "name": "RenderTarget2::_nearby_4c0560",
@@ -13421,7 +13421,7 @@
   },
   "0x004C0600": {
     "name": "RenderTarget2::_nearby_4c0600",
-    "signature": "char __stdcall(int nVal)"
+    "signature": "char __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C0640": {
     "name": "RenderTarget2::_nearby_4c0640",
@@ -13461,7 +13461,7 @@
   },
   "0x004C1270": {
     "name": "RenderTarget2::_nearby_4c1270",
-    "signature": "int *__stdcall(int nVal)"
+    "signature": "int * __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C13B0": {
     "name": "RenderTarget2::_nearby_4c13b0",
@@ -13493,7 +13493,7 @@
   },
   "0x004C1DD0": {
     "name": "RenderTarget2::_nearby_4c1dd0",
-    "signature": "int *__stdcall(int nVal)"
+    "signature": "int * __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C1E90": {
     "name": "RenderTarget2::_nearby_4c1e90",
@@ -13521,7 +13521,7 @@
   },
   "0x004C25C0": {
     "name": "RenderTarget2::_nearby_4c25c0",
-    "signature": "int *__stdcall(int nVal)"
+    "signature": "int * __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C2620": {
     "name": "RenderTarget2::_nearby_4c2620",
@@ -13557,7 +13557,7 @@
   },
   "0x004C3160": {
     "name": "RenderTarget2::_nearby_4c3160",
-    "signature": "int *__stdcall(int nVal)"
+    "signature": "int * __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C3260": {
     "name": "RenderTarget2::_nearby_4c3260",
@@ -13589,7 +13589,7 @@
   },
   "0x004C3A90": {
     "name": "RenderTarget2::_nearby_4c3a90",
-    "signature": "int *__stdcall(int nVal)"
+    "signature": "int * __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C3AD0": {
     "name": "RenderTarget2::_nearby_4c3ad0",
@@ -13701,7 +13701,7 @@
   },
   "0x004CE000": {
     "name": "CEffMgr::FindEffByID",
-    "signature": "int __stdcall(int nVal)"
+    "signature": "int __thiscall(CEffMgr *this, int nVal)"
   },
   "0x004CE0D0": {
     "name": "CPK::_auto_4ce0d0",
@@ -13821,7 +13821,7 @@
   },
   "0x004DF370": {
     "name": "CCBRoleState::_nearby_4df370",
-    "signature": "int __stdcall(int nVal)"
+    "signature": "int __thiscall(CCBRoleState *this, int nVal)"
   },
   "0x004DF4C0": {
     "name": "CCBRoleState::_nearby_4df4c0",
@@ -13881,7 +13881,7 @@
   },
   "0x004E0530": {
     "name": "CCBStage::_nearby_4e0530",
-    "signature": "bool __stdcall(HWND pData)"
+    "signature": "bool __thiscall(CCBStage *this, HWND pData)"
   },
   "0x004E05B0": {
     "name": "CCBStage::_nearby_4e05b0",
@@ -13893,15 +13893,15 @@
   },
   "0x004E10E0": {
     "name": "CCBUI::_nearby_4e10e0",
-    "signature": "int __stdcall(HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "signature": "int __thiscall(CCBUI *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
   },
   "0x004E1160": {
     "name": "CCBUI::_nearby_4e1160",
-    "signature": "int __stdcall(HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "signature": "int __thiscall(CCBUI *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
   },
   "0x004E16F0": {
     "name": "CCBUI::_nearby_4e16f0",
-    "signature": "unsigned char *__stdcall(HWND hDlg)"
+    "signature": "unsigned char * __thiscall(CCBUI *this, HWND hDlg)"
   },
   "0x004E1870": {
     "name": "CCBUI::_nearby_4e1870",
@@ -13909,11 +13909,11 @@
   },
   "0x004E2430": {
     "name": "CCBUI::_nearby_4e2430",
-    "signature": "int __stdcall(HWND pData, UINT pData, WPARAM pData, LPARAM pData)"
+    "signature": "int __thiscall(CCBUI *this, HWND pData, UINT pData, WPARAM pData, LPARAM pData)"
   },
   "0x004E2490": {
     "name": "CCBUI::_nearby_4e2490",
-    "signature": "int __stdcall(HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "signature": "int __thiscall(CCBUI *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
   },
   "0x004E28F0": {
     "name": "CCBRoleState::_auto_4e28f0",
@@ -13977,7 +13977,7 @@
   },
   "0x004E5800": {
     "name": "PAL_GDB::_auto_4e5800",
-    "signature": "int __stdcall(HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "signature": "int __thiscall(PAL_GDB *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
   },
   "0x004E5B20": {
     "name": "PAL_GDB::_auto_4e5b20",
@@ -13993,7 +13993,7 @@
   },
   "0x004E5FF0": {
     "name": "PAL_GDB::_nearby_4e5ff0",
-    "signature": "int __stdcall(HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "signature": "int __thiscall(PAL_GDB *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
   },
   "0x004E7B50": {
     "name": "CCBStageCam::_nearby_4e7b50",
@@ -14005,11 +14005,11 @@
   },
   "0x004E8450": {
     "name": "CCBStageCam::_nearby_4e8450",
-    "signature": "int __stdcall(HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "signature": "int __thiscall(CCBStageCam *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
   },
   "0x004E9890": {
     "name": "CCBStageCam::_nearby_4e9890",
-    "signature": "LRESULT __stdcall(HWND hDlg)"
+    "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)"
   },
   "0x004E9950": {
     "name": "CCBStageCam::_nearby_4e9950",
@@ -14089,7 +14089,7 @@
   },
   "0x004F06C0": {
     "name": "CCBStage::Method_4F06C0",
-    "signature": "bool __stdcall(int nVal, unsigned int dwVal)"
+    "signature": "bool __thiscall(CCBStage *this, int nVal, unsigned int dwVal)"
   },
   "0x004F2BF0": {
     "name": "CCBRoleState::_sub_4F2BF0",
@@ -14097,43 +14097,43 @@
   },
   "0x004F69F0": {
     "name": "PAL_GDB::_auto_4f69f0",
-    "signature": "bool __stdcall(int nVal)"
+    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F6A20": {
     "name": "PAL_GDB::_auto_4f6a20",
-    "signature": "bool __stdcall(int nVal)"
+    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F6A40": {
     "name": "PAL_GDB::_auto_4f6a40",
-    "signature": "bool __stdcall(int nVal)"
+    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F6A60": {
     "name": "PAL_GDB::_auto_4f6a60",
-    "signature": "bool __stdcall(int nVal)"
+    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F6A80": {
     "name": "PAL_GDB::_auto_4f6a80",
-    "signature": "bool __stdcall(int nVal)"
+    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F6AB0": {
     "name": "PAL_GDB::_auto_4f6ab0",
-    "signature": "bool __stdcall(int nVal)"
+    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F6AD0": {
     "name": "PAL_GDB::_auto_4f6ad0",
-    "signature": "bool __stdcall(int nVal)"
+    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F6B20": {
     "name": "PAL_GDB::_auto_4f6b20",
-    "signature": "bool __stdcall(int nVal)"
+    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F6B70": {
     "name": "PAL_GDB::_auto_4f6b70",
-    "signature": "bool __stdcall(int nVal)"
+    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F6BB0": {
     "name": "PAL_GDB::_auto_4f6bb0",
-    "signature": "bool __stdcall(int nVal)"
+    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F6BE0": {
     "name": "PAL_GDB::_nearby_4f6be0",
@@ -14145,11 +14145,11 @@
   },
   "0x004F6CD0": {
     "name": "CCBStage::Method_4F6CD0",
-    "signature": "char __stdcall(unsigned int *pdwVal)"
+    "signature": "char __thiscall(CCBStage *this, unsigned int *pdwVal)"
   },
   "0x004F6D30": {
     "name": "PAL_GDB::_auto_4f6d30",
-    "signature": "char __stdcall(unsigned int *pdwVal, int nVal)"
+    "signature": "char __thiscall(PAL_GDB *this, unsigned int *pdwVal, int nVal)"
   },
   "0x004F6DA0": {
     "name": "CCBRoleState::_sub_4F6DA0",
@@ -14161,11 +14161,11 @@
   },
   "0x004F6FB0": {
     "name": "PAL_GDB::_nearby_4f6fb0",
-    "signature": "char __stdcall(int nVal)"
+    "signature": "char __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F70A0": {
     "name": "CCBSystem::_sub_4F70A0",
-    "signature": "char __stdcall(int nVal)"
+    "signature": "char __thiscall(CCBSystem *this, int nVal)"
   },
   "0x004F7480": {
     "name": "CCBRoleState::_sub_4F7480",
@@ -14201,23 +14201,23 @@
   },
   "0x004FA210": {
     "name": "CCBRoleState::_nearby_4fa210",
-    "signature": "int __stdcall(int nVal, int nVal2)"
+    "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)"
   },
   "0x004FA280": {
     "name": "CCBRoleState::_nearby_4fa280",
-    "signature": "int __stdcall(int nVal, int nVal2)"
+    "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)"
   },
   "0x004FA330": {
     "name": "CCBRoleState::_nearby_4fa330",
-    "signature": "int __stdcall(int nVal, int nVal2)"
+    "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)"
   },
   "0x004FA3A0": {
     "name": "CCBRoleState::_nearby_4fa3a0",
-    "signature": "int __stdcall(int nVal, int nVal2)"
+    "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)"
   },
   "0x004FA440": {
     "name": "CCBRoleState::_nearby_4fa440",
-    "signature": "int __stdcall(int nVal, int nVal2)"
+    "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)"
   },
   "0x004FA4E0": {
     "name": "CCBRoleState::_nearby_4fa4e0",
@@ -14229,7 +14229,7 @@
   },
   "0x004FA560": {
     "name": "CCBRoleState::_nearby_4fa560",
-    "signature": "int __stdcall(int nVal, char *Buffer)"
+    "signature": "int __thiscall(CCBRoleState *this, int nVal, char *Buffer)"
   },
   "0x004FA5F0": {
     "name": "CCBRoleState::_nearby_4fa5f0",
@@ -14241,7 +14241,7 @@
   },
   "0x004FA700": {
     "name": "CCBRoleState::_nearby_4fa700",
-    "signature": "int __stdcall(int nVal)"
+    "signature": "int __thiscall(CCBRoleState *this, int nVal)"
   },
   "0x004FA760": {
     "name": "CCBRoleState::_nearby_4fa760",
@@ -14249,7 +14249,7 @@
   },
   "0x004FB6B0": {
     "name": "CCBRoleState::_nearby_4fb6b0",
-    "signature": "int __stdcall(int nVal)"
+    "signature": "int __thiscall(CCBRoleState *this, int nVal)"
   },
   "0x004FB7B0": {
     "name": "CCBRoleState::_nearby_4fb7b0",
@@ -14413,7 +14413,7 @@
   },
   "0x00504460": {
     "name": "CCBStage::_nearby_504460",
-    "signature": "bool __stdcall(float *pfVal)"
+    "signature": "bool __thiscall(CCBStage *this, float *pfVal)"
   },
   "0x005049F0": {
     "name": "CCBStage::Method_5049F0",
@@ -14977,7 +14977,7 @@
   },
   "0x0052ECE0": {
     "name": "PAL_GDB::_auto_52ece0",
-    "signature": "BOOL __stdcall(int nVal)"
+    "signature": "BOOL __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x0052F300": {
     "name": "UIWnd::_nearby_52f300",
@@ -15157,7 +15157,7 @@
   },
   "0x005329A0": {
     "name": "UIListBox::HandleMsg_5329a0",
-    "signature": "int __stdcall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)"
+    "signature": "int __thiscall(UIListBox *this, HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)"
   },
   "0x00532A30": {
     "name": "UIWnd::_nearby_532a30",
@@ -15173,7 +15173,7 @@
   },
   "0x00532CF0": {
     "name": "ECBRoleSpecState::_method_532cf0",
-    "signature": "long double __stdcall(int nVal, int nVal2, int nVal3, int nVal4, float fVal, float fVal2)"
+    "signature": "long double __thiscall(ECBRoleSpecState *this, int nVal, int nVal2, int nVal3, int nVal4, float fVal, float fVal2)"
   },
   "0x00532D30": {
     "name": "UIWnd::_nearby_532d30",
@@ -15333,7 +15333,7 @@
   },
   "0x005370E0": {
     "name": "Actor::_sub_5370E0",
-    "signature": "int __stdcall(int nVal, int nVal2)"
+    "signature": "int __thiscall(Actor *this, int nVal, int nVal2)"
   },
   "0x00537120": {
     "name": "Actor::_sub_537120",
@@ -15445,7 +15445,7 @@
   },
   "0x0053A310": {
     "name": "Actor::_nearby_53a310",
-    "signature": "void __stdcall(int nVal, int nVal2)"
+    "signature": "void __thiscall(Actor *this, int nVal, int nVal2)"
   },
   "0x0053A670": {
     "name": "Actor::_nearby_53a670",
@@ -15461,11 +15461,11 @@
   },
   "0x0053AFA0": {
     "name": "Actor::_nearby_53afa0",
-    "signature": "char *__stdcall(char *pszBuf, char *pszBuf2, char *pszBuf3)"
+    "signature": "char * __thiscall(Actor *this, char *pszBuf, char *pszBuf2, char *pszBuf3)"
   },
   "0x0053AFE0": {
     "name": "Actor::_nearby_53afe0",
-    "signature": "char *__stdcall(char *pszBuf, char *pszBuf2, const void *pData)"
+    "signature": "char * __thiscall(Actor *this, char *pszBuf, char *pszBuf2, const void *pData)"
   },
   "0x0053B230": {
     "name": "Actor::_nearby_53b230",
@@ -15473,7 +15473,7 @@
   },
   "0x0053B260": {
     "name": "Actor::_nearby_53b260",
-    "signature": "char *__stdcall(char *pszBuf, char *pszBuf2, char *pszBuf3)"
+    "signature": "char * __thiscall(Actor *this, char *pszBuf, char *pszBuf2, char *pszBuf3)"
   },
   "0x0053B6E0": {
     "name": "Actor::_nearby_53b6e0",
@@ -15593,15 +15593,15 @@
   },
   "0x0053EDA0": {
     "name": "CScreenMode::_nearby_53eda0",
-    "signature": "void __stdcall(_DWORD *p_DWORD, _DWORD *p_DWORD2)"
+    "signature": "void __thiscall(CScreenMode *this, _DWORD *p_DWORD, _DWORD *p_DWORD2)"
   },
   "0x0053EDD0": {
     "name": "CScreenMode::_nearby_53edd0",
-    "signature": "int __stdcall(int nVal)"
+    "signature": "int __thiscall(CScreenMode *this, int nVal)"
   },
   "0x0053EDE0": {
     "name": "CScreenMode::_nearby_53ede0",
-    "signature": "void __stdcall(void *Block, int nVal)"
+    "signature": "void __thiscall(CScreenMode *this, void *Block, int nVal)"
   },
   "0x0053EF60": {
     "name": "SceneObj::_sub_53EF60",
@@ -15613,7 +15613,7 @@
   },
   "0x0053F500": {
     "name": "TextureLib::_nearby_53f500",
-    "signature": "int __stdcall(LPCSTR lpString1, LPCSTR lpString2)"
+    "signature": "int __thiscall(TextureLib *this, LPCSTR lpString1, LPCSTR lpString2)"
   },
   "0x0053F550": {
     "name": "TextureLib::_nearby_53f550",
@@ -15625,7 +15625,7 @@
   },
   "0x0053F610": {
     "name": "TextureLib::_sub_53F610",
-    "signature": "int __stdcall(char *String)"
+    "signature": "int __thiscall(TextureLib *this, char *String)"
   },
   "0x0053F680": {
     "name": "TextureLib::_sub_53F680",
@@ -15757,7 +15757,7 @@
   },
   "0x00535970": {
     "name": "MiniGame3::PushPopStack",
-    "signature": "void __stdcall(gbMatrixStack *pStack)"
+    "signature": "void __thiscall(MiniGame3 *this, gbMatrixStack *pStack)"
   },
   "0x00535F10": {
     "name": "MiniGame3::RenderWithTransform",
