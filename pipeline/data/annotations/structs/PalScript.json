@@ -53,9 +53,9 @@
       "source": "binary:0x421560 mov esi,[ecx+0xDC] loop count; array starts at [ecx+0xE0] stride 896, each element has vtable"
     },
     "236": {
-      "name": "m_nCamMode",
+      "name": "_todo_EC",
       "type": "int",
-      "source": "binary:3x access | annotate_todo"
+      "source": "binary:sub_445AA0 [esi+0x0C]=-1; elem+0x0C; ps_abs=224+12=236"
     },
     "240": {
       "name": "m_bCamActive",
@@ -171,6 +171,11 @@
       "name": "_todo_1D4",
       "type": "unsigned char",
       "source": "binary:SetRoleActions cmp_byte_[esi]_0x19"
+    },
+    "260": {
+      "name": "_todo_104",
+      "type": "PtrArray",
+      "source": "binary:sub_445AA0 lea ecx,[esi+0x24]; call PtrArray::Clear; elem+0x24"
     }
   },
   "pdb_size": 40
