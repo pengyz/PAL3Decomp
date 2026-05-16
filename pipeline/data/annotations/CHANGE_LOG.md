@@ -51,6 +51,18 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(annotations): 39 __thiscall signatures **this → *this
+
+- **变更**: 39 个 __thiscall 方法的首参数从 `ClassName **this` 修正为 `ClassName *this`
+- **置信度**: 90
+- **证据**:
+  1. [A] __thiscall 调用约定: ECX 传递单指针 this（x86 ABI 规范）
+  2. [A] UIWnd::CreateFromTemplate (0x4426B0): prolog `64 A1...` SEH frame, ECX=this
+  3. [A] GRPinput::AcquireJoystick (0x403410): `8B F1`=`mov esi,ecx` — ECX→esi, 单指针
+  4. [A] CCBStage::ProcShowFiveLineup (0x4FE290): `8B F1`=`mov esi,ecx` — ECX→esi, 单指针
+- **根因**: IDA Hex-Rays 在某些情况下将 this 类型推断为双重指针，导致 decomp 生成 `(*this)->member` 和 `*(this+N)` 指针算术
+- **消除**: C2227 m_pRoleState/m_Role (11→0), C2228 byMagicUseTime (5→0), C2819 CCBStage operator-> (9→0). 总错误 174→156
+
 ### [2026-05-16] fix(gen_cpp): PointWorldToScr/PointScrToWorld reference parameter handling
 
 - **变更**: gen_cpp.py `_REF_METHODS` 增加 `PointWorldToScr: {2,3}` 和 `PointScrToWorld: {2,3}`，新增 `{2,3}` ref_pos 处理分支

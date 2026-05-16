@@ -149,7 +149,7 @@
   },
   "0x00403410": {
     "name": "GRPinput::AcquireJoystick",
-    "signature": "void __thiscall(GRPinput **this)"
+    "signature": "void __thiscall(GRPinput *this)"
   },
   "0x00403470": {
     "name": "GRPinput::UnacquireJoystick",
@@ -157,7 +157,7 @@
   },
   "0x004034B0": {
     "name": "GRPinput::AcquireKeyboard",
-    "signature": "void __thiscall(GRPinput **this)"
+    "signature": "void __thiscall(GRPinput *this)"
   },
   "0x004034E0": {
     "name": "GRPinput::UnacquireKeyboard",
@@ -825,7 +825,7 @@
   },
   "0x0043AA00": {
     "name": "PalScript::OpenScript",
-    "signature": "gbVFileSystem *__thiscall(PalScript **this, const char *pszName, char pData)"
+    "signature": "gbVFileSystem *__thiscall(PalScript *this, const char *pszName, char pData)"
   },
   "0x0043AB00": {
     "name": "UIScenePanel::UpdateChildren",
@@ -905,7 +905,7 @@
   },
   "0x0043DEF0": {
     "name": "UIListBox::Render",
-    "signature": "int __thiscall(UIListBox **this)"
+    "signature": "int __thiscall(UIListBox *this)"
   },
   "0x0043DF10": {
     "name": "UIListBox::CalHeightCount",
@@ -913,7 +913,7 @@
   },
   "0x0043DF20": {
     "name": "UIListBox::GetItemPos",
-    "signature": "void __thiscall(UIListBox **this)"
+    "signature": "void __thiscall(UIListBox *this)"
   },
   "0x0043DFC0": {
     "name": "UIListBox::UpdateKeyCtrl",
@@ -981,11 +981,11 @@
   },
   "0x0043FA00": {
     "name": "UIWnd::GetChildCount",
-    "signature": "void __thiscall(UIWnd **this, LPCSTR lpString, char pData)"
+    "signature": "void __thiscall(UIWnd *this, LPCSTR lpString, char pData)"
   },
   "0x0043FAE0": {
     "name": "UIWnd::GetChildAt",
-    "signature": "void __thiscall(UIWnd **this, LPCSTR lpString, char pData)"
+    "signature": "void __thiscall(UIWnd *this, LPCSTR lpString, char pData)"
   },
   "0x0043FCA0": {
     "name": "UIWnd::FindChild",
@@ -1013,7 +1013,7 @@
   },
   "0x00440BA0": {
     "name": "UIStatic::OnMessage",
-    "signature": "int __thiscall(UIStatic **this)"
+    "signature": "int __thiscall(UIStatic *this)"
   },
   "0x00442390": {
     "name": "UIFrameWnd::_UIFrameWnd",
@@ -1025,7 +1025,7 @@
   },
   "0x004426B0": {
     "name": "UIWnd::CreateFromTemplate",
-    "signature": "void __thiscall(UIWnd **this, LPCSTR lpString1, char pData)"
+    "signature": "void __thiscall(UIWnd *this, LPCSTR lpString1, char pData)"
   },
   "0x004427A0": {
     "name": "UIWnd::SetShow",
@@ -1205,11 +1205,11 @@
   },
   "0x0047C630": {
     "name": "ObjectCamera::GetCameraDirect",
-    "signature": "void __thiscall(ObjectCamera **this)"
+    "signature": "void __thiscall(ObjectCamera *this)"
   },
   "0x0047C640": {
     "name": "ObjectCamera::SetCameraEyePosition",
-    "signature": "void __thiscall(ObjectCamera **this, gbGfxManager *position)"
+    "signature": "void __thiscall(ObjectCamera *this, gbGfxManager *position)"
   },
   "0x0047C6E0": {
     "name": "ObjectCamera::SetCameraAtPosition",
@@ -2297,7 +2297,7 @@
   },
   "0x004EE540": {
     "name": "CCBRoleState::Create",
-    "signature": "char __thiscall(CCBRoleState **this)"
+    "signature": "char __thiscall(CCBRoleState *this)"
   },
   "0x004EE760": {
     "name": "CCBRoleState::Destroy",
@@ -2769,7 +2769,7 @@
   },
   "0x004FE290": {
     "name": "CCBStage::ProcShowFiveLineup",
-    "signature": "int __thiscall(CCBStage **this, int __formal)"
+    "signature": "int __thiscall(CCBStage *this, int __formal)"
   },
   "0x004FE540": {
     "name": "CCBStage::ProcShowEnemyFiveLineup",
@@ -2833,7 +2833,7 @@
   },
   "0x00504080": {
     "name": "UIWnd::~UIWnd_4080",
-    "signature": "void __thiscall(UIWnd ***this)"
+    "signature": "void __thiscall(UIWnd **this)"
   },
   "0x005044C0": {
     "name": "CCCTData::UpdateCamera",
@@ -2917,7 +2917,7 @@
   },
   "0x005058E0": {
     "name": "CCBStageCam::SwitchEditorCamPos",
-    "signature": "int __thiscall(CCBStageCam **this)"
+    "signature": "int __thiscall(CCBStageCam *this)"
   },
   "0x005058F0": {
     "name": "CCCTData::CCCTData",
@@ -3033,7 +3033,7 @@
   },
   "0x00508680": {
     "name": "CCBCamControl::DoList",
-    "signature": "char __thiscall(CCBCamControl **this)"
+    "signature": "char __thiscall(CCBCamControl *this)"
   },
   "0x00508690": {
     "name": "CCBCamControl::ResetListFlag",
@@ -3045,7 +3045,7 @@
   },
   "0x005088D0": {
     "name": "CCBCamControl::DoLineMove",
-    "signature": "int __thiscall(CCBCamControl **this, unsigned int dwVal)"
+    "signature": "int __thiscall(CCBCamControl *this, unsigned int dwVal)"
   },
   "0x00508930": {
     "name": "CCBStageRole::~CCBStageRole",
@@ -3333,7 +3333,7 @@
   },
   "0x00510610": {
     "name": "CCBStageScene::Destroy",
-    "signature": "void __thiscall(CCBStageScene **this)"
+    "signature": "void __thiscall(CCBStageScene *this)"
   },
   "0x005107C0": {
     "name": "CCBStageScene::Init",
@@ -3985,7 +3985,7 @@
   },
   "0x0051B710": {
     "name": "CCBParabolaWindow::CCBParabolaWindow",
-    "signature": "CCBParabolaWindow *__thiscall(CCBParabolaWindow ***this, int *pnVal, int nVal)"
+    "signature": "CCBParabolaWindow *__thiscall(CCBParabolaWindow **this, int *pnVal, int nVal)"
   },
   "0x0051B810": {
     "name": "CCBParabolaWindow::~CCBParabolaWindow",
@@ -4001,19 +4001,19 @@
   },
   "0x0051B950": {
     "name": "CCBParabolaWindow::OnMessage",
-    "signature": "bool __thiscall(CCBParabolaWindow **this, int msg, int wparam, int lparam)"
+    "signature": "bool __thiscall(CCBParabolaWindow *this, int msg, int wparam, int lparam)"
   },
   "0x0051B9A0": {
     "name": "CCBParabolaWindow::Update",
-    "signature": "int __thiscall(CCBParabolaWindow **this, int deltatime, int haveinput)"
+    "signature": "int __thiscall(CCBParabolaWindow *this, int deltatime, int haveinput)"
   },
   "0x0051B9F0": {
     "name": "CCBMagicWindow::CCBMagicWindow",
-    "signature": "CCBMagicWindow *__thiscall(CCBMagicWindow **this, int nVal, int nVal2, _DWORD *p_DWORD)"
+    "signature": "CCBMagicWindow *__thiscall(CCBMagicWindow *this, int nVal, int nVal2, _DWORD *p_DWORD)"
   },
   "0x0051BAB0": {
     "name": "CCBMagicWindow::~CCBMagicWindow",
-    "signature": "void __thiscall(CCBMagicWindow **this, int nVal)"
+    "signature": "void __thiscall(CCBMagicWindow *this, int nVal)"
   },
   "0x0051BB00": {
     "name": "CCBMagicWindow::Reset",
@@ -5373,7 +5373,7 @@
   },
   "0x00503AE0": {
     "name": "CCBRoleState::GetRoleMPValue",
-    "signature": "int __thiscall(void **this, int nVal, int nVal2, int nVal3)"
+    "signature": "int __thiscall(void *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00511BD0": {
     "name": "unknown_libname_475",
@@ -5625,7 +5625,7 @@
   },
   "0x00445F20": {
     "name": "UIWnd::MoveWindow",
-    "signature": "int __thiscall(UIWnd **this)"
+    "signature": "int __thiscall(UIWnd *this)"
   },
   "0x004BEC90": {
     "name": "unknown_libname_434",
@@ -7349,7 +7349,7 @@
   },
   "0x00429D10": {
     "name": "PalScript::GetCount",
-    "signature": "_DWORD *__thiscall(_DWORD **this, int nVal)"
+    "signature": "_DWORD *__thiscall(_DWORD *this, int nVal)"
   },
   "0x00429DB0": {
     "name": "PalScriptMgr::_sub_429DB0",
@@ -7773,7 +7773,7 @@
   },
   "0x00420290": {
     "name": "RoleSystem::RoleSystem",
-    "signature": "void __thiscall(vtbl_0056AAD8 **this)"
+    "signature": "void __thiscall(vtbl_0056AAD8 *this)"
   },
   "0x00420930": {
     "name": "RoleSystem::Init_0930",
@@ -8937,7 +8937,7 @@
   },
   "0x00482BB0": {
     "name": "PalScript::_auto_482bb0",
-    "signature": "int __thiscall(PalScript **this)"
+    "signature": "int __thiscall(PalScript *this)"
   },
   "0x00482EB0": {
     "name": "UIWnd::_nearby_482eb0",
@@ -8957,7 +8957,7 @@
   },
   "0x00484D20": {
     "name": "PalScript::_auto_484d20",
-    "signature": "int __thiscall(PalScript **this)"
+    "signature": "int __thiscall(PalScript *this)"
   },
   "0x004867D0": {
     "name": "UIWnd::_nearby_4867d0",
@@ -8973,7 +8973,7 @@
   },
   "0x00487B60": {
     "name": "PalScript::_auto_487b60",
-    "signature": "int __thiscall(PalScript **this)"
+    "signature": "int __thiscall(PalScript *this)"
   },
   "0x00489BA0": {
     "name": "UIBigMap::_unverified_489BA0",
@@ -9009,7 +9009,7 @@
   },
   "0x00491B40": {
     "name": "PalScript::_auto_491b40",
-    "signature": "int __thiscall(PalScript **this)"
+    "signature": "int __thiscall(PalScript *this)"
   },
   "0x00492850": {
     "name": "UIBigMap::_method_492850",
@@ -9061,7 +9061,7 @@
   },
   "0x004998E0": {
     "name": "PalScript::_auto_4998e0",
-    "signature": "int __thiscall(PalScript **this)"
+    "signature": "int __thiscall(PalScript *this)"
   },
   "0x0049F2E0": {
     "name": "UIListBox::CreateListPanel",
@@ -9105,7 +9105,7 @@
   },
   "0x004A4ED0": {
     "name": "PalScript::_auto_4a4ed0",
-    "signature": "int __thiscall(PalScript **this)"
+    "signature": "int __thiscall(PalScript *this)"
   },
   "0x004A5930": {
     "name": "UIGameFrm::GetID",
@@ -9121,7 +9121,7 @@
   },
   "0x004A8150": {
     "name": "PalScript::_auto_4a8150",
-    "signature": "int __thiscall(PalScript **this)"
+    "signature": "int __thiscall(PalScript *this)"
   },
   "0x004AA9C0": {
     "name": "CCBUI::_init_4aa9c0",
@@ -9217,7 +9217,7 @@
   },
   "0x004B42F0": {
     "name": "PalScript::_auto_4b42f0",
-    "signature": "int __thiscall(PalScript **this)"
+    "signature": "int __thiscall(PalScript *this)"
   },
   "0x004B4600": {
     "name": "UIWnd::_nearby_4b4600",
@@ -9609,7 +9609,7 @@
   },
   "0x004DF3D0": {
     "name": "CCBRoleState::CheckMP",
-    "signature": "char __thiscall(CCBRoleState **this)"
+    "signature": "char __thiscall(CCBRoleState *this)"
   },
   "0x004DF4B0": {
     "name": "CCBRoleState::_nearby_4df4b0",
@@ -10165,7 +10165,7 @@
   },
   "0x0052F2E0": {
     "name": "MatrixStack::Method_52F2E0",
-    "signature": "void __thiscall(gbMatrixStack **this)"
+    "signature": "void __thiscall(gbMatrixStack *this)"
   },
   "0x0052F570": {
     "name": "PAL3::_auto_52f570",
@@ -12197,7 +12197,7 @@
   },
   "0x00456E20": {
     "name": "CScreenMode::_init_456e20",
-    "signature": "void __thiscall(void (__thiscall ***this)(_DWORD, _DWORD), unsigned char pData)"
+    "signature": "void __thiscall(void (__thiscall **this)(_DWORD, _DWORD), unsigned char pData)"
   },
   "0x00456EE0": {
     "name": "Actor::_init_456ee0",
@@ -15129,7 +15129,7 @@
   },
   "0x005322F0": {
     "name": "RoleAtt::_method_5322f0",
-    "signature": "int __thiscall(void (__thiscall ***this)(int, int), int nVal, int nVal2)"
+    "signature": "int __thiscall(void (__thiscall **this)(int, int), int nVal, int nVal2)"
   },
   "0x00532360": {
     "name": "RoleSystem::_method_532360",
