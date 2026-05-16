@@ -73,9 +73,9 @@
       "source": "ida_decomp:_nearby_439410 gbMatrixStack::Scale(v2,this,...)"
     },
     "292": {
-      "name": "m_pCamera",
+      "name": "m_fInterval",
       "type": "float",
-      "source": "binary:sub_43A3E0 fld_dword_[ecx+0x44] float_load; ctor=10.0f; CheckRay uses int_cmp as IEEE754 positive-nonzero test"
+      "source": "binary:sub_43A3E0 fld[ecx+0x44];fcomp 5e-5(active?);ctor=10.0; timer period"
     },
     "512": {
       "name": "m_nLoadFromFile",
@@ -138,24 +138,24 @@
       "source": "binary:CheckRayHitRole [ebp+0x38] elem+0x38 tested_if_zero"
     },
     "296": {
-      "name": "_todo_128",
+      "name": "m_fElapsed",
       "type": "float",
-      "source": "binary:sub_43A3E0 fadd_dword_[ecx+0x48];fst — float accumulator; ctor=0.0f"
+      "source": "binary:sub_43A3E0 fadd[ecx+0x48];fst(accum); reset to 0 on trigger"
     },
     "368": {
-      "name": "_todo_170",
+      "name": "m_nRepeatCount",
       "type": "int",
-      "source": "binary:ctor_A160 [esi+0x90]=0"
+      "source": "binary:sub_43A3E0 inc[ecx+0x90] on trigger; cmp with [ecx+0x94]; reset to 0"
     },
     "372": {
-      "name": "_todo_174",
+      "name": "m_nMaxRepeats",
       "type": "int",
-      "source": "binary:ctor_A160 [esi+0x94]=0"
+      "source": "binary:sub_43A3E0 cmp[ecx+0x90],[ecx+0x94]; bounds repeat count"
     },
     "380": {
-      "name": "_todo_17C",
+      "name": "m_nMaxCycles",
       "type": "int",
-      "source": "binary:ctor_A160 [esi+0x9C]=-1 sentinel"
+      "source": "binary:sub_43A3E0 cmp[ecx+0x98],[ecx+0x9C]; ctor=-1(infinite); cycle limit"
     },
     "396": {
       "name": "_todo_18C",
@@ -233,9 +233,9 @@
       "source": "binary:sub_43A3E0 mov eax,[ecx+0x3C]; test eax,eax — guard ptr/state"
     },
     "376": {
-      "name": "_todo_178",
+      "name": "m_nCycleCount",
       "type": "int",
-      "source": "binary:sub_43A3E0 mov eax,[ecx+0x98]; inc eax; mov [ecx+0x98],eax — counter"
+      "source": "binary:sub_43A3E0 inc[ecx+0x98] when repeats exhausted; cmp with [ecx+0x9C]"
     }
   },
   "pdb_size": 40
