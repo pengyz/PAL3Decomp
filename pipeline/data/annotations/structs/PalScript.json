@@ -74,8 +74,8 @@
     },
     "292": {
       "name": "m_pCamera",
-      "type": "gbCamera *",
-      "source": "binary:2x access | annotate_todo"
+      "type": "int",
+      "source": "binary:ctor [esi+0x44]=0x41200000; CheckRayHitRole [ebp+0x44] as int count; dominant_use=int"
     },
     "512": {
       "name": "m_nLoadFromFile",
@@ -83,9 +83,9 @@
       "source": "binary:3x access"
     },
     "516": {
-      "name": "m_nLoadState",
+      "name": "_todo_204",
       "type": "int",
-      "source": "binary:2x access"
+      "source": "binary:_nearby_439410 *(gbCamera**)(this+292=0x124) -> gbCamera::SetAsCurrent"
     },
     "520": {
       "name": "m_nNext",
@@ -176,6 +176,56 @@
       "name": "_todo_104",
       "type": "PtrArray",
       "source": "binary:sub_445AA0 lea ecx,[esi+0x24]; call PtrArray::Clear; elem+0x24"
+    },
+    "312": {
+      "name": "_todo_138",
+      "type": "int",
+      "source": "binary:CheckRayHitRole lea eax,[ebp+0x58] array_base stride_32; _nearby_439410 same"
+    },
+    "472": {
+      "name": "_todo_1B8",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+248); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "480": {
+      "name": "_todo_1C0",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+256); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "484": {
+      "name": "_todo_1C4",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+260); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "488": {
+      "name": "_todo_1C8",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+264); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "492": {
+      "name": "_todo_1CC",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+268); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "496": {
+      "name": "_todo_1D0",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+272); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "500": {
+      "name": "_todo_1F4",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+276); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "504": {
+      "name": "_todo_1F8",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+280); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "508": {
+      "name": "_todo_1FC",
+      "type": "float",
+      "source": "binary:_nearby_439410 *(float*)(this+284); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
     }
   },
   "pdb_size": 40
