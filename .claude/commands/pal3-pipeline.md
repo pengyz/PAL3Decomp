@@ -372,6 +372,50 @@ print(f'对齐违规: {violations}')
 7. **逐一验证** — 每个字段修改独立验证，不批量推断
 8. **MSVC 6.0 对齐** — int/float/ptr 在 4 倍偏移，short 在 2 倍偏移，pack(1) 结构体除外
 
+## 验证方法论（经验总结）
+
+### 类型判定规则
+
+| 证据 | 结论 | 确定性 |
+|------|------|--------|
+| `fld dword [reg+off]` / `fadd` / `fst` / `fcomp` | **float** | 确定 |
+| `fild` / `fistp` | 整数↔浮点转换 | 确定（源/目标分别是 int/float） |
+| `mov eax,[reg+off]; test eax,eax` | **不确定**（int 或 float 均可） | 不可判定 |
+| `movzx byte` / `cmp byte` / `mov byte` | **unsigned char** | 确定 |
+| `lea reg,[reg+off]; push reg; call Func(char*)` | 该偏移是 **char[]** 缓冲区 | 高 |
+| `lea reg,[reg+off]; mov ecx,reg; call ctor` | 该偏移是 **嵌入子对象** | 确定 |
+
+**关键教训**: 整数寄存器操作（mov/test/cmp）对 4 字节字段**无法区分** int 和 float。IEEE 754 正浮点数的 DWORD 表示 > 0，所以 `test eax,eax; jle` 对正 float 等效于"非零检测"。只有 FPU 指令能确定性证明 float。
+
+### 嵌入子对象发现
+
+构造函数中 `lea ecx,[esi+offset]; call CtorFunc` 模式是发现嵌入子对象的高效路径：
+- 连续 LEA 的 stride = 子对象大小（验证与目标类 binary_size 匹配）
+- 调用目标 = 子对象类的构造函数（通过 functions.json 确认）
+- 多个相同 stride 的连续 LEA = 嵌入数组
+
+### 管理器 vs 元素判别
+
+对于包含对象数组的类（如 PalScript）：
+- **管理器方法**: 访问 count 字段 + 遍历数组（stride 循环）
+- **元素方法**: 在 vtable 中定义（off_XXXXXXXX），操作单个元素内偏移
+- **判别**: 检查函数是否在 annotations vtables.json 中归属该类 vtable
+- **偏移空间**: 管理器字段在数组起始前，元素字段在 stride 范围内
+
+### 全局实例验证
+
+有全局实例（globals.json）的类可用 verify_offset.py：
+- 搜索 .text 段中绝对地址 `g_Instance + offset` 的引用
+- 适用于 SceneMgr、CScreenMode 等单例
+- 不适用于 this 指针间接访问的类（如 CCBRoleState）
+
+### raw IDB 辅助分析
+
+`original/PAL3.exe.raw.i64` 无类型信息但可用于：
+- 纯粹的 Hex-Rays 类型推断（不受错误结构体干扰）
+- 函数参数类型/返回值的初始猜测
+- **注意**: raw decomp 中 `this + N` 的 N 是字节偏移（当 this 为 char*/void*）或 DWORD 偏移（当 this 为 _DWORD*）——看是否有 `(_TYPE *)` cast 来判断
+
 ## 退出条件
 
 - 对齐违规 = 0
