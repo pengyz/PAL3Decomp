@@ -101,6 +101,7 @@ def main():
             skip_addrs = set(int(a, 16) for a in skip_data.keys())
 
         targets = []
+        target_addrs = set()
         for ea in idautils.Functions(TEXT_START, TEXT_END):
             name = ida_name.get_name(ea) or ""
             if not name or name.startswith("nullsub_") or name.startswith("j_"):
@@ -111,6 +112,39 @@ def main():
             if not func or func.size() <= 1:
                 continue
             targets.append((ea, name, func.size()))
+            target_addrs.add(ea)
+
+        # Ensure all functions.json entries are in targets (fix for IDA undefine race)
+        funcs_json = os.path.join(PROJECT_ROOT, "pipeline", "data", "annotations", "functions.json")
+        _recovered = 0
+        _missing = []
+        if os.path.exists(funcs_json):
+            import json as _fj
+            _ann_funcs = _fj.load(open(funcs_json, encoding='utf-8'))
+            for _addr_str, _info in _ann_funcs.items():
+                _ea = int(_addr_str, 16)
+                if _ea in target_addrs or _ea in skip_addrs:
+                    continue
+                if not (TEXT_START <= _ea <= TEXT_END):
+                    continue
+                # Try to ensure function exists
+                if not ida_funcs.get_func(_ea):
+                    ida_funcs.add_func(_ea)
+                _func = ida_funcs.get_func(_ea)
+                if _func and _func.size() > 1:
+                    _name = ida_name.get_name(_ea) or _info.get('name', '')
+                    targets.append((_ea, _name, _func.size()))
+                    target_addrs.add(_ea)
+                    _recovered += 1
+                else:
+                    _missing.append((_ea, _info.get('name', '')))
+        if _recovered:
+            log("[*] Recovered %d functions from annotations (not in Functions())" % _recovered)
+        if _missing:
+            log("[!] %d annotation functions could not be recovered:" % len(_missing))
+            for _ea, _n in _missing[:10]:
+                log("    0x%08X %s" % (_ea, _n))
+
         targets.sort()
 
         opt = PAL3Optimizer()
@@ -132,7 +166,12 @@ def main():
                 except:
                     pass
                 cfunc = ida_hexrays.decompile(ea)
-                if not cfunc: continue
+                if not cfunc:
+                    # Retry without dirty mark
+                    cfunc = ida_hexrays.decompile(ea)
+                if not cfunc:
+                    log("[!] SKIP 0x%08X %s: decompile returned None" % (ea, name[:50]))
+                    continue
                 code = str(cfunc)
                 sig = cfunc.type.dstr()
                 demangled = idc.demangle_name(name, idc.get_inf_attr(idc.INF_SHORT_DN))
