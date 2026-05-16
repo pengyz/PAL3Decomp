@@ -89,6 +89,18 @@ if _exe_path.exists():
 
     del _exe_data
 
+# Build set of static (__cdecl) class methods — these should NOT get OOP-transformed
+STATIC_METHODS = set()  # {"ClassName::MethodName", ...}
+_funcs_file = PIPELINE_ROOT / "data" / "annotations" / "functions.json"
+if _funcs_file.exists():
+    _funcs_data = json.load(open(_funcs_file, encoding='utf-8'))
+    for _addr, _info in _funcs_data.items():
+        _name = _info.get('name', '')
+        _sig = _info.get('signature', '')
+        if '::' in _name and '__cdecl' in _sig:
+            STATIC_METHODS.add(_name)
+    del _funcs_data
+
 
 def _try_read_rdata_string(va):
     """Try to read a null-terminated string at a .rdata virtual address."""
@@ -419,7 +431,7 @@ def transform_method_code(cls_name, method_name, code, sig):
     import sys, os
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from ast_transform import transform_oop_calls
-    code = transform_oop_calls(code)
+    code = transform_oop_calls(code, static_methods=STATIC_METHODS)
 
     # 4. Remove variable declarations for 'this' pointer
     code = re.sub(r'^\s*%s\s*\*\s*this\s*;.*$' % re.escape(cls_name), '', code, flags=re.MULTILINE)
@@ -812,8 +824,15 @@ def generate_class_cpp(cls_name, methods):
                             indirect.add(ptr_type)
     needed_classes |= indirect
 
+    # CRT/system types that should never be included (defined by compiler/runtime)
+    _SKIP_INCLUDE = {
+        '_ThrowInfo', '_CatchableType', '_CatchableTypeArray',
+        '_s_ThrowInfo', '_s__ThrowInfo',
+        'string', 'exception', 'type_info', 'stdiobuf', 'filebuf',
+        'ios_base', 'facet', 'codecvt_base', 'strstreambuf',
+    }
     for c in sorted(needed_classes):
-        if c.startswith('vtbl_'):
+        if c.startswith('vtbl_') or c in _SKIP_INCLUDE:
             continue
         lines.append('#include "pal3/gen/%s.h"' % c)
 

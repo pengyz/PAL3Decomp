@@ -58,6 +58,7 @@ def load_annotations_data():
 SKIP_CLASSES = {
     'std', 'stdiobuf', 'exception', 'type_info', 'filebuf', 'string',
     'strstreambuf', 'ios_base', 'facet', 'codecvt_base',
+    '_ThrowInfo', '_CatchableType', '_CatchableTypeArray',
     # Windows types
     'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG', 'RECT', 'POINT', 'SIZE',
     'WNDCLASSA', 'tagWNDCLASSA', 'tagOFNA',
@@ -114,9 +115,36 @@ TYPE_REMAP = {
 
 
 def parse_signature(sig):
-    """Parse IDA signature into (return_type, calling_conv, params_str)."""
+    """Parse IDA signature into (return_type, calling_conv, params_str, ret_right).
+
+    For normal functions: ret_right is ''.
+    For functions returning function pointers (e.g.
+      "int (__thiscall *__thiscall(Class *this, int a2))(char *, int)"),
+    ret_right contains the trailing parameter list of the returned fp type.
+    """
     if not sig:
-        return 'int', '', ''
+        return 'int', '', '', ''
+
+    # Detect function-pointer return type: "... *CC(params)(fp_params)"
+    fp_match = re.search(r'\*\s*(__thiscall|__cdecl|__stdcall|__fastcall)\s*\(', sig)
+    if fp_match:
+        cc = fp_match.group(1)
+        ret_left = sig[:fp_match.start()+1]  # up to and including '*'
+        # Find matching ')' for the '(' at end of fp_match
+        paren_start = fp_match.end() - 1
+        depth = 0
+        paren_end = paren_start
+        for i in range(paren_start, len(sig)):
+            if sig[i] == '(':
+                depth += 1
+            elif sig[i] == ')':
+                depth -= 1
+                if depth == 0:
+                    paren_end = i
+                    break
+        params = sig[paren_start+1:paren_end]
+        ret_right = sig[paren_end+1:]
+        return ret_left, cc, params, ret_right
 
     cc_match = re.search(r'(__thiscall|__cdecl|__stdcall|__fastcall)', sig)
     paren_match = re.search(r'\(', sig)
@@ -127,16 +155,16 @@ def parse_signature(sig):
         if not ret:
             ret = 'int'
         params = sig[paren_match.start()+1:sig.rfind(')')]
-        return ret, cc, params
+        return ret, cc, params, ''
 
     if paren_match:
         ret = sig[:paren_match.start()].rstrip()
         if not ret:
             ret = 'int'
         params = sig[paren_match.start()+1:sig.rfind(')')]
-        return ret, '__cdecl', params
+        return ret, '__cdecl', params, ''
 
-    return 'int', '', ''
+    return 'int', '', '', ''
 
 
 def split_params(params_str):
@@ -705,7 +733,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     if methods:
         seen_methods = set()  # track "name(params)" to deduplicate
         for method_name, sig, addr in sorted(methods, key=lambda x: x[2]):
-            ret, cc, params = parse_signature(sig)
+            ret, cc, params, ret_right = parse_signature(sig)
 
             is_ctor = (method_name == cls_name)
             is_dtor = (method_name.startswith('~') or method_name == '~%s' % cls_name)
@@ -718,10 +746,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             # Strip register annotations
             params = re.sub(r'@<\w+>', '', params)
 
-            # Remove this pointer from params
+            # Remove this pointer from params (always first param for __thiscall)
             if is_thiscall and params:
                 param_list = split_params(params)
-                if param_list and ('this' in param_list[0] or '*this' in param_list[0]):
+                if param_list:
                     param_list = param_list[1:]
                 params = ', '.join(param_list)
 
@@ -756,15 +784,30 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 params = re.sub(r'__thiscall\s*\*', '*', params)
                 params = re.sub(r'__cdecl\s*\*', '*', params)
                 params = re.sub(r'__stdcall\s*\*', '*', params)
+                ret_right = re.sub(r'__thiscall\s*\*', '*', ret_right)
+                ret_right = re.sub(r'__cdecl\s*\*', '*', ret_right)
+                ret_right = re.sub(r'__stdcall\s*\*', '*', ret_right)
                 def _fix_nested_this(m):
                     return m.group(0).replace(' this', ' _this').replace('*this', '*_this')
                 params = re.sub(r'\([^)]*\bthis\b[^)]*\)', _fix_nested_this, params)
+
+            # Strip calling conventions from function-pointer return type
+            if ret_right:
+                ret = re.sub(r'__thiscall\s*\*', '*', ret)
+                ret = re.sub(r'__cdecl\s*\*', '*', ret)
+                ret = re.sub(r'__stdcall\s*\*', '*', ret)
 
             # Build declaration
             if is_ctor:
                 decl = "    %s(%s);" % (cls_name, params)
             elif is_dtor:
                 decl = "    ~%s();" % cls_name
+            elif ret_right:
+                # Function-pointer return: "ret_left method(params) ret_right;"
+                if is_static:
+                    decl = "    static %s %s(%s)%s;" % (ret, method_name, params, ret_right)
+                else:
+                    decl = "    %s %s(%s)%s;" % (ret, method_name, params, ret_right)
             elif is_static:
                 decl = "    static %s %s(%s);" % (ret, method_name, params)
             else:

@@ -13,12 +13,13 @@ _lang = tree_sitter.Language(tscpp.language())
 _parser = tree_sitter.Parser(_lang)
 
 
-def transform_oop_calls(code):
+def transform_oop_calls(code, static_methods=None):
     """
     Transform Class::Method(obj, args) -> obj->Method(args)
     Only when:
     - Function is qualified (Class::Method)
     - First argument is a simple identifier or 'this'
+    - Function is NOT a static (__cdecl) method
 
     Does NOT transform when first arg is:
     - Cast expression: (Type *)expr
@@ -26,6 +27,9 @@ def transform_oop_calls(code):
     - Array subscript: arr[i]
     - Any other complex expression
     """
+    if static_methods is None:
+        static_methods = set()
+
     code_bytes = code.encode('utf-8')
     tree = _parser.parse(code_bytes)
 
@@ -45,6 +49,11 @@ def transform_oop_calls(code):
                 if scope_node and name_node:
                     class_name = scope_node.text.decode('utf-8').rstrip(':')
                     method_name = name_node.text.decode('utf-8')
+
+                    # Skip static (__cdecl) methods — their first arg is data, not this
+                    qualified = '%s::%s' % (class_name, method_name)
+                    if qualified in static_methods:
+                        return
 
                     # Skip operator calls (operator new, operator delete, etc.)
                     if class_name == 'operator' or method_name == 'operator':
