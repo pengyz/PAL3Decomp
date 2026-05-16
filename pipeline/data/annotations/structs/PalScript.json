@@ -74,8 +74,8 @@
     },
     "292": {
       "name": "m_pCamera",
-      "type": "int",
-      "source": "binary:ctor [esi+0x44]=0x41200000; CheckRayHitRole [ebp+0x44] as int count; dominant_use=int"
+      "type": "float",
+      "source": "binary:sub_43A3E0 fld_dword_[ecx+0x44] float_load; ctor=10.0f; CheckRay uses int_cmp as IEEE754 positive-nonzero test"
     },
     "512": {
       "name": "m_nLoadFromFile",
@@ -139,8 +139,8 @@
     },
     "296": {
       "name": "_todo_128",
-      "type": "int",
-      "source": "binary:ctor_A160 [esi+0x48]=0"
+      "type": "float",
+      "source": "binary:sub_43A3E0 fadd_dword_[ecx+0x48];fst — float accumulator; ctor=0.0f"
     },
     "368": {
       "name": "_todo_170",
@@ -226,6 +226,16 @@
       "name": "_todo_1FC",
       "type": "float",
       "source": "binary:_nearby_439410 *(float*)(this+284); gbMatrixStack::Scale uses +0x114/0x118/0x11C"
+    },
+    "284": {
+      "name": "_todo_11C",
+      "type": "int",
+      "source": "binary:sub_43A3E0 mov eax,[ecx+0x3C]; test eax,eax — guard ptr/state"
+    },
+    "376": {
+      "name": "_todo_178",
+      "type": "int",
+      "source": "binary:sub_43A3E0 mov eax,[ecx+0x98]; inc eax; mov [ecx+0x98],eax — counter"
     }
   },
   "pdb_size": 40
