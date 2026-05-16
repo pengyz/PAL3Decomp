@@ -36,9 +36,11 @@ def flatten_gbengine_headers(header_dir):
     # Strip C++ comments
     full = re.sub(r'//[^\n]*', '', full)
 
-    # IDA parse_decls only handles data layout — strip all methods/functions.
-    # Strategy: remove lines containing '(' that are NOT function-pointer members.
-    # Then clean up any empty struct bodies and ensure proper closing braces.
+    # IDA parse_decls supports C++ method declarations with reference params,
+    # but large classes with many methods can cause parse failures.
+    # Strategy: strip all methods EXCEPT those with reference parameters (&).
+    # This preserves the critical reference type info for Hex-Rays while
+    # avoiding parse issues with complex method signatures.
     lines = full.split('\n')
     output = []
     in_method = False
@@ -62,11 +64,24 @@ def flatten_gbengine_headers(header_dir):
         if '(' in s:
             is_func_ptr = bool(re.search(r'\(\s*\*\s*\w+\s*\)', s))
             is_typedef_fp = 'typedef' in s and '(*)' in s.replace(' ', '')
+            has_reference = '&' in s and not is_func_ptr
             if is_func_ptr or is_typedef_fp:
                 output.append(line)  # function pointer member — keep
+            elif has_reference and 'operator' not in s:
+                # Method with reference param — KEEP (critical for Hex-Rays)
+                # But strip inline body if present
+                if '{' in s:
+                    decl_part = s[:s.index('{')].rstrip()
+                    if not decl_part.endswith(';'):
+                        decl_part += ';'
+                    output.append(decl_part)
+                    brace_depth = s.count('{') - s.count('}')
+                    if brace_depth > 0:
+                        in_method = True
+                else:
+                    output.append(line)
             else:
-                # It's a method — skip it
-                # If it has an opening brace, track until closing
+                # Regular method without references or operator — skip
                 if '{' in s:
                     brace_depth = s.count('{') - s.count('}')
                     if brace_depth > 0:
