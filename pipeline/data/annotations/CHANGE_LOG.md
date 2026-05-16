@@ -51,6 +51,22 @@
 
 ## 变更记录
 
+### [2026-05-16] iter(annotations): 44 global arrays typed (C2109 subscript 21→0)
+
+- **变更**: 44 个全局变量从标量 `int`/`unsigned char` 改为数组类型 `int[N]`/`unsigned char[N]`
+  - 18 个 .rdata 常量数组 (0x56FCC8-0x5701D4): 战斗 UI 布局坐标表
+  - 23 个 .bss 可变数组 (0x17A8EE0-0x17AD5CC): 战斗结算数据表
+  - 3 个追加 (dword_570250, dword_57026C, byte_17ACF80)
+- **置信度**: 85
+- **证据**:
+  1. [A] .rdata 二进制内容验证: 0x570080 起连续 4 个 DWORD {16,17,18,19} — UI 控件 ID 表
+  2. [A] .rdata 地址间距 = 数组元素数 × 4: 0x570080→0x570090 = 16 bytes = 4 DWORDs ✓
+  3. [A] 代码循环边界: CCBAIWindow::Create `if(++v2>=4)` → 最大索引 3, 数组≥4 元素
+  4. [A] 代码循环边界: CCBMagicWindow nVal 为角色索引(0-6), 7 元素对应 7 种法术类型
+  5. [A] PE .data section VA=0x580000-0x1897000 确认 0x17Axxxx 为合法 BSS 全局地址
+- **gen_cpp.py 修复**: forward declarations 现在优先查询 globals.json 的类型信息，不再对已标注数组回退为 `extern int scalar`
+- **消除**: C2109 subscript requires array or pointer type: 21→0
+
 ### [2026-05-16] fix(annotations): UIWnd binary_size 68→88 + UIFrameWnd 4 field type fixes
 
 - **变更**:
