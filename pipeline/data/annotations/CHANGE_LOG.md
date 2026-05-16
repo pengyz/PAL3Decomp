@@ -51,6 +51,17 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(annotations): g_PAL3_Instance + remove g_PAL3Data — 4497→4481 (-16)
+
+- **变更**: 
+  - 删除 `g_PAL3Data` (0x8ACBF8, PAL3) — 错误标注，落在 g_PAL3_Instance (0x8ACBF0) 内部 +8 处
+  - 添加 `g_PAL3_Instance` (0x8ACBF0, PAL3) — IDA 确认的 PAL3 第二实例
+- **置信度**: 90
+- **证据**:
+  1. [A] PAL3 结构体 +8 处是 `_todo_8 int`（非嵌套 PAL3）。`g_PAL3Data` type=PAL3 at +8 不合理
+  2. [A] `stru_8ACBF0`/`s_drvinfo`/`winname` 全部归零
+  3. [A] cmake: 4497→4481 (-16)
+
 ### [2026-05-16] fix(pipeline): full rebuild with type corrections — 4546→4497 (-49)
 
 - **变更**: 完整管线重建（master→apply→export→gen→build），让 apply_annotations 的类型设置传播到 Hex-Rays 反编译
