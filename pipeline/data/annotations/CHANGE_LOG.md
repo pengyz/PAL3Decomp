@@ -51,6 +51,25 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(annotations): add 3 global struct instances — 4641→4546 (-95)
+
+- **变更**: globals.json 添加 3 个 IDA 识别的全局结构体实例
+  - `g_PAL3` (0xDE7AA0, PAL3, 91024 bytes) — PAL3 主实例
+  - `g_RoleSystemInstance` (0xC12B48, RoleSystem, 9216 bytes) — 角色系统实例
+  - `g_RenderTarget3` (0xDE6CD8, RenderTarget3, 24 bytes)
+  - PAL3 struct binary_size: 90840 → 91024
+- **置信度**: 85
+- **重叠验证**:
+  - g_PAL3 内部有 20 个已标注子成员（合法——是 PAL3 结构体的字段）
+  - g_RoleSystemInstance 无重叠 ✓
+  - g_RenderTarget3 无重叠 ✓
+  - **已排除**: g_PalScript (IDA 类型=1816 vs annotation=40，不一致)，g_PAL3_Instance (内部有 g_PAL3Data 重叠)
+- **证据**:
+  1. [A] IDA: stru_DE7AA0 type=PAL3 size=91024, xref from PAL3::GetInstance
+  2. [A] IDA: stru_C12B48 type=RoleSystem size=9216
+  3. [A] cmake: 4641→4546 (-95), stru_ in errors: 0 (全部被 GLOBALS_NAME_MAP 替换)
+- **注意**: g_PAL3 内部的 20 个子成员全局变量（如 g_nRenderTarget2_DE8DF8）是 PAL3 结构体的成员被独立标注，不冲突
+
 ### [2026-05-16] iter(annotations): IDA investigation — 12 new functions + fix — 4667→4641 (-26)
 
 - **变更**: 通过 IDA 调查发现并添加 12 个缺失函数到 annotations
