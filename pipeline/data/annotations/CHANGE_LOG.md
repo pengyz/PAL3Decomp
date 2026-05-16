@@ -51,6 +51,17 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(gen_headers): collect methods from functions.json fallback — 4481→4445 (-36)
+
+- **变更**: gen_headers.py `collect_methods()` 新增 functions.json 作为方法声明的备选来源
+- **置信度**: 95
+- **根因**: export_full.py 未能导出 _TextureLib_Data 的 0x54xxxx 地址函数（IDA batch mode 中 mangled name 反编译可能静默失败）。gen_headers 只从 decomp JSON 收集方法 → 这些函数虽在 annotations 中但头文件无声明
+- **修复**: `collect_methods()` 在遍历 decomp JSON 后，补充检查 functions.json 中的 Class::Method 函数——对没有 decomp JSON 的函数也生成方法声明
+- **证据**:
+  1. [A] SetLibFolder C2039: 17→0
+  2. [A] cmake: 4481→4445 (-36), PASS 30→31
+  3. [A] IDA 确认 0x540440 等地址是有效函数（size=518, decompilable）
+
 ### [2026-05-16] fix(annotations): g_PAL3_Instance + remove g_PAL3Data — 4497→4481 (-16)
 
 - **变更**: 

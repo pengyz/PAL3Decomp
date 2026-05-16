@@ -210,8 +210,11 @@ def demangle_name(mangled):
 
 
 def collect_methods():
-    """Collect all class methods from decomp JSONs."""
+    """Collect all class methods from decomp JSONs + functions.json (fallback)."""
     classes = defaultdict(list)
+    seen_addrs = set()
+
+    # Primary source: decomp JSONs
     for f in sorted(DECOMP_DIR.glob("*.json")):
         try:
             with open(f, 'r', encoding='utf-8') as fh:
@@ -248,6 +251,27 @@ def collect_methods():
             continue
 
         classes[cls].append((method, sig, addr))
+        seen_addrs.add(addr)
+
+    # Secondary source: functions.json (for functions not exported by IDA)
+    funcs_json = ANNOTATIONS_DIR / "functions.json"
+    if funcs_json.exists():
+        funcs_data = json.load(open(funcs_json, encoding='utf-8'))
+        for addr_str, info in funcs_data.items():
+            if addr_str in seen_addrs:
+                continue
+            name = info.get('name', '')
+            sig = info.get('signature', '')
+            if '::' not in name or name.startswith('sub_'):
+                continue
+            parts = name.split('::', 1)
+            cls = parts[0]
+            method = parts[1]
+            if should_skip_class(cls) or '`' in method or ' ' in method or '?' in method:
+                continue
+            addr = addr_str
+            classes[cls].append((method, sig, addr))
+
     return classes
 
 
