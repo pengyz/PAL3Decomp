@@ -234,8 +234,8 @@
     },
     "200": {
       "name": "_field_0C8",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "PtrArray",
+      "source": "A+:decomp PtrArray::SetAt((PtrArray*)&this->_field_0C8,...) embedded_PtrArray"
     },
     "204": {
       "name": "_field_0CC",
@@ -628,9 +628,9 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "816": {
-      "name": "_todo_330",
+      "name": "m_nCurSel",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "A+:decomp SetSel assigns; used in _todo_338-_todo_330 offset calc; semantic=selection_index"
     },
     "824": {
       "name": "_todo_338",
