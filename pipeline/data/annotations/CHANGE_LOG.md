@@ -51,6 +51,41 @@
 
 ## 变更记录
 
+### [2026-05-17] iter(annotations): PalScript 计时器字段命名 + elem+0x44 类型二次修正
+
+- **变更**:
+  1. elem+0x44 类型 int → float **二次修正**（回退之前的错误修改）
+  2. elem+0x48 类型 int → float
+  3. 6 个计时器字段获得语义名（m_fInterval, m_fElapsed, m_nRepeatCount, m_nMaxRepeats, m_nCycleCount, m_nMaxCycles）
+  4. 2 个新字段: elem+0x3C guard, elem+0x98 counter
+- **置信度**: 80-90
+- **证据**:
+
+  **类型修正 (置信度 90: FPU 指令是确定性类型证据)**
+  - [A] 0x43A3E0: `D9 41 44` = `fld dword [ecx+0x44]` — **FPU 浮点加载，确定 float**
+  - [A] 0x43A3E0: `D8 41 48` = `fadd dword [ecx+0x48]` — **FPU 浮点加法，确定 float**
+  - [A] 0x43A3E0: `D9 51 48` = `fst dword [ecx+0x48]` — **FPU 浮点存储**
+  - [A] 之前的"int 证据"实际是 IEEE 754 正非零检测: `mov eax,[ebp+0x44]; test eax,eax; jle` 对正浮点数等价于 `> 0.0f`
+
+  **计时器语义 (置信度 80: 完整逻辑解码)**
+  - [A] 0x43A3E0 完整解码:
+    - `fld [ecx+0x44]; fcomp [0x56A9F8]` → 0x56A9F8 = 5E-05 (near-zero, "timer active?" check)
+    - `fadd [ecx+0x48]; fst [ecx+0x48]` → elapsed += delta_time
+    - `fcomp [ecx+0x44]` variant → elapsed >= interval?
+    - `C7 41 48 00 00 00 00` → reset elapsed = 0.0
+    - `8B 81 90; 40; 89 81 90` → repeat_count++ on trigger
+    - `39 91 90 00 00 00` → cmp repeat_count, max_repeats
+    - `C7 81 90...00; 8B 81 98; 40; 89 81 98` → reset repeats, cycle_count++
+    - `8B 81 9C; 85 C0; 7E` → check max_cycles (if > 0)
+    - `3B F0` → cmp cycle_count, max_cycles
+  - [B] 交叉验证: ctor_A160 初始化 +0x44=10.0f(默认间隔), +0x9C=-1(无限循环) 与计时器语义一致
+
+  **新字段**
+  - [A] 0x43A3E0: `8B 41 3C; 85 C0; 75 05; 33 C0; C2 08 00` → elem+0x3C 作为 guard 检测
+  - [A] 0x43A3E0: `8B 81 98; 40; 89 81 98` → elem+0x98 递增计数器
+
+- **教训**: 整数寄存器操作（mov/test/cmp）对 4 字节字段不能确定 int vs float。只有 FPU 指令（D9/D8/DD/DA/DC/DE）和 SSE 指令能确定性证明 float 类型。之前基于 `mov eax,[reg+off]; test eax,eax` 判断 int 是错误的。
+
 ### [2026-05-17] iter(annotations): PalScript 元素布局逆向 (26→45 members)
 
 - **变更**: PalScript 结构体新增 19 个字段，修正 2 个错误
