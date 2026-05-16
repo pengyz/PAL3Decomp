@@ -499,6 +499,8 @@ def transform_method_code(cls_name, method_name, code, sig):
         'IsColOBB': {1},         # (this, gbOBBox&)
         'IsColOBB_H': {1},       # (this, gbOBBox&)
         'IsColAABB': {1},        # (this, gbAABBox&)
+        'PointWorldToScr': {2, 3}, # (this, gbVec3D*, float&, float&)
+        'PointScrToWorld': {2, 3}, # (this, float, float, gbVec3D&, gbVec3D&)
     }
     # Direct regex for each known pattern:
     # ->Rotate(x, &var) → ->Rotate(x, var)
@@ -525,6 +527,14 @@ def transform_method_code(cls_name, method_name, code, sig):
             # Ref at position 2 only: ->Method(x, &var) → ->Method(x, var)
             code = re.sub(
                 r'(->' + re.escape(method_name) + r'\s*\([^,]+,\s*)&(\w)',
+                r'\1\2', code)
+        elif ref_pos == {2, 3}:
+            # Ref at positions 2 and 3: ->Method(x, &a, &b) → ->Method(x, a, b)
+            code = re.sub(
+                r'(->' + re.escape(method_name) + r'\s*\([^,]+,\s*)&(\w)',
+                r'\1\2', code)
+            code = re.sub(
+                r'(->' + re.escape(method_name) + r'\s*\([^,]+,[^,]+,\s*)&(\w)',
                 r'\1\2', code)
         elif ref_pos == {1, 2, 3}:
             # Three ref args

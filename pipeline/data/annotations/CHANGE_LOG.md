@@ -51,6 +51,15 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(gen_cpp): PointWorldToScr/PointScrToWorld reference parameter handling
+
+- **变更**: gen_cpp.py `_REF_METHODS` 增加 `PointWorldToScr: {2,3}` 和 `PointScrToWorld: {2,3}`，新增 `{2,3}` ref_pos 处理分支
+- **置信度**: 95
+- **证据**:
+  1. [A] gbengine API 声明: `void PointWorldToScr(gbVec3D*, float&, float&)` — 第2、3参数是引用
+  2. [A] 编译错误 C2664: "cannot convert 'float *' to 'float &'" — IDA decomp 输出 `&v18` 应为 `v18`
+- **消除**: C2664 PointWorldToScr float* vs float& (3 errors)
+
 ### [2026-05-16] fix(annotations): CCBStage::UpdateRoleMP → CCBRoleState::UpdateRoleMP
 
 - **变更**: 函数 0x004FA930 类归属 `CCBStage` → `CCBRoleState`
