@@ -236,6 +236,26 @@
       "name": "m_nCycleCount",
       "type": "int",
       "source": "binary:sub_43A3E0 inc[ecx+0x98] when repeats exhausted; cmp with [ecx+0x9C]"
+    },
+    "56": {
+      "name": "_todo_38",
+      "type": "int",
+      "source": "binary:CheckRayHitRole [ebp+0x38] manager guard tested_if_zero"
+    },
+    "60": {
+      "name": "_todo_3C",
+      "type": "int",
+      "source": "binary:CheckRayHitRole [ebp+0x3C] deduced from sub_43A3E0 structure (manager-level sibling of +0x38)"
+    },
+    "68": {
+      "name": "_todo_44",
+      "type": "int",
+      "source": "binary:CheckRayHitRole [ebp+0x44] loop_count for stride-32 array at +0x58"
+    },
+    "88": {
+      "name": "_todo_58",
+      "type": "int",
+      "source": "binary:CheckRayHitRole lea[ebp+0x58] + stride 32 iteration; nested actor ptr array"
     }
   },
   "pdb_size": 40
