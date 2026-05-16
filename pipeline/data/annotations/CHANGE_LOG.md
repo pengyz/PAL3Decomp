@@ -51,6 +51,34 @@
 
 ## 变更记录
 
+### [2026-05-17] iter(annotations): 跨库全局扫描——18 类型修正 (10 classes)
+
+- **变更**: 3 轮全局扫描共修正 18 个字段类型
+- **置信度**: 85
+- **方法**: 对全部 4388 decomp JSON 做模式匹配搜索
+
+  **扫描 1: IEEE 754 常量识别 (3 fixes)**
+  - 搜索 `this->field = INTEGER` 其中 INTEGER 是已知 IEEE 754 编码
+  - [A] PropUI.11512: assigned 1065353216 = 0x3F800000 = 1.0f → float
+  - [A] RenderTarget.52: assigned 1065353216 = 1.0f → float
+  - [A] RenderTarget2.108: assigned 1092616192 = 0x41200000 = 10.0f → float
+
+  **扫描 2: 嵌入子对象发现 (5 fixes, incl Actor gbVec3D)**
+  - 搜索 `(ClassName *)&this->_field_` 模式
+  - [A+] Actor.368: `gbVec3D::operator=(&this->_field_170, ...)` → gbVec3D
+  - [A+] CCBCamControl.16: `(gbVolModNode *)&this->_todo_10` → gbVolModNode
+  - [A+] CCBCamControl.236: `(gbVolModNode *)&this->_todo_EC` → gbVolModNode
+  - [A+] CCBStage.500: `(gbVec3D *)&this->_todo_1F4` → gbVec3D
+  - [A+] UIListBox.664: `(UIWnd *)&this->_todo_298` → UIWnd
+
+  **扫描 3: 显式 float* 转换 (10 fixes)**
+  - 搜索 `*(float *)&this->_field_` 模式
+  - [A+] CCBStage 3 fields (offsets 448, 496, 548): *(float*) casts
+  - [A+] RoleSystem.1168: *(float*) 3 occurrences
+  - [A+] Actor.512, CScreenMode.616, PalScript.280/284, RenderTarget2.56, RenderTarget.48
+
+- **覆盖**: CCBStage, RoleSystem, Actor, CScreenMode, PalScript, UIListBox, CCBCamControl, PropUI, RenderTarget, RenderTarget2
+
 ### [2026-05-17] iter(annotations): RoleSystem 6 类型修正 (Actor 嵌入 + 4 float + char 缓冲)
 
 - **变更**: RoleSystem 6 个字段类型修正
