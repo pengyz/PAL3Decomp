@@ -37,6 +37,18 @@ if GLOBALS_H.exists():
         if _m:
             _DECLARED_GLOBALS.add(_m.group(1))
 
+# Global type lookup from annotations (for forward declarations of IDA-named globals)
+_GLOBAL_TYPES = {}  # {"dword_570080": "int[4]", ...}
+_globals_json = PIPELINE_ROOT / "data" / "annotations" / "globals.json"
+if _globals_json.exists():
+    _gdata = json.load(open(_globals_json, encoding='utf-8'))
+    for _addr, _info in _gdata.items():
+        _gname = _info.get('name', '')
+        _gtype = _info.get('type', '')
+        if _gname and _gtype:
+            _GLOBAL_TYPES[_gname] = _gtype
+    del _gdata
+
 # Thunk address → target name mapping (for call replacement)
 THUNK_MAP = {}  # "sub_XXXXXX" → "TargetFunc"
 _skip_file = PIPELINE_ROOT / "data" / "annotations" / "skip_functions.json"
@@ -759,7 +771,14 @@ def generate_forward_decls(all_code):
     if undef:
         lines.append("// Unnamed globals (extern)")
         for u in sorted(undef):
-            if u.startswith('flt_'):
+            if u in _GLOBAL_TYPES:
+                gt = _GLOBAL_TYPES[u]
+                arr_m = re.match(r'^(.+?)(\[\d*\])$', gt)
+                if arr_m:
+                    lines.append("extern %s %s%s;" % (arr_m.group(1), u, arr_m.group(2)))
+                else:
+                    lines.append("extern %s %s;" % (gt, u))
+            elif u.startswith('flt_'):
                 lines.append("extern float %s;" % u)
             elif u.startswith('byte_'):
                 lines.append("extern unsigned char %s;" % u)
