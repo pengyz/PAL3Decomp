@@ -51,6 +51,42 @@
 
 ## 变更记录
 
+### [2026-05-17] iter(annotations): CScreenMode 嵌入子对象发现 + 屏幕尺寸命名
+
+- **变更**: CScreenMode 9 个嵌入子对象类型修正 + 2 个语义命名
+- **置信度**: 90
+- **证据**:
+
+  **1. UIFrameWnd 子对象数组 (stride 152 = 0x98, 6 个)**
+  - [A] 0x523F30 (ctor_3F30): 6 个连续 `lea ecx,[esi+off]; call 0x4422E0` 模式
+    - `8D 8E 68 01 00 00; E8 66 E3 F1 FF` → [esi+0x168], call UIFrameWnd::_unverified_4422E0
+    - `8D 8E 00 02 00 00; E8 ...` → [esi+0x200]
+    - `8D 8E 98 02 00 00; E8 ...` → [esi+0x298]
+    - `8D 8E 30 03 00 00; E8 ...` → [esi+0x330]
+    - `8D 8E C8 03 00 00; E8 ...` → [esi+0x3C8]
+    - `8D 8E 60 04 00 00; E8 ...` → [esi+0x460]
+  - [B] stride 0x200-0x168 = 0x298-0x200 = ... = 0x98 (152) = UIFrameWnd.binary_size 精确匹配
+  - [A] 0x4422E0 = `UIFrameWnd::_unverified_4422E0` (annotations 确认)
+
+  **2. UIScene 子对象 (3 个)**
+  - [A] 0x523F30: `lea ecx,[esi+0x4F8]; E8 → 0x43BCE0` = UIScene::ctor_BCE0
+  - [A] 0x523F30: `lea ecx,[esi+0x608]; E8 → 0x43A770` = UIScene::_UIScene
+  - [A] 0x523F30: `lea ecx,[esi+0x760]; E8 → 0x43A770` = UIScene::_UIScene
+
+  **3. 屏幕尺寸默认值**
+  - [A] 0x523F30: `C7 46 58 20 03 00 00` = `mov [esi+0x58], 800` → m_nScreenWidth
+  - [A] 0x523F30: `C7 46 5C 58 02 00 00` = `mov [esi+0x5C], 600` → m_nScreenHeight
+  - [D] 800×600 = 标准游戏默认分辨率，语义明确
+
+  **4. 类型修正**
+  - _field_200 (512): int → UIFrameWnd (原标注为 int，实为 152 字节嵌入对象)
+  - _field_298 (664): int → UIFrameWnd
+  - m_nStopAll (816): int → UIFrameWnd (**名字也是错的**——从 PAL3A PDB 继承的错误名)
+  - m_nMenuParam (360): int → UIFrameWnd (同上)
+  - m_uiScene (1272): int → UIScene
+
+- **影响**: CScreenMode known_members 293→297。发现 6 UIFrameWnd + 3 UIScene 嵌入子对象占据了 struct 的 6×152 + 3×UIScene_size 字节。之前标为 `int` 的字段实际是大型嵌入 UI 控件对象——这类 PDB 导入类型错误可能在其他结构体中也存在。
+
 ### [2026-05-17] iter(annotations): PalScript 管理器/元素双层分离 + 4 管理器字段
 
 - **变更**: 新增 4 个 PalScript 管理器级字段（ann keys 56, 60, 68, 88）
