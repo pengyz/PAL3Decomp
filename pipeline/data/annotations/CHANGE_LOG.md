@@ -51,6 +51,30 @@
 
 ## 变更记录
 
+### [2026-05-17] iter(annotations): CameraCtrl _field_380 int→unsigned char
+
+- **变更**: CameraCtrl offset 896 (0x380) 类型 `int` → `unsigned char`
+- **置信度**: 85
+- **证据**:
+  1. [A+] IDA decomp (struct 99%+ resolved): `LOBYTE(this->_field_380) = 0` 和 `LOBYTE(this->_field_380) = 1`
+  2. [A+] `LOBYTE()` 宏表明 IDA 识别为字节宽度访问
+  3. [B] 赋值仅为 0/1 — boolean flag 模式
+
+### [2026-05-17] iter(annotations): CScreenMode _todo_38 int→float + 嵌入子对象类型修正
+
+- **变更**: 
+  1. CScreenMode offset 56 (0x38): `int` → `float`
+  2. CScreenMode 9 个嵌入子对象类型修正（6 UIFrameWnd + 3 UIScene）
+  3. CScreenMode m_nScreenWidth (800) / m_nScreenHeight (600) 语义命名
+- **置信度**: 85-90
+- **证据**:
+  1. [A+] LoadScreenScene decomp: `*(float *)&this->_todo_38` — 显式 float 指针转换
+  2. [A] ctor_3F30 (0x523F30): 6× `lea ecx,[esi+off]; call 0x4422E0` (UIFrameWnd 初始化)
+  3. [A] stride 0x200-0x168 = 0x98 = 152 = UIFrameWnd.binary_size 精确匹配
+  4. [A] ctor_3F30: `lea ecx,[esi+0x4F8]; call 0x43BCE0` (UIScene::ctor_BCE0)
+  5. [A] ctor_3F30: `C7 46 58 20 03 00 00` = mov [esi+0x58], 800; `C7 46 5C 58 02 00 00` = mov [esi+0x5C], 600
+  6. [B] 800×600 = PAL3 默认游戏分辨率
+
 ### [2026-05-17] iter(annotations): CScreenMode 嵌入子对象发现 + 屏幕尺寸命名
 
 - **变更**: CScreenMode 9 个嵌入子对象类型修正 + 2 个语义命名
