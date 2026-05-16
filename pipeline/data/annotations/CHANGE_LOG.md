@@ -51,6 +51,31 @@
 
 ## 变更记录
 
+### [2026-05-17] iter(annotations): 9 函数命名 + 3 归属修正
+
+- **变更**: 9 个函数语义重命名 + 3 个类归属修正
+- **置信度**: 65-90
+
+  **CameraCtrl mode 函数 (置信度 65: A 二进制 + D 参数模式)**
+  - [A] 0x41CEE0: `C7 41 0C 01` → SetupFollow (mode 1: target 跟随)
+  - [A] 0x41CF20: `C7 41 0C 02` → SetupOrbit (mode 2: FOV/距离, ret 20)
+  - [A] 0x41D010: `C7 41 0C 03` → SetupLerp (mode 3: 2×gbVec3D 位置插值)
+
+  **PalScript 归属修正 (置信度 90: vtable + 偏移交叉验证)**
+  - [A] 0x43A3E0: `mov eax,[ecx+0x38]` 访问 PalScript._todo_38，CCBFiveNimbusWindow 无此字段
+    - CCBFiveNimbusWindow::_method → **PalScript::UpdateTimer**
+  - [A] 0x43A270: `mov eax,[esi+0x38]` + `[esi+0x94]` 访问 PalScript guard + m_nMaxRepeats
+    - UIFrameWnd::_init_43a270 → **PalScript::Render**
+  - [A] 0x40DD30: `mov esi,ecx` + CCBStageRole_Find(char*) 签名
+    - CCBStageRole_Find → **CCBStageRole::Find** (归属 + 格式修正)
+
+  **构造函数命名 (置信度 80: vtable init 确认)**
+  - CScreenMode::ctor_3F30 → CScreenMode::CScreenMode
+  - CScreenMode::ctor_4130 → CScreenMode::_CScreenMode
+  - PalScript::ctor_A160 → PalScript::PalScript
+
+- **归属修正方法**: vtable 地址列表 + 二进制偏移访问 + 目标类无对应字段 = 三重交叉否定
+
 ### [2026-05-17] iter(annotations): RenderTarget2 5 type fixes + UIFrameWnd LOBYTE
 
 - **变更**:
