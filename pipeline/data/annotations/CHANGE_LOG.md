@@ -51,6 +51,42 @@
 
 ## 变更记录
 
+### [2026-05-17] iter(annotations): PalScript 管理器/元素双层分离 + 4 管理器字段
+
+- **变更**: 新增 4 个 PalScript 管理器级字段（ann keys 56, 60, 68, 88）
+- **置信度**: 85
+- **证据**:
+  1. [A] 0x439A20 (CheckRayHitRole): prolog `8B E9` = `mov ebp,ecx` → ebp = this (manager)
+  2. [A] `8B 45 38; 85 C0; 75 05` = `mov eax,[ebp+0x38]; test; jnz` → mgr+0x38 guard
+  3. [A] `8B 45 44; 33 FF; 85 C0; 7E` → mgr+0x44 读为 int，用作循环计数
+  4. [A] `8D 45 58` / stride 32 迭代 → mgr+0x58 嵌套数组基址
+- **关键澄清**:
+  - **Manager+0x44** (ann key 68) = `int` 角色数量计数 — 来自 CheckRayHitRole `[ebp+0x44]`
+  - **Element+0x44** (ann key 292) = `float m_fInterval` — 来自 sub_43A3E0 `fld [ecx+0x44]`
+  - 两者在不同绝对偏移（68 vs 292），**不存在 int/float 矛盾**
+  - 之前的混淆原因：错误地将 CheckRayHitRole（管理器方法）的偏移当成了元素内偏移
+  - 判别方法：检查函数是否在 vtable off_56AC4C 中 → 是=元素方法；否=管理器方法
+- **PalScript 双层架构总结**:
+  ```
+  Manager (ann keys 0-220+):
+    +0x00-0x24: PDB 已知字段
+    +0x38,0x3C: guard 指针
+    +0x44: int actor/sub-array count
+    +0x58: stride-32 嵌套数组
+    +0xDC: int m_nRoleCount (896-byte 元素数)
+    +0xE0: Element[0] 起始
+  
+  Element (896 bytes, UIWnd 派生):
+    +0x00: vtable (off_56AC4C)
+    +0x44: float m_fInterval (计时器)
+    +0x48: float m_fElapsed
+    +0x90-0x9C: 计时器计数器
+    +0xAC-0xF4: 角色/动作数据
+    +0xF8-0x11C: 渲染变换浮点
+    +0x124: gbCamera*
+  ```
+- **影响**: PalScript known_members 47→51。厘清了管理器 vs 元素的偏移空间，防止后续字段归类错误。
+
 ### [2026-05-17] iter(annotations): PalScript 计时器字段命名 + elem+0x44 类型二次修正
 
 - **变更**:
