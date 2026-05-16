@@ -51,6 +51,27 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(annotations): UIWnd binary_size 68→88 + UIFrameWnd 4 field type fixes
+
+- **变更**:
+  1. UIWnd.json: `binary_size` 68→88, `gen_size` 68→88
+  2. UIFrameWnd.json: `base_size` 68→88
+  3. UIFrameWnd key 140 (m_bFrameInit): `unsigned char` → `unsigned long` (类型宽度证伪)
+  4. UIFrameWnd keys 132,136,144 (m_nFrameData, m_nChildren, m_nBorderColor): `int` → `unsigned long`
+- **置信度**: 85
+- **证据**:
+  1. [A] ida_structs.json: UIWnd size=88 (从 IDB 导出，IDA 权威) vs annotation binary_size=68 (PAL3A PDB 来源，20字节差异)
+  2. [A] CCBSkillWindow::Create (0x0051C330): prolog `8B F9`=`mov edi,ecx` (edi=this)
+     - func+0xCB: `lea [edi+0x9C]` → 绝对偏移 0x9C 传给 Render(_DWORD*)
+     - func+0x152: `lea [edi+0xA0]` → 绝对偏移 0xA0 传给 Render(_DWORD*) — **证伪 m_bFrameInit 为 unsigned char**
+     - func+0x1D7: `lea [edi+0xA4]` → 绝对偏移 0xA4 传给 Render(_DWORD*)
+  3. [A] _unverified_4422E0 (0x4422E0): prolog `8B F1`=`mov esi,ecx`
+     - `mov DWORD [esi+0x90], 276` — 值 276 写入绝对 0x90 (annotation key 124=_todo_7C)
+     - `mov DWORD [esi+0x94], -1` — 值 -1 写入绝对 0x94 (annotation key 128=m_nLayout_4433d0)
+     - **注意**: 原 annotation 将 276→m_nBorderColor(key144=abs 0xA4), -1→m_nBorderStyle(key148=abs 0xA8) — 偏移归属错误！真实写入在 abs 0x90/0x94
+- **影响**: 修正了 UIWnd/UIFrameWnd 的 20 字节偏移漂移。m_nBorderColor/m_nBorderStyle 的 source 证据归属待后续验证。消除 C2664 Render type mismatch (4 errors)。
+- **待办**: IDB 重建后 re-export decomp 以传播新类型到局部变量。
+
 ### [2026-05-16] fix(gen_pipeline): 5 codegen tool bugs causing cascading compile errors
 
 - **变更**: pipeline/gen/ 三个文件修复，消除 4 类编译错误

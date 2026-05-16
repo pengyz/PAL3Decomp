@@ -14,23 +14,23 @@
     },
     "132": {
       "name": "m_nFrameData",
-      "type": "int",
-      "source": "ida_decomp:_unverified_4422E0 =0, _unverified_442890 loaded, 2 refs"
+      "type": "unsigned long",
+      "source": "binary:CCBSkillWindow_Create LEA[edi+0x98]->Render/Destroy(_DWORD*)"
     },
     "136": {
       "name": "m_nChildren",
-      "type": "int",
-      "source": "binary:disp32_4hits_3funcs"
+      "type": "unsigned long",
+      "source": "binary:CCBSkillWindow_Create LEA[edi+0x9C]->Render(_DWORD*), 4byte ptr storage"
     },
     "140": {
       "name": "m_bFrameInit",
-      "type": "unsigned char",
-      "source": "ida_decomp:Update if(!this) set 1, 3 refs"
+      "type": "unsigned long",
+      "source": "binary:type_fixed_from_uchar_to_ulong. CCBSkillWindow_Create LEA[edi+0xA0]->Render(_DWORD*). Name needs review."
     },
     "144": {
       "name": "m_nBorderColor",
-      "type": "int",
-      "source": "ida_decomp:_unverified_4422E0 =276, loaded as gbColorQuad, 5 refs"
+      "type": "unsigned long",
+      "source": "binary:CCBSkillWindow_Create LEA[edi+0xA4]->Render(_DWORD*), 4byte ptr storage"
     },
     "148": {
       "name": "m_nBorderStyle",
@@ -110,6 +110,6 @@
   },
   "gen_size": 152,
   "base_class": "UIWnd",
-  "base_size": 68,
+  "base_size": 88,
   "binary_size": 152
 }
