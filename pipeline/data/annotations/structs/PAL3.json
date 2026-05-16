@@ -143,9 +143,9 @@
       "source": "gen_headers_9.2"
     },
     "40": {
-      "name": "m_fViewParam",
+      "name": "m_fViewY",
       "type": "float",
-      "source": "ida_decomp:_auto_532f60 used as float, 2 refs"
+      "source": "ida_decomp:_auto_532f60 used as float, 2 refs | name_fix:position Y between ViewX(0x24) and ViewZ(0x2C)"
     },
     "140": {
       "name": "m_pCollisionObj",
@@ -228,29 +228,29 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "4": {
-      "name": "_todo_4",
+      "name": "m_pScnFrameTex",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | name_fix:gfxMgr->NewTexture(EffectScnFrame)+LoadTexture in _unverified_4B6D80"
     },
     "8": {
-      "name": "_todo_8",
+      "name": "m_pAdditiveEffect",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | name_fix:gbEffectMgr::NewRenderEffect(aGfxscriptAddit) in CreateRenderEffects"
     },
     "12": {
-      "name": "_todo_C",
+      "name": "m_pAdditiveEffect2",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | name_fix:second gbEffectMgr::NewRenderEffect(aGfxscriptAddit) in CreateRenderEffects"
     },
     "36": {
-      "name": "_todo_24",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_fViewX",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A:fsubr dword [ebp+24h] @0x532FE0) | name_fix:position X in _auto_532f60 distance calc"
     },
     "44": {
-      "name": "_todo_2C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_fViewZ",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A:fld dword [ebp+2Ch] @0x532FEE) | name_fix:position Z in _auto_532f60 distance calc"
     },
     "1696": {
       "name": "_todo_6A0",

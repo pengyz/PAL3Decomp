@@ -60,7 +60,10 @@
   2. [A] 0x421560: `8D 91 8C 01 00 00` = `lea edx,[ecx+0x18C]` — 数组起始偏移 0x18C (396)
   3. [A] 0x421560: `81 C2 80 03 00 00` = `add edx,0x380` — 数组步进 896 字节/元素
   4. [B] SetRoleActions (0x421CA0) 中该循环体调用 `CCBStageRole::Find` 处理角色数据
-- **发现**: PalScript 内嵌 896 字节步进角色槽位数组（起始 offset 0x18C，计数 offset 0xDC）
+- **发现**: PalScript 内嵌 896 字节步进角色槽位数组（起始 offset 0xE0，计数 offset 0xDC）
+  - 修正: 0x18C 是元素内偏移 0xAC 处的搜索字节，非数组起始
+  - Raw IDB decomp 证实: SetAction 返回 `this + 56 + 224*v3` (DWORD*) = byte offset 224+896*v
+  - 每个元素有独立 vtable (off_56AC4C = PalScript class, 含 UIWnd::Destroy/Create)
 - **旧名由来**: `m_fTimeScale` 来自 IDA decomp 中的错误语义推断（原 source: "ida_decomp:_nearby_439a20 (double)this * float * a2"）——该函数实际是读此字段做时间缩放计算，但字段本身是整数计数
 
 ### [2026-05-16] fix(annotations): 39 __thiscall signatures **this → *this

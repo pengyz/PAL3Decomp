@@ -50,7 +50,7 @@
     "220": {
       "name": "m_nRoleCount",
       "type": "int",
-      "source": "binary:0x421560 mov esi,[ecx+0xDC] as loop count for 896-byte stride array at [ecx+0x18C]"
+      "source": "binary:0x421560 mov esi,[ecx+0xDC] loop count; array starts at [ecx+0xE0] stride 896, each element has vtable"
     },
     "236": {
       "name": "m_nCamMode",
