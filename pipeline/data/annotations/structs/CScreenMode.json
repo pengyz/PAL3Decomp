@@ -83,18 +83,18 @@
     },
     "512": {
       "name": "_field_200",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "UIFrameWnd",
+      "source": "binary:ctor_3F30 lea ecx,[esi+0x200]; call UIFrameWnd::_unverified_4422E0"
     },
     "664": {
       "name": "_field_298",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "UIFrameWnd",
+      "source": "binary:ctor_3F30 lea ecx,[esi+0x298]; call UIFrameWnd::_unverified_4422E0"
     },
     "816": {
       "name": "m_nStopAll",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "UIFrameWnd",
+      "source": "binary:ctor_3F30 lea ecx,[esi+0x330]; call UIFrameWnd::_unverified_4422E0"
     },
     "820": {
       "name": "m_pItemList",
@@ -338,8 +338,8 @@
     },
     "1272": {
       "name": "m_uiScene",
-      "type": "int",
-      "source": "ida_decomp:ctor_3F30 UIScene::ctor_BCE0, _init_529e40 =v9, 3 refs"
+      "type": "UIScene",
+      "source": "binary:ctor_3F30 lea ecx,[esi+0x4F8]; call UIScene::ctor_BCE0"
     },
     "1276": {
       "name": "m_nTimerValue",
@@ -1465,6 +1465,16 @@
       "name": "_todo_11E0",
       "type": "int",
       "source": "gap_fill:ida_decomp_access"
+    },
+    "968": {
+      "name": "_todo_3C8",
+      "type": "UIFrameWnd",
+      "source": "binary:ctor_3F30 lea ecx,[esi+0x3C8]; call UIFrameWnd::_unverified_4422E0"
+    },
+    "1120": {
+      "name": "_todo_460",
+      "type": "UIFrameWnd",
+      "source": "binary:ctor_3F30 lea ecx,[esi+0x460]; call UIFrameWnd::_unverified_4422E0"
     }
   },
   "binary_size": 4660,
