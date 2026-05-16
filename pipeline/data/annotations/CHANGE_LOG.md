@@ -51,6 +51,65 @@
 
 ## 变更记录
 
+### [2026-05-17] iter(annotations): PalScript 元素布局逆向 (26→45 members)
+
+- **变更**: PalScript 结构体新增 19 个字段，修正 2 个错误
+- **置信度**: 85
+- **方法**: 逐函数二进制指令解码 + raw IDB Hex-Rays 交叉验证
+- **证据汇总**:
+
+  **1. m_nRoleCount (offset 220, 0xDC) — 名字修正**
+  - [A] 0x421560 (SetAction): `8B B1 DC 00 00 00` = `mov esi,[ecx+0xDC]` 作为循环上界
+  - [A] 同函数: `81 C2 80 03 00 00` = `add edx,0x380` 确认 stride 896
+  - 旧名 `m_fTimeScale` 来自错误语义推断 → `m_nRoleCount`
+
+  **2. 数组结构发现 (offset 0xE0, stride 896)**
+  - [A] 0x421560: `8D 91 8C 01 00 00` = `lea edx,[ecx+0x18C]` 搜索字节地址
+  - [A] raw IDB SetAction: `return (this + 224*v3 + 56)` → 元素起始 = this+0xE0
+  - [B] 0x18C = 0xE0 + 0xAC (搜索字节在元素内偏移 0xAC) 交叉验证一致
+
+  **3. 继承关系: PalScript → UIWnd**
+  - [A] 0x445AA0 (base ctor): `C7 06 C8 AE 56 00` = `mov [esi],0x56AEC8` (UIWnd vtable)
+  - [A] 0x43A160 (derived ctor): `C7 06 4C AC 56 00` = `mov [esi],0x56AC4C` (PalScript vtable)
+  - [A] vtables.json: off_56AEC8 → UIWnd, off_56AC4C → PalScript (含 UIWnd::Destroy/Create)
+
+  **4. PtrArray 子对象 (elem+0x24)**
+  - [A] 0x445AA0: `8D 4E 24` = `lea ecx,[esi+0x24]`; call PtrArray::Clear
+
+  **5. 68 字节清零区 (elem+0x4C-0x8F)**
+  - [A] 0x445EA0 (sub_445EA0): `memset(this, 0, 0x44)` — raw IDB 确认
+
+  **6. 元素初始值 (ctor_A160, 0x43A160)**
+  - [A] `C7 46 44 00 00 20 41` = `mov [esi+0x44],0x41200000` (float 10.0/int 1092616192)
+  - [A] `89 7E 48` = `mov [esi+0x48],0`
+  - [A] `89 BE 90 00 00 00` = `mov [esi+0x90],0`
+  - [A] `89 BE 94 00 00 00` = `mov [esi+0x94],0`
+  - [A] `C7 86 9C 00 00 00 FF FF FF FF` = `mov [esi+0x9C],-1`
+
+  **7. elem+0x44 类型修正: float → int**
+  - [A] 0x439A20 (CheckRayHitRole): `8B 45 44` = `mov eax,[ebp+0x44]`; `85 C0; 7E` = test+jle (int count)
+  - [A] 0x439410 (_nearby_439410): `*(_DWORD *)(this+68)` 同样作为循环计数
+  - [B] 2 个函数读为 int > ctor 1 次 float init → 主要用途 = int
+
+  **8. 运行时数据字段 (SetAction/SetRoleActions)**
+  - [A] 0x421560: `66 0F B6 1A` = `movzx bx,byte [edx]` at elem+0xAC (state byte)
+  - [A] 0x421CA0: `80 7E B8 20` = `cmp byte [esi-0x48],0x20` (esi=elem+0xF4 → elem+0xAC)
+  - [A] 0x421CA0: `88 46 B9` = `mov [esi-0x47],al` → elem+0xAD (find result)
+  - [A] 0x421CA0: `8D 46 BC` = `lea eax,[esi-0x44]` → elem+0xB0 (→ CCBStageRole_Find char*)
+  - [A] 0x421CA0: `80 3E 19` = `cmp byte [esi],0x19` → elem+0xF4 (action type)
+
+  **9. 渲染变换浮点块 (elem+0xF8-0x11C)**
+  - [A] 0x439410 raw decomp: `*(float*)(this+248..284)` 连续 9 个 float
+  - [A] 同函数: `gbMatrixStack::Scale(v2, *(float*)(this+276), *(float*)(this+280), *(float*)(this+284))` — 后三个 = Scale(x,y,z)
+
+  **10. gbCamera 指针 (elem+0x124)**
+  - [A] 0x439410 raw decomp: `*(gbCamera**)(this+292)` → `gbCamera::SetAsCurrent(cam, 3)`
+
+  **11. g_CCBStageRoleFind 全局变量 (0xC05F30)**
+  - [A] 0x421CA0: `B9 30 5F C0 00` = `mov ecx,0x00C05F30` — 即时数加载作为 __thiscall this
+
+- **影响**: PalScript known_members 26→45 (+73%)。成员解析率预计提升（需 IDB rebuild 确认）。
+
 ### [2026-05-17] iter(annotations): PalScript.m_fTimeScale → m_nRoleCount (name correction)
 
 - **变更**: PalScript offset 220 (0xDC) 字段名 `m_fTimeScale` → `m_nRoleCount`
