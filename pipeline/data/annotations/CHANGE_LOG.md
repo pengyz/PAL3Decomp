@@ -51,6 +51,21 @@
 
 ## 变更记录
 
+### [2026-05-16] IDA export_full 间歇性失败根因定位
+
+- **问题**: 0x540440 (`_TextureLib_Data::SetLibFolder`) 等函数在 export_full 批量导出时不产生 decomp JSON
+- **调查过程**:
+  1. 单独脚本对 0x540440 decompile：**成功**（有无 optimizer 均可）
+  2. export_full 报告 4369 targets - 6 SKIP = 4363 exported，文件数=4363，但 0x540440 文件不存在
+  3. 不在 SKIP log 也不在 FAIL log
+  4. IDA name 确认为 mangled `?SetLibFolder@_TextureLib_Data@@QAEXQAD@Z`，demangle 返回含参数签名
+  5. apply_annotations `set_name` 改为先删后设（`SN_FORCE`）——mangled name 在单独测试中可覆盖
+- **结论**: IDA Hex-Rays 9.2 在连续批量反编译 4000+ 函数时存在间歇性静默失败。表现为 decompile 返回有效 cfunc 但 `str(cfunc)` 或文件写入静默失败。不是代码 bug，是 IDA 行为边界。
+- **置信度**: 70（诊断充分但无法 100% 确认内部机制）
+- **解决方案**: gen_headers `collect_methods()` 新增 functions.json 作为备选来源。对 export_full 未能导出的函数，只要在 annotations 中有记录就能生成正确的头文件声明。
+- **影响**: SetLibFolder C2039 17→0，总错误 4481→4445 (-36)，PASS +1
+- **后续**: 如果 IDA 更新修复了此问题，functions.json fallback 自动退化为无操作（decomp JSON 优先）
+
 ### [2026-05-16] fix(gen_headers): collect methods from functions.json fallback — 4481→4445 (-36)
 
 - **变更**: gen_headers.py `collect_methods()` 新增 functions.json 作为方法声明的备选来源
