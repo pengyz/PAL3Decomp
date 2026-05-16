@@ -51,6 +51,19 @@
 
 ## 变更记录
 
+### [2026-05-16] iter(annotations): 480 empty signatures → __thiscall — 4732→4779 (+47), C2660 -41
+
+- **变更**: 批量修正 functions.json 中 480 个类方法的空签名
+  - 472 个 `ReturnType()` → `ReturnType __thiscall(ClassName *this)`
+  - 8 个关键函数签名修正（PAL3::Destroy, NPC::UpdateAnim, Array::Insert 等）
+- **置信度**: 90
+- **错误数增加说明**: 总错误 +47 是**假阴性暴露**，不是 regression。之前 `void()` 空签名导致 IDA Hex-Rays 使用宽松的未知签名推断参数类型，现在签名正确后 Hex-Rays 严格按 `__thiscall(Class*)` 生成代码，暴露了之前隐藏的类型不匹配（C2440 +52）。同时 C2660 参数个数错误从 195 降到 154（-41），证明签名修正有效。
+- **证据**:
+  1. [A] C2660 195→154 (-41): 参数个数匹配度提升
+  2. [A] C2039 443→428 (-15): 成员访问精度提升
+  3. [A] C2440 805→857 (+52): 类型检查更严格（假阴性暴露）
+  4. [A] PASS 保持 30/188
+
 ### [2026-05-16] iter(annotations): batch signature fixes — 4735→4732, PASS 27→30
 
 - **变更**: 批量修正 functions.json 中的函数签名

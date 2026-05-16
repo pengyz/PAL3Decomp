@@ -96,7 +96,7 @@ class gbSound3DNode;
 // gen_cpp.py post-processing replaces these with UIWnd* automatically.
 
 // Common game functions that may be called from generated code
-void PushMatrixStacks();
-void PopMatrixStacks();
+void PushMatrixStacks(int nMode = 0);
+void PopMatrixStacks(int nMode = 0);
 int UIRenderQuad(...);
 void UIQuadManager_Reset();

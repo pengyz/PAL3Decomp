@@ -201,7 +201,7 @@
   },
   "0x004047F0": {
     "name": "PAL3::~PAL3",
-    "signature": "void()"
+    "signature": "void __thiscall(PAL3 *this)"
   },
   "0x00404800": {
     "name": "PAL3::Create",
@@ -213,15 +213,15 @@
   },
   "0x00404FF0": {
     "name": "PAL3::InitGFX",
-    "signature": "void()"
+    "signature": "void __thiscall(PAL3 *this)"
   },
   "0x00405330": {
     "name": "PAL3::CreateEffectSystem",
-    "signature": "char()"
+    "signature": "char __thiscall(PAL3 *this)"
   },
   "0x004055A0": {
     "name": "PAL3::DestroyEffectSystem",
-    "signature": "char()"
+    "signature": "char __thiscall(PAL3 *this)"
   },
   "0x004055D0": {
     "name": "PAL3::Update",
@@ -229,11 +229,11 @@
   },
   "0x00405C00": {
     "name": "PAL3::Render",
-    "signature": "void()"
+    "signature": "void __thiscall(PAL3 *this)"
   },
   "0x00406230": {
     "name": "PAL3::Destroy",
-    "signature": "void()"
+    "signature": "void __thiscall(PAL3 *this)"
   },
   "0x00406310": {
     "name": "PAL3::CheckSystemRequire",
@@ -241,7 +241,7 @@
   },
   "0x004065F0": {
     "name": "PAL3::CreateGfxWindow",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(PAL3 *this)"
   },
   "0x004066F0": {
     "name": "PAL3::ParseCmdLine",
@@ -253,11 +253,11 @@
   },
   "0x00406980": {
     "name": "PAL3::GetCommandLineParam",
-    "signature": "int()"
+    "signature": "int __thiscall(PAL3 *this)"
   },
   "0x00406A10": {
     "name": "PAL3::TestCombat",
-    "signature": "int()"
+    "signature": "int __thiscall(PAL3 *this)"
   },
   "0x00406B80": {
     "name": "PAL3::DefaultKeyMap",
@@ -265,7 +265,7 @@
   },
   "0x00406D70": {
     "name": "PAL3::PrintScreen",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(PAL3 *this)"
   },
   "0x00406FF0": {
     "name": "PAL3::SnapScreen",
@@ -281,11 +281,11 @@
   },
   "0x004072D0": {
     "name": "PAL3::StartHideFight",
-    "signature": "int()"
+    "signature": "int __thiscall(PAL3 *this)"
   },
   "0x00407300": {
     "name": "PAL3::EndHideFight",
-    "signature": "int()"
+    "signature": "int __thiscall(PAL3 *this)"
   },
   "0x00407320": {
     "name": "PAL3::StartCombat",
@@ -297,7 +297,7 @@
   },
   "0x00407640": {
     "name": "PAL3::EntryCatchGhost",
-    "signature": "char()"
+    "signature": "char __thiscall(PAL3 *this)"
   },
   "0x00407740": {
     "name": "PAL3::IfHideFightSucceed",
@@ -329,7 +329,7 @@
   },
   "0x00408BE0": {
     "name": "PAL3::InitSubsystems",
-    "signature": "int()"
+    "signature": "int __thiscall(PAL3 *this)"
   },
   "0x00408D10": {
     "name": "Role::CreateXueJian",
@@ -353,7 +353,7 @@
   },
   "0x00408FD0": {
     "name": "PAL3::FullInit",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(PAL3 *this)"
   },
   "0x0040BE50": {
     "name": "RoleSystem::Init",
@@ -365,19 +365,19 @@
   },
   "0x0040C630": {
     "name": "ScriptSystem::Render",
-    "signature": "void __cdecl(gbMatrixStack *pMatrixStack)"
+    "signature": "void __thiscall(ScriptSystem *this, gbMatrixStack *pMatrixStack)"
   },
   "0x0040C790": {
     "name": "ScriptSystem::Cleanup",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(ScriptSystem *this)"
   },
   "0x0040C7D0": {
     "name": "ScriptSystem::Render2",
-    "signature": "char __cdecl()"
+    "signature": "char __cdecl __thiscall(ScriptSystem *this)"
   },
   "0x0040C960": {
     "name": "ScriptSystem::Destroy",
-    "signature": "int __cdecl()"
+    "signature": "void __thiscall(ScriptSystem *this)"
   },
   "0x0040CFE0": {
     "name": "CCBAI::GetTargetRole",
@@ -401,7 +401,7 @@
   },
   "0x0040F620": {
     "name": "NPC::InitAll",
-    "signature": "int *__cdecl()"
+    "signature": "int *__cdecl __thiscall(NPC *this)"
   },
   "0x004100A0": {
     "name": "ScriptSystem::RunScript",
@@ -425,7 +425,7 @@
   },
   "0x00411170": {
     "name": "Array::Insert",
-    "signature": "void *__stdcall(void *arr, void *elem, void *end)"
+    "signature": "void *__thiscall(Array *this, void *pElem, void *pEnd)"
   },
   "0x004111C0": {
     "name": "Array::Size",
@@ -433,7 +433,7 @@
   },
   "0x004111E0": {
     "name": "Array::Erase",
-    "signature": "void *__stdcall(void *arr, int index, void *pConfig)"
+    "signature": "void *__thiscall(Array *this, int nIndex, void *pConfig)"
   },
   "0x00411240": {
     "name": "Array::Copy",
@@ -441,7 +441,7 @@
   },
   "0x004118D0": {
     "name": "PAL3::UpdateSubsystems",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(PAL3 *this)"
   },
   "0x00411B80": {
     "name": "??_Gfacet@locale@std@@UAEPAXI@Z",
@@ -529,7 +529,7 @@
   },
   "0x0041C710": {
     "name": "InputSystem::ProcessKeyboard",
-    "signature": "int __cdecl(int nVal)"
+    "signature": "void __thiscall(InputSystem *this)"
   },
   "0x0041C900": {
     "name": "CCCTData::CalcDist",
@@ -561,15 +561,15 @@
   },
   "0x0041ED00": {
     "name": "SoundSystem::Init",
-    "signature": "int()"
+    "signature": "int __thiscall(SoundSystem *this)"
   },
   "0x0041EE40": {
     "name": "PAL3::UIPostProcess",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(PAL3 *this)"
   },
   "0x0041EE60": {
     "name": "Camera::IsTransitioning",
-    "signature": "char __cdecl()"
+    "signature": "char __cdecl __thiscall(Camera *this)"
   },
   "0x0041EEE0": {
     "name": "___setargv",
@@ -577,7 +577,7 @@
   },
   "0x0041EFA0": {
     "name": "ScriptSystem::Init",
-    "signature": "void()"
+    "signature": "void __thiscall(ScriptSystem *this)"
   },
   "0x0041F370": {
     "name": "UIManager::Render",
@@ -621,11 +621,11 @@
   },
   "0x00422DF0": {
     "name": "UISystem::Destroy",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(UISystem *this)"
   },
   "0x004230D0": {
     "name": "UICamera::GetState",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(UICamera *this)"
   },
   "0x004232D0": {
     "name": "UICamera::GetTarget",
@@ -633,7 +633,7 @@
   },
   "0x004234D0": {
     "name": "UIScene::CombatCheck",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(UIScene *this)"
   },
   "0x004235B0": {
     "name": "UIScene::ProcessInput",
@@ -693,11 +693,11 @@
   },
   "0x00431EB0": {
     "name": "PalScriptMgr::OpenSCE",
-    "signature": "int()"
+    "signature": "int __thiscall(PalScriptMgr *this)"
   },
   "0x00431EE0": {
     "name": "PalScriptMgr::FindScript",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(PalScriptMgr *this)"
   },
   "0x00431F00": {
     "name": "PalScript::AddWaitObj",
@@ -709,7 +709,7 @@
   },
   "0x00431F40": {
     "name": "PalScript::ClearAllCamObj",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(PalScript *this)"
   },
   "0x00431FA0": {
     "name": "PalScript::ClearAllWaitObj",
@@ -745,11 +745,11 @@
   },
   "0x00432480": {
     "name": "PalScriptMgr::_CON_ReLoadScript",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(PalScriptMgr *this)"
   },
   "0x004324A0": {
     "name": "PalScriptMgr::_CON_CloseScript",
-    "signature": "BOOL()"
+    "signature": "BOOL __thiscall(PalScriptMgr *this)"
   },
   "0x004324B0": {
     "name": "PalScriptMgr::ClearAllScript",
@@ -761,7 +761,7 @@
   },
   "0x00432550": {
     "name": "PalScriptMgr::IfHaveScript",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScriptMgr *this)"
   },
   "0x00432660": {
     "name": "PtrArray::Clear",
@@ -797,7 +797,7 @@
   },
   "0x00434C00": {
     "name": "PalScript::GetString",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438E90": {
     "name": "filebuf::_scalar_dtor",
@@ -1093,7 +1093,7 @@
   },
   "0x00446020": {
     "name": "NPC::UpdateAnim",
-    "signature": "int __cdecl(int nVal)"
+    "signature": "void __thiscall(NPC *this)"
   },
   "0x0044ADE0": {
     "name": "CGameData::InitRoles",
@@ -1189,7 +1189,7 @@
   },
   "0x004792C0": {
     "name": "PAL_GDB::GDB_GetComboID",
-    "signature": "int()"
+    "signature": "int __thiscall(PAL_GDB *this)"
   },
   "0x0047C570": {
     "name": "ObjectCamera::ObjectCamera",
@@ -1377,7 +1377,7 @@
   },
   "0x004B6DF0": {
     "name": "RenderTarget3::End",
-    "signature": "void *__cdecl()"
+    "signature": "void *__cdecl __thiscall(RenderTarget3 *this)"
   },
   "0x004B6E20": {
     "name": "RenderTarget3::Resolve",
@@ -1425,7 +1425,7 @@
   },
   "0x004BFD70": {
     "name": "RenderTarget2::Begin",
-    "signature": "void *__cdecl()"
+    "signature": "void *__cdecl __thiscall(RenderTarget2 *this)"
   },
   "0x004BFDD0": {
     "name": "RenderTarget2::Resolve",
@@ -2097,11 +2097,11 @@
   },
   "0x004DB2B0": {
     "name": "CCBAI::CreateValueAutomation",
-    "signature": "int()"
+    "signature": "int __thiscall(CCBAI *this)"
   },
   "0x004DB2C0": {
     "name": "CCBAI::AddValueFunction",
-    "signature": "int()"
+    "signature": "int __thiscall(CCBAI *this)"
   },
   "0x004DB300": {
     "name": "CCBAI::AddValueItem",
@@ -2121,27 +2121,27 @@
   },
   "0x004DB3A0": {
     "name": "CCBSystem::InitCmdTable1_thunk",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(CCBSystem *this)"
   },
   "0x004DB3B0": {
     "name": "CCBSystem::InitCmdTable1",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(CCBSystem *this)"
   },
   "0x004DB3F0": {
     "name": "CCBSystem::InitCmdTable2_thunk",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(CCBSystem *this)"
   },
   "0x004DB400": {
     "name": "CCBSystem::InitCmdTable2",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(CCBSystem *this)"
   },
   "0x004DB440": {
     "name": "CCBSystem::InitCmdTable3_thunk",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(CCBSystem *this)"
   },
   "0x004DB450": {
     "name": "CCBSystem::InitCmdTable3",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(CCBSystem *this)"
   },
   "0x004DB490": {
     "name": "CCBSystem::InitCmd",
@@ -3077,7 +3077,7 @@
   },
   "0x00509090": {
     "name": "CCBStageEffect::PreLoadEffGroup",
-    "signature": "int()"
+    "signature": "int __thiscall(CCBStageEffect *this)"
   },
   "0x005090E0": {
     "name": "CCBStageEffect::LoadLinker",
@@ -3113,7 +3113,7 @@
   },
   "0x00509220": {
     "name": "CCBStageRole::OnPlayAction",
-    "signature": "int()"
+    "signature": "int __thiscall(CCBStageRole *this)"
   },
   "0x00509270": {
     "name": "CCBStageRole::IsUnderMouse",
@@ -3413,7 +3413,7 @@
   },
   "0x00511C90": {
     "name": "CCBStageScene::SaveRolePos",
-    "signature": "int()"
+    "signature": "int __thiscall(CCBStageScene *this)"
   },
   "0x00511CE0": {
     "name": "CCBStageScene::LoadFiveLineupData",
@@ -3485,7 +3485,7 @@
   },
   "0x00512410": {
     "name": "CCBSystem::GetFreeID",
-    "signature": "int()"
+    "signature": "int __thiscall(CCBSystem *this)"
   },
   "0x00512460": {
     "name": "CCBSystem::DelAllTaskAndThread",
@@ -3541,7 +3541,7 @@
   },
   "0x00513330": {
     "name": "CCBSystem::GetRenderFlag",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(CCBSystem *this)"
   },
   "0x00513380": {
     "name": "CCBSystem::ProcUseItem",
@@ -4213,19 +4213,19 @@
   },
   "0x005230F0": {
     "name": "CUtil::~CUtil",
-    "signature": "int()"
+    "signature": "int __thiscall(CUtil *this)"
   },
   "0x00523100": {
     "name": "CUtil::Create",
-    "signature": "int()"
+    "signature": "int __thiscall(CUtil *this)"
   },
   "0x00523110": {
     "name": "CUtil::Destroy",
-    "signature": "void()"
+    "signature": "void __thiscall(CUtil *this)"
   },
   "0x00523120": {
     "name": "CUtil::Init",
-    "signature": "void()"
+    "signature": "void __thiscall(CUtil *this)"
   },
   "0x00523130": {
     "name": "CUtil::CreateLog",
@@ -4281,19 +4281,19 @@
   },
   "0x00536220": {
     "name": "Actor::GetDefaultFOV_thunk",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(Actor *this)"
   },
   "0x00536230": {
     "name": "Actor::SetDefaultFOV",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(Actor *this)"
   },
   "0x00536240": {
     "name": "Actor::GetDefaultDist_thunk",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(Actor *this)"
   },
   "0x00536250": {
     "name": "Actor::SetDefaultDist",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(Actor *this)"
   },
   "0x00536260": {
     "name": "SceneObj::CreateUI",
@@ -4333,19 +4333,19 @@
   },
   "0x00536A40": {
     "name": "Actor::GetDefaultFOV2_thunk",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(Actor *this)"
   },
   "0x00536A50": {
     "name": "Actor::SetDefaultFOV2",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(Actor *this)"
   },
   "0x00536A60": {
     "name": "Actor::GetDefaultDist2_thunk",
-    "signature": "int __cdecl()"
+    "signature": "int __cdecl __thiscall(Actor *this)"
   },
   "0x00536A70": {
     "name": "Actor::SetDefaultDist2",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(Actor *this)"
   },
   "0x00536A80": {
     "name": "Actor::FastInit",
@@ -5057,7 +5057,7 @@
   },
   "0x0053DF70": {
     "name": "CScreenMode::GetInstance_df70",
-    "signature": "char *()"
+    "signature": "char * __thiscall(CScreenMode *this)"
   },
   "0x004A1DD0": {
     "name": "unknown_libname_406",
@@ -5421,7 +5421,7 @@
   },
   "0x0053D150": {
     "name": "CScreenMode::GetInstance",
-    "signature": "_DWORD *()"
+    "signature": "_DWORD * __thiscall(CScreenMode *this)"
   },
   "0x00402B30": {
     "name": "unknown_libname_290",
@@ -5529,7 +5529,7 @@
   },
   "0x004BDB10": {
     "name": "PAL3::GetInstance_db10",
-    "signature": "_DWORD *()"
+    "signature": "_DWORD * __thiscall(PAL3 *this)"
   },
   "0x0053CC10": {
     "name": "Logger::RegisterCallback",
@@ -5645,7 +5645,7 @@
   },
   "0x004BFD20": {
     "name": "PAL3::GetInstance_fd20",
-    "signature": "_DWORD *()"
+    "signature": "_DWORD * __thiscall(PAL3 *this)"
   },
   "0x004460D0": {
     "name": "CCBUIPanel::ctor_60D0",
@@ -5833,7 +5833,7 @@
   },
   "0x004B6D30": {
     "name": "PAL3::GetInstance",
-    "signature": "_DWORD *()"
+    "signature": "_DWORD * __thiscall(PAL3 *this)"
   },
   "0x004D5A40": {
     "name": "unknown_libname_462",
@@ -5949,7 +5949,7 @@
   },
   "0x004BE590": {
     "name": "ScreenEffectMgr::GetInstance",
-    "signature": "ScreenEffect *__cdecl()"
+    "signature": "ScreenEffect *__cdecl __thiscall(ScreenEffectMgr *this)"
   },
   "0x004022B0": {
     "name": "GRPinput::SetMode",
@@ -6233,7 +6233,7 @@
   },
   "0x004B65A0": {
     "name": "RenderTarget3::GetInstance",
-    "signature": "void *()"
+    "signature": "void * __thiscall(RenderTarget3 *this)"
   },
   "0x0043BC70": {
     "name": "unknown_libname_356",
@@ -7133,15 +7133,15 @@
   },
   "0x00435170": {
     "name": "PalScript::_auto_435170",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004378E0": {
     "name": "PalScript::_nearby_4378e0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004384B0": {
     "name": "CScreenMode::_auto_4384b0",
-    "signature": "void()"
+    "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x00451AD0": {
     "name": "UIListBox::_auto_451ad0",
@@ -7673,11 +7673,11 @@
   },
   "0x00411770": {
     "name": "Array::_nearby_411770",
-    "signature": "void()"
+    "signature": "void __thiscall(Array *this)"
   },
   "0x004117D0": {
     "name": "Array::_nearby_4117d0",
-    "signature": "void()"
+    "signature": "void __thiscall(Array *this)"
   },
   "0x00411B70": {
     "name": "Array::_nearby_411b70",
@@ -7697,11 +7697,11 @@
   },
   "0x00414A00": {
     "name": "RoleSystem::_nearby_414a00",
-    "signature": "void()"
+    "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00416760": {
     "name": "RoleSystem::_nearby_416760",
-    "signature": "void()"
+    "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00417040": {
     "name": "RoleSystem::_nearby_417040",
@@ -7721,7 +7721,7 @@
   },
   "0x00419B00": {
     "name": "RoleSystem::_nearby_419b00",
-    "signature": "__int64()"
+    "signature": "__int64 __thiscall(RoleSystem *this)"
   },
   "0x00419B30": {
     "name": "RoleSystem::_sub_419B30",
@@ -7741,7 +7741,7 @@
   },
   "0x0041BE60": {
     "name": "RoleSystem::_nearby_41be60",
-    "signature": "void()"
+    "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x0041C9A0": {
     "name": "InputSystem::_auto_41c9a0",
@@ -7757,11 +7757,11 @@
   },
   "0x0041D8F0": {
     "name": "CameraCtrl::_nearby_41d8f0",
-    "signature": "void()"
+    "signature": "void __thiscall(CameraCtrl *this)"
   },
   "0x0041D950": {
     "name": "CameraCtrl::_nearby_41d950",
-    "signature": "void()"
+    "signature": "void __thiscall(CameraCtrl *this)"
   },
   "0x0041F6F0": {
     "name": "GRPinput::_auto_41f6f0",
@@ -7769,7 +7769,7 @@
   },
   "0x0041F9F0": {
     "name": "PAL3::LoadingTimerCallback",
-    "signature": "void()"
+    "signature": "void __thiscall(PAL3 *this)"
   },
   "0x00420290": {
     "name": "RoleSystem::RoleSystem",
@@ -7821,11 +7821,11 @@
   },
   "0x00422530": {
     "name": "RoleSystem::_nearby_422530",
-    "signature": "void()"
+    "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00422730": {
     "name": "RoleSystem::_nearby_422730",
-    "signature": "void()"
+    "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00422950": {
     "name": "RoleSystem::_nearby_422950",
@@ -7833,7 +7833,7 @@
   },
   "0x00423680": {
     "name": "UIScene::_nearby_423680",
-    "signature": "void()"
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x004236D0": {
     "name": "UIScene::_nearby_4236d0",
@@ -7861,7 +7861,7 @@
   },
   "0x0042C900": {
     "name": "ScriptVM::_nearby_42c900",
-    "signature": "void()"
+    "signature": "void __thiscall(ScriptVM *this)"
   },
   "0x0042D4B0": {
     "name": "ScriptHelper::SetRolePosition",
@@ -7893,7 +7893,7 @@
   },
   "0x0042E690": {
     "name": "PalScriptMgr::_nearby_42e690",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScriptMgr *this)"
   },
   "0x0042EA30": {
     "name": "RoleSystem::_auto_42ea30",
@@ -7929,7 +7929,7 @@
   },
   "0x00432870": {
     "name": "PtrArray::_nearby_432870",
-    "signature": "unsigned char *()"
+    "signature": "unsigned char * __thiscall(PtrArray *this)"
   },
   "0x00432980": {
     "name": "PtrArray::_sub_432980",
@@ -7945,59 +7945,59 @@
   },
   "0x00434D70": {
     "name": "PalScript::_auto_434d70",
-    "signature": "char()"
+    "signature": "char __thiscall(PalScript *this)"
   },
   "0x00434D90": {
     "name": "PalScript::_auto_434d90",
-    "signature": "RoleSystem *()"
+    "signature": "RoleSystem * __thiscall(PalScript *this)"
   },
   "0x00434E50": {
     "name": "PalScript::_auto_434e50",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00434E90": {
     "name": "PalScript::_auto_434e90",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004350F0": {
     "name": "PalScript::_auto_4350f0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004351A0": {
     "name": "PalScript::_auto_4351a0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435830": {
     "name": "PalScript::_nearby_435830",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435BF0": {
     "name": "PalScript::_nearby_435bf0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004360F0": {
     "name": "PalScript::_auto_4360f0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436120": {
     "name": "PalScript::_nearby_436120",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436130": {
     "name": "PalScript::_nearby_436130",
-    "signature": "unsigned int()"
+    "signature": "unsigned int __thiscall(PalScript *this)"
   },
   "0x00436190": {
     "name": "PalScript::_nearby_436190",
-    "signature": "unsigned int()"
+    "signature": "unsigned int __thiscall(PalScript *this)"
   },
   "0x00436280": {
     "name": "PalScript::_nearby_436280",
-    "signature": "RoleSystem *()"
+    "signature": "RoleSystem * __thiscall(PalScript *this)"
   },
   "0x00436470": {
     "name": "PalScript::_auto_436470",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004364E0": {
     "name": "PalScript::_nearby_4364e0",
@@ -8005,63 +8005,63 @@
   },
   "0x004365A0": {
     "name": "PalScript::_nearby_4365a0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004365B0": {
     "name": "PalScript::_nearby_4365b0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436600": {
     "name": "PalScript::_auto_436600",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436680": {
     "name": "PalScript::_auto_436680",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436A60": {
     "name": "PalScript::_nearby_436a60",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436AB0": {
     "name": "PalScript::_auto_436ab0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436C00": {
     "name": "PalScript::_nearby_436c00",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437010": {
     "name": "PalScript::_nearby_437010",
-    "signature": "char()"
+    "signature": "char __thiscall(PalScript *this)"
   },
   "0x00437550": {
     "name": "PalScript::_nearby_437550",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437630": {
     "name": "PalScript::_auto_437630",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437650": {
     "name": "PalScript::_nearby_437650",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004377F0": {
     "name": "PalScript::_nearby_4377f0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437AE0": {
     "name": "PalScript::_auto_437ae0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437C40": {
     "name": "PalScript::_nearby_437c40",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437C50": {
     "name": "PalScript::_nearby_437c50",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437E60": {
     "name": "PAL3::_auto_437e60",
@@ -8069,7 +8069,7 @@
   },
   "0x00437FF0": {
     "name": "PalScript::_auto_437ff0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004381B0": {
     "name": "PalScript::_nearby_4381b0",
@@ -8077,11 +8077,11 @@
   },
   "0x00438350": {
     "name": "PalScript::_nearby_438350",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438390": {
     "name": "PalScript::_nearby_438390",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004386B0": {
     "name": "nullsub_103",
@@ -8089,39 +8089,39 @@
   },
   "0x00438840": {
     "name": "PalScript::_auto_438840",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438900": {
     "name": "PalScript::_nearby_438900",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004389D0": {
     "name": "PalScript::_auto_4389d0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438B00": {
     "name": "PalScript::_auto_438b00",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438B60": {
     "name": "PalScript::_auto_438b60",
-    "signature": "PalScript *()"
+    "signature": "PalScript * __thiscall(PalScript *this)"
   },
   "0x00438D00": {
     "name": "PalScript::_nearby_438d00",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438F10": {
     "name": "PalScript::_auto_438f10",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438F30": {
     "name": "PalScript::_auto_438f30",
-    "signature": "_DWORD *()"
+    "signature": "_DWORD * __thiscall(PalScript *this)"
   },
   "0x00439010": {
     "name": "PalScript::_nearby_439010",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00439110": {
     "name": "UIWnd::_sdtor",
@@ -8133,7 +8133,7 @@
   },
   "0x0043A140": {
     "name": "UIWnd::_nearby_43a140",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0043A1D0": {
     "name": "PalScript::_sdtor_2",
@@ -8153,11 +8153,11 @@
   },
   "0x0043A6E0": {
     "name": "UIWnd::_nearby_43a6e0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0043A750": {
     "name": "UIScene::_nearby_43a750",
-    "signature": "void()"
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x0043A7F0": {
     "name": "UIScene::_sdtor",
@@ -8193,7 +8193,7 @@
   },
   "0x0043BB50": {
     "name": "UIScene::_nearby_43bb50",
-    "signature": "void()"
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x0043BB90": {
     "name": "UIWnd::ScalarDtor",
@@ -8205,7 +8205,7 @@
   },
   "0x0043BCC0": {
     "name": "UIScene::_nearby_43bcc0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x0043C7B0": {
     "name": "UIScene::_nearby_43c7b0",
@@ -8217,7 +8217,7 @@
   },
   "0x0043D810": {
     "name": "UIScene::_nearby_43d810",
-    "signature": "void()"
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x0043D860": {
     "name": "UI3DCtrl::_sdtor_3",
@@ -8253,7 +8253,7 @@
   },
   "0x0043F7D0": {
     "name": "UIWnd::_nearby_43f7d0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00440560": {
     "name": "UIGameOver::_method_440560",
@@ -8261,7 +8261,7 @@
   },
   "0x00440720": {
     "name": "UIWnd::_nearby_440720",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00440810": {
     "name": "UIStatic::spstr_440810",
@@ -8285,7 +8285,7 @@
   },
   "0x004410D0": {
     "name": "UIWnd::_nearby_4410d0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004411B0": {
     "name": "UIMap::_sdtor_4",
@@ -8317,7 +8317,7 @@
   },
   "0x004422C0": {
     "name": "CCBUI::_nearby_4422c0",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBUI *this)"
   },
   "0x00442370": {
     "name": "UIFrameWnd::_sdtor",
@@ -8329,7 +8329,7 @@
   },
   "0x00442CE0": {
     "name": "UIFrameWnd::_nearby_442ce0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIFrameWnd *this)"
   },
   "0x00442D00": {
     "name": "UIFrameWnd::_sub_442D00",
@@ -8337,7 +8337,7 @@
   },
   "0x00442DF0": {
     "name": "UIFrameWnd::_nearby_442df0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIFrameWnd *this)"
   },
   "0x00442E60": {
     "name": "UIFrameWnd::_sdtor_5",
@@ -8385,7 +8385,7 @@
   },
   "0x00444F40": {
     "name": "UIWnd::_nearby_444f40",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00445170": {
     "name": "UIAnimateCtrlEX::_method_445170",
@@ -8405,19 +8405,19 @@
   },
   "0x004459C0": {
     "name": "UIWnd::_nearby_4459c0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00445A30": {
     "name": "UIWnd::_nearby_445a30",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00445A50": {
     "name": "UIWnd::_nearby_445a50",
-    "signature": "char()"
+    "signature": "char __thiscall(UIWnd *this)"
   },
   "0x004460B0": {
     "name": "UIWnd::_nearby_4460b0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004461B0": {
     "name": "CCBItemWindow::_method_4461b0",
@@ -8445,7 +8445,7 @@
   },
   "0x0044A770": {
     "name": "UIWnd::_nearby_44a770",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044A790": {
     "name": "UIWnd::Layout_44a790",
@@ -8461,7 +8461,7 @@
   },
   "0x0044AB70": {
     "name": "UIWnd::_nearby_44ab70",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044ACC0": {
     "name": "UITitle::_sdtor_7",
@@ -8477,7 +8477,7 @@
   },
   "0x0044BA40": {
     "name": "UIWnd::_nearby_44ba40",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044BE40": {
     "name": "UIScene::_sdtor_8",
@@ -8505,7 +8505,7 @@
   },
   "0x0044E510": {
     "name": "UIWnd::_nearby_44e510",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044E530": {
     "name": "UIParticle::_method_44e530",
@@ -8525,7 +8525,7 @@
   },
   "0x0044EB70": {
     "name": "UIWnd::_nearby_44eb70",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044F030": {
     "name": "CGameData::_sdtor_9",
@@ -8537,7 +8537,7 @@
   },
   "0x0044FFC0": {
     "name": "UIWnd::_nearby_44ffc0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00450070": {
     "name": "UISceneMap::_sdtor_10",
@@ -8549,7 +8549,7 @@
   },
   "0x00450300": {
     "name": "UIWnd::_nearby_450300",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00450320": {
     "name": "UIWnd::Layout_450320",
@@ -8565,7 +8565,7 @@
   },
   "0x004506F0": {
     "name": "UIWnd::_nearby_4506f0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00450770": {
     "name": "UILoadingFrm::_sdtor_11",
@@ -8577,7 +8577,7 @@
   },
   "0x00450A40": {
     "name": "UIWnd::_nearby_450a40",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00450A60": {
     "name": "RoleCameraCtrl::_method_450a60",
@@ -8589,7 +8589,7 @@
   },
   "0x00450DA0": {
     "name": "UIWnd::_nearby_450da0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00451200": {
     "name": "UISceneMap::_method_451200",
@@ -8605,11 +8605,11 @@
   },
   "0x00451830": {
     "name": "UIWnd::_nearby_451830",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00451CA0": {
     "name": "UIWnd::_nearby_451ca0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00451D80": {
     "name": "UITitle_BBTY::_sdtor_12",
@@ -8617,7 +8617,7 @@
   },
   "0x00452560": {
     "name": "UIWnd::_nearby_452560",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004525E0": {
     "name": "UIListBox::_sdtor_13",
@@ -8633,7 +8633,7 @@
   },
   "0x00452770": {
     "name": "UIWnd::_nearby_452770",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00452830": {
     "name": "UIAnimateCtrlEX::_sdtor_14",
@@ -8645,7 +8645,7 @@
   },
   "0x00452FB0": {
     "name": "UIWnd::_nearby_452fb0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00453010": {
     "name": "SceneObj::_sdtor_15",
@@ -8661,7 +8661,7 @@
   },
   "0x00453CF0": {
     "name": "UIWnd::_nearby_453cf0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00453E50": {
     "name": "UIListBox::_sdtor_16",
@@ -8677,7 +8677,7 @@
   },
   "0x00454810": {
     "name": "UIWnd::_nearby_454810",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00454980": {
     "name": "CScreenMode::_sdtor_17",
@@ -8733,7 +8733,7 @@
   },
   "0x00456A90": {
     "name": "UIWnd::_nearby_456a90",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00456B60": {
     "name": "CCBRoleState::_sdtor_18",
@@ -8753,15 +8753,15 @@
   },
   "0x00459050": {
     "name": "UIWnd::_nearby_459050",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00459070": {
     "name": "UIWnd::_nearby_459070",
-    "signature": "int *()"
+    "signature": "int * __thiscall(UIWnd *this)"
   },
   "0x004590A0": {
     "name": "UIWnd::_nearby_4590a0",
-    "signature": "int *()"
+    "signature": "int * __thiscall(UIWnd *this)"
   },
   "0x00459240": {
     "name": "UISceneFrm::_sdtor_19",
@@ -8789,7 +8789,7 @@
   },
   "0x0045A790": {
     "name": "UIWnd::_nearby_45a790",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0045AE40": {
     "name": "UIListBox::_sdtor_20",
@@ -8801,7 +8801,7 @@
   },
   "0x0046D120": {
     "name": "UIWnd::_nearby_46d120",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0046D4C0": {
     "name": "UIListBox::_sdtor_21",
@@ -8825,7 +8825,7 @@
   },
   "0x00470A40": {
     "name": "UIWnd::_nearby_470a40",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00470F20": {
     "name": "UIListBox::_sdtor_22",
@@ -8853,11 +8853,11 @@
   },
   "0x00478860": {
     "name": "UIWnd::_nearby_478860",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004792E0": {
     "name": "UIWnd::_nearby_4792e0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00479660": {
     "name": "MainEquipUI::_sdtor_23",
@@ -8877,7 +8877,7 @@
   },
   "0x0047BBD0": {
     "name": "UIWnd::_nearby_47bbd0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0047BD00": {
     "name": "UITitle_ArcSave::_sdtor_24",
@@ -8901,7 +8901,7 @@
   },
   "0x0047DC80": {
     "name": "Object3D::_nearby_47dc80",
-    "signature": "void()"
+    "signature": "void __thiscall(Object3D *this)"
   },
   "0x0047E190": {
     "name": "Object3D::_nearby_47e190",
@@ -8909,7 +8909,7 @@
   },
   "0x0047E5A0": {
     "name": "Object3D::_nearby_47e5a0",
-    "signature": "void()"
+    "signature": "void __thiscall(Object3D *this)"
   },
   "0x0047E8F0": {
     "name": "LineupUI::_sdtor_25",
@@ -8941,7 +8941,7 @@
   },
   "0x00482EB0": {
     "name": "UIWnd::_nearby_482eb0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00483260": {
     "name": "CScreenMode::_sdtor_26",
@@ -8961,7 +8961,7 @@
   },
   "0x004867D0": {
     "name": "UIWnd::_nearby_4867d0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00486D00": {
     "name": "RenderTarget::_sdtor_27",
@@ -8993,7 +8993,7 @@
   },
   "0x004909D0": {
     "name": "UIWnd::_nearby_4909d0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00490E70": {
     "name": "UIBigMap::_sdtor_28",
@@ -9049,7 +9049,7 @@
   },
   "0x00498800": {
     "name": "UIWnd::_nearby_498800",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00498C70": {
     "name": "EquipUI::_sdtor_29",
@@ -9073,7 +9073,7 @@
   },
   "0x004A12D0": {
     "name": "UIItem::_nearby_4a12d0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIItem *this)"
   },
   "0x004A1A80": {
     "name": "UIItem::_sub_4A1A80",
@@ -9085,7 +9085,7 @@
   },
   "0x004A1E20": {
     "name": "UIWnd::_nearby_4a1e20",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004A2150": {
     "name": "UIWnd::_sdtor_30",
@@ -9117,7 +9117,7 @@
   },
   "0x004A6710": {
     "name": "UIWnd::_nearby_4a6710",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004A8150": {
     "name": "PalScript::_auto_4a8150",
@@ -9161,7 +9161,7 @@
   },
   "0x004B01B0": {
     "name": "UIWnd::_nearby_4b01b0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004B0520": {
     "name": "UIListBox::_sdtor_31",
@@ -9221,11 +9221,11 @@
   },
   "0x004B4600": {
     "name": "UIWnd::_nearby_4b4600",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004B4670": {
     "name": "RenderTarget::_nearby_4b4670",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget *this)"
   },
   "0x004B4FE0": {
     "name": "_TextureLib_Data::_auto_4b4fe0",
@@ -9281,7 +9281,7 @@
   },
   "0x004B6530": {
     "name": "RenderTarget3::_nearby_4b6530",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget3 *this)"
   },
   "0x004B66B0": {
     "name": "RenderTarget3::_nearby_4b66b0",
@@ -9289,7 +9289,7 @@
   },
   "0x004B67B0": {
     "name": "RenderTarget3::_nearby_4b67b0",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget3 *this)"
   },
   "0x004B6C20": {
     "name": "RenderTarget3::_nearby_4b6c20",
@@ -9301,7 +9301,7 @@
   },
   "0x004B6D00": {
     "name": "RenderTarget3::_nearby_4b6d00",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget3 *this)"
   },
   "0x004B6F70": {
     "name": "PAL3VisNode::PAL3VisNode",
@@ -9329,7 +9329,7 @@
   },
   "0x004BC740": {
     "name": "RenderTarget::_nearby_4bc740",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget *this)"
   },
   "0x004BC760": {
     "name": "RenderTarget::_nearby_4bc760",
@@ -9349,7 +9349,7 @@
   },
   "0x004BDA40": {
     "name": "RenderTarget::_nearby_4bda40",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget *this)"
   },
   "0x004BE080": {
     "name": "ScreenEffectMgr::_nearby_4be080",
@@ -9361,7 +9361,7 @@
   },
   "0x004BE8B0": {
     "name": "ScreenEffectMgr::_nearby_4be8b0",
-    "signature": "void()"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BE8D0": {
     "name": "RenderTarget::_auto_4be8d0",
@@ -9377,7 +9377,7 @@
   },
   "0x004BEA40": {
     "name": "ScreenEffectMgr::_nearby_4bea40",
-    "signature": "void()"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BEA60": {
     "name": "RenderTarget::_sub_4BEA60",
@@ -9393,7 +9393,7 @@
   },
   "0x004BEB90": {
     "name": "ScreenEffectMgr::_nearby_4beb90",
-    "signature": "void()"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BEBB0": {
     "name": "RenderTarget::_sub_4BEBB0",
@@ -9405,7 +9405,7 @@
   },
   "0x004BECE0": {
     "name": "ScreenEffectMgr::_nearby_4bece0",
-    "signature": "void()"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BED00": {
     "name": "RenderTarget::_sub_4BED00",
@@ -9417,7 +9417,7 @@
   },
   "0x004BEE40": {
     "name": "ScreenEffectMgr::_nearby_4bee40",
-    "signature": "void()"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BEE60": {
     "name": "ScreenEffectMgr::_nearby_4bee60",
@@ -9429,11 +9429,11 @@
   },
   "0x004BF740": {
     "name": "ScreenEffectMgr::_nearby_4bf740",
-    "signature": "void()"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004C04A0": {
     "name": "RenderTarget2::_nearby_4c04a0",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget2 *this)"
   },
   "0x004C04C0": {
     "name": "RenderTarget2::_nearby_4c04c0",
@@ -9441,7 +9441,7 @@
   },
   "0x004C0520": {
     "name": "RenderTarget2::_nearby_4c0520",
-    "signature": "vtbl_0056F5E4 **()"
+    "signature": "vtbl_0056F5E4 ** __thiscall(RenderTarget2 *this)"
   },
   "0x004C0610": {
     "name": "nullsub_75",
@@ -9457,7 +9457,7 @@
   },
   "0x004C15B0": {
     "name": "RenderTarget2::_nearby_4c15b0",
-    "signature": "vtbl_0056F674 **()"
+    "signature": "vtbl_0056F674 ** __thiscall(RenderTarget2 *this)"
   },
   "0x004C2050": {
     "name": "RenderTarget2::_nearby_4c2050",
@@ -9465,7 +9465,7 @@
   },
   "0x004C2090": {
     "name": "RenderTarget2::_nearby_4c2090",
-    "signature": "vtbl_0056F6C8 **()"
+    "signature": "vtbl_0056F6C8 ** __thiscall(RenderTarget2 *this)"
   },
   "0x004C27D0": {
     "name": "RenderTarget2::_nearby_4c27d0",
@@ -9473,7 +9473,7 @@
   },
   "0x004C2820": {
     "name": "RenderTarget2::_nearby_4c2820",
-    "signature": "vtbl_0056F71C **()"
+    "signature": "vtbl_0056F71C ** __thiscall(RenderTarget2 *this)"
   },
   "0x004C2BA0": {
     "name": "RenderTarget2::_nearby_4c2ba0",
@@ -9481,7 +9481,7 @@
   },
   "0x004C3430": {
     "name": "RenderTarget2::_nearby_4c3430",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget2 *this)"
   },
   "0x004C3450": {
     "name": "RenderTarget2::_nearby_4c3450",
@@ -9489,7 +9489,7 @@
   },
   "0x004C3490": {
     "name": "RenderTarget2::_nearby_4c3490",
-    "signature": "vtbl_0056F774 **()"
+    "signature": "vtbl_0056F774 ** __thiscall(RenderTarget2 *this)"
   },
   "0x004C3C90": {
     "name": "RenderTarget2::_nearby_4c3c90",
@@ -9497,7 +9497,7 @@
   },
   "0x004C3D90": {
     "name": "RenderTarget2::_nearby_4c3d90",
-    "signature": "vtbl_0056F7C8 **()"
+    "signature": "vtbl_0056F7C8 ** __thiscall(RenderTarget2 *this)"
   },
   "0x004C5E70": {
     "name": "nullsub_79",
@@ -9593,7 +9593,7 @@
   },
   "0x004DBF60": {
     "name": "CCBSystem::_nearby_4dbf60",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBSystem *this)"
   },
   "0x004DC510": {
     "name": "CCBSystem::_auto_4dc510",
@@ -9613,7 +9613,7 @@
   },
   "0x004DF4B0": {
     "name": "CCBRoleState::_nearby_4df4b0",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBRoleState *this)"
   },
   "0x004DF710": {
     "name": "CCBStage::Method_4DF710",
@@ -9629,7 +9629,7 @@
   },
   "0x004E00D0": {
     "name": "CCBStage::_nearby_4e00d0",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBStage *this)"
   },
   "0x004E0430": {
     "name": "CCBStage::_nearby_4e0430",
@@ -9685,7 +9685,7 @@
   },
   "0x004E50B0": {
     "name": "PAL_GDB::_auto_4e50b0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PAL_GDB *this)"
   },
   "0x004E7060": {
     "name": "CCBStageCam::_auto_4e7060",
@@ -9833,7 +9833,7 @@
   },
   "0x004FB7A0": {
     "name": "CCBRoleState::_nearby_4fb7a0",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBRoleState *this)"
   },
   "0x004FF360": {
     "name": "CCBCamControl::_auto_4ff360",
@@ -9869,7 +9869,7 @@
   },
   "0x00503DA0": {
     "name": "CCBStage::_nearby_503da0",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBStage *this)"
   },
   "0x00504240": {
     "name": "CIniFile::_auto_504240",
@@ -9953,7 +9953,7 @@
   },
   "0x0050FB00": {
     "name": "CCBStage::_nearby_50fb00",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBStage *this)"
   },
   "0x0050FD00": {
     "name": "CCBStageScene::_sub_50FD00",
@@ -10001,7 +10001,7 @@
   },
   "0x00522010": {
     "name": "CCBStageRole::_nearby_522010",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBStageRole *this)"
   },
   "0x00522120": {
     "name": "CCBStageRole::_nearby_522120",
@@ -10013,7 +10013,7 @@
   },
   "0x00523F10": {
     "name": "UIWnd::_nearby_523f10",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00524110": {
     "name": "CScreenMode::_sdtor_32",
@@ -10025,7 +10025,7 @@
   },
   "0x00525100": {
     "name": "UIWnd::_nearby_525100",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00525520": {
     "name": "UIListBox::_sdtor_33",
@@ -10049,7 +10049,7 @@
   },
   "0x00527930": {
     "name": "UIWnd::_nearby_527930",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x005279D0": {
     "name": "UIListBox::_sdtor_34",
@@ -10069,7 +10069,7 @@
   },
   "0x005282C0": {
     "name": "UIWnd::_nearby_5282c0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x005284C0": {
     "name": "JusticeBookUI::_sdtor_35",
@@ -10089,7 +10089,7 @@
   },
   "0x005295D0": {
     "name": "UIWnd::_nearby_5295d0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00529770": {
     "name": "UIRoleSelectDialog::_sdtor_36",
@@ -10109,7 +10109,7 @@
   },
   "0x0052AED0": {
     "name": "UIWnd::_nearby_52aed0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052AF20": {
     "name": "UI3DCtrl::_method_52af20",
@@ -10121,7 +10121,7 @@
   },
   "0x0052B1C0": {
     "name": "UIWnd::_nearby_52b1c0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052B2A0": {
     "name": "CCBStageScene::_method_52b2a0",
@@ -10133,7 +10133,7 @@
   },
   "0x0052B9F0": {
     "name": "UIWnd::_nearby_52b9f0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052BBB0": {
     "name": "UICoverFrm::_sdtor_37",
@@ -10153,11 +10153,11 @@
   },
   "0x0052DD40": {
     "name": "UIWnd::_nearby_52dd40",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052EC70": {
     "name": "UIWnd::_nearby_52ec70",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052ED30": {
     "name": "CScreenMode::_init_52ed30",
@@ -10173,7 +10173,7 @@
   },
   "0x0052F6A0": {
     "name": "UIWnd::_nearby_52f6a0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052F800": {
     "name": "SceneObj::_method_52f800",
@@ -10193,7 +10193,7 @@
   },
   "0x00530250": {
     "name": "UIWnd::_nearby_530250",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00530280": {
     "name": "SceneObj::LoadGeomNode",
@@ -10205,7 +10205,7 @@
   },
   "0x00530420": {
     "name": "UIWnd::_nearby_530420",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x005306A0": {
     "name": "Actor::_init_5306a0",
@@ -10221,7 +10221,7 @@
   },
   "0x00531D00": {
     "name": "UIWnd::_nearby_531d00",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00531E50": {
     "name": "RoleSystem::_sdtor_38",
@@ -10229,19 +10229,19 @@
   },
   "0x00532A20": {
     "name": "UIWnd::_nearby_532a20",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00533C90": {
     "name": "UIWnd::_nearby_533c90",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00534DA0": {
     "name": "UIWnd::_nearby_534da0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00534F30": {
     "name": "UIWnd::_nearby_534f30",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x005350C0": {
     "name": "UIWnd::_nearby_5350c0",
@@ -10253,7 +10253,7 @@
   },
   "0x005355E0": {
     "name": "UIWnd::_nearby_5355e0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00535710": {
     "name": "PalScript::_method_535710",
@@ -10261,11 +10261,11 @@
   },
   "0x00535A50": {
     "name": "UIWnd::_nearby_535a50",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00537590": {
     "name": "Actor::_nearby_537590",
-    "signature": "void()"
+    "signature": "void __thiscall(Actor *this)"
   },
   "0x00537A90": {
     "name": "Actor::_nearby_537a90",
@@ -10297,11 +10297,11 @@
   },
   "0x0053C230": {
     "name": "Actor::_nearby_53c230",
-    "signature": "void()"
+    "signature": "void __thiscall(Actor *this)"
   },
   "0x0053C860": {
     "name": "CScreenMode::_nearby_53c860",
-    "signature": "void()"
+    "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x0053D0B0": {
     "name": "PtrArray::_sub_53D0B0",
@@ -10309,7 +10309,7 @@
   },
   "0x0053DB70": {
     "name": "CScreenMode::_nearby_53db70",
-    "signature": "void()"
+    "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x0053E4E0": {
     "name": "CScreenMode::_sub_53E4E0",
@@ -10389,7 +10389,7 @@
   },
   "0x00408B60": {
     "name": "UIListBox::_auto_408b60",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(UIListBox *this)"
   },
   "0x00408BD0": {
     "name": "UISceneMap::UpdateChildren",
@@ -10485,11 +10485,11 @@
   },
   "0x00411780": {
     "name": "Array::_nearby_411780",
-    "signature": "void()"
+    "signature": "void __thiscall(Array *this)"
   },
   "0x004117E0": {
     "name": "Array::_nearby_4117e0",
-    "signature": "void()"
+    "signature": "void __thiscall(Array *this)"
   },
   "0x00411900": {
     "name": "Actor::_auto_411900",
@@ -10529,7 +10529,7 @@
   },
   "0x00414A10": {
     "name": "RoleSystem::_nearby_414a10",
-    "signature": "void()"
+    "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00414F90": {
     "name": "RoleSystem::_nearby_414f90",
@@ -10545,7 +10545,7 @@
   },
   "0x00416770": {
     "name": "RoleSystem::_nearby_416770",
-    "signature": "void()"
+    "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00416BC0": {
     "name": "RoleSystem::_sub_416BC0",
@@ -10601,7 +10601,7 @@
   },
   "0x00419B10": {
     "name": "RoleSystem::_nearby_419b10",
-    "signature": "__int64()"
+    "signature": "__int64 __thiscall(RoleSystem *this)"
   },
   "0x00419EF0": {
     "name": "RoleSystem::_auto_419ef0",
@@ -10653,7 +10653,7 @@
   },
   "0x0041BE70": {
     "name": "RoleSystem::_nearby_41be70",
-    "signature": "void()"
+    "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x0041BE80": {
     "name": "Camera::Method_41BE80",
@@ -10721,11 +10721,11 @@
   },
   "0x0041D900": {
     "name": "CameraCtrl::_nearby_41d900",
-    "signature": "void()"
+    "signature": "void __thiscall(CameraCtrl *this)"
   },
   "0x0041D960": {
     "name": "CameraCtrl::_nearby_41d960",
-    "signature": "void()"
+    "signature": "void __thiscall(CameraCtrl *this)"
   },
   "0x0041EB50": {
     "name": "CameraCtrl::_nearby_41eb50",
@@ -10785,15 +10785,15 @@
   },
   "0x00422540": {
     "name": "RoleSystem::_nearby_422540",
-    "signature": "void()"
+    "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00422550": {
     "name": "RoleSystem::_nearby_422550",
-    "signature": "void()"
+    "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00422740": {
     "name": "RoleSystem::_nearby_422740",
-    "signature": "void()"
+    "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x004234A0": {
     "name": "RoleSystem::_nearby_4234a0",
@@ -10801,7 +10801,7 @@
   },
   "0x00423690": {
     "name": "UIScene::_nearby_423690",
-    "signature": "void()"
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x00423A70": {
     "name": "UIBigMap::_unverified_423A70",
@@ -10877,11 +10877,11 @@
   },
   "0x0042C910": {
     "name": "ScriptVM::_nearby_42c910",
-    "signature": "void()"
+    "signature": "void __thiscall(ScriptVM *this)"
   },
   "0x0042E6A0": {
     "name": "PalScriptMgr::_nearby_42e6a0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScriptMgr *this)"
   },
   "0x0042FEB0": {
     "name": "Config::_nearby_42feb0",
@@ -10965,7 +10965,7 @@
   },
   "0x00431E90": {
     "name": "PtrArray::_auto_431e90",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(PtrArray *this)"
   },
   "0x004325A0": {
     "name": "PtrArray::_nearby_4325a0",
@@ -10973,15 +10973,15 @@
   },
   "0x00432890": {
     "name": "PtrArray::_nearby_432890",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(PtrArray *this)"
   },
   "0x004328D0": {
     "name": "UIListBox::_auto_4328d0",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(UIListBox *this)"
   },
   "0x00432930": {
     "name": "PtrArray::_nearby_432930",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(PtrArray *this)"
   },
   "0x00433CD0": {
     "name": "PtrArray::_nearby_433cd0",
@@ -10997,7 +10997,7 @@
   },
   "0x00434CE0": {
     "name": "PalScript::_nearby_434ce0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00434D20": {
     "name": "PalScript::_nearby_434d20",
@@ -11009,7 +11009,7 @@
   },
   "0x00434ED0": {
     "name": "PalScript::_nearby_434ed0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00434F60": {
     "name": "PalScript::_nearby_434f60",
@@ -11017,339 +11017,339 @@
   },
   "0x00434F90": {
     "name": "PalScript::_nearby_434f90",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435010": {
     "name": "PalScript::_nearby_435010",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435080": {
     "name": "PalScript::_nearby_435080",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435130": {
     "name": "PalScript::_nearby_435130",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004353F0": {
     "name": "PalScript::_nearby_4353f0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435470": {
     "name": "PalScript::_nearby_435470",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004354F0": {
     "name": "PalScript::_nearby_4354f0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435570": {
     "name": "PalScript::_auto_435570",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00435600": {
     "name": "PalScript::_nearby_435600",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004356C0": {
     "name": "PalScript::_nearby_4356c0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00435730": {
     "name": "PalScript::_auto_435730",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00435770": {
     "name": "PalScript::_auto_435770",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004357B0": {
     "name": "PalScript::_auto_4357b0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004357E0": {
     "name": "PalScript::_auto_4357e0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436240": {
     "name": "PalScript::_auto_436240",
-    "signature": "float *()"
+    "signature": "float * __thiscall(PalScript *this)"
   },
   "0x004362D0": {
     "name": "PalScript::_nearby_4362d0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436360": {
     "name": "PalScript::_auto_436360",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436380": {
     "name": "PalScript::_auto_436380",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004363B0": {
     "name": "PalScript::_auto_4363b0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004363E0": {
     "name": "PalScript::_auto_4363e0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436410": {
     "name": "PalScript::_auto_436410",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436440": {
     "name": "PalScript::_nearby_436440",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436490": {
     "name": "PalScript::_nearby_436490",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436530": {
     "name": "PalScript::_nearby_436530",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004365C0": {
     "name": "PalScript::_nearby_4365c0",
-    "signature": "char()"
+    "signature": "char __thiscall(PalScript *this)"
   },
   "0x004365D0": {
     "name": "PalScript::_nearby_4365d0",
-    "signature": "char()"
+    "signature": "char __thiscall(PalScript *this)"
   },
   "0x004365E0": {
     "name": "PalScript::_auto_4365e0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436710": {
     "name": "PalScript::_auto_436710",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436760": {
     "name": "PalScript::_auto_436760",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436780": {
     "name": "PalScript::_nearby_436780",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004367B0": {
     "name": "PalScript::_nearby_4367b0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004367E0": {
     "name": "PalScript::_nearby_4367e0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436810": {
     "name": "PalScript::_nearby_436810",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436860": {
     "name": "PalScript::_nearby_436860",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436890": {
     "name": "PalScript::_nearby_436890",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004368C0": {
     "name": "PalScript::_nearby_4368c0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004368E0": {
     "name": "PalScript::_nearby_4368e0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436910": {
     "name": "PalScript::_auto_436910",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436940": {
     "name": "PalScript::_nearby_436940",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004369A0": {
     "name": "PalScript::_auto_4369a0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004369C0": {
     "name": "PalScript::_auto_4369c0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436A10": {
     "name": "PalScript::_nearby_436a10",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436B40": {
     "name": "PalScript::_nearby_436b40",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436BD0": {
     "name": "PalScript::_auto_436bd0",
-    "signature": "char()"
+    "signature": "char __thiscall(PalScript *this)"
   },
   "0x00436C60": {
     "name": "PalScript::_nearby_436c60",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436CB0": {
     "name": "PalScript::_nearby_436cb0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436D30": {
     "name": "PalScript::_nearby_436d30",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436DB0": {
     "name": "PalScript::_nearby_436db0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436E10": {
     "name": "PalScript::_nearby_436e10",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436E70": {
     "name": "PalScript::_nearby_436e70",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436ED0": {
     "name": "PalScript::_auto_436ed0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436F40": {
     "name": "PalScript::_nearby_436f40",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436F90": {
     "name": "PalScript::_auto_436f90",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436FB0": {
     "name": "PalScript::_nearby_436fb0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436FE0": {
     "name": "PalScript::_nearby_436fe0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437040": {
     "name": "PalScript::_nearby_437040",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437080": {
     "name": "PalScriptMgr::_auto_437080",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScriptMgr *this)"
   },
   "0x004370C0": {
     "name": "PalScript::_auto_4370c0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004370E0": {
     "name": "PalScriptMgr::_auto_4370e0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScriptMgr *this)"
   },
   "0x00437120": {
     "name": "PalScript::_nearby_437120",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437170": {
     "name": "PalScript::_auto_437170",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437190": {
     "name": "PalScript::_nearby_437190",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004371B0": {
     "name": "PalScript::_nearby_4371b0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004371D0": {
     "name": "PalScript::_nearby_4371d0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004371F0": {
     "name": "PalScript::_nearby_4371f0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437210": {
     "name": "PalScript::_nearby_437210",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437280": {
     "name": "PalScript::_nearby_437280",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004373A0": {
     "name": "PalScript::_auto_4373a0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004373C0": {
     "name": "PalScript::_nearby_4373c0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004373D0": {
     "name": "PalScript::_nearby_4373d0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437440": {
     "name": "PalScript::_nearby_437440",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004374A0": {
     "name": "PalScript::_nearby_4374a0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004374E0": {
     "name": "PalScript::_auto_4374e0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437500": {
     "name": "PalScript::_nearby_437500",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004375E0": {
     "name": "PalScript::_auto_4375e0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437610": {
     "name": "PalScript::_auto_437610",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004376A0": {
     "name": "PalScript::_auto_4376a0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004376F0": {
     "name": "PalScript::_auto_4376f0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437740": {
     "name": "PalScript::_nearby_437740",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437A80": {
     "name": "PalScript::_nearby_437a80",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437AC0": {
     "name": "PalScript::_nearby_437ac0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437B20": {
     "name": "PalScript::_nearby_437b20",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437B90": {
     "name": "PalScript::_nearby_437b90",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437BB0": {
     "name": "PalScript::_nearby_437bb0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437D90": {
     "name": "PalScript::_nearby_437d90",
@@ -11361,11 +11361,11 @@
   },
   "0x00437F40": {
     "name": "PalScript::_nearby_437f40",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438030": {
     "name": "PalScript::_nearby_438030",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438110": {
     "name": "PalScript::_nearby_438110",
@@ -11373,7 +11373,7 @@
   },
   "0x004381E0": {
     "name": "PalScript::_nearby_4381e0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004382A0": {
     "name": "PalScript::_nearby_4382a0",
@@ -11381,23 +11381,23 @@
   },
   "0x00438310": {
     "name": "PalScript::_nearby_438310",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438440": {
     "name": "PalScript::_nearby_438440",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438450": {
     "name": "PalScript::_auto_438450",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438470": {
     "name": "PalScript::_nearby_438470",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004384D0": {
     "name": "PalScript::_nearby_4384d0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438540": {
     "name": "PalScript::_nearby_438540",
@@ -11405,7 +11405,7 @@
   },
   "0x004385A0": {
     "name": "PalScript::_nearby_4385a0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438640": {
     "name": "PalScript::_nearby_438640",
@@ -11413,43 +11413,43 @@
   },
   "0x004387B0": {
     "name": "PalScript::_auto_4387b0",
-    "signature": "char()"
+    "signature": "char __thiscall(PalScript *this)"
   },
   "0x004387D0": {
     "name": "PalScript::_auto_4387d0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004388C0": {
     "name": "PalScript::_nearby_4388c0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438910": {
     "name": "PalScript::_nearby_438910",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438980": {
     "name": "PalScript::_nearby_438980",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004389A0": {
     "name": "PalScript::_nearby_4389a0",
-    "signature": "char *()"
+    "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438A30": {
     "name": "PalScript::_nearby_438a30",
-    "signature": "_DWORD *()"
+    "signature": "_DWORD * __thiscall(PalScript *this)"
   },
   "0x00438B40": {
     "name": "PalScript::_auto_438b40",
-    "signature": "char()"
+    "signature": "char __thiscall(PalScript *this)"
   },
   "0x00438BA0": {
     "name": "PalScript::_nearby_438ba0",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438D20": {
     "name": "PalScript::_nearby_438d20",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438E30": {
     "name": "NPC::_auto_438e30",
@@ -11457,11 +11457,11 @@
   },
   "0x00438F50": {
     "name": "PalScript::_nearby_438f50",
-    "signature": "char()"
+    "signature": "char __thiscall(PalScript *this)"
   },
   "0x00439020": {
     "name": "PalScript::_nearby_439020",
-    "signature": "void()"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004391A0": {
     "name": "PalScript::_nearby_4391a0",
@@ -11489,7 +11489,7 @@
   },
   "0x0043A150": {
     "name": "UIWnd::_nearby_43a150",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0043A660": {
     "name": "UIWnd::_nearby_43a660",
@@ -11501,11 +11501,11 @@
   },
   "0x0043A6F0": {
     "name": "UIWnd::_nearby_43a6f0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0043A760": {
     "name": "UIScene::_nearby_43a760",
-    "signature": "void()"
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x0043B660": {
     "name": "UIScene::_nearby_43b660",
@@ -11513,11 +11513,11 @@
   },
   "0x0043BB60": {
     "name": "UIScene::_nearby_43bb60",
-    "signature": "void()"
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x0043BCD0": {
     "name": "UIScene::_nearby_43bcd0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x0043BEB0": {
     "name": "UIScene::_nearby_43beb0",
@@ -11549,7 +11549,7 @@
   },
   "0x0043D820": {
     "name": "UIScene::_nearby_43d820",
-    "signature": "void()"
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x0043D920": {
     "name": "CCBProtectWindow::UpdateChildren",
@@ -11581,7 +11581,7 @@
   },
   "0x0043F7E0": {
     "name": "UIWnd::_nearby_43f7e0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0043F9C0": {
     "name": "UIButton::UpdateChildren",
@@ -11605,11 +11605,11 @@
   },
   "0x00440730": {
     "name": "UIWnd::_nearby_440730",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004410E0": {
     "name": "UIWnd::_nearby_4410e0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00441240": {
     "name": "UIBigMap::_unverified_441240",
@@ -11645,7 +11645,7 @@
   },
   "0x004422D0": {
     "name": "CCBUI::_nearby_4422d0",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBUI *this)"
   },
   "0x00442480": {
     "name": "UIFrameWnd::_nearby_442480",
@@ -11661,7 +11661,7 @@
   },
   "0x00442CF0": {
     "name": "UIFrameWnd::_nearby_442cf0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIFrameWnd *this)"
   },
   "0x00442D40": {
     "name": "UIFrameWnd::_auto_442d40",
@@ -11669,7 +11669,7 @@
   },
   "0x00442E00": {
     "name": "UIFrameWnd::_nearby_442e00",
-    "signature": "void()"
+    "signature": "void __thiscall(UIFrameWnd *this)"
   },
   "0x00442E90": {
     "name": "UIFrameWnd::_nearby_442e90",
@@ -11757,7 +11757,7 @@
   },
   "0x00444F50": {
     "name": "UIWnd::_nearby_444f50",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00445910": {
     "name": "UIWnd::_nearby_445910",
@@ -11765,15 +11765,15 @@
   },
   "0x004459D0": {
     "name": "UIWnd::_nearby_4459d0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00445A40": {
     "name": "UIWnd::_nearby_445a40",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00445A60": {
     "name": "UIWnd::_nearby_445a60",
-    "signature": "char()"
+    "signature": "char __thiscall(UIWnd *this)"
   },
   "0x00445BF0": {
     "name": "ScriptWaitFrm::_method_445bf0",
@@ -11789,7 +11789,7 @@
   },
   "0x004460C0": {
     "name": "UIWnd::_nearby_4460c0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00449AB0": {
     "name": "CCBAttackSequen::_method_449ab0",
@@ -11841,7 +11841,7 @@
   },
   "0x0044A780": {
     "name": "UIWnd::_nearby_44a780",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044A7F0": {
     "name": "UIWnd::_auto_44a7f0",
@@ -11861,7 +11861,7 @@
   },
   "0x0044AB80": {
     "name": "UIWnd::_nearby_44ab80",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044B470": {
     "name": "RoleSystem::_method_44b470",
@@ -11877,7 +11877,7 @@
   },
   "0x0044BA50": {
     "name": "UIWnd::_nearby_44ba50",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044C840": {
     "name": "UICoverFrm::_method_44c840",
@@ -11945,11 +11945,11 @@
   },
   "0x0044E410": {
     "name": "UIWnd::_nearby_44e410",
-    "signature": "char *()"
+    "signature": "char * __thiscall(UIWnd *this)"
   },
   "0x0044E520": {
     "name": "UIWnd::_nearby_44e520",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044E9F0": {
     "name": "UIWnd::Layout_44e9f0",
@@ -11957,15 +11957,15 @@
   },
   "0x0044EB80": {
     "name": "UIWnd::_nearby_44eb80",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044ED70": {
     "name": "UIWnd::_nearby_44ed70",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044FFD0": {
     "name": "UIWnd::_nearby_44ffd0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00450230": {
     "name": "UISceneMap::GetID",
@@ -11973,7 +11973,7 @@
   },
   "0x00450310": {
     "name": "UIWnd::_nearby_450310",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004503C0": {
     "name": "UIWnd::_nearby_4503c0",
@@ -11989,7 +11989,7 @@
   },
   "0x00450700": {
     "name": "UIWnd::_nearby_450700",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004507F0": {
     "name": "UILoadingFrm::_method_4507f0",
@@ -12001,7 +12001,7 @@
   },
   "0x00450A50": {
     "name": "UIWnd::_nearby_450a50",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00450AD0": {
     "name": "RoleCameraCtrl::_method_450ad0",
@@ -12017,7 +12017,7 @@
   },
   "0x00450DB0": {
     "name": "UIWnd::_nearby_450db0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00450DC0": {
     "name": "UISceneMap::_method_450dc0",
@@ -12057,7 +12057,7 @@
   },
   "0x00451840": {
     "name": "UIWnd::_nearby_451840",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00451850": {
     "name": "UIListBox::_init_451850",
@@ -12081,7 +12081,7 @@
   },
   "0x00451CB0": {
     "name": "UIWnd::_nearby_451cb0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00451E50": {
     "name": "UI3DCtrl::_method_451e50",
@@ -12097,11 +12097,11 @@
   },
   "0x00452570": {
     "name": "UIWnd::_nearby_452570",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00452780": {
     "name": "UIWnd::_nearby_452780",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004528F0": {
     "name": "UIBigMap::Update_28f0",
@@ -12121,7 +12121,7 @@
   },
   "0x00452FC0": {
     "name": "UIWnd::_nearby_452fc0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00453200": {
     "name": "SceneObj::_init_453200",
@@ -12145,7 +12145,7 @@
   },
   "0x00453D00": {
     "name": "UIWnd::_nearby_453d00",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00453FA0": {
     "name": "RoleShadow::_method_453fa0",
@@ -12161,7 +12161,7 @@
   },
   "0x00454820": {
     "name": "UIWnd::_nearby_454820",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00455190": {
     "name": "UIWnd::_nearby_455190",
@@ -12189,7 +12189,7 @@
   },
   "0x00456AA0": {
     "name": "UIWnd::_nearby_456aa0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00456C20": {
     "name": "CCBRoleState::_method_456c20",
@@ -12205,7 +12205,7 @@
   },
   "0x00456F10": {
     "name": "UIWnd::_nearby_456f10",
-    "signature": "char *()"
+    "signature": "char * __thiscall(UIWnd *this)"
   },
   "0x00457020": {
     "name": "CCBRoleState::_method_457020",
@@ -12237,15 +12237,15 @@
   },
   "0x00459060": {
     "name": "UIWnd::_nearby_459060",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00459080": {
     "name": "UIWnd::_nearby_459080",
-    "signature": "int *()"
+    "signature": "int * __thiscall(UIWnd *this)"
   },
   "0x004590B0": {
     "name": "UIWnd::_nearby_4590b0",
-    "signature": "int *()"
+    "signature": "int * __thiscall(UIWnd *this)"
   },
   "0x00459970": {
     "name": "UITitle_YXXX::_method_459970",
@@ -12261,7 +12261,7 @@
   },
   "0x0045A7A0": {
     "name": "UIWnd::_nearby_45a7a0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0045ADF0": {
     "name": "UIScene::_auto_45adf0",
@@ -12329,7 +12329,7 @@
   },
   "0x0046D130": {
     "name": "UIWnd::_nearby_46d130",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0046D770": {
     "name": "CCBRoleState::_method_46d770",
@@ -12393,7 +12393,7 @@
   },
   "0x00470A50": {
     "name": "UIWnd::_nearby_470a50",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00471220": {
     "name": "CCBUI::_init_471220",
@@ -12457,7 +12457,7 @@
   },
   "0x00478870": {
     "name": "UIWnd::_nearby_478870",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00478C00": {
     "name": "MainEquipUI::_method_478c00",
@@ -12477,7 +12477,7 @@
   },
   "0x004792F0": {
     "name": "UIWnd::_nearby_4792f0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0047A580": {
     "name": "MainEquipUI::_init_47a580",
@@ -12509,7 +12509,7 @@
   },
   "0x0047BBE0": {
     "name": "UIWnd::_nearby_47bbe0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0047C2D0": {
     "name": "ArcLocaleRole::_method_47c2d0",
@@ -12525,7 +12525,7 @@
   },
   "0x0047DC90": {
     "name": "Object3D::_nearby_47dc90",
-    "signature": "void()"
+    "signature": "void __thiscall(Object3D *this)"
   },
   "0x0047DD60": {
     "name": "Object3D::_nearby_47dd60",
@@ -12549,7 +12549,7 @@
   },
   "0x0047E5B0": {
     "name": "Object3D::_nearby_47e5b0",
-    "signature": "void()"
+    "signature": "void __thiscall(Object3D *this)"
   },
   "0x0047EC00": {
     "name": "MainEquipUI::_method_47ec00",
@@ -12609,7 +12609,7 @@
   },
   "0x00482EC0": {
     "name": "UIWnd::_nearby_482ec0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00483280": {
     "name": "UIFrameWnd::_init_483280",
@@ -12677,7 +12677,7 @@
   },
   "0x004867E0": {
     "name": "UIWnd::_nearby_4867e0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00486CE0": {
     "name": "RenderTarget::_sub_486CE0",
@@ -12817,7 +12817,7 @@
   },
   "0x004909E0": {
     "name": "UIWnd::_nearby_4909e0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00491630": {
     "name": "LineupUI::_unverified_491630",
@@ -12869,7 +12869,7 @@
   },
   "0x00498810": {
     "name": "UIWnd::_nearby_498810",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00498C90": {
     "name": "UIFrameWnd::_init_498c90",
@@ -12949,11 +12949,11 @@
   },
   "0x004A12E0": {
     "name": "UIItem::_nearby_4a12e0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIItem *this)"
   },
   "0x004A13E0": {
     "name": "UIItem::_sub_4A13E0",
-    "signature": "void __cdecl()"
+    "signature": "void __cdecl __thiscall(UIItem *this)"
   },
   "0x004A13F0": {
     "name": "UIItem::_sdtor",
@@ -12969,7 +12969,7 @@
   },
   "0x004A1E30": {
     "name": "UIWnd::_nearby_4a1e30",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004A2170": {
     "name": "UIFrameWnd::Method_4A2170",
@@ -13013,7 +13013,7 @@
   },
   "0x004A6720": {
     "name": "UIWnd::_nearby_4a6720",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004A68D0": {
     "name": "PalScriptWaitObj::_method_4a68d0",
@@ -13101,7 +13101,7 @@
   },
   "0x004B01C0": {
     "name": "UIWnd::_nearby_4b01c0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004B0820": {
     "name": "UIScene::_init_4b0820",
@@ -13145,11 +13145,11 @@
   },
   "0x004B4610": {
     "name": "UIWnd::_nearby_4b4610",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004B4680": {
     "name": "RenderTarget::_nearby_4b4680",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget *this)"
   },
   "0x004B4B10": {
     "name": "RenderTarget::_sub_4B4B10",
@@ -13161,7 +13161,7 @@
   },
   "0x004B6540": {
     "name": "RenderTarget3::_nearby_4b6540",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget3 *this)"
   },
   "0x004B6550": {
     "name": "RenderTarget3::_nearby_4b6550",
@@ -13177,7 +13177,7 @@
   },
   "0x004B6D10": {
     "name": "RenderTarget3::_nearby_4b6d10",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget3 *this)"
   },
   "0x004B6D20": {
     "name": "RenderTarget3::_nearby_4b6d20",
@@ -13249,7 +13249,7 @@
   },
   "0x004BC750": {
     "name": "RenderTarget::_nearby_4bc750",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget *this)"
   },
   "0x004BC7E0": {
     "name": "RenderTarget::_nearby_4bc7e0",
@@ -13305,7 +13305,7 @@
   },
   "0x004BDA50": {
     "name": "RenderTarget::_nearby_4bda50",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget *this)"
   },
   "0x004BDD90": {
     "name": "RenderTarget::RenderToScreen",
@@ -13337,7 +13337,7 @@
   },
   "0x004BE8C0": {
     "name": "ScreenEffectMgr::_nearby_4be8c0",
-    "signature": "void()"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BE9C0": {
     "name": "ScreenEffectMgr::_nearby_4be9c0",
@@ -13349,11 +13349,11 @@
   },
   "0x004BEA50": {
     "name": "ScreenEffectMgr::_nearby_4bea50",
-    "signature": "void()"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BEBA0": {
     "name": "ScreenEffectMgr::_nearby_4beba0",
-    "signature": "void()"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BEC00": {
     "name": "VertPoolMgr::_auto_4bec00",
@@ -13361,7 +13361,7 @@
   },
   "0x004BECF0": {
     "name": "ScreenEffectMgr::_nearby_4becf0",
-    "signature": "void()"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BED50": {
     "name": "VertPoolMgr::_auto_4bed50",
@@ -13369,7 +13369,7 @@
   },
   "0x004BEE50": {
     "name": "ScreenEffectMgr::_nearby_4bee50",
-    "signature": "void()"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BF1C0": {
     "name": "ScreenEffectMgr::_nearby_4bf1c0",
@@ -13397,7 +13397,7 @@
   },
   "0x004BF750": {
     "name": "ScreenEffectMgr::_nearby_4bf750",
-    "signature": "void()"
+    "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BF760": {
     "name": "ScreenEffectMgr::_nearby_4bf760",
@@ -13405,11 +13405,11 @@
   },
   "0x004C04B0": {
     "name": "RenderTarget2::_nearby_4c04b0",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget2 *this)"
   },
   "0x004C0500": {
     "name": "RenderTarget2::_nearby_4c0500",
-    "signature": "char()"
+    "signature": "char __thiscall(RenderTarget2 *this)"
   },
   "0x004C0510": {
     "name": "RenderTarget2::_nearby_4c0510",
@@ -13569,7 +13569,7 @@
   },
   "0x004C3440": {
     "name": "RenderTarget2::_nearby_4c3440",
-    "signature": "void()"
+    "signature": "void __thiscall(RenderTarget2 *this)"
   },
   "0x004C34D0": {
     "name": "RenderTarget2::_nearby_4c34d0",
@@ -13705,7 +13705,7 @@
   },
   "0x004CE0D0": {
     "name": "CPK::_auto_4ce0d0",
-    "signature": "CPK *()"
+    "signature": "CPK * __thiscall(CPK *this)"
   },
   "0x004D0360": {
     "name": "nullsub_86",
@@ -13781,7 +13781,7 @@
   },
   "0x004DBF70": {
     "name": "CCBSystem::_nearby_4dbf70",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBSystem *this)"
   },
   "0x004DC1C0": {
     "name": "CCBSystem::_sub_4DC1C0",
@@ -13825,7 +13825,7 @@
   },
   "0x004DF4C0": {
     "name": "CCBRoleState::_nearby_4df4c0",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBRoleState *this)"
   },
   "0x004DF6B0": {
     "name": "CCBStage::Method_4DF6B0",
@@ -13857,7 +13857,7 @@
   },
   "0x004E00E0": {
     "name": "CCBStage::_nearby_4e00e0",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBStage *this)"
   },
   "0x004E02F0": {
     "name": "CCBStage::_nearby_4e02f0",
@@ -13877,7 +13877,7 @@
   },
   "0x004E03F0": {
     "name": "CCBStage::_nearby_4e03f0",
-    "signature": "char()"
+    "signature": "char __thiscall(CCBStage *this)"
   },
   "0x004E0530": {
     "name": "CCBStage::_nearby_4e0530",
@@ -13889,7 +13889,7 @@
   },
   "0x004E0650": {
     "name": "CCBStage::_nearby_4e0650",
-    "signature": "BOOL()"
+    "signature": "BOOL __thiscall(CCBStage *this)"
   },
   "0x004E10E0": {
     "name": "CCBUI::_nearby_4e10e0",
@@ -13937,7 +13937,7 @@
   },
   "0x004E5170": {
     "name": "CCBUI::_nearby_4e5170",
-    "signature": "int()"
+    "signature": "int __thiscall(CCBUI *this)"
   },
   "0x004E53C0": {
     "name": "CCBUI::_nearby_4e53c0",
@@ -14253,7 +14253,7 @@
   },
   "0x004FB7B0": {
     "name": "CCBRoleState::_nearby_4fb7b0",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBRoleState *this)"
   },
   "0x004FCA40": {
     "name": "CCBSystem::FindThreadByID",
@@ -14393,7 +14393,7 @@
   },
   "0x00503DB0": {
     "name": "CCBStage::_nearby_503db0",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBStage *this)"
   },
   "0x00503FA0": {
     "name": "CCBStage::_nearby_503fa0",
@@ -14609,7 +14609,7 @@
   },
   "0x0050FB10": {
     "name": "CCBStage::_nearby_50fb10",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBStage *this)"
   },
   "0x00511340": {
     "name": "CCBStageScene::LoadModel",
@@ -14665,7 +14665,7 @@
   },
   "0x00522020": {
     "name": "CCBStageRole::_nearby_522020",
-    "signature": "void()"
+    "signature": "void __thiscall(CCBStageRole *this)"
   },
   "0x00522030": {
     "name": "CCBStageRole::_nearby_522030",
@@ -14693,7 +14693,7 @@
   },
   "0x00523F20": {
     "name": "UIWnd::_nearby_523f20",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00524230": {
     "name": "UIScene::_init_524230",
@@ -14725,7 +14725,7 @@
   },
   "0x00525110": {
     "name": "UIWnd::_nearby_525110",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x005254C0": {
     "name": "ArcSceneObject::_method_5254c0",
@@ -14765,7 +14765,7 @@
   },
   "0x00527940": {
     "name": "UIWnd::_nearby_527940",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00527C30": {
     "name": "PAL3::_init_527c30",
@@ -14793,7 +14793,7 @@
   },
   "0x005282D0": {
     "name": "UIWnd::_nearby_5282d0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00528650": {
     "name": "PAL_GDB::_init_528650",
@@ -14825,7 +14825,7 @@
   },
   "0x005295E0": {
     "name": "UIWnd::_nearby_5295e0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00529BE0": {
     "name": "PAL3::_init_529be0",
@@ -14837,7 +14837,7 @@
   },
   "0x0052AEE0": {
     "name": "UIWnd::_nearby_52aee0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052AEF0": {
     "name": "UIWnd::_nearby_52aef0",
@@ -14853,7 +14853,7 @@
   },
   "0x0052B1D0": {
     "name": "UIWnd::_nearby_52b1d0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052B1E0": {
     "name": "ObjectCamera::_auto_52b1e0",
@@ -14865,7 +14865,7 @@
   },
   "0x0052BA00": {
     "name": "UIWnd::_nearby_52ba00",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052BE40": {
     "name": "PalScript::_auto_52be40",
@@ -14909,7 +14909,7 @@
   },
   "0x0052DD50": {
     "name": "UIWnd::_nearby_52dd50",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052DD60": {
     "name": "UIGameOver::_method_52dd60",
@@ -14973,7 +14973,7 @@
   },
   "0x0052EC80": {
     "name": "UIWnd::_nearby_52ec80",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052ECE0": {
     "name": "PAL_GDB::_auto_52ece0",
@@ -14993,7 +14993,7 @@
   },
   "0x0052F6B0": {
     "name": "UIWnd::_nearby_52f6b0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052FB00": {
     "name": "s_RoleState::_method_52fb00",
@@ -15033,7 +15033,7 @@
   },
   "0x00530260": {
     "name": "UIWnd::_nearby_530260",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00530270": {
     "name": "UIWnd::_nearby_530270",
@@ -15049,7 +15049,7 @@
   },
   "0x00530430": {
     "name": "UIWnd::_nearby_530430",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00530570": {
     "name": "UIGameOver::_method_530570",
@@ -15113,7 +15113,7 @@
   },
   "0x00531D10": {
     "name": "UIWnd::_nearby_531d10",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00531F50": {
     "name": "UIItem::_init_531f50",
@@ -15161,7 +15161,7 @@
   },
   "0x00532A30": {
     "name": "UIWnd::_nearby_532a30",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00532A40": {
     "name": "UIWnd::_nearby_532a40",
@@ -15201,7 +15201,7 @@
   },
   "0x00533CA0": {
     "name": "UIWnd::_nearby_533ca0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00533CB0": {
     "name": "SceneObjParam::_method_533cb0",
@@ -15253,7 +15253,7 @@
   },
   "0x00534DB0": {
     "name": "UIWnd::_nearby_534db0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00534DC0": {
     "name": "UIWnd::_nearby_534dc0",
@@ -15265,7 +15265,7 @@
   },
   "0x00534F40": {
     "name": "UIWnd::_nearby_534f40",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00534F50": {
     "name": "ArcPastScene::_method_534f50",
@@ -15285,7 +15285,7 @@
   },
   "0x005355F0": {
     "name": "UIWnd::_nearby_5355f0",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00535600": {
     "name": "PalScriptIdleObj::_method_535600",
@@ -15305,7 +15305,7 @@
   },
   "0x00535A60": {
     "name": "UIWnd::_nearby_535a60",
-    "signature": "void()"
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00535A70": {
     "name": "UIAnimateCtrlEX::_method_535a70",
@@ -15353,7 +15353,7 @@
   },
   "0x005375A0": {
     "name": "Actor::_nearby_5375a0",
-    "signature": "void()"
+    "signature": "void __thiscall(Actor *this)"
   },
   "0x005375B0": {
     "name": "Actor::_nearby_5375b0",
@@ -15381,7 +15381,7 @@
   },
   "0x00538320": {
     "name": "Actor::_nearby_538320",
-    "signature": "BOOL()"
+    "signature": "BOOL __thiscall(Actor *this)"
   },
   "0x00538500": {
     "name": "Actor::_nearby_538500",
@@ -15509,7 +15509,7 @@
   },
   "0x0053C240": {
     "name": "Actor::_nearby_53c240",
-    "signature": "void()"
+    "signature": "void __thiscall(Actor *this)"
   },
   "0x0053C250": {
     "name": "CPK::_auto_53c250",
@@ -15533,7 +15533,7 @@
   },
   "0x0053C870": {
     "name": "CScreenMode::_nearby_53c870",
-    "signature": "void()"
+    "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x0053C8C0": {
     "name": "CScreenMode::_nearby_53c8c0",
@@ -15553,7 +15553,7 @@
   },
   "0x0053DB80": {
     "name": "CScreenMode::_nearby_53db80",
-    "signature": "void()"
+    "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x0053DB90": {
     "name": "CPK::_auto_53db90",
@@ -15617,11 +15617,11 @@
   },
   "0x0053F550": {
     "name": "TextureLib::_nearby_53f550",
-    "signature": "void()"
+    "signature": "void __thiscall(TextureLib *this)"
   },
   "0x0053F560": {
     "name": "TextureLib::_nearby_53f560",
-    "signature": "int *()"
+    "signature": "int * __thiscall(TextureLib *this)"
   },
   "0x0053F610": {
     "name": "TextureLib::_sub_53F610",
@@ -15781,15 +15781,15 @@
   },
   "0x00401BC0": {
     "name": "PAL3::InitVFileSystem",
-    "signature": "void *()"
+    "signature": "void * __thiscall(PAL3 *this)"
   },
   "0x00401C00": {
     "name": "PAL3::InitVFileSystem2",
-    "signature": "void *()"
+    "signature": "void * __thiscall(PAL3 *this)"
   },
   "0x00404530": {
     "name": "PAL3::InitVolModNode",
-    "signature": "void()"
+    "signature": "void __thiscall(PAL3 *this)"
   },
   "0x004163B0": {
     "name": "RoleSystem::CalcTileDistance",
