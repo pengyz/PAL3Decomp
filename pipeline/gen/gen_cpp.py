@@ -77,6 +77,16 @@ if _exe_path.exists():
     _RDATA_STR_END = 0x5D6000
     _EXE_DATA_FOR_STRINGS = bytes(_exe_data)  # keep a copy
 
+    # IDA aXxx string names: load from exported JSON (IDA names → string values)
+    _astring_path = PIPELINE_ROOT / "ida" / "_logs" / "ida_astring_names.json"
+    if _astring_path.exists():
+        _astrings = json.load(open(_astring_path, encoding='utf-8'))
+        for _aname, _ainfo in _astrings.items():
+            _aval = _ainfo.get('value', '')
+            if _aval:
+                _escaped = _aval.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
+                LITERAL_MAP[_aname] = '"%s"' % _escaped
+
     del _exe_data
 
 
@@ -125,8 +135,12 @@ def replace_literals(code):
                 return replacement
         return name
 
+    def _repl_astring(m):
+        return LITERAL_MAP.get(m.group(0), m.group(0))
+
     code = re.sub(r'\bflt_[0-9A-Fa-f]+\b', _repl_flt, code)
     code = re.sub(r'\bdword_[0-9A-Fa-f]+\b', _repl_dword, code)
+    code = re.sub(r'\ba[A-Z]\w+\b', _repl_astring, code)
     return code
 
 
@@ -672,8 +686,8 @@ def collect_sub_refs(code):
 def collect_undefined_refs(code):
     """Find likely undefined identifiers that need extern/forward decl."""
     refs = set()
-    # IDA string constants: aXxxxx
-    refs.update(re.findall(r'\b(a[A-Z]\w{3,})\b', code))
+    # IDA string constants: aXxxxx (exclude those replaced by LITERAL_MAP)
+    refs.update(r for r in re.findall(r'\b(a[A-Z]\w{3,})\b', code) if r not in LITERAL_MAP)
     # IDA unnamed globals: dword_XXX, byte_XXX, etc (only as identifiers, not types)
     # Exclude dword_/flt_ that are already replaced by LITERAL_MAP (string/float constants)
     refs.update(r for r in re.findall(r'\b(dword_[0-9A-Fa-f]+)\b', code) if r not in LITERAL_MAP)

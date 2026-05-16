@@ -51,6 +51,13 @@
 
 ## 变更记录
 
+### [2026-05-16] feat(codegen): aXxx IDA string literal replacement — 5616→5606
+
+- **变更**: gen_cpp.py 新增 IDA `aXxx` 字符串名的字面量替换（同 `flt_` / `dword_` 机制）
+- **置信度**: 95（等价变换：IDA 命名 `aCpk` 就是 .rdata 中的 `".cpk"` 字符串）
+- **实现**: 从 IDA 导出 `ida_astring_names.json`（4869 个 aXxx→string 映射），在 `replace_literals()` 中替换
+- **证据**: [A] cmake 5616→5606 (-10), OpenSceneFile.cpp 新增 PASS
+
 ### [2026-05-16] fix(codegen): gbengine reference parameter & removal — C2664 -22
 
 - **变更**: gen_cpp.py 新增对已知 gbengine 引用参数方法的 `&` 移除
