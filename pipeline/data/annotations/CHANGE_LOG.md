@@ -51,6 +51,26 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(import_gbengine): DAG topo sort + strip const method — 4763→4665 (-98)
+
+- **变更**:
+  1. `import_gbengine_types.py`: 按依赖 DAG 拓扑排序结构体定义（值成员依赖在前）
+  2. `import_gbengine_types.py`: 删除保留方法声明中的 `const` 修饰符（`parse_decls` 不支持）
+  3. annotations: 9 个 C2660 函数签名修正（PalScriptMgr::Destroy, UISystem::Destroy, Combat::LogMessage 等）
+- **置信度**: 95
+- **根因**: IDA `parse_decls` 不支持 `const` 成员函数修饰符，含 `const` 的方法导致整个 struct 解析失败 → gbOBBox 变成 `_data[76]` opaque blob → 58 个 C2039 `_data is not a member`
+- **验证实验**:
+  1. Test B（无方法）: size=76 ✓
+  2. Test C（一个引用方法）: size=76 ✓
+  3. Test D（const 方法）: **2 errors, size=-1** ✗ ← 根因确认
+- **IDA parse_decls 能力边界更新**:
+  - ✓ 方法声明、引用参数、继承、ctor/dtor、access specifiers
+  - ✗ operator 重载、**const 成员函数**
+- **证据**:
+  1. [A] gbOBBox: _data[76] → {trans:gbMatrix4, xlen:float, ylen:float, zlen:float}
+  2. [A] gbGeomQuad: 1→7 members
+  3. [A] cmake: 4763→4665 (-98), C2039 gbOBBox._data 58→0
+
 ### [2026-05-16] fix(ida_defs+codegen): abs32/memset32 + asc_ strings — 4779→4763
 
 - **变更**:

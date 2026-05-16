@@ -69,17 +69,20 @@ def flatten_gbengine_headers(header_dir):
                 output.append(line)  # function pointer member — keep
             elif has_reference and 'operator' not in s:
                 # Method with reference param — KEEP (critical for Hex-Rays)
-                # But strip inline body if present
+                # Strip 'const' qualifier on method (IDA parse_decls doesn't support it)
+                decl = s
+                if '{' in decl:
+                    decl = decl[:decl.index('{')].rstrip()
+                # Remove trailing 'const' before ';'
+                decl = re.sub(r'\)\s*const\s*;', ');', decl)
+                decl = re.sub(r'\)\s*const\s*$', ')', decl)
+                if not decl.endswith(';'):
+                    decl += ';'
+                output.append('    ' + decl)
                 if '{' in s:
-                    decl_part = s[:s.index('{')].rstrip()
-                    if not decl_part.endswith(';'):
-                        decl_part += ';'
-                    output.append(decl_part)
                     brace_depth = s.count('{') - s.count('}')
                     if brace_depth > 0:
                         in_method = True
-                else:
-                    output.append(line)
             else:
                 # Regular method without references or operator — skip
                 if '{' in s:
@@ -116,6 +119,71 @@ def flatten_gbengine_headers(header_dir):
 
     # Replace 'class' with 'struct'
     full = re.sub(r'\bclass\b', 'struct', full)
+
+    # Reorder struct definitions by dependency DAG (topological sort).
+    # Value members require the referenced type to be fully defined first.
+    # Pointer/reference members only need a forward declaration.
+    _struct_pattern = re.compile(
+        r'(struct\s+(\w+)(?:\s*:\s*(?:public\s+)?(\w+))?\s*\{[^}]*(?:\{[^}]*\}[^}]*)*\}\s*;)',
+        re.DOTALL)
+    _structs = {}  # name → (full_text, base_class, set_of_value_deps)
+    _non_struct_parts = []  # (position, text) for non-struct content
+    _last_end = 0
+    for m in _struct_pattern.finditer(full):
+        if m.start() > _last_end:
+            _non_struct_parts.append(full[_last_end:m.start()])
+        _last_end = m.end()
+        sname = m.group(2)
+        base = m.group(3)
+        body = m.group(1)
+        # Find value-type dependencies: member declarations like "TypeName fieldname;"
+        # (not pointers "TypeName *fieldname;")
+        deps = set()
+        if base:
+            deps.add(base)
+        for dm in re.finditer(r'(\w+)\s+\w+\s*(?:\[[^\]]*\])?\s*;', body):
+            dep_type = dm.group(1)
+            # Check it's not a pointer line and not a primitive
+            line_ctx = body[max(0, dm.start()-5):dm.end()]
+            if '*' not in line_ctx and dep_type not in (
+                'int', 'float', 'double', 'char', 'short', 'long', 'void',
+                'unsigned', 'signed', 'bool', 'BYTE', 'WORD', 'DWORD',
+                'BOOL', 'UINT', 'ULONG', 'LONG', 'CHAR', 'LPSTR', 'LPCSTR',
+                sname  # self-reference in methods
+            ):
+                deps.add(dep_type)
+        _structs[sname] = (body, deps)
+    if _last_end < len(full):
+        _non_struct_parts.append(full[_last_end:])
+
+    # Topological sort (Kahn's algorithm)
+    _all_names = set(_structs.keys())
+    _in_degree = {n: 0 for n in _all_names}
+    _adj = {n: [] for n in _all_names}
+    for sname, (_, deps) in _structs.items():
+        for dep in deps:
+            if dep in _all_names and dep != sname:
+                _adj[dep].append(sname)
+                _in_degree[sname] += 1
+    _queue = [n for n in _all_names if _in_degree[n] == 0]
+    _sorted = []
+    while _queue:
+        _queue.sort()  # deterministic order
+        n = _queue.pop(0)
+        _sorted.append(n)
+        for m2 in _adj[n]:
+            _in_degree[m2] -= 1
+            if _in_degree[m2] == 0:
+                _queue.append(m2)
+    # Append any remaining (circular deps — shouldn't happen for data types)
+    for n in _all_names:
+        if n not in _sorted:
+            _sorted.append(n)
+
+    # Rebuild: non-struct preamble + sorted structs
+    _preamble_text = ''.join(_non_struct_parts)
+    _sorted_structs = '\n\n'.join(_structs[n][0] for n in _sorted if n in _structs)
+    full = _preamble_text + '\n' + _sorted_structs + '\n'
 
     # Add correct typedefs and forward declarations for external types
     preamble = (

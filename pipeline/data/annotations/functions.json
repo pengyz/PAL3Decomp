@@ -621,7 +621,7 @@
   },
   "0x00422DF0": {
     "name": "UISystem::Destroy",
-    "signature": "int __cdecl __thiscall(UISystem *this)"
+    "signature": "void __thiscall(UISystem *this)"
   },
   "0x004230D0": {
     "name": "UICamera::GetState",
@@ -725,7 +725,7 @@
   },
   "0x00432170": {
     "name": "PalScriptMgr::Destroy",
-    "signature": "int *__cdecl(unsigned int dwVal, char pData)"
+    "signature": "void __thiscall(PalScriptMgr *this)"
   },
   "0x00432260": {
     "name": "PalScriptMgr::_CON_State",
@@ -1225,7 +1225,7 @@
   },
   "0x0047C810": {
     "name": "ObjectCamera::Destroy",
-    "signature": "void __thiscall(ObjectCamera **this)"
+    "signature": "void __thiscall(ObjectCamera *this)"
   },
   "0x0047C830": {
     "name": "ObjectCamera::ComputeInfo",
@@ -2237,7 +2237,7 @@
   },
   "0x004DFD20": {
     "name": "Combat::LogMessage",
-    "signature": "char __cdecl(float *pfVal, int nVal, int nVal2, char *format)"
+    "signature": "char __thiscall(Combat *this, int nVal, int nVal2, char *format)"
   },
   "0x004DFE00": {
     "name": "CCBAIWindow::SetText",
@@ -7221,7 +7221,7 @@
   },
   "0x00410580": {
     "name": "NPC::_nearby_410580",
-    "signature": "int __cdecl(int nVal)"
+    "signature": "void __thiscall(NPC *this)"
   },
   "0x00410BD0": {
     "name": "Array::_auto_410bd0",
@@ -10561,7 +10561,7 @@
   },
   "0x00418970": {
     "name": "RoleSystem::_nearby_418970",
-    "signature": "float *__cdecl(float *pfVal, float *pfVal2, float *pfVal3)"
+    "signature": "void __thiscall(RoleSystem *this, int nVal, int nVal2)"
   },
   "0x00418D90": {
     "name": "RoleSystem::_nearby_418d90",
@@ -12225,7 +12225,7 @@
   },
   "0x00457F90": {
     "name": "RoleAtt::_method_457f90",
-    "signature": "CHAR *__cdecl(int nVal)"
+    "signature": "void __thiscall(RoleAtt *this)"
   },
   "0x00458A20": {
     "name": "ArcSceneObject::_method_458a20",
@@ -12233,7 +12233,7 @@
   },
   "0x00458F70": {
     "name": "UIWnd::_nearby_458f70",
-    "signature": "CHAR *__cdecl(LPCSTR lpString, int nVal, LPSTR lpString1)"
+    "signature": "CHAR *__thiscall(UIWnd *this, LPCSTR lpString, int nVal)"
   },
   "0x00459060": {
     "name": "UIWnd::_nearby_459060",
@@ -12765,7 +12765,7 @@
   },
   "0x0048C520": {
     "name": "CameraCtrl::_sub_48C520",
-    "signature": "BOOL __stdcall(int nVal, int nVal2)"
+    "signature": "void __thiscall(CameraCtrl *this, int nVal)"
   },
   "0x0048C9A0": {
     "name": "CameraCtrl::_nearby_48c9a0",
