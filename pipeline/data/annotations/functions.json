@@ -741,7 +741,7 @@
   },
   "0x004323C0": {
     "name": "PalScriptMgr::RunSceneScript",
-    "signature": "void __cdecl(PalScript *cityname)"
+    "signature": "void __thiscall(PalScriptMgr *this, const char *pszScene)"
   },
   "0x00432480": {
     "name": "PalScriptMgr::_CON_ReLoadScript",
@@ -15882,5 +15882,53 @@
   "0x004D3280": {
     "name": "CEffShock::GetEditorTaskDescription",
     "signature": "const char *__thiscall(CEffShock *this, int nIndex)"
+  },
+  "0x00541CC0": {
+    "name": "UICursor::IRender",
+    "signature": "void __thiscall(UICursor *this)"
+  },
+  "0x00540440": {
+    "name": "_TextureLib_Data::SetLibFolder",
+    "signature": "void __thiscall(_TextureLib_Data *this, char *pszFolder)"
+  },
+  "0x00540210": {
+    "name": "_TextureLib_Data::_CheckItem",
+    "signature": "int __thiscall(_TextureLib_Data *this, char *pszName, char *pszBuf)"
+  },
+  "0x005400E0": {
+    "name": "_TextureLib_Data::_GetItemNum",
+    "signature": "unsigned int __thiscall(_TextureLib_Data *this, void *pData)"
+  },
+  "0x00540650": {
+    "name": "_TextureLib_Data::GetLibInfo",
+    "signature": "int __thiscall(_TextureLib_Data *this, char *pszName)"
+  },
+  "0x005407A0": {
+    "name": "_TextureLib_Data::GetLib",
+    "signature": "char *__thiscall(_TextureLib_Data *this, char *pszName)"
+  },
+  "0x005408E0": {
+    "name": "_TextureLib_Data::GetTextureInfo",
+    "signature": "_Texture_Info *__thiscall(_TextureLib_Data *this, char *pszName)"
+  },
+  "0x00540A20": {
+    "name": "_TextureLib_Data::GetTextureInfoByIndex",
+    "signature": "_Texture_Info *__thiscall(_TextureLib_Data *this, int nIndex)"
+  },
+  "0x005415F0": {
+    "name": "UIQuadManager::GetInstance",
+    "signature": "UIQuadManager *__cdecl()"
+  },
+  "0x00541160": {
+    "name": "UIRenderPar",
+    "signature": "int __cdecl(int nX, int nY, int nW, int nH, gbColorQuad *pColor, gbTextureArray *pTex, _PlugInfo *pInfo)"
+  },
+  "0x00541640": {
+    "name": "UIRenderObj::UIRenderObj",
+    "signature": "UIRenderObj *__thiscall(UIRenderObj *this)"
+  },
+  "0x00541710": {
+    "name": "UIRenderObj::~UIRenderObj",
+    "signature": "void __thiscall(UIRenderObj *this)"
   }
 }

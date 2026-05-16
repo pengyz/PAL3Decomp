@@ -51,6 +51,20 @@
 
 ## 变更记录
 
+### [2026-05-16] iter(annotations): IDA investigation — 12 new functions + fix — 4667→4641 (-26)
+
+- **变更**: 通过 IDA 调查发现并添加 12 个缺失函数到 annotations
+  - UICursor::IRender (0x541CC0): 从 mangled name `?IRender@UICursor@@QAEXXZ` 定位
+  - _TextureLib_Data: SetLibFolder, _CheckItem, _GetItemNum, GetLibInfo, GetLib, GetTextureInfo, GetTextureInfoByIndex (7 个方法)
+  - UIQuadManager::GetInstance (0x5415F0), UIRenderPar (0x541160), UIRenderObj ctor/dtor
+  - PalScriptMgr::RunSceneScript: 修正归属（PalScript → PalScriptMgr）
+- **置信度**: 90（地址从 IDA Names + mangled name 确认）
+- **证据**:
+  1. [A] IDA `?IRender@UICursor@@QAEXXZ` at 0x541CC0 → C2065 'IRender' 15→0
+  2. [A] IDA `?SetLibFolder@_TextureLib_Data@@QAEXQAD@Z` at 0x540440
+  3. [A] IDA `?RunSceneScript@PalScriptMgr@@...` at 0x4323C0 → C2039 5→0
+  4. [A] cmake: 4667→4641 (-26)
+
 ### [2026-05-16] fix(gen_headers): handle function pointer params in method declarations
 
 - **变更**: gen_headers.py 不再跳过含函数指针参数的签名（`sig.count('(') > 2`）
