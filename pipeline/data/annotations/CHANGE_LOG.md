@@ -51,6 +51,37 @@
 
 ## 变更记录
 
+### [2026-05-17] iter(annotations): CameraCtrl GetLerpPos 签名修正 + _field_03C float + 3 mode 函数解码
+
+- **变更**:
+  1. GetLerpPos (0x41CBF0): 签名 2→4 参数
+  2. _field_03C (offset 60): `int` → `float`
+  3. 3 个摄像机模式 setup 函数完整解码
+- **置信度**: 85-95
+
+- **证据**:
+
+  **GetLerpPos 签名修正 (置信度 95)**
+  - [A] 0x41CBF0: `C2 10 00` = `ret 16` → 4 个栈参数 × 4 字节 = 16（annotation 只列了 2 个）
+  - [A] FPU 解码确认标准 lerp 公式:
+    ```
+    fld [1.0]; fsub [factor]; fmul [current]; fld [target]; fmul [factor]; faddp; fstp [result]
+    result = current * (1-factor) + target * factor
+    ```
+  - 旧签名: `gbVec3D*(CameraCtrl*, gbVec3D*, float)` — 类型和参数数都错
+  - 新签名: `float*(CameraCtrl*, float* pResult, float fCurrent, float fTarget, float fFactor)`
+
+  **_field_03C int→float (置信度 85)**
+  - [A] 0x41D010 (mode 3 setup): `8B 40 08; 89 41 3C` = `mov eax,[eax+8]; mov [ecx+0x3C],eax`
+    - eax 来源: `mov eax,[esp+8]`（gbVec3D* 参数），`[eax+8]` = gbVec3D.z（第三分量，确定 float）
+  - [B] 相邻字段 0x34,0x38 也从同一 gbVec3D 的 .x,.y 复制 — 三连续 float = vec3D 模式
+
+  **3 个 mode setup 函数解码**
+  - [A] 0x41CEE0 (mode 1, 54B): `C7 41 0C 01` → m_nFlags=1; `[ecx+0x20]=[eax+0x1D4]` → _field_020 = target->468
+  - [A] 0x41CF20 (mode 2, 70B): `C7 41 0C 02` → m_nFlags=2; `[ecx+0x28]=[eax+0x1C8]` → _field_028 = target->456
+  - [A] 0x41D010 (mode 3, 84B): `C7 41 0C 03` → m_nFlags=3; 两组 gbVec3D 复制（param2→0x34-0x3C, target+492→0x40-0x48）
+  - [B] 三个函数共享模式设置模式: `[ecx+0x0C]=mode; [ecx+0x10]=angle; [ecx+0x14]=0; [ecx+0x18]=state`
+
 ### [2026-05-17] iter(annotations): CameraCtrl _field_380 int→unsigned char
 
 - **变更**: CameraCtrl offset 896 (0x380) 类型 `int` → `unsigned char`
