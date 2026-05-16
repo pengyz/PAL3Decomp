@@ -79,23 +79,23 @@
     },
     "60": {
       "name": "_field_03C",
-      "type": "int",
-      "source": "binary:6x access"
+      "type": "float",
+      "source": "A:0x41D010 stores gbVec3D.z from [eax+8] where eax=param2(gbVec3D*)"
     },
     "64": {
       "name": "_field_040",
       "type": "float",
-      "source": "binary:4x access | type_fix"
+      "source": "A:0x41D010 stores target->492(gbVec3D.x); also used in GetLerpPos"
     },
     "68": {
       "name": "_field_044",
       "type": "float",
-      "source": "binary:4x access | type_fix"
+      "source": "A:0x41D010 stores target->496(gbVec3D.y)"
     },
     "72": {
       "name": "_field_048",
       "type": "float",
-      "source": "binary:4x access | type_fix"
+      "source": "A:0x41D010 stores target->500(gbVec3D.z)"
     },
     "76": {
       "name": "_field_04C",
