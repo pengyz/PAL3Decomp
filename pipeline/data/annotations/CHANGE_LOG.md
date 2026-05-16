@@ -51,6 +51,20 @@
 
 ## 变更记录
 
+### [2026-05-16] fix(annotations): add w/h screen globals + pfVal/szFilename — 5607→5570
+
+- **变更**: globals.json 新增 4 个全局变量
+  - `w` (0x00BFD6D0, int) — 屏幕宽度
+  - `h` (0x00BFD6D4, int) — 屏幕高度
+  - `pfVal` (0x017A94E0, float) — 浮点参数
+  - `szFilename` (0x005BEE3C, char[260]) — 文件名缓冲区
+- **置信度**: 90
+- **证据**:
+  1. [A] IDA Names: w at 0xBFD6D0 (.data), h at 0xBFD6D4 (.data)
+  2. [A] 用法: `(w - 800) / 2`, `(h - 600) / 2` — 屏幕居中计算
+  3. [A] cmake: C2065 'w'/'h' undeclared 46→~9, 总错误 5607→5570 (-37)
+  4. [A] 新增 PASS: Combat.cpp, Parent_Data.cpp
+
 ### [2026-05-16] feat(codegen): aXxx IDA string literal replacement — 5616→5606
 
 - **变更**: gen_cpp.py 新增 IDA `aXxx` 字符串名的字面量替换（同 `flt_` / `dword_` 机制）
