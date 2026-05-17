@@ -51,6 +51,26 @@
 
 ## 变更记录
 
+### [2026-05-17] 74 个 int→float (extended disp32 scan, offset≥128) + 13 个 int→unsigned char (disp32)
+
+#### 74 int→float (extended scan)
+
+扩展 FPU disp32 扫描到 offset≥128 的 int 字段（从 1015 候选/70 类中筛选）。
+主要受益类: CScreenMode(~10), CCBRoleState/CCBStageRole(~8), CameraCtrl(~6), RenderTarget/2(~8)
+
+- **置信度**: 85 (A: D8-DF FPU opcode + mod=10 disp32, in class method)
+
+#### 13 int→unsigned char (disp32 byte-width)
+
+扫描 C6/0F B6/F6 (mod=10 disp32) 在类方法中的 byte 访问。
+CCBResultWindow+172, CCBStage+280/2796, EquipUI+364, MUIDialog+1360,
+PalScript+240, RoleAtt+720, RoleSystem+260, SceneObj+332/336,
+UI3DCtrl+236, UIFrameWnd+148, UIScene+172
+
+- **置信度**: 85 (A: C6/F6 opcode + mod=10 disp32)
+
+#### 错误数: 3858 → 3866 (+8, 正常: VC6 100-error-cap 文件内部波动)
+
 ### [2026-05-17] 13 个 int→unsigned char (binary-wide byte-width scan)
 
 方法: 扫描 .text 段 `C6` (mov byte ptr [reg+disp8], imm8) 和 `0F B6` (movzx byte)
