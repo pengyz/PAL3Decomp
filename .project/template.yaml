@@ -151,9 +151,15 @@ ui:
               kind: chat
 
 directives: |
+  ## 环境配置
+
+  所有路径配置在 `pipeline.toml`（gitignored，每台机器独立）。
+  如果不存在，运行 `python pipeline/cli.py config` 会报错并给出创建模板。
+  不要硬编码任何路径。
+
   ## 启动序列
 
-  1. `python pipeline/cli.py config` — 确认配置正确
+  1. `python pipeline/cli.py config` — 确认 pipeline.toml 存在且路径有效
   2. `python pipeline/cli.py check` — 确认 annotations 状态
   3. 如果 IDB 不存在：`python pipeline/cli.py init`
   4. 选择第一个目标，开始工作循环
