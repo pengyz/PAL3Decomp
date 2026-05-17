@@ -1,25 +1,172 @@
-"""Stage 1: Function signature/structure modification (before OOP transform).
+"""Stage 1: Function signature modification using tree-sitter AST.
 
-Modifies the function definition line and structure.
-Does NOT touch the function body content (that's Stage 3/4).
+Modifies the function definition line (before OOP transform runs on body).
+Uses AST to precisely identify and remove:
+- Calling conventions (ms_call_modifier)
+- 'this' parameter (first parameter_declaration)
+- Return type for ctor/dtor
 """
 import re
+
+import tree_sitter_cpp as tscpp
+import tree_sitter
+
+_lang = tree_sitter.Language(tscpp.language())
+_parser = tree_sitter.Parser(_lang)
 
 
 def run(code, ctx):
     """Apply structural transforms to function code."""
     if ctx.is_free_function:
-        # TODO: free functions also need signature cleanup (CC removal, this→_this in def line)
-        # Currently skipped to match old gen_cpp.py behavior exactly
+        # TODO: free functions also need signature cleanup
         return code
+
+    # Filter IDA header comments
     lines = code.split('\n')
-
-    # 1. Filter IDA header comments
     lines = [l for l in lines if not l.strip().startswith('// between_std_methods')]
+    code = '\n'.join(lines)
 
-    # 2. Find the function definition line
+    # Parse with tree-sitter
+    code_bytes = code.encode('utf-8')
+    tree = _parser.parse(code_bytes)
+
+    # Find function_definition node
+    func_def = None
+    for child in tree.root_node.children:
+        if child.type == 'function_definition':
+            func_def = child
+            break
+
+    if not func_def:
+        # Fallback: try regex approach for unusual formats
+        return _regex_fallback(code, ctx)
+
+    # Collect byte-range edits
+    edits = []  # [(start_byte, end_byte, replacement)]
+
+    # 1. Remove calling convention (ms_call_modifier)
+    for child in func_def.children:
+        if child.type == 'ms_call_modifier':
+            # Remove the CC token + surrounding whitespace
+            edits.append((child.start_byte, child.end_byte, b''))
+
+    # 2. Fix function name: sub_XXXXX → ClassName::Method
+    declarator = None
+    for child in func_def.children:
+        if child.type == 'function_declarator':
+            declarator = child
+            break
+
+    if declarator:
+        # Get the function name node
+        name_node = None
+        for child in declarator.children:
+            if child.type in ('qualified_identifier', 'identifier', 'field_identifier'):
+                name_node = child
+                break
+
+        if name_node:
+            current_name = name_node.text.decode('utf-8')
+            expected_name = '%s::%s' % (ctx.cls_name, ctx.method_name)
+
+            # Replace sub_XXXXX with correct name
+            if current_name.startswith('sub_') or current_name != expected_name:
+                # Handle IDA stripping leading underscore
+                cls_variants = [ctx.cls_name]
+                if ctx.cls_name.startswith('_'):
+                    cls_variants.append(ctx.cls_name[1:])
+                needs_fix = current_name.startswith('sub_')
+                for cv in cls_variants:
+                    if cv + '::' in current_name and cv != ctx.cls_name:
+                        needs_fix = True
+                if needs_fix:
+                    edits.append((name_node.start_byte, name_node.end_byte,
+                                  expected_name.encode('utf-8')))
+
+        # 3. Remove 'this' parameter
+        param_list = None
+        for child in declarator.children:
+            if child.type == 'parameter_list':
+                param_list = child
+                break
+
+        if param_list:
+            params = [c for c in param_list.children if c.type == 'parameter_declaration']
+            if params:
+                first_param = params[0]
+                first_text = first_param.text.decode('utf-8')
+                # Check if first param is 'ClassName *this'
+                if 'this' in first_text and '*' in first_text:
+                    if len(params) > 1:
+                        # Remove first param + following comma
+                        # Find the comma after first param
+                        end = first_param.end_byte
+                        for sib in param_list.children:
+                            if sib.type == ',' and sib.start_byte >= first_param.end_byte:
+                                end = sib.end_byte
+                                # Also skip whitespace after comma
+                                while end < len(code_bytes) and code_bytes[end:end+1] == b' ':
+                                    end += 1
+                                break
+                        edits.append((first_param.start_byte, end, b''))
+                    else:
+                        # Only param is 'this' → replace with empty parens content
+                        edits.append((first_param.start_byte, first_param.end_byte, b''))
+
+            # Dtor: strip all params
+            if ctx.is_dtor and params:
+                # Replace entire param list content with ()
+                open_paren = None
+                close_paren = None
+                for child in param_list.children:
+                    if child.type == '(' and not open_paren:
+                        open_paren = child
+                    if child.type == ')':
+                        close_paren = child
+                if open_paren and close_paren:
+                    edits.append((open_paren.end_byte, close_paren.start_byte, b''))
+
+    # 4. Remove return type for ctor/dtor
+    if ctx.is_ctor or ctx.is_dtor:
+        # Remove everything before the function declarator (return type + CC)
+        if declarator:
+            # Remove from start of func_def to start of declarator
+            pre_start = func_def.start_byte
+            pre_end = declarator.start_byte
+            if pre_end > pre_start:
+                edits.append((pre_start, pre_end, b''))
+
+    # Apply edits in reverse order
+    result = code_bytes
+    for start, end, replacement in sorted(edits, reverse=True):
+        result = result[:start] + replacement + result[end:]
+
+    code = result.decode('utf-8')
+
+    # Clean up: collapse multiple spaces, strip leading space on def line
+    lines = code.split('\n')
+    for i, line in enumerate(lines):
+        if '::' in line and '(' in line:
+            lines[i] = re.sub(r'  +', ' ', line).strip()
+            break
+    code = '\n'.join(lines)
+
+    # 5. Ctor/dtor: remove 'return expr;' from body
+    if ctx.is_ctor or ctx.is_dtor:
+        lines = code.split('\n')
+        for i in range(len(lines)):
+            lines[i] = re.sub(r'^\s*return\s+(.+);', r'  \1;', lines[i])
+        code = '\n'.join(lines)
+
+    return code
+
+
+def _regex_fallback(code, ctx):
+    """Fallback for code that doesn't parse as a standard function_definition."""
+    lines = code.split('\n')
     cls_name = ctx.cls_name
     method_name = ctx.method_name
+
     cls_variants = [cls_name]
     if cls_name.startswith('_'):
         cls_variants.append(cls_name[1:])
@@ -30,33 +177,22 @@ def run(code, ctx):
             func_line_idx = idx
             break
 
-    # 3. Fix function definition line
     if lines and method_name:
         first_line = lines[func_line_idx]
         full_method = '%s::%s' % (cls_name, method_name)
-
-        # Replace sub_XXXXX with correct name
         first_line = re.sub(r'\bsub_[0-9A-Fa-f]+\b', full_method, first_line, count=1)
-
-        # Fix IDA stripping leading underscore
         for cv in cls_variants:
             if cv != cls_name and cv + '::' in first_line:
                 first_line = first_line.replace(cv + '::', cls_name + '::')
-
-        # Remove return type for ctor/dtor
         if ctx.is_ctor or ctx.is_dtor:
-            first_line = re.sub(
-                r'^.*?\b(%s::%s)' % (re.escape(cls_name), re.escape(method_name)),
-                r'\1', first_line)
-
+            first_line = re.sub(r'^.*?\b(%s::%s)' % (re.escape(cls_name), re.escape(method_name)),
+                                r'\1', first_line)
         lines[func_line_idx] = first_line
 
-    # 4. Ctor/dtor: remove 'return expr;'
-    if method_name and (ctx.is_ctor or ctx.is_dtor):
+    if ctx.is_ctor or ctx.is_dtor:
         for i in range(len(lines)):
             lines[i] = re.sub(r'^\s*return\s+(.+);', r'  \1;', lines[i])
 
-    # 5. Fix function signature: remove this param, strip CC
     if lines:
         first = lines[func_line_idx]
         first = re.sub(r'\s*__thiscall\s*', ' ', first)
@@ -65,10 +201,8 @@ def run(code, ctx):
         first = re.sub(r'\s*__fastcall\s*', ' ', first)
         first = re.sub(r'\s*__userpurge\s*', ' ', first)
         first = re.sub(r'\s*__usercall\s*', ' ', first)
-        # Remove "ClassName *this" from params
         first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*,\s*', '(', first)
         first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*\)', '()', first)
-        # Destructors: strip all params
         if ctx.is_dtor:
             first = re.sub(r'\([^)]*\)', '()', first)
         first = re.sub(r'  +', ' ', first).strip()
