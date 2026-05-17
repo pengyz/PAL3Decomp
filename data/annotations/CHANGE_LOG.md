@@ -51,6 +51,14 @@
 
 ## 变更记录
 
+### [2026-05-18] UIListBox 手动深度分析 — vtable + offset-overflow + static-call
+
+- 4 个 vtable class 修正 (UIListBox→UIBigMap/PropUI/CCBMagicWindow/UICoverFrm)
+- 11 个 vtable 方法归属修正
+- 8 个 offset-overflow 归属修正 (max_offset > 1288 + sig_this 确认)
+- 9 个 static-call 归属修正 (3+ 次 OtherClass::Method(this,...))
+- Confidence: 85-90
+
 ### [2026-05-18] 二轮归属 153 + 三轮 FPU 11 + 指针 5 (收敛)
 
 二轮归属 (153): re-export 后新 decomp 暴露新 cast → 又发现 153 个错误归属
