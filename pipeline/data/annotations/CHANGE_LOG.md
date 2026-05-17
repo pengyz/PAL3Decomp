@@ -51,6 +51,49 @@
 
 ## 变更记录
 
+### [2026-05-17] query_class_full 语义分析 + vtable 修复 + g_EffTable
+
+- **变更**:
+  1. CameraCtrl: 4 字段命名 + 1 int→float
+  2. Actor: 1 字段命名 (m_fFacingAngle)
+  3. CCBStage: 1 字段命名 + 1 类型修复 (char[4000])
+  4. g_EffTable 全局特效数组添加 (370720 bytes)
+  5. apply_annotations.py vtable struct 函数指针类型修复
+- **置信度**: 70-85
+
+  **CameraCtrl 语义分析 (置信度 70 naming / 85 type)**
+  - [A+] GetLerpPos 调用模式: `GetLerpPos(this, target+456, _field_028, m_fFOV, factor)`
+    - _field_028 → **m_fFOVLerp** (当前插值 FOV，配对 m_fFOV 作为初始值)
+  - [A+] GetLerpPos target+492/496/500 = gbVec3D position:
+    - _field_034/038/03C → **m_fLerpPosX/Y/Z** (目标位置，从 config p_DWORD[123-125] 加载)
+  - [A+] _field_234 = -1018691584 = 0xC3480000 = **float -200.0**
+    - 负数 IEEE 754 常量（之前扫描只检查正数，遗漏）
+
+  **Actor 语义分析 (置信度 70 naming)**
+  - [A+] `this->_field_19C = 90.0` + `_field_19C - (m_vecRot.z - 90.0)` in UpdateFrame
+  - _field_19C → **m_fFacingAngle** (角色朝向角度基准，90° = 正面)
+
+  **CCBStage 语义分析 (置信度 70 naming / 85 type)**
+  - [A+] `CCBRoleState::IsActive(pRoleState, this->_todo_118)` + IsRoleAlive 同参
+    - _todo_118 → **m_nActiveRoleIndex** (当前活跃角色索引)
+  - [A+] `memset(&this->_todo_23C, 0, 0xFA0u)` = 4000 bytes total
+    - `&this->_todo_23C + 20 * nVal` → stride 80 bytes/element (20 int), 50 elements
+    - _todo_23C: int → **char[4000]**
+
+  **g_EffTable (置信度 85)**
+  - [A+] `qmemcpy(dword_174D330, v5, 0x5A820u)` = 370720 bytes
+  - [A+] `fwrite(dword_174D330, 0x5A820u, 1u, file)` = 同量级写盘
+  - [A+] stride: `dword_174D330[70 * idx]` + `memset(+70*idx, 0, 0x118)` = 280 bytes/elem
+  - 370720 / 280 = 1324 elements → **g_EffTable** (char[370720])
+
+  **apply_annotations.py vtable 修复 (管线改进)**
+  - **Bug**: vtable struct 成员全部退化为 `int (*method)()`
+  - **原因**: 正则 `r'^(.+?)(\s+__\w+)?\s+\w+\s*(\(.*\))$'` 要求函数名在 CC 和 `(` 之间
+    但 IDA 签名格式是 `ret CC(params)` (无函数名) → 正则失败 → fallback to int(*)()
+  - **修复**: 新增无函数名格式 + 从 functions.json 查找签名 + 处理指针返回类型
+  - **状态**: vtable struct 现在有正确的函数指针类型，但 Hex-Rays 虚调用解析
+    需要额外的 microcode type propagation (set_op_tinfo) → 后续工作
+
 ### [2026-05-17] 33 __thiscall 函数格式修正 + 383 PAL3A 遗留成员清理
 
 - **变更**:
