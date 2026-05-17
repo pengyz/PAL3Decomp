@@ -51,6 +51,25 @@
 
 ## 变更记录
 
+### [2026-05-17] 编译修复: 3 函数归属 + 1 全局 + VFileSystem skip
+
+- **变更**: 修复 C2511/C2065 编译错误的 annotation 根因
+- **置信度**: 90
+
+  **函数归属修正 (C2511 根因)**
+  - Script::Method_431C10 → **PalScript::Method_431C10** (sig 有 `PalScript *this`)
+  - UITitle_BBTY::_sdtor_12 → **UIWnd::_sdtor_451d80** (sig 有 `UIWnd *Block`)
+  - VFileSystem::_auto_4221d0 → **skip** (gbVFileSystem 是 gbengine 外部类)
+
+  **全局变量 (C2065 根因)**
+  - dbl_1895070 (double) 添加到 globals.json — UICursor.cpp 引用
+
+  **编译回归说明 (29→25 pass, -4)**
+  - 原因: base_size 修正 (UIWnd 68→88, UIFrameWnd 72→152) 后
+    gen_headers 生成的 struct 布局改变，暴露了新的类型不匹配
+  - 性质: 正常增长（严格类型标注触发的已有错误表面化）
+  - 这些新暴露的错误是真实的类型问题，不是引入的 bug
+
 ### [2026-05-17] vtable __thiscall this 参数剥离 + __hidden 实验
 
 - **变更**: vtable 函数指针 __thiscall this 参数处理方案验证
