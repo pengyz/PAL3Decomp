@@ -219,6 +219,33 @@ def cmd_codegen(args):
     sys.exit(result.returncode)
 
 
+def _get_script_info(path):
+    """Extract description and usage from script's module docstring."""
+    import ast
+    try:
+        tree = ast.parse(open(path, encoding='utf-8').read())
+        doc = ast.get_docstring(tree)
+    except Exception:
+        return '', ''
+    if not doc:
+        return '', ''
+    lines = doc.strip().split('\n')
+    desc = lines[0].strip()
+    # Extract usage section if present
+    usage = ''
+    in_usage = False
+    for line in lines[1:]:
+        if line.strip().lower().startswith('usage'):
+            in_usage = True
+            continue
+        if in_usage:
+            if line.strip() and not line.startswith(' '):
+                break
+            if line.strip():
+                usage += line.strip() + '\n'
+    return desc, usage.strip()
+
+
 def cmd_tool(args):
     """List or run tools/ scripts."""
     tools_dir = Path(_PROJECT_DIR) / 'tools'
@@ -228,21 +255,30 @@ def cmd_tool(args):
     if not args or args[0] == '--list':
         print("Available tools (%d):" % len(scripts))
         print()
-        # Read first docstring line from each
         for name in scripts:
             path = tools_dir / ('%s.py' % name)
-            desc = ''
-            for line in open(path, encoding='utf-8', errors='replace'):
-                line = line.strip()
-                if line.startswith('#') and not line.startswith('#!'):
-                    desc = line.lstrip('# ').strip()
-                    break
-                elif line.startswith('"""') or line.startswith("'''"):
-                    desc = line.strip('"\' ').strip()
-                    break
-            print("  %-30s %s" % (name, desc[:45]))
+            desc, _ = _get_script_info(str(path))
+            print("  %-28s %s" % (name, desc[:50]))
         print()
         print("Usage: python pipeline/cli.py tool <name> [args...]")
+        print("  Add --help after tool name for detailed usage.")
+        return
+
+    if len(args) >= 2 and args[1] == '--help':
+        # Show detailed info for specific tool
+        name = args[0]
+        path = tools_dir / ('%s.py' % name)
+        if not path.exists():
+            print("[ERROR] Tool not found: %s" % name)
+            sys.exit(1)
+        desc, usage = _get_script_info(str(path))
+        print("Tool: %s" % name)
+        print("  %s" % desc)
+        if usage:
+            print()
+            print("Usage:")
+            for line in usage.split('\n'):
+                print("  %s" % line)
         return
 
     name = args[0]
