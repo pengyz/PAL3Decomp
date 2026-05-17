@@ -51,6 +51,25 @@
 
 ## 变更记录
 
+### [2026-05-17] codegen 第二轮修复 (4253→3778, -475 errors)
+
+#### codegen 修复
+
+6. **Stage 1 递归查找 declarator 修复 pointer-return 函数 this 未移除**
+   - **变更**: 当返回类型含 `*` (如 `int *`)，tree-sitter 将 `function_declarator` 嵌套在 `pointer_declarator` 内，Stage 1 只在一级子节点查找导致遗漏
+   - 修复: 递归查找 `function_declarator` 和 CC 节点（含 ERROR 节点中的 `__thiscall`）
+   - **影响**: UIWnd(-25), GRPinput(-7), 及分布在多文件的 ~230 个错误 (4253→3989)
+
+7. **自动跳过 gbengine 已定义类**
+   - **变更**: emit_headers.py + collect.py 自动扫描 `include/gbengine/*.h` 收集 class/struct 名加入 SKIP_CLASSES
+   - 原因: CPK, CIniFile, CArrayList 等已在 gbengine headers 中完整定义，再生成会导致 C2011 重定义
+   - **影响**: CPK(-45→0), CIniFile(-14→0), 及其他 gbengine 类方法不再重复生成 (3989→3778)
+
+8. **enum/class 完全同名碰撞修复**
+   - **变更**: emit_headers.py enum 生成时检测完全同名碰撞（之前只处理了大小写不同碰撞）
+   - ECBRoleSpecState enum header 覆盖同名 class header
+   - **影响**: ECBRoleSpecState.cpp 错误减少
+
 ### [2026-05-17] codegen 管线修复 + annotation 修正 (4453→4253, -195 errors)
 
 #### codegen 修复（非 annotation 变更，不需要置信度）
