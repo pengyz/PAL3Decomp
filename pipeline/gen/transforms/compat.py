@@ -7,25 +7,8 @@ from transforms import register
 from data import store
 
 
-@register(order=400)
-def remove_calling_conventions(code, ctx):
-    """Remove calling conventions from function definitions (VC6 doesn't support)."""
-    if ctx.is_free_function:
-        return code
-    # Only process the function definition line (first non-comment line with '(')
-    lines = code.split('\n')
-    for i, line in enumerate(lines):
-        if '(' in line and (ctx.cls_name + '::' in line or 'sub_' in line):
-            line = re.sub(r'\s*__thiscall\s*', ' ', line)
-            line = re.sub(r'\s*__cdecl\s*', ' ', line)
-            line = re.sub(r'\s*__stdcall\s*', ' ', line)
-            line = re.sub(r'\s*__fastcall\s*', ' ', line)
-            line = re.sub(r'\s*__userpurge\s*', ' ', line)
-            line = re.sub(r'\s*__usercall\s*', ' ', line)
-            line = re.sub(r'  +', ' ', line).strip()
-            lines[i] = line
-            break
-    return '\n'.join(lines)
+# Note: calling convention removal from function def line is in signature.py (order=55)
+# This module only handles CC removal from function pointer CASTS in body
 
 
 @register(order=410)

@@ -65,7 +65,7 @@ def comment_vftable_calls(code, ctx):
     return '\n'.join(out)
 
 
-@register(order=40)
+@register(order=250)
 def remove_explicit_ctor_dtor_calls(code, ctx):
     """Remove/comment explicit ctor/dtor calls: ((Type*)expr)->Type(args)."""
     lines = code.split('\n')
@@ -83,7 +83,7 @@ def remove_explicit_ctor_dtor_calls(code, ctx):
     return '\n'.join(out)
 
 
-@register(order=50)
+@register(order=260)
 def handle_explicit_ctor_in_expressions(code, ctx):
     """Handle explicit ctor calls in return/assignment context."""
     lines = code.split('\n')
@@ -93,7 +93,7 @@ def handle_explicit_ctor_in_expressions(code, ctx):
         m = re.search(r'->\s*([A-Z_]\w+)\s*\(', stripped)
         if m:
             called_name = m.group(1)
-            if called_name in store.game_classes and stripped.endswith(';'):
+            if called_name[0].isupper() and stripped.endswith(';'):
                 indent = line[:len(line) - len(line.lstrip())]
                 if '=' not in stripped and not stripped.startswith('return') \
                         and not stripped.startswith('if') \
