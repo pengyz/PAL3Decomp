@@ -13,16 +13,20 @@
   codegen all         生成 headers + cpp
   codegen headers     只生成 .h
   codegen cpp         只生成 .cpp
+  compile             CMake 配置 + ninja 编译 (-k 0 全量)
 
 典型工作流:
   # 首次设置
   python pipeline/cli.py init
+  python pipeline/cli.py export
+  python pipeline/cli.py codegen all
+  python pipeline/cli.py compile
 
   # 标注变更后
   python pipeline/cli.py apply
   python pipeline/cli.py export
   python pipeline/cli.py codegen all
-  ninja -C build -k 0
+  python pipeline/cli.py compile
 
   # 强制从零重建
   python pipeline/cli.py init --force
@@ -213,6 +217,37 @@ def cmd_codegen(args):
     sys.exit(result.returncode)
 
 
+def cmd_compile():
+    """CMake configure (if needed) + ninja build with -k 0."""
+    build_dir = Path(_PROJECT_DIR) / 'build'
+    toolchain = Path(_PROJECT_DIR) / 'cmake' / 'toolchain-vc6.cmake'
+
+    # Configure if build dir doesn't exist or has no build.ninja
+    if not (build_dir / 'build.ninja').exists():
+        print("COMPILE: configuring CMake ...")
+        build_dir.mkdir(exist_ok=True)
+        cmake_cmd = ['cmake', '-B', str(build_dir), '-G', 'Ninja',
+                     '-DCMAKE_TOOLCHAIN_FILE=%s' % toolchain,
+                     str(_PROJECT_DIR)]
+        result = subprocess.run(cmake_cmd)
+        if result.returncode != 0:
+            print("[ERROR] CMake configure failed")
+            sys.exit(1)
+        print("-> CMake configured")
+        print()
+
+    # Build with -k 0 (continue on error, report all failures)
+    print("COMPILE: building with ninja -k 0 ...")
+    result = subprocess.run(['ninja', '-C', str(build_dir), '-k', '0'])
+
+    # Count results
+    print()
+    if result.returncode == 0:
+        print("-> BUILD SUCCESS: all files compiled")
+    else:
+        print("-> BUILD INCOMPLETE: some files failed (see errors above)")
+
+
 def main():
     args = sys.argv[1:]
     if not args or args[0] in ('-h', '--help', 'help'):
@@ -231,6 +266,8 @@ def main():
         cmd_export()
     elif command == 'check':
         cmd_check()
+    elif command == 'compile':
+        cmd_compile()
     elif command == 'codegen':
         cmd_codegen(args[1:])
     else:
