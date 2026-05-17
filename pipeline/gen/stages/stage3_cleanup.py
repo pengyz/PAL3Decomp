@@ -1,8 +1,8 @@
-"""Stage 3: Post-OOP cleanup.
+"""Stage 3: Post-OOP cleanup using tree-sitter AST.
 
-Removes/comments IDA artifacts produced or exposed by Stage 2 (OOP transform).
-Uses tree-sitter AST for ctor/vftable detection where beneficial,
-with regex fallback for simple operations.
+All structural detection is done through AST node types.
+No regex is used for pattern recognition — only for simple text substitution
+where no structural understanding is needed (e.g., __thiscall removal).
 """
 import re
 import struct as _struct
@@ -17,54 +17,227 @@ _parser = tree_sitter.Parser(_lang)
 
 
 # ============================================================
-# AST helpers
+# AST node analysis (pure structural — no regex matching)
 # ============================================================
 
-def _get_call_method_and_cast_type(node):
-    """For a call_expression, extract (method_name, cast_type_of_object).
+def _node_contains_text(node, text):
+    """Check if any descendant token contains exact text."""
+    if node.text and text.encode() in node.text:
+        return True
+    return False
 
-    Returns (method_name, cast_type) or (None, None).
-    Handles: ((Type *)expr)->Method(args) and expr->Method(args)
+
+def _is_vftable_field(node):
+    """Check if a field_expression accesses __vftable."""
+    if node.type == 'field_expression':
+        field = node.child_by_field_name('field')
+        if field and field.text == b'__vftable':
+            return True
+    return False
+
+
+def _find_vftable_in_subtree(node):
+    """Check if any node in subtree is a __vftable field access."""
+    if _is_vftable_field(node):
+        return True
+    for child in node.children:
+        if _find_vftable_in_subtree(child):
+            return True
+    return False
+
+
+def _is_vftable_assignment(node):
+    """Detect: this->__vftable = expr (assignment to vftable pointer)."""
+    if node.type == 'assignment_expression':
+        left = node.child_by_field_name('left')
+        if left and _is_vftable_field(left):
+            return True
+    return False
+
+
+def _is_vftable_call(node):
+    """Detect: ((Type*)obj->__vftable)->Method(args) or similar vftable dispatch."""
+    if node.type == 'call_expression':
+        func = node.child_by_field_name('function')
+        if func and _find_vftable_in_subtree(func):
+            return True
+    return False
+
+
+def _get_ctor_call_info(node):
+    """Detect explicit ctor: ((Type*)expr)->Type(args) where cast_type == method.
+
+    Returns (method_name, object_expr_text) if ctor detected, else (None, None).
     """
     if node.type != 'call_expression':
         return None, None
+
     func = node.child_by_field_name('function')
     if not func or func.type != 'field_expression':
         return None, None
+
+    # Get method name
     field = func.child_by_field_name('field')
     if not field:
         return None, None
     method_name = field.text.decode('utf-8')
 
-    # Get object and extract cast type
+    # Get object expression
     obj = func.child_by_field_name('argument')
-    cast_type = None
-    if obj:
-        cast_type = _extract_cast_type_name(obj)
+    if not obj:
+        return None, None
 
-    return method_name, cast_type
+    # Extract cast type from object
+    cast_type = _extract_cast_type(obj)
+
+    # Check: cast_type == method_name (strict ctor pattern)
+    if cast_type and cast_type == method_name:
+        return method_name, obj.text.decode('utf-8')
+
+    # Check: method_name is a known game class (game_classes ctor pattern)
+    if method_name in store.game_classes:
+        return method_name, obj.text.decode('utf-8')
+
+    return None, None
 
 
-def _extract_cast_type_name(node):
-    """Extract type name from cast: ((Type *)expr) → 'Type'."""
-    # Unwrap parenthesized
+def _extract_cast_type(node):
+    """Extract type name from nested parenthesized cast: ((Type *)expr) → 'Type'."""
+    # Unwrap parenthesized_expression layers
     while node.type == 'parenthesized_expression':
         children = [c for c in node.children if c.type not in ('(', ')')]
         if len(children) == 1:
             node = children[0]
         else:
             break
+
     if node.type == 'cast_expression':
-        type_node = node.child_by_field_name('type')
-        if type_node:
-            m = re.match(r'\s*(\w+)', type_node.text.decode('utf-8'))
-            if m:
-                return m.group(1)
+        type_desc = node.child_by_field_name('type')
+        if type_desc:
+            # type_descriptor → find the type_identifier within
+            for child in _iter_all(type_desc):
+                if child.type == 'type_identifier':
+                    return child.text.decode('utf-8')
     return None
 
 
+def _iter_all(node):
+    """Recursively yield all descendant nodes."""
+    yield node
+    for child in node.children:
+        yield from _iter_all(child)
+
+
 # ============================================================
-# Backtick patterns (kept as line-based — multi-line skip logic)
+# AST cleanup pass
+# ============================================================
+
+def _ast_cleanup(code, ctx):
+    """Walk AST and generate edits for vftable/ctor patterns."""
+    tree = _parser.parse(code.encode('utf-8'))
+    lines = code.split('\n')
+    edits = {}  # line_idx -> (action, data)
+
+    def visit(node):
+        # Only examine statement-level nodes
+        if node.type == 'expression_statement':
+            line_idx = node.start_point[0]
+            if line_idx in edits:
+                return
+
+            # Check for vftable assignment
+            for child in _iter_all(node):
+                if _is_vftable_assignment(child):
+                    edits[line_idx] = ('delete', None)
+                    return
+
+            # Check for vftable virtual call
+            for child in _iter_all(node):
+                if _is_vftable_call(child):
+                    stripped = lines[line_idx].strip() if line_idx < len(lines) else ''
+                    if stripped.endswith(';') and not stripped.startswith('//'):
+                        edits[line_idx] = ('comment_vft', stripped)
+                    return
+
+            # Check for explicit ctor/dtor call
+            for child in _iter_all(node):
+                if child.type == 'call_expression':
+                    method, obj_text = _get_ctor_call_info(child)
+                    if method:
+                        stripped = lines[line_idx].strip() if line_idx < len(lines) else ''
+                        # Standalone at line start with ((Type*) pattern → delete
+                        if child.parent == node or (child.parent and child.parent.type == 'cast_expression'):
+                            # Check if it's truly standalone (no assignment/return wrapping)
+                            is_standalone = node.child_count <= 2  # expr + ;
+                            if is_standalone:
+                                edits[line_idx] = ('delete', None)
+                                return
+
+                        # game_classes pattern: comment out if not in if/while
+                        if not ctx.is_free_function:
+                            if '=' not in stripped and not stripped.startswith('return') \
+                                    and not stripped.startswith('if') \
+                                    and not stripped.startswith('while'):
+                                edits[line_idx] = ('comment_ctor', stripped)
+                                return
+                            elif '=' in stripped:
+                                edits[line_idx] = ('comment_ctor', stripped)
+                                return
+                        break
+
+        elif node.type == 'return_statement' and not ctx.is_free_function:
+            line_idx = node.start_point[0]
+            if line_idx in edits:
+                return
+
+            # Check for return ctor call
+            for child in _iter_all(node):
+                if child.type == 'call_expression':
+                    method, obj_text = _get_ctor_call_info(child)
+                    if method:
+                        # Try to get the object expression for "return obj;"
+                        func_node = child.child_by_field_name('function')
+                        if func_node and func_node.type == 'field_expression':
+                            obj_node = func_node.child_by_field_name('argument')
+                            if obj_node:
+                                edits[line_idx] = ('return_expr', obj_node.text.decode('utf-8'))
+                            else:
+                                edits[line_idx] = ('return_this', None)
+                        else:
+                            edits[line_idx] = ('return_this', None)
+                        return
+
+        for child in node.children:
+            visit(child)
+
+    visit(tree.root_node)
+
+    # Apply edits
+    out = []
+    for i, line in enumerate(lines):
+        if i not in edits:
+            out.append(line)
+            continue
+        action, data = edits[i]
+        indent = line[:len(line) - len(line.lstrip())]
+        if action == 'delete':
+            continue
+        elif action == 'comment_vft':
+            out.append(indent + '// [IDA_VFTABLE] ' + data)
+        elif action == 'comment_ctor':
+            out.append(indent + '// [AUTO-COMMENTED] ' + data)
+        elif action == 'return_expr':
+            out.append(indent + 'return %s; // ctor auto-called' % data)
+        elif action == 'return_this':
+            out.append(indent + 'return this; // [ctor replaced]')
+        else:
+            out.append(line)
+
+    return '\n'.join(out)
+
+
+# ============================================================
+# Backtick removal (line-based — backtick strings don't parse as AST nodes)
 # ============================================================
 
 _BACKTICK_PATTERNS = (
@@ -76,8 +249,9 @@ _BACKTICK_PATTERNS = (
 )
 
 
-def _remove_backtick_calls(lines):
-    """Remove backtick compiler calls (multi-line aware). Modifies list in-place."""
+def _remove_backtick_calls(code):
+    """Remove backtick compiler calls (multi-line skip)."""
+    lines = code.split('\n')
     out = []
     skip = False
     for line in lines:
@@ -91,109 +265,7 @@ def _remove_backtick_calls(lines):
                 skip = True
             continue
         out.append(line)
-    return out
-
-
-# ============================================================
-# AST-based cleanup pass
-# ============================================================
-
-def _ast_cleanup_pass(code, ctx):
-    """Use tree-sitter to identify and handle vftable/ctor patterns.
-
-    Returns modified code with same behavior as old regex-based logic.
-    """
-    tree = _parser.parse(code.encode('utf-8'))
-    lines = code.split('\n')
-    edits = {}  # line_idx -> action
-
-    def visit(node):
-        if node.type in ('expression_statement', 'return_statement'):
-            line_idx = node.start_point[0]
-            line_text = lines[line_idx] if line_idx < len(lines) else ''
-            stripped = line_text.strip()
-
-            # --- vftable assignment: this->__vftable = N ---
-            if '__vftable' in stripped:
-                if re.match(r'.*->?__vftable\s*=', stripped) or re.match(r'.*__vftable\s*=', stripped):
-                    edits[line_idx] = 'delete'
-                    return
-                # vftable virtual call
-                if ('->__vftable->' in stripped or '->__vftable)' in stripped) \
-                        and stripped.endswith(';') and not stripped.startswith('//'):
-                    edits[line_idx] = ('comment_vft', stripped)
-                    return
-
-            # --- Explicit ctor/dtor: ((Type*)expr)->Type(args); ---
-            if '->' in stripped and stripped.endswith(';'):
-                for child in _iter_descendants(node):
-                    if child.type == 'call_expression':
-                        method, cast_type = _get_call_method_and_cast_type(child)
-                        if method and cast_type and cast_type == method:
-                            # Standalone ctor/dtor at line start
-                            if re.match(r'\s*\(\(', stripped):
-                                edits[line_idx] = 'delete'
-                                return
-
-                # game_classes check (matches old _comment_out_explicit_ctor_calls)
-                if not ctx.is_free_function:
-                    m = re.search(r'->\s*([A-Z_]\w+)\s*\(', stripped)
-                    if m and m.group(1) in store.game_classes:
-                        called = m.group(1)
-                        indent = line_text[:len(line_text) - len(line_text.lstrip())]
-                        if '=' not in stripped and not stripped.startswith('return') \
-                                and not stripped.startswith('if') \
-                                and not stripped.startswith('while'):
-                            edits[line_idx] = ('comment_ctor', stripped)
-                            return
-                        elif stripped.startswith('return'):
-                            cast_m = re.match(
-                                r'return\s+(.+?)\s*->\s*%s\s*\(' % re.escape(called), stripped)
-                            if cast_m:
-                                edits[line_idx] = ('return_expr', cast_m.group(1).rstrip())
-                            else:
-                                edits[line_idx] = ('return_this', None)
-                            return
-                        elif '=' in stripped:
-                            edits[line_idx] = ('comment_ctor', stripped)
-                            return
-
-        for child in node.children:
-            visit(child)
-
-    visit(tree.root_node)
-
-    # Apply edits
-    out = []
-    for i, line in enumerate(lines):
-        if i not in edits:
-            out.append(line)
-            continue
-        action = edits[i]
-        indent = line[:len(line) - len(line.lstrip())]
-        if action == 'delete':
-            continue
-        elif isinstance(action, tuple):
-            kind = action[0]
-            if kind == 'comment_vft':
-                out.append(indent + '// [IDA_VFTABLE] ' + action[1])
-            elif kind == 'comment_ctor':
-                out.append(indent + '// [AUTO-COMMENTED] ' + action[1])
-            elif kind == 'return_expr':
-                out.append(indent + 'return %s; // ctor auto-called' % action[1])
-            elif kind == 'return_this':
-                out.append(indent + 'return this; // [ctor replaced]')
-        else:
-            out.append(line)
-
     return '\n'.join(out)
-
-
-def _iter_descendants(node):
-    """Yield all descendant nodes."""
-    for child in node.children:
-        yield child
-        yield from _iter_descendants(child)
 
 
 # ============================================================
@@ -204,75 +276,58 @@ def run(code, ctx):
     """Stage 3: post-OOP cleanup."""
     cls_name = ctx.cls_name
 
-    # Free functions: minimal path (TODO: expand after baseline stable)
-    if ctx.is_free_function:
-        code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
-        lines = code.split('\n')
-        lines = _remove_backtick_calls(lines)
-        # Inline vftable/ctor deletion for free functions (same as old _replace_ida_internals)
-        out = []
-        for line in lines:
-            s = line.strip()
-            if re.match(r'.*->?__vftable\s*=', s):
-                continue
-            if ('->__vftable->' in s or '->__vftable)' in s) and s.endswith(';') and not s.startswith('//'):
-                indent = line[:len(line) - len(line.lstrip())]
-                out.append(indent + '// [IDA_VFTABLE] ' + s)
-                continue
-            ctor_m = re.match(r'\s*\(\((\w+)\s*\*\)\s*[^)]*\)\s*->\s*~?(\w+)\s*\([^)]*\)\s*;', s)
-            if ctor_m and ctor_m.group(1) == ctor_m.group(2):
-                continue
-            ctor_m2 = re.match(r'\s*\(\((\w+)\s*\*\)\s*\(\w+\s*\*\)\s*[^)]*\)\s*->\s*~?(\w+)\s*\([^)]*\)\s*;', s)
-            if ctor_m2 and ctor_m2.group(1) == ctor_m2.group(2):
-                continue
-            out.append(line)
-        return '\n'.join(out)
+    # --- Simple text substitutions (no structural analysis needed) ---
 
-    # --- Class method full cleanup ---
-
-    # Simple regex operations (no AST needed)
-    if cls_name:
+    # Remove 'this' variable declaration (for class methods)
+    if not ctx.is_free_function and cls_name:
         code = re.sub(r'^\s*%s\s*\*\s*this\s*;.*$' % re.escape(cls_name), '', code, flags=re.MULTILINE)
-    code = re.sub(r'\(\(operator \*\)(0x[0-9A-Fa-f]+u?)\)->new\(\)', r'operator new(\1)', code)
-    code = re.sub(r'__thiscall\s+', '', code)
-    code = re.sub(r'__userpurge\s+', '', code)
-    code = re.sub(r'__usercall\s+', '', code)
 
-    # COERCE_FLOAT
-    def _fix_coerce(m):
-        arg = m.group(1).strip()
-        try:
-            ival = int(arg, 0)
-            if abs(ival) <= 100:
-                return '%d.0f' % ival
-            fval = _struct.unpack('f', _struct.pack('I', ival & 0xFFFFFFFF))[0]
-            if abs(fval) < 1e10 and (abs(fval) > 1e-10 or fval == 0.0):
-                if fval == int(fval) and abs(fval) < 1000000:
-                    return '%d.0f' % int(fval)
-                return '%.7gf' % fval
-        except (ValueError, OverflowError):
-            pass
-        return m.group(0)
-    code = re.sub(r'COERCE_FLOAT\((\s*-?(?:0x[0-9A-Fa-f]+|\d+)\s*)\)', _fix_coerce, code)
+    if not ctx.is_free_function:
+        # Operator new fix
+        code = re.sub(r'\(\(operator \*\)(0x[0-9A-Fa-f]+u?)\)->new\(\)', r'operator new(\1)', code)
+        # CC removal from body (function pointer casts)
+        code = re.sub(r'__thiscall\s+', '', code)
+        code = re.sub(r'__userpurge\s+', '', code)
+        code = re.sub(r'__usercall\s+', '', code)
 
-    # Simple fixes
+    # COERCE_FLOAT (TODO: migrate to AST - detect call_expression where func == COERCE_FLOAT)
+    if not ctx.is_free_function:
+        def _fix_coerce(m):
+            arg = m.group(1).strip()
+            try:
+                ival = int(arg, 0)
+                if abs(ival) <= 100:
+                    return '%d.0f' % ival
+                fval = _struct.unpack('f', _struct.pack('I', ival & 0xFFFFFFFF))[0]
+                if abs(fval) < 1e10 and (abs(fval) > 1e-10 or fval == 0.0):
+                    if fval == int(fval) and abs(fval) < 1000000:
+                        return '%d.0f' % int(fval)
+                    return '%.7gf' % fval
+            except (ValueError, OverflowError):
+                pass
+            return m.group(0)
+        code = re.sub(r'COERCE_FLOAT\((\s*-?(?:0x[0-9A-Fa-f]+|\d+)\s*)\)', _fix_coerce, code)
+
+    # Dereference fix and ctor return
     code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
-    code = re.sub(r'return\s+&this->__vftable\s*;', 'return this;', code)
-    code = re.sub(r'return\s+\([^)]+\)\s*&this->__vftable\s*;', 'return this;', code)
+    if not ctx.is_free_function:
+        code = re.sub(r'return\s+&this->__vftable\s*;', 'return this;', code)
+        code = re.sub(r'return\s+\([^)]+\)\s*&this->__vftable\s*;', 'return this;', code)
 
-    # AST-based ctor/vftable detection (replaces _comment_out_explicit_ctor_calls + part of _replace_ida_internals)
-    code = _ast_cleanup_pass(code, ctx)
+    # --- AST-based structural detection ---
+    code = _ast_cleanup(code, ctx)
 
-    # Post-AST simple regex
-    code = re.sub(r'((?:LODWORD|HIDWORD)\s*\([^)]+\))\s*=\s*(&\w+)', r'\1 = (unsigned long)\2', code)
+    # --- Post-AST simple fixes ---
+    if not ctx.is_free_function:
+        code = re.sub(r'((?:LODWORD|HIDWORD)\s*\([^)]+\))\s*=\s*(&\w+)', r'\1 = (unsigned long)\2', code)
 
-    def _fix_mfp(m):
-        cm = m.group(1)
-        a = re.search(r'_([0-9A-Fa-f]{5,})$', cm.split('::')[-1])
-        return ('0x%s' % a.group(1)) if a else ('0 /* TODO: (int)%s */' % cm)
-    code = re.sub(r'\(int\)\s*(\w+::(?:~?\w+))\b(?!\s*\()', _fix_mfp, code)
+        def _fix_mfp(m):
+            cm = m.group(1)
+            a = re.search(r'_([0-9A-Fa-f]{5,})$', cm.split('::')[-1])
+            return ('0x%s' % a.group(1)) if a else ('0 /* TODO: (int)%s */' % cm)
+        code = re.sub(r'\(int\)\s*(\w+::(?:~?\w+))\b(?!\s*\()', _fix_mfp, code)
 
-    # Backtick removal (line-based, after AST pass)
-    lines = code.split('\n')
-    lines = _remove_backtick_calls(lines)
-    return '\n'.join(lines)
+    # Backtick removal
+    code = _remove_backtick_calls(code)
+
+    return code
