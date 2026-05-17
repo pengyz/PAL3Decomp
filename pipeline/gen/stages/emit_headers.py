@@ -23,8 +23,8 @@ from pathlib import Path
 
 PIPELINE_ROOT = Path(__file__).parent.parent.parent  # pipeline/
 PROJECT_ROOT = PIPELINE_ROOT.parent
-PDB_FILE = PIPELINE_ROOT / "data" / "pdb" / "pdb_export.json"
-ANNOTATIONS_DIR = PIPELINE_ROOT / "data" / "annotations"
+PDB_FILE = PROJECT_ROOT / "data" / "pdb" / "pdb_export.json"
+ANNOTATIONS_DIR = PROJECT_ROOT / "data" / "annotations"
 IDA_STRUCTS_FILE = PROJECT_ROOT / "asm" / "pal3" / "ida_structs.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 OUTPUT_DIR = PROJECT_ROOT / "include" / "pal3" / "gen"

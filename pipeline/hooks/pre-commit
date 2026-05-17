@@ -3,14 +3,14 @@
 #
 # 安装: ln -sf ../../pipeline/hooks/pre-commit .git/hooks/pre-commit
 #
-# 触发条件: pipeline/data/annotations/ 有 staged 变更
+# 触发条件: data/annotations/ 有 staged 变更
 # 检查项:
 # 1. check_annotations.py 格式校验
 # 2. struct 对齐/重叠（增量模式：只阻止新增违规）
 # 3. commit message 格式（annotations 提交必须含 Evidence + Confidence）
 
-ANNOTATIONS_PATH="pipeline/data/annotations"
-BASELINE="pipeline/data/annotations/known_violations.json"
+ANNOTATIONS_PATH="data/annotations"
+BASELINE="data/annotations/known_violations.json"
 
 if ! git diff --cached --name-only | grep -q "$ANNOTATIONS_PATH"; then
     exit 0
@@ -59,11 +59,11 @@ def scan_violations(structs_dir):
             prev_end = off + sz
     return violations
 
-structs_dir = 'pipeline/data/annotations/structs'
+structs_dir = 'data/annotations/structs'
 current = scan_violations(structs_dir)
 
 baseline = set()
-baseline_path = 'pipeline/data/annotations/known_violations.json'
+baseline_path = 'data/annotations/known_violations.json'
 if os.path.exists(baseline_path):
     baseline = set(json.load(open(baseline_path)))
 
