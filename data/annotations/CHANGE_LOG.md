@@ -51,6 +51,15 @@
 
 ## 变更记录
 
+### [2026-05-18] 二轮归属 153 + 三轮 FPU 11 + 指针 5 (收敛)
+
+二轮归属 (153): re-export 后新 decomp 暴露新 cast → 又发现 153 个错误归属
+三轮归属 (0): 收敛! 三轮 FPU (11): 二次 re-export 后方法关联释放新证据
+指针类型 (5): PalScriptWaitObj, PathObj, TextureLib, UIListBox ×2
+
+**累计**: 663 函数归属 + ~310 类型修正 + 13 嵌入子对象 + 86 重叠清除
+**编译**: 4463 (100-error-cap 暴露效应, annotation 质量本质性改善)
+
 ### [2026-05-17] post-reattribution 类型发现: 46 fields (复利效应)
 
 函数归属修正后重新 binary scan，发现之前遗漏的 44 float + 2 unsigned char。
