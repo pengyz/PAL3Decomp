@@ -51,7 +51,25 @@
 
 ## 变更记录
 
-### [2026-05-18] 深度 ctor 分析: 12 个 UIFrameWnd 嵌入 (3 个大类)
+### [2026-05-18] 系统性 ctor embed 扫描: 40 个 UIFrameWnd 嵌入 (8 个大类)
+
+从 103 个大类 ctor/init 的二进制中 LEA ECX,[ESI+disp]+CALL UIFrameWnd::init 发现:
+
+| 类 | 数量 | 偏移范围 | stride |
+|----|------|---------|--------|
+| CScreenMode | 6 | +360 to +1120 | 152 ✓ |
+| UIGameFrm | 6 | +376 to +1136 | 152 ✓ |
+| UIBigMap | 9 | +1592,+1744 / +2140 to +3052 | 152 ✓ |
+| JusticeBookUI | 8 | +696 to +1760 | 152 ✓ |
+| LineupUI | 4 | +520 to +976 | 152 ✓ |
+| CCBUI | 3 | +1624 to +1928 | 152 ✓ |
+| PropUI | 2 | +412, +564 | 152 ✓ |
+| UICoverFrm | 2 | +2120, +2272 | 152 ✓ |
+
+验证: 所有类 base_class=UIFrameWnd (继承在 offset 0)，高偏移处是额外嵌入实例
+- **置信度**: 90 (LEA+CALL + consecutive stride=binary_size + base_class 确认非多继承)
+
+### [2026-05-18] 深度 ctor 分析(旧): 12 个 UIFrameWnd 嵌入 (3 个大类)
 
 从 ctor 二进制中 LEA ECX,[ESI+disp]+CALL UIFrameWnd::init 发现:
 
