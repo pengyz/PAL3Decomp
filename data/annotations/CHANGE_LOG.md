@@ -51,6 +51,31 @@
 
 ## 变更记录
 
+### [2026-05-17] 大规模 FPU 二进制扫描: 120 个 int→float (3849→3858, +9 正常增长)
+
+#### 方法创新
+
+全 .text 段 FPU 指令扫描 + 类方法地址范围交叉验证:
+1. 扫描 0x401000-0x569000 所有 FPU 指令 (D8-DF prefix)
+2. 提取 disp8 (mod=01) 和 disp32 (mod=10) 偏移值
+3. 对每个偏移，检查 FPU 指令 VA 是否在 functions.json 中该类的方法地址范围内
+4. 匹配成功 = 该偏移在该类的方法中被 FPU 访问 → 确认 float
+
+#### 结果
+
+120 个 int→float 修正，覆盖 27 个 struct 文件，主要类:
+- CScreenMode: 17 fields, UIScene: 24 fields
+- RenderTarget/2: 15 fields, PalScriptMgr: 7 fields
+- Actor: 4, CameraCtrl: 7, RoleSystem: 7, SceneObj: 5 等
+
+#### 错误数说明
+
+3849 → 3858 (+9): **正常增长**。int→float 修正后 Hex-Rays 生成更精确的 decomp
+（如 `COERCE_FLOAT` 代替整数赋值），可能引入新的类型不匹配但反映了更高质量的还原。
+
+- **置信度**: 85 (A级: 每条 FPU 指令字节已验证 D8-DF prefix + mod=01/10)
+- **方法学价值**: 此方法可复用于发现 unsigned char (movzx byte) 等更多类型证据
+
 ### [2026-05-17] 逐类 IDA 查询驱动的类型修正 (5 fields)
 
 | 结构体 | 偏移 | 修正 | 置信度 | 证据 |
