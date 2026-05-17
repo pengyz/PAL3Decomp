@@ -2968,5 +2968,15 @@
   "0x00C10DF0": {
     "name": "g_SceneMgr_off_CA60",
     "type": "int"
+  },
+  "0x0174D330": {
+    "name": "g_EffTable",
+    "type": "char[370720]",
+    "source": "A+:decomp qmemcpy/fwrite 0x5A820 + stride 280(70*4) in CEffMgr methods"
+  },
+  "0x0174D334": {
+    "name": "g_nEffTableCount",
+    "type": "int",
+    "source": "A+:decomp used as loop bound with g_EffTable"
   }
 }
