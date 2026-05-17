@@ -51,6 +51,30 @@
 
 ## 变更记录
 
+### [2026-05-17] codegen 第三轮修复 + annotation 签名修正 (3778→3496, -282 errors)
+
+#### codegen 修复
+
+9. **COM C-mode vtbl 调用转 C++ 直接调用**
+   - **变更**: Stage 3 新增 regex 把 `obj->lpVtbl->Method(obj, args)` 转换为 `obj->Method(args)`
+   - 支持三种模式: 简单变量、struct member 路径 (`g_Input.m_lpDI->lpVtbl->...`)、间接指针 (`(*ptr)->lpVtbl->...`)
+   - **影响**: GRPinput(-14), free_functions(-6), 及其他分布在 COM 调用的文件 (总计 -95+)
+
+#### annotation 修正
+
+10. **CEffCylinder::GetEditorTaskDescription 签名修正**
+    - **变更**: 返回类型 `int *` → `const char *`
+    - **置信度**: 90
+    - **证据**:
+      1. [A] 0x4C5010 函数体: switch/case 中 `result = "横向拉伸"` 等中文字符串字面量赋值
+      2. [B] 同族函数 CEffShock::GetEditorTaskDescription (0x4D3280) 已正确标注为 `const char *`
+    - **影响**: CEffCylinder.cpp 26 个 `char [13] -> int *` 错误消除（需 IDA re-export）
+
+11. **CEffExplosive::GetEditorTaskDescription 签名修正**
+    - **变更**: 返回类型 `int *` → `const char *`
+    - **置信度**: 90
+    - **证据**: 同上，函数体返回字符串字面量
+
 ### [2026-05-17] codegen 第二轮修复 (4253→3778, -475 errors)
 
 #### codegen 修复
