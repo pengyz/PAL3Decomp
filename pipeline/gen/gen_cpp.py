@@ -297,16 +297,14 @@ def _resolve_struct_member(ida_name):
 
 
 def replace_struct_member_refs(code):
-    """Replace IDA default names that are actually global struct instance members."""
+    """Replace IDA default names that are actually global struct instance members.
+    Runs BEFORE replace_global_names so struct member dot-notation takes priority."""
     if not _STRUCT_INSTANCES:
         return code
     _pat = re.compile(r'\b((?:dword|byte|word|off|flt|unk)_[0-9A-Fa-f]+)\b')
     def _repl(m):
         name = m.group(0)
-        # Skip if already handled by GLOBALS_NAME_MAP or LITERAL_MAP
-        pfx, hexpart = name.split('_', 1)
-        key = '%s_%s' % (pfx, hexpart.upper())
-        if key in GLOBALS_NAME_MAP or name in LITERAL_MAP:
+        if name in LITERAL_MAP:
             return name
         resolved = _resolve_struct_member(name)
         if resolved:
@@ -558,8 +556,8 @@ def transform_method_code(cls_name, method_name, code, sig):
     # Final: replace thunk references (after OOP transform may have created j_Class casts)
     code = replace_thunks(code)
     code = replace_literals(code)
-    code = replace_global_names(code)
     code = replace_struct_member_refs(code)
+    code = replace_global_names(code)
 
     # Replace IDA vtable struct types with void (not real C++ types)
     code = re.sub(r'\bvtbl_[0-9A-Fa-f]+\b', 'void', code)
@@ -1007,8 +1005,8 @@ def generate_free_funcs_cpp(funcs):
         code = f['code'].strip()
         code = replace_thunks(code)
         code = replace_literals(code)
-        code = replace_global_names(code)
         code = replace_struct_member_refs(code)
+        code = replace_global_names(code)
 
         # In free functions, 'this' is not a valid parameter name in C++
         # Rename to '_this' to avoid syntax errors
