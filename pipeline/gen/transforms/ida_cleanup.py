@@ -85,31 +85,35 @@ def remove_explicit_ctor_dtor_calls(code, ctx):
 
 @register(order=260)
 def handle_explicit_ctor_in_expressions(code, ctx):
-    """Handle explicit ctor calls in return/assignment context."""
+    """Handle explicit ctor calls in return/assignment context.
+
+    Only matches when the CAST TYPE matches the METHOD NAME (ctor pattern):
+    ((ClassName *)expr)->ClassName(args) — ctor call (illegal in C++)
+    ((ClassName *)expr)->OtherMethod(args) — normal call (leave alone)
+    """
     lines = code.split('\n')
     out = []
     for line in lines:
         stripped = line.strip()
-        m = re.search(r'->\s*([A-Z_]\w+)\s*\(', stripped)
-        if m:
-            called_name = m.group(1)
-            if called_name[0].isupper() and stripped.endswith(';'):
-                indent = line[:len(line) - len(line.lstrip())]
-                if '=' not in stripped and not stripped.startswith('return') \
-                        and not stripped.startswith('if') \
-                        and not stripped.startswith('while'):
-                    out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
+        # Match: ((Type*)expr)->Method( — only act if Type == Method (ctor)
+        ctor_pattern = re.search(
+            r'\(\(\s*(\w+)\s*\*\s*\)[^)]*\)\s*->\s*(\w+)\s*\(', stripped)
+        if ctor_pattern and ctor_pattern.group(1) == ctor_pattern.group(2) and stripped.endswith(';'):
+            called_name = ctor_pattern.group(1)
+            indent = line[:len(line) - len(line.lstrip())]
+            if stripped.startswith('return'):
+                cast_m = re.match(
+                    r'return\s+(.+?)\s*->\s*%s\s*\(' % re.escape(called_name), stripped)
+                if cast_m:
+                    out.append(indent + 'return %s; // ctor auto-called' % cast_m.group(1).rstrip())
                     continue
-                elif stripped.startswith('return'):
-                    cast_m = re.match(
-                        r'return\s+(.+?)\s*->\s*%s\s*\(' % re.escape(called_name), stripped)
-                    if cast_m:
-                        out.append(indent + 'return %s; // ctor auto-called' % cast_m.group(1).rstrip())
-                        continue
-                    out.append(indent + 'return this; // [ctor replaced]')
-                    continue
-                elif '=' in stripped:
-                    out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
-                    continue
+                out.append(indent + 'return this; // [ctor replaced]')
+                continue
+            elif '=' not in stripped and not stripped.startswith('if'):
+                out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
+                continue
+            elif '=' in stripped:
+                out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
+                continue
         out.append(line)
     return '\n'.join(out)
