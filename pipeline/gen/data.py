@@ -17,7 +17,7 @@ class DataStore:
         # Paths
         self.pipeline_root = Path(__file__).parent.parent
         self.project_root = self.pipeline_root.parent
-        self.annotations_dir = self.pipeline_root / "data" / "annotations"
+        self.annotations_dir = self.project_root / "data" / "annotations"
         self.decomp_dir = self.project_root / "asm" / "pal3" / "decomp"
         self.header_dir = self.project_root / "include" / "pal3" / "gen"
         self.output_dir = self.project_root / "src" / "pal3"

@@ -149,7 +149,7 @@ def main():
         field_offset = int(sys.argv[2], 16)
 
         # 从 globals.json 找此结构体的全局实例
-        globs = json.load(open('pipeline/data/annotations/globals.json'))
+        globs = json.load(open('data/annotations/globals.json'))
         instances = []
         for addr, g in globs.items():
             if g.get('type', '').replace('struct ', '').replace('class ', '') == struct_name:

@@ -11,7 +11,7 @@ import json, os
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
-ANNOTATIONS_DIR = os.path.join(PROJECT_ROOT, "pipeline", "data", "annotations")
+ANNOTATIONS_DIR = os.path.join(PROJECT_ROOT, "data", "annotations")
 LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
 OUTPUT_FILE = os.path.join(LOG_DIR, "apply_status.json")
 

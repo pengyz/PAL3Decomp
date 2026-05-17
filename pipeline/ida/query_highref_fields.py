@@ -13,7 +13,7 @@ import json, os, re
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
-ANNOTATIONS_DIR = os.path.join(PROJECT_ROOT, "pipeline", "data", "annotations")
+ANNOTATIONS_DIR = os.path.join(PROJECT_ROOT, "data", "annotations")
 LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
 INPUT_FILE = os.path.join(LOG_DIR, "todo_field_context.json")
 OUTPUT_FILE = os.path.join(LOG_DIR, "highref_field_context.json")

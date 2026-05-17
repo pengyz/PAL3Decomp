@@ -94,7 +94,7 @@ def main():
 
         # Load skip list
         skip_addrs = set()
-        skip_file = os.path.join(PROJECT_ROOT, "pipeline", "data", "annotations", "skip_functions.json")
+        skip_file = os.path.join(PROJECT_ROOT, "data", "annotations", "skip_functions.json")
         if os.path.exists(skip_file):
             import json as _json
             skip_data = _json.load(open(skip_file))
@@ -115,7 +115,7 @@ def main():
             target_addrs.add(ea)
 
         # Ensure all functions.json entries are in targets (fix for IDA undefine race)
-        funcs_json = os.path.join(PROJECT_ROOT, "pipeline", "data", "annotations", "functions.json")
+        funcs_json = os.path.join(PROJECT_ROOT, "data", "annotations", "functions.json")
         _recovered = 0
         _missing = []
         if os.path.exists(funcs_json):
