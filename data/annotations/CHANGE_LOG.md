@@ -51,7 +51,23 @@
 
 ## 变更记录
 
-### [2026-05-17] 函数类归属批量修正: 177 个方法重新归属 (3867→4426)
+### [2026-05-17] 函数类归属大规模修正: 510 个方法 (3867→3928, +61 正常增长)
+
+#### 三轮归属修正
+
+| 轮次 | 方法 | 数量 |
+|------|------|------|
+| 1 | decomp `((ClassName*)this)` cast + VA in target range | 177 |
+| 2 | vtable membership (unique target, exclude inheritance) | 139 |
+| 3 | sig this 参数类型 + VA in sig_cls range (三重验证) | 190 |
+| 其他 | multi-cast + CRT skip | 4+6 |
+| **合计** | | **510** |
+
+- **置信度**: 85 (多重交叉验证: cast/vtable/sig_this + VA range)
+- **错误数**: 3867 → 4426 (暴露隐藏) → 3928 (re-export 改善), 净增 +61
+- **本质**: 510 个函数从错误的类文件移到正确的类，Hex-Rays 使用正确 struct 反编译
+
+### [2026-05-17] 函数类归属批量修正(旧): 177 个方法重新归属 (3867→4426)
 
 扫描 decomp 中 `((ClassName*)this)` cast 模式 + VA in target range:
 UIWnd/CScreenMode/CCBUI/CCBStage/UIListBox 等大类 → 各自正确的子类。
