@@ -8,20 +8,18 @@
 
 ## 环境
 
+所有路径在 `pipeline.toml` 中配置。查看/验证：`python pipeline/cli.py config`
+
 ```
-IDA:         $IDA (首次使用时搜索系统中 idat.exe 并设置变量)
-IDB(raw):    original/PAL3.exe.raw.i64
-               空白数据库——仅含 IDA 自动分析，不带任何人工类型/命名。
-               如果不存在，从 exe 创建：$IDA -B original/PAL3.exe
-               创建后重命名为 .raw.i64 保留。
-IDB(work):   original/PAL3.exe.i64
-               工作数据库 = raw + annotations。每次迭代开始时从 raw 复制并 apply。
-               不提交 git。
+配置文件:   pipeline.toml (gitignored, 每环境独立)
+IDA:        [ida] path (pipeline.toml 中配置)
+Binary:     [binary] exe / idb_raw / idb_work
 Annotations: data/annotations/ (唯一可信源)
-Decomp:      asm/pal3/decomp/*.json (IDA 导出，gitignored)
-PDB参考:     data/pdb/ (PAL3A，只读参考)
-Binary:      original/PAL3.exe (最终权威)
+Decomp:     asm/pal3/decomp/*.json (export 生成, gitignored)
+PDB参考:    data/pdb/ (PAL3A, 只读参考)
 ```
+
+如果配置缺失: `python pipeline/cli.py config` 会列出所有 [!] 项及修复命令。
 
 ## 数据架构
 
@@ -92,33 +90,58 @@ data/annotations/
 | `pipeline/verify_offset.py` | 验证全局实例的字段偏移（搜索 .text 段绝对地址引用） |
 | `pipeline/check_annotations.py` | 校验 annotations 数据合法性（JSON格式、重名、基类存在性） |
 
-## IDB 重建流程
+## 管线 CLI
 
-IDB 是生成物，可随时从 annotations 重建。典型流程：
+所有操作通过统一入口执行。首次使用先检查配置：
 
 ```bash
-# 1. 从 raw 复制工作副本（如果 raw 不存在，先创建）
-#    创建 raw: $IDA -B original/PAL3.exe → 得到 .i64，重命名为 .raw.i64
-cp original/PAL3.exe.raw.i64 original/PAL3.exe.i64
-
-# 2. 应用 annotations → IDB 获得正确的函数名/签名/结构体/全局变量
-$IDA -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64
-
-# 3. 导出反编译（可选，仅在需要刷新 decomp JSON 时）
-$IDA -A -S"pipeline/ida/export_full.py" original/PAL3.exe.i64
+python pipeline/cli.py config              # 查看配置状态，[!] 标记缺失项
+python pipeline/cli.py config --set ida.path="D:\...\idat.exe"  # 设置 IDA 路径
 ```
 
-**何时需要重建**：annotations 有重大变更（结构体定义、函数签名）后，IDB 和 decomp 过期。
+### IDB 重建
+
+IDB 是生成物，可随时从 annotations 重建：
+
+```bash
+# 首次初始化（从 exe 创建 raw + 导入 PDB + 导入 annotations）
+python pipeline/cli.py init
+
+# 强制重建（删除已有 IDB，从零开始）
+python pipeline/cli.py init --force
+```
+
+### 标注变更后更新
+
+```bash
+python pipeline/cli.py apply               # 重新应用 annotations 到 IDB
+python pipeline/cli.py export              # 刷新 decomp JSON
+python pipeline/cli.py codegen all         # 重新生成源码
+python pipeline/cli.py compile             # 编译验证
+```
+
+### 仅重新生成代码（标注未变，只改了 codegen）
+
+```bash
+python pipeline/cli.py codegen all
+python pipeline/cli.py compile
+```
+
+**何时需要 init --force**：annotations 有重大结构变更（binary_size、base_class）导致 IDB 布局过期时。
 
 ## IDA 查询工具典型用法
+
+IDA 路径从 pipeline.toml 读取: `python pipeline/cli.py config` 查看。
+以下示例用 `$IDA` 代替完整路径，`$IDB` 代替 work IDB 路径。
+
+**前置**：IDB 已 init（`python pipeline/cli.py init`）。
 
 ### 1. query_todo_fields.py — 全局 _todo_ 扫描
 
 **适用**：迭代开始时，了解哪些 _todo_ 字段有二进制引用、哪些有反编译上下文。
-**前置**：IDB 已 apply_annotations（确保结构体定义正确）。
 
 ```bash
-$IDA -A -S"pipeline/ida/query_todo_fields.py" original/PAL3.exe.i64
+$IDA -A -S"pipeline/ida/query_todo_fields.py" $IDB
 # 输出: pipeline/ida/_logs/todo_field_context.json
 # 结构: {ClassName: {offset: {hex, type, refs: [...], decomp_context: [...]}}}
 ```
@@ -136,7 +159,7 @@ $IDA -A -S"pipeline/ida/query_todo_fields.py" original/PAL3.exe.i64
 **前置**：已运行 query_todo_fields（依赖其输出 JSON）。
 
 ```bash
-$IDA -A -S"pipeline/ida/query_highref_fields.py" original/PAL3.exe.i64
+$IDA -A -S"pipeline/ida/query_highref_fields.py" $IDB
 # 输出: pipeline/ida/_logs/highref_field_context.json
 ```
 
@@ -149,7 +172,7 @@ $IDA -A -S"pipeline/ida/query_highref_fields.py" original/PAL3.exe.i64
 
 ```bash
 # 对 Camera 和 TextureLib 做全量反编译扫描
-$IDA -A -S"pipeline/ida/query_class_full.py Camera,TextureLib,PalScript" original/PAL3.exe.i64
+$IDA -A -S"pipeline/ida/query_class_full.py Camera,TextureLib,PalScript" $IDB
 # 输出: pipeline/ida/_logs/class_full_context.json
 ```
 
@@ -303,14 +326,23 @@ Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>"
 ### 批量命名迭代（高效路径）
 
 ```
-1. 重建 IDB        → cp raw → apply_annotations
-2. 导出 decomp     → export_full（可选，如果 decomp 过期）
-3. 全局扫描        → query_todo_fields.py → 了解哪些字段有上下文
-4. 补充上下文      → query_highref_fields.py → 补充高引用字段
-5. 聚焦目标类      → query_class_full.py ClassName → 获取完整上下文
+1. 重建 IDB        → python pipeline/cli.py init (或 apply 如果只更新标注)
+2. 导出 decomp     → python pipeline/cli.py export
+3. 全局扫描        → $IDA -A -S"pipeline/ida/query_todo_fields.py" $IDB
+4. 补充上下文      → $IDA -A -S"pipeline/ida/query_highref_fields.py" $IDB
+5. 聚焦目标类      → $IDA -A -S"pipeline/ida/query_class_full.py ClassName" $IDB
 6. 人工判断命名    → 从 JSON 输出中筛选语义明确的字段，逐个命名
-7. 校验+提交       → check_annotations.py → git commit（写 CHANGE_LOG）
+7. 校验+提交       → python pipeline/cli.py check → git commit
 8. 重复 5-7        → 选下一个类
+```
+
+### 验证改进效果
+
+```bash
+python pipeline/cli.py apply           # 标注→IDB
+python pipeline/cli.py export          # IDB→decomp JSON
+python pipeline/cli.py codegen all     # decomp→C++
+python pipeline/cli.py compile         # C++→验证编译
 ```
 
 ### 单字段精确验证（偏移/类型修改时）
@@ -320,7 +352,7 @@ Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>"
 2. 确认来源 (V2)   → 函数头部 this 赋值模式
 3. 确认宽度 (V3)   → 指令前缀解码
 4. 记录证据 (V4)   → CHANGE_LOG
-5. 修改+校验 (V5)  → annotations + check_annotations
+5. 修改+校验 (V5)  → annotations + python pipeline/cli.py check
 6. 提交 (V6)       → git commit
 ```
 
@@ -328,7 +360,7 @@ Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>"
 
 ```bash
 # annotations 校验（必须 0 errors）
-python pipeline/check_annotations.py
+python pipeline/cli.py check
 
 # 命名率（_todo_ + _field_ 视为未命名）
 python -c "
