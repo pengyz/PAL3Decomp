@@ -51,6 +51,38 @@
 
 ## 变更记录
 
+### [2026-05-17] vtable microcode 解决方案（__cppobj + 签名修复）
+
+- **变更**: apply_annotations.py 三重修复实现虚调用解析
+- **置信度**: 90 (IDA API 验证)
+
+  **Bug 1: vtable struct 函数指针全部退化为 int(*)()**
+  - 原因: 正则无法解析 IDA 格式 `ret CC(params)` (缺少函数名)
+  - 修复: 新增无函数名正则 + 指针返回类型处理
+  - 验证: vtable struct 现在有 `int (__thiscall *Method)(UIWnd *this, int)` 类型
+
+  **Bug 2: vtable 方法无签名来源**
+  - 原因: vtables.json method dict 没有 signature 字段
+  - 修复: 从 functions.json 按地址查找签名
+  - 验证: vtable slot 获得实际函数参数类型
+
+  **Bug 3: 类 struct 缺少 __cppobj 标记**
+  - 原因: build_struct_decl 生成 `struct ClassName` 而非 `struct __cppobj ClassName`
+  - 修复: 检测 vtable 存在时添加 `__cppobj`
+  - 验证: `UIWnd.is_cppobj = true`, UIWnd::UpdateChildren 反编译无 `__vftable`
+
+  **效果验证**:
+  - `parse_decl("struct __cppobj TestCPP : public UIWnd {...}")` → OK
+  - UIWnd `is_cppobj` = true (通过 IDA Python API 确认)
+  - UIWnd::UpdateChildren (0x445C10) 反编译: `__vftable` = false (虚调用已解析)
+  - 但: 总体 418 处 `__vftable` 残留未减——因为来源是局部变量类型不正确的函数
+    (Hex-Rays 无法推断 void*/int 变量是哪个类的指针)
+
+  **剩余工作**:
+  - 418 处残留需要 per-function `set_lvar_type` 或更完整的函数签名传播
+  - 主要集中在: UIListBox::BuildListItems(68), CCBStageRole::ProcPursueRole(34),
+    CCBUI::CreateResultWindow(28)
+
 ### [2026-05-17] query_class_full 语义分析 + vtable 修复 + g_EffTable
 
 - **变更**:
