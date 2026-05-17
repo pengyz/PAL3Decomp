@@ -70,14 +70,18 @@ SKIP_CLASSES = {
     'Concurrency',
     # DirectX / DirectInput
     '_DIMOUSESTATE2',
-    # gbengine (separate library)
-    'gbGfxManager', 'gbActorMgr', 'gbCamera', 'gbActor', 'gbVFileSystem',
-    'gbRenderEffect', 'gbSceneGraph', 'gbTexture', 'gbGeomNode',
-    'gbPrintFont', 'gbPrintFontMgr', 'gbMatrixStack', 'gbRefObject',
-    'gbAudioManager', 'gbBinkVideo', 'gbDynVertBuf', 'gbVertPoolMgr',
-    'gbSoundData', 'gbResManager', 'gbImage2D', 'gbCursorRes',
-    'gbTexture_D3D', 'gbIndexPool', 'gbVertexPool',
+    # gbengine (separate library) — auto-populated below
 }
+
+# Auto-detect classes defined in gbengine headers
+_GBENGINE_DIR = Path(__file__).parent.parent.parent.parent / "include" / "gbengine"
+if _GBENGINE_DIR.exists():
+    for _hf in _GBENGINE_DIR.glob("*.h"):
+        with open(_hf, 'r', encoding='utf-8', errors='replace') as _fh:
+            for _line in _fh:
+                _m = re.match(r'^(?:class|struct)\s+(\w+)', _line)
+                if _m:
+                    SKIP_CLASSES.add(_m.group(1))
 
 # Prefix patterns for system/library types that should never be generated
 SKIP_PREFIXES = (
@@ -965,10 +969,10 @@ def main():
         lines.append('')
 
         out_path = OUTPUT_DIR / ('%s.h' % name)
-        # On case-insensitive FS (Windows), check for class header collision
+        # Check for class header collision (same name or case-insensitive match on Windows)
         existing_class = None
         for ch in classes_with_headers:
-            if ch.lower() == name.lower() and ch != name:
+            if ch.lower() == name.lower():
                 existing_class = ch
                 break
         if existing_class:

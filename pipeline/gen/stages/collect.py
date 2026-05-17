@@ -14,9 +14,19 @@ from data import store
 SKIP_CLASSES = {
     'std', 'stdiobuf', 'exception', 'type_info', 'filebuf',
     'Iostream_init', 'Concurrency',
-    'gbGeomNode', 'gbLightObj', 'gbParticleEffect', 'gbRain', 'gbSnow', 'gbVisNode',
     'j_std', 'j_j_codecvt_base',
 }
+
+# Auto-detect classes defined in gbengine headers
+import re as _re
+_GBENGINE_DIR = Path(__file__).parent.parent.parent.parent / "include" / "gbengine"
+if _GBENGINE_DIR.exists():
+    for _hf in _GBENGINE_DIR.glob("*.h"):
+        with open(_hf, 'r', encoding='utf-8', errors='replace') as _fh:
+            for _line in _fh:
+                _m = _re.match(r'^(?:class|struct)\s+(\w+)', _line)
+                if _m:
+                    SKIP_CLASSES.add(_m.group(1))
 
 # Organize classes into subdirectories by category
 CLASS_DIRS = {
