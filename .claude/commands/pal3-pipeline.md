@@ -409,6 +409,14 @@ IDA decomp 中整数赋值可能暴露 float 类型——当赋值的整数值�
 - 连续 LEA 的 stride = 子对象大小（验证与目标类 binary_size 匹配）
 - 调用目标 = 子对象类的构造函数（通过 functions.json 确认）
 - 多个相同 stride 的连续 LEA = 嵌入数组
+- stride > binary_size 时：每个 slot 含子对象 + 额外数据（不要假设 slot==子对象）
+
+**关键教训（CScreenMode 案例）**:
+- **二进制 LEA 是嵌入偏移的最终权威**，即使 apply_annotations 后的 Hex-Rays decomp 也可能给出错误偏移
+- CScreenMode 的 UIFrameWnd/UIScene embed 全部从 decomp cast 标注，结果系统性偏移 -8
+- 原因：struct 布局不正确时，Hex-Rays 解析的字段偏移会产生漂移
+- **正确流程**: 先从二进制 ctor/dtor 中 LEA 解码确认精确偏移，再验证 decomp 是否一致
+- 如果 decomp 偏移与二进制 LEA 矛盾 → **以二进制为准，decomp 偏移作废**
 
 ### 管理器 vs 元素判别
 
