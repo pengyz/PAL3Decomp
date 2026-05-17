@@ -144,8 +144,8 @@
     },
     "380": {
       "name": "_field_17C",
-      "type": "int",
-      "source": "binary:gap_r2"
+      "type": "float",
+      "source": "binary:gap_r2 | type_fix:int->float(A+:decomp *(float*)&this->_field_17C=acos() in UpdateFrame)"
     },
     "384": {
       "name": "m_nActionData",
@@ -179,8 +179,8 @@
     },
     "412": {
       "name": "_field_19C",
-      "type": "int",
-      "source": "binary:gap_r2"
+      "type": "float",
+      "source": "binary:gap_r2 | type_fix:int->float(A+:decomp *(float*)&this->_field_19C-m_vecRot.z in UpdateFrame (3x))"
     },
     "420": {
       "name": "_field_1A4",

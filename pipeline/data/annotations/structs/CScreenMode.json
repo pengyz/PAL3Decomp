@@ -31,16 +31,6 @@
       "type": "int",
       "source": "binary:raw_2votes"
     },
-    "808": {
-      "name": "m_nField328",
-      "type": "int",
-      "source": "binary:raw_8votes"
-    },
-    "828": {
-      "name": "m_nField33C",
-      "type": "int",
-      "source": "binary:raw_1vote"
-    },
     "72": {
       "name": "m_nPosY",
       "type": "int",
@@ -76,35 +66,10 @@
       "type": "int",
       "source": "ida_decomp:_method_527dc0 switch(this), byte check, 4 refs"
     },
-    "360": {
-      "name": "m_nMenuParam",
-      "type": "UIFrameWnd",
-      "source": "binary:ctor_3F30 lea ecx,[esi+0x168]; call UIFrameWnd::_unverified_4422E0(0x4422E0)"
-    },
-    "512": {
-      "name": "_field_200",
-      "type": "UIFrameWnd",
-      "source": "binary:ctor_3F30 lea ecx,[esi+0x200]; call UIFrameWnd::_unverified_4422E0"
-    },
-    "664": {
-      "name": "_field_298",
-      "type": "UIFrameWnd",
-      "source": "binary:ctor_3F30 lea ecx,[esi+0x298]; call UIFrameWnd::_unverified_4422E0"
-    },
-    "816": {
-      "name": "m_nStopAll",
-      "type": "UIFrameWnd",
-      "source": "binary:ctor_3F30 lea ecx,[esi+0x330]; call UIFrameWnd::_unverified_4422E0"
-    },
-    "820": {
-      "name": "m_pItemList",
-      "type": "int",
-      "source": "ida_decomp:_nearby_53e890 (this-v4)/20, deref, 9 refs"
-    },
     "824": {
       "name": "_field_338",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "UIFrameWnd",
+      "source": "binary:gap_access | fix:binary_ctor_confirms_UIFrameWnd"
     },
     "0": {
       "name": "m_pEnumeration",
@@ -168,198 +133,18 @@
     },
     "368": {
       "name": "m_nMenuState",
-      "type": "int",
-      "source": "ida_decomp:_init_494250 =-1, _method_494660 =0, 3 refs"
-    },
-    "372": {
-      "name": "_field_174",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "516": {
-      "name": "_field_204",
-      "type": "int",
-      "source": "binary:1x access"
+      "type": "UIFrameWnd",
+      "source": "ida_decomp:_init_494250 =-1, _method_494660 =0, 3 refs | fix:binary_ctor_confirms_UIFrameWnd"
     },
     "520": {
       "name": "_field_208",
       "type": "UIFrameWnd",
       "source": "binary:1x access | type_fix:int->UIFrameWnd(A+:decomp UIFrameWnd::_UIFrameWnd((*)&this->_field_208))"
     },
-    "524": {
-      "name": "_field_20C",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "528": {
-      "name": "_field_210",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "532": {
-      "name": "_field_214",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "536": {
-      "name": "_field_218",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "540": {
-      "name": "_field_21C",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "544": {
-      "name": "_field_220",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "564": {
-      "name": "_field_234",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "568": {
-      "name": "_field_238",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "1024": {
-      "name": "_field_400",
-      "type": "int",
-      "source": "binary:2x access"
-    },
-    "1028": {
-      "name": "_field_404",
-      "type": "int",
-      "source": "binary:2x access"
-    },
-    "1032": {
-      "name": "_field_408",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "1036": {
-      "name": "_field_40C",
-      "type": "int",
-      "source": "binary:2x access"
-    },
-    "1040": {
-      "name": "_field_410",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "1044": {
-      "name": "_field_414",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "1048": {
-      "name": "_field_418",
-      "type": "float",
-      "source": "binary:3x access"
-    },
-    "1052": {
-      "name": "_field_41C",
-      "type": "int",
-      "source": "binary:3x access"
-    },
-    "1056": {
-      "name": "_field_420",
-      "type": "float",
-      "source": "binary:3x access"
-    },
-    "1060": {
-      "name": "_field_424",
-      "type": "int",
-      "source": "binary:3x access"
-    },
-    "1064": {
-      "name": "m_wndDirty",
-      "type": "int",
-      "source": "ida_decomp:_init_529e40 UIWnd::SetDirty, vtable call, 2 refs"
-    },
-    "1068": {
-      "name": "_field_42C",
-      "type": "int",
-      "source": "binary:3x access"
-    },
-    "1072": {
-      "name": "_field_430",
-      "type": "float",
-      "source": "binary:3x access"
-    },
-    "1076": {
-      "name": "_field_434",
-      "type": "int",
-      "source": "binary:3x access"
-    },
-    "1080": {
-      "name": "_field_438",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "1084": {
-      "name": "_field_43C",
-      "type": "unsigned char",
-      "source": "binary:5x access"
-    },
-    "1244": {
-      "name": "_field_4DC",
-      "type": "unsigned char",
-      "source": "binary:1x access"
-    },
-    "1252": {
-      "name": "m_nTickStampA",
-      "type": "int",
-      "source": "ida_decomp:_init_529e40 =TickCount, 2 refs"
-    },
-    "1256": {
-      "name": "m_nTickStampB",
-      "type": "int",
-      "source": "ida_decomp:_init_529e40 =TickCount, delta=now-this, 3 refs"
-    },
-    "1260": {
-      "name": "m_bTimerInitA",
-      "type": "unsigned char",
-      "source": "ida_decomp:_init_529e40 if(!this) =1, 3 refs"
-    },
-    "1264": {
-      "name": "_field_4F0",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "1268": {
-      "name": "_field_4F4",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "1272": {
-      "name": "m_uiScene",
-      "type": "UIScene",
-      "source": "binary:ctor_3F30 lea ecx,[esi+0x4F8]; call UIScene::ctor_BCE0"
-    },
-    "1276": {
-      "name": "m_nTimerValue",
-      "type": "int",
-      "source": "ida_decomp:_init_529e40 =v9, loaded, 3 refs"
-    },
     "1280": {
       "name": "m_bTimerInitB",
       "type": "unsigned char",
       "source": "ida_decomp:_init_529e40 if(!this) =1, 3 refs"
-    },
-    "1284": {
-      "name": "m_wndPanel1",
-      "type": "UIWnd",
-      "source": "binary:lea [this+0x504]→ecx→UIWnd::GetRect"
-    },
-    "1436": {
-      "name": "m_wndPanel2",
-      "type": "UIWnd",
-      "source": "binary:lea [this+0x59C]→ecx→UIWnd::GetRect"
     },
     "1588": {
       "name": "m_nScrollPosX",
@@ -551,51 +336,6 @@
       "type": "int",
       "source": "ida_decomp:_method_527dc0 UIParabolaCtrl::GetState(this), 4 refs"
     },
-    "856": {
-      "name": "_todo_358",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "892": {
-      "name": "_todo_37C",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "896": {
-      "name": "m_wndChild2",
-      "type": "int",
-      "source": "ida_decomp:_auto_455a20/455b30 pointer, 3 refs"
-    },
-    "972": {
-      "name": "_todo_3CC",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "1156": {
-      "name": "m_bTransitionActive",
-      "type": "unsigned char",
-      "source": "ida_decomp:_init_52c480 =1/if(!this), 3 refs"
-    },
-    "1157": {
-      "name": "_todo_485",
-      "type": "unsigned char",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "1158": {
-      "name": "_todo_486",
-      "type": "unsigned char",
-      "source": "binary:disp32_2hits_1funcs"
-    },
-    "1159": {
-      "name": "_todo_487",
-      "type": "unsigned char",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "1160": {
-      "name": "_todo_488",
-      "type": "int",
-      "source": "binary:disp32_2hits_1funcs"
-    },
     "1612": {
       "name": "_todo_64C",
       "type": "int",
@@ -781,36 +521,6 @@
       "type": "int",
       "source": "ida_decomp:_init_4593c0 UIWnd::CreateFromTemplate(assistantDea), 2 refs"
     },
-    "888": {
-      "name": "m_wndChild1",
-      "type": "int",
-      "source": "ida_decomp:_init_47be20 UIWnd::GetChild, 3 refs"
-    },
-    "992": {
-      "name": "_todo_3E0",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "996": {
-      "name": "_todo_3E4",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "1096": {
-      "name": "_todo_448",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "1228": {
-      "name": "m_wndTooltipA",
-      "type": "int",
-      "source": "ida_decomp:_init_4593c0 SetTooltipText, vtable+28 call, 4 refs"
-    },
-    "1232": {
-      "name": "m_wndTooltipC",
-      "type": "int",
-      "source": "ida_decomp:_init_47be20 vtable+28, UIWnd::GetChild, 3 refs"
-    },
     "1680": {
       "name": "_todo_690",
       "type": "int",
@@ -906,305 +616,10 @@
       "type": "int",
       "source": "gap_fill:ida_decomp_access"
     },
-    "376": {
-      "name": "_todo_178",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "392": {
-      "name": "_todo_188",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "396": {
-      "name": "_todo_18C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "400": {
-      "name": "_todo_190",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "404": {
-      "name": "_todo_194",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "408": {
-      "name": "_todo_198",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "412": {
-      "name": "_todo_19C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "416": {
-      "name": "_todo_1A0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "420": {
-      "name": "_todo_1A4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "424": {
-      "name": "_todo_1A8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "464": {
-      "name": "_todo_1D0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "552": {
-      "name": "_todo_228",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "616": {
-      "name": "_todo_268",
-      "type": "float",
-      "source": "A+:decomp *(float*)&this->_todo_268 (1 occurrences)"
-    },
-    "668": {
-      "name": "_todo_29C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "688": {
-      "name": "_todo_2B0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "692": {
-      "name": "_todo_2B4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "696": {
-      "name": "_todo_2B8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "700": {
-      "name": "_todo_2BC",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "704": {
-      "name": "_todo_2C0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "708": {
-      "name": "_todo_2C4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "712": {
-      "name": "_todo_2C8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "736": {
-      "name": "_todo_2E0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "768": {
-      "name": "_todo_300",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "772": {
-      "name": "_todo_304",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "776": {
-      "name": "_todo_308",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "848": {
-      "name": "_todo_350",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "872": {
-      "name": "_todo_368",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "876": {
-      "name": "_todo_36C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "904": {
-      "name": "_todo_388",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "908": {
-      "name": "_todo_38C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "912": {
-      "name": "_todo_390",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "916": {
-      "name": "_todo_394",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "920": {
-      "name": "_todo_398",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "924": {
-      "name": "_todo_39C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "928": {
-      "name": "_todo_3A0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "932": {
-      "name": "_todo_3A4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "936": {
-      "name": "_todo_3A8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "940": {
-      "name": "_todo_3AC",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "944": {
-      "name": "_todo_3B0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "948": {
-      "name": "_todo_3B4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "952": {
-      "name": "_todo_3B8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "956": {
-      "name": "_todo_3BC",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "960": {
-      "name": "_todo_3C0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "964": {
-      "name": "_todo_3C4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
     "976": {
       "name": "_todo_3D0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1000": {
-      "name": "_todo_3E8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1008": {
-      "name": "_todo_3F0",
-      "type": "UIScene",
-      "source": "gap_fill:ida_decomp_access | type_fix:int->UIScene(A+:decomp UIScene::Destroy2((*)&this->_todo_3F0))"
-    },
-    "1108": {
-      "name": "_todo_454",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1112": {
-      "name": "_todo_458",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1124": {
-      "name": "_todo_464",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1132": {
-      "name": "_todo_46C",
-      "type": "UIWnd",
-      "source": "gap_fill:ida_decomp_access | type_fix:int->UIWnd(A+:decomp UIWnd::GetChild((*)&this->_todo_46C) + SetTooltipText)"
-    },
-    "1136": {
-      "name": "_todo_470",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1140": {
-      "name": "_todo_474",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1144": {
-      "name": "_todo_478",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1148": {
-      "name": "_todo_47C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1152": {
-      "name": "_todo_480",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1164": {
-      "name": "_todo_48C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1192": {
-      "name": "_todo_4A8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1216": {
-      "name": "_todo_4C0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1220": {
-      "name": "_todo_4C4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "UIFrameWnd",
+      "source": "gap_fill:ida_decomp_access | fix:binary_ctor_confirms_UIFrameWnd"
     },
     "1616": {
       "name": "_todo_650",
@@ -1286,11 +701,6 @@
       "type": "int",
       "source": "gap_fill:ida_decomp_access"
     },
-    "2116": {
-      "name": "_todo_844",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
     "2140": {
       "name": "_todo_85C",
       "type": "int",
@@ -1310,11 +720,6 @@
       "name": "_todo_9E8",
       "type": "int",
       "source": "gap_fill:ida_decomp_access"
-    },
-    "2612": {
-      "name": "_todo_A34",
-      "type": "UIFrameWnd",
-      "source": "gap_fill:ida_decomp_access | type_fix:int->UIFrameWnd(A+:decomp UIFrameWnd::_UIFrameWnd((*)&this->_todo_A34))"
     },
     "2880": {
       "name": "_todo_B40",
@@ -1466,25 +871,15 @@
       "type": "int",
       "source": "gap_fill:ida_decomp_access"
     },
-    "968": {
-      "name": "_todo_3C8",
+    "672": {
+      "name": "_todo_2A0",
       "type": "UIFrameWnd",
-      "source": "binary:ctor_3F30 lea ecx,[esi+0x3C8]; call UIFrameWnd::_unverified_4422E0"
+      "source": "A:binary_ctor lea ecx,[esi+0x2A0] stride=152"
     },
-    "1120": {
-      "name": "_todo_460",
+    "1128": {
+      "name": "_todo_468",
       "type": "UIFrameWnd",
-      "source": "binary:ctor_3F30 lea ecx,[esi+0x460]; call UIFrameWnd::_unverified_4422E0"
-    },
-    "1544": {
-      "name": "_todo_608",
-      "type": "UIScene",
-      "source": "binary:ctor_3F30 lea ecx,[esi+0x608]; call UIScene::_UIScene(0x43A770)"
-    },
-    "1888": {
-      "name": "_todo_760",
-      "type": "UIScene",
-      "source": "binary:ctor_3F30 lea ecx,[esi+0x760]; call UIScene::_UIScene(0x43A770)"
+      "source": "A:binary_ctor lea ecx,[esi+0x468] stride=152"
     }
   },
   "binary_size": 4660,

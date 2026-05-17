@@ -148,8 +148,8 @@
     },
     "180": {
       "name": "_field_0B4",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "float",
+      "source": "binary:gap_access | type_fix:int->float(A+:decomp (float+float)*0.017453 deg2rad in _method_52e140)"
     },
     "184": {
       "name": "m_pChildData",
