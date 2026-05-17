@@ -51,6 +51,27 @@
 
 ## 变更记录
 
+### [2026-05-17] 33 __thiscall 函数格式修正 + 383 PAL3A 遗留成员清理
+
+- **变更**:
+  1. 33 个 __thiscall 成员函数: `ClassName_Method` → `ClassName::Method`
+  2. 383 个 PAL3A PDB 遗留成员从 76 个派生类中移除
+- **置信度**: 90
+
+  **33 函数命名格式修正 (置信度 90: __thiscall 确认)**
+  - 判定标准: 函数签名包含 `__thiscall` + 名称匹配 `ClassName_MethodName` 模式
+  - __thiscall = ECX 传递 this 指针 = 确定是成员函数 → 必须用 `::` 格式
+  - 排除: 20 个 `__cdecl` 函数保留 `_` 格式（自由函数/工具函数）
+  - 影响类: CCBStageRole(5), Combat(9), RoleSystem(3), UIWnd(3), Camera(2) 等 15 个类
+
+  **383 PAL3A 遗留成员清理 (置信度 90: base_size 交叉验证)**
+  - 原因: UIWnd base_size 已从 68→88 修正, UIFrameWnd 从 72→152
+  - 76 个派生类中 offset < base_size 的成员来自 PAL3A PDB 旧布局
+  - PAL3A 中 UIFrameWnd=72 bytes 时这些 offset 属于派生类空间
+  - PAL3 中 UIFrameWnd=152 bytes 后这些 offset 进入了基类范围
+  - 288 个有语义名的成员确认是 PAL3A 特有（与 UIFrameWnd float 字段冲突）
+  - 95 个 generic placeholder 直接移除
+
 ### [2026-05-17] 193 额外 binary_size + 继承链修复
 
 - **变更**: 193 个结构体设置 binary_size + 4 个中间基类补全
