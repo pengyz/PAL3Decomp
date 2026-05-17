@@ -51,6 +51,41 @@
 
 ## 变更记录
 
+### [2026-05-17] 64 UI 派生类 base_size 修正（根因修复）
+
+- **变更**: 64 个 UI 派生类的 base_size 从 PAL3A PDB 旧值修正为当前二进制确认值
+- **置信度**: 90
+
+  **问题根因**:
+  - UIWnd.binary_size 在早期从 68→88 修正（IDA struct 确认）
+  - UIFrameWnd.binary_size 在早期从 72→152 修正（IDA struct 确认）
+  - 但 **64 个派生类的 base_size 未同步更新**，仍然保留旧值 (68/72)
+  - 后果：所有派生类的成员偏移计算从 base_size 开始，
+    实际基类占 88/152 字节但标注只预留 68/72 字节 →
+    派生类 offset 0~(88-68)=20 或 0~(152-72)=80 范围与基类重叠
+
+  **影响范围**:
+  - 44 个 UIFrameWnd 派生类: base_size 72→152 (差 80 字节)
+    - CCBUI, EquipUI, PropUI, LineupUI, MagicUI, SaleUI, StateUI...
+    - 所有 CCB*Window (AI, Control, Item, Lineup, Magic, Parabola, Protect, Result, Skill)
+    - UIBigMap, UIGameOver, UINote, UILoadingFrm, UISceneFrm, UITitle_*...
+  - 17 个 UIWnd 派生类: base_size 68→88 (差 20 字节)
+    - UIListBox, UIButton, UIStatic, UIScrollBar, UIProgressBar, UIDialog...
+  - 3 个 ScreenEffect 派生类: base_size 补设为 24
+
+  **证据**:
+  - [A] UIWnd IDA struct binary_size = 88 (已验证)
+  - [A] UIFrameWnd IDA struct binary_size = 152 (已验证)
+  - [B] CScreenMode -8 系统性偏移错误的根因追溯:
+    CScreenMode.base_class = None (无继承)，但内部 UIFrameWnd 嵌入数组
+    从 offset 368 开始。之前标注为 360 (差 8) — 这 8 字节差异来自
+    gen_headers 计算嵌入偏移时使用了错误的 base_size
+
+  **连锁反应**:
+  - 修正后所有 UI 类的 IDB struct 布局将正确
+  - Hex-Rays 成员解析从 `*(_DWORD*)(this+N)` 恢复为 `this->member`
+  - 预期大幅降低 raw cast 数量（当前 26259 处）
+
 ### [2026-05-17] CScreenMode UIScene 数组 + UIListBox embed 撤销
 
 - **变更**:
