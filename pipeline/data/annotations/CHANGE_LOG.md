@@ -51,6 +51,60 @@
 
 ## 变更记录
 
+### [2026-05-17] CScreenMode 嵌入偏移修正 + Camera/PalScriptMgr 重叠 + 9 类型修复
+
+- **变更**:
+  1. CScreenMode: UIFrameWnd 嵌入数组偏移从错误值修正为二进制确认值
+  2. Camera/PalScriptMgr: 确认 9512 字节嵌入，36 成员清理
+  3. 4 int→float + 5 int→embedded 类型修复
+- **置信度**: 90
+
+  **CScreenMode UIFrameWnd 嵌入偏移修正 (置信度 90: A 级 binary LEA)**
+  - [A] CScreenMode::ctor_3380 (VA=0x483380): 构造函数中 LEA 模式解码
+    ```
+    lea ecx,[esi+0x170]  → offset 368 (UIFrameWnd[0])
+    lea ecx,[esi+0x208]  → offset 520 (UIFrameWnd[1])
+    lea ecx,[esi+0x2A0]  → offset 672 (UIFrameWnd[2])
+    lea ecx,[esi+0x338]  → offset 824 (UIFrameWnd[3])
+    lea ecx,[esi+0x3D0]  → offset 976 (UIFrameWnd[4])
+    lea ecx,[esi+0x468]  → offset 1128 (UIFrameWnd[5])
+    stride = 152 = UIFrameWnd.binary_size ✓
+    ```
+  - **发现**: 之前标注的偏移 (360,512,664,816,968,1120) 系统性偏移 -8
+    - 旧值全部不在二进制 LEA 列表中
+    - 新值全部精确匹配二进制 LEA
+  - **修复**: 移除 17 个错误嵌入标注 + 106 个落在嵌入范围内的重叠成员
+  - **第二组嵌入** (stride 344, offsets 1280-4032, 9 元素): 类型待定，不标注
+    - 344 ≠ UIScene(224) ≠ UIFrameWnd(152)，需要进一步分析 call target
+
+  **Camera/PalScriptMgr 嵌入确认 (置信度 90: A 级 binary LEA)**
+  - [A] Camera::Method_41BE80 (VA=0x41BE80): `8D 8E 94 01 00 00` = `lea ecx,[esi+0x194]`
+    - 0x194 = offset 404, 后接 call PalScriptMgr::Get_result
+    - LEA (取地址) 确认嵌入，非 MOV (取指针值)
+  - PalScriptMgr.binary_size = 9512, Camera.binary_size = 12956
+    - 404 + 9512 = 9916 < 12956 ✓ (空间充足)
+  - **修复**: 36 个 Camera 成员 (offsets 405-9915) 转移到 PalScriptMgr (20 新增)
+
+  **4 int→float (置信度 85: A+ decomp)**
+  - [A+] CScreenMode.700: `*(float *)&this->_todo_2BC = v6` in _init_52c480
+  - [A+] Actor.380: `*(float *)&this->_field_17C = acos(...)` in UpdateFrame — acos 返回 float
+  - [A+] Actor.412: `*(float *)&this->_field_19C - (this->m_vecRot.z - 90.0)` in UpdateFrame — 角度运算
+  - [A+] UIScene.180: `(*(float *)&this->_field_0B4 + ...) * 0.017453292` — deg2rad 常量
+
+  **5 int→embedded (置信度 85: A+ decomp ctor/method call)**
+  - [A+] CScreenMode.376: `UIFrameWnd::_UIFrameWnd((UIFrameWnd *)&this->_todo_178)` — 后修正为 offset error，已删除
+  - [A+] CScreenMode.928: `UIScene::_UIScene/Destroy2((UIScene *)&this->_todo_3A0)` — 后修正为不在 LEA 列表，已删除
+  - [A+] CScreenMode.2116: `UIFrameWnd::_UIFrameWnd((UIFrameWnd *)&this->_todo_844)` — 后修正为不在 LEA 列表，已删除
+  - [A+] PropUI.2560: `(UIItem *)&this->_todo_A00` → UIItem (保留)
+  - [A+] PropUI.9448: `(UIFrameWnd *)&this->_todo_24E8` → UIFrameWnd (保留)
+  - **教训**: decomp cast 证据可能指向错误偏移（struct 布局不正确时 Hex-Rays 偏移不可信）
+    二进制 LEA 是最终权威，decomp cast 仅作为候选线索
+
+- **关键教训**: A+ decomp 证据在结构体布局错误时可以指向错误的偏移。
+  CScreenMode 的多个 UIFrameWnd/UIScene embed 标注基于 decomp 设置，
+  但二进制 LEA 解码证明偏移全部有 -8 系统性错误。
+  **二进制指令 > decomp 文本**，即使 decomp 来自 apply_annotations 后的 IDB。
+
 ### [2026-05-17] 384 binary_size + UIFrameWnd 10 float + RoleSystem/Actor 结构重构
 
 - **变更**:
