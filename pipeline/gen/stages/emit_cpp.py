@@ -311,10 +311,8 @@ def run_cpp_generation(filter_classes=None):
     if removed:
         print("  Cleaned %d stale .cpp files" % removed)
 
-    print("\nGenerated %d .cpp files (%d skipped, %d functions) in %s" % (
-        generated, skipped, total_funcs, output_dir))
-    if skipped > 0:
-        print("  (use --force-all to overwrite, or pass class names to update specific files)")
+    print("\nGenerated %d .cpp files (%d functions) in %s" % (
+        generated, total_funcs, output_dir))
 
     # Summary by directory
     for subdir in sorted(set(CLASS_DIRS.values()) | {'Misc'}):
