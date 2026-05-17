@@ -51,6 +51,45 @@
 
 ## 变更记录
 
+### [2026-05-17] 项目架构重组 + CLI 统一入口 + 脚本清理
+
+- **变更**: 目录重组 + pipeline.toml 配置 + cli.py 统一入口 + 95 脚本删除
+- **置信度**: N/A (架构/工具变更)
+
+  **目录重组**:
+  - `pipeline/data/annotations/` → `data/annotations/` (项目根，核心资产)
+  - 所有 9+ 个脚本路径引用更新
+  - hooks (pre-commit, commit-msg) 路径更新
+
+  **pipeline.toml 配置系统**:
+  - 所有路径集中配置（IDA, exe, IDB, annotations, decomp, output）
+  - gitignored，每环境独立
+  - `config --set` 命令支持 LLM 编程式设置
+  - `config` 逐项显示状态 [+]/[!] + 描述 + 修复命令
+
+  **pipeline/cli.py 统一入口**:
+  - `config` — 查看/设置配置
+  - `init [--force]` — 初始化 IDB (raw → work → PDB → annotations)
+  - `apply` — 重新应用标注到 IDB
+  - `export` — 导出 decomp JSON
+  - `codegen all/headers/cpp` — 生成源码
+  - `compile` — CMake + ninja -k 0
+  - `check` — 校验标注
+  - `tool --list / tool <name>` — 运行工具脚本
+  - 每个命令失败时给出 actionable 错误信息 + 下一步提示
+
+  **脚本清理** (-23344 行):
+  - pipeline/ida/: 删除 28 个 _ 临时脚本，提升 3 个查询工具
+  - tools/: 删除 62 个过时脚本 (ghidra/pdb/stubs/prototypes)
+  - tools/: 删除 5 个 build 脚本 (CMake 已替代)
+  - 最终: pipeline/ida/ 17 脚本 + tools/ 15 脚本
+
+  **pal3-pipeline skill 适配**:
+  - 所有命令更新为 `python pipeline/cli.py <cmd>`
+  - 环境说明指向 pipeline.toml
+  - 工作流使用 CLI 命令
+  - IDA 查询用 $IDA/$IDB 变量
+
 ### [2026-05-17] AST 迁移完成 — 全 4 stage 使用 tree-sitter
 
 - **变更**: 全部 4 个 stage 迁移到 tree-sitter C++ AST
