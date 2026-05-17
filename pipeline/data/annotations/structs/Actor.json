@@ -135,7 +135,7 @@
     "372": {
       "name": "_field_174",
       "type": "int",
-      "source": "binary:gap_r2"
+      "source": "binary:gap_r2 | name_from_RoleSystem | rename:was_m_pScene_conflict_with_off8"
     },
     "376": {
       "name": "m_vecRot",
@@ -148,9 +148,9 @@
       "source": "binary:gap_r2"
     },
     "384": {
-      "name": "_field_180",
+      "name": "m_nActionData",
       "type": "int",
-      "source": "binary:gap_r2"
+      "source": "binary:gap_r2 | name_from_RoleSystem"
     },
     "388": {
       "name": "m_nCloneParam",
@@ -211,6 +211,226 @@
       "name": "_field_200",
       "type": "float",
       "source": "A+:decomp *(float*)&this->_field_200 (1 occurrences)"
+    },
+    "28": {
+      "name": "_field_1C4",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_452"
+    },
+    "32": {
+      "name": "_field_1C8",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_456"
+    },
+    "40": {
+      "name": "_field_1D0",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_464"
+    },
+    "44": {
+      "name": "_field_1D4",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_468"
+    },
+    "48": {
+      "name": "_todo_1D8",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_472"
+    },
+    "56": {
+      "name": "_field_1E0",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_480"
+    },
+    "60": {
+      "name": "_field_1E4",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_484"
+    },
+    "64": {
+      "name": "_field_1E8",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_488"
+    },
+    "76": {
+      "name": "m_nCachedA",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_500"
+    },
+    "80": {
+      "name": "m_nCachedB",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_504"
+    },
+    "84": {
+      "name": "m_nTransform",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_508"
+    },
+    "88": {
+      "name": "_todo_200",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_512"
+    },
+    "92": {
+      "name": "m_bUIFlagA",
+      "type": "unsigned char",
+      "source": "transfer_from_RoleSystem_off_516"
+    },
+    "93": {
+      "name": "m_bUIFlagB",
+      "type": "unsigned char",
+      "source": "transfer_from_RoleSystem_off_517"
+    },
+    "96": {
+      "name": "_field_208",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_520"
+    },
+    "100": {
+      "name": "m_szText",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_524"
+    },
+    "112": {
+      "name": "_todo_218",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_536"
+    },
+    "152": {
+      "name": "_field_240",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_576"
+    },
+    "156": {
+      "name": "_field_244",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_580"
+    },
+    "192": {
+      "name": "_field_268",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_616"
+    },
+    "196": {
+      "name": "_field_26C",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_620"
+    },
+    "204": {
+      "name": "m_nState",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_628"
+    },
+    "208": {
+      "name": "m_pRoleObj",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_632"
+    },
+    "212": {
+      "name": "m_nPathEnabled",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_636"
+    },
+    "216": {
+      "name": "m_fScale",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_640"
+    },
+    "220": {
+      "name": "m_fMatrixA",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_644"
+    },
+    "224": {
+      "name": "m_fMatrixB",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_648"
+    },
+    "228": {
+      "name": "m_fMatrixC",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_652"
+    },
+    "232": {
+      "name": "_field_290",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_656"
+    },
+    "236": {
+      "name": "_field_294",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_660"
+    },
+    "240": {
+      "name": "_field_298",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_664"
+    },
+    "244": {
+      "name": "m_fMatrixE",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_668"
+    },
+    "248": {
+      "name": "m_fMatrixF",
+      "type": "float",
+      "source": "transfer_from_RoleSystem_off_672"
+    },
+    "252": {
+      "name": "_field_2A4",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_676"
+    },
+    "256": {
+      "name": "m_Actor",
+      "type": "Actor *",
+      "source": "transfer_from_RoleSystem_off_680"
+    },
+    "272": {
+      "name": "m_pActor",
+      "type": "gbActor *",
+      "source": "transfer_from_RoleSystem_off_696"
+    },
+    "308": {
+      "name": "_field_2DC",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_732"
+    },
+    "396": {
+      "name": "_field_334",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_820"
+    },
+    "432": {
+      "name": "_todo_358",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_856"
+    },
+    "436": {
+      "name": "m_pEquipAtt0",
+      "type": "RoleAtt *[3]",
+      "source": "transfer_from_RoleSystem_off_860"
+    },
+    "448": {
+      "name": "m_pEquipAtt1",
+      "type": "RoleAtt *[3]",
+      "source": "transfer_from_RoleSystem_off_872"
+    },
+    "460": {
+      "name": "m_pEquipAtt2",
+      "type": "RoleAtt *[3]",
+      "source": "transfer_from_RoleSystem_off_884"
+    },
+    "496": {
+      "name": "m_pSelfAtt",
+      "type": "RoleAtt *",
+      "source": "transfer_from_RoleSystem_off_920"
+    },
+    "500": {
+      "name": "_todo_39C",
+      "type": "int",
+      "source": "transfer_from_RoleSystem_off_924"
     }
   },
   "gen_size": 596,

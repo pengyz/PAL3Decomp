@@ -51,6 +51,46 @@
 
 ## 变更记录
 
+### [2026-05-17] 384 binary_size + UIFrameWnd 10 float + RoleSystem/Actor 结构重构
+
+- **变更**:
+  1. 384 结构体 binary_size 从 None 设为 gen_size（gen_size==pdb_size，gap≤32）
+  2. UIFrameWnd offsets 88-124: 10 个 int→float 类型修复
+  3. RoleSystem/Actor 嵌入重叠修复: 59 字段从 RoleSystem 转移到 Actor
+  4. 11 个分散的类型修复（5 float + 6 嵌入对象）
+
+- **置信度**:
+
+  **384 binary_size (置信度 85: PDB+成员布局交叉)**
+  - [B] gen_size == pdb_size 交叉验证
+  - [B] 最高偏移+类型大小 ≤ gen_size（gap≤32 字节）
+  - 判定: 不单独依赖 PDB，而是 PDB + member_layout 双重验证
+
+  **UIFrameWnd 10 int→float (置信度 85: A+ decomp 多函数多次)**
+  - [A+] offsets 88-124 每个字段有 5-13 处 `*(float *)&this->_todo_XX` 访问
+  - [A+] 函数: _method_43fd20 (核心 UI layout), _method_443ba0/_method_443bf0/_method_443c20 (渲染)
+  - 矛盾处理: offsets 88-100 也有 `(tagRECT *)&` cast，但 tagRECT 是 int rect 而数据是 float rect
+    — float 证据 (10-13x) 远强于 tagRECT cast (1x)，判定为 float
+
+  **RoleSystem/Actor 嵌入重叠修复 (置信度 90: 结构性修正)**
+  - [A+] RoleSystem._todo_1A8 (offset 424) 已确认为嵌入 Actor (596 bytes)
+  - Actor 占据 RoleSystem offsets 424-1020，但 RoleSystem 在此范围内有 59 个独立成员
+  - 修复: 46 个字段转移到 Actor.json（新增或更新语义名），13 个已存在跳过
+  - 2 个冲突记录: Actor.m_vecRot(gbVec3D) vs RS.m_bRoleFlag(unsigned char) @376,
+    Actor.m_fBlendWeight(float) vs RS.m_pEquipAtt4(RoleAtt*[3]) @484
+  - 冲突暂保留 Actor 原值，需后续二进制验证
+
+  **11 分散类型修复 (置信度 85: A+ decomp)**
+  - 5 int→float: PalScript.68, RenderTarget2.48, RoleSystem.428/436/464
+  - 4 int→embedded: CScreenMode.520(UIFrameWnd), .1008(UIScene), .1132(UIWnd), .2612(UIFrameWnd)
+  - UIScene.112: int→POINT (3x cast)
+  - Camera.404: int→PalScriptMgr (ctor call)
+
+  **PtrArray + UIListBox (置信度 85)**
+  - PtrArray.binary_size=16 (gen_size==pdb_size, 4 members×4 bytes)
+  - UIListBox._todo_15C → m_wndTemplate(UIWnd): A+ UIWnd::CreateFromTemplate evidence
+  - UIListBox._field_0CC removed: inside PtrArray@200 (PtrArray.m_nSize at +4)
+
 ### [2026-05-17] feat(gen_cpp): 全局结构体成员解析 + 标注清理
 
 - **变更**: gen_cpp.py 新增 `replace_struct_member_refs()` codegen 层映射 + globals.json 清理
