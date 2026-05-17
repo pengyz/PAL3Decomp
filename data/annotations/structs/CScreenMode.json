@@ -66,11 +66,6 @@
       "type": "int",
       "source": "ida_decomp:_method_527dc0 switch(this), byte check, 4 refs"
     },
-    "824": {
-      "name": "_field_338",
-      "type": "UIFrameWnd",
-      "source": "binary:gap_access | fix:binary_ctor_confirms_UIFrameWnd"
-    },
     "0": {
       "name": "m_pEnumeration",
       "type": "float",
@@ -125,21 +120,6 @@
       "name": "m_nBarParam",
       "type": "int",
       "source": "ida_decomp:SetProgress loaded twice, 2 refs"
-    },
-    "364": {
-      "name": "_field_16C",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "368": {
-      "name": "m_nMenuState",
-      "type": "UIFrameWnd",
-      "source": "ida_decomp:_init_494250 =-1, _method_494660 =0, 3 refs | fix:binary_ctor_confirms_UIFrameWnd"
-    },
-    "520": {
-      "name": "_field_208",
-      "type": "UIFrameWnd",
-      "source": "binary:1x access | type_fix:int->UIFrameWnd(A+:decomp UIFrameWnd::_UIFrameWnd((*)&this->_field_208))"
     },
     "1280": {
       "name": "m_bTimerInitB",
@@ -481,11 +461,6 @@
       "type": "float",
       "source": "A:FPU_disp32_0x533325"
     },
-    "976": {
-      "name": "_todo_3D0",
-      "type": "UIFrameWnd",
-      "source": "gap_fill:ida_decomp_access | fix:binary_ctor_confirms_UIFrameWnd"
-    },
     "1616": {
       "name": "_todo_650",
       "type": "int",
@@ -581,16 +556,6 @@
       "type": "int",
       "source": "gap_fill:ida_decomp_access"
     },
-    "672": {
-      "name": "_todo_2A0",
-      "type": "UIFrameWnd",
-      "source": "A:binary_ctor lea ecx,[esi+0x2A0] stride=152"
-    },
-    "1128": {
-      "name": "_todo_468",
-      "type": "UIFrameWnd",
-      "source": "A:binary_ctor lea ecx,[esi+0x468] stride=152"
-    },
     "1968": {
       "name": "_todo_7B0",
       "type": "UIScene",
@@ -625,6 +590,36 @@
       "type": "UIItem",
       "name": "_embed_UIItem_3876",
       "source": "A:LEA_ECX+CALL_UIItem::ctor"
+    },
+    "360": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_360",
+      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
+    },
+    "512": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_512",
+      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
+    },
+    "664": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_664",
+      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
+    },
+    "816": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_816",
+      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
+    },
+    "968": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_968",
+      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
+    },
+    "1120": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_1120",
+      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
     }
   },
   "binary_size": 4660,
