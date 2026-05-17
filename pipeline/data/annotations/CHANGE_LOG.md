@@ -51,6 +51,42 @@
 
 ## 变更记录
 
+### [2026-05-17] codegen pipeline 架构重写
+
+- **变更**: gen_cpp.py 1100 行单文件 → pipeline 架构 (15 文件, 1500+ 行)
+- **置信度**: N/A (架构变更)
+
+  **新架构**:
+  ```
+  codegen.py              入口 (headers/cpp/all 子命令)
+  data.py                 DataStore 单例 (一次性加载)
+  stages/transform.py     Pipeline runner (auto-discovery + order)
+  transforms/             可插拔变换模块 (26 个 transform 函数)
+    ida_cleanup.py        order 10-30, 250-260: IDA 无效代码
+    signature.py          order 55-65: 函数定义行处理
+    type_fixes.py         order 100-140: 类型修复
+    oop.py                order 200-230: OOP 调用变换
+    names.py              order 300-330: 名称解析
+    compat.py             order 400-470: VC6 兼容性
+  stages/collect.py       函数收集 + 分类
+  stages/emit_cpp.py      .cpp 生成
+  stages/emit_headers.py  .h 生成 (委托现有 gen_headers.py)
+  ```
+
+  **设计决策**:
+  - Auto-discovery: transforms/ 目录下所有 .py 自动扫描，@register(order=N) 注册
+  - 全量生成: 去掉增量缓存逻辑，简单可靠
+  - DataStore 单例: 全局数据集中加载，transform 按需 `from data import store` 访问
+  - Transform 签名: `(code: str, ctx: TransformContext) -> str`
+
+  **关键 bug 修复 (迁移过程中发现)**:
+  - ctor cleanup 必须在 OOP transform 之后执行 (order 40→250)
+    原因: decomp 生成 `Class::Ctor(obj)` → OOP 变换为 `obj->Ctor()` → 再由 ctor cleanup 删除
+  - ctor 检测扩展到所有大写开头类名 (不只 game_classes with .h)
+
+  **编译状态**: 161 failed (旧 pipeline 156, 差距 5 文件待修)
+  - 新 pipeline 通过数: 32 (旧 34, 差 2 = 遗漏变换)
+
 ### [2026-05-17] 编译修复批次: 25→32 pass (+7 文件)
 
 - **变更**: annotation 修复 + gen_cpp.py codegen 改进
