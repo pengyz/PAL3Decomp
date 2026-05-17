@@ -137,18 +137,11 @@ ui:
               title: "🎯 当前状态"
               kind: data
               slots: [current_target, alerts]
-      - split: vertical
-        ratio: [35, 65]
-        children:
-          - panel:
-              id: audit_log
-              title: "📋 操作日志"
-              kind: data
-              slots: [activity]
-          - panel:
-              id: chat
-              title: "💬 Agent 对话"
-              kind: chat
+      - panel:
+          id: audit_log
+          title: "📋 操作日志"
+          kind: data
+          slots: [activity]
 
 directives: |
   ## 启动序列（含首次配置引导）
