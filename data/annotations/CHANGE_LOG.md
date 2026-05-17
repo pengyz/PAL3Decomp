@@ -51,6 +51,27 @@
 
 ## 变更记录
 
+### [2026-05-17] 嵌入子对象发现: CCBStageScene+Object3D, UIListBox+UIItem
+
+#### CCBStageScene+856: Object3D* → Object3D (嵌入值, 152 bytes)
+
+- **证据**:
+  1. [A] VA=0x52B305: `8D 8E 58030000` = LEA ECX,[ESI+358h]
+  2. [A] VA=0x52B310: `E8 5B18F5FF` = CALL Object3D::Object3D (0x47CB70)
+  3. [A] ESI=this: `8B F1` (mov esi,ecx) @ _method_52b2a0+23
+  4. [B] 856+152=1008, 下一字段 +1008 (m_eBFAForce) 精确对齐到 binary_size=1012
+- **影响**: 删除 37 个重叠成员（实际属于 Object3D 内部）
+- **置信度**: 90
+
+#### UIListBox+356: int → UIItem (嵌入值, 252 bytes)
+
+- **证据**:
+  1. [A] VA=0x527A51: `8D 8E 64010000` = LEA ECX,[ESI+164h]
+  2. [A] VA=0x527A5C: `E8 AF99F7FF` = CALL UIItem::UIItem (0x4A1410)
+  3. [A] ESI=this: `8B F1` @ UIListBox::ctor_79F0+23
+- **影响**: 删除 27 个重叠成员（实际属于 UIItem 内部）
+- **置信度**: 90
+
 ### [2026-05-17] 10 个 int→short (66-prefix word-width scan)
 
 扫描 `66 89/8B` (mov word ptr) 和 `0F B7` (movzx word) 指令，交叉匹配类方法。
