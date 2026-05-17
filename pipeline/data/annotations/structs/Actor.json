@@ -178,9 +178,9 @@
       "source": "ida_decomp:_nearby_53b890 = *(a2+408), 4 refs"
     },
     "412": {
-      "name": "_field_19C",
+      "name": "m_fFacingAngle",
       "type": "float",
-      "source": "binary:gap_r2 | type_fix:int->float(A+:decomp *(float*)&this->_field_19C-m_vecRot.z in UpdateFrame (3x))"
+      "source": "binary:gap_r2 | type_fix:int->float(A+:decomp *(float*)&this->_field_19C-m_vecRot.z in UpdateFrame (3x)) | name:m_fFacingAngle(A+:decomp =90.0 + used as rotation_delta_base)"
     },
     "420": {
       "name": "_field_1A4",

@@ -53,9 +53,9 @@
       "source": "binary:13x access"
     },
     "40": {
-      "name": "_field_028",
+      "name": "m_fFOVLerp",
       "type": "float",
-      "source": "binary:8x access | type_fix"
+      "source": "binary:8x access | type_fix | name:m_fFOVLerp(A+:decomp GetLerpPos(target+456, THIS, m_fFOV, factor) = current interpolated FOV)"
     },
     "44": {
       "name": "m_bCamFlag",
@@ -68,19 +68,19 @@
       "source": "binary:5x access | type_fix"
     },
     "52": {
-      "name": "_field_034",
+      "name": "m_fLerpPosX",
       "type": "float",
-      "source": "binary:6x access | type_fix"
+      "source": "binary:6x access | type_fix | name:m_fLerpPosX(A+:decomp GetLerpPos(target+492, _field_040, THIS, factor); assigned from p_DWORD[123])"
     },
     "56": {
-      "name": "_field_038",
+      "name": "m_fLerpPosY",
       "type": "float",
-      "source": "binary:5x access | type_fix"
+      "source": "binary:5x access | type_fix | name:m_fLerpPosY(A+:decomp GetLerpPos(target+496, _field_044, THIS, factor); assigned from p_DWORD[124])"
     },
     "60": {
-      "name": "_field_03C",
+      "name": "m_fLerpPosZ",
       "type": "float",
-      "source": "A:0x41D010 stores gbVec3D.z from [eax+8] where eax=param2(gbVec3D*)"
+      "source": "A:0x41D010 stores gbVec3D.z from [eax+8] where eax=param2(gbVec3D*) | name:m_fLerpPosZ(A+:decomp GetLerpPos(target+500, _field_048, THIS, factor); assigned from p_DWORD[125])"
     },
     "64": {
       "name": "_field_040",
@@ -194,8 +194,8 @@
     },
     "564": {
       "name": "_field_234",
-      "type": "int",
-      "source": "binary:1x access"
+      "type": "float",
+      "source": "binary:1x access | type_fix:int->float(A+:decomp assign -1018691584=0xC3480000=-200.0f)"
     },
     "568": {
       "name": "_field_238",
