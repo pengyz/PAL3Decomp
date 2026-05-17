@@ -30,6 +30,7 @@ class DataStore:
         self.struct_instances = []  # [(base, end, name, type)]
         self.struct_members = {}    # type -> {offset: (name, member_type)}
         self.game_classes = set()   # class names with .h files
+        self.thunk_classes = set()  # j_ClassName thunk type names
         self.static_methods = set() # "ClassName::Method" for __cdecl methods
         self.declared_globals = set()  # already in globals.h
         self.exe_data = b''         # raw exe for .rdata string lookup
@@ -78,6 +79,12 @@ class DataStore:
                     self.thunks["sub_%s" % addr[2:].lstrip('0').lower()] = target
                     self.thunks[info['name']] = target
                     self.thunks[info['name'].replace('~', '_')] = target.replace('~', '_')
+                    # Collect thunk class names for type cast replacement
+                    n = info.get('name', '')
+                    if '::' in n:
+                        self.thunk_classes.add(n.split('::')[0])
+            self.thunk_classes.add('j_std')
+            self.thunk_classes.add('j_j_codecvt_base')
 
         # globals.json → global types + name map
         globals_path = self.annotations_dir / "globals.json"

@@ -24,12 +24,22 @@ def _comment_out_explicit_ctor_calls(code):
         m = re.search(r'->\s*([A-Z_]\w+)\s*\(', stripped)
         if m:
             called_name = m.group(1)
-            if called_name in store.game_classes:
-                if stripped.endswith(';') and '=' not in stripped \
-                        and not stripped.startswith('return') \
+            if called_name in store.game_classes and stripped.endswith(';'):
+                indent = line[:len(line) - len(line.lstrip())]
+                if '=' not in stripped and not stripped.startswith('return') \
                         and not stripped.startswith('if') \
                         and not stripped.startswith('while'):
-                    indent = line[:len(line) - len(line.lstrip())]
+                    out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
+                    continue
+                elif stripped.startswith('return'):
+                    cast_m = re.match(
+                        r'return\s+(.+?)\s*->\s*%s\s*\(' % re.escape(called_name), stripped)
+                    if cast_m:
+                        out.append(indent + 'return %s; // ctor auto-called' % cast_m.group(1).rstrip())
+                        continue
+                    out.append(indent + 'return this; // [ctor replaced]')
+                    continue
+                elif '=' in stripped:
                     out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
                     continue
         out.append(line)
@@ -88,8 +98,17 @@ def run(code, ctx):
     """Apply post-OOP cleanup transforms (exact order from old gen_cpp.py)."""
     cls_name = ctx.cls_name
 
+    # TODO: free functions should get full cleanup (ctor comment, COERCE_FLOAT, etc.)
+    # Currently minimal path to match old gen_cpp.py behavior exactly
+    if ctx.is_free_function:
+        code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
+        code = _replace_ida_internals(code)
+        return code
+
+    # --- Class method full cleanup ---
+
     # 1. Remove 'this' variable declaration
-    if not ctx.is_free_function and cls_name:
+    if cls_name:
         code = re.sub(r'^\s*%s\s*\*\s*this\s*;.*$' % re.escape(cls_name), '', code, flags=re.MULTILINE)
 
     # 2. Fix operator new
@@ -125,8 +144,9 @@ def run(code, ctx):
     code = re.sub(r'return\s+&this->__vftable\s*;', 'return this;', code)
     code = re.sub(r'return\s+\([^)]+\)\s*&this->__vftable\s*;', 'return this;', code)
 
-    # 7. Comment out explicit ctor calls (->ClassName() where ClassName is game class)
-    code = _comment_out_explicit_ctor_calls(code)
+    # 7. Comment out explicit ctor calls (only for class methods, not free functions)
+    if not ctx.is_free_function:
+        code = _comment_out_explicit_ctor_calls(code)
 
     # 8. LODWORD/HIDWORD address cast
     code = re.sub(

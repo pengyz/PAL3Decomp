@@ -8,6 +8,10 @@ import re
 
 def run(code, ctx):
     """Apply structural transforms to function code."""
+    if ctx.is_free_function:
+        # TODO: free functions also need signature cleanup (CC removal, this→_this in def line)
+        # Currently skipped to match old gen_cpp.py behavior exactly
+        return code
     lines = code.split('\n')
 
     # 1. Filter IDA header comments

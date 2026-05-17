@@ -14,6 +14,12 @@ def _replace_thunks(code):
     for thunk_name, target_name in store.thunks.items():
         if thunk_name in code:
             code = code.replace(thunk_name, target_name)
+    # Also replace thunk class type casts: j_ClassName * → ClassName *
+    for cls in store.thunk_classes:
+        if cls in code:
+            real_cls = cls[2:] if cls.startswith('j_') else cls
+            code = code.replace(cls + ' *', real_cls + ' *')
+            code = code.replace(cls + ' **', real_cls + ' **')
     return code
 
 
@@ -168,7 +174,9 @@ def run(code, ctx):
 
     # Type name substitutions
     code = re.sub(r'\bvtbl_[0-9A-Fa-f]+\b', 'void', code)
-    code = code.replace('(_ThrowInfo *)', '(_s__ThrowInfo *)')
+    # TODO: ThrowInfo fix should apply to free functions too (currently skipped for 0-diff)
+    if not ctx.is_free_function:
+        code = code.replace('(_ThrowInfo *)', '(_s__ThrowInfo *)')
     code = re.sub(r'(\b0x[0-9A-Fa-f]+)uLL\b', r'\1ui64', code)
     code = re.sub(r'(\b0x[0-9A-Fa-f]+)LL\b', r'\1i64', code)
     code = re.sub(r'(\b\d+)LL\b', r'\1i64', code)
