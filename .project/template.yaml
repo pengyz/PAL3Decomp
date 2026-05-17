@@ -151,19 +151,32 @@ ui:
               kind: chat
 
 directives: |
-  ## 环境配置
+  ## 启动序列（含首次配置引导）
 
-  所有路径配置在 `pipeline.toml`（gitignored，每台机器独立）。
-  如果不存在，运行 `python pipeline/cli.py config` 会报错并给出创建模板。
-  不要硬编码任何路径。
+  ### Step 1: 检查 pipeline.toml
+  运行 `python pipeline/cli.py config`。
+  - 如果报 "pipeline.toml not found"：
+    1. 检查 `pipeline.toml.example` 是否存在，如果有则 `cp pipeline.toml.example pipeline.toml`
+    2. 如果没有 example，根据 cli.py 报错中的模板内容创建 pipeline.toml
+    3. 搜索系统中的 idat.exe / idat64.exe 路径（`where idat64` 或搜索 Program Files）
+    4. 将找到的 IDA 路径写入 `[ida] path`
+    5. 再次运行 `python pipeline/cli.py config` 确认所有路径有效
+  - 如果报 "IDA not found" / "Binary not found"：
+    1. 提示用户确认对应文件位置
+    2. 修改 pipeline.toml 中的路径
+    3. 重新验证
 
-  ## 启动序列
+  ### Step 2: 检查 annotations 状态
+  `python pipeline/cli.py check`
+  - 有错误 → 分析并修复后重新 check
 
-  1. `python pipeline/cli.py config` — 确认 pipeline.toml 存在且路径有效
-  2. `python pipeline/cli.py check` — 确认 annotations 状态
-  3. 如果 IDB 不存在：`python pipeline/cli.py init`
-  4. 选择第一个目标，开始工作循环
-  5. 更新 current_target 面板
+  ### Step 3: 初始化 IDB
+  如果 IDB (work) 不存在：`python pipeline/cli.py init`
+  - 这会从 exe 创建 raw IDB，然后 apply annotations
+  - 耗时较长（几分钟），正常等待
+
+  ### Step 4: 开始工作循环
+  选择第一个目标，更新 current_target 面板，进入自主循环。
 
   ## 典型修改后验证流程
 
