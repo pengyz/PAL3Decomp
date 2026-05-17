@@ -51,6 +51,29 @@
 
 ## 变更记录
 
+### [2026-05-17] vtable __thiscall this 参数剥离 + __hidden 实验
+
+- **变更**: vtable 函数指针 __thiscall this 参数处理方案验证
+- **置信度**: 90 (实验验证)
+
+  **strip-this 方案 (最终采用, -11 vftable)**
+  - 逻辑: `int (__thiscall *fn)(UIWnd *this, int)` → `int (__thiscall *fn)(int)`
+  - 原理: IDA parse_decl 会将 __thiscall+explicit_this 转为 __stdcall
+    剥离 this 后 IDA 保持 __thiscall CC → Hex-Rays 可识别虚派发
+  - 效果: raw decomp 759→748 (-11), generated code 418→407 (-11)
+
+  **__hidden 方案 (实验失败, 已回退)**
+  - 逻辑: `int (__thiscall *fn)(UIWnd *__hidden this, int)`
+  - 效果: 回退到 759 (与原始相同) — IDA 不接受 vtable struct 中的 __hidden
+  - 判定: 放弃
+
+  **残留 407 根因分析**:
+  - 来源: 指针算术访问嵌入对象 `(UIListBox*)((char*)this + N)`
+  - 即使 cast 类型正确，Hex-Rays 对动态偏移的 devirtualization 有限
+  - 修复路径: 将大 char[] 缓冲区拆分为具体的嵌入 struct 成员
+    (如 CCBUIPanel.m_Panels[18088] 拆为具体的 UIListBox 数组)
+  - 这回归到"struct 成员覆盖率"问题——系统性扫描已清零
+
 ### [2026-05-17] vtable microcode 解决方案（__cppobj + 签名修复）
 
 - **变更**: apply_annotations.py 三重修复实现虚调用解析
