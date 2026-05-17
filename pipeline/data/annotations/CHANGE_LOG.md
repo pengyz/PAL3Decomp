@@ -51,6 +51,31 @@
 
 ## 变更记录
 
+### [2026-05-17] codegen pipeline 0 diff 达成 — 可安全替代旧代码
+
+- **变更**: 4-stage pipeline 输出与旧 gen_cpp.py 100% byte-identical
+- **置信度**: 100 (MD5 hash 192/192 文件验证)
+
+  **验证方法**:
+  - 旧: `python gen_cpp.py --force-all` → 生成 192 .cpp
+  - 新: `python codegen.py cpp` → 生成 192 .cpp
+  - 逐文件 MD5 对比: **0 差异**
+
+  **达成 0 diff 的修复路径** (83 → 37 → 9 → 2 → 0):
+  - stage3 补全 return/= 分支的 ctor 注释逻辑
+  - stage4 补全 thunk class type 替换 (j_UIWnd → UIWnd)
+  - stage1/3/4 free function 走独立最小路径 (匹配旧行为)
+  - stage4 ThrowInfo 对 free function 跳过 (匹配旧行为)
+  - data.py 加载 thunk_classes
+
+  **TODO (free function 未来改进)**:
+  - Stage 1: free function 也需要签名清理
+  - Stage 3: free function 也需要 COERCE_FLOAT/ctor 清理
+  - Stage 4: free function 也需要 ThrowInfo 修复
+  - 当前跳过是为了严格对齐旧行为；AST 迁移后统一处理
+
+  **下一步**: 删除旧 gen_cpp.py + transforms/ 目录，然后开始 AST 迁移
+
 ### [2026-05-17] codegen pipeline 验证完成 + 161 vs 156 差异分析
 
 - **变更**: pipeline 输出验证 + ctor 检测精确化
