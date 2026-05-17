@@ -51,6 +51,31 @@
 
 ## 变更记录
 
+### [2026-05-17] CScreenMode UIScene 数组 + UIListBox embed 撤销
+
+- **变更**:
+  1. CScreenMode: 添加 9 个 UIScene 嵌入 (stride 344, offset 1280-4032)
+  2. UIListBox: 撤销 _todo_15C → UIWnd 嵌入标注（二进制验证否定）
+- **置信度**: 90 (UIScene) / N/A (撤销)
+
+  **CScreenMode 9× UIScene (置信度 90: A 级 binary LEA+CALL)**
+  - [A] CScreenMode::ctor_3380 (VA=0x483380):
+    `UIScene::Destroy2` 在 9 个偏移被调用: 1280, 1624, 1968, 2312, 2656, 3000, 3344, 3688, 4032
+  - stride = 344, UIScene.binary_size = 224 → 每 slot 含 UIScene(224) + 120 字节额外数据
+  - 移除 55 个落在 UIScene 嵌入范围内的重叠成员
+  - CScreenMode 从 297 成员精简到 128（整体嵌入清理后）
+
+  **UIListBox._todo_15C UIWnd embed 撤销 (二进制否定)**
+  - 原始证据: [A+] decomp `UIWnd::CreateFromTemplate((UIWnd *)&this->_todo_15C, ...)`
+  - 二进制验证: 在 UIListBox 的 12 个构造函数中**没有找到** `LEA ecx,[reg+0x15C]`
+  - 冲突证据: offset 348-435 范围内有 11 个语义命名成员 (m_nColumnCount, m_nScrollPos 等)
+    这些是 UIListBox 特有字段，不是 UIWnd 内部成员
+  - **判定**: decomp cast 不可靠，撤销嵌入，恢复原有成员
+  - **教训补强**: 即使 A+ decomp 有 `(Type*)&this->field` cast，
+    如果 (1) 无 binary LEA 且 (2) 重叠范围有语义成员 → 嵌入判定为假阳性
+
+- **指标**: 命名率 87.4% (7339/8395), 对齐违规 0
+
 ### [2026-05-17] CScreenMode 嵌入偏移修正 + Camera/PalScriptMgr 重叠 + 9 类型修复
 
 - **变更**:
