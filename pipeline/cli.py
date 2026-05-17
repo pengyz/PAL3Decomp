@@ -107,6 +107,12 @@ def cmd_init(force=False):
     _check_ida()
     if not cfg.exe_path.exists():
         print("[ERROR] Binary not found: %s" % cfg.exe_path)
+        print("  Place PAL3.exe at the path configured in pipeline.toml [binary] exe")
+        print("  Current: %s" % cfg.exe_path)
+        sys.exit(1)
+    if not cfg.annotations_dir.exists():
+        print("[ERROR] Annotations not found: %s" % cfg.annotations_dir)
+        print("  Ensure data/annotations/ exists with structs/, functions.json, etc.")
         sys.exit(1)
 
     print("=" * 55)
@@ -214,6 +220,19 @@ def cmd_check():
 
 def cmd_codegen(args):
     """Delegate to codegen.py."""
+    if not args:
+        print("[ERROR] codegen requires a subcommand: all, headers, or cpp")
+        print("  python pipeline/cli.py codegen all")
+        sys.exit(1)
+
+    # Check decomp exists for cpp generation
+    if args[0] in ('all', 'cpp'):
+        if not cfg.decomp_dir.exists() or not any(cfg.decomp_dir.glob('*.json')):
+            print("[ERROR] Decomp JSON not found in: %s" % cfg.decomp_dir)
+            print("  Run 'python pipeline/cli.py export' first.")
+            print("  (Requires initialized IDB: 'python pipeline/cli.py init')")
+            sys.exit(1)
+
     script = os.path.join(_PIPELINE_DIR, 'gen', 'codegen.py')
     result = subprocess.run([sys.executable, script] + args)
     sys.exit(result.returncode)
@@ -302,6 +321,27 @@ def cmd_compile():
     build_dir = Path(_PROJECT_DIR) / 'build'
     toolchain = Path(_PROJECT_DIR) / 'cmake' / 'toolchain-vc6.cmake'
 
+    # Check source files exist
+    src_dir = cfg.output_src
+    if not src_dir.exists() or not any(src_dir.rglob('*.cpp')):
+        print("[ERROR] No .cpp source files found in: %s" % src_dir)
+        print("  Run 'python pipeline/cli.py codegen all' first.")
+        print("  (Requires decomp JSON: 'python pipeline/cli.py export')")
+        sys.exit(1)
+
+    # Check toolchain
+    if not toolchain.exists():
+        print("[ERROR] VC6 toolchain not found: %s" % toolchain)
+        sys.exit(1)
+
+    # Check cmake and ninja available
+    if shutil.which('cmake') is None:
+        print("[ERROR] cmake not found in PATH")
+        sys.exit(1)
+    if shutil.which('ninja') is None:
+        print("[ERROR] ninja not found in PATH")
+        sys.exit(1)
+
     # Configure if build dir doesn't exist or has no build.ninja
     if not (build_dir / 'build.ninja').exists():
         print("COMPILE: configuring CMake ...")
@@ -326,6 +366,8 @@ def cmd_compile():
         print("-> BUILD SUCCESS: all files compiled")
     else:
         print("-> BUILD INCOMPLETE: some files failed (see errors above)")
+        print("  Fix annotations or codegen, then re-run:")
+        print("  python pipeline/cli.py compile")
 
 
 def main():
