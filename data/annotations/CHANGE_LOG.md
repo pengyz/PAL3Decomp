@@ -51,6 +51,18 @@
 
 ## 变更记录
 
+### [2026-05-18] 方法论 bug 修复: cast-based 归属不可迭代
+
+**发现**: cast-based 归属在多轮 apply→export→scan 循环中产生 A→B→A 递归。
+原因: 函数体中 `((ClassB*)this)` 可能是访问其他对象（非 this 自身的类型），
+但 sig_this=ClassA（IDA 推断的 this 类型）是更权威的证据。
+多轮迭代时 sig_this 和 cast 互相覆盖。
+
+**规则**: cast-based 归属只能在**首轮**使用（sig_this 尚未生效时）。
+后续轮次只用 **overflow + sig_this** 方法（不会递归）。
+
+回退了约 170 个递归修改 (git reset --hard 36a9c413)。
+
 ### [2026-05-18] UIListBox 手动深度分析 — vtable + offset-overflow + static-call
 
 - 4 个 vtable class 修正 (UIListBox→UIBigMap/PropUI/CCBMagicWindow/UICoverFrm)
