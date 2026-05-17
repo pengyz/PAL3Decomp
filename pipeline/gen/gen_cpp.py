@@ -704,35 +704,32 @@ def _comment_out_explicit_ctor_calls(code):
     emits these for placement-like initialization. We comment them out since
     the compiler generates these automatically.
     """
-    # Match patterns like:
-    #   ((ClassName *)expr)->ClassName();
-    #   ((ClassName *)expr)->ClassName(args);
-    # where ClassName matches a known header file (indicating a real class)
-    def _repl(m):
-        indent = m.group(1)
-        full = m.group(0)
-        return indent + '// [AUTO-COMMENTED] ' + full.strip()
-
-    # Build pattern: ->ClassName( where ClassName is in GAME_CLASSES
-    # We do line-by-line to handle this properly
     lines = code.split('\n')
     out = []
     for line in lines:
         stripped = line.strip()
-        # Check for ->ClassName() or ->ClassName(args) where ClassName is a known class
         m = re.search(r'->\s*([A-Z_]\w+)\s*\(', stripped)
         if m:
             called_name = m.group(1)
-            # Only comment out if it's a constructor call (name matches a class)
-            # and the line is a standalone statement (not part of assignment or condition)
             if called_name in GAME_CLASSES:
-                # Check it's a statement, not part of a larger expression
-                # Heuristic: line ends with ; and doesn't have = or return before the call
-                if stripped.endswith(';') and '=' not in stripped and not stripped.startswith('return') \
-                        and not stripped.startswith('if') and not stripped.startswith('while'):
-                    indent = line[:len(line) - len(line.lstrip())]
-                    out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
-                    continue
+                indent = line[:len(line) - len(line.lstrip())]
+                if stripped.endswith(';'):
+                    if '=' not in stripped and not stripped.startswith('if') \
+                            and not stripped.startswith('while'):
+                        # Standalone statement or return: comment out
+                        out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
+                        continue
+                    elif stripped.startswith('return'):
+                        # return ((Type*)expr)->Ctor(); → return (Type*)expr;
+                        # Extract the cast expression before ->Ctor
+                        cast_m = re.match(r'return\s+(.+?)->\s*%s\s*\(' % re.escape(called_name), stripped)
+                        if cast_m:
+                            out.append(indent + 'return %s; // ctor auto-called' % cast_m.group(1).rstrip())
+                            continue
+                    elif '=' in stripped:
+                        # result = (Type*)((Other*)&var)->Other(); → comment out
+                        out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
+                        continue
         out.append(line)
     return '\n'.join(out)
 
