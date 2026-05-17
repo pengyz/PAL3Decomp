@@ -2256,7 +2256,7 @@
     "signature": "char __thiscall(CCBUI *this)"
   },
   "0x004E0820": {
-    "name": "CCBUI::UpdateAnimation",
+    "name": "CCBRoleState::UpdateAnimation",
     "signature": "char __thiscall(CCBUI *this)"
   },
   "0x004E0980": {
@@ -4517,7 +4517,7 @@
   },
   "0x0040CCD0": {
     "name": "Combat::Func_40CCD0",
-    "signature": "int __thiscall(int *this)"
+    "signature": "int __thiscall(Combat *this)"
   },
   "0x004C0400": {
     "name": "PAL3::_unverified_4C0400",
@@ -4657,7 +4657,7 @@
   },
   "0x004326A0": {
     "name": "String::Assign_4326A0",
-    "signature": "void __thiscall(void *this, char *src, int len)"
+    "signature": "void __thiscall(String *this, char *src, int len)"
   },
   "0x00412D90": {
     "name": "RoleSystem::Helper_412D90",
@@ -5117,7 +5117,7 @@
   },
   "0x004CDB60": {
     "name": "Combat::Func_4CDB60",
-    "signature": "char __thiscall(_DWORD *this)"
+    "signature": "char __thiscall(Combat *this)"
   },
   "0x00404570": {
     "name": "unknown_libname_297",
@@ -5137,7 +5137,7 @@
   },
   "0x004CEA80": {
     "name": "Combat::Func_4CEA80",
-    "signature": "char __thiscall(_DWORD *this)"
+    "signature": "char __thiscall(Combat *this)"
   },
   "0x0053D080": {
     "name": "unknown_libname_512",
@@ -5193,7 +5193,7 @@
   },
   "0x005020D0": {
     "name": "Combat::Func_5020D0",
-    "signature": "int __thiscall(int *this, int nVal)"
+    "signature": "int __thiscall(Combat *this, int nVal)"
   },
   "0x0053CF80": {
     "name": "InitLogFiles",
@@ -5253,7 +5253,7 @@
   },
   "0x0040DD80": {
     "name": "CCBStageRole::Reset",
-    "signature": "int __thiscall(_DWORD *this)"
+    "signature": "int __thiscall(CCBStageRole *this)"
   },
   "0x00434BC0": {
     "name": "unknown_libname_350",
@@ -5373,7 +5373,7 @@
   },
   "0x00503AE0": {
     "name": "CCBRoleState::GetRoleMPValue",
-    "signature": "int __thiscall(void *this, int nVal, int nVal2, int nVal3)"
+    "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00511BD0": {
     "name": "unknown_libname_475",
@@ -5389,7 +5389,7 @@
   },
   "0x0040CF60": {
     "name": "CCBStageRole::PassCmd",
-    "signature": "int __thiscall(_DWORD *this, _DWORD *p_DWORD)"
+    "signature": "int __thiscall(CCBStageRole *this, _DWORD *p_DWORD)"
   },
   "0x004DC5B0": {
     "name": "CCBControl::GetControl",
@@ -5485,7 +5485,7 @@
   },
   "0x004CDC50": {
     "name": "Combat::Func_4CDC50",
-    "signature": "char __thiscall(_DWORD *this, int nVal)"
+    "signature": "char __thiscall(Combat *this, int nVal)"
   },
   "0x00534D50": {
     "name": "unknown_libname_500",
@@ -6209,7 +6209,7 @@
   },
   "0x00502000": {
     "name": "Combat::Func_502000",
-    "signature": "int __thiscall(int *this, int nVal)"
+    "signature": "int __thiscall(Combat *this, int nVal)"
   },
   "0x0043D830": {
     "name": "UI3DCtrl::ctor_D830",
@@ -6425,7 +6425,7 @@
   },
   "0x0040D010": {
     "name": "CCBStageRole::CheckValid",
-    "signature": "int __thiscall(int *this, int nVal)"
+    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
   },
   "0x00452F60": {
     "name": "unknown_libname_385",
@@ -7349,7 +7349,7 @@
   },
   "0x00429D10": {
     "name": "PalScript::GetCount",
-    "signature": "_DWORD *__thiscall(_DWORD *this, int nVal)"
+    "signature": "_DWORD *__thiscall(PalScript *this, int nVal)"
   },
   "0x00429DB0": {
     "name": "PalScriptMgr::_sub_429DB0",
@@ -7364,7 +7364,7 @@
     "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x0042B5B0": {
-    "name": "PalScriptMgr::UpdateScriptRoles",
+    "name": "RoleSystem::UpdateScriptRoles",
     "signature": "double __thiscall(PalScriptMgr *this, double thisa, int nVal, int nVal2)"
   },
   "0x0042BEF0": {
@@ -7480,7 +7480,7 @@
     "signature": "int __thiscall(SaleUI *this, int deltatime, int haveinput)"
   },
   "0x0046B4B0": {
-    "name": "UIListBox::SendMessage_b4b0",
+    "name": "SaleUI::SendMessage_b4b0",
     "signature": "int __thiscall(UIListBox *this, int nVal, char *pszBuf, int nVal2)"
   },
   "0x00473B50": {
@@ -9632,7 +9632,7 @@
     "signature": "void __thiscall(CCBStage *this)"
   },
   "0x004E0430": {
-    "name": "CCBStage::_nearby_4e0430",
+    "name": "CCBRoleState::_nearby_4e0430",
     "signature": "char __thiscall(CCBStage *this)"
   },
   "0x004E1A10": {
