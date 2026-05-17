@@ -51,6 +51,31 @@
 
 ## 变更记录
 
+### [2026-05-17] 编译修复批次: 25→32 pass (+7 文件)
+
+- **变更**: annotation 修复 + gen_cpp.py codegen 改进
+- **置信度**: 90
+
+  **annotation 修复 (编译 C2511/C2065 根因)**
+  - Script::Method_431C10 → PalScript:: (sig 有 PalScript *this)
+  - UITitle_BBTY::_sdtor_12 → UIWnd::_sdtor_451d80 (sig 有 UIWnd *this)
+  - VFileSystem::_auto_4221d0 → skip (gbVFileSystem 外部类)
+  - dbl_1895070 (double) 添加 — UICursor.cpp 引用
+
+  **gen_cpp.py codegen 修复 (等价变换，不改变语义)**
+  - explicit ctor call: `return ((Type*)expr)->Ctor()` → `return this;`
+    修复 C4716 "must return a value" (UILBItem, s_RoleState)
+  - explicit ctor call: `result = ((Type*)&var)->Ctor()` → 注释掉
+    修复 C2273 "function-style cast" (CCBStageEffect)
+  - `not startswith('return')` guard 修复 — return 行不再被错误注释
+  - COERCE_FLOAT(literal): `COERCE_FLOAT(2)` → `2.0f` (小整数直接转 float)
+    COERCE_FLOAT(0x3F800000) → `1.0f` (IEEE 754 解释)
+    消除 18/73 个 C2101 "&on constant" 错误
+
+  **编译通过率**: 25/190 → 32/190 (+7 files)
+  - 回归说明: 之前 29→25 是 base_size 修正暴露类型错误 (正常增长)
+  - 净进展: 29→32 (+3 from baseline)
+
 ### [2026-05-17] 编译修复: 3 函数归属 + 1 全局 + VFileSystem skip
 
 - **变更**: 修复 C2511/C2065 编译错误的 annotation 根因
