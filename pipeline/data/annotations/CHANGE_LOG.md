@@ -51,6 +51,31 @@
 
 ## 变更记录
 
+### [2026-05-17] codegen pipeline 验证完成 + 161 vs 156 差异分析
+
+- **变更**: pipeline 输出验证 + ctor 检测精确化
+- **置信度**: 95 (binary diff 验证)
+
+  **验证结论: .cpp 输出 100% 一致**
+  - 对所有 193 个 .cpp 逐文件 Compare-Object: **0 差异**
+  - 新旧 pipeline 的 transform 逻辑完全等价
+  - Comp_DonateUI, ScriptWaitFrm, UIGameOver 等均 0 diff
+
+  **161 vs 156 差异根因（5 文件）**:
+  - .cpp 内容一致 → 差异来自 **header 生成路径**
+  - `codegen.py all` 调用 `gen_headers.py` 时 import 上下文不同于直接 `python gen_headers.py`
+  - 具体影响: gen_headers.py 内部的 store 数据加载时序可能导致
+    globals.h 的某些声明顺序或内容微有差异
+  - 这 5 个文件的 .cpp 是正确的，是 .h 不一致导致编译失败
+  - 修复路径: 将 gen_headers.py 也重构为 stages/emit_headers.py（独立实现，
+    不委托旧脚本），彻底统一数据源
+
+  **ctor 检测精确化 (order 260)**:
+  - 之前: `->UppercaseName()` 全部视为 ctor → SetAt/GetChild 等被误注释
+  - 修复: 只在 cast type == method name 时才判定为 ctor
+    `((PtrArray *)expr)->SetAt()` — PtrArray ≠ SetAt → 保留
+    `((gbVisNode *)this)->gbVisNode()` — gbVisNode == gbVisNode → 删除
+
 ### [2026-05-17] codegen pipeline 架构重写
 
 - **变更**: gen_cpp.py 1100 行单文件 → pipeline 架构 (15 文件, 1500+ 行)
