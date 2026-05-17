@@ -51,6 +51,44 @@
 
 ## 变更记录
 
+### [2026-05-17] codegen 管线修复 + annotation 修正 (4453→4253, -195 errors)
+
+#### codegen 修复（非 annotation 变更，不需要置信度）
+
+1. **free functions 并入主管线**
+   - **变更**: 移除 stage1~stage4 中 `is_free_function` 的早返回，free functions 走完整 transform 管线
+   - 只在函数名重命名（`Class::Method`）、this 参数移除、ctor/dtor 返回值处理保留 `cls_name` 守卫
+   - **影响**: free_functions.cpp 108→102 errors；所有 stage 的通用清理（CC移除、COERCE_FLOAT、OOP call、标识符替换）现在对 free functions 也生效
+
+2. **ctor/dtor 函数名截断修复**
+   - **变更**: Stage 1 中 CC 移除 edit 与 ctor 返回类型移除 edit 范围重叠，reverse-order 应用导致类名被截断
+   - 修复: ctor/dtor 时跳过独立的 CC 移除（step 4 已包含）
+   - **影响**: CEffCylinder, CMeteorChain, CScreenMode, RenderTarget, RoleSystem 的 ctor/dtor 恢复正常
+
+3. **Windows 大小写碰撞修复**
+   - **变更**: emit_headers.py 中 enum header 生成在 class header 之后，Windows 文件名不区分大小写导致 `UIEMOTE.h` 覆盖 `UIEmote.h`
+   - 修复: 检测碰撞时将 enum 定义前置到已存在的 class header 中
+   - **影响**: UIEmote.cpp 95→7 errors
+
+#### annotation 修正
+
+4. **CScreenMode::GetInstance_df70 签名修正**
+   - **变更**: 返回类型 `char *` → `CScreenMode *`
+   - **置信度**: 85
+   - **证据**:
+     1. [A] 0x53DF70 函数体: `return (char *)&stru_17B41E8;` — 返回全局实例地址
+     2. [A+] 调用处 80+ 处将返回值 cast 为 `CScreenMode *` 后调用 `AudioSetPosition`, `GetAudioManager`, `AudioStopAll` 等 CScreenMode 方法
+     3. [B] `AudioSetPosition`(0x53E2E0), `GetAudioManager`(0x53E500), `AudioStopAll`(0x53E950) 均标注为 CScreenMode 的方法
+   - **影响**: 需 IDA re-export 后生效，预计消除 CScreenMode.cpp 中约 30+ 个 `void * → CScreenMode *` 转换错误
+
+5. **g_CScreenMode 全局实例标注**
+   - **变更**: 添加 `0x17B41E8` → `{name: "g_CScreenMode", type: "CScreenMode"}`
+   - **置信度**: 85
+   - **证据**:
+     1. [A] 0x53DF70 (`GetInstance_df70`): `return &stru_17B41E8` — 直接返回该地址
+     2. [B] GetInstance 模式：CScreenMode 单例通过 `GetInstance_df70()` 访问，返回值被用作 CScreenMode 对象
+   - **影响**: codegen 中 `stru_17B41E8` 将被替换为 `g_CScreenMode`
+
 ### [2026-05-17] 项目架构重组 + CLI 统一入口 + 脚本清理
 
 - **变更**: 目录重组 + pipeline.toml 配置 + cli.py 统一入口 + 95 脚本删除
