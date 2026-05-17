@@ -49,7 +49,7 @@ def remove_vftable_assigns(code, ctx):
     return '\n'.join(out)
 
 
-@register(order=30)
+@register(order=350)
 def comment_vftable_calls(code, ctx):
     """Comment out __vftable-based virtual calls (IDA artifact, not valid C++)."""
     lines = code.split('\n')
@@ -67,17 +67,19 @@ def comment_vftable_calls(code, ctx):
 
 @register(order=250)
 def remove_explicit_ctor_dtor_calls(code, ctx):
-    """Remove/comment explicit ctor/dtor calls: ((Type*)expr)->Type(args)."""
+    """Comment out explicit ctor/dtor calls: ((Type*)expr)->Type(args)."""
     lines = code.split('\n')
     out = []
     for line in lines:
         s = line.strip()
-        # Standalone: ((Type*)expr)->~Type(); or ((Type*)expr)->Type();
+        indent = line[:len(line) - len(line.lstrip())]
         ctor_m = re.match(r'\s*\(\((\w+)\s*\*\)\s*[^)]*\)\s*->\s*~?(\w+)\s*\([^)]*\)\s*;', s)
         if ctor_m and ctor_m.group(1) == ctor_m.group(2):
+            out.append(indent + '// [AUTO-COMMENTED] ' + s)
             continue
         ctor_m2 = re.match(r'\s*\(\((\w+)\s*\*\)\s*\(\w+\s*\*\)\s*[^)]*\)\s*->\s*~?(\w+)\s*\([^)]*\)\s*;', s)
         if ctor_m2 and ctor_m2.group(1) == ctor_m2.group(2):
+            out.append(indent + '// [AUTO-COMMENTED] ' + s)
             continue
         out.append(line)
     return '\n'.join(out)
@@ -85,21 +87,34 @@ def remove_explicit_ctor_dtor_calls(code, ctx):
 
 @register(order=260)
 def handle_explicit_ctor_in_expressions(code, ctx):
-    """Handle explicit ctor calls in return/assignment context.
+    """Comment out explicit ctor calls: ->ClassName() where ClassName is a known class.
 
-    Only matches when the CAST TYPE matches the METHOD NAME (ctor pattern):
-    ((ClassName *)expr)->ClassName(args) — ctor call (illegal in C++)
-    ((ClassName *)expr)->OtherMethod(args) — normal call (leave alone)
+    Matches two patterns:
+    1. ((ClassName *)expr)->ClassName(args) — cast type == method (strict)
+    2. expr->ClassName(args) — ClassName in game_classes (like old gen_cpp.py)
     """
     lines = code.split('\n')
     out = []
     for line in lines:
         stripped = line.strip()
-        # Match: ((Type*)expr)->Method( — only act if Type == Method (ctor)
+        if not stripped.endswith(';'):
+            out.append(line)
+            continue
+
+        # Pattern 1: cast type matches method name
         ctor_pattern = re.search(
             r'\(\(\s*(\w+)\s*\*\s*\)[^)]*\)\s*->\s*(\w+)\s*\(', stripped)
-        if ctor_pattern and ctor_pattern.group(1) == ctor_pattern.group(2) and stripped.endswith(';'):
-            called_name = ctor_pattern.group(1)
+        is_ctor = (ctor_pattern and ctor_pattern.group(1) == ctor_pattern.group(2))
+
+        # Pattern 2: ->ClassName( where ClassName is a known game class
+        if not is_ctor:
+            m = re.search(r'->\s*([A-Z_]\w+)\s*\(', stripped)
+            if m and m.group(1) in store.game_classes:
+                is_ctor = True
+                ctor_pattern = m  # reuse for name extraction
+
+        if is_ctor:
+            called_name = ctor_pattern.group(1) if ctor_pattern else ''
             indent = line[:len(line) - len(line.lstrip())]
             if stripped.startswith('return'):
                 cast_m = re.match(
@@ -109,7 +124,8 @@ def handle_explicit_ctor_in_expressions(code, ctx):
                     continue
                 out.append(indent + 'return this; // [ctor replaced]')
                 continue
-            elif '=' not in stripped and not stripped.startswith('if'):
+            elif '=' not in stripped and not stripped.startswith('if') \
+                    and not stripped.startswith('while'):
                 out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
                 continue
             elif '=' in stripped:
