@@ -24,18 +24,18 @@
     },
     "8": {
       "name": "m_nRenderX",
-      "type": "int",
-      "source": "ida_decomp:UpdateTransform store/load, 10 refs"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "12": {
       "name": "m_nRenderY",
-      "type": "int",
-      "source": "ida_decomp:UpdateTransform a2/a3 calc, 10 refs"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "16": {
       "name": "m_nHalfW",
-      "type": "int",
-      "source": "ida_decomp:Render (a4-a2)/2, _sub_4B4B10 = v20, 5 refs"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "20": {
       "name": "m_nHalfH",
@@ -44,13 +44,13 @@
     },
     "24": {
       "name": "m_nHalfWidth",
-      "type": "int",
-      "source": "binary:SetSize(0x4B48E0) sar eax,1; mov [ecx+0x18],eax — param1/2"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "28": {
       "name": "m_nHalfHeight",
-      "type": "int",
-      "source": "binary:SetSize(0x4B48E0) sar eax,1; mov [ecx+0x1C],eax — param2/2"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "32": {
       "name": "m_nWidth",
@@ -59,8 +59,8 @@
     },
     "36": {
       "name": "m_nHeight",
-      "type": "int",
-      "source": "ida_decomp:UpdateTransform v9, _sub_4B4B10 = a3, 6 refs"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "40": {
       "name": "_field_028",
@@ -94,8 +94,8 @@
     },
     "64": {
       "name": "m_fileHeader",
-      "type": "int",
-      "source": "ida_decomp:_nearby_4bae60 Read(g_pVFileSys,this,12,a2)"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "68": {
       "name": "m_fRenderX",
@@ -109,8 +109,8 @@
     },
     "76": {
       "name": "m_fileData",
-      "type": "int",
-      "source": "ida_decomp:_nearby_4bae60 Read(g_pVFileSys,this,12,a2)"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "80": {
       "name": "_field_050",
@@ -119,8 +119,8 @@
     },
     "84": {
       "name": "m_nColor",
-      "type": "int",
-      "source": "ida_decomp:SetColor = result"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "88": {
       "name": "m_szPath",
@@ -129,8 +129,8 @@
     },
     "92": {
       "name": "m_nDefaultH",
-      "type": "int",
-      "source": "ida_decomp:ctor = 600, also deref+16 vtable call"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "124": {
       "name": "m_nAlpha",

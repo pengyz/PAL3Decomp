@@ -84,8 +84,8 @@
     },
     "16": {
       "name": "m_nFallbackMode",
-      "type": "int",
-      "source": "ida_decomp:Init = 0, set 1 on GPU fail, LODWORD check, 10 refs"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "20": {
       "name": "m_fBlendParam",
@@ -94,18 +94,18 @@
     },
     "24": {
       "name": "m_pTargetArray",
-      "type": "int",
-      "source": "binary:alloc 1216 bytes, mov [esi+0x18],eax + stride-152 loop"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "28": {
       "name": "m_nCurTarget",
-      "type": "int",
-      "source": "decomp:152*this->_todo_01C as array index, init=-1"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "32": {
       "name": "m_nCurPass",
-      "type": "int",
-      "source": "decomp:72*this->_todo_020 as index, init=-1"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "40": {
       "name": "m_nMaxTargets",
@@ -114,8 +114,8 @@
     },
     "44": {
       "name": "m_nMaxPasses",
-      "type": "int",
-      "source": "decomp:set to 10, used as loop bound in _nearby_4c0650"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "48": {
       "name": "_todo_030",
@@ -129,8 +129,8 @@
     },
     "60": {
       "name": "_todo_03C",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "0": {
       "name": "m_pVtable",
@@ -144,8 +144,8 @@
     },
     "36": {
       "name": "_todo_24",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "56": {
       "name": "_todo_38",
@@ -154,8 +154,8 @@
     },
     "88": {
       "name": "_todo_58",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
     },
     "104": {
       "name": "_todo_68",
