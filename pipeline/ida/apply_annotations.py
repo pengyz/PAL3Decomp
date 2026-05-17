@@ -162,15 +162,22 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
         if size > 0:
             inherit = " : public %s" % base_class if base_class else ""
             data_size = size - base_size if base_class else size
-            return "struct %s%s { char _data[%d]; };" % (name, inherit, data_size)
+            has_vt = base_class and any(vt_info.get("class") == base_class for vt_info in vtables.values())
+            cpp = " __cppobj" if has_vt else ""
+            return "struct%s %s%s { char _data[%d]; };" % (cpp, name, inherit, data_size)
         return None
 
     inherit = " : public %s" % base_class if base_class else ""
+    # Mark as __cppobj if class has a vtable (enables Hex-Rays virtual call resolution)
+    has_vtable = any("__vftable" in l for l in lines) or (base_class and any(
+        vt_info.get("class") == base_class for vt_info in vtables.values()
+    ))
+    cppobj = " __cppobj" if has_vtable else ""
     # Only use pack(1) for structs explicitly marked (file format headers, etc.)
     pack = struct_info.get("pack")
     if pack == 1:
-        return "#pragma pack(push, 1)\nstruct %s%s {\n%s\n};\n#pragma pack(pop)" % (name, inherit, "\n".join(lines))
-    return "struct %s%s {\n%s\n};" % (name, inherit, "\n".join(lines))
+        return "#pragma pack(push, 1)\nstruct%s %s%s {\n%s\n};\n#pragma pack(pop)" % (cppobj, name, inherit, "\n".join(lines))
+    return "struct%s %s%s {\n%s\n};" % (cppobj, name, inherit, "\n".join(lines))
 
 
 def load_annotations():
