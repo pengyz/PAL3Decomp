@@ -51,6 +51,24 @@
 
 ## 变更记录
 
+### [2026-05-18] 深度 ctor 分析: 12 个 UIFrameWnd 嵌入 (3 个大类)
+
+从 ctor 二进制中 LEA ECX,[ESI+disp]+CALL UIFrameWnd::init 发现:
+
+| 类 | 偏移 | 数量 | stride |
+|----|------|------|--------|
+| CScreenMode | +360,+512,+664,+816,+968,+1120 | 6 | 152=binary_size ✓ |
+| LineupUI | +520,+672,+824,+976 | 4 | 152 ✓ |
+| PropUI | +412,+564 | 2 | 152 ✓ |
+
+- **置信度**: 90 (LEA+CALL + stride=binary_size + ESI=this)
+- **方法扩展**: 除 ctor 外也检测 UIFrameWnd::_unverified_4422E0 作为 embed indicator
+
+### [2026-05-18] init --force 脚本 bug 修复
+
+Path.with_suffix('.i64') on 'PAL3.exe' → 'PAL3.i64' (错误)
+实际 IDA 生成 'PAL3.exe.i64'。修正后 init --force 可从零重建 IDB。
+
 ### [2026-05-18] 方法论 bug 修复: cast-based 归属不可迭代
 
 **发现**: cast-based 归属在多轮 apply→export→scan 循环中产生 A→B→A 递归。
