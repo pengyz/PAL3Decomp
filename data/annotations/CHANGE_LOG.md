@@ -51,6 +51,24 @@
 
 ## 变更记录
 
+### [2026-05-17] annotation 数据清理 — enum-as-struct 清除 + 返回类型修正
+
+#### enum-as-struct 清除 (24 个 struct annotation 删除)
+
+- **变更**: 删除 24 个 binary_size=4、无真实成员的 struct annotation
+- **置信度**: 95
+- **证据**: PAL3A PDB 中这些名字全部是 enum 定义（不是 class/struct）；annotation 中 binary_size=4 正好是 `enum` 底层类型 `int` 的大小；known_members 为空或只有 `_tail_000[4]` padding
+- **影响**: codegen 不再为这些 enum 生成多余的空 class header，数据语义更准确
+- **列表**: ACTION_KIND, ECBBattleFieldAttr, ECBCombatResult, ECBCombatState, ECBEditorMode, ECBFiveLineup, ECBFiveMagic, ECBFiveNimbus, ECBFixFormula, ECBForce, ECBMagicKind, ECBMeetEnemy, ECBRSHPState, ECBRoleTaskMode, ECBShowItemKind, ECBStageLockFlag, ECBStageTask, ECBStageTaskState, ECBVAKind, EEffect, FightState, PAL3_FRAME, ROLE_BEHAVIOUR, SCENE_TYPE
+
+#### RenderTarget::GetActiveTexture 返回类型修正
+
+- **变更**: `_DWORD *` → `gbTexture *`
+- **置信度**: 85
+- **证据**:
+  1. [A+] decomp 中 `return &this->m_Texture`，m_Texture 已标注为 gbTexture 类型
+  2. [B] 函数名 GetActiveTexture 语义明确，RenderTarget 管理纹理
+
 ### [2026-05-17] annotation 签名质量批量修正 (3888→3828, -60 errors)
 
 #### ctor 返回类型修正 (41 个函数)
