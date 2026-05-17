@@ -102,7 +102,11 @@ def _get_ctor_call_info(node):
 
 
 def _extract_cast_type(node):
-    """Extract type name from nested parenthesized cast: ((Type *)expr) → 'Type'."""
+    """Extract outermost cast type from complex expressions.
+
+    Handles: ((Type *)expr), ((Type *)(char*)this + N), etc.
+    Walks through parenthesized/binary/cast layers to find the first cast_expression.
+    """
     # Unwrap parenthesized_expression layers
     while node.type == 'parenthesized_expression':
         children = [c for c in node.children if c.type not in ('(', ')')]
@@ -111,13 +115,20 @@ def _extract_cast_type(node):
         else:
             break
 
+    # Direct cast
     if node.type == 'cast_expression':
         type_desc = node.child_by_field_name('type')
         if type_desc:
-            # type_descriptor → find the type_identifier within
             for child in _iter_all(type_desc):
                 if child.type == 'type_identifier':
                     return child.text.decode('utf-8')
+
+    # Binary expression: (Type*)(char*)this + N → look at left operand
+    if node.type == 'binary_expression':
+        left = node.child_by_field_name('left')
+        if left:
+            return _extract_cast_type(left)
+
     return None
 
 
