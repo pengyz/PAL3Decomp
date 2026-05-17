@@ -1,17 +1,41 @@
 #!/usr/bin/env python3
-"""PAL3 code generator — pipeline architecture.
+"""PAL3 代码生成管线 (tree-sitter AST pipeline)
 
-Usage:
-  python codegen.py config            # Show current configuration
-  python codegen.py headers           # Generate .h files only
-  python codegen.py cpp               # Generate .cpp files
-  python codegen.py cpp ClassName     # Regenerate specific class only
-  python codegen.py all               # headers + cpp
+用法:
+  python pipeline/gen/codegen.py <command> [options]
+
+命令:
+  headers             生成 .h 头文件 (include/pal3/gen/)
+  cpp                 生成 .cpp 实现文件 (src/pal3/)
+  cpp ClassName       只生成指定类
+  all                 headers + cpp 全量生成
+
+提示: 用 python pipeline/cli.py config 查看/验证配置
+
+工作流:
+  # 完整重建（标注有重大变更时）
+  cp original/PAL3.exe.raw.i64 original/PAL3.exe.i64
+  $IDA -A -S"pipeline/ida/master_pipeline.py" original/PAL3.exe.i64
+  $IDA -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64
+  $IDA -A -S"pipeline/ida/export_full.py" original/PAL3.exe.i64
+  python pipeline/gen/codegen.py all
+  ninja -C build -k 0
+
+  # 仅重新生成代码（只改了 codegen/annotations，IDB 不变）
+  python pipeline/gen/codegen.py all
+  ninja -C build -k 0
+
+配置:
+  所有路径在项目根目录 pipeline.toml 中定义。
+  首次使用时如果缺失会报错并给出模板。
+
+依赖:
+  - Python 3.8+
+  - tree-sitter, tree-sitter-cpp (pip install tree-sitter tree-sitter-cpp)
 """
 import sys
 import os
 
-# Set up package path so all imports work regardless of how this is invoked
 _GEN_DIR = os.path.dirname(os.path.abspath(__file__))
 _PIPELINE_DIR = os.path.dirname(_GEN_DIR)
 _PROJECT_DIR = os.path.dirname(_PIPELINE_DIR)
@@ -39,9 +63,8 @@ def cmd_config():
     print("  Output src:     %s" % cfg.output_src)
     print("  Output headers: %s" % cfg.output_headers)
     print("=" * 50)
-    # Validation
-    ok = True
     from pathlib import Path
+    ok = True
     if not Path(cfg.ida_path).exists():
         print("  [!] IDA not found")
         ok = False
@@ -52,7 +75,7 @@ def cmd_config():
         print("  [!] Annotations dir not found")
         ok = False
     if not cfg.decomp_dir.exists():
-        print("  [!] Decomp dir not found (run IDA export first)")
+        print("  [i] Decomp dir not found (run IDA export first)")
     if ok:
         print("  [OK] All required paths exist")
 
@@ -73,9 +96,9 @@ def cmd_cpp(filter_classes=None):
 
 def main():
     args = sys.argv[1:]
-    if not args:
+    if not args or args[0] in ('-h', '--help', 'help'):
         print(__doc__)
-        sys.exit(1)
+        sys.exit(0)
 
     command = args[0]
     filter_classes = set()
@@ -94,7 +117,7 @@ def main():
         cmd_cpp(filter_classes=filter_classes or None)
     else:
         print("Unknown command: %s" % command)
-        print("Use: config, headers, cpp, or all")
+        print("Run with --help for usage.")
         sys.exit(1)
 
 
