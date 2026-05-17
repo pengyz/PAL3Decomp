@@ -40,19 +40,28 @@ def run(code, ctx):
     # Collect byte-range edits
     edits = []  # [(start_byte, end_byte, replacement)]
 
-    # 1. Remove calling convention (ms_call_modifier)
+    # 1. Remove calling convention (ms_call_modifier or ERROR node with CC text)
     # Skip for ctor/dtor: step 4 removes the entire prefix including CC
     if not (ctx.is_ctor or ctx.is_dtor):
-        for child in func_def.children:
-            if child.type == 'ms_call_modifier':
-                edits.append((child.start_byte, child.end_byte, b''))
+        def _find_cc_nodes(node):
+            for child in node.children:
+                if child.type == 'ms_call_modifier':
+                    edits.append((child.start_byte, child.end_byte, b''))
+                elif child.type == 'ERROR' and child.text in (b'__thiscall', b'__cdecl', b'__stdcall', b'__fastcall'):
+                    edits.append((child.start_byte, child.end_byte, b''))
+                _find_cc_nodes(child)
+        _find_cc_nodes(func_def)
 
     # 2. Fix function name: sub_XXXXX → ClassName::Method
-    declarator = None
-    for child in func_def.children:
-        if child.type == 'function_declarator':
-            declarator = child
-            break
+    def _find_declarator(node):
+        for child in node.children:
+            if child.type == 'function_declarator':
+                return child
+            found = _find_declarator(child)
+            if found:
+                return found
+        return None
+    declarator = _find_declarator(func_def)
 
     if declarator and not ctx.is_free_function:
         # Get the function name node
