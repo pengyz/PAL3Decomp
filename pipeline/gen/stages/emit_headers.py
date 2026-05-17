@@ -692,6 +692,9 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                     lines.append("    int %s; // +0x%X (%s)" % (mname, moffset, mtype))
                 continue
 
+            # Fix C99 flexible array "Type[]" -> "Type[1]" (VC6 workaround)
+            mtype = re.sub(r'\[\]', '[1]', mtype)
+
             # Handle arrays in type: "Type[N]" or "Type *[N]" -> "Type name[N]" / "Type * name[N]"
             arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
             if arr_match:
@@ -724,6 +727,8 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                     if off > start_off:
                         gap_size = off - start_off
                         lines.append("    char _gap_%03X[%d]; // +0x%X" % (start_off, gap_size, start_off))
+                    # Fix C99 flexible array
+                    mtype = re.sub(r'\[\]', '[1]', mtype)
                     # Emit member
                     arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
                     if arr_match:
