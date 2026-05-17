@@ -565,6 +565,11 @@ def apply_annotations():
                     ret = fp_match.group(1).strip()
                     cc = fp_match.group(2).strip() if fp_match.lastindex >= 3 else ""
                     args = fp_match.group(3) if fp_match.lastindex >= 3 else fp_match.group(2)
+                    # For __thiscall vtable entries: strip 'this' param so IDA keeps __thiscall CC
+                    # (IDA converts __thiscall with explicit this → __stdcall, breaking devirtualization)
+                    if cc == "__thiscall":
+                        args = _re3.sub(r'\(\s*\w[\w\s]*\*\s*\w+\s*,\s*', '(', args)
+                        args = _re3.sub(r'\(\s*\w[\w\s]*\*\s*\w+\s*\)', '()', args)
                     lines.append("    %s (%s*%s)%s;" % (ret, cc + " " if cc else "", short, args))
                 elif not any(short in l for l in lines):
                     lines.append("    int (*%s)();" % short)
