@@ -51,6 +51,32 @@
 
 ## 变更记录
 
+### [2026-05-17] 11 个 int→float 类型修正 (A 级 FPU 二进制证据)
+
+#### 方法
+
+从 IDA `query_todo_fields` 输出的 refs 中自动扫描 FPU 指令（fld/fst/fadd/fsub/fmul/fdiv/fcomp），
+对命中的字段逐个从 PAL3.exe 二进制验证指令字节（D8-DF 前缀确认 FPU 操作码）。
+
+#### 修正列表
+
+| 结构体 | 偏移 | 修正 | 证据 VA | 指令 |
+|--------|------|------|---------|------|
+| Camera | +128 (0x80) | int→float | 0x41EE86 | `D8 A6 80 00 00 00` = fsub [esi+80h] |
+| Camera | +136 (0x88) | int→float | 0x41EE9A | `D8 A6 88 00 00 00` = fsub [esi+88h] |
+| PalScriptMgr | +128 (0x80) | int→float | 0x42EFE7 | `D8 A3 80 00 00 00` = fsub [ebx+80h] |
+| PalScriptMgr | +160 (0xA0) | int→float | 0x424F7B | `D8 A0 A0 00 00 00` = fsub [eax+A0h] |
+| PalScriptMgr | +164 (0xA4) | int→float | 0x424F84 | `D8 A0 A4 00 00 00` = fsub [eax+A4h] |
+| PalScriptMgr | +492 (0x1EC) | int→float | 0x42F0AE | `D9 80 EC 01 00 00` = fld [eax+1ECh] |
+| RenderTarget2 | +184 (0xB8) | int→float | 0x4C293C | `D8 80 B8 00 00 00` = fadd [eax+B8h] |
+| RenderTarget2 | +188 (0xBC) | int→float | 0x4C294E | `D8 80 BC 00 00 00` = fadd [eax+BCh] |
+| RenderTarget2 | +192 (0xC0) | int→float | 0x4C2961 | `D8 80 C0 00 00 00` = fadd [eax+C0h] |
+| UIScene | +208 (0xD0) | int→float | 0x532D89 | `D9 80 D0 00 00 00` = fld [eax+D0h] |
+| CCBStage | +6636 (0x19EC) | int→float | 0x4FF122 | `D9 80 EC 19 00 00` = fld [eax+19ECh] |
+
+- **置信度**: 85-90 (A 级: x87 FPU 指令确定性证明 dword float 访问)
+- **附带**: 删除废弃的 `pipeline/ida/query_offsets.py` (硬编码 CCBStageScene)
+
 ### [2026-05-17] annotation 数据净化 — CRT/系统残留 + char[] 修复 (3821→3850)
 
 #### CRT/STL/系统 tiny-empty struct 清理 (15 个删除)
