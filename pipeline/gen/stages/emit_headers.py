@@ -965,6 +965,26 @@ def main():
         lines.append('')
 
         out_path = OUTPUT_DIR / ('%s.h' % name)
+        # On case-insensitive FS (Windows), check for class header collision
+        existing_class = None
+        for ch in classes_with_headers:
+            if ch.lower() == name.lower() and ch != name:
+                existing_class = ch
+                break
+        if existing_class:
+            # Prepend enum to existing class header
+            cls_path = OUTPUT_DIR / ('%s.h' % existing_class)
+            if cls_path.exists():
+                cls_content = open(cls_path, 'r', encoding='utf-8').read()
+                enum_block = '\n'.join(lines[2:])  # skip #pragma once and comment
+                insert_pos = cls_content.find('\nclass ')
+                if insert_pos < 0:
+                    insert_pos = cls_content.rfind('\n') + 1
+                new_content = cls_content[:insert_pos] + '\n' + enum_block + '\n' + cls_content[insert_pos:]
+                with open(cls_path, 'w', encoding='utf-8') as f:
+                    f.write(new_content)
+                enum_count += 1
+                continue
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(lines))
         enum_count += 1

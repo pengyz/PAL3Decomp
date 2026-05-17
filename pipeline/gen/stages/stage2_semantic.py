@@ -17,6 +17,4 @@ from data import store
 
 def run(code, ctx):
     """Apply OOP call transformation."""
-    if ctx.is_free_function:
-        return code
     return transform_oop_calls(code, static_methods=store.static_methods)

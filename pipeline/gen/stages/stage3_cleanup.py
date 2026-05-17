@@ -293,31 +293,29 @@ def run(code, ctx):
     if not ctx.is_free_function and cls_name:
         code = re.sub(r'^\s*%s\s*\*\s*this\s*;.*$' % re.escape(cls_name), '', code, flags=re.MULTILINE)
 
-    if not ctx.is_free_function:
-        # Operator new fix
-        code = re.sub(r'\(\(operator \*\)(0x[0-9A-Fa-f]+u?)\)->new\(\)', r'operator new(\1)', code)
-        # CC removal from body (function pointer casts)
-        code = re.sub(r'__thiscall\s+', '', code)
-        code = re.sub(r'__userpurge\s+', '', code)
-        code = re.sub(r'__usercall\s+', '', code)
+    # Operator new fix
+    code = re.sub(r'\(\(operator \*\)(0x[0-9A-Fa-f]+u?)\)->new\(\)', r'operator new(\1)', code)
+    # CC removal from body (function pointer casts)
+    code = re.sub(r'__thiscall\s+', '', code)
+    code = re.sub(r'__userpurge\s+', '', code)
+    code = re.sub(r'__usercall\s+', '', code)
 
-    # COERCE_FLOAT (TODO: migrate to AST - detect call_expression where func == COERCE_FLOAT)
-    if not ctx.is_free_function:
-        def _fix_coerce(m):
-            arg = m.group(1).strip()
-            try:
-                ival = int(arg, 0)
-                if abs(ival) <= 100:
-                    return '%d.0f' % ival
-                fval = _struct.unpack('f', _struct.pack('I', ival & 0xFFFFFFFF))[0]
-                if abs(fval) < 1e10 and (abs(fval) > 1e-10 or fval == 0.0):
-                    if fval == int(fval) and abs(fval) < 1000000:
-                        return '%d.0f' % int(fval)
-                    return '%.7gf' % fval
-            except (ValueError, OverflowError):
-                pass
-            return m.group(0)
-        code = re.sub(r'COERCE_FLOAT\((\s*-?(?:0x[0-9A-Fa-f]+|\d+)\s*)\)', _fix_coerce, code)
+    # COERCE_FLOAT
+    def _fix_coerce(m):
+        arg = m.group(1).strip()
+        try:
+            ival = int(arg, 0)
+            if abs(ival) <= 100:
+                return '%d.0f' % ival
+            fval = _struct.unpack('f', _struct.pack('I', ival & 0xFFFFFFFF))[0]
+            if abs(fval) < 1e10 and (abs(fval) > 1e-10 or fval == 0.0):
+                if fval == int(fval) and abs(fval) < 1000000:
+                    return '%d.0f' % int(fval)
+                return '%.7gf' % fval
+        except (ValueError, OverflowError):
+            pass
+        return m.group(0)
+    code = re.sub(r'COERCE_FLOAT\((\s*-?(?:0x[0-9A-Fa-f]+|\d+)\s*)\)', _fix_coerce, code)
 
     # Dereference fix and ctor return
     code = re.sub(r'\(\*\)(\w+)', r'(*\1)', code)
@@ -329,14 +327,13 @@ def run(code, ctx):
     code = _ast_cleanup(code, ctx)
 
     # --- Post-AST simple fixes ---
-    if not ctx.is_free_function:
-        code = re.sub(r'((?:LODWORD|HIDWORD)\s*\([^)]+\))\s*=\s*(&\w+)', r'\1 = (unsigned long)\2', code)
+    code = re.sub(r'((?:LODWORD|HIDWORD)\s*\([^)]+\))\s*=\s*(&\w+)', r'\1 = (unsigned long)\2', code)
 
-        def _fix_mfp(m):
-            cm = m.group(1)
-            a = re.search(r'_([0-9A-Fa-f]{5,})$', cm.split('::')[-1])
-            return ('0x%s' % a.group(1)) if a else ('0 /* TODO: (int)%s */' % cm)
-        code = re.sub(r'\(int\)\s*(\w+::(?:~?\w+))\b(?!\s*\()', _fix_mfp, code)
+    def _fix_mfp(m):
+        cm = m.group(1)
+        a = re.search(r'_([0-9A-Fa-f]{5,})$', cm.split('::')[-1])
+        return ('0x%s' % a.group(1)) if a else ('0 /* TODO: (int)%s */' % cm)
+    code = re.sub(r'\(int\)\s*(\w+::(?:~?\w+))\b(?!\s*\()', _fix_mfp, code)
 
     # Backtick removal
     code = _remove_backtick_calls(code)

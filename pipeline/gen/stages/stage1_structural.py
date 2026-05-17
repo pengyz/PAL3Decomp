@@ -17,10 +17,6 @@ _parser = tree_sitter.Parser(_lang)
 
 def run(code, ctx):
     """Apply structural transforms to function code."""
-    if ctx.is_free_function:
-        # TODO: free functions also need signature cleanup
-        return code
-
     # Filter IDA header comments
     lines = code.split('\n')
     lines = [l for l in lines if not l.strip().startswith('// between_std_methods')]
@@ -45,10 +41,11 @@ def run(code, ctx):
     edits = []  # [(start_byte, end_byte, replacement)]
 
     # 1. Remove calling convention (ms_call_modifier)
-    for child in func_def.children:
-        if child.type == 'ms_call_modifier':
-            # Remove the CC token + surrounding whitespace
-            edits.append((child.start_byte, child.end_byte, b''))
+    # Skip for ctor/dtor: step 4 removes the entire prefix including CC
+    if not (ctx.is_ctor or ctx.is_dtor):
+        for child in func_def.children:
+            if child.type == 'ms_call_modifier':
+                edits.append((child.start_byte, child.end_byte, b''))
 
     # 2. Fix function name: sub_XXXXX → ClassName::Method
     declarator = None
@@ -57,7 +54,7 @@ def run(code, ctx):
             declarator = child
             break
 
-    if declarator:
+    if declarator and not ctx.is_free_function:
         # Get the function name node
         name_node = None
         for child in declarator.children:
@@ -146,8 +143,10 @@ def run(code, ctx):
     # Clean up: collapse multiple spaces, strip leading space on def line
     lines = code.split('\n')
     for i, line in enumerate(lines):
-        if '::' in line and '(' in line:
-            lines[i] = re.sub(r'  +', ' ', line).strip()
+        if '(' in line and (not line.strip().startswith('//')) and (not line.strip().startswith('*')):
+            cleaned = re.sub(r'  +', ' ', line).strip()
+            if cleaned != line.strip():
+                lines[i] = cleaned
             break
     code = '\n'.join(lines)
 
@@ -209,3 +208,5 @@ def _regex_fallback(code, ctx):
         lines[func_line_idx] = first
 
     return '\n'.join(lines)
+
+

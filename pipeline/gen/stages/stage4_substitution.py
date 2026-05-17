@@ -197,15 +197,12 @@ def _apply_text_substitutions(code, ctx):
     code = re.sub(r'(\b0x[0-9A-Fa-f]+)LL\b', r'\1i64', code)
     code = re.sub(r'(\b\d+)LL\b', r'\1i64', code)
 
-    # _ThrowInfo (only for class methods — matches old behavior)
-    if not ctx.is_free_function:
-        code = code.replace('(_ThrowInfo *)', '(_s__ThrowInfo *)')
+    code = code.replace('(_ThrowInfo *)', '(_s__ThrowInfo *)')
 
-    # stdiobuf fix (free functions only)
-    if ctx.is_free_function:
-        code = code.replace('stdiobuf *', 'UIWnd *')
-        code = code.replace('stdiobuf::', 'UIWnd::')
-        code = code.replace('std::ios_base *', 'UIWnd *')
+    # stdiobuf misidentification fix
+    code = code.replace('stdiobuf *', 'UIWnd *')
+    code = code.replace('stdiobuf::', 'UIWnd::')
+    code = code.replace('std::ios_base *', 'UIWnd *')
 
     return code
 
@@ -266,7 +263,6 @@ def run(code, ctx):
     code = _apply_text_substitutions(code, ctx)
 
     # Reference parameter fix (depends on OOP having produced ->Method() form)
-    if not ctx.is_free_function:
-        code = _fix_ref_params(code)
+    code = _fix_ref_params(code)
 
     return code
