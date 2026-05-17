@@ -88,15 +88,18 @@ PAL3.exe:
 
 ## Directory Structure
 
-- `src/pal3/` — 生成的 PAL3.exe 源码 (按模块: Combat/, Effect/, UI/, etc.)
+- `data/annotations/` — 标注数据（项目核心资产：structs, functions, globals, vtables）
+- `data/pdb/` — PAL3A PDB 导出（只读参考）
+- `pipeline/gen/` — 代码生成管线（4-stage tree-sitter AST pipeline）
+- `pipeline/ida/` — IDA Pro 脚本（master_pipeline, apply_annotations, export, query）
+- `pipeline/` — 管线工具（check_annotations, verify_offset, compare）
+- `tools/` — 独立命令行工具（字节对比, 进度统计, DIA 导出）
+- `src/pal3/` — 生成的 PAL3.exe 源码（按模块: Combat/, Effect/, UI/）
 - `include/pal3/gen/` — 自动生成的类头文件
-- `include/pal3/globals.h` — 全局变量声明
-- `include/pal3/ida_defs.h` — IDA 兼容宏 (LOBYTE/HIDWORD/etc)
 - `include/gbengine/` — gbengine.dll 头文件
-- `asm/pal3/decomp/` — IDA 导出的反编译 JSON
-- `tools/ida/` — IDAPython 脚本 (标注/导出)
-- `tools/compilers/msvc6.0/` — VC6 编译器
+- `asm/pal3/decomp/` — IDA 导出的反编译 JSON（gitignored 运行产物）
 - `original/` — 原始二进制 + IDA 数据库
+- `cmake/` — VC6 工具链配置
 
 ## Community Projects (Reference)
 
