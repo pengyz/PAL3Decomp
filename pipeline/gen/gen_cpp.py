@@ -218,6 +218,104 @@ def replace_global_names(code):
     return _pat.sub(_repl, code)
 
 
+# Global struct instance member resolution: dword_XXXXXXXX → g_Instance.member_name
+# When IDA creates independent names for addresses inside known global struct instances,
+# resolve them as struct member accesses in the codegen layer.
+_STRUCT_MEMBER_RESOLVED = set()  # track which names were resolved (for forward decl skip)
+if _globals_json.exists():
+    _gdata = json.load(open(_globals_json, encoding='utf-8'))
+    _structs_dir = PIPELINE_ROOT / "data" / "annotations" / "structs"
+    _struct_members_cache = {}  # struct_type -> {offset_int: (name, type)}
+    _struct_sizes_cache = {}    # struct_type -> binary_size
+
+    # Load struct definitions
+    for _sf in _structs_dir.glob("*.json"):
+        _sd = json.load(open(_sf, encoding='utf-8'))
+        _sname = _sf.stem
+        _bs = _sd.get('binary_size')
+        if _bs:
+            _struct_sizes_cache[_sname] = _bs
+        _members = _sd.get('known_members', {})
+        _struct_members_cache[_sname] = {
+            int(k): (v['name'], v.get('type', '')) for k, v in _members.items()
+        }
+
+    # Build instance ranges
+    _instances = []  # [(base, end, global_name, struct_type)]
+    for _addr_str, _ginfo in _gdata.items():
+        _gtype = _ginfo.get('type', '')
+        _gname = _ginfo.get('name', '')
+        if _gtype in _struct_sizes_cache and _gname:
+            _base = int(_addr_str, 16)
+            _instances.append((_base, _base + _struct_sizes_cache[_gtype], _gname, _gtype))
+    _instances.sort()
+
+    _STRUCT_INSTANCES = _instances
+    _STRUCT_MEMBERS = _struct_members_cache
+    del _gdata, _struct_members_cache, _struct_sizes_cache, _instances
+else:
+    _STRUCT_INSTANCES = []
+    _STRUCT_MEMBERS = {}
+
+
+def _is_access_width_compatible(ida_prefix, member_type):
+    """Check if IDA access prefix width matches the struct member type."""
+    mt = member_type.strip().lower()
+    if ida_prefix == 'dword':
+        return True  # 4-byte: int, float, pointer, enum — all common 4-byte types
+    if ida_prefix == 'byte':
+        return any(t in mt for t in ('char', 'byte', 'bool'))
+    if ida_prefix == 'word':
+        return any(t in mt for t in ('short', 'word', 'wchar'))
+    if ida_prefix == 'off':
+        return '*' in member_type  # pointer type
+    if ida_prefix == 'flt':
+        return 'float' in mt
+    return True  # unk_ → accept
+
+
+def _resolve_struct_member(ida_name):
+    """Check if an IDA default name (dword_XXXXXXXX) falls within a global struct instance.
+    Returns 'g_Instance.member_name' if resolvable, None otherwise."""
+    try:
+        parts = ida_name.split('_', 1)
+        prefix = parts[0]
+        addr = int(parts[1], 16)
+    except (IndexError, ValueError):
+        return None
+    for base, end, gname, gtype in _STRUCT_INSTANCES:
+        if base <= addr < end:
+            offset = addr - base
+            members = _STRUCT_MEMBERS.get(gtype, {})
+            member_info = members.get(offset)
+            if member_info:
+                member_name, member_type = member_info
+                if _is_access_width_compatible(prefix, member_type):
+                    return '%s.%s' % (gname, member_name)
+            return None
+    return None
+
+
+def replace_struct_member_refs(code):
+    """Replace IDA default names that are actually global struct instance members."""
+    if not _STRUCT_INSTANCES:
+        return code
+    _pat = re.compile(r'\b((?:dword|byte|word|off|flt|unk)_[0-9A-Fa-f]+)\b')
+    def _repl(m):
+        name = m.group(0)
+        # Skip if already handled by GLOBALS_NAME_MAP or LITERAL_MAP
+        pfx, hexpart = name.split('_', 1)
+        key = '%s_%s' % (pfx, hexpart.upper())
+        if key in GLOBALS_NAME_MAP or name in LITERAL_MAP:
+            return name
+        resolved = _resolve_struct_member(name)
+        if resolved:
+            _STRUCT_MEMBER_RESOLVED.add(name)
+            return resolved
+        return name
+    return _pat.sub(_repl, code)
+
+
 # Thunk class names to skip (these are just jump trampolines)
 THUNK_CLASSES = set()
 if _skip_file.exists():
@@ -461,6 +559,7 @@ def transform_method_code(cls_name, method_name, code, sig):
     code = replace_thunks(code)
     code = replace_literals(code)
     code = replace_global_names(code)
+    code = replace_struct_member_refs(code)
 
     # Replace IDA vtable struct types with void (not real C++ types)
     code = re.sub(r'\bvtbl_[0-9A-Fa-f]+\b', 'void', code)
@@ -909,6 +1008,7 @@ def generate_free_funcs_cpp(funcs):
         code = replace_thunks(code)
         code = replace_literals(code)
         code = replace_global_names(code)
+        code = replace_struct_member_refs(code)
 
         # In free functions, 'this' is not a valid parameter name in C++
         # Rename to '_this' to avoid syntax errors
