@@ -506,6 +506,7 @@ def apply_annotations():
     ordered.extend(remaining.items())
 
     vtables = data.get("vtables", {})
+    functions = data.get("functions", {})
 
     # Pre-create vtable structs so class structs can reference them
     import re as _re3
@@ -520,6 +521,10 @@ def apply_annotations():
         for i, m in enumerate(methods):
             sig = m.get("signature", "")
             mname = m.get("name", "")
+            # Look up signature from functions.json if not in vtable method
+            if not sig and m.get("address"):
+                func_entry = functions.get(m["address"], {})
+                sig = func_entry.get("signature", "")
             short = "method_%d" % i
             if "::" in mname:
                 short = mname.split("::")[-1]
@@ -531,13 +536,30 @@ def apply_annotations():
             seen_names.add(short)
             if sig:
                 sig_clean = sig.strip().rstrip(";")
-                fp_match = _re3.match(r'^(.+?)(\s+__\w+)?\s+\w+\s*(\(.*\))$', sig_clean)
+                # IDA sig format: "ret CC(params)" or "ret CC ClassName::Method(params)"
+                # Try with function name first, then without
+                fp_match = _re3.match(r'^(.+?\*?\s*)(\s*__\w+)\s+\w+(?:::\w+)?\s*(\(.*\))$', sig_clean)
+                if not fp_match:
+                    # No function name: "ret CC(params)" — common IDA format
+                    fp_match = _re3.match(r'^(.+?\*?\s*)(\s*__\w+)\s*(\(.*\))$', sig_clean)
+                if not fp_match:
+                    # No CC: "ret(params)" or "ret funcname(params)"
+                    fp_match = _re3.match(r'^(.+?)\s*(\(.*\))$', sig_clean)
+                    if fp_match:
+                        ret = fp_match.group(1).strip()
+                        # Remove trailing word (function name) from ret if present
+                        ret_parts = ret.rsplit(None, 1)
+                        if len(ret_parts) > 1 and ret_parts[-1][0].isalpha():
+                            ret = ret_parts[0]
+                        args = fp_match.group(2)
+                        lines.append("    %s (*%s)%s;" % (ret, short, args))
+                        fp_match = None  # handled
                 if fp_match:
                     ret = fp_match.group(1).strip()
-                    cc = fp_match.group(2) or ""
-                    args = fp_match.group(3)
-                    lines.append("    %s (%s*%s)%s;" % (ret, cc.strip() + " " if cc.strip() else "", short, args))
-                else:
+                    cc = fp_match.group(2).strip() if fp_match.lastindex >= 3 else ""
+                    args = fp_match.group(3) if fp_match.lastindex >= 3 else fp_match.group(2)
+                    lines.append("    %s (%s*%s)%s;" % (ret, cc + " " if cc else "", short, args))
+                elif not any(short in l for l in lines):
                     lines.append("    int (*%s)();" % short)
             else:
                 lines.append("    int (*%s)();" % short)
