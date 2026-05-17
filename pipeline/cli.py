@@ -247,14 +247,17 @@ def cmd_init(force=False):
         print("[1/4] Raw IDB: CREATING from %s ..." % cfg.exe_path.name)
         cmd = '"%s" -B "%s"' % (cfg.ida_path, cfg.exe_path)
         subprocess.run(cmd, shell=True)
-        # IDA -B creates .i64 next to exe
-        generated = cfg.exe_path.with_suffix('.i64')
+        # IDA -B creates .i64 next to exe: PAL3.exe → PAL3.exe.i64
+        # Note: Path.with_suffix('.i64') on 'PAL3.exe' gives 'PAL3.i64' (wrong!)
+        # IDA appends .i64 to the full filename including .exe
+        generated = Path(str(cfg.exe_path) + '.i64')
         if generated.exists() and generated != cfg.idb_raw:
             shutil.move(str(generated), str(cfg.idb_raw))
         if cfg.idb_raw.exists():
             print("      -> CREATED: %s" % cfg.idb_raw.name)
         else:
             print("  [ERROR] IDA failed to create IDB")
+            print("  Expected: %s" % generated)
             sys.exit(1)
 
     # Step 2: Work IDB (copy from raw)
