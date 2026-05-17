@@ -732,18 +732,21 @@ def _comment_out_explicit_ctor_calls(code):
             if called_name in GAME_CLASSES:
                 indent = line[:len(line) - len(line.lstrip())]
                 if stripped.endswith(';'):
-                    if '=' not in stripped and not stripped.startswith('if') \
+                    if '=' not in stripped and not stripped.startswith('return') \
+                            and not stripped.startswith('if') \
                             and not stripped.startswith('while'):
-                        # Standalone statement or return: comment out
                         out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
                         continue
                     elif stripped.startswith('return'):
                         # return ((Type*)expr)->Ctor(); → return (Type*)expr;
-                        # Extract the cast expression before ->Ctor
-                        cast_m = re.match(r'return\s+(.+?)->\s*%s\s*\(' % re.escape(called_name), stripped)
+                        cast_m = re.match(r'return\s+(.+?)\s*->\s*%s\s*\(' % re.escape(called_name), stripped)
                         if cast_m:
-                            out.append(indent + 'return %s; // ctor auto-called' % cast_m.group(1).rstrip())
+                            expr = cast_m.group(1).rstrip()
+                            out.append(indent + 'return %s; // ctor auto-called' % expr)
                             continue
+                        # Fallback: just return this (common for dtor thunks)
+                        out.append(indent + 'return this; // [ctor replaced]')
+                        continue
                     elif '=' in stripped:
                         # result = (Type*)((Other*)&var)->Other(); → comment out
                         out.append(indent + '// [AUTO-COMMENTED] ' + stripped)
