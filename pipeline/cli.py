@@ -14,6 +14,8 @@
   codegen headers     只生成 .h
   codegen cpp         只生成 .cpp
   compile             CMake 配置 + ninja 编译 (-k 0 全量)
+  tool --list         列出所有可用工具脚本
+  tool <name> [args]  运行 tools/ 下的脚本
 
 典型工作流:
   # 首次设置
@@ -217,6 +219,48 @@ def cmd_codegen(args):
     sys.exit(result.returncode)
 
 
+def cmd_tool(args):
+    """List or run tools/ scripts."""
+    tools_dir = Path(_PROJECT_DIR) / 'tools'
+    scripts = sorted([f[:-3] for f in os.listdir(tools_dir)
+                      if f.endswith('.py') and not f.startswith('_')])
+
+    if not args or args[0] == '--list':
+        print("Available tools (%d):" % len(scripts))
+        print()
+        # Read first docstring line from each
+        for name in scripts:
+            path = tools_dir / ('%s.py' % name)
+            desc = ''
+            for line in open(path, encoding='utf-8', errors='replace'):
+                line = line.strip()
+                if line.startswith('#') and not line.startswith('#!'):
+                    desc = line.lstrip('# ').strip()
+                    break
+                elif line.startswith('"""') or line.startswith("'''"):
+                    desc = line.strip('"\' ').strip()
+                    break
+            print("  %-30s %s" % (name, desc[:45]))
+        print()
+        print("Usage: python pipeline/cli.py tool <name> [args...]")
+        return
+
+    name = args[0]
+    script_path = tools_dir / ('%s.py' % name)
+    if not script_path.exists():
+        print("[ERROR] Tool not found: %s" % name)
+        print("  Run 'python pipeline/cli.py tool --list' to see available tools.")
+        sys.exit(1)
+
+    # Run with project root as cwd, inject pipeline.config access
+    env = os.environ.copy()
+    env['PYTHONPATH'] = _PROJECT_DIR + os.pathsep + env.get('PYTHONPATH', '')
+    result = subprocess.run(
+        [sys.executable, str(script_path)] + args[1:],
+        cwd=_PROJECT_DIR, env=env)
+    sys.exit(result.returncode)
+
+
 def cmd_compile():
     """CMake configure (if needed) + ninja build with -k 0."""
     build_dir = Path(_PROJECT_DIR) / 'build'
@@ -270,6 +314,8 @@ def main():
         cmd_compile()
     elif command == 'codegen':
         cmd_codegen(args[1:])
+    elif command == 'tool':
+        cmd_tool(args[1:])
     else:
         print("Unknown command: %s" % command)
         print("Run with --help for usage.")
