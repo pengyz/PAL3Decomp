@@ -51,6 +51,25 @@
 
 ## 变更记录
 
+### [2026-05-17] annotation 数据净化 — CRT/系统残留 + char[] 修复 (3821→3850)
+
+#### CRT/STL/系统 tiny-empty struct 清理 (15 个删除)
+
+- **变更**: 删除 size≤4、无真实成员的 CRT/STL/系统类型 struct annotation
+- **置信度**: 95
+- **证据**: 这些类型由编译器/运行时定义，不属于游戏代码；annotation 中只有空壳 (binary_size=4, known_members={})，是 PDB 导入时的 forward declaration 残留
+- **列表**: codecvt_base, facet, filebuf, ios_base, std, stdiobuf, string, strstreambuf, type_info, __m128, IThreadProxy, InternalContextBase, LIGHT_TYPE, uchar, ushort
+
+#### C99 flexible array 修复 (codegen)
+
+- **变更**: emit_headers.py 中 `char[]` → `char[1]` (VC6 不支持 C99 flexible array)
+- 受影响: ScreenFadeOut.h, ScreenFadeWhite.h, ScreenFadeWhite2.h, TypeDescriptor.h, _TypeDescriptor.h
+- **影响**: +28 正常增长（header 语法错误消除后暴露后续真实错误）
+
+#### 错误数说明
+
+3821 → 3850 (+29): 正常增长，原因同 C2011 修复——之前 header 中 `char[]` 语法错误导致包含这些 header 的 .cpp 提前终止编译，修正后暴露了原本就存在的真实错误
+
 ### [2026-05-17] annotation 数据完整性修复 — 越界成员清除 (3828→3821)
 
 #### 越界成员清除 (90 个成员从 7 个 struct 中删除)
