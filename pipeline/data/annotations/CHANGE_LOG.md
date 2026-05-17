@@ -51,6 +51,33 @@
 
 ## 变更记录
 
+### [2026-05-17] 193 额外 binary_size + 继承链修复
+
+- **变更**: 193 个结构体设置 binary_size + 4 个中间基类补全
+- **置信度**: 85
+
+  **189 structs binary_size (置信度 85: PDB+gen_size 交叉)**
+  - 标准: gen_size == pdb_size 且 base_class.binary_size <= gen_size
+  - 与首批 384 个相同标准（gen==pdb 交叉验证），仅放宽 gap 限制（允许 >32）
+  - 覆盖率: binary_size 从 438/689 → 631/689 (92%)
+  - 剩余 58 个无 binary_size: gen≠pdb、无 PDB 数据、或 size<base（继承冲突）
+
+  **4 中间基类 (置信度 85: gen==pdb + 派生类交叉验证)**
+  - CEffCylinder: binary_size=4292 (派生 CEffTrackCylinder=4320, 差 28 ✓)
+  - CEffGrid: binary_size=4280 (派生 CEffTrackGrid=4308, 差 28 ✓)
+  - MeshFx: binary_size=92 (派生 MXCEft=116, MXFire=248, MXSavePoint=1060)
+  - Parent_Data: binary_size=4
+
+  **发现的继承矛盾 (未修复，记录备查)**:
+  - UICaption (bs=132) 声明 base=UIGameFrm (gen=31364) — 派生 < 基类，不可能
+  - UIDialog (gen=72) 声明 base=UIWnd (bs=88) — gen < base，PAL3A PDB 与 PAL3 不一致
+  - 这些需要二进制验证确认 PAL3 中的真实继承关系
+
+- **质量验证** (base_size 64 类修复后重建 IDB):
+  - CCBUIPanel raw cast: 3577 → 2658 (-919, -26%) ← base_size 修复最大受益者
+  - CScreenMode 掉出 top10 (embed 修正效果)
+  - 总体 raw cast: 26259 → 25832 (-427)
+
 ### [2026-05-17] 64 UI 派生类 base_size 修正（根因修复）
 
 - **变更**: 64 个 UI 派生类的 base_size 从 PAL3A PDB 旧值修正为当前二进制确认值
