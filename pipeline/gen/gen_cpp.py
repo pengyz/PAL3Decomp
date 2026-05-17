@@ -879,10 +879,15 @@ def generate_forward_decls(all_code):
     """Generate minimal forward declarations: only what this file actually references."""
     lines = []
     subs = collect_sub_refs(all_code)
+    # Detect functions passed to atexit (need void __cdecl(void) signature)
+    atexit_funcs = set(re.findall(r'atexit\(\s*(\w+)\s*\)', all_code))
     if subs:
         lines.append("// Forward declarations for unnamed functions")
         for s in sorted(subs):
-            lines.append("int %s(...);" % s)
+            if s in atexit_funcs:
+                lines.append("void __cdecl %s(void);" % s)
+            else:
+                lines.append("int %s(...);" % s)
         lines.append("")
 
     undef = collect_undefined_refs(all_code)
@@ -899,6 +904,12 @@ def generate_forward_decls(all_code):
     if undef:
         lines.append("// Unnamed globals (extern)")
         for u in sorted(undef):
+            if u in atexit_funcs:
+                lines.append("void __cdecl %s(void);" % u)
+                continue
+            if u.startswith('nullsub_'):
+                lines.append("void __cdecl %s(void);" % u)
+                continue
             if u in _GLOBAL_TYPES:
                 gt = _GLOBAL_TYPES[u]
                 arr_m = re.match(r'^(.+?)(\[\d*\])$', gt)
