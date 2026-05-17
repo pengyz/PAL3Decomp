@@ -2,7 +2,7 @@
 
 <CRITICAL-INSTRUCTION>
 当前阶段：**IDA 标注阶段**。源码是生成物，不手动编辑。
-唯一的工作目标：提升 `pipeline/data/annotations/` 的数据质量。
+唯一的工作目标：提升 `data/annotations/` 的数据质量。
 所有结构体字段修改必须有 PAL3.exe 二进制直接证据。
 </CRITICAL-INSTRUCTION>
 
@@ -17,16 +17,16 @@ IDB(raw):    original/PAL3.exe.raw.i64
 IDB(work):   original/PAL3.exe.i64
                工作数据库 = raw + annotations。每次迭代开始时从 raw 复制并 apply。
                不提交 git。
-Annotations: pipeline/data/annotations/ (唯一可信源)
+Annotations: data/annotations/ (唯一可信源)
 Decomp:      asm/pal3/decomp/*.json (IDA 导出，gitignored)
-PDB参考:     pipeline/data/pdb/ (PAL3A，只读参考)
+PDB参考:     data/pdb/ (PAL3A，只读参考)
 Binary:      original/PAL3.exe (最终权威)
 ```
 
 ## 数据架构
 
 ```
-pipeline/data/annotations/
+data/annotations/
   ├── functions.json        — {addr: {name, signature}}
   ├── globals.json          — {addr: {name, type}}
   ├── skip_functions.json   — {addr: {name, reason}}
@@ -273,10 +273,10 @@ print(head.hex())
 # 修改 annotations
 python -c "
 import json
-d = json.load(open('pipeline/data/annotations/structs/STRUCT.json'))
+d = json.load(open('data/annotations/structs/STRUCT.json'))
 m = d['known_members']
 # ... 修改 ...
-with open('pipeline/data/annotations/structs/STRUCT.json', 'w') as f:
+with open('data/annotations/structs/STRUCT.json', 'w') as f:
     json.dump(d, f, indent=2, ensure_ascii=False)
 "
 
@@ -289,7 +289,7 @@ python pipeline/check_annotations.py
 ### Step V6: 提交
 
 ```bash
-git add pipeline/data/annotations/
+git add data/annotations/
 git commit -m "iter(annotations): [描述]
 
 Evidence: [VA=0xADDR: 指令摘要]
@@ -334,9 +334,9 @@ python pipeline/check_annotations.py
 python -c "
 import json, os, re
 total = unnamed = 0
-for f in os.listdir('pipeline/data/annotations/structs'):
+for f in os.listdir('data/annotations/structs'):
     if f.endswith('.json'):
-        d = json.load(open('pipeline/data/annotations/structs/' + f, encoding='utf-8'))
+        d = json.load(open('data/annotations/structs/' + f, encoding='utf-8'))
         for m in d.get('known_members', {}).values():
             total += 1
             if re.match(r'^_field_|^_todo_', m['name']): unnamed += 1
@@ -347,9 +347,9 @@ print(f'命名率: {(total-unnamed)/total*100:.1f}% ({total-unnamed}/{total})')
 python -c "
 import json, os
 violations = 0
-for f in os.listdir('pipeline/data/annotations/structs'):
+for f in os.listdir('data/annotations/structs'):
     if not f.endswith('.json'): continue
-    d = json.load(open('pipeline/data/annotations/structs/' + f, encoding='utf-8'))
+    d = json.load(open('data/annotations/structs/' + f, encoding='utf-8'))
     if d.get('pack') == 1: continue
     for off, m in d.get('known_members', {}).items():
         t = m['type']

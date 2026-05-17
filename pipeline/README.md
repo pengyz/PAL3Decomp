@@ -6,151 +6,100 @@
 
 ```
 pipeline/
-├── ida/                          # IDAPython 脚本（在 IDA Pro 中运行）
-│   ├── master_pipeline.py        # Stage 1: PDB 导入 + FLIRT + 全局变量 + 首次导出
-│   ├── apply_annotations.py      # Stage 2: 应用标注到 IDB
-│   ├── export_full.py            # Stage 3a: 全量导出 decomp JSON
-│   ├── export_incremental.py     # Stage 3b: 增量导出（只导出签名变化的函数）
-│   ├── pal3a_text.sig            # FLIRT 签名文件
-│   └── pal3a_text.pat            # FLIRT 模式文件
-├── gen/                          # 代码生成（Python，命令行运行）
-│   ├── gen_headers.py            # Stage 4a: 生成 .h 头文件
-│   ├── gen_cpp.py                # Stage 4b: 生成 .cpp 源码
-│   └── ast_transform.py          # OOP 调用转换（被 gen_cpp 调用）
-├── data/                         # 数据文件
-│   ├── annotations/              # 标注数据（唯一手工编辑的数据源）
-│   │   ├── manifest.json         # 索引和统计
-│   │   ├── functions.json        # 函数名 + 签名 (2183 个)
-│   │   ├── globals.json          # 全局变量名 + 类型 (5001 个)
-│   │   ├── vtables.json          # 虚函数表定义 (112 个)
-│   │   ├── enums.json            # 枚举定义
-│   │   └── structs/              # 结构体定义（每个类一个文件）
-│   │       ├── CCBSystem.json
-│   │       ├── RoleSystem.json
-│   │       └── ...               # 751 个文件
-│   └── pdb/                      # PDB 导出数据（预生成，只读参考）
-│       ├── pdb_export.json       # PAL3A.PDB 完整类导出 (1251 classes)
-│       └── globals_export.json   # PAL3A 全局变量名
-├── check_annotations.py          # 校验标注数据合法性
-├── compare.py                    # 字节对比工具
-├── callgraph.py                  # 调用图管理
-└── README.md                     # 本文件
+├── ida/                          # IDA Pro 脚本（在 IDA 中运行）
+│   ├── master_pipeline.py        # 初始化 IDB: PDB 导入 + FLIRT + 全局变量
+│   ├── apply_annotations.py      # 应用标注到 IDB（structs + functions + vtables）
+│   ├── export_full.py            # 全量导出 Hex-Rays 反编译 → decomp JSON
+│   ├── query_todo_fields.py      # 查询: 扫描所有 _todo_ 字段 xref + 上下文
+│   ├── query_highref_fields.py   # 查询: 补充高引用字段的反编译上下文
+│   ├── query_class_full.py       # 查询: 指定类全部方法的字段上下文
+│   ├── query_method.py           # 查询: 指定偏移的所有内存访问
+│   ├── query_offsets.py          # 查询: 结构体特定偏移的访问模式
+│   ├── query_range.py            # 查询: 偏移范围内的所有访问
+│   ├── import_gbengine_types.py  # 导入 gbengine PDB 类型
+│   ├── find_strides.py           # 分析嵌入子对象 stride
+│   ├── find_bad_lines.py         # 检测 decomp 中的问题行
+│   └── _logs/                    # 查询输出（gitignored）
+├── gen/                          # 代码生成管线（命令行 Python）
+│   ├── codegen.py                # 入口: python codegen.py all/headers/cpp
+│   ├── data.py                   # DataStore: 加载 annotations + binary
+│   ├── ast_transform.py          # tree-sitter OOP 调用变换
+│   └── stages/                   # 4-stage transform pipeline
+│       ├── stage1_structural.py  # AST: 函数签名修改
+│       ├── stage2_semantic.py    # AST: OOP 调用重写
+│       ├── stage3_cleanup.py     # AST: IDA 残留清理
+│       ├── stage4_substitution.py# AST: token 替换
+│       ├── collect.py            # 从 decomp JSON 收集函数
+│       ├── emit_cpp.py           # 生成 .cpp
+│       └── emit_headers.py       # 生成 .h
+├── check_annotations.py          # 校验标注合法性（0 errors 门槛）
+├── verify_offset.py              # 验证全局实例字段偏移
+├── compare.py                    # 字节对比（生成 vs 原始）
+└── callgraph.py                  # 调用图分析
 ```
 
-## 工作流
+## 完整工作流
 
-### 首次初始化（从零创建 IDB）
+### 从零开始（首次设置）
 
 ```bash
-# 1. 创建 IDB
-~/ida/idat -B original/PAL3.exe
-cp original/PAL3.exe.i64 original/PAL3.exe.raw.i64  # 保留 raw 副本
+# 1. 创建 raw IDB（只做一次）
+$IDA -B original/PAL3.exe
+mv original/PAL3.exe.i64 original/PAL3.exe.raw.i64
 
-# 2. master pipeline: PDB 导入 + FLIRT + 全局变量 + 首次 Hex-Rays 导出
-#    Phase 4 的 decompile 让 Hex-Rays 推断函数返回类型（如 double），不可跳过
-~/ida/idat -A -S"pipeline/ida/master_pipeline.py" original/PAL3.exe.i64
+# 2. 初始化 + 应用标注 + 导出
+cp original/PAL3.exe.raw.i64 original/PAL3.exe.i64
+$IDA -A -S"pipeline/ida/master_pipeline.py" original/PAL3.exe.i64
+$IDA -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64
+$IDA -A -S"pipeline/ida/export_full.py" original/PAL3.exe.i64
 
-# 3. 应用标注层 (gbengine 类型导入 + 函数名、签名、结构体、vtable)
-#    gbengine 类型导入已集成到 apply_annotations.py 内部（Step [gb]）
-~/ida/idat -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64
+# 3. 生成源码
+python pipeline/gen/codegen.py all
 
-# 4. 重新导出（apply 改变了类型信息，需要 Hex-Rays 用新类型重新反编译）
-#    含 microcode optimizer (vtable init NOP + compiler call NOP)
-~/ida/idat -A -S"pipeline/ida/export_full.py" original/PAL3.exe.i64
-
-# 5. 生成 C++ 头文件和源码
-python pipeline/gen/gen_headers.py
-python pipeline/gen/gen_cpp.py --force-all
+# 4. 编译
+cmake -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-vc6.cmake
+ninja -C build -k 0
 ```
 
-注意：Step 2 和 Step 4 都会执行全量 decompile（各 ~4 分钟），不可合并。
-Step 2 让 Hex-Rays 首次推断类型，Step 4 用标注后的类型重新推断。
-
-### 日常迭代（修改标注后）
+### 日常迭代（标注更新后）
 
 ```bash
-# 1. 编辑标注（直接编辑 struct 文件）
-vim pipeline/data/annotations/structs/CCBSystem.json
-
-# 2. 校验
-python pipeline/check_annotations.py
-
-# 3. 应用到 IDA（含 gbengine 类型 + 标注层）+ 增量导出
-~/ida/idat -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64
-~/ida/idat -A -S"pipeline/ida/export_incremental.py" original/PAL3.exe.i64
-
-# 4. 增量生成（只重新生成变化的文件）
-python pipeline/gen/gen_headers.py
-python pipeline/gen/gen_cpp.py
+# 标注变更后重建 IDB + 导出 + 生成
+cp original/PAL3.exe.raw.i64 original/PAL3.exe.i64
+$IDA -A -S"pipeline/ida/master_pipeline.py" original/PAL3.exe.i64
+$IDA -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64
+$IDA -A -S"pipeline/ida/export_full.py" original/PAL3.exe.i64
+python pipeline/gen/codegen.py all
+ninja -C build -k 0
 ```
 
-### 编译验证
+### 仅重新生成代码（标注未变，只改了 codegen）
 
 ```bash
-# 配置（首次）
-cmake -B build/pal3 -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-vc6.cmake -DBUILD_TARGET=pal3
-
-# 编译
-cmake --build build/pal3
-
-# 字节对比
-python3 pipeline/compare.py --compile src/pal3/GameBase/PAL3.cpp --func "?Destroy@PAL3@@SAXXZ"
+python pipeline/gen/codegen.py all
+ninja -C build -k 0
 ```
 
-## 数据源优先级
+## 数据流
 
 ```
-Layer 3 (最高): annotations/ — 人工标注 + 二进制推断
-Layer 2:        pdb/         — PAL3A 调试符号（成员名可靠，偏移需验证）
-Layer 1 (最低): IDA auto     — FLIRT 签名 + 类型传播
+原始二进制 (original/PAL3.exe)
+    ↓ master_pipeline (PDB + FLIRT)
+IDB (original/PAL3.exe.i64)
+    ↓ apply_annotations (data/annotations/)
+IDB (带完整类型信息)
+    ↓ export_full
+反编译 JSON (asm/pal3/decomp/*.json)
+    ↓ codegen.py (4-stage AST pipeline)
+C++ 源码 (src/pal3/ + include/pal3/)
+    ↓ CMake + VC6
+PAL3.exe (字节匹配验证)
 ```
 
-annotations 数据会覆盖 PDB 数据（通过 IDA 的 `NTF_REPLACE` 标志）。
+## 关键约束
 
-## 标注文件格式
-
-### functions.json
-```json
-{
-  "0x004014F0": {
-    "name": "CCBAI::GetValue",
-    "signature": "char __thiscall(CCBAI *this, int a1, int a2)"
-  }
-}
-```
-
-### structs/CCBSystem.json
-```json
-{
-  "name": "CCBSystem",
-  "binary_size": 90840,
-  "pdb_size": 90840,
-  "base_class": null,
-  "base_size": 0,
-  "known_members": {
-    "0": { "name": "m_pUtil", "type": "CCBSystem *", "source": "pdb_verified" },
-    "4": { "name": "m_pUI", "type": "CCBUI *", "source": "pdb_verified" }
-  }
-}
-```
-
-### vtables.json
-```json
-{
-  "off_56AE10": {
-    "address": "0x0056AE10",
-    "class": "UIWnd",
-    "methods": [
-      { "address": "0x00445E70", "name": "UIWnd::Destroy", "signature": "..." }
-    ]
-  }
-}
-```
-
-## 输出
-
-- `include/pal3/gen/` — 自动生成的头文件（581 个）
-- `src/pal3/` — 自动生成的 C++ 源码（151 个）
-- `asm/pal3/decomp/` — IDA 反编译 JSON（5399 个，gitignored）
-
-这些都是**生成物**，不手动编辑。改进代码质量的方式是修改 `pipeline/data/annotations/` 中的标注数据。
+- `data/annotations/` 是唯一手工编辑的数据源
+- IDB 是生成物（可随时从 raw + annotations 重建）
+- decomp JSON 是生成物（可随时从 IDB 重新导出）
+- src/ + include/ 是生成物（可随时从 decomp JSON 重新生成）
+- 所有修改必须回到 data/annotations/ 层
