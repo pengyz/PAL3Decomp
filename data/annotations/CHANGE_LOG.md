@@ -51,6 +51,30 @@
 
 ## 变更记录
 
+### [2026-05-17] annotation 数据完整性修复 — 越界成员清除 (3828→3821)
+
+#### 越界成员清除 (90 个成员从 7 个 struct 中删除)
+
+- **变更**: 删除 known_members 中偏移 ≥ binary_size 的成员
+- **置信度**: 95
+- **证据**:
+  1. [A] binary_size 来自 PDB 精确匹配 (PAL3A PDB size 字段)
+  2. [A] 成员偏移超出结构体范围 = 访问越界内存，不可能属于该结构体
+  3. [B] 示例: st_Manager binary_size=244, 但有成员在 offset 17104 (overflow 16860)；
+     Object3D binary_size=152, 有成员在 offset 3830 (overflow 3678)
+- **根因**: 之前的标注迭代中，属于其他内存区域（数组元素、子对象、全局变量）的
+  偏移被错误归属到管理器/基类结构体
+
+| 结构体 | 删除成员数 | 最大越界 |
+|--------|-----------|---------|
+| tagRoleState | 45 | 436 |
+| Object3D | 22 | 3678 |
+| st_Manager | 9 | 16860 |
+| UIListBox | 6 | 468 |
+| tagEffClass | 5 | — |
+| scSCEFile | 2 | — |
+| UIStatic | 1 | — |
+
 ### [2026-05-17] annotation 数据清理 — enum-as-struct 清除 + 返回类型修正
 
 #### enum-as-struct 清除 (24 个 struct annotation 删除)
