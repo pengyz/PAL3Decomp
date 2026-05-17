@@ -97,91 +97,6 @@
       "type": "gbGeomQuad *",
       "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
-    "920": {
-      "name": "m_vecFiveLineupPos",
-      "type": "gbVec3D *",
-      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
-    },
-    "932": {
-      "name": "m_vecFiveLineupInitPos",
-      "type": "gbVec3D *",
-      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
-    },
-    "944": {
-      "name": "m_fFiveLineupRadius",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "948": {
-      "name": "m_fFiveLineupInitRadius",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "952": {
-      "name": "m_fFiveLineupRoll",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "956": {
-      "name": "m_fFiveLineupInitRoll",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "960": {
-      "name": "m_vecEnemyFiveLineupPos",
-      "type": "gbVec3D *",
-      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
-    },
-    "972": {
-      "name": "m_fEnemyFiveLineupRadius",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "976": {
-      "name": "m_fEnemyFiveLineupRoll",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "980": {
-      "name": "m_vecPointerPos",
-      "type": "gbVec3D",
-      "source": "gen_headers_9.2"
-    },
-    "992": {
-      "name": "m_bShowPointer",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "993": {
-      "name": "m_bShowAxis",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "994": {
-      "name": "m_bShowRoleIndex",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "995": {
-      "name": "m_bShowFiveLineup",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "996": {
-      "name": "m_bFiveLineupSelected",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "1000": {
-      "name": "m_eSceneFiveMagicAttrib",
-      "type": "ECBFiveMagic",
-      "source": "gen_headers_9.2"
-    },
-    "1004": {
-      "name": "m_eBattleFieldAttr",
-      "type": "ECBBattleFieldAttr",
-      "source": "gen_headers_9.2"
-    },
     "1008": {
       "name": "m_eBFAForce",
       "type": "ECBForce",
@@ -254,26 +169,6 @@
     },
     "812": {
       "name": "m_fBlendRectBH",
-      "type": "float",
-      "source": "ida_decomp:Update =1.0f"
-    },
-    "868": {
-      "name": "m_fBlendRectCX",
-      "type": "float",
-      "source": "ida_decomp:Update =0, same 4-pattern"
-    },
-    "872": {
-      "name": "m_fBlendRectCY",
-      "type": "float",
-      "source": "ida_decomp:Update =0"
-    },
-    "876": {
-      "name": "m_fBlendRectCW",
-      "type": "float",
-      "source": "ida_decomp:Update =1.0f"
-    },
-    "880": {
-      "name": "m_fBlendRectCH",
       "type": "float",
       "source": "ida_decomp:Update =1.0f"
     },
@@ -382,36 +277,6 @@
       "type": "int",
       "source": "binary:disp32_5hits_1funcs"
     },
-    "888": {
-      "name": "m_fAxisPosY",
-      "type": "float",
-      "source": "binary:disp32_3hits_3funcs | name_fix:sin(v8)*20+this, this-v12.y in LoadFlingNode"
-    },
-    "892": {
-      "name": "m_nShowAxis",
-      "type": "float",
-      "source": "A:FPU_disp32_0x511255"
-    },
-    "896": {
-      "name": "m_fAxisPosX",
-      "type": "float",
-      "source": "binary:disp32_3hits_3funcs | name_fix:cos(v8)*20+this, this-Direction.x in LoadFlingNode"
-    },
-    "900": {
-      "name": "m_fAxisSaveY",
-      "type": "float",
-      "source": "binary:disp32_1hits_1funcs | type_fix | name_fix:ReadLine→ShowAxis,assigned_to_378"
-    },
-    "904": {
-      "name": "m_fAxisSaveZ",
-      "type": "float",
-      "source": "binary:disp32_1hits_1funcs | type_fix | name_fix:ReadLine in ShowAxis"
-    },
-    "908": {
-      "name": "m_fAxisSaveX",
-      "type": "float",
-      "source": "binary:disp32_1hits_1funcs | type_fix | name_fix:ReadLine in ShowAxis,assigned_to_380"
-    },
     "128": {
       "name": "m_nRender",
       "type": "float",
@@ -504,58 +369,8 @@
     },
     "856": {
       "name": "m_Object3D",
-      "type": "Object3D *",
-      "source": "ida_decomp:_method_52b2a0 Object3D::Object3D(this) | type_fix:value→ptr(span=4)"
-    },
-    "860": {
-      "name": "m_fBlendF",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:=0.0_then_=0.5_blend_factor"
-    },
-    "864": {
-      "name": "_todo_360",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "912": {
-      "name": "m_fAxisRotY",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:rotation_calc_in_Init,WriteLine_in_ShowRoleIndex"
-    },
-    "916": {
-      "name": "m_fAxisRotYTarget",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | type_fix | name_fix:ReadLine_in_ShowAxis,assigned_to_390"
-    },
-    "924": {
-      "name": "m_fAxisRotX",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | type_fix | name_fix:ReadLine_in_ShowAxis,SetFlingRotX"
-    },
-    "928": {
-      "name": "m_fAxisTargetY",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:ReadLine_in_ShowAxis,added_to_pos_in_Init"
-    },
-    "936": {
-      "name": "m_fAxisTargetX",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:ReadLine_in_ShowAxis,added_to_pos_in_Init"
-    },
-    "940": {
-      "name": "m_fAxisRotXTarget",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:ReadLine_in_ShowAxis,used_in_Init_rotation_calc"
-    },
-    "964": {
-      "name": "m_bUpdateFlag",
-      "type": "unsigned char",
-      "source": "ida_decomp:Update =0 byte"
-    },
-    "968": {
-      "name": "m_nUpdateState",
-      "type": "int",
-      "source": "ida_decomp:Update =0"
+      "type": "Object3D",
+      "source": "A:LEA_ECX_[ESI+358h]+CALL_Object3D::Object3D@0x52B305,esi=this@+23"
     },
     "152": {
       "name": "m_fLineupDefaultX",
