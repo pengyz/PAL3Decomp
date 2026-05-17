@@ -347,12 +347,23 @@ def _estimate_member_size(mtype):
     return 4
 
 
-def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names=None):
+def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names=None,
+                    colliding_enums=None):
     """Generate a complete header for one class."""
     lines = []
     lines.append("#pragma once")
     lines.append("// Auto-generated: %s" % cls_name)
     lines.append("")
+
+    # Embed colliding enums (case-insensitive FS collision) before class definition
+    if colliding_enums:
+        for ename, edata in colliding_enums:
+            values = edata.get('values', {})
+            lines.append('enum %s {' % ename)
+            for vname, vval in sorted(values.items(), key=lambda x: int(x[1])):
+                lines.append('    %s = %s,' % (vname, vval))
+            lines.append('};')
+            lines.append('')
 
     # Analyze references: include vs forward declare
     include_types = set()  # need full definition (value members, inheritance)
@@ -918,11 +929,20 @@ def main():
         if not should_skip_class(base_name):
             classes_with_headers.add(base_name)
     enum_names = set()
+    enum_by_name = {}  # name -> {values: {name: val}}
     for e in pdb.get('enums', []):
         ename = e.get('name', '')
         if ename and (ename[0].isalpha() or ename[0] == '_') and '<' not in ename and '::' not in ename:
             classes_with_headers.add(ename)
             enum_names.add(ename)
+            enum_by_name[ename] = e
+
+    # Build case-insensitive enum lookup for collision detection
+    enum_by_lower = {}
+    for ename, edata in enum_by_name.items():
+        enum_by_lower.setdefault(ename.lower(), []).append((ename, edata))
+
+    embedded_enums = set()  # enum names already embedded in a class header
 
     for cls_name in sorted(all_classes):
         if should_skip_class(cls_name):
@@ -940,7 +960,23 @@ def main():
         if not has_members and not has_methods and not has_vtable and not has_ann_members:
             continue
 
-        content = generate_header(cls_name, pdb_class, methods, classes_with_headers, enum_names)
+        # Embed enums that would collide with this class header on disk:
+        # - case-insensitive match (UIEMOTE vs UIEmote) — Windows FS collision
+        # - exact same name but class has real content (ECBRoleSpecState)
+        colliding_enums = []
+        for ename, edata in enum_by_lower.get(cls_name.lower(), []):
+            if ename == cls_name:
+                # Same name: only embed if class has methods (otherwise let enum win)
+                if has_methods:
+                    colliding_enums.append((ename, edata))
+                    embedded_enums.add(ename)
+            else:
+                # Case-insensitive collision: always embed
+                colliding_enums.append((ename, edata))
+                embedded_enums.add(ename)
+
+        content = generate_header(cls_name, pdb_class, methods, classes_with_headers, enum_names,
+                                  colliding_enums=colliding_enums)
         output_path = OUTPUT_DIR / ("%s.h" % cls_name)
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(content)
@@ -969,26 +1005,10 @@ def main():
         lines.append('')
 
         out_path = OUTPUT_DIR / ('%s.h' % name)
-        # Check for class header collision (same name or case-insensitive match on Windows)
-        existing_class = None
-        for ch in classes_with_headers:
-            if ch.lower() == name.lower():
-                existing_class = ch
-                break
-        if existing_class:
-            # Prepend enum to existing class header
-            cls_path = OUTPUT_DIR / ('%s.h' % existing_class)
-            if cls_path.exists():
-                cls_content = open(cls_path, 'r', encoding='utf-8').read()
-                enum_block = '\n'.join(lines[2:])  # skip #pragma once and comment
-                insert_pos = cls_content.find('\nclass ')
-                if insert_pos < 0:
-                    insert_pos = cls_content.rfind('\n') + 1
-                new_content = cls_content[:insert_pos] + '\n' + enum_block + '\n' + cls_content[insert_pos:]
-                with open(cls_path, 'w', encoding='utf-8') as f:
-                    f.write(new_content)
-                enum_count += 1
-                continue
+        # Skip if already embedded in a class header during class generation
+        if name in embedded_enums:
+            enum_count += 1
+            continue
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(lines))
         enum_count += 1
