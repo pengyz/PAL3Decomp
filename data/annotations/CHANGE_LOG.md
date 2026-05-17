@@ -51,6 +51,50 @@
 
 ## 变更记录
 
+### [2026-05-17] codegen 第四轮: 幂等 enum 生成架构重设计 (C2011: 1945→0)
+
+#### 问题
+
+codegen 的 enum header 生成通过追加方式处理碰撞，导致：
+- 多次运行 `codegen all` 时 enum 定义累积（DLG_MSG.h 中出现 7 份 `enum DLG_MSG`）
+- 1945 个 C2011 类型重定义错误
+- codegen 非幂等
+
+#### 架构修复（codegen 层）
+
+12. **幂等 enum 生成**
+    - class header 生成阶段通过 `colliding_enums` 参数嵌入碰撞 enum
+    - enum 生成阶段通过 `embedded_enums` 集合跳过已处理的
+    - 不再追加到文件 → 多次运行结果一致
+
+13. **enum/class 完全同名冲突解决**
+    - C++ 不允许 `enum X` 和 `class X` 同名共存
+    - 规则: 如果 class 只是 enum wrapper (size≤4, 无真实成员) → 不生成 class，让 enum 正常写
+    - 例: ECBRoleSpecState (enum=27值, class=size4空struct) → 只保留 enum
+
+14. **stale header 清理**
+    - header 生成后删除 SKIP_CLASSES 中的旧 .h 文件
+    - tagRGBQUAD 加入 SKIP_CLASSES (Windows wingdi.h 已定义)
+
+#### annotation 修正
+
+15. **删除 ECBRoleSpecState struct annotation**
+    - **变更**: 删除 `data/annotations/structs/ECBRoleSpecState.json`
+    - **置信度**: 90
+    - **证据**:
+      1. [B] PAL3A PDB 中 ECBRoleSpecState 是 enum (27 个值, CBRSS_Null..CBRSS_End)
+      2. [B] struct annotation binary_size=4, known_members 为空 — 就是 enum 的 int 大小
+      3. [C] 3 个归属方法 (0x4AF450, 0x4B0040, 0x532CF0) 中 this 类型为 size=4 的 struct，实为 enum 值误归属
+    - **影响**: ECBRoleSpecState.h 不再同时定义 enum 和 class, C2011 消除
+
+#### 错误数说明
+
+- C2011: 1945 → 0 (enum 重定义完全消除)
+- 总错误 3365 → 3863 (+498): **正常增长**，非退化
+  - C2011 导致编译器对某些 .cpp 提前终止，隐藏了该文件后续的真实错误
+  - 现在 enum 正确后编译器能继续处理，暴露了原本就存在的类型不匹配等问题
+  - 这些是真实的 annotation/codegen 问题，不是本次修改引入的
+
 ### [2026-05-17] codegen 第三轮修复 + annotation 签名修正 (3778→3496, -282 errors)
 
 #### codegen 修复
