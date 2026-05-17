@@ -101,8 +101,11 @@ def run(code, ctx):
             if params:
                 first_param = params[0]
                 first_text = first_param.text.decode('utf-8')
-                # Check if first param is 'ClassName *this'
-                if 'this' in first_text and '*' in first_text:
+                # Check if first param is the 'this' pointer (ClassName *this or ClassName *anyname)
+                is_this_param = ('this' in first_text and '*' in first_text)
+                if not is_this_param and '*' in first_text and ctx.cls_name:
+                    is_this_param = ctx.cls_name in first_text
+                if is_this_param:
                     if len(params) > 1:
                         # Remove first param + following comma
                         # Find the comma after first param
@@ -209,6 +212,13 @@ def _regex_fallback(code, ctx):
         first = re.sub(r'\s*__fastcall\s*', ' ', first)
         first = re.sub(r'\s*__userpurge\s*', ' ', first)
         first = re.sub(r'\s*__usercall\s*', ' ', first)
+        # Remove this param: 'ClassName *this' or 'ClassName *Block' etc.
+        # For __thiscall, first param is always this — match 'ClsName *name'
+        if ctx.cls_name:
+            _cls_pat = re.escape(ctx.cls_name)
+            first = re.sub(r'\(\s*' + _cls_pat + r'\s*\*+\s*\w+\s*,\s*', '(', first, count=1)
+            first = re.sub(r'\(\s*' + _cls_pat + r'\s*\*+\s*\w+\s*\)', '()', first, count=1)
+        # Fallback: literal 'this' name
         first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*,\s*', '(', first)
         first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*\)', '()', first)
         if ctx.is_dtor:
