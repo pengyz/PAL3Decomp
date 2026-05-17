@@ -51,6 +51,18 @@
 
 ## 变更记录
 
+### [2026-05-17] 逐类 IDA 查询驱动的类型修正 (5 fields)
+
+| 结构体 | 偏移 | 修正 | 置信度 | 证据 |
+|--------|------|------|--------|------|
+| RoleSystem | +208 (0xD0) | int→unsigned char | 85 | [A] VA=0x4209AB: `F6 87 D0000000 01` = test byte ptr [edi+D0h], 1 |
+| Camera | +292 (0x124) | int→gbCamera* | 85 | [A+] decomp `*(gbCamera **)(this + 292)` in multiple methods |
+| Camera | +296 (0x128) | int→float | 85 | [A+] decomp `*(float *)(this + 296) = v8.x` |
+| Camera | +304 (0x130) | int→float | 85 | [A+] decomp `*(float *)(this + 304) = z` |
+| Actor | +536 (0x218) | float→gbVec3D | 85 | [A+] decomp `gbVec3D::operator=(&this->_todo_218, nVal+364)` |
+
+方法: IDA query_class_full → 分析 decomp context 中的类型 cast → 二进制验证
+
 ### [2026-05-17] 11 个 int→float 类型修正 (A 级 FPU 二进制证据)
 
 #### 方法
