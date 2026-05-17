@@ -335,6 +335,24 @@ def run(code, ctx):
         return ('0x%s' % a.group(1)) if a else ('0 /* TODO: (int)%s */' % cm)
     code = re.sub(r'\(int\)\s*(\w+::(?:~?\w+))\b(?!\s*\()', _fix_mfp, code)
 
+    # COM C-mode vtbl calls → C++ direct calls: obj->lpVtbl->Method(obj, args) → obj->Method(args)
+    code = re.sub(
+        r'([\w.]+(?:->[\w.]+)*)->lpVtbl->(\w+)\(\1(?:,\s*)?',
+        lambda m: '%s->%s(' % (m.group(1), m.group(2)),
+        code
+    )
+    # Handle (*ptr)->lpVtbl->Method(*ptr, args) pattern
+    def _fix_deref_com(m):
+        obj = m.group(1)  # e.g. (*p_m_lpDIDMouse)
+        method = m.group(2)
+        inner = obj[2:-1]  # strip (* and ) → p_m_lpDIDMouse
+        return '%s->%s(' % (obj, method)
+    code = re.sub(
+        r'(\(\*(\w+)\))->lpVtbl->(\w+)\(\*?\2(?:,\s*)?',
+        lambda m: '(*%s)->%s(' % (m.group(2), m.group(3)),
+        code
+    )
+
     # Backtick removal
     code = _remove_backtick_calls(code)
 
