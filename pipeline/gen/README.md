@@ -1,81 +1,88 @@
 # Codegen Pipeline
 
-从 IDA 反编译 JSON 生成 MSVC 6.0 兼容的 C++ 源码。
+从 IDA Hex-Rays 反编译 JSON 生成 MSVC 6.0 兼容的 C++ 源码。
 
 ## 架构
 
 ```
-codegen.py              入口（子命令: headers / cpp / all）
-data.py                 DataStore 单例（一次性加载 annotations + binary）
+codegen.py                入口（子命令: headers / cpp / all）
+data.py                   DataStore 单例（一次性加载 annotations + binary）
+ast_transform.py          tree-sitter OOP 调用变换（Stage 2 核心）
 stages/
-  collect.py            从 decomp JSON 收集函数，按类分组
-  transform.py          Transform pipeline runner
-  emit_headers.py       生成 include/pal3/gen/*.h
-  emit_cpp.py           生成 src/pal3/**/*.cpp
-transforms/             可插拔代码变换模块
-  ida_cleanup.py        IDA 无效代码清理 (order 0-99)
-  type_fixes.py         类型修复 (order 100-199)
-  oop.py                OOP 调用变换 (order 200-299)
-  names.py              名称解析替换 (order 300-399)
-  compat.py             VC6 兼容性修复 (order 400-499)
+  transform.py            4-stage pipeline runner
+  stage1_structural.py    函数签名修改（AST: function_definition 节点）
+  stage2_semantic.py      OOP 调用变换（AST: call_expression 遍历）
+  stage3_cleanup.py       IDA 无效代码清理（AST: vftable/ctor 节点检测）
+  stage4_substitution.py  token 替换（AST: identifier/type_identifier 遍历）
+  collect.py              从 decomp JSON 收集函数，按类分组
+  emit_cpp.py             生成 src/pal3/**/*.cpp
+  emit_headers.py         生成 include/pal3/gen/*.h
 ```
 
 ## 用法
 
 ```bash
-# 全量生成
-python pipeline/gen/codegen.py all
-
-# 只生成 headers
-python pipeline/gen/codegen.py headers
-
-# 只生成 cpp
-python pipeline/gen/codegen.py cpp
-
-# 只生成特定类
-python pipeline/gen/codegen.py cpp CameraCtrl
+python pipeline/gen/codegen.py all              # headers + cpp
+python pipeline/gen/codegen.py headers          # 只生成 .h
+python pipeline/gen/codegen.py cpp              # 只生成 .cpp
+python pipeline/gen/codegen.py cpp ClassName    # 只生成特定类
 ```
 
-## 添加新的 Transform
+## 4-Stage Transform Pipeline
 
-在 `transforms/` 目录下创建或修改 `.py` 文件：
+代码变换分为 4 个确定性阶段，依次执行：
 
-```python
-# transforms/my_fix.py
-import re
-from . import register
-
-@register(order=150)  # 100-199 = type_fixes 区间
-def fix_something(code, ctx):
-    """修复某个 Hex-Rays 输出问题。"""
-    return re.sub(r'broken_pattern', 'fixed', code)
+```
+decomp JSON 原始代码
+  │
+  ├─ Stage 1 (structural)    函数签名修改，不看 body
+  │   AST: function_definition → 删除 ms_call_modifier, this 参数
+  │
+  ├─ Stage 2 (semantic)      OOP 调用重写（唯一产生新模式的阶段）
+  │   AST: Class::Method(obj,...) → obj->Method(...)
+  │
+  ├─ Stage 3 (cleanup)       清理 Stage 2 产生的 IDA 残留
+  │   AST: vftable 赋值/调用、显式 ctor/dtor 检测
+  │
+  └─ Stage 4 (substitution)  token 级替换，无上下文依赖
+      AST: identifier → 名称解析, type_identifier → 类型修复
 ```
 
-Transform 签名：`(code: str, ctx: TransformContext) -> str`
+**关键约束**：Stage 2 产生新的 `->ClassName()` 和 `->__vftable->` 模式，Stage 3 必须在 Stage 2 之后才能处理它们。Stage 4 与前 3 个 stage 无交互。
 
-- `ctx.cls_name` — 类名（free function 时为空）
-- `ctx.method_name` — 方法名
-- `ctx.is_ctor` / `ctx.is_dtor` — 是否构造/析构函数
-- `ctx.is_free_function` — 是否自由函数
-- `ctx.sig` — IDA 函数签名
+## tree-sitter 集成
 
-全局数据通过 `from ..data import store` 访问。
+所有结构判断通过 AST node type 完成，不依赖 regex pattern matching：
 
-## Order 约定
+- `_is_vftable_field(node)` — `field_expression.field == "__vftable"`
+- `_is_vftable_call(node)` — call 函数子树含 __vftable
+- `_get_ctor_call_info(node)` — cast_type == method_name 判定 ctor
+- `_extract_cast_type(node)` — 穿透 parenthesized/binary/cast 层
+- `_collect_token_edits(tree)` — 单次遍历收集 identifier 替换
 
-| 范围 | 模块 | 职责 |
-|------|------|------|
-| 0-99 | ida_cleanup | 删除 IDA 无效代码 |
-| 100-199 | type_fixes | 类型转换修复 |
-| 200-299 | oop | OOP 方法调用变换 |
-| 300-399 | names | 名称解析（thunk/global/literal） |
-| 400-499 | compat | VC6 编译器兼容性 |
+## 添加新的 Hex-Rays 修复
 
-低 order 先执行。同一模块内按定义顺序。
+1. **确定属于哪个 Stage**：
+   - 改函数签名 → Stage 1
+   - 需要 OOP 变换后的模式 → Stage 3
+   - 纯 token 替换 → Stage 4
 
-## 设计原则
+2. **在对应 stage 文件中添加逻辑**：
+   - 优先用 AST node type 检测（`node.type == 'call_expression'`）
+   - 简单文本替换（`code.replace('A', 'B')`）可直接使用
 
-- 每个 transform 是纯函数（输入 code → 输出 code）
-- Transform 不依赖执行顺序外的隐式状态
-- 全局数据集中在 DataStore，transform 只读访问
-- 全量生成，无增量缓存——简单可靠
+3. **验证**：编译结果不回归
+
+## DataStore
+
+`data.py` 在 codegen 启动时一次性加载所有资源：
+
+- `store.literals` — .rdata float/string 常量
+- `store.thunks` — thunk 函数名映射
+- `store.globals_map` — IDA 默认名 → 标注名
+- `store.struct_instances` — 全局结构体实例范围
+- `store.struct_members` — 结构体成员偏移 → (名称, 类型)
+- `store.game_classes` — 有 .h 文件的类名集合
+- `store.static_methods` — __cdecl 类方法集合
+
+Transform 通过 `from data import store` 访问，不传 ctx。

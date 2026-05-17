@@ -7,7 +7,7 @@
 - **聚焦核心逻辑**：战斗系统、脚本引擎、场景管理、角色系统等核心游戏逻辑追求字节匹配。边角小函数、系统库 stub、CRT 初始化等不值得花大量时间
 - **ROI 驱动**：字节匹配存在宽容度——核心逻辑一致是目标，对于行为等价但字节不完全一致的边缘代码可以接受
 - **IDA 优先**：代码质量问题（硬编码偏移、void* 参数、类型强转）的正确修复路径是在 IDA 中完善类型/签名，然后重新导出
-- **后处理仅做等价变换**：gen_cpp.py 只做不改变语义的代码转换（OOP 调用转换、MEMORY[] 替换、命名替换），不编造信息
+- **后处理仅做等价变换**：codegen pipeline 只做不改变语义的代码转换（基于 tree-sitter AST），不编造信息
 - **不降级已有信息**：不把已知类型改为 void*、char[]、int 等泛化类型
 - **不允许破坏性 workaround**：不为了编译通过而丢失类型信息或结构定义
 
@@ -35,20 +35,19 @@ compiler (MSVC 6.0 SP0), generates byte-identical machine code to the original b
 ### 工作流
 
 ```
-1. IDA 标注   → tools/ida/pal3_*.py (函数命名、结构体导入、全局变量类型)
-2. IDA 导出   → tools/ida/pal3_export_only.py → asm/pal3/decomp/*.json
-3. 头文件生成 → python tools/gen_headers.py → include/pal3/gen/*.h
-4. 代码生成   → python tools/gen_cpp.py → src/pal3/**/*.cpp
-5. 编译验证   → VC6 (cmake -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-vc6.cmake)
-6. 字节对比   → python tools/pal3_compare.py
-7. 迭代       → 回到步骤 1，在 IDA 中修复类型/签名问题
+1. IDA 标注   → pipeline/ida/*.py (函数命名、结构体导入、全局变量类型)
+2. IDA 导出   → pipeline/ida/export_full.py → asm/pal3/decomp/*.json
+3. 代码生成   → python pipeline/gen/codegen.py all → include/ + src/
+4. 编译验证   → VC6 (cmake -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-vc6.cmake)
+5. 字节对比   → python tools/pal3_compare.py
+6. 迭代       → 回到步骤 1，在 IDA 中修复类型/签名问题
 ```
 
 ### 核心原则
 
 1. **IDA 层能解决的问题在 IDA 层解决** — 类型标注、结构体导入、函数签名
 2. **累积收益** — 每次 IDA 侧的改进（结构体/签名）惠及所有引用该类型的函数
-3. **gen_cpp.py 支持增量更新** — 手动修改的文件不会被覆盖（除非 `--force`）
+3. **codegen 全量生成** — 每次从 decomp JSON 全量重新生成，无增量缓存
 
 ### IDA 中需要做的事情
 
@@ -69,10 +68,10 @@ compiler (MSVC 6.0 SP0), generates byte-identical machine code to the original b
 
 ### 代码生成工具
 
-- `tools/gen_headers.py` — 从 PDB + IDA 生成头文件 (类定义+方法声明)
-- `tools/gen_cpp.py` — 从 IDA decomp 生成 .cpp (OOP 转换+后处理)
-- `tools/gen_cpp.py --force-all` — 全量重新生成
-- `tools/gen_cpp.py ClassName` — 只重新生成指定类
+- `pipeline/gen/codegen.py all` — 全量生成 headers + cpp (tree-sitter AST pipeline)
+- `pipeline/gen/codegen.py headers` — 只生成 .h
+- `pipeline/gen/codegen.py cpp` — 只生成 .cpp
+- `pipeline/gen/codegen.py cpp ClassName` — 只生成指定类
 - `tools/dia_export_structs.py` — 从 PDB 导出结构体 (DIA SDK)
 - `tools/dia_export_bases.py` — 从 PDB 导出继承关系
 
