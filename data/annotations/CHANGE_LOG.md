@@ -51,6 +51,27 @@
 
 ## 变更记录
 
+### [2026-05-17] 13 个 int→unsigned char (binary-wide byte-width scan)
+
+方法: 扫描 .text 段 `C6` (mov byte ptr [reg+disp8], imm8) 和 `0F B6` (movzx byte)
+指令，交叉匹配类方法地址范围。
+
+| 结构体 | 偏移 | 证据 |
+|--------|------|------|
+| Actor+4, +80 | 0x4, 0x50 | mov byte [reg+N], imm8 |
+| CCBCamControl+60 | 0x3C | mov byte [esi+3Ch], 0 |
+| CCBStage+168 | 0xA8 | mov byte [ebp+A8h], 1 |
+| CCBSystem+60 | 0x3C | mov byte [edi+3Ch], 0 |
+| CScreenMode+4 | 0x4 | mov byte [esi+4], 0 |
+| NPC+12 | 0xC | mov byte [ecx+Ch], 1 |
+| PalScript+60 | 0x3C | mov byte [esi+3Ch], 1 |
+| PtrArray+4 | 0x4 | mov byte [esi+4], 1 |
+| RenderTarget+20,+40 | 0x14, 0x28 | mov byte [esi+N], 1 |
+| RoleSystem+240 | 0xF0 | mov byte [esi+F0h], 1 |
+| UIListBox+248 | 0xF8 | mov byte [ebp+F8h], E0h |
+
+- **置信度**: 85 (A: C6 opcode 确定性证明 byte 访问宽度; 0F B6 = movzx byte)
+
 ### [2026-05-17] 大规模 FPU 二进制扫描: 120 个 int→float (3849→3858, +9 正常增长)
 
 #### 方法创新
