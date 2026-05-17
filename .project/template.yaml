@@ -18,11 +18,11 @@ agents:
       ## 自主工作循环
 
       启动后立即进入循环，不等待人类指令：
-      1. 评估现状（python pipeline/check_annotations.py）
+      1. 评估现状（`python pipeline/cli.py check`）
       2. 选择最高 ROI 目标
       3. 收集证据（IDA 查询工具 / verify_offset）
       4. 修改 annotations
-      5. 验证（check_annotations → 编译 → 对比）
+      5. 验证（check → apply → export → codegen → 编译 → 对比）
       6. 记录操作日志：data_write(slot="activity", action="append", row={time, action, detail})
       7. git commit
       8. 回到 1
@@ -33,31 +33,45 @@ agents:
 
       ## 不可程序化的约束（plugin 无法拦截，必须你自觉遵守）
 
-      - **禁止从 Hex-Rays 反编译文本推断偏移** — 反编译中的偏移可能因结构体定义错误而不准确。偏移只能从二进制指令确认（mov [reg+disp] 模式）
-      - **禁止仅凭 PDB 修改** — PDB 来自 PAL3A（续作），偏移可能与 PAL3 不同
-      - **禁止伪语义命名** — `m_nState_4968` 没有语义价值，保留 `_todo_`。只有能确定具体含义时才命名
+      - **禁止从 Hex-Rays 反编译文本推断偏移** — 偏移只能从二进制指令确认（mov [reg+disp]）
+      - **禁止仅凭 PDB 修改** — PDB 来自 PAL3A（续作），偏移可能不同
+      - **禁止伪语义命名** — `m_nState_4968` 没有语义价值，保留 `_todo_`
       - **置信度阈值**：偏移≥80 / 类型≥70 / 命名≥60 / 函数≥50
       - 置信度不够 → 跳过，选下一个目标
 
       ## 工具集
 
-      IDA 工具（$IDA = 系统中的 idat64.exe）：
-      - `$IDA -A -S"pipeline/ida/apply_annotations.py" original/PAL3.exe.i64` — 应用标注
-      - `$IDA -A -S"pipeline/ida/export_full.py" original/PAL3.exe.i64` — 导出反编译
-      - `$IDA -A -S"pipeline/ida/query_todo_fields.py" original/PAL3.exe.i64` — 全局扫描
-      - `$IDA -A -S"pipeline/ida/query_highref_fields.py" original/PAL3.exe.i64` — 补充高引用
-      - `$IDA -A -S"pipeline/ida/query_class_full.py ClassName" original/PAL3.exe.i64` — 单类分析
+      ### Pipeline CLI（统一入口，配置来自 pipeline.toml）
+      - `python pipeline/cli.py config` — 显示配置，验证路径
+      - `python pipeline/cli.py init [--force]` — 初始化 IDB（exe→raw→work→PDB→annotations）
+      - `python pipeline/cli.py apply` — 应用 annotations 到 work IDB
+      - `python pipeline/cli.py export` — 导出 Hex-Rays 反编译 JSON
+      - `python pipeline/cli.py check` — 校验 annotations 合法性
+      - `python pipeline/cli.py codegen all` — 生成 headers + cpp
+      - `python pipeline/cli.py codegen headers` — 只生成 .h
+      - `python pipeline/cli.py codegen cpp` — 只生成 .cpp
 
-      非 IDA 工具：
+      ### IDA 查询工具（只读，不修改 IDB）
+      - `query_todo_fields.py` — 批量扫描全部 _todo_ 字段的 xref + decomp 上下文
+      - `query_highref_fields.py` — 高引用无上下文字段强制反编译
+      - `query_class_full.py ClassName` — 单类全部方法完整反编译
+      - `query_method.py ClassName::MethodName` — 单方法反编译
+      - `query_offsets.py ClassName` — 类的所有字段偏移访问点
+      - `query_range.py 0xSTART 0xEND` — 指定地址范围反编译
+
+      IDA 查询通过 CLI 内部调用，无需手动拼 $IDA 命令。
+
+      ### 非 IDA 工具
       - `python pipeline/verify_offset.py StructName OFFSET` — 验证偏移
-      - `python pipeline/check_annotations.py` — 校验合法性
-      - `cmake --build build --target PAL3 2>&1` — 编译验证
+      - `python pipeline/compare.py` — 字节对比工具
+      - `python pipeline/callgraph.py FuncName` — 调用图分析
+      - `ninja -C build -k 0` — 编译验证
 
       ## 异常处理
 
-      - check_annotations 报错 → 立即回退修改
+      - check 报错 → 立即回退修改
       - 编译新增错误 → 分析是否自己引入，是则回退
-      - IDA 工具失败 → 重建 IDB（cp raw → apply_annotations）
+      - IDA 工具失败 → `python pipeline/cli.py init --force` 重建
 
 ui:
   data:
@@ -137,6 +151,25 @@ ui:
               kind: chat
 
 directives: |
+  ## 启动序列
+
+  1. `python pipeline/cli.py config` — 确认配置正确
+  2. `python pipeline/cli.py check` — 确认 annotations 状态
+  3. 如果 IDB 不存在：`python pipeline/cli.py init`
+  4. 选择第一个目标，开始工作循环
+  5. 更新 current_target 面板
+
+  ## 典型修改后验证流程
+
+  ```
+  python pipeline/cli.py check        # annotations 合法性
+  python pipeline/cli.py apply        # 应用到 IDB
+  python pipeline/cli.py export       # 导出反编译（用于 codegen）
+  python pipeline/cli.py codegen all  # 生成源码
+  ninja -C build -k 0                 # 编译
+  python pipeline/compare.py          # 字节对比
+  ```
+
   ## 与人交互模式
 
   - 默认完全自主运行，人通过 audit_log 面板审核
