@@ -59,53 +59,53 @@
     },
     "88": {
       "name": "_todo_58",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& 13x + tagRECT cast (float rect, not int rect))"
     },
     "92": {
       "name": "_todo_5C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& 10x + tagRECT cast (float rect))"
     },
     "96": {
       "name": "_todo_60",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& 12x + tagRECT/UIScene cast (float rect))"
     },
     "100": {
       "name": "_todo_64",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& 10x + tagRECT cast (float rect))"
     },
     "104": {
       "name": "_todo_68",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& in _method_43fd20, 9x total)"
     },
     "108": {
       "name": "_todo_6C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& division in _method_43fd20, 8x total)"
     },
     "112": {
       "name": "_todo_70",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& 12x + POINT cast (float point))"
     },
     "116": {
       "name": "_todo_74",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& in _method_43fd20 + _method_443970, 5x total)"
     },
     "120": {
       "name": "_todo_78",
-      "type": "unsigned char",
-      "source": "A+:decomp LOBYTE(this->_todo_78) x7 + A:binary mov BYTE [esi+0x8C]"
+      "type": "float",
+      "source": "A+:decomp LOBYTE(this->_todo_78) x7 + A:binary mov BYTE [esi+0x8C] | type_fix:unsigned char->float(A+:decomp *(float*)& 4x, _method_43fd20+_method_52e2f0)"
     },
     "124": {
       "name": "_todo_7C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& multiply in _method_443ba0, 8x total)"
     }
   },
   "gen_size": 152,
