@@ -51,6 +51,15 @@
 
 ## 变更记录
 
+### [2026-05-17] 函数类归属批量修正: 177 个方法重新归属 (3867→4426)
+
+扫描 decomp 中 `((ClassName*)this)` cast 模式 + VA in target range:
+UIWnd/CScreenMode/CCBUI/CCBStage/UIListBox 等大类 → 各自正确的子类。
+主要目标: UIListBox(38), UICoverFrm(18), CCBStageRole(13), CCBMagicWindow(13)
+
+- **置信度**: 85 (cast + VA range 双重验证)
+- **+559 errors**: 正常增长——方法从 100-error-cap 大文件移出后被完整编译
+
 ### [2026-05-17] 嵌入子对象批量发现: 13 个 embed (86 个重叠成员清除)
 
 方法: Binary-wide `LEA ECX,[ESI+disp]; CALL CtorFunc` 模式扫描 + this=ESI 验证
