@@ -6,6 +6,7 @@
 
 命令:
   config              显示当前配置并验证路径
+  config --set K=V    设置配置项（如: config --set ida.path="D:\\IDA\\idat.exe"）
   init [--force]      初始化完整可用的 IDB (exe → raw → work → PDB → annotations)
   apply               重新应用 annotations 到已有 work IDB（标注变更后使用）
   export              导出 Hex-Rays 反编译 JSON（IDB → decomp/）
@@ -53,6 +54,84 @@ if _PROJECT_DIR not in sys.path:
 from pipeline.config import cfg
 
 
+def _config_set(args):
+    """Set a config value in pipeline.toml."""
+    toml_path = Path(_PROJECT_DIR) / 'pipeline.toml'
+    example_path = Path(_PROJECT_DIR) / 'pipeline.toml.example'
+
+    # Create from example if not exists
+    if not toml_path.exists():
+        if example_path.exists():
+            shutil.copy2(str(example_path), str(toml_path))
+            print("Created pipeline.toml from example")
+        else:
+            # Write minimal template
+            toml_path.write_text(
+                '[ida]\npath = ""\n\n[binary]\nexe = "original/PAL3.exe"\n'
+                'idb_raw = "original/PAL3.exe.raw.i64"\nidb_work = "original/PAL3.exe.i64"\n\n'
+                '[paths]\nannotations = "data/annotations"\npdb = "data/pdb"\n'
+                'decomp = "asm/pal3/decomp"\noutput_src = "src/pal3"\n'
+                'output_headers = "include/pal3/gen"\n', encoding='utf-8')
+            print("Created pipeline.toml with defaults")
+
+    if not args:
+        print("[ERROR] Usage: config --set section.key=value")
+        print("  Examples:")
+        print('    config --set ida.path="D:\\\\Program Files\\\\IDA Professional 9.2\\\\idat.exe"')
+        print('    config --set binary.exe="original/PAL3.exe"')
+        sys.exit(1)
+
+    for arg in args:
+        if '=' not in arg:
+            print("[ERROR] Invalid format: %s (expected section.key=value)" % arg)
+            sys.exit(1)
+        key, value = arg.split('=', 1)
+        value = value.strip('"').strip("'")
+
+        if '.' not in key:
+            print("[ERROR] Key must be section.key format (e.g., ida.path)")
+            sys.exit(1)
+
+        section, field = key.split('.', 1)
+        # Escape backslashes for TOML string
+        value = value.replace('\\', '\\\\')
+
+        # Read, modify, write toml
+        content = toml_path.read_text(encoding='utf-8')
+        lines = content.split('\n')
+        in_section = False
+        found = False
+        for i, line in enumerate(lines):
+            if line.strip() == '[%s]' % section:
+                in_section = True
+                continue
+            if in_section:
+                if line.strip().startswith('['):
+                    # New section started, insert before it
+                    lines.insert(i, '%s = "%s"' % (field, value))
+                    found = True
+                    break
+                if line.strip().startswith(field + ' ') or line.strip().startswith(field + '='):
+                    lines[i] = '%s = "%s"' % (field, value)
+                    found = True
+                    break
+
+        if not found:
+            # Append to end of file (or end of section)
+            if in_section:
+                lines.append('%s = "%s"' % (field, value))
+            else:
+                lines.append('')
+                lines.append('[%s]' % section)
+                lines.append('%s = "%s"' % (field, value))
+
+        toml_path.write_text('\n'.join(lines), encoding='utf-8')
+        print("Set %s.%s = %s" % (section, field, value))
+
+    print()
+    print("Config saved to: %s" % toml_path)
+
+
 def _run_ida(script_name, idb_path):
     """Run an IDA script on the given IDB."""
     script = os.path.join(_PIPELINE_DIR, 'ida', script_name)
@@ -71,8 +150,15 @@ def _check_ida():
         sys.exit(1)
 
 
-def cmd_config():
-    """Print and validate configuration."""
+def cmd_config(args=None):
+    """Print, validate, or set configuration."""
+    args = args or []
+
+    # config --set key=value
+    if args and args[0] == '--set':
+        _config_set(args[1:])
+        return
+
     print("Pipeline Configuration (pipeline.toml)")
     print("=" * 55)
     print("  IDA:          %s" % cfg.ida_path)
@@ -379,7 +465,7 @@ def main():
     command = args[0]
 
     if command == 'config':
-        cmd_config()
+        cmd_config(args[1:])
     elif command == 'init':
         cmd_init(force='--force' in args)
     elif command == 'apply':
