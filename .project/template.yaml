@@ -138,7 +138,7 @@ ui:
               kind: data
               slots: [current_target, alerts]
       - split: vertical
-        ratio: [85, 15]
+        ratio: [35, 65]
         children:
           - panel:
               id: audit_log
@@ -147,7 +147,7 @@ ui:
               slots: [activity]
           - panel:
               id: chat
-              title: "人工干预"
+              title: "💬 Agent 对话"
               kind: chat
 
 directives: |
