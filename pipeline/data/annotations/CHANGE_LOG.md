@@ -51,6 +51,38 @@
 
 ## 变更记录
 
+### [2026-05-17] AST 迁移完成 — 全 4 stage 使用 tree-sitter
+
+- **变更**: 全部 4 个 stage 迁移到 tree-sitter C++ AST
+- **置信度**: 100 (编译 157 = baseline, 0 regression)
+
+  **迁移总结**:
+  | Stage | AST 用法 | 剩余 regex |
+  |-------|---------|-----------|
+  | Stage 1 (structural) | function_definition 解析，ms_call_modifier/parameter 节点操作 | fallback for unusual formats |
+  | Stage 2 (semantic) | call_expression 遍历做 OOP 变换 (原有) | 无 |
+  | Stage 3 (cleanup) | expression_statement/return_statement 遍历，vftable/ctor 节点检测 | backtick 行匹配, 简单文本替换 |
+  | Stage 4 (substitution) | identifier/type_identifier/this 节点遍历做 token 替换 | __int8 type alias, LL suffix, ref params |
+
+  **关键 AST 检测函数**:
+  - `_is_vftable_field(node)`: field_expression.field == "__vftable"
+  - `_is_vftable_call(node)`: call 函数子树含 __vftable
+  - `_get_ctor_call_info(node)`: 提取 method_name + cast_type, 判断 ctor
+  - `_extract_cast_type(node)`: 穿透 parenthesized/binary/cast 层提取类型名
+  - `_collect_token_edits(tree)`: 单次遍历收集所有 identifier 替换
+
+  **架构收益**:
+  - 消除 transform 间的隐式 order 依赖
+  - 结构判断不依赖上游 transform 的文本输出格式
+  - 单次 parse + 单次 walk 替代 20+ regex 全文扫描
+  - 新增 fix 只需增加 AST node 检测逻辑，不破坏现有 pattern 匹配
+
+  **删除的代码**:
+  - gen_cpp.py (1100 行)
+  - gen_headers.py (1165 行, 迁入 emit_headers.py)
+  - transforms/ 目录 (7 文件, 26 个 @register transform)
+  - 净减 ~1800 行
+
 ### [2026-05-17] codegen pipeline 0 diff 达成 — 可安全替代旧代码
 
 - **变更**: 4-stage pipeline 输出与旧 gen_cpp.py 100% byte-identical
