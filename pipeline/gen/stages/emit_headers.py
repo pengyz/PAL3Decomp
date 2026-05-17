@@ -61,6 +61,7 @@ SKIP_CLASSES = {
     '_ThrowInfo', '_CatchableType', '_CatchableTypeArray',
     # Windows types
     'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG', 'RECT', 'POINT', 'SIZE',
+    'tagRGBQUAD', 'RGBQUAD',
     'WNDCLASSA', 'tagWNDCLASSA', 'tagOFNA',
     '_FILETIME', '_SYSTEMTIME', '_MEMORYSTATUS', '_SECURITY_ATTRIBUTES',
     '_OSVERSIONINFOA', '_STARTUPINFOA', '_WIN32_FIND_DATAA',
@@ -960,6 +961,13 @@ def main():
         if not has_members and not has_methods and not has_vtable and not has_ann_members:
             continue
 
+        # Skip class generation if name conflicts with a PDB enum and class is just an enum wrapper
+        # (size <= 4, no meaningful members beyond padding)
+        if cls_name in enum_names:
+            pdb_size = pdb_class.get('size', 0) if pdb_class else 0
+            if pdb_size <= 4 and not has_ann_members:
+                continue
+
         # Embed enums that would collide with this class header on disk:
         # - case-insensitive match (UIEMOTE vs UIEmote) — Windows FS collision
         # - exact same name but class has real content (ECBRoleSpecState)
@@ -1051,12 +1059,22 @@ def main():
             f.write('\n'.join(lines))
         tmpl_count += 1
 
+    # Clean stale headers: remove .h files for classes now in SKIP_CLASSES
+    stale_removed = 0
+    for hf in OUTPUT_DIR.glob("*.h"):
+        stem = hf.stem
+        if should_skip_class(stem) and stem not in enum_names:
+            hf.unlink()
+            stale_removed += 1
+
     print("Generated %d header files in %s" % (generated, OUTPUT_DIR))
     print("  With PDB layout: %d" % sum(1 for c in all_classes
           if c in pdb_classes and pdb_classes[c].get('data_members') and pdb_classes[c].get('size', 0) > 1))
     print("  With methods: %d" % sum(1 for c in all_classes if c in methods_by_class and methods_by_class[c]))
     print("  Enums: %d" % enum_count)
     print("  Template stubs: %d" % tmpl_count)
+    if stale_removed:
+        print("  Cleaned %d stale headers" % stale_removed)
 
     # --- Generate globals.h from annotations ---
     generate_globals()
