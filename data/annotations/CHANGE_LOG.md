@@ -51,6 +51,40 @@
 
 ## 变更记录
 
+### [2026-05-17] annotation 签名质量批量修正 (3888→3828, -60 errors)
+
+#### ctor 返回类型修正 (41 个函数)
+
+- **变更**: 41 个构造函数签名的返回类型从 `ClassName *` 改为 `void`
+- **置信度**: 95
+- **证据**: C++ 构造函数没有返回类型。IDA Hex-Rays 将 ctor 内部的 `return this` 误推断为返回类型
+- **影响**: IDA apply 后 Hex-Rays 不再为 ctor 生成多余的返回值
+
+#### GetEditorObjDescription/TaskDescription 返回类型 (4 个函数)
+
+- **变更**: `int *` / `int` → `const char *`
+- **置信度**: 90
+- **证据**:
+  1. [A] 0x4C5150 CEffCylinder: switch/case 返回 .data 段内联 GBK 字符串地址 (e.g. `dword_5D50E4` = 0xB4D7F8B4 = GBK "大小")
+  2. [B] 同族方法 CEffShock::GetEditorTaskDescription (0x4D3280) 已标注为 `const char*`
+  3. [B] CEffExplosive, CEffGrid 函数结构完全相同 (switch/case 返回字符串)
+
+#### GetInstance 系列返回类型精确化 (5 个函数)
+
+- **变更**: `_DWORD *` / `void *` → 具体类型指针
+- **置信度**: 85
+- **证据**: decomp 中每个函数的 return 语句明确返回已知全局实例地址
+  1. [A+] CScreenMode::GetInstance (0x53D150): `return &stru_17B3EB0` → PtrArray*
+  2. [A+] PAL3::GetInstance (0x4B6D30): `return &g_RenderTarget3` → RenderTarget3*
+  3. [A+] PAL3::GetInstance_db10 (0x4BDB10): `return &g_PAL3` → PAL3*
+  4. [A+] PAL3::GetInstance_fd20 (0x4BFD20): `return &g_PAL3._gap_FA0[72]` → ScreenEffectMgr*
+  5. [A+] RenderTarget3::GetInstance (0x4B65A0): void* → RenderTarget3*
+
+#### sdtor 误命名修正 (2 个函数, 上轮提交)
+
+- 0x51B160 CCBItemWindow, 0x51C260 CCBSkillWindow: ctor 名 → `_sdtor_`
+- 判据: 返回 UIWnd*, 参数 (Class*, char), 函数体 = dtor + conditional delete
+
 ### [2026-05-17] codegen 第四轮: 幂等 enum 生成架构重设计 (C2011: 1945→0)
 
 #### 问题
