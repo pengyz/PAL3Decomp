@@ -167,11 +167,6 @@
       "type": "unsigned char",
       "source": "binary:raw_1vote"
     },
-    "432": {
-      "name": "m_nField1B0",
-      "type": "int",
-      "source": "binary:raw_3votes"
-    },
     "12": {
       "name": "m_nMsgData",
       "type": "int",
@@ -217,11 +212,6 @@
       "type": "int",
       "source": "binary:raw_final"
     },
-    "352": {
-      "name": "m_nTotalRowWidth",
-      "type": "int",
-      "source": "ida_decomp:SendMessage = *v26 * col_width, accumulated, 10 refs"
-    },
     "176": {
       "name": "_field_0B0",
       "type": "int",
@@ -266,21 +256,6 @@
       "name": "m_nMaxSel",
       "type": "int",
       "source": "binary_setter_SetSel"
-    },
-    "356": {
-      "name": "m_nColumnCount",
-      "type": "int",
-      "source": "ida_decomp:SendMessage = 1, incremented, 10 refs"
-    },
-    "360": {
-      "name": "m_nColumnStart",
-      "type": "int",
-      "source": "ida_decomp:SendMessage = 0, loaded, 10 refs"
-    },
-    "364": {
-      "name": "m_nColumnActive",
-      "type": "int",
-      "source": "ida_decomp:SendMessage = 1, ==1 check, 8 refs"
     },
     "436": {
       "name": "m_nKeyCtrl",
@@ -528,14 +503,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo"
     },
     "348": {
-      "name": "m_wndTemplate",
-      "type": "UIWnd",
-      "source": "A+:decomp UIWnd::CreateFromTemplate((UIWnd*)&this->_todo_15C,...) + vtable_call"
-    },
-    "377": {
-      "name": "m_bSendMessage_1",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "_todo_15C",
+      "type": "int",
+      "source": "REVERTED:no_binary_LEA_evidence_for_UIWnd_embed,decomp_cast_unreliable"
     },
     "1132": {
       "name": "_todo_46C",
@@ -564,31 +534,6 @@
     },
     "104": {
       "name": "_todo_68",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "368": {
-      "name": "m_wndScrollBar",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "388": {
-      "name": "m_nScrollPos",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
-    },
-    "396": {
-      "name": "_todo_18C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "404": {
-      "name": "_todo_194",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "412": {
-      "name": "_todo_19C",
       "type": "int",
       "source": "gap_fill:ida_decomp_access"
     },
@@ -646,6 +591,61 @@
       "name": "m_nDrawOffsetX",
       "type": "int",
       "source": "gap_fill:ida_decomp_access | annotate_todo"
+    },
+    "432": {
+      "name": "m_nField1B0",
+      "type": "int",
+      "source": "binary:raw_3votes"
+    },
+    "352": {
+      "name": "m_nTotalRowWidth",
+      "type": "int",
+      "source": "ida_decomp:SendMessage = *v26 * col_width, accumulated, 10 refs"
+    },
+    "356": {
+      "name": "m_nColumnCount",
+      "type": "int",
+      "source": "ida_decomp:SendMessage = 1, incremented, 10 refs"
+    },
+    "360": {
+      "name": "m_nColumnStart",
+      "type": "int",
+      "source": "ida_decomp:SendMessage = 0, loaded, 10 refs"
+    },
+    "364": {
+      "name": "m_nColumnActive",
+      "type": "int",
+      "source": "ida_decomp:SendMessage = 1, ==1 check, 8 refs"
+    },
+    "377": {
+      "name": "m_bSendMessage_1",
+      "type": "unsigned char",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "368": {
+      "name": "m_wndScrollBar",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "388": {
+      "name": "m_nScrollPos",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
+    },
+    "396": {
+      "name": "_todo_18C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "404": {
+      "name": "_todo_194",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "412": {
+      "name": "_todo_19C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
     }
   },
   "pdb_size": 1288,
