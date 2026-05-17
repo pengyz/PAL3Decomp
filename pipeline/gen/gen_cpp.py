@@ -785,6 +785,9 @@ def _replace_ida_internals(code):
                 skip_until_semicolon = True
             continue
         s = line.strip()
+        # Remove __vftable assignments (vtable init/clear in ctor/dtor, compiler-generated)
+        if re.match(r'.*->?__vftable\s*=\s*', s) or re.match(r'.*__vftable\s*=\s*', s):
+            continue
         # Comment out __vftable-based virtual calls (IDA artifact, not valid C++)
         if ('->__vftable->' in s or '->__vftable)' in s) and s.endswith(';') \
                 and not s.startswith('//'):
