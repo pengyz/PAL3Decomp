@@ -51,26 +51,28 @@
 
 ## 变更记录
 
-### [2026-05-17] 嵌入子对象发现: CCBStageScene+Object3D, UIListBox+UIItem
+### [2026-05-17] 嵌入子对象批量发现: 13 个 embed (86 个重叠成员清除)
 
-#### CCBStageScene+856: Object3D* → Object3D (嵌入值, 152 bytes)
+方法: Binary-wide `LEA ECX,[ESI+disp]; CALL CtorFunc` 模式扫描 + this=ESI 验证
 
-- **证据**:
-  1. [A] VA=0x52B305: `8D 8E 58030000` = LEA ECX,[ESI+358h]
-  2. [A] VA=0x52B310: `E8 5B18F5FF` = CALL Object3D::Object3D (0x47CB70)
-  3. [A] ESI=this: `8B F1` (mov esi,ecx) @ _method_52b2a0+23
-  4. [B] 856+152=1008, 下一字段 +1008 (m_eBFAForce) 精确对齐到 binary_size=1012
-- **影响**: 删除 37 个重叠成员（实际属于 Object3D 内部）
-- **置信度**: 90
+| 所属类 | 偏移 | 嵌入类型 | 大小 | 清除重叠 |
+|--------|------|---------|------|---------|
+| CCBStageScene | +856 | Object3D | 152 | 37 |
+| UIListBox | +356 | UIItem | 252 | 27 |
+| CCBUIPanel | +18840 | UIItem | 252 | 0 |
+| CCBUIPanel | +20208 | UIItem | 252 | 0 |
+| CScreenMode | +3876 | UIItem | 252 | 4 |
+| RoleSystem | +4540 | UIItem | 252 | 4 |
+| RoleSystem | +5908 | UIItem | 252 | 0 |
+| SceneObj | +360 | UIItem | 252 | 1 |
+| UICoverFrm | +10208 | UIItem | 252 | 0 |
+| UICoverFrm | +11576 | UIItem | 252 | 1 |
+| PropUI | +18892 | PalScript | 1816 | 12 |
+| SaleUI | +25328 | PalScript | 1816 | 0 |
+| CUtil | +368 | UIItem | 252 | 0 |
 
-#### UIListBox+356: int → UIItem (嵌入值, 252 bytes)
-
-- **证据**:
-  1. [A] VA=0x527A51: `8D 8E 64010000` = LEA ECX,[ESI+164h]
-  2. [A] VA=0x527A5C: `E8 AF99F7FF` = CALL UIItem::UIItem (0x4A1410)
-  3. [A] ESI=this: `8B F1` @ UIListBox::ctor_79F0+23
-- **影响**: 删除 27 个重叠成员（实际属于 UIItem 内部）
-- **置信度**: 90
+- **置信度**: 90 (A: LEA ECX opcode + CALL target = known ctor + ESI=this verified)
+- **总清除**: 86 个错误重叠成员（实际属于嵌入子对象内部）
 
 ### [2026-05-17] 10 个 int→short (66-prefix word-width scan)
 
