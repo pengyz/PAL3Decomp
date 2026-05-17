@@ -51,6 +51,49 @@
 
 ## 变更记录
 
+### [2026-05-17] feat(gen_cpp): 全局结构体成员解析 + 标注清理
+
+- **变更**: gen_cpp.py 新增 `replace_struct_member_refs()` codegen 层映射 + globals.json 清理
+- **置信度**: 85 (codegen 等价变换) / 90 (地址修复)
+
+  **gen_cpp.py 结构体成员解析 (codegen 等价变换，不改变语义)**
+  - 新增 `replace_struct_member_refs()`: `dword_XXXXXXXX` → `g_Instance.member_name`
+  - 覆盖 13 个全局结构体实例 (g_SceneMgr, g_RoleSystemMain, g_PAL3 等)
+  - 261 处 IDA 不透明地址名解析为类型化成员访问
+  - 带宽度兼容性检查: byte_ 不映射到 float/ptr 成员, word_ 不映射到 4 字节成员
+  - 优先级: struct member resolution > globals name map (dot-notation 优先)
+  - 效果: 2897 处 dot-notation 成员访问 (vs 之前的纯 underscore alias)
+
+  **globals.json 地址修复 (置信度 90: struct offset 交叉验证)**
+  - [A] m_nCameraFlags: 0xC116F0→0xC116F4 (SceneMgr offset 0xD360→0xD364)
+    - 0xD360 = m_pRoleSystem (RoleSystem *), 0xD364 = m_nCameraFlags (int)
+    - 旧地址错指到 m_pRoleSystem 的位置
+  - [A] g_nCurrentScriptSlot: 0xC10CC8→0xC10CCC (SceneMgr offset 0xC938→0xC93C)
+    - 0xC938 = m_nCombatUIState (int, 14x abs refs), 0xC93C = m_nCurrentScriptSlot (int)
+    - 旧地址错指到 m_nCombatUIState 的位置
+
+  **冗余条目清理 (28 entries removed)**
+  - 14 个 SceneMgr/RoleSystem 子成员 alias: struct member resolution 已完整覆盖
+    - 类型修正: `extern int g_SceneMgr_m_pAddEffect2` → `g_SceneMgr.m_pAddEffect2` (gbRenderEffect *)
+    - 类型修正: `extern float g_SceneMgr_m_pScriptCtrl` → `g_SceneMgr.m_pScriptCtrl` (PalScriptMgr *)
+    - 类型修正: `extern int g_SceneMgr_m_pGameData` → `g_SceneMgr.m_pGameData` (CGameData *)
+  - 3 个 RoleSystem naming conflict 解决:
+    - m_nRoleObjField4 → m_nPathEnabled (global analysis semantic name)
+    - g_nRoleMoveLock removed (PDB authoritative: m_nMoveMode)
+    - g_nPAL3_Helper_410430_C025EC removed (PDB authoritative: m_nMoveSubMode)
+  - g_fTimeDelta, algn_DBA25D, g_nCurrentScriptSlot: 被 struct 覆盖
+
+  **新增结构体成员 (置信度 70: global analysis address + semantic name)**
+  - SceneMgr.m_pCCBStageRoleFind (CCBStageRole *, offset 7072): 全局分析命名
+  - SceneMgr.m_bRoleSlotValid (unsigned char[8], offset 7112): 全局分析命名
+  - PAL3: 8 members promoted from globals (m_nEffObjCount, m_nRenderTarget2Count,
+    m_nCombatParam1-3, m_nCEffExplosiveCount, m_nCEffCylinderCount, m_nMeteorChainCount)
+
+- **指标变化**:
+  - globals.h: 725→697 declarations
+  - Naming rate: 85.7% (7366/8597)
+  - Struct member dot-access in generated code: 2897 occurrences
+
 ### [2026-05-17] iter(annotations): 14 函数语义重命名 + PalScript binary_size 修复
 
 - **变更**: 14 个函数语义重命名 + 3 个类归属修正 + PalScript binary_size None→1816
