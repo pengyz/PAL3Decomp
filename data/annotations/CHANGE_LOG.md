@@ -51,6 +51,13 @@
 
 ## 变更记录
 
+### [2026-05-17] post-reattribution 类型发现: 46 fields (复利效应)
+
+函数归属修正后重新 binary scan，发现之前遗漏的 44 float + 2 unsigned char。
+这些字段之前因为函数被错误归属到其他类而无法与正确的 struct 匹配。
+
+- **置信度**: 85 (A: FPU/byte opcode in correctly-attributed class methods)
+
 ### [2026-05-17] 函数类归属大规模修正: 510 个方法 (3867→3928, +61 正常增长)
 
 #### 三轮归属修正
