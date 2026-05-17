@@ -378,13 +378,13 @@
     },
     "428": {
       "name": "_field_1AC",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "float",
+      "source": "binary:gap_access | type_fix:int->float(A+:decomp *(float*)&this->_field_1AC in UpdateActionState (7x))"
     },
     "436": {
       "name": "_field_1B4",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "float",
+      "source": "binary:gap_access | type_fix:int->float(A+:decomp *(float*)&this->_field_1B4 in UpdateFollowVelocityEx (6x))"
     },
     "444": {
       "name": "_field_1BC",
@@ -403,8 +403,8 @@
     },
     "464": {
       "name": "_field_1D0",
-      "type": "int",
-      "source": "binary:gap_r2"
+      "type": "float",
+      "source": "binary:gap_r2 | type_fix:int->float(A+:decomp *(float*)&this->_field_1D0 in GetActiveRole (2x))"
     },
     "468": {
       "name": "_field_1D4",

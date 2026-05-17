@@ -237,11 +237,6 @@
       "type": "PtrArray",
       "source": "A+:decomp PtrArray::SetAt((PtrArray*)&this->_field_0C8,...) embedded_PtrArray"
     },
-    "204": {
-      "name": "_field_0CC",
-      "type": "int",
-      "source": "binary:gap_access"
-    },
     "244": {
       "name": "m_nMinSel",
       "type": "int",
@@ -533,9 +528,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo"
     },
     "348": {
-      "name": "_todo_15C",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "name": "m_wndTemplate",
+      "type": "UIWnd",
+      "source": "A+:decomp UIWnd::CreateFromTemplate((UIWnd*)&this->_todo_15C,...) + vtable_call"
     },
     "377": {
       "name": "m_bSendMessage_1",

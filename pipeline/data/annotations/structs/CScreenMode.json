@@ -183,8 +183,8 @@
     },
     "520": {
       "name": "_field_208",
-      "type": "int",
-      "source": "binary:1x access"
+      "type": "UIFrameWnd",
+      "source": "binary:1x access | type_fix:int->UIFrameWnd(A+:decomp UIFrameWnd::_UIFrameWnd((*)&this->_field_208))"
     },
     "524": {
       "name": "_field_20C",
@@ -1138,8 +1138,8 @@
     },
     "1008": {
       "name": "_todo_3F0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "UIScene",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->UIScene(A+:decomp UIScene::Destroy2((*)&this->_todo_3F0))"
     },
     "1108": {
       "name": "_todo_454",
@@ -1158,8 +1158,8 @@
     },
     "1132": {
       "name": "_todo_46C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "UIWnd",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->UIWnd(A+:decomp UIWnd::GetChild((*)&this->_todo_46C) + SetTooltipText)"
     },
     "1136": {
       "name": "_todo_470",
@@ -1313,8 +1313,8 @@
     },
     "2612": {
       "name": "_todo_A34",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "UIFrameWnd",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->UIFrameWnd(A+:decomp UIFrameWnd::_UIFrameWnd((*)&this->_todo_A34))"
     },
     "2880": {
       "name": "_todo_B40",

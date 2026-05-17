@@ -224,8 +224,8 @@
     },
     "404": {
       "name": "_todo_194",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "PalScriptMgr",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->PalScriptMgr(A+:decomp PalScriptMgr::Get_result((*)&this->_todo_194))"
     },
     "420": {
       "name": "_todo_1A4",
