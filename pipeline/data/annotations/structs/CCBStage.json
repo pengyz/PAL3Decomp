@@ -437,9 +437,9 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "280": {
-      "name": "_todo_118",
+      "name": "m_nActiveRoleIndex",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | name:A+_decomp_passed_to_CCBRoleState::IsActive/IsRoleAlive_as_role_param"
     },
     "288": {
       "name": "_todo_120",
@@ -493,8 +493,8 @@
     },
     "572": {
       "name": "_todo_23C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "char[4000]",
+      "source": "gap_fill:ida_decomp_access | type_fix:int->char[4000](A+:decomp memset 0xFA0 + stride=20*sizeof(int)=80_per_elem)"
     },
     "576": {
       "name": "m_nTurnIndex",
