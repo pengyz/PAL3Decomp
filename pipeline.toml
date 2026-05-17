@@ -1,0 +1,16 @@
+# PAL3 反编译管线配置
+
+[ida]
+path = "D:\\Program Files\\IDA Professional 9.2\\idat.exe"
+
+[binary]
+exe = "original/PAL3.exe"
+idb_raw = "original/PAL3.exe.raw.i64"
+idb_work = "original/PAL3.exe.i64"
+
+[paths]
+annotations = "data/annotations"
+pdb = "data/pdb"
+decomp = "asm/pal3/decomp"
+output_src = "src/pal3"
+output_headers = "include/pal3/gen"
