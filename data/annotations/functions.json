@@ -17,7 +17,7 @@
   },
   "0x00401DF0": {
     "name": "OpenSceneFile::OpenSceneFile",
-    "signature": "OpenSceneFile *__thiscall(OpenSceneFile *this, char *pszPath)"
+    "signature": "void __thiscall(OpenSceneFile *this, char *pszPath)"
   },
   "0x00401F40": {
     "name": "OpenSceneFile::~OpenSceneFile",
@@ -25,7 +25,7 @@
   },
   "0x00401F50": {
     "name": "OpenBaseFile::OpenBaseFile",
-    "signature": "OpenBaseFile *__thiscall(OpenBaseFile *this)"
+    "signature": "void __thiscall(OpenBaseFile *this)"
   },
   "0x00401F70": {
     "name": "OpenBaseFile::~OpenBaseFile",
@@ -33,7 +33,7 @@
   },
   "0x00401F90": {
     "name": "OpenNULLFile::OpenNULLFile",
-    "signature": "OpenNULLFile *__thiscall(OpenNULLFile *this)"
+    "signature": "void __thiscall(OpenNULLFile *this)"
   },
   "0x004022E0": {
     "name": "GRPinput::GetCursorPos",
@@ -197,7 +197,7 @@
   },
   "0x00404760": {
     "name": "PAL3::PAL3",
-    "signature": "PAL3 *__thiscall(PAL3 *this)"
+    "signature": "void __thiscall(PAL3 *this)"
   },
   "0x004047F0": {
     "name": "PAL3::~PAL3",
@@ -321,7 +321,7 @@
   },
   "0x00408930": {
     "name": "exception::exception",
-    "signature": "exception *__thiscall(exception *this)"
+    "signature": "void __thiscall(exception *this)"
   },
   "0x00408BC0": {
     "name": "Iostream_init::Iostream_init",
@@ -685,11 +685,11 @@
   },
   "0x00431D80": {
     "name": "PalScript::PalScript",
-    "signature": "PalScript *__thiscall(PalScript *this)"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x00431E60": {
     "name": "PalScriptMgr::PalScriptMgr",
-    "signature": "PalScriptMgr *__thiscall(PalScriptMgr *this)"
+    "signature": "void __thiscall(PalScriptMgr *this)"
   },
   "0x00431EB0": {
     "name": "PalScriptMgr::OpenSCE",
@@ -769,7 +769,7 @@
   },
   "0x00434130": {
     "name": "PtrArray::PtrArray",
-    "signature": "PtrArray *__thiscall(PtrArray *this, int nInitSize, int nGrowBy, char bOwned)"
+    "signature": "void __thiscall(PtrArray *this, int nInitSize, int nGrowBy, char bOwned)"
   },
   "0x004341E0": {
     "name": "PtrArray::~PtrArray",
@@ -849,7 +849,7 @@
   },
   "0x0043DCA0": {
     "name": "UILBColumn::UILBColumn",
-    "signature": "UILBColumn *__thiscall(UILBColumn *this)"
+    "signature": "void __thiscall(UILBColumn *this)"
   },
   "0x0043DCB0": {
     "name": "UILBColumn::~UILBColumn",
@@ -1193,7 +1193,7 @@
   },
   "0x0047C570": {
     "name": "ObjectCamera::ObjectCamera",
-    "signature": "ObjectCamera *__thiscall(ObjectCamera *this)"
+    "signature": "void __thiscall(ObjectCamera *this)"
   },
   "0x0047C580": {
     "name": "ObjectCamera::~ObjectCamera",
@@ -1477,7 +1477,7 @@
   },
   "0x004C5150": {
     "name": "CEffCylinder::GetEditorObjDescription",
-    "signature": "int *__thiscall(CEffCylinder *this, int nIndex)"
+    "signature": "const char *__thiscall(CEffCylinder *this, int nIndex)"
   },
   "0x004C5210": {
     "name": "CEffCylinder::InitDefaultUVSet",
@@ -1553,7 +1553,7 @@
   },
   "0x004C6940": {
     "name": "CEffect::CEffect",
-    "signature": "CEffect *__thiscall(CEffect *this)"
+    "signature": "void __thiscall(CEffect *this)"
   },
   "0x004C6A70": {
     "name": "CEffect::Reset",
@@ -1585,7 +1585,7 @@
   },
   "0x004C7B70": {
     "name": "CEffExplosive::GetEditorObjDescription",
-    "signature": "int *__thiscall(CEffExplosive *this, int nIndex)"
+    "signature": "const char *__thiscall(CEffExplosive *this, int nIndex)"
   },
   "0x004C7C00": {
     "name": "CEffExplosive::InitDefaultUVSet",
@@ -1645,7 +1645,7 @@
   },
   "0x004C9610": {
     "name": "CEffGrid::CEffGrid",
-    "signature": "CEffGrid *__thiscall(CEffGrid *this)"
+    "signature": "void __thiscall(CEffGrid *this)"
   },
   "0x004C9650": {
     "name": "CEffGrid::~CEffGrid",
@@ -1661,11 +1661,11 @@
   },
   "0x004CA9A0": {
     "name": "CEffGrid::GetEditorObjDescription",
-    "signature": "int *__thiscall(CEffGrid *this, int nIndex)"
+    "signature": "const char *__thiscall(CEffGrid *this, int nIndex)"
   },
   "0x004CB480": {
     "name": "CEffMeteor::CEffMeteor",
-    "signature": "CEffMeteor *__thiscall(CEffMeteor *this)"
+    "signature": "void __thiscall(CEffMeteor *this)"
   },
   "0x004CB4C0": {
     "name": "CEffMeteor::~CEffMeteor",
@@ -1705,7 +1705,7 @@
   },
   "0x004CE100": {
     "name": "CEffMgr::CEffMgr",
-    "signature": "CEffMgr *__thiscall(CEffMgr *this)"
+    "signature": "void __thiscall(CEffMgr *this)"
   },
   "0x004CE2A0": {
     "name": "CEffMgr::~CEffMgr",
@@ -1785,7 +1785,7 @@
   },
   "0x004D3910": {
     "name": "CEffShock::CEffShock",
-    "signature": "CEffShock *__thiscall(CEffShock *this)"
+    "signature": "void __thiscall(CEffShock *this)"
   },
   "0x004D3A50": {
     "name": "CEffShock::Init",
@@ -1809,7 +1809,7 @@
   },
   "0x004D4EE0": {
     "name": "CEffSParticle::CEffSParticle",
-    "signature": "CEffSParticle *__thiscall(CEffSParticle *this)"
+    "signature": "void __thiscall(CEffSParticle *this)"
   },
   "0x004D4F20": {
     "name": "CEffSParticle::~CEffSParticle",
@@ -1849,11 +1849,11 @@
   },
   "0x004D58D0": {
     "name": "CEffSParticle::GetEditorTaskDescription",
-    "signature": "int __thiscall(CEffSParticle *this, unsigned char *nIndex)"
+    "signature": "const char *__thiscall(CEffSParticle *this, int nIndex)"
   },
   "0x004D5AB0": {
     "name": "C2DSpark::C2DSpark",
-    "signature": "C2DSpark *__thiscall(C2DSpark *this, int nClientWidth, int nClientHeight)"
+    "signature": "void __thiscall(C2DSpark *this, int nClientWidth, int nClientHeight)"
   },
   "0x004D5DC0": {
     "name": "C2DSpark::~C2DSpark",
@@ -1917,7 +1917,7 @@
   },
   "0x004D6FF0": {
     "name": "CCBAI::CCBAI",
-    "signature": "CCBAI *__thiscall(CCBAI *this)"
+    "signature": "void __thiscall(CCBAI *this)"
   },
   "0x004D7030": {
     "name": "CCBAI::~CCBAI",
@@ -2285,7 +2285,7 @@
   },
   "0x004EDD60": {
     "name": "CCBRoleState::CCBRoleState",
-    "signature": "CCBRoleState *__thiscall(CCBRoleState *this)"
+    "signature": "void __thiscall(CCBRoleState *this)"
   },
   "0x004EDF10": {
     "name": "CCBRoleState::~CCBRoleState",
@@ -2845,7 +2845,7 @@
   },
   "0x00504E70": {
     "name": "CCBStageCam::CCBStageCam",
-    "signature": "CCBStageCam *__thiscall(CCBStageCam *Buffer)"
+    "signature": "void __thiscall(CCBStageCam *Buffer)"
   },
   "0x00504F40": {
     "name": "CCBStageCam::~CCBStageCam",
@@ -2921,7 +2921,7 @@
   },
   "0x005058F0": {
     "name": "CCCTData::CCCTData",
-    "signature": "CCCTData *__thiscall(CCCTData *this, _DWORD *p_DWORD, _DWORD *p_DWORD2)"
+    "signature": "void __thiscall(CCCTData *this, _DWORD *p_DWORD, _DWORD *p_DWORD2)"
   },
   "0x00505930": {
     "name": "CCCTData::~CCCTData",
@@ -2973,7 +2973,7 @@
   },
   "0x005081D0": {
     "name": "CCBCamControl::CCBCamControl",
-    "signature": "CCBCamControl *__thiscall(CCBCamControl *this)"
+    "signature": "void __thiscall(CCBCamControl *this)"
   },
   "0x005081E0": {
     "name": "CCBCamControl::~CCBCamControl",
@@ -3053,7 +3053,7 @@
   },
   "0x00508E30": {
     "name": "CCBStageEffect::CCBStageEffect",
-    "signature": "CCBStageEffect *__thiscall(CCBStageEffect *this)"
+    "signature": "void __thiscall(CCBStageEffect *this)"
   },
   "0x00508F30": {
     "name": "CCBStageEffect::~CCBStageEffect",
@@ -3317,7 +3317,7 @@
   },
   "0x0050FEE0": {
     "name": "CCBStageScene::CCBStageScene",
-    "signature": "CCBStageScene *__thiscall(CCBStageScene *this)"
+    "signature": "void __thiscall(CCBStageScene *this)"
   },
   "0x005100D0": {
     "name": "CCBStageScene::~CCBStageScene",
@@ -3425,7 +3425,7 @@
   },
   "0x00511EE0": {
     "name": "CCBStageShadow::CCBStageShadow",
-    "signature": "CCBStageShadow *__thiscall(CCBStageShadow *this)"
+    "signature": "void __thiscall(CCBStageShadow *this)"
   },
   "0x00511F90": {
     "name": "CCBStageShadow::~CCBStageShadow",
@@ -3889,7 +3889,7 @@
   },
   "0x0051A700": {
     "name": "CCBControlWindow::CCBControlWindow",
-    "signature": "CCBControlWindow *__thiscall(CCBControlWindow *this)"
+    "signature": "void __thiscall(CCBControlWindow *this)"
   },
   "0x0051A880": {
     "name": "CCBUI::UpdateChildren_a880",
@@ -3985,7 +3985,7 @@
   },
   "0x0051B710": {
     "name": "CCBParabolaWindow::CCBParabolaWindow",
-    "signature": "CCBParabolaWindow *__thiscall(CCBParabolaWindow **this, int *pnVal, int nVal)"
+    "signature": "void __thiscall(CCBParabolaWindow **this, int *pnVal, int nVal)"
   },
   "0x0051B810": {
     "name": "CCBParabolaWindow::~CCBParabolaWindow",
@@ -4009,7 +4009,7 @@
   },
   "0x0051B9F0": {
     "name": "CCBMagicWindow::CCBMagicWindow",
-    "signature": "CCBMagicWindow *__thiscall(CCBMagicWindow *this, int nVal, int nVal2, _DWORD *p_DWORD)"
+    "signature": "void __thiscall(CCBMagicWindow *this, int nVal, int nVal2, _DWORD *p_DWORD)"
   },
   "0x0051BAB0": {
     "name": "CCBMagicWindow::~CCBMagicWindow",
@@ -4113,7 +4113,7 @@
   },
   "0x0051CFB0": {
     "name": "CCBLineupWindow::CCBLineupWindow",
-    "signature": "CCBLineupWindow *__thiscall(CCBLineupWindow *this, CCBControlWindow **a2)"
+    "signature": "void __thiscall(CCBLineupWindow *this, CCBControlWindow **a2)"
   },
   "0x0051D070": {
     "name": "CCBLineupWindow::~CCBLineupWindow",
@@ -4173,7 +4173,7 @@
   },
   "0x0051D6E0": {
     "name": "CCBProtectWindow::CCBProtectWindow",
-    "signature": "CCBProtectWindow *__thiscall(CCBProtectWindow *this)"
+    "signature": "void __thiscall(CCBProtectWindow *this)"
   },
   "0x0051D6F0": {
     "name": "CCBProtectWindow::~CCBProtectWindow",
@@ -4201,7 +4201,7 @@
   },
   "0x0051F080": {
     "name": "CCBResultWindow::CCBResultWindow",
-    "signature": "CCBResultWindow *__thiscall(CCBResultWindow *this, int nVal)"
+    "signature": "void __thiscall(CCBResultWindow *this, int nVal)"
   },
   "0x0051F090": {
     "name": "CCBResultWindow::~CCBResultWindow",
@@ -4485,7 +4485,7 @@
   },
   "0x0044BD60": {
     "name": "PtrArray::PtrArray",
-    "signature": "PtrArray *__thiscall(PtrArray *this)"
+    "signature": "void __thiscall(PtrArray *this)"
   },
   "0x00431840": {
     "name": "unknown_libname_337",
@@ -5233,7 +5233,7 @@
   },
   "0x00523F30": {
     "name": "CScreenMode::CScreenMode",
-    "signature": "int __thiscall(CScreenMode *this)"
+    "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x004BE4A0": {
     "name": "ScreenEffectMgr::_unverified_4BE4A0",
@@ -5421,7 +5421,7 @@
   },
   "0x0053D150": {
     "name": "CScreenMode::GetInstance",
-    "signature": "_DWORD * __thiscall(CScreenMode *this)"
+    "signature": "PtrArray * __thiscall(CScreenMode *this)"
   },
   "0x00402B30": {
     "name": "unknown_libname_290",
@@ -5529,7 +5529,7 @@
   },
   "0x004BDB10": {
     "name": "PAL3::GetInstance_db10",
-    "signature": "_DWORD * __thiscall(PAL3 *this)"
+    "signature": "PAL3 * __thiscall(PAL3 *this)"
   },
   "0x0053CC10": {
     "name": "Logger::RegisterCallback",
@@ -5645,7 +5645,7 @@
   },
   "0x004BFD20": {
     "name": "PAL3::GetInstance_fd20",
-    "signature": "_DWORD * __thiscall(PAL3 *this)"
+    "signature": "ScreenEffectMgr * __thiscall(PAL3 *this)"
   },
   "0x004460D0": {
     "name": "CCBUIPanel::ctor_60D0",
@@ -5833,7 +5833,7 @@
   },
   "0x004B6D30": {
     "name": "PAL3::GetInstance",
-    "signature": "_DWORD * __thiscall(PAL3 *this)"
+    "signature": "RenderTarget3 * __thiscall(PAL3 *this)"
   },
   "0x004D5A40": {
     "name": "unknown_libname_462",
@@ -5865,7 +5865,7 @@
   },
   "0x00512500": {
     "name": "CCBSystem::CCBSystem",
-    "signature": "CCBSystem *__thiscall(CCBSystem *this)"
+    "signature": "void __thiscall(CCBSystem *this)"
   },
   "0x0044BA60": {
     "name": "UIScenePanel::ctor_BA60",
@@ -6233,7 +6233,7 @@
   },
   "0x004B65A0": {
     "name": "RenderTarget3::GetInstance",
-    "signature": "void * __thiscall(RenderTarget3 *this)"
+    "signature": "RenderTarget3 * __thiscall(RenderTarget3 *this)"
   },
   "0x0043BC70": {
     "name": "unknown_libname_356",
@@ -9305,19 +9305,19 @@
   },
   "0x004B6F70": {
     "name": "PAL3VisNode::PAL3VisNode",
-    "signature": "PAL3VisNode *__thiscall(PAL3VisNode *this)"
+    "signature": "void __thiscall(PAL3VisNode *this)"
   },
   "0x004B72E0": {
     "name": "CEffGroupNode::CEffGroupNode",
-    "signature": "CEffGroupNode *__thiscall(CEffGroupNode *this)"
+    "signature": "void __thiscall(CEffGroupNode *this)"
   },
   "0x004B74A0": {
     "name": "UI3DModelNode::UI3DModelNode",
-    "signature": "UI3DModelNode *__thiscall(UI3DModelNode *this)"
+    "signature": "void __thiscall(UI3DModelNode *this)"
   },
   "0x004B7C30": {
     "name": "ScreenEffectNode::ScreenEffectNode",
-    "signature": "ScreenEffectNode *__thiscall(ScreenEffectNode *this)"
+    "signature": "void __thiscall(ScreenEffectNode *this)"
   },
   "0x004B7F70": {
     "name": "nullsub_11",
@@ -9345,7 +9345,7 @@
   },
   "0x004BD830": {
     "name": "RenderTargetNode::RenderTargetNode",
-    "signature": "RenderTargetNode *__thiscall(RenderTargetNode *this)"
+    "signature": "void __thiscall(RenderTargetNode *this)"
   },
   "0x004BDA40": {
     "name": "RenderTarget::_nearby_4bda40",
@@ -15545,7 +15545,7 @@
   },
   "0x0053D3A0": {
     "name": "CScreenModeNode::CScreenModeNode",
-    "signature": "CScreenModeNode *__thiscall(CScreenModeNode *this)"
+    "signature": "void __thiscall(CScreenModeNode *this)"
   },
   "0x0053DB80": {
     "name": "CScreenMode::_nearby_53db80",
@@ -15921,7 +15921,7 @@
   },
   "0x00541640": {
     "name": "UIRenderObj::UIRenderObj",
-    "signature": "UIRenderObj *__thiscall(UIRenderObj *this)"
+    "signature": "void __thiscall(UIRenderObj *this)"
   },
   "0x00541710": {
     "name": "UIRenderObj::~UIRenderObj",
