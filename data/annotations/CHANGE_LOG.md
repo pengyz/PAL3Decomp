@@ -51,6 +51,14 @@
 
 ## 变更记录
 
+### [2026-05-17] 10 个 int→short (66-prefix word-width scan)
+
+扫描 `66 89/8B` (mov word ptr) 和 `0F B7` (movzx word) 指令，交叉匹配类方法。
+Actor+500, CUtil+4, NPC+4, ObjectCamera+116, PAL3+4, PalScript+780,
+PalScriptMgr+104/108/252/256
+
+- **置信度**: 85 (A: 66 prefix 确定 16-bit 访问宽度)
+
 ### [2026-05-17] 74 个 int→float (extended disp32 scan, offset≥128) + 13 个 int→unsigned char (disp32)
 
 #### 74 int→float (extended scan)
