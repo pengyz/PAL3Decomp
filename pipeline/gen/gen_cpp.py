@@ -559,6 +559,24 @@ def transform_method_code(cls_name, method_name, code, sig):
     code = replace_struct_member_refs(code)
     code = replace_global_names(code)
 
+    # COERCE_FLOAT(literal) → inline float value (can't take & of literal in C++)
+    def _fix_coerce_float(m):
+        arg = m.group(1).strip()
+        try:
+            ival = int(arg, 0)
+            import struct as _s
+            fval = _s.unpack('f', _s.pack('I', ival & 0xFFFFFFFF))[0]
+            if abs(ival) <= 100:
+                return '%d.0f' % ival
+            if abs(fval) < 1e10 and (abs(fval) > 1e-10 or fval == 0.0):
+                if fval == int(fval) and abs(fval) < 1000000:
+                    return '%d.0f' % int(fval)
+                return '%.7gf' % fval
+        except (ValueError, OverflowError):
+            pass
+        return m.group(0)
+    code = re.sub(r'COERCE_FLOAT\((\s*-?(?:0x[0-9A-Fa-f]+|\d+)\s*)\)', _fix_coerce_float, code)
+
     # Replace IDA vtable struct types with void (not real C++ types)
     code = re.sub(r'\bvtbl_[0-9A-Fa-f]+\b', 'void', code)
 
