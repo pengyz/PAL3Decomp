@@ -203,6 +203,16 @@ typedef void * LPDIRECT3DTEXTURE9;
     _sorted_structs = '\n\n'.join(_structs[n][0] for n in _sorted if n in _structs)
     full = _preamble_text + '\n' + _sorted_structs + '\n'
 
+    # Remove forward declarations for structs that have full definitions.
+    # IDA may assign different ordinals to forward decl vs full def, causing
+    # Hex-Rays to output "struct #NNN" instead of the named type.
+    defined_structs = set(_structs.keys())
+    full = re.sub(
+        r'^struct\s+(\w+)\s*;\s*$',
+        lambda m: '' if m.group(1) in defined_structs else m.group(0),
+        full, flags=re.MULTILINE
+    )
+
     # Add correct typedefs and forward declarations for external types
     preamble = (
         # DirectX enums (IDA doesn't have SDK headers — use int-sized typedefs)
