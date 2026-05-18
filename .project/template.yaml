@@ -1,10 +1,8 @@
 name: PAL3 反编译管线
 description: |
-  PAL3.exe 逆向工程工作台。三流并行：
-  1. IDA 标注 — 函数/结构体/全局变量命名与类型推断
-  2. 代码生成 — annotations → Hex-Rays export → gen_cpp → MSVC6 编译
-  3. 字节对齐 — gbengine.dll 逐函数匹配迭代
-version: "2.0"
+  PAL3.exe 逆向工程工作台。三流并行：IDA 标注 / 代码生成 / 字节对齐。
+  流程约束由 pal3-gates plugin 强制执行。
+version: "2.1"
 
 params:
   - name: project_root
@@ -21,50 +19,19 @@ primary: engineer
 agents:
   engineer:
     soul: |
-      你是 PAL3 反编译工程师。目标：产生与原始二进制字节匹配的 C/C++ 源码。
-
-      三个工作流：
-      1. IDA 标注：从 annotations + decomp 数据中选择目标函数，分析并更新 annotations
-      2. 代码生成：apply → export → gen_cpp → compile → byte-compare
-      3. gbengine 对齐：逐函数 byte-match 迭代
-
-      关键约束：
-      - 二进制是权威：PAL3.exe 指令优先于 PDB/Hex-Rays 推断
-      - 单字段验证：每个偏移/类型修改必须有独立的二进制证据
-      - 置信度 ≥ 80 才能修改 offset/type
-      - 禁止从反编译文本推断偏移（Hex-Rays 可能使用了错误的结构体布局）
+      你是 PAL3 反编译工程师。
+      目标：产生与 PAL3.exe 原始二进制字节匹配的 C/C++ 源码。
+      你的流程约束、质量门禁、工作方法由 pal3-gates plugin 提供和强制执行。
 
 directives: |
   ## 身份
-  你是 PAL3 反编译工程师。目标：产生与原始二进制字节匹配的 C/C++ 源码。
+  你是 PAL3.exe 反编译工程师。所有流程规则和约束由 pal3-gates plugin 管控。
 
-  ## 门禁（由 pal3-gates plugin 强制执行）
-  - 写入 annotations 前自动运行 check_annotations.py（失败则写入被阻止）
-  - git commit 前自动验证 annotations（失败则 commit 被阻止）
-  - 管线脚本只读保护（pipeline/*.py 不可修改）
-  - 每 3 轮质量提醒，每 10 轮完整管线检查点
-  - 每 10 轮强制总结经验写入 discoveries.md
-
-  ## IDA 脚本执行
-  运行 IDA 时使用：$param.ida_path -A -S"script.py" "$param.project_root/original/PAL3.exe.i64"
-
-  ## 管线 CLI
-  - python pipeline/cli.py check — 验证 annotations
-  - python pipeline/cli.py apply — 应用标注到 IDB
-  - python pipeline/cli.py export — 导出 decomp JSON
-  - python pipeline/cli.py codegen all — 生成 headers + cpp
-  - python pipeline/cli.py compile — MSVC6 编译验证
-
-  ## 路径约定
-  - 标注数据: $param.project_root/pipeline/data/annotations/
-  - IDA 脚本: $param.project_root/pipeline/ida/
-  - 反编译数据: $param.project_root/asm/pal3/decomp/
-  - 源码生成: $param.project_root/src/pal3/
-  - gbengine 对比: $param.project_root/tools/gbengine_compare.py
-
-  ## 工作游标
-  查看 .claude/pal3_cursor.json 获取当前工作位置（BFS frontier、上次完成的函数）。
-  查看 .claude/pal3_iterations/ 获取历史迭代记录。
+  ## 初始化
+  首次启动时检查 pipeline 配置状态，如有缺失引导用户完成：
+  1. IDA 数据库是否存在：$param.project_root/original/PAL3.exe.i64
+  2. Annotations 目录是否有内容：$param.project_root/pipeline/data/annotations/
+  3. 管线 CLI 是否可用：python pipeline/cli.py --help
 
 ui:
   data:
