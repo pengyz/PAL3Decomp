@@ -3813,3 +3813,21 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   3. [A] CCBRoleState: +360 embed verified → m_sCombatDialog 最多 360 bytes
 - **Layout errors**: 13 → 22 (因 SaleUI/PropUI 新增 embed 改变了部分 span 计算,
   大部分是已知遗留子对象问题,非新引入)
+
+### [2026-05-18] 命名批次 + MainEquipUI embeds + 最终全流程验证
+
+- **变更**:
+  1. MainEquipUI 13 + UIGameFrm 2 = 15 个 UIFrameWnd embed (4-way overlap check passed)
+  2. RenderTarget: _field_030→m_fX, _field_034→m_fY (decomp param name fX/fY)
+  3. CCBCamControl+8: _field_008→m_pvecCenter (gbVec3D*) (decomp param pvecCenter)
+  4. PalScriptMgr+268: _todo_10C→m_pRoleSystemCache (RoleSystem*) (decomp assignment)
+- **全流程验证**: 2997 errors, 44/190 pass — 不变（纯新增/命名不影响 IDB layout）
+- **置信度**: 85-90
+- **证据**:
+  1. [A+] MainEquipUI stride=152 连续 + 4-way overlap verification
+  2. [A+] RenderTarget param names: `*((float*)this+12) = fX`, `= fY`
+  3. [A+] CCBCamControl: `*(_DWORD*)(this+2) = pvecCenter`
+  4. [A+] PalScriptMgr: `this->field = m_pRoleSystem` in UpdateScriptRoles
+- **重要发现**: 纯新增成员 + 不改 size 的命名/类型修正 → **不引起 Hex-Rays 漂移**。
+  可以安全批量做而无需全流程验证。只有修改已有成员 offset/type-size 才需要验证。
+- **最终命名率**: 88.3% (6994/7918), 未命名 924
