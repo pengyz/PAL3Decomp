@@ -61,6 +61,9 @@ SKIP_CLASSES = {
     '_ThrowInfo', '_CatchableType', '_CatchableTypeArray',
     # C/C++ reserved words that IDA may use as class names
     'float', 'int', 'char', 'void', 'double', 'long', 'short', 'bool',
+    # Windows SDK typedefs that clash with IDA struct names
+    'DOUBLE', 'FLOAT', 'INT', 'CHAR', 'VOID', 'LONG', 'SHORT', 'BOOL',
+    'BYTE', 'WORD', 'DWORD', 'UINT', 'ULONG',
     # Windows types
     'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG', 'RECT', 'POINT', 'SIZE',
     'tagRGBQUAD', 'RGBQUAD',
@@ -476,7 +479,12 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 for line in fh:
                     m = re.match(r'^(?:class|struct|enum)\s+(\w+)', line)
                     if m:
-                        _gbengine_type_to_header.setdefault(m.group(1), "gbengine/%s" % hf.name)
+                        name = m.group(1)
+                        header_path = "gbengine/%s" % hf.name
+                        is_definition = ('{' in line or ':' in line)
+                        # Prefer headers with full definitions over forward declarations
+                        if name not in _gbengine_type_to_header or is_definition:
+                            _gbengine_type_to_header[name] = header_path
 
     if pdb_class:
         # Inheritance -> include (simplify template names same as in class declaration)
@@ -486,6 +494,15 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 bname = bname.split('<')[0]  # CTaskTpl<...> -> CTaskTpl
             if '::' not in bname:
                 include_types.add(bname)
+
+    # Annotation base_class also needs include (inheritance requires full definition)
+    try:
+        _ann_for_base = load_annotations_data()
+        _ann_base_cls = _ann_for_base.get('structs', {}).get(cls_name, {}).get('base_class')
+        if _ann_base_cls and '<' not in _ann_base_cls and '::' not in _ann_base_cls:
+            include_types.add(_ann_base_cls)
+    except:
+        pass
 
         # Data members
         for m in pdb_class.get('data_members', []):
@@ -644,8 +661,9 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     if base_names:
         bases_str = " : " + ", ".join("public %s" % b for b in base_names)
         for b in base_names:
-            if b not in fwd_types and b not in include_types:
-                fwd_types.add(b)
+            # Inheritance requires full definition → include (not just fwd-declare)
+            include_types.add(b)
+            fwd_types.discard(b)
 
     lines.append("class %s%s {" % (cls_name, bases_str))
     lines.append("public:")
