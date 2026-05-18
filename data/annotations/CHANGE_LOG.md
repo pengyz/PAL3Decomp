@@ -3781,3 +3781,20 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   2. [A+] UIFrameWnd::ctor((UIFrameWnd*)((char*)this+368)), span exactly 152 = binary_size
 - **验证**: 不影响 layout (int→float 同 4B; UIStatic→UIFrameWnd 同 152B)，无需 init --force
 - **当前命名率**: 88.1% (6923/7852) — 本次 +3 个命名
+
+### [2026-05-18] 57 个 UIFrameWnd embed 批量标注
+
+- **变更**: 从 decomp ctor pattern 批量发现并标注 UIFrameWnd 嵌入子对象
+  - EquipUI: 12 个 (+660,680,812,832,964,984,1116,1136,1268,4552,4668,4836)
+  - SaleUI: 28 个 (+1624,1776,1928,4952,...,105196)
+  - PropUI: 10 个 (+21596,21764,22068,24516,...,28700)
+  - LineupUI: 5 个 (+368,4224,154956,155108,155260)
+  - CCBRoleState: 2 个 (+360,20408)
+  - CScreenMode: 1 个 (+1128)
+- **置信度**: 90
+- **证据**:
+  1. [A+] decomp pattern: `UIFrameWnd::ctor((UIFrameWnd*)((char*)this+OFFSET))`
+  2. [A+] span verification: all spans >= 152 (UIFrameWnd.binary_size)
+  3. stride=152 连续段验证 array pattern (EquipUI, SaleUI 有 152-stride 连续区)
+- **验证**: 纯新增成员（不修改已有 member），不影响 IDB layout，无需 init --force
+- **命名率**: 88.1% → 88.3% (6981/7909, +57 fields)
