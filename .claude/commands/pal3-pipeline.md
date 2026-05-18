@@ -47,6 +47,10 @@ data/annotations/
    `init --force → export → codegen all → compile`。
    原因：annotation 改变 IDB struct layout → Hex-Rays 产生不同反编译代码 → 编译结果变化。
    只改 header 不重新 export 得到的编译结果**是虚假的**。只有全流程结果可信。
+9. **禁止仅凭 signature this 类型修正函数归属**——IDA 的 signature this 类型来自 caller
+   推断，如果 caller 本身标注错误则连锁传播错误。函数归属修正**必须有 decomp member
+   access evidence**：即函数内 `this->member` 引用的成员在目标类中存在且不在原类中存在。
+   signature this ≠ name class 仅作为**候选筛选条件**，不可直接作为修正依据。
 </HARD-REQUIREMENT>
 
 ## 置信度规则
