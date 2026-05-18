@@ -1,21 +1,38 @@
 #!/bin/bash
-input=$(cat)
-eval "$(echo "$input" | python3 -c "
-import sys, json
-d = json.load(sys.stdin)
-print(f'TOOL={json.dumps(d.get(\"tool_name\",\"\"))}')
+# PostToolUse: 审计日志 + slot_updates 写入面板
+PROJECT="${AIDE_PROJECT_ROOT:-/home/peng/workspace/PAL3Decomp}"
+LOG="$PROJECT/.project/audit.log"
+
+python3 << 'PY'
+import sys, json, datetime, os
+
+stdin_data = sys.stdin.read()
+try:
+    d = json.loads(stdin_data)
+except:
+    d = {}
+
+tool = d.get('tool_name', '?')
 ti = d.get('tool_input', {})
+success = d.get('tool_success', True)
 path = ti.get('file_path', ti.get('path', ''))
 cmd = ti.get('command', ti.get('cmd', ''))
-summary = path or cmd[:80] or json.dumps(ti)[:80]
-print(f'SUMMARY={json.dumps(summary)}')
-print(f'SUCCESS={json.dumps(d.get(\"tool_success\",True))}')
-" 2>/dev/null)"
-PROJECT="${AIDE_PROJECT_ROOT:-/home/peng/workspace/PAL3Decomp}"
-TS=$(date '+%Y-%m-%d %H:%M:%S')
-STATUS="OK"; [ "$SUCCESS" = '"false"' ] && STATUS="FAIL"
-TOOL=$(echo "$TOOL" | tr -d '"'); SUMMARY=$(echo "$SUMMARY" | tr -d '"')
-echo "${TS} | ${TOOL} | ${STATUS} | ${SUMMARY}" >> "$PROJECT/.project/audit.log"
-# slot_updates for UI panel
-echo "{\"slot_updates\": {\"audit_trail\": \"$(tail -15 "$PROJECT/.project/audit.log" 2>/dev/null | sed 's/$/\\n/g' | tr -d '\n')\"}}"
-exit 0
+summary = (path or cmd[:80] or json.dumps(ti)[:80]).replace('"', '')
+
+ts = datetime.datetime.now().strftime('%H:%M:%S')
+status = 'OK' if success else 'FAIL'
+line = f'{ts} | {tool} | {status} | {summary}'
+
+log_path = os.environ.get('AIDE_PROJECT_ROOT', '/home/peng/workspace/PAL3Decomp') + '/.project/audit.log'
+with open(log_path, 'a') as f:
+    f.write(line + '\n')
+
+try:
+    with open(log_path) as f:
+        lines = f.readlines()[-15:]
+    panel = ''.join(lines)
+except:
+    panel = line + '\n'
+
+print(json.dumps({'slot_updates': {'audit_trail': panel}}))
+PY
