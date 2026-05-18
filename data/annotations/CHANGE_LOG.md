@@ -3831,3 +3831,15 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **重要发现**: 纯新增成员 + 不改 size 的命名/类型修正 → **不引起 Hex-Rays 漂移**。
   可以安全批量做而无需全流程验证。只有修改已有成员 offset/type-size 才需要验证。
 - **最终命名率**: 88.3% (6994/7918), 未命名 924
+
+### [2026-05-18] CCBUI PalScript 指针 + 命名进展
+
+- **变更**:
+  1. CCBUI: 5 个 PalScript* 指针新增 (+88,96,100,104,108)
+     Evidence: PalScript::Method((PalScript*)this->field) dispatch pattern
+  2. PalScriptMgr+268: _todo_10C → m_pRoleSystemCache (RoleSystem*)
+  3. CCBCamControl+8: _field_008 → m_pvecCenter (gbVec3D*)
+  4. RenderTarget: _field_030→m_fX, _field_034→m_fY
+- **置信度**: 85
+- **证据**: A+ decomp method dispatch / parameter names / assignment patterns
+- **命名率**: 88.3% (6999/7923), 未命名 924, 总字段 +71 vs session start
