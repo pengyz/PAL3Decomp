@@ -756,30 +756,16 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                     # Strip own class prefix for nested types (inside class body, no prefix needed)
                     if '::' in mtype:
                         mtype = re.sub(r'^%s::' % re.escape(cls_name), '', mtype)
-                    # STL/template types: emit as char[span] with type as comment.
-                    # These can't compile directly in VC6; char[span] is the honest
-                    # representation (correct size, unknown internals).
-                    if 'std::' in mtype or ('<' in mtype and '>' in mtype):
-                        next_offsets = [int(o) for o, _ in sorted_members if int(o) > off]
-                        if next_offsets:
-                            span = min(next_offsets) - off
-                        elif ann_size and ann_size != '?':
-                            span = int(ann_size) - off
-                        else:
-                            span = 4
-                        lines.append("    char %s[%d]; // +0x%X (%s)" % (mname, span, off, mtype))
-                        member_size = span
+                    # Emit member
+                    arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
+                    if arr_match:
+                        arr_part = arr_match.group(1)
+                        base_type = mtype[:arr_match.start()].rstrip()
+                        lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, off))
                     else:
-                        # Emit member
-                        arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
-                        if arr_match:
-                            arr_part = arr_match.group(1)
-                            base_type = mtype[:arr_match.start()].rstrip()
-                            lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, off))
-                        else:
-                            lines.append("    %s %s; // +0x%X" % (mtype, mname, off))
-                        # Estimate member size to compute next start_off
-                        member_size = _estimate_member_size(mtype)
+                        lines.append("    %s %s; // +0x%X" % (mtype, mname, off))
+                    # Estimate member size to compute next start_off
+                    member_size = _estimate_member_size(mtype)
                     start_off = off + member_size
                 # Tail padding to reach total size
                 if ann_size and ann_size != '?' and int(ann_size) > start_off:
