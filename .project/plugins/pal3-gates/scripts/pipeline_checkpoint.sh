@@ -51,9 +51,7 @@ except:
     named = total_funcs = 0
     naming_rate = 0
 
-# ── match 率（gbengine）──
 try:
-    p = json.load(open(f'{project}/data/gbengine_progress.json'))
     match_rate = p.get('done', 0) / max(p.get('target_functions', 1), 1)
 except:
     match_rate = 0
