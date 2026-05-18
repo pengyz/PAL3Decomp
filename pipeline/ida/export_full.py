@@ -173,6 +173,17 @@ def main():
                     log("[!] SKIP 0x%08X %s: decompile returned None" % (ea, name[:50]))
                     continue
                 code = str(cfunc)
+                # Resolve anonymous ordinal types (struct #NNN) to named types
+                import re as _re
+                def _resolve_ordinal(m):
+                    ordinal = int(m.group(1))
+                    tinfo = ida_typeinf.tinfo_t()
+                    if tinfo.get_numbered_type(ida_typeinf.get_idati(), ordinal):
+                        tname = tinfo.get_type_name()
+                        if tname:
+                            return tname
+                    return m.group(0)
+                code = _re.sub(r'struct #(\d+)', _resolve_ordinal, code)
                 sig = cfunc.type.dstr()
                 demangled = idc.demangle_name(name, idc.get_inf_attr(idc.INF_SHORT_DN))
                 display_name = demangled if demangled else name
