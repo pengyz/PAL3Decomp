@@ -325,6 +325,33 @@ def run(code, ctx):
         # Base class ctor call: this->BaseClassName() → implicit (compiler auto-calls)
         code = re.sub(r'^\s*this->\w+\(\);\s*$', '', code, flags=re.MULTILINE)
 
+    # Comment out any remaining statements that reference __vftable
+    # (vtable is compiler-managed, never appears in real C++ source)
+    # Handle multi-line: if __vftable is in a function call, comment until the closing ;
+    lines_arr = code.split('\n')
+    result_lines = []
+    i = 0
+    while i < len(lines_arr):
+        line = lines_arr[i]
+        if '__vftable' in line and '// [IDA_VFTABLE]' not in line:
+            # Comment this line and any continuation until we find a ;
+            commented = ['// [VFTABLE] ' + line.lstrip()]
+            # Check if statement is complete (has ;) or continues on next lines
+            depth = line.count('(') - line.count(')')
+            has_semi = line.rstrip().endswith(';')
+            i += 1
+            while i < len(lines_arr) and not has_semi and depth > 0:
+                cont_line = lines_arr[i]
+                commented.append('// [VFTABLE]   ' + cont_line.lstrip())
+                depth += cont_line.count('(') - cont_line.count(')')
+                has_semi = cont_line.rstrip().endswith(';')
+                i += 1
+            result_lines.extend(commented)
+        else:
+            result_lines.append(line)
+            i += 1
+    code = '\n'.join(result_lines)
+
     # --- AST-based structural detection ---
     code = _ast_cleanup(code, ctx)
 
