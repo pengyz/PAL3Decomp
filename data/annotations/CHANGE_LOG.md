@@ -3628,3 +3628,22 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   2. [A] C3DSpark: m_Spark[128] at +0, next member at +7168 → 7168/128 = 56B per tagSpark
   3. [A] SceneObj: m_subobj at +948, next at +984 → 36B; Role: m_specact at +1328, next at +1364 → 36B
 - **影响**: C2501 从 174→0 (完全消除)，总错误 2604→2238 (-14%)，累计 4777→2238 (-53%)
+
+### [2026-05-18] IDB struct layout 修复 — IDB size 与 annotation 完全一致
+
+- **变更**:
+  1. **import_gbengine_types.py**: `static` 成员声明整行删除（不是只删关键字）
+     - Root cause: `static int ColorQuadFmt;` → `int ColorQuadFmt;` 使 gbColorQuad 从 4B 膨胀为 8B
+     - 每个 UIWnd 派生类多 2×4=8B，加上 tagRECT 等类型的连锁错误，偏移全部漂移
+  2. **build_struct_decl**: cursor 逻辑改为 annotation offset gap 驱动
+     - 原: 未知类型(tagRECT等)fallback 4B → 产生虚假 `_gap_` → IDB struct 比 annotation 大
+     - 现: 有下一个成员时用 `next_member_offset` (annotation 偏移差)
+     - 最后一个成员仍用 type_size 估计，确保正确生成 `_tail_`
+- **置信度**: 90
+- **证据**:
+  1. [A] gbColorQuad 实际定义: `{unsigned char B,G,R,A;}` = 4B; `static int ColorQuadFmt` 不占实例空间
+  2. [A] UIWnd IDB: 修复前 108B (wrong), 修复后 88B = annotation binary_size (correct)
+  3. [A] UIButton IDB: 修复前 364B, 修复后 344B = annotation binary_size
+  4. [A] UIFrameWnd IDB: 修复后 152B = annotation binary_size
+- **影响**: IDB struct size 全部与 annotation 一致，decomp 输出 field names 应与 header 匹配
+- **编译错误**: 2332 (短期微升因 decomp 输出变化，但 IDB 布局正确是长期收益)
