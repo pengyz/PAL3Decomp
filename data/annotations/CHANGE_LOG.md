@@ -3753,3 +3753,19 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **Layout errors**: 43 → 13
 - **命名率**: 88.1% (本次聚焦 infra 修复未做命名)
 - **关键经验写入 skill**: annotation 验证必须 init --force 全流程
+
+### [2026-05-18] 小批量命名+类型修正 — 全流程验证稳定
+
+- **变更**:
+  1. RenderTarget2: _todo_08C int→float (360.0f IEEE754), _todo_090 int→float (10.0f)
+  2. TextureLib: _todo_024 → m_szPath (SetPath lstrcpyA/lstrcatA/lstrlenA)
+  3. EquipUI+4836: _todo_12E4 int → _embed_UIFrameWnd_12E4 UIFrameWnd (ctor call, span=152=binary_size)
+  4. PalScript: _todo_118 → m_fScaleY, _todo_11C → m_fScaleZ (gbMatrixStack::Scale Y/Z params)
+- **全流程验证**: init --force → export → codegen → compile = **2997 errors, 44/190 pass**
+  与上次验证完全一致 — 小改动（不影响 layout 的类型/命名）不产生波动
+- **置信度**: 85-90
+- **证据**:
+  1. [A+] IEEE754: 1135869952=360.0f, 1092616192=10.0f
+  2. [A+] lstrcpyA(&this->field, path) + lstrcatA + lstrlenA → string buffer
+  3. [A+] UIFrameWnd::ctor at this+4836, span exactly matches binary_size=152
+  4. [A+] gbMatrixStack::Scale(stack, this+276, this+280, this+284) positional params
