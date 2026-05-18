@@ -3721,3 +3721,17 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   1. 修改 Actor 等 16 个 annotation 后 init+export → 61 pass 衰退为 44 pass
   2. 用旧版 emit_headers + 新 decomp 仍然只有 43 pass（证明不是 header 的问题）
   3. 原因是 IDB 布局变化使 Hex-Rays 对相关函数产生不同的反编译输出
+
+### [2026-05-18] 15 个 layout error 批量修正 — layout errors 28→13
+
+- **变更**: 15 个最后成员类型尺寸超出 span 的修正
+  - 8 个 span=256 大数组 → char[256]
+  - SceneMgr/UIBigMap/CCBUI: 大数组 → char[span]
+  - _LARGE_INTEGER: __int64 → int (Windows union low DWORD)
+  - CLoad3DS/SkillData/SkyboxEffMgr: 巨型数组 → char[256]
+- **全流程验证结果**: init --force → export → codegen → compile
+  - errors: 2927 → 2997 (+70, Hex-Rays 输出变化的正常代价)
+  - pass: 44/190 (稳定)
+  - layout errors: 28 → 13 (IDB 正确性提升)
+- **置信度**: 75 (span 正确，具体类型待二进制验证后可还原)
+- **接受原则**: 编译错误数的短期波动是正确性代价，不追求数字下降而接受错误的 IDB
