@@ -3647,3 +3647,16 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   4. [A] UIFrameWnd IDB: 修复后 152B = annotation binary_size
 - **影响**: IDB struct size 全部与 annotation 一致，decomp 输出 field names 应与 header 匹配
 - **编译错误**: 2332 (短期微升因 decomp 输出变化，但 IDB 布局正确是长期收益)
+
+### [2026-05-18] globals.h 路径修复 — 2332→2192 (-6%)
+
+- **变更**: emit_headers.py 中 `generate_globals()` 使用错误路径 `PIPELINE_ROOT/"data"/...`
+  (指向 `pipeline/data/annotations/`，不存在)。修复为 `ANNOTATIONS_DIR`。
+  同样修复 `has_struct` 检查路径。
+- **置信度**: 95 (纯路径 bug 修复)
+- **证据**:
+  1. [A] globals.h: 修复前 551 extern (旧缓存)，修复后 683 extern (正确生成)
+  2. [A] g_PAL3 (0xDE7AA0, type PAL3): 修复前缺失导致 92 个 C2228 `_tail_220C` 错误
+  3. [A] `PIPELINE_ROOT / "data" / "annotations" / "globals.json"` → `pipeline/data/annotations/globals.json` 不存在
+- **影响**: 2332→2192 (-6%)，累计 4777→2192 (-54.1%)
+- **累计本次迭代**: 编译通过 31→61 文件
