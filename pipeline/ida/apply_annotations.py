@@ -135,25 +135,41 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
                 cursor = next_member_offset(offset)
         else:
             lines.append("    %s %s;" % (mtype, mname))
-            if "*" in mtype:        cursor = offset + 4
-            elif mtype == "double": cursor = offset + 8
-            elif mtype == "float":  cursor = offset + 4
-            elif mtype in ("char", "unsigned char", "bool", "BYTE"): cursor = offset + 1
-            elif mtype in ("short", "unsigned short", "WORD"):       cursor = offset + 2
-            else:
-                # Look up type size from all_structs
-                clean = mtype.replace("class ", "").replace("struct ", "").strip()
-                ref_size = 0
-                if clean in all_structs:
-                    ref = all_structs[clean]
-                    ref_size = ref.get("binary_size") or ref.get("pdb_size") or 0
-                cursor = offset + (ref_size if ref_size > 0 else 4)
-                # FATAL: type size exceeds span — annotations data error
-                nmo = next_member_offset(offset)
-                if nmo > offset and cursor > nmo:
+            # Advance cursor: use annotation offset gap as ground truth.
+            # Type size estimation is only a fallback for the last member.
+            nmo = next_member_offset(offset)
+            has_next_member = any(off > offset for off, _ in sorted_members)
+            if has_next_member and nmo > offset:
+                # Verify type size doesn't exceed span (annotation data error detection)
+                type_size = 4  # default
+                if "*" in mtype:        type_size = 4
+                elif mtype == "double": type_size = 8
+                elif mtype == "float":  type_size = 4
+                elif mtype in ("char", "unsigned char", "bool", "BYTE"): type_size = 1
+                elif mtype in ("short", "unsigned short", "WORD"):       type_size = 2
+                else:
+                    clean = mtype.replace("class ", "").replace("struct ", "").strip()
+                    if clean in all_structs:
+                        ref = all_structs[clean]
+                        type_size = ref.get("binary_size") or ref.get("pdb_size") or 4
+                if type_size > (nmo - offset):
                     print("[!] LAYOUT ERROR in %s: member '%s %s' at +%d has type_size=%d but span=%d (next at +%d)" %
-                          (name, mtype, mname, offset, ref_size if ref_size > 0 else 4, nmo - offset, nmo))
-                    cursor = nmo  # clamp to avoid negative gap
+                          (name, mtype, mname, offset, type_size, nmo - offset, nmo))
+                cursor = nmo
+            else:
+                # Last member: estimate type size
+                if "*" in mtype:        cursor = offset + 4
+                elif mtype == "double": cursor = offset + 8
+                elif mtype == "float":  cursor = offset + 4
+                elif mtype in ("char", "unsigned char", "bool", "BYTE"): cursor = offset + 1
+                elif mtype in ("short", "unsigned short", "WORD"):       cursor = offset + 2
+                else:
+                    clean = mtype.replace("class ", "").replace("struct ", "").strip()
+                    ref_size = 0
+                    if clean in all_structs:
+                        ref = all_structs[clean]
+                        ref_size = ref.get("binary_size") or ref.get("pdb_size") or 0
+                    cursor = offset + (ref_size if ref_size > 0 else 4)
 
     if size > 0 and cursor < size:
         lines.append("    char _tail_%03X[%d];" % (cursor, size - cursor))

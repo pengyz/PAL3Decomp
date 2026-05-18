@@ -91,9 +91,12 @@ def flatten_gbengine_headers(header_dir):
                         in_method = True
                 continue
         else:
-            # Remove keywords IDA C parser doesn't handle
+            # Skip static/extern member declarations (they don't occupy instance space)
+            if s.lstrip().startswith('static ') or s.lstrip().startswith('extern '):
+                continue
+            # Remove other keywords IDA C parser doesn't handle
             s2 = line
-            for kw in ('static ', 'extern ', 'inline ', 'virtual ', 'explicit '):
+            for kw in ('inline ', 'virtual ', 'explicit '):
                 s2 = s2.replace(kw, '')
             output.append(s2)
     full = '\n'.join(output)
