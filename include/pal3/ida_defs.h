@@ -80,6 +80,9 @@ typedef int BOOL;
 #define COERCE_FLOAT(x) (*(float*)&(x))
 #define COERCE_DOUBLE(x) (*(double*)&(x))
 #define __PAIR64__(high, low) (((unsigned __int64)(high) << 32) | (unsigned int)(low))
+
+// IDA FLIRT misidentifications
+#define CRT_set_new_handler srand
 #define __OFSUB__(x, y) (((x) ^ ((x) - (y))) & ((x) ^ (y)))
 
 // IDA helper functions
