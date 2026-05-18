@@ -37,6 +37,37 @@ def load_annotations():
         enums = json.load(open(enums_path, encoding='utf-8'))
     return {'functions': funcs, 'globals': globs, 'structs': structs, 'vtables': vtables, 'enums': enums}
 
+def _estimate_member_size(mtype, structs):
+    """Estimate member size for overlap detection."""
+    if '*' in mtype:
+        return 4
+    arr = re.search(r'\[(\d+)\]', mtype)
+    if arr:
+        base = re.sub(r'\[\d+\].*', '', mtype).strip()
+        elem = _estimate_member_size(base, structs)
+        total = elem
+        for m in re.finditer(r'\[(\d+)\]', mtype):
+            total = int(m.group(1)) * elem
+        return total
+    t = mtype.strip().replace('struct ', '').replace('class ', '')
+    if t in ('char', 'unsigned char', 'BYTE', '_BYTE', 'bool'):
+        return 1
+    if t in ('short', 'unsigned short', 'WORD', '_WORD'):
+        return 2
+    if t in ('int', 'unsigned int', 'long', 'unsigned long', 'DWORD', '_DWORD',
+             'float', 'BOOL', 'HRESULT', 'HWND', 'HANDLE', 'UINT', 'LONG'):
+        return 4
+    if t in ('double', '__int64', 'LONGLONG'):
+        return 8
+    if 'RECT' in t or 'tagRECT' in t:
+        return 16
+    if t in structs:
+        sz = structs[t].get('binary_size', 0)
+        if sz:
+            return int(sz)
+    return 4
+
+
 def check():
     errors = []
     warnings = []
@@ -82,6 +113,24 @@ def check():
             if mname in names_seen:
                 errors.append(f"structs[{sname}]: duplicate member '{mname}' at offsets {names_seen[mname]} and {off}")
             names_seen[mname] = off
+
+        # Check member overlap (using known struct sizes)
+        sorted_m = sorted(members.items(), key=lambda x: int(x[0]))
+        for i in range(len(sorted_m) - 1):
+            off1 = int(sorted_m[i][0])
+            m1 = sorted_m[i][1]
+            off2 = int(sorted_m[i + 1][0])
+            size1 = _estimate_member_size(m1.get('type', 'int'), structs)
+            if off1 + size1 > off2:
+                msg = (f"structs[{sname}]: member overlap: "
+                       f"{m1.get('name')}({m1.get('type')}, size={size1})@{off1} "
+                       f"ends@{off1+size1} > next {sorted_m[i+1][1].get('name')}@{off2}")
+                # Type size not in annotations = estimate unreliable, warn only
+                mtype_clean = m1.get('type', '').replace('struct ', '').replace('class ', '').strip()
+                if mtype_clean not in structs:
+                    warnings.append(msg + " (type size estimated)")
+                else:
+                    errors.append(msg)
 
         # Check base_class exists
         base = sinfo.get('base_class')

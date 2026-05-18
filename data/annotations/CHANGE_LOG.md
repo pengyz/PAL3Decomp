@@ -51,6 +51,34 @@
 
 ## 变更记录
 
+### [2026-05-19] 成员重叠检测 + 修复 (45 个冗余字段删除)
+
+**问题发现**: codegen 跳过了 annotation 中被前一个成员 estimated size 覆盖的字段，导致
+header 中缺失字段名 → decomp cpp 引用时报 C2039。根因是 annotation 数据中存在成员重叠。
+
+**修复分类**:
+
+1. **42 个冗余 _embed_ 字段** (置信度 85): container 类型的 binary_size 已在 annotation 中验证，
+   embed 偏移落在 container 范围内。例: UIButton(size=344)@0x20C 内的 _embed_UIFrameWnd@0x2B8。
+   证据: container binary_size 来自二进制 stride/数组边界验证（A级来源）。
+
+2. **3 个内部字段** (置信度 85):
+   - CCBUIPanel.m_nPanelCount@18836: 在 PalScript(size=1816)@18616 范围内 (18836 < 20432)
+   - PalScriptMgr._todo_1A4@16: 在 PtrArray(size=16)@4 范围内 (16 < 20)
+   - UIListBox._todo_2A0@672: 在 UIWnd(size=88)@664 范围内 (672 < 752)
+
+3. **SceneObj.m_common 类型修改** (置信度 90): std::queue<SceneObj::Common_State,...> → char[48]
+   纯表示法变化，48 = next_offset(0x6DC) - current_offset(0x6AC)，不改变布局。
+
+**未修改（证据不足）**:
+- Actor: m_vecPos(gbVec3D)@0x16C 与 _field_170(gbVec3D)@0x170 重叠 — gbVec3D size=12 未在 annotation 验证
+- CCBStage: _todo_1F4(gbVec3D)@0x1F4 与 _todo_1F8(float)@0x1F8 — 同上
+- Actor.m_fAnimDelta 类型 — 无二进制证据，不修改
+
+**codegen 修复**:
+- emit_headers.py: annotation 路径增加 `<template>` 类型 → `char[N]` 转换（与 PDB 路径一致）
+- check_annotations.py: 新增 `_estimate_member_size` + 成员重叠检测
+
 ### [2026-05-18] 系统性 ctor embed 扫描: 40 个 UIFrameWnd 嵌入 (8 个大类)
 
 从 103 个大类 ctor/init 的二进制中 LEA ECX,[ESI+disp]+CALL UIFrameWnd::init 发现:

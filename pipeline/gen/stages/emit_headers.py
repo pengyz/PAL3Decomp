@@ -763,6 +763,21 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                     # Strip own class prefix for nested types (inside class body, no prefix needed)
                     if '::' in mtype:
                         mtype = re.sub(r'^%s::' % re.escape(cls_name), '', mtype)
+                    # Handle template types that can't be directly declared (same as PDB path)
+                    if '<' in mtype:
+                        idx_m = sorted_members.index((off_str, m))
+                        if idx_m + 1 < len(sorted_members):
+                            next_off = int(sorted_members[idx_m + 1][0])
+                        else:
+                            next_off = int(ann_size) if ann_size and ann_size != '?' else off + 4
+                        msize = next_off - off
+                        if msize > 0:
+                            lines.append("    char %s[%d]; // +0x%X (%s)" % (mname, msize, off, mtype))
+                        else:
+                            lines.append("    int %s; // +0x%X (%s)" % (mname, off, mtype))
+                        member_size = msize if msize > 0 else 4
+                        start_off = off + member_size
+                        continue
                     # Emit member
                     arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
                     if arr_match:
