@@ -3769,3 +3769,15 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   2. [A+] lstrcpyA(&this->field, path) + lstrcatA + lstrlenA → string buffer
   3. [A+] UIFrameWnd::ctor at this+4836, span exactly matches binary_size=152
   4. [A+] gbMatrixStack::Scale(stack, this+276, this+280, this+284) positional params
+
+### [2026-05-18] CCBStage float + LineupUI embed + 命名率
+
+- **变更**:
+  1. CCBStage+8052: _todo_1F74 int→float (1120403456=100.0f IEEE754)
+  2. LineupUI+368: m_Frame UIStatic→_embed_UIFrameWnd_170 UIFrameWnd (ctor at offset, span=152)
+- **置信度**: 85-90
+- **证据**:
+  1. [A+] decomp assigned 1120403456 = 0x42C80000 = 100.0f
+  2. [A+] UIFrameWnd::ctor((UIFrameWnd*)((char*)this+368)), span exactly 152 = binary_size
+- **验证**: 不影响 layout (int→float 同 4B; UIStatic→UIFrameWnd 同 152B)，无需 init --force
+- **当前命名率**: 88.1% (6923/7852) — 本次 +3 个命名
