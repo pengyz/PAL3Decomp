@@ -51,6 +51,20 @@
 
 ## 变更记录
 
+### [2026-05-19] gbColorQuad 隐式转换 + stage3 基类 ctor 清理
+
+**gbColorQuad 修复** (置信度 N/A — gbengine 头文件修改, 非 annotation):
+- 添加 `gbColorQuad(unsigned long)` 构造器 + `operator=(unsigned long)` + `operator unsigned long()`
+- 原因: Hex-Rays 输出 `gbColorQuad c = 0xFFFFFFFF` 等 DWORD 常量赋值, VC6 不允许隐式转换
+- 效果: 消除 ~80 个 C2440 type conversion errors
+
+**stage3 基类构造器调用清理** (置信度 N/A — codegen 逻辑):
+- 正则删除 `this->BaseClassName();` (Hex-Rays 输出的非法语法)
+- 原因: C++ 基类构造器由编译器自动调用, 不需要显式 `this->Base()`
+- 影响: PAL3VisNode, CScreenModeNode 等继承 gbengine 类的文件
+
+**编译验证**: 4477 → 4397 errors (-80), PASS 34 → 37 (+3)
+
 ### [2026-05-19] codegen 架构升级: base_class include + PDB member include 修复
 
 **变更**: 
