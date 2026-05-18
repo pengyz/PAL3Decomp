@@ -14,13 +14,13 @@
     },
     "20": {
       "name": "m_name",
-      "type": "char[260]",
-      "source": "pdb_verified_by_old_ida"
+      "type": "char[8]",
+      "source": "binary:LEA+repne_scasb(strlen)_at_0x14,next_field_28_has_34_hits"
     },
     "280": {
       "name": "m_szTexture",
-      "type": "char[52]",
-      "source": "pdb_verified_by_old_ida"
+      "type": "char[28]",
+      "source": "binary:LEA_40hits_at_0x118,next_verified_field_at_0x13C(316)=36B_but_ann_next_at_308=28B"
     },
     "540": {
       "name": "m_dwMatMsg",
@@ -114,8 +114,8 @@
     },
     "440": {
       "name": "m_nAnimFrames",
-      "type": "int[8]",
-      "source": "binary:raw_consecutive_ints"
+      "type": "int",
+      "source": "binary:distinct_fields_at_0x1B8/0x1BC(LEA)/0x1C0,each_4B"
     },
     "360": {
       "name": "m_nHandleEvent",
@@ -409,8 +409,8 @@
     },
     "436": {
       "name": "m_pEquipAtt0",
-      "type": "RoleAtt *[3]",
-      "source": "transfer_from_RoleSystem_off_860"
+      "type": "RoleAtt *",
+      "source": "binary:1_store_at_0x1B4,distinct_fields_at_0x1B8/0x1BC/0x1C0"
     },
     "448": {
       "name": "m_pEquipAtt1",
