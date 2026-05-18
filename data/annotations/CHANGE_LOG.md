@@ -3735,3 +3735,21 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   - layout errors: 28 → 13 (IDB 正确性提升)
 - **置信度**: 75 (span 正确，具体类型待二进制验证后可还原)
 - **接受原则**: 编译错误数的短期波动是正确性代价，不追求数字下降而接受错误的 IDB
+
+### [2026-05-18] RenderTarget2 IEEE 754 类型修正
+
+- **变更**: +140 _todo_08C int→float, +144 _todo_090 int→float
+- **置信度**: 85
+- **证据**:
+  1. [A+] decomp assigned 1135869952 = 0x43B40000 = 360.0f (IEEE754 constant)
+  2. [A+] decomp assigned 1092616192 = 0x41200000 = 10.0f (IEEE754 constant)
+- **影响**: 不改 IDB layout (同为4B)，改善 Hex-Rays float 推断
+
+### [2026-05-18] 会话总结
+
+- **起始**: 4777 errors, 31/190 pass
+- **当前**: 2997 errors, 44/190 pass (全流程验证 init --force)
+- **进步**: -37.3% errors, +13 files passing
+- **Layout errors**: 43 → 13
+- **命名率**: 88.1% (本次聚焦 infra 修复未做命名)
+- **关键经验写入 skill**: annotation 验证必须 init --force 全流程
