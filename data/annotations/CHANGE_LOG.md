@@ -3673,3 +3673,25 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   1. [A] ScreenEffect.cpp: `((TextureLib_Data *)this)` → `((_TextureLib_Data *)this)` 修复 13 个 C2059
   2. [A] 66 个以 `_` 开头的 annotation struct 都可能受影响
 - **影响**: 2192→2149 (-2%)，累计 4777→2149 (-55.0%)
+
+### [2026-05-18] STL char[span] + Windows SKIP + Actor binary-verified fixes
+
+- **变更**:
+  1. **STL template → char[span]**: emit_headers annotation path 对 `std::` 和模板类型
+     emit 为 `char name[span]; // (original_type)`。消除 C2955 (template arg required)，
+     暴露 Role.h/SceneObj.h 等被 C2955 遮蔽的 56+ 个文件的真实错误。
+  2. **Windows/COM SKIP_CLASSES**: 新增 ~80 个 Windows handle types (HICON__ etc)、
+     COM/OLE enums (tagCLSCTX etc) 到 SKIP 列表，防止生成冲突 header。
+  3. **Actor layout errors (binary verified)**: 4 个 PDB 类型尺寸修正
+     - m_name +20: char[260]→char[8] (strlen pattern + next field at +28, 34 hits)
+     - m_szTexture +280: char[52]→char[28] (LEA 40 hits, span to next ann member=28)
+     - m_pEquipAtt0 +436: RoleAtt*[3]→RoleAtt* (single 4B store, distinct fields after)
+     - m_nAnimFrames +440: int[8]→int (distinct 4B fields at +440/+444/+448)
+- **置信度**: 85-90
+- **证据**:
+  1. [A] Actor m_name: `8D 6B 14` (LEA ebp,[ebx+0x14]) + `F2 AE` (repne scasb=strlen)
+  2. [A] Actor m_name span: this+0x1C has 34 disp8 hits → distinct field at +28
+  3. [A] Actor m_szTexture: 40 disp32 hits at 0x118, first opcode 0x8D (LEA)
+  4. [A] Actor m_pEquipAtt0: 1 store at 0x1B4, distinct fields at 0x1B8/0x1BC(LEA)/0x1C0(load)
+- **影响**: 错误 4986→4946。真实基线建立（之前 2149 是 C2955 遮蔽的虚低值）
+- **剩余**: 33 个类有 layout errors，需逐一二进制验证修正
