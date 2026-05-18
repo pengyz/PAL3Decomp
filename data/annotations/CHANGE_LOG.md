@@ -3695,3 +3695,16 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   4. [A] Actor m_pEquipAtt0: 1 store at 0x1B4, distinct fields at 0x1B8/0x1BC(LEA)/0x1C0(load)
 - **影响**: 错误 4986→4946。真实基线建立（之前 2149 是 C2955 遮蔽的虚低值）
 - **剩余**: 33 个类有 layout errors，需逐一二进制验证修正
+
+### [2026-05-18] STL fix 回滚 + 根因澄清
+
+- **回滚**: STL `std::vector<T>` → `char[span]` 转换导致 30 文件 regression
+  - Root cause: VC6 对 `std::vector<int>` 实际 sizeof=12 (3 pointers)，
+    `_estimate_member_size` 返回 4 → 产生 _tail_[12]，实际 struct 为 12+12=24B。
+    改为 char[16] 后 struct 缩小 8B，导致 layout 不一致
+  - 正确方案需考虑 VC6 的真实 sizeof 而非 annotation span
+- **重要澄清**: C2955 (template arg required) **不会遮蔽**包含文件的错误。
+  VC6 遇到无法解析的模板成员声明后继续编译（只报 error 跳过该成员）。
+  验证: Role.h 被 33 个 .cpp include，但只有 5 个 header 自身报 C2955。
+  包含文件的自身错误照常报告。
+- **当前真实状态**: 2927 errors, 44/190 files pass (初始 4777/31)
