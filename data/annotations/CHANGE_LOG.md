@@ -3955,6 +3955,23 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **核心认知**: annotation 修正的价值不仅在 error count, 更在 Hex-Rays 输出代码质量。
   正确的类型标注让反编译器产生语义准确的 C++ 代码。
 
+### [2026-05-18] 5 CScreenMode* 全局变量 + C2440 根因分析
+
+- **变更**: 添加 5 个 CScreenMode* 全局变量到 globals.json
+  - off_5CF1F4, off_5CF1E8, off_5B46B4: 调用 GetInstance_df70 (CScreenMode 方法)
+  - off_5C7768: 显式 cast 为 CScreenMode*
+  - off_5BC918: 赋值给 CScreenMode* 变量
+- **置信度**: 90
+- **C2440 根因分析** (578 errors 中最大类):
+  - `char* → unsigned long` (37): struct members 标为 DWORD 实际存 char 指针
+  - `void* → CScreenMode*` (36): 全局变量类型 void* 应为 CScreenMode*
+  - `unsigned long* → unsigned long` (28): 字段类型 unsigned long 实际是指针
+  - `gbTexture* → unsigned long` (15): 字段存 gbTexture 指针但标为 DWORD
+  - Root cause: IDA/PDB 常将指针标为 DWORD/unsigned long。修正需要逐字段验证。
+- **发现 codegen 子字段机制**: stage4_substitution.py `_try_struct_member_replacement`
+  已有全局 struct instance 子字段→member 的替换逻辑。但仅当 globals.json 中的
+  全局变量类型是已知 struct 时才生效 (void* 不行)。
+
 ### [2026-05-18] 会话结束状态
 
 - **全流程验证基线**: 2988 errors, 42/189 pass
