@@ -61,6 +61,10 @@ def _estimate_member_size(mtype, structs):
         return 8
     if 'RECT' in t or 'tagRECT' in t:
         return 16
+    if t in ('gbVec3D',):
+        return 12
+    if t in ('gbMatrix',):
+        return 64
     if t in structs:
         sz = structs[t].get('binary_size', 0)
         if sz:
@@ -126,11 +130,13 @@ def check():
                        f"{m1.get('name')}({m1.get('type')}, size={size1})@{off1} "
                        f"ends@{off1+size1} > next {sorted_m[i+1][1].get('name')}@{off2}")
                 # Type size not in annotations = estimate unreliable, warn only
+                # Exception: types with known fixed sizes (gbengine source)
+                KNOWN_FIXED_SIZES = {'gbVec3D', 'gbMatrix', 'tagRECT', 'RECT'}
                 mtype_clean = m1.get('type', '').replace('struct ', '').replace('class ', '').strip()
-                if mtype_clean not in structs:
-                    warnings.append(msg + " (type size estimated)")
-                else:
+                if mtype_clean in structs or mtype_clean in KNOWN_FIXED_SIZES:
                     errors.append(msg)
+                else:
+                    warnings.append(msg + " (type size estimated)")
 
         # Check base_class exists
         base = sinfo.get('base_class')
