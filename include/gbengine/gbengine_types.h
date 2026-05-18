@@ -61,7 +61,10 @@ struct gbColorQuad {
     gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2);
     gbColorQuad(unsigned char p0, unsigned char p1, unsigned char p2, unsigned char p3);
     gbColorQuad();
+    gbColorQuad(unsigned long color) { *(unsigned long*)this = color; }
     struct gbColorQuad & operator=(struct gbColorQuad const & p0);
+    struct gbColorQuad & operator=(unsigned long color) { *(unsigned long*)this = color; return *this; }
+    operator unsigned long() const { return *(unsigned long*)this; }
     static int ColorQuadFmt;
 };
 

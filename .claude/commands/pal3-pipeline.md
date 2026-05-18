@@ -490,6 +490,29 @@ IDA decomp 中整数赋值可能暴露 float 类型——当赋值的整数值�
 - 函数参数类型/返回值的初始猜测
 - **注意**: raw decomp 中 `this + N` 的 N 是字节偏移（当 this 为 char*/void*）或 DWORD 偏移（当 this 为 _DWORD*）——看是否有 `(_TYPE *)` cast 来判断
 
+## 待解决: IDA 函数重名 mangling (TODO)
+
+IDA 不支持函数重载——同类中相同名字的函数必须重命名。当前 apply_annotations 直接用
+IDA 默认加 `_0`/`_1` 后缀，导致 export 出的 cpp 方法名和 header 声明不匹配。
+
+**冲突的三种情况**（不可自动区分）：
+
+| 类型 | 表现 | 正确处理 |
+|------|------|---------|
+| 真重载 | 同名不同参数（C++ overload） | mangling 导入 IDA → codegen 还原 |
+| 归属错误 | 函数不属于该类 | 修正 annotations 中 class 归属 |
+| 多态误归 | 子类虚方法被归到基类 | 修正归属到正确子类 |
+
+**第 3 类最隐蔽**：UIXXXX 系列有大量子类，如果把子类的 `Create`/`Destroy` 等虚方法
+归属到 `UIWnd` 基类，就会出现多个同签名同名函数，表面像重载实际是多态继承。
+
+**设计方向**：
+1. apply_annotations: 冲突时用显式 mangling（如 `__ovl_ADDR`），而非 IDA 默认 `_0`
+2. codegen: 检测 `__ovl_` 标记还原原始名
+3. 归属错误和多态误归需人工审查——自动化无法区分
+
+**当前状态**: 未实现。PtrArray 无参构造器等少数 case 暂时保持现状。
+
 ## 退出条件
 
 - 对齐违规 = 0

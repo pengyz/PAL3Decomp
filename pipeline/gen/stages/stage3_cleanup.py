@@ -322,6 +322,8 @@ def run(code, ctx):
     if not ctx.is_free_function:
         code = re.sub(r'return\s+&this->__vftable\s*;', 'return this;', code)
         code = re.sub(r'return\s+\([^)]+\)\s*&this->__vftable\s*;', 'return this;', code)
+        # Base class ctor call: this->BaseClassName() → implicit (compiler auto-calls)
+        code = re.sub(r'^\s*this->\w+\(\);\s*$', '', code, flags=re.MULTILINE)
 
     # --- AST-based structural detection ---
     code = _ast_cleanup(code, ctx)
