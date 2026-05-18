@@ -54,10 +54,18 @@ ui:
     match_rate: { type: number, initial: 0, persist: true, hint: progress_bar }
 
     # 趋势数据（List + chart hint）
-    naming_trend: { type: list, initial: [], persist: true, hint: chart }
+    naming_trend:
+      type: list
+      fields: [time, rate]
+      persist: true
+      hint: chart
 
     # 迭代时间线（List + timeline hint）
-    iterations: { type: list, initial: [], persist: true, hint: timeline }
+    iterations:
+      type: list
+      fields: [time, event, detail]
+      persist: true
+      hint: timeline
 
     # 文本面板（详情）
     milestone_status: { type: text, initial: "## Phase 1: 通过编译\n\n等待首次检查点...", persist: true }
