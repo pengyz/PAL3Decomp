@@ -1092,7 +1092,7 @@ def generate_globals():
     """Generate include/pal3/globals.h from globals.json + binary initial values."""
     import struct as _st
 
-    globals_json = PIPELINE_ROOT / "data" / "annotations" / "globals.json"
+    globals_json = ANNOTATIONS_DIR / "globals.json"
     if not globals_json.exists():
         return
 
@@ -1176,7 +1176,7 @@ def generate_globals():
         base_typ = extract_base_type(typ)
         is_pointer_only = '*' in typ and '[' not in typ
         has_header = (gen_header_dir / ("%s.h" % base_typ)).exists()
-        has_struct = (PIPELINE_ROOT / "data" / "annotations" / "structs" / ("%s.json" % base_typ)).exists()
+        has_struct = (ANNOTATIONS_DIR / "structs" / ("%s.json" % base_typ)).exists()
 
         # Track types needing full definition vs forward declaration
         if has_struct and not is_pointer_only:
