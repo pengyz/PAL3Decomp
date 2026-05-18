@@ -3608,3 +3608,23 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   4. [A] _estimate_member_size 路径: `pipeline/gen/data/annotations/structs/` 不存在，
      UISceneFace 等类型的 size 全部 fallback 4，导致 gap/tail 计算错误
 - **影响**: 编译错误 4777→2604 (-45.5%)，C2039 从 1017 降至 415
+
+### [2026-05-18] 拆分嵌套类型 tagSpark + 13 个 ClassName::NestedType — 2604→2238 (-14%)
+
+- **变更**: 
+  1. C2DSpark_tagSpark (48B) 和 C3DSpark_tagSpark (56B) — 从 m_Spark array stride 推导
+  2. 12 个 ClassName::NestedType 拆分为独立 struct stubs (known_members 诚实为空):
+     CParticleSystem_EmitterAttribute (220B), SceneObj_SubObj (36B),
+     Role_SPECIAL_ACTION (36B), _Console__ConCmd (136B),
+     PlayerMgr_PoisonState (32B), DPINFO___unnamed (96B),
+     UIButton_UIBUTTON_STATE (4B), UIScrollBar_SB_AREA (4B),
+     UIStaticFlex_State (4B), NameSys_NAMEFLAG (4B),
+     ParabolaCalculator_PRBL_STATE (4B), Comp_DonateUI_CDState (4B)
+  3. codegen: 支持仅有 binary_size 的 annotation struct 生成 header
+  4. codegen: class body 内剥离自身类名前缀
+- **置信度**: 85
+- **证据**:
+  1. [A] C2DSpark: m_Spark[512] at +0, next member at +24576 → 24576/512 = 48B per tagSpark
+  2. [A] C3DSpark: m_Spark[128] at +0, next member at +7168 → 7168/128 = 56B per tagSpark
+  3. [A] SceneObj: m_subobj at +948, next at +984 → 36B; Role: m_specact at +1328, next at +1364 → 36B
+- **影响**: C2501 从 174→0 (完全消除)，总错误 2604→2238 (-14%)，累计 4777→2238 (-53%)
