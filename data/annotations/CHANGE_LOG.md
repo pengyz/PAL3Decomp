@@ -3885,3 +3885,13 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   4. Round 2 的 145 个仅凭 signature mismatch, 缺乏 member access 验证, 导致 regression
 - **规则**: 函数归属修正必须有 decomp member access evidence, signature mismatch 仅作为候选筛选
 - **当前真实基线**: 2988 errors, 42/189 pass
+
+### [2026-05-18] 函数归属修正收敛 — 14 个高置信度修正
+
+- **方法**: 双重证据要求 (member access + signature this agreement)
+  - Round 1: 11 个 (CEffMgr→CEffCylinder, CCBMagicWindow→UIListBox, etc.)
+  - Round 3: 3 个 (PAL3→RenderTarget2, Actor→RoleAtt, PalScript→ArcLocaleRole)
+- **回滚**: Round 2 的 145 个 (仅凭 signature mismatch) 导致 regression, 已 revert
+- **收敛**: 29 个候选中大部分已修复, 剩余为继承关系误报或证据不足
+- **置信度**: 90 (双重证据)
+- **规则 #9 写入 skill**: 禁止仅凭 signature this 修正归属
