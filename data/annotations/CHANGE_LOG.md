@@ -3708,3 +3708,16 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   验证: Role.h 被 33 个 .cpp include，但只有 5 个 header 自身报 C2955。
   包含文件的自身错误照常报告。
 - **当前真实状态**: 2927 errors, 44/190 files pass (初始 4777/31)
+
+### [2026-05-18] 关键经验：annotation 修改必须走 init --force 验证
+
+- **发现**: annotation layout 修改（如 Actor char[260]→char[8]）改变了 IDB struct，
+  导致 Hex-Rays 产生不同的反编译代码。旧代码碰巧能编译，新代码可能不能。
+  **只改 annotation + 只改 header 不做 init+export 得到的编译结果是虚假的。**
+- **规则**: 任何 annotation 修改后，必须走完整流程验证：
+  `init --force → export → codegen all → compile`
+  只有这个结果是真实的。中间任何 shortcut 都可能给出误导性的改善数字。
+- **证据**: 
+  1. 修改 Actor 等 16 个 annotation 后 init+export → 61 pass 衰退为 44 pass
+  2. 用旧版 emit_headers + 新 decomp 仍然只有 43 pass（证明不是 header 的问题）
+  3. 原因是 IDB 布局变化使 Hex-Rays 对相关函数产生不同的反编译输出
