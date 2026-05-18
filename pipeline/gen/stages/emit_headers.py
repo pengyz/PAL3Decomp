@@ -59,6 +59,8 @@ SKIP_CLASSES = {
     'std', 'stdiobuf', 'exception', 'type_info', 'filebuf', 'string',
     'strstreambuf', 'ios_base', 'facet', 'codecvt_base',
     '_ThrowInfo', '_CatchableType', '_CatchableTypeArray',
+    # C/C++ reserved words that IDA may use as class names
+    'float', 'int', 'char', 'void', 'double', 'long', 'short', 'bool',
     # Windows types
     'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG', 'RECT', 'POINT', 'SIZE',
     'tagRGBQUAD', 'RGBQUAD',
