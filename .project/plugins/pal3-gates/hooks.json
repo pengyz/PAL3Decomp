@@ -2,64 +2,57 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Write(data/annotations/*)",
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_annotations.py" }]
+        "matcher": "Write(pipeline/data/annotations/*)",
+        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_annotations.sh", "timeout_ms": 15000 }]
       },
       {
-        "matcher": "Edit(data/annotations/*)",
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_annotations.py" }]
+        "matcher": "Edit(pipeline/data/annotations/*)",
+        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_annotations.sh", "timeout_ms": 15000 }]
       },
       {
         "matcher": "Bash(git commit*)",
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_commit.py" }]
+        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_commit.sh", "timeout_ms": 15000 }]
       },
       {
         "matcher": "Write(pipeline/*.py)",
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_readonly.py" }]
+        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_readonly.sh" }]
       },
       {
         "matcher": "Edit(pipeline/*.py)",
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_readonly.py" }]
+        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_readonly.sh" }]
       },
       {
         "matcher": "Write(pipeline/ida/*.py)",
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_readonly.py" }]
+        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_readonly.sh" }]
       },
       {
         "matcher": "Edit(pipeline/ida/*.py)",
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_readonly.py" }]
-      },
-      {
-        "matcher": "Write(pipeline/gen/*.py)",
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_readonly.py" }]
-      },
-      {
-        "matcher": "Edit(pipeline/gen/*.py)",
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_readonly.py" }]
+        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/gate_readonly.sh" }]
       }
     ],
     "PostToolUse": [
       {
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/audit_log.py" }]
-      },
-      {
-        "matcher": "Bash(git commit*)",
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/post_commit_metrics.py" }]
+        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/audit_log.sh" }]
       }
     ],
     "Stop": [
       {
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/check_stop.py" }]
+        "required_tools": ["data_write"],
+        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/check_stop.sh" }]
       }
     ],
     "Notification": [
       {
-        "interval": 15,
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/pipeline_checkpoint.py" }]
+        "interval": 3,
+        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/remind_quality.sh" }]
       },
       {
-        "interval": 8,
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/remind_quality.py" }]
+        "interval": 10,
+        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/pipeline_checkpoint.sh", "timeout_ms": 120000 }]
+      },
+      {
+        "interval": 10,
+        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/accumulate_knowledge.sh" }]
       }
     ]
   }
