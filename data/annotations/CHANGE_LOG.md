@@ -51,6 +51,31 @@
 
 ## 变更记录
 
+### [2026-05-19] codegen 架构升级: 模板类型直接输出
+
+**变更**: emit_headers.py 不再将模板类型 flatten 为 char[N], 改为输出真实 C++ 类型。
+**置信度**: N/A (codegen 逻辑变更, 非 annotation 数据修改)
+**影响**: 47 个模板字段 (31 个 struct) 现在输出真实 STL 类型
+
+**三层分离原则**:
+- annotation: 存储完整 C++ 类型 (不丢信息)
+- apply_annotations: flatten 为 IDA 兼容 char[N] (工具限制)
+- codegen: 从 annotation 还原真实类型
+
+**simplify_stl_type() 转换规则**:
+| 输入 (IDA 全称) | 输出 (codegen) |
+|----------------|---------------|
+| `std::vector<T,std::allocator<T>>` | `vector<T>` |
+| `std::queue<T,std::deque<T,std::allocator<T>>>` | `queue<T>` |
+| `std::basic_string<char,std::char_traits<char>,std::allocator<char>>` | `string` |
+| `std::list<T,std::allocator<T>>` | `list<T>` |
+| `std::bitset<N>` | `bitset<N>` |
+
+**Fallback**: 自引用嵌套类型 (如 `SceneObj::Common_State` 在 SceneObj 内) → char[N] + 注释
+原因: VC6 STL 需要模板参数是完整类型, forward declaration 不够 (deque 内部需 sizeof(T))
+
+**编译验证**: PASS 34/189 (不变), fatal 21 (-1), error 4481 (+51, 可接受)
+
 ### [2026-05-19] Actor/CCBStage gbVec3D 重叠修复
 
 **Actor Vec3D 分量误标删除** (置信度 85):
