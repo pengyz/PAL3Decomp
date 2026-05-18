@@ -3872,3 +3872,16 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   max access offset 是否超出所属类 binary_size。超出的标记为候选归属错误。
   然后通过函数地址聚类 + 交叉引用确定正确归属类。
 - **当前状态**: 2913 errors, 44/189 pass (session: 4777→2913, -39.0%)
+
+### [2026-05-18] 函数归属批量修正实验 — 回滚 + 教训
+
+- **尝试**: 批量将 145 个 name class ≠ signature this class 的函数改为 signature this class
+- **结果**: 2913→3026 (+113 errors), 44→38 pass (-6). **REGRESSION.**
+- **回滚**: revert commit, 恢复到 11 函数修正的状态 (2988 errors, 42 pass)
+- **教训**:
+  1. signature this class **不绝对可信** — IDA 从 caller 推断,如果 caller 本身标注错误则连锁
+  2. 只有 **member access evidence** (decomp 中 this->member 实际存在于目标类) 才是可信依据
+  3. Round 1 的 11 个修正有 member access 证据支持, 方向正确
+  4. Round 2 的 145 个仅凭 signature mismatch, 缺乏 member access 验证, 导致 regression
+- **规则**: 函数归属修正必须有 decomp member access evidence, signature mismatch 仅作为候选筛选
+- **当前真实基线**: 2988 errors, 42/189 pass
