@@ -712,8 +712,8 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             ann_struct_fb = ann_data_fb.get('structs', {}).get(cls_name, {})
             ann_members = ann_struct_fb.get('known_members', {})
             ann_size = ann_struct_fb.get('binary_size') or ann_struct_fb.get('gen_size')
-            if ann_members:
-                sorted_members = sorted(ann_members.items(), key=lambda x: int(x[0]))
+            if ann_members or ann_size:
+                sorted_members = sorted(ann_members.items(), key=lambda x: int(x[0])) if ann_members else []
                 start_off = base_size
                 for off_str, m in sorted_members:
                     mname = m.get('name', '_field_%04X' % int(off_str))
@@ -727,6 +727,9 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                         lines.append("    char _gap_%03X[%d]; // +0x%X" % (start_off, gap_size, start_off))
                     # Fix C99 flexible array
                     mtype = re.sub(r'\[\]', '[1]', mtype)
+                    # Strip own class prefix for nested types (inside class body, no prefix needed)
+                    if '::' in mtype:
+                        mtype = re.sub(r'^%s::' % re.escape(cls_name), '', mtype)
                     # Emit member
                     arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
                     if arr_match:
@@ -926,7 +929,8 @@ def main():
         has_methods = len(methods_list) >= 1
         ann_s = ann_data_all.get('structs', {}).get(cls_name, {})
         has_ann = bool(ann_s.get('known_members'))
-        if has_members or has_methods or has_ann:
+        has_ann_sz = bool(ann_s.get('binary_size') or ann_s.get('gen_size'))
+        if has_members or has_methods or has_ann or has_ann_sz:
             classes_with_headers.add(cls_name)
     # Also include template stubs and enums
     for base_name in template_classes:
@@ -961,7 +965,8 @@ def main():
         has_vtable = any(v.get('class') == cls_name for v in ann_data_all.get('vtables', {}).values())
         ann_struct = ann_data_all.get('structs', {}).get(cls_name, {})
         has_ann_members = bool(ann_struct.get('known_members'))
-        if not has_members and not has_methods and not has_vtable and not has_ann_members:
+        has_ann_size = bool(ann_struct.get('binary_size') or ann_struct.get('gen_size'))
+        if not has_members and not has_methods and not has_vtable and not has_ann_members and not has_ann_size:
             continue
 
         # Skip class generation if name conflicts with a PDB enum and class is just an enum wrapper
