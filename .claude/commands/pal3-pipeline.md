@@ -43,6 +43,10 @@ data/annotations/
 5. **禁止假设对齐方向**——偏移违规时不能假设"应该向上对齐"，必须从二进制确认真实值
 6. **禁止伪语义命名**——`m_nState_4968`、`m_fParam_0A0` 这种用地址后缀伪装的名字没有语义价值，和 `_todo_4968` 没有区别。只有能确定具体含义时才命名（如 `m_szTooltip`、`m_fAngle`、`m_nBlendState`），否则保留 `_todo_` 占位符。宁可诚实地标记未知，不可用噪声掩盖无知。
 7. **禁止对 IDA 查询工具的输出不加验证直接命名**——IDA 工具提供**候选列表**，每个候选仍需人工判断语义是否足够明确。不明确的保留 `_todo_`。
+8. **禁止 shortcut 验证**——annotation 修改后的编译验证**必须走完整流程**：
+   `init --force → export → codegen all → compile`。
+   原因：annotation 改变 IDB struct layout → Hex-Rays 产生不同反编译代码 → 编译结果变化。
+   只改 header 不重新 export 得到的编译结果**是虚假的**。只有全流程结果可信。
 </HARD-REQUIREMENT>
 
 ## 置信度规则
@@ -338,12 +342,22 @@ Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>"
 
 ### 验证改进效果
 
+<CRITICAL>
+**必须用 init --force 而不是 apply**。annotation 修改会改变 IDB struct layout，
+导致 Hex-Rays 产生不同的反编译代码。只用 apply（增量更新）可能不完整。
+只有 init --force（完全重建）后的编译结果才可信。
+</CRITICAL>
+
 ```bash
-python pipeline/cli.py apply           # 标注→IDB
-python pipeline/cli.py export          # IDB→decomp JSON
+python pipeline/cli.py init --force    # 完全重建 IDB（必须！不可用 apply 替代）
+python pipeline/cli.py export          # IDB→decomp JSON（反编译输出会变）
 python pipeline/cli.py codegen all     # decomp→C++
 python pipeline/cli.py compile         # C++→验证编译
 ```
+
+**经验教训**: annotation 修改 → IDB struct 变化 → Hex-Rays 输出不同代码。
+旧代码可能碰巧能编译，新代码可能有新错误。这不是 regression 而是"正确代码的代价"。
+评估 annotation 修改的 ROI 时必须用全流程结果。
 
 ### 单字段精确验证（偏移/类型修改时）
 
