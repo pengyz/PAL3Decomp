@@ -3912,3 +3912,22 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **置信度**: 95 (ctor 调用是继承的确定性证据)
 - **教训**: 只有 ctor 中的 base::ctor(this) 调用才能确定继承关系;
   类名前缀、成员相似性都不足以作为继承依据
+- **陷阱**: `BaseClass::ctor((BaseClass*)this)` 在 offset 0 无法区分继承和 composition。
+  需检查:如果自身 members 从 offset < base.binary_size 开始 → 是 composition 不是继承。
+  CCBRoleState 就是这个 case (ctor 调 UIListBox::UIListBox 但 own members 从 +512 开始,
+  而 UIListBox=1288B)。已回滚。
+
+### [2026-05-18] 会话结束状态
+
+- **全流程验证基线**: 2988 errors, 42/189 pass
+- **从初始 (4777/31) 改进**: -1789 errors (-37.5%), +11 files passing
+- **本次会话总 commits**: ~40
+- **主要成果**:
+  - Codegen 基础设施: 5 fixes
+  - IDB 构建: 2 fixes (gbColorQuad, cursor)
+  - 函数归属: 14 个修正 (dual evidence), 145 个尝试回滚 (教训)
+  - 继承关系: UIScene→UIWnd, UIItem→UIWnd (ctor evidence)
+  - UIFrameWnd embeds: 67 个新标注
+  - Layout errors: 43→22
+  - 嵌套类型 stubs: 16 个
+  - 命名率: 88.1% → 88.3%, 总字段 7852→7923
