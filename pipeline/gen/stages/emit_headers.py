@@ -504,6 +504,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     except:
         pass
 
+    if pdb_class:
         # Data members
         for m in pdb_class.get('data_members', []):
             mtype = m.get('type', '')
