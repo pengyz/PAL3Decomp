@@ -11,7 +11,7 @@ def quick_stats():
     """只读文件收集统计，不跑管线。"""
     result = {}
     try:
-        funcs = json.load(open(f'{project}/pipeline/data/annotations/functions.json'))
+        funcs = json.load(open(f'{project}/data/annotations/functions.json'))
         named = sum(1 for v in funcs.values()
                     if v.get('name','').strip() and not v['name'].startswith('sub_'))
         total = len(funcs)
@@ -20,7 +20,7 @@ def quick_stats():
     except:
         pass
     try:
-        struct_dir = f'{project}/pipeline/data/annotations/structs'
+        struct_dir = f'{project}/data/annotations/structs'
         sc = sum(1 for f in os.listdir(struct_dir) if f.endswith('.json'))
         result['func_stats'] = result.get('func_stats', '## 函数维度\n') + f"\n结构体: {sc}"
     except:

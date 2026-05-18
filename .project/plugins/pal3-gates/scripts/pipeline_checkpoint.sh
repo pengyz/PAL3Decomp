@@ -42,7 +42,7 @@ compile_rate = compile_pass / max(total_cpp, 1)
 
 # ── 命名率 ──
 try:
-    funcs = json.load(open(f'{project}/pipeline/data/annotations/functions.json'))
+    funcs = json.load(open(f'{project}/data/annotations/functions.json'))
     named = sum(1 for v in funcs.values()
                 if v.get('name','').strip() and not v['name'].startswith('sub_'))
     total_funcs = len(funcs)
@@ -53,7 +53,7 @@ except:
 
 # ── match 率（gbengine）──
 try:
-    p = json.load(open(f'{project}/build/gbengine_progress.json'))
+    p = json.load(open(f'{project}/data/gbengine_progress.json'))
     match_rate = p.get('done', 0) / max(p.get('target_functions', 1), 1)
 except:
     match_rate = 0
