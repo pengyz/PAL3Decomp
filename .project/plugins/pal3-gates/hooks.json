@@ -38,7 +38,9 @@
     "Stop": [
       {
         "required_tools": ["data_write"],
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/check_stop.sh" }]
+        "hooks": [
+          { "command": "${AIDE_PLUGIN_ROOT}/scripts/distill_then_stop.sh" }
+        ]
       }
     ],
     "Notification": [
@@ -49,10 +51,6 @@
       {
         "interval": 10,
         "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/pipeline_checkpoint.sh", "timeout_ms": 120000 }]
-      },
-      {
-        "interval": 10,
-        "hooks": [{ "command": "${AIDE_PLUGIN_ROOT}/scripts/accumulate_knowledge.sh" }]
       }
     ]
   }
