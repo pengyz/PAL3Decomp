@@ -63,6 +63,17 @@ def phase1_import_types():
     log("[Phase 1] 导入 PAL3A.PDB 类型")
     log("=" * 60)
 
+    # Load SDK TIL for D3D/Windows types (ID3DXEffect, IDirect3DDevice9, etc.)
+    # This makes D3D types available for gbRenderEffect and other gbengine types.
+    til = ida_typeinf.get_idati()
+    for til_name in ('mssdk_win7', 'mssdk_win10'):
+        rc = ida_typeinf.add_til(til_name, ida_typeinf.ADDTIL_SILENT)
+        if rc:
+            log("[*] Loaded TIL: %s" % til_name)
+            break
+    else:
+        log("[!] No mssdk TIL found (D3D types may be unavailable)")
+
     if not os.path.exists(PDB_EXPORT):
         log("[!] PDB 文件不存在: %s" % PDB_EXPORT)
         return
