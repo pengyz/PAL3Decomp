@@ -51,6 +51,19 @@
 
 ## 变更记录
 
+### [2026-05-19] codegen 架构升级: base_class include + PDB member include 修复
+
+**变更**: 
+1. base_class 继承需要完整定义 → 从 fwd_types 提升到 include_types
+2. annotation base_class 在 include 分析阶段处理（之前在 emit 之后，来不及）
+3. gbengine header 扫描优先匹配定义（含 `{`/`:`）而非前向声明
+4. PDB data_members include 分析缩进 bug 修复（被 except 块吞掉）
+5. SKIP_CLASSES 增加 DOUBLE/FLOAT/INT 等 Windows SDK typedef 冲突项
+6. PAL3VisNode + CScreenModeNode: base_class=gbVisNode
+
+**置信度**: 85 (PAL3VisNode/CScreenModeNode 继承 — ctor 代码 `this->gbVisNode()` 确认)
+**编译验证**: 4481 → 4477 errors (-4), PASS 34 (不变)
+
 ### [2026-05-19] codegen 架构升级: 模板类型直接输出
 
 **变更**: emit_headers.py 不再将模板类型 flatten 为 char[N], 改为输出真实 C++ 类型。
