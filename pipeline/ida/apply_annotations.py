@@ -881,15 +881,6 @@ def apply_annotations():
     if _force_renamed:
         print("[11] Force-renamed %d functions (type propagation override)" % _force_renamed)
 
-    # Reanalyze .text to refresh Hex-Rays type cache after annotation import.
-    # Without this, exported decomp uses stale types (struct #NNN, wrong member names).
-    print("[*] Requesting reanalysis to refresh type cache...")
-    TEXT_START = 0x00401000
-    TEXT_END = 0x005695D0
-    ida_auto.auto_mark_range(TEXT_START, TEXT_END, ida_auto.AU_USED)
-    ida_auto.auto_wait()
-    print("[*] Reanalysis complete")
-
     idc.save_database(idc.get_idb_path(), 0)
     print("[*] Done. Database saved.")
     idc.qexit(0)
