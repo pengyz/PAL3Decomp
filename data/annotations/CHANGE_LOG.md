@@ -3859,3 +3859,16 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **系统性发现**: 扫描发现 150 个函数访问偏移超出所属类 binary_size 3x+。
   这些是潜在的函数归属错误，每个修正可消除数十个编译错误。
   需要逐一验证正确归属后批量修正。
+
+### [2026-05-18] 函数归属错误系统性分析
+
+- **发现**: CCBMagicWindow (50 errors) 也是函数归属错误。
+  binary_size=128 但函数访问 `_tail_C34[132]` (offset 3256+)。
+  15 个函数中只有 0x51B860-0x51BC70 (7个) 是真正的 CCBMagicWindow 方法。
+  其余 8 个 (GetID 等) 来自完全不同的地址范围，是 vtable 匹配错误导致的误归属。
+- **根因**: IDA vtable 自动匹配将不同类的 virtual method 实现错误归入 CCBMagicWindow。
+  这是 `master_pipeline.py` 或手动标注阶段的历史遗留问题。
+- **下一步**: 需要写批量检测脚本：对所有 functions.json 函数，检查 decomp 中
+  max access offset 是否超出所属类 binary_size。超出的标记为候选归属错误。
+  然后通过函数地址聚类 + 交叉引用确定正确归属类。
+- **当前状态**: 2913 errors, 44/189 pass (session: 4777→2913, -39.0%)
