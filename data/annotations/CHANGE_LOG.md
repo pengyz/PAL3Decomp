@@ -3927,6 +3927,18 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **证据**: A+ UIScene::ctor_BCE0 first line `UIWnd::UIWnd((UIWnd*)this)`
 - **影响**: 此修改改变 IDB struct layout (移除 22 members)，需要全流程验证
 
+### [2026-05-18] float.h 冲突 + noise header 清理 — 2985→2727 (-258)
+
+- **变更**:
+  1. SKIP_CLASSES 添加 C/C++ 保留字 (float, int, char, void, double, long, short, bool)
+     - IDA 将某函数归属为 "float" 类 → codegen 生成 float.h → 与 &lt;float.h&gt; 冲突
+     - 消除 273 个 C2447/C2628 级联错误
+  2. should_skip_class: 跳过空名/单字符类名 (如 "_")
+  3. SKIP_PREFIXES 添加 _DI (DirectInput), _IMAGE (PE), _Crt (CRT debug)
+     - 清理 17 个 noise headers (73→56 个 _ 前缀文件)
+- **全流程验证**: 2985 → 2727 (-258 errors), 42 → 43 pass (+1)
+- **置信度**: 95 (float.h 冲突是确定性 bug, noise cleanup 无副作用)
+
 ### [2026-05-18] 会话结束状态
 
 - **全流程验证基线**: 2988 errors, 42/189 pass
