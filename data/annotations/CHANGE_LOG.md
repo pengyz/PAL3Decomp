@@ -3843,3 +3843,19 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **置信度**: 85
 - **证据**: A+ decomp method dispatch / parameter names / assignment patterns
 - **命名率**: 88.3% (6999/7923), 未命名 924, 总字段 +71 vs session start
+
+### [2026-05-18] 函数归属修正 — 2997→2913 (-84, 全流程验证)
+
+- **变更**: `0x0049E8E0` CLoad3DS::_unverified_49E8E0 → MainEquipUI::_unverified_49E8E0
+  - Root cause: 函数内 `this->_tail_104[181128]` 访问偏移 > 180KB，CLoad3DS 只有 260B
+  - 函数操作 UIListBox/CCBUI/PalScript — 明显是大型 UI class 方法
+  - MainEquipUI (binary_size=205068) 是唯一匹配的候选类
+- **置信度**: 90
+- **证据**:
+  1. [A] CLoad3DS.binary_size=260, 函数访问 this+181128+ (ratio 697x) — 不可能属于此类
+  2. [A] 函数内操作 UIListBox::GetSel, CCBUI::ShowEffect, PalScript::OpenScript — UI class 方法
+  3. [A] MainEquipUI.binary_size=205068 ≥ max_offset ~195000
+- **全流程验证**: 2997 → 2913 (-84 errors), 44/189 pass
+- **系统性发现**: 扫描发现 150 个函数访问偏移超出所属类 binary_size 3x+。
+  这些是潜在的函数归属错误，每个修正可消除数十个编译错误。
+  需要逐一验证正确归属后批量修正。
