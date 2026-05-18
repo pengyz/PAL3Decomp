@@ -3588,3 +3588,23 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   3. [A] 相邻地址 stride 0x100 = 256 bytes，确认 char[256] buffer 大小
   4. [A] cmake: C2664 lstrcpyA 从 56 降到 ~0
 - **方法**: 在 gen_cpp 输出中搜索 byte_/off_ 与字符串函数的交叉引用，批量添加
+
+### [2026-05-18] codegen: annotation layout 优先于 IDB struct — 4777→2604 (-45.5%)
+
+- **变更**: emit_headers.py 两处修复
+  1. **annotation 优先**: 当 annotation 有 known_members 时，始终使用 annotation path 生成 header，
+     不再被 ida_structs.json (IDB 导出) 覆盖。IDA struct layout engine 与 MSVC 6.0 对齐规则不同，
+     导致派生类偏移系统性漂移（如 UISceneFrm: IDB sizeof(UIFrameWnd)=172 vs annotation binary_size=152，
+     gap/member 偏移全部偏移 +20 字节）
+  2. **_estimate_member_size 路径修复**: 原代码用 `Path(__file__).parent.parent / 'data' / 'annotations'`
+     计算路径，实际指向 `pipeline/gen/data/annotations/`（不存在），所有非基础类型的 member size 都
+     fallback 到 4 字节。修复为使用 ANNOTATIONS_DIR 常量。同时增加 `::` 嵌套类名剥离。
+- **置信度**: N/A (codegen 工具修复，非 annotation 数据变更)
+- **证据**:
+  1. [A] UISceneFrm header: 修复前 `_gap_098[1128]; // +0xAC`（名 0x98 ≠ 注释 0xAC），
+     修复后 `_gap_098[1128]; // +0x98`（一致）
+  2. [A] UISceneFrm total size: 修复前 0xDCC(3532) ≠ annotation 3288，修复后 0xCD8(3288) 一致
+  3. [A] 190 个类 IDB size ≠ annotation binary_size（IDA 对齐偏差），切换 annotation path 后 header 正确
+  4. [A] _estimate_member_size 路径: `pipeline/gen/data/annotations/structs/` 不存在，
+     UISceneFace 等类型的 size 全部 fallback 4，导致 gap/tail 计算错误
+- **影响**: 编译错误 4777→2604 (-45.5%)，C2039 从 1017 降至 415
