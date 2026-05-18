@@ -1,8 +1,8 @@
 name: PAL3 反编译管线
 description: |
-  PAL3.exe 逆向工程工作台。三流并行：IDA 标注 / 代码生成 / 字节对齐。
-  流程约束由 pal3-gates plugin 强制执行。
-version: "2.1"
+  PAL3.exe MSVC6 匹配反编译。AI 自动工作流 + 人工有限干预。
+  Phase 1: 通过编译 → Phase 2: 质量提升（match + 命名 + 可维护性）
+version: "3.0"
 
 params:
   - name: project_root
@@ -19,54 +19,69 @@ primary: engineer
 agents:
   engineer:
     soul: |
-      你是 PAL3 反编译工程师。
+      你是 PAL3 反编译工程师，运行在自动工作流模式。
       目标：产生与 PAL3.exe 原始二进制字节匹配的 C/C++ 源码。
-      你的流程约束、质量门禁、工作方法由 pal3-gates plugin 提供和强制执行。
+      流程约束和工作方法由 pal3-gates plugin 提供。
+      你应该持续自主工作，直到遇到无法解决的问题时才停下请求人工干预。
 
 directives: |
-  ## 身份
-  你是 PAL3.exe 反编译工程师。所有流程规则和约束由 pal3-gates plugin 管控。
+  ## 里程碑
+
+  ### Phase 1: 通过编译（当前阶段）
+  目标：所有 src/pal3/*.cpp 编译通过（MSVC6, 0 error）
+  工作循环：标注不足 → 补充 annotations → apply → export → gen_cpp → compile → 修复 → 循环
+  退出标准：cmake --build build/pal3 exit 0
+
+  ### Phase 2: 质量提升
+  目标：byte-match ≥ 95% + 语义命名 + 可维护代码
+  工作循环：compare → 分析 mismatch → 修复 → 验证 → 循环
+  退出标准：match ≥ 95% + _todo_ 趋零 + 人工 review 通过
+  注意：此阶段可能需要人工干预（通过 Chat 面板给予指导）
 
   ## 初始化
-  首次启动时检查 pipeline 配置状态，如有缺失引导用户完成：
-  1. IDA 数据库是否存在：$param.project_root/original/PAL3.exe.i64
-  2. Annotations 目录是否有内容：$param.project_root/pipeline/data/annotations/
-  3. 管线 CLI 是否可用：python pipeline/cli.py --help
+  首次启动检查：
+  1. IDB: $param.project_root/original/PAL3.exe.i64
+  2. Annotations: $param.project_root/pipeline/data/annotations/functions.json
+  3. CLI: python pipeline/cli.py --help
+
+  ## 自主工作模式
+  你应该持续迭代，不需要等待人工确认每一步。
+  Stop hook 会在每轮结束时触发经验蒸馏，然后自动继续下一轮。
+  只有遇到致命错误或明确需要人工判断时才停下。
 
 ui:
   data:
-    progress_dashboard: { type: text, initial: "## 进度总览\n\n等待首次检查点...", persist: true }
-    pipeline_status: { type: text, initial: "## 管线状态\n\n等待初始化...", persist: true }
+    milestone_status: { type: text, initial: "## 里程碑\n\n**Phase 1: 通过编译** ← 当前\n\nPhase 2: 质量提升", persist: true }
+    file_stats: { type: text, initial: "## 文件维度\n\n等待首次编译...", persist: true }
+    func_stats: { type: text, initial: "## 函数维度\n\n等待统计...", persist: true }
     iteration_log: { type: text, initial: "## 迭代日志\n\n尚无记录", persist: true }
-    audit_trail: { type: text, initial: "## 操作记录\n\n尚无记录", persist: true }
   layout:
     split: horizontal
     ratio: [55, 45]
     children:
-      - panel:
-          id: chat
-          title: 工作台
-          kind: chat
       - split: vertical
-        ratio: [25, 25, 25, 25]
+        ratio: [70, 30]
         children:
           - panel:
-              id: progress
-              title: 进度总览
+              id: milestone
+              title: 里程碑 & 进度
               kind: markdown
-              bind: progress_dashboard
-          - panel:
-              id: status
-              title: 管线状态
-              kind: markdown
-              bind: pipeline_status
+              bind: milestone_status
           - panel:
               id: log
               title: 迭代日志
               kind: markdown
               bind: iteration_log
+      - split: vertical
+        ratio: [50, 50]
+        children:
           - panel:
-              id: audit
-              title: 操作记录
+              id: files
+              title: 文件维度
               kind: markdown
-              bind: audit_trail
+              bind: file_stats
+          - panel:
+              id: funcs
+              title: 函数维度
+              kind: markdown
+              bind: func_stats
