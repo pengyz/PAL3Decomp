@@ -341,6 +341,37 @@ def collect_methods():
     return classes
 
 
+def simplify_stl_type(t, cls_name=None):
+    """Simplify IDA-exported full STL type to short compilable form.
+
+    std::vector<T,std::allocator<T>> → vector<T>
+    std::queue<T,std::deque<T,std::allocator<T>>> → queue<T>
+    std::basic_string<char,std::char_traits<char>,std::allocator<char>> → string
+    """
+    # Iteratively simplify until stable
+    for _ in range(5):
+        prev = t
+        # Remove std::allocator<...> parameter (always default)
+        t = re.sub(r',\s*std::allocator<[^<>]*(?:<[^<>]*>)?[^<>]*>\s*', '', t)
+        # Remove std::deque<T> second param in queue/stack (default container)
+        t = re.sub(r',\s*std::deque<([^<>]+)>\s*', '', t)
+        # std::basic_string<char,std::char_traits<char>> → std::string
+        t = re.sub(r'std::basic_string<char,\s*std::char_traits<char>\s*>', 'std::string', t)
+        t = re.sub(r'std::basic_string<char>', 'std::string', t)
+        if t == prev:
+            break
+    # Strip std:: prefix (pal3_stl.h has 'using namespace std')
+    t = t.replace('std::', '')
+    # Strip own class prefix for nested types inside class body
+    if cls_name:
+        t = re.sub(r'\b%s::' % re.escape(cls_name), '', t)
+    # Clean up extra spaces
+    t = re.sub(r'\s+', ' ', t).strip()
+    # Remove trailing space before >
+    t = re.sub(r'\s+>', '>', t)
+    return t
+
+
 def _estimate_member_size(mtype):
     """Estimate size of a member from its type string."""
     # Pointer types
@@ -476,12 +507,32 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 include_types.add(base)
 
     # Also scan annotation known_members for type references
+    needs_stl = False
     try:
         ann_data_ref = load_annotations_data()
         ann_struct_ref = ann_data_ref.get('structs', {}).get(cls_name, {})
         for m in ann_struct_ref.get('known_members', {}).values():
             mtype = m.get('type', '')
             is_ptr = '*' in mtype
+            # Detect STL template usage → need pal3_stl.h
+            if '<' in mtype and ('std::' in mtype or any(
+                    kw in mtype for kw in ('vector<', 'queue<', 'deque<', 'list<',
+                                           'stack<', 'map<', 'string<', 'bitset<'))):
+                needs_stl = True
+                # Extract template argument types for include/fwd-declare
+                # e.g. std::vector<ArcScene,...> → ArcScene needs include
+                arg_types = re.findall(r'<\s*([A-Za-z_]\w*)', mtype)
+                for at in arg_types:
+                    if at == cls_name or at in PRIMITIVES or at in SYSTEM_TYPES:
+                        continue
+                    if at in ('std', 'char', 'float', 'int', 'unsigned'):
+                        continue
+                    # Template args used by value inside container → need full def
+                    if at + ' *' not in mtype:
+                        include_types.add(at)
+                    else:
+                        fwd_types.add(at)
+                continue
             base = re.sub(r'\[\d+\]', '', mtype).replace('*', '').strip()
             if not base or base == cls_name or base in PRIMITIVES or base in SYSTEM_TYPES:
                 continue
@@ -540,12 +591,14 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     # (pointer-only usage doesn't need the header)
 
     # Emit includes
+    if needs_stl:
+        lines.append('#include "pal3/pal3_stl.h"')
     for t in sorted(include_types):
         if t in _gbengine_type_to_header:
             lines.append('#include "%s"' % _gbengine_type_to_header[t])
         else:
             lines.append('#include "%s.h"' % t)
-    if include_types:
+    if include_types or needs_stl:
         lines.append("")
 
     # Enums can't be forward-declared in VC6 — promote to include
@@ -709,19 +762,11 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             mtype = mtype.replace('stdiobuf', 'UIWnd')
             mtype = mtype.replace('std::ios_base', 'UIWnd')
 
-            # Handle nested/template types that can't be directly declared
-            if '::' in mtype or '<' in mtype:
-                # Calculate member size from next offset
-                idx = members.index(m)
-                if idx + 1 < len(members):
-                    msize = members[idx+1]['offset'] - moffset
-                else:
-                    msize = size - moffset if size > moffset else 4
-                if msize > 0:
-                    lines.append("    char %s[%d]; // +0x%X (%s)" % (mname, msize, moffset, mtype))
-                else:
-                    lines.append("    int %s; // +0x%X (%s)" % (mname, moffset, mtype))
-                continue
+            # Full type restoration for templates and nested types
+            if '<' in mtype or 'std::' in mtype:
+                mtype = simplify_stl_type(mtype, cls_name)
+            elif '::' in mtype:
+                mtype = re.sub(r'^%s::' % re.escape(cls_name), '', mtype)
 
             # Fix C99 flexible array "Type[]" -> "Type[1]" (VC6 workaround)
             mtype = re.sub(r'\[\]', '[1]', mtype)
@@ -760,25 +805,34 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                         lines.append("    char _gap_%03X[%d]; // +0x%X" % (start_off, gap_size, start_off))
                     # Fix C99 flexible array
                     mtype = re.sub(r'\[\]', '[1]', mtype)
-                    # Strip own class prefix for nested types (inside class body, no prefix needed)
-                    if '::' in mtype:
+                    # Full type restoration: annotation stores real C++ types,
+                    # codegen outputs them directly (no flatten for IDA limitations)
+                    if '<' in mtype or 'std::' in mtype:
+                        simplified = simplify_stl_type(mtype, cls_name)
+                        # Self-referencing nested types (e.g. queue<Common_State> inside
+                        # SceneObj where Common_State = SceneObj::Common_State) need the
+                        # nested type declared first. Since we don't have its layout,
+                        # fall back to char[N] for these cases only.
+                        original_has_self_ref = (cls_name + '::') in mtype
+                        if original_has_self_ref:
+                            idx_m = sorted_members.index((off_str, m))
+                            if idx_m + 1 < len(sorted_members):
+                                next_off = int(sorted_members[idx_m + 1][0])
+                            else:
+                                next_off = int(ann_size) if ann_size and ann_size != '?' else off + 4
+                            msize = next_off - off
+                            if msize > 0:
+                                lines.append("    char %s[%d]; // +0x%X %s" % (mname, msize, off, simplified))
+                            else:
+                                lines.append("    int %s; // +0x%X %s" % (mname, off, simplified))
+                            member_size = msize if msize > 0 else 4
+                            start_off = off + member_size
+                            continue
+                        mtype = simplified
+                    elif '::' in mtype:
+                        # Strip own class prefix for nested types
                         mtype = re.sub(r'^%s::' % re.escape(cls_name), '', mtype)
-                    # Handle template types that can't be directly declared (same as PDB path)
-                    if '<' in mtype:
-                        idx_m = sorted_members.index((off_str, m))
-                        if idx_m + 1 < len(sorted_members):
-                            next_off = int(sorted_members[idx_m + 1][0])
-                        else:
-                            next_off = int(ann_size) if ann_size and ann_size != '?' else off + 4
-                        msize = next_off - off
-                        if msize > 0:
-                            lines.append("    char %s[%d]; // +0x%X (%s)" % (mname, msize, off, mtype))
-                        else:
-                            lines.append("    int %s; // +0x%X (%s)" % (mname, off, mtype))
-                        member_size = msize if msize > 0 else 4
-                        start_off = off + member_size
-                        continue
-                    # Emit member
+                    # Emit member with real type
                     arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
                     if arr_match:
                         arr_part = arr_match.group(1)
