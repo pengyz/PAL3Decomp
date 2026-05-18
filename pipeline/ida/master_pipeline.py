@@ -404,6 +404,15 @@ def main():
         log("[*] 时间: %s" % time.strftime("%Y-%m-%d %H:%M:%S"))
 
         phase1_import_types()
+
+        # After importing types, reanalyze .text to refresh Hex-Rays type cache.
+        # Without this, functions decompiled during auto_wait() retain anonymous
+        # struct references (struct #NNN) instead of the newly imported names.
+        log("[*] Requesting reanalysis to refresh type cache...")
+        ida_auto.auto_mark_range(TEXT_START, TEXT_END, ida_auto.AU_USED)
+        ida_auto.auto_wait()
+        log("[*] Reanalysis complete")
+
         idc.save_database(idc.get_idb_path(), 0)
 
         # phase2_apply_flirt()  # disabled: +0 contribution, TIL causes stdiobuf misattribution
