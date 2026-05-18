@@ -51,6 +51,29 @@
 
 ## 变更记录
 
+### [2026-05-19] 会话总结 (baseline 4481/34 → 4396/37)
+
+**本轮改动汇总**:
+
+| 类别 | 改动 | 置信度 | 效果 |
+|------|------|--------|------|
+| annotation 重叠修复 | 50 处成员重叠删除 | 85 | check 0 errors |
+| annotation 类型修正 | Actor gbVec3D/float, CCBStage int | 80-85 | 消除 check errors |
+| codegen 模板输出 | 47 字段还原真实 STL 类型 | N/A | 代码质量提升 |
+| codegen include 修复 | base_class include + PDB member 缩进 bug | N/A | -4 errors |
+| gbengine 头文件 | gbColorQuad 隐式转换 | N/A | -80 errors, +3 PASS |
+| codegen stage3 | this->Base() 基类 ctor 删除 | N/A | 消除 C2273 |
+| codegen SKIP_CLASSES | DOUBLE/FLOAT 等 Windows typedef | N/A | 消除 9 redefinition |
+
+**回退/未实施**:
+- Win32 handle cast (GetDlgItem 等): 过于粗暴，引入 +117 errors，已回退
+- IDA 函数重名 mangling: 设计复杂(三种冲突), 记录为 TODO
+
+**系统性阻塞分析**:
+- C2039 (804): decomp 字段名 vs header 字段名不一致 (IDB/annotation gap-fill 差异)
+- C2440 (968): Hex-Rays 返回 void* 而非正确类型 (IDA 函数签名未生效)
+- 这两类需要 IDA 层改进 (apply_annotations 更好地设置函数类型 + struct 一致性)
+
 ### [2026-05-19] gbColorQuad 隐式转换 + stage3 基类 ctor 清理
 
 **gbColorQuad 修复** (置信度 N/A — gbengine 头文件修改, 非 annotation):
