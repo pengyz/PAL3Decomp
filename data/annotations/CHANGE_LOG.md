@@ -3939,6 +3939,22 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **全流程验证**: 2985 → 2727 (-258 errors), 42 → 43 pass (+1)
 - **置信度**: 95 (float.h 冲突是确定性 bug, noise cleanup 无副作用)
 
+### [2026-05-18] 函数 return type + 全局变量类型修正 — 全流程验证 2728/43
+
+- **变更**:
+  1. 39 个函数 return type 修正 (decomp `return this;` 但 signature 返回 void*/char*/_DWORD*)
+     修正为 ClassName* (无歧义: 返回 this 的函数 return type 必须是所属类指针)
+  2. g_pCScreenMode (0x0059B5E8): 新增全局变量 CScreenMode* 标注
+     消除 37 个 `void* → CScreenMode*` 错误 (off_59B5E8->GetInstance_df70() 调用)
+- **代码质量验证**:
+  - RenderTarget2::_nearby_4c2700: 返回类型正确, 成员名正确解析 (m_nCurTarget)
+  - CEffCylinder::Create: 正确类名+this类型, 成员访问用 CEffCylinder 字段
+  - CCBEditor: `g_pCScreenMode->GetInstance_df70()` 类型链完整, 无 void* 中间状态
+- **全流程验证**: 2985 → 2728 (-257 errors), 42 → 43 pass (+1)
+- **置信度**: 90-95
+- **核心认知**: annotation 修正的价值不仅在 error count, 更在 Hex-Rays 输出代码质量。
+  正确的类型标注让反编译器产生语义准确的 C++ 代码。
+
 ### [2026-05-18] 会话结束状态
 
 - **全流程验证基线**: 2988 errors, 42/189 pass
