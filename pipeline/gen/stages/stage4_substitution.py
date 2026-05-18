@@ -25,8 +25,11 @@ def _build_identifier_map():
     m = {}
     # Thunks: sub_XXX → TargetFunc, ClassName_thunk → real name
     m.update(store.thunks)
-    # Thunk class types: j_UIWnd → UIWnd (for pointer casts)
-    # Handled separately because it's "j_UIWnd *" not just "j_UIWnd"
+    # Hex-Rays strips leading underscore from class names in casts.
+    # Map stripped names back to the real annotation name.
+    for cls in store.game_classes:
+        if cls.startswith('_') and cls[1:] not in store.game_classes:
+            m[cls[1:]] = cls
     return m
 
 
@@ -155,6 +158,10 @@ def _collect_token_edits(code_bytes, tree, ctx):
             # vtbl_XXXXXXXX → void
             if name.startswith('vtbl_') and all(c in '0123456789ABCDEFabcdef' for c in name[5:]):
                 edits.append((node.start_byte, node.end_byte, b'void'))
+                return
+            # Apply identifier map (e.g. TextureLib_Data → _TextureLib_Data)
+            if name in thunk_map:
+                edits.append((node.start_byte, node.end_byte, thunk_map[name].encode('utf-8')))
                 return
 
         # 'this' keyword in free functions → '_this'
