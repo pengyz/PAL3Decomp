@@ -51,6 +51,34 @@
 
 ## 变更记录
 
+### [2026-05-19] Actor/CCBStage gbVec3D 重叠修复
+
+**Actor Vec3D 分量误标删除** (置信度 85):
+- 删除 `_field_170`(gbVec3D@0x170), `_field_174`(int@0x174), `_field_17C`(float@0x17C)
+- **证据**:
+  1. [A] Actor::_nearby_538ce0: offset 0x16C/0x170/0x174 连续三分量 MOV (26/8/8 refs)
+  2. [A] Actor::_nearby_538d20: 同模式确认
+  3. [A] 0x178/0x17C 同模式 (18/12 refs) — m_vecRot.y/z
+- **判定**: 通过。gbVec3D={x,y,z}=12字节（源码确认），0x170/0x174/0x17C 是 Vec3D 分量
+
+**CCBStage._todo_1F4 类型修正** (置信度 80):
+- 变更: gbVec3D → int
+- **证据**:
+  1. [A] CCBStage::_nearby_503fa0+1811: `LEA [esi+0x1F8]` — 取地址，非 FPU 浮点访问
+  2. [A] 3 个函数中 0x1F8 均为 LEA（取子对象地址），否定 Vec3D.y 假设
+  3. 0x1FC 无引用（Vec3D.z 应有引用）
+- **判定**: 通过。LEA 证据否定 Vec3D，改为 int (size=4, 不再覆盖 0x1F8)
+
+**未修复 (证据矛盾)**:
+- Actor.m_vecRot(gbVec3D@0x178) vs m_nActionData@0x180:
+  0x180 有 12 次 MOV 引用，但 0x178/0x17C/0x180 呈连续三分量拷贝模式。
+  矛盾: m_nActionData 命名暗示独立 int 字段，但位置是 Vec3D.z。
+  → 待确认: m_nActionData 可能是误命名，或 m_vecRot 类型有误
+- Actor.m_fAnimDelta(gbVec3D@0x218) vs m_dwMatMsg(unsigned long[11])@0x21C:
+  0x218/0x21C/0x220 均有 FPU 访问 (7/75/6 refs) 证实三分量 float。
+  矛盾: m_dwMatMsg 标注为 unsigned long[11] 但实际是 float 访问。
+  → 待确认: m_dwMatMsg 偏移或类型标注有误 (可能应从 0x224 开始)
+
 ### [2026-05-19] 成员重叠检测 + 修复 (45 个冗余字段删除)
 
 **问题发现**: codegen 跳过了 annotation 中被前一个成员 estimated size 覆盖的字段，导致
