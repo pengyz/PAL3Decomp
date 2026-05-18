@@ -2,7 +2,7 @@ name: PAL3 反编译管线
 description: |
   PAL3.exe MSVC6 匹配反编译。AI 自动工作流 + 人工有限干预。
   Phase 1: 通过编译 → Phase 2: 质量提升（match + 命名 + 可维护性）
-version: "3.0"
+version: "3.1"
 
 params:
   - name: project_root
@@ -29,14 +29,16 @@ directives: |
 
   ### Phase 1: 通过编译（当前阶段）
   目标：所有 src/pal3/*.cpp 编译通过（MSVC6, 0 error）
-  工作循环：标注不足 → 补充 annotations → apply → export → gen_cpp → compile → 修复 → 循环
   退出标准：cmake --build build/pal3 exit 0
 
   ### Phase 2: 质量提升
   目标：byte-match ≥ 95% + 语义命名 + 可维护代码
-  工作循环：compare → 分析 mismatch → 修复 → 验证 → 循环
   退出标准：match ≥ 95% + _todo_ 趋零 + 人工 review 通过
-  注意：此阶段可能需要人工干预（通过 Chat 面板给予指导）
+
+  ## 自主工作模式
+  持续迭代，不需要等待人工确认每一步。
+  Stop hook 在每轮结束时触发经验蒸馏，然后自动继续。
+  只有致命错误或需要人工判断时才停下。
 
   ## 初始化
   首次启动检查：
@@ -44,44 +46,50 @@ directives: |
   2. Annotations: $param.project_root/pipeline/data/annotations/functions.json
   3. CLI: python pipeline/cli.py --help
 
-  ## 自主工作模式
-  你应该持续迭代，不需要等待人工确认每一步。
-  Stop hook 会在每轮结束时触发经验蒸馏，然后自动继续下一轮。
-  只有遇到致命错误或明确需要人工判断时才停下。
-
 ui:
   data:
-    milestone_status: { type: text, initial: "## 里程碑\n\n**Phase 1: 通过编译** ← 当前\n\nPhase 2: 质量提升", persist: true }
-    file_stats: { type: text, initial: "## 文件维度\n\n等待首次编译...", persist: true }
-    func_stats: { type: text, initial: "## 函数维度\n\n等待统计...", persist: true }
-    iteration_log: { type: text, initial: "## 迭代日志\n\n尚无记录", persist: true }
+    # 进度指标（Number + progress_bar hint）
+    compile_rate: { type: number, initial: 0, persist: true, hint: progress_bar }
+    naming_rate: { type: number, initial: 0, persist: true, hint: progress_bar }
+    match_rate: { type: number, initial: 0, persist: true, hint: progress_bar }
+
+    # 趋势数据（List + chart hint）
+    naming_trend: { type: list, initial: [], persist: true, hint: chart }
+
+    # 迭代时间线（List + timeline hint）
+    iterations: { type: list, initial: [], persist: true, hint: timeline }
+
+    # 文本面板（详情）
+    milestone_status: { type: text, initial: "## Phase 1: 通过编译\n\n等待首次检查点...", persist: true }
+    file_detail: { type: text, initial: "## 文件明细\n\n等待编译...", persist: true }
+
   layout:
     split: horizontal
     ratio: [55, 45]
     children:
       - split: vertical
-        ratio: [70, 30]
+        ratio: [40, 60]
+        children:
+          - panel:
+              id: dashboard
+              title: 进度概览
+              kind: data
+              slots: [compile_rate, naming_rate, match_rate, naming_trend]
+          - panel:
+              id: timeline
+              title: 迭代记录
+              kind: data
+              slots: [iterations]
+      - split: vertical
+        ratio: [40, 60]
         children:
           - panel:
               id: milestone
-              title: 里程碑 & 进度
+              title: 里程碑
               kind: markdown
               bind: milestone_status
           - panel:
-              id: log
-              title: 迭代日志
-              kind: markdown
-              bind: iteration_log
-      - split: vertical
-        ratio: [50, 50]
-        children:
-          - panel:
               id: files
-              title: 文件维度
+              title: 文件明细
               kind: markdown
-              bind: file_stats
-          - panel:
-              id: funcs
-              title: 函数维度
-              kind: markdown
-              bind: func_stats
+              bind: file_detail
