@@ -3798,3 +3798,18 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   3. stride=152 连续段验证 array pattern (EquipUI, SaleUI 有 152-stride 连续区)
 - **验证**: 纯新增成员（不修改已有 member），不影响 IDB layout，无需 init --force
 - **命名率**: 88.1% → 88.3% (6981/7909, +57 fields)
+
+### [2026-05-18] Embed 修正 + overlap 清理
+
+- **变更**:
+  1. 删除 EquipUI 5 个错误 embed (+680,832,984,1136,4552) — 子ctor误判为独立embed
+     证据: stride=152 分析表明 +660,812,964,1116 是真正起始, +20 处是子ctor
+  2. 删除 CScreenMode+1120 embed — span=8 与正确的 +1128 embed 重叠
+  3. CCBRoleState.m_sCombatDialog: char[512]→char[360] (span to next member at +360)
+- **置信度**: 90-95
+- **证据**:
+  1. [A] EquipUI: 660+152=812, 所以 +680 在 +660 UIFrameWnd 内部 (overlap definitive)
+  2. [A] CScreenMode: +1120 span=8 < 152, +1128 span=152 是正确 embed
+  3. [A] CCBRoleState: +360 embed verified → m_sCombatDialog 最多 360 bytes
+- **Layout errors**: 13 → 22 (因 SaleUI/PropUI 新增 embed 改变了部分 span 计算,
+  大部分是已知遗留子对象问题,非新引入)
