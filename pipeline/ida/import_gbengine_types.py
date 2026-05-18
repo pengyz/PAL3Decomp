@@ -36,6 +36,21 @@ def flatten_gbengine_headers(header_dir):
     # Strip C++ comments
     full = re.sub(r'//[^\n]*', '', full)
 
+    # Prepend external SDK type stubs (D3DX types not in mssdk TIL).
+    # These are opaque pointer targets — only need forward declaration for sizeof(ptr).
+    sdk_stubs = """
+struct ID3DXEffect;
+struct ID3DXEffectPool;
+struct IDirect3DVertexDeclaration9;
+struct IDirect3DTexture9;
+struct IDirect3DSurface9;
+struct IDirect3DDevice9;
+typedef void * D3DXHANDLE;
+typedef void * LPDIRECT3DDEVICE9;
+typedef void * LPDIRECT3DTEXTURE9;
+"""
+    full = sdk_stubs + full
+
     # IDA parse_decls supports C++ method declarations with reference params,
     # but large classes with many methods can cause parse failures.
     # Strategy: strip all methods EXCEPT those with reference parameters (&).
