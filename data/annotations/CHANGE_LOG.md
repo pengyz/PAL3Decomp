@@ -3972,6 +3972,25 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   已有全局 struct instance 子字段→member 的替换逻辑。但仅当 globals.json 中的
   全局变量类型是已知 struct 时才生效 (void* 不行)。
 
+### [2026-05-18] struct #136 根因 + IDA TIL 发现
+
+- **问题**: Hex-Rays 输出 `struct #136 *` (匿名 IDA local type) 而非 `gbRenderEffect *`
+- **根因链**:
+  1. gbRenderEffect.h 依赖 D3D 类型 (ID3DXEffect*, IDirect3DVertexDeclaration9*)
+  2. flatten 阶段 strip preprocessor 删除了 `#include <d3d9.h>`
+  3. D3D 类型未定义 → gbRenderEffect class body parse 失败 → 只保留 forward decl
+  4. IDA fallback 到匿名 struct 编号
+- **发现: IDA 有 TIL 支持!**
+  - `/home/peng/ida-pro-9.1/til/pc/mssdk_win7.til` 包含 Windows SDK + D3D 类型
+  - `/home/peng/ida-pro-9.1/til/pc/vc6win.til` 包含 VC6 CRT 类型
+  - 当前 master_pipeline.py **未加载任何 TIL** (缺失 `ida_typeinf.add_til`)
+- **修复方案** (下一迭代):
+  1. master_pipeline.py 初始化时加载 `mssdk_win7` TIL
+  2. 这使 D3D 类型 (ID3DXEffect 等) 在 IDA type library 中可用
+  3. flatten 后的 gbRenderEffect class body 可被正确 parse (D3D 类型有定义)
+  4. Hex-Rays 不再 fallback 到 `struct #NNN`
+  5. 同时可能改善其他依赖 SDK 类型的反编译质量
+
 ### [2026-05-18] 会话结束状态
 
 - **全流程验证基线**: 2988 errors, 42/189 pass
