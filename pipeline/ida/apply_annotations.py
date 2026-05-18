@@ -331,6 +331,9 @@ def import_gbengine_types():
             "int __thiscall(gbRay *, gbOBBox &);",
         "?IsColAABB@gbRay@@QAEHAAUgbAABBox@@@Z":
             "int __thiscall(gbRay *, gbAABBox &);",
+        # gbDynVertBuf render functions (fixes struct #136 = gbRenderEffect)
+        "?RenderGeomQuadViaStrip@gbDynVertBuf@@QAEXPAUgbGeomQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@K@Z":
+            "void __thiscall(gbDynVertBuf *, gbGeomQuad *, int, gbRenderEffect *, gbTextureArray *, unsigned long);",
     }
     import ida_nalt
     gb_sig_ok = 0
