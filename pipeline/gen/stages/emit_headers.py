@@ -332,18 +332,18 @@ def _estimate_member_size(mtype):
         return 4
     if t in ('double', '__int64', 'LONGLONG', 'ULONGLONG'):
         return 8
-    # Struct/class - check if we have its size from annotations or headers
-    ann_struct_dir = Path(__file__).parent.parent / 'data' / 'annotations' / 'structs'
-    struct_file = ann_struct_dir / ('%s.json' % t)
-    if struct_file.exists():
-        try:
-            import json as _json
-            sd = _json.load(open(struct_file, encoding='utf-8'))
-            sz = sd.get('binary_size') or sd.get('gen_size')
-            if sz and sz != '?':
-                return int(sz)
-        except:
-            pass
+    # Strip nested class prefix: C2DSpark::tagSpark -> tagSpark
+    if '::' in t:
+        t = t.rsplit('::', 1)[-1]
+    # Struct/class - check annotation cache first, then file
+    try:
+        ann = load_annotations_data()
+        ann_s = ann.get('structs', {}).get(t, {})
+        sz = ann_s.get('binary_size') or ann_s.get('gen_size')
+        if sz and sz != '?':
+            return int(sz)
+    except:
+        pass
     # Default: assume 4 bytes (int-sized)
     return 4
 
@@ -633,21 +633,19 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
         except:
             pass
 
-    # Detect PDB stubs: if annotation has much larger binary_size, PDB is just a forward decl
+    # Annotation known_members are authoritative over IDB/PDB struct layouts.
+    # IDA's struct layout engine may compute different alignment/padding than MSVC 6.0,
+    # causing offset drift in derived classes. Use annotation path when available.
     use_pdb_members = False
-    if pdb_class and pdb_class.get('data_members'):
-        pdb_size = pdb_class.get('size', 0)
-        ann_bsize = 0
-        try:
-            _ann_d = load_annotations_data()
-            _ann_s = _ann_d.get('structs', {}).get(cls_name, {})
-            ann_bsize = _ann_s.get('binary_size') or _ann_s.get('gen_size') or 0
-        except:
-            pass
-        if ann_bsize > 0 and pdb_size > 0 and ann_bsize > pdb_size * 4 and _ann_s.get('known_members'):
-            use_pdb_members = False
-        else:
-            use_pdb_members = True
+    try:
+        _ann_d = load_annotations_data()
+        _ann_s = _ann_d.get('structs', {}).get(cls_name, {})
+    except:
+        _ann_s = {}
+    if _ann_s.get('known_members'):
+        use_pdb_members = False
+    elif pdb_class and pdb_class.get('data_members'):
+        use_pdb_members = True
 
     if use_pdb_members:
         members = pdb_class['data_members']
