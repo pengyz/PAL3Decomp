@@ -119,11 +119,16 @@ SKIP_PREFIXES = (
     'D3DX',  # D3DX math types
     'gb',    # gbengine types (all start with gb)
     'vtbl_', # IDA vtable structs (not real C++ types)
+    '_DI',   # DirectInput internal structs (defined by dinput.h)
+    '_IMAGE',# PE header structs (defined by winnt.h)
+    '_Crt',  # CRT debug internals
 )
 
 
 def should_skip_class(name):
     """Check if a class name should be skipped (system/library type)."""
+    if not name or len(name) <= 1:
+        return True
     if name in SKIP_CLASSES:
         return True
     if name.startswith(SKIP_PREFIXES):
