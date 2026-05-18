@@ -3660,3 +3660,16 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   3. [A] `PIPELINE_ROOT / "data" / "annotations" / "globals.json"` → `pipeline/data/annotations/globals.json` 不存在
 - **影响**: 2332→2192 (-6%)，累计 4777→2192 (-54.1%)
 - **累计本次迭代**: 编译通过 31→61 文件
+
+### [2026-05-18] Hex-Rays 前导下划线剥离修复 — 2192→2149 (-2%)
+
+- **变更**: stage4_substitution.py 新增 type_identifier 替换规则
+  - Hex-Rays 在 cast 表达式中剥离类名前导下划线 (`_TextureLib_Data` → `TextureLib_Data`)
+  - stage4 已有 identifier 替换但缺少 type_identifier (cast 中的类型名)
+  - 新增: `_build_identifier_map` 对所有 `_Xxx` 类名生成 `Xxx → _Xxx` 映射
+  - 新增: type_identifier 节点也应用 thunk_map 替换
+- **置信度**: 95
+- **证据**:
+  1. [A] ScreenEffect.cpp: `((TextureLib_Data *)this)` → `((_TextureLib_Data *)this)` 修复 13 个 C2059
+  2. [A] 66 个以 `_` 开头的 annotation struct 都可能受影响
+- **影响**: 2192→2149 (-2%)，累计 4777→2149 (-55.0%)
