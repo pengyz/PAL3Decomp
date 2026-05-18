@@ -3917,6 +3917,16 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   CCBRoleState 就是这个 case (ctor 调 UIListBox::UIListBox 但 own members 从 +512 开始,
   而 UIListBox=1288B)。已回滚。
 
+### [2026-05-18] UIScene 重叠成员清理
+
+- **变更**: 移除 UIScene 22 个 offset < 88 的成员（属于 UIWnd base 区域）
+  - UIScene 继承 UIWnd (base_size=88)，offsets 0-87 由 UIWnd 定义
+  - PDB 残留的 22 个独立描述与 UIWnd 成员冲突 (如 +4: m_pField04 vs UIWnd.m_fontcolor)
+  - 保留 38 个 offset >= 88 的 UIScene own members
+- **置信度**: 95
+- **证据**: A+ UIScene::ctor_BCE0 first line `UIWnd::UIWnd((UIWnd*)this)`
+- **影响**: 此修改改变 IDB struct layout (移除 22 members)，需要全流程验证
+
 ### [2026-05-18] 会话结束状态
 
 - **全流程验证基线**: 2988 errors, 42/189 pass
