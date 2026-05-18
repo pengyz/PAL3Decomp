@@ -69,15 +69,15 @@
   3. 0x1FC 无引用（Vec3D.z 应有引用）
 - **判定**: 通过。LEA 证据否定 Vec3D，改为 int (size=4, 不再覆盖 0x1F8)
 
-**未修复 (证据矛盾)**:
+**已修复 (二次分析后)**:
 - Actor.m_vecRot(gbVec3D@0x178) vs m_nActionData@0x180:
-  0x180 有 12 次 MOV 引用，但 0x178/0x17C/0x180 呈连续三分量拷贝模式。
-  矛盾: m_nActionData 命名暗示独立 int 字段，但位置是 Vec3D.z。
-  → 待确认: m_nActionData 可能是误命名，或 m_vecRot 类型有误
-- Actor.m_fAnimDelta(gbVec3D@0x218) vs m_dwMatMsg(unsigned long[11])@0x21C:
-  0x218/0x21C/0x220 均有 FPU 访问 (7/75/6 refs) 证实三分量 float。
-  矛盾: m_dwMatMsg 标注为 unsigned long[11] 但实际是 float 访问。
-  → 待确认: m_dwMatMsg 偏移或类型标注有误 (可能应从 0x224 开始)
+  → 删除 m_nActionData (置信度 85)
+  证据: _nearby_538ce0 中 0x178/0x17C/0x180 连续三分量 MOV 拷贝 (18/12/12 refs)
+  与 0x16C/0x170/0x174 模式完全一致。m_nActionData 是 m_vecRot.z 误标为独立字段。
+- Actor.m_fAnimDelta: gbVec3D → float (置信度 80)
+  证据: 系统扫描 0x218~0x248 每 4 字节的 FPU vs MOV 比例:
+    0x218: FPU=6 MOV=1 (float) | 0x21C: FPU=6 **MOV=70** (INT!) | 0x220: FPU=6 (float)
+  0x21C 以整数操作为主 (70/76=92%)，不是 Vec3D.y。m_fAnimDelta 只是单个 float。
 
 ### [2026-05-19] 成员重叠检测 + 修复 (45 个冗余字段删除)
 
