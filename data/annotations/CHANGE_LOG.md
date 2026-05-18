@@ -3895,3 +3895,20 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **收敛**: 29 个候选中大部分已修复, 剩余为继承关系误报或证据不足
 - **置信度**: 90 (双重证据)
 - **规则 #9 写入 skill**: 禁止仅凭 signature this 修正归属
+
+### [2026-05-18] 继承关系修正 (ctor binary evidence)
+
+- **变更**:
+  1. UIScene: base_class=UIWnd, base_size=88
+     Evidence: A+ `UIScene::ctor_BCE0` first line `UIWnd::UIWnd((UIWnd*)this)`
+  2. UIItem: base_class=UIWnd, base_size=88
+     Evidence: A+ `UIItem::UIItem` calls `j_UIWnd::UpdateChildren(this)` (UIWnd ctor thunk)
+  3. CCBRoleState: base_class=UIFrameWnd, base_size=152
+     Evidence: A+ `CCBRoleState_ctor_6AB0` calls `UIFrameWnd::UIFrameWnd`
+- **未修的** (无 ctor decomp 证据):
+  UICamera, UIGroupCtrl, UILBColumn, UIParticle,
+  CCBStageScene, CCBStageRole, CCBAI, CCBEditor, CCBSystem
+- **UICaption/UIEmote**: 保持 base_class=UIGameFrm,base_size=76 (size 不匹配但无更好证据)
+- **置信度**: 95 (ctor 调用是继承的确定性证据)
+- **教训**: 只有 ctor 中的 base::ctor(this) 调用才能确定继承关系;
+  类名前缀、成员相似性都不足以作为继承依据
