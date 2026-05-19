@@ -26,7 +26,7 @@
 #include "gbengine/gbVFileSystem.h"
 #include "gbengine/gbVisNode.h"
 
-typedef unsigned char _BYTE;
+typedef char _BYTE;
 typedef unsigned short _WORD;
 typedef unsigned long _DWORD;
 typedef unsigned __int64 _QWORD;
