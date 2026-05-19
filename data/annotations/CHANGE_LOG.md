@@ -4317,3 +4317,16 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **去重 key**: 用类型签名（strip 参数名）判断重复，避免 `GetChild(int id)` vs `GetChild(int index)` 被认为不同
 - **结果**: 5512 → 2914 errors, 0 → 72 pass
 - **对比原始基线**: 2927 errors / 44 pass → 2914 / 72 (errors-13, pass+28)
+
+### 2026-05-19 pipeline 修复收敛
+
+- **tree-sitter func_def 误匹配**: 大函数（2001行, 含 167 asm块）中 tree-sitter 在
+  row 800+ 找到假的 function_definition → stage1 不走 fallback → this 未去除。
+  修复: 只接受 row ≤ 2 开始的 func_def。
+- **MASM hex 歧义**: `0E0h` 被 VC6 C parser 误认为浮点 (0E+0 with suffix h)。
+  codegen 转为 `0xE0` 格式。影响 129 处。
+- **FPU asm 根因**: PalScriptMgr::ExecuteBlock (8619B) 有 167 个 asm 块，
+  全部因 Hex-Rays 对 FPU 栈操作放弃反编译。
+  解决路径: IDA 中给栈变量设 float 类型 → Hex-Rays 可输出纯 C。
+  属于 annotation 层迭代工作（给 0x424C20 函数的 local vars 设置类型）。
+- **最终基线**: 2913 errors, 72 pass (pipeline 修复收敛, 剩余全是 annotation 质量)
