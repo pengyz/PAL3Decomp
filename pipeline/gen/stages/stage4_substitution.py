@@ -510,4 +510,15 @@ def run(code, ctx):
     # These are compiler-generated operations not expressible in user source code.
     code = _comment_stl_internals(code)
 
+    # Qualify Win32 API calls that may be shadowed by class methods
+    # Only replace standalone calls (not ->API or .API or ::API)
+    import re as _re_qualify
+    _win32_apis = ['SendMessageA', 'lstrcpyA', 'GetCursorPos']
+    for api in _win32_apis:
+        code = _re_qualify.sub(
+            r'(?<![->.:])' + api + r'\(',
+            '::' + api + '(',
+            code
+        )
+
     return code
