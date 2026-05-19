@@ -10,6 +10,11 @@ import json, os, time, glob
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 OUTPUT_DIR = os.path.join(PROJECT_ROOT, "asm", "pal3", "decomp")
+
+# After apply_annotations changes types, Hex-Rays cache is stale — need dirty mark.
+# After init --force (fresh IDB), no cache exists — dirty mark is harmless but redundant.
+# Set to False for fast re-export when IDB hasn't changed (uses cached decompilation).
+FORCE_REFRESH = os.environ.get("PAL3_EXPORT_NO_REFRESH", "") == ""
 LOG_FILE = os.path.join(SCRIPT_DIR, "_logs", "pal3_export_only_log.txt")
 TEXT_START = 0x00401000
 TEXT_END = 0x005695D0
@@ -160,11 +165,12 @@ def main():
             if (i+1) % 1000 == 0:
                 log("  [%d/%d]" % (i+1, len(targets)))
             try:
-                # Clear Hex-Rays cache to force fresh decompilation with latest type info
-                try:
-                    ida_hexrays.mark_cfunc_dirty(ea)
-                except:
-                    pass
+                # Clear Hex-Rays cache if requested (needed after apply_annotations changes types)
+                if FORCE_REFRESH:
+                    try:
+                        ida_hexrays.mark_cfunc_dirty(ea)
+                    except:
+                        pass
                 cfunc = ida_hexrays.decompile(ea)
                 if not cfunc:
                     # Retry without dirty mark

@@ -132,14 +132,14 @@ def _config_set(args):
     print("Config saved to: %s" % toml_path)
 
 
-def _run_ida(script_name, idb_path):
+def _run_ida(script_name, idb_path, env=None):
     """Run an IDA script on the given IDB."""
     script = os.path.join(_PIPELINE_DIR, 'ida', script_name)
     if not os.path.exists(script):
         print("  [ERROR] Script not found: %s" % script)
         return False
     cmd = '"%s" -A -S"%s" "%s"' % (cfg.ida_path, script, idb_path)
-    result = subprocess.run(cmd, shell=True)
+    result = subprocess.run(cmd, shell=True, env=env)
     return result.returncode == 0
 
 
@@ -309,7 +309,7 @@ def cmd_apply():
     print("Next: python pipeline/cli.py export")
 
 
-def cmd_export():
+def cmd_export(fast=False):
     """Export Hex-Rays decompilation to JSON."""
     _check_ida()
     if not cfg.idb_work.exists():
@@ -317,8 +317,13 @@ def cmd_export():
         print("  Run 'python pipeline/cli.py init' first.")
         sys.exit(1)
 
-    print("EXPORT: decompiling to %s/ ..." % cfg.decomp_dir.name)
-    ok = _run_ida('export_full.py', cfg.idb_work)
+    env = None
+    if fast:
+        env = dict(os.environ, PAL3_EXPORT_NO_REFRESH="1")
+        print("EXPORT (fast, no refresh): decompiling to %s/ ..." % cfg.decomp_dir.name)
+    else:
+        print("EXPORT: decompiling to %s/ ..." % cfg.decomp_dir.name)
+    ok = _run_ida('export_full.py', cfg.idb_work, env=env)
     if ok:
         print("-> OK: decomp JSON exported")
     else:
@@ -501,7 +506,7 @@ def main():
     elif command == 'apply':
         cmd_apply()
     elif command == 'export':
-        cmd_export()
+        cmd_export(fast='--fast' in args)
     elif command == 'check':
         cmd_check()
     elif command == 'compile':
