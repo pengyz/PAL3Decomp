@@ -4463,6 +4463,8 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
 - **可重复**: 同样方法可应用于 UILoadingFrm(53hits), UIScenePanel(42),
   UIAnimateCtrlEX(51), UIBigMap(135), UIItem(41) 等高密度类。
 - **基线**: 4881 errors (session -649)
+- **UILoadingFrm**: +32 fields 已提交（待 apply+export 验证）
+- **待处理**: UIScenePanel(+20), UIItem(+7), UIButton(+2), UISceneFrm(+1)
 
 ### 2026-05-19 session 最终总结
 
