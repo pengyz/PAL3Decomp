@@ -4329,4 +4329,12 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   全部因 Hex-Rays 对 FPU 栈操作放弃反编译。
   解决路径: IDA 中给栈变量设 float 类型 → Hex-Rays 可输出纯 C。
   属于 annotation 层迭代工作（给 0x424C20 函数的 local vars 设置类型）。
-- **最终基线**: 2913 errors, 72 pass (pipeline 修复收敛, 剩余全是 annotation 质量)
+- **伪基线(已废弃)**: 2913 errors, 72 pass — 未走完整流程, 用旧 decomp + 新 codegen
+- **真实基线 (init --force 全流程)**: 5525 errors, 0 pass
+- **教训**: 只改 codegen 不重新 export 的编译结果是虚假的, 必须走全流程验证
+- **衰退原因确认**: 非 pipeline bug。禁用 this 参数修复后错误更多 (+50)。
+  衰退完全来自 TAUDT_FIXED struct 重建后 Hex-Rays 输出整体变化。
+  之前 2927 基线是在错误 struct layout 下碰巧编译的代码。
+  5531 是 struct 正确后的真实水平，需要通过 annotation 迭代降低。
+- **export --fast**: 新增快速 export 模式（跳过 Hex-Rays 缓存刷新），
+  IDB 未改动时 export 从 9 分钟降至秒级
