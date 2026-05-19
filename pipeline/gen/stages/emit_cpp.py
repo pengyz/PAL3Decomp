@@ -115,8 +115,9 @@ def generate_forward_decls(all_code):
             elif u.startswith('flt_'):
                 lines.append("extern float %s;" % u)
             elif u.startswith('byte_'):
-                lines.append("extern unsigned char %s;" % u)
+                lines.append("extern char %s;" % u)
             elif u.startswith('off_'):
+                lines.append("extern void *%s;" % u)
                 _undeclared_off_globals.add(u)
             elif u.startswith('a') and len(u) > 1 and u[1].isupper():
                 lines.append('extern char %s[];' % u)

@@ -73,6 +73,18 @@ typedef int BOOL;
 #pragma warning(disable: 4244)  // narrowing
 #pragma warning(disable: 4018)  // signed/unsigned mismatch
 
+// IDA decompiler artifacts (Hex-Rays pseudo-code that leaked through codegen)
+#define JUMPOUT(x)
+typedef void _UNKNOWN;
+#define _EAX 0
+#define _EBX 0
+#define _ECX 0
+#define _EDX 0
+#define _AX 0
+#define _ET1 0
+#define Func 0
+static void *retaddr = 0;
+
 // IDA helpers
 #define qmemcpy memcpy
 #define SLODWORD(x) (*((_DWORD*)&(x)))

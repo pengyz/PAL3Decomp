@@ -395,4 +395,12 @@ def run(code, ctx):
     # Backtick removal
     code = _remove_backtick_calls(code)
 
+    # Comment out __asm lines with IDA-style operands (MSVC doesn't support [esp+XXh+var] syntax)
+    lines = code.split('\n')
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith('__asm') and ('[' in stripped and '+' in stripped and 'h' in stripped.lower()):
+            lines[i] = line.replace(stripped, '// ' + stripped)
+    code = '\n'.join(lines)
+
     return code
