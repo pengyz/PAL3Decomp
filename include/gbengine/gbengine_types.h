@@ -112,6 +112,7 @@ struct gbMatrix4 {
     void RightMultiply(struct gbQuaternion const & p0);
     void RightScale(float p0, float p1, float p2);
     void RightTranslate(struct gbVec3D * p0);
+    inline void RightTranslate(struct gbVec3D p0) { RightTranslate(&p0); }
     void RightTranslate(float p0, float p1, float p2);
     void Rotate(struct gbVec3D const * p0, struct gbVec3D * p1) const;
     void RotateIn(struct gbVec3D * p0);
@@ -174,6 +175,7 @@ struct gbRay {
     gbRay();
     struct gbRay & operator=(struct gbRay const & p0);
     float IntersectPlane(struct gbVec3D * p0, struct gbVec3D * p1);
+    inline float IntersectPlane(struct gbVec3D p0, struct gbVec3D p1) { return IntersectPlane(&p0, &p1); }
     int IsColAABB(struct gbAABBox & p0);
     int IsColOBB(struct gbOBBox & p0);
     int IsColOBB_H(struct gbOBBox & p0);
