@@ -4348,3 +4348,10 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   原因: 新增的 UIWnd 方法声明导致 overload resolution 冲突。
   需要更仔细地验证签名后再归属。
 - **pipeline 修复收敛**: 系统性 codegen 改进已穷尽，后续主要是 annotation 迭代
+
+### 2026-05-19 annotation 迭代: 函数签名修正
+
+- **Texture_Info_53CF30**: `__thiscall` → `__cdecl`, 返回 `char *`。
+  decomp 中以自由函数形式调用（非 this->method），确认为 cdecl helper。
+  修复 _Texture_Info.cpp 编译（qmemcpy 参数类型匹配）。
+- **结果**: 5505 → 5504 errors, 0 → 1 pass (_Texture_Info.cpp 通过)
