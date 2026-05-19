@@ -22,6 +22,12 @@ def run(code, ctx):
     lines = [l for l in lines if not l.strip().startswith('// between_std_methods')]
     code = '\n'.join(lines)
 
+    # Pre-strip calling conventions from first line so tree-sitter can parse
+    first_lines = code.split('\n', 1)
+    if first_lines:
+        first_lines[0] = re.sub(r'\b(__thiscall|__cdecl|__stdcall|__fastcall)\b', '', first_lines[0])
+        code = '\n'.join(first_lines)
+
     # Parse with tree-sitter
     code_bytes = code.encode('utf-8')
     tree = _parser.parse(code_bytes)
