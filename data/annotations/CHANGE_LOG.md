@@ -4236,4 +4236,22 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
      - UICaption, UIEmote: 移除 base_class=UIGameFrm (PDB 显示非继承关系)
   6. **OBBox→gbOBBox 重命名**: 使 annotation 名与代码引用一致
 - **结果**: struct import 0 failures, init --force → OK
-- **编译**: 5496 errors (全量重建后 Hex-Rays 输出变化, 预期行为)
+- **编译**: 5503 errors (全量重建后 Hex-Rays 输出变化)
+- **修正**: 恢复被 PDB 假设错误删除的 A 级字段 (RenderTarget, CCBCamControl, PAL3)
+
+### 2026-05-19 binary_size 二次验证
+
+- **原则**: PDB 来源不可直接采信，必须有独立二进制证据
+- **A 级确认**:
+  - C3DSpark = 15920: `push 15920; call operator_new` @ VA=0x512B24
+  - MXTransport = 363968: `push 363968; call operator_new` @ VA=0x4B7121
+  - gbGeomQuad = 68: stride=0x44 in CCBStageShadow::Create @ VA=0x512080+353
+  - UIWnd = 88: UIScene first own member at +88 (A:FPU_disp8)
+- **B 级确认** (多源一致性):
+  - TxtFile = 524: 7 个独立 struct 中 span 全部=524
+  - gb* engine types: gbengine 共享 DLL + annotation span 精确匹配
+- **C 级** (成员累计):
+  - RestScript = 2068: TxtFile(524) + char[256] + ScriptData(1288)
+- **不可验证/无影响**:
+  - SoundMgr=918796: 依赖 CPK (PAL3≠PAL3A 已证实), 但不被 embed, size 无下游影响
+- **教训**: decomp cast `(TypeX*)&field` ≠ embed; PDB 类型大小不可用于否定 A 级字段
