@@ -4274,3 +4274,18 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   改为不声明（undeclared identifier 错误更诚实）。
   这些全局变量需要在 globals.json 中标注正确类型。
 - **下一步**: annotation 迭代（struct 成员补充 + 全局变量类型标注）
+
+### 2026-05-19 header 修复 + 编译错误分析
+
+- **RoleCamera.h 修复** (-48 errors): `vector<primitive<3,float>>` → `char[16]`,
+  `list<COLLIDE_DATA>` → `char[12]`。VC6 无法编译含未知模板参数的 STL。
+- **primitive.h 消除** (-12 errors): IDA 模板实例化产物，加入 SKIP_CLASSES。
+- **header 错误清零**: 所有 .h 文件不再产生编译错误。
+- **当前 5512 errors, 0/161 pass**: 全部来自 cpp 内部的 Hex-Rays 代码质量问题。
+- **12 个文件距通过仅 1 error**: CEffQuake, CMeteorChain, MiniGame1, ParabolaCalculator,
+  SceneProp, SystemUI, UIInventory, UITitle_YXXX, _Texture_Info, UIDialog, UILBColumn, UISelectDialog
+- **主要错误模式**:
+  - `gbTexture * → unsigned long`: struct 字段类型标注为 unsigned long 但实际是指针
+  - `int * → unsigned long *`: 类似的指针/整数不匹配
+  - C2511 (function not found): header 签名与 cpp 定义不匹配
+  - C2065 (undeclared): 局部变量名/全局引用未声明
