@@ -54,6 +54,9 @@ def collect_undefined_refs(code):
     return refs
 
 
+_undeclared_off_globals = set()
+
+
 def generate_forward_decls(all_code):
     """Generate minimal forward declarations: only what this file actually references."""
     lines = []
@@ -102,10 +105,8 @@ def generate_forward_decls(all_code):
                 lines.append("extern float %s;" % u)
             elif u.startswith('byte_'):
                 lines.append("extern unsigned char %s;" % u)
-            elif u.startswith('off_') and u in off_as_array:
-                lines.append("extern void *%s[];" % u)
             elif u.startswith('off_'):
-                lines.append("extern void *%s;" % u)
+                _undeclared_off_globals.add(u)
             elif u.startswith('a') and len(u) > 1 and u[1].isupper():
                 lines.append('extern char %s[];' % u)
             else:
@@ -322,3 +323,6 @@ def run_cpp_generation(filter_classes=None):
             count = len(list(d.glob("*.cpp")))
             if count > 0:
                 print("  %s/: %d files" % (subdir, count))
+
+    if _undeclared_off_globals:
+        print("\n  [WARN] %d off_ globals without type annotation (undeclared)" % len(_undeclared_off_globals))
