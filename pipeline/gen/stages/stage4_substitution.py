@@ -214,6 +214,26 @@ def _apply_text_substitutions(code, ctx):
     return code
 
 
+def _fix_static_method_calls(code):
+    """Convert ((ClassName *)0)->Method(...) to ClassName::Method(...).
+
+    Hex-Rays emits this pattern for static/singleton getter calls where this=NULL.
+    """
+    # Pattern: ((ClassName *)0)->Method( or ((ClassName *)expr)->Method(
+    # Only convert for methods known to be static (in store.static_methods)
+    from data import store
+    for qualified in store.static_methods:
+        cls, method = qualified.split('::', 1)
+        # ((ClassName *)0)->Method(  →  ClassName::Method(
+        pattern = r'\(\(' + re.escape(cls) + r'\s*\*\s*\)\s*0\)\s*->\s*' + re.escape(method) + r'\s*\('
+        replacement = cls + '::' + method + '('
+        code = re.sub(pattern, replacement, code)
+        # ((ClassName *)expr)->Method(  →  ClassName::Method(  (drop expr for static)
+        pattern2 = r'\(\(' + re.escape(cls) + r'\s*\*\s*\)\s*\w+\)\s*->\s*' + re.escape(method) + r'\s*\('
+        code = re.sub(pattern2, replacement, code)
+    return code
+
+
 def _fix_asm_hex_ambiguity(code):
     """Fix MASM hex constants that look like C float literals.
 
@@ -327,5 +347,8 @@ def run(code, ctx):
 
     # Fix MASM hex ambiguity: 0E0h → 0xE0 (prevents C parser float confusion)
     code = _fix_asm_hex_ambiguity(code)
+
+    # Convert ((ClassName *)0)->Method() to ClassName::Method() for static methods
+    code = _fix_static_method_calls(code)
 
     return code
