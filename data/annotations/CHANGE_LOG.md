@@ -4180,3 +4180,19 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   - Layout errors: 43→22
   - 嵌套类型 stubs: 16 个
   - 命名率: 88.1% → 88.3%, 总字段 7852→7923
+
+### [2026-05-19] TAUDT_FIXED struct import 重构
+
+- **发现**: IDA 9.x `TAUDT_FIXED` (1024) 支持精确偏移创建 struct
+  - 成员直接指定 offset (bits), IDA 自动填充 gap
+  - 继承: base class 作为 offset=0 匿名成员 (已验证)
+  - 验证: `get_size() != binary_size` → 报错 abort
+- **重构**: `apply_annotations.py` 用 `create_fixed_struct` 替换 `build_struct_decl`
+  - 消除所有 gap/padding 计算逻辑
+  - 严格验证: 每个成员类型必须可解析, size 必须匹配, 否则 abort
+- **首次运行**: 88 failures
+  - ~60 个类型未定义 (ECB* enums, gbTexture_D3D 等)
+  - ~6 个 INVALID struct (annotation 重叠)
+  - 这些都是真实问题, 必须逐一修复
+- **原则**: 严禁 fallback/workaround, 所有问题都必须真正修复
+- **基线**: 4571 errors, 32/189 pass (全流程验证)

@@ -196,6 +196,99 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
     return "struct%s %s%s {\n%s\n};" % (cppobj, name, inherit, "\n".join(lines))
 
 
+def create_fixed_struct(name, struct_info, all_structs, vtables, til):
+    """用 TAUDT_FIXED 从 annotation 精确创建 IDA struct。
+
+    每个成员逐一添加并验证。任何失败立即返回明确错误信息。
+    返回 (True, None) 成功，或 (False, error_msg) 失败。
+    """
+    binary_size = struct_info.get("binary_size") or struct_info.get("gen_size") or 0
+    if not binary_size:
+        return (False, "no binary_size")
+
+    members = struct_info.get("known_members", {})
+    base_class = struct_info.get("base_class")
+    base_size = struct_info.get("base_size", 0)
+
+    udt = ida_typeinf.udt_type_data_t()
+    udt.taudt_bits = 1024  # TAUDT_FIXED: respect explicit offsets
+    if base_class:
+        udt.taudt_bits |= 128  # TAUDT_CPPOBJ
+    udt.total_size = binary_size
+
+    # Add base class as anonymous member at offset 0
+    if base_class and base_size > 0:
+        base_tinfo = ida_typeinf.tinfo_t()
+        if not base_tinfo.get_named_type(til, base_class):
+            return (False, "base_class '%s' not found in TIL" % base_class)
+        base_actual = base_tinfo.get_size()
+        if base_actual == 0xFFFFFFFFFFFFFFFF or base_actual == 0:
+            return (False, "base_class '%s' has invalid size" % base_class)
+        mb = ida_typeinf.udt_member_t()
+        mb.name = ""  # anonymous = base class
+        mb.offset = 0
+        mb.size = base_actual * 8
+        mb.type = base_tinfo
+        udt.push_back(mb)
+
+    # Add known members at exact annotation offsets
+    for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0])):
+        offset = int(off_str)
+        if base_class and offset < base_size:
+            continue
+
+        mname = minfo["name"]
+        mtype_str = minfo["type"].replace("class ", "").replace("struct ", "")
+
+        # STL/template types → flatten to char[span]
+        if 'std::' in mtype_str or '<' in mtype_str or '::' in mtype_str:
+            sorted_offs = sorted(int(o) for o in members if int(o) > offset)
+            span = min(sorted_offs) - offset if sorted_offs else binary_size - offset
+            if span <= 0:
+                span = 4
+            mtype_str = "char[%d]" % span
+
+        # Resolve type string to tinfo_t
+        tinfo = ida_typeinf.tinfo_t()
+        arr_match = re.match(r'^(.+?)(\[\d+\](?:\[\d+\])*)$', mtype_str)
+        if arr_match:
+            decl = "%s __x%s;" % (arr_match.group(1).strip(), arr_match.group(2))
+        else:
+            decl = "%s __x;" % mtype_str
+
+        result = ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_VAR)
+        if result is None:
+            return (False, "add member +%d '%s' type '%s' FAILED: parse_decl returned None" % (
+                offset, mname, mtype_str))
+
+        member_size = tinfo.get_size()
+        if member_size == 0 or member_size == 0xFFFFFFFFFFFFFFFF:
+            return (False, "add member +%d '%s' type '%s' FAILED: resolved size=%d invalid" % (
+                offset, mname, mtype_str, member_size))
+
+        m = ida_typeinf.udt_member_t()
+        m.name = mname
+        m.offset = offset * 8  # bytes to bits
+        m.size = member_size * 8  # bytes to bits
+        m.type = tinfo
+        udt.push_back(m)
+
+    # Create the struct
+    result_tinfo = ida_typeinf.tinfo_t()
+    if not result_tinfo.create_udt(udt, ida_typeinf.BTF_STRUCT):
+        return (False, "create_udt() returned False")
+
+    actual_size = result_tinfo.get_size()
+    if actual_size == 0xFFFFFFFFFFFFFFFF:
+        return (False, "INVALID struct after create_udt (overlapping members?)")
+    if actual_size != binary_size:
+        return (False, "size mismatch: expected %d, got %d (member type size wrong?)" % (
+            binary_size, actual_size))
+
+    result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+    return (True, None)
+
+
 def load_annotations():
     """从拆分目录加载标注数据。"""
     if not os.path.isdir(ANNOTATIONS_DIR):
@@ -623,52 +716,63 @@ def apply_annotations():
             vt_pre += 1
     print("[3a] Vtable structs pre-created: %d/%d" % (vt_pre, len(vtables)))
 
+    # --- TAUDT_FIXED struct import: precise offsets from annotation ---
     s_ok = 0
     s_fail = []
+    s_errors = []
+
+    # First pass: create all structs (dependency order already handled by 'ordered')
     for sname, sinfo in ordered:
-        decl = build_struct_decl(sname, sinfo, structs, vtables)
-        if not decl:
-            continue
-        tinfo = ida_typeinf.tinfo_t()
-        result = ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP)
-        if result is not None:
-            tinfo.set_named_type(til, sname, ida_typeinf.NTF_REPLACE)
+        ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
+        if ok:
             s_ok += 1
         else:
-            s_fail.append((sname, sinfo))
+            s_fail.append((sname, sinfo, err))
 
-    # Retry failed structs until no more progress
-    for retry in range(50):
+    # Retry failed structs (dependency on other structs now resolved)
+    for retry in range(5):
         if not s_fail:
             break
         still_fail = []
         resolved = 0
-        for sname, sinfo in s_fail:
-            decl = build_struct_decl(sname, sinfo, structs, vtables)
-            if not decl:
-                continue
-            tinfo = ida_typeinf.tinfo_t()
-            result = ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP)
-            if result is not None:
-                tinfo.set_named_type(til, sname, ida_typeinf.NTF_REPLACE)
+        for sname, sinfo, prev_err in s_fail:
+            ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
+            if ok:
                 s_ok += 1
                 resolved += 1
             else:
-                still_fail.append((sname, sinfo))
+                still_fail.append((sname, sinfo, err))
         s_fail = still_fail
         if resolved == 0:
-            break  # no progress, stop retrying
+            break
+
+    # Report errors and write to log file
+    log_path = os.path.join(SCRIPT_DIR, "_logs", "struct_import_errors.txt")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+
+    print("[3] Structs: applied=%d/%d (TAUDT_FIXED)" % (s_ok, len(structs)))
 
     if s_fail:
-        for sname, sinfo in s_fail:
-            decl = build_struct_decl(sname, sinfo, structs, vtables)
-            decl_preview = (decl[:200] + '...') if decl and len(decl) > 200 else decl
-            print("[!] Struct failed: %s (decl_len=%d, members=%d)" % (
-                sname, len(decl) if decl else 0, len(sinfo.get('known_members', {}))))
-            if decl:
-                print("    preview: %s" % decl_preview)
+        error_lines = []
+        error_lines.append("STRUCT IMPORT ERRORS (%d failures):" % len(s_fail))
+        for sname, sinfo, err in s_fail:
+            line = "  struct %s: %s" % (sname, err)
+            error_lines.append(line)
+            print("[!] " + line)
 
-    print("[3] Structs: applied=%d/%d" % (s_ok, len(structs)))
+        with open(log_path, 'w') as f:
+            f.write('\n'.join(error_lines))
+        print("[!] Error log: %s" % log_path)
+
+        # ABORT: struct import errors must be fixed before continuing
+        print("\n" + "=" * 60)
+        print("[FATAL] %d structs failed to import. Fix annotations and retry." % len(s_fail))
+        print("=" * 60)
+        idc.qexit(1)
+    else:
+        # Clean: no errors
+        if os.path.exists(log_path):
+            os.remove(log_path)
 
     # (Enums already applied in step 3b, before structs)
 
