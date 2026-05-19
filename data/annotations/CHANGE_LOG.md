@@ -4431,3 +4431,18 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
 - **教训**: signature this-type 是函数归属的权威依据；
   批量检测 `this_type != class_name` 是高效的 annotation 质量提升手段
 - **基线**: 5012 errors, 0/159 pass
+- **operator new 签名**: apply_annotations 新增 CRT `operator new` 返回 `void *` 设置。
+  预计下次 init --force 后减少 ~56 个 `void * → int` 错误。
+- **ds:flt_XXXX 转换**: asm 块中 IDA 浮点数据标签转为 `static const float` + `dword ptr [var]`。
+  覆盖 72 个 `constant` syntax error（被 VC6 100-error 截断遮蔽，实际效果需 init --force 后验证）。
+
+### 2026-05-19 session 最终总结
+
+| 指标 | 起点 | 终点 | 变化 |
+|------|------|------|------|
+| struct import failures | 88 | 0 | -88 (TAUDT_FIXED) |
+| errors (真实全流程) | 5530 | 5012 | -518 |
+| 最大单次改善 | — | this-type 归属 | -491 |
+| pipeline 修复数 | — | 12 项 | codegen 质量提升 |
+| PDB 成员导入 | — | 143 个/28 struct | annotation 覆盖率提升 |
+| 新基础设施 | — | snapshot + export --fast | 验证效率提升 |
