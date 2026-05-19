@@ -4289,3 +4289,7 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   - `int * → unsigned long *`: 类似的指针/整数不匹配
   - C2511 (function not found): header 签名与 cpp 定义不匹配
   - C2065 (undeclared): 局部变量名/全局引用未声明
+- **错误根因确认**: 非 pipeline bug，非 header bug。
+  全部来自 Hex-Rays 在 struct annotation 不完整时产生的低质量代码。
+  修复路径: 逐类补充字段标注 → apply → export → codegen → compile 验证。
+- **最终基线**: 5512 errors, 0/161 pass, header 错误=0
