@@ -4451,6 +4451,19 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
   4. undeclared (C2065: 271) — 需函数归属/全局变量标注
   所有方向都指向 annotation 逐类迭代（IDA 查询 + 二进制验证）
 
+### 2026-05-19 decomp access pattern 字段提取
+
+- **方法论**: 从 decomp 中 `*(type *)&this->0 + N` 模式提取字段偏移和类型。
+  `(float *)` → float, `(_DWORD *)` → int, `(_BYTE *)` → unsigned char。
+  自动标注为 `_todo_XXX` placeholder，让 TAUDT_FIXED 在 IDA 中创建成员。
+- **UIGameOver**: +22 fields (off 152-236), **-100 errors** (4981→4881)。
+  88 bytes own data 全部覆盖。密度 0.372 hits/line 是最高的。
+- **效果原理**: 有 struct 成员 → Hex-Rays 输出 `this->_todo_098` 而非
+  `*((_DWORD *)&this->0 + 39)` → 可编译的 C++ 代码。
+- **可重复**: 同样方法可应用于 UILoadingFrm(53hits), UIScenePanel(42),
+  UIAnimateCtrlEX(51), UIBigMap(135), UIItem(41) 等高密度类。
+- **基线**: 4881 errors (session -649)
+
 ### 2026-05-19 session 最终总结
 
 | 指标 | 起点 | 终点 | 变化 |
