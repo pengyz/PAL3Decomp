@@ -4415,3 +4415,19 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
   - CCBUIPanel 有 830 个被引用的偏移但无任何语义信息，无法有效标注
   - 修复路径：逐类从 binary/ctor/dtor 分析字段布局（长期迭代工作）
 - **当前基线**: 5527 errors, 26/189 pass
+
+### 2026-05-19 批量修正 176 个函数 this-type 归属
+
+- **发现**: 176 个函数的 signature 中 `this` 类型与归属类名不匹配
+  （如 `SceneObj::_init` 但 `this=CScreenMode*`）
+- **根因**: annotation 中函数名标为 ClassA::Method，但 IDA 签名中 this=ClassB*
+  → apply 后 IDA 用 ClassA 的 struct 反编译，但实际 this 是 ClassB → 类型混乱
+- **修正**: 批量将函数归属改为 signature this-type 指示的类
+- **效果**: **-491 errors**（单次最大改善）
+  - C2039 -459（struct 成员解析成功，this 类型匹配后 Hex-Rays 正确引用字段）
+  - C2228 -194（成员指针类型正确）
+  - C2227 -80
+- **部分回归**: UIEmote(+26), LineupUI(+26) — 函数从这些类移走后代码重分配
+- **教训**: signature this-type 是函数归属的权威依据；
+  批量检测 `this_type != class_name` 是高效的 annotation 质量提升手段
+- **基线**: 5012 errors, 0/159 pass
