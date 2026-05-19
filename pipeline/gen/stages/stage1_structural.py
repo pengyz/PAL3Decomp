@@ -30,7 +30,9 @@ def run(code, ctx):
     func_def = None
     for child in tree.root_node.children:
         if child.type == 'function_definition':
-            func_def = child
+            # Only accept func_def that starts at/near the beginning (row 0-2)
+            if child.start_point[0] <= 2:
+                func_def = child
             break
 
     if not func_def:
