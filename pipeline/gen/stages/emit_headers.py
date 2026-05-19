@@ -1026,16 +1026,32 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             decl = decl.replace('std::ios_base *', 'UIWnd *')
             lines.append("%s // %s" % (decl, addr))
 
+    # If class has parameterized ctor but no default ctor, add one
+    # (skip for opaque structs which get their own ctor below)
+    _ann_for_ctor = load_annotations_data()
+    _ctor_struct = _ann_for_ctor.get('structs', {}).get(cls_name, {})
+    _ctor_size = _ctor_struct.get('binary_size') or _ctor_struct.get('gen_size') or 0
+    _ctor_members = _ctor_struct.get('known_members', {})
+    _is_opaque = (_ctor_size and _ctor_size <= 16 and len(_ctor_members) == 0)
+    if methods and not _is_opaque:
+        has_param_ctor = any(k.startswith(cls_name + '(') and k != cls_name + '()' for k in seen_methods)
+        has_default_ctor = (cls_name + '()') in seen_methods
+        if has_param_ctor and not has_default_ctor:
+            lines.append("    %s() {} // auto-generated default ctor" % cls_name)
+            lines.append("")
+
     # For opaque 4-byte structs (no real members), add int conversion operators
     # This allows IDA-generated code to assign integers to these types
     _ann_for_opaque = load_annotations_data()
     _opaque_struct = _ann_for_opaque.get('structs', {}).get(cls_name, {})
     _opaque_size = _opaque_struct.get('binary_size') or _opaque_struct.get('gen_size') or 0
     _opaque_members = _opaque_struct.get('known_members', {})
-    if _opaque_size == 4 and len(_opaque_members) == 0:
-        lines.append("    // Opaque 4-byte type: allow int conversion for IDA codegen")
-        lines.append("    operator int() const { return *(int*)this; }")
-        lines.append("    void operator=(int v) { *(int*)this = v; }")
+    if _opaque_size and _opaque_size <= 16 and len(_opaque_members) == 0:
+        lines.append("    // Opaque type: default ctor + int conversion for IDA codegen")
+        lines.append("    %s() { memset(this, 0, sizeof(*this)); }" % cls_name)
+        if _opaque_size == 4:
+            lines.append("    operator int() const { return *(int*)this; }")
+            lines.append("    void operator=(int v) { *(int*)this = v; }")
         lines.append("")
 
     lines.append("};")
