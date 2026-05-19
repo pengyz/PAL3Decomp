@@ -69,8 +69,19 @@ def generate_forward_decls(all_code):
         for s in sorted(subs):
             if s in atexit_funcs:
                 lines.append("void __cdecl %s(void);" % s)
+            elif s in store.free_func_sigs:
+                lines.append("%s; // from annotations" % store.free_func_sigs[s])
             else:
                 lines.append("int %s(...);" % s)
+        lines.append("")
+
+    # Known free functions referenced in code but not caught by collect_sub_refs
+    for fname, decl in store.free_func_sigs.items():
+        if fname not in subs and re.search(r'\b' + re.escape(fname) + r'\s*\(', all_code):
+            if fname not in store.declared_globals:
+                subs.add(fname)
+                lines.append("%s; // from annotations" % decl)
+    if lines and lines[-1] != '':
         lines.append("")
 
     undef = collect_undefined_refs(all_code)

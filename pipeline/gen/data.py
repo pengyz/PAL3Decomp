@@ -43,6 +43,7 @@ class DataStore:
         self.thunk_classes = set()  # j_ClassName thunk type names
         self.static_methods = set() # "ClassName::Method" for __cdecl methods
         self.declared_globals = set()  # already in globals.h
+        self.free_func_sigs = {}    # "FuncName" -> "ret FuncName(params)" declaration
         self.exe_data = b''         # raw exe for .rdata string lookup
         self.skip_classes = set()   # classes to not generate
 
@@ -112,6 +113,31 @@ class DataStore:
                 addr_hex = '%X' % addr_int
                 for pfx in ida_prefixes:
                     self.globals_map['%s_%s' % (pfx, addr_hex)] = gname
+
+        # functions.json → free function signatures for forward declarations
+        funcs_path = self.annotations_dir / "functions.json"
+        if funcs_path.exists():
+            import re as _re
+            fdata = json.load(open(funcs_path, encoding='utf-8'))
+            for addr_s, finfo in fdata.items():
+                fname = finfo.get('name', '')
+                fsig = finfo.get('signature', '')
+                if '::' in fname or not fname or not fsig:
+                    continue
+                if '__cdecl' not in fsig:
+                    continue
+                if fname.startswith('_') or fname.startswith('$') or fname.startswith('?'):
+                    continue
+                if 'unknown_libname' in fname or 'nullsub' in fname:
+                    continue
+                m = _re.match(r'^(.+?)\s*__cdecl\s*\((.*)\)$', fsig)
+                if not m:
+                    continue
+                ret = m.group(1).strip()
+                params = m.group(2).strip()
+                if not params:
+                    params = 'void'
+                self.free_func_sigs[fname] = '%s %s(%s)' % (ret, fname, params)
 
         # structs → struct instances + members for member resolution
         structs_dir = self.annotations_dir / "structs"
