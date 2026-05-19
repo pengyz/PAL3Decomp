@@ -4255,3 +4255,19 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **不可验证/无影响**:
   - SoundMgr=918796: 依赖 CPK (PAL3≠PAL3A 已证实), 但不被 embed, size 无下游影响
 - **教训**: decomp cast `(TypeX*)&field` ≠ embed; PDB 类型大小不可用于否定 A 级字段
+
+### 2026-05-19 codegen 修正 + 编译退步分析
+
+- **发现 `_fix_ref_params` bug**: 该函数盲目去掉 Rotate/Translate 等方法的 `&` 参数，
+  假设它们是引用参数。实际 `gbMatrix4::Rotate` 接受指针 (`gbVec3D const *`)，
+  去 `&` 导致传值而非传址 → C2664 错误。已删除该函数。
+- **asm 浮点常量 `ds:1.2f`**: IDA asm 输出中的 `.rdata` 浮点引用，VC6 不支持 `ds:` 前缀。
+  codegen 新增 `_fix_asm_float_constants`: 替换为 `static const float` 变量 + `dword ptr [var]`。
+- **编译退步根因**: IDB 重建 (TAUDT_FIXED) 后 Hex-Rays 输出整体变化：
+  - struct layout 正确了 → 但 Hex-Rays 对未标注区域生成 `_DWORD` 访问
+  - 旧 `_fix_ref_params` 碰巧掩盖了 pointer/reference 不匹配 → 修掉后暴露真实问题
+  - 这不是 header 生成 bug，是 annotation 不完整的反映
+- **当前状态**: 5521 errors, 0/161 pass
+- **Top 错误来源 (C2039 not-a-member)**: CCBStageCam(82), UIScenePanel(59), UIBigMap(58),
+  CCBUIPanel(53), UICoverFrm(50), CCBStage(50), RoleSystem(46)
+- **下一步**: 这些类的 struct 成员标注需要补充（annotation 迭代）
