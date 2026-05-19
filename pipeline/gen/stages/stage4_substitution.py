@@ -199,10 +199,10 @@ def _apply_text_substitutions(code, ctx):
     code = re.sub(r'\b__int8\b', 'char', code)
     code = re.sub(r'\b__int16\b', 'short', code)
 
-    # LL suffix → i64 (regex for boundary)
-    code = re.sub(r'(\b0x[0-9A-Fa-f]+)uLL\b', r'\1ui64', code)
-    code = re.sub(r'(\b0x[0-9A-Fa-f]+)LL\b', r'\1i64', code)
-    code = re.sub(r'(\b\d+)LL\b', r'\1i64', code)
+    # LL/i64 suffix removal — VC6 doesn't recognize i64/LL suffixes.
+    # Large hex constants are auto-promoted to __int64 by VC6 without suffix.
+    code = re.sub(r'(\b0x[0-9A-Fa-f]+)(?:uLL|LL|ui64|i64)\b', r'\1', code)
+    code = re.sub(r'(\b\d+)(?:uLL|LL|ui64|i64)\b', r'\1', code)
 
     code = code.replace('(_ThrowInfo *)', '(_s__ThrowInfo *)')
 
