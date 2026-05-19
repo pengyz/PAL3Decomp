@@ -280,7 +280,19 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
 
     actual_size = result_tinfo.get_size()
     if actual_size == 0xFFFFFFFFFFFFFFFF:
-        return (False, "INVALID struct after create_udt (overlapping members?)")
+        # Diagnostic: find which members overlap
+        overlap_info = []
+        for i in range(udt.size()):
+            mi = udt[i]
+            end_bit = mi.offset + mi.size
+            for j in range(i + 1, min(i + 2, udt.size())):
+                mj = udt[j]
+                if end_bit > mj.offset:
+                    overlap_info.append("+%d %s(size=%d) ends@%d > next +%d %s" % (
+                        mi.offset // 8, mi.name, mi.size // 8,
+                        end_bit // 8, mj.offset // 8, mj.name))
+        detail = "; ".join(overlap_info[:3]) if overlap_info else "no overlap detected in UDT"
+        return (False, "INVALID struct after create_udt (%s)" % detail)
     if actual_size != binary_size:
         return (False, "size mismatch: expected %d, got %d (member type size wrong?)" % (
             binary_size, actual_size))
