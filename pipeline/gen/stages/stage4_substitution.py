@@ -206,10 +206,19 @@ def _apply_text_substitutions(code, ctx):
 
     code = code.replace('(_ThrowInfo *)', '(_s__ThrowInfo *)')
 
+    # Hex-Rays raw offset access: &this->0 means "address of member at offset 0" = this
+    # this->0 standalone means "value of first DWORD" = *(_DWORD*)this
+    code = re.sub(r'&this->0\b', 'this', code)
+    code = re.sub(r'\bthis->0\b', '*(_DWORD *)this', code)
+
     # stdiobuf misidentification fix
     code = code.replace('stdiobuf *', 'UIWnd *')
     code = code.replace('stdiobuf::', 'UIWnd::')
     code = code.replace('std::ios_base *', 'UIWnd *')
+
+    # IDA 'std' type = std::basic_string<char> abbreviated
+    code = re.sub(r'\bstd\s*\*', 'string *', code)
+    code = re.sub(r'\(std\)', '(string)', code)
 
     return code
 
@@ -298,6 +307,25 @@ def _fix_ref_params(code):
                 code = re.sub(r'(->' + re.escape(method_name) + r'\([^)]*),\s*&(\w)', r'\1, \2', code)
                 code = re.sub(r'(->' + re.escape(method_name) + r'\s*\()&(\w)', r'\1\2', code)
     return code
+
+
+def _comment_stl_internals(code):
+    """Comment out STL internal method calls that can't compile in user code.
+
+    Hex-Rays exposes string::_Tidy, string::_Eos, string::_Split etc.
+    These are protected methods of basic_string — compiler generates them,
+    not expressible in source.
+    """
+    if '->string::' not in code:
+        return code
+    lines = code.split('\n')
+    result = []
+    for line in lines:
+        if '->string::' in line and '// [STL]' not in line:
+            result.append(line.replace(line.lstrip(), '// [STL] ' + line.lstrip()))
+        else:
+            result.append(line)
+    return '\n'.join(result)
 
 
 def _fix_asm_data_labels(code):
@@ -477,5 +505,9 @@ def run(code, ctx):
     # Restore reference parameters: ->Method(&var) → ->Method(var)
     # IDA flattens references to pointers; this restores for known ref-param methods
     code = _fix_ref_params(code)
+
+    # Comment out STL internal method calls (string::_Tidy, string::_Eos, string::_Split)
+    # These are compiler-generated operations not expressible in user source code.
+    code = _comment_stl_internals(code)
 
     return code
