@@ -4338,3 +4338,8 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   5531 是 struct 正确后的真实水平，需要通过 annotation 迭代降低。
 - **export --fast**: 新增快速 export 模式（跳过 Hex-Rays 缓存刷新），
   IDB 未改动时 export 从 9 分钟降至秒级
+- **snapshot 系统**: 每次 codegen all 自动保存编译快照（max=20, ~1MB/个）。
+  含 commit id、完整错误列表、pass/fail 文件列表。`snapshot compare` 定位衰退。
+- **free function 声明**: functions.json 中 __cdecl 自由函数自动在 cpp 中声明。
+  减少 30 个 C2065 undeclared errors (ParseResourcePath, GetActorMgr 等)。
+- **真实全流程基线**: 5505 errors, 0/163 pass (init --force → export → codegen → compile)
