@@ -4435,6 +4435,12 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
   预计下次 init --force 后减少 ~56 个 `void * → int` 错误。
 - **ds:flt_XXXX 转换**: asm 块中 IDA 浮点数据标签转为 `static const float` + `dword ptr [var]`。
   覆盖 72 个 `constant` syntax error（被 VC6 100-error 截断遮蔽，实际效果需 init --force 后验证）。
+- **_fix_ref_params 恢复**: 之前错误删除了引用参数恢复逻辑。正确理解：
+  IDA 不支持 C++ 引用 → flatten 为指针导入 → Hex-Rays 输出 `&var` →
+  codegen 后处理去 `&` 恢复引用语义。修正：只对 `->Method(&var)` 生效
+  （gbMatrixStack 实例调用），不对 `Class::Method(&obj, &var)` 生效
+  （gbMatrix4 接受指针）。-31 errors (C2664 -32)。
+- **基线**: 4981 errors, 0/159 pass (session 总计 -549)
 
 ### 2026-05-19 session 最终总结
 
