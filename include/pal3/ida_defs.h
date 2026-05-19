@@ -127,3 +127,22 @@ void PushMatrixStacks(int nMode = 0);
 void PopMatrixStacks(int nMode = 0);
 int UIRenderQuad(...);
 void UIQuadManager_Reset();
+int SetFloatParam(void *pCtrl, float value);
+int SetIntParam(void *pCtrl, int value);
+char *ParseResourcePath(void *pWnd, const char *lpString, int nVal);
+void *CombatEnter();
+void *alloca(unsigned int size);
+int gbLoadLightFile(const char *filename, ...);
+void gbVec3D_GetPosition(void *obj, void *outVec);
+
+// UIWnd methods called as free functions (IDA lost class context)
+int UIWnd_sub_43A090(void *pWnd, ...);
+int UIWnd_sub_43B3E0(void *pWnd, ...);
+int UIWnd_sub_443190(void *pWnd, ...);
+int UIWnd_sub_4431D0(void *pWnd, ...);
+int UIWnd_sub_444A20(void *pWnd, ...);
+int UIWnd_sub_44B850(void *pWnd, ...);
+int UIWnd_sub_44C970(void *pWnd, ...);
+int UIWnd_sub_4543C0(void *pWnd, ...);
+int UIWnd_sub_4B6FB0(int pWnd, ...);
+void ctor_0x431870(void *pObj, ...);
