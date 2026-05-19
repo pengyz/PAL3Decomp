@@ -214,6 +214,30 @@ def _apply_text_substitutions(code, ctx):
     return code
 
 
+def _fix_register_this_alias(code):
+    """Replace Hex-Rays register-this pattern: _ESI = this; ... _ESI->x → this->x.
+
+    Hex-Rays uses pseudo-register variables (_ESI, _EDI etc.) to bridge
+    asm blocks and C code in large functions. When assigned from 'this',
+    all subsequent uses of that register are equivalent to 'this'.
+    Only replaces in C code, not inside __asm blocks.
+    """
+    for reg in ('_ESI', '_EDI', '_EBX', '_ECX'):
+        assign_pat = re.compile(r'^\s*' + re.escape(reg) + r'\s*=\s*this\s*;', re.MULTILINE)
+        if not assign_pat.search(code):
+            continue
+        # Remove the assignment line
+        code = assign_pat.sub('', code)
+        # Split into asm/non-asm segments, only replace in non-asm
+        parts = re.split(r'(__asm\s*\{[^}]*\})', code, flags=re.DOTALL)
+        for i in range(len(parts)):
+            if not parts[i].strip().startswith('__asm'):
+                parts[i] = re.sub(r'\b' + re.escape(reg) + r'\s*->', 'this->', parts[i])
+                parts[i] = re.sub(r'\b' + re.escape(reg) + r'\b', 'this', parts[i])
+        code = ''.join(parts)
+    return code
+
+
 def _fix_static_method_calls(code):
     """Convert ((ClassName *)0)->Method(...) to ClassName::Method(...).
 
@@ -350,5 +374,8 @@ def run(code, ctx):
 
     # Convert ((ClassName *)0)->Method() to ClassName::Method() for static methods
     code = _fix_static_method_calls(code)
+
+    # Replace _REG = this; ... _REG->xxx with this->xxx
+    code = _fix_register_this_alias(code)
 
     return code
