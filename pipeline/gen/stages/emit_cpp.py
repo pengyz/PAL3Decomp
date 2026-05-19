@@ -157,8 +157,19 @@ def _detect_needed_includes(cls_name, methods):
 
     # Resolve indirect dependencies: if code dereferences a forward-declared
     # pointer member (ptr->field), include that type's header too.
+    # Also scan base class headers (included via #include in the class header).
     indirect = set()
     all_included = needed_classes | {cls_name}
+    # Add headers included by the class's own header (base classes)
+    cls_hpath = header_dir / ("%s.h" % cls_name)
+    if cls_hpath.exists():
+        with open(cls_hpath, 'r', encoding='utf-8', errors='replace') as hf:
+            for hline in hf:
+                inc_m = re.match(r'#include\s+"([^"]*)"', hline)
+                if inc_m:
+                    inc_stem = inc_m.group(1).split('/')[-1].replace('.h', '')
+                    if inc_stem in known_headers:
+                        all_included.add(inc_stem)
     for inc_cls in list(all_included):
         hpath = header_dir / ("%s.h" % inc_cls)
         if not hpath.exists():
