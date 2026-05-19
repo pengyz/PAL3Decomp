@@ -4289,7 +4289,17 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   - `int * → unsigned long *`: 类似的指针/整数不匹配
   - C2511 (function not found): header 签名与 cpp 定义不匹配
   - C2065 (undeclared): 局部变量名/全局引用未声明
-- **错误根因确认**: 非 pipeline bug，非 header bug。
-  全部来自 Hex-Rays 在 struct annotation 不完整时产生的低质量代码。
-  修复路径: 逐类补充字段标注 → apply → export → codegen → compile 验证。
-- **最终基线**: 5512 errors, 0/161 pass, header 错误=0
+- **错误根因确认(部分更正)**: 部分是 pipeline bug，部分是 annotation 不完整。
+
+### 2026-05-19 pipeline 修复: TYPE_REMAP + this 参数移除
+
+- **TYPE_REMAP 未应用到方法签名** (-300+ errors):
+  header 中 `unsigned __int8` vs cpp 中 `unsigned char` 导致 C2511 overload 失败。
+  TYPE_REMAP 只应用于 struct 成员，方法签名遗漏。修复后签名统一。
+- **this 参数移除逻辑不完整** (-400+ errors):
+  stage1 只在参数含 `this` 关键字或类名时才移除第一个指针参数。
+  但 `_sdtor` 等函数的 this 类型是基类 (`UIWnd *Block`)，不含派生类名。
+  修复: 非自由函数的第一个指针参数总是 this。
+- **结果**: 5512 → 4801 errors, 0 → 50 pass (112 files compiled)
+- **off_ globals 减少**: 137 → 57 (codegen 生成的文件减少后引用也减少)
+- **基线**: 4801 errors, 50/112 pass
