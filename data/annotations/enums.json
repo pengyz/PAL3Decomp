@@ -555,5 +555,397 @@
       "VFSYS_PACKFILE": "1",
       "VFSYS_MEMIMAGE": "2"
     }
+  },
+  "ECBVAKind": {
+    "values": {
+      "CBVAK_Null": "0",
+      "CBVAK_SrcRole": "1",
+      "CBVAK_DestRole": "2",
+      "CBVAK_End": "3"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBFiveMagic": {
+    "values": {
+      "CBFM_Null": "0",
+      "CBFM_Water": "1",
+      "CBFM_Fire": "2",
+      "CBFM_Wind": "3",
+      "CBFM_Thunder": "4",
+      "CBFM_Earth": "5",
+      "CBFM_End": "6"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBFiveNimbus": {
+    "values": {
+      "CBFN_Water": "0",
+      "CBFN_Fire": "1",
+      "CBFN_Thunder": "2",
+      "CBFN_Wind": "3",
+      "CBFN_Earth": "4",
+      "CBFN_Max": "5"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBRoleSpecState": {
+    "values": {
+      "CBRSS_Null": "0",
+      "CBRSS_PoisonWind": "1",
+      "CBRSS_PoisonThunder": "2",
+      "CBRSS_PoisonWater": "3",
+      "CBRSS_PoisonFire": "4",
+      "CBRSS_PoisonEarth": "5",
+      "CBRSS_AttackInc": "6",
+      "CBRSS_AttackDec": "7",
+      "CBRSS_DefenceInc": "8",
+      "CBRSS_DefenceDec": "9",
+      "CBRSS_LuckInc": "10",
+      "CBRSS_LuckDec": "11",
+      "CBRSS_SpeedInc": "12",
+      "CBRSS_SpeedDec": "13",
+      "CBRSS_Stable": "14",
+      "CBRSS_Blank": "15",
+      "CBRSS_Forbid": "16",
+      "CBRSS_Sleep": "17",
+      "CBRSS_Chaos": "18",
+      "CBRSS_Mad": "19",
+      "CBRSS_Mirror": "20",
+      "CBRSS_Wall": "21",
+      "CBRSS_Bound": "22",
+      "CBRSS_Hermit": "23",
+      "CBRSS_Dying": "24",
+      "CBRSS_Dead": "25",
+      "CBRSS_Immunity": "26",
+      "CBRSS_End": "27"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBRoleTaskMode": {
+    "values": {
+      "CBRTM_Null": "0",
+      "CBRTM_Normal": "1",
+      "CBRTM_Rap": "2",
+      "CBRTM_Push": "3",
+      "CBRTM_Temp": "4",
+      "CBRTM_End": "5"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBShowItemKind": {
+    "values": {
+      "CBSIK_Null": "0",
+      "CBSIK_Txt": "1",
+      "CBSIK_RoleState": "2",
+      "CBSIK_PrintTxt": "3",
+      "CBSIK_Pic": "4",
+      "CBSIK_FiveLineup": "5",
+      "CBSIK_EnemyFiveLineup": "6",
+      "CBSIK_CombatDialog": "7",
+      "CBSIK_ScreenQuad": "8",
+      "CBSIK_End": "9"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBStageLockFlag": {
+    "values": {
+      "CBSLF_Null": "0",
+      "CBSLF_SkillAct": "1",
+      "CBSLF_MagicWait": "2",
+      "CBSLF_MagicAct": "3",
+      "CBSLF_ItemAct": "4",
+      "CBSLF_FlingAct": "5",
+      "CBSLF_BFAAct": "6",
+      "CBSLF_End": "7"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBStageTask": {
+    "values": {
+      "CBST_Null": "0",
+      "CBST_Dialog": "1",
+      "CBST_SelectRole": "2",
+      "CBST_ShowFiveLineup": "3",
+      "CBST_ShowTrickName": "4",
+      "CBST_Block": "5",
+      "CBST_ShowNum": "6",
+      "CBST_ShowMiss": "7",
+      "CBST_ShowCost": "8",
+      "CBST_GotoInitPos": "9",
+      "CBST_BadSpecState": "10",
+      "CBST_Attack": "11",
+      "CBST_Parabola": "12",
+      "CBST_CoAttack": "13",
+      "CBST_WeaponSkill": "14",
+      "CBST_Magic": "15",
+      "CBST_GreatMagic": "16",
+      "CBST_Skill": "17",
+      "CBST_UseItem": "18",
+      "CBST_Protect": "19",
+      "CBST_StartDefence": "20",
+      "CBST_Flee": "21",
+      "CBST_EnemyFlee": "22",
+      "CBST_RoleHermit": "23",
+      "CBST_Win": "24",
+      "CBST_WinRoleAction": "25",
+      "CBST_Lose": "26",
+      "CBST_ShowFleeResult": "27",
+      "CBST_ChangeInitPos": "28",
+      "CBST_ShowGetItem": "29",
+      "CBST_CombatDialog": "30",
+      "CBST_Variance": "31",
+      "CBST_End": "32"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBStageTaskState": {
+    "values": {
+      "CBSTS_Null": "0",
+      "CBSTS_Pause": "1",
+      "CBSTS_Ready": "2",
+      "CBSTS_Run": "3",
+      "CBSTS_Finish": "4",
+      "CBSTS_End": "5"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBCombatState": {
+    "values": {
+      "CBCS_Null": "0",
+      "CBCS_Deactive": "1",
+      "CBCS_Running": "2",
+      "CBCS_Paused": "3",
+      "CBCS_Flee": "4",
+      "CBCS_Counting": "5",
+      "CBCS_FleeCounting": "6",
+      "CBCS_LoseCounting": "7",
+      "CBCS_CombatEnd": "8",
+      "CBCS_End": "9"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBFiveLineup": {
+    "values": {
+      "CBFL_Null": "0",
+      "CBFL_Water": "1",
+      "CBFL_Fire": "2",
+      "CBFL_Wind": "3",
+      "CBFL_Thunder": "4",
+      "CBFL_Earth": "5",
+      "CBFL_Middle": "6",
+      "CBFL_End": "7"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "EEffect": {
+    "values": {
+      "EF_Null": "0",
+      "EF_Simple": "1",
+      "EF_Bubble": "2",
+      "EF_GroundSmoke": "3",
+      "EF_End": "4"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ACTION_KIND": {
+    "values": {
+      "ACT_STAND": "0",
+      "ACT_WALK": "1",
+      "ACT_RUN": "2",
+      "ACT_BACK": "3",
+      "ACT_JUMP": "4",
+      "ACT_CLAMB": "5",
+      "ACT_CLAMB_DOWN": "6",
+      "ACT_PUSH": "7",
+      "ACT_SKILL": "8",
+      "ACT_TIRE": "9",
+      "ACT_SEAT": "10",
+      "ACT_CHECK": "11",
+      "ACT_SLEEP": "12",
+      "ACT_SHAKE": "13",
+      "ACT_NOD": "14",
+      "ACT_WAVE": "15",
+      "ACT_MINATORY": "16",
+      "ACT_AMAZED": "17",
+      "ACT_SITDOWN": "18",
+      "ACT_SITUP": "19",
+      "ACT_POINT": "20",
+      "ACT_KICK": "21",
+      "ACT_SALUTE": "22",
+      "ACT_PLAY": "23",
+      "ACT_DEPEND": "24",
+      "ACT_COQUETRY": "25",
+      "ACT_ANGER": "26",
+      "ACT_DOSE": "27",
+      "ACT_J13": "28",
+      "ACT_Attack1": "29",
+      "ACT_Attack2": "30",
+      "ACT_AttackMove": "31",
+      "ACT_PreAttack": "32",
+      "ACT_BeAttack": "33",
+      "ACT_MagicWait": "34",
+      "ACT_Magic": "35",
+      "ACT_Skill1": "36",
+      "ACT_Skill2": "37",
+      "ACT_UseItemRecover": "38",
+      "ACT_UseItemAttack": "39",
+      "ACT_WeaponSkill": "40",
+      "ACT_StartDefence": "41",
+      "ACT_Defence": "42",
+      "ACT_DefenceBeAttack": "43",
+      "ACT_Dodge": "44",
+      "ACT_Sleep": "45",
+      "ACT_Dying": "46",
+      "ACT_Dead": "47",
+      "ACT_Flee": "48",
+      "ACT_Win": "49",
+      "ACT_NPC_Stand1": "50",
+      "ACT_NPC_Stand2": "51",
+      "ACT_NPC_Walk": "52",
+      "ACT_NPC_Attack": "53",
+      "ACT_NPC_BeAttack": "54",
+      "ACT_NPC_Magic1": "55",
+      "ACT_NPC_Magic2": "56",
+      "ACT_NPC_Magic3": "57",
+      "ACT_NPC_Run": "58",
+      "ACT_Upgrade": "59",
+      "ACT_Variance": "60",
+      "ACT_Attack2_1": "61",
+      "ACT_Attack2_2": "62",
+      "ACT_Attack2_3": "63",
+      "ACT_KIND_MAX": "64"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "SCENE_TYPE": {
+    "values": {
+      "SCENE_STORYA": "0",
+      "SCENE_STORYB": "1",
+      "SCENE_FIGHT": "2",
+      "SCENE_TYPE_NUM": "3"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ROLE_BEHAVIOUR": {
+    "values": {
+      "RB_NONE": "0",
+      "RB_WANDER": "1",
+      "RB_PATHFOLLOW": "2",
+      "RB_NPC_HOLD": "3",
+      "RB_SEEK": "4",
+      "RB_PURSUIT": "5",
+      "RB_EVASION": "6",
+      "RB_PATHLYAER": "7",
+      "RB_MOVEBACK": "8",
+      "RB_NPC_PATHFOLLOW": "9",
+      "RB_PET_FOLLOW": "10",
+      "RB_PET_FLY": "11",
+      "RB_KEY": "12",
+      "RB_MAX": "13"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "FightState": {
+    "values": {
+      "FS_FENGDU": "0",
+      "FS_LEIDU": "1",
+      "FS_SHUIDU": "2",
+      "FS_HUODU": "3",
+      "FS_TUDU": "4",
+      "FS_WU_ADD": "5",
+      "FS_WU_SUB": "6",
+      "FS_FANG_ADD": "7",
+      "FS_FANG_SUB": "8",
+      "FS_YUN_ADD": "9",
+      "FS_YUN_SUB": "10",
+      "FS_SU_ADD": "11",
+      "FS_SU_SUB": "12",
+      "FS_DING": "13",
+      "FS_FENG": "14",
+      "FS_JIN": "15",
+      "FS_MIAN": "16",
+      "FS_LUAN": "17",
+      "FS_KUANG": "18",
+      "FS_JING": "19",
+      "FS_BI": "20",
+      "FS_JIE": "21",
+      "FS_YIN": "22",
+      "FS_PINSI": "23",
+      "FS_SI": "24",
+      "FS_BIDU": "25",
+      "FS_ANYDU": "26",
+      "FS_BIXIE": "27",
+      "FS_TUIMO": "28",
+      "FS_SHENYAN": "29",
+      "FS_JINGJIN": "30",
+      "FS_NUM": "31"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "PAL3_FRAME": {
+    "values": {
+      "FRM_SCENE": "0",
+      "FRM_FIGHT": "1",
+      "FRM_DEAL": "2",
+      "FRM_COVER": "3",
+      "FRM_S_STATE": "4",
+      "FRM_COMBAT": "5",
+      "FRM_CATCHGHOST": "6",
+      "FRM_HS_ENTRY": "7",
+      "FRM_APPRAISE": "8",
+      "FRM_KF": "9",
+      "FRM_ENCAMPMENT": "10",
+      "FRM_SKEE": "11",
+      "FRM_ROWING": "12",
+      "FRM_BIGMAP": "13",
+      "FRM_LOADING": "14",
+      "FRM_GAMEOVER": "15",
+      "FRM_COMPOSE": "16",
+      "FRM_JUSTICEBOOK": "17",
+      "FRM_NUM": "18"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBMeetEnemy": {
+    "values": {
+      "CBME_Null": "0",
+      "CBME_EnemyAttackUs": "1",
+      "CBME_WeAttackEnemy": "2",
+      "CBME_End": "3"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBForce": {
+    "values": {
+      "CBF_Null": "0",
+      "CBF_Friend": "1",
+      "CBF_Enemy": "2",
+      "CBF_All": "3",
+      "CBF_End": "4"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBCombatResult": {
+    "values": {
+      "CBCR_Null": "0",
+      "CBCR_NoResult": "1",
+      "CBCR_Win": "2",
+      "CBCR_Lose": "3",
+      "CBCR_FleeOK": "4",
+      "CBCR_End": "5"
+    },
+    "source": "PAL3A_PDB"
+  },
+  "ECBBattleFieldAttr": {
+    "values": {
+      "CBBFA_NULL": "0",
+      "CBBFA_Water": "1",
+      "CBBFA_Fire": "2",
+      "CBBFA_Wind": "3",
+      "CBBFA_Thunder": "4",
+      "CBBFA_Earth": "5",
+      "CBBFA_End": "6"
+    },
+    "source": "PAL3A_PDB"
   }
 }

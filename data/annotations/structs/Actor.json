@@ -174,8 +174,8 @@
     },
     "488": {
       "name": "m_obbox",
-      "type": "gbOBBox",
-      "source": "binary:gap_r3 | annotate_todo"
+      "type": "int",
+      "source": "binary:gap_r3 | fix:gbOBBox(76)>span(8),revert_to_int"
     },
     "536": {
       "name": "m_fAnimDelta",

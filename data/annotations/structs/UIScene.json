@@ -33,8 +33,8 @@
     },
     "112": {
       "name": "_todo_70",
-      "type": "POINT",
-      "source": "gap_fill:ida_decomp_access | type_fix:int->POINT(A+:decomp (POINT*)&this->_todo_70 in CheckMouseHit (3x))"
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access | revert:POINT(8)>span(4),keep_int"
     },
     "116": {
       "name": "m_pChildWnd",
