@@ -4343,3 +4343,8 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **free function 声明**: functions.json 中 __cdecl 自由函数自动在 cpp 中声明。
   减少 30 个 C2065 undeclared errors (ParseResourcePath, GetActorMgr 等)。
 - **真实全流程基线**: 5505 errors, 0/163 pass (init --force → export → codegen → compile)
+- **UIWnd 方法归属尝试**: 将 SetFloatParam/ParseResourcePath 等归入 UIWnd，
+  引入 +12 regression (C2660 +91, EquipUI +11)。回退。
+  原因: 新增的 UIWnd 方法声明导致 overload resolution 冲突。
+  需要更仔细地验证签名后再归属。
+- **pipeline 修复收敛**: 系统性 codegen 改进已穷尽，后续主要是 annotation 迭代
