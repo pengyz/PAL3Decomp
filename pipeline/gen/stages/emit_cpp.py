@@ -292,6 +292,7 @@ def run_cpp_generation(filter_classes=None):
         generated += 1
         total_funcs += len(free_funcs)
 
+
     # Clean stale .cpp files not in current generation set
     generated_files = set()
     for cls_name in by_class:

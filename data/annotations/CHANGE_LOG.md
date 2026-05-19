@@ -74,6 +74,26 @@
 - C2440 (968): Hex-Rays 返回 void* 而非正确类型 (IDA 函数签名未生效)
 - 这两类需要 IDA 层改进 (apply_annotations 更好地设置函数类型 + struct 一致性)
 
+### [2026-05-19] stage3 __vftable 完整注释 + FLIRT srand 修正
+
+**stage3 __vftable 多行注释** (置信度 N/A — codegen 逻辑):
+- 问题: Hex-Rays 直接引用 `this->__vftable` (编译器内部实现, 不应出现在源码中)
+- 旧行为: 只注释含 __vftable 的单行, 多行函数调用参数残留
+- 新行为: 括号深度追踪, 注释完整语句直到 `;` 闭合
+- 设计原则: vtable 是编译器管理的, 不在 header 中显式声明
+- 效果: 消除 144 个 C2039 "__vftable is not a member" errors
+
+**IDA FLIRT 误识别修正** (置信度 90):
+- `CRT_set_new_handler` → `srand` (ida_defs.h #define)
+- 证据: 11 处使用模式全部是 `CRT_set_new_handler(GetTickCount())` + `rand()` — 确认为 srand
+- 效果: -8 errors, +1 PASS (MUIDialog 通过编译)
+
+**编译验证**: 4481(init baseline) → 4403, PASS 34 → 38
+
+**未实施 (方向正确但需改进)**:
+- free_functions.h 生成: 签名解析有语法错误, 需要更好的 parse_signature 处理
+  方向正确 (消除跨文件 free function 未声明错误), 暂时搁置
+
 ### [2026-05-19] gbColorQuad 隐式转换 + stage3 基类 ctor 清理
 
 **gbColorQuad 修复** (置信度 N/A — gbengine 头文件修改, 非 annotation):
