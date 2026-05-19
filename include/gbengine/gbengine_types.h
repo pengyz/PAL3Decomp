@@ -104,14 +104,14 @@ struct gbMatrix4 {
     void LeftMultiply(struct gbMatrix4 const & p0);
     void LeftMultiply(struct gbQuaternion const & p0);
     void LeftScale(float p0, float p1, float p2);
-    void LeftTranslate(struct gbVec3D & p0);
+    void LeftTranslate(struct gbVec3D * p0);
     void LeftTranslate(float p0, float p1, float p2);
     void LoadIdentity();
-    void MakeMatrix(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2);
+    void MakeMatrix(struct gbVec3D * p0, struct gbVec3D * p1, struct gbVec3D * p2);
     void RightMultiply(struct gbMatrix4 const & p0);
     void RightMultiply(struct gbQuaternion const & p0);
     void RightScale(float p0, float p1, float p2);
-    void RightTranslate(struct gbVec3D & p0);
+    void RightTranslate(struct gbVec3D * p0);
     void RightTranslate(float p0, float p1, float p2);
     void Rotate(struct gbVec3D const * p0, struct gbVec3D * p1) const;
     void RotateIn(struct gbVec3D * p0);
@@ -173,14 +173,14 @@ struct gbRay {
     // Methods (auto-generated)
     gbRay();
     struct gbRay & operator=(struct gbRay const & p0);
-    float IntersectPlane(struct gbVec3D & p0, struct gbVec3D & p1);
+    float IntersectPlane(struct gbVec3D * p0, struct gbVec3D * p1);
     int IsColAABB(struct gbAABBox & p0);
     int IsColOBB(struct gbOBBox & p0);
     int IsColOBB_H(struct gbOBBox & p0);
-    int IsColQuad(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2);
+    int IsColQuad(struct gbVec3D * p0, struct gbVec3D * p1, struct gbVec3D * p2);
     int IsColSphere(struct gbSphere & p0);
-    int IsColTriangle(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2, struct gbVec3D & p3);
-    int IsColTriangle(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2);
+    int IsColTriangle(struct gbVec3D * p0, struct gbVec3D * p1, struct gbVec3D * p2, struct gbVec3D * p3);
+    int IsColTriangle(struct gbVec3D * p0, struct gbVec3D * p1, struct gbVec3D * p2);
 };
 
 struct gbAABBox {
@@ -191,7 +191,7 @@ struct gbAABBox {
     gbAABBox();
     struct gbAABBox & operator=(struct gbAABBox const & p0);
     int IsColAABB(struct gbAABBox & p0);
-    int IsColPoint(struct gbVec3D & p0);
+    int IsColPoint(struct gbVec3D * p0);
     void Transform(struct gbMatrix4 * p0);
 };
 
@@ -208,7 +208,7 @@ struct gbOBBox {
     float GetRadiusInDirection(struct gbVec3D const & p0) const;
     void GetSphere(struct gbSphere & p0);
     int IsColOBB(struct gbOBBox * p0);
-    int IsColPoint(struct gbVec3D & p0);
+    int IsColPoint(struct gbVec3D * p0);
 };
 
 struct gbSphere {
@@ -218,9 +218,9 @@ struct gbSphere {
     // Methods (auto-generated)
     gbSphere();
     struct gbSphere & operator=(struct gbSphere const & p0);
-    int IsColPoint(struct gbVec3D & p0);
-    int IsColSphere(struct gbVec3D & p0, float p1);
-    int IsColTriangle(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2);
+    int IsColPoint(struct gbVec3D * p0);
+    int IsColSphere(struct gbVec3D * p0, float p1);
+    int IsColTriangle(struct gbVec3D * p0, struct gbVec3D * p1, struct gbVec3D * p2);
 };
 
 struct gbPlane {

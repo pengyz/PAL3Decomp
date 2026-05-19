@@ -144,16 +144,16 @@ public:
     void Rotate(struct gbQuaternion & p0);
 
 public:
-    void Rotate(float p0, struct gbVec3D & p1);
+    void Rotate(float p0, struct gbVec3D * p1);
 
 public:
-    void Scale(struct gbVec3D & p0);
+    void Scale(struct gbVec3D * p0);
 
 public:
     void Scale(float p0, float p1, float p2);
 
 public:
-    void Translate(struct gbVec3D & p0);
+    void Translate(struct gbVec3D * p0);
 
 public:
     void Translate(float p0, float p1, float p2);
@@ -268,7 +268,7 @@ public:
     gbVolumeModifier(const gbVolumeModifier& other);
     gbVolumeModifier();
     virtual ~gbVolumeModifier();
-    virtual float GetEffectOnPoint(const gbVec3D& point, int useAttenuation);
+    virtual float GetEffectOnPoint(const gbVec3D* point, int useAttenuation);
     virtual void Compute(gbVolModNode* volmod);
     virtual int GetType(void);
     virtual const gbSphere* GetBoundSphere(void);
