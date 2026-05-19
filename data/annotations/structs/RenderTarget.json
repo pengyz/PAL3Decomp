@@ -14,8 +14,8 @@
     },
     "100": {
       "name": "m_ScreenPlane",
-      "type": "int",
-      "source": "gen_headers_9.2 | fix:gbTexture_D3D(PDB=96)>span(24),revert_to_int"
+      "type": "gbTexture_D3D *",
+      "source": "gen_headers_9.2 | fix:gbTexture_D3D(PDB=96)>span(24),revert_to_int+codegen_infer"
     },
     "196": {
       "name": "m_nState",

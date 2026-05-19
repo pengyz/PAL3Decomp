@@ -133,8 +133,8 @@
     },
     "300": {
       "name": "m_pScriptObj",
-      "type": "int",
-      "source": "ida_decomp:ExecuteBlock Destroy(this), if(this), 10 refs"
+      "type": "PalScriptMgr *",
+      "source": "ida_decomp:ExecuteBlock Destroy(this), if(this), 10 refs+codegen_infer"
     },
     "304": {
       "name": "m_nScriptDepth",
@@ -193,8 +193,8 @@
     },
     "796": {
       "name": "m_pSceneMgr",
-      "type": "int",
-      "source": "ida_decomp:ExecuteOpcode GetRolePtr(*(this+16)), 33 refs"
+      "type": "RoleSystem *",
+      "source": "ida_decomp:ExecuteOpcode GetRolePtr(*(this+16)), 33 refs+codegen_infer"
     },
     "800": {
       "name": "m_bRoleCmd_42ac80",
@@ -373,8 +373,8 @@
     },
     "828": {
       "name": "m_pSubScriptB",
-      "type": "int",
-      "source": "ida_decomp:ExecuteOpcode _sub_42FCC0(this), 12 refs"
+      "type": "PalScriptMgr *",
+      "source": "ida_decomp:ExecuteOpcode _sub_42FCC0(this), 12 refs+codegen_infer"
     },
     "836": {
       "name": "m_fScriptCamY",
@@ -393,8 +393,8 @@
     },
     "2372": {
       "name": "m_wndTextDisplay",
-      "type": "int",
-      "source": "ida_decomp:UIWnd::SetEnable(this,Buffer,0)"
+      "type": "UIWnd *",
+      "source": "ida_decomp:UIWnd::SetEnable(this,Buffer,0)+codegen_infer"
     },
     "8460": {
       "name": "m_nCapacity",
@@ -408,8 +408,8 @@
     },
     "9492": {
       "name": "m_pScriptInstD",
-      "type": "int",
-      "source": "ida_decomp:Destroy(this)→+9504, 2 refs"
+      "type": "PalScriptMgr *",
+      "source": "ida_decomp:Destroy(this)→+9504, 2 refs+codegen_infer"
     },
     "9496": {
       "name": "m_pScriptInstE",
