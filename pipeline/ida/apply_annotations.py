@@ -899,6 +899,22 @@ def apply_annotations():
 
     print("[6b] Global types: %d/%d (fail=%d)" % (g_typed, len([g for g in globs.values() if g.get("type")]), len(g_type_fail)))
 
+    # --- 6c. CRT function signatures (operator new/delete) ---
+    _CRT_SIGS = {
+        '??2@YAPAXI@Z': 'void * __cdecl operator new(unsigned int);',
+        '??3@YAXPAX@Z': 'void __cdecl operator delete(void *);',
+        'j_??2@YAPAXI@Z': 'void * __cdecl operator new(unsigned int);',
+        'j_??3@YAXPAX@Z': 'void __cdecl operator delete(void *);',
+    }
+    crt_ok = 0
+    for ea in idautils.Functions(0x00401000, 0x00560000):
+        name = ida_name.get_name(ea) or ""
+        if name in _CRT_SIGS:
+            if idc.SetType(ea, _CRT_SIGS[name]):
+                crt_ok += 1
+    if crt_ok:
+        print("[6c] CRT function types set: %d" % crt_ok)
+
     # --- 7. Re-enable auto-analysis + trigger full type propagation ---
     # All modifications are done. Now let IDA propagate types.
     # This may override some function names with mangled versions (IDA C++ resolution).

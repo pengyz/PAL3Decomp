@@ -258,6 +258,57 @@ def _fix_static_method_calls(code):
     return code
 
 
+def _fix_asm_data_labels(code):
+    """Replace IDA asm 'ds:flt_XXXX' / 'ds:dbl_XXXX' with static const float variable.
+
+    If the literal value is known (from store.literals), declare a static const
+    and reference it. Otherwise use dword ptr [flt_XXXX] with extern decl.
+    """
+    from data import store
+    if 'ds:flt_' not in code and 'ds:dbl_' not in code:
+        return code
+
+    # Collect all flt_/dbl_ labels referenced in asm
+    flt_labels = set(re.findall(r'ds:(flt_[0-9A-Fa-f]+)', code))
+    dbl_labels = set(re.findall(r'ds:(dbl_[0-9A-Fa-f]+)', code))
+
+    # For flt_ with known literal values: declare static const float
+    consts = {}
+    for label in flt_labels:
+        if label in store.literals:
+            val = store.literals[label]
+            varname = '_k_' + label
+            consts[label] = (varname, val)
+
+    # Replace ds:label with dword ptr [var]
+    for label in flt_labels:
+        if label in consts:
+            varname = consts[label][0]
+            code = re.sub(r'ds:' + re.escape(label), 'dword ptr [%s]' % varname, code)
+        else:
+            code = re.sub(r'ds:' + re.escape(label), 'dword ptr [%s]' % label, code)
+    for label in dbl_labels:
+        code = re.sub(r'ds:' + re.escape(label), 'qword ptr [%s]' % label, code)
+
+    # Prepend static const declarations
+    if consts:
+        lines = code.split('\n')
+        insert_idx = 0
+        for i, line in enumerate(lines):
+            if line.strip() == '{':
+                insert_idx = i + 1
+                break
+        decls = []
+        for label, (varname, val) in sorted(consts.items()):
+            clean_val = val.rstrip('f')
+            decls.append('  static const float %s = %sf;' % (varname, clean_val))
+        if decls and insert_idx > 0:
+            lines = lines[:insert_idx] + decls + lines[insert_idx:]
+            code = '\n'.join(lines)
+
+    return code
+
+
 def _fix_asm_hex_ambiguity(code):
     """Fix MASM hex constants that look like C float literals.
 
@@ -368,6 +419,9 @@ def run(code, ctx):
 
     # Fix IDA asm float constants: ds:1.2f → static const float variable
     code = _fix_asm_float_constants(code)
+
+    # Fix IDA asm data labels: ds:flt_XXXX → dword ptr [flt_XXXX]
+    code = _fix_asm_data_labels(code)
 
     # Fix MASM hex ambiguity: 0E0h → 0xE0 (prevents C parser float confusion)
     code = _fix_asm_hex_ambiguity(code)
