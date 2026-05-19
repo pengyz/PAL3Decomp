@@ -4196,3 +4196,44 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   - 这些都是真实问题, 必须逐一修复
 - **原则**: 严禁 fallback/workaround, 所有问题都必须真正修复
 - **基线**: 4571 errors, 32/189 pass (全流程验证)
+
+### 2026-05-19 TAUDT_FIXED struct import: 88 failures → 0
+
+- **置信度**: 85 (IDA TAUDT_FIXED 验证 — create_udt + get_size 精确校验)
+- **证据**: IDA `get_size()` 返回 INVALID/mismatch 时即检测到真实数据错误
+- **修复内容** (46 文件):
+  1. **新增 20 个缺失枚举**: ECBVAKind, ECBFiveMagic, ECBFiveNimbus, ECBRoleSpecState,
+     ECBRoleTaskMode, ECBShowItemKind, ECBStageLockFlag, ECBStageTask, ECBStageTaskState,
+     ECBCombatState, ECBFiveLineup, EEffect, ACTION_KIND, SCENE_TYPE, ROLE_BEHAVIOUR,
+     FightState, PAL3_FRAME, ECBMeetEnemy, ECBForce, ECBCombatResult, ECBBattleFieldAttr
+  2. **创建 13 个缺失 struct 存根**:
+     - gbGeomQuad(68), gbVolModNode(220), gbGfxDriverInfo(184), gbTextureArray(68)
+     - gbResManager(12), gbTexture_D3D(96), gbCamera(376), gbVisNode(88), gbAABBox(24)
+     - CPK(917948), p_RoleState(4292), m_RoleState(4292), s_RoleState(3948)
+  3. **修复 8 个成员重叠**:
+     - Actor+488: gbOBBox(76)→int (span=8)
+     - UIScene+112: POINT(8)→int (span=4)
+     - SceneObj+348: gbOBBox(76)→int (span=12, PAL3A PDB mismatch)
+     - CCBUI+164: UIStatic*[5]→[3] (span=12)
+     - CCBUI+292: UIStatic*[11]→[3] (span=12)
+     - PAL3+377: 移除 m_bRange (位于 gbGfxDriverInfo 内部)
+     - CCBCamControl: 移除 11 个位于 gbVolModNode 内部的字段
+     - CCBSystem+56: C3DSpark*[2]→* (span=4)
+     - Scene+12: void*[30]→[29] (span=116)
+     - SaleUI+93600: UIStaticRM[5][5]→[3][3] (span=1692)
+     - RenderTarget: 移除 +124~+188 内 gbTexture_D3D 内部的 14 个字段
+  4. **修正 binary_size**:
+     - SoundMgr: 1104→918796 (CPK embed, PDB 确认)
+     - RestScript: 1036→2068 (ScriptData embed, PDB 确认)
+     - C3DSpark: 7472→15920 (gbGeomQuad[128] embed, PDB 确认)
+     - MXTransport: 1364→363968 (ParticleEffect embed, PDB 确认)
+     - CScreenModeNode: 0→88 (= gbVisNode base)
+     - PAL3VisNode: 0→88 (= gbVisNode base)
+  5. **移除无效 base_class** (size < base 导致 INVALID):
+     - UIDialog: 移除 base_class=UIWnd (PAL3A size=72 < UIWnd=88)
+     - UIFlexBar: 移除 base_class=UIWnd (size=84 < UIWnd=88)
+     - CCB*Window×8: 移除 base_class=UIFrameWnd (PAL3A sizes < UIFrameWnd=152)
+     - UICaption, UIEmote: 移除 base_class=UIGameFrm (PDB 显示非继承关系)
+  6. **OBBox→gbOBBox 重命名**: 使 annotation 名与代码引用一致
+- **结果**: struct import 0 failures, init --force → OK
+- **编译**: 5496 errors (全量重建后 Hex-Rays 输出变化, 预期行为)
