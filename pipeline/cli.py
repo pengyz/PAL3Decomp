@@ -356,7 +356,14 @@ def cmd_codegen(args):
 
     script = os.path.join(_PIPELINE_DIR, 'gen', 'codegen.py')
     result = subprocess.run([sys.executable, script] + args)
-    sys.exit(result.returncode)
+    if result.returncode != 0:
+        sys.exit(result.returncode)
+
+    # Auto-snapshot after 'codegen all'
+    if args[0] == 'all' and '--no-snapshot' not in args:
+        print("\n[Snapshot] Capturing compile baseline...")
+        snap_script = os.path.join(_PIPELINE_DIR, 'snapshots', 'snapshot.py')
+        subprocess.run([sys.executable, snap_script, 'capture'])
 
 
 def _get_script_info(path):
@@ -513,6 +520,10 @@ def main():
         cmd_compile()
     elif command == 'codegen':
         cmd_codegen(args[1:])
+    elif command == 'snapshot':
+        snap_script = os.path.join(_PIPELINE_DIR, 'snapshots', 'snapshot.py')
+        sub = args[1] if len(args) > 1 else 'list'
+        subprocess.run([sys.executable, snap_script, sub])
     elif command == 'tool':
         cmd_tool(args[1:])
     else:
