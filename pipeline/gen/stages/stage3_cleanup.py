@@ -352,6 +352,16 @@ def run(code, ctx):
             i += 1
     code = '\n'.join(result_lines)
 
+    # Comment out lines with IDA type misidentifications (FLIRT/TIL false matches)
+    _IDA_MISID_PATTERNS = (
+        'Concurrency', 'details::VirtualProcessor', 'NtTib', 'ExceptionList',
+        'std::_Xlen', 'std::_Xran',
+    )
+    code = re.sub(
+        r'^([ \t]*.*(?:' + '|'.join(re.escape(p) for p in _IDA_MISID_PATTERNS) + r').*)$',
+        r'// [IDA_MISID] \1',
+        code, flags=re.MULTILINE)
+
     # --- AST-based structural detection ---
     code = _ast_cleanup(code, ctx)
 
