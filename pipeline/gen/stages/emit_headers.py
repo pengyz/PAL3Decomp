@@ -1026,6 +1026,18 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             decl = decl.replace('std::ios_base *', 'UIWnd *')
             lines.append("%s // %s" % (decl, addr))
 
+    # For opaque 4-byte structs (no real members), add int conversion operators
+    # This allows IDA-generated code to assign integers to these types
+    _ann_for_opaque = load_annotations_data()
+    _opaque_struct = _ann_for_opaque.get('structs', {}).get(cls_name, {})
+    _opaque_size = _opaque_struct.get('binary_size') or _opaque_struct.get('gen_size') or 0
+    _opaque_members = _opaque_struct.get('known_members', {})
+    if _opaque_size == 4 and len(_opaque_members) == 0:
+        lines.append("    // Opaque 4-byte type: allow int conversion for IDA codegen")
+        lines.append("    operator int() const { return *(int*)this; }")
+        lines.append("    void operator=(int v) { *(int*)this = v; }")
+        lines.append("")
+
     lines.append("};")
     lines.append("")
     return '\n'.join(lines)
