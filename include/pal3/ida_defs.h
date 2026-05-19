@@ -80,10 +80,15 @@ typedef void _UNKNOWN;
 #define _EBX 0
 #define _ECX 0
 #define _EDX 0
+#define _ESI 0
+#define _EDI 0
+#define _EBP 0
 #define _AX 0
 #define _ET1 0
 #define Func 0
 static void *retaddr = 0;
+#define BYTE4(x) (*(((_BYTE*)&(x))+4))
+#define COERCE_VOID_THISCALL_DWORD_DWORD_(x) ((void*)(x))
 
 // IDA helpers
 #define qmemcpy memcpy
