@@ -4441,6 +4441,15 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
   （gbMatrixStack 实例调用），不对 `Class::Method(&obj, &var)` 生效
   （gbMatrix4 接受指针）。-31 errors (C2664 -32)。
 - **基线**: 4981 errors, 0/159 pass (session 总计 -549)
+- **orphan thiscall 声明尝试**: 将无 `::` 的 __thiscall 函数声明为自由函数（去 this），
+  导致 +26 回归（decomp 中这些函数作为实例方法被调用，签名不匹配）。回退。
+  正确路径：逐个确认归属类（可能是 UIWnd 子类而非 UIWnd 本身）。
+- **pipeline 系统性优化收敛**: 剩余 errors 主要来自：
+  1. struct 成员缺失 (C2039: 574) — 需逐类 binary 分析
+  2. 类型不匹配 (C2440: 991, C2664: 627) — 需 IDA 类型标注改善
+  3. asm 块级联 (C2059: 841) — 需 IDA 给局部变量设 float 类型
+  4. undeclared (C2065: 271) — 需函数归属/全局变量标注
+  所有方向都指向 annotation 逐类迭代（IDA 查询 + 二进制验证）
 
 ### 2026-05-19 session 最终总结
 
