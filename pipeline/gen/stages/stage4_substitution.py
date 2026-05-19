@@ -214,6 +214,17 @@ def _apply_text_substitutions(code, ctx):
     return code
 
 
+def _fix_asm_hex_ambiguity(code):
+    """Fix MASM hex constants that look like C float literals.
+
+    0E0h, 0A4h etc. are valid MASM hex but VC6 C parser sees '0E0' as float exponent.
+    Fix by converting to 0x prefix format in __asm blocks.
+    """
+    if '__asm' not in code:
+        return code
+    return re.sub(r'\b(0[A-Fa-f][0-9A-Fa-f]*)h\b', lambda m: '0x' + m.group(1)[1:], code)
+
+
 def _fix_asm_float_constants(code):
     """Replace IDA asm 'ds:1.2f' with static const float variable references.
 
@@ -313,5 +324,8 @@ def run(code, ctx):
 
     # Fix IDA asm float constants: ds:1.2f → static const float variable
     code = _fix_asm_float_constants(code)
+
+    # Fix MASM hex ambiguity: 0E0h → 0xE0 (prevents C parser float confusion)
+    code = _fix_asm_hex_ambiguity(code)
 
     return code
