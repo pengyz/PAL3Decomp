@@ -4267,7 +4267,10 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   - struct layout 正确了 → 但 Hex-Rays 对未标注区域生成 `_DWORD` 访问
   - 旧 `_fix_ref_params` 碰巧掩盖了 pointer/reference 不匹配 → 修掉后暴露真实问题
   - 这不是 header 生成 bug，是 annotation 不完整的反映
-- **当前状态**: 5521 errors, 0/161 pass
+- **当前状态**: 5567 errors, 0/161 pass
 - **Top 错误来源 (C2039 not-a-member)**: CCBStageCam(82), UIScenePanel(59), UIBigMap(58),
   CCBUIPanel(53), UICoverFrm(50), CCBStage(50), RoleSystem(46)
-- **下一步**: 这些类的 struct 成员标注需要补充（annotation 迭代）
+- **off_ globals 暴露**: 移除 137 个 `extern void *off_XXX` 伪声明，
+  改为不声明（undeclared identifier 错误更诚实）。
+  这些全局变量需要在 globals.json 中标注正确类型。
+- **下一步**: annotation 迭代（struct 成员补充 + 全局变量类型标注）
