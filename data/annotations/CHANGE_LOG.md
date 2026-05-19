@@ -4400,3 +4400,18 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 **解读**: errors 增加是因为 struct 正确化后 Hex-Rays 暴露了更多真实问题。
 pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过的虚假基线。
 当前 26 是在 **正确 struct layout + 正确 pipeline** 下的真实通过。
+
+### 2026-05-19 IDA query 验证 + 批量导入天花板
+
+- **IDA query_class_full**: 对 SceneObj, CCBRoleState, CScreenMode, UIScenePanel,
+  UISceneFrm, UITitle_ArcSave 跑全量反编译上下文分析。
+  结果：已高度标注的类无新发现，低标注类因函数少/无 _todo_ 引用无输出。
+- **PDB 批量导入天花板已达**: 
+  - `binary_size == PDB size` 的 40 个类已全部处理
+  - 剩余类的 base_size 与 PDB 不匹配（UIWnd/UIFrameWnd 差异），无法安全批量导入
+- **C2039 根因确认 (1047 个)**:
+  - top: CCBStageCam(84), UIScenePanel(59), UIBigMap(58), CCBUIPanel(52)
+  - 全部来自 struct own data 未标注（Hex-Rays 退化为 this->0 + N）
+  - CCBUIPanel 有 830 个被引用的偏移但无任何语义信息，无法有效标注
+  - 修复路径：逐类从 binary/ctor/dtor 分析字段布局（长期迭代工作）
+- **当前基线**: 5527 errors, 26/189 pass
