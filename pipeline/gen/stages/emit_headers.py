@@ -18,6 +18,7 @@ Usage:
 import json
 import os
 import re
+import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -32,6 +33,7 @@ OVERRIDES_DIR = PROJECT_ROOT / "include" / "pal3" / "overrides"
 
 
 _annotations_cache = None
+_header_errors = []
 
 def load_annotations_data():
     """从拆分目录加载标注数据（带缓存）。"""
@@ -980,12 +982,29 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             if method_name in vtable_method_names:
                 pass  # fall through to normal declaration below
 
-            # Deduplicate: skip if same method name+params already declared
+            # Detect duplicate declarations
+            def _strip_param_names(p_str):
+                parts = split_params(p_str)
+                stripped = []
+                for p in parts:
+                    p = p.strip()
+                    m2 = re.match(r'^(.+[\s\*])(\w+)$', p)
+                    stripped.append(m2.group(1).strip() if m2 else p)
+                return ', '.join(stripped)
+
+            # Dtor with address suffix (e.g. ~UIWnd_ef50): compiler-generated sdtor thunk, skip
+            if is_dtor and method_name != '~%s' % cls_name:
+                continue
+
             if is_dtor:
                 method_key = "~%s()" % cls_name
+            elif is_ctor:
+                method_key = "%s(%s)" % (cls_name, _strip_param_names(params))
             else:
-                method_key = "%s(%s)" % (method_name, params)
+                method_key = "%s(%s)" % (method_name, _strip_param_names(params))
             if method_key in seen_methods:
+                _header_errors.append(
+                    "DUPLICATE METHOD: %s::%s (addr=%s)" % (cls_name, method_key, addr))
                 continue
             seen_methods.add(method_key)
 
@@ -1372,6 +1391,13 @@ def generate_globals():
         f.write('\n'.join(h_lines) + '\n')
 
     print("  Globals: %d in globals.h" % (len(h_lines) - 6))
+
+    if _header_errors:
+        print("\n[ERROR] Header generation found %d annotation conflicts:" % len(_header_errors))
+        for e in _header_errors:
+            print("  %s" % e)
+        print("\nFix these in data/annotations/functions.json, then re-run.")
+        sys.exit(1)
 
 
 def run_header_generation():
