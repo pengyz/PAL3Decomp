@@ -102,6 +102,8 @@ SKIP_CLASSES = {
     'Concurrency',
     # DirectX / DirectInput
     '_DIMOUSESTATE2',
+    # IDA template instantiation artifacts
+    'primitive', 'uint',
     # gbengine (separate library) — auto-populated below
 }
 
