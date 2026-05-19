@@ -269,7 +269,4 @@ def run(code, ctx):
     # Text-level substitutions (type aliases, suffixes, thunk classes)
     code = _apply_text_substitutions(code, ctx)
 
-    # Reference parameter fix (depends on OOP having produced ->Method() form)
-    code = _fix_ref_params(code)
-
     return code
