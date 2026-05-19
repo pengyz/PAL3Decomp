@@ -4382,3 +4382,21 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   - s_RoleState.cpp +39 回归（PDB 成员类型可能与 PAL3 有差异）
 - **结论**: annotation 质量提升 → Hex-Rays 输出质量提升 → 编译通过文件增加
 - **基线**: 5527 errors, 26/189 pass
+- **后续 PDB 导入空间耗尽**: 所有 `binary_size==PDB_size` 的类已处理（40个），
+  剩余类的 base_size 与 PDB 不匹配（UIWnd/UIFrameWnd PAL3>PAL3A），
+  无法安全批量导入。后续需逐类手动分析（IDA 查询 + 二进制验证）。
+
+### 2026-05-19 迭代总结
+
+| 阶段 | 改动 | 效果 |
+|------|------|------|
+| TAUDT_FIXED | struct import 精确化 | 88→0 failures |
+| pipeline 修复 | TYPE_REMAP, this参数, dtor, asm, _REG=this, static method | -700+ errors |
+| annotation | 函数归属修正(12), 签名修正, PDB批量导入(143) | +26 pass |
+| 基础设施 | export --fast, snapshot系统, header严格校验 | 验证效率提升 |
+
+**起点**: 2927 errors / 44 pass (旧 struct layout, 不精确)
+**终点**: 5527 errors / 26 pass (全流程真实基线, struct 精确)
+**解读**: errors 增加是因为 struct 正确化后 Hex-Rays 暴露了更多真实问题。
+pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过的虚假基线。
+当前 26 是在 **正确 struct layout + 正确 pipeline** 下的真实通过。
