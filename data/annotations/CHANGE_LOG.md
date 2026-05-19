@@ -51,6 +51,38 @@
 
 ## 变更记录
 
+### [2026-05-20] codegen 修复 + Array annotation (baseline 4109/34 → 3667/35)
+
+**Codegen fix 1: &this->0 → this** (置信度 N/A — codegen 等价变换):
+- 问题: Hex-Rays 对未解析偏移输出 `*((_DWORD *)&this->0 + N)`, `&this->0` 不是合法 C++
+- 修复: `&this->0` → `this` (取成员0地址 = this指针), `this->0` → `*(_DWORD *)this`
+- 影响: 1514 occurrences across 11 files, -330 C2059 syntax errors
+- stage4_substitution.py text substitution
+
+**Codegen fix 2: ->string:: STL 内部调用** (置信度 N/A — codegen):
+- 问题: Hex-Rays 输出 `X->string::_Tidy(1)`, `X->string::_Eos(N)` 等 protected 方法调用
+- 修复: 包含 `->string::` 的行注释为 `// [STL]`
+- 原因: _Tidy/_Eos/_Split 是 std::basic_string protected 成员, 不可从用户代码调用
+- 影响: 68 occurrences across 13 files, -80 errors
+- 附带: `(std *)` → `(string *)` (IDA 缩写类型名)
+
+**Array struct +3 fields** (置信度 85 — A+ decomp access):
+- 0x04: int (_todo_004) — buffer begin ptr, 12 refs (Size, _auto_410bd0, _nearby_410960)
+- 0x08: int (_todo_008) — buffer end ptr, 12 refs
+- 0x0C: int (_todo_00C) — capacity end ptr, 3 refs
+- **证据**:
+  1. [A+] Array::Size (0x4111C0): `*((_DWORD *)this + 1)` 作为数组基址, `(*(this+2) - *(this+1)) / 12` = 元素计数
+  2. [A+] Array::_nearby_410960 (0x410960): `operator delete(*(this+1))`, 然后 *(this+1/2/3) = 0 (析构模式)
+  3. [A+] Array::_auto_410bd0 (0x410BD0): 三字段协同: begin/end/capacity 配合 realloc 逻辑
+
+**Decomp access pattern 扫描结果** (未实施, 仅记录):
+- 52 个类有 raw this+offset patterns 未在 annotations 中定义
+- CCBProtectWindow: binary_size=176 与 decomp (访问 offset 669304) 严重不符, 需修正
+- RenderTarget3: binary_size=24 与 decomp (访问 offset 28) 不符, 需修正
+
+**编译验证**: 4109 → 3667 errors (-442), 34 → 35 pass (+1)
+**注**: Array 字段需 init --force 后才反映到编译结果
+
 ### [2026-05-19] 会话总结 (baseline 4481/34 → 4396/37)
 
 **本轮改动汇总**:
