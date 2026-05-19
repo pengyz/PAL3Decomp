@@ -4368,3 +4368,17 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   未使用 struct layout（可能是函数 this 类型设置失败或 Hex-Rays 缓存问题）。
   需要在 IDA 会话中验证 struct 是否被 Hex-Rays 正确引用。
 - **基线**: 5481 errors, 1 pass
+
+### 2026-05-19 PDB 批量成员导入
+
+- **策略**: 只对 `binary_size == PDB size` 的类导入（layout 安全匹配）。
+  跳过 STL 类型和与已有成员 overlap 的。
+- **导入**: 143 个成员到 28 个 struct（tagEffTaskParam+53, CCBEditor+45,
+  m/p/s_RoleState+62, gbCamera+16, gbGfxDriverInfo+15 等）。
+- **效果 (全流程 apply→export→codegen→compile)**:
+  - C2039 -92（struct 成员解析成功）
+  - 26 个文件新通过编译 (CCBControl, CCBStageEffect, ArcPastScene 等)
+  - errors +46（新 struct 成员让 Hex-Rays 输出不同代码，部分产生新类型不匹配）
+  - s_RoleState.cpp +39 回归（PDB 成员类型可能与 PAL3 有差异）
+- **结论**: annotation 质量提升 → Hex-Rays 输出质量提升 → 编译通过文件增加
+- **基线**: 5527 errors, 26/189 pass
