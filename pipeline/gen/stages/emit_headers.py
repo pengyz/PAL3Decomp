@@ -915,7 +915,17 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                         return '%s a_%s' % (m.group(1), m.group(2))
                     return p
                 param_list = split_params(params)
-                params = ', '.join(_fix_param(p) for p in param_list)
+                param_list = [_fix_param(p) for p in param_list]
+                # Deduplicate parameter names (IDA sometimes gives same name to different params)
+                seen_names = {}
+                for idx, p in enumerate(param_list):
+                    m = re.match(r'^(.+[\s\*])(\w+)$', p.strip())
+                    if m:
+                        pname = m.group(2)
+                        if pname in seen_names:
+                            param_list[idx] = '%s%s%d' % (m.group(1), pname, idx)
+                        seen_names[pname] = idx
+                params = ', '.join(param_list)
 
             # Skip invalid method names and calling conventions
             if '`' in method_name or ' ' in method_name or '?' in method_name:
@@ -971,7 +981,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 pass  # fall through to normal declaration below
 
             # Deduplicate: skip if same method name+params already declared
-            method_key = "%s(%s)" % (method_name, params)
+            if is_dtor:
+                method_key = "~%s()" % cls_name
+            else:
+                method_key = "%s(%s)" % (method_name, params)
             if method_key in seen_methods:
                 continue
             seen_methods.add(method_key)
