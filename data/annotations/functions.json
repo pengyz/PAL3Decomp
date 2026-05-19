@@ -813,7 +813,7 @@
   },
   "0x0043A4C0": {
     "name": "UIScene::LoadResource",
-    "signature": "void __thiscall(UIScene *this, char *path)"
+    "signature": "void __thiscall(UIScene *this, void *path)"
   },
   "0x0043A770": {
     "name": "UIScene::_UIScene",
@@ -953,7 +953,7 @@
   },
   "0x0043E560": {
     "name": "UIListBox::SetFirstShow",
-    "signature": "int __thiscall(UIListBox *this, char *Source, int nVal)"
+    "signature": "int __thiscall(UIListBox *this, void *Source, int nVal)"
   },
   "0x0043E5C0": {
     "name": "UIListBox::SetItemOffset",
@@ -2237,7 +2237,7 @@
   },
   "0x004DFD20": {
     "name": "Combat::LogMessage",
-    "signature": "char __thiscall(Combat *this, int nVal, int nVal2, char *format)"
+    "signature": "char __thiscall(Combat *this, int nVal, char *nVal2, char *format)"
   },
   "0x004DFE00": {
     "name": "CCBAIWindow::SetText",
@@ -4705,7 +4705,7 @@
   },
   "0x00536AC0": {
     "name": "Actor::_unverified_536AC0",
-    "signature": "int __thiscall(Actor *this, char *name)"
+    "signature": "int __thiscall(Actor *this, void *name)"
   },
   "0x004CFC40": {
     "name": "unknown_libname_452",
@@ -5389,7 +5389,7 @@
   },
   "0x0040CF60": {
     "name": "CCBStageRole::PassCmd",
-    "signature": "int __thiscall(CCBStageRole *this, unsigned long *p_DWORD)"
+    "signature": "int __thiscall(CCBStageRole *this, void *p_DWORD)"
   },
   "0x004DC5B0": {
     "name": "CCBControl::GetControl",
