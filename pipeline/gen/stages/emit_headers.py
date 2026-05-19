@@ -34,6 +34,16 @@ OVERRIDES_DIR = PROJECT_ROOT / "include" / "pal3" / "overrides"
 
 _annotations_cache = None
 _header_errors = []
+_funcs_ann_cache = None
+
+def _ensure_funcs_ann():
+    global _funcs_ann_cache
+    if _funcs_ann_cache is None:
+        funcs_json = ANNOTATIONS_DIR / "functions.json"
+        if funcs_json.exists():
+            _funcs_ann_cache = json.load(open(funcs_json, encoding='utf-8'))
+        else:
+            _funcs_ann_cache = {}
 
 def load_annotations_data():
     """从拆分目录加载标注数据（带缓存）。"""
@@ -284,6 +294,7 @@ def demangle_name(mangled):
 
 def collect_methods():
     """Collect all class methods from decomp JSONs + functions.json (fallback)."""
+    _ensure_funcs_ann()
     classes = defaultdict(list)
     seen_addrs = set()
 
@@ -298,6 +309,7 @@ def collect_methods():
         name = d.get('name', '')
         sig = d.get('signature', '')
         addr = d.get('address', '')
+
 
         cls = None
         method = None

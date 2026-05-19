@@ -141,6 +141,7 @@ def collect_functions(decomp_dir=None):
         if name.startswith('sub_'):
             continue
 
+
         # Demangle MSVC names: ?Method@Class@@... -> Class::Method
         cls = None
         method = None

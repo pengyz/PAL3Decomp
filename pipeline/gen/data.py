@@ -46,6 +46,7 @@ class DataStore:
         self.free_func_sigs = {}    # "FuncName" -> "ret FuncName(params)" declaration
         self.exe_data = b''         # raw exe for .rdata string lookup
         self.skip_classes = set()   # classes to not generate
+        self.functions_ann = {}     # "0x00XXXXXX" -> {name, signature} from annotations
 
     def load(self):
         """Load all resources from disk. Call once at startup."""
@@ -87,10 +88,11 @@ class DataStore:
                     self.declared_globals.add(m.group(1))
 
     def _load_annotations(self):
-        # functions.json → static methods + thunks
+        # functions.json → static methods + thunks + full annotation lookup
         funcs_path = self.annotations_dir / "functions.json"
         if funcs_path.exists():
             funcs = json.load(open(funcs_path, encoding='utf-8'))
+            self.functions_ann = funcs
             for addr, info in funcs.items():
                 name = info.get('name', '')
                 sig = info.get('signature', '')
