@@ -103,7 +103,7 @@ def generate_forward_decls(all_code):
                 lines.append("void __cdecl %s(void);" % u)
                 continue
             if u.startswith('nullsub_'):
-                lines.append("void __cdecl %s(void);" % u)
+                lines.append("void __cdecl %s(...);" % u)
                 continue
             if u in store.global_types:
                 gt = store.global_types[u]

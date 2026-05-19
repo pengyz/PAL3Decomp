@@ -42,6 +42,8 @@ struct gbVec3D {
     float Length() const;
     float LengthSquare() const;
     void Normalize();
+    inline void Copy(const gbVec3D& src) { x = src.x; y = src.y; z = src.z; }
+    inline void Copy(const gbVec3D* src) { x = src->x; y = src->y; z = src->z; }
 #ifdef GBVEC3D_NO_CTOR
     inline void Zero() { z = 0.0f; y = 0.0f; x = 0.0f; }
 #else
