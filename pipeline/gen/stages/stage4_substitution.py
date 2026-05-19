@@ -312,16 +312,18 @@ def _fix_ref_params(code):
 def _comment_stl_internals(code):
     """Comment out STL internal method calls that can't compile in user code.
 
-    Hex-Rays exposes string::_Tidy, string::_Eos, string::_Split etc.
+    Hex-Rays exposes string::_Tidy, string::_Eos, string::_Split, _Xlen etc.
     These are protected methods of basic_string — compiler generates them,
     not expressible in source.
     """
-    if '->string::' not in code:
+    _stl_methods = ('->string::', '->_Xlen(', '->_Tidy(', '->_Eos(', '->_Split(',
+                    '->codecvt_base::', '->strstreambuf::', '->ios_base::')
+    if not any(pat in code for pat in _stl_methods):
         return code
     lines = code.split('\n')
     result = []
     for line in lines:
-        if '->string::' in line and '// [STL]' not in line:
+        if any(pat in line for pat in _stl_methods) and '// [STL]' not in line:
             result.append(line.replace(line.lstrip(), '// [STL] ' + line.lstrip()))
         else:
             result.append(line)
