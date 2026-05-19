@@ -447,6 +447,28 @@ def apply_annotations():
 
     print("[2] Globals: named=%d/%d (types deferred)" % (g_named, len(globs)))
 
+    # --- 2b. Define essential Windows/SDK types that mssdk TIL would provide ---
+    # (mssdk TIL disabled due to excessive misidentification, but we still need basic types)
+    _ESSENTIAL_TYPES = [
+        "struct tagRECT { long left; long top; long right; long bottom; };",
+        "struct tagPOINT { long x; long y; };",
+        "struct tagSIZE { long cx; long cy; };",
+        "struct tagMSG { void *hwnd; unsigned int message; unsigned int wParam; long lParam; unsigned long time; tagPOINT pt; };",
+        "struct _GUID { unsigned long Data1; unsigned short Data2; unsigned short Data3; unsigned char Data4[8]; };",
+    ]
+    til = ida_typeinf.get_idati()
+    ess_ok = 0
+    for decl in _ESSENTIAL_TYPES:
+        tinfo = ida_typeinf.tinfo_t()
+        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
+            # Extract name from "struct NAME {"
+            import re as _re_ess
+            m = _re_ess.match(r'struct\s+(\w+)', decl)
+            if m:
+                tinfo.set_named_type(til, m.group(1), ida_typeinf.NTF_REPLACE)
+                ess_ok += 1
+    print("[2b] Essential SDK types: %d/%d" % (ess_ok, len(_ESSENTIAL_TYPES)))
+
     # --- 3. Structs (gap-filling build, base classes first) ---
     structs = data.get("structs", {})
     til = ida_typeinf.get_idati()
