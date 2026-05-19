@@ -214,6 +214,48 @@ def _apply_text_substitutions(code, ctx):
     return code
 
 
+def _fix_asm_float_constants(code):
+    """Replace IDA asm 'ds:1.2f' with static const float variable references.
+
+    VC6 inline asm cannot use 'ds:' prefix. We replace with dword ptr [VAR].
+    The static const declarations are collected and prepended to the function.
+    """
+    float_re = re.compile(r'ds:(-?\d+\.[\d]*f?)')
+    matches = float_re.findall(code)
+    if not matches:
+        return code
+
+    consts = {}
+    for val in set(matches):
+        clean = val.rstrip('f')
+        varname = '_flt_' + clean.replace('.', '_').replace('-', 'neg')
+        consts[val] = varname
+
+    def _repl(m):
+        return 'dword ptr [%s]' % consts[m.group(1)]
+
+    code = float_re.sub(_repl, code)
+
+    # Prepend static const declarations before function body
+    lines = code.split('\n')
+    insert_idx = 0
+    for i, line in enumerate(lines):
+        if line.strip() == '{':
+            insert_idx = i + 1
+            break
+
+    decls = []
+    for val, varname in sorted(consts.items(), key=lambda x: x[1]):
+        clean = val.rstrip('f')
+        decls.append('  static const float %s = %sf;' % (varname, clean))
+
+    if decls and insert_idx > 0:
+        lines = lines[:insert_idx] + decls + lines[insert_idx:]
+        code = '\n'.join(lines)
+
+    return code
+
+
 def _fix_ref_params(code):
     """Remove & for known reference-parameter method calls."""
     _REF_METHODS = {
@@ -268,5 +310,8 @@ def run(code, ctx):
 
     # Text-level substitutions (type aliases, suffixes, thunk classes)
     code = _apply_text_substitutions(code, ctx)
+
+    # Fix IDA asm float constants: ds:1.2f → static const float variable
+    code = _fix_asm_float_constants(code)
 
     return code
