@@ -116,6 +116,9 @@ def run(code, ctx):
                     is_this_param = ctx.cls_name in first_text
                 if not is_this_param and '*' in first_text and not ctx.is_free_function:
                     is_this_param = True
+                # Also catch degraded this: "int this" (IDA lost pointer type)
+                if not is_this_param and 'this' in first_text and not ctx.is_free_function:
+                    is_this_param = True
                 if is_this_param:
                     if len(params) > 1:
                         # Remove first param + following comma

@@ -121,6 +121,8 @@ def generate_forward_decls(all_code):
                 _undeclared_off_globals.add(u)
             elif u.startswith('a') and len(u) > 1 and u[1].isupper():
                 lines.append('extern char %s[];' % u)
+            elif re.search(r'\b' + re.escape(u) + r'\s*\[', all_code):
+                lines.append("extern int %s[];" % u)
             else:
                 lines.append("extern int %s;" % u)
         lines.append("")

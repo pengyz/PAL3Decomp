@@ -60,6 +60,23 @@ class DataStore:
     def _load_game_classes(self):
         for h in self.header_dir.glob("*.h"):
             self.game_classes.add(h.stem)
+        # Also include gbengine classes for ctor/dtor detection
+        gb_dir = self.project_root / "include" / "gbengine"
+        if gb_dir.exists():
+            for h in gb_dir.glob("*.h"):
+                self.game_classes.add(h.stem)
+        # Add struct names from annotations (covers engine types like gbVec3D)
+        structs_dir = self.project_root / "data" / "annotations" / "structs"
+        if structs_dir.exists():
+            for f in structs_dir.glob("*.json"):
+                self.game_classes.add(f.stem)
+        # Common engine structs not in annotation files
+        self.game_classes.update([
+            'gbVec3D', 'gbVec2D', 'gbVec4D', 'gbMatrix4', 'gbColorQuad',
+            'gbResManager', 'gbLight', 'gbMaterial', 'gbViewPort',
+            'gbQuaternion', 'gbPlane', 'gbBoundingBox', 'gbRay',
+            'string', 'basic_string',
+        ])
 
     def _load_globals_h(self):
         globals_h = self.project_root / "include" / "pal3" / "globals.h"
