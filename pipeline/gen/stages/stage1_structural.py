@@ -101,10 +101,13 @@ def run(code, ctx):
             if params:
                 first_param = params[0]
                 first_text = first_param.text.decode('utf-8')
-                # Check if first param is the 'this' pointer (ClassName *this or ClassName *anyname)
+                # Check if first param is the 'this' pointer
+                # For __thiscall, first pointer param is always 'this' regardless of name/type
                 is_this_param = ('this' in first_text and '*' in first_text)
                 if not is_this_param and '*' in first_text and ctx.cls_name:
                     is_this_param = ctx.cls_name in first_text
+                if not is_this_param and '*' in first_text and not ctx.is_free_function:
+                    is_this_param = True
                 if is_this_param:
                     if len(params) > 1:
                         # Remove first param + following comma

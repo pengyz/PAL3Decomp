@@ -880,6 +880,13 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
         for method_name, sig, addr in sorted(methods, key=lambda x: x[2]):
             ret, cc, params, ret_right = parse_signature(sig)
 
+            # Remap IDA internal types to C types in signatures
+            for ida_type, c_type in TYPE_REMAP.items():
+                if ida_type in ret:
+                    ret = ret.replace(ida_type, c_type)
+                if ida_type in params:
+                    params = params.replace(ida_type, c_type)
+
             is_ctor = (method_name == cls_name)
             is_dtor = (method_name.startswith('~') or method_name == '~%s' % cls_name)
             is_thiscall = '__thiscall' in cc
