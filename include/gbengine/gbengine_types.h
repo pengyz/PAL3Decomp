@@ -176,11 +176,11 @@ struct gbRay {
     struct gbRay & operator=(struct gbRay const & p0);
     float IntersectPlane(struct gbVec3D * p0, struct gbVec3D * p1);
     inline float IntersectPlane(struct gbVec3D p0, struct gbVec3D p1) { return IntersectPlane(&p0, &p1); }
-    int IsColAABB(struct gbAABBox & p0);
-    int IsColOBB(struct gbOBBox & p0);
-    int IsColOBB_H(struct gbOBBox & p0);
+    int IsColAABB(struct gbAABBox * p0);
+    int IsColOBB(struct gbOBBox * p0);
+    int IsColOBB_H(struct gbOBBox * p0);
     int IsColQuad(struct gbVec3D * p0, struct gbVec3D * p1, struct gbVec3D * p2);
-    int IsColSphere(struct gbSphere & p0);
+    int IsColSphere(struct gbSphere * p0);
     int IsColTriangle(struct gbVec3D * p0, struct gbVec3D * p1, struct gbVec3D * p2, struct gbVec3D * p3);
     int IsColTriangle(struct gbVec3D * p0, struct gbVec3D * p1, struct gbVec3D * p2);
 };
@@ -192,7 +192,7 @@ struct gbAABBox {
     // Methods (auto-generated)
     gbAABBox();
     struct gbAABBox & operator=(struct gbAABBox const & p0);
-    int IsColAABB(struct gbAABBox & p0);
+    int IsColAABB(struct gbAABBox * p0);
     int IsColPoint(struct gbVec3D * p0);
     void Transform(struct gbMatrix4 * p0);
 };
@@ -204,11 +204,11 @@ struct gbOBBox {
     // Methods (auto-generated)
     gbOBBox();
     struct gbOBBox & operator=(struct gbOBBox const & p0);
-    void GetAABBox(struct gbAABBox & p0);
+    void GetAABBox(struct gbAABBox * p0);
     struct gbVec3D GetCenter() const;
     float GetRadius() const;
     float GetRadiusInDirection(struct gbVec3D const & p0) const;
-    void GetSphere(struct gbSphere & p0);
+    void GetSphere(struct gbSphere * p0);
     int IsColOBB(struct gbOBBox * p0);
     int IsColPoint(struct gbVec3D * p0);
 };
@@ -232,8 +232,8 @@ struct gbPlane {
     // Methods (auto-generated)
     gbPlane();
     struct gbPlane & operator=(struct gbPlane const & p0);
-    int IsColAABB(struct gbAABBox & p0);
-    int IsColOBB(struct gbOBBox & p0);
+    int IsColAABB(struct gbAABBox * p0);
+    int IsColOBB(struct gbOBBox * p0);
 };
 
 class gbUIRect {
