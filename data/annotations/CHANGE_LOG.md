@@ -74,6 +74,30 @@
 - C2440 (968): Hex-Rays 返回 void* 而非正确类型 (IDA 函数签名未生效)
 - 这两类需要 IDA 层改进 (apply_annotations 更好地设置函数类型 + struct 一致性)
 
+### [2026-05-19] mssdk TIL 禁用 + LL/i64 修复 + _BYTE=char + 参数名修正
+
+**mssdk TIL 禁用** (置信度 90 — A/B 测试确认):
+- 实验: init --force 有 TIL vs 无 TIL 全流程对比
+- 有 TIL: 4358 errors / 无 TIL: 4339 errors (-19)
+- 结论: mssdk TIL 是净损失, 引入 Concurrency/NtTib 等误识别 > D3D 类型收益
+
+**stage4 LL/i64 后缀统一清除** (置信度 N/A — codegen):
+- 旧行为: stage4 把 LL → i64 (VC6 也不认识)
+- 新行为: 去掉所有 LL/uLL/i64/ui64 后缀
+- 注: 95 个 "bad suffix" 实际是非法参数名(数字开头), 非后缀问题
+
+**_BYTE typedef char** (置信度 N/A — ida_defs):
+- unsigned char* → char* 在 C++ 中不能隐式转换
+- _BYTE 改为 char 消除 signedness 差异
+- 效果: -26 errors
+
+**annotation 非法参数名修正** (置信度 85):
+- functions.json 中 2 个签名: `int 14C` → `int a_14C`, `int 128` → `int a_128`
+- 剩余 5 个来自 IDA export 未正确应用签名 — 需 apply_annotations 调查
+
+**编译验证**: 4339 → 4313 (-26), PASS 38 (不变)
+**Session 总计**: 4481/34 → 4313/38 (-168 errors, +4 PASS)
+
 ### [2026-05-19] stage3 __vftable 完整注释 + FLIRT srand 修正
 
 **stage3 __vftable 多行注释** (置信度 N/A — codegen 逻辑):
