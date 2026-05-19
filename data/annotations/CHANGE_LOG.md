@@ -4361,3 +4361,10 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **Hex-Rays OOP 输出澄清**: 当 IDA 中函数签名设为 __thiscall 且 this 类型正确时，
   Hex-Rays 直接输出 `obj->Method()` 格式。否则输出 `Class::Method(obj)`。
   我们的 stage2 OOP 转换仍需保留作为 fallback（覆盖 IDA 未识别的 case）。
+- **_REG=this 替换**: _ESI/_EDI = this 后续用 this-> 代替（排除 asm 块）。-23 errors。
+- **this->0 问题定位**: 1719 处 `this->0` / `this->数字` 退化访问，
+  最大来源 CCBUIPanel(1217), UIGameOver(84), UIBigMap(69)。
+  根因：struct 虽然在 IDA 中创建了 (TAUDT_FIXED)，但 Hex-Rays 反编译时
+  未使用 struct layout（可能是函数 this 类型设置失败或 Hex-Rays 缓存问题）。
+  需要在 IDA 会话中验证 struct 是否被 Hex-Rays 正确引用。
+- **基线**: 5481 errors, 1 pass
