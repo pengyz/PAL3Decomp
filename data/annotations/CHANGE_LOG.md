@@ -4303,3 +4303,17 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **结果**: 5512 → 4801 errors, 0 → 50 pass (112 files compiled)
 - **off_ globals 减少**: 137 → 57 (codegen 生成的文件减少后引用也减少)
 - **基线**: 4801 errors, 50/112 pass
+
+### 2026-05-19 annotation 冲突修复 + dtor 处理
+
+- **函数归属修正** (12 conflicts → 0):
+  - 8 个函数 this 类型与声明类不匹配（错误归属）→ 改为正确类
+  - UIWnd::GetChild 返回值冲突 (int vs UIWnd*) → 重命名为 GetChildPtr
+  - UIListBox::GetID 3 个同名不同函数 → 代码分析确认不同函数，2 个改为 _method_
+  - CEffCylinder::ProcCommonTask 重复 → 重命名为 ProcCommonTask_0
+- **sdtor thunk 处理**: ~ClassName_XXXX（带地址后缀的析构函数）是编译器生成的
+  scalar deleting destructor，不输出到 header（只保留无后缀的真正 dtor）
+- **header 严格校验**: 方法签名重复时 ERROR 中断（不静默跳过），要求 annotation 层修正
+- **去重 key**: 用类型签名（strip 参数名）判断重复，避免 `GetChild(int id)` vs `GetChild(int index)` 被认为不同
+- **结果**: 5512 → 2914 errors, 0 → 72 pass
+- **对比原始基线**: 2927 errors / 44 pass → 2914 / 72 (errors-13, pass+28)
