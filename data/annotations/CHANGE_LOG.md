@@ -4355,3 +4355,9 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
   decomp 中以自由函数形式调用（非 this->method），确认为 cdecl helper。
   修复 _Texture_Info.cpp 编译（qmemcpy 参数类型匹配）。
 - **结果**: 5505 → 5504 errors, 0 → 1 pass (_Texture_Info.cpp 通过)
+- **GetInstance_df70**: `__thiscall` → `__cdecl` (singleton getter, this=NULL)。
+  codegen 新增 `((ClassName *)0)->Method()` → `ClassName::Method()` 转换。
+  Hex-Rays 对 static 函数输出 null-this 调用，需要 annotation+codegen 配合处理。
+- **Hex-Rays OOP 输出澄清**: 当 IDA 中函数签名设为 __thiscall 且 this 类型正确时，
+  Hex-Rays 直接输出 `obj->Method()` 格式。否则输出 `Class::Method(obj)`。
+  我们的 stage2 OOP 转换仍需保留作为 fallback（覆盖 IDA 未识别的 case）。
