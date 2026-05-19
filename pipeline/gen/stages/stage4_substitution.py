@@ -258,6 +258,48 @@ def _fix_static_method_calls(code):
     return code
 
 
+def _fix_ref_params(code):
+    """Restore reference parameters for known gbengine methods.
+
+    IDA flattens C++ references to pointers. Hex-Rays outputs &var for these.
+    For methods declared with & params in gbengine headers, remove the &.
+    Only applies to ->Method() calls (instance methods via gbMatrixStack etc.),
+    NOT to Class::Method() calls (which may be gbMatrix4 taking pointers).
+    """
+    # Methods with reference params: {name: set of 1-based param positions}
+    _REF_METHODS = {
+        'Rotate': {1, 2}, 'Translate': {1}, 'Scale': {1},
+        'RightMultiply': {1}, 'LeftMultiply': {1},
+        'RightTranslate': {1}, 'LeftTranslate': {1},
+        'MakeMatrix': {1, 2, 3}, 'IntersectPlane': {1, 2},
+        'IsColTriangle': {1, 2, 3, 4}, 'IsColOBB': {1}, 'IsColOBB_H': {1},
+        'IsColAABB': {1}, 'PointWorldToScr': {2, 3}, 'PointScrToWorld': {2, 3},
+    }
+    for method_name, ref_pos in _REF_METHODS.items():
+        if method_name not in code:
+            continue
+        # Only match ->Method( pattern (instance call), NOT Class::Method(
+        if ref_pos == {1}:
+            code = re.sub(r'(->' + re.escape(method_name) + r'\s*\()&(\w)', r'\1\2', code)
+        elif ref_pos == {1, 2}:
+            code = re.sub(r'(->' + re.escape(method_name) + r'\s*\()&(\w)', r'\1\2', code)
+            code = re.sub(r'(->' + re.escape(method_name) + r'\s*\([^,]+,\s*)&(\w)', r'\1\2', code)
+        elif ref_pos == {2}:
+            code = re.sub(r'(->' + re.escape(method_name) + r'\s*\([^,]+,\s*)&(\w)', r'\1\2', code)
+        elif ref_pos == {2, 3}:
+            code = re.sub(r'(->' + re.escape(method_name) + r'\s*\([^,]+,\s*)&(\w)', r'\1\2', code)
+            code = re.sub(r'(->' + re.escape(method_name) + r'\s*\([^,]+,[^,]+,\s*)&(\w)', r'\1\2', code)
+        elif ref_pos == {1, 2, 3}:
+            code = re.sub(r'(->' + re.escape(method_name) + r'\s*\()&(\w)', r'\1\2', code)
+            code = re.sub(r'(->' + re.escape(method_name) + r'\s*\([^,]+,\s*)&(\w)', r'\1\2', code)
+            code = re.sub(r'(->' + re.escape(method_name) + r'\s*\([^,]+,[^,]+,\s*)&(\w)', r'\1\2', code)
+        elif ref_pos == {1, 2, 3, 4}:
+            for _ in range(4):
+                code = re.sub(r'(->' + re.escape(method_name) + r'\([^)]*),\s*&(\w)', r'\1, \2', code)
+                code = re.sub(r'(->' + re.escape(method_name) + r'\s*\()&(\w)', r'\1\2', code)
+    return code
+
+
 def _fix_asm_data_labels(code):
     """Replace IDA asm 'ds:flt_XXXX' / 'ds:dbl_XXXX' with static const float variable.
 
@@ -431,5 +473,9 @@ def run(code, ctx):
 
     # Replace _REG = this; ... _REG->xxx with this->xxx
     code = _fix_register_this_alias(code)
+
+    # Restore reference parameters: ->Method(&var) → ->Method(var)
+    # IDA flattens references to pointers; this restores for known ref-param methods
+    code = _fix_ref_params(code)
 
     return code
