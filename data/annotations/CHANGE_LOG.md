@@ -3210,6 +3210,69 @@ codegen 的 enum header 生成通过追加方式处理碰撞，导致：
 - **类型推断**: 4-aligned → int, 2-aligned → short, 其他 → unsigned char
 - **影响**: struct 中 gap 区域被填充，_gap_ 访问应大幅减少
 
+## [2026-05-20] 深度分析 batch 2-3 — IEEE 754 + 语义命名 + 内嵌对象
+
+### 变更内容
+
+**Batch 2** (commit 080c5ca2):
+1. UILoadingFrm: 6 字段 int→float (IEEE 754 常量检测)
+   - 0x0B8: 1086324736 = 0x40C00000 = 6.0f
+   - 0x0C8, 0x0CC, 0x0D0, 0x0D4, 0x108: 1065353216 = 0x3F800000 = 1.0f
+2. CameraCtrl: 3 字段语义命名 (lerp target position vector)
+   - 0x040 → m_fLerpTargetX
+   - 0x044 → m_fLerpTargetY
+   - 0x048 → m_fLerpTargetZ
+3. RoleSystem: UIWnd embed at 0x624
+   - _todo_624 (UIWnd*) → _embed_UIWnd_624 (UIWnd)
+
+**Batch 3** (commit feba8c64):
+1. RoleSystem: Actor embed 命名
+   - 0x1A8: _todo_1A8 → _embed_Actor_1A8
+   - Decomp 访问成员: m_pEquipAtt*, m_pSelfAtt, m_dwMatMsg
+
+### 证据
+
+1. **IEEE 754 检测** (置信度 85, A+级):
+   - Hex-Rays decomp 中整数常量赋值，值恰好是标准 float 编码
+   - 1065353216 (0x3F800000) = 1.0f (最常见的 float 常量)
+   - 1086324736 (0x40C00000) = 6.0f
+
+2. **CameraCtrl lerp target** (置信度 80-85, A级):
+   - VA=0x41D010: `mov [esi+40h], target_gbVec3D.x` (stores to 0x040)
+   - SetupLerp 方法上下文: 参数数组 v5[0/1/2] 分别存入 +0x40/44/48
+   - 形成连续的 gbVec3D 结构 (x, y, z)
+
+3. **RoleSystem embeds** (置信度 80, A+级):
+   - 0x624: `UIWnd::GetRect((UIWnd *)&field, &pRect)` cast 模式
+   - 0x1A8: 多个 decomp 访问 `this->_todo_1A8.m_pSelfAtt` 等 Actor 成员
+   - Size 验证通过: Actor 596 bytes, gap 740 bytes
+
+### 判定
+
+**通过**。所有修改基于 A/A+ 级证据，置信度达标。
+
+### 经验总结
+
+1. **IEEE 754 常量识别**: decomp 中整数赋值可能暴露 float 类型
+   - 1065353216, 1073741824, 1056964608 等是常见编码
+   - 配合 4-byte 对齐可确认为 float (置信度 85)
+
+2. **Embed vs Pointer 判别**:
+   - 取地址 + cast: `((Type *)&this->field)` → embed 候选
+   - 但需验证: 后续有无指针解引用 `field->member`
+   - CameraCtrl._field_1C8: 有 gbVec3D ctor 但后续有 `operator delete(*((void **)&field + 1))` → 不是简单 embed
+   - RoleSystem._field_114: 有 `&field` 但也有 `field->vfptr` → 是指针
+
+3. **Size 验证的重要性**:
+   - Actor size 596, gap 740 → 可以 embed
+   - RenderTarget3 size 24, gap 8 → 不可能 embed
+   - 必须检查 binary_size 和 next member offset
+
+4. **Decomp ctor 调用不可靠**:
+   - `RoleSystem::_nearby_41bd40((RoleSystem *)&this->_field_208)` 看似 ctor
+   - 但 RoleSystem 是 8704 bytes, Actor 总 size 只 596 → 不可能 embed
+   - 可能是错误的类型推断或初始化某个小的子结构
+
 ## [2026-05-14] globals.json 清理 + structs/ 垃圾删除
 
 - **变更**:
