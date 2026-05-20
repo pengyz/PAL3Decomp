@@ -4660,3 +4660,17 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
 - **free_functions.cpp include fix**: 加 free_functions.h → RoleSystem 不再 C1003 截断
 - **最终遮蔽**: fatal=5 (C1903×1 CCBAIWindow + C1003×4 大文件正常截断)
 - **真实基线**: 3375 errors, 问题完全暴露
+
+### [2026-05-20] CCBStage.m_fAngleDegrees
+
+- **变更**: 重命名 _todo_19E8 (offset 0x19E8) -> m_fAngleDegrees
+- **置信度**: 90
+- **证据**:
+  1. [A+] IDA decomp 28 refs，角度数学运算：
+     - 弧度→度数：`this->_todo_19E8 = v * 57.29578` (180/π)
+     - 归一化：`this->_todo_19E8 = 6.2831855 - v` (2π - angle)
+     - 比较：`fabs(v - this->_todo_19E8) >= 1.570796370506287` (π/2)
+     - 累加：`this->_todo_19E8 = ... * 720.0 + this->_todo_19E8`
+  2. [A+] 在 _nearby_50da90, _nearby_50f590, Method_50E160, _nearby_50e360 等方法中一致使用
+  3. [A] 前置字段 m_fVelY (0x19E0), m_fVelZ (0x19E4) 是速度分量，符合运动/旋转语义
+- **判定**: 通过。该字段用于存储旋转角度（单位：度）
