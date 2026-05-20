@@ -283,6 +283,7 @@ def _fix_ref_params(code):
         'MakeMatrix': {1, 2, 3}, 'IntersectPlane': {1, 2},
         'IsColTriangle': {1, 2, 3, 4}, 'IsColOBB': {1}, 'IsColOBB_H': {1},
         'IsColAABB': {1}, 'PointWorldToScr': {2, 3}, 'PointScrToWorld': {2, 3},
+        'PopMessage': {1}, 'IsColPoint': {1}, 'IsColSphere': {1},
     }
     for method_name, ref_pos in _REF_METHODS.items():
         if method_name not in code:
@@ -443,6 +444,7 @@ def _fix_ref_params(code):
         'MakeMatrix': {1, 2, 3}, 'IntersectPlane': {1, 2},
         'IsColTriangle': {1, 2, 3, 4}, 'IsColOBB': {1}, 'IsColOBB_H': {1},
         'IsColAABB': {1}, 'PointWorldToScr': {2, 3}, 'PointScrToWorld': {2, 3},
+        'PopMessage': {1}, 'IsColPoint': {1}, 'IsColSphere': {1},
     }
     for method_name, ref_pos in _REF_METHODS.items():
         if method_name not in code:
