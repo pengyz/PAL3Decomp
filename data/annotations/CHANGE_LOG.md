@@ -4508,3 +4508,10 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
 | pipeline 修复数 | — | 12 项 | codegen 质量提升 |
 | PDB 成员导入 | — | 143 个/28 struct | annotation 覆盖率提升 |
 | 新基础设施 | — | snapshot + export --fast | 验证效率提升 |
+
+### 2026-05-20 新基线 + annotation 迭代
+
+- **远端合并 + init --force 全流程**: **2943 errors, 37 pass / 191 total**
+- **query_todo_fields 扫描**: 32 个类有 _todo_ 字段，大部分类型已正确但语义不明确
+- **收益递减区**: 命名迭代瓶颈（缺乏语义信息），剩余 errors 主要来自大 struct 空洞
+- **下一步**: 对高错误 struct 用 decomp access pattern 批量填充字段
