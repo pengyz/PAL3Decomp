@@ -4546,3 +4546,6 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
 - **asc_ 字符串标签**: PalScript C1903 消除 (asc_5E2A3C 声明为 char[])
 - **最终遮蔽状态**: C1004=0✓, C1903=1(CCBAIWindow,annotation层), C1003=5(正常截断)
 - **结论**: 问题已充分暴露，后续 error 下降都是真实质量提升
+- **free_functions.cpp include fix**: 加 free_functions.h → RoleSystem 不再 C1003 截断
+- **最终遮蔽**: fatal=5 (C1903×1 CCBAIWindow + C1003×4 大文件正常截断)
+- **真实基线**: 3375 errors, 问题完全暴露
