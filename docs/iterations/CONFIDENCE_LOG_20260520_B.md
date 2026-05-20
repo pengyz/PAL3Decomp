@@ -152,3 +152,31 @@
 - **offset 684, 820, 828, 832, 840, 844**: 参与向量运算但不是 gbVec3D
 - **发现**: 这些字段虽然参与向量运算（叉乘、点乘、变换），但在结构体中被其他命名字段（m_fBlendA/C/D/E）分隔，说明它们是**独立的 float 字段**，不是连续的 vec3d 分量
 - **结论**: 保持为单独 float，不合并为 gbVec3D
+
+## UIFrameWnd 字段类型修正（基于 raw IDB）
+
+### offset 136: m_nChildren
+- **修改**: unsigned long → float
+- **置信度**: 95
+- **证据**:
+  - [A+] raw IDB @ 0x52DE00: `*(_DWORD *)(this + 136) = 1065353216;` (1.0f)
+  - [A+] 字面量 1065353216 = IEEE754 float 1.0
+  - [D] 字段名 m_nChildren（n 前缀）与类型不符（可能是 PDB 命名错误）
+- **判定**: 通过 — 二进制直接证据压倒性
+
+### offset 140: m_bFrameInit
+- **修改**: unsigned long → float
+- **置信度**: 95
+- **证据**: 同上，raw IDB 赋值 1065353216
+
+### offset 144: m_nBorderColor
+- **修改**: unsigned long → float
+- **置信度**: 95
+- **证据**: 同上，raw IDB 赋值 1065353216
+
+### offset 148: m_nBorderStyle
+- **修改**: unsigned char → float
+- **置信度**: 95
+- **证据**: 同上，raw IDB 赋值 1065353216
+
+**方法论突破**: 使用 raw IDB 作为 ground truth，避免被错误 annotations 污染的偏移。
