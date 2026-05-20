@@ -149,6 +149,11 @@ class DataStore:
                     continue
                 if 'unknown_libname' in fname or 'nullsub' in fname:
                     continue
+                # Skip names that conflict with ida_defs.h macros
+                _IDA_MACROS = {'Func', 'JUMPOUT', 'NAN', 'LOBYTE', 'HIBYTE',
+                               'LOWORD', 'HIWORD', 'LODWORD', 'HIDWORD'}
+                if fname in _IDA_MACROS:
+                    continue
                 m = _re.match(r'^(.+?)\s*__cdecl\s*\((.*)\)$', fsig)
                 if not m:
                     continue

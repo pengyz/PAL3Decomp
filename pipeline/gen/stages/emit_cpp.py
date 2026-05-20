@@ -328,6 +328,17 @@ def run_cpp_generation(filter_classes=None):
         generated += 1
         total_funcs += len(free_funcs)
 
+        # Generate free_functions.h from free_func_sigs
+        header_dir = store.header_dir
+        h_lines = ['#pragma once',
+                   '// Auto-generated: free function forward declarations', '']
+        for fname, decl in sorted(store.free_func_sigs.items()):
+            h_lines.append('%s;' % decl)
+        h_lines.append('')
+        h_path = header_dir / "free_functions.h"
+        with open(h_path, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(h_lines))
+
 
     # Clean stale .cpp files not in current generation set
     generated_files = set()
