@@ -35,8 +35,10 @@ def collect_sub_refs(code):
 def collect_undefined_refs(code):
     """Find likely undefined identifiers that need extern/forward decl."""
     refs = set()
-    # IDA string constants: aXxxxx (exclude those replaced by literals)
+    # IDA string constants: aXxxxx and asc_XXXXX (exclude those replaced by literals)
     refs.update(r for r in re.findall(r'\b(a[A-Z]\w{3,})\b', code)
+                if r not in store.literals)
+    refs.update(r for r in re.findall(r'\b(asc_[0-9A-Fa-f]+)\b', code)
                 if r not in store.literals)
     # IDA unnamed globals (only as identifiers, not those replaced by literals)
     refs.update(r for r in re.findall(r'\b(dword_[0-9A-Fa-f]+)\b', code)
@@ -114,6 +116,8 @@ def generate_forward_decls(all_code):
                     lines.append("extern %s %s;" % (gt, u))
             elif u.startswith('flt_'):
                 lines.append("extern float %s;" % u)
+            elif u.startswith('asc_'):
+                lines.append("extern char %s[];" % u)
             elif u.startswith('byte_'):
                 lines.append("extern char %s;" % u)
             elif u.startswith('off_'):
