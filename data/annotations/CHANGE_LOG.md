@@ -4723,3 +4723,21 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
 - **判定**: 通过 — 所有虚函数表指针现在使用正确类型
 - **后续**: 仍有 35 个 offset 0 字段标记为 float，需逐个判断（真 float vs 错误类型）
 
+
+### [2026-05-20] 命名约定驱动的类型修正（batch: 4 字段）
+
+- **变更**: 修正 4 个字段类型，基于 MSVC 匈牙利命名约定
+- **置信度**: 70
+- **影响类**: ScriptSystem, PalScriptMgr, RenderTarget, CScreenMode
+- **证据**:
+  1. [B] MSVC 匈牙利命名约定（m_n/m_i→int, m_b→bool, m_p→pointer）
+  2. [D] Source 标记为 "FPU_post_reattrib_*" → 自动标注工具系统性误判
+  3. [D] 所有字段位于 offset 0，类型为 float 明显不合理（offset 0 通常是 vfptr 或首字段）
+- **修复动作**:
+  - ScriptSystem.0: m_nSlotID float→int
+  - PalScriptMgr.0: m_bGetSceneScript float→unsigned char
+  - RenderTarget.0: m_iMode float→int
+  - CScreenMode.0: m_pEnumeration float→void*
+- **判定**: 通过 — 命名约定是强语义指示器，置信度中等（70）可接受
+- **后续**: 仍有 31+ 个 offset 0 字段标记为 float，需进一步分类处理
+
