@@ -178,9 +178,9 @@
       "source": "A:LEA_ecx_[esi+0ECh]_2refs_confirm_embed,binary_size=220,no_overlap"
     },
     "2444": {
-      "name": "_todo_98C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_CamEntries",
+      "type": "int[1794]",
+      "source": "A+:ida_decomp stride=15*4(60bytes), 119 entries, pattern: for(i=&this->field; *i!=pCam; i+=15)"
     },
     "9620": {
       "name": "m_nCurCamIdx",
