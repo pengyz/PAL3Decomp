@@ -51,6 +51,19 @@
 
 ## 变更记录
 
+### [2026-05-20] Batch 4: UIWnd base class float 类型修正
+
+**类型修正 (2 项)**:
+
+| 结构体 | 偏移 | 变更 | 置信度 | 证据 |
+|--------|------|------|--------|------|
+| UIWnd | 0x4C (76) | int→float | 85 | [A+] decomp: `this->_todo_04C = 1065353216` (IEEE754 1.0f) + 用于 float 算术 `v8 = v27 * *(float *)&this->_todo_04C` |
+| UIWnd | 0x50 (80) | int→float | 85 | [A+] decomp: `this->_todo_050 = 1065353216` (IEEE754 1.0f) + 用于 float 算术 `v10 = (1.0 - *(float *)&this->_todo_050) * v32` |
+
+**影响**: UIWnd 是 UI 系统基类, 该修正影响所有派生类 (UIFrameWnd, UIListBox 等) 的继承成员类型, 提升 codegen 中浮点运算代码质量。
+
+**置信度分析**: 同 UILoadingFrm batch 2 float 修正 (commit 080c5ca2), IEEE 754 magic number 是 float 类型的确定性证据, 加上 decomp 中显式 float cast 和浮点运算使用, 达到 A+ 置信度 85。
+
 ### [2026-05-20] 深度 annotation 分析: 类型修正 + 语义命名 + 内嵌对象发现
 
 **类型修正 (3 项)**:
