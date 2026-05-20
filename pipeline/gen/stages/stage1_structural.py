@@ -176,6 +176,14 @@ def run(code, ctx):
             break
     code = '\n'.join(lines)
 
+    # 4b. Fix invalid parameter names (starting with digit)
+    lines = code.split('\n')
+    if lines:
+        # Match "type name" or "type *name" where name starts with digit
+        lines[0] = re.sub(r'([\w\s]+[\s\*])(\d[0-9A-Fa-f]*)\s*([,\)])',
+                          lambda m: m.group(1) + 'a_' + m.group(2) + m.group(3), lines[0])
+        code = '\n'.join(lines)
+
     # 5. Ctor/dtor: remove 'return expr;' from body
     if ctx.is_ctor or ctx.is_dtor:
         lines = code.split('\n')
