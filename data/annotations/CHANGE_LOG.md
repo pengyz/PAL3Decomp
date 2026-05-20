@@ -4705,3 +4705,21 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
   2. [A+] 在 Helper_439850, Method_439930 等方法中一致作为 gbVec3D 使用
   3. [B] 上下文：屏幕坐标转换为射线方向，符合相机射线投射语义
 - **判定**: 通过。从 offset 296 开始的 12 字节是一个 gbVec3D（射线方向向量）
+
+### [2026-05-20] vfptr 类型修正（batch）
+
+- **变更**: 修正 6 个类的 offset 0 字段类型从 float → int（虚函数表指针）
+- **置信度**: 95
+- **影响类**: UIWnd, UITitle, SceneObj, RoleSystem, CGameData, gbFileStream
+- **证据**:
+  1. [A+] 字段名为 vfptr/vtable/vftable → 明确标识虚函数表指针
+  2. [A] offset 0 在 C++ 类中的语义位置 → 虚函数表指针必在首字段
+  3. [B] Source 标记为 "FPU_post_reattrib_*" → 自动标注工具误判（将指针读取误识别为浮点）
+- **修复动作**:
+  - UIWnd.0: vfptr float→int, 删除 UIListBox.0（继承）
+  - UITitle.0, SceneObj.0, gbFileStream.0: vfptr float→int
+  - RoleSystem.0: m_pVtable float→int
+  - CGameData.0: _vftable float→int
+- **判定**: 通过 — 所有虚函数表指针现在使用正确类型
+- **后续**: 仍有 35 个 offset 0 字段标记为 float，需逐个判断（真 float vs 错误类型）
+
