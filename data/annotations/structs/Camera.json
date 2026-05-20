@@ -68,9 +68,9 @@
       "source": "A+:decomp *(gbCamera**)(this+292)"
     },
     "296": {
-      "name": "_todo_128",
-      "type": "float",
-      "source": "A+:decomp *(float*)(this+296)=v8.x"
+      "name": "m_vRayDir",
+      "type": "gbVec3D",
+      "source": "A+:ida_decomp vec3d_ops: =(x,y,z), -=(v.x,v.y,v.z), gbVec3D::Normalize(this+296)"
     },
     "4": {
       "name": "m_fCameraEyePosition",
@@ -136,16 +136,6 @@
       "name": "m_bCreate",
       "type": "unsigned char",
       "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "300": {
-      "name": "_todo_12C",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "304": {
-      "name": "_todo_130",
-      "type": "float",
-      "source": "A+:decomp *(float*)(this+304)=z"
     },
     "0": {
       "name": "m_pVtbl",

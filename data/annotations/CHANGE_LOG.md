@@ -4692,3 +4692,16 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
                 `v38 = (__int64)((double)bottom * *(float *)&this->_todo_050 + v10);`
   3. [B] 在 _unverified_4422E0, _unverified_442890 等布局方法中一致使用
 - **判定**: 通过。用于 UI 元素的 X/Y 轴缩放系数
+
+### [2026-05-20] Camera.m_vRayDir
+
+- **变更**: 合并 _todo_128, _todo_12C, _todo_130 -> m_vRayDir (gbVec3D @ 0x128)
+- **置信度**: 90
+- **证据**:
+  1. [A+] IDA decomp 向量操作：
+     - 分量赋值：`*(float *)(this + 296) = v8.x;` `*(float *)(this + 300) = y;` `*(float *)(this + 304) = z;`
+     - 向量减法：`*(float *)(this + 296) = *(float *)(this + 296) - v9.x;` (同样对 y, z)
+     - 归一化：`gbVec3D::Normalize((gbVec3D *)(this + 296));`
+  2. [A+] 在 Helper_439850, Method_439930 等方法中一致作为 gbVec3D 使用
+  3. [B] 上下文：屏幕坐标转换为射线方向，符合相机射线投射语义
+- **判定**: 通过。从 offset 296 开始的 12 字节是一个 gbVec3D（射线方向向量）
