@@ -180,3 +180,63 @@
 - **证据**: 同上，raw IDB 赋值 1065353216
 
 **方法论突破**: 使用 raw IDB 作为 ground truth，避免被错误 annotations 污染的偏移。
+
+## raw IDB 方法建立（2026-05-20 深夜）
+
+### 方法论突破
+
+**问题**: work IDB 中应用了可能错误的 annotations，导致 Hex-Rays 反编译时字段偏移漂移，无法可靠验证。
+
+**解决**: 使用 `original/PAL3.exe.raw.i64` (未应用 annotations 的干净 IDB) 作为 ground truth。
+
+**工具链**:
+1. `pipeline/ida/export_raw_core_classes.py` - 从 raw IDB 导出目标方法
+2. `pipeline/analyze_raw_offsets.py` - 提取字段访问模式，对比 annotations
+3. 人工验证 raw IDB decomp 中的字段偏移和类型
+
+**优势**:
+- raw IDB 偏移未被污染，更接近真实二进制
+- 可以批量导出多个类的方法
+- 自动化程度高，可扩展
+
+### UIWnd.68: _todo_044
+- **修改**: int → unsigned char
+- **置信度**: 95
+- **证据**:
+  - [A+] raw IDB @ 0x441C90 (UIWnd::ctor): `*(_BYTE *)(this + 68) = 0;` / `= 1;`
+  - [A+] BYTE 访问模式（非 DWORD）
+  - [B] 值为 0/1（布尔语义）
+- **判定**: 通过 — raw IDB 直接证据，访问宽度明确
+
+### 方法有效性验证
+
+**测试案例**: 分析 14 个导出的方法，发现：
+- 真正的类型错误: 2 个 (UIWnd.68, Camera.400)
+- 误报（指针被识别为 int）: 3 个 (CCBCamControl.430000, 430136, UIWnd.32)
+
+**准确率**: 需要人工复核，但大幅减少了验证工作量。
+
+**改进方向**: 
+- 增强指针类型识别（通过字段名前缀 m_p*）
+- 增加 gbVec3D 等复合类型的识别
+- 扩展到更多类和方法
+
+### Camera.400: _todo_190
+- **修改**: int → unsigned char
+- **置信度**: 95
+- **证据**:
+  - [A+] raw IDB @ 0x41BEC0 (Camera::Update): `*((_BYTE *)this + 400) = (_BYTE)a2;`
+  - [A+] BYTE 访问模式（1字节存储，非 DWORD）
+  - [B] 赋值来源是指针低字节（常见的 bool/flag 存储模式）
+- **判定**: 通过 — raw IDB 直接证据，访问宽度明确为 1 字节
+
+### 累计修正统计（本次会话）
+
+| 类别 | 数量 | 置信度范围 | 方法 |
+|------|------|-----------|------|
+| vfptr 修正 | 7 | 95 | 字段名 + offset 0 语义 |
+| 命名约定修正 | 5 | 70 | MSVC 匈牙利命名 |
+| 数组识别 | 1 | 85 | IDA decomp stride 模式 |
+| raw IDB 验证 | 6 | 95 | raw IDB 直接证据 (UIFrameWnd×4, UIWnd.68, Camera.400) |
+| **总计** | **19** | **70-95** | 多方法组合 |
+

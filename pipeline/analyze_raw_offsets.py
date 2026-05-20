@@ -35,6 +35,48 @@ def extract_field_accesses(decompiled_code):
             'type_hint': type_hint,
         })
 
+    # 模式 3: this[N] = VALUE (DWORD索引, 偏移 = N*4)
+    pattern3 = r'\bthis\[(\d+)\]\s*=\s*([^;]+);'
+    for match in re.finditer(pattern3, decompiled_code):
+        index = int(match.group(1))
+        offset = index * 4
+        value = match.group(2).strip()
+        accesses.append({
+            'pattern': 'store_array',
+            'offset': offset,
+            'type_hint': 'DWORD',
+            'value': value
+        })
+
+    # 模式 4: variable = this[N] (DWORD索引, 偏移 = N*4)
+    pattern4 = r'=\s*this\[(\d+)\](?![[])'  # 负向前瞻确保不是 this[N][M]
+    for match in re.finditer(pattern4, decompiled_code):
+        index = int(match.group(1))
+        offset = index * 4
+        accesses.append({
+            'pattern': 'load_array',
+            'offset': offset,
+            'type_hint': 'DWORD',
+        })
+
+    # 模式 5: *((_TYPE *)this + N) (类型转换后的访问, 偏移取决于类型)
+    pattern5 = r'\*\(\(_(\w+) \*\)this \+ (\d+)\)'
+    for match in re.finditer(pattern5, decompiled_code):
+        type_hint = match.group(1)
+        index = int(match.group(2))
+        # 根据类型计算偏移
+        if type_hint in ['BYTE', 'char']:
+            offset = index
+        elif type_hint in ['WORD', 'short']:
+            offset = index * 2
+        else:  # DWORD, int, float, pointer
+            offset = index * 4
+        accesses.append({
+            'pattern': 'load_cast',
+            'offset': offset,
+            'type_hint': type_hint,
+        })
+
     return accesses
 
 def infer_class_from_method(method_name):

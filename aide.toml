@@ -1,0 +1,73 @@
+# PAL3Decomp — aide 项目配置
+# Hook 配置：从 .claude/settings.json 迁移而来
+
+# === Hook 1: Annotations 写入门禁 ===
+# 任何对 annotations 目录的写入/编辑，先验证格式
+[[hooks]]
+event = "pre_tool_use"
+matcher = "Write(pipeline/data/annotations/**)"
+[[hooks.hooks]]
+command = "cd /home/peng/workspace/PAL3Decomp && python3 pipeline/check_annotations.py || (echo '{\"reason\": \"Annotations 格式校验失败，请修正后重试\"}' && exit 2)"
+timeout_ms = 30000
+
+[[hooks]]
+event = "pre_tool_use"
+matcher = "Edit(pipeline/data/annotations/**)"
+[[hooks.hooks]]
+command = "cd /home/peng/workspace/PAL3Decomp && python3 pipeline/check_annotations.py || (echo '{\"reason\": \"Annotations 格式校验失败，请修正后重试\"}' && exit 2)"
+timeout_ms = 30000
+
+# === Hook 2: Git commit 前校验 annotations ===
+[[hooks]]
+event = "pre_tool_use"
+matcher = "Bash(git commit*)"
+[[hooks.hooks]]
+command = "cd /home/peng/workspace/PAL3Decomp && python3 pipeline/check_annotations.py || (echo '{\"reason\": \"Commit 门禁：annotations 校验未通过\"}' && exit 2)"
+timeout_ms = 30000
+
+# === Hook 3: Commit message 格式检查 ===
+[[hooks]]
+event = "pre_tool_use"
+matcher = "Bash(git commit*)"
+[[hooks.hooks]]
+command = """
+INPUT=$(cat)
+MSG=$(echo "$INPUT" | python3 -c "
+import json, sys, re
+data = json.load(sys.stdin)
+cmd = data.get('tool_input', {}).get('command', '')
+m = re.search(r'-m [\"\\'](.+?)[\"\\']', cmd)
+if not m:
+    sys.exit(0)
+msg = m.group(1)
+if not re.match(r'^\[(annotate|pipeline|codegen|build|docs|fix|refactor|test)\] ', msg):
+    print(json.dumps({'reason': 'Commit message 格式错误，必须为 [category] description。有效 category: annotate, pipeline, codegen, build, docs, fix, refactor, test'}))
+    sys.exit(2)
+")
+[ -n "$MSG" ] && echo "$MSG" && exit 2
+exit 0
+"""
+timeout_ms = 5000
+
+# === Hook 4: 结构体偏移后置校验（警告不阻断） ===
+[[hooks]]
+event = "post_tool_use"
+matcher = "Write(pipeline/data/annotations/structs/*)"
+[[hooks.hooks]]
+command = """
+INPUT=$(cat)
+FILE=$(echo "$INPUT" | python3 -c "import json,sys; print(json.load(sys.stdin).get('tool_input',{}).get('file_path',''))")
+cd /home/peng/workspace/PAL3Decomp && python3 pipeline/verify_offset.py --file "$FILE" 2>&1 || echo "{\"additional_context\": \"⚠ 结构体偏移校验有差异，请人工检查\"}"
+"""
+timeout_ms = 15000
+
+[[hooks]]
+event = "post_tool_use"
+matcher = "Edit(pipeline/data/annotations/structs/*)"
+[[hooks.hooks]]
+command = """
+INPUT=$(cat)
+FILE=$(echo "$INPUT" | python3 -c "import json,sys; print(json.load(sys.stdin).get('tool_input',{}).get('file_path',''))")
+cd /home/peng/workspace/PAL3Decomp && python3 pipeline/verify_offset.py --file "$FILE" 2>&1 || echo "{\"additional_context\": \"⚠ 结构体偏移校验有差异，请人工检查\"}"
+"""
+timeout_ms = 15000
