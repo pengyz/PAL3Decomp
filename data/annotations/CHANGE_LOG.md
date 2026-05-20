@@ -51,6 +51,41 @@
 
 ## 变更记录
 
+### [2026-05-20] 深度 annotation 分析: 类型修正 + 语义命名 + 内嵌对象发现
+
+**类型修正 (3 项)**:
+
+| 结构体 | 偏移 | 变更 | 置信度 | 证据 |
+|--------|------|------|--------|------|
+| CameraCtrl | 0x23C | int→float | 85 | [A] VA=0x533F29: `mov dword ptr [esi+23Ch], 0C3DBD0FEh` = -439.63f IEEE754 |
+| PAL3 | 0x88C,0xCC8,0xF94 | int→gbTexture* | 85 | [A+] decomp: `= (int)ActiveTexture` 且 GetActiveTexture 签名返回 gbTexture* |
+| CCBCamControl | 0xEC | gbVolModNode*→gbVolModNode | 85 | [A] LEA ecx,[esi+0ECh] (2 refs) 确认取内嵌地址; span=220, 无成员重叠 |
+
+**语义命名 (6 项)**:
+
+| 结构体 | 偏移 | 旧名 | 新名 | 置信度 | 证据 |
+|--------|------|------|------|--------|------|
+| EquipUI | 0x284 | _todo_284 | m_nCurRoleIdx | 75 | [A+] PtrArray::GetAt(m_pCCBStageRoleFind, idx) 15 refs |
+| EquipUI | 0x27C | _field_27C | m_nCurSlot | 70 | [A+] SetupRoleList(this, field, 0/1) + switch(field) 14 refs |
+| EquipUI | 0x290 | _todo_290 | m_pMsgWnd | 70 | [A+] UIWnd::HandleMessage(this->field) 9 refs |
+| CCBCamControl | 0x2594 | _todo_2594 | m_nCurCamIdx | 70 | [A+] cmp -1 + KeepCurCam 数组索引 5 refs |
+| CCBStageRole | 0x1B4 | _todo_1B4 | m_nProperAction | 70 | [A] store in GetProperCurAction+ProcTransportRun 6 refs |
+| CCBStageRole | 0x1F0 | _todo_1F0 | m_nCurState | 70 | [A] GetCurrentState returns &field, stores ProcProtect 3 refs |
+
+**内嵌对象发现 (2 项)**:
+
+| 结构体 | 偏移 | 类型 | 置信度 | 证据 |
+|--------|------|------|--------|------|
+| EquipUI | 0x137C | UIFrameWnd (embed) | 85 | [A+] ctor+dtor 调用, 删除重叠 _todo_13F8 |
+| CCBCamControl | 0xEC | gbVolModNode (embed) | 85 | [A] LEA pattern, span 220 无重叠 |
+
+**跳过/存疑**:
+- PalScript._todo_EC: float/int 冲突 (FPU + LODWORD==1/2), 需进一步调查
+- CCBStageScene 旋转字段 (0x2AC-0x34C): 行为明确 (五行阵位置旋转) 但具体含义不足以命名
+- UIListBox.824/976 embed: 与已有成员类型冲突, 需 class_full 深入分析
+- CameraCtrl.2B0/2B4: 指针对(8 refs), 目标类型未确定
+- UILoadingFrm.0x128-0x134: 进度动画组, 但不确定是 progress bar 还是 fade
+
 ### [2026-05-20] codegen 修复 + Array annotation (baseline 4109/34 → 3667/35)
 
 **Codegen fix 1: &this->0 → this** (置信度 N/A — codegen 等价变换):
