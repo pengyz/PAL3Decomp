@@ -260,6 +260,7 @@ def generate_free_funcs_cpp(funcs):
     lines = []
     lines.append('#include "pal3/ida_defs.h"')
     lines.append('#include "pal3/globals.h"')
+    lines.append('#include "pal3/gen/free_functions.h"')
     lines.append("")
     lines.append("// Free functions (not belonging to any class)")
     lines.append("")
