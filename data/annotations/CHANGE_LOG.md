@@ -4540,3 +4540,6 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
   导致 VC6 parser 失步 → fatal。stage1 加 regex 修复 (`14C` → `a_14C`)。
 - **fatal 统计**: C1004: 6→0 ✓, C1003: 5 (100 errors 截断,正常), C1903: 4 (parser recovery)
 - **真实基线**: 3284 errors, ~38 pass / 188 total（所有文件正常编译，无遮蔽）
+- **PopMessage 引用修复**: Actor.cpp + Object3D.cpp C1903 消除 (gbVisNode::PopMessage 接受 &)
+- **fatal 最终状态**: C1004=0✓, C1903=2 (CCBAIWindow+PalScript), C1003=5 (正常截断)
+- **当前真实基线**: 3369 errors（所有遮蔽充分暴露后）
