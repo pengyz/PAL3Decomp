@@ -4674,3 +4674,21 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
   2. [A+] 在 _nearby_50da90, _nearby_50f590, Method_50E160, _nearby_50e360 等方法中一致使用
   3. [A] 前置字段 m_fVelY (0x19E0), m_fVelZ (0x19E4) 是速度分量，符合运动/旋转语义
 - **判定**: 通过。该字段用于存储旋转角度（单位：度）
+
+### [2026-05-20] UIWnd.m_fScaleX, m_fScaleY
+
+- **变更**: 重命名缩放字段
+  - _todo_04C (0x4C) -> m_fScaleX
+  - _todo_050 (0x50) -> m_fScaleY
+- **置信度**: 85
+- **证据**:
+  1. [A+] IEEE 754 常量：初始化为 1065353216 (0x3F800000 = 1.0f)
+  2. [A+] IDA decomp 布局数学运算：
+     - m_fScaleX: `v5 = 1.0 - *(float *)&this->_todo_04C;`
+                `v8 = (double)v27 * *(float *)&this->_todo_04C;`
+                `v9 = (__int64)((double)right * *(float *)&this->_todo_04C + v7);`
+     - m_fScaleY: `v10 = (1.0 - *(float *)&this->_todo_050) * (double)v32;`
+                `v36 = (__int64)((double)(int)top * *(float *)&this->_todo_050 + v10);`
+                `v38 = (__int64)((double)bottom * *(float *)&this->_todo_050 + v10);`
+  3. [B] 在 _unverified_4422E0, _unverified_442890 等布局方法中一致使用
+- **判定**: 通过。用于 UI 元素的 X/Y 轴缩放系数

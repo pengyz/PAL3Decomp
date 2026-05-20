@@ -67,14 +67,14 @@
       "source": "decomp:DWORD access in UIWnd/UIListBox methods"
     },
     "76": {
-      "name": "_todo_04C",
+      "name": "m_fScaleX",
       "type": "float",
-      "source": "A+:IEEE754_1065353216_1.0f + decomp:float_arithmetic_cast"
+      "source": "A+:IEEE754(1065353216=1.0f) + ida_decomp layout_math: (1.0 - scale) * width, right * scale"
     },
     "80": {
-      "name": "_todo_050",
+      "name": "m_fScaleY",
       "type": "float",
-      "source": "A+:IEEE754_1065353216_1.0f + decomp:float_arithmetic_cast"
+      "source": "A+:IEEE754(1065353216=1.0f) + ida_decomp layout_math: (1.0 - scale) * height, top/bottom * scale"
     },
     "84": {
       "name": "_todo_054",
