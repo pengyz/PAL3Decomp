@@ -4529,3 +4529,14 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
   一旦基类成员完整，Hex-Rays 对所有子类的 decomp 质量同时提升
 - **教训**: 优先填充继承链顶端类的 gap 字段（UIWnd > UIFrameWnd > 子类）
 - **基线**: 1682 errors, 35/190 pass (session 总计 -3848, -70%)
+  **注**: 1682 是虚假低值（44 文件被 free_functions.h fatal error 遮蔽）
+
+### 2026-05-20 fatal error 消除 + 真实基线修正
+
+- **free_functions.h fatal error**: StrCopyRange 签名格式错误 + UIUpdate 归属错误
+  + _PlugInfo 未声明。修正签名 + include ida_defs.h + forward declare。
+  修复后 44 个被遮蔽的文件正常编译，暴露真实错误。
+- **C1004 (unexpected EOF)**: 6 个文件因参数名以数字开头 (如 `int 14C`)
+  导致 VC6 parser 失步 → fatal。stage1 加 regex 修复 (`14C` → `a_14C`)。
+- **fatal 统计**: C1004: 6→0 ✓, C1003: 5 (100 errors 截断,正常), C1903: 4 (parser recovery)
+- **真实基线**: 3284 errors, ~38 pass / 188 total（所有文件正常编译，无遮蔽）
