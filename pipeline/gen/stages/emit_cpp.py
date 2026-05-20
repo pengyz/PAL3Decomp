@@ -331,7 +331,23 @@ def run_cpp_generation(filter_classes=None):
         # Generate free_functions.h from free_func_sigs
         header_dir = store.header_dir
         h_lines = ['#pragma once',
-                   '// Auto-generated: free function forward declarations', '']
+                   '// Auto-generated: free function forward declarations',
+                   '#include "pal3/ida_defs.h"', '']
+        # Forward declare game struct types used as pointers in signatures
+        _SYSTEM_TYPES = {'int', 'void', 'char', 'float', 'double', 'short', 'long',
+                         'unsigned', 'const', 'BYTE', 'WORD', 'DWORD', 'UINT', 'BOOL',
+                         'LPCSTR', 'LPSTR', 'CHAR', 'HRESULT', 'HANDLE', 'HWND', 'RECT',
+                         'FILE', '_DWORD', '_BYTE', '_WORD', 'POINT', 'SIZE'}
+        fwd_types = set()
+        for fname, decl in store.free_func_sigs.items():
+            for m in re.finditer(r'\b(\w+)\s*\*', decl):
+                t = m.group(1)
+                if t not in _SYSTEM_TYPES:
+                    fwd_types.add(t)
+        if fwd_types:
+            for t in sorted(fwd_types):
+                h_lines.append('struct %s;' % t)
+            h_lines.append('')
         for fname, decl in sorted(store.free_func_sigs.items()):
             h_lines.append('%s;' % decl)
         h_lines.append('')
