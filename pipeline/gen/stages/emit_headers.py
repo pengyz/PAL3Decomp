@@ -671,7 +671,11 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             ann_struct = ann_data.get('structs', {}).get(cls_name, {})
             base = ann_struct.get('base_class')
             if base:
-                base_names.append(base)
+                # Handle both single base (string) and multiple bases (list)
+                if isinstance(base, list):
+                    base_names.extend(base)
+                else:
+                    base_names.append(base)
         except:
             pass
 

@@ -140,8 +140,12 @@ def check():
 
         # Check base_class exists
         base = sinfo.get('base_class')
-        if base and base not in all_struct_names:
-            warnings.append(f"structs[{sname}]: base_class '{base}' not in structs (may be in PDB)")
+        if base:
+            # Handle both single base (string) and multiple bases (list)
+            bases = [base] if isinstance(base, str) else base
+            for b in bases:
+                if b not in all_struct_names:
+                    warnings.append(f"structs[{sname}]: base_class '{b}' not in structs (may be in PDB)")
 
         # Check struct has size
         size = max(sinfo.get('binary_size', 0), sinfo.get('pdb_size', 0), sinfo.get('gen_size', 0))
