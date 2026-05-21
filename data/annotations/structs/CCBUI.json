@@ -2,11 +2,6 @@
   "name": "CCBUI",
   "note": "Placeholder, offsets need binary analysis",
   "known_members": {
-    "184": {
-      "name": "m_pRoleStateFaceName",
-      "type": "UIStatic *[5]",
-      "source": "pdb_verified_by_old_ida"
-    },
     "204": {
       "name": "m_pRoleStateAttackInc",
       "type": "UIStatic *[11]",
@@ -300,7 +295,23 @@
     "176": {
       "name": "m_nWindowX",
       "type": "int",
-      "source": "binary:SetSelection"
+      "source": "binary:SetSelection + binary_scan: 12 mov accesses (int confirmed)"
+    },
+    "180": {
+      "name": "m_pField_180",
+      "type": "void *",
+      "source": "binary_scan: 2 LEA accesses (likely pointer). PAL3patch has no field at this offset.",
+      "note": "Between m_pAttackSequenFace[5] end (175) and m_pRoleStatePanel start (200)."
+    },
+    "200": {
+      "name": "m_pRoleStatePanel",
+      "type": "UIStatic *[4]",
+      "source": "PAL3patch:pal3.h (no binary access found in scan, field may be unused)"
+    },
+    "236": {
+      "name": "m_pRoleStateFaceName",
+      "type": "UIStatic *[5]",
+      "source": "PAL3patch:pal3.h (corrected location, was misplaced at offset 184)"
     },
     "1044": {
       "name": "m_pLosePanel",
@@ -379,9 +390,9 @@
     },
     "156": {
       "name": "m_pAttackSequenFace",
-      "type": "UIStatic *[11]",
-      "source": "PAL3patch:pal3.h + binary_verified: 9 access points in range, 6 LEA (array element addressing)",
-      "note": "Covers offset 156~199 (44 bytes). Some non-pointer accesses in range may indicate field reuse or union."
+      "type": "UIStatic *[5]",
+      "source": "PAL3patch:pal3.h (corrected [11]→[5] based on binary evidence: offset 176+ has int accesses incompatible with pointer array)",
+      "note": "Binary scan shows offset 156~172 has LEA pattern (array), but offset 176 has 12 mov accesses (int). PAL3patch [11] conflicts with offset 176 int field. Corrected to [5] (covers 156~175)."
     },
     "216": {
       "name": "m_pRoleStateFace",
