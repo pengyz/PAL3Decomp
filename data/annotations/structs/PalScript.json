@@ -248,7 +248,7 @@
       "source": "A:mov_byte_ptr_in_class_method"
     },
     "68": {
-      "name": "_todo_44",
+      "name": "_todo_68",
       "type": "float",
       "source": "binary:CheckRayHitRole [ebp+0x44] loop_count for stride-32 array at +0x58 | type_fix:int->float(A+:decomp *(float*)&this->_todo_44 in UpdateTimer (2x))"
     },
@@ -256,10 +256,63 @@
       "name": "_todo_58",
       "type": "int",
       "source": "binary:CheckRayHitRole lea[ebp+0x58] + stride 32 iteration; nested actor ptr array"
+    },
+    "72": {
+      "name": "_todo_72",
+      "type": "float",
+      "source": "binary_scan:43_accesses(load_byte:5, load:1, lea:5, store_byte:6, store:17, fld_float:9)",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "44": {
+      "name": "_todo_44",
+      "type": "int",
+      "source": "binary_scan:21_accesses(store:18, load:3)",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "76": {
+      "name": "_todo_76",
+      "type": "float",
+      "source": "binary_scan:58_accesses(lea:45, store:7, load:1, fld_float:5)",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "80": {
+      "name": "_todo_80",
+      "type": "float",
+      "source": "binary_scan:8_accesses(store:1, store_byte:1, load:1, fld_float:5)",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "84": {
+      "name": "_todo_84",
+      "type": "float",
+      "source": "binary_scan:9_accesses(store:1, store_byte:2, load:1, fld_float:5)",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "40": {
+      "name": "_todo_40",
+      "type": "int",
+      "source": "binary_scan:5_accesses(store_byte:4, load:1)",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "48": {
+      "name": "_todo_48",
+      "type": "int",
+      "source": "binary_scan:3_accesses(store:2, load:1)",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "52": {
+      "name": "_todo_52",
+      "type": "int",
+      "source": "binary_scan:3_accesses(store:2, load:1)",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "64": {
+      "name": "_todo_64",
+      "type": "unsigned char",
+      "source": "binary_scan:1_accesses(store_byte:1)",
+      "note": "Discovered by member_scan after disp8 fix."
     }
   },
   "pdb_size": 40,
-  "gen_size": 1816,
   "binary_size": 1816,
   "note": "binary_size kept at 1816 despite member_scan showing access to offset 8416. High offset accesses (59 offsets >= 1816, max 8416) in methods like _auto_44b8a0 conflict with PalScript embeds in SaleUI/CCBUIPanel. Needs investigation: possible PalScript subclass, array access, or method misattribution."
 }

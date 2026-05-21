@@ -25,6 +25,36 @@
       }
     ]
   },
+  "16": {
+    "count": 11,
+    "access_types": {
+      "fld_float": 1,
+      "load": 5,
+      "store": 1,
+      "fild_int": 2,
+      "lea": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::SetParams",
+        "va": "0x412647",
+        "instruction": "D95610",
+        "type": "fld_float"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41C008",
+        "instruction": "8B4610",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41C00E",
+        "instruction": "894E10",
+        "type": "store"
+      }
+    ]
+  },
   "1440": {
     "count": 2,
     "access_types": {
@@ -185,9 +215,9 @@
     ]
   },
   "1284": {
-    "count": 5,
+    "count": 7,
     "access_types": {
-      "load": 2,
+      "load": 4,
       "store": 3
     },
     "examples": [
@@ -305,6 +335,92 @@
         "method": "Camera::SetParams",
         "va": "0x412A87",
         "instruction": "D99E0C050000",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "4": {
+    "count": 37,
+    "access_types": {
+      "fld_float": 5,
+      "load": 5,
+      "lea": 23,
+      "store": 4
+    },
+    "examples": [
+      {
+        "method": "Camera::SetParams",
+        "va": "0x412AC3",
+        "instruction": "D94604",
+        "type": "fld_float"
+      },
+      {
+        "method": "Camera::SetParams",
+        "va": "0x412BF7",
+        "instruction": "8B5604",
+        "type": "load"
+      },
+      {
+        "method": "Camera::SetParams",
+        "va": "0x412DB6",
+        "instruction": "8D4E04",
+        "type": "lea"
+      }
+    ]
+  },
+  "12": {
+    "count": 9,
+    "access_types": {
+      "fld_float": 3,
+      "load": 5,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "Camera::SetParams",
+        "va": "0x412AD9",
+        "instruction": "D9460C",
+        "type": "fld_float"
+      },
+      {
+        "method": "Camera::SetParams",
+        "va": "0x412C09",
+        "instruction": "8B4E0C",
+        "type": "load"
+      },
+      {
+        "method": "Camera::SetParams",
+        "va": "0x412EF8",
+        "instruction": "D9460C",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "8": {
+    "count": 36,
+    "access_types": {
+      "fld_float": 4,
+      "load": 24,
+      "store": 6,
+      "lea": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::SetParams",
+        "va": "0x412B8C",
+        "instruction": "D94608",
+        "type": "fld_float"
+      },
+      {
+        "method": "Camera::SetParams",
+        "va": "0x412C00",
+        "instruction": "8B4608",
+        "type": "load"
+      },
+      {
+        "method": "Camera::SetParams",
+        "va": "0x412DAC",
+        "instruction": "D94608",
         "type": "fld_float"
       }
     ]
@@ -546,6 +662,36 @@
       }
     ]
   },
+  "20": {
+    "count": 11,
+    "access_types": {
+      "load": 3,
+      "lea": 1,
+      "store": 2,
+      "fld_float": 3,
+      "fild_int": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::SetParams",
+        "va": "0x41350A",
+        "instruction": "8B4614",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41C03A",
+        "instruction": "8D6E14",
+        "type": "lea"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41C03D",
+        "instruction": "894614",
+        "type": "store"
+      }
+    ]
+  },
   "1308": {
     "count": 2,
     "access_types": {
@@ -567,6 +713,33 @@
       }
     ]
   },
+  "24": {
+    "count": 5,
+    "access_types": {
+      "load": 3,
+      "fild_int": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::SetParams",
+        "va": "0x413514",
+        "instruction": "8B4E18",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Helper_439850",
+        "va": "0x43A2E5",
+        "instruction": "8B4E18",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Helper_439850",
+        "va": "0x43A355",
+        "instruction": "DB4618",
+        "type": "fild_int"
+      }
+    ]
+  },
   "1312": {
     "count": 2,
     "access_types": {
@@ -585,6 +758,33 @@
         "va": "0x413544",
         "instruction": "D99E20050000",
         "type": "fld_float"
+      }
+    ]
+  },
+  "28": {
+    "count": 7,
+    "access_types": {
+      "load": 5,
+      "fild_int": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::SetParams",
+        "va": "0x41351D",
+        "instruction": "8B561C",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CC93",
+        "instruction": "8B561C",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CD85",
+        "instruction": "8B4E1C",
+        "type": "load"
       }
     ]
   },
@@ -1251,6 +1451,60 @@
       }
     ]
   },
+  "44": {
+    "count": 6,
+    "access_types": {
+      "load": 5,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41BFE3",
+        "instruction": "8B462C",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41BFFE",
+        "instruction": "89462C",
+        "type": "store"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41C019",
+        "instruction": "8B462C",
+        "type": "load"
+      }
+    ]
+  },
+  "36": {
+    "count": 4,
+    "access_types": {
+      "load": 3,
+      "fld_float": 1
+    },
+    "examples": [
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41C040",
+        "instruction": "8B4624",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CCC3",
+        "instruction": "8B5624",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CD9E",
+        "instruction": "8B4E24",
+        "type": "load"
+      }
+    ]
+  },
   "412": {
     "count": 2,
     "access_types": {
@@ -1347,6 +1601,410 @@
       }
     ]
   },
+  "32": {
+    "count": 2,
+    "access_types": {
+      "load": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CC96",
+        "instruction": "8B4620",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CD8B",
+        "instruction": "8B5620",
+        "type": "load"
+      }
+    ]
+  },
+  "40": {
+    "count": 2,
+    "access_types": {
+      "load": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CCC9",
+        "instruction": "8B4628",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CDA4",
+        "instruction": "8B5628",
+        "type": "load"
+      }
+    ]
+  },
+  "48": {
+    "count": 2,
+    "access_types": {
+      "load": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CCE3",
+        "instruction": "8B4630",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CDBD",
+        "instruction": "8B5630",
+        "type": "load"
+      }
+    ]
+  },
+  "52": {
+    "count": 2,
+    "access_types": {
+      "load": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CD24",
+        "instruction": "8B4E34",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CDD0",
+        "instruction": "8B4E34",
+        "type": "load"
+      }
+    ]
+  },
+  "64": {
+    "count": 2,
+    "access_types": {
+      "load": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CD2A",
+        "instruction": "8B5640",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CDD6",
+        "instruction": "8B5640",
+        "type": "load"
+      }
+    ]
+  },
+  "56": {
+    "count": 4,
+    "access_types": {
+      "load": 4
+    },
+    "examples": [
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CD3D",
+        "instruction": "8B4E38",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CDE9",
+        "instruction": "8B4E38",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Helper_439850",
+        "va": "0x43A279",
+        "instruction": "8B4638",
+        "type": "load"
+      }
+    ]
+  },
+  "68": {
+    "count": 2,
+    "access_types": {
+      "load": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CD43",
+        "instruction": "8B5644",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CDEF",
+        "instruction": "8B5644",
+        "type": "load"
+      }
+    ]
+  },
+  "60": {
+    "count": 2,
+    "access_types": {
+      "load": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CD56",
+        "instruction": "8B4E3C",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CE02",
+        "instruction": "8B4E3C",
+        "type": "load"
+      }
+    ]
+  },
+  "72": {
+    "count": 12,
+    "access_types": {
+      "load": 2,
+      "store_byte": 4,
+      "load_byte": 2,
+      "store": 4
+    },
+    "examples": [
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CD5C",
+        "instruction": "8B5648",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Method_41BE80",
+        "va": "0x41CE08",
+        "instruction": "8B5648",
+        "type": "load"
+      },
+      {
+        "method": "Camera::Helper_439850",
+        "va": "0x439F75",
+        "instruction": "C64648",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "4116": {
+    "count": 3,
+    "access_types": {
+      "load": 3
+    },
+    "examples": [
+      {
+        "method": "Camera::CheckCollision1",
+        "va": "0x41F150",
+        "instruction": "8B9114100000",
+        "type": "load"
+      },
+      {
+        "method": "Camera::CheckCollision2",
+        "va": "0x41F150",
+        "instruction": "8B9114100000",
+        "type": "load"
+      },
+      {
+        "method": "Camera::IsTransitioning",
+        "va": "0x41F150",
+        "instruction": "8B9114100000",
+        "type": "load"
+      }
+    ]
+  },
+  "4120": {
+    "count": 3,
+    "access_types": {
+      "load": 3
+    },
+    "examples": [
+      {
+        "method": "Camera::CheckCollision1",
+        "va": "0x41F158",
+        "instruction": "8B9118100000",
+        "type": "load"
+      },
+      {
+        "method": "Camera::CheckCollision2",
+        "va": "0x41F158",
+        "instruction": "8B9118100000",
+        "type": "load"
+      },
+      {
+        "method": "Camera::IsTransitioning",
+        "va": "0x41F158",
+        "instruction": "8B9118100000",
+        "type": "load"
+      }
+    ]
+  },
+  "4124": {
+    "count": 3,
+    "access_types": {
+      "load": 3
+    },
+    "examples": [
+      {
+        "method": "Camera::CheckCollision1",
+        "va": "0x41F161",
+        "instruction": "8B891C100000",
+        "type": "load"
+      },
+      {
+        "method": "Camera::CheckCollision2",
+        "va": "0x41F161",
+        "instruction": "8B891C100000",
+        "type": "load"
+      },
+      {
+        "method": "Camera::IsTransitioning",
+        "va": "0x41F161",
+        "instruction": "8B891C100000",
+        "type": "load"
+      }
+    ]
+  },
+  "3072": {
+    "count": 6,
+    "access_types": {
+      "load": 6
+    },
+    "examples": [
+      {
+        "method": "Camera::CheckCollision1",
+        "va": "0x41F170",
+        "instruction": "8BB1000C0000",
+        "type": "load"
+      },
+      {
+        "method": "Camera::CheckCollision1",
+        "va": "0x41F1CD",
+        "instruction": "8B81000C0000",
+        "type": "load"
+      },
+      {
+        "method": "Camera::CheckCollision2",
+        "va": "0x41F170",
+        "instruction": "8BB1000C0000",
+        "type": "load"
+      }
+    ]
+  },
+  "3084": {
+    "count": 3,
+    "access_types": {
+      "lea": 3
+    },
+    "examples": [
+      {
+        "method": "Camera::CheckCollision1",
+        "va": "0x41F183",
+        "instruction": "8DB90C0C0000",
+        "type": "lea"
+      },
+      {
+        "method": "Camera::CheckCollision2",
+        "va": "0x41F183",
+        "instruction": "8DB90C0C0000",
+        "type": "lea"
+      },
+      {
+        "method": "Camera::IsTransitioning",
+        "va": "0x41F183",
+        "instruction": "8DB90C0C0000",
+        "type": "lea"
+      }
+    ]
+  },
+  "7180": {
+    "count": 3,
+    "access_types": {
+      "fld_float": 3
+    },
+    "examples": [
+      {
+        "method": "Camera::CheckCollision1",
+        "va": "0x41F18F",
+        "instruction": "D9990C1C0000",
+        "type": "fld_float"
+      },
+      {
+        "method": "Camera::CheckCollision2",
+        "va": "0x41F18F",
+        "instruction": "D9990C1C0000",
+        "type": "fld_float"
+      },
+      {
+        "method": "Camera::IsTransitioning",
+        "va": "0x41F18F",
+        "instruction": "D9990C1C0000",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "196": {
+    "count": 5,
+    "access_types": {
+      "load": 3,
+      "store": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::CheckCollision1",
+        "va": "0x41F481",
+        "instruction": "8B89C4000000",
+        "type": "load"
+      },
+      {
+        "method": "Camera::CheckCollision2",
+        "va": "0x41F481",
+        "instruction": "8B89C4000000",
+        "type": "load"
+      },
+      {
+        "method": "Camera::IsTransitioning",
+        "va": "0x41F481",
+        "instruction": "8B89C4000000",
+        "type": "load"
+      }
+    ]
+  },
+  "200": {
+    "count": 3,
+    "access_types": {
+      "load": 3
+    },
+    "examples": [
+      {
+        "method": "Camera::CheckCollision1",
+        "va": "0x41F63B",
+        "instruction": "8B89C8000000",
+        "type": "load"
+      },
+      {
+        "method": "Camera::CheckCollision2",
+        "va": "0x41F63B",
+        "instruction": "8B89C8000000",
+        "type": "load"
+      },
+      {
+        "method": "Camera::IsTransitioning",
+        "va": "0x41F63B",
+        "instruction": "8B89C8000000",
+        "type": "load"
+      }
+    ]
+  },
   "292": {
     "count": 3,
     "access_types": {
@@ -1395,6 +2053,53 @@
         "method": "Camera::Method_439930",
         "va": "0x4399DD",
         "instruction": "8D8E28010000",
+        "type": "lea"
+      }
+    ]
+  },
+  "92": {
+    "count": 2,
+    "access_types": {
+      "lea": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::Helper_439850",
+        "va": "0x439F54",
+        "instruction": "8D565C",
+        "type": "lea"
+      },
+      {
+        "method": "Camera::Method_439930",
+        "va": "0x439F54",
+        "instruction": "8D565C",
+        "type": "lea"
+      }
+    ]
+  },
+  "76": {
+    "count": 20,
+    "access_types": {
+      "lea": 18,
+      "store": 2
+    },
+    "examples": [
+      {
+        "method": "Camera::Helper_439850",
+        "va": "0x43A185",
+        "instruction": "8D4E4C",
+        "type": "lea"
+      },
+      {
+        "method": "Camera::Helper_439850",
+        "va": "0x43A220",
+        "instruction": "8D4E4C",
+        "type": "lea"
+      },
+      {
+        "method": "Camera::Helper_439850",
+        "va": "0x43A253",
+        "instruction": "8D4E4C",
         "type": "lea"
       }
     ]
@@ -1474,7 +2179,33 @@
       }
     ]
   },
-  "196": {
+  "116": {
+    "count": 5,
+    "access_types": {
+      "lea": 5
+    },
+    "examples": [
+      {
+        "method": "Camera::Helper_439850",
+        "va": "0x43A795",
+        "instruction": "8D4E74",
+        "type": "lea"
+      },
+      {
+        "method": "Camera::Helper_439850",
+        "va": "0x43A840",
+        "instruction": "8D4E74",
+        "type": "lea"
+      },
+      {
+        "method": "Camera::Method_439930",
+        "va": "0x43A795",
+        "instruction": "8D4E74",
+        "type": "lea"
+      }
+    ]
+  },
+  "96": {
     "count": 2,
     "access_types": {
       "store": 2
@@ -1482,14 +2213,14 @@
     "examples": [
       {
         "method": "Camera::Helper_439850",
-        "va": "0x43A7A9",
-        "instruction": "89BEC4000000",
+        "va": "0x43A7A1",
+        "instruction": "897E60",
         "type": "store"
       },
       {
         "method": "Camera::Method_439930",
-        "va": "0x43A7A9",
-        "instruction": "89BEC4000000",
+        "va": "0x43A7A1",
+        "instruction": "897E60",
         "type": "store"
       }
     ]

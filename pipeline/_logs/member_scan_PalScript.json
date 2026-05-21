@@ -1,35 +1,817 @@
 {
-  "220": {
+  "8": {
+    "count": 677,
+    "access_types": {
+      "load": 94,
+      "store": 183,
+      "load_byte": 1,
+      "lea": 28,
+      "fld_float": 370,
+      "fild_int": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x410DFA",
+        "instruction": "8B7908",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x410E23",
+        "instruction": "8B5108",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x410E2A",
+        "instruction": "897108",
+        "type": "store"
+      }
+    ]
+  },
+  "4": {
+    "count": 695,
+    "access_types": {
+      "load": 389,
+      "store": 155,
+      "store_byte": 5,
+      "fld_float": 119,
+      "fild_int": 1,
+      "lea": 26
+    },
+    "examples": [
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x410EE7",
+        "instruction": "8B5904",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x410F15",
+        "instruction": "8B5904",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x410F57",
+        "instruction": "8B6904",
+        "type": "load"
+      }
+    ]
+  },
+  "608": {
+    "count": 8,
+    "access_types": {
+      "load": 5,
+      "lea": 3
+    },
+    "examples": [
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x411323",
+        "instruction": "8B8960020000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x41142C",
+        "instruction": "8B9160020000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_auto_487b60",
+        "va": "0x4886C3",
+        "instruction": "8B9660020000",
+        "type": "load"
+      }
+    ]
+  },
+  "624": {
     "count": 2,
     "access_types": {
       "load": 2
     },
     "examples": [
       {
-        "method": "PalScript::SetRoleActions",
-        "va": "0x421CA9",
-        "instruction": "8B87DC000000",
+        "method": "PalScript::_static_410840",
+        "va": "0x411336",
+        "instruction": "8B9170020000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x411442",
+        "instruction": "8B9170020000",
+        "type": "load"
+      }
+    ]
+  },
+  "612": {
+    "count": 2,
+    "access_types": {
+      "load_byte": 2
+    },
+    "examples": [
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x411356",
+        "instruction": "8A8964020000",
+        "type": "load_byte"
+      },
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x411470",
+        "instruction": "8A9164020000",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "613": {
+    "count": 2,
+    "access_types": {
+      "load_byte": 2
+    },
+    "examples": [
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x411366",
+        "instruction": "8A9165020000",
+        "type": "load_byte"
+      },
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x411481",
+        "instruction": "8A9165020000",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "0": {
+    "count": 56,
+    "access_types": {
+      "lea": 48,
+      "store": 1,
+      "fld_unknown": 2,
+      "store_byte": 5
+    },
+    "examples": [
+      {
+        "method": "PalScript::_static_410840",
+        "va": "0x41158D",
+        "instruction": "8D4900",
+        "type": "lea"
+      },
+      {
+        "method": "PalScript::_auto_4360f0",
+        "va": "0x436D95",
+        "instruction": "8D4900",
+        "type": "lea"
+      },
+      {
+        "method": "PalScript::_nearby_436120",
+        "va": "0x436D95",
+        "instruction": "8D4900",
+        "type": "lea"
+      }
+    ]
+  },
+  "220": {
+    "count": 8,
+    "access_types": {
+      "load": 4,
+      "store_byte": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::SetAction",
+        "va": "0x421562",
+        "instruction": "8BB1DC000000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::SetAction",
+        "va": "0x421EA2",
+        "instruction": "8BB1DC000000",
         "type": "load"
       },
       {
         "method": "PalScript::SetRoleActions",
-        "va": "0x421CE4",
+        "va": "0x421CA9",
         "instruction": "8B87DC000000",
         "type": "load"
       }
     ]
   },
-  "468": {
+  "396": {
     "count": 1,
     "access_types": {
       "lea": 1
     },
     "examples": [
       {
+        "method": "PalScript::SetAction",
+        "va": "0x421574",
+        "instruction": "8D918C010000",
+        "type": "lea"
+      }
+    ]
+  },
+  "1": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 1,
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::SetAction",
+        "va": "0x42175D",
+        "instruction": "C6B901000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::SetRoleActions",
+        "va": "0x4222CA",
+        "instruction": "8A5701",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "468": {
+    "count": 2,
+    "access_types": {
+      "lea": 2
+    },
+    "examples": [
+      {
+        "method": "PalScript::SetAction",
+        "va": "0x421EAE",
+        "instruction": "8D81D4010000",
+        "type": "lea"
+      },
+      {
         "method": "PalScript::SetRoleActions",
         "va": "0x421CB4",
         "instruction": "8DB7D4010000",
         "type": "lea"
+      }
+    ]
+  },
+  "72": {
+    "count": 43,
+    "access_types": {
+      "load_byte": 5,
+      "load": 1,
+      "lea": 5,
+      "store_byte": 6,
+      "store": 17,
+      "fld_float": 9
+    },
+    "examples": [
+      {
+        "method": "PalScript::SetAction",
+        "va": "0x422436",
+        "instruction": "8A4948",
+        "type": "load_byte"
+      },
+      {
+        "method": "PalScript::GetString",
+        "va": "0x434C88",
+        "instruction": "8B5148",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_nearby_4391d0",
+        "va": "0x439835",
+        "instruction": "8D5E48",
+        "type": "lea"
+      }
+    ]
+  },
+  "12": {
+    "count": 350,
+    "access_types": {
+      "load": 177,
+      "store": 20,
+      "lea": 2,
+      "fld_float": 8,
+      "load_byte": 38,
+      "store_byte": 105
+    },
+    "examples": [
+      {
+        "method": "PalScript::SetRoleActions",
+        "va": "0x421DD8",
+        "instruction": "8B470C",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::SetRoleActions",
+        "va": "0x421E5F",
+        "instruction": "8B5F0C",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::StopSound3D",
+        "va": "0x42CACE",
+        "instruction": "89410C",
+        "type": "store"
+      }
+    ]
+  },
+  "51": {
+    "count": 1,
+    "access_types": {
+      "fld_float": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::SetRoleActions",
+        "va": "0x4220A2",
+        "instruction": "D95733",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "244": {
+    "count": 2,
+    "access_types": {
+      "load_byte": 2
+    },
+    "examples": [
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x429DB0",
+        "instruction": "8A81F4000000",
+        "type": "load_byte"
+      },
+      {
+        "method": "PalScript::SetIndex",
+        "va": "0x429DB0",
+        "instruction": "8A81F4000000",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "88": {
+    "count": 9,
+    "access_types": {
+      "load": 4,
+      "lea": 4,
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x429DC2",
+        "instruction": "8B4158",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::SetIndex",
+        "va": "0x429DC2",
+        "instruction": "8B4158",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_nearby_4391d0",
+        "va": "0x439573",
+        "instruction": "8D6E58",
+        "type": "lea"
+      }
+    ]
+  },
+  "92": {
+    "count": 13,
+    "access_types": {
+      "load": 4,
+      "lea": 3,
+      "store": 1,
+      "fld_float": 5
+    },
+    "examples": [
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x429DD7",
+        "instruction": "8B495C",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::SetIndex",
+        "va": "0x429DD7",
+        "instruction": "8B495C",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_nearby_4391d0",
+        "va": "0x439F54",
+        "instruction": "8D565C",
+        "type": "lea"
+      }
+    ]
+  },
+  "96": {
+    "count": 78,
+    "access_types": {
+      "lea": 3,
+      "store": 40,
+      "load": 35
+    },
+    "examples": [
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x429DF0",
+        "instruction": "8D7160",
+        "type": "lea"
+      },
+      {
+        "method": "PalScript::SetIndex",
+        "va": "0x429DF0",
+        "instruction": "8D7160",
+        "type": "lea"
+      },
+      {
+        "method": "PalScript::_nearby_439810",
+        "va": "0x43A7A1",
+        "instruction": "897E60",
+        "type": "store"
+      }
+    ]
+  },
+  "548": {
+    "count": 3,
+    "access_types": {
+      "fld_float": 2,
+      "lea": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x429E16",
+        "instruction": "D98124020000",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::SetIndex",
+        "va": "0x429E16",
+        "instruction": "D98124020000",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::_auto_52be40",
+        "va": "0x52C79A",
+        "instruction": "8D8F24020000",
+        "type": "lea"
+      }
+    ]
+  },
+  "552": {
+    "count": 4,
+    "access_types": {
+      "fld_float": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x429E2A",
+        "instruction": "D98128020000",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x429E7D",
+        "instruction": "D98128020000",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::SetIndex",
+        "va": "0x429E2A",
+        "instruction": "D98128020000",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "556": {
+    "count": 4,
+    "access_types": {
+      "fld_float": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x429E3A",
+        "instruction": "D9812C020000",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x429E8D",
+        "instruction": "D9812C020000",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::SetIndex",
+        "va": "0x429E3A",
+        "instruction": "D9812C020000",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "536": {
+    "count": 2,
+    "access_types": {
+      "fld_float": 2
+    },
+    "examples": [
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x429E71",
+        "instruction": "D98118020000",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::SetIndex",
+        "va": "0x429E71",
+        "instruction": "D98118020000",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "16": {
+    "count": 260,
+    "access_types": {
+      "load": 59,
+      "store": 41,
+      "fld_float": 34,
+      "load_byte": 34,
+      "store_byte": 66,
+      "fild_int": 6,
+      "lea": 20
+    },
+    "examples": [
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x42A9EB",
+        "instruction": "8B4910",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x42AAFB",
+        "instruction": "8B4910",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::GetCount",
+        "va": "0x42AC5A",
+        "instruction": "8B4110",
+        "type": "load"
+      }
+    ]
+  },
+  "876": {
+    "count": 2,
+    "access_types": {
+      "load": 1,
+      "lea": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::StopSound3D",
+        "va": "0x42C709",
+        "instruction": "8B896C030000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_auto_52be40",
+        "va": "0x52BE8B",
+        "instruction": "8D876C030000",
+        "type": "lea"
+      }
+    ]
+  },
+  "174": {
+    "count": 2,
+    "access_types": {
+      "load_byte": 1,
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::StopSound3D",
+        "va": "0x42C810",
+        "instruction": "8A81AE000000",
+        "type": "load_byte"
+      },
+      {
+        "method": "PalScript::StopSound3D",
+        "va": "0x42C81C",
+        "instruction": "8881AE000000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "175": {
+    "count": 2,
+    "access_types": {
+      "load_byte": 1,
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::StopSound3D",
+        "va": "0x42C822",
+        "instruction": "8A81AF000000",
+        "type": "load_byte"
+      },
+      {
+        "method": "PalScript::StopSound3D",
+        "va": "0x42C838",
+        "instruction": "8881AF000000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "256": {
+    "count": 3,
+    "access_types": {
+      "load": 3
+    },
+    "examples": [
+      {
+        "method": "PalScript::StopSound3D",
+        "va": "0x42C828",
+        "instruction": "8B9100010000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_nearby_4391d0",
+        "va": "0x4395C1",
+        "instruction": "8B8600010000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::CheckAnimOver",
+        "va": "0x4395C1",
+        "instruction": "8B8600010000",
+        "type": "load"
+      }
+    ]
+  },
+  "796": {
+    "count": 1,
+    "access_types": {
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::StopSound3D",
+        "va": "0x42C849",
+        "instruction": "8B811C030000",
+        "type": "load"
+      }
+    ]
+  },
+  "44": {
+    "count": 21,
+    "access_types": {
+      "store": 18,
+      "load": 3
+    },
+    "examples": [
+      {
+        "method": "PalScript::LoadScript",
+        "va": "0x430FDA",
+        "instruction": "89792C",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::LoadScript",
+        "va": "0x4311E1",
+        "instruction": "89712C",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::LoadScript",
+        "va": "0x4311ED",
+        "instruction": "89792C",
+        "type": "store"
+      }
+    ]
+  },
+  "20": {
+    "count": 78,
+    "access_types": {
+      "load": 30,
+      "store": 8,
+      "fld_float": 34,
+      "fild_int": 6
+    },
+    "examples": [
+      {
+        "method": "PalScript::_sub_430500",
+        "va": "0x430506",
+        "instruction": "8B4614",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_sub_430500",
+        "va": "0x43052A",
+        "instruction": "895E14",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_sub_430500",
+        "va": "0x430A0F",
+        "instruction": "8B4E14",
+        "type": "load"
+      }
+    ]
+  },
+  "24": {
+    "count": 263,
+    "access_types": {
+      "store": 95,
+      "load": 127,
+      "fld_float": 34,
+      "fild_int": 7
+    },
+    "examples": [
+      {
+        "method": "PalScript::_sub_430500",
+        "va": "0x43052D",
+        "instruction": "895E18",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_sub_430500",
+        "va": "0x431011",
+        "instruction": "895E18",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_sub_430500",
+        "va": "0x4310D2",
+        "instruction": "895E18",
+        "type": "store"
+      }
+    ]
+  },
+  "28": {
+    "count": 43,
+    "access_types": {
+      "store": 3,
+      "lea": 2,
+      "load": 31,
+      "fild_int": 7
+    },
+    "examples": [
+      {
+        "method": "PalScript::_sub_430500",
+        "va": "0x430530",
+        "instruction": "895E1C",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_sub_430500",
+        "va": "0x430FDE",
+        "instruction": "8D4E1C",
+        "type": "lea"
+      },
+      {
+        "method": "PalScript::_sub_430500",
+        "va": "0x43109F",
+        "instruction": "8D4E1C",
+        "type": "lea"
+      }
+    ]
+  },
+  "32": {
+    "count": 39,
+    "access_types": {
+      "load": 37,
+      "store": 2
+    },
+    "examples": [
+      {
+        "method": "PalScript::_sub_430500",
+        "va": "0x430645",
+        "instruction": "8B7620",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::PalScript",
+        "va": "0x43AB91",
+        "instruction": "8B4E20",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::PalScript",
+        "va": "0x43AC36",
+        "instruction": "8B4E20",
+        "type": "load"
       }
     ]
   },
@@ -62,9 +844,10 @@
     ]
   },
   "516": {
-    "count": 8,
+    "count": 16,
     "access_types": {
-      "store": 8
+      "store": 8,
+      "load": 8
     },
     "examples": [
       {
@@ -80,38 +863,120 @@
         "type": "store"
       },
       {
-        "method": "PalScript::_nearby_431780",
-        "va": "0x4319DF",
-        "instruction": "89BE04020000",
-        "type": "store"
+        "method": "PalScript::_nearby_431390",
+        "va": "0x431C00",
+        "instruction": "8B8104020000",
+        "type": "load"
       }
     ]
   },
   "520": {
-    "count": 12,
+    "count": 20,
     "access_types": {
-      "store": 5,
+      "store": 13,
       "load": 4,
       "lea": 3
     },
     "examples": [
       {
-        "method": "PalScript::_nearby_431780",
-        "va": "0x4319E5",
-        "instruction": "89BE08020000",
+        "method": "PalScript::_nearby_431390",
+        "va": "0x431C06",
+        "instruction": "898108020000",
         "type": "store"
       },
       {
-        "method": "PalScript::_nearby_431780",
-        "va": "0x4319FD",
-        "instruction": "898608020000",
+        "method": "PalScript::_nearby_431440",
+        "va": "0x431C06",
+        "instruction": "898108020000",
         "type": "store"
       },
       {
+        "method": "PalScript::_nearby_4314a0",
+        "va": "0x431C06",
+        "instruction": "898108020000",
+        "type": "store"
+      }
+    ]
+  },
+  "3": {
+    "count": 6,
+    "access_types": {
+      "store_byte": 6
+    },
+    "examples": [
+      {
         "method": "PalScript::_nearby_431780",
-        "va": "0x431A4E",
-        "instruction": "8B8E08020000",
+        "va": "0x4326AC",
+        "instruction": "C67E03",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_sub_4319C0",
+        "va": "0x4326AC",
+        "instruction": "C67E03",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::SetDirectory",
+        "va": "0x4326AC",
+        "instruction": "C67E03",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "68": {
+    "count": 28,
+    "access_types": {
+      "load": 8,
+      "fld_float": 12,
+      "store": 4,
+      "store_byte": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::GetString",
+        "va": "0x434C8B",
+        "instruction": "8B7144",
         "type": "load"
+      },
+      {
+        "method": "PalScript::_nearby_4391d0",
+        "va": "0x43955A",
+        "instruction": "8B4644",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_nearby_4391d0",
+        "va": "0x4396FE",
+        "instruction": "8B4E44",
+        "type": "load"
+      }
+    ]
+  },
+  "448": {
+    "count": 18,
+    "access_types": {
+      "store": 17,
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::GetString",
+        "va": "0x435392",
+        "instruction": "8981C0010000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_nearby_434cc0",
+        "va": "0x435392",
+        "instruction": "8981C0010000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_nearby_434ce0",
+        "va": "0x435392",
+        "instruction": "8981C0010000",
+        "type": "store"
       }
     ]
   },
@@ -133,6 +998,32 @@
         "va": "0x434DF8",
         "instruction": "8B9674020000",
         "type": "load"
+      }
+    ]
+  },
+  "18": {
+    "count": 44,
+    "access_types": {
+      "fld_float": 44
+    },
+    "examples": [
+      {
+        "method": "PalScript::_nearby_436e10",
+        "va": "0x437DB3",
+        "instruction": "D97112",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::_nearby_436e70",
+        "va": "0x437DB3",
+        "instruction": "D97112",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::_auto_436ed0",
+        "va": "0x437DB3",
+        "instruction": "D97112",
+        "type": "fld_float"
       }
     ]
   },
@@ -165,9 +1056,11 @@
     ]
   },
   "216": {
-    "count": 1,
+    "count": 7,
     "access_types": {
-      "load": 1
+      "load": 2,
+      "load_byte": 1,
+      "store_byte": 4
     },
     "examples": [
       {
@@ -175,27 +1068,25 @@
         "va": "0x43942B",
         "instruction": "8BB8D8000000",
         "type": "load"
-      }
-    ]
-  },
-  "448": {
-    "count": 1,
-    "access_types": {
-      "load": 1
-    },
-    "examples": [
+      },
       {
-        "method": "PalScript::_nearby_4391a0",
-        "va": "0x43944B",
-        "instruction": "8B98C0010000",
+        "method": "PalScript::_method_535010",
+        "va": "0x53534D",
+        "instruction": "8BB9D8000000",
         "type": "load"
+      },
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x53542B",
+        "instruction": "8A81D8000000",
+        "type": "load_byte"
       }
     ]
   },
   "292": {
-    "count": 20,
+    "count": 26,
     "access_types": {
-      "load": 15,
+      "load": 21,
       "store": 5
     },
     "examples": [
@@ -220,10 +1111,10 @@
     ]
   },
   "248": {
-    "count": 4,
+    "count": 7,
     "access_types": {
       "load": 2,
-      "store": 2
+      "store": 5
     },
     "examples": [
       {
@@ -242,26 +1133,6 @@
         "method": "PalScript::CheckAnimOver",
         "va": "0x439599",
         "instruction": "8B8EF8000000",
-        "type": "load"
-      }
-    ]
-  },
-  "256": {
-    "count": 2,
-    "access_types": {
-      "load": 2
-    },
-    "examples": [
-      {
-        "method": "PalScript::_nearby_4391d0",
-        "va": "0x4395C1",
-        "instruction": "8B8600010000",
-        "type": "load"
-      },
-      {
-        "method": "PalScript::CheckAnimOver",
-        "va": "0x4395C1",
-        "instruction": "8B8600010000",
         "type": "load"
       }
     ]
@@ -407,9 +1278,9 @@
     ]
   },
   "232": {
-    "count": 2,
+    "count": 5,
     "access_types": {
-      "store": 2
+      "store": 5
     },
     "examples": [
       {
@@ -422,6 +1293,12 @@
         "method": "PalScript::CheckAnimOver",
         "va": "0x4397DF",
         "instruction": "898EE8000000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_nearby_439410",
+        "va": "0x43A078",
+        "instruction": "8981E8000000",
         "type": "store"
       }
     ]
@@ -452,12 +1329,41 @@
       }
     ]
   },
-  "144": {
-    "count": 19,
+  "76": {
+    "count": 58,
     "access_types": {
-      "store": 5,
+      "lea": 45,
+      "store": 7,
+      "load": 1,
+      "fld_float": 5
+    },
+    "examples": [
+      {
+        "method": "PalScript::_nearby_4391d0",
+        "va": "0x43A185",
+        "instruction": "8D4E4C",
+        "type": "lea"
+      },
+      {
+        "method": "PalScript::CheckAnimOver",
+        "va": "0x43A185",
+        "instruction": "8D4E4C",
+        "type": "lea"
+      },
+      {
+        "method": "PalScript::CheckAnimOver",
+        "va": "0x43A220",
+        "instruction": "8D4E4C",
+        "type": "lea"
+      }
+    ]
+  },
+  "144": {
+    "count": 31,
+    "access_types": {
+      "store": 14,
       "fild_int": 6,
-      "load": 6,
+      "load": 9,
       "fld_float": 2
     },
     "examples": [
@@ -482,10 +1388,10 @@
     ]
   },
   "148": {
-    "count": 35,
+    "count": 39,
     "access_types": {
       "store": 20,
-      "load": 11,
+      "load": 15,
       "fld_float": 4
     },
     "examples": [
@@ -509,11 +1415,40 @@
       }
     ]
   },
+  "56": {
+    "count": 24,
+    "access_types": {
+      "load": 22,
+      "store": 1,
+      "lea": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::CheckAnimOver",
+        "va": "0x43A279",
+        "instruction": "8B4638",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_nearby_439410",
+        "va": "0x43A3E0",
+        "instruction": "8B4138",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_nearby_439810",
+        "va": "0x43A279",
+        "instruction": "8B4638",
+        "type": "load"
+      }
+    ]
+  },
   "160": {
-    "count": 7,
+    "count": 11,
     "access_types": {
       "load": 6,
-      "lea": 1
+      "lea": 1,
+      "store": 4
     },
     "examples": [
       {
@@ -533,6 +1468,142 @@
         "va": "0x43A292",
         "instruction": "8B86A0000000",
         "type": "load"
+      }
+    ]
+  },
+  "236": {
+    "count": 3,
+    "access_types": {
+      "store": 3
+    },
+    "examples": [
+      {
+        "method": "PalScript::_nearby_439410",
+        "va": "0x43A09E",
+        "instruction": "8981EC000000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::CheckRayHitRole",
+        "va": "0x43A09E",
+        "instruction": "8981EC000000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::GetRayToScreen",
+        "va": "0x43A09E",
+        "instruction": "8981EC000000",
+        "type": "store"
+      }
+    ]
+  },
+  "252": {
+    "count": 6,
+    "access_types": {
+      "fld_float": 6
+    },
+    "examples": [
+      {
+        "method": "PalScript::_nearby_439410",
+        "va": "0x43A0A4",
+        "instruction": "D991FC000000",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::_nearby_439410",
+        "va": "0x43A0CF",
+        "instruction": "D999FC000000",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::CheckRayHitRole",
+        "va": "0x43A0A4",
+        "instruction": "D991FC000000",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "60": {
+    "count": 17,
+    "access_types": {
+      "load": 16,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_nearby_439410",
+        "va": "0x43A3EC",
+        "instruction": "8B413C",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::CheckRayHitRole",
+        "va": "0x43A3EC",
+        "instruction": "8B413C",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::GetRayToScreen",
+        "va": "0x43A3EC",
+        "instruction": "8B413C",
+        "type": "load"
+      }
+    ]
+  },
+  "152": {
+    "count": 30,
+    "access_types": {
+      "load": 13,
+      "store": 11,
+      "lea": 5,
+      "fld_float": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_nearby_439410",
+        "va": "0x43A402",
+        "instruction": "8B8198000000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_nearby_439410",
+        "va": "0x43A409",
+        "instruction": "898198000000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::CheckRayHitRole",
+        "va": "0x43A402",
+        "instruction": "8B8198000000",
+        "type": "load"
+      }
+    ]
+  },
+  "116": {
+    "count": 29,
+    "access_types": {
+      "lea": 27,
+      "store_byte": 1,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_nearby_439810",
+        "va": "0x43A795",
+        "instruction": "8D4E74",
+        "type": "lea"
+      },
+      {
+        "method": "PalScript::PalScript",
+        "va": "0x43A795",
+        "instruction": "8D4E74",
+        "type": "lea"
+      },
+      {
+        "method": "PalScript::PalScript",
+        "va": "0x43A840",
+        "instruction": "8D4E74",
+        "type": "lea"
       }
     ]
   },
@@ -617,11 +1688,40 @@
       }
     ]
   },
+  "156": {
+    "count": 8,
+    "access_types": {
+      "load": 3,
+      "store": 4,
+      "fld_float": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::CheckRayHitRole",
+        "va": "0x43A475",
+        "instruction": "8B819C000000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::CheckRayHitRole",
+        "va": "0x43A684",
+        "instruction": "89819C000000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::GetRayToScreen",
+        "va": "0x43A475",
+        "instruction": "8B819C000000",
+        "type": "load"
+      }
+    ]
+  },
   "184": {
-    "count": 10,
+    "count": 14,
     "access_types": {
       "lea": 5,
-      "load": 5
+      "load": 5,
+      "store": 4
     },
     "examples": [
       {
@@ -645,9 +1745,10 @@
     ]
   },
   "340": {
-    "count": 4,
+    "count": 5,
     "access_types": {
-      "store_byte": 4
+      "store_byte": 4,
+      "store": 1
     },
     "examples": [
       {
@@ -666,6 +1767,35 @@
         "method": "PalScript::Reset",
         "va": "0x43A94C",
         "instruction": "C68654010000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "100": {
+    "count": 9,
+    "access_types": {
+      "store_byte": 5,
+      "store": 2,
+      "fld_float": 1,
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::PalScript",
+        "va": "0x43A953",
+        "instruction": "C64664",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::ctor_A1F0",
+        "va": "0x43A953",
+        "instruction": "C64664",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::Reset",
+        "va": "0x43A953",
+        "instruction": "C64664",
         "type": "store_byte"
       }
     ]
@@ -694,6 +1824,91 @@
         "va": "0x43AE4D",
         "instruction": "8B8EC8000000",
         "type": "load"
+      }
+    ]
+  },
+  "108": {
+    "count": 13,
+    "access_types": {
+      "store": 7,
+      "load": 6
+    },
+    "examples": [
+      {
+        "method": "PalScript::PalScript",
+        "va": "0x43A9AD",
+        "instruction": "897E6C",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::PalScript",
+        "va": "0x43AEDD",
+        "instruction": "8B7E6C",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::ctor_A1F0",
+        "va": "0x43A9AD",
+        "instruction": "897E6C",
+        "type": "store"
+      }
+    ]
+  },
+  "104": {
+    "count": 20,
+    "access_types": {
+      "store": 6,
+      "load": 6,
+      "lea": 7,
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::PalScript",
+        "va": "0x43A9B0",
+        "instruction": "897E68",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::PalScript",
+        "va": "0x43AEE4",
+        "instruction": "8B5668",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::ctor_A1F0",
+        "va": "0x43A9B0",
+        "instruction": "897E68",
+        "type": "store"
+      }
+    ]
+  },
+  "112": {
+    "count": 11,
+    "access_types": {
+      "store_byte": 4,
+      "load_byte": 5,
+      "store": 1,
+      "fld_float": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::PalScript",
+        "va": "0x43A9B3",
+        "instruction": "C64670",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::PalScript",
+        "va": "0x43AF5A",
+        "instruction": "8A4670",
+        "type": "load_byte"
+      },
+      {
+        "method": "PalScript::ctor_A1F0",
+        "va": "0x43A9B3",
+        "instruction": "C64670",
+        "type": "store_byte"
       }
     ]
   },
@@ -761,12 +1976,12 @@
     ]
   },
   "364": {
-    "count": 5,
+    "count": 6,
     "access_types": {
       "store": 1,
       "lea": 2,
       "store_byte": 1,
-      "load": 1
+      "load": 2
     },
     "examples": [
       {
@@ -790,10 +2005,11 @@
     ]
   },
   "368": {
-    "count": 5,
+    "count": 6,
     "access_types": {
       "store": 1,
-      "lea": 4
+      "lea": 4,
+      "load": 1
     },
     "examples": [
       {
@@ -817,11 +2033,12 @@
     ]
   },
   "372": {
-    "count": 3,
+    "count": 4,
     "access_types": {
       "store": 1,
       "lea": 1,
-      "load_byte": 1
+      "load_byte": 1,
+      "load": 1
     },
     "examples": [
       {
@@ -841,6 +2058,20 @@
         "va": "0x4A5B3A",
         "instruction": "8A8674010000",
         "type": "load_byte"
+      }
+    ]
+  },
+  "89": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::OpenScript",
+        "va": "0x43B49E",
+        "instruction": "C65E59",
+        "type": "store_byte"
       }
     ]
   },
@@ -1071,6 +2302,33 @@
       }
     ]
   },
+  "87": {
+    "count": 3,
+    "access_types": {
+      "fld_float": 1,
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_4573a0",
+        "va": "0x457416",
+        "instruction": "D95657",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B47B8",
+        "instruction": "884657",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B48D5",
+        "instruction": "884657",
+        "type": "store_byte"
+      }
+    ]
+  },
   "528": {
     "count": 62,
     "access_types": {
@@ -1264,6 +2522,27 @@
         "va": "0x458397",
         "instruction": "8B8690020000",
         "type": "load"
+      }
+    ]
+  },
+  "69": {
+    "count": 2,
+    "access_types": {
+      "load": 1,
+      "fld_unknown": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::LoadStoreConfig",
+        "va": "0x457E74",
+        "instruction": "8B7945",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::LoadStoreConfig",
+        "va": "0x457E84",
+        "instruction": "DB7945",
+        "type": "fld_unknown"
       }
     ]
   },
@@ -1848,9 +3127,10 @@
     ]
   },
   "362": {
-    "count": 1,
+    "count": 2,
     "access_types": {
-      "store_byte": 1
+      "store_byte": 1,
+      "load_byte": 1
     },
     "examples": [
       {
@@ -1858,6 +3138,12 @@
         "va": "0x4831F4",
         "instruction": "889E6A010000",
         "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x539411",
+        "instruction": "8A916A010000",
+        "type": "load_byte"
       }
     ]
   },
@@ -1889,32 +3175,17 @@
       }
     ]
   },
-  "152": {
-    "count": 10,
+  "93": {
+    "count": 1,
     "access_types": {
-      "lea": 5,
-      "load": 3,
-      "store": 1,
-      "fld_float": 1
+      "store_byte": 1
     },
     "examples": [
       {
         "method": "PalScript::_auto_482bb0",
-        "va": "0x4832A2",
-        "instruction": "8D8E98000000",
-        "type": "lea"
-      },
-      {
-        "method": "PalScript::_auto_482bb0",
-        "va": "0x48334D",
-        "instruction": "8D8E98000000",
-        "type": "lea"
-      },
-      {
-        "method": "PalScript::_auto_487b60",
-        "va": "0x488693",
-        "instruction": "8B8698000000",
-        "type": "load"
+        "va": "0x48324F",
+        "instruction": "C65E5D",
+        "type": "store_byte"
       }
     ]
   },
@@ -1972,30 +3243,61 @@
       }
     ]
   },
-  "608": {
-    "count": 6,
+  "80": {
+    "count": 8,
     "access_types": {
-      "load": 3,
-      "lea": 3
+      "store": 1,
+      "store_byte": 1,
+      "load": 1,
+      "fld_float": 5
     },
     "examples": [
       {
-        "method": "PalScript::_auto_487b60",
-        "va": "0x4886C3",
-        "instruction": "8B9660020000",
-        "type": "load"
+        "method": "PalScript::_auto_482bb0",
+        "va": "0x48367E",
+        "instruction": "894650",
+        "type": "store"
       },
       {
-        "method": "PalScript::_auto_487b60",
-        "va": "0x4886C9",
-        "instruction": "8D8E60020000",
-        "type": "lea"
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B46F1",
+        "instruction": "C64650",
+        "type": "store_byte"
       },
       {
-        "method": "PalScript::_auto_491b40",
-        "va": "0x4928AD",
-        "instruction": "8B9660020000",
+        "method": "PalScript::_auto_52be40",
+        "va": "0x52C3DE",
+        "instruction": "8B4F50",
         "type": "load"
+      }
+    ]
+  },
+  "84": {
+    "count": 9,
+    "access_types": {
+      "store": 1,
+      "store_byte": 2,
+      "load": 1,
+      "fld_float": 5
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_482bb0",
+        "va": "0x483687",
+        "instruction": "894E54",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B47C1",
+        "instruction": "885E54",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B48A2",
+        "instruction": "884654",
+        "type": "store_byte"
       }
     ]
   },
@@ -2617,6 +3919,128 @@
       }
     ]
   },
+  "40": {
+    "count": 5,
+    "access_types": {
+      "store_byte": 4,
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B46CA",
+        "instruction": "885E28",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B50FB",
+        "instruction": "C64628",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B514A",
+        "instruction": "885E28",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "41": {
+    "count": 4,
+    "access_types": {
+      "store_byte": 3,
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B46CD",
+        "instruction": "C64629",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B5020",
+        "instruction": "8A4629",
+        "type": "load_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B514D",
+        "instruction": "885E29",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "48": {
+    "count": 3,
+    "access_types": {
+      "store": 2,
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B46D4",
+        "instruction": "895E30",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B49E2",
+        "instruction": "895630",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x539304",
+        "instruction": "8B5130",
+        "type": "load"
+      }
+    ]
+  },
+  "52": {
+    "count": 3,
+    "access_types": {
+      "store": 2,
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B46D7",
+        "instruction": "895E34",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B49E5",
+        "instruction": "894634",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x53930A",
+        "instruction": "8B5134",
+        "type": "load"
+      }
+    ]
+  },
+  "64": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B46E0",
+        "instruction": "C64640",
+        "type": "store_byte"
+      }
+    ]
+  },
   "420": {
     "count": 1,
     "access_types": {
@@ -2632,10 +4056,12 @@
     ]
   },
   "128": {
-    "count": 3,
+    "count": 5,
     "access_types": {
       "store_byte": 2,
-      "load_byte": 1
+      "load_byte": 1,
+      "store": 1,
+      "load": 1
     },
     "examples": [
       {
@@ -2712,27 +4138,6 @@
       }
     ]
   },
-  "156": {
-    "count": 2,
-    "access_types": {
-      "store": 1,
-      "fld_float": 1
-    },
-    "examples": [
-      {
-        "method": "PalScript::_auto_4b42f0",
-        "va": "0x4B474D",
-        "instruction": "899E9C000000",
-        "type": "store"
-      },
-      {
-        "method": "PalScript::_auto_4b42f0",
-        "va": "0x4B50FF",
-        "instruction": "D9869C000000",
-        "type": "fld_float"
-      }
-    ]
-  },
   "416": {
     "count": 5,
     "access_types": {
@@ -2788,6 +4193,206 @@
       }
     ]
   },
+  "126": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4781",
+        "instruction": "885E7E",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4860",
+        "instruction": "88467E",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "125": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4784",
+        "instruction": "885E7D",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4863",
+        "instruction": "884E7D",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "124": {
+    "count": 5,
+    "access_types": {
+      "store_byte": 2,
+      "lea": 2,
+      "fld_float": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4787",
+        "instruction": "885E7C",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4866",
+        "instruction": "88567C",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4FFE",
+        "instruction": "8D567C",
+        "type": "lea"
+      }
+    ]
+  },
+  "127": {
+    "count": 5,
+    "access_types": {
+      "store_byte": 4,
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B478A",
+        "instruction": "88467F",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B48B7",
+        "instruction": "88467F",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B5152",
+        "instruction": "8A467F",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "86": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B47BB",
+        "instruction": "885E56",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4886",
+        "instruction": "884656",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "85": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B47BE",
+        "instruction": "885E55",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4894",
+        "instruction": "884655",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "91": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B47C5",
+        "instruction": "C65E5B",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "36": {
+    "count": 8,
+    "access_types": {
+      "fild_int": 1,
+      "load": 3,
+      "store": 2,
+      "store_byte": 1,
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4A16",
+        "instruction": "DB4624",
+        "type": "fild_int"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4A38",
+        "instruction": "8B7E24",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4B20",
+        "instruction": "894E24",
+        "type": "store"
+      }
+    ]
+  },
+  "75": {
+    "count": 2,
+    "access_types": {
+      "fld_float": 1,
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_4b42f0",
+        "va": "0x4B4FC4",
+        "instruction": "D94E4B",
+        "type": "fld_float"
+      },
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x53933C",
+        "instruction": "8A514B",
+        "type": "load_byte"
+      }
+    ]
+  },
   "2900": {
     "count": 1,
     "access_types": {
@@ -2802,24 +4407,10 @@
       }
     ]
   },
-  "876": {
-    "count": 1,
-    "access_types": {
-      "lea": 1
-    },
-    "examples": [
-      {
-        "method": "PalScript::_auto_52be40",
-        "va": "0x52BE8B",
-        "instruction": "8D876C030000",
-        "type": "lea"
-      }
-    ]
-  },
   "164": {
-    "count": 3,
+    "count": 7,
     "access_types": {
-      "store": 1,
+      "store": 5,
       "fld_float": 2
     },
     "examples": [
@@ -2844,9 +4435,11 @@
     ]
   },
   "172": {
-    "count": 4,
+    "count": 12,
     "access_types": {
-      "store_byte": 4
+      "store_byte": 4,
+      "store": 4,
+      "load": 4
     },
     "examples": [
       {
@@ -2870,9 +4463,10 @@
     ]
   },
   "180": {
-    "count": 2,
+    "count": 6,
     "access_types": {
-      "fld_float": 2
+      "fld_float": 2,
+      "store": 4
     },
     "examples": [
       {
@@ -2886,6 +4480,12 @@
         "va": "0x52C519",
         "instruction": "D99FB4000000",
         "type": "fld_float"
+      },
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535B10",
+        "instruction": "8991B4000000",
+        "type": "store"
       }
     ]
   },
@@ -2928,20 +4528,6 @@
         "va": "0x52C773",
         "instruction": "8B97CC010000",
         "type": "load"
-      }
-    ]
-  },
-  "548": {
-    "count": 1,
-    "access_types": {
-      "lea": 1
-    },
-    "examples": [
-      {
-        "method": "PalScript::_auto_52be40",
-        "va": "0x52C79A",
-        "instruction": "8D8F24020000",
-        "type": "lea"
       }
     ]
   },
@@ -3290,6 +4876,520 @@
         "method": "PalScript::_auto_52be40",
         "va": "0x52CC80",
         "instruction": "8B97F00E0000",
+        "type": "load"
+      }
+    ]
+  },
+  "38": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535023",
+        "instruction": "884126",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "37": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 1,
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535029",
+        "instruction": "884125",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x5392F2",
+        "instruction": "8A5125",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "224": {
+    "count": 4,
+    "access_types": {
+      "store": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535AEA",
+        "instruction": "8981E0000000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535E58",
+        "instruction": "8981E0000000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x535AEA",
+        "instruction": "8981E0000000",
+        "type": "store"
+      }
+    ]
+  },
+  "168": {
+    "count": 4,
+    "access_types": {
+      "load": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535B0A",
+        "instruction": "8B91A8000000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535BBC",
+        "instruction": "8B91A8000000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x535B0A",
+        "instruction": "8B91A8000000",
+        "type": "load"
+      }
+    ]
+  },
+  "176": {
+    "count": 4,
+    "access_types": {
+      "load": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535B22",
+        "instruction": "8B91B0000000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535BD4",
+        "instruction": "8B91B0000000",
+        "type": "load"
+      },
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x535B22",
+        "instruction": "8B91B0000000",
+        "type": "load"
+      }
+    ]
+  },
+  "188": {
+    "count": 4,
+    "access_types": {
+      "store": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535B28",
+        "instruction": "8991BC000000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535BDA",
+        "instruction": "8991BC000000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x535B28",
+        "instruction": "8991BC000000",
+        "type": "store"
+      }
+    ]
+  },
+  "192": {
+    "count": 4,
+    "access_types": {
+      "store": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535B44",
+        "instruction": "8981C0000000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535BF6",
+        "instruction": "8981C0000000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x535B44",
+        "instruction": "8981C0000000",
+        "type": "store"
+      }
+    ]
+  },
+  "217": {
+    "count": 4,
+    "access_types": {
+      "store_byte": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535B50",
+        "instruction": "8881D9000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535C02",
+        "instruction": "8881D9000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x535B50",
+        "instruction": "8881D9000000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "218": {
+    "count": 4,
+    "access_types": {
+      "store_byte": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535B7E",
+        "instruction": "8881DA000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535C08",
+        "instruction": "8881DA000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x535B7E",
+        "instruction": "8881DA000000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "219": {
+    "count": 4,
+    "access_types": {
+      "store_byte": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535B84",
+        "instruction": "8881DB000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535C0E",
+        "instruction": "8881DB000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x535B84",
+        "instruction": "8881DB000000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "221": {
+    "count": 4,
+    "access_types": {
+      "store_byte": 4
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535B90",
+        "instruction": "8881DD000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_method_535010",
+        "va": "0x535C1A",
+        "instruction": "8881DD000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x535B90",
+        "instruction": "8881DD000000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "120": {
+    "count": 1,
+    "access_types": {
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x5360C4",
+        "instruction": "894178",
+        "type": "store"
+      }
+    ]
+  },
+  "132": {
+    "count": 2,
+    "access_types": {
+      "store": 1,
+      "lea": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x536119",
+        "instruction": "898184000000",
+        "type": "store"
+      },
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x53939F",
+        "instruction": "8DB984000000",
+        "type": "lea"
+      }
+    ]
+  },
+  "332": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x5363A8",
+        "instruction": "88814C010000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "333": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_method_535710",
+        "va": "0x5363AE",
+        "instruction": "88814D010000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "73": {
+    "count": 1,
+    "access_types": {
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x539330",
+        "instruction": "8A5149",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "74": {
+    "count": 1,
+    "access_types": {
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x539336",
+        "instruction": "8A514A",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "102": {
+    "count": 1,
+    "access_types": {
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x539361",
+        "instruction": "8B5166",
+        "type": "load"
+      }
+    ]
+  },
+  "106": {
+    "count": 1,
+    "access_types": {
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x539371",
+        "instruction": "8B516A",
+        "type": "load"
+      }
+    ]
+  },
+  "110": {
+    "count": 1,
+    "access_types": {
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x539380",
+        "instruction": "8A516E",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "328": {
+    "count": 1,
+    "access_types": {
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x5393E8",
+        "instruction": "8B9148010000",
+        "type": "load"
+      }
+    ]
+  },
+  "376": {
+    "count": 1,
+    "access_types": {
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x539446",
+        "instruction": "8B9178010000",
+        "type": "load"
+      }
+    ]
+  },
+  "380": {
+    "count": 1,
+    "access_types": {
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x539452",
+        "instruction": "8B917C010000",
+        "type": "load"
+      }
+    ]
+  },
+  "384": {
+    "count": 1,
+    "access_types": {
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x53945E",
+        "instruction": "8B9180010000",
+        "type": "load"
+      }
+    ]
+  },
+  "388": {
+    "count": 1,
+    "access_types": {
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x53946A",
+        "instruction": "8B9184010000",
+        "type": "load"
+      }
+    ]
+  },
+  "400": {
+    "count": 1,
+    "access_types": {
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x53948C",
+        "instruction": "8B9190010000",
+        "type": "load"
+      }
+    ]
+  },
+  "404": {
+    "count": 1,
+    "access_types": {
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x539498",
+        "instruction": "8B9194010000",
+        "type": "load"
+      }
+    ]
+  },
+  "408": {
+    "count": 1,
+    "access_types": {
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "PalScript::_auto_538d60",
+        "va": "0x5394A4",
+        "instruction": "8B8998010000",
         "type": "load"
       }
     ]

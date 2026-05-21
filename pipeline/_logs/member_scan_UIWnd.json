@@ -1,9 +1,42 @@
 {
-  "296": {
-    "count": 14,
+  "72": {
+    "count": 345,
     "access_types": {
-      "store": 1,
+      "lea": 126,
+      "store_byte": 13,
+      "load_byte": 4,
+      "store": 91,
+      "fld_float": 14,
+      "load": 96,
+      "fild_int": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x43905F",
+        "instruction": "8D4648",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x439167",
+        "instruction": "8D4648",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x439835",
+        "instruction": "8D5E48",
+        "type": "lea"
+      }
+    ]
+  },
+  "296": {
+    "count": 34,
+    "access_types": {
+      "store": 6,
       "lea": 8,
+      "fld_float": 15,
       "store_byte": 3,
       "load_byte": 2
     },
@@ -29,11 +62,11 @@
     ]
   },
   "300": {
-    "count": 17,
+    "count": 21,
     "access_types": {
-      "store": 9,
+      "store": 10,
       "fld_float": 4,
-      "load": 4
+      "load": 7
     },
     "examples": [
       {
@@ -57,11 +90,12 @@
     ]
   },
   "304": {
-    "count": 43,
+    "count": 52,
     "access_types": {
-      "store": 1,
-      "lea": 30,
-      "load": 12
+      "store": 3,
+      "lea": 34,
+      "load": 12,
+      "fld_float": 3
     },
     "examples": [
       {
@@ -112,12 +146,12 @@
     ]
   },
   "280": {
-    "count": 10,
+    "count": 33,
     "access_types": {
-      "store": 1,
+      "store": 9,
       "load": 5,
       "lea": 2,
-      "fld_float": 2
+      "fld_float": 17
     },
     "examples": [
       {
@@ -141,11 +175,12 @@
     ]
   },
   "276": {
-    "count": 35,
+    "count": 58,
     "access_types": {
-      "store": 6,
+      "store": 14,
       "load": 15,
-      "lea": 14
+      "lea": 14,
+      "fld_float": 15
     },
     "examples": [
       {
@@ -169,12 +204,12 @@
     ]
   },
   "292": {
-    "count": 39,
+    "count": 51,
     "access_types": {
       "store": 9,
-      "load": 24,
-      "store_byte": 4,
-      "load_byte": 2
+      "load": 27,
+      "load_byte": 5,
+      "store_byte": 10
     },
     "examples": [
       {
@@ -197,11 +232,44 @@
       }
     ]
   },
-  "236": {
-    "count": 30,
+  "68": {
+    "count": 197,
     "access_types": {
-      "store": 3,
-      "store_byte": 22,
+      "store": 43,
+      "load": 50,
+      "fld_float": 17,
+      "store_byte": 37,
+      "fild_int": 1,
+      "lea": 32,
+      "load_byte": 13,
+      "fld_unknown": 4
+    },
+    "examples": [
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x4390A9",
+        "instruction": "895E44",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x43955A",
+        "instruction": "8B4644",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x4396FE",
+        "instruction": "8B4E44",
+        "type": "load"
+      }
+    ]
+  },
+  "236": {
+    "count": 43,
+    "access_types": {
+      "store": 6,
+      "store_byte": 32,
       "load": 5
     },
     "examples": [
@@ -212,23 +280,24 @@
         "type": "store"
       },
       {
-        "method": "UIWnd::SetItemData",
-        "va": "0x43F8D9",
-        "instruction": "8886EC000000",
-        "type": "store_byte"
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A09E",
+        "instruction": "8981EC000000",
+        "type": "store"
       },
       {
-        "method": "UIWnd::SetItemData",
-        "va": "0x440658",
-        "instruction": "889EEC000000",
-        "type": "store_byte"
+        "method": "UIWnd::SetFloatParam",
+        "va": "0x43A09E",
+        "instruction": "8981EC000000",
+        "type": "store"
       }
     ]
   },
   "252": {
-    "count": 6,
+    "count": 20,
     "access_types": {
-      "store": 6
+      "store": 8,
+      "fld_float": 12
     },
     "examples": [
       {
@@ -238,24 +307,25 @@
         "type": "store"
       },
       {
-        "method": "UIWnd::sub_43B3E0",
-        "va": "0x43BD3A",
-        "instruction": "8986FC000000",
-        "type": "store"
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A0A4",
+        "instruction": "D991FC000000",
+        "type": "fld_float"
       },
       {
-        "method": "UIWnd::sub_43B4D0",
-        "va": "0x43BD3A",
-        "instruction": "8986FC000000",
-        "type": "store"
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A0CF",
+        "instruction": "D999FC000000",
+        "type": "fld_float"
       }
     ]
   },
   "248": {
-    "count": 16,
+    "count": 28,
     "access_types": {
-      "store": 10,
-      "load": 6
+      "store": 16,
+      "load": 6,
+      "fld_float": 6
     },
     "examples": [
       {
@@ -279,11 +349,12 @@
     ]
   },
   "260": {
-    "count": 34,
+    "count": 36,
     "access_types": {
       "store": 6,
       "load": 14,
-      "lea": 14
+      "lea": 14,
+      "store_byte": 2
     },
     "examples": [
       {
@@ -307,10 +378,12 @@
     ]
   },
   "256": {
-    "count": 14,
+    "count": 24,
     "access_types": {
-      "store": 8,
-      "load": 6
+      "store": 10,
+      "load": 6,
+      "lea": 2,
+      "fld_float": 6
     },
     "examples": [
       {
@@ -334,11 +407,12 @@
     ]
   },
   "272": {
-    "count": 33,
+    "count": 56,
     "access_types": {
-      "store": 4,
+      "store": 12,
       "load": 12,
-      "lea": 17
+      "lea": 17,
+      "fld_float": 15
     },
     "examples": [
       {
@@ -362,11 +436,12 @@
     ]
   },
   "268": {
-    "count": 92,
+    "count": 115,
     "access_types": {
-      "store": 12,
+      "store": 20,
       "load": 78,
-      "lea": 2
+      "lea": 2,
+      "fld_float": 15
     },
     "examples": [
       {
@@ -390,11 +465,11 @@
     ]
   },
   "264": {
-    "count": 59,
+    "count": 76,
     "access_types": {
-      "store": 13,
-      "load": 41,
-      "fld_float": 5
+      "store": 15,
+      "load": 44,
+      "fld_float": 17
     },
     "examples": [
       {
@@ -418,11 +493,12 @@
     ]
   },
   "240": {
-    "count": 35,
+    "count": 47,
     "access_types": {
-      "store_byte": 1,
+      "store_byte": 3,
       "store": 6,
       "fld_float": 21,
+      "fild_int": 10,
       "load": 3,
       "lea": 4
     },
@@ -448,10 +524,11 @@
     ]
   },
   "288": {
-    "count": 2,
+    "count": 4,
     "access_types": {
       "store": 1,
-      "lea": 1
+      "lea": 1,
+      "store_byte": 2
     },
     "examples": [
       {
@@ -465,13 +542,135 @@
         "va": "0x4A8913",
         "instruction": "8D9020010000",
         "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52DF1A",
+        "instruction": "888120010000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "91": {
+    "count": 12,
+    "access_types": {
+      "store_byte": 12
+    },
+    "examples": [
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x4390F3",
+        "instruction": "C65E5B",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_sdtor_4",
+        "va": "0x44205B",
+        "instruction": "C65E5B",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_44a780",
+        "va": "0x44ACAC",
+        "instruction": "C65E5B",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "12": {
+    "count": 552,
+    "access_types": {
+      "load": 219,
+      "store": 270,
+      "fild_int": 1,
+      "fld_float": 11,
+      "lea": 51
+    },
+    "examples": [
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x4391DC",
+        "instruction": "8B460C",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x4391E8",
+        "instruction": "895E0C",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x439209",
+        "instruction": "895E0C",
+        "type": "store"
+      }
+    ]
+  },
+  "16": {
+    "count": 508,
+    "access_types": {
+      "load": 195,
+      "store": 80,
+      "fild_int": 23,
+      "lea": 168,
+      "fld_float": 42
+    },
+    "examples": [
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x4391EF",
+        "instruction": "8B7E10",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x439206",
+        "instruction": "895E10",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x439210",
+        "instruction": "8B4E10",
+        "type": "load"
+      }
+    ]
+  },
+  "88": {
+    "count": 328,
+    "access_types": {
+      "lea": 38,
+      "store": 98,
+      "load": 163,
+      "fld_float": 28,
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x439573",
+        "instruction": "8D6E58",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_sdtor",
+        "va": "0x439573",
+        "instruction": "8D6E58",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::ctor_9130",
+        "va": "0x439573",
+        "instruction": "8D6E58",
+        "type": "lea"
       }
     ]
   },
   "232": {
-    "count": 33,
+    "count": 35,
     "access_types": {
-      "store": 28,
+      "store": 30,
       "load_byte": 5
     },
     "examples": [
@@ -495,13 +694,106 @@
       }
     ]
   },
-  "144": {
-    "count": 90,
+  "4": {
+    "count": 871,
     "access_types": {
-      "store": 5,
+      "lea": 56,
+      "store": 377,
+      "fld_float": 18,
+      "load": 392,
+      "fild_int": 1,
+      "store_byte": 12,
+      "load_byte": 15
+    },
+    "examples": [
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x439BDD",
+        "instruction": "8D4604",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x439BF0",
+        "instruction": "8D5604",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x439CB7",
+        "instruction": "8D5604",
+        "type": "lea"
+      }
+    ]
+  },
+  "92": {
+    "count": 423,
+    "access_types": {
+      "lea": 23,
+      "store": 102,
+      "load": 253,
+      "fld_float": 45
+    },
+    "examples": [
+      {
+        "method": "UIWnd::ctor_9030",
+        "va": "0x439F54",
+        "instruction": "8D565C",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_sdtor",
+        "va": "0x439F54",
+        "instruction": "8D565C",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::ctor_9130",
+        "va": "0x439F54",
+        "instruction": "8D565C",
+        "type": "lea"
+      }
+    ]
+  },
+  "76": {
+    "count": 365,
+    "access_types": {
+      "lea": 66,
+      "store": 97,
+      "load": 166,
+      "store_byte": 2,
+      "fild_int": 2,
+      "fld_unknown": 2,
+      "fld_float": 30
+    },
+    "examples": [
+      {
+        "method": "UIWnd::LoadModel",
+        "va": "0x43A185",
+        "instruction": "8D4E4C",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::LoadModel",
+        "va": "0x43A220",
+        "instruction": "8D4E4C",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A220",
+        "instruction": "8D4E4C",
+        "type": "lea"
+      }
+    ]
+  },
+  "144": {
+    "count": 128,
+    "access_types": {
+      "store": 29,
+      "load": 69,
       "fild_int": 13,
-      "load": 63,
-      "fld_float": 9
+      "fld_float": 17
     },
     "examples": [
       {
@@ -511,26 +803,26 @@
         "type": "store"
       },
       {
-        "method": "UIWnd::_sdtor_2",
-        "va": "0x43A30A",
-        "instruction": "DB8690000000",
-        "type": "fild_int"
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A442",
+        "instruction": "8B8190000000",
+        "type": "load"
       },
       {
-        "method": "UIWnd::_sdtor_2",
-        "va": "0x43A388",
-        "instruction": "8B9690000000",
-        "type": "load"
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A450",
+        "instruction": "898190000000",
+        "type": "store"
       }
     ]
   },
   "148": {
-    "count": 71,
+    "count": 98,
     "access_types": {
-      "store": 8,
-      "load": 30,
+      "store": 18,
+      "load": 38,
       "fild_int": 7,
-      "fld_float": 18,
+      "fld_float": 27,
       "store_byte": 4,
       "load_byte": 4
     },
@@ -542,28 +834,179 @@
         "type": "store"
       },
       {
-        "method": "UIWnd::_sdtor_2",
-        "va": "0x43A284",
-        "instruction": "8B8694000000",
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A3F8",
+        "instruction": "8B9194000000",
         "type": "load"
       },
       {
-        "method": "UIWnd::_sdtor_2",
-        "va": "0x43A4FE",
-        "instruction": "89BE94000000",
+        "method": "UIWnd::SetFloatParam",
+        "va": "0x43A3F8",
+        "instruction": "8B9194000000",
+        "type": "load"
+      }
+    ]
+  },
+  "8": {
+    "count": 767,
+    "access_types": {
+      "store": 375,
+      "fld_float": 9,
+      "lea": 106,
+      "load": 274,
+      "fild_int": 2,
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Helper_439740",
+        "va": "0x439904",
+        "instruction": "895108",
         "type": "store"
+      },
+      {
+        "method": "UIWnd::Helper_439740",
+        "va": "0x439919",
+        "instruction": "D94108",
+        "type": "fld_float"
+      },
+      {
+        "method": "UIWnd::Helper_439740",
+        "va": "0x439920",
+        "instruction": "D95908",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "56": {
+    "count": 226,
+    "access_types": {
+      "load": 140,
+      "store": 72,
+      "fld_float": 13,
+      "lea": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A3E0",
+        "instruction": "8B4138",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::SetFloatParam",
+        "va": "0x43A3E0",
+        "instruction": "8B4138",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::sub_43A090",
+        "va": "0x43A3E0",
+        "instruction": "8B4138",
+        "type": "load"
+      }
+    ]
+  },
+  "60": {
+    "count": 135,
+    "access_types": {
+      "load": 48,
+      "store": 38,
+      "lea": 2,
+      "fld_float": 14,
+      "store_byte": 27,
+      "load_byte": 6
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A3EC",
+        "instruction": "8B413C",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::SetFloatParam",
+        "va": "0x43A3EC",
+        "instruction": "8B413C",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::sub_43A090",
+        "va": "0x43A3EC",
+        "instruction": "8B413C",
+        "type": "load"
+      }
+    ]
+  },
+  "152": {
+    "count": 187,
+    "access_types": {
+      "load": 39,
+      "store": 51,
+      "lea": 49,
+      "fld_float": 45,
+      "store_byte": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A402",
+        "instruction": "8B8198000000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A409",
+        "instruction": "898198000000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A45E",
+        "instruction": "8B8198000000",
+        "type": "load"
+      }
+    ]
+  },
+  "156": {
+    "count": 95,
+    "access_types": {
+      "load": 31,
+      "store": 33,
+      "fld_float": 20,
+      "store_byte": 2,
+      "lea": 9
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A475",
+        "instruction": "8B819C000000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::Helper_439740",
+        "va": "0x43A684",
+        "instruction": "89819C000000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::SetFloatParam",
+        "va": "0x43A475",
+        "instruction": "8B819C000000",
+        "type": "load"
       }
     ]
   },
   "160": {
-    "count": 106,
+    "count": 157,
     "access_types": {
-      "load": 29,
-      "store_byte": 17,
-      "store": 48,
+      "load": 35,
+      "store_byte": 47,
+      "store": 62,
       "load_byte": 6,
       "fild_int": 4,
-      "lea": 2
+      "lea": 3
     },
     "examples": [
       {
@@ -573,24 +1016,175 @@
         "type": "load"
       },
       {
-        "method": "UIWnd::SetItemData",
-        "va": "0x43F841",
-        "instruction": "8886A0000000",
+        "method": "UIWnd::CreateChild",
+        "va": "0x43FE76",
+        "instruction": "8891A0000000",
         "type": "store_byte"
       },
       {
-        "method": "UIWnd::SetItemData",
-        "va": "0x4405B7",
-        "instruction": "889EA0000000",
+        "method": "UIWnd::CreateChild",
+        "va": "0x43FE86",
+        "instruction": "8891A0000000",
         "type": "store_byte"
       }
     ]
   },
-  "196": {
-    "count": 65,
+  "28": {
+    "count": 244,
     "access_types": {
-      "store": 14,
-      "load": 51
+      "load": 119,
+      "fild_int": 34,
+      "store": 52,
+      "fld_float": 34,
+      "lea": 5
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A2BD",
+        "instruction": "8B461C",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A36B",
+        "instruction": "DB461C",
+        "type": "fild_int"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43AD7C",
+        "instruction": "8B461C",
+        "type": "load"
+      }
+    ]
+  },
+  "20": {
+    "count": 268,
+    "access_types": {
+      "load": 170,
+      "fild_int": 31,
+      "store": 51,
+      "store_byte": 4,
+      "fld_float": 12
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A2C0",
+        "instruction": "8B4E14",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A345",
+        "instruction": "DB4614",
+        "type": "fild_int"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43AD71",
+        "instruction": "8B4E14",
+        "type": "load"
+      }
+    ]
+  },
+  "24": {
+    "count": 245,
+    "access_types": {
+      "load": 122,
+      "fild_int": 36,
+      "store": 56,
+      "load_byte": 7,
+      "store_byte": 11,
+      "fld_float": 13
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A2E5",
+        "instruction": "8B4E18",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A355",
+        "instruction": "DB4618",
+        "type": "fild_int"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43AD54",
+        "instruction": "8B4618",
+        "type": "load"
+      }
+    ]
+  },
+  "116": {
+    "count": 131,
+    "access_types": {
+      "lea": 15,
+      "store": 55,
+      "fld_float": 10,
+      "load": 50,
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A795",
+        "instruction": "8D4E74",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A840",
+        "instruction": "8D4E74",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A8B7",
+        "instruction": "8D4674",
+        "type": "lea"
+      }
+    ]
+  },
+  "96": {
+    "count": 442,
+    "access_types": {
+      "store": 148,
+      "load": 233,
+      "lea": 56,
+      "store_byte": 1,
+      "fld_float": 4
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A7A1",
+        "instruction": "897E60",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43ABC5",
+        "instruction": "895E60",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43ABE4",
+        "instruction": "895E60",
+        "type": "store"
+      }
+    ]
+  },
+  "196": {
+    "count": 70,
+    "access_types": {
+      "store": 16,
+      "load": 54
     },
     "examples": [
       {
@@ -614,11 +1208,11 @@
     ]
   },
   "212": {
-    "count": 25,
+    "count": 27,
     "access_types": {
       "lea": 4,
       "load_byte": 3,
-      "store": 11,
+      "store": 13,
       "load": 7
     },
     "examples": [
@@ -643,13 +1237,13 @@
     ]
   },
   "204": {
-    "count": 83,
+    "count": 88,
     "access_types": {
       "store_byte": 11,
       "load_byte": 2,
-      "store": 25,
+      "store": 27,
       "load": 44,
-      "lea": 1
+      "lea": 4
     },
     "examples": [
       {
@@ -673,10 +1267,10 @@
     ]
   },
   "208": {
-    "count": 51,
+    "count": 59,
     "access_types": {
-      "store": 20,
-      "load": 31
+      "store": 22,
+      "load": 37
     },
     "examples": [
       {
@@ -700,12 +1294,12 @@
     ]
   },
   "184": {
-    "count": 96,
+    "count": 123,
     "access_types": {
       "lea": 3,
-      "load": 42,
-      "store": 34,
-      "fld_float": 15,
+      "load": 46,
+      "store": 54,
+      "fld_float": 18,
       "fild_int": 2
     },
     "examples": [
@@ -716,25 +1310,25 @@
         "type": "lea"
       },
       {
-        "method": "UIWnd::sub_43B3E0",
-        "va": "0x43B5AB",
-        "instruction": "8DAEB8000000",
-        "type": "lea"
+        "method": "UIWnd::_nearby_43a660",
+        "va": "0x43B50A",
+        "instruction": "8B91B8000000",
+        "type": "load"
       },
       {
-        "method": "UIWnd::sub_43B3E0",
-        "va": "0x43B6C7",
-        "instruction": "8B8EB8000000",
+        "method": "UIWnd::_nearby_43a680",
+        "va": "0x43B50A",
+        "instruction": "8B91B8000000",
         "type": "load"
       }
     ]
   },
   "340": {
-    "count": 25,
+    "count": 36,
     "access_types": {
       "store_byte": 1,
-      "load": 16,
-      "store": 8
+      "load": 21,
+      "store": 14
     },
     "examples": [
       {
@@ -757,10 +1351,41 @@
       }
     ]
   },
-  "200": {
-    "count": 55,
+  "100": {
+    "count": 287,
     "access_types": {
-      "store": 15,
+      "store_byte": 85,
+      "store": 101,
+      "load": 76,
+      "load_byte": 10,
+      "lea": 7,
+      "fld_float": 8
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A953",
+        "instruction": "C64664",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::sub_43B3E0",
+        "va": "0x43BD01",
+        "instruction": "894664",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::sub_43B4D0",
+        "va": "0x43BD01",
+        "instruction": "894664",
+        "type": "store"
+      }
+    ]
+  },
+  "200": {
+    "count": 57,
+    "access_types": {
+      "store": 17,
       "load": 40
     },
     "examples": [
@@ -784,10 +1409,133 @@
       }
     ]
   },
-  "344": {
-    "count": 36,
+  "108": {
+    "count": 236,
     "access_types": {
-      "store": 8,
+      "store": 70,
+      "load": 122,
+      "fld_float": 38,
+      "lea": 6
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A9AD",
+        "instruction": "897E6C",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43AEDD",
+        "instruction": "8B7E6C",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::sub_43B3E0",
+        "va": "0x43BD07",
+        "instruction": "89466C",
+        "type": "store"
+      }
+    ]
+  },
+  "104": {
+    "count": 206,
+    "access_types": {
+      "store": 85,
+      "load": 43,
+      "store_byte": 14,
+      "lea": 57,
+      "fld_unknown": 1,
+      "fld_float": 2,
+      "load_byte": 4
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A9B0",
+        "instruction": "897E68",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43AEE4",
+        "instruction": "8B5668",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::sub_43B3E0",
+        "va": "0x43BD04",
+        "instruction": "884668",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "112": {
+    "count": 417,
+    "access_types": {
+      "store_byte": 10,
+      "load_byte": 2,
+      "store": 44,
+      "load": 348,
+      "lea": 8,
+      "fld_float": 5
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43A9B3",
+        "instruction": "C64670",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43AF5A",
+        "instruction": "8A4670",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::sub_43B3E0",
+        "va": "0x43BDDE",
+        "instruction": "894670",
+        "type": "store"
+      }
+    ]
+  },
+  "32": {
+    "count": 187,
+    "access_types": {
+      "load": 138,
+      "lea": 4,
+      "store": 20,
+      "fld_float": 12,
+      "store_byte": 9,
+      "load_byte": 4
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43AB91",
+        "instruction": "8B4E20",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43AC36",
+        "instruction": "8B4E20",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_2",
+        "va": "0x43AC6A",
+        "instruction": "8B4E20",
+        "type": "load"
+      }
+    ]
+  },
+  "344": {
+    "count": 38,
+    "access_types": {
+      "store": 10,
       "load": 9,
       "lea": 2,
       "load_byte": 5,
@@ -815,10 +1563,10 @@
     ]
   },
   "348": {
-    "count": 57,
+    "count": 64,
     "access_types": {
-      "store": 16,
-      "load": 28,
+      "store": 18,
+      "load": 33,
       "fild_int": 13
     },
     "examples": [
@@ -873,11 +1621,11 @@
     ]
   },
   "364": {
-    "count": 26,
+    "count": 29,
     "access_types": {
-      "store": 5,
+      "store": 6,
       "lea": 9,
-      "store_byte": 3,
+      "store_byte": 5,
       "load": 9
     },
     "examples": [
@@ -931,11 +1679,11 @@
     ]
   },
   "372": {
-    "count": 11,
+    "count": 12,
     "access_types": {
       "store": 1,
       "lea": 4,
-      "load": 1,
+      "load": 2,
       "store_byte": 3,
       "load_byte": 2
     },
@@ -957,6 +1705,32 @@
         "va": "0x43B6D5",
         "instruction": "8D8674010000",
         "type": "lea"
+      }
+    ]
+  },
+  "89": {
+    "count": 11,
+    "access_types": {
+      "store_byte": 11
+    },
+    "examples": [
+      {
+        "method": "UIWnd::sub_43B3E0",
+        "va": "0x43B49E",
+        "instruction": "C65E59",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::SetFirstShow_442060",
+        "va": "0x44235D",
+        "instruction": "C65E59",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_443fc0",
+        "va": "0x444A98",
+        "instruction": "C65E59",
+        "type": "store_byte"
       }
     ]
   },
@@ -990,12 +1764,13 @@
     ]
   },
   "220": {
-    "count": 34,
+    "count": 58,
     "access_types": {
       "store": 18,
       "fld_float": 5,
-      "load": 7,
-      "lea": 4
+      "load": 17,
+      "lea": 4,
+      "store_byte": 14
     },
     "examples": [
       {
@@ -1019,9 +1794,9 @@
     ]
   },
   "224": {
-    "count": 117,
+    "count": 140,
     "access_types": {
-      "store": 42,
+      "store": 65,
       "fld_float": 56,
       "load_byte": 7,
       "fild_int": 7,
@@ -1049,11 +1824,12 @@
     ]
   },
   "228": {
-    "count": 43,
+    "count": 50,
     "access_types": {
       "store": 15,
       "fld_float": 17,
       "load": 6,
+      "store_byte": 7,
       "lea": 5
     },
     "examples": [
@@ -1078,11 +1854,11 @@
     ]
   },
   "180": {
-    "count": 183,
+    "count": 208,
     "access_types": {
-      "store": 98,
-      "lea": 7,
-      "load": 63,
+      "store": 119,
+      "lea": 8,
+      "load": 66,
       "fild_int": 15
     },
     "examples": [
@@ -1107,11 +1883,12 @@
     ]
   },
   "188": {
-    "count": 97,
+    "count": 126,
     "access_types": {
-      "store": 66,
-      "load": 29,
-      "fild_int": 2
+      "store": 90,
+      "load": 31,
+      "fild_int": 2,
+      "fld_float": 3
     },
     "examples": [
       {
@@ -1187,12 +1964,12 @@
     ]
   },
   "168": {
-    "count": 147,
+    "count": 173,
     "access_types": {
       "store_byte": 11,
-      "lea": 31,
+      "lea": 32,
       "store": 37,
-      "load": 60,
+      "load": 85,
       "fld_float": 8
     },
     "examples": [
@@ -1296,11 +2073,11 @@
     ]
   },
   "172": {
-    "count": 322,
+    "count": 362,
     "access_types": {
-      "store_byte": 21,
-      "store": 167,
-      "load": 116,
+      "store_byte": 31,
+      "store": 183,
+      "load": 130,
       "load_byte": 4,
       "lea": 4,
       "fld_float": 10
@@ -1405,13 +2182,13 @@
     ]
   },
   "176": {
-    "count": 144,
+    "count": 176,
     "access_types": {
       "store_byte": 5,
-      "store": 88,
-      "load": 30,
-      "fld_float": 18,
-      "lea": 3
+      "store": 97,
+      "load": 44,
+      "fld_float": 22,
+      "lea": 8
     },
     "examples": [
       {
@@ -1461,11 +2238,12 @@
     ]
   },
   "244": {
-    "count": 141,
+    "count": 149,
     "access_types": {
-      "store": 6,
+      "store": 8,
       "load": 134,
-      "lea": 1
+      "lea": 1,
+      "fld_float": 6
     },
     "examples": [
       {
@@ -1489,12 +2267,13 @@
     ]
   },
   "216": {
-    "count": 43,
+    "count": 80,
     "access_types": {
       "store": 11,
       "lea": 21,
-      "load": 6,
-      "load_byte": 5
+      "load": 16,
+      "store_byte": 20,
+      "load_byte": 12
     },
     "examples": [
       {
@@ -1518,12 +2297,12 @@
     ]
   },
   "192": {
-    "count": 75,
+    "count": 94,
     "access_types": {
-      "store": 26,
+      "store": 42,
       "load": 14,
       "lea": 27,
-      "fld_float": 8
+      "fld_float": 11
     },
     "examples": [
       {
@@ -1546,14 +2325,44 @@
       }
     ]
   },
-  "140": {
-    "count": 152,
+  "124": {
+    "count": 284,
     "access_types": {
-      "load": 99,
-      "store": 8,
-      "fld_float": 31,
+      "store": 186,
+      "load": 24,
+      "fld_float": 53,
+      "lea": 19,
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::sub_43B3E0",
+        "va": "0x43BFFA",
+        "instruction": "896E7C",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::sub_43B3E0",
+        "va": "0x43C042",
+        "instruction": "89467C",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::sub_43B3E0",
+        "va": "0x43C096",
+        "instruction": "896E7C",
+        "type": "store"
+      }
+    ]
+  },
+  "140": {
+    "count": 165,
+    "access_types": {
+      "load": 101,
+      "fld_float": 38,
+      "store": 10,
       "store_byte": 13,
-      "load_byte": 1
+      "load_byte": 3
     },
     "examples": [
       {
@@ -1577,12 +2386,12 @@
     ]
   },
   "136": {
-    "count": 116,
+    "count": 131,
     "access_types": {
       "load": 72,
       "lea": 6,
-      "store": 16,
-      "fld_float": 22
+      "fld_float": 30,
+      "store": 23
     },
     "examples": [
       {
@@ -1605,15 +2414,46 @@
       }
     ]
   },
-  "128": {
-    "count": 183,
+  "120": {
+    "count": 276,
     "access_types": {
-      "store": 142,
+      "store": 127,
+      "fld_float": 27,
+      "load": 43,
+      "lea": 14,
+      "load_byte": 10,
+      "store_byte": 55
+    },
+    "examples": [
+      {
+        "method": "UIWnd::sub_43B3E0",
+        "va": "0x43C047",
+        "instruction": "894E78",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::sub_43B3E0",
+        "va": "0x43C0D4",
+        "instruction": "894678",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::sub_43B3E0",
+        "va": "0x43C1AD",
+        "instruction": "894E78",
+        "type": "store"
+      }
+    ]
+  },
+  "128": {
+    "count": 210,
+    "access_types": {
+      "store": 155,
+      "fld_float": 31,
       "load": 10,
-      "fld_float": 23,
       "lea": 2,
-      "store_byte": 5,
-      "load_byte": 1
+      "store_byte": 8,
+      "load_byte": 4
     },
     "examples": [
       {
@@ -1637,11 +2477,11 @@
     ]
   },
   "132": {
-    "count": 129,
+    "count": 147,
     "access_types": {
-      "store": 98,
-      "load": 18,
-      "fld_float": 4,
+      "store": 107,
+      "fld_float": 11,
+      "load": 20,
       "load_byte": 1,
       "store_byte": 8
     },
@@ -1666,33 +2506,171 @@
       }
     ]
   },
-  "152": {
-    "count": 83,
+  "80": {
+    "count": 346,
     "access_types": {
-      "lea": 49,
-      "store": 9,
-      "fld_float": 8,
-      "load": 16,
+      "store": 111,
+      "load": 163,
+      "lea": 43,
+      "fild_int": 2,
+      "fld_float": 26,
       "store_byte": 1
     },
     "examples": [
       {
         "method": "UIWnd::ctor_BB70",
-        "va": "0x43C7FD",
-        "instruction": "8D9698000000",
-        "type": "lea"
+        "va": "0x43C967",
+        "instruction": "894E50",
+        "type": "store"
       },
       {
         "method": "UIWnd::ScalarDtor",
-        "va": "0x43C7FD",
-        "instruction": "8D9698000000",
-        "type": "lea"
+        "va": "0x43C967",
+        "instruction": "894E50",
+        "type": "store"
       },
       {
         "method": "UIWnd::ctor_BBB0",
-        "va": "0x43C7FD",
-        "instruction": "8D9698000000",
+        "va": "0x43C967",
+        "instruction": "894E50",
+        "type": "store"
+      }
+    ]
+  },
+  "84": {
+    "count": 296,
+    "access_types": {
+      "store": 87,
+      "load": 162,
+      "store_byte": 5,
+      "lea": 10,
+      "fld_float": 32
+    },
+    "examples": [
+      {
+        "method": "UIWnd::ctor_BB70",
+        "va": "0x43C978",
+        "instruction": "895654",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::ScalarDtor",
+        "va": "0x43C978",
+        "instruction": "895654",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::ctor_BBB0",
+        "va": "0x43C978",
+        "instruction": "895654",
+        "type": "store"
+      }
+    ]
+  },
+  "64": {
+    "count": 57,
+    "access_types": {
+      "lea": 5,
+      "load": 15,
+      "store": 22,
+      "fld_float": 11,
+      "store_byte": 3,
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_3",
+        "va": "0x43DF13",
+        "instruction": "8D4E40",
         "type": "lea"
+      },
+      {
+        "method": "UIWnd::_sdtor_3",
+        "va": "0x43DF4A",
+        "instruction": "8D4E40",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::Render_43dab0",
+        "va": "0x43DF87",
+        "instruction": "8B4740",
+        "type": "load"
+      }
+    ]
+  },
+  "70": {
+    "count": 29,
+    "access_types": {
+      "store_byte": 23,
+      "load_byte": 6
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_3",
+        "va": "0x43DFFA",
+        "instruction": "884646",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_sdtor_3",
+        "va": "0x43E004",
+        "instruction": "C64646",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::~UIWnd_dd10",
+        "va": "0x43DFFA",
+        "instruction": "884646",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "69": {
+    "count": 62,
+    "access_types": {
+      "store_byte": 43,
+      "load_byte": 14,
+      "load": 3,
+      "fld_unknown": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_3",
+        "va": "0x43DFFD",
+        "instruction": "884645",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_sdtor_3",
+        "va": "0x43E008",
+        "instruction": "884645",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::~UIWnd_dd10",
+        "va": "0x43DFFD",
+        "instruction": "884645",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "71": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_3",
+        "va": "0x43E011",
+        "instruction": "C64647",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::~UIWnd_dd10",
+        "va": "0x43E011",
+        "instruction": "C64647",
+        "type": "store_byte"
       }
     ]
   },
@@ -1838,10 +2816,10 @@
     ]
   },
   "1196": {
-    "count": 19,
+    "count": 29,
     "access_types": {
       "store": 4,
-      "load": 9,
+      "load": 19,
       "lea": 6
     },
     "examples": [
@@ -1866,10 +2844,11 @@
     ]
   },
   "1200": {
-    "count": 6,
+    "count": 14,
     "access_types": {
       "store": 4,
-      "load": 2
+      "load": 8,
+      "lea": 2
     },
     "examples": [
       {
@@ -1919,10 +2898,10 @@
     ]
   },
   "432": {
-    "count": 20,
+    "count": 23,
     "access_types": {
       "store": 4,
-      "load": 13,
+      "load": 16,
       "lea": 3
     },
     "examples": [
@@ -1947,10 +2926,10 @@
     ]
   },
   "1116": {
-    "count": 19,
+    "count": 22,
     "access_types": {
       "store": 10,
-      "load": 7,
+      "load": 10,
       "lea": 2
     },
     "examples": [
@@ -2113,9 +3092,9 @@
     ]
   },
   "1108": {
-    "count": 5,
+    "count": 6,
     "access_types": {
-      "store": 2,
+      "store": 3,
       "load": 2,
       "lea": 1
     },
@@ -2196,9 +3175,9 @@
     ]
   },
   "1180": {
-    "count": 4,
+    "count": 5,
     "access_types": {
-      "store": 2,
+      "store": 3,
       "load": 2
     },
     "examples": [
@@ -2223,9 +3202,9 @@
     ]
   },
   "1184": {
-    "count": 5,
+    "count": 6,
     "access_types": {
-      "store": 2,
+      "store": 3,
       "load": 3
     },
     "examples": [
@@ -2250,9 +3229,9 @@
     ]
   },
   "1188": {
-    "count": 6,
+    "count": 7,
     "access_types": {
-      "store": 2,
+      "store": 3,
       "load": 4
     },
     "examples": [
@@ -2414,9 +3393,11 @@
     ]
   },
   "308": {
-    "count": 2,
+    "count": 10,
     "access_types": {
-      "load": 2
+      "load": 2,
+      "store_byte": 5,
+      "load_byte": 3
     },
     "examples": [
       {
@@ -2430,13 +3411,20 @@
         "va": "0x43E40A",
         "instruction": "8B9634010000",
         "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52DF2C",
+        "instruction": "888134010000",
+        "type": "store_byte"
       }
     ]
   },
   "324": {
-    "count": 15,
+    "count": 20,
     "access_types": {
-      "load": 15
+      "load": 18,
+      "store": 2
     },
     "examples": [
       {
@@ -2459,41 +3447,11 @@
       }
     ]
   },
-  "156": {
-    "count": 54,
-    "access_types": {
-      "store": 20,
-      "fld_float": 10,
-      "load": 13,
-      "store_byte": 2,
-      "lea": 9
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_3",
-        "va": "0x43E41A",
-        "instruction": "89869C000000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::~UIWnd_dd10",
-        "va": "0x43E41A",
-        "instruction": "89869C000000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::SetItemData",
-        "va": "0x43F83B",
-        "instruction": "89869C000000",
-        "type": "store"
-      }
-    ]
-  },
   "316": {
-    "count": 36,
+    "count": 43,
     "access_types": {
-      "store": 2,
-      "load": 21,
+      "store": 4,
+      "load": 26,
       "fld_float": 10,
       "lea": 3
     },
@@ -2519,11 +3477,11 @@
     ]
   },
   "332": {
-    "count": 14,
+    "count": 18,
     "access_types": {
       "store": 2,
       "load": 2,
-      "store_byte": 7,
+      "store_byte": 11,
       "load_byte": 3
     },
     "examples": [
@@ -2548,9 +3506,9 @@
     ]
   },
   "504": {
-    "count": 5,
+    "count": 6,
     "access_types": {
-      "load": 3,
+      "load": 4,
       "lea": 2
     },
     "examples": [
@@ -2575,10 +3533,10 @@
     ]
   },
   "500": {
-    "count": 5,
+    "count": 9,
     "access_types": {
       "lea": 2,
-      "load": 2,
+      "load": 6,
       "fld_float": 1
     },
     "examples": [
@@ -2603,11 +3561,12 @@
     ]
   },
   "584": {
-    "count": 21,
+    "count": 38,
     "access_types": {
       "lea": 11,
       "load": 3,
-      "store": 7
+      "store": 21,
+      "fld_float": 3
     },
     "examples": [
       {
@@ -2631,10 +3590,10 @@
     ]
   },
   "1120": {
-    "count": 17,
+    "count": 20,
     "access_types": {
-      "load": 5,
-      "store": 1,
+      "load": 6,
+      "store": 3,
       "lea": 11
     },
     "examples": [
@@ -2658,10 +3617,24 @@
       }
     ]
   },
-  "1124": {
+  "94": {
     "count": 1,
     "access_types": {
-      "load": 1
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Render_43dab0",
+        "va": "0x43E0F1",
+        "instruction": "C65F5E",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "1124": {
+    "count": 2,
+    "access_types": {
+      "load": 2
     },
     "examples": [
       {
@@ -2669,6 +3642,65 @@
         "va": "0x43EAF8",
         "instruction": "8B9664040000",
         "type": "load"
+      },
+      {
+        "method": "UIWnd::CreateChild",
+        "va": "0x43F5A5",
+        "instruction": "8B8164040000",
+        "type": "load"
+      }
+    ]
+  },
+  "237": {
+    "count": 30,
+    "access_types": {
+      "store_byte": 30
+    },
+    "examples": [
+      {
+        "method": "UIWnd::CreateChild",
+        "va": "0x43FE69",
+        "instruction": "C681ED000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::CreateChild",
+        "va": "0x43FEA7",
+        "instruction": "8881ED000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::SetItemData",
+        "va": "0x43F8DF",
+        "instruction": "8886ED000000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "238": {
+    "count": 47,
+    "access_types": {
+      "store_byte": 40,
+      "load_byte": 7
+    },
+    "examples": [
+      {
+        "method": "UIWnd::CreateChild",
+        "va": "0x43FE70",
+        "instruction": "8891EE000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::CreateChild",
+        "va": "0x43FE7F",
+        "instruction": "C681EE000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::CreateChild",
+        "va": "0x43FEB9",
+        "instruction": "8881EE000000",
+        "type": "store_byte"
       }
     ]
   },
@@ -2725,12 +3757,13 @@
     ]
   },
   "164": {
-    "count": 88,
+    "count": 116,
     "access_types": {
       "store_byte": 3,
       "lea": 9,
-      "store": 35,
-      "load": 41
+      "store": 52,
+      "load": 44,
+      "fld_float": 8
     },
     "examples": [
       {
@@ -2779,64 +3812,11 @@
       }
     ]
   },
-  "237": {
-    "count": 10,
-    "access_types": {
-      "store_byte": 10
-    },
-    "examples": [
-      {
-        "method": "UIWnd::SetItemData",
-        "va": "0x43F8DF",
-        "instruction": "8886ED000000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::SetItemData",
-        "va": "0x440660",
-        "instruction": "889EED000000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::SetChildParam",
-        "va": "0x43F8DF",
-        "instruction": "8886ED000000",
-        "type": "store_byte"
-      }
-    ]
-  },
-  "238": {
-    "count": 17,
-    "access_types": {
-      "store_byte": 10,
-      "load_byte": 7
-    },
-    "examples": [
-      {
-        "method": "UIWnd::SetItemData",
-        "va": "0x43F8E5",
-        "instruction": "8886EE000000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::SetItemData",
-        "va": "0x44064A",
-        "instruction": "8A86EE000000",
-        "type": "load_byte"
-      },
-      {
-        "method": "UIWnd::SetItemData",
-        "va": "0x440672",
-        "instruction": "889EEE000000",
-        "type": "store_byte"
-      }
-    ]
-  },
   "219": {
-    "count": 17,
+    "count": 31,
     "access_types": {
       "load_byte": 10,
-      "store_byte": 7
+      "store_byte": 21
     },
     "examples": [
       {
@@ -2860,9 +3840,9 @@
     ]
   },
   "336": {
-    "count": 20,
+    "count": 24,
     "access_types": {
-      "store": 7,
+      "store": 11,
       "load": 8,
       "store_byte": 5
     },
@@ -2888,11 +3868,11 @@
     ]
   },
   "320": {
-    "count": 24,
+    "count": 30,
     "access_types": {
-      "lea": 7,
+      "lea": 11,
       "load": 12,
-      "store": 5
+      "store": 7
     },
     "examples": [
       {
@@ -2939,6 +3919,180 @@
         "va": "0x444A85",
         "instruction": "8A869B000000",
         "type": "load_byte"
+      }
+    ]
+  },
+  "7": {
+    "count": 13,
+    "access_types": {
+      "store_byte": 3,
+      "load_byte": 10
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_443fc0",
+        "va": "0x444CC1",
+        "instruction": "884E07",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::sub_444A20",
+        "va": "0x444CC1",
+        "instruction": "884E07",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Destructor_444AC0",
+        "va": "0x444CC1",
+        "instruction": "884E07",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "6": {
+    "count": 16,
+    "access_types": {
+      "store_byte": 5,
+      "load_byte": 11
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_443fc0",
+        "va": "0x444FB4",
+        "instruction": "884606",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::sub_444A20",
+        "va": "0x444FB4",
+        "instruction": "884606",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Destructor_444AC0",
+        "va": "0x444FB4",
+        "instruction": "884606",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "5": {
+    "count": 21,
+    "access_types": {
+      "store_byte": 5,
+      "lea": 5,
+      "load_byte": 11
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_443fc0",
+        "va": "0x444FB7",
+        "instruction": "884605",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::sub_444A20",
+        "va": "0x444FB7",
+        "instruction": "884605",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Destructor_444AC0",
+        "va": "0x444FB7",
+        "instruction": "884605",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "36": {
+    "count": 125,
+    "access_types": {
+      "lea": 29,
+      "load": 38,
+      "load_byte": 5,
+      "store_byte": 21,
+      "fld_float": 22,
+      "fild_int": 1,
+      "store": 9
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Destructor_444AC0",
+        "va": "0x445AA4",
+        "instruction": "8D4E24",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::SetDirty",
+        "va": "0x445AA4",
+        "instruction": "8D4E24",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::SetDirty",
+        "va": "0x445B70",
+        "instruction": "8D4E24",
+        "type": "lea"
+      }
+    ]
+  },
+  "52": {
+    "count": 110,
+    "access_types": {
+      "store": 49,
+      "load": 44,
+      "fld_float": 15,
+      "lea": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::SetDirty",
+        "va": "0x445ACB",
+        "instruction": "894634",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::SetDirty",
+        "va": "0x445BDA",
+        "instruction": "894634",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_444f40",
+        "va": "0x445E50",
+        "instruction": "8B4134",
+        "type": "load"
+      }
+    ]
+  },
+  "40": {
+    "count": 117,
+    "access_types": {
+      "load": 64,
+      "store": 27,
+      "lea": 2,
+      "store_byte": 5,
+      "fild_int": 1,
+      "fld_float": 18
+    },
+    "examples": [
+      {
+        "method": "UIWnd::SetDirty",
+        "va": "0x445C2B",
+        "instruction": "8B4628",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::SetDirty",
+        "va": "0x445C3D",
+        "instruction": "8B4628",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::Init_444F60",
+        "va": "0x445C2B",
+        "instruction": "8B4628",
+        "type": "load"
       }
     ]
   },
@@ -4427,14 +5581,52 @@
       }
     ]
   },
-  "608": {
-    "count": 21,
+  "0": {
+    "count": 138,
     "access_types": {
-      "lea": 13,
-      "load": 4,
-      "store": 4
+      "store_byte": 25,
+      "store": 14,
+      "fld_unknown": 19,
+      "fld_double": 30,
+      "lea": 21,
+      "load_byte": 19,
+      "load": 10
     },
     "examples": [
+      {
+        "method": "UIWnd::SetUserData",
+        "va": "0x449E04",
+        "instruction": "884900",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::SetUserData",
+        "va": "0x449F58",
+        "instruction": "884900",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::SetUserData",
+        "va": "0x449FF4",
+        "instruction": "894900",
+        "type": "store"
+      }
+    ]
+  },
+  "608": {
+    "count": 49,
+    "access_types": {
+      "lea": 15,
+      "load": 19,
+      "store": 15
+    },
+    "examples": [
+      {
+        "method": "UIWnd::SetUserData",
+        "va": "0x44A18D",
+        "instruction": "8DB160020000",
+        "type": "lea"
+      },
       {
         "method": "UIWnd::_nearby_449b90",
         "va": "0x449C25",
@@ -4442,15 +5634,50 @@
         "type": "lea"
       },
       {
-        "method": "UIWnd::Layout_44e980",
-        "va": "0x44EEB5",
-        "instruction": "8DBE60020000",
+        "method": "UIWnd::_nearby_449f70",
+        "va": "0x44A18D",
+        "instruction": "8DB160020000",
+        "type": "lea"
+      }
+    ]
+  },
+  "117": {
+    "count": 1,
+    "access_types": {
+      "fld_unknown": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_449b90",
+        "va": "0x44A94D",
+        "instruction": "DB5B75",
+        "type": "fld_unknown"
+      }
+    ]
+  },
+  "1": {
+    "count": 125,
+    "access_types": {
+      "lea": 124,
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_44a770",
+        "va": "0x44B4DF",
+        "instruction": "8D4101",
         "type": "lea"
       },
       {
-        "method": "UIWnd::Layout_44e9f0",
-        "va": "0x44EEB5",
-        "instruction": "8DBE60020000",
+        "method": "UIWnd::_nearby_44a770",
+        "va": "0x44B548",
+        "instruction": "8D4101",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_44a770",
+        "va": "0x44B5B1",
+        "instruction": "8D4101",
         "type": "lea"
       }
     ]
@@ -5173,11 +6400,12 @@
     ]
   },
   "580": {
-    "count": 21,
+    "count": 42,
     "access_types": {
       "lea": 3,
-      "fld_float": 3,
-      "load": 15
+      "store": 13,
+      "fld_float": 6,
+      "load": 20
     },
     "examples": [
       {
@@ -5201,11 +6429,12 @@
     ]
   },
   "732": {
-    "count": 11,
+    "count": 53,
     "access_types": {
       "lea": 3,
       "store_byte": 7,
-      "store": 1
+      "store": 19,
+      "fld_float": 24
     },
     "examples": [
       {
@@ -5269,9 +6498,9 @@
     ]
   },
   "780": {
-    "count": 12,
+    "count": 19,
     "access_types": {
-      "store": 6,
+      "store": 13,
       "lea": 6
     },
     "examples": [
@@ -5323,9 +6552,9 @@
     ]
   },
   "1040": {
-    "count": 10,
+    "count": 16,
     "access_types": {
-      "store": 9,
+      "store": 15,
       "lea": 1
     },
     "examples": [
@@ -5799,11 +7028,11 @@
     ]
   },
   "664": {
-    "count": 37,
+    "count": 45,
     "access_types": {
       "lea": 31,
       "load": 3,
-      "store": 3
+      "store": 11
     },
     "examples": [
       {
@@ -5827,11 +7056,11 @@
     ]
   },
   "680": {
-    "count": 10,
+    "count": 27,
     "access_types": {
-      "fld_float": 5,
-      "lea": 2,
-      "store": 3
+      "fld_float": 14,
+      "lea": 4,
+      "store": 9
     },
     "examples": [
       {
@@ -5847,18 +7076,20 @@
         "type": "fld_float"
       },
       {
-        "method": "UIWnd::SetByte",
-        "va": "0x4A1EB0",
-        "instruction": "8D8EA8020000",
+        "method": "UIWnd::_method_44d580",
+        "va": "0x44D94E",
+        "instruction": "8DB1A8020000",
         "type": "lea"
       }
     ]
   },
   "684": {
-    "count": 8,
+    "count": 32,
     "access_types": {
       "load": 2,
-      "store_byte": 6
+      "store_byte": 6,
+      "store": 6,
+      "fld_float": 18
     },
     "examples": [
       {
@@ -5910,9 +7141,9 @@
     ]
   },
   "688": {
-    "count": 6,
+    "count": 8,
     "access_types": {
-      "load": 2,
+      "load": 4,
       "lea": 1,
       "store": 3
     },
@@ -5930,18 +7161,18 @@
         "type": "load"
       },
       {
-        "method": "UIWnd::_sdtor_28",
-        "va": "0x4915DA",
-        "instruction": "8D8EB0020000",
-        "type": "lea"
+        "method": "UIWnd::Layout_4889e0",
+        "va": "0x4899BE",
+        "instruction": "8B91B0020000",
+        "type": "load"
       }
     ]
   },
   "676": {
-    "count": 11,
+    "count": 34,
     "access_types": {
-      "store": 5,
-      "fld_float": 3,
+      "store": 19,
+      "fld_float": 12,
       "load": 3
     },
     "examples": [
@@ -5958,18 +7189,19 @@
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530A9F",
-        "instruction": "899EA4020000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x530645",
+        "instruction": "8981A4020000",
         "type": "store"
       }
     ]
   },
   "692": {
-    "count": 3,
+    "count": 9,
     "access_types": {
       "fld_float": 2,
-      "store": 1
+      "load": 3,
+      "store": 4
     },
     "examples": [
       {
@@ -5985,10 +7217,10 @@
         "type": "fld_float"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5304FC",
-        "instruction": "899EB4020000",
-        "type": "store"
+        "method": "UIWnd::Layout_4889e0",
+        "va": "0x48967D",
+        "instruction": "8B91B4020000",
+        "type": "load"
       }
     ]
   },
@@ -6022,12 +7254,12 @@
     ]
   },
   "700": {
-    "count": 5,
+    "count": 14,
     "access_types": {
       "fld_float": 2,
       "load": 1,
       "lea": 1,
-      "store_byte": 1
+      "store_byte": 10
     },
     "examples": [
       {
@@ -6051,9 +7283,11 @@
     ]
   },
   "704": {
-    "count": 3,
+    "count": 30,
     "access_types": {
-      "store_byte": 3
+      "store_byte": 3,
+      "store": 9,
+      "fld_float": 18
     },
     "examples": [
       {
@@ -6123,13 +7357,13 @@
     ]
   },
   "5256": {
-    "count": 30,
+    "count": 32,
     "access_types": {
       "fld_float": 2,
+      "lea": 4,
       "store": 5,
       "load": 18,
-      "fild_int": 3,
-      "lea": 2
+      "fild_int": 3
     },
     "examples": [
       {
@@ -6145,10 +7379,10 @@
         "type": "fld_float"
       },
       {
-        "method": "UIWnd::_nearby_523e70",
-        "va": "0x524044",
-        "instruction": "899E88140000",
-        "type": "store"
+        "method": "UIWnd::_method_44d580",
+        "va": "0x44D870",
+        "instruction": "8DB188140000",
+        "type": "lea"
       }
     ]
   },
@@ -6207,9 +7441,9 @@
     ]
   },
   "5264": {
-    "count": 13,
+    "count": 17,
     "access_types": {
-      "load": 8,
+      "load": 12,
       "store": 5
     },
     "examples": [
@@ -6234,9 +7468,9 @@
     ]
   },
   "5252": {
-    "count": 4,
+    "count": 8,
     "access_types": {
-      "store": 4
+      "store": 8
     },
     "examples": [
       {
@@ -6252,9 +7486,9 @@
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_523e70",
-        "va": "0x52403E",
-        "instruction": "899E84140000",
+        "method": "UIWnd::_nearby_523e60",
+        "va": "0x524964",
+        "instruction": "898184140000",
         "type": "store"
       }
     ]
@@ -6354,9 +7588,10 @@
     ]
   },
   "8584": {
-    "count": 2,
+    "count": 4,
     "access_types": {
-      "fld_float": 2
+      "fld_float": 2,
+      "lea": 2
     },
     "examples": [
       {
@@ -6370,6 +7605,12 @@
         "va": "0x44D6CB",
         "instruction": "D99E88210000",
         "type": "fld_float"
+      },
+      {
+        "method": "UIWnd::_method_44d580",
+        "va": "0x44D78D",
+        "instruction": "8DB188210000",
+        "type": "lea"
       }
     ]
   },
@@ -6528,6 +7769,35 @@
       }
     ]
   },
+  "87": {
+    "count": 25,
+    "access_types": {
+      "fld_float": 17,
+      "fld_unknown": 3,
+      "store_byte": 4,
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_44da30",
+        "va": "0x44E670",
+        "instruction": "D95657",
+        "type": "fld_float"
+      },
+      {
+        "method": "UIWnd::Layout_44e980",
+        "va": "0x44EDC4",
+        "instruction": "DB5657",
+        "type": "fld_unknown"
+      },
+      {
+        "method": "UIWnd::Layout_44e9f0",
+        "va": "0x44EDC4",
+        "instruction": "DB5657",
+        "type": "fld_unknown"
+      }
+    ]
+  },
   "2216": {
     "count": 3,
     "access_types": {
@@ -6555,12 +7825,33 @@
       }
     ]
   },
+  "30": {
+    "count": 2,
+    "access_types": {
+      "lea": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Layout_44e980",
+        "va": "0x44EE98",
+        "instruction": "8D4E1E",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::Layout_44e9f0",
+        "va": "0x44EE98",
+        "instruction": "8D4E1E",
+        "type": "lea"
+      }
+    ]
+  },
   "576": {
-    "count": 9,
+    "count": 40,
     "access_types": {
       "store_byte": 2,
-      "store": 1,
-      "load": 6
+      "store": 23,
+      "load": 12,
+      "fld_float": 3
     },
     "examples": [
       {
@@ -6576,9 +7867,9 @@
         "type": "store_byte"
       },
       {
-        "method": "UIWnd::Reset",
-        "va": "0x4B4764",
-        "instruction": "899E40020000",
+        "method": "UIWnd::_nearby_4b4600",
+        "va": "0x4B48F2",
+        "instruction": "89B140020000",
         "type": "store"
       }
     ]
@@ -6630,10 +7921,10 @@
     ]
   },
   "356": {
-    "count": 68,
+    "count": 70,
     "access_types": {
       "lea": 12,
-      "store": 10,
+      "store": 12,
       "load": 34,
       "store_byte": 9,
       "load_byte": 3
@@ -6660,11 +7951,11 @@
     ]
   },
   "656": {
-    "count": 16,
+    "count": 24,
     "access_types": {
       "lea": 8,
+      "store": 11,
       "fld_float": 2,
-      "store": 3,
       "load": 3
     },
     "examples": [
@@ -6797,9 +8088,9 @@
     ]
   },
   "648": {
-    "count": 20,
+    "count": 28,
     "access_types": {
-      "store": 9,
+      "store": 17,
       "load": 5,
       "lea": 6
     },
@@ -6852,10 +8143,10 @@
     ]
   },
   "640": {
-    "count": 16,
+    "count": 24,
     "access_types": {
       "store_byte": 3,
-      "store": 7,
+      "store": 15,
       "fld_float": 3,
       "load": 3
     },
@@ -6932,6 +8223,75 @@
       }
     ]
   },
+  "3829": {
+    "count": 9,
+    "access_types": {
+      "load_byte": 6,
+      "store_byte": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_44eb70",
+        "va": "0x44F534",
+        "instruction": "8A81F50E0000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_44eb70",
+        "va": "0x44F5DC",
+        "instruction": "8A81F50E0000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_44eb80",
+        "va": "0x44F534",
+        "instruction": "8A81F50E0000",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "11": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_10",
+        "va": "0x450266",
+        "instruction": "88460B",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "10": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_10",
+        "va": "0x45027F",
+        "instruction": "C6460A",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "9": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_10",
+        "va": "0x450283",
+        "instruction": "C64609",
+        "type": "store_byte"
+      }
+    ]
+  },
   "328": {
     "count": 5,
     "access_types": {
@@ -6959,11 +8319,11 @@
     ]
   },
   "592": {
-    "count": 39,
+    "count": 50,
     "access_types": {
       "lea": 25,
-      "load": 7,
-      "store": 7
+      "load": 10,
+      "store": 15
     },
     "examples": [
       {
@@ -7013,6 +8373,32 @@
       }
     ]
   },
+  "90": {
+    "count": 5,
+    "access_types": {
+      "store_byte": 5
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_450310",
+        "va": "0x4510B3",
+        "instruction": "88665A",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Layout_450320",
+        "va": "0x4510B3",
+        "instruction": "88665A",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_4503c0",
+        "va": "0x4510B3",
+        "instruction": "88665A",
+        "type": "store_byte"
+      }
+    ]
+  },
   "1096": {
     "count": 10,
     "access_types": {
@@ -7040,10 +8426,67 @@
       }
     ]
   },
-  "588": {
+  "44": {
+    "count": 61,
+    "access_types": {
+      "store": 19,
+      "fild_int": 2,
+      "load": 24,
+      "fld_float": 16
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sub_450390",
+        "va": "0x450530",
+        "instruction": "89482C",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_sdtor_13",
+        "va": "0x452E4F",
+        "instruction": "DB462C",
+        "type": "fild_int"
+      },
+      {
+        "method": "UIWnd::_sdtor_14",
+        "va": "0x452E4F",
+        "instruction": "DB462C",
+        "type": "fild_int"
+      }
+    ]
+  },
+  "480": {
     "count": 8,
     "access_types": {
-      "store": 8
+      "lea": 7,
+      "fld_float": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_4506f0",
+        "va": "0x451537",
+        "instruction": "8D91E0010000",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_450700",
+        "va": "0x451537",
+        "instruction": "8D91E0010000",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_450a40",
+        "va": "0x451537",
+        "instruction": "8D91E0010000",
+        "type": "lea"
+      }
+    ]
+  },
+  "588": {
+    "count": 19,
+    "access_types": {
+      "store": 16,
+      "load": 3
     },
     "examples": [
       {
@@ -7053,15 +8496,15 @@
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x53048A",
-        "instruction": "899E4C020000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x5305C2",
+        "instruction": "89914C020000",
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5309FC",
-        "instruction": "89964C020000",
+        "method": "UIWnd::_nearby_52f6b0",
+        "va": "0x5305C2",
+        "instruction": "89914C020000",
         "type": "store"
       }
     ]
@@ -7134,6 +8577,32 @@
       }
     ]
   },
+  "1104": {
+    "count": 5,
+    "access_types": {
+      "load": 5
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_450a40",
+        "va": "0x451730",
+        "instruction": "8B8150040000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_450a50",
+        "va": "0x451730",
+        "instruction": "8B8150040000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_450da0",
+        "va": "0x451730",
+        "instruction": "8B8150040000",
+        "type": "load"
+      }
+    ]
+  },
   "1296": {
     "count": 12,
     "access_types": {
@@ -7189,9 +8658,9 @@
     ]
   },
   "556": {
-    "count": 13,
+    "count": 18,
     "access_types": {
-      "lea": 7,
+      "lea": 12,
       "load": 4,
       "fld_float": 1,
       "store": 1
@@ -7246,10 +8715,12 @@
     ]
   },
   "708": {
-    "count": 8,
+    "count": 41,
     "access_types": {
-      "load": 4,
-      "lea": 4
+      "load": 10,
+      "lea": 4,
+      "store": 9,
+      "fld_float": 18
     },
     "examples": [
       {
@@ -7354,9 +8825,11 @@
     ]
   },
   "564": {
-    "count": 15,
+    "count": 20,
     "access_types": {
-      "lea": 15
+      "lea": 15,
+      "load": 2,
+      "store": 3
     },
     "examples": [
       {
@@ -7380,10 +8853,10 @@
     ]
   },
   "748": {
-    "count": 13,
+    "count": 21,
     "access_types": {
       "lea": 10,
-      "load": 2,
+      "load": 10,
       "store": 1
     },
     "examples": [
@@ -7435,9 +8908,11 @@
     ]
   },
   "720": {
-    "count": 3,
+    "count": 33,
     "access_types": {
-      "store": 3
+      "store": 3,
+      "fld_float": 6,
+      "store_byte": 24
     },
     "examples": [
       {
@@ -7461,10 +8936,12 @@
     ]
   },
   "736": {
-    "count": 10,
+    "count": 65,
     "access_types": {
       "store_byte": 4,
-      "lea": 6
+      "lea": 6,
+      "store": 21,
+      "fld_float": 34
     },
     "examples": [
       {
@@ -7488,9 +8965,10 @@
     ]
   },
   "724": {
-    "count": 3,
+    "count": 38,
     "access_types": {
-      "fld_float": 3
+      "fld_float": 24,
+      "store": 14
     },
     "examples": [
       {
@@ -7510,6 +8988,109 @@
         "va": "0x452D73",
         "instruction": "D99ED4020000",
         "type": "fld_float"
+      }
+    ]
+  },
+  "1008": {
+    "count": 13,
+    "access_types": {
+      "load": 4,
+      "store": 9
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_452560",
+        "va": "0x452DAA",
+        "instruction": "8B81F0030000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_452570",
+        "va": "0x452DAA",
+        "instruction": "8B81F0030000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_452770",
+        "va": "0x452DAA",
+        "instruction": "8B81F0030000",
+        "type": "load"
+      }
+    ]
+  },
+  "48": {
+    "count": 36,
+    "access_types": {
+      "fild_int": 3,
+      "store_byte": 3,
+      "load_byte": 1,
+      "store": 21,
+      "fld_float": 8
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_13",
+        "va": "0x452E6A",
+        "instruction": "DB4630",
+        "type": "fild_int"
+      },
+      {
+        "method": "UIWnd::_sdtor_14",
+        "va": "0x452E6A",
+        "instruction": "DB4630",
+        "type": "fild_int"
+      },
+      {
+        "method": "UIWnd::sub_45ADD0",
+        "va": "0x45ADD7",
+        "instruction": "884830",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "77": {
+    "count": 4,
+    "access_types": {
+      "fld_unknown": 4
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_13",
+        "va": "0x45338B",
+        "instruction": "DB764D",
+        "type": "fld_unknown"
+      },
+      {
+        "method": "UIWnd::_sdtor_14",
+        "va": "0x45338B",
+        "instruction": "DB764D",
+        "type": "fld_unknown"
+      },
+      {
+        "method": "UIWnd::_nearby_452fc0",
+        "va": "0x45338B",
+        "instruction": "DB764D",
+        "type": "fld_unknown"
+      }
+    ]
+  },
+  "54": {
+    "count": 2,
+    "access_types": {
+      "fld_unknown": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_452fc0",
+        "va": "0x453A2D",
+        "instruction": "DB7636",
+        "type": "fld_unknown"
+      },
+      {
+        "method": "UIWnd::_sdtor_15",
+        "va": "0x453A2D",
+        "instruction": "DB7636",
+        "type": "fld_unknown"
       }
     ]
   },
@@ -7808,6 +9389,61 @@
       }
     ]
   },
+  "2": {
+    "count": 8,
+    "access_types": {
+      "store_byte": 4,
+      "load": 2,
+      "store": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::IsHidden",
+        "va": "0x453AD9",
+        "instruction": "C67302",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_method_483fa0",
+        "va": "0x48494F",
+        "instruction": "885B02",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_method_483fa0",
+        "va": "0x484F4B",
+        "instruction": "885B02",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "5308": {
+    "count": 6,
+    "access_types": {
+      "load_byte": 4,
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_453cf0",
+        "va": "0x454550",
+        "instruction": "8A81BC140000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_453cf0",
+        "va": "0x454560",
+        "instruction": "8A81BC140000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_453d00",
+        "va": "0x454550",
+        "instruction": "8A81BC140000",
+        "type": "load_byte"
+      }
+    ]
+  },
   "3008": {
     "count": 7,
     "access_types": {
@@ -7881,26 +9517,6 @@
         "va": "0x454541",
         "instruction": "8D8E88050000",
         "type": "lea"
-      }
-    ]
-  },
-  "5308": {
-    "count": 2,
-    "access_types": {
-      "store_byte": 2
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_16",
-        "va": "0x4545BD",
-        "instruction": "C686BC140000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_sdtor_16",
-        "va": "0x454660",
-        "instruction": "C686BC140000",
-        "type": "store_byte"
       }
     ]
   },
@@ -8004,9 +9620,10 @@
     ]
   },
   "2192": {
-    "count": 6,
+    "count": 9,
     "access_types": {
       "lea": 5,
+      "load": 3,
       "store": 1
     },
     "examples": [
@@ -8136,6 +9753,59 @@
       }
     ]
   },
+  "58": {
+    "count": 5,
+    "access_types": {
+      "lea": 5
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_454810",
+        "va": "0x455637",
+        "instruction": "8D793A",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_454820",
+        "va": "0x455637",
+        "instruction": "8D793A",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_455190",
+        "va": "0x455637",
+        "instruction": "8D793A",
+        "type": "lea"
+      }
+    ]
+  },
+  "1252": {
+    "count": 8,
+    "access_types": {
+      "lea": 6,
+      "store": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_454810",
+        "va": "0x45579D",
+        "instruction": "8DB1E4040000",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_454820",
+        "va": "0x45579D",
+        "instruction": "8DB1E4040000",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_sdtor_17",
+        "va": "0x4555DC",
+        "instruction": "8D8EE4040000",
+        "type": "lea"
+      }
+    ]
+  },
   "1832": {
     "count": 16,
     "access_types": {
@@ -8234,33 +9904,6 @@
         "va": "0x45558F",
         "instruction": "8D8E8C030000",
         "type": "lea"
-      }
-    ]
-  },
-  "1252": {
-    "count": 4,
-    "access_types": {
-      "lea": 2,
-      "store": 2
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_17",
-        "va": "0x4555DC",
-        "instruction": "8D8EE4040000",
-        "type": "lea"
-      },
-      {
-        "method": "UIWnd::sub_454AA0",
-        "va": "0x4555DC",
-        "instruction": "8D8EE4040000",
-        "type": "lea"
-      },
-      {
-        "method": "UIWnd::_sdtor_36",
-        "va": "0x529E5B",
-        "instruction": "8986E4040000",
-        "type": "store"
       }
     ]
   },
@@ -8400,6 +10043,20 @@
       }
     ]
   },
+  "14": {
+    "count": 1,
+    "access_types": {
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_sdtor_18",
+        "va": "0x4570E2",
+        "instruction": "8A6E0E",
+        "type": "load_byte"
+      }
+    ]
+  },
   "528": {
     "count": 9,
     "access_types": {
@@ -8447,11 +10104,12 @@
     ]
   },
   "620": {
-    "count": 11,
+    "count": 28,
     "access_types": {
       "load_byte": 2,
       "lea": 3,
-      "store": 6
+      "store": 20,
+      "fld_float": 3
     },
     "examples": [
       {
@@ -8535,10 +10193,10 @@
     ]
   },
   "644": {
-    "count": 9,
+    "count": 17,
     "access_types": {
       "load": 2,
-      "store": 4,
+      "store": 12,
       "lea": 3
     },
     "examples": [
@@ -8555,9 +10213,9 @@
         "type": "load"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5304DE",
-        "instruction": "899E84020000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x53061D",
+        "instruction": "898184020000",
         "type": "store"
       }
     ]
@@ -8592,6 +10250,88 @@
         "method": "UIWnd::_nearby_457340",
         "va": "0x45829E",
         "instruction": "8B868A020000",
+        "type": "load"
+      }
+    ]
+  },
+  "3272": {
+    "count": 9,
+    "access_types": {
+      "load": 8,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::ParseResourcePath",
+        "va": "0x459900",
+        "instruction": "8B81C80C0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_459050",
+        "va": "0x459900",
+        "instruction": "8B81C80C0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_459060",
+        "va": "0x459900",
+        "instruction": "8B81C80C0000",
+        "type": "load"
+      }
+    ]
+  },
+  "3280": {
+    "count": 9,
+    "access_types": {
+      "load": 8,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::ParseResourcePath",
+        "va": "0x459939",
+        "instruction": "8B91D00C0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_459050",
+        "va": "0x459939",
+        "instruction": "8B91D00C0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_459060",
+        "va": "0x459939",
+        "instruction": "8B91D00C0000",
+        "type": "load"
+      }
+    ]
+  },
+  "3276": {
+    "count": 13,
+    "access_types": {
+      "load": 9,
+      "store": 1,
+      "lea": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::ParseResourcePath",
+        "va": "0x459940",
+        "instruction": "8B81CC0C0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_459050",
+        "va": "0x459940",
+        "instruction": "8B81CC0C0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_459060",
+        "va": "0x459940",
+        "instruction": "8B81CC0C0000",
         "type": "load"
       }
     ]
@@ -8787,62 +10527,6 @@
       }
     ]
   },
-  "3280": {
-    "count": 1,
-    "access_types": {
-      "store": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_19",
-        "va": "0x459888",
-        "instruction": "8986D00C0000",
-        "type": "store"
-      }
-    ]
-  },
-  "3276": {
-    "count": 5,
-    "access_types": {
-      "store": 1,
-      "lea": 3,
-      "load": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_19",
-        "va": "0x45988E",
-        "instruction": "8986CC0C0000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_sdtor_37",
-        "va": "0x52C731",
-        "instruction": "8DBECC0C0000",
-        "type": "lea"
-      },
-      {
-        "method": "UIWnd::_sub_52CAF0",
-        "va": "0x52CEE6",
-        "instruction": "8D8ECC0C0000",
-        "type": "lea"
-      }
-    ]
-  },
-  "3272": {
-    "count": 1,
-    "access_types": {
-      "store": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_19",
-        "va": "0x4598F7",
-        "instruction": "8986C80C0000",
-        "type": "store"
-      }
-    ]
-  },
   "158": {
     "count": 1,
     "access_types": {
@@ -8858,9 +10542,10 @@
     ]
   },
   "772": {
-    "count": 3,
+    "count": 8,
     "access_types": {
-      "lea": 3
+      "lea": 3,
+      "load_byte": 5
     },
     "examples": [
       {
@@ -8937,9 +10622,9 @@
     ]
   },
   "153": {
-    "count": 2,
+    "count": 4,
     "access_types": {
-      "store_byte": 2
+      "store_byte": 4
     },
     "examples": [
       {
@@ -8952,6 +10637,12 @@
         "method": "UIWnd::_sdtor_19",
         "va": "0x45A00B",
         "instruction": "889E99000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52DEB6",
+        "instruction": "888199000000",
         "type": "store_byte"
       }
     ]
@@ -9037,6 +10728,20 @@
       }
     ]
   },
+  "93": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::OnPaint",
+        "va": "0x45ADB4",
+        "instruction": "C65E5D",
+        "type": "store_byte"
+      }
+    ]
+  },
   "1641": {
     "count": 5,
     "access_types": {
@@ -9063,6 +10768,33 @@
       }
     ]
   },
+  "22": {
+    "count": 3,
+    "access_types": {
+      "lea": 2,
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::sub_45ADD0",
+        "va": "0x45BC5D",
+        "instruction": "8D5016",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_4a8230",
+        "va": "0x4A8935",
+        "instruction": "8D4816",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::~UIWnd_4080",
+        "va": "0x504D47",
+        "instruction": "C64616",
+        "type": "store_byte"
+      }
+    ]
+  },
   "2148": {
     "count": 1,
     "access_types": {
@@ -9078,11 +10810,12 @@
     ]
   },
   "612": {
-    "count": 11,
+    "count": 33,
     "access_types": {
       "lea": 2,
-      "load": 5,
-      "store": 4
+      "load": 13,
+      "store": 12,
+      "store_byte": 6
     },
     "examples": [
       {
@@ -9116,6 +10849,87 @@
         "va": "0x46FD42",
         "instruction": "8D8664050000",
         "type": "lea"
+      }
+    ]
+  },
+  "37": {
+    "count": 26,
+    "access_types": {
+      "load_byte": 5,
+      "store_byte": 21
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_478870",
+        "va": "0x47893D",
+        "instruction": "8A4E25",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_478870",
+        "va": "0x47895F",
+        "instruction": "C64625",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_478870",
+        "va": "0x478971",
+        "instruction": "C64625",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "38": {
+    "count": 12,
+    "access_types": {
+      "load_byte": 1,
+      "store_byte": 11
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_478870",
+        "va": "0x4789A0",
+        "instruction": "8A4E26",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_478870",
+        "va": "0x4789C2",
+        "instruction": "C64626",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_478870",
+        "va": "0x4789D4",
+        "instruction": "C64626",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "39": {
+    "count": 5,
+    "access_types": {
+      "load_byte": 1,
+      "store_byte": 4
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_478870",
+        "va": "0x478A07",
+        "instruction": "8A4E27",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_478870",
+        "va": "0x478A35",
+        "instruction": "C64627",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_478870",
+        "va": "0x478A5D",
+        "instruction": "C64627",
+        "type": "store_byte"
       }
     ]
   },
@@ -9170,6 +10984,113 @@
         "va": "0x47937A",
         "instruction": "8D86540F0000",
         "type": "lea"
+      }
+    ]
+  },
+  "4000": {
+    "count": 36,
+    "access_types": {
+      "load_byte": 36
+    },
+    "examples": [
+      {
+        "method": "UIWnd::GetRole_479260",
+        "va": "0x479931",
+        "instruction": "8A91A00F0000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::GetRole_479260",
+        "va": "0x47997D",
+        "instruction": "8A91A00F0000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::GetRole_479260",
+        "va": "0x479A4D",
+        "instruction": "8A91A00F0000",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "3988": {
+    "count": 4,
+    "access_types": {
+      "load": 3,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_47bbd0",
+        "va": "0x47C260",
+        "instruction": "8B81940F0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_47bbe0",
+        "va": "0x47C260",
+        "instruction": "8B81940F0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_24",
+        "va": "0x47C257",
+        "instruction": "8986940F0000",
+        "type": "store"
+      }
+    ]
+  },
+  "3996": {
+    "count": 4,
+    "access_types": {
+      "load": 3,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_47bbd0",
+        "va": "0x47C299",
+        "instruction": "8B919C0F0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_47bbe0",
+        "va": "0x47C299",
+        "instruction": "8B919C0F0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_24",
+        "va": "0x47C1E8",
+        "instruction": "89869C0F0000",
+        "type": "store"
+      }
+    ]
+  },
+  "3992": {
+    "count": 4,
+    "access_types": {
+      "load": 3,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_47bbd0",
+        "va": "0x47C2A0",
+        "instruction": "8B81980F0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_47bbe0",
+        "va": "0x47C2A0",
+        "instruction": "8B81980F0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_24",
+        "va": "0x47C1EE",
+        "instruction": "8986980F0000",
+        "type": "store"
       }
     ]
   },
@@ -9254,32 +11175,6 @@
       }
     ]
   },
-  "4000": {
-    "count": 6,
-    "access_types": {
-      "load_byte": 6
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_24",
-        "va": "0x47BEB6",
-        "instruction": "8A96A00F0000",
-        "type": "load_byte"
-      },
-      {
-        "method": "UIWnd::_sdtor_24",
-        "va": "0x47BEE6",
-        "instruction": "8A8EA00F0000",
-        "type": "load_byte"
-      },
-      {
-        "method": "UIWnd::_sdtor_24",
-        "va": "0x47BF18",
-        "instruction": "8A96A00F0000",
-        "type": "load_byte"
-      }
-    ]
-  },
   "1440": {
     "count": 1,
     "access_types": {
@@ -9304,48 +11199,6 @@
         "method": "UIWnd::_sdtor_24",
         "va": "0x47C11F",
         "instruction": "899EF8060000",
-        "type": "store"
-      }
-    ]
-  },
-  "3996": {
-    "count": 1,
-    "access_types": {
-      "store": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_24",
-        "va": "0x47C1E8",
-        "instruction": "89869C0F0000",
-        "type": "store"
-      }
-    ]
-  },
-  "3992": {
-    "count": 1,
-    "access_types": {
-      "store": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_24",
-        "va": "0x47C1EE",
-        "instruction": "8986980F0000",
-        "type": "store"
-      }
-    ]
-  },
-  "3988": {
-    "count": 1,
-    "access_types": {
-      "store": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_24",
-        "va": "0x47C257",
-        "instruction": "8986940F0000",
         "type": "store"
       }
     ]
@@ -9486,32 +11339,6 @@
       }
     ]
   },
-  "3829": {
-    "count": 3,
-    "access_types": {
-      "store_byte": 3
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sub_47DD90",
-        "va": "0x47E174",
-        "instruction": "C686F50E0000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_sub_47DD90",
-        "va": "0x47E26A",
-        "instruction": "C686F50E0000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_sub_47DD90",
-        "va": "0x47E493",
-        "instruction": "C686F50E0000",
-        "type": "store_byte"
-      }
-    ]
-  },
   "3830": {
     "count": 5,
     "access_types": {
@@ -9554,9 +11381,10 @@
     ]
   },
   "361": {
-    "count": 4,
+    "count": 7,
     "access_types": {
-      "store_byte": 4
+      "store_byte": 6,
+      "lea": 1
     },
     "examples": [
       {
@@ -9566,16 +11394,16 @@
         "type": "store_byte"
       },
       {
-        "method": "UIWnd::SetByte",
-        "va": "0x4A2124",
-        "instruction": "889E69010000",
+        "method": "UIWnd::_method_4841b0",
+        "va": "0x484E77",
+        "instruction": "888169010000",
         "type": "store_byte"
       },
       {
-        "method": "UIWnd::_nearby_4a4770",
-        "va": "0x4A48C3",
-        "instruction": "C68669010000",
-        "type": "store_byte"
+        "method": "UIWnd::_auto_4940f0",
+        "va": "0x4940F8",
+        "instruction": "8D8169010000",
+        "type": "lea"
       }
     ]
   },
@@ -10234,6 +12062,105 @@
       }
     ]
   },
+  "74": {
+    "count": 2,
+    "access_types": {
+      "lea": 1,
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_method_483fa0",
+        "va": "0x484246",
+        "instruction": "8D4B4A",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::Layout_4a5a80",
+        "va": "0x4A6018",
+        "instruction": "C65E4A",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "362": {
+    "count": 5,
+    "access_types": {
+      "store_byte": 5
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_method_4841b0",
+        "va": "0x484E97",
+        "instruction": "88816A010000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_auto_4940f0",
+        "va": "0x4945E4",
+        "instruction": "88816A010000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::SetByte",
+        "va": "0x4A211E",
+        "instruction": "889E6A010000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "363": {
+    "count": 5,
+    "access_types": {
+      "store_byte": 5
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_method_4841b0",
+        "va": "0x484EB7",
+        "instruction": "88816B010000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_auto_4940f0",
+        "va": "0x494604",
+        "instruction": "88816B010000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::SetByte",
+        "va": "0x4A212A",
+        "instruction": "889E6B010000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "365": {
+    "count": 5,
+    "access_types": {
+      "store_byte": 5
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_method_4841b0",
+        "va": "0x484EF7",
+        "instruction": "88816D010000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_auto_4940f0",
+        "va": "0x494644",
+        "instruction": "88816D010000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::SetByte",
+        "va": "0x4A2112",
+        "instruction": "889E6D010000",
+        "type": "store_byte"
+      }
+    ]
+  },
   "496": {
     "count": 8,
     "access_types": {
@@ -10344,9 +12271,10 @@
     ]
   },
   "1744": {
-    "count": 7,
+    "count": 10,
     "access_types": {
       "lea": 6,
+      "load": 3,
       "store": 1
     },
     "examples": [
@@ -10758,6 +12686,47 @@
         "va": "0x490FF3",
         "instruction": "8D8E74120000",
         "type": "lea"
+      }
+    ]
+  },
+  "713": {
+    "count": 1,
+    "access_types": {
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_489030",
+        "va": "0x489CC1",
+        "instruction": "8A91C9020000",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "716": {
+    "count": 10,
+    "access_types": {
+      "load": 1,
+      "store": 9
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_489030",
+        "va": "0x489CF6",
+        "instruction": "8BB9CC020000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x533E1C",
+        "instruction": "8981CC020000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x534BDA",
+        "instruction": "8991CC020000",
+        "type": "store"
       }
     ]
   },
@@ -11392,11 +13361,11 @@
     ]
   },
   "3636": {
-    "count": 10,
+    "count": 18,
     "access_types": {
       "lea": 3,
-      "load": 2,
-      "store": 2,
+      "load": 6,
+      "store": 6,
       "fld_float": 3
     },
     "examples": [
@@ -11536,9 +13505,10 @@
     ]
   },
   "812": {
-    "count": 5,
+    "count": 10,
     "access_types": {
       "lea": 2,
+      "load": 5,
       "store": 3
     },
     "examples": [
@@ -11555,18 +13525,18 @@
         "type": "lea"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530B4E",
-        "instruction": "898E2C030000",
-        "type": "store"
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x5310A2",
+        "instruction": "8B812C030000",
+        "type": "load"
       }
     ]
   },
   "660": {
-    "count": 22,
+    "count": 30,
     "access_types": {
       "lea": 1,
-      "store": 6,
+      "store": 14,
       "fld_float": 15
     },
     "examples": [
@@ -11577,16 +13547,16 @@
         "type": "lea"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530A93",
-        "instruction": "898694020000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x530639",
+        "instruction": "899194020000",
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530F9B",
-        "instruction": "D99694020000",
-        "type": "fld_float"
+        "method": "UIWnd::_nearby_52f6b0",
+        "va": "0x530639",
+        "instruction": "899194020000",
+        "type": "store"
       }
     ]
   },
@@ -11672,11 +13642,11 @@
     ]
   },
   "632": {
-    "count": 30,
+    "count": 38,
     "access_types": {
       "load": 9,
       "lea": 11,
-      "store": 7,
+      "store": 15,
       "fld_float": 3
     },
     "examples": [
@@ -11775,11 +13745,12 @@
     ]
   },
   "616": {
-    "count": 9,
+    "count": 28,
     "access_types": {
       "lea": 2,
-      "store": 4,
-      "load": 3
+      "store": 12,
+      "load": 11,
+      "fld_float": 3
     },
     "examples": [
       {
@@ -11795,17 +13766,19 @@
         "type": "lea"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5304B4",
-        "instruction": "899E68020000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x5305E2",
+        "instruction": "898168020000",
         "type": "store"
       }
     ]
   },
   "624": {
-    "count": 7,
+    "count": 30,
     "access_types": {
-      "store": 7
+      "store": 18,
+      "load": 9,
+      "fld_float": 3
     },
     "examples": [
       {
@@ -11829,9 +13802,9 @@
     ]
   },
   "628": {
-    "count": 6,
+    "count": 17,
     "access_types": {
-      "store": 6
+      "store": 17
     },
     "examples": [
       {
@@ -11847,9 +13820,9 @@
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5304C6",
-        "instruction": "899E74020000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x530600",
+        "instruction": "899174020000",
         "type": "store"
       }
     ]
@@ -12270,84 +14243,6 @@
       }
     ]
   },
-  "365": {
-    "count": 3,
-    "access_types": {
-      "store_byte": 3
-    },
-    "examples": [
-      {
-        "method": "UIWnd::SetByte",
-        "va": "0x4A2112",
-        "instruction": "889E6D010000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_4a4770",
-        "va": "0x4A4B83",
-        "instruction": "C6866D010000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_4a4770",
-        "va": "0x4A4BD1",
-        "instruction": "889E6D010000",
-        "type": "store_byte"
-      }
-    ]
-  },
-  "362": {
-    "count": 3,
-    "access_types": {
-      "store_byte": 3
-    },
-    "examples": [
-      {
-        "method": "UIWnd::SetByte",
-        "va": "0x4A211E",
-        "instruction": "889E6A010000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_4a4770",
-        "va": "0x4A4973",
-        "instruction": "C6866A010000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_4a4770",
-        "va": "0x4A49C1",
-        "instruction": "889E6A010000",
-        "type": "store_byte"
-      }
-    ]
-  },
-  "363": {
-    "count": 3,
-    "access_types": {
-      "store_byte": 3
-    },
-    "examples": [
-      {
-        "method": "UIWnd::SetByte",
-        "va": "0x4A212A",
-        "instruction": "889E6B010000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_4a4770",
-        "va": "0x4A4A23",
-        "instruction": "C6866B010000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_4a4770",
-        "va": "0x4A4A71",
-        "instruction": "889E6B010000",
-        "type": "store_byte"
-      }
-    ]
-  },
   "852": {
     "count": 12,
     "access_types": {
@@ -12665,10 +14560,10 @@
     ]
   },
   "3620": {
-    "count": 7,
+    "count": 11,
     "access_types": {
       "lea": 4,
-      "store": 3
+      "store": 7
     },
     "examples": [
       {
@@ -12795,10 +14690,10 @@
     ]
   },
   "420": {
-    "count": 2,
+    "count": 3,
     "access_types": {
       "store": 1,
-      "lea": 1
+      "lea": 2
     },
     "examples": [
       {
@@ -12811,6 +14706,12 @@
         "method": "UIWnd::Reset",
         "va": "0x4B470E",
         "instruction": "8D8EA4010000",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_auto_5269b0",
+        "va": "0x5270C6",
+        "instruction": "8DB1A4010000",
         "type": "lea"
       }
     ]
@@ -12849,6 +14750,20 @@
       }
     ]
   },
+  "15": {
+    "count": 1,
+    "access_types": {
+      "lea": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_4a8230",
+        "va": "0x4A8921",
+        "instruction": "8D500F",
+        "type": "lea"
+      }
+    ]
+  },
   "1072": {
     "count": 1,
     "access_types": {
@@ -12864,16 +14779,188 @@
     ]
   },
   "572": {
-    "count": 1,
+    "count": 7,
     "access_types": {
-      "store": 1
+      "store": 7
     },
     "examples": [
+      {
+        "method": "UIWnd::_nearby_4b4600",
+        "va": "0x4B48E9",
+        "instruction": "89813C020000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_4b4610",
+        "va": "0x4B48E9",
+        "instruction": "89813C020000",
+        "type": "store"
+      },
       {
         "method": "UIWnd::Reset",
         "va": "0x4B475E",
         "instruction": "899E3C020000",
         "type": "store"
+      }
+    ]
+  },
+  "41": {
+    "count": 5,
+    "access_types": {
+      "store_byte": 4,
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B46CD",
+        "instruction": "C64629",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B5020",
+        "instruction": "8A4629",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B514D",
+        "instruction": "885E29",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "126": {
+    "count": 3,
+    "access_types": {
+      "store_byte": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B4781",
+        "instruction": "885E7E",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B4860",
+        "instruction": "88467E",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B5353",
+        "instruction": "88467E",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "125": {
+    "count": 3,
+    "access_types": {
+      "store_byte": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B4784",
+        "instruction": "885E7D",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B4863",
+        "instruction": "884E7D",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B5361",
+        "instruction": "88467D",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "127": {
+    "count": 12,
+    "access_types": {
+      "store_byte": 9,
+      "load_byte": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B478A",
+        "instruction": "88467F",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B48B7",
+        "instruction": "88467F",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B5152",
+        "instruction": "8A467F",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "86": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B47BB",
+        "instruction": "885E56",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B4886",
+        "instruction": "884656",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "85": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B47BE",
+        "instruction": "885E55",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B4894",
+        "instruction": "884655",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "75": {
+    "count": 1,
+    "access_types": {
+      "fld_float": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::Reset",
+        "va": "0x4B4FC4",
+        "instruction": "D94E4B",
+        "type": "fld_float"
       }
     ]
   },
@@ -12971,6 +15058,26 @@
       }
     ]
   },
+  "51": {
+    "count": 2,
+    "access_types": {
+      "fld_float": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::~UIWnd_7ce0",
+        "va": "0x4B8895",
+        "instruction": "D95633",
+        "type": "fld_float"
+      },
+      {
+        "method": "UIWnd::ReleaseResources",
+        "va": "0x4B8895",
+        "instruction": "D95633",
+        "type": "fld_float"
+      }
+    ]
+  },
   "7744": {
     "count": 2,
     "access_types": {
@@ -13046,32 +15153,6 @@
       }
     ]
   },
-  "1008": {
-    "count": 3,
-    "access_types": {
-      "store": 3
-    },
-    "examples": [
-      {
-        "method": "UIWnd::~UIWnd_ef50",
-        "va": "0x4BF07A",
-        "instruction": "89BEF0030000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_52afc0",
-        "va": "0x52B244",
-        "instruction": "89AEF0030000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::RenderWithStack",
-        "va": "0x52B244",
-        "instruction": "89AEF0030000",
-        "type": "store"
-      }
-    ]
-  },
   "1016": {
     "count": 4,
     "access_types": {
@@ -13100,9 +15181,9 @@
     ]
   },
   "1020": {
-    "count": 3,
+    "count": 9,
     "access_types": {
-      "store": 3
+      "store": 9
     },
     "examples": [
       {
@@ -13112,15 +15193,15 @@
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_52afc0",
-        "va": "0x52B256",
-        "instruction": "89AEFC030000",
+        "method": "UIWnd::_nearby_52aa50",
+        "va": "0x52B36C",
+        "instruction": "8981FC030000",
         "type": "store"
       },
       {
-        "method": "UIWnd::RenderWithStack",
-        "va": "0x52B256",
-        "instruction": "89AEFC030000",
+        "method": "UIWnd::_nearby_52aed0",
+        "va": "0x52B36C",
+        "instruction": "8981FC030000",
         "type": "store"
       }
     ]
@@ -13152,9 +15233,9 @@
     ]
   },
   "1028": {
-    "count": 3,
+    "count": 9,
     "access_types": {
-      "store": 3
+      "store": 9
     },
     "examples": [
       {
@@ -13164,23 +15245,23 @@
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_52afc0",
-        "va": "0x52B262",
-        "instruction": "89AE04040000",
+        "method": "UIWnd::_nearby_52aa50",
+        "va": "0x52B37C",
+        "instruction": "898104040000",
         "type": "store"
       },
       {
-        "method": "UIWnd::RenderWithStack",
-        "va": "0x52B262",
-        "instruction": "89AE04040000",
+        "method": "UIWnd::_nearby_52aed0",
+        "va": "0x52B37C",
+        "instruction": "898104040000",
         "type": "store"
       }
     ]
   },
   "1032": {
-    "count": 3,
+    "count": 9,
     "access_types": {
-      "store": 3
+      "store": 9
     },
     "examples": [
       {
@@ -13190,15 +15271,15 @@
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_52afc0",
-        "va": "0x52B26F",
-        "instruction": "89AE08040000",
+        "method": "UIWnd::_nearby_52aa50",
+        "va": "0x52B382",
+        "instruction": "898108040000",
         "type": "store"
       },
       {
-        "method": "UIWnd::RenderWithStack",
-        "va": "0x52B26F",
-        "instruction": "89AE08040000",
+        "method": "UIWnd::_nearby_52aed0",
+        "va": "0x52B382",
+        "instruction": "898108040000",
         "type": "store"
       }
     ]
@@ -13540,9 +15621,10 @@
     ]
   },
   "552": {
-    "count": 2,
+    "count": 5,
     "access_types": {
-      "fld_float": 2
+      "fld_float": 2,
+      "store": 3
     },
     "examples": [
       {
@@ -13556,13 +15638,20 @@
         "va": "0x50465C",
         "instruction": "D99E28020000",
         "type": "fld_float"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x533DC6",
+        "instruction": "898128020000",
+        "type": "store"
       }
     ]
   },
   "544": {
-    "count": 7,
+    "count": 10,
     "access_types": {
-      "load": 7
+      "load": 7,
+      "store": 3
     },
     "examples": [
       {
@@ -13613,25 +15702,11 @@
       }
     ]
   },
-  "480": {
-    "count": 1,
-    "access_types": {
-      "fld_float": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::~UIWnd_4080",
-        "va": "0x5047ED",
-        "instruction": "D99EE0010000",
-        "type": "fld_float"
-      }
-    ]
-  },
   "484": {
-    "count": 6,
+    "count": 13,
     "access_types": {
       "fld_float": 4,
-      "store": 2
+      "store": 9
     },
     "examples": [
       {
@@ -13641,16 +15716,16 @@
         "type": "fld_float"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5307EA",
-        "instruction": "8986E4010000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x530595",
+        "instruction": "8981E4010000",
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530ADD",
-        "instruction": "D986E4010000",
-        "type": "fld_float"
+        "method": "UIWnd::_nearby_52f6b0",
+        "va": "0x530595",
+        "instruction": "8981E4010000",
+        "type": "store"
       }
     ]
   },
@@ -13672,6 +15747,20 @@
         "va": "0x530469",
         "instruction": "8D8EE8010000",
         "type": "lea"
+      }
+    ]
+  },
+  "21": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::~UIWnd_4080",
+        "va": "0x504C82",
+        "instruction": "C64615",
+        "type": "store_byte"
       }
     ]
   },
@@ -13702,10 +15791,90 @@
       }
     ]
   },
-  "1736": {
-    "count": 8,
+  "1740": {
+    "count": 9,
     "access_types": {
-      "load": 7,
+      "load": 6,
+      "load_byte": 1,
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_523e60",
+        "va": "0x523E60",
+        "instruction": "8B81CC060000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_523e60",
+        "va": "0x523E70",
+        "instruction": "8B81CC060000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_523e70",
+        "va": "0x523E94",
+        "instruction": "8B8ECC060000",
+        "type": "load"
+      }
+    ]
+  },
+  "42": {
+    "count": 3,
+    "access_types": {
+      "lea": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_523e60",
+        "va": "0x524368",
+        "instruction": "8D412A",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_523f10",
+        "va": "0x524368",
+        "instruction": "8D412A",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_523f20",
+        "va": "0x524368",
+        "instruction": "8D412A",
+        "type": "lea"
+      }
+    ]
+  },
+  "1768": {
+    "count": 3,
+    "access_types": {
+      "load_byte": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_523e60",
+        "va": "0x5248A0",
+        "instruction": "8A91E8060000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_523f10",
+        "va": "0x5248A0",
+        "instruction": "8A91E8060000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_523f20",
+        "va": "0x5248A0",
+        "instruction": "8A91E8060000",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "1736": {
+    "count": 11,
+    "access_types": {
+      "load": 10,
       "store": 1
     },
     "examples": [
@@ -13722,45 +15891,19 @@
         "type": "load"
       },
       {
-        "method": "UIWnd::_sdtor_79d0",
-        "va": "0x527BC4",
-        "instruction": "8986C8060000",
-        "type": "store"
-      }
-    ]
-  },
-  "1740": {
-    "count": 6,
-    "access_types": {
-      "load": 4,
-      "store_byte": 2
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_523e70",
-        "va": "0x523E94",
-        "instruction": "8B8ECC060000",
-        "type": "load"
-      },
-      {
-        "method": "UIWnd::_nearby_523e70",
-        "va": "0x523EA0",
-        "instruction": "8B8ECC060000",
-        "type": "load"
-      },
-      {
-        "method": "UIWnd::_nearby_523e80",
-        "va": "0x523E94",
-        "instruction": "8B8ECC060000",
+        "method": "UIWnd::_nearby_527930",
+        "va": "0x527D40",
+        "instruction": "8B81C8060000",
         "type": "load"
       }
     ]
   },
   "816": {
-    "count": 19,
+    "count": 24,
     "access_types": {
       "lea": 17,
-      "store": 2
+      "store": 2,
+      "fld_float": 5
     },
     "examples": [
       {
@@ -14245,6 +16388,32 @@
         "va": "0x524560",
         "instruction": "D986E0050000",
         "type": "fld_float"
+      }
+    ]
+  },
+  "1756": {
+    "count": 43,
+    "access_types": {
+      "load_byte": 43
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_525080",
+        "va": "0x525969",
+        "instruction": "8A91DC060000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_525080",
+        "va": "0x5259CA",
+        "instruction": "8A91DC060000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_525080",
+        "va": "0x5259E4",
+        "instruction": "8A91DC060000",
+        "type": "load_byte"
       }
     ]
   },
@@ -14894,6 +17063,116 @@
       }
     ]
   },
+  "1752": {
+    "count": 6,
+    "access_types": {
+      "load": 3,
+      "store": 1,
+      "lea": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_527930",
+        "va": "0x527D09",
+        "instruction": "8B91D8060000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_527940",
+        "va": "0x527D09",
+        "instruction": "8B91D8060000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_79d0",
+        "va": "0x527C58",
+        "instruction": "8986D8060000",
+        "type": "store"
+      }
+    ]
+  },
+  "1748": {
+    "count": 4,
+    "access_types": {
+      "load": 3,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_527930",
+        "va": "0x527D10",
+        "instruction": "8B81D4060000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_527940",
+        "va": "0x527D10",
+        "instruction": "8B81D4060000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_79d0",
+        "va": "0x527C5E",
+        "instruction": "8986D4060000",
+        "type": "store"
+      }
+    ]
+  },
+  "1732": {
+    "count": 6,
+    "access_types": {
+      "load_byte": 3,
+      "store_byte": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_527930",
+        "va": "0x527D4A",
+        "instruction": "8A81C4060000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_527930",
+        "va": "0x527D6C",
+        "instruction": "8891C4060000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_527940",
+        "va": "0x527D4A",
+        "instruction": "8A81C4060000",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "1728": {
+    "count": 32,
+    "access_types": {
+      "load": 10,
+      "store": 1,
+      "lea": 21
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_527930",
+        "va": "0x527D60",
+        "instruction": "8B81C0060000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_527940",
+        "va": "0x527D60",
+        "instruction": "8B81C0060000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_79d0",
+        "va": "0x527A36",
+        "instruction": "8B8EC0060000",
+        "type": "load"
+      }
+    ]
+  },
   "1724": {
     "count": 8,
     "access_types": {
@@ -14918,89 +17197,6 @@
         "va": "0x527BA6",
         "instruction": "8B8EBC060000",
         "type": "load"
-      }
-    ]
-  },
-  "1728": {
-    "count": 29,
-    "access_types": {
-      "load": 7,
-      "store": 1,
-      "lea": 21
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_79d0",
-        "va": "0x527A36",
-        "instruction": "8B8EC0060000",
-        "type": "load"
-      },
-      {
-        "method": "UIWnd::_sdtor_79d0",
-        "va": "0x527B9B",
-        "instruction": "8986C0060000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_sdtor_79d0",
-        "va": "0x527BAC",
-        "instruction": "8B96C0060000",
-        "type": "load"
-      }
-    ]
-  },
-  "1756": {
-    "count": 1,
-    "access_types": {
-      "load_byte": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_79d0",
-        "va": "0x527AD5",
-        "instruction": "8A96DC060000",
-        "type": "load_byte"
-      }
-    ]
-  },
-  "1752": {
-    "count": 3,
-    "access_types": {
-      "store": 1,
-      "lea": 2
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_79d0",
-        "va": "0x527C58",
-        "instruction": "8986D8060000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_52ec80",
-        "va": "0x52F71B",
-        "instruction": "8DBED8060000",
-        "type": "lea"
-      },
-      {
-        "method": "UIWnd::_nearby_52f300",
-        "va": "0x52F71B",
-        "instruction": "8DBED8060000",
-        "type": "lea"
-      }
-    ]
-  },
-  "1748": {
-    "count": 1,
-    "access_types": {
-      "store": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_79d0",
-        "va": "0x527C5E",
-        "instruction": "8986D4060000",
-        "type": "store"
       }
     ]
   },
@@ -15585,6 +17781,86 @@
       }
     ]
   },
+  "2188": {
+    "count": 4,
+    "access_types": {
+      "load": 3,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_5295d0",
+        "va": "0x529C80",
+        "instruction": "8B818C080000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_5295e0",
+        "va": "0x529C80",
+        "instruction": "8B818C080000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_36",
+        "va": "0x529C77",
+        "instruction": "89868C080000",
+        "type": "store"
+      }
+    ]
+  },
+  "2196": {
+    "count": 4,
+    "access_types": {
+      "load": 3,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_5295d0",
+        "va": "0x529CB9",
+        "instruction": "8B9194080000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_5295e0",
+        "va": "0x529CB9",
+        "instruction": "8B9194080000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_sdtor_36",
+        "va": "0x529C08",
+        "instruction": "898694080000",
+        "type": "store"
+      }
+    ]
+  },
+  "45": {
+    "count": 3,
+    "access_types": {
+      "lea": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_5295d0",
+        "va": "0x52A0FB",
+        "instruction": "8D692D",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_5295e0",
+        "va": "0x52A0FB",
+        "instruction": "8D692D",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::Render_529c80",
+        "va": "0x52A0FB",
+        "instruction": "8D692D",
+        "type": "lea"
+      }
+    ]
+  },
   "1992": {
     "count": 2,
     "access_types": {
@@ -15739,10 +18015,10 @@
     ]
   },
   "1248": {
-    "count": 5,
+    "count": 7,
     "access_types": {
       "store": 1,
-      "load": 3,
+      "load": 5,
       "lea": 1
     },
     "examples": [
@@ -15836,34 +18112,6 @@
         "va": "0x5364BB",
         "instruction": "8D8E88080000",
         "type": "lea"
-      }
-    ]
-  },
-  "2196": {
-    "count": 1,
-    "access_types": {
-      "store": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_36",
-        "va": "0x529C08",
-        "instruction": "898694080000",
-        "type": "store"
-      }
-    ]
-  },
-  "2188": {
-    "count": 1,
-    "access_types": {
-      "store": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_36",
-        "va": "0x529C77",
-        "instruction": "89868C080000",
-        "type": "store"
       }
     ]
   },
@@ -16124,9 +18372,9 @@
     ]
   },
   "1628": {
-    "count": 2,
+    "count": 4,
     "access_types": {
-      "load": 1,
+      "load": 3,
       "store": 1
     },
     "examples": [
@@ -16141,6 +18389,12 @@
         "va": "0x52A404",
         "instruction": "89865C060000",
         "type": "store"
+      },
+      {
+        "method": "UIWnd::Render_529c80",
+        "va": "0x52AA50",
+        "instruction": "8B815C060000",
+        "type": "load"
       }
     ]
   },
@@ -16170,10 +18424,31 @@
       }
     ]
   },
+  "3": {
+    "count": 2,
+    "access_types": {
+      "lea": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52aee0",
+        "va": "0x52B94B",
+        "instruction": "8D5803",
+        "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_52aef0",
+        "va": "0x52B94B",
+        "instruction": "8D5803",
+        "type": "lea"
+      }
+    ]
+  },
   "776": {
-    "count": 9,
+    "count": 22,
     "access_types": {
       "lea": 4,
+      "store": 13,
       "load": 5
     },
     "examples": [
@@ -16238,9 +18513,10 @@
     ]
   },
   "804": {
-    "count": 5,
+    "count": 15,
     "access_types": {
-      "store": 5
+      "store": 10,
+      "fld_float": 5
     },
     "examples": [
       {
@@ -16256,10 +18532,10 @@
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530B42",
-        "instruction": "899E24030000",
-        "type": "store"
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x53102C",
+        "instruction": "D99124030000",
+        "type": "fld_float"
       }
     ]
   },
@@ -16365,10 +18641,11 @@
     ]
   },
   "1312": {
-    "count": 12,
+    "count": 21,
     "access_types": {
       "lea": 7,
-      "load": 5
+      "load": 11,
+      "store": 3
     },
     "examples": [
       {
@@ -16858,9 +19135,10 @@
     ]
   },
   "548": {
-    "count": 1,
+    "count": 4,
     "access_types": {
-      "lea": 1
+      "lea": 1,
+      "store": 3
     },
     "examples": [
       {
@@ -16868,6 +19146,18 @@
         "va": "0x52D17D",
         "instruction": "8D9E24020000",
         "type": "lea"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x533DBA",
+        "instruction": "898124020000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_533ca0",
+        "va": "0x533DBA",
+        "instruction": "898124020000",
+        "type": "store"
       }
     ]
   },
@@ -16945,6 +19235,390 @@
         "va": "0x52D6DD",
         "instruction": "8B9640080000",
         "type": "load"
+      }
+    ]
+  },
+  "263": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52DEDA",
+        "instruction": "888107010000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_52dd50",
+        "va": "0x52DEDA",
+        "instruction": "888107010000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "262": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52DEE0",
+        "instruction": "888106010000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_52dd50",
+        "va": "0x52DEE0",
+        "instruction": "888106010000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "261": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52DEE6",
+        "instruction": "888105010000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_52dd50",
+        "va": "0x52DEE6",
+        "instruction": "888105010000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "289": {
+    "count": 9,
+    "access_types": {
+      "load_byte": 3,
+      "store_byte": 6
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52E8C0",
+        "instruction": "8A8121010000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52E8F5",
+        "instruction": "889121010000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52E92B",
+        "instruction": "C68121010000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "290": {
+    "count": 9,
+    "access_types": {
+      "load_byte": 3,
+      "store_byte": 6
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52E940",
+        "instruction": "8A8122010000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52E975",
+        "instruction": "889122010000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52E9AB",
+        "instruction": "C68122010000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "291": {
+    "count": 9,
+    "access_types": {
+      "load_byte": 3,
+      "store_byte": 6
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52E9C0",
+        "instruction": "8A8123010000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52E9F5",
+        "instruction": "889123010000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_52dd40",
+        "va": "0x52EA2B",
+        "instruction": "C68123010000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "568": {
+    "count": 5,
+    "access_types": {
+      "load": 2,
+      "store": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52e120",
+        "va": "0x52F01A",
+        "instruction": "8B8138020000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_52ec70",
+        "va": "0x52F01A",
+        "instruction": "8B8138020000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x533DE8",
+        "instruction": "898138020000",
+        "type": "store"
+      }
+    ]
+  },
+  "3752": {
+    "count": 4,
+    "access_types": {
+      "load": 4
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52ec70",
+        "va": "0x52FB04",
+        "instruction": "8B81A80E0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_52f330",
+        "va": "0x52FB04",
+        "instruction": "8B81A80E0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x52FB04",
+        "instruction": "8B81A80E0000",
+        "type": "load"
+      }
+    ]
+  },
+  "3728": {
+    "count": 13,
+    "access_types": {
+      "store": 6,
+      "load": 1,
+      "fld_float": 6
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52ec70",
+        "va": "0x52FB12",
+        "instruction": "8991900E0000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_52ec80",
+        "va": "0x52FAB2",
+        "instruction": "899E900E0000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_52f300",
+        "va": "0x52FAB2",
+        "instruction": "899E900E0000",
+        "type": "store"
+      }
+    ]
+  },
+  "3628": {
+    "count": 13,
+    "access_types": {
+      "store": 6,
+      "load": 4,
+      "fld_float": 2,
+      "lea": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52ec70",
+        "va": "0x52FB1A",
+        "instruction": "89912C0E0000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_52ec70",
+        "va": "0x52FB32",
+        "instruction": "8B912C0E0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_52ec80",
+        "va": "0x52F7A8",
+        "instruction": "89BE2C0E0000",
+        "type": "store"
+      }
+    ]
+  },
+  "3632": {
+    "count": 14,
+    "access_types": {
+      "store": 6,
+      "load": 5,
+      "fld_float": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52ec70",
+        "va": "0x52FB23",
+        "instruction": "8991300E0000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_52ec70",
+        "va": "0x52FB3E",
+        "instruction": "8B81300E0000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_52ec80",
+        "va": "0x52F7AE",
+        "instruction": "89BE300E0000",
+        "type": "store"
+      }
+    ]
+  },
+  "3616": {
+    "count": 7,
+    "access_types": {
+      "store": 6,
+      "lea": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52ec70",
+        "va": "0x52FB38",
+        "instruction": "8991200E0000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_52ec80",
+        "va": "0x52F796",
+        "instruction": "89BE200E0000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_52f300",
+        "va": "0x52F796",
+        "instruction": "89BE200E0000",
+        "type": "store"
+      }
+    ]
+  },
+  "3624": {
+    "count": 7,
+    "access_types": {
+      "store": 7
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52ec70",
+        "va": "0x52FB54",
+        "instruction": "8991280E0000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_52ec80",
+        "va": "0x52F7A2",
+        "instruction": "89BE280E0000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_52f300",
+        "va": "0x52F7A2",
+        "instruction": "89BE280E0000",
+        "type": "store"
+      }
+    ]
+  },
+  "3744": {
+    "count": 7,
+    "access_types": {
+      "store_byte": 7
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52ec70",
+        "va": "0x52FB5A",
+        "instruction": "8881A00E0000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_52ec80",
+        "va": "0x52FAD4",
+        "instruction": "889EA00E0000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_52f300",
+        "va": "0x52FAD4",
+        "instruction": "889EA00E0000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "2208": {
+    "count": 5,
+    "access_types": {
+      "store": 5
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52ec70",
+        "va": "0x52FBA4",
+        "instruction": "8981A0080000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_52f330",
+        "va": "0x52FBA4",
+        "instruction": "8981A0080000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x52FBA4",
+        "instruction": "8981A0080000",
+        "type": "store"
       }
     ]
   },
@@ -17115,115 +19789,6 @@
       }
     ]
   },
-  "3616": {
-    "count": 3,
-    "access_types": {
-      "store": 2,
-      "lea": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_52ec80",
-        "va": "0x52F796",
-        "instruction": "89BE200E0000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_52f300",
-        "va": "0x52F796",
-        "instruction": "89BE200E0000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_52f300",
-        "va": "0x52FF27",
-        "instruction": "8D86200E0000",
-        "type": "lea"
-      }
-    ]
-  },
-  "3624": {
-    "count": 3,
-    "access_types": {
-      "store": 3
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_52ec80",
-        "va": "0x52F7A2",
-        "instruction": "89BE280E0000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_52f300",
-        "va": "0x52F7A2",
-        "instruction": "89BE280E0000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_52f300",
-        "va": "0x52FF41",
-        "instruction": "898E280E0000",
-        "type": "store"
-      }
-    ]
-  },
-  "3628": {
-    "count": 5,
-    "access_types": {
-      "store": 2,
-      "fld_float": 2,
-      "lea": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_52ec80",
-        "va": "0x52F7A8",
-        "instruction": "89BE2C0E0000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_52ec80",
-        "va": "0x52FBE7",
-        "instruction": "D9862C0E0000",
-        "type": "fld_float"
-      },
-      {
-        "method": "UIWnd::_nearby_52f300",
-        "va": "0x52F7A8",
-        "instruction": "89BE2C0E0000",
-        "type": "store"
-      }
-    ]
-  },
-  "3632": {
-    "count": 6,
-    "access_types": {
-      "store": 2,
-      "fld_float": 3,
-      "load": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_52ec80",
-        "va": "0x52F7AE",
-        "instruction": "89BE300E0000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_52ec80",
-        "va": "0x52FBFC",
-        "instruction": "D986300E0000",
-        "type": "fld_float"
-      },
-      {
-        "method": "UIWnd::_nearby_52f300",
-        "va": "0x52F7AE",
-        "instruction": "89BE300E0000",
-        "type": "store"
-      }
-    ]
-  },
   "3652": {
     "count": 7,
     "access_types": {
@@ -17357,34 +19922,6 @@
       }
     ]
   },
-  "3728": {
-    "count": 4,
-    "access_types": {
-      "store": 2,
-      "load": 1,
-      "fld_float": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_52ec80",
-        "va": "0x52FAB2",
-        "instruction": "899E900E0000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_52f300",
-        "va": "0x52FAB2",
-        "instruction": "899E900E0000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_52f300",
-        "va": "0x52FEAC",
-        "instruction": "8B86900E0000",
-        "type": "load"
-      }
-    ]
-  },
   "3736": {
     "count": 6,
     "access_types": {
@@ -17466,32 +20003,6 @@
       }
     ]
   },
-  "3744": {
-    "count": 3,
-    "access_types": {
-      "store_byte": 3
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_52ec80",
-        "va": "0x52FAD4",
-        "instruction": "889EA00E0000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_52f300",
-        "va": "0x52FAD4",
-        "instruction": "889EA00E0000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_52f300",
-        "va": "0x52FEC2",
-        "instruction": "889EA00E0000",
-        "type": "store_byte"
-      }
-    ]
-  },
   "3700": {
     "count": 4,
     "access_types": {
@@ -17559,117 +20070,279 @@
     ]
   },
   "596": {
-    "count": 13,
+    "count": 24,
     "access_types": {
-      "store": 7,
-      "load": 6
+      "store": 15,
+      "load": 9
     },
     "examples": [
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530496",
-        "instruction": "899E54020000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x5305A4",
+        "instruction": "898154020000",
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5309CC",
-        "instruction": "899654020000",
+        "method": "UIWnd::_nearby_52f6b0",
+        "va": "0x5305A4",
+        "instruction": "898154020000",
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5309EA",
-        "instruction": "8B8E54020000",
-        "type": "load"
+        "method": "UIWnd::_nearby_52fba0",
+        "va": "0x5305A4",
+        "instruction": "898154020000",
+        "type": "store"
       }
     ]
   },
   "600": {
-    "count": 13,
+    "count": 32,
     "access_types": {
-      "store": 7,
-      "load": 6
+      "store": 18,
+      "load": 14
     },
     "examples": [
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x53049C",
-        "instruction": "899E58020000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x5305AA",
+        "instruction": "898158020000",
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5309DE",
-        "instruction": "898E58020000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5309F6",
-        "instruction": "8B9658020000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x5305BC",
+        "instruction": "8B9158020000",
         "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_52f6b0",
+        "va": "0x5305AA",
+        "instruction": "898158020000",
+        "type": "store"
       }
     ]
   },
   "604": {
-    "count": 13,
+    "count": 32,
     "access_types": {
-      "store": 7,
-      "load": 6
+      "store": 18,
+      "load": 14
     },
     "examples": [
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5304A2",
-        "instruction": "899E5C020000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x5305B0",
+        "instruction": "89815C020000",
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5309E4",
-        "instruction": "89965C020000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530A02",
-        "instruction": "8B8E5C020000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x5305C8",
+        "instruction": "8B915C020000",
         "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_52f6b0",
+        "va": "0x5305B0",
+        "instruction": "89815C020000",
+        "type": "store"
       }
     ]
   },
   "636": {
-    "count": 10,
+    "count": 29,
     "access_types": {
-      "store": 7,
-      "load": 3
+      "store": 15,
+      "load": 8,
+      "store_byte": 6
     },
     "examples": [
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x5304D2",
-        "instruction": "899E7C020000",
+        "method": "UIWnd::_nearby_52f6a0",
+        "va": "0x53060C",
+        "instruction": "89817C020000",
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530A52",
-        "instruction": "89967C020000",
+        "method": "UIWnd::_nearby_52f6b0",
+        "va": "0x53060C",
+        "instruction": "89817C020000",
         "type": "store"
       },
       {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x53120B",
-        "instruction": "8B967C020000",
+        "method": "UIWnd::_nearby_52fba0",
+        "va": "0x53060C",
+        "instruction": "89817C020000",
+        "type": "store"
+      }
+    ]
+  },
+  "784": {
+    "count": 21,
+    "access_types": {
+      "load": 12,
+      "store": 9
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52fc50",
+        "va": "0x530BE0",
+        "instruction": "8B8110030000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_52fc50",
+        "va": "0x530BF0",
+        "instruction": "899110030000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x530BE0",
+        "instruction": "8B8110030000",
         "type": "load"
       }
     ]
   },
-  "728": {
-    "count": 1,
+  "788": {
+    "count": 9,
     "access_types": {
-      "store": 1
+      "store": 9
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_52fc50",
+        "va": "0x530BEA",
+        "instruction": "898114030000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x530BEA",
+        "instruction": "898114030000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_530340",
+        "va": "0x530AB1",
+        "instruction": "899E14030000",
+        "type": "store"
+      }
+    ]
+  },
+  "798": {
+    "count": 18,
+    "access_types": {
+      "load_byte": 5,
+      "store_byte": 13
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x531010",
+        "instruction": "8A811E030000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x53104D",
+        "instruction": "88911E030000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x531096",
+        "instruction": "88811E030000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "820": {
+    "count": 26,
+    "access_types": {
+      "fld_float": 18,
+      "store": 8
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x53103A",
+        "instruction": "D99934030000",
+        "type": "fld_float"
+      },
+      {
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x53105C",
+        "instruction": "D99934030000",
+        "type": "fld_float"
+      },
+      {
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x531074",
+        "instruction": "D98134030000",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "808": {
+    "count": 13,
+    "access_types": {
+      "fld_float": 5,
+      "store": 8
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x53106E",
+        "instruction": "D99928030000",
+        "type": "fld_float"
+      },
+      {
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x5310AE",
+        "instruction": "898128030000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_530340",
+        "va": "0x530B48",
+        "instruction": "898E28030000",
+        "type": "store"
+      }
+    ]
+  },
+  "799": {
+    "count": 11,
+    "access_types": {
+      "store_byte": 11
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_530250",
+        "va": "0x53109C",
+        "instruction": "88811F030000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_530340",
+        "va": "0x530B70",
+        "instruction": "88861F030000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_530340",
+        "va": "0x531003",
+        "instruction": "888E1F030000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "728": {
+    "count": 43,
+    "access_types": {
+      "store": 19,
+      "fld_float": 24
     },
     "examples": [
       {
@@ -17677,6 +20350,18 @@
         "va": "0x53050E",
         "instruction": "899ED8020000",
         "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x533E64",
+        "instruction": "8981D8020000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x53405B",
+        "instruction": "D991D8020000",
+        "type": "fld_float"
       }
     ]
   },
@@ -17704,59 +20389,6 @@
         "method": "UIWnd::_nearby_530340",
         "va": "0x530532",
         "instruction": "899EF4020000",
-        "type": "store"
-      }
-    ]
-  },
-  "784": {
-    "count": 9,
-    "access_types": {
-      "store": 3,
-      "load": 6
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530AAB",
-        "instruction": "899E10030000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530E45",
-        "instruction": "8B8610030000",
-        "type": "load"
-      },
-      {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530EA7",
-        "instruction": "8B8610030000",
-        "type": "load"
-      }
-    ]
-  },
-  "788": {
-    "count": 3,
-    "access_types": {
-      "store": 3
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530AB1",
-        "instruction": "899E14030000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_530660",
-        "va": "0x530AB1",
-        "instruction": "899E14030000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_530990",
-        "va": "0x530AB1",
-        "instruction": "899E14030000",
         "type": "store"
       }
     ]
@@ -17867,111 +20499,6 @@
       }
     ]
   },
-  "808": {
-    "count": 3,
-    "access_types": {
-      "store": 3
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530B48",
-        "instruction": "898E28030000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_530660",
-        "va": "0x530B48",
-        "instruction": "898E28030000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_530990",
-        "va": "0x530B48",
-        "instruction": "898E28030000",
-        "type": "store"
-      }
-    ]
-  },
-  "820": {
-    "count": 6,
-    "access_types": {
-      "store": 3,
-      "fld_float": 3
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530B5E",
-        "instruction": "899E34030000",
-        "type": "store"
-      },
-      {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530DB5",
-        "instruction": "D98634030000",
-        "type": "fld_float"
-      },
-      {
-        "method": "UIWnd::_nearby_530660",
-        "va": "0x530B5E",
-        "instruction": "899E34030000",
-        "type": "store"
-      }
-    ]
-  },
-  "798": {
-    "count": 3,
-    "access_types": {
-      "store_byte": 3
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530B6A",
-        "instruction": "88861E030000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_530660",
-        "va": "0x530B6A",
-        "instruction": "88861E030000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_530990",
-        "va": "0x530B6A",
-        "instruction": "88861E030000",
-        "type": "store_byte"
-      }
-    ]
-  },
-  "799": {
-    "count": 6,
-    "access_types": {
-      "store_byte": 6
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x530B70",
-        "instruction": "88861F030000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_530340",
-        "va": "0x531003",
-        "instruction": "888E1F030000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_530660",
-        "va": "0x530B70",
-        "instruction": "88861F030000",
-        "type": "store_byte"
-      }
-    ]
-  },
   "797": {
     "count": 9,
     "access_types": {
@@ -18078,9 +20605,9 @@
     ]
   },
   "740": {
-    "count": 3,
+    "count": 9,
     "access_types": {
-      "store": 3
+      "store": 9
     },
     "examples": [
       {
@@ -18126,6 +20653,167 @@
         "method": "UIWnd::_nearby_530340",
         "va": "0x530FF1",
         "instruction": "888E1C030000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "1308": {
+    "count": 4,
+    "access_types": {
+      "store": 3,
+      "load": 1
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_531d00",
+        "va": "0x5322D4",
+        "instruction": "89811C050000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_531d10",
+        "va": "0x5322D4",
+        "instruction": "89811C050000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_sdtor_38",
+        "va": "0x5328E5",
+        "instruction": "8B8E1C050000",
+        "type": "load"
+      }
+    ]
+  },
+  "133": {
+    "count": 11,
+    "access_types": {
+      "store_byte": 8,
+      "load_byte": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_531d00",
+        "va": "0x532A8A",
+        "instruction": "889185000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_531d10",
+        "va": "0x532A8A",
+        "instruction": "889185000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_sdtor_38",
+        "va": "0x532B49",
+        "instruction": "8A8685000000",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "135": {
+    "count": 10,
+    "access_types": {
+      "store_byte": 10
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_531d00",
+        "va": "0x532AF8",
+        "instruction": "888187000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_531d10",
+        "va": "0x532AF8",
+        "instruction": "888187000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_sdtor_38",
+        "va": "0x532C59",
+        "instruction": "889E87000000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "105": {
+    "count": 16,
+    "access_types": {
+      "store_byte": 12,
+      "load_byte": 4
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_531d00",
+        "va": "0x532B23",
+        "instruction": "885169",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_531d10",
+        "va": "0x532B23",
+        "instruction": "885169",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_sdtor_38",
+        "va": "0x532BE6",
+        "instruction": "884669",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "113": {
+    "count": 16,
+    "access_types": {
+      "store_byte": 14,
+      "load_byte": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_531d00",
+        "va": "0x532B35",
+        "instruction": "884171",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_531d10",
+        "va": "0x532B35",
+        "instruction": "884171",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_sdtor_38",
+        "va": "0x532BEC",
+        "instruction": "885E71",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "134": {
+    "count": 10,
+    "access_types": {
+      "store_byte": 8,
+      "load_byte": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_531d00",
+        "va": "0x532B38",
+        "instruction": "888186000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_531d10",
+        "va": "0x532B38",
+        "instruction": "888186000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_sdtor_38",
+        "va": "0x532C53",
+        "instruction": "889E86000000",
         "type": "store_byte"
       }
     ]
@@ -18679,20 +21367,6 @@
       }
     ]
   },
-  "1308": {
-    "count": 1,
-    "access_types": {
-      "load": 1
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_38",
-        "va": "0x5328E5",
-        "instruction": "8B8E1C050000",
-        "type": "load"
-      }
-    ]
-  },
   "4520": {
     "count": 1,
     "access_types": {
@@ -18721,83 +21395,315 @@
       }
     ]
   },
-  "133": {
+  "217": {
+    "count": 23,
+    "access_types": {
+      "store_byte": 23
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_5322d0",
+        "va": "0x5331C8",
+        "instruction": "8891D9000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_532960",
+        "va": "0x5331C8",
+        "instruction": "8891D9000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_532a20",
+        "va": "0x5331C8",
+        "instruction": "8891D9000000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "345": {
+    "count": 18,
+    "access_types": {
+      "load_byte": 7,
+      "store_byte": 11
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_5322d0",
+        "va": "0x53326C",
+        "instruction": "8A8159010000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_532960",
+        "va": "0x53326C",
+        "instruction": "8A8159010000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_532a20",
+        "va": "0x53326C",
+        "instruction": "8A8159010000",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "701": {
+    "count": 12,
+    "access_types": {
+      "store_byte": 6,
+      "load_byte": 6
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x533E16",
+        "instruction": "8881BD020000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x534016",
+        "instruction": "8A81BD020000",
+        "type": "load_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x534235",
+        "instruction": "8A81BD020000",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "712": {
+    "count": 33,
+    "access_types": {
+      "store": 9,
+      "fld_float": 24
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x533E22",
+        "instruction": "8981C8020000",
+        "type": "store"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x534154",
+        "instruction": "D981C8020000",
+        "type": "fld_float"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x534196",
+        "instruction": "D981C8020000",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "723": {
     "count": 6,
     "access_types": {
-      "load_byte": 3,
-      "store_byte": 3
+      "store_byte": 6
     },
     "examples": [
       {
-        "method": "UIWnd::_sdtor_38",
-        "va": "0x532B49",
-        "instruction": "8A8685000000",
-        "type": "load_byte"
-      },
-      {
-        "method": "UIWnd::_sdtor_38",
-        "va": "0x532B60",
-        "instruction": "888685000000",
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x533E34",
+        "instruction": "8881D3020000",
         "type": "store_byte"
       },
       {
-        "method": "UIWnd::_nearby_532a30",
-        "va": "0x532B49",
-        "instruction": "8A8685000000",
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x534C1A",
+        "instruction": "8881D3020000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_533ca0",
+        "va": "0x533E34",
+        "instruction": "8881D3020000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "722": {
+    "count": 23,
+    "access_types": {
+      "store_byte": 20,
+      "load_byte": 3
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x533E3A",
+        "instruction": "8881D2020000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x5341AB",
+        "instruction": "8891D2020000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x5341ED",
+        "instruction": "C681D2020000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "721": {
+    "count": 12,
+    "access_types": {
+      "store_byte": 12
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x533E40",
+        "instruction": "8881D1020000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x53413D",
+        "instruction": "C681D1020000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_533c90",
+        "va": "0x53437E",
+        "instruction": "C681D1020000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "6276": {
+    "count": 2,
+    "access_types": {
+      "load": 2
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_534da0",
+        "va": "0x534DF1",
+        "instruction": "8BB984180000",
+        "type": "load"
+      },
+      {
+        "method": "UIWnd::_nearby_534db0",
+        "va": "0x534DF1",
+        "instruction": "8BB984180000",
+        "type": "load"
+      }
+    ]
+  },
+  "218": {
+    "count": 14,
+    "access_types": {
+      "store_byte": 14
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_534da0",
+        "va": "0x535B7E",
+        "instruction": "8881DA000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_534da0",
+        "va": "0x535C08",
+        "instruction": "8881DA000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_534db0",
+        "va": "0x535B7E",
+        "instruction": "8881DA000000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "221": {
+    "count": 14,
+    "access_types": {
+      "store_byte": 14
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_534da0",
+        "va": "0x535B90",
+        "instruction": "8881DD000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_534da0",
+        "va": "0x535C1A",
+        "instruction": "8881DD000000",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_534db0",
+        "va": "0x535B90",
+        "instruction": "8881DD000000",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "61": {
+    "count": 9,
+    "access_types": {
+      "store_byte": 5,
+      "load_byte": 4
+    },
+    "examples": [
+      {
+        "method": "UIWnd::_nearby_534dc0",
+        "va": "0x534F8A",
+        "instruction": "884E3D",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_534dc0",
+        "va": "0x5352FA",
+        "instruction": "885E3D",
+        "type": "store_byte"
+      },
+      {
+        "method": "UIWnd::_nearby_534dc0",
+        "va": "0x5354B2",
+        "instruction": "8A463D",
         "type": "load_byte"
       }
     ]
   },
-  "134": {
-    "count": 5,
+  "62": {
+    "count": 17,
     "access_types": {
-      "store_byte": 3,
-      "load_byte": 2
+      "store_byte": 9,
+      "load_byte": 8
     },
     "examples": [
       {
-        "method": "UIWnd::_sdtor_38",
-        "va": "0x532C53",
-        "instruction": "889E86000000",
+        "method": "UIWnd::_nearby_534dc0",
+        "va": "0x534F8D",
+        "instruction": "88463E",
         "type": "store_byte"
       },
       {
-        "method": "UIWnd::_nearby_532a30",
-        "va": "0x532C53",
-        "instruction": "889E86000000",
+        "method": "UIWnd::_nearby_534dc0",
+        "va": "0x5352FD",
+        "instruction": "885E3E",
         "type": "store_byte"
       },
       {
-        "method": "UIWnd::_nearby_532a30",
-        "va": "0x53328D",
-        "instruction": "8A8686000000",
+        "method": "UIWnd::_nearby_534dc0",
+        "va": "0x5354DE",
+        "instruction": "8A463E",
         "type": "load_byte"
-      }
-    ]
-  },
-  "135": {
-    "count": 5,
-    "access_types": {
-      "store_byte": 5
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_sdtor_38",
-        "va": "0x532C59",
-        "instruction": "889E87000000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_532a30",
-        "va": "0x532C59",
-        "instruction": "889E87000000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_532a30",
-        "va": "0x533967",
-        "instruction": "C68687000000",
-        "type": "store_byte"
       }
     ]
   },
@@ -18983,29 +21889,30 @@
       }
     ]
   },
-  "217": {
-    "count": 5,
+  "333": {
+    "count": 8,
     "access_types": {
-      "store_byte": 5
+      "store_byte": 6,
+      "load_byte": 2
     },
     "examples": [
       {
-        "method": "UIWnd::_nearby_5355f0",
-        "va": "0x536190",
-        "instruction": "C686D9000000",
+        "method": "UIWnd::_nearby_5355e0",
+        "va": "0x5363AE",
+        "instruction": "88814D010000",
         "type": "store_byte"
       },
       {
-        "method": "UIWnd::_nearby_535630",
-        "va": "0x536190",
-        "instruction": "C686D9000000",
+        "method": "UIWnd::_nearby_535960",
+        "va": "0x5363AE",
+        "instruction": "88814D010000",
         "type": "store_byte"
       },
       {
-        "method": "UIWnd::_nearby_535930",
-        "va": "0x536190",
-        "instruction": "C686D9000000",
-        "type": "store_byte"
+        "method": "UIWnd::_nearby_5359b0",
+        "va": "0x536982",
+        "instruction": "8A864D010000",
+        "type": "load_byte"
       }
     ]
   },
@@ -19087,33 +21994,6 @@
         "va": "0x536612",
         "instruction": "8A96A40D0000",
         "type": "load_byte"
-      }
-    ]
-  },
-  "345": {
-    "count": 14,
-    "access_types": {
-      "store_byte": 11,
-      "load_byte": 3
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_5355f0",
-        "va": "0x5364C1",
-        "instruction": "C68659010000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_535630",
-        "va": "0x5364C1",
-        "instruction": "C68659010000",
-        "type": "store_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_535930",
-        "va": "0x5364C1",
-        "instruction": "C68659010000",
-        "type": "store_byte"
       }
     ]
   },
@@ -19218,33 +22098,6 @@
         "method": "UIWnd::_nearby_5359b0",
         "va": "0x53699E",
         "instruction": "889653010000",
-        "type": "store_byte"
-      }
-    ]
-  },
-  "333": {
-    "count": 4,
-    "access_types": {
-      "load_byte": 2,
-      "store_byte": 2
-    },
-    "examples": [
-      {
-        "method": "UIWnd::_nearby_5359b0",
-        "va": "0x536982",
-        "instruction": "8A864D010000",
-        "type": "load_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_535a60",
-        "va": "0x536982",
-        "instruction": "8A864D010000",
-        "type": "load_byte"
-      },
-      {
-        "method": "UIWnd::_nearby_535a60",
-        "va": "0x5369AF",
-        "instruction": "C6864D010000",
         "type": "store_byte"
       }
     ]

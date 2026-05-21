@@ -33,6 +33,27 @@
       }
     ]
   },
+  "104": {
+    "count": 2,
+    "access_types": {
+      "lea": 1,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::_method_493e40",
+        "va": "0x49404C",
+        "instruction": "8D7368",
+        "type": "lea"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D1044",
+        "instruction": "894E68",
+        "type": "store"
+      }
+    ]
+  },
   "972": {
     "count": 1,
     "access_types": {
@@ -44,6 +65,199 @@
         "va": "0x494C7A",
         "instruction": "8D83CC030000",
         "type": "lea"
+      }
+    ]
+  },
+  "28": {
+    "count": 13,
+    "access_types": {
+      "load": 9,
+      "lea": 3,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CD933",
+        "instruction": "8B461C",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CD96B",
+        "instruction": "8B461C",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CDA2F",
+        "instruction": "8D7E1C",
+        "type": "lea"
+      }
+    ]
+  },
+  "32": {
+    "count": 5,
+    "access_types": {
+      "load": 4,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CD940",
+        "instruction": "8B4E20",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D05FA",
+        "instruction": "8B4620",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0B70",
+        "instruction": "8B4E20",
+        "type": "load"
+      }
+    ]
+  },
+  "12": {
+    "count": 25,
+    "access_types": {
+      "load": 16,
+      "store": 9
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CD951",
+        "instruction": "8B460C",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CD95D",
+        "instruction": "8B560C",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CD979",
+        "instruction": "8B460C",
+        "type": "load"
+      }
+    ]
+  },
+  "24": {
+    "count": 7,
+    "access_types": {
+      "store": 4,
+      "load": 1,
+      "store_byte": 1,
+      "load_byte": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CDA25",
+        "instruction": "894E18",
+        "type": "store"
+      },
+      {
+        "method": "SceneMgr::Create",
+        "va": "0x4CDA25",
+        "instruction": "894E18",
+        "type": "store"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D04FF",
+        "instruction": "894618",
+        "type": "store"
+      }
+    ]
+  },
+  "16": {
+    "count": 24,
+    "access_types": {
+      "store": 10,
+      "fld_float": 3,
+      "load": 11
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CDA32",
+        "instruction": "895E10",
+        "type": "store"
+      },
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CDA84",
+        "instruction": "894610",
+        "type": "store"
+      },
+      {
+        "method": "SceneMgr::Create",
+        "va": "0x4CDA32",
+        "instruction": "895E10",
+        "type": "store"
+      }
+    ]
+  },
+  "20": {
+    "count": 10,
+    "access_types": {
+      "store": 8,
+      "load": 2
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CDA35",
+        "instruction": "895E14",
+        "type": "store"
+      },
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CDA97",
+        "instruction": "894614",
+        "type": "store"
+      },
+      {
+        "method": "SceneMgr::Create",
+        "va": "0x4CDA35",
+        "instruction": "895E14",
+        "type": "store"
+      }
+    ]
+  },
+  "4": {
+    "count": 14,
+    "access_types": {
+      "store": 8,
+      "load": 6
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CDA38",
+        "instruction": "895604",
+        "type": "store"
+      },
+      {
+        "method": "SceneMgr::Create",
+        "va": "0x4CDA38",
+        "instruction": "895604",
+        "type": "store"
+      },
+      {
+        "method": "SceneMgr::RenderAll",
+        "va": "0x4CEB42",
+        "instruction": "894104",
+        "type": "store"
       }
     ]
   },
@@ -74,11 +288,41 @@
       }
     ]
   },
-  "2348": {
-    "count": 14,
+  "8": {
+    "count": 12,
     "access_types": {
       "store": 6,
-      "load": 8
+      "load_byte": 1,
+      "store_byte": 1,
+      "load": 4
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CDAA8",
+        "instruction": "894608",
+        "type": "store"
+      },
+      {
+        "method": "SceneMgr::Create",
+        "va": "0x4CDAA8",
+        "instruction": "894608",
+        "type": "store"
+      },
+      {
+        "method": "SceneMgr::RenderAll",
+        "va": "0x4CEB45",
+        "instruction": "894108",
+        "type": "store"
+      }
+    ]
+  },
+  "2348": {
+    "count": 21,
+    "access_types": {
+      "store": 6,
+      "load": 8,
+      "lea": 7
     },
     "examples": [
       {
@@ -129,9 +373,10 @@
     ]
   },
   "2344": {
-    "count": 4,
+    "count": 6,
     "access_types": {
-      "store_byte": 4
+      "store_byte": 4,
+      "lea": 2
     },
     "examples": [
       {
@@ -206,6 +451,336 @@
       }
     ]
   },
+  "88": {
+    "count": 9,
+    "access_types": {
+      "load_byte": 5,
+      "lea": 2,
+      "store_byte": 1,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CE404",
+        "instruction": "8A4658",
+        "type": "load_byte"
+      },
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CE519",
+        "instruction": "8A4658",
+        "type": "load_byte"
+      },
+      {
+        "method": "SceneMgr::Create",
+        "va": "0x4CE404",
+        "instruction": "8A4658",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "91": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::_nearby_4cd930",
+        "va": "0x4CE577",
+        "instruction": "C65E5B",
+        "type": "store_byte"
+      },
+      {
+        "method": "SceneMgr::Create",
+        "va": "0x4CE577",
+        "instruction": "C65E5B",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "176": {
+    "count": 4,
+    "access_types": {
+      "load_byte": 4
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderAll",
+        "va": "0x4CE00C",
+        "instruction": "8A99B0000000",
+        "type": "load_byte"
+      },
+      {
+        "method": "SceneMgr::RenderAll",
+        "va": "0x4CE776",
+        "instruction": "8A91B0000000",
+        "type": "load_byte"
+      },
+      {
+        "method": "SceneMgr::RenderUpdate",
+        "va": "0x4CE00C",
+        "instruction": "8A99B0000000",
+        "type": "load_byte"
+      }
+    ]
+  },
+  "64": {
+    "count": 4,
+    "access_types": {
+      "fld_float": 1,
+      "store_byte": 2,
+      "lea": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D02B4",
+        "instruction": "D94640",
+        "type": "fld_float"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D04C5",
+        "instruction": "C64640",
+        "type": "store_byte"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0549",
+        "instruction": "C64640",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "68": {
+    "count": 2,
+    "access_types": {
+      "fld_float": 1,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D02BE",
+        "instruction": "D94644",
+        "type": "fld_float"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D11B3",
+        "instruction": "894644",
+        "type": "store"
+      }
+    ]
+  },
+  "72": {
+    "count": 1,
+    "access_types": {
+      "fld_float": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D02D4",
+        "instruction": "D94648",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "76": {
+    "count": 3,
+    "access_types": {
+      "load": 1,
+      "fld_float": 1,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D02F7",
+        "instruction": "8B464C",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D06B6",
+        "instruction": "D95E4C",
+        "type": "fld_float"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D1079",
+        "instruction": "89464C",
+        "type": "store"
+      }
+    ]
+  },
+  "80": {
+    "count": 3,
+    "access_types": {
+      "load": 1,
+      "fld_float": 1,
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D030A",
+        "instruction": "8B4E50",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D06BF",
+        "instruction": "D95E50",
+        "type": "fld_float"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0EE3",
+        "instruction": "885E50",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "84": {
+    "count": 3,
+    "access_types": {
+      "load": 1,
+      "fld_float": 1,
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0317",
+        "instruction": "8B5654",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D06C8",
+        "instruction": "D95E54",
+        "type": "fld_float"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D1016",
+        "instruction": "894E54",
+        "type": "store"
+      }
+    ]
+  },
+  "100": {
+    "count": 3,
+    "access_types": {
+      "load": 1,
+      "fld_float": 2
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0324",
+        "instruction": "8B4664",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D06AD",
+        "instruction": "D95E64",
+        "type": "fld_float"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D107D",
+        "instruction": "D95E64",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "96": {
+    "count": 3,
+    "access_types": {
+      "load": 1,
+      "fld_float": 2
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0327",
+        "instruction": "8B4E60",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D06A4",
+        "instruction": "D95E60",
+        "type": "fld_float"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D1063",
+        "instruction": "D95E60",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "92": {
+    "count": 3,
+    "access_types": {
+      "load": 1,
+      "fld_float": 2
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D032A",
+        "instruction": "8B565C",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D069B",
+        "instruction": "D95E5C",
+        "type": "fld_float"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D1056",
+        "instruction": "D95E5C",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "48": {
+    "count": 6,
+    "access_types": {
+      "load": 5,
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0338",
+        "instruction": "8B7630",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0636",
+        "instruction": "8B4E30",
+        "type": "load"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0784",
+        "instruction": "8B4E30",
+        "type": "load"
+      }
+    ]
+  },
   "148": {
     "count": 2,
     "access_types": {
@@ -224,6 +799,180 @@
         "va": "0x4D100A",
         "instruction": "D99E94000000",
         "type": "fld_float"
+      }
+    ]
+  },
+  "65": {
+    "count": 2,
+    "access_types": {
+      "store_byte": 2
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D04C9",
+        "instruction": "884641",
+        "type": "store_byte"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D054D",
+        "instruction": "884641",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "52": {
+    "count": 4,
+    "access_types": {
+      "fld_float": 1,
+      "store_byte": 1,
+      "lea": 2
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D067E",
+        "instruction": "D95E34",
+        "type": "fld_float"
+      },
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D10CB",
+        "instruction": "884E34",
+        "type": "store_byte"
+      },
+      {
+        "method": "SceneMgr::GetCurrentNode",
+        "va": "0x52EC93",
+        "instruction": "8D4E34",
+        "type": "lea"
+      }
+    ]
+  },
+  "56": {
+    "count": 1,
+    "access_types": {
+      "fld_float": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0688",
+        "instruction": "D95E38",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "60": {
+    "count": 1,
+    "access_types": {
+      "fld_float": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0692",
+        "instruction": "D95E3C",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "93": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0B4E",
+        "instruction": "C65E5D",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "87": {
+    "count": 1,
+    "access_types": {
+      "fld_float": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0DC9",
+        "instruction": "D95657",
+        "type": "fld_float"
+      }
+    ]
+  },
+  "49": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0ECE",
+        "instruction": "885E31",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "51": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0EDB",
+        "instruction": "884633",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "81": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0EE6",
+        "instruction": "885E51",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "82": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0EE9",
+        "instruction": "C64652",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "83": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D0EED",
+        "instruction": "C64653",
+        "type": "store_byte"
       }
     ]
   },
@@ -283,6 +1032,20 @@
       }
     ]
   },
+  "124": {
+    "count": 1,
+    "access_types": {
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D101F",
+        "instruction": "89567C",
+        "type": "store"
+      }
+    ]
+  },
   "128": {
     "count": 1,
     "access_types": {
@@ -308,6 +1071,104 @@
         "va": "0x4D1038",
         "instruction": "899684000000",
         "type": "store"
+      }
+    ]
+  },
+  "108": {
+    "count": 1,
+    "access_types": {
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D104D",
+        "instruction": "89566C",
+        "type": "store"
+      }
+    ]
+  },
+  "112": {
+    "count": 1,
+    "access_types": {
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D1070",
+        "instruction": "894670",
+        "type": "store"
+      }
+    ]
+  },
+  "116": {
+    "count": 1,
+    "access_types": {
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D1073",
+        "instruction": "894674",
+        "type": "store"
+      }
+    ]
+  },
+  "120": {
+    "count": 1,
+    "access_types": {
+      "store": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D1076",
+        "instruction": "894678",
+        "type": "store"
+      }
+    ]
+  },
+  "50": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D10B8",
+        "instruction": "C64632",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "53": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D10C2",
+        "instruction": "884635",
+        "type": "store_byte"
+      }
+    ]
+  },
+  "54": {
+    "count": 1,
+    "access_types": {
+      "store_byte": 1
+    },
+    "examples": [
+      {
+        "method": "SceneMgr::RenderScenePass",
+        "va": "0x4D10D4",
+        "instruction": "885636",
+        "type": "store_byte"
       }
     ]
   },
