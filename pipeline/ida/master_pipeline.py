@@ -136,6 +136,7 @@ def phase1_import_types():
     cls_ok = 0
     cls_skipped = {'system': 0, 'template': 0, 'no_name': 0, 'no_size': 0}
     cls_failed = []  # 记录失败详情
+    skipped_templates = []  # 记录跳过的 template 供后续注释使用
 
     for cls in classes:
         name = cls.get('name', '')
@@ -153,6 +154,13 @@ def phase1_import_types():
         # Skip names with template chars that IDA can't handle
         if '<' in name or '>' in name:
             cls_skipped['template'] += 1
+            # 记录 template 信息（供后续生成注释）
+            skipped_templates.append({
+                'name': name,
+                'kind': kind,
+                'size': size,
+                'members': len(data_members)
+            })
             continue
         if size <= 0:
             cls_skipped['no_size'] += 1
@@ -208,6 +216,19 @@ def phase1_import_types():
     log("[*] 跳过: system=%d, template=%d, no_name=%d, no_size=%d" %
         (cls_skipped['system'], cls_skipped['template'], cls_skipped['no_name'], cls_skipped['no_size']))
     log("[*] 失败: %d" % len(cls_failed))
+
+    # 保存跳过的 template 类型（供后续人工修复参考）
+    if skipped_templates:
+        template_log = os.path.join(SCRIPT_DIR, "_logs", "pdb_skipped_templates.json")
+        os.makedirs(os.path.dirname(template_log), exist_ok=True)
+        import json as _json_tmpl
+        with open(template_log, 'w', encoding='utf-8') as f:
+            _json_tmpl.dump({
+                'total_skipped': len(skipped_templates),
+                'note': 'IDA parse_decl 不支持 C++ template 语法。这些类型已跳过导入，但记录在此供后续人工修复参考。',
+                'templates': skipped_templates[:50]  # 只保存前50个作为示例
+            }, f, indent=2, ensure_ascii=False)
+        log("[*] Template 跳过详情: %s" % template_log)
 
     # 按kind统计失败
     if cls_failed:
