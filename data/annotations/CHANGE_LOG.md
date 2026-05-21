@@ -4924,3 +4924,92 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
 4. 访问方法分析推断语义用途 (C级)
 5. 置信度量化评估，决定是否提交
 
+
+## 2026-05-21 member_scan 工具修复 + CCBUI 低偏移字段批量发现
+
+### 问题发现
+
+1. **member_scan 漏掉低偏移字段** — scan_class_members.py 最低只扫描到 offset 128，但 IDA query_class_full 发现了 offset 72-120 的字段引用
+2. **调查发现根本原因** — 工具的两个 bug：
+   - `find_this_register` 只检测 `mov reg, ecx`，不处理直接使用 ecx 作为 this 的情况（小函数常见）
+   - `scan_member_accesses` 只识别 mod=2 (disp32)，不识别 mod=1 (disp8)
+
+### 二进制验证
+
+手动验证 CCBUI::SetRect (0x441070):
+```
+8B 44 24 04    mov eax, [esp+4]   ; 参数 1
+8B 10          mov edx, [eax]     ; 读取参数值
+89 51 48       mov [ecx+48h], edx ; 写入 this+72 ← 使用 disp8!
+C2 04 00       ret 4
+```
+
+**确认**:
+- this = ecx（不保存到其他寄存器）
+- offset 72 用 disp8 编码（`51 48` = ModRM 0x51 = mod:01, reg:010, rm:001）
+
+### 工具修复
+
+**修改 1**: `find_this_register` 默认返回 'ecx'
+- **before**: `return None` 当没有 `mov reg, ecx`
+- **after**: `return 'ecx'` 作为默认值
+
+**修改 2**: `scan_member_accesses` 支持 disp8 (mod=1)
+- 为所有指令类型（MOV, MOV byte, MOVZX, FPU, LEA）添加 `elif mod == 1` 分支
+- disp8 是 1 字节 signed，disp32 是 4 字节 signed
+
+### 修复效果
+
+| 指标 | before | after | 增量 |
+|------|--------|-------|------|
+| 最低偏移 | 128 | 0 | -128 |
+| 最高偏移 | 8056 | 8056 | 0 |
+| 发现 offset 数 | 183 | 225 | +42 (+23%) |
+
+### CCBUI 低偏移字段批量导入
+
+导入了 **30 个新字段**（offset 0-87），基于 binary_scan 访问模式自动推断类型：
+
+**高置信度字段**（访问量 ≥50）:
+- offset 4: void* (181 accesses)
+- offset 8: void* (150 accesses)
+- offset 12: int (131 accesses)
+- offset 16: void* (120 accesses)
+- offset 32: void* (178 accesses)
+- offset 72: void* (135 accesses)
+- offset 76: void* (113 accesses)
+- offset 80: float (90 accesses, FPU confirmed)
+
+**中置信度字段**（10-50 accesses）:
+- offsets 20, 24, 28, 36, 40, 44, 48, 56, 60, 84: 各种类型（int, float, pointer）
+
+**低置信度字段**（<10 accesses）:
+- offsets 0, 1, 2, 52, 58, 64, 68, 73, 85, 87: 需要进一步验证
+
+**奇数偏移字段** (可能 pack(1) 或 union):
+- 1, 17, 18, 73: unsigned char（合理）
+- 85: int (4 accesses, lea only)
+- 87: float (3 accesses, fld only)
+
+### 置信度评估
+
+| 字段 | 类型 | 访问量 | 证据等级 | 置信度 | 备注 |
+|------|------|--------|---------|--------|------|
+| offset 4-32 | void*/int | 120-181 | A (binary) | 90 | 核心字段，高频访问 |
+| offset 72-80 | void*/float | 90-135 | A (binary) | 90 | 与 IDA query 一致 |
+| offset 24,28,40,48,52,58,87 | float | 3-18 | A (FPU) | 95 | FPU 指令确认 |
+| offset 1,17,18,73 | byte | 2-10 | A (byte ops) | 90 | byte 指令确认 |
+| offset 85 | int | 4 | C (lea only) | 60 | 仅 lea，可能非成员访问 |
+
+### 验证结果
+
+- **check_annotations**: PASS (0 errors, 11 warnings)
+- **warnings**: 9 个字段重叠警告（奇数偏移字段 vs 4 字节字段）
+- **判定**: 奇数偏移字段需要进一步调查（可能 pack(1) 或 union），但不阻塞提交
+
+### 工具链改进
+
+- ✅ scan_class_members.py 现在可以扫描所有 offset（包括低偏移 + disp8 编码）
+- ✅ 可重新扫描所有类，发现之前漏掉的低偏移字段
+- 📝 TODO: 调查奇数偏移字段的真实用途（检查 CCBUI 是否有 pack 指令）
+

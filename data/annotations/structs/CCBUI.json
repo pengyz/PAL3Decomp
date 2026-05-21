@@ -1,6 +1,6 @@
 {
   "name": "CCBUI",
-  "note": "Placeholder, offsets need binary analysis",
+  "note": "binary_size corrected from PDB 3552 to 8060 based on member_scan evidence (highest access: offset 8056). PDB size from PAL3A does not match PAL3 binary.",
   "known_members": {
     "336": {
       "name": "m_nTargetOffsetX",
@@ -426,12 +426,143 @@
       "type": "UIStatic *[19][11]",
       "source": "PAL3patch:pal3.h union definition (19 state arrays, 836 bytes total)",
       "note": "Union of 19 state effect arrays: AttackInc/Dec, DefenceInc/Dec, LuckInc/Dec, SpeedInc/Dec, Stable, Blank, Forbid, Sleep, Chaos, Mad, Mirror, Wall, Bound, Hermit, Immunity. All arrays overlap at same memory location."
+    },
+    "72": {
+      "name": "_todo_72",
+      "type": "void *",
+      "source": "binary_scan:135_accesses(store:53, load:77, lea:1, store_byte:4)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "4": {
+      "name": "_todo_4",
+      "type": "void *",
+      "source": "binary_scan:181_accesses(load:105, store:73, lea:3)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "8": {
+      "name": "_todo_8",
+      "type": "void *",
+      "source": "binary_scan:150_accesses(load:69, store:71, lea:10)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "12": {
+      "name": "_todo_12",
+      "type": "int",
+      "source": "binary_scan:131_accesses(load:68, store:63)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "20": {
+      "name": "_todo_20",
+      "type": "int",
+      "source": "binary_scan:43_accesses(load:40, store:3)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "16": {
+      "name": "_todo_16",
+      "type": "void *",
+      "source": "binary_scan:120_accesses(lea:9, load:104, store:7)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "28": {
+      "name": "_todo_28",
+      "type": "float",
+      "source": "binary_scan:18_accesses(load:8, fld_float:10)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "84": {
+      "name": "_todo_84",
+      "type": "void *",
+      "source": "binary_scan:47_accesses(store:26, load:12, lea:9)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "76": {
+      "name": "_todo_76",
+      "type": "void *",
+      "source": "binary_scan:113_accesses(store:32, load:51, lea:30)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "80": {
+      "name": "_todo_80",
+      "type": "float",
+      "source": "binary_scan:90_accesses(store:22, lea:44, load:20, fld_float:4)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "56": {
+      "name": "_todo_56",
+      "type": "void *",
+      "source": "binary_scan:20_accesses(load:11, store:5, lea:4)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "24": {
+      "name": "_todo_24",
+      "type": "float",
+      "source": "binary_scan:17_accesses(load:7, fld_float:10)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "60": {
+      "name": "_todo_60",
+      "type": "int",
+      "source": "binary_scan:16_accesses(load:4, load_byte:2, store:10)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "68": {
+      "name": "_todo_68",
+      "type": "int",
+      "source": "binary_scan:4_accesses(load:2, store_byte:2)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "32": {
+      "name": "_todo_32",
+      "type": "void *",
+      "source": "binary_scan:178_accesses(load:174, lea:1, store:3)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "0": {
+      "name": "_todo_0",
+      "type": "void *",
+      "source": "binary_scan:18_accesses(lea:15, load_byte:3)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "40": {
+      "name": "_todo_40",
+      "type": "float",
+      "source": "binary_scan:9_accesses(lea:4, fld_float:5)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "36": {
+      "name": "_todo_36",
+      "type": "int",
+      "source": "binary_scan:19_accesses(store_byte:4, load:15)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "64": {
+      "name": "_todo_64",
+      "type": "int",
+      "source": "binary_scan:4_accesses(store:4)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "44": {
+      "name": "_todo_44",
+      "type": "int",
+      "source": "binary_scan:12_accesses(store:2, load:10)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "52": {
+      "name": "_todo_52",
+      "type": "float",
+      "source": "binary_scan:5_accesses(fld_float:5)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
+    },
+    "48": {
+      "name": "_todo_48",
+      "type": "float",
+      "source": "binary_scan:10_accesses(fld_float:5, load:5)",
+      "note": "Discovered by member_scan after fix (disp8 support). Type inferred from access patterns."
     }
   },
   "pdb_size": 3552,
   "base_class": "UIFrameWnd",
   "base_size": 152,
   "gen_size": 8060,
-  "binary_size": 8060,
-  "note": "binary_size corrected from PDB 3552 to 8060 based on member_scan evidence (highest access: offset 8056). PDB size from PAL3A does not match PAL3 binary."
+  "binary_size": 8060
 }

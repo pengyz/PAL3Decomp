@@ -21,6 +21,21 @@ def read_bytes(va: int, length: int) -> bytes:
         return f.read(length)
 
 
+
+def parse_displacement(code, i, mod, this_idx, rm):
+    """解析 displacement 字段，返回 (disp_value, instruction_length) 或 None"""
+    if rm != this_idx:
+        return None
+    
+    if mod == 2:  # disp32
+        disp = struct.unpack('<i', code[i+2:i+6])[0]
+        return (disp, 6)
+    elif mod == 1:  # disp8
+        disp = struct.unpack('<b', code[i+2:i+3])[0]
+        return (disp, 3)
+    else:
+        return None
+
 def find_this_register(func_va: int) -> str:
     """在函数序言中找到 this 指针保存的寄存器"""
     # 读取函数头部
@@ -44,7 +59,9 @@ def find_this_register(func_va: int) -> str:
             elif modrm == 0xC1:
                 return 'eax'
 
-    return None
+    # 如果没找到 mov reg, ecx，默认返回 ecx（直接使用 this）
+    # 这种情况常见于小函数，不需要保存 this 到其他寄存器
+    return 'ecx'
 
 
 def scan_member_accesses(func_va: int, func_size: int, this_reg: str) -> list:
@@ -101,6 +118,20 @@ def scan_member_accesses(func_va: int, func_size: int, this_reg: str) -> list:
                 })
                 i += 6
                 continue
+            elif mod == 1 and rm == this_idx:  # [this_reg+disp8]
+                disp = struct.unpack('<b', code[i+2:i+3])[0]  # signed byte
+                if disp >= 0:  # 只记录正偏移
+                    access_type = 'store' if opcode == 0x89 else 'load'
+                    access_width = 4
+                    accesses.append({
+                        'va': va,
+                        'offset': disp,
+                        'type': access_type,
+                        'width': access_width,
+                        'instruction': code[i:i+3].hex().upper()
+                    })
+                i += 3
+                continue
 
         # MOVZX byte (0F B6)
         elif opcode == 0x0F and i + 7 < len(code) and code[i+1] == 0xB6:
@@ -118,6 +149,18 @@ def scan_member_accesses(func_va: int, func_size: int, this_reg: str) -> list:
                     'instruction': code[i:i+7].hex().upper()
                 })
                 i += 7
+                continue
+            elif mod == 1 and rm == this_idx:
+                disp = struct.unpack('<b', code[i+3:i+4])[0]
+                if disp >= 0:
+                    accesses.append({
+                        'va': va,
+                        'offset': disp,
+                        'type': 'load_byte',
+                        'width': 1,
+                        'instruction': code[i:i+4].hex().upper()
+                    })
+                i += 4
                 continue
 
         # MOV byte (C6/88/8A)
@@ -137,6 +180,19 @@ def scan_member_accesses(func_va: int, func_size: int, this_reg: str) -> list:
                     'instruction': code[i:i+6].hex().upper()
                 })
                 i += 6
+                continue
+            elif mod == 1 and rm == this_idx:
+                disp = struct.unpack('<b', code[i+2:i+3])[0]
+                if disp >= 0:
+                    access_type = 'store_byte' if opcode in [0xC6, 0x88] else 'load_byte'
+                    accesses.append({
+                        'va': va,
+                        'offset': disp,
+                        'type': access_type,
+                        'width': 1,
+                        'instruction': code[i:i+3].hex().upper()
+                    })
+                i += 3
                 continue
 
         # FPU instructions (D9/DB/DD)
@@ -177,6 +233,33 @@ def scan_member_accesses(func_va: int, func_size: int, this_reg: str) -> list:
                 })
                 i += 6
                 continue
+            elif mod == 1 and rm == this_idx:
+                disp = struct.unpack('<b', code[i+2:i+3])[0]
+                if disp >= 0:
+                    if opcode == 0xD9:
+                        access_type = 'fld_float'
+                        access_width = 4
+                    elif opcode == 0xDB:
+                        reg_field = (modrm >> 3) & 7
+                        if reg_field == 0:
+                            access_type = 'fild_int'
+                            access_width = 4
+                        else:
+                            access_type = 'fld_unknown'
+                            access_width = 4
+                    elif opcode == 0xDD:
+                        access_type = 'fld_double'
+                        access_width = 8
+                    accesses.append({
+                        'va': va,
+                        'offset': disp,
+                        'type': access_type,
+                        'width': access_width,
+                        'instruction': code[i:i+3].hex().upper()
+                    })
+                i += 3
+                continue
+
 
         # LEA (8D)
         elif opcode == 0x8D:
@@ -194,6 +277,18 @@ def scan_member_accesses(func_va: int, func_size: int, this_reg: str) -> list:
                     'instruction': code[i:i+6].hex().upper()
                 })
                 i += 6
+                continue
+            elif mod == 1 and rm == this_idx:
+                disp = struct.unpack('<b', code[i+2:i+3])[0]
+                if disp >= 0:
+                    accesses.append({
+                        'va': va,
+                        'offset': disp,
+                        'type': 'lea',
+                        'width': 0,
+                        'instruction': code[i:i+3].hex().upper()
+                    })
+                i += 3
                 continue
 
         i += 1
