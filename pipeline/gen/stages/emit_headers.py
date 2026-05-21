@@ -686,37 +686,15 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             include_types.add(b)
             fwd_types.discard(b)
 
-    # Determine type keyword: read from ida_structs.json (authoritative), fallback to annotations, default to class
+    # Union support DISABLED: PDB kind field from PAL3A doesn't match PAL3 binary usage.
+    # Issues found:
+    # 1. Many PDB "union" types have base_class → impossible (C/C++ forbids union inheritance)
+    # 2. Many PDB "union" types are inherited by other classes → impossible (cannot inherit from union)
+    # 3. Many PDB "union" types contain non-POD members (gbVec3D, etc.) → VC6 rejects
+    # Root cause: PDB is from PAL3A.dll, layout differs from PAL3.exe.
+    # Solution: Ignore PDB kind, use class for all (safe default). Re-enable per-type after verification.
     type_kw = "class"
     pdb_kind_comment = ""
-    try:
-        if IDA_STRUCTS_FILE.exists():
-            ida_structs = json.load(open(IDA_STRUCTS_FILE, encoding='utf-8'))
-            if cls_name in ida_structs:
-                type_kw = ida_structs[cls_name].get('kind', 'class')
-    except:
-        pass
-    # Annotations fallback
-    if type_kw == "class":
-        try:
-            ann_data_kind = load_annotations_data()
-            ann_struct_kind = ann_data_kind.get('structs', {}).get(cls_name, {})
-            type_kw = ann_struct_kind.get('kind', 'class')
-        except:
-            pass
-
-    # VC6 doesn't support methods/inheritance in unions (C++98 forbids, C++11+ allows).
-    # If PDB says union but we have methods/bases from decomp → fallback to class (with annotation).
-    has_methods = methods and len(methods) > 0
-    has_bases = base_names and len(base_names) > 0
-    if type_kw == "union" and (has_methods or has_bases):
-        reasons = []
-        if has_methods:
-            reasons.append("has methods")
-        if has_bases:
-            reasons.append("has inheritance")
-        pdb_kind_comment = " /* PDB: union, but %s → class */" % ", ".join(reasons)
-        type_kw = "class"
 
     lines.append("%s %s%s {%s" % (type_kw, cls_name, bases_str, pdb_kind_comment))
     lines.append("public:")
