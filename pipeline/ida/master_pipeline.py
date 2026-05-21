@@ -119,8 +119,15 @@ def phase1_import_types():
     # Forward declarations
     for cls in classes:
         name = cls.get('name', '')
+        kind = cls.get('kind', 'struct')  # struct, class, union
         if name and name not in _SKIP_SYSTEM_TYPES:
-            decl = 'struct %s;' % name
+            # 使用正确的类型关键字
+            if kind == 'union':
+                decl = 'union %s;' % name
+            elif kind == 'class':
+                decl = 'class %s;' % name
+            else:
+                decl = 'struct %s;' % name
             tinfo = ida_typeinf.tinfo_t()
             if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
                 tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
@@ -129,6 +136,7 @@ def phase1_import_types():
     cls_ok = 0
     for cls in classes:
         name = cls.get('name', '')
+        kind = cls.get('kind', 'struct')
         size = cls.get('size', 0)
         data_members = cls.get('data_members', [])
         if not name:
@@ -140,7 +148,15 @@ def phase1_import_types():
         if '<' in name or '>' in name:
             continue
 
-        # Try to build struct with members
+        # 确定类型关键字
+        if kind == 'union':
+            type_kw = 'union'
+        elif kind == 'class':
+            type_kw = 'class'
+        else:
+            type_kw = 'struct'
+
+        # Try to build with members
         if data_members and size > 0:
             member_strs = []
             last_offset = 0
@@ -153,16 +169,16 @@ def phase1_import_types():
                     mname = '_field_%X' % dm.get('offset', 0)
                 member_strs.append('    %s %s;' % (mtype, mname))
             if member_strs:
-                decl = 'struct %s {\n%s\n};' % (name, '\n'.join(member_strs))
+                decl = '%s %s {\n%s\n};' % (type_kw, name, '\n'.join(member_strs))
                 tinfo = ida_typeinf.tinfo_t()
                 if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
                     tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
                     cls_ok += 1
                     continue
 
-        # Fallback: opaque struct with known size
+        # Fallback: opaque type with known size
         if size > 0:
-            decl = 'struct %s { char _data[%d]; };' % (name, size)
+            decl = '%s %s { char _data[%d]; };' % (type_kw, name, size)
             tinfo = ida_typeinf.tinfo_t()
             if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
                 tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)

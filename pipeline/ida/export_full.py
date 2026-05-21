@@ -321,10 +321,17 @@ def export_structs(log):
 
             members.append({'name': mname, 'type': mtype_str, 'offset': offset})
 
-        # Detect base class
+        # Detect base class and type kind
         bases = []
+        kind = 'struct'  # default
         stinfo = ida_typeinf.tinfo_t()
         if stinfo.get_named_type(ida_typeinf.get_idati(), name):
+            # 检测实际类型kind
+            if stinfo.is_union():
+                kind = 'union'
+            elif stinfo.is_struct():
+                kind = 'struct'  # struct和class在IDA中都是is_struct()=true
+
             udt = ida_typeinf.udt_type_data_t()
             if stinfo.get_udt_details(udt):
                 for mi in range(udt.size()):
@@ -344,7 +351,7 @@ def export_structs(log):
 
         result[name] = {
             'size': size,
-            'kind': 'struct',
+            'kind': kind,
             'data_members': filtered,
             'bases': bases,
         }
