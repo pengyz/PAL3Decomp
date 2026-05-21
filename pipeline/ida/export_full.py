@@ -97,6 +97,14 @@ def main():
             if not os.path.basename(f).startswith('_'):
                 os.remove(f)
 
+        # Load annotations (authoritative source for signatures)
+        ann_funcs = {}
+        funcs_file = os.path.join(PROJECT_ROOT, "data", "annotations", "functions.json")
+        if os.path.exists(funcs_file):
+            import json as _ann_json
+            ann_funcs = _ann_json.load(open(funcs_file, encoding='utf-8'))
+            log("[*] Loaded %d function annotations" % len(ann_funcs))
+
         # Load skip list
         skip_addrs = set()
         skip_file = os.path.join(PROJECT_ROOT, "data", "annotations", "skip_functions.json")
@@ -179,12 +187,16 @@ def main():
                     log("[!] SKIP 0x%08X %s: decompile returned None" % (ea, name[:50]))
                     continue
                 code = str(cfunc)
-                # Priority: IDB type (from annotations) over Hex-Rays inference
-                idb_type = idc.get_type(ea)
-                if idb_type:
-                    sig = idb_type
+                # Priority: annotations (authoritative) > IDB type > Hex-Rays inference
+                addr_str = '0x%08X' % ea
+                if addr_str in ann_funcs and ann_funcs[addr_str].get('signature'):
+                    sig = ann_funcs[addr_str]['signature']
                 else:
-                    sig = cfunc.type.dstr()
+                    idb_type = idc.get_type(ea)
+                    if idb_type:
+                        sig = idb_type
+                    else:
+                        sig = cfunc.type.dstr()
                 demangled = idc.demangle_name(name, idc.get_inf_attr(idc.INF_SHORT_DN))
                 display_name = demangled if demangled else name
                 safe = display_name.replace('::', '_').replace('<', '_').replace('>', '_')
