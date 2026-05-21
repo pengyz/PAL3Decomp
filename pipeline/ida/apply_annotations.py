@@ -865,7 +865,24 @@ def apply_annotations():
                 # For member functions, IDA needs full qualified name (Class::Method)
                 # For free functions, use short name
                 func_name_for_ida = name if "::" in name else short_name
-                sig_with_name = before + " " + func_name_for_ida + after
+
+                # Strip explicit 'this' parameter for __thiscall member functions
+                # IDA's SetType expects __thiscall signatures without the explicit 'ClassName *this' first param
+                params_part = after
+                if "__thiscall" in before and "::" in name:
+                    class_name = name.split("::")[0]
+                    if class_name:
+                        import re as _re_this
+                        # Match: (optional-whitespace ClassName *this optional-comma ...)
+                        this_pattern = r'^\(\s*' + _re_this.escape(class_name) + r'\s+\*\s*this\s*(?:,\s*)?'
+                        match = _re_this.match(this_pattern, params_part)
+                        if match:
+                            # Remove the matched 'ClassName *this,' part
+                            rest = params_part[match.end():]
+                            # Reconstruct: ( + remaining params
+                            params_part = '(' + rest
+
+                sig_with_name = before + " " + func_name_for_ida + params_part
             else:
                 sig_with_name = before + after
             # Try original (with struct/class keywords), fallback to stripped
