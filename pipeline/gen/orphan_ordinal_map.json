@@ -1,0 +1,78 @@
+{
+  "_comment": "Orphan ordinal → actual type mapping (inferred from usage patterns)",
+  "mappings": {
+    "133": {
+      "type": "void",
+      "confidence": "high",
+      "evidence": "Actor::_auto_50acf0(struct $Ord133 ***this) - this[73] array access; annotations say Actor*",
+      "replacement": "void"
+    },
+    "115": {
+      "type": "void",
+      "confidence": "medium",
+      "evidence": "91 occurrences, needs usage analysis",
+      "replacement": "void"
+    },
+    "821": {
+      "type": "void",
+      "confidence": "medium",
+      "evidence": "78 occurrences, needs usage analysis",
+      "replacement": "void"
+    },
+    "116": {
+      "type": "void",
+      "confidence": "medium",
+      "evidence": "gbRefObject::Func_4CDAE0(struct $Ord116 ***)",
+      "replacement": "void"
+    },
+    "105": {
+      "type": "void",
+      "confidence": "low",
+      "evidence": "needs analysis",
+      "replacement": "void"
+    },
+    "114": {
+      "type": "void",
+      "confidence": "low",
+      "evidence": "needs analysis",
+      "replacement": "void"
+    },
+    "101": {
+      "type": "void",
+      "confidence": "low",
+      "evidence": "needs analysis",
+      "replacement": "void"
+    },
+    "123": {
+      "type": "void",
+      "confidence": "low",
+      "evidence": "needs analysis",
+      "replacement": "void"
+    },
+    "129": {
+      "type": "void",
+      "confidence": "low",
+      "evidence": "needs analysis",
+      "replacement": "void"
+    },
+    "127": {
+      "type": "void",
+      "confidence": "low",
+      "evidence": "needs analysis",
+      "replacement": "void"
+    },
+    "136": {
+      "type": "void",
+      "confidence": "medium",
+      "evidence": "v5 = (struct $Ord136 *)v4[...] - used in CEffCylinder",
+      "replacement": "void"
+    },
+    "138": {
+      "type": "void",
+      "confidence": "medium",
+      "evidence": "gbDynVertBuf::RenderGeomQuadViaStrip(..., struct $Ord138 **, ...)",
+      "replacement": "void"
+    }
+  },
+  "_rationale": "These ordinals exist in Hex-Rays internal type cache but not in TIL. Rather than fight IDA's type system, we replace them with 'void' in codegen, preserving pointer semantics while allowing compilation."
+}

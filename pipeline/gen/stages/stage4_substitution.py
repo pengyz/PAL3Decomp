@@ -183,6 +183,10 @@ def _collect_token_edits(code_bytes, tree, ctx):
 
 def _apply_text_substitutions(code, ctx):
     """Apply remaining text substitutions that are simpler as string operations."""
+    # Orphan ordinal placeholders: struct $OrdN → void
+    # (ordinals that Hex-Rays couldn't resolve to type names)
+    code = re.sub(r'struct \$Ord\d+', 'void', code)
+
     # Thunk class type casts: j_ClassName * → ClassName *
     for cls in store.thunk_classes:
         if cls in code:
