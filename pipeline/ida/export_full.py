@@ -186,8 +186,9 @@ def _rebuild_func_decl(code, ann_sig, func_name):
             # Keep varargs as-is
             if ptype == '...':
                 new_params.append('...')
-            # If type already has name (e.g. "char *format"), keep it
-            elif any(keyword in ptype for keyword in ('*' + pname, ' ' + pname)):
+            # If annotation type has a trailing identifier (parameter name), use it as-is
+            # e.g., "char *format" or "int nValue" → already has name
+            elif re.search(r'\b[a-zA-Z_][a-zA-Z0-9_]*\s*$', ptype):
                 new_params.append(ptype)
             # Otherwise append Hex-Rays name to annotation type
             else:
