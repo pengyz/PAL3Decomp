@@ -178,14 +178,9 @@
       "source": "A:FPU_disp32_0x4b50ff"
     },
     "160": {
-      "name": "_todo_A0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "164": {
-      "name": "_todo_A4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_szTexPath",
+      "type": "char[16]",
+      "source": "A:lstrcpyA(&this+A0,szFilename)@0x4B493E + Read(&this+A0,4)@0x4BAF07"
     },
     "176": {
       "name": "m_fInvScale",
