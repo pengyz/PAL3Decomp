@@ -82,6 +82,53 @@ def log(msg):
     log_lines.append(str(msg))
     print(msg)
 
+_orphan_stats = {}  # Global stats for debugging
+
+def resolve_orphan_ordinals(code_str):
+    """
+    替换 Hex-Rays 输出的 #ordinal 引用为实际类型名。
+
+    原因：PDB 导入时，前向声明成功（分配 ordinal）但完整定义失败，
+    导致 ordinal 成为孤儿。Hex-Rays 看到 ordinal 但找不到完整定义，输出 #N。
+
+    解决：查询 ordinal 对应的类型名，如果有名字就替换；如果是匿名/孤儿，
+    用 struct_N 占位符（保留序号用于后续修复）。
+    """
+    import re
+
+    def replace_ordinal(match):
+        ordinal_str = match.group(1)
+        try:
+            ordinal = int(ordinal_str)
+            _orphan_stats[ordinal] = _orphan_stats.get(ordinal, 0) + 1
+
+            til = ida_typeinf.get_idati()
+            # 尝试从 TIL 获取类型名
+            type_name = ida_typeinf.get_numbered_type_name(til, ordinal)
+            if type_name:
+                # 成功解析，使用实际名字
+                return type_name
+            # 无法解析，检查是否是前向声明
+            tif = ida_typeinf.tinfo_t()
+            if tif.get_numbered_type(til, ordinal):
+                # 类型存在但没有名字，可能是孤儿前向声明
+                dstr = tif.dstr()
+                # 如果 dstr 本身不是 #ordinal，使用它
+                if dstr and not dstr.startswith('#'):
+                    return dstr
+            # 完全无法解析，用占位符（保留 ordinal 供后续修复）
+            return 'struct $Ord%d' % ordinal
+        except Exception as e:
+            # 异常时保留原始
+            log("[!] Exception resolving #%s: %s" % (ordinal_str, str(e)))
+            return match.group(0)
+
+    # 匹配 #数字 模式（standalone 或在 struct #N 中）
+    # 注意：不匹配 #include、#define 等预处理指令
+    pattern = r'(?:struct\s+)?#(\d+)\b'
+    resolved = re.sub(pattern, replace_ordinal, code_str)
+    return resolved
+
 def main():
     try:
         ida_auto.auto_wait()
@@ -173,7 +220,10 @@ def main():
                     log("[!] SKIP 0x%08X %s: decompile returned None" % (ea, name[:50]))
                     continue
                 code = str(cfunc)
+                # 解析孤儿 ordinal（PDB 前向声明但定义失败的类型）
+                code = resolve_orphan_ordinals(code)
                 sig = cfunc.type.dstr()
+                sig = resolve_orphan_ordinals(sig)
                 demangled = idc.demangle_name(name, idc.get_inf_attr(idc.INF_SHORT_DN))
                 display_name = demangled if demangled else name
                 safe = display_name.replace('::', '_').replace('<', '_').replace('>', '_')
@@ -192,9 +242,12 @@ def main():
                     for lvar in cfunc.lvars:
                         loc = lvar.location
                         if loc.is_stkoff():
+                            type_str = lvar.type().dstr() if lvar.type() else ""
+                            # 解析 local var 类型中的 ordinal
+                            type_str = resolve_orphan_ordinals(type_str)
                             lvar_info.append({
                                 "name": lvar.name,
-                                "type": lvar.type().dstr() if lvar.type() else "",
+                                "type": type_str,
                                 "stack_offset": loc.stkoff(),
                             })
                 except:
@@ -219,6 +272,15 @@ def main():
 
         # Export struct definitions from IDB (authoritative source for gen_headers)
         export_structs(log)
+
+        # Report orphan ordinal stats
+        if _orphan_stats:
+            log("[*] Orphan ordinal replacements: %d unique ordinals" % len(_orphan_stats))
+            top_orphans = sorted(_orphan_stats.items(), key=lambda x: -x[1])[:10]
+            for ord_num, count in top_orphans:
+                log("    #%d: %d occurrences" % (ord_num, count))
+        else:
+            log("[*] No orphan ordinals found")
 
         log("[*] Done")
     except Exception as e:
