@@ -2,98 +2,13 @@
   "name": "CCBUI",
   "note": "Placeholder, offsets need binary analysis",
   "known_members": {
-    "204": {
-      "name": "m_pRoleStateAttackInc",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "248": {
-      "name": "m_pRoleStateAttackDec",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "292": {
-      "name": "m_pRoleStateDefenceInc",
-      "type": "UIStatic *[3]",
-      "source": "pdb_verified_by_old_ida | fix:[11]->[3] span=12"
-    },
     "336": {
       "name": "m_nTargetOffsetX",
       "type": "int",
       "source": "binary:SetTargetPos_result"
     },
-    "380": {
-      "name": "m_pRoleStateLuckInc",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "424": {
-      "name": "m_pRoleStateLuckDec",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "468": {
-      "name": "m_pRoleStateSpeedInc",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "512": {
-      "name": "m_pRoleStateSpeedDec",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "556": {
-      "name": "m_pRoleStateStable",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
     "600": {
       "name": "m_pRoleStateBlank",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "644": {
-      "name": "m_pRoleStateForbid",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "688": {
-      "name": "m_pRoleStateSleep",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "732": {
-      "name": "m_pRoleStateChaos",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "776": {
-      "name": "m_pRoleStateMad",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "820": {
-      "name": "m_pRoleStateMirror",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "864": {
-      "name": "m_pRoleStateWall",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "908": {
-      "name": "m_pRoleStateBound",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "952": {
-      "name": "m_pRoleStateHermit",
-      "type": "UIStatic *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "996": {
-      "name": "m_pRoleStateImmunity",
       "type": "UIStatic *[11]",
       "source": "pdb_verified_by_old_ida"
     },
@@ -267,6 +182,36 @@
       "type": "int",
       "source": "binary:SetSelection"
     },
+    "352": {
+      "name": "_todo_352",
+      "type": "void *",
+      "source": "binary_scan:37_accesses(lea:8,load:23,store:6)→pointer"
+    },
+    "356": {
+      "name": "_todo_356",
+      "type": "void *",
+      "source": "binary_scan:180_accesses(lea:11,load:155,store:14)→pointer,CRITICAL_FIELD"
+    },
+    "360": {
+      "name": "_todo_360",
+      "type": "void *",
+      "source": "binary_scan:17_accesses(lea:2,load:8,store:7)→pointer"
+    },
+    "364": {
+      "name": "_todo_364",
+      "type": "int",
+      "source": "binary_scan:14_accesses(load:6,store:8)→scalar"
+    },
+    "368": {
+      "name": "_todo_368",
+      "type": "unsigned char",
+      "source": "binary_scan:2_accesses(store_byte:2)→byte"
+    },
+    "372": {
+      "name": "_todo_372",
+      "type": "float",
+      "source": "binary_scan:6_accesses(fld_float:6)→FPU_confirmed"
+    },
     "88": {
       "name": "m_pScript0",
       "type": "PalScript *",
@@ -383,6 +328,81 @@
       "name": "_embed_UIFrameWnd_1928",
       "source": "A:LEA+CALL_consecutive_stride152"
     },
+    "3164": {
+      "type": "void *",
+      "name": "_todo_3164",
+      "source": "binary_scan:11_accesses(lea:6,load:5)→pointer/embed_start,part_of_248_stride_pattern"
+    },
+    "3412": {
+      "type": "void *",
+      "name": "_todo_3412",
+      "source": "binary_scan:11_accesses(lea:6,load:5)→pointer/embed_start,+248_from_3164"
+    },
+    "3660": {
+      "type": "void *",
+      "name": "_todo_3660",
+      "source": "binary_scan:13_accesses(lea:10,load:3)→pointer/embed_start,+248_from_3412"
+    },
+    "5104": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_5104",
+      "source": "binary_scan:7_accesses(lea:5)→UIFrameWnd_array[0],stride152"
+    },
+    "5256": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_5256",
+      "source": "binary_scan:6_accesses(lea:4)→UIFrameWnd_array[1],+152"
+    },
+    "5408": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_5408",
+      "source": "binary_scan:5_accesses(lea:3)→UIFrameWnd_array[2],+152"
+    },
+    "5560": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_5560",
+      "source": "binary_scan:5_accesses(lea:3)→UIFrameWnd_array[3],+152"
+    },
+    "5712": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_5712",
+      "source": "binary_scan:9_accesses(lea:5)→UIFrameWnd_array[4],+152"
+    },
+    "5864": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_5864",
+      "source": "binary_scan:5_accesses(lea:3)→UIFrameWnd_array[5],+152"
+    },
+    "6016": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_6016",
+      "source": "binary_scan:5_accesses(lea:3)→UIFrameWnd_array[6],+152"
+    },
+    "6204": {
+      "type": "unsigned char",
+      "name": "_todo_6204",
+      "source": "binary_scan:7_accesses(store_byte:7)→byte"
+    },
+    "6452": {
+      "type": "void *",
+      "name": "_todo_6452",
+      "source": "binary_scan:5_accesses(lea:5)→pointer"
+    },
+    "6468": {
+      "type": "void *",
+      "name": "_todo_6468",
+      "source": "binary_scan:9_accesses(lea:6,load:3)→pointer"
+    },
+    "8052": {
+      "type": "int",
+      "name": "_todo_8052",
+      "source": "binary_scan:9_accesses(load:9)→scalar,near_end"
+    },
+    "8056": {
+      "type": "int",
+      "name": "_todo_8056",
+      "source": "binary_scan:9_accesses(load:8,store:1)→scalar,highest_access"
+    },
     "152": {
       "name": "m_pAttackSequenBack",
       "type": "UIStatic *",
@@ -399,11 +419,18 @@
       "type": "UIStatic *[5]",
       "source": "PAL3patch:pal3.h + binary_verified: offset 220 has 11 accesses (lea:1, load:10)",
       "note": "PAL3patch size [5] verified. Existing annotation had [3] with span=12."
+    },
+    "256": {
+      "name": "m_pRoleSpecState",
+      "type": "UIStatic *[19][11]",
+      "source": "PAL3patch:pal3.h union definition (19 state arrays, 836 bytes total)",
+      "note": "Union of 19 state effect arrays: AttackInc/Dec, DefenceInc/Dec, LuckInc/Dec, SpeedInc/Dec, Stable, Blank, Forbid, Sleep, Chaos, Mad, Mirror, Wall, Bound, Hermit, Immunity. All arrays overlap at same memory location."
     }
   },
   "pdb_size": 3552,
   "base_class": "UIFrameWnd",
   "base_size": 152,
-  "gen_size": 3552,
-  "binary_size": 3552
+  "gen_size": 8060,
+  "binary_size": 8060,
+  "note": "binary_size corrected from PDB 3552 to 8060 based on member_scan evidence (highest access: offset 8056). PDB size from PAL3A does not match PAL3 binary."
 }
