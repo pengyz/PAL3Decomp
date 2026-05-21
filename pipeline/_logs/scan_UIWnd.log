@@ -1,0 +1,9467 @@
+扫描 UIWnd 类的 member access 模式
+================================================================================
+
+找到 400 个 UIWnd 方法
+
+
+发现 794 个不同的 offset:
+
+Offset 128 (0x80):
+  访问次数: 183
+  访问类型:
+    fld_float: 23
+    lea: 2
+    load: 10
+    load_byte: 1
+    store: 142
+    store_byte: 5
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43C04E: 898E80000000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43C0DB: 898680000000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43C1B4: 898E80000000 (store)
+
+Offset 132 (0x84):
+  访问次数: 129
+  访问类型:
+    fld_float: 4
+    load: 18
+    load_byte: 1
+    store: 98
+    store_byte: 8
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43C054: 898684000000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43C0E1: 89AE84000000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43C1BA: 898684000000 (store)
+
+Offset 133 (0x85):
+  访问次数: 6
+  访问类型:
+    load_byte: 3
+    store_byte: 3
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x532B49: 8A8685000000 (load_byte)
+    UIWnd::_sdtor_38
+      VA=0x532B60: 888685000000 (store_byte)
+    UIWnd::_nearby_532a30
+      VA=0x532B49: 8A8685000000 (load_byte)
+
+Offset 134 (0x86):
+  访问次数: 5
+  访问类型:
+    load_byte: 2
+    store_byte: 3
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x532C53: 889E86000000 (store_byte)
+    UIWnd::_nearby_532a30
+      VA=0x532C53: 889E86000000 (store_byte)
+    UIWnd::_nearby_532a30
+      VA=0x53328D: 8A8686000000 (load_byte)
+
+Offset 135 (0x87):
+  访问次数: 5
+  访问类型:
+    store_byte: 5
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x532C59: 889E87000000 (store_byte)
+    UIWnd::_nearby_532a30
+      VA=0x532C59: 889E87000000 (store_byte)
+    UIWnd::_nearby_532a30
+      VA=0x533967: C68687000000 (store_byte)
+
+Offset 136 (0x88):
+  访问次数: 116
+  访问类型:
+    fld_float: 22
+    lea: 6
+    load: 72
+    store: 16
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43C034: 8B8E88000000 (load)
+    UIWnd::sub_43B3E0
+      VA=0x43C0B2: 8B9688000000 (load)
+    UIWnd::sub_43B3E0
+      VA=0x43C1F0: 8BAE88000000 (load)
+
+Offset 140 (0x8C):
+  访问次数: 152
+  访问类型:
+    fld_float: 31
+    load: 99
+    load_byte: 1
+    store: 8
+    store_byte: 13
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43C012: 8B8E8C000000 (load)
+    UIWnd::sub_43B3E0
+      VA=0x43C06F: 8BAE8C000000 (load)
+    UIWnd::sub_43B3E0
+      VA=0x43C09F: 8BAE8C000000 (load)
+
+Offset 144 (0x90):
+  访问次数: 90
+  访问类型:
+    fild_int: 13
+    fld_float: 9
+    load: 63
+    store: 5
+  示例:
+    UIWnd::LoadModel
+      VA=0x43A195: 89BE90000000 (store)
+    UIWnd::_sdtor_2
+      VA=0x43A30A: DB8690000000 (fild_int)
+    UIWnd::_sdtor_2
+      VA=0x43A388: 8B9690000000 (load)
+
+Offset 148 (0x94):
+  访问次数: 71
+  访问类型:
+    fild_int: 7
+    fld_float: 18
+    load: 30
+    load_byte: 4
+    store: 8
+    store_byte: 4
+  示例:
+    UIWnd::LoadModel
+      VA=0x43A19E: 89BE94000000 (store)
+    UIWnd::_sdtor_2
+      VA=0x43A284: 8B8694000000 (load)
+    UIWnd::_sdtor_2
+      VA=0x43A4FE: 89BE94000000 (store)
+
+Offset 152 (0x98):
+  访问次数: 83
+  访问类型:
+    fld_float: 8
+    lea: 49
+    load: 16
+    store: 9
+    store_byte: 1
+  示例:
+    UIWnd::ctor_BB70
+      VA=0x43C7FD: 8D9698000000 (lea)
+    UIWnd::ScalarDtor
+      VA=0x43C7FD: 8D9698000000 (lea)
+    UIWnd::ctor_BBB0
+      VA=0x43C7FD: 8D9698000000 (lea)
+
+Offset 153 (0x99):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x459FD8: 888699000000 (store_byte)
+    UIWnd::_sdtor_19
+      VA=0x45A00B: 889E99000000 (store_byte)
+
+Offset 154 (0x9A):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x45A058: 88869A000000 (store_byte)
+    UIWnd::_sdtor_19
+      VA=0x45A08B: 889E9A000000 (store_byte)
+
+Offset 155 (0x9B):
+  访问次数: 7
+  访问类型:
+    load_byte: 2
+    store_byte: 5
+  示例:
+    UIWnd::_nearby_443fc0
+      VA=0x444A85: 8A869B000000 (load_byte)
+    UIWnd::_nearby_443fc0
+      VA=0x444AEB: 88869B000000 (store_byte)
+    UIWnd::sub_444A20
+      VA=0x444A85: 8A869B000000 (load_byte)
+
+Offset 156 (0x9C):
+  访问次数: 54
+  访问类型:
+    fld_float: 10
+    lea: 9
+    load: 13
+    store: 20
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E41A: 89869C000000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E41A: 89869C000000 (store)
+    UIWnd::SetItemData
+      VA=0x43F83B: 89869C000000 (store)
+
+Offset 157 (0x9D):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x45A1D8: 88869D000000 (store_byte)
+    UIWnd::_sdtor_19
+      VA=0x45A20B: 889E9D000000 (store_byte)
+
+Offset 158 (0x9E):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x4599A0: 89969E000000 (store)
+
+Offset 160 (0xA0):
+  访问次数: 106
+  访问类型:
+    fild_int: 4
+    lea: 2
+    load: 29
+    load_byte: 6
+    store: 48
+    store_byte: 17
+  示例:
+    UIWnd::_sdtor_2
+      VA=0x43A292: 8B86A0000000 (load)
+    UIWnd::SetItemData
+      VA=0x43F841: 8886A0000000 (store_byte)
+    UIWnd::SetItemData
+      VA=0x4405B7: 889EA0000000 (store_byte)
+
+Offset 164 (0xA4):
+  访问次数: 88
+  访问类型:
+    lea: 9
+    load: 41
+    store: 35
+    store_byte: 3
+  示例:
+    UIWnd::SetItemData
+      VA=0x43F891: 888EA4000000 (store_byte)
+    UIWnd::SetItemData
+      VA=0x4402F7: 8D96A4000000 (lea)
+    UIWnd::SetChildParam
+      VA=0x43F891: 888EA4000000 (store_byte)
+
+Offset 165 (0xA5):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::SetItemData
+      VA=0x43F88B: 888EA5000000 (store_byte)
+    UIWnd::SetChildParam
+      VA=0x43F88B: 888EA5000000 (store_byte)
+    UIWnd::_nearby_43f7e0
+      VA=0x43F88B: 888EA5000000 (store_byte)
+
+Offset 166 (0xA6):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::SetItemData
+      VA=0x43F885: 888EA6000000 (store_byte)
+    UIWnd::SetChildParam
+      VA=0x43F885: 888EA6000000 (store_byte)
+    UIWnd::_nearby_43f7e0
+      VA=0x43F885: 888EA6000000 (store_byte)
+
+Offset 167 (0xA7):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::SetItemData
+      VA=0x43F897: 888EA7000000 (store_byte)
+    UIWnd::SetChildParam
+      VA=0x43F897: 888EA7000000 (store_byte)
+    UIWnd::_nearby_43f7e0
+      VA=0x43F897: 888EA7000000 (store_byte)
+
+Offset 168 (0xA8):
+  访问次数: 147
+  访问类型:
+    fld_float: 8
+    lea: 31
+    load: 60
+    store: 37
+    store_byte: 11
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BD8A: 888EA8000000 (store_byte)
+    UIWnd::sub_43B4D0
+      VA=0x43BD8A: 888EA8000000 (store_byte)
+    UIWnd::ctor_BB70
+      VA=0x43BD8A: 888EA8000000 (store_byte)
+
+Offset 169 (0xA9):
+  访问次数: 11
+  访问类型:
+    store_byte: 11
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BD84: 8886A9000000 (store_byte)
+    UIWnd::sub_43B4D0
+      VA=0x43BD84: 8886A9000000 (store_byte)
+    UIWnd::ctor_BB70
+      VA=0x43BD84: 8886A9000000 (store_byte)
+
+Offset 170 (0xAA):
+  访问次数: 11
+  访问类型:
+    store_byte: 11
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BD7E: 8886AA000000 (store_byte)
+    UIWnd::sub_43B4D0
+      VA=0x43BD7E: 8886AA000000 (store_byte)
+    UIWnd::ctor_BB70
+      VA=0x43BD7E: 8886AA000000 (store_byte)
+
+Offset 171 (0xAB):
+  访问次数: 18
+  访问类型:
+    store_byte: 18
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BD90: 888EAB000000 (store_byte)
+    UIWnd::sub_43B4D0
+      VA=0x43BD90: 888EAB000000 (store_byte)
+    UIWnd::ctor_BB70
+      VA=0x43BD90: 888EAB000000 (store_byte)
+
+Offset 172 (0xAC):
+  访问次数: 322
+  访问类型:
+    fld_float: 10
+    lea: 4
+    load: 116
+    load_byte: 4
+    store: 167
+    store_byte: 21
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BDAE: 888EAC000000 (store_byte)
+    UIWnd::sub_43B4D0
+      VA=0x43BDAE: 888EAC000000 (store_byte)
+    UIWnd::ctor_BB70
+      VA=0x43BDAE: 888EAC000000 (store_byte)
+
+Offset 173 (0xAD):
+  访问次数: 11
+  访问类型:
+    store_byte: 11
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BDA8: 888EAD000000 (store_byte)
+    UIWnd::sub_43B4D0
+      VA=0x43BDA8: 888EAD000000 (store_byte)
+    UIWnd::ctor_BB70
+      VA=0x43BDA8: 888EAD000000 (store_byte)
+
+Offset 174 (0xAE):
+  访问次数: 15
+  访问类型:
+    load_byte: 4
+    store_byte: 11
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BDA2: 888EAE000000 (store_byte)
+    UIWnd::sub_43B4D0
+      VA=0x43BDA2: 888EAE000000 (store_byte)
+    UIWnd::ctor_BB70
+      VA=0x43BDA2: 888EAE000000 (store_byte)
+
+Offset 175 (0xAF):
+  访问次数: 5
+  访问类型:
+    store_byte: 5
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BDB4: 888EAF000000 (store_byte)
+    UIWnd::sub_43B4D0
+      VA=0x43BDB4: 888EAF000000 (store_byte)
+    UIWnd::ctor_BB70
+      VA=0x43BDB4: 888EAF000000 (store_byte)
+
+Offset 176 (0xB0):
+  访问次数: 144
+  访问类型:
+    fld_float: 18
+    lea: 3
+    load: 30
+    store: 88
+    store_byte: 5
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BDD2: 8886B0000000 (store_byte)
+    UIWnd::sub_43B4D0
+      VA=0x43BDD2: 8886B0000000 (store_byte)
+    UIWnd::ctor_BB70
+      VA=0x43BDD2: 8886B0000000 (store_byte)
+
+Offset 177 (0xB1):
+  访问次数: 5
+  访问类型:
+    store_byte: 5
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BDCC: 8886B1000000 (store_byte)
+    UIWnd::sub_43B4D0
+      VA=0x43BDCC: 8886B1000000 (store_byte)
+    UIWnd::ctor_BB70
+      VA=0x43BDCC: 8886B1000000 (store_byte)
+
+Offset 178 (0xB2):
+  访问次数: 5
+  访问类型:
+    store_byte: 5
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BDC6: 888EB2000000 (store_byte)
+    UIWnd::sub_43B4D0
+      VA=0x43BDC6: 888EB2000000 (store_byte)
+    UIWnd::ctor_BB70
+      VA=0x43BDC6: 888EB2000000 (store_byte)
+
+Offset 179 (0xB3):
+  访问次数: 5
+  访问类型:
+    store_byte: 5
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BDD8: 888EB3000000 (store_byte)
+    UIWnd::sub_43B4D0
+      VA=0x43BDD8: 888EB3000000 (store_byte)
+    UIWnd::ctor_BB70
+      VA=0x43BDD8: 888EB3000000 (store_byte)
+
+Offset 180 (0xB4):
+  访问次数: 183
+  访问类型:
+    fild_int: 15
+    lea: 7
+    load: 63
+    store: 98
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BD5E: 898EB4000000 (store)
+    UIWnd::sub_43B4D0
+      VA=0x43BD5E: 898EB4000000 (store)
+    UIWnd::ctor_BB70
+      VA=0x43BD5E: 898EB4000000 (store)
+
+Offset 184 (0xB8):
+  访问次数: 96
+  访问类型:
+    fild_int: 2
+    fld_float: 15
+    lea: 3
+    load: 42
+    store: 34
+  示例:
+    UIWnd::_sdtor_2
+      VA=0x43A8C5: 8DBEB8000000 (lea)
+    UIWnd::sub_43B3E0
+      VA=0x43B5AB: 8DAEB8000000 (lea)
+    UIWnd::sub_43B3E0
+      VA=0x43B6C7: 8B8EB8000000 (load)
+
+Offset 188 (0xBC):
+  访问次数: 97
+  访问类型:
+    fild_int: 2
+    load: 29
+    store: 66
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BD6A: 898EBC000000 (store)
+    UIWnd::sub_43B4D0
+      VA=0x43BD6A: 898EBC000000 (store)
+    UIWnd::ctor_BB70
+      VA=0x43BD6A: 898EBC000000 (store)
+
+Offset 192 (0xC0):
+  访问次数: 75
+  访问类型:
+    fld_float: 8
+    lea: 27
+    load: 14
+    store: 26
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BDF6: 8986C0000000 (store)
+    UIWnd::sub_43B4D0
+      VA=0x43BDF6: 8986C0000000 (store)
+    UIWnd::ctor_BB70
+      VA=0x43BDF6: 8986C0000000 (store)
+
+Offset 196 (0xC4):
+  访问次数: 65
+  访问类型:
+    load: 51
+    store: 14
+  示例:
+    UIWnd::_sdtor_2
+      VA=0x43A7A9: 89BEC4000000 (store)
+    UIWnd::_sdtor_2
+      VA=0x43AA49: 8B8EC4000000 (load)
+    UIWnd::_sdtor_2
+      VA=0x43AA8D: 8986C4000000 (store)
+
+Offset 200 (0xC8):
+  访问次数: 55
+  访问类型:
+    load: 40
+    store: 15
+  示例:
+    UIWnd::_sdtor_2
+      VA=0x43A957: 89BEC8000000 (store)
+    UIWnd::_sdtor_2
+      VA=0x43AA9E: 8986C8000000 (store)
+    UIWnd::_sdtor_2
+      VA=0x43AE4D: 8B8EC8000000 (load)
+
+Offset 204 (0xCC):
+  访问次数: 83
+  访问类型:
+    lea: 1
+    load: 44
+    load_byte: 2
+    store: 25
+    store_byte: 11
+  示例:
+    UIWnd::_sdtor_2
+      VA=0x43A7C2: 8896CC000000 (store_byte)
+    UIWnd::_sdtor_2
+      VA=0x43AC57: 889ECC000000 (store_byte)
+    UIWnd::_sdtor_2
+      VA=0x43AC6D: C686CC000000 (store_byte)
+
+Offset 208 (0xD0):
+  访问次数: 51
+  访问类型:
+    load: 31
+    store: 20
+  示例:
+    UIWnd::_sdtor_2
+      VA=0x43A7D9: 8996D0000000 (store)
+    UIWnd::_sdtor_2
+      VA=0x43AF66: 8B96D0000000 (load)
+    UIWnd::sub_43B3E0
+      VA=0x43BDEA: 8986D0000000 (store)
+
+Offset 212 (0xD4):
+  访问次数: 25
+  访问类型:
+    lea: 4
+    load: 7
+    load_byte: 3
+    store: 11
+  示例:
+    UIWnd::_sdtor_2
+      VA=0x43A7B6: 8DBED4000000 (lea)
+    UIWnd::_sdtor_2
+      VA=0x43AEB3: 8A86D4000000 (load_byte)
+    UIWnd::_sdtor_2
+      VA=0x43AEB9: 8DAED4000000 (lea)
+
+Offset 216 (0xD8):
+  访问次数: 43
+  访问类型:
+    lea: 21
+    load: 6
+    load_byte: 5
+    store: 11
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BDF0: 8986D8000000 (store)
+    UIWnd::sub_43B4D0
+      VA=0x43BDF0: 8986D8000000 (store)
+    UIWnd::ctor_BB70
+      VA=0x43BDF0: 8986D8000000 (store)
+
+Offset 217 (0xD9):
+  访问次数: 5
+  访问类型:
+    store_byte: 5
+  示例:
+    UIWnd::_nearby_5355f0
+      VA=0x536190: C686D9000000 (store_byte)
+    UIWnd::_nearby_535630
+      VA=0x536190: C686D9000000 (store_byte)
+    UIWnd::_nearby_535930
+      VA=0x536190: C686D9000000 (store_byte)
+
+Offset 219 (0xDB):
+  访问次数: 17
+  访问类型:
+    load_byte: 10
+    store_byte: 7
+  示例:
+    UIWnd::SetItemData
+      VA=0x43F90F: 8A8EDB000000 (load_byte)
+    UIWnd::SetItemData
+      VA=0x4402AC: 8886DB000000 (store_byte)
+    UIWnd::SetItemData
+      VA=0x4403A8: 8A96DB000000 (load_byte)
+
+Offset 220 (0xDC):
+  访问次数: 34
+  访问类型:
+    fld_float: 5
+    lea: 4
+    load: 7
+    store: 18
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BD16: 8986DC000000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43C341: 8996DC000000 (store)
+    UIWnd::sub_43B4D0
+      VA=0x43BD16: 8986DC000000 (store)
+
+Offset 224 (0xE0):
+  访问次数: 117
+  访问类型:
+    fild_int: 7
+    fld_float: 56
+    load: 5
+    load_byte: 7
+    store: 42
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BD1C: 8986E0000000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43C163: D99EE0000000 (fld_float)
+    UIWnd::sub_43B3E0
+      VA=0x43C257: D99EE0000000 (fld_float)
+
+Offset 228 (0xE4):
+  访问次数: 43
+  访问类型:
+    fld_float: 17
+    lea: 5
+    load: 6
+    store: 15
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BD22: 8986E4000000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43C30F: 8986E4000000 (store)
+    UIWnd::sub_43B4D0
+      VA=0x43BD22: 8986E4000000 (store)
+
+Offset 232 (0xE8):
+  访问次数: 33
+  访问类型:
+    load_byte: 5
+    store: 28
+  示例:
+    UIWnd::ctor_9030
+      VA=0x4397DF: 898EE8000000 (store)
+    UIWnd::_sdtor
+      VA=0x4397DF: 898EE8000000 (store)
+    UIWnd::ctor_9130
+      VA=0x4397DF: 898EE8000000 (store)
+
+Offset 236 (0xEC):
+  访问次数: 30
+  访问类型:
+    load: 5
+    store: 3
+    store_byte: 22
+  示例:
+    UIWnd::ctor_9030
+      VA=0x4390AC: 899EEC000000 (store)
+    UIWnd::SetItemData
+      VA=0x43F8D9: 8886EC000000 (store_byte)
+    UIWnd::SetItemData
+      VA=0x440658: 889EEC000000 (store_byte)
+
+Offset 237 (0xED):
+  访问次数: 10
+  访问类型:
+    store_byte: 10
+  示例:
+    UIWnd::SetItemData
+      VA=0x43F8DF: 8886ED000000 (store_byte)
+    UIWnd::SetItemData
+      VA=0x440660: 889EED000000 (store_byte)
+    UIWnd::SetChildParam
+      VA=0x43F8DF: 8886ED000000 (store_byte)
+
+Offset 238 (0xEE):
+  访问次数: 17
+  访问类型:
+    load_byte: 7
+    store_byte: 10
+  示例:
+    UIWnd::SetItemData
+      VA=0x43F8E5: 8886EE000000 (store_byte)
+    UIWnd::SetItemData
+      VA=0x44064A: 8A86EE000000 (load_byte)
+    UIWnd::SetItemData
+      VA=0x440672: 889EEE000000 (store_byte)
+
+Offset 240 (0xF0):
+  访问次数: 35
+  访问类型:
+    fld_float: 21
+    lea: 4
+    load: 3
+    store: 6
+    store_byte: 1
+  示例:
+    UIWnd::ctor_9030
+      VA=0x4390DC: 889EF0000000 (store_byte)
+    UIWnd::sub_43B3E0
+      VA=0x43BD2E: 8986F0000000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43C316: D99EF0000000 (fld_float)
+
+Offset 241 (0xF1):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF016: 8D86F1000000 (lea)
+
+Offset 244 (0xF4):
+  访问次数: 141
+  访问类型:
+    lea: 1
+    load: 134
+    store: 6
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43BDE4: 8986F4000000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43BFF4: 8B86F4000000 (load)
+    UIWnd::sub_43B3E0
+      VA=0x43C03A: 8BAEF4000000 (load)
+
+Offset 248 (0xF8):
+  访问次数: 16
+  访问类型:
+    load: 6
+    store: 10
+  示例:
+    UIWnd::ctor_9030
+      VA=0x4390B8: 899EF8000000 (store)
+    UIWnd::ctor_9030
+      VA=0x439599: 8B8EF8000000 (load)
+    UIWnd::ctor_9030
+      VA=0x4397EE: 89BEF8000000 (store)
+
+Offset 252 (0xFC):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::ctor_9030
+      VA=0x4390B2: 899EFC000000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43BD3A: 8986FC000000 (store)
+    UIWnd::sub_43B4D0
+      VA=0x43BD3A: 8986FC000000 (store)
+
+Offset 256 (0x100):
+  访问次数: 14
+  访问类型:
+    load: 6
+    store: 8
+  示例:
+    UIWnd::ctor_9030
+      VA=0x4390C4: 899E00010000 (store)
+    UIWnd::ctor_9030
+      VA=0x4395C1: 8B8600010000 (load)
+    UIWnd::_sdtor
+      VA=0x4395C1: 8B8600010000 (load)
+
+Offset 260 (0x104):
+  访问次数: 34
+  访问类型:
+    lea: 14
+    load: 14
+    store: 6
+  示例:
+    UIWnd::ctor_9030
+      VA=0x4390BE: 899E04010000 (store)
+    UIWnd::ctor_9030
+      VA=0x4395E9: 8B9604010000 (load)
+    UIWnd::_sdtor
+      VA=0x4395E9: 8B9604010000 (load)
+
+Offset 264 (0x108):
+  访问次数: 59
+  访问类型:
+    fld_float: 5
+    load: 41
+    store: 13
+  示例:
+    UIWnd::ctor_9030
+      VA=0x4390D6: 899E08010000 (store)
+    UIWnd::ctor_9030
+      VA=0x439611: 8B8E08010000 (load)
+    UIWnd::_sdtor
+      VA=0x439611: 8B8E08010000 (load)
+
+Offset 268 (0x10C):
+  访问次数: 92
+  访问类型:
+    lea: 2
+    load: 78
+    store: 12
+  示例:
+    UIWnd::ctor_9030
+      VA=0x4390D0: 899E0C010000 (store)
+    UIWnd::ctor_9030
+      VA=0x43963F: 8B860C010000 (load)
+    UIWnd::_sdtor
+      VA=0x43963F: 8B860C010000 (load)
+
+Offset 272 (0x110):
+  访问次数: 33
+  访问类型:
+    lea: 17
+    load: 12
+    store: 4
+  示例:
+    UIWnd::ctor_9030
+      VA=0x4390CA: 899E10010000 (store)
+    UIWnd::ctor_9030
+      VA=0x439673: 8B9610010000 (load)
+    UIWnd::_sdtor
+      VA=0x439673: 8B9610010000 (load)
+
+Offset 276 (0x114):
+  访问次数: 35
+  访问类型:
+    lea: 14
+    load: 15
+    store: 6
+  示例:
+    UIWnd::ctor_9030
+      VA=0x439097: 898614010000 (store)
+    UIWnd::ctor_9030
+      VA=0x4396D0: 8B8614010000 (load)
+    UIWnd::_sdtor
+      VA=0x4396D0: 8B8614010000 (load)
+
+Offset 280 (0x118):
+  访问次数: 10
+  访问类型:
+    fld_float: 2
+    lea: 2
+    load: 5
+    store: 1
+  示例:
+    UIWnd::ctor_9030
+      VA=0x439091: 898618010000 (store)
+    UIWnd::ctor_9030
+      VA=0x4396CA: 8B9618010000 (load)
+    UIWnd::_sdtor
+      VA=0x4396CA: 8B9618010000 (load)
+
+Offset 284 (0x11C):
+  访问次数: 15
+  访问类型:
+    load: 8
+    store: 7
+  示例:
+    UIWnd::ctor_9030
+      VA=0x43908B: 89861C010000 (store)
+    UIWnd::ctor_9030
+      VA=0x4396C4: 8B8E1C010000 (load)
+    UIWnd::_sdtor
+      VA=0x4396C4: 8B8E1C010000 (load)
+
+Offset 288 (0x120):
+  访问次数: 2
+  访问类型:
+    lea: 1
+    store: 1
+  示例:
+    UIWnd::ctor_9030
+      VA=0x4390EC: 899E20010000 (store)
+    UIWnd::_nearby_4a8230
+      VA=0x4A8913: 8D9020010000 (lea)
+
+Offset 292 (0x124):
+  访问次数: 39
+  访问类型:
+    load: 24
+    load_byte: 2
+    store: 9
+    store_byte: 4
+  示例:
+    UIWnd::ctor_9030
+      VA=0x4390A3: 899E24010000 (store)
+    UIWnd::ctor_9030
+      VA=0x439444: 8B8E24010000 (load)
+    UIWnd::ctor_9030
+      VA=0x43954C: 8B8E24010000 (load)
+
+Offset 293 (0x125):
+  访问次数: 4
+  访问类型:
+    load_byte: 2
+    store_byte: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52ECB8: 888E25010000 (store_byte)
+    UIWnd::_nearby_52ec80
+      VA=0x52F24F: C68625010000 (store_byte)
+    UIWnd::_nearby_52ec80
+      VA=0x52F442: 8A8625010000 (load_byte)
+
+Offset 294 (0x126):
+  访问次数: 8
+  访问类型:
+    load_byte: 4
+    store_byte: 4
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52ECBE: 888626010000 (store_byte)
+    UIWnd::_nearby_52ec80
+      VA=0x52F256: C68626010000 (store_byte)
+    UIWnd::_nearby_52ec80
+      VA=0x52F47F: 8A8626010000 (load_byte)
+
+Offset 296 (0x128):
+  访问次数: 14
+  访问类型:
+    lea: 8
+    load_byte: 2
+    store: 1
+    store_byte: 3
+  示例:
+    UIWnd::ctor_9030
+      VA=0x439079: 899E28010000 (store)
+    UIWnd::ctor_9030
+      VA=0x4398F5: 8D8E28010000 (lea)
+    UIWnd::ctor_9030
+      VA=0x4399DD: 8D8E28010000 (lea)
+
+Offset 300 (0x12C):
+  访问次数: 17
+  访问类型:
+    fld_float: 4
+    load: 4
+    store: 9
+  示例:
+    UIWnd::ctor_9030
+      VA=0x43907F: 899E2C010000 (store)
+    UIWnd::_nearby_440730
+      VA=0x441187: 899E2C010000 (store)
+    UIWnd::~UIWnd_07c0
+      VA=0x441187: 899E2C010000 (store)
+
+Offset 304 (0x130):
+  访问次数: 43
+  访问类型:
+    lea: 30
+    load: 12
+    store: 1
+  示例:
+    UIWnd::ctor_9030
+      VA=0x439085: 899E30010000 (store)
+    UIWnd::_nearby_440730
+      VA=0x441518: 8D8630010000 (lea)
+    UIWnd::_nearby_440730
+      VA=0x44151E: 8B8E30010000 (load)
+
+Offset 305 (0x131):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::sub_4B6FB0
+      VA=0x4B7EAD: 8D8631010000 (lea)
+    UIWnd::~UIWnd_7510
+      VA=0x4B7EAD: 8D8631010000 (lea)
+    UIWnd::~UIWnd_7ce0
+      VA=0x4B7EAD: 8D8631010000 (lea)
+
+Offset 308 (0x134):
+  访问次数: 2
+  访问类型:
+    load: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E40A: 8B9634010000 (load)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E40A: 8B9634010000 (load)
+
+Offset 312 (0x138):
+  访问次数: 7
+  访问类型:
+    lea: 5
+    load: 2
+  示例:
+    UIWnd::_nearby_451730
+      VA=0x451CF2: 8D8E38010000 (lea)
+    UIWnd::_nearby_451730
+      VA=0x451E10: 8D8E38010000 (lea)
+    UIWnd::_nearby_451730
+      VA=0x451F39: 8B9638010000 (load)
+
+Offset 316 (0x13C):
+  访问次数: 36
+  访问类型:
+    fld_float: 10
+    lea: 3
+    load: 21
+    store: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E420: 89963C010000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E420: 89963C010000 (store)
+    UIWnd::_nearby_440730
+      VA=0x441337: 8B863C010000 (load)
+
+Offset 320 (0x140):
+  访问次数: 24
+  访问类型:
+    lea: 7
+    load: 12
+    store: 5
+  示例:
+    UIWnd::_nearby_440730
+      VA=0x44159C: 8D8E40010000 (lea)
+    UIWnd::_nearby_440730
+      VA=0x4415A2: 8B9640010000 (load)
+    UIWnd::~UIWnd_07c0
+      VA=0x44159C: 8D8E40010000 (lea)
+
+Offset 324 (0x144):
+  访问次数: 15
+  访问类型:
+    load: 15
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E410: 8B8E44010000 (load)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E410: 8B8E44010000 (load)
+    UIWnd::_nearby_440730
+      VA=0x44165F: 8B8644010000 (load)
+
+Offset 328 (0x148):
+  访问次数: 5
+  访问类型:
+    store_byte: 5
+  示例:
+    UIWnd::_sdtor_10
+      VA=0x450972: 889648010000 (store_byte)
+    UIWnd::_nearby_450310
+      VA=0x450972: 889648010000 (store_byte)
+    UIWnd::Layout_450320
+      VA=0x450972: 889648010000 (store_byte)
+
+Offset 332 (0x14C):
+  访问次数: 14
+  访问类型:
+    load: 2
+    load_byte: 3
+    store: 2
+    store_byte: 7
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E426: 898E4C010000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E426: 898E4C010000 (store)
+    UIWnd::ProcessInput
+      VA=0x4A699F: 8B8B4C010000 (load)
+
+Offset 333 (0x14D):
+  访问次数: 4
+  访问类型:
+    load_byte: 2
+    store_byte: 2
+  示例:
+    UIWnd::_nearby_5359b0
+      VA=0x536982: 8A864D010000 (load_byte)
+    UIWnd::_nearby_535a60
+      VA=0x536982: 8A864D010000 (load_byte)
+    UIWnd::_nearby_535a60
+      VA=0x5369AF: C6864D010000 (store_byte)
+
+Offset 336 (0x150):
+  访问次数: 20
+  访问类型:
+    load: 8
+    store: 7
+    store_byte: 5
+  示例:
+    UIWnd::_nearby_440730
+      VA=0x44118D: 899E50010000 (store)
+    UIWnd::_nearby_440730
+      VA=0x441694: 8B9650010000 (load)
+    UIWnd::~UIWnd_07c0
+      VA=0x44118D: 899E50010000 (store)
+
+Offset 337 (0x151):
+  访问次数: 5
+  访问类型:
+    store_byte: 5
+  示例:
+    UIWnd::_nearby_5355f0
+      VA=0x5365E1: C68651010000 (store_byte)
+    UIWnd::_nearby_535630
+      VA=0x5365E1: C68651010000 (store_byte)
+    UIWnd::_nearby_535930
+      VA=0x5365E1: C68651010000 (store_byte)
+
+Offset 338 (0x152):
+  访问次数: 5
+  访问类型:
+    store_byte: 5
+  示例:
+    UIWnd::_nearby_5355f0
+      VA=0x5365DA: C68652010000 (store_byte)
+    UIWnd::_nearby_535630
+      VA=0x5365DA: C68652010000 (store_byte)
+    UIWnd::_nearby_535930
+      VA=0x5365DA: C68652010000 (store_byte)
+
+Offset 339 (0x153):
+  访问次数: 11
+  访问类型:
+    load_byte: 3
+    store_byte: 8
+  示例:
+    UIWnd::_nearby_5359b0
+      VA=0x536979: C68653010000 (store_byte)
+    UIWnd::_nearby_5359b0
+      VA=0x536993: 8A9653010000 (load_byte)
+    UIWnd::_nearby_5359b0
+      VA=0x53699E: 889653010000 (store_byte)
+
+Offset 340 (0x154):
+  访问次数: 25
+  访问类型:
+    load: 16
+    store: 8
+    store_byte: 1
+  示例:
+    UIWnd::_sdtor_2
+      VA=0x43A94C: C68654010000 (store_byte)
+    UIWnd::_nearby_440730
+      VA=0x441631: 8B9654010000 (load)
+    UIWnd::~UIWnd_07c0
+      VA=0x441631: 8B9654010000 (load)
+
+Offset 344 (0x158):
+  访问次数: 36
+  访问类型:
+    lea: 2
+    load: 9
+    load_byte: 5
+    store: 8
+    store_byte: 12
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43B3F5: 898658010000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43B4D9: 8B8658010000 (load)
+    UIWnd::sub_43B4D0
+      VA=0x43B4D9: 8B8658010000 (load)
+
+Offset 345 (0x159):
+  访问次数: 14
+  访问类型:
+    load_byte: 3
+    store_byte: 11
+  示例:
+    UIWnd::_nearby_5355f0
+      VA=0x5364C1: C68659010000 (store_byte)
+    UIWnd::_nearby_535630
+      VA=0x5364C1: C68659010000 (store_byte)
+    UIWnd::_nearby_535930
+      VA=0x5364C1: C68659010000 (store_byte)
+
+Offset 348 (0x15C):
+  访问次数: 57
+  访问类型:
+    fild_int: 13
+    load: 28
+    store: 16
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43B3FB: 89865C010000 (store)
+    UIWnd::_nearby_440730
+      VA=0x441659: 8B8E5C010000 (load)
+    UIWnd::~UIWnd_07c0
+      VA=0x441659: 8B8E5C010000 (load)
+
+Offset 352 (0x160):
+  访问次数: 49
+  访问类型:
+    fild_int: 13
+    lea: 12
+    load: 8
+    load_byte: 1
+    store: 15
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43B401: 898660010000 (store)
+    UIWnd::OnPaint
+      VA=0x45A7F3: 899E60010000 (store)
+    UIWnd::_sdtor_33
+      VA=0x52576E: 8D9660010000 (lea)
+
+Offset 356 (0x164):
+  访问次数: 68
+  访问类型:
+    lea: 12
+    load: 34
+    load_byte: 3
+    store: 10
+    store_byte: 9
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44EF64: 8D8E64010000 (lea)
+    UIWnd::Layout_44e980
+      VA=0x44F0EA: 8D8E64010000 (lea)
+    UIWnd::Layout_44e980
+      VA=0x44F37A: 8D8E64010000 (lea)
+
+Offset 360 (0x168):
+  访问次数: 103
+  访问类型:
+    lea: 79
+    load: 19
+    store: 1
+    store_byte: 4
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43B76B: 8B8668010000 (load)
+    UIWnd::sub_43B4D0
+      VA=0x43B76B: 8B8668010000 (load)
+    UIWnd::UIWnd
+      VA=0x4460F2: 8D8E68010000 (lea)
+
+Offset 361 (0x169):
+  访问次数: 4
+  访问类型:
+    store_byte: 4
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E603: 889E69010000 (store_byte)
+    UIWnd::SetByte
+      VA=0x4A2124: 889E69010000 (store_byte)
+    UIWnd::_nearby_4a4770
+      VA=0x4A48C3: C68669010000 (store_byte)
+
+Offset 362 (0x16A):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::SetByte
+      VA=0x4A211E: 889E6A010000 (store_byte)
+    UIWnd::_nearby_4a4770
+      VA=0x4A4973: C6866A010000 (store_byte)
+    UIWnd::_nearby_4a4770
+      VA=0x4A49C1: 889E6A010000 (store_byte)
+
+Offset 363 (0x16B):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::SetByte
+      VA=0x4A212A: 889E6B010000 (store_byte)
+    UIWnd::_nearby_4a4770
+      VA=0x4A4A23: C6866B010000 (store_byte)
+    UIWnd::_nearby_4a4770
+      VA=0x4A4A71: 889E6B010000 (store_byte)
+
+Offset 364 (0x16C):
+  访问次数: 26
+  访问类型:
+    lea: 9
+    load: 9
+    store: 5
+    store_byte: 3
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43B446: 89966C010000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43B70A: 8D8E6C010000 (lea)
+    UIWnd::sub_43B4D0
+      VA=0x43B70A: 8D8E6C010000 (lea)
+
+Offset 365 (0x16D):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::SetByte
+      VA=0x4A2112: 889E6D010000 (store_byte)
+    UIWnd::_nearby_4a4770
+      VA=0x4A4B83: C6866D010000 (store_byte)
+    UIWnd::_nearby_4a4770
+      VA=0x4A4BD1: 889E6D010000 (store_byte)
+
+Offset 368 (0x170):
+  访问次数: 18
+  访问类型:
+    lea: 11
+    load: 2
+    store: 2
+    store_byte: 3
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43B468: 899670010000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43B78C: 8D9670010000 (lea)
+    UIWnd::sub_43B4D0
+      VA=0x43B78C: 8D9670010000 (lea)
+
+Offset 372 (0x174):
+  访问次数: 11
+  访问类型:
+    lea: 4
+    load: 1
+    load_byte: 2
+    store: 1
+    store_byte: 3
+  示例:
+    UIWnd::sub_43B3E0
+      VA=0x43B490: 898674010000 (store)
+    UIWnd::sub_43B3E0
+      VA=0x43B6D5: 8D8674010000 (lea)
+    UIWnd::sub_43B4D0
+      VA=0x43B6D5: 8D8674010000 (lea)
+
+Offset 373 (0x175):
+  访问次数: 1
+  访问类型:
+    store_byte: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1E95: 889E75010000 (store_byte)
+
+Offset 376 (0x178):
+  访问次数: 5
+  访问类型:
+    lea: 4
+    store: 1
+  示例:
+    UIWnd::OnPaint
+      VA=0x45A868: 899E78010000 (store)
+    UIWnd::OnPaint
+      VA=0x45ACFB: 8DBE78010000 (lea)
+    UIWnd::OnPaint
+      VA=0x45AE0D: 8D8E78010000 (lea)
+
+Offset 378 (0x17A):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::OnPaint
+      VA=0x45A824: 899E7A010000 (store)
+
+Offset 384 (0x180):
+  访问次数: 7
+  访问类型:
+    lea: 1
+    load: 5
+    store: 1
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E057: 898680010000 (store)
+    UIWnd::_sub_47DD90
+      VA=0x47E0AF: 8B8680010000 (load)
+    UIWnd::_sub_47DD90
+      VA=0x47E19E: 8B8E80010000 (load)
+
+Offset 388 (0x184):
+  访问次数: 5
+  访问类型:
+    load: 1
+    load_byte: 1
+    store_byte: 3
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E16D: C68684010000 (store_byte)
+    UIWnd::_sub_47DD90
+      VA=0x47E25D: C68684010000 (store_byte)
+    UIWnd::_sub_47DD90
+      VA=0x47E48C: C68684010000 (store_byte)
+
+Offset 392 (0x188):
+  访问次数: 6
+  访问类型:
+    lea: 4
+    load: 2
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47DDFD: 8D8E88010000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47E049: 8B9688010000 (load)
+    UIWnd::_sub_47DD90
+      VA=0x47E04F: 8DBE88010000 (lea)
+
+Offset 404 (0x194):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::Layout_4a5a80
+      VA=0x4A678C: 899E94010000 (store)
+
+Offset 408 (0x198):
+  访问次数: 2
+  访问类型:
+    lea: 1
+    store_byte: 1
+  示例:
+    UIWnd::Layout_4a5a80
+      VA=0x4A6772: 888698010000 (store_byte)
+    UIWnd::ProcessInput
+      VA=0x4A6C14: 8D8B98010000 (lea)
+
+Offset 412 (0x19C):
+  访问次数: 12
+  访问类型:
+    lea: 8
+    load: 3
+    store: 1
+  示例:
+    UIWnd::_sdtor_451d80
+      VA=0x4527C2: 8D8E9C010000 (lea)
+    UIWnd::_sdtor_451d80
+      VA=0x4528A6: 8D8E9C010000 (lea)
+    UIWnd::_sdtor_451d80
+      VA=0x4529A6: 8B969C010000 (load)
+
+Offset 416 (0x1A0):
+  访问次数: 10
+  访问类型:
+    load: 7
+    store: 3
+  示例:
+    UIWnd::Layout_4a5a80
+      VA=0x4A677E: 899EA0010000 (store)
+    UIWnd::ProcessInput
+      VA=0x4A6C0B: 8B93A0010000 (load)
+    UIWnd::Reset
+      VA=0x4B4753: 899EA0010000 (store)
+
+Offset 420 (0x1A4):
+  访问次数: 2
+  访问类型:
+    lea: 1
+    store: 1
+  示例:
+    UIWnd::Layout_4a5a80
+      VA=0x4A6784: 899EA4010000 (store)
+    UIWnd::Reset
+      VA=0x4B470E: 8D8EA4010000 (lea)
+
+Offset 424 (0x1A8):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::Layout_4a5a80
+      VA=0x4A6792: 889EA8010000 (store_byte)
+    UIWnd::ProcessInput
+      VA=0x4A6C32: C683A8010000 (store_byte)
+
+Offset 428 (0x1AC):
+  访问次数: 14
+  访问类型:
+    lea: 14
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44ABEB: 8D86AC010000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AD8D: 8D86AC010000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AE56: 8DBEAC010000 (lea)
+
+Offset 432 (0x1B0):
+  访问次数: 20
+  访问类型:
+    lea: 3
+    load: 13
+    store: 4
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E083: 89BEB0010000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E56A: 8B8EB0010000 (load)
+    UIWnd::_sdtor_3
+      VA=0x43E589: 8B8EB0010000 (load)
+
+Offset 436 (0x1B4):
+  访问次数: 29
+  访问类型:
+    lea: 24
+    load: 5
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E026: 8D8EB4010000 (lea)
+    UIWnd::_sdtor_3
+      VA=0x43E166: 8D86B4010000 (lea)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E026: 8D8EB4010000 (lea)
+
+Offset 448 (0x1C0):
+  访问次数: 6
+  访问类型:
+    load: 6
+  示例:
+    UIWnd::_nearby_52aee0
+      VA=0x52B868: 8B98C0010000 (load)
+    UIWnd::_nearby_52aef0
+      VA=0x52B868: 8B98C0010000 (load)
+    UIWnd::_nearby_530260
+      VA=0x53035A: 8BB8C0010000 (load)
+
+Offset 452 (0x1C4):
+  访问次数: 3
+  访问类型:
+    fld_float: 1
+    load: 2
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x5042AA: 8B86C4010000 (load)
+    UIWnd::~UIWnd_4080
+      VA=0x5048D0: D99EC4010000 (fld_float)
+    UIWnd::~UIWnd_4080
+      VA=0x504941: 8B8EC4010000 (load)
+
+Offset 456 (0x1C8):
+  访问次数: 28
+  访问类型:
+    fld_float: 2
+    lea: 18
+    load: 8
+  示例:
+    UIWnd::_sdtor_26
+      VA=0x4832D1: 8D86C8010000 (lea)
+    UIWnd::_sdtor_26
+      VA=0x483324: 8D86C8010000 (lea)
+    UIWnd::SetByte
+      VA=0x4A1575: 8B96C8010000 (load)
+
+Offset 464 (0x1D0):
+  访问次数: 3
+  访问类型:
+    fld_float: 1
+    load: 2
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x5042B4: 8B8ED0010000 (load)
+    UIWnd::~UIWnd_4080
+      VA=0x504845: D99ED0010000 (fld_float)
+    UIWnd::~UIWnd_4080
+      VA=0x504953: 8B96D0010000 (load)
+
+Offset 468 (0x1D4):
+  访问次数: 6
+  访问类型:
+    fld_float: 1
+    lea: 5
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x459307: 8D86D4010000 (lea)
+    UIWnd::_sdtor_19
+      VA=0x459499: 8DBED4010000 (lea)
+    UIWnd::_sdtor_19
+      VA=0x459A02: 8D9ED4010000 (lea)
+
+Offset 472 (0x1D8):
+  访问次数: 5
+  访问类型:
+    store_byte: 5
+  示例:
+    UIWnd::UIWnd
+      VA=0x4461BE: C686D8010000 (store_byte)
+    UIWnd::_UIWnd
+      VA=0x4461BE: C686D8010000 (store_byte)
+    UIWnd::_unverified_445B90
+      VA=0x4461BE: C686D8010000 (store_byte)
+
+Offset 480 (0x1E0):
+  访问次数: 1
+  访问类型:
+    fld_float: 1
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x5047ED: D99EE0010000 (fld_float)
+
+Offset 484 (0x1E4):
+  访问次数: 6
+  访问类型:
+    fld_float: 4
+    store: 2
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x5047F9: D99EE4010000 (fld_float)
+    UIWnd::_nearby_530340
+      VA=0x5307EA: 8986E4010000 (store)
+    UIWnd::_nearby_530340
+      VA=0x530ADD: D986E4010000 (fld_float)
+
+Offset 488 (0x1E8):
+  访问次数: 2
+  访问类型:
+    fld_float: 1
+    lea: 1
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x504809: D99EE8010000 (fld_float)
+    UIWnd::_nearby_530340
+      VA=0x530469: 8D8EE8010000 (lea)
+
+Offset 492 (0x1EC):
+  访问次数: 2
+  访问类型:
+    fld_float: 1
+    load: 1
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x50428A: 8B96EC010000 (load)
+    UIWnd::~UIWnd_4080
+      VA=0x50494D: D986EC010000 (fld_float)
+
+Offset 496 (0x1F0):
+  访问次数: 8
+  访问类型:
+    fld_float: 1
+    lea: 6
+    load: 1
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486D55: 8D8EF0010000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x48707D: 8D8EF0010000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490EC5: 8D8EF0010000 (lea)
+
+Offset 500 (0x1F4):
+  访问次数: 5
+  访问类型:
+    fld_float: 1
+    lea: 2
+    load: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E6AD: 8D8EF4010000 (lea)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E6AD: 8D8EF4010000 (lea)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E9A1: 8B86F4010000 (load)
+
+Offset 504 (0x1F8):
+  访问次数: 5
+  访问类型:
+    lea: 2
+    load: 3
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E6A7: 8BAEF8010000 (load)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E6A7: 8BAEF8010000 (load)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E941: 8D86F8010000 (lea)
+
+Offset 512 (0x200):
+  访问次数: 71
+  访问类型:
+    lea: 61
+    load: 10
+  示例:
+    UIWnd::UIWnd
+      VA=0x446111: 8D8600020000 (lea)
+    UIWnd::UIWnd
+      VA=0x446277: 8D8600020000 (lea)
+    UIWnd::_UIWnd
+      VA=0x446111: 8D8600020000 (lea)
+
+Offset 516 (0x204):
+  访问次数: 4
+  访问类型:
+    lea: 1
+    load: 1
+    store_byte: 2
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x5046D7: 8D8604020000 (lea)
+    UIWnd::~UIWnd_4080
+      VA=0x5046DD: 8B8E04020000 (load)
+    UIWnd::_sdtor_38
+      VA=0x531FDC: 889E04020000 (store_byte)
+
+Offset 517 (0x205):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x532852: 889E05020000 (store_byte)
+    UIWnd::_sdtor_38
+      VA=0x53286A: C68605020000 (store_byte)
+
+Offset 520 (0x208):
+  访问次数: 10
+  访问类型:
+    lea: 8
+    load: 2
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E614: 8D8E08020000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EBB7: 8D8E08020000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EBB7: 8D8E08020000 (lea)
+
+Offset 523 (0x20B):
+  访问次数: 5
+  访问类型:
+    load_byte: 2
+    store_byte: 3
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x53282C: C6860B020000 (store_byte)
+    UIWnd::_sdtor_38
+      VA=0x53283D: 8A8E0B020000 (load_byte)
+    UIWnd::_sdtor_38
+      VA=0x532848: 888E0B020000 (store_byte)
+
+Offset 524 (0x20C):
+  访问次数: 12
+  访问类型:
+    lea: 10
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_7
+      VA=0x44B885: 88860C020000 (store_byte)
+    UIWnd::_sdtor_7
+      VA=0x44B8AA: 8DAE0C020000 (lea)
+    UIWnd::sub_44B850
+      VA=0x44B885: 88860C020000 (store_byte)
+
+Offset 528 (0x210):
+  访问次数: 9
+  访问类型:
+    lea: 9
+  示例:
+    UIWnd::_sdtor_18
+      VA=0x457289: 8D8E10020000 (lea)
+    UIWnd::_sdtor_18
+      VA=0x457370: 8D8E10020000 (lea)
+    UIWnd::_nearby_457260
+      VA=0x457289: 8D8E10020000 (lea)
+
+Offset 536 (0x218):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x4915EA: 8D8E18020000 (lea)
+
+Offset 544 (0x220):
+  访问次数: 7
+  访问类型:
+    load: 7
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x504662: 8B9620020000 (load)
+    UIWnd::~UIWnd_4080
+      VA=0x504690: 8B8620020000 (load)
+    UIWnd::~UIWnd_4080
+      VA=0x504897: 8B8E20020000 (load)
+
+Offset 548 (0x224):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sub_52CAF0
+      VA=0x52D17D: 8D9E24020000 (lea)
+
+Offset 552 (0x228):
+  访问次数: 2
+  访问类型:
+    fld_float: 2
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x50461E: D99E28020000 (fld_float)
+    UIWnd::~UIWnd_4080
+      VA=0x50465C: D99E28020000 (fld_float)
+
+Offset 556 (0x22C):
+  访问次数: 13
+  访问类型:
+    fld_float: 1
+    lea: 7
+    load: 4
+    store: 1
+  示例:
+    UIWnd::_nearby_451730
+      VA=0x451D0E: 8D862C020000 (lea)
+    UIWnd::_nearby_451730
+      VA=0x451DFA: 8D8E2C020000 (lea)
+    UIWnd::_nearby_451730
+      VA=0x451ECB: 8B962C020000 (load)
+
+Offset 564 (0x234):
+  访问次数: 15
+  访问类型:
+    lea: 15
+  示例:
+    UIWnd::_sdtor_451d80
+      VA=0x4527D2: 8D8E34020000 (lea)
+    UIWnd::_sdtor_451d80
+      VA=0x452896: 8D8E34020000 (lea)
+    UIWnd::_sdtor_451d80
+      VA=0x4529F4: 8DBE34020000 (lea)
+
+Offset 572 (0x23C):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::Reset
+      VA=0x4B475E: 899E3C020000 (store)
+
+Offset 576 (0x240):
+  访问次数: 9
+  访问类型:
+    load: 6
+    store: 1
+    store_byte: 2
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44EEBB: 889E40020000 (store_byte)
+    UIWnd::Layout_44e9f0
+      VA=0x44EEBB: 889E40020000 (store_byte)
+    UIWnd::Reset
+      VA=0x4B4764: 899E40020000 (store)
+
+Offset 580 (0x244):
+  访问次数: 21
+  访问类型:
+    fld_float: 3
+    lea: 3
+    load: 15
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B556: 8DBE44020000 (lea)
+    UIWnd::Layout_44a790
+      VA=0x44B556: 8DBE44020000 (lea)
+    UIWnd::_sdtor_7
+      VA=0x44B556: 8DBE44020000 (lea)
+
+Offset 584 (0x248):
+  访问次数: 21
+  访问类型:
+    lea: 11
+    load: 3
+    store: 7
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E6C9: 8DBE48020000 (lea)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E6C9: 8DBE48020000 (lea)
+    UIWnd::_sdtor_24
+      VA=0x47C082: 8D8E48020000 (lea)
+
+Offset 588 (0x24C):
+  访问次数: 8
+  访问类型:
+    store: 8
+  示例:
+    UIWnd::_sdtor_11
+      VA=0x45146F: 89AE4C020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x53048A: 899E4C020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x5309FC: 89964C020000 (store)
+
+Offset 592 (0x250):
+  访问次数: 39
+  访问类型:
+    lea: 25
+    load: 7
+    store: 7
+  示例:
+    UIWnd::_sdtor_10
+      VA=0x450E25: 8D8E50020000 (lea)
+    UIWnd::_sdtor_10
+      VA=0x450F0A: 8D8E50020000 (lea)
+    UIWnd::_sdtor_10
+      VA=0x451025: 8B8650020000 (load)
+
+Offset 596 (0x254):
+  访问次数: 13
+  访问类型:
+    load: 6
+    store: 7
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530496: 899E54020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x5309CC: 899654020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x5309EA: 8B8E54020000 (load)
+
+Offset 600 (0x258):
+  访问次数: 13
+  访问类型:
+    load: 6
+    store: 7
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x53049C: 899E58020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x5309DE: 898E58020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x5309F6: 8B9658020000 (load)
+
+Offset 604 (0x25C):
+  访问次数: 13
+  访问类型:
+    load: 6
+    store: 7
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x5304A2: 899E5C020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x5309E4: 89965C020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x530A02: 8B8E5C020000 (load)
+
+Offset 608 (0x260):
+  访问次数: 21
+  访问类型:
+    lea: 13
+    load: 4
+    store: 4
+  示例:
+    UIWnd::_nearby_449b90
+      VA=0x449C25: 8DB360020000 (lea)
+    UIWnd::Layout_44e980
+      VA=0x44EEB5: 8DBE60020000 (lea)
+    UIWnd::Layout_44e9f0
+      VA=0x44EEB5: 8DBE60020000 (lea)
+
+Offset 612 (0x264):
+  访问次数: 11
+  访问类型:
+    lea: 2
+    load: 5
+    store: 4
+  示例:
+    UIWnd::Render_46f2c0
+      VA=0x46F8C9: 8D9E64020000 (lea)
+    UIWnd::Render_46f2c0
+      VA=0x46FB16: 8D8664020000 (lea)
+    UIWnd::SetByte
+      VA=0x4A1861: 8B8664020000 (load)
+
+Offset 616 (0x268):
+  访问次数: 9
+  访问类型:
+    lea: 2
+    load: 3
+    store: 4
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1885: 8DBE68020000 (lea)
+    UIWnd::SetByte
+      VA=0x4A19B7: 8DAE68020000 (lea)
+    UIWnd::_nearby_530340
+      VA=0x5304B4: 899E68020000 (store)
+
+Offset 619 (0x26B):
+  访问次数: 2
+  访问类型:
+    load_byte: 2
+  示例:
+    UIWnd::_nearby_457260
+      VA=0x458023: 8A866B020000 (load_byte)
+    UIWnd::_nearby_457340
+      VA=0x458023: 8A866B020000 (load_byte)
+
+Offset 620 (0x26C):
+  访问次数: 11
+  访问类型:
+    lea: 3
+    load_byte: 2
+    store: 6
+  示例:
+    UIWnd::_nearby_457260
+      VA=0x45804E: 8A866C020000 (load_byte)
+    UIWnd::_nearby_457340
+      VA=0x45804E: 8A866C020000 (load_byte)
+    UIWnd::_sdtor_19
+      VA=0x459A6E: 8D9E6C020000 (lea)
+
+Offset 621 (0x26D):
+  访问次数: 2
+  访问类型:
+    load_byte: 2
+  示例:
+    UIWnd::_nearby_457260
+      VA=0x458079: 8A866D020000 (load_byte)
+    UIWnd::_nearby_457340
+      VA=0x458079: 8A866D020000 (load_byte)
+
+Offset 622 (0x26E):
+  访问次数: 2
+  访问类型:
+    load_byte: 2
+  示例:
+    UIWnd::_nearby_457260
+      VA=0x4580A4: 8A866E020000 (load_byte)
+    UIWnd::_nearby_457340
+      VA=0x4580A4: 8A866E020000 (load_byte)
+
+Offset 623 (0x26F):
+  访问次数: 2
+  访问类型:
+    load_byte: 2
+  示例:
+    UIWnd::_nearby_457260
+      VA=0x4580CF: 8A866F020000 (load_byte)
+    UIWnd::_nearby_457340
+      VA=0x4580CF: 8A866F020000 (load_byte)
+
+Offset 624 (0x270):
+  访问次数: 7
+  访问类型:
+    store: 7
+  示例:
+    UIWnd::SetByte
+      VA=0x4A188B: 89AE70020000 (store)
+    UIWnd::SetByte
+      VA=0x4A18FA: 898E70020000 (store)
+    UIWnd::SetByte
+      VA=0x4A19E4: 898670020000 (store)
+
+Offset 628 (0x274):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::SetByte
+      VA=0x4A18A7: 898E74020000 (store)
+    UIWnd::SetByte
+      VA=0x4A19F5: 899E74020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x5304C6: 899E74020000 (store)
+
+Offset 632 (0x278):
+  访问次数: 30
+  访问类型:
+    fld_float: 3
+    lea: 11
+    load: 9
+    store: 7
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1585: 8B8678020000 (load)
+    UIWnd::SetByte
+      VA=0x4A158B: 8D8E78020000 (lea)
+    UIWnd::SetByte
+      VA=0x4A15D3: 8B8678020000 (load)
+
+Offset 636 (0x27C):
+  访问次数: 10
+  访问类型:
+    load: 3
+    store: 7
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x5304D2: 899E7C020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x530A52: 89967C020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x53120B: 8B967C020000 (load)
+
+Offset 640 (0x280):
+  访问次数: 16
+  访问类型:
+    fld_float: 3
+    load: 3
+    store: 7
+    store_byte: 3
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44F3CF: 889E80020000 (store_byte)
+    UIWnd::Layout_44e9f0
+      VA=0x44F3CF: 889E80020000 (store_byte)
+    UIWnd::_sdtor_9
+      VA=0x44F3CF: 889E80020000 (store_byte)
+
+Offset 641 (0x281):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44F3D5: 889E81020000 (store_byte)
+    UIWnd::Layout_44e9f0
+      VA=0x44F3D5: 889E81020000 (store_byte)
+    UIWnd::_sdtor_9
+      VA=0x44F3D5: 889E81020000 (store_byte)
+
+Offset 642 (0x282):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44F3DB: 889E82020000 (store_byte)
+    UIWnd::Layout_44e9f0
+      VA=0x44F3DB: 889E82020000 (store_byte)
+    UIWnd::_sdtor_9
+      VA=0x44F3DB: 889E82020000 (store_byte)
+
+Offset 644 (0x284):
+  访问次数: 9
+  访问类型:
+    lea: 3
+    load: 2
+    store: 4
+  示例:
+    UIWnd::_nearby_457260
+      VA=0x4580FB: 8B8684020000 (load)
+    UIWnd::_nearby_457340
+      VA=0x4580FB: 8B8684020000 (load)
+    UIWnd::_nearby_530340
+      VA=0x5304DE: 899E84020000 (store)
+
+Offset 646 (0x286):
+  访问次数: 2
+  访问类型:
+    load: 2
+  示例:
+    UIWnd::_nearby_457260
+      VA=0x45818A: 8B8686020000 (load)
+    UIWnd::_nearby_457340
+      VA=0x45818A: 8B8686020000 (load)
+
+Offset 648 (0x288):
+  访问次数: 20
+  访问类型:
+    lea: 6
+    load: 5
+    store: 9
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44F014: 899E88020000 (store)
+    UIWnd::Layout_44e980
+      VA=0x44F4DA: 8B8E88020000 (load)
+    UIWnd::Layout_44e980
+      VA=0x44F4FF: 898688020000 (store)
+
+Offset 650 (0x28A):
+  访问次数: 1
+  访问类型:
+    load: 1
+  示例:
+    UIWnd::_nearby_457340
+      VA=0x45829E: 8B868A020000 (load)
+
+Offset 652 (0x28C):
+  访问次数: 10
+  访问类型:
+    load: 1
+    load_byte: 3
+    store: 1
+    store_byte: 5
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44F00E: 889E8C020000 (store_byte)
+    UIWnd::Layout_44e980
+      VA=0x44F4D0: 8A868C020000 (load_byte)
+    UIWnd::Layout_44e980
+      VA=0x44F4F1: C6868C020000 (store_byte)
+
+Offset 653 (0x28D):
+  访问次数: 8
+  访问类型:
+    load_byte: 3
+    store_byte: 5
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44F01A: C6868D020000 (store_byte)
+    UIWnd::Layout_44e980
+      VA=0x44F4C6: 8A868D020000 (load_byte)
+    UIWnd::Layout_44e980
+      VA=0x44F4F8: C6868D020000 (store_byte)
+
+Offset 656 (0x290):
+  访问次数: 16
+  访问类型:
+    fld_float: 2
+    lea: 8
+    load: 3
+    store: 3
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44EF74: 8D8E90020000 (lea)
+    UIWnd::Layout_44e980
+      VA=0x44F0DA: 8D8E90020000 (lea)
+    UIWnd::Layout_44e980
+      VA=0x44F345: 8DBE90020000 (lea)
+
+Offset 660 (0x294):
+  访问次数: 22
+  访问类型:
+    fld_float: 15
+    lea: 1
+    store: 6
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x49939E: 8D8E94020000 (lea)
+    UIWnd::_nearby_530340
+      VA=0x530A93: 898694020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x530F9B: D99694020000 (fld_float)
+
+Offset 664 (0x298):
+  访问次数: 37
+  访问类型:
+    lea: 31
+    load: 3
+    store: 3
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D4B6: 8DBE98020000 (lea)
+    UIWnd::_method_44d470
+      VA=0x44D4B6: 8DBE98020000 (lea)
+    UIWnd::_nearby_452fc0
+      VA=0x453D60: 8D8698020000 (lea)
+
+Offset 668 (0x29C):
+  访问次数: 8
+  访问类型:
+    load: 3
+    store: 5
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D4A5: 89969C020000 (store)
+    UIWnd::_method_44d470
+      VA=0x44D4A5: 89969C020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x530A7F: 89869C020000 (store)
+
+Offset 672 (0x2A0):
+  访问次数: 10
+  访问类型:
+    lea: 7
+    load: 1
+    store: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D4DE: 8996A0020000 (store)
+    UIWnd::_method_44d470
+      VA=0x44D4DE: 8996A0020000 (store)
+    UIWnd::_sub_47DD90
+      VA=0x47E624: 8D8EA0020000 (lea)
+
+Offset 676 (0x2A4):
+  访问次数: 11
+  访问类型:
+    fld_float: 3
+    load: 3
+    store: 5
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D4F0: 8986A4020000 (store)
+    UIWnd::_method_44d470
+      VA=0x44D4F0: 8986A4020000 (store)
+    UIWnd::_nearby_530340
+      VA=0x530A9F: 899EA4020000 (store)
+
+Offset 680 (0x2A8):
+  访问次数: 10
+  访问类型:
+    fld_float: 5
+    lea: 2
+    store: 3
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D4CE: D99EA8020000 (fld_float)
+    UIWnd::_method_44d470
+      VA=0x44D4CE: D99EA8020000 (fld_float)
+    UIWnd::SetByte
+      VA=0x4A1EB0: 8D8EA8020000 (lea)
+
+Offset 684 (0x2AC):
+  访问次数: 8
+  访问类型:
+    load: 2
+    store_byte: 6
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D4D4: 8B96AC020000 (load)
+    UIWnd::_method_44d470
+      VA=0x44D4D4: 8B96AC020000 (load)
+    UIWnd::_nearby_530340
+      VA=0x530AF7: 889EAC020000 (store_byte)
+
+Offset 685 (0x2AD):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530B03: 8886AD020000 (store_byte)
+    UIWnd::_nearby_530660
+      VA=0x530B03: 8886AD020000 (store_byte)
+    UIWnd::_nearby_530990
+      VA=0x530B03: 8886AD020000 (store_byte)
+
+Offset 688 (0x2B0):
+  访问次数: 6
+  访问类型:
+    lea: 1
+    load: 2
+    store: 3
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D4E4: 8B86B0020000 (load)
+    UIWnd::_method_44d470
+      VA=0x44D4E4: 8B86B0020000 (load)
+    UIWnd::_sdtor_28
+      VA=0x4915DA: 8D8EB0020000 (lea)
+
+Offset 692 (0x2B4):
+  访问次数: 3
+  访问类型:
+    fld_float: 2
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D51B: D99EB4020000 (fld_float)
+    UIWnd::_method_44d470
+      VA=0x44D51B: D99EB4020000 (fld_float)
+    UIWnd::_nearby_530340
+      VA=0x5304FC: 899EB4020000 (store)
+
+Offset 696 (0x2B8):
+  访问次数: 42
+  访问类型:
+    fld_float: 2
+    lea: 28
+    load: 11
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D536: D99EB8020000 (fld_float)
+    UIWnd::_method_44d470
+      VA=0x44D536: D99EB8020000 (fld_float)
+    UIWnd::_sdtor_10
+      VA=0x450E35: 8D8EB8020000 (lea)
+
+Offset 700 (0x2BC):
+  访问次数: 5
+  访问类型:
+    fld_float: 2
+    lea: 1
+    load: 1
+    store_byte: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D560: D99EBC020000 (fld_float)
+    UIWnd::_method_44d470
+      VA=0x44D560: D99EBC020000 (fld_float)
+    UIWnd::_sdtor_37
+      VA=0x52C9A0: 8B86BC020000 (load)
+
+Offset 704 (0x2C0):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D566: C686C0020000 (store_byte)
+    UIWnd::_method_44d470
+      VA=0x44D566: C686C0020000 (store_byte)
+    UIWnd::_nearby_530340
+      VA=0x53054F: 889EC0020000 (store_byte)
+
+Offset 705 (0x2C1):
+  访问次数: 6
+  访问类型:
+    store_byte: 6
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530AEB: 889EC1020000 (store_byte)
+    UIWnd::_nearby_530340
+      VA=0x530C3B: C686C1020000 (store_byte)
+    UIWnd::_nearby_530660
+      VA=0x530AEB: 889EC1020000 (store_byte)
+
+Offset 706 (0x2C2):
+  访问次数: 9
+  访问类型:
+    load_byte: 3
+    store_byte: 6
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530AF1: 889EC2020000 (store_byte)
+    UIWnd::_nearby_530340
+      VA=0x531136: 8A86C2020000 (load_byte)
+    UIWnd::_nearby_530340
+      VA=0x531152: C686C2020000 (store_byte)
+
+Offset 708 (0x2C4):
+  访问次数: 8
+  访问类型:
+    lea: 4
+    load: 4
+  示例:
+    UIWnd::_nearby_451730
+      VA=0x451F03: 8B96C4020000 (load)
+    UIWnd::_nearby_451730
+      VA=0x451F09: 8D8EC4020000 (lea)
+    UIWnd::_nearby_451730
+      VA=0x452474: 8B86C4020000 (load)
+
+Offset 720 (0x2D0):
+  访问次数: 3
+  访问类型:
+    store: 3
+  示例:
+    UIWnd::_sdtor_451d80
+      VA=0x452A40: 899ED0020000 (store)
+    UIWnd::_sdtor_13
+      VA=0x452A40: 899ED0020000 (store)
+    UIWnd::_sdtor_14
+      VA=0x452A40: 899ED0020000 (store)
+
+Offset 724 (0x2D4):
+  访问次数: 3
+  访问类型:
+    fld_float: 3
+  示例:
+    UIWnd::_sdtor_451d80
+      VA=0x452D73: D99ED4020000 (fld_float)
+    UIWnd::_sdtor_13
+      VA=0x452D73: D99ED4020000 (fld_float)
+    UIWnd::_sdtor_14
+      VA=0x452D73: D99ED4020000 (fld_float)
+
+Offset 728 (0x2D8):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x53050E: 899ED8020000 (store)
+
+Offset 732 (0x2DC):
+  访问次数: 11
+  访问类型:
+    lea: 3
+    store: 1
+    store_byte: 7
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B5BF: 8DBEDC020000 (lea)
+    UIWnd::Layout_44a790
+      VA=0x44B5BF: 8DBEDC020000 (lea)
+    UIWnd::_sdtor_7
+      VA=0x44B5BF: 8DBEDC020000 (lea)
+
+Offset 736 (0x2E0):
+  访问次数: 10
+  访问类型:
+    lea: 6
+    store_byte: 4
+  示例:
+    UIWnd::_sdtor_451d80
+      VA=0x452D6C: C686E0020000 (store_byte)
+    UIWnd::_sdtor_13
+      VA=0x452D6C: C686E0020000 (store_byte)
+    UIWnd::_sdtor_14
+      VA=0x452D6C: C686E0020000 (store_byte)
+
+Offset 740 (0x2E4):
+  访问次数: 3
+  访问类型:
+    store: 3
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530BA5: 8996E4020000 (store)
+    UIWnd::_nearby_530660
+      VA=0x530BA5: 8996E4020000 (store)
+    UIWnd::_nearby_530990
+      VA=0x530BA5: 8996E4020000 (store)
+
+Offset 744 (0x2E8):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530520: 899EE8020000 (store)
+
+Offset 748 (0x2EC):
+  访问次数: 13
+  访问类型:
+    lea: 10
+    load: 2
+    store: 1
+  示例:
+    UIWnd::_sdtor_451d80
+      VA=0x4527E2: 8D8EEC020000 (lea)
+    UIWnd::_sdtor_451d80
+      VA=0x452886: 8D8EEC020000 (lea)
+    UIWnd::_sdtor_451d80
+      VA=0x452947: 8DBEEC020000 (lea)
+
+Offset 752 (0x2F0):
+  访问次数: 3
+  访问类型:
+    load: 2
+    store_byte: 1
+  示例:
+    UIWnd::_sdtor_11
+      VA=0x451758: 8B9EF0020000 (load)
+    UIWnd::_nearby_451730
+      VA=0x451758: 8B9EF0020000 (load)
+    UIWnd::_nearby_530340
+      VA=0x530514: 889EF0020000 (store_byte)
+
+Offset 756 (0x2F4):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530532: 899EF4020000 (store)
+
+Offset 760 (0x2F8):
+  访问次数: 7
+  访问类型:
+    lea: 5
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sdtor_17
+      VA=0x4558C7: 8D8EF8020000 (lea)
+    UIWnd::_sdtor_17
+      VA=0x455964: 8D8EF8020000 (lea)
+    UIWnd::sub_454AA0
+      VA=0x4558C7: 8D8EF8020000 (lea)
+
+Offset 764 (0x2FC):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44EEC7: 889EFC020000 (store_byte)
+    UIWnd::Layout_44e9f0
+      VA=0x44EEC7: 889EFC020000 (store_byte)
+    UIWnd::_nearby_530340
+      VA=0x530526: 889EFC020000 (store_byte)
+
+Offset 765 (0x2FD):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44EECD: 889EFD020000 (store_byte)
+    UIWnd::Layout_44e9f0
+      VA=0x44EECD: 889EFD020000 (store_byte)
+
+Offset 768 (0x300):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530B86: 889E00030000 (store_byte)
+    UIWnd::_nearby_530660
+      VA=0x530B86: 889E00030000 (store_byte)
+    UIWnd::_nearby_530990
+      VA=0x530B86: 889E00030000 (store_byte)
+
+Offset 769 (0x301):
+  访问次数: 6
+  访问类型:
+    store_byte: 6
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530B9F: 889E01030000 (store_byte)
+    UIWnd::_nearby_530340
+      VA=0x530C24: 889E01030000 (store_byte)
+    UIWnd::_nearby_530660
+      VA=0x530B9F: 889E01030000 (store_byte)
+
+Offset 770 (0x302):
+  访问次数: 9
+  访问类型:
+    load_byte: 3
+    store_byte: 6
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530B09: 889E02030000 (store_byte)
+    UIWnd::_nearby_530340
+      VA=0x530C59: 888602030000 (store_byte)
+    UIWnd::_nearby_530340
+      VA=0x531140: 8A8E02030000 (load_byte)
+
+Offset 772 (0x304):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x459ADA: 8D9E04030000 (lea)
+    UIWnd::_sdtor_19
+      VA=0x459C67: 8D9E04030000 (lea)
+    UIWnd::_sdtor_19
+      VA=0x459DF4: 8D9E04030000 (lea)
+
+Offset 773 (0x305):
+  访问次数: 6
+  访问类型:
+    store_byte: 6
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530B97: 889E05030000 (store_byte)
+    UIWnd::_nearby_530340
+      VA=0x531195: C68605030000 (store_byte)
+    UIWnd::_nearby_530660
+      VA=0x530B97: 889E05030000 (store_byte)
+
+Offset 776 (0x308):
+  访问次数: 9
+  访问类型:
+    lea: 4
+    load: 5
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52B21C: 8DBE08030000 (lea)
+    UIWnd::_nearby_52afc0
+      VA=0x52B49A: 8D8608030000 (lea)
+    UIWnd::RenderWithStack
+      VA=0x52B21C: 8DBE08030000 (lea)
+
+Offset 780 (0x30C):
+  访问次数: 12
+  访问类型:
+    lea: 6
+    store: 6
+  示例:
+    UIWnd::_sdtor_7
+      VA=0x44B85B: 89860C030000 (store)
+    UIWnd::_sdtor_7
+      VA=0x44B8C6: 89860C030000 (store)
+    UIWnd::_sdtor_7
+      VA=0x44B944: 89860C030000 (store)
+
+Offset 782 (0x30E):
+  访问次数: 6
+  访问类型:
+    lea: 2
+    store_byte: 4
+  示例:
+    UIWnd::_sdtor_7
+      VA=0x44B861: 88860E030000 (store_byte)
+    UIWnd::_sdtor_7
+      VA=0x44B8CC: 88860E030000 (store_byte)
+    UIWnd::_sdtor_7
+      VA=0x44B953: 8D860E030000 (lea)
+
+Offset 784 (0x310):
+  访问次数: 9
+  访问类型:
+    load: 6
+    store: 3
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530AAB: 899E10030000 (store)
+    UIWnd::_nearby_530340
+      VA=0x530E45: 8B8610030000 (load)
+    UIWnd::_nearby_530340
+      VA=0x530EA7: 8B8610030000 (load)
+
+Offset 788 (0x314):
+  访问次数: 3
+  访问类型:
+    store: 3
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530AB1: 899E14030000 (store)
+    UIWnd::_nearby_530660
+      VA=0x530AB1: 899E14030000 (store)
+    UIWnd::_nearby_530990
+      VA=0x530AB1: 899E14030000 (store)
+
+Offset 792 (0x318):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52B4C0: 89AE18030000 (store)
+    UIWnd::RenderWithStack
+      VA=0x52B4C0: 89AE18030000 (store)
+
+Offset 796 (0x31C):
+  访问次数: 9
+  访问类型:
+    load_byte: 3
+    store_byte: 6
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530F81: 8A861C030000 (load_byte)
+    UIWnd::_nearby_530340
+      VA=0x530FB0: C6861C030000 (store_byte)
+    UIWnd::_nearby_530340
+      VA=0x530FF1: 888E1C030000 (store_byte)
+
+Offset 797 (0x31D):
+  访问次数: 9
+  访问类型:
+    load_byte: 3
+    store_byte: 6
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530B80: 88861D030000 (store_byte)
+    UIWnd::_nearby_530340
+      VA=0x530F73: 8A861D030000 (load_byte)
+    UIWnd::_nearby_530340
+      VA=0x530FFD: 888E1D030000 (store_byte)
+
+Offset 798 (0x31E):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530B6A: 88861E030000 (store_byte)
+    UIWnd::_nearby_530660
+      VA=0x530B6A: 88861E030000 (store_byte)
+    UIWnd::_nearby_530990
+      VA=0x530B6A: 88861E030000 (store_byte)
+
+Offset 799 (0x31F):
+  访问次数: 6
+  访问类型:
+    store_byte: 6
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530B70: 88861F030000 (store_byte)
+    UIWnd::_nearby_530340
+      VA=0x531003: 888E1F030000 (store_byte)
+    UIWnd::_nearby_530660
+      VA=0x530B70: 88861F030000 (store_byte)
+
+Offset 800 (0x320):
+  访问次数: 9
+  访问类型:
+    fld_float: 3
+    lea: 6
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486D75: 8D8E20030000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x48705D: 8D8E20030000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490EE5: 8D8E20030000 (lea)
+
+Offset 804 (0x324):
+  访问次数: 5
+  访问类型:
+    store: 5
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52B4DA: 89AE24030000 (store)
+    UIWnd::RenderWithStack
+      VA=0x52B4DA: 89AE24030000 (store)
+    UIWnd::_nearby_530340
+      VA=0x530B42: 899E24030000 (store)
+
+Offset 808 (0x328):
+  访问次数: 3
+  访问类型:
+    store: 3
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530B48: 898E28030000 (store)
+    UIWnd::_nearby_530660
+      VA=0x530B48: 898E28030000 (store)
+    UIWnd::_nearby_530990
+      VA=0x530B48: 898E28030000 (store)
+
+Offset 812 (0x32C):
+  访问次数: 5
+  访问类型:
+    lea: 2
+    store: 3
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x49938E: 8D8E2C030000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x527F0D: 8D8E2C030000 (lea)
+    UIWnd::_nearby_530340
+      VA=0x530B4E: 898E2C030000 (store)
+
+Offset 816 (0x330):
+  访问次数: 19
+  访问类型:
+    lea: 17
+    store: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x523F9A: 8D8E30030000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x5241C6: 8D8E30030000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x524361: 8DBE30030000 (lea)
+
+Offset 820 (0x334):
+  访问次数: 6
+  访问类型:
+    fld_float: 3
+    store: 3
+  示例:
+    UIWnd::_nearby_530340
+      VA=0x530B5E: 899E34030000 (store)
+    UIWnd::_nearby_530340
+      VA=0x530DB5: D98634030000 (fld_float)
+    UIWnd::_nearby_530660
+      VA=0x530B5E: 899E34030000 (store)
+
+Offset 824 (0x338):
+  访问次数: 5
+  访问类型:
+    lea: 5
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E634: 8D8E38030000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EB97: 8D8E38030000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EB97: 8D8E38030000 (lea)
+
+Offset 828 (0x33C):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52B50E: 89AE3C030000 (store)
+    UIWnd::RenderWithStack
+      VA=0x52B50E: 89AE3C030000 (store)
+
+Offset 832 (0x340):
+  访问次数: 4
+  访问类型:
+    lea: 3
+    load: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1EC0: 8D8E40030000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2667: 8D8E40030000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A26DD: 8B8640030000 (load)
+
+Offset 836 (0x344):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52B4A0: 8D8E44030000 (lea)
+    UIWnd::RenderWithStack
+      VA=0x52B4A0: 8D8E44030000 (lea)
+
+Offset 840 (0x348):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x4915CA: 8D8E48030000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x49163D: 8B8648030000 (load)
+    UIWnd::_sdtor_28
+      VA=0x491643: 8DBE48030000 (lea)
+
+Offset 848 (0x350):
+  访问次数: 28
+  访问类型:
+    lea: 23
+    load: 5
+  示例:
+    UIWnd::_sdtor_10
+      VA=0x450E45: 8D8E50030000 (lea)
+    UIWnd::_sdtor_10
+      VA=0x450EEA: 8D8E50030000 (lea)
+    UIWnd::_nearby_450310
+      VA=0x450E45: 8D8E50030000 (lea)
+
+Offset 852 (0x354):
+  访问次数: 12
+  访问类型:
+    lea: 11
+    load: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A21D5: 8D8E54030000 (lea)
+    UIWnd::SetByte
+      VA=0x4A23DD: 8D8E54030000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A21D5: 8D8E54030000 (lea)
+
+Offset 856 (0x358):
+  访问次数: 11
+  访问类型:
+    lea: 11
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x454945: 8DBE58030000 (lea)
+    UIWnd::_nearby_52afc0
+      VA=0x52B239: 8D8E58030000 (lea)
+    UIWnd::_nearby_52afc0
+      VA=0x52B305: 8D8E58030000 (lea)
+
+Offset 860 (0x35C):
+  访问次数: 8
+  访问类型:
+    lea: 4
+    load: 4
+  示例:
+    UIWnd::_nearby_451730
+      VA=0x451F1A: 8B965C030000 (load)
+    UIWnd::_nearby_451730
+      VA=0x451F20: 8D8E5C030000 (lea)
+    UIWnd::_nearby_451730
+      VA=0x452484: 8B965C030000 (load)
+
+Offset 876 (0x36C):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::RenderWithStack
+      VA=0x52BFCF: 8D8E6C030000 (lea)
+    UIWnd::_sdtor_37
+      VA=0x52BFCF: 8D8E6C030000 (lea)
+
+Offset 884 (0x374):
+  访问次数: 20
+  访问类型:
+    lea: 14
+    load: 6
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44AC01: 8D8E74030000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AD76: 8D8E74030000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AECF: 8B8674030000 (load)
+
+Offset 888 (0x378):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_24
+      VA=0x47BD80: 8D8E78030000 (lea)
+    UIWnd::_sdtor_24
+      VA=0x47C005: 8B9678030000 (load)
+    UIWnd::_sdtor_24
+      VA=0x47C016: 8DBE78030000 (lea)
+
+Offset 892 (0x37C):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x454880: 8D867C030000 (lea)
+    UIWnd::_sdtor_16
+      VA=0x454C3D: 8D867C030000 (lea)
+    UIWnd::_sdtor_17
+      VA=0x454C3D: 8D867C030000 (lea)
+
+Offset 904 (0x388):
+  访问次数: 2
+  访问类型:
+    load: 2
+  示例:
+    UIWnd::_sdtor_11
+      VA=0x45175E: 8BAE88030000 (load)
+    UIWnd::_nearby_451730
+      VA=0x45175E: 8BAE88030000 (load)
+
+Offset 908 (0x38C):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_17
+      VA=0x45558F: 8D8E8C030000 (lea)
+    UIWnd::sub_454AA0
+      VA=0x45558F: 8D8E8C030000 (lea)
+
+Offset 924 (0x39C):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x459B4B: 8D9E9C030000 (lea)
+    UIWnd::_sdtor_19
+      VA=0x459CD8: 8D9E9C030000 (lea)
+    UIWnd::_sdtor_19
+      VA=0x459E60: 8D9E9C030000 (lea)
+
+Offset 940 (0x3AC):
+  访问次数: 10
+  访问类型:
+    lea: 8
+    store: 2
+  示例:
+    UIWnd::_sdtor_451d80
+      VA=0x4527F2: 8D8EAC030000 (lea)
+    UIWnd::_sdtor_451d80
+      VA=0x452873: 8D8EAC030000 (lea)
+    UIWnd::_sdtor_451d80
+      VA=0x452910: 8D8EAC030000 (lea)
+
+Offset 964 (0x3C4):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x49937E: 8D8EC4030000 (lea)
+
+Offset 968 (0x3C8):
+  访问次数: 18
+  访问类型:
+    lea: 15
+    load: 3
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x523FAA: 8D8EC8030000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x5241B6: 8D8EC8030000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x5243DC: 8B96C8030000 (load)
+
+Offset 972 (0x3CC):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sub_52CAF0
+      VA=0x52D567: 8D86CC030000 (lea)
+
+Offset 976 (0x3D0):
+  访问次数: 13
+  访问类型:
+    lea: 9
+    load: 4
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E644: 8D8ED0030000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EB8C: 8D8ED0030000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EB8C: 8D8ED0030000 (lea)
+
+Offset 984 (0x3D8):
+  访问次数: 4
+  访问类型:
+    lea: 3
+    load: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1ED0: 8D8ED8030000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2657: 8D8ED8030000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A272C: 8B96D8030000 (load)
+
+Offset 992 (0x3E0):
+  访问次数: 8
+  访问类型:
+    lea: 6
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x4915BA: 8D8EE0030000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x49168C: 8B96E0030000 (load)
+    UIWnd::_sdtor_28
+      VA=0x49169F: 8DBEE0030000 (lea)
+
+Offset 996 (0x3E4):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF068: 89BEE4030000 (store)
+
+Offset 1000 (0x3E8):
+  访问次数: 4
+  访问类型:
+    lea: 3
+    store: 1
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF06E: 898EE8030000 (store)
+    UIWnd::_sdtor_79d0
+      VA=0x528344: 8D8EE8030000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x5285F0: 8D8EE8030000 (lea)
+
+Offset 1004 (0x3EC):
+  访问次数: 13
+  访问类型:
+    lea: 11
+    load: 1
+    store: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A21E5: 8D8EEC030000 (lea)
+    UIWnd::SetByte
+      VA=0x4A23CD: 8D8EEC030000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A21E5: 8D8EEC030000 (lea)
+
+Offset 1008 (0x3F0):
+  访问次数: 3
+  访问类型:
+    store: 3
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF07A: 89BEF0030000 (store)
+    UIWnd::_nearby_52afc0
+      VA=0x52B244: 89AEF0030000 (store)
+    UIWnd::RenderWithStack
+      VA=0x52B244: 89AEF0030000 (store)
+
+Offset 1012 (0x3F4):
+  访问次数: 11
+  访问类型:
+    lea: 6
+    load: 2
+    store: 3
+  示例:
+    UIWnd::_nearby_451730
+      VA=0x451D24: 8D8EF4030000 (lea)
+    UIWnd::_nearby_451730
+      VA=0x451DE3: 8D8EF4030000 (lea)
+    UIWnd::_nearby_451730
+      VA=0x451E8D: 8B96F4030000 (load)
+
+Offset 1016 (0x3F8):
+  访问次数: 4
+  访问类型:
+    lea: 1
+    store: 3
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF086: 8986F8030000 (store)
+    UIWnd::~UIWnd_6120
+      VA=0x5169BD: 8DBEF8030000 (lea)
+    UIWnd::_nearby_52afc0
+      VA=0x52B250: 89AEF8030000 (store)
+
+Offset 1020 (0x3FC):
+  访问次数: 3
+  访问类型:
+    store: 3
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF08C: 89BEFC030000 (store)
+    UIWnd::_nearby_52afc0
+      VA=0x52B256: 89AEFC030000 (store)
+    UIWnd::RenderWithStack
+      VA=0x52B256: 89AEFC030000 (store)
+
+Offset 1024 (0x400):
+  访问次数: 3
+  访问类型:
+    store: 3
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF092: 898600040000 (store)
+    UIWnd::_nearby_52afc0
+      VA=0x52B25C: 89AE00040000 (store)
+    UIWnd::RenderWithStack
+      VA=0x52B25C: 89AE00040000 (store)
+
+Offset 1028 (0x404):
+  访问次数: 3
+  访问类型:
+    store: 3
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF098: 898604040000 (store)
+    UIWnd::_nearby_52afc0
+      VA=0x52B262: 89AE04040000 (store)
+    UIWnd::RenderWithStack
+      VA=0x52B262: 89AE04040000 (store)
+
+Offset 1032 (0x408):
+  访问次数: 3
+  访问类型:
+    store: 3
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF0A3: 89BE08040000 (store)
+    UIWnd::_nearby_52afc0
+      VA=0x52B26F: 89AE08040000 (store)
+    UIWnd::RenderWithStack
+      VA=0x52B26F: 89AE08040000 (store)
+
+Offset 1036 (0x40C):
+  访问次数: 9
+  访问类型:
+    lea: 6
+    store: 3
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF0A9: 898E0C040000 (store)
+    UIWnd::_nearby_52afc0
+      VA=0x52B275: 89AE0C040000 (store)
+    UIWnd::RenderWithStack
+      VA=0x52B275: 89AE0C040000 (store)
+
+Offset 1040 (0x410):
+  访问次数: 10
+  访问类型:
+    lea: 1
+    store: 9
+  示例:
+    UIWnd::_sdtor_7
+      VA=0x44B867: 898610040000 (store)
+    UIWnd::_sdtor_7
+      VA=0x44B8D2: 898610040000 (store)
+    UIWnd::_sdtor_7
+      VA=0x44B96D: 898610040000 (store)
+
+Offset 1044 (0x414):
+  访问次数: 13
+  访问类型:
+    lea: 8
+    store: 1
+    store_byte: 4
+  示例:
+    UIWnd::_sdtor_7
+      VA=0x44B86D: 888614040000 (store_byte)
+    UIWnd::_sdtor_7
+      VA=0x44B8D8: 888614040000 (store_byte)
+    UIWnd::_sdtor_7
+      VA=0x44B97D: 8D8E14040000 (lea)
+
+Offset 1048 (0x418):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF0C1: 898618040000 (store)
+
+Offset 1052 (0x41C):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF0BB: 89861C040000 (store)
+
+Offset 1056 (0x420):
+  访问次数: 15
+  访问类型:
+    load: 6
+    store: 7
+    store_byte: 2
+  示例:
+    UIWnd::sub_4B6FB0
+      VA=0x4B7E77: 898E20040000 (store)
+    UIWnd::sub_4B6FB0
+      VA=0x4B7F07: 8B8E20040000 (load)
+    UIWnd::sub_4B6FB0
+      VA=0x4B7F17: 89BE20040000 (store)
+
+Offset 1057 (0x421):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF46D: 888621040000 (store_byte)
+    UIWnd::CleanupTextures
+      VA=0x4BF46D: 888621040000 (store_byte)
+
+Offset 1058 (0x422):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF473: 888622040000 (store_byte)
+    UIWnd::CleanupTextures
+      VA=0x4BF473: 888622040000 (store_byte)
+
+Offset 1064 (0x428):
+  访问次数: 6
+  访问类型:
+    lea: 5
+    load: 1
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF3CE: 8D9E28040000 (lea)
+    UIWnd::CleanupTextures
+      VA=0x4BF3CE: 8D9E28040000 (lea)
+    UIWnd::_sdtor_36
+      VA=0x529809: 8D8E28040000 (lea)
+
+Offset 1068 (0x42C):
+  访问次数: 12
+  访问类型:
+    lea: 1
+    load: 11
+  示例:
+    UIWnd::~UIWnd_6120
+      VA=0x516C18: 8D862C040000 (lea)
+    UIWnd::~UIWnd_6120
+      VA=0x516C33: 8B8E2C040000 (load)
+    UIWnd::~UIWnd_6120
+      VA=0x516C66: 8B8E2C040000 (load)
+
+Offset 1072 (0x430):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_auto_4b2750
+      VA=0x4B2BCD: 8D8E30040000 (lea)
+
+Offset 1076 (0x434):
+  访问次数: 5
+  访问类型:
+    lea: 1
+    store_byte: 4
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x459ED1: 8D9E34040000 (lea)
+    UIWnd::SetByte
+      VA=0x4A15AB: 889E34040000 (store_byte)
+    UIWnd::SetByte
+      VA=0x4A191C: C68634040000 (store_byte)
+
+Offset 1084 (0x43C):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::_nearby_451730
+      VA=0x4525B2: 8D8E3C040000 (lea)
+    UIWnd::_nearby_451730
+      VA=0x452623: 8D8E3C040000 (lea)
+    UIWnd::_nearby_451730
+      VA=0x4526A9: 8D8E3C040000 (lea)
+
+Offset 1092 (0x444):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::~UIWnd_ef50
+      VA=0x4BF3C0: 8D8E44040000 (lea)
+    UIWnd::CleanupTextures
+      VA=0x4BF3C0: 8D8E44040000 (lea)
+
+Offset 1096 (0x448):
+  访问次数: 10
+  访问类型:
+    load: 5
+    store: 5
+  示例:
+    UIWnd::_nearby_450310
+      VA=0x45122B: 898E48040000 (store)
+    UIWnd::_nearby_450310
+      VA=0x451255: 8B8648040000 (load)
+    UIWnd::Layout_450320
+      VA=0x45122B: 898E48040000 (store)
+
+Offset 1100 (0x44C):
+  访问次数: 2
+  访问类型:
+    fld_float: 1
+    load: 1
+  示例:
+    UIWnd::_sdtor_11
+      VA=0x45169B: D9964C040000 (fld_float)
+    UIWnd::_sdtor_11
+      VA=0x4516DC: 8B864C040000 (load)
+
+Offset 1108 (0x454):
+  访问次数: 5
+  访问类型:
+    lea: 1
+    load: 2
+    store: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E0AD: 898654040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E0AD: 898654040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43EA29: 8B8E54040000 (load)
+
+Offset 1112 (0x458):
+  访问次数: 4
+  访问类型:
+    load: 2
+    store: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E0B9: 898658040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E0B9: 898658040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E9AE: 8B9658040000 (load)
+
+Offset 1116 (0x45C):
+  访问次数: 19
+  访问类型:
+    lea: 2
+    load: 7
+    store: 10
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E089: 89BE5C040000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E468: 89865C040000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E4B3: 8BBE5C040000 (load)
+
+Offset 1120 (0x460):
+  访问次数: 17
+  访问类型:
+    lea: 11
+    load: 5
+    store: 1
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E776: 8B8660040000 (load)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E776: 8B8660040000 (load)
+    UIWnd::~UIWnd_dd10
+      VA=0x43EAF0: 8B9660040000 (load)
+
+Offset 1124 (0x464):
+  访问次数: 1
+  访问类型:
+    load: 1
+  示例:
+    UIWnd::~UIWnd_dd10
+      VA=0x43EAF8: 8B9664040000 (load)
+
+Offset 1128 (0x468):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E294: 8DBE68040000 (lea)
+    UIWnd::Render_43dab0
+      VA=0x43E3CF: 8D8768040000 (lea)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E294: 8DBE68040000 (lea)
+
+Offset 1132 (0x46C):
+  访问次数: 5
+  访问类型:
+    load: 3
+    store: 2
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52BA5D: 89866C040000 (store)
+    UIWnd::RenderWithStack
+      VA=0x52BA5D: 89866C040000 (store)
+    UIWnd::RenderWithStack
+      VA=0x52BFE4: 8B966C040000 (load)
+
+Offset 1136 (0x470):
+  访问次数: 11
+  访问类型:
+    lea: 3
+    load: 4
+    store: 4
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E29A: 898670040000 (store)
+    UIWnd::Render_43dab0
+      VA=0x43E3F5: 8B8F70040000 (load)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E29A: 898670040000 (store)
+
+Offset 1140 (0x474):
+  访问次数: 3
+  访问类型:
+    load: 1
+    store: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E2CB: 899674040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E2CB: 899674040000 (store)
+    UIWnd::_sdtor_37
+      VA=0x52C20C: 8BBE74040000 (load)
+
+Offset 1144 (0x478):
+  访问次数: 14
+  访问类型:
+    lea: 2
+    load: 6
+    store: 6
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E08F: 89BE78040000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E224: 898678040000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E243: 898678040000 (store)
+
+Offset 1148 (0x47C):
+  访问次数: 11
+  访问类型:
+    load: 5
+    store: 6
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E0D4: 89BE7C040000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E22F: 89867C040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E0D4: 89BE7C040000 (store)
+
+Offset 1152 (0x480):
+  访问次数: 18
+  访问类型:
+    lea: 5
+    load: 7
+    store: 6
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E095: 89BE80040000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E370: 898680040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E095: 89BE80040000 (store)
+
+Offset 1156 (0x484):
+  访问次数: 20
+  访问类型:
+    lea: 10
+    load_byte: 2
+    store: 2
+    store_byte: 6
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E0DA: 89BE84040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E0DA: 89BE84040000 (store)
+    UIWnd::SetByte
+      VA=0x4A21F5: 8D8E84040000 (lea)
+
+Offset 1157 (0x485):
+  访问次数: 5
+  访问类型:
+    load_byte: 2
+    store_byte: 3
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52BA99: 889E85040000 (store_byte)
+    UIWnd::RenderWithStack
+      VA=0x52BA99: 889E85040000 (store_byte)
+    UIWnd::_sdtor_37
+      VA=0x52C713: 8A8685040000 (load_byte)
+
+Offset 1158 (0x486):
+  访问次数: 4
+  访问类型:
+    load_byte: 2
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_37
+      VA=0x52C7A8: 8A8686040000 (load_byte)
+    UIWnd::_sdtor_37
+      VA=0x52C7B9: C68686040000 (store_byte)
+    UIWnd::_sdtor_37
+      VA=0x52CA9A: 8A8686040000 (load_byte)
+
+Offset 1159 (0x487):
+  访问次数: 4
+  访问类型:
+    load_byte: 1
+    store_byte: 3
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52BA9F: 889E87040000 (store_byte)
+    UIWnd::RenderWithStack
+      VA=0x52BA9F: 889E87040000 (store_byte)
+    UIWnd::_sdtor_37
+      VA=0x52C7E4: 8A8687040000 (load_byte)
+
+Offset 1160 (0x488):
+  访问次数: 12
+  访问类型:
+    lea: 7
+    load: 3
+    store: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E09B: 89BE88040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E09B: 89BE88040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43EB35: 8BBE88040000 (load)
+
+Offset 1164 (0x48C):
+  访问次数: 3
+  访问类型:
+    load: 1
+    store: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E0A7: 89BE8C040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E0A7: 89BE8C040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43EB4E: 8B968C040000 (load)
+
+Offset 1168 (0x490):
+  访问次数: 3
+  访问类型:
+    load: 1
+    store: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E0A1: 89BE90040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E0A1: 89BE90040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43EB46: 8B8E90040000 (load)
+
+Offset 1172 (0x494):
+  访问次数: 12
+  访问类型:
+    lea: 5
+    load: 4
+    store: 3
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E0B3: 898694040000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E282: 8B8E94040000 (load)
+    UIWnd::Render_43dab0
+      VA=0x43E42C: 899F94040000 (store)
+
+Offset 1176 (0x498):
+  访问次数: 3
+  访问类型:
+    lea: 1
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E05C: 888698040000 (store_byte)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E05C: 888698040000 (store_byte)
+    UIWnd::~UIWnd_dd10
+      VA=0x43EB3C: 8DAE98040000 (lea)
+
+Offset 1177 (0x499):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E056: 888699040000 (store_byte)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E056: 888699040000 (store_byte)
+
+Offset 1178 (0x49A):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E050: 88869A040000 (store_byte)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E050: 88869A040000 (store_byte)
+
+Offset 1179 (0x49B):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E045: C6869B040000 (store_byte)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E045: C6869B040000 (store_byte)
+
+Offset 1180 (0x49C):
+  访问次数: 4
+  访问类型:
+    load: 2
+    store: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E0BF: 89BE9C040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E0BF: 89BE9C040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E910: 8B969C040000 (load)
+
+Offset 1184 (0x4A0):
+  访问次数: 5
+  访问类型:
+    load: 3
+    store: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E0C5: 89BEA0040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E0C5: 89BEA0040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E94E: 8B96A0040000 (load)
+
+Offset 1188 (0x4A4):
+  访问次数: 6
+  访问类型:
+    load: 4
+    store: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E0CB: 89BEA4040000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E4A4: 8B86A4040000 (load)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E0CB: 89BEA4040000 (store)
+
+Offset 1192 (0x4A8):
+  访问次数: 4
+  访问类型:
+    lea: 2
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E066: 8886A8040000 (store_byte)
+    UIWnd::_sdtor_3
+      VA=0x43E748: 8DBEA8040000 (lea)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E066: 8886A8040000 (store_byte)
+
+Offset 1196 (0x4AC):
+  访问次数: 19
+  访问类型:
+    lea: 6
+    load: 9
+    store: 4
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E071: 89BEAC040000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E153: 8B86AC040000 (load)
+    UIWnd::_sdtor_3
+      VA=0x43E17D: 899EAC040000 (store)
+
+Offset 1200 (0x4B0):
+  访问次数: 6
+  访问类型:
+    load: 2
+    store: 4
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E077: 89BEB0040000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E183: 899EB0040000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E742: 8B8EB0040000 (load)
+
+Offset 1204 (0x4B4):
+  访问次数: 4
+  访问类型:
+    store: 4
+  示例:
+    UIWnd::_sdtor_3
+      VA=0x43E07D: 89BEB4040000 (store)
+    UIWnd::_sdtor_3
+      VA=0x43E189: 899EB4040000 (store)
+    UIWnd::~UIWnd_dd10
+      VA=0x43E07D: 89BEB4040000 (store)
+
+Offset 1228 (0x4CC):
+  访问次数: 25
+  访问类型:
+    lea: 18
+    load: 7
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44AC11: 8D8ECC040000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AD66: 8D8ECC040000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AF0E: 8B86CC040000 (load)
+
+Offset 1232 (0x4D0):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_24
+      VA=0x47BD70: 8D8ED0040000 (lea)
+    UIWnd::_sdtor_24
+      VA=0x47BF3D: 8DBED0040000 (lea)
+
+Offset 1244 (0x4DC):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529A69: C686DC040000 (store_byte)
+    UIWnd::_sdtor_36
+      VA=0x529EAA: C686DC040000 (store_byte)
+
+Offset 1248 (0x4E0):
+  访问次数: 5
+  访问类型:
+    lea: 1
+    load: 3
+    store: 1
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529993: 8986E0040000 (store)
+    UIWnd::_sdtor_36
+      VA=0x5299EA: 8B8EE0040000 (load)
+    UIWnd::_sdtor_36
+      VA=0x529A5F: 8B86E0040000 (load)
+
+Offset 1252 (0x4E4):
+  访问次数: 4
+  访问类型:
+    lea: 2
+    store: 2
+  示例:
+    UIWnd::_sdtor_17
+      VA=0x4555DC: 8D8EE4040000 (lea)
+    UIWnd::sub_454AA0
+      VA=0x4555DC: 8D8EE4040000 (lea)
+    UIWnd::_sdtor_36
+      VA=0x529E5B: 8986E4040000 (store)
+
+Offset 1256 (0x4E8):
+  访问次数: 3
+  访问类型:
+    load: 1
+    store: 2
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529E61: 8986E8040000 (store)
+    UIWnd::_sdtor_36
+      VA=0x529E70: 8BBEE8040000 (load)
+    UIWnd::_sdtor_36
+      VA=0x529E8E: 8986E8040000 (store)
+
+Offset 1260 (0x4EC):
+  访问次数: 3
+  访问类型:
+    load_byte: 1
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529E4F: 8A86EC040000 (load_byte)
+    UIWnd::_sdtor_36
+      VA=0x529E67: C686EC040000 (store_byte)
+    UIWnd::_sdtor_36
+      VA=0x529E96: C686EC040000 (store_byte)
+
+Offset 1264 (0x4F0):
+  访问次数: 7
+  访问类型:
+    load: 7
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x5298EF: 8B86F0040000 (load)
+    UIWnd::_sdtor_36
+      VA=0x529909: 8B96F0040000 (load)
+    UIWnd::_sdtor_36
+      VA=0x529D5D: 8B86F0040000 (load)
+
+Offset 1268 (0x4F4):
+  访问次数: 7
+  访问类型:
+    lea: 2
+    load: 5
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x49935E: 8D8EF4040000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x49942C: 8B96F4040000 (load)
+    UIWnd::_sdtor_29
+      VA=0x49943F: 8DBEF4040000 (lea)
+
+Offset 1272 (0x4F8):
+  访问次数: 17
+  访问类型:
+    lea: 12
+    load: 3
+    store: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x523FCA: 8D8EF8040000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x524196: 8D8EF8040000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x5245AF: 8B96F8040000 (load)
+
+Offset 1276 (0x4FC):
+  访问次数: 3
+  访问类型:
+    load: 1
+    store: 2
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529F65: 8986FC040000 (store)
+    UIWnd::_sdtor_36
+      VA=0x529F78: 8B9EFC040000 (load)
+    UIWnd::_sdtor_36
+      VA=0x529F93: 8986FC040000 (store)
+
+Offset 1280 (0x500):
+  访问次数: 5
+  访问类型:
+    lea: 2
+    load_byte: 1
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_26
+      VA=0x4835BE: 8D8E00050000 (lea)
+    UIWnd::_sdtor_0520
+      VA=0x4B0783: 8D8E00050000 (lea)
+    UIWnd::_sdtor_36
+      VA=0x529F4F: 8A8600050000 (load_byte)
+
+Offset 1284 (0x504):
+  访问次数: 7
+  访问类型:
+    lea: 5
+    load: 2
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x5297F9: 8D8E04050000 (lea)
+    UIWnd::_sdtor_36
+      VA=0x529B38: 8B8604050000 (load)
+    UIWnd::_sdtor_36
+      VA=0x529B42: 8DBE04050000 (lea)
+
+Offset 1288 (0x508):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1EF0: 8D8E08050000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2637: 8D8E08050000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2819: 8D8E08050000 (lea)
+
+Offset 1292 (0x50C):
+  访问次数: 9
+  访问类型:
+    lea: 9
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x531FE2: 8D860C050000 (lea)
+    UIWnd::_sdtor_38
+      VA=0x53237F: 8D960C050000 (lea)
+    UIWnd::_sdtor_38
+      VA=0x5324C6: 8D9E0C050000 (lea)
+
+Offset 1296 (0x510):
+  访问次数: 12
+  访问类型:
+    lea: 9
+    load: 3
+  示例:
+    UIWnd::_nearby_451730
+      VA=0x451895: 8D8E10050000 (lea)
+    UIWnd::_nearby_451730
+      VA=0x45192D: 8D8E10050000 (lea)
+    UIWnd::_nearby_451730
+      VA=0x4519A3: 8D9E10050000 (lea)
+
+Offset 1300 (0x514):
+  访问次数: 6
+  访问类型:
+    lea: 2
+    store_byte: 4
+  示例:
+    UIWnd::_sdtor_7
+      VA=0x44B873: 888614050000 (store_byte)
+    UIWnd::_sdtor_7
+      VA=0x44B8DE: 888614050000 (store_byte)
+    UIWnd::_sdtor_7
+      VA=0x44B98C: 8D9614050000 (lea)
+
+Offset 1304 (0x518):
+  访问次数: 16
+  访问类型:
+    lea: 5
+    load: 9
+    store: 2
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x528364: 8D8E18050000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x5285D0: 8D8E18050000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x5286B3: 8B8618050000 (load)
+
+Offset 1308 (0x51C):
+  访问次数: 1
+  访问类型:
+    load: 1
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x5328E5: 8B8E1C050000 (load)
+
+Offset 1312 (0x520):
+  访问次数: 12
+  访问类型:
+    lea: 7
+    load: 5
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52BAAA: 8D8E20050000 (lea)
+    UIWnd::_nearby_52afc0
+      VA=0x52BDF0: 8D8E20050000 (lea)
+    UIWnd::RenderWithStack
+      VA=0x52BAAA: 8D8E20050000 (lea)
+
+Offset 1316 (0x524):
+  访问次数: 5
+  访问类型:
+    lea: 3
+    load: 2
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x531F10: 8D8E24050000 (lea)
+    UIWnd::_sdtor_38
+      VA=0x532004: 8B8624050000 (load)
+    UIWnd::_sdtor_38
+      VA=0x53200A: 8DBE24050000 (lea)
+
+Offset 1324 (0x52C):
+  访问次数: 6
+  访问类型:
+    load: 5
+    store: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1540: 8B862C050000 (load)
+    UIWnd::SetByte
+      VA=0x4A1641: 8B862C050000 (load)
+    UIWnd::SetByte
+      VA=0x4A16F3: 89862C050000 (store)
+
+Offset 1328 (0x530):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1CB0: 89BE30050000 (store)
+    UIWnd::SetByte
+      VA=0x4A1DAB: 898630050000 (store)
+
+Offset 1340 (0x53C):
+  访问次数: 3
+  访问类型:
+    load_byte: 1
+    store_byte: 2
+  示例:
+    UIWnd::SetByte
+      VA=0x4A160E: C6863C050000 (store_byte)
+    UIWnd::SetByte
+      VA=0x4A16B1: C6863C050000 (store_byte)
+    UIWnd::SetByte
+      VA=0x4A1AA6: 8A863C050000 (load_byte)
+
+Offset 1341 (0x53D):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1607: C6863D050000 (store_byte)
+    UIWnd::SetByte
+      VA=0x4A16AA: C6863D050000 (store_byte)
+
+Offset 1344 (0x540):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1A42: 899E40050000 (store)
+
+Offset 1348 (0x544):
+  访问次数: 7
+  访问类型:
+    lea: 6
+    store: 1
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486DA5: 8D8E44050000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x48702D: 8D8E44050000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490F15: 8D8E44050000 (lea)
+
+Offset 1352 (0x548):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1AFD: 898648050000 (store)
+    UIWnd::SetByte
+      VA=0x4A1B1B: 898648050000 (store)
+
+Offset 1356 (0x54C):
+  访问次数: 3
+  访问类型:
+    load: 1
+    store: 2
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1B03: 89864C050000 (store)
+    UIWnd::SetByte
+      VA=0x4A1B11: 8BBE4C050000 (load)
+    UIWnd::SetByte
+      VA=0x4A1B29: 89864C050000 (store)
+
+Offset 1360 (0x550):
+  访问次数: 3
+  访问类型:
+    load_byte: 1
+    store_byte: 2
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1AE6: 8A8650050000 (load_byte)
+    UIWnd::SetByte
+      VA=0x4A1B09: 889E50050000 (store_byte)
+    UIWnd::SetByte
+      VA=0x4A1B2F: C68650050000 (store_byte)
+
+Offset 1364 (0x554):
+  访问次数: 6
+  访问类型:
+    load_byte: 4
+    store_byte: 2
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1601: 889E54050000 (store_byte)
+    UIWnd::SetByte
+      VA=0x4A1623: 8A8654050000 (load_byte)
+    UIWnd::SetByte
+      VA=0x4A1AD5: 8A8654050000 (load_byte)
+
+Offset 1365 (0x555):
+  访问次数: 4
+  访问类型:
+    load_byte: 2
+    store_byte: 2
+  示例:
+    UIWnd::SetByte
+      VA=0x4A153A: 888655050000 (store_byte)
+    UIWnd::SetByte
+      VA=0x4A1A4E: C68655050000 (store_byte)
+    UIWnd::SetByte
+      VA=0x4A1D52: 8A8E55050000 (load_byte)
+
+Offset 1380 (0x564):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::Render_46f2c0
+      VA=0x46FD42: 8D8664050000 (lea)
+
+Offset 1400 (0x578):
+  访问次数: 10
+  访问类型:
+    lea: 10
+  示例:
+    UIWnd::SetByte
+      VA=0x4A2205: 8D8E78050000 (lea)
+    UIWnd::SetByte
+      VA=0x4A23AD: 8D8E78050000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2205: 8D8E78050000 (lea)
+
+Offset 1404 (0x57C):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_17
+      VA=0x455613: 8D8E7C050000 (lea)
+    UIWnd::sub_454AA0
+      VA=0x455613: 8D8E7C050000 (lea)
+
+Offset 1416 (0x588):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x454532: 8D8E88050000 (lea)
+    UIWnd::_sdtor_16
+      VA=0x454541: 8D8E88050000 (lea)
+
+Offset 1420 (0x58C):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x49934E: 8D8E8C050000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x49946E: 8DBE8C050000 (lea)
+
+Offset 1424 (0x590):
+  访问次数: 5
+  访问类型:
+    lea: 5
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x454A16: 8D8E90050000 (lea)
+    UIWnd::_sdtor_16
+      VA=0x454B24: 8D8E90050000 (lea)
+    UIWnd::_sdtor_17
+      VA=0x454A16: 8D8E90050000 (lea)
+
+Offset 1436 (0x59C):
+  访问次数: 8
+  访问类型:
+    lea: 5
+    load: 3
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x5297E9: 8D8E9C050000 (lea)
+    UIWnd::_sdtor_36
+      VA=0x529B7F: 8B869C050000 (load)
+    UIWnd::_sdtor_36
+      VA=0x529B85: 8DBE9C050000 (lea)
+
+Offset 1440 (0x5A0):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_24
+      VA=0x47BFD6: 899EA0050000 (store)
+
+Offset 1456 (0x5B0):
+  访问次数: 8
+  访问类型:
+    lea: 6
+    load: 2
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x528374: 8D8EB0050000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x5285C0: 8D8EB0050000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x528716: 8B96B0050000 (load)
+
+Offset 1464 (0x5B8):
+  访问次数: 1
+  访问类型:
+    fld_float: 1
+  示例:
+    UIWnd::_sdtor_37
+      VA=0x52C5FF: D986B8050000 (fld_float)
+
+Offset 1468 (0x5BC):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x531EFA: 8D8EBC050000 (lea)
+    UIWnd::_sdtor_38
+      VA=0x53205D: 8DBEBC050000 (lea)
+
+Offset 1472 (0x5C0):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E664: 8D8EC0050000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EB67: 8D8EC0050000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EB67: 8D8EC0050000 (lea)
+
+Offset 1476 (0x5C4):
+  访问次数: 1
+  访问类型:
+    fld_float: 1
+  示例:
+    UIWnd::_sdtor_37
+      VA=0x52C5DE: D996C4050000 (fld_float)
+
+Offset 1480 (0x5C8):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_37
+      VA=0x52C2BF: 898EC8050000 (store)
+
+Offset 1484 (0x5CC):
+  访问次数: 3
+  访问类型:
+    load_byte: 1
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_37
+      VA=0x52C5D5: C686CC050000 (store_byte)
+    UIWnd::_sdtor_37
+      VA=0x52C5EA: C686CC050000 (store_byte)
+    UIWnd::_sdtor_37
+      VA=0x52C5F1: 8A86CC050000 (load_byte)
+
+Offset 1492 (0x5D4):
+  访问次数: 1
+  访问类型:
+    fld_float: 1
+  示例:
+    UIWnd::_sdtor_37
+      VA=0x52C5E4: D99ED4050000 (fld_float)
+
+Offset 1496 (0x5D8):
+  访问次数: 7
+  访问类型:
+    lea: 7
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52BAC6: 8D86D8050000 (lea)
+    UIWnd::_nearby_52afc0
+      VA=0x52BDDA: 8D8ED8050000 (lea)
+    UIWnd::RenderWithStack
+      VA=0x52BAC6: 8D86D8050000 (lea)
+
+Offset 1504 (0x5E0):
+  访问次数: 3
+  访问类型:
+    fld_float: 3
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x524560: D986E0050000 (fld_float)
+    UIWnd::_nearby_523e80
+      VA=0x524560: D986E0050000 (fld_float)
+    UIWnd::_sdtor_32
+      VA=0x524560: D986E0050000 (fld_float)
+
+Offset 1544 (0x608):
+  访问次数: 15
+  访问类型:
+    lea: 15
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x523FDA: 8D8E08060000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x524186: 8D8E08060000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x524815: 8DBE08060000 (lea)
+
+Offset 1548 (0x60C):
+  访问次数: 7
+  访问类型:
+    lea: 7
+  示例:
+    UIWnd::_nearby_478870
+      VA=0x479348: 8D860C060000 (lea)
+    UIWnd::_nearby_534dc0
+      VA=0x5356A6: 8D8E0C060000 (lea)
+    UIWnd::_nearby_534fb0
+      VA=0x5356A6: 8D8E0C060000 (lea)
+
+Offset 1552 (0x610):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::SetByte
+      VA=0x4A2215: 8D8E10060000 (lea)
+    UIWnd::SetByte
+      VA=0x4A239D: 8D8E10060000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2215: 8D8E10060000 (lea)
+
+Offset 1556 (0x614):
+  访问次数: 8
+  访问类型:
+    lea: 4
+    store_byte: 4
+  示例:
+    UIWnd::_sdtor_7
+      VA=0x44B879: 888614060000 (store_byte)
+    UIWnd::_sdtor_7
+      VA=0x44B8E4: 888614060000 (store_byte)
+    UIWnd::_sdtor_7
+      VA=0x44B99D: 8D8614060000 (lea)
+
+Offset 1572 (0x624):
+  访问次数: 29
+  访问类型:
+    lea: 21
+    load: 8
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44AC21: 8D8E24060000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AD56: 8D8E24060000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AF4D: 8B8624060000 (load)
+
+Offset 1576 (0x628):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_24
+      VA=0x47BD60: 8D8E28060000 (lea)
+    UIWnd::_sdtor_24
+      VA=0x47C09E: 8DBE28060000 (lea)
+
+Offset 1588 (0x634):
+  访问次数: 3
+  访问类型:
+    load: 3
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529B2C: 8B8E34060000 (load)
+    UIWnd::_sdtor_36
+      VA=0x529FDD: 8B8E34060000 (load)
+    UIWnd::_sdtor_36
+      VA=0x52A0F2: 8B8634060000 (load)
+
+Offset 1592 (0x638):
+  访问次数: 9
+  访问类型:
+    lea: 6
+    load: 3
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486DB5: 8D8E38060000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x487022: 8D8E38060000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490F25: 8D8E38060000 (lea)
+
+Offset 1596 (0x63C):
+  访问次数: 3
+  访问类型:
+    lea: 1
+    load: 2
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529EB7: 8B963C060000 (load)
+    UIWnd::_sdtor_36
+      VA=0x529F39: 8D863C060000 (lea)
+    UIWnd::_sdtor_36
+      VA=0x52A63B: 8B863C060000 (load)
+
+Offset 1600 (0x640):
+  访问次数: 1
+  访问类型:
+    load: 1
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529EBD: 8B8E40060000 (load)
+
+Offset 1604 (0x644):
+  访问次数: 2
+  访问类型:
+    load: 2
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529EB1: 8B8644060000 (load)
+    UIWnd::_sdtor_36
+      VA=0x52A572: 8B9644060000 (load)
+
+Offset 1608 (0x648):
+  访问次数: 11
+  访问类型:
+    lea: 6
+    load: 5
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x528384: 8D8E48060000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x5285B0: 8D8E48060000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x52899A: 8B9648060000 (load)
+
+Offset 1612 (0x64C):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529D13: 8D864C060000 (lea)
+
+Offset 1624 (0x658):
+  访问次数: 9
+  访问类型:
+    lea: 4
+    load: 3
+    store: 2
+  示例:
+    UIWnd::_sdtor_26
+      VA=0x4835AE: 8D8E58060000 (lea)
+    UIWnd::_sdtor_0520
+      VA=0x4B0773: 8D8E58060000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525757: 8D8E58060000 (lea)
+
+Offset 1628 (0x65C):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x52A3EE: 8B865C060000 (load)
+    UIWnd::_sdtor_36
+      VA=0x52A404: 89865C060000 (store)
+
+Offset 1632 (0x660):
+  访问次数: 7
+  访问类型:
+    lea: 4
+    load: 2
+    store: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1F00: 8D8E60060000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2627: 8D8E60060000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2966: 8B8660060000 (load)
+
+Offset 1636 (0x664):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x52A25A: 8B9664060000 (load)
+    UIWnd::_sdtor_36
+      VA=0x52A269: 899664060000 (store)
+
+Offset 1640 (0x668):
+  访问次数: 6
+  访问类型:
+    lea: 5
+    load: 1
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49158A: 8D8E68060000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x4918CD: 8B9668060000 (load)
+    UIWnd::_sdtor_28
+      VA=0x4918D9: 8D8E68060000 (lea)
+
+Offset 1641 (0x669):
+  访问次数: 5
+  访问类型:
+    lea: 5
+  示例:
+    UIWnd::sub_45ADD0
+      VA=0x45B2B8: 8D9069060000 (lea)
+    UIWnd::sub_45ADD0
+      VA=0x45B3D8: 8D9069060000 (lea)
+    UIWnd::sub_45ADD0
+      VA=0x45B4F8: 8D9069060000 (lea)
+
+Offset 1648 (0x670):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_37
+      VA=0x52C069: 8DAE70060000 (lea)
+    UIWnd::_sub_52CAF0
+      VA=0x52D6CA: 8D8E70060000 (lea)
+
+Offset 1680 (0x690):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F702: 8DBE90060000 (lea)
+    UIWnd::_nearby_52f300
+      VA=0x52F702: 8DBE90060000 (lea)
+
+Offset 1692 (0x69C):
+  访问次数: 6
+  访问类型:
+    load: 6
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529CFB: 8B869C060000 (load)
+    UIWnd::_sdtor_36
+      VA=0x529E10: 8B8E9C060000 (load)
+    UIWnd::_sdtor_36
+      VA=0x529EDB: 8B869C060000 (load)
+
+Offset 1704 (0x6A8):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::SetByte
+      VA=0x4A2225: 8D8EA8060000 (lea)
+    UIWnd::SetByte
+      VA=0x4A238D: 8D8EA8060000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2225: 8D8EA8060000 (lea)
+
+Offset 1708 (0x6AC):
+  访问次数: 4
+  访问类型:
+    load: 4
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x52A351: 8B8EAC060000 (load)
+    UIWnd::_sdtor_36
+      VA=0x52A578: 8B86AC060000 (load)
+    UIWnd::_sdtor_36
+      VA=0x52A635: 8B8EAC060000 (load)
+
+Offset 1724 (0x6BC):
+  访问次数: 8
+  访问类型:
+    load: 7
+    store: 1
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x527A13: 8B8EBC060000 (load)
+    UIWnd::_sdtor_79d0
+      VA=0x527B5D: 8986BC060000 (store)
+    UIWnd::_sdtor_79d0
+      VA=0x527BA6: 8B8EBC060000 (load)
+
+Offset 1728 (0x6C0):
+  访问次数: 29
+  访问类型:
+    lea: 21
+    load: 7
+    store: 1
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x527A36: 8B8EC0060000 (load)
+    UIWnd::_sdtor_79d0
+      VA=0x527B9B: 8986C0060000 (store)
+    UIWnd::_sdtor_79d0
+      VA=0x527BAC: 8B96C0060000 (load)
+
+Offset 1736 (0x6C8):
+  访问次数: 8
+  访问类型:
+    load: 7
+    store: 1
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x523E89: 8B8EC8060000 (load)
+    UIWnd::_nearby_523e80
+      VA=0x523E89: 8B8EC8060000 (load)
+    UIWnd::_sdtor_79d0
+      VA=0x527BC4: 8986C8060000 (store)
+
+Offset 1740 (0x6CC):
+  访问次数: 6
+  访问类型:
+    load: 4
+    store_byte: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x523E94: 8B8ECC060000 (load)
+    UIWnd::_nearby_523e70
+      VA=0x523EA0: 8B8ECC060000 (load)
+    UIWnd::_nearby_523e80
+      VA=0x523E94: 8B8ECC060000 (load)
+
+Offset 1744 (0x6D0):
+  访问次数: 7
+  访问类型:
+    lea: 6
+    store: 1
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486DC5: 8D8ED0060000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x48700D: 8D8ED0060000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490F35: 8D8ED0060000 (lea)
+
+Offset 1748 (0x6D4):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x527C5E: 8986D4060000 (store)
+
+Offset 1752 (0x6D8):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    store: 1
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x527C58: 8986D8060000 (store)
+    UIWnd::_nearby_52ec80
+      VA=0x52F71B: 8DBED8060000 (lea)
+    UIWnd::_nearby_52f300
+      VA=0x52F71B: 8DBED8060000 (lea)
+
+Offset 1756 (0x6DC):
+  访问次数: 1
+  访问类型:
+    load_byte: 1
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x527AD5: 8A96DC060000 (load_byte)
+
+Offset 1760 (0x6E0):
+  访问次数: 7
+  访问类型:
+    lea: 5
+    load: 2
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x528394: 8D8EE0060000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x5285A0: 8D8EE0060000 (lea)
+    UIWnd::_sdtor_35
+      VA=0x5285A0: 8D8EE0060000 (lea)
+
+Offset 1776 (0x6F0):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525747: 8D8EF0060000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525EEC: 8B96F0060000 (load)
+    UIWnd::_sdtor_33
+      VA=0x525F03: 8DBEF0060000 (lea)
+
+Offset 1784 (0x6F8):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_24
+      VA=0x47C11F: 899EF8060000 (store)
+
+Offset 1792 (0x700):
+  访问次数: 11
+  访问类型:
+    lea: 8
+    load: 3
+  示例:
+    UIWnd::_nearby_452fc0
+      VA=0x453D76: 8D8E00070000 (lea)
+    UIWnd::_nearby_452fc0
+      VA=0x453F26: 8D8E00070000 (lea)
+    UIWnd::_sdtor_15
+      VA=0x453D76: 8D8E00070000 (lea)
+
+Offset 1800 (0x708):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_37
+      VA=0x52C0F6: 8B8608070000 (load)
+    UIWnd::_sdtor_37
+      VA=0x52C100: 8DAE08070000 (lea)
+    UIWnd::_sub_52CAF0
+      VA=0x52D6EA: 8D8E08070000 (lea)
+
+Offset 1804 (0x70C):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_nearby_534dc0
+      VA=0x5356B4: 8D960C070000 (lea)
+    UIWnd::_nearby_534fb0
+      VA=0x5356B4: 8D960C070000 (lea)
+    UIWnd::_nearby_5350c0
+      VA=0x5356B4: 8D960C070000 (lea)
+
+Offset 1812 (0x714):
+  访问次数: 6
+  访问类型:
+    lea: 2
+    store_byte: 4
+  示例:
+    UIWnd::_sdtor_7
+      VA=0x44B87F: 888614070000 (store_byte)
+    UIWnd::_sdtor_7
+      VA=0x44B8EA: 888614070000 (store_byte)
+    UIWnd::_sdtor_7
+      VA=0x44B9AF: 8D8E14070000 (lea)
+
+Offset 1816 (0x718):
+  访问次数: 54
+  访问类型:
+    lea: 3
+    load: 51
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E674: 8D8E18070000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EB57: 8D8E18070000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EB57: 8D8E18070000 (lea)
+
+Offset 1832 (0x728):
+  访问次数: 16
+  访问类型:
+    lea: 8
+    load: 8
+  示例:
+    UIWnd::_sdtor_17
+      VA=0x45535B: 8B8628070000 (load)
+    UIWnd::_sdtor_17
+      VA=0x455361: 8DBE28070000 (lea)
+    UIWnd::_sdtor_17
+      VA=0x455807: 8B8628070000 (load)
+
+Offset 1836 (0x72C):
+  访问次数: 4
+  访问类型:
+    load_byte: 2
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x52A2D1: 8A862C070000 (load_byte)
+    UIWnd::_sdtor_36
+      VA=0x52A2FF: C6862C070000 (store_byte)
+    UIWnd::_sdtor_36
+      VA=0x52A3AF: 8A862C070000 (load_byte)
+
+Offset 1840 (0x730):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x5297D9: 8D8E30070000 (lea)
+    UIWnd::_sdtor_36
+      VA=0x529AC9: 8B9630070000 (load)
+    UIWnd::_sdtor_36
+      VA=0x529ACF: 8DBE30070000 (lea)
+
+Offset 1888 (0x760):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x523FEA: 8D8E60070000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x524176: 8D8E60070000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x52488C: 8DBE60070000 (lea)
+
+Offset 1896 (0x768):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486DD5: 8D8E68070000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486FFD: 8D8E68070000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490F45: 8D8E68070000 (lea)
+
+Offset 1912 (0x778):
+  访问次数: 5
+  访问类型:
+    lea: 5
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x5283A4: 8D8E78070000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x528590: 8D8E78070000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x5288CE: 8D9E78070000 (lea)
+
+Offset 1916 (0x77C):
+  访问次数: 24
+  访问类型:
+    lea: 22
+    load: 2
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44AC31: 8D8E7C070000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AD46: 8D8E7C070000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AFA6: 8DBE7C070000 (lea)
+
+Offset 1920 (0x780):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_24
+      VA=0x47BD50: 8D8E80070000 (lea)
+
+Offset 1928 (0x788):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525737: 8D8E88070000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525FCC: 8B8688070000 (load)
+    UIWnd::_sdtor_33
+      VA=0x525FD2: 8DBE88070000 (lea)
+
+Offset 1948 (0x79C):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::SetByte
+      VA=0x4A2235: 8D8E9C070000 (lea)
+    UIWnd::SetByte
+      VA=0x4A237D: 8D8E9C070000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2235: 8D8E9C070000 (lea)
+
+Offset 1952 (0x7A0):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_37
+      VA=0x52C15C: 8DAEA0070000 (lea)
+    UIWnd::_sub_52CAF0
+      VA=0x52D70A: 8D8EA0070000 (lea)
+
+Offset 1968 (0x7B0):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_26
+      VA=0x48359E: 8D8EB0070000 (lea)
+    UIWnd::_sdtor_0520
+      VA=0x4B0763: 8D8EB0070000 (lea)
+
+Offset 1976 (0x7B8):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1F10: 8D8EB8070000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2617: 8D8EB8070000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A28EF: 8D8EB8070000 (lea)
+
+Offset 1980 (0x7BC):
+  访问次数: 4
+  访问类型:
+    load: 2
+    store: 2
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x528970: 8B86BC070000 (load)
+    UIWnd::_sdtor_79d0
+      VA=0x528980: 8986BC070000 (store)
+    UIWnd::_sdtor_35
+      VA=0x528970: 8B86BC070000 (load)
+
+Offset 1984 (0x7C0):
+  访问次数: 12
+  访问类型:
+    lea: 7
+    load: 5
+  示例:
+    UIWnd::_sdtor_17
+      VA=0x4553BB: 8B86C0070000 (load)
+    UIWnd::_sdtor_17
+      VA=0x4553C1: 8DBEC0070000 (lea)
+    UIWnd::_sdtor_17
+      VA=0x455817: 8B96C0070000 (load)
+
+Offset 1988 (0x7C4):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x528907: 8DAEC4070000 (lea)
+    UIWnd::_sdtor_35
+      VA=0x528907: 8DAEC4070000 (lea)
+
+Offset 1992 (0x7C8):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x5297C9: 8D8EC8070000 (lea)
+    UIWnd::_sdtor_36
+      VA=0x529A8E: 8DBEC8070000 (lea)
+
+Offset 2060 (0x80C):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_nearby_534dc0
+      VA=0x5356C2: 8D860C080000 (lea)
+    UIWnd::_nearby_534fb0
+      VA=0x5356C2: 8D860C080000 (lea)
+    UIWnd::_nearby_5350c0
+      VA=0x5356C2: 8D860C080000 (lea)
+
+Offset 2080 (0x820):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525721: 8D8E20080000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525C48: 8DBE20080000 (lea)
+
+Offset 2100 (0x834):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::SetByte
+      VA=0x4A2245: 8D8E34080000 (lea)
+    UIWnd::SetByte
+      VA=0x4A236D: 8D8E34080000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2245: 8D8E34080000 (lea)
+
+Offset 2104 (0x838):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    store: 1
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52BB67: 8D8638080000 (lea)
+    UIWnd::RenderWithStack
+      VA=0x52BB67: 8D8638080000 (lea)
+    UIWnd::_sub_52CAF0
+      VA=0x52D695: 899E38080000 (store)
+
+Offset 2108 (0x83C):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sub_52CAF0
+      VA=0x52D69B: 89AE3C080000 (store)
+    UIWnd::_sub_52CAF0
+      VA=0x52D6BD: 8B963C080000 (load)
+
+Offset 2112 (0x840):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sub_52CAF0
+      VA=0x52D6A1: 89BE40080000 (store)
+    UIWnd::_sub_52CAF0
+      VA=0x52D6DD: 8B9640080000 (load)
+
+Offset 2116 (0x844):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sub_52CAF0
+      VA=0x52D689: 899644080000 (store)
+    UIWnd::_sub_52CAF0
+      VA=0x52D6FD: 8B9644080000 (load)
+
+Offset 2120 (0x848):
+  访问次数: 13
+  访问类型:
+    lea: 9
+    load: 4
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52BADC: 8D8E48080000 (lea)
+    UIWnd::_nearby_52afc0
+      VA=0x52BDC3: 8D8E48080000 (lea)
+    UIWnd::_nearby_52afc0
+      VA=0x52BEF8: 8B9648080000 (load)
+
+Offset 2136 (0x858):
+  访问次数: 7
+  访问类型:
+    lea: 6
+    load: 1
+  示例:
+    UIWnd::_nearby_452fc0
+      VA=0x453D86: 8D8E58080000 (lea)
+    UIWnd::_nearby_452fc0
+      VA=0x453F16: 8D8E58080000 (lea)
+    UIWnd::_sdtor_15
+      VA=0x453D86: 8D8E58080000 (lea)
+
+Offset 2140 (0x85C):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486DE5: 8D8E5C080000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486FED: 8D8E5C080000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490F55: 8D8E5C080000 (lea)
+
+Offset 2144 (0x860):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44EF90: 8D8660080000 (lea)
+    UIWnd::Layout_44e980
+      VA=0x44F0C4: 8D8E60080000 (lea)
+    UIWnd::Layout_44e980
+      VA=0x44F2FA: 8DBE60080000 (lea)
+
+Offset 2148 (0x864):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::Render_46f2c0
+      VA=0x46F80C: 8D8664080000 (lea)
+
+Offset 2160 (0x870):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E684: 8D8E70080000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EB47: 8D8E70080000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EB47: 8D8E70080000 (lea)
+
+Offset 2184 (0x888):
+  访问次数: 10
+  访问类型:
+    lea: 8
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529BB7: C68688080000 (store_byte)
+    UIWnd::_sdtor_36
+      VA=0x52A084: C68688080000 (store_byte)
+    UIWnd::_nearby_5355f0
+      VA=0x5364BB: 8D8E88080000 (lea)
+
+Offset 2188 (0x88C):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529C77: 89868C080000 (store)
+
+Offset 2192 (0x890):
+  访问次数: 6
+  访问类型:
+    lea: 5
+    store: 1
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x454A2C: 8D8E90080000 (lea)
+    UIWnd::_sdtor_16
+      VA=0x454B0D: 8D8E90080000 (lea)
+    UIWnd::_sdtor_17
+      VA=0x454A2C: 8D8E90080000 (lea)
+
+Offset 2196 (0x894):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529C08: 898694080000 (store)
+
+Offset 2200 (0x898):
+  访问次数: 4
+  访问类型:
+    load_byte: 4
+  示例:
+    UIWnd::_sdtor_36
+      VA=0x529932: 8A8E98080000 (load_byte)
+    UIWnd::_sdtor_36
+      VA=0x529B64: 8A9698080000 (load_byte)
+    UIWnd::_sdtor_36
+      VA=0x529B9B: 8A9698080000 (load_byte)
+
+Offset 2212 (0x8A4):
+  访问次数: 9
+  访问类型:
+    lea: 2
+    load: 5
+    store: 2
+  示例:
+    UIWnd::_nearby_44da30
+      VA=0x44E586: 89BEA4080000 (store)
+    UIWnd::_nearby_44da30
+      VA=0x44E8E4: 898EA4080000 (store)
+    UIWnd::_nearby_44da30
+      VA=0x44E997: 8B86A4080000 (load)
+
+Offset 2216 (0x8A8):
+  访问次数: 3
+  访问类型:
+    load: 2
+    store: 1
+  示例:
+    UIWnd::_nearby_44da30
+      VA=0x44E92B: 898EA8080000 (store)
+    UIWnd::_nearby_44da30
+      VA=0x44E9A8: 8B8EA8080000 (load)
+    UIWnd::Layout_44e980
+      VA=0x44E9A8: 8B8EA8080000 (load)
+
+Offset 2220 (0x8AC):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x5283B9: 8DBEAC080000 (lea)
+
+Offset 2224 (0x8B0):
+  访问次数: 7
+  访问类型:
+    lea: 5
+    store: 2
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x5289A0: 8986B0080000 (store)
+    UIWnd::_sdtor_35
+      VA=0x5289A0: 8986B0080000 (store)
+    UIWnd::_nearby_52ec80
+      VA=0x52F73E: 8D8EB0080000 (lea)
+
+Offset 2228 (0x8B4):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x5289E2: 89AEB4080000 (store)
+
+Offset 2232 (0x8B8):
+  访问次数: 5
+  访问类型:
+    fld_float: 3
+    store: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x524005: 899EB8080000 (store)
+    UIWnd::_nearby_523e70
+      VA=0x524B7D: D996B8080000 (fld_float)
+    UIWnd::_nearby_523e80
+      VA=0x524005: 899EB8080000 (store)
+
+Offset 2236 (0x8BC):
+  访问次数: 10
+  访问类型:
+    lea: 8
+    store: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x523FFA: 8D8EBC080000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x524166: 8D8EBC080000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x52493E: 8D8EBC080000 (lea)
+
+Offset 2240 (0x8C0):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x5289F2: 89AEC0080000 (store)
+
+Offset 2248 (0x8C8):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x5289B7: 8986C8080000 (store)
+    UIWnd::_sdtor_35
+      VA=0x5289B7: 8986C8080000 (store)
+
+Offset 2252 (0x8CC):
+  访问次数: 5
+  访问类型:
+    lea: 4
+    store: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A2255: 8D8ECC080000 (lea)
+    UIWnd::SetByte
+      VA=0x4A235D: 8D8ECC080000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2255: 8D8ECC080000 (lea)
+
+Offset 2256 (0x8D0):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x528A08: 89AED0080000 (store)
+
+Offset 2260 (0x8D4):
+  访问次数: 11
+  访问类型:
+    lea: 8
+    load: 1
+    store: 2
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x4592C0: 8D8ED4080000 (lea)
+    UIWnd::_sdtor_19
+      VA=0x459648: 8B86D4080000 (load)
+    UIWnd::_sdtor_19
+      VA=0x45964F: 8DBED4080000 (lea)
+
+Offset 2264 (0x8D8):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x528A0E: 89AED8080000 (store)
+
+Offset 2272 (0x8E0):
+  访问次数: 12
+  访问类型:
+    lea: 9
+    load: 1
+    store: 2
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x5289C3: 8986E0080000 (store)
+    UIWnd::_sdtor_35
+      VA=0x5289C3: 8986E0080000 (store)
+    UIWnd::_nearby_52afc0
+      VA=0x52BAEC: 8D8EE0080000 (lea)
+
+Offset 2276 (0x8E4):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x528A1E: 89AEE4080000 (store)
+
+Offset 2280 (0x8E8):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x5283D2: 8D8EE8080000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x528580: 8D8EE8080000 (lea)
+    UIWnd::_sdtor_35
+      VA=0x528580: 8D8EE8080000 (lea)
+
+Offset 2288 (0x8F0):
+  访问次数: 7
+  访问类型:
+    lea: 6
+    load: 1
+  示例:
+    UIWnd::_nearby_452fc0
+      VA=0x453D96: 8D8EF0080000 (lea)
+    UIWnd::_nearby_452fc0
+      VA=0x453F06: 8D8EF0080000 (lea)
+    UIWnd::_sdtor_15
+      VA=0x453D96: 8D8EF0080000 (lea)
+
+Offset 2292 (0x8F4):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486DF5: 8D8EF4080000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486FDD: 8D8EF4080000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490F65: 8D8EF4080000 (lea)
+
+Offset 2312 (0x908):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_26
+      VA=0x48358E: 8D8E08090000 (lea)
+    UIWnd::_sdtor_0520
+      VA=0x4B0753: 8D8E08090000 (lea)
+
+Offset 2316 (0x90C):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_nearby_534dc0
+      VA=0x5356D0: 8D8E0C090000 (lea)
+    UIWnd::_nearby_534fb0
+      VA=0x5356D0: 8D8E0C090000 (lea)
+    UIWnd::_nearby_5350c0
+      VA=0x5356D0: 8D8E0C090000 (lea)
+
+Offset 2320 (0x910):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1F20: 8D8E10090000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2607: 8D8E10090000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2883: 8D8E10090000 (lea)
+
+Offset 2328 (0x918):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49156A: 8D8E18090000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x49179A: 8D8E18090000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x491BF0: 8D8E18090000 (lea)
+
+Offset 2344 (0x928):
+  访问次数: 5
+  访问类型:
+    lea: 5
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x454A3C: 8D8E28090000 (lea)
+    UIWnd::_sdtor_16
+      VA=0x454AFD: 8D8E28090000 (lea)
+    UIWnd::_sdtor_17
+      VA=0x454A3C: 8D8E28090000 (lea)
+
+Offset 2348 (0x92C):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x528B6A: 8B862C090000 (load)
+    UIWnd::_sdtor_35
+      VA=0x528B77: 89862C090000 (store)
+
+Offset 2356 (0x934):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x528B1E: 8D9E34090000 (lea)
+
+Offset 2372 (0x944):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B167: 8D8E44090000 (lea)
+    UIWnd::Layout_44a790
+      VA=0x44B167: 8D8E44090000 (lea)
+    UIWnd::_sdtor_7
+      VA=0x44B167: 8D8E44090000 (lea)
+
+Offset 2404 (0x964):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::SetByte
+      VA=0x4A2265: 8D8E64090000 (lea)
+    UIWnd::SetByte
+      VA=0x4A234D: 8D8E64090000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2265: 8D8E64090000 (lea)
+
+Offset 2424 (0x978):
+  访问次数: 8
+  访问类型:
+    lea: 7
+    load: 1
+  示例:
+    UIWnd::_nearby_52afc0
+      VA=0x52BB08: 8D8E78090000 (lea)
+    UIWnd::_nearby_52afc0
+      VA=0x52BD9D: 8D8678090000 (lea)
+    UIWnd::RenderWithStack
+      VA=0x52BB08: 8D8E78090000 (lea)
+
+Offset 2440 (0x988):
+  访问次数: 7
+  访问类型:
+    lea: 6
+    load: 1
+  示例:
+    UIWnd::_nearby_452fc0
+      VA=0x453DA6: 8D8E88090000 (lea)
+    UIWnd::_nearby_452fc0
+      VA=0x453EF6: 8D8E88090000 (lea)
+    UIWnd::_sdtor_15
+      VA=0x453DA6: 8D8E88090000 (lea)
+
+Offset 2444 (0x98C):
+  访问次数: 8
+  访问类型:
+    fld_float: 2
+    lea: 6
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486E05: 8D8E8C090000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486FCD: 8D8E8C090000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490F75: 8D8E8C090000 (lea)
+
+Offset 2456 (0x998):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47DDBD: 8D8E98090000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47E363: 8D8E98090000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47E440: 8D8E98090000 (lea)
+
+Offset 2496 (0x9C0):
+  访问次数: 5
+  访问类型:
+    lea: 5
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x454A58: 8D96C0090000 (lea)
+    UIWnd::_sdtor_16
+      VA=0x454AE7: 8D86C0090000 (lea)
+    UIWnd::_sdtor_17
+      VA=0x454A58: 8D96C0090000 (lea)
+
+Offset 2504 (0x9C8):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E694: 8D8EC8090000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EB37: 8D8EC8090000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EB37: 8D8EC8090000 (lea)
+
+Offset 2556 (0x9FC):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::SetByte
+      VA=0x4A2275: 8D8EFC090000 (lea)
+    UIWnd::SetByte
+      VA=0x4A233D: 8D8EFC090000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2275: 8D8EFC090000 (lea)
+
+Offset 2572 (0xA0C):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_nearby_534dc0
+      VA=0x5356DE: 8D960C0A0000 (lea)
+    UIWnd::_nearby_534fb0
+      VA=0x5356DE: 8D960C0A0000 (lea)
+    UIWnd::_nearby_5350c0
+      VA=0x5356DE: 8D960C0A0000 (lea)
+
+Offset 2576 (0xA10):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sub_52CAF0
+      VA=0x52CD9E: 8D8E100A0000 (lea)
+    UIWnd::_sub_52CD40
+      VA=0x52D042: 8B87100A0000 (load)
+    UIWnd::_sub_52CD40
+      VA=0x52D048: 8D8F100A0000 (lea)
+
+Offset 2588 (0xA1C):
+  访问次数: 7
+  访问类型:
+    lea: 5
+    load: 2
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x5283DD: 8D8E1C0A0000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x528570: 8D8E1C0A0000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x52883A: 8B961C0A0000 (load)
+
+Offset 2592 (0xA20):
+  访问次数: 7
+  访问类型:
+    lea: 6
+    load: 1
+  示例:
+    UIWnd::_nearby_452fc0
+      VA=0x453DB6: 8D8E200A0000 (lea)
+    UIWnd::_nearby_452fc0
+      VA=0x453EE6: 8D8E200A0000 (lea)
+    UIWnd::_sdtor_15
+      VA=0x453DB6: 8D8E200A0000 (lea)
+
+Offset 2596 (0xA24):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486E15: 8D8E240A0000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486FBD: 8D8E240A0000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490F85: 8D8E240A0000 (lea)
+
+Offset 2604 (0xA2C):
+  访问次数: 4
+  访问类型:
+    lea: 3
+    load: 1
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x49930E: 8D8E2C0A0000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x499596: 8B862C0A0000 (load)
+    UIWnd::_sdtor_29
+      VA=0x4995A3: 8D8E2C0A0000 (lea)
+
+Offset 2608 (0xA30):
+  访问次数: 6
+  访问类型:
+    lea: 5
+    load: 1
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x4592B0: 8D8E300A0000 (lea)
+    UIWnd::_sdtor_19
+      VA=0x4596BC: 8B86300A0000 (load)
+    UIWnd::_sdtor_19
+      VA=0x4596C3: 8DBE300A0000 (lea)
+
+Offset 2656 (0xA60):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_26
+      VA=0x48357E: 8D8E600A0000 (lea)
+    UIWnd::_sdtor_0520
+      VA=0x4B0743: 8D8E600A0000 (lea)
+
+Offset 2664 (0xA68):
+  访问次数: 6
+  访问类型:
+    lea: 5
+    load: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1F30: 8D8E680A0000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A25F7: 8D8E680A0000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2A3C: 8B86680A0000 (load)
+
+Offset 2672 (0xA70):
+  访问次数: 5
+  访问类型:
+    lea: 4
+    load: 1
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49155A: 8D8E700A0000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x4919A3: 8B96700A0000 (load)
+    UIWnd::_sdtor_28
+      VA=0x4919AF: 8D8E700A0000 (lea)
+
+Offset 2708 (0xA94):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::SetByte
+      VA=0x4A2285: 8D8E940A0000 (lea)
+    UIWnd::SetByte
+      VA=0x4A232D: 8D8E940A0000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2285: 8D8E940A0000 (lea)
+
+Offset 2728 (0xAA8):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sub_52CAF0
+      VA=0x52CDD8: 8D8EA80A0000 (lea)
+    UIWnd::_sub_52CD40
+      VA=0x52D051: 8B97A80A0000 (load)
+    UIWnd::_sub_52CD40
+      VA=0x52D057: 8D8FA80A0000 (lea)
+
+Offset 2736 (0xAB0):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_nearby_478870
+      VA=0x479361: 8D86B00A0000 (lea)
+
+Offset 2740 (0xAB4):
+  访问次数: 7
+  访问类型:
+    lea: 5
+    load: 2
+  示例:
+    UIWnd::_sdtor_79d0
+      VA=0x5283ED: 8D8EB40A0000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x528560: 8D8EB40A0000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x528888: 8B96B40A0000 (load)
+
+Offset 2744 (0xAB8):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_nearby_452fc0
+      VA=0x453DC6: 8D8EB80A0000 (lea)
+    UIWnd::_nearby_452fc0
+      VA=0x453ED6: 8D8EB80A0000 (lea)
+    UIWnd::_sdtor_15
+      VA=0x453DC6: 8D8EB80A0000 (lea)
+
+Offset 2748 (0xABC):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486E25: 8D8EBC0A0000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486FAD: 8D8EBC0A0000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490F95: 8D8EBC0A0000 (lea)
+
+Offset 2828 (0xB0C):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_nearby_534dc0
+      VA=0x5356EC: 8D860C0B0000 (lea)
+    UIWnd::_nearby_534fb0
+      VA=0x5356EC: 8D860C0B0000 (lea)
+    UIWnd::_nearby_5350c0
+      VA=0x5356EC: 8D860C0B0000 (lea)
+
+Offset 2848 (0xB20):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E6A4: 8D8E200B0000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EB27: 8D8E200B0000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EB27: 8D8E200B0000 (lea)
+
+Offset 2860 (0xB2C):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::SetByte
+      VA=0x4A22A1: 8D862C0B0000 (lea)
+    UIWnd::SetByte
+      VA=0x4A2317: 8D862C0B0000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A22A1: 8D862C0B0000 (lea)
+
+Offset 2880 (0xB40):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sub_52CAF0
+      VA=0x52CE08: 8D9E400B0000 (lea)
+    UIWnd::_sub_52CD40
+      VA=0x52D060: 8B87400B0000 (load)
+    UIWnd::_sub_52CD40
+      VA=0x52D066: 8D8F400B0000 (lea)
+
+Offset 2892 (0xB4C):
+  访问次数: 3
+  访问类型:
+    load_byte: 1
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x528CB5: C6864C0B0000 (store_byte)
+    UIWnd::_sdtor_35
+      VA=0x528D18: 889E4C0B0000 (store_byte)
+    UIWnd::_sdtor_35
+      VA=0x528F57: 8A864C0B0000 (load_byte)
+
+Offset 2896 (0xB50):
+  访问次数: 16
+  访问类型:
+    lea: 10
+    load: 5
+    store: 1
+  示例:
+    UIWnd::_nearby_452fc0
+      VA=0x453DD6: 8D8E500B0000 (lea)
+    UIWnd::_nearby_452fc0
+      VA=0x453EC6: 8D8E500B0000 (lea)
+    UIWnd::_sdtor_15
+      VA=0x453DD6: 8D8E500B0000 (lea)
+
+Offset 2900 (0xB54):
+  访问次数: 9
+  访问类型:
+    lea: 9
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486E35: 8D8E540B0000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486F9D: 8D8E540B0000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490FA5: 8D8E540B0000 (lea)
+
+Offset 2912 (0xB60):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E353: 8D8E600B0000 (lea)
+
+Offset 2948 (0xB84):
+  访问次数: 5
+  访问类型:
+    lea: 4
+    load: 1
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x4992FE: 8D8E840B0000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x499744: 8B86840B0000 (load)
+    UIWnd::_sdtor_29
+      VA=0x499751: 8D8E840B0000 (lea)
+
+Offset 2952 (0xB88):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x4592A0: 8D8E880B0000 (lea)
+
+Offset 2988 (0xBAC):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x531EDD: 8D86AC0B0000 (lea)
+    UIWnd::_sdtor_38
+      VA=0x5320C7: 8DBEAC0B0000 (lea)
+    UIWnd::_sdtor_38
+      VA=0x532634: 8DBEAC0B0000 (lea)
+
+Offset 3000 (0xBB8):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_26
+      VA=0x48356E: 8D8EB80B0000 (lea)
+    UIWnd::_sdtor_0520
+      VA=0x4B0733: 8D8EB80B0000 (lea)
+
+Offset 3008 (0xBC0):
+  访问次数: 7
+  访问类型:
+    lea: 5
+    load: 1
+    store_byte: 1
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x4542AE: 889EC00B0000 (store_byte)
+    UIWnd::SetByte
+      VA=0x4A1F40: 8D8EC00B0000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A25E7: 8D8EC00B0000 (lea)
+
+Offset 3016 (0xBC8):
+  访问次数: 5
+  访问类型:
+    lea: 4
+    load: 1
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49154A: 8D8EC80B0000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x491A0E: 8B86C80B0000 (load)
+    UIWnd::_sdtor_28
+      VA=0x491A1B: 8D8EC80B0000 (lea)
+
+Offset 3032 (0xBD8):
+  访问次数: 4
+  访问类型:
+    lea: 3
+    load: 1
+  示例:
+    UIWnd::_sub_52CAF0
+      VA=0x52CE45: 8D9ED80B0000 (lea)
+    UIWnd::_sub_52CD40
+      VA=0x52D06F: 8B97D80B0000 (load)
+    UIWnd::_sub_52CD40
+      VA=0x52D075: 8D8FD80B0000 (lea)
+
+Offset 3048 (0xBE8):
+  访问次数: 8
+  访问类型:
+    lea: 4
+    load: 4
+  示例:
+    UIWnd::_sdtor_17
+      VA=0x45543F: 8B86E80B0000 (load)
+    UIWnd::_sdtor_17
+      VA=0x455445: 8DBEE80B0000 (lea)
+    UIWnd::_sdtor_17
+      VA=0x455837: 8B96E80B0000 (load)
+
+Offset 3052 (0xBEC):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486E45: 8D8EEC0B0000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486F8D: 8D8EEC0B0000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490FB5: 8D8EEC0B0000 (lea)
+
+Offset 3064 (0xBF8):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F754: 8DBEF80B0000 (lea)
+    UIWnd::_nearby_52f300
+      VA=0x52F754: 8DBEF80B0000 (lea)
+
+Offset 3084 (0xC0C):
+  访问次数: 18
+  访问类型:
+    lea: 2
+    load_byte: 8
+    store_byte: 8
+  示例:
+    UIWnd::_sdtor_17
+      VA=0x4556EF: 8D8E0C0C0000 (lea)
+    UIWnd::sub_454AA0
+      VA=0x4556EF: 8D8E0C0C0000 (lea)
+    UIWnd::_nearby_534dc0
+      VA=0x5359D1: 8A860C0C0000 (load_byte)
+
+Offset 3085 (0xC0D):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::_nearby_534dc0
+      VA=0x5359DE: 8D960D0C0000 (lea)
+    UIWnd::_nearby_534fb0
+      VA=0x5359DE: 8D960D0C0000 (lea)
+    UIWnd::_nearby_5350c0
+      VA=0x5359DE: 8D960D0C0000 (lea)
+
+Offset 3096 (0xC18):
+  访问次数: 35
+  访问类型:
+    lea: 30
+    load: 5
+  示例:
+    UIWnd::_nearby_5355f0
+      VA=0x5362A5: 8D8E180C0000 (lea)
+    UIWnd::_nearby_5355f0
+      VA=0x536346: 8D8E180C0000 (lea)
+    UIWnd::_nearby_5355f0
+      VA=0x536417: 8B96180C0000 (load)
+
+Offset 3100 (0xC1C):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F76D: 8DBE1C0C0000 (lea)
+    UIWnd::_nearby_52f300
+      VA=0x52F76D: 8DBE1C0C0000 (lea)
+
+Offset 3104 (0xC20):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x459290: 8D8E200C0000 (lea)
+
+Offset 3112 (0xC28):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525C4E: 8D9E280C0000 (lea)
+
+Offset 3164 (0xC5C):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x52570A: 8D8E5C0C0000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525D09: 8B865C0C0000 (load)
+    UIWnd::_sdtor_33
+      VA=0x525D16: 8D8E5C0C0000 (lea)
+
+Offset 3192 (0xC78):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E6B4: 8D8E780C0000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EB17: 8D8E780C0000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EB17: 8D8E780C0000 (lea)
+
+Offset 3204 (0xC84):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486E55: 8D8E840C0000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486F7D: 8D8E840C0000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490FD1: 8D86840C0000 (lea)
+
+Offset 3216 (0xC90):
+  访问次数: 6
+  访问类型:
+    load: 6
+  示例:
+    UIWnd::_nearby_534dc0
+      VA=0x535633: 8B8E900C0000 (load)
+    UIWnd::_nearby_534fb0
+      VA=0x535633: 8B8E900C0000 (load)
+    UIWnd::_nearby_5350c0
+      VA=0x535633: 8B8E900C0000 (load)
+
+Offset 3236 (0xCA4):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_17
+      VA=0x455711: 8D8EA40C0000 (lea)
+    UIWnd::sub_454AA0
+      VA=0x455711: 8D8EA40C0000 (lea)
+
+Offset 3240 (0xCA8):
+  访问次数: 5
+  访问类型:
+    lea: 5
+  示例:
+    UIWnd::_nearby_452fc0
+      VA=0x453DE6: 8D8EA80C0000 (lea)
+    UIWnd::_nearby_452fc0
+      VA=0x453EB6: 8D8EA80C0000 (lea)
+    UIWnd::_sdtor_15
+      VA=0x453DE6: 8D8EA80C0000 (lea)
+
+Offset 3252 (0xCB4):
+  访问次数: 3
+  访问类型:
+    load: 3
+  示例:
+    UIWnd::_nearby_535930
+      VA=0x5368EA: 8B96B40C0000 (load)
+    UIWnd::_nearby_5359b0
+      VA=0x5368EA: 8B96B40C0000 (load)
+    UIWnd::_nearby_535a60
+      VA=0x5368EA: 8B96B40C0000 (load)
+
+Offset 3256 (0xCB8):
+  访问次数: 11
+  访问类型:
+    lea: 5
+    load: 2
+    store: 4
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x454A6E: 8D8EB80C0000 (lea)
+    UIWnd::_sdtor_16
+      VA=0x454AD0: 8D8EB80C0000 (lea)
+    UIWnd::_sdtor_17
+      VA=0x454A6E: 8D8EB80C0000 (lea)
+
+Offset 3260 (0xCBC):
+  访问次数: 21
+  访问类型:
+    load: 20
+    store: 1
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x459363: 8B8EBC0C0000 (load)
+    UIWnd::_sdtor_19
+      VA=0x459758: 8986BC0C0000 (store)
+    UIWnd::_sdtor_19
+      VA=0x4597B4: 8B8EBC0C0000 (load)
+
+Offset 3264 (0xCC0):
+  访问次数: 20
+  访问类型:
+    load: 19
+    store: 1
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x45937E: 8B8EC00C0000 (load)
+    UIWnd::_sdtor_19
+      VA=0x45978B: 8986C00C0000 (store)
+    UIWnd::_sdtor_19
+      VA=0x4597CA: 8B8EC00C0000 (load)
+
+Offset 3268 (0xCC4):
+  访问次数: 19
+  访问类型:
+    load: 18
+    store: 1
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x459399: 8B8EC40C0000 (load)
+    UIWnd::_sdtor_19
+      VA=0x4597BF: 8986C40C0000 (store)
+    UIWnd::_sdtor_19
+      VA=0x4597D6: 8B8EC40C0000 (load)
+
+Offset 3272 (0xCC8):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x4598F7: 8986C80C0000 (store)
+
+Offset 3276 (0xCCC):
+  访问次数: 5
+  访问类型:
+    lea: 3
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x45988E: 8986CC0C0000 (store)
+    UIWnd::_sdtor_37
+      VA=0x52C731: 8DBECC0C0000 (lea)
+    UIWnd::_sub_52CAF0
+      VA=0x52CEE6: 8D8ECC0C0000 (lea)
+
+Offset 3280 (0xCD0):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_19
+      VA=0x459888: 8986D00C0000 (store)
+
+Offset 3284 (0xCD4):
+  访问次数: 23
+  访问类型:
+    load_byte: 9
+    store_byte: 14
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B0B0: 889ED40C0000 (store_byte)
+    UIWnd::_nearby_44a780
+      VA=0x44B181: 889ED40C0000 (store_byte)
+    UIWnd::_nearby_44a780
+      VA=0x44B3BB: 889ED40C0000 (store_byte)
+
+Offset 3288 (0xCD8):
+  访问次数: 15
+  访问类型:
+    load: 6
+    store: 9
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B0CE: 899ED80C0000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B24E: 8986D80C0000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B260: 8B8ED80C0000 (load)
+
+Offset 3292 (0xCDC):
+  访问次数: 13
+  访问类型:
+    lea: 4
+    load: 1
+    store: 8
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44AC4D: 899EDC0C0000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B28D: 8986DC0C0000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B2AC: 8986DC0C0000 (store)
+
+Offset 3296 (0xCE0):
+  访问次数: 11
+  访问类型:
+    load: 3
+    store: 8
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44AC47: 899EE00C0000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B293: 8986E00C0000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B2A2: 8BBEE00C0000 (load)
+
+Offset 3300 (0xCE4):
+  访问次数: 11
+  访问类型:
+    load_byte: 3
+    store_byte: 8
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44AC41: 889EE40C0000 (store_byte)
+    UIWnd::_nearby_44a780
+      VA=0x44B27B: 8A86E40C0000 (load_byte)
+    UIWnd::_nearby_44a780
+      VA=0x44B299: C686E40C0000 (store_byte)
+
+Offset 3304 (0xCE8):
+  访问次数: 19
+  访问类型:
+    store_byte: 19
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B0C2: 889EE80C0000 (store_byte)
+    UIWnd::_nearby_44a780
+      VA=0x44B1F7: 889EE80C0000 (store_byte)
+    UIWnd::_nearby_44a780
+      VA=0x44B23B: C686E80C0000 (store_byte)
+
+Offset 3305 (0xCE9):
+  访问次数: 13
+  访问类型:
+    store_byte: 13
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B0C8: 889EE90C0000 (store_byte)
+    UIWnd::_nearby_44a780
+      VA=0x44B2D0: C686E90C0000 (store_byte)
+    UIWnd::_nearby_44a780
+      VA=0x44B3B5: 889EE90C0000 (store_byte)
+
+Offset 3308 (0xCEC):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44AC53: 8D8EEC0C0000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AD36: 8D8EEC0C0000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AFEF: 8DBEEC0C0000 (lea)
+
+Offset 3332 (0xD04):
+  访问次数: 4
+  访问类型:
+    fld_float: 1
+    store: 3
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F78E: 89BE040D0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52F78E: 89BE040D0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52FE87: D996040D0000 (fld_float)
+
+Offset 3336 (0xD08):
+  访问次数: 7
+  访问类型:
+    lea: 7
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F788: 8D8E080D0000 (lea)
+    UIWnd::_nearby_52ec80
+      VA=0x52FA76: 8DBE080D0000 (lea)
+    UIWnd::_nearby_52ec80
+      VA=0x52FBDA: 8D8E080D0000 (lea)
+
+Offset 3340 (0xD0C):
+  访问次数: 36
+  访问类型:
+    lea: 26
+    load: 10
+  示例:
+    UIWnd::_nearby_5355f0
+      VA=0x5362B5: 8D8E0C0D0000 (lea)
+    UIWnd::_nearby_5355f0
+      VA=0x536333: 8D8E0C0D0000 (lea)
+    UIWnd::_nearby_5355f0
+      VA=0x536427: 8B860C0D0000 (load)
+
+Offset 3344 (0xD10):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_26
+      VA=0x48355E: 8D8E100D0000 (lea)
+    UIWnd::_sdtor_0520
+      VA=0x4B0723: 8D8E100D0000 (lea)
+
+Offset 3352 (0xD18):
+  访问次数: 5
+  访问类型:
+    lea: 4
+    load: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1F50: 8D8E180D0000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A25D7: 8D8E180D0000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A29D1: 8B96180D0000 (load)
+
+Offset 3356 (0xD1C):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486E65: 8D8E1C0D0000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486F6D: 8D8E1C0D0000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x498DD5: 8D8E1C0D0000 (lea)
+
+Offset 3360 (0xD20):
+  访问次数: 4
+  访问类型:
+    lea: 3
+    load: 1
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49153A: 8D8E200D0000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x491938: 8B86200D0000 (load)
+    UIWnd::_sdtor_28
+      VA=0x491945: 8D8E200D0000 (lea)
+
+Offset 3408 (0xD50):
+  访问次数: 5
+  访问类型:
+    lea: 5
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x454A7E: 8D8E500D0000 (lea)
+    UIWnd::_sdtor_16
+      VA=0x454ABD: 8D8E500D0000 (lea)
+    UIWnd::_sdtor_17
+      VA=0x454A7E: 8D8E500D0000 (lea)
+
+Offset 3412 (0xD54):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x5256FA: 8D8E540D0000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525D64: 8B86540D0000 (load)
+    UIWnd::_sdtor_33
+      VA=0x525D70: 8D8E540D0000 (lea)
+
+Offset 3428 (0xD64):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sub_52CAF0
+      VA=0x52CEF5: 8D9E640D0000 (lea)
+    UIWnd::_sub_52CD40
+      VA=0x52D08D: 8B97640D0000 (load)
+    UIWnd::_sub_52CD40
+      VA=0x52D093: 8D8F640D0000 (lea)
+
+Offset 3492 (0xDA4):
+  访问次数: 13
+  访问类型:
+    load_byte: 8
+    store_byte: 5
+  示例:
+    UIWnd::_nearby_5355f0
+      VA=0x5362DB: C686A40D0000 (store_byte)
+    UIWnd::_nearby_535630
+      VA=0x5362DB: C686A40D0000 (store_byte)
+    UIWnd::_nearby_535630
+      VA=0x536612: 8A96A40D0000 (load_byte)
+
+Offset 3508 (0xDB4):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486E75: 8D8EB40D0000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486F5D: 8D8EB40D0000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x498DE5: 8D8EB40D0000 (lea)
+
+Offset 3536 (0xDD0):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E6C4: 8D8ED00D0000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EB07: 8D8ED00D0000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EB07: 8D8ED00D0000 (lea)
+
+Offset 3580 (0xDFC):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sub_52CAF0
+      VA=0x52CF44: 8D9EFC0D0000 (lea)
+    UIWnd::_sub_52CD40
+      VA=0x52D09C: 8B87FC0D0000 (load)
+    UIWnd::_sub_52CD40
+      VA=0x52D0A2: 8D8FFC0D0000 (lea)
+
+Offset 3584 (0xE00):
+  访问次数: 7
+  访问类型:
+    lea: 6
+    load: 1
+  示例:
+    UIWnd::_nearby_452fc0
+      VA=0x453DF6: 8D8E000E0000 (lea)
+    UIWnd::_nearby_452fc0
+      VA=0x453EA6: 8D8E000E0000 (lea)
+    UIWnd::_sdtor_15
+      VA=0x453DF6: 8D8E000E0000 (lea)
+
+Offset 3616 (0xE20):
+  访问次数: 3
+  访问类型:
+    lea: 1
+    store: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F796: 89BE200E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52F796: 89BE200E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52FF27: 8D86200E0000 (lea)
+
+Offset 3620 (0xE24):
+  访问次数: 7
+  访问类型:
+    lea: 4
+    store: 3
+  示例:
+    UIWnd::SetByte
+      VA=0x4A22B7: 8D8E240E0000 (lea)
+    UIWnd::SetByte
+      VA=0x4A22FD: 8D8E240E0000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A22B7: 8D8E240E0000 (lea)
+
+Offset 3624 (0xE28):
+  访问次数: 3
+  访问类型:
+    store: 3
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F7A2: 89BE280E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52F7A2: 89BE280E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52FF41: 898E280E0000 (store)
+
+Offset 3628 (0xE2C):
+  访问次数: 5
+  访问类型:
+    fld_float: 2
+    lea: 1
+    store: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F7A8: 89BE2C0E0000 (store)
+    UIWnd::_nearby_52ec80
+      VA=0x52FBE7: D9862C0E0000 (fld_float)
+    UIWnd::_nearby_52f300
+      VA=0x52F7A8: 89BE2C0E0000 (store)
+
+Offset 3632 (0xE30):
+  访问次数: 6
+  访问类型:
+    fld_float: 3
+    load: 1
+    store: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F7AE: 89BE300E0000 (store)
+    UIWnd::_nearby_52ec80
+      VA=0x52FBFC: D986300E0000 (fld_float)
+    UIWnd::_nearby_52f300
+      VA=0x52F7AE: 89BE300E0000 (store)
+
+Offset 3636 (0xE34):
+  访问次数: 10
+  访问类型:
+    fld_float: 3
+    lea: 3
+    load: 2
+    store: 2
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x4992DE: 8D8E340E0000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x4996D9: 8B96340E0000 (load)
+    UIWnd::_sdtor_29
+      VA=0x4996E5: 8D8E340E0000 (lea)
+
+Offset 3640 (0xE38):
+  访问次数: 3
+  访问类型:
+    lea: 1
+    store: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F7C5: 89BE380E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52F7C5: 89BE380E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52FEEF: 8D9E380E0000 (lea)
+
+Offset 3644 (0xE3C):
+  访问次数: 3
+  访问类型:
+    fld_float: 1
+    store: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F7CB: 89BE3C0E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52F7CB: 89BE3C0E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52FF54: D9863C0E0000 (fld_float)
+
+Offset 3648 (0xE40):
+  访问次数: 3
+  访问类型:
+    fld_float: 1
+    store: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F7D1: 89BE400E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52F7D1: 89BE400E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52FF7D: D986400E0000 (fld_float)
+
+Offset 3652 (0xE44):
+  访问次数: 7
+  访问类型:
+    lea: 7
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F7BA: 8D8E440E0000 (lea)
+    UIWnd::_nearby_52ec80
+      VA=0x52FA8F: 8D86440E0000 (lea)
+    UIWnd::_nearby_52ec80
+      VA=0x52FBD4: 8DBE440E0000 (lea)
+
+Offset 3660 (0xE4C):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486E85: 8D8E4C0E0000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486F4D: 8D8E4C0E0000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x498DF5: 8D8E4C0E0000 (lea)
+
+Offset 3688 (0xE68):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_26
+      VA=0x483553: 8D8E680E0000 (lea)
+    UIWnd::_sdtor_0520
+      VA=0x4B0713: 8D8E680E0000 (lea)
+
+Offset 3696 (0xE70):
+  访问次数: 6
+  访问类型:
+    lea: 4
+    load: 1
+    store_byte: 1
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x45431F: 889E700E0000 (store_byte)
+    UIWnd::SetByte
+      VA=0x4A1F60: 8D8E700E0000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A25C7: 8D8E700E0000 (lea)
+
+Offset 3700 (0xE74):
+  访问次数: 4
+  访问类型:
+    fld_float: 4
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52FBF6: D99E740E0000 (fld_float)
+    UIWnd::_nearby_52f300
+      VA=0x52FBF6: D99E740E0000 (fld_float)
+    UIWnd::_nearby_52f300
+      VA=0x53016B: D986740E0000 (fld_float)
+
+Offset 3704 (0xE78):
+  访问次数: 8
+  访问类型:
+    fld_float: 4
+    lea: 3
+    load: 1
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49152A: 8D8E780E0000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x491A93: 8B96780E0000 (load)
+    UIWnd::_sdtor_28
+      VA=0x491A9C: 8D8E780E0000 (lea)
+
+Offset 3708 (0xE7C):
+  访问次数: 4
+  访问类型:
+    fld_float: 4
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52FC1A: D99E7C0E0000 (fld_float)
+    UIWnd::_nearby_52f300
+      VA=0x52FC1A: D99E7C0E0000 (fld_float)
+    UIWnd::_nearby_52f300
+      VA=0x53018B: D9867C0E0000 (fld_float)
+
+Offset 3728 (0xE90):
+  访问次数: 4
+  访问类型:
+    fld_float: 1
+    load: 1
+    store: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52FAB2: 899E900E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52FAB2: 899E900E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52FEAC: 8B86900E0000 (load)
+
+Offset 3732 (0xE94):
+  访问次数: 1
+  访问类型:
+    fld_float: 1
+  示例:
+    UIWnd::_nearby_52f300
+      VA=0x52FF17: D986940E0000 (fld_float)
+
+Offset 3736 (0xE98):
+  访问次数: 6
+  访问类型:
+    fld_float: 4
+    store: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52FAB8: 899E980E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52FAB8: 899E980E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x5300A9: D996980E0000 (fld_float)
+
+Offset 3740 (0xE9C):
+  访问次数: 3
+  访问类型:
+    fld_float: 1
+    store: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52FABE: 899E9C0E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52FABE: 899E9C0E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x53015F: D99E9C0E0000 (fld_float)
+
+Offset 3744 (0xEA0):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52FAD4: 889EA00E0000 (store_byte)
+    UIWnd::_nearby_52f300
+      VA=0x52FAD4: 889EA00E0000 (store_byte)
+    UIWnd::_nearby_52f300
+      VA=0x52FEC2: 889EA00E0000 (store_byte)
+
+Offset 3748 (0xEA4):
+  访问次数: 5
+  访问类型:
+    lea: 5
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52F7DD: 8D8EA40E0000 (lea)
+    UIWnd::_nearby_52ec80
+      VA=0x52FAA3: 8D8EA40E0000 (lea)
+    UIWnd::_nearby_52f300
+      VA=0x52F7DD: 8D8EA40E0000 (lea)
+
+Offset 3760 (0xEB0):
+  访问次数: 5
+  访问类型:
+    fld_float: 3
+    store: 2
+  示例:
+    UIWnd::_nearby_52ec80
+      VA=0x52FACE: 899EB00E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x52FACE: 899EB00E0000 (store)
+    UIWnd::_nearby_52f300
+      VA=0x53019D: D986B00E0000 (fld_float)
+
+Offset 3812 (0xEE4):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486E95: 8D8EE40E0000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486F3D: 8D8EE40E0000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x498E05: 8D8EE40E0000 (lea)
+
+Offset 3824 (0xEF0):
+  访问次数: 4
+  访问类型:
+    lea: 3
+    load: 1
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E0ED: 8D9EF00E0000 (lea)
+    UIWnd::_sub_52CAF0
+      VA=0x52CFEE: 8D8EF00E0000 (lea)
+    UIWnd::_sub_52CD40
+      VA=0x52D0AB: 8B97F00E0000 (load)
+
+Offset 3829 (0xEF5):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E174: C686F50E0000 (store_byte)
+    UIWnd::_sub_47DD90
+      VA=0x47E26A: C686F50E0000 (store_byte)
+    UIWnd::_sub_47DD90
+      VA=0x47E493: C686F50E0000 (store_byte)
+
+Offset 3830 (0xEF6):
+  访问次数: 5
+  访问类型:
+    load_byte: 1
+    store_byte: 4
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E17B: C686F60E0000 (store_byte)
+    UIWnd::_sub_47DD90
+      VA=0x47E271: C686F60E0000 (store_byte)
+    UIWnd::_sub_47DD90
+      VA=0x47E3E5: 8A86F60E0000 (load_byte)
+
+Offset 3868 (0xF1C):
+  访问次数: 8
+  访问类型:
+    store_byte: 8
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x52401B: 889E1C0F0000 (store_byte)
+    UIWnd::_nearby_523e70
+      VA=0x524C1D: C6861C0F0000 (store_byte)
+    UIWnd::_nearby_523e70
+      VA=0x524C3B: C6861C0F0000 (store_byte)
+
+Offset 3872 (0xF20):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x524021: 899E200F0000 (store)
+    UIWnd::_nearby_523e80
+      VA=0x524021: 899E200F0000 (store)
+
+Offset 3876 (0xF24):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x524010: 8D8E240F0000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x524153: 8D8E240F0000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x524907: 8DBE240F0000 (lea)
+
+Offset 3880 (0xF28):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E6D4: 8D8E280F0000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EAF7: 8D8E280F0000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EAF7: 8D8E280F0000 (lea)
+
+Offset 3904 (0xF40):
+  访问次数: 26
+  访问类型:
+    lea: 17
+    load: 9
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44EFA6: 8D8E400F0000 (lea)
+    UIWnd::Layout_44e980
+      VA=0x44F0AD: 8D8E400F0000 (lea)
+    UIWnd::Layout_44e980
+      VA=0x44F2CD: 8DBE400F0000 (lea)
+
+Offset 3924 (0xF54):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_nearby_478870
+      VA=0x47937A: 8D86540F0000 (lea)
+
+Offset 3928 (0xF58):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_nearby_452fc0
+      VA=0x453E06: 8D8E580F0000 (lea)
+    UIWnd::_nearby_452fc0
+      VA=0x453E93: 8D8E580F0000 (lea)
+    UIWnd::_sdtor_15
+      VA=0x453E06: 8D8E580F0000 (lea)
+
+Offset 3964 (0xF7C):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486EB1: 8D867C0F0000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486F27: 8D867C0F0000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x498E21: 8D867C0F0000 (lea)
+
+Offset 3980 (0xF8C):
+  访问次数: 4
+  访问类型:
+    lea: 3
+    load: 1
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x4992CE: 8D8E8C0F0000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x499833: 8B968C0F0000 (load)
+    UIWnd::_sdtor_29
+      VA=0x49983C: 8D8E8C0F0000 (lea)
+
+Offset 3988 (0xF94):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_24
+      VA=0x47C257: 8986940F0000 (store)
+
+Offset 3992 (0xF98):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_24
+      VA=0x47C1EE: 8986980F0000 (store)
+
+Offset 3996 (0xF9C):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_24
+      VA=0x47C1E8: 89869C0F0000 (store)
+
+Offset 4000 (0xFA0):
+  访问次数: 6
+  访问类型:
+    load_byte: 6
+  示例:
+    UIWnd::_sdtor_24
+      VA=0x47BEB6: 8A96A00F0000 (load_byte)
+    UIWnd::_sdtor_24
+      VA=0x47BEE6: 8A8EA00F0000 (load_byte)
+    UIWnd::_sdtor_24
+      VA=0x47BF18: 8A96A00F0000 (load_byte)
+
+Offset 4004 (0xFA4):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x5256DA: 8D8EA40F0000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525E12: 8DBEA40F0000 (lea)
+
+Offset 4032 (0xFC0):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_26
+      VA=0x48353E: 8D8EC00F0000 (lea)
+    UIWnd::_sdtor_0520
+      VA=0x4B0703: 8D8EC00F0000 (lea)
+
+Offset 4040 (0xFC8):
+  访问次数: 5
+  访问类型:
+    lea: 4
+    load: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1F70: 8D8EC80F0000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A25B7: 8D8EC80F0000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2AF2: 8B96C80F0000 (load)
+
+Offset 4048 (0xFD0):
+  访问次数: 4
+  访问类型:
+    lea: 3
+    load: 1
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49151A: 8D8ED00F0000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x491A60: 8B96D00F0000 (load)
+    UIWnd::_sdtor_28
+      VA=0x491A78: 8D9ED00F0000 (lea)
+
+Offset 4072 (0xFE8):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525E6C: 8B96E80F0000 (load)
+    UIWnd::_sdtor_33
+      VA=0x525E77: 8996E80F0000 (store)
+
+Offset 4080 (0xFF0):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525E42: 8DAEF00F0000 (lea)
+
+Offset 4148 (0x1034):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_17
+      VA=0x45576E: 8D8E34100000 (lea)
+    UIWnd::sub_454AA0
+      VA=0x45576E: 8D8E34100000 (lea)
+
+Offset 4224 (0x1080):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E6E4: 8D8E80100000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EAE7: 8D8E80100000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EAE7: 8D8E80100000 (lea)
+
+Offset 4300 (0x10CC):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_17
+      VA=0x455724: 8D8ECC100000 (lea)
+    UIWnd::sub_454AA0
+      VA=0x455724: 8D8ECC100000 (lea)
+
+Offset 4312 (0x10D8):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x5256CA: 8D8ED8100000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525E7F: 8DBED8100000 (lea)
+
+Offset 4324 (0x10E4):
+  访问次数: 4
+  访问类型:
+    lea: 3
+    load: 1
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x4992BE: 8D8EE4100000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x4997FA: 8B96E4100000 (load)
+    UIWnd::_sdtor_29
+      VA=0x499818: 8D9EE4100000 (lea)
+
+Offset 4376 (0x1118):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_26
+      VA=0x48352E: 8D8E18110000 (lea)
+    UIWnd::_sdtor_0520
+      VA=0x4B06F3: 8D8E18110000 (lea)
+
+Offset 4380 (0x111C):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525ED9: 8B961C110000 (load)
+    UIWnd::_sdtor_33
+      VA=0x525EE4: 89961C110000 (store)
+
+Offset 4384 (0x1120):
+  访问次数: 4
+  访问类型:
+    lea: 3
+    load: 1
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1F80: 8D8E20110000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A25A7: 8D8E20110000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A27A5: 8B9620110000 (load)
+
+Offset 4388 (0x1124):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525EAF: 8DAE24110000 (lea)
+
+Offset 4392 (0x1128):
+  访问次数: 7
+  访问类型:
+    lea: 6
+    load: 1
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E6F4: 8D8E28110000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EAD7: 8D8E28110000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EAD7: 8D8E28110000 (lea)
+
+Offset 4512 (0x11A0):
+  访问次数: 5
+  访问类型:
+    load: 3
+    store: 2
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x53244B: 8B86A0110000 (load)
+    UIWnd::_sdtor_38
+      VA=0x5328D2: 8B8EA0110000 (load)
+    UIWnd::_sdtor_38
+      VA=0x5328DB: 898EA0110000 (store)
+
+Offset 4516 (0x11A4):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x53290B: 8DAEA4110000 (lea)
+
+Offset 4520 (0x11A8):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x532905: 8DBEA8110000 (lea)
+
+Offset 4524 (0x11AC):
+  访问次数: 3
+  访问类型:
+    store_byte: 3
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x5322AC: C686AC110000 (store_byte)
+    UIWnd::_sdtor_38
+      VA=0x532680: C686AC110000 (store_byte)
+    UIWnd::_sdtor_38
+      VA=0x5328F3: C686AC110000 (store_byte)
+
+Offset 4528 (0x11B0):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x532899: 8986B0110000 (store)
+    UIWnd::_sdtor_38
+      VA=0x5328B8: 8986B0110000 (store)
+
+Offset 4532 (0x11B4):
+  访问次数: 3
+  访问类型:
+    load: 1
+    store: 2
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x53289F: 8986B4110000 (store)
+    UIWnd::_sdtor_38
+      VA=0x5328AE: 8BBEB4110000 (load)
+    UIWnd::_sdtor_38
+      VA=0x5328C6: 8986B4110000 (store)
+
+Offset 4536 (0x11B8):
+  访问次数: 3
+  访问类型:
+    lea: 1
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_30
+      VA=0x4A27F7: 8DBEB8110000 (lea)
+    UIWnd::_sdtor_38
+      VA=0x5328A5: C686B8110000 (store_byte)
+    UIWnd::_sdtor_38
+      VA=0x5328CC: 889EB8110000 (store_byte)
+
+Offset 4540 (0x11BC):
+  访问次数: 16
+  访问类型:
+    lea: 4
+    load: 10
+    store: 2
+  示例:
+    UIWnd::_sdtor_30
+      VA=0x4A27FD: 899EBC110000 (store)
+    UIWnd::_sdtor_30
+      VA=0x4A2813: 8B86BC110000 (load)
+    UIWnd::_sdtor_30
+      VA=0x4A2842: 8B8EBC110000 (load)
+
+Offset 4544 (0x11C0):
+  访问次数: 32
+  访问类型:
+    lea: 10
+    load: 14
+    store: 8
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E704: 8D8EC0110000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EAC7: 8D8EC0110000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EAC7: 8D8EC0110000 (lea)
+
+Offset 4548 (0x11C4):
+  访问次数: 22
+  访问类型:
+    load: 18
+    store: 4
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x491710: 899EC4110000 (store)
+    UIWnd::_sdtor_28
+      VA=0x491726: 8B8EC4110000 (load)
+    UIWnd::_sdtor_28
+      VA=0x491759: 8B8EC4110000 (load)
+
+Offset 4552 (0x11C8):
+  访问次数: 23
+  访问类型:
+    lea: 4
+    load: 11
+    store: 8
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x491773: 8B86C8110000 (load)
+    UIWnd::_sdtor_28
+      VA=0x491791: 8B86C8110000 (load)
+    UIWnd::_sdtor_28
+      VA=0x4917A5: 8986C8110000 (store)
+
+Offset 4556 (0x11CC):
+  访问次数: 10
+  访问类型:
+    load: 8
+    store: 2
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49172F: 898ECC110000 (store)
+    UIWnd::_sdtor_28
+      VA=0x491782: 8B8ECC110000 (load)
+    UIWnd::_sdtor_28
+      VA=0x491801: 8B8ECC110000 (load)
+
+Offset 4560 (0x11D0):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x4914FA: 8D8ED0110000 (lea)
+
+Offset 4584 (0x11E8):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x5042C6: 8D9EE8110000 (lea)
+
+Offset 4588 (0x11EC):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x50432A: 8996EC110000 (store)
+    UIWnd::~UIWnd_4080
+      VA=0x504397: 8B86EC110000 (load)
+
+Offset 4592 (0x11F0):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x504334: 8986F0110000 (store)
+    UIWnd::~UIWnd_4080
+      VA=0x5043A9: 8B8EF0110000 (load)
+
+Offset 4596 (0x11F4):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x50433E: 898EF4110000 (store)
+    UIWnd::~UIWnd_4080
+      VA=0x5043BB: 8B96F4110000 (load)
+
+Offset 4600 (0x11F8):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x504344: 8996F8110000 (store)
+    UIWnd::~UIWnd_4080
+      VA=0x5043CD: 8B86F8110000 (load)
+
+Offset 4604 (0x11FC):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::~UIWnd_4080
+      VA=0x50434A: 8986FC110000 (store)
+    UIWnd::~UIWnd_4080
+      VA=0x5043DF: 8B8EFC110000 (load)
+
+Offset 4620 (0x120C):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x5256BA: 8D8E0C120000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525F7C: 8DBE0C120000 (lea)
+
+Offset 4668 (0x123C):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x4992AE: 8D8E3C120000 (lea)
+    UIWnd::_sdtor_29
+      VA=0x499520: 8D9E3C120000 (lea)
+
+Offset 4676 (0x1244):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44AC63: 8D8E44120000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AD26: 8D8E44120000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44B030: 8DBE44120000 (lea)
+
+Offset 4688 (0x1250):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525FB9: 8BAE50120000 (load)
+    UIWnd::_sdtor_33
+      VA=0x525FC4: 89AE50120000 (store)
+
+Offset 4696 (0x1258):
+  访问次数: 11
+  访问类型:
+    lea: 9
+    load: 2
+  示例:
+    UIWnd::_sub_47DD90
+      VA=0x47E728: 8D8658120000 (lea)
+    UIWnd::_sub_47DD90
+      VA=0x47EAB1: 8D8E58120000 (lea)
+    UIWnd::_sdtor_25
+      VA=0x47EAB1: 8D8E58120000 (lea)
+
+Offset 4704 (0x1260):
+  访问次数: 7
+  访问类型:
+    lea: 7
+  示例:
+    UIWnd::SetByte
+      VA=0x4A1FA0: 8D8E60120000 (lea)
+    UIWnd::_sdtor_30
+      VA=0x4A2587: 8D8E60120000 (lea)
+    UIWnd::HandleMessage
+      VA=0x4A5D7F: 8D8E60120000 (lea)
+
+Offset 4712 (0x1268):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x4914EA: 8D8E68120000 (lea)
+    UIWnd::_sdtor_79d0
+      VA=0x528412: 8DBE68120000 (lea)
+
+Offset 4716 (0x126C):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x529021: 8D966C120000 (lea)
+
+Offset 4724 (0x1274):
+  访问次数: 6
+  访问类型:
+    lea: 6
+  示例:
+    UIWnd::_sdtor_27
+      VA=0x486EC7: 8D8E74120000 (lea)
+    UIWnd::_sdtor_27
+      VA=0x486F0D: 8D8E74120000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x490FF3: 8D8E74120000 (lea)
+
+Offset 4800 (0x12C0):
+  访问次数: 24
+  访问类型:
+    lea: 6
+    load: 18
+  示例:
+    UIWnd::UIWnd
+      VA=0x4464E7: 8B8EC0120000 (load)
+    UIWnd::UIWnd
+      VA=0x44651A: 8B86C0120000 (load)
+    UIWnd::UIWnd
+      VA=0x446531: 8B86C0120000 (load)
+
+Offset 4804 (0x12C4):
+  访问次数: 24
+  访问类型:
+    load: 18
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x4464AD: 8986C4120000 (store)
+    UIWnd::UIWnd
+      VA=0x446500: 8B96C4120000 (load)
+    UIWnd::UIWnd
+      VA=0x446548: 8B86C4120000 (load)
+
+Offset 4808 (0x12C8):
+  访问次数: 7
+  访问类型:
+    lea: 1
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x4464F4: 8986C8120000 (store)
+    UIWnd::_UIWnd
+      VA=0x4464F4: 8986C8120000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x4464F4: 8986C8120000 (store)
+
+Offset 4812 (0x12CC):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x44650E: 8986CC120000 (store)
+    UIWnd::_UIWnd
+      VA=0x44650E: 8986CC120000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x44650E: 8986CC120000 (store)
+
+Offset 4820 (0x12D4):
+  访问次数: 7
+  访问类型:
+    lea: 1
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x4464B3: 8986D4120000 (store)
+    UIWnd::_UIWnd
+      VA=0x4464B3: 8986D4120000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x4464B3: 8986D4120000 (store)
+
+Offset 4824 (0x12D8):
+  访问次数: 18
+  访问类型:
+    load: 10
+    store: 8
+  示例:
+    UIWnd::UIWnd
+      VA=0x4464FA: 8986D8120000 (store)
+    UIWnd::_UIWnd
+      VA=0x4464FA: 8986D8120000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x4464FA: 8986D8120000 (store)
+
+Offset 4828 (0x12DC):
+  访问次数: 25
+  访问类型:
+    load: 11
+    store: 14
+  示例:
+    UIWnd::UIWnd
+      VA=0x446514: 8986DC120000 (store)
+    UIWnd::_UIWnd
+      VA=0x446514: 8986DC120000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446514: 8986DC120000 (store)
+
+Offset 4832 (0x12E0):
+  访问次数: 10
+  访问类型:
+    load: 8
+    store: 2
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x4994CF: 898EE0120000 (store)
+    UIWnd::_sdtor_29
+      VA=0x49952C: 8B8EE0120000 (load)
+    UIWnd::_sdtor_29
+      VA=0x4995E5: 8B86E0120000 (load)
+
+Offset 4836 (0x12E4):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x49929E: 8D8EE4120000 (lea)
+
+Offset 4840 (0x12E8):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446525: 8986E8120000 (store)
+    UIWnd::_UIWnd
+      VA=0x446525: 8986E8120000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446525: 8986E8120000 (store)
+
+Offset 4844 (0x12EC):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x44653C: 8986EC120000 (store)
+    UIWnd::_UIWnd
+      VA=0x44653C: 8986EC120000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x44653C: 8986EC120000 (store)
+
+Offset 4848 (0x12F0):
+  访问次数: 10
+  访问类型:
+    lea: 3
+    load: 1
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446553: 8986F0120000 (store)
+    UIWnd::_UIWnd
+      VA=0x446553: 8986F0120000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446553: 8986F0120000 (store)
+
+Offset 4852 (0x12F4):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x44656A: 8986F4120000 (store)
+    UIWnd::_UIWnd
+      VA=0x44656A: 8986F4120000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x44656A: 8986F4120000 (store)
+
+Offset 4856 (0x12F8):
+  访问次数: 8
+  访问类型:
+    lea: 2
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x44652B: 8986F8120000 (store)
+    UIWnd::_UIWnd
+      VA=0x44652B: 8986F8120000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x44652B: 8986F8120000 (store)
+
+Offset 4860 (0x12FC):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446542: 8986FC120000 (store)
+    UIWnd::_UIWnd
+      VA=0x446542: 8986FC120000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446542: 8986FC120000 (store)
+
+Offset 4864 (0x1300):
+  访问次数: 7
+  访问类型:
+    lea: 1
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446559: 898600130000 (store)
+    UIWnd::_UIWnd
+      VA=0x446559: 898600130000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446559: 898600130000 (store)
+
+Offset 4868 (0x1304):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446570: 898604130000 (store)
+    UIWnd::_UIWnd
+      VA=0x446570: 898604130000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446570: 898604130000 (store)
+
+Offset 4872 (0x1308):
+  访问次数: 6
+  访问类型:
+    load: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x4464E1: 8B8608130000 (load)
+    UIWnd::_UIWnd
+      VA=0x4464E1: 8B8608130000 (load)
+    UIWnd::_unverified_445B90
+      VA=0x4464E1: 8B8608130000 (load)
+
+Offset 4876 (0x130C):
+  访问次数: 6
+  访问类型:
+    load: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446506: 8B860C130000 (load)
+    UIWnd::_UIWnd
+      VA=0x446506: 8B860C130000 (load)
+    UIWnd::_unverified_445B90
+      VA=0x446506: 8B860C130000 (load)
+
+Offset 4892 (0x131C):
+  访问次数: 30
+  访问类型:
+    lea: 18
+    load: 12
+  示例:
+    UIWnd::UIWnd
+      VA=0x44658B: 8B961C130000 (load)
+    UIWnd::UIWnd
+      VA=0x446597: 8D8E1C130000 (lea)
+    UIWnd::UIWnd
+      VA=0x4465C7: 8D8E1C130000 (lea)
+
+Offset 4932 (0x1344):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525EF7: 898644130000 (store)
+
+Offset 4936 (0x1348):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525F22: 899E48130000 (store)
+
+Offset 4944 (0x1350):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525EFD: 898650130000 (store)
+
+Offset 4948 (0x1354):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x525F32: 899E54130000 (store)
+
+Offset 4952 (0x1358):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x5256AA: 8D8E58130000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525802: 8DBE58130000 (lea)
+
+Offset 4988 (0x137C):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x49928E: 8D8E7C130000 (lea)
+
+Offset 4996 (0x1384):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x53260C: 8D8E84130000 (lea)
+
+Offset 5000 (0x1388):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_26
+      VA=0x4834E8: 8D8E88130000 (lea)
+
+Offset 5012 (0x1394):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::Layout_44e980
+      VA=0x44EFB6: 8D8E94130000 (lea)
+    UIWnd::Layout_44e980
+      VA=0x44F09D: 8D8E94130000 (lea)
+    UIWnd::Layout_44e980
+      VA=0x44F386: 8D8E94130000 (lea)
+
+Offset 5088 (0x13E0):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::_sdtor_7
+      VA=0x44BAC5: 8D8EE0130000 (lea)
+    UIWnd::sub_44B850
+      VA=0x44BAC5: 8D8EE0130000 (lea)
+    UIWnd::sub_44B850
+      VA=0x44C0B8: 8D8EE0130000 (lea)
+
+Offset 5104 (0x13F0):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x52569A: 8D8EF0130000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525867: 8B96F0130000 (load)
+    UIWnd::_sdtor_33
+      VA=0x525881: 8DBEF0130000 (lea)
+
+Offset 5140 (0x1414):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_29
+      VA=0x499278: 8D9614140000 (lea)
+
+Offset 5240 (0x1478):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D5B3: 8DBE78140000 (lea)
+    UIWnd::_method_44d470
+      VA=0x44D5B3: 8DBE78140000 (lea)
+
+Offset 5244 (0x147C):
+  访问次数: 4
+  访问类型:
+    store: 4
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D5A2: 89967C140000 (store)
+    UIWnd::_method_44d470
+      VA=0x44D5A2: 89967C140000 (store)
+    UIWnd::_nearby_523e70
+      VA=0x524032: 899E7C140000 (store)
+
+Offset 5248 (0x1480):
+  访问次数: 36
+  访问类型:
+    load: 29
+    store: 7
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D5DB: 899680140000 (store)
+    UIWnd::_method_44d470
+      VA=0x44D5DB: 899680140000 (store)
+    UIWnd::_nearby_523e70
+      VA=0x524038: 899E80140000 (store)
+
+Offset 5252 (0x1484):
+  访问次数: 4
+  访问类型:
+    store: 4
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D5ED: 898684140000 (store)
+    UIWnd::_method_44d470
+      VA=0x44D5ED: 898684140000 (store)
+    UIWnd::_nearby_523e70
+      VA=0x52403E: 899E84140000 (store)
+
+Offset 5256 (0x1488):
+  访问次数: 30
+  访问类型:
+    fild_int: 3
+    fld_float: 2
+    lea: 2
+    load: 18
+    store: 5
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D5CB: D99E88140000 (fld_float)
+    UIWnd::_method_44d470
+      VA=0x44D5CB: D99E88140000 (fld_float)
+    UIWnd::_nearby_523e70
+      VA=0x524044: 899E88140000 (store)
+
+Offset 5260 (0x148C):
+  访问次数: 34
+  访问类型:
+    load: 28
+    store: 6
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D5D1: 8B968C140000 (load)
+    UIWnd::_method_44d470
+      VA=0x44D5D1: 8B968C140000 (load)
+    UIWnd::_nearby_523e70
+      VA=0x5249EA: 8B868C140000 (load)
+
+Offset 5264 (0x1490):
+  访问次数: 13
+  访问类型:
+    load: 8
+    store: 5
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D5E1: 8B8690140000 (load)
+    UIWnd::_method_44d470
+      VA=0x44D5E1: 8B8690140000 (load)
+    UIWnd::_nearby_523e70
+      VA=0x52404A: 899E90140000 (store)
+
+Offset 5268 (0x1494):
+  访问次数: 19
+  访问类型:
+    fld_float: 2
+    load: 3
+    store: 8
+    store_byte: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x4465D4: 889E94140000 (store_byte)
+    UIWnd::_UIWnd
+      VA=0x4465D4: 889E94140000 (store_byte)
+    UIWnd::_unverified_445B90
+      VA=0x4465D4: 889E94140000 (store_byte)
+
+Offset 5269 (0x1495):
+  访问次数: 6
+  访问类型:
+    store_byte: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x4465EE: C68695140000 (store_byte)
+    UIWnd::_UIWnd
+      VA=0x4465EE: C68695140000 (store_byte)
+    UIWnd::_unverified_445B90
+      VA=0x4465EE: C68695140000 (store_byte)
+
+Offset 5272 (0x1498):
+  访问次数: 4
+  访问类型:
+    fld_float: 2
+    store_byte: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D633: D99E98140000 (fld_float)
+    UIWnd::_method_44d470
+      VA=0x44D633: D99E98140000 (fld_float)
+    UIWnd::_nearby_523e70
+      VA=0x5240A1: 889E98140000 (store_byte)
+
+Offset 5273 (0x1499):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x5240A7: 889E99140000 (store_byte)
+    UIWnd::_nearby_523e80
+      VA=0x5240A7: 889E99140000 (store_byte)
+
+Offset 5274 (0x149A):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x5240AD: 889E9A140000 (store_byte)
+    UIWnd::_nearby_523e80
+      VA=0x5240AD: 889E9A140000 (store_byte)
+
+Offset 5275 (0x149B):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x5240B3: 889E9B140000 (store_byte)
+    UIWnd::_nearby_523e80
+      VA=0x5240B3: 889E9B140000 (store_byte)
+
+Offset 5276 (0x149C):
+  访问次数: 4
+  访问类型:
+    fld_float: 2
+    store_byte: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D65D: D99E9C140000 (fld_float)
+    UIWnd::_method_44d470
+      VA=0x44D65D: D99E9C140000 (fld_float)
+    UIWnd::_nearby_523e70
+      VA=0x5240B9: 889E9C140000 (store_byte)
+
+Offset 5277 (0x149D):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x5240BF: 889E9D140000 (store_byte)
+    UIWnd::_nearby_523e80
+      VA=0x5240BF: 889E9D140000 (store_byte)
+
+Offset 5278 (0x149E):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x5240C5: 889E9E140000 (store_byte)
+    UIWnd::_nearby_523e80
+      VA=0x5240C5: 889E9E140000 (store_byte)
+
+Offset 5280 (0x14A0):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D663: C686A0140000 (store_byte)
+    UIWnd::_method_44d470
+      VA=0x44D663: C686A0140000 (store_byte)
+
+Offset 5284 (0x14A4):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x5240D5: 899EA4140000 (store)
+    UIWnd::_nearby_523e80
+      VA=0x5240D5: 899EA4140000 (store)
+
+Offset 5288 (0x14A8):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x5240DB: 899EA8140000 (store)
+    UIWnd::_nearby_523e80
+      VA=0x5240DB: 899EA8140000 (store)
+
+Offset 5292 (0x14AC):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x5240E1: 899EAC140000 (store)
+    UIWnd::_nearby_523e80
+      VA=0x5240E1: 899EAC140000 (store)
+
+Offset 5296 (0x14B0):
+  访问次数: 4
+  访问类型:
+    lea: 4
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x52402C: 8D8EB0140000 (lea)
+    UIWnd::_nearby_523e70
+      VA=0x52409B: 8DBEB0140000 (lea)
+    UIWnd::_nearby_523e80
+      VA=0x52402C: 8D8EB0140000 (lea)
+
+Offset 5304 (0x14B8):
+  访问次数: 2
+  访问类型:
+    load: 1
+    store: 1
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x45461F: 898EB8140000 (store)
+    UIWnd::_sdtor_16
+      VA=0x454653: 8B96B8140000 (load)
+
+Offset 5308 (0x14BC):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_16
+      VA=0x4545BD: C686BC140000 (store_byte)
+    UIWnd::_sdtor_16
+      VA=0x454660: C686BC140000 (store_byte)
+
+Offset 5312 (0x14C0):
+  访问次数: 6
+  访问类型:
+    load: 2
+    store: 4
+  示例:
+    UIWnd::_nearby_452fc0
+      VA=0x453E1A: 89BEC0140000 (store)
+    UIWnd::_sdtor_15
+      VA=0x453E1A: 89BEC0140000 (store)
+    UIWnd::_sdtor_15
+      VA=0x453FE5: 898EC0140000 (store)
+
+Offset 5408 (0x1520):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x52567A: 8D8E20150000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525A45: 8B9620150000 (load)
+    UIWnd::_sdtor_33
+      VA=0x525A4B: 8D8E20150000 (lea)
+
+Offset 5480 (0x1568):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::~UIWnd_7ce0
+      VA=0x4B8708: 8D8E68150000 (lea)
+    UIWnd::ReleaseResources
+      VA=0x4B8708: 8D8E68150000 (lea)
+
+Offset 5488 (0x1570):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::_nearby_523e70
+      VA=0x5240E7: 899E70150000 (store)
+    UIWnd::_nearby_523e80
+      VA=0x5240E7: 899E70150000 (store)
+
+Offset 5560 (0x15B8):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x52566A: 8D8EB8150000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525A83: 8B96B8150000 (load)
+    UIWnd::_sdtor_33
+      VA=0x525A94: 8D8EB8150000 (lea)
+
+Offset 5672 (0x1628):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::~UIWnd_7ce0
+      VA=0x4B85FE: 8D8E28160000 (lea)
+    UIWnd::ReleaseResources
+      VA=0x4B85FE: 8D8E28160000 (lea)
+
+Offset 5712 (0x1650):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x52565A: 8D8E50160000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x526052: 8B8650160000 (load)
+    UIWnd::_sdtor_33
+      VA=0x526058: 8DBE50160000 (lea)
+
+Offset 5864 (0x16E8):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x52564A: 8D8EE8160000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x5258E3: 8B86E8160000 (load)
+    UIWnd::_sdtor_33
+      VA=0x5258E9: 8DBEE8160000 (lea)
+
+Offset 5908 (0x1714):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x531EB6: 8D8E14170000 (lea)
+    UIWnd::_sdtor_38
+      VA=0x532213: 8DBE14170000 (lea)
+    UIWnd::_sdtor_38
+      VA=0x532714: 8D8E14170000 (lea)
+
+Offset 6016 (0x1780):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x52563F: 8D8E80170000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525932: 8B9680170000 (load)
+    UIWnd::_sdtor_33
+      VA=0x525938: 8DBE80170000 (lea)
+
+Offset 6044 (0x179C):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44AC73: 8D8E9C170000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AD16: 8D8E9C170000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44B060: 8DBE9C170000 (lea)
+
+Offset 6208 (0x1840):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x52562A: 8D8E40180000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x525978: 8B9640180000 (load)
+    UIWnd::_sdtor_33
+      VA=0x52597E: 8DBE40180000 (lea)
+
+Offset 6244 (0x1864):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x491015: 8D9664180000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x491147: 8D8664180000 (lea)
+
+Offset 6324 (0x18B4):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x529050: 8D8EB4180000 (lea)
+
+Offset 6364 (0x18DC):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x532284: 8D8EDC180000 (lea)
+
+Offset 6416 (0x1910):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x529046: 8D8610190000 (lea)
+
+Offset 6452 (0x1934):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x5261DE: 8DAE34190000 (lea)
+
+Offset 6468 (0x1944):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x52561A: 8D8E44190000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x52620F: 8DBE44190000 (lea)
+
+Offset 6660 (0x1A04):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x52560A: 8D8E041A0000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x52622A: 8B86041A0000 (load)
+    UIWnd::_sdtor_33
+      VA=0x526230: 8DBE041A0000 (lea)
+
+Offset 6704 (0x1A30):
+  访问次数: 5
+  访问类型:
+    lea: 1
+    load: 4
+  示例:
+    UIWnd::ClientToScreen
+      VA=0x446D0C: 8B8E301A0000 (load)
+    UIWnd::_sdtor_6
+      VA=0x446D0C: 8B8E301A0000 (load)
+    UIWnd::_sdtor_6
+      VA=0x446D46: 8B86301A0000 (load)
+
+Offset 6708 (0x1A34):
+  访问次数: 6
+  访问类型:
+    load: 4
+    store: 2
+  示例:
+    UIWnd::ClientToScreen
+      VA=0x446CD8: 8986341A0000 (store)
+    UIWnd::ClientToScreen
+      VA=0x446D32: 8B8E341A0000 (load)
+    UIWnd::_sdtor_6
+      VA=0x446CD8: 8986341A0000 (store)
+
+Offset 6712 (0x1A38):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::ClientToScreen
+      VA=0x446D20: 8986381A0000 (store)
+    UIWnd::_sdtor_6
+      VA=0x446D20: 8986381A0000 (store)
+
+Offset 6716 (0x1A3C):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446D3A: 89863C1A0000 (store)
+
+Offset 6724 (0x1A44):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::ClientToScreen
+      VA=0x446CDE: 8986441A0000 (store)
+    UIWnd::_sdtor_6
+      VA=0x446CDE: 8986441A0000 (store)
+
+Offset 6728 (0x1A48):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::ClientToScreen
+      VA=0x446D26: 8986481A0000 (store)
+    UIWnd::_sdtor_6
+      VA=0x446D26: 8986481A0000 (store)
+
+Offset 6732 (0x1A4C):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446D40: 89864C1A0000 (store)
+
+Offset 6744 (0x1A58):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446D51: 8986581A0000 (store)
+
+Offset 6748 (0x1A5C):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446D68: 89865C1A0000 (store)
+
+Offset 6752 (0x1A60):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446D7F: 8986601A0000 (store)
+
+Offset 6756 (0x1A64):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446D96: 8986641A0000 (store)
+
+Offset 6760 (0x1A68):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446D57: 8986681A0000 (store)
+
+Offset 6764 (0x1A6C):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446D6E: 89866C1A0000 (store)
+
+Offset 6768 (0x1A70):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446D85: 8986701A0000 (store)
+
+Offset 6772 (0x1A74):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446D9C: 8986741A0000 (store)
+
+Offset 6776 (0x1A78):
+  访问次数: 2
+  访问类型:
+    load: 2
+  示例:
+    UIWnd::ClientToScreen
+      VA=0x446D12: 8B96781A0000 (load)
+    UIWnd::_sdtor_6
+      VA=0x446D12: 8B96781A0000 (load)
+
+Offset 6780 (0x1A7C):
+  访问次数: 2
+  访问类型:
+    load: 2
+  示例:
+    UIWnd::ClientToScreen
+      VA=0x446D2C: 8B867C1A0000 (load)
+    UIWnd::_sdtor_6
+      VA=0x446D2C: 8B867C1A0000 (load)
+
+Offset 6796 (0x1A8C):
+  访问次数: 5
+  访问类型:
+    lea: 3
+    load: 2
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446DB7: 8B968C1A0000 (load)
+    UIWnd::_sdtor_6
+      VA=0x446DC3: 8D8E8C1A0000 (lea)
+    UIWnd::_sdtor_6
+      VA=0x446DF3: 8D8E8C1A0000 (lea)
+
+Offset 6812 (0x1A9C):
+  访问次数: 3
+  访问类型:
+    lea: 2
+    load: 1
+  示例:
+    UIWnd::_sdtor_33
+      VA=0x5255FA: 8D8E9C1A0000 (lea)
+    UIWnd::_sdtor_33
+      VA=0x52628C: 8B969C1A0000 (load)
+    UIWnd::_sdtor_33
+      VA=0x526292: 8DBE9C1A0000 (lea)
+
+Offset 7172 (0x1C04):
+  访问次数: 1
+  访问类型:
+    store_byte: 1
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446E00: 889E041C0000 (store_byte)
+
+Offset 7173 (0x1C05):
+  访问次数: 1
+  访问类型:
+    store_byte: 1
+  示例:
+    UIWnd::_sdtor_6
+      VA=0x446E1A: C686051C0000 (store_byte)
+
+Offset 7276 (0x1C6C):
+  访问次数: 3
+  访问类型:
+    load_byte: 1
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x53229B: C6866C1C0000 (store_byte)
+    UIWnd::_sdtor_38
+      VA=0x532724: C6866C1C0000 (store_byte)
+    UIWnd::_sdtor_38
+      VA=0x53272B: 8A866C1C0000 (load_byte)
+
+Offset 7277 (0x1C6D):
+  访问次数: 4
+  访问类型:
+    load_byte: 1
+    store_byte: 3
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x532137: C6866D1C0000 (store_byte)
+    UIWnd::_sdtor_38
+      VA=0x5326B1: C6866D1C0000 (store_byte)
+    UIWnd::_sdtor_38
+      VA=0x5326F1: C6866D1C0000 (store_byte)
+
+Offset 7280 (0x1C70):
+  访问次数: 10
+  访问类型:
+    lea: 6
+    load: 4
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x531EA6: 8D8E701C0000 (lea)
+    UIWnd::_sdtor_38
+      VA=0x53211E: 8B96701C0000 (load)
+    UIWnd::_sdtor_38
+      VA=0x532124: 8DBE701C0000 (lea)
+
+Offset 7412 (0x1CF4):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B0BC: 899EF41C0000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B47C: 8986F41C0000 (store)
+    UIWnd::Layout_44a790
+      VA=0x44B0BC: 899EF41C0000 (store)
+
+Offset 7416 (0x1CF8):
+  访问次数: 9
+  访问类型:
+    store_byte: 9
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B0B6: 889EF81C0000 (store_byte)
+    UIWnd::_nearby_44a780
+      VA=0x44B482: 8886F81C0000 (store_byte)
+    UIWnd::_nearby_44a780
+      VA=0x44B6FB: C686F81C0000 (store_byte)
+
+Offset 7420 (0x1CFC):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44AC83: 8D8EFC1C0000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44AD03: 8D8EFC1C0000 (lea)
+    UIWnd::_nearby_44a780
+      VA=0x44B638: 8D8EFC1C0000 (lea)
+
+Offset 7432 (0x1D08):
+  访问次数: 11
+  访问类型:
+    lea: 6
+    load: 5
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x531E93: 8D8E081D0000 (lea)
+    UIWnd::_sdtor_38
+      VA=0x53217E: 8B96081D0000 (load)
+    UIWnd::_sdtor_38
+      VA=0x532184: 8DBE081D0000 (lea)
+
+Offset 7584 (0x1DA0):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x532757: 8986A01D0000 (store)
+    UIWnd::_sdtor_38
+      VA=0x532776: 8986A01D0000 (store)
+
+Offset 7588 (0x1DA4):
+  访问次数: 3
+  访问类型:
+    load: 1
+    store: 2
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x53275D: 8986A41D0000 (store)
+    UIWnd::_sdtor_38
+      VA=0x53276C: 8BAEA41D0000 (load)
+    UIWnd::_sdtor_38
+      VA=0x53278C: 8986A41D0000 (store)
+
+Offset 7592 (0x1DA8):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x532763: C686A81D0000 (store_byte)
+    UIWnd::_sdtor_38
+      VA=0x532792: 889EA81D0000 (store_byte)
+
+Offset 7596 (0x1DAC):
+  访问次数: 3
+  访问类型:
+    load_byte: 1
+    store_byte: 2
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x5326B8: C686AC1D0000 (store_byte)
+    UIWnd::_sdtor_38
+      VA=0x532798: 8A96AC1D0000 (load_byte)
+    UIWnd::_sdtor_38
+      VA=0x5327C6: 8886AC1D0000 (store_byte)
+
+Offset 7597 (0x1DAD):
+  访问次数: 2
+  访问类型:
+    load_byte: 1
+    store_byte: 1
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x532373: 8886AD1D0000 (store_byte)
+    UIWnd::_sdtor_38
+      VA=0x5324EF: 8A86AD1D0000 (load_byte)
+
+Offset 7598 (0x1DAE):
+  访问次数: 5
+  访问类型:
+    load_byte: 5
+  示例:
+    UIWnd::_sdtor_38
+      VA=0x53203E: 8A96AE1D0000 (load_byte)
+    UIWnd::_sdtor_38
+      VA=0x5320A5: 8A86AE1D0000 (load_byte)
+    UIWnd::_sdtor_38
+      VA=0x532100: 8A86AE1D0000 (load_byte)
+
+Offset 7656 (0x1DE8):
+  访问次数: 23
+  访问类型:
+    lea: 5
+    load: 18
+  示例:
+    UIWnd::UIWnd
+      VA=0x446A48: 8B96E81D0000 (load)
+    UIWnd::UIWnd
+      VA=0x446A7C: 8B86E81D0000 (load)
+    UIWnd::UIWnd
+      VA=0x446A93: 8B86E81D0000 (load)
+
+Offset 7660 (0x1DEC):
+  访问次数: 22
+  访问类型:
+    load: 16
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446A12: 8986EC1D0000 (store)
+    UIWnd::UIWnd
+      VA=0x446A62: 8B86EC1D0000 (load)
+    UIWnd::_UIWnd
+      VA=0x446A12: 8986EC1D0000 (store)
+
+Offset 7664 (0x1DF0):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446A56: 8986F01D0000 (store)
+    UIWnd::_UIWnd
+      VA=0x446A56: 8986F01D0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446A56: 8986F01D0000 (store)
+
+Offset 7668 (0x1DF4):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446A70: 8986F41D0000 (store)
+    UIWnd::_UIWnd
+      VA=0x446A70: 8986F41D0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446A70: 8986F41D0000 (store)
+
+Offset 7676 (0x1DFC):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446A18: 8986FC1D0000 (store)
+    UIWnd::_UIWnd
+      VA=0x446A18: 8986FC1D0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446A18: 8986FC1D0000 (store)
+
+Offset 7680 (0x1E00):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446A5C: 8986001E0000 (store)
+    UIWnd::_UIWnd
+      VA=0x446A5C: 8986001E0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446A5C: 8986001E0000 (store)
+
+Offset 7684 (0x1E04):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446A76: 8986041E0000 (store)
+    UIWnd::_UIWnd
+      VA=0x446A76: 8986041E0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446A76: 8986041E0000 (store)
+
+Offset 7692 (0x1E0C):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446A1E: 89860C1E0000 (store)
+    UIWnd::_UIWnd
+      VA=0x446A1E: 89860C1E0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446A1E: 89860C1E0000 (store)
+
+Offset 7696 (0x1E10):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446A87: 8986101E0000 (store)
+    UIWnd::_UIWnd
+      VA=0x446A87: 8986101E0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446A87: 8986101E0000 (store)
+
+Offset 7700 (0x1E14):
+  访问次数: 5
+  访问类型:
+    store: 5
+  示例:
+    UIWnd::_UIWnd
+      VA=0x446A9E: 8986141E0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446A9E: 8986141E0000 (store)
+    UIWnd::UpdateChildren
+      VA=0x446A9E: 8986141E0000 (store)
+
+Offset 7704 (0x1E18):
+  访问次数: 5
+  访问类型:
+    store: 5
+  示例:
+    UIWnd::_UIWnd
+      VA=0x446AB5: 8986181E0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446AB5: 8986181E0000 (store)
+    UIWnd::UpdateChildren
+      VA=0x446AB5: 8986181E0000 (store)
+
+Offset 7708 (0x1E1C):
+  访问次数: 5
+  访问类型:
+    store: 5
+  示例:
+    UIWnd::_UIWnd
+      VA=0x446ACC: 89861C1E0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446ACC: 89861C1E0000 (store)
+    UIWnd::UpdateChildren
+      VA=0x446ACC: 89861C1E0000 (store)
+
+Offset 7712 (0x1E20):
+  访问次数: 6
+  访问类型:
+    store: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446A8D: 8986201E0000 (store)
+    UIWnd::_UIWnd
+      VA=0x446A8D: 8986201E0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446A8D: 8986201E0000 (store)
+
+Offset 7716 (0x1E24):
+  访问次数: 5
+  访问类型:
+    store: 5
+  示例:
+    UIWnd::_UIWnd
+      VA=0x446AA4: 8986241E0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446AA4: 8986241E0000 (store)
+    UIWnd::UpdateChildren
+      VA=0x446AA4: 8986241E0000 (store)
+
+Offset 7720 (0x1E28):
+  访问次数: 5
+  访问类型:
+    store: 5
+  示例:
+    UIWnd::_UIWnd
+      VA=0x446ABB: 8986281E0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446ABB: 8986281E0000 (store)
+    UIWnd::UpdateChildren
+      VA=0x446ABB: 8986281E0000 (store)
+
+Offset 7724 (0x1E2C):
+  访问次数: 5
+  访问类型:
+    store: 5
+  示例:
+    UIWnd::_UIWnd
+      VA=0x446AD2: 89862C1E0000 (store)
+    UIWnd::_unverified_445B90
+      VA=0x446AD2: 89862C1E0000 (store)
+    UIWnd::UpdateChildren
+      VA=0x446AD2: 89862C1E0000 (store)
+
+Offset 7728 (0x1E30):
+  访问次数: 6
+  访问类型:
+    load: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446A42: 8B8E301E0000 (load)
+    UIWnd::_UIWnd
+      VA=0x446A42: 8B8E301E0000 (load)
+    UIWnd::_unverified_445B90
+      VA=0x446A42: 8B8E301E0000 (load)
+
+Offset 7732 (0x1E34):
+  访问次数: 6
+  访问类型:
+    load: 6
+  示例:
+    UIWnd::UIWnd
+      VA=0x446A68: 8B8E341E0000 (load)
+    UIWnd::_UIWnd
+      VA=0x446A68: 8B8E341E0000 (load)
+    UIWnd::_unverified_445B90
+      VA=0x446A68: 8B8E341E0000 (load)
+
+Offset 7744 (0x1E40):
+  访问次数: 2
+  访问类型:
+    fld_float: 2
+  示例:
+    UIWnd::~UIWnd_7ce0
+      VA=0x4B89F9: D986401E0000 (fld_float)
+    UIWnd::ReleaseResources
+      VA=0x4B89F9: D986401E0000 (fld_float)
+
+Offset 7748 (0x1E44):
+  访问次数: 23
+  访问类型:
+    lea: 14
+    load: 9
+  示例:
+    UIWnd::_UIWnd
+      VA=0x446AED: 8B96441E0000 (load)
+    UIWnd::_UIWnd
+      VA=0x446AF9: 8D8E441E0000 (lea)
+    UIWnd::_UIWnd
+      VA=0x446B2C: 8D8E441E0000 (lea)
+
+Offset 7764 (0x1E54):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49102B: 8D8E541E0000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x491130: 8D8E541E0000 (lea)
+
+Offset 7916 (0x1EEC):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49103B: 8D8EEC1E0000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x491120: 8D8EEC1E0000 (lea)
+
+Offset 7932 (0x1EFC):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x529073: 8D86FC1E0000 (lea)
+
+Offset 8024 (0x1F58):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x52906D: 8D96581F0000 (lea)
+
+Offset 8124 (0x1FBC):
+  访问次数: 5
+  访问类型:
+    store_byte: 5
+  示例:
+    UIWnd::_UIWnd
+      VA=0x446B39: 889EBC1F0000 (store_byte)
+    UIWnd::_unverified_445B90
+      VA=0x446B39: 889EBC1F0000 (store_byte)
+    UIWnd::UpdateChildren
+      VA=0x446B39: 889EBC1F0000 (store_byte)
+
+Offset 8125 (0x1FBD):
+  访问次数: 4
+  访问类型:
+    store_byte: 4
+  示例:
+    UIWnd::_unverified_445B90
+      VA=0x446B53: C686BD1F0000 (store_byte)
+    UIWnd::UpdateChildren
+      VA=0x446B53: C686BD1F0000 (store_byte)
+    UIWnd::ClientToScreen
+      VA=0x446B53: C686BD1F0000 (store_byte)
+
+Offset 8200 (0x2008):
+  访问次数: 1
+  访问类型:
+    load: 1
+  示例:
+    UIWnd::_sdtor_7
+      VA=0x44B7FA: 8B8608200000 (load)
+
+Offset 8260 (0x2044):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49104B: 8D8E44200000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x491110: 8D8E44200000 (lea)
+
+Offset 8416 (0x20E0):
+  访问次数: 8
+  访问类型:
+    lea: 8
+  示例:
+    UIWnd::_sdtor_7
+      VA=0x44BAE7: 8D96E0200000 (lea)
+    UIWnd::sub_44B850
+      VA=0x44BAE7: 8D96E0200000 (lea)
+    UIWnd::sub_44B850
+      VA=0x44C09B: 8D86E0200000 (lea)
+
+Offset 8460 (0x210C):
+  访问次数: 9
+  访问类型:
+    load: 9
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B13D: 8B8E0C210000 (load)
+    UIWnd::_nearby_44a780
+      VA=0x44B1B9: 8B8E0C210000 (load)
+    UIWnd::_nearby_44a780
+      VA=0x44B2FE: 8B860C210000 (load)
+
+Offset 8464 (0x2110):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B778: 8D8E10210000 (lea)
+    UIWnd::Layout_44a790
+      VA=0x44B778: 8D8E10210000 (lea)
+    UIWnd::_sdtor_7
+      VA=0x44B778: 8D8E10210000 (lea)
+
+Offset 8568 (0x2178):
+  访问次数: 3
+  访问类型:
+    lea: 3
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D0BA: 8DBE78210000 (lea)
+    UIWnd::sub_44C970
+      VA=0x44D6B3: 8DBE78210000 (lea)
+    UIWnd::_method_44d470
+      VA=0x44D6B3: 8DBE78210000 (lea)
+
+Offset 8572 (0x217C):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D6A2: 89967C210000 (store)
+    UIWnd::_method_44d470
+      VA=0x44D6A2: 89967C210000 (store)
+
+Offset 8576 (0x2180):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D6DB: 899680210000 (store)
+    UIWnd::_method_44d470
+      VA=0x44D6DB: 899680210000 (store)
+
+Offset 8580 (0x2184):
+  访问次数: 2
+  访问类型:
+    store: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D6ED: 898684210000 (store)
+    UIWnd::_method_44d470
+      VA=0x44D6ED: 898684210000 (store)
+
+Offset 8584 (0x2188):
+  访问次数: 2
+  访问类型:
+    fld_float: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D6CB: D99E88210000 (fld_float)
+    UIWnd::_method_44d470
+      VA=0x44D6CB: D99E88210000 (fld_float)
+
+Offset 8588 (0x218C):
+  访问次数: 3
+  访问类型:
+    load: 2
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D105: 89868C210000 (store)
+    UIWnd::sub_44C970
+      VA=0x44D6D1: 8B968C210000 (load)
+    UIWnd::_method_44d470
+      VA=0x44D6D1: 8B968C210000 (load)
+
+Offset 8592 (0x2190):
+  访问次数: 3
+  访问类型:
+    load: 2
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D10B: 899690210000 (store)
+    UIWnd::sub_44C970
+      VA=0x44D6E1: 8B8690210000 (load)
+    UIWnd::_method_44d470
+      VA=0x44D6E1: 8B8690210000 (load)
+
+Offset 8596 (0x2194):
+  访问次数: 2
+  访问类型:
+    fld_float: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D718: D99E94210000 (fld_float)
+    UIWnd::_method_44d470
+      VA=0x44D718: D99E94210000 (fld_float)
+
+Offset 8600 (0x2198):
+  访问次数: 2
+  访问类型:
+    fld_float: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D733: D99E98210000 (fld_float)
+    UIWnd::_method_44d470
+      VA=0x44D733: D99E98210000 (fld_float)
+
+Offset 8604 (0x219C):
+  访问次数: 4
+  访问类型:
+    fld_float: 2
+    lea: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D75D: D99E9C210000 (fld_float)
+    UIWnd::_method_44d470
+      VA=0x44D75D: D99E9C210000 (fld_float)
+    UIWnd::_sdtor_28
+      VA=0x49105B: 8D8E9C210000 (lea)
+
+Offset 8608 (0x21A0):
+  访问次数: 2
+  访问类型:
+    store_byte: 2
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D763: C686A0210000 (store_byte)
+    UIWnd::_method_44d470
+      VA=0x44D763: C686A0210000 (store_byte)
+
+Offset 8796 (0x225C):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D111: 89865C220000 (store)
+
+Offset 8800 (0x2260):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D117: 899660220000 (store)
+
+Offset 8948 (0x22F4):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49106B: 8D8EF4220000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x4910F0: 8D8EF4220000 (lea)
+
+Offset 9004 (0x232C):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D11D: 89862C230000 (store)
+
+Offset 9008 (0x2330):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D123: 898630230000 (store)
+
+Offset 9212 (0x23FC):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D129: 898EFC230000 (store)
+
+Offset 9216 (0x2400):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D12F: 898E00240000 (store)
+
+Offset 9292 (0x244C):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49107B: 8D8E4C240000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x4910E0: 8D8E4C240000 (lea)
+
+Offset 9420 (0x24CC):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D135: 898ECC240000 (store)
+
+Offset 9424 (0x24D0):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D13B: 8996D0240000 (store)
+
+Offset 9488 (0x2510):
+  访问次数: 15
+  访问类型:
+    load: 3
+    store: 12
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B092: 899E10250000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B1DB: 8B9610250000 (load)
+    UIWnd::_nearby_44a780
+      VA=0x44B391: 899E10250000 (store)
+
+Offset 9492 (0x2514):
+  访问次数: 15
+  访问类型:
+    load: 3
+    store: 12
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B08C: 899E14250000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B1C4: 8B8E14250000 (load)
+    UIWnd::_nearby_44a780
+      VA=0x44B38B: 899E14250000 (store)
+
+Offset 9496 (0x2518):
+  访问次数: 15
+  访问类型:
+    load: 3
+    store: 12
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B098: 899E18250000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B379: 8B8618250000 (load)
+    UIWnd::_nearby_44a780
+      VA=0x44B397: 899E18250000 (store)
+
+Offset 9500 (0x251C):
+  访问次数: 15
+  访问类型:
+    load: 3
+    store: 12
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B09E: 899E1C250000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B1EA: 89861C250000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B212: 8B861C250000 (load)
+
+Offset 9504 (0x2520):
+  访问次数: 12
+  访问类型:
+    store: 12
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B0A4: 899E20250000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B1D3: 898620250000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B3A3: 899E20250000 (store)
+
+Offset 9508 (0x2524):
+  访问次数: 12
+  访问类型:
+    load: 3
+    store: 9
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B0AA: 899E24250000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B3A9: 899E24250000 (store)
+    UIWnd::_nearby_44a780
+      VA=0x44B3D3: 8B8624250000 (load)
+
+Offset 9512 (0x2528):
+  访问次数: 19
+  访问类型:
+    store_byte: 19
+  示例:
+    UIWnd::_nearby_44a780
+      VA=0x44B0D4: 889E28250000 (store_byte)
+    UIWnd::_nearby_44a780
+      VA=0x44B1F0: C68628250000 (store_byte)
+    UIWnd::_nearby_44a780
+      VA=0x44B3C1: 889E28250000 (store_byte)
+
+Offset 9540 (0x2544):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x52909B: 8D9644250000 (lea)
+
+Offset 9628 (0x259C):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D141: 89969C250000 (store)
+
+Offset 9632 (0x25A0):
+  访问次数: 1
+  访问类型:
+    lea: 1
+  示例:
+    UIWnd::_sdtor_35
+      VA=0x529095: 8D8EA0250000 (lea)
+
+Offset 9636 (0x25A4):
+  访问次数: 2
+  访问类型:
+    lea: 2
+  示例:
+    UIWnd::_sdtor_28
+      VA=0x49108B: 8D8EA4250000 (lea)
+    UIWnd::_sdtor_28
+      VA=0x4910CD: 8D8EA4250000 (lea)
+
+Offset 9836 (0x266C):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D151: 898E6C260000 (store)
+
+Offset 9840 (0x2670):
+  访问次数: 1
+  访问类型:
+    store: 1
+  示例:
+    UIWnd::sub_44C970
+      VA=0x44D157: 898670260000 (store)
+
+详细报告已保存到: /home/peng/workspace/PAL3Decomp/pipeline/_logs/member_scan_UIWnd.json
