@@ -2,11 +2,6 @@
   "name": "CCBUI",
   "note": "Placeholder, offsets need binary analysis",
   "known_members": {
-    "164": {
-      "name": "m_pRoleStateFace",
-      "type": "UIStatic *[3]",
-      "source": "pdb_verified_by_old_ida | fix:[5]->[3] span=12"
-    },
     "184": {
       "name": "m_pRoleStateFaceName",
       "type": "UIStatic *[5]",
@@ -376,6 +371,23 @@
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_1928",
       "source": "A:LEA+CALL_consecutive_stride152"
+    },
+    "152": {
+      "name": "m_pAttackSequenBack",
+      "type": "UIStatic *",
+      "source": "PAL3patch:pal3.h + binary_verified: 6 mov accesses (store:4, load:2)"
+    },
+    "156": {
+      "name": "m_pAttackSequenFace",
+      "type": "UIStatic *[11]",
+      "source": "PAL3patch:pal3.h + binary_verified: 9 access points in range, 6 LEA (array element addressing)",
+      "note": "Covers offset 156~199 (44 bytes). Some non-pointer accesses in range may indicate field reuse or union."
+    },
+    "216": {
+      "name": "m_pRoleStateFace",
+      "type": "UIStatic *[5]",
+      "source": "PAL3patch:pal3.h + binary_verified: offset 220 has 11 accesses (lea:1, load:10)",
+      "note": "PAL3patch size [5] verified. Existing annotation had [3] with span=12."
     }
   },
   "pdb_size": 3552,
