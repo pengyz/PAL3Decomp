@@ -4741,3 +4741,14 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
 - **判定**: 通过 — 命名约定是强语义指示器，置信度中等（70）可接受
 - **后续**: 仍有 31+ 个 offset 0 字段标记为 float，需进一步分类处理
 
+
+### [2026-05-21] PtrArray 布局问题（待修正）
+
+- **发现**: PtrArray 当前标注的字段类型可能全部错误
+- **证据**:
+  1. [A] 0x00434130 ctor: `mov [eax], cl` (byte store at +0) — 但 annotation 说 +0 是 `void**`
+  2. [A] UIWnd.cpp: `*(_DWORD *)&this->m_childs.m_nSize` — 以 DWORD 访问标为 `unsigned char` 的字段
+  3. [A] 代码中 7598 次 gap 访问，大量来自 PtrArray 嵌入子对象的成员
+- **影响**: PtrArray 被 UIWnd 等核心基类嵌入，布局错误会级联到所有 UI 类
+- **状态**: 需要完整构造器逆向确认正确布局。优先级 P0。
+
