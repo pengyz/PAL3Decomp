@@ -10,7 +10,7 @@ from typing import Dict, List, Tuple
 PROJECT_ROOT = Path(__file__).parent.parent
 ANN_DIR = PROJECT_ROOT / 'data/annotations/structs'
 
-# PAL3patch UIWnd 定义（手动整理，确保偏移正确）
+# PAL3patch 结构体定义（手动整理，确保偏移正确）
 PAL3PATCH_DEFS = {
     'UIWnd': [
         (0, 'vfptr', 'UIWndVtbl *'),
@@ -24,6 +24,64 @@ PAL3PATCH_DEFS = {
         (56, 'm_bvisible', 'int'),
         (60, 'm_benable', 'int'),
         (64, 'm_bfocus', 'int'),
+    ],
+    'CCBUI': [
+        # 基础面板和序列（152-255）
+        (152, 'm_pAttackSequenBack', 'UIStatic *'),
+        (156, 'm_pAttackSequenFace', 'UIStatic *[11]'),
+        (200, 'm_pRoleStatePanel', 'UIStatic *[4]'),
+        (216, 'm_pRoleStateFace', 'UIStatic *[5]'),
+        (236, 'm_pRoleStateFaceName', 'UIStatic *[5]'),
+        # Union: 19 种状态数组（256-1091，共享内存）
+        (256, 'm_pRoleStateAttackInc', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateAttackDec', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateDefenceInc', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateDefenceDec', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateLuckInc', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateLuckDec', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateSpeedInc', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateSpeedDec', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateStable', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateBlank', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateForbid', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateSleep', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateChaos', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateMad', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateMirror', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateWall', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateBound', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateHermit', 'UIStatic *[11]'),
+        (256, 'm_pRoleStateImmunity', 'UIStatic *[11]'),
+        (256, 'm_pRoleSpecState', 'UIStatic *[19][11]'),
+        # Union 后继续（1092-1247）
+        (1092, 'm_pWinPanel', 'UIStatic *'),
+        (1096, 'm_pLosePanel', 'UIStatic *'),
+        (1100, 'm_pRoleStateHP', 'UIProgressBar *[4]'),
+        (1116, 'm_pRoleStateGP', 'UIProgressBar *[4]'),
+        (1132, 'm_pRoleStateMP', 'UIProgressBar *[4]'),
+        (1148, 'm_pRoleStateSword', 'UIProgressBar *'),
+        (1152, 'm_pTrickName', 'UIStaticCB *'),
+        (1156, 'm_pTrickName2', 'UIStaticCB *'),
+        (1160, 'm_pDialogBack', 'UIStatic *'),
+        (1164, 'm_pResultLevelup', 'UIStatic *'),
+        (1168, 'm_pResultWindLvup', 'UIStatic *'),
+        (1172, 'm_pResultThunderLvup', 'UIStatic *'),
+        (1176, 'm_pResultWaterLvup', 'UIStatic *'),
+        (1180, 'm_pResultFireLvup', 'UIStatic *'),
+        (1184, 'm_pResultEarthLvup', 'UIStatic *'),
+        (1188, 'm_pResultDoubleLvup', 'UIStatic *'),
+        (1192, 'm_pResultGetItem', 'UIStatic *'),
+        (1196, 'm_pMain', 'CCBControlWindow *'),
+        (1200, 'm_pItemWindow', 'CCBItemWindow *'),
+        (1204, 'm_pMagicWindow', 'CCBMagicWindow *'),
+        (1208, 'm_pSkillWindow', 'CCBSkillWindow *'),
+        (1212, 'm_pAIWindow', 'CCBAIWindow *'),
+        (1216, 'm_pLineupWindow', 'CCBLineupWindow *'),
+        (1220, 'm_pProtectWindow', 'CCBProtectWindow *'),
+        (1224, 'm_pResultWindow', 'CCBResultWindow *[4]'),
+        (1240, 'm_pCBSystem', 'CCBSystem *'),
+        (1244, 'm_pUtil', 'CUtil *'),
+        (1248, 'm_Task', 'tagUITask[20]'),
     ],
 }
 

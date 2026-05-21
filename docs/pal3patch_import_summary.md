@@ -128,12 +128,95 @@ offset 0-64 的定义**完全一致**（类型/偏移都匹配）。
 - `pipeline/parse_pal3patch_structs.py` — 解析 pal3.h 结构体定义
 - `pipeline/merge_pal3patch_names.py` — 合并字段名到 annotations
 
-## 下一步
+## CCBUI 布局冲突发现（2026-05-21）
 
-1. 扩展 `merge_pal3patch_names.py` 的 `PAL3PATCH_DEFS` 字典，手动整理 CCBUI, UIStatic 等结构体的字段定义
-2. 批量导入语义字段名
-3. 验证导入后的定义是否影响编译
-4. 提交更新
+### 问题
+
+尝试导入 CCBUI 字段定义时发现：**PAL3patch 和我们的 annotations 的偏移完全不匹配**。
+
+| 对比项 | PAL3patch | Our annotations |
+|--------|-----------|-----------------|
+| 总大小 | 2688 bytes | 3552 bytes |
+| CCBUI 自身 | 2536 bytes | 3400 bytes |
+| offset 152 | m_pAttackSequenBack | (无) |
+| offset 156 | m_pAttackSequenFace[11] | m_nTargetHeight (float) |
+| offset 164 | (无) | m_pRoleStateFace[3] |
+| offset 200 | m_pRoleStatePanel[4] | (无) |
+| offset 216 | m_pRoleStateFace[5] | (无) |
+| offset 256 | union of 19 states | (无union结构) |
+
+### 证据来源分析
+
+我们的 CCBUI annotations 有 77 个字段，来源分布：
+- PDB: 34 个（来自 PAL3A，不一定适用于 PAL3）
+- binary: 20 个（从 PAL3.exe 二进制验证）
+- A/A+ (binary): 10 个（高置信度二进制证据）
+- inferred: 9 个（推断）
+- fix/gap: 3 个（修正/填充）
+- ida_decomp: 1 个（IDA 反编译推断）
+
+关键字段的证据：
+- offset 156 (m_nTargetHeight): `A:FPU_disp32_0x518827` — **A 级二进制证据**
+- offset 176 (m_nWindowX): `binary:SetSelection` — **二进制验证**
+- offset 180 (m_nWindowY): `A:FPU_disp32_0x441937` — **A 级二进制证据**
+
+### 原因分析
+
+1. **PAL3A vs PAL3**：我们的 annotations 大量来自 PAL3A PDB，而 PAL3patch 逆向的是 PAL3.exe。PAL3A 和 PAL3 的结构体布局可能不同。
+2. **版本差异**：PAL3 有多个版本（简体中文、繁体中文、日文等），可能有不同的结构体布局。
+3. **字段差异**：我们的 CCBUI 比 PAL3patch 多 864 bytes，可能包含了额外的字段（如 m_nTargetHeight, m_nWindowX, m_nWindowY 等）。
+
+### 结论
+
+**不能直接批量导入 CCBUI 字段定义**。偏移不匹配说明这是不同的结构体布局。
+
+### 正确策略
+
+1. **保留有二进制证据的字段**：offset 156, 176, 180 等有 A/A+ 级证据的字段必须保留
+2. **UIWnd 等基础类可以导入**：如果偏移匹配且类型一致
+3. **PAL3patch 作为命名参考**：对于语义不明确的字段，可以参考 PAL3patch 的命名方式，但不能直接替换偏移
+4. **需要二进制验证**：对于重要的结构体（如 CCBUI），需要从 PAL3.exe 二进制中验证实际的字段偏移
+
+## 最终策略（2026-05-21）
+
+经过验证，**PAL3patch 和我们的 annotations 偏移不匹配**，说明它们来自不同版本或不同的逆向分析：
+
+1. **保留现有定义** — 我们的 annotations 有大量 A/A+ 级二进制证据，不能被覆盖
+2. **UIWnd 无需导入** — 我们的定义已优于 PAL3patch（88 vs 68 bytes）
+3. **CCBUI/UIStatic 不能批量导入** — 偏移完全不匹配（CCBUI: 3552 vs 2688 bytes）
+4. **导入基础类型** — gbVec3D, gbQuaternion, gbColorQuad 等在我们的 annotations 中不存在，可以从 PAL3patch 创建
+5. **PAL3patch 作为命名参考** — 对于语义不明确的字段，可以参考 PAL3patch 的命名方式，但不能直接替换偏移
+
+## 已完成的工作
+
+1. ✓ 创建 `pipeline/parse_pal3patch_structs.py` — 解析 pal3.h 结构体定义
+2. ✓ 创建 `pipeline/merge_pal3patch_names.py` — 合并字段名工具（带 UIWnd + CCBUI 定义）
+3. ✓ 创建 `pipeline/ccbui_fields.py` — CCBUI 完整字段列表（53 个字段，手动计算偏移）
+4. ✓ 创建 `pipeline/verify_pal3patch_match.py` — 验证偏移匹配情况
+5. ✓ 创建 `pipeline/import_basic_types.py` — 从 PAL3patch 导入基础类型
+6. ✓ 验证 UIWnd offset 0-64 完全匹配
+7. ✓ 发现 CCBUI 偏移不匹配（3552 vs 2688 bytes）
+8. ✓ 统计 CCBUI 证据来源（34 个 PDB, 20 个 binary, 10 个 A/A+）
+
+## 工具使用
+
+```bash
+# 解析 PAL3patch 结构体（只读分析）
+python pipeline/parse_pal3patch_structs.py
+
+# 验证偏移匹配情况
+python pipeline/verify_pal3patch_match.py
+
+# 导入基础类型（gbVec3D, gbQuaternion, gbColorQuad）
+python pipeline/import_basic_types.py
+python pipeline/check_annotations.py  # 验证
+```
+
+## 不推荐的操作
+
+- ✗ 批量替换现有结构体的偏移（会丢失二进制证据）
+- ✗ 假设 PAL3patch 的偏移适用于我们的 PAL3.exe（版本可能不同）
+- ✗ 用 PDB 数据覆盖有 A/A+ 级二进制证据的字段
 
 ## 参考
 
