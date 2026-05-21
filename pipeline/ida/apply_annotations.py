@@ -42,6 +42,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
     size = struct_info.get("binary_size") or struct_info.get("pdb_size") or struct_info.get("gen_size") or 0
     base_class = struct_info.get("base_class")
     base_size = struct_info.get("base_size", 0)
+    kind = struct_info.get("kind", "struct")  # struct, union, or class
 
     # IDA parse_decl cannot handle C++ template base classes
     if base_class and ('<' in base_class or '>' in base_class):
@@ -180,7 +181,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
             data_size = size - base_size if base_class else size
             has_vt = base_class and any(vt_info.get("class") == base_class for vt_info in vtables.values())
             cpp = " __cppobj" if has_vt else ""
-            return "struct%s %s%s { char _data[%d]; };" % (cpp, name, inherit, data_size)
+            return "%s%s %s%s { char _data[%d]; };" % (kind, cpp, name, inherit, data_size)
         return None
 
     inherit = " : public %s" % base_class if base_class else ""
@@ -192,8 +193,8 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
     # Only use pack(1) for structs explicitly marked (file format headers, etc.)
     pack = struct_info.get("pack")
     if pack == 1:
-        return "#pragma pack(push, 1)\nstruct%s %s%s {\n%s\n};\n#pragma pack(pop)" % (cppobj, name, inherit, "\n".join(lines))
-    return "struct%s %s%s {\n%s\n};" % (cppobj, name, inherit, "\n".join(lines))
+        return "#pragma pack(push, 1)\n%s%s %s%s {\n%s\n};\n#pragma pack(pop)" % (kind, cppobj, name, inherit, "\n".join(lines))
+    return "%s%s %s%s {\n%s\n};" % (kind, cppobj, name, inherit, "\n".join(lines))
 
 
 def load_annotations():
