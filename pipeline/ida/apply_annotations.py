@@ -862,7 +862,10 @@ def apply_annotations():
             last_meaningful = tokens[-1] if tokens else ""
             needs_name = last_meaningful in _type_and_cc
             if needs_name:
-                sig_with_name = before + " " + short_name + after
+                # For member functions, IDA needs full qualified name (Class::Method)
+                # For free functions, use short name
+                func_name_for_ida = name if "::" in name else short_name
+                sig_with_name = before + " " + func_name_for_ida + after
             else:
                 sig_with_name = before + after
             # Try original (with struct/class keywords), fallback to stripped
