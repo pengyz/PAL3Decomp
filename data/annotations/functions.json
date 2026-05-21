@@ -1033,7 +1033,7 @@
   },
   "0x004427C0": {
     "name": "UIWnd::SetEnable",
-    "signature": "void __thiscall(UIWnd *this, intszName, int bEnable)"
+    "signature": "void __thiscall(UIWnd *this, int szName, int bEnable)"
   },
   "0x00442AD0": {
     "name": "UIFrameWnd::Update",
@@ -7278,7 +7278,7 @@
   },
   "0x00418170": {
     "name": "Matrix4::_auto_418170",
-    "signature": "int __thiscall(Matrix4 *this, struct gbOBBox *pstruct gbOBBox)"
+    "signature": "int __thiscall(Matrix4 *this, struct gbOBBox *p)"
   },
   "0x0041A1A0": {
     "name": "RoleSystem::_auto_41a1a0",
@@ -7358,7 +7358,7 @@
   },
   "0x0042A950": {
     "name": "RoleSystem::_auto_42a950",
-    "signature": "BOOL __thiscall(RoleSystem *this, struct gbVec3D *pstruct gbVec3D)"
+    "signature": "BOOL __thiscall(RoleSystem *this, struct gbVec3D *p)"
   },
   "0x0042B510": {
     "name": "RoleSystem::_auto_42b510",
@@ -7426,7 +7426,7 @@
   },
   "0x0044B0F0": {
     "name": "PalScriptMgr::_init_44b0f0",
-    "signature": "int __thiscall(PalScriptMgr *this, struct PalScript *pstruct PalScript, int nVal)"
+    "signature": "int __thiscall(PalScriptMgr *this, struct PalScript *p, int nVal)"
   },
   "0x0044C8A0": {
     "name": "UICoverFrm::_method_44c8a0",
@@ -7458,7 +7458,7 @@
   },
   "0x0045A4F0": {
     "name": "CCBUI::_method_45a4f0",
-    "signature": "int __thiscall(CCBUI *this, struct PalScript *pstruct PalScript, int nVal)"
+    "signature": "int __thiscall(CCBUI *this, struct PalScript *p, int nVal)"
   },
   "0x0045B990": {
     "name": "CCBUI::InitCombatUI",
@@ -7490,7 +7490,7 @@
   },
   "0x0047C3A0": {
     "name": "CCBMagicWindow::_method_47c3a0",
-    "signature": "int __thiscall(CCBMagicWindow *this, struct PalScript *pstruct PalScript, int nVal)"
+    "signature": "int __thiscall(CCBMagicWindow *this, struct PalScript *p, int nVal)"
   },
   "0x004974A0": {
     "name": "UIBigMap::SendMessage",
@@ -7846,7 +7846,7 @@
   },
   "0x0042AAE0": {
     "name": "PalScriptMgr::_nearby_42aae0",
-    "signature": "BOOL __thiscall(PalScriptMgr *this, int *pnVal, int nVal, struct gbVec3D *pstruct gbVec3D)"
+    "signature": "BOOL __thiscall(PalScriptMgr *this, int *pnVal, int nVal, struct gbVec3D *p)"
   },
   "0x0042BEA0": {
     "name": "PalScriptMgr::_nearby_42bea0",
@@ -7858,7 +7858,7 @@
   },
   "0x0042C6A0": {
     "name": "Matrix4::_auto_42c6a0",
-    "signature": "void __thiscall(Matrix4 *this, struct gbAABBox *pstruct gbAABBox)"
+    "signature": "void __thiscall(Matrix4 *this, struct gbAABBox *p)"
   },
   "0x0042C900": {
     "name": "ScriptVM::_nearby_42c900",
@@ -8442,7 +8442,7 @@
   },
   "0x0044A1B0": {
     "name": "CCBUIPanel::_method_44a1b0",
-    "signature": "BOOL __thiscall(CCBUIPanel *this, double st6_0, struct PalScript *pstruct PalScript, int nVal)"
+    "signature": "BOOL __thiscall(CCBUIPanel *this, double st6_0, struct PalScript *p, int nVal)"
   },
   "0x0044A770": {
     "name": "UIWnd::_nearby_44a770",
@@ -9742,7 +9742,7 @@
   },
   "0x004F2660": {
     "name": "CCBRoleState::GetSub_4EEF20",
-    "signature": "int __thiscall(CCBRoleState *this, struct tagCmdData *pstruct tagCmdData, unsigned int roleIdx)"
+    "signature": "int __thiscall(CCBRoleState *this, struct tagCmdData *p, unsigned int roleIdx)"
   },
   "0x004F2750": {
     "name": "CCBRoleState::CheckBoss_2",
@@ -10658,7 +10658,7 @@
   },
   "0x0041BE80": {
     "name": "Camera::Method_41BE80",
-    "signature": "Camera *__thiscall(Camera *this, struct gbGfxManager *pstruct gbGfxManager)"
+    "signature": "Camera *__thiscall(Camera *this, struct gbGfxManager *p)"
   },
   "0x0041C090": {
     "name": "RoleSystem::_nearby_41c090",
@@ -10842,7 +10842,7 @@
   },
   "0x00429F90": {
     "name": "PalScriptMgr::_nearby_429f90",
-    "signature": "void __thiscall(PalScriptMgr *this, gbMatrix4 *pMatrix4, struct gbVec3D *pstruct gbVec3D)"
+    "signature": "void __thiscall(PalScriptMgr *this, gbMatrix4 *pMatrix4, struct gbVec3D *p)"
   },
   "0x0042AC80": {
     "name": "PalScriptMgr::RoleCmd_42ac80",
@@ -14394,7 +14394,7 @@
   },
   "0x00503FA0": {
     "name": "CCBStage::_nearby_503fa0",
-    "signature": "int __thiscall(CCBStage *this, int **a2, struct gbGfxManager *pstruct gbGfxManager)"
+    "signature": "int __thiscall(CCBStage *this, int **a2, struct gbGfxManager *p)"
   },
   "0x005040D0": {
     "name": "CCBStage::_nearby_5040d0",
@@ -15202,7 +15202,7 @@
   },
   "0x00533CB0": {
     "name": "SceneObjParam::_method_533cb0",
-    "signature": "int __thiscall(SceneObjParam *this, struct gbGfxManager *pstruct gbGfxManager)"
+    "signature": "int __thiscall(SceneObjParam *this, struct gbGfxManager *p)"
   },
   "0x00533DA0": {
     "name": "UIWnd::_nearby_533da0",
