@@ -79,9 +79,10 @@ def transform_oop_calls(code, static_methods=None):
                                 node.start_byte, node.end_byte, new_text))
                             return
                         elif first_arg.type == 'identifier':
-                            # Simple var: var->Method(rest)
-                            new_text = '%s->%s(%s)' % (
-                                first_arg_text, method_name, rest_str)
+                            # Simple var: cast to class type for safety
+                            # (IDA may not have correct type info for local vars)
+                            new_text = '((%s *)%s)->%s(%s)' % (
+                                class_name, first_arg_text, method_name, rest_str)
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return
