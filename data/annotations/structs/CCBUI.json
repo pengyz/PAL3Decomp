@@ -188,9 +188,10 @@
       "source": "binary_scan:37_accesses(lea:8,load:23,store:6)→pointer"
     },
     "356": {
-      "name": "_todo_356",
+      "name": "m_pCurrentTarget",
       "type": "void *",
-      "source": "binary_scan:180_accesses(lea:11,load:155,store:14)→pointer,CRITICAL_FIELD"
+      "source": "binary_scan:180_accesses(lea:11,load:155,store:14)→pointer,CRITICAL_FIELD",
+      "note": "Semantic inference: 155 load vs 14 store (high-frequency read) in Target parameter cluster (336-364). Accessed in CCBUI::_method_45a4f0(PalScript*, int). Likely current combat target/selected unit pointer."
     },
     "360": {
       "name": "_todo_360",

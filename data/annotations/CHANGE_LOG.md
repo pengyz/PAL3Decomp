@@ -4885,3 +4885,42 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
 - **平均置信度**: 87.3
 - **方法**: 全量二进制扫描 (113 methods, 166 offsets)
 
+
+## 2026-05-21 CCBUI offset 356 字段命名
+
+### CCBUI.m_pCurrentTarget (offset 356)
+
+- **变更**: 字段命名 "_todo_356" → "m_pCurrentTarget"
+- **置信度**: 70
+- **证据**:
+  1. [A] member_scan: 180 次访问 (lea:11, load:155, store:14) - 结构体内最高访问频率
+  2. [A] 访问模式: 155 load vs 14 store → 高频读取字段，典型的状态查询用途
+  3. [B] 上下文关联: 位于 Target 参数 cluster (offset 336-364):
+     - 336: m_nTargetOffsetX (int)
+     - 340-348: m_nTargetParam1/2/3 (int)
+     - 356: m_pCurrentTarget (void*) ← 本字段
+     - 360-364: 相关参数字段
+  4. [C] 访问方法: CCBUI::_method_45a4f0(PalScript*, int) 频繁访问
+  5. [C] 语义推断: CCBUI = 战斗UI系统，Target cluster + 高频读取 → 当前战斗目标指针
+
+- **类型确认**: void* (指针类型由 lea 指令确认)
+- **置信度计算**:
+  - A级证据 (binary_scan 180访问): 85分
+  - 上下文关联 (Target cluster): +5分
+  - 语义推断 (Combat UI + Target context): -20分 (推断性质)
+  - **总分**: 70分 (达到字段命名阈值 60分)
+
+- **后续验证**:
+  - 建议在 IDA 中查看 CCBUI::_method_45a4f0 (0x45A4F0) 的完整反编译
+  - 确认该字段在战斗流程中的具体用途
+  - 验证是否为 Actor*/Role* 类型而非 void*
+
+### 方法论改进
+
+本次标注展示了 member_scan + 语义推断的完整流程：
+1. 二进制扫描确认 offset 存在和访问模式 (A级)
+2. 访问类型分析推断数据类型 (A级)
+3. 上下文关联识别字段所属逻辑组 (B级)
+4. 访问方法分析推断语义用途 (C级)
+5. 置信度量化评估，决定是否提交
+
