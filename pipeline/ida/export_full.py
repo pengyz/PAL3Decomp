@@ -180,7 +180,7 @@ def main():
                     continue
                 code = str(cfunc)
                 # Priority: IDB type (from annotations) over Hex-Rays inference
-                idb_type = idc.GetType(ea)
+                idb_type = idc.get_type(ea)
                 if idb_type:
                     sig = idb_type
                 else:
