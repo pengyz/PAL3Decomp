@@ -137,5 +137,21 @@ asm/pal3/decomp/
 *.i64
 include/pal3/globals.h
 
+# Pipeline snapshots (large compile output, regenerable)
+pipeline/snapshots/data/
+
+# Build output log (regenerable)
+build_output.txt
+
+# AIDE project state (local tool state)
+.project/audit.log
+.project/state.json
+.project/knowledge/
+
+# Temp analysis scripts
+analyze*.py
+tmp_*.py
+_tmp_plugin/
+
 pipeline.toml
 .claude/skills/gstack/
