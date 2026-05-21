@@ -32,8 +32,8 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
 
-PDB_EXPORT = os.path.join(PROJECT_ROOT, "data", "pdb", "pdb_export.json")
-GLOBALS_FILE = os.path.join(PROJECT_ROOT, "data", "pdb", "globals_export.json")
+PDB_EXPORT = os.path.join(PROJECT_ROOT, "pipeline", "data", "pdb", "pdb_export.json")
+GLOBALS_FILE = os.path.join(PROJECT_ROOT, "pipeline", "data", "pdb", "globals_export.json")
 OUTPUT_DIR = os.path.join(PROJECT_ROOT, "asm", "pal3")
 SIG_NAME = "pal3a_text"
 
@@ -132,66 +132,31 @@ def phase1_import_types():
     # Forward declarations
     for cls in classes:
         name = cls.get('name', '')
-        kind = cls.get('kind', 'struct')  # struct, class, union
         if name and name not in _SKIP_SYSTEM_TYPES:
-            # 使用正确的类型关键字
-            if kind == 'union':
-                decl = 'union %s;' % name
-            elif kind == 'class':
-                decl = 'class %s;' % name
-            else:
-                decl = 'struct %s;' % name
+            decl = 'struct %s;' % name
             tinfo = ida_typeinf.tinfo_t()
             if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
                 tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
 
     # Full definitions - format: {name, size, data_members: [{name, type, offset}]}
     cls_ok = 0
-    cls_skipped = {'system': 0, 'template': 0, 'no_name': 0, 'no_size': 0}
-    cls_failed = []  # 记录失败详情
-    skipped_templates = []  # 记录跳过的 template 供后续注释使用
-
     for cls in classes:
         name = cls.get('name', '')
-        kind = cls.get('kind', 'struct')
         size = cls.get('size', 0)
         data_members = cls.get('data_members', [])
-
         if not name:
-            cls_skipped['no_name'] += 1
             continue
         # Skip system types (SDK headers provide complete definitions)
         if name in _SKIP_SYSTEM_TYPES:
-            cls_skipped['system'] += 1
             continue
         # Skip names with template chars that IDA can't handle
         if '<' in name or '>' in name:
-            cls_skipped['template'] += 1
-            # 记录 template 信息（供后续生成注释）
-            skipped_templates.append({
-                'name': name,
-                'kind': kind,
-                'size': size,
-                'members': len(data_members)
-            })
-            continue
-        if size <= 0:
-            cls_skipped['no_size'] += 1
             continue
 
-        # 确定类型关键字
-        if kind == 'union':
-            type_kw = 'union'
-        elif kind == 'class':
-            type_kw = 'class'
-        else:
-            type_kw = 'struct'
-
-        success = False
-
-        # Try to build with members
-        if data_members:
+        # Try to build struct with members
+        if data_members and size > 0:
             member_strs = []
+            last_offset = 0
             for dm in data_members:
                 mtype = dm.get('type', 'int')
                 mname = dm.get('name', '_field')
@@ -201,67 +166,22 @@ def phase1_import_types():
                     mname = '_field_%X' % dm.get('offset', 0)
                 member_strs.append('    %s %s;' % (mtype, mname))
             if member_strs:
-                decl = '%s %s {\n%s\n};' % (type_kw, name, '\n'.join(member_strs))
+                decl = 'struct %s {\n%s\n};' % (name, '\n'.join(member_strs))
                 tinfo = ida_typeinf.tinfo_t()
                 if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
                     tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
                     cls_ok += 1
-                    success = True
+                    continue
 
-        # Fallback: opaque type with known size
-        if not success:
-            decl = '%s %s { char _data[%d]; };' % (type_kw, name, size)
+        # Fallback: opaque struct with known size
+        if size > 0:
+            decl = 'struct %s { char _data[%d]; };' % (name, size)
             tinfo = ida_typeinf.tinfo_t()
             if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
                 tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
                 cls_ok += 1
-                success = True
-
-        if not success:
-            cls_failed.append({
-                'name': name,
-                'kind': kind,
-                'size': size,
-                'members': len(data_members)
-            })
 
     log("[*] 类导入: %d / %d" % (cls_ok, len(classes)))
-    log("[*] 跳过: system=%d, template=%d, no_name=%d, no_size=%d" %
-        (cls_skipped['system'], cls_skipped['template'], cls_skipped['no_name'], cls_skipped['no_size']))
-    log("[*] 失败: %d" % len(cls_failed))
-
-    # 保存跳过的 template 类型（供后续人工修复参考）
-    if skipped_templates:
-        template_log = os.path.join(SCRIPT_DIR, "_logs", "pdb_skipped_templates.json")
-        os.makedirs(os.path.dirname(template_log), exist_ok=True)
-        import json as _json_tmpl
-        with open(template_log, 'w', encoding='utf-8') as f:
-            _json_tmpl.dump({
-                'total_skipped': len(skipped_templates),
-                'note': 'IDA parse_decl 不支持 C++ template 语法。这些类型已跳过导入，但记录在此供后续人工修复参考。',
-                'templates': skipped_templates[:50]  # 只保存前50个作为示例
-            }, f, indent=2, ensure_ascii=False)
-        log("[*] Template 跳过详情: %s" % template_log)
-
-    # 按kind统计失败
-    if cls_failed:
-        fail_by_kind = {}
-        for f in cls_failed:
-            k = f['kind']
-            fail_by_kind[k] = fail_by_kind.get(k, 0) + 1
-        log("[*] 失败分布: %s" % ', '.join('%s=%d' % (k, v) for k, v in sorted(fail_by_kind.items())))
-
-        # 保存失败详情到文件
-        fail_log = os.path.join(SCRIPT_DIR, "_logs", "pdb_import_failures.json")
-        os.makedirs(os.path.dirname(fail_log), exist_ok=True)
-        import json as _json
-        with open(fail_log, 'w') as f:
-            _json.dump({
-                'total_failed': len(cls_failed),
-                'by_kind': fail_by_kind,
-                'details': cls_failed[:50]  # 只保存前50个详情
-            }, f, indent=2)
-        log("[*] 失败详情: %s" % fail_log)
 
 
 # ========================================================================

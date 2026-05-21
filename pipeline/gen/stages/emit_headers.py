@@ -686,17 +686,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             include_types.add(b)
             fwd_types.discard(b)
 
-    # Union support DISABLED: PDB kind field from PAL3A doesn't match PAL3 binary usage.
-    # Issues found:
-    # 1. Many PDB "union" types have base_class → impossible (C/C++ forbids union inheritance)
-    # 2. Many PDB "union" types are inherited by other classes → impossible (cannot inherit from union)
-    # 3. Many PDB "union" types contain non-POD members (gbVec3D, etc.) → VC6 rejects
-    # Root cause: PDB is from PAL3A.dll, layout differs from PAL3.exe.
-    # Solution: Ignore PDB kind, use class for all (safe default). Re-enable per-type after verification.
-    type_kw = "class"
-    pdb_kind_comment = ""
-
-    lines.append("%s %s%s {%s" % (type_kw, cls_name, bases_str, pdb_kind_comment))
+    lines.append("class %s%s {" % (cls_name, bases_str))
     lines.append("public:")
 
     # Virtual methods from vtable (must be first, order matches vtable layout)
