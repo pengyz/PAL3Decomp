@@ -3,24 +3,24 @@
   "pdb_size": 16,
   "known_members": {
     "0": {
-      "name": "m_pData",
+      "name": "buf",
       "type": "void * *",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PAL3patch:pal3.h (binary_validated 100%). Renamed from m_pData for consistency."
     },
     "4": {
-      "name": "m_nSize",
+      "name": "capacity",
       "type": "int",
-      "source": "A:PAL3patch_verified+DWORD_access_in_UIWnd"
+      "source": "PAL3patch:pal3.h (binary_validated 100%). Renamed from m_nSize (semantics: allocated capacity)."
     },
     "8": {
-      "name": "m_nMaxSize",
+      "name": "length",
       "type": "int",
-      "source": "A:PAL3patch_verified+ctor_analysis"
+      "source": "PAL3patch:pal3.h (binary_validated 100%). Renamed from m_nMaxSize (semantics: current used length)."
     },
     "12": {
-      "name": "m_nGrowBy",
+      "name": "increase",
       "type": "int",
-      "source": "A:PAL3patch_verified+ctor_analysis"
+      "source": "PAL3patch:pal3.h (binary_validated 100%). Renamed from m_nGrowBy for consistency."
     }
   },
   "gen_size": 16,

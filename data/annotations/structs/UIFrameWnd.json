@@ -28,9 +28,9 @@
       "source": "A+:raw_idb VA=0x52DE00 *(DWORD*)(this+144)=1065353216 (1.0f)"
     },
     "148": {
-      "name": "m_nBorderStyle",
-      "type": "float",
-      "source": "A+:raw_idb VA=0x52DE00 *(DWORD*)(this+148)=1065353216 (1.0f)"
+      "name": "m_frameid",
+      "type": "int",
+      "source": "PAL3patch:pal3.h + binary_verified: 92 mov (int) vs 35 fild (int→float). Prior float was misclassified from IEEE754 init."
     },
     "88": {
       "name": "_todo_58",
