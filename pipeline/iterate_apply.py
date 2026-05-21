@@ -99,9 +99,27 @@ def _apply_signature_fix(fix: Fix) -> bool:
     if fix.addr not in fns:
         return False
     sig = fns[fix.addr].get('signature', '')
-    new_sig = sig.replace(fix.old_value, fix.new_value, 1)
-    if new_sig == sig:
+    # Only replace in the parameter section (after first '('), not in return type or this
+    paren_idx = sig.find('(')
+    if paren_idx < 0:
         return False
+    prefix = sig[:paren_idx + 1]
+    params = sig[paren_idx + 1:]
+    # Skip 'this' param (first param in __thiscall)
+    if '*this' in params:
+        this_end = params.find(',')
+        if this_end < 0:
+            return False  # Only this param, nothing to fix
+        this_part = params[:this_end + 1]
+        rest = params[this_end + 1:]
+        new_rest = rest.replace(fix.old_value, fix.new_value, 1)
+        if new_rest == rest:
+            return False
+        new_sig = prefix + this_part + new_rest
+    else:
+        new_sig = prefix + params.replace(fix.old_value, fix.new_value, 1)
+        if new_sig == sig:
+            return False
     fns[fix.addr]['signature'] = new_sig
     json.dump(fns, open(fpath, 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
     return True
@@ -131,7 +149,13 @@ def _apply_attribution_fix(fix: Fix) -> bool:
     old_name = fns[fix.addr].get('name', '')
     if fix.old_class + '::' not in old_name:
         return False
+    # Fix name
     fns[fix.addr]['name'] = old_name.replace(fix.old_class + '::', fix.new_class + '::', 1)
+    # Fix signature this type to match new class
+    sig = fns[fix.addr].get('signature', '')
+    if fix.old_class + ' *this' in sig:
+        fns[fix.addr]['signature'] = sig.replace(
+            fix.old_class + ' *this', fix.new_class + ' *this', 1)
     json.dump(fns, open(fpath, 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
     return True
 
