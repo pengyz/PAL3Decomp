@@ -2237,7 +2237,8 @@
   },
   "0x004DFD20": {
     "name": "Combat::LogMessage",
-    "signature": "char __thiscall(Combat *this, int nVal, char *nVal2, char *format)"
+    "signature": "char __thiscall(Combat *this, int, int, char *format, ...)",
+    "source": "manual_fix_from_call_sites"
   },
   "0x004DFE00": {
     "name": "CCBAIWindow::SetText",

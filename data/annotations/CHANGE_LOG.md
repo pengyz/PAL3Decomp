@@ -5013,3 +5013,114 @@ C2 04 00       ret 4
 - ✅ 可重新扫描所有类，发现之前漏掉的低偏移字段
 - 📝 TODO: 调查奇数偏移字段的真实用途（检查 CCBUI 是否有 pack 指令）
 
+
+## 2026-05-21: UI 类继承关系标注 (batch 5)
+
+### 变更范围
+为 6 个 UI 类添加 base_class 标注，基于 PAL3A PDB 导出数据：
+
+| 类名 | base_class | 类型 |
+|------|-----------|------|
+| UIDialog | UIWnd | 单继承 |
+| UINote | UIDialog | 单继承 |
+| UIFlexBar | UIWnd | 单继承 |
+| UICaption | [UIWnd, PalScriptWaitObj] | 多重继承 |
+| UIEmote | [UIWnd, PalScriptWaitObj] | 多重继承 |
+| UIHeadDialog | [UIDialog, PalScriptWaitObj] | 多重继承（更新） |
+
+### 证据
+**来源**: PAL3A PDB 导出 (`data/pdb/pdb_export.json`)
+
+**继承关系验证**:
+```python
+# UIDialog
+{'name': 'UIDialog', 'size': 72, 'bases': [{'name': 'UIWnd', 'offset': 0}]}
+
+# UINote  
+{'name': 'UINote', 'bases': [{'name': 'UIDialog', 'offset': 0}]}
+
+# UIHeadDialog (多重继承)
+{'name': 'UIHeadDialog', 'size': 352, 
+ 'bases': [
+   {'name': 'UIDialog', 'offset': 0, 'virtual': False},
+   {'name': 'PalScriptWaitObj', 'offset': 72, 'virtual': False}
+ ]}
+
+# UICaption (多重继承)
+{'name': 'UICaption', 'bases': ['UIWnd', 'PalScriptWaitObj']}
+
+# UIEmote (多重继承)  
+{'name': 'UIEmote', 'bases': ['UIWnd', 'PalScriptWaitObj']}
+
+# UIFlexBar
+{'name': 'UIFlexBar', 'bases': [{'name': 'UIWnd', 'offset': 0}]}
+```
+
+**代码证据**: UIDialog.cpp 的 Init 方法中有 `((UIWnd *)this)` 类型转换，说明 UIDialog 需要访问 UIWnd 的方法。
+
+### 置信度
+**90/100** — 高可信
+
+**依据**:
+- [+] PDB 数据来自官方编译，继承关系明确
+- [+] offset 信息清晰（单继承 offset 0，多重继承顺序排列）
+- [+] 代码中有向上转型证据（如 `((UIWnd *)this)`）
+- [−] PDB 来自 PAL3A，部分类层次可能与 PAL3 不同（如 MUIDialog）
+
+### 编译影响
+- **headers 改进**: 6 个类现在正确声明继承关系
+- **编译错误**: errors=3238, pass=41/188 (无变化)
+- **原因**: cpp 代码中的显式类型转换来自 IDA 导出，headers 改进不影响已有代码
+
+### 管线改进
+同时修复了 pipeline 对多重继承的支持：
+- `check_annotations.py`: 支持 base_class 为 list
+- `emit_headers.py`: 正确展开多重继承声明
+
+**示例生成代码**:
+```cpp
+// UIHeadDialog.h
+class UIHeadDialog : public UIDialog, public PalScriptWaitObj {
+public:
+    Role * m_role; // +0x50
+    // ...
+};
+```
+
+### 待办
+1. 对 PAL3 特有的类层次（如 MUIDialog: UIFrameWnd），需要二进制验证而非仅靠 PDB
+2. UIRenderObj 在 PDB 中无 base，待确认 PAL3 中是否继承 UIWnd
+3. 未来在 IDA 中 apply_annotations 后重新导出，可消除不必要的类型转换
+
+
+### 发现: CCBStageRole 结构体布局问题
+
+**问题**: `CCBStageRole::GetWorldPos()` 返回 `float*`，但应该返回 `gbMatrix4*`
+
+**深入分析**:
+```cpp
+// CCBStageRole.cpp GetWorldPos() 实现
+float * CCBStageRole::GetWorldPos()
+{
+  gbMatrix4 v3;
+  // ...
+  ((gbMatrix4 *)&this->m_dwID)->RightMultiply(v3);  // 把 &m_dwID 当作 gbMatrix4*
+  return (float *)&this->m_dwID;
+}
+```
+
+**当前标注**:
+- offset 296: `m_dwID`, type `gbMatrix4 *` (指针，4 字节)
+- offset 300: `m_pActor`, type `Actor *`
+
+**问题**:
+1. 代码中 `&this->m_dwID` 被当作 gbMatrix4 对象指针使用（调用方法）
+2. 如果 m_dwID 真的是指针（4 字节），则 `&m_dwID` 是指向指针的指针（gbMatrix4**）
+3. 如果要把它当作 gbMatrix4 对象，m_dwID 应该是 `gbMatrix4`（嵌入对象，64 字节）
+4. 但下一个成员在 +4 位置，说明占用确实是 4 字节
+
+**结论**: 这不是简单的返回类型错误，而是结构体成员类型/布局的错误标注。
+需要从二进制重新验证 CCBStageRole offset 296 区域的实际布局。
+
+**暂不修改**: 这需要 A 级二进制证据，当前只有 C 级代码推断。
+
