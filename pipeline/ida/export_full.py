@@ -179,7 +179,12 @@ def main():
                     log("[!] SKIP 0x%08X %s: decompile returned None" % (ea, name[:50]))
                     continue
                 code = str(cfunc)
-                sig = cfunc.type.dstr()
+                # Priority: IDB type (from annotations) over Hex-Rays inference
+                idb_type = idc.GetType(ea)
+                if idb_type:
+                    sig = idb_type
+                else:
+                    sig = cfunc.type.dstr()
                 demangled = idc.demangle_name(name, idc.get_inf_attr(idc.INF_SHORT_DN))
                 display_name = demangled if demangled else name
                 safe = display_name.replace('::', '_').replace('<', '_').replace('>', '_')
