@@ -99,6 +99,14 @@ class DataStore:
                 if '::' in name and '__cdecl' in sig:
                     self.static_methods.add(name)
 
+        # Hardcoded gbengine static methods (not in PAL3.exe functions.json)
+        # These are methods that IDA decompiles as static calls but headers declare as members
+        self.static_methods.update([
+            'gbDynVertBuf::RenderGeomQuad',
+            'gbDynVertBuf::RenderGeomQuadViaStrip',
+            'gbDynVertBuf::RenderUIQuad',
+        ])
+
         # skip_functions.json → thunks
         skip_path = self.annotations_dir / "skip_functions.json"
         if skip_path.exists():
