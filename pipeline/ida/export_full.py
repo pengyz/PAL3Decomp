@@ -175,7 +175,9 @@ def _rebuild_func_decl(code, ann_sig, func_name):
                 hex_names.append(tokens[-1])
 
     # Skip first Hex-Rays param (this) if param count mismatch
-    if len(hex_names) > len(param_parts) and len(hex_names) > 0:
+    # Don't count '...' in param_parts when comparing
+    param_parts_no_varargs = [p for p in param_parts if p != '...']
+    if len(hex_names) > len(param_parts_no_varargs) and len(hex_names) > 0:
         hex_names = hex_names[1:]
 
     # Rebuild parameter list: use types from annotations, names from Hex-Rays
