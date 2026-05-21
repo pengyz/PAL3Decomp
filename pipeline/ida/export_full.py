@@ -177,8 +177,12 @@ def _rebuild_func_decl(code, ann_sig, func_name):
     # Skip first Hex-Rays param (this) if param count mismatch
     # Don't count '...' in param_parts when comparing
     param_parts_no_varargs = [p for p in param_parts if p != '...']
+    skipped_first_param = False
+    skipped_param_name = None
     if len(hex_names) > len(param_parts_no_varargs) and len(hex_names) > 0:
+        skipped_param_name = hex_names[0]  # Save name before removing
         hex_names = hex_names[1:]
+        skipped_first_param = True
 
     # Rebuild parameter list: use types from annotations, names from Hex-Rays
     _TYPE_KEYWORDS = ('void', 'char', 'short', 'int', 'long', 'float', 'double',
@@ -212,6 +216,20 @@ def _rebuild_func_decl(code, ann_sig, func_name):
 
     # Reconstruct first line
     new_first = '%s %s(%s)' % (ret_type, func_name, ', '.join(new_params))
+
+    # If we skipped a Hex-Rays param (this), insert a local variable to preserve references
+    if skipped_first_param and skipped_param_name:
+        # Extract class name from func_name (e.g., "Combat::LogMessage" → "Combat")
+        class_name = func_name.split('::')[0] if '::' in func_name else ''
+        if class_name:
+            # Insert: "ClassName *param_name = this;" at start of function body
+            # Find opening brace
+            brace_pos = rest.find('{')
+            if brace_pos >= 0:
+                # Insert after opening brace
+                insert_line = '\n  %s *%s = this;' % (class_name, skipped_param_name)
+                rest = rest[:brace_pos+1] + insert_line + rest[brace_pos+1:]
+
     return new_first + '\n' + rest
 
 def main():
