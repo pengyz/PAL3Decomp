@@ -4752,3 +4752,136 @@ pass 文件数虽从 44→26，但之前 44 是在错误 layout 下碰巧通过�
 - **影响**: PtrArray 被 UIWnd 等核心基类嵌入，布局错误会级联到所有 UI 类
 - **状态**: 需要完整构造器逆向确认正确布局。优先级 P0。
 
+
+## 2026-05-21 CCBUI 结构体规模修正 + 高访问字段批量导入
+
+### 核心发现：CCBUI 真实大小远超 PDB 记录
+
+- **变更**: binary_size: 3552 → 8060 bytes (+127%)
+- **置信度**: 90
+- **证据**:
+  1. [A] member_scan_CCBUI.json: 系统扫描 113 个 CCBUI 方法
+  2. [A] 166 个不同 offset 访问，最高 offset=8056
+  3. [A] Offset 8056: 9 次 load 访问（VA 示例: CCBUI 方法中 mov [esi+0x1F78]）
+  4. [B] 交叉验证: 多个构造/析构函数访问超出 3552 范围
+- **影响**: PAL3A PDB 布局与 PAL3 二进制不匹配，需重新验证所有字段
+
+### 删除 17 个零访问 PDB 字段
+
+删除 offset 204, 248, 292, 380, 424, 468, 512, 556, 644, 688, 732, 776, 820, 864, 908, 952, 996
+
+- **原因**: member_scan 显示零二进制访问
+- **置信度**: 95 (A 级否定证据：全量扫描无引用)
+- **证据**:
+  1. [A] member_scan 扫描 113 个方法，0 次访问这些 offset
+  2. [C] PDB 来源为 PAL3A，布局差异已确认
+- **影响**: 清理虚假定义，避免生成无效代码
+
+### 添加高置信度字段 (21 个)
+
+#### Offset 352-372 cluster (6 fields)
+
+**Offset 352** (_todo_352: void*)
+- **置信度**: 85
+- **证据**: [A] 37 次访问 (lea:8, load:23, store:6) in _method_45a4f0
+  - VA=0x45A7F3: `89 9E 60 01 00 00` (store dword [esi+0x160])
+
+**Offset 356** (_todo_356: void*) — **CRITICAL FIELD**
+- **置信度**: 90
+- **证据**: [A] **180 次访问** (lea:11, load:155, store:14)
+  - VA=0x45A7F9: `89 9E 64 01 00 00` (store dword [esi+0x164])
+  - 最高访问频率，核心字段
+
+**Offset 360** (_todo_360: void*)
+- **置信度**: 85
+- **证据**: [A] 17 次访问 (lea:2, load:8, store:7)
+  - VA=0x45A7FF: `89 9E 68 01 00 00` (store dword [esi+0x168])
+
+**Offset 364** (_todo_364: int)
+- **置信度**: 85
+- **证据**: [A] 14 次访问 (load:6, store:8, 无 lea → scalar)
+  - VA=0x45A805: `89 9E 6C 01 00 00` (store dword [esi+0x16C])
+
+**Offset 368** (_todo_368: unsigned char)
+- **置信度**: 90
+- **证据**: [A] 2 次访问 (store_byte:2 → byte confirmed)
+  - VA: `88 9E 70 01 00 00` (store byte [esi+0x170])
+
+**Offset 372** (_todo_372: float)
+- **置信度**: 95
+- **证据**: [A] 6 次访问 (fld_float:6 → **FPU 指令确认**)
+  - VA: `D9 86 74 01 00 00` (fld dword [esi+0x174])
+
+#### 248-stride pattern (3 fields)
+
+**Offset 3164** (_todo_3164: void*)
+- **置信度**: 85
+- **证据**: [A] 11 次访问 (lea:6, load:5) in CCBUI::ctor_5540
+  - VA=0x52570A: `8D 8E 5C 0C 00 00` (lea ecx, [esi+0xC5C])
+
+**Offset 3412** (_todo_3412: void*)
+- **置信度**: 85
+- **证据**: [A] 11 次访问 (lea:6, load:5), +248 from 3164
+  - VA=0x5256FA: `8D 8E 54 0D 00 00` (lea ecx, [esi+0xD54])
+
+**Offset 3660** (_todo_3660: void*)
+- **置信度**: 85
+- **证据**: [A] 13 次访问 (lea:10, load:3), +248 from 3412
+  - VA=0x5256EA: `8D 8E 4C 0E 00 00` (lea ecx, [esi+0xE4C])
+
+#### UIFrameWnd array stride-152 (7 elements)
+
+**Offsets 5104, 5256, 5408, 5560, 5712, 5864, 6016**
+- **类型**: UIFrameWnd (embedded)
+- **置信度**: 88
+- **证据**: [A] 连续 152-byte stride pattern
+  - 5104: 7 accesses (lea:5) → array[0]
+  - 5256: 6 accesses (lea:4) → array[1], +152
+  - 5408: 5 accesses (lea:3) → array[2], +152
+  - 5560: 5 accesses (lea:3) → array[3], +152
+  - 5712: 9 accesses (lea:5) → array[4], +152
+  - 5864: 5 accesses (lea:3) → array[5], +152
+  - 6016: 5 accesses (lea:3) → array[6], +152
+  - UIFrameWnd base_size=152 精确匹配
+
+#### High-offset pointers (3 fields)
+
+**Offset 6204** (_todo_6204: unsigned char)
+- **置信度**: 90
+- **证据**: [A] 7 次访问 (store_byte:7)
+
+**Offset 6452** (_todo_6452: void*)
+- **置信度**: 85
+- **证据**: [A] 5 次访问 (lea:5)
+
+**Offset 6468** (_todo_6468: void*)
+- **置信度**: 85
+- **证据**: [A] 9 次访问 (lea:6, load:3)
+
+#### Near-end scalars (2 fields)
+
+**Offset 8052** (_todo_8052: int)
+- **置信度**: 85
+- **证据**: [A] 9 次访问 (load:9)
+
+**Offset 8056** (_todo_8056: int) — **highest access in struct**
+- **置信度**: 90
+- **证据**: [A] 9 次访问 (load:8, store:1)
+  - 确定结构体至少延伸到 offset 8060
+
+### 工具链改进
+
+新增 `pipeline/scan_class_members.py`:
+- 系统扫描类所有方法的 member access 模式
+- 自动识别 this 指针寄存器 (mov esi/edi/ebx, ecx)
+- 解码 MOV/LEA/FPU 指令，提取 offset + access type
+- 输出 JSON：每个 offset 的访问次数、类型分布、示例 VA
+
+### 总结
+
+- **新增字段**: 21 个 (all with 85+ confidence)
+- **删除字段**: 17 个 (PDB phantoms)
+- **Size 修正**: 3552 → 8060 (+2508 bytes)
+- **平均置信度**: 87.3
+- **方法**: 全量二进制扫描 (113 methods, 166 offsets)
+
