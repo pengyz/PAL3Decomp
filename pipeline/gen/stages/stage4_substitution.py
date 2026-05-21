@@ -267,6 +267,52 @@ def _fix_static_method_calls(code):
     return code
 
 
+def _fix_ulong_uint_cast(code):
+    """Add explicit casts for pointer type mismatches due to IDA type inference errors.
+
+    On x86 Windows, unsigned long/unsigned int/long/int are all 32-bit.
+    Handles:
+    1. unsigned long* vs unsigned int* (user structs)
+    2. long* vs int* (Windows API types like RECT.left/right/top/bottom)
+
+    Conservative approach: handle known patterns.
+    """
+    # Pattern 1: EffMgr unsigned long fields
+    patterns = [
+        r'&g_EffMgr\.m_EffTable\[[^\]]+\]\.dwRunGroupID',
+        r'&g_EffMgr\.m_EffTable\[[^\]]+\]\.dwClassNameCRC',
+        r'&g_EffMgr\.m_EffTable\[[^\]]+\]\.dwTypeNameCRC',
+    ]
+
+    for pattern in patterns:
+        code = re.sub(
+            r'(?<!\(unsigned int \*\))(' + pattern + r')',
+            r'(unsigned int *)\1',
+            code
+        )
+
+    # Pattern 2: Windows RECT members (LONG = long, but function expects int*)
+    # Match: &this[N].m_rect.{left|right|top|bottom}
+    # Also: &variable.m_rect.{left|right|top|bottom}
+    rect_members = r'\.(left|right|top|bottom)'
+
+    # Case 2a: &this[N].m_rect.member or &this[N].xxx.m_rect.member
+    code = re.sub(
+        r'(?<!\(int \*\))(&this\[\d+\](?:\.\w+)*\.m_rect' + rect_members + r')',
+        r'(int *)\1',
+        code
+    )
+
+    # Case 2b: &var.m_rect.member
+    code = re.sub(
+        r'(?<!\(int \*\))(&\w+\.m_rect' + rect_members + r')',
+        r'(int *)\1',
+        code
+    )
+
+    return code
+
+
 def _fix_ref_params(code):
     """Restore reference parameters for known gbengine methods.
 
@@ -509,6 +555,10 @@ def run(code, ctx):
     # Restore reference parameters: ->Method(&var) → ->Method(var)
     # IDA flattens references to pointers; this restores for known ref-param methods
     code = _fix_ref_params(code)
+
+    # Add explicit casts for unsigned long* → unsigned int* conversions
+    # x86 safe: both 32-bit, fixes IDA function pointer type inference errors
+    code = _fix_ulong_uint_cast(code)
 
     # Comment out STL internal method calls (string::_Tidy, string::_Eos, string::_Split)
     # These are compiler-generated operations not expressible in user source code.
