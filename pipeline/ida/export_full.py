@@ -87,6 +87,118 @@ def log(msg):
     log_lines.append(str(msg))
     print(msg)
 
+def _rebuild_func_decl(code, ann_sig, func_name):
+    """Rebuild function declaration from annotations signature.
+
+    Hex-Rays may output wrong parameter count when type info is incomplete
+    (e.g., showing 'int a1' for 'this' pointer). This reconstructs the first
+    line to match the annotations signature while keeping parameter names from
+    Hex-Rays for the function body to work.
+
+    Args:
+        code: Hex-Rays decompiled code
+        ann_sig: Signature from annotations, e.g. "char __thiscall(Combat *this, int, int, char *format, ...)"
+        func_name: Function name, e.g. "Combat::LogMessage"
+
+    Returns:
+        Modified code with corrected function declaration
+    """
+    import re
+
+    # Extract lines
+    lines = code.split('\n', 1)
+    if len(lines) < 2:
+        return code
+    first_line = lines[0]
+    rest = lines[1]
+
+    # Parse annotations signature: "return_type __cc(Class *this, param_types...)"
+    # Extract return type
+    match = re.match(r'^([^(]+?)\s+__\w+\s*\((.+)\)\s*$', ann_sig)
+    if not match:
+        return code
+    ret_type = match.group(1).strip()
+    params_str = match.group(2).strip()
+
+    # Parse parameter list from annotations
+    # Skip first param (Class *this), extract types of remaining params
+    param_parts = []
+    depth = 0
+    current = []
+    for char in params_str:
+        if char in '(<':
+            depth += 1
+        elif char in ')>':
+            depth -= 1
+        if char == ',' and depth == 0:
+            param_parts.append(''.join(current).strip())
+            current = []
+        else:
+            current.append(char)
+    if current:
+        param_parts.append(''.join(current).strip())
+
+    # Skip "Class *this" (first param in __thiscall)
+    if param_parts and param_parts[0].endswith('*this'):
+        param_parts = param_parts[1:]
+
+    # Extract parameter names from Hex-Rays first line
+    # Match: "ret_type ClassName::Method(param1, param2, ...)"
+    hex_match = re.search(r'\(([^)]+)\)', first_line)
+    if not hex_match:
+        return code
+    hex_params_str = hex_match.group(1).strip()
+
+    # Parse Hex-Rays parameter list to extract names
+    hex_names = []
+    depth = 0
+    current = []
+    for char in hex_params_str:
+        if char in '(<':
+            depth += 1
+        elif char in ')>':
+            depth -= 1
+        if char == ',' and depth == 0:
+            current_param = ''.join(current).strip()
+            # Extract name (last token)
+            tokens = current_param.split()
+            if tokens and tokens[-1] not in ('*', 'const'):
+                hex_names.append(tokens[-1])
+            current = []
+        else:
+            current.append(char)
+    if current:
+        current_param = ''.join(current).strip()
+        if current_param and current_param != '...':
+            tokens = current_param.split()
+            if tokens and tokens[-1] not in ('*', 'const'):
+                hex_names.append(tokens[-1])
+
+    # Skip first Hex-Rays param (this) if param count mismatch
+    if len(hex_names) > len(param_parts) and len(hex_names) > 0:
+        hex_names = hex_names[1:]
+
+    # Rebuild parameter list: use types from annotations, names from Hex-Rays
+    new_params = []
+    for i, ptype in enumerate(param_parts):
+        if i < len(hex_names):
+            pname = hex_names[i]
+            # Keep varargs as-is
+            if ptype == '...':
+                new_params.append('...')
+            # If type already has name (e.g. "char *format"), keep it
+            elif any(keyword in ptype for keyword in ('*' + pname, ' ' + pname)):
+                new_params.append(ptype)
+            # Otherwise append Hex-Rays name to annotation type
+            else:
+                new_params.append('%s %s' % (ptype, pname))
+        else:
+            new_params.append(ptype)
+
+    # Reconstruct first line
+    new_first = '%s %s(%s)' % (ret_type, func_name, ', '.join(new_params))
+    return new_first + '\n' + rest
+
 def main():
     try:
         ida_auto.auto_wait()
@@ -189,14 +301,21 @@ def main():
                 code = str(cfunc)
                 # Priority: annotations (authoritative) > IDB type > Hex-Rays inference
                 addr_str = '0x%08X' % ea
+                sig_from_ann = False
                 if addr_str in ann_funcs and ann_funcs[addr_str].get('signature'):
                     sig = ann_funcs[addr_str]['signature']
+                    sig_from_ann = True
                 else:
                     idb_type = idc.get_type(ea)
                     if idb_type:
                         sig = idb_type
                     else:
                         sig = cfunc.type.dstr()
+
+                # Reconstruct function declaration from signature if from annotations
+                # (Hex-Rays may show wrong param count when type info is incomplete)
+                if sig_from_ann and '__thiscall' in sig and '::' in name:
+                    code = _rebuild_func_decl(code, sig, name)
                 demangled = idc.demangle_name(name, idc.get_inf_attr(idc.INF_SHORT_DN))
                 display_name = demangled if demangled else name
                 safe = display_name.replace('::', '_').replace('<', '_').replace('>', '_')
