@@ -179,6 +179,9 @@ def _rebuild_func_decl(code, ann_sig, func_name):
         hex_names = hex_names[1:]
 
     # Rebuild parameter list: use types from annotations, names from Hex-Rays
+    _TYPE_KEYWORDS = ('void', 'char', 'short', 'int', 'long', 'float', 'double',
+                       'signed', 'unsigned', 'bool', 'BYTE', 'WORD', 'DWORD',
+                       'const', 'struct', 'class', 'enum', 'union')
     new_params = []
     for i, ptype in enumerate(param_parts):
         if i < len(hex_names):
@@ -186,13 +189,22 @@ def _rebuild_func_decl(code, ann_sig, func_name):
             # Keep varargs as-is
             if ptype == '...':
                 new_params.append('...')
-            # If annotation type has a trailing identifier (parameter name), use it as-is
-            # e.g., "char *format" or "int nValue" → already has name
-            elif re.search(r'\b[a-zA-Z_][a-zA-Z0-9_]*\s*$', ptype):
-                new_params.append(ptype)
-            # Otherwise append Hex-Rays name to annotation type
             else:
-                new_params.append('%s %s' % (ptype, pname))
+                # Check if annotation type already has parameter name
+                # Split by whitespace/*, check last token
+                tokens = ptype.replace('*', ' * ').split()
+                tokens = [t for t in tokens if t]
+                has_param_name = False
+                if len(tokens) >= 2:
+                    last = tokens[-1]
+                    # If last token is not a type keyword or *, it's a parameter name
+                    if last != '*' and last not in _TYPE_KEYWORDS:
+                        has_param_name = True
+
+                if has_param_name:
+                    new_params.append(ptype)
+                else:
+                    new_params.append('%s %s' % (ptype, pname))
         else:
             new_params.append(ptype)
 
