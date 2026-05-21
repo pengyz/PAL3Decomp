@@ -56,7 +56,12 @@ struct gbVec4D {
 };
 
 struct gbColorQuad {
-    unsigned char Blue, Green, Red, Alpha;
+    union {
+        struct {
+            unsigned char Blue, Green, Red, Alpha;
+        };
+        unsigned int Color;  // Entire color as DWORD
+    };
 
     // Methods (auto-generated)
     gbColorQuad(struct gbColorQuad & p0);
