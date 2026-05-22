@@ -369,6 +369,10 @@ def run(code, ctx):
     code = _ast_cleanup(code, ctx)
 
     # --- Post-AST simple fixes ---
+
+    # Hex-Rays _OWORD struct load: (RECT)*(_OWORD*)addr → *(RECT*)(addr)
+    code = re.sub(r'\((\w+)\)\s*\*\(\(_OWORD\s*\*\)([^)]+)\)', r'*(\1 *)(\2)', code)
+
     code = re.sub(r'((?:LODWORD|HIDWORD)\s*\([^)]+\))\s*=\s*(&\w+)', r'\1 = (unsigned long)\2', code)
 
     def _fix_mfp(m):
