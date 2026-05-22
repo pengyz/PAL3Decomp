@@ -305,57 +305,68 @@ def main():
 
 
 def export_structs(log):
-    """Export all struct definitions from IDB to ida_structs.json."""
-    import idautils
+    """Export struct definitions from TIL (not IDB Structs - apply_annotations writes to TIL)."""
+    import glob
     structs_path = os.path.join(PROJECT_ROOT, "asm", "pal3", "ida_structs.json")
     result = {}
     count = 0
 
-    for idx, sid, name in idautils.Structs():
-        size = idc.get_struc_size(sid)
-        if size <= 0:
+    # Read struct names from annotations (authoritative source)
+    ann_structs_dir = os.path.join(PROJECT_ROOT, "data", "annotations", "structs")
+    struct_names = []
+    for f in glob.glob(os.path.join(ann_structs_dir, "*.json")):
+        if os.path.basename(f).endswith('.disabled'):
+            continue
+        try:
+            import json as _json
+            with open(f, encoding='utf-8') as fp:
+                sdata = _json.load(fp)
+            sname = sdata.get('name', os.path.basename(f).replace('.json', ''))
+            struct_names.append(sname)
+        except:
+            pass
+
+    til = ida_typeinf.get_idati()
+    for name in sorted(struct_names):
+        stinfo = ida_typeinf.tinfo_t()
+        if not stinfo.get_named_type(til, name):
+            continue
+
+        size = stinfo.get_size()
+        if size <= 0 or size == 0xFFFFFFFFFFFFFFFF:
             continue
 
         members = []
-        for offset, mname, msize in idautils.StructMembers(sid):
-            mtype_str = 'int'
-            stinfo = ida_typeinf.tinfo_t()
-            if stinfo.get_named_type(ida_typeinf.get_idati(), name):
-                udt = ida_typeinf.udt_type_data_t()
-                if stinfo.get_udt_details(udt):
-                    for mi in range(udt.size()):
-                        um = udt[mi]
-                        if um.offset // 8 == offset:
-                            mtype_str = um.type.dstr() if um.type else 'int'
-                            break
-                    else:
-                        mtype_str = 'char[%d]' % msize if msize > 4 else 'int'
-
-            members.append({'name': mname, 'type': mtype_str, 'offset': offset})
+        udt = ida_typeinf.udt_type_data_t()
+        if stinfo.get_udt_details(udt):
+            for mi in range(udt.size()):
+                um = udt[mi]
+                mname = um.name or '_field_%X' % (um.offset // 8)
+                mtype_str = um.type.dstr() if um.type else 'int'
+                members.append({'name': mname, 'type': mtype_str, 'offset': um.offset // 8})
 
         # Detect base class and type kind
         bases = []
         kind = 'struct'  # default
-        stinfo = ida_typeinf.tinfo_t()
-        if stinfo.get_named_type(ida_typeinf.get_idati(), name):
-            # 检测实际类型kind
-            if stinfo.is_union():
-                kind = 'union'
-            elif stinfo.is_struct():
-                kind = 'struct'  # struct和class在IDA中都是is_struct()=true
+        # 检测实际类型kind
+        if stinfo.is_union():
+            kind = 'union'
+        elif stinfo.is_struct():
+            kind = 'struct'  # struct和class在IDA中都是is_struct()=true
 
-            udt = ida_typeinf.udt_type_data_t()
-            if stinfo.get_udt_details(udt):
-                for mi in range(udt.size()):
-                    um = udt[mi]
-                    umname = um.name
-                    if umname and ('baseclass' in umname.lower() or umname.startswith('__parent')):
-                        base_type = um.type.dstr() if um.type else ''
-                        for prefix in ('struct ', 'class '):
-                            if base_type.startswith(prefix):
-                                base_type = base_type[len(prefix):]
-                        if base_type:
-                            bases.append({'name': base_type, 'offset': um.offset // 8})
+        # Detect base classes from UDT members
+        for mi in range(udt.size()):
+            um = udt[mi]
+            umname = um.name or ''
+            if umname and ('baseclass' in umname.lower() or umname.startswith('__parent') or umname == ''):
+                # Anonymous member = base class
+                if umname == '' or 'baseclass' in umname.lower() or umname.startswith('__parent'):
+                    base_type = um.type.dstr() if um.type else ''
+                    for prefix in ('struct ', 'class '):
+                        if base_type.startswith(prefix):
+                            base_type = base_type[len(prefix):]
+                    if base_type and base_type != name:
+                        bases.append({'name': base_type, 'offset': um.offset // 8})
 
         # Filter out baseclass/vtable from members
         filtered = [m for m in members

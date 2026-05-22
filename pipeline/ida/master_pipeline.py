@@ -138,50 +138,10 @@ def phase1_import_types():
             if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
                 tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
 
-    # Full definitions - format: {name, size, data_members: [{name, type, offset}]}
+    # Full definitions: DISABLED - leave to apply_annotations for complete definitions
+    # (Importing opaque _data structs here prevents apply_annotations from replacing them)
     cls_ok = 0
-    for cls in classes:
-        name = cls.get('name', '')
-        size = cls.get('size', 0)
-        data_members = cls.get('data_members', [])
-        if not name:
-            continue
-        # Skip system types (SDK headers provide complete definitions)
-        if name in _SKIP_SYSTEM_TYPES:
-            continue
-        # Skip names with template chars that IDA can't handle
-        if '<' in name or '>' in name:
-            continue
-
-        # Try to build struct with members
-        if data_members and size > 0:
-            member_strs = []
-            last_offset = 0
-            for dm in data_members:
-                mtype = dm.get('type', 'int')
-                mname = dm.get('name', '_field')
-                # Clean type for IDA
-                mtype = mtype.replace('class ', '').replace('struct ', '')
-                if not mname or mname.startswith('__'):
-                    mname = '_field_%X' % dm.get('offset', 0)
-                member_strs.append('    %s %s;' % (mtype, mname))
-            if member_strs:
-                decl = 'struct %s {\n%s\n};' % (name, '\n'.join(member_strs))
-                tinfo = ida_typeinf.tinfo_t()
-                if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
-                    tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
-                    cls_ok += 1
-                    continue
-
-        # Fallback: opaque struct with known size
-        if size > 0:
-            decl = 'struct %s { char _data[%d]; };' % (name, size)
-            tinfo = ida_typeinf.tinfo_t()
-            if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
-                tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
-                cls_ok += 1
-
-    log("[*] 类导入: %d / %d" % (cls_ok, len(classes)))
+    log("[*] 类导入: forward decls only (full definitions from apply_annotations)")
 
 
 # ========================================================================
