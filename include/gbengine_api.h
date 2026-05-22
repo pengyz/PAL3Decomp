@@ -1154,6 +1154,9 @@ public:
 // 5 methods
 class gbAABBox {
 public:
+    gbVec3D min;
+    gbVec3D max;
+
     __thiscall gbAABBox::gbAABBox(void);  // 0x3840
     int __thiscall gbAABBox::IsColAABB(struct gbAABBox &);  // 0x27BA0
     int __thiscall gbAABBox::IsColPoint(struct gbVec3D &);  // 0x27B40
@@ -1370,5 +1373,8 @@ class gbGfxManager_D3D {
 public:
     void __thiscall gbGfxManager_D3D::SetTexture(struct gbTextureArray *);  // 0x1B410
 };
+
+// Free functions (non-member exports)
+void * __cdecl gbLoadLightFile(const char *szFilename);
 
 #endif // GBENGINE_API_H

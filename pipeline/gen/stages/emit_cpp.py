@@ -218,13 +218,14 @@ def generate_class_cpp(cls_name, methods):
             continue
         lines.append('#include "pal3/gen/%s.h"' % c)
 
-    # Include free_functions.h if any free function is called
+    # Include free_functions.h if any free function is called or referenced
     free_func_h = header_dir / "free_functions.h"
     if free_func_h.exists() and cls_name != 'free_functions':
         all_code = '\n'.join(m['code'] for m in methods)
         if store.free_func_sigs:
+            import re as _re_inc
             for fname in store.free_func_sigs:
-                if fname + '(' in all_code:
+                if _re_inc.search(r'\b' + _re_inc.escape(fname) + r'\b', all_code):
                     lines.append('#include "pal3/gen/free_functions.h"')
                     break
 

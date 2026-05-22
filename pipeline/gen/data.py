@@ -148,7 +148,25 @@ class DataStore:
                 fsig = finfo.get('signature', '')
                 if '::' in fname or not fname or not fsig:
                     continue
-                if '__cdecl' not in fsig:
+                if '__thiscall' in fsig:
+                    # __thiscall without class (no ::) → emit as cdecl with explicit this
+                    if fname.startswith('_') or fname.startswith('$') or fname.startswith('?'):
+                        continue
+                    if 'unknown_libname' in fname or 'nullsub' in fname:
+                        continue
+                    if not _re.match(r'^[A-Za-z_]\w*$', fname):
+                        continue
+                    m = _re.match(r'^(.+?)\s*__thiscall\s*\((.*)\)$', fsig)
+                    if m:
+                        ret = m.group(1).strip()
+                        params = m.group(2).strip()
+                        if not params:
+                            params = 'void'
+                        # Replace 'this' keyword in params with '_this'
+                        params = _re.sub(r'\bthis\b', '_this', params)
+                        self.free_func_sigs[fname] = '%s %s(%s)' % (ret, fname, params)
+                    continue
+                if '__cdecl' not in fsig and '__stdcall' not in fsig:
                     continue
                 if fname.startswith('_') or fname.startswith('$') or fname.startswith('?'):
                     continue
@@ -159,14 +177,18 @@ class DataStore:
                                'LOWORD', 'HIWORD', 'LODWORD', 'HIDWORD'}
                 if fname in _IDA_MACROS:
                     continue
-                m = _re.match(r'^(.+?)\s*__cdecl\s*\((.*)\)$', fsig)
+                m = _re.match(r'^(.+?)\s*(__cdecl|__stdcall)\s*\((.*)\)$', fsig)
                 if not m:
                     continue
                 ret = m.group(1).strip()
-                params = m.group(2).strip()
+                callconv = m.group(2)
+                params = m.group(3).strip()
                 if not params:
                     params = 'void'
-                self.free_func_sigs[fname] = '%s %s(%s)' % (ret, fname, params)
+                if callconv == '__cdecl':
+                    self.free_func_sigs[fname] = '%s %s(%s)' % (ret, fname, params)
+                else:
+                    self.free_func_sigs[fname] = '%s %s %s(%s)' % (ret, callconv, fname, params)
 
         # structs → struct instances + members for member resolution
         structs_dir = self.annotations_dir / "structs"

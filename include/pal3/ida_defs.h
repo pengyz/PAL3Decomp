@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <malloc.h>
 
 #include "pal3/pal3_stl.h"
 #include "gbengine/gbengine_types.h"
@@ -128,3 +129,6 @@ void PushMatrixStacks(int nMode = 0);
 void PopMatrixStacks(int nMode = 0);
 int UIRenderQuad(...);
 void UIQuadManager_Reset();
+
+// gbengine imports used across many files
+void * __cdecl gbLoadLightFile(const char *szFilename);
