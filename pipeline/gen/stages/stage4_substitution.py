@@ -148,6 +148,10 @@ def _collect_token_edits(code_bytes, tree, ctx):
             if not replacement and name.startswith('a') and len(name) > 1 and name[1].isupper():
                 replacement = _try_literal_replacement(name)
 
+            # 'this' as identifier in free function params → '_this'
+            if not replacement and name == 'this' and ctx.is_free_function:
+                replacement = '_this'
+
             if replacement:
                 edits.append((node.start_byte, node.end_byte, replacement.encode('utf-8')))
                 return  # Don't recurse into replaced nodes
