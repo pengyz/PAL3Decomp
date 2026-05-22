@@ -234,18 +234,8 @@ def main():
                     log("[!] SKIP 0x%08X %s: decompile returned None" % (ea, name[:50]))
                     continue
                 code = str(cfunc)
-                # 解析孤儿 ordinal（PDB 前向声明但定义失败的类型）
                 code = resolve_orphan_ordinals(code)
-                # Priority: annotations (authoritative) > IDB type > Hex-Rays inference
-                addr_str = '0x%08X' % ea
-                if addr_str in ann_funcs and ann_funcs[addr_str].get('signature'):
-                    sig = ann_funcs[addr_str]['signature']
-                else:
-                    idb_type = idc.get_type(ea)
-                    if idb_type:
-                        sig = idb_type
-                    else:
-                        sig = cfunc.type.dstr()
+                sig = cfunc.type.dstr()
                 sig = resolve_orphan_ordinals(sig)
                 demangled = idc.demangle_name(name, idc.get_inf_attr(idc.INF_SHORT_DN))
                 display_name = demangled if demangled else name
@@ -266,7 +256,6 @@ def main():
                         loc = lvar.location
                         if loc.is_stkoff():
                             type_str = lvar.type().dstr() if lvar.type() else ""
-                            # 解析 local var 类型中的 ordinal
                             type_str = resolve_orphan_ordinals(type_str)
                             lvar_info.append({
                                 "name": lvar.name,

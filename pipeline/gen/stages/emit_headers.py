@@ -761,13 +761,15 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     # Annotation known_members are authoritative over IDB/PDB struct layouts.
     # IDA's struct layout engine may compute different alignment/padding than MSVC 6.0,
     # causing offset drift in derived classes. Use annotation path when available.
+    # CRITICAL: annotations binary_size MUST override PDB size (PAL3A vs PAL3 difference)
     use_pdb_members = False
     try:
         _ann_d = load_annotations_data()
         _ann_s = _ann_d.get('structs', {}).get(cls_name, {})
     except:
         _ann_s = {}
-    if _ann_s.get('known_members'):
+    # Priority: annotations with binary_size > annotations with members > PDB
+    if _ann_s.get('binary_size') or _ann_s.get('known_members'):
         use_pdb_members = False
     elif pdb_class and pdb_class.get('data_members'):
         use_pdb_members = True
