@@ -48,8 +48,8 @@
     },
     "276": {
       "name": "m_pArrayData",
-      "type": "int",
-      "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs"
+      "type": "void *",
+      "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs | type_fix:int→void*(pointer assignment+free semantics)"
     },
     "284": {
       "name": "m_scriptMusic",
@@ -418,8 +418,8 @@
     },
     "3260": {
       "name": "m_pUIListA",
-      "type": "int",
-      "source": "ida_decomp:_init_4593c0 =v13, loaded, 2 refs"
+      "type": "void *",
+      "source": "ida_decomp:_init_4593c0 =v13, loaded, 2 refs | type_fix:int→void*(naming m_p)"
     },
     "3264": {
       "name": "m_pUIListB",

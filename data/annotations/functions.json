@@ -111,10 +111,6 @@
     "name": "GRPinput::GetMouseSensitivity",
     "signature": "int __thiscall(GRPinput *this, int nVal)"
   },
-  "0x00402FB0": {
-    "name": "?_Tidy@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEX_N@Z",
-    "signature": "void __thiscall(string *this, char _Built)"
-  },
   "0x00403000": {
     "name": "GRPinput::GetKeyState_3000",
     "signature": "_BYTE *__thiscall(GRPinput *this, unsigned int key)"
@@ -303,22 +299,6 @@
     "name": "PAL3::IfHideFightSucceed",
     "signature": "int __cdecl(bool bFlag)"
   },
-  "0x00407AB0": {
-    "name": "?_Freeze@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ",
-    "signature": "char __thiscall(int this)"
-  },
-  "0x00407B30": {
-    "name": "?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z",
-    "signature": "int __thiscall(string *this, int _N)"
-  },
-  "0x00407C70": {
-    "name": "?_Split@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ",
-    "signature": "void __thiscall(int this)"
-  },
-  "0x00407D40": {
-    "name": "?max_size@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIXZ",
-    "signature": "int()"
-  },
   "0x00408930": {
     "name": "exception::exception",
     "signature": "void __thiscall(exception *this)"
@@ -442,14 +422,6 @@
   "0x004118D0": {
     "name": "PAL3::UpdateSubsystems",
     "signature": "int __cdecl __thiscall(PAL3 *this)"
-  },
-  "0x00411B80": {
-    "name": "??_Gfacet@locale@std@@UAEPAXI@Z",
-    "signature": "std::locale::facet *__thiscall(std::locale::facet *this, char pData)"
-  },
-  "0x00411BB0": {
-    "name": "??_Gfacet@locale@std@@UAEPAXI@Z_0",
-    "signature": "std::locale::facet *__thiscall(std::locale::facet *this, char pData)"
   },
   "0x00411F60": {
     "name": "ScriptSystem::UpdateTimers",
@@ -658,10 +630,6 @@
   "0x00430570": {
     "name": "PalScript::SetAppName",
     "signature": "char *__thiscall(PalScript *this, char *name)"
-  },
-  "0x00430790": {
-    "name": "??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ",
-    "signature": "void __thiscall(int *this)"
   },
   "0x00431870": {
     "name": "ctor_0x431870",
@@ -1431,14 +1399,6 @@
     "name": "RenderTarget2::Resolve",
     "signature": "void __thiscall(RenderTarget2 *this)"
   },
-  "0x004C0620": {
-    "name": "??_Gfacet@locale@std@@UAEPAXI@Z_1",
-    "signature": "std::locale::facet *__thiscall(std::locale::facet *this, char pData)"
-  },
-  "0x004C2840": {
-    "name": "?do_always_noconv@codecvt_base@std@@MBE_NXZ",
-    "signature": "char __thiscall(std::codecvt_base *this)"
-  },
   "0x004C3DD0": {
     "name": "CEffCylinder::CEffCylinder",
     "signature": "void __fastcall(CEffCylinder *this)"
@@ -1930,10 +1890,6 @@
   "0x004D7080": {
     "name": "CCBAI::Create",
     "signature": "CCBAI * __thiscall(CCBAI *this, int *p_DWORD)"
-  },
-  "0x004D70B0": {
-    "name": "?do_always_noconv@codecvt_base@std@@MBE_NXZ_0",
-    "signature": "char __thiscall(std::codecvt_base *this)"
   },
   "0x004D70C0": {
     "name": "CCBAI::Init",
@@ -4391,14 +4347,6 @@
   "0x005371B0": {
     "name": "Actor::SetVisible",
     "signature": "void __thiscall(Actor *this, int bVisible)"
-  },
-  "0x0053C2B0": {
-    "name": "??_Gstrstreambuf@std@@UAEPAXI@Z",
-    "signature": "std::strstreambuf *__thiscall(std::strstreambuf *this, char pData)"
-  },
-  "0x0053C2D0": {
-    "name": "??1strstreambuf@std@@UAE@XZ",
-    "signature": "void __thiscall(std::strstreambuf *this)"
   },
   "0x0053C340": {
     "name": "CScreenMode::InitCPK",
@@ -9463,11 +9411,11 @@
   },
   "0x004C27D0": {
     "name": "RenderTarget2::_nearby_4c27d0",
-    "signature": "vtbl_0056F71C **__thiscall(RenderTarget2 *this)"
+    "signature": "void ** __thiscall(RenderTarget2 *this)"
   },
   "0x004C2820": {
     "name": "RenderTarget2::_nearby_4c2820",
-    "signature": "vtbl_0056F71C ** __thiscall(RenderTarget2 *this)"
+    "signature": "void ** __thiscall(RenderTarget2 *this)"
   },
   "0x004C2BA0": {
     "name": "RenderTarget2::_nearby_4c2ba0",
@@ -9927,7 +9875,7 @@
   },
   "0x0050F310": {
     "name": "CCBStage::_nearby_50f310",
-    "signature": "int __thiscall(CCBStage *this, enum ECBStageTaskState *penum ECBStageTaskState, int nVal)"
+    "signature": "int __thiscall(CCBStage *this, int nVal, int nVal2)"
   },
   "0x0050F410": {
     "name": "CCBStage::_nearby_50f410",
@@ -13062,8 +13010,8 @@
     "signature": "int __thiscall(UIWnd *this)"
   },
   "0x004AF450": {
-    "name": "ECBRoleSpecState::_method_4af450",
-    "signature": "char *__thiscall(ECBRoleSpecState *this, char *pszBuf, unsigned int dwVal, int *p_DWORD)"
+    "name": "_method_4af450",
+    "signature": "char *__thiscall(void *this, char *pszBuf, unsigned int dwVal, int *p_DWORD)"
   },
   "0x004AFAA0": {
     "name": "ArcLocaleRole::_method_4afaa0",
@@ -13074,7 +13022,7 @@
     "signature": "unsigned int __cdecl(char *pszBuf, char *pszBuf2, int nVal)"
   },
   "0x004B0040": {
-    "name": "ECBRoleSpecState::_method_4b0040",
+    "name": "_method_4b0040",
     "signature": "int *__cdecl(int *p_DWORD, int *p_DWORD2, int nVal)"
   },
   "0x004B01C0": {
@@ -15150,8 +15098,8 @@
     "signature": "void __thiscall(RoleSystem *this, int nVal)"
   },
   "0x00532CF0": {
-    "name": "ECBRoleSpecState::_method_532cf0",
-    "signature": "long double __thiscall(ECBRoleSpecState *this, int nVal, int nVal2, int nVal3, int nVal4, float fVal, float fVal2)"
+    "name": "_method_532cf0",
+    "signature": "long double __thiscall(void *this, int nVal, int nVal2, int nVal3, int nVal4, float fVal, float fVal2)"
   },
   "0x00532D30": {
     "name": "UIWnd::_nearby_532d30",
@@ -15973,18 +15921,6 @@
     "name": "StateUI::_sub_4845F0",
     "signature": "int __thiscall(StateUI *this)",
     "class": "StateUI"
-  },
-  "0x00430C30": {
-    "name": "string::_auto_430c30",
-    "signature": "int *__thiscall(string *this, int *p_DWORD, int *p_DWORD2)"
-  },
-  "0x00431060": {
-    "name": "string::_auto_431060",
-    "signature": "void * __thiscall(string *this, int *Block)"
-  },
-  "0x004530C0": {
-    "name": "string::_init_4530c0",
-    "signature": "void __thiscall(string *this, const char *pszName)"
   },
   "0x00484140": {
     "name": "UIWnd::_method_484140",

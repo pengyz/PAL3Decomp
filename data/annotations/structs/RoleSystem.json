@@ -118,8 +118,8 @@
     },
     "112": {
       "name": "m_pPathNext",
-      "type": "int",
-      "source": "binary:raw_path_next"
+      "type": "void *",
+      "source": "binary:raw_path_next | type_fix:int→void*(naming m_p)"
     },
     "116": {
       "name": "m_nPathField74",
@@ -148,8 +148,8 @@
     },
     "140": {
       "name": "m_pPathListHead",
-      "type": "int",
-      "source": "binary:raw_path_list"
+      "type": "void *",
+      "source": "binary:raw_path_list | type_fix:int→void*(naming m_p)"
     },
     "144": {
       "name": "m_nField90",
@@ -368,8 +368,8 @@
     },
     "416": {
       "name": "m_pPathNodeIter",
-      "type": "int",
-      "source": "binary:gap_access"
+      "type": "void *",
+      "source": "binary:gap_access | type_fix:int→void*(naming m_p)"
     },
     "420": {
       "name": "_field_1A4",
@@ -618,8 +618,8 @@
     },
     "1420": {
       "name": "m_pLinkedSystem",
-      "type": "int",
-      "source": "ida_decomp:UpdateTransform deref+756 byte, 6 refs"
+      "type": "void *",
+      "source": "ida_decomp:UpdateTransform deref+756 byte, 6 refs | type_fix:int→void*(deref pattern)"
     },
     "1424": {
       "name": "m_fAnimSpeed",
@@ -663,8 +663,8 @@
     },
     "1456": {
       "name": "m_pCtrlPoint",
-      "type": "int",
-      "source": "binary:raw_final"
+      "type": "void *",
+      "source": "binary:raw_final | type_fix:int→void*(naming m_p)"
     },
     "1460": {
       "name": "m_nMoveRole",

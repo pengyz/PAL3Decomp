@@ -429,8 +429,8 @@
     },
     "3992": {
       "name": "m_pCurrentBlock",
-      "type": "int",
-      "source": "binary:32x abs refs, malloc(48)+store pattern (0xF98)"
+      "type": "void *",
+      "source": "binary:32x abs refs, malloc(48)+store pattern (0xF98) | type_fix:int→void*(malloc store)"
     },
     "4000": {
       "name": "m_nCmdFA0",
@@ -509,8 +509,8 @@
     },
     "4080": {
       "name": "m_pCmdTableFF0",
-      "type": "int",
-      "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array)"
+      "type": "void *",
+      "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array) | type_fix:int→void*(array base)"
     },
     "4084": {
       "name": "_field_FF4",
@@ -909,8 +909,8 @@
     },
     "4012": {
       "name": "m_pScriptData",
-      "type": "int",
-      "source": "binary:4x abs refs (0xFAC)"
+      "type": "void *",
+      "source": "binary:4x abs refs (0xFAC) | type_fix:int→void*(naming m_p)"
     },
     "4108": {
       "name": "m_bScriptFlag",
@@ -919,8 +919,8 @@
     },
     "4172": {
       "name": "m_pCmdArray104C",
-      "type": "int",
-      "source": "binary:5x abs refs, BF=mov edi,addr + [ecx*8+addr] (stride-8 array base)"
+      "type": "void *",
+      "source": "binary:5x abs refs, BF=mov edi,addr + [ecx*8+addr] (stride-8) | type_fix:int→void*(indexed access)"
     },
     "4432": {
       "name": "m_CmdTable",

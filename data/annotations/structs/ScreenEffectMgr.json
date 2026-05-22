@@ -79,8 +79,8 @@
     },
     "140": {
       "name": "m_pEffect",
-      "type": "int",
-      "source": "ida_decomp:_unverified_4BE4A0 deref as void**, 4 refs"
+      "type": "void *",
+      "source": "ida_decomp:_unverified_4BE4A0 deref as void**, 4 refs | type_fix:int→void*(deref+ptr semantics)"
     }
   },
   "pdb_size": 152,

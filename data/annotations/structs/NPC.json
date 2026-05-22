@@ -34,8 +34,8 @@
     },
     "4": {
       "name": "m_pBuffer",
-      "type": "int",
-      "source": "A:decomp *(_DWORD*)&field=new/delete+4*idx array in NPC.cpp; vector-like data ptr"
+      "type": "void *",
+      "source": "A:decomp *(_DWORD*)&field=new/delete+4*idx array in NPC.cpp; type_fix:int→void*(alloc/free pattern)"
     },
     "8": {
       "name": "m_nBufStart",

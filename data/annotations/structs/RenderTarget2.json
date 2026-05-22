@@ -134,8 +134,8 @@
     },
     "0": {
       "name": "m_pVtable",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "void *",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(vtable pointer)"
     },
     "12": {
       "name": "_todo_C",

@@ -14,8 +14,8 @@
     },
     "8": {
       "name": "m_pTarget",
-      "type": "int",
-      "source": "A:decomp LODWORD(this->m_pTarget)=ptr_arith in 0x0041CFC0,0x0041D7F0; stores nVal(int) in 0x0041D7C0"
+      "type": "void *",
+      "source": "A:binary VA=0x41CFC0 mov eax,[esp+4]; mov [ecx+8],eax; mov edx,[eax+0x1EC] (param stored then deref as object)"
     },
     "12": {
       "name": "m_nFlags",
