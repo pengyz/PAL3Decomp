@@ -14,13 +14,13 @@
     },
     "8": {
       "name": "m_pTarget",
-      "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
+      "type": "int",
+      "source": "A:decomp LODWORD(this->m_pTarget)=ptr_arith in 0x0041CFC0,0x0041D7F0; stores nVal(int) in 0x0041D7C0"
     },
     "12": {
       "name": "m_nFlags",
-      "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
+      "type": "int",
+      "source": "A:decomp switch(LODWORD(m_nFlags)) values 1-7 in 0x0041CFC0; stores int* in 0x0041D7C0"
     },
     "16": {
       "name": "m_fTargetAngle",

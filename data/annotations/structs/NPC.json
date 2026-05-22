@@ -34,18 +34,18 @@
     },
     "4": {
       "name": "m_pBuffer",
-      "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
+      "type": "int",
+      "source": "A:decomp *(_DWORD*)&field=new/delete+4*idx array in NPC.cpp; vector-like data ptr"
     },
     "8": {
       "name": "m_nBufStart",
-      "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
+      "type": "int",
+      "source": "A:decomp LODWORD(field) in (end-begin)>>2 count calc; vector-like begin/last"
     },
     "12": {
       "name": "m_nBufEnd",
-      "type": "unsigned char",
-      "source": "A:mov_byte_ptr_in_class_method"
+      "type": "int",
+      "source": "A:decomp *(_DWORD*)&field in (end-begin)>>2 count calc; vector-like end ptr"
     },
     "56": {
       "name": "m_pConditionA",
