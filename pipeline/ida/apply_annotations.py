@@ -15,6 +15,7 @@ annotations.json 是 PDB base 之上的纯差分层，存储所有人工标注�
 """
 
 import ida_auto
+import ida_bytes
 import ida_funcs
 import ida_hexrays
 import ida_name
@@ -970,6 +971,81 @@ def apply_annotations():
                     g_type_fail.append((addr_str, info.get("name", ""), typ))
 
     log("[6b] Global types: %d/%d (fail=%d)" % (g_typed, len([g for g in globs.values() if g.get("type")]), len(g_type_fail)))
+
+    # --- 6b2. Create IDA data arrays for array-typed globals ---
+    # SetType alone sets type metadata but doesn't create data items in IDA's
+    # data segment. Without actual data array creation, Hex-Rays cannot resolve
+    # element accesses (e.g., g_fCamRoleParams[5] stays as dword_XXXXXX).
+    _ELEM_SIZES = {
+        'char': 1, 'unsigned char': 1, 'BYTE': 1, '_BYTE': 1, 'bool': 1,
+        'CHAR': 1, 'UCHAR': 1, 'signed char': 1,
+        'short': 2, 'unsigned short': 2, 'WORD': 2, '_WORD': 2, 'SHORT': 2,
+        'int': 4, 'unsigned int': 4, 'DWORD': 4, '_DWORD': 4,
+        'long': 4, 'unsigned long': 4, 'UINT': 4, 'BOOL': 4, 'INT': 4,
+        'float': 4, 'double': 8, '__int64': 8,
+    }
+    arr_created = 0
+    arr_fail = []
+    _arr_re = re.compile(r'^(.+?)\s*\[(\d+)\]$')
+    for addr_str, info in globs.items():
+        typ = info.get("type", "")
+        m = _arr_re.match(typ)
+        if not m:
+            continue
+        elem_type = m.group(1).strip()
+        count = int(m.group(2))
+        if count <= 0:
+            continue
+        addr = int(addr_str, 16)
+
+        # Determine element size
+        if '*' in elem_type:
+            elem_size = 4  # 32-bit pointers
+        elif elem_type in _ELEM_SIZES:
+            elem_size = _ELEM_SIZES[elem_type]
+        else:
+            # Struct/class type — try to get size from IDA's type system
+            til = ida_typeinf.get_idati()
+            tif = ida_typeinf.tinfo_t()
+            if tif.get_named_type(til, elem_type):
+                elem_size = tif.get_size()
+            else:
+                elem_size = 0
+
+        if elem_size <= 0:
+            arr_fail.append((addr_str, info.get("name", ""), typ, "unknown elem size"))
+            continue
+
+        total_size = elem_size * count
+        # Clear existing data items in this range
+        ida_bytes.del_items(addr, ida_bytes.DELIT_SIMPLE, total_size)
+
+        # Create first element with correct data type
+        if elem_size == 1:
+            ok = idc.create_byte(addr)
+        elif elem_size == 2:
+            ok = idc.create_word(addr)
+        elif elem_size == 4:
+            ok = idc.create_dword(addr)
+        elif elem_size == 8:
+            ok = idc.create_qword(addr)
+        else:
+            # Struct-sized elements: create as bytes, rely on SetType for struct info
+            ok = idc.create_byte(addr)
+
+        if ok:
+            # Expand the first element into an array of `count` elements
+            idc.make_array(addr, count)
+            arr_created += 1
+        else:
+            arr_fail.append((addr_str, info.get("name", ""), typ, "create_data failed"))
+
+    if arr_created:
+        log("[6b2] Array globals created: %d" % arr_created)
+    if arr_fail:
+        log("[6b2] Array creation failures: %d" % len(arr_fail))
+        for addr_str, name, typ, reason in arr_fail[:5]:
+            log("  [!] %s %s (%s): %s" % (addr_str, name, typ, reason))
 
     # --- 6c. CRT function signatures (operator new/delete) ---
     _CRT_SIGS = {
