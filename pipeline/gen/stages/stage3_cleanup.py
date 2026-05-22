@@ -410,4 +410,20 @@ def run(code, ctx):
             lines[i] = line.replace(stripped, '// ' + stripped)
     code = '\n'.join(lines)
 
+    # Comment out Hex-Rays "->0)" vtable dispatch (invalid C syntax, comment whole statement)
+    lines = code.split('\n')
+    out_lines = []
+    commenting = False
+    for line in lines:
+        if not commenting and '->0)' in line and '//' not in line:
+            commenting = True
+            out_lines.append(line[:len(line) - len(line.lstrip())] + '// [VTBL_DISPATCH] ' + line.strip())
+        elif commenting:
+            out_lines.append(line[:len(line) - len(line.lstrip())] + '// [VTBL_DISPATCH]   ' + line.strip())
+            if line.rstrip().endswith(';'):
+                commenting = False
+        else:
+            out_lines.append(line)
+    code = '\n'.join(out_lines)
+
     return code
