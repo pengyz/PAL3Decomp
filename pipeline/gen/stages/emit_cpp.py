@@ -19,7 +19,7 @@ def collect_sub_refs(code):
     for m in re.finditer(
         r'(?<![.>:])\b([A-Z][a-zA-Z0-9_]*'
         r'(?:Update|Init|Create|Destroy|Render|Sort|Check|Process|'
-        r'SetState|GetState|Reset|Load|Save|Release|Free|Manager|Info))\s*\(',
+        r'SetState|GetState|Reset|Load|Save|Release|Free|Manager|Info|Cleanup))\s*\(',
         code
     ):
         refs.add(m.group(1))
