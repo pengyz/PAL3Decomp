@@ -419,11 +419,11 @@ public:
     float* GetUV(int index);
     void StepVertexPtr();
 
-    static void RenderUIQuad(gbUIQuad* quadData, int numQuads, gbRenderEffect* effect, gbTextureArray* textures);
-    static void RenderGeomQuad(gbGeomQuad* quadData, int numQuads, gbRenderEffect* effect, gbTextureArray* textures);
-    static void RenderGeomQuadViaStrip(gbGeomQuad* quadData, int numQuads, gbRenderEffect* effect, gbTextureArray* textures);
-    static void RenderGeomQuadViaStrip(gbGeomQuad* quadData, int numQuads, gbRenderEffect* effect, gbTextureArray* textures, unsigned long flags);
-    static void RenderLineStrip(gbColorQuad color, gbVec3D* points, int numPoints, gbRenderEffect* effect);
+    void RenderUIQuad(gbUIQuad* quadData, int numQuads, gbRenderEffect* effect, gbTextureArray* textures);
+    void RenderGeomQuad(gbGeomQuad* quadData, int numQuads, gbRenderEffect* effect, gbTextureArray* textures);
+    void RenderGeomQuadViaStrip(gbGeomQuad* quadData, int numQuads, gbRenderEffect* effect, gbTextureArray* textures);
+    void RenderGeomQuadViaStrip(gbGeomQuad* quadData, int numQuads, gbRenderEffect* effect, gbTextureArray* textures, unsigned long flags);
+    void RenderLineStrip(gbColorQuad color, gbVec3D* points, int numPoints, gbRenderEffect* effect);
 
     static gbGfxManager* pGfxMgr;
     static gbRenderEffect* pLineEffect;
