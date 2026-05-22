@@ -42,7 +42,6 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
     size = struct_info.get("binary_size") or struct_info.get("pdb_size") or struct_info.get("gen_size") or 0
     base_class = struct_info.get("base_class")
     base_size = struct_info.get("base_size", 0)
-    kind = struct_info.get("kind", "struct")  # struct, union, or class
 
     # IDA parse_decl cannot handle C++ template base classes
     if base_class and ('<' in base_class or '>' in base_class):
@@ -181,7 +180,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
             data_size = size - base_size if base_class else size
             has_vt = base_class and any(vt_info.get("class") == base_class for vt_info in vtables.values())
             cpp = " __cppobj" if has_vt else ""
-            return "%s%s %s%s { char _data[%d]; };" % (kind, cpp, name, inherit, data_size)
+            return "struct%s %s%s { char _data[%d]; };" % (cpp, name, inherit, data_size)
         return None
 
     inherit = " : public %s" % base_class if base_class else ""
@@ -193,8 +192,8 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
     # Only use pack(1) for structs explicitly marked (file format headers, etc.)
     pack = struct_info.get("pack")
     if pack == 1:
-        return "#pragma pack(push, 1)\n%s%s %s%s {\n%s\n};\n#pragma pack(pop)" % (kind, cppobj, name, inherit, "\n".join(lines))
-    return "%s%s %s%s {\n%s\n};" % (kind, cppobj, name, inherit, "\n".join(lines))
+        return "#pragma pack(push, 1)\nstruct%s %s%s {\n%s\n};\n#pragma pack(pop)" % (cppobj, name, inherit, "\n".join(lines))
+    return "struct%s %s%s {\n%s\n};" % (cppobj, name, inherit, "\n".join(lines))
 
 
 def create_fixed_struct(name, struct_info, all_structs, vtables, til):
@@ -863,27 +862,7 @@ def apply_annotations():
             last_meaningful = tokens[-1] if tokens else ""
             needs_name = last_meaningful in _type_and_cc
             if needs_name:
-                # For member functions, IDA needs full qualified name (Class::Method)
-                # For free functions, use short name
-                func_name_for_ida = name if "::" in name else short_name
-
-                # Strip explicit 'this' parameter for __thiscall member functions
-                # IDA's SetType expects __thiscall signatures without the explicit 'ClassName *this' first param
-                params_part = after
-                if "__thiscall" in before and "::" in name:
-                    class_name = name.split("::")[0]
-                    if class_name:
-                        import re as _re_this
-                        # Match: (optional-whitespace ClassName *this optional-comma ...)
-                        this_pattern = r'^\(\s*' + _re_this.escape(class_name) + r'\s+\*\s*this\s*(?:,\s*)?'
-                        match = _re_this.match(this_pattern, params_part)
-                        if match:
-                            # Remove the matched 'ClassName *this,' part
-                            rest = params_part[match.end():]
-                            # Reconstruct: ( + remaining params
-                            params_part = '(' + rest
-
-                sig_with_name = before + " " + func_name_for_ida + params_part
+                sig_with_name = before + " " + short_name + after
             else:
                 sig_with_name = before + after
             # Try original (with struct/class keywords), fallback to stripped
