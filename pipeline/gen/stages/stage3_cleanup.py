@@ -300,6 +300,9 @@ def run(code, ctx):
     code = re.sub(r'__userpurge\s+', '', code)
     code = re.sub(r'__usercall\s+', '', code)
 
+    # Hex-Rays ".0" member access (offset-0 field): obj[N].0 → obj[N], obj.member.0 → obj.member
+    code = re.sub(r'(?<=[\]a-zA-Z_])\.0\b', '', code)
+
     # COERCE_FLOAT
     def _fix_coerce(m):
         arg = m.group(1).strip()
