@@ -580,6 +580,10 @@ def apply_annotations():
         "struct tagMSG { void *hwnd; unsigned int message; unsigned int wParam; long lParam; unsigned long time; tagPOINT pt; };",
         "struct _GUID { unsigned long Data1; unsigned short Data2; unsigned short Data3; unsigned char Data4[8]; };",
     ]
+    # STL types (namespace must be handled separately)
+    _STL_TYPES = [
+        ("std::string", "struct string { char *_Ptr; unsigned int _Len; unsigned int _Res; char _Buf[16]; };"),
+    ]
     til = ida_typeinf.get_idati()
     ess_ok = 0
     for decl in _ESSENTIAL_TYPES:
@@ -592,6 +596,17 @@ def apply_annotations():
                 tinfo.set_named_type(til, m.group(1), ida_typeinf.NTF_REPLACE)
                 ess_ok += 1
     log("[2b] Essential SDK types: %d/%d" % (ess_ok, len(_ESSENTIAL_TYPES)))
+
+    # STL types with namespace
+    stl_ok = 0
+    for full_name, decl in _STL_TYPES:
+        tinfo = ida_typeinf.tinfo_t()
+        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
+            # Register with namespace-qualified name
+            if tinfo.set_named_type(til, full_name, ida_typeinf.NTF_REPLACE):
+                stl_ok += 1
+    if _STL_TYPES:
+        log("[2c] STL types: %d/%d" % (stl_ok, len(_STL_TYPES)))
 
     # --- 3. Structs (gap-filling build, base classes first) ---
     structs = data.get("structs", {})
@@ -862,6 +877,17 @@ def apply_annotations():
         sig_raw = sig_raw.replace(' __noreturn', '')
         sig_raw = _re_sig.sub(r'\s*__spoils<[^>]*>', '', sig_raw)
         sig_raw = sig_raw.strip()
+        # Clean up redundant calling conventions for member functions
+        if ("::" in name or "*this" in sig_raw) and "__cdecl" in sig_raw and "__thiscall" in sig_raw:
+            # Member function with both __cdecl and __thiscall - remove __cdecl
+            sig_raw = sig_raw.replace("__cdecl ", "")
+        # Fix common type name issues
+        sig_raw = sig_raw.replace("(string *", "(std::string *")  # string → std::string
+        sig_raw = sig_raw.replace(", string *", ", std::string *")
+        sig_raw = sig_raw.replace(" string *", " std::string *")
+        # Fix format issues
+        import re as _re_format
+        sig_raw = _re_format.sub(r'(\w)__', r'\1 __', sig_raw)  # int__cdecl → int __cdecl
         paren_idx = sig_raw.find("(")
         if paren_idx > 0:
             # Extract a valid C identifier for the function name
@@ -915,8 +941,15 @@ def apply_annotations():
                     sig_fail.append((addr_str, name, sig_with_name))
 
     if sig_fail:
-        for addr_str, fname, sig_str in sig_fail[:10]:
-            print("[!] Sig failed: %s %s → %s" % (addr_str, fname, sig_str[:60]))
+        # Write detailed failure log
+        sig_fail_log = os.path.join(SCRIPT_DIR, "_logs", "signature_failures.txt")
+        with open(sig_fail_log, 'w', encoding='utf-8') as f:
+            f.write("SIGNATURE APPLICATION FAILURES (%d total):\n\n" % len(sig_fail))
+            for addr_str, fname, sig_str in sig_fail:
+                f.write("%s %s\n  → %s\n\n" % (addr_str, fname, sig_str))
+        log("[!] Signature failures logged: %s" % sig_fail_log)
+        for addr_str, fname, sig_str in sig_fail[:5]:
+            log("  [!] %s %s → %s" % (addr_str, fname[:40], sig_str[:60]))
     log("[6] Signatures: %d/%d (fail=%d)" % (sig_ok, len([f for f in funcs.values() if f.get("signature")]), len(sig_fail)))
 
     # --- 6b. Global types (after structs so struct types are resolved) ---
