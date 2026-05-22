@@ -4824,10 +4824,6 @@
     "name": "unknown_libname_343",
     "signature": "tagPOINT *()"
   },
-  "0x00404650": {
-    "name": "unknown_libname_304",
-    "signature": "void ()"
-  },
   "0x004F3C70": {
     "name": "CCBRoleState::GetRoleForce",
     "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
@@ -5325,8 +5321,9 @@
     "signature": "int *()"
   },
   "0x004C0200": {
-    "name": "float::Update",
-    "signature": "void __thiscall(float *this, float fVal)"
+    "name": "RenderTarget2::Update",
+    "signature": "void __thiscall(RenderTarget2 *this, float fVal)",
+    "class": "RenderTarget2"
   },
   "0x00404510": {
     "name": "unknown_libname_296",
@@ -8652,10 +8649,6 @@
     "name": "UIWnd::_sdtor_15",
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
-  "0x004530C0": {
-    "name": "string::_init_4530c0",
-    "signature": "void __thiscall(string *this, const char *pszName)"
-  },
   "0x00453A70": {
     "name": "SceneObj::_sub_453A70",
     "signature": "SceneObj *__thiscall(SceneObj *this, SceneObj *pSceneObj, unsigned int dwVal, unsigned int dwVal2)"
@@ -10907,18 +10900,6 @@
   "0x004307D0": {
     "name": "PalScript::_nearby_4307d0",
     "signature": "int __thiscall(PalScript *this, int *p_DWORD, unsigned int dwVal, unsigned int dwVal2)"
-  },
-  "0x00430B30": {
-    "name": "_::_auto_430b30",
-    "signature": "int *__thiscall(_ *this, int *p_DWORD, int *p_DWORD2, int *p_DWORD3)"
-  },
-  "0x00430C30": {
-    "name": "string::_auto_430c30",
-    "signature": "int *__thiscall(string *this, int *p_DWORD, int *p_DWORD2)"
-  },
-  "0x00431060": {
-    "name": "string::_auto_431060",
-    "signature": "void * __thiscall(string *this, int *Block)"
   },
   "0x00431390": {
     "name": "PalScript::_nearby_431390",
@@ -15927,5 +15908,159 @@
   "0x00541710": {
     "name": "UIRenderObj::~UIRenderObj",
     "signature": "void __thiscall(UIRenderObj *this)"
+  },
+  "0x00484E10": {
+    "name": "UIWnd::_method_484e10",
+    "signature": "int __thiscall(UIWnd *this, int nIndex, unsigned int dwParam)",
+    "class": "UIWnd"
+  },
+  "0x00484E30": {
+    "name": "UIWnd::_method_484e30",
+    "signature": "int __thiscall(UIWnd *this, int nIndex, unsigned int dwParam)",
+    "class": "UIWnd"
+  },
+  "0x00488C70": {
+    "name": "UIWnd::_method_488c70",
+    "signature": "int __thiscall(UIWnd *this, int nIndex, unsigned int dwParam)",
+    "class": "UIWnd"
+  },
+  "0x00492E10": {
+    "name": "UIWnd::_method_492e10",
+    "signature": "int __thiscall(UIWnd *this, int nIndex, unsigned char bParam)",
+    "class": "UIWnd"
+  },
+  "0x0049A980": {
+    "name": "UIWnd::_method_49a980",
+    "signature": "int __thiscall(UIWnd *this, int nIndex, unsigned int dwParam)",
+    "class": "UIWnd"
+  },
+  "0x00444D10": {
+    "name": "UIWnd::_sub_444D10",
+    "signature": "int __thiscall(UIWnd *this)",
+    "class": "UIWnd"
+  },
+  "0x0052D010": {
+    "name": "UIWnd::_sub_52D010",
+    "signature": "int __thiscall(UIWnd *this, int nVal, unsigned int dwVal)",
+    "class": "UIWnd"
+  },
+  "0x0052D0D0": {
+    "name": "UIWnd::_sub_52D0D0",
+    "signature": "int __thiscall(UIWnd *this)",
+    "class": "UIWnd"
+  },
+  "0x00532A80": {
+    "name": "UIWnd::_sub_532A80",
+    "signature": "int __thiscall(UIWnd *this)",
+    "class": "UIWnd"
+  },
+  "0x00534DD0": {
+    "name": "ExternalStatistics::_sub_534DD0",
+    "signature": "int __thiscall(ExternalStatistics *this, int nParam)",
+    "class": "ExternalStatistics"
+  },
+  "0x00534E30": {
+    "name": "ExternalStatistics::_sub_534E30",
+    "signature": "int __thiscall(ExternalStatistics *this, int nParam)",
+    "class": "ExternalStatistics"
+  },
+  "0x004EC6B0": {
+    "name": "CCBRoleState::_sub_4EC6B0",
+    "signature": "int __thiscall(CCBRoleState *this)",
+    "class": "CCBRoleState"
+  },
+  "0x004845F0": {
+    "name": "StateUI::_sub_4845F0",
+    "signature": "int __thiscall(StateUI *this)",
+    "class": "StateUI"
+  },
+  "0x00430C30": {
+    "name": "string::_auto_430c30",
+    "signature": "int *__thiscall(string *this, int *p_DWORD, int *p_DWORD2)"
+  },
+  "0x00431060": {
+    "name": "string::_auto_431060",
+    "signature": "void * __thiscall(string *this, int *Block)"
+  },
+  "0x004530C0": {
+    "name": "string::_init_4530c0",
+    "signature": "void __thiscall(string *this, const char *pszName)"
+  },
+  "0x00484140": {
+    "name": "UIWnd::_method_484140",
+    "signature": "int __thiscall(UIWnd *this, int nIndex, unsigned int dwParam)",
+    "class": "UIWnd"
+  },
+  "0x004D0A60": {
+    "name": "GeomNode::_nearby_4d0a60",
+    "signature": "void __thiscall(GeomNode *this)"
+  },
+  "0x004C5820": {
+    "name": "CEffectSystem::Create",
+    "signature": "CEffectSystem *__thiscall(CEffectSystem *this, int pGfxMgr)"
+  },
+  "0x004C5840": {
+    "name": "CEffectSystem::Destroy_5840",
+    "signature": "void __thiscall(CEffectSystem *this)"
+  },
+  "0x004CFC70": {
+    "name": "CEffModel::CEffModel",
+    "signature": "CEffModel *__thiscall(CEffModel *this)"
+  },
+  "0x00493290": {
+    "name": "CScreenMode::_method_493290",
+    "signature": "void __thiscall(CScreenMode *this, int nIndex)"
+  },
+  "0x00532D40": {
+    "name": "UIWnd::_nearby_532d40",
+    "signature": "void __thiscall(UIWnd *this)"
+  },
+  "0x004EA590": {
+    "name": "CCBStageCam_DlgProc",
+    "signature": "BOOL __stdcall(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
+  },
+  "0x004CFFA0": {
+    "name": "GeomNode::_nearby_4cffa0",
+    "signature": "void __thiscall(GeomNode *this)"
+  },
+  "0x004D03B0": {
+    "name": "CEffect::_nearby_4d03b0",
+    "signature": "void __thiscall(CEffect *this)"
+  },
+  "0x004D0A80": {
+    "name": "GeomNode::_nearby_4d0a80",
+    "signature": "void __thiscall(GeomNode *this)"
+  },
+  "0x004D0BD0": {
+    "name": "CEffModel::_nearby_4d0bd0",
+    "signature": "void __thiscall(CEffModel *this)"
+  },
+  "0x0048EE00": {
+    "name": "CameraCtrl::_sub_48EE00",
+    "signature": "int __thiscall(CameraCtrl *this, int *pCounter)"
+  },
+  "0x0048EE30": {
+    "name": "CameraCtrl::_sub_48EE30",
+    "signature": "int __thiscall(CameraCtrl *this, int *pCounter)"
+  },
+  "0x00497050": {
+    "name": "MainPropUI::_sub_497050",
+    "signature": "int __thiscall(MainPropUI *this, int *pCounter)"
+  },
+  "0x00497080": {
+    "name": "MainPropUI::_sub_497080",
+    "signature": "int __thiscall(MainPropUI *this, int *pCounter)"
+  },
+  "0x0049FF30": {
+    "name": "EquipUI::_sub_49FF30",
+    "signature": "int __thiscall(EquipUI *this, int *pCounter)"
+  },
+  "0x0049FF60": {
+    "name": "EquipUI::_sub_49FF60",
+    "signature": "int __thiscall(EquipUI *this, int *pCounter)"
+  },
+  "0x00469D40": {
+    "name": "CCBUI::_sub_469D40",
+    "signature": "unsigned char __thiscall(CCBUI *this)"
   }
 }
