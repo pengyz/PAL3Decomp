@@ -89,6 +89,7 @@ typedef void _UNKNOWN;
 #define Func 0
 static void *retaddr = 0;
 #define BYTE4(x) (*(((_BYTE*)&(x))+4))
+#define SBYTE4(x) (*(((char*)&(x))+4))
 #define COERCE_VOID_THISCALL_DWORD_DWORD_(x) ((void*)(x))
 
 // IDA helpers
@@ -132,3 +133,8 @@ void UIQuadManager_Reset();
 
 // gbengine imports used across many files
 void * __cdecl gbLoadLightFile(const char *szFilename);
+void * __cdecl gbCreateGraphManager(int mode);
+
+// CRT functions that IDA references directly
+extern "C" long __cdecl _ftol(double);
+extern "C" unsigned char * __cdecl _mbsrchr(const unsigned char *, unsigned int);
