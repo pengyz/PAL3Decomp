@@ -15,6 +15,7 @@
   codegen headers     只生成 .h
   codegen cpp         只生成 .cpp
   compile             CMake 配置 + ninja 编译 (-k 0 全量)
+  iterate [opts]      自动迭代引擎（annotation 修正直到收敛）
   tool --list         列出所有可用工具脚本
   tool <name> [args]  运行 tools/ 下的脚本
 
@@ -526,6 +527,10 @@ def main():
         subprocess.run([sys.executable, snap_script, sub])
     elif command == 'tool':
         cmd_tool(args[1:])
+    elif command == 'iterate':
+        from pipeline.iterate import main as iterate_main
+        sys.argv = ['iterate'] + args[1:]
+        iterate_main()
     else:
         print("Unknown command: %s" % command)
         print("Run with --help for usage.")
