@@ -359,12 +359,34 @@ def phase4_export():
 # ========================================================================
 # Main
 # ========================================================================
+def setup_compiler_vc6():
+    """Set compiler to MSVC 6.0 and load vc6win TIL.
+
+    PAL3.exe is compiled with MSVC 6.0 SP0 (cl.exe 12.00.8168).
+    IDA's auto-detection may load a newer MSVC TIL, causing STL/CRT
+    type sizes to mismatch (e.g., std::string 28 bytes vs actual 16).
+    """
+    # Set compiler via idc interface (works across IDA versions)
+    idc.set_inf_attr(idc.INF_COMPILER, idc.COMP_MS)
+    log("[*] Compiler set: MSVC (COMP_MS)")
+
+    # Load vc6win TIL - contains correct MSVC 6.0 type definitions
+    rc = ida_typeinf.add_til("vc6win", ida_typeinf.ADDTIL_DEFAULT)
+    if rc:
+        log("[*] Loaded TIL: vc6win (MSVC 6.0 runtime types)")
+    else:
+        log("[!] Failed to load vc6win TIL (may already be loaded)")
+
+    return True
+
+
 def main():
     try:
         ida_auto.auto_wait()
         log("[*] PAL3.exe 分析管线启动")
         log("[*] 时间: %s" % time.strftime("%Y-%m-%d %H:%M:%S"))
 
+        setup_compiler_vc6()
         phase1_import_types()
         idc.save_database(idc.get_idb_path(), 0)
 
