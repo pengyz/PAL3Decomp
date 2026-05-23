@@ -1,9 +1,68 @@
 {
   "name": "CCBUI",
-  "note": "binary_size corrected from PDB 3552 to 8060 based on member_scan evidence (highest access: offset 8056). PDB size from PAL3A does not match PAL3 binary.",
-  "known_members": {},
-  "pdb_size": 3552,
   "base_class": "UIFrameWnd",
   "base_size": 72,
-  "binary_size": 2632
+  "binary_size": 2632,
+  "known_members": {
+    "72": {
+      "name": "m_pAttackSequenBack",
+      "type": "UIStatic *",
+      "source": "PAL3patch_verified"
+    },
+    "76": {
+      "name": "m_pAttackSequenFace",
+      "type": "UIStatic *[11]",
+      "source": "PAL3patch_verified"
+    },
+    "120": {
+      "name": "m_pRoleStatePanel",
+      "type": "UIStatic *[4]",
+      "source": "PAL3patch_verified"
+    },
+    "136": {
+      "name": "m_pRoleStateFace",
+      "type": "UIStatic *[5]",
+      "source": "PAL3patch_verified"
+    },
+    "156": {
+      "name": "m_pRoleStateFaceName",
+      "type": "UIStatic *[5]",
+      "source": "PAL3patch_verified"
+    },
+    "176": {
+      "name": "m_pRoleSpecState",
+      "type": "UIStatic *[209]",
+      "source": "PAL3patch:union_flat_19x11"
+    },
+    "1012": {
+      "name": "m_pWinPanel",
+      "type": "UIStatic *",
+      "source": "PAL3patch_verified"
+    },
+    "1016": {
+      "name": "m_pLosePanel",
+      "type": "UIStatic *",
+      "source": "PAL3patch_verified"
+    },
+    "1168": {
+      "name": "m_Task",
+      "type": "tagUITask[20]",
+      "source": "PAL3patch_verified"
+    },
+    "2608": {
+      "name": "fp",
+      "type": "CCBUI_funcptr_t",
+      "source": "PAL3patch_verified"
+    },
+    "2624": {
+      "name": "m_nTask",
+      "type": "int",
+      "source": "PAL3patch_verified"
+    },
+    "2628": {
+      "name": "m_nCurTask",
+      "type": "int",
+      "source": "PAL3patch_verified"
+    }
+  }
 }

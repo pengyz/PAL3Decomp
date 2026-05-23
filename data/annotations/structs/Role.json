@@ -80,7 +80,7 @@
     "664": {
       "name": "fCGBIXIE",
       "type": "int",
-      "source": "pdb_batch_fill | type_fix:float→int_raw_decomp"
+      "source": "pdb_batch_fill | type_fix:float鈫抜nt_raw_decomp"
     },
     "668": {
       "name": "bCGBIXIE",
@@ -95,7 +95,7 @@
     "672": {
       "name": "fCrossAlpha",
       "type": "int",
-      "source": "pdb_batch_fill | type_fix:float→int_raw_decomp"
+      "source": "pdb_batch_fill | type_fix:float鈫抜nt_raw_decomp"
     },
     "676": {
       "name": "bCGMonsterHitObj",
@@ -175,12 +175,12 @@
     "1388": {
       "name": "m_curspeed",
       "type": "int",
-      "source": "pdb_batch_fill | type_fix:float→int_raw_decomp"
+      "source": "pdb_batch_fill | type_fix:float鈫抜nt_raw_decomp"
     },
     "1392": {
       "name": "m_curforce",
       "type": "int",
-      "source": "pdb_batch_fill | type_fix:float→int_raw_decomp"
+      "source": "pdb_batch_fill | type_fix:float鈫抜nt_raw_decomp"
     },
     "1396": {
       "name": "m_velocity",
@@ -358,19 +358,14 @@
       "source": "pdb_batch_fill"
     },
     "1616": {
-      "name": "m_path",
-      "type": "PathObj",
-      "source": "pdb_batch_fill"
+      "name": "m_path_region",
+      "type": "char[7076]",
+      "source": "PAL3_opaque:PathObj+trailing_fields(PDB_size_7208_exceeds_PAL3_8704)"
     },
-    "8824": {
-      "name": "m_rotate",
-      "type": "float",
-      "source": "pdb_batch_fill"
-    },
-    "8828": {
+    "8692": {
       "name": "m_wanapos",
       "type": "gbVec3D",
-      "source": "pdb_batch_fill"
+      "source": "PAL3patch_verified"
     }
   },
   "base_class": "Object",
