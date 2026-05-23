@@ -260,13 +260,19 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         mname = minfo["name"]
         mtype_str = minfo["type"].replace("class ", "").replace("struct ", "")
 
-        # STL/template types → flatten to char[span]
-        if 'std::' in mtype_str or '<' in mtype_str or '::' in mtype_str:
-            sorted_offs = sorted(int(o) for o in members if int(o) > offset)
-            span = min(sorted_offs) - offset if sorted_offs else binary_size - offset
-            if span <= 0:
-                span = 4
-            mtype_str = "char[%d]" % span
+        # STL/template types: try to resolve, fall back to char[span] if IDA can't parse
+        _is_stl = 'std::' in mtype_str or '<' in mtype_str
+        if _is_stl:
+            # Try to let IDA resolve it with vc6win TIL first
+            _probe = ida_typeinf.tinfo_t()
+            _decl = "%s __probe;" % mtype_str
+            if ida_typeinf.parse_decl(_probe, til, _decl, ida_typeinf.PT_VAR) is None:
+                # IDA can't parse this type - flatten to char[span]
+                sorted_offs = sorted(int(o) for o in members if int(o) > offset)
+                span = min(sorted_offs) - offset if sorted_offs else binary_size - offset
+                if span <= 0:
+                    span = 4
+                mtype_str = "char[%d]" % span
 
         # Resolve type string to tinfo_t
         tinfo = ida_typeinf.tinfo_t()
