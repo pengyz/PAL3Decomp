@@ -34,13 +34,8 @@
     },
     "228": {
       "name": "s_drvinfo",
-      "type": "int",
-      "source": "gen_headers_9.2 | fix:gbGfxDriverInfo(PDB=184)>span(149),type_unverified"
-    },
-    "377": {
-      "name": "m_bRange",
-      "type": "unsigned char",
-      "source": "binary:disp32_1hits_1funcs"
+      "type": "gbGfxDriverInfo",
+      "source": "PAL3patch:confirmed sizeof==184, fields match g_nDisplayAdapter..waitforverticalblank"
     },
     "412": {
       "name": "s_gamestate",

@@ -418,8 +418,8 @@ def run(code, ctx):
     code = _re_loc.sub(r'&qword_[0-9A-Fa-f]+\b', '((void*)0)', code)
     code = _re_loc.sub(r'\bqword_[0-9A-Fa-f]+\b', '((void*)0)', code)
 
-    # Replace IDA CRT internal functions (_E68, _E158 etc) with empty stubs
-    code = _re_loc.sub(r'\b_E\d+\b', '((void(*)(void*))0)', code)
+    # Replace IDA CRT internal function calls (_E68, _E158 etc) — only in call context
+    code = _re_loc.sub(r'\b_E\d+(?=\s*\()', '((void(*)(void))0)', code)
     # Replace IDA label _L references
     code = _re_loc.sub(r'\b_L\d+\b', '((void*)0)', code)
     # Replace __SPAIR64__ IDA macro with equivalent

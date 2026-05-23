@@ -115,11 +115,17 @@ def generate_forward_decls(all_code):
                 else:
                     lines.append("extern %s %s;" % (gt, u))
             elif u.startswith('flt_'):
-                lines.append("extern float %s;" % u)
+                if re.search(r'\b' + re.escape(u) + r'\s*\[', all_code):
+                    lines.append("extern float %s[];" % u)
+                else:
+                    lines.append("extern float %s;" % u)
             elif u.startswith('asc_'):
                 lines.append("extern char %s[];" % u)
             elif u.startswith('byte_'):
-                lines.append("extern char %s;" % u)
+                if re.search(r'\b' + re.escape(u) + r'\s*\[', all_code):
+                    lines.append("extern char %s[];" % u)
+                else:
+                    lines.append("extern char %s;" % u)
             elif u.startswith('off_'):
                 lines.append("extern void *%s;" % u)
                 _undeclared_off_globals.add(u)

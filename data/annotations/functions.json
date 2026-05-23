@@ -201,7 +201,7 @@
   },
   "0x00404800": {
     "name": "PAL3::Create",
-    "signature": "OpenNULLFile *__cdecl(char *hInstance, HINSTANCE hinst)"
+    "signature": "void __thiscall(PAL3 *this, HINSTANCE hinst)"
   },
   "0x00404D60": {
     "name": "?WinProc@@YGJPAUHWND__@@IIJ@Z",
@@ -221,7 +221,7 @@
   },
   "0x004055D0": {
     "name": "PAL3::Update",
-    "signature": "int __cdecl(PalScript *pPalScript)"
+    "signature": "void __thiscall(PAL3 *this, float dt)"
   },
   "0x00405C00": {
     "name": "PAL3::Render",
@@ -233,15 +233,15 @@
   },
   "0x00406310": {
     "name": "PAL3::CheckSystemRequire",
-    "signature": "void __cdecl(char *hInstance, char *pszBuf, HINSTANCE pData)"
+    "signature": "void __thiscall(PAL3 *this, HINSTANCE hinst)"
   },
   "0x004065F0": {
     "name": "PAL3::CreateGfxWindow",
-    "signature": "void __cdecl __thiscall(PAL3 *this)"
+    "signature": "void __thiscall(PAL3 *this)"
   },
   "0x004066F0": {
     "name": "PAL3::ParseCmdLine",
-    "signature": "char __cdecl(char *lpKeyName)"
+    "signature": "int __thiscall(PAL3 *this, const char *lpCmdLine)"
   },
   "0x004068C0": {
     "name": "PAL3::HasCommandLineParam",
@@ -261,7 +261,7 @@
   },
   "0x00406D70": {
     "name": "PAL3::PrintScreen",
-    "signature": "void __cdecl __thiscall(PAL3 *this)"
+    "signature": "void __thiscall(PAL3 *this)"
   },
   "0x00406FF0": {
     "name": "PAL3::SnapScreen",

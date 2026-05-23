@@ -428,52 +428,9 @@
     "type": "GRPinput"
   },
   "0x00BFD6C8": {
-    "name": "g_nDisplayAdapter",
-    "type": "int"
-  },
-  "0x00BFD6CC": {
-    "name": "g_nDisplayMode",
-    "type": "int"
-  },
-  "0x00BFD6D0": {
-    "name": "w",
-    "type": "int"
-  },
-  "0x00BFD6D4": {
-    "name": "h",
-    "type": "int"
-  },
-  "0x00BFD6E0": {
-    "name": "g_nColorBits",
-    "type": "int"
-  },
-  "0x00BFD6E4": {
-    "name": "g_nDepthBits",
-    "type": "int"
-  },
-  "0x00BFD6E8": {
-    "name": "g_nSyncMode",
-    "type": "int"
-  },
-  "0x00BFD6F0": {
-    "name": "g_bSoftCursor",
-    "type": "unsigned char"
-  },
-  "0x00BFD770": {
-    "name": "g_hInstance",
-    "type": "HINSTANCE"
-  },
-  "0x00BFD774": {
-    "name": "hWnd",
-    "type": "HWND"
-  },
-  "0x00BFD778": {
-    "name": "g_nScreenWidth",
-    "type": "int"
-  },
-  "0x00BFD77C": {
-    "name": "g_nScreenHeight",
-    "type": "int"
+    "name": "g_DrvInfo",
+    "type": "gbGfxDriverInfo",
+    "source": "PAL3patch:confirmed struct at 0xBFD6C8, contains display/window params"
   },
   "0x00BFDA04": {
     "name": "g_nGameTime",
@@ -688,8 +645,9 @@
     "type": "CGameData"
   },
   "0x00DB9FD0": {
-    "name": "g_GameData2",
-    "type": "CGameData"
+    "name": "g_gamefrm",
+    "type": "int",
+    "source": "PAL3patch:UIGameFrm*,simplified_for_now"
   },
   "0x00DC3C3C": {
     "name": "g_bSlotFlag",
@@ -1429,9 +1387,9 @@
     "source": "binary:4 decomp refs, 4-byte access; cls=_TextureLib_Data, 4 funcs"
   },
   "0x01895058": {
-    "name": "g_pRenderEffect_1895058",
-    "type": "gbRenderEffect *",
-    "source": "binary:4 decomp refs, 4-byte access; cls=_TextureLib_Data, 6 funcs"
+    "name": "g_pTexColorEffect",
+    "type": "int",
+    "source": "PAL3patch:gbRenderEffect**,simplified"
   },
   "0x0189505C": {
     "name": "g_pRenderEffect_189505C",
@@ -3178,5 +3136,59 @@
   "0x00D8B4A0": {
     "name": "g_RoleSystemExtra2",
     "type": "RoleSystem"
+  },
+  "0x00C12B20": {
+    "name": "g_lastupdateloading",
+    "type": "unsigned long",
+    "source": "PAL3patch:verified"
+  },
+  "0x00C12B1C": {
+    "name": "g_nLastUpdateTime",
+    "type": "int",
+    "source": "proximity:g_lastupdateloading-4"
+  },
+  "0x00BFD6CC": {
+    "name": "g_nDisplayMode",
+    "type": "int"
+  },
+  "0x00BFD6D0": {
+    "name": "w",
+    "type": "int"
+  },
+  "0x00BFD6D4": {
+    "name": "h",
+    "type": "int"
+  },
+  "0x00BFD6E0": {
+    "name": "g_nColorBits",
+    "type": "int"
+  },
+  "0x00BFD6E4": {
+    "name": "g_nDepthBits",
+    "type": "int"
+  },
+  "0x00BFD6E8": {
+    "name": "g_nSyncMode",
+    "type": "int"
+  },
+  "0x00BFD6F0": {
+    "name": "g_bSoftCursor",
+    "type": "unsigned char"
+  },
+  "0x00BFD770": {
+    "name": "g_hInstance",
+    "type": "HINSTANCE"
+  },
+  "0x00BFD774": {
+    "name": "hWnd",
+    "type": "HWND"
+  },
+  "0x00BFD778": {
+    "name": "g_nScreenWidth",
+    "type": "int"
+  },
+  "0x00BFD77C": {
+    "name": "g_nScreenHeight",
+    "type": "int"
   }
 }
