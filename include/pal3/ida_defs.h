@@ -138,3 +138,16 @@ void * __cdecl gbCreateGraphManager(int mode);
 // CRT functions that IDA references directly
 extern "C" long __cdecl _ftol(double);
 extern "C" unsigned char * __cdecl _mbsrchr(const unsigned char *, unsigned int);
+
+// Bink Video SDK (external library, not in PAL3.exe)
+extern "C" {
+void *BinkOpen(void *data, unsigned int flags);
+void BinkClose(void *bink);
+int BinkDoFrame(void *bink);
+int BinkWait(void *bink);
+void BinkNextFrame(void *bink);
+int BinkCopyToBuffer(void *bink, void *buf, int pitch, int height, int x, int y, int flags);
+void *BinkOpenMiles(unsigned int freq);
+void *BinkOpenDirectSound(unsigned int freq);
+int BinkSetSoundSystem(void *soundsys, unsigned int freq);
+}
