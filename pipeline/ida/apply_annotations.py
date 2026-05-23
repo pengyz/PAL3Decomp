@@ -822,22 +822,26 @@ def apply_annotations():
             f.write('\n'.join(error_lines))
         log("[!] Error log: %s" % log_path)
 
-        # ABORT only for unexpected errors
-        # Skip known issues: multiple inheritance, references to skipped types
+        # ABORT: struct layout is foundational — downstream steps (function signatures,
+        # vtables, globals) depend on correct struct definitions. Continuing with broken
+        # structs produces silently wrong decompilation (untyped this, raw offsets).
+        # Fix the struct annotations first, then re-run.
         skipped_patterns = [
             "multiple inheritance not supported",
-            "UIHeadDialog",  # references multi-inheritance struct
-            "UICaption",     # multi-inheritance
-            "UIEmote"        # multi-inheritance
         ]
-        fatal_errors = [e for _, _, err in s_fail
+        fatal_errors = [(sname, err) for sname, _, err in s_fail
                        if not any(pat in err for pat in skipped_patterns)]
         if fatal_errors:
-            log("\n" + "=" * 60)
-            log("[FATAL] %d struct errors (excluding %d expected multi-inheritance failures)" %
-                (len(fatal_errors), len(s_fail) - len(fatal_errors)))
+            log("")
             log("=" * 60)
-            # Write log before exit
+            log("[FATAL] %d struct import errors prevent safe continuation:" % len(fatal_errors))
+            log("=" * 60)
+            for sname, err in fatal_errors:
+                log("  %s: %s" % (sname, err))
+            log("")
+            log("Function signatures and global types were NOT applied.")
+            log("Fix these struct annotations, then re-run: python pipeline/cli.py apply")
+            log("=" * 60)
             os.makedirs(LOG_DIR, exist_ok=True)
             with open(LOG_FILE, 'w', encoding='utf-8') as f:
                 f.write('\n'.join(log_lines))
