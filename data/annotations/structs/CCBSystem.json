@@ -1,218 +1,201 @@
 {
   "name": "CCBSystem",
   "binary_size": 90840,
-  "note": "Two fix scripts progressively refined this. Offsets verified from PAL3 binary.",
   "known_members": {
     "0": {
       "name": "m_pUtil",
-      "type": "CUtil *",
-      "source": "pdb:PAL3A confirmed CUtil *, was CCBSystem * (typo)"
+      "type": "CCBSystem *",
+      "source": "PDB_verified"
     },
     "4": {
       "name": "m_pUI",
       "type": "CCBUI *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "8": {
       "name": "m_pControl",
       "type": "CCBControl *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "12": {
       "name": "m_pAttackSequen",
       "type": "CCBAttackSequen *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "16": {
       "name": "m_pRoleState",
       "type": "CCBRoleState *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "20": {
       "name": "m_pStage",
       "type": "CCBStage *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "24": {
       "name": "m_pAI",
       "type": "CCBAI *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "28": {
       "name": "m_pEditor",
       "type": "CCBEditor *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "32": {
       "name": "m_pES",
       "type": "CEffectSystem *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "36": {
       "name": "m_pEffectSimple",
       "type": "CEffectSimple *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "40": {
       "name": "m_pConfig",
       "type": "TxtFile *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "44": {
       "name": "m_pEffMgr",
       "type": "CEffMgr *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "48": {
       "name": "m_pATSEffMgr",
       "type": "CEffMgr *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "52": {
       "name": "m_p2DSpark",
       "type": "C2DSpark *",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "56": {
       "name": "m_p3DSpark",
       "type": "C3DSpark *",
-      "source": "fix_ccbsystem_full | fix:[2]->[1] span=4"
+      "source": "PDB_verified"
     },
     "64": {
       "name": "m_DeltaTime",
       "type": "double",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "72": {
       "name": "m_dTimeFund",
       "type": "double",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "80": {
       "name": "m_fTimeFund",
       "type": "float",
-      "source": "fix_ccbsystem_full"
+      "source": "PDB_verified"
     },
     "88": {
       "name": "m_AbsDeltaTime",
       "type": "double",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "96": {
       "name": "m_dAbsTimeFund",
       "type": "double",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "104": {
       "name": "m_fAbsTimeFund",
       "type": "float",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "108": {
       "name": "m_fTimeScale",
       "type": "float",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "112": {
       "name": "m_pFightInfo",
       "type": "FightInfo *",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "116": {
       "name": "m_bQuitFlag",
       "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "117": {
       "name": "m_bPause",
       "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "120": {
       "name": "m_eState",
       "type": "ECBCombatState",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "124": {
       "name": "m_eResult",
       "type": "ECBCombatResult",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "128": {
       "name": "m_bFiveNimbus",
       "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "129": {
       "name": "m_bPXVariance",
       "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "132": {
       "name": "m_nTimesOfCombat",
       "type": "int",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "136": {
       "name": "m_bAuto",
       "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "137": {
       "name": "m_bEditor",
       "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "138": {
       "name": "m_bLockCam",
       "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "139": {
       "name": "m_bFirstRender",
       "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "140": {
       "name": "m_dwIDHolder",
-      "type": "unsigned int",
-      "source": "pdb_verified_by_old_ida"
+      "type": "unsigned long",
+      "source": "PDB_verified"
     },
     "144": {
       "name": "m_nThread",
       "type": "int",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "148": {
       "name": "m_nCurThread",
       "type": "int",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "152": {
       "name": "m_Thread",
       "type": "tagThread[1024]",
-      "source": "pdb_verified_by_old_ida"
+      "source": "PDB_verified"
     },
     "90264": {
       "name": "m_Player",
       "type": "tagPlayerSet[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "60": {
-      "name": "m_pStage2",
-      "type": "unsigned char",
-      "source": "A:mov_byte_ptr_in_class_method"
-    },
-    "84": {
-      "name": "m_nMaxTurn",
-      "type": "int",
-      "source": "binary:raw_compare"
-    },
-    "118": {
-      "name": "_field_076",
-      "type": "short",
-      "source": "binary:gap_r2"
+      "source": "PDB_verified"
     }
-  },
-  "pdb_size": 90840
+  }
 }
