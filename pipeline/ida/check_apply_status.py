@@ -47,7 +47,7 @@ def main():
             else:
                 ida_members = -1
 
-            ann_size = max(sdata.get("binary_size", 0), sdata.get("pdb_size", 0), sdata.get("gen_size", 0))
+            ann_size = max(sdata.get("binary_size", 0), sdata.get("pdb_size", 0))
             results[sname] = {
                 "status": "ok" if ida_members > 0 else "empty",
                 "ann_members": n_members,

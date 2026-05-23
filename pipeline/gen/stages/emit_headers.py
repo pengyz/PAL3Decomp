@@ -422,7 +422,7 @@ def _estimate_member_size(mtype):
     try:
         ann = load_annotations_data()
         ann_s = ann.get('structs', {}).get(t, {})
-        sz = ann_s.get('binary_size') or ann_s.get('gen_size')
+        sz = ann_s.get('binary_size')
         if sz and sz != '?':
             return int(sz)
     except:
@@ -830,7 +830,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             ann_data_fb = load_annotations_data()
             ann_struct_fb = ann_data_fb.get('structs', {}).get(cls_name, {})
             ann_members = ann_struct_fb.get('known_members', {})
-            ann_size = ann_struct_fb.get('binary_size') or ann_struct_fb.get('gen_size')
+            ann_size = ann_struct_fb.get('binary_size')
             if ann_members or ann_size:
                 sorted_members = sorted(ann_members.items(), key=lambda x: int(x[0])) if ann_members else []
                 start_off = base_size
@@ -1036,7 +1036,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     # (skip for opaque structs which get their own ctor below)
     _ann_for_ctor = load_annotations_data()
     _ctor_struct = _ann_for_ctor.get('structs', {}).get(cls_name, {})
-    _ctor_size = _ctor_struct.get('binary_size') or _ctor_struct.get('gen_size') or 0
+    _ctor_size = _ctor_struct.get('binary_size') or 0
     _ctor_members = _ctor_struct.get('known_members', {})
     _is_opaque = (_ctor_size and _ctor_size <= 16 and len(_ctor_members) == 0)
     if methods and not _is_opaque:
@@ -1050,7 +1050,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     # This allows IDA-generated code to assign integers to these types
     _ann_for_opaque = load_annotations_data()
     _opaque_struct = _ann_for_opaque.get('structs', {}).get(cls_name, {})
-    _opaque_size = _opaque_struct.get('binary_size') or _opaque_struct.get('gen_size') or 0
+    _opaque_size = _opaque_struct.get('binary_size') or 0
     _opaque_members = _opaque_struct.get('known_members', {})
     if _opaque_size and _opaque_size <= 16 and len(_opaque_members) == 0:
         lines.append("    // Opaque type: default ctor + int conversion for IDA codegen")
@@ -1137,7 +1137,7 @@ def main():
         has_methods = len(methods_list) >= 1
         ann_s = ann_data_all.get('structs', {}).get(cls_name, {})
         has_ann = bool(ann_s.get('known_members'))
-        has_ann_sz = bool(ann_s.get('binary_size') or ann_s.get('gen_size'))
+        has_ann_sz = bool(ann_s.get('binary_size'))
         if has_members or has_methods or has_ann or has_ann_sz:
             classes_with_headers.add(cls_name)
     # Also include template stubs and enums
@@ -1173,7 +1173,7 @@ def main():
         has_vtable = any(v.get('class') == cls_name for v in ann_data_all.get('vtables', {}).values())
         ann_struct = ann_data_all.get('structs', {}).get(cls_name, {})
         has_ann_members = bool(ann_struct.get('known_members'))
-        has_ann_size = bool(ann_struct.get('binary_size') or ann_struct.get('gen_size'))
+        has_ann_size = bool(ann_struct.get('binary_size'))
         if not has_members and not has_methods and not has_vtable and not has_ann_members and not has_ann_size:
             continue
 

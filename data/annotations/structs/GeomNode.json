@@ -1,13 +1,42 @@
 {
   "name": "GeomNode",
   "binary_size": 288,
-  "gen_size": 288,
   "known_members": {
-    "0": {"name": "pNext", "type": "GeomNode *", "size": 4, "source": "gbChain1DNode::pNext at +0"},
-    "4": {"name": "pParent", "type": "GeomNode *", "size": 4, "source": "gbNBTreeNode::pParent at +4"},
-    "8": {"name": "children", "type": "char[16]", "size": 16, "source": "gbNBTreeNode::children (gbChain1D) at +8"},
-    "92": {"name": "worldTransform", "type": "Matrix4", "size": 64, "source": "gbGeomNode::worldTransform at +0x5C"},
-    "156": {"name": "staticTransform", "type": "Matrix4", "size": 64, "source": "gbGeomNode::staticTransform at +0x9C"},
-    "272": {"name": "mesh", "type": "int", "size": 4, "source": "gbGeomNode::mesh (gbStaticMesh*) at +0x108"}
+    "0": {
+      "name": "pNext",
+      "type": "GeomNode *",
+      "size": 4,
+      "source": "gbChain1DNode::pNext at +0"
+    },
+    "4": {
+      "name": "pParent",
+      "type": "GeomNode *",
+      "size": 4,
+      "source": "gbNBTreeNode::pParent at +4"
+    },
+    "8": {
+      "name": "children",
+      "type": "char[16]",
+      "size": 16,
+      "source": "gbNBTreeNode::children (gbChain1D) at +8"
+    },
+    "92": {
+      "name": "worldTransform",
+      "type": "Matrix4",
+      "size": 64,
+      "source": "gbGeomNode::worldTransform at +0x5C"
+    },
+    "156": {
+      "name": "staticTransform",
+      "type": "Matrix4",
+      "size": 64,
+      "source": "gbGeomNode::staticTransform at +0x9C"
+    },
+    "272": {
+      "name": "mesh",
+      "type": "int",
+      "size": 4,
+      "source": "gbGeomNode::mesh (gbStaticMesh*) at +0x108"
+    }
   }
 }

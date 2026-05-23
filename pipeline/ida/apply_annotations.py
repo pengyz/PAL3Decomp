@@ -48,7 +48,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
         vtables = {}
 
     members = struct_info.get("known_members", {})
-    size = struct_info.get("binary_size") or struct_info.get("pdb_size") or struct_info.get("gen_size") or 0
+    size = struct_info.get("binary_size") or struct_info.get("pdb_size") or 0
     base_class = struct_info.get("base_class")
     # Handle multiple inheritance: only use first base (IDA's struct model limitation)
     if isinstance(base_class, list):
@@ -130,7 +130,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
                 clean = base_type.replace("class ", "").replace("struct ", "").strip()
                 if clean in all_structs:
                     ref = all_structs[clean]
-                    elem_size = ref.get("binary_size") or ref.get("pdb_size") or ref.get("gen_size") or ref.get("size") or 0
+                    elem_size = ref.get("binary_size") or ref.get("pdb_size") or ref.get("size") or 0
             if elem_size > 0:
                 dims = [int(d) for d in _re.findall(r'\[(\d+)\]', arr_match.group(1))]
                 total_elems = 1
@@ -214,7 +214,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     每个成员逐一添加并验证。任何失败立即返回明确错误信息。
     返回 (True, None) 成功，或 (False, error_msg) 失败。
     """
-    binary_size = struct_info.get("binary_size") or struct_info.get("gen_size") or 0
+    binary_size = struct_info.get("binary_size") or 0
     if not binary_size:
         return (False, "no binary_size")
 

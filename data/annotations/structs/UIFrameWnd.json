@@ -2,89 +2,88 @@
   "name": "UIFrameWnd",
   "pdb_size": 72,
   "known_members": {
-    "128": {
+    "108": {
       "name": "m_nLayout_4433d0",
       "type": "int",
       "source": "binary:disp32_6hits_4funcs"
     },
-    "132": {
+    "112": {
       "name": "m_nFrameData",
       "type": "unsigned int",
       "source": "binary:CCBSkillWindow_Create LEA[edi+0x98]->Render/Destroy(_DWORD*)"
     },
-    "136": {
+    "116": {
       "name": "m_nChildren",
       "type": "int",
       "source": "A:decomp null-check+gbRefObject::Release()+set_NULL in UIFrameWnd.cpp; ptr not float"
     },
-    "140": {
+    "120": {
       "name": "m_bFrameInit",
       "type": "float",
       "source": "A+:raw_idb VA=0x52DE00 *(DWORD*)(this+140)=1065353216 (1.0f)"
     },
-    "144": {
+    "124": {
       "name": "m_nBorderColor",
       "type": "float",
       "source": "A+:raw_idb VA=0x52DE00 *(DWORD*)(this+144)=1065353216 (1.0f)"
     },
-    "148": {
+    "128": {
       "name": "m_frameid",
       "type": "int",
       "source": "PAL3patch:pal3.h + binary_verified: 92 mov (int) vs 35 fild (int→float). Prior float was misclassified from IEEE754 init."
     },
-    "88": {
+    "68": {
       "name": "_todo_58",
       "type": "float",
       "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& 13x + tagRECT cast (float rect, not int rect))"
     },
-    "92": {
+    "72": {
       "name": "_todo_5C",
       "type": "float",
       "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& 10x + tagRECT cast (float rect))"
     },
-    "96": {
+    "76": {
       "name": "_todo_60",
       "type": "float",
       "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& 12x + tagRECT/UIScene cast (float rect))"
     },
-    "100": {
+    "80": {
       "name": "_todo_64",
       "type": "float",
       "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& 10x + tagRECT cast (float rect))"
     },
-    "104": {
+    "84": {
       "name": "_todo_68",
       "type": "float",
       "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& in _method_43fd20, 9x total)"
     },
-    "108": {
+    "88": {
       "name": "_todo_6C",
       "type": "float",
       "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& division in _method_43fd20, 8x total)"
     },
-    "112": {
+    "92": {
       "name": "_todo_70",
       "type": "float",
       "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& 12x + POINT cast (float point))"
     },
-    "116": {
+    "96": {
       "name": "_todo_74",
       "type": "float",
       "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& in _method_43fd20 + _method_443970, 5x total)"
     },
-    "120": {
+    "100": {
       "name": "_todo_78",
       "type": "float",
       "source": "A+:decomp LOBYTE(this->_todo_78) x7 + A:binary mov BYTE [esi+0x8C] | type_fix:unsigned char->float(A+:decomp *(float*)& 4x, _method_43fd20+_method_52e2f0)"
     },
-    "124": {
+    "104": {
       "name": "_todo_7C",
       "type": "float",
       "source": "gap_fill:ida_decomp_access | type_fix:int->float(A+:decomp *(float*)& multiply in _method_443ba0, 8x total)"
     }
   },
-  "gen_size": 152,
   "base_class": "UIWnd",
-  "base_size": 88,
-  "binary_size": 152
+  "base_size": 68,
+  "binary_size": 132
 }

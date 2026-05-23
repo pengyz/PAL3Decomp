@@ -2,213 +2,213 @@
   "name": "CCBUI",
   "note": "binary_size corrected from PDB 3552 to 8060 based on member_scan evidence (highest access: offset 8056). PDB size from PAL3A does not match PAL3 binary.",
   "known_members": {
-    "336": {
+    "316": {
       "name": "m_nTargetOffsetX",
       "type": "int",
       "source": "binary:SetTargetPos_result"
     },
-    "600": {
+    "580": {
       "name": "m_pRoleStateBlank",
       "type": "UIStatic *[11]",
       "source": "pdb_verified_by_old_ida"
     },
-    "1208": {
+    "1188": {
       "name": "m_Task",
       "type": "char[416]",
       "source": "fix:layout_error_span=416"
     },
-    "3512": {
+    "3492": {
       "name": "m_bShowResult",
       "type": "unsigned char",
       "source": "pdb_verified_by_old_ida"
     },
-    "3520": {
+    "3500": {
       "name": "m_fp",
       "type": "void * *[4]",
       "source": "pdb_verified_by_old_ida"
     },
-    "3536": {
+    "3516": {
       "name": "m_nTask",
       "type": "int",
       "source": "pdb_verified_by_old_ida"
     },
-    "3540": {
+    "3520": {
       "name": "m_nCurTask",
       "type": "int",
       "source": "pdb_verified_by_old_ida"
     },
-    "3544": {
+    "3524": {
       "name": "mImbibeNimbusNum",
       "type": "int",
       "source": "pdb_verified_by_old_ida"
     },
-    "3548": {
+    "3528": {
       "name": "m_pImbibeNimbus",
       "type": "tagImbibeNimbus *",
       "source": "pdb_verified_by_old_ida"
     },
-    "1072": {
+    "1052": {
       "name": "m_pTrickName",
       "type": "UIStaticCB *",
       "source": "binary:Reset_0x5177B0"
     },
-    "1076": {
+    "1056": {
       "name": "m_pTrickName2",
       "type": "UIStaticCB *",
       "source": "binary:Reset_0x5177B0"
     },
-    "1080": {
+    "1060": {
       "name": "m_pDialogBack",
       "type": "UIStatic *",
       "source": "binary:Reset_0x5177B0"
     },
-    "1084": {
+    "1064": {
       "name": "m_pResultLevelup",
       "type": "UIStatic *",
       "source": "inferred:PAL3A_order"
     },
-    "1088": {
+    "1068": {
       "name": "m_pResultWindLvup",
       "type": "UIStatic *",
       "source": "inferred:PAL3A_order"
     },
-    "1092": {
+    "1072": {
       "name": "m_pResultThunderLvup",
       "type": "UIStatic *",
       "source": "inferred:PAL3A_order"
     },
-    "1096": {
+    "1076": {
       "name": "m_pResultWaterLvup",
       "type": "UIStatic *",
       "source": "inferred:PAL3A_order"
     },
-    "1100": {
+    "1080": {
       "name": "m_pResultFireLvup",
       "type": "UIStatic *",
       "source": "inferred:PAL3A_order"
     },
-    "1104": {
+    "1084": {
       "name": "m_pResultEarthLvup",
       "type": "UIStatic *",
       "source": "inferred:PAL3A_order"
     },
-    "1108": {
+    "1088": {
       "name": "m_pResultDoubleLvup",
       "type": "UIStatic *",
       "source": "inferred:PAL3A_order"
     },
-    "1112": {
+    "1092": {
       "name": "m_pResultGetItem",
       "type": "UIStatic *",
       "source": "inferred:PAL3A_order"
     },
-    "1116": {
+    "1096": {
       "name": "m_pWinPanel",
       "type": "UIStatic *",
       "source": "inferred:PAL3A_order"
     },
-    "1120": {
+    "1100": {
       "name": "m_nChildUpdateCount",
       "type": "int",
       "source": "ida_decomp:UpdateChildren loaded then =0, 2 refs"
     },
-    "1124": {
+    "1104": {
       "name": "m_pCombatPanel",
       "type": "void *",
       "source": "binary:CreateCombatPanel_0x517B30"
     },
-    "1132": {
+    "1112": {
       "name": "m_pAttackSequenWnd",
       "type": "void *",
       "source": "binary:CreateAttackSequen_0x517C10"
     },
-    "1136": {
+    "1116": {
       "name": "m_pBattleFieldWnd",
       "type": "void *",
       "source": "binary:CreateBattleFieldAttr_0x517C80"
     },
-    "1144": {
+    "1124": {
       "name": "m_pMain",
       "type": "CCBControlWindow *",
       "source": "binary:CreateControlWindow_0x517D60"
     },
-    "1148": {
+    "1128": {
       "name": "m_pItemWindow",
       "type": "CCBItemWindow *",
       "source": "binary:CreateControlWindow_0x517D60"
     },
-    "1152": {
+    "1132": {
       "name": "m_pParabolaWindow",
       "type": "CCBParabolaWindow *",
       "source": "binary:CreateControlWindow_0x517D60"
     },
-    "1156": {
+    "1136": {
       "name": "m_pMagicWindow",
       "type": "CCBMagicWindow *",
       "source": "binary:CreateControlWindow_0x517D60"
     },
-    "1160": {
+    "1140": {
       "name": "m_pCBSystem",
       "type": "CCBSystem *",
       "source": "binary:HideAll_0x518E60"
     },
-    "1164": {
+    "1144": {
       "name": "m_pUtil",
       "type": "CUtil *",
       "source": "pdb_verified:PAL3A_same_relative_pos"
     },
-    "304": {
+    "284": {
       "name": "m_vTargetPos",
       "type": "float[4]",
       "source": "binary:SetTargetPos_pPos"
     },
-    "320": {
+    "300": {
       "name": "m_vTargetDir",
       "type": "float[4]",
       "source": "binary:SetTargetPos_pDir"
     },
-    "340": {
+    "320": {
       "name": "m_nTargetParam1",
       "type": "int",
       "source": "binary:SetSelection"
     },
-    "344": {
+    "324": {
       "name": "m_nTargetParam2",
       "type": "int",
       "source": "binary:SetSelection"
     },
-    "348": {
+    "328": {
       "name": "m_nTargetParam3",
       "type": "int",
       "source": "binary:SetSelection"
     },
-    "352": {
+    "332": {
       "name": "_todo_352",
       "type": "void *",
       "source": "binary_scan:37_accesses(lea:8,load:23,store:6)→pointer"
     },
-    "356": {
+    "336": {
       "name": "m_pCurrentTarget",
       "type": "void *",
       "source": "binary_scan:180_accesses(lea:11,load:155,store:14)→pointer,CRITICAL_FIELD",
       "note": "Semantic inference: 155 load vs 14 store (high-frequency read) in Target parameter cluster (336-364). Accessed in CCBUI::_method_45a4f0(PalScript*, int). Likely current combat target/selected unit pointer."
     },
-    "360": {
+    "340": {
       "name": "_todo_360",
       "type": "void *",
       "source": "binary_scan:17_accesses(lea:2,load:8,store:7)→pointer"
     },
-    "364": {
+    "344": {
       "name": "_todo_364",
       "type": "int",
       "source": "binary_scan:14_accesses(load:6,store:8)→scalar"
     },
-    "368": {
+    "348": {
       "name": "_todo_368",
       "type": "unsigned char",
       "source": "binary_scan:2_accesses(store_byte:2)→byte"
     },
-    "372": {
+    "352": {
       "name": "_todo_372",
       "type": "float",
       "source": "binary_scan:6_accesses(fld_float:6)→FPU_confirmed"
@@ -238,173 +238,173 @@
       "type": "PalScript *",
       "source": "A+:decomp_PalScript::Method((PalScript*)this->field)"
     },
-    "200": {
+    "180": {
       "name": "m_pRoleStatePanel",
       "type": "UIStatic *[4]",
       "source": "PAL3patch:pal3.h (no binary access found in scan, field may be unused)"
     },
-    "236": {
+    "216": {
       "name": "m_pRoleStateFaceName",
       "type": "UIStatic *[5]",
       "source": "PAL3patch:pal3.h (no binary access found in scan, field may be unused)"
     },
-    "1044": {
+    "1024": {
       "name": "m_pLosePanel",
       "type": "UIStatic *",
       "source": "pdb:PAL3A"
     },
-    "1048": {
+    "1028": {
       "name": "m_pRoleStateHP",
       "type": "UIProgressBar *",
       "source": "pdb:PAL3A"
     },
-    "1052": {
+    "1032": {
       "name": "_field_41C",
       "type": "int",
       "source": "binary:gap_r2"
     },
-    "1064": {
+    "1044": {
       "name": "m_pRoleStateGP",
       "type": "UIProgressBar *",
       "source": "pdb:PAL3A"
     },
-    "1068": {
+    "1048": {
       "name": "m_nChildren_2",
       "type": "UIWnd *",
       "source": "binary:gap_r2+codegen_infer"
     },
-    "1168": {
+    "1148": {
       "name": "m_pLineupWindow",
       "type": "CCBLineupWindow *",
       "source": "pdb"
     },
-    "1172": {
+    "1152": {
       "name": "m_pProtectWindow",
       "type": "CCBProtectWindow *",
       "source": "pdb"
     },
-    "1176": {
+    "1156": {
       "name": "m_pResultWindow",
       "type": "CCBResultWindow *[4]",
       "source": "pdb"
     },
-    "1192": {
+    "1172": {
       "name": "m_pFiveNimbusWindow",
       "type": "CCBFiveNimbusWindow *",
       "source": "pdb"
     },
-    "1040": {
+    "1020": {
       "name": "_todo_410",
       "type": "int",
       "source": "gap_fill:ida_decomp_access"
     },
-    "1056": {
+    "1036": {
       "name": "_todo_420",
       "type": "int",
       "source": "gap_fill:ida_decomp_access"
     },
-    "1624": {
+    "1604": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_1624",
       "source": "A:LEA+CALL_consecutive_stride152"
     },
-    "1776": {
+    "1756": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_1776",
       "source": "A:LEA+CALL_consecutive_stride152"
     },
-    "1928": {
+    "1908": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_1928",
       "source": "A:LEA+CALL_consecutive_stride152"
     },
-    "3164": {
+    "3144": {
       "type": "void *",
       "name": "_todo_3164",
       "source": "binary_scan:11_accesses(lea:6,load:5)→pointer/embed_start,part_of_248_stride_pattern"
     },
-    "3412": {
+    "3392": {
       "type": "void *",
       "name": "_todo_3412",
       "source": "binary_scan:11_accesses(lea:6,load:5)→pointer/embed_start,+248_from_3164"
     },
-    "3660": {
+    "3640": {
       "type": "void *",
       "name": "_todo_3660",
       "source": "binary_scan:13_accesses(lea:10,load:3)→pointer/embed_start,+248_from_3412"
     },
-    "5104": {
+    "5084": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_5104",
       "source": "binary_scan:7_accesses(lea:5)→UIFrameWnd_array[0],stride152"
     },
-    "5256": {
+    "5236": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_5256",
       "source": "binary_scan:6_accesses(lea:4)→UIFrameWnd_array[1],+152"
     },
-    "5408": {
+    "5388": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_5408",
       "source": "binary_scan:5_accesses(lea:3)→UIFrameWnd_array[2],+152"
     },
-    "5560": {
+    "5540": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_5560",
       "source": "binary_scan:5_accesses(lea:3)→UIFrameWnd_array[3],+152"
     },
-    "5712": {
+    "5692": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_5712",
       "source": "binary_scan:9_accesses(lea:5)→UIFrameWnd_array[4],+152"
     },
-    "5864": {
+    "5844": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_5864",
       "source": "binary_scan:5_accesses(lea:3)→UIFrameWnd_array[5],+152"
     },
-    "6016": {
+    "5996": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_6016",
       "source": "binary_scan:5_accesses(lea:3)→UIFrameWnd_array[6],+152"
     },
-    "6204": {
+    "6184": {
       "type": "unsigned char",
       "name": "_todo_6204",
       "source": "binary_scan:7_accesses(store_byte:7)→byte"
     },
-    "6452": {
+    "6432": {
       "type": "void *",
       "name": "_todo_6452",
       "source": "binary_scan:5_accesses(lea:5)→pointer"
     },
-    "6468": {
+    "6448": {
       "type": "void *",
       "name": "_todo_6468",
       "source": "binary_scan:9_accesses(lea:6,load:3)→pointer"
     },
-    "8052": {
+    "8032": {
       "type": "int",
       "name": "_todo_8052",
       "source": "binary_scan:9_accesses(load:9)→scalar,near_end"
     },
-    "8056": {
+    "8036": {
       "type": "int",
       "name": "_todo_8056",
       "source": "binary_scan:9_accesses(load:8,store:1)→scalar,highest_access"
     },
-    "152": {
+    "132": {
       "name": "m_pAttackSequenBack",
       "type": "UIStatic *",
       "source": "PAL3patch:pal3.h + binary_verified: 6 mov accesses (store:4, load:2)"
     },
-    "156": {
+    "136": {
       "name": "m_pAttackSequenFace",
       "type": "UIStatic *[11]",
       "source": "PAL3patch:pal3.h + binary_verified: 9 access points in range, 6 LEA (array element addressing)",
       "note": "Covers offset 156~199 (44 bytes). Some non-pointer accesses in range may indicate field reuse or union."
     },
-    "216": {
+    "196": {
       "name": "m_pRoleStateFace",
       "type": "UIStatic *[5]",
       "source": "PAL3patch:pal3.h + binary_verified: offset 220 has 11 accesses (lea:1, load:10)",
@@ -545,7 +545,6 @@
   },
   "pdb_size": 3552,
   "base_class": "UIFrameWnd",
-  "base_size": 152,
-  "gen_size": 8060,
-  "binary_size": 8060
+  "base_size": 132,
+  "binary_size": 8040
 }

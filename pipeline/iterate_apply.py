@@ -37,7 +37,7 @@ def overlap_check(cls_name: str, offset: int, new_type: str) -> bool:
         return False
     ann = json.load(open(struct_path, encoding='utf-8'))
     members = ann.get('known_members', {})
-    binary_size = ann.get('binary_size') or ann.get('gen_size') or 0
+    binary_size = ann.get('binary_size') or 0
 
     # Determine size of new type
     type_size = _get_type_size(new_type)
@@ -84,7 +84,7 @@ def _get_type_size(type_name: str) -> Optional[int]:
     if struct_path.exists():
         try:
             s = json.load(open(struct_path, encoding='utf-8'))
-            return s.get('binary_size') or s.get('gen_size')
+            return s.get('binary_size')
         except:
             pass
     return None

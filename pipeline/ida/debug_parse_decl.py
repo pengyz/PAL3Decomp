@@ -98,7 +98,7 @@ def main():
 
         sdata = all_structs[sname]
         members = sdata.get("known_members", {})
-        size = max(sdata.get("binary_size", 0), sdata.get("pdb_size", 0), sdata.get("gen_size", 0))
+        size = max(sdata.get("binary_size", 0), sdata.get("pdb_size", 0))
 
         if not members or size == 0:
             continue
