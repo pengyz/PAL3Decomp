@@ -410,6 +410,14 @@ def run(code, ctx):
             lines[i] = line.replace(stripped, '// ' + stripped)
     code = '\n'.join(lines)
 
+    # Replace IDA code labels (loc_XXXXXX, qword_XXXXXX) with (void*)0
+    # Handle both &loc_XXX (address-of) and bare loc_XXX references
+    import re as _re_loc
+    code = _re_loc.sub(r'&loc_[0-9A-Fa-f]+\b', '((void*)0)', code)
+    code = _re_loc.sub(r'\bloc_[0-9A-Fa-f]+\b', '((void*)0)', code)
+    code = _re_loc.sub(r'&qword_[0-9A-Fa-f]+\b', '((void*)0)', code)
+    code = _re_loc.sub(r'\bqword_[0-9A-Fa-f]+\b', '((void*)0)', code)
+
     # Comment out Hex-Rays "->0)" vtable dispatch (invalid C syntax, comment whole statement)
     lines = code.split('\n')
     out_lines = []
