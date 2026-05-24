@@ -146,7 +146,11 @@ def main():
     args = idc.ARGV[1] if len(idc.ARGV) > 1 else ""
     target_classes = None
 
-    if args == "--top20":
+    if args == "--all":
+        # Scan ALL classes
+        target_classes = None
+        print("[*] Scanning ALL classes")
+    elif args == "--top20":
         # Auto-select top 20 classes by gap size
         all_structs = load_struct_info()
         ranked = sorted(all_structs.items(),
