@@ -52,39 +52,39 @@
       "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "692": {
-      "name": "m_bShowFling",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "name": "m_fQuadA_X",
+      "type": "float",
+      "source": "fix:Init_sin/cos_rotation_math(was_bool)"
     },
     "696": {
-      "name": "m_pFiveLineupEffect",
-      "type": "gbRenderEffect *",
-      "source": "gen_headers_9.2"
+      "name": "m_fQuadA_Y",
+      "type": "float",
+      "source": "fix:Init_sin/cos_rotation(was_ptr)"
     },
     "700": {
-      "name": "m_pFiveLineupTexture",
-      "type": "gbTexture *",
-      "source": "gen_headers_9.2"
+      "name": "m_fQuadA_Blend",
+      "type": "float",
+      "source": "fix:Init_set_0_then_0.5(was_gbTexture*)"
     },
     "704": {
-      "name": "m_pFiveLineupTextureArray",
-      "type": "gbTextureArray *",
-      "source": "gen_headers_9.2"
+      "name": "m_fQuadA_Z",
+      "type": "float",
+      "source": "fix:Init_sin/cos_rotation(was_ptr)"
     },
     "708": {
-      "name": "m_pFiveLineupCenterTexture",
-      "type": "gbTexture *",
-      "source": "gen_headers_9.2"
+      "name": "m_fQuadB_Y",
+      "type": "float",
+      "source": "fix:Init_sin/cos_rotation(was_ptr)"
     },
     "712": {
-      "name": "m_pFiveLineupCenterTextureArray",
-      "type": "gbTextureArray *",
-      "source": "gen_headers_9.2"
+      "name": "m_fQuadB_Blend",
+      "type": "float",
+      "source": "fix:Init_set_0_then_0.5(was_ptr)"
     },
     "716": {
-      "name": "m_FiveLineupQuad",
-      "type": "gbGeomQuad *",
-      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
+      "name": "m_fQuadB_Z",
+      "type": "float",
+      "source": "fix:Init_sin/cos_rotation(was_struct)"
     },
     "784": {
       "name": "m_FiveLineupCenterQuad",
@@ -92,9 +92,9 @@
       "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "852": {
-      "name": "m_EnemyFiveLineupQuad",
-      "type": "gbGeomQuad *",
-      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
+      "name": "m_fQuadC_Z",
+      "type": "float",
+      "source": "fix:Init_sin/cos_rotation(was_struct)"
     },
     "1008": {
       "name": "m_eBFAForce",
@@ -472,19 +472,19 @@
       "source": "PDB_import"
     },
     "856": {
-      "name": "_todo_358",
+      "name": "m_fDirSinF",
       "type": "float",
-      "source": "binary_scan:7refs"
+      "source": "decomp:Init_sin/cos_4th_quad_vertex"
     },
     "860": {
-      "name": "_todo_35C",
-      "type": "int",
-      "source": "binary_scan:3refs"
+      "name": "m_fBlendF",
+      "type": "float",
+      "source": "decomp:Init_set_0_then_0.5(blend_factor)"
     },
     "864": {
-      "name": "_todo_360",
+      "name": "m_fDirCosF",
       "type": "float",
-      "source": "binary_scan:6refs"
+      "source": "decomp:Init_sin/cos_4th_quad_vertex"
     },
     "868": {
       "name": "_todo_364",
