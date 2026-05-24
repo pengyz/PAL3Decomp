@@ -61,11 +61,6 @@
       "type": "int",
       "source": "ida_decomp:_init_52ed30 !=4/==4 check, 3 refs"
     },
-    "352": {
-      "name": "m_nParabolaState",
-      "type": "int",
-      "source": "ida_decomp:_method_527dc0 switch(this), byte check, 4 refs"
-    },
     "0": {
       "name": "m_pEnumeration",
       "type": "void*",
@@ -166,21 +161,6 @@
       "type": "UIScene",
       "source": "ida_decomp:_init_529e40 ++, 7 refs | fix:binary_ctor_UIScene_stride344"
     },
-    "1820": {
-      "name": "_field_898",
-      "type": "unsigned char",
-      "source": "binary:1x access"
-    },
-    "1832": {
-      "name": "_field_8A4",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "1836": {
-      "name": "_field_8A8",
-      "type": "int",
-      "source": "binary:1x access"
-    },
     "2852": {
       "name": "_field_CA0",
       "type": "unsigned char",
@@ -256,20 +236,10 @@
       "type": "float",
       "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
     },
-    "356": {
-      "name": "m_pParabolaCtrl",
-      "type": "UIParabolaCtrl *",
-      "source": "ida_decomp:_method_527dc0 UIParabolaCtrl::GetState(this), 4 refs+codegen_infer"
-    },
     "1232": {
       "name": "_todo_4D0",
       "type": "int",
       "source": "reverted_auto_semantic:4x_access|reverted:pseudo_semantic"
-    },
-    "1840": {
-      "name": "_todo_730",
-      "type": "int",
-      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic"
     },
     "2896": {
       "name": "_todo_CCC",
@@ -401,21 +371,6 @@
       "type": "int",
       "source": "ida_decomp:_init_4593c0 SetTooltipText, vtable+28 call, 4 refs"
     },
-    "1852": {
-      "name": "_todo_8B8",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "1880": {
-      "name": "m_wndTooltipD",
-      "type": "int",
-      "source": "ida_decomp:_init_4593c0 SetTooltipText, 4 refs"
-    },
-    "2228": {
-      "name": "m_wndTooltipE",
-      "type": "int",
-      "source": "ida_decomp:_init_4593c0 SetTooltipText, 4 refs"
-    },
     "2880": {
       "name": "m_pUIListA",
       "type": "void *",
@@ -461,11 +416,6 @@
       "type": "unsigned char",
       "source": "decomp:LoadScreenScene_if(!x)+set_0"
     },
-    "348": {
-      "name": "_todo_15C",
-      "type": "int",
-      "source": "A:fild@0x533325(proves_int)"
-    },
     "1236": {
       "name": "_todo_650",
       "type": "int",
@@ -480,21 +430,6 @@
       "name": "_todo_5D4",
       "type": "int",
       "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
-    },
-    "1812": {
-      "name": "_todo_890",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "2156": {
-      "name": "_todo_86C",
-      "type": "int",
-      "source": "reverted_auto_semantic:7x_access"
-    },
-    "2500": {
-      "name": "_todo_9C4",
-      "type": "int",
-      "source": "reverted_auto_semantic:6x_access|reverted:pseudo_semantic"
     },
     "2844": {
       "name": "_todo_C98",
@@ -561,21 +496,6 @@
       "type": "int",
       "source": "gap_fill:ida_decomp_access"
     },
-    "1588": {
-      "name": "_todo_634",
-      "type": "UIScene",
-      "source": "reverted_auto_semantic:159x_access"
-    },
-    "1932": {
-      "name": "m_EmbedWndA",
-      "type": "UIScene",
-      "source": "decomp:vtable_call+.m_benable_access(embedded_UIWnd)"
-    },
-    "2276": {
-      "name": "m_EmbedWndB",
-      "type": "UIScene",
-      "source": "decomp:inferred_UIWnd_embed_from_context"
-    },
     "2620": {
       "name": "_todo_BB8",
       "type": "UIScene",
@@ -590,11 +510,6 @@
       "name": "_todo_CEC",
       "type": "UIScene",
       "source": "reverted_auto_semantic:4x_access|reverted:pseudo_semantic"
-    },
-    "360": {
-      "type": "UIFrameWnd",
-      "name": "_embed_UIFrameWnd_360",
-      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
     },
     "452": {
       "type": "UIFrameWnd",
@@ -615,11 +530,6 @@
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_968",
       "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
-    },
-    "344": {
-      "name": "_todo_158",
-      "type": "int",
-      "source": "gap_discovery:2refs_in_decomp"
     },
     "32": {
       "name": "_todo_020",
@@ -712,14 +622,9 @@
       "source": "binary_scan:1refs"
     },
     "316": {
-      "name": "_todo_13C",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "340": {
-      "name": "_todo_154",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "name": "m_AssistFrame",
+      "type": "UIFrameWnd",
+      "source": "decomp:_init_4593c0_CreateFromTemplate+vtable_call"
     },
     "432": {
       "name": "_todo_1B0",
@@ -817,74 +722,19 @@
       "source": "binary_scan:4refs"
     },
     "1572": {
-      "name": "_todo_624",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "1576": {
-      "name": "_todo_628",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1796": {
-      "name": "_todo_704",
-      "type": "int",
-      "source": "binary_scan:4refs"
-    },
-    "1808": {
-      "name": "_todo_710",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1816": {
-      "name": "_todo_718",
-      "type": "int",
-      "source": "binary_scan:4refs"
-    },
-    "1888": {
-      "name": "_todo_760",
-      "type": "int",
-      "source": "binary_scan:2refs"
+      "name": "m_BtnTooltipA",
+      "type": "UIButton",
+      "source": "decomp:_init_4593c0_Create+SetTooltipText+GetChild(344_stride)"
     },
     "1916": {
-      "name": "_todo_77C",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "2164": {
-      "name": "_todo_874",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "2184": {
-      "name": "_todo_888",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "2200": {
-      "name": "_todo_898",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "2212": {
-      "name": "_todo_8A4",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "2216": {
-      "name": "_todo_8A8",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "2236": {
-      "name": "_todo_8BC",
-      "type": "int",
-      "source": "binary_scan:2refs"
+      "name": "m_BtnTooltipB",
+      "type": "UIButton",
+      "source": "decomp:_init_4593c0_same_pattern(+344_from_1572)"
     },
     "2260": {
-      "name": "_todo_8D4",
-      "type": "int",
-      "source": "binary_scan:2refs"
+      "name": "m_BtnTooltipC",
+      "type": "UIButton",
+      "source": "decomp:_init_4593c0_same_pattern(+344_from_1916)"
     },
     "2608": {
       "name": "_todo_A30",
@@ -907,9 +757,9 @@
       "source": "binary_scan:2refs"
     },
     "3284": {
-      "name": "_todo_CD4",
-      "type": "int",
-      "source": "binary_scan:8refs"
+      "name": "m_bInitMode",
+      "type": "unsigned char",
+      "source": "decomp:_init_4593c0_LOBYTE_used_as_pData_in_Create"
     },
     "3868": {
       "name": "_todo_F1C",
@@ -926,16 +776,6 @@
       "type": "int",
       "source": "binary_scan:6refs"
     },
-    "1848": {
-      "name": "m_nSceneState",
-      "type": "int",
-      "source": "decomp:_init_set_2"
-    },
-    "2536": {
-      "name": "m_nTaskSlot",
-      "type": "int",
-      "source": "decomp:+14/+16_indexed_access"
-    },
     "3568": {
       "name": "m_nAssistIdx",
       "type": "int",
@@ -945,11 +785,6 @@
       "name": "m_SceneBlock",
       "type": "int",
       "source": "decomp:BYTE+560_DWORD+141"
-    },
-    "1872": {
-      "name": "m_fSceneParam",
-      "type": "float",
-      "source": "decomp:float_in_init"
     },
     "3660": {
       "name": "m_nAssistMode",
