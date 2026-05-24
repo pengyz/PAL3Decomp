@@ -106,16 +106,6 @@
       "type": "int",
       "source": "ida_decomp:SetProgress loaded twice, 2 refs"
     },
-    "828": {
-      "name": "_embed_UIFrameWnd_468",
-      "type": "UIFrameWnd",
-      "source": "A+:decomp_ctor_at_this+1128,span=152=binary_size"
-    },
-    "900": {
-      "name": "m_bTimerInitB",
-      "type": "UIScene",
-      "source": "ida_decomp:_init_529e40 if(!this) =1, 3 refs | fix:binary_ctor_UIScene_stride344"
-    },
     "1244": {
       "name": "m_nPageCounter",
       "type": "UIScene",
@@ -517,9 +507,9 @@
       "source": "binary_scan:1refs"
     },
     "808": {
-      "name": "_todo_328",
-      "type": "int",
-      "source": "binary_scan:17refs"
+      "name": "m_pAudioMgr",
+      "type": "gbAudioManager *",
+      "source": "decomp:Restore_dtor_call"
     },
     "812": {
       "name": "_todo_32C",
@@ -527,19 +517,9 @@
       "source": "binary_scan:1refs"
     },
     "816": {
-      "name": "_todo_330",
-      "type": "int",
-      "source": "binary_scan:17refs"
-    },
-    "820": {
-      "name": "_todo_334",
-      "type": "int",
-      "source": "binary_scan:9refs"
-    },
-    "824": {
-      "name": "_todo_338",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "name": "m_Static_816",
+      "type": "UIStatic",
+      "source": "ctor:UIStatic::_UIStatic"
     },
     "2260": {
       "name": "m_BtnTooltipC",
