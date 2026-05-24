@@ -776,7 +776,7 @@
     "signature": "void __thiscall(filebuf *this)"
   },
   "0x0043A250": {
-    "name": "PalScript::Reset",
+    "name": "PalScript::Destroy",
     "signature": "int __thiscall(PalScript *this)"
   },
   "0x0043A4C0": {
@@ -832,7 +832,7 @@
     "signature": "int *__thiscall(UIListBox *this)"
   },
   "0x0043DCF0": {
-    "name": "UIListBox::~UIListBox",
+    "name": "UIListBox::_scalar_dtor",
     "signature": "UIWnd *__thiscall(UIListBox *Block, char pData)"
   },
   "0x0043DD10": {
@@ -888,7 +888,7 @@
     "signature": "UIListBox *__thiscall(UIListBox *this)"
   },
   "0x0043E100": {
-    "name": "UIListBox::DeleteAllItems",
+    "name": "UIListBox::_scalar_dtor",
     "signature": "std::ios_base *__thiscall(std::ios_base *Block, char pData)"
   },
   "0x0043E120": {
@@ -1032,7 +1032,7 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00445C60": {
-    "name": "UIWnd::HitTest",
+    "name": "UIWnd::Update",
     "signature": "BOOL __thiscall(UIWnd *this, int x, int y)"
   },
   "0x00445CD0": {
@@ -3901,7 +3901,7 @@
     "signature": "UIListBox * __thiscall(CCBControlWindow *this)"
   },
   "0x0051B160": {
-    "name": "CCBItemWindow::_sdtor_1b160",
+    "name": "CCBItemWindow::_scalar_dtor",
     "signature": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)"
   },
   "0x0051B180": {
@@ -4013,7 +4013,7 @@
     "signature": "UIListBox * __thiscall(CCBMagicWindow *this)"
   },
   "0x0051C260": {
-    "name": "CCBSkillWindow::_sdtor_1c260",
+    "name": "CCBSkillWindow::_scalar_dtor",
     "signature": "UIWnd *__thiscall(CCBSkillWindow *Block, char pData)"
   },
   "0x0051C280": {
@@ -5806,7 +5806,7 @@
     "signature": "UIWnd *__thiscall(UIWnd *this, int id)"
   },
   "0x00445B20": {
-    "name": "??_GUIWnd@std@@UAEPAXI@Z",
+    "name": "UIWnd::_scalar_dtor",
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00512500": {
@@ -8122,7 +8122,7 @@
     "signature": "gbVFileSystem *__thiscall(UIScene *this, int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)"
   },
   "0x0043B1E0": {
-    "name": "UIScene::_nearby_43b1e0",
+    "name": "UIScenePanel::Update",
     "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)"
   },
   "0x0043B500": {
@@ -8134,7 +8134,7 @@
     "signature": "gbVFileSystem *__thiscall(UIScene *this, int id, void *pRect, gbVFileSystem *parent, LPCSTR lpString, char pData)"
   },
   "0x0043B900": {
-    "name": "UIScene::_nearby_43b900",
+    "name": "UIScene::Update",
     "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)"
   },
   "0x0043BB50": {
@@ -8178,7 +8178,7 @@
     "signature": "void __thiscall(UI3DCtrl *this)"
   },
   "0x0043EBE0": {
-    "name": "UIListBox::_nearby_43ebe0",
+    "name": "UIListBox::Update",
     "signature": "BOOL __thiscall(UIListBox *this, int nVal, int nVal2)"
   },
   "0x0043F080": {
@@ -8290,7 +8290,7 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00442FF0": {
-    "name": "CCBResultWindow::_auto_442ff0",
+    "name": "UIFrameWnd::Update",
     "signature": "BOOL __thiscall(UIFrameWnd *this, int nVal, int nVal2)"
   },
   "0x00443380": {
@@ -8434,11 +8434,11 @@
     "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x0044C910": {
-    "name": "CCBUIPanel::_auto_44c910",
+    "name": "UIScene::Destroy",
     "signature": "void __thiscall(UIListBox *this)"
   },
   "0x0044DAC0": {
-    "name": "CCBUIPanel::_auto_44dac0",
+    "name": "UIScene::Render",
     "signature": "void __thiscall(UIListBox *this)"
   },
   "0x0044DFC0": {
@@ -9390,7 +9390,7 @@
     "signature": "void __stdcall(int, int, int, int)"
   },
   "0x004C0740": {
-    "name": "RenderTarget2::_nearby_4c0740",
+    "name": "CEffAction::_scalar_dtor",
     "signature": "void __fastcall(float *pfVal, float fVal)"
   },
   "0x004C1570": {
@@ -9502,7 +9502,7 @@
     "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
   },
   "0x004CFEB0": {
-    "name": "SceneObj::_nearby_4cfeb0",
+    "name": "CEffCustomShape::Render",
     "signature": "bool __thiscall(SceneObj *this, int nVal)"
   },
   "0x004D2E10": {
@@ -10682,7 +10682,7 @@
     "signature": "int __thiscall(SceneMapObj *this)"
   },
   "0x004209E0": {
-    "name": "RoleSystem::_nearby_4209e0",
+    "name": "gbRenderEffect::OnMessage",
     "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00420F50": {
@@ -11294,7 +11294,7 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438110": {
-    "name": "PalScript::_nearby_438110",
+    "name": "PalScript::Update",
     "signature": "void __thiscall(PalScript *this, float fVal)"
   },
   "0x004381E0": {
@@ -11302,7 +11302,7 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004382A0": {
-    "name": "PalScript::_nearby_4382a0",
+    "name": "PalScript::_scalar_dtor",
     "signature": "void __thiscall(PalScript *this, float fVal)"
   },
   "0x00438310": {
@@ -11402,11 +11402,11 @@
     "signature": "char __thiscall(PalScript *this)"
   },
   "0x00439410": {
-    "name": "PalScript::_nearby_439410",
+    "name": "PalScript::Render",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00439810": {
-    "name": "PalScript::_nearby_439810",
+    "name": "PalScript::Destroy",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x0043A0E0": {
@@ -11434,7 +11434,7 @@
     "signature": "void __thiscall(UIScene *this)"
   },
   "0x0043B660": {
-    "name": "UIScene::_nearby_43b660",
+    "name": "UIScene::Render",
     "signature": "int __thiscall(UIScene *this)"
   },
   "0x0043BB60": {
@@ -11470,7 +11470,7 @@
     "signature": "int __thiscall(UIScene *this, int nVal)"
   },
   "0x0043CDF0": {
-    "name": "UIScene::_nearby_43cdf0",
+    "name": "UIScene::Render",
     "signature": "int __thiscall(UIScene *this)"
   },
   "0x0043D820": {
@@ -12466,7 +12466,7 @@
     "signature": "int __thiscall(Object3D *this, int arg0)"
   },
   "0x0047E3E0": {
-    "name": "Object3D::_nearby_47e3e0",
+    "name": "Object3D::Update",
     "signature": "int __thiscall(Object3D *this, int nVal, int nVal2)"
   },
   "0x0047E4E0": {
@@ -12730,7 +12730,7 @@
     "signature": "char __thiscall(CameraCtrl *this)"
   },
   "0x0048EF80": {
-    "name": "CameraCtrl::_nearby_48ef80",
+    "name": "RenderTarget::Update",
     "signature": "BOOL __thiscall(CameraCtrl *this, int nVal, int nVal2)"
   },
   "0x0048F360": {
@@ -12866,7 +12866,7 @@
     "signature": "char __thiscall(EquipUI *this)"
   },
   "0x004A00B0": {
-    "name": "EquipUI::_nearby_4a00b0",
+    "name": "UIInventory::Update",
     "signature": "BOOL __thiscall(EquipUI *this, int nVal, int nVal2)"
   },
   "0x004A0330": {
@@ -13298,15 +13298,15 @@
     "signature": "void __thiscall(ScreenEffectMgr *this)"
   },
   "0x004BF1C0": {
-    "name": "ScreenEffectMgr::_nearby_4bf1c0",
+    "name": "ScreenEffectMgr::Create",
     "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)"
   },
   "0x004BF1D0": {
-    "name": "ScreenEffectMgr::_nearby_4bf1d0",
+    "name": "ScreenEffectMgr::Destroy",
     "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)"
   },
   "0x004BF260": {
-    "name": "ScreenEffectMgr::_nearby_4bf260",
+    "name": "ScreenEffectMgr::Render",
     "signature": "void __thiscall(ScreenEffectMgr *this, int nVal)"
   },
   "0x004BF4F0": {
@@ -13350,11 +13350,11 @@
     "signature": "char __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C0640": {
-    "name": "RenderTarget2::_nearby_4c0640",
+    "name": "CEffAction::Update",
     "signature": "void __thiscall(RenderTarget2 *this, int nVal, int nVal2, int nVal3, int nVal4)"
   },
   "0x004C0650": {
-    "name": "RenderTarget2::_nearby_4c0650",
+    "name": "CEffAction::Render",
     "signature": "char __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C0920": {
@@ -13434,7 +13434,7 @@
     "signature": "int __thiscall(RenderTarget2 *this)"
   },
   "0x004C2170": {
-    "name": "RenderTarget2::_nearby_4c2170",
+    "name": "CEffAudio::Render",
     "signature": "char __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C2280": {
@@ -13458,7 +13458,7 @@
     "signature": "RenderTarget2 * __thiscall(RenderTarget2 *this, void *Block, char pData)"
   },
   "0x004C2850": {
-    "name": "RenderTarget2::_nearby_4c2850",
+    "name": "RenderTarget2::Render",
     "signature": "int __thiscall(RenderTarget2 *this, int (__thiscall *a2)(char *, int), int nVal, int nVal2)"
   },
   "0x004C2890": {
@@ -13470,7 +13470,7 @@
     "signature": "int __thiscall(RenderTarget2 *this, float *pfVal, float fVal, float fVal2, float fVal3)"
   },
   "0x004C29A0": {
-    "name": "RenderTarget2::_nearby_4c29a0",
+    "name": "CEffAudio::_scalar_dtor",
     "signature": "void __thiscall(RenderTarget2 *this, float fVal)"
   },
   "0x004C2D00": {
@@ -13502,7 +13502,7 @@
     "signature": "int __thiscall(RenderTarget2 *this)"
   },
   "0x004C3570": {
-    "name": "RenderTarget2::_nearby_4c3570",
+    "name": "CEffCallBack::_scalar_dtor",
     "signature": "void __thiscall(RenderTarget2 *this, float fVal)"
   },
   "0x004C3770": {
@@ -13574,7 +13574,7 @@
     "signature": "int __thiscall(CEffMgr *this)"
   },
   "0x004C9750": {
-    "name": "CEffCylinder::_auto_4c9750",
+    "name": "CEffGrid::Update",
     "signature": "int __thiscall(CEffCylinder *this, float *pfVal, float fVal, float fVal2, float fVal3)"
   },
   "0x004C9EA0": {
@@ -15928,7 +15928,7 @@
     "class": "UIWnd"
   },
   "0x004D0A60": {
-    "name": "GeomNode::_nearby_4d0a60",
+    "name": "CEffgbParticle::Destroy",
     "signature": "void __thiscall(GeomNode *this)"
   },
   "0x004C5820": {
@@ -15956,7 +15956,7 @@
     "signature": "BOOL __stdcall(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
   },
   "0x004CFFA0": {
-    "name": "GeomNode::_nearby_4cffa0",
+    "name": "CEffCustomShape::Destroy",
     "signature": "void __thiscall(GeomNode *this)"
   },
   "0x004D03B0": {
