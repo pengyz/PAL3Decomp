@@ -78,9 +78,59 @@
       "source": "binary_scan:1refs"
     },
     "828": {
-      "name": "_todo_33C",
+      "name": "m_nPathMode",
       "type": "int",
-      "source": "binary_scan:3refs"
+      "source": "decomp:ExecuteOpcode_base_used_as_ScriptVM_self"
+    },
+    "832": {
+      "name": "m_fPathStartX",
+      "type": "float",
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot1"
+    },
+    "836": {
+      "name": "m_fPathStartY",
+      "type": "float",
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot2"
+    },
+    "840": {
+      "name": "m_fPathStartZ",
+      "type": "float",
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot3"
+    },
+    "844": {
+      "name": "m_nPathParam",
+      "type": "int",
+      "source": "decomp:ExecuteOpcode_slot4_arithmetic"
+    },
+    "848": {
+      "name": "m_fPathEndX",
+      "type": "float",
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot5"
+    },
+    "852": {
+      "name": "m_fPathEndY",
+      "type": "float",
+      "source": "decomp:ExecuteOpcode_gbVec3D_Copy_slot6"
+    },
+    "860": {
+      "name": "m_pPathCurrent",
+      "type": "void *",
+      "source": "decomp:ExecuteOpcode_slot8_ptr_arithmetic"
+    },
+    "864": {
+      "name": "m_pPathKeys",
+      "type": "void *",
+      "source": "decomp:ExecuteOpcode_slot9_key_array_base"
+    },
+    "868": {
+      "name": "m_nPathKeyCount",
+      "type": "int",
+      "source": "decomp:ExecuteOpcode_slot10_set_2"
+    },
+    "872": {
+      "name": "m_nPathStep",
+      "type": "int",
+      "source": "decomp:ExecuteOpcode_slot11_incremented"
     }
   },
   "binary_size": 876
