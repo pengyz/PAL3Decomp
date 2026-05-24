@@ -28,14 +28,14 @@
       "source": "A+:decomp_assigned_1092616192=0x41200000=10.0f(IEEE754)"
     },
     "160": {
-      "name": "_todo_0A0",
+      "name": "m_nFlags0",
       "type": "int",
-      "source": "binary:disp32_2hits_1funcs"
+      "source": "decomp:set_0_in_reset"
     },
     "164": {
-      "name": "_todo_0A4",
+      "name": "m_nFlags1",
       "type": "int",
-      "source": "binary:disp32_2hits_1funcs"
+      "source": "decomp:set_0_in_reset"
     },
     "168": {
       "name": "_todo_0A8",
@@ -50,7 +50,7 @@
     "176": {
       "name": "_todo_0B0",
       "type": "char[4]",
-      "source": "A+:decomp sprintf((char*)&this->_todo_0B0,...) target buffer; gap=4 to next field"
+      "source": "decomp:sprintf_target_but_span_only_4bytes(uncertain)"
     },
     "180": {
       "name": "_todo_0B4",
@@ -119,18 +119,18 @@
     },
     "48": {
       "name": "_todo_030",
-      "type": "float",
-      "source": "REVERTED: both *(float*)& and (char*)& casts exist; sprintf uses as string, float_assignment also exists; true type ambiguous | type_fix:int->float(A+:decomp *(float*)&this->_todo_030 in _nearby_4c2930)"
+      "type": "char[4]",
+      "source": "decomp:sprintf_%s_but_span_only_4bytes(uncertain)"
     },
     "52": {
-      "name": "_todo_034",
+      "name": "m_fSpeed",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "decomp:set_0.0"
     },
     "60": {
-      "name": "_todo_03C",
+      "name": "m_fBlend",
       "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
+      "source": "decomp:set_0.0_in_4c27d0+4c3c90"
     },
     "0": {
       "name": "m_pVtable",
@@ -138,24 +138,24 @@
       "source": "gap_fill:ida_decomp_access | type_fix:int→void*(vtable pointer)"
     },
     "12": {
-      "name": "_todo_C",
-      "type": "float",
-      "source": "A:FPU_post_reattrib_0x4c5cc2"
+      "name": "m_SubObj",
+      "type": "int",
+      "source": "decomp:40x_accessed_address_taken(sub_object)"
     },
     "36": {
-      "name": "_todo_24",
+      "name": "m_fTime",
       "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
+      "source": "decomp:set_0.0_multiple_funcs"
     },
     "56": {
-      "name": "_todo_38",
+      "name": "m_fParam",
       "type": "float",
-      "source": "A+:decomp *(float*)&this->_todo_38 (1 occurrences)"
+      "source": "decomp:set_0.0"
     },
     "88": {
-      "name": "_todo_58",
-      "type": "float",
-      "source": "A:FPU_disp8_in_class_method"
+      "name": "m_EffectSlots",
+      "type": "int",
+      "source": "decomp:18byte_stride_loop_over_BYTE_check"
     },
     "104": {
       "name": "_todo_68",
