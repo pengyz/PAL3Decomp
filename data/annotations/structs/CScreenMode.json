@@ -457,9 +457,9 @@
       "source": "auto_semantic:2x_access"
     },
     "113": {
-      "name": "_todo_71",
+      "name": "m_bLoadFlag",
       "type": "unsigned char",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "decomp:LoadScreenScene_if(!x)+set_0"
     },
     "348": {
       "name": "_todo_15C",
@@ -567,14 +567,14 @@
       "source": "auto_semantic:159x_access"
     },
     "1932": {
-      "name": "_todo_908",
+      "name": "m_EmbedWndA",
       "type": "UIScene",
-      "source": "A:binary_ctor lea+call UIScene::Destroy2 stride=344"
+      "source": "decomp:vtable_call+.m_benable_access(embedded_UIWnd)"
     },
     "2276": {
-      "name": "_todo_A60",
+      "name": "m_EmbedWndB",
       "type": "UIScene",
-      "source": "A:binary_ctor lea+call UIScene::Destroy2 stride=344"
+      "source": "decomp:inferred_UIWnd_embed_from_context"
     },
     "2620": {
       "name": "_todo_BB8",
@@ -615,6 +615,11 @@
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_968",
       "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
+    },
+    "344": {
+      "name": "_todo_158",
+      "type": "int",
+      "source": "gap_discovery:2refs_in_decomp"
     }
   },
   "binary_size": 4280
