@@ -1,0 +1,527 @@
+[
+  {
+    "struct": "s_RoleState",
+    "field": "m_Headbk",
+    "offset": "0",
+    "current_type": "UIStatic",
+    "current_source": "PDB_batch_import(size_match)",
+    "suggested_type": null,
+    "error_count": 30,
+    "category": "this_field",
+    "error_lines": [
+      "Misc\\s_RoleState.cpp:27",
+      "Misc\\s_RoleState.cpp:30",
+      "Misc\\s_RoleState.cpp:34",
+      "Misc\\s_RoleState.cpp:35",
+      "Misc\\s_RoleState.cpp:36",
+      "Misc\\s_RoleState.cpp:39",
+      "Misc\\s_RoleState.cpp:42",
+      "Misc\\s_RoleState.cpp:45",
+      "Misc\\s_RoleState.cpp:48",
+      "Misc\\s_RoleState.cpp:54"
+    ],
+    "from_types": [
+      "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >"
+    ],
+    "to_types": [
+      "unsigned long *"
+    ],
+    "function_vas": [
+      "0x004A3A90"
+    ]
+  },
+  {
+    "struct": "LineupUI",
+    "field": "m_CtrlPlank",
+    "offset": "146236",
+    "current_type": "LineupPlank[5]",
+    "current_source": "pdb_fill_incomplete",
+    "suggested_type": null,
+    "error_count": 9,
+    "category": "this_field",
+    "error_lines": [
+      "Misc\\LineupUI.cpp:228",
+      "Misc\\LineupUI.cpp:378",
+      "Misc\\LineupUI.cpp:446",
+      "Misc\\LineupUI.cpp:535",
+      "Misc\\LineupUI.cpp:1686",
+      "Misc\\LineupUI.cpp:1865",
+      "Misc\\LineupUI.cpp:2236",
+      "Misc\\LineupUI.cpp:2442",
+      "Misc\\LineupUI.cpp:2735"
+    ],
+    "from_types": [
+      "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >"
+    ],
+    "to_types": [
+      "unsigned long *"
+    ],
+    "function_vas": [
+      "0x004993D0",
+      "0x004A26D0",
+      "0x00491630",
+      "0x004B3DA0",
+      "0x0047F590"
+    ]
+  },
+  {
+    "struct": "UIButton",
+    "field": "m_canctrl",
+    "offset": "100",
+    "current_type": "BYTE",
+    "current_source": "gen_headers_9.2",
+    "suggested_type": "char *",
+    "error_count": 3,
+    "category": "this_field",
+    "error_lines": [
+      "Misc\\UIButton.cpp:242",
+      "Misc\\UIButton.cpp:271",
+      "Misc\\UIButton.cpp:297"
+    ],
+    "from_types": [
+      "char *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x0043FF70"
+    ]
+  },
+  {
+    "struct": "CCBStageScene",
+    "field": "m_pFling",
+    "offset": "664",
+    "current_type": "gbGeomNode *",
+    "current_source": "gen_headers_9.2",
+    "suggested_type": null,
+    "error_count": 1,
+    "category": "this_field",
+    "error_lines": [
+      "Combat\\CCBStageScene.cpp:334"
+    ],
+    "from_types": [
+      "class gbRenderEffect *"
+    ],
+    "to_types": [
+      "class gbGeomNode *"
+    ],
+    "function_vas": [
+      "0x0050FEE0"
+    ]
+  },
+  {
+    "struct": "CCBStageRole",
+    "field": "m_sLastRole",
+    "offset": "8",
+    "current_type": "char[256]",
+    "current_source": "pdb_verified_by_old_ida",
+    "suggested_type": "class CCBRoleState *",
+    "error_count": 1,
+    "category": "this_field",
+    "error_lines": [
+      "Combat\\CCBStageRole.cpp:573"
+    ],
+    "from_types": [
+      "class CCBRoleState *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x0040DD80"
+    ]
+  },
+  {
+    "struct": "CEffCylinder",
+    "field": "m_nDivision",
+    "offset": "112",
+    "current_type": "float",
+    "current_source": "A:FPU_disp8_in_class_method",
+    "suggested_type": "int",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Effect\\CEffCylinder.cpp:350"
+    ],
+    "from_types": [],
+    "to_types": [],
+    "function_vas": [
+      "0x004C4370"
+    ]
+  },
+  {
+    "struct": "GRPinput",
+    "field": "m_mouseSensitivity",
+    "offset": "12",
+    "current_type": "float",
+    "current_source": "pdb_verified_by_old_ida",
+    "suggested_type": "struct IDirectInputDevice8A *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "GameBase\\GRPinput.cpp:811"
+    ],
+    "from_types": [
+      "struct IDirectInputDevice8A *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x00403000"
+    ]
+  },
+  {
+    "struct": "RoleCameraCtrl",
+    "field": "m_type",
+    "offset": "12",
+    "current_type": "RCC_TYPE",
+    "current_source": "gen_headers_9.2",
+    "suggested_type": null,
+    "error_count": 1,
+    "category": "this_field",
+    "error_lines": [
+      "Misc\\RoleCameraCtrl.cpp:165"
+    ],
+    "from_types": [
+      "int"
+    ],
+    "to_types": [
+      "enum RCC_TYPE"
+    ],
+    "function_vas": [
+      "0x0052DFF0"
+    ]
+  },
+  {
+    "struct": "RoleCameraCtrl",
+    "field": "m_time",
+    "offset": "16",
+    "current_type": "float",
+    "current_source": "gen_headers_9.2",
+    "suggested_type": "class gbImage2D *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Misc\\RoleCameraCtrl.cpp:170"
+    ],
+    "from_types": [
+      "class gbImage2D *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x0052DFF0"
+    ]
+  },
+  {
+    "struct": "RoleCameraCtrl",
+    "field": "m_passtime",
+    "offset": "20",
+    "current_type": "float",
+    "current_source": "gen_headers_9.2",
+    "suggested_type": "class RoleCamera *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Misc\\RoleCameraCtrl.cpp:171"
+    ],
+    "from_types": [
+      "class RoleCamera *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x0052DFF0"
+    ]
+  },
+  {
+    "struct": "UI3DCtrl",
+    "field": "m_dropx",
+    "offset": "264",
+    "current_type": "float",
+    "current_source": "gen_headers_9.2",
+    "suggested_type": "class UI3DModelNode *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Misc\\UI3DCtrl.cpp:242"
+    ],
+    "from_types": [
+      "class UI3DModelNode *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x0052AF20"
+    ]
+  },
+  {
+    "struct": "UI3DCtrl",
+    "field": "m_rotx",
+    "offset": "256",
+    "current_type": "float",
+    "current_source": "gen_headers_9.2",
+    "suggested_type": "class gbGeomNode *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Misc\\UI3DCtrl.cpp:280"
+    ],
+    "from_types": [
+      "class gbGeomNode *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x0052B050"
+    ]
+  },
+  {
+    "struct": "SystemUI",
+    "field": "m_NoteItem",
+    "offset": "142028",
+    "current_type": "Note_Item[99]",
+    "current_source": "pdb_fill_incomplete",
+    "suggested_type": null,
+    "error_count": 1,
+    "category": "this_field",
+    "error_lines": [
+      "Misc\\SystemUI.cpp:8"
+    ],
+    "from_types": [
+      "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >"
+    ],
+    "to_types": [
+      "unsigned long *"
+    ],
+    "function_vas": [
+      "0x00421A40"
+    ]
+  },
+  {
+    "struct": "CScreenMode",
+    "field": "m_nProgressValA",
+    "offset": "120",
+    "current_type": "float",
+    "current_source": "A:FPU_disp8_in_class_method",
+    "suggested_type": "class MainEquipUI *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Render\\CScreenMode.cpp:1669"
+    ],
+    "from_types": [
+      "class MainEquipUI *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x0047BE20"
+    ]
+  },
+  {
+    "struct": "CScreenMode",
+    "field": "m_nField0C",
+    "offset": "12",
+    "current_type": "float",
+    "current_source": "A:FPU_disp8_in_class_method",
+    "suggested_type": "int *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Render\\CScreenMode.cpp:4959"
+    ],
+    "from_types": [
+      "int *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x0052ED30"
+    ]
+  },
+  {
+    "struct": "CScreenMode",
+    "field": "m_nField10",
+    "offset": "16",
+    "current_type": "float",
+    "current_source": "A:FPU_disp8_in_class_method",
+    "suggested_type": "char *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Render\\CScreenMode.cpp:4966"
+    ],
+    "from_types": [
+      "char *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x0052ED30"
+    ]
+  },
+  {
+    "struct": "RenderTarget",
+    "field": "m_nDefaultH",
+    "offset": "92",
+    "current_type": "float",
+    "current_source": "A:FPU_disp8_in_class_method",
+    "suggested_type": "class gbParticleEffect *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Render\\RenderTarget.cpp:3066"
+    ],
+    "from_types": [
+      "class gbParticleEffect *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x004BD880"
+    ]
+  },
+  {
+    "struct": "Actor",
+    "field": "m_actarray",
+    "offset": "0",
+    "current_type": "std::vector<gbActor *,std::allocator<gbActor *> >[4]",
+    "current_source": "pdb_verified_by_old_ida",
+    "suggested_type": "class Actor *",
+    "error_count": 1,
+    "category": "this_field",
+    "error_lines": [
+      "Role\\Actor.cpp:363"
+    ],
+    "from_types": [
+      "class Actor *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x005306A0"
+    ]
+  },
+  {
+    "struct": "Object3D",
+    "field": "m_action",
+    "offset": "148",
+    "current_type": "ACTION_KIND",
+    "current_source": "pdb_verified_by_old_ida",
+    "suggested_type": null,
+    "error_count": 1,
+    "category": "this_field",
+    "error_lines": [
+      "Role\\Object3D.cpp:200"
+    ],
+    "from_types": [
+      "int"
+    ],
+    "to_types": [
+      "enum ACTION_KIND"
+    ],
+    "function_vas": [
+      "0x0047CB90"
+    ]
+  },
+  {
+    "struct": "RoleSystem",
+    "field": "m_fUpZ",
+    "offset": "52",
+    "current_type": "float",
+    "current_source": "binary:raw_UpdatePosition",
+    "suggested_type": "unsigned char *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Role\\RoleSystem.cpp:6863"
+    ],
+    "from_types": [
+      "unsigned char *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x004207D0"
+    ]
+  },
+  {
+    "struct": "RoleSystem",
+    "field": "m_fField10",
+    "offset": "16",
+    "current_type": "float",
+    "current_source": "gen_headers_9.2",
+    "suggested_type": "class RoleSystem *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Role\\RoleSystem.cpp:6890"
+    ],
+    "from_types": [
+      "class RoleSystem *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x00420940"
+    ]
+  },
+  {
+    "struct": "CameraCtrl",
+    "field": "_field_020",
+    "offset": "32",
+    "current_type": "float",
+    "current_source": "binary:11x access | type_fix",
+    "suggested_type": "int *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Scene\\CameraCtrl.cpp:492"
+    ],
+    "from_types": [
+      "int *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x0041D5D0"
+    ]
+  },
+  {
+    "struct": "SceneObj",
+    "field": "m_fTime",
+    "offset": "88",
+    "current_type": "float",
+    "current_source": "pdb_batch_fill",
+    "suggested_type": "unsigned char *",
+    "error_count": 1,
+    "category": "lodword_field",
+    "error_lines": [
+      "Scene\\SceneObj.cpp:240"
+    ],
+    "from_types": [
+      "unsigned char *"
+    ],
+    "to_types": [
+      "unsigned long"
+    ],
+    "function_vas": [
+      "0x00453200"
+    ]
+  }
+]
