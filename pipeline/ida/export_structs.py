@@ -95,9 +95,16 @@ try:
                 continue
             filtered.append(m)
 
+        # Detect union vs struct
+        kind = 'struct'
+        stinfo2 = ida_typeinf.tinfo_t()
+        if stinfo2.get_named_type(ida_typeinf.get_idati(), name):
+            if stinfo2.is_union():
+                kind = 'union'
+
         result[name] = {
             'size': size,
-            'kind': 'struct',
+            'kind': kind,
             'data_members': filtered,
             'bases': bases,
         }

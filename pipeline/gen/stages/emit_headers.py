@@ -686,7 +686,12 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             include_types.add(b)
             fwd_types.discard(b)
 
-    lines.append("class %s%s {" % (cls_name, bases_str))
+    # Determine keyword: union/struct/class based on IDA struct kind
+    _type_kind = (pdb_class or {}).get('kind', 'struct')
+    if _type_kind == 'union':
+        lines.append("union %s {" % cls_name)
+    else:
+        lines.append("class %s%s {" % (cls_name, bases_str))
     lines.append("public:")
 
     # Virtual methods from vtable (must be first, order matches vtable layout)
