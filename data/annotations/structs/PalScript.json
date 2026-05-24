@@ -52,9 +52,9 @@
       "source": "binary:0x421560 mov esi,[ecx+0xDC] loop count; array starts at [ecx+0xE0] stride 896, each element has vtable"
     },
     "236": {
-      "name": "_todo_EC",
+      "name": "m_nScriptState",
       "type": "int",
-      "source": "A:fild@0x410C91(proves_int)"
+      "source": "decomp:compared_to_1_and_2(state_enum)"
     },
     "240": {
       "name": "m_bCamActive",
@@ -82,9 +82,9 @@
       "source": "binary:3x access"
     },
     "516": {
-      "name": "_todo_204",
+      "name": "m_nLoadState",
       "type": "int",
-      "source": "binary:_nearby_439410 *(gbCamera**)(this+292=0x124) -> gbCamera::SetAsCurrent"
+      "source": "decomp:copied_from_m_nLoadFromFile"
     },
     "520": {
       "name": "m_nNext",
@@ -172,9 +172,9 @@
       "source": "binary:SetRoleActions cmp_byte_[esi]_0x19"
     },
     "260": {
-      "name": "_todo_104",
+      "name": "m_WaitObjList",
       "type": "PtrArray",
-      "source": "binary:sub_445AA0 lea ecx,[esi+0x24]; call PtrArray::Clear; elem+0x24"
+      "source": "decomp:accessed_.buf_.capacity"
     },
     "312": {
       "name": "_todo_138",
@@ -237,14 +237,14 @@
       "source": "binary:sub_43A3E0 inc[ecx+0x98] when repeats exhausted; cmp with [ecx+0x9C]"
     },
     "56": {
-      "name": "_todo_38",
+      "name": "m_bCreated",
       "type": "int",
-      "source": "binary:CheckRayHitRole [ebp+0x38] manager guard tested_if_zero"
+      "source": "decomp:Create_sets_1,CheckRayHitRole_checks"
     },
     "60": {
-      "name": "_todo_3C",
+      "name": "m_bInitialized",
       "type": "unsigned char",
-      "source": "A:mov_byte_ptr_in_class_method"
+      "source": "decomp:Create_sets_1,checked_as_bool"
     },
     "68": {
       "name": "_todo_68",
@@ -252,9 +252,9 @@
       "source": "binary:CheckRayHitRole [ebp+0x44] loop_count for stride-32 array at +0x58 | type_fix:int->float(A+:decomp *(float*)&this->_todo_44 in UpdateTimer (2x))"
     },
     "88": {
-      "name": "_todo_58",
+      "name": "m_RoleArray",
       "type": "int",
-      "source": "binary:CheckRayHitRole lea[ebp+0x58] + stride 32 iteration; nested actor ptr array"
+      "source": "decomp:8byte_stride_loop_in_CheckRayHitRole"
     },
     "72": {
       "name": "_todo_72",
@@ -305,9 +305,9 @@
       "note": "Discovered by member_scan after disp8 fix."
     },
     "64": {
-      "name": "_todo_64",
+      "name": "m_pActorData",
       "type": "unsigned char",
-      "source": "binary_scan:1_accesses(store_byte:1)",
+      "source": "decomp:passed_to_Actor_method",
       "note": "Discovered by member_scan after disp8 fix."
     }
   },
