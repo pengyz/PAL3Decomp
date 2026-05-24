@@ -192,9 +192,9 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "2752": {
-      "name": "_todo_AC0",
+      "name": "m_TaskQueue",
       "type": "int",
-      "source": "reverted_auto_semantic:10x_access"
+      "source": "decomp:10x_compared_to_270(task_type_check)"
     },
     "2760": {
       "name": "m_nTaskExist",
@@ -212,9 +212,9 @@
       "source": "binary:disp32_1hits_1funcs"
     },
     "4584": {
-      "name": "_todo_11E8",
+      "name": "m_TurnBuffer",
       "type": "int",
-      "source": "reverted_auto_semantic:4x_access|reverted:pseudo_semantic"
+      "source": "decomp:4x_memset_0x600(turn_data_buffer)"
     },
     "6568": {
       "name": "m_nAllDone",
@@ -277,9 +277,9 @@
       "source": "A:FPU_binary_evidence"
     },
     "6644": {
-      "name": "_todo_19F4",
+      "name": "m_nBattleResult",
       "type": "int",
-      "source": "binary:disp32_8hits_8funcs"
+      "source": "decomp:8x_compared_for_victory_check"
     },
     "6648": {
       "name": "_todo_19F8",
@@ -377,14 +377,14 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "492": {
-      "name": "_todo_1EC",
+      "name": "m_ActionAngles",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "decomp:3x_24stride*m_nActionIdx_angle_57.3(radian_to_deg)"
     },
     "504": {
-      "name": "_todo_1F8",
+      "name": "m_ActionCmds",
       "type": "float",
-      "source": "reverted_auto_semantic:43x_access"
+      "source": "decomp:43x_96stride*m_nActionIdx(action_command_array)"
     },
     "508": {
       "name": "_todo_1FC",
@@ -432,9 +432,9 @@
       "source": "ida_decomp:_nearby_5040d0 = -1, 4 refs"
     },
     "196": {
-      "name": "_todo_0C4",
+      "name": "m_RoleSlots",
       "type": "int",
-      "source": "reverted_auto_semantic:46x_access|reverted:pseudo_semantic"
+      "source": "decomp:46x_BYTE+29_check(role_slot_active_flags)"
     },
     "280": {
       "name": "m_nActiveRoleIndex",
@@ -442,9 +442,9 @@
       "source": "A:mov_byte_ptr_disp32_in_class_method"
     },
     "288": {
-      "name": "_todo_120",
+      "name": "m_CamAngles",
       "type": "int",
-      "source": "reverted_auto_semantic:4x_access|reverted:pseudo_semantic"
+      "source": "decomp:4x_70*m_pCamControl_float(camera_angle_per_slot)"
     },
     "292": {
       "name": "_todo_124",
@@ -452,14 +452,14 @@
       "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic"
     },
     "296": {
-      "name": "_todo_128",
+      "name": "m_CamParams",
       "type": "gbColorQuad",
-      "source": "reverted_auto_semantic:5x_access|reverted:pseudo_semantic"
+      "source": "decomp:5x_70*m_pCamControl_float(camera_param_per_slot)"
     },
     "400": {
-      "name": "_todo_190",
+      "name": "m_TargetPos",
       "type": "int",
-      "source": "reverted_auto_semantic:11x_access|reverted:pseudo_semantic"
+      "source": "decomp:11x_+32/+36_float_targetXY"
     },
     "496": {
       "name": "_todo_1F0",
@@ -502,34 +502,34 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "584": {
-      "name": "_todo_248",
+      "name": "m_CmdQueue",
       "type": "int",
-      "source": "reverted_auto_semantic:10x_access|reverted:pseudo_semantic"
+      "source": "decomp:10x_memset_0xFA0_20stride*nVal(command_queue_200)"
     },
     "606": {
-      "name": "_todo_25E",
+      "name": "m_TurnFlags",
       "type": "short",
-      "source": "reverted_auto_semantic:12x_access|reverted:pseudo_semantic"
+      "source": "decomp:12x_80stride*m_nTurnIndex_BYTE_flag"
     },
     "624": {
-      "name": "_todo_270",
+      "name": "m_TurnData",
       "type": "int",
-      "source": "reverted_auto_semantic:16x_access|reverted:pseudo_semantic"
+      "source": "decomp:16x_20stride*m_nTurnIndex_qmemcpy_0x18"
     },
     "1400": {
-      "name": "_todo_578",
+      "name": "m_RoleData",
       "type": "int",
-      "source": "reverted_auto_semantic:30x_access|reverted:pseudo_semantic"
+      "source": "decomp:30x_658stride*nIndex(per_role_battle_data)"
     },
     "2756": {
-      "name": "_todo_AC4",
+      "name": "m_TaskState",
       "type": "int",
-      "source": "reverted_auto_semantic:7x_access|reverted:pseudo_semantic"
+      "source": "decomp:7x_indexed_state_value"
     },
     "2764": {
-      "name": "_todo_ACC",
+      "name": "m_DamageData",
       "type": "int",
-      "source": "reverted_auto_semantic:11x_access"
+      "source": "decomp:11x_indexed_float_cast+BYTE+5"
     },
     "4508": {
       "name": "_todo_119C",

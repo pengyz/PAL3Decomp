@@ -34,9 +34,9 @@
       "source": "decomp:CEffCylinder_calculated_delta"
     },
     "24": {
-      "name": "m_pTaskData",
+      "name": "m_pSegData",
       "type": "void *",
-      "source": "decomp:CEffCylinder_ptr_used_for_array_access"
+      "source": "decomp:CEffCylinder_operator_new(0x4C0)_8x152byte_entries"
     },
     "28": {
       "name": "m_fDuration",
@@ -54,14 +54,14 @@
       "source": "decomp:CEffCylinder_<=0_check(limit)"
     },
     "40": {
-      "name": "m_nCurTask",
+      "name": "m_nSegments",
       "type": "int",
-      "source": "decomp:CEffCylinder_>0_check(count)"
+      "source": "decomp:CEffCylinder_set_8,loop_bound"
     },
     "44": {
-      "name": "m_nTaskState",
+      "name": "m_nVertPerSeg",
       "type": "int",
-      "source": "decomp:state_field"
+      "source": "decomp:CEffCylinder_set_10,inner_loop_bound"
     }
   }
 }
