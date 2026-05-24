@@ -561,9 +561,8 @@
     "signature": "void *__thiscall(UIManager *this)"
   },
   "0x004200A0": {
-    "name": "_misattrib_UIScene::Render",
-    "signature": "int __thiscall(UIScene *this, int nVal)",
-    "_misattrib_evidence": "max_offset=493140>class_size=204"
+    "name": "SystemUI::Render",
+    "signature": "int __thiscall(UIScene *this, int nVal)"
   },
   "0x00420110": {
     "name": "_misattrib_UIScene::RenderWithStack",
@@ -944,9 +943,8 @@
     "signature": "int __thiscall(UIListBox *this)"
   },
   "0x0043F560": {
-    "name": "_misattrib_UI3DCtrl::CreateChild",
-    "signature": "int __thiscall(UIWnd *this)",
-    "_misattrib_evidence": "max_offset=1120>class_size=308"
+    "name": "NPC::CreateChild",
+    "signature": "int __thiscall(UIWnd *this)"
   },
   "0x0043F970": {
     "name": "UIWnd::~UIWnd_f970",
@@ -1105,9 +1103,8 @@
     "signature": "int __thiscall(UIDialog *this)"
   },
   "0x00450F90": {
-    "name": "_misattrib_UIBigDialog::Create",
-    "signature": "int __thiscall(UIBigDialog *this, int id, void *pRect, int parent, char *tex)",
-    "_misattrib_evidence": "max_offset=960>class_size=4"
+    "name": "CJ_FindFile::Create",
+    "signature": "int __thiscall(UIBigDialog *this, int id, void *pRect, int parent, char *tex)"
   },
   "0x00451980": {
     "name": "_misattrib_UISelectDialog::Create",
@@ -1283,23 +1280,21 @@
     "signature": "int __thiscall(Object3D *this)"
   },
   "0x0047DCA0": {
-    "name": "_misattrib_Object3D::Create",
-    "signature": "int __thiscall(Object3D *this)",
-    "_misattrib_evidence": "max_offset=2456>class_size=152"
+    "name": "UITitle_YXXX::Create",
+    "signature": "int __thiscall(Object3D *this)"
   },
   "0x0047DE40": {
-    "name": "_misattrib_Object3D::Init",
-    "signature": "void __thiscall(Object3D *this)",
-    "_misattrib_evidence": "max_offset=2456>class_size=152"
+    "name": "UITitle_YXXX::Init",
+    "signature": "void __thiscall(Object3D *this)"
   },
   "0x0047E536": {
     "name": "_DllMain@12_1",
     "signature": "BOOL __stdcall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)"
   },
   "0x004A12F0": {
-    "name": "_misattrib_UIItem::Refresh",
+    "name": "_misattrib_ARC_PlayerAtt::Refresh",
     "signature": "int __thiscall(UIItem *this)",
-    "_misattrib_evidence": "max_offset=1356>class_size=232"
+    "_misattrib_evidence": "size_fit_but_ARC_class_unlikely_to_have_UI_methods"
   },
   "0x004A1410": {
     "name": "_misattrib_UIItem::UIItem",
@@ -1311,9 +1306,9 @@
     "signature": "void *__thiscall(UIItem *this, char pData)"
   },
   "0x004A16C0": {
-    "name": "_misattrib_UIItem::Create",
+    "name": "_misattrib_ARC_PlayerAtt::Create",
     "signature": "int __thiscall(UIItem *this, int id, int nVal)",
-    "_misattrib_evidence": "max_offset=1348>class_size=232"
+    "_misattrib_evidence": "size_fit_but_ARC_class_unlikely_to_have_UI_methods"
   },
   "0x004A3900": {
     "name": "UIBase::SetItemData",
@@ -2855,52 +2850,44 @@
     "signature": "int __thiscall(CCBStageCam *this)"
   },
   "0x005052E0": {
-    "name": "_misattrib_CCBStageCam::SetCamPos",
-    "signature": "CCBStageCam * __thiscall(CCBStageCam *this, int **pCamParam, int nVal)",
-    "_misattrib_evidence": "max_offset=430248>class_size=6272"
+    "name": "CCBCamControl::SetCamPos",
+    "signature": "CCBStageCam * __thiscall(CCBStageCam *this, int **pCamParam, int nVal)"
   },
   "0x00505410": {
-    "name": "_misattrib_CCBStageCam::Create",
-    "signature": "int __thiscall(CCBStageCam *this)",
-    "_misattrib_evidence": "max_offset=430248>class_size=6272"
+    "name": "CCBCamControl::Create",
+    "signature": "int __thiscall(CCBStageCam *this)"
   },
   "0x00505490": {
     "name": "CCBStageCam::Destroy",
     "signature": "char __thiscall(CCBStageCam *this)"
   },
   "0x005054B0": {
-    "name": "_misattrib_CCBStageCam::Init",
-    "signature": "char __thiscall(CCBStageCam *this)",
-    "_misattrib_evidence": "max_offset=430224>class_size=6272"
+    "name": "CCBCamControl::Init",
+    "signature": "char __thiscall(CCBStageCam *this)"
   },
   "0x005054E0": {
     "name": "CCBStageCam::Update",
     "signature": "char __thiscall(CCBStageCam *this)"
   },
   "0x005054F0": {
-    "name": "_misattrib_CCBStageCam::DoTask",
-    "signature": "void __thiscall(CCBStageCam *this)",
-    "_misattrib_evidence": "max_offset=430240>class_size=6272"
+    "name": "CCBCamControl::DoTask",
+    "signature": "void __thiscall(CCBStageCam *this)"
   },
   "0x00505770": {
-    "name": "_misattrib_CCBStageCam::ClearFinishedTask",
-    "signature": "char __thiscall(CCBStageCam *this, int nVal)",
-    "_misattrib_evidence": "max_offset=430036>class_size=6272"
+    "name": "CCBCamControl::ClearFinishedTask",
+    "signature": "char __thiscall(CCBStageCam *this, int nVal)"
   },
   "0x00505800": {
-    "name": "_misattrib_CCBStageCam::AddTask",
-    "signature": "int __thiscall(CCBStageCam *this)",
-    "_misattrib_evidence": "max_offset=430036>class_size=6272"
+    "name": "CCBCamControl::AddTask",
+    "signature": "int __thiscall(CCBStageCam *this)"
   },
   "0x00505820": {
-    "name": "_misattrib_CCBStageCam::ProcCamMove",
-    "signature": "char __thiscall(CCBStageCam *this)",
-    "_misattrib_evidence": "max_offset=430240>class_size=6272"
+    "name": "CCBCamControl::ProcCamMove",
+    "signature": "char __thiscall(CCBStageCam *this)"
   },
   "0x005058E0": {
-    "name": "_misattrib_CCBStageCam::SwitchEditorCamPos",
-    "signature": "int __thiscall(CCBStageCam *this)",
-    "_misattrib_evidence": "max_offset=430224>class_size=6272"
+    "name": "CCBCamControl::SwitchEditorCamPos",
+    "signature": "int __thiscall(CCBStageCam *this)"
   },
   "0x005058F0": {
     "name": "CCCTData::CCCTData",
@@ -4167,38 +4154,32 @@
     "signature": "void __thiscall(CCBProtectWindow *this)"
   },
   "0x0051D710": {
-    "name": "_misattrib_CCBProtectWindow::Create",
-    "signature": "CCBProtectWindow *__thiscall(CCBProtectWindow *this)",
-    "_misattrib_evidence": "max_offset=670672>class_size=176"
+    "name": "CCBStage::Create",
+    "signature": "CCBProtectWindow *__thiscall(CCBProtectWindow *this)"
   },
   "0x0051DD80": {
     "name": "CCBProtectWindow::Destroy",
     "signature": "void __thiscall(CCBProtectWindow *this)"
   },
   "0x0051DDA0": {
-    "name": "_misattrib_CCBProtectWindow::ShowWindow",
-    "signature": "void __thiscall(CCBProtectWindow *this)",
-    "_misattrib_evidence": "max_offset=670672>class_size=176"
+    "name": "CCBStage::ShowWindow",
+    "signature": "void __thiscall(CCBProtectWindow *this)"
   },
   "0x0051F070": {
-    "name": "_misattrib_CCBProtectWindow::Update",
-    "signature": "int __thiscall(CCBProtectWindow *this, int deltatime)",
-    "_misattrib_evidence": "max_offset=8012>class_size=176"
+    "name": "ScriptSystemData::Update",
+    "signature": "int __thiscall(CCBProtectWindow *this, int deltatime)"
   },
   "0x0051F080": {
-    "name": "_misattrib_CCBResultWindow::CCBResultWindow",
-    "signature": "void __thiscall(CCBResultWindow *this, int nVal)",
-    "_misattrib_evidence": "max_offset=8016>class_size=180"
+    "name": "ScriptSystemData::CCBResultWindow",
+    "signature": "void __thiscall(CCBResultWindow *this, int nVal)"
   },
   "0x0051F090": {
-    "name": "_misattrib_CCBResultWindow::~CCBResultWindow",
-    "signature": "void __thiscall(CCBResultWindow *this, int nVal)",
-    "_misattrib_evidence": "max_offset=8020>class_size=180"
+    "name": "ScriptSystemData::~CCBResultWindow",
+    "signature": "void __thiscall(CCBResultWindow *this, int nVal)"
   },
   "0x0051F0A0": {
-    "name": "_misattrib_CCBResultWindow::Reset",
-    "signature": "int __thiscall(CCBResultWindow *this, int nVal, int nVal2)",
-    "_misattrib_evidence": "max_offset=507432>class_size=180"
+    "name": "SystemUI::Reset",
+    "signature": "int __thiscall(CCBResultWindow *this, int nVal, int nVal2)"
   },
   "0x005230F0": {
     "name": "CUtil::~CUtil",
@@ -4386,9 +4367,8 @@
     "signature": "void __thiscall(Actor *this, int bVisible)"
   },
   "0x0053C340": {
-    "name": "_misattrib_CScreenMode::InitCPK",
-    "signature": "char __thiscall(CScreenMode *this, int nVal, int nVal2)",
-    "_misattrib_evidence": "max_offset=917964>class_size=4280"
+    "name": "SoundMgr::InitCPK",
+    "signature": "char __thiscall(CScreenMode *this, int nVal, int nVal2)"
   },
   "0x0053C5A0": {
     "name": "CScreenMode::PlayVideo",
@@ -4907,9 +4887,8 @@
     "signature": "int()"
   },
   "0x0044BE80": {
-    "name": "_misattrib_UIScene::ctor_BE80",
-    "signature": "void __thiscall(UIScene *this)",
-    "_misattrib_evidence": "max_offset=14080>class_size=204"
+    "name": "UIScenePanel::ctor_BE80",
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x00453030": {
     "name": "SceneObj::ctor_3030",
@@ -5090,9 +5069,8 @@
     "signature": "int __thiscall(int this, unsigned char pData)"
   },
   "0x00483380": {
-    "name": "_misattrib_CScreenMode::ctor_3380",
-    "signature": "void __thiscall(CScreenMode *this)",
-    "_misattrib_evidence": "max_offset=159664>class_size=4280"
+    "name": "StateUI::ctor_3380",
+    "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x004B7BC0": {
     "name": "unknown_libname_422",
@@ -5127,9 +5105,8 @@
     "signature": "int()"
   },
   "0x004CEA80": {
-    "name": "_misattrib_Combat::Func_4CEA80",
-    "signature": "char __thiscall(Combat *this)",
-    "_misattrib_evidence": "max_offset=43292>class_size=4"
+    "name": "CEffMgr::Func_4CEA80",
+    "signature": "char __thiscall(Combat *this)"
   },
   "0x0053D080": {
     "name": "unknown_libname_512",
@@ -5482,9 +5459,8 @@
     "signature": "int()"
   },
   "0x004CDC50": {
-    "name": "_misattrib_Combat::Func_4CDC50",
-    "signature": "char __thiscall(Combat *this, int nVal)",
-    "_misattrib_evidence": "max_offset=43308>class_size=4"
+    "name": "CEffMgr::Func_4CDC50",
+    "signature": "char __thiscall(Combat *this, int nVal)"
   },
   "0x00534D50": {
     "name": "unknown_libname_500",
@@ -5503,9 +5479,8 @@
     "signature": "int __thiscall(int this, char pData)"
   },
   "0x0046D4E0": {
-    "name": "_misattrib_UIListBox::ctor_D4E0",
-    "signature": "void __thiscall(UIListBox *this)",
-    "_misattrib_evidence": "max_offset=28876>class_size=1208"
+    "name": "PropUI::ctor_D4E0",
+    "signature": "void __thiscall(UIListBox *this)"
   },
   "0x00525540": {
     "name": "_misattrib_CCBUI::ctor_5540",
@@ -5557,9 +5532,8 @@
     "signature": "int()"
   },
   "0x0045AE60": {
-    "name": "_misattrib_UIListBox::ctor_AE60",
-    "signature": "void __thiscall(UIListBox *this)",
-    "_misattrib_evidence": "max_offset=105196>class_size=1208"
+    "name": "PlayerMgr::ctor_AE60",
+    "signature": "void __thiscall(UIListBox *this)"
   },
   "0x00456A40": {
     "name": "unknown_libname_388",
@@ -5940,9 +5914,8 @@
     "signature": "void ()"
   },
   "0x00482ED0": {
-    "name": "_misattrib_SCNFile::Save",
-    "signature": "int __thiscall(SCNFile *this)",
-    "_misattrib_evidence": "max_offset=171240>class_size=33228"
+    "name": "LineupUI::Save",
+    "signature": "int __thiscall(SCNFile *this)"
   },
   "0x00450790": {
     "name": "UILoadingFrm::ctor_790",
@@ -6122,9 +6095,8 @@
     "signature": "int __thiscall(int *this)"
   },
   "0x00420150": {
-    "name": "_misattrib_ScriptSystem::UIUpdate",
-    "signature": "double __thiscall(ScriptSystem *this, double result, double pData)",
-    "_misattrib_evidence": "max_offset=493140>class_size=8704"
+    "name": "SystemUI::UIUpdate",
+    "signature": "double __thiscall(ScriptSystem *this, double result, double pData)"
   },
   "0x0043D880": {
     "name": "UI3DCtrl::ctor_D880",
@@ -6774,9 +6746,8 @@
     "signature": "void __thiscall(CCBUI *this, RECT *pRect)"
   },
   "0x0048C4A0": {
-    "name": "_misattrib_CameraCtrl::SetPage",
-    "signature": "int __thiscall(CameraCtrl *this, unsigned char nPageIdx)",
-    "_misattrib_evidence": "max_offset=247060>class_size=4088"
+    "name": "MainPropUI::SetPage",
+    "signature": "int __thiscall(CameraCtrl *this, unsigned char nPageIdx)"
   },
   "0x00421560": {
     "name": "PalScript::SetAction",
@@ -6845,9 +6816,8 @@
     "signature": "int __thiscall(UIListBox *this)"
   },
   "0x0053EA80": {
-    "name": "_misattrib_CUtil::Method_ea80",
-    "signature": "int __thiscall(CUtil *this)",
-    "_misattrib_evidence": "max_offset=918508>class_size=1752"
+    "name": "SoundMgr::Method_ea80",
+    "signature": "int __thiscall(CUtil *this)"
   },
   "0x004A9870": {
     "name": "_misattrib_UIListBox::Method_9870",
@@ -7199,14 +7169,12 @@
     "signature": "char __thiscall(CameraCtrl *this)"
   },
   "0x00517A50": {
-    "name": "_misattrib_CCBAIWindow::_sub_517A50",
-    "signature": "void __thiscall(CCBAIWindow *this)",
-    "_misattrib_evidence": "max_offset=1116>class_size=208"
+    "name": "NPC::_sub_517A50",
+    "signature": "void __thiscall(CCBAIWindow *this)"
   },
   "0x00517AC0": {
-    "name": "_misattrib_CCBAIWindow::_nearby_517ac0",
-    "signature": "char __thiscall(CCBAIWindow *this, int thisa, int nVal)",
-    "_misattrib_evidence": "max_offset=1120>class_size=208"
+    "name": "NPC::_nearby_517ac0",
+    "signature": "char __thiscall(CCBAIWindow *this, int thisa, int nVal)"
   },
   "0x0052AA50": {
     "name": "UISceneMap::_nearby_52aa50",
@@ -7427,9 +7395,8 @@
     "signature": "int __thiscall(PalScriptMgr *this, unsigned char pData)"
   },
   "0x0042D670": {
-    "name": "_misattrib_ScriptHelper::GetRolePosition",
-    "signature": "int __thiscall(ScriptHelper *this, unsigned char pData)",
-    "_misattrib_evidence": "max_offset=872>class_size=4"
+    "name": "ScriptVM::GetRolePosition",
+    "signature": "int __thiscall(ScriptHelper *this, unsigned char pData)"
   },
   "0x0042D830": {
     "name": "PalScriptMgr::RoleCmd_42d830",
@@ -7492,9 +7459,8 @@
     "signature": "int __thiscall(CCBUI *this, struct PalScript *p, int nVal)"
   },
   "0x0045B990": {
-    "name": "_misattrib_CCBUI::InitCombatUI",
-    "signature": "int __thiscall(CCBUI *this, int nVal)",
-    "_misattrib_evidence": "max_offset=105904>class_size=2632"
+    "name": "PlayerMgr::InitCombatUI",
+    "signature": "int __thiscall(CCBUI *this, int nVal)"
   },
   "0x00461BF0": {
     "name": "PAL3::_init_461bf0",
@@ -7506,18 +7472,16 @@
     "_misattrib_evidence": "max_offset=94380>class_size=2632"
   },
   "0x004623A0": {
-    "name": "_misattrib_CCBUIPanel::CreatePanelElements",
-    "signature": "int __thiscall(CCBUIPanel *this, CCBUIPanel *arg0)",
-    "_misattrib_evidence": "max_offset=105904>class_size=22068"
+    "name": "PlayerMgr::CreatePanelElements",
+    "signature": "int __thiscall(CCBUIPanel *this, CCBUIPanel *arg0)"
   },
   "0x0046A8B0": {
     "name": "SaleUI::_unverified_46A8B0",
     "signature": "int __thiscall(SaleUI *this, int deltatime, int haveinput)"
   },
   "0x0046B4B0": {
-    "name": "_misattrib_UIListBox::OnMessage",
-    "signature": "int __thiscall(UIListBox *this, int nVal, char *pszBuf, int nVal2)",
-    "_misattrib_evidence": "max_offset=105904>class_size=1208"
+    "name": "PlayerMgr::OnMessage",
+    "signature": "int __thiscall(UIListBox *this, int nVal, char *pszBuf, int nVal2)"
   },
   "0x00473B50": {
     "name": "_misattrib_UIListBox::InitItemList",
@@ -7538,14 +7502,12 @@
     "signature": "void __thiscall(StateUI *this, int nVal)"
   },
   "0x0049AEA0": {
-    "name": "_misattrib_UIListBox::_init_49aea0",
-    "signature": "void __thiscall(UIListBox *this, int arg0)",
-    "_misattrib_evidence": "max_offset=195868>class_size=1208"
+    "name": "MainEquipUI::_init_49aea0",
+    "signature": "void __thiscall(UIListBox *this, int arg0)"
   },
   "0x0049B2E0": {
-    "name": "_misattrib_UIListBox::SetupRoleList",
-    "signature": "void __thiscall(UIListBox *this, int arg0, char arg4)",
-    "_misattrib_evidence": "max_offset=195868>class_size=1208"
+    "name": "MainEquipUI::SetupRoleList",
+    "signature": "void __thiscall(UIListBox *this, int arg0, char arg4)"
   },
   "0x0049C2C0": {
     "name": "PAL_GDB::_init_49c2c0",
@@ -7788,9 +7750,8 @@
     "signature": "void __thiscall(CameraCtrl *this)"
   },
   "0x0041D100": {
-    "name": "_misattrib_InputSystem::_auto_41d100",
-    "signature": "int __thiscall(InputSystem *this, int nVal)",
-    "_misattrib_evidence": "max_offset=488>class_size=36"
+    "name": "__old_sbh_page_struct::_auto_41d100",
+    "signature": "int __thiscall(InputSystem *this, int nVal)"
   },
   "0x0041D8F0": {
     "name": "CameraCtrl::_nearby_41d8f0",
@@ -7801,9 +7762,8 @@
     "signature": "void __thiscall(CameraCtrl *this)"
   },
   "0x0041F6F0": {
-    "name": "_misattrib_GRPinput::_auto_41f6f0",
-    "signature": "void __thiscall(GRPinput *this)",
-    "_misattrib_evidence": "max_offset=493152>class_size=10584"
+    "name": "SystemUI::_auto_41f6f0",
+    "signature": "void __thiscall(GRPinput *this)"
   },
   "0x0041F9F0": {
     "name": "PAL3::LoadingTimerCallback",
@@ -7875,14 +7835,12 @@
     "signature": "void __thiscall(UIScene *this)"
   },
   "0x004236D0": {
-    "name": "_misattrib_UIScene::_nearby_4236d0",
-    "signature": "void __thiscall(UIScene *this)",
-    "_misattrib_evidence": "max_offset=888>class_size=204"
+    "name": "BINK::_nearby_4236d0",
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x00423880": {
-    "name": "_misattrib_UIScene::_nearby_423880",
-    "signature": "void __thiscall(UIScene *this)",
-    "_misattrib_evidence": "max_offset=872>class_size=204"
+    "name": "ScriptVM::_nearby_423880",
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x0042AAE0": {
     "name": "PalScriptMgr::_nearby_42aae0",
@@ -7905,9 +7863,8 @@
     "signature": "void __thiscall(ScriptVM *this)"
   },
   "0x0042D4B0": {
-    "name": "_misattrib_ScriptHelper::SetRolePosition",
-    "signature": "int __thiscall(ScriptHelper *this, unsigned char pData)",
-    "_misattrib_evidence": "max_offset=872>class_size=4"
+    "name": "ScriptVM::SetRolePosition",
+    "signature": "int __thiscall(ScriptHelper *this, unsigned char pData)"
   },
   "0x0042DBD0": {
     "name": "RoleSystem::_auto_42dbd0",
@@ -8531,19 +8488,16 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x0044C120": {
-    "name": "_misattrib_CScreenMode::CreateSettingsUI",
-    "signature": "void __thiscall(CScreenMode *this)",
-    "_misattrib_evidence": "max_offset=14080>class_size=4280"
+    "name": "UIScenePanel::CreateSettingsUI",
+    "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x0044C910": {
-    "name": "_misattrib_UIScene::Destroy",
-    "signature": "void __thiscall(UIListBox *this)",
-    "_misattrib_evidence": "max_offset=13864>class_size=204"
+    "name": "UIScenePanel::Destroy",
+    "signature": "void __thiscall(UIListBox *this)"
   },
   "0x0044DAC0": {
-    "name": "_misattrib_UIScene::Render",
-    "signature": "void __thiscall(UIListBox *this)",
-    "_misattrib_evidence": "max_offset=13868>class_size=204"
+    "name": "UIScenePanel::Render",
+    "signature": "void __thiscall(UIListBox *this)"
   },
   "0x0044DFC0": {
     "name": "JusticeBookUI::_unverified_44DFC0",
@@ -8558,9 +8512,8 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044E530": {
-    "name": "_misattrib_UIParticle::_method_44e530",
-    "signature": "void __thiscall(UIParticle *this)",
-    "_misattrib_evidence": "max_offset=2216>class_size=584"
+    "name": "UIEmote::_method_44e530",
+    "signature": "void __thiscall(UIParticle *this)"
   },
   "0x0044E5E0": {
     "name": "scScriptInstance::_method_44e5e0",
@@ -8583,9 +8536,8 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x0044FF20": {
-    "name": "_misattrib_CCBAI::_method_44ff20",
-    "signature": "int *__thiscall(CCBAI *this)",
-    "_misattrib_evidence": "max_offset=14600>class_size=3664"
+    "name": "UICoverFrm::_method_44ff20",
+    "signature": "int *__thiscall(CCBAI *this)"
   },
   "0x0044FFC0": {
     "name": "UIWnd::_nearby_44ffc0",
@@ -8802,9 +8754,8 @@
     "_misattrib_evidence": "max_offset=805416>class_size=68"
   },
   "0x00457490": {
-    "name": "_misattrib_PalScript::LoadStoreConfig",
-    "signature": "LPSTR __thiscall(PalScript *this, CHAR *lpString2)",
-    "_misattrib_evidence": "max_offset=823300>class_size=1816"
+    "name": "DealData::LoadStoreConfig",
+    "signature": "LPSTR __thiscall(PalScript *this, CHAR *lpString2)"
   },
   "0x00457F00": {
     "name": "PAL_GDB::_auto_457f00",
@@ -8872,18 +8823,16 @@
     "signature": "void __thiscall(PropUI *this)"
   },
   "0x0046F2C0": {
-    "name": "_misattrib_UIChatRest::Render_46f2c0",
-    "signature": "void __thiscall(UIWnd *this)",
-    "_misattrib_evidence": "max_offset=28876>class_size=9516"
+    "name": "PropUI::Render_46f2c0",
+    "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0046F620": {
     "name": "UIListBox::_sub_46F620",
     "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2)"
   },
   "0x0046F650": {
-    "name": "_misattrib_UIListBox::InitListUI",
-    "signature": "int __thiscall(UIListBox *this, int arg0, int nVal, unsigned int dwVal)",
-    "_misattrib_evidence": "max_offset=28876>class_size=1208"
+    "name": "PropUI::InitListUI",
+    "signature": "int __thiscall(UIListBox *this, int arg0, int nVal, unsigned int dwVal)"
   },
   "0x00470A40": {
     "name": "UIWnd::_nearby_470a40",
@@ -9022,9 +8971,8 @@
     "signature": "void __thiscall(UILoadingFrm *this)"
   },
   "0x00483650": {
-    "name": "_misattrib_Object3D::CreatePreviewScene",
-    "signature": "void *__thiscall(Object3D *this, int nVal)",
-    "_misattrib_evidence": "max_offset=171240>class_size=152"
+    "name": "LineupUI::CreatePreviewScene",
+    "signature": "void *__thiscall(Object3D *this, int nVal)"
   },
   "0x00484D20": {
     "name": "PalScript::_auto_484d20",
@@ -9087,9 +9035,8 @@
     "signature": "int __thiscall(PalScript *this)"
   },
   "0x00492850": {
-    "name": "_misattrib_UIBigMap::_method_492850",
-    "signature": "void __thiscall(UIBigMap *this, int nVal)",
-    "_misattrib_evidence": "max_offset=156952>class_size=10248"
+    "name": "StateUI::_method_492850",
+    "signature": "void __thiscall(UIBigMap *this, int nVal)"
   },
   "0x00492BB0": {
     "name": "_misattrib_SceneMgr::_method_492bb0",
@@ -9097,9 +9044,8 @@
     "_misattrib_evidence": "max_offset=212204>class_size=54024"
   },
   "0x004930E0": {
-    "name": "_misattrib_CScreenMode::_init_4930e0",
-    "signature": "void __thiscall(CScreenMode *this, int nVal)",
-    "_misattrib_evidence": "max_offset=204424>class_size=4280"
+    "name": "MainEquipUI::_init_4930e0",
+    "signature": "void __thiscall(CScreenMode *this, int nVal)"
   },
   "0x004945C0": {
     "name": "EquipUI::_sub_4945C0",
@@ -9122,9 +9068,8 @@
     "signature": "int __thiscall(MagicUI *this, char pData)"
   },
   "0x00496FA0": {
-    "name": "_misattrib_UIBigMap::Render",
-    "signature": "void __thiscall(UIBigMap *this)",
-    "_misattrib_evidence": "max_offset=154504>class_size=10248"
+    "name": "StateUI::Render",
+    "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x00498800": {
     "name": "UIWnd::_nearby_498800",
@@ -9143,9 +9088,8 @@
     "signature": "int __thiscall(PalScript *this)"
   },
   "0x0049F2E0": {
-    "name": "_misattrib_UIListBox::CreateListPanel",
-    "signature": "void *__thiscall(UIListBox *this, int nVal, int _FC)",
-    "_misattrib_evidence": "max_offset=195868>class_size=1208"
+    "name": "MainEquipUI::CreateListPanel",
+    "signature": "void *__thiscall(UIListBox *this, int nVal, int _FC)"
   },
   "0x0049FE00": {
     "name": "_misattrib_UIListBox::_sub_49FE00",
@@ -9161,9 +9105,8 @@
     "signature": "void *__thiscall(UIItem *this, void *Block, char pData)"
   },
   "0x004A1AA0": {
-    "name": "_misattrib_UIScene::_init_4a1aa0",
-    "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)",
-    "_misattrib_evidence": "max_offset=1356>class_size=204"
+    "name": "ARC_PlayerAtt::_init_4a1aa0",
+    "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)"
   },
   "0x004A1E20": {
     "name": "UIWnd::_nearby_4a1e20",
@@ -9295,9 +9238,8 @@
     "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
   },
   "0x004B2C70": {
-    "name": "_misattrib_UIListBox::_sub_4B2C70",
-    "signature": "void __thiscall(UIListBox *this)",
-    "_misattrib_evidence": "max_offset=154488>class_size=1208"
+    "name": "StateUI::_sub_4B2C70",
+    "signature": "void __thiscall(UIListBox *this)"
   },
   "0x004B2D20": {
     "name": "_misattrib_CScreenMode::_init_4b2d20",
@@ -10077,14 +10019,12 @@
     "_misattrib_evidence": "max_offset=1016>class_size=208"
   },
   "0x00517BA0": {
-    "name": "_misattrib_CCBAIWindow::_sub_517BA0",
-    "signature": "void __thiscall(CCBAIWindow *this)",
-    "_misattrib_evidence": "max_offset=1128>class_size=208"
+    "name": "NPC::_sub_517BA0",
+    "signature": "void __thiscall(CCBAIWindow *this)"
   },
   "0x00517CF0": {
-    "name": "_misattrib_CCBLineupWindow::_sub_517CF0",
-    "signature": "void __thiscall(CCBLineupWindow *this)",
-    "_misattrib_evidence": "max_offset=1140>class_size=124"
+    "name": "NPC::_sub_517CF0",
+    "signature": "void __thiscall(CCBLineupWindow *this)"
   },
   "0x005184E0": {
     "name": "CCBUI::InitRoleDisplay",
@@ -10783,9 +10723,8 @@
     "signature": "int __thiscall(RoleSystem *this, int nVal)"
   },
   "0x0041C1E0": {
-    "name": "_misattrib_InputSystem::_auto_41c1e0",
-    "signature": "int __thiscall(InputSystem *this)",
-    "_misattrib_evidence": "max_offset=488>class_size=36"
+    "name": "__old_sbh_page_struct::_auto_41c1e0",
+    "signature": "int __thiscall(InputSystem *this)"
   },
   "0x0041C670": {
     "name": "CameraCtrl::_nearby_41c670",
@@ -10849,9 +10788,8 @@
     "signature": "int __cdecl(int nVal)"
   },
   "0x0041F800": {
-    "name": "_misattrib_GRPinput::_auto_41f800",
-    "signature": "void __thiscall(GRPinput *this)",
-    "_misattrib_evidence": "max_offset=492772>class_size=10584"
+    "name": "SystemUI::_auto_41f800",
+    "signature": "void __thiscall(GRPinput *this)"
   },
   "0x004208A0": {
     "name": "RoleSystem::Reset",
@@ -10922,9 +10860,8 @@
     "signature": "void __thiscall(UIBigMap *this, int element, const char *visible)"
   },
   "0x004243E0": {
-    "name": "_misattrib_UIScene::_nearby_4243e0",
-    "signature": "void __thiscall(UIScene *this)",
-    "_misattrib_evidence": "max_offset=888>class_size=204"
+    "name": "BINK::_nearby_4243e0",
+    "signature": "void __thiscall(UIScene *this)"
   },
   "0x00424570": {
     "name": "UIBigMap::_unverified_424570",
@@ -12010,9 +11947,8 @@
     "_misattrib_evidence": "max_offset=4224>class_size=180"
   },
   "0x0044CFF0": {
-    "name": "_misattrib_MUIDialog::_method_44cff0",
-    "signature": "int __thiscall(MUIDialog *this)",
-    "_misattrib_evidence": "max_offset=6720>class_size=1288"
+    "name": "CCBStageRole::_method_44cff0",
+    "signature": "int __thiscall(MUIDialog *this)"
   },
   "0x0044D0B0": {
     "name": "_misattrib_UIEmote::_method_44d0b0",
@@ -12161,9 +12097,8 @@
     "_misattrib_evidence": "max_offset=1104>class_size=276"
   },
   "0x00451740": {
-    "name": "_misattrib_CCBFiveNimbusWindow::ShowWindow",
-    "signature": "void __thiscall(CCBFiveNimbusWindow *this)",
-    "_misattrib_evidence": "max_offset=904>class_size=160"
+    "name": "BINK::ShowWindow",
+    "signature": "void __thiscall(CCBFiveNimbusWindow *this)"
   },
   "0x004517A0": {
     "name": "UIWnd::_nearby_4517a0",
@@ -12334,9 +12269,8 @@
     "signature": "BOOL __thiscall(CCBRoleState *this, int nVal, int nVal2)"
   },
   "0x00457260": {
-    "name": "_misattrib_UIWnd::_nearby_457260",
-    "signature": "int *__thiscall(UIWnd *this)",
-    "_misattrib_evidence": "max_offset=823300>class_size=68"
+    "name": "DealData::_nearby_457260",
+    "signature": "int *__thiscall(UIWnd *this)"
   },
   "0x004573A0": {
     "name": "_misattrib_PalScript::_method_4573a0",
@@ -12412,9 +12346,8 @@
     "signature": "int __thiscall(PropUI *this, unsigned char pData)"
   },
   "0x0045B7A0": {
-    "name": "_misattrib_CCBUI::_init_45b7a0",
-    "signature": "unsigned char __thiscall(CCBUI *this, const void *arg0)",
-    "_misattrib_evidence": "max_offset=105904>class_size=2632"
+    "name": "PlayerMgr::_init_45b7a0",
+    "signature": "unsigned char __thiscall(CCBUI *this, const void *arg0)"
   },
   "0x0045E9F0": {
     "name": "CCBUIPanel::Layout_45e9f0",
@@ -12425,9 +12358,8 @@
     "signature": "bool __thiscall(CCBUI *this, float fVal)"
   },
   "0x00461C50": {
-    "name": "_misattrib_CCBUI::_init_461c50",
-    "signature": "void __thiscall(CCBUI *this, int nVal)",
-    "_misattrib_evidence": "max_offset=105884>class_size=2632"
+    "name": "PlayerMgr::_init_461c50",
+    "signature": "void __thiscall(CCBUI *this, int nVal)"
   },
   "0x00462030": {
     "name": "PAL3::_sub_462030",
@@ -12447,9 +12379,8 @@
     "signature": "void __thiscall(CCBSystem *this)"
   },
   "0x00469D90": {
-    "name": "_misattrib_CCBUI::_sub_469D90",
-    "signature": "void __thiscall(CCBUI *this, int nVal)",
-    "_misattrib_evidence": "max_offset=101496>class_size=2632"
+    "name": "PlayerMgr::_sub_469D90",
+    "signature": "void __thiscall(CCBUI *this, int nVal)"
   },
   "0x0046AEA0": {
     "name": "_misattrib_GRPinput::_auto_46aea0",
@@ -12481,34 +12412,28 @@
     "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
   },
   "0x0046DD10": {
-    "name": "_misattrib_UIListBox::_auto_46dd10",
-    "signature": "int __thiscall(UIListBox *this, const void *arg0)",
-    "_misattrib_evidence": "max_offset=28868>class_size=1208"
+    "name": "PropUI::_auto_46dd10",
+    "signature": "int __thiscall(UIListBox *this, const void *arg0)"
   },
   "0x0046DF10": {
-    "name": "_misattrib_ChoseCompose::_nearby_46df10",
-    "signature": "char __thiscall(UIWnd *this, int nVal)",
-    "_misattrib_evidence": "max_offset=13988>class_size=3770"
+    "name": "UIScenePanel::_nearby_46df10",
+    "signature": "char __thiscall(UIWnd *this, int nVal)"
   },
   "0x0046DF40": {
-    "name": "_misattrib_UIListBox::InitPlayerList",
-    "signature": "int __thiscall(UIListBox *this, int nVal)",
-    "_misattrib_evidence": "max_offset=28884>class_size=1208"
+    "name": "PropUI::InitPlayerList",
+    "signature": "int __thiscall(UIListBox *this, int nVal)"
   },
   "0x0046EC30": {
-    "name": "_misattrib_UIChatRest::RectIntersection_46ec30",
-    "signature": "int __thiscall(UIWnd *this, int nVal)",
-    "_misattrib_evidence": "max_offset=28876>class_size=9516"
+    "name": "PropUI::RectIntersection_46ec30",
+    "signature": "int __thiscall(UIWnd *this, int nVal)"
   },
   "0x0046EC50": {
-    "name": "_misattrib_UIChatRest::_nearby_46ec50",
-    "signature": "bool __thiscall(UIWnd *this, unsigned int dwVal)",
-    "_misattrib_evidence": "max_offset=28876>class_size=9516"
+    "name": "PropUI::_nearby_46ec50",
+    "signature": "bool __thiscall(UIWnd *this, unsigned int dwVal)"
   },
   "0x0046EC70": {
-    "name": "_misattrib_RoleSystem::_method_46ec70",
-    "signature": "int __thiscall(RoleSystem *this, unsigned char pData)",
-    "_misattrib_evidence": "max_offset=28324>class_size=8684"
+    "name": "PropUI::_method_46ec70",
+    "signature": "int __thiscall(RoleSystem *this, unsigned char pData)"
   },
   "0x0046F160": {
     "name": "PropUI::_unverified_46F160",
@@ -12531,29 +12456,24 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00471220": {
-    "name": "_misattrib_CCBUI::_init_471220",
-    "signature": "char __thiscall(CCBUI *this, unsigned char pData)",
-    "_misattrib_evidence": "max_offset=102436>class_size=2632"
+    "name": "PlayerMgr::_init_471220",
+    "signature": "char __thiscall(CCBUI *this, unsigned char pData)"
   },
   "0x004712D0": {
-    "name": "_misattrib_CCBUI::_init_4712d0",
-    "signature": "char __thiscall(CCBUI *this, unsigned char pData)",
-    "_misattrib_evidence": "max_offset=102436>class_size=2632"
+    "name": "PlayerMgr::_init_4712d0",
+    "signature": "char __thiscall(CCBUI *this, unsigned char pData)"
   },
   "0x00471380": {
-    "name": "_misattrib_CCBUI::_init_471380",
-    "signature": "char __thiscall(CCBUI *this, unsigned char pData)",
-    "_misattrib_evidence": "max_offset=102436>class_size=2632"
+    "name": "PlayerMgr::_init_471380",
+    "signature": "char __thiscall(CCBUI *this, unsigned char pData)"
   },
   "0x00471430": {
-    "name": "_misattrib_CCBUI::_init_471430",
-    "signature": "char __thiscall(CCBUI *this, unsigned char pData)",
-    "_misattrib_evidence": "max_offset=102436>class_size=2632"
+    "name": "PlayerMgr::_init_471430",
+    "signature": "char __thiscall(CCBUI *this, unsigned char pData)"
   },
   "0x004714E0": {
-    "name": "_misattrib_CCBUI::_init_4714e0",
-    "signature": "char __thiscall(CCBUI *this, unsigned char pData)",
-    "_misattrib_evidence": "max_offset=102436>class_size=2632"
+    "name": "PlayerMgr::_init_4714e0",
+    "signature": "char __thiscall(CCBUI *this, unsigned char pData)"
   },
   "0x00471590": {
     "name": "_misattrib_UIListBox::InitListView",
@@ -12643,9 +12563,8 @@
     "_misattrib_evidence": "max_offset=173944>class_size=1208"
   },
   "0x0047B0E0": {
-    "name": "_misattrib_Comp_DonateUI::_method_47b0e0",
-    "signature": "char __thiscall(Comp_DonateUI *this, int nVal)",
-    "_misattrib_evidence": "max_offset=167232>class_size=46192"
+    "name": "LineupUI::_method_47b0e0",
+    "signature": "char __thiscall(Comp_DonateUI *this, int nVal)"
   },
   "0x0047B140": {
     "name": "MainEquipUI::_method_47b140",
@@ -12689,9 +12608,8 @@
     "signature": "void __thiscall(UITitle_YXXX *this)"
   },
   "0x0047E030": {
-    "name": "_misattrib_Object3D::_nearby_47e030",
-    "signature": "int __thiscall(Object3D *this, int arg0)",
-    "_misattrib_evidence": "max_offset=3824>class_size=152"
+    "name": "ComposeUI::_nearby_47e030",
+    "signature": "int __thiscall(Object3D *this, int arg0)"
   },
   "0x0047E3E0": {
     "name": "UITitle_YXXX::Update",
@@ -12723,9 +12641,8 @@
     "signature": "int __thiscall(StateUI *this)"
   },
   "0x0047F450": {
-    "name": "_misattrib_Comp_DonateUI::_method_47f450",
-    "signature": "int __thiscall(Comp_DonateUI *this)",
-    "_misattrib_evidence": "max_offset=160116>class_size=46192"
+    "name": "StateUI::_method_47f450",
+    "signature": "int __thiscall(Comp_DonateUI *this)"
   },
   "0x0047F590": {
     "name": "LineupUI::_method_47f590",
@@ -12760,9 +12677,8 @@
     "signature": "int __thiscall(LineupUI *this)"
   },
   "0x00482C90": {
-    "name": "_misattrib_RenderTarget::_auto_482c90",
-    "signature": "int __thiscall(RenderTarget *this, int nVal)",
-    "_misattrib_evidence": "max_offset=154332>class_size=200"
+    "name": "StateUI::_auto_482c90",
+    "signature": "int __thiscall(RenderTarget *this, int nVal)"
   },
   "0x00482EC0": {
     "name": "UIWnd::_nearby_482ec0",
@@ -12817,14 +12733,12 @@
     "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
   },
   "0x00484F10": {
-    "name": "_misattrib_RenderTarget::_auto_484f10",
-    "signature": "int __thiscall(RenderTarget *this, int nVal)",
-    "_misattrib_evidence": "max_offset=154636>class_size=200"
+    "name": "StateUI::_auto_484f10",
+    "signature": "int __thiscall(RenderTarget *this, int nVal)"
   },
   "0x00485980": {
-    "name": "_misattrib_Object3D::_auto_485980",
-    "signature": "int __thiscall(Object3D *this)",
-    "_misattrib_evidence": "max_offset=160688>class_size=152"
+    "name": "StateUI::_auto_485980",
+    "signature": "int __thiscall(Object3D *this)"
   },
   "0x00485CD0": {
     "name": "StateUI::_method_485cd0",
@@ -12886,9 +12800,8 @@
     "_misattrib_evidence": "max_offset=217324>class_size=8704"
   },
   "0x00489ED0": {
-    "name": "_misattrib_UIListBox::_init_489ed0",
-    "signature": "int *__thiscall(UIListBox *this, int nVal, int arg4, int nVal2)",
-    "_misattrib_evidence": "max_offset=247060>class_size=1208"
+    "name": "MainPropUI::_init_489ed0",
+    "signature": "int *__thiscall(UIListBox *this, int nVal, int arg4, int nVal2)"
   },
   "0x0048A170": {
     "name": "CCBUIPanel::_init_48a170",
@@ -12979,9 +12892,8 @@
     "_misattrib_evidence": "max_offset=209892>class_size=200"
   },
   "0x0048F360": {
-    "name": "_misattrib_NPC::_auto_48f360",
-    "signature": "int __thiscall(NPC *this, int nVal, int nVal2)",
-    "_misattrib_evidence": "max_offset=4892>class_size=1152"
+    "name": "UITitle_XJTM::_auto_48f360",
+    "signature": "int __thiscall(NPC *this, int nVal, int nVal2)"
   },
   "0x0048F3A0": {
     "name": "RenderTarget::vfunc_6",
@@ -13026,9 +12938,8 @@
     "_misattrib_evidence": "max_offset=219752>class_size=4280"
   },
   "0x00496DD0": {
-    "name": "_misattrib_RenderTarget::_auto_496dd0",
-    "signature": "int __thiscall(RenderTarget *this, int nVal)",
-    "_misattrib_evidence": "max_offset=154500>class_size=200"
+    "name": "StateUI::_auto_496dd0",
+    "signature": "int __thiscall(RenderTarget *this, int nVal)"
   },
   "0x004970B0": {
     "name": "MainPropUI::_method_4970b0",
@@ -13039,9 +12950,8 @@
     "signature": "BOOL __thiscall(UIBigMap *this, int nVal, int nVal2)"
   },
   "0x00497450": {
-    "name": "_misattrib_NPC::_auto_497450",
-    "signature": "int __thiscall(NPC *this, int nVal, int nVal2)",
-    "_misattrib_evidence": "max_offset=9980>class_size=1152"
+    "name": "UIBigMap::_auto_497450",
+    "signature": "int __thiscall(NPC *this, int nVal, int nVal2)"
   },
   "0x00498810": {
     "name": "UIWnd::_nearby_498810",
@@ -13084,9 +12994,8 @@
     "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2)"
   },
   "0x0049E670": {
-    "name": "_misattrib_UIListBox::_init_49e670",
-    "signature": "void __thiscall(UIListBox *this)",
-    "_misattrib_evidence": "max_offset=195868>class_size=1208"
+    "name": "MainEquipUI::_init_49e670",
+    "signature": "void __thiscall(UIListBox *this)"
   },
   "0x0049E840": {
     "name": "EquipUI::_sub_49E840",
@@ -13121,9 +13030,8 @@
     "signature": "BOOL __thiscall(EquipUI *this, int nVal, int nVal2)"
   },
   "0x004A0330": {
-    "name": "_misattrib_NPC::_auto_4a0330",
-    "signature": "int __thiscall(NPC *this, int nVal, int nVal2)",
-    "_misattrib_evidence": "max_offset=4892>class_size=1152"
+    "name": "UITitle_XJTM::_auto_4a0330",
+    "signature": "int __thiscall(NPC *this, int nVal, int nVal2)"
   },
   "0x004A12E0": {
     "name": "UIItem::_nearby_4a12e0",
@@ -13178,14 +13086,12 @@
     "signature": "char __thiscall(UIWnd *this, char pData)"
   },
   "0x004A5760": {
-    "name": "_misattrib_RenderTarget::_auto_4a5760",
-    "signature": "int __thiscall(RenderTarget *this, int nVal)",
-    "_misattrib_evidence": "max_offset=154492>class_size=200"
+    "name": "StateUI::_auto_4a5760",
+    "signature": "int __thiscall(RenderTarget *this, int nVal)"
   },
   "0x004A6120": {
-    "name": "_misattrib_UIGameFrm::OnMessage",
-    "signature": "int __thiscall(UIGameFrm *this, int nVal, int nVal2, int nVal3)",
-    "_misattrib_evidence": "max_offset=154496>class_size=28188"
+    "name": "StateUI::OnMessage",
+    "signature": "int __thiscall(UIGameFrm *this, int nVal, int nVal2, int nVal3)"
   },
   "0x004A6600": {
     "name": "_misattrib_UIGameFrm::Destroy",
@@ -13311,9 +13217,8 @@
     "signature": "int __thiscall(UITitle_JDHY *this)"
   },
   "0x004B2470": {
-    "name": "_misattrib_Comp_DonateUI::_method_4b2470",
-    "signature": "int __thiscall(Comp_DonateUI *this)",
-    "_misattrib_evidence": "max_offset=158552>class_size=46192"
+    "name": "StateUI::_method_4b2470",
+    "signature": "int __thiscall(Comp_DonateUI *this)"
   },
   "0x004B2920": {
     "name": "UITitle_JDHY::_method_4b2920",
@@ -13335,9 +13240,8 @@
     "_misattrib_evidence": "max_offset=289576>class_size=1208"
   },
   "0x004B43E0": {
-    "name": "_misattrib_RenderTarget::_auto_4b43e0",
-    "signature": "int __thiscall(RenderTarget *this, int nVal)",
-    "_misattrib_evidence": "max_offset=154484>class_size=200"
+    "name": "StateUI::_auto_4b43e0",
+    "signature": "int __thiscall(RenderTarget *this, int nVal)"
   },
   "0x004B4610": {
     "name": "UIWnd::_nearby_4b4610",
@@ -13400,59 +13304,48 @@
     "signature": "int __thiscall(RenderTarget *this, int nVal)"
   },
   "0x004BB190": {
-    "name": "_misattrib_RenderTarget::_nearby_4bb190",
-    "signature": "int __thiscall(RenderTarget *this, int nVal)",
-    "_misattrib_evidence": "max_offset=234396>class_size=200"
+    "name": "CEffect::_nearby_4bb190",
+    "signature": "int __thiscall(RenderTarget *this, int nVal)"
   },
   "0x004BB330": {
-    "name": "_misattrib_RenderTarget::_auto_4bb330",
-    "signature": "int __thiscall(RenderTarget *this)",
-    "_misattrib_evidence": "max_offset=2864>class_size=200"
+    "name": "UISceneFrm::_auto_4bb330",
+    "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BB4E0": {
-    "name": "_misattrib_RenderTarget::_auto_4bb4e0",
-    "signature": "int __thiscall(RenderTarget *this)",
-    "_misattrib_evidence": "max_offset=2864>class_size=200"
+    "name": "UISceneFrm::_auto_4bb4e0",
+    "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BB690": {
-    "name": "_misattrib_RenderTarget::_auto_4bb690",
-    "signature": "int __thiscall(RenderTarget *this)",
-    "_misattrib_evidence": "max_offset=2864>class_size=200"
+    "name": "UISceneFrm::_auto_4bb690",
+    "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BB830": {
-    "name": "_misattrib_RenderTarget::_auto_4bb830",
-    "signature": "int __thiscall(RenderTarget *this)",
-    "_misattrib_evidence": "max_offset=2864>class_size=200"
+    "name": "UISceneFrm::_auto_4bb830",
+    "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BBA50": {
-    "name": "_misattrib_RenderTarget::_auto_4bba50",
-    "signature": "int __thiscall(RenderTarget *this)",
-    "_misattrib_evidence": "max_offset=2864>class_size=200"
+    "name": "UISceneFrm::_auto_4bba50",
+    "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BBCA0": {
-    "name": "_misattrib_RenderTarget::_auto_4bbca0",
-    "signature": "int __thiscall(RenderTarget *this)",
-    "_misattrib_evidence": "max_offset=2864>class_size=200"
+    "name": "UISceneFrm::_auto_4bbca0",
+    "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BBEB0": {
-    "name": "_misattrib_RenderTarget::_auto_4bbeb0",
-    "signature": "int __thiscall(RenderTarget *this)",
-    "_misattrib_evidence": "max_offset=2864>class_size=200"
+    "name": "UISceneFrm::_auto_4bbeb0",
+    "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BC0C0": {
-    "name": "_misattrib_RenderTarget::_auto_4bc0c0",
-    "signature": "int __thiscall(RenderTarget *this)",
-    "_misattrib_evidence": "max_offset=2864>class_size=200"
+    "name": "UISceneFrm::_auto_4bc0c0",
+    "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BC2D0": {
-    "name": "_misattrib_RenderTarget::_auto_4bc2d0",
-    "signature": "int __thiscall(RenderTarget *this)",
-    "_misattrib_evidence": "max_offset=2864>class_size=200"
+    "name": "UISceneFrm::_auto_4bc2d0",
+    "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BC4E0": {
-    "name": "_misattrib_RenderTarget::_auto_4bc4e0",
-    "signature": "int __thiscall(RenderTarget *this)",
-    "_misattrib_evidence": "max_offset=2864>class_size=200"
+    "name": "UISceneFrm::_auto_4bc4e0",
+    "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BC750": {
     "name": "RenderTarget::_nearby_4bc750",
@@ -13478,9 +13371,8 @@
     "signature": "char __thiscall(RenderTarget *this, const char *pszName)"
   },
   "0x004BD7A0": {
-    "name": "_misattrib_RenderTarget::_nearby_4bd7a0",
-    "signature": "int *__thiscall(RenderTarget *this, int nVal)",
-    "_misattrib_evidence": "max_offset=234564>class_size=200"
+    "name": "CEffect::_nearby_4bd7a0",
+    "signature": "int *__thiscall(RenderTarget *this, int nVal)"
   },
   "0x004BD7C0": {
     "name": "_misattrib_RenderTarget::_nearby_4bd7c0",
@@ -14857,14 +14749,12 @@
     "signature": "char __stdcall UIWnd::CreateFromTemplate(int *pParam)"
   },
   "0x0051F130": {
-    "name": "_misattrib_CCBStageRole::_nearby_51f130",
-    "signature": "int __thiscall(CCBStageRole *this)",
-    "_misattrib_evidence": "max_offset=507440>class_size=6848"
+    "name": "SystemUI::_nearby_51f130",
+    "signature": "int __thiscall(CCBStageRole *this)"
   },
   "0x0051F1B0": {
-    "name": "_misattrib_CCBResultWindow::OnMessage",
-    "signature": "int __thiscall(CCBResultWindow *this, int nVal, int nVal2, int nVal3)",
-    "_misattrib_evidence": "max_offset=671128>class_size=180"
+    "name": "CCBStage::OnMessage",
+    "signature": "int __thiscall(CCBResultWindow *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00521A50": {
     "name": "PropUI::_unverified_521A50",
@@ -15099,9 +14989,8 @@
     "signature": "int __thiscall(PalScript *this)"
   },
   "0x0052BEB0": {
-    "name": "_misattrib_UIItem::_init_52beb0",
-    "signature": "void __thiscall(UIItem *this)",
-    "_misattrib_evidence": "max_offset=12948>class_size=232"
+    "name": "Camera::_init_52beb0",
+    "signature": "void __thiscall(UIItem *this)"
   },
   "0x0052C8A0": {
     "name": "UIBigMap::_method_52c8a0",
@@ -15120,9 +15009,8 @@
     "signature": "int __thiscall(UIScenePanel *this, int arg0, int nVal, int nVal2, int nVal3, int nVal4)"
   },
   "0x0052D200": {
-    "name": "_misattrib_Actor::_init_52d200",
-    "signature": "char __thiscall(Actor *this, int nVal)",
-    "_misattrib_evidence": "max_offset=2104>class_size=596"
+    "name": "UIRoleSelectDialog::_init_52d200",
+    "signature": "char __thiscall(Actor *this, int nVal)"
   },
   "0x0052D7C0": {
     "name": "UIWnd::_nearby_52d7c0",
@@ -16054,9 +15942,8 @@
     "signature": "void __cdecl(unsigned short *pBuf, struct gbVFile *pFile)"
   },
   "0x0044DB70": {
-    "name": "_misattrib_SoundSystem::StopAllSounds",
-    "signature": "int __thiscall(SoundSystem *this, float fFade, int nFlags)",
-    "_misattrib_evidence": "max_offset=14080>class_size=4"
+    "name": "UIScenePanel::StopAllSounds",
+    "signature": "int __thiscall(SoundSystem *this, float fFade, int nFlags)"
   },
   "0x00450560": {
     "name": "CameraCtrl::WorldToScreen",
