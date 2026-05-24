@@ -119,13 +119,18 @@ def check():
                 errors.append(f"structs[{sname}]: duplicate member '{mname}' at offsets {names_seen[mname]} and {off}")
             names_seen[mname] = off
 
-        # Union-specific validation: all members must be at offset 0
+        # Union-specific validation
         if is_union:
+            binary_sz = sinfo.get('binary_size', 0)
             for off, m in members.items():
                 real_off = int(off.split('_')[0])
                 if real_off != 0:
                     errors.append(f"union[{sname}]: member '{m.get('name')}' at +{real_off} (must be 0)")
-            # Skip overlap checks for unions (overlapping at offset 0 is expected)
+                # Each union member size must fit within binary_size
+                msz = _estimate_member_size(m.get('type', 'int'), structs)
+                if msz > binary_sz:
+                    errors.append(f"union[{sname}]: member '{m.get('name')}' size {msz} > binary_size {binary_sz}")
+            # Unions cannot have base_class
             base = sinfo.get('base_class')
             if base:
                 errors.append(f"union[{sname}]: unions cannot have base_class")
