@@ -686,9 +686,15 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             include_types.add(b)
             fwd_types.discard(b)
 
-    # Determine keyword: union/struct/class based on IDA struct kind
-    _type_kind = (pdb_class or {}).get('kind', 'struct')
-    if _type_kind == 'union':
+    # Determine keyword: union only if ANNOTATION explicitly marks is_union
+    # (IDA TIL may misdetect some PDB types as union)
+    _ann_is_union = False
+    try:
+        _ann_check = load_annotations_data()
+        _ann_is_union = _ann_check.get('structs', {}).get(cls_name, {}).get('is_union', False)
+    except:
+        pass
+    if _ann_is_union:
         lines.append("union %s {" % cls_name)
     else:
         lines.append("class %s%s {" % (cls_name, bases_str))
