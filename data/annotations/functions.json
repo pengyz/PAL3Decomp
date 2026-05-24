@@ -7606,11 +7606,6 @@
     "name": "CScreenMode::_init_52c480",
     "signature": "double __thiscall(CScreenMode *this, int edi0, double result, int result_4, int nVal)"
   },
-  "0x0052F6C0": {
-    "name": "_misattrib_OBBox::_auto_52f6c0",
-    "signature": "gbOBBox *__thiscall(OBBox *this)",
-    "_misattrib_evidence": "max_offset=3648>class_size=76"
-  },
   "0x00533250": {
     "name": "CScreenMode::LoadScreenScene",
     "signature": "double __thiscall(CScreenMode *this, double result, float result_4)"
@@ -9366,7 +9361,7 @@
   },
   "0x004B5D20": {
     "name": "_TextureLib_Data::_auto_4b5d20",
-    "signature": "void __thiscall(unsigned _TextureLib_Data *this, int nVal, int nVal2, int nVal3, int nVal4)"
+    "signature": "void __thiscall(_TextureLib_Data *this, int nVal, int nVal2, int nVal3, int nVal4)"
   },
   "0x004B5EE0": {
     "name": "_TextureLib_Data::_auto_4b5ee0",
@@ -11053,10 +11048,6 @@
   "0x00431780": {
     "name": "PalScript::_nearby_431780",
     "signature": "int __thiscall(PalScript *this, int nVal)"
-  },
-  "0x004317D0": {
-    "name": "std::_auto_4317d0",
-    "signature": "int __thiscall(std *this, unsigned int dwVal, unsigned int dwVal2, const char *pszName, unsigned int dwVal3)"
   },
   "0x004319C0": {
     "name": "PalScript::_sub_4319C0",
@@ -16332,5 +16323,9 @@
   "0x00469D40": {
     "name": "CCBUI::_sub_469D40",
     "signature": "unsigned char __thiscall(CCBUI *this)"
+  },
+  "0x0052F6C0": {
+    "name": "OBBox::GetBBox",
+    "signature": "OBBox *__thiscall(OBBox *this)"
   }
 }
