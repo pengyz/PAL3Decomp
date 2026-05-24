@@ -177,19 +177,19 @@
       "source": "B:naming_m_n+FPU_misattrib"
     },
     "756": {
-      "name": "_todo_2F4",
+      "name": "m_nCamState",
       "type": "int",
-      "source": "binary:gap_r2"
+      "source": "decomp:Init_set_0"
     },
     "760": {
-      "name": "_todo_2F8",
+      "name": "m_fCamPosX",
       "type": "float",
-      "source": "binary:gap_r2"
+      "source": "decomp:Init_position_pair_with_764"
     },
     "764": {
-      "name": "_todo_2FC",
+      "name": "m_fCamPosZ",
       "type": "float",
-      "source": "binary:gap_r2"
+      "source": "decomp:Init_position_pair_with_760"
     },
     "768": {
       "name": "m_fInit",
@@ -197,14 +197,14 @@
       "source": "binary:gap_r2"
     },
     "772": {
-      "name": "_todo_304",
+      "name": "m_fCamTargX",
       "type": "float",
-      "source": "binary:gap_r2"
+      "source": "decomp:Init_position_pair_with_776"
     },
     "776": {
-      "name": "_todo_308",
+      "name": "m_fCamTargZ",
       "type": "float",
-      "source": "binary:gap_r2"
+      "source": "decomp:Init_position_pair_with_772"
     },
     "780": {
       "name": "m_fInitBlend",
@@ -212,9 +212,9 @@
       "source": "binary:gap_r2 | name_fix:=0.0_in_Init"
     },
     "820": {
-      "name": "_todo_334",
+      "name": "m_fDirSinC",
       "type": "float",
-      "source": "reverted:gbVec3D_overlap_with_824"
+      "source": "decomp:rotation_formula_paired_with_828"
     },
     "824": {
       "name": "m_fBlendC",
@@ -222,14 +222,14 @@
       "source": "binary:gap_r2 | type_fix:float→int_raw_decomp | name_fix:=0.0_then_=0.5_blend_factor"
     },
     "828": {
-      "name": "_todo_33C",
+      "name": "m_fDirCosC",
       "type": "float",
-      "source": "binary:gap_r2"
+      "source": "decomp:rotation_formula_cos_component"
     },
     "832": {
-      "name": "_todo_340",
+      "name": "m_fDirSinD",
       "type": "float",
-      "source": "binary:gap_r2"
+      "source": "decomp:rotation_formula_paired_with_840"
     },
     "836": {
       "name": "m_fBlendD",
@@ -237,14 +237,14 @@
       "source": "binary:gap_r2 | name_fix:=0.0_then_=0.5_blend_factor"
     },
     "840": {
-      "name": "_todo_348",
+      "name": "m_fDirCosD",
       "type": "float",
-      "source": "binary:gap_r2"
+      "source": "decomp:rotation_formula_cos_component"
     },
     "844": {
-      "name": "_todo_34C",
+      "name": "m_fDirSinE",
       "type": "float",
-      "source": "binary:gap_r2"
+      "source": "decomp:rotation_formula_paired_with_EnemyFiveLineupQuad"
     },
     "848": {
       "name": "m_fBlendE",
@@ -327,9 +327,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "684": {
-      "name": "_todo_2AC",
+      "name": "m_fDirSinA",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | DEFER:vec3d_evidence_conflicts_with_688_692_members"
+      "source": "decomp:rotation_formula_sin_component"
     },
     "688": {
       "name": "m_fBlendA",
@@ -337,9 +337,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast | name_fix:=0.0_then_=0.5_blend_factor"
     },
     "720": {
-      "name": "_todo_2D0",
+      "name": "m_fDirSinB",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "decomp:rotation_formula_sin_component"
     },
     "724": {
       "name": "m_fBlendB",
@@ -347,24 +347,24 @@
       "source": "raw_decomp:Hex-Rays_type_cast | name_fix:=0.0_then_=0.5_blend_factor"
     },
     "728": {
-      "name": "_todo_2D8",
+      "name": "m_fDirCosB",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "decomp:rotation_formula_cos_component"
     },
     "788": {
-      "name": "_todo_314",
+      "name": "m_fBlendTime",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "decomp:Init_time_value"
     },
     "792": {
-      "name": "_todo_318",
+      "name": "m_nBlendState",
       "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "decomp:Init_set_0_state"
     },
     "796": {
-      "name": "_todo_31C",
+      "name": "m_fBlendSpeed",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "decomp:Init_speed_value"
     },
     "152": {
       "name": "m_fLineupDefaultX",
@@ -382,9 +382,9 @@
       "source": "gap_fill:ida_decomp_access | name_fix:assigned_to_vecFiveLineup[1-5].z"
     },
     "676": {
-      "name": "_todo_2A4",
+      "name": "m_nFlingState",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "decomp:assigned_from_int_ptr_deref"
     },
     "920": {
       "name": "m_vecFiveLineupPos",
