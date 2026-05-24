@@ -796,7 +796,7 @@
     "signature": "gbVFileSystem *__thiscall(PalScript *this, const char *pszName, char pData)"
   },
   "0x0043AB00": {
-    "name": "UIScenePanel::UpdateChildren",
+    "name": "UIScenePanel::Destroy",
     "signature": "void __thiscall(UIScenePanel *this)"
   },
   "0x0043AB20": {
@@ -804,7 +804,7 @@
     "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)"
   },
   "0x0043AD40": {
-    "name": "UIScenePanel::GetID",
+    "name": "UIScenePanel::Render",
     "signature": "int __thiscall(UIScenePanel *this)"
   },
   "0x0043BE30": {
@@ -844,11 +844,11 @@
     "signature": "int __thiscall(UIListBox *this, int id, int pRect, int nVal, int nVal2, int nVal3, int nVal4)"
   },
   "0x0043DDF0": {
-    "name": "CCBMagicWindow::GetID",
+    "name": "CCBMagicWindow::Render",
     "signature": "int __thiscall(CCBMagicWindow *this)"
   },
   "0x0043DE40": {
-    "name": "UICoverFrm::UpdateChildren",
+    "name": "UICoverFrm::Destroy",
     "signature": "void __thiscall(UICoverFrm *this)"
   },
   "0x0043DE90": {
@@ -912,11 +912,11 @@
     "signature": "int __thiscall(UIListBox *this, int sel)"
   },
   "0x0043E480": {
-    "name": "UIListBox::SendMessage",
+    "name": "UIListBox::OnMessage",
     "signature": "int __thiscall(UIListBox *this, int height, int nVal, int nVal2)"
   },
   "0x0043E520": {
-    "name": "UIListBox::UpdateChildren",
+    "name": "UIListBox::Destroy",
     "signature": "void __thiscall(UIListBox *this)"
   },
   "0x0043E560": {
@@ -932,7 +932,7 @@
     "signature": "gbVFileSystem *__thiscall(UIListBox *this, int movesel, int nVal, char *Source, int nVal2)"
   },
   "0x0043E8A0": {
-    "name": "UIListBox::GetID",
+    "name": "UIListBox::Render",
     "signature": "int __thiscall(UIListBox *this)"
   },
   "0x0043EBA0": {
@@ -988,7 +988,7 @@
     "signature": "void __thiscall(UIFrameWnd *this)"
   },
   "0x00442420": {
-    "name": "UIFrameWnd::UpdateChildren",
+    "name": "UIFrameWnd::Destroy",
     "signature": "void __thiscall(UIFrameWnd *this)"
   },
   "0x004426B0": {
@@ -1016,7 +1016,7 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00445920": {
-    "name": "UIAnimateCtrlEX::UpdateChildren",
+    "name": "UIAnimateCtrlEX::Destroy",
     "signature": "int __thiscall(UIAnimateCtrlEX *this)"
   },
   "0x00445930": {
@@ -1028,7 +1028,7 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00445C10": {
-    "name": "UIWnd::UpdateChildren",
+    "name": "UIWnd::Destroy",
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00445C60": {
@@ -1036,11 +1036,11 @@
     "signature": "BOOL __thiscall(UIWnd *this, int x, int y)"
   },
   "0x00445CD0": {
-    "name": "UIWnd::GetID",
+    "name": "UIWnd::Render",
     "signature": "int __thiscall(UIWnd *this)"
   },
   "0x00445D10": {
-    "name": "UIWnd::SendMessage",
+    "name": "UIWnd::OnMessage",
     "signature": "int __thiscall(UIWnd *this, int nVal, int nMsg, int wParam)"
   },
   "0x00445DB0": {
@@ -3769,11 +3769,11 @@
     "signature": "void __thiscall(CCBUI *this, int nCount)"
   },
   "0x00519510": {
-    "name": "CCBUI::UpdateChildren_9510",
+    "name": "CCBUI::Destroy",
     "signature": "void __thiscall(CCBUI *this)"
   },
   "0x005195E0": {
-    "name": "CCBUI::SendMessage",
+    "name": "CCBUI::OnMessage",
     "signature": "int __thiscall(CCBUI *this, int pt, unsigned int area, int nVal)"
   },
   "0x00519660": {
@@ -3805,11 +3805,11 @@
     "signature": "char(CCBUI *this, int parent, int id, int rc, int picname, UIButton **a6, int nVal)"
   },
   "0x00519F50": {
-    "name": "CCBUI::UpdateChildren_9f50",
+    "name": "CCBUI::Destroy",
     "signature": "void __thiscall(CCBUI *this)"
   },
   "0x00519FE0": {
-    "name": "CCBUI::SendMessage_9fe0",
+    "name": "CCBUI::OnMessage",
     "signature": "int __thiscall(CCBUI *this, int nVal, unsigned int dwVal, int nVal2)"
   },
   "0x0051A090": {
@@ -3849,11 +3849,11 @@
     "signature": "void __thiscall(CCBControlWindow *this)"
   },
   "0x0051A880": {
-    "name": "CCBUI::UpdateChildren_a880",
+    "name": "CCBUI::Destroy",
     "signature": "int __thiscall(CCBUI *this)"
   },
   "0x0051A930": {
-    "name": "CCBUI::SendMessage_a930",
+    "name": "CCBUI::OnMessage",
     "signature": "int __thiscall(CCBUI *this, int nVal, unsigned int dwVal, int nVal2)"
   },
   "0x0051AA20": {
@@ -3889,7 +3889,7 @@
     "signature": "char __thiscall(CCBControlWindow *this, int *pRect, int parent)"
   },
   "0x0051AFE0": {
-    "name": "CCBControlWindow::UpdateChildren",
+    "name": "CCBControlWindow::Destroy",
     "signature": "void __thiscall(CCBControlWindow *this)"
   },
   "0x0051B0B0": {
@@ -3917,7 +3917,7 @@
     "signature": "char __thiscall(CCBItemWindow *this, int *pRect, int parent)"
   },
   "0x0051B4B0": {
-    "name": "CCBItemWindow::UpdateChildren",
+    "name": "CCBItemWindow::Destroy",
     "signature": "int __thiscall(CCBItemWindow *this)"
   },
   "0x0051B570": {
@@ -3949,7 +3949,7 @@
     "signature": "void __thiscall(CCBParabolaWindow *this)"
   },
   "0x0051B860": {
-    "name": "CCBMagicWindow::SendMessage",
+    "name": "CCBMagicWindow::OnMessage",
     "signature": "int __thiscall(CCBMagicWindow *this, int nVal, int nVal2, int nVal3)"
   },
   "0x0051B920": {
@@ -4001,7 +4001,7 @@
     "signature": "char __thiscall(CCBMagicWindow *this, int *ppButton, int id)"
   },
   "0x0051C110": {
-    "name": "CCBMagicWindow::UpdateChildren",
+    "name": "CCBMagicWindow::Destroy",
     "signature": "void __thiscall(CCBMagicWindow *this)"
   },
   "0x0051C1B0": {
@@ -4029,11 +4029,11 @@
     "signature": "char __thiscall(CCBSkillWindow *this, int *pRect, int parent)"
   },
   "0x0051C880": {
-    "name": "CCBSkillWindow::UpdateChildren",
+    "name": "CCBSkillWindow::Destroy",
     "signature": "int __thiscall(CCBSkillWindow *this)"
   },
   "0x0051C9B0": {
-    "name": "CCBSkillWindow::SendMessage",
+    "name": "CCBSkillWindow::OnMessage",
     "signature": "int __thiscall(CCBSkillWindow *this, int msg, int wparam, int lparam)"
   },
   "0x0051C9F0": {
@@ -4045,7 +4045,7 @@
     "signature": "CCBAIWindow *__thiscall(CCBSkillWindow *this, int nVal)"
   },
   "0x0051CAA0": {
-    "name": "CCBSkillWindow::GetID",
+    "name": "CCBSkillWindow::Render",
     "signature": "int __thiscall(CCBSkillWindow *this)"
   },
   "0x0051CB60": {
@@ -4973,7 +4973,7 @@
     "signature": "void ()"
   },
   "0x00445B90": {
-    "name": "UIWnd::_unverified_445B90",
+    "name": "UIWnd::Create",
     "signature": "int __thiscall(UIWnd *this, int id, tagRECT *pRect, int parent)"
   },
   "0x0053CEF0": {
@@ -5382,7 +5382,7 @@
     "signature": "int()"
   },
   "0x00454590": {
-    "name": "CCBUIPanel::SendMessage_4590",
+    "name": "CCBUIPanel::OnMessage",
     "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00445010": {
@@ -5518,7 +5518,7 @@
     "signature": "void __thiscall(UIRoleSelectDialog *this)"
   },
   "0x00445E70": {
-    "name": "UIWnd::_unverified_445E70",
+    "name": "UIWnd::ShowWindow",
     "signature": "int __thiscall(UIWnd *this, int nFlags)"
   },
   "0x00422110": {
@@ -5762,7 +5762,7 @@
     "signature": "void __thiscall(UISceneFrm *this)"
   },
   "0x0044A540": {
-    "name": "CCBUIPanel::SendMessage",
+    "name": "CCBUIPanel::OnMessage",
     "signature": "int __thiscall(CCBUIPanel *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00439030": {
@@ -5914,7 +5914,7 @@
     "signature": "void __thiscall(PAL3 *this)"
   },
   "0x00526A40": {
-    "name": "CCBUI::SendMessage_6a40",
+    "name": "CCBUI::OnMessage",
     "signature": "int __thiscall(CCBUI *this, int nVal, int (__stdcall *a3)(int a2), int nVal2)"
   },
   "0x0041CA90": {
@@ -7426,7 +7426,7 @@
     "signature": "int __thiscall(SaleUI *this, int deltatime, int haveinput)"
   },
   "0x0046B4B0": {
-    "name": "UIListBox::SendMessage",
+    "name": "UIListBox::OnMessage",
     "signature": "int __thiscall(UIListBox *this, int nVal, char *pszBuf, int nVal2)"
   },
   "0x00473B50": {
@@ -7438,7 +7438,7 @@
     "signature": "int __thiscall(CCBMagicWindow *this, struct PalScript *p, int nVal)"
   },
   "0x004974A0": {
-    "name": "UIBigMap::SendMessage",
+    "name": "UIBigMap::OnMessage",
     "signature": "int __thiscall(UIBigMap *this, int nVal, char *pszBuf, int nItemID)"
   },
   "0x0049A360": {
@@ -8142,11 +8142,11 @@
     "signature": "void __thiscall(UIScene *this)"
   },
   "0x0043BB90": {
-    "name": "UIWnd::ScalarDtor",
+    "name": "UIWnd::_scalar_dtor",
     "signature": "UIWnd *__thiscall UIWnd::ScalarDtor(UIWnd *this, char flags)"
   },
   "0x0043BBC0": {
-    "name": "UIScene::_nearby_43bbc0",
+    "name": "UIWnd::Update",
     "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)"
   },
   "0x0043BCC0": {
@@ -8174,7 +8174,7 @@
     "signature": "gbVFileSystem *__thiscall(UI3DCtrl *this, int id, void *pRect, int nVal, unsigned int dwVal, int parent)"
   },
   "0x0043D940": {
-    "name": "UI3DCtrl::GetID",
+    "name": "UI3DCtrl::Render",
     "signature": "void __thiscall(UI3DCtrl *this)"
   },
   "0x0043EBE0": {
@@ -8246,11 +8246,11 @@
     "signature": "gbVFileSystem *__thiscall(RoleCameraCtrl *this, gbVFileSystem *pVFileSystem, char pData)"
   },
   "0x004414D0": {
-    "name": "UIMap::UpdateChildren",
+    "name": "UIMap::Destroy",
     "signature": "void __thiscall(UIMap *this)"
   },
   "0x004414F0": {
-    "name": "UIMap::GetID",
+    "name": "UIMap::Render",
     "signature": "void __thiscall(UIMap *this)"
   },
   "0x00441730": {
@@ -8310,11 +8310,11 @@
     "signature": "gbVFileSystem *__thiscall(CCBFiveNimbusWindow *this, int id, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, const char *pszName, int parent)"
   },
   "0x004438F0": {
-    "name": "CCBFiveNimbusWindow::UpdateChildren",
+    "name": "CCBFiveNimbusWindow::Destroy",
     "signature": "void __thiscall(CCBFiveNimbusWindow *this)"
   },
   "0x00443950": {
-    "name": "CCBFiveNimbusWindow::GetID",
+    "name": "CCBFiveNimbusWindow::Render",
     "signature": "void **__thiscall(CCBFiveNimbusWindow *this)"
   },
   "0x00443970": {
@@ -8338,11 +8338,11 @@
     "signature": "BOOL __thiscall(UIAnimateCtrlEX *this, int nVal, int nVal2)"
   },
   "0x00445500": {
-    "name": "UIAnimateCtrlEX::GetID",
+    "name": "UIAnimateCtrlEX::Render",
     "signature": "void __thiscall(UIAnimateCtrlEX *this)"
   },
   "0x00445720": {
-    "name": "UIAnimateCtrlEX::Destroy",
+    "name": "UIAnimateCtrlEX::ShowWindow",
     "signature": "void __thiscall(UIAnimateCtrlEX *this)"
   },
   "0x00445860": {
@@ -8398,7 +8398,7 @@
     "signature": "void *__thiscall(UIWnd *this)"
   },
   "0x0044A870": {
-    "name": "CCBProtectWindow::GetID",
+    "name": "CCBProtectWindow::Render",
     "signature": "void __thiscall(CCBProtectWindow *this)"
   },
   "0x0044A970": {
@@ -8506,7 +8506,7 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00450670": {
-    "name": "UIDialog::UpdateChildren",
+    "name": "UIDialog::Destroy",
     "signature": "void __thiscall(UIDialog *this)"
   },
   "0x004506F0": {
@@ -8518,7 +8518,7 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00450990": {
-    "name": "UILoadingFrm::SendMessage",
+    "name": "UILoadingFrm::OnMessage",
     "signature": "int __thiscall(UILoadingFrm *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00450A40": {
@@ -8542,11 +8542,11 @@
     "signature": "int __thiscall(UISceneMap *this, const char *arg0, int nVal)"
   },
   "0x004512F0": {
-    "name": "CCBFiveNimbusWindow::GetID_12f0",
+    "name": "CCBFiveNimbusWindow::Render",
     "signature": "void **__thiscall(CCBFiveNimbusWindow *this)"
   },
   "0x00451320": {
-    "name": "CCBFiveNimbusWindow::UpdateChildren_1320",
+    "name": "CCBFiveNimbusWindow::Destroy",
     "signature": "void __thiscall(CCBFiveNimbusWindow *this)"
   },
   "0x00451830": {
@@ -8586,7 +8586,7 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00452AA0": {
-    "name": "UIAnimateCtrlEX::GetID_2aa0",
+    "name": "UIAnimateCtrlEX::Render",
     "signature": "void **__thiscall(UIAnimateCtrlEX *this)"
   },
   "0x00452FB0": {
@@ -8710,7 +8710,7 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00459360": {
-    "name": "UISceneFrm::UpdateChildren",
+    "name": "UISceneFrm::Destroy",
     "signature": "void __thiscall(UISceneFrm *this)"
   },
   "0x004593C0": {
@@ -8726,7 +8726,7 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0045A600": {
-    "name": "UISceneFrm::SendMessage",
+    "name": "UISceneFrm::OnMessage",
     "signature": "int __thiscall(UISceneFrm *this, int nVal, int nVal2, int nVal3)"
   },
   "0x0045A790": {
@@ -8814,7 +8814,7 @@
     "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x0047B200": {
-    "name": "MainEquipUI::GetID",
+    "name": "MainEquipUI::Render",
     "signature": "char __thiscall(MainEquipUI *this)"
   },
   "0x0047BBD0": {
@@ -8826,7 +8826,7 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x0047BDF0": {
-    "name": "UITitle_ArcSave::UpdateChildren",
+    "name": "UITitle_ArcSave::Destroy",
     "signature": "void __thiscall(UITitle_ArcSave *this)"
   },
   "0x0047BE20": {
@@ -8986,7 +8986,7 @@
     "signature": "int __thiscall(MagicUI *this, char pData)"
   },
   "0x00496FA0": {
-    "name": "UIBigMap::GetID",
+    "name": "UIBigMap::Render",
     "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x00498800": {
@@ -9050,7 +9050,7 @@
     "signature": "int __thiscall(PalScript *this)"
   },
   "0x004A5930": {
-    "name": "UIGameFrm::GetID",
+    "name": "UIGameFrm::Render",
     "signature": "void __thiscall(UIGameFrm *this)"
   },
   "0x004A5A80": {
@@ -9906,7 +9906,7 @@
     "signature": "float *__thiscall(CCBStageShadow *this)"
   },
   "0x005164D0": {
-    "name": "CCBUI::UpdateChildren",
+    "name": "CCBUI::Destroy",
     "signature": "void __thiscall(CCBUI *this)"
   },
   "0x00516940": {
@@ -9978,7 +9978,7 @@
     "signature": "gbGeomNode *__thiscall(PAL_GDB *this)"
   },
   "0x00526660": {
-    "name": "CCBUI::GetID",
+    "name": "CCBUI::Render",
     "signature": "void __thiscall(CCBUI *this)"
   },
   "0x005269B0": {
@@ -10018,7 +10018,7 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00528ED0": {
-    "name": "JusticeBookUI::GetID",
+    "name": "JusticeBookUI::Render",
     "signature": "void __thiscall(JusticeBookUI *this)"
   },
   "0x00529440": {
@@ -10046,7 +10046,7 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00529CF0": {
-    "name": "UIRoleSelectDialog::GetID",
+    "name": "UIRoleSelectDialog::Render",
     "signature": "int __thiscall(UIRoleSelectDialog *this)"
   },
   "0x0052AED0": {
@@ -10090,7 +10090,7 @@
     "signature": "void __thiscall(UIFrameWnd *this)"
   },
   "0x0052C450": {
-    "name": "UICoverFrm::GetID",
+    "name": "UICoverFrm::Render",
     "signature": "int __thiscall(UICoverFrm *this)"
   },
   "0x0052DD40": {
@@ -10334,7 +10334,7 @@
     "signature": "void __cdecl __thiscall(UIListBox *this)"
   },
   "0x00408BD0": {
-    "name": "UISceneMap::UpdateChildren",
+    "name": "UISceneMap::Destroy",
     "signature": "void __thiscall(void *)"
   },
   "0x0040C9A0": {
@@ -11478,7 +11478,7 @@
     "signature": "void __thiscall(UIScene *this)"
   },
   "0x0043D920": {
-    "name": "CCBProtectWindow::UpdateChildren",
+    "name": "CCBProtectWindow::Destroy",
     "signature": "void __thiscall(CCBProtectWindow *this)"
   },
   "0x0043DAB0": {
@@ -11510,7 +11510,7 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0043F9C0": {
-    "name": "UIButton::UpdateChildren",
+    "name": "UIButton::Destroy",
     "signature": "void __thiscall(UIButton *this)"
   },
   "0x0043FBC0": {
@@ -11526,7 +11526,7 @@
     "signature": "int __thiscall(UIButton *this, int id, int *pRect, int parent)"
   },
   "0x0043FF70": {
-    "name": "UIButton::GetID",
+    "name": "UIButton::Render",
     "signature": "int __thiscall(UIButton *this)"
   },
   "0x00440730": {
@@ -11558,7 +11558,7 @@
     "signature": "int __thiscall(UIWnd *this, int nVal)"
   },
   "0x004420C0": {
-    "name": "UIMap::SendMessage",
+    "name": "UIMap::OnMessage",
     "signature": "int __thiscall(UIMap *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00442100": {
@@ -11606,7 +11606,7 @@
     "signature": "int __thiscall(UIBigMap *this, int deltatime, int haveinput)"
   },
   "0x00443200": {
-    "name": "UIFrameWnd::GetID",
+    "name": "UIFrameWnd::Render",
     "signature": "void __thiscall(UIFrameWnd *this)"
   },
   "0x004433C0": {
@@ -11894,7 +11894,7 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00450230": {
-    "name": "UISceneMap::GetID",
+    "name": "UISceneMap::Render",
     "signature": "int __thiscall(UISceneMap *this)"
   },
   "0x00450310": {
@@ -11934,11 +11934,11 @@
     "signature": "void __thiscall(RoleCameraCtrl *this)"
   },
   "0x00450C60": {
-    "name": "UINote::SendMessage",
+    "name": "UINote::OnMessage",
     "signature": "int __thiscall(UINote *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00450D00": {
-    "name": "UINote::Destroy",
+    "name": "UINote::ShowWindow",
     "signature": "void __thiscall(UINote *this)"
   },
   "0x00450DB0": {
@@ -11962,7 +11962,7 @@
     "signature": "int __thiscall(UIBigMap *this, LPCSTR lpString1, int haveinput)"
   },
   "0x004515A0": {
-    "name": "CCBFiveNimbusWindow::SendMessage",
+    "name": "CCBFiveNimbusWindow::OnMessage",
     "signature": "int __thiscall(CCBFiveNimbusWindow *this, int nVal, LPCSTR lpString1, int nVal2)"
   },
   "0x004515E0": {
@@ -11974,7 +11974,7 @@
     "signature": "int __thiscall(UIWnd *this)"
   },
   "0x00451740": {
-    "name": "CCBFiveNimbusWindow::Destroy",
+    "name": "CCBFiveNimbusWindow::ShowWindow",
     "signature": "void __thiscall(CCBFiveNimbusWindow *this)"
   },
   "0x004517A0": {
@@ -11994,7 +11994,7 @@
     "signature": "void __fastcall(UIWnd *pWnd)"
   },
   "0x00451AA0": {
-    "name": "UILoadingFrm::SendMessage_1aa0",
+    "name": "UILoadingFrm::OnMessage",
     "signature": "int __thiscall(UILoadingFrm *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00451B40": {
@@ -12014,7 +12014,7 @@
     "signature": "int __thiscall(UI3DCtrl *this, int parent)"
   },
   "0x00452420": {
-    "name": "UITitle_BBTY::SendMessage",
+    "name": "UITitle_BBTY::OnMessage",
     "signature": "int __thiscall(UITitle_BBTY *this, int nVal, int nVal2, int nVal3)"
   },
   "0x004524B0": {
@@ -12182,7 +12182,7 @@
     "signature": "short __thiscall(CCBUI *this, _WORD *p_WORD)"
   },
   "0x0045A490": {
-    "name": "UISceneFrm::GetID",
+    "name": "UISceneFrm::Render",
     "signature": "int __thiscall(UISceneFrm *this)"
   },
   "0x0045A7A0": {
@@ -12430,7 +12430,7 @@
     "signature": "BOOL __thiscall(MainEquipUI *this, int nVal, int nVal2)"
   },
   "0x0047B6C0": {
-    "name": "MainEquipUI::SendMessage",
+    "name": "MainEquipUI::OnMessage",
     "signature": "int __thiscall(MainEquipUI *this, int nVal, int nVal2, int nVal3)"
   },
   "0x0047BBE0": {
@@ -12442,11 +12442,11 @@
     "signature": "void __thiscall(ArcLocaleRole *this, int nVal)"
   },
   "0x0047C370": {
-    "name": "UITitle_ArcSave::GetID",
+    "name": "UITitle_ArcSave::Render",
     "signature": "int __thiscall(UITitle_ArcSave *this)"
   },
   "0x0047C430": {
-    "name": "UITitle_ArcSave::SendMessage",
+    "name": "UITitle_ArcSave::OnMessage",
     "signature": "int __thiscall(UITitle_ArcSave *this, int nVal, int nVal2, int nVal3)"
   },
   "0x0047DC90": {
@@ -12514,7 +12514,7 @@
     "signature": "int *__thiscall(MainEquipUI *this, float fVal)"
   },
   "0x00480600": {
-    "name": "LineupUI::SendMessage",
+    "name": "LineupUI::OnMessage",
     "signature": "int __thiscall(LineupUI *this, int nVal, char *pszBuf, int nVal2)"
   },
   "0x00481BA0": {
@@ -12930,11 +12930,11 @@
     "signature": "int __thiscall(RenderTarget *this, int nVal)"
   },
   "0x004A6120": {
-    "name": "UIGameFrm::SendMessage",
+    "name": "UIGameFrm::OnMessage",
     "signature": "int __thiscall(UIGameFrm *this, int nVal, int nVal2, int nVal3)"
   },
   "0x004A6600": {
-    "name": "UIGameFrm::UpdateChildren",
+    "name": "UIGameFrm::Destroy",
     "signature": "int __thiscall(UIGameFrm *this)"
   },
   "0x004A6720": {
@@ -13062,7 +13062,7 @@
     "signature": "int __thiscall(CScreenMode *this)"
   },
   "0x004B3470": {
-    "name": "UIListBox::SendMessage",
+    "name": "UIListBox::OnMessage",
     "signature": "int __thiscall(UIListBox *this, int nVal, char *pszBuf, int nVal2)"
   },
   "0x004B43E0": {
@@ -14574,7 +14574,7 @@
     "signature": "int __thiscall(CCBStageRole *this)"
   },
   "0x0051F1B0": {
-    "name": "CCBResultWindow::SendMessage",
+    "name": "CCBResultWindow::OnMessage",
     "signature": "int __thiscall(CCBResultWindow *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00521A50": {
@@ -14710,7 +14710,7 @@
     "signature": "int __thiscall(UIListBox *this)"
   },
   "0x00527EA0": {
-    "name": "UIListBox::SendMessage",
+    "name": "UIListBox::OnMessage",
     "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00527F50": {
@@ -14742,7 +14742,7 @@
     "signature": "int __thiscall(JusticeBookUI *this, int nVal, int nVal2)"
   },
   "0x00529120": {
-    "name": "JusticeBookUI::SendMessage",
+    "name": "JusticeBookUI::OnMessage",
     "signature": "int __thiscall(JusticeBookUI *this, int nVal, char *pszBuf, int nVal2)"
   },
   "0x00529400": {

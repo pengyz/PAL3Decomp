@@ -280,7 +280,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -310,7 +310,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -321,12 +321,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043AD40",
-        "name": "UIScene::Create2",
+        "name": "UIScenePanel::Render",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -336,7 +336,7 @@
       },
       {
         "address": "0x0043AB00",
-        "name": "UIScene::OnMessage2",
+        "name": "UIScenePanel::Destroy",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -351,7 +351,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       },
       {
@@ -412,7 +412,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -442,7 +442,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       },
       {
@@ -463,22 +463,22 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00445CD0",
-        "name": "UIWnd::GetID",
+        "name": "UIWnd::Render",
         "signature": "int()"
       },
       {
         "address": "0x0043BBC0",
-        "name": "sub_43BBC0",
+        "name": "UIWnd::Update",
         "signature": "int __thiscall(UIWnd *this, int a2, int a3)"
       },
       {
         "address": "0x00445C10",
-        "name": "UIWnd::UpdateChildren",
+        "name": "UIWnd::Destroy",
         "signature": "int()"
       },
       {
@@ -488,12 +488,12 @@
       },
       {
         "address": "0x0043BB90",
-        "name": "sub_43BB90",
+        "name": "UIWnd::_scalar_dtor",
         "signature": "int __thiscall(void *Block, char)"
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -504,7 +504,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -550,12 +550,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043D940",
-        "name": "UI3DCtrl::GetID",
+        "name": "UI3DCtrl::Render",
         "signature": "int()"
       },
       {
@@ -565,7 +565,7 @@
       },
       {
         "address": "0x0043D920",
-        "name": "UI3DCtrl::UpdateChildren",
+        "name": "CCBProtectWindow::Destroy",
         "signature": "int()"
       },
       {
@@ -580,7 +580,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       },
       {
@@ -596,12 +596,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043DDF0",
-        "name": "UIListBox::GetID",
+        "name": "CCBMagicWindow::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -611,7 +611,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "UIListBox::UpdateChildren",
+        "name": "UICoverFrm::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -626,7 +626,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -637,12 +637,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043E8A0",
-        "name": "UIListBox::GetID",
+        "name": "UIListBox::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, int, int)"
       },
       {
@@ -652,7 +652,7 @@
       },
       {
         "address": "0x0043E520",
-        "name": "UIListBox::UpdateChildren",
+        "name": "UIListBox::Destroy",
         "signature": "int __thiscall(UIListBox *__hidden this)"
       },
       {
@@ -667,7 +667,7 @@
       },
       {
         "address": "0x0043E480",
-        "name": "UIListBox::SendMessage",
+        "name": "UIListBox::OnMessage",
         "signature": "void __thiscall(UIListBox *__hidden this, int a2)"
       },
       {
@@ -683,12 +683,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043FF70",
-        "name": "UIButton::GetID",
+        "name": "UIButton::Render",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -698,7 +698,7 @@
       },
       {
         "address": "0x0043F9C0",
-        "name": "UIButton::UpdateChildren",
+        "name": "UIButton::Destroy",
         "signature": "int()"
       },
       {
@@ -713,7 +713,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -724,12 +724,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00440F30",
-        "name": "UIStatic::GetID",
+        "name": "UIStatic::Render",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -739,7 +739,7 @@
       },
       {
         "address": "0x00440BA0",
-        "name": "UIStatic::UpdateChildren",
+        "name": "UIStatic::Destroy",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -754,7 +754,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       },
       {
@@ -770,12 +770,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x004414F0",
-        "name": "UIMap::GetID",
+        "name": "UIMap::Render",
         "signature": "int()"
       },
       {
@@ -785,7 +785,7 @@
       },
       {
         "address": "0x004414D0",
-        "name": "UIMap::UpdateChildren",
+        "name": "UIMap::Destroy",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -800,7 +800,7 @@
       },
       {
         "address": "0x004420C0",
-        "name": "UIMap::SendMessage",
+        "name": "UIMap::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       },
       {
@@ -816,12 +816,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00442890",
-        "name": "UIFrameWnd::GetID",
+        "name": "UIFrameWnd::Render",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -831,7 +831,7 @@
       },
       {
         "address": "0x00442420",
-        "name": "UIFrameWnd::UpdateChildren",
+        "name": "UIFrameWnd::Destroy",
         "signature": "int()"
       },
       {
@@ -846,7 +846,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -857,12 +857,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00442E90",
-        "name": "UIFrameWnd::GetID",
+        "name": "UIFrameWnd::Render",
         "signature": "int()"
       },
       {
@@ -872,7 +872,7 @@
       },
       {
         "address": "0x00442420",
-        "name": "UIFrameWnd::UpdateChildren",
+        "name": "UIFrameWnd::Destroy",
         "signature": "int()"
       },
       {
@@ -887,7 +887,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       },
       {
@@ -1043,12 +1043,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00443200",
-        "name": "UIFrameWnd::GetID",
+        "name": "UIFrameWnd::Render",
         "signature": "int()"
       },
       {
@@ -1058,7 +1058,7 @@
       },
       {
         "address": "0x00442420",
-        "name": "UIFrameWnd::UpdateChildren",
+        "name": "UIFrameWnd::Destroy",
         "signature": "int()"
       },
       {
@@ -1073,7 +1073,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       },
       {
@@ -1194,12 +1194,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x004433D0",
-        "name": "UIFrameWnd::GetID",
+        "name": "UIFrameWnd::Render",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -1209,7 +1209,7 @@
       },
       {
         "address": "0x00442420",
-        "name": "UIFrameWnd::UpdateChildren",
+        "name": "UIFrameWnd::Destroy",
         "signature": "int()"
       },
       {
@@ -1224,7 +1224,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       },
       {
@@ -1310,12 +1310,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00443950",
-        "name": "CCBFiveNimbusWindow::GetID",
+        "name": "CCBFiveNimbusWindow::Render",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -1325,7 +1325,7 @@
       },
       {
         "address": "0x004438F0",
-        "name": "CCBFiveNimbusWindow::UpdateChildren",
+        "name": "CCBFiveNimbusWindow::Destroy",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -1340,7 +1340,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       },
       {
@@ -1391,12 +1391,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00444AD0",
-        "name": "CCBResultWindow::GetID",
+        "name": "CCBResultWindow::Render",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -1406,7 +1406,7 @@
       },
       {
         "address": "0x00442420",
-        "name": "CCBResultWindow::UpdateChildren",
+        "name": "CCBResultWindow::Destroy",
         "signature": "int()"
       },
       {
@@ -1421,7 +1421,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -1432,12 +1432,12 @@
     "methods": [
       {
         "address": "0x00445720",
-        "name": "UIAnimateCtrlEX::Destroy",
+        "name": "UIAnimateCtrlEX::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00445500",
-        "name": "UIAnimateCtrlEX::GetID",
+        "name": "UIAnimateCtrlEX::Render",
         "signature": "int __thiscall(RECT *pRect)"
       },
       {
@@ -1447,7 +1447,7 @@
       },
       {
         "address": "0x00445920",
-        "name": "UIAnimateCtrlEX::UpdateChildren",
+        "name": "UIAnimateCtrlEX::Destroy",
         "signature": "int()"
       },
       {
@@ -1462,7 +1462,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -1473,12 +1473,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00445CD0",
-        "name": "UIWnd::GetID",
+        "name": "UIWnd::Render",
         "signature": "int()"
       },
       {
@@ -1488,7 +1488,7 @@
       },
       {
         "address": "0x00445C10",
-        "name": "UIWnd::UpdateChildren",
+        "name": "UIWnd::Destroy",
         "signature": "int()"
       },
       {
@@ -1503,7 +1503,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -1514,12 +1514,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00449C20",
-        "name": "CCBUIPanel::GetID",
+        "name": "CCBUIPanel::Render",
         "signature": "int __thiscall(UIListBox *this)"
       },
       {
@@ -1529,7 +1529,7 @@
       },
       {
         "address": "0x00449990",
-        "name": "CCBUIPanel::UpdateChildren",
+        "name": "CCBUIPanel::Destroy",
         "signature": "void __thiscall(UIListBox **this, int)"
       },
       {
@@ -1544,7 +1544,7 @@
       },
       {
         "address": "0x0044A540",
-        "name": "CCBUIPanel::SendMessage",
+        "name": "CCBUIPanel::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -1555,12 +1555,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0044A870",
-        "name": "CCBProtectWindow::GetID",
+        "name": "CCBProtectWindow::Render",
         "signature": "int()"
       },
       {
@@ -1570,7 +1570,7 @@
       },
       {
         "address": "0x0043D920",
-        "name": "CCBProtectWindow::UpdateChildren",
+        "name": "CCBProtectWindow::Destroy",
         "signature": "int()"
       },
       {
@@ -1585,7 +1585,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -1596,12 +1596,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0044B460",
-        "name": "j_UIWnd::GetID",
+        "name": "UIWnd::Render",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -1611,7 +1611,7 @@
       },
       {
         "address": "0x004A14C0",
-        "name": "j_UIWnd::UpdateChildren",
+        "name": "UIWnd::Destroy",
         "signature": "void __thiscall(UIWnd *this)"
       },
       {
@@ -1637,7 +1637,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -1723,12 +1723,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043AD40",
-        "name": "UIScenePanel::GetID",
+        "name": "UIScenePanel::Render",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -1738,7 +1738,7 @@
       },
       {
         "address": "0x0043AB00",
-        "name": "UIScenePanel::UpdateChildren",
+        "name": "UIScenePanel::Destroy",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -1753,7 +1753,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       },
       {
@@ -1774,12 +1774,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00445CD0",
-        "name": "UIWnd::GetID",
+        "name": "UIWnd::Render",
         "signature": "int()"
       },
       {
@@ -1789,7 +1789,7 @@
       },
       {
         "address": "0x00445C10",
-        "name": "UIWnd::UpdateChildren",
+        "name": "UIWnd::Destroy",
         "signature": "int()"
       },
       {
@@ -1804,7 +1804,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -1815,7 +1815,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -1845,7 +1845,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -1856,12 +1856,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00450230",
-        "name": "UISceneMap::GetID",
+        "name": "UISceneMap::Render",
         "signature": "int __thiscall(UIListBox *this)"
       },
       {
@@ -1871,7 +1871,7 @@
       },
       {
         "address": "0x00408BD0",
-        "name": "UISceneMap::UpdateChildren",
+        "name": "UISceneMap::Destroy",
         "signature": "int()"
       },
       {
@@ -1886,7 +1886,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -1897,12 +1897,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00450440",
-        "name": "UIDialog::GetID",
+        "name": "UIDialog::Render",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -1912,7 +1912,7 @@
       },
       {
         "address": "0x00450670",
-        "name": "UIDialog::UpdateChildren",
+        "name": "UIDialog::Destroy",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -1927,7 +1927,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -1938,12 +1938,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00524970",
-        "name": "UILoadingFrm::GetID",
+        "name": "UILoadingFrm::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -1953,7 +1953,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "UILoadingFrm::UpdateChildren",
+        "name": "UILoadingFrm::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -1968,7 +1968,7 @@
       },
       {
         "address": "0x00450990",
-        "name": "UILoadingFrm::SendMessage",
+        "name": "UILoadingFrm::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -1979,12 +1979,12 @@
     "methods": [
       {
         "address": "0x00450D00",
-        "name": "UINote::Destroy",
+        "name": "UINote::ShowWindow",
         "signature": "int __stdcall(int)"
       },
       {
         "address": "0x00445CD0",
-        "name": "UIWnd::GetID",
+        "name": "UIWnd::Render",
         "signature": "int()"
       },
       {
@@ -1994,7 +1994,7 @@
       },
       {
         "address": "0x00445C10",
-        "name": "UIWnd::UpdateChildren",
+        "name": "UIWnd::Destroy",
         "signature": "int()"
       },
       {
@@ -2009,7 +2009,7 @@
       },
       {
         "address": "0x00450C60",
-        "name": "UINote::SendMessage",
+        "name": "UINote::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -2020,12 +2020,12 @@
     "methods": [
       {
         "address": "0x00451740",
-        "name": "CCBFiveNimbusWindow::Destroy",
+        "name": "CCBFiveNimbusWindow::ShowWindow",
         "signature": "int __thiscall(UIWnd *this, LPCSTR lpString1)"
       },
       {
         "address": "0x004512F0",
-        "name": "CCBFiveNimbusWindow::GetID",
+        "name": "CCBFiveNimbusWindow::Render",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -2035,7 +2035,7 @@
       },
       {
         "address": "0x00451320",
-        "name": "CCBFiveNimbusWindow::UpdateChildren",
+        "name": "CCBFiveNimbusWindow::Destroy",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -2050,7 +2050,7 @@
       },
       {
         "address": "0x004515A0",
-        "name": "CCBFiveNimbusWindow::SendMessage",
+        "name": "CCBFiveNimbusWindow::OnMessage",
         "signature": "int __stdcall(int, LPCSTR lpString1, int)"
       }
     ]
@@ -2061,12 +2061,12 @@
     "methods": [
       {
         "address": "0x00451B40",
-        "name": "UILoadingFrm::Destroy",
+        "name": "UILoadingFrm::ShowWindow",
         "signature": "int __thiscall(UIWnd *this, int)"
       },
       {
         "address": "0x00451C10",
-        "name": "UILoadingFrm::GetID",
+        "name": "UILoadingFrm::Render",
         "signature": "int()"
       },
       {
@@ -2076,7 +2076,7 @@
       },
       {
         "address": "0x00445C10",
-        "name": "UIWnd::UpdateChildren",
+        "name": "UIWnd::Destroy",
         "signature": "int()"
       },
       {
@@ -2091,7 +2091,7 @@
       },
       {
         "address": "0x00451AA0",
-        "name": "UILoadingFrm::SendMessage",
+        "name": "UILoadingFrm::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -2102,12 +2102,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00445CD0",
-        "name": "UIWnd::GetID",
+        "name": "UIWnd::Render",
         "signature": "int()"
       },
       {
@@ -2117,7 +2117,7 @@
       },
       {
         "address": "0x00445C10",
-        "name": "UIWnd::UpdateChildren",
+        "name": "UIWnd::Destroy",
         "signature": "int()"
       },
       {
@@ -2132,7 +2132,7 @@
       },
       {
         "address": "0x00452420",
-        "name": "UITitle_BBTY::SendMessage",
+        "name": "UITitle_BBTY::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -2143,12 +2143,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x004526F0",
-        "name": "UIListBox::GetID",
+        "name": "UIListBox::Render",
         "signature": "int __thiscall(UIListBox *this)"
       },
       {
@@ -2158,7 +2158,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "UIListBox::UpdateChildren",
+        "name": "UIListBox::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -2173,7 +2173,7 @@
       },
       {
         "address": "0x0043D7A0",
-        "name": "UIListBox::SendMessage",
+        "name": "UIListBox::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -2184,12 +2184,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00452AA0",
-        "name": "UIAnimateCtrlEX::GetID",
+        "name": "UIAnimateCtrlEX::Render",
         "signature": "int __thiscall(UIWnd *this)"
       },
       {
@@ -2199,7 +2199,7 @@
       },
       {
         "address": "0x00445C10",
-        "name": "UIWnd::UpdateChildren",
+        "name": "UIWnd::Destroy",
         "signature": "int()"
       },
       {
@@ -2214,7 +2214,7 @@
       },
       {
         "address": "0x00452DA0",
-        "name": "UIAnimateCtrlEX::SendMessage",
+        "name": "UIAnimateCtrlEX::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -2225,7 +2225,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -2240,7 +2240,7 @@
       },
       {
         "address": "0x00445C10",
-        "name": "UIWnd::UpdateChildren",
+        "name": "UIWnd::Destroy",
         "signature": "int()"
       },
       {
@@ -2255,7 +2255,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -2266,12 +2266,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00454550",
-        "name": "UIListBox::GetID",
+        "name": "UIListBox::Render",
         "signature": "int()"
       },
       {
@@ -2281,7 +2281,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "UIListBox::UpdateChildren",
+        "name": "UIListBox::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -2296,7 +2296,7 @@
       },
       {
         "address": "0x00454590",
-        "name": "UIListBox::SendMessage",
+        "name": "UIListBox::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -2307,7 +2307,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -2348,7 +2348,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -2389,12 +2389,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0045A490",
-        "name": "UISceneFrm::GetID",
+        "name": "UISceneFrm::Render",
         "signature": "int __thiscall(UIListBox *this)"
       },
       {
@@ -2404,7 +2404,7 @@
       },
       {
         "address": "0x00459360",
-        "name": "UISceneFrm::UpdateChildren",
+        "name": "UISceneFrm::Destroy",
         "signature": "int __thiscall(UIListBox **this)"
       },
       {
@@ -2419,7 +2419,7 @@
       },
       {
         "address": "0x0045A600",
-        "name": "UISceneFrm::SendMessage",
+        "name": "UISceneFrm::OnMessage",
         "signature": "int __thiscall(int nParam, int, int, int)"
       }
     ]
@@ -2430,12 +2430,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043DDF0",
-        "name": "UIListBox::GetID",
+        "name": "UIListBox::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -2445,7 +2445,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "UIListBox::UpdateChildren",
+        "name": "UIListBox::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -2460,7 +2460,7 @@
       },
       {
         "address": "0x0046B4B0",
-        "name": "UIListBox::SendMessage",
+        "name": "UIListBox::OnMessage",
         "signature": "int __userpurge@<eax>(unsigned __int8 nMax@<cl>, int, int, int)"
       }
     ]
@@ -2471,12 +2471,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043DDF0",
-        "name": "UIListBox::GetID",
+        "name": "UIListBox::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -2486,7 +2486,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "UIListBox::UpdateChildren",
+        "name": "UIListBox::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -2501,7 +2501,7 @@
       },
       {
         "address": "0x0046F650",
-        "name": "UIListBox::SendMessage",
+        "name": "UIListBox::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -2512,12 +2512,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043DDF0",
-        "name": "UIListBox::GetID",
+        "name": "UIListBox::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -2527,7 +2527,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "UIListBox::UpdateChildren",
+        "name": "UIListBox::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -2542,7 +2542,7 @@
       },
       {
         "address": "0x00477BB0",
-        "name": "UIListBox::SendMessage",
+        "name": "UIListBox::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -2553,12 +2553,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0047B200",
-        "name": "MainEquipUI::GetID",
+        "name": "MainEquipUI::Render",
         "signature": "int()"
       },
       {
@@ -2568,7 +2568,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "MainEquipUI::UpdateChildren",
+        "name": "MainEquipUI::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -2583,7 +2583,7 @@
       },
       {
         "address": "0x0047B6C0",
-        "name": "MainEquipUI::SendMessage",
+        "name": "MainEquipUI::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -2594,12 +2594,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0047C370",
-        "name": "UITitle_ArcSave::GetID",
+        "name": "UITitle_ArcSave::Render",
         "signature": "int __thiscall(UIListBox *this)"
       },
       {
@@ -2609,7 +2609,7 @@
       },
       {
         "address": "0x0047BDF0",
-        "name": "UITitle_ArcSave::UpdateChildren",
+        "name": "UITitle_ArcSave::Destroy",
         "signature": "int __thiscall(UIListBox **this)"
       },
       {
@@ -2624,7 +2624,7 @@
       },
       {
         "address": "0x0047C430",
-        "name": "UITitle_ArcSave::SendMessage",
+        "name": "UITitle_ArcSave::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -2635,7 +2635,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -2676,12 +2676,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0047F880",
-        "name": "LineupUI::GetID",
+        "name": "LineupUI::Render",
         "signature": "int()"
       },
       {
@@ -2691,7 +2691,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "LineupUI::UpdateChildren",
+        "name": "LineupUI::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -2706,7 +2706,7 @@
       },
       {
         "address": "0x00480600",
-        "name": "LineupUI::SendMessage",
+        "name": "LineupUI::OnMessage",
         "signature": "int __thiscall(int nCmdID, int, int, int)"
       }
     ]
@@ -2717,7 +2717,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -2758,7 +2758,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -2799,12 +2799,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00496FA0",
-        "name": "UIBigMap::GetID",
+        "name": "UIBigMap::Render",
         "signature": "int()"
       },
       {
@@ -2814,7 +2814,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "UIBigMap::UpdateChildren",
+        "name": "UIBigMap::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -2829,7 +2829,7 @@
       },
       {
         "address": "0x004974A0",
-        "name": "UIBigMap::SendMessage",
+        "name": "UIBigMap::OnMessage",
         "signature": "int __thiscall(int nSlotIdx, int, int, int nItemID)"
       }
     ]
@@ -2840,7 +2840,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -2881,7 +2881,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -2896,7 +2896,7 @@
       },
       {
         "address": "0x004A14C0",
-        "name": "j_UIWnd::UpdateChildren",
+        "name": "UIWnd::Destroy",
         "signature": "void __thiscall(UIWnd *this)"
       },
       {
@@ -2922,12 +2922,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x004A5930",
-        "name": "UIGameFrm::GetID",
+        "name": "UIGameFrm::Render",
         "signature": "int __thiscall(UIListBox *this)"
       },
       {
@@ -2937,7 +2937,7 @@
       },
       {
         "address": "0x004A6600",
-        "name": "UIGameFrm::UpdateChildren",
+        "name": "UIGameFrm::Destroy",
         "signature": "int()"
       },
       {
@@ -2952,7 +2952,7 @@
       },
       {
         "address": "0x004A6120",
-        "name": "UIGameFrm::SendMessage",
+        "name": "UIGameFrm::OnMessage",
         "signature": "int __thiscall(int nMsgID, int, int, int)"
       }
     ]
@@ -2963,7 +2963,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -3004,12 +3004,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x004B2C70",
-        "name": "UIListBox::GetID",
+        "name": "UIListBox::Render",
         "signature": "int()"
       },
       {
@@ -3019,7 +3019,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "UIListBox::UpdateChildren",
+        "name": "UIListBox::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -3034,7 +3034,7 @@
       },
       {
         "address": "0x004B3470",
-        "name": "UIListBox::SendMessage",
+        "name": "UIListBox::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -4530,12 +4530,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043DDF0",
-        "name": "CCBUI::GetID",
+        "name": "CCBUI::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -4545,7 +4545,7 @@
       },
       {
         "address": "0x005164D0",
-        "name": "CCBUI::UpdateChildren",
+        "name": "CCBUI::Destroy",
         "signature": "int()"
       },
       {
@@ -4560,7 +4560,7 @@
       },
       {
         "address": "0x0043D7A0",
-        "name": "CCBUI::SendMessage",
+        "name": "CCBUI::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -4571,12 +4571,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043DDF0",
-        "name": "CCBUI::GetID",
+        "name": "CCBUI::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -4586,7 +4586,7 @@
       },
       {
         "address": "0x00519510",
-        "name": "CCBUI::UpdateChildren",
+        "name": "CCBUI::Destroy",
         "signature": ""
       },
       {
@@ -4601,7 +4601,7 @@
       },
       {
         "address": "0x005195E0",
-        "name": "CCBUI::SendMessage",
+        "name": "CCBUI::OnMessage",
         "signature": "bool __thiscall(CCBUI *__hidden this, struct tagPOINT, struct tagRECT a3)"
       },
       {
@@ -4752,12 +4752,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043DDF0",
-        "name": "CCBUI::GetID",
+        "name": "CCBUI::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -4767,7 +4767,7 @@
       },
       {
         "address": "0x00519F50",
-        "name": "CCBUI::UpdateChildren",
+        "name": "CCBUI::Destroy",
         "signature": "void __thiscall(CCBUI *__hidden this, struct UIWnd *)"
       },
       {
@@ -4782,7 +4782,7 @@
       },
       {
         "address": "0x00519FE0",
-        "name": "CCBUI::SendMessage",
+        "name": "CCBUI::OnMessage",
         "signature": "void __thiscall(CCBUI *__hidden this)"
       },
       {
@@ -4898,12 +4898,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043DDF0",
-        "name": "CCBUI::GetID",
+        "name": "CCBUI::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -4913,7 +4913,7 @@
       },
       {
         "address": "0x0051A880",
-        "name": "CCBUI::UpdateChildren",
+        "name": "CCBUI::Destroy",
         "signature": "void __thiscall(CCBControlWindow *__hidden this)"
       },
       {
@@ -4928,7 +4928,7 @@
       },
       {
         "address": "0x0051A930",
-        "name": "CCBUI::SendMessage",
+        "name": "CCBUI::OnMessage",
         "signature": "void __thiscall(CCBControlWindow *__hidden this)"
       },
       {
@@ -5009,12 +5009,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043DDF0",
-        "name": "CCBControlWindow::GetID",
+        "name": "CCBControlWindow::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -5024,7 +5024,7 @@
       },
       {
         "address": "0x0051AFE0",
-        "name": "CCBControlWindow::UpdateChildren",
+        "name": "CCBControlWindow::Destroy",
         "signature": "int __thiscall(CCBControlWindow *__hidden this, float, int)"
       },
       {
@@ -5039,7 +5039,7 @@
       },
       {
         "address": "0x0051B030",
-        "name": "CCBControlWindow::SendMessage",
+        "name": "CCBControlWindow::OnMessage",
         "signature": "int __stdcall(int, int a2, int a3)"
       },
       {
@@ -5085,12 +5085,12 @@
     "methods": [
       {
         "address": "0x0051B5D0",
-        "name": "CCBItemWindow::Destroy",
+        "name": "CCBItemWindow::ShowWindow",
         "signature": "int __thiscall(CCBItemWindow *__hidden this, unsigned int a2, unsigned int, unsigned int)"
       },
       {
         "address": "0x0043DDF0",
-        "name": "CCBItemWindow::GetID",
+        "name": "CCBItemWindow::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -5100,7 +5100,7 @@
       },
       {
         "address": "0x0051B4B0",
-        "name": "CCBItemWindow::UpdateChildren",
+        "name": "CCBItemWindow::Destroy",
         "signature": "void __thiscall(CCBItemWindow *__hidden this)"
       },
       {
@@ -5115,7 +5115,7 @@
       },
       {
         "address": "0x0051C9B0",
-        "name": "CCBItemWindow::SendMessage",
+        "name": "CCBSkillWindow::OnMessage",
         "signature": "int __thiscall(CCBSkillWindow *__hidden this, unsigned int, unsigned int a2, unsigned int)"
       }
     ]
@@ -5126,12 +5126,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0043DDF0",
-        "name": "CCBMagicWindow::GetID",
+        "name": "CCBMagicWindow::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -5141,7 +5141,7 @@
       },
       {
         "address": "0x0051C110",
-        "name": "CCBMagicWindow::UpdateChildren",
+        "name": "CCBMagicWindow::Destroy",
         "signature": "int __thiscall(CCBMagicWindow *__hidden this, float, int)"
       },
       {
@@ -5156,7 +5156,7 @@
       },
       {
         "address": "0x0051B860",
-        "name": "CCBMagicWindow::SendMessage",
+        "name": "CCBMagicWindow::OnMessage",
         "signature": "void __thiscall(CCBParabolaWindow *__hidden this)"
       },
       {
@@ -5202,12 +5202,12 @@
     "methods": [
       {
         "address": "0x0051CA50",
-        "name": "CCBSkillWindow::Destroy",
+        "name": "CCBSkillWindow::ShowWindow",
         "signature": "CCBAIWindow *__thiscall(CCBAIWindow *__hidden this)"
       },
       {
         "address": "0x0051CAA0",
-        "name": "CCBSkillWindow::GetID",
+        "name": "CCBSkillWindow::Render",
         "signature": "void __thiscall(CCBAIWindow *__hidden this)"
       },
       {
@@ -5217,7 +5217,7 @@
       },
       {
         "address": "0x0051C880",
-        "name": "CCBSkillWindow::UpdateChildren",
+        "name": "CCBSkillWindow::Destroy",
         "signature": "void __thiscall(CCBSkillWindow *__hidden this)"
       },
       {
@@ -5232,7 +5232,7 @@
       },
       {
         "address": "0x0051C9B0",
-        "name": "CCBSkillWindow::SendMessage",
+        "name": "CCBSkillWindow::OnMessage",
         "signature": "int __thiscall(CCBSkillWindow *__hidden this, unsigned int, unsigned int a2, unsigned int)"
       }
     ]
@@ -5243,12 +5243,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00524970",
-        "name": "CCBResultWindow::GetID",
+        "name": "CCBResultWindow::Render",
         "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)"
       },
       {
@@ -5258,7 +5258,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "CCBResultWindow::UpdateChildren",
+        "name": "CCBResultWindow::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -5273,7 +5273,7 @@
       },
       {
         "address": "0x0051F1B0",
-        "name": "CCBResultWindow::SendMessage",
+        "name": "CCBResultWindow::OnMessage",
         "signature": "int __userpurge@<eax>(unsigned __int8 nFlag@<cl>, int, int, int)"
       }
     ]
@@ -5284,7 +5284,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -5325,7 +5325,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -5366,12 +5366,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00526660",
-        "name": "CCBUI::GetID",
+        "name": "CCBUI::Render",
         "signature": "int()"
       },
       {
@@ -5381,7 +5381,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "CCBUI::UpdateChildren",
+        "name": "CCBUI::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -5396,7 +5396,7 @@
       },
       {
         "address": "0x00526A40",
-        "name": "CCBUI::SendMessage",
+        "name": "CCBUI::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -5407,12 +5407,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00527D80",
-        "name": "UIListBox::GetID",
+        "name": "UIListBox::Render",
         "signature": "int __thiscall(UIListBox *this)"
       },
       {
@@ -5422,7 +5422,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "UIListBox::UpdateChildren",
+        "name": "UIListBox::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -5437,7 +5437,7 @@
       },
       {
         "address": "0x00527EA0",
-        "name": "UIListBox::SendMessage",
+        "name": "UIListBox::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -5448,12 +5448,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00528ED0",
-        "name": "JusticeBookUI::GetID",
+        "name": "JusticeBookUI::Render",
         "signature": "int()"
       },
       {
@@ -5463,7 +5463,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "JusticeBookUI::UpdateChildren",
+        "name": "JusticeBookUI::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -5478,7 +5478,7 @@
       },
       {
         "address": "0x00529120",
-        "name": "JusticeBookUI::SendMessage",
+        "name": "JusticeBookUI::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -5489,12 +5489,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x00529CF0",
-        "name": "UIRoleSelectDialog::GetID",
+        "name": "UIRoleSelectDialog::Render",
         "signature": "int __thiscall(UIListBox *this)"
       },
       {
@@ -5504,7 +5504,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "UIRoleSelectDialog::UpdateChildren",
+        "name": "UIRoleSelectDialog::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -5519,7 +5519,7 @@
       },
       {
         "address": "0x0052AAB0",
-        "name": "UIRoleSelectDialog::SendMessage",
+        "name": "UIRoleSelectDialog::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -5530,12 +5530,12 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
         "address": "0x0052C450",
-        "name": "UICoverFrm::GetID",
+        "name": "UICoverFrm::Render",
         "signature": "int __thiscall(UIListBox *this)"
       },
       {
@@ -5545,7 +5545,7 @@
       },
       {
         "address": "0x0043DE40",
-        "name": "UICoverFrm::UpdateChildren",
+        "name": "UICoverFrm::Destroy",
         "signature": "void __thiscall(UIListBox *__hidden this, int)"
       },
       {
@@ -5560,7 +5560,7 @@
       },
       {
         "address": "0x0052CA10",
-        "name": "UICoverFrm::SendMessage",
+        "name": "UICoverFrm::OnMessage",
         "signature": "int __stdcall(int, int, int)"
       }
     ]
@@ -5571,7 +5571,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -5612,7 +5612,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy",
+        "name": "UIWnd::ShowWindow",
         "signature": "int __stdcall(int a2)"
       },
       {
@@ -5642,7 +5642,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage",
+        "name": "UIWnd::OnMessage",
         "signature": "double __stdcall(int, int, int)"
       }
     ]
@@ -5990,7 +5990,7 @@
     "methods": [
       {
         "address": "0x00445E70",
-        "name": "UIWnd::Destroy"
+        "name": "UIWnd::ShowWindow"
       },
       {
         "address": "0x00439410",
@@ -6014,7 +6014,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage"
+        "name": "UIWnd::OnMessage"
       }
     ]
   },
@@ -6024,11 +6024,11 @@
     "methods": [
       {
         "address": "0x00442D50",
-        "name": "UIFrameWnd::Destroy"
+        "name": "UIFrameWnd::ShowWindow"
       },
       {
         "address": "0x00442890",
-        "name": "UIFrameWnd::GetID"
+        "name": "UIFrameWnd::Render"
       },
       {
         "address": "0x00442AD0",
@@ -6036,7 +6036,7 @@
       },
       {
         "address": "0x00442420",
-        "name": "UIFrameWnd::UpdateChildren"
+        "name": "UIFrameWnd::Destroy"
       },
       {
         "address": "0x00445B90",
@@ -6048,7 +6048,7 @@
       },
       {
         "address": "0x00445D10",
-        "name": "UIWnd::SendMessage"
+        "name": "UIWnd::OnMessage"
       }
     ]
   },
