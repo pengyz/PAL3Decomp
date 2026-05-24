@@ -336,9 +336,9 @@
       "source": "binary_scan:3refs"
     },
     "152": {
-      "name": "_todo_098",
+      "name": "m_nTimerCount",
       "type": "int",
-      "source": "binary_scan:7refs"
+      "source": "UpdateTimer:incremented_each_tick"
     },
     "156": {
       "name": "_todo_09C",
@@ -366,14 +366,14 @@
       "source": "binary_scan:1refs"
     },
     "196": {
-      "name": "_todo_0C4",
-      "type": "int",
-      "source": "binary_scan:5refs"
+      "name": "m_pTexture",
+      "type": "gbTexture *",
+      "source": "OpenScript:gfxMgr_texture_create"
     },
     "200": {
-      "name": "_todo_0C8",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "name": "m_pTextureInfo",
+      "type": "_PlugInfo *",
+      "source": "OpenScript:TextureLib_Data::Parent_Data"
     },
     "212": {
       "name": "_todo_0D4",
@@ -396,9 +396,9 @@
       "source": "binary_scan:6refs"
     },
     "276": {
-      "name": "_todo_114",
+      "name": "m_fRenderScaleX",
       "type": "float",
-      "source": "binary_scan:1refs"
+      "source": "Render:gbMatrixStack::Scale_X_component"
     },
     "332": {
       "name": "_todo_14C",
