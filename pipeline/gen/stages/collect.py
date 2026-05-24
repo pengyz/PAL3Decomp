@@ -171,6 +171,11 @@ def collect_functions(decomp_dir=None):
         if cls and method:
             if cls in skip_classes:
                 continue
+            # Strip _misattrib_ prefix: put function back under the original class
+            # with a comment marking it as misattributed (attribution unconfirmed)
+            if cls.startswith('_misattrib_'):
+                cls = cls[len('_misattrib_'):]
+                code = '// [MISATTRIB] attribution unconfirmed\n' + code
             by_class[cls].append({
                 'name': '%s::%s' % (cls, method),
                 'method': method,
