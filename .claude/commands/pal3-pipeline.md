@@ -4,6 +4,19 @@
 当前阶段：**IDA 标注阶段**。源码是生成物，不手动编辑。
 唯一的工作目标：提升 `data/annotations/` 的数据质量。
 所有结构体字段修改必须有 PAL3.exe 二进制直接证据。
+
+**阶段分离原则**：反编译项目明确拆分为两个独立阶段：
+
+1. **标注阶段**（当前）：还原编译过程中丢失的信息（类型、名称、结构、继承关系）。
+   评价指标：decomp_quality 四维指标 + 命名率 + check_annotations 0 errors。
+   **不关注**：codegen 输出、编译错误。
+
+2. **codegen 阶段**（未来）：将标注成果转化为可编译源码。
+   评价指标：编译错误数、pass rate、字节匹配率。
+   **前提**：标注质量足够高。
+
+编译错误是 codegen 适配度的指标，不是标注正确性的指标。更精确的标注可能导致更多编译
+错误（因为 codegen 尚未适配强类型代码），这是正常现象，不构成标注回退的理由。
 </CRITICAL-INSTRUCTION>
 
 ## 环境
@@ -43,10 +56,9 @@ data/annotations/
 5. **禁止假设对齐方向**——偏移违规时不能假设"应该向上对齐"，必须从二进制确认真实值
 6. **禁止伪语义命名**——`m_nState_4968`、`m_fParam_0A0` 这种用地址后缀伪装的名字没有语义价值，和 `_todo_4968` 没有区别。只有能确定具体含义时才命名（如 `m_szTooltip`、`m_fAngle`、`m_nBlendState`），否则保留 `_todo_` 占位符。宁可诚实地标记未知，不可用噪声掩盖无知。
 7. **禁止对 IDA 查询工具的输出不加验证直接命名**——IDA 工具提供**候选列表**，每个候选仍需人工判断语义是否足够明确。不明确的保留 `_todo_`。
-8. **禁止 shortcut 验证**——annotation 修改后的编译验证**必须走完整流程**：
-   `init --force → export → codegen all → compile`。
-   原因：annotation 改变 IDB struct layout → Hex-Rays 产生不同反编译代码 → 编译结果变化。
-   只改 header 不重新 export 得到的编译结果**是虚假的**。只有全流程结果可信。
+8. **禁止用编译错误评判标注质量**——编译错误是 codegen 层的适配度问题，不是标注正确性
+   问题。更精确的类型标注可能导致更多编译错误（codegen 尚未适配），这不构成回退标注的
+   理由。标注阶段的验证手段：`check_annotations` + `decomp_quality.py`，不含 compile。
 9. **禁止仅凭 signature this 类型修正函数归属**——IDA 的 signature this 类型来自 caller
    推断，如果 caller 本身标注错误则连锁传播错误。函数归属修正**必须有 decomp member
    access evidence**：即函数内 `this->member` 引用的成员在目标类中存在且不在原类中存在。
@@ -346,22 +358,30 @@ Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>"
 
 ### 验证改进效果
 
-<CRITICAL>
-**必须用 init --force 而不是 apply**。annotation 修改会改变 IDB struct layout，
-导致 Hex-Rays 产生不同的反编译代码。只用 apply（增量更新）可能不完整。
-只有 init --force（完全重建）后的编译结果才可信。
-</CRITICAL>
+**标注阶段验证（不含编译）：**
 
 ```bash
-python pipeline/cli.py init --force    # 完全重建 IDB（必须！不可用 apply 替代）
-python pipeline/cli.py export          # IDB→decomp JSON（反编译输出会变）
-python pipeline/cli.py codegen all     # decomp→C++
-python pipeline/cli.py compile         # C++→验证编译
+# 数据一致性
+python pipeline/check_annotations.py     # 必须 0 errors
+
+# 反编译质量（需要 init+export 刷新 decomp）
+python pipeline/cli.py init --force      # 重建 IDB
+python pipeline/cli.py export            # 刷新 decomp JSON
+python pipeline/decomp_quality.py        # 四维指标（不可回退>5%）
 ```
 
-**经验教训**: annotation 修改 → IDB struct 变化 → Hex-Rays 输出不同代码。
-旧代码可能碰巧能编译，新代码可能有新错误。这不是 regression 而是"正确代码的代价"。
-评估 annotation 修改的 ROI 时必须用全流程结果。
+**decomp_quality.py 指标**：
+- type_correctness: this 参数类型正确率
+- field_coverage: this->name vs *(this+N) 比率
+- global_coverage: g_name vs dword_XXXXX 比率
+- attribution_accuracy: 函数归属正确率
+
+**注意**：init --force + export 是为了刷新 decomp JSON 以度量反编译质量。
+codegen 和 compile 是**另一个阶段的工作**，标注迭代中不运行。
+
+**经验教训**: 更精确的标注（正确的 this 类型、更多 struct 成员）会导致 Hex-Rays 产出
+更强类型化的代码，可能增加 codegen 编译错误。这是**正确行为**——信息还原本身是目标，
+编译适配是 codegen 阶段的责任。不因编译错误增加而回退标注改进。
 
 ### 单字段精确验证（偏移/类型修改时）
 
@@ -374,13 +394,20 @@ python pipeline/cli.py compile         # C++→验证编译
 6. 提交 (V6)       → git commit
 ```
 
-## 代码质量度量
+## 标注质量度量
+
+标注阶段的唯一评价维度是**信息还原程度**，不含编译结果。
 
 ```bash
-# annotations 校验（必须 0 errors）
-python pipeline/cli.py check
+# 1. 数据一致性（门槛：必须 0 errors）
+python pipeline/check_annotations.py
 
-# 命名率（_todo_ + _field_ 视为未命名）
+# 2. 反编译质量（四维指标 + 回归检测）
+python pipeline/decomp_quality.py            # 完整报告
+python pipeline/decomp_quality.py --brief    # 一行摘要
+python pipeline/decomp_quality.py --threshold  # CI 门控（任一维度退化>5%则 exit 1）
+
+# 3. 命名率
 python -c "
 import json, os, re
 total = unnamed = 0
@@ -393,7 +420,7 @@ for f in os.listdir('data/annotations/structs'):
 print(f'命名率: {(total-unnamed)/total*100:.1f}% ({total-unnamed}/{total})')
 "
 
-# 对齐违规数（目标: 0，跳过 pack=1 结构体）
+# 4. 对齐违规数（目标: 0，跳过 pack=1 结构体）
 python -c "
 import json, os
 violations = 0
@@ -410,6 +437,11 @@ for f in os.listdir('data/annotations/structs'):
 print(f'对齐违规: {violations}')
 "
 ```
+
+**不在标注阶段使用的指标**：
+- 编译错误数（codegen 适配度，非标注质量）
+- pass rate（codegen 输出质量）
+- 字节匹配率（最终验收指标，标注阶段不可用）
 
 ## 核心原则
 
