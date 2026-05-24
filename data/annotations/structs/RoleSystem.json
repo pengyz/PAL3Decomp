@@ -1047,9 +1047,9 @@
       "source": "binary_scan:1refs"
     },
     "7276": {
-      "name": "_todo_1C6C",
+      "name": "m_nTimerFlags",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "decomp:_method_532710_LOBYTE+BYTE1_timer_control_bools"
     },
     "7280": {
       "name": "m_FrameC",
@@ -1062,24 +1062,24 @@
       "source": "decomp:ctor_UIFrameWnd_shared_init"
     },
     "7584": {
-      "name": "m_nSubState0",
+      "name": "m_dwCurTick",
       "type": "int",
-      "source": "decomp:ctor_set_0"
+      "source": "decomp:UpdateTimer_=GetTickCount(current_frame_time)"
     },
     "7588": {
-      "name": "m_nSubState1",
+      "name": "m_dwPrevTick",
       "type": "int",
-      "source": "decomp:ctor_set_0"
+      "source": "decomp:UpdateTimer_=GetTickCount(previous_frame_time)"
     },
     "7592": {
-      "name": "m_bSubFlag",
+      "name": "m_bTimerActive",
       "type": "unsigned char",
-      "source": "decomp:ctor_LOBYTE_set_0"
+      "source": "decomp:UpdateTimer_LOBYTE_set_0/1(timer_running)"
     },
     "7596": {
-      "name": "_todo_1DAC",
-      "type": "int",
-      "source": "binary_scan:5refs"
+      "name": "m_bToggleState",
+      "type": "unsigned char",
+      "source": "decomp:_method_532710_LOBYTE_toggle(==0?1:0)"
     },
     "8416": {
       "name": "_todo_20E0",
