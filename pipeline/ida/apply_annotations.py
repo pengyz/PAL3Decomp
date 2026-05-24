@@ -219,22 +219,29 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         return (False, "no binary_size")
 
     members = struct_info.get("known_members", {})
+    is_union = struct_info.get("is_union", False)
     base_class_raw = struct_info.get("base_class")
-    # IDA's UDT model doesn't support multiple inheritance properly
-    # Skip these structs for now (only 3 affected: UICaption, UIEmote, UIHeadDialog)
-    if isinstance(base_class_raw, list):
+    # Unions don't support inheritance
+    if is_union:
+        base_class = None
+        base_size = 0
+    elif isinstance(base_class_raw, list):
         if len(base_class_raw) > 1:
             return (False, "multiple inheritance not supported (%s)" % base_class_raw)
         base_class = base_class_raw[0] if base_class_raw else None
     else:
         base_class = base_class_raw
-    base_size = struct_info.get("base_size", 0)
+    if not is_union:
+        base_size = struct_info.get("base_size", 0)
 
     udt = ida_typeinf.udt_type_data_t()
-    udt.taudt_bits = 1024  # TAUDT_FIXED: respect explicit offsets
-    if base_class:
-        udt.taudt_bits |= 128  # TAUDT_CPPOBJ
-    udt.total_size = binary_size
+    if is_union:
+        udt.is_union = True
+    else:
+        udt.taudt_bits = 1024  # TAUDT_FIXED: respect explicit offsets
+        if base_class:
+            udt.taudt_bits |= 128  # TAUDT_CPPOBJ
+        udt.total_size = binary_size
 
     # Add base class as anonymous member at offset 0
     if base_class and base_size > 0:
@@ -252,8 +259,9 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         udt.push_back(mb)
 
     # Add known members at exact annotation offsets
-    for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0])):
-        offset = int(off_str)
+    # Union members use "0", "0_1", "0_2" keys (all at offset 0)
+    for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0])):
+        offset = int(off_str.split('_')[0])
         if base_class and offset < base_size:
             continue
 
@@ -299,24 +307,26 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         m.type = tinfo
         udt.push_back(m)
 
-    # Create the struct
+    # Create the struct/union
     result_tinfo = ida_typeinf.tinfo_t()
-    if not result_tinfo.create_udt(udt, ida_typeinf.BTF_STRUCT):
+    udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
+    if not result_tinfo.create_udt(udt, udt_flag):
         return (False, "create_udt() returned False")
 
     actual_size = result_tinfo.get_size()
     if actual_size == 0xFFFFFFFFFFFFFFFF:
-        # Diagnostic: find which members overlap
+        # Diagnostic: find which members overlap (structs only)
         overlap_info = []
-        for i in range(udt.size()):
-            mi = udt[i]
-            end_bit = mi.offset + mi.size
-            for j in range(i + 1, min(i + 2, udt.size())):
-                mj = udt[j]
-                if end_bit > mj.offset:
-                    overlap_info.append("+%d %s(size=%d) ends@%d > next +%d %s" % (
-                        mi.offset // 8, mi.name, mi.size // 8,
-                        end_bit // 8, mj.offset // 8, mj.name))
+        if not is_union:
+            for i in range(udt.size()):
+                mi = udt[i]
+                end_bit = mi.offset + mi.size
+                for j in range(i + 1, min(i + 2, udt.size())):
+                    mj = udt[j]
+                    if end_bit > mj.offset:
+                        overlap_info.append("+%d %s(size=%d) ends@%d > next +%d %s" % (
+                            mi.offset // 8, mi.name, mi.size // 8,
+                            end_bit // 8, mj.offset // 8, mj.name))
         detail = "; ".join(overlap_info[:3]) if overlap_info else "no overlap detected in UDT"
         return (False, "INVALID struct after create_udt (%s)" % detail)
     if actual_size != binary_size:

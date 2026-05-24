@@ -109,6 +109,7 @@ def check():
     all_struct_names = set(structs.keys())
     for sname, sinfo in structs.items():
         members = sinfo.get('known_members', {})
+        is_union = sinfo.get('is_union', False)
 
         # Check duplicate member names
         names_seen = {}
@@ -118,34 +119,43 @@ def check():
                 errors.append(f"structs[{sname}]: duplicate member '{mname}' at offsets {names_seen[mname]} and {off}")
             names_seen[mname] = off
 
-        # Check member overlap (using known struct sizes)
-        sorted_m = sorted(members.items(), key=lambda x: int(x[0]))
-        for i in range(len(sorted_m) - 1):
-            off1 = int(sorted_m[i][0])
-            m1 = sorted_m[i][1]
-            off2 = int(sorted_m[i + 1][0])
-            size1 = _estimate_member_size(m1.get('type', 'int'), structs)
-            if off1 + size1 > off2:
-                msg = (f"structs[{sname}]: member overlap: "
-                       f"{m1.get('name')}({m1.get('type')}, size={size1})@{off1} "
-                       f"ends@{off1+size1} > next {sorted_m[i+1][1].get('name')}@{off2}")
-                # Type size not in annotations = estimate unreliable, warn only
-                # Exception: types with known fixed sizes (gbengine source)
-                KNOWN_FIXED_SIZES = {'gbVec3D', 'gbMatrix', 'tagRECT', 'RECT'}
-                mtype_clean = m1.get('type', '').replace('struct ', '').replace('class ', '').strip()
-                if mtype_clean in structs or mtype_clean in KNOWN_FIXED_SIZES:
-                    errors.append(msg)
-                else:
-                    warnings.append(msg + " (type size estimated)")
+        # Union-specific validation: all members must be at offset 0
+        if is_union:
+            for off, m in members.items():
+                real_off = int(off.split('_')[0])
+                if real_off != 0:
+                    errors.append(f"union[{sname}]: member '{m.get('name')}' at +{real_off} (must be 0)")
+            # Skip overlap checks for unions (overlapping at offset 0 is expected)
+            base = sinfo.get('base_class')
+            if base:
+                errors.append(f"union[{sname}]: unions cannot have base_class")
+        else:
+            # Check member overlap (using known struct sizes) - structs only
+            sorted_m = sorted(members.items(), key=lambda x: int(x[0]))
+            for i in range(len(sorted_m) - 1):
+                off1 = int(sorted_m[i][0])
+                m1 = sorted_m[i][1]
+                off2 = int(sorted_m[i + 1][0])
+                size1 = _estimate_member_size(m1.get('type', 'int'), structs)
+                if off1 + size1 > off2:
+                    msg = (f"structs[{sname}]: member overlap: "
+                           f"{m1.get('name')}({m1.get('type')}, size={size1})@{off1} "
+                           f"ends@{off1+size1} > next {sorted_m[i+1][1].get('name')}@{off2}")
+                    KNOWN_FIXED_SIZES = {'gbVec3D', 'gbMatrix', 'tagRECT', 'RECT'}
+                    mtype_clean = m1.get('type', '').replace('struct ', '').replace('class ', '').strip()
+                    if mtype_clean in structs or mtype_clean in KNOWN_FIXED_SIZES:
+                        errors.append(msg)
+                    else:
+                        warnings.append(msg + " (type size estimated)")
 
-        # Check base_class exists
-        base = sinfo.get('base_class')
-        if base:
-            # Handle both single base (string) and multiple bases (list)
-            bases = [base] if isinstance(base, str) else base
-            for b in bases:
-                if b not in all_struct_names:
-                    warnings.append(f"structs[{sname}]: base_class '{b}' not in structs (may be in PDB)")
+        # Check base_class exists (structs only - unions checked above)
+        if not is_union:
+            base = sinfo.get('base_class')
+            if base:
+                bases = [base] if isinstance(base, str) else base
+                for b in bases:
+                    if b not in all_struct_names:
+                        warnings.append(f"structs[{sname}]: base_class '{b}' not in structs (may be in PDB)")
 
         # Check struct has size
         size = max(sinfo.get('binary_size', 0), sinfo.get('pdb_size', 0))
