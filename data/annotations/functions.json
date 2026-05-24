@@ -2213,8 +2213,9 @@
     "source": "manual_fix_from_call_sites"
   },
   "0x004DFE00": {
-    "name": "CCBAIWindow::AddTextLabel",
-    "signature": "int __thiscall(CCBAIWindow *this, int nVal, int nVal2)"
+    "name": "_misattrib_CCBAIWindow::AddTextLabel",
+    "signature": "int __thiscall(CCBAIWindow *this, int nVal, int nVal2)",
+    "_misattrib_evidence": "accesses 280*idx beyond 208-byte struct; callers pass CUtil-derived ptr chain via CCBUI.m_pUtil"
   },
   "0x004DFED0": {
     "name": "CCBStage::EndRound",
