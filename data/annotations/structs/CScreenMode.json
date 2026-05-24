@@ -317,9 +317,9 @@
       "source": "reverted_auto_semantic:2x_access"
     },
     "52": {
-      "name": "_todo_034",
-      "type": "float",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
+      "name": "m_VolMod",
+      "type": "int",
+      "source": "decomp:gbVolModNode_SetVolModObj(embedded_volmod)"
     },
     "60": {
       "name": "m_bFadeActive",
@@ -387,9 +387,9 @@
       "source": "B:naming_m_n+FPU_misattrib"
     },
     "152": {
-      "name": "_todo_098",
-      "type": "unsigned char",
-      "source": "reverted_auto_semantic_r3:2x(_init_4593c0,InitCamera)"
+      "name": "m_bCameraInit",
+      "type": "int",
+      "source": "decomp:InitCamera_set_0,_init_set_1"
     },
     "164": {
       "name": "m_wndAssistA",
@@ -876,11 +876,6 @@
       "type": "int",
       "source": "binary_scan:1refs"
     },
-    "2220": {
-      "name": "_todo_8AC",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
     "2236": {
       "name": "_todo_8BC",
       "type": "int",
@@ -930,6 +925,36 @@
       "name": "_todo_FA0",
       "type": "int",
       "source": "binary_scan:6refs"
+    },
+    "1848": {
+      "name": "m_nSceneState",
+      "type": "int",
+      "source": "decomp:_init_set_2"
+    },
+    "2536": {
+      "name": "m_nTaskSlot",
+      "type": "int",
+      "source": "decomp:+14/+16_indexed_access"
+    },
+    "3568": {
+      "name": "m_nAssistIdx",
+      "type": "int",
+      "source": "decomp:+18_+19_indexed"
+    },
+    "3688": {
+      "name": "m_SceneBlock",
+      "type": "int",
+      "source": "decomp:BYTE+560_DWORD+141"
+    },
+    "1872": {
+      "name": "m_fSceneParam",
+      "type": "float",
+      "source": "decomp:float_in_init"
+    },
+    "3660": {
+      "name": "m_nAssistMode",
+      "type": "int",
+      "source": "decomp:+4_BYTE_CreateFromTemplate"
     }
   },
   "binary_size": 4280
