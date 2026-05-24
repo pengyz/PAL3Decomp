@@ -372,9 +372,9 @@
       "source": "binary:disp32_2hits_2funcs"
     },
     "404": {
-      "name": "_todo_194",
+      "name": "m_nCurActionOff",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "decomp:ptr_dispatch+GetRotAngle_set_0"
     },
     "416": {
       "name": "m_nTransportRun",
@@ -402,9 +402,9 @@
       "source": "A:GetCurrentState_returns_&field+store_ProcProtect_3refs"
     },
     "500": {
-      "name": "_todo_1F4",
+      "name": "m_nActionType0",
       "type": "int",
-      "source": "binary:disp32_2hits_2funcs"
+      "source": "decomp:24stride_set_3_in_GetProperCurAction"
     },
     "504": {
       "name": "m_bProperCurAction",
@@ -412,14 +412,14 @@
       "source": "binary:disp32_2hits_2funcs"
     },
     "505": {
-      "name": "_todo_1F9",
+      "name": "m_bSlotActive0",
       "type": "unsigned char",
-      "source": "binary:disp32_3hits_3funcs"
+      "source": "decomp:96stride_loop_flag"
     },
     "506": {
-      "name": "_todo_1FA",
+      "name": "m_bSlotBlocked0",
       "type": "unsigned char",
-      "source": "binary:disp32_2hits_2funcs"
+      "source": "decomp:96stride_ProcBlock_flag"
     },
     "364": {
       "name": "m_fTask",
@@ -432,29 +432,29 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "408": {
-      "name": "_todo_198",
+      "name": "m_nCurActionParam",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "decomp:copied_from_24stride_array"
     },
     "420": {
-      "name": "_todo_1A4",
+      "name": "m_ActionSlot0",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "decomp:24stride_array_start(GetProperCurAction_sets)"
     },
     "424": {
-      "name": "_todo_1A8",
+      "name": "m_ActionSlot1",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "decomp:24stride_index_1"
     },
     "428": {
-      "name": "_todo_1AC",
+      "name": "m_ActionSlot2",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "decomp:24stride_index_2"
     },
     "448": {
-      "name": "_todo_1C0",
+      "name": "m_fActionSpeed0",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "decomp:24stride+10_float(1.0/100.0_speed_values)"
     }
   },
   "pdb_size": 6848,
