@@ -1,18 +1,12 @@
 {
   "name": "gbColorQuad",
-  "note": "from PAL3patch:pal3.h, RGBA color (union: Color(DWORD) or {Blue,Green,Red,Alpha}(BYTE))",
+  "note": "Real def in pal3_structs.h (struct with internal union). Keep annotation simple.",
   "binary_size": 4,
   "known_members": {
     "0": {
       "name": "Color",
       "type": "unsigned int",
-      "source": "original"
-    },
-    "0_1": {
-      "name": "bytes",
-      "type": "unsigned char[4]",
-      "source": "BGRA_byte_access"
+      "source": "PAL3patch"
     }
-  },
-  "is_union": true
+  }
 }
