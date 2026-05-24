@@ -111,41 +111,6 @@
       "type": "UIScene",
       "source": "ida_decomp:_init_529e40 ++, 7 refs | fix:binary_ctor_UIScene_stride344"
     },
-    "4248": {
-      "name": "_field_1214",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "4252": {
-      "name": "_field_1218",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "4256": {
-      "name": "_field_121C",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "4260": {
-      "name": "_field_1220",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "4264": {
-      "name": "m_state",
-      "type": "int",
-      "source": "binary:param_assign — CScreenMode::SetState: mov [ecx+0x1224],eax=state"
-    },
-    "4268": {
-      "name": "_field_1228",
-      "type": "int",
-      "source": "binary:1x access"
-    },
-    "4272": {
-      "name": "_field_122C",
-      "type": "unsigned char",
-      "source": "binary:1x access"
-    },
     "68": {
       "name": "m_nPosX",
       "type": "int",
@@ -175,16 +140,6 @@
       "name": "m_fBarOffsetW",
       "type": "float",
       "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
-    },
-    "4164": {
-      "name": "_todo_11C0",
-      "type": "int",
-      "source": "reverted:UIFrameWnd_overlap_with_4576"
-    },
-    "4276": {
-      "name": "_todo_1230",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
     },
     "28": {
       "name": "m_fFadeAlpha",
@@ -291,21 +246,6 @@
       "type": "float",
       "source": "A:FPU_disp32_0x52c513"
     },
-    "4273": {
-      "name": "_todo_122D",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "4274": {
-      "name": "_todo_122E",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "4275": {
-      "name": "_todo_122F",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
     "56": {
       "name": "_todo_038",
       "type": "float",
@@ -317,59 +257,9 @@
       "source": "decomp:LoadScreenScene_if(!x)+set_0"
     },
     "3876": {
-      "name": "_todo_F24",
-      "type": "int",
-      "source": "reverted_auto_semantic:8x_access"
-    },
-    "4044": {
-      "name": "_todo_1148",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4128": {
-      "name": "_todo_119C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4132": {
-      "name": "_todo_11A0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4136": {
-      "name": "_todo_11A4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4140": {
-      "name": "_todo_11A8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4144": {
-      "name": "_todo_11AC",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4148": {
-      "name": "_todo_11B0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4152": {
-      "name": "_todo_11B4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4156": {
-      "name": "_todo_11B8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4196": {
-      "name": "_todo_11E0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "name": "m_RoleDialog",
+      "type": "UIRoleDialog",
+      "source": "ctor/dtor:ARC_PlayerAtt::Refresh+UIRoleDialog::_UIRoleDialog"
     },
     "2620": {
       "name": "_todo_BB8",
@@ -452,14 +342,14 @@
       "source": "binary_scan:1refs"
     },
     "228": {
-      "name": "_todo_0E4",
+      "name": "m_fProgressCur",
       "type": "float",
-      "source": "binary_scan:1refs"
+      "source": "decomp:SetProgress_divided_by_max"
     },
     "240": {
-      "name": "_todo_0F0",
+      "name": "m_fProgressNorm",
       "type": "float",
-      "source": "binary_scan:1refs"
+      "source": "decomp:SetProgress_normalized"
     },
     "260": {
       "name": "_todo_104",
@@ -540,11 +430,6 @@
       "name": "_todo_F20",
       "type": "int",
       "source": "binary_scan:1refs"
-    },
-    "4000": {
-      "name": "m_bCreateFlag",
-      "type": "unsigned char",
-      "source": "decomp:_init_47be20_LOBYTE_passed_to_Create"
     },
     "3688": {
       "name": "m_SceneBlock",
