@@ -116,31 +116,6 @@
       "type": "UIScene",
       "source": "ida_decomp:_init_529e40 if(!this) =1, 3 refs | fix:binary_ctor_UIScene_stride344"
     },
-    "1208": {
-      "name": "m_nScrollPosX",
-      "type": "int",
-      "source": "ida_decomp:_init_529e40 /2 for center calc, 2 refs"
-    },
-    "1212": {
-      "name": "m_nScrollPosY",
-      "type": "int",
-      "source": "ida_decomp:_init_529e40 loaded, 2 refs"
-    },
-    "1216": {
-      "name": "m_rcClickRegion",
-      "type": "int",
-      "source": "ida_decomp:_init_529e40 PtInRect(this,pt), 9 refs"
-    },
-    "1220": {
-      "name": "m_nScrollMinX",
-      "type": "int",
-      "source": "ida_decomp:_init_529e40 subtracted from +1608, rand()%range, 3 refs"
-    },
-    "1224": {
-      "name": "m_nScrollMaxY",
-      "type": "int",
-      "source": "ida_decomp:_init_529e40 subtracted from +1604, rect calc, 2 refs"
-    },
     "1228": {
       "name": "m_nScrollMaxX",
       "type": "int",
@@ -412,14 +387,14 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "1468": {
-      "name": "_todo_5BC",
+      "name": "m_nRotState",
       "type": "int",
-      "source": "reverted_auto_semantic:11x_access|reverted:pseudo_semantic"
+      "source": "decomp:_init_52c480_set_2(rotation_state)"
     },
     "1492": {
-      "name": "_todo_5D4",
-      "type": "int",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
+      "name": "m_fTargAngle",
+      "type": "float",
+      "source": "decomp:_init_52c480_float_target_value"
     },
     "2844": {
       "name": "_todo_C98",
@@ -652,34 +627,34 @@
       "source": "binary_scan:3refs"
     },
     "1156": {
-      "name": "_todo_484",
-      "type": "int",
-      "source": "binary_scan:6refs"
+      "name": "m_bPanelActive",
+      "type": "unsigned char",
+      "source": "decomp:_init_52c480_LOBYTE_bool_0/1_UI_toggle"
     },
     "1160": {
-      "name": "_todo_488",
-      "type": "int",
-      "source": "binary_scan:2refs"
+      "name": "m_PanelCtrl",
+      "type": "UIWnd",
+      "source": "decomp:_init_52c480_vtable_call_(*field)(field,1)(embedded_UIWnd)"
     },
     "1464": {
-      "name": "_todo_5B8",
+      "name": "m_fAngleDeg",
       "type": "float",
-      "source": "binary_scan:1refs"
+      "source": "decomp:_init_52c480_360.0-this->field(degrees)"
     },
     "1476": {
-      "name": "_todo_5C4",
+      "name": "m_fCurAngle",
       "type": "float",
-      "source": "binary_scan:2refs"
+      "source": "decomp:_init_52c480_float_or_0.0(current_angle)"
     },
     "1480": {
-      "name": "_todo_5C8",
+      "name": "m_nRotFlag",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "decomp:_init_52c480_set_1"
     },
     "1484": {
-      "name": "_todo_5CC",
-      "type": "int",
-      "source": "binary_scan:3refs"
+      "name": "m_bRotDone",
+      "type": "unsigned char",
+      "source": "decomp:_init_52c480_LOBYTE_0/1(rotation_complete)"
     },
     "1544": {
       "name": "_todo_608",
