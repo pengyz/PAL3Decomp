@@ -198,9 +198,9 @@
       "source": "transfer_from_RoleSystem_off_468"
     },
     "48": {
-      "name": "_todo_1D8",
+      "name": "m_nRoleParam0",
       "type": "int",
-      "source": "transfer_from_RoleSystem_off_472"
+      "source": "decomp:transfer_from_nVal+48"
     },
     "56": {
       "name": "_field_1E0",
@@ -233,9 +233,9 @@
       "source": "transfer_from_RoleSystem_off_508"
     },
     "88": {
-      "name": "_todo_200",
+      "name": "m_nRoleState0",
       "type": "int",
-      "source": "transfer_from_RoleSystem_off_512"
+      "source": "decomp:transfer_from_RoleSystem"
     },
     "92": {
       "name": "m_bUIFlagA",
@@ -258,9 +258,9 @@
       "source": "A:FPU_disp8_in_class_method"
     },
     "112": {
-      "name": "_todo_218",
+      "name": "m_pResource",
       "type": "int",
-      "source": "transfer_from_RoleSystem_off_536"
+      "source": "decomp:operator_delete_on_derived_ptr"
     },
     "152": {
       "name": "_field_240",
@@ -368,9 +368,9 @@
       "source": "transfer_from_RoleSystem_off_820"
     },
     "432": {
-      "name": "_todo_358",
+      "name": "m_nRoleState1",
       "type": "int",
-      "source": "transfer_from_RoleSystem_off_856"
+      "source": "decomp:transfer_from_RoleSystem"
     },
     "436": {
       "name": "m_pEquipAtt0",
@@ -393,32 +393,32 @@
       "source": "transfer_from_RoleSystem_off_920"
     },
     "500": {
-      "name": "_todo_39C",
+      "name": "m_nAnimFrame",
       "type": "short",
-      "source": "A:66_prefix_word_access_in_class_method"
+      "source": "A:66_prefix_word_access"
     },
     "36": {
-      "name": "_todo_36",
-      "type": "float",
-      "source": "binary_scan:29_accesses(load:13, fld_float:1, store:5, lea:2, load_byte:6, store_byte:2)",
+      "name": "m_pAllocBuf",
+      "type": "void *",
+      "source": "decomp:operator_delete+set_0(pointer_not_float)",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "52": {
-      "name": "_todo_52",
+      "name": "m_fRoleParam1",
       "type": "float",
-      "source": "binary_scan:11_accesses(store:4, fld_float:1, load:6)",
+      "source": "decomp:transfer_from_nVal+52_float",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "72": {
-      "name": "_todo_72",
+      "name": "m_pRoleParam3",
       "type": "void *",
-      "source": "binary_scan:19_accesses(store:3, lea:9, load_byte:5, store_byte:2)",
+      "source": "decomp:transfer_from_nVal+72_ptr",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "68": {
-      "name": "_todo_68",
+      "name": "m_nRoleParam2",
       "type": "int",
-      "source": "binary_scan:2_accesses(store:2)",
+      "source": "decomp:transfer_from_nVal+68",
       "note": "Discovered by member_scan after disp8 fix."
     }
   },
