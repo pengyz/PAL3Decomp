@@ -51,16 +51,6 @@
       "type": "void *",
       "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs | type_fix:int→void*(pointer assignment+free semantics)"
     },
-    "284": {
-      "name": "m_scriptMusic",
-      "type": "PalScript *",
-      "source": "ida_decomp:_nearby_53dc50 Cleanup, SetMode LoadFromFile(music), 7 refs | layout_fix:span_mismatch"
-    },
-    "300": {
-      "name": "m_nDisplayMode",
-      "type": "int",
-      "source": "ida_decomp:_init_52ed30 !=4/==4 check, 3 refs"
-    },
     "0": {
       "name": "m_pEnumeration",
       "type": "void*",
@@ -511,16 +501,6 @@
       "type": "UIScene",
       "source": "reverted_auto_semantic:4x_access|reverted:pseudo_semantic"
     },
-    "452": {
-      "type": "UIFrameWnd",
-      "name": "_embed_UIFrameWnd_512",
-      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
-    },
-    "544": {
-      "type": "UIFrameWnd",
-      "name": "_embed_UIFrameWnd_664",
-      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
-    },
     "636": {
       "type": "UIFrameWnd",
       "name": "_embed_UIFrameWnd_816",
@@ -607,29 +587,14 @@
       "source": "binary_scan:1refs"
     },
     "280": {
-      "name": "_todo_118",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "292": {
-      "name": "_todo_124",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "296": {
-      "name": "_todo_128",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "316": {
-      "name": "m_AssistFrame",
+      "name": "m_FrameB",
       "type": "UIFrameWnd",
-      "source": "decomp:_init_4593c0_CreateFromTemplate+vtable_call"
+      "source": "decomp:_init_47be20_CreateFromTemplate+vtable16"
     },
     "432": {
-      "name": "_todo_1B0",
-      "type": "int",
-      "source": "binary_scan:2refs"
+      "name": "m_StaticArray",
+      "type": "UIStatic",
+      "source": "decomp:_init_47be20_loop_ptr+=152(UIStatic_array_start)"
     },
     "616": {
       "name": "_todo_268",
@@ -772,9 +737,9 @@
       "source": "binary_scan:1refs"
     },
     "4000": {
-      "name": "_todo_FA0",
-      "type": "int",
-      "source": "binary_scan:6refs"
+      "name": "m_bCreateFlag",
+      "type": "unsigned char",
+      "source": "decomp:_init_47be20_LOBYTE_passed_to_Create"
     },
     "3568": {
       "name": "m_nAssistIdx",
