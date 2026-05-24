@@ -487,94 +487,9 @@
       "source": "A:FPU_disp32_0x41353e"
     },
     "1316": {
-      "name": "m_fPathDirX",
-      "type": "float",
-      "source": "binary:raw_PathFollowUpdate"
-    },
-    "1320": {
-      "name": "m_fPathDirY",
-      "type": "float",
-      "source": "binary:raw_PathFollowUpdate"
-    },
-    "1324": {
-      "name": "m_fPathDirZ",
-      "type": "float",
-      "source": "binary:raw_PathFollowUpdate"
-    },
-    "1328": {
-      "name": "m_fPathUpX",
-      "type": "float",
-      "source": "binary:raw_PathFollowUpdate"
-    },
-    "1332": {
-      "name": "m_fMoveNormX",
-      "type": "float",
-      "source": "ida_decomp:_auto_414350 dot product with v31.x, 4 refs"
-    },
-    "1336": {
-      "name": "m_fMoveNormY",
-      "type": "float",
-      "source": "ida_decomp:_auto_414350 loaded, accumulated, 3 refs"
-    },
-    "1340": {
-      "name": "m_fMoveNormZ",
-      "type": "float",
-      "source": "ida_decomp:_auto_414350 dot product with v31.z, 4 refs"
-    },
-    "1344": {
-      "name": "m_fRotAngle",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "1348": {
-      "name": "m_fMoveTarget",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "1352": {
-      "name": "m_fMoveDestZ",
-      "type": "float",
-      "source": "binary_setter_SetMoveTarget"
-    },
-    "1356": {
-      "name": "m_nWanderTarget",
-      "type": "int",
-      "source": "binary:raw_PathFollowUpdate"
-    },
-    "1360": {
-      "name": "m_nWanderParam",
-      "type": "int",
-      "source": "binary:raw_PathFollowUpdate"
-    },
-    "1364": {
-      "name": "m_nMoveTarget",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "1368": {
-      "name": "m_fMoveOriginY",
-      "type": "float",
-      "source": "A:FPU_disp32_0x4151ae"
-    },
-    "1372": {
-      "name": "m_fMoveOriginZ",
-      "type": "float",
-      "source": "A:FPU_disp32_0x4151d2"
-    },
-    "1376": {
-      "name": "m_fWanderDirX",
-      "type": "float",
-      "source": "binary:raw_PathFollowUpdate"
-    },
-    "1380": {
-      "name": "m_fWanderDirY",
-      "type": "float",
-      "source": "binary:raw_PathFollowUpdate"
-    },
-    "1384": {
-      "name": "m_fWanderDirZ",
-      "type": "float",
-      "source": "binary:raw_PathFollowUpdate"
+      "name": "m_FrameA",
+      "type": "UIFrameWnd",
+      "source": "decomp:ctor_UIFrameWnd_shared_init(was_m_fPathDirX_float_WRONG)"
     },
     "1388": {
       "name": "m_nActiveRole",
@@ -1137,29 +1052,29 @@
       "source": "binary_scan:2refs"
     },
     "7280": {
-      "name": "_todo_1C70",
-      "type": "int",
-      "source": "binary_scan:9refs"
+      "name": "m_FrameC",
+      "type": "UIFrameWnd",
+      "source": "decomp:ctor_UIFrameWnd_shared_init"
     },
     "7432": {
-      "name": "_todo_1D08",
-      "type": "int",
-      "source": "binary_scan:10refs"
+      "name": "m_FrameD",
+      "type": "UIFrameWnd",
+      "source": "decomp:ctor_UIFrameWnd_shared_init"
     },
     "7584": {
-      "name": "_todo_1DA0",
+      "name": "m_nSubState0",
       "type": "int",
-      "source": "binary_scan:3refs"
+      "source": "decomp:ctor_set_0"
     },
     "7588": {
-      "name": "_todo_1DA4",
+      "name": "m_nSubState1",
       "type": "int",
-      "source": "binary_scan:4refs"
+      "source": "decomp:ctor_set_0"
     },
     "7592": {
-      "name": "_todo_1DA8",
-      "type": "int",
-      "source": "binary_scan:4refs"
+      "name": "m_bSubFlag",
+      "type": "unsigned char",
+      "source": "decomp:ctor_LOBYTE_set_0"
     },
     "7596": {
       "name": "_todo_1DAC",
@@ -1178,5 +1093,7 @@
     }
   },
   "note": "not in PDB, needs binary analysis",
-  "binary_size": 8684
+  "binary_size": 8684,
+  "base_class": "UIListBox",
+  "base_size": 1208
 }
