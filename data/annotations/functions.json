@@ -938,12 +938,12 @@
     "signature": "void __thiscall(UIButton *this)"
   },
   "0x0043FA00": {
-    "name": "UIWnd::GetChildCount",
-    "signature": "void __thiscall(UIWnd *this, LPCSTR lpString, char pData)"
+    "name": "UIScene::GetChildCount",
+    "signature": "int __thiscall UIScene::GetChildCount(UIScene *this)"
   },
   "0x0043FAE0": {
-    "name": "UIWnd::GetChildAt",
-    "signature": "void __thiscall(UIWnd *this, LPCSTR lpString, char pData)"
+    "name": "UIScene::GetChildAt",
+    "signature": "int __thiscall UIScene::GetChildAt(UIScene *this)"
   },
   "0x0043FCA0": {
     "name": "UIScrollBar::SetRange",
@@ -1010,8 +1010,8 @@
     "signature": "int __thiscall(UIAnimateCtrlEX *this)"
   },
   "0x00445930": {
-    "name": "UIWnd::SetState",
-    "signature": "int __thiscall(UIWnd *this, int state)"
+    "name": "UIScene::SetState",
+    "signature": "void __thiscall UIScene::SetState(UIScene *this)"
   },
   "0x00445B40": {
     "name": "UIWnd::_UIWnd",
@@ -4540,8 +4540,8 @@
     "signature": "int __thiscall(UITitle_ArcSave *this)"
   },
   "0x004B4690": {
-    "name": "UIWnd::Reset",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "UIListBox::Reset",
+    "signature": "void __thiscall UIListBox::Reset(UIListBox *this)"
   },
   "0x0043BCE0": {
     "name": "UIScene::ctor_BCE0",
@@ -10039,8 +10039,8 @@
     "signature": "void __thiscall(UIButton *this)"
   },
   "0x0043FBC0": {
-    "name": "UIWnd::spstr__ovl_43fbc0",
-    "signature": "void __thiscall(UIWnd *this, LPCSTR lpString, char pData)"
+    "name": "UIScene::SetTextParam",
+    "signature": "void __thiscall UIScene::SetTextParam(UIScene *this)"
   },
   "0x0043FD20": {
     "name": "CCBFiveNimbusWindow::CalcHitAngle",
@@ -10080,8 +10080,8 @@
     "_misattrib_evidence": "max_offset=348>class_size=96"
   },
   "0x00442060": {
-    "name": "UIWnd::SetFirstShow__ovl_442060",
-    "signature": "int __thiscall(UIWnd *this, int nVal)"
+    "name": "UIScene::SetFirstShow",
+    "signature": "void __thiscall UIScene::SetFirstShow(UIScene *this)"
   },
   "0x004420C0": {
     "name": "UIMap::OnMessage",
@@ -10619,8 +10619,8 @@
     "signature": "void __thiscall(CCBUIPanel *this)"
   },
   "0x00455190": {
-    "name": "UIWnd::_nearby_455190",
-    "signature": "int __thiscall(UIWnd *this, int nVal)"
+    "name": "UIScene::SetParam",
+    "signature": "int __thiscall UIScene::SetParam(UIScene *this, int nVal)"
   },
   "0x004551A0": {
     "name": "TaskBookUI::_method_4551a0",
@@ -13924,8 +13924,8 @@
     "signature": "int *__thiscall(PAL3 *this)"
   },
   "0x004BF170": {
-    "name": "UIWnd::CleanupTextures",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "UIScene::CleanupTextures",
+    "signature": "void __thiscall UIScene::CleanupTextures(UIScene *this)"
   },
   "0x004C58C0": {
     "name": "PAL3::CreateRenderEffects",
