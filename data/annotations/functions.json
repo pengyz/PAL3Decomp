@@ -6347,8 +6347,8 @@
     "signature": "char __cdecl FindScriptEventByID(int nEventId)"
   },
   "0x0044B0F0": {
-    "name": "UITitle::_init_44b0f0",
-    "signature": "int __thiscall(UITitle *this, struct PalScript *p, int nVal)"
+    "name": "UITitle::RunFrame",
+    "signature": "int __thiscall UITitle::RunFrame(UITitle *this, struct PalScript *p, int nVal)"
   },
   "0x0044C8A0": {
     "name": "UICoverFrm::UpdateAnimation",
@@ -6367,8 +6367,8 @@
     "signature": "int __thiscall(UIListBox *this, char *Source, int nVal)"
   },
   "0x004520A0": {
-    "name": "UITitle_BBTY::_init_4520a0",
-    "signature": "double __thiscall(UITitle_BBTY *this, double result, int arg0, int arg0a)"
+    "name": "UITitle_BBTY::UpdateFrame",
+    "signature": "double __thiscall UITitle_BBTY::UpdateFrame(UITitle_BBTY *this, double result, int arg0, int arg0a)"
   },
   "0x00452DF0": {
     "name": "UIWnd::Render__ovl_452df0",
@@ -6434,8 +6434,8 @@
     "signature": "void __thiscall(MainEquipUI *this, int arg0, char arg4)"
   },
   "0x0049C2C0": {
-    "name": "PAL_GDB::_init_49c2c0",
-    "signature": "char __thiscall(PAL_GDB *this, unsigned int dwVal, char pData)"
+    "name": "PAL_GDB::LoadByType",
+    "signature": "char __thiscall PAL_GDB::LoadByType(PAL_GDB *this, unsigned int dwVal, char pData)"
   },
   "0x0049C660": {
     "name": "PAL_GDB::SelectBestTarget",
@@ -6490,8 +6490,8 @@
     "signature": "double __thiscall(UIRoleSelectDialog *this, double st6_0, double result, int arg0, int arg0a)"
   },
   "0x0052C480": {
-    "name": "UICoverFrm::_init_52c480",
-    "signature": "double __thiscall(UICoverFrm *this, int edi0, double result, int result_4, int nVal)"
+    "name": "UICoverFrm::UpdateStarAnimation",
+    "signature": "double __thiscall UICoverFrm::UpdateStarAnimation(UICoverFrm *this, int edi0, double result, int result_4, int nVal)"
   },
   "0x00533250": {
     "name": "CScreenMode::LoadScreenScene",
@@ -7780,8 +7780,8 @@
     "_misattrib_evidence": "max_offset=26968>class_size=1816"
   },
   "0x004AA9C0": {
-    "name": "_misattrib_CCBUI::_init_4aa9c0",
-    "signature": "void __thiscall(CCBUI *this)",
+    "name": "_misattrib_CCBUI::CreatePanelUI",
+    "signature": "void __thiscall _misattrib_CCBUI::CreatePanelUI(CCBUI *this)",
     "_misattrib_evidence": "max_offset=401904>class_size=2632"
   },
   "0x004AB2B0": {
@@ -7800,8 +7800,8 @@
     "_misattrib_evidence": "max_offset=283704>class_size=200"
   },
   "0x004AD140": {
-    "name": "SystemUI::_init_4ad140",
-    "signature": "void __thiscall(SystemUI *this)"
+    "name": "SystemUI::ProcessFrame",
+    "signature": "void __thiscall SystemUI::ProcessFrame(SystemUI *this)"
   },
   "0x004ADC30": {
     "name": "SystemUI::InitScreenUI",
@@ -12911,8 +12911,8 @@
     "signature": "char __thiscall(RoleAtt *this, int nVal)"
   },
   "0x00531F50": {
-    "name": "RoleSystem::_init_531f50",
-    "signature": "int __thiscall(RoleSystem *this)",
+    "name": "RoleSystem::InitAllSystems",
+    "signature": "int __thiscall RoleSystem::InitAllSystems(RoleSystem *this)",
     "_misattrib_evidence": "max_offset=7432>class_size=232"
   },
   "0x005322D0": {
