@@ -7162,8 +7162,8 @@
     "signature": "size_t __thiscall(NPC *this, FILE *Stream)"
   },
   "0x0040FC90": {
-    "name": "NPC::_nearby_40fc90",
-    "signature": "void __cdecl(int nVal)"
+    "name": "AddMoney",
+    "signature": "void __cdecl AddMoney(int nAmount)"
   },
   "0x00410580": {
     "name": "NPC::SetSceneFlag",
@@ -7174,20 +7174,20 @@
     "signature": "int __thiscall(Array *this, char *arr, int *src)"
   },
   "0x00411E00": {
-    "name": "ScriptSystem::_sub_411E00",
-    "signature": "void __thiscall(ScriptSystem *this, double thisa, int nVal, float fVal, char pData)"
+    "name": "RoleSystem::ApplyMoveDirection",
+    "signature": "void __thiscall RoleSystem::ApplyMoveDirection(RoleSystem *this, double thisa, int nVal, float fVal, char pData)"
   },
   "0x00412A90": {
-    "name": "RoleSystem::_sub_412A90",
-    "signature": "void __thiscall(RoleSystem *this, __int64 pData, int nVal)"
+    "name": "RoleSystem::MoveToTile",
+    "signature": "void __thiscall RoleSystem::MoveToTile(RoleSystem *this, __int64 pData, int nVal)"
   },
   "0x00413420": {
-    "name": "RoleSystem::_nearby_413420",
-    "signature": "int __thiscall(RoleSystem *this, double thisa, float fVal)"
+    "name": "RoleSystem::UpdateMovePath",
+    "signature": "int __thiscall RoleSystem::UpdateMovePath(RoleSystem *this, double thisa, float fDeltaTime)"
   },
   "0x00413850": {
-    "name": "RoleSystem::_sub_413850",
-    "signature": "double __thiscall(RoleSystem *this, double result)"
+    "name": "RoleSystem::UpdateMoveToTarget",
+    "signature": "double __thiscall RoleSystem::UpdateMoveToTarget(RoleSystem *this, double result)"
   },
   "0x00414350": {
     "name": "RoleSystem::_auto_414350",
@@ -7227,16 +7227,16 @@
     "_misattrib_evidence": "max_offset=680>class_size=64"
   },
   "0x0041A1A0": {
-    "name": "RoleSystem::_auto_41a1a0",
-    "signature": "void __thiscall(RoleSystem *this, float fVal)"
+    "name": "RoleSystem::UpdateAI",
+    "signature": "void __thiscall RoleSystem::UpdateAI(RoleSystem *this, float fDeltaTime)"
   },
   "0x0041A450": {
     "name": "RoleSystem::UpdateFollowerMovement",
     "signature": "void __thiscall(RoleSystem *this, float fVal)"
   },
   "0x0041CC50": {
-    "name": "CameraCtrl::_nearby_41cc50",
-    "signature": "int __thiscall(CameraCtrl *this, float fVal)"
+    "name": "CameraCtrl::UpdateTransition",
+    "signature": "int __thiscall CameraCtrl::UpdateTransition(CameraCtrl *this, float fDelta)"
   },
   "0x0041CFC0": {
     "name": "CameraCtrl::SetupDirect",
@@ -7267,20 +7267,20 @@
     "signature": "void __thiscall(RoleSystem *this, float fVal, int nVal, float fVal2, int nVal2)"
   },
   "0x00420B40": {
-    "name": "PalScriptMgr::_sub_420B40",
-    "signature": "void __thiscall(PalScriptMgr *this, RoleSystem *pRoleSystem, float fVal, char pData)"
+    "name": "PalScriptMgr::CheckTileEvent",
+    "signature": "void __thiscall PalScriptMgr::CheckTileEvent(PalScriptMgr *this, RoleSystem *pRole, float fVal, char pData)"
   },
   "0x00420FB0": {
     "name": "RoleSystem::CheckMoveCollision",
     "signature": "BOOL __thiscall(RoleSystem *this, int *index, float *pfVal, int nVal)"
   },
   "0x00421150": {
-    "name": "RoleSystem::_sub_421150",
-    "signature": "BOOL __thiscall(RoleSystem *this, char arg0, int index, int *pnVal, int nVal)"
+    "name": "RoleSystem::CheckTilePassable",
+    "signature": "BOOL __thiscall RoleSystem::CheckTilePassable(RoleSystem *this, char arg0, int index, int *pnVal, int nVal)"
   },
   "0x00421230": {
-    "name": "RoleSystem::_sub_421230",
-    "signature": "double __thiscall(RoleSystem *this, int index, int nY, int nVal, int *p_DWORD)"
+    "name": "RoleSystem::GetTileWorldPos",
+    "signature": "double __thiscall RoleSystem::GetTileWorldPos(RoleSystem *this, int index, int nY, int nVal, int *pOut)"
   },
   "0x004214B0": {
     "name": "RoleSystem::ValidatePathIndex",
@@ -7291,20 +7291,20 @@
     "signature": "char *__thiscall(RoleSystem *this, int nVal)"
   },
   "0x00429AF0": {
-    "name": "GeomNode::_auto_429af0",
-    "signature": "void __thiscall(GeomNode *this, const gbGeomNode *pGeomNode, int nVal)"
+    "name": "GeomNode::LoadFromGeomNode",
+    "signature": "void __thiscall GeomNode::LoadFromGeomNode(GeomNode *this, const gbGeomNode *pGeomNode, int nVal)"
   },
   "0x00429D10": {
     "name": "PalScript::GetCount",
     "signature": "int *__thiscall(PalScript *this, int nVal)"
   },
   "0x00429DB0": {
-    "name": "PalScriptMgr::_sub_429DB0",
-    "signature": "void __thiscall(PalScriptMgr *this, gbMatrix4 *pMatrix4)"
+    "name": "PalScriptMgr::BuildTransform",
+    "signature": "void __thiscall PalScriptMgr::BuildTransform(PalScriptMgr *this, gbMatrix4 *pMatrix)"
   },
   "0x0042A950": {
-    "name": "RoleSystem::_auto_42a950",
-    "signature": "BOOL __thiscall(RoleSystem *this, struct gbVec3D *p)"
+    "name": "RoleSystem::GetTileFromWorldPos",
+    "signature": "BOOL __thiscall RoleSystem::GetTileFromWorldPos(RoleSystem *this, struct gbVec3D *pWorldPos)"
   },
   "0x0042B510": {
     "name": "RoleSystem::UpdateStateMode",
@@ -7319,12 +7319,12 @@
     "signature": "void __cdecl(int nVal)"
   },
   "0x0042C0C0": {
-    "name": "RoleSystem::_auto_42c0c0",
-    "signature": "int *__thiscall(RoleSystem *this, int nVal, int nVal2)"
+    "name": "RoleSystem::UpdateVisibility",
+    "signature": "int *__thiscall RoleSystem::UpdateVisibility(RoleSystem *this, int nVal, int nVal2)"
   },
   "0x0042C280": {
-    "name": "PalScriptMgr::_nearby_42c280",
-    "signature": "struct gbVFileSystem *__thiscall(PalScriptMgr *this, char pData)"
+    "name": "PalScriptMgr::LoadSceneFile",
+    "signature": "struct gbVFileSystem *__thiscall PalScriptMgr::LoadSceneFile(PalScriptMgr *this, char pData)"
   },
   "0x0042C950": {
     "name": "ScriptVM::ExecuteOpcode",
@@ -7351,20 +7351,20 @@
     "signature": "int __thiscall(PalScriptMgr *this, unsigned char pData)"
   },
   "0x0042D9F0": {
-    "name": "RoleSystem::_auto_42d9f0",
-    "signature": "int __thiscall(RoleSystem *this, int *p_DWORD)"
+    "name": "RoleSystem::SetMoveTarget",
+    "signature": "void __thiscall RoleSystem::SetMoveTarget(RoleSystem *this)"
   },
   "0x0042E870": {
-    "name": "RoleSystem::_auto_42e870",
-    "signature": "int __thiscall(RoleSystem *this, int nVal)"
+    "name": "RoleSystem::GetMoveState",
+    "signature": "int __thiscall RoleSystem::GetMoveState(RoleSystem *this)"
   },
   "0x0042F460": {
     "name": "PalScriptMgr::ExecuteFrame",
     "signature": "void __thiscall(PalScriptMgr *this, float fVal)"
   },
   "0x0042FB40": {
-    "name": "PalScriptMgr::_nearby_42fb40",
-    "signature": "char __thiscall(PalScriptMgr *this, char pData)"
+    "name": "PalScriptMgr::OnSceneLoaded",
+    "signature": "void __thiscall PalScriptMgr::OnSceneLoaded(PalScriptMgr *this)"
   },
   "0x00432600": {
     "name": "PtrArray::_nearby_432600",
@@ -7586,20 +7586,20 @@
     "signature": "RoleSystem *__cdecl(unsigned short pData)"
   },
   "0x0040DE10": {
-    "name": "PtrArray::_nearby_40de10",
-    "signature": "char *__cdecl(char *pszBuf)"
+    "name": "MovePartyFormation",
+    "signature": "char *__cdecl MovePartyFormation(char *pszBuf)"
   },
   "0x0040E0A0": {
-    "name": "PalScriptMgr::_auto_40e0a0",
-    "signature": "void __cdecl(int nVal)"
+    "name": "RestorePartyMoveMode",
+    "signature": "void __cdecl RestorePartyMoveMode(int nNotify)"
   },
   "0x0040E840": {
-    "name": "PtrArray::_nearby_40e840",
-    "signature": "int *__cdecl(int nVal, int nVal2)"
+    "name": "AddNPCToScene",
+    "signature": "int *__cdecl AddNPCToScene(int nRoleIdx, int nLevel)"
   },
   "0x0040FF70": {
-    "name": "NPC::_nearby_40ff70",
-    "signature": "char *__cdecl(int nVal, int nVal2)"
+    "name": "SetRoleLevel",
+    "signature": "char *__cdecl SetRoleLevel(int nRoleIdx, int nLevel)"
   },
   "0x00410430": {
     "name": "PAL3_Helper_410430",
@@ -7610,24 +7610,24 @@
     "signature": "PalScript *__thiscall(PalScript *pPalScript)"
   },
   "0x00410920": {
-    "name": "PalScriptMgr::_auto_410920",
-    "signature": "int *__thiscall(PalScriptMgr *this)"
+    "name": "PalScriptMgr::LoadSceneScript",
+    "signature": "int *__thiscall PalScriptMgr::LoadSceneScript(PalScriptMgr *this)"
   },
   "0x00411290": {
     "name": "PtrArray::_sub_411290",
     "signature": "unsigned int __cdecl(char *pszBuf, char *pszBuf2, void **a3)"
   },
   "0x00411B70": {
-    "name": "Array::_nearby_411b70",
-    "signature": "void __thiscall(Array *this)"
+    "name": "ScriptObj::OnIdle",
+    "signature": "void __thiscall ScriptObj::OnIdle(ScriptObj *this)"
   },
   "0x00411BA0": {
-    "name": "Array::_nearby_411ba0",
-    "signature": "void __thiscall(Array *this)"
+    "name": "ScriptObj::OnReset",
+    "signature": "void __thiscall ScriptObj::OnReset(ScriptObj *this)"
   },
   "0x004132B0": {
-    "name": "RoleSystem::_sub_4132B0",
-    "signature": "char __thiscall(RoleSystem *this, int arg0, int arg4, int nVal)"
+    "name": "RoleSystem::IsAtTile",
+    "signature": "char __thiscall RoleSystem::IsAtTile(RoleSystem *this, int nX, int nY, int nVal)"
   },
   "0x00413390": {
     "name": "RoleSystem::InterpolateMoveFrame",
@@ -7658,28 +7658,28 @@
     "signature": "void __thiscall(RoleSystem *this, const char *pszName)"
   },
   "0x0041B6C0": {
-    "name": "RoleSystem::_sub_41B6C0",
-    "signature": "char __thiscall(RoleSystem *this, int nVal)"
+    "name": "RoleSystem::ProcessTileAction",
+    "signature": "char __thiscall RoleSystem::ProcessTileAction(RoleSystem *this, int nVal)"
   },
   "0x0041B9F0": {
-    "name": "Actor::_auto_41b9f0",
-    "signature": "unsigned int __thiscall(Actor *this, int animId)"
+    "name": "Actor::GetEmbedAnimDuration",
+    "signature": "unsigned int __thiscall Actor::GetEmbedAnimDuration(Actor *this, int animId)"
   },
   "0x0041C9A0": {
-    "name": "InputSystem::_auto_41c9a0",
-    "signature": "int __thiscall(InputSystem *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int nVal7)"
+    "name": "InputSystem::SetCameraParams",
+    "signature": "int __thiscall InputSystem::SetCameraParams(InputSystem *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int nVal7)"
   },
   "0x0041CBC0": {
-    "name": "CameraCtrl::_nearby_41cbc0",
-    "signature": "void __thiscall(CameraCtrl *this)"
+    "name": "CameraCtrl::OnIdle",
+    "signature": "void __thiscall CameraCtrl::OnIdle(CameraCtrl *this)"
   },
   "0x0041D100": {
-    "name": "__old_sbh_page_struct::_auto_41d100",
-    "signature": "int __thiscall(__old_sbh_page_struct *this, int nVal)"
+    "name": "CameraCtrl::SetPreset",
+    "signature": "int __thiscall CameraCtrl::SetPreset(CameraCtrl *this, int nPreset)"
   },
   "0x0041F6F0": {
-    "name": "SystemUI::_auto_41f6f0",
-    "signature": "void __thiscall(SystemUI *this)"
+    "name": "SystemUI::Reset",
+    "signature": "void __thiscall SystemUI::Reset(SystemUI *this)"
   },
   "0x0041F9F0": {
     "name": "PAL3::LoadingTimerCallback",
@@ -7730,8 +7730,8 @@
     "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00422050": {
-    "name": "_misattrib_RoleSystem::_nearby_422050",
-    "signature": "int *__thiscall(RoleSystem *this, char pData)",
+    "name": "_misattrib_RoleSystem::FindRoleByState",
+    "signature": "int *__thiscall SceneMgr::FindRoleByState(SceneMgr *this, char nState)",
     "_misattrib_evidence": "max_offset=57744>class_size=8684"
   },
   "0x00422950": {
@@ -7739,24 +7739,24 @@
     "signature": "struct gbVFileSystem *(double String2, char *arg8, char *pszBuf, char pData, char pData2)"
   },
   "0x004236D0": {
-    "name": "BINK::_nearby_4236d0",
-    "signature": "void __thiscall(BINK *this)"
+    "name": "BINK::Reset",
+    "signature": "void __thiscall BINK::Reset(BINK *this)"
   },
   "0x00423880": {
-    "name": "ScriptVM::_nearby_423880",
-    "signature": "void __thiscall(ScriptVM *this)"
+    "name": "ScriptVM::FlushQueue",
+    "signature": "void __thiscall ScriptVM::FlushQueue(ScriptVM *this)"
   },
   "0x0042AAE0": {
-    "name": "PalScriptMgr::_nearby_42aae0",
-    "signature": "BOOL __thiscall(PalScriptMgr *this, int *pnVal, int nVal, struct gbVec3D *p)"
+    "name": "PalScriptMgr::CheckCollision",
+    "signature": "BOOL __thiscall PalScriptMgr::CheckCollision(PalScriptMgr *this, int *pnVal, int nVal, struct gbVec3D *pPos)"
   },
   "0x0042BEA0": {
-    "name": "PalScriptMgr::_nearby_42bea0",
-    "signature": "void __thiscall(PalScriptMgr *this)"
+    "name": "PalScriptMgr::OnAnimComplete",
+    "signature": "void __thiscall PalScriptMgr::OnAnimComplete(PalScriptMgr *this)"
   },
   "0x0042C030": {
-    "name": "PalScriptMgr::_auto_42c030",
-    "signature": "void __thiscall(PalScriptMgr *this, int nVal)"
+    "name": "PalScriptMgr::SetPauseState",
+    "signature": "void __thiscall PalScriptMgr::SetPauseState(PalScriptMgr *this, int nVal)"
   },
   "0x0042C6A0": {
     "name": "Matrix4::GetAABBox",
@@ -7767,12 +7767,12 @@
     "signature": "int __thiscall(ScriptVM *this, unsigned char pData)"
   },
   "0x0042DBD0": {
-    "name": "RoleSystem::_auto_42dbd0",
-    "signature": "int __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::UpdateMoveState",
+    "signature": "void __thiscall RoleSystem::UpdateMoveState(RoleSystem *this)"
   },
   "0x0042DD80": {
-    "name": "RoleSystem::_auto_42dd80",
-    "signature": "int __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::ApplyMoveDelta",
+    "signature": "void __thiscall RoleSystem::ApplyMoveDelta(RoleSystem *this)"
   },
   "0x0042DF30": {
     "name": "PalScriptMgr::RoleCmd__ovl_42df30",
@@ -7791,24 +7791,24 @@
     "signature": "int __thiscall(PalScriptMgr *this, int nVal)"
   },
   "0x0042EA30": {
-    "name": "RoleSystem::_auto_42ea30",
-    "signature": "int __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::CheckPathEnd",
+    "signature": "int __thiscall RoleSystem::CheckPathEnd(RoleSystem *this)"
   },
   "0x0042FF40": {
     "name": "Config::ReadFloatArray",
     "signature": "BOOL __thiscall(Config *this, int nVal, int nVal2, int *pnVal, int *pnVal2)"
   },
   "0x004309D0": {
-    "name": "PalScript::_nearby_4309d0",
-    "signature": "int *__thiscall(PalScript *this, int *p_DWORD, char *pszBuf)"
+    "name": "PalScript::CallFunction",
+    "signature": "int *__thiscall PalScript::CallFunction(PalScript *this, int *pResult, char *pszFunc)"
   },
   "0x00431040": {
-    "name": "PalScript::_nearby_431040",
-    "signature": "int *__thiscall(PalScript *this, int *p_DWORD, int nVal)"
+    "name": "PalScript::GetVariableRef",
+    "signature": "int *__thiscall PalScript::GetVariableRef(PalScript *this, int *pResult, int nIdx)"
   },
   "0x00431100": {
-    "name": "PalScript::_nearby_431100",
-    "signature": "int *__thiscall(PalScript *this, int *p_DWORD, void *pData, int *p_DWORD2, char *pszBuf)"
+    "name": "PalScript::EvalExpression",
+    "signature": "int *__thiscall PalScript::EvalExpression(PalScript *this, int *pResult, void *pData, int *pParam, char *pszBuf)"
   },
   "0x00431CD0": {
     "name": "UIListBox::RefreshSelection",
@@ -9906,8 +9906,8 @@
     "signature": "void __cdecl()"
   },
   "0x00402290": {
-    "name": "GRPinput::_sub_402290",
-    "signature": "BOOL __thiscall(GRPinput *this, int X, int Y)"
+    "name": "GRPinput::SetCursorPos",
+    "signature": "BOOL __thiscall GRPinput::SetCursorPos(GRPinput *this, int X, int Y)"
   },
   "0x00402640": {
     "name": "GRPinput::BuildKeyMap",
@@ -9926,8 +9926,8 @@
     "signature": "int __thiscall(RoleSystem *this, int index, float *pfVal, float *pfVal2, int nVal, char pData)"
   },
   "0x00408B60": {
-    "name": "UIListBox::_auto_408b60",
-    "signature": "void __cdecl __thiscall(UIListBox *this)"
+    "name": "InitScriptObjArray",
+    "signature": "void __cdecl InitScriptObjArray()"
   },
   "0x00408BD0": {
     "name": "CEffAction::sub_00408BD0",
@@ -9958,12 +9958,12 @@
     "signature": "BOOL __cdecl(int *p_DWORD, int *p_DWORD2)"
   },
   "0x0040E110": {
-    "name": "PtrArray::_nearby_40e110",
-    "signature": "char __cdecl(int nVal)"
+    "name": "UpdatePartyFormation",
+    "signature": "char __cdecl UpdatePartyFormation(int nVal)"
   },
   "0x0040E3C0": {
-    "name": "PtrArray::_nearby_40e3c0",
-    "signature": "char __cdecl(int nVal)"
+    "name": "UpdatePartyFormationEx",
+    "signature": "char __cdecl UpdatePartyFormationEx(int nVal)"
   },
   "0x0040EE00": {
     "name": "NPC::FreeBuffer",
@@ -9978,56 +9978,56 @@
     "signature": "bool __thiscall(NPC *this, int nVal)"
   },
   "0x0040F030": {
-    "name": "NPC::_nearby_40f030",
-    "signature": "int __thiscall(NPC *this)"
+    "name": "NPC::GetPathCount",
+    "signature": "int __thiscall NPC::GetPathCount(NPC *this)"
   },
   "0x0040F050": {
-    "name": "NPC::_nearby_40f050",
-    "signature": "int __thiscall(NPC *this, int nVal)"
+    "name": "NPC::GetPathPoint",
+    "signature": "int __thiscall NPC::GetPathPoint(NPC *this, int nIndex)"
   },
   "0x0040F0C0": {
-    "name": "NPC::_nearby_40f0c0",
-    "signature": "void __cdecl(FILE *Stream)"
+    "name": "SaveGameData",
+    "signature": "void __cdecl SaveGameData(FILE *fp)"
   },
   "0x0040F230": {
-    "name": "NPC::_nearby_40f230",
-    "signature": "int *__cdecl(FILE *Stream)"
+    "name": "LoadGameData",
+    "signature": "int *__cdecl LoadGameData(FILE *fp)"
   },
   "0x0040F6F0": {
     "name": "NPC::ReadBufferData",
     "signature": "int __thiscall(NPC *this, FILE *Stream)"
   },
   "0x0040F760": {
-    "name": "NPC::_nearby_40f760",
-    "signature": "int __thiscall(NPC *this, FILE *Stream)"
+    "name": "NPC::LoadPathFromStream",
+    "signature": "int __thiscall NPC::LoadPathFromStream(NPC *this, FILE *fp)"
   },
   "0x0040F950": {
     "name": "NPC::SaveToStream",
     "signature": "size_t __thiscall(NPC *this, FILE *Stream)"
   },
   "0x00410960": {
-    "name": "Array::_nearby_410960",
-    "signature": "void __thiscall(Array *this)"
+    "name": "NPC::FreeBuffer",
+    "signature": "void __thiscall NPC::FreeBuffer(NPC *this)"
   },
   "0x00410DF0": {
     "name": "Array::CopyRange",
     "signature": "int *__thiscall(Array *this, int *p_DWORD, int *p_DWORD2)"
   },
   "0x00411220": {
-    "name": "Array::_sub_411220",
-    "signature": "int *__cdecl(int *p_DWORD, int *p_DWORD2)"
+    "name": "CopyInt",
+    "signature": "int *__cdecl CopyInt(int *pDst, int *pSrc)"
   },
   "0x004115C0": {
     "name": "Array::_nearby_4115c0",
     "signature": "unsigned int *__cdecl(unsigned int *pdwVal, unsigned int *pdwVal2, unsigned int dwVal, int nVal, int nVal2, int nVal3)"
   },
   "0x00411780": {
-    "name": "Array::_nearby_411780",
-    "signature": "void __thiscall(Array *this)"
+    "name": "SceneMgr::SetCameraDistance",
+    "signature": "void __thiscall SceneMgr::SetCameraDistance(SceneMgr *this)"
   },
   "0x004117E0": {
-    "name": "Array::_nearby_4117e0",
-    "signature": "void __thiscall(Array *this)"
+    "name": "SceneMgr::ResetCameraState",
+    "signature": "void __thiscall SceneMgr::ResetCameraState(SceneMgr *this)"
   },
   "0x00411900": {
     "name": "Role::Role",
@@ -10035,8 +10035,8 @@
     "_misattrib_evidence": "max_offset=8700>class_size=596"
   },
   "0x00411CA0": {
-    "name": "_misattrib_ScriptObj::_auto_411ca0",
-    "signature": "void __thiscall(ScriptObj *this)",
+    "name": "_misattrib_ScriptObj::Destroy",
+    "signature": "void __thiscall ScriptObj::Destroy(ScriptObj *this)",
     "_misattrib_evidence": "max_offset=140>class_size=4"
   },
   "0x004123F0": {
@@ -10148,8 +10148,8 @@
     "signature": "BOOL __thiscall(RoleSystem *this, float *pfVal)"
   },
   "0x0041A070": {
-    "name": "UICamera::_sub_41A070",
-    "signature": "BOOL __thiscall(UICamera *this, float *pfVal, char pData)"
+    "name": "UICamera::IsInVisibleRange",
+    "signature": "BOOL __thiscall UICamera::IsInVisibleRange(UICamera *this, float *pfPos, char bNear)"
   },
   "0x0041AEA0": {
     "name": "RoleSystem::SetBlendMode",
@@ -10160,8 +10160,8 @@
     "signature": "int __thiscall(RoleSystem *this, int *p_DWORD)"
   },
   "0x0041AF50": {
-    "name": "RoleSystem::_nearby_41af50",
-    "signature": "int __thiscall(RoleSystem *this, int nVal, int nVal2)"
+    "name": "RoleSystem::SetPathNode",
+    "signature": "int __thiscall RoleSystem::SetPathNode(RoleSystem *this, int nNodeIdx, int nVal)"
   },
   "0x0041B120": {
     "name": "RoleSystem::StopPathMovement",
@@ -10192,28 +10192,28 @@
     "signature": "int *__thiscall(RoleSystem *this, _BYTE *p_BYTE)"
   },
   "0x0041BE70": {
-    "name": "RoleSystem::_nearby_41be70",
-    "signature": "void __thiscall(RoleSystem *this)"
+    "name": "SceneMgr::ResetCameraDistance",
+    "signature": "void __thiscall SceneMgr::ResetCameraDistance(SceneMgr *this)"
   },
   "0x0041BE80": {
     "name": "Camera::Method_41BE80",
     "signature": "Camera *__thiscall(Camera *this, struct gbGfxManager *p)"
   },
   "0x0041C090": {
-    "name": "RoleSystem::_nearby_41c090",
-    "signature": "int __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::FlushScriptQueue",
+    "signature": "int __thiscall RoleSystem::FlushScriptQueue(RoleSystem *this)"
   },
   "0x0041C190": {
     "name": "RoleSystem::SetInactive",
     "signature": "int __thiscall(RoleSystem *this, int nVal)"
   },
   "0x0041C1E0": {
-    "name": "__old_sbh_page_struct::_auto_41c1e0",
-    "signature": "int __thiscall(__old_sbh_page_struct *this)"
+    "name": "CameraCtrl::UpdateTarget",
+    "signature": "int __thiscall CameraCtrl::UpdateTarget(CameraCtrl *this)"
   },
   "0x0041C670": {
-    "name": "CameraCtrl::_nearby_41c670",
-    "signature": "float *__thiscall(CameraCtrl *this, float *pfVal, float fVal, float fVal2, float fVal3)"
+    "name": "CameraCtrl::CalcCameraPos",
+    "signature": "float *__thiscall CameraCtrl::CalcCameraPos(CameraCtrl *this, float *pfOut, float fTargetX, float fTargetY, float fTargetZ)"
   },
   "0x0041CEE0": {
     "name": "CameraCtrl::SetupFollow",
@@ -10232,8 +10232,8 @@
     "signature": "int __thiscall(CameraCtrl *this, int nVal, int nVal2, int nVal3, int nVal4, int *p_DWORD, int nVal5)"
   },
   "0x0041D220": {
-    "name": "RoleSystem::_auto_41d220",
-    "signature": "int __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::UpdateTransform",
+    "signature": "int __thiscall RoleSystem::UpdateTransform(RoleSystem *this)"
   },
   "0x0041D410": {
     "name": "CameraCtrl::_auto_41d410",
@@ -10241,16 +10241,16 @@
     "_misattrib_evidence": "max_offset=444>class_size=36"
   },
   "0x0041D5C0": {
-    "name": "CameraCtrl::_nearby_41d5c0",
-    "signature": "int __thiscall(CameraCtrl *this, int nVal)"
+    "name": "CameraCtrl::SetMode",
+    "signature": "int __thiscall CameraCtrl::SetMode(CameraCtrl *this, int nMode)"
   },
   "0x0041D5D0": {
     "name": "CameraCtrl::UpdateFOVLerp",
     "signature": "char *__thiscall(CameraCtrl *this)"
   },
   "0x0041D730": {
-    "name": "CameraCtrl::_nearby_41d730",
-    "signature": "void __thiscall(CameraCtrl *this)"
+    "name": "CameraCtrl::PopState",
+    "signature": "void __thiscall CameraCtrl::PopState(CameraCtrl *this)"
   },
   "0x0041D7C0": {
     "name": "CameraCtrl::SetCameraSource",
@@ -10261,8 +10261,8 @@
     "signature": "unsigned int __thiscall(CameraCtrl *this, CameraCtrl *thisa, int nVal)"
   },
   "0x0041D900": {
-    "name": "CameraCtrl::_nearby_41d900",
-    "signature": "void __thiscall(CameraCtrl *this)"
+    "name": "CameraCtrl::ResetGlobalScale",
+    "signature": "void __thiscall CameraCtrl::ResetGlobalScale(CameraCtrl *this)"
   },
   "0x0041D960": {
     "name": "CameraCtrl::ResetSceneMgrParams",
@@ -10273,8 +10273,8 @@
     "signature": "int __cdecl(int nVal)"
   },
   "0x0041F800": {
-    "name": "SystemUI::_auto_41f800",
-    "signature": "void __thiscall(SystemUI *this)"
+    "name": "SystemUI::Cleanup",
+    "signature": "void __thiscall SystemUI::Cleanup(SystemUI *this)"
   },
   "0x004208A0": {
     "name": "RoleSystem::Reset",
@@ -10285,8 +10285,8 @@
     "signature": "void __thiscall(gbRenderEffect *this)"
   },
   "0x00420F50": {
-    "name": "RoleSystem::_sub_420F50",
-    "signature": "char *__thiscall(RoleSystem *this, int nVal)"
+    "name": "RoleSystem::GetTileDataPtr",
+    "signature": "char *__thiscall RoleSystem::GetTileDataPtr(RoleSystem *this, int nIndex)"
   },
   "0x00421A40": {
     "name": "SystemUI::_unverified_421A40",
@@ -10325,8 +10325,8 @@
     "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00422550": {
-    "name": "RoleSystem::_nearby_422550",
-    "signature": "void __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::StopMovement",
+    "signature": "void __thiscall RoleSystem::StopMovement(RoleSystem *this)"
   },
   "0x00422740": {
     "name": "RoleSystem::ResetGlobalPos",
@@ -10337,16 +10337,16 @@
     "signature": "int __cdecl(int nVal)"
   },
   "0x00423690": {
-    "name": "UIScene::_nearby_423690",
-    "signature": "void __thiscall(UIScene *this)"
+    "name": "SceneMgr::ResetSceneParam",
+    "signature": "void __thiscall SceneMgr::ResetSceneParam(SceneMgr *this)"
   },
   "0x00423A70": {
     "name": "UIBigMap::_unverified_423A70",
     "signature": "void __thiscall(UIBigMap *this, int element, const char *visible)"
   },
   "0x004243E0": {
-    "name": "BINK::_nearby_4243e0",
-    "signature": "void __thiscall(BINK *this)"
+    "name": "BINK::ProcessFrame",
+    "signature": "void __thiscall BINK::ProcessFrame(BINK *this)"
   },
   "0x00424570": {
     "name": "UIBigMap::_unverified_424570",
@@ -10377,12 +10377,12 @@
     "signature": "int __thiscall(PalScript *this, int nVal)"
   },
   "0x00429D80": {
-    "name": "PalScriptMgr::_nearby_429d80",
-    "signature": "int __thiscall(PalScriptMgr *this)"
+    "name": "PalScriptMgr::InitMatrix",
+    "signature": "int __thiscall PalScriptMgr::InitMatrix(PalScriptMgr *this)"
   },
   "0x00429F90": {
-    "name": "PalScriptMgr::_nearby_429f90",
-    "signature": "void __thiscall(PalScriptMgr *this, gbMatrix4 *pMatrix4, struct gbVec3D *p)"
+    "name": "PalScriptMgr::BuildFullTransform",
+    "signature": "void __thiscall PalScriptMgr::BuildFullTransform(PalScriptMgr *this, gbMatrix4 *pMatrix, struct gbVec3D *pPos)"
   },
   "0x0042AC80": {
     "name": "PalScriptMgr::RoleCmd__ovl_42ac80",
@@ -10393,36 +10393,36 @@
     "signature": "int __thiscall(RoleSystem *this, int nVal, char pData)"
   },
   "0x0042AFA0": {
-    "name": "PalScriptMgr::_nearby_42afa0",
-    "signature": "int __thiscall(PalScriptMgr *this)"
+    "name": "PalScriptMgr::ProcessCommand",
+    "signature": "int __thiscall PalScriptMgr::ProcessCommand(PalScriptMgr *this)"
   },
   "0x0042B2F0": {
     "name": "Object3D::GetOrientedOBBox",
     "signature": "void __thiscall(Object3D *this, gbOBBox *pOBBox)"
   },
   "0x0042B450": {
-    "name": "PalScriptMgr::_nearby_42b450",
-    "signature": "BOOL __thiscall(PalScriptMgr *this, float *pfVal)"
+    "name": "PalScriptMgr::CheckTargetReached",
+    "signature": "BOOL __thiscall PalScriptMgr::CheckTargetReached(PalScriptMgr *this, float *pfTarget)"
   },
   "0x0042BEE0": {
     "name": "Actor::IsIdle",
     "signature": "BOOL __thiscall Actor::IsIdle(Actor *this)"
   },
   "0x0042C3A0": {
-    "name": "PalScriptMgr::_auto_42c3a0",
-    "signature": "bool __thiscall(PalScriptMgr *this)"
+    "name": "PalScriptMgr::IsInputBlocked",
+    "signature": "bool __thiscall PalScriptMgr::IsInputBlocked(PalScriptMgr *this)"
   },
   "0x0042C910": {
-    "name": "ScriptVM::_nearby_42c910",
-    "signature": "void __thiscall(ScriptVM *this)"
+    "name": "ScriptVM::ExecuteStep",
+    "signature": "void __thiscall ScriptVM::ExecuteStep(ScriptVM *this)"
   },
   "0x0042E6A0": {
-    "name": "PalScriptMgr::_nearby_42e6a0",
-    "signature": "void __thiscall(PalScriptMgr *this)"
+    "name": "PalScriptMgr::NotifyMoveComplete",
+    "signature": "void __thiscall PalScriptMgr::NotifyMoveComplete(PalScriptMgr *this)"
   },
   "0x0042FEB0": {
-    "name": "Config::_nearby_42feb0",
-    "signature": "int *__thiscall(Config *this)"
+    "name": "Config::LoadSceneConfig",
+    "signature": "void __thiscall Config::LoadSceneConfig(Config *this)"
   },
   "0x0042FEC0": {
     "name": "Config::InitDefaults",
@@ -10437,48 +10437,48 @@
     "signature": "bool __thiscall(Config *this, int nVal, int *pnVal, int *pnVal2, int *p_DWORD)"
   },
   "0x00430500": {
-    "name": "PalScript::_sub_430500",
-    "signature": "void __thiscall(PalScript *this)"
+    "name": "PalScript::CleanupFrame",
+    "signature": "void __thiscall PalScript::CleanupFrame(PalScript *this)"
   },
   "0x00430670": {
     "name": "Config::ParseSection",
     "signature": "int __thiscall(Config *this, int nVal)"
   },
   "0x004307D0": {
-    "name": "PalScript::_nearby_4307d0",
-    "signature": "int __thiscall(PalScript *this, int *p_DWORD, unsigned int dwVal, unsigned int dwVal2)"
+    "name": "PalScript::ExecuteOpcode",
+    "signature": "int __thiscall PalScript::ExecuteOpcode(PalScript *this, int *pResult, unsigned int dwOp, unsigned int dwParam)"
   },
   "0x00431390": {
-    "name": "PalScript::_nearby_431390",
-    "signature": "int *__thiscall(PalScript *this, int nVal)"
+    "name": "PalScript::GetLocalVar",
+    "signature": "int *__thiscall PalScript::GetLocalVar(PalScript *this, int nIdx)"
   },
   "0x00431440": {
-    "name": "PalScript::_nearby_431440",
-    "signature": "int *__thiscall(PalScript *this)"
+    "name": "PalScript::IterNext",
+    "signature": "int *__thiscall PalScript::IterNext(PalScript *this)"
   },
   "0x004314A0": {
-    "name": "PalScript::_nearby_4314a0",
-    "signature": "int *__thiscall(PalScript *this)"
+    "name": "PalScript::IterPrev",
+    "signature": "int *__thiscall PalScript::IterPrev(PalScript *this)"
   },
   "0x004314F0": {
-    "name": "PalScript::_nearby_4314f0",
-    "signature": "void __thiscall(PalScript *pPalScript, char *pszBuf)"
+    "name": "PalScript::SetVarFromData",
+    "signature": "void __thiscall PalScript::SetVarFromData(PalScript *this, char *pszBuf)"
   },
   "0x00431640": {
-    "name": "PalScript::_nearby_431640",
-    "signature": "int __thiscall(PalScript *this, unsigned int dwVal, unsigned int dwVal2)"
+    "name": "PalScript::PushScope",
+    "signature": "int __thiscall PalScript::PushScope(PalScript *this, unsigned int dwStart, unsigned int dwEnd)"
   },
   "0x00431780": {
-    "name": "PalScript::_nearby_431780",
-    "signature": "int __thiscall(PalScript *this, int nVal)"
+    "name": "PalScript::PopScope",
+    "signature": "int __thiscall PalScript::PopScope(PalScript *this, int nVal)"
   },
   "0x004319C0": {
-    "name": "PalScript::_sub_4319C0",
-    "signature": "void __thiscall(PalScript *this)"
+    "name": "PalScript::FreeLoadBuffer",
+    "signature": "void __thiscall PalScript::FreeLoadBuffer(PalScript *this)"
   },
   "0x00431C00": {
-    "name": "PalScript::_nearby_431c00",
-    "signature": "int __thiscall(PalScript *this)"
+    "name": "PalScript::ResetPC",
+    "signature": "int __thiscall PalScript::ResetPC(PalScript *this)"
   },
   "0x00431CB0": {
     "name": "PtrArray::_auto_431cb0",
