@@ -7389,8 +7389,8 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x004549A0": {
-    "name": "ChoseCompose::_init_4549a0",
-    "signature": "void __thiscall(ChoseCompose *this)"
+    "name": "ChoseCompose::DestroyScene",
+    "signature": "void __thiscall ChoseCompose::DestroyScene(ChoseCompose *this)"
   },
   "0x00454CA0": {
     "name": "TaskBookUI::_init_454ca0",
@@ -7571,8 +7571,8 @@
     "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x0047C1C0": {
-    "name": "PAL3::_init_47c1c0",
-    "signature": "char __thiscall(PAL3 *this)"
+    "name": "PAL3::HandleDeviceReset_2",
+    "signature": "char __thiscall PAL3::HandleDeviceReset_2(PAL3 *this)"
   },
   "0x0047C260": {
     "name": "PAL3::Render__ovl_47c260",
@@ -7687,8 +7687,8 @@
     "_misattrib_evidence": "max_offset=212204>class_size=54024"
   },
   "0x004930E0": {
-    "name": "MainEquipUI::_init_4930e0",
-    "signature": "void __thiscall(MainEquipUI *this, int nVal)"
+    "name": "MainEquipUI::UpdateTooltip",
+    "signature": "void __thiscall MainEquipUI::UpdateTooltip(MainEquipUI *this, int nVal)"
   },
   "0x004945C0": {
     "name": "EquipUI::SelectBigMapTab0",
@@ -7752,8 +7752,8 @@
     "signature": "void __thiscall(ChoseCompose *this)"
   },
   "0x004A4780": {
-    "name": "PAL3::_init_4a4780",
-    "signature": "char __thiscall(PAL3 *this)"
+    "name": "PAL3::HandleDeviceReset_3",
+    "signature": "char __thiscall PAL3::HandleDeviceReset_3(PAL3 *this)"
   },
   "0x004A4820": {
     "name": "MainEquipUI::Render__ovl_4a4820",
@@ -8681,12 +8681,12 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x0052BBD0": {
-    "name": "UIRoleSelectDialog::_init_52bbd0",
-    "signature": "void __thiscall(UIRoleSelectDialog *this)"
+    "name": "UIRoleSelectDialog::DestroyStatics",
+    "signature": "void __thiscall UIRoleSelectDialog::DestroyStatics(UIRoleSelectDialog *this)"
   },
   "0x0052BC90": {
-    "name": "UIRoleSelectDialog::_init_52bc90",
-    "signature": "void __thiscall(UIRoleSelectDialog *this)"
+    "name": "UIRoleSelectDialog::DestroyFrames",
+    "signature": "void __thiscall UIRoleSelectDialog::DestroyFrames(UIRoleSelectDialog *this)"
   },
   "0x0052C450": {
     "name": "UICoverFrm::Render",
@@ -10203,8 +10203,8 @@
     "signature": "int __thiscall(UICoverFrm *this)"
   },
   "0x0044CB30": {
-    "name": "Actor::_init_44cb30",
-    "signature": "int __thiscall(Actor *this)"
+    "name": "Actor::InitParticles",
+    "signature": "int __thiscall Actor::InitParticles(Actor *this)"
   },
   "0x0044CC60": {
     "name": "UITitle_XJTM::CreateSubWidgets",
@@ -10406,8 +10406,8 @@
     "signature": "BOOL __thiscall UIStatic::IsHidden(UIStatic *this)"
   },
   "0x004538E0": {
-    "name": "SceneObj::_init_4538e0",
-    "signature": "char __thiscall(SceneObj *this)"
+    "name": "SceneObj::LoadData",
+    "signature": "char __thiscall SceneObj::LoadData(SceneObj *this)"
   },
   "0x00453C00": {
     "name": "PalScriptIdleObj::_method_453c00",
@@ -10458,8 +10458,8 @@
     "signature": "int __thiscall(CCBRoleState *this, int nVal)"
   },
   "0x00456E20": {
-    "name": "CScreenMode::_init_456e20",
-    "signature": "void __thiscall(void (__thiscall **this)(_DWORD, _DWORD), unsigned char pData)"
+    "name": "CScreenMode::PauseAllStreams",
+    "signature": "void __thiscall CScreenMode::PauseAllStreams(void (__thiscall ***this)(_DWORD, _DWORD), unsigned __int8 a2)"
   },
   "0x00456EE0": {
     "name": "Actor::ApplyStateArray",
@@ -10645,24 +10645,24 @@
     "signature": "void __thiscall GRPinput::ProcessMouseInput(GRPinput *this, float fVal)"
   },
   "0x00471220": {
-    "name": "PlayerMgr::_init_471220",
-    "signature": "char __thiscall(PlayerMgr *this, unsigned char pData)"
+    "name": "PlayerMgr::ToggleSlot0",
+    "signature": "char __thiscall PlayerMgr::ToggleSlot0(PlayerMgr *this, unsigned __int8 pData)"
   },
   "0x004712D0": {
-    "name": "PlayerMgr::_init_4712d0",
-    "signature": "char __thiscall(PlayerMgr *this, unsigned char pData)"
+    "name": "PlayerMgr::ToggleSlot1",
+    "signature": "char __thiscall PlayerMgr::ToggleSlot1(PlayerMgr *this, unsigned __int8 pData)"
   },
   "0x00471380": {
-    "name": "PlayerMgr::_init_471380",
-    "signature": "char __thiscall(PlayerMgr *this, unsigned char pData)"
+    "name": "PlayerMgr::ToggleSlot2",
+    "signature": "char __thiscall PlayerMgr::ToggleSlot2(PlayerMgr *this, unsigned __int8 pData)"
   },
   "0x00471430": {
-    "name": "PlayerMgr::_init_471430",
-    "signature": "char __thiscall(PlayerMgr *this, unsigned char pData)"
+    "name": "PlayerMgr::ToggleSlot3",
+    "signature": "char __thiscall PlayerMgr::ToggleSlot3(PlayerMgr *this, unsigned __int8 pData)"
   },
   "0x004714E0": {
-    "name": "PlayerMgr::_init_4714e0",
-    "signature": "char __thiscall(PlayerMgr *this, unsigned char pData)"
+    "name": "PlayerMgr::ToggleSlot4",
+    "signature": "char __thiscall PlayerMgr::ToggleSlot4(PlayerMgr *this, unsigned __int8 pData)"
   },
   "0x00471590": {
     "name": "LineupUI::InitListView",
@@ -10961,12 +10961,12 @@
     "_misattrib_evidence": "max_offset=217324>class_size=8704"
   },
   "0x00489ED0": {
-    "name": "MainPropUI::_init_489ed0",
-    "signature": "int *__thiscall(MainPropUI *this, int nVal, int arg4, int nVal2)"
+    "name": "MainPropUI::InitNPCs",
+    "signature": "int *__thiscall MainPropUI::InitNPCs(MainPropUI *this, int nVal, int arg4, int nVal2)"
   },
   "0x0048A170": {
-    "name": "CCBUIPanel::_init_48a170",
-    "signature": "int __thiscall(CCBUIPanel *this)"
+    "name": "CCBUIPanel::InitSlots",
+    "signature": "int __thiscall CCBUIPanel::InitSlots(CCBUIPanel *this)"
   },
   "0x0048A2F0": {
     "name": "EquipUI::SetSubTab",
@@ -12667,8 +12667,8 @@
     "signature": "int *__fastcall(int *p_DWORD)"
   },
   "0x00529BE0": {
-    "name": "PAL3::_init_529be0",
-    "signature": "char __thiscall(PAL3 *this)"
+    "name": "PAL3::HandleDeviceReset_4",
+    "signature": "char __thiscall PAL3::HandleDeviceReset_4(PAL3 *this)"
   },
   "0x0052AAB0": {
     "name": "UIRoleSelectDialog::_method_52aab0",
