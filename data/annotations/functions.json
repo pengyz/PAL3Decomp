@@ -7823,12 +7823,12 @@
     "signature": "int __thiscall(PtrArray *this, void *pData)"
   },
   "0x00432870": {
-    "name": "PtrArray::_nearby_432870",
-    "signature": "unsigned char * __thiscall(PtrArray *this)"
+    "name": "GetOpcodeParamTypes",
+    "signature": "unsigned __int8 *__cdecl GetOpcodeParamTypes()"
   },
   "0x00432980": {
-    "name": "PtrArray::_sub_432980",
-    "signature": "void __thiscall(PtrArray *this)"
+    "name": "ResizeOpcodeParams",
+    "signature": "void __thiscall ResizeOpcodeParams(PtrArray *this)"
   },
   "0x00432990": {
     "name": "LoadScriptFile",
@@ -10493,16 +10493,16 @@
     "signature": "int __cdecl(char *String1)"
   },
   "0x00432890": {
-    "name": "PtrArray::_nearby_432890",
-    "signature": "void __cdecl __thiscall(PtrArray *this)"
+    "name": "InitOpcodeEntry",
+    "signature": "void __cdecl InitOpcodeEntry()"
   },
   "0x004328D0": {
-    "name": "UIListBox::_auto_4328d0",
-    "signature": "void __cdecl __thiscall(UIListBox *this)"
+    "name": "InitScriptEventArray",
+    "signature": "void __cdecl InitScriptEventArray()"
   },
   "0x00432930": {
-    "name": "PtrArray::_nearby_432930",
-    "signature": "void __cdecl __thiscall(PtrArray *this)"
+    "name": "SetScriptInitFlag",
+    "signature": "void __cdecl SetScriptInitFlag()"
   },
   "0x00433CD0": {
     "name": "FreeScriptInstance",
@@ -10513,8 +10513,8 @@
     "signature": "int __thiscall(PtrArray *this)"
   },
   "0x00434CC0": {
-    "name": "PalScript::_nearby_434cc0",
-    "signature": "BOOL __thiscall(PalScript *this)"
+    "name": "PalScript::IsWaitComplete",
+    "signature": "BOOL __thiscall PalScript::IsWaitComplete(PalScript *this)"
   },
   "0x00434CE0": {
     "name": "PalScript::Op_Idle",
@@ -10525,16 +10525,16 @@
     "signature": "BOOL __thiscall(PalScript *this)"
   },
   "0x00434D40": {
-    "name": "PalScript::_nearby_434d40",
-    "signature": "void __thiscall(PalScript *this, float fVal)"
+    "name": "PalScript::AccumulateTime",
+    "signature": "void __thiscall PalScript::AccumulateTime(PalScript *this, float fDelta)"
   },
   "0x00434ED0": {
     "name": "PalScript::Op_RolePathOut",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00434F60": {
-    "name": "PalScript::_nearby_434f60",
-    "signature": "int __cdecl(int nVal)"
+    "name": "ConvertDirection",
+    "signature": "int __cdecl ConvertDirection(int nDir)"
   },
   "0x00434F90": {
     "name": "PalScript::Op_RolePathTo",
@@ -15732,5 +15732,9 @@
   "0x00438930": {
     "name": "PalScript::Op_Enable_SwordSkill",
     "signature": "void __thiscall PalScript::Op_Enable_SwordSkill(PalScript *this)"
+  },
+  "0x004329B0": {
+    "name": "InitSceOpcodeTable",
+    "signature": "int __cdecl InitSceOpcodeTable()"
   }
 }
