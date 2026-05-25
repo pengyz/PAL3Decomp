@@ -8142,12 +8142,12 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x004412C0": {
-    "name": "UIBigMap::_method_4412c0",
-    "signature": "char *__thiscall(UIBigMap *this, int id, void *pRect, int parent, char *pszBuf, int nVal, char pData)"
+    "name": "UIBigMap::Create",
+    "signature": "char *__thiscall UIBigMap::Create(UIBigMap *this, int id, void *pRect, int parent, char *pszTexPath, int nVal, char bAtlas)"
   },
   "0x004413C0": {
-    "name": "CCBUI::_method_4413c0",
-    "signature": "gbVFileSystem *__thiscall(CCBUI *this, gbVFileSystem *pVFileSystem, char pData)",
+    "name": "CCBUI::LoadTextureSequence",
+    "signature": "gbVFileSystem *__thiscall CCBUI::LoadTextureSequence(CCBUI *this, gbVFileSystem *pPath, char bUseAtlas)",
     "_misattrib_evidence": "max_offset=260>class_size=76"
   },
   "0x004414D0": {
@@ -11147,8 +11147,8 @@
     "signature": "int __thiscall(UIAnimateCtrlEX *this)"
   },
   "0x00442000": {
-    "name": "_misattrib_UICaption::_nearby_442000",
-    "signature": "int __thiscall(UIWnd *this)",
+    "name": "_misattrib_UICaption::CalcScrollPos",
+    "signature": "int __thiscall UIWnd::CalcScrollPos(UIWnd *this)",
     "_misattrib_evidence": "max_offset=348>class_size=96"
   },
   "0x00442060": {
@@ -11160,8 +11160,8 @@
     "signature": "int __thiscall(UIMap *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00442100": {
-    "name": "_misattrib_CCBParabolaWindow::_nearby_442100",
-    "signature": "int __thiscall(UIWnd *this)",
+    "name": "_misattrib_CCBParabolaWindow::CalcSplitRect",
+    "signature": "int __thiscall UIWnd::CalcSplitRect(UIWnd *this)",
     "_misattrib_evidence": "max_offset=332>class_size=84"
   },
   "0x00442200": {
