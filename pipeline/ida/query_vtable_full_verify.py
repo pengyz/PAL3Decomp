@@ -1,0 +1,163 @@
+"""Full vtable ownership verification - query xrefs for ALL vtables."""
+import ida_auto, ida_xref, ida_name, ida_funcs, idc, idautils
+import json, os
+
+ida_auto.auto_wait()
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+VTABLES = {
+    0x0056A600: ("off_0056A600", "CCBAI"),
+    0x0056A6D0: ("off_0056A6D0", "RoleSystem"),
+    0x0056A9A4: ("off_56A9A4", "Actor"),
+    0x0056A9BC: ("off_56A9BC", "ScriptObj"),
+    0x0056A9C0: ("off_56A9C0", "UITitle_YXXX"),
+    0x0056A9CC: ("off_56A9CC", "ScriptObj"),
+    0x0056AA90: ("off_0056AA90", "CameraCtrl"),
+    0x0056AAD8: ("off_56AAD8", "RoleSystem"),
+    0x0056AAE4: ("off_56AAE4", "RoleSystem"),
+    0x0056AAF0: ("off_56AAF0", "RoleSystem"),
+    0x0056AB28: ("off_56AB28", "gbLightObj"),
+    0x0056AB34: ("off_56AB34", "UIScene"),
+    0x0056ABB8: ("off_0056ABB8", "PalScriptMgr"),
+    0x0056ABD4: ("off_0056ABD4", "PalScript"),
+    0x0056AC08: ("off_56AC08", "filebuf"),
+    0x0056AC20: ("off_0056AC20", "UIProgressBar"),
+    0x0056AC4C: ("off_56AC4C", "PalScript"),
+    0x0056AC70: ("off_56AC70", "UIScene"),
+    0x0056AC90: ("off_56AC90", "UICaption"),
+    0x0056ACB8: ("off_56ACB8", "UIFrameWnd"),
+    0x0056ACD8: ("off_56ACD8", "UIScene"),
+    0x0056ACFC: ("off_56ACFC", "UI3DCtrl"),
+    0x0056AD20: ("off_56AD20", "UIListBox"),
+    0x0056AD40: ("off_56AD40", "UIListBox"),
+    0x0056AD64: ("off_56AD64", "UIButton"),
+    0x0056AD88: ("off_56AD88", "UIStatic"),
+    0x0056ADAC: ("off_56ADAC", "UIMap"),
+    0x0056ADD0: ("off_56ADD0", "UIFrameWnd"),
+    0x0056ADF0: ("off_0056ADF0", "UIFrameWnd"),
+    0x0056AE10: ("off_56AE10", "UIFrameWnd"),
+    0x0056AE2C: ("off_56AE2C", "UIWnd"),
+    0x0056AE48: ("off_56AE48", "UIFrameWnd"),
+    0x0056AE64: ("off_56AE64", "UIFrameWnd"),
+    0x0056AE84: ("off_56AE84", "UIWnd"),
+    0x0056AEA4: ("off_56AEA4", "UITextArea"),
+    0x0056AEC8: ("off_56AEC8", "UIWnd"),
+    0x0056AF80: ("off_56AF80", "CCBUIPanel"),
+    0x0056AFB0: ("off_56AFB0", "UIStatic"),
+    0x0056AFD4: ("off_56AFD4", "UITitle"),
+    0x0056AFFC: ("off_56AFFC", "UIScene"),
+    0x0056B018: ("off_56B018", "UIScene"),
+    0x0056B050: ("off_56B050", "scScriptInstance"),
+    0x0056B094: ("off_56B094", "CGameData"),
+    0x0056B0B4: ("off_56B0B4", "UISceneMap"),
+    0x0056B0E0: ("off_56B0E0", "UICaption"),
+    0x0056B100: ("off_56B100", "UILoadingFrm"),
+    0x0056B120: ("off_56B120", "RoleCameraCtrl"),
+    0x0056B14C: ("off_56B14C", "RoleAtt"),
+    0x0056B178: ("off_56B178", "UIListBox"),
+    0x0056B19C: ("off_56B19C", "UITitle_BBTY"),
+    0x0056B1BC: ("off_56B1BC", "UIListBox"),
+    0x0056B1DC: ("off_56B1DC", "UIAnimateCtrlEX"),
+    0x0056B200: ("off_56B200", "SceneObj"),
+    0x0056B22C: ("off_56B22C", "CCBUIPanel"),
+    0x0056B274: ("off_56B274", "CScreenMode"),
+    0x0056B364: ("off_56B364", "CCBRoleState"),
+    0x0056B394: ("off_56B394", "UISceneFrm"),
+    0x0056B5CC: ("off_56B5CC", "UIListBox"),
+    0x0056B688: ("off_56B688", "UIListBox"),
+    0x0056B794: ("off_56B794", "UIListBox"),
+    0x0056B820: ("off_56B820", "MainEquipUI"),
+    0x0056B850: ("off_56B850", "UITitle_ArcSave"),
+    0x0056B8A4: ("off_56B8A4", "UITitle_YXXX"),
+    0x0056B90C: ("off_56B90C", "LineupUI"),
+    0x0056BA30: ("off_56BA30", "CScreenMode"),
+    0x0056C590: ("off_56C590", "RenderTarget"),
+    0x0056D618: ("off_56D618", "UIBigMap"),
+    0x0056E170: ("off_56E170", "EquipUI"),
+    0x0056E190: ("off_56E190", "UIItem"),
+    0x0056F040: ("off_56F040", "UIGameFrm"),
+    0x0056F29C: ("off_56F29C", "SystemUI"),
+    0x0056F33C: ("off_56F33C", "UIListBox"),
+    0x0056F36C: ("off_56F36C", "RenderTarget3"),
+    0x0056F510: ("off_56F510", "ScreenEffectMgr"),
+    0x0056F52C: ("off_0056F52C", "ScreenEffectMgr"),
+    0x0056F548: ("off_0056F548", "ScreenEffectMgr"),
+    0x0056F564: ("off_0056F564", "ScreenEffectMgr"),
+    0x0056F580: ("off_0056F580", "UIRoleDialog"),
+    0x0056F5D8: ("off_0056F5D8", "RenderTarget2"),
+    0x0056F5E4: ("off_56F5E4", "CEffAction"),
+    0x0056F5E4: ("vtbl_CEffBase", "RenderTarget2"),
+    0x0056F62C: ("off_56F62C", "CEffSParticle"),
+    0x0056F674: ("off_56F674", "RenderTarget2"),
+    0x0056F6C8: ("off_56F6C8", "RenderTarget2"),
+    0x0056F71C: ("off_56F71C", "RenderTarget2"),
+    0x0056F768: ("off_0056F768", "RenderTarget2"),
+    0x0056F774: ("off_56F774", "RenderTarget2"),
+    0x0056F7C8: ("off_56F7C8", "CEffCylinder"),
+    0x0056F824: ("off_56F824", "CEffectSystem"),
+    0x0056F844: ("off_56F844", "CEffectSystem"),
+    0x0056F878: ("off_56F878", "CEffgbParticle"),
+    0x0056F8CC: ("off_56F8CC", "CEffgbParticle"),
+    0x0056F920: ("off_56F920", "CEffGrid"),
+    0x0056F978: ("off_56F978", "CEffMeteor"),
+    0x0056F9DC: ("off_56F9DC", "CEffModel"),
+    0x0056FA30: ("off_56FA30", "CEffect"),
+    0x0056FA88: ("off_56FA88", "CEffQuake"),
+    0x0056FADC: ("off_56FADC", "CEffect"),
+    0x0056FB34: ("off_56FB34", "CEffSParticle"),
+    0x005704A8: ("off_5704A8", "CCBProtectWindow"),
+    0x005704C8: ("off_5704C8", "CCBResultWindow"),
+    0x005704E4: ("off_5704E4", "CCBFiveNimbusWindow"),
+    0x00570500: ("off_570500", "CCBItemWindow"),
+    0x0057051C: ("off_57051C", "CCBControlWindow"),
+    0x00570538: ("off_570538", "CCBLineupWindow"),
+    0x00570570: ("off_570570", "CCBSkillWindow"),
+    0x0057058C: ("off_57058C", "CCBParabolaWindow"),
+    0x005705D0: ("off_5705D0", "CCBProtectWindow"),
+    0x005705F4: ("off_5705F4", "CUtil"),
+    0x00570630: ("off_570630", "CScreenMode"),
+    0x005706CC: ("off_5706CC", "SaleUI"),
+    0x005706EC: ("off_5706EC", "UIListBox"),
+    0x00570728: ("off_570728", "JusticeBookUI"),
+    0x0057076C: ("off_57076C", "UIRoleSelectDialog"),
+    0x00570830: ("off_570830", "UICoverFrm"),
+    0x00570890: ("off_570890", "RoleSystem"),
+    0x005708E8: ("off_5708E8", "SceneObj"),
+    0x00570A04: ("off_570A04", "CPK"),
+    0x00570A58: ("off_570A58", "SceneObj"),
+    0x00570A60: ("off_570A60", "TextureLib"),
+    0x005731D4: ("off_5731D4", "crt_internal"),
+    0x00580CFC: ("off_580CFC", "crt_internal"),
+    0x00586180: ("off_586180", "crt_internal"),
+    0x0058B7E0: ("off_58B7E0", "crt_internal"),
+    0x00592E58: ("off_592E58", "crt_internal"),
+}
+
+results = {}
+for vt_addr, (vt_name, current_class) in VTABLES.items():
+    xrefs = []
+    for xref in idautils.XrefsTo(vt_addr):
+        func = ida_funcs.get_func(xref.frm)
+        if func:
+            func_name = ida_name.get_name(func.start_ea) or ("sub_%X" % func.start_ea)
+            xrefs.append({
+                "from_addr": "0x%08X" % xref.frm,
+                "func_addr": "0x%08X" % func.start_ea,
+                "func_name": func_name,
+            })
+    results["0x%08X" % vt_addr] = {
+        "vt_name": vt_name,
+        "current_class": current_class,
+        "xref_count": len(xrefs),
+        "xrefs": xrefs,
+    }
+
+output_path = os.path.join(LOG_DIR, "vtable_full_verify.json")
+with open(output_path, "w", encoding="utf-8") as f:
+    json.dump(results, f, indent=2, ensure_ascii=False)
+print("[*] Full vtable verification: %d vtables queried" % len(results))
+print("[*] Written to %s" % output_path)
+idc.qexit(0)
