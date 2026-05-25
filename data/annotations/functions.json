@@ -8419,28 +8419,28 @@
     "signature": "int __thiscall(CCBCamControl *this, int nVal)"
   },
   "0x004FFA90": {
-    "name": "CCBStageRole::_nearby_4ffa90",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskExecAttack",
+    "signature": "int __thiscall CCBStageRole::TaskExecAttack(CCBStageRole *this, int nVal)"
   },
   "0x004FFCB0": {
-    "name": "CCBStageRole::_auto_4ffcb0",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskExecCommand",
+    "signature": "int __thiscall CCBStageRole::TaskExecCommand(CCBStageRole *this, int nVal)"
   },
   "0x004FFF60": {
-    "name": "CCBStageRole::_nearby_4fff60",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskExecMagicEffect",
+    "signature": "int __thiscall CCBStageRole::TaskExecMagicEffect(CCBStageRole *this, int nVal)"
   },
   "0x00500220": {
-    "name": "CCBStageRole::_nearby_500220",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskExecSkill",
+    "signature": "int __thiscall CCBStageRole::TaskExecSkill(CCBStageRole *this, int nVal)"
   },
   "0x00500550": {
-    "name": "CCBStageRole::_nearby_500550",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskExecItem",
+    "signature": "int __thiscall CCBStageRole::TaskExecItem(CCBStageRole *this, int nVal)"
   },
   "0x00500D50": {
-    "name": "CCBStageRole::_nearby_500d50",
-    "signature": "int __thiscall(CCBStageRole *this, int _120)"
+    "name": "CCBStageRole::TaskResolveAction",
+    "signature": "int __thiscall CCBStageRole::TaskResolveAction(CCBStageRole *this, int nState)"
   },
   "0x00503680": {
     "name": "CCBStage::Method__ovl_503680",
@@ -8503,8 +8503,8 @@
     "signature": "int __thiscall(CCBStage *this, int nVal)"
   },
   "0x0050F200": {
-    "name": "CCBStageRole::_sub_50F200",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::OnMagicHit",
+    "signature": "int __thiscall CCBStageRole::OnMagicHit(CCBStageRole *this, int nVal)"
   },
   "0x0050F310": {
     "name": "CCBStage::_nearby_50f310",
@@ -12317,16 +12317,16 @@
     "signature": "int __thiscall CCBSystem::FindThreadByID(CCBSystem *this, int nID)"
   },
   "0x004FFED0": {
-    "name": "CCBStageRole::_auto_4ffed0",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskResetToIdle",
+    "signature": "int __thiscall CCBStageRole::TaskResetToIdle(CCBStageRole *this, int nVal)"
   },
   "0x005004B0": {
-    "name": "CCBStageRole::_auto_5004b0",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskWaitIdle",
+    "signature": "int __thiscall CCBStageRole::TaskWaitIdle(CCBStageRole *this, int nVal)"
   },
   "0x005007A0": {
-    "name": "CCBStageRole::_auto_5007a0",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskForceEnd",
+    "signature": "int __thiscall CCBStageRole::TaskForceEnd(CCBStageRole *this, int nVal)"
   },
   "0x00500840": {
     "name": "CCBStage::Method__ovl_500840",
@@ -12341,40 +12341,40 @@
     "signature": "int __thiscall(CCBStage *this, int nVal)"
   },
   "0x00500C20": {
-    "name": "CCBStageRole::_auto_500c20",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskExecAction",
+    "signature": "int __thiscall CCBStageRole::TaskExecAction(CCBStageRole *this, int nVal)"
   },
   "0x005011B0": {
-    "name": "CCBStageRole::_nearby_5011b0",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskMoveToStart",
+    "signature": "int __thiscall CCBStageRole::TaskMoveToStart(CCBStageRole *this, int nVal)"
   },
   "0x00501330": {
-    "name": "CCBStageRole::_auto_501330",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskBlendToReady",
+    "signature": "int __thiscall CCBStageRole::TaskBlendToReady(CCBStageRole *this, int nVal)"
   },
   "0x00501410": {
-    "name": "CCBStageRole::_auto_501410",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskBlendToEnd",
+    "signature": "int __thiscall CCBStageRole::TaskBlendToEnd(CCBStageRole *this, int nVal)"
   },
   "0x005014E0": {
-    "name": "CCBStageRole::_nearby_5014e0",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskEnterGuard",
+    "signature": "int __thiscall CCBStageRole::TaskEnterGuard(CCBStageRole *this, int nVal)"
   },
   "0x005015C0": {
     "name": "CCBStageRole::SetupCombatAction",
     "signature": "int __thiscall(CCBStageRole *this, int nVal)"
   },
   "0x00501CF0": {
-    "name": "CCBStageRole::_nearby_501cf0",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskReturnToIdle",
+    "signature": "int __thiscall CCBStageRole::TaskReturnToIdle(CCBStageRole *this, int nVal)"
   },
   "0x00501E60": {
-    "name": "CCBStageRole::_nearby_501e60",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskShowLevelUp",
+    "signature": "int __thiscall CCBStageRole::TaskShowLevelUp(CCBStageRole *this, int nVal)"
   },
   "0x00501F30": {
-    "name": "CCBStageRole::_nearby_501f30",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::TaskShowSkillLearned",
+    "signature": "int __thiscall CCBStageRole::TaskShowSkillLearned(CCBStageRole *this, int nVal)"
   },
   "0x005021C0": {
     "name": "CCBRoleState::FadeMusicIn",
@@ -12465,8 +12465,8 @@
     "signature": "int __thiscall CCBStageRole::CheckPushState(CCBStageRole *this, int nVal)"
   },
   "0x0050EE70": {
-    "name": "CCBStageRole::_sub_50EE70",
-    "signature": "int __thiscall(CCBStageRole *this, int nVal)"
+    "name": "CCBStageRole::OnPhysicalHit",
+    "signature": "int __thiscall CCBStageRole::OnPhysicalHit(CCBStageRole *this, int nVal)"
   },
   "0x00511340": {
     "name": "CCBStageScene::LoadModel",
@@ -12519,8 +12519,8 @@
     "_misattrib_evidence": "max_offset=328044>class_size=6848"
   },
   "0x00522030": {
-    "name": "CCBStageRole::_nearby_522030",
-    "signature": "CCBStageRole * __thiscall(CCBStageRole *this)"
+    "name": "CCBStageRole::CCBStageRole",
+    "signature": "CCBStageRole *__thiscall CCBStageRole::CCBStageRole(CCBStageRole *this)"
   },
   "0x005220E0": {
     "name": "CCBStageRole::ClearRoleState",
