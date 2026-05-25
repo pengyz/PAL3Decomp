@@ -7170,8 +7170,8 @@
     "signature": "void __thiscall(NPC *this)"
   },
   "0x00410BD0": {
-    "name": "Array::_auto_410bd0",
-    "signature": "int __thiscall(Array *this, char *arr, int *src)"
+    "name": "Array::InsertAt",
+    "signature": "int __thiscall Array::InsertAt(Array *this, char *pPos, int *pSrc)"
   },
   "0x00411E00": {
     "name": "RoleSystem::ApplyMoveStep",
@@ -7610,8 +7610,8 @@
     "signature": "PalScript *__thiscall(PalScript *pPalScript)"
   },
   "0x00410920": {
-    "name": "PalScriptMgr::_auto_410920",
-    "signature": "int *__thiscall(PalScriptMgr *this)"
+    "name": "PalScriptMgr::LoadYlfScript",
+    "signature": "int *__thiscall PalScriptMgr::LoadYlfScript(PalScriptMgr *this)"
   },
   "0x00411290": {
     "name": "PtrArray::_sub_411290",
@@ -9235,16 +9235,16 @@
     "signature": "int __thiscall(CEffShock *this, int nVal)"
   },
   "0x004D8580": {
-    "name": "CCBAI::_sub_4D8580",
-    "signature": "void __thiscall(CCBAI *this, int nVal)"
+    "name": "CCBAI::ChooseRandomAction",
+    "signature": "void __thiscall CCBAI::ChooseRandomAction(CCBAI *this, int nSelfIdx)"
   },
   "0x004DB8E0": {
     "name": "CCBSystem::ThreadTask__ovl_4db8e0",
     "signature": "int __thiscall(CCBSystem *this, char pData)"
   },
   "0x004DBE60": {
-    "name": "CCBSystem::_nearby_4dbe60",
-    "signature": "void __thiscall(CCBSystem *this, int roleIdx)"
+    "name": "CCBSystem::InitCombatSlot",
+    "signature": "void __thiscall CCBSystem::InitCombatSlot(CCBSystem *this, int roleIdx)"
   },
   "0x004DC510": {
     "name": "CCBSystem::ResetConfig",
@@ -15684,5 +15684,9 @@
   "0x0052F6C0": {
     "name": "OBBox::GetBBox",
     "signature": "OBBox *__thiscall(OBBox *this)"
+  },
+  "0x0040F4B0": {
+    "name": "RefreshPartyRoleData",
+    "signature": "int __cdecl RefreshPartyRoleData()"
   }
 }
