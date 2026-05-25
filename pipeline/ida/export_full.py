@@ -180,6 +180,7 @@ def main():
         _missing = []
         if os.path.exists(funcs_json):
             import json as _fj
+            import ida_bytes, ida_ua
             _ann_funcs = _fj.load(open(funcs_json, encoding='utf-8'))
             for _addr_str, _info in _ann_funcs.items():
                 _ea = int(_addr_str, 16)
@@ -187,9 +188,20 @@ def main():
                     continue
                 if not (TEXT_START <= _ea <= TEXT_END):
                     continue
-                # Try to ensure function exists
+                # Try to ensure function exists (aggressive recovery)
                 if not ida_funcs.get_func(_ea):
-                    ida_funcs.add_func(_ea)
+                    # Step 1: ensure bytes are marked as code
+                    ida_ua.create_insn(_ea)
+                    # Step 2: try add_func with automatic size
+                    if not ida_funcs.add_func(_ea):
+                        # Step 3: try with explicit end (find next func)
+                        _next_ea = _ea + 4
+                        while _next_ea < TEXT_END:
+                            if ida_funcs.get_func(_next_ea):
+                                break
+                            _next_ea += 1
+                        ida_funcs.add_func(_ea, _next_ea)
+                    ida_auto.auto_wait()
                 _func = ida_funcs.get_func(_ea)
                 if _func and _func.size() > 1:
                     _name = ida_name.get_name(_ea) or _info.get('name', '')
