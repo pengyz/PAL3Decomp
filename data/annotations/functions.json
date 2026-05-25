@@ -6438,8 +6438,8 @@
     "signature": "char __thiscall(PAL_GDB *this, unsigned int dwVal, char pData)"
   },
   "0x0049C660": {
-    "name": "PAL_GDB::_auto_49c660",
-    "signature": "int __thiscall(PAL_GDB *this, int nVal)"
+    "name": "PAL_GDB::SelectBestTarget",
+    "signature": "int __thiscall PAL_GDB::SelectBestTarget(PAL_GDB *this, int nVal)"
   },
   "0x0049CF80": {
     "name": "Array::HandleItemPage",
@@ -6992,16 +6992,16 @@
     "signature": "UIScene *__thiscall(UIScene *Block, char pData)"
   },
   "0x0043A870": {
-    "name": "UIScene::_nearby_43a870",
-    "signature": "gbVFileSystem *__thiscall(UIScene *this, int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)"
+    "name": "UIScene::CreateChildWidget",
+    "signature": "gbVFileSystem *__thiscall UIScene::CreateChildWidget(UIScene *this, int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)"
   },
   "0x0043AFE0": {
     "name": "UIScene::SetupRenderClip",
     "signature": "unsigned char __thiscall(UIScene *this, int nVal, unsigned int dwVal, unsigned int dwVal2, int nVal2)"
   },
   "0x0043B060": {
-    "name": "UIScene::_nearby_43b060",
-    "signature": "gbVFileSystem *__thiscall(UIScene *this, int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)"
+    "name": "UIScene::CreateTextureWidget",
+    "signature": "gbVFileSystem *__thiscall UIScene::CreateTextureWidget(UIScene *this, int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)"
   },
   "0x0043B1E0": {
     "name": "UIScene::Update",
@@ -7012,8 +7012,8 @@
     "signature": "unsigned char __thiscall(UIScene *this, unsigned int dwVal, unsigned int dwVal2, int nVal)"
   },
   "0x0043B570": {
-    "name": "UIScene::_nearby_43b570",
-    "signature": "gbVFileSystem *__thiscall(UIScene *this, int id, void *pRect, gbVFileSystem *parent, LPCSTR lpString, char pData)"
+    "name": "UIScene::CreateLabelWidget",
+    "signature": "gbVFileSystem *__thiscall UIScene::CreateLabelWidget(UIScene *this, int id, void *pRect, gbVFileSystem *parent, LPCSTR lpString, char pData)"
   },
   "0x0043B900": {
     "name": "UIScene::Update",
@@ -7028,8 +7028,8 @@
     "signature": "BOOL __thiscall(UIFrameWnd *this, int nVal, int nVal2)"
   },
   "0x0043C7B0": {
-    "name": "UIScene::_nearby_43c7b0",
-    "signature": "gbVFileSystem *__thiscall(UIScene *this, int id, int *p_DWORD, int parent, gbVFileSystem *pVFileSystem, char pData)"
+    "name": "UIScene::CreateScrollWidget",
+    "signature": "gbVFileSystem *__thiscall UIScene::CreateScrollWidget(UIScene *this, int id, int *p_DWORD, int parent, gbVFileSystem *pVFileSystem, char pData)"
   },
   "0x0043D1A0": {
     "name": "UIScene::CheckMouseHit",
@@ -8592,8 +8592,8 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00526300": {
-    "name": "PAL_GDB::_auto_526300",
-    "signature": "gbGeomNode *__thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::RefreshPartyStats",
+    "signature": "gbGeomNode *__thiscall PAL_GDB::RefreshPartyStats(PAL_GDB *this)"
   },
   "0x00526660": {
     "name": "CCBUI::Render",
@@ -8639,8 +8639,8 @@
     "signature": "int __thiscall(PalScript *this, char *filename)"
   },
   "0x005294C0": {
-    "name": "PAL_GDB::_auto_5294c0",
-    "signature": "char *__thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::SetDefaultEquipment",
+    "signature": "char *__thiscall PAL_GDB::SetDefaultEquipment(PAL_GDB *this)"
   },
   "0x00529770": {
     "name": "UIRoleSelectDialog::_scalar_dtor",
@@ -9890,28 +9890,28 @@
     "signature": "int __thiscall(UIScene *this)"
   },
   "0x0043BEB0": {
-    "name": "UIScene::_nearby_43beb0",
-    "signature": "void __thiscall(UIScene *this, LPCSTR lpString, char pData)"
+    "name": "UIScene::SetTexture",
+    "signature": "void __thiscall UIScene::SetTexture(UIScene *this, LPCSTR lpString, char pData)"
   },
   "0x0043BF90": {
     "name": "UIBigMap::Update__ovl_bf90",
     "signature": "int __thiscall(UIBigMap *this, int deltatime, int haveinput)"
   },
   "0x0043C0F0": {
-    "name": "UIScene::_nearby_43c0f0",
-    "signature": "void __thiscall(UIScene *this, float fVal)"
+    "name": "UIScene::UpdateLayout",
+    "signature": "void __thiscall UIScene::UpdateLayout(UIScene *this, float fVal)"
   },
   "0x0043C330": {
-    "name": "UIScene::_nearby_43c330",
-    "signature": "int __thiscall(UIScene *this)"
+    "name": "UIScene::RefreshLayout",
+    "signature": "int __thiscall UIScene::RefreshLayout(UIScene *this)"
   },
   "0x0043C9D0": {
-    "name": "UIScene::_nearby_43c9d0",
-    "signature": "int __thiscall(UIScene *this, int nVal)"
+    "name": "UIScene::ResizeContent",
+    "signature": "int __thiscall UIScene::ResizeContent(UIScene *this, int nVal)"
   },
   "0x0043CBD0": {
-    "name": "UIScene::_nearby_43cbd0",
-    "signature": "int __thiscall(UIScene *this, int nVal)"
+    "name": "UIScene::ResizeContentAlt",
+    "signature": "int __thiscall UIScene::ResizeContentAlt(UIScene *this, int nVal)"
   },
   "0x0043CDF0": {
     "name": "UIScene::Render",
@@ -11425,44 +11425,44 @@
     "signature": "int __thiscall(CEffect *this, int nVal)"
   },
   "0x004BB330": {
-    "name": "UISceneFrm::_auto_4bb330",
-    "signature": "int __thiscall(UISceneFrm *this)"
+    "name": "UISceneFrm::InitGraph_Base",
+    "signature": "int __thiscall UISceneFrm::InitGraph_Base(UISceneFrm *this)"
   },
   "0x004BB4E0": {
-    "name": "UISceneFrm::_auto_4bb4e0",
-    "signature": "int __thiscall(UISceneFrm *this)"
+    "name": "UISceneFrm::InitGraph_Rotation",
+    "signature": "int __thiscall UISceneFrm::InitGraph_Rotation(UISceneFrm *this)"
   },
   "0x004BB690": {
-    "name": "UISceneFrm::_auto_4bb690",
-    "signature": "int __thiscall(UISceneFrm *this)"
+    "name": "UISceneFrm::InitGraph_VertexAlpha",
+    "signature": "int __thiscall UISceneFrm::InitGraph_VertexAlpha(UISceneFrm *this)"
   },
   "0x004BB830": {
-    "name": "UISceneFrm::_auto_4bb830",
-    "signature": "int __thiscall(UISceneFrm *this)"
+    "name": "UISceneFrm::InitGraph_RGBColor",
+    "signature": "int __thiscall UISceneFrm::InitGraph_RGBColor(UISceneFrm *this)"
   },
   "0x004BBA50": {
-    "name": "UISceneFrm::_auto_4bba50",
-    "signature": "int __thiscall(UISceneFrm *this)"
+    "name": "UISceneFrm::InitGraph_Direction",
+    "signature": "int __thiscall UISceneFrm::InitGraph_Direction(UISceneFrm *this)"
   },
   "0x004BBCA0": {
-    "name": "UISceneFrm::_auto_4bbca0",
-    "signature": "int __thiscall(UISceneFrm *this)"
+    "name": "UISceneFrm::InitGraph_RandomVelocity",
+    "signature": "int __thiscall UISceneFrm::InitGraph_RandomVelocity(UISceneFrm *this)"
   },
   "0x004BBEB0": {
-    "name": "UISceneFrm::_auto_4bbeb0",
-    "signature": "int __thiscall(UISceneFrm *this)"
+    "name": "UISceneFrm::InitGraph_EmissionRate",
+    "signature": "int __thiscall UISceneFrm::InitGraph_EmissionRate(UISceneFrm *this)"
   },
   "0x004BC0C0": {
-    "name": "UISceneFrm::_auto_4bc0c0",
-    "signature": "int __thiscall(UISceneFrm *this)"
+    "name": "UISceneFrm::InitGraph_Lifetime",
+    "signature": "int __thiscall UISceneFrm::InitGraph_Lifetime(UISceneFrm *this)"
   },
   "0x004BC2D0": {
-    "name": "UISceneFrm::_auto_4bc2d0",
-    "signature": "int __thiscall(UISceneFrm *this)"
+    "name": "UISceneFrm::InitGraph_SizeMultiplier",
+    "signature": "int __thiscall UISceneFrm::InitGraph_SizeMultiplier(UISceneFrm *this)"
   },
   "0x004BC4E0": {
-    "name": "UISceneFrm::_auto_4bc4e0",
-    "signature": "int __thiscall(UISceneFrm *this)"
+    "name": "UISceneFrm::InitGraph_RotationMultiplier",
+    "signature": "int __thiscall UISceneFrm::InitGraph_RotationMultiplier(UISceneFrm *this)"
   },
   "0x004BC7E0": {
     "name": "ParticleEffect::SetDeltaTime",
@@ -12017,8 +12017,8 @@
     "signature": "int __thiscall(CCBUI *this)"
   },
   "0x004E5500": {
-    "name": "PAL_GDB::_nearby_4e5500",
-    "signature": "int __thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::LoadConfigFromINI",
+    "signature": "int __thiscall PAL_GDB::LoadConfigFromINI(PAL_GDB *this)"
   },
   "0x004E56E0": {
     "name": "PAL_GDB::FindItemByID",
@@ -12037,16 +12037,16 @@
     "signature": "int __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004E5800": {
-    "name": "PAL_GDB::_auto_4e5800",
-    "signature": "int __thiscall(PAL_GDB *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "name": "PAL_GDB::PartySetupDialogProc",
+    "signature": "int __thiscall PAL_GDB::PartySetupDialogProc(PAL_GDB *this, HWND hDlg, UINT pData, WPARAM a4, LPARAM a5)"
   },
   "0x004E5B20": {
-    "name": "PAL_GDB::_auto_4e5b20",
-    "signature": "LRESULT __thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::RefreshPartyDialog",
+    "signature": "LRESULT __thiscall PAL_GDB::RefreshPartyDialog(PAL_GDB *this)"
   },
   "0x004E5E00": {
-    "name": "PAL_GDB::_nearby_4e5e00",
-    "signature": "int __thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::PopulateAvailableRoles",
+    "signature": "int __thiscall PAL_GDB::PopulateAvailableRoles(PAL_GDB *this)"
   },
   "0x004E5F60": {
     "name": "PAL_GDB::UpdateInventorySlots",
@@ -12101,8 +12101,8 @@
     "signature": "void __thiscall(CCBCamControl *this, HWND hDlg)"
   },
   "0x004EC1F0": {
-    "name": "PAL_GDB::_auto_4ec1f0",
-    "signature": "LRESULT __thiscall(PAL_GDB *this, HWND hDlg)"
+    "name": "PAL_GDB::ShowDetailPanel",
+    "signature": "LRESULT __thiscall PAL_GDB::ShowDetailPanel(PAL_GDB *this, HWND hDlg)"
   },
   "0x004EC680": {
     "name": "CCBRoleState::ClearAndSetGP",
@@ -12137,8 +12137,8 @@
     "signature": "char *__thiscall(CCBRoleState *this)"
   },
   "0x004ED8C0": {
-    "name": "PAL_GDB::_auto_4ed8c0",
-    "signature": "int __thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::LoadSkillData",
+    "signature": "int __thiscall PAL_GDB::LoadSkillData(PAL_GDB *this)"
   },
   "0x004EDC60": {
     "name": "CCBRoleState::RollInitiative",
