@@ -7276,8 +7276,8 @@
     "signature": "void __thiscall(scScriptInstance *this)"
   },
   "0x0044E8B0": {
-    "name": "CScreenMode::_auto_44e8b0",
-    "signature": "void __thiscall(CScreenMode *this, int nVal, unsigned int dwVal)"
+    "name": "CScreenMode::HideUIBars",
+    "signature": "void __thiscall CScreenMode::HideUIBars(CScreenMode *this, int nVal, unsigned int dwVal)"
   },
   "0x0044E980": {
     "name": "scScriptInstance::Layout__ovl_44e980",
@@ -8802,8 +8802,8 @@
     "signature": "unsigned int __thiscall CScreenMode::StopAllAudio(CScreenMode *this)"
   },
   "0x0053EB90": {
-    "name": "CScreenMode::_nearby_53eb90",
-    "signature": "int __thiscall(CScreenMode *this, char *pszBuf, char *pszBuf2)"
+    "name": "CScreenMode::AddSoundEntry",
+    "signature": "int __thiscall CScreenMode::AddSoundEntry(CScreenMode *this, char *pszBuf, char *pszBuf2)"
   },
   "0x0053EDF0": {
     "name": "CScreenMode::ComparePointers",
@@ -8826,8 +8826,8 @@
     "signature": "void __thiscall(TextureLib *this)"
   },
   "0x00569320": {
-    "name": "CScreenMode::_auto_569320",
-    "signature": "int __cdecl(int *p_DWORD, FILE *Stream, int *p_DWORD2)"
+    "name": "CScreenMode::LoadAudioFromFile",
+    "signature": "int __cdecl CScreenMode::LoadAudioFromFile(int *p_DWORD, FILE *Stream, int *p_DWORD2)"
   },
   "0x004017A0": {
     "name": "AStarPathFinder::Reset",
@@ -12604,8 +12604,8 @@
     "signature": "int __thiscall(UICoverFrm *this, int nVal)"
   },
   "0x00527510": {
-    "name": "_misattrib_CScreenMode::_auto_527510",
-    "signature": "void __thiscall(CScreenMode *this)",
+    "name": "CCBAttackSequen::AdvanceToNextSlot",
+    "signature": "void __thiscall CCBAttackSequen::AdvanceToNextSlot(CCBAttackSequen *this)",
     "_misattrib_evidence": "max_offset=15008>class_size=4280"
   },
   "0x00527610": {
@@ -13301,8 +13301,8 @@
     "signature": "int __thiscall(CScreenMode *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6)"
   },
   "0x0053C8C0": {
-    "name": "CScreenMode::_nearby_53c8c0",
-    "signature": "int __thiscall(CScreenMode *this)"
+    "name": "CScreenMode::InitDisplayState",
+    "signature": "int __thiscall CScreenMode::InitDisplayState(CScreenMode *this)"
   },
   "0x0053CE20": {
     "name": "Logger::WriteRoleNames",
@@ -13321,24 +13321,24 @@
     "signature": "CPK * __thiscall(CPK *this)"
   },
   "0x0053DC50": {
-    "name": "CScreenMode::_nearby_53dc50",
-    "signature": "void __thiscall(CScreenMode *this)"
+    "name": "CScreenMode::CleanupSoundList",
+    "signature": "void __thiscall CScreenMode::CleanupSoundList(CScreenMode *this)"
   },
   "0x0053DF80": {
     "name": "CScreenMode::GetByteParam",
     "signature": "BOOL __cdecl(int nVal, int nVal2)"
   },
   "0x0053DFB0": {
-    "name": "CScreenMode::_nearby_53dfb0",
-    "signature": "int __thiscall(CScreenMode *this, const void *pData)"
+    "name": "CScreenMode::PlaySoundStream",
+    "signature": "int __thiscall CScreenMode::PlaySoundStream(CScreenMode *this, const void *pData)"
   },
   "0x0053E510": {
-    "name": "CScreenMode::_nearby_53e510",
-    "signature": "void __thiscall(CScreenMode *this, char *String2, const char *pszName, int nVal)"
+    "name": "CScreenMode::PlaySceneMusic",
+    "signature": "void __thiscall CScreenMode::PlaySceneMusic(CScreenMode *this, char *pszScene, const char *pszArea, int nVal)"
   },
   "0x0053E740": {
-    "name": "CScreenMode::_nearby_53e740",
-    "signature": "void __thiscall(CScreenMode *this, char *String2, gbAudioManager *pAudioManager)"
+    "name": "CScreenMode::PlayAmbientSound",
+    "signature": "void __thiscall CScreenMode::PlayAmbientSound(CScreenMode *this, char *pszName, gbAudioManager *pAudioMgr)"
   },
   "0x0053E890": {
     "name": "CScreenMode::ApplyColorFilter",
@@ -13349,24 +13349,24 @@
     "signature": "int __thiscall(CScreenMode *this)"
   },
   "0x0053ED70": {
-    "name": "CScreenMode::_nearby_53ed70",
-    "signature": "int __thiscall(CScreenMode *this)"
+    "name": "CScreenMode::GetSoundCount",
+    "signature": "int __thiscall CScreenMode::GetSoundCount(CScreenMode *this)"
   },
   "0x0053EDA0": {
     "name": "CScreenMode::DestroyString",
     "signature": "void __thiscall(CScreenMode *this, int *p_DWORD, int *p_DWORD2)"
   },
   "0x0053EDE0": {
-    "name": "CScreenMode::_nearby_53ede0",
-    "signature": "void __thiscall(CScreenMode *this, void *Block, int nVal)"
+    "name": "CScreenMode::FreeSoundBuffer",
+    "signature": "void __thiscall CScreenMode::FreeSoundBuffer(CScreenMode *this, void *Block, int nVal)"
   },
   "0x0053EF60": {
     "name": "SceneObj::LoadFromConfig",
     "signature": "int __cdecl(int *p_DWORD, int *p_DWORD2, int nVal)"
   },
   "0x0053F220": {
-    "name": "CScreenMode::_nearby_53f220",
-    "signature": "char __thiscall(CScreenMode *this, int *lpString)"
+    "name": "CScreenMode::UpdateRenderState",
+    "signature": "char __thiscall CScreenMode::UpdateRenderState(CScreenMode *this, int *lpString)"
   },
   "0x0053F500": {
     "name": "TextureLib::CheckEndKey",
