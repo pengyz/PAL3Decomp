@@ -4458,8 +4458,8 @@
     "signature": "BOOL __thiscall(UIStatic *this, float deltatime, int haveinput)"
   },
   "0x00445D20": {
-    "name": "UIWnd::_unverified_445D20",
-    "signature": "int __thiscall(UIWnd *this, int px, int py)"
+    "name": "UIWnd::LocalToScreen",
+    "signature": "int __thiscall UIWnd::LocalToScreen(UIWnd *this, int px, int py)"
   },
   "0x004326A0": {
     "name": "String::Assign_4326A0",
@@ -4632,8 +4632,8 @@
     "signature": "int __thiscall(CCBRoleState *this)"
   },
   "0x0043FDB0": {
-    "name": "UIWnd::_unverified_43FDB0",
-    "signature": "void __thiscall(UIWnd *this, int nRate)"
+    "name": "UIWnd::SetOpacity",
+    "signature": "void __thiscall UIWnd::SetOpacity(UIWnd *this, int nRate)"
   },
   "0x00452790": {
     "name": "UIAnimateCtrlEX::UIAnimateCtrlEX",
@@ -4706,8 +4706,8 @@
     "signature": "char __thiscall(Combat *this)"
   },
   "0x00440F30": {
-    "name": "UIStatic::_unverified_440F30",
-    "signature": "int __thiscall(UIStatic *this)"
+    "name": "UIStatic::Render",
+    "signature": "int __thiscall UIStatic::Render(UIStatic *this)"
   },
   "0x004CEA80": {
     "name": "CEffMgr::Func_4CEA80",
@@ -4744,12 +4744,12 @@
     "signature": "FILE *__cdecl()"
   },
   "0x00407B50": {
-    "name": "SceneObj::_unverified_407B50",
-    "signature": "char __thiscall(SceneObj *this, unsigned int deltatime)"
+    "name": "SceneObj::ProcessTimer",
+    "signature": "char __thiscall SceneObj::ProcessTimer(SceneObj *this, unsigned int deltatime)"
   },
   "0x004327B0": {
-    "name": "PtrArray::_unverified_4327B0",
-    "signature": "int __thiscall(PtrArray *this, int nIndex, int newElement)"
+    "name": "PtrArray::RemoveAt",
+    "signature": "int __thiscall PtrArray::RemoveAt(PtrArray *this, int nIndex, int nCount)"
   },
   "0x005282E0": {
     "name": "JusticeBookUI::ctor_82E0",
@@ -5046,8 +5046,8 @@
     "signature": "gbGfxManager *__cdecl()"
   },
   "0x00440740": {
-    "name": "UIStatic::_unverified_440740",
-    "signature": "void __thiscall(UIStatic *this)"
+    "name": "UIStatic::UIStatic",
+    "signature": "void __thiscall UIStatic::UIStatic(UIStatic *this)"
   },
   "0x00459260": {
     "name": "UISceneFrm::ctor_9260",
@@ -5422,8 +5422,8 @@
     "signature": "LRESULT __cdecl(HWND hWnd, BOOL bReadOnly)"
   },
   "0x0043F360": {
-    "name": "UIListBox::_unverified_43F360",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "UIListBox::ClearAll",
+    "signature": "int __thiscall UIListBox::ClearAll(UIListBox *this)"
   },
   "0x004E5430": {
     "name": "EditBox_GetFloat",
@@ -7490,8 +7490,8 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x0046B040": {
-    "name": "UIListBox::_unverified_46B040",
-    "signature": "int __thiscall(UIListBox *this, int deltatime, int haveinput)"
+    "name": "UIListBox::Update",
+    "signature": "int __thiscall UIListBox::Update(UIListBox *this, int deltatime, int haveinput)"
   },
   "0x0046D4C0": {
     "name": "UIListBox::_scalar_dtor",
@@ -9381,8 +9381,8 @@
     "signature": "void __cdecl FreeScriptInstance(int *pInstance)"
   },
   "0x00434670": {
-    "name": "PtrArray::_unverified_434670",
-    "signature": "int __thiscall(PtrArray *this)"
+    "name": "PtrArray::DestroyAll",
+    "signature": "int __thiscall PtrArray::DestroyAll(PtrArray *this)"
   },
   "0x00434CC0": {
     "name": "PalScriptMgr::IsWaitComplete",
@@ -9959,8 +9959,8 @@
     "signature": "int __thiscall(CCBFiveNimbusWindow *this, int nVal)"
   },
   "0x0043FF00": {
-    "name": "UIButton::_unverified_43FF00",
-    "signature": "int __thiscall(UIButton *this, int id, int *pRect, int parent)"
+    "name": "UIButton::Create",
+    "signature": "int __thiscall UIButton::Create(UIButton *this, int id, int *pRect, int parent)"
   },
   "0x0043FF70": {
     "name": "UIButton::Render",
