@@ -2199,7 +2199,7 @@
     "_misattrib_evidence": "accesses 280*idx beyond 208-byte struct; callers pass CUtil-derived ptr chain via CCBUI.m_pUtil"
   },
   "0x004DFED0": {
-    "name": "CCBStage::EndRound",
+    "name": "CCBStage::EndTurnAndAdvance",
     "signature": "int __thiscall(CCBStage *this)"
   },
   "0x004E0690": {
@@ -13417,7 +13417,7 @@
     "signature": "char __thiscall(CCBStage *this)"
   },
   "0x004DFB70": {
-    "name": "CCBStage::UpdateActionFlags",
+    "name": "CCBStage::UpdateTurnFlags",
     "signature": "int __thiscall(CCBStage *this, const char *pszName, float fVal, float fVal2, float fVal3)"
   },
   "0x004DFC40": {
