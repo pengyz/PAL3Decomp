@@ -7363,8 +7363,8 @@
     "signature": "void __thiscall(PalScriptMgr *this, float fVal)"
   },
   "0x0042FB40": {
-    "name": "PalScriptMgr::_nearby_42fb40",
-    "signature": "char __thiscall(PalScriptMgr *this, char pData)"
+    "name": "PalScriptMgr::SetBigMapState",
+    "signature": "char __thiscall PalScriptMgr::SetBigMapState(PalScriptMgr *this, char nState)"
   },
   "0x00432600": {
     "name": "PtrArray::_nearby_432600",
@@ -7803,8 +7803,8 @@
     "signature": "int *__thiscall(PalScript *this, int *p_DWORD, char *pszBuf)"
   },
   "0x00431040": {
-    "name": "PalScript::_nearby_431040",
-    "signature": "int *__thiscall(PalScript *this, int *p_DWORD, int nVal)"
+    "name": "PalScript::GetVarRef",
+    "signature": "int *__thiscall PalScript::GetVarRef(PalScript *this, int *pOut, int nIdx)"
   },
   "0x00431100": {
     "name": "PalScript::_nearby_431100",
@@ -10453,12 +10453,12 @@
     "signature": "int *__thiscall(PalScript *this, int nVal)"
   },
   "0x00431440": {
-    "name": "PalScript::_nearby_431440",
-    "signature": "int *__thiscall(PalScript *this)"
+    "name": "PalScript::IteratorNext",
+    "signature": "int *__thiscall PalScript::IteratorNext(PalScript *this)"
   },
   "0x004314A0": {
-    "name": "PalScript::_nearby_4314a0",
-    "signature": "int *__thiscall(PalScript *this)"
+    "name": "PalScript::IteratorPrev",
+    "signature": "int *__thiscall PalScript::IteratorPrev(PalScript *this)"
   },
   "0x004314F0": {
     "name": "PalScript::_nearby_4314f0",
@@ -12773,8 +12773,8 @@
     "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BB0F0": {
-    "name": "RenderTarget::_nearby_4bb0f0",
-    "signature": "int __thiscall(RenderTarget *this, float fVal)"
+    "name": "RenderTarget::ApplyScale",
+    "signature": "int __thiscall RenderTarget::ApplyScale(RenderTarget *this, float fVal)"
   },
   "0x004BB180": {
     "name": "RenderTarget::_nearby_4bb180",
