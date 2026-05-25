@@ -6387,8 +6387,8 @@
     "signature": "int __thiscall(PlayerMgr *this, int nVal)"
   },
   "0x00461BF0": {
-    "name": "PAL3::_init_461bf0",
-    "signature": "int __thiscall(PAL3 *this, int nVal)"
+    "name": "PAL3::EnterGameMode",
+    "signature": "int __thiscall PAL3::EnterGameMode(PAL3 *this, int nVal)"
   },
   "0x00462120": {
     "name": "PlayerMgr::_method_462120",
@@ -7473,8 +7473,8 @@
     "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x00459860": {
-    "name": "PAL3::_init_459860",
-    "signature": "char __thiscall(PAL3 *this)"
+    "name": "PAL3::HandleDeviceReset",
+    "signature": "char __thiscall PAL3::HandleDeviceReset(PAL3 *this)"
   },
   "0x00459900": {
     "name": "CScreenMode::Render__ovl_459900",
@@ -7618,8 +7618,8 @@
     "signature": "void __thiscall CScreenMode::_scalar_dtor(CScreenMode *this)"
   },
   "0x00483300": {
-    "name": "UILoadingFrm::_init_483300",
-    "signature": "void __thiscall(UILoadingFrm *this)"
+    "name": "UILoadingFrm::DestroyFrames",
+    "signature": "void __thiscall UILoadingFrm::DestroyFrames(UILoadingFrm *this)"
   },
   "0x00483650": {
     "name": "LineupUI::CreatePreviewScene",
@@ -10346,12 +10346,12 @@
     "signature": "int __thiscall(BINK *this, char pData)"
   },
   "0x00451850": {
-    "name": "UIListBox::_init_451850",
-    "signature": "int __thiscall(UIListBox *this)"
+    "name": "UIListBox::UIListBox_Init",
+    "signature": "int __thiscall UIListBox::UIListBox_Init(UIListBox *this)"
   },
   "0x00451900": {
-    "name": "UIListBox::_init_451900",
-    "signature": "void __fastcall(UIWnd *pWnd)"
+    "name": "UIListBox::DestroyContent",
+    "signature": "void __fastcall UIListBox::DestroyContent(UIWnd *pWnd)"
   },
   "0x00451AA0": {
     "name": "UIListBox::OnMessage",
@@ -10462,8 +10462,8 @@
     "signature": "void __thiscall(void (__thiscall **this)(_DWORD, _DWORD), unsigned char pData)"
   },
   "0x00456EE0": {
-    "name": "Actor::_init_456ee0",
-    "signature": "int __thiscall(Actor *this)"
+    "name": "Actor::ApplyStateArray",
+    "signature": "int __thiscall Actor::ApplyStateArray(Actor *this)"
   },
   "0x00456F10": {
     "name": "Actor::SaveState",
@@ -10850,8 +10850,8 @@
     "signature": "int __thiscall(StateUI *this, int nVal)"
   },
   "0x00483280": {
-    "name": "UILoadingFrm::_init_483280",
-    "signature": "void __thiscall(UILoadingFrm *this)"
+    "name": "UILoadingFrm::DestroyStatics",
+    "signature": "void __thiscall UILoadingFrm::DestroyStatics(UILoadingFrm *this)"
   },
   "0x00483FA0": {
     "name": "LineupComp::_method_483fa0",
@@ -11143,8 +11143,8 @@
     "signature": "int __thiscall(MUIDialog *this, int nVal, int nVal2)"
   },
   "0x0049CF20": {
-    "name": "UIListBox::_init_49cf20",
-    "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2)"
+    "name": "UIListBox::GetSkillSlotLevel",
+    "signature": "int __thiscall UIListBox::GetSkillSlotLevel(UIListBox *this, int nVal, int nVal2)"
   },
   "0x0049E670": {
     "name": "MainEquipUI::_init_49e670",
@@ -12614,8 +12614,8 @@
     "_misattrib_evidence": "max_offset=99200>class_size=2632"
   },
   "0x00527C30": {
-    "name": "PAL3::_init_527c30",
-    "signature": "int *__thiscall(PAL3 *this)"
+    "name": "PAL3::HandleDeviceLost",
+    "signature": "int *__thiscall PAL3::HandleDeviceLost(PAL3 *this)"
   },
   "0x00527D40": {
     "name": "SceneObj::GetVisibleFlag",
@@ -12722,8 +12722,8 @@
     "signature": "int __thiscall UIScenePanel::LayoutSlot(UIScenePanel *this, int arg0, int nVal, int nVal2, int nVal3, int nVal4)"
   },
   "0x0052D200": {
-    "name": "UIRoleSelectDialog::_init_52d200",
-    "signature": "char __thiscall(UIRoleSelectDialog *this, int nVal)"
+    "name": "UIRoleSelectDialog::IsRoleSelectable",
+    "signature": "char __thiscall UIRoleSelectDialog::IsRoleSelectable(UIRoleSelectDialog *this, int nVal)"
   },
   "0x0052D7C0": {
     "name": "UICoverFrm::LoadFromFile",
@@ -12822,16 +12822,16 @@
     "signature": "int __thiscall UISceneMap::SetCurrentMapID(UISceneMap *this, int nVal)"
   },
   "0x0052FBB0": {
-    "name": "CCBFiveNimbusWindow::_init_52fbb0",
-    "signature": "int __thiscall(CCBFiveNimbusWindow *this, int nVal)"
+    "name": "CCBFiveNimbusWindow::GetSlotA",
+    "signature": "int __thiscall CCBFiveNimbusWindow::GetSlotA(CCBFiveNimbusWindow *this, int nVal)"
   },
   "0x0052FBD0": {
     "name": "MiniGame2Scene::GetOBBox",
     "signature": "gbOBBox *__thiscall(MiniGame2Scene *this)"
   },
   "0x0052FC30": {
-    "name": "CCBFiveNimbusWindow::_init_52fc30",
-    "signature": "int __thiscall(CCBFiveNimbusWindow *this, int nVal)"
+    "name": "CCBFiveNimbusWindow::GetSlotB",
+    "signature": "int __thiscall CCBFiveNimbusWindow::GetSlotB(CCBFiveNimbusWindow *this, int nVal)"
   },
   "0x0052FC50": {
     "name": "CCBFiveNimbusWindow::_nearby_52fc50",
