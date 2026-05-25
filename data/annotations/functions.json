@@ -7812,8 +7812,8 @@
     "signature": "void __stdcall(int)"
   },
   "0x004AF770": {
-    "name": "UITitle_YXXX::_nearby_4af770",
-    "signature": "int *__thiscall(UITitle_YXXX *this, char *pszBuf, unsigned int dwVal, int nVal)"
+    "name": "UITitle_YXXX::CreateTitle",
+    "signature": "int *__thiscall UITitle_YXXX::CreateTitle(UITitle_YXXX *this, char *pszBuf, unsigned int dwVal, int nVal)"
   },
   "0x004AFB60": {
     "name": "ArcLocaleRole::_nearby_4afb60",
@@ -11325,8 +11325,8 @@
     "signature": "void __cdecl CopyRoleData(int pDst, int pSrc)"
   },
   "0x004AFD80": {
-    "name": "ArcLocaleRole::_nearby_4afd80",
-    "signature": "unsigned int __cdecl(char *pszBuf, char *pszBuf2, int nVal)"
+    "name": "ArcLocaleRole::ParseLocaleData",
+    "signature": "unsigned int __cdecl ArcLocaleRole::ParseLocaleData(char *pszBuf, char *pszBuf2, int nVal)"
   },
   "0x004B0040": {
     "name": "_method_4b0040",
@@ -12093,12 +12093,12 @@
     "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)"
   },
   "0x004EBD30": {
-    "name": "CCBCamControl::_auto_4ebd30",
-    "signature": "void __thiscall(CCBCamControl *this, HWND hDlg)"
+    "name": "CCBCamControl::ShowCameraDialog",
+    "signature": "void __thiscall CCBCamControl::ShowCameraDialog(CCBCamControl *this, HWND hDlg)"
   },
   "0x004EBF90": {
-    "name": "CCBCamControl::_auto_4ebf90",
-    "signature": "void __thiscall(CCBCamControl *this, HWND hDlg)"
+    "name": "CCBCamControl::ReadCameraDialog",
+    "signature": "void __thiscall CCBCamControl::ReadCameraDialog(CCBCamControl *this, HWND hDlg)"
   },
   "0x004EC1F0": {
     "name": "PAL_GDB::ShowDetailPanel",
@@ -12714,12 +12714,12 @@
     "signature": "int __thiscall(UICoverFrm *this, int nVal, char *pszBuf, int nVal2)"
   },
   "0x0052CAF0": {
-    "name": "UIScenePanel::_sub_52CAF0",
-    "signature": "int __thiscall(UIScenePanel *this, int id)"
+    "name": "UIScenePanel::ActivatePanel",
+    "signature": "int __thiscall UIScenePanel::ActivatePanel(UIScenePanel *this, int id)"
   },
   "0x0052CD40": {
-    "name": "UIScenePanel::_sub_52CD40",
-    "signature": "int __thiscall(UIScenePanel *this, int arg0, int nVal, int nVal2, int nVal3, int nVal4)"
+    "name": "UIScenePanel::LayoutSlot",
+    "signature": "int __thiscall UIScenePanel::LayoutSlot(UIScenePanel *this, int arg0, int nVal, int nVal2, int nVal3, int nVal4)"
   },
   "0x0052D200": {
     "name": "UIRoleSelectDialog::_init_52d200",
@@ -13385,8 +13385,8 @@
     "signature": "int __thiscall(TextureLib *this, char *String)"
   },
   "0x0053F680": {
-    "name": "TextureLib::_sub_53F680",
-    "signature": "char __thiscall(TextureLib *this, char *lpString2, char *Delimiter)"
+    "name": "TextureLib::AddEntryFromConfig",
+    "signature": "char __thiscall TextureLib::AddEntryFromConfig(TextureLib *this, char *lpString2, char *Delimiter)"
   },
   "0x00569020": {
     "name": "PAL3_Helper_569020",
@@ -13730,8 +13730,8 @@
     "class": "UIWnd"
   },
   "0x0052D010": {
-    "name": "UISceneFace::_sub_52D010",
-    "signature": "int __thiscall(UISceneFace *this, int nVal, unsigned int dwVal)",
+    "name": "UISceneFace::SetFaceVisible",
+    "signature": "int __thiscall UISceneFace::SetFaceVisible(UISceneFace *this, int nVal, unsigned int dwVal)",
     "class": "UIWnd"
   },
   "0x0052D0D0": {
