@@ -7076,11 +7076,11 @@
     "signature": "void __thiscall(PalScriptMgr *this)"
   },
   "0x00435170": {
-    "name": "PalScript::_auto_435170",
+    "name": "PalScript::Op_LoadScene",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004378E0": {
-    "name": "PalScript::_nearby_4378e0",
+    "name": "PalScript::Op_HaveItem",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004384B0": {
@@ -7839,95 +7839,95 @@
     "signature": "int *__cdecl(int *p_DWORD, int nVal, int nVal2)"
   },
   "0x00434D70": {
-    "name": "PalScript::_auto_434d70",
+    "name": "PalScript::Op_ScriptRunMode",
     "signature": "char __thiscall(PalScript *this)"
   },
   "0x00434D90": {
-    "name": "PalScript::_auto_434d90",
+    "name": "PalScript::Op_RoleSetPos",
     "signature": "RoleSystem * __thiscall(PalScript *this)"
   },
   "0x00434E50": {
-    "name": "PalScript::_auto_434e50",
+    "name": "PalScript::Op_RoleScript",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00434E90": {
-    "name": "PalScript::_auto_434e90",
+    "name": "PalScript::Op_RoleCtrl",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004350F0": {
-    "name": "PalScript::_auto_4350f0",
+    "name": "PalScript::Op_RoleOverlap",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004351A0": {
-    "name": "PalScript::_auto_4351a0",
+    "name": "PalScript::Op_RoleActive",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435830": {
-    "name": "PalScript::_nearby_435830",
+    "name": "PalScript::Op_CameraFocusObject",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435BF0": {
-    "name": "PalScript::_nearby_435bf0",
+    "name": "PalScript::Op_GetRoleAtt",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004360F0": {
-    "name": "PalScript::_auto_4360f0",
+    "name": "PalScript::Op_CameraPushState",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436130": {
-    "name": "PalScript::_nearby_436130",
+    "name": "PalScript::Op_RoleMoveBack",
     "signature": "unsigned int __thiscall(PalScript *this)"
   },
   "0x00436190": {
-    "name": "PalScript::_nearby_436190",
+    "name": "PalScript::Op_RoleEndAction",
     "signature": "unsigned int __thiscall(PalScript *this)"
   },
   "0x00436280": {
-    "name": "PalScript::_nearby_436280",
+    "name": "PalScript::Op_RoleSetFace",
     "signature": "RoleSystem * __thiscall(PalScript *this)"
   },
   "0x00436470": {
-    "name": "PalScript::_auto_436470",
+    "name": "PalScript::Op_AddMoney",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004364E0": {
-    "name": "PalScript::_nearby_4364e0",
+    "name": "PalScript::Op_GetFavor",
     "signature": "struct gbVFileSystem *(double pData)"
   },
   "0x004365A0": {
-    "name": "PalScript::_nearby_4365a0",
+    "name": "PalScript::Op_RoleTurnFace",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004365B0": {
-    "name": "PalScript::_nearby_4365b0",
+    "name": "PalScript::Op_TeamOpen",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436600": {
-    "name": "PalScript::_auto_436600",
+    "name": "PalScript::Op_TeamClose",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436680": {
-    "name": "PalScript::_auto_436680",
+    "name": "PalScript::Op_RoleInput",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436A60": {
-    "name": "PalScript::_nearby_436a60",
+    "name": "PalScript::Op_Call",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436AB0": {
-    "name": "PalScript::_auto_436ab0",
+    "name": "PalScript::Op_FullRoleAtt",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436C00": {
-    "name": "PalScript::_nearby_436c00",
+    "name": "PalScript::Op_CombatBoss",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437010": {
-    "name": "PalScript::_nearby_437010",
+    "name": "PalScript::Op_GetHS_Period_type",
     "signature": "char __thiscall(PalScript *this)"
   },
   "0x00437550": {
-    "name": "PalScript::_nearby_437550",
+    "name": "PalScript::Op_FavorAdd",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437630": {
@@ -7935,7 +7935,7 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437650": {
-    "name": "PalScript::_nearby_437650",
+    "name": "PalScript::Op_FadeIn",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004377F0": {
@@ -7943,15 +7943,15 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437AE0": {
-    "name": "PalScript::_auto_437ae0",
+    "name": "PalScript::Op_RoleSetLayer",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437C40": {
-    "name": "PalScript::_nearby_437c40",
+    "name": "PalScript::Op_ObjectMove",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437C50": {
-    "name": "PalScript::_nearby_437c50",
+    "name": "PalScript::Op_FadeNormal",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437E60": {
@@ -7959,7 +7959,7 @@
     "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
   },
   "0x00437FF0": {
-    "name": "PalScript::_auto_437ff0",
+    "name": "PalScript::Op_Deal",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004381B0": {
@@ -7967,11 +7967,11 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438350": {
-    "name": "PalScript::_nearby_438350",
+    "name": "PalScript::Op_Get_Appr",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438390": {
-    "name": "PalScript::_nearby_438390",
+    "name": "PalScript::Op_Enable_JusticeBook",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004386B0": {
@@ -7979,15 +7979,15 @@
     "signature": "void()"
   },
   "0x00438840": {
-    "name": "PalScript::_auto_438840",
+    "name": "PalScript::Op_EntryRow",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004389D0": {
-    "name": "PalScript::_auto_4389d0",
+    "name": "PalScript::Op_GetSwitch",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438B00": {
-    "name": "PalScript::_auto_438b00",
+    "name": "PalScript::Op_GetCombat",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438B60": {
@@ -7995,7 +7995,7 @@
     "signature": "PalScript * __thiscall(PalScript *this)"
   },
   "0x00438D00": {
-    "name": "PalScript::_nearby_438d00",
+    "name": "PalScript::Op_RoleFadeIn",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438F10": {
@@ -8003,7 +8003,7 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438F30": {
-    "name": "PalScript::_auto_438f30",
+    "name": "PalScript::Op_Enable_SwordSkill",
     "signature": "int * __thiscall(PalScript *this)"
   },
   "0x00439110": {
@@ -10517,7 +10517,7 @@
     "signature": "BOOL __thiscall(PalScript *this)"
   },
   "0x00434CE0": {
-    "name": "PalScript::_nearby_434ce0",
+    "name": "PalScript::Op_Idle",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00434D20": {
@@ -10529,7 +10529,7 @@
     "signature": "void __thiscall(PalScript *this, float fVal)"
   },
   "0x00434ED0": {
-    "name": "PalScript::_nearby_434ed0",
+    "name": "PalScript::Op_RolePathOut",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00434F60": {
@@ -10537,15 +10537,15 @@
     "signature": "int __cdecl(int nVal)"
   },
   "0x00434F90": {
-    "name": "PalScript::_nearby_434f90",
+    "name": "PalScript::Op_RolePathTo",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435010": {
-    "name": "PalScript::_nearby_435010",
+    "name": "PalScript::Op_TeamCloseA",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435080": {
-    "name": "PalScript::_nearby_435080",
+    "name": "PalScript::Op_RoleShowAction",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435130": {
@@ -10553,91 +10553,91 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004353F0": {
-    "name": "PalScript::_nearby_4353f0",
+    "name": "PalScript::Op_RoleSpaceWalk",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435470": {
-    "name": "PalScript::_nearby_435470",
+    "name": "PalScript::Op_CameraFocusRole",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004354F0": {
-    "name": "PalScript::_nearby_4354f0",
+    "name": "PalScript::Op_RoleMoveTo",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00435570": {
-    "name": "PalScript::_auto_435570",
+    "name": "PalScript::Op_CameraFocusPoint",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00435600": {
-    "name": "PalScript::_nearby_435600",
+    "name": "PalScript::Op_CameraPush",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004356C0": {
-    "name": "PalScript::_nearby_4356c0",
+    "name": "PalScript::Op_CameraRotate",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00435730": {
-    "name": "PalScript::_auto_435730",
+    "name": "PalScript::Op_CameraSet",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00435770": {
-    "name": "PalScript::_auto_435770",
+    "name": "PalScript::Op_CameraTrans",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004357B0": {
-    "name": "PalScript::_auto_4357b0",
+    "name": "PalScript::Op_AddItem",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004357E0": {
-    "name": "PalScript::_auto_4357e0",
+    "name": "PalScript::Op_CameraFree",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436240": {
-    "name": "PalScript::_auto_436240",
+    "name": "PalScript::Op_RoleScale",
     "signature": "float * __thiscall(PalScript *this)"
   },
   "0x004362D0": {
-    "name": "PalScript::_nearby_4362d0",
+    "name": "PalScript::Op_ShowActAutoStand",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436360": {
-    "name": "PalScript::_auto_436360",
+    "name": "PalScript::Op_Let",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436380": {
-    "name": "PalScript::_auto_436380",
+    "name": "PalScript::Op_Add",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004363B0": {
-    "name": "PalScript::_auto_4363b0",
+    "name": "PalScript::Op_Sub",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004363E0": {
-    "name": "PalScript::_auto_4363e0",
+    "name": "PalScript::Op_JT_Exhibit",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436410": {
-    "name": "PalScript::_auto_436410",
+    "name": "PalScript::Op_Rand",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436440": {
-    "name": "PalScript::_nearby_436440",
+    "name": "PalScript::Op_RemoveItem",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436490": {
-    "name": "PalScript::_nearby_436490",
+    "name": "PalScript::Op_GetMoney",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436530": {
-    "name": "PalScript::_nearby_436530",
+    "name": "PalScript::Op_AddSkill",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004365C0": {
-    "name": "PalScript::_nearby_4365c0",
+    "name": "PalScript::Op_RoleFaceRole",
     "signature": "char __thiscall(PalScript *this)"
   },
   "0x004365D0": {
-    "name": "PalScript::_nearby_4365d0",
+    "name": "PalScript::Op_RoleTurnFaceA",
     "signature": "char __thiscall(PalScript *this)"
   },
   "0x004365E0": {
@@ -10645,119 +10645,119 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436710": {
-    "name": "PalScript::_auto_436710",
+    "name": "PalScript::Op_GoTo",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436760": {
-    "name": "PalScript::_auto_436760",
+    "name": "PalScript::Op_FOP",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436780": {
-    "name": "PalScript::_nearby_436780",
+    "name": "PalScript::Op_GT",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004367B0": {
-    "name": "PalScript::_nearby_4367b0",
+    "name": "PalScript::Op_LS",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004367E0": {
-    "name": "PalScript::_nearby_4367e0",
+    "name": "PalScript::Op_EQ",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436810": {
-    "name": "PalScript::_nearby_436810",
+    "name": "PalScript::Op_Between",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436860": {
-    "name": "PalScript::_nearby_436860",
+    "name": "PalScript::Op_NEQ",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436890": {
-    "name": "PalScript::_nearby_436890",
+    "name": "PalScript::Op_GEQ",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004368C0": {
-    "name": "PalScript::_nearby_4368c0",
+    "name": "PalScript::Op_GetHS_ManageType",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004368E0": {
-    "name": "PalScript::_nearby_4368e0",
+    "name": "PalScript::Op_LEQ",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436910": {
-    "name": "PalScript::_auto_436910",
+    "name": "PalScript::Op_TestGoto",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436940": {
-    "name": "PalScript::_nearby_436940",
+    "name": "PalScript::Op_GetFavorite",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004369A0": {
-    "name": "PalScript::_auto_4369a0",
+    "name": "PalScript::Op_GetDislike",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004369C0": {
-    "name": "PalScript::_auto_4369c0",
+    "name": "PalScript::Op_HS_Entry",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436A10": {
-    "name": "PalScript::_nearby_436a10",
+    "name": "PalScript::Op_RotateInv",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436B40": {
-    "name": "PalScript::_nearby_436b40",
+    "name": "PalScript::Op_CameraDefault",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436BD0": {
-    "name": "PalScript::_auto_436bd0",
+    "name": "PalScript::Op_Enable_Sword",
     "signature": "char __thiscall(PalScript *this)"
   },
   "0x00436C60": {
-    "name": "PalScript::_nearby_436c60",
+    "name": "PalScript::Op_CombatMustFail",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436CB0": {
-    "name": "PalScript::_nearby_436cb0",
+    "name": "PalScript::Op_FadeWhite",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436D30": {
-    "name": "PalScript::_nearby_436d30",
+    "name": "PalScript::Op_APPR_Entry",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436DB0": {
-    "name": "PalScript::_nearby_436db0",
+    "name": "PalScript::Op_KF_Entry",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436E10": {
-    "name": "PalScript::_nearby_436e10",
+    "name": "PalScript::Op_ENCAMP_Entry",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436E70": {
-    "name": "PalScript::_nearby_436e70",
+    "name": "PalScript::Op_SKEE_Entry",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436ED0": {
-    "name": "PalScript::_auto_436ed0",
+    "name": "PalScript::Op_Specify_Compos",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436F40": {
-    "name": "PalScript::_nearby_436f40",
+    "name": "PalScript::Op_Start_HideFight",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00436F90": {
-    "name": "PalScript::_auto_436f90",
+    "name": "PalScript::Op_CombatMaxRound",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436FB0": {
-    "name": "PalScript::_nearby_436fb0",
+    "name": "PalScript::Op_OpenDoor",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00436FE0": {
-    "name": "PalScript::_nearby_436fe0",
+    "name": "PalScript::Op_HY_Mode",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437040": {
-    "name": "PalScript::_nearby_437040",
+    "name": "PalScript::Op_HY_FLY",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437080": {
@@ -10765,7 +10765,7 @@
     "signature": "void __thiscall(PalScriptMgr *this)"
   },
   "0x004370C0": {
-    "name": "PalScript::_auto_4370c0",
+    "name": "PalScript::Op_Caption",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004370E0": {
@@ -10773,39 +10773,39 @@
     "signature": "void __thiscall(PalScriptMgr *this)"
   },
   "0x00437120": {
-    "name": "PalScript::_nearby_437120",
+    "name": "PalScript::Op_JT_EquipSword",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437170": {
-    "name": "PalScript::_auto_437170",
+    "name": "PalScript::Op_DlgPos",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437190": {
-    "name": "PalScript::_nearby_437190",
+    "name": "PalScript::Op_DlgFont",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004371B0": {
-    "name": "PalScript::_nearby_4371b0",
+    "name": "PalScript::Op_Dlg",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004371D0": {
-    "name": "PalScript::_nearby_4371d0",
+    "name": "PalScript::Op_RoleEmote",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004371F0": {
-    "name": "PalScript::_nearby_4371f0",
+    "name": "PalScript::Op_PlaySound",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437210": {
-    "name": "PalScript::_nearby_437210",
+    "name": "PalScript::Op_DlgHead",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437280": {
-    "name": "PalScript::_nearby_437280",
+    "name": "PalScript::Op_DlgSel",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004373A0": {
-    "name": "PalScript::_auto_4373a0",
+    "name": "PalScript::Op_Combat",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004373C0": {
@@ -10813,55 +10813,55 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004373D0": {
-    "name": "PalScript::_nearby_4373d0",
+    "name": "PalScript::Op_RoleStop",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437440": {
-    "name": "PalScript::_nearby_437440",
+    "name": "PalScript::Op_GetDlgSel",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004374A0": {
-    "name": "PalScript::_nearby_4374a0",
+    "name": "PalScript::Op_DlgFace",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004374E0": {
-    "name": "PalScript::_auto_4374e0",
+    "name": "PalScript::Op_Note",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437500": {
-    "name": "PalScript::_nearby_437500",
+    "name": "PalScript::Op_FadeOut",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004375E0": {
-    "name": "PalScript::_auto_4375e0",
+    "name": "PalScript::Op_LK_Ghost",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437610": {
-    "name": "PalScript::_auto_437610",
+    "name": "PalScript::Op_SetRoleAtt",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004376A0": {
-    "name": "PalScript::_auto_4376a0",
+    "name": "PalScript::Op_Team",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004376F0": {
-    "name": "PalScript::_auto_4376f0",
+    "name": "PalScript::Op_AddRoleAtt",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437740": {
-    "name": "PalScript::_nearby_437740",
+    "name": "PalScript::Op_Climb",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437A80": {
-    "name": "PalScript::_nearby_437a80",
+    "name": "PalScript::Op_GetTimeSel",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437AC0": {
-    "name": "PalScript::_nearby_437ac0",
+    "name": "PalScript::Op_InTeam",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00437B20": {
-    "name": "PalScript::_nearby_437b20",
+    "name": "PalScript::Op_DlgTime",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00437B90": {
@@ -10885,7 +10885,7 @@
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438030": {
-    "name": "PalScript::_nearby_438030",
+    "name": "PalScript::Op_GetHSLv",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438110": {
@@ -10893,7 +10893,7 @@
     "signature": "void __thiscall(PalScript *this, float fVal)"
   },
   "0x004381E0": {
-    "name": "PalScript::_nearby_4381e0",
+    "name": "PalScript::Op_Start_Wolf",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004382A0": {
@@ -10901,23 +10901,23 @@
     "signature": "void __thiscall(PalScript *this, float fVal)"
   },
   "0x00438310": {
-    "name": "PalScript::_nearby_438310",
+    "name": "PalScript::Op_SwitchRS",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438440": {
-    "name": "PalScript::_nearby_438440",
+    "name": "PalScript::Op_Movie",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438450": {
-    "name": "PalScript::_auto_438450",
+    "name": "PalScript::Op_SetRoleTexture",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438470": {
-    "name": "PalScript::_nearby_438470",
+    "name": "PalScript::Op_Rotate",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004384D0": {
-    "name": "PalScript::_nearby_4384d0",
+    "name": "PalScript::Op_Quake",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438540": {
@@ -10925,7 +10925,7 @@
     "signature": "void __thiscall(PalScript *this, float fVal)"
   },
   "0x004385A0": {
-    "name": "PalScript::_nearby_4385a0",
+    "name": "PalScript::Op_ShowChatRest",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438640": {
@@ -10933,15 +10933,15 @@
     "signature": "void __thiscall(PalScript *this, float fVal)"
   },
   "0x004387B0": {
-    "name": "PalScript::_auto_4387b0",
+    "name": "PalScript::Op_GetHS_UnHock_type",
     "signature": "char __thiscall(PalScript *this)"
   },
   "0x004387D0": {
-    "name": "PalScript::_auto_4387d0",
+    "name": "PalScript::Op_TeamOpenA",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x004388C0": {
-    "name": "PalScript::_nearby_4388c0",
+    "name": "PalScript::Op_Trigger",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438910": {
@@ -10949,27 +10949,27 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438980": {
-    "name": "PalScript::_nearby_438980",
+    "name": "PalScript::Op_Dist",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x004389A0": {
-    "name": "PalScript::_nearby_4389a0",
+    "name": "PalScript::Op_SetBigMapElement",
     "signature": "char * __thiscall(PalScript *this)"
   },
   "0x00438A30": {
-    "name": "PalScript::_nearby_438a30",
+    "name": "PalScript::Op_CombatNotGameOver",
     "signature": "int * __thiscall(PalScript *this)"
   },
   "0x00438B40": {
-    "name": "PalScript::_auto_438b40",
+    "name": "PalScript::Op_Music",
     "signature": "char __thiscall(PalScript *this)"
   },
   "0x00438BA0": {
-    "name": "PalScript::_nearby_438ba0",
+    "name": "PalScript::Op_RoleFadeOut",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438D20": {
-    "name": "PalScript::_nearby_438d20",
+    "name": "PalScript::Op_IfInTeam",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438E30": {
@@ -10977,7 +10977,7 @@
     "signature": "int __thiscall(NPC *this, float fVal)"
   },
   "0x00438F50": {
-    "name": "PalScript::_nearby_438f50",
+    "name": "PalScript::Op_FogH",
     "signature": "char __thiscall(PalScript *this)"
   },
   "0x00439020": {
@@ -15688,5 +15688,37 @@
   "0x0040F4B0": {
     "name": "RefreshPartyRoleData",
     "signature": "int __cdecl RefreshPartyRoleData()"
+  },
+  "0x00436730": {
+    "name": "PalScript::Op_FC",
+    "signature": "void __thiscall PalScript::Op_FC(PalScript *this)"
+  },
+  "0x00436740": {
+    "name": "PalScript::Op_FNOT",
+    "signature": "void __thiscall PalScript::Op_FNOT(PalScript *this)"
+  },
+  "0x00435710": {
+    "name": "PalScript::Op_CameraMove",
+    "signature": "void __thiscall PalScript::Op_CameraMove(PalScript *this)"
+  },
+  "0x00435720": {
+    "name": "PalScript::Op_CameraWag",
+    "signature": "void __thiscall PalScript::Op_CameraWag(PalScript *this)"
+  },
+  "0x00436120": {
+    "name": "PalScript::Op_CameraPopState",
+    "signature": "void __thiscall PalScript::Op_CameraPopState(PalScript *this)"
+  },
+  "0x004386C0": {
+    "name": "PalScript::Op_GetHS_Accrual_type",
+    "signature": "void __thiscall PalScript::Op_GetHS_Accrual_type(PalScript *this)"
+  },
+  "0x00438A20": {
+    "name": "PalScript::Op_EntrySkee",
+    "signature": "void __thiscall PalScript::Op_EntrySkee(PalScript *this)"
+  },
+  "0x00438B80": {
+    "name": "PalScript::Op_StopMusic",
+    "signature": "void __thiscall PalScript::Op_StopMusic(PalScript *this)"
   }
 }
