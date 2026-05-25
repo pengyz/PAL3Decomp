@@ -6522,8 +6522,8 @@
     "signature": "int __thiscall Actor::AddActionByName(Actor *this, const char *pszName, const char *pszName2, int nVal)"
   },
   "0x0053A0C0": {
-    "name": "Actor::RemoveAction",
-    "signature": "int __thiscall Actor::RemoveAction(Actor *this, int *p_DWORD, char **nY)"
+    "name": "Actor::InsertAction",
+    "signature": "int __thiscall Actor::InsertAction(Actor *this, int *p_DWORD, char **nY)"
   },
   "0x0053A8D0": {
     "name": "ActVec_InsertN",
@@ -8075,12 +8075,12 @@
     "signature": "void ** __thiscall(RenderTarget2 *this)"
   },
   "0x004C2820": {
-    "name": "RenderTarget2::GetEffectSlots",
-    "signature": "void ** __thiscall RenderTarget2::GetEffectSlots(RenderTarget2 *this)"
+    "name": "RenderTarget2::_nearby_4c2820",
+    "signature": "void ** __thiscall(RenderTarget2 *this)"
   },
   "0x004C2BA0": {
-    "name": "RenderTarget2::UpdateTargetParams",
-    "signature": "void __thiscall RenderTarget2::UpdateTargetParams(RenderTarget2 *this, float *pfVal)"
+    "name": "RenderTarget2::_nearby_4c2ba0",
+    "signature": "void __thiscall(RenderTarget2 *this, float *pfVal)"
   },
   "0x004C3450": {
     "name": "RenderTarget2::ResetTargetSlot",
@@ -11601,8 +11601,8 @@
     "signature": "int __thiscall(RenderTarget2 *this)"
   },
   "0x004C0600": {
-    "name": "RenderTarget2::ProcessTargetAction",
-    "signature": "char __thiscall RenderTarget2::ProcessTargetAction(RenderTarget2 *this, int nVal)"
+    "name": "RenderTarget2::_nearby_4c0600",
+    "signature": "char __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C0640": {
     "name": "CEffAction::sub_004C0640",
@@ -11617,12 +11617,12 @@
     "signature": "unsigned int __thiscall RenderTarget2::GetTargetAnimDuration(RenderTarget2 *this, float *pfVal)"
   },
   "0x004C09E0": {
-    "name": "RenderTarget2::DispatchEffectPass1",
-    "signature": "void __thiscall RenderTarget2::DispatchEffectPass1(RenderTarget2 *this, int *p_DWORD)"
+    "name": "RenderTarget2::CreateSceneTarget",
+    "signature": "void __thiscall RenderTarget2::CreateSceneTarget(RenderTarget2 *this, int *p_DWORD)"
   },
   "0x004C0C10": {
-    "name": "RenderTarget2::UpdateAnimation",
-    "signature": "int __thiscall RenderTarget2::UpdateAnimation(RenderTarget2 *this, int nParam)"
+    "name": "RenderTarget2::SceneRoleCallback",
+    "signature": "int __thiscall RenderTarget2::SceneRoleCallback(RenderTarget2 *this, int nParam)"
   },
   "0x004C1270": {
     "name": "RenderTarget2::GetEffBaseTemplate",
@@ -11649,8 +11649,8 @@
     "signature": "void __thiscall RenderTarget2::LoadResourcesByIndex(RenderTarget2 *this, float *pfVal)"
   },
   "0x004C18D0": {
-    "name": "RenderTarget2::DispatchEffectPass2",
-    "signature": "void __thiscall RenderTarget2::DispatchEffectPass2(RenderTarget2 *this, int *p_DWORD)"
+    "name": "RenderTarget2::CreateSoundTarget",
+    "signature": "void __thiscall RenderTarget2::CreateSoundTarget(RenderTarget2 *this, int *p_DWORD)"
   },
   "0x004C1B00": {
     "name": "RenderTarget2::ProcessSoundPass",
@@ -11677,8 +11677,8 @@
     "signature": "char __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C2280": {
-    "name": "RenderTarget2::DispatchEffectPass3",
-    "signature": "void __thiscall RenderTarget2::DispatchEffectPass3(RenderTarget2 *this, int *p_DWORD)"
+    "name": "RenderTarget2::CreateVideoTarget",
+    "signature": "void __thiscall RenderTarget2::CreateVideoTarget(RenderTarget2 *this, int *p_DWORD)"
   },
   "0x004C24B0": {
     "name": "RenderTarget2::ProcessVideoPass",
@@ -11705,24 +11705,24 @@
     "signature": "int __thiscall(RenderTarget2 *this)"
   },
   "0x004C2930": {
-    "name": "RenderTarget2::SetTargetTransform",
-    "signature": "int __thiscall RenderTarget2::SetTargetTransform(RenderTarget2 *this, float *pfVal, float fX, float fY, float fZ)"
+    "name": "RenderTarget2::_nearby_4c2930",
+    "signature": "int __thiscall(RenderTarget2 *this, float *pfVal, float fVal, float fVal2, float fVal3)"
   },
   "0x004C29A0": {
     "name": "RenderTarget2::sub_004C29A0",
     "signature": "void __thiscall(RenderTarget2 *this, float fVal)"
   },
   "0x004C2D00": {
-    "name": "RenderTarget2::DispatchEffectPass5",
-    "signature": "void __thiscall RenderTarget2::DispatchEffectPass5(RenderTarget2 *this, int *p_DWORD)"
+    "name": "RenderTarget2::_nearby_4c2d00",
+    "signature": "void __thiscall(RenderTarget2 *this, int *p_DWORD)"
   },
   "0x004C2F30": {
     "name": "CEffMgr::_auto_4c2f30",
     "signature": "int __thiscall(CEffMgr *this, int nVal)"
   },
   "0x004C3160": {
-    "name": "RenderTarget2::GetPassData",
-    "signature": "int * __thiscall RenderTarget2::GetPassData(RenderTarget2 *this, int nVal)"
+    "name": "RenderTarget2::_nearby_4c3160",
+    "signature": "int * __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C3260": {
     "name": "RenderTarget2::RenderPostProcess",
@@ -11741,8 +11741,8 @@
     "signature": "void __thiscall(RenderTarget2 *this, float fVal)"
   },
   "0x004C3770": {
-    "name": "RenderTarget2::DispatchEffectPass4",
-    "signature": "void __thiscall RenderTarget2::DispatchEffectPass4(RenderTarget2 *this, int *p_DWORD)"
+    "name": "RenderTarget2::CreateCameraTarget",
+    "signature": "void __thiscall RenderTarget2::CreateCameraTarget(RenderTarget2 *this, int *p_DWORD)"
   },
   "0x004C39A0": {
     "name": "RenderTarget2::ProcessCameraPass",
@@ -13169,8 +13169,8 @@
     "signature": "BOOL __cdecl(char *String1, char *String2)"
   },
   "0x005392C0": {
-    "name": "Actor::CopyActionData",
-    "signature": "char *__thiscall Actor::CopyActionData(Actor *this, int nVal)"
+    "name": "Actor::ActionEntry_Assign",
+    "signature": "char *__thiscall Actor::ActionEntry_Assign(Actor *this, int nVal)"
   },
   "0x005394D0": {
     "name": "Actor::ClearActionArrays",
@@ -13261,16 +13261,16 @@
     "signature": "void __cdecl(void *pData, const void *pData)"
   },
   "0x0053B890": {
-    "name": "Actor::CacheAnimState",
-    "signature": "char *__thiscall Actor::CacheAnimState(Actor *this, int nVal)"
+    "name": "Actor::SetCurrentAction",
+    "signature": "char *__thiscall Actor::SetCurrentAction(Actor *this, int nVal)"
   },
   "0x0053BAE0": {
-    "name": "Actor::ReserveActionSlots",
-    "signature": "int *__thiscall Actor::ReserveActionSlots(Actor *this, int *p_DWORD)"
+    "name": "Actor::ActArray_Assign",
+    "signature": "int *__thiscall Actor::ActArray_Assign(Actor *this, int *p_DWORD)"
   },
   "0x0053BD30": {
-    "name": "Actor::UpdateBoneIndices",
-    "signature": "int *__thiscall Actor::UpdateBoneIndices(Actor *this, int *pnVal)"
+    "name": "Actor::BoneIndexVec_Assign",
+    "signature": "int *__thiscall Actor::BoneIndexVec_Assign(Actor *this, int *pnVal)"
   },
   "0x0053BEB0": {
     "name": "Actor::GetActionCount",
