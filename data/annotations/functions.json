@@ -1018,12 +1018,12 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00445C10": {
-    "name": "UIWnd::vfunc_3",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "UIWnd::HideAll",
+    "signature": "void __thiscall UIWnd::HideAll(UIWnd *this)"
   },
   "0x00445C60": {
-    "name": "UIWnd::vfunc_2",
-    "signature": "BOOL __thiscall(UIWnd *this, int x, int y)"
+    "name": "UIWnd::HitTest",
+    "signature": "BOOL __thiscall UIWnd::HitTest(UIWnd *this, int x, int y)"
   },
   "0x00445CD0": {
     "name": "UIWnd::Render",
@@ -1070,8 +1070,8 @@
     "signature": "void *__thiscall(CGameData *this)"
   },
   "0x0044F5B0": {
-    "name": "CGameData::vfunc_1",
-    "signature": "int __thiscall(CGameData *this)"
+    "name": "CGameData::ProcessDialog",
+    "signature": "int __thiscall CGameData::ProcessDialog(CGameData *this)"
   },
   "0x0044F8A0": {
     "name": "CGameData::SetMode",
@@ -4361,8 +4361,8 @@
     "signature": "void __thiscall(_TextureLib_Data *this)"
   },
   "0x0044F430": {
-    "name": "CGameData::vfunc_3",
-    "signature": "void __thiscall(CGameData *this)"
+    "name": "CGameData::Cleanup",
+    "signature": "void __thiscall CGameData::Cleanup(CGameData *this)"
   },
   "0x0044BD60": {
     "name": "PtrArray::PtrArray",
@@ -5264,8 +5264,8 @@
     "signature": "void *__thiscall(UITextArea *this)"
   },
   "0x0045ADD0": {
-    "name": "UIWnd::sub_45ADD0",
-    "signature": "void __thiscall(UIWnd *this)"
+    "name": "UIWnd::ResetChildList",
+    "signature": "void __thiscall UIWnd::ResetChildList(UIWnd *this)"
   },
   "0x004912D0": {
     "name": "MainPropUI::~MainPropUI",
@@ -9181,8 +9181,8 @@
     "signature": "int __thiscall(RoleSystem *this)"
   },
   "0x004209E0": {
-    "name": "RoleSystem::vfunc_6",
-    "signature": "void __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::ResetState",
+    "signature": "void __thiscall RoleSystem::ResetState(RoleSystem *this)"
   },
   "0x00420F50": {
     "name": "RoleSystem::GetMapNodePtr",
@@ -9761,16 +9761,16 @@
     "signature": "void __thiscall PalScript::Op_Start_HideFight(PalScript *this)"
   },
   "0x00438110": {
-    "name": "PalScript::vfunc_2",
-    "signature": "void __thiscall(PalScript *this, float fVal)"
+    "name": "PalScript::UpdateWaitTimer",
+    "signature": "void __thiscall PalScript::UpdateWaitTimer(PalScript *this, float fVal)"
   },
   "0x004381E0": {
     "name": "PalScript::Op_Trigger",
     "signature": "void __thiscall PalScript::Op_Trigger(PalScript *this)"
   },
   "0x004382A0": {
-    "name": "PalScript::vfunc_5",
-    "signature": "void __thiscall(PalScript *this, float fVal)"
+    "name": "PalScript::UpdateIdleTimer",
+    "signature": "void __thiscall PalScript::UpdateIdleTimer(PalScript *this, float fVal)"
   },
   "0x00438310": {
     "name": "PalScript::Op_JT_Exhibit",
@@ -10317,8 +10317,8 @@
     "signature": "void __fastcall RoleAtt::~RoleAtt(UIWnd *pWnd)"
   },
   "0x00450F80": {
-    "name": "RoleAtt::_nearby_450f80",
-    "signature": "BOOL __thiscall(RoleAtt *this)"
+    "name": "RoleAtt::IsValid",
+    "signature": "BOOL __thiscall RoleAtt::IsValid(RoleAtt *this)"
   },
   "0x00451360": {
     "name": "UIBigMap::Update__ovl_1360",
@@ -10621,8 +10621,8 @@
     "signature": "int __thiscall(PropUI *this, int nVal)"
   },
   "0x0046EC50": {
-    "name": "PropUI::_nearby_46ec50",
-    "signature": "bool __thiscall(PropUI *this, unsigned int dwVal)"
+    "name": "PropUI::CheckMode",
+    "signature": "bool __thiscall PropUI::CheckMode(PropUI *this, unsigned int dwVal)"
   },
   "0x0046EC70": {
     "name": "PropUI::SetSceneStates",
@@ -12998,8 +12998,8 @@
     "signature": "int __thiscall SceneObjParam::UpdateCameraAndRole(SceneObjParam *this, struct gbGfxManager *p)"
   },
   "0x00533DA0": {
-    "name": "SceneObjParam::_nearby_533da0",
-    "signature": "int __thiscall(SceneObjParam *this)"
+    "name": "SceneObjParam::FlushCommands",
+    "signature": "int __thiscall SceneObjParam::FlushCommands(SceneObjParam *this)"
   },
   "0x00533DB0": {
     "name": "RoleAtt::ResetNameField",
@@ -13770,8 +13770,8 @@
     "class": "UIWnd"
   },
   "0x004D0A60": {
-    "name": "CEffgbParticle::sub_004D0A60",
-    "signature": "void __thiscall(CEffgbParticle *this)"
+    "name": "CEffgbParticle::DestroyEffect",
+    "signature": "void __thiscall CEffgbParticle::DestroyEffect(CEffgbParticle *this)"
   },
   "0x004C5820": {
     "name": "CEffectSystem::Create",
