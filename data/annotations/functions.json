@@ -7178,8 +7178,8 @@
     "signature": "void __thiscall RoleSystem::ApplyMoveStep(RoleSystem *this, double fInput, int nVal, float fVal, char bCollide)"
   },
   "0x00412A90": {
-    "name": "RoleSystem::_sub_412A90",
-    "signature": "void __thiscall(RoleSystem *this, __int64 pData, int nVal)"
+    "name": "RoleSystem::MoveToTile",
+    "signature": "void __thiscall RoleSystem::MoveToTile(RoleSystem *this, __int64 tileXY, int nMode)"
   },
   "0x00413420": {
     "name": "RoleSystem::_nearby_413420",
@@ -7626,8 +7626,8 @@
     "signature": "void __thiscall(Array *this)"
   },
   "0x004132B0": {
-    "name": "RoleSystem::_sub_4132B0",
-    "signature": "char __thiscall(RoleSystem *this, int arg0, int arg4, int nVal)"
+    "name": "RoleSystem::MoveToTileCheck",
+    "signature": "char __thiscall RoleSystem::MoveToTileCheck(RoleSystem *this, int nTileX, int nTileY, int nMode)"
   },
   "0x00413390": {
     "name": "RoleSystem::InterpolateMoveFrame",
