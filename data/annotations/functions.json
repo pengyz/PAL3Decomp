@@ -8495,40 +8495,40 @@
     "signature": "int __thiscall(CCBStage *this, float fVal)"
   },
   "0x0050F080": {
-    "name": "CCBStage::_nearby_50f080",
-    "signature": "int __thiscall(CCBStage *this, int nVal)"
+    "name": "CCBStage::AnimCallback_Attack",
+    "signature": "int __thiscall CCBStage::AnimCallback_Attack(CCBStage *this, int nVal)"
   },
   "0x0050F150": {
-    "name": "CCBStage::_nearby_50f150",
-    "signature": "int __thiscall(CCBStage *this, int nVal)"
+    "name": "CCBStage::AnimCallback_UseItem",
+    "signature": "int __thiscall CCBStage::AnimCallback_UseItem(CCBStage *this, int nVal)"
   },
   "0x0050F200": {
     "name": "CCBStageRole::OnMagicHit",
     "signature": "int __thiscall CCBStageRole::OnMagicHit(CCBStageRole *this, int nVal)"
   },
   "0x0050F310": {
-    "name": "CCBStage::_nearby_50f310",
-    "signature": "int __thiscall(CCBStage *this, int nVal, int nVal2)"
+    "name": "CCBStage::AnimCallback_Throw",
+    "signature": "int __thiscall CCBStage::AnimCallback_Throw(CCBStage *this, int nVal, int nVal2)"
   },
   "0x0050F410": {
-    "name": "CCBStage::_nearby_50f410",
-    "signature": "int __thiscall(CCBStage *this, int nVal)"
+    "name": "CCBStage::AnimCallback_CastMagic",
+    "signature": "int __thiscall CCBStage::AnimCallback_CastMagic(CCBStage *this, int nVal)"
   },
   "0x0050F4C0": {
-    "name": "CCBStage::_nearby_50f4c0",
-    "signature": "int __thiscall(CCBStage *this, int nVal)"
+    "name": "CCBStage::AnimCallback_WaitCmd",
+    "signature": "int __thiscall CCBStage::AnimCallback_WaitCmd(CCBStage *this, int nVal)"
   },
   "0x0050F590": {
-    "name": "CCBStage::_nearby_50f590",
-    "signature": "int __thiscall(CCBStage *this, int nVal)"
+    "name": "CCBStage::AnimCallback_MoveTo",
+    "signature": "int __thiscall CCBStage::AnimCallback_MoveTo(CCBStage *this, int nVal)"
   },
   "0x0050FA20": {
     "name": "CCBStageRole::ClearTaskIfMatch",
     "signature": "int __thiscall(CCBStageRole *this, int nVal)"
   },
   "0x0050FD00": {
-    "name": "CCBStageScene::_sub_50FD00",
-    "signature": "CCBStageScene *__thiscall(CCBStageScene *this, CCBStage *pCBStage)"
+    "name": "CCBStageScene::CCBStageScene",
+    "signature": "CCBStageScene *__thiscall CCBStageScene::CCBStageScene(CCBStageScene *this, CCBStage *pCBStage)"
   },
   "0x00511E80": {
     "name": "CCBStageShadow::UpdateShadowMesh",
@@ -11925,8 +11925,8 @@
     "signature": "int *__thiscall(CCBStage *this, int nVal)"
   },
   "0x004E0330": {
-    "name": "CCBStage::_nearby_4e0330",
-    "signature": "int __thiscall(CCBStage *this)"
+    "name": "CCBStage::Reset",
+    "signature": "int __thiscall CCBStage::Reset(CCBStage *this)"
   },
   "0x004E0340": {
     "name": "CCBStage::ResetTurnSlots",
@@ -12433,12 +12433,12 @@
     "signature": "char __thiscall(CCBStage *this, int nVal)"
   },
   "0x00504B50": {
-    "name": "CCBStage::_nearby_504b50",
-    "signature": "char __thiscall(CCBStage *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, float fVal, const void *pData, const void *pData2)"
+    "name": "CCBStage::EnqueueCommand",
+    "signature": "char __thiscall CCBStage::EnqueueCommand(CCBStage *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, float fVal, const void *pData, const void *pData2)"
   },
   "0x00504C50": {
-    "name": "CCBStage::_nearby_504c50",
-    "signature": "int __thiscall(CCBStage *this, int nVal)"
+    "name": "CCBStage::ProcessQueuedCommand",
+    "signature": "int __thiscall CCBStage::ProcessQueuedCommand(CCBStage *this, int nVal)"
   },
   "0x00504D60": {
     "name": "CCBSystem::CastProtect",
@@ -12453,12 +12453,12 @@
     "signature": "int __thiscall(CCBStage *this, int nVal)"
   },
   "0x0050E360": {
-    "name": "CCBStage::_nearby_50e360",
-    "signature": "int __thiscall(CCBStage *this, int nVal)"
+    "name": "CCBStage::CalcFacingAngle",
+    "signature": "int __thiscall CCBStage::CalcFacingAngle(CCBStage *this, int nVal)"
   },
   "0x0050E550": {
-    "name": "CCBStage::_nearby_50e550",
-    "signature": "int __thiscall(CCBStage *this, int nVal)"
+    "name": "CCBStage::ResolveActionEffect",
+    "signature": "int __thiscall CCBStage::ResolveActionEffect(CCBStage *this, int nVal)"
   },
   "0x0050EDA0": {
     "name": "CCBStageRole::CheckPushState",
