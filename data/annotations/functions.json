@@ -7267,8 +7267,8 @@
     "signature": "void __thiscall(RoleSystem *this, float fVal, int nVal, float fVal2, int nVal2)"
   },
   "0x00420B40": {
-    "name": "PalScriptMgr::_sub_420B40",
-    "signature": "void __thiscall(PalScriptMgr *this, RoleSystem *pRoleSystem, float fVal, char pData)"
+    "name": "PalScriptMgr::CheckTileScript",
+    "signature": "void __thiscall PalScriptMgr::CheckTileScript(PalScriptMgr *this, RoleSystem *pRole, float fVal, char bExecute)"
   },
   "0x00420FB0": {
     "name": "RoleSystem::CheckMoveCollision",
@@ -7666,8 +7666,8 @@
     "signature": "unsigned int __thiscall(Actor *this, int animId)"
   },
   "0x0041C9A0": {
-    "name": "InputSystem::_auto_41c9a0",
-    "signature": "int __thiscall(InputSystem *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int nVal7)"
+    "name": "InputSystem::SetCameraTransition",
+    "signature": "int __thiscall InputSystem::SetCameraTransition(InputSystem *this, int nMode, int nStart, int nTarget, int nPosX, int nPosY, int nPosZ, int bTargetCoord)"
   },
   "0x0041CBC0": {
     "name": "CameraCtrl::_nearby_41cbc0",
@@ -10241,8 +10241,8 @@
     "_misattrib_evidence": "max_offset=444>class_size=36"
   },
   "0x0041D5C0": {
-    "name": "CameraCtrl::_nearby_41d5c0",
-    "signature": "int __thiscall(CameraCtrl *this, int nVal)"
+    "name": "CameraCtrl::SetCamDist",
+    "signature": "int __thiscall CameraCtrl::SetCamDist(CameraCtrl *this, int nVal)"
   },
   "0x0041D5D0": {
     "name": "CameraCtrl::UpdateFOVLerp",
