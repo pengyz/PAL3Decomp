@@ -268,6 +268,16 @@ def generate_free_funcs_cpp(funcs):
     lines.append('#include "pal3/ida_defs.h"')
     lines.append('#include "pal3/globals.h"')
     lines.append('#include "pal3/gen/free_functions.h"')
+
+    # Scan all function bodies for ClassName:: references and add includes
+    import re
+    all_code_text = '\n'.join(f.get('code', '') for f in funcs)
+    referenced_classes = set(re.findall(r'\b([A-Z][A-Za-z0-9_]+)::', all_code_text))
+    header_dir = store.project_root / "include" / "pal3" / "gen"
+    for cls in sorted(referenced_classes):
+        hpath = header_dir / ("%s.h" % cls)
+        if hpath.exists():
+            lines.append('#include "pal3/gen/%s.h"' % cls)
     lines.append("")
     lines.append("// Free functions (not belonging to any class)")
     lines.append("")
