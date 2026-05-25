@@ -3700,8 +3700,8 @@
     "signature": "char __thiscall(CCBUI *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int nVal7, const void *pData)"
   },
   "0x00519360": {
-    "name": "CCBUI::ShowLineupWindow",
-    "signature": "void __thiscall(CCBUI *this, BOOL bShow)"
+    "name": "CCBResultWindow::ShowLineupWindow",
+    "signature": "void __thiscall(CCBResultWindow *this, BOOL bShow)"
   },
   "0x00519380": {
     "name": "CCBResultWindow::~CCBResultWindow",
@@ -3724,8 +3724,8 @@
     "signature": "int __thiscall(CCBUI *this, int pt, unsigned int area, int nVal)"
   },
   "0x00519660": {
-    "name": "CCBUI::IsImbibeNimbusNotFinish",
-    "signature": "BOOL __thiscall(CCBUI *this, int nVal, int nVal2)"
+    "name": "CCBResultWindow::IsImbibeNimbusNotFinish",
+    "signature": "BOOL __thiscall(CCBResultWindow *this, int nVal, int nVal2)"
   },
   "0x005196C0": {
     "name": "CCBUI::SetNimbusToNimbusControl",
@@ -7490,8 +7490,8 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x0046B040": {
-    "name": "UIListBox::ProcessCellAnimations",
-    "signature": "int __thiscall UIListBox::ProcessCellAnimations(UIListBox *this, int deltatime, int haveinput)"
+    "name": "SaleUI::ProcessCellAnimations",
+    "signature": "int __thiscall SaleUI::ProcessCellAnimations(SaleUI *this, int deltatime, int haveinput)"
   },
   "0x0046D4C0": {
     "name": "UIListBox::_scalar_dtor",
@@ -7506,12 +7506,12 @@
     "signature": "void __thiscall(PropUI *this)"
   },
   "0x0046F620": {
-    "name": "UIListBox::HandleInput",
-    "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2)"
+    "name": "PropUI::HandleInput",
+    "signature": "int __thiscall(PropUI *this, int nVal, int nVal2)"
   },
   "0x0046F650": {
-    "name": "UIListBox::InitListUI",
-    "signature": "int __thiscall(UIListBox *this, int arg0, int nVal, unsigned int dwVal)"
+    "name": "PropUI::InitListUI",
+    "signature": "int __thiscall(PropUI *this, int arg0, int nVal, unsigned int dwVal)"
   },
   "0x00470F20": {
     "name": "UIListBox::_scalar_dtor",
@@ -7523,8 +7523,8 @@
     "_misattrib_evidence": "max_offset=124260>class_size=1208"
   },
   "0x00474C50": {
-    "name": "UIListBox::UpdateAndForward",
-    "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2)"
+    "name": "LineupUI::UpdateAndForward",
+    "signature": "int __thiscall(LineupUI *this, int nVal, int nVal2)"
   },
   "0x00475FC0": {
     "name": "LineupUI::RefreshDisplay",
@@ -7736,12 +7736,12 @@
     "_misattrib_evidence": "max_offset=231140>class_size=1208"
   },
   "0x004A1A80": {
-    "name": "UIItem::RemoveChild",
-    "signature": "void *__thiscall UIItem::RemoveChild(UIItem *this, void *pChild, char bDelete)"
+    "name": "UIRoleDialog::RemoveChild",
+    "signature": "void *__thiscall UIRoleDialog::RemoveChild(UIRoleDialog *this, void *pChild, char bDelete)"
   },
   "0x004A1AA0": {
-    "name": "UIItem::ProcessFrame",
-    "signature": "BOOL __thiscall UIItem::ProcessFrame(UIItem *this, int nVal, int nVal2)"
+    "name": "UIRoleDialog::ProcessFrame",
+    "signature": "BOOL __thiscall UIRoleDialog::ProcessFrame(UIRoleDialog *this, int nVal, int nVal2)"
   },
   "0x004A2150": {
     "name": "UIGameFrm::_scalar_dtor",
@@ -7861,8 +7861,8 @@
     "signature": "bool PAL3::WriteRegistry(CHAR *lpSubKey, DWORD dwDisposition, ...)"
   },
   "0x004B2C70": {
-    "name": "UIListBox::RenderSlotEffects",
-    "signature": "void __thiscall UIListBox::RenderSlotEffects(UIListBox *this)"
+    "name": "UITitle_JDHY::RenderSlotEffects",
+    "signature": "void __thiscall UITitle_JDHY::RenderSlotEffects(UITitle_JDHY *this)"
   },
   "0x004B2D20": {
     "name": "UITitle_JDHY::HandleNavigation",
@@ -8039,8 +8039,8 @@
     "_misattrib_evidence": "max_offset=1108>class_size=152"
   },
   "0x004BEFB0": {
-    "name": "UIRoleDialog::LoadResources",
-    "signature": "gbVFileSystem *__thiscall UIRoleDialog::LoadResources(UIRoleDialog *this, int nVal)"
+    "name": "ScreenEffectMgr::LoadResources",
+    "signature": "gbVFileSystem *__thiscall ScreenEffectMgr::LoadResources(ScreenEffectMgr *this, int nVal)"
   },
   "0x004C04C0": {
     "name": "RenderTarget2::ClearTarget",
@@ -8556,8 +8556,8 @@
     "signature": "int __thiscall(CCBUI *this, int a_128)"
   },
   "0x00518E30": {
-    "name": "CCBUI::ShowAndNotify",
-    "signature": "BOOL __thiscall(CCBUI *this, int nVal, int nVal2)"
+    "name": "CCBProtectWindow::ShowAndNotify",
+    "signature": "BOOL __thiscall(CCBProtectWindow *this, int nVal, int nVal2)"
   },
   "0x00519AF0": {
     "name": "UIListBox::InitAndRender",
@@ -9080,8 +9080,8 @@
     "signature": "void __thiscall(RoleSystem *this, char *pszRoleName)"
   },
   "0x0041B640": {
-    "name": "Actor::UpdateBoundingBox",
-    "signature": "void __thiscall Actor::UpdateBoundingBox(Actor *this, struct gbAABBox *pBox)"
+    "name": "Role::UpdateBoundingBox",
+    "signature": "void __thiscall Role::UpdateBoundingBox(Role *this, struct gbAABBox *pBox)"
   },
   "0x0041BA10": {
     "name": "RoleSystem::InterpolateHeight",
@@ -10281,8 +10281,8 @@
     "signature": "int __thiscall(UISceneMap *this)"
   },
   "0x00450440": {
-    "name": "UICaption::CheckVisibleState",
-    "signature": "int __thiscall(UICaption *this)"
+    "name": "UIWnd::CheckVisibleState",
+    "signature": "int __thiscall(UIWnd *this)"
   },
   "0x00450650": {
     "name": "CCBItemWindow::SetItemName",
@@ -10910,8 +10910,8 @@
     "signature": "char *__thiscall StateUI::RefreshFromAtts(StateUI *this)"
   },
   "0x00485DF0": {
-    "name": "CScreenMode::OnRender",
-    "signature": "int __thiscall CScreenMode::OnRender(CScreenMode *this)"
+    "name": "StateUI::OnRender",
+    "signature": "int __thiscall StateUI::OnRender(StateUI *this)"
   },
   "0x00486CE0": {
     "name": "RenderTarget::Init",
@@ -11187,16 +11187,16 @@
     "signature": "int __thiscall(UITitle_XJTM *this, int nVal, int nVal2)"
   },
   "0x004A13F0": {
-    "name": "UIItem::_sdtor",
-    "signature": "UIItem * __thiscall(UIItem *this, void *Block, char pData)"
+    "name": "UIRoleDialog::_sdtor",
+    "signature": "UIItem * __thiscall(UIRoleDialog *this, void *Block, char pData)"
   },
   "0x004A1620": {
     "name": "MUIDialog::InvokeCallback",
     "signature": "char __thiscall(MUIDialog *this)"
   },
   "0x004A1D10": {
-    "name": "UIItem::OnCommand",
-    "signature": "int __thiscall UIItem::OnCommand(UIItem *this, int nVal, int nVal2, int nVal3)"
+    "name": "UIRoleDialog::OnCommand",
+    "signature": "int __thiscall UIRoleDialog::OnCommand(UIRoleDialog *this, int nVal, int nVal2, int nVal3)"
   },
   "0x004A2170": {
     "name": "ChoseCompose::Method_4A2170",
@@ -11358,8 +11358,8 @@
     "signature": "char __thiscall UITitle_JDHY::SaveData(UITitle_JDHY *this, int Data)"
   },
   "0x004B3100": {
-    "name": "UIListBox::ForwardHitTest",
-    "signature": "int __thiscall UIListBox::ForwardHitTest(UIListBox *this)",
+    "name": "UITitle_JDHY::ForwardHitTest",
+    "signature": "int __thiscall UITitle_JDHY::ForwardHitTest(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=286376>class_size=4280"
   },
   "0x004B3270": {
@@ -11577,16 +11577,16 @@
     "signature": "void __thiscall(UIRoleDialog *this, int nVal)"
   },
   "0x004BF4F0": {
-    "name": "UIRoleDialog::UpdateAnimation",
-    "signature": "void __thiscall UIRoleDialog::UpdateAnimation(UIRoleDialog *this, float fVal)"
+    "name": "ScreenEffectMgr::UpdateAnimation",
+    "signature": "void __thiscall ScreenEffectMgr::UpdateAnimation(ScreenEffectMgr *this, float fVal)"
   },
   "0x004BF680": {
-    "name": "UIRoleDialog::GetPageIndex",
-    "signature": "int __thiscall(UIRoleDialog *this, int nVal)"
+    "name": "ScreenEffectMgr::GetPageIndex",
+    "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)"
   },
   "0x004BF6C0": {
-    "name": "UIRoleDialog::SetFadeParams",
-    "signature": "int __thiscall(UIRoleDialog *this, int nVal)"
+    "name": "ScreenEffectMgr::SetFadeParams",
+    "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)"
   },
   "0x004BF760": {
     "name": "ScreenEffectMgr::ResetFadeState",
@@ -13472,8 +13472,8 @@
     "signature": "int *__thiscall(PAL3 *this)"
   },
   "0x004BF170": {
-    "name": "UIRoleDialog::CleanupTextures",
-    "signature": "void __thiscall UIRoleDialog::CleanupTextures(UIRoleDialog *this)"
+    "name": "ScreenEffectMgr::CleanupTextures",
+    "signature": "void __thiscall ScreenEffectMgr::CleanupTextures(ScreenEffectMgr *this)"
   },
   "0x004C58C0": {
     "name": "PAL3::CreateRenderEffects",
@@ -13571,12 +13571,12 @@
     "signature": "void __cdecl(unsigned short *pBuf, struct gbVFile *pFile)"
   },
   "0x0044DB70": {
-    "name": "UIScene::StopAllSounds",
-    "signature": "int __thiscall(UIScene *this, float fFade, int nFlags)"
+    "name": "UIScenePanel::StopAllSounds",
+    "signature": "int __thiscall(UIScenePanel *this, float fFade, int nFlags)"
   },
   "0x00450560": {
-    "name": "UICaption::WorldToScreen",
-    "signature": "int __thiscall(UICaption *this, int nX, int nY)"
+    "name": "UIWnd::WorldToScreen",
+    "signature": "int __thiscall(UIWnd *this, int nX, int nY)"
   },
   "0x004932D0": {
     "name": "_misattrib_UIScene::LoadRoleSkillData",
@@ -13584,8 +13584,8 @@
     "_misattrib_evidence": "max_offset=217412>class_size=204"
   },
   "0x004A5B30": {
-    "name": "UIGameFrm::UpdateCaptions",
-    "signature": "int __thiscall UIGameFrm::UpdateCaptions(UIGameFrm *this)",
+    "name": "MainEquipUI::UpdateCaptions",
+    "signature": "int __thiscall MainEquipUI::UpdateCaptions(MainEquipUI *this)",
     "_misattrib_evidence": "max_offset=176084>class_size=4"
   },
   "0x004A67B0": {
