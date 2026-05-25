@@ -6413,8 +6413,8 @@
     "_misattrib_evidence": "max_offset=121112>class_size=1208"
   },
   "0x0047C3A0": {
-    "name": "CCBMagicWindow::_method_47c3a0",
-    "signature": "int __thiscall(CCBMagicWindow *this, struct PalScript *p, int nVal)"
+    "name": "CCBMagicWindow::ProcessPageAction",
+    "signature": "int __thiscall CCBMagicWindow::ProcessPageAction(CCBMagicWindow *this, struct PalScript *p, int nVal)"
   },
   "0x004974A0": {
     "name": "_misattrib_UIBigMap::OnMessage",
@@ -10755,8 +10755,8 @@
     "signature": "int __thiscall(CCBUIPanel *this)"
   },
   "0x00460A00": {
-    "name": "CCBUI::_nearby_460a00",
-    "signature": "bool __thiscall(CCBUI *this, float fVal)"
+    "name": "CCBUI::RollProbability",
+    "signature": "bool __thiscall CCBUI::RollProbability(CCBUI *this, float fProb)"
   },
   "0x00461C50": {
     "name": "PlayerMgr::_init_461c50",
@@ -10841,12 +10841,12 @@
     "signature": "int __thiscall(PropUI *this)"
   },
   "0x0046F300": {
-    "name": "PropUI::_method_46f300",
-    "signature": "void __thiscall(PropUI *this, int nVal)"
+    "name": "PropUI::UpdateItemDetail",
+    "signature": "void __thiscall PropUI::UpdateItemDetail(PropUI *this, int nItemIdx)"
   },
   "0x0046F390": {
-    "name": "CCBRoleState::_method_46f390",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
+    "name": "CCBRoleState::NotifyStateChange",
+    "signature": "int __thiscall CCBRoleState::NotifyStateChange(CCBRoleState *this, unsigned __int8 nState)"
   },
   "0x0046F480": {
     "name": "GRPinput::_auto_46f480",
@@ -10882,8 +10882,8 @@
     "_misattrib_evidence": "max_offset=124256>class_size=1208"
   },
   "0x00472A80": {
-    "name": "LineupUI::_method_472a80",
-    "signature": "int __thiscall(LineupUI *this, int nVal)",
+    "name": "LineupUI::SetPageIndex",
+    "signature": "int __thiscall LineupUI::SetPageIndex(LineupUI *this, int nPage)",
     "_misattrib_evidence": "max_offset=124248>class_size=39240"
   },
   "0x00472AA0": {
