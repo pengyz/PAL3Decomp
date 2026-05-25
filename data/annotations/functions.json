@@ -7586,12 +7586,12 @@
     "signature": "RoleSystem *__cdecl(unsigned short pData)"
   },
   "0x0040DE10": {
-    "name": "PtrArray::_nearby_40de10",
-    "signature": "char *__cdecl(char *pszBuf)"
+    "name": "MovePartyFollowers",
+    "signature": "char *__cdecl MovePartyFollowers(char *bNotifyScript)"
   },
   "0x0040E0A0": {
-    "name": "PalScriptMgr::_auto_40e0a0",
-    "signature": "void __cdecl(int nVal)"
+    "name": "RestorePartyFollowMode",
+    "signature": "void __cdecl RestorePartyFollowMode(int bNotifyScript)"
   },
   "0x0040E840": {
     "name": "PtrArray::_nearby_40e840",
@@ -9906,8 +9906,8 @@
     "signature": "void __cdecl()"
   },
   "0x00402290": {
-    "name": "GRPinput::_sub_402290",
-    "signature": "BOOL __thiscall(GRPinput *this, int X, int Y)"
+    "name": "GRPinput::SetCursorPos",
+    "signature": "BOOL __thiscall GRPinput::SetCursorPos(GRPinput *this, int X, int Y)"
   },
   "0x00402640": {
     "name": "GRPinput::BuildKeyMap",
@@ -9926,8 +9926,8 @@
     "signature": "int __thiscall(RoleSystem *this, int index, float *pfVal, float *pfVal2, int nVal, char pData)"
   },
   "0x00408B60": {
-    "name": "UIListBox::_auto_408b60",
-    "signature": "void __cdecl __thiscall(UIListBox *this)"
+    "name": "InitScriptObjArray",
+    "signature": "void __cdecl InitScriptObjArray()"
   },
   "0x00408BD0": {
     "name": "CEffAction::sub_00408BD0",
@@ -9958,8 +9958,8 @@
     "signature": "BOOL __cdecl(int *p_DWORD, int *p_DWORD2)"
   },
   "0x0040E110": {
-    "name": "PtrArray::_nearby_40e110",
-    "signature": "char __cdecl(int nVal)"
+    "name": "SetupPartyFormation",
+    "signature": "char __cdecl SetupPartyFormation(int bNotifyScript)"
   },
   "0x0040E3C0": {
     "name": "PtrArray::_nearby_40e3c0",
@@ -9978,12 +9978,12 @@
     "signature": "bool __thiscall(NPC *this, int nVal)"
   },
   "0x0040F030": {
-    "name": "NPC::_nearby_40f030",
-    "signature": "int __thiscall(NPC *this)"
+    "name": "NPC::GetBufferCount",
+    "signature": "int __thiscall NPC::GetBufferCount(NPC *this)"
   },
   "0x0040F050": {
-    "name": "NPC::_nearby_40f050",
-    "signature": "int __thiscall(NPC *this, int nVal)"
+    "name": "NPC::GetBufferAt",
+    "signature": "int __thiscall NPC::GetBufferAt(NPC *this, int nIndex)"
   },
   "0x0040F0C0": {
     "name": "NPC::_nearby_40f0c0",
