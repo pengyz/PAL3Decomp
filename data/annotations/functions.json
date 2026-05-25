@@ -5315,8 +5315,8 @@
     "signature": "int __thiscall(TaskBookUI *this)"
   },
   "0x004461F0": {
-    "name": "UICaption::sub_4461F0",
-    "signature": "void __thiscall(UICaption *this)"
+    "name": "UICaption::DestroyPanel",
+    "signature": "void __thiscall UICaption::DestroyPanel(UICaption *this)"
   },
   "0x004F4820": {
     "name": "Combat::Func_4F4820",
@@ -6081,8 +6081,8 @@
     "_misattrib_evidence": "max_offset=215196>class_size=4280"
   },
   "0x0049AC70": {
-    "name": "StateUI::_method_49ac70",
-    "signature": "int __thiscall(StateUI *this)"
+    "name": "StateUI::UpdateScrollValues",
+    "signature": "int __thiscall StateUI::UpdateScrollValues(StateUI *this)"
   },
   "0x00504510": {
     "name": "CameraCtrl::InitFromConfig",
@@ -9293,8 +9293,8 @@
     "signature": "bool __thiscall PalScriptMgr::IsInputBlocked(PalScriptMgr *this)"
   },
   "0x0042FEB0": {
-    "name": "Config::_nearby_42feb0",
-    "signature": "int *__thiscall(Config *this)"
+    "name": "Config::ResetField7",
+    "signature": "int *__thiscall Config::ResetField7(Config *this)"
   },
   "0x0042FEC0": {
     "name": "Config::InitDefaults",
@@ -10021,8 +10021,8 @@
     "signature": "void __thiscall UIFrameWnd::RenderWithTexture(UIFrameWnd *this)"
   },
   "0x004431E0": {
-    "name": "UIBigMap::_unverified_4431E0",
-    "signature": "int __thiscall(UIBigMap *this, int deltatime, int haveinput)"
+    "name": "UIBigMap::SetViewParams",
+    "signature": "int __thiscall UIBigMap::SetViewParams(UIBigMap *this, int deltatime, int haveinput)"
   },
   "0x00443200": {
     "name": "UIFrameWnd::Render",
@@ -10870,8 +10870,8 @@
     "signature": "int __thiscall MainEquipUI::CountVisibleStats(MainEquipUI *this)"
   },
   "0x00484660": {
-    "name": "StateUI::_method_484660",
-    "signature": "int __thiscall(StateUI *this)"
+    "name": "StateUI::UpdateVisibility",
+    "signature": "int __thiscall StateUI::UpdateVisibility(StateUI *this)"
   },
   "0x00484810": {
     "name": "LineupUI::RebuildNavPage",
@@ -11073,8 +11073,8 @@
     "signature": "int *__thiscall(ArcSceneMonster *this, int nVal, int nVal2, int id, int *pnVal, int nVal3)"
   },
   "0x004929E0": {
-    "name": "UIBigMap::_method_4929e0",
-    "signature": "int __thiscall(UIBigMap *this, int arg0, int *p_DWORD)"
+    "name": "UIBigMap::ProcessChildItem",
+    "signature": "int __thiscall UIBigMap::ProcessChildItem(UIBigMap *this, int arg0, int *p_DWORD)"
   },
   "0x00493420": {
     "name": "StateUI::UpdateAttributeDisplay",
@@ -11211,8 +11211,8 @@
     "signature": "LPSTR __cdecl FormatChineseNumber(int nVal, LPSTR lpBuf)"
   },
   "0x004A3730": {
-    "name": "ComposeUI::_method_4a3730",
-    "signature": "int __thiscall(ComposeUI *this, int arg0, int *p_DWORD)"
+    "name": "ComposeUI::ProcessChildItem",
+    "signature": "int __thiscall ComposeUI::ProcessChildItem(ComposeUI *this, int arg0, int *p_DWORD)"
   },
   "0x004A3A90": {
     "name": "s_RoleState::_method_4a3a90",
@@ -12847,8 +12847,8 @@
     "signature": "int *__thiscall UIWnd::ResetVtable(UIWnd *this)"
   },
   "0x00530340": {
-    "name": "SceneObj::_nearby_530340",
-    "signature": "int __thiscall(SceneObj *this, int nVal)"
+    "name": "SceneObj::SetScriptDel",
+    "signature": "int __thiscall SceneObj::SetScriptDel(SceneObj *this, int nVal)"
   },
   "0x005303C0": {
     "name": "ArcLocaleRole::DispatchActive",
@@ -13373,7 +13373,7 @@
     "signature": "int __thiscall(TextureLib *this, LPCSTR lpString1, LPCSTR lpString2)"
   },
   "0x0053F550": {
-    "name": "TextureLib::_nearby_53f550",
+    "name": "TextureLib_ClearAndJump_thunk",
     "signature": "void __thiscall(TextureLib *this)"
   },
   "0x0053F560": {
@@ -13794,7 +13794,7 @@
     "signature": "BOOL __stdcall(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
   },
   "0x004CFFA0": {
-    "name": "CEffModel::sub_004CFFA0",
+    "name": "CEffModel_DestroyEffect_thunk",
     "signature": "void __thiscall(CEffModel *this)"
   },
   "0x004D03B0": {
