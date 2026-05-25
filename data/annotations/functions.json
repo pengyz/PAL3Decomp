@@ -7795,7 +7795,7 @@
     "signature": "int __thiscall(RoleSystem *this)"
   },
   "0x0042FF40": {
-    "name": "Config::_nearby_42ff40",
+    "name": "Config::ReadFloatArray",
     "signature": "BOOL __thiscall(Config *this, int nVal, int nVal2, int *pnVal, int *pnVal2)"
   },
   "0x004309D0": {
@@ -9379,7 +9379,7 @@
     "signature": "char __thiscall(CCBRoleState *this)"
   },
   "0x004F2560": {
-    "name": "CCBRoleState::_sub_4F2560",
+    "name": "CCBRoleState::ValidateSlotIndex",
     "signature": "char __thiscall(CCBRoleState *this, unsigned int arg0, unsigned int dwVal)"
   },
   "0x004F2660": {
@@ -9543,11 +9543,11 @@
     "signature": "int __thiscall(CCBStageRole *this)"
   },
   "0x0050DA90": {
-    "name": "CCBStage::_nearby_50da90",
+    "name": "CCBStage::UpdateSlotTimer",
     "signature": "int __thiscall(CCBStage *this, int nVal)"
   },
   "0x0050EB00": {
-    "name": "CCBStage::_nearby_50eb00",
+    "name": "CCBStage::ProcessSlotAction",
     "signature": "int __thiscall(CCBStage *this, int nVal)"
   },
   "0x0050EF60": {
@@ -10433,7 +10433,7 @@
     "signature": "int __thiscall(Config *this, int nVal, int nVal2)"
   },
   "0x004300A0": {
-    "name": "Config::ProcessEntry",
+    "name": "Config::GetNextEntry",
     "signature": "bool __thiscall(Config *this, int nVal, int *pnVal, int *pnVal2, int *p_DWORD)"
   },
   "0x00430500": {
@@ -10441,7 +10441,7 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00430670": {
-    "name": "Config::_nearby_430670",
+    "name": "Config::ParseSection",
     "signature": "int __thiscall(Config *this, int nVal)"
   },
   "0x004307D0": {
@@ -11505,7 +11505,7 @@
     "signature": "void __thiscall(UISceneMap *this)"
   },
   "0x00450440": {
-    "name": "UIDialog::_sub_450440",
+    "name": "UIDialog::CheckVisibleState",
     "signature": "int __thiscall(UIDialog *this)"
   },
   "0x00450650": {
@@ -14695,7 +14695,7 @@
     "signature": "void __thiscall(RoleAtt *this, float fVal)"
   },
   "0x00531160": {
-    "name": "RoleAtt::_method_531160",
+    "name": "RoleAtt::InterpolateStats",
     "signature": "char __thiscall(RoleAtt *this, int nVal)"
   },
   "0x00531C90": {
@@ -15205,7 +15205,7 @@
     "signature": "void __thiscall(CScreenMode *this, void *Block, int nVal)"
   },
   "0x0053EF60": {
-    "name": "SceneObj::_sub_53EF60",
+    "name": "SceneObj::LoadFromConfig",
     "signature": "int __cdecl(int *p_DWORD, int *p_DWORD2, int nVal)"
   },
   "0x0053F220": {
