@@ -1315,8 +1315,8 @@
     "signature": "int __thiscall(RenderTarget3 *this)"
   },
   "0x004B6D80": {
-    "name": "PAL3::_unverified_4B6D80",
-    "signature": "void *__thiscall(PAL3 *this)"
+    "name": "PAL3::CreateNullTexture",
+    "signature": "void *__thiscall PAL3::CreateNullTexture(PAL3 *this)"
   },
   "0x004B6DF0": {
     "name": "RenderTarget3::End",
@@ -4389,8 +4389,8 @@
     "signature": "int __thiscall(Combat *this)"
   },
   "0x004C0400": {
-    "name": "PAL3::_unverified_4C0400",
-    "signature": "void __thiscall(PAL3 *this)"
+    "name": "PAL3::ClearAdditiveEffects",
+    "signature": "void __thiscall PAL3::ClearAdditiveEffects(PAL3 *this)"
   },
   "0x00452FD0": {
     "name": "SceneObj::ctor_2FD0",
@@ -4674,8 +4674,8 @@
     "signature": "int __thiscall(UIListBox *this, int msg, int wparam, int lparam)"
   },
   "0x004E04C0": {
-    "name": "CCBUI::_unverified_4E04C0",
-    "signature": "int __thiscall(CCBUI *this)"
+    "name": "CCBUI::StepFrame",
+    "signature": "int __thiscall CCBUI::StepFrame(CCBUI *this)"
   },
   "0x00402270": {
     "name": "GRPinput::SetMouseLimits",
@@ -4760,8 +4760,8 @@
     "signature": "int __thiscall CCCTData::CCCTData(CCCTData *this)"
   },
   "0x00525120": {
-    "name": "SaleUI::_unverified_525120",
-    "signature": "int __thiscall(SaleUI *this)"
+    "name": "SaleUI::InitUI",
+    "signature": "int __thiscall SaleUI::InitUI(SaleUI *this)"
   },
   "0x00523F30": {
     "name": "CScreenMode::CScreenMode",
@@ -4953,8 +4953,8 @@
     "signature": "int *__thiscall(CCBUI *this, int nVal)"
   },
   "0x004A1E40": {
-    "name": "EquipUI::_unverified_4A1E40",
-    "signature": "int __thiscall(EquipUI *this)"
+    "name": "EquipUI::InitUI",
+    "signature": "int __thiscall EquipUI::InitUI(EquipUI *this)"
   },
   "0x004318A0": {
     "name": "PalScript::Cleanup",
@@ -5143,8 +5143,8 @@
     "signature": "int __thiscall(GRPinput *this, int mode)"
   },
   "0x004BDED0": {
-    "name": "PAL3::_unverified_4BDED0",
-    "signature": "void __thiscall(PAL3 *this)"
+    "name": "PAL3::InvalidateSnapH",
+    "signature": "void __thiscall PAL3::InvalidateSnapH(PAL3 *this)"
   },
   "0x00526A40": {
     "name": "CCBUI::OnMessage",
@@ -5336,8 +5336,8 @@
     "signature": "int *__thiscall(UIWnd *this)"
   },
   "0x0046D140": {
-    "name": "PropUI::_unverified_46D140",
-    "signature": "int __thiscall(PropUI *this)"
+    "name": "PropUI::InitUI",
+    "signature": "int __thiscall PropUI::InitUI(PropUI *this)"
   },
   "0x005295F0": {
     "name": "UIRoleSelectDialog::ctor_95F0",
@@ -6400,8 +6400,8 @@
     "signature": "int __thiscall(PlayerMgr *this, CCBUIPanel *arg0)"
   },
   "0x0046A8B0": {
-    "name": "SaleUI::_unverified_46A8B0",
-    "signature": "int __thiscall(SaleUI *this, int deltatime, int haveinput)"
+    "name": "SaleUI::Update",
+    "signature": "int __thiscall SaleUI::Update(SaleUI *this, int deltatime, int haveinput)"
   },
   "0x0046B4B0": {
     "name": "UIListBox::OnMessage",
@@ -7260,8 +7260,8 @@
     "signature": "void __thiscall(UIScene *this)"
   },
   "0x0044DFC0": {
-    "name": "UIScene::_unverified_44DFC0",
-    "signature": "int __thiscall(UIScene *this, UICursor *msg, int wparam, int lparam)"
+    "name": "UIScene::OnMessage",
+    "signature": "int __thiscall UIScene::OnMessage(UIScene *this, UICursor *msg, int wparam, int lparam)"
   },
   "0x0044E2B0": {
     "name": "PAL3::WriteRegistryDword",
@@ -7643,8 +7643,8 @@
     "_misattrib_evidence": "max_offset=54700>class_size=1816"
   },
   "0x00489BA0": {
-    "name": "UIBigMap::_unverified_489BA0",
-    "signature": "void __thiscall(UIBigMap *this, int element, int visible)"
+    "name": "UIBigMap::UpdateElement",
+    "signature": "void __thiscall UIBigMap::UpdateElement(UIBigMap *this, int element, int visible)"
   },
   "0x0048A010": {
     "name": "MagicUI::_method_48a010",
@@ -9189,8 +9189,8 @@
     "signature": "char *__thiscall RoleSystem::GetMapNodePtr(RoleSystem *this, int nIndex)"
   },
   "0x00421A40": {
-    "name": "SystemUI::_unverified_421A40",
-    "signature": "int __thiscall(SystemUI *this, int *item)"
+    "name": "SystemUI::GetNoteItemData",
+    "signature": "int __thiscall SystemUI::GetNoteItemData(SystemUI *this, int *item)"
   },
   "0x00421DD0": {
     "name": "RoleSystem::ClearWaypointBuffer",
@@ -11248,8 +11248,8 @@
     "signature": "int __thiscall ArcLocaleRole::Release(ArcLocaleRole *this)"
   },
   "0x004A7C40": {
-    "name": "SystemUI::_unverified_4A7C40",
-    "signature": "int __thiscall(SystemUI *this)",
+    "name": "SystemUI::LayoutWidgets",
+    "signature": "int __thiscall SystemUI::LayoutWidgets(SystemUI *this)",
     "_misattrib_evidence": "max_offset=177412>class_size=33228"
   },
   "0x004A8230": {
@@ -12583,8 +12583,8 @@
     "signature": "int __thiscall(SaleUI *this)"
   },
   "0x00526740": {
-    "name": "CCBUI::_unverified_526740",
-    "signature": "int __thiscall(CCBUI *this, int deltatime, int haveinput)"
+    "name": "CCBUI::Update",
+    "signature": "int __thiscall CCBUI::Update(CCBUI *this, int deltatime, int haveinput)"
   },
   "0x005270C0": {
     "name": "CCBAttackSequen::FindSequenceSlot",
