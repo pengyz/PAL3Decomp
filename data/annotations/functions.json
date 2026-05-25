@@ -7650,8 +7650,8 @@
     "signature": "void __thiscall(RoleSystem *this, double thisa, int nVal, int nVal2, int nVal3)"
   },
   "0x00419B30": {
-    "name": "RoleSystem::_sub_419B30",
-    "signature": "void __thiscall(RoleSystem *this, float fVal)"
+    "name": "RoleSystem::UpdateFollowBehavior",
+    "signature": "void __thiscall RoleSystem::UpdateFollowBehavior(RoleSystem *this, float fDelta)"
   },
   "0x0041A150": {
     "name": "RoleSystem::SetActorTexture",
@@ -10120,8 +10120,8 @@
     "signature": "void __thiscall(ScriptSystem *this)"
   },
   "0x00419200": {
-    "name": "ScriptSystem::_sub_419200",
-    "signature": "int __thiscall(ScriptSystem *this, float fVal, float fVal2, float fVal3, float fVal4)"
+    "name": "ScriptSystem::SmoothTrackTarget",
+    "signature": "int __thiscall ScriptSystem::SmoothTrackTarget(ScriptSystem *this, float fDeltaTime, float fMaxAccel, float fVal3, float fVal4)"
   },
   "0x00419690": {
     "name": "Actor::UpdatePhysics",
@@ -10132,8 +10132,8 @@
     "signature": "int __thiscall(RoleSystem *this, int *p_DWORD)"
   },
   "0x004198C0": {
-    "name": "RoleSystem::_auto_4198c0",
-    "signature": "void __thiscall(RoleSystem *this, int *p_DWORD, int nVal)"
+    "name": "RoleSystem::StartLinearMove",
+    "signature": "void __thiscall RoleSystem::StartLinearMove(RoleSystem *this, int *pTargetPos, int nMode)"
   },
   "0x00419AE0": {
     "name": "RoleSystem::NotifyAndSetMode6",
