@@ -7129,16 +7129,16 @@
     "signature": "int __thiscall(UIRoleSelectDialog *this)"
   },
   "0x0052D0F0": {
-    "name": "UIWnd::_auto_52d0f0",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIWnd::UpdateChildren",
+    "signature": "int __thiscall UIWnd::UpdateChildren(UIWnd *this)"
   },
   "0x0052D230": {
     "name": "CScreenMode::_init_52d230",
     "signature": "char __thiscall(CScreenMode *this)"
   },
   "0x0052D5B0": {
-    "name": "UICoverFrm::_method_52d5b0",
-    "signature": "int __thiscall(UICoverFrm *this)"
+    "name": "UICoverFrm::Render",
+    "signature": "int __thiscall UICoverFrm::Render(UICoverFrm *this)"
   },
   "0x00532B40": {
     "name": "UITabCtrl::_sub_532B40",
@@ -9652,8 +9652,8 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00526300": {
-    "name": "PAL_GDB::_auto_526300",
-    "signature": "gbGeomNode *__thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::LoadGeomNodes",
+    "signature": "gbGeomNode *__thiscall PAL_GDB::LoadGeomNodes(PAL_GDB *this)"
   },
   "0x00526660": {
     "name": "SaleUI::Render",
@@ -9661,8 +9661,8 @@
     "_misattrib_evidence": "max_offset=78140>class_size=2632"
   },
   "0x005269B0": {
-    "name": "UIWnd::_auto_5269b0",
-    "signature": "void __cdecl(int nVal, UIWnd **a2, UIWnd **arg8, const char *pszName, char pData)"
+    "name": "CreateUIControl",
+    "signature": "void __cdecl CreateUIControl(int nType, UIWnd **ppWnd, UIWnd **ppParent, const char *pszName, int nVal)"
   },
   "0x005273D0": {
     "name": "_misattrib_CCBUI::_init_5273d0",
@@ -9678,12 +9678,12 @@
     "signature": "void __thiscall(UISceneMap *this)"
   },
   "0x00527DC0": {
-    "name": "CScreenMode::_sub_527dc0",
-    "signature": "int __thiscall(CScreenMode *this, int nVal, int nVal2)"
+    "name": "CScreenMode::SetVideoMode",
+    "signature": "int __thiscall CScreenMode::SetVideoMode(CScreenMode *this, int nWidth, int nHeight)"
   },
   "0x00528190": {
-    "name": "PAL3::_auto_528190",
-    "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+    "name": "PAL3::WriteRegistry",
+    "signature": "bool PAL3::WriteRegistry(CHAR *lpSubKey, DWORD dwDisposition, ...)"
   },
   "0x005284C0": {
     "name": "JusticeBookUI::_scalar_dtor",
@@ -9699,16 +9699,16 @@
     "signature": "int __thiscall(PalScript *this, char *filename)"
   },
   "0x005294C0": {
-    "name": "PAL_GDB::_auto_5294c0",
-    "signature": "char *__thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::LoadFromFile",
+    "signature": "char *__thiscall PAL_GDB::LoadFromFile(PAL_GDB *this)"
   },
   "0x00529770": {
     "name": "UIRoleSelectDialog::_scalar_dtor",
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00529870": {
-    "name": "UIEmote::_method_529870",
-    "signature": "char __thiscall(UIEmote *this)"
+    "name": "UIEmote::ProcessFrame",
+    "signature": "char __thiscall UIEmote::ProcessFrame(UIEmote *this)"
   },
   "0x00529C80": {
     "name": "UISceneMap::Render__ovl_529c80",
@@ -9719,8 +9719,8 @@
     "signature": "int __thiscall(UIRoleSelectDialog *this)"
   },
   "0x0052AF20": {
-    "name": "UI3DCtrl::_method_52af20",
-    "signature": "char __thiscall(UI3DCtrl *this, const char *pszName)"
+    "name": "UI3DCtrl::LoadModel",
+    "signature": "char __thiscall UI3DCtrl::LoadModel(UI3DCtrl *this, const char *pszName)"
   },
   "0x0052AFC0": {
     "name": "UINote::RenderIfVisible",
@@ -9728,8 +9728,8 @@
     "_misattrib_evidence": "max_offset=256>class_size=68"
   },
   "0x0052B2A0": {
-    "name": "CCBStageScene::_method_52b2a0",
-    "signature": "void __thiscall(CCBStageScene *this)"
+    "name": "CCBStageScene::UpdateCamera",
+    "signature": "void __thiscall CCBStageScene::UpdateCamera(CCBStageScene *this)"
   },
   "0x0052B3B0": {
     "name": "CCBStageScene::_init_52b3b0",
@@ -14238,8 +14238,8 @@
     "signature": "bool __cdecl(int nVal)"
   },
   "0x00521B00": {
-    "name": "_misattrib_CCBStageRole::_nearby_521b00",
-    "signature": "int __thiscall(CCBStageRole *this, int *p_DWORD)",
+    "name": "_misattrib_CCBStageRole::ProcessCmd",
+    "signature": "int __thiscall CCBStageRole::ProcessCmd(CCBStageRole *this, int *pCmd)",
     "_misattrib_evidence": "max_offset=328044>class_size=6848"
   },
   "0x00522020": {
@@ -14247,8 +14247,8 @@
     "signature": "void __thiscall(CCBStageRole *this)"
   },
   "0x00522030": {
-    "name": "CCBStageRole::_nearby_522030",
-    "signature": "CCBStageRole * __thiscall(CCBStageRole *this)"
+    "name": "CCBStageRole::Reset",
+    "signature": "CCBStageRole *__thiscall CCBStageRole::Reset(CCBStageRole *this)"
   },
   "0x005220E0": {
     "name": "CCBStageRole::ClearRoleState",
@@ -14259,16 +14259,16 @@
     "signature": "int __thiscall(CCBStageRole *this, int nVal)"
   },
   "0x00523E60": {
-    "name": "UISceneMap::_nearby_523e60",
-    "signature": "int __thiscall(UISceneMap *this)"
+    "name": "UISceneMap::GetWidth",
+    "signature": "int __thiscall UISceneMap::GetWidth(UISceneMap *this)"
   },
   "0x00523E70": {
-    "name": "UISceneMap::_nearby_523e70",
-    "signature": "int __thiscall(UISceneMap *this)"
+    "name": "UISceneMap::GetHeight",
+    "signature": "int __thiscall UISceneMap::GetHeight(UISceneMap *this)"
   },
   "0x00523E80": {
-    "name": "CUtil::_nearby_523e80",
-    "signature": "int __thiscall(CUtil *this, int *p_DWORD)"
+    "name": "CUtil::GetResult",
+    "signature": "int __thiscall CUtil::GetResult(CUtil *this, int *pResult)"
   },
   "0x00523F20": {
     "name": "UISceneMap::_nearby_523f20",
@@ -14289,21 +14289,21 @@
     "signature": "int __thiscall(CScreenMode *this, int msg, unsigned long wparam, unsigned long lparam)"
   },
   "0x00524E00": {
-    "name": "RoleShadow::_method_524e00",
-    "signature": "int __thiscall(RoleShadow *this, int *p_DWORD)"
+    "name": "RoleShadow::SetParams",
+    "signature": "int __thiscall RoleShadow::SetParams(RoleShadow *this, int *pParams)"
   },
   "0x00524F90": {
-    "name": "RoleShadow::_method_524f90",
-    "signature": "int __thiscall(RoleShadow *this)"
+    "name": "RoleShadow::Update",
+    "signature": "int __thiscall RoleShadow::Update(RoleShadow *this)"
   },
   "0x00525080": {
-    "name": "_misattrib_UIRoleSelect::_nearby_525080",
-    "signature": "int __thiscall(UIWnd *this)",
+    "name": "_misattrib_UIRoleSelect::GetCount",
+    "signature": "int __thiscall UIWnd::GetCount(UIWnd *this)",
     "_misattrib_evidence": "max_offset=5264>class_size=1488"
   },
   "0x00525090": {
-    "name": "_misattrib_UIParticle::_method_525090",
-    "signature": "int __thiscall(UIParticle *this)",
+    "name": "_misattrib_UIParticle::GetActiveCount",
+    "signature": "int __thiscall UIParticle::GetActiveCount(UIParticle *this)",
     "_misattrib_evidence": "max_offset=5264>class_size=584"
   },
   "0x00525110": {
@@ -14327,21 +14327,21 @@
     "signature": "int __thiscall(CCBAttackSequen *this, int nVal)"
   },
   "0x00527130": {
-    "name": "_misattrib_MUIDialog::_method_527130",
-    "signature": "void __thiscall(MUIDialog *this, int nVal)",
+    "name": "_misattrib_MUIDialog::UpdateTimer",
+    "signature": "void __thiscall MUIDialog::UpdateTimer(MUIDialog *this, int nVal)",
     "_misattrib_evidence": "max_offset=15032>class_size=1288"
   },
   "0x00527230": {
-    "name": "UICoverFrm::_method_527230",
-    "signature": "int __thiscall(UICoverFrm *this, int nVal, int nVal2)"
+    "name": "UICoverFrm::ProcessInput",
+    "signature": "int __thiscall UICoverFrm::ProcessInput(UICoverFrm *this, int nVal, int nVal2)"
   },
   "0x00527370": {
     "name": "UICoverFrm::ResetStarFrames",
     "signature": "int __thiscall(UICoverFrm *this, int nVal)"
   },
   "0x00527510": {
-    "name": "_misattrib_CScreenMode::_auto_527510",
-    "signature": "void __thiscall(CScreenMode *this)",
+    "name": "_misattrib_CScreenMode::Destroy",
+    "signature": "void __thiscall CScreenMode::Destroy(CScreenMode *this)",
     "_misattrib_evidence": "max_offset=15008>class_size=4280"
   },
   "0x00527610": {
@@ -14362,8 +14362,8 @@
     "signature": "int __thiscall(SceneObj *this, _BYTE *p_BYTE)"
   },
   "0x00527D60": {
-    "name": "SceneObj::_method_527d60",
-    "signature": "int __thiscall(SceneObj *this)"
+    "name": "SceneObj::GetType",
+    "signature": "int __thiscall SceneObj::GetType(SceneObj *this)"
   },
   "0x00527D80": {
     "name": "UIListBox::RenderWithSceneMap",
@@ -14390,17 +14390,17 @@
     "signature": "int __thiscall(UISceneFrm *this, int nVal, unsigned char pData)"
   },
   "0x00528D30": {
-    "name": "UINote::_method_528d30",
-    "signature": "int __thiscall(UINote *this, int nVal)"
+    "name": "UINote::GetItemByIndex",
+    "signature": "int __thiscall UINote::GetItemByIndex(UINote *this, int nIdx)"
   },
   "0x00528D50": {
-    "name": "_misattrib_RenderTarget::_auto_528d50",
-    "signature": "int __thiscall(RenderTarget *this)",
+    "name": "_misattrib_RenderTarget::InitScene",
+    "signature": "int __thiscall RenderTarget::InitScene(RenderTarget *this)",
     "_misattrib_evidence": "max_offset=56180>class_size=200"
   },
   "0x00528F50": {
-    "name": "JusticeBookUI::_method_528f50",
-    "signature": "int __thiscall(JusticeBookUI *this, int nVal, int nVal2)"
+    "name": "JusticeBookUI::ProcessInput",
+    "signature": "int __thiscall JusticeBookUI::ProcessInput(JusticeBookUI *this, int nVal, int nVal2)"
   },
   "0x00529120": {
     "name": "JusticeBookUI::OnMessage",
@@ -14419,16 +14419,16 @@
     "signature": "char __thiscall(PAL3 *this)"
   },
   "0x0052AAB0": {
-    "name": "UIRoleSelectDialog::_method_52aab0",
-    "signature": "int __thiscall(UIRoleSelectDialog *this, int nVal, char *pszBuf, int nVal2)"
+    "name": "UIRoleSelectDialog::ProcessInput",
+    "signature": "int __thiscall UIRoleSelectDialog::ProcessInput(UIRoleSelectDialog *this, int nVal, char pData)"
   },
   "0x0052AEE0": {
     "name": "UIWnd::_nearby_52aee0",
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0052AEF0": {
-    "name": "_misattrib_UIDialog::_nearby_52aef0",
-    "signature": "int *__thiscall(UIWnd *this)",
+    "name": "_misattrib_UIDialog::ResetState",
+    "signature": "int *__thiscall UIDialog::ResetState(UIWnd *this)",
     "_misattrib_evidence": "max_offset=276>class_size=72"
   },
   "0x0052B030": {
@@ -14444,13 +14444,13 @@
     "signature": "void __thiscall(UI3DCtrl *this)"
   },
   "0x0052B1E0": {
-    "name": "_misattrib_ObjectCamera::_auto_52b1e0",
-    "signature": "int *__thiscall(ObjectCamera *this)",
+    "name": "_misattrib_ObjectCamera::InitParams",
+    "signature": "int *__thiscall ObjectCamera::InitParams(ObjectCamera *this)",
     "_misattrib_evidence": "max_offset=1040>class_size=124"
   },
   "0x0052B350": {
-    "name": "_misattrib_UINote::_nearby_52b350",
-    "signature": "int __thiscall(UIWnd *this)",
+    "name": "_misattrib_UINote::SetMaxItems",
+    "signature": "int __thiscall UINote::SetMaxItems(UIWnd *this)",
     "_misattrib_evidence": "max_offset=1040>class_size=268"
   },
   "0x0052BA00": {
@@ -14458,36 +14458,36 @@
     "signature": "void __thiscall(MiniGame1 *this)"
   },
   "0x0052BE40": {
-    "name": "PalScript::_auto_52be40",
-    "signature": "int __thiscall(PalScript *this)"
+    "name": "PalScript::ProcessQueue",
+    "signature": "int __thiscall PalScript::ProcessQueue(PalScript *this)"
   },
   "0x0052BEB0": {
     "name": "Camera::_init_52beb0",
     "signature": "void __thiscall(Camera *this)"
   },
   "0x0052C8A0": {
-    "name": "UIBigMap::_method_52c8a0",
-    "signature": "int __thiscall(UIBigMap *this)"
+    "name": "UIBigMap::Render",
+    "signature": "int __thiscall UIBigMap::Render(UIBigMap *this)"
   },
   "0x0052CA10": {
-    "name": "UICoverFrm::_method_52ca10",
-    "signature": "int __thiscall(UICoverFrm *this, int nVal, char *pszBuf, int nVal2)"
+    "name": "UICoverFrm::ProcessCommand",
+    "signature": "int __thiscall UICoverFrm::ProcessCommand(UICoverFrm *this, int nCmd, char *pszParam, int nVal)"
   },
   "0x0052CAF0": {
-    "name": "UIScenePanel::_sub_52CAF0",
-    "signature": "int __thiscall(UIScenePanel *this, int id)"
+    "name": "UIScenePanel::CreateSlot",
+    "signature": "int __thiscall UIScenePanel::CreateSlot(UIScenePanel *this, int id)"
   },
   "0x0052CD40": {
-    "name": "UIScenePanel::_sub_52CD40",
-    "signature": "int __thiscall(UIScenePanel *this, int arg0, int nVal, int nVal2, int nVal3, int nVal4)"
+    "name": "UIScenePanel::ProcessInput",
+    "signature": "int __thiscall UIScenePanel::ProcessInput(UIScenePanel *this, int nCmd, int nVal, int nVal2)"
   },
   "0x0052D200": {
     "name": "UIRoleSelectDialog::_init_52d200",
     "signature": "char __thiscall(UIRoleSelectDialog *this, int nVal)"
   },
   "0x0052D7C0": {
-    "name": "UICoverFrm::_nearby_52d7c0",
-    "signature": "char __thiscall(UICoverFrm *this, char *FileName)"
+    "name": "UICoverFrm::LoadFile",
+    "signature": "char __thiscall UICoverFrm::LoadFile(UICoverFrm *this, char *pszFileName)"
   },
   "0x0052DC40": {
     "name": "ArcSceneMonster::CheckDistance",
@@ -14502,12 +14502,12 @@
     "signature": "void __thiscall(ArcSceneMonster *this)"
   },
   "0x0052DD60": {
-    "name": "UIGameOver::_method_52dd60",
-    "signature": "int __thiscall(UIGameOver *this)"
+    "name": "UIGameOver::Reset",
+    "signature": "int __thiscall UIGameOver::Reset(UIGameOver *this)"
   },
   "0x0052DE00": {
-    "name": "UILoadingFrm::_method_52de00",
-    "signature": "int __thiscall(UILoadingFrm *this)"
+    "name": "UILoadingFrm::Update",
+    "signature": "int __thiscall UILoadingFrm::Update(UILoadingFrm *this)"
   },
   "0x0052DFF0": {
     "name": "RoleCameraCtrl::_method_52dff0",
@@ -15574,13 +15574,13 @@
     "class": "UIWnd"
   },
   "0x0052D010": {
-    "name": "UISceneFace::_sub_52D010",
-    "signature": "int __thiscall(UISceneFace *this, int nVal, unsigned int dwVal)",
+    "name": "UISceneFace::SetExpression",
+    "signature": "int __thiscall UISceneFace::SetExpression(UISceneFace *this, int nFace, unsigned int dwFlags)",
     "class": "UIWnd"
   },
   "0x0052D0D0": {
-    "name": "UIWnd::_sub_52D0D0",
-    "signature": "int __thiscall(UIWnd *this)",
+    "name": "UIWnd::DestroyChildren",
+    "signature": "int __thiscall UIWnd::DestroyChildren(UIWnd *this)",
     "class": "UIWnd"
   },
   "0x00532A80": {
