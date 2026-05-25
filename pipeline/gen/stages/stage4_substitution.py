@@ -198,6 +198,11 @@ def _apply_text_substitutions(code, ctx):
             code = code.replace(cls + ' *', real_cls + ' *')
             code = code.replace(cls + ' **', real_cls + ' **')
 
+    # Strip _misattrib_ prefix from type casts and references
+    # (misattrib functions are grouped under their base class name in codegen,
+    #  but Hex-Rays output still references the _misattrib_ prefix in casts)
+    code = re.sub(r'_misattrib_(\w+)', r'\1', code)
+
     # IDA type aliases → standard C
     code = code.replace('unsigned __int8', 'unsigned char')
     code = code.replace('signed __int8', 'signed char')
