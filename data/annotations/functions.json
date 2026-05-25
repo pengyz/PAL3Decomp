@@ -6117,8 +6117,8 @@
     "signature": "int __thiscall(UICoverFrm *this)"
   },
   "0x00532B40": {
-    "name": "UITabCtrl::_sub_532B40",
-    "signature": "void __thiscall(UITabCtrl *this)",
+    "name": "UITabCtrl::Render",
+    "signature": "void __thiscall UITabCtrl::Render(UITabCtrl *this)",
     "_misattrib_evidence": "max_offset=140>class_size=32"
   },
   "0x00533B50": {
@@ -7369,8 +7369,8 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00453A70": {
-    "name": "SceneObj::_sub_453A70",
-    "signature": "SceneObj *__thiscall(SceneObj *this, SceneObj *pSceneObj, unsigned int dwVal, unsigned int dwVal2)"
+    "name": "SceneObj::InsertAt",
+    "signature": "SceneObj *__thiscall SceneObj::InsertAt(SceneObj *this, SceneObj *pSceneObj, unsigned int dwVal, unsigned int dwVal2)"
   },
   "0x00453E50": {
     "name": "CCBUIPanel::_scalar_dtor",
@@ -7853,8 +7853,8 @@
     "_misattrib_evidence": "max_offset=288208>class_size=4280"
   },
   "0x004B2750": {
-    "name": "UITitle_JDHY::_auto_4b2750",
-    "signature": "FILE *__thiscall(UITitle_JDHY *this, double Data, int nVal)"
+    "name": "UITitle_JDHY::SaveData",
+    "signature": "FILE *__thiscall UITitle_JDHY::SaveData(UITitle_JDHY *this, double Data, int nVal)"
   },
   "0x004B2840": {
     "name": "PAL3::WriteRegistry",
@@ -8107,12 +8107,12 @@
     "signature": "void __thiscall CEffMeteor::CreateTarget(CEffMeteor *this, int *pnVal)"
   },
   "0x004CEB60": {
-    "name": "CEffgbParticle::_nearby_4ceb60",
-    "signature": "int __thiscall(CEffgbParticle *this, CEffgbParticle *pEffgbParticle, int nVal, CEffgbParticle *pEffgbParticle2)"
+    "name": "CEffgbParticle::CreateInstance",
+    "signature": "int __thiscall CEffgbParticle::CreateInstance(CEffgbParticle *this, CEffgbParticle *pSrc, int nVal, CEffgbParticle *pParam)"
   },
   "0x004CEC80": {
-    "name": "CEffModel::_nearby_4cec80",
-    "signature": "int __thiscall(CEffModel *this, CEffModel *pEffModel, int nVal, CEffModel *pEffModel2)"
+    "name": "CEffModel::CreateInstance",
+    "signature": "int __thiscall CEffModel::CreateInstance(CEffModel *this, CEffModel *pSrc, int nVal, CEffModel *pParam)"
   },
   "0x004CEEC0": {
     "name": "RenderTarget2::AddCallbackEffect",
@@ -8135,8 +8135,8 @@
     "signature": "int __thiscall CEffMgr::CreateEffectType3(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
   },
   "0x004CF580": {
-    "name": "CEffectSystem::_nearby_4cf580",
-    "signature": "int __thiscall(CEffectSystem *this, CEffectSystem *pEffectSystem, int nVal, CEffectSystem *pEffectSystem2)"
+    "name": "CEffectSystem::CreateEffect",
+    "signature": "int __thiscall CEffectSystem::CreateEffect(CEffectSystem *this, CEffectSystem *pSrc, int nVal, CEffectSystem *pParam)"
   },
   "0x004CF6A0": {
     "name": "CEffMgr::CreateEffectType4",
@@ -8155,8 +8155,8 @@
     "signature": "int __thiscall CEffMgr::CreateShockEffect(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
   },
   "0x004CFEB0": {
-    "name": "CEffModel::sub_004CFEB0",
-    "signature": "bool __thiscall(CEffModel *this, int nVal)"
+    "name": "CEffModel::LoadFromNode",
+    "signature": "bool __thiscall CEffModel::LoadFromNode(CEffModel *this, int nVal)"
   },
   "0x004D2E10": {
     "name": "CEffQuad::_auto_4d2e10",
@@ -8950,8 +8950,8 @@
     "signature": "int *__cdecl AssignInt(int *pDst, int *pSrc)"
   },
   "0x004115C0": {
-    "name": "Array::_nearby_4115c0",
-    "signature": "unsigned int *__cdecl(unsigned int *pdwVal, unsigned int *pdwVal2, unsigned int dwVal, int nVal, int nVal2, int nVal3)"
+    "name": "Array::PartialSort",
+    "signature": "unsigned int *__cdecl Array::PartialSort(unsigned int *pdwVal, unsigned int *pdwVal2, unsigned int dwVal, int nVal, int nVal2, int nVal3)"
   },
   "0x00411900": {
     "name": "Role::Role",
@@ -9024,8 +9024,8 @@
     "signature": "int __thiscall(RoleSystem *this, int nVal)"
   },
   "0x00419090": {
-    "name": "ScriptSystem::_sub_419090",
-    "signature": "void __thiscall(ScriptSystem *this)"
+    "name": "ScriptSystem::UpdatePositions",
+    "signature": "void __thiscall ScriptSystem::UpdatePositions(ScriptSystem *this)"
   },
   "0x00419200": {
     "name": "ScriptSystem::SmoothTrackTarget",
@@ -10576,8 +10576,8 @@
     "signature": "void __thiscall(CCBSystem *this)"
   },
   "0x00469D90": {
-    "name": "PlayerMgr::_sub_469D90",
-    "signature": "void __thiscall(PlayerMgr *this, int nVal)"
+    "name": "PlayerMgr::SetupPlayerDisplay",
+    "signature": "void __thiscall PlayerMgr::SetupPlayerDisplay(PlayerMgr *this, int nVal)"
   },
   "0x0046AEA0": {
     "name": "_misattrib_GRPinput::ProcessButtonHold",
@@ -10781,8 +10781,8 @@
     "signature": "void __thiscall UITitle_YXXX::~UITitle_YXXX(UITitle_YXXX *this)"
   },
   "0x0047E030": {
-    "name": "ComposeUI::_nearby_47e030",
-    "signature": "int __thiscall(ComposeUI *this, int arg0)"
+    "name": "ComposeUI::RefreshRecipeList",
+    "signature": "int __thiscall ComposeUI::RefreshRecipeList(ComposeUI *this, int arg0)"
   },
   "0x0047E3E0": {
     "name": "UITitle_YXXX::Update",
@@ -10922,8 +10922,8 @@
     "signature": "void __thiscall(UITitle_XJTM *this)"
   },
   "0x00487480": {
-    "name": "CameraCtrl::_nearby_487480",
-    "signature": "int __thiscall(CameraCtrl *this)",
+    "name": "CameraCtrl::ResetToDefaults",
+    "signature": "int __thiscall CameraCtrl::ResetToDefaults(CameraCtrl *this)",
     "_misattrib_evidence": "max_offset=3296>class_size=200"
   },
   "0x00487650": {
@@ -11377,8 +11377,8 @@
     "signature": "int __thiscall(StateUI *this, int nVal)"
   },
   "0x004B4B10": {
-    "name": "RenderTarget::_sub_4B4B10",
-    "signature": "void __thiscall(RenderTarget *this, int nVal, int nVal2)"
+    "name": "RenderTarget::CalcRenderDimensions",
+    "signature": "void __thiscall RenderTarget::CalcRenderDimensions(RenderTarget *this, int nVal, int nVal2)"
   },
   "0x004B63C0": {
     "name": "RenderTarget3::_nearby_4b63c0",
@@ -11673,8 +11673,8 @@
     "signature": "int __thiscall RenderTarget2::DestroyEffBink(RenderTarget2 *this)"
   },
   "0x004C2170": {
-    "name": "RenderTarget2::sub_004C2170",
-    "signature": "char __thiscall(RenderTarget2 *this, int nVal)"
+    "name": "RenderTarget2::AllocTargets",
+    "signature": "char __thiscall RenderTarget2::AllocTargets(RenderTarget2 *this, int nVal)"
   },
   "0x004C2280": {
     "name": "RenderTarget2::CreateVideoTarget",
@@ -11709,8 +11709,8 @@
     "signature": "int __thiscall(RenderTarget2 *this, float *pfVal, float fVal, float fVal2, float fVal3)"
   },
   "0x004C29A0": {
-    "name": "RenderTarget2::sub_004C29A0",
-    "signature": "void __thiscall(RenderTarget2 *this, float fVal)"
+    "name": "RenderTarget2::Update",
+    "signature": "void __thiscall RenderTarget2::Update(RenderTarget2 *this, float fVal)"
   },
   "0x004C2D00": {
     "name": "RenderTarget2::_nearby_4c2d00",
@@ -11737,8 +11737,8 @@
     "signature": "int __thiscall RenderTarget2::DestroyEffCallBack(RenderTarget2 *this)"
   },
   "0x004C3570": {
-    "name": "RenderTarget2::sub_004C3570",
-    "signature": "void __thiscall(RenderTarget2 *this, float fVal)"
+    "name": "RenderTarget2::UpdatePost",
+    "signature": "void __thiscall RenderTarget2::UpdatePost(RenderTarget2 *this, float fVal)"
   },
   "0x004C3770": {
     "name": "RenderTarget2::CreateCameraTarget",
@@ -11793,8 +11793,8 @@
     "signature": "int __thiscall(CEffCylinder *this, int nVal)"
   },
   "0x004CCEF0": {
-    "name": "CEffMgr::_auto_4ccef0",
-    "signature": "int __thiscall(CEffMgr *this, float fVal, int nVal)"
+    "name": "CEffMgr::UpdateEffect",
+    "signature": "int __thiscall CEffMgr::UpdateEffect(CEffMgr *this, float fVal, int nVal)"
   },
   "0x004CD930": {
     "name": "SceneMgr::_scalar_dtor",
