@@ -8018,16 +8018,16 @@
     "signature": "void __thiscall ScreenEffectMgr::RenderFadeIn(ScreenEffectMgr *this)"
   },
   "0x004BEBB0": {
-    "name": "RenderTarget::_sub_4BEBB0",
-    "signature": "RenderTarget *__thiscall(RenderTarget *this)"
+    "name": "RenderTarget::ResetVertical2",
+    "signature": "RenderTarget *__thiscall RenderTarget::ResetVertical2(RenderTarget *this)"
   },
   "0x004BEBF0": {
     "name": "CameraCtrl::RenderFadeEffect",
     "signature": "void __thiscall CameraCtrl::RenderFadeEffect(CameraCtrl *this)"
   },
   "0x004BED00": {
-    "name": "RenderTarget::_sub_4BED00",
-    "signature": "RenderTarget *__thiscall(RenderTarget *this)"
+    "name": "RenderTarget::ResetBase",
+    "signature": "RenderTarget *__thiscall RenderTarget::ResetBase(RenderTarget *this)"
   },
   "0x004BED40": {
     "name": "CameraCtrl::RenderFadeEffectB",
@@ -12934,8 +12934,8 @@
     "_misattrib_evidence": "max_offset=1312>class_size=332"
   },
   "0x005322F0": {
-    "name": "RoleAtt::_method_5322f0",
-    "signature": "int __thiscall(void (__thiscall **this)(int, int), int nVal, int nVal2)"
+    "name": "RoleAtt::SwitchPage",
+    "signature": "int __thiscall RoleAtt::SwitchPage(RoleAtt *this, int nPageIdx, int nParam)"
   },
   "0x00532360": {
     "name": "RoleSystem::ApplyRotationAxis",
@@ -13014,8 +13014,8 @@
     "signature": "int __thiscall(RoleAtt *this)"
   },
   "0x00533F50": {
-    "name": "ArcSceneObject::_method_533f50",
-    "signature": "void __thiscall(ArcSceneObject *this, float fVal)"
+    "name": "ArcSceneObject::UpdateOscillation",
+    "signature": "void __thiscall ArcSceneObject::UpdateOscillation(ArcSceneObject *this, float fDelta)"
   },
   "0x00533FE0": {
     "name": "RoleAtt::_method_533fe0",
@@ -13205,8 +13205,8 @@
     "signature": "void __thiscall(Actor *this, char *String1, char *pszBuf)"
   },
   "0x00539D60": {
-    "name": "Actor::_nearby_539d60",
-    "signature": "int *__thiscall(Actor *this)"
+    "name": "Actor::ClearAllActions",
+    "signature": "int *__thiscall Actor::ClearAllActions(Actor *this)"
   },
   "0x0053A020": {
     "name": "Actor::IterateAllocBuffer",
