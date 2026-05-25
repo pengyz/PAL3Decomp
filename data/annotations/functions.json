@@ -7117,11 +7117,11 @@
     "signature": "char __thiscall(CameraCtrl *this)"
   },
   "0x00517A50": {
-    "name": "NPC::_sub_517A50",
+    "name": "NPC::DestroyAndRecreateUI",
     "signature": "void __thiscall(NPC *this)"
   },
   "0x00517AC0": {
-    "name": "NPC::_nearby_517ac0",
+    "name": "NPC::HandleAIMessage",
     "signature": "char __thiscall(NPC *this, int thisa, int nVal)"
   },
   "0x0052AA50": {
@@ -7702,7 +7702,7 @@
     "signature": "BOOL __thiscall(RoleSystem *this, int index, int *pnVal, int nVal)"
   },
   "0x00421440": {
-    "name": "RoleSystem::_sub_421440",
+    "name": "RoleSystem::SetRoleParam",
     "signature": "void __thiscall(RoleSystem *this, int index, float *pfVal, int *pnVal, int *p_DWORD)"
   },
   "0x004215B0": {
@@ -9271,7 +9271,7 @@
     "signature": "int __thiscall(CCBStage *this)"
   },
   "0x004E0010": {
-    "name": "CCBStage::_nearby_4e0010",
+    "name": "CCBStage::SetupCamControl",
     "signature": "void __thiscall(CCBStage *this, CCBStage *thisa)"
   },
   "0x004E0430": {
@@ -9604,11 +9604,11 @@
     "_misattrib_evidence": "max_offset=1016>class_size=208"
   },
   "0x00517BA0": {
-    "name": "NPC::_sub_517BA0",
+    "name": "NPC::ShowAIWindow",
     "signature": "void __thiscall(NPC *this)"
   },
   "0x00517CF0": {
-    "name": "NPC::_sub_517CF0",
+    "name": "NPC::ResetLineupWindow",
     "signature": "void __thiscall(NPC *this)"
   },
   "0x005184E0": {
@@ -12781,7 +12781,7 @@
     "signature": "int __thiscall(RenderTarget *this, int nVal)"
   },
   "0x004BB190": {
-    "name": "CEffect::_nearby_4bb190",
+    "name": "CEffect::SetRenderParam",
     "signature": "int __thiscall(CEffect *this, int nVal)"
   },
   "0x004BB330": {
@@ -13349,7 +13349,7 @@
     "signature": "char __thiscall(CCBStage *this, int nVal)"
   },
   "0x004DB9F0": {
-    "name": "CCBSystem::_nearby_4db9f0",
+    "name": "CCBSystem::InitRoleStateUI",
     "signature": "void __thiscall(CCBSystem *this)"
   },
   "0x004DBB80": {
@@ -13725,7 +13725,7 @@
     "signature": "char __thiscall(CCBStage *this, unsigned int *pdwVal)"
   },
   "0x004F6D30": {
-    "name": "PAL_GDB::_auto_4f6d30",
+    "name": "PAL_GDB::IsRoleSkillValid",
     "signature": "char __thiscall(PAL_GDB *this, unsigned int *pdwVal, int nVal)"
   },
   "0x004F6DA0": {
@@ -14907,7 +14907,7 @@
     "signature": "void __thiscall(MiniGame3 *this)"
   },
   "0x00535A70": {
-    "name": "UIAnimateCtrlEX::_method_535a70",
+    "name": "UIAnimateCtrlEX::InitMatrix",
     "signature": "int __thiscall(UIAnimateCtrlEX *this)"
   },
   "0x00535AE0": {
