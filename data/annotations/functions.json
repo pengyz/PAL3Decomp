@@ -7247,7 +7247,7 @@
     "signature": "int __thiscall(CameraCtrl *this, int nVal, int *p_DWORD, int nVal2, int nVal3)"
   },
   "0x0041E720": {
-    "name": "CameraCtrl::_nearby_41e720",
+    "name": "CameraCtrl::AttachToRole",
     "signature": "void __cdecl(int nVal)"
   },
   "0x0041F120": {
@@ -7259,11 +7259,11 @@
     "signature": "int __thiscall(RoleSystem *this, int *pnVal, char pData)"
   },
   "0x00420A10": {
-    "name": "RoleSystem::_auto_420a10",
+    "name": "RoleSystem::IsTileInBounds",
     "signature": "int *__thiscall(RoleSystem *this, int nVal, int nY, int nVal2)"
   },
   "0x00420A90": {
-    "name": "RoleSystem::_auto_420a90",
+    "name": "RoleSystem::SetRoleGridPosition",
     "signature": "void __thiscall(RoleSystem *this, float fVal, int nVal, float fVal2, int nVal2)"
   },
   "0x00420B40": {
@@ -7307,7 +7307,7 @@
     "signature": "BOOL __thiscall(RoleSystem *this, struct gbVec3D *p)"
   },
   "0x0042B510": {
-    "name": "RoleSystem::_auto_42b510",
+    "name": "RoleSystem::UpdateStateMode",
     "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x0042B5B0": {
@@ -7578,7 +7578,7 @@
     "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
   },
   "0x004083E0": {
-    "name": "RoleSystem::_auto_4083e0",
+    "name": "RoleSystem::CheckSceneCollision",
     "signature": "BOOL __thiscall(RoleSystem *this, int *nFlag, int nVal)"
   },
   "0x0040CB80": {
@@ -7630,7 +7630,7 @@
     "signature": "char __thiscall(RoleSystem *this, int arg0, int arg4, int nVal)"
   },
   "0x00413390": {
-    "name": "RoleSystem::_sub_413390",
+    "name": "RoleSystem::InterpolateMoveFrame",
     "signature": "void __thiscall(RoleSystem *this, float fVal)"
   },
   "0x00417040": {
@@ -7694,7 +7694,7 @@
     "signature": "void __thiscall RoleSystem::Init(RoleSystem *this)"
   },
   "0x00420940": {
-    "name": "RoleSystem::_auto_420940",
+    "name": "RoleSystem::CopyRoleToSlot",
     "signature": "int __thiscall(RoleSystem *this, RoleSystem *pRoleSystem, int index)"
   },
   "0x00420F70": {
@@ -9934,7 +9934,7 @@
     "signature": "void __thiscall(void *)"
   },
   "0x0040C9A0": {
-    "name": "RoleSystem::_auto_40c9a0",
+    "name": "RoleSystem::ForceStopRole",
     "signature": "int __cdecl(int nVal)"
   },
   "0x0040CBB0": {
@@ -10060,7 +10060,7 @@
     "signature": "int __thiscall(RoleSystem *this, int index, int nVal)"
   },
   "0x004148C0": {
-    "name": "RoleSystem::_nearby_4148c0",
+    "name": "RoleSystem::UpdateMoveInterpolation",
     "signature": "float *__thiscall(RoleSystem *this, float *pfVal, float *pfVal2)"
   },
   "0x00414970": {
@@ -10128,7 +10128,7 @@
     "signature": "void __thiscall(Actor *this, float fVal)"
   },
   "0x00419790": {
-    "name": "RoleSystem::_nearby_419790",
+    "name": "RoleSystem::ProcessMoveCommand",
     "signature": "int __thiscall(RoleSystem *this, int *p_DWORD)"
   },
   "0x004198C0": {
@@ -14730,7 +14730,7 @@
     "signature": "int __thiscall(void (__thiscall **this)(int, int), int nVal, int nVal2)"
   },
   "0x00532360": {
-    "name": "RoleSystem::_method_532360",
+    "name": "RoleSystem::ApplyRotationAxis",
     "signature": "int __thiscall(RoleSystem *this, int nVal, char pData)"
   },
   "0x00532410": {
