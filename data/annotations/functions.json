@@ -7299,8 +7299,8 @@
     "signature": "int *__thiscall(PalScript *this, int nVal)"
   },
   "0x00429DB0": {
-    "name": "PalScriptMgr::_sub_429DB0",
-    "signature": "void __thiscall(PalScriptMgr *this, gbMatrix4 *pMatrix4)"
+    "name": "PalScriptMgr::BuildCmdTransform",
+    "signature": "void __thiscall PalScriptMgr::BuildCmdTransform(PalScriptMgr *this, gbMatrix4 *pMatrix)"
   },
   "0x0042A950": {
     "name": "RoleSystem::_auto_42a950",
@@ -7751,12 +7751,12 @@
     "signature": "BOOL __thiscall(PalScriptMgr *this, int *pnVal, int nVal, struct gbVec3D *p)"
   },
   "0x0042BEA0": {
-    "name": "PalScriptMgr::_nearby_42bea0",
-    "signature": "void __thiscall(PalScriptMgr *this)"
+    "name": "PalScriptMgr::OnAnimFinish",
+    "signature": "void __thiscall PalScriptMgr::OnAnimFinish(PalScriptMgr *this)"
   },
   "0x0042C030": {
-    "name": "PalScriptMgr::_auto_42c030",
-    "signature": "void __thiscall(PalScriptMgr *this, int nVal)"
+    "name": "PalScriptMgr::SetPauseState",
+    "signature": "void __thiscall PalScriptMgr::SetPauseState(PalScriptMgr *this, int bPause)"
   },
   "0x0042C6A0": {
     "name": "Matrix4::GetAABBox",
@@ -11350,8 +11350,8 @@
     "signature": "unsigned int __thiscall(UISceneMap *this, unsigned int dwVal)"
   },
   "0x00449FE0": {
-    "name": "CCBRoleState::_method_449fe0",
-    "signature": "int __thiscall(CCBRoleState *this, float fVal)"
+    "name": "CCBRoleState::UpdateSpringAnim",
+    "signature": "int __thiscall CCBRoleState::UpdateSpringAnim(CCBRoleState *this, float fDelta)"
   },
   "0x0044A180": {
     "name": "CCBUIPanel::_method_44a180",
