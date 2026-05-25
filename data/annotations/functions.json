@@ -7393,8 +7393,8 @@
     "signature": "char __thiscall CCBUIPanel::RenderIfUnlocked(CCBUIPanel *this)"
   },
   "0x00454560": {
-    "name": "CCBUIPanel::_sub_454560",
-    "signature": "BOOL __thiscall(CCBUIPanel *this, int nVal, int nVal2)"
+    "name": "CCBUIPanel::ProcessInputIfUnlocked",
+    "signature": "BOOL __thiscall CCBUIPanel::ProcessInputIfUnlocked(CCBUIPanel *this, int nVal, int nVal2)"
   },
   "0x00454980": {
     "name": "TaskBookUI::_scalar_dtor",
@@ -10393,8 +10393,8 @@
     "signature": "int __thiscall(CCCTData *this, float fVal)"
   },
   "0x0044DB50": {
-    "name": "UICoverFrm::_method_44db50",
-    "signature": "int __thiscall(UICoverFrm *this, int nVal)"
+    "name": "UICoverFrm::SetCoverTexture",
+    "signature": "int __thiscall UICoverFrm::SetCoverTexture(UICoverFrm *this, int nTexPtr)"
   },
   "0x0044E390": {
     "name": "PAL3::LoadRoleByIndex",
@@ -10912,8 +10912,8 @@
     "_misattrib_evidence": "max_offset=124076>class_size=1208"
   },
   "0x004765D0": {
-    "name": "UIWnd::_nearby_4765d0",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "LineupUI::UpdateAllSlots",
+    "signature": "int __thiscall LineupUI::UpdateAllSlots(LineupUI *this)"
   },
   "0x004777B0": {
     "name": "LineupUI::_method_4777b0",
@@ -11114,24 +11114,24 @@
     "signature": "int __thiscall(LineupUI *this)"
   },
   "0x00484E70": {
-    "name": "EquipUI::_sub_484E70",
-    "signature": "int __thiscall(EquipUI *this, unsigned char pData)"
+    "name": "EquipUI::SelectTab0",
+    "signature": "int __thiscall EquipUI::SelectTab0(EquipUI *this, unsigned __int8 nTab)"
   },
   "0x00484E90": {
-    "name": "StateUI::_sub_484E90",
-    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
+    "name": "StateUI::SelectTab1",
+    "signature": "int __thiscall StateUI::SelectTab1(StateUI *this, unsigned __int8 nTab)"
   },
   "0x00484EB0": {
-    "name": "StateUI::_sub_484EB0",
-    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
+    "name": "StateUI::SelectTab2",
+    "signature": "int __thiscall StateUI::SelectTab2(StateUI *this, unsigned __int8 nTab)"
   },
   "0x00484ED0": {
-    "name": "MagicUI::_sub_484ED0",
-    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
+    "name": "MagicUI::SelectTab3",
+    "signature": "int __thiscall MagicUI::SelectTab3(MagicUI *this, unsigned __int8 nTab)"
   },
   "0x00484EF0": {
-    "name": "MagicUI::_sub_484EF0",
-    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
+    "name": "MagicUI::SelectTab4",
+    "signature": "int __thiscall MagicUI::SelectTab4(MagicUI *this, unsigned __int8 nTab)"
   },
   "0x00484F10": {
     "name": "StateUI::_auto_484f10",
@@ -11213,8 +11213,8 @@
     "signature": "int __thiscall EquipUI::SetSubTab(EquipUI *this, unsigned __int8 nTab)"
   },
   "0x0048A310": {
-    "name": "StateUI::_sub_48A310",
-    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
+    "name": "StateUI::SelectSubTab1",
+    "signature": "int __thiscall StateUI::SelectSubTab1(StateUI *this, unsigned __int8 nTab)"
   },
   "0x0048A330": {
     "name": "StateUI::_sub_48A330",
@@ -14152,8 +14152,8 @@
     "signature": "void __thiscall(UIRenderObj *this)"
   },
   "0x00484E10": {
-    "name": "UIWnd::_method_484e10",
-    "signature": "int __thiscall(UIWnd *this, int nIndex, unsigned int dwParam)",
+    "name": "LineupComp::DispatchSlotMethod",
+    "signature": "int __thiscall LineupComp::DispatchSlotMethod(LineupComp *this, int nIndex, unsigned int dwParam)",
     "class": "UIWnd"
   },
   "0x00484E30": {
