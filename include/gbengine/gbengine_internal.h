@@ -145,20 +145,15 @@ public:
 
 public:
     void Rotate(float p0, struct gbVec3D & p1);
-    inline void Rotate(float p0, struct gbVec3D * p1) { Rotate(p0, *p1); }
-    inline void Rotate(float p0, struct gbVec3D p1) { Rotate(p0, &p1); }
 
 public:
     void Scale(struct gbVec3D & p0);
-    inline void Scale(struct gbVec3D * p0) { Scale(*p0); }
 
 public:
     void Scale(float p0, float p1, float p2);
 
 public:
     void Translate(struct gbVec3D & p0);
-    inline void Translate(struct gbVec3D * p0) { Translate(*p0); }
-    inline void Translate(struct gbVec3D p0) { Translate(&p0); }
 
 public:
     void Translate(float p0, float p1, float p2);

@@ -110,16 +110,13 @@ struct gbMatrix4 {
     void LeftMultiply(struct gbQuaternion const & p0);
     void LeftScale(float p0, float p1, float p2);
     void LeftTranslate(struct gbVec3D & p0);
-    inline void LeftTranslate(struct gbVec3D * p0) { LeftTranslate(*p0); }
     void LeftTranslate(float p0, float p1, float p2);
     void LoadIdentity();
     void MakeMatrix(struct gbVec3D & p0, struct gbVec3D & p1, struct gbVec3D & p2);
-    inline void MakeMatrix(struct gbVec3D * p0, struct gbVec3D * p1, struct gbVec3D * p2) { MakeMatrix(*p0, *p1, *p2); }
     void RightMultiply(struct gbMatrix4 const & p0);
     void RightMultiply(struct gbQuaternion const & p0);
     void RightScale(float p0, float p1, float p2);
     void RightTranslate(struct gbVec3D & p0);
-    inline void RightTranslate(struct gbVec3D * p0) { RightTranslate(*p0); }
     void RightTranslate(float p0, float p1, float p2);
     void Rotate(struct gbVec3D const * p0, struct gbVec3D * p1) const;
     void RotateIn(struct gbVec3D * p0);

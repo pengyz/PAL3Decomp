@@ -365,6 +365,9 @@ def run(code, ctx):
         r'// [IDA_MISID] \1',
         code, flags=re.MULTILINE)
 
+    # --- Reference parameter adaptation (gbengine &param fix) ---
+    code = _fix_ref_params(code)
+
     # --- AST-based structural detection ---
     code = _ast_cleanup(code, ctx)
 
@@ -441,4 +444,110 @@ def run(code, ctx):
             out_lines.append(line)
     code = '\n'.join(out_lines)
 
+    return code
+
+
+# ============================================================
+# Reference parameter adaptation (gbengine DLL uses references,
+# Hex-Rays outputs pointer-style &var calls)
+# ============================================================
+
+# Functions whose parameters are references (non-const &) in gbengine.
+# Key = method name, Value = set of 0-based param indices (excluding this).
+_GB_REF_PARAM_FUNCS = {
+    'Translate': {0},
+    'Rotate': {1},  # Rotate(float, gbVec3D&) - param 1 is ref
+    'Scale': {0},
+    'LeftTranslate': {0},
+    'RightTranslate': {0},
+    'MakeMatrix': {0, 1, 2},
+    'IntersectPlane': {0, 1},
+    'IsColAABB': {0},
+    'IsColOBB': {0},
+    'IsColOBB_H': {0},
+    'IsColPoint': {0},
+    'IsColQuad': {0, 1, 2},
+    'IsColSphere': {0},
+    'IsColTriangle': {0, 1, 2, 3},
+    'GetAABBox': {0},
+    'GetSphere': {0},
+    'GetCollideOBB': {0},
+    'SetPosition': {0},
+    'GetPosition': {0},
+    'SetVelocity': {0},
+    'SetOrientation': {0},
+    'SetListenerPosition': {0},
+    'SetListenerOrientation': {0, 1},
+    'GetListenerPosition': {0},
+    'PushMessage': {0},
+    'PopMessage': {0},
+    'GetViewport': {0},
+    'GetViewSizeOnNearPlane': {0, 1},
+    'GetViewPort': {0, 1, 2, 3},
+}
+
+
+def _fix_ref_params(code):
+    """Strip '&' from arguments to functions that take reference params.
+    
+    Hex-Rays outputs: obj->Translate(&vec);
+    Correct C++:      obj->Translate(vec);
+    """
+    import re as _re
+    
+    for func_name, ref_indices in _GB_REF_PARAM_FUNCS.items():
+        # Match: ->FuncName( or ::FuncName( followed by arguments
+        # Pattern finds the function call and we process arguments
+        pattern = r'(?:->|::|\.)' + _re.escape(func_name) + r'\s*\('
+        
+        pos = 0
+        result = []
+        while True:
+            m = _re.search(pattern, code[pos:])
+            if not m:
+                result.append(code[pos:])
+                break
+            
+            # Add everything up to the opening paren
+            call_start = pos + m.end()
+            result.append(code[pos:call_start])
+            
+            # Parse arguments (track parenthesis depth)
+            depth = 1
+            arg_start = call_start
+            arg_idx = 0
+            i = call_start
+            while i < len(code) and depth > 0:
+                ch = code[i]
+                if ch == '(':
+                    depth += 1
+                elif ch == ')':
+                    depth -= 1
+                    if depth == 0:
+                        # Process last argument
+                        arg = code[arg_start:i]
+                        if arg_idx in ref_indices:
+                            arg = arg.lstrip()
+                            if arg.startswith('&') and not arg.startswith('&&'):
+                                arg = arg[1:]
+                        result.append(arg)
+                        result.append(')')
+                        break
+                elif ch == ',' and depth == 1:
+                    # Process this argument
+                    arg = code[arg_start:i]
+                    if arg_idx in ref_indices:
+                        arg = arg.lstrip()
+                        if arg.startswith('&') and not arg.startswith('&&'):
+                            arg = arg[1:]
+                    result.append(arg)
+                    result.append(', ')
+                    arg_idx += 1
+                    arg_start = i + 1
+                i += 1
+            
+            pos = i + 1
+        
+        code = ''.join(result)
+    
     return code
