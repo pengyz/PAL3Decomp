@@ -512,8 +512,8 @@
     "signature": "int __cdecl(int nVal)"
   },
   "0x0041D9A0": {
-    "name": "CameraUpdate_Internal",
-    "signature": "void __cdecl(float fVal)"
+    "name": "CameraCtrl::UpdateInternal",
+    "signature": "void __cdecl CameraCtrl::UpdateInternal(float fDelta)"
   },
   "0x0041E7D0": {
     "name": "Camera::CheckCollision1",
@@ -6936,8 +6936,8 @@
     "signature": "int __cdecl(int nObjID)"
   },
   "0x004B8200": {
-    "name": "Math_SmoothStep",
-    "signature": "double __cdecl(float fFrom, float fTo)"
+    "name": "Math::RandomLerp",
+    "signature": "double __cdecl Math::RandomLerp(float fFrom, float fTo)"
   },
   "0x00413800": {
     "name": "Vec3D_Cross",
@@ -6952,8 +6952,8 @@
     "signature": "void __thiscall(ScreenEffect *this, int *pParams)"
   },
   "0x0053B720": {
-    "name": "VideoPlayer_SetRegion",
-    "signature": "void __cdecl(int nX, int nY)"
+    "name": "VideoPlayer::SetRegion",
+    "signature": "void __cdecl VideoPlayer::SetRegion(int nX, int nY)"
   },
   "0x00434CA0": {
     "name": "PalScriptMgr::InitVtable",
@@ -7602,8 +7602,8 @@
     "signature": "char *__cdecl SetRoleLevelAndRefresh(int nRoleIdx, int nLevel)"
   },
   "0x00410430": {
-    "name": "PAL3_Helper_410430",
-    "signature": "void __cdecl(void *pStack)"
+    "name": "RoleSystem::RenderMainRole",
+    "signature": "void __cdecl RoleSystem::RenderMainRole(void *pMatrixStack)"
   },
   "0x00410840": {
     "name": "PalScript::_static_410840",
@@ -10048,8 +10048,8 @@
     "signature": "void __cdecl()"
   },
   "0x004126D0": {
-    "name": "RoleSystem_Helper_4126D0",
-    "signature": "int __cdecl(int nVal, unsigned char pData)"
+    "name": "RoleSystem::GetAnimOffset",
+    "signature": "int __cdecl RoleSystem::GetAnimOffset(int nType, unsigned __int8 nMode)"
   },
   "0x00412C30": {
     "name": "RoleSystem::SetPathWaypoint",
@@ -10369,8 +10369,8 @@
     "signature": "void __cdecl()"
   },
   "0x00426E80": {
-    "name": "PAL3_Helper_426E80",
-    "signature": "BOOL __cdecl(int *p_DWORD, int *p_DWORD2)"
+    "name": "PointInRect",
+    "signature": "BOOL __cdecl PointInRect(int *pRect, int *pPoint)"
   },
   "0x00429D40": {
     "name": "PalScript::SetIndex",
@@ -15241,8 +15241,8 @@
     "signature": "void __cdecl(char bSaveData)"
   },
   "0x005694F0": {
-    "name": "CScreenMode_OpenBinkVideo",
-    "signature": "int __cdecl(CScreenMode *pScreen, const char *szFilename, int nVal, int nVal2, int nFlags)"
+    "name": "CScreenMode::OpenBinkVideo",
+    "signature": "int __cdecl CScreenMode::OpenBinkVideo(CScreenMode *pScreen, const char *szFilename, int nVal, int nVal2, int nFlags)"
   },
   "0x00414250": {
     "name": "RoleSystem::NormalizeDirection",
