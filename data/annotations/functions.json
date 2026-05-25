@@ -10035,8 +10035,8 @@
     "_misattrib_evidence": "max_offset=8700>class_size=596"
   },
   "0x00411CA0": {
-    "name": "_misattrib_ScriptObj::_auto_411ca0",
-    "signature": "void __thiscall(ScriptObj *this)",
+    "name": "ScriptObj::~ScriptObj",
+    "signature": "void __thiscall ScriptObj::~ScriptObj(ScriptObj *this)",
     "_misattrib_evidence": "max_offset=140>class_size=4"
   },
   "0x004123F0": {
@@ -10056,8 +10056,8 @@
     "signature": "int __thiscall(RoleSystem *this, float fVal)"
   },
   "0x00413C00": {
-    "name": "RoleSystem::_sub_413C00",
-    "signature": "int __thiscall(RoleSystem *this, int index, int nVal)"
+    "name": "RoleSystem::PlaceAtRegion",
+    "signature": "int __thiscall RoleSystem::PlaceAtRegion(RoleSystem *this, int nSceneIdx, int nRegion)"
   },
   "0x004148C0": {
     "name": "RoleSystem::UpdateMoveInterpolation",
@@ -10072,8 +10072,8 @@
     "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00414F90": {
-    "name": "RoleSystem::_nearby_414f90",
-    "signature": "int __thiscall(RoleSystem *this, char *String1, int nVal)"
+    "name": "RoleSystem::PlayAction",
+    "signature": "int __thiscall RoleSystem::PlayAction(RoleSystem *this, char *pszAction, int nMode)"
   },
   "0x004164E0": {
     "name": "RoleSystem::IsPathMoving",
@@ -10148,8 +10148,8 @@
     "signature": "BOOL __thiscall(RoleSystem *this, float *pfVal)"
   },
   "0x0041A070": {
-    "name": "UICamera::_sub_41A070",
-    "signature": "BOOL __thiscall(UICamera *this, float *pfVal, char pData)"
+    "name": "UICamera::IsPointVisible",
+    "signature": "BOOL __thiscall UICamera::IsPointVisible(UICamera *this, float *pfTargetPos, char bNearVisible)"
   },
   "0x0041AEA0": {
     "name": "RoleSystem::SetBlendMode",
@@ -10212,8 +10212,8 @@
     "signature": "int __thiscall(__old_sbh_page_struct *this)"
   },
   "0x0041C670": {
-    "name": "CameraCtrl::_nearby_41c670",
-    "signature": "float *__thiscall(CameraCtrl *this, float *pfVal, float fVal, float fVal2, float fVal3)"
+    "name": "CameraCtrl::CalcOrbitalPos",
+    "signature": "float *__thiscall CameraCtrl::CalcOrbitalPos(CameraCtrl *this, float *pfOut, float fTargetX, float fTargetY, float fTargetZ)"
   },
   "0x0041CEE0": {
     "name": "CameraCtrl::SetupFollow",
