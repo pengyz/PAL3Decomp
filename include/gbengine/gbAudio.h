@@ -89,10 +89,10 @@ public:
     void Play();
     void Stop();
     int IsPlaying();
-    void SetPosition(gbVec3D* pos);
-    void GetPosition(gbVec3D* pos);
-    void SetOrientation(gbVec3D* ori);
-    void SetVelocity(gbVec3D* vel);
+    void SetPosition(gbVec3D& pos);
+    void GetPosition(gbVec3D& pos);
+    void SetOrientation(gbVec3D& ori);
+    void SetVelocity(gbVec3D& vel);
     void SetVolume(float vol);
     void SetLoopNum(int num);
     void SetDistParam(float minD, float maxD);
@@ -205,11 +205,11 @@ public:
 
     // Listener
     // 0x10001d20 (62B)
-    void SetListenerPosition(const gbVec3D* pos);
+    void SetListenerPosition(const gbVec3D& pos);
     // 0x10001d60 (56B)
-    void SetListenerOrientation(gbVec3D* front, gbVec3D* top);
+    void SetListenerOrientation(gbVec3D& front, gbVec3D& top);
     // 0x10002210 (33B)
-    void GetListenerPosition(gbVec3D* pos);
+    void GetListenerPosition(gbVec3D& pos);
 
     // Volume
     // 0x100021c0 (13B)
