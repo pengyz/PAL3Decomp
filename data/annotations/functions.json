@@ -6391,8 +6391,8 @@
     "signature": "int __thiscall PAL3::EnterGameMode(PAL3 *this, int nVal)"
   },
   "0x00462120": {
-    "name": "PlayerMgr::_method_462120",
-    "signature": "int __thiscall(PlayerMgr *this, int nFlags)",
+    "name": "PlayerMgr::SetSelectionFlags",
+    "signature": "int __thiscall PlayerMgr::SetSelectionFlags(PlayerMgr *this, int nFlags)",
     "_misattrib_evidence": "max_offset=94380>class_size=2632"
   },
   "0x004623A0": {
@@ -7328,8 +7328,8 @@
     "signature": "BOOL __thiscall(RoleCameraCtrl *this, int nVal, int nVal2)"
   },
   "0x00451200": {
-    "name": "UISceneMap::_method_451200",
-    "signature": "int __thiscall(UISceneMap *this, const char *arg0, int nVal)"
+    "name": "UISceneMap::LoadCompass",
+    "signature": "int __thiscall UISceneMap::LoadCompass(UISceneMap *this, const char *arg0, int nVal)"
   },
   "0x004512F0": {
     "name": "RoleAtt::Render",
@@ -10065,16 +10065,16 @@
     "signature": "char __thiscall(SceneInfo *this, int nVal, int nVal2)"
   },
   "0x004441E0": {
-    "name": "SceneInfo::_method_4441e0",
-    "signature": "bool __thiscall(SceneInfo *this, float fVal)"
+    "name": "SceneInfo::CheckHitLeft",
+    "signature": "bool __thiscall SceneInfo::CheckHitLeft(SceneInfo *this, float fVal)"
   },
   "0x004442B0": {
     "name": "SceneInfo::UpdateScaling",
     "signature": "bool __thiscall SceneInfo::UpdateScaling(SceneInfo *this, float fVal)"
   },
   "0x00444380": {
-    "name": "SceneInfo::_method_444380",
-    "signature": "bool __thiscall(SceneInfo *this, float fVal)"
+    "name": "SceneInfo::CheckHitRight",
+    "signature": "bool __thiscall SceneInfo::CheckHitRight(SceneInfo *this, float fVal)"
   },
   "0x00444450": {
     "name": "SceneInfo::_method_444450",
@@ -10906,8 +10906,8 @@
     "signature": "int __thiscall StateUI::RefreshStatsDisplay(StateUI *this)"
   },
   "0x00485CD0": {
-    "name": "StateUI::_method_485cd0",
-    "signature": "char *__thiscall(StateUI *this)"
+    "name": "StateUI::RefreshFromAtts",
+    "signature": "char *__thiscall StateUI::RefreshFromAtts(StateUI *this)"
   },
   "0x00485DF0": {
     "name": "CScreenMode::vfunc_6",
@@ -12561,8 +12561,8 @@
     "signature": "int __thiscall(RoleShadow *this, int *p_DWORD)"
   },
   "0x00524F90": {
-    "name": "RoleShadow::_method_524f90",
-    "signature": "int __thiscall(RoleShadow *this)"
+    "name": "RoleShadow::UpdateShadow",
+    "signature": "int __thiscall RoleShadow::UpdateShadow(RoleShadow *this)"
   },
   "0x00525080": {
     "name": "_misattrib_UIRoleSelect::_nearby_525080",
@@ -12710,8 +12710,8 @@
     "signature": "int __thiscall(UIBigMap *this)"
   },
   "0x0052CA10": {
-    "name": "UICoverFrm::_method_52ca10",
-    "signature": "int __thiscall(UICoverFrm *this, int nVal, char *pszBuf, int nVal2)"
+    "name": "UICoverFrm::OnMessage",
+    "signature": "int __thiscall UICoverFrm::OnMessage(UICoverFrm *this, int nVal, char *pszBuf, int nVal2)"
   },
   "0x0052CAF0": {
     "name": "UIScenePanel::ActivatePanel",
@@ -12994,16 +12994,16 @@
     "signature": "char __thiscall(SceneProp *this)"
   },
   "0x00533CB0": {
-    "name": "SceneObjParam::_method_533cb0",
-    "signature": "int __thiscall(SceneObjParam *this, struct gbGfxManager *p)"
+    "name": "SceneObjParam::UpdateCameraAndRole",
+    "signature": "int __thiscall SceneObjParam::UpdateCameraAndRole(SceneObjParam *this, struct gbGfxManager *p)"
   },
   "0x00533DA0": {
     "name": "SceneObjParam::_nearby_533da0",
     "signature": "int __thiscall(SceneObjParam *this)"
   },
   "0x00533DB0": {
-    "name": "RoleAtt::_method_533db0",
-    "signature": "int __thiscall(RoleAtt *this)"
+    "name": "RoleAtt::ResetNameField",
+    "signature": "int __thiscall RoleAtt::ResetNameField(RoleAtt *this)"
   },
   "0x00533F50": {
     "name": "ArcSceneObject::UpdateOscillation",
