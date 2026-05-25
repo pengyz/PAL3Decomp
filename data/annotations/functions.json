@@ -8709,8 +8709,8 @@
     "signature": "gbVFileSystem *__thiscall(SceneObj *this, const char *pszName)"
   },
   "0x0052F8E0": {
-    "name": "_misattrib_RoleAtt::_method_52f8e0",
-    "signature": "gbVFileSystem *__thiscall(RoleAtt *this, int nVal)",
+    "name": "_misattrib_RoleAtt::LoadGeomNode",
+    "signature": "gbVFileSystem *__thiscall _misattrib_RoleAtt::LoadGeomNode(RoleAtt *this, int nVal)",
     "_misattrib_evidence": "max_offset=3100>class_size=852"
   },
   "0x0052FA50": {
@@ -10061,8 +10061,8 @@
     "signature": "bool __thiscall(CCBFiveNimbusWindow *this, float fVal)"
   },
   "0x00443CE0": {
-    "name": "SceneInfo::_method_443ce0",
-    "signature": "char __thiscall(SceneInfo *this, int nVal, int nVal2)"
+    "name": "SceneInfo::ProcessCollision",
+    "signature": "char __thiscall SceneInfo::ProcessCollision(SceneInfo *this, int nVal, int nVal2)"
   },
   "0x004441E0": {
     "name": "SceneInfo::CheckHitLeft",
@@ -10077,24 +10077,24 @@
     "signature": "bool __thiscall SceneInfo::CheckHitRight(SceneInfo *this, float fVal)"
   },
   "0x00444450": {
-    "name": "SceneInfo::_method_444450",
-    "signature": "bool __thiscall(SceneInfo *this, float fVal)"
+    "name": "SceneInfo::CheckHitBottom",
+    "signature": "bool __thiscall SceneInfo::CheckHitBottom(SceneInfo *this, float fVal)"
   },
   "0x00444520": {
-    "name": "SceneInfo::_method_444520",
-    "signature": "char __thiscall(SceneInfo *this, float fVal)"
+    "name": "SceneInfo::CheckBoundsHorizontal",
+    "signature": "char __thiscall SceneInfo::CheckBoundsHorizontal(SceneInfo *this, float fVal)"
   },
   "0x00444660": {
-    "name": "SceneInfo::_method_444660",
-    "signature": "char __thiscall(SceneInfo *this, float fVal)"
+    "name": "SceneInfo::CheckBoundsLeftCombo",
+    "signature": "char __thiscall SceneInfo::CheckBoundsLeftCombo(SceneInfo *this, float fVal)"
   },
   "0x004447A0": {
-    "name": "SceneInfo::_method_4447a0",
-    "signature": "char __thiscall(SceneInfo *this, float fVal)"
+    "name": "SceneInfo::CheckBoundsRightCombo",
+    "signature": "char __thiscall SceneInfo::CheckBoundsRightCombo(SceneInfo *this, float fVal)"
   },
   "0x004448E0": {
-    "name": "SceneInfo::_method_4448e0",
-    "signature": "char __thiscall(SceneInfo *this, float fVal)"
+    "name": "SceneInfo::CheckBoundsBottomCombo",
+    "signature": "char __thiscall SceneInfo::CheckBoundsBottomCombo(SceneInfo *this, float fVal)"
   },
   "0x00444AD0": {
     "name": "UIFrameWnd::_method_444ad0",
@@ -12869,8 +12869,8 @@
     "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x00530810": {
-    "name": "RoleAtt::_method_530810",
-    "signature": "void __thiscall(RoleAtt *this)"
+    "name": "RoleAtt::LoadModelAndInit",
+    "signature": "void __thiscall RoleAtt::LoadModelAndInit(RoleAtt *this)"
   },
   "0x00530960": {
     "name": "RoleAtt::SetSAIDAndImage",
@@ -12903,8 +12903,8 @@
     "signature": "void __thiscall(Actor *this, float fVal)"
   },
   "0x00531010": {
-    "name": "RoleAtt::_method_531010",
-    "signature": "void __thiscall(RoleAtt *this, float fVal)"
+    "name": "RoleAtt::ApplySpeedFactor",
+    "signature": "void __thiscall RoleAtt::ApplySpeedFactor(RoleAtt *this, float fVal)"
   },
   "0x00531160": {
     "name": "RoleAtt::InterpolateStats",
@@ -13010,20 +13010,20 @@
     "signature": "void __thiscall ArcSceneObject::UpdateOscillation(ArcSceneObject *this, float fDelta)"
   },
   "0x00533FE0": {
-    "name": "RoleAtt::_method_533fe0",
-    "signature": "void __thiscall(RoleAtt *this, float fVal, float fVal2, float fVal3)"
+    "name": "RoleAtt::UpdatePosition",
+    "signature": "void __thiscall RoleAtt::UpdatePosition(RoleAtt *this, float fX, float fY, float fZ)"
   },
   "0x00534210": {
-    "name": "RoleAtt::_method_534210",
-    "signature": "void __thiscall(RoleAtt *this, int nVal, int nVal2, int nVal3)"
+    "name": "RoleAtt::SetPositionFromInts",
+    "signature": "void __thiscall RoleAtt::SetPositionFromInts(RoleAtt *this, int nX, int nY, int nZ)"
   },
   "0x00534450": {
-    "name": "RoleAtt::_method_534450",
-    "signature": "void __thiscall(RoleAtt *this, float fVal, float fVal2, float fVal3, float fVal4, float fVal5)"
+    "name": "RoleAtt::InterpolateMotion",
+    "signature": "void __thiscall RoleAtt::InterpolateMotion(RoleAtt *this, float f1, float f2, float f3, float f4, float f5)"
   },
   "0x00534810": {
-    "name": "RoleAtt::_method_534810",
-    "signature": "void __thiscall(RoleAtt *this, gbVec3D pData, float fVal, float fVal2)"
+    "name": "RoleAtt::UpdateDirectionalMotion",
+    "signature": "void __thiscall RoleAtt::UpdateDirectionalMotion(RoleAtt *this, gbVec3D pData, float fVal, float fVal2)"
   },
   "0x00534BA0": {
     "name": "RoleAtt::SetFightState",
