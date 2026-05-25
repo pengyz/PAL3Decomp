@@ -6166,8 +6166,8 @@
     "signature": "double __thiscall RoleSystem::AdvanceToTarget(RoleSystem *this, double fDelta)"
   },
   "0x00414350": {
-    "name": "RoleSystem::_auto_414350",
-    "signature": "double __thiscall(RoleSystem *this, double result, gbVec3D *pB)"
+    "name": "RoleSystem::UpdateMovement",
+    "signature": "double __thiscall RoleSystem::UpdateMovement(RoleSystem *this, double result, gbVec3D *pB)"
   },
   "0x00414E50": {
     "name": "UIBigMap::Update",
@@ -6186,16 +6186,16 @@
     "signature": "void __thiscall(RoleSystem *this, float *nFlags)"
   },
   "0x00417420": {
-    "name": "RoleSystem::_nearby_417420",
-    "signature": "void __thiscall(RoleSystem *this, float arg0)"
+    "name": "RoleSystem::UpdateTransform",
+    "signature": "void __thiscall RoleSystem::UpdateTransform(RoleSystem *this, float arg0)"
   },
   "0x00417850": {
     "name": "RoleSystem::EnterSubMode6",
     "signature": "int __thiscall(RoleSystem *this)"
   },
   "0x00417C50": {
-    "name": "RoleSystem::_nearby_417c50",
-    "signature": "double __thiscall(RoleSystem *this, double result, float result_4)"
+    "name": "RoleSystem::UpdateMoveSubMode",
+    "signature": "double __thiscall RoleSystem::UpdateMoveSubMode(RoleSystem *this, double result, float result_4)"
   },
   "0x00418170": {
     "name": "Role::CheckOBBCollision",
@@ -6279,8 +6279,8 @@
     "signature": "void __thiscall PalScriptMgr::BuildCmdTransform(PalScriptMgr *this, gbMatrix4 *pMatrix)"
   },
   "0x0042A950": {
-    "name": "RoleSystem::_auto_42a950",
-    "signature": "BOOL __thiscall(RoleSystem *this, struct gbVec3D *p)"
+    "name": "RoleSystem::CheckScriptTrigger",
+    "signature": "BOOL __thiscall RoleSystem::CheckScriptTrigger(RoleSystem *this, struct gbVec3D *p)"
   },
   "0x0042B510": {
     "name": "RoleSystem::UpdateStateMode",
@@ -6327,12 +6327,12 @@
     "signature": "int __thiscall(PalScriptMgr *this, unsigned char pData)"
   },
   "0x0042D9F0": {
-    "name": "RoleSystem::_auto_42d9f0",
-    "signature": "int __thiscall(RoleSystem *this, int *p_DWORD)"
+    "name": "RoleSystem::ExecScriptDataCmd",
+    "signature": "int __thiscall RoleSystem::ExecScriptDataCmd(RoleSystem *this, int *p_DWORD)"
   },
   "0x0042E870": {
-    "name": "RoleSystem::_auto_42e870",
-    "signature": "int __thiscall(RoleSystem *this, int nVal)"
+    "name": "RoleSystem::ExecScriptDataIdx",
+    "signature": "int __thiscall RoleSystem::ExecScriptDataIdx(RoleSystem *this, int nVal)"
   },
   "0x0042F460": {
     "name": "PalScriptMgr::ExecuteFrame",
@@ -6598,16 +6598,16 @@
     "signature": "void __thiscall(RoleSystem *this, float fVal)"
   },
   "0x00417040": {
-    "name": "RoleSystem::_nearby_417040",
-    "signature": "void __thiscall(RoleSystem *this, float *pfVal)"
+    "name": "RoleSystem::SetupMoveState",
+    "signature": "void __thiscall RoleSystem::SetupMoveState(RoleSystem *this, float *pfVal)"
   },
   "0x00417BC0": {
     "name": "RoleSystem::StopAndResetPath",
     "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x004189C0": {
-    "name": "RoleSystem::_nearby_4189c0",
-    "signature": "int __thiscall(RoleSystem *this, char *pszBuf, int nVal, char *pszBuf2, int nVal2, float fVal, int nVal3)"
+    "name": "RoleSystem::StartPathMove",
+    "signature": "int __thiscall RoleSystem::StartPathMove(RoleSystem *this, char *pszBuf, int nVal, char *pszBuf2, int nVal2, float fVal, int nVal3)"
   },
   "0x00419A20": {
     "name": "RoleSystem::GetActorState",
@@ -6622,8 +6622,8 @@
     "signature": "void __thiscall(RoleSystem *this, const char *pszName)"
   },
   "0x0041B6C0": {
-    "name": "RoleSystem::_sub_41B6C0",
-    "signature": "char __thiscall(RoleSystem *this, int nVal)"
+    "name": "RoleSystem::ApproachTarget",
+    "signature": "char __thiscall RoleSystem::ApproachTarget(RoleSystem *this, int nVal)"
   },
   "0x0041B9F0": {
     "name": "Actor::GetInnerAnimDuration",
@@ -6727,12 +6727,12 @@
     "signature": "int __thiscall(ScriptVM *this, unsigned char pData)"
   },
   "0x0042DBD0": {
-    "name": "RoleSystem::_auto_42dbd0",
-    "signature": "int __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::ExecScriptDataA",
+    "signature": "int __thiscall RoleSystem::ExecScriptDataA(RoleSystem *this)"
   },
   "0x0042DD80": {
-    "name": "RoleSystem::_auto_42dd80",
-    "signature": "int __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::ExecScriptDataB",
+    "signature": "int __thiscall RoleSystem::ExecScriptDataB(RoleSystem *this)"
   },
   "0x0042DF30": {
     "name": "PalScriptMgr::RoleCmd__ovl_42df30",
@@ -6751,8 +6751,8 @@
     "signature": "int __thiscall(PalScriptMgr *this, int nVal)"
   },
   "0x0042EA30": {
-    "name": "RoleSystem::_auto_42ea30",
-    "signature": "int __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::ExecScriptDataC",
+    "signature": "int __thiscall RoleSystem::ExecScriptDataC(RoleSystem *this)"
   },
   "0x0042FF40": {
     "name": "Config::ReadFloatArray",
@@ -9016,8 +9016,8 @@
     "signature": "BOOL __thiscall(RoleSystem *this, int nVal, int nVal2)"
   },
   "0x00418DC0": {
-    "name": "RoleSystem::_nearby_418dc0",
-    "signature": "char __thiscall(RoleSystem *this, short pData, int nVal)"
+    "name": "RoleSystem::TryMoveToTarget",
+    "signature": "char __thiscall RoleSystem::TryMoveToTarget(RoleSystem *this, __int16 pData, int nVal)"
   },
   "0x00419030": {
     "name": "RoleSystem::ResetPathParams",
@@ -9052,8 +9052,8 @@
     "signature": "__int64 __thiscall(RoleSystem *this)"
   },
   "0x00419EF0": {
-    "name": "RoleSystem::_auto_419ef0",
-    "signature": "BOOL __thiscall(RoleSystem *this, float *pfVal)"
+    "name": "RoleSystem::AdvancePathStep",
+    "signature": "BOOL __thiscall RoleSystem::AdvancePathStep(RoleSystem *this, float *pfVal)"
   },
   "0x0041A070": {
     "name": "UICamera::IsPointVisible",
@@ -9136,8 +9136,8 @@
     "signature": "int __thiscall(CameraCtrl *this, int nVal, int nVal2, int nVal3, int nVal4, int *p_DWORD, int nVal5)"
   },
   "0x0041D220": {
-    "name": "RoleSystem::_auto_41d220",
-    "signature": "int __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::AddCameraKeyframe",
+    "signature": "int __thiscall RoleSystem::AddCameraKeyframe(RoleSystem *this)"
   },
   "0x0041D410": {
     "name": "CameraCtrl::PushState",
@@ -9225,7 +9225,7 @@
     "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00422550": {
-    "name": "RoleSystem::_nearby_422550",
+    "name": "RoleSystem_thunk_422550",
     "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00422740": {
@@ -12970,8 +12970,8 @@
     "signature": "long double __cdecl CalcAngleBetweenVectors(int nX1, int nY1, int nZ1, int nX2, float fY2, float fZ2)"
   },
   "0x00532D30": {
-    "name": "RoleSystem::_nearby_532d30",
-    "signature": "int __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::GetStateMode",
+    "signature": "int __thiscall RoleSystem::GetStateMode(RoleSystem *this)"
   },
   "0x00532D60": {
     "name": "UIScene::UpdateAlpha",
@@ -13786,8 +13786,8 @@
     "signature": "void __thiscall(CScreenMode *this, int nIndex)"
   },
   "0x00532D40": {
-    "name": "RoleSystem::_nearby_532d40",
-    "signature": "void __thiscall(RoleSystem *this)"
+    "name": "RoleSystem::NegateStateMode",
+    "signature": "void __thiscall RoleSystem::NegateStateMode(RoleSystem *this)"
   },
   "0x004EA590": {
     "name": "CCBStageCam_DlgProc",
