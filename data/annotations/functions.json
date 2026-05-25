@@ -7162,8 +7162,8 @@
     "signature": "size_t __thiscall(NPC *this, FILE *Stream)"
   },
   "0x0040FC90": {
-    "name": "NPC::_nearby_40fc90",
-    "signature": "void __cdecl(int nVal)"
+    "name": "AddMoney",
+    "signature": "void __cdecl AddMoney(int nAmount)"
   },
   "0x00410580": {
     "name": "NPC::SetSceneFlag",
@@ -7598,8 +7598,8 @@
     "signature": "int *__cdecl AddNPCToPartySlot(int nRoleSlot, int nNpcId)"
   },
   "0x0040FF70": {
-    "name": "NPC::_nearby_40ff70",
-    "signature": "char *__cdecl(int nVal, int nVal2)"
+    "name": "SetRoleLevelAndRefresh",
+    "signature": "char *__cdecl SetRoleLevelAndRefresh(int nRoleIdx, int nLevel)"
   },
   "0x00410430": {
     "name": "PAL3_Helper_410430",
@@ -9998,16 +9998,16 @@
     "signature": "int __thiscall(NPC *this, FILE *Stream)"
   },
   "0x0040F760": {
-    "name": "NPC::_nearby_40f760",
-    "signature": "int __thiscall(NPC *this, FILE *Stream)"
+    "name": "NPC::LoadBufferFromStream",
+    "signature": "int __thiscall NPC::LoadBufferFromStream(NPC *this, FILE *fp)"
   },
   "0x0040F950": {
     "name": "NPC::SaveToStream",
     "signature": "size_t __thiscall(NPC *this, FILE *Stream)"
   },
   "0x00410960": {
-    "name": "Array::_nearby_410960",
-    "signature": "void __thiscall(Array *this)"
+    "name": "Array::Free",
+    "signature": "void __thiscall Array::Free(Array *this)"
   },
   "0x00410DF0": {
     "name": "Array::CopyRange",
