@@ -330,6 +330,9 @@ def collect_methods():
 
         if not cls or not method:
             continue
+        # Strip _misattrib_ prefix (same as collect.py)
+        if cls.startswith('_misattrib_'):
+            cls = cls[len('_misattrib_'):]
         if should_skip_class(cls):
             continue
         if ' ' in method or '`' in method:
