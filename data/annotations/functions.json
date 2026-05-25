@@ -7597,8 +7597,8 @@
     "signature": "int __thiscall StateUI::ShowPanels(StateUI *this, int nVal, unsigned __int8 pData, UIWnd *bFlag)"
   },
   "0x004819A0": {
-    "name": "MainEquipUI::_init_4819a0",
-    "signature": "OpenNULLFile *__thiscall(MainEquipUI *this, OpenNULLFile *pOpenNULLFile, int nVal)",
+    "name": "MainEquipUI::LoadFromFile",
+    "signature": "OpenNULLFile *__thiscall MainEquipUI::LoadFromFile(MainEquipUI *this, OpenNULLFile *pFile, int nVal)",
     "_misattrib_evidence": "max_offset=162724>class_size=152"
   },
   "0x00481CB0": {
@@ -7634,8 +7634,8 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00486EF0": {
-    "name": "UITitle_XJTM::_init_486ef0",
-    "signature": "void __thiscall(UITitle_XJTM *this)"
+    "name": "UITitle_XJTM::DestroyFrames",
+    "signature": "void __thiscall UITitle_XJTM::DestroyFrames(UITitle_XJTM *this)"
   },
   "0x00487B60": {
     "name": "_misattrib_PalScript::InitMainUIScripts",
@@ -7719,8 +7719,8 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00498E60": {
-    "name": "UITitle_XJTM::_init_498e60",
-    "signature": "void __thiscall(UITitle_XJTM *this)"
+    "name": "UITitle_XJTM::DestroyFrames_2",
+    "signature": "void __thiscall UITitle_XJTM::DestroyFrames_2(UITitle_XJTM *this)"
   },
   "0x004998E0": {
     "name": "StateUI::ShowPage",
@@ -8605,8 +8605,8 @@
     "signature": "void __cdecl CreateDigitPair(int nVal, UIWnd **ppTens, UIWnd **ppOnes, const char *pszTexBase, char bFlag)"
   },
   "0x005273D0": {
-    "name": "_misattrib_CCBUI::_init_5273d0",
-    "signature": "void __thiscall(CCBUI *this)",
+    "name": "_misattrib_CCBUI::PlayResultSound",
+    "signature": "void __thiscall _misattrib_CCBUI::PlayResultSound(CCBUI *this)",
     "_misattrib_evidence": "max_offset=101028>class_size=2632"
   },
   "0x005279D0": {
@@ -10543,8 +10543,8 @@
     "signature": "int __thiscall(PropUI *this, unsigned char pData)"
   },
   "0x0045B7A0": {
-    "name": "PlayerMgr::_init_45b7a0",
-    "signature": "unsigned char __thiscall(PlayerMgr *this, const void *arg0)"
+    "name": "PlayerMgr::LoadState",
+    "signature": "unsigned __int8 __thiscall PlayerMgr::LoadState(PlayerMgr *this, const void *arg0)"
   },
   "0x0045E9F0": {
     "name": "CCBUIPanel::Layout__ovl_45e9f0",
@@ -10918,8 +10918,8 @@
     "signature": "int *__thiscall RenderTarget::Init(RenderTarget *this)"
   },
   "0x00486D20": {
-    "name": "UITitle_XJTM::_init_486d20",
-    "signature": "void __thiscall(UITitle_XJTM *this)"
+    "name": "UITitle_XJTM::DestroyStatics",
+    "signature": "void __thiscall UITitle_XJTM::DestroyStatics(UITitle_XJTM *this)"
   },
   "0x00487480": {
     "name": "CameraCtrl::ResetToDefaults",
@@ -11111,8 +11111,8 @@
     "signature": "int __thiscall(UIBigMap *this, int nVal, int nVal2)"
   },
   "0x00498C90": {
-    "name": "UITitle_XJTM::_init_498c90",
-    "signature": "void __thiscall(UITitle_XJTM *this)"
+    "name": "UITitle_XJTM::DestroyStatics_2",
+    "signature": "void __thiscall UITitle_XJTM::DestroyStatics_2(UITitle_XJTM *this)"
   },
   "0x004993D0": {
     "name": "LineupUI::_unverified_4993D0",
@@ -11147,8 +11147,8 @@
     "signature": "int __thiscall UIListBox::GetSkillSlotLevel(UIListBox *this, int nVal, int nVal2)"
   },
   "0x0049E670": {
-    "name": "MainEquipUI::_init_49e670",
-    "signature": "void __thiscall(MainEquipUI *this)"
+    "name": "MainEquipUI::ResetControls",
+    "signature": "void __thiscall MainEquipUI::ResetControls(MainEquipUI *this)"
   },
   "0x0049E840": {
     "name": "EquipUI::SetSubTab2",
@@ -12978,8 +12978,8 @@
     "signature": "void __thiscall(UIScene *this)"
   },
   "0x00532E10": {
-    "name": "RoleSystem::_init_532e10",
-    "signature": "char __thiscall(RoleSystem *this, float fVal, int nVal, float fVal2, float fVal3, int nVal2, float fVal4, float fVal5, int nVal3, float fVal6, float fVal7, int nVal4, float fVal8, int nVal5, int nVal6, int nVal7, int nVal8, int nVal9)"
+    "name": "RoleSystem::ResetPathState",
+    "signature": "char __thiscall RoleSystem::ResetPathState(RoleSystem *this)"
   },
   "0x00532F60": {
     "name": "PAL3::CheckViewCollision",
