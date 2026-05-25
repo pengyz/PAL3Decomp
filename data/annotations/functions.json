@@ -7437,8 +7437,8 @@
     "_misattrib_evidence": "max_offset=121112>class_size=1208"
   },
   "0x0047C3A0": {
-    "name": "CCBMagicWindow::_method_47c3a0",
-    "signature": "int __thiscall(CCBMagicWindow *this, struct PalScript *p, int nVal)"
+    "name": "CCBMagicWindow::ProcessAction",
+    "signature": "int __thiscall CCBMagicWindow::ProcessAction(CCBMagicWindow *this, struct PalScript *p, int nVal)"
   },
   "0x004974A0": {
     "name": "_misattrib_UIBigMap::OnMessage",
@@ -8562,8 +8562,8 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x00473520": {
-    "name": "LineupUI::_method_473520",
-    "signature": "int __thiscall(LineupUI *this)",
+    "name": "LineupUI::UpdateDisplay",
+    "signature": "int __thiscall LineupUI::UpdateDisplay(LineupUI *this)",
     "_misattrib_evidence": "max_offset=124260>class_size=1208"
   },
   "0x00474C50": {
@@ -8594,8 +8594,8 @@
     "signature": "int __thiscall(MainEquipUI *this, int arg0)"
   },
   "0x0047A400": {
-    "name": "_misattrib_RenderTarget::_auto_47a400",
-    "signature": "int __thiscall(RenderTarget *this)",
+    "name": "_misattrib_RenderTarget::CreateBuffers",
+    "signature": "int __thiscall RenderTarget::CreateBuffers(RenderTarget *this)",
     "_misattrib_evidence": "max_offset=209000>class_size=200"
   },
   "0x0047B200": {
@@ -8624,8 +8624,8 @@
     "_misattrib_evidence": "max_offset=3996>class_size=1012"
   },
   "0x0047E190": {
-    "name": "ComposeUI::_nearby_47e190",
-    "signature": "void __thiscall(ComposeUI *this, int nVal)",
+    "name": "ComposeUI::UpdateMaterialList",
+    "signature": "void __thiscall ComposeUI::UpdateMaterialList(ComposeUI *this, int nIdx)",
     "_misattrib_evidence": "max_offset=2912>class_size=152"
   },
   "0x0047E8F0": {
@@ -8633,12 +8633,12 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x0047F880": {
-    "name": "LineupUI::_method_47f880",
-    "signature": "void __thiscall(LineupUI *this)"
+    "name": "LineupUI::Destroy",
+    "signature": "void __thiscall LineupUI::Destroy(LineupUI *this)"
   },
   "0x00480070": {
-    "name": "StateUI::_auto_480070",
-    "signature": "int __thiscall(StateUI *this, int nVal, unsigned char pData, UIWnd *bFlag)"
+    "name": "StateUI::ProcessSlotClick",
+    "signature": "int __thiscall StateUI::ProcessSlotClick(StateUI *this, int nVal, unsigned __int8 pData, UIWnd *bFlag)"
   },
   "0x004819A0": {
     "name": "MainEquipUI::_init_4819a0",
@@ -8646,16 +8646,16 @@
     "_misattrib_evidence": "max_offset=162724>class_size=152"
   },
   "0x00481CB0": {
-    "name": "MainEquipUI::_method_481cb0",
-    "signature": "void __thiscall(MainEquipUI *this, int nVal)"
+    "name": "MainEquipUI::ShowTooltip",
+    "signature": "void __thiscall MainEquipUI::ShowTooltip(MainEquipUI *this, int nIdx)"
   },
   "0x00481EB0": {
-    "name": "MainEquipUI::_method_481eb0",
-    "signature": "void __thiscall(MainEquipUI *this, int nVal, int nVal2)"
+    "name": "MainEquipUI::CompareItems",
+    "signature": "void __thiscall MainEquipUI::CompareItems(MainEquipUI *this, int nIdx1, int nIdx2)"
   },
   "0x00482BB0": {
-    "name": "PalScript::_auto_482bb0",
-    "signature": "int __thiscall(PalScript *this)"
+    "name": "PalScript::ShowEquipUI",
+    "signature": "int __thiscall PalScript::ShowEquipUI(PalScript *this)"
   },
   "0x00483260": {
     "name": "UIWnd::_sdtor_26",
@@ -8670,8 +8670,8 @@
     "signature": "void *__thiscall(LineupUI *this, int nVal)"
   },
   "0x00484D20": {
-    "name": "PalScript::_auto_484d20",
-    "signature": "int __thiscall(PalScript *this)"
+    "name": "PalScript::ShowStateUI",
+    "signature": "int __thiscall PalScript::ShowStateUI(PalScript *this)"
   },
   "0x00486D00": {
     "name": "RenderTarget::_scalar_dtor",
@@ -8682,8 +8682,8 @@
     "signature": "void __thiscall(UITitle_XJTM *this)"
   },
   "0x00487B60": {
-    "name": "_misattrib_PalScript::_auto_487b60",
-    "signature": "int __thiscall(PalScript *this)",
+    "name": "_misattrib_PalScript::ShowMagicUI",
+    "signature": "int __thiscall PalScript::ShowMagicUI(PalScript *this)",
     "_misattrib_evidence": "max_offset=54700>class_size=1816"
   },
   "0x00489BA0": {
@@ -8691,8 +8691,8 @@
     "signature": "void __thiscall(UIBigMap *this, int element, int visible)"
   },
   "0x0048A010": {
-    "name": "MagicUI::_method_48a010",
-    "signature": "int __thiscall(MagicUI *this)",
+    "name": "MagicUI::UpdateDisplay",
+    "signature": "int __thiscall MagicUI::UpdateDisplay(MagicUI *this)",
     "_misattrib_evidence": "max_offset=205784>class_size=4088"
   },
   "0x0048D5D0": {
@@ -8701,8 +8701,8 @@
     "_misattrib_evidence": "max_offset=307028>class_size=4088"
   },
   "0x0048E600": {
-    "name": "_misattrib_CameraCtrl::_sub_48E600",
-    "signature": "int __thiscall(CameraCtrl *this)",
+    "name": "_misattrib_CameraCtrl::RenderSaveUI",
+    "signature": "int __thiscall CameraCtrl::RenderSaveUI(CameraCtrl *this)",
     "_misattrib_evidence": "max_offset=307028>class_size=4088"
   },
   "0x00490E70": {
@@ -11958,8 +11958,8 @@
     "_misattrib_evidence": "max_offset=124256>class_size=1208"
   },
   "0x00472A80": {
-    "name": "LineupUI::_method_472a80",
-    "signature": "int __thiscall(LineupUI *this, int nVal)",
+    "name": "LineupUI::SetPageIndex",
+    "signature": "int __thiscall LineupUI::SetPageIndex(LineupUI *this, int nPage)",
     "_misattrib_evidence": "max_offset=124248>class_size=39240"
   },
   "0x00472AA0": {
@@ -11973,8 +11973,8 @@
     "_misattrib_evidence": "max_offset=121112>class_size=39240"
   },
   "0x00474AB0": {
-    "name": "LineupUI::_method_474ab0",
-    "signature": "void __thiscall(LineupUI *this, float fVal)",
+    "name": "LineupUI::ProcessMouse",
+    "signature": "void __thiscall LineupUI::ProcessMouse(LineupUI *this, float fVal)",
     "_misattrib_evidence": "max_offset=121864>class_size=10584"
   },
   "0x00474C80": {
@@ -11983,35 +11983,35 @@
     "_misattrib_evidence": "max_offset=124076>class_size=1208"
   },
   "0x00476010": {
-    "name": "LineupUI::_method_476010",
-    "signature": "int __thiscall(LineupUI *this)",
+    "name": "LineupUI::CreateSlots",
+    "signature": "int __thiscall LineupUI::CreateSlots(LineupUI *this)",
     "_misattrib_evidence": "max_offset=124076>class_size=1208"
   },
   "0x004765D0": {
-    "name": "UIWnd::_nearby_4765d0",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIWnd::UpdateAllLineupSlots",
+    "signature": "int __thiscall UIWnd::UpdateAllLineupSlots(UIWnd *this)"
   },
   "0x004777B0": {
-    "name": "LineupUI::_method_4777b0",
-    "signature": "int __thiscall(LineupUI *this)",
+    "name": "LineupUI::Render",
+    "signature": "int __thiscall LineupUI::Render(LineupUI *this)",
     "_misattrib_evidence": "max_offset=123740>class_size=1208"
   },
   "0x00477A90": {
-    "name": "TaskBookUI::_method_477a90",
-    "signature": "void __thiscall(TaskBookUI *this, int nVal, int nVal2)"
+    "name": "TaskBookUI::UpdateEntry",
+    "signature": "void __thiscall TaskBookUI::UpdateEntry(TaskBookUI *this, int nIdx, int nVal)"
   },
   "0x00478870": {
     "name": "UIWnd::_nearby_478870",
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00478C00": {
-    "name": "PAL_GDB::_method_478c00",
-    "signature": "MainEquipUI * __thiscall(PAL_GDB *this)",
+    "name": "PAL_GDB::InitUIData",
+    "signature": "MainEquipUI *__thiscall PAL_GDB::InitUIData(PAL_GDB *this)",
     "_misattrib_evidence": "max_offset=804880>class_size=204620"
   },
   "0x00479100": {
-    "name": "NPC::_sub_479100",
-    "signature": "int __thiscall(NPC *this, unsigned int dwVal)"
+    "name": "NPC::GetDataByIndex",
+    "signature": "int __thiscall NPC::GetDataByIndex(NPC *this, unsigned int nIdx)"
   },
   "0x004791B0": {
     "name": "PAL_GDB::_unverified_4791B0",
@@ -12022,21 +12022,21 @@
     "signature": "int __thiscall(UIAnimateCtrl *this, unsigned int dwVal)"
   },
   "0x004792F0": {
-    "name": "PAL_GDB::_nearby_4792f0",
-    "signature": "void __thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::ResetTimer",
+    "signature": "void __thiscall PAL_GDB::ResetTimer(PAL_GDB *this)"
   },
   "0x0047A580": {
     "name": "MainEquipUI::_init_47a580",
     "signature": "int __thiscall(MainEquipUI *this)"
   },
   "0x0047AAB0": {
-    "name": "MainEquipUI::_method_47aab0",
-    "signature": "int __thiscall(MainEquipUI *this)",
+    "name": "MainEquipUI::UpdateEquipList",
+    "signature": "int __thiscall MainEquipUI::UpdateEquipList(MainEquipUI *this)",
     "_misattrib_evidence": "max_offset=173944>class_size=1208"
   },
   "0x0047ADF0": {
-    "name": "MainEquipUI::_method_47adf0",
-    "signature": "int __thiscall(MainEquipUI *this)",
+    "name": "MainEquipUI::UpdateSkillList",
+    "signature": "int __thiscall MainEquipUI::UpdateSkillList(MainEquipUI *this)",
     "_misattrib_evidence": "max_offset=173944>class_size=1208"
   },
   "0x0047B0E0": {
@@ -12044,12 +12044,12 @@
     "signature": "char __thiscall(LineupUI *this, int nVal)"
   },
   "0x0047B140": {
-    "name": "MainEquipUI::_method_47b140",
-    "signature": "void __thiscall(MainEquipUI *this, int nVal)"
+    "name": "MainEquipUI::UpdateRoleInfo",
+    "signature": "void __thiscall MainEquipUI::UpdateRoleInfo(MainEquipUI *this, int nRoleIdx)"
   },
   "0x0047B3B0": {
-    "name": "MainEquipUI::_method_47b3b0",
-    "signature": "BOOL __thiscall(MainEquipUI *this, int nVal, int nVal2)"
+    "name": "MainEquipUI::ProcessInput",
+    "signature": "BOOL __thiscall MainEquipUI::ProcessInput(MainEquipUI *this, int nVal, int nVal2)"
   },
   "0x0047B6C0": {
     "name": "MainEquipUI::OnMessage",
@@ -12060,8 +12060,8 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0047C2D0": {
-    "name": "PAL3::_method_47c2d0",
-    "signature": "void __thiscall(PAL3 *this, int nVal)",
+    "name": "PAL3::SwitchUIMode",
+    "signature": "void __thiscall PAL3::SwitchUIMode(PAL3 *this, int nMode)",
     "_misattrib_evidence": "max_offset=124>class_size=28"
   },
   "0x0047C370": {
@@ -12073,20 +12073,20 @@
     "signature": "int __thiscall(UITitle_ArcSave *this, int nVal, int nVal2, int nVal3)"
   },
   "0x0047DC90": {
-    "name": "Object3D::_nearby_47dc90",
-    "signature": "void __thiscall(Object3D *this)"
+    "name": "Object3D::ResetTimer",
+    "signature": "void __thiscall Object3D::ResetTimer(Object3D *this)"
   },
   "0x0047DD60": {
-    "name": "Object3D::_nearby_47dd60",
-    "signature": "int __thiscall(Object3D *this, unsigned char *thisa)"
+    "name": "Object3D::GetFlag",
+    "signature": "int __thiscall Object3D::GetFlag(Object3D *this, unsigned __int8 *pBuf)"
   },
   "0x0047DD90": {
-    "name": "UITitle_YXXX::_sub_47DD90",
-    "signature": "void __thiscall(UITitle_YXXX *this)"
+    "name": "UITitle_YXXX::~UITitle_YXXX",
+    "signature": "void __thiscall UITitle_YXXX::~UITitle_YXXX(UITitle_YXXX *this)"
   },
   "0x0047E030": {
-    "name": "ComposeUI::_nearby_47e030",
-    "signature": "int __thiscall(ComposeUI *this, int arg0)"
+    "name": "ComposeUI::UpdateSkillList",
+    "signature": "int __thiscall ComposeUI::UpdateSkillList(ComposeUI *this, int nCategory)"
   },
   "0x0047E3E0": {
     "name": "UITitle_YXXX::Update",
@@ -12097,12 +12097,12 @@
     "signature": "int __thiscall(UIListBox *this, HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)"
   },
   "0x0047E5B0": {
-    "name": "Object3D::_nearby_47e5b0",
-    "signature": "void __thiscall(Object3D *this)"
+    "name": "Object3D::ResetBlend",
+    "signature": "void __thiscall Object3D::ResetBlend(Object3D *this)"
   },
   "0x0047EC00": {
-    "name": "MainEquipUI::_method_47ec00",
-    "signature": "int __thiscall(MainEquipUI *this)"
+    "name": "MainEquipUI::Render",
+    "signature": "int __thiscall MainEquipUI::Render(MainEquipUI *this)"
   },
   "0x0047ECB0": {
     "name": "MainEquipUI::_unverified_47ECB0",
@@ -12110,20 +12110,20 @@
     "_misattrib_evidence": "max_offset=162720>class_size=33228"
   },
   "0x0047F390": {
-    "name": "StateUI::_method_47f390",
-    "signature": "int __thiscall(StateUI *this)"
+    "name": "StateUI::GetPathCount",
+    "signature": "int __thiscall StateUI::GetPathCount(StateUI *this)"
   },
   "0x0047F410": {
     "name": "StateUI::ReleaseResource",
     "signature": "int __thiscall(StateUI *this)"
   },
   "0x0047F450": {
-    "name": "StateUI::_method_47f450",
-    "signature": "int __thiscall(StateUI *this)"
+    "name": "StateUI::ResetPaths",
+    "signature": "int __thiscall StateUI::ResetPaths(StateUI *this)"
   },
   "0x0047F590": {
-    "name": "LineupUI::_method_47f590",
-    "signature": "int __thiscall(LineupUI *this, int id)"
+    "name": "LineupUI::ProcessSlotInput",
+    "signature": "int __thiscall LineupUI::ProcessSlotInput(LineupUI *this, int id)"
   },
   "0x0047F930": {
     "name": "ArcLocaleRole::HandleKeyInput",
@@ -12134,28 +12134,28 @@
     "signature": "BOOL __thiscall(LineupUI *this, int nVal, int nVal2)"
   },
   "0x00480530": {
-    "name": "MainEquipUI::_method_480530",
-    "signature": "int *__thiscall(MainEquipUI *this, float fVal)"
+    "name": "MainEquipUI::UpdateStats",
+    "signature": "int *__thiscall MainEquipUI::UpdateStats(MainEquipUI *this, float fVal)"
   },
   "0x00480600": {
     "name": "LineupUI::OnMessage",
     "signature": "int __thiscall(LineupUI *this, int nVal, char *pszBuf, int nVal2)"
   },
   "0x00481BA0": {
-    "name": "MainEquipUI::_method_481ba0",
-    "signature": "unsigned char __thiscall(MainEquipUI *this, unsigned char pData)"
+    "name": "MainEquipUI::SetSlotState",
+    "signature": "unsigned __int8 __thiscall MainEquipUI::SetSlotState(MainEquipUI *this, unsigned __int8 nState)"
   },
   "0x00482140": {
-    "name": "MainEquipUI::_method_482140",
-    "signature": "void __thiscall(MainEquipUI *this, int arg0)"
+    "name": "MainEquipUI::EquipItem",
+    "signature": "void __thiscall MainEquipUI::EquipItem(MainEquipUI *this, int nSlot)"
   },
   "0x004826A0": {
     "name": "LineupUI::_unverified_4826A0",
     "signature": "int __thiscall(LineupUI *this)"
   },
   "0x00482C90": {
-    "name": "StateUI::_auto_482c90",
-    "signature": "int __thiscall(StateUI *this, int nVal)"
+    "name": "StateUI::UpdateRoleInfo",
+    "signature": "int __thiscall StateUI::UpdateRoleInfo(StateUI *this, int nRoleIdx)"
   },
   "0x00482EC0": {
     "name": "StateUI::_nearby_482ec0",
@@ -12166,60 +12166,60 @@
     "signature": "void __thiscall(UILoadingFrm *this)"
   },
   "0x00483FA0": {
-    "name": "LineupComp::_method_483fa0",
-    "signature": "int __thiscall(LineupComp *this, int id)"
+    "name": "LineupComp::CreateSlot",
+    "signature": "int __thiscall LineupComp::CreateSlot(LineupComp *this, int id)"
   },
   "0x004841B0": {
-    "name": "LineupComp::_method_4841b0",
-    "signature": "int __thiscall(LineupComp *this, int arg0, int nVal, int nVal2)"
+    "name": "LineupComp::ProcessInput",
+    "signature": "int __thiscall LineupComp::ProcessInput(LineupComp *this, int nCmd, int nVal, int nVal2)"
   },
   "0x00484360": {
-    "name": "LineupUI::_method_484360",
-    "signature": "int __thiscall(LineupUI *this, int nVal, unsigned int dwVal)"
+    "name": "LineupUI::UpdateSlotState",
+    "signature": "int __thiscall LineupUI::UpdateSlotState(LineupUI *this, int nSlot, unsigned int dwState)"
   },
   "0x004844A0": {
-    "name": "MainEquipUI::_method_4844a0",
-    "signature": "int __thiscall(MainEquipUI *this)"
+    "name": "MainEquipUI::Create",
+    "signature": "int __thiscall MainEquipUI::Create(MainEquipUI *this)"
   },
   "0x00484660": {
-    "name": "StateUI::_method_484660",
-    "signature": "int __thiscall(StateUI *this)"
+    "name": "StateUI::Create",
+    "signature": "int __thiscall StateUI::Create(StateUI *this)"
   },
   "0x00484810": {
     "name": "LineupUI::_unverified_484810",
     "signature": "int __thiscall(LineupUI *this)"
   },
   "0x00484E70": {
-    "name": "EquipUI::_sub_484E70",
-    "signature": "int __thiscall(EquipUI *this, unsigned char pData)"
+    "name": "EquipUI::SetTabIndex",
+    "signature": "int __thiscall EquipUI::SetTabIndex(EquipUI *this, unsigned __int8 nIdx)"
   },
   "0x00484E90": {
-    "name": "StateUI::_sub_484E90",
-    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
+    "name": "StateUI::SetTabIndex",
+    "signature": "int __thiscall StateUI::SetTabIndex(StateUI *this, unsigned __int8 nIdx)"
   },
   "0x00484EB0": {
-    "name": "StateUI::_sub_484EB0",
-    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
+    "name": "StateUI::SetTabIndex2",
+    "signature": "int __thiscall StateUI::SetTabIndex2(StateUI *this, unsigned __int8 nIdx)"
   },
   "0x00484ED0": {
-    "name": "MagicUI::_sub_484ED0",
-    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
+    "name": "MagicUI::SetTabIndex",
+    "signature": "int __thiscall MagicUI::SetTabIndex(MagicUI *this, unsigned __int8 nIdx)"
   },
   "0x00484EF0": {
-    "name": "MagicUI::_sub_484EF0",
-    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
+    "name": "MagicUI::SetTabIndex2",
+    "signature": "int __thiscall MagicUI::SetTabIndex2(MagicUI *this, unsigned __int8 nIdx)"
   },
   "0x00484F10": {
-    "name": "StateUI::_auto_484f10",
-    "signature": "int __thiscall(StateUI *this, int nVal)"
+    "name": "StateUI::UpdateSkillDisplay",
+    "signature": "int __thiscall StateUI::UpdateSkillDisplay(StateUI *this, int nVal)"
   },
   "0x00485980": {
-    "name": "StateUI::_auto_485980",
-    "signature": "int __thiscall(StateUI *this)"
+    "name": "StateUI::Render",
+    "signature": "int __thiscall StateUI::Render(StateUI *this)"
   },
   "0x00485CD0": {
-    "name": "StateUI::_method_485cd0",
-    "signature": "char *__thiscall(StateUI *this)"
+    "name": "StateUI::UpdateText",
+    "signature": "char *__thiscall StateUI::UpdateText(StateUI *this)"
   },
   "0x00485DF0": {
     "name": "CScreenMode::vfunc_6",
@@ -12230,42 +12230,42 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x00486CE0": {
-    "name": "RenderTarget::_sub_486CE0",
-    "signature": "int *__thiscall(RenderTarget *this)"
+    "name": "RenderTarget::Reset",
+    "signature": "int *__thiscall RenderTarget::Reset(RenderTarget *this)"
   },
   "0x00486D20": {
     "name": "UITitle_XJTM::_init_486d20",
     "signature": "void __thiscall(UITitle_XJTM *this)"
   },
   "0x00487480": {
-    "name": "CameraCtrl::_nearby_487480",
-    "signature": "int __thiscall(CameraCtrl *this)",
+    "name": "CameraCtrl::InitSaveSlots",
+    "signature": "int __thiscall CameraCtrl::InitSaveSlots(CameraCtrl *this)",
     "_misattrib_evidence": "max_offset=3296>class_size=200"
   },
   "0x00487650": {
-    "name": "_misattrib_UICoverFrm::_method_487650",
-    "signature": "int __thiscall(UICoverFrm *this)",
+    "name": "_misattrib_UICoverFrm::Create",
+    "signature": "int __thiscall UICoverFrm::Create(UICoverFrm *this)",
     "_misattrib_evidence": "max_offset=205768>class_size=14952"
   },
   "0x00487C40": {
-    "name": "UITitle_XJTM::_method_487c40",
-    "signature": "int __thiscall(UITitle_XJTM *this, int nVal, int *pnVal)"
+    "name": "UITitle_XJTM::ProcessInput",
+    "signature": "int __thiscall UITitle_XJTM::ProcessInput(UITitle_XJTM *this, int nVal, int *pnVal)"
   },
   "0x00487F80": {
     "name": "ArcSceneMonster::CreateInfoPanel",
     "signature": "int *__thiscall(ArcSceneMonster *this, int nVal, int nVal2, int id, int *pnVal, int nVal3)"
   },
   "0x00488660": {
-    "name": "MainPropUI::_method_488660",
-    "signature": "void __thiscall(MainPropUI *this, int nVal)"
+    "name": "MainPropUI::UpdateItemDisplay",
+    "signature": "void __thiscall MainPropUI::UpdateItemDisplay(MainPropUI *this, int nIdx)"
   },
   "0x004889E0": {
     "name": "UITitle_XJTM::Layout__ovl_4889e0",
     "signature": "int *__thiscall(UITitle_XJTM *this, int arg0, int *pnVal)"
   },
   "0x00488DE0": {
-    "name": "MainPropUI::_method_488de0",
-    "signature": "int __thiscall(MainPropUI *this)"
+    "name": "MainPropUI::Render",
+    "signature": "int __thiscall MainPropUI::Render(MainPropUI *this)"
   },
   "0x00489030": {
     "name": "MainPropUI::CalcBarWidth",
@@ -12285,24 +12285,24 @@
     "signature": "int __thiscall(CCBUIPanel *this)"
   },
   "0x0048A2F0": {
-    "name": "EquipUI::_sub_48A2F0",
-    "signature": "int __thiscall(EquipUI *this, unsigned char pData)"
+    "name": "EquipUI::SetSubTab",
+    "signature": "int __thiscall EquipUI::SetSubTab(EquipUI *this, unsigned __int8 nIdx)"
   },
   "0x0048A310": {
-    "name": "StateUI::_sub_48A310",
-    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
+    "name": "StateUI::SetSubTab",
+    "signature": "int __thiscall StateUI::SetSubTab(StateUI *this, unsigned __int8 nIdx)"
   },
   "0x0048A330": {
-    "name": "StateUI::_sub_48A330",
-    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
+    "name": "StateUI::SetSubTab2",
+    "signature": "int __thiscall StateUI::SetSubTab2(StateUI *this, unsigned __int8 nIdx)"
   },
   "0x0048A350": {
-    "name": "MagicUI::_sub_48A350",
-    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
+    "name": "MagicUI::SetSubTab",
+    "signature": "int __thiscall MagicUI::SetSubTab(MagicUI *this, unsigned __int8 nIdx)"
   },
   "0x0048A370": {
-    "name": "MagicUI::_sub_48A370",
-    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
+    "name": "MagicUI::SetSubTab2",
+    "signature": "int __thiscall MagicUI::SetSubTab2(MagicUI *this, unsigned __int8 nIdx)"
   },
   "0x0048A390": {
     "name": "MagicUI::InitUILayout",
@@ -12319,17 +12319,17 @@
     "_misattrib_evidence": "max_offset=248268>class_size=4088"
   },
   "0x0048C520": {
-    "name": "CameraCtrl::_sub_48C520",
-    "signature": "void __thiscall(CameraCtrl *this, int nVal)"
+    "name": "CameraCtrl::ProcessKeyInput",
+    "signature": "void __thiscall CameraCtrl::ProcessKeyInput(CameraCtrl *this, int nKey)"
   },
   "0x0048C9A0": {
-    "name": "_misattrib_CameraCtrl::_nearby_48c9a0",
-    "signature": "int __thiscall(CameraCtrl *this, int nVal, int nVal2)",
+    "name": "_misattrib_CameraCtrl::SetSaveSlot",
+    "signature": "int __thiscall CameraCtrl::SetSaveSlot(CameraCtrl *this, int nSlot, int nVal)",
     "_misattrib_evidence": "max_offset=217324>class_size=4088"
   },
   "0x0048CCE0": {
-    "name": "_misattrib_CameraCtrl::_sub_48CCE0",
-    "signature": "char __thiscall(CameraCtrl *this, int arg0, int nVal)",
+    "name": "_misattrib_CameraCtrl::LoadSaveSlot",
+    "signature": "char __thiscall CameraCtrl::LoadSaveSlot(CameraCtrl *this, int nSlot, int nVal)",
     "_misattrib_evidence": "max_offset=205788>class_size=4088"
   },
   "0x0048CEE0": {
@@ -12337,30 +12337,30 @@
     "signature": "int __thiscall(MainPropUI *this)"
   },
   "0x0048CF10": {
-    "name": "MainPropUI::_method_48cf10",
-    "signature": "void __thiscall(MainPropUI *this, int nVal, int nVal2, int nVal3)"
+    "name": "MainPropUI::ShowItemTooltip",
+    "signature": "void __thiscall MainPropUI::ShowItemTooltip(MainPropUI *this, int nIdx, int nCol, int nRow)"
   },
   "0x0048CFB0": {
-    "name": "UIFrameWnd::_nearby_48cfb0",
-    "signature": "bool __thiscall(UIFrameWnd *this, float fVal)"
+    "name": "UIFrameWnd::IsInRange",
+    "signature": "bool __thiscall UIFrameWnd::IsInRange(UIFrameWnd *this, float fVal)"
   },
   "0x0048E780": {
     "name": "CEffect::_unverified_48E780",
     "signature": "int __thiscall(CEffect *this, int f)"
   },
   "0x0048E950": {
-    "name": "CEffect::_sub_48E950",
-    "signature": "char __thiscall(CEffect *this, int nVal)",
+    "name": "CEffect::LoadEffect",
+    "signature": "char __thiscall CEffect::LoadEffect(CEffect *this, int nType)",
     "_misattrib_evidence": "max_offset=4672>class_size=200"
   },
   "0x0048EB40": {
-    "name": "_misattrib_RenderTarget::_sub_48EB40",
-    "signature": "char __thiscall(RenderTarget *this)",
+    "name": "_misattrib_RenderTarget::ProcessEffects",
+    "signature": "char __thiscall RenderTarget::ProcessEffects(RenderTarget *this)",
     "_misattrib_evidence": "max_offset=307040>class_size=200"
   },
   "0x0048EE60": {
-    "name": "_misattrib_CameraCtrl::_nearby_48ee60",
-    "signature": "char __thiscall(CameraCtrl *this)",
+    "name": "_misattrib_CameraCtrl::ProcessSaveInput",
+    "signature": "char __thiscall CameraCtrl::ProcessSaveInput(CameraCtrl *this)",
     "_misattrib_evidence": "max_offset=205784>class_size=4088"
   },
   "0x0048EF80": {
@@ -15544,8 +15544,8 @@
     "signature": "void __thiscall(UIRenderObj *this)"
   },
   "0x00484E10": {
-    "name": "UIWnd::_method_484e10",
-    "signature": "int __thiscall(UIWnd *this, int nIndex, unsigned int dwParam)",
+    "name": "UIWnd::CallSlotMethod",
+    "signature": "int __thiscall UIWnd::CallSlotMethod(UIWnd *this, int nIndex, unsigned int dwParam)",
     "class": "UIWnd"
   },
   "0x00484E30": {
@@ -15554,8 +15554,8 @@
     "class": "UIWnd"
   },
   "0x00488C70": {
-    "name": "UITitle_XJTM::_method_488c70",
-    "signature": "int __thiscall(UITitle_XJTM *this, int nIndex, unsigned int dwParam)",
+    "name": "UITitle_XJTM::CallSlotMethod",
+    "signature": "int __thiscall UITitle_XJTM::CallSlotMethod(UITitle_XJTM *this, int nIndex, unsigned int dwParam)",
     "class": "UIWnd"
   },
   "0x00492E10": {
