@@ -7283,7 +7283,7 @@
     "signature": "double __thiscall(RoleSystem *this, int index, int nY, int nVal, int *p_DWORD)"
   },
   "0x004214B0": {
-    "name": "RoleSystem::_sub_4214B0",
+    "name": "RoleSystem::ValidatePathIndex",
     "signature": "BOOL __thiscall(RoleSystem *this, int index, int nY, int nVal)"
   },
   "0x00421BF0": {
@@ -7722,7 +7722,7 @@
     "signature": "int __thiscall(RoleSystem *this, char arg0, int index, char *pszBuf, int nVal, char *pszBuf2, int nVal2)"
   },
   "0x00421D10": {
-    "name": "RoleSystem::_sub_421D10",
+    "name": "RoleSystem::BuildPathSegment",
     "signature": "int *__thiscall(RoleSystem *this, int *pnVal, char pData)"
   },
   "0x00421EA0": {
@@ -9447,7 +9447,7 @@
     "signature": "char __thiscall(CCBRoleState *this, int arg0)"
   },
   "0x004F8AF0": {
-    "name": "CCBRoleState::_sub_4F8AF0",
+    "name": "CCBRoleState::ProcessControlInput",
     "signature": "void __thiscall(CCBRoleState *this)"
   },
   "0x004F8FA0": {
@@ -9459,7 +9459,7 @@
     "signature": "char __thiscall(CCBRoleState *this, int nVal, int nVal2)"
   },
   "0x004F90F0": {
-    "name": "CCBRoleState::_sub_4F90F0",
+    "name": "CCBRoleState::CheckRoleCanAct",
     "signature": "char *__thiscall(CCBRoleState *this, int roleIdx)"
   },
   "0x004F91B0": {
@@ -10176,7 +10176,7 @@
     "signature": "void __thiscall Actor::UpdateBoundingBox(gbRefObject *this, struct gbAABBox *pBox)"
   },
   "0x0041BA10": {
-    "name": "RoleSystem::_nearby_41ba10",
+    "name": "RoleSystem::InterpolateHeight",
     "signature": "BOOL __thiscall(RoleSystem *this, float *pfVal)"
   },
   "0x0041BAD0": {
@@ -10257,7 +10257,7 @@
     "signature": "int *__thiscall(CameraCtrl *this, int nVal, int *p_DWORD)"
   },
   "0x0041D7F0": {
-    "name": "CameraCtrl::_nearby_41d7f0",
+    "name": "CameraCtrl::SetupCameraArray",
     "signature": "unsigned int __thiscall(CameraCtrl *this, CameraCtrl *thisa, int nVal)"
   },
   "0x0041D900": {
@@ -13973,7 +13973,7 @@
     "signature": "void __thiscall(CCBStage *this)"
   },
   "0x00503FA0": {
-    "name": "CCBStage::_nearby_503fa0",
+    "name": "CCBStage::ResetTurnData",
     "signature": "int __thiscall(CCBStage *this, int **a2, struct gbGfxManager *p)"
   },
   "0x005040D0": {
@@ -15013,7 +15013,7 @@
     "signature": "void __thiscall(UIBigMap *this, FILE *Buffer, FILE *Stream)"
   },
   "0x005399E0": {
-    "name": "Actor::_nearby_5399e0",
+    "name": "Actor::IterateActiveActors",
     "signature": "void __thiscall(Actor *this)"
   },
   "0x00539A90": {
@@ -15125,7 +15125,7 @@
     "signature": "int __thiscall(CScreenMode *this)"
   },
   "0x0053C470": {
-    "name": "CScreenMode::_nearby_53c470",
+    "name": "CScreenMode::IsSceneReady",
     "signature": "int __thiscall(CScreenMode *this)"
   },
   "0x0053C530": {
@@ -15181,7 +15181,7 @@
     "signature": "void __thiscall(CScreenMode *this, char *String2, gbAudioManager *pAudioManager)"
   },
   "0x0053E890": {
-    "name": "CScreenMode::_nearby_53e890",
+    "name": "CScreenMode::ApplyColorFilter",
     "signature": "void __thiscall(CScreenMode *this)"
   },
   "0x0053EB50": {
