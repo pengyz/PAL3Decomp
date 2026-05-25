@@ -6105,8 +6105,8 @@
     "signature": "int __thiscall(UIRoleSelectDialog *this)"
   },
   "0x0052D0F0": {
-    "name": "UIWnd::_auto_52d0f0",
-    "signature": "int __thiscall(UIWnd *this)"
+    "name": "UIWnd::InitPartyFacePanel",
+    "signature": "int __thiscall UIWnd::InitPartyFacePanel(UIWnd *this)"
   },
   "0x0052D230": {
     "name": "CScreenMode::_init_52d230",
@@ -6446,16 +6446,16 @@
     "signature": "double __fastcall(int *pnVal, int nVal, int elem)"
   },
   "0x0049FA10": {
-    "name": "EquipUI::_sub_49FA10",
-    "signature": "int __thiscall(EquipUI *this, int nVal)"
+    "name": "EquipUI::InitParticleEffects",
+    "signature": "int __thiscall EquipUI::InitParticleEffects(EquipUI *this, int nVal)"
   },
   "0x004A0370": {
     "name": "EquipUI::HandleEquipEvent",
     "signature": "void __thiscall(EquipUI *this, int nVal, char *pszBuf, int nVal2)"
   },
   "0x004A4C20": {
-    "name": "EquipUI::_sub_4A4C20",
-    "signature": "int __thiscall(EquipUI *this)"
+    "name": "EquipUI::Create",
+    "signature": "int __thiscall EquipUI::Create(EquipUI *this)"
   },
   "0x004A4FC0": {
     "name": "MainEquipUI::SetEquipSlotData",
@@ -7731,8 +7731,8 @@
     "signature": "void *__thiscall(MainEquipUI *this, int nVal, int _FC)"
   },
   "0x0049FE00": {
-    "name": "EquipUI::_sub_49FE00",
-    "signature": "void __thiscall(EquipUI *this)",
+    "name": "EquipUI::RenderEffects",
+    "signature": "void __thiscall EquipUI::RenderEffects(EquipUI *this)",
     "_misattrib_evidence": "max_offset=231140>class_size=1208"
   },
   "0x004A1A80": {
@@ -7790,13 +7790,13 @@
     "_misattrib_evidence": "max_offset=396024>class_size=2632"
   },
   "0x004ACDE0": {
-    "name": "SystemUI::_auto_4acde0",
-    "signature": "int __thiscall(SystemUI *this)",
+    "name": "SystemUI::UpdateNoteScroll",
+    "signature": "int __thiscall SystemUI::UpdateNoteScroll(SystemUI *this)",
     "_misattrib_evidence": "max_offset=283700>class_size=200"
   },
   "0x004ACF90": {
-    "name": "SystemUI::_auto_4acf90",
-    "signature": "int __thiscall(SystemUI *this)",
+    "name": "SystemUI::UpdateNoteScrollAlt",
+    "signature": "int __thiscall SystemUI::UpdateNoteScrollAlt(SystemUI *this)",
     "_misattrib_evidence": "max_offset=283704>class_size=200"
   },
   "0x004AD140": {
@@ -10273,7 +10273,7 @@
     "signature": "int __thiscall(UISceneMap *this)"
   },
   "0x0044ED70": {
-    "name": "UISceneMap::_nearby_44ed70",
+    "name": "UISceneMap_thunk_44ED70",
     "signature": "void __thiscall(UISceneMap *this)"
   },
   "0x00450230": {
@@ -10499,12 +10499,12 @@
     "signature": "char *__thiscall(UIWnd *this, const char *lpString, int nVal)"
   },
   "0x00459080": {
-    "name": "UIWnd::_nearby_459080",
-    "signature": "int * __thiscall(UIWnd *this)"
+    "name": "UIWnd::ResetHotkeyTableA",
+    "signature": "int *__thiscall UIWnd::ResetHotkeyTableA(UIWnd *this)"
   },
   "0x004590B0": {
-    "name": "UIWnd::_nearby_4590b0",
-    "signature": "int * __thiscall(UIWnd *this)"
+    "name": "UIWnd::ResetHotkeyTableB",
+    "signature": "int *__thiscall UIWnd::ResetHotkeyTableB(UIWnd *this)"
   },
   "0x00459970": {
     "name": "UITitle_YXXX::_method_459970",
@@ -11175,8 +11175,8 @@
     "signature": "int __thiscall(MainEquipUI *this, int *pBuffer)"
   },
   "0x0049FF90": {
-    "name": "EquipUI::_nearby_49ff90",
-    "signature": "char __thiscall(EquipUI *this)"
+    "name": "EquipUI::HandleInput",
+    "signature": "char __thiscall EquipUI::HandleInput(EquipUI *this)"
   },
   "0x004A00B0": {
     "name": "EquipUI::Update",
@@ -11257,8 +11257,8 @@
     "signature": "unsigned int __thiscall CScreenMode::ClampToRange(CScreenMode *this, unsigned int dwVal, int nSlot)"
   },
   "0x004A8260": {
-    "name": "SystemUI::_auto_4a8260",
-    "signature": "char __thiscall(SystemUI *this, int nVal, int nVal2, int nVal3, char pData, int nVal4, int nVal5, unsigned char pData)"
+    "name": "SystemUI::CreateNoteEntry",
+    "signature": "char __thiscall SystemUI::CreateNoteEntry(SystemUI *this, int nVal, int nVal2, int nVal3, char pData, int nVal4, int nVal5, unsigned __int8 a8)"
   },
   "0x004A8770": {
     "name": "CCCTData::_unverified_4A8770",
@@ -12818,8 +12818,8 @@
     "signature": "char __thiscall(s_RoleState *this, int nVal, char pData)"
   },
   "0x0052FBA0": {
-    "name": "UISceneMap::_nearby_52fba0",
-    "signature": "int __thiscall(UISceneMap *this, int nVal)"
+    "name": "UISceneMap::SetCurrentMapID",
+    "signature": "int __thiscall UISceneMap::SetCurrentMapID(UISceneMap *this, int nVal)"
   },
   "0x0052FBB0": {
     "name": "CCBFiveNimbusWindow::_init_52fbb0",
@@ -12843,8 +12843,8 @@
     "_misattrib_evidence": "max_offset=3628>class_size=4"
   },
   "0x00530270": {
-    "name": "UIWnd::_nearby_530270",
-    "signature": "int *__thiscall(UIWnd *this)"
+    "name": "UIWnd::ResetVtable",
+    "signature": "int *__thiscall UIWnd::ResetVtable(UIWnd *this)"
   },
   "0x00530340": {
     "name": "SceneObj::_nearby_530340",
