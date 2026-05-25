@@ -455,7 +455,7 @@ gbVolumeModifier::gbVolumeModifier() {
 gbVolumeModifier::~gbVolumeModifier() {
 }
 
-float gbVolumeModifier::GetEffectOnPoint(const gbVec3D& point, int useAttenuation) {
+float gbVolumeModifier::GetEffectOnPoint(const gbVec3D* point, int useAttenuation) {
     return 0.0f;
 }
 
@@ -471,4 +471,5 @@ const gbSphere* gbVolumeModifier::GetBoundSphere(void) {
 }
 
 class gbVolumeModifier & gbVolumeModifier::operator=(class gbVolumeModifier const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }
+
 
