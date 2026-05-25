@@ -2323,8 +2323,8 @@
     "signature": "unsigned int __thiscall(CCBRoleState *this, int nVal)"
   },
   "0x004F05A0": {
-    "name": "CCBRoleState::sub_4F05A0",
-    "signature": "char __thiscall(CCBRoleState *this, int *p_DWORD)"
+    "name": "CCBRoleState::IsAllyTargetCmd",
+    "signature": "char __thiscall CCBRoleState::IsAllyTargetCmd(CCBRoleState *this, int *p_DWORD)"
   },
   "0x004F0640": {
     "name": "CCBRoleState::InitRoleSpecEquipAttrib",
@@ -5208,8 +5208,8 @@
     "signature": "void __thiscall(MainEquipUI *this)"
   },
   "0x00444A20": {
-    "name": "CCBResultWindow::sub_444A20",
-    "signature": "void __thiscall(CCBResultWindow *this)"
+    "name": "CCBResultWindow::CCBResultWindow",
+    "signature": "void __thiscall CCBResultWindow::CCBResultWindow(CCBResultWindow *this)"
   },
   "0x00439930": {
     "name": "Camera::Method__ovl_439930",
@@ -7934,8 +7934,8 @@
     "signature": "__int64 __thiscall(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
   },
   "0x004B66B0": {
-    "name": "RenderTarget3::_nearby_4b66b0",
-    "signature": "bool(int nVal, int nVal2)"
+    "name": "RenderTarget3::ResetAndRender",
+    "signature": "bool RenderTarget3::ResetAndRender(int nVal, int nVal2)"
   },
   "0x004B67B0": {
     "name": "RenderTarget3::EndSceneGraph",
@@ -8159,8 +8159,8 @@
     "signature": "bool __thiscall CEffModel::LoadFromNode(CEffModel *this, int nVal)"
   },
   "0x004D2E10": {
-    "name": "CEffQuad::_auto_4d2e10",
-    "signature": "int __thiscall(CEffQuad *this, int nVal)"
+    "name": "CEffQuad::ProcessDestroyPass",
+    "signature": "int __thiscall CEffQuad::ProcessDestroyPass(CEffQuad *this, int nVal)"
   },
   "0x004D3860": {
     "name": "CEffQuake::_sdtor",
@@ -10474,8 +10474,8 @@
     "signature": "BOOL __thiscall(CCBRoleState *this, int nVal, int nVal2)"
   },
   "0x00457260": {
-    "name": "DealData::_nearby_457260",
-    "signature": "int *__thiscall(DealData *this)"
+    "name": "DealData::DealData",
+    "signature": "int *__thiscall DealData::DealData(DealData *this)"
   },
   "0x004573A0": {
     "name": "_misattrib_PalScript::FreeScriptBuffers",
@@ -10718,8 +10718,8 @@
     "_misattrib_evidence": "max_offset=804880>class_size=204620"
   },
   "0x00479100": {
-    "name": "NPC::_sub_479100",
-    "signature": "int __thiscall(NPC *this, unsigned int dwVal)"
+    "name": "NPC::GetPropertyByIndex",
+    "signature": "int __thiscall NPC::GetPropertyByIndex(NPC *this, unsigned int dwVal)"
   },
   "0x004791B0": {
     "name": "PAL_GDB::_unverified_4791B0",
@@ -11003,8 +11003,8 @@
     "_misattrib_evidence": "max_offset=248268>class_size=4088"
   },
   "0x0048C520": {
-    "name": "CameraCtrl::_sub_48C520",
-    "signature": "void __thiscall(CameraCtrl *this, int nVal)"
+    "name": "CameraCtrl::CalcStatPower",
+    "signature": "void __thiscall CameraCtrl::CalcStatPower(CameraCtrl *this, int nVal)"
   },
   "0x0048C9A0": {
     "name": "_misattrib_CameraCtrl::_nearby_48c9a0",
@@ -11308,8 +11308,8 @@
     "_misattrib_evidence": "max_offset=401448>class_size=120116"
   },
   "0x004ACC10": {
-    "name": "SystemUI::_auto_4acc10",
-    "signature": "int __thiscall(SystemUI *this, int nVal)",
+    "name": "SystemUI::InitSlotEffects",
+    "signature": "int __thiscall SystemUI::InitSlotEffects(SystemUI *this, int nVal)",
     "_misattrib_evidence": "max_offset=177420>class_size=200"
   },
   "0x004AF410": {
@@ -11381,8 +11381,8 @@
     "signature": "void __thiscall RenderTarget::CalcRenderDimensions(RenderTarget *this, int nVal, int nVal2)"
   },
   "0x004B63C0": {
-    "name": "RenderTarget3::_nearby_4b63c0",
-    "signature": "int __cdecl(float fVal, float fVal2, int nVal, int nVal2, int nVal3, int nVal4, float fVal3)"
+    "name": "RenderTarget3::GenerateRingMesh",
+    "signature": "int __cdecl RenderTarget3::GenerateRingMesh(float fVal, float fVal2, int nVal, int nVal2, int nVal3, int nVal4, float fVal3)"
   },
   "0x004B6550": {
     "name": "RenderTarget3::InitStruct",
@@ -11609,8 +11609,8 @@
     "signature": "void __thiscall(CEffAction *this, int nVal, int nVal2, int nVal3, int nVal4)"
   },
   "0x004C0650": {
-    "name": "CEffAction::sub_004C0650",
-    "signature": "char __thiscall(CEffAction *this, int nVal)"
+    "name": "CEffAction::AllocSegments",
+    "signature": "char __thiscall CEffAction::AllocSegments(CEffAction *this, int nVal)"
   },
   "0x004C0920": {
     "name": "RenderTarget2::GetTargetAnimDuration",
@@ -11821,8 +11821,8 @@
     "signature": "void __thiscall(CEffect *this, float fVal)"
   },
   "0x004D05E0": {
-    "name": "Matrix4::_nearby_4d05e0",
-    "signature": "int __thiscall(Matrix4 *this, int nVal)"
+    "name": "RenderTarget2::CameraInterpCallback",
+    "signature": "int __thiscall RenderTarget2::CameraInterpCallback(RenderTarget2 *this, int nVal)"
   },
   "0x004D0950": {
     "name": "GeomNode::LoadFromNode",
@@ -13317,8 +13317,8 @@
     "signature": "void __thiscall(CScreenModeNode *this)"
   },
   "0x0053DB90": {
-    "name": "CPK::_auto_53db90",
-    "signature": "CPK * __thiscall(CPK *this)"
+    "name": "CPK::Init",
+    "signature": "CPK *__thiscall CPK::Init(CPK *this)"
   },
   "0x0053DC50": {
     "name": "CScreenMode::CleanupSoundList",
@@ -13740,8 +13740,8 @@
     "class": "UIWnd"
   },
   "0x00532A80": {
-    "name": "UITabCtrl::_sub_532A80",
-    "signature": "int __thiscall(UITabCtrl *this)",
+    "name": "UITabCtrl::InitAnimParams",
+    "signature": "int __thiscall UITabCtrl::InitAnimParams(UITabCtrl *this)",
     "class": "UIWnd"
   },
   "0x00534DD0": {
