@@ -365,9 +365,6 @@ def run(code, ctx):
         r'// [IDA_MISID] \1',
         code, flags=re.MULTILINE)
 
-    # --- Strip IDA hex suffixes from method calls ---
-    code = _strip_ida_hex_suffix(code)
-
     # --- Reference parameter adaptation (gbengine &param fix) ---
     code = _fix_ref_params(code)
 
@@ -488,27 +485,6 @@ _GB_REF_PARAM_FUNCS = {
     'GetViewSizeOnNearPlane': {0, 1},
     'GetViewPort': {0, 1, 2, 3},
 }
-
-
-
-def _strip_ida_hex_suffix(code):
-    """Strip IDA auto-generated hex suffixes from method calls.
-    
-    IDA adds _XXXX suffixes when it can't resolve name conflicts during
-    apply_annotations. These don't exist in headers.
-    Pattern: ->Method_df70( → ->Method(  (but NOT __ovl_XXXX)
-    """
-    import re
-    # Match: (-> or :: or .) followed by identifier_hexsuffix(
-    # Negative lookbehind for __ovl (legitimate overload suffix)
-    pattern = r'((?:->|::|\.)\w+?)(?<!__ovl)_([0-9a-f]{4,5})\s*\('
-    
-    def _replace(m):
-        prefix = m.group(1)
-        # Don't strip if the base name ends with common hex-like words
-        return prefix + '('
-    
-    return re.sub(pattern, _replace, code)
 
 
 def _fix_ref_params(code):
