@@ -8810,8 +8810,8 @@
     "signature": "void __thiscall(CScreenMode *this, void *pData, int nVal)"
   },
   "0x0053E680": {
-    "name": "CScreenMode::_nearby_53e680",
-    "signature": "void __thiscall(CScreenMode *this, char *String2)"
+    "name": "CScreenMode::PlayCombatMusic",
+    "signature": "void __thiscall CScreenMode::PlayCombatMusic(CScreenMode *this, char *pszSceneName)"
   },
   "0x0053E720": {
     "name": "CScreenMode::_auto_53e720",
@@ -11217,16 +11217,16 @@
     "signature": "int __thiscall StateUI::SelectSubTab1(StateUI *this, unsigned __int8 nTab)"
   },
   "0x0048A330": {
-    "name": "StateUI::_sub_48A330",
-    "signature": "int __thiscall(StateUI *this, unsigned char pData)"
+    "name": "StateUI::SelectSubTab2",
+    "signature": "int __thiscall StateUI::SelectSubTab2(StateUI *this, unsigned __int8 nTab)"
   },
   "0x0048A350": {
-    "name": "MagicUI::_sub_48A350",
-    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
+    "name": "MagicUI::SelectSubTab3",
+    "signature": "int __thiscall MagicUI::SelectSubTab3(MagicUI *this, unsigned __int8 nTab)"
   },
   "0x0048A370": {
-    "name": "MagicUI::_sub_48A370",
-    "signature": "int __thiscall(MagicUI *this, unsigned char pData)"
+    "name": "MagicUI::SelectSubTab4",
+    "signature": "int __thiscall MagicUI::SelectSubTab4(MagicUI *this, unsigned __int8 nTab)"
   },
   "0x0048A390": {
     "name": "MagicUI::InitUILayout",
@@ -11508,8 +11508,8 @@
     "signature": "char __thiscall(PalScriptWaitObj *this, char *pszBuf)"
   },
   "0x004A6C70": {
-    "name": "ArcLocaleRole::_method_4a6c70",
-    "signature": "int __thiscall(ArcLocaleRole *this)"
+    "name": "ArcLocaleRole::Release",
+    "signature": "int __thiscall ArcLocaleRole::Release(ArcLocaleRole *this)"
   },
   "0x004A7C40": {
     "name": "SystemUI::_unverified_4A7C40",
@@ -13573,8 +13573,8 @@
     "signature": "void __thiscall(Actor *this)"
   },
   "0x005376E0": {
-    "name": "Actor::_nearby_5376e0",
-    "signature": "int __thiscall(Actor *this, char *pszBuf)"
+    "name": "Actor::LoadSaveData",
+    "signature": "int __thiscall Actor::LoadSaveData(Actor *this, char *pszSlotIdx)"
   },
   "0x00537770": {
     "name": "Actor::_nearby_537770",
