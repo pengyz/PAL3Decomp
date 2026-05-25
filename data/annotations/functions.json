@@ -4229,11 +4229,11 @@
     "signature": "SceneObj * __thiscall(SceneObj *this)"
   },
   "0x00536310": {
-    "name": "SceneObj::DestroyInternal",
+    "name": "Actor::DestroyInternalData",
     "signature": "void __thiscall(SceneObj *this)"
   },
   "0x005363A0": {
-    "name": "Actor::ResetState",
+    "name": "Actor::ResetDefaultState",
     "signature": "int __thiscall(Actor *this)"
   },
   "0x005363C0": {
@@ -4281,7 +4281,7 @@
     "signature": "void __thiscall(Actor *this)"
   },
   "0x00536C50": {
-    "name": "Actor::CompareAction",
+    "name": "Actor::CompareActionName",
     "signature": "int __thiscall(Actor *this, int actionIdx, int nVal)"
   },
   "0x00536CC0": {
@@ -9790,7 +9790,7 @@
     "signature": "gbGeomNode *__thiscall(SceneObj *this)"
   },
   "0x005306A0": {
-    "name": "Actor::_init_5306a0",
+    "name": "Actor::InitActionConfig",
     "signature": "gbVFileSystem *__thiscall(Actor *this, int nVal)"
   },
   "0x005310C0": {
@@ -9822,7 +9822,7 @@
     "signature": "FILE *__thiscall(Actor *this, double pData, int nVal)"
   },
   "0x00539E70": {
-    "name": "Actor::_nearby_539e70",
+    "name": "Actor::InsertAnimFrame",
     "signature": "char *__thiscall(Actor *this, float fVal)"
   },
   "0x0053A340": {
@@ -14670,7 +14670,7 @@
     "_misattrib_evidence": "max_offset=776>class_size=204"
   },
   "0x005309A0": {
-    "name": "Actor::_auto_5309a0",
+    "name": "Actor::ResetTransformState",
     "signature": "int __thiscall(Actor *this)"
   },
   "0x00530BC0": {
@@ -14961,7 +14961,7 @@
     "signature": "int __fastcall(int nVal)"
   },
   "0x005375F0": {
-    "name": "Actor::_nearby_5375f0",
+    "name": "Actor::ClearPathBuffer",
     "signature": "void __thiscall(Actor *this)"
   },
   "0x005376E0": {
@@ -15005,7 +15005,7 @@
     "signature": "int *__thiscall(Actor *this)"
   },
   "0x00539700": {
-    "name": "Actor::_nearby_539700",
+    "name": "Actor::GetAnimDataBuffer",
     "signature": "void __thiscall(Actor *this, void **Buffer, int Stream)"
   },
   "0x00539810": {
@@ -15370,7 +15370,7 @@
     "signature": "void __thiscall(MiniGame3 *this, gbMatrixStack *pStack)"
   },
   "0x00538FA0": {
-    "name": "Actor::BuildCollisionData",
+    "name": "Actor::BuildCollisionMesh",
     "signature": "void __thiscall(Actor *this, int *pOut)"
   },
   "0x0053E9C0": {
