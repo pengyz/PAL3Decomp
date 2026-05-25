@@ -7706,19 +7706,19 @@
     "signature": "void __thiscall(RoleSystem *this, int index, float *pfVal, int *pnVal, int *p_DWORD)"
   },
   "0x004215B0": {
-    "name": "RoleSystem::_sub_4215B0",
+    "name": "RoleSystem::AdvanceOnPath",
     "signature": "int __thiscall(RoleSystem *this, int *pResult, char *nFlag, int nVal, char *pszBuf, int nVal2)"
   },
   "0x00421710": {
-    "name": "RoleSystem::_sub_421710",
+    "name": "RoleSystem::ValidatePath",
     "signature": "int __thiscall(RoleSystem *this, int *pResult, int *nFlag, int *pnVal, int nVal, int nVal2, int **a7)"
   },
   "0x004218B0": {
-    "name": "RoleSystem::_sub_4218B0",
+    "name": "RoleSystem::GetPathTarget",
     "signature": "BOOL __thiscall(RoleSystem *this, int *pResult, int *nFlag, int *pnVal, char *pszBuf, int nVal, int **a7)"
   },
   "0x00421A90": {
-    "name": "RoleSystem::_sub_421A90",
+    "name": "RoleSystem::UpdatePathProgress",
     "signature": "int __thiscall(RoleSystem *this, char arg0, int index, char *pszBuf, int nVal, char *pszBuf2, int nVal2)"
   },
   "0x00421D10": {
@@ -10180,7 +10180,7 @@
     "signature": "BOOL __thiscall(RoleSystem *this, float *pfVal)"
   },
   "0x0041BAD0": {
-    "name": "RoleSystem::_nearby_41bad0",
+    "name": "RoleSystem::InitDefaultState",
     "signature": "int __thiscall(RoleSystem *this)"
   },
   "0x0041BC30": {
@@ -10293,7 +10293,7 @@
     "signature": "int __thiscall(SystemUI *this, int *item)"
   },
   "0x00421DD0": {
-    "name": "RoleSystem::ClearWaypoints",
+    "name": "RoleSystem::ClearWaypointBuffer",
     "signature": "int __thiscall(RoleSystem *this, int nVal, int nVal2, int nVal3, char pData)"
   },
   "0x00421F20": {
@@ -10305,7 +10305,7 @@
     "signature": "char __thiscall(RoleSystem *this, FILE *Buffer)"
   },
   "0x00422000": {
-    "name": "RoleSystem::FormatBuffer_2000",
+    "name": "RoleSystem::BuildModelPath",
     "signature": "BOOL __thiscall(RoleSystem *this, const char *pszName)"
   },
   "0x004220F0": {
@@ -10317,11 +10317,11 @@
     "signature": "int *__thiscall(RoleSystem *this)"
   },
   "0x00422430": {
-    "name": "RoleSystem::_nearby_422430",
+    "name": "RoleSystem::SetAnimBlend",
     "signature": "char __cdecl(int nVal)"
   },
   "0x00422540": {
-    "name": "RoleSystem::_nearby_422540",
+    "name": "RoleSystem::SetAnimFrame",
     "signature": "void __thiscall(RoleSystem *this)"
   },
   "0x00422550": {
