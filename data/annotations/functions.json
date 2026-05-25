@@ -9279,20 +9279,20 @@
     "signature": "char __thiscall(CCBStage *this)"
   },
   "0x004E1A10": {
-    "name": "CCBUI::_nearby_4e1a10",
-    "signature": "int(double hDlg, HWND pData, UINT pData, WPARAM pData, LPARAM pData)"
+    "name": "CCBUI::ShowDialog",
+    "signature": "int CCBUI::ShowDialog(double hDlg, HWND pData, UINT nVal, WPARAM wParam, LPARAM lParam)"
   },
   "0x004E1A40": {
-    "name": "CCBRoleState::_auto_4e1a40",
-    "signature": "int __thiscall(CCBRoleState *this, int nVal, HWND hDlg, unsigned int dwVal, int nVal2, int nVal3)"
+    "name": "CCBRoleState::CalcDamageFormula",
+    "signature": "int __thiscall CCBRoleState::CalcDamageFormula(CCBRoleState *this, int nAttacker, int nDefender, int nType)"
   },
   "0x004E1F70": {
-    "name": "CCBUI::_nearby_4e1f70",
-    "signature": "int __thiscall(CCBUI *this, HWND hDlg, unsigned int dwVal, WPARAM pData, LPARAM pData)"
+    "name": "CCBUI::DialogProc2",
+    "signature": "int __thiscall CCBUI::DialogProc2(CCBUI *this, HWND hDlg, unsigned int dwMsg, WPARAM wParam)"
   },
   "0x004E24C0": {
-    "name": "CCBUI::_nearby_4e24c0",
-    "signature": "int __thiscall(CCBUI *this, int *p_DWORD, HWND hDlg, int nVal, int nVal2, int nVal3)"
+    "name": "CCBUI::ProcessDialogCmd",
+    "signature": "int __thiscall CCBUI::ProcessDialogCmd(CCBUI *this, int *pResult, HWND hDlg, int nCmd, int nParam)"
   },
   "0x004E2C10": {
     "name": "CCBRoleState::HandleDlgMessage",
@@ -9315,16 +9315,16 @@
     "signature": "void __thiscall(CCBUI *this)"
   },
   "0x004E40B0": {
-    "name": "CCBRoleState::_auto_4e40b0",
-    "signature": "LRESULT __thiscall(CCBRoleState *this)"
+    "name": "CCBRoleState::UpdateDialog",
+    "signature": "LRESULT __thiscall CCBRoleState::UpdateDialog(CCBRoleState *this)"
   },
   "0x004E4A80": {
-    "name": "CCBUI::_nearby_4e4a80",
-    "signature": "LRESULT __thiscall(CCBUI *this)"
+    "name": "CCBUI::GetSelection",
+    "signature": "LRESULT __thiscall CCBUI::GetSelection(CCBUI *this)"
   },
   "0x004E4D70": {
-    "name": "CCBUI::_nearby_4e4d70",
-    "signature": "LRESULT __thiscall(CCBUI *this)"
+    "name": "CCBUI::RefreshList",
+    "signature": "LRESULT __thiscall CCBUI::RefreshList(CCBUI *this)"
   },
   "0x004E50B0": {
     "name": "PAL_GDB::SetupSkillConfig",
@@ -9351,12 +9351,12 @@
     "signature": "int __thiscall(CCBStageCam *this, float *pfVal, HWND hDlg, int nVal, int nVal2, int nVal3)"
   },
   "0x004EC910": {
-    "name": "CCBRoleState::_sub_4EC910",
-    "signature": "int __thiscall(CCBRoleState *this)"
+    "name": "CCBRoleState::ProcessTurn",
+    "signature": "int __thiscall CCBRoleState::ProcessTurn(CCBRoleState *this)"
   },
   "0x004ED250": {
-    "name": "CCBRoleState::_auto_4ed250",
-    "signature": "int __fastcall(CCBRoleState *pCBRoleState)"
+    "name": "CCBRoleState::InitBattle",
+    "signature": "int __fastcall CCBRoleState::InitBattle(CCBRoleState *this)"
   },
   "0x004ED870": {
     "name": "CCBRoleState::SyncSkillCent",
@@ -9375,8 +9375,8 @@
     "signature": "char __thiscall(CCBSystem *this, int nVal)"
   },
   "0x004F2390": {
-    "name": "CCBRoleState::_nearby_4f2390",
-    "signature": "char __thiscall(CCBRoleState *this)"
+    "name": "CCBRoleState::CheckVictory",
+    "signature": "char __thiscall CCBRoleState::CheckVictory(CCBRoleState *this)"
   },
   "0x004F2560": {
     "name": "CCBRoleState::ValidateSlotIndex",
@@ -9399,48 +9399,48 @@
     "signature": "int __thiscall(CCBRoleState *this, const void *pData, unsigned int roleIdx)"
   },
   "0x004F2800": {
-    "name": "CCBRoleState::_sub_4F2800",
-    "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)"
+    "name": "CCBRoleState::ApplyDamage",
+    "signature": "int __thiscall CCBRoleState::ApplyDamage(CCBRoleState *this, int nTarget, int nAmount)"
   },
   "0x004F48C0": {
-    "name": "CCBRoleState::_nearby_4f48c0",
-    "signature": "void __thiscall(CCBRoleState *this, int roleIdx)"
+    "name": "CCBRoleState::SetRoleAction",
+    "signature": "void __thiscall CCBRoleState::SetRoleAction(CCBRoleState *this, int roleIdx)"
   },
   "0x004F4B90": {
-    "name": "CCBRoleState::_sub_4F4B90",
-    "signature": "unsigned int __thiscall(CCBRoleState *this, int roleIdx, int nVal)"
+    "name": "CCBRoleState::GetAttackPower",
+    "signature": "unsigned int __thiscall CCBRoleState::GetAttackPower(CCBRoleState *this, int roleIdx, int nType)"
   },
   "0x004F4C80": {
-    "name": "CCBRoleState::_sub_4F4C80",
-    "signature": "unsigned int __thiscall(CCBRoleState *this, int roleIdx, int nVal)"
+    "name": "CCBRoleState::GetDefensePower",
+    "signature": "unsigned int __thiscall CCBRoleState::GetDefensePower(CCBRoleState *this, int roleIdx, int nType)"
   },
   "0x004F5330": {
-    "name": "CCBRoleState::_sub_4F5330",
-    "signature": "int __thiscall(CCBRoleState *this, int roleIdx, char pData)"
+    "name": "CCBRoleState::GetMagicAttack",
+    "signature": "int __thiscall CCBRoleState::GetMagicAttack(CCBRoleState *this, int roleIdx, char nElement)"
   },
   "0x004F5D00": {
-    "name": "CCBRoleState::_sub_4F5D00",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned int roleIdx, char pData, int nVal)"
+    "name": "CCBRoleState::GetMagicDefense",
+    "signature": "int __thiscall CCBRoleState::GetMagicDefense(CCBRoleState *this, unsigned int roleIdx, char nElement)"
   },
   "0x004F6000": {
-    "name": "CCBRoleState::_sub_4F6000",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned int roleIdx, char pData, int nVal)"
+    "name": "CCBRoleState::GetSpeedBonus",
+    "signature": "int __thiscall CCBRoleState::GetSpeedBonus(CCBRoleState *this, unsigned int roleIdx, char nType)"
   },
   "0x004F61D0": {
-    "name": "CCBRoleState::_sub_4F61D0",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned int roleIdx, char pData, int nVal)"
+    "name": "CCBRoleState::GetLuckBonus",
+    "signature": "int __thiscall CCBRoleState::GetLuckBonus(CCBRoleState *this, unsigned int roleIdx, char nType)"
   },
   "0x004F6370": {
-    "name": "CCBRoleState::_sub_4F6370",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned int roleIdx, int nVal, char pData)"
+    "name": "CCBRoleState::GetAccuracy",
+    "signature": "int __thiscall CCBRoleState::GetAccuracy(CCBRoleState *this, unsigned int roleIdx, int nType)"
   },
   "0x004F6690": {
-    "name": "CCBRoleState::_sub_4F6690",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned int roleIdx, int nVal, char pData)"
+    "name": "CCBRoleState::GetEvasion",
+    "signature": "int __thiscall CCBRoleState::GetEvasion(CCBRoleState *this, unsigned int roleIdx, int nType)"
   },
   "0x004F6860": {
-    "name": "CCBRoleState::_sub_4F6860",
-    "signature": "int __thiscall(CCBRoleState *this, unsigned int roleIdx, int nVal, char pData)"
+    "name": "CCBRoleState::GetCritRate",
+    "signature": "int __thiscall CCBRoleState::GetCritRate(CCBRoleState *this, unsigned int roleIdx, int nType)"
   },
   "0x004F7200": {
     "name": "CCBRoleState::_sub_4F7200",
@@ -13441,8 +13441,8 @@
     "signature": "int *__thiscall(CCBStage *this, int nVal)"
   },
   "0x004E0330": {
-    "name": "CCBStage::_nearby_4e0330",
-    "signature": "int __thiscall(CCBStage *this)"
+    "name": "CCBStage::CCBStage",
+    "signature": "int __thiscall CCBStage::CCBStage(CCBStage *this)"
   },
   "0x004E0340": {
     "name": "CCBStage::ResetTurnSlots",
@@ -13473,48 +13473,48 @@
     "signature": "int __thiscall(CCBUI *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
   },
   "0x004E1160": {
-    "name": "CCBUI::_nearby_4e1160",
-    "signature": "int __thiscall(CCBUI *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "name": "CCBUI::DialogProc",
+    "signature": "int __thiscall CCBUI::DialogProc(CCBUI *this, HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
   },
   "0x004E16F0": {
-    "name": "CCBUI::_nearby_4e16f0",
-    "signature": "unsigned char * __thiscall(CCBUI *this, HWND hDlg)"
+    "name": "CCBUI::InitDialog",
+    "signature": "unsigned __int8 *__thiscall CCBUI::InitDialog(CCBUI *this, HWND hDlg)"
   },
   "0x004E1870": {
-    "name": "CCBUI::_nearby_4e1870",
-    "signature": "unsigned char *__thiscall(CCBUI *this, int nVal)"
+    "name": "CCBUI::UpdateDialogItem",
+    "signature": "unsigned __int8 *__thiscall CCBUI::UpdateDialogItem(CCBUI *this, int nItem)"
   },
   "0x004E2430": {
     "name": "CCBUI::HandleWindowMessage",
     "signature": "int __thiscall(CCBUI *this, HWND pData, UINT pData, WPARAM pData, LPARAM pData)"
   },
   "0x004E2490": {
-    "name": "CCBUI::_nearby_4e2490",
-    "signature": "int __thiscall(CCBUI *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "name": "CCBUI::DialogProc3",
+    "signature": "int __thiscall CCBUI::DialogProc3(CCBUI *this, HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
   },
   "0x004E28F0": {
-    "name": "CCBRoleState::_auto_4e28f0",
-    "signature": "LRESULT __thiscall(CCBRoleState *this)"
+    "name": "CCBRoleState::InitDialog",
+    "signature": "LRESULT __thiscall CCBRoleState::InitDialog(CCBRoleState *this)"
   },
   "0x004E3780": {
-    "name": "CCBUI::_nearby_4e3780",
-    "signature": "char __thiscall(CCBUI *this)"
+    "name": "CCBUI::UpdateControls",
+    "signature": "char __thiscall CCBUI::UpdateControls(CCBUI *this)"
   },
   "0x004E4570": {
-    "name": "CCBRoleState::_auto_4e4570",
-    "signature": "char __thiscall(CCBRoleState *this)"
+    "name": "CCBRoleState::ProcessDialogInput",
+    "signature": "char __thiscall CCBRoleState::ProcessDialogInput(CCBRoleState *this)"
   },
   "0x004E4D50": {
-    "name": "CCBUI::_nearby_4e4d50",
-    "signature": "BOOL __thiscall(CCBUI *this)"
+    "name": "CCBUI::ApplyChanges",
+    "signature": "BOOL __thiscall CCBUI::ApplyChanges(CCBUI *this)"
   },
   "0x004E4F00": {
-    "name": "CCBUI::_nearby_4e4f00",
-    "signature": "int __thiscall(CCBUI *this)"
+    "name": "CCBUI::UpdateStatus",
+    "signature": "int __thiscall CCBUI::UpdateStatus(CCBUI *this)"
   },
   "0x004E5170": {
-    "name": "CCBUI::_nearby_4e5170",
-    "signature": "int __thiscall(CCBUI *this)"
+    "name": "CCBUI::ProcessNotify",
+    "signature": "int __thiscall CCBUI::ProcessNotify(CCBUI *this)"
   },
   "0x004E53C0": {
     "name": "CCBUI::SendWindowMessage",
@@ -13525,16 +13525,16 @@
     "signature": "LRESULT __cdecl(HWND hWnd, int nVal)"
   },
   "0x004E5410": {
-    "name": "PAL_GDB::_nearby_4e5410",
-    "signature": "char *__cdecl(HWND hWnd)"
+    "name": "PAL_GDB::GetDlgItemText",
+    "signature": "char *__cdecl PAL_GDB::GetDlgItemText(HWND hWnd)"
   },
   "0x004E5490": {
     "name": "CCBUI::StartMagicThread",
     "signature": "int __thiscall(CCBUI *this)"
   },
   "0x004E5500": {
-    "name": "PAL_GDB::_nearby_4e5500",
-    "signature": "int __thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::ProcessDialogInit",
+    "signature": "int __thiscall PAL_GDB::ProcessDialogInit(PAL_GDB *this)"
   },
   "0x004E56E0": {
     "name": "PAL_GDB::FindItemByID",
@@ -13553,32 +13553,32 @@
     "signature": "int __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004E5800": {
-    "name": "PAL_GDB::_auto_4e5800",
-    "signature": "int __thiscall(PAL_GDB *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "name": "PAL_GDB::DialogProc",
+    "signature": "int __thiscall PAL_GDB::DialogProc(PAL_GDB *this, HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
   },
   "0x004E5B20": {
-    "name": "PAL_GDB::_auto_4e5b20",
-    "signature": "LRESULT __thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::UpdateDialogList",
+    "signature": "LRESULT __thiscall PAL_GDB::UpdateDialogList(PAL_GDB *this)"
   },
   "0x004E5E00": {
-    "name": "PAL_GDB::_nearby_4e5e00",
-    "signature": "int __thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::ProcessDialogCmd",
+    "signature": "int __thiscall PAL_GDB::ProcessDialogCmd(PAL_GDB *this)"
   },
   "0x004E5F60": {
     "name": "PAL_GDB::UpdateInventorySlots",
     "signature": "int *__thiscall(PAL_GDB *this)"
   },
   "0x004E5FF0": {
-    "name": "PAL_GDB::_nearby_4e5ff0",
-    "signature": "int __thiscall(PAL_GDB *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "name": "PAL_GDB::DialogProc2",
+    "signature": "int __thiscall PAL_GDB::DialogProc2(PAL_GDB *this, HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
   },
   "0x004E7B50": {
     "name": "CCBStageCam::LerpToTarget",
     "signature": "char __thiscall(CCBStageCam *this)"
   },
   "0x004E7D70": {
-    "name": "CCCTData::_auto_4e7d70",
-    "signature": "LRESULT __thiscall(CCCTData *this)"
+    "name": "CCCTData::InitDialog",
+    "signature": "LRESULT __thiscall CCCTData::InitDialog(CCCTData *this)"
   },
   "0x004E8450": {
     "name": "CCBStageCam::StoreCurrentView",
@@ -13609,24 +13609,24 @@
     "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)"
   },
   "0x004EBD30": {
-    "name": "CCBCamControl::_auto_4ebd30",
-    "signature": "void __thiscall(CCBCamControl *this, HWND hDlg)"
+    "name": "CCBCamControl::InitDialog",
+    "signature": "void __thiscall CCBCamControl::InitDialog(CCBCamControl *this, HWND hDlg)"
   },
   "0x004EBF90": {
-    "name": "CCBCamControl::_auto_4ebf90",
-    "signature": "void __thiscall(CCBCamControl *this, HWND hDlg)"
+    "name": "CCBCamControl::UpdateDialog",
+    "signature": "void __thiscall CCBCamControl::UpdateDialog(CCBCamControl *this, HWND hDlg)"
   },
   "0x004EC1F0": {
-    "name": "PAL_GDB::_auto_4ec1f0",
-    "signature": "LRESULT __thiscall(PAL_GDB *this, HWND hDlg)"
+    "name": "PAL_GDB::InitDialogData",
+    "signature": "LRESULT __thiscall PAL_GDB::InitDialogData(PAL_GDB *this, HWND hDlg)"
   },
   "0x004EC680": {
     "name": "CCBRoleState::ClearAndSetGP",
     "signature": "CCBRoleState * __thiscall(CCBRoleState *this, int nVal)"
   },
   "0x004EC700": {
-    "name": "CIniFile::_auto_4ec700",
-    "signature": "char __thiscall(CIniFile *this)"
+    "name": "CIniFile::Parse",
+    "signature": "char __thiscall CIniFile::Parse(CIniFile *this)"
   },
   "0x004EC7D0": {
     "name": "CCBRoleState::IterateMagicSlots",
@@ -13641,24 +13641,24 @@
     "signature": "char __thiscall(CCBRoleState *this, char pData)"
   },
   "0x004ED170": {
-    "name": "CCBRoleState::_nearby_4ed170",
-    "signature": "char __thiscall(CCBRoleState *this)"
+    "name": "CCBRoleState::CheckBattleEnd",
+    "signature": "char __thiscall CCBRoleState::CheckBattleEnd(CCBRoleState *this)"
   },
   "0x004ED680": {
-    "name": "CCBRoleState::_sub_4ED680",
-    "signature": "char __thiscall(CCBRoleState *this)"
+    "name": "CCBRoleState::ProcessAI",
+    "signature": "char __thiscall CCBRoleState::ProcessAI(CCBRoleState *this)"
   },
   "0x004ED800": {
     "name": "CCBRoleState::UpdateDefenceStats",
     "signature": "char *__thiscall(CCBRoleState *this)"
   },
   "0x004ED8C0": {
-    "name": "PAL_GDB::_auto_4ed8c0",
-    "signature": "int __thiscall(PAL_GDB *this)"
+    "name": "PAL_GDB::LoadBattleData",
+    "signature": "int __thiscall PAL_GDB::LoadBattleData(PAL_GDB *this)"
   },
   "0x004EDC60": {
-    "name": "CCBRoleState::_nearby_4edc60",
-    "signature": "int __thiscall(CCBRoleState *this)"
+    "name": "CCBRoleState::CalcFullGP",
+    "signature": "int __thiscall CCBRoleState::CalcFullGP(CCBRoleState *this)"
   },
   "0x004EED60": {
     "name": "CCBRoleState::Method_4EED60",
@@ -13673,12 +13673,12 @@
     "signature": "int __thiscall(CCBRoleState *this, int nVal, char pData)"
   },
   "0x004F69F0": {
-    "name": "PAL_GDB::_auto_4f69f0",
-    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
+    "name": "PAL_GDB::IsItemUsable",
+    "signature": "bool __thiscall PAL_GDB::IsItemUsable(PAL_GDB *this, int nItemId)"
   },
   "0x004F6A20": {
-    "name": "PAL_GDB::_auto_4f6a20",
-    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
+    "name": "PAL_GDB::IsItemEquipable",
+    "signature": "bool __thiscall PAL_GDB::IsItemEquipable(PAL_GDB *this, int nItemId)"
   },
   "0x004F6A40": {
     "name": "PAL_GDB::_auto_4f6a40",
