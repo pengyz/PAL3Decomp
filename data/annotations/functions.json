@@ -8027,7 +8027,7 @@
     "signature": "BOOL __thiscall(PalScript *this, int nVal, int nVal2)"
   },
   "0x0043A5D0": {
-    "name": "UIScene::_method_43a5d0",
+    "name": "UIScene::OpenAndLoadResource",
     "signature": "gbVFileSystem *__thiscall(UIScene *this, BOOL bVisible, UIWnd *pWnd)",
     "_misattrib_evidence": "max_offset=160>class_size=20"
   },
@@ -10973,7 +10973,7 @@
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00438E30": {
-    "name": "NPC::_auto_438e30",
+    "name": "NPC::AccumulateTime",
     "signature": "int __thiscall(NPC *this, float fVal)"
   },
   "0x00438F50": {
@@ -11379,7 +11379,7 @@
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x0044A820": {
-    "name": "CCBProtectWindow::_method_44a820",
+    "name": "CCBProtectWindow::GetUIElements",
     "signature": "int __thiscall(CCBProtectWindow *this, float fVal, int nVal)"
   },
   "0x0044AA20": {
@@ -11395,7 +11395,7 @@
     "signature": "int __thiscall(RoleSystem *this)"
   },
   "0x0044B690": {
-    "name": "CCBEditor::_method_44b690",
+    "name": "CCBEditor::InvokeItemMethod",
     "signature": "int __thiscall(CCBEditor *this)"
   },
   "0x0044B710": {
@@ -11521,7 +11521,7 @@
     "signature": "void __thiscall(UILoadingFrm *this)"
   },
   "0x00450900": {
-    "name": "UILoadingFrm::_method_450900",
+    "name": "UILoadingFrm::UpdateAnimation",
     "signature": "BOOL __thiscall(UILoadingFrm *this, int nVal, int nVal2)"
   },
   "0x00450A50": {
@@ -13741,7 +13741,7 @@
     "signature": "char __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F70A0": {
-    "name": "CCBSystem::_sub_4F70A0",
+    "name": "CCBSystem::HandleMagicCommand",
     "signature": "char __thiscall(CCBSystem *this, int nVal)"
   },
   "0x004F7480": {
@@ -13813,7 +13813,7 @@
     "signature": "int __thiscall(CCBRoleState *this, int nVal)"
   },
   "0x004FA620": {
-    "name": "CCBRoleState::_nearby_4fa620",
+    "name": "CCBRoleState::CountValidSlots",
     "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2, int *p_DWORD, int *pnVal)"
   },
   "0x004FA700": {
@@ -14323,7 +14323,7 @@
     "signature": "int __thiscall(SaleUI *this, int deltatime, int haveinput)"
   },
   "0x005270C0": {
-    "name": "CCBAttackSequen::_method_5270c0",
+    "name": "CCBAttackSequen::FindSequenceSlot",
     "signature": "int __thiscall(CCBAttackSequen *this, int nVal)"
   },
   "0x00527130": {
@@ -15604,12 +15604,12 @@
     "class": "CCBRoleState"
   },
   "0x004845F0": {
-    "name": "StateUI::_sub_4845F0",
+    "name": "StateUI::IteratePlayerAtts",
     "signature": "int __thiscall(StateUI *this)",
     "class": "StateUI"
   },
   "0x00484140": {
-    "name": "LineupComp::_method_484140",
+    "name": "LineupComp::CallSlotMethod",
     "signature": "int __thiscall(LineupComp *this, int nIndex, unsigned int dwParam)",
     "class": "UIWnd"
   },
