@@ -11954,7 +11954,7 @@
   },
   "0x004E10E0": {
     "name": "CCBUI::CloseDialog",
-    "signature": "int __thiscall(CCBUI *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "signature": "int __thiscall CCBUI::CloseDialog(CCBUI *this, HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
   },
   "0x004E1160": {
     "name": "CCBUI::DlgProcEffect",
@@ -11970,7 +11970,7 @@
   },
   "0x004E2430": {
     "name": "CCBUI::HandleWindowMessage",
-    "signature": "int __thiscall(CCBUI *this, HWND pData, UINT pData, WPARAM pData, LPARAM pData)"
+    "signature": "int __thiscall CCBUI::HandleWindowMessage(CCBUI *this, HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
   },
   "0x004E2490": {
     "name": "CCBUI::DlgProcMain",
@@ -12066,7 +12066,7 @@
   },
   "0x004E8450": {
     "name": "CCBStageCam::StoreCurrentView",
-    "signature": "int __thiscall(CCBStageCam *this, HWND hDlg, UINT pData, WPARAM pData, LPARAM pData)"
+    "signature": "int __thiscall CCBStageCam::StoreCurrentView(CCBStageCam *this, HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
   },
   "0x004E9890": {
     "name": "CCBStageCam::SetBlendWeight",
@@ -13250,15 +13250,15 @@
   },
   "0x0053B6E0": {
     "name": "Actor_CopyConstruct_1C",
-    "signature": "void __cdecl(void *pData, const void *pData)"
+    "signature": "void __cdecl Actor_CopyConstruct_1C(void *pDst, const void *pSrc)"
   },
   "0x0053B700": {
     "name": "Actor_CopyConstruct_290",
-    "signature": "void __cdecl(void *pData, const void *pData)"
+    "signature": "void __cdecl Actor_CopyConstruct_290(void *pDst, const void *pSrc)"
   },
   "0x0053B870": {
     "name": "Actor_CopyConstruct_40",
-    "signature": "void __cdecl(void *pData, const void *pData)"
+    "signature": "void __cdecl Actor_CopyConstruct_40(void *pDst, const void *pSrc)"
   },
   "0x0053B890": {
     "name": "Actor::SetCurrentAction",
