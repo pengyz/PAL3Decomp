@@ -7955,8 +7955,8 @@
     "signature": "void __thiscall PalScript::Op_Specify_Compos(PalScript *this)"
   },
   "0x00437E60": {
-    "name": "PAL3::_auto_437e60",
-    "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+    "name": "PAL3::WriteRegistryValue",
+    "signature": "bool PAL3::WriteRegistryValue(CHAR *lpSubKey, DWORD dwDisposition, ...)"
   },
   "0x00437FF0": {
     "name": "PalScript::Op_Start_Wolf",
@@ -10873,16 +10873,16 @@
     "signature": "void __thiscall PalScript::Op_GetTimeSel(PalScript *this)"
   },
   "0x00437D90": {
-    "name": "PalScript::_nearby_437d90",
-    "signature": "int __cdecl(char *String2)"
+    "name": "FindOpcodeByName",
+    "signature": "int __cdecl FindOpcodeByName(char *pszCmdName)"
   },
   "0x00437DE0": {
-    "name": "PalScript::_nearby_437de0",
-    "signature": "void __cdecl(int nVal)"
+    "name": "SetGameSwitch",
+    "signature": "void __cdecl SetGameSwitch(int nSwitchIdx)"
   },
   "0x00437F40": {
-    "name": "PalScript::_nearby_437f40",
-    "signature": "char * __thiscall(PalScript *this)"
+    "name": "LoadGameSwitches",
+    "signature": "char *__cdecl LoadGameSwitches()"
   },
   "0x00438030": {
     "name": "PalScript::Op_Start_HideFight",
