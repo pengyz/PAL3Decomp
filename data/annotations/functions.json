@@ -5939,8 +5939,8 @@
     "signature": "int()"
   },
   "0x004B01D0": {
-    "name": "UITitle_JDHY::_method_01d0",
-    "signature": "int __thiscall(UITitle_JDHY *this)",
+    "name": "UITitle_JDHY::UITitle_JDHY",
+    "signature": "int __thiscall UITitle_JDHY::UITitle_JDHY(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=289120>class_size=1208"
   },
   "0x0044ED80": {
@@ -6211,8 +6211,8 @@
     "signature": "int __thiscall(UIRoleSelect *this, char value)"
   },
   "0x004B0540": {
-    "name": "UITitle_JDHY::_method_0540",
-    "signature": "int __thiscall(UITitle_JDHY *this)",
+    "name": "UITitle_JDHY::Destroy",
+    "signature": "int __thiscall UITitle_JDHY::Destroy(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=289120>class_size=1208"
   },
   "0x00404750": {
@@ -8868,49 +8868,49 @@
     "signature": "void *__thiscall(UIWnd *Block, char pData)"
   },
   "0x004B1580": {
-    "name": "UITitle_JDHY::_method_1580",
-    "signature": "int __thiscall(UITitle_JDHY *this)",
+    "name": "UITitle_JDHY::UpdateSlotInfo",
+    "signature": "int __thiscall UITitle_JDHY::UpdateSlotInfo(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=286368>class_size=4280"
   },
   "0x004B1920": {
-    "name": "LineupUI::_method_4b1920",
-    "signature": "int *__thiscall(LineupUI *this, int nVal)"
+    "name": "LineupUI::GetSlotData",
+    "signature": "int *__thiscall LineupUI::GetSlotData(LineupUI *this, int nSlot)"
   },
   "0x004B1C50": {
-    "name": "UITitle_JDHY::_method_1c50",
-    "signature": "int __thiscall(UITitle_JDHY *this)",
+    "name": "UITitle_JDHY::LoadGame",
+    "signature": "int __thiscall UITitle_JDHY::LoadGame(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=286364>class_size=39240"
   },
   "0x004B1EA0": {
-    "name": "UITitle_JDHY::_method_1ea0",
-    "signature": "int __thiscall(UITitle_JDHY *this)",
+    "name": "UITitle_JDHY::SaveGame",
+    "signature": "int __thiscall UITitle_JDHY::SaveGame(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=286360>class_size=4280"
   },
   "0x004B1FB0": {
-    "name": "UITitle_JDHY::_method_1fb0",
-    "signature": "int __thiscall(UITitle_JDHY *this)",
+    "name": "UITitle_JDHY::DeleteSlot",
+    "signature": "int __thiscall UITitle_JDHY::DeleteSlot(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=286360>class_size=4280"
   },
   "0x004B20C0": {
-    "name": "UITitle_JDHY::_method_20c0",
-    "signature": "int __thiscall(UITitle_JDHY *this)",
+    "name": "UITitle_JDHY::ConfirmAction",
+    "signature": "int __thiscall UITitle_JDHY::ConfirmAction(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=288208>class_size=4280"
   },
   "0x004B2750": {
-    "name": "UITitle_JDHY::_auto_4b2750",
-    "signature": "FILE *__thiscall(UITitle_JDHY *this, double Data, int nVal)"
+    "name": "UITitle_JDHY::WriteSlot",
+    "signature": "FILE *__thiscall UITitle_JDHY::WriteSlot(UITitle_JDHY *this, double Data, int nSlot)"
   },
   "0x004B2840": {
-    "name": "PAL3::_auto_4b2840",
-    "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+    "name": "PAL3::ReadRegistry",
+    "signature": "bool PAL3::ReadRegistry(CHAR *lpSubKey, DWORD dwDisposition, ...)"
   },
   "0x004B2C70": {
-    "name": "StateUI::_sub_4B2C70",
-    "signature": "void __thiscall(StateUI *this)"
+    "name": "StateUI::DestroySlots",
+    "signature": "void __thiscall StateUI::DestroySlots(StateUI *this)"
   },
   "0x004B2D20": {
-    "name": "UITitle_JDHY::_method_2d20",
-    "signature": "int __thiscall(UITitle_JDHY *this)",
+    "name": "UITitle_JDHY::ProcessInput",
+    "signature": "int __thiscall UITitle_JDHY::ProcessInput(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=288208>class_size=4280"
   },
   "0x004B30C0": {
@@ -8922,8 +8922,8 @@
     "signature": "int __thiscall(LineupUI *this)"
   },
   "0x004B42F0": {
-    "name": "PalScript::_auto_4b42f0",
-    "signature": "int __thiscall(PalScript *this)"
+    "name": "PalScript::ShowSaveUI",
+    "signature": "int __thiscall PalScript::ShowSaveUI(PalScript *this)"
   },
   "0x004B4FE0": {
     "name": "_TextureLib_Data::_auto_4b4fe0",
@@ -8978,8 +8978,8 @@
     "signature": "__int64 __thiscall(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
   },
   "0x004B66B0": {
-    "name": "RenderTarget3::_nearby_4b66b0",
-    "signature": "bool(int nVal, int nVal2)"
+    "name": "RenderTarget3::CheckVisible",
+    "signature": "bool RenderTarget3::CheckVisible(int nVal, int nVal2)"
   },
   "0x004B67B0": {
     "name": "RenderTarget3::EndSceneGraph",
@@ -8990,8 +8990,8 @@
     "signature": "CPolicy **__thiscall(RenderTarget3 *this)"
   },
   "0x004B6CA0": {
-    "name": "RenderTarget3::_nearby_4b6ca0",
-    "signature": "void __thiscall(RenderTarget3 *this)"
+    "name": "RenderTarget3::OnIdle",
+    "signature": "void __thiscall RenderTarget3::OnIdle(RenderTarget3 *this)"
   },
   "0x004B6F70": {
     "name": "PAL3VisNode::PAL3VisNode",
@@ -9016,8 +9016,8 @@
     "signature": "void __stdcall(int)"
   },
   "0x004BAE60": {
-    "name": "_misattrib_RenderTarget::_nearby_4bae60",
-    "signature": "void __thiscall(RenderTarget *this, struct gbVFile *pFile)",
+    "name": "_misattrib_RenderTarget::LoadFromFile",
+    "signature": "void __thiscall RenderTarget::LoadFromFile(RenderTarget *this, struct gbVFile *pFile)",
     "_misattrib_evidence": "max_offset=32004>class_size=200"
   },
   "0x004BC760": {
@@ -9099,8 +9099,8 @@
     "signature": "CEffBase **__thiscall(RenderTarget2 *this)"
   },
   "0x004C0520": {
-    "name": "RenderTarget2::_nearby_4c0520",
-    "signature": "CEffBase ** __thiscall(RenderTarget2 *this)"
+    "name": "RenderTarget2::CreateEffBase",
+    "signature": "CEffBase **__thiscall RenderTarget2::CreateEffBase(RenderTarget2 *this)"
   },
   "0x004C0610": {
     "name": "nullsub_75",
@@ -9115,16 +9115,16 @@
     "signature": "CEffAudio **__thiscall(RenderTarget2 *this)"
   },
   "0x004C15B0": {
-    "name": "RenderTarget2::_nearby_4c15b0",
-    "signature": "CEffAudio ** __thiscall(RenderTarget2 *this)"
+    "name": "RenderTarget2::CreateEffAudio",
+    "signature": "CEffAudio **__thiscall RenderTarget2::CreateEffAudio(RenderTarget2 *this)"
   },
   "0x004C2050": {
     "name": "RenderTarget2::ResetSurface",
     "signature": "CEffBink **__thiscall(RenderTarget2 *this)"
   },
   "0x004C2090": {
-    "name": "RenderTarget2::_nearby_4c2090",
-    "signature": "CEffBink ** __thiscall(RenderTarget2 *this)"
+    "name": "RenderTarget2::CreateEffBink",
+    "signature": "CEffBink **__thiscall RenderTarget2::CreateEffBink(RenderTarget2 *this)"
   },
   "0x004C27D0": {
     "name": "RenderTarget2::Deactivate",
@@ -9143,16 +9143,16 @@
     "signature": "CEffCallBack **__thiscall(RenderTarget2 *this)"
   },
   "0x004C3490": {
-    "name": "RenderTarget2::_nearby_4c3490",
-    "signature": "CEffCallBack ** __thiscall(RenderTarget2 *this)"
+    "name": "RenderTarget2::CreateEffCallBack",
+    "signature": "CEffCallBack **__thiscall RenderTarget2::CreateEffCallBack(RenderTarget2 *this)"
   },
   "0x004C3C90": {
-    "name": "RenderTarget2::_nearby_4c3c90",
-    "signature": "CEffCylinder **__thiscall(RenderTarget2 *this)"
+    "name": "RenderTarget2::CreateEffCylinder",
+    "signature": "CEffCylinder **__thiscall RenderTarget2::CreateEffCylinder(RenderTarget2 *this)"
   },
   "0x004C3D90": {
-    "name": "RenderTarget2::_nearby_4c3d90",
-    "signature": "CEffCylinder ** __thiscall(RenderTarget2 *this)"
+    "name": "RenderTarget2::CreateEffCylinderEx",
+    "signature": "CEffCylinder **__thiscall RenderTarget2::CreateEffCylinderEx(RenderTarget2 *this)"
   },
   "0x004C5E70": {
     "name": "nullsub_79",
@@ -9163,96 +9163,96 @@
     "signature": "char *__thiscall(CEffgbParticle *this, char pData)"
   },
   "0x004CC290": {
-    "name": "CMeteorChain::_auto_4cc290",
-    "signature": "void __thiscall(CMeteorChain *this, int *pnVal)"
+    "name": "CMeteorChain::LoadTextures",
+    "signature": "void __thiscall CMeteorChain::LoadTextures(CMeteorChain *this, int *pParams)"
   },
   "0x004CEB60": {
-    "name": "CEffgbParticle::_nearby_4ceb60",
-    "signature": "int __thiscall(CEffgbParticle *this, CEffgbParticle *pEffgbParticle, int nVal, CEffgbParticle *pEffgbParticle2)"
+    "name": "CEffgbParticle::Clone",
+    "signature": "int __thiscall CEffgbParticle::Clone(CEffgbParticle *this, CEffgbParticle *pSrc, int nVal)"
   },
   "0x004CEC80": {
-    "name": "CEffModel::_nearby_4cec80",
-    "signature": "int __thiscall(CEffModel *this, CEffModel *pEffModel, int nVal, CEffModel *pEffModel2)"
+    "name": "CEffModel::Clone",
+    "signature": "int __thiscall CEffModel::Clone(CEffModel *this, CEffModel *pSrc, int nVal, int nVal2)"
   },
   "0x004CEEC0": {
-    "name": "RenderTarget2::_auto_4ceec0",
-    "signature": "int __thiscall(RenderTarget2 *this, RenderTarget2 *pRenderTarget2, int nVal, RenderTarget2 *pRenderTarget22)"
+    "name": "RenderTarget2::CloneExplosive",
+    "signature": "int __thiscall RenderTarget2::CloneExplosive(RenderTarget2 *this, RenderTarget2 *pSrc, int nVal, RenderTarget2 *pDst)"
   },
   "0x004CEFE0": {
-    "name": "CEffMgr::_auto_4cefe0",
-    "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    "name": "CEffMgr::CloneExplosive",
+    "signature": "int __thiscall CEffMgr::CloneExplosive(CEffMgr *this, CEffMgr *pSrc, int nVal, CEffMgr *pDst)"
   },
   "0x004CF220": {
-    "name": "CEffMgr::_auto_4cf220",
-    "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    "name": "CEffMgr::CloneGrid",
+    "signature": "int __thiscall CEffMgr::CloneGrid(CEffMgr *this, CEffMgr *pSrc, int nVal, CEffMgr *pDst)"
   },
   "0x004CF340": {
-    "name": "RenderTarget2::_auto_4cf340",
-    "signature": "int __thiscall(RenderTarget2 *this, RenderTarget2 *pRenderTarget2, int nVal, RenderTarget2 *pRenderTarget22)"
+    "name": "RenderTarget2::CloneMeteor",
+    "signature": "int __thiscall RenderTarget2::CloneMeteor(RenderTarget2 *this, RenderTarget2 *pSrc, int nVal, RenderTarget2 *pDst)"
   },
   "0x004CF460": {
-    "name": "CEffMgr::_auto_4cf460",
-    "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    "name": "CEffMgr::CloneMeteor",
+    "signature": "int __thiscall CEffMgr::CloneMeteor(CEffMgr *this, CEffMgr *pSrc, int nVal, CEffMgr *pDst)"
   },
   "0x004CF580": {
-    "name": "CEffectSystem::_nearby_4cf580",
-    "signature": "int __thiscall(CEffectSystem *this, CEffectSystem *pEffectSystem, int nVal, CEffectSystem *pEffectSystem2)"
+    "name": "CEffectSystem::CreateEffect",
+    "signature": "int __thiscall CEffectSystem::CreateEffect(CEffectSystem *this, CEffectSystem *pSrc, int nType, int nVal)"
   },
   "0x004CF6A0": {
-    "name": "CEffMgr::_auto_4cf6a0",
-    "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    "name": "CEffMgr::CloneModel",
+    "signature": "int __thiscall CEffMgr::CloneModel(CEffMgr *this, CEffMgr *pSrc, int nVal, CEffMgr *pDst)"
   },
   "0x004CF8E0": {
-    "name": "CEffMgr::_auto_4cf8e0",
-    "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    "name": "CEffMgr::CloneQuad",
+    "signature": "int __thiscall CEffMgr::CloneQuad(CEffMgr *this, CEffMgr *pSrc, int nVal, CEffMgr *pDst)"
   },
   "0x004CFA00": {
-    "name": "RenderTarget2::_auto_4cfa00",
-    "signature": "int __thiscall(RenderTarget2 *this, RenderTarget2 *pRenderTarget2, int nVal, RenderTarget2 *pRenderTarget22)"
+    "name": "RenderTarget2::CloneQuad",
+    "signature": "int __thiscall RenderTarget2::CloneQuad(RenderTarget2 *this, RenderTarget2 *pSrc, int nVal, RenderTarget2 *pDst)"
   },
   "0x004CFB20": {
-    "name": "CEffMgr::_auto_4cfb20",
-    "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    "name": "CEffMgr::CloneSParticle",
+    "signature": "int __thiscall CEffMgr::CloneSParticle(CEffMgr *this, CEffMgr *pSrc, int nVal, CEffMgr *pDst)"
   },
   "0x004CFEB0": {
     "name": "CEffCustomShape::sub_004CFEB0",
     "signature": "bool __thiscall(CEffCustomShape *this, int nVal)"
   },
   "0x004D2E10": {
-    "name": "CEffQuad::_auto_4d2e10",
-    "signature": "int __thiscall(CEffQuad *this, int nVal)"
+    "name": "CEffQuad::Update",
+    "signature": "int __thiscall CEffQuad::Update(CEffQuad *this, int nVal)"
   },
   "0x004D3860": {
     "name": "CEffQuake::_sdtor",
     "signature": "CEffQuake *__thiscall(CEffQuake *this, char pData)"
   },
   "0x004D4340": {
-    "name": "CEffShock::_auto_4d4340",
-    "signature": "void __thiscall(CEffShock *this, int *pnVal)"
+    "name": "CEffShock::LoadParams",
+    "signature": "void __thiscall CEffShock::LoadParams(CEffShock *this, int *pParams)"
   },
   "0x004D4570": {
     "name": "CEffShock::UpdateSegment",
     "signature": "int __thiscall(CEffShock *this, int nVal)"
   },
   "0x004D8580": {
-    "name": "CCBAI::_sub_4D8580",
-    "signature": "void __thiscall(CCBAI *this, int nVal)"
+    "name": "CCBAI::SelectRandomTarget",
+    "signature": "void __thiscall CCBAI::SelectRandomTarget(CCBAI *this, int nExclude)"
   },
   "0x004DB8E0": {
     "name": "CCBSystem::ThreadTask__ovl_4db8e0",
     "signature": "int __thiscall(CCBSystem *this, char pData)"
   },
   "0x004DBE60": {
-    "name": "CCBSystem::_nearby_4dbe60",
-    "signature": "void __thiscall(CCBSystem *this, int roleIdx)"
+    "name": "CCBSystem::InitRoleSlot",
+    "signature": "void __thiscall CCBSystem::InitRoleSlot(CCBSystem *this, int roleIdx)"
   },
   "0x004DC510": {
     "name": "CCBSystem::ResetConfig",
     "signature": "double __thiscall(CCBSystem *this, int nVal)"
   },
   "0x004DCF80": {
-    "name": "CCBRoleState::_nearby_4dcf80",
-    "signature": "int __thiscall(CCBRoleState *this, int a_14C)"
+    "name": "CCBRoleState::UseMagic",
+    "signature": "int __thiscall CCBRoleState::UseMagic(CCBRoleState *this, int nSlot)"
   },
   "0x004DDC90": {
     "name": "CCBRoleState::EndRoundTasks",
@@ -12669,56 +12669,56 @@
     "signature": "unsigned int __cdecl(char *pszBuf, char *pszBuf2, int nVal)"
   },
   "0x004B0040": {
-    "name": "_method_4b0040",
-    "signature": "int *__cdecl(int *p_DWORD, int *p_DWORD2, int nVal)"
+    "name": "CompareSlotPriority",
+    "signature": "int *__cdecl CompareSlotPriority(int *pA, int *pB, int nVal)"
   },
   "0x004B01C0": {
     "name": "UIWnd::_nearby_4b01c0",
     "signature": "void __thiscall(UIWnd *this)"
   },
   "0x004B0820": {
-    "name": "UITitle_JDHY::_method_0820",
-    "signature": "int __thiscall(UITitle_JDHY *this)",
+    "name": "UITitle_JDHY::Create",
+    "signature": "int __thiscall UITitle_JDHY::Create(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=289120>class_size=204"
   },
   "0x004B15F0": {
-    "name": "UITitle_JDHY::_method_4b15f0",
-    "signature": "int __thiscall(UITitle_JDHY *this)"
+    "name": "UITitle_JDHY::UpdateLayout",
+    "signature": "int __thiscall UITitle_JDHY::UpdateLayout(UITitle_JDHY *this)"
   },
   "0x004B19E0": {
-    "name": "ChoseCompose::_method_4b19e0",
-    "signature": "int __thiscall(ChoseCompose *this, int arg0, int nVal, int nVal2, int nVal3, int nVal4)"
+    "name": "ChoseCompose::ProcessInput",
+    "signature": "int __thiscall ChoseCompose::ProcessInput(ChoseCompose *this, int nCmd, int nVal, int nVal2)"
   },
   "0x004B1C00": {
     "name": "UITitle_JDHY::ResetNoteState",
     "signature": "int __thiscall(UITitle_JDHY *this)"
   },
   "0x004B2470": {
-    "name": "StateUI::_method_4b2470",
-    "signature": "int __thiscall(StateUI *this)"
+    "name": "StateUI::ProcessKey",
+    "signature": "int __thiscall StateUI::ProcessKey(StateUI *this)"
   },
   "0x004B2920": {
-    "name": "UITitle_JDHY::_method_4b2920",
-    "signature": "char __thiscall(UITitle_JDHY *this, int Data)"
+    "name": "UITitle_JDHY::ReadSlot",
+    "signature": "char __thiscall UITitle_JDHY::ReadSlot(UITitle_JDHY *this, int nSlot)"
   },
   "0x004B3100": {
-    "name": "UITitle_JDHY::_method_3100",
-    "signature": "int __thiscall(UITitle_JDHY *this)",
+    "name": "UITitle_JDHY::ProcessInput2",
+    "signature": "int __thiscall UITitle_JDHY::ProcessInput2(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=286376>class_size=4280"
   },
   "0x004B3270": {
-    "name": "UITitle_JDHY::_method_3270",
-    "signature": "int __thiscall(UITitle_JDHY *this)",
+    "name": "UITitle_JDHY::ProcessKey",
+    "signature": "int __thiscall UITitle_JDHY::ProcessKey(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=286368>class_size=4280"
   },
   "0x004B3470": {
-    "name": "UITitle_JDHY::_method_3470",
-    "signature": "int __thiscall(UITitle_JDHY *this)",
+    "name": "UITitle_JDHY::Render",
+    "signature": "int __thiscall UITitle_JDHY::Render(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=289576>class_size=1208"
   },
   "0x004B43E0": {
-    "name": "StateUI::_auto_4b43e0",
-    "signature": "int __thiscall(StateUI *this, int nVal)"
+    "name": "StateUI::UpdateFiveNimbus",
+    "signature": "int __thiscall StateUI::UpdateFiveNimbus(StateUI *this, int nVal)"
   },
   "0x004B4610": {
     "name": "StateUI::_nearby_4b4610",
@@ -12729,40 +12729,40 @@
     "signature": "void __thiscall(RenderTarget *this)"
   },
   "0x004B4B10": {
-    "name": "RenderTarget::_sub_4B4B10",
-    "signature": "void __thiscall(RenderTarget *this, int nVal, int nVal2)"
+    "name": "RenderTarget::SetViewport",
+    "signature": "void __thiscall RenderTarget::SetViewport(RenderTarget *this, int nX, int nY)"
   },
   "0x004B63C0": {
-    "name": "RenderTarget3::_nearby_4b63c0",
-    "signature": "int __cdecl(float fVal, float fVal2, int nVal, int nVal2, int nVal3, int nVal4, float fVal3)"
+    "name": "RenderTarget3::CalcScreenPos",
+    "signature": "int __cdecl RenderTarget3::CalcScreenPos(float fX, float fY, float fZ)"
   },
   "0x004B6540": {
     "name": "RenderTarget3::_nearby_4b6540",
     "signature": "void __thiscall(RenderTarget3 *this)"
   },
   "0x004B6550": {
-    "name": "RenderTarget3::_nearby_4b6550",
-    "signature": "int __fastcall(int nVal)"
+    "name": "RenderTarget3::SetFlag",
+    "signature": "int __fastcall RenderTarget3::SetFlag(int pObj)"
   },
   "0x004B67E0": {
     "name": "RenderTarget3::SwapBuffers",
     "signature": "int __thiscall(RenderTarget3 *this)"
   },
   "0x004B6820": {
-    "name": "RenderTarget3::_nearby_4b6820",
-    "signature": "int __thiscall(RenderTarget3 *this, int nVal)"
+    "name": "RenderTarget3::SetCallback",
+    "signature": "int __thiscall RenderTarget3::SetCallback(RenderTarget3 *this, int nFunc)"
   },
   "0x004B6D10": {
     "name": "RenderTarget3::_nearby_4b6d10",
     "signature": "void __thiscall(RenderTarget3 *this)"
   },
   "0x004B6D20": {
-    "name": "RenderTarget3::_nearby_4b6d20",
-    "signature": "int *__thiscall(RenderTarget3 *this)"
+    "name": "RenderTarget3::Reset",
+    "signature": "int *__thiscall RenderTarget3::Reset(RenderTarget3 *this)"
   },
   "0x004B7340": {
-    "name": "CEffMgr::_auto_4b7340",
-    "signature": "void __thiscall(CEffMgr *this, float fVal)"
+    "name": "CEffMgr::SetTimeScale",
+    "signature": "void __thiscall CEffMgr::SetTimeScale(CEffMgr *this, float fScale)"
   },
   "0x004B73F0": {
     "name": "CEffMgr::SetEffectClass",
@@ -12773,12 +12773,12 @@
     "signature": "int __thiscall(RenderTarget *this)"
   },
   "0x004BB0F0": {
-    "name": "RenderTarget::_nearby_4bb0f0",
-    "signature": "int __thiscall(RenderTarget *this, float fVal)"
+    "name": "RenderTarget::SetAlpha",
+    "signature": "int __thiscall RenderTarget::SetAlpha(RenderTarget *this, float fAlpha)"
   },
   "0x004BB180": {
-    "name": "RenderTarget::_nearby_4bb180",
-    "signature": "int __thiscall(RenderTarget *this, int nVal)"
+    "name": "RenderTarget::SetBlendMode",
+    "signature": "int __thiscall RenderTarget::SetBlendMode(RenderTarget *this, int nMode)"
   },
   "0x004BB190": {
     "name": "CEffect::SetRenderParam",
@@ -13009,16 +13009,16 @@
     "signature": "char __thiscall(CEffAction *this, int nVal)"
   },
   "0x004C0920": {
-    "name": "CEffMgr::_auto_4c0920",
-    "signature": "unsigned int __thiscall(CEffMgr *this, float *pfVal)"
+    "name": "CEffMgr::FindNearestEffect",
+    "signature": "unsigned int __thiscall CEffMgr::FindNearestEffect(CEffMgr *this, float *pfPos)"
   },
   "0x004C09E0": {
-    "name": "RenderTarget2::_nearby_4c09e0",
-    "signature": "void __thiscall(RenderTarget2 *this, int *p_DWORD)"
+    "name": "RenderTarget2::LoadEffBase",
+    "signature": "void __thiscall RenderTarget2::LoadEffBase(RenderTarget2 *this, int *pData)"
   },
   "0x004C0C10": {
-    "name": "RenderTarget2::_nearby_4c0c10",
-    "signature": "int __thiscall(RenderTarget2 *this, int _4C)"
+    "name": "RenderTarget2::UpdateEffBase",
+    "signature": "int __thiscall RenderTarget2::UpdateEffBase(RenderTarget2 *this, int nVal)"
   },
   "0x004C1230": {
     "name": "nullsub_12",
@@ -13037,8 +13037,8 @@
     "signature": "void __cdecl()"
   },
   "0x004C1270": {
-    "name": "RenderTarget2::_nearby_4c1270",
-    "signature": "int * __thiscall(RenderTarget2 *this, int nVal)"
+    "name": "RenderTarget2::GetEffBasePtr",
+    "signature": "int *__thiscall RenderTarget2::GetEffBasePtr(RenderTarget2 *this, int nIdx)"
   },
   "0x004C13B0": {
     "name": "RenderTarget2::RenderScene",
@@ -13053,48 +13053,48 @@
     "signature": "int __thiscall(RenderTarget2 *this)"
   },
   "0x004C1660": {
-    "name": "RenderTarget2::_nearby_4c1660",
-    "signature": "int __thiscall(RenderTarget2 *this)"
+    "name": "RenderTarget2::GetEffBaseCount",
+    "signature": "int __thiscall RenderTarget2::GetEffBaseCount(RenderTarget2 *this)"
   },
   "0x004C1700": {
-    "name": "RenderTarget2::_nearby_4c1700",
-    "signature": "void __thiscall(RenderTarget2 *this, float *pfVal)"
+    "name": "RenderTarget2::SetEffBasePos",
+    "signature": "void __thiscall RenderTarget2::SetEffBasePos(RenderTarget2 *this, float *pfPos)"
   },
   "0x004C18D0": {
-    "name": "RenderTarget2::_nearby_4c18d0",
-    "signature": "void __thiscall(RenderTarget2 *this, int *p_DWORD)"
+    "name": "RenderTarget2::LoadEffAudio",
+    "signature": "void __thiscall RenderTarget2::LoadEffAudio(RenderTarget2 *this, int *pData)"
   },
   "0x004C1B00": {
-    "name": "RenderTarget2::_nearby_4c1b00",
-    "signature": "int __thiscall(RenderTarget2 *this, int nVal)"
+    "name": "RenderTarget2::UpdateEffAudio",
+    "signature": "int __thiscall RenderTarget2::UpdateEffAudio(RenderTarget2 *this, int nVal)"
   },
   "0x004C1DD0": {
-    "name": "RenderTarget2::_nearby_4c1dd0",
-    "signature": "int * __thiscall(RenderTarget2 *this, int nVal)"
+    "name": "RenderTarget2::GetEffAudioPtr",
+    "signature": "int *__thiscall RenderTarget2::GetEffAudioPtr(RenderTarget2 *this, int nIdx)"
   },
   "0x004C1E90": {
     "name": "RenderTarget2::RenderOverlay",
     "signature": "int __thiscall(RenderTarget2 *this, int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
   },
   "0x004C1F70": {
-    "name": "RenderTarget2::_nearby_4c1f70",
-    "signature": "RenderTarget2 * __thiscall(RenderTarget2 *this, void *Block, char pData)"
+    "name": "RenderTarget2::DestroyEffAudio",
+    "signature": "RenderTarget2 *__thiscall RenderTarget2::DestroyEffAudio(RenderTarget2 *this, void *pEff, char bFlag)"
   },
   "0x004C20D0": {
-    "name": "RenderTarget2::_nearby_4c20d0",
-    "signature": "int __thiscall(RenderTarget2 *this)"
+    "name": "RenderTarget2::GetEffBinkCount",
+    "signature": "int __thiscall RenderTarget2::GetEffBinkCount(RenderTarget2 *this)"
   },
   "0x004C2170": {
     "name": "CEffAudio::sub_004C2170",
     "signature": "char __thiscall(CEffAudio *this, int nVal)"
   },
   "0x004C2280": {
-    "name": "RenderTarget2::_nearby_4c2280",
-    "signature": "void __thiscall(RenderTarget2 *this, int *p_DWORD)"
+    "name": "RenderTarget2::LoadEffBink",
+    "signature": "void __thiscall RenderTarget2::LoadEffBink(RenderTarget2 *this, int *pData)"
   },
   "0x004C24B0": {
-    "name": "RenderTarget2::_nearby_4c24b0",
-    "signature": "int __thiscall(RenderTarget2 *this, int nVal)"
+    "name": "RenderTarget2::UpdateEffBink",
+    "signature": "int __thiscall RenderTarget2::UpdateEffBink(RenderTarget2 *this, int nVal)"
   },
   "0x004C25C0": {
     "name": "RenderTarget2::GetTargetAddress",
@@ -13129,8 +13129,8 @@
     "signature": "void __thiscall(RenderTarget2 *this, int *p_DWORD)"
   },
   "0x004C2F30": {
-    "name": "CEffMgr::_auto_4c2f30",
-    "signature": "int __thiscall(CEffMgr *this, int nVal)"
+    "name": "CEffMgr::UpdateEffect",
+    "signature": "int __thiscall CEffMgr::UpdateEffect(CEffMgr *this, int nIdx)"
   },
   "0x004C3160": {
     "name": "RenderTarget2::_nearby_4c3160",
@@ -13141,28 +13141,28 @@
     "signature": "int __thiscall(RenderTarget2 *this, int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
   },
   "0x004C3340": {
-    "name": "RenderTarget2::_nearby_4c3340",
-    "signature": "RenderTarget2 * __thiscall(RenderTarget2 *this, void *Block, char pData)"
+    "name": "RenderTarget2::DestroyEffBink",
+    "signature": "RenderTarget2 *__thiscall RenderTarget2::DestroyEffBink(RenderTarget2 *this, void *pEff, char bFlag)"
   },
   "0x004C3440": {
     "name": "RenderTarget2::_nearby_4c3440",
     "signature": "void __thiscall(RenderTarget2 *this)"
   },
   "0x004C34D0": {
-    "name": "RenderTarget2::_nearby_4c34d0",
-    "signature": "int __thiscall(RenderTarget2 *this)"
+    "name": "RenderTarget2::GetEffCallBackCount",
+    "signature": "int __thiscall RenderTarget2::GetEffCallBackCount(RenderTarget2 *this)"
   },
   "0x004C3570": {
     "name": "CEffCallBack::sub_004C3570",
     "signature": "void __thiscall(CEffCallBack *this, float fVal)"
   },
   "0x004C3770": {
-    "name": "RenderTarget2::_nearby_4c3770",
-    "signature": "void __thiscall(RenderTarget2 *this, int *p_DWORD)"
+    "name": "RenderTarget2::LoadEffCallBack",
+    "signature": "void __thiscall RenderTarget2::LoadEffCallBack(RenderTarget2 *this, int *pData)"
   },
   "0x004C39A0": {
-    "name": "RenderTarget2::_nearby_4c39a0",
-    "signature": "int __thiscall(RenderTarget2 *this, int nVal)"
+    "name": "RenderTarget2::UpdateEffCallBack",
+    "signature": "int __thiscall RenderTarget2::UpdateEffCallBack(RenderTarget2 *this, int nVal)"
   },
   "0x004C3A90": {
     "name": "RenderTarget2::GetTargetByType",
@@ -13189,8 +13189,8 @@
     "signature": "void __cdecl()"
   },
   "0x004C5350": {
-    "name": "CEffMgr::_auto_4c5350",
-    "signature": "int __thiscall(CEffMgr *this)"
+    "name": "CEffMgr::UpdateAll",
+    "signature": "int __thiscall CEffMgr::UpdateAll(CEffMgr *this)"
   },
   "0x004C5810": {
     "name": "CEffCylinder::_sdtor",
@@ -13221,8 +13221,8 @@
     "signature": "void __cdecl()"
   },
   "0x004C7E60": {
-    "name": "CEffMgr::_auto_4c7e60",
-    "signature": "int __thiscall(CEffMgr *this)"
+    "name": "CEffMgr::RenderAll",
+    "signature": "int __thiscall CEffMgr::RenderAll(CEffMgr *this)"
   },
   "0x004C9750": {
     "name": "CEffGrid::sub_004C9750",
@@ -13241,8 +13241,8 @@
     "signature": "void __cdecl()"
   },
   "0x004CA450": {
-    "name": "CEffCylinder::_auto_4ca450",
-    "signature": "int __thiscall(CEffCylinder *this, int nVal)"
+    "name": "CEffCylinder::Update",
+    "signature": "int __thiscall CEffCylinder::Update(CEffCylinder *this, int nVal)"
   },
   "0x004CBF90": {
     "name": "nullsub_17",
@@ -13257,16 +13257,16 @@
     "signature": "void __cdecl()"
   },
   "0x004CC4C0": {
-    "name": "CEffCylinder::_auto_4cc4c0",
-    "signature": "int __thiscall(CEffCylinder *this, int nVal)"
+    "name": "CEffCylinder::Render",
+    "signature": "int __thiscall CEffCylinder::Render(CEffCylinder *this, int nVal)"
   },
   "0x004CCEF0": {
-    "name": "CEffMgr::_auto_4ccef0",
-    "signature": "int __thiscall(CEffMgr *this, float fVal, int nVal)"
+    "name": "CEffMgr::PlayCombatEffect",
+    "signature": "int __thiscall CEffMgr::PlayCombatEffect(CEffMgr *this, float fVal, int nType)"
   },
   "0x004CD930": {
-    "name": "SceneMgr::_nearby_4cd930",
-    "signature": "SceneMgr * __thiscall(SceneMgr *this, void *Block, char pData)"
+    "name": "SceneMgr::DestroyObject",
+    "signature": "SceneMgr *__thiscall SceneMgr::DestroyObject(SceneMgr *this, void *pObj, char bFlag)"
   },
   "0x004CDCA0": {
     "name": "CEffMgr::CreateEffect",
@@ -13281,8 +13281,8 @@
     "signature": "int __thiscall(CEffMgr *this, int nVal)"
   },
   "0x004CE0D0": {
-    "name": "CPK::_auto_4ce0d0",
-    "signature": "CPK * __thiscall(CPK *this)"
+    "name": "CPK::GetInstance",
+    "signature": "CPK *__thiscall CPK::GetInstance(CPK *this)"
   },
   "0x004D0360": {
     "name": "nullsub_86",
@@ -13301,12 +13301,12 @@
     "signature": "void __thiscall(CEffect *this, float fVal)"
   },
   "0x004D05E0": {
-    "name": "Matrix4::_nearby_4d05e0",
-    "signature": "int __thiscall(Matrix4 *this, int nVal)"
+    "name": "Matrix4::SetAnimFrame",
+    "signature": "int __thiscall Matrix4::SetAnimFrame(Matrix4 *this, int nFrame)"
   },
   "0x004D0950": {
-    "name": "GeomNode::_nearby_4d0950",
-    "signature": "bool __thiscall(GeomNode *this, const gbGeomNode *pGeomNode)"
+    "name": "GeomNode::IsMatch",
+    "signature": "bool __thiscall GeomNode::IsMatch(GeomNode *this, const gbGeomNode *pNode)"
   },
   "0x004D17A0": {
     "name": "nullsub_89",
@@ -13353,8 +13353,8 @@
     "signature": "void __thiscall(CCBSystem *this)"
   },
   "0x004DBB80": {
-    "name": "CCBAttackSequen::_sub_4DBB80",
-    "signature": "int __thiscall(CCBAttackSequen *this)"
+    "name": "CCBAttackSequen::CalcTurnOrder",
+    "signature": "int __thiscall CCBAttackSequen::CalcTurnOrder(CCBAttackSequen *this)"
   },
   "0x004DBF70": {
     "name": "CCBSystem::_nearby_4dbf70",
@@ -13373,12 +13373,12 @@
     "signature": "char __thiscall(CCBRoleState *this, int *p_DWORD, int *p_DWORD2, int *p_DWORD3)"
   },
   "0x004DCD00": {
-    "name": "CCBRoleState::_nearby_4dcd00",
-    "signature": "int __thiscall(CCBRoleState *this, int _14C)"
+    "name": "CCBRoleState::UseItem",
+    "signature": "int __thiscall CCBRoleState::UseItem(CCBRoleState *this, int nSlot)"
   },
   "0x004DD300": {
-    "name": "CCBRoleState::_nearby_4dd300",
-    "signature": "int __thiscall(CCBRoleState *this, int _158)"
+    "name": "CCBRoleState::UseSkill",
+    "signature": "int __thiscall CCBRoleState::UseSkill(CCBRoleState *this, int nSlot)"
   },
   "0x004DD650": {
     "name": "CCBRoleState::StartLineupPhase",
@@ -13389,8 +13389,8 @@
     "signature": "int __thiscall(CCBRoleState *this, int nVal)"
   },
   "0x004DEE80": {
-    "name": "CCBRoleState::_nearby_4dee80",
-    "signature": "int __thiscall(CCBRoleState *this, int nVal)"
+    "name": "CCBRoleState::ExecuteAction",
+    "signature": "int __thiscall CCBRoleState::ExecuteAction(CCBRoleState *this, int nVal)"
   },
   "0x004DF2F0": {
     "name": "CCBRoleState::Method_4DF2F0",
@@ -15642,12 +15642,12 @@
     "signature": "void __thiscall(CEffCustomShape *this)"
   },
   "0x004D03B0": {
-    "name": "CEffect::_nearby_4d03b0",
-    "signature": "void __thiscall(CEffect *this)"
+    "name": "CEffect::StopAll",
+    "signature": "void __thiscall CEffect::StopAll(CEffect *this)"
   },
   "0x004D0A80": {
-    "name": "GeomNode::_nearby_4d0a80",
-    "signature": "void __thiscall(GeomNode *this)"
+    "name": "GeomNode::Destroy",
+    "signature": "void __thiscall GeomNode::Destroy(GeomNode *this)"
   },
   "0x004D0BD0": {
     "name": "CEffModel::UpdateDuration",
