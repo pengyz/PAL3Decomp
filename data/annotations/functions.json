@@ -11605,8 +11605,8 @@
     "signature": "char __thiscall(RenderTarget2 *this, int nVal)"
   },
   "0x004C0640": {
-    "name": "CEffAction::sub_004C0640",
-    "signature": "void __thiscall(CEffAction *this, int nVal, int nVal2, int nVal3, int nVal4)"
+    "name": "CEffAction::ResetState",
+    "signature": "void __thiscall CEffAction::ResetState(CEffAction *this)"
   },
   "0x004C0650": {
     "name": "CEffAction::AllocSegments",
@@ -13042,8 +13042,8 @@
     "signature": "void __thiscall(RoleCamera *this, int nVal, int nVal2)"
   },
   "0x00534DC0": {
-    "name": "RoleCamera::_nearby_534dc0",
-    "signature": "int __thiscall(RoleCamera *this, int nVal)"
+    "name": "CameraCtrl::SetFOVIfValid",
+    "signature": "int __thiscall CameraCtrl::SetFOVIfValid(CameraCtrl *this, int nVal)"
   },
   "0x00534E60": {
     "name": "ExternalStatistics::UpdateFromRole",
@@ -13079,8 +13079,8 @@
     "signature": "LPSTR __thiscall UISceneFrm::InitTemplateStrings(UISceneFrm *this)"
   },
   "0x00535960": {
-    "name": "UISceneMap::_nearby_535960",
-    "signature": "int __thiscall(UISceneMap *this, int nVal)"
+    "name": "UISceneMap::SetColorIfValid",
+    "signature": "int __thiscall UISceneMap::SetColorIfValid(UISceneMap *this, int nVal)"
   },
   "0x00535A70": {
     "name": "UIAnimateCtrlEX::InitMatrix",
@@ -13099,8 +13099,8 @@
     "signature": "char __thiscall(MiniGame3 *this, const char *pszModel1, const char *pszModel2, const char *pszModel3)"
   },
   "0x00535E50": {
-    "name": "UIAnimateCtrlEX::_nearby_535e50",
-    "signature": "int __thiscall(UIAnimateCtrlEX *this, int nVal)",
+    "name": "UISceneMap::SetFieldIfValid",
+    "signature": "int __thiscall UISceneMap::SetFieldIfValid(UISceneMap *this, int nVal)",
     "_misattrib_evidence": "max_offset=224>class_size=68"
   },
   "0x00535FD0": {
