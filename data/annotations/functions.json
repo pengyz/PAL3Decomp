@@ -3872,8 +3872,8 @@
     "signature": "BOOL __thiscall(CCBItemWindow *this, int nVal, int nVal2)"
   },
   "0x0051B5D0": {
-    "name": "CCBItemWindow::_unverified_51B5D0",
-    "signature": "int __thiscall(CCBItemWindow *this, int msg)"
+    "name": "CCBItemWindow::ShowDescriptionPage",
+    "signature": "int __thiscall CCBItemWindow::ShowDescriptionPage(CCBItemWindow *this, int msg)"
   },
   "0x0051B620": {
     "name": "CCBItemWindow::Update",
@@ -3988,8 +3988,8 @@
     "signature": "BOOL __thiscall(CCBSkillWindow *this, int deltatime, int haveinput)"
   },
   "0x0051CA50": {
-    "name": "CCBSkillWindow::_unverified_51CA50",
-    "signature": "CCBAIWindow *__thiscall(CCBSkillWindow *this, int nVal)"
+    "name": "CCBSkillWindow::ToggleSlots",
+    "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots(CCBSkillWindow *this, int nVal)"
   },
   "0x0051CAA0": {
     "name": "CCBSkillWindow::Render",
@@ -4620,8 +4620,8 @@
     "signature": "int __thiscall(CScreenMode *this)"
   },
   "0x004DC240": {
-    "name": "CCBControl::_unverified_4DC240",
-    "signature": "int __thiscall(CCBControl *this)"
+    "name": "CCBControl::GetActiveAttackCount",
+    "signature": "int __thiscall CCBControl::GetActiveAttackCount(CCBControl *this)"
   },
   "0x0053EA60": {
     "name": "CScreenMode::AudioFadeOut",
@@ -4985,8 +4985,8 @@
     "signature": "int __thiscall(UISceneMap *this)"
   },
   "0x004F3DC0": {
-    "name": "CCBRoleState::_unverified_4F3DC0",
-    "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+    "name": "CCBRoleState::FindFirstEnemySlot",
+    "signature": "int __thiscall CCBRoleState::FindFirstEnemySlot(CCBRoleState *this, int roleIdx)"
   },
   "0x004142E0": {
     "name": "RoleSystem::NotifyMoveComplete",
@@ -5074,8 +5074,8 @@
     "signature": "void __thiscall(UISceneMap *this)"
   },
   "0x004DB5C0": {
-    "name": "CCBAttackSequen::_unverified_4DB5C0",
-    "signature": "int __thiscall(CCBAttackSequen *this)"
+    "name": "CCBAttackSequen::ResetTimers",
+    "signature": "int __thiscall CCBAttackSequen::ResetTimers(CCBAttackSequen *this)"
   },
   "0x004A2F90": {
     "name": "ComposeUI::FindChild",
@@ -9967,8 +9967,8 @@
     "signature": "int __thiscall(UIButton *this)"
   },
   "0x00441240": {
-    "name": "UIBigMap::_unverified_441240",
-    "signature": "int __thiscall(UIBigMap *this, int deltatime, int haveinput)"
+    "name": "UIBigMap::SetScrollRange",
+    "signature": "int __thiscall UIBigMap::SetScrollRange(UIBigMap *this, int nMin, int nMax)"
   },
   "0x00441D50": {
     "name": "UIAnimateCtrlEX::StepAnimation",
@@ -10390,8 +10390,8 @@
     "signature": "BOOL __thiscall(UIAnimateCtrlEX *this, int nVal, int nVal2)"
   },
   "0x00452DA0": {
-    "name": "UIAnimateCtrlEX::_unverified_452DA0",
-    "signature": "int __thiscall(UIAnimateCtrlEX *this, int msg, int wparam, int lparam)"
+    "name": "UIAnimateCtrlEX::OnNotify",
+    "signature": "int __thiscall UIAnimateCtrlEX::OnNotify(UIAnimateCtrlEX *this, int msg, int wparam, int lparam)"
   },
   "0x00453200": {
     "name": "SceneObj::_init_453200",
@@ -10722,8 +10722,8 @@
     "signature": "int __thiscall NPC::GetPropertyByIndex(NPC *this, unsigned int dwVal)"
   },
   "0x004791B0": {
-    "name": "PAL_GDB::_unverified_4791B0",
-    "signature": "int __thiscall(PAL_GDB *this, unsigned int index)"
+    "name": "PAL_GDB::GetItemID",
+    "signature": "int __thiscall PAL_GDB::GetItemID(PAL_GDB *this, unsigned int index)"
   },
   "0x00479260": {
     "name": "UIAnimateCtrl::GetRole__ovl_479260",
@@ -12486,8 +12486,8 @@
     "_misattrib_evidence": "max_offset=1068>class_size=208"
   },
   "0x00518E10": {
-    "name": "CCBStageRole::_unverified_518E10",
-    "signature": "int __thiscall(CCBStageRole *this, char nActIndex)"
+    "name": "CCBStageRole::SetActionVisible",
+    "signature": "int __thiscall CCBStageRole::SetActionVisible(CCBStageRole *this, char nActIndex)"
   },
   "0x0051BB50": {
     "name": "RoleCameraCtrl::InitViewSlots",
@@ -12506,8 +12506,8 @@
     "signature": "int __thiscall(CCBProtectWindow *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00521A50": {
-    "name": "PropUI::_unverified_521A50",
-    "signature": "int __thiscall(PropUI *this, char msg, int wparam, int lparam)"
+    "name": "PropUI::SetPendingMessage",
+    "signature": "int __thiscall PropUI::SetPendingMessage(PropUI *this, char msg, int wparam, int lparam)"
   },
   "0x00521A80": {
     "name": "CCBStageRole::CheckActionValid",
@@ -12754,8 +12754,8 @@
     "signature": "int __thiscall(RoleCameraCtrl *this, int nVal, int nVal2, int nVal3)"
   },
   "0x0052E0F0": {
-    "name": "UIBigMap::_unverified_52E0F0",
-    "signature": "int __thiscall(UIBigMap *this, int msg, int wparam, int lparam)"
+    "name": "UIBigMap::SetBounds",
+    "signature": "int __thiscall UIBigMap::SetBounds(UIBigMap *this, int msg, int wparam, int lparam)"
   },
   "0x0052E120": {
     "name": "UIScene::LoadMapData",
