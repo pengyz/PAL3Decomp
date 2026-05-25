@@ -7275,12 +7275,12 @@
     "signature": "BOOL __thiscall(RoleSystem *this, int *index, float *pfVal, int nVal)"
   },
   "0x00421150": {
-    "name": "RoleSystem::_sub_421150",
-    "signature": "BOOL __thiscall(RoleSystem *this, char arg0, int index, int *pnVal, int nVal)"
+    "name": "RoleSystem::IsTilePassable",
+    "signature": "BOOL __thiscall RoleSystem::IsTilePassable(RoleSystem *this, char nTileType, int nSceneIdx, int nX, int nY)"
   },
   "0x00421230": {
-    "name": "RoleSystem::_sub_421230",
-    "signature": "double __thiscall(RoleSystem *this, int index, int nY, int nVal, int *p_DWORD)"
+    "name": "RoleSystem::GetTileHeight",
+    "signature": "double __thiscall RoleSystem::GetTileHeight(RoleSystem *this, int nSceneIdx, int nX, int nY, int *pFlags)"
   },
   "0x004214B0": {
     "name": "RoleSystem::ValidatePathIndex",
