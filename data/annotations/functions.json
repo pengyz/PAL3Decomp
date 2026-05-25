@@ -6514,8 +6514,8 @@
     "signature": "int __thiscall(Object3D *this, const char *pszMsgName)"
   },
   "0x00538D60": {
-    "name": "PalScript::_auto_538d60",
-    "signature": "void __thiscall(PalScript *this, double nActionID, int *p_DWORD)"
+    "name": "PalScript::DestroyInstances",
+    "signature": "void __thiscall PalScript::DestroyInstances(PalScript *this, double nActionID, int *p_DWORD)"
   },
   "0x00539540": {
     "name": "Actor::AddActionByName",
@@ -6707,8 +6707,8 @@
     "signature": "void __thiscall ScriptVM::ProcessFrame(ScriptVM *this)"
   },
   "0x0042AAE0": {
-    "name": "PalScriptMgr::_nearby_42aae0",
-    "signature": "BOOL __thiscall(PalScriptMgr *this, int *pnVal, int nVal, struct gbVec3D *p)"
+    "name": "PalScriptMgr::CheckTileCollision",
+    "signature": "BOOL __thiscall PalScriptMgr::CheckTileCollision(PalScriptMgr *this, int *pnVal, int nVal, struct gbVec3D *p)"
   },
   "0x0042BEA0": {
     "name": "PalScriptMgr::OnAnimFinish",
@@ -6759,16 +6759,16 @@
     "signature": "BOOL __thiscall(Config *this, int nVal, int nVal2, int *pnVal, int *pnVal2)"
   },
   "0x004309D0": {
-    "name": "PalScript::_nearby_4309d0",
-    "signature": "int *__thiscall(PalScript *this, int *p_DWORD, char *pszBuf)"
+    "name": "PalScript::EvalExpression",
+    "signature": "int *__thiscall PalScript::EvalExpression(PalScript *this, int *p_DWORD, char *pszBuf)"
   },
   "0x00431040": {
     "name": "PalScript::GetVarRef",
     "signature": "int *__thiscall PalScript::GetVarRef(PalScript *this, int *pOut, int nIdx)"
   },
   "0x00431100": {
-    "name": "PalScript::_nearby_431100",
-    "signature": "int *__thiscall(PalScript *this, int *p_DWORD, void *pData, int *p_DWORD2, char *pszBuf)"
+    "name": "PalScript::EvalExprTree",
+    "signature": "int *__thiscall PalScript::EvalExprTree(PalScript *this, int *p_DWORD, void *pData, int *p_DWORD2, char *pszBuf)"
   },
   "0x00431CD0": {
     "name": "UIListBox::RefreshSelection",
@@ -6923,8 +6923,8 @@
     "signature": "void __thiscall PalScript::Op_Start_Wolf(PalScript *this)"
   },
   "0x004381B0": {
-    "name": "PalScript::_nearby_4381b0",
-    "signature": "void __thiscall(PalScript *this)"
+    "name": "PalScript::ClearFloatParams",
+    "signature": "void __thiscall PalScript::ClearFloatParams(PalScript *this)"
   },
   "0x00438350": {
     "name": "PalScript::Op_GetHS_ManageType",
@@ -7240,8 +7240,8 @@
     "signature": "int __thiscall(CCBEditor *this, CHAR *lpString2, int nVal, int nVal2, int nVal3)"
   },
   "0x0044B8A0": {
-    "name": "PalScript::_auto_44b8a0",
-    "signature": "LPSTR __thiscall(PalScript *this, CHAR *String1, CHAR *lpString2)"
+    "name": "PalScript::SetDialogTemplate",
+    "signature": "LPSTR __thiscall PalScript::SetDialogTemplate(PalScript *this, CHAR *String1, CHAR *lpString2)"
   },
   "0x0044BE40": {
     "name": "UIScene::_scalar_dtor",
@@ -7610,8 +7610,8 @@
     "signature": "void __thiscall(MainEquipUI *this, int nVal, int nVal2)"
   },
   "0x00482BB0": {
-    "name": "PalScript::_auto_482bb0",
-    "signature": "int __thiscall(PalScript *this)"
+    "name": "LineupUI::ShowPage",
+    "signature": "int __thiscall LineupUI::ShowPage(LineupUI *this)"
   },
   "0x00483260": {
     "name": "CScreenMode::_scalar_dtor",
@@ -7626,8 +7626,8 @@
     "signature": "void *__thiscall(LineupUI *this, int nVal)"
   },
   "0x00484D20": {
-    "name": "PalScript::_auto_484d20",
-    "signature": "int __thiscall(PalScript *this)"
+    "name": "EquipUI::ShowPage",
+    "signature": "int __thiscall EquipUI::ShowPage(EquipUI *this)"
   },
   "0x00486D00": {
     "name": "RenderTarget::_scalar_dtor",
@@ -7674,8 +7674,8 @@
     "signature": "void __thiscall(UIBigMap *this)"
   },
   "0x00491B40": {
-    "name": "PalScript::_auto_491b40",
-    "signature": "int __thiscall(PalScript *this)"
+    "name": "MainPropUI::ShowPage",
+    "signature": "int __thiscall MainPropUI::ShowPage(MainPropUI *this)"
   },
   "0x00492850": {
     "name": "StateUI::_method_492850",
@@ -7723,8 +7723,8 @@
     "signature": "void __thiscall(UITitle_XJTM *this)"
   },
   "0x004998E0": {
-    "name": "PalScript::_auto_4998e0",
-    "signature": "int __thiscall(PalScript *this)"
+    "name": "StateUI::ShowPage",
+    "signature": "int __thiscall StateUI::ShowPage(StateUI *this)"
   },
   "0x0049F2E0": {
     "name": "MainEquipUI::CreateListPanel",
@@ -7761,8 +7761,8 @@
     "_misattrib_evidence": "max_offset=176252>class_size=46192"
   },
   "0x004A4ED0": {
-    "name": "PalScript::_auto_4a4ed0",
-    "signature": "int __thiscall(PalScript *this)"
+    "name": "MainEquipUI::ShowPage",
+    "signature": "int __thiscall MainEquipUI::ShowPage(MainEquipUI *this)"
   },
   "0x004A5930": {
     "name": "UIGameFrm::Render__ovl_4a5930",
@@ -7775,8 +7775,8 @@
     "_misattrib_evidence": "max_offset=176084>class_size=46192"
   },
   "0x004A8150": {
-    "name": "_misattrib_PalScript::_auto_4a8150",
-    "signature": "int __thiscall(PalScript *this)",
+    "name": "SystemUI::ShowPage",
+    "signature": "int __thiscall SystemUI::ShowPage(SystemUI *this)",
     "_misattrib_evidence": "max_offset=26968>class_size=1816"
   },
   "0x004AA9C0": {
@@ -7878,8 +7878,8 @@
     "signature": "int __thiscall(LineupUI *this)"
   },
   "0x004B42F0": {
-    "name": "PalScript::_auto_4b42f0",
-    "signature": "int __thiscall(PalScript *this)"
+    "name": "UISceneMap::ShowPage",
+    "signature": "int __thiscall UISceneMap::ShowPage(UISceneMap *this)"
   },
   "0x004B4FE0": {
     "name": "_TextureLib_Data::_auto_4b4fe0",
@@ -9273,8 +9273,8 @@
     "signature": "int __thiscall(RoleSystem *this, int nVal, char pData)"
   },
   "0x0042AFA0": {
-    "name": "PalScriptMgr::_nearby_42afa0",
-    "signature": "int __thiscall(PalScriptMgr *this)"
+    "name": "PalScriptMgr::SaveExecutionState",
+    "signature": "int __thiscall PalScriptMgr::SaveExecutionState(PalScriptMgr *this)"
   },
   "0x0042B2F0": {
     "name": "Object3D::GetOrientedOBBox",
@@ -9317,12 +9317,12 @@
     "signature": "int __thiscall(Config *this, int nVal)"
   },
   "0x004307D0": {
-    "name": "PalScript::_nearby_4307d0",
-    "signature": "int __thiscall(PalScript *this, int *p_DWORD, unsigned int dwVal, unsigned int dwVal2)"
+    "name": "PalScript::InitScriptObj",
+    "signature": "int __thiscall PalScript::InitScriptObj(PalScript *this, int *p_DWORD, unsigned int dwVal, unsigned int dwVal2)"
   },
   "0x00431390": {
-    "name": "PalScript::_nearby_431390",
-    "signature": "int *__thiscall(PalScript *this, int nVal)"
+    "name": "PalScript::ResolveScope",
+    "signature": "int *__thiscall PalScript::ResolveScope(PalScript *this, int nVal)"
   },
   "0x00431440": {
     "name": "PalScript::IteratorNext",
@@ -9333,12 +9333,12 @@
     "signature": "int *__thiscall PalScript::IteratorPrev(PalScript *this)"
   },
   "0x004314F0": {
-    "name": "PalScript::_nearby_4314f0",
-    "signature": "void __thiscall(PalScript *pPalScript, char *pszBuf)"
+    "name": "PalScript::ConstructStringObj",
+    "signature": "void __thiscall PalScript::ConstructStringObj(PalScript *this, char *pszBuf)"
   },
   "0x00431640": {
-    "name": "PalScript::_nearby_431640",
-    "signature": "int __thiscall(PalScript *this, unsigned int dwVal, unsigned int dwVal2)"
+    "name": "PalScript::SetWaitRange",
+    "signature": "int __thiscall PalScript::SetWaitRange(PalScript *this, unsigned int dwVal, unsigned int dwVal2)"
   },
   "0x00431780": {
     "name": "PalScript::CompareBuffer",
@@ -9817,8 +9817,8 @@
     "signature": "void __thiscall PalScript::Op_IfInTeam(PalScript *this)"
   },
   "0x00438910": {
-    "name": "PalScript::_nearby_438910",
-    "signature": "void __thiscall(PalScript *this)"
+    "name": "PalScript::ClearIntParams",
+    "signature": "void __thiscall PalScript::ClearIntParams(PalScript *this)"
   },
   "0x00438980": {
     "name": "PalScript::Op_CEft_Role",
