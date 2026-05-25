@@ -7890,20 +7890,20 @@
     "signature": "__int64 __thiscall(_TextureLib_Data *this, char *pszBuf, _TextureLib_Data *p_TextureLib_Data, int nVal, int nVal2)"
   },
   "0x004B5380": {
-    "name": "_TextureLib_Data::_auto_4b5380",
-    "signature": "__int64 __thiscall(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
+    "name": "_TextureLib_Data::UpdateCircularMotion",
+    "signature": "__int64 __thiscall _TextureLib_Data::UpdateCircularMotion(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p, int nVal2)"
   },
   "0x004B5450": {
-    "name": "_TextureLib_Data::_auto_4b5450",
-    "signature": "__int64 __thiscall(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
+    "name": "_TextureLib_Data::UpdateOrbitalMotion",
+    "signature": "__int64 __thiscall _TextureLib_Data::UpdateOrbitalMotion(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p, int nVal2)"
   },
   "0x004B5570": {
     "name": "_TextureLib_Data::_auto_4b5570",
     "signature": "__int64 __thiscall(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
   },
   "0x004B5750": {
-    "name": "_TextureLib_Data::_auto_4b5750",
-    "signature": "__int64 __thiscall(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
+    "name": "_TextureLib_Data::UpdateLinearMotion",
+    "signature": "__int64 __thiscall _TextureLib_Data::UpdateLinearMotion(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p, int nVal2)"
   },
   "0x004B5830": {
     "name": "_TextureLib_Data::_auto_4b5830",
@@ -7918,16 +7918,16 @@
     "signature": "__int64 __thiscall(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
   },
   "0x004B5D20": {
-    "name": "_TextureLib_Data::_auto_4b5d20",
-    "signature": "void __thiscall(_TextureLib_Data *this, int nVal, int nVal2, int nVal3, int nVal4)"
+    "name": "_TextureLib_Data::RenderFrame",
+    "signature": "void __thiscall _TextureLib_Data::RenderFrame(_TextureLib_Data *this, int nVal, int nVal2, int nVal3, int nVal4)"
   },
   "0x004B5EE0": {
     "name": "_TextureLib_Data::LoadLibrary",
     "signature": "char __thiscall(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
   },
   "0x004B60F0": {
-    "name": "_TextureLib_Data::_auto_4b60f0",
-    "signature": "char __thiscall(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
+    "name": "_TextureLib_Data::UpdateByMode",
+    "signature": "char __thiscall _TextureLib_Data::UpdateByMode(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p, int nVal2)"
   },
   "0x004B6300": {
     "name": "_TextureLib_Data::GetTextureByName",
@@ -8119,40 +8119,40 @@
     "signature": "int __thiscall RenderTarget2::AddCallbackEffect(RenderTarget2 *this, RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
   },
   "0x004CEFE0": {
-    "name": "CEffMgr::_auto_4cefe0",
-    "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    "name": "CEffMgr::CreateSParticleEffect",
+    "signature": "int __thiscall CEffMgr::CreateSParticleEffect(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
   },
   "0x004CF220": {
-    "name": "CEffMgr::_auto_4cf220",
-    "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    "name": "CEffMgr::CreateModelEffect",
+    "signature": "int __thiscall CEffMgr::CreateModelEffect(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
   },
   "0x004CF340": {
     "name": "RenderTarget2::AddGenericEffect",
     "signature": "int __thiscall RenderTarget2::AddGenericEffect(RenderTarget2 *this, RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
   },
   "0x004CF460": {
-    "name": "CEffMgr::_auto_4cf460",
-    "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    "name": "CEffMgr::CreateEffectType3",
+    "signature": "int __thiscall CEffMgr::CreateEffectType3(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
   },
   "0x004CF580": {
     "name": "CEffectSystem::_nearby_4cf580",
     "signature": "int __thiscall(CEffectSystem *this, CEffectSystem *pEffectSystem, int nVal, CEffectSystem *pEffectSystem2)"
   },
   "0x004CF6A0": {
-    "name": "CEffMgr::_auto_4cf6a0",
-    "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    "name": "CEffMgr::CreateEffectType4",
+    "signature": "int __thiscall CEffMgr::CreateEffectType4(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
   },
   "0x004CF8E0": {
-    "name": "CEffMgr::_auto_4cf8e0",
-    "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    "name": "CEffMgr::CreateEffectType5",
+    "signature": "int __thiscall CEffMgr::CreateEffectType5(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
   },
   "0x004CFA00": {
     "name": "RenderTarget2::AddBinkEffect",
     "signature": "int __thiscall RenderTarget2::AddBinkEffect(RenderTarget2 *this, RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
   },
   "0x004CFB20": {
-    "name": "CEffMgr::_auto_4cfb20",
-    "signature": "int __thiscall(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+    "name": "CEffMgr::CreateShockEffect",
+    "signature": "int __thiscall CEffMgr::CreateShockEffect(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
   },
   "0x004CFEB0": {
     "name": "CEffModel::sub_004CFEB0",
@@ -11401,8 +11401,8 @@
     "signature": "int *__thiscall RenderTarget3::Reset(RenderTarget3 *this)"
   },
   "0x004B7340": {
-    "name": "CEffMgr::_auto_4b7340",
-    "signature": "void __thiscall(CEffMgr *this, float fVal)"
+    "name": "CEffMgr::UpdateTimedTrigger",
+    "signature": "void __thiscall CEffMgr::UpdateTimedTrigger(CEffMgr *this, float fVal)"
   },
   "0x004B73F0": {
     "name": "CEffMgr::SetEffectClass",
@@ -11717,8 +11717,8 @@
     "signature": "void __thiscall(RenderTarget2 *this, int *p_DWORD)"
   },
   "0x004C2F30": {
-    "name": "CEffMgr::_auto_4c2f30",
-    "signature": "int __thiscall(CEffMgr *this, int nVal)"
+    "name": "CEffMgr::ProcessEffectPass",
+    "signature": "int __thiscall CEffMgr::ProcessEffectPass(CEffMgr *this, int nVal)"
   },
   "0x004C3160": {
     "name": "RenderTarget2::_nearby_4c3160",
