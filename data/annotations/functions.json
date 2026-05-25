@@ -79,10 +79,6 @@
     "name": "GRPinput::ClearKeyBuffer",
     "signature": "int __thiscall(GRPinput *this)"
   },
-  "0x00402B80": {
-    "name": "GRPinput::SetMouseLimits_2b80",
-    "signature": "void __thiscall(GRPinput *this)"
-  },
   "0x00402B90": {
     "name": "GRPinput::SetJoystickLimits",
     "signature": "void __thiscall(GRPinput *this)"
@@ -114,10 +110,6 @@
   "0x00403000": {
     "name": "GRPinput::GetKeyState_3000",
     "signature": "_BYTE *__thiscall(GRPinput *this, unsigned int key)"
-  },
-  "0x00403140": {
-    "name": "GRPinput::GetMousePos_3140",
-    "signature": "void __thiscall(GRPinput *this)"
   },
   "0x00403150": {
     "name": "GRPinput::GetMouseFreePos",
@@ -2967,10 +2959,6 @@
     "name": "CCBCamControl::StartList",
     "signature": "int __thiscall(CCBCamControl *this)"
   },
-  "0x00508310": {
-    "name": "CCBCamControl::StartList_8310",
-    "signature": "bool __thiscall(CCBCamControl *this, int nListIndex, int nTaskIndex)"
-  },
   "0x00508320": {
     "name": "CCBCamControl::StopList",
     "signature": "int __thiscall(CCBCamControl *this)"
@@ -3619,56 +3607,28 @@
     "name": "CCBSystem::DestroyObj_5df0",
     "signature": "void *__thiscall(CCBSystem *Block, char pData)"
   },
-  "0x00515E40": {
-    "name": "CCBSystem::DestroyObj_5e40",
-    "signature": "int __thiscall(CCBSystem *this)"
-  },
   "0x00515E50": {
     "name": "CCBSystem::DestroyObj_5e50",
     "signature": "BOOL __thiscall(CCBSystem *this)"
-  },
-  "0x00515E60": {
-    "name": "CCBSystem::DestroyObj_5e60",
-    "signature": "void __thiscall(CCBSystem *this)"
   },
   "0x00515E70": {
     "name": "CCBSystem::DestroyObj_5e70",
     "signature": "void __thiscall(CCBSystem *this)"
   },
-  "0x00515E80": {
-    "name": "CCBSystem::DestroyObj_5e80",
-    "signature": "int __thiscall(CCBSystem *this)"
-  },
   "0x00515E90": {
     "name": "CCBSystem::InitObj",
     "signature": "int __thiscall(CCBSystem *this)"
   },
-  "0x00515ED0": {
-    "name": "CCBSystem::InitObj_5ed0",
-    "signature": "BOOL __thiscall(CCBSystem *this, CCBUI *pUI)"
-  },
   "0x00515EE0": {
     "name": "CCBSystem::InitObj_5ee0",
-    "signature": "int __thiscall(CCBSystem *this)"
-  },
-  "0x00515F20": {
-    "name": "CCBSystem::InitObj_5f20",
     "signature": "int __thiscall(CCBSystem *this)"
   },
   "0x00515F30": {
     "name": "CCBSystem::InitObj_5f30",
     "signature": "int __thiscall(CCBSystem *this)"
   },
-  "0x00515F70": {
-    "name": "CCBSystem::InitObj_5f70",
-    "signature": "int __thiscall(CCBSystem *this)"
-  },
   "0x00515F80": {
     "name": "CCBSystem::InitObj_5f80",
-    "signature": "int __thiscall(CCBSystem *this)"
-  },
-  "0x00515FC0": {
-    "name": "CCBSystem::InitObj_5fc0",
     "signature": "int __thiscall(CCBSystem *this)"
   },
   "0x00515FD0": {
@@ -5016,10 +4976,6 @@
   "0x00477BB0": {
     "name": "TaskBookUI::OnMessage",
     "signature": "int __thiscall(TaskBookUI *this, int msg, int wparam, int lparam)"
-  },
-  "0x0053DF70": {
-    "name": "CScreenMode::GetInstance_df70",
-    "signature": "CScreenMode * __thiscall(CScreenMode *this)"
   },
   "0x004A1DD0": {
     "name": "unknown_libname_406",
@@ -16136,10 +16092,6 @@
   "0x004C5820": {
     "name": "CEffectSystem::Create",
     "signature": "CEffectSystem *__thiscall(CEffectSystem *this, int pGfxMgr)"
-  },
-  "0x004C5840": {
-    "name": "CEffectSystem::Destroy_5840",
-    "signature": "void __thiscall(CEffectSystem *this)"
   },
   "0x004CFC70": {
     "name": "CEffModel::CEffModel",
