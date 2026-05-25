@@ -7171,8 +7171,8 @@
     "signature": "BOOL __thiscall(UIFrameWnd *this, int nVal, int nVal2)"
   },
   "0x00443FC0": {
-    "name": "SceneInfo::_nearby_443fc0",
-    "signature": "char __thiscall(SceneInfo *this, float fVal, int nVal, int nVal2)"
+    "name": "SceneInfo::ProcessSceneChange",
+    "signature": "char __thiscall SceneInfo::ProcessSceneChange(SceneInfo *this, float fVal, int nVal, int nVal2)"
   },
   "0x00444D30": {
     "name": "UIFrameWnd::_method_444d30",
@@ -7580,8 +7580,8 @@
     "_misattrib_evidence": "max_offset=3996>class_size=1012"
   },
   "0x0047E190": {
-    "name": "ComposeUI::_nearby_47e190",
-    "signature": "void __thiscall(ComposeUI *this, int nVal)",
+    "name": "ComposeUI::ProcessFrame",
+    "signature": "void __thiscall ComposeUI::ProcessFrame(ComposeUI *this, int nVal)",
     "_misattrib_evidence": "max_offset=2912>class_size=152"
   },
   "0x0047E8F0": {
@@ -7816,8 +7816,8 @@
     "signature": "int *__thiscall UITitle_YXXX::CreateTitle(UITitle_YXXX *this, char *pszBuf, unsigned int dwVal, int nVal)"
   },
   "0x004AFB60": {
-    "name": "ArcLocaleRole::_nearby_4afb60",
-    "signature": "int *__thiscall(ArcLocaleRole *this, int *p_DWORD)"
+    "name": "ArcLocaleRole::CalcPosition",
+    "signature": "int *__thiscall ArcLocaleRole::CalcPosition(ArcLocaleRole *this, int *p_DWORD)"
   },
   "0x004B0520": {
     "name": "UIListBox::_scalar_dtor",
@@ -8039,8 +8039,8 @@
     "_misattrib_evidence": "max_offset=1108>class_size=152"
   },
   "0x004BEFB0": {
-    "name": "UIRoleDialog::_nearby_4befb0",
-    "signature": "gbVFileSystem *__thiscall(UIRoleDialog *this, int nVal)"
+    "name": "UIRoleDialog::LoadResources",
+    "signature": "gbVFileSystem *__thiscall UIRoleDialog::LoadResources(UIRoleDialog *this, int nVal)"
   },
   "0x004C04C0": {
     "name": "RenderTarget2::ClearTarget",
@@ -8051,8 +8051,8 @@
     "signature": "CEffBase **__thiscall RenderTarget2::CreateEffBase(RenderTarget2 *this)"
   },
   "0x004C0740": {
-    "name": "CEffAction::sub_004C0740",
-    "signature": "void __fastcall(float *pfVal, float fVal)"
+    "name": "CEffAction::UpdateFrame",
+    "signature": "void __fastcall CEffAction::UpdateFrame(float *pfVal, float fVal)"
   },
   "0x004C1570": {
     "name": "RenderTarget2::Reset",
@@ -8103,8 +8103,8 @@
     "signature": "char *__thiscall(CEffgbParticle *this, char pData)"
   },
   "0x004CC290": {
-    "name": "CEffMeteor::_auto_4cc290",
-    "signature": "void __thiscall(CEffMeteor *this, int *pnVal)"
+    "name": "CEffMeteor::CreateTarget",
+    "signature": "void __thiscall CEffMeteor::CreateTarget(CEffMeteor *this, int *pnVal)"
   },
   "0x004CEB60": {
     "name": "CEffgbParticle::_nearby_4ceb60",
@@ -8167,8 +8167,8 @@
     "signature": "CEffQuake *__thiscall(CEffQuake *this, char pData)"
   },
   "0x004D4340": {
-    "name": "CEffect::_auto_4d4340",
-    "signature": "void __thiscall(CEffect *this, int *pnVal)"
+    "name": "CEffect::CreateTarget",
+    "signature": "void __thiscall CEffect::CreateTarget(CEffect *this, int *pnVal)"
   },
   "0x004D4570": {
     "name": "CEffShock::UpdateSegment",
@@ -10605,8 +10605,8 @@
     "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
   },
   "0x0046DD10": {
-    "name": "PropUI::_auto_46dd10",
-    "signature": "int __thiscall(PropUI *this, const void *arg0)"
+    "name": "PropUI::UpdateItemList",
+    "signature": "int __thiscall PropUI::UpdateItemList(PropUI *this, const void *arg0)"
   },
   "0x0046DF10": {
     "name": "UIScenePanel::ValidateIndex",
@@ -10641,8 +10641,8 @@
     "signature": "int __thiscall CCBRoleState::NotifyStateChange(CCBRoleState *this, unsigned __int8 nState)"
   },
   "0x0046F480": {
-    "name": "GRPinput::_auto_46f480",
-    "signature": "void __thiscall(GRPinput *this, float fVal)"
+    "name": "GRPinput::ProcessMouseInput",
+    "signature": "void __thiscall GRPinput::ProcessMouseInput(GRPinput *this, float fVal)"
   },
   "0x00471220": {
     "name": "PlayerMgr::_init_471220",
@@ -11033,8 +11033,8 @@
     "signature": "int __thiscall(CEffect *this, int f)"
   },
   "0x0048E950": {
-    "name": "CEffect::_sub_48E950",
-    "signature": "char __thiscall(CEffect *this, int nVal)",
+    "name": "CEffect::UpdateState",
+    "signature": "char __thiscall CEffect::UpdateState(CEffect *this, int nVal)",
     "_misattrib_evidence": "max_offset=4672>class_size=200"
   },
   "0x0048EB40": {
@@ -11577,8 +11577,8 @@
     "signature": "void __thiscall(UIRoleDialog *this, int nVal)"
   },
   "0x004BF4F0": {
-    "name": "UIRoleDialog::_nearby_4bf4f0",
-    "signature": "void __thiscall(UIRoleDialog *this, float fVal)"
+    "name": "UIRoleDialog::UpdateAnimation",
+    "signature": "void __thiscall UIRoleDialog::UpdateAnimation(UIRoleDialog *this, float fVal)"
   },
   "0x004BF680": {
     "name": "UIRoleDialog::GetPageIndex",
@@ -11781,8 +11781,8 @@
     "signature": "int __thiscall(CEffMgr *this)"
   },
   "0x004C9750": {
-    "name": "CEffGrid::sub_004C9750",
-    "signature": "int __thiscall(CEffGrid *this, float *pfVal, float fVal, float fVal2, float fVal3)"
+    "name": "CEffGrid::Init",
+    "signature": "int __thiscall CEffGrid::Init(CEffGrid *this, float *pfVal, float fVal, float fVal2, float fVal3)"
   },
   "0x004CA450": {
     "name": "CEffCylinder::_auto_4ca450",
