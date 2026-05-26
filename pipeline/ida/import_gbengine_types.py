@@ -141,19 +141,68 @@ typedef void * LPDIRECT3DTEXTURE9;
     # Reorder struct definitions by dependency DAG (topological sort).
     # Value members require the referenced type to be fully defined first.
     # Pointer/reference members only need a forward declaration.
-    _struct_pattern = re.compile(
-        r'(struct\s+(\w+)(?:\s*:\s*(?:public\s+)?(\w+))?\s*\{[^}]*(?:\{[^}]*\}[^}]*)*\}\s*;)',
-        re.DOTALL)
+    #
+    # NOTE: The old regex approach could not handle nested braces (struct→union→struct),
+    # which caused gbColorQuad and similar types to be truncated. Use brace-counting instead.
+    _struct_start_re = re.compile(r'(struct\s+(\w+)(?:\s*:\s*(?:public\s+)?(\w+))?\s*\{)')
     _structs = {}  # name → (full_text, base_class, set_of_value_deps)
     _non_struct_parts = []  # (position, text) for non-struct content
     _last_end = 0
-    for m in _struct_pattern.finditer(full):
-        if m.start() > _last_end:
-            _non_struct_parts.append(full[_last_end:m.start()])
-        _last_end = m.end()
-        sname = m.group(2)
-        base = m.group(3)
-        body = m.group(1)
+
+    def _find_struct_end(text, start):
+        """Find the matching '};' for a struct definition starting at 'start'."""
+        depth = 0
+        i = start
+        in_char = False
+        while i < len(text):
+            c = text[i]
+            if c == '\\' and not in_char:
+                i += 2
+                continue
+            if c == "'" and not in_char:
+                in_char = True
+            elif c == "'" and in_char:
+                in_char = False
+            elif c == '"' and not in_char:
+                # skip string literal
+                i += 1
+                while i < len(text) and text[i] != '"':
+                    if text[i] == '\\':
+                        i += 1
+                    i += 1
+            elif not in_char:
+                if c == '{':
+                    depth += 1
+                elif c == '}':
+                    depth -= 1
+                    if depth == 0:
+                        # Check for trailing ';' (with optional whitespace)
+                        j = i + 1
+                        while j < len(text) and text[j] in ' \t\n\r':
+                            j += 1
+                        if j < len(text) and text[j] == ';':
+                            return j + 1  # position after ';'
+                        else:
+                            # Not a valid struct end (e.g., function body), continue
+                            pass
+            i += 1
+        return start  # no match found
+
+    for sm in _struct_start_re.finditer(full):
+        sm_start = sm.start()
+        if sm_start > _last_end:
+            _non_struct_parts.append(full[_last_end:sm_start])
+        sname = sm.group(2)
+        base = sm.group(3)
+        end = _find_struct_end(full, sm.end() - 1)  # start from the '{'
+        if end > sm.end():
+            body = full[sm.start():end]
+            _last_end = end
+        else:
+            # No matching '};' found, treat as non-struct
+            _non_struct_parts.append(full[sm_start:sm.end()])
+            _last_end = sm.end()
+            continue
         # Find value-type dependencies: member declarations like "TypeName fieldname;"
         # (not pointers "TypeName *fieldname;")
         deps = set()
