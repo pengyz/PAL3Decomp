@@ -410,9 +410,14 @@
       "name": "m_bRoleSlotValid",
       "type": "unsigned char[8]",
       "source": "global_analysis:g_bRoleSlotValid"
+    },
+    "57568": {
+      "name": "m_nRoleCount",
+      "type": "int",
+      "source": "binary:*((_DWORD *)this+14392) count for Role array"
     }
   },
   "pdb_size": 1,
   "note": "CEffMgr embedded at +0 (ends at +0xA930). SceneMgr-own fields from +0xA940. View B (PlayerSlots/RoleSystems) is reinterpret_cast overlay on EffClass+EffTable region.",
-  "binary_size": 54024
+  "binary_size": 57572
 }
