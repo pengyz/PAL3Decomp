@@ -6143,5 +6143,670 @@
     "name": "dword_C11740",
     "type": "skip",
     "reason": "read from script config or default 1; semantics unclear (combat param)"
+  },
+  "0x00DC3F3C": {
+    "name": "byte_DC3F3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC403C": {
+    "name": "byte_DC403C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC6A3C": {
+    "name": "byte_DC6A3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC333C": {
+    "name": "byte_DC333C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x017AA8C0": {
+    "name": "dword_17AA8C0",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AA8B8": {
+    "name": "dword_17AA8B8",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB728": {
+    "name": "dword_17AB728",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x005D8A38": {
+    "name": "g_szCCBStageCamName",
+    "type": "char[]",
+    "source": "binary: CCBStageCam: sprintf(buf, \"%s\", &g_szCCBStageCamName); string buffer"
+  },
+  "0x017AB5AC": {
+    "name": "dword_17AB5AC",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB5B0": {
+    "name": "dword_17AB5B0",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB75C": {
+    "name": "dword_17AB75C",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB760": {
+    "name": "dword_17AB760",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB6DC": {
+    "name": "dword_17AB6DC",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB6E0": {
+    "name": "dword_17AB6E0",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB70C": {
+    "name": "dword_17AB70C",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB710": {
+    "name": "dword_17AB710",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB78C": {
+    "name": "dword_17AB78C",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB790": {
+    "name": "dword_17AB790",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x00DDA73C": {
+    "name": "byte_DDA73C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DCD13C": {
+    "name": "byte_DCD13C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x017AA8C4": {
+    "name": "dword_17AA8C4",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AA8C8": {
+    "name": "dword_17AA8C8",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB8A8": {
+    "name": "dword_17AB8A8",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017ACB08": {
+    "name": "byte_17ACB08",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x00DD9E3C": {
+    "name": "byte_DD9E3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DD9F3C": {
+    "name": "byte_DD9F3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DDA03C": {
+    "name": "byte_DDA03C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DDA13C": {
+    "name": "byte_DDA13C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DDA23C": {
+    "name": "byte_DDA23C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DDA33C": {
+    "name": "byte_DDA33C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DDA43C": {
+    "name": "byte_DDA43C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DDA53C": {
+    "name": "byte_DDA53C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DDA63C": {
+    "name": "byte_DDA63C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x017ABE00": {
+    "name": "byte_17ABE00",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017ABD00": {
+    "name": "byte_17ABD00",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017ABCE8": {
+    "name": "dword_17ABCE8",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017A9A50": {
+    "name": "byte_17A9A50",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB8B8": {
+    "name": "unk_17AB8B8",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x0056C548": {
+    "name": "off_56C548",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x017AB72C": {
+    "name": "dword_17AB72C",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB730": {
+    "name": "dword_17AB730",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x0080AB20": {
+    "name": "byte_80AB20",
+    "type": "skip",
+    "reason": "BSS UI template data buffer element"
+  },
+  "0x0056D5D8": {
+    "name": "off_56D5D8",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x017AB59C": {
+    "name": "dword_17AB59C",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB5A0": {
+    "name": "dword_17AB5A0",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x00DCF43C": {
+    "name": "byte_DCF43C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x017AB818": {
+    "name": "byte_17AB818",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x0056F208": {
+    "name": "off_56F208",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x0056F1CC": {
+    "name": "off_56F1CC",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x0056F1E0": {
+    "name": "off_56F1E0",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x00DCD03C": {
+    "name": "byte_DCD03C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC7D3C": {
+    "name": "byte_DC7D3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x017AA8D0": {
+    "name": "dword_17AA8D0",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x0056ABA4": {
+    "name": "off_56ABA4",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x017AB748": {
+    "name": "dword_17AB748",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB74C": {
+    "name": "dword_17AB74C",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB750": {
+    "name": "dword_17AB750",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x0080AC01": {
+    "name": "byte_80AC01",
+    "type": "skip",
+    "reason": "BSS UI template data buffer element"
+  },
+  "0x017AB668": {
+    "name": "dword_17AB668",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB66C": {
+    "name": "dword_17AB66C",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB670": {
+    "name": "dword_17AB670",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x0056BA1C": {
+    "name": "off_56BA1C",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x017AB8AC": {
+    "name": "dword_17AB8AC",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB8B0": {
+    "name": "dword_17AB8B0",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB898": {
+    "name": "dword_17AB898",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB89C": {
+    "name": "dword_17AB89C",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB8A0": {
+    "name": "dword_17AB8A0",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB6C8": {
+    "name": "dword_17AB6C8",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB6CC": {
+    "name": "dword_17AB6CC",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB6D0": {
+    "name": "dword_17AB6D0",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB6F8": {
+    "name": "dword_17AB6F8",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB6FC": {
+    "name": "dword_17AB6FC",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB700": {
+    "name": "dword_17AB700",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB778": {
+    "name": "dword_17AB778",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB77C": {
+    "name": "dword_17AB77C",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AB780": {
+    "name": "dword_17AB780",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x0056B97C": {
+    "name": "off_56B97C",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x00570904": {
+    "name": "off_570904",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x0056B898": {
+    "name": "off_56B898",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x00DC773C": {
+    "name": "byte_DC773C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x0056E130": {
+    "name": "off_56E130",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x0056F1A4": {
+    "name": "off_56F1A4",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x0056F1B8": {
+    "name": "off_56F1B8",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x017A95E4": {
+    "name": "byte_17A95E4",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x0056B518": {
+    "name": "off_56B518",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x0056B504": {
+    "name": "off_56B504",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x0056B52C": {
+    "name": "off_56B52C",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x0080AC07": {
+    "name": "byte_80AC07",
+    "type": "skip",
+    "reason": "BSS UI template data buffer element"
+  },
+  "0x017AB808": {
+    "name": "byte_17AB808",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x005706AC": {
+    "name": "off_5706AC",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x017B3AAC": {
+    "name": "byte_17B3AAC",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017A9B50": {
+    "name": "byte_17A9B50",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x0080AB19": {
+    "name": "byte_80AB19",
+    "type": "skip",
+    "reason": "BSS UI template data buffer element"
+  },
+  "0x017A9950": {
+    "name": "byte_17A9950",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x0056B990": {
+    "name": "off_56B990",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x0056BA08": {
+    "name": "off_56BA08",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x017AAEE4": {
+    "name": "byte_17AAEE4",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x017AA920": {
+    "name": "byte_17AA920",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x00DC4C3C": {
+    "name": "byte_DC4C3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC4D3C": {
+    "name": "byte_DC4D3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC4E3C": {
+    "name": "byte_DC4E3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC4F3C": {
+    "name": "byte_DC4F3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC503C": {
+    "name": "byte_DC503C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC513C": {
+    "name": "byte_DC513C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC523C": {
+    "name": "byte_DC523C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC533C": {
+    "name": "byte_DC533C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC543C": {
+    "name": "byte_DC543C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC553C": {
+    "name": "byte_DC553C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC563C": {
+    "name": "byte_DC563C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DCBC3C": {
+    "name": "byte_DCBC3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC583C": {
+    "name": "byte_DC583C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC593C": {
+    "name": "byte_DC593C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC5A3C": {
+    "name": "byte_DC5A3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC5B3C": {
+    "name": "byte_DC5B3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DC5C3C": {
+    "name": "byte_DC5C3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00DCC93C": {
+    "name": "byte_DCC93C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00570298": {
+    "name": "off_570298",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x0056F1F4": {
+    "name": "off_56F1F4",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x00DC343C": {
+    "name": "byte_DC343C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x0080AC03": {
+    "name": "byte_80AC03",
+    "type": "skip",
+    "reason": "BSS UI template data buffer element"
+  },
+  "0x0080AC04": {
+    "name": "byte_80AC04",
+    "type": "skip",
+    "reason": "BSS UI template data buffer element"
+  },
+  "0x0080AC05": {
+    "name": "byte_80AC05",
+    "type": "skip",
+    "reason": "BSS UI template data buffer element"
+  },
+  "0x0080AC06": {
+    "name": "byte_80AC06",
+    "type": "skip",
+    "reason": "BSS UI template data buffer element"
+  },
+  "0x0080AC02": {
+    "name": "byte_80AC02",
+    "type": "skip",
+    "reason": "BSS UI template data buffer element"
+  },
+  "0x00570310": {
+    "name": "off_570310",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x017AB828": {
+    "name": "dword_17AB828",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x005707D0": {
+    "name": "off_5707D0",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x0056AF80": {
+    "name": "off_56AF80",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x00DCAD3C": {
+    "name": "byte_DCAD3C",
+    "type": "skip",
+    "reason": "runtime string pointer in 256-byte data block (offset 0x3C)"
+  },
+  "0x00570748": {
+    "name": "off_570748",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x00570754": {
+    "name": "off_570754",
+    "type": "skip",
+    "reason": "rdata offset: codegen auto-substitutes"
+  },
+  "0x0080AB21": {
+    "name": "byte_80AB21",
+    "type": "skip",
+    "reason": "BSS UI template data buffer element"
+  },
+  "0x017A89E8": {
+    "name": "byte_17A89E8",
+    "type": "skip",
+    "reason": "CCBStage/CCBStageRole global data area field"
   }
 }
