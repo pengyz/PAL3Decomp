@@ -2333,5 +2333,55 @@
     "name": "g_UITemplateData",
     "type": "unsigned char[]",
     "source": "binary: BSS buffer; byte_A00001/A00102 etc. are template name strings passed to UIStatic::CreateFromTemplate; span 0xA00001-0xA00B08"
+  },
+  "0x00DD533C": {
+    "name": "g_pszAttrSuffix2",
+    "type": "const char *",
+    "source": "binary: sprintf(\"%s%s\", g_pszAttrPrefix, g_pszAttrSuffix2); ArcSceneObject attribute text"
+  },
+  "0x00DC423C": {
+    "name": "g_pszAttrPrefix2",
+    "type": "const char *",
+    "source": "binary: sprintf(\"%s%s\", g_pszAttrPrefix2, g_pszAttrSuffix); ArcSceneObject/MagicUI attribute text"
+  },
+  "0x00DCAF3C": {
+    "name": "g_pszMagicAttrPrefix",
+    "type": "const char *",
+    "source": "binary: MagicUI_InitUILayout: sprintf(\"%s%s\", g_pszMagicAttrPrefix, ...)"
+  },
+  "0x00C10CD0": {
+    "name": "g_nSceneTransitionParam",
+    "type": "int",
+    "source": "binary: Actor_DoSceneTransition assigns v65; stored in Buffer_44[93]"
+  },
+  "0x00D91780": {
+    "name": "g_fUIColorParam",
+    "type": "float",
+    "source": "binary: CGameData_SetDefaultColors: val=64; UIListBox_Render uses as float"
+  },
+  "0x00D924B4": {
+    "name": "g_bRoleLoadFlags",
+    "type": "unsigned char[]",
+    "source": "binary: PAL3_LoadRoleByIndex: g_bRoleLoadFlags[nVal]=1; PAL3_LoadUnlockFlags: memset to 0"
+  },
+  "0x0056C568": {
+    "name": "g_MonsterEntryTable",
+    "type": "int[]",
+    "source": "binary: UITitle_XJTM_UpdateMonsterEntry: g_MonsterEntryTable[nVal]; RenderTarget_OnRender uses it"
+  },
+  "0x00C11750": {
+    "name": "g_bCameraCollisionFlag",
+    "type": "unsigned char",
+    "source": "binary: CameraCtrl_InitPathState/PAL3_CheckViewCollision: set to 0"
+  },
+  "0x00C11360": {
+    "name": "g_pBGMTable",
+    "type": "gbSound2DNode *[]",
+    "source": "binary: SoundSystem_Init: memset to 0; UIPostUpdate: g_pBGMTable[CameraCtrl::GetModeByIndex(v7)]"
+  },
+  "0x00C10CC1": {
+    "name": "g_nSceneTransitionParam2",
+    "type": "unsigned char",
+    "source": "binary: Actor_DoSceneTransition assigns v64; stored in Buffer_44[92]"
   }
 }
