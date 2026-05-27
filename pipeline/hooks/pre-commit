@@ -30,18 +30,23 @@ python3 << 'PYEOF'
 import json, os, sys
 
 def scan_violations(structs_dir):
-    violations = set()
+    # load all structs first for cross-reference
+    all_structs = {}
     for fname in os.listdir(structs_dir):
-        if not fname.endswith('.json'): continue
-        sname = fname[:-5]
-        d = json.load(open(os.path.join(structs_dir, fname)))
+        if fname.endswith('.json'):
+            all_structs[fname[:-5]] = json.load(open(os.path.join(structs_dir, fname)))
+
+    violations = set()
+    for sname, d in all_structs.items():
         if d.get('pack'):
             continue
+        is_union = d.get('is_union', False)
         members = d.get('known_members', {})
-        sorted_m = sorted([(int(off), members[off]) for off in members], key=lambda x: x[0])
+        sorted_m = sorted([(int(off.split('_')[0]), members[off]) for off in members], key=lambda x: x[0])
         prev_end = 0
         for off, m in sorted_m:
             t = m.get('type', '')
+            base_t = t.split('[')[0].strip()
             if '*' in t or any(x in t for x in ['int','float','DWORD','unsigned long','unsigned int','LONG','UINT','BOOL']):
                 align, sz = 4, 4
             elif any(x in t for x in ['short','WORD','unsigned short']):
@@ -50,11 +55,13 @@ def scan_violations(structs_dir):
                 align, sz = 1, 1
             elif 'double' in t:
                 align, sz = 8, 8
+            elif base_t in all_structs and all_structs[base_t].get('pack'):
+                align, sz = 1, 1  # referenced struct is pack(1)
             else:
                 align, sz = 4, 4
             if align > 1 and off % align != 0:
                 violations.add(f'ALIGN:{sname}:{off}')
-            if off < prev_end:
+            if not is_union and off < prev_end:
                 violations.add(f'OVERLAP:{sname}:{off}')
             prev_end = off + sz
     return violations
