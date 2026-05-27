@@ -571,7 +571,8 @@
   },
   "0x00C04350": {
     "name": "g_SceneMgrPrefix",
-    "type": "int"
+    "type": "Array",
+    "source": "|FullInit:used as (Array *)&xxx, actual embedded Array instance"
   },
   "0x00C04354": {
     "name": "g_RoleTeam1",
@@ -591,7 +592,8 @@
   },
   "0x00C04370": {
     "name": "g_nSceneFlags",
-    "type": "int"
+    "type": "Array",
+    "source": "|FullInit:used as (Array *)&xxx, actual embedded Array instance"
   },
   "0x00C04374": {
     "name": "g_nSceneMode",
@@ -917,13 +919,13 @@
   },
   "0x00C04380": {
     "name": "g_SceneArray",
-    "type": "void *",
-    "source": "binary:99 decomp refs, mov reg(addr load), near g_SceneMgr"
+    "type": "Array",
+    "source": "binary:99 decomp refs, mov reg(addr load), near g_SceneMgr|FullInit:used as (Array *)&xxx, actual embedded Array instance"
   },
   "0x00C04360": {
     "name": "g_RoleTeamArray",
-    "type": "void *",
-    "source": "binary:22 decomp refs, mov reg(addr load), near g_RoleTeam2"
+    "type": "Array",
+    "source": "binary:22 decomp refs, mov reg(addr load), near g_RoleTeam2|FullInit:used as (Array *)&xxx, actual embedded Array instance"
   },
   "0x005D41B8": {
     "name": "g_fRenderHeight",
@@ -1985,15 +1987,15 @@
     "type": "int *",
     "source": "binary: PAL3_FullInit: (g_pSceneArrayEnd - g_nSceneType)/12; scene array end pointer"
   },
-"0x00C10968": {
+  "0x00C10968": {
     "name": "g_UIScript",
     "type": "skip",
     "reason": "SceneMgrCamBlock.m_pUIScript at +92 (SceneMgr+0xC5D8); resolved via struct_instances"
   },
   "0x00C1096C": {
-    "name": "g_pScriptArrayEndSub",
-    "type": "skip",
-    "reason": "SceneMgrCamBlock.m_pScriptArrayEndSub at +96 (SceneMgr+0xC5DC); resolved via struct_instances"
+    "name": "g_pScriptArrayEnd2",
+    "type": "PalScript *",
+    "source": "binary: MovePartyFollowers/PAL3_Update: while(v < g_pScriptArrayEnd2); loop terminator"
   },
   "0x00D92788": {
     "name": "g_SceneTransitionBuffer",
@@ -6829,11 +6831,6 @@
     "name": "g_pSceneTransitionBegin",
     "type": "unsigned char *",
     "source": "binary: Actor_DoSceneTransition/LoadActorModel: v=g_pSceneTransitionBegin; loop start paired with g_pSceneTransitionEnd"
-  },
-  "0x00C1096C": {
-    "name": "g_pScriptArrayEnd2",
-    "type": "PalScript *",
-    "source": "binary: MovePartyFollowers/PAL3_Update: while(v < g_pScriptArrayEnd2); loop terminator"
   },
   "0x00592DA4": {
     "name": "off_592DA4",

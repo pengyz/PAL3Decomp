@@ -686,6 +686,11 @@
       "type": "UIItem",
       "source": "A:LEA_ECX+CALL_UIItem::ctor"
     },
+    "4752": {
+      "name": "_todo_UI4540_ext",
+      "type": "int[50]",
+      "source": "FullInit:DWORD[84-96] accesses beyond UIItem; gap fill 216 bytes to _todo_137C"
+    },
     "4976": {
       "name": "m_wndLabel",
       "type": "UIWnd *",
@@ -695,6 +700,11 @@
       "name": "_embed_UIItem_5908",
       "type": "UIItem",
       "source": "A:LEA_ECX+CALL_UIItem::ctor"
+    },
+    "6120": {
+      "name": "_todo_UI5908_ext",
+      "type": "int[270]",
+      "source": "FullInit:DWORD[94-290] accesses beyond UIItem; gap fill 1088 bytes to _todo_1C28"
     },
     "7256": {
       "name": "m_bStateFlag1",
@@ -810,6 +820,11 @@
       "name": "_embed_Actor_1A8",
       "type": "Actor",
       "source": "A+:decomp Actor::DispatchAction((Actor*)&this->_todo_1A8) embedded_Actor + member_access(.m_pSelfAtt,.m_pEquipAtt*,.m_dwMatMsg)"
+    },
+    "1020": {
+      "name": "_todo_ActorExt",
+      "type": "int[4]",
+      "source": "FullInit:DWORD[149-150] from Actor base; gap 16 bytes to m_pCCBRoleStateEnd"
     },
     "1164": {
       "name": "_todo_48C",
@@ -1008,8 +1023,8 @@
     },
     "1684": {
       "name": "_todo_694",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "type": "int[300]",
+      "source": "binary_scan:1refs|FullInit: array access indices 0-283"
     },
     "2988": {
       "name": "m_StaticSlotArray",
@@ -1018,8 +1033,8 @@
     },
     "3072": {
       "name": "_todo_C00",
-      "type": "int",
-      "source": "binary_scan:5refs"
+      "type": "int[200]",
+      "source": "binary_scan:5refs|FullInit: array access indices 94-190"
     },
     "4028": {
       "name": "_todo_FBC",
