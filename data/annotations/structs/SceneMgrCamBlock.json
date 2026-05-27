@@ -43,8 +43,13 @@
     },
     "660": {
       "name": "m_RoleUnlockTable",
-      "type": "int",
+      "type": "int[60]",
       "source": "binary: SetRoleLevelAndRefresh: &dword_C10BA0 + 12*nRoleIdx; role unlock condition table"
+    },
+    "260": {
+      "name": "m_RoleUnlockData",
+      "type": "int[100]",
+      "source": "binary: PAL3_FullInit memset(&dword_C10A10, 0, 0x190); SceneMgrCamBlock+0x104"
     }
   },
   "pdb_size": 856,

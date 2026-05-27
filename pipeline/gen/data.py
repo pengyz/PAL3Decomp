@@ -210,13 +210,31 @@ class DataStore:
 
             # Build instance ranges from globals
             if globals_path.exists():
+                import re as _re
                 for addr_str, ginfo in gdata.items():
                     gtype = ginfo.get('type', '')
                     gname = ginfo.get('name', '')
-                    if gtype in struct_sizes and gname:
+                    if not gname or ginfo.get('type') == 'skip':
+                        continue
+                    if gtype in struct_sizes:
                         base = int(addr_str, 16)
                         self.struct_instances.append(
                             (base, base + struct_sizes[gtype], gname, gtype))
+                    else:
+                        # Handle array types: TypeName[N]
+                        arr_m = _re.match(r'^(\w+)\[(\d+)\]$', gtype)
+                        if arr_m:
+                            elem_type = arr_m.group(1)
+                            count = int(arr_m.group(2))
+                            elem_size = struct_sizes.get(elem_type, 0)
+                            if elem_size and elem_type in self.struct_members:
+                                base = int(addr_str, 16)
+                                # Register each array element as a separate instance
+                                for idx in range(count):
+                                    elem_base = base + idx * elem_size
+                                    elem_name = '%s[%d]' % (gname, idx)
+                                    self.struct_instances.append(
+                                        (elem_base, elem_base + elem_size, elem_name, elem_type))
                 self.struct_instances.sort()
 
     def _load_binary(self):

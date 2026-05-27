@@ -66,7 +66,7 @@ def _try_literal_replacement(name):
 
 
 def _try_struct_member_resolution(name):
-    """Check if identifier is a global struct instance member."""
+    """Check if identifier is a global struct instance member (supports one level of nesting)."""
     if name in store.literals:
         return None
     try:
@@ -97,6 +97,60 @@ def _try_struct_member_resolution(name):
                 elif prefix == 'flt' and 'float' not in mt:
                     return None
                 return '%s.%s' % (gname, mname)
+            # Not found at top level - try one level of embedded struct nesting
+            import re as _re2
+            for moff, (mname, mtype) in sorted(members.items()):
+                if offset < moff:
+                    continue
+                sub_offset = offset - moff
+                # Check if this member is an array type (e.g. int[60], float[48])
+                arr_m = _re2.match(r'^(\w[\w\s\*]*?)\[(\d+)\]$', mtype.strip())
+                if arr_m:
+                    elem_type_str = arr_m.group(1).strip()
+                    arr_count = int(arr_m.group(2))
+                    # Estimate element size
+                    elem_sz = {'int': 4, 'float': 4, 'unsigned int': 4, 'char': 1,
+                               'short': 2, 'unsigned char': 1, 'double': 8}.get(elem_type_str, 4)
+                    if sub_offset < arr_count * elem_sz and sub_offset % elem_sz == 0:
+                        idx = sub_offset // elem_sz
+                        return '%s.%s[%d]' % (gname, mname, idx)
+                # Check if this member is an embedded struct (non-pointer, known type)
+                base_mtype = mtype.replace('const ', '').replace('*', '').strip()
+                base_mtype = _re2.sub(r'\[.*\]', '', base_mtype).strip()
+                if '*' in mtype or not base_mtype:
+                    continue
+                sub_members = store.struct_members.get(base_mtype)
+                if not sub_members:
+                    continue
+                if sub_offset < 0:
+                    continue
+                sub_info = sub_members.get(sub_offset)
+                if sub_info:
+                    sub_name, sub_type = sub_info
+                    # Check if sub_type is an array and sub_offset is an element
+                    arr_m2 = _re2.match(r'^(\w[\w\s\*]*?)\[(\d+)\]$', sub_type.strip())
+                    if arr_m2:
+                        elem_type2 = arr_m2.group(1).strip()
+                        arr_count2 = int(arr_m2.group(2))
+                        elem_sz2 = {'int': 4, 'float': 4, 'unsigned int': 4, 'char': 1,
+                                    'short': 2, 'unsigned char': 1, 'double': 8}.get(elem_type2, 4)
+                        # sub_offset is 0 here (exact match), check if caller wants element
+                        return '%s.%s.%s' % (gname, mname, sub_name)
+                    return '%s.%s.%s' % (gname, mname, sub_name)
+                # Check if any sub_member is an array containing sub_offset
+                for smoff, (smname, smtype) in sorted(sub_members.items()):
+                    if sub_offset < smoff:
+                        continue
+                    arr_m2 = _re2.match(r'^(\w[\w\s\*]*?)\[(\d+)\]$', smtype.strip())
+                    if arr_m2:
+                        elem_type2 = arr_m2.group(1).strip()
+                        arr_count2 = int(arr_m2.group(2))
+                        elem_sz2 = {'int': 4, 'float': 4, 'unsigned int': 4, 'char': 1,
+                                    'short': 2, 'unsigned char': 1, 'double': 8}.get(elem_type2, 4)
+                        rel = sub_offset - smoff
+                        if rel < arr_count2 * elem_sz2 and rel % elem_sz2 == 0:
+                            idx2 = rel // elem_sz2
+                            return '%s.%s.%s[%d]' % (gname, mname, smname, idx2)
             return None
     return None
 
