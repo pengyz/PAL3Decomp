@@ -27,9 +27,9 @@
       "source": "binary:camblock_gap"
     },
     "576": {
-      "name": "_field_240",
+      "name": "m_nUnlockDataCount",
       "type": "int",
-      "source": "binary:camblock_gap"
+      "source": "binary:camblock_gap|FullInit:set to 28 = number of unlock triples (charID, event, scene)"
     },
     "688": {
       "name": "_field_2B0",
@@ -57,9 +57,9 @@
       "source": "binary:MovePartyFollowers/PAL3_Update: while(v < end); secondary PalScript array terminator"
     },
     "660": {
-      "name": "m_RoleUnlockTable",
+      "name": "m_MonsterUnlockTable",
       "type": "int[60]",
-      "source": "binary: SetRoleLevelAndRefresh: &dword_C10BA0 + 12*nRoleIdx; role unlock condition table"
+      "source": "binary: SetRoleLevelAndRefresh: &dword_C10BA0 + 12*nRoleIdx; FullInit: stores (monsterID, level) pairs for encounter unlock"
     },
     "260": {
       "name": "m_RoleUnlockData",
