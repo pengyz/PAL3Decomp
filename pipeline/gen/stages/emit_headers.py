@@ -1391,6 +1391,8 @@ def generate_globals():
         typ = g.get('type', 'int')
         if not name:
             continue
+        if typ == 'skip':
+            continue  # known-unnameable: don't emit extern declaration
         # Skip IDA default names (they go in per-file forward decls)
         if re.match(r'^(dword|byte|flt|word|off|stru|unk|asc)_', name):
             continue
