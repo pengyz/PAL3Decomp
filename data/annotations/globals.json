@@ -6808,5 +6808,550 @@
     "name": "byte_17A89E8",
     "type": "skip",
     "reason": "CCBStage/CCBStageRole global data area field"
+  },
+  "0x00D924E8": {
+    "name": "g_bGameUpdating",
+    "type": "unsigned char",
+    "source": "binary: PAL3_Update: set to 1; UIScenePanel_CreateSettingsUI: if(val) check"
+  },
+  "0x00DC0DE8": {
+    "name": "g_pComposeUI",
+    "type": "ComposeUI *",
+    "source": "binary: PalScript_Op_SKEE_Entry: ComposeUI::RefreshRecipeList(g_pComposeUI, ...)"
+  },
+  "0x00DBA014": {
+    "name": "g_pSceneTransitionBegin",
+    "type": "unsigned char *",
+    "source": "binary: Actor_DoSceneTransition/LoadActorModel: v=g_pSceneTransitionBegin; loop start paired with g_pSceneTransitionEnd"
+  },
+  "0x00C1096C": {
+    "name": "g_pScriptArrayEnd2",
+    "type": "PalScript *",
+    "source": "binary: MovePartyFollowers/PAL3_Update: while(v < g_pScriptArrayEnd2); loop terminator"
+  },
+  "0x00592DA4": {
+    "name": "off_592DA4",
+    "type": "skip",
+    "reason": ".data string pointer used in string comparison; runtime-initialized"
+  },
+  "0x005D3C68": {
+    "name": "unk_5D3C68",
+    "type": "skip",
+    "reason": ".data float/data table element"
+  },
+  "0x005D8AD4": {
+    "name": "unk_5D8AD4",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8AF4": {
+    "name": "unk_5D8AF4",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D89F8": {
+    "name": "unk_5D89F8",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D89F0": {
+    "name": "unk_5D89F0",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A00": {
+    "name": "unk_5D8A00",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x0059DD60": {
+    "name": "off_59DD60",
+    "type": "skip",
+    "reason": ".data string pointer used in string comparison; runtime-initialized"
+  },
+  "0x0059DD80": {
+    "name": "off_59DD80",
+    "type": "skip",
+    "reason": ".data string pointer used in string comparison; runtime-initialized"
+  },
+  "0x0058B448": {
+    "name": "off_58B448",
+    "type": "skip",
+    "reason": ".data string pointer used in string comparison; runtime-initialized"
+  },
+  "0x005D8A3C": {
+    "name": "unk_5D8A3C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A30": {
+    "name": "byte_5D8A30",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A2C": {
+    "name": "byte_5D8A2C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A28": {
+    "name": "byte_5D8A28",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A24": {
+    "name": "byte_5D8A24",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A20": {
+    "name": "byte_5D8A20",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A1C": {
+    "name": "byte_5D8A1C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A18": {
+    "name": "byte_5D8A18",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D89B0": {
+    "name": "unk_5D89B0",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x0059DD18": {
+    "name": "off_59DD18",
+    "type": "skip",
+    "reason": ".data string pointer used in string comparison; runtime-initialized"
+  },
+  "0x005D8948": {
+    "name": "unk_5D8948",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8944": {
+    "name": "unk_5D8944",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8940": {
+    "name": "unk_5D8940",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D893C": {
+    "name": "unk_5D893C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8938": {
+    "name": "unk_5D8938",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D87FC": {
+    "name": "dword_5D87FC",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D87F8": {
+    "name": "dword_5D87F8",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D3C6C": {
+    "name": "unk_5D3C6C",
+    "type": "skip",
+    "reason": ".data float/data table element"
+  },
+  "0x005B0E2C": {
+    "name": "off_5B0E2C",
+    "type": "skip",
+    "reason": ".data string pointer used in string comparison; runtime-initialized"
+  },
+  "0x005D8F98": {
+    "name": "unk_5D8F98",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F90": {
+    "name": "unk_5D8F90",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F88": {
+    "name": "unk_5D8F88",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F80": {
+    "name": "unk_5D8F80",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F78": {
+    "name": "unk_5D8F78",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F70": {
+    "name": "unk_5D8F70",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F68": {
+    "name": "unk_5D8F68",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F60": {
+    "name": "unk_5D8F60",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F58": {
+    "name": "unk_5D8F58",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F50": {
+    "name": "unk_5D8F50",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F48": {
+    "name": "unk_5D8F48",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F40": {
+    "name": "unk_5D8F40",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F38": {
+    "name": "unk_5D8F38",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F28": {
+    "name": "unk_5D8F28",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F30": {
+    "name": "unk_5D8F30",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x00583A1C": {
+    "name": "off_583A1C",
+    "type": "skip",
+    "reason": ".data string pointer used in string comparison; runtime-initialized"
+  },
+  "0x005D8E20": {
+    "name": "unk_5D8E20",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8E30": {
+    "name": "unk_5D8E30",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8E3C": {
+    "name": "unk_5D8E3C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8E48": {
+    "name": "unk_5D8E48",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x00596424": {
+    "name": "off_596424",
+    "type": "skip",
+    "reason": ".data string pointer used in string comparison; runtime-initialized"
+  },
+  "0x00596420": {
+    "name": "off_596420",
+    "type": "skip",
+    "reason": ".data string pointer used in string comparison; runtime-initialized"
+  },
+  "0x005F4D20": {
+    "name": "off_5F4D20",
+    "type": "skip",
+    "reason": ".data string pointer used in string comparison; runtime-initialized"
+  },
+  "0x005D8B0C": {
+    "name": "unk_5D8B0C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A58": {
+    "name": "unk_5D8A58",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8B04": {
+    "name": "unk_5D8B04",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8B00": {
+    "name": "unk_5D8B00",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8B14": {
+    "name": "unk_5D8B14",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8B3C": {
+    "name": "unk_5D8B3C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8B44": {
+    "name": "unk_5D8B44",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8F0C": {
+    "name": "dword_5D8F0C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8EF8": {
+    "name": "dword_5D8EF8",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8EE0": {
+    "name": "dword_5D8EE0",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005861F8": {
+    "name": "off_5861F8",
+    "type": "skip",
+    "reason": ".data string pointer used in string comparison; runtime-initialized"
+  },
+  "0x005D88F4": {
+    "name": "unk_5D88F4",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D88EC": {
+    "name": "unk_5D88EC",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D88FC": {
+    "name": "unk_5D88FC",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D899C": {
+    "name": "byte_5D899C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8994": {
+    "name": "byte_5D8994",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D898C": {
+    "name": "byte_5D898C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8984": {
+    "name": "byte_5D8984",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D897C": {
+    "name": "byte_5D897C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8974": {
+    "name": "unk_5D8974",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8824": {
+    "name": "unk_5D8824",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D87F0": {
+    "name": "unk_5D87F0",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8AC4": {
+    "name": "unk_5D8AC4",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8ABC": {
+    "name": "unk_5D8ABC",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8AB4": {
+    "name": "unk_5D8AB4",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8E98": {
+    "name": "dword_5D8E98",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8B88": {
+    "name": "unk_5D8B88",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8DC0": {
+    "name": "unk_5D8DC0",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8DC4": {
+    "name": "dword_5D8DC4",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8DB8": {
+    "name": "dword_5D8DB8",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8DBC": {
+    "name": "dword_5D8DBC",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8800": {
+    "name": "unk_5D8800",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D89A4": {
+    "name": "unk_5D89A4",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8EC0": {
+    "name": "unk_5D8EC0",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8EB8": {
+    "name": "unk_5D8EB8",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8EB0": {
+    "name": "unk_5D8EB0",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8808": {
+    "name": "unk_5D8808",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8EC8": {
+    "name": "dword_5D8EC8",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8884": {
+    "name": "unk_5D8884",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8964": {
+    "name": "unk_5D8964",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8960": {
+    "name": "unk_5D8960",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D895C": {
+    "name": "unk_5D895C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8958": {
+    "name": "unk_5D8958",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8954": {
+    "name": "unk_5D8954",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8950": {
+    "name": "unk_5D8950",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A64": {
+    "name": "unk_5D8A64",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A5C": {
+    "name": "unk_5D8A5C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A50": {
+    "name": "unk_5D8A50",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A48": {
+    "name": "unk_5D8A48",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A40": {
+    "name": "unk_5D8A40",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A6C": {
+    "name": "unk_5D8A6C",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8A90": {
+    "name": "unk_5D8A90",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
+  },
+  "0x005D8848": {
+    "name": "unk_5D8848",
+    "type": "skip",
+    "reason": "CCBStageCam data area element"
   }
 }
