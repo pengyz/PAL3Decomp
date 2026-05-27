@@ -2035,9 +2035,9 @@
     "source": "binary: BSS buffer; byte_A00001/A00102 etc. are template name strings passed to UIStatic::CreateFromTemplate; span 0xA00001-0xA00B08"
   },
   "0x00C10CD0": {
-    "name": "g_nSceneTransitionParam",
-    "type": "int",
-    "source": "binary: Actor_DoSceneTransition assigns v65; stored in Buffer_44[93]"
+    "name": "g_fFadeTimer",
+    "type": "float",
+    "source": "binary: ScriptUpdate: *(float*)&val += dt; UITitle_BBTY: (1.0-val/60.0)*255 fade calc; float confirmed"
   },
   "0x00D91780": {
     "name": "g_fUIColorParam",
@@ -4285,9 +4285,9 @@
     "source": "binary: SoundSystem_Init: memset to 0; UIPostUpdate: g_pAmbientTable[GetModeByIndex]"
   },
   "0x00BFDA40": {
-    "name": "g_nSceneTransitionFlag",
-    "type": "unsigned char",
-    "source": "binary: Actor_DoSceneTransition: assigned v68[19]; stored in Buffer_44[99]"
+    "name": "byte_BFDA40",
+    "type": "skip",
+    "reason": "save file deserialization: v68[19] from .arc file; format unknown"
   },
   "0x00BFDA98": {
     "name": "g_bEditorMode",
@@ -5793,5 +5793,345 @@
     "name": "dword_17AA150",
     "type": "skip",
     "reason": "CCBStage/CCBStageRole global data area field; part of combat system data block"
+  },
+  "0x00BFDA41": {
+    "name": "byte_BFDA41",
+    "type": "skip",
+    "reason": "save file deserialization: v68[18] from .arc file; format unknown"
+  },
+  "0x00C10CD4": {
+    "name": "dword_C10CD4",
+    "type": "skip",
+    "reason": "save file deserialization: v92 from .arc file; format unknown"
+  },
+  "0x00D8C17C": {
+    "name": "g_fScriptTileSize2",
+    "type": "float",
+    "source": "binary: PalScriptMgr_ExecuteFrame: position/*(float*)&val division; tile size divisor"
+  },
+  "0x00DE7710": {
+    "name": "g_nFileVersion",
+    "type": "unsigned int",
+    "source": "binary: ParticleEffect_LoadSceneFile: gbVFileSystem::Read(&val, 4); if(val > 0x10000)"
+  },
+  "0x00A3A6F8": {
+    "name": "g_pVolModNode",
+    "type": "gbVolModNode *",
+    "source": "binary: PAL3_InitVolModNode: gbVolModNode::gbVolModNode(val); PAL3_InitGFX: SetVolModObj(val)"
+  },
+  "0x0189598D": {
+    "name": "g_bSceneChangeFlags",
+    "type": "unsigned char",
+    "source": "binary: SceneInfo_ProcessSceneChange/UIListBox_ProcessSelection: (val & 1)==0 check"
+  },
+  "0x00C116C4": {
+    "name": "g_fTileSize",
+    "type": "float",
+    "source": "binary: Camera_IsTransitioning/UIPostUpdate: position/*(float*)&val; tile size divisor"
+  },
+  "0x00C11420": {
+    "name": "g_nCollisionResult",
+    "type": "int",
+    "source": "binary: CameraCtrl_ResetSceneMgrParams: set to 0; Camera::CheckCollision1 output param"
+  },
+  "0x00C08664": {
+    "name": "g_nScriptObjectCount",
+    "type": "unsigned int",
+    "source": "binary: ScriptSystem_UpdateObjects: if(val <= 2 && *v2+1284 != val)"
+  },
+  "0x00DE7714": {
+    "name": "g_szParticleTexName",
+    "type": "char[]",
+    "source": "binary: ParticleEffect_LoadTextures: strcpy(val, pszName); texture name buffer"
+  },
+  "0x00AABEF6": {
+    "name": "g_PalScriptTemplate",
+    "type": "unsigned char[]",
+    "source": "binary: CGameData_InitRoles: PalScript::Create(this, &g_PalScriptTemplate, rect, nVal)"
+  },
+  "0x00ABD000": {
+    "name": "g_PlayerAttTemplate",
+    "type": "unsigned char[]",
+    "source": "binary: CGameData_InitRoles/LineupUI: ARC_PlayerAtt::Create(dst, &g_PlayerAttTemplate, nVal)"
+  },
+  "0x005D4E48": {
+    "name": "dword_5D4E48",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E40": {
+    "name": "dword_5D4E40",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E38": {
+    "name": "dword_5D4E38",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E30": {
+    "name": "dword_5D4E30",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E24": {
+    "name": "dword_5D4E24",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E1C": {
+    "name": "dword_5D4E1C",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E14": {
+    "name": "dword_5D4E14",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E0C": {
+    "name": "dword_5D4E0C",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E00": {
+    "name": "dword_5D4E00",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4DE8": {
+    "name": "dword_5D4DE8",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4DDC": {
+    "name": "dword_5D4DDC",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4DD4": {
+    "name": "dword_5D4DD4",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4DCC": {
+    "name": "dword_5D4DCC",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4DC4": {
+    "name": "dword_5D4DC4",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4DB8": {
+    "name": "dword_5D4DB8",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4DAC": {
+    "name": "dword_5D4DAC",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4DA0": {
+    "name": "dword_5D4DA0",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4D94": {
+    "name": "dword_5D4D94",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4D88": {
+    "name": "dword_5D4D88",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4D70": {
+    "name": "dword_5D4D70",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4D58": {
+    "name": "dword_5D4D58",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4D44": {
+    "name": "dword_5D4D44",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4EC8": {
+    "name": "dword_5D4EC8",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4ED4": {
+    "name": "dword_5D4ED4",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F58": {
+    "name": "dword_5D4F58",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F50": {
+    "name": "dword_5D4F50",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F48": {
+    "name": "dword_5D4F48",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F40": {
+    "name": "dword_5D4F40",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F38": {
+    "name": "dword_5D4F38",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F30": {
+    "name": "dword_5D4F30",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F28": {
+    "name": "dword_5D4F28",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F20": {
+    "name": "dword_5D4F20",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F18": {
+    "name": "dword_5D4F18",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F10": {
+    "name": "dword_5D4F10",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F08": {
+    "name": "dword_5D4F08",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F00": {
+    "name": "dword_5D4F00",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4EF8": {
+    "name": "dword_5D4EF8",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4EF0": {
+    "name": "dword_5D4EF0",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4EE8": {
+    "name": "dword_5D4EE8",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4EE0": {
+    "name": "dword_5D4EE0",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x00EC9F0C": {
+    "name": "byte_EC9F0C",
+    "type": "skip",
+    "reason": "CCBStageCam data array element (stride 992/15940)"
+  },
+  "0x00EC9F00": {
+    "name": "dword_EC9F00",
+    "type": "skip",
+    "reason": "CCBStageCam data array element (stride 992/15940)"
+  },
+  "0x005D4EB0": {
+    "name": "dword_5D4EB0",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4EA4": {
+    "name": "dword_5D4EA4",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E98": {
+    "name": "dword_5D4E98",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E8C": {
+    "name": "dword_5D4E8C",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E80": {
+    "name": "dword_5D4E80",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E74": {
+    "name": "dword_5D4E74",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E68": {
+    "name": "dword_5D4E68",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4E5C": {
+    "name": "dword_5D4E5C",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005706C0": {
+    "name": "off_5706C0",
+    "type": "skip",
+    "reason": "rdata array end sentinel used as boundary in pointer arithmetic"
+  },
+  "0x005D4FFC": {
+    "name": "dword_5D4FFC",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4F78": {
+    "name": "dword_5D4F78",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4FF0": {
+    "name": "dword_5D4FF0",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4FE0": {
+    "name": "dword_5D4FE0",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x005D4FD0": {
+    "name": "dword_5D4FD0",
+    "type": "skip",
+    "reason": ".data runtime string pointer (editor description); initialized from game files"
   }
 }
