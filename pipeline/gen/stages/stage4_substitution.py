@@ -30,6 +30,9 @@ def _build_identifier_map():
     for cls in store.game_classes:
         if cls.startswith('_') and cls[1:] not in store.game_classes:
             m[cls[1:]] = cls
+    # IDA unnamed struct globals → known global names
+    # Buffer = g_RoleSystemMain at 0xC020F8 (RoleSystem singleton array base)
+    m['Buffer'] = 'g_RoleSystemMain'
     return m
 
 

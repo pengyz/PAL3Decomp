@@ -41,6 +41,21 @@
       "type": "PalScript *",
       "source": "binary: used as loop terminator for PalScript array; byte_C10960 = g_SceneMgr+0xC5D0"
     },
+    "88": {
+      "name": "_todo_058",
+      "type": "PalScript *",
+      "source": "binary:gap between m_pScriptArrayEnd and m_pUIScript"
+    },
+    "92": {
+      "name": "m_pUIScript",
+      "type": "PalScript *",
+      "source": "binary: PalScript::Create/RenderUI/MoveAndHide; SceneMgrCamBlock+92 = g_UIScript"
+    },
+    "96": {
+      "name": "m_pScriptArrayEndSub",
+      "type": "PalScript *",
+      "source": "binary:MovePartyFollowers/PAL3_Update: while(v < end); secondary PalScript array terminator"
+    },
     "660": {
       "name": "m_RoleUnlockTable",
       "type": "int[60]",

@@ -1932,8 +1932,8 @@
   },
   "0x00C10960": {
     "name": "g_pScriptArrayEnd",
-    "type": "PalScript *",
-    "source": "binary: used as loop terminator for PalScript array; SceneMgr+0xC5D0"
+    "type": "skip",
+    "reason": "SceneMgrCamBlock.m_pScriptArrayEnd at +84 (SceneMgr+0xC5D0); resolved via struct_instances"
   },
   "0x00D8BEC4": {
     "name": "g_fScriptTileSize",
@@ -1985,10 +1985,15 @@
     "type": "int *",
     "source": "binary: PAL3_FullInit: (g_pSceneArrayEnd - g_nSceneType)/12; scene array end pointer"
   },
-  "0x00C10968": {
+"0x00C10968": {
     "name": "g_UIScript",
-    "type": "PalScript *",
-    "source": "binary: PalScript::Create/RenderUI/MoveAndHide; embedded UI script in SceneMgrCamBlock+92"
+    "type": "skip",
+    "reason": "SceneMgrCamBlock.m_pUIScript at +92 (SceneMgr+0xC5D8); resolved via struct_instances"
+  },
+  "0x00C1096C": {
+    "name": "g_pScriptArrayEndSub",
+    "type": "skip",
+    "reason": "SceneMgrCamBlock.m_pScriptArrayEndSub at +96 (SceneMgr+0xC5DC); resolved via struct_instances"
   },
   "0x00D92788": {
     "name": "g_SceneTransitionBuffer",
