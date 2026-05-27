@@ -107,7 +107,7 @@
       "source": "binary:2x access | annotate_todo"
     },
     "1044": {
-      "name": "_field_414",
+      "name": "m_DialogByte",
       "type": "unsigned char",
       "source": "binary:1x access"
     },
@@ -122,7 +122,7 @@
       "source": "binary:1x access | annotate_todo"
     },
     "1812": {
-      "name": "_field_714",
+      "name": "m_DialogSub",
       "type": "unsigned char",
       "source": "binary:1x access"
     },
@@ -311,27 +311,27 @@
       "note": "Discovered by member_scan after disp8 fix."
     },
     "128": {
-      "name": "_todo_080",
+      "name": "m_nTaskIndex",
       "type": "int",
       "source": "binary_scan:3refs"
     },
     "136": {
-      "name": "_todo_088",
+      "name": "m_pTaskData",
       "type": "int",
       "source": "binary_scan:2refs"
     },
     "140": {
-      "name": "_todo_08C",
+      "name": "m_pDialogData",
       "type": "int",
       "source": "binary_scan:3refs"
     },
     "144": {
-      "name": "_todo_090",
+      "name": "m_pCurrentTask",
       "type": "int",
       "source": "binary_scan:9refs"
     },
     "148": {
-      "name": "_todo_094",
+      "name": "m_pTaskPtr",
       "type": "int",
       "source": "binary_scan:3refs"
     },
@@ -341,27 +341,27 @@
       "source": "UpdateTimer:incremented_each_tick"
     },
     "156": {
-      "name": "_todo_09C",
+      "name": "m_nWaitTimer",
       "type": "int",
       "source": "binary_scan:5refs"
     },
     "160": {
-      "name": "_todo_0A0",
+      "name": "m_nAnimState",
       "type": "int",
       "source": "binary_scan:3refs"
     },
     "164": {
-      "name": "_todo_0A4",
+      "name": "m_nSnowParticles",
       "type": "int",
       "source": "binary_scan:1refs"
     },
     "168": {
-      "name": "_todo_0A8",
+      "name": "m_nItemCheck",
       "type": "int",
       "source": "binary_scan:2refs"
     },
     "176": {
-      "name": "_todo_0B0",
+      "name": "m_RoleEmoteData",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -376,7 +376,7 @@
       "source": "OpenScript:TextureLib_Data::Parent_Data"
     },
     "212": {
-      "name": "_todo_0D4",
+      "name": "m_RoleEmoteSub",
       "type": "int",
       "source": "binary_scan:2refs"
     },
@@ -386,12 +386,12 @@
       "source": "binary_scan:1refs"
     },
     "244": {
-      "name": "_todo_0F4",
-      "type": "float",
-      "source": "binary_scan:3refs"
+      "name": "m_bSoundType",
+      "type": "unsigned char",
+      "source": "binary:ida_refs"
     },
     "256": {
-      "name": "_todo_100",
+      "name": "m_nUpdateState",
       "type": "int",
       "source": "binary_scan:6refs"
     },
@@ -401,12 +401,12 @@
       "source": "Render:gbMatrixStack::Scale_X_component"
     },
     "332": {
-      "name": "_todo_14C",
+      "name": "m_nScriptCount",
       "type": "int",
       "source": "binary_scan:1refs"
     },
     "352": {
-      "name": "_todo_160",
+      "name": "m_EncampConfig",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -416,12 +416,12 @@
       "source": "binary_scan:1refs"
     },
     "448": {
-      "name": "_todo_1C0",
+      "name": "m_bRoleAction",
       "type": "int",
       "source": "binary_scan:3refs"
     },
     "524": {
-      "name": "_todo_20C",
+      "name": "m_DialogTemplate",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -461,57 +461,57 @@
       "source": "decomp:memset_0xC0_192byte_clear_within_220stride_slot"
     },
     "560": {
-      "name": "_todo_230",
+      "name": "m_fSceneCfg[0]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "564": {
-      "name": "_todo_234",
+      "name": "m_fSceneCfg[1]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "568": {
-      "name": "_todo_238",
+      "name": "m_fSceneCfg[2]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "572": {
-      "name": "_todo_23C",
+      "name": "m_fSceneCfg[3]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "576": {
-      "name": "_todo_240",
+      "name": "m_fSceneCfg[4]",
       "type": "float",
       "source": "binary_scan:2refs"
     },
     "580": {
-      "name": "_todo_244",
+      "name": "m_fSceneCfg[5]",
       "type": "float",
       "source": "binary_scan:2refs"
     },
     "584": {
-      "name": "_todo_248",
+      "name": "m_fSceneCfg[6]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "588": {
-      "name": "_todo_24C",
+      "name": "m_fSceneCfg[7]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "592": {
-      "name": "_todo_250",
+      "name": "m_fSceneCfg[8]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "596": {
-      "name": "_todo_254",
+      "name": "m_fSceneCfg[9]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "600": {
-      "name": "_todo_258",
+      "name": "m_fSceneCfg[10]",
       "type": "float",
       "source": "binary_scan:2refs"
     },
@@ -531,187 +531,187 @@
       "source": "decomp:atof_float_220stride"
     },
     "616": {
-      "name": "_todo_268",
+      "name": "m_fSceneCfg[14]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "620": {
-      "name": "_todo_26C",
+      "name": "m_fSceneCfg[15]",
       "type": "float",
       "source": "binary_scan:2refs"
     },
     "624": {
-      "name": "_todo_270",
+      "name": "m_fSceneCfg[16]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "628": {
-      "name": "_todo_274",
+      "name": "m_fSceneCfg[17]",
       "type": "float",
       "source": "binary_scan:5refs"
     },
     "632": {
-      "name": "_todo_278",
+      "name": "m_fSceneCfg[18]",
       "type": "float",
       "source": "binary_scan:3refs"
     },
     "636": {
-      "name": "_todo_27C",
+      "name": "m_fSceneCfg[19]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "640": {
-      "name": "_todo_280",
+      "name": "m_fSceneCfg[20]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "644": {
-      "name": "_todo_284",
+      "name": "m_fSceneCfg[21]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "648": {
-      "name": "_todo_288",
+      "name": "m_fSceneCfg[22]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "652": {
-      "name": "_todo_28C",
+      "name": "m_fSceneCfg[23]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "656": {
-      "name": "_todo_290",
+      "name": "m_fSceneCfg[24]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "664": {
-      "name": "_todo_298",
+      "name": "m_fSceneCfg[26]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "668": {
-      "name": "_todo_29C",
+      "name": "m_fSceneCfg[27]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "672": {
-      "name": "_todo_2A0",
+      "name": "m_fSceneCfg[28]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "676": {
-      "name": "_todo_2A4",
+      "name": "m_fSceneCfg[29]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "680": {
-      "name": "_todo_2A8",
+      "name": "m_fSceneCfg[30]",
       "type": "float",
       "source": "binary_scan:3refs"
     },
     "684": {
-      "name": "_todo_2AC",
+      "name": "m_fSceneCfg[31]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "688": {
-      "name": "_todo_2B0",
+      "name": "m_fSceneCfg[32]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "692": {
-      "name": "_todo_2B4",
+      "name": "m_fSceneCfg[33]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "696": {
-      "name": "_todo_2B8",
+      "name": "m_fSceneCfg[34]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "700": {
-      "name": "_todo_2BC",
+      "name": "m_fSceneCfg[35]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "704": {
-      "name": "_todo_2C0",
+      "name": "m_fSceneCfg[36]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "708": {
-      "name": "_todo_2C4",
+      "name": "m_fSceneCfg[37]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "712": {
-      "name": "_todo_2C8",
+      "name": "m_fSceneCfg[38]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "716": {
-      "name": "_todo_2CC",
+      "name": "m_fSceneCfg[39]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "720": {
-      "name": "_todo_2D0",
+      "name": "m_fSceneCfg[40]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "724": {
-      "name": "_todo_2D4",
+      "name": "m_fSceneCfg[41]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "728": {
-      "name": "_todo_2D8",
+      "name": "m_fSceneCfg[42]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "732": {
-      "name": "_todo_2DC",
+      "name": "m_fSceneCfg[43]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "736": {
-      "name": "_todo_2E0",
+      "name": "m_fSceneCfg[44]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "740": {
-      "name": "_todo_2E4",
+      "name": "m_fSceneCfg[45]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "744": {
-      "name": "_todo_2E8",
+      "name": "m_fSceneCfg[46]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "748": {
-      "name": "_todo_2EC",
+      "name": "m_fSceneCfg[47]",
       "type": "float",
       "source": "binary_scan:1refs"
     },
     "796": {
-      "name": "_todo_31C",
+      "name": "m_nEmoteParam",
       "type": "int",
       "source": "binary_scan:1refs"
     },
     "800": {
-      "name": "_todo_320",
+      "name": "m_nScreenWidth",
       "type": "int",
       "source": "binary_scan:1refs"
     },
     "876": {
-      "name": "_todo_36C",
+      "name": "m_EncampSound",
       "type": "int",
       "source": "binary_scan:2refs"
     },
     "972": {
-      "name": "_todo_3CC",
+      "name": "m_CamFocusData",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -721,12 +721,12 @@
       "source": "binary_scan:1refs"
     },
     "1272": {
-      "name": "_todo_4F8",
+      "name": "m_nPathState",
       "type": "int",
       "source": "binary_scan:1refs"
     },
     "1276": {
-      "name": "_todo_4FC",
+      "name": "m_nOverlapId",
       "type": "int",
       "source": "binary_scan:1refs"
     },
