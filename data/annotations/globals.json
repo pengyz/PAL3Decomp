@@ -2223,5 +2223,75 @@
     "name": "g_pScriptCurrentBlock",
     "type": "void *",
     "source": "binary: used as PalScript block pointer; ScriptSystemData+0xF98"
+  },
+  "0x01895560": {
+    "name": "g_bEffSystemFlags",
+    "type": "unsigned char",
+    "source": "binary: CEffMgr/CEffMeteor: (val & 1)==0 check, |= 1 set; effect system init flags"
+  },
+  "0x0056F02C": {
+    "name": "g_ComposeUIChildIDs",
+    "type": "int[]",
+    "source": "binary: ComposeUI::GetChildPtr: *((_DWORD*)&off_56F02C + index); child control ID table"
+  },
+  "0x00DBA250": {
+    "name": "g_dwUISettings",
+    "type": "unsigned int",
+    "source": "binary: LOBYTE=UI flag0, BYTE1=UI flag1, BYTE2=UI flag2; written to registry in UIScene_OnMessage"
+  },
+  "0x00DC433C": {
+    "name": "g_pszAttrText",
+    "type": "const char *",
+    "source": "binary: sprintf(%s%d%%, g_pszAttrText, v3); RoleAtt/MainEquipUI attribute display string"
+  },
+  "0x00DC373C": {
+    "name": "g_pszCamLabel",
+    "type": "const char *",
+    "source": "binary: sprintf([%s%d], g_pszCamLabel, n); CameraCtrl/LineupUI/PlayerMgr label string"
+  },
+  "0x00C116F4": {
+    "name": "g_pCurrentBGM",
+    "type": "gbSound2DNode *",
+    "source": "binary: UIPostUpdate: gbSound2DNode::Stop/Play(g_pCurrentBGM); current BGM node"
+  },
+  "0x00C10CC0": {
+    "name": "g_bFormationReady",
+    "type": "unsigned char",
+    "source": "binary: SetupPartyFormation sets to 1; ScriptUpdate clears to 0; formation init flag"
+  },
+  "0x00D8BC20": {
+    "name": "g_vRotateAxis",
+    "type": "gbVec3D",
+    "source": "binary: UIBigMap_RenderRole: gbMatrixStack::Rotate(pStack, angle, &g_vRotateAxis)"
+  },
+  "0x00C0438C": {
+    "name": "g_pSceneArrayEnd",
+    "type": "int *",
+    "source": "binary: PAL3_FullInit: (g_pSceneArrayEnd - g_nSceneType)/12; scene array end pointer"
+  },
+  "0x00C10968": {
+    "name": "g_UIScript",
+    "type": "PalScript *",
+    "source": "binary: PalScript::Create/RenderUI/MoveAndHide; embedded UI script in SceneMgrCamBlock+92"
+  },
+  "0x00D92788": {
+    "name": "g_SceneTransitionBuffer",
+    "type": "unsigned char[]",
+    "source": "binary: Actor_DoSceneTransition: qmemcpy(&g_SceneTransitionBuffer, v90, 0x27848); CGameData_Load copies UISceneMap data here"
+  },
+  "0x00DC733C": {
+    "name": "g_szRoleNameTable",
+    "type": "char[]",
+    "source": "binary: Array_HandleItemPage: &g_szRoleNameTable[256*elem]; 256-byte per role name entry"
+  },
+  "0x00DD003C": {
+    "name": "g_ComposeRecipeTable",
+    "type": "unsigned char[]",
+    "source": "binary: ComposeUI_RefreshRecipeList uses it; SystemUI: &val[64], &val[1984]"
+  },
+  "0x00D8BC2C": {
+    "name": "g_bMapRenderFlags",
+    "type": "unsigned char",
+    "source": "binary: UIBigMap_RenderRole: (g_bMapRenderFlags & 1)==0 check"
   }
 }
