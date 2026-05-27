@@ -304,23 +304,23 @@
     "signature": "int __thiscall(PAL3 *this)"
   },
   "0x00408D10": {
-    "name": "Role::CreateXueJian",
+    "name": "Role::CalcXueJianInit",
     "signature": "int __cdecl(int nVal, int nVal2)"
   },
   "0x00408D80": {
-    "name": "Role::CreateLongKui",
+    "name": "Role::CalcLongKuiInit",
     "signature": "int __cdecl(int nVal, int nVal2)"
   },
   "0x00408E30": {
-    "name": "Role::CreateZiXuan",
+    "name": "Role::CalcZiXuanInit",
     "signature": "int __cdecl(int nVal, int nVal2)"
   },
   "0x00408E90": {
-    "name": "Role::CreateChangQing",
+    "name": "Role::CalcChangQingInit",
     "signature": "int __cdecl(int nVal, int nVal2)"
   },
   "0x00408F30": {
-    "name": "Role::CreateHuaYing",
+    "name": "Role::CalcHuaYingInit",
     "signature": "int __cdecl(int nVal, int nVal2)"
   },
   "0x00408FD0": {
@@ -332,7 +332,7 @@
     "signature": "int *__thiscall(RoleSystem *this)"
   },
   "0x0040BE80": {
-    "name": "RoleSystem::LoadData",
+    "name": "RoleSystem::RecalcAggregatedStats",
     "signature": "int __thiscall(RoleSystem *this, char pData)"
   },
   "0x0040C630": {
@@ -368,7 +368,7 @@
     "signature": "void *__cdecl(int index)"
   },
   "0x0040F060": {
-    "name": "NPC::SetParams",
+    "name": "NPC::SetRoleMode",
     "signature": "int __cdecl(int nVal)"
   },
   "0x0040F620": {
@@ -424,8 +424,8 @@
     "signature": "void __thiscall(RoleSystem *this, gbMatrixStack *pStack, int nVal)"
   },
   "0x004125D0": {
-    "name": "Camera::SetParams",
-    "signature": "void __thiscall(Camera *this, int nVal)"
+    "name": "Camera::InitFromScene",
+    "signature": "void __thiscall(Camera *this, const char *pszSceneName)"
   },
   "0x00412680": {
     "name": "PalScript::DestroyScript",
@@ -508,7 +508,7 @@
     "signature": "int __thiscall(CameraCtrl *this, int mode)"
   },
   "0x0041D980": {
-    "name": "CameraSystem::Init",
+    "name": "CameraSystem::BindToRoleSlot",
     "signature": "int __cdecl(int nVal)"
   },
   "0x0041D9A0": {
@@ -606,11 +606,11 @@
     "signature": "int __thiscall(Config *this, char *filename, char *key)"
   },
   "0x0042FDC0": {
-    "name": "Config::ReadINIString",
+    "name": "Config::FormatSectionPath",
     "signature": "char *__thiscall(Config *this, char *filename, char *key)"
   },
   "0x0042FDE0": {
-    "name": "Config::ReadINI",
+    "name": "Config::ReadSectionAsInt",
     "signature": "bool __thiscall(Config *this, char *filename, char *section)"
   },
   "0x00430290": {
