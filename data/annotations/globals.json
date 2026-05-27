@@ -2293,5 +2293,40 @@
     "name": "g_bMapRenderFlags",
     "type": "unsigned char",
     "source": "binary: UIBigMap_RenderRole: (g_bMapRenderFlags & 1)==0 check"
+  },
+  "0x00AA0B00": {
+    "name": "g_PlayerAttBuffer",
+    "type": "ARC_PlayerAtt",
+    "source": "binary: ARC_PlayerAtt::Create(&g_PlayerAttBuffer, nVal); player attribute data buffer"
+  },
+  "0x005D4D7C": {
+    "name": "g_pszEditorDesc",
+    "type": "const char *",
+    "source": "binary: CEffCylinder/CEffGrid::GetEditorObjDescription returns it"
+  },
+  "0x005DFDEB": {
+    "name": "g_bCombatDebugMode",
+    "type": "unsigned char",
+    "source": "binary: CCBRoleState_ApplyDamage/CalcCombatDamage: if(!val)/if(val) checks"
+  },
+  "0x017A9946": {
+    "name": "g_bCommandEdited",
+    "type": "unsigned char",
+    "source": "binary: CCBUI_ApplyCommandEdit/CommandEditDialogProc: set to 1 on command edit"
+  },
+  "0x00DC9F3C": {
+    "name": "g_pszItemDesc",
+    "type": "const char *",
+    "source": "binary: sprintf item description string in Array_HandleItemPage/PAL_GDB_LoadByType"
+  },
+  "0x00DC413C": {
+    "name": "g_pszAttrPrefix",
+    "type": "const char *",
+    "source": "binary: sprintf(\"%s%d%%\", g_pszAttrPrefix, v); attribute prefix (RoleAtt/ArcSceneObject)"
+  },
+  "0x00DD543C": {
+    "name": "g_pszAttrSuffix",
+    "type": "const char *",
+    "source": "binary: sprintf(\"%s%s\", prefix, g_pszAttrSuffix); attribute suffix string"
   }
 }
