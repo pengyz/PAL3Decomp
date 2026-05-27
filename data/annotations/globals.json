@@ -1361,9 +1361,9 @@
     "source": "binary:3 decomp refs, 4-byte access; cls=PtrArray, 3 funcs"
   },
   "0x017A8EF4": {
-    "name": "g_bCCBRoleState_17A8EF4",
-    "type": "unsigned char",
-    "source": "binary:3 decomp refs, 1-byte access; cls=CCBRoleState, 2 funcs"
+    "name": "g_pCCBRoleStateArrayEnd",
+    "type": "CCBRoleState *",
+    "source": "binary: CCBRoleState_EndRoundTasks: while(v17 < &g_pCCBRoleStateArrayEnd); CCBRoleState array end pointer; g_RoleSystemCombat+1036"
   },
   "0x0058B234": {
     "name": "g_nRoleSystem_58B234",
