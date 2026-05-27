@@ -97,6 +97,8 @@ def check():
     globs = ann.get('globals', {})
     no_type = 0
     for addr, info in globs.items():
+        if info.get('type') == 'skip':
+            continue  # known-unnameable entries are valid
         if not info.get('name'):
             errors.append(f"globals[{addr}]: missing name")
         if not info.get('type'):

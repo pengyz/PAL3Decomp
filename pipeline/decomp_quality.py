@@ -34,9 +34,23 @@ def _load_struct_sizes():
     return sizes
 
 
+def _load_skip_globals():
+    """Load addresses marked as skip in globals.json (known-unnameable)."""
+    skip = set()
+    gpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data', 'annotations', 'globals.json')
+    if os.path.exists(gpath):
+        for addr_str, info in json.load(open(gpath, encoding='utf-8')).items():
+            if info.get('type') == 'skip':
+                name = info.get('name', '')
+                if name:
+                    skip.add(name)
+    return skip
+
+
 def measure():
     """Scan all decomp JSONs and compute quality metrics."""
     _struct_sizes = _load_struct_sizes()
+    _skip_globals = _load_skip_globals()
     total_funcs = 0
     thiscall_funcs = 0
     typed_this = 0       # ClassName *this (good)
@@ -82,7 +96,8 @@ def measure():
 
             # Global variable coverage
             named_globals += len(re.findall(r'\bg_\w+', code))
-            raw_globals += len(re.findall(r'\b(?:dword|byte|word|off|qword|unk)_[0-9A-Fa-f]+', code))
+            raw_globals += sum(1 for m in re.finditer(r'\b(?:dword|byte|word|off|qword|unk)_[0-9A-Fa-f]+', code)
+                               if m.group(0) not in _skip_globals)
 
             # Misattribution detection: function accesses offsets far beyond class size
             if '__thiscall' in first_line:

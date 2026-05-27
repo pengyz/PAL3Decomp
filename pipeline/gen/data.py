@@ -129,6 +129,8 @@ class DataStore:
             for addr_str, ginfo in gdata.items():
                 gname = ginfo.get('name', '')
                 gtype = ginfo.get('type', '')
+                if gtype == 'skip':
+                    continue  # known-unnameable: don't substitute in codegen
                 if gname and gtype:
                     self.global_types[gname] = gtype
                 if not gname or any(gname.startswith(p + '_') for p in ida_prefixes):
