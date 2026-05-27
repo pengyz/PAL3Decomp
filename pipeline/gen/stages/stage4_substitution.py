@@ -65,92 +65,100 @@ def _try_literal_replacement(name):
     return None
 
 
+import re as _re_smr
+
+_ELEM_SIZES = {'int': 4, 'float': 4, 'unsigned int': 4, 'unsigned long': 4,
+               'char': 1, 'unsigned char': 1, 'bool': 1,
+               'short': 2, 'unsigned short': 2, 'double': 8, 'long long': 8}
+
+
+def _resolve_offset(type_name, offset, prefix):
+    """Recursively resolve an offset within a type, returning a suffix like '.member[N]'."""
+    members = store.struct_members.get(type_name, {})
+
+    # Exact match at this offset
+    info = members.get(offset)
+    if info:
+        mname, mtype = info
+        # Width check for exact match
+        mt = mtype.strip().lower()
+        if prefix == 'byte' and not any(t in mt for t in ('char', 'byte', 'bool')) and '*' not in mtype:
+            pass  # fall through to sub-resolution
+        elif prefix == 'word' and not any(t in mt for t in ('short', 'word', 'wchar')):
+            pass
+        elif prefix == 'off' and '*' not in mtype:
+            pass
+        elif prefix == 'flt' and 'float' not in mt:
+            pass
+        else:
+            return '.%s' % mname
+
+    # No exact match - find the member that contains this offset
+    for moff, (mname, mtype) in sorted(members.items(), reverse=True):
+        if moff > offset:
+            continue
+        rel = offset - moff
+        if rel == 0:
+            continue  # already tried exact match above
+
+        # Array member: TypeName[N]
+        arr_m = _re_smr.match(r'^([\w\s\*]+?)\[(\d+)\]$', mtype.strip())
+        if arr_m:
+            elem_type = arr_m.group(1).strip()
+            arr_count = int(arr_m.group(2))
+            elem_sz = _ELEM_SIZES.get(elem_type, store.struct_members.get(elem_type) and 4 or 0)
+            if not elem_sz:
+                # Try struct element size
+                sub_m = store.struct_members.get(elem_type)
+                if sub_m:
+                    # estimate from member offsets
+                    elem_sz = 4  # fallback
+            if elem_sz and rel < arr_count * elem_sz and rel % elem_sz == 0:
+                idx = rel // elem_sz
+                sub_rel = rel - idx * elem_sz  # should be 0 for primitive arrays
+                if sub_rel == 0:
+                    # Check if elem_type is a struct with sub-members
+                    sub_suffix = _resolve_offset(elem_type, 0, prefix)
+                    if sub_suffix and sub_suffix != '.':
+                        return '.%s[%d]%s' % (mname, idx, sub_suffix)
+                    return '.%s[%d]' % (mname, idx)
+                else:
+                    sub_suffix = _resolve_offset(elem_type, sub_rel, prefix)
+                    if sub_suffix:
+                        return '.%s[%d]%s' % (mname, idx, sub_suffix)
+            continue
+
+        # Embedded struct member (non-pointer, no array)
+        if '*' in mtype:
+            continue
+        base_type = _re_smr.sub(r'\[.*\]', '', mtype).replace('const ', '').strip()
+        if not base_type or not base_type[0].isupper() and base_type not in _ELEM_SIZES:
+            continue
+        if base_type in _ELEM_SIZES:
+            continue  # primitive, can't recurse
+        sub_suffix = _resolve_offset(base_type, rel, prefix)
+        if sub_suffix:
+            return '.%s%s' % (mname, sub_suffix)
+
+    return None
+
+
 def _try_struct_member_resolution(name):
-    """Check if identifier is a global struct instance member (supports one level of nesting)."""
+    """Resolve dword_XXXX to g_Instance.member[N].sub_member etc. (recursive)."""
     if name in store.literals:
         return None
     try:
-        parts = name.split('_', 1)
-        prefix, addr_hex = parts[0], parts[1]
+        prefix, addr_hex = name.split('_', 1)
         addr = int(addr_hex, 16)
-    except (IndexError, ValueError):
+    except (ValueError, AttributeError):
         return None
     if prefix not in ('dword', 'byte', 'word', 'off', 'flt', 'unk'):
         return None
     for base, end, gname, gtype in store.struct_instances:
         if base <= addr < end:
-            offset = addr - base
-            members = store.struct_members.get(gtype, {})
-            member_info = members.get(offset)
-            if member_info:
-                mname, mtype = member_info
-                # Width compatibility check
-                mt = mtype.strip().lower()
-                if prefix == 'dword':
-                    pass  # always compatible
-                elif prefix == 'byte' and not any(t in mt for t in ('char', 'byte', 'bool')):
-                    return None
-                elif prefix == 'word' and not any(t in mt for t in ('short', 'word', 'wchar')):
-                    return None
-                elif prefix == 'off' and '*' not in mtype:
-                    return None
-                elif prefix == 'flt' and 'float' not in mt:
-                    return None
-                return '%s.%s' % (gname, mname)
-            # Not found at top level - try one level of embedded struct nesting
-            import re as _re2
-            for moff, (mname, mtype) in sorted(members.items()):
-                if offset < moff:
-                    continue
-                sub_offset = offset - moff
-                # Check if this member is an array type (e.g. int[60], float[48])
-                arr_m = _re2.match(r'^(\w[\w\s\*]*?)\[(\d+)\]$', mtype.strip())
-                if arr_m:
-                    elem_type_str = arr_m.group(1).strip()
-                    arr_count = int(arr_m.group(2))
-                    # Estimate element size
-                    elem_sz = {'int': 4, 'float': 4, 'unsigned int': 4, 'char': 1,
-                               'short': 2, 'unsigned char': 1, 'double': 8}.get(elem_type_str, 4)
-                    if sub_offset < arr_count * elem_sz and sub_offset % elem_sz == 0:
-                        idx = sub_offset // elem_sz
-                        return '%s.%s[%d]' % (gname, mname, idx)
-                # Check if this member is an embedded struct (non-pointer, known type)
-                base_mtype = mtype.replace('const ', '').replace('*', '').strip()
-                base_mtype = _re2.sub(r'\[.*\]', '', base_mtype).strip()
-                if '*' in mtype or not base_mtype:
-                    continue
-                sub_members = store.struct_members.get(base_mtype)
-                if not sub_members:
-                    continue
-                if sub_offset < 0:
-                    continue
-                sub_info = sub_members.get(sub_offset)
-                if sub_info:
-                    sub_name, sub_type = sub_info
-                    # Check if sub_type is an array and sub_offset is an element
-                    arr_m2 = _re2.match(r'^(\w[\w\s\*]*?)\[(\d+)\]$', sub_type.strip())
-                    if arr_m2:
-                        elem_type2 = arr_m2.group(1).strip()
-                        arr_count2 = int(arr_m2.group(2))
-                        elem_sz2 = {'int': 4, 'float': 4, 'unsigned int': 4, 'char': 1,
-                                    'short': 2, 'unsigned char': 1, 'double': 8}.get(elem_type2, 4)
-                        # sub_offset is 0 here (exact match), check if caller wants element
-                        return '%s.%s.%s' % (gname, mname, sub_name)
-                    return '%s.%s.%s' % (gname, mname, sub_name)
-                # Check if any sub_member is an array containing sub_offset
-                for smoff, (smname, smtype) in sorted(sub_members.items()):
-                    if sub_offset < smoff:
-                        continue
-                    arr_m2 = _re2.match(r'^(\w[\w\s\*]*?)\[(\d+)\]$', smtype.strip())
-                    if arr_m2:
-                        elem_type2 = arr_m2.group(1).strip()
-                        arr_count2 = int(arr_m2.group(2))
-                        elem_sz2 = {'int': 4, 'float': 4, 'unsigned int': 4, 'char': 1,
-                                    'short': 2, 'unsigned char': 1, 'double': 8}.get(elem_type2, 4)
-                        rel = sub_offset - smoff
-                        if rel < arr_count2 * elem_sz2 and rel % elem_sz2 == 0:
-                            idx2 = rel // elem_sz2
-                            return '%s.%s.%s[%d]' % (gname, mname, smname, idx2)
+            suffix = _resolve_offset(gtype, addr - base, prefix)
+            if suffix:
+                return gname + suffix
             return None
     return None
 
