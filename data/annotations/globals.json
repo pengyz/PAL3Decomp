@@ -2239,16 +2239,6 @@
     "type": "unsigned int",
     "source": "binary: LOBYTE=UI flag0, BYTE1=UI flag1, BYTE2=UI flag2; written to registry in UIScene_OnMessage"
   },
-  "0x00DC433C": {
-    "name": "g_pszAttrText",
-    "type": "const char *",
-    "source": "binary: sprintf(%s%d%%, g_pszAttrText, v3); RoleAtt/MainEquipUI attribute display string"
-  },
-  "0x00DC373C": {
-    "name": "g_pszCamLabel",
-    "type": "const char *",
-    "source": "binary: sprintf([%s%d], g_pszCamLabel, n); CameraCtrl/LineupUI/PlayerMgr label string"
-  },
   "0x00C116F4": {
     "name": "g_pCurrentBGM",
     "type": "gbSound2DNode *",
@@ -2314,40 +2304,10 @@
     "type": "unsigned char",
     "source": "binary: CCBUI_ApplyCommandEdit/CommandEditDialogProc: set to 1 on command edit"
   },
-  "0x00DC9F3C": {
-    "name": "g_pszItemDesc",
-    "type": "const char *",
-    "source": "binary: sprintf item description string in Array_HandleItemPage/PAL_GDB_LoadByType"
-  },
-  "0x00DC413C": {
-    "name": "g_pszAttrPrefix",
-    "type": "const char *",
-    "source": "binary: sprintf(\"%s%d%%\", g_pszAttrPrefix, v); attribute prefix (RoleAtt/ArcSceneObject)"
-  },
-  "0x00DD543C": {
-    "name": "g_pszAttrSuffix",
-    "type": "const char *",
-    "source": "binary: sprintf(\"%s%s\", prefix, g_pszAttrSuffix); attribute suffix string"
-  },
   "0x00A00000": {
     "name": "g_UITemplateData",
     "type": "unsigned char[]",
     "source": "binary: BSS buffer; byte_A00001/A00102 etc. are template name strings passed to UIStatic::CreateFromTemplate; span 0xA00001-0xA00B08"
-  },
-  "0x00DD533C": {
-    "name": "g_pszAttrSuffix2",
-    "type": "const char *",
-    "source": "binary: sprintf(\"%s%s\", g_pszAttrPrefix, g_pszAttrSuffix2); ArcSceneObject attribute text"
-  },
-  "0x00DC423C": {
-    "name": "g_pszAttrPrefix2",
-    "type": "const char *",
-    "source": "binary: sprintf(\"%s%s\", g_pszAttrPrefix2, g_pszAttrSuffix); ArcSceneObject/MagicUI attribute text"
-  },
-  "0x00DCAF3C": {
-    "name": "g_pszMagicAttrPrefix",
-    "type": "const char *",
-    "source": "binary: MagicUI_InitUILayout: sprintf(\"%s%s\", g_pszMagicAttrPrefix, ...)"
   },
   "0x00C10CD0": {
     "name": "g_nSceneTransitionParam",

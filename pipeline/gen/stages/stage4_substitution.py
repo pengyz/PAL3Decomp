@@ -43,7 +43,7 @@ def _try_literal_replacement(name):
             va = int(name.split('_')[1], 16)
         except (IndexError, ValueError):
             return None
-        if 0x56A000 <= va <= 0x5D6000 and va % 4 == 0:
+        if 0x56A000 <= va <= 0x57F178 and va % 4 == 0:
             s = store.try_read_rdata_string(va)
             if s is not None and len(s) >= 2:
                 escaped = s.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
@@ -55,7 +55,7 @@ def _try_literal_replacement(name):
             va = int(name.split('_')[1], 16)
         except (IndexError, ValueError):
             return None
-        if 0x56A000 <= va <= 0x5D6000:
+        if 0x56A000 <= va <= 0x57F178:
             s = store.try_read_rdata_string(va)
             if s is not None:
                 escaped = s.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
