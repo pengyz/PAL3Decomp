@@ -373,7 +373,7 @@
   },
   "0x0040F620": {
     "name": "NPC::InitAll",
-    "signature": "int *__cdecl __thiscall(NPC *this)"
+    "signature": "int __cdecl(int nMaxCount)"
   },
   "0x004100A0": {
     "name": "ScriptSystem::RunScript",
@@ -389,7 +389,7 @@
   },
   "0x00410990": {
     "name": "Scene::LoadConfig",
-    "signature": "int __thiscall(Scene *this, void *pConfig)"
+    "signature": "int __thiscall(Scene *this, int *pConfig)"
   },
   "0x00410E40": {
     "name": "RoleSystem::CheckVisible",
