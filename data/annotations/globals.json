@@ -2926,8 +2926,9 @@
     "type": "int"
   },
   "0x00C10CBC": {
-    "name": "g_SceneMgr_off_C92C",
-    "type": "int"
+    "name": "g_pCurrentScript",
+    "type": "PalScript *",
+    "source": "binary: used as PalScript* with vtable calls; SceneMgr+0xC92C"
   },
   "0x00C08160": {
     "name": "g_SceneMgr_off_3DD0",
@@ -3290,5 +3291,40 @@
   "0x00C061D8": {
     "name": "g_nUnk61D8",
     "type": "int"
+  },
+  "0x00C10D38": {
+    "name": "g_szSceneUIText",
+    "type": "char[]",
+    "source": "binary: used as char* in lstrcpyA/strcpy/SendMessageA; SceneMgr+0xC9A8"
+  },
+  "0x00C1109C": {
+    "name": "g_fSceneTileSize",
+    "type": "float",
+    "source": "binary: used as float divisor in RoleSystem position calc; SceneMgr+0xCD0C"
+  },
+  "0x00C10CC8": {
+    "name": "g_nCurrentRoleSlot",
+    "type": "int",
+    "source": "binary: used as RoleSystem array index (352*val); SceneMgr+0xC938"
+  },
+  "0x00C10960": {
+    "name": "g_pScriptArrayEnd",
+    "type": "PalScript *",
+    "source": "binary: used as loop terminator for PalScript array; SceneMgr+0xC5D0"
+  },
+  "0x00D8BEC4": {
+    "name": "g_fScriptTileSize",
+    "type": "float",
+    "source": "binary: used as float divisor in RoleSystem position calc; ScriptSystemData+0xBAC"
+  },
+  "0x00D8BBEC": {
+    "name": "g_nGameMode",
+    "type": "int",
+    "source": "binary: compared to 2 in game mode checks; ScriptSystemData+0x8D4"
+  },
+  "0x00D8C2B0": {
+    "name": "g_pScriptCurrentBlock",
+    "type": "void *",
+    "source": "binary: used as PalScript block pointer; ScriptSystemData+0xF98"
   }
 }

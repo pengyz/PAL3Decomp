@@ -118,7 +118,7 @@
     },
     "51432": {
       "name": "m_SceneParams",
-      "type": "int[23]",
+      "type": "int[17]",
       "source": "binary:consecutive_1ref_each"
     },
     "51536": {
@@ -242,9 +242,9 @@
       "source": "binary:2x abs refs, 8A/88(byte) in RoleSystem::RenderRole"
     },
     "51624": {
-      "name": "m_fRenderParam",
-      "type": "float",
-      "source": "binary:2x abs refs, D9 05(fld float) in RoleSystem::UpdatePosition"
+      "name": "m_szUIText",
+      "type": "char[]",
+      "source": "binary: used as char* in lstrcpyA/strcpy/SendMessageA (unk_C10D38 = g_SceneMgr+0xC9A8)"
     },
     "51628": {
       "name": "_field_0CA0C",
@@ -415,6 +415,21 @@
       "name": "m_nRoleCount",
       "type": "int",
       "source": "binary:*((_DWORD *)this+14392) count for Role array"
+    },
+    "51512": {
+      "name": "m_nCurrentRoleSlot",
+      "type": "int",
+      "source": "binary: used as RoleSystem array index (352*val); dword_C10CC8"
+    },
+    "51500": {
+      "name": "m_pCurrentScript",
+      "type": "PalScript *",
+      "source": "binary: used as PalScript* with vtable calls; dword_C10CBC"
+    },
+    "52492": {
+      "name": "m_fTileSize",
+      "type": "float",
+      "source": "binary: used as float divisor in position calc; dword_C1109C"
     }
   },
   "pdb_size": 1,
