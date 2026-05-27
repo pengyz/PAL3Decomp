@@ -191,6 +191,64 @@ _INT_CONSTANTS = {
     983043: 'SUBGROUP_FLAG_ALT',    # 0x0F0003
 }
 
+# Array index constants: (field_name, index) -> constant_name
+_ARRAY_INDEX_CONSTANTS = {
+    # _todo_694 (TeamConfigSlot array, stride=52)
+    ('_todo_694', 89):  'TCS_TEAM_SIZE',     # team 1 count
+    ('_todo_694', 90):  'TCS_CHAR_BASE',      # team 1 char vals start
+    ('_todo_694', 95):  'TCS_FORM_BASE',      # team 1 formation start
+    ('_todo_694', 116): 'TCS_TEAM_SIZE',       # (slot 2) reused constant
+    ('_todo_694', 159): 'TCS_SKILL_ID',        # team 1 skill resource ID
+    ('_todo_694', 160): 'TCS_SKILL_EN',        # team 1 skill enable
+    ('_todo_694', 161): 'TCS_SKILL_NUM',       # team 1 skill gdb num
+    # _todo_C00
+    ('_todo_C00', 94):  'TC1_TEAM_SIZE',
+    ('_todo_C00', 95):  'TC1_CHAR_BASE',
+    ('_todo_C00', 100): 'TC1_FORM_BASE',
+    ('_todo_C00', 164): 'TC1_SKILL_ID',
+    ('_todo_C00', 165): 'TC1_SKILL_EN',
+    ('_todo_C00', 166): 'TC1_SKILL_NUM',
+    # _todo_UI4540_ext
+    ('_todo_UI4540_ext', 26): 'UI3_TEAM_SIZE',
+    ('_todo_UI4540_ext', 27): 'UI3_CHAR_BASE',
+    ('_todo_UI4540_ext', 32): 'UI3_FORM_BASE',
+    ('_todo_UI4540_ext', 53): 'UI3_MISC_ID',
+    # _todo_UI5908_ext
+    ('_todo_UI5908_ext', 36):  'UI5_TEAM_SIZE',
+    ('_todo_UI5908_ext', 37):  'UI5_CHAR_BASE',
+    ('_todo_UI5908_ext', 42):  'UI5_FORM_BASE',
+    ('_todo_UI5908_ext', 63):  'UI5_MONSTER_ID',
+    ('_todo_UI5908_ext', 106): 'UI5_SKILL_ID',
+    ('_todo_UI5908_ext', 107): 'UI5_SKILL_EN',
+    ('_todo_UI5908_ext', 108): 'UI5_SKILL_NUM',
+    ('_todo_UI5908_ext', 126): 'UI5_EXT_FORM',
+}
+
+# Reverse lookup: index value -> list of (field_name, constant_name)
+_ARRAY_IDX_BY_VAL = {}
+for (field, idx), cname in _ARRAY_INDEX_CONSTANTS.items():
+    _ARRAY_IDX_BY_VAL.setdefault(idx, []).append((field, cname))
+
+
+def _get_subscript_array_name(node):
+    """Extract the array field name from a subscript expression's argument.
+    
+    Handles patterns: field_expression (.field), identifier, etc.
+    """
+    if node is None:
+        return None
+    t = node.type
+    if t == 'field_expression':
+        field_node = node.child_by_field_name('field')
+        if field_node:
+            return field_node.text.decode('utf-8')
+    elif t == 'identifier':
+        return node.text.decode('utf-8')
+    # Recurse through casts/parens
+    elif t in ('cast_expression', 'parenthesized_expression'):
+        return _get_subscript_array_name(node.child_by_field_name('argument'))
+    return None
+
 # ============================================================
 # AST-based token replacement
 # ============================================================
@@ -256,9 +314,25 @@ def _collect_token_edits(code_bytes, tree, ctx):
             text = node.text.decode('utf-8')
             try:
                 val = int(text, 0)  # handles hex (0x), octal (0o), decimal
-                if val in _INT_CONSTANTS:
+                # Priority: array index constant (check AST parent)
+                replacement = None
+                if val in _ARRAY_IDX_BY_VAL:
+                    # Check if this literal is an array subscript
+                    parent = node.parent
+                    if parent and parent.type == 'subscript_argument_list':
+                        sub_expr = parent.parent
+                        if sub_expr and sub_expr.type == 'subscript_expression':
+                            obj_node = sub_expr.child_by_field_name('argument')
+                            arr_name = _get_subscript_array_name(obj_node)
+                            key = (arr_name, val)
+                            if key in _ARRAY_INDEX_CONSTANTS:
+                                replacement = _ARRAY_INDEX_CONSTANTS[key]
+                # Fallback: general value constant
+                if not replacement and val in _INT_CONSTANTS:
+                    replacement = _INT_CONSTANTS[val]
+                if replacement:
                     edits.append((node.start_byte, node.end_byte,
-                                  _INT_CONSTANTS[val].encode('utf-8')))
+                                  replacement.encode('utf-8')))
                     return
             except (ValueError, OverflowError):
                 pass
