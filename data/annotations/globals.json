@@ -2328,5 +2328,10 @@
     "name": "g_pszAttrSuffix",
     "type": "const char *",
     "source": "binary: sprintf(\"%s%s\", prefix, g_pszAttrSuffix); attribute suffix string"
+  },
+  "0x00A00000": {
+    "name": "g_UITemplateData",
+    "type": "unsigned char[]",
+    "source": "binary: BSS buffer; byte_A00001/A00102 etc. are template name strings passed to UIStatic::CreateFromTemplate; span 0xA00001-0xA00B08"
   }
 }
