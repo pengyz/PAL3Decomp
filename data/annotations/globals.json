@@ -2055,9 +2055,9 @@
     "source": "binary: UITitle_XJTM_UpdateMonsterEntry: g_MonsterEntryTable[nVal]; RenderTarget_OnRender uses it"
   },
   "0x00C11750": {
-    "name": "g_bCameraCollisionFlag",
-    "type": "unsigned char",
-    "source": "binary: CameraCtrl_InitPathState/PAL3_CheckViewCollision: set to 0"
+    "name": "byte_C11750",
+    "type": "skip",
+    "reason": "set to 0 in InitPathState/CheckViewCollision; semantics unclear"
   },
   "0x00C11360": {
     "name": "g_pBGMTable",
@@ -4240,9 +4240,9 @@
     "reason": "function/vtable pointer table in .data section; runtime-initialized"
   },
   "0x00C11754": {
-    "name": "g_nCameraPathCount",
-    "type": "int",
-    "source": "binary: CameraCtrl_InitPathState: set to 0; PAL3_CheckViewCollision: if(val)"
+    "name": "g_pCombatRole",
+    "type": "Role *",
+    "source": "binary: PAL3_StartCombat: val=(int)side (Role*); PAL3_CheckViewCollision: *(val+632)=0 = Role.m_active=0"
   },
   "0x00C116F8": {
     "name": "g_fCameraBlendWeight",
@@ -4255,14 +4255,14 @@
     "source": "binary: PAL3_FullInit: (g_pSceneArrayEnd2 - pEnd)/12; scene array end"
   },
   "0x00C11748": {
-    "name": "g_bViewCollisionActive",
-    "type": "unsigned char",
-    "source": "binary: CameraCtrl_InitPathState/PAL3_CheckViewCollision: set to 0"
+    "name": "byte_C11748",
+    "type": "skip",
+    "reason": "set to 0 in InitPathState/CheckViewCollision; semantics unclear"
   },
   "0x00C1171C": {
-    "name": "g_nCollisionDistMax",
-    "type": "int",
-    "source": "binary: CameraCtrl_InitPathState: set to 0x7FFFFFFF (INT_MAX)"
+    "name": "dword_C1171C",
+    "type": "skip",
+    "reason": "set to 0x7FFFFFFF in InitPathState/CheckViewCollision; semantics unclear"
   },
   "0x00C10D40": {
     "name": "g_fCollisionRadius",
@@ -5830,9 +5830,9 @@
     "source": "binary: Camera_IsTransitioning/UIPostUpdate: position/*(float*)&val; tile size divisor"
   },
   "0x00C11420": {
-    "name": "g_nCollisionResult",
-    "type": "int",
-    "source": "binary: CameraCtrl_ResetSceneMgrParams: set to 0; Camera::CheckCollision1 output param"
+    "name": "dword_C11420",
+    "type": "skip",
+    "reason": "Camera::CheckCollision1 output param; actual semantics unclear"
   },
   "0x00C08664": {
     "name": "g_nScriptObjectCount",
@@ -6133,5 +6133,15 @@
     "name": "dword_5D4FD0",
     "type": "skip",
     "reason": ".data runtime string pointer (editor description); initialized from game files"
+  },
+  "0x00C11744": {
+    "name": "g_nMonsterType",
+    "type": "int",
+    "source": "binary: PAL3_StartCombat: monsterid==1 ? 2 : (monsterid==2); monster type flag"
+  },
+  "0x00C11740": {
+    "name": "dword_C11740",
+    "type": "skip",
+    "reason": "read from script config or default 1; semantics unclear (combat param)"
   }
 }
