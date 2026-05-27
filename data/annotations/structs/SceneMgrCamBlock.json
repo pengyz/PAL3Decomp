@@ -40,6 +40,16 @@
       "name": "m_pScriptArrayEnd",
       "type": "PalScript *",
       "source": "binary: used as loop terminator for PalScript array; byte_C10960 = g_SceneMgr+0xC5D0"
+    },
+    "260": {
+      "name": "m_RoleUnlockData",
+      "type": "int[100]",
+      "source": "binary: PAL3_FullInit memset(&dword_C10A10, 0, 0x190); SceneMgrCamBlock+0x104"
+    },
+    "660": {
+      "name": "m_RoleUnlockTable",
+      "type": "int[60]",
+      "source": "binary: SetRoleLevelAndRefresh: &dword_C10BA0 + 12*nRoleIdx, v4[0]=role_id v4[1]=level; 20 entries x 12 bytes"
     }
   },
   "pdb_size": 856,

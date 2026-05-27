@@ -1020,9 +1020,9 @@
     "source": "binary:12 decomp refs, 4-byte access"
   },
   "0x00DC3338": {
-    "name": "g_bUIListBox_DC3338",
+    "name": "g_bListNeedsRefresh",
     "type": "unsigned char",
-    "source": "binary:10 decomp refs, 1-byte access; cls=UIListBox, 8 funcs"
+    "source": "binary: set to 0/1 flag; controls UIListBox rebuild in LineupUI/PropUI/PAL_GDB"
   },
   "0x00DE5CE4": {
     "name": "g_nUILayoutFlags",
@@ -1110,9 +1110,9 @@
     "source": "binary:8 decomp refs, 4-byte access; cls=PtrArray, 4 funcs"
   },
   "0x00DC1100": {
-    "name": "g_nPalScript_DC1100",
+    "name": "g_nMiniGameState",
     "type": "int",
-    "source": "binary:8 decomp refs, 4-byte access; cls=PalScript, 6 funcs"
+    "source": "binary: compared with g_nMiniGameParam; cleared on scene load/script ops"
   },
   "0x0189504C": {
     "name": "g_pRenderEffect_189504C",
@@ -1170,9 +1170,9 @@
     "source": "binary:7 decomp refs, 4-byte access; cls=CCBStageRole, 1 funcs"
   },
   "0x017AA8B4": {
-    "name": "g_nCCBStageRole_17AA8B4",
+    "name": "g_nCombatActionParam",
     "type": "int",
-    "source": "binary:7 decomp refs, 4-byte access; cls=CCBStageRole, 1 funcs"
+    "source": "binary: CCBStageRole_SetupCombatAction: assigned from v8+4, passed as action param"
   },
   "0x017AA8B8": {
     "name": "g_nCCBStageRole_17AA8B8",
@@ -1255,9 +1255,9 @@
     "source": "binary:6 decomp refs, 4-byte access; cls=CCBStage, 1 funcs"
   },
   "0x017AB8B4": {
-    "name": "g_bCCBStageRoleFlag_17AB8B4",
+    "name": "g_bBladeFlags",
     "type": "unsigned char",
-    "source": "binary:6 decomp refs, 1-byte access; cls=CCBStageRole, 1 funcs"
+    "source": "binary: CCBStageRole_SetBladeTime: bit flags (& 1, |= 1, & 2)"
   },
   "0x01895980": {
     "name": "g_nCEffect_1895980",
@@ -1280,9 +1280,9 @@
     "source": "binary:6 decomp refs, 1-byte access; cls=CEffExplosive, 1 funcs"
   },
   "0x00BFDA44": {
-    "name": "g_nActor_BFDA44",
+    "name": "g_nWolfIndex",
     "type": "int",
-    "source": "binary:5 decomp refs, 4-byte access; cls=Actor, 4 funcs"
+    "source": "binary: PAL3_EndWolf: if(g_nWolfIndex<4) PAL3_Helper(v14[g_nWolfIndex]); ++g_nWolfIndex"
   },
   "0x00DE5F9C": {
     "name": "g_nActor_DE5F9C",
@@ -1290,9 +1290,9 @@
     "source": "binary:5 decomp refs, 4-byte access; cls=Actor, 6 funcs"
   },
   "0x017A993C": {
-    "name": "g_nCCBUI_17A993C",
+    "name": "g_nCCBUISelectedRole",
     "type": "int",
-    "source": "binary:5 decomp refs, 4-byte access; cls=CCBUI, 2 funcs"
+    "source": "binary: CCBUI_SettingsDialogProc: SendMessageA(DlgItem, LB_GETCURSEL=0x130B) -> selected role index"
   },
   "0x00BFDBAC": {
     "name": "g_nActor_BFDBAC",
@@ -1305,9 +1305,9 @@
     "source": "binary:5 decomp refs, 4-byte access; cls=CCBStage, 1 funcs"
   },
   "0x00DC3304": {
-    "name": "g_UIWndBuffer_DC3304",
-    "type": "char[52]",
-    "source": "binary:5 decomp refs, 1-byte access; cls=UIWnd, 3 funcs"
+    "name": "g_bStateFlags",
+    "type": "unsigned char[]",
+    "source": "binary: Actor_SaveState: memset(g_bStateFlags,0,sizeof); g_bStateFlags[i]=((1<<i)&v2)!=0"
   },
   "0x017AB8A8": {
     "name": "g_nCCBStageRole_17AB8A8",
@@ -1450,9 +1450,9 @@
     "source": "binary:3 decomp refs, 4-byte access; cls=PAL3, 3 funcs"
   },
   "0x017AB598": {
-    "name": "g_nCCBStage_17AB598",
-    "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=CCBStage, 1 funcs"
+    "name": "g_fCCBStageMoveParam",
+    "type": "float",
+    "source": "binary: CCBStage_AnimCallback_MoveTo: *(float*)&val * g_nCEffGridCount; float usage confirmed"
   },
   "0x017AB59C": {
     "name": "g_nCCBStage_17AB59C",
@@ -1510,9 +1510,9 @@
     "source": "binary:3 decomp refs, 4-byte access; cls=CCBAIWindow, 2 funcs"
   },
   "0x017ACB88": {
-    "name": "g_nCCBAIWindow_17ACB88",
+    "name": "g_nAIWindowBase",
     "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=CCBAIWindow, 2 funcs"
+    "source": "binary: CCBUI_SetupAIWindow: used as base offset (+86)"
   },
   "0x00BFDA91": {
     "name": "g_bPAL3_BFDA91",
@@ -1555,9 +1555,9 @@
     "source": "binary:3 decomp refs, 4-byte access; cls=Actor, 4 funcs"
   },
   "0x00BFDA38": {
-    "name": "g_nPAL3_BFDA38",
-    "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=PAL3, 2 funcs"
+    "name": "g_pDropGroup",
+    "type": "gbDropGroup *",
+    "source": "binary: gbDropGroup::Render(g_pDropGroup); PAL3_CreateEffectSystem assigns it"
   },
   "0x00BFDA3C": {
     "name": "g_nPAL3_BFDA3C",
