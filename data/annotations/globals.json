@@ -537,8 +537,9 @@
     "type": "int"
   },
   "0x00BFDB94": {
-    "name": "g_nScriptEventParam2",
-    "type": "int"
+    "name": "g_fScriptEventParam2",
+    "type": "float",
+    "source": "binary: *(float*)& cast confirms float type"
   },
   "0x00BFDB98": {
     "name": "g_nScriptRolePosX",
@@ -788,14 +789,6 @@
   "0x017AB874": {
     "name": "g_nCBRoleHitTable",
     "type": "int[18]"
-  },
-  "0x017ABCBC": {
-    "name": "g_nCBStageParam1",
-    "type": "int"
-  },
-  "0x017ABCC0": {
-    "name": "g_nCBStageParam2",
-    "type": "int"
   },
   "0x017ABF00": {
     "name": "g_CCBStageSceneData",
@@ -1087,14 +1080,14 @@
     "source": "binary:9 decomp refs, 4-byte access"
   },
   "0x017AA894": {
-    "name": "g_nCEffParam1",
-    "type": "int",
-    "source": "binary:9 decomp refs, 4-byte access"
+    "name": "g_fCEffParam1",
+    "type": "float",
+    "source": "binary: fld instruction confirms float; from m_Task[62].fTemp array"
   },
   "0x017AA898": {
-    "name": "g_nCEffParam2",
-    "type": "int",
-    "source": "binary:9 decomp refs, 4-byte access"
+    "name": "g_fCEffParam2",
+    "type": "float",
+    "source": "binary: fld instruction confirms float; from m_Task[62].fTemp array"
   },
   "0x00DE8E08": {
     "name": "g_nRenderTarget2_DE8E08",
@@ -3255,38 +3248,6 @@
   "0x00EC9EB4": {
     "name": "g_nSaveSlotBase",
     "type": "int[]"
-  },
-  "0x00C0473C": {
-    "name": "g_PlayerAttrDef0",
-    "type": "int[3]"
-  },
-  "0x00C04740": {
-    "name": "g_PlayerAttrDef1",
-    "type": "int[3]"
-  },
-  "0x00C04744": {
-    "name": "g_PlayerAttrDef2",
-    "type": "int[3]"
-  },
-  "0x00C0476C": {
-    "name": "g_PlayerAttr0",
-    "type": "int[3]"
-  },
-  "0x00C04770": {
-    "name": "g_PlayerAttr1",
-    "type": "int[3]"
-  },
-  "0x00C04774": {
-    "name": "g_PlayerAttr2",
-    "type": "int[3]"
-  },
-  "0x00C04684": {
-    "name": "g_nSceneData0",
-    "type": "int"
-  },
-  "0x00C046FC": {
-    "name": "g_nSceneData1",
-    "type": "int"
   },
   "0x00C061D8": {
     "name": "g_nUnk61D8",
