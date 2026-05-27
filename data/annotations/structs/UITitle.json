@@ -2,29 +2,44 @@
   "name": "UITitle",
   "known_members": {
     "3288": {
-      "name": "_field_CD8",
+      "name": "m_hEffect",
       "type": "int",
-      "source": "binary:raw_offset"
+      "source": "binary:UITitle::RunFrame"
     },
     "3292": {
-      "name": "_field_CDC",
+      "name": "m_dwEffectTick",
       "type": "int",
-      "source": "binary:raw_offset"
+      "source": "binary:UITitle::RunFrame"
     },
     "3296": {
-      "name": "_field_CE0",
+      "name": "m_dwTimerTick",
       "type": "int",
-      "source": "binary:raw_offset"
+      "source": "binary:UITitle::RunFrame"
+    },
+    "3300": {
+      "name": "m_bTimerActive",
+      "type": "unsigned char",
+      "source": "binary:UITitle::RunFrame"
+    },
+    "3304": {
+      "name": "m_bTimerDone",
+      "type": "unsigned char",
+      "source": "binary:UITitle::RunFrame"
+    },
+    "3305": {
+      "name": "m_bTimerProcessed",
+      "type": "unsigned char",
+      "source": "binary:UITitle::RunFrame"
     },
     "7412": {
-      "name": "_field_1CF4",
+      "name": "m_nTitleStage",
       "type": "int",
-      "source": "binary:raw_offset"
+      "source": "binary:UITitle::RunFrame"
     },
     "8460": {
-      "name": "_field_210C",
+      "name": "m_nTitleScript",
       "type": "int",
-      "source": "binary:raw_offset"
+      "source": "binary:UITitle::RunFrame"
     }
   },
   "binary_size": 9236,
