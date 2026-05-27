@@ -6,11 +6,10 @@
 # 触发条件: data/annotations/ 有 staged 变更
 # 检查项:
 # 1. check_annotations.py 格式校验
-# 2. struct 对齐/重叠（增量模式：只阻止新增违规）
+# 2. struct 对齐/重叠（零容忍）
 # 3. commit message 格式（annotations 提交必须含 Evidence + Confidence）
 
 ANNOTATIONS_PATH="data/annotations"
-BASELINE="data/annotations/known_violations.json"
 
 if ! git diff --cached --name-only | grep -q "$ANNOTATIONS_PATH"; then
     exit 0
@@ -25,12 +24,11 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# 2. 对齐/重叠（增量：只阻止新增）
+# 2. 对齐/重叠（零容忍）
 python3 << 'PYEOF'
 import json, os, sys
 
 def scan_violations(structs_dir):
-    # load all structs first for cross-reference
     all_structs = {}
     for fname in os.listdir(structs_dir):
         if fname.endswith('.json'):
@@ -56,7 +54,7 @@ def scan_violations(structs_dir):
             elif 'double' in t:
                 align, sz = 8, 8
             elif base_t in all_structs and all_structs[base_t].get('pack'):
-                align, sz = 1, 1  # referenced struct is pack(1)
+                align, sz = 1, 1
             else:
                 align, sz = 4, 4
             if align > 1 and off % align != 0:
@@ -66,25 +64,13 @@ def scan_violations(structs_dir):
             prev_end = off + sz
     return violations
 
-structs_dir = 'data/annotations/structs'
-current = scan_violations(structs_dir)
-
-baseline = set()
-baseline_path = 'data/annotations/known_violations.json'
-if os.path.exists(baseline_path):
-    baseline = set(json.load(open(baseline_path)))
-
-new_violations = current - baseline
-if new_violations:
-    print('[pre-commit] BLOCKED: 新增 struct 违规:')
-    for v in sorted(new_violations):
+violations = scan_violations('data/annotations/structs')
+if violations:
+    print('[pre-commit] BLOCKED: struct 违规:')
+    for v in sorted(violations):
         print(f'  {v}')
-    print(f'共 {len(new_violations)} 个新增违规')
+    print(f'共 {len(violations)} 个违规，必须修复后才能提交')
     sys.exit(1)
-
-resolved = baseline - current
-if resolved:
-    print(f'[pre-commit] 已修复 {len(resolved)} 个存量违规')
 PYEOF
 
 if [ $? -ne 0 ]; then
