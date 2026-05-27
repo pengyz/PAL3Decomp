@@ -112,6 +112,9 @@ Available skills: `/office-hours`, `/plan-ceo-review`, `/plan-eng-review`, `/pla
 When the user's request matches an available skill, invoke it via the Skill tool. When in doubt, invoke the skill.
 
 Key routing rules:
+- PAL3 annotation/decomp pipeline → invoke pal3-pipeline
+- Annotations 标注规范与验证 → invoke annotation-guide
+- Binary alignment iteration → invoke binary-alignment-iteration
 - Product ideas/brainstorming → invoke /office-hours
 - Strategy/scope → invoke /plan-ceo-review
 - Architecture → invoke /plan-eng-review

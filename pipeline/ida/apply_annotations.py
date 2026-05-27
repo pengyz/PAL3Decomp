@@ -268,6 +268,11 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         mname = minfo["name"]
         mtype_str = minfo["type"].replace("class ", "").replace("struct ", "")
 
+        # Normalize nested type references: Parent::Nested → Parent_Nested
+        # PDB uses :: but annotation files use _ (e.g. SceneObj_SubObj.json)
+        if "::" in mtype_str and "std::" not in mtype_str and "<" not in mtype_str:
+            mtype_str = mtype_str.replace("::", "_")
+
         # STL/template types: try to resolve, fall back to char[span] if IDA can't parse
         _is_stl = 'std::' in mtype_str or '<' in mtype_str
         if _is_stl:
@@ -310,25 +315,39 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     # Create the struct/union
     result_tinfo = ida_typeinf.tinfo_t()
     udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
+
     if not result_tinfo.create_udt(udt, udt_flag):
         return (False, "create_udt() returned False")
 
     actual_size = result_tinfo.get_size()
     if actual_size == 0xFFFFFFFFFFFFFFFF:
-        # Diagnostic: find which members overlap (structs only)
-        overlap_info = []
-        if not is_union:
-            for i in range(udt.size()):
-                mi = udt[i]
-                end_bit = mi.offset + mi.size
-                for j in range(i + 1, min(i + 2, udt.size())):
-                    mj = udt[j]
-                    if end_bit > mj.offset:
-                        overlap_info.append("+%d %s(size=%d) ends@%d > next +%d %s" % (
-                            mi.offset // 8, mi.name, mi.size // 8,
-                            end_bit // 8, mj.offset // 8, mj.name))
-        detail = "; ".join(overlap_info[:3]) if overlap_info else "no overlap detected in UDT"
-        return (False, "INVALID struct after create_udt (%s)" % detail)
+        # TAUDT_FIXED may fail for some structs in IDA 9.1 (e.g. Comp_DonateUI).
+        # Fall back to build_struct_decl + parse_decls approach.
+        log("[*] create_udt TAUDT_FIXED failed for %s, trying parse_decls fallback..." % name)
+        decl = build_struct_decl(name, struct_info, all_structs, vtables)
+        if decl:
+            idc.parse_decls(decl, 0)
+            fallback = ida_typeinf.tinfo_t()
+            if fallback.get_named_type(til, name):
+                fb_size = fallback.get_size()
+                if fb_size and fb_size != 0xFFFFFFFFFFFFFFFF:
+                    log("[*] parse_decls fallback OK for %s (size=%d vs expected %d)" % (name, fb_size, binary_size))
+                    # Verify member offsets match annotation
+                    udt_check = ida_typeinf.udt_type_data_t()
+                    if fallback.get_udt(udt_check):
+                        for i in range(udt_check.size()):
+                            mi = udt_check[i]
+                            off_bytes = mi.offset // 8
+                            if mi.name:
+                                ann_off = None
+                                for off_str, minfo in members.items():
+                                    if minfo["name"] == mi.name:
+                                        ann_off = int(off_str.split('_')[0])
+                                        break
+                                if ann_off is not None and off_bytes != ann_off:
+                                    log("[!] OFFSET MISMATCH in %s: %s @+%d (ann: +%d)" % (name, mi.name, off_bytes, ann_off))
+                    return (True, None)
+        return (False, "TAUDT_FIXED create_udt failed (size=-1), parse_decls fallback also failed")
     if actual_size != binary_size:
         return (False, "size mismatch: expected %d, got %d (member type size wrong?)" % (
             binary_size, actual_size))
