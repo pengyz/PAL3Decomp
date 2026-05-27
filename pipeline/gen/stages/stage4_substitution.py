@@ -178,6 +178,19 @@ def _try_global_name(name):
     return store.globals_map.get(key)
 
 
+_INT_CONSTANTS = {
+    301: 'ROLEID_JINGTIAN',
+    302: 'ROLEID_XUEJIAN',
+    303: 'ROLEID_LONGKUI',
+    304: 'ROLEID_ZIXUAN',
+    305: 'ROLEID_CHANGQING',
+    306: 'ROLEID_HUAYING',
+    311: 'ROLEID_CHONGLOU',
+    50529027: 'MAGIC_SLOT_INIT',   # 0x03030303
+    2949123: 'SUBGROUP_FLAG_MASK',  # 0x2D0003
+    983043: 'SUBGROUP_FLAG_ALT',    # 0x0F0003
+}
+
 # ============================================================
 # AST-based token replacement
 # ============================================================
@@ -237,6 +250,18 @@ def _collect_token_edits(code_bytes, tree, ctx):
         elif node.type == 'this' and ctx.is_free_function:
             edits.append((node.start_byte, node.end_byte, b'_this'))
             return
+
+        # Integer literal replacement for known game constants
+        elif node.type == 'number_literal' and node.child_count == 0:
+            text = node.text.decode('utf-8')
+            try:
+                val = int(text, 0)  # handles hex (0x), octal (0o), decimal
+                if val in _INT_CONSTANTS:
+                    edits.append((node.start_byte, node.end_byte,
+                                  _INT_CONSTANTS[val].encode('utf-8')))
+                    return
+            except (ValueError, OverflowError):
+                pass
 
         # Recurse
         for child in node.children:

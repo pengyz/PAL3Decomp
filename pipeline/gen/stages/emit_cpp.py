@@ -205,6 +205,7 @@ def generate_class_cpp(cls_name, methods):
     # Standard includes
     lines.append('#include "pal3/ida_defs.h"')
     lines.append('#include "pal3/globals.h"')
+    lines.append('#include "pal3/pal3_constants.h"')
     header_path = header_dir / ("%s.h" % cls_name)
     if header_path.exists():
         lines.append('#include "pal3/gen/%s.h"' % cls_name)
