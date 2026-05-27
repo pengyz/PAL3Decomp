@@ -89,11 +89,11 @@
   },
   "0x00575098": {
     "name": "ValueName_0",
-    "type": "char[]"
+    "type": "char[256]"
   },
   "0x00580A88": {
     "name": "Format",
-    "type": "char[]"
+    "type": "char[256]"
   },
   "0x00580D00": {
     "name": "Mode",
@@ -137,15 +137,15 @@
   },
   "0x00583820": {
     "name": "path",
-    "type": "char[]"
+    "type": "char[256]"
   },
   "0x0058388C": {
     "name": "name",
-    "type": "char[]"
+    "type": "char[256]"
   },
   "0x005838A8": {
     "name": "filename",
-    "type": "char[]"
+    "type": "char[256]"
   },
   "0x00583998": {
     "name": "section",
@@ -153,7 +153,7 @@
   },
   "0x00583A9C": {
     "name": "dir",
-    "type": "char[]"
+    "type": "char[256]"
   },
   "0x00586158": {
     "name": "g_nFrameRate",
@@ -249,7 +249,7 @@
   },
   "0x005A3774": {
     "name": "tex",
-    "type": "char[]"
+    "type": "char[256]"
   },
   "0x005ABA60": {
     "name": "aP",
@@ -321,7 +321,7 @@
   },
   "0x005D558C": {
     "name": "FileName",
-    "type": "char[]"
+    "type": "char[256]"
   },
   "0x005D87F4": {
     "name": "roleIdx",
@@ -385,7 +385,7 @@
   },
   "0x00601528": {
     "name": "PathName_0",
-    "type": "char[]"
+    "type": "char[256]"
   },
   "0x00601548": {
     "name": "aPal3Timenotefi_96_0",
@@ -397,7 +397,7 @@
   },
   "0x00608CB4": {
     "name": "Delimiter",
-    "type": "char[]"
+    "type": "char[256]"
   },
   "0x0060AD00": {
     "name": "g_TileData",
@@ -1916,7 +1916,7 @@
   },
   "0x00C10D38": {
     "name": "g_szSceneUIText",
-    "type": "char[]",
+    "type": "char[256]",
     "source": "binary: used as char* in lstrcpyA/strcpy/SendMessageA; SceneMgr+0xC9A8"
   },
   "0x00C1109C": {
@@ -1996,7 +1996,7 @@
   },
   "0x00DC733C": {
     "name": "g_szRoleNameTable",
-    "type": "char[]",
+    "type": "char[256]",
     "source": "binary: Array_HandleItemPage: &g_szRoleNameTable[256*elem]; 256-byte per role name entry"
   },
   "0x00DD003C": {
@@ -5841,7 +5841,7 @@
   },
   "0x00DE7714": {
     "name": "g_szParticleTexName",
-    "type": "char[]",
+    "type": "char[256]",
     "source": "binary: ParticleEffect_LoadTextures: strcpy(val, pszName); texture name buffer"
   },
   "0x00AABEF6": {

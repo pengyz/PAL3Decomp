@@ -333,19 +333,22 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                 if fb_size and fb_size != 0xFFFFFFFFFFFFFFFF:
                     log("[*] parse_decls fallback OK for %s (size=%d vs expected %d)" % (name, fb_size, binary_size))
                     # Verify member offsets match annotation
-                    udt_check = ida_typeinf.udt_type_data_t()
-                    if fallback.get_udt(udt_check):
-                        for i in range(udt_check.size()):
-                            mi = udt_check[i]
-                            off_bytes = mi.offset // 8
-                            if mi.name:
-                                ann_off = None
-                                for off_str, minfo in members.items():
-                                    if minfo["name"] == mi.name:
-                                        ann_off = int(off_str.split('_')[0])
-                                        break
-                                if ann_off is not None and off_bytes != ann_off:
-                                    log("[!] OFFSET MISMATCH in %s: %s @+%d (ann: +%d)" % (name, mi.name, off_bytes, ann_off))
+                    try:
+                        udt_check = ida_typeinf.udt_type_data_t()
+                        if fallback.get_udt(udt_check):
+                            for i in range(udt_check.size()):
+                                mi = udt_check[i]
+                                off_bytes = mi.offset // 8
+                                if mi.name:
+                                    ann_off = None
+                                    for off_str, minfo in members.items():
+                                        if minfo["name"] == mi.name:
+                                            ann_off = int(off_str.split('_')[0])
+                                            break
+                                    if ann_off is not None and off_bytes != ann_off:
+                                        log("[!] OFFSET MISMATCH in %s: %s @+%d (ann: +%d)" % (name, mi.name, off_bytes, ann_off))
+                    except AttributeError:
+                        pass  # get_udt not available in this IDA version
                     return (True, None)
         return (False, "TAUDT_FIXED create_udt failed (size=-1), parse_decls fallback also failed")
     if actual_size != binary_size:
