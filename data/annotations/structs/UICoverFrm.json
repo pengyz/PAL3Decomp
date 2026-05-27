@@ -1,250 +1,195 @@
 {
   "name": "UICoverFrm",
   "known_members": {
-    "264": {
+    "72": {
+      "name": "rc",
+      "type": "tagRECT",
+      "source": "PDB_verified"
+    },
+    "88": {
+      "name": "buf",
+      "type": "char[256]",
+      "source": "PDB_verified"
+    },
+    "344": {
       "name": "m_background",
       "type": "UIStatic",
-      "source": "gen_headers_9.2"
+      "source": "PDB_verified"
     },
-    "2028": {
-      "name": "m_Meteor",
-      "type": "UIPar_Meteor *",
-      "source": "fix:span=4_next_hits=6_ptr"
-    },
-    "8568": {
-      "name": "m_mountainA",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "8720": {
-      "name": "m_mountainB",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "8872": {
-      "name": "m_frame",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "9024": {
-      "name": "m_Logo",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "9176": {
-      "name": "m_isAlpha",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "9180": {
-      "name": "m_alpha",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "9184": {
-      "name": "m_tjA",
-      "type": "UIStaticEXA",
-      "source": "gen_headers_9.2"
-    },
-    "9384": {
-      "name": "m_tjB",
-      "type": "UIStaticEXA",
-      "source": "gen_headers_9.2"
-    },
-    "9584": {
-      "name": "m_XDGS",
-      "type": "UIButtonEX",
-      "source": "gen_headers_9.2"
-    },
-    "9976": {
-      "name": "m_QCYM",
-      "type": "UIButtonEX",
-      "source": "gen_headers_9.2"
-    },
-    "10368": {
-      "name": "m_XJTM",
-      "type": "UIButtonEX",
-      "source": "gen_headers_9.2"
-    },
-    "10760": {
-      "name": "m_LKYX",
-      "type": "UIButtonEX",
-      "source": "gen_headers_9.2"
-    },
-    "11152": {
-      "name": "m_YXXX",
-      "type": "UIButtonEX",
-      "source": "gen_headers_9.2"
-    },
-    "11960": {
-      "name": "m_SelBtn",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "11964": {
-      "name": "m_ExitGame",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "11968": {
-      "name": "pQCYM",
-      "type": "UITitle_QCYM *",
-      "source": "gen_headers_9.2"
-    },
-    "11972": {
-      "name": "pJDHY",
-      "type": "UITitle_JDHY *",
-      "source": "gen_headers_9.2"
-    },
-    "11976": {
-      "name": "pYXXX",
-      "type": "UITitle_YXXX *",
-      "source": "gen_headers_9.2"
-    },
-    "11980": {
-      "name": "pXJTM",
-      "type": "UITitle_XJTM *",
-      "source": "gen_headers_9.2"
-    },
-    "11984": {
-      "name": "pArcSave",
-      "type": "UITitle_ArcSave *",
-      "source": "gen_headers_9.2"
-    },
-    "11988": {
-      "name": "pLoadingFrm",
-      "type": "UILoadingFrm *",
-      "source": "gen_headers_9.2"
-    },
-    "11992": {
-      "name": "m_MenuType",
-      "type": "MENU_TYPE",
-      "source": "gen_headers_9.2"
-    },
-    "11996": {
-      "name": "m_timeAverage",
-      "type": "Average",
-      "source": "gen_headers_9.2"
-    },
-    "12020": {
-      "name": "m_gotogame",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "12024": {
-      "name": "m_flag",
-      "type": "UINT",
-      "source": "gen_headers_9.2"
-    },
-    "12028": {
-      "name": "m_test",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "12180": {
-      "name": "m_ArcDlg",
-      "type": "MUIDialog",
-      "source": "gen_headers_9.2"
-    },
-    "13564": {
-      "name": "m_Not1stDlg",
-      "type": "MUIDialog",
-      "source": "gen_headers_9.2"
-    },
-    "14948": {
-      "name": "m_goingin",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "14949": {
-      "name": "m_ArcSaveSuc",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "14950": {
-      "name": "m_IsReadFinishSave",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "416": {
+    "504": {
       "name": "m_Star",
       "type": "UIPar_Star[13]",
-      "source": "pdb_fill_incomplete"
-    },
-    "4464": {
-      "name": "m_midCloud",
-      "type": "_CLOUD[5]",
-      "source": "pdb_fill_incomplete"
-    },
-    "5544": {
-      "name": "m_smlCloud",
-      "type": "_CLOUD[5]",
-      "source": "pdb_fill_incomplete"
-    },
-    "6624": {
-      "name": "m_testCloud",
-      "type": "_CLOUD[9]",
-      "source": "pdb_fill_incomplete"
-    },
-    "11936": {
-      "name": "m_CtrlBtn",
-      "type": "UIButtonEX *[6]",
-      "source": "pdb_fill_incomplete"
-    },
-    "2032": {
-      "type": "UIFrameWnd",
-      "name": "_embed_UIFrameWnd_2120",
-      "source": "A:LEA+CALL_consecutive_stride152"
-    },
-    "2104": {
-      "name": "_todo_838",
-      "type": "int",
-      "source": "binary_discovery:2refs"
-    },
-    "2108": {
-      "name": "_todo_83C",
-      "type": "int",
-      "source": "binary_discovery:2refs"
-    },
-    "2112": {
-      "name": "_todo_840",
-      "type": "int",
-      "source": "binary_discovery:2refs"
+      "source": "PDB_verified"
     },
     "2116": {
-      "name": "_todo_844",
-      "type": "int",
-      "source": "binary_discovery:2refs"
+      "name": "m_Meteor",
+      "type": "UIPar_Meteor",
+      "source": "PDB_verified"
     },
-    "2120": {
-      "name": "m_Static_2120",
+    "2392": {
+      "name": "m_cloud",
+      "type": "_CLOUD[10]",
+      "source": "PDB_verified"
+    },
+    "4552": {
+      "name": "m_midCloud",
+      "type": "_CLOUD[5]",
+      "source": "PDB_verified"
+    },
+    "5632": {
+      "name": "m_smlCloud",
+      "type": "_CLOUD[5]",
+      "source": "PDB_verified"
+    },
+    "6712": {
+      "name": "m_testCloud",
+      "type": "_CLOUD[9]",
+      "source": "PDB_verified"
+    },
+    "8656": {
+      "name": "m_mountainA",
       "type": "UIStatic",
-      "source": "ctor:UIStatic::_UIStatic"
+      "source": "PDB_verified"
     },
-    "2272": {
-      "name": "m_Static_2272",
+    "8816": {
+      "name": "m_mountainB",
       "type": "UIStatic",
-      "source": "ctor:UIStatic::_UIStatic"
+      "source": "PDB_verified"
     },
-    "2424": {
-      "name": "_todo_978",
-      "type": "int",
-      "source": "binary_discovery:2refs"
+    "8976": {
+      "name": "m_frame",
+      "type": "UIStatic",
+      "source": "PDB_verified"
     },
-    "4080": {
-      "name": "_todo_FF0",
-      "type": "int",
-      "source": "binary_discovery:2refs"
+    "9136": {
+      "name": "m_Logo",
+      "type": "UIStatic",
+      "source": "PDB_verified"
     },
-    "4388": {
-      "name": "_todo_1124",
-      "type": "int",
-      "source": "binary_discovery:2refs"
+    "9296": {
+      "name": "m_isAlpha",
+      "type": "unsigned char",
+      "source": "PDB_verified"
     },
-    "11576": {
-      "name": "_todo_2D38",
+    "9300": {
+      "name": "m_alpha",
+      "type": "float",
+      "source": "PDB_verified"
+    },
+    "9304": {
+      "name": "m_tjA",
+      "type": "UIStaticEXA",
+      "source": "PDB_verified"
+    },
+    "9504": {
+      "name": "m_tjB",
+      "type": "UIStaticEXA",
+      "source": "PDB_verified"
+    },
+    "9704": {
+      "name": "m_XDGS",
+      "type": "UIButtonEX",
+      "source": "PDB_verified"
+    },
+    "10096": {
+      "name": "m_QCYM",
+      "type": "UIButtonEX",
+      "source": "PDB_verified"
+    },
+    "10488": {
+      "name": "m_XJTM",
+      "type": "UIButtonEX",
+      "source": "PDB_verified"
+    },
+    "10880": {
+      "name": "m_LKYX",
+      "type": "UIButtonEX",
+      "source": "PDB_verified"
+    },
+    "11272": {
+      "name": "m_YXXX",
+      "type": "UIButtonEX",
+      "source": "PDB_verified"
+    },
+    "11664": {
+      "name": "m_JDHY",
+      "type": "UIButtonEX",
+      "source": "PDB_verified"
+    },
+    "12056": {
+      "name": "m_CtrlBtn",
+      "type": "UIButtonEX *[6]",
+      "source": "PDB_verified"
+    },
+    "12080": {
+      "name": "m_SelBtn",
       "type": "int",
-      "source": "binary_discovery:3refs"
+      "source": "PDB_verified"
+    },
+    "12084": {
+      "name": "m_ExitGame",
+      "type": "unsigned char",
+      "source": "PDB_verified"
+    },
+    "12088": {
+      "name": "pQCYM",
+      "type": "UITitle_QCYM *",
+      "source": "PDB_verified"
+    },
+    "12092": {
+      "name": "pJDHY",
+      "type": "UITitle_JDHY *",
+      "source": "PDB_verified"
+    },
+    "12096": {
+      "name": "pYXXX",
+      "type": "UITitle_YXXX *",
+      "source": "PDB_verified"
+    },
+    "12100": {
+      "name": "pXJTM",
+      "type": "UITitle_XJTM *",
+      "source": "PDB_verified"
+    },
+    "12104": {
+      "name": "pArcSave",
+      "type": "UITitle_ArcSave *",
+      "source": "PDB_verified"
+    },
+    "12108": {
+      "name": "pLoadingFrm",
+      "type": "UILoadingFrm *",
+      "source": "PDB_verified"
+    },
+    "12112": {
+      "name": "m_MenuType",
+      "type": "MENU_TYPE",
+      "source": "PDB_verified"
+    },
+    "12116": {
+      "name": "m_timeAverage",
+      "type": "Average",
+      "source": "PDB_verified"
+    },
+    "12140": {
+      "name": "m_gotogame",
+      "type": "unsigned char",
+      "source": "PDB_verified"
+    },
+    "12144": {
+      "name": "m_flag",
+      "type": "unsigned int",
+      "source": "PDB_verified"
+    },
+    "12148": {
+      "name": "m_test",
+      "type": "UIStatic",
+      "source": "PDB_verified"
+    },
+    "12308": {
+      "name": "m_ArcDlg",
+      "type": "MUIDialog",
+      "source": "PDB_verified"
     }
   },
   "pdb_size": 15080,

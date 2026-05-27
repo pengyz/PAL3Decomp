@@ -1,645 +1,410 @@
 {
   "name": "SaleUI",
   "known_members": {
-    "512": {
-      "name": "m_SelNum",
+    "72": {
+      "name": "bkWidth",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "PDB_verified"
     },
-    "516": {
-      "name": "m_data",
-      "type": "st_Manager",
-      "source": "gen_headers_9.2"
-    },
-    "41960": {
-      "name": "_isCreatable",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "86816": {
-      "name": "x",
+    "76": {
+      "name": "bkHeight",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "PDB_verified"
     },
-    "86820": {
-      "name": "rc",
-      "type": "tagRECT",
-      "source": "gen_headers_9.2"
+    "80": {
+      "name": "buf",
+      "type": "char[256]",
+      "source": "PDB_verified"
     },
-    "86836": {
-      "name": "m_Frame",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "86988": {
-      "name": "m_FrameBar",
-      "type": "UIFlexBar",
-      "source": "gen_headers_9.2"
-    },
-    "87072": {
-      "name": "m_Flag",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "87224": {
-      "name": "m_OutFrameT",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "87376": {
-      "name": "m_OutFrameR",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "87528": {
-      "name": "m_OutFrameL",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "87680": {
-      "name": "m_OutFrameB",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "87832": {
-      "name": "mb_Exit",
-      "type": "UIButton",
-      "source": "gen_headers_9.2"
-    },
-    "88176": {
-      "name": "m_ExitRc",
-      "type": "tagRECT",
-      "source": "gen_headers_9.2"
-    },
-    "88192": {
-      "name": "m_ani",
-      "type": "UIAnimateCtrl",
-      "source": "gen_headers_9.2"
-    },
-    "89196": {
-      "name": "RoleX",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "89200": {
-      "name": "RoleY",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "89204": {
-      "name": "HeadW",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "89208": {
-      "name": "HeadH",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "89220": {
-      "name": "m_Msg",
-      "type": "MUIDialog",
-      "source": "gen_headers_9.2"
-    },
-    "90604": {
-      "name": "m_3DObj",
-      "type": "UI3DCtrl",
-      "source": "gen_headers_9.2"
-    },
-    "90912": {
-      "name": "m_FlagRc",
-      "type": "tagRECT",
-      "source": "gen_headers_9.2"
-    },
-    "90928": {
-      "name": "m_TalkFrame",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "91080": {
-      "name": "m_Ready",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "91232": {
-      "name": "m_ReadyRc",
-      "type": "tagRECT",
-      "source": "gen_headers_9.2"
-    },
-    "93224": {
-      "name": "m_TabRc",
-      "type": "tagRECT",
-      "source": "gen_headers_9.2"
-    },
-    "93240": {
-      "name": "m_ListSaleTitle",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "93392": {
-      "name": "m_ListEquipTitleRc",
-      "type": "tagRECT",
-      "source": "gen_headers_9.2"
-    },
-    "98108": {
-      "name": "m_ListFrame",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "98260": {
-      "name": "m_ScrollHB",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "100540": {
-      "name": "m_ListRc",
-      "type": "tagRECT",
-      "source": "gen_headers_9.2"
-    },
-    "100556": {
-      "name": "ml_ResumeList",
-      "type": "UIListBox",
-      "source": "gen_headers_9.2"
-    },
-    "101844": {
-      "name": "ResumeNum",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "101848": {
-      "name": "ml_TreasureList",
-      "type": "UIListBox",
-      "source": "gen_headers_9.2"
-    },
-    "103136": {
-      "name": "TreasureNum",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "103140": {
-      "name": "ml_AttackList",
-      "type": "UIListBox",
-      "source": "gen_headers_9.2"
-    },
-    "104428": {
-      "name": "AttackNum",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "104432": {
-      "name": "ml_SmeltList",
-      "type": "UIListBox",
-      "source": "gen_headers_9.2"
-    },
-    "105720": {
-      "name": "SmeltNum",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "105724": {
-      "name": "ml_AncientList",
-      "type": "UIListBox",
-      "source": "gen_headers_9.2"
-    },
-    "107012": {
-      "name": "AncientNum",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "107016": {
-      "name": "ml_EquipList",
-      "type": "UIListBox",
-      "source": "gen_headers_9.2"
-    },
-    "108304": {
-      "name": "EquipNum",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "108308": {
-      "name": "curPage",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "108312": {
-      "name": "curNum",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "108316": {
-      "name": "m_btnGroup",
-      "type": "BtnGroup",
-      "source": "gen_headers_9.2"
-    },
-    "109056": {
-      "name": "m_ctrlTime",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "109060": {
-      "name": "m_bCanUpdate1",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "109061": {
-      "name": "m_bCanUpdate2",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "109064": {
-      "name": "m_Sortfunc",
-      "type": "UIButton",
-      "source": "gen_headers_9.2"
-    },
-    "109408": {
-      "name": "m_Sortprice",
-      "type": "UIButton",
-      "source": "gen_headers_9.2"
-    },
-    "109752": {
-      "name": "m_sortstate",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "109756": {
-      "name": "m_ButtonRc",
-      "type": "tagRECT",
-      "source": "gen_headers_9.2"
-    },
-    "109772": {
-      "name": "mb_OK",
-      "type": "UIButton",
-      "source": "gen_headers_9.2"
-    },
-    "110116": {
-      "name": "mb_Cancel",
-      "type": "UIButton",
-      "source": "gen_headers_9.2"
-    },
-    "110460": {
-      "name": "m_SaleRemarkBk",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "110612": {
-      "name": "m_SaleRemark",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "110764": {
-      "name": "m_ItemFlag",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "110916": {
-      "name": "m_RemarkRc",
-      "type": "tagRECT",
-      "source": "gen_headers_9.2"
-    },
-    "110932": {
-      "name": "m_SaleAtt",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "111084": {
-      "name": "m_SaleAttRc",
-      "type": "tagRECT",
-      "source": "gen_headers_9.2"
-    },
-    "111100": {
-      "name": "m_MoneyRemark",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "111252": {
-      "name": "m_MoneyRc",
-      "type": "tagRECT",
-      "source": "gen_headers_9.2"
-    },
-    "111268": {
-      "name": "m_SumSale",
-      "type": "UIStatic",
-      "source": "gen_headers_9.2"
-    },
-    "111420": {
-      "name": "m_SumRc",
-      "type": "tagRECT",
-      "source": "gen_headers_9.2"
-    },
-    "111436": {
-      "name": "b_IsAdd",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "111437": {
-      "name": "b_IsSub",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "111440": {
-      "name": "m_extmode",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "111444": {
-      "name": "pDealUI",
-      "type": "DealUI *",
-      "source": "gen_headers_9.2"
-    },
-    "111448": {
-      "name": "pEntryUI",
-      "type": "HS_Entry *",
-      "source": "gen_headers_9.2"
-    },
-    "111452": {
-      "name": "m_IsSale",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "111456": {
-      "name": "m_curPage",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "111460": {
-      "name": "m_TabBtn",
-      "type": "UITabBtn",
-      "source": "gen_headers_9.2"
-    },
-    "111484": {
-      "name": "m_opt",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "256": {
+    "336": {
       "name": "remarkbuf",
       "type": "char[256]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "18020": {
+    "592": {
+      "name": "m_SelNum",
+      "type": "int",
+      "source": "PDB_verified"
+    },
+    "596": {
+      "name": "m_data",
+      "type": "st_Manager",
+      "source": "PDB_verified"
+    },
+    "18100": {
       "name": "m_sort",
-      "type": "SaleUI_SortData[299][5]",
-      "source": "pdb_fill_incomplete"
+      "type": "SaleUI::SortData[299][5]",
+      "source": "PDB_verified"
     },
-    "29980": {
+    "30060": {
       "name": "m_ListSelNum",
       "type": "int[299][5]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "35960": {
+    "36040": {
       "name": "m_Max",
       "type": "int[299][5]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "41940": {
+    "42020": {
       "name": "m_Sum",
       "type": "int[5]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "41964": {
+    "42040": {
+      "name": "_isCreatable",
+      "type": "unsigned char",
+      "source": "PDB_verified"
+    },
+    "42044": {
       "name": "m_SaleData",
       "type": "PlayerItem[299][5]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "59904": {
+    "59984": {
       "name": "m_TempData",
       "type": "PlayerItem[299][5]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "77844": {
+    "77924": {
       "name": "m_NotesNull",
       "type": "int[299][5]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "83824": {
+    "83904": {
       "name": "m_IsEquip",
       "type": "unsigned char[299][5]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "85319": {
+    "85399": {
       "name": "m_TempIsEquip",
       "type": "unsigned char[299][5]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "88356": {
+    "86896": {
+      "name": "x",
+      "type": "int",
+      "source": "PDB_verified"
+    },
+    "86900": {
+      "name": "rc",
+      "type": "tagRECT",
+      "source": "PDB_verified"
+    },
+    "86916": {
+      "name": "m_Frame",
+      "type": "UIStatic",
+      "source": "PDB_verified"
+    },
+    "87076": {
+      "name": "m_FrameBar",
+      "type": "UIFlexBar",
+      "source": "PDB_verified"
+    },
+    "87160": {
+      "name": "m_Flag",
+      "type": "UIStatic",
+      "source": "PDB_verified"
+    },
+    "87320": {
+      "name": "m_OutFrameT",
+      "type": "UIStatic",
+      "source": "PDB_verified"
+    },
+    "87480": {
+      "name": "m_OutFrameR",
+      "type": "UIStatic",
+      "source": "PDB_verified"
+    },
+    "87640": {
+      "name": "m_OutFrameL",
+      "type": "UIStatic",
+      "source": "PDB_verified"
+    },
+    "87800": {
+      "name": "m_OutFrameB",
+      "type": "UIStatic",
+      "source": "PDB_verified"
+    },
+    "87960": {
+      "name": "mb_Exit",
+      "type": "UIButton",
+      "source": "PDB_verified"
+    },
+    "88304": {
+      "name": "m_ExitRc",
+      "type": "tagRECT",
+      "source": "PDB_verified"
+    },
+    "88320": {
+      "name": "m_ani",
+      "type": "UIAnimateCtrl",
+      "source": "PDB_verified"
+    },
+    "88484": {
       "name": "m_Role",
       "type": "UIStatic[5]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "89116": {
+    "89284": {
       "name": "m_RoleRc",
       "type": "tagRECT[5]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "89212": {
+    "89364": {
+      "name": "RoleX",
+      "type": "int",
+      "source": "PDB_verified"
+    },
+    "89368": {
+      "name": "RoleY",
+      "type": "int",
+      "source": "PDB_verified"
+    },
+    "89372": {
+      "name": "HeadW",
+      "type": "int",
+      "source": "PDB_verified"
+    },
+    "89376": {
+      "name": "HeadH",
+      "type": "int",
+      "source": "PDB_verified"
+    },
+    "89380": {
       "name": "m_Is",
       "type": "unsigned char[5]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "91248": {
+    "89388": {
+      "name": "m_Msg",
+      "type": "MUIDialog",
+      "source": "PDB_verified"
+    },
+    "90772": {
+      "name": "m_3DObj",
+      "type": "UI3DCtrl",
+      "source": "PDB_verified"
+    },
+    "91080": {
+      "name": "m_FlagRc",
+      "type": "tagRECT",
+      "source": "PDB_verified"
+    },
+    "91096": {
+      "name": "m_TalkFrame",
+      "type": "UIStatic",
+      "source": "PDB_verified"
+    },
+    "91256": {
+      "name": "m_Ready",
+      "type": "UIStatic",
+      "source": "PDB_verified"
+    },
+    "91416": {
+      "name": "m_ReadyRc",
+      "type": "tagRECT",
+      "source": "PDB_verified"
+    },
+    "91432": {
       "name": "m_entryTalk",
       "type": "char[256]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "91504": {
+    "91688": {
       "name": "m_btn",
       "type": "UIButton[5]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
     "93408": {
-      "name": "m_Icon",
-      "type": "UIStaticRM[3][3]",
-      "source": "pdb_fill_incomplete | fix:[5][5]->[3][3] span=1692, 9*188=1692"
+      "name": "m_TabRc",
+      "type": "tagRECT",
+      "source": "PDB_verified"
     },
-    "98412": {
+    "93424": {
+      "name": "m_ListSaleTitle",
+      "type": "UIStatic",
+      "source": "PDB_verified"
+    },
+    "93584": {
+      "name": "m_ListEquipTitleRc",
+      "type": "tagRECT",
+      "source": "PDB_verified"
+    },
+    "93600": {
+      "name": "m_Icon",
+      "type": "UIStaticRM[5][5]",
+      "source": "PDB_verified"
+    },
+    "98300": {
+      "name": "m_ListFrame",
+      "type": "UIStatic",
+      "source": "PDB_verified"
+    },
+    "98460": {
+      "name": "m_ScrollHB",
+      "type": "UIStatic",
+      "source": "PDB_verified"
+    },
+    "98620": {
       "name": "m_ListGrid",
       "type": "UIStatic[14]",
-      "source": "pdb_fill_incomplete"
+      "source": "PDB_verified"
     },
-    "760": {
-      "name": "_todo_348",
+    "100860": {
+      "name": "m_ListRc",
+      "type": "tagRECT",
+      "source": "PDB_verified"
+    },
+    "100876": {
+      "name": "ml_ResumeList",
+      "type": "UIListBox",
+      "source": "PDB_verified"
+    },
+    "102164": {
+      "name": "ResumeNum",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "PDB_verified"
     },
-    "1324": {
-      "name": "_todo_57C",
+    "102168": {
+      "name": "ml_TreasureList",
+      "type": "UIListBox",
+      "source": "PDB_verified"
+    },
+    "103456": {
+      "name": "TreasureNum",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "PDB_verified"
     },
-    "1328": {
-      "name": "_todo_580",
+    "103460": {
+      "name": "ml_AttackList",
+      "type": "UIListBox",
+      "source": "PDB_verified"
+    },
+    "104748": {
+      "name": "AttackNum",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "PDB_verified"
     },
-    "7520": {
-      "name": "_todo_1DB0",
+    "104752": {
+      "name": "ml_SmeltList",
+      "type": "UIListBox",
+      "source": "PDB_verified"
+    },
+    "106040": {
+      "name": "SmeltNum",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "PDB_verified"
     },
-    "7672": {
-      "name": "_todo_1E48",
+    "106044": {
+      "name": "ml_AncientList",
+      "type": "UIListBox",
+      "source": "PDB_verified"
+    },
+    "107332": {
+      "name": "AncientNum",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "PDB_verified"
     },
-    "7756": {
-      "name": "_todo_1E9C",
+    "107336": {
+      "name": "ml_EquipList",
+      "type": "UIListBox",
+      "source": "PDB_verified"
+    },
+    "108624": {
+      "name": "EquipNum",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "PDB_verified"
     },
-    "7908": {
-      "name": "_todo_1F34",
+    "108628": {
+      "name": "curPage",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "PDB_verified"
     },
-    "8072": {
-      "name": "_todo_1FD8",
+    "108632": {
+      "name": "curNum",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "PDB_verified"
     },
-    "8912": {
-      "name": "_todo_2320",
+    "108636": {
+      "name": "m_btnGroup",
+      "type": "BtnGroup",
+      "source": "PDB_verified"
+    },
+    "109376": {
+      "name": "m_ctrlTime",
+      "type": "float",
+      "source": "PDB_verified"
+    },
+    "109380": {
+      "name": "m_bCanUpdate1",
+      "type": "unsigned char",
+      "source": "PDB_verified"
+    },
+    "109381": {
+      "name": "m_bCanUpdate2",
+      "type": "unsigned char",
+      "source": "PDB_verified"
+    },
+    "109384": {
+      "name": "m_Sortfunc",
+      "type": "UIButton",
+      "source": "PDB_verified"
+    },
+    "109728": {
+      "name": "m_Sortprice",
+      "type": "UIButton",
+      "source": "PDB_verified"
+    },
+    "110072": {
+      "name": "m_sortstate",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "PDB_verified"
     },
-    "8916": {
-      "name": "_todo_2324",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+    "110076": {
+      "name": "m_ButtonRc",
+      "type": "tagRECT",
+      "source": "PDB_verified"
     },
-    "8920": {
-      "name": "_todo_2328",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+    "110092": {
+      "name": "mb_OK",
+      "type": "UIButton",
+      "source": "PDB_verified"
     },
-    "8924": {
-      "name": "_todo_232C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+    "110436": {
+      "name": "mb_Cancel",
+      "type": "UIButton",
+      "source": "PDB_verified"
     },
-    "8928": {
-      "name": "_todo_2330",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "8932": {
-      "name": "_todo_2334",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "8936": {
-      "name": "_todo_22E8",
-      "type": "int",
-      "source": "reverted_auto_semantic:43x_access"
-    },
-    "25096": {
-      "name": "_embed_UIFrameWnd_6258",
+    "110780": {
+      "name": "m_SaleRemarkBk",
       "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+25176,span=152=binary_size"
+      "source": "PDB_verified"
     },
-    "25248": {
-      "type": "PalScript",
-      "name": "_embed_PalScript_25328",
-      "source": "A:LEA_ECX+CALL_PalScript::ctor"
-    },
-    "1544": {
-      "name": "_embed_UIFrameWnd_658",
+    "110940": {
+      "name": "m_SaleRemark",
       "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+1624,span>=152"
+      "source": "PDB_verified"
     },
-    "1696": {
-      "name": "_embed_UIFrameWnd_6F0",
+    "111100": {
+      "name": "m_ItemFlag",
       "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+1776,span>=152"
+      "source": "PDB_verified"
     },
-    "1848": {
-      "name": "_embed_UIFrameWnd_788",
-      "type": "UIFrameWnd",
-      "source": "A+:decomp_ctor_at_this+1928,span>=152"
+    "111260": {
+      "name": "m_RemarkRc",
+      "type": "tagRECT",
+      "source": "PDB_verified"
     },
-    "4872": {
-      "name": "_embed_UIFrameWnd_1358",
+    "111276": {
+      "name": "m_SaleAtt",
       "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+4952,span>=152"
+      "source": "PDB_verified"
     },
-    "5024": {
-      "name": "_embed_UIFrameWnd_13F0",
-      "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+5104,span>=152"
-    },
-    "5176": {
-      "name": "_embed_UIFrameWnd_1488",
-      "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+5256,span>=152"
-    },
-    "5328": {
-      "name": "_embed_UIFrameWnd_1520",
-      "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+5408,span>=152"
-    },
-    "5480": {
-      "name": "_embed_UIFrameWnd_15B8",
-      "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+5560,span>=152"
-    },
-    "5632": {
-      "name": "_embed_UIFrameWnd_1650",
-      "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+5712,span>=152"
-    },
-    "5784": {
-      "name": "_embed_UIFrameWnd_16E8",
-      "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+5864,span>=152"
-    },
-    "5936": {
-      "name": "_embed_UIFrameWnd_1780",
-      "type": "UIFrameWnd",
-      "source": "A+:decomp_ctor_at_this+6016,span>=152"
-    },
-    "6580": {
-      "name": "_embed_UIFrameWnd_1A04",
-      "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+6660,span>=152"
-    },
-    "6732": {
-      "name": "_embed_UIFrameWnd_1A9C",
-      "type": "UIFrameWnd",
-      "source": "A+:decomp_ctor_at_this+6812,span>=152"
-    },
-    "24860": {
-      "name": "_embed_UIFrameWnd_616C",
-      "type": "UIFrameWnd",
-      "source": "A+:decomp_ctor_at_this+24940,span>=152"
-    },
-    "95100": {
-      "name": "_embed_UIFrameWnd_1743C",
-      "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+95292,span>=152"
-    },
-    "95252": {
-      "name": "_embed_UIFrameWnd_174D4",
-      "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+95444,span>=152"
-    },
-    "95404": {
-      "name": "_embed_UIFrameWnd_1756C",
-      "type": "UIStatic",
-      "source": "A+:decomp_ctor_at_this+95596,span>=152"
-    },
-    "95556": {
-      "name": "_embed_UIFrameWnd_17604",
-      "type": "UIFrameWnd",
-      "source": "A+:decomp_ctor_at_this+95748,span>=152"
-    },
-    "96412": {
-      "name": "_embed_UIFrameWnd_1795C",
-      "type": "UIFrameWnd",
-      "source": "A+:decomp_ctor_at_this+96604,span>=152"
-    },
-    "96580": {
-      "name": "_embed_UIFrameWnd_17A04",
-      "type": "UIFrameWnd",
-      "source": "A+:decomp_ctor_at_this+96772,span>=152"
+    "111436": {
+      "name": "m_SaleAttRc",
+      "type": "tagRECT",
+      "source": "PDB_verified"
     }
   },
   "pdb_size": 111856,
