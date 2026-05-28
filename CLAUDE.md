@@ -30,7 +30,7 @@ compiler (MSVC 6.0 SP0), generates byte-identical machine code to the original b
 
 ## PAL3.exe Decompilation Workflow (Active)
 
-使用 IDA Pro 9.2 + Hex-Rays 反编译 PAL3.exe，通过 IDAPython 管线导出，后处理生成源码。
+使用 IDA Pro + Hex-Rays 反编译 PAL3.exe，通过 IDAPython 管线导出，后处理生成源码。
 
 ### 工作流
 
@@ -39,7 +39,7 @@ compiler (MSVC 6.0 SP0), generates byte-identical machine code to the original b
 2. IDA 导出   → pipeline/ida/export_full.py → asm/pal3/decomp/*.json
 3. 代码生成   → python pipeline/gen/codegen.py all → include/ + src/
 4. 编译验证   → VC6 (cmake -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-vc6.cmake)
-5. 字节对比   → python tools/pal3_compare.py
+5. 字节对比   → python pipeline/compare.py
 6. 迭代       → 回到步骤 1，在 IDA 中修复类型/签名问题
 ```
 
@@ -60,12 +60,6 @@ compiler (MSVC 6.0 SP0), generates byte-identical machine code to the original b
 | `stdiobuf *` | IDA 类型误判 | 修正为正确类型 (UIWnd*) |
 | `this->m_pUtil[88]` | CUtil 是 forward decl | 需要完整的 CUtil 布局定义 |
 
-### 数据文件
-
-- `asm/pal3a/pdb_export.json` — PAL3A PDB 完整导出 (1503 classes, 含继承+成员+方法)
-- `asm/pal3/decomp/*.json` — PAL3.exe 5414 函数的 Hex-Rays 反编译结果
-- `original/PAL3.exe.i64` — IDA 数据库 (含结构体/函数名/全局变量标注)
-
 ### 代码生成工具
 
 - `pipeline/gen/codegen.py all` — 全量生成 headers + cpp (tree-sitter AST pipeline)
@@ -75,17 +69,6 @@ compiler (MSVC 6.0 SP0), generates byte-identical machine code to the original b
 - `tools/dia_export_structs.py` — 从 PDB 导出结构体 (DIA SDK)
 - `tools/dia_export_bases.py` — 从 PDB 导出继承关系
 
-### 当前进度 (2026-05-10)
-
-```
-PAL3.exe:
-  IDA 标注: 1964 函数已命名 / 5413 总函数 (36%)
-  结构体: 869 个精确导入 IDA
-  生成: 113 .cpp 文件, 184 头文件
-  VC6 编译: 3/113 通过（管线基础设施已建立）
-  主要阻塞: IDA 中结构体成员/函数签名不完整
-```
-
 ## Directory Structure
 
 - `data/annotations/` — 标注数据（项目核心资产：structs, functions, globals, vtables）
@@ -93,7 +76,7 @@ PAL3.exe:
 - `pipeline/gen/` — 代码生成管线（4-stage tree-sitter AST pipeline）
 - `pipeline/ida/` — IDA Pro 脚本（master_pipeline, apply_annotations, export, query）
 - `pipeline/` — 管线工具（check_annotations, verify_offset, compare）
-- `tools/` — 独立命令行工具（字节对比, 进度统计, DIA 导出）
+- `tools/` — 独立命令行工具（DIA 导出、PDB 分析）
 - `src/pal3/` — 生成的 PAL3.exe 源码（按模块: Combat/, Effect/, UI/）
 - `include/pal3/gen/` — 自动生成的类头文件
 - `include/gbengine/` — gbengine.dll 头文件
