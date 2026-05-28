@@ -54,6 +54,24 @@ const int UI3_CHAR_BASE  = 27;  // 5 char init values [27..31]
 const int UI3_FORM_BASE  = 32;  // 7 formation flags [32..38]
 const int UI3_MISC_ID    = 53;  // misc resource ID (1943)
 
+// === GDB Item/Skill IDs used in PalScript opcode handlers ===
+// PalScript::Op_CameraFocusPoint handles "getitem" - item acquisition that teaches skills.
+// case values = item type ID, paired skill IDs learned when item is used:
+const int GDB_ITEMTYPE_LEARN_SKILL_0 = 6119;  // teaches GDB skill 8146
+const int GDB_ITEMTYPE_LEARN_SKILL_1 = 6120;  // teaches GDB skill 8147
+const int GDB_ITEMTYPE_LEARN_SKILL_3 = 6122;  // teaches GDB skill 8149
+const int GDB_ITEMTYPE_LEARN_SKILL_4 = 6123;  // teaches GDB skill 8150 + 6427
+const int GDB_ITEMTYPE_LEARN_SKILL_5 = 6124;  // teaches GDB skill 8151
+const int GDB_ITEMTYPE_LEARN_SKILL_6 = 6125;  // teaches GDB skill 8152
+
+const int GDB_SKILLID_LEARN_0  = 8146;  // learned from item type 6119
+const int GDB_SKILLID_LEARN_1  = 8147;  // learned from item type 6120
+const int GDB_SKILLID_LEARN_3  = 8149;  // learned from item type 6122
+const int GDB_SKILLID_LEARN_4A = 8150;  // learned from item type 6123 (primary)
+const int GDB_SKILLID_LEARN_4B = 6427;  // learned from item type 6123 (secondary)
+const int GDB_SKILLID_LEARN_5  = 8151;  // learned from item type 6124
+const int GDB_SKILLID_LEARN_6  = 8152;  // learned from item type 6125
+
 // === _todo_C00 layout (TeamConfigSlot array) ===
 const int TC1_TEAM_SIZE  = 94;  // slot 1 + 42
 const int TC1_CHAR_BASE  = 95;  // [95..99]
