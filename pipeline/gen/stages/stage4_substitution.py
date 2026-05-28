@@ -31,6 +31,9 @@ def _build_identifier_map():
         if cls.startswith('_') and cls[1:] not in store.game_classes:
             m[cls[1:]] = cls
     # IDA unnamed struct globals → known global names
+    # Buffer (Hex-Rays synthetic @ g_SceneMgr+0x590) → g_RoleSystemMain
+    # HACK: Types differ but member names match. Need IDA query for correct struct.
+    m['Buffer'] = 'g_RoleSystemMain'
     return m
 
 
