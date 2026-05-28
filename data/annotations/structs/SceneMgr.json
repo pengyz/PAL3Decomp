@@ -262,46 +262,46 @@
       "source": "A+:CScreenMode::Init; CameraCtrl; ScriptSystem subtract"
     },
     "1008": {
-      "name": "m_nInitParamRoleState",
+      "name": "_todo_3F0",
       "type": "int[1]",
-      "comment": "role state display col config (set 3 in Init, used in s_RoleState)",
-      "source": "A+:PAL3::Init constant + s_RoleState display"
+      "comment": "role state display param (set 3 in Init; NO read references found)",
+      "source": "A+:PAL3::Init constant + s_RoleState display (was m_nInitParamRoleState)"
     },
     "1012": {
-      "name": "m_nInitParamUnknown1",
+      "name": "_todo_3F4",
       "type": "int[1]",
-      "comment": "unknown init param (set 2)",
-      "source": "A+:PAL3::Init constant + s_RoleState display"
+      "comment": "role state display param (set 2 in Init; NO read references found)",
+      "source": "A+:PAL3::Init constant + s_RoleState display (was m_nInitParamUnknown1)"
     },
     "1016": {
-      "name": "m_nInitParamSlotFlags",
+      "name": "m_aStatMaxVal_Exp",
       "type": "int[1]",
-      "comment": "role slot display flags (set 3, used in s_RoleState sprintf)",
-      "source": "A+:PAL3::Init constant + s_RoleState display"
+      "comment": "EXP bar max value (set 3; displayed via m_ExpVal UICaption in s_RoleState)",
+      "source": "A+:s_RoleState::LoadAndSetupRole(0x4A3A90) bar-display pattern"
     },
     "1020": {
-      "name": "m_nInitParamSlotFlags2",
+      "name": "m_aStatMaxVal_NextLv",
       "type": "int[1]",
-      "comment": "role slot display flags (set 3)",
-      "source": "A+:PAL3::Init constant + s_RoleState display"
+      "comment": "next level EXP bar max (set 3; m_NextLv UICaption)",
+      "source": "A+:s_RoleState::LoadAndSetupRole(0x4A3A90) bar-display pattern"
     },
     "1024": {
-      "name": "m_nInitParamSlotFlags3",
+      "name": "m_aStatMaxVal_WuLing0",
       "type": "int[1]",
-      "comment": "role slot display flags (set 6)",
-      "source": "A+:PAL3::Init constant + s_RoleState display"
+      "comment": "WuLing element 0 bar max (set 6; m_WuLing[0] UICaption)",
+      "source": "A+:s_RoleState::LoadAndSetupRole(0x4A3A90) bar-display pattern"
     },
     "1028": {
-      "name": "m_nInitParamSlotFlags4",
+      "name": "m_aStatMaxVal_WuLing1",
       "type": "int[1]",
-      "comment": "role slot display flags (set 1)",
-      "source": "A+:PAL3::Init constant + s_RoleState display"
+      "comment": "WuLing element 1 bar max (set 1; m_WuLing[1] UICaption)",
+      "source": "A+:s_RoleState::LoadAndSetupRole(0x4A3A90) bar-display pattern"
     },
     "1032": {
-      "name": "m_nInitParamSlotFlags5",
+      "name": "m_aStatMaxVal_WuLing2",
       "type": "int[1]",
-      "comment": "role slot display flags (set 2)",
-      "source": "A+:PAL3::Init constant + s_RoleState display"
+      "comment": "WuLing element 2 bar max (set 2; m_WuLing[2] UICaption)",
+      "source": "A+:s_RoleState::LoadAndSetupRole(0x4A3A90) bar-display pattern"
     },
     "1036": {
       "name": "m_nGDBItemCount",
