@@ -1165,26 +1165,26 @@ def apply_annotations():
             continue
 
         ann_by_stkoff = {}
-        ann_by_reg1 = {}
+        ann_by_name = {}
         for lv_ann in lvars_ann:
             stkoff = lv_ann.get("stack_offset")
             if stkoff is not None:
                 ann_by_stkoff[stkoff] = lv_ann
-            reg1 = lv_ann.get("reg1")
-            if reg1 is not None:
-                ann_by_reg1[reg1] = lv_ann
+            from_name = lv_ann.get("from_name")
+            if from_name is not None:
+                ann_by_name[from_name] = lv_ann
 
         modified = False
         lvars = cfunc.lvars
         for lvar in lvars:
             loc = lvar.location
             ann = None
-            if loc.is_stkoff():
+            from_name = ann_by_name.get(lvar.name)
+            if from_name is not None:
+                ann = from_name
+            elif loc.is_stkoff():
                 soff = loc.stkoff()
                 ann = ann_by_stkoff.get(soff)
-            elif loc.is_reg1():
-                r1 = loc.reg1()
-                ann = ann_by_reg1.get(r1)
 
             if ann is None:
                 continue
@@ -1217,8 +1217,8 @@ def apply_annotations():
                     si.name = lv.name
                     uvec.lvvec.push_back(si)
                 ida_hexrays.save_user_lvar_settings(addr, uvec)
-            except:
-                pass
+            except Exception as e:
+                log("[9] lvar save failed: %s" % str(e))
 
     log("[9] Lvars: %d/%d applied (fail=%d)" % (lvar_ok, lvar_total, lvar_fail))
 

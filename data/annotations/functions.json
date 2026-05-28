@@ -6861,7 +6861,7 @@
         "stack_offset": 32
       },
       {
-        "name": "pSkillDataResolved",
+        "name": "pSkillResult",
         "stack_offset": 36
       },
       {
@@ -6874,13 +6874,65 @@
       },
       {
         "name": "pSkillDataStored",
-        "stack_offset": 48,
+        "stack_offset": 48
+      },
+      {
+        "name": "szEventName",
+        "stack_offset": 52,
+        "type": "char[256]"
+      },
+      {
+        "name": "pSkillData",
+        "from_name": "SkillNum",
         "type": "FightItem *"
       },
       {
-        "name": "Buffer",
-        "stack_offset": 52,
-        "type": "char[256]"
+        "name": "nAttrIdx",
+        "from_name": "i"
+      },
+      {
+        "name": "nCurAttrVal",
+        "from_name": "v6"
+      },
+      {
+        "name": "nMaxAttrVal",
+        "from_name": "v7"
+      },
+      {
+        "name": "nItemType",
+        "from_name": "v8"
+      },
+      {
+        "name": "pSendTarget",
+        "from_name": "p_pConfig"
+      },
+      {
+        "name": "pszEventName",
+        "from_name": "v10"
+      },
+      {
+        "name": "pScrEffMgr",
+        "from_name": "v11"
+      },
+      {
+        "name": "pScrEffect",
+        "from_name": "Instance"
+      },
+      {
+        "name": "pScrMode",
+        "from_name": "v13"
+      },
+      {
+        "name": "pszItemParam",
+        "from_name": "String"
+      },
+      {
+        "name": "pGetStrThis",
+        "from_name": "v2"
+      },
+      {
+        "name": "pszCountParam",
+        "from_name": "v3"
       }
     ]
   },

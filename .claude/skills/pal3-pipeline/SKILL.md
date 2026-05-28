@@ -451,6 +451,7 @@ print(f'对齐违规: {violations}')
 6. **IDA 工具提供候选，人工判断拍板** — 工具输出是线索不是结论
 7. **逐一验证** — 每个字段修改独立验证，不批量推断
 8. **MSVC 6.0 对齐** — int/float/ptr 在 4 倍偏移，short 在 2 倍偏移，pack(1) 结构体除外
+9. **局部变量命名在标注层解决** — 局部变量标注通过 `functions.json` 的 `local_vars` 字段定义，经 `apply` 管线的 IDAPython 写入 IDB。**严禁在 codegen 层做局部变量重命名**——codegen 的 AST transform 已经承载了签名修正和 OOP 调用改写等必要语义变换，局部变量重命名应通过标注层（functions.json → apply → IDB → export）流动，不应额外引入 codegen 规则。IDA 9.1 的 `save_user_lvar_settings(func_ea, lvar_uservec_t)` 负责持久化，寄存器变量用 `from_name`（匹配原始 lvar 名）消歧义。
 
 ## 验证方法论（经验总结）
 
