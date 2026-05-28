@@ -6846,7 +6846,42 @@
   },
   "0x00435830": {
     "name": "PalScript::Op_CameraFocusPoint",
-    "signature": "void __thiscall PalScript::Op_CameraFocusPoint(PalScript *this)"
+    "signature": "void __thiscall PalScript::Op_CameraFocusPoint(PalScript *this)",
+    "local_vars": [
+      {
+        "name": "nNextEventID",
+        "stack_offset": 16
+      },
+      {
+        "name": "nSkillGDB_ID",
+        "stack_offset": 28
+      },
+      {
+        "name": "nSkillCount",
+        "stack_offset": 32
+      },
+      {
+        "name": "pSkillDataResolved",
+        "stack_offset": 36
+      },
+      {
+        "name": "nItemGDB_ID",
+        "stack_offset": 40
+      },
+      {
+        "name": "nItemCount",
+        "stack_offset": 44
+      },
+      {
+        "name": "pSkillDataStored",
+        "stack_offset": 48
+      },
+      {
+        "name": "Buffer",
+        "stack_offset": 52,
+        "type": "char[256]"
+      }
+    ]
   },
   "0x00435BF0": {
     "name": "PalScript::Op_CameraPush__ovl_5bf0",

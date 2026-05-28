@@ -1197,9 +1197,17 @@ def apply_annotations():
             lvar_ok += 1
 
         if modified:
-            # IDA 9.1 doesn't have save_user_lvars; lvars auto-saved on decompiler exit
-            if hasattr(cfunc, 'save_user_lvars'):
-                cfunc.save_user_lvars()
+            try:
+                lvinf = ida_hexrays.lvar_saved_infos_t()
+                for lv in cfunc.lvars:
+                    si = ida_hexrays.lvar_saved_info_t()
+                    si.ll = lv.location
+                    si.name = lv.name
+                    si.type = lv.type
+                    lvinf.push_back(si)
+                ida_hexrays.save_user_lvar_settings(addr, lvinf)
+            except:
+                pass
 
     log("[9] Lvars: %d/%d applied (fail=%d)" % (lvar_ok, lvar_total, lvar_fail))
 
