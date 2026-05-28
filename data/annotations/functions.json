@@ -4732,8 +4732,8 @@
     "signature": "int __thiscall UIStatic::Render__ovl_0f30(UIStatic *this)"
   },
   "0x004CEA80": {
-    "name": "CEffMgr::Func__ovl_4CEA80",
-    "signature": "char __thiscall(CEffMgr *this)"
+    "name": "CEffMgr::ReleaseCompletedEffects",
+    "signature": "char __thiscall CEffMgr::ReleaseCompletedEffects(CEffMgr *this)"
   },
   "0x00439740": {
     "name": "CCBFiveNimbusWindow::CreateScriptAndCamera",
@@ -4757,8 +4757,8 @@
     "signature": "int __thiscall(UISceneFrm *this)"
   },
   "0x005020D0": {
-    "name": "CCBRoleState::Func__ovl_5020D0",
-    "signature": "int __thiscall(CCBRoleState *this, int nVal)",
+    "name": "CCBRoleState::CalcTurnDelay",
+    "signature": "int __thiscall CCBRoleState::CalcTurnDelay(CCBRoleState *this, int nVal)",
     "_misattrib_evidence": "max_offset=164>class_size=4"
   },
   "0x0053CF80": {
@@ -4906,16 +4906,16 @@
     "_misattrib_evidence": "max_offset=68>class_size=4"
   },
   "0x004F7FC0": {
-    "name": "CCBRoleState::Func__ovl_4F7FC0",
-    "signature": "void __thiscall(CCBRoleState *this, unsigned int dwVal)"
+    "name": "CCBRoleState::ProcessCombatDialog",
+    "signature": "void __thiscall CCBRoleState::ProcessCombatDialog(CCBRoleState *this, unsigned int dwVal)"
   },
   "0x00445FE0": {
     "name": "UIWnd::SetRect",
     "signature": "int *__thiscall(UIWnd *this, int *pRect)"
   },
   "0x004CDC50": {
-    "name": "CEffMgr::Func__ovl_4CDC50",
-    "signature": "char __thiscall(CEffMgr *this, int nVal)"
+    "name": "CEffMgr::SetEffectsTimeScale",
+    "signature": "char __thiscall CEffMgr::SetEffectsTimeScale(CEffMgr *this, int nVal)"
   },
   "0x00452600": {
     "name": "UIListBox::ctor_2600",
@@ -5341,8 +5341,8 @@
     "signature": "void __thiscall UICaption::DestroyPanel(UICaption *this)"
   },
   "0x004F4820": {
-    "name": "Combat::Func__ovl_4F4820",
-    "signature": "unsigned char __thiscall(int this, int idx)"
+    "name": "Combat::HandleControlCmd",
+    "signature": "unsigned __int8 __thiscall Combat::HandleControlCmd(Combat *this, int idx)"
   },
   "0x004A1530": {
     "name": "UIRoleSelect::SetByte",
@@ -5762,8 +5762,8 @@
     "signature": "int __thiscall(UIListBox *this)"
   },
   "0x0053EA80": {
-    "name": "SoundMgr::Method__ovl_ea80",
-    "signature": "int __thiscall(SoundMgr *this)"
+    "name": "SoundMgr::PlayCPKStream",
+    "signature": "int __thiscall SoundMgr::PlayCPKStream(SoundMgr *this)"
   },
   "0x004A9870": {
     "name": "UIListBox::_todo_4A9870",
@@ -5775,8 +5775,8 @@
     "signature": "void __thiscall(EquipUI *this, int nInputID, int nParam)"
   },
   "0x004E7350": {
-    "name": "CCBStageCam::Method__ovl_7350",
-    "signature": "int __thiscall(CCBStageCam *this)"
+    "name": "CCBStageCam::PopulateCameraListView",
+    "signature": "int __thiscall CCBStageCam::PopulateCameraListView(CCBStageCam *this)"
   },
   "0x004DC250": {
     "name": "CCBUI::UpdatePanel",
@@ -8807,8 +8807,8 @@
     "signature": "void __thiscall CScreenMode::InitEndScreen(CScreenMode *this)"
   },
   "0x0052F2E0": {
-    "name": "gbMatrixStack::Method__ovl_52F2E0",
-    "signature": "void __thiscall(gbMatrixStack *this)"
+    "name": "gbMatrixStack::SceneRenderWithRotation",
+    "signature": "void __thiscall gbMatrixStack::SceneRenderWithRotation(gbMatrixStack *this)"
   },
   "0x0052F570": {
     "name": "PAL3::WriteRegistryDword__ovl_3",
@@ -11995,8 +11995,8 @@
     "signature": "int __thiscall CCBRoleState::DispatchCombatAction(CCBRoleState *this, int nVal)"
   },
   "0x004DF2F0": {
-    "name": "CCBRoleState::Method__ovl_4DF2F0",
-    "signature": "int __thiscall(CCBRoleState *this, int nVal)"
+    "name": "CCBRoleState::ExecuteCombatCommand",
+    "signature": "int __thiscall CCBRoleState::ExecuteCombatCommand(CCBRoleState *this, int nVal)"
   },
   "0x004DF370": {
     "name": "CCBRoleState::GetActionPriority",
@@ -12255,8 +12255,8 @@
     "signature": "int __thiscall CCBRoleState::RollInitiative(CCBRoleState *this)"
   },
   "0x004EED60": {
-    "name": "CCBRoleState::Method__ovl_4EED60",
-    "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
+    "name": "CCBRoleState::ForceRoleTaskByCond",
+    "signature": "char __thiscall CCBRoleState::ForceRoleTaskByCond(CCBRoleState *this, int roleIdx)"
   },
   "0x004F06C0": {
     "name": "CCBStage::FindThreadByParam",
@@ -12315,8 +12315,8 @@
     "signature": "char __thiscall(PAL_GDB *this, int nVal, int nVal2, int *p_DWORD, int *pnVal)"
   },
   "0x004F6CD0": {
-    "name": "CCBStage::Method__ovl_4F6CD0",
-    "signature": "char __thiscall(CCBStage *this, unsigned int *pdwVal)"
+    "name": "CCBStage::CheckGDBTypeCompat",
+    "signature": "char __thiscall CCBStage::CheckGDBTypeCompat(CCBStage *this, unsigned int *pdwVal)"
   },
   "0x004F6D30": {
     "name": "PAL_GDB::IsRoleSkillValid",
@@ -12439,8 +12439,8 @@
     "signature": "int __thiscall CCBStageRole::TaskForceEnd(CCBStageRole *this, int nVal)"
   },
   "0x00500840": {
-    "name": "CCBStage::Method__ovl_500840",
-    "signature": "int __thiscall(CCBStage *this, int nVal)"
+    "name": "CCBStage::ExecuteRoleTask",
+    "signature": "int __thiscall CCBStage::ExecuteRoleTask(CCBStage *this, int nVal)"
   },
   "0x005009C0": {
     "name": "CCBStage::Method_5009C0",
@@ -12535,8 +12535,8 @@
     "signature": "bool __thiscall(CCBStage *this, float *pfVal)"
   },
   "0x005049F0": {
-    "name": "CCBStage::Method__ovl_5049F0",
-    "signature": "int *__thiscall(CCBStage *this)"
+    "name": "CCBStage::GetNextActiveTask",
+    "signature": "int *__thiscall CCBStage::GetNextActiveTask(CCBStage *this)"
   },
   "0x00504AB0": {
     "name": "CCBStage::ClearActionSlot",
@@ -12641,8 +12641,8 @@
     "signature": "int __thiscall(CCBStageRole *this, int nVal)"
   },
   "0x00523E60": {
-    "name": "UISceneMap::_nearby__ovl_523e60",
-    "signature": "int __thiscall(UISceneMap *this)"
+    "name": "UISceneMap::_todo_523E60",
+    "signature": "int __thiscall UISceneMap::_todo_523E60(UISceneMap *this)"
   },
   "0x00523E70": {
     "name": "UISceneMap::_nearby_523e70",
@@ -12675,13 +12675,13 @@
     "signature": "int __thiscall RoleShadow::UpdateShadow(RoleShadow *this)"
   },
   "0x00525080": {
-    "name": "_misattrib_UIRoleSelect::_nearby__ovl_525080",
-    "signature": "int __thiscall(UIWnd *this)",
+    "name": "_todo_525080",
+    "signature": "int __thiscall _todo_525080(UIWnd *this)",
     "_misattrib_evidence": "max_offset=5264>class_size=1488"
   },
   "0x00525090": {
-    "name": "_misattrib_UIParticle::_method__ovl_525090",
-    "signature": "int __thiscall(UIParticle *this)",
+    "name": "_todo_525090",
+    "signature": "int __thiscall _todo_525090(void *this)",
     "_misattrib_evidence": "max_offset=5264>class_size=584"
   },
   "0x005254C0": {
@@ -12732,8 +12732,8 @@
     "signature": "int __thiscall(SceneObj *this, _BYTE *p_BYTE)"
   },
   "0x00527D60": {
-    "name": "SceneObj::_method__ovl_527d60",
-    "signature": "int __thiscall(SceneObj *this)"
+    "name": "SceneObj::_todo_527D60",
+    "signature": "int __thiscall SceneObj::_todo_527D60(SceneObj *this)"
   },
   "0x00527D80": {
     "name": "UIListBox::RenderWithSceneMap",
@@ -12912,8 +12912,8 @@
     "signature": "BOOL __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x0052F300": {
-    "name": "CCBFiveNimbusWindow::_nearby__ovl_52f300",
-    "signature": "int __thiscall(CCBFiveNimbusWindow *this, int nVal)"
+    "name": "CCBFiveNimbusWindow::_todo_52F300",
+    "signature": "int __thiscall CCBFiveNimbusWindow::_todo_52F300(CCBFiveNimbusWindow *this, int nVal)"
   },
   "0x0052F310": {
     "name": "ScreenEffectMgr::ProcessInstance",
