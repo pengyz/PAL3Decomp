@@ -358,7 +358,11 @@ def collect_methods():
             if should_skip_class(cls) or '`' in method or ' ' in method or '?' in method:
                 continue
             addr = addr_str
-            classes[cls].append((method, sig, addr))
+        # Strip __ovl_XXXX suffix for proper C++ overloading
+        # Checker validates that after stripping, all methods with same name
+        # have DIFFERENT signatures (valid overloads)
+        method = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
+        classes[cls].append((method, sig, addr))
 
     return classes
 

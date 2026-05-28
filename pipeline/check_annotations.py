@@ -85,6 +85,8 @@ def check():
 
     # 2. Functions
     funcs = ann.get('functions', {})
+    # Track (name, normalized_signature) for duplicate detection
+    sig_index = {}  # (name, sig_norm) -> first_addr
     for addr, info in funcs.items():
         if not re.match(r'^0x[0-9A-F]{8}$', addr):
             errors.append(f"functions[{addr}]: invalid address format")
@@ -92,6 +94,48 @@ def check():
             errors.append(f"functions[{addr}]: missing name")
         if not info.get('signature'):
             errors.append(f"functions[{addr}]: missing signature (name={info.get('name')})")
+        # Check for duplicate (name + normalized signature)
+        name = info.get('name', '')
+        sig = info.get('signature', '')
+        if name and sig:
+            # Normalize: strip return type + calling convention + function name,
+            # keep just parameter list e.g. "void __thiscall(PalScript *this, int n)" -> "(int n)"
+            sig_norm = re.sub(r'^.*?__thiscall\([^,]*,\s*', '(', sig)
+            sig_norm = re.sub(r'^.*?__thiscall\(', '()', sig_norm)
+            sig_norm = re.sub(r'^.*?__cdecl\(', '(', sig_norm)
+            sig_norm = re.sub(r'^.*?__stdcall\(', '(', sig_norm)
+            key = (name, sig_norm)
+            if key in sig_index:
+                errors.append(
+                    f"functions[{addr}]: duplicate function '{name}' with signature "
+                    f"'{sig_norm}' (first at {sig_index[key]})")
+            else:
+                sig_index[key] = addr
+
+    # 2b. Check __ovl_ overload validity: same base name must have different signatures
+    OVL_PATTERN = re.compile(r'^(.*)__ovl_[0-9a-fA-F]+$')
+    ovl_groups = {}  # base_name -> [(addr, sig_norm, full_name)]
+    for addr, info in funcs.items():
+        name = info.get('name', '')
+        sig = info.get('signature', '')
+        m = OVL_PATTERN.match(name)
+        if not m or not sig:
+            continue
+        base_name = m.group(1)
+        sig_norm = re.sub(r'^.*?__thiscall\([^,]*,\s*', '(', sig)
+        sig_norm = re.sub(r'^.*?__thiscall\(', '()', sig_norm)
+        ovl_groups.setdefault(base_name, []).append((addr, sig_norm, name))
+    for base_name, members in ovl_groups.items():
+        if len(members) < 2:
+            continue
+        seen_sigs = {}
+        for addr, sig_norm, full_name in members:
+            if sig_norm in seen_sigs:
+                errors.append(
+                    f"functions[{addr}]: '{full_name}' shares signature '{sig_norm}' with "
+                    f"'{seen_sigs[sig_norm]}' — forms duplicate, not overload, of '{base_name}'")
+            else:
+                seen_sigs[sig_norm] = full_name
 
     # 3. Globals
     globs = ann.get('globals', {})
