@@ -11,46 +11,6 @@
       "type": "gbSceneGraph *",
       "source": "gen_headers_9.2"
     },
-    "50540": {
-      "name": "m_pGameData",
-      "type": "CGameData *",
-      "source": "gen_headers_9.2"
-    },
-    "50544": {
-      "name": "_unkC5D4",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "50548": {
-      "name": "m_pCameraCtrl",
-      "type": "CameraCtrl *",
-      "source": "gen_headers_9.2"
-    },
-    "50552": {
-      "name": "m_pScriptCtrl",
-      "type": "PalScriptMgr *",
-      "source": "gen_headers_9.2"
-    },
-    "50556": {
-      "name": "m_camBlock",
-      "type": "SceneMgrCamBlock",
-      "source": "gen_headers_9.2"
-    },
-    "51416": {
-      "name": "m_nCurrentScriptSlot",
-      "type": "int",
-      "source": "binary:RunEvent_used_as_slot_index"
-    },
-    "52396": {
-      "name": "m_fMoveParam",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "54012": {
-      "name": "m_pRoleSystem",
-      "type": "RoleSystem *",
-      "source": "decomp_context"
-    },
     "8": {
       "name": "m_pAddEffect2",
       "type": "gbRenderEffect *",
@@ -76,30 +36,340 @@
       "type": "gbCamera *",
       "source": "binary:Create"
     },
-    "53156": {
-      "name": "m_vCameraTarget",
-      "type": "float[3]",
-      "source": "binary:CameraUpdate_CheckCollision"
+    "28": {
+      "name": "m_aSceneSlots",
+      "type": "float",
+      "source": "A:FPU_post_reattrib_0x4d064a"
     },
-    "53172": {
-      "name": "m_vCameraPos",
-      "type": "float[3]",
-      "source": "binary:CameraUpdate_GetCursorPos"
+    "32": {
+      "name": "_todo_020",
+      "type": "float[12]",
+      "source": "reverted_auto_semantic_r3:11x(_nearby_4cd930,GetCurrentNode)|reverted:pseudo_semantic"
     },
-    "53872": {
-      "name": "m_pControlledRole",
-      "type": "RoleSystem *",
-      "source": "binary:CameraUpdate_RoleSystem_calls"
+    "80": {
+      "name": "m_PlayerAtts",
+      "type": "PlayerAtts",
+      "source": "PDB:PAL3A + binary:_DWORD* access pattern"
     },
-    "53876": {
-      "name": "m_bCameraActive",
+    "652": {
+      "name": "_todo_28C",
+      "type": "int[11]",
+      "source": "scope:g_SceneMgr+0x28C range (dword_C0461C..C04648)"
+    },
+    "696": {
+      "name": "_todo_2B8",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x2B8 (dword_C04648)"
+    },
+    "756": {
+      "name": "_todo_2F4",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x2F4 (artifact dword_C04XXX)"
+    },
+    "864": {
+      "name": "_todo_360",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x360 (artifact dword_C04XXX)"
+    },
+    "868": {
+      "name": "_todo_364",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x364 (artifact dword_C04XXX)"
+    },
+    "872": {
+      "name": "_todo_368",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x368 (artifact dword_C04XXX)"
+    },
+    "876": {
+      "name": "_todo_36C",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x36C (artifact dword_C04XXX)"
+    },
+    "880": {
+      "name": "_todo_370",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x370 (artifact dword_C04XXX)"
+    },
+    "884": {
+      "name": "_todo_374",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x374 (artifact dword_C04XXX)"
+    },
+    "888": {
+      "name": "_todo_378",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x378 (artifact dword_C04XXX)"
+    },
+    "892": {
+      "name": "_todo_37C",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x37C (artifact dword_C04XXX)"
+    },
+    "896": {
+      "name": "_todo_380",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x380 (artifact dword_C04XXX)"
+    },
+    "900": {
+      "name": "_todo_384",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x384 (artifact dword_C04XXX)"
+    },
+    "904": {
+      "name": "_todo_388",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x388 (artifact dword_C04XXX)"
+    },
+    "908": {
+      "name": "_todo_38C",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x38C (artifact dword_C04XXX)"
+    },
+    "912": {
+      "name": "_todo_390",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x390 (artifact dword_C04XXX)"
+    },
+    "916": {
+      "name": "_todo_394",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x394 (artifact dword_C04XXX)"
+    },
+    "920": {
+      "name": "_todo_398",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x398 (artifact dword_C04XXX)"
+    },
+    "924": {
+      "name": "_todo_39C",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x39C (artifact dword_C04XXX)"
+    },
+    "928": {
+      "name": "_todo_3A0",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3A0 (artifact dword_C04XXX)"
+    },
+    "932": {
+      "name": "_todo_3A4",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3A4 (artifact dword_C04XXX)"
+    },
+    "936": {
+      "name": "_todo_3A8",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3A8 (artifact dword_C04XXX)"
+    },
+    "940": {
+      "name": "_todo_3AC",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3AC (artifact dword_C04XXX)"
+    },
+    "944": {
+      "name": "_todo_3B0",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3B0 (artifact dword_C04XXX)"
+    },
+    "948": {
+      "name": "_todo_3B4",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3B4 (artifact dword_C04XXX)"
+    },
+    "952": {
+      "name": "_todo_3B8",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3B8 (artifact dword_C04XXX)"
+    },
+    "956": {
+      "name": "_todo_3BC",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3BC (artifact dword_C04XXX)"
+    },
+    "960": {
+      "name": "_todo_3C0",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3C0 (artifact dword_C04XXX)"
+    },
+    "964": {
+      "name": "_todo_3C4",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3C4 (artifact dword_C04XXX)"
+    },
+    "968": {
+      "name": "_todo_3C8",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3C8 (artifact dword_C04XXX)"
+    },
+    "972": {
+      "name": "_todo_3CC",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3CC (artifact dword_C04XXX)"
+    },
+    "976": {
+      "name": "_todo_3D0",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3D0 (artifact dword_C04XXX)"
+    },
+    "980": {
+      "name": "_todo_3D4",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3D4 (artifact dword_C04XXX)"
+    },
+    "984": {
+      "name": "_todo_3D8",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3D8 (artifact dword_C04XXX)"
+    },
+    "988": {
+      "name": "_todo_3DC",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3DC (artifact dword_C04XXX)"
+    },
+    "992": {
+      "name": "_todo_3E0",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3E0 (artifact dword_C04XXX)"
+    },
+    "996": {
+      "name": "_todo_3E4",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3E4 (artifact dword_C04XXX)"
+    },
+    "1008": {
+      "name": "_todo_3F0",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3F0 (artifact dword_C04XXX)"
+    },
+    "1012": {
+      "name": "_todo_3F4",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3F4 (artifact dword_C04XXX)"
+    },
+    "1016": {
+      "name": "_todo_3F8",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3F8 (artifact dword_C04XXX)"
+    },
+    "1020": {
+      "name": "_todo_3FC",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x3FC (artifact dword_C04XXX)"
+    },
+    "1024": {
+      "name": "_todo_400",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x400 (artifact dword_C04XXX)"
+    },
+    "1028": {
+      "name": "_todo_404",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x404 (artifact dword_C04XXX)"
+    },
+    "1032": {
+      "name": "_todo_408",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x408 (artifact dword_C04XXX)"
+    },
+    "1036": {
+      "name": "_todo_40C",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x40C (artifact dword_C04XXX)"
+    },
+    "1040": {
+      "name": "_todo_410",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x410 (artifact dword_C04XXX)"
+    },
+    "1044": {
+      "name": "_todo_414",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x414 (artifact dword_C04XXX)"
+    },
+    "1048": {
+      "name": "_todo_418",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x418 (artifact dword_C04XXX)"
+    },
+    "1080": {
+      "name": "_todo_438",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x438 (dword_C047C8)"
+    },
+    "1144": {
+      "name": "_todo_478",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x478 (artifact dword_C04XXX)"
+    },
+    "1176": {
+      "name": "_todo_498",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x498 (artifact dword_C04XXX)"
+    },
+    "1240": {
+      "name": "_todo_4D8",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x4D8 (artifact dword_C04XXX)"
+    },
+    "1376": {
+      "name": "_todo_560",
+      "type": "int[1]",
+      "source": "scope:g_SceneMgr+0x560 (artifact dword_C04XXX)"
+    },
+    "7072": {
+      "name": "m_pCCBStageRoleFind",
+      "type": "CCBStageRole *",
+      "source": "global_analysis:g_CCBStageRoleFind"
+    },
+    "7112": {
+      "name": "m_bRoleSlotValid",
+      "type": "unsigned char[8]",
+      "source": "global_analysis:g_bRoleSlotValid"
+    },
+    "7120": {
+      "name": "m_RoleSystems",
+      "type": "RoleSystem[5]",
+      "source": "binary:scenemgr_layout.md"
+    },
+    "50540": {
+      "name": "m_pGameData",
+      "type": "CGameData *",
+      "source": "gen_headers_9.2"
+    },
+    "50544": {
+      "name": "_unkC5D4",
       "type": "int",
-      "source": "binary:CameraUpdate_flag"
+      "source": "gen_headers_9.2"
     },
-    "51528": {
-      "name": "m_szUIBuffer",
-      "type": "char[8]",
-      "source": "binary:296_refs_string_for_UI"
+    "50548": {
+      "name": "m_pCameraCtrl",
+      "type": "CameraCtrl *",
+      "source": "gen_headers_9.2"
+    },
+    "50552": {
+      "name": "m_pScriptCtrl",
+      "type": "PalScriptMgr *",
+      "source": "gen_headers_9.2"
+    },
+    "50556": {
+      "name": "m_camBlock",
+      "type": "SceneMgrCamBlock",
+      "source": "gen_headers_9.2"
+    },
+    "51404": {
+      "name": "m_nSceneFlag",
+      "type": "int",
+      "source": "binary:4x abs refs at +0xC92C"
+    },
+    "51412": {
+      "name": "m_nCombatUIState",
+      "type": "int",
+      "source": "binary:14x abs refs, store imm 0/9 in CCBUI::_init"
+    },
+    "51416": {
+      "name": "m_nCurrentScriptSlot",
+      "type": "int",
+      "source": "binary:RunEvent_used_as_slot_index"
     },
     "51420": {
       "name": "m_nSceneState",
@@ -121,6 +391,21 @@
       "type": "int[17]",
       "source": "binary:consecutive_1ref_each"
     },
+    "51500": {
+      "name": "m_pCurrentScript",
+      "type": "PalScript *",
+      "source": "binary: used as PalScript* with vtable calls; dword_C10CBC"
+    },
+    "51512": {
+      "name": "m_nCurrentRoleSlot",
+      "type": "int",
+      "source": "binary: used as RoleSystem array index (352*val); dword_C10CC8"
+    },
+    "51528": {
+      "name": "m_szUIBuffer",
+      "type": "char[8]",
+      "source": "binary:296_refs_string_for_UI"
+    },
     "51536": {
       "name": "m_nUIState",
       "type": "int",
@@ -130,31 +415,6 @@
       "name": "m_nUIMode",
       "type": "int",
       "source": "binary:6refs_+0xC9B4"
-    },
-    "53104": {
-      "name": "m_fCamFOV",
-      "type": "float",
-      "source": "binary:5refs_+0xCFD0"
-    },
-    "53200": {
-      "name": "m_vCamLookAt",
-      "type": "float[3]",
-      "source": "binary:4refs_+0xD030"
-    },
-    "53296": {
-      "name": "m_CamMatrix",
-      "type": "float[4]",
-      "source": "binary:cluster_+0xD090"
-    },
-    "53312": {
-      "name": "m_fCamDist",
-      "type": "float",
-      "source": "binary:8refs_+0xD0A0"
-    },
-    "53460": {
-      "name": "m_nCollisionFlags",
-      "type": "int",
-      "source": "binary:5refs_+0xD334"
     },
     "51548": {
       "name": "_field_0C9BC",
@@ -311,6 +571,11 @@
       "type": "int",
       "source": "binary:scenemgr_high"
     },
+    "52396": {
+      "name": "m_fMoveParam",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
     "52404": {
       "name": "_field_0CD14",
       "type": "float",
@@ -331,6 +596,16 @@
       "type": "int",
       "source": "binary:scenemgr_high"
     },
+    "52492": {
+      "name": "m_fTileSize",
+      "type": "float",
+      "source": "binary: used as float divisor in position calc; dword_C1109C"
+    },
+    "53104": {
+      "name": "m_fCamFOV",
+      "type": "float",
+      "source": "binary:5refs_+0xCFD0"
+    },
     "53112": {
       "name": "_field_0CFD8",
       "type": "int",
@@ -341,6 +616,31 @@
       "type": "int",
       "source": "binary:scenemgr_high"
     },
+    "53156": {
+      "name": "m_vCameraTarget",
+      "type": "float[3]",
+      "source": "binary:CameraUpdate_CheckCollision"
+    },
+    "53172": {
+      "name": "m_vCameraPos",
+      "type": "float[3]",
+      "source": "binary:CameraUpdate_GetCursorPos"
+    },
+    "53200": {
+      "name": "m_vCamLookAt",
+      "type": "float[3]",
+      "source": "binary:4refs_+0xD030"
+    },
+    "53296": {
+      "name": "m_CamMatrix",
+      "type": "float[4]",
+      "source": "binary:cluster_+0xD090"
+    },
+    "53312": {
+      "name": "m_fCamDist",
+      "type": "float",
+      "source": "binary:8refs_+0xD0A0"
+    },
     "53324": {
       "name": "_field_0D0AC",
       "type": "int",
@@ -350,6 +650,21 @@
       "name": "_field_0D0B4",
       "type": "int",
       "source": "binary:scenemgr_high"
+    },
+    "53460": {
+      "name": "m_nCollisionFlags",
+      "type": "int",
+      "source": "binary:5refs_+0xD334"
+    },
+    "53872": {
+      "name": "m_pControlledRole",
+      "type": "RoleSystem *",
+      "source": "binary:CameraUpdate_RoleSystem_calls"
+    },
+    "53876": {
+      "name": "m_bCameraActive",
+      "type": "int",
+      "source": "binary:CameraUpdate_flag"
     },
     "53980": {
       "name": "_field_0D33C",
@@ -366,70 +681,20 @@
       "type": "unsigned char",
       "source": "decomp_context"
     },
+    "54012": {
+      "name": "m_pRoleSystem",
+      "type": "RoleSystem *",
+      "source": "decomp_context"
+    },
     "54016": {
       "name": "m_nCameraFlags",
       "type": "int",
       "source": "decomp_context"
     },
-    "80": {
-      "name": "m_PlayerAtts",
-      "type": "PlayerAtts",
-      "source": "PDB:PAL3A + binary:_DWORD* access pattern"
-    },
-    "7120": {
-      "name": "m_RoleSystems",
-      "type": "RoleSystem[5]",
-      "source": "binary:scenemgr_layout.md"
-    },
-    "51412": {
-      "name": "m_nCombatUIState",
-      "type": "int",
-      "source": "binary:14x abs refs, store imm 0/9 in CCBUI::_init"
-    },
-    "51404": {
-      "name": "m_nSceneFlag",
-      "type": "int",
-      "source": "binary:4x abs refs at +0xC92C"
-    },
-    "28": {
-      "name": "m_aSceneSlots",
-      "type": "float",
-      "source": "A:FPU_post_reattrib_0x4d064a"
-    },
-    "32": {
-      "name": "_todo_020",
-      "type": "float[12]",
-      "source": "reverted_auto_semantic_r3:11x(_nearby_4cd930,GetCurrentNode)|reverted:pseudo_semantic"
-    },
-    "7072": {
-      "name": "m_pCCBStageRoleFind",
-      "type": "CCBStageRole *",
-      "source": "global_analysis:g_CCBStageRoleFind"
-    },
-    "7112": {
-      "name": "m_bRoleSlotValid",
-      "type": "unsigned char[8]",
-      "source": "global_analysis:g_bRoleSlotValid"
-    },
     "57568": {
       "name": "m_nRoleCount",
       "type": "int",
       "source": "binary:*((_DWORD *)this+14392) count for Role array"
-    },
-    "51512": {
-      "name": "m_nCurrentRoleSlot",
-      "type": "int",
-      "source": "binary: used as RoleSystem array index (352*val); dword_C10CC8"
-    },
-    "51500": {
-      "name": "m_pCurrentScript",
-      "type": "PalScript *",
-      "source": "binary: used as PalScript* with vtable calls; dword_C10CBC"
-    },
-    "52492": {
-      "name": "m_fTileSize",
-      "type": "float",
-      "source": "binary: used as float divisor in position calc; dword_C1109C"
     }
   },
   "pdb_size": 1,
