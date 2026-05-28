@@ -245,6 +245,17 @@ def main():
                 if not cfunc:
                     log("[!] SKIP 0x%08X %s: decompile returned None" % (ea, name[:50]))
                     continue
+
+                # Restore user lvar settings (index-based: lvar list order is deterministic)
+                try:
+                    lvinf = ida_hexrays.lvar_uservec_t()
+                    ida_hexrays.restore_user_lvar_settings(lvinf, ea)
+                    for i, lv in enumerate(cfunc.lvars):
+                        if i < lvinf.lvvec.size() and lvinf.lvvec[i].name:
+                            lv.name = lvinf.lvvec[i].name
+                except:
+                    pass
+
                 code = str(cfunc)
                 code = resolve_orphan_ordinals(code)
                 sig = cfunc.type.dstr()
