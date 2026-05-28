@@ -337,9 +337,25 @@ def collect_methods():
             continue
         if ' ' in method or '`' in method:
             continue
-        # Strip __ovl_XXXX suffix for proper C++ overloading
-        method = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
-        classes[cls].append((method, sig, addr))
+        # Strip __ovl_XXXX suffix for overloading, but only if sig differs
+        # from existing functions with same stripped name
+        ovl_stripped = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
+        if ovl_stripped != method:
+            collides = False
+            for existing_method, existing_sig, _ in classes.get(cls, []):
+                if existing_method != ovl_stripped:
+                    continue
+                # Compare params only (strip return type + calling conv + func name)
+                # C++ can't overload by return type alone
+                def _params(s):
+                    p = re.sub(r'^.*?__thiscall\([^,]*,\s*', '', s)
+                    p = re.sub(r'^.*?__thiscall\(', '', p)
+                    return re.sub(r'\)\s*$', '', p).strip()
+                if _params(existing_sig) == _params(sig):
+                    collides = True
+                    break
+            if not collides:
+                method = ovl_stripped
         seen_addrs.add(addr)
 
     # Secondary source: functions.json (for functions not exported by IDA)
@@ -359,10 +375,18 @@ def collect_methods():
             if should_skip_class(cls) or '`' in method or ' ' in method or '?' in method:
                 continue
             addr = addr_str
-        # Strip __ovl_XXXX suffix for proper C++ overloading
-        # Checker validates that after stripping, all methods with same name
-        # have DIFFERENT signatures (valid overloads)
-        method = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
+        # Strip __ovl_XXXX only when it forms a valid overload (different params)
+        ovl_stripped = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
+        if ovl_stripped != method:
+            def _params(s):
+                p = re.sub(r'^.*?__thiscall\([^,]*,\s*', '', s)
+                p = re.sub(r'^.*?__thiscall\(', '', p)
+                return re.sub(r'\)\s*$', '', p).strip()
+            collides = any(
+                existing_method == ovl_stripped and _params(existing_sig) == _params(sig)
+                for existing_method, existing_sig, _ in classes.get(cls, []))
+            if not collides:
+                method = ovl_stripped
         classes[cls].append((method, sig, addr))
 
     return classes

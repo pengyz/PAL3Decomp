@@ -454,7 +454,7 @@
     "signature": "int __thiscall(PalScript *this)"
   },
   "0x00412710": {
-    "name": "RoleSystem::UpdateTransform",
+    "name": "RoleSystem::UpdateTransform__ovl_2710",
     "signature": "int __thiscall(RoleSystem *this)"
   },
   "0x00412940": {
@@ -748,7 +748,7 @@
     "signature": "int *__thiscall(PtrArray *this)"
   },
   "0x00434130": {
-    "name": "PtrArray::PtrArray",
+    "name": "PtrArray::PtrArray__ovl_4130",
     "signature": "void __thiscall(PtrArray *this, int nInitSize, int nGrowBy, char bOwned)"
   },
   "0x004341E0": {
@@ -781,7 +781,9 @@
   },
   "0x00438E90": {
     "name": "filebuf::_scalar_dtor",
-    "signature": "gbFileStream * __thiscall(filebuf *this, char pData)"
+    "signature": "gbFileStream * __thiscall(filebuf *this, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00438EB0": {
     "name": "filebuf::~filebuf",
@@ -845,7 +847,9 @@
   },
   "0x0043DCF0": {
     "name": "UIListBox::_scalar_dtor",
-    "signature": "UIWnd *__thiscall(UIListBox *Block, char pData)"
+    "signature": "UIWnd *__thiscall(UIListBox *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0043DD10": {
     "name": "UIListBox::~UIListBox",
@@ -926,7 +930,7 @@
     "signature": "int __thiscall(UIListBox *this, int sel)"
   },
   "0x0043E480": {
-    "name": "UIListBox::OnMessage",
+    "name": "UIListBox::OnMessage__ovl_e480",
     "signature": "int __thiscall(UIListBox *this, int height, int nVal, int nVal2)"
   },
   "0x0043E520": {
@@ -934,11 +938,11 @@
     "signature": "void __thiscall(UIListBox *this)"
   },
   "0x0043E560": {
-    "name": "UIListBox::SetFirstShow",
+    "name": "UIListBox::SetFirstShow__ovl_e560",
     "signature": "int __thiscall(UIListBox *this, void *Source, int nVal)"
   },
   "0x0043E5C0": {
-    "name": "UIListBox::SetItemOffset",
+    "name": "UIListBox::SetItemOffset__ovl_e5c0",
     "signature": "int __thiscall(UIListBox *this, char *Source, int y)"
   },
   "0x0043E7D0": {
@@ -1085,7 +1089,9 @@
   },
   "0x0044BDA0": {
     "name": "UIScene::_scalar_dtor",
-    "signature": "void *__thiscall UIScene::_scalar_dtor(UIScene *this, char pData)"
+    "signature": "void *__thiscall UIScene::_scalar_dtor(UIScene *this, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0044E660": {
     "name": "CGameData::InitItems",
@@ -1252,7 +1258,7 @@
     "signature": "long double __thiscall(Object3D *this)"
   },
   "0x0047D320": {
-    "name": "Object3D::GetScreenDegree",
+    "name": "Object3D::GetScreenDegree__ovl_d320",
     "signature": "void __thiscall(Object3D *this)"
   },
   "0x0047D440": {
@@ -1431,7 +1437,7 @@
     "signature": "void __thiscall(CEffCylinder *this, int *dwParam)"
   },
   "0x004C4B00": {
-    "name": "CEffCylinder::ProcCommonTask",
+    "name": "CEffCylinder::ProcCommonTask__ovl_4b00",
     "signature": "int __thiscall(CEffCylinder *this, unsigned int dwParam)"
   },
   "0x004C5010": {
@@ -1476,7 +1482,7 @@
     "signature": "CEffect *__thiscall(CEffectSystem *this)"
   },
   "0x004C6340": {
-    "name": "CEffectSystem::CreateEffect",
+    "name": "CEffectSystem::CreateEffect__ovl_6340",
     "signature": "int __thiscall(CEffectSystem *this)"
   },
   "0x004C6350": {
@@ -1524,7 +1530,7 @@
     "signature": "void __thiscall(CEffect *this, float *pfVal, float fVal, float fVal2, float fVal3)"
   },
   "0x004C6C10": {
-    "name": "CEffgbParticle::Create",
+    "name": "CEffgbParticle::Create__ovl_6c10",
     "signature": "char __thiscall(CEffgbParticle *this, tagEffObjType *pType)"
   },
   "0x004C6F20": {
@@ -1544,7 +1550,7 @@
     "signature": "int __thiscall(CEffCylinder *this, unsigned int _94)"
   },
   "0x004C7A70": {
-    "name": "CEffgbParticle::GetEditorTaskDescription",
+    "name": "CEffgbParticle::GetEditorTaskDescription__ovl_7a70",
     "signature": "const char *__thiscall(CEffgbParticle *this, int nIndex)"
   },
   "0x004C7B70": {
@@ -2273,7 +2279,7 @@
     "signature": "int __thiscall(CCBRoleState *this, int nVal, char pData)"
   },
   "0x004EE870": {
-    "name": "CCBRoleState::InitUI",
+    "name": "CCBRoleState::InitUI__ovl_e870",
     "signature": "tagRoleState *__thiscall(CCBRoleState *this, int nVal)"
   },
   "0x004EE890": {
@@ -2369,7 +2375,7 @@
     "signature": "bool(CCBRoleState *this, int nPanelIndex, bool bVisible)"
   },
   "0x004F07D0": {
-    "name": "CCBRoleState::GetRole",
+    "name": "CCBRoleState::GetRole__ovl_07d0",
     "signature": "char __thiscall(CCBRoleState *this, int nIndex, int nVal)"
   },
   "0x004F0830": {
@@ -2661,7 +2667,7 @@
     "signature": "char __thiscall(CCBStage *this, int nIndex, int nVal)"
   },
   "0x004FCC10": {
-    "name": "CCBStage::GetTaskState",
+    "name": "CCBStage::GetTaskState__ovl_cc10",
     "signature": "char(CCBStage *this, int nIndex, bool *bFinished, unsigned int *dwReturn)"
   },
   "0x004FCC50": {
@@ -2798,7 +2804,9 @@
   },
   "0x00504080": {
     "name": "CCBStageCam::_scalar_dtor",
-    "signature": "void *__thiscall(CCBStageCam *this, char flags)"
+    "signature": "void *__thiscall(CCBStageCam *this, char flags)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x005044C0": {
     "name": "CCCTData::UpdateCamera",
@@ -3572,7 +3580,7 @@
     "signature": "int __thiscall(CCBSystem *this, unsigned int dwThreadID)"
   },
   "0x00514FE0": {
-    "name": "CCBSystem::PassCmdToThread",
+    "name": "CCBSystem::PassCmdToThread__ovl_4fe0",
     "signature": "int __thiscall(CCBSystem *this, int _34)"
   },
   "0x00515200": {
@@ -3588,7 +3596,7 @@
     "signature": "int(CCBSystem *this, int nDestThread, int nSrcThread)"
   },
   "0x00515940": {
-    "name": "CCBSystem::CreateObj",
+    "name": "CCBSystem::CreateObj__ovl_5940",
     "signature": "int __thiscall(CCBSystem *this, int nVal)"
   },
   "0x005159A0": {
@@ -3612,7 +3620,7 @@
     "signature": "bool __thiscall(CCBSystem *this, struct CCBEditor **a2)"
   },
   "0x00515DD0": {
-    "name": "CCBSystem::DestroyObj",
+    "name": "CCBSystem::DestroyObj__ovl_5dd0",
     "signature": "void *__thiscall(CCBSystem *Block, char pData)"
   },
   "0x00515DF0": {
@@ -3649,7 +3657,9 @@
   },
   "0x00516120": {
     "name": "CCBProtectWindow::_scalar_dtor",
-    "signature": "void __thiscall(CCBProtectWindow *this)"
+    "signature": "void __thiscall(CCBProtectWindow *this)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00517650": {
     "name": "CCBUI::~CCBUI",
@@ -3742,8 +3752,8 @@
     "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x005193D0": {
-    "name": "CCBUI::OnMessage",
-    "signature": "int __thiscall(CCBUI *this)"
+    "name": "CCBUI::ClearAttackSequence",
+    "signature": "void __thiscall(CCBUI *this)"
   },
   "0x00519400": {
     "name": "CCBUI::CreateImbibeNimbus",
@@ -3754,7 +3764,7 @@
     "signature": "void __thiscall(CCBUI *this)"
   },
   "0x005195E0": {
-    "name": "CCBUI::OnMessage__ovl_95e0",
+    "name": "CCBResultWindow::OnMessage",
     "signature": "int __thiscall(CCBUI *this, int pt, unsigned int area, int nVal)"
   },
   "0x00519660": {
@@ -3790,7 +3800,7 @@
     "signature": "void __thiscall(CCBUI *this)"
   },
   "0x00519FE0": {
-    "name": "CCBUI::OnMessage__ovl_9fe0",
+    "name": "CCBFiveNimbusWindow::OnMessage",
     "signature": "int __thiscall(CCBUI *this, int nVal, unsigned int dwVal, int nVal2)"
   },
   "0x0051A090": {
@@ -3834,7 +3844,7 @@
     "signature": "int __thiscall(CCBUI *this)"
   },
   "0x0051A930": {
-    "name": "CCBUI::OnMessage_a930",
+    "name": "CCBItemWindow::OnMessage",
     "signature": "int __thiscall(CCBUI *this, int nVal, unsigned int dwVal, int nVal2)"
   },
   "0x0051AA20": {
@@ -3883,11 +3893,15 @@
   },
   "0x0051B160": {
     "name": "CCBItemWindow::_scalar_dtor",
-    "signature": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)"
+    "signature": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0051B180": {
     "name": "CCBLineupWindow::_scalar_dtor",
-    "signature": "void __thiscall(CCBLineupWindow *this)"
+    "signature": "void __thiscall(CCBLineupWindow *this)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0051B1D0": {
     "name": "CCBItemWindow::Reset",
@@ -3919,7 +3933,9 @@
   },
   "0x0051B690": {
     "name": "CCBMagicWindow::_scalar_dtor",
-    "signature": "void __thiscall(CCBMagicWindow *this)"
+    "signature": "void __thiscall(CCBMagicWindow *this)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0051B710": {
     "name": "CCBParabolaWindow::CCBParabolaWindow",
@@ -3974,7 +3990,7 @@
     "signature": "void __thiscall(CCBSkillWindow *this)"
   },
   "0x0051BC50": {
-    "name": "CCBMagicWindow::OnMessage__ovl_bc50",
+    "name": "CCBMagicWindow::ClearMagicData",
     "signature": "int __thiscall(CCBMagicWindow *this)"
   },
   "0x0051BC70": {
@@ -3995,11 +4011,15 @@
   },
   "0x0051C260": {
     "name": "CCBSkillWindow::_scalar_dtor",
-    "signature": "UIWnd *__thiscall(CCBSkillWindow *Block, char pData)"
+    "signature": "UIWnd *__thiscall(CCBSkillWindow *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0051C280": {
     "name": "CCBParabolaWindow::_scalar_dtor",
-    "signature": "void __thiscall(CCBParabolaWindow *this)"
+    "signature": "void __thiscall(CCBParabolaWindow *this)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0051C2D0": {
     "name": "CCBSkillWindow::Reset",
@@ -4146,7 +4166,7 @@
     "signature": "void __thiscall(ScriptSystemData *this, int nVal)"
   },
   "0x0051F0A0": {
-    "name": "CCBProtectWindow::Reset__ovl_f0a0",
+    "name": "CCBProtectWindow::OnCommand",
     "signature": "int __thiscall(CCBProtectWindow *this, int nVal, int nVal2)"
   },
   "0x005230F0": {
@@ -4472,7 +4492,7 @@
     "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x004ECB00": {
-    "name": "CCBRoleState::Update",
+    "name": "CCBRoleState::Update__ovl_cb00",
     "signature": "int __thiscall(CCBRoleState *this)"
   },
   "0x0053CDE0": {
@@ -4736,8 +4756,8 @@
     "signature": "int__cdecl()"
   },
   "0x00477BB0": {
-    "name": "UIListBox::OnMessage__ovl_7bb0",
-    "signature": "int __thiscall(UIListBox *this, int msg, int wparam, int lparam)"
+    "name": "LineupUI::OnMessage__ovl_7bb0",
+    "signature": "int __thiscall(LineupUI *this, int msg, int wparam, int lparam)"
   },
   "0x004E04C0": {
     "name": "CCBUI::StepFrame",
@@ -4820,7 +4840,7 @@
     "signature": "char __thiscall SceneObj::UpdateAutoDelete(SceneObj *this, unsigned int deltatime)"
   },
   "0x004327B0": {
-    "name": "PtrArray::RemoveAt",
+    "name": "PtrArray::RemoveAt__ovl_27b0",
     "signature": "int __thiscall PtrArray::RemoveAt(PtrArray *this, int nIndex, int nCount)"
   },
   "0x005282E0": {
@@ -4830,7 +4850,7 @@
     "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x004A6F10": {
-    "name": "CCCTData::CCCTData",
+    "name": "CCCTData::CCCTData__ovl_6f10",
     "signature": "int __thiscall CCCTData::CCCTData(CCCTData *this)"
   },
   "0x00525120": {
@@ -5208,7 +5228,7 @@
     "signature": "void __thiscall PalScript::Op_RoleActiveShort(PalScript *this)"
   },
   "0x00439850": {
-    "name": "Camera::UpdateCameraLookAt",
+    "name": "Camera::UpdateCameraLookAt__ovl_9850",
     "signature": "void __thiscall Camera::UpdateCameraLookAt(Camera *this, int nScreenX, int nScreenY)"
   },
   "0x00452850": {
@@ -5253,8 +5273,8 @@
     "signature": "void __thiscall PAL3::InvalidateSnapH(PAL3 *this)"
   },
   "0x00526A40": {
-    "name": "CCBUI::OnMessage__ovl_6a40",
-    "signature": "int __thiscall(CCBUI *this, int nVal, int (__stdcall *a3)(int a2), int nVal2)"
+    "name": "SaleUI::OnMessage",
+    "signature": "int __thiscall(int this, UIWnd *a2, char *nMsg, int wParam)"
   },
   "0x0041CA90": {
     "name": "CameraCtrl::SetDimention",
@@ -5320,7 +5340,7 @@
     "signature": "void __thiscall CCBResultWindow::CCBResultWindow(CCBResultWindow *this)"
   },
   "0x00439930": {
-    "name": "Camera::UpdateCameraLookAt",
+    "name": "Camera::UpdateCameraLookAt__ovl_9930",
     "signature": "void __thiscall Camera::UpdateCameraLookAt(Camera *this, int nScreenX, int nScreenY, int nOffsetY)"
   },
   "0x004181E0": {
@@ -5493,7 +5513,9 @@
   },
   "0x0043BE10": {
     "name": "UIWnd::_scalar_dtor_be10",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00531D20": {
     "name": "RoleSystem::ctor_1D20",
@@ -5602,7 +5624,7 @@
     "_misattrib_evidence": "max_offset=504>class_size=148"
   },
   "0x004DC720": {
-    "name": "CCBRoleState::IsAlive",
+    "name": "CCBRoleState::IsAlive__ovl_c720",
     "signature": "BOOL __thiscall(CCBRoleState *this)"
   },
   "0x0043FE90": {
@@ -5863,7 +5885,7 @@
     "_misattrib_evidence": "max_offset=400040>class_size=1208"
   },
   "0x00494D70": {
-    "name": "EquipUI::HandleInput",
+    "name": "EquipUI::HandleInput__ovl_4d70",
     "signature": "void __thiscall(EquipUI *this, int nInputID, int nParam)"
   },
   "0x004E7350": {
@@ -5951,7 +5973,7 @@
     "signature": "BOOL __cdecl(const char *szSubKey, const char *szValueName, char *szOutBuf)"
   },
   "0x004BB260": {
-    "name": "_misattrib_RenderTarget::LoadFromFile__ovl_b260",
+    "name": "RenderTarget::LoadFromFile__ovl_b260",
     "signature": "void __thiscall(RenderTarget *this, gbVFile *pFile)",
     "_misattrib_evidence": "max_offset=1664>class_size=200"
   },
@@ -6280,11 +6302,11 @@
     "signature": "double __thiscall RoleSystem::AdvanceToTarget(RoleSystem *this, double fDelta)"
   },
   "0x00414350": {
-    "name": "RoleSystem::UpdateMovement",
+    "name": "RoleSystem::UpdateMovement__ovl_4350",
     "signature": "double __thiscall RoleSystem::UpdateMovement(RoleSystem *this, double result, gbVec3D *pB)"
   },
   "0x00414E50": {
-    "name": "UIBigMap::Update",
+    "name": "UIBigMap::Update__ovl_4e50",
     "signature": "int __thiscall(UIBigMap *this, int *deltatime, int haveinput)"
   },
   "0x004150C0": {
@@ -6485,7 +6507,7 @@
     "signature": "double __thiscall UITitle_BBTY::UpdateFrame(UITitle_BBTY *this, double result, int arg0, int arg0a)"
   },
   "0x00452DF0": {
-    "name": "UIWnd::Render__ovl_452df0",
+    "name": "UIWnd::RenderRoleAvatar",
     "signature": "void __thiscall(UIWnd *this, int *pnVal, int nRoleIndex)"
   },
   "0x00456200": {
@@ -6592,7 +6614,7 @@
     "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
   },
   "0x004EEF20": {
-    "name": "CCBRoleState::CalcCombatDamage",
+    "name": "CCBRoleState::CalcCombatDamage__ovl_ef20",
     "signature": "int __thiscall(CCBRoleState *this, const void *pData, unsigned int roleIdx)"
   },
   "0x004F2690": {
@@ -7174,7 +7196,9 @@
   },
   "0x0043A1D0": {
     "name": "PalScript::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0043A270": {
     "name": "PalScript::RenderUI",
@@ -7223,7 +7247,9 @@
   },
   "0x0043BB90": {
     "name": "UIWnd::_scalar_dtor",
-    "signature": "UIWnd *__thiscall UIWnd::ScalarDtor(UIWnd *this, char flags)"
+    "signature": "UIWnd *__thiscall UIWnd::ScalarDtor(UIWnd *this, char flags)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0043BBC0": {
     "name": "UIFrameWnd::Update_bbc0",
@@ -7239,7 +7265,9 @@
   },
   "0x0043D860": {
     "name": "UI3DCtrl::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0043D890": {
     "name": "UI3DCtrl::CreateWithTexture",
@@ -7297,7 +7325,9 @@
   },
   "0x004411B0": {
     "name": "UIMap::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x004412C0": {
     "name": "UIMap::Create",
@@ -7338,7 +7368,9 @@
   },
   "0x00442E60": {
     "name": "UIFrameWnd::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00442FF0": {
     "name": "UIFrameWnd::Update_2ff0",
@@ -7402,7 +7434,9 @@
   },
   "0x004461D0": {
     "name": "CCBUIPanel::_scalar_dtor",
-    "signature": "void __thiscall CCBUIPanel::_scalar_dtor(CCBUIPanel *this)"
+    "signature": "void __thiscall CCBUIPanel::_scalar_dtor(CCBUIPanel *this)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x004462C0": {
     "name": "CCBUIPanel::InitPanel",
@@ -7426,7 +7460,7 @@
   },
   "0x0044A870": {
     "name": "UIWnd::RenderTwoPass",
-    "signature": "int __thiscall UIWnd::RenderTwoPass(UIWnd *this)"
+    "signature": "int __thiscall(UIWnd *this)"
   },
   "0x0044A970": {
     "name": "_misattrib_PalScriptIdleObj::LoadTexture",
@@ -7435,7 +7469,9 @@
   },
   "0x0044ACC0": {
     "name": "UITitle::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0044B630": {
     "name": "CCBEditor::UpdateItemScript",
@@ -7468,7 +7504,7 @@
     "signature": "int __thiscall UIScene::OnMessage(UIScene *this, UICursor *msg, int wparam, int lparam)"
   },
   "0x0044E2B0": {
-    "name": "PAL3::WriteRegistryDword",
+    "name": "PAL3::WriteRegistryDword__ovl_4e2b0",
     "signature": "bool PAL3::WriteRegistryDword(CHAR *lpSubKey, DWORD dwDisposition, ...)"
   },
   "0x0044E530": {
@@ -7489,7 +7525,9 @@
   },
   "0x0044F030": {
     "name": "CGameData::_scalar_dtor",
-    "signature": "void __thiscall CGameData::_scalar_dtor(CGameData *this)"
+    "signature": "void __thiscall CGameData::_scalar_dtor(CGameData *this)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0044FF20": {
     "name": "UICoverFrm::FindActiveSlot",
@@ -7497,7 +7535,9 @@
   },
   "0x00450070": {
     "name": "UISceneMap::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x004500F0": {
     "name": "UIGameOver::Create",
@@ -7517,7 +7557,9 @@
   },
   "0x00450770": {
     "name": "UILoadingFrm::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00450990": {
     "name": "UILoadingFrm::OnMessage",
@@ -7545,7 +7587,9 @@
   },
   "0x00451D80": {
     "name": "UITitle_BBTY::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x004525E0": {
     "name": "UIListBox::_scalar_dtor__ovl_25e0",
@@ -7563,7 +7607,9 @@
   },
   "0x00452830": {
     "name": "UIAnimateCtrlEX::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00452AA0": {
     "name": "UIAnimateCtrlEX::Render",
@@ -7572,7 +7618,9 @@
   },
   "0x00453010": {
     "name": "SceneObj::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00453A70": {
     "name": "SceneObj::InsertAt",
@@ -7594,7 +7642,9 @@
   },
   "0x00454980": {
     "name": "CScreenMode::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x004549A0": {
     "name": "ChoseCompose::DestroyScene",
@@ -7653,7 +7703,9 @@
   },
   "0x00456B60": {
     "name": "CCBRoleState::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00457340": {
     "name": "_misattrib_UIWnd::CleanupScript",
@@ -7670,7 +7722,9 @@
   },
   "0x00459240": {
     "name": "UISceneFrm::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00459360": {
     "name": "UISceneFrm::Destroy",
@@ -7695,7 +7749,9 @@
   },
   "0x0045AE40": {
     "name": "UIListBox::_scalar_dtor_ae40",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0046B040": {
     "name": "SaleUI::ProcessCellAnimations",
@@ -7725,7 +7781,9 @@
   },
   "0x00470F20": {
     "name": "UIListBox::_scalar_dtor_0f20",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00473520": {
     "name": "LineupUI::Render3DModels",
@@ -7753,7 +7811,9 @@
   },
   "0x00479660": {
     "name": "MainEquipUI::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00479890": {
     "name": "MainEquipUI::InitMainEquipUI",
@@ -7770,7 +7830,9 @@
   },
   "0x0047BD00": {
     "name": "UITitle_ArcSave::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0047BDF0": {
     "name": "UITitle_ArcSave::Destroy",
@@ -7796,7 +7858,9 @@
   },
   "0x0047E8F0": {
     "name": "LineupUI::_scalar_dtor",
-    "signature": "void __thiscall LineupUI::_scalar_dtor(LineupUI *this)"
+    "signature": "void __thiscall LineupUI::_scalar_dtor(LineupUI *this)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0047F880": {
     "name": "LineupUI::RenderEffects",
@@ -7843,7 +7907,9 @@
   },
   "0x00486D00": {
     "name": "RenderTarget::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00486EF0": {
     "name": "UITitle_XJTM::DestroyFrames",
@@ -7875,7 +7941,9 @@
   },
   "0x00490E70": {
     "name": "UIBigMap::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00490E90": {
     "name": "UIBigMap::UIBigMap",
@@ -7928,7 +7996,9 @@
   },
   "0x00498C70": {
     "name": "EquipUI::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00498E60": {
     "name": "UITitle_XJTM::DestroyFramesEx",
@@ -7957,7 +8027,9 @@
   },
   "0x004A2150": {
     "name": "UIGameFrm::_scalar_dtor",
-    "signature": "void __thiscall UIGameFrm::_scalar_dtor(UIGameFrm *this)"
+    "signature": "void __thiscall UIGameFrm::_scalar_dtor(UIGameFrm *this)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x004A22E0": {
     "name": "ChoseCompose::DestroySubWindows",
@@ -8021,7 +8093,9 @@
   },
   "0x004AF760": {
     "name": "UITitle_YXXX::Update__ovl_f760",
-    "signature": "void __stdcall(int)"
+    "signature": "void __stdcall(int)",
+    "type": "skip",
+    "reason": "compiler-generated stub/thunk, not game logic"
   },
   "0x004AF770": {
     "name": "UITitle_YXXX::CreateTitle",
@@ -8033,7 +8107,9 @@
   },
   "0x004B0520": {
     "name": "UIListBox::_scalar_dtor_0520",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x004B1580": {
     "name": "UITitle_JDHY::ResetAndRefresh",
@@ -8065,7 +8141,7 @@
     "_misattrib_evidence": "max_offset=288208>class_size=4280"
   },
   "0x004B2750": {
-    "name": "UITitle_JDHY::SaveData",
+    "name": "UITitle_JDHY::SaveData__ovl_2750",
     "signature": "FILE *__thiscall UITitle_JDHY::SaveData(UITitle_JDHY *this, double Data, int nVal)"
   },
   "0x004B2840": {
@@ -8176,8 +8252,8 @@
     "_misattrib_evidence": "max_offset=160>class_size=4"
   },
   "0x004BAE60": {
-    "name": "_misattrib_RenderTarget::LoadFromFile",
-    "signature": "void __thiscall _misattrib_RenderTarget::LoadFromFile(RenderTarget *this, struct gbVFile *pFile)",
+    "name": "RenderTarget::LoadFromFile__ovl_ae60",
+    "signature": "void __thiscall(RenderTarget *this, struct gbVFile *pFile)",
     "_misattrib_evidence": "max_offset=32004>class_size=200"
   },
   "0x004BC760": {
@@ -8303,7 +8379,7 @@
     "signature": "CEffCallBack **__thiscall RenderTarget2::CreateEffCallBack(RenderTarget2 *this)"
   },
   "0x004C3C90": {
-    "name": "CEffCylinder::Init",
+    "name": "CEffCylinder::Init__ovl_3c90",
     "signature": "CEffCylinder **__thiscall CEffCylinder::Init(CEffCylinder *this)"
   },
   "0x004C3D90": {
@@ -8311,7 +8387,7 @@
     "signature": "CEffCylinder **__thiscall RenderTarget2::CreateEffCylinder(RenderTarget2 *this)"
   },
   "0x004C9540": {
-    "name": "CEffgbParticle::DestroyEffect",
+    "name": "CEffgbParticle::DestroyEffect__ovl_9540",
     "signature": "char *__thiscall(CEffgbParticle *this, char pData)"
   },
   "0x004CC290": {
@@ -8411,7 +8487,7 @@
     "signature": "int __thiscall(CCBRoleState *this, int B4)"
   },
   "0x004DF3D0": {
-    "name": "CCBRoleState::CheckMP",
+    "name": "CCBRoleState::CheckMP__ovl_f3d0",
     "signature": "char __thiscall(CCBRoleState *this)"
   },
   "0x004DF710": {
@@ -8559,7 +8635,7 @@
     "signature": "void __thiscall CCBRoleState::TickDebuffs(CCBRoleState *this, int roleIdx)"
   },
   "0x004F4B90": {
-    "name": "CCBRoleState::CalcMagicDamage",
+    "name": "CCBRoleState::CalcMagicDamage__ovl_4b90",
     "signature": "unsigned int __thiscall CCBRoleState::CalcMagicDamage(CCBRoleState *this, int roleIdx, int nMagicID)"
   },
   "0x004F4C80": {
@@ -8739,7 +8815,7 @@
     "signature": "int __thiscall(CCBStageRole *this, int nVal)"
   },
   "0x0050FD00": {
-    "name": "CCBStageScene::CCBStageScene",
+    "name": "CCBStageScene::CCBStageScene__ovl_fd00",
     "signature": "CCBStageScene *__thiscall CCBStageScene::CCBStageScene(CCBStageScene *this, CCBStage *pCBStage)"
   },
   "0x00511E80": {
@@ -8793,7 +8869,9 @@
   },
   "0x00524110": {
     "name": "CScreenMode::_scalar_dtor_4110",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00524980": {
     "name": "CScreenMode::ForwardMessage",
@@ -8801,7 +8879,9 @@
   },
   "0x00525520": {
     "name": "CCBUI::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00526300": {
     "name": "PAL_GDB::RefreshPartyStats",
@@ -8836,12 +8916,14 @@
     "signature": "int __thiscall UIListBox::ProcessInput(UIListBox *this, int nVal, int nVal2)"
   },
   "0x00528190": {
-    "name": "PAL3::WriteRegistryDword",
+    "name": "PAL3::WriteRegistryDword__ovl_8190",
     "signature": "bool __cdecl PAL3::WriteRegistryDword(CHAR *lpSubKey, DWORD dwDisposition, ...)"
   },
   "0x005284C0": {
     "name": "JusticeBookUI::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00528ED0": {
     "name": "_misattrib_JusticeBookUI::Render",
@@ -8858,7 +8940,9 @@
   },
   "0x00529770": {
     "name": "UIRoleSelectDialog::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00529870": {
     "name": "UIEmote::Render",
@@ -8892,7 +8976,9 @@
   },
   "0x0052BBB0": {
     "name": "UICoverFrm::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0052BBD0": {
     "name": "UIRoleSelectDialog::DestroyStatics",
@@ -8957,7 +9043,9 @@
   },
   "0x00531E50": {
     "name": "RoleSystem::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+    "signature": "void *__thiscall(UIWnd *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x005350C0": {
     "name": "ArcLocaleRole::GetScreenLeft",
@@ -10136,7 +10224,7 @@
     "signature": "void __thiscall(UIStatic *this)"
   },
   "0x0043DAB0": {
-    "name": "UIStatic::Render",
+    "name": "UIStatic::RenderQuadSlice",
     "signature": "void __thiscall(UIStatic *this, int *pnVal, int nVal)"
   },
   "0x0043DF70": {
@@ -10397,8 +10485,8 @@
     "signature": "int __thiscall(UIStatic *this, float fVal, int nVal)"
   },
   "0x0044AA20": {
-    "name": "UIStatic::Render__ovl_aa20",
-    "signature": "void __thiscall UIStatic::Render__ovl_aa20(UIStatic *this, int nVal, char pData)"
+    "name": "UIStatic::RenderTile",
+    "signature": "void __thiscall(UIStatic *this, int nVal, char pData)"
   },
   "0x0044B470": {
     "name": "RoleSystem::ProcessWaypoint",
@@ -10535,7 +10623,7 @@
     "signature": "BOOL __thiscall RoleAtt::IsValid(RoleAtt *this)"
   },
   "0x00451360": {
-    "name": "UIBigMap::Update__ovl_1360",
+    "name": "UIBigMap::LayoutBinkVideo",
     "signature": "int __thiscall(UIBigMap *this, LPCSTR lpString1, int haveinput)"
   },
   "0x004515A0": {
@@ -10596,7 +10684,7 @@
     "_misattrib_evidence": "max_offset=556>class_size=140"
   },
   "0x004528F0": {
-    "name": "UIBigMap::Update__ovl_28f0",
+    "name": "UIBigMap::InitLayout",
     "signature": "int __thiscall(UIBigMap *this, int id, int parent)"
   },
   "0x00452D30": {
@@ -11046,7 +11134,7 @@
     "signature": "int *__thiscall MainEquipUI::UpdateFadeAlpha(MainEquipUI *this, float fVal)"
   },
   "0x00480600": {
-    "name": "LineupUI::OnMessage",
+    "name": "LineupUI::OnMessage__ovl_0600",
     "signature": "int __thiscall(LineupUI *this, int nVal, char *pszBuf, int nVal2)"
   },
   "0x00481BA0": {
@@ -11584,8 +11672,8 @@
     "_misattrib_evidence": "max_offset=286368>class_size=4280"
   },
   "0x004B3470": {
-    "name": "UIListBox::OnMessage__ovl_3470",
-    "signature": "int __thiscall UIListBox::OnMessage__ovl_3470(UIListBox *this)",
+    "name": "UITitle_JDHY::OnMessage",
+    "signature": "int __thiscall(UITitle_JDHY *this)",
     "_misattrib_evidence": "max_offset=289576>class_size=1208"
   },
   "0x004B43E0": {
@@ -11946,7 +12034,9 @@
   },
   "0x004C3340": {
     "name": "RenderTarget2::_scalar_dtor_Bink",
-    "signature": "RenderTarget2 *__thiscall RenderTarget2::_scalar_dtor_Bink(RenderTarget2 *this, void *Block, char pData)"
+    "signature": "RenderTarget2 *__thiscall RenderTarget2::_scalar_dtor_Bink(RenderTarget2 *this, void *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x004C34D0": {
     "name": "RenderTarget2::DestroyEffCallBack",
@@ -12014,7 +12104,9 @@
   },
   "0x004CD930": {
     "name": "SceneMgr::_scalar_dtor",
-    "signature": "SceneMgr *__thiscall SceneMgr::_scalar_dtor(SceneMgr *this, void *Block, char pData)"
+    "signature": "SceneMgr *__thiscall SceneMgr::_scalar_dtor(SceneMgr *this, void *Block, char pData)",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x004CDCA0": {
     "name": "CEffMgr::CreateEffect",
@@ -12381,7 +12473,7 @@
     "signature": "bool __thiscall PAL_GDB::IsItemEquipment(PAL_GDB *this, int nItemId)"
   },
   "0x004F6A40": {
-    "name": "PAL_GDB::IsRoleAlive",
+    "name": "PAL_GDB::IsRoleAlive__ovl_6a40",
     "signature": "bool __thiscall PAL_GDB::IsRoleAlive(PAL_GDB *this, int nRoleId)"
   },
   "0x004F6A60": {

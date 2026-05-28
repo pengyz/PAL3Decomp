@@ -111,32 +111,51 @@ def check():
             else:
                 sig_index[key] = addr
 
-    # 2b. Check __ovl_ overload validity: same base name must have different signatures
-    OVL_PATTERN = re.compile(r'^(.*)__ovl_[0-9a-fA-F]+$')
-    ovl_groups = {}  # base_name -> [(addr, sig_norm, full_name)]
+    # 2b. Check for entries missing mandatory __ovl_ suffix
+    # IDA requires unique function names per IDB entry. If two functions share a base name
+    # (after __ovl_ stripping), the one(s) without __ovl_ must add it for IDB uniqueness.
+    # Entries WITH __ovl_ sharing the same base are validated by section 2c (different sigs required).
+    # Build base -> [(addr, name, has_ovl)]
+    base_groups = {}
+    OVL_SUFFIX = re.compile(r'__ovl_[0-9a-fA-F]+$')
     for addr, info in funcs.items():
         name = info.get('name', '')
-        sig = info.get('signature', '')
-        m = OVL_PATTERN.match(name)
-        if not m or not sig:
+        if not name or info.get('type') == 'skip':
             continue
-        base_name = m.group(1)
-        sig_norm = re.sub(r'^.*?__thiscall\(', '(this, ', sig)
-        sig_norm = re.sub(r'^.*?__cdecl\(', '(', sig_norm)
-        ovl_groups.setdefault(base_name, []).append((addr, sig_norm, name))
-    for base_name, members in ovl_groups.items():
+        base = OVL_SUFFIX.sub('', name)
+        has_ovl = bool(OVL_SUFFIX.search(name))
+        base_groups.setdefault(base, []).append((addr, name, has_ovl))
+    for base, members in base_groups.items():
         if len(members) < 2:
             continue
+        no_ovl = [m for m in members if not m[2]]
+        for addr, name, _ in no_ovl:
+            errors.append(
+                f"functions[{addr}]: '{name}' needs __ovl_ suffix — "
+                f"base name '{base}' collides with {len(members)} entries")
+
+    # 2c. Check __ovl_ overload validity: same base name must have different signatures
+    for base, members in base_groups.items():
+        if len(members) < 2:
+            continue
+        has_ovl = [m for m in members if m[2]]
+        if len(has_ovl) < 2:
+            continue
+        # All entries with __ovl_ and same base must have different signatures
         seen_sigs = {}
-        for addr, sig_norm, full_name in members:
+        for addr, name, _ in has_ovl:
+            sig = funcs[addr].get('signature', '')
+            sig_norm = re.sub(r'^.*?__thiscall\(', '(this, ', sig)
+            sig_norm = re.sub(r'^.*?__cdecl\(', '(', sig_norm)
+            sig_norm = re.sub(r'^.*?__stdcall\(', '(', sig_norm)
             if sig_norm in seen_sigs:
                 errors.append(
-                    f"functions[{addr}]: '{full_name}' shares signature '{sig_norm}' with "
-                    f"'{seen_sigs[sig_norm]}' — forms duplicate, not overload, of '{base_name}'")
+                    f"functions[{addr}]: '{name}' shares signature '{sig_norm}' with "
+                    f"'{seen_sigs[sig_norm]}' — forms duplicate, not overload, of '{base}'")
             else:
-                seen_sigs[sig_norm] = full_name
+                seen_sigs[sig_norm] = f"{name} @ {addr}"
 
-    # 2c. Check for collisions AFTER __ovl_ stripping (simulates codegen behavior)
+    # 2d. Check for collisions AFTER __ovl_ stripping (simulates codegen behavior)
     stripped_sigs = {}  # (stripped_name, sig_norm) -> addr
     for addr, info in funcs.items():
         name = info.get('name', '')
