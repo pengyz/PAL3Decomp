@@ -353,8 +353,8 @@
     },
     "1376": {
       "name": "m_RenderBuffer",
-      "type": "int[1024]",
-      "comment": "render buffer (used in RenderAll/RenderUpdate; actual size unknown, capped to avoid overlap)",
+      "type": "int[12]",
+      "comment": "render buffer (size capped to 48 bytes to avoid overlap)",
       "source": "A+:query_class_full memset(&_todo_560[239],0,0xA000)"
     },
     "1424": {
