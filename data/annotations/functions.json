@@ -325,7 +325,29 @@
   },
   "0x00408FD0": {
     "name": "PAL3::FullInit",
-    "signature": "int __cdecl __thiscall(PAL3 *this)"
+    "signature": "int __cdecl __thiscall(PAL3 *this)",
+    "local_vars": [
+      {
+        "name": "nSlotIndex",
+        "type": "int",
+        "stack_offset": 40
+      },
+      {
+        "name": "pNewBuffer",
+        "type": "void *",
+        "stack_offset": 56
+      },
+      {
+        "name": "pSceneName",
+        "type": "char *",
+        "stack_offset": 60
+      },
+      {
+        "name": "aSceneData",
+        "type": "_DWORD[5]",
+        "stack_offset": 76
+      }
+    ]
   },
   "0x0040BE50": {
     "name": "RoleSystem::Init",
