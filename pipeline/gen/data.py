@@ -139,6 +139,10 @@ class DataStore:
                 addr_hex = '%X' % addr_int
                 for pfx in ida_prefixes:
                     self.globals_map['%s_%s' % (pfx, addr_hex)] = gname
+                # Map decompiler-generated name to annotation name
+                decomp_name = ginfo.get('decomp_name', '')
+                if decomp_name:
+                    self.globals_map[decomp_name] = gname
 
         # functions.json → free function signatures for forward declarations
         funcs_path = self.annotations_dir / "functions.json"

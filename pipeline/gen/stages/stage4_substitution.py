@@ -31,11 +31,6 @@ def _build_identifier_map():
         if cls.startswith('_') and cls[1:] not in store.game_classes:
             m[cls[1:]] = cls
     # IDA unnamed struct globals → known global names
-    # Buffer = g_RoleSystemMain at 0xC020F8 (RoleSystem singleton array base)
-    # FIXME: Buffer at 0xC04920, NOT g_RoleSystemMain (0xC020F8).
-    # But both types have same member names, so it compiles.
-    # Fix: define GameStateBuffer struct in annotations.
-    m['Buffer'] = 'g_RoleSystemMain'
     return m
 
 
@@ -171,6 +166,11 @@ def _try_struct_member_resolution(name):
 
 def _try_global_name(name):
     """Check if identifier has a global name mapping."""
+    # First check direct match (decompiler-generated names like 'Buffer')
+    direct = store.globals_map.get(name)
+    if direct:
+        return direct
+    # Then check prefix-based match (dword_XXXX, etc.)
     try:
         pfx, hexpart = name.split('_', 1)
     except ValueError:
