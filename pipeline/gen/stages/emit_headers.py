@@ -440,6 +440,15 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     lines = []
     lines.append("#pragma once")
     lines.append("// Auto-generated: %s" % cls_name)
+    # Struct-level note from annotations
+    try:
+        _ann_note = load_annotations_data()
+        _note = _ann_note.get('structs', {}).get(cls_name, {}).get('note', '')
+        if _note:
+            for _nl in _note.split('\n'):
+                lines.append("// %s" % _nl)
+    except:
+        pass
     lines.append("")
 
     # Embed colliding enums (case-insensitive FS collision) before class definition
@@ -888,7 +897,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                         # Strip own class prefix for nested types
                         mtype = re.sub(r'^%s::' % re.escape(cls_name), '', mtype)
                     # Emit member with real type
+                    comment = m.get('comment', '') or m.get('description', '')
                     arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
+                    if comment:
+                        lines.append("    // %s" % comment)
                     if arr_match:
                         arr_part = arr_match.group(1)
                         base_type = mtype[:arr_match.start()].rstrip()
