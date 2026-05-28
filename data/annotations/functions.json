@@ -6050,8 +6050,8 @@
     "signature": "void __thiscall(PalScriptMgr *this)"
   },
   "0x0042BF90": {
-    "name": "PalScriptMgr::ExecScript__ovl_42bf90",
-    "signature": "PalScriptMgr *__thiscall(PalScriptMgr *this)"
+    "name": "PalScriptMgr::ExecuteScriptByID",
+    "signature": "PalScriptMgr *__thiscall PalScriptMgr::ExecuteScriptByID(PalScriptMgr *this)"
   },
   "0x0042BFE0": {
     "name": "PalScriptMgr::IsScriptReady",
@@ -6313,8 +6313,8 @@
     "signature": "double __thiscall(PalScriptMgr *this, double thisa, int nVal, int nVal2)"
   },
   "0x0042BEF0": {
-    "name": "PAL3_Helper__ovl_42BEF0",
-    "signature": "void __cdecl(int nVal)"
+    "name": "PalScriptMgr::HandleGetItem",
+    "signature": "void __cdecl PalScriptMgr::HandleGetItem(int nSkillGDBID)"
   },
   "0x0042C0C0": {
     "name": "RoleSystem::SetTileTypeVisible",
@@ -6329,24 +6329,24 @@
     "signature": "int __thiscall(ScriptVM *this, void *pData, unsigned char nType, int nCount)"
   },
   "0x0042CF60": {
-    "name": "PalScriptMgr::RoleCmd__ovl_42cf60",
-    "signature": "int __thiscall(PalScriptMgr *this, int nVal, unsigned char pData)"
+    "name": "PalScriptMgr::CmdPushCmd04",
+    "signature": "int __thiscall PalScriptMgr::CmdPushCmd04(PalScriptMgr *this, int nVal, unsigned __int8 pData)"
   },
   "0x0042D130": {
-    "name": "PalScriptMgr::RoleCmd__ovl_42d130",
-    "signature": "int __thiscall(PalScriptMgr *this, unsigned char pData)"
+    "name": "PalScriptMgr::CmdPushCmd05",
+    "signature": "int __thiscall PalScriptMgr::CmdPushCmd05(PalScriptMgr *this, unsigned __int8 pData)"
   },
   "0x0042D2F0": {
-    "name": "PalScriptMgr::RoleCmd_42d2f0",
-    "signature": "int __thiscall(PalScriptMgr *this, unsigned char pData)"
+    "name": "PalScriptMgr::CmdPushCmd07",
+    "signature": "int __thiscall PalScriptMgr::CmdPushCmd07(PalScriptMgr *this, unsigned __int8 pData)"
   },
   "0x0042D670": {
     "name": "ScriptVM::GetRolePosition",
     "signature": "int __thiscall(ScriptVM *this, unsigned char pData)"
   },
   "0x0042D830": {
-    "name": "PalScriptMgr::RoleCmd_42d830",
-    "signature": "int __thiscall(PalScriptMgr *this, unsigned char pData)"
+    "name": "PalScriptMgr::CmdPushCmd10",
+    "signature": "int __thiscall PalScriptMgr::CmdPushCmd10(PalScriptMgr *this, unsigned __int8 pData)"
   },
   "0x0042D9F0": {
     "name": "RoleSystem::ExecScriptDataCmd",
@@ -6757,16 +6757,16 @@
     "signature": "int __thiscall RoleSystem::ExecScriptDataB(RoleSystem *this)"
   },
   "0x0042DF30": {
-    "name": "PalScriptMgr::RoleCmd_42df30",
-    "signature": "int __thiscall(PalScriptMgr *this, int nVal, unsigned char pData)"
+    "name": "PalScriptMgr::CmdPushCmd14",
+    "signature": "int __thiscall PalScriptMgr::CmdPushCmd14(PalScriptMgr *this, int nVal, unsigned __int8 pData)"
   },
   "0x0042E100": {
-    "name": "PalScriptMgr::RoleCmd_42e100",
-    "signature": "int __thiscall(PalScriptMgr *this, unsigned char pData)"
+    "name": "PalScriptMgr::CmdPushCmd15",
+    "signature": "int __thiscall PalScriptMgr::CmdPushCmd15(PalScriptMgr *this, unsigned __int8 pData)"
   },
   "0x0042E2C0": {
-    "name": "PalScriptMgr::CameraCmd__ovl_42e2c0",
-    "signature": "char *__thiscall(PalScriptMgr *this, int nVal, float fVal, float fVal2, unsigned char pData)"
+    "name": "PalScriptMgr::CmdCameraOrbitPos",
+    "signature": "char *__thiscall PalScriptMgr::CmdCameraOrbitPos(PalScriptMgr *this, int nVal, float fVal, float fVal2, unsigned __int8 pData)"
   },
   "0x0042E4D0": {
     "name": "PalScriptMgr::RoleCmd__ovl_42e4d0",
@@ -9375,8 +9375,8 @@
     "signature": "void __thiscall PalScriptMgr::BuildFullTransform(PalScriptMgr *this, gbMatrix4 *pMatrix, struct gbVec3D *pPos)"
   },
   "0x0042AC80": {
-    "name": "PalScriptMgr::RoleCmd__ovl_42ac80",
-    "signature": "int __thiscall(PalScriptMgr *this, float *pfVal, float *pfVal2)"
+    "name": "PalScriptMgr::CmdUpdateRolePath",
+    "signature": "int __thiscall PalScriptMgr::CmdUpdateRolePath(PalScriptMgr *this, float *pfVal, float *pfVal2)"
   },
   "0x0042AD40": {
     "name": "RoleSystem::SetActionState",
