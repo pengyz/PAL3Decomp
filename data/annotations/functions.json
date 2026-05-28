@@ -60,8 +60,8 @@
     "signature": "void __thiscall(GRPinput *this, int nVal, int nVal2)"
   },
   "0x00402570": {
-    "name": "GRPinput::Create__ovl_2570",
-    "signature": "int __thiscall(GRPinput *this)"
+    "name": "GRPinput::InitKeyMappings",
+    "signature": "int __thiscall GRPinput::InitKeyMappings(GRPinput *this)"
   },
   "0x00402A90": {
     "name": "GRPinput::SetMouseAbs",
@@ -108,8 +108,8 @@
     "signature": "int __thiscall(GRPinput *this, int nVal)"
   },
   "0x00403000": {
-    "name": "GRPinput::GetKeyState__ovl_3000",
-    "signature": "_BYTE *__thiscall(GRPinput *this, unsigned int key)"
+    "name": "GRPinput::PollInputState",
+    "signature": "_BYTE *__thiscall GRPinput::PollInputState(GRPinput *this, unsigned int key)"
   },
   "0x00403150": {
     "name": "GRPinput::GetMouseFreePos",
@@ -280,8 +280,8 @@
     "signature": "char __cdecl(unsigned int *const pdwVal, int monsterid, Role *side, char pMonster)"
   },
   "0x00407560": {
-    "name": "PAL3::StartCombat__ovl_7560",
-    "signature": "char __cdecl(const NPCInfo *pNPCInfo, int tmp, Role *side)"
+    "name": "PAL3::StartCombatFromNPC",
+    "signature": "char __cdecl PAL3::StartCombatFromNPC(const NPCInfo *pNPCInfo, int tmp, Role *side)"
   },
   "0x00407640": {
     "name": "PAL3::EntryCatchGhost",
@@ -4407,8 +4407,8 @@
     "signature": "gbGfxManager *__cdecl()"
   },
   "0x0040CCD0": {
-    "name": "Combat::Func__ovl_40CCD0",
-    "signature": "int __thiscall(Combat *this)"
+    "name": "Combat::_todo_40CCD0",
+    "signature": "int __thiscall Combat::_todo_40CCD0(Combat *this)"
   },
   "0x004C0400": {
     "name": "PAL3::ClearAdditiveEffects",
@@ -4488,8 +4488,8 @@
     "signature": "void __thiscall(String *this, char *src, int len)"
   },
   "0x00412D90": {
-    "name": "RoleSystem::Helper__ovl_412D90",
-    "signature": "char __thiscall(RoleSystem *this, float *pfVal, int nVal)"
+    "name": "RoleSystem::BindPartyToScene",
+    "signature": "char __thiscall RoleSystem::BindPartyToScene(RoleSystem *this, float *pfVal, int nVal)"
   },
   "0x005279F0": {
     "name": "UIListBox::ctor_79F0",
@@ -4720,8 +4720,8 @@
     "signature": "void __thiscall(StateUI *this)"
   },
   "0x004021E0": {
-    "name": "WinProc(HWND__ovl_4021E0",
-    "signature": "int __thiscall(GRPinput *this, int nVal, int nVal2, int nVal3)"
+    "name": "GRPinput::HandleDeviceInput",
+    "signature": "int __thiscall GRPinput::HandleDeviceInput(GRPinput *this, int nMouse, int nKeyboard, int nVal3)"
   },
   "0x004CDB60": {
     "name": "Combat::Func_4CDB60",
@@ -5396,8 +5396,8 @@
     "signature": "void __thiscall(UISceneMap *this)"
   },
   "0x00402360": {
-    "name": "WinProc(HWND__ovl_402360",
-    "signature": "int __thiscall(int *this)"
+    "name": "GRPinput::_thunk_vtbl8",
+    "signature": "int __thiscall GRPinput::_thunk_vtbl8(GRPinput *this)"
   },
   "0x0043BE10": {
     "name": "UIWnd::_scalar_dtor_be10",
@@ -6600,8 +6600,8 @@
     "signature": "void __cdecl RoleSystem::RenderMainRole(void *pMatrixStack)"
   },
   "0x00410840": {
-    "name": "PalScript::_static__ovl_410840",
-    "signature": "PalScript *__thiscall(PalScript *pPalScript)"
+    "name": "PalScript::InitParticleSlht",
+    "signature": "PalScript *__thiscall PalScript::InitParticleSlht(PalScript *pPalScript)"
   },
   "0x00410920": {
     "name": "PalScriptMgr::LoadYlfScript",
@@ -8944,7 +8944,7 @@
     "signature": "int __thiscall(AStarPathFinder *this)"
   },
   "0x00401800": {
-    "name": "Func__ovl_401800",
+    "name": "_todo_401800",
     "signature": "void __cdecl()"
   },
   "0x00402290": {
@@ -8972,8 +8972,8 @@
     "signature": "void __cdecl InitScriptObjArray()"
   },
   "0x00408BD0": {
-    "name": "CEffAction::sub__ovl_00408BD0",
-    "signature": "void __thiscall(void *)"
+    "name": "CEffAction::_todo_408BD0",
+    "signature": "void __thiscall CEffAction::_todo_408BD0(void *pData)"
   },
   "0x0040C9A0": {
     "name": "RoleSystem::ForceStopRole",
