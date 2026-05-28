@@ -70,94 +70,94 @@
       "source": "A+:free_functions::FullInit GetRoleCount"
     },
     "868": {
-      "name": "m_aItemGDB_00",
+      "name": "m_aEquipGDB_ArmorData",
       "type": "int[1]",
-      "comment": "GDB item field array 0",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "armor slot GDB data (field_00 in PAL_GDB::LoadByType case 3)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "872": {
-      "name": "m_aItemGDB_01",
+      "name": "m_aEquipGDB_TODO_01",
       "type": "int[1]",
-      "comment": "GDB item field array 1 (equip flag)",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "equip GDB enabled flag (field_01, set=1 in Init)",
+      "source": "A+:PAL_GDB::LoadByType case dispatch; init set=1"
     },
     "876": {
-      "name": "m_aItemGDB_02",
+      "name": "m_aEquipGDB_ArmorFlag",
       "type": "int[1]",
-      "comment": "GDB item field array 2",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "armor slot GDB flag/count (field_02, paired with ArmorData)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "880": {
-      "name": "m_aItemGDB_03",
+      "name": "m_aEquipGDB_WeaponData",
       "type": "int[1]",
-      "comment": "GDB item field array 3",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "weapon GDB data (field_03, case 0)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "884": {
-      "name": "m_aItemGDB_04",
+      "name": "m_aEquipGDB_TODO_04",
       "type": "int[1]",
-      "comment": "GDB item field array 4 (equip flag)",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "equip GDB enabled flag (field_04)",
+      "source": "A+:PAL_GDB::LoadByType case dispatch; init set=1"
     },
     "888": {
-      "name": "m_aItemGDB_05",
+      "name": "m_aEquipGDB_ItemData",
       "type": "int[1]",
-      "comment": "GDB item field array 5 (item name ptr)",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "item/consumable GDB data (field_06, case 4)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "892": {
-      "name": "m_aItemGDB_06",
+      "name": "m_aEquipGDB_WeaponFlag",
       "type": "int[1]",
-      "comment": "GDB item field array 6",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "weapon GDB flag (field_05, paired)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "896": {
-      "name": "m_aItemGDB_07",
+      "name": "m_aEquipGDB_TODO_07",
       "type": "int[1]",
-      "comment": "GDB item field array 7 (equip flag)",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "equip GDB enabled flag (field_07)",
+      "source": "A+:PAL_GDB::LoadByType case dispatch; init set=1"
     },
     "900": {
-      "name": "m_aItemGDB_08",
+      "name": "m_aEquipGDB_ItemFlag",
       "type": "int[1]",
-      "comment": "GDB item field array 8",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "item/consumable GDB flag (field_08, paired)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "904": {
-      "name": "m_aItemGDB_09",
+      "name": "m_aEquipGDB_Acc1Data",
       "type": "int[1]",
-      "comment": "GDB item field array 9",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "accessory1 GDB data (field_09, case 2)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "908": {
-      "name": "m_aItemGDB_0A",
+      "name": "m_aEquipGDB_TODO_0A",
       "type": "int[1]",
-      "comment": "GDB item field array 10 (equip flag)",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "equip GDB enabled flag (field_0A)",
+      "source": "A+:PAL_GDB::LoadByType case dispatch; init set=1"
     },
     "912": {
-      "name": "m_aItemGDB_0B",
+      "name": "m_aEquipGDB_Acc2Data",
       "type": "int[1]",
-      "comment": "GDB item field array 11 (ptr used in PalScript)",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "accessory2 GDB data (field_0C, case 5)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "916": {
-      "name": "m_aItemGDB_0C",
+      "name": "m_aEquipGDB_Acc1Flag",
       "type": "int[1]",
-      "comment": "GDB item field array 12",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "accessory1 GDB flag (field_0B, paired)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "920": {
-      "name": "m_aItemGDB_0D",
+      "name": "m_aEquipGDB_TODO_0D",
       "type": "int[1]",
-      "comment": "GDB item field array 13 (equip flag)",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "equip GDB enabled flag (field_0D)",
+      "source": "A+:PAL_GDB::LoadByType case dispatch; init set=1"
     },
     "924": {
-      "name": "m_aItemGDB_0E",
+      "name": "m_aEquipGDB_Acc2Flag",
       "type": "int[1]",
-      "comment": "GDB item field array 14 (strcmp name+36)",
-      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
+      "comment": "accessory2 GDB flag (field_0E, paired)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "932": {
       "name": "m_aSkillGDB_0F",
@@ -352,10 +352,10 @@
       "source": "A+:NPC::InitNPCProp"
     },
     "1376": {
-    "name": "m_RenderBuffer",
-    "type": "int[1024]",
-    "comment": "render buffer (used in RenderAll/RenderUpdate; actual size unknown, capped to avoid overlap)",
-    "source": "A+:query_class_full memset(&_todo_560[239],0,0xA000)"
+      "name": "m_RenderBuffer",
+      "type": "int[1024]",
+      "comment": "render buffer (used in RenderAll/RenderUpdate; actual size unknown, capped to avoid overlap)",
+      "source": "A+:query_class_full memset(&_todo_560[239],0,0xA000)"
     },
     "7072": {
       "name": "m_pCCBStageRoleFind",
