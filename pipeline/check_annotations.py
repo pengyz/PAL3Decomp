@@ -100,8 +100,7 @@ def check():
         if name and sig:
             # Normalize: strip return type + calling convention + function name,
             # keep just parameter list e.g. "void __thiscall(PalScript *this, int n)" -> "(int n)"
-            sig_norm = re.sub(r'^.*?__thiscall\([^,]*,\s*', '(', sig)
-            sig_norm = re.sub(r'^.*?__thiscall\(', '()', sig_norm)
+            sig_norm = re.sub(r'^.*?__thiscall\(', '(this, ', sig)
             sig_norm = re.sub(r'^.*?__cdecl\(', '(', sig_norm)
             sig_norm = re.sub(r'^.*?__stdcall\(', '(', sig_norm)
             key = (name, sig_norm)
@@ -122,8 +121,8 @@ def check():
         if not m or not sig:
             continue
         base_name = m.group(1)
-        sig_norm = re.sub(r'^.*?__thiscall\([^,]*,\s*', '(', sig)
-        sig_norm = re.sub(r'^.*?__thiscall\(', '()', sig_norm)
+        sig_norm = re.sub(r'^.*?__thiscall\(', '(this, ', sig)
+        sig_norm = re.sub(r'^.*?__cdecl\(', '(', sig_norm)
         ovl_groups.setdefault(base_name, []).append((addr, sig_norm, name))
     for base_name, members in ovl_groups.items():
         if len(members) < 2:
@@ -136,6 +135,25 @@ def check():
                     f"'{seen_sigs[sig_norm]}' — forms duplicate, not overload, of '{base_name}'")
             else:
                 seen_sigs[sig_norm] = full_name
+
+    # 2c. Check for collisions AFTER __ovl_ stripping (simulates codegen behavior)
+    stripped_sigs = {}  # (stripped_name, sig_norm) -> addr
+    for addr, info in funcs.items():
+        name = info.get('name', '')
+        sig = info.get('signature', '')
+        if not name or not sig:
+            continue
+        stripped = re.sub(r'__ovl_[0-9a-fA-F]+$', '', name)
+        sig_norm = re.sub(r'^.*?__thiscall\(', '(this, ', sig)
+        sig_norm = re.sub(r'^.*?__cdecl\(', '(', sig_norm)
+        sig_norm = re.sub(r'^.*?__stdcall\(', '(', sig_norm)
+        key = (stripped, sig_norm)
+        if key in stripped_sigs:
+            errors.append(
+                f"functions[{addr}]: '{name}' collides with '{stripped_sigs[key]}' "
+                f"after __ovl_ stripping → same signature '{sig_norm}'")
+        else:
+            stripped_sigs[key] = f"{name} @ {addr}"
 
     # 3. Globals
     globs = ann.get('globals', {})

@@ -337,7 +337,8 @@ def collect_methods():
             continue
         if ' ' in method or '`' in method:
             continue
-
+        # Strip __ovl_XXXX suffix for proper C++ overloading
+        method = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
         classes[cls].append((method, sig, addr))
         seen_addrs.add(addr)
 
