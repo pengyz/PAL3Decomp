@@ -76,10 +76,10 @@
       "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "872": {
-      "name": "m_aEquipGDB_TODO_01",
+      "name": "m_aEquipWField_01",
       "type": "int[1]",
-      "comment": "equip GDB enabled flag (field_01, set=1 in Init)",
-      "source": "A+:PAL_GDB::LoadByType case dispatch; init set=1"
+      "comment": "equip slot 1 wield flag (set=0 Init, set=1 in PlayerMgr weapon WU)",
+      "source": "A+:PAL3::Init set=0 + PlayerMgr weaponWU set=1"
     },
     "876": {
       "name": "m_aEquipGDB_ArmorFlag",
@@ -94,10 +94,10 @@
       "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "884": {
-      "name": "m_aEquipGDB_TODO_04",
+      "name": "m_aEquipWField_04",
       "type": "int[1]",
-      "comment": "equip GDB enabled flag (field_04)",
-      "source": "A+:PAL_GDB::LoadByType case dispatch; init set=1"
+      "comment": "equip slot 4 wield flag",
+      "source": "A+:PAL3::Init set=0 + PlayerMgr weaponWU set=1"
     },
     "888": {
       "name": "m_aEquipGDB_ItemData",
@@ -112,10 +112,10 @@
       "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "896": {
-      "name": "m_aEquipGDB_TODO_07",
+      "name": "m_aEquipWField_07",
       "type": "int[1]",
-      "comment": "equip GDB enabled flag (field_07)",
-      "source": "A+:PAL_GDB::LoadByType case dispatch; init set=1"
+      "comment": "equip slot 7 wield flag",
+      "source": "A+:PAL3::Init set=0 + PlayerMgr weaponWU set=1"
     },
     "900": {
       "name": "m_aEquipGDB_ItemFlag",
@@ -130,10 +130,10 @@
       "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "908": {
-      "name": "m_aEquipGDB_TODO_0A",
+      "name": "m_aEquipWField_0A",
       "type": "int[1]",
-      "comment": "equip GDB enabled flag (field_0A)",
-      "source": "A+:PAL_GDB::LoadByType case dispatch; init set=1"
+      "comment": "equip slot 10 wield flag",
+      "source": "A+:PAL3::Init set=0 + PlayerMgr weaponWU set=1"
     },
     "912": {
       "name": "m_aEquipGDB_Acc2Data",
@@ -148,10 +148,10 @@
       "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
     },
     "920": {
-      "name": "m_aEquipGDB_TODO_0D",
+      "name": "m_aEquipWField_0D",
       "type": "int[1]",
-      "comment": "equip GDB enabled flag (field_0D)",
-      "source": "A+:PAL_GDB::LoadByType case dispatch; init set=1"
+      "comment": "equip slot 13 wield flag",
+      "source": "A+:PAL3::Init set=0 + PlayerMgr weaponWU set=1"
     },
     "924": {
       "name": "m_aEquipGDB_Acc2Flag",
@@ -262,46 +262,46 @@
       "source": "A+:CScreenMode::Init; CameraCtrl; ScriptSystem subtract"
     },
     "1008": {
-      "name": "m_nInitParam_0",
+      "name": "m_nInitParamRoleState",
       "type": "int[1]",
-      "comment": "init constant 3",
-      "source": "A+:PAL3::Init set constant value"
+      "comment": "role state display col config (set 3 in Init, used in s_RoleState)",
+      "source": "A+:PAL3::Init constant + s_RoleState display"
     },
     "1012": {
-      "name": "m_nInitParam_1",
+      "name": "m_nInitParamUnknown1",
       "type": "int[1]",
-      "comment": "init constant 2",
-      "source": "A+:PAL3::Init set constant value"
+      "comment": "unknown init param (set 2)",
+      "source": "A+:PAL3::Init constant + s_RoleState display"
     },
     "1016": {
-      "name": "m_nInitParam_2",
+      "name": "m_nInitParamSlotFlags",
       "type": "int[1]",
-      "comment": "init constant 3 (s_RoleState display)",
-      "source": "A+:PAL3::Init set constant value"
+      "comment": "role slot display flags (set 3, used in s_RoleState sprintf)",
+      "source": "A+:PAL3::Init constant + s_RoleState display"
     },
     "1020": {
-      "name": "m_nInitParam_3",
+      "name": "m_nInitParamSlotFlags2",
       "type": "int[1]",
-      "comment": "init constant 3 (s_RoleState display)",
-      "source": "A+:PAL3::Init set constant value"
+      "comment": "role slot display flags (set 3)",
+      "source": "A+:PAL3::Init constant + s_RoleState display"
     },
     "1024": {
-      "name": "m_nInitParam_4",
+      "name": "m_nInitParamSlotFlags3",
       "type": "int[1]",
-      "comment": "init constant 6 (s_RoleState display)",
-      "source": "A+:PAL3::Init set constant value"
+      "comment": "role slot display flags (set 6)",
+      "source": "A+:PAL3::Init constant + s_RoleState display"
     },
     "1028": {
-      "name": "m_nInitParam_5",
+      "name": "m_nInitParamSlotFlags4",
       "type": "int[1]",
-      "comment": "init constant 1 (s_RoleState display)",
-      "source": "A+:PAL3::Init set constant value"
+      "comment": "role slot display flags (set 1)",
+      "source": "A+:PAL3::Init constant + s_RoleState display"
     },
     "1032": {
-      "name": "m_nInitParam_6",
+      "name": "m_nInitParamSlotFlags5",
       "type": "int[1]",
-      "comment": "init constant 2 (s_RoleState display)",
-      "source": "A+:PAL3::Init set constant value"
+      "comment": "role slot display flags (set 2)",
+      "source": "A+:PAL3::Init constant + s_RoleState display"
     },
     "1036": {
       "name": "m_nGDBItemCount",
@@ -334,21 +334,21 @@
       "source": "A+:PAL_GDB::SetRoleData + free_functions"
     },
     "1144": {
-      "name": "m_aNPCProp_478",
+      "name": "m_aNPCPropByType",
       "type": "int[1]",
-      "comment": "NPC property by slot+type",
+      "comment": "NPC property by role type + property type index",
       "source": "A+:NPC::InitNPCProp"
     },
     "1176": {
-      "name": "m_aNPCProp_498",
+      "name": "m_aNPCPropByType2",
       "type": "int[1]",
-      "comment": "NPC property by slot+type",
+      "comment": "NPC property by role type + property type index",
       "source": "A+:NPC::InitNPCProp"
     },
     "1240": {
-      "name": "m_aNPCProp_4D8",
+      "name": "m_aNPCPropBySlot",
       "type": "int[1]",
-      "comment": "NPC property by index",
+      "comment": "NPC property by role slot index",
       "source": "A+:NPC::InitNPCProp"
     },
     "1376": {
