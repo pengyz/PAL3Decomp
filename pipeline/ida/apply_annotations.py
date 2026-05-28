@@ -1165,22 +1165,30 @@ def apply_annotations():
             continue
 
         ann_by_stkoff = {}
+        ann_by_reg1 = {}
         for lv_ann in lvars_ann:
             stkoff = lv_ann.get("stack_offset")
             if stkoff is not None:
                 ann_by_stkoff[stkoff] = lv_ann
+            reg1 = lv_ann.get("reg1")
+            if reg1 is not None:
+                ann_by_reg1[reg1] = lv_ann
 
         modified = False
         lvars = cfunc.lvars
         for lvar in lvars:
             loc = lvar.location
-            if not loc.is_stkoff():
-                continue
-            soff = loc.stkoff()
-            if soff not in ann_by_stkoff:
+            ann = None
+            if loc.is_stkoff():
+                soff = loc.stkoff()
+                ann = ann_by_stkoff.get(soff)
+            elif loc.is_reg1():
+                r1 = loc.reg1()
+                ann = ann_by_reg1.get(r1)
+
+            if ann is None:
                 continue
 
-            ann = ann_by_stkoff[soff]
             new_name = ann.get("name")
             new_type = ann.get("type")
 
@@ -1198,14 +1206,17 @@ def apply_annotations():
 
         if modified:
             try:
-                lvinf = ida_hexrays.lvar_saved_infos_t()
+                uvec = ida_hexrays.lvar_uservec_t()
+                uvec.lvvec = ida_hexrays.lvar_saved_infos_t()
                 for lv in cfunc.lvars:
                     si = ida_hexrays.lvar_saved_info_t()
-                    si.ll = lv.location
+                    ll = ida_hexrays.lvar_locator_t()
+                    ll.location = lv.location
+                    ll.defea = cfunc.entry_ea
+                    si.ll = ll
                     si.name = lv.name
-                    si.type = lv.type
-                    lvinf.push_back(si)
-                ida_hexrays.save_user_lvar_settings(addr, lvinf)
+                    uvec.lvvec.push_back(si)
+                ida_hexrays.save_user_lvar_settings(addr, uvec)
             except:
                 pass
 

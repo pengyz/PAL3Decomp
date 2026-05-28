@@ -166,9 +166,9 @@
       "source": "A+:PAL_GDB GDB_GetSkillNum; PalScript skill handling"
     },
     "936": {
-      "name": "m_aSkillGDB_ptr",
+      "name": "m_apSkillData",
       "type": "int[1]",
-      "comment": "GDB skill pointer array (stores skill struct ptrs)",
+      "comment": "per-slot GDB skill/item data pointer array (FightItem*), stride 352",
       "source": "A+:PAL_GDB GDB_GetSkillNum result; deref as skill struct ptr"
     },
     "940": {
