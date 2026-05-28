@@ -32,6 +32,9 @@ def _build_identifier_map():
             m[cls[1:]] = cls
     # IDA unnamed struct globals → known global names
     # Buffer = g_RoleSystemMain at 0xC020F8 (RoleSystem singleton array base)
+    # FIXME: Buffer at 0xC04920, NOT g_RoleSystemMain (0xC020F8).
+    # But both types have same member names, so it compiles.
+    # Fix: define GameStateBuffer struct in annotations.
     m['Buffer'] = 'g_RoleSystemMain'
     return m
 
