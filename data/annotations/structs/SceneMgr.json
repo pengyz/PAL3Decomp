@@ -52,269 +52,310 @@
       "source": "PDB:PAL3A + binary:_DWORD* access pattern"
     },
     "652": {
-      "name": "_todo_28C",
+      "name": "m_aRoleSlotStat",
       "type": "int[11]",
-      "source": "scope:g_SceneMgr+0x28C range (dword_C0461C..C04648)"
+      "comment": "role slot base stats: [0]=slotState, [1]=speed, [2]=actionType, [3]=defense, [4]=damage, accessed with stride 352",
+      "source": "A+:free_functions::FullInit GetSlotState/CalcSpeedByLevel/CalcDefenseByLevel"
     },
     "696": {
-      "name": "_todo_2B8",
+      "name": "m_nSlotCount",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x2B8 (dword_C04648)"
+      "comment": "slot count parameter (set to 2 in PAL3::Init)",
+      "source": "A+:PAL3::Init # =2; StateUI sprintf"
     },
     "756": {
-      "name": "_todo_2F4",
+      "name": "m_nSlotMemberCount",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x2F4 (artifact dword_C04XXX)"
-    },
-    "864": {
-      "name": "_todo_360",
-      "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x360 (artifact dword_C04XXX)"
+      "comment": "slot member count per level (GetRoleCount)",
+      "source": "A+:free_functions::FullInit GetRoleCount"
     },
     "868": {
-      "name": "_todo_364",
+      "name": "m_aItemGDB_00",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x364 (artifact dword_C04XXX)"
+      "comment": "GDB item field array 0",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "872": {
-      "name": "_todo_368",
+      "name": "m_aItemGDB_01",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x368 (artifact dword_C04XXX)"
+      "comment": "GDB item field array 1 (equip flag)",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "876": {
-      "name": "_todo_36C",
+      "name": "m_aItemGDB_02",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x36C (artifact dword_C04XXX)"
+      "comment": "GDB item field array 2",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "880": {
-      "name": "_todo_370",
+      "name": "m_aItemGDB_03",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x370 (artifact dword_C04XXX)"
+      "comment": "GDB item field array 3",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "884": {
-      "name": "_todo_374",
+      "name": "m_aItemGDB_04",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x374 (artifact dword_C04XXX)"
+      "comment": "GDB item field array 4 (equip flag)",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "888": {
-      "name": "_todo_378",
+      "name": "m_aItemGDB_05",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x378 (artifact dword_C04XXX)"
+      "comment": "GDB item field array 5 (item name ptr)",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "892": {
-      "name": "_todo_37C",
+      "name": "m_aItemGDB_06",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x37C (artifact dword_C04XXX)"
+      "comment": "GDB item field array 6",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "896": {
-      "name": "_todo_380",
+      "name": "m_aItemGDB_07",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x380 (artifact dword_C04XXX)"
+      "comment": "GDB item field array 7 (equip flag)",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "900": {
-      "name": "_todo_384",
+      "name": "m_aItemGDB_08",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x384 (artifact dword_C04XXX)"
+      "comment": "GDB item field array 8",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "904": {
-      "name": "_todo_388",
+      "name": "m_aItemGDB_09",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x388 (artifact dword_C04XXX)"
+      "comment": "GDB item field array 9",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "908": {
-      "name": "_todo_38C",
+      "name": "m_aItemGDB_0A",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x38C (artifact dword_C04XXX)"
+      "comment": "GDB item field array 10 (equip flag)",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "912": {
-      "name": "_todo_390",
+      "name": "m_aItemGDB_0B",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x390 (artifact dword_C04XXX)"
+      "comment": "GDB item field array 11 (ptr used in PalScript)",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "916": {
-      "name": "_todo_394",
+      "name": "m_aItemGDB_0C",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x394 (artifact dword_C04XXX)"
+      "comment": "GDB item field array 12",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "920": {
-      "name": "_todo_398",
+      "name": "m_aItemGDB_0D",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x398 (artifact dword_C04XXX)"
+      "comment": "GDB item field array 13 (equip flag)",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "924": {
-      "name": "_todo_39C",
+      "name": "m_aItemGDB_0E",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x39C (artifact dword_C04XXX)"
-    },
-    "928": {
-      "name": "_todo_3A0",
-      "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3A0 (artifact dword_C04XXX)"
+      "comment": "GDB item field array 14 (strcmp name+36)",
+      "source": "A+:PAL_GDB.cpp field lookup + EquipUI UpdateSlot"
     },
     "932": {
-      "name": "_todo_3A4",
+      "name": "m_aSkillGDB_0F",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3A4 (artifact dword_C04XXX)"
+      "comment": "GDB skill field (set 1 in PAL_GDB)",
+      "source": "A+:PAL_GDB GDB_GetSkillNum; PalScript skill handling"
     },
     "936": {
-      "name": "_todo_3A8",
+      "name": "m_aSkillGDB_ptr",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3A8 (artifact dword_C04XXX)"
+      "comment": "GDB skill pointer array (stores skill struct ptrs)",
+      "source": "A+:PAL_GDB GDB_GetSkillNum result; deref as skill struct ptr"
     },
     "940": {
-      "name": "_todo_3AC",
+      "name": "m_aScriptDelay",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3AC (artifact dword_C04XXX)"
+      "comment": "script execution delay (*0.05 to get float seconds)",
+      "source": "A+:free_functions RunScript; PAL_GDB combat formula"
     },
     "944": {
-      "name": "_todo_3B0",
+      "name": "m_aViewModeParamA",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3B0 (artifact dword_C04XXX)"
+      "comment": "view mode parameter A (used in CScreenMode+RenderTarget)",
+      "source": "A+:CScreenMode::Init; RenderTarget sprintf"
     },
     "948": {
-      "name": "_todo_3B4",
+      "name": "m_aViewModeParamB",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3B4 (artifact dword_C04XXX)"
+      "comment": "view mode parameter B (paired with ParamA)",
+      "source": "A+:CScreenMode::Init; RenderTarget sprintf"
     },
     "952": {
-      "name": "_todo_3B8",
+      "name": "m_aEquipVal_0",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3B8 (artifact dword_C04XXX)"
+      "comment": "equip slot display value 0",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
     },
     "956": {
-      "name": "_todo_3BC",
+      "name": "m_aEquipVal_1",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3BC (artifact dword_C04XXX)"
+      "comment": "equip slot display value 1",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
     },
     "960": {
-      "name": "_todo_3C0",
+      "name": "m_aEquipVal_2",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3C0 (artifact dword_C04XXX)"
+      "comment": "equip slot display value 2",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
     },
     "964": {
-      "name": "_todo_3C4",
+      "name": "m_aEquipVal_3",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3C4 (artifact dword_C04XXX)"
+      "comment": "equip slot display value 3",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
     },
     "968": {
-      "name": "_todo_3C8",
+      "name": "m_aEquipVal_4",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3C8 (artifact dword_C04XXX)"
+      "comment": "equip slot display value 4",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
     },
     "972": {
-      "name": "_todo_3CC",
+      "name": "m_aEquipVal_5",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3CC (artifact dword_C04XXX)"
+      "comment": "equip slot display value 5",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
     },
     "976": {
-      "name": "_todo_3D0",
+      "name": "m_aEquipVal_6",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3D0 (artifact dword_C04XXX)"
+      "comment": "equip slot display value 6",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
     },
     "980": {
-      "name": "_todo_3D4",
+      "name": "m_aEquipVal_7",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3D4 (artifact dword_C04XXX)"
+      "comment": "equip slot display value 7",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
     },
     "984": {
-      "name": "_todo_3D8",
+      "name": "m_aEquipVal_8",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3D8 (artifact dword_C04XXX)"
+      "comment": "equip slot display value 8",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
     },
     "988": {
-      "name": "_todo_3DC",
+      "name": "m_aScriptTransition",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3DC (artifact dword_C04XXX)"
+      "comment": "script transition time (*0.5 to get float seconds)",
+      "source": "A+:free_functions RunScript(*0.5) + calc diff in PAL_GDB"
     },
     "992": {
-      "name": "_todo_3E0",
+      "name": "m_aScreenModeParam",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3E0 (artifact dword_C04XXX)"
+      "comment": "screen mode parameter (camera collision + mode init)",
+      "source": "A+:CScreenMode::Init; CameraCtrl; ScriptSystem subtract"
     },
     "996": {
-      "name": "_todo_3E4",
+      "name": "m_aScreenModeParam2",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3E4 (artifact dword_C04XXX)"
+      "comment": "screen mode parameter 2 (paired with Param)",
+      "source": "A+:CScreenMode::Init; CameraCtrl; ScriptSystem subtract"
     },
     "1008": {
-      "name": "_todo_3F0",
+      "name": "m_nInitParam_0",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3F0 (artifact dword_C04XXX)"
+      "comment": "init constant 3",
+      "source": "A+:PAL3::Init set constant value"
     },
     "1012": {
-      "name": "_todo_3F4",
+      "name": "m_nInitParam_1",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3F4 (artifact dword_C04XXX)"
+      "comment": "init constant 2",
+      "source": "A+:PAL3::Init set constant value"
     },
     "1016": {
-      "name": "_todo_3F8",
+      "name": "m_nInitParam_2",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3F8 (artifact dword_C04XXX)"
+      "comment": "init constant 3 (s_RoleState display)",
+      "source": "A+:PAL3::Init set constant value"
     },
     "1020": {
-      "name": "_todo_3FC",
+      "name": "m_nInitParam_3",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x3FC (artifact dword_C04XXX)"
+      "comment": "init constant 3 (s_RoleState display)",
+      "source": "A+:PAL3::Init set constant value"
     },
     "1024": {
-      "name": "_todo_400",
+      "name": "m_nInitParam_4",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x400 (artifact dword_C04XXX)"
+      "comment": "init constant 6 (s_RoleState display)",
+      "source": "A+:PAL3::Init set constant value"
     },
     "1028": {
-      "name": "_todo_404",
+      "name": "m_nInitParam_5",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x404 (artifact dword_C04XXX)"
+      "comment": "init constant 1 (s_RoleState display)",
+      "source": "A+:PAL3::Init set constant value"
     },
     "1032": {
-      "name": "_todo_408",
+      "name": "m_nInitParam_6",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x408 (artifact dword_C04XXX)"
+      "comment": "init constant 2 (s_RoleState display)",
+      "source": "A+:PAL3::Init set constant value"
     },
     "1036": {
-      "name": "_todo_40C",
+      "name": "m_nGDBItemCount",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x40C (artifact dword_C04XXX)"
+      "comment": "GDB item count limit (set 2224 in Init; used in GDB_GetRoleNum)",
+      "source": "A+:PAL3::Init =2224; SystemUI GDB_GetRoleNum"
     },
     "1040": {
-      "name": "_todo_410",
+      "name": "m_nUIDisplayCount",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x410 (artifact dword_C04XXX)"
+      "comment": "UI display count (set 10 in Init; used in CCBUI/SwordUI calc)",
+      "source": "A+:PAL3::Init=10; CCBUI/SwordUI division calc"
     },
     "1044": {
-      "name": "_todo_414",
+      "name": "m_nGDBRoleCount",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x414 (artifact dword_C04XXX)"
+      "comment": "GDB role count (stored in PAL_GDB)",
+      "source": "A+:PAL_GDB::RoleData save"
     },
     "1048": {
-      "name": "_todo_418",
+      "name": "m_aNPCData",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x418 (artifact dword_C04XXX)"
+      "comment": "NPC entity property array (memset+set by index)",
+      "source": "A+:NPC::InitAll memset+PropertyByIndex"
     },
     "1080": {
-      "name": "_todo_438",
+      "name": "m_aNPCFieldData",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x438 (dword_C047C8)"
+      "comment": "NPC multi-field property array (stride 352, mult fields per slot)",
+      "source": "A+:PAL_GDB::SetRoleData + free_functions"
     },
     "1144": {
-      "name": "_todo_478",
+      "name": "m_aNPCProp_478",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x478 (artifact dword_C04XXX)"
+      "comment": "NPC property by slot+type",
+      "source": "A+:NPC::InitNPCProp"
     },
     "1176": {
-      "name": "_todo_498",
+      "name": "m_aNPCProp_498",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x498 (artifact dword_C04XXX)"
+      "comment": "NPC property by slot+type",
+      "source": "A+:NPC::InitNPCProp"
     },
     "1240": {
-      "name": "_todo_4D8",
+      "name": "m_aNPCProp_4D8",
       "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x4D8 (artifact dword_C04XXX)"
+      "comment": "NPC property by index",
+      "source": "A+:NPC::InitNPCProp"
     },
     "1376": {
-      "name": "_todo_560",
-      "type": "int[1]",
-      "source": "scope:g_SceneMgr+0x560 (artifact dword_C04XXX)"
+    "name": "m_RenderBuffer",
+    "type": "int[1024]",
+    "comment": "render buffer (used in RenderAll/RenderUpdate; actual size unknown, capped to avoid overlap)",
+    "source": "A+:query_class_full memset(&_todo_560[239],0,0xA000)"
     },
     "7072": {
       "name": "m_pCCBStageRoleFind",

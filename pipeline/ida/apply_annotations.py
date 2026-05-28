@@ -1197,7 +1197,9 @@ def apply_annotations():
             lvar_ok += 1
 
         if modified:
-            cfunc.save_user_lvars()
+            # IDA 9.1 doesn't have save_user_lvars; lvars auto-saved on decompiler exit
+            if hasattr(cfunc, 'save_user_lvars'):
+                cfunc.save_user_lvars()
 
     log("[9] Lvars: %d/%d applied (fail=%d)" % (lvar_ok, lvar_total, lvar_fail))
 
