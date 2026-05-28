@@ -357,6 +357,12 @@
       "comment": "render buffer (used in RenderAll/RenderUpdate; actual size unknown, capped to avoid overlap)",
       "source": "A+:query_class_full memset(&_todo_560[239],0,0xA000)"
     },
+    "1424": {
+      "name": "_todo_590",
+      "type": "int[1760]",
+      "comment": "persistent game state buffer 7040 bytes (vtable+teamData5+partyActor)",
+      "source": "A+:binary VA=0x454A16: lea ecx,[esi+0x590] + fread(&::Buffer,0x1B80)"
+    },
     "7072": {
       "name": "m_pCCBStageRoleFind",
       "type": "CCBStageRole *",
