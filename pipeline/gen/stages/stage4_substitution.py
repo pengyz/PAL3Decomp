@@ -34,7 +34,7 @@ def _build_identifier_map():
     # Buffer IS a RoleSystem at g_SceneMgr+0x590 (0xC04920).
     # All Buffer members match RoleSystem fields. Registered as g_RoleSystemScript.
     # This mapping is temporary; globals.json decomp_name handles the real case.
-    m['Buffer'] = 'g_RoleSystemScript'
+    m['Buffer'] = 'g_ScriptRoleBuf'
     return m
 
 
