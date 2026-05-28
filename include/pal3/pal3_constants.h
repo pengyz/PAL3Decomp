@@ -54,6 +54,12 @@ const int UI3_CHAR_BASE  = 27;  // 5 char init values [27..31]
 const int UI3_FORM_BASE  = 32;  // 7 formation flags [32..38]
 const int UI3_MISC_ID    = 53;  // misc resource ID (1943)
 
+// === FightItem struct field constants (GDB item/skill data) ===
+const int FIGHTITEM_TYPE_LEARN_SKILL = 11;  // FightItem.type == 11: item teaches skill on use
+const int FIGHTITEM_LEARN_SLOT_0     = 0;   // user[0] = protagonist (景天)
+const int FIGHTITEM_ID_SPECIAL_A     = 6602; // item type ID: special/plot item type A
+const int FIGHTITEM_ID_SPECIAL_B     = 6603; // item type ID: special/plot item type B
+
 // === GDB Item/Skill IDs used in PalScript opcode handlers ===
 // PalScript::Op_CameraFocusPoint handles "getitem" - item acquisition that teaches skills.
 // case values = item type ID, paired skill IDs learned when item is used:
