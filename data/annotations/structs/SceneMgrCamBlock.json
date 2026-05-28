@@ -1,62 +1,77 @@
 {
   "name": "SceneMgrCamBlock",
   "known_members": {
+    "0": {
+      "name": "_gap_000",
+      "type": "char[84]",
+      "source": "binary:IDA structs export (PDB-derived layout)"
+    },
     "84": {
       "name": "m_pScriptArrayEnd",
       "type": "PalScript *",
-      "source": "binary: used as loop terminator for PalScript array; byte_C10960 = g_SceneMgr+0xC5D0"
+      "source": "binary:IDA structs export (PDB-derived layout)"
     },
     "88": {
       "name": "_todo_058",
       "type": "PalScript *",
-      "source": "binary:gap between m_pScriptArrayEnd and m_pUIScript"
+      "source": "binary:IDA structs export (PDB-derived layout)"
     },
     "92": {
       "name": "m_pUIScript",
       "type": "PalScript *",
-      "source": "binary: PalScript::Create/RenderUI/MoveAndHide; SceneMgrCamBlock+92 = g_UIScript"
+      "source": "binary:IDA structs export (PDB-derived layout)"
     },
     "96": {
       "name": "m_pScriptArrayEndSub",
       "type": "PalScript *",
-      "source": "binary:MovePartyFollowers/PAL3_Update: while(v < end); secondary PalScript array terminator"
+      "source": "binary:IDA structs export (PDB-derived layout)"
     },
-    "200": {
+    "100": {
       "name": "_field_0C8",
       "type": "int",
-      "source": "binary:camblock_gap"
+      "source": "binary:IDA structs export (PDB-derived layout)"
     },
-    "252": {
+    "104": {
       "name": "_field_0FC",
       "type": "int",
-      "source": "binary:camblock_gap"
+      "source": "binary:IDA structs export (PDB-derived layout)"
     },
-    "260": {
+    "108": {
       "name": "m_RoleUnlockData",
-      "type": "int[79]",
-      "source": "binary: PAL3_FullInit memset(&dword_C10A10, 0, 0x190); SceneMgrCamBlock+0x104"
+      "type": "int[100]",
+      "source": "binary:IDA structs export (PDB-derived layout)"
     },
-    "576": {
+    "508": {
+      "name": "_field_158",
+      "type": "int",
+      "source": "binary:IDA structs export (PDB-derived layout)"
+    },
+    "512": {
       "name": "m_nUnlockDataCount",
       "type": "int",
-      "source": "binary:camblock_gap|FullInit:set to 28 = number of unlock triples (charID, event, scene)"
+      "source": "binary:IDA structs export (PDB-derived layout)"
     },
-    "660": {
+    "516": {
       "name": "m_MonsterUnlockTable",
-      "type": "int[41]",
-      "source": "binary: SetRoleLevelAndRefresh: &dword_C10BA0 + 12*nRoleIdx; FullInit: stores (monsterID, level) pairs for encounter unlock"
+      "type": "int[60]",
+      "source": "binary:IDA structs export (PDB-derived layout)"
     },
-    "824": {
+    "756": {
+      "name": "_field_2B0",
+      "type": "int",
+      "source": "binary:IDA structs export (PDB-derived layout)"
+    },
+    "760": {
       "name": "m_nCurrentScene",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "binary:IDA structs export (PDB-derived layout)"
     },
-    "844": {
+    "764": {
       "name": "m_pCameraScript",
       "type": "PalScript *",
-      "source": "gen_headers_9.2"
+      "source": "binary:IDA structs export (PDB-derived layout)"
     }
   },
   "pdb_size": 856,
-  "binary_size": 848
+  "binary_size": 768
 }
