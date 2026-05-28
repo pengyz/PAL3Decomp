@@ -271,8 +271,8 @@ def _collect_token_edits(code_bytes, tree, ctx):
             if name.startswith(('dword_', 'byte_', 'word_', 'off_', 'flt_', 'unk_')):
                 replacement = _try_struct_member_resolution(name)
 
-            # Priority 2: global name mapping
-            if not replacement and name.startswith(('dword_', 'byte_', 'word_', 'stru_', 'off_', 'unk_', 'flt_')):
+            # Priority 2: global name mapping (try always; _try_global_name handles prefix check internally)
+            if not replacement:
                 replacement = _try_global_name(name)
 
             # Priority 3: literal replacement
