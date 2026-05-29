@@ -93,14 +93,36 @@ def extract_function_code(cpp_path, name):
         return None
     content = cpp_path.read_text(encoding="utf-8")
     method_name = name.split("::", 1)[1].split("(")[0]
-    # Find function definition
-    pattern = re.compile(
-        r"^.+?" + re.escape(name.split("::")[0]) + r"::" + re.escape(method_name) + r"\s*\(.+?^}",
-        re.MULTILINE | re.DOTALL,
+    # Find function definition: match from signature to matching brace
+    cls = re.escape(name.split("::")[0])
+    method = re.escape(method_name)
+    # Find the function signature
+    sig_pattern = re.compile(
+        r"^" + cls + r"::" + method + r"\s*\([^)]*\)\s*\n\s*\{",
+        re.MULTILINE,
     )
-    m = pattern.search(content)
-    if m:
-        return m.group(0)
+    sig_match = sig_pattern.search(content)
+    if not sig_match:
+        return None
+    # From the opening brace, count depth to find closing brace
+    start = sig_match.end() - 1  # position of '{'
+    depth = 1
+    i = start + 1
+    while i < len(content) and depth > 0:
+        if content[i] == '{':
+            depth += 1
+        elif content[i] == '}':
+            depth -= 1
+        i += 1
+    if depth == 0:
+        # From return type line to closing brace
+        # Find the return type line (search backwards from sig_match)
+        func_start = content.rfind('\n', 0, sig_match.start())
+        if func_start == -1:
+            func_start = 0
+        else:
+            func_start += 1  # skip the newline
+        return content[func_start:i]
     return None
 
 

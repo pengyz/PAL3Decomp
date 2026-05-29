@@ -1168,13 +1168,13 @@ def apply_annotations():
             new_type = ann.get("type")
             if new_type:
                 tif = ida_typeinf.tinfo_t()
-                if ida_typeinf.parse_decl(tif, None, new_type, 0) is None:
-                    if tif.get_size() not in (0, 0xFFFFFFFFFFFFFFFF):
-                        try:
-                            lvar.set_lvar_type(tif)
-                            modified = True
-                        except:
-                            pass
+                _decl = "%s __x;" % new_type
+                if ida_typeinf.parse_decl(tif, None, _decl, 1) is None:
+                    try:
+                        lvar.set_lvar_type(tif)
+                        modified = True
+                    except:
+                        pass
             lvar_ok += 1
 
         if modified:
