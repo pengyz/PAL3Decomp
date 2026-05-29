@@ -1151,8 +1151,9 @@ def apply_annotations():
 
         modified = False
         for lvar in list(cfunc.lvars):
+            is_reg = lvar.is_reg_var()
             ann = ann_by_name.get(lvar.name)
-            if ann is None and ann_by_stkoff:
+            if ann is None and ann_by_stkoff and not is_reg:
                 try:
                     if lvar.is_stk_var():
                         soff = lvar.get_stkoff()
@@ -1166,7 +1167,7 @@ def apply_annotations():
                 lvar.name = new_name
                 modified = True
             new_type = ann.get("type")
-            if new_type:
+            if new_type and not is_reg:
                 tif = ida_typeinf.tinfo_t()
                 _decl = "%s __x;" % new_type
                 if ida_typeinf.parse_decl(tif, None, _decl, 1) is None:
