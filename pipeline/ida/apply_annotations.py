@@ -1128,11 +1128,15 @@ def apply_annotations():
             continue
 
         ann_by_name = {}
+        ann_by_stkoff = {}
         for lv_ann in lvars_ann:
             fn = lv_ann.get("from_name")
             if fn is not None:
                 ann_by_name[fn] = lv_ann
-        if not ann_by_name:
+            sk = lv_ann.get("stack_offset")
+            if sk is not None:
+                ann_by_stkoff[sk] = lv_ann
+        if not ann_by_name and not ann_by_stkoff:
             lvar_fail += len(lvars_ann)
             continue
 
@@ -1148,26 +1152,39 @@ def apply_annotations():
         modified = False
         for lvar in list(cfunc.lvars):
             ann = ann_by_name.get(lvar.name)
+            if ann is None and ann_by_stkoff:
+                try:
+                    if lvar.is_stk_var():
+                        soff = lvar.get_stkoff()
+                        ann = ann_by_stkoff.get(soff)
+                except:
+                    pass
             if ann is None:
                 continue
             new_name = ann.get("name")
             if new_name and lvar.name != new_name:
                 lvar.name = new_name
                 modified = True
+            new_type = ann.get("type")
+            if new_type:
+                tif = ida_typeinf.tinfo_t()
+                if ida_typeinf.parse_decl(tif, None, new_type, 0) is None:
+                    if tif.get_size() not in (0, 0xFFFFFFFFFFFFFFFF):
+                        try:
+                            lvar.set_lvar_type(tif)
+                            modified = True
+                        except:
+                            pass
             lvar_ok += 1
 
         if modified:
             try:
                 uvec = ida_hexrays.lvar_uservec_t()
                 uvec.lvvec = ida_hexrays.lvar_saved_infos_t()
-                for lv in list(cfunc.lvars):
+                for lv in cfunc.lvars:
                     si = ida_hexrays.lvar_saved_info_t()
                     ll = ida_hexrays.lvar_locator_t()
                     ll.defea = cfunc.entry_ea
-                    try:
-                        ll.location = lv.location
-                    except:
-                        ll.location = None
                     si.ll = ll
                     si.name = lv.name
                     uvec.lvvec.push_back(si)

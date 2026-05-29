@@ -246,17 +246,13 @@ def main():
                     log("[!] SKIP 0x%08X %s: decompile returned None" % (ea, name[:50]))
                     continue
 
-                # Restore user lvar settings (match by location)
+                # Restore user lvar settings (index-based: deterministic order)
                 try:
                     lvinf = ida_hexrays.lvar_uservec_t()
                     ida_hexrays.restore_user_lvar_settings(lvinf, ea)
-                    if lvinf.lvvec.size() > 0:
-                        for lv in cfunc.lvars:
-                            for i in range(lvinf.lvvec.size()):
-                                si = lvinf.lvvec[i]
-                                if si.name and si.ll.location == lv.location:
-                                    lv.name = si.name
-                                    break
+                    for i, lv in enumerate(cfunc.lvars):
+                        if i < lvinf.lvvec.size() and lvinf.lvvec[i].name:
+                            lv.name = lvinf.lvvec[i].name
                 except:
                     pass
 
