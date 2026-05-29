@@ -718,16 +718,25 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     except:
         pass
 
+    import sys
     if pdb_class and pdb_class.get('bases'):
         for b in pdb_class['bases']:
             bname = b['name']
             if '<' in bname:
-                # Template base: use annotation's concrete struct → template expression
-                if _ann_base and _ann_base in template_map:
-                    base_names.append(template_map[_ann_base])
+                base_tpl = bname.split('<')[0]
+                matched = None
+                for _cname, _tinfo in template_map.items():
+                    if _cname.startswith(base_tpl + '_') and _cname.endswith('_' + cls_name):
+                        matched = _tinfo
+                        break
+                if matched:
+                    base_names.append(matched)
                     continue
-                bname = bname.split('<')[0]
+                bname = base_tpl
             base_names.append(bname)
+
+    if not base_names:
+        print(f'  [debug] no PDB bases, fallback to _ann_base={_ann_base}', file=sys.stderr)
 
     if not base_names and _ann_base:
         if isinstance(_ann_base, list):
@@ -1165,6 +1174,20 @@ def main():
         else:
             ida_items = [(s.get('name', ''), s) for s in ida_data.get('structs', [])]
 
+        # Save original PDB bases before IDA override
+        _pdb_bases_cache = {}
+        for sname, s in ida_items:
+            ssize = s.get('size', 0)
+            if not sname or ssize <= 1 or should_skip_class(sname):
+                continue
+            if '$' in sname or ':' in sname or '?' in sname or '<' in sname:
+                continue
+            if not sname[0].isalpha() and sname[0] != '_':
+                continue
+            # Save PDB bases before IDA overwrites
+            if sname in pdb_classes and pdb_classes[sname].get('bases'):
+                _pdb_bases_cache[sname] = pdb_classes[sname]['bases']
+
         for sname, s in ida_items:
             ssize = s.get('size', 0)
             if not sname or ssize <= 1 or should_skip_class(sname):
@@ -1174,8 +1197,14 @@ def main():
             if not sname[0].isalpha() and sname[0] != '_':
                 continue
 
-            # IDB always overrides PDB — IDB = PDB + annotation + gbengine merged
-            pdb_classes[sname] = s
+            if s.get('bases'):
+                pdb_classes[sname] = s
+            else:
+                merged = dict(s)
+                # Restore PDB bases for inheritance
+                if sname in _pdb_bases_cache:
+                    merged['bases'] = _pdb_bases_cache[sname]
+                pdb_classes[sname] = merged
             ida_override_count += 1
 
         print("  IDA struct overrides: %d (IDB is authoritative)" % ida_override_count)
