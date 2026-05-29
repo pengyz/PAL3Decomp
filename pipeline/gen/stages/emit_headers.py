@@ -694,31 +694,46 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
         lines.append("")
 
     # Class declaration with inheritance
-    # Source 1: PDB base_classes
-    # Source 2: annotations.json base_class field (fallback when PDB is empty)
+    # Source 1: PDB base_classes (supports MI, with template reverse-mapping)
+    # Source 2: annotations.json base_class field (fallback)
     bases_str = ""
     base_names = []
+
+    # Load template reverse map: concrete_name → template_expression
+    template_map = {}
+    _tpl_path = os.path.join(os.path.dirname(__file__), '..', '..', '..',
+                             'data', 'annotations', 'template_bases.json')
+    if os.path.exists(_tpl_path):
+        with open(_tpl_path) as _f:
+            _tpl_data = json.load(_f)
+        for _k, _v in _tpl_data.items():
+            if not _k.startswith('_'):
+                template_map[_k] = _v['template']
+
+    # Load annotation base_class (needed for template reverse lookup)
+    _ann_base = None
+    try:
+        _ann_data = load_annotations_data()
+        _ann_base = _ann_data.get('structs', {}).get(cls_name, {}).get('base_class')
+    except:
+        pass
+
     if pdb_class and pdb_class.get('bases'):
         for b in pdb_class['bases']:
             bname = b['name']
             if '<' in bname:
+                # Template base: use annotation's concrete struct → template expression
+                if _ann_base and _ann_base in template_map:
+                    base_names.append(template_map[_ann_base])
+                    continue
                 bname = bname.split('<')[0]
             base_names.append(bname)
 
-    if not base_names:
-        # Fallback: read from annotations.json
-        try:
-            ann_data = load_annotations_data()
-            ann_struct = ann_data.get('structs', {}).get(cls_name, {})
-            base = ann_struct.get('base_class')
-            if base:
-                # Handle both single base (string) and multiple bases (list)
-                if isinstance(base, list):
-                    base_names.extend(base)
-                else:
-                    base_names.append(base)
-        except:
-            pass
+    if not base_names and _ann_base:
+        if isinstance(_ann_base, list):
+            base_names.extend(_ann_base)
+        else:
+            base_names.append(_ann_base)
 
     if base_names:
         bases_str = " : " + ", ".join("public %s" % b for b in base_names)

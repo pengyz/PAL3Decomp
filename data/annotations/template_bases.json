@@ -1,0 +1,89 @@
+{
+  "_description": "Template base class instantiations for IDA import + codegen reverse mapping",
+  "_notes": [
+    "All 18 CEff* classes share CTaskTpl<tagEffTaskParam, mem_func_ptr> with identical layout",
+    "Each has unique member function pointer type → separate concrete struct per class",
+    "For codegen reverse mapping, concrete_name → template_expression"
+  ],
+
+  "CTaskTpl_tagEffTaskParam_CEffAction": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffAction::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffAudio": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffAudio::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffBink": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffBink::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffCallBack": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffCallBack::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffCamera": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffCamera::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffCustomShape": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffCustomShape::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffCylinder": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffCylinder::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffExplosive": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffExplosive::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffgbParticle": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffGrid": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffGrid::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffMeteor": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffMeteor::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffModel": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffModel::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffSParticle": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffSParticle::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffQuad": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffQuad::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffTime": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffTime::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffShock": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffShock::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffQuake": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffQuake::*)(unsigned long)>",
+    "size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffTemplate": {
+    "template": "CTaskTpl<tagEffTaskParam, unsigned long (__thiscall CEffTemplate::*)(unsigned long)>",
+    "size": 36
+  },
+  "TaskMgr_SceneObjParam_SceneObj": {
+    "template": "TaskMgr<SceneObjParam, unsigned long (__thiscall SceneObj::*)(unsigned long)>",
+    "size": 40
+  },
+  "gbSingleton_gbGfxManager": {
+    "template": "gbSingleton<gbGfxManager>",
+    "size": 8
+  }
+}
