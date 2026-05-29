@@ -455,7 +455,7 @@ gbVolumeModifier::gbVolumeModifier() {
 gbVolumeModifier::~gbVolumeModifier() {
 }
 
-float gbVolumeModifier::GetEffectOnPoint(const gbVec3D* point, int useAttenuation) {
+float gbVolumeModifier::GetEffectOnPoint(const gbVec3D& point, int useAttenuation) {
     return 0.0f;
 }
 

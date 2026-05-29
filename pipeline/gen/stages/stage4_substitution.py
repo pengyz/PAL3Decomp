@@ -372,7 +372,7 @@ def _apply_text_substitutions(code, ctx):
     # Strip _misattrib_ prefix from type casts and references
     # (misattrib functions are grouped under their base class name in codegen,
     #  but Hex-Rays output still references the _misattrib_ prefix in casts)
-    code = re.sub(r'_misattrib_(\w+)', r'\1', code)
+    code = re.sub(r'_?misattrib_(\w+)', r'\1', code)
 
     # IDA type aliases → standard C
     code = code.replace('unsigned __int8', 'unsigned char')
@@ -389,6 +389,15 @@ def _apply_text_substitutions(code, ctx):
     code = re.sub(r'(\b\d+)(?:uLL|LL|ui64|i64)\b', r'\1', code)
 
     code = code.replace('(_ThrowInfo *)', '(_s__ThrowInfo *)')
+
+    # Strip __ovl_XXXX suffix from method call references to match header declarations
+    # (emit_headers.py strips this suffix; body code from IDA still has full names)
+    # Pattern 1: ClassName::method__ovl_XXXX(args) — function call
+    code = re.sub(r'(::)(\w+)__ovl_[0-9a-fA-F]+(\s*\()', r'\1\2\3', code)
+    # Pattern 2: ->method__ovl_XXXX(args) — method call via pointer
+    code = re.sub(r'(->)(\w+)__ovl_[0-9a-fA-F]+(\s*\()', r'\1\2\3', code)
+    # Pattern 3: ::method__ovl_XXXX; — function pointer address (no parens)
+    code = re.sub(r'(::)(\w+)__ovl_[0-9a-fA-F]+(\s*[;,)])', r'\1\2\3', code)
 
     # Hex-Rays raw offset access: &this->0 means "address of member at offset 0" = this
     # this->0 standalone means "value of first DWORD" = *(_DWORD*)this

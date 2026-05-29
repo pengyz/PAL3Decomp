@@ -142,7 +142,7 @@ struct gbRotMatrix {
     bool const IsOrthonormal();
     bool const IsValid();
     void LoadIdentity();
-    void Rotate(struct gbVec3D & p0, struct gbVec3D & p1);
+    void Rotate(struct gbVec3D * p0, struct gbVec3D * p1);
 };
 
 struct gbQuaternion {

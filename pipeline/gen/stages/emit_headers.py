@@ -356,6 +356,7 @@ def collect_methods():
                     break
             if not collides:
                 method = ovl_stripped
+        classes[cls].append((method, sig, addr))
         seen_addrs.add(addr)
 
     # Secondary source: functions.json (for functions not exported by IDA)
@@ -375,19 +376,19 @@ def collect_methods():
             if should_skip_class(cls) or '`' in method or ' ' in method or '?' in method:
                 continue
             addr = addr_str
-        # Strip __ovl_XXXX only when it forms a valid overload (different params)
-        ovl_stripped = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
-        if ovl_stripped != method:
-            def _params(s):
-                p = re.sub(r'^.*?__thiscall\([^,]*,\s*', '', s)
-                p = re.sub(r'^.*?__thiscall\(', '', p)
-                return re.sub(r'\)\s*$', '', p).strip()
-            collides = any(
-                existing_method == ovl_stripped and _params(existing_sig) == _params(sig)
-                for existing_method, existing_sig, _ in classes.get(cls, []))
-            if not collides:
-                method = ovl_stripped
-        classes[cls].append((method, sig, addr))
+            # Strip __ovl_XXXX only when it forms a valid overload (different params)
+            ovl_stripped = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
+            if ovl_stripped != method:
+                def _params(s):
+                    p = re.sub(r'^.*?__thiscall\([^,]*,\s*', '', s)
+                    p = re.sub(r'^.*?__thiscall\(', '', p)
+                    return re.sub(r'\)\s*$', '', p).strip()
+                collides = any(
+                    existing_method == ovl_stripped and _params(existing_sig) == _params(sig)
+                    for existing_method, existing_sig, _ in classes.get(cls, []))
+                if not collides:
+                    method = ovl_stripped
+            classes[cls].append((method, sig, addr))
 
     return classes
 
@@ -730,7 +731,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                         matched = _tinfo
                         break
                 if matched:
-                    base_names.append(matched)
+                    # Use concrete struct name (PDB template instance) instead
+                    # of C++ template expression — VC6 can't handle member
+                    # function pointers in template args.
+                    base_names.append(_cname)
                     continue
                 bname = base_tpl
             base_names.append(bname)

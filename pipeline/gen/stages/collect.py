@@ -186,6 +186,19 @@ def collect_functions(decomp_dir=None):
                 # Also strip _misattrib_ references in function body
                 code = code.replace('_misattrib_' + cls + '::', cls + '::')
                 code = code.replace('misattrib_' + cls + '::', cls + '::')
+
+            # Strip __ovl_XXXX suffix to match header declaration (emit_headers.py does the same)
+            ovl_stripped = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
+            if ovl_stripped != method:
+                collides = False
+                for existing in by_class.get(cls, []):
+                    if existing['method'] == ovl_stripped:
+                        if existing.get('sig') == sig:
+                            collides = True
+                            break
+                if not collides:
+                    method = ovl_stripped
+
             by_class[cls].append({
                 'name': '%s::%s' % (cls, method),
                 'method': method,

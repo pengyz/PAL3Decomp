@@ -845,12 +845,6 @@
     "name": "UIListBox::UIListBox",
     "signature": "int *__thiscall(UIListBox *this)"
   },
-  "0x0043DCF0": {
-    "name": "UIListBox::_scalar_dtor",
-    "signature": "UIWnd *__thiscall(UIListBox *Block, char pData)",
-    "type": "skip",
-    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-  },
   "0x0043DD10": {
     "name": "UIListBox::~UIListBox",
     "signature": "void __thiscall(UIListBox *this)"
@@ -1436,10 +1430,6 @@
     "name": "CEffCylinder::ProcInitTask",
     "signature": "void __thiscall(CEffCylinder *this, int *dwParam)"
   },
-  "0x004C4B00": {
-    "name": "CEffCylinder::ProcCommonTask__ovl_4b00",
-    "signature": "int __thiscall(CEffCylinder *this, unsigned int dwParam)"
-  },
   "0x004C5010": {
     "name": "CEffCylinder::GetEditorTaskDescription",
     "signature": "const char *__thiscall(CEffCylinder *this, int nIndex)"
@@ -1544,10 +1534,6 @@
   "0x004C7450": {
     "name": "CEffect::FillQuadByPartical",
     "signature": "void __thiscall(CEffect *this, int *nParticalIndex)"
-  },
-  "0x004C7680": {
-    "name": "CEffCylinder::ProcCommonTask__ovl_0",
-    "signature": "int __thiscall(CEffCylinder *this, unsigned int _94)"
   },
   "0x004C7A70": {
     "name": "CEffgbParticle::GetEditorTaskDescription__ovl_7a70",
@@ -4387,7 +4373,7 @@
     "signature": "CHAR *__thiscall(_Texture_Info *this, LPCSTR lpString)"
   },
   "0x0053FDD0": {
-    "name": "_TextureLib_Data::Parent_Data",
+    "name": "_TextureLib_Data::CreateParentData",
     "signature": "Parent_Data *__thiscall(_TextureLib_Data *this, LPCSTR lpString)"
   },
   "0x0053FE80": {
@@ -5204,12 +5190,6 @@
   "0x004A2F90": {
     "name": "ComposeUI::FindChild",
     "signature": "UIWnd *__thiscall(ComposeUI *this, int id)"
-  },
-  "0x00445B20": {
-    "name": "UIWnd::_scalar_dtor__ovl_5b20",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)",
-    "type": "skip",
-    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00512500": {
     "name": "CCBSystem::CCBSystem",
@@ -7245,12 +7225,6 @@
     "name": "UIScene::Update_b900",
     "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)"
   },
-  "0x0043BB90": {
-    "name": "UIWnd::_scalar_dtor",
-    "signature": "UIWnd *__thiscall UIWnd::ScalarDtor(UIWnd *this, char flags)",
-    "type": "skip",
-    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-  },
   "0x0043BBC0": {
     "name": "UIFrameWnd::Update_bbc0",
     "signature": "BOOL __thiscall(UIFrameWnd *this, int nVal, int nVal2)"
@@ -7640,12 +7614,6 @@
     "name": "CCBUIPanel::ProcessInputIfUnlocked",
     "signature": "BOOL __thiscall CCBUIPanel::ProcessInputIfUnlocked(CCBUIPanel *this, int nVal, int nVal2)"
   },
-  "0x00454980": {
-    "name": "CScreenMode::_scalar_dtor",
-    "signature": "void *__thiscall(UIWnd *Block, char pData)",
-    "type": "skip",
-    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-  },
   "0x004549A0": {
     "name": "ChoseCompose::DestroyScene",
     "signature": "void __thiscall ChoseCompose::DestroyScene(ChoseCompose *this)"
@@ -7756,12 +7724,6 @@
   "0x0046B040": {
     "name": "SaleUI::ProcessCellAnimations",
     "signature": "int __thiscall SaleUI::ProcessCellAnimations(SaleUI *this, int deltatime, int haveinput)"
-  },
-  "0x0046D4C0": {
-    "name": "UIListBox::_scalar_dtor__ovl_d4c0",
-    "signature": "void __thiscall UIListBox::_scalar_dtor__ovl_d4c0(UIListBox *this)",
-    "type": "skip",
-    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x0046ECC0": {
     "name": "PropUI::DisplayItemInfo",
@@ -7886,12 +7848,6 @@
   "0x00482BB0": {
     "name": "LineupUI::ShowPage",
     "signature": "int __thiscall LineupUI::ShowPage(LineupUI *this)"
-  },
-  "0x00483260": {
-    "name": "CScreenMode::_scalar_dtor__ovl_3260",
-    "signature": "void __thiscall CScreenMode::_scalar_dtor__ovl_3260(CScreenMode *this)",
-    "type": "skip",
-    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00483300": {
     "name": "UILoadingFrm::DestroyFrames",
@@ -8170,12 +8126,12 @@
     "signature": "int __thiscall UISceneMap::ShowPage(UISceneMap *this)"
   },
   "0x004B4FE0": {
-    "name": "TextureLib_Data::AutoScrollParticles",
-    "signature": "__int64 __thiscall TextureLib_Data::AutoScrollParticles(TextureLib_Data *this, char *pszBuf, int nVal, TextureLib_Data *p_TextureLib_Data, int nVal2)"
+    "name": "_TextureLib_Data::AutoScrollParticles",
+    "signature": "__int64 __thiscall TextureLib_Data::AutoScrollParticles(_TextureLib_Data *this, char *pszBuf, int nVal, TextureLib_Data *p_TextureLib_Data, int nVal2)"
   },
   "0x004B51A0": {
-    "name": "TextureLib_Data::AutoScrollParticlesEx",
-    "signature": "__int64 __thiscall TextureLib_Data::AutoScrollParticlesEx(TextureLib_Data *this, char *pszBuf, TextureLib_Data *p_TextureLib_Data, int nVal, int nVal2)"
+    "name": "_TextureLib_Data::AutoScrollParticlesEx",
+    "signature": "__int64 __thiscall TextureLib_Data::AutoScrollParticlesEx(_TextureLib_Data *this, char *pszBuf, TextureLib_Data *p_TextureLib_Data, int nVal, int nVal2)"
   },
   "0x004B5380": {
     "name": "_TextureLib_Data::UpdateCircularMotion",
@@ -8900,12 +8856,6 @@
     "name": "_misattrib_CCBUI::PlayResultSound",
     "signature": "void __thiscall _misattrib_CCBUI::PlayResultSound(CCBUI *this)",
     "_misattrib_evidence": "max_offset=101028>class_size=2632"
-  },
-  "0x005279D0": {
-    "name": "UIListBox::_scalar_dtor__ovl_79d0",
-    "signature": "void __thiscall UIListBox::_scalar_dtor__ovl_79d0(UIListBox *this)",
-    "type": "skip",
-    "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00527CD0": {
     "name": "UISceneMap::Render_527cd0",
@@ -10654,10 +10604,6 @@
   "0x00451900": {
     "name": "UIListBox::DestroyContent",
     "signature": "void __fastcall UIListBox::DestroyContent(UIWnd *pWnd)"
-  },
-  "0x00451AA0": {
-    "name": "UIListBox::OnMessage__ovl_1aa0",
-    "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00451B40": {
     "name": "UIListBox::ResizeToContent",
@@ -12479,10 +12425,6 @@
   "0x004F6A60": {
     "name": "PAL_GDB::IsRoleDead",
     "signature": "bool __thiscall PAL_GDB::IsRoleDead(PAL_GDB *this, int nRoleId)"
-  },
-  "0x004F6A80": {
-    "name": "PAL_GDB::IsRoleAlive__ovl_6a80",
-    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
   },
   "0x004F6AB0": {
     "name": "PAL_GDB::IsItemConsumed",

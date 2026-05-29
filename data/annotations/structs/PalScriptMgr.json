@@ -42,9 +42,9 @@
       "source": "binary:raw_29votes"
     },
     "56": {
-      "name": "_todo_038",
-      "type": "float",
-      "source": "binary:raw_14votes"
+      "name": "m_nFrameCounter",
+      "type": "int",
+      "source": "binary:raw_14votes | decomp:counter_in_SetPauseState_ExecuteBlock"
     },
     "60": {
       "name": "m_fField3C",
@@ -52,19 +52,19 @@
       "source": "binary:raw_12votes"
     },
     "64": {
-      "name": "_todo_040",
+      "name": "m_pBigMapSce",
       "type": "scSCEFile *",
-      "source": "A:decomp LODWORD(this->m_fField40)=this->m_scesys where m_scesys is scSCEFile*"
+      "source": "A:decomp LODWORD(this->m_fField40)=this->m_scesys where m_scesys is scSCEFile* | decomp:assigned_from_m_scesys_and_m_nSavedDataB"
     },
     "68": {
-      "name": "_todo_044",
+      "name": "m_fField44",
       "type": "float",
-      "source": "binary:raw_14votes"
+      "source": "binary:raw_14votes | decomp:Normalize_called_on_this_field"
     },
     "72": {
-      "name": "_todo_048",
+      "name": "m_fPosZ",
       "type": "float",
-      "source": "binary:raw_18votes"
+      "source": "binary:raw_18votes | decomp:used_as_Z_coord_in_ExecuteBlock"
     },
     "84": {
       "name": "_todo_054",
@@ -77,9 +77,9 @@
       "source": "binary:raw_5votes"
     },
     "92": {
-      "name": "m_nField5C",
-      "type": "int",
-      "source": "binary:raw_7votes"
+      "name": "m_pExecSystem",
+      "type": "void *",
+      "source": "binary:raw_7votes | fix:int_to_ptr"
     },
     "52": {
       "name": "m_Sub_0034",
@@ -227,9 +227,9 @@
       "source": "binary:2x access | annotate_todo"
     },
     "832": {
-      "name": "m_fScriptCamX",
-      "type": "float",
-      "source": "ida_decomp:ExecuteOpcode v64.x = this, 13 refs"
+      "name": "m_nScriptCamX",
+      "type": "int",
+      "source": "fix:decomp_LODWORD_only_no_fpu"
     },
     "840": {
       "name": "m_pScriptBlock",
@@ -257,9 +257,9 @@
       "source": "ida_decomp:ExecuteOpcode if(this), this-1, 21 refs"
     },
     "884": {
-      "name": "m_nScriptResult",
-      "type": "int",
-      "source": "ida_decomp:ExecuteOpcode = Destroy(v2+64), 12 refs"
+      "name": "m_pClearResult",
+      "type": "void *",
+      "source": "ida_decomp:ExecuteOpcode = Destroy(v2+64), 12 refs | fix:int_to_ptr"
     },
     "3284": {
       "name": "_field_CD4",
@@ -377,9 +377,9 @@
       "source": "ida_decomp:ExecuteOpcode _sub_42FCC0(this), 12 refs+codegen_infer"
     },
     "836": {
-      "name": "m_fScriptCamY",
-      "type": "float",
-      "source": "ida_decomp:ExecuteOpcode v64.y = this, compared, 4 refs"
+      "name": "m_nScriptCamY",
+      "type": "int",
+      "source": "fix:decomp_LODWORD_only_no_fpu"
     },
     "880": {
       "name": "m_fDirNeg",

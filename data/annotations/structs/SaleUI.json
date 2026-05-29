@@ -33,7 +33,7 @@
     },
     "18100": {
       "name": "m_sort",
-      "type": "SaleUI::SortData[299][5]",
+      "type": "SaleUI_SortData[299][5]",
       "source": "PDB_verified"
     },
     "30060": {
@@ -359,7 +359,7 @@
     "110072": {
       "name": "m_sortstate",
       "type": "int",
-      "source": "PDB_verified"
+      "source": "PDB_verified | fix:rename_from_m_sortstate_to_match_decomp | reverted_from_m_sort"
     },
     "110076": {
       "name": "m_ButtonRc",
