@@ -220,21 +220,38 @@ def check():
         else:
             # Check member overlap (using known struct sizes) - structs only
             sorted_m = sorted(members.items(), key=lambda x: int(x[0]))
+            max_extent = 0
             for i in range(len(sorted_m) - 1):
                 off1 = int(sorted_m[i][0])
                 m1 = sorted_m[i][1]
                 off2 = int(sorted_m[i + 1][0])
                 size1 = _estimate_member_size(m1.get('type', 'int'), structs)
-                if off1 + size1 > off2:
+                end1 = off1 + size1
+                if end1 > off2:
                     msg = (f"structs[{sname}]: member overlap: "
                            f"{m1.get('name')}({m1.get('type')}, size={size1})@{off1} "
-                           f"ends@{off1+size1} > next {sorted_m[i+1][1].get('name')}@{off2}")
+                           f"ends@{end1} > next {sorted_m[i+1][1].get('name')}@{off2}")
                     KNOWN_FIXED_SIZES = {'gbVec3D', 'gbMatrix', 'tagRECT', 'RECT'}
                     mtype_clean = m1.get('type', '').replace('struct ', '').replace('class ', '').strip()
                     if mtype_clean in structs or mtype_clean in KNOWN_FIXED_SIZES:
                         errors.append(msg)
                     else:
                         warnings.append(msg + " (type size estimated)")
+                if end1 > max_extent:
+                    max_extent = end1
+            # Check last member extent vs binary_size
+            if sorted_m:
+                last_off = int(sorted_m[-1][0])
+                last_m = sorted_m[-1][1]
+                last_sz = _estimate_member_size(last_m.get('type', 'int'), structs)
+                last_end = last_off + last_sz
+                if last_end > max_extent:
+                    max_extent = last_end
+                binary_sz = sinfo.get('binary_size', 0)
+                if binary_sz and max_extent > binary_sz:
+                    errors.append(
+                        f"structs[{sname}]: members extend to +{max_extent} but binary_size={binary_sz} "
+                        f"(gap={binary_sz - max_extent})")
 
         # Check base_class exists (structs only - unions checked above)
         if not is_union:

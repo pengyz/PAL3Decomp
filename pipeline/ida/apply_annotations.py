@@ -317,40 +317,14 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
 
     if not result_tinfo.create_udt(udt, udt_flag):
-        return (False, "create_udt() returned False")
+        return (False, "TAUDT_FIXED create_udt() returned False for %s" % name)
 
     actual_size = result_tinfo.get_size()
     if actual_size == 0xFFFFFFFFFFFFFFFF:
-        # TAUDT_FIXED may fail for some structs in IDA 9.1 (e.g. Comp_DonateUI).
-        # Fall back to build_struct_decl + parse_decls approach.
-        log("[*] create_udt TAUDT_FIXED failed for %s, trying parse_decls fallback..." % name)
-        decl = build_struct_decl(name, struct_info, all_structs, vtables)
-        if decl:
-            idc.parse_decls(decl, 0)
-            fallback = ida_typeinf.tinfo_t()
-            if fallback.get_named_type(til, name):
-                fb_size = fallback.get_size()
-                if fb_size and fb_size != 0xFFFFFFFFFFFFFFFF:
-                    log("[*] parse_decls fallback OK for %s (size=%d vs expected %d)" % (name, fb_size, binary_size))
-                    # Verify member offsets match annotation
-                    try:
-                        udt_check = ida_typeinf.udt_type_data_t()
-                        if fallback.get_udt(udt_check):
-                            for i in range(udt_check.size()):
-                                mi = udt_check[i]
-                                off_bytes = mi.offset // 8
-                                if mi.name:
-                                    ann_off = None
-                                    for off_str, minfo in members.items():
-                                        if minfo["name"] == mi.name:
-                                            ann_off = int(off_str.split('_')[0])
-                                            break
-                                    if ann_off is not None and off_bytes != ann_off:
-                                        log("[!] OFFSET MISMATCH in %s: %s @+%d (ann: +%d)" % (name, mi.name, off_bytes, ann_off))
-                    except AttributeError:
-                        pass  # get_udt not available in this IDA version
-                    return (True, None)
-        return (False, "TAUDT_FIXED create_udt failed (size=-1), parse_decls fallback also failed")
+        return (False, "TAUDT_FIXED create_udt produced INVALID type for %s (size=-1). "
+                "Check: base_class '%s' correct size in TIL? All member types resolvable? "
+                "Struct has %d members, total annotation size=%d." % (
+                    name, base_class or '(none)', len(members), binary_size))
     if actual_size != binary_size:
         return (False, "size mismatch: expected %d, got %d (member type size wrong?)" % (
             binary_size, actual_size))
@@ -928,9 +902,9 @@ def apply_annotations():
         sig_raw = sig_raw.replace("(string *", "(std::string *")  # string → std::string
         sig_raw = sig_raw.replace(", string *", ", std::string *")
         sig_raw = sig_raw.replace(" string *", " std::string *")
-        # Fix format issues
+        # Fix format issues: int__cdecl → int __cdecl (but NOT Render__ovl → Render __ovl)
         import re as _re_format
-        sig_raw = _re_format.sub(r'(\w)__', r'\1 __', sig_raw)  # int__cdecl → int __cdecl
+        sig_raw = _re_format.sub(r'(\w)__(cdecl|thiscall|stdcall|fastcall)\b', r'\1 __\2', sig_raw)
         paren_idx = sig_raw.find("(")
         if paren_idx > 0:
             # Extract a valid C identifier for the function name
@@ -1148,9 +1122,17 @@ def apply_annotations():
             continue
         addr = int(addr_str, 16)
         lvar_total += len(lvars_ann)
-
         func = ida_funcs.get_func(addr)
         if not func:
+            lvar_fail += len(lvars_ann)
+            continue
+
+        ann_by_name = {}
+        for lv_ann in lvars_ann:
+            fn = lv_ann.get("from_name")
+            if fn is not None:
+                ann_by_name[fn] = lv_ann
+        if not ann_by_name:
             lvar_fail += len(lvars_ann)
             continue
 
@@ -1159,60 +1141,33 @@ def apply_annotations():
         except:
             lvar_fail += len(lvars_ann)
             continue
-
         if not cfunc:
             lvar_fail += len(lvars_ann)
             continue
 
-        ann_by_stkoff = {}
-        ann_by_name = {}
-        for lv_ann in lvars_ann:
-            stkoff = lv_ann.get("stack_offset")
-            if stkoff is not None:
-                ann_by_stkoff[stkoff] = lv_ann
-            from_name = lv_ann.get("from_name")
-            if from_name is not None:
-                ann_by_name[from_name] = lv_ann
-
         modified = False
-        lvars = cfunc.lvars
-        for lvar in lvars:
-            loc = lvar.location
-            ann = None
-            from_name = ann_by_name.get(lvar.name)
-            if from_name is not None:
-                ann = from_name
-            elif loc.is_stkoff():
-                soff = loc.stkoff()
-                ann = ann_by_stkoff.get(soff)
-
+        for lvar in list(cfunc.lvars):
+            ann = ann_by_name.get(lvar.name)
             if ann is None:
                 continue
-
             new_name = ann.get("name")
-            new_type = ann.get("type")
-
             if new_name and lvar.name != new_name:
                 lvar.name = new_name
                 modified = True
-
-            if new_type:
-                tif = ida_typeinf.tinfo_t()
-                if ida_typeinf.parse_decl(tif, None, new_type + ";", 0):
-                    lvar.set_lvar_type(tif)
-                    modified = True
-
             lvar_ok += 1
 
         if modified:
             try:
                 uvec = ida_hexrays.lvar_uservec_t()
                 uvec.lvvec = ida_hexrays.lvar_saved_infos_t()
-                for lv in cfunc.lvars:
+                for lv in list(cfunc.lvars):
                     si = ida_hexrays.lvar_saved_info_t()
                     ll = ida_hexrays.lvar_locator_t()
-                    ll.location = lv.location
                     ll.defea = cfunc.entry_ea
+                    try:
+                        ll.location = lv.location
+                    except:
+                        ll.location = None
                     si.ll = ll
                     si.name = lv.name
                     uvec.lvvec.push_back(si)

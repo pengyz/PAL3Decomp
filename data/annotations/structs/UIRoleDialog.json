@@ -29,36 +29,12 @@
     },
     "696": {
       "name": "timeclose",
-      "type": "UIStatic",
-      "source": "PAL3patch_verified"
-    },
-    "848": {
-      "name": "timeprogress",
-      "type": "UIProgressBar",
-      "source": "PAL3patch_verified"
-    },
-    "1092": {
-      "name": "gapX",
-      "type": "int",
-      "source": "PAL3patch_verified"
-    },
-    "1096": {
-      "name": "m_mode",
-      "type": "int",
-      "source": "PAL3patch_verified"
-    },
-    "1100": {
-      "name": "m_time",
-      "type": "float",
-      "source": "PAL3patch_verified"
-    },
-    "1104": {
-      "name": "m_sel",
-      "type": "int",
-      "source": "PAL3patch_verified"
+      "type": "char[24]",
+      "source": "PAL3patch_verified | fix:truncated_UIStatic_to_char24_binary_size_720"
     }
   },
   "base_class": "UIDialog",
   "base_size": 72,
-  "binary_size": 720
+  "binary_size": 720,
+  "source": "reverted:binary_size_back_to_720_binary_confirms_operator_new_720"
 }

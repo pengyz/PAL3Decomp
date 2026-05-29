@@ -6490,10 +6490,6 @@
     "name": "UIWnd::RenderRoleAvatar",
     "signature": "void __thiscall(UIWnd *this, int *pnVal, int nRoleIndex)"
   },
-  "0x00456200": {
-    "name": "TaskBookUI::_todo_456200",
-    "signature": "void __thiscall TaskBookUI::_todo_456200(void)"
-  },
   "0x0045A4F0": {
     "name": "UISceneFrm::HandleSceneTransition",
     "signature": "int __thiscall UISceneFrm::HandleSceneTransition(UISceneFrm *this, struct PalScript *p, int nVal)"
@@ -6616,10 +6612,6 @@
   "0x00535930": {
     "name": "UISceneMap::LoadOverlayTexture",
     "signature": "struct gbVFileSystem *__thiscall(UISceneMap *this, double thisa, int nVal)"
-  },
-  "0x005359B0": {
-    "name": "_nearby_5359B0",
-    "signature": "void __thiscall _nearby_5359B0(void)"
   },
   "0x00535E70": {
     "name": "UIAnimateCtrlEX::NormalizeVector",
@@ -9476,10 +9468,6 @@
     "name": "RoleSystem::SetAnimFrame",
     "signature": "void __thiscall(RoleSystem *this)"
   },
-  "0x00422550": {
-    "name": "ScriptSystemData_thunk_422550",
-    "signature": "void __thiscall ScriptSystemData_thunk_422550(void)"
-  },
   "0x00422740": {
     "name": "RoleSystem::ResetGlobalPos",
     "signature": "void __thiscall(RoleSystem *this)"
@@ -9646,7 +9634,7 @@
   },
   "0x00434D20": {
     "name": "PalScriptMgr::IsBlendComplete",
-    "signature": "BOOL __thiscall(PalScriptMgrMgr *this)"
+    "signature": "BOOL __thiscall(PalScriptMgr *this)"
   },
   "0x00434D40": {
     "name": "PalScriptMgr::AccumulateTime",
@@ -10523,10 +10511,6 @@
   "0x0044E9F0": {
     "name": "UIWnd::LayoutProjectCoords",
     "signature": "void __thiscall UIWnd::LayoutProjectCoords(UIWnd *this)"
-  },
-  "0x0044ED70": {
-    "name": "UISceneMap_thunk_44ED70",
-    "signature": "void __thiscall UISceneMap_thunk_44ED70(void)"
   },
   "0x00450230": {
     "name": "UISceneMap::Render",
@@ -12056,7 +12040,14 @@
   },
   "0x004CDCA0": {
     "name": "CEffMgr::CreateEffect",
-    "signature": "int __thiscall(CEffMgr *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5)"
+    "signature": "int __thiscall(CEffMgr *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5)",
+    "local_vars": [
+      {
+        "from_name": "v14",
+        "name": "pEffObj",
+        "type": "tagEffObj *"
+      }
+    ]
   },
   "0x004CDFD0": {
     "name": "CEffMgr::FindEffSlot",
@@ -13866,7 +13857,7 @@
   },
   "0x004C5DE0": {
     "name": "CEffectSystem::ReleaseParticle",
-    "signature": "void __thiscall(CEffectSystemSystem *this)"
+    "signature": "void __thiscall(CEffectSystem *this)"
   },
   "0x004D01C0": {
     "name": "CEffModel::RenderScenePass",
@@ -14089,7 +14080,7 @@
   },
   "0x0052F6C0": {
     "name": "OBBox::GetBBox",
-    "signature": "OBBox *__thiscall(OBBox *this)"
+    "signature": "struct OBBox *__thiscall(struct OBBox *this)"
   },
   "0x0040F4B0": {
     "name": "RefreshPartyRoleData",
