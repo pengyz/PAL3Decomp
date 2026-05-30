@@ -1,0 +1,49 @@
+{
+  "_description": "Field offset overrides for structs where TAUDT_FIXED cannot create the struct (too large, too sparse).",
+  "_notes": [
+    "These offsets have binary evidence from function analysis.",
+    "Codegen uses this to rewrite (char*)this + N -> this->field.",
+    "Does NOT use TAUDT_FIXED — bypasses IDA struct creation limits."
+  ],
+  "MainPropUI": {
+    "class_hint": "Struct that embeds RenderTarget at offset 0. RenderTarget::OnRender operates on this struct.",
+    "binary_size": 250000,
+    "fields": {
+      "205772": "m_cursorRender",
+      "208524": "m_byteArray",
+      "208980": "m_captionEnable",
+      "211992": "m_captionLabel",
+      "212144": "m_captionValue",
+      "217324": "m_cameraPanel",
+      "237060": "m_npcList",
+      "239812": "m_uiListBox0",
+      "241020": "m_uiListBox1",
+      "242228": "m_uiListBox2",
+      "243436": "m_uiListBox3",
+      "244644": "m_uiListBox4",
+      "245852": "m_uiListBox5",
+      "247060": "m_uiListBox6",
+      "248268": "m_uiListBox7",
+      "249548": "m_palScriptSlot"
+    }
+  },
+  "CCBStage": {
+    "class_hint": "Struct that embeds CCBProtectWindow at offset 0. OnMessage operates on this struct.",
+    "binary_size": 673992,
+    "fields": {
+      "8008": "m_protectData",
+      "8856": "m_protectSlot",
+      "1744": "m_captionRow0",
+      "2088": "m_captionRow1",
+      "3728": "m_uiStaticRow0",
+      "3976": "m_uiStaticRow1",
+      "4472": "m_uiSceneRow0",
+      "4736": "m_uiSceneRow1",
+      "669268": "m_footerCtrl",
+      "669304": "m_footerLabel",
+      "669760": "m_footerValue",
+      "670672": "m_bottomCaption",
+      "671128": "m_protectCaption"
+    }
+  }
+}

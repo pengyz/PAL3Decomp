@@ -485,7 +485,68 @@ def _decompose_raw_pointer_arithmetic(code):
     ):
         alias_map[m.group(1)] = (int(m.group(3)), m.group(2))
     
+    # Pattern C: this + N (simple offset, no variable) — check BEFORE alias return
+    # Build global offset index once and cache it
+    import json as _json
+    import os as _os
+    _structs_dir = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.dirname(
+                                 _os.path.dirname(_os.path.abspath(__file__))))),
+                                 'data', 'annotations', 'structs')
+    
+    if not hasattr(_decompose_raw_pointer_arithmetic, '_offset_index'):
+        _offset_index = {}
+        for _fname in sorted(_os.listdir(_structs_dir)):
+            if not _fname.endswith('.json'): continue
+            try:
+                with open(_os.path.join(_structs_dir, _fname), encoding='utf-8') as _fh:
+                    _d = _json.load(_fh)
+            except: continue
+            _sn = _d.get('name', '')
+            for _off_str, _m in _d.get('known_members', {}).items():
+                try:
+                    _off = int(_off_str)
+                except: continue
+                _n = _m.get('name', '')
+                _t = _m.get('type', '')
+                if _n and not _n.startswith('_'):
+                    _offset_index.setdefault(_off, []).append((_sn, _n, _t))
+        # Load field_overrides.json for structs that bypass TAUDT_FIXED limits
+        _fo_path = _os.path.join(_structs_dir, '..', 'field_overrides.json')
+        if _os.path.exists(_fo_path):
+            try:
+                with open(_fo_path, encoding='utf-8') as _fo_f:
+                    _fo_data = _json.load(_fo_f)
+                for _fo_struct, _fo_info in _fo_data.items():
+                    if _fo_struct.startswith('_'): continue
+                    for _fo_off_str, _fo_name in _fo_info.get('fields', {}).items():
+                        _fo_off = int(_fo_off_str)
+                        _offset_index.setdefault(_fo_off, []).append((_fo_struct, _fo_name, 'int'))
+            except:
+                pass
+        _decompose_raw_pointer_arithmetic._offset_index = _offset_index
+    
+    _offset_index = _decompose_raw_pointer_arithmetic._offset_index
+    
+    # Match (char *)this + CONSTANT for field override lookup
+    for m in re.finditer(r'\(char\s*\*\)this\s*\+\s*(\d+)', code):
+        off = int(m.group(1))
+        if off in _offset_index:
+            candidates = _offset_index[off]
+            # Prefer field_overrides entries (longer match = more specific)
+            if len(candidates) == 1:
+                sn, fn, ft = candidates[0]
+                replacement = 'this->' + fn
+                start = m.start()
+                end = m.end()
+                changes.append((start, end, replacement))
+    
     if not alias_map:
+        if changes:
+            changes.sort(key=lambda x: x[0], reverse=True)
+            code_bytes = code.encode('utf-8')
+            for start, end, replacement in changes:
+                code_bytes = code_bytes[:start] + replacement.encode('utf-8') + code_bytes[end:]
+            code = code_bytes.decode('utf-8')
         return code
     
     # For each struct with arrays, try to match strides
@@ -572,6 +633,74 @@ def _decompose_raw_pointer_arithmetic(code):
                             start = m.start()
                             end = m.end()
                             changes.append((start, end, replacement))
+    
+    # Pattern C: this + N (simple offset, no variable)
+    # Search all structs for a member at offset N
+    # Build a global offset index: offset -> [(struct_name, field_name, field_type)]
+    import json as _json
+    import os as _os
+    _structs_dir = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.dirname(
+                                 _os.path.dirname(_os.path.abspath(__file__))))),
+                                 'data', 'annotations', 'structs')
+    
+    # Build offset index on first call (cache)
+    if not hasattr(_decompose_raw_pointer_arithmetic, '_offset_index'):
+        _offset_index = {}  # offset -> [(struct, field_name, field_type)]
+        for _fname in sorted(_os.listdir(_structs_dir)):
+            if not _fname.endswith('.json'): continue
+            try:
+                with open(_os.path.join(_structs_dir, _fname), encoding='utf-8') as _fh:
+                    _d = _json.load(_fh)
+            except: continue
+            _sn = _d.get('name', '')
+            for _off_str, _m in _d.get('known_members', {}).items():
+                try:
+                    _off = int(_off_str)
+                except: continue
+                _n = _m.get('name', '')
+                _t = _m.get('type', '')
+                if _n and not _n.startswith('_'):
+                    _offset_index.setdefault(_off, []).append((_sn, _n, _t))
+        _decompose_raw_pointer_arithmetic._offset_index = _offset_index
+    # Load field_overrides.json for structs that bypass TAUDT_FIXED limits
+    _fo_path = _os.path.join(_structs_dir, '..', 'field_overrides.json')
+    if _os.path.exists(_fo_path):
+        try:
+            with open(_fo_path, encoding='utf-8') as _fo_f:
+                _fo_data = _json.load(_fo_f)
+            for _fo_struct, _fo_info in _fo_data.items():
+                if _fo_struct.startswith('_'): continue
+                for _fo_off_str, _fo_name in _fo_info.get('fields', {}).items():
+                    _fo_off = int(_fo_off_str)
+                    _offset_index.setdefault(_fo_off, []).append((_fo_struct, _fo_name, 'int'))
+        except:
+            pass
+
+    
+    _offset_index = _decompose_raw_pointer_arithmetic._offset_index
+    
+    # Match: this + CONSTANT (simple offset, not part of a larger expression)
+    for m in re.finditer(
+        r'\(char\s*\*\)this\s*\+\s*(\d+)|_BYTE\s*\*\)\(this\s*\+\s*(\d+)|_DWORD\s*\*\)\(this\s*\+\s*(\d+)',
+        code
+    ):
+        off = None
+        for g in m.groups():
+            if g is not None:
+                off = int(g)
+                break
+        if off is None or off <= 0:
+            continue
+        if off in _offset_index:
+            candidates = _offset_index[off]
+            if len(candidates) == 1:
+                sn, fn, ft = candidates[0]
+                # Only rewrite if the struct is different from this function's class
+                # or if this is a safe type match
+                replacement = 'this->' + fn
+                start = m.start()
+                end = m.end()
+                changes.append((start, end, replacement))
     
     # Apply changes in reverse order, filtering overlapping ones
     if changes:
