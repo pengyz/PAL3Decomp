@@ -463,36 +463,13 @@ def _decompose_raw_pointer_arithmetic(code):
     Matches patterns where the expression is a struct array access
     that Hex-Rays couldn't algebraically decompose.
     """
-    stride_index, struct_members, struct_sizes = _get_array_stride_index()
-    if not stride_index:
-        return code
-    
-    changes = []
-    
-    # Pattern A: v = (char *)this + S * var  (variable assignment)
-    # Track these to rewrite subsequent uses
-    # Match: var_name = (char *)this + NUMBER * var_name
-    alias_map = {}  # var_name -> (stride, index_var)
-    for m in re.finditer(
-        r'(\w+)\s*=\s*\(char\s*\*\)this\s*\+\s*(\d+)\s*\*\s*(\w+)',
-        code
-    ):
-        alias_map[m.group(1)] = (int(m.group(2)), m.group(3))
-    # Also match: var_name = (char *)this + var_name * NUMBER
-    for m in re.finditer(
-        r'(\w+)\s*=\s*\(char\s*\*\)this\s*\+\s*(\w+)\s*\*\s*(\d+)',
-        code
-    ):
-        alias_map[m.group(1)] = (int(m.group(3)), m.group(2))
-    
-    # Pattern C: this + N (simple offset, no variable) — check BEFORE alias return
-    # Build global offset index once and cache it
     import json as _json
     import os as _os
     _structs_dir = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.dirname(
                                  _os.path.dirname(_os.path.abspath(__file__))))),
                                  'data', 'annotations', 'structs')
     
+    # Build global offset index once (cached on function object)
     if not hasattr(_decompose_raw_pointer_arithmetic, '_offset_index'):
         _offset_index = {}
         for _fname in sorted(_os.listdir(_structs_dir)):
@@ -527,29 +504,67 @@ def _decompose_raw_pointer_arithmetic(code):
     
     _offset_index = _decompose_raw_pointer_arithmetic._offset_index
     
-    # Match (char *)this + CONSTANT for field override lookup
+    # Phase 1: Pattern C — field_overrides substitution
+    changes = []
+    
+    # Pattern C1: (char *)this + CONSTANT → comment with field name (safe, no struct change)
     for m in re.finditer(r'\(char\s*\*\)this\s*\+\s*(\d+)', code):
         off = int(m.group(1))
         if off in _offset_index:
             candidates = _offset_index[off]
-            # Prefer field_overrides entries (longer match = more specific)
-            if len(candidates) == 1:
-                sn, fn, ft = candidates[0]
-                replacement = 'this->' + fn
-                start = m.start()
-                end = m.end()
-                changes.append((start, end, replacement))
+            if len(candidates) >= 1:
+                fn = candidates[-1][1]
+                # Keep original text, append comment
+                changes.append((m.end(), m.end(), '  /* ' + fn + ' */'))
     
-    if not alias_map:
-        if changes:
-            changes.sort(key=lambda x: x[0], reverse=True)
-            code_bytes = code.encode('utf-8')
-            for start, end, replacement in changes:
-                code_bytes = code_bytes[:start] + replacement.encode('utf-8') + code_bytes[end:]
-            code = code_bytes.decode('utf-8')
+    # Pattern C2: *((_DWORD *)this + N) → comment with field name (DWORD offset N → byte 4*N)
+    for m in re.finditer(r'\*\(\(_DWORD\s*\*\)this\s*\+\s*(\d+)\)', code):
+        off = int(m.group(1)) * 4
+        if off in _offset_index:
+            candidates = _offset_index[off]
+            if len(candidates) >= 1:
+                fn = candidates[-1][1]
+                changes.append((m.end(), m.end(), '  /* ' + fn + ' */'))
+    
+    # Pattern C3: *((_BYTE *)this + N) → comment with field name (byte offset)
+    for m in re.finditer(r'\*\(\(_BYTE\s*\*\)this\s*\+\s*(\d+)\)', code):
+        off = int(m.group(1))
+        if off in _offset_index:
+            candidates = _offset_index[off]
+            if len(candidates) >= 1:
+                fn = candidates[-1][1]
+                changes.append((m.end(), m.end(), '  /* ' + fn + ' */'))
+    
+    if changes:
+        changes.sort(key=lambda x: x[0], reverse=True)
+        code_bytes = code.encode('utf-8')
+        for start, end, replacement in changes:
+            code_bytes = code_bytes[:start] + replacement.encode('utf-8') + code_bytes[end:]
+        code = code_bytes.decode('utf-8')
+        changes = []
+    
+    # Phase 2: Array stride decomposition (Patterns A + B)
+    stride_index, struct_members, struct_sizes = _get_array_stride_index()
+    if not stride_index:
         return code
     
-    # For each struct with arrays, try to match strides
+    # Pattern A: v = (char *)this + S * var  (variable assignment)
+    alias_map = {}
+    for m in re.finditer(
+        r'(\w+)\s*=\s*\(char\s*\*\)this\s*\+\s*(\d+)\s*\*\s*(\w+)',
+        code
+    ):
+        alias_map[m.group(1)] = (int(m.group(2)), m.group(3))
+    for m in re.finditer(
+        r'(\w+)\s*=\s*\(char\s*\*\)this\s*\+\s*(\w+)\s*\*\s*(\d+)',
+        code
+    ):
+        alias_map[m.group(1)] = (int(m.group(3)), m.group(2))
+    
+    if not alias_map:
+        return code
+    
+    # Pattern B: Array stride resolution
     for struct_name, arrays in stride_index.items():
         for stride, array_off, array_name, elem_type in arrays:
             # Find aliases that use this stride

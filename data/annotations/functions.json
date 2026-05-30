@@ -1447,7 +1447,7 @@
     "signature": "int *__thiscall(CEffCylinder *this, char *pFileName)"
   },
   "0x004C61A0": {
-    "name": "_misattrib_CEffectSystem::CEffectSystem",
+    "name": "CEffect::CEffectSystem",
     "signature": "int *__thiscall(CEffectSystem *this, int pDisplay)",
     "_misattrib_evidence": "max_offset=245796>class_size=344"
   },
@@ -4253,17 +4253,17 @@
     "signature": "int __thiscall(SceneObj *this)"
   },
   "0x005363E0": {
-    "name": "_misattrib_Actor::SetAction",
+    "name": "CCBRoleStatePanel::SetActorAction",
     "signature": "void __thiscall(Actor *this, int actionId)",
     "_misattrib_evidence": "max_offset=3340>class_size=596"
   },
   "0x005364B0": {
-    "name": "_misattrib_Actor::InitComponents",
+    "name": "CCBRoleStatePanel::InitActorComponents",
     "signature": "int __thiscall(Actor *this)",
     "_misattrib_evidence": "max_offset=3340>class_size=596"
   },
   "0x00536560": {
-    "name": "_misattrib_Actor::ProcessFrame",
+    "name": "CCBRoleStatePanel::ProcessActorFrame",
     "signature": "char __thiscall(Actor *this)",
     "_misattrib_evidence": "max_offset=3340>class_size=596"
   },
@@ -4545,7 +4545,7 @@
     "signature": "void __thiscall UIFrameWnd::DestroyCallingCtor(UIFrameWnd *this)"
   },
   "0x004867F0": {
-    "name": "_misattrib_RenderTarget::ctor__ovl_67F0",
+    "name": "MainPropUI::InitChildPanels",
     "signature": "int __thiscall(RenderTarget *this)",
     "_misattrib_evidence": "max_offset=307036>class_size=200",
     "type": "skip",
@@ -4916,7 +4916,7 @@
     "class": "RenderTarget2"
   },
   "0x004870C0": {
-    "name": "_misattrib_RenderTarget::ctor_70C0",
+    "name": "MainPropUI::InitNPCPanel",
     "signature": "void __thiscall(RenderTarget *this)",
     "_misattrib_evidence": "max_offset=249476>class_size=200"
   },
@@ -4996,7 +4996,7 @@
     "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00525540": {
-    "name": "_misattrib_CCBUI::ctor__ovl_5540",
+    "name": "PlayerMgr::InitShopUI",
     "signature": "void __thiscall(CCBUI *this)",
     "_misattrib_evidence": "max_offset=100572>class_size=2632",
     "type": "skip",
@@ -5477,7 +5477,7 @@
     "signature": "void __thiscall(UICoverFrm *this)"
   },
   "0x005257B0": {
-    "name": "_misattrib_CCBUI::ctor__ovl_57B0",
+    "name": "PlayerMgr::InitSkillUI",
     "signature": "int *__thiscall(CCBUI *this, int nVal)",
     "_misattrib_evidence": "max_offset=100572>class_size=2632",
     "type": "skip",
@@ -5624,7 +5624,7 @@
     "signature": "BOOL __thiscall(MainEquipUI *this)"
   },
   "0x0047FD90": {
-    "name": "_misattrib_Object3D::LoadFromFile",
+    "name": "StateUI::LoadActorModel",
     "signature": "void *__thiscall(Object3D *this, int nParam)",
     "_misattrib_evidence": "max_offset=162708>class_size=152"
   },
@@ -5765,7 +5765,7 @@
     "signature": "char *__thiscall(ScriptVM *this)"
   },
   "0x004A1CF0": {
-    "name": "_misattrib_UIParabolaCtrl::GetState",
+    "name": "UIParabolaCtrl::GetState",
     "signature": "int __thiscall(UIParabolaCtrl *this)",
     "_misattrib_evidence": "max_offset=1328>class_size=4"
   },
@@ -5810,7 +5810,7 @@
     "signature": "int __thiscall(PAL3 *this, unsigned char nValue)"
   },
   "0x0048C610": {
-    "name": "_misattrib_CameraCtrl::HandleEvent",
+    "name": "MainPropUI::HandleCameraEvent",
     "signature": "BOOL __thiscall(CameraCtrl *this, int nParam, BOOL bFlag)",
     "_misattrib_evidence": "max_offset=207612>class_size=4088"
   },
@@ -6529,7 +6529,7 @@
     "signature": "int __thiscall UITitle_ArcSave::ProcessPageAction(UITitle_ArcSave *this, struct PalScript *p, int nVal)"
   },
   "0x004974A0": {
-    "name": "_misattrib_UIBigMap::OnMessage",
+    "name": "LineupUI::OnBigMapMessage",
     "signature": "int __thiscall(UIBigMap *this, int nVal, char *pszBuf, int nItemID)",
     "_misattrib_evidence": "max_offset=219752>class_size=10248"
   },
@@ -7429,7 +7429,7 @@
     "signature": "int __thiscall(UIWnd *this)"
   },
   "0x0044A970": {
-    "name": "_misattrib_PalScriptIdleObj::LoadTexture",
+    "name": "CCBStage::LoadScriptTexture",
     "signature": "gbVFileSystem *__thiscall PalScriptIdleObj::LoadTexture(PalScriptIdleObj *this, int nTexID, int nParam)",
     "_misattrib_evidence": "max_offset=92>class_size=16"
   },
@@ -7668,7 +7668,7 @@
     "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00457340": {
-    "name": "_misattrib_UIWnd::CleanupScript",
+    "name": "ARC_PAL_GDB::CleanupScript",
     "signature": "void __thiscall(UIWnd *this)",
     "_misattrib_evidence": "max_offset=805416>class_size=68"
   },
@@ -7774,7 +7774,7 @@
     "signature": "int __thiscall(MainEquipUI *this, int arg0)"
   },
   "0x0047A400": {
-    "name": "_misattrib_RenderTarget::InitParticleRenders",
+    "name": "MainPropUI::InitParticleRenders",
     "signature": "int __thiscall RenderTarget::InitParticleRenders(RenderTarget *this)",
     "_misattrib_evidence": "max_offset=209000>class_size=200"
   },
@@ -7864,7 +7864,7 @@
     "signature": "void __thiscall UITitle_XJTM::DestroyFrames(UITitle_XJTM *this)"
   },
   "0x00487B60": {
-    "name": "_misattrib_PalScript::InitMainUIScripts",
+    "name": "ARC_PAL_GDB::InitMainUIScripts",
     "signature": "int __thiscall PalScript::InitMainUIScripts(PalScript *this)",
     "_misattrib_evidence": "max_offset=54700>class_size=1816"
   },
@@ -7878,12 +7878,12 @@
     "_misattrib_evidence": "max_offset=205784>class_size=4088"
   },
   "0x0048D5D0": {
-    "name": "_misattrib_CameraCtrl::CreateUI",
+    "name": "MainPropUI::CreateCameraUI",
     "signature": "void *__thiscall(CameraCtrl *this, int nVal)",
     "_misattrib_evidence": "max_offset=307028>class_size=4088"
   },
   "0x0048E600": {
-    "name": "_misattrib_CameraCtrl::ProcessRenderQueue",
+    "name": "CCBCamControl::ProcessRenderQueue",
     "signature": "int __thiscall _misattrib_CameraCtrl::ProcessRenderQueue(CameraCtrl *this)",
     "_misattrib_evidence": "max_offset=307028>class_size=4088"
   },
@@ -8012,12 +8012,12 @@
     "_misattrib_evidence": "max_offset=26968>class_size=1816"
   },
   "0x004AA9C0": {
-    "name": "_misattrib_CCBUI::CreatePanelUI",
+    "name": "CCBSystem::CreatePanelUI",
     "signature": "void __thiscall _misattrib_CCBUI::CreatePanelUI(CCBUI *this)",
     "_misattrib_evidence": "max_offset=401904>class_size=2632"
   },
   "0x004AB2B0": {
-    "name": "_misattrib_CCBUI::DestroyDynamic",
+    "name": "CCBSystem::DestroyDynamic",
     "signature": "void __thiscall _misattrib_CCBUI::DestroyDynamic(CCBUI *this, int nVal)",
     "_misattrib_evidence": "max_offset=396024>class_size=2632"
   },
@@ -8845,7 +8845,7 @@
     "signature": "void __cdecl CreateDigitPair(int nVal, UIWnd **ppTens, UIWnd **ppOnes, const char *pszTexBase, char bFlag)"
   },
   "0x005273D0": {
-    "name": "_misattrib_CCBUI::PlayResultSound",
+    "name": "PlayerMgr::PlayResultSound",
     "signature": "void __thiscall _misattrib_CCBUI::PlayResultSound(CCBUI *this)",
     "_misattrib_evidence": "max_offset=101028>class_size=2632"
   },
@@ -8868,7 +8868,7 @@
     "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00528ED0": {
-    "name": "_misattrib_JusticeBookUI::Render",
+    "name": "JusticeBookUI::Render",
     "signature": "void __thiscall(JusticeBookUI *this)",
     "_misattrib_evidence": "max_offset=35148>class_size=11404"
   },
@@ -8951,7 +8951,7 @@
     "signature": "gbVFileSystem *__thiscall(SceneObj *this, const char *pszName)"
   },
   "0x0052F8E0": {
-    "name": "_misattrib_RoleAtt::LoadGeomNode",
+    "name": "CCBUI::LoadGeomNode",
     "signature": "gbVFileSystem *__thiscall _misattrib_RoleAtt::LoadGeomNode(RoleAtt *this, int nVal)",
     "_misattrib_evidence": "max_offset=3100>class_size=852"
   },
@@ -10219,7 +10219,7 @@
     "signature": "int __thiscall(UIAnimateCtrlEX *this)"
   },
   "0x00442000": {
-    "name": "_misattrib_UICaption::CalcScrollPos",
+    "name": "CCBStage::CalcScrollPos",
     "signature": "int __thiscall UIWnd::CalcScrollPos(UIWnd *this)",
     "_misattrib_evidence": "max_offset=348>class_size=96"
   },
@@ -10232,7 +10232,7 @@
     "signature": "int __thiscall(UIMap *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00442100": {
-    "name": "_misattrib_CCBParabolaWindow::CalcSplitRect",
+    "name": "CCBStage::CalcSplitRect",
     "signature": "int __thiscall UIWnd::CalcSplitRect(UIWnd *this)",
     "_misattrib_evidence": "max_offset=332>class_size=84"
   },
@@ -10464,7 +10464,7 @@
     "signature": "int __thiscall CCBStageRole::RandomizePositions(CCBStageRole *this)"
   },
   "0x0044D0B0": {
-    "name": "_misattrib_UIEmote::InitParticleSlots",
+    "name": "CCBDisplayChain::InitParticleSlots",
     "signature": "int __thiscall UIEmote::InitParticleSlots(UIEmote *this)",
     "_misattrib_evidence": "max_offset=10048>class_size=2272"
   },
@@ -10710,7 +10710,7 @@
     "signature": "int *__thiscall DealData::DealData(DealData *this)"
   },
   "0x004573A0": {
-    "name": "_misattrib_PalScript::FreeScriptBuffers",
+    "name": "ARC_PAL_GDB::FreeScriptBuffers",
     "signature": "void __thiscall PalScript::FreeScriptBuffers(PalScript *this)",
     "_misattrib_evidence": "max_offset=805416>class_size=1816"
   },
@@ -10812,7 +10812,7 @@
     "signature": "void __thiscall PlayerMgr::SetupPlayerDisplay(PlayerMgr *this, int nVal)"
   },
   "0x0046AEA0": {
-    "name": "_misattrib_GRPinput::ProcessButtonHold",
+    "name": "PlayerMgr::ProcessButtonHold",
     "signature": "void __thiscall GRPinput::ProcessButtonHold(GRPinput *this, float fDelta)",
     "_misattrib_evidence": "max_offset=101168>class_size=10584"
   },
@@ -11161,7 +11161,7 @@
     "_misattrib_evidence": "max_offset=3296>class_size=200"
   },
   "0x00487650": {
-    "name": "_misattrib_UICoverFrm::CreateFromTemplate",
+    "name": "MainPropUI::CreateCoverTemplate",
     "signature": "int __thiscall _misattrib_UICoverFrm::CreateFromTemplate(UICoverFrm *this)",
     "_misattrib_evidence": "max_offset=205768>class_size=14952"
   },
@@ -11190,7 +11190,7 @@
     "signature": "int __thiscall(MainPropUI *this, int nVal, float fVal)"
   },
   "0x004890A0": {
-    "name": "_misattrib_ScriptSystem::ProcessScriptEvent",
+    "name": "CCBStage::ProcessScriptEvent",
     "signature": "char __thiscall(ScriptSystem *this, int nVal, int nVal2, int nParam)",
     "_misattrib_evidence": "max_offset=217324>class_size=8704"
   },
@@ -11241,12 +11241,12 @@
     "signature": "void __thiscall CameraCtrl::CalcStatPower(CameraCtrl *this, int nVal)"
   },
   "0x0048C9A0": {
-    "name": "_misattrib_CameraCtrl::ProcessCameraTask",
+    "name": "MainPropUI::ProcessCameraTask",
     "signature": "int __thiscall _misattrib_CameraCtrl::ProcessCameraTask(CameraCtrl *this, int nVal, int nVal2)",
     "_misattrib_evidence": "max_offset=217324>class_size=4088"
   },
   "0x0048CCE0": {
-    "name": "_misattrib_CameraCtrl::InitBlendState",
+    "name": "MainPropUI::InitBlendState",
     "signature": "char __thiscall _misattrib_CameraCtrl::InitBlendState(CameraCtrl *this, int arg0, int nVal)",
     "_misattrib_evidence": "max_offset=205788>class_size=4088"
   },
@@ -11272,17 +11272,17 @@
     "_misattrib_evidence": "max_offset=4672>class_size=200"
   },
   "0x0048EB40": {
-    "name": "_misattrib_RenderTarget::RenderWithEffects",
+    "name": "MainPropUI::RenderWithEffects",
     "signature": "char __thiscall _misattrib_RenderTarget::RenderWithEffects(RenderTarget *this)",
     "_misattrib_evidence": "max_offset=307040>class_size=200"
   },
   "0x0048EE60": {
-    "name": "_misattrib_CameraCtrl::ProcessSaveSlotNav",
+    "name": "MainPropUI::ProcessSaveSlotNav",
     "signature": "char __thiscall CameraCtrl::ProcessSaveSlotNav(CameraCtrl *this)",
     "_misattrib_evidence": "max_offset=205784>class_size=4088"
   },
   "0x0048EF80": {
-    "name": "_misattrib_RenderTarget::ValidateDevice",
+    "name": "MainPropUI::ValidateDevice",
     "signature": "BOOL __thiscall _misattrib_RenderTarget::ValidateDevice(CameraCtrl *this)",
     "_misattrib_evidence": "max_offset=209892>class_size=200"
   },
@@ -11315,7 +11315,7 @@
     "signature": "void __thiscall(StateUI *this, int arg0, char *pszBuf, float id)"
   },
   "0x00493E40": {
-    "name": "_misattrib_SceneMgr::FormatStatusCaption",
+    "name": "SceneMgr::FormatStatusCaption",
     "signature": "void __thiscall _misattrib_SceneMgr::FormatStatusCaption(SceneMgr *this, int nVal)",
     "_misattrib_evidence": "max_offset=204880>class_size=54024"
   },
@@ -11324,7 +11324,7 @@
     "signature": "void __thiscall StateUI::UpdateScrollBars(StateUI *this)"
   },
   "0x00494250": {
-    "name": "_misattrib_CScreenMode::ResetProgressList",
+    "name": "LineupUI::ResetProgressList",
     "signature": "int __thiscall _misattrib_CScreenMode::ResetProgressList(CScreenMode *this)",
     "_misattrib_evidence": "max_offset=219752>class_size=4280"
   },
@@ -11457,7 +11457,7 @@
     "signature": "int __thiscall CCBUIPanel::InitScrollState(CCBUIPanel *this)"
   },
   "0x004A4770": {
-    "name": "_misattrib_UIWnd::SetGlobalFlag",
+    "name": "UIWnd::SetGlobalFlag",
     "signature": "char __cdecl SetGlobalFlag(char bFlag)"
   },
   "0x004A5760": {
@@ -11487,7 +11487,7 @@
     "_misattrib_evidence": "max_offset=177412>class_size=33228"
   },
   "0x004A8230": {
-    "name": "_misattrib_UIWnd::ClampToRange",
+    "name": "UIWnd::ClampToRange",
     "signature": "unsigned int __thiscall CScreenMode::ClampToRange(CScreenMode *this, unsigned int dwVal, int nSlot)"
   },
   "0x004A8260": {
@@ -11499,27 +11499,27 @@
     "signature": "int __thiscall CCCTData::CreateUI(CCCTData *this)"
   },
   "0x004A9ED0": {
-    "name": "_misattrib_UIListBox::ShowAllSlots",
+    "name": "CCBCamControl::ShowAllSlots",
     "signature": "int __thiscall _misattrib_UIListBox::ShowAllSlots(UIListBox *this, int nVal)",
     "_misattrib_evidence": "max_offset=394816>class_size=1208"
   },
   "0x004AA1B0": {
-    "name": "_misattrib_UIListBox::ResetAllLists",
+    "name": "CCBCamControl::ResetAllListBoxes",
     "signature": "int __thiscall _misattrib_UIListBox::ResetAllLists(UIListBox *this)",
     "_misattrib_evidence": "max_offset=394816>class_size=1208"
   },
   "0x004AA230": {
-    "name": "_misattrib_UIListBox::ShowSlotUI",
+    "name": "CCBCamControl::ShowSlotUI",
     "signature": "int __thiscall _misattrib_UIListBox::ShowSlotUI(UIListBox *this)",
     "_misattrib_evidence": "max_offset=397552>class_size=1208"
   },
   "0x004AA320": {
-    "name": "_misattrib_UIListBox::InsertAndLayout",
+    "name": "CCBCamControl::InsertUIListBox",
     "signature": "void __thiscall _misattrib_UIListBox::InsertAndLayout(UIListBox *this, int nVal)",
     "_misattrib_evidence": "max_offset=400536>class_size=1208"
   },
   "0x004AA680": {
-    "name": "_misattrib_UIListBox::ProcessListInput",
+    "name": "CCBCamControl::ProcessListInput",
     "signature": "void __thiscall _misattrib_UIListBox::ProcessListInput(UIListBox *this, int nVal)",
     "_misattrib_evidence": "max_offset=397552>class_size=1208"
   },
@@ -11528,16 +11528,16 @@
     "signature": "gbTexture *__thiscall SwordUI::RenderSword(SwordUI *this)"
   },
   "0x004AB560": {
-    "name": "_misattrib_UIWnd::CompareByMode",
+    "name": "UIWnd::CompareByMode",
     "signature": "bool __thiscall CompareByMode(void *this, int nItemA, int nItemB)"
   },
   "0x004AB5E0": {
-    "name": "_misattrib_SaleUI::InitColumnWidths",
+    "name": "SaleUI::InitColumnWidths",
     "signature": "int __thiscall _misattrib_SaleUI::InitColumnWidths(UIWnd *this)",
     "_misattrib_evidence": "max_offset=383296>class_size=111488"
   },
   "0x004AB6B0": {
-    "name": "_misattrib_EquipUI::InitEquipUI",
+    "name": "EquipUI::InitEquipUI",
     "signature": "int __thiscall(EquipUI *this, int nVal)",
     "_misattrib_evidence": "max_offset=401448>class_size=120116"
   },
@@ -12755,7 +12755,7 @@
     "signature": "bool __cdecl(int nVal)"
   },
   "0x00521B00": {
-    "name": "_misattrib_CCBStageRole::LoadSaveData",
+    "name": "CCBCamControl::LoadSaveData",
     "signature": "int __thiscall _misattrib_CCBStageRole::LoadSaveData(CCBStageRole *this, int *p_DWORD)",
     "_misattrib_evidence": "max_offset=328044>class_size=6848"
   },
@@ -12784,7 +12784,7 @@
     "signature": "int __thiscall CUtil::DispatchCommand(CUtil *this, int *pCmd)"
   },
   "0x00524230": {
-    "name": "_misattrib_UIScene::InitScriptScene",
+    "name": "SystemUI::InitScriptScene",
     "signature": "char __thiscall(UIScene *this, int nVal)",
     "_misattrib_evidence": "max_offset=5248>class_size=204"
   },
@@ -12832,7 +12832,7 @@
     "signature": "int __thiscall(CCBAttackSequen *this, int nVal)"
   },
   "0x00527130": {
-    "name": "_misattrib_MUIDialog::SetSlotCaption",
+    "name": "C3DSpark::SetSlotCaption",
     "signature": "void __thiscall _misattrib_MUIDialog::SetSlotCaption(MUIDialog *this, int nVal)",
     "_misattrib_evidence": "max_offset=15032>class_size=1288"
   },
@@ -12850,7 +12850,7 @@
     "_misattrib_evidence": "max_offset=15008>class_size=4280"
   },
   "0x00527610": {
-    "name": "_misattrib_CCBUI::UpdateCaptions",
+    "name": "PlayerMgr::UpdateCaptions",
     "signature": "void __thiscall _misattrib_CCBUI::UpdateCaptions(CCBUI *this)",
     "_misattrib_evidence": "max_offset=99200>class_size=2632"
   },
@@ -12891,7 +12891,7 @@
     "signature": "int __thiscall UINote::GetEntryPtr(UINote *this, int nIndex)"
   },
   "0x00528D50": {
-    "name": "_misattrib_RenderTarget::LoadMainUITexture",
+    "name": "SceneMgr::LoadMainUITexture",
     "signature": "int __thiscall _misattrib_RenderTarget::LoadMainUITexture(RenderTarget *this)",
     "_misattrib_evidence": "max_offset=56180>class_size=200"
   },
@@ -13079,7 +13079,7 @@
     "signature": "int __thiscall(CCBFiveNimbusWindow *this, int nVal)"
   },
   "0x0052FE30": {
-    "name": "_misattrib_MiniGame2Scene::Update",
+    "name": "CCBRoleStatePanel::UpdateMiniGame2",
     "signature": "void __thiscall(MiniGame2Scene *this, float fDeltaTime)",
     "_misattrib_evidence": "max_offset=3628>class_size=4"
   },
@@ -13345,7 +13345,7 @@
     "_misattrib_evidence": "max_offset=224>class_size=68"
   },
   "0x00535FD0": {
-    "name": "_misattrib_ArcLocaleRole::TransformPoint",
+    "name": "ArcLocaleRole::TransformPoint",
     "signature": "void *__thiscall _misattrib_ArcLocaleRole::TransformPoint(ArcLocaleRole *this, float *pfVal, float fVal, float fVal2, float fVal3)",
     "_misattrib_evidence": "max_offset=88>class_size=28"
   },
@@ -13729,7 +13729,7 @@
     "signature": "void __thiscall(CScreenMode *this, struct gbGfxManager *pGfx)"
   },
   "0x0052FC60": {
-    "name": "_misattrib_MatrixStack::BeginScene",
+    "name": "CCBDisplayChain::BeginScene",
     "signature": "void __thiscall(MatrixStack *this)",
     "_misattrib_evidence": "max_offset=3336>class_size=4"
   },
@@ -13742,7 +13742,7 @@
     "signature": "int __thiscall(CScreenMode *this)"
   },
   "0x00530C70": {
-    "name": "_misattrib_MatrixStack::BeginSceneWithRotation",
+    "name": "CCBDisplayChain::BeginSceneWithRotation",
     "signature": "void __thiscall(MatrixStack *this)",
     "_misattrib_evidence": "max_offset=784>class_size=4"
   },
@@ -13775,7 +13775,7 @@
     "signature": "unsigned int __thiscall(CCBStageRole *this)"
   },
   "0x004019B0": {
-    "name": "_misattrib_PtrArray::ReleaseAndClear",
+    "name": "CCBStage::ReleasePtrArray",
     "signature": "void *__thiscall(PtrArray *this)",
     "_misattrib_evidence": "max_offset=64>class_size=16"
   },
@@ -13816,7 +13816,7 @@
     "signature": "int __thiscall(UIWnd *this, int nX, int nY)"
   },
   "0x004932D0": {
-    "name": "_misattrib_UIScene::LoadRoleSkillData",
+    "name": "MainPropUI::LoadRoleSkillData",
     "signature": "int __thiscall UIScene::LoadRoleSkillData(UIScene *this, int nRoleIndex)",
     "_misattrib_evidence": "max_offset=217412>class_size=204"
   },
@@ -13868,7 +13868,7 @@
     "signature": "void __fastcall(CEffect *this)"
   },
   "0x00527A80": {
-    "name": "_misattrib_SoundContext::CreateSubPanels",
+    "name": "SoundContext::CreateSubPanels",
     "signature": "void __thiscall CScreenMode::CreateSubPanels(CScreenMode *this, int nMode)",
     "_misattrib_evidence": "max_offset=1736>class_size=4"
   },

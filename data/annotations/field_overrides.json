@@ -2,8 +2,9 @@
   "_description": "Field offset overrides for structs where TAUDT_FIXED cannot create the struct (too large, too sparse).",
   "_notes": [
     "These offsets have binary evidence from function analysis.",
-    "Codegen uses this to rewrite (char*)this + N -> this->field.",
-    "Does NOT use TAUDT_FIXED — bypasses IDA struct creation limits."
+    "Codegen emits inline comments (/* fieldName */) after raw offset expressions.",
+    "Does NOT use TAUDT_FIXED - bypasses IDA struct creation limits.",
+    "Not a substitute for proper struct annotation - use when IDA can't create the struct."
   ],
   "MainPropUI": {
     "class_hint": "Struct that embeds RenderTarget at offset 0. RenderTarget::OnRender operates on this struct.",
@@ -44,6 +45,115 @@
       "669760": "m_footerValue",
       "670672": "m_bottomCaption",
       "671128": "m_protectCaption"
+    }
+  },
+  "Combat": {
+    "class_hint": "Stub class (4B). Real containing struct is likely CCBStage or similar combat data structure.",
+    "binary_size": 4000,
+    "fields": {
+      "4": "m_nLogCount",
+      "520": "m_pControlData",
+      "524": "m_pSysCmdData",
+      "549": "m_bCmdActive",
+      "577": "m_bSlotActive"
+    }
+  },
+  "MiniGame3": {
+    "class_hint": "Stub class (4B). Real containing struct unknown.",
+    "binary_size": 200,
+    "fields": {
+      "8": "m_nState"
+    }
+  },
+  "CEffectSystem": {
+    "class_hint": "CEffectSystem embedded in CEffect. ReleaseParticle accesses at +245796.",
+    "binary_size": 250000,
+    "fields": {
+      "245796": "m_particleSlot"
+    }
+  },
+  "CCBStageCam": {
+    "class_hint": "CCBStageCam (6272B) embedded at start of CCBCamControl (430256B). Offsets beyond 6272 access CCBCamControl sibling fields.",
+    "binary_size": 430300,
+    "fields": {
+      "430012": "m_bRunning",
+      "430016": "m_fp_0",
+      "430020": "m_fp_1",
+      "430024": "m_fp_2",
+      "430028": "m_fp_3",
+      "430032": "m_nCurList",
+      "430036": "m_nCurTask",
+      "430076": "m_fQuake",
+      "430080": "m_fQuakeDec",
+      "430084": "m_fQuakeFre",
+      "430228": "m_vecCircleCenter_x",
+      "430232": "m_vecCircleCenter_y",
+      "430236": "m_vecCircleCenter_z",
+      "430240": "m_vecCircleEnd_x",
+      "430244": "m_vecCircleEnd_y",
+      "430248": "m_vecCircleEnd_z"
+    }
+  },
+  "UIWnd": {
+    "class_hint": "UIWnd (68B) embedded in larger UI struct (CCBUI 2632B or similar).",
+    "binary_size": 2300,
+    "fields": {
+      "76": "m_pAttackSequenFace",
+      "164": "m_pRoleStateFaceName_2",
+      "2212": "m_excessField_2212",
+      "2216": "m_excessField_2216"
+    }
+  },
+  "ScriptObj": {
+    "class_hint": "4B stub class embedded in scene/script container struct.",
+    "binary_size": 200,
+    "fields": {
+      "104": "m_scriptData_104",
+      "108": "m_scriptData_108",
+      "112": "m_scriptData_112",
+      "116": "m_scriptData_116",
+      "120": "m_scriptData_120",
+      "124": "m_scriptData_124",
+      "128": "m_scriptData_128",
+      "132": "m_scriptData_132",
+      "140": "m_scriptData_140"
+    }
+  },
+  "UIRenderObj": {
+    "class_hint": "4B stub class embedded in render list struct.",
+    "binary_size": 40,
+    "fields": {
+      "12": "m_renderFlags",
+      "28": "m_renderState",
+      "29": "m_bVisible"
+    }
+  },
+  "UIManager": {
+    "class_hint": "4B stub class embedded in UI manager struct.",
+    "binary_size": 20,
+    "fields": {
+      "4": "m_nLoadState",
+      "8": "m_pShadowTex",
+      "12": "m_pRenderData"
+    }
+  },
+  "MiniGame1": {
+    "class_hint": "4B stub class embedded in mini-game struct.",
+    "binary_size": 20,
+    "fields": {
+      "8": "m_nGameState"
+    }
+  },
+  "UIFrameWnd": {
+    "class_hint": "UIFrameWnd (72B) embedded in CCBRoleStatePanel (4132B). Excess offsets access sibling fields (m_RoleAtt array).",
+    "binary_size": 3300,
+    "fields": {
+      "76": "m_RoleAtt_1",
+      "84": "m_RoleAtt_1_flags",
+      "3256": "m_RoleAtt_2",
+      "3260": "m_RoleAtt_3",
+      "3264": "m_RoleAtt_4",
+      "3268": "m_RoleAtt_5"
     }
   }
 }
