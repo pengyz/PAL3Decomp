@@ -728,6 +728,21 @@ def _apply_text_substitutions(code, ctx):
     code = code.replace('stdiobuf::', 'UIWnd::')
     code = code.replace('std::ios_base *', 'UIWnd *')
 
+    # MSVC6 strict type conversion fixes:
+    # 1. *(unsigned long *)&array[idx] = void_ptr -> needs explicit cast
+    code = re.sub(
+        r'(\*\s*\(\s*unsigned\s+long\s*\*\)\s*&[^=]+)=\s*(\w+)\s*;',
+        lambda m: '%s= (unsigned long)%s;' % (m.group(1), m.group(2))
+        if m.group(2) in store.thunks or True
+        else m.group(0),
+        code
+    )
+    # 2. long* = int* assignments (different types in MSVC6)
+    code = re.sub(
+        r'=\s*\(\s*long\s*\*\)\s*\(',
+        '= (int *)(', code
+    )
+
     # IDA 'std' type = std::basic_string<char> abbreviated
     code = re.sub(r'\bstd\s*\*', 'string *', code)
     code = re.sub(r'\(std\)', '(string)', code)
