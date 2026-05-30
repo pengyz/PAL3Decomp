@@ -157,9 +157,9 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "18532": {
-      "name": "_todo_4864",
+      "name": "_todo_49CC",
       "type": "int",
-      "source": "reverted_auto_semantic:6x_access"
+      "source": "A:decomp (*(int(__thiscall**)(int*,_DWORD))this->_todo_49CC)"
     },
     "18700": {
       "name": "m_fLerpCurX",
@@ -302,7 +302,7 @@
       "source": "decomp:spring_speed(multiplied_by_deltaTime)"
     },
     "18892": {
-      "name": "_todo_49CC",
+      "name": "_todo_49CC_3E",
       "type": "int",
       "source": "binary_discovery:2refs"
     },
@@ -312,17 +312,17 @@
       "source": "decomp:_method_46d770_UIWnd_array_stride38(=152bytes=UIStatic)[5]"
     },
     "19208": {
-      "name": "_todo_4B08",
+      "name": "_todo_4B08_4C",
       "type": "int",
       "source": "binary_discovery:2refs"
     },
     "19360": {
       "name": "_todo_4BA0",
       "type": "int",
-      "source": "binary_discovery:2refs"
+      "source": "A:decomp vtable call pattern"
     },
     "19512": {
-      "name": "_todo_4C38",
+      "name": "_todo_4C38_4C",
       "type": "int",
       "source": "binary_discovery:2refs"
     },
@@ -363,8 +363,7 @@
     },
     "19916": {
       "name": "_todo_4DCC",
-      "type": "int",
-      "source": "binary_discovery:1refs"
+      "type": "unsigned char"
     },
     "20064": {
       "name": "m_Scene_20064",
@@ -377,14 +376,13 @@
       "source": "ctor:UIStatic::_UIStatic"
     },
     "20560": {
-      "name": "_todo_5050",
-      "type": "int",
-      "source": "binary_discovery:2refs"
+      "name": "m_bVideoPlayed",
+      "type": "unsigned char",
+      "source": "A:decomp LOBYTE(this+5050) checked before CScreenMode::PlayVideo"
     },
     "20564": {
-      "name": "_todo_5054",
-      "type": "int",
-      "source": "binary_discovery:2refs"
+      "name": "m_nVideoState",
+      "type": "int"
     },
     "20576": {
       "name": "m_nCurrentTaskID",
@@ -457,9 +455,9 @@
       "source": "decomp:swap_target_E"
     },
     "20640": {
-      "name": "_todo_50A0",
+      "name": "m_fTimeFund",
       "type": "float",
-      "source": "binary_discovery:3refs"
+      "source": "A:decomp this->_todo_50A0 = v6->m_fTimeFund"
     },
     "22100": {
       "name": "m_nFadeFlags",
@@ -500,6 +498,16 @@
       "name": "m_bSpringDoneY",
       "type": "unsigned char",
       "source": "decomp:_method_44a3d0_BYTE_set_1"
+    },
+    "18952": {
+      "name": "_todo_4B08",
+      "type": "int",
+      "source": "A:decomp vtable call pattern"
+    },
+    "19768": {
+      "name": "_todo_4C38",
+      "type": "int",
+      "source": "A:decomp vtable call pattern"
     }
   },
   "pdb_size": 23904,
