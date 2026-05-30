@@ -348,11 +348,14 @@ def collect_methods():
                 # Compare params only (strip return type + calling conv + func name)
                 # C++ can't overload by return type alone
                 def _params(s):
-                    p = re.sub(r'^.*?__thiscall\([^,]*,\s*', '', s)
-                    p = re.sub(r'^.*?__thiscall\(', '', p)
-                    p = re.sub(r'\)\s*$', '', p).strip()
-                    p = re.sub(r'\bstruct\s+', '', p)  # struct keyword is optional in C++
-                    return p
+                    # Extract just the parameter types from a signature.
+                    # Strip return type, calling convention, and 'this' parameter.
+                    p = re.sub(r'^.*?__thiscall\(', '', s)  # everything before params
+                    p = re.sub(r'\)\s*$', '', p).strip()    # trailing paren
+                    # Strip the 'this' parameter (always first for __thiscall)
+                    p = re.sub(r'^(?:struct\s+)?\w+(?:\s*\*+\s*)?\s*this\b\s*,?\s*', '', p)
+                    p = re.sub(r'\bstruct\s+', '', p)       # struct keyword optional
+                    return p.strip()
                 if _params(existing_sig) == _params(sig):
                     collides = True
                     break
