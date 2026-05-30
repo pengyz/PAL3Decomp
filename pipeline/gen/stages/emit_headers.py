@@ -785,6 +785,13 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             # Template expression: extract base name (e.g. "TaskMgr" from "TaskMgr<...>")
             if '<' in b:
                 base_inc = b.split('<')[0]
+                # Extract template parameter types (uppercase-starting class names only)
+                inner = b[b.find('<')+1:b.rfind('>')]
+                for param in re.findall(r'[A-Z][A-Za-z0-9_]*', inner):
+                    if len(param) > 1 and param not in PRIMITIVES and param not in SYSTEM_TYPES:
+                        inc_line = '#include "%s.h"' % param
+                        if inc_line not in lines:
+                            lines.insert(0, inc_line)
             else:
                 base_inc = b
             inc_line = '#include "%s.h"' % base_inc
