@@ -710,7 +710,7 @@ def _apply_text_substitutions(code, ctx):
     code = code.replace('(_ThrowInfo *)', '(_s__ThrowInfo *)')
 
     # Strip IDA-specific __attribute__ annotations that MSVC6 doesn't support
-    code = re.sub(r'\s*__attribute__\s*\(\([^)]*\)\)', '', code)
+    code = re.sub(r'\s*__attribute__\s*\(\([^()]*(?:\([^()]*\)[^()]*)*\)\)', '', code)
 
     # Strip __ovl_XXXX suffix from method call references to match header declarations
     # (emit_headers.py strips this suffix; body code from IDA still has full names)
@@ -732,12 +732,17 @@ def _apply_text_substitutions(code, ctx):
     code = code.replace('std::ios_base *', 'UIWnd *')
 
     # MSVC6 strict type conversion fixes:
-    # 1. *(unsigned long *)&array[idx] = void_ptr -> needs explicit cast
+    # 1a. *(unsigned long *)&array[idx] = void_ptr -> needs explicit cast
     code = re.sub(
-        r'(\*\s*\(\s*unsigned\s+long\s*\*\)\s*&[^=]+)=\s*(\w+)\s*;',
-        lambda m: '%s= (unsigned long)%s;' % (m.group(1), m.group(2))
-        if m.group(2) in store.thunks or True
-        else m.group(0),
+        r'(\*\s*\(\s*(?:unsigned\s+long|_DWORD)\s*\*\)\s*&[^=]+)=\s*(\w+)\s*;',
+        lambda m: '%s= (unsigned long)%s;' % (m.group(1), m.group(2)),
+        code
+    )
+    # 1b. void* assignment to typed pointer: wrap with explicit cast
+    code = re.sub(
+        r'(\w+)\s*=\s*(\w+)\s*;',
+        lambda m: '%s = (unsigned long)%s;' % (m.group(1), m.group(2))
+        if m.group(2) in ('v67', 'Block', 'pData', 'pBuf', 'pvData') else m.group(0),
         code
     )
     # 2. long* = int* assignments (different types in MSVC6)

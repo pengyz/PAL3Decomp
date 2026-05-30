@@ -179,6 +179,8 @@ def parse_signature(sig):
     """
     if not sig:
         return 'int', '', '', ''
+    # Strip IDA __attribute__ annotations from signature
+    sig = re.sub(r'\s*__attribute__\s*\(\([^()]*(?:\([^()]*\)[^()]*)*\)\)', '', sig)
 
     # Detect function-pointer return type: "... *CC(params)(fp_params)"
     fp_match = re.search(r'\*\s*(__thiscall|__cdecl|__stdcall|__fastcall)\s*\(', sig)
