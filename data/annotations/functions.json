@@ -4253,17 +4253,17 @@
     "signature": "int __thiscall(SceneObj *this)"
   },
   "0x005363E0": {
-    "name": "_misattrib_Actor::SetAction",
+    "name": "CCBRoleStatePanel::SetActorAction",
     "signature": "void __thiscall(Actor *this, int actionId)",
     "_misattrib_evidence": "max_offset=3340>class_size=596"
   },
   "0x005364B0": {
-    "name": "_misattrib_Actor::InitComponents",
+    "name": "CCBRoleStatePanel::InitActorComponents",
     "signature": "int __thiscall(Actor *this)",
     "_misattrib_evidence": "max_offset=3340>class_size=596"
   },
   "0x00536560": {
-    "name": "_misattrib_Actor::ProcessFrame",
+    "name": "CCBRoleStatePanel::ProcessActorFrame",
     "signature": "char __thiscall(Actor *this)",
     "_misattrib_evidence": "max_offset=3340>class_size=596"
   },
@@ -7429,7 +7429,7 @@
     "signature": "int __thiscall(UIWnd *this)"
   },
   "0x0044A970": {
-    "name": "_misattrib_PalScriptIdleObj::LoadTexture",
+    "name": "CCBStage::LoadScriptTexture",
     "signature": "gbVFileSystem *__thiscall PalScriptIdleObj::LoadTexture(PalScriptIdleObj *this, int nTexID, int nParam)",
     "_misattrib_evidence": "max_offset=92>class_size=16"
   },
@@ -8951,7 +8951,7 @@
     "signature": "gbVFileSystem *__thiscall(SceneObj *this, const char *pszName)"
   },
   "0x0052F8E0": {
-    "name": "_misattrib_RoleAtt::LoadGeomNode",
+    "name": "CCBUI::LoadGeomNode",
     "signature": "gbVFileSystem *__thiscall _misattrib_RoleAtt::LoadGeomNode(RoleAtt *this, int nVal)",
     "_misattrib_evidence": "max_offset=3100>class_size=852"
   },
@@ -10219,7 +10219,7 @@
     "signature": "int __thiscall(UIAnimateCtrlEX *this)"
   },
   "0x00442000": {
-    "name": "_misattrib_UICaption::CalcScrollPos",
+    "name": "CCBStage::CalcScrollPos",
     "signature": "int __thiscall UIWnd::CalcScrollPos(UIWnd *this)",
     "_misattrib_evidence": "max_offset=348>class_size=96"
   },
@@ -10232,7 +10232,7 @@
     "signature": "int __thiscall(UIMap *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00442100": {
-    "name": "_misattrib_CCBParabolaWindow::CalcSplitRect",
+    "name": "CCBStage::CalcSplitRect",
     "signature": "int __thiscall UIWnd::CalcSplitRect(UIWnd *this)",
     "_misattrib_evidence": "max_offset=332>class_size=84"
   },
@@ -10464,7 +10464,7 @@
     "signature": "int __thiscall CCBStageRole::RandomizePositions(CCBStageRole *this)"
   },
   "0x0044D0B0": {
-    "name": "_misattrib_UIEmote::InitParticleSlots",
+    "name": "CCBDisplayChain::InitParticleSlots",
     "signature": "int __thiscall UIEmote::InitParticleSlots(UIEmote *this)",
     "_misattrib_evidence": "max_offset=10048>class_size=2272"
   },
@@ -11190,7 +11190,7 @@
     "signature": "int __thiscall(MainPropUI *this, int nVal, float fVal)"
   },
   "0x004890A0": {
-    "name": "_misattrib_ScriptSystem::ProcessScriptEvent",
+    "name": "CCBStage::ProcessScriptEvent",
     "signature": "char __thiscall(ScriptSystem *this, int nVal, int nVal2, int nParam)",
     "_misattrib_evidence": "max_offset=217324>class_size=8704"
   },
@@ -12784,7 +12784,7 @@
     "signature": "int __thiscall CUtil::DispatchCommand(CUtil *this, int *pCmd)"
   },
   "0x00524230": {
-    "name": "_misattrib_UIScene::InitScriptScene",
+    "name": "SystemUI::InitScriptScene",
     "signature": "char __thiscall(UIScene *this, int nVal)",
     "_misattrib_evidence": "max_offset=5248>class_size=204"
   },
@@ -12832,7 +12832,7 @@
     "signature": "int __thiscall(CCBAttackSequen *this, int nVal)"
   },
   "0x00527130": {
-    "name": "_misattrib_MUIDialog::SetSlotCaption",
+    "name": "C3DSpark::SetSlotCaption",
     "signature": "void __thiscall _misattrib_MUIDialog::SetSlotCaption(MUIDialog *this, int nVal)",
     "_misattrib_evidence": "max_offset=15032>class_size=1288"
   },
@@ -12891,7 +12891,7 @@
     "signature": "int __thiscall UINote::GetEntryPtr(UINote *this, int nIndex)"
   },
   "0x00528D50": {
-    "name": "_misattrib_RenderTarget::LoadMainUITexture",
+    "name": "SceneMgr::LoadMainUITexture",
     "signature": "int __thiscall _misattrib_RenderTarget::LoadMainUITexture(RenderTarget *this)",
     "_misattrib_evidence": "max_offset=56180>class_size=200"
   },
@@ -13079,7 +13079,7 @@
     "signature": "int __thiscall(CCBFiveNimbusWindow *this, int nVal)"
   },
   "0x0052FE30": {
-    "name": "_misattrib_MiniGame2Scene::Update",
+    "name": "CCBRoleStatePanel::UpdateMiniGame2",
     "signature": "void __thiscall(MiniGame2Scene *this, float fDeltaTime)",
     "_misattrib_evidence": "max_offset=3628>class_size=4"
   },
@@ -13742,7 +13742,7 @@
     "signature": "int __thiscall(CScreenMode *this)"
   },
   "0x00530C70": {
-    "name": "_misattrib_MatrixStack::BeginSceneWithRotation",
+    "name": "CCBDisplayChain::BeginSceneWithRotation",
     "signature": "void __thiscall(MatrixStack *this)",
     "_misattrib_evidence": "max_offset=784>class_size=4"
   },
@@ -13775,7 +13775,7 @@
     "signature": "unsigned int __thiscall(CCBStageRole *this)"
   },
   "0x004019B0": {
-    "name": "_misattrib_PtrArray::ReleaseAndClear",
+    "name": "CCBStage::ReleasePtrArray",
     "signature": "void *__thiscall(PtrArray *this)",
     "_misattrib_evidence": "max_offset=64>class_size=16"
   },
