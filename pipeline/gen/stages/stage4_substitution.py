@@ -1145,6 +1145,35 @@ def run(code, ctx):
     # x86 safe: both 32-bit, fixes IDA function pointer type inference errors
     code = _fix_ulong_uint_cast(code)
 
+      # Fix empty if-body before else: Hex-Rays generates "if(cond)\nelse" without ";"
+    code = re.sub(
+        r'^(\s*)if\s*\((.*?)\)\s*\n\s*else\b',
+        r'\1if (\2)\n\1{\n\1}\n\1else',
+        code,
+        flags=re.MULTILINE
+    )
+
+    # Fix return byte_1010101 as void* (decompiler type inference mismatch)
+    code = re.sub(r'return\s+byte_1010101', r'return (void*)byte_1010101', code)
+
+    # Fix member function pointer casts: use mfp_cast (union type pun)
+    # MSVC6 can't C-style-cast member fn ptr to __cdecl fn ptr.
+    # (int(*)(int,int))&CCBSystem::Method → mfp_cast<int(*)(int,int)>(&CCBSystem::Method)
+    import re as _re_fp
+    def _replace_mfp_cast(m):
+        fp_type = m.group(1)  # e.g. "int ( *)(int, int)"
+        full_name = m.group(2)  # e.g. "CCBSystem::GetThreadIndex"
+        if 'PassCmdToThread' in full_name:
+            # Overloaded method - need static_cast to disambiguate
+            return "mfp_cast<{}>(static_cast<int (__thiscall CCBSystem::*)(int)>(&{}))".format(fp_type, full_name)
+        return "mfp_cast<{}>(&{})".format(fp_type, full_name)
+    _re_fp_cast = _re_fp.compile(
+        r'\(((?:\w+\s+)?\w+\s*\(\s*\*\s*\)\([^)]+\))\)'  # capture fn ptr type
+        r'&?(\w+::\w+)'                                       # capture Class::Method
+        r'(?=\s*[,;)])'
+    )
+    code = _re_fp_cast.sub(_replace_mfp_cast, code)
+
     # Comment out STL internal method calls (string::_Tidy, string::_Eos, string::_Split)
     # These are compiler-generated operations not expressible in user source code.
     code = _comment_stl_internals(code)

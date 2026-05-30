@@ -151,3 +151,17 @@ void *BinkOpenMiles(unsigned int freq);
 void *BinkOpenDirectSound(unsigned int freq);
 int BinkSetSoundSystem(void *soundsys, unsigned int freq);
 }
+
+// Suppress [[maybe_unused]] equivalent for MSVC6 (no-op)
+// MSVC6 calls __thiscall "reserved for future use" when used in function pointer types
+#pragma warning(disable: 4234)
+
+// CCBSystem member function to __cdecl function pointer cast (via union type pun).
+// MSVC6 C-style cast from member fn ptr to __cdecl fn ptr is illegal.
+// Overloaded overloads need explicit static_cast to disambiguate.
+template <typename F, typename M>
+inline F mfp_cast(M mfp) {
+    union { M m; F f; } u;
+    u.m = mfp;
+    return u.f;
+}
