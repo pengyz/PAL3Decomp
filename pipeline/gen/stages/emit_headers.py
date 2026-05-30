@@ -353,7 +353,8 @@ def collect_methods():
                     p = re.sub(r'^.*?__thiscall\(', '', s)  # everything before params
                     p = re.sub(r'\)\s*$', '', p).strip()    # trailing paren
                     # Strip the 'this' parameter (always first for __thiscall)
-                    p = re.sub(r'^(?:struct\s+)?\w+(?:\s*\*+\s*)?\s*this\b\s*,?\s*', '', p)
+                    # Handle 'this', 'Block', and IDA-generated type names with $
+                    p = re.sub(r'^(?:struct\s+)?[\w$]+(?:\s*\*+\s*)?\s*\w+\s*,?\s*', '', p)
                     p = re.sub(r'\bstruct\s+', '', p)       # struct keyword optional
                     return p.strip()
                 if _params(existing_sig) == _params(sig):
@@ -795,7 +796,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 # Extract template parameter types (uppercase-starting class names only)
                 inner = b[b.find('<')+1:b.rfind('>')]
                 for param in re.findall(r'[A-Z][A-Za-z0-9_]*', inner):
-                    if len(param) > 1 and param not in PRIMITIVES and param not in SYSTEM_TYPES:
+                    if len(param) > 1 and param not in PRIMITIVES and param not in SYSTEM_TYPES and param != cls_name:
                         inc_line = '#include "%s.h"' % param
                         if inc_line not in lines:
                             lines.insert(0, inc_line)
