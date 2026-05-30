@@ -226,37 +226,52 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         base_class = None
         base_size = 0
     elif isinstance(base_class_raw, list):
-        if len(base_class_raw) > 1:
-            return (False, "multiple inheritance not supported (%s)" % base_class_raw)
-        base_class = base_class_raw[0] if base_class_raw else None
+        base_classes = base_class_raw
+        base_class = base_classes[0] if base_classes else None
+        # Multiple base classes are handled by adding each as an anonymous member
     else:
         base_class = base_class_raw
+        base_classes = [base_class] if base_class else []
     if not is_union:
         base_size = struct_info.get("base_size", 0)
+        # For multiple inheritance, compute total base size by looking up each base
+        if len(base_classes) > 1:
+            total_base = 0
+            for bc in base_classes:
+                bc_tinfo = ida_typeinf.tinfo_t()
+                if bc_tinfo.get_named_type(til, bc):
+                    total_base += bc_tinfo.get_size()
+            if total_base > 0:
+                base_size = total_base
 
     udt = ida_typeinf.udt_type_data_t()
     if is_union:
         udt.is_union = True
     else:
-        udt.taudt_bits = 1024  # TAUDT_FIXED: respect explicit offsets
+        is_flexible = struct_info.get("_flexible", False)
+        if not is_flexible:
+            udt.taudt_bits = 1024  # TAUDT_FIXED: respect explicit offsets
         if base_class:
             udt.taudt_bits |= 128  # TAUDT_CPPOBJ
         udt.total_size = binary_size
 
-    # Add base class as anonymous member at offset 0
-    if base_class and base_size > 0:
-        base_tinfo = ida_typeinf.tinfo_t()
-        if not base_tinfo.get_named_type(til, base_class):
-            return (False, "base_class '%s' not found in TIL" % base_class)
-        base_actual = base_tinfo.get_size()
-        if base_actual == 0xFFFFFFFFFFFFFFFF or base_actual == 0:
-            return (False, "base_class '%s' has invalid size" % base_class)
-        mb = ida_typeinf.udt_member_t()
-        mb.name = ""  # anonymous = base class
-        mb.offset = 0
-        mb.size = base_actual * 8
-        mb.type = base_tinfo
-        udt.push_back(mb)
+    # Add base classes as anonymous members (supports multiple inheritance)
+    if base_classes and base_size > 0:
+        base_offset = 0
+        for bc in base_classes:
+            bc_tinfo = ida_typeinf.tinfo_t()
+            if not bc_tinfo.get_named_type(til, bc):
+                return (False, "base_class '%s' not found in TIL" % bc)
+            bc_size = bc_tinfo.get_size()
+            if bc_size == 0xFFFFFFFFFFFFFFFF or bc_size == 0:
+                return (False, "base_class '%s' has invalid size" % bc)
+            mb = ida_typeinf.udt_member_t()
+            mb.name = ""  # anonymous = base class
+            mb.offset = base_offset
+            mb.size = bc_size * 8
+            mb.type = bc_tinfo
+            udt.push_back(mb)
+            base_offset += bc_size
 
     # Add known members at exact annotation offsets
     # Union members use "0", "0_1", "0_2" keys (all at offset 0)
@@ -822,6 +837,24 @@ def apply_annotations():
     # Report errors and write to log file
     log_path = os.path.join(SCRIPT_DIR, "_logs", "struct_import_errors.txt")
     os.makedirs(os.path.dirname(log_path), exist_ok=True)
+
+    # Fallback: for structs that failed TAUDT_FIXED, try without TAUDT_FIXED
+    if s_fail:
+        log("  Fallback: retrying %d structs in flexible mode..." % len(s_fail))
+        fallback_ok = 0
+        still_fail = []
+        for sname, sinfo, prev_err in s_fail:
+            # Create without TAUDT_FIXED (flexible size) but keep binary_size
+            sinfo_copy = dict(sinfo)
+            sinfo_copy["_flexible"] = True  # signal to skip TAUDT_FIXED
+            ok, err = create_fixed_struct(sname, sinfo_copy, structs, vtables, til)
+            if ok:
+                fallback_ok += 1
+            else:
+                still_fail.append((sname, sinfo, err))
+        s_fail = still_fail
+        s_ok += fallback_ok
+        log("  Fallback: %d succeeded, %d still failing" % (fallback_ok, len(s_fail)))
 
     log("[3] Structs: applied=%d/%d (TAUDT_FIXED)" % (s_ok, len(structs)))
 
