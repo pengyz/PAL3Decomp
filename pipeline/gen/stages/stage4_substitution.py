@@ -1075,7 +1075,17 @@ def run(code, ctx):
     # x86 safe: both 32-bit, fixes IDA function pointer type inference errors
     code = _fix_ulong_uint_cast(code)
 
-      # Fix empty if-body before else: Hex-Rays generates "if(cond)\nelse" without ";"
+    # Fix pointer to unsigned long assignment: *((_DWORD*)this+N) = (Class*)val
+    # MSVC6 requires explicit cast from typed pointer to unsigned long
+    import re as _re_ptoul
+    code = _re_ptoul.sub(
+        r'(\*\(\(_DWORD\s*\*\)this\s*\+\s*\d+\)\s*=\s*)'  # LHS: *((_DWORD*)this+N) =
+        r'(\([^)]+\*\)\s*)?(\w+)',                          # RHS: optional (Type*)var
+        r'\1(unsigned long)(\2\3)',
+        code
+    )
+
+    # Fix empty if-body before else: Hex-Rays generates "if(cond)\nelse" without ";"
     code = re.sub(
         r'^(\s*)if\s*\((.*?)\)\s*\n\s*else\b',
         r'\1if (\2)\n\1{\n\1}\n\1else',
@@ -1085,6 +1095,42 @@ def run(code, ctx):
 
     # Fix return byte_1010101 as void* (decompiler type inference mismatch)
     code = re.sub(r'return\s+byte_1010101', r'return (void*)byte_1010101', code)
+
+
+
+    # Fix typed pointer arithmetic: *(this + N) = (Type*)val → *((_DWORD*)this + N) = (unsigned long)(Type*)val
+    # MSVC6 can't assign typed pointer to DWORD without explicit cast
+    import re as _re_typedptr
+    code = _re_typedptr.sub(
+        r'\*\(this\s*\+\s*(\d+)\)\s*=\s*\([^)]+\*\)\s*(\w+)',
+        r'*((_DWORD *)this + \1) = (unsigned long)(\2)',
+        code
+    )
+
+    # Fix void* to unsigned long* assignment: add explicit cast
+    # *((_DWORD*)this + N) = (void*)expr → *((unsigned long*)this + N) = (unsigned long)(void*)expr
+    import re as _re_vp2ul
+    code = _re_vp2ul.sub(
+        r'(\*\(\(_DWORD\s*\*\)this\s*\+\s*\d+\)\s*=\s*)\(void\s*\*\)(\w+)',
+        r'\1(unsigned long)(void*)\2',
+        code
+    )
+
+    # Fix *((void**)this + N) patterns → use explicit unsigned long* instead
+    code = re.sub(
+        r'\*\(\(void\s*\*\s*\)this\s*\+\s*(\d+)\)',
+        r'*((unsigned long *)this + \1)',
+        code
+    )
+
+    # Fix vfptr access without virtual declarations: &Block->vfptr → (UIWnd*)Block
+    # For HandleEnable functions where this=Block, vfptr addr = object addr
+    import re as _re_vfptr
+    code = _re_vfptr.sub(
+        r'\(\s*UIWnd\s*\*\s*\)\s*&(\w+)\s*->\s*vfptr\b',
+        r'(UIWnd *)(\1)',
+        code
+    )
 
     # Fix member function pointer casts: use mfp_cast (union type pun)
     # MSVC6 can't C-style-cast member fn ptr to __cdecl fn ptr.

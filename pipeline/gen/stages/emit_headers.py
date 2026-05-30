@@ -476,7 +476,6 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             _ida_structs = json.load(_f)
         _is = _ida_structs.get(cls_name)
         if _is and _is.get('data_members'):
-            # Override pdb_class with IDB-exported struct data
             if pdb_class is None:
                 pdb_class = {}
             pdb_class['data_members'] = [
@@ -484,6 +483,22 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 if not m.get('name', '').startswith('__vftable')
             ]
             pdb_class['size'] = _is.get('size', pdb_class.get('size', 0))
+            # Overlay annotation known_members on top of IDB data
+            try:
+                _ann_overlay = load_annotations_data()
+                _ann_overlay_s = _ann_overlay.get('structs', {}).get(cls_name, {}).get('known_members', {})
+                if _ann_overlay_s:
+                    _ann_by_off = {int(k): v for k, v in _ann_overlay_s.items()}
+                    for _m in pdb_class['data_members']:
+                        _moff = _m.get('offset', -1)
+                        if _moff in _ann_by_off:
+                            _ao = _ann_by_off[_moff]
+                            if 'type' in _ao:
+                                _m['type'] = _ao['type']
+                            if 'name' in _ao and _ao['name']:
+                                _m['name'] = _ao['name']
+            except:
+                pass
     except (FileNotFoundError, json.JSONDecodeError, IOError):
         pass  # fall back to annotation + PDB merge
 
@@ -1035,6 +1050,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
 
             is_ctor = (method_name == cls_name)
             is_dtor = (method_name.startswith('~') or method_name == '~%s' % cls_name)
+            _has_ovl = re.search(r'__ovl_[0-9a-fA-F]+$', method_name)
             is_thiscall = '__thiscall' in cc
             # Also treat as thiscall if params contain '*this' (IDA sometimes omits __thiscall)
             if not is_thiscall and '*this' in params:
@@ -1097,7 +1113,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             if is_ctor:
                 decl = "    %s(%s);" % (cls_name, params)
             elif is_dtor:
-                decl = "    ~%s();" % cls_name
+                if _has_ovl:
+                    decl = "    %s();" % method_name
+                else:
+                    decl = "    ~%s();" % cls_name
             elif ret_right:
                 # Function-pointer return: "ret_left method(params) ret_right;"
                 if is_static:
@@ -1110,9 +1129,9 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 decl = "    %s %s(%s);" % (ret, method_name, params)
 
             # Virtual override: method inherited from base vtable but this class has its own impl.
-            # Declare it normally (not as VTABLE_DUP) — the .cpp has the implementation.
+            # Declare it normally — virtual keyword needs signature matching (C2555 risk).
             if method_name in vtable_method_names:
-                pass  # fall through to normal declaration below
+                pass
 
             # Detect duplicate declarations
             def _strip_param_names(p_str):
@@ -1129,7 +1148,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 continue
 
             if is_dtor:
-                method_key = "~%s()" % cls_name
+                if _has_ovl:
+                    method_key = "%s()" % method_name
+                else:
+                    method_key = "~%s()" % cls_name
             elif is_ctor:
                 method_key = "%s(%s)" % (cls_name, _strip_param_names(params))
             else:
