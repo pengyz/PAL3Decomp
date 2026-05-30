@@ -111,7 +111,7 @@ print("Functions with this+N exceeding struct size (potential attribution errors
 print("=" * 90)
 print(f"{'Ratio':>6s} {'MaxOff':>7s} {'BSize':>6s} {'Function':55s} {'Size':>5s}  Candidates")
 print("-" * 90)
-for ratio, max_off, bs, name, sz, candidates, cls in results[:40]:
+for ratio, max_off, bs, name, sz, candidates, cls in results:
     cand_str = ", ".join(f"{c}({s})" for c, s in candidates[:3])
     if not cand_str:
         cand_str = "(no match)"
