@@ -709,6 +709,9 @@ def _apply_text_substitutions(code, ctx):
 
     code = code.replace('(_ThrowInfo *)', '(_s__ThrowInfo *)')
 
+    # Strip IDA-specific __attribute__ annotations that MSVC6 doesn't support
+    code = re.sub(r'\s*__attribute__\s*\(\([^)]*\)\)', '', code)
+
     # Strip __ovl_XXXX suffix from method call references to match header declarations
     # (emit_headers.py strips this suffix; body code from IDA still has full names)
     # Pattern 1: ClassName::method__ovl_XXXX(args) — function call
