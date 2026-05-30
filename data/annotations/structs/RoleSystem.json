@@ -376,26 +376,6 @@
       "type": "int",
       "source": "binary:gap_access"
     },
-    "1228": {
-      "name": "m_nPathState",
-      "type": "int",
-      "source": "gen_headers_9.2+codegen_infer | A:decomp RoleSystem::UpdateFollowerMovement switches on value 0/1/2, assigns integer enum — UIWnd* was wrong (pointer misattribution from PDB)"
-    },
-    "1232": {
-      "name": "m_nPathStep",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "1236": {
-      "name": "_d4D4",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "1240": {
-      "name": "m_fPathTargetX",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
     "1244": {
       "name": "m_fPathTargetY",
       "type": "float",
@@ -821,46 +801,6 @@
       "type": "Actor",
       "source": "A+:decomp Actor::DispatchAction((Actor*)&this->_todo_1A8) embedded_Actor + member_access(.m_pSelfAtt,.m_pEquipAtt*,.m_dwMatMsg)"
     },
-    "1020": {
-      "name": "m_actorTail",
-      "type": "int[4]",
-      "source": "FullInit:DWORD[149-150] from Actor base; gap 16 bytes to m_pCCBRoleStateEnd"
-    },
-    "1164": {
-      "name": "_todo_48C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1168": {
-      "name": "_todo_490",
-      "type": "float",
-      "source": "reverted_auto_semantic:2x_access"
-    },
-    "1200": {
-      "name": "_todo_4B0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1204": {
-      "name": "_todo_4B4",
-      "type": "int",
-      "source": "reverted_auto_semantic:1x"
-    },
-    "1212": {
-      "name": "_todo_4BC",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1220": {
-      "name": "m_szSceneName",
-      "type": "char *",
-      "source": "fix:span=4_ptr"
-    },
-    "1224": {
-      "name": "_todo_4C8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
     "1452": {
       "name": "_todo_5AC",
       "type": "int",
@@ -1006,21 +946,6 @@
       "type": "int",
       "source": "binary_scan:1refs"
     },
-    "1172": {
-      "name": "_todo_494",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "1176": {
-      "name": "_todo_498",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1208": {
-      "name": "_todo_4B8",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
     "1684": {
       "name": "m_teamSlots",
       "type": "int[300]",
@@ -1126,18 +1051,13 @@
       "type": "ScriptSystem *",
       "source": "binary:v0-123 cast to ScriptSystem*"
     },
-    "1036": {
-      "name": "m_pCCBRoleStateEnd",
-      "type": "CCBRoleState *",
-      "source": "binary: CCBRoleState_EndRoundTasks: while(v < &val); CCBRoleState array end pointer"
-    },
     "361": {
       "name": "_gap_169",
       "type": "unsigned char[3]",
       "source": "fix:gap_fill_for_decomp_naming"
     }
   },
-  "binary_size": 8684,
+  "binary_size": 8908,
   "base_size": 68,
   "base_class": "UIWnd"
 }

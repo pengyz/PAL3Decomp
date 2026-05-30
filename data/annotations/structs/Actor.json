@@ -17,166 +17,6 @@
       "type": "char[8]",
       "source": "binary:LEA+repne_scasb(strlen)_at_0x14,next_field_28_has_34_hits"
     },
-    "280": {
-      "name": "m_szTexture",
-      "type": "char[28]",
-      "source": "binary:LEA_40hits_at_0x118,next_verified_field_at_0x13C(316)=36B_but_ann_next_at_308=28B"
-    },
-    "540": {
-      "name": "m_dwMatMsg",
-      "type": "unsigned int[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "584": {
-      "name": "m_bChangedMat",
-      "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "585": {
-      "name": "m_curact",
-      "type": "char[8]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "345": {
-      "name": "m_bInitialized",
-      "type": "unsigned char",
-      "source": "binary:raw_InitComponents"
-    },
-    "348": {
-      "name": "m_nHP",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "352": {
-      "name": "m_nMaxHP",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "356": {
-      "name": "m_bHPVisible",
-      "type": "unsigned char",
-      "source": "binary:raw_hp_check"
-    },
-    "332": {
-      "name": "m_nActionType",
-      "type": "unsigned char",
-      "source": "binary:raw_action"
-    },
-    "336": {
-      "name": "m_nActionParam",
-      "type": "unsigned char",
-      "source": "binary:raw_action"
-    },
-    "340": {
-      "name": "m_nActionState",
-      "type": "int",
-      "source": "binary:raw_action"
-    },
-    "344": {
-      "name": "m_nActionResult",
-      "type": "unsigned char",
-      "source": "binary:raw_action"
-    },
-    "333": {
-      "name": "m_bActionFlag1",
-      "type": "unsigned char",
-      "source": "binary:raw_CompareAction"
-    },
-    "337": {
-      "name": "m_bActionFlag2",
-      "type": "unsigned char",
-      "source": "binary:raw"
-    },
-    "338": {
-      "name": "m_bActionFlag3",
-      "type": "unsigned char",
-      "source": "binary:raw"
-    },
-    "339": {
-      "name": "m_bActionActive",
-      "type": "unsigned char",
-      "source": "binary:raw_7votes"
-    },
-    "440": {
-      "name": "m_nAnimFrames",
-      "type": "int",
-      "source": "binary:distinct_fields_at_0x1B8/0x1BC(LEA)/0x1C0,each_4B"
-    },
-    "360": {
-      "name": "m_nHandleEvent",
-      "type": "int",
-      "source": "binary:gap_r2"
-    },
-    "364": {
-      "name": "m_vecPos",
-      "type": "gbVec3D",
-      "source": "binary:gap_r2 | annotate_todo"
-    },
-    "376": {
-      "name": "m_vecRot",
-      "type": "gbVec3D",
-      "source": "binary:gap_r2 | annotate_todo"
-    },
-    "388": {
-      "name": "m_nCloneParam",
-      "type": "int",
-      "source": "ida_decomp:_nearby_53b890 = *(a2+388), 4 refs"
-    },
-    "392": {
-      "name": "_field_188",
-      "type": "float",
-      "source": "A:FPU_disp32_0x41c23e"
-    },
-    "400": {
-      "name": "m_nCloneState",
-      "type": "int",
-      "source": "ida_decomp:_nearby_53b890 = *(a2+400), 6 refs"
-    },
-    "404": {
-      "name": "m_nCloneFlag1",
-      "type": "int",
-      "source": "ida_decomp:_nearby_53b890 = *(a2+404), 4 refs"
-    },
-    "408": {
-      "name": "m_nCloneFlag2",
-      "type": "int",
-      "source": "ida_decomp:_nearby_53b890 = *(a2+408), 4 refs"
-    },
-    "412": {
-      "name": "m_fFacingAngle",
-      "type": "float",
-      "source": "binary:gap_r2 | type_fix:int->float(A+:decomp *(float*)&this->_field_19C-m_vecRot.z in UpdateFrame (3x)) | name:m_fFacingAngle(A+:decomp =90.0 + used as rotation_delta_base)"
-    },
-    "420": {
-      "name": "_field_1A4",
-      "type": "int",
-      "source": "binary:gap_r2"
-    },
-    "428": {
-      "name": "_field_1AC",
-      "type": "int",
-      "source": "binary:gap_r2"
-    },
-    "488": {
-      "name": "m_obbox",
-      "type": "gbOBBox *",
-      "source": "binary:gap_r3 | fix:gbOBBox(76)>span(8),revert_to_int+codegen_infer"
-    },
-    "536": {
-      "name": "m_fAnimDelta",
-      "type": "float",
-      "source": "A+:decomp gbVec3D::operator=(&this->_todo_218, nVal+364)"
-    },
-    "484": {
-      "name": "m_fBlendWeight",
-      "type": "float",
-      "source": "ida_decomp:_auto_5309a0 *0.333 + self, 3 refs"
-    },
-    "512": {
-      "name": "_field_200",
-      "type": "float",
-      "source": "A+:decomp *(float*)&this->_field_200 (1 occurrences)"
-    },
     "28": {
       "name": "_field_1C4",
       "type": "float",
@@ -186,6 +26,12 @@
       "name": "_field_1C8",
       "type": "float",
       "source": "transfer_from_RoleSystem_off_456"
+    },
+    "36": {
+      "name": "m_pAllocBuf",
+      "type": "void *",
+      "source": "decomp:operator_delete+set_0(pointer_not_float)",
+      "note": "Discovered by member_scan after disp8 fix."
     },
     "40": {
       "name": "_field_1D0",
@@ -202,6 +48,12 @@
       "type": "int",
       "source": "decomp:transfer_from_nVal+48"
     },
+    "52": {
+      "name": "m_fRoleParam1",
+      "type": "float",
+      "source": "decomp:transfer_from_nVal+52_float",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
     "56": {
       "name": "_field_1E0",
       "type": "float",
@@ -216,6 +68,18 @@
       "name": "_field_1E8",
       "type": "float",
       "source": "transfer_from_RoleSystem_off_488"
+    },
+    "68": {
+      "name": "m_nRoleParam2",
+      "type": "int",
+      "source": "decomp:transfer_from_nVal+68",
+      "note": "Discovered by member_scan after disp8 fix."
+    },
+    "72": {
+      "name": "m_pRoleParam3",
+      "type": "void *",
+      "source": "decomp:transfer_from_nVal+72_ptr",
+      "note": "Discovered by member_scan after disp8 fix."
     },
     "76": {
       "name": "m_nCachedA",
@@ -262,6 +126,31 @@
       "type": "int",
       "source": "decomp:operator_delete_on_derived_ptr"
     },
+    "116": {
+      "name": "_todo_074",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "128": {
+      "name": "m_nAnimParam0",
+      "type": "int",
+      "source": "decomp:_nearby_53b890_from_nVal+128"
+    },
+    "132": {
+      "name": "m_nAnimParam1",
+      "type": "int",
+      "source": "decomp:_nearby_53b890_from_nVal+132"
+    },
+    "136": {
+      "name": "m_vecBonePos",
+      "type": "gbVec3D",
+      "source": "decomp:_nearby_53b890_gbVec3D_operator=_loop(p+=3)"
+    },
+    "148": {
+      "name": "_todo_094",
+      "type": "int",
+      "source": "binary_scan:11refs"
+    },
     "152": {
       "name": "_field_240",
       "type": "int",
@@ -272,6 +161,36 @@
       "type": "int",
       "source": "transfer_from_RoleSystem_off_580"
     },
+    "160": {
+      "name": "m_vecTargetPos",
+      "type": "gbVec3D",
+      "source": "decomp:SetActionByName_float_from_pbyName+4(target_position_XYZ)"
+    },
+    "172": {
+      "name": "_todo_0AC",
+      "type": "float",
+      "source": "binary_scan:2refs"
+    },
+    "176": {
+      "name": "_todo_0B0",
+      "type": "float",
+      "source": "binary_scan:2refs"
+    },
+    "180": {
+      "name": "_todo_0B4",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "184": {
+      "name": "_todo_0B8",
+      "type": "float",
+      "source": "binary_scan:3refs"
+    },
+    "188": {
+      "name": "_todo_0BC",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
     "192": {
       "name": "_field_268",
       "type": "int",
@@ -281,6 +200,11 @@
       "name": "_field_26C",
       "type": "float",
       "source": "A:FPU_post_reattrib_0x53ac79"
+    },
+    "200": {
+      "name": "_todo_0C8",
+      "type": "int",
+      "source": "binary_scan:1refs"
     },
     "204": {
       "name": "m_nState",
@@ -352,20 +276,150 @@
       "type": "Actor *",
       "source": "transfer_from_RoleSystem_off_680"
     },
+    "264": {
+      "name": "m_nCmdParam",
+      "type": "int",
+      "source": "decomp:SetActionByName_from_pbyName+24"
+    },
     "272": {
       "name": "m_pActor",
       "type": "gbActor *",
       "source": "transfer_from_RoleSystem_off_696"
+    },
+    "280": {
+      "name": "m_szTexture",
+      "type": "char[28]",
+      "source": "binary:LEA_40hits_at_0x118,next_verified_field_at_0x13C(316)=36B_but_ann_next_at_308=28B"
     },
     "308": {
       "name": "_field_134",
       "type": "gbVec3D",
       "source": "A:lea+ctor_call(gbVec3D::default_ctor@0x4119C3)"
     },
+    "328": {
+      "name": "m_nAnimState",
+      "type": "short",
+      "source": "decomp:_nearby_53b890_LOWORD_from_nVal+328"
+    },
+    "332": {
+      "name": "m_nActionType",
+      "type": "unsigned char",
+      "source": "binary:raw_action"
+    },
+    "333": {
+      "name": "m_bActionFlag1",
+      "type": "unsigned char",
+      "source": "binary:raw_CompareAction"
+    },
+    "336": {
+      "name": "m_nActionParam",
+      "type": "unsigned char",
+      "source": "binary:raw_action"
+    },
+    "337": {
+      "name": "m_bActionFlag2",
+      "type": "unsigned char",
+      "source": "binary:raw"
+    },
+    "338": {
+      "name": "m_bActionFlag3",
+      "type": "unsigned char",
+      "source": "binary:raw"
+    },
+    "339": {
+      "name": "m_bActionActive",
+      "type": "unsigned char",
+      "source": "binary:raw_7votes"
+    },
+    "340": {
+      "name": "m_nActionState",
+      "type": "int",
+      "source": "binary:raw_action"
+    },
+    "344": {
+      "name": "m_nActionResult",
+      "type": "unsigned char",
+      "source": "binary:raw_action"
+    },
+    "345": {
+      "name": "m_bInitialized",
+      "type": "unsigned char",
+      "source": "binary:raw_InitComponents"
+    },
+    "348": {
+      "name": "m_nHP",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "352": {
+      "name": "m_nMaxHP",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "356": {
+      "name": "m_bHPVisible",
+      "type": "unsigned char",
+      "source": "binary:raw_hp_check"
+    },
+    "360": {
+      "name": "m_nHandleEvent",
+      "type": "int",
+      "source": "binary:gap_r2"
+    },
+    "364": {
+      "name": "m_vecPos",
+      "type": "gbVec3D",
+      "source": "binary:gap_r2 | annotate_todo"
+    },
+    "376": {
+      "name": "m_vecRot",
+      "type": "gbVec3D",
+      "source": "binary:gap_r2 | annotate_todo"
+    },
+    "388": {
+      "name": "m_nCloneParam",
+      "type": "int",
+      "source": "ida_decomp:_nearby_53b890 = *(a2+388), 4 refs"
+    },
+    "392": {
+      "name": "_field_188",
+      "type": "float",
+      "source": "A:FPU_disp32_0x41c23e"
+    },
     "396": {
       "name": "_field_334",
       "type": "int",
       "source": "transfer_from_RoleSystem_off_820"
+    },
+    "400": {
+      "name": "m_nCloneState",
+      "type": "int",
+      "source": "ida_decomp:_nearby_53b890 = *(a2+400), 6 refs"
+    },
+    "404": {
+      "name": "m_nCloneFlag1",
+      "type": "int",
+      "source": "ida_decomp:_nearby_53b890 = *(a2+404), 4 refs"
+    },
+    "408": {
+      "name": "m_nCloneFlag2",
+      "type": "int",
+      "source": "ida_decomp:_nearby_53b890 = *(a2+408), 4 refs"
+    },
+    "412": {
+      "name": "m_fFacingAngle",
+      "type": "float",
+      "source": "binary:gap_r2 | type_fix:int->float(A+:decomp *(float*)&this->_field_19C-m_vecRot.z in UpdateFrame (3x)) | name:m_fFacingAngle(A+:decomp =90.0 + used as rotation_delta_base)"
+    },
+    "420": {
+      "name": "_field_1A4",
+      "type": "int",
+      "source": "binary:gap_r2"
+    },
+    "428": {
+      "name": "_field_1AC",
+      "type": "int",
+      "source": "binary:gap_r2"
     },
     "432": {
       "name": "m_nRoleState1",
@@ -377,6 +431,16 @@
       "type": "RoleAtt *",
       "source": "binary:1_store_at_0x1B4,distinct_fields_at_0x1B8/0x1BC/0x1C0"
     },
+    "440": {
+      "name": "m_nAnimFrames",
+      "type": "int",
+      "source": "binary:distinct_fields_at_0x1B8/0x1BC(LEA)/0x1C0,each_4B"
+    },
+    "444": {
+      "name": "_todo_1BC",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
     "448": {
       "name": "m_pEquipAtt1",
       "type": "RoleAtt *[3]",
@@ -386,6 +450,16 @@
       "name": "m_pEquipAtt2",
       "type": "RoleAtt *[3]",
       "source": "transfer_from_RoleSystem_off_884"
+    },
+    "484": {
+      "name": "m_fBlendWeight",
+      "type": "float",
+      "source": "ida_decomp:_auto_5309a0 *0.333 + self, 3 refs"
+    },
+    "488": {
+      "name": "m_obbox",
+      "type": "gbOBBox *",
+      "source": "binary:gap_r3 | fix:gbOBBox(76)>span(8),revert_to_int+codegen_infer"
     },
     "496": {
       "name": "m_pSelfAtt",
@@ -397,105 +471,102 @@
       "type": "short",
       "source": "A:66_prefix_word_access"
     },
-    "36": {
-      "name": "m_pAllocBuf",
+    "512": {
+      "name": "_field_200",
+      "type": "float",
+      "source": "A+:decomp *(float*)&this->_field_200 (1 occurrences)"
+    },
+    "536": {
+      "name": "m_fAnimDelta",
+      "type": "float",
+      "source": "A+:decomp gbVec3D::operator=(&this->_todo_218, nVal+364)"
+    },
+    "540": {
+      "name": "m_dwMatMsg",
+      "type": "unsigned int[11]",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "584": {
+      "name": "m_bChangedMat",
+      "type": "unsigned char",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "585": {
+      "name": "m_curact",
+      "type": "char[8]",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "632": {
+      "name": "m_fDirX",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "636": {
+      "name": "m_fDirY",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "640": {
+      "name": "m_fDirZ",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "644": {
+      "name": "m_fNormX",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "648": {
+      "name": "m_fNormY",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "652": {
+      "name": "m_fNormZ",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "656": {
+      "name": "m_fDistAccum",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "660": {
+      "name": "m_fSpeed",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "676": {
+      "name": "m_fAngleDeg",
+      "type": "float",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "684": {
+      "name": "m_bDirFlag",
+      "type": "unsigned char",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "724": {
+      "name": "m_nAnimCounter",
+      "type": "int",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "773": {
+      "name": "m_bStateFlag",
+      "type": "unsigned char",
+      "source": "A:decomp Actor::UpdateFrame"
+    },
+    "776": {
+      "name": "m_pRoleState",
       "type": "void *",
-      "source": "decomp:operator_delete+set_0(pointer_not_float)",
-      "note": "Discovered by member_scan after disp8 fix."
+      "source": "A:decomp Actor::UpdateFrame"
     },
-    "52": {
-      "name": "m_fRoleParam1",
-      "type": "float",
-      "source": "decomp:transfer_from_nVal+52_float",
-      "note": "Discovered by member_scan after disp8 fix."
-    },
-    "72": {
-      "name": "m_pRoleParam3",
-      "type": "void *",
-      "source": "decomp:transfer_from_nVal+72_ptr",
-      "note": "Discovered by member_scan after disp8 fix."
-    },
-    "68": {
-      "name": "m_nRoleParam2",
+    "784": {
+      "name": "m_nUpdateMode",
       "type": "int",
-      "source": "decomp:transfer_from_nVal+68",
-      "note": "Discovered by member_scan after disp8 fix."
-    },
-    "116": {
-      "name": "_todo_074",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "128": {
-      "name": "m_nAnimParam0",
-      "type": "int",
-      "source": "decomp:_nearby_53b890_from_nVal+128"
-    },
-    "132": {
-      "name": "m_nAnimParam1",
-      "type": "int",
-      "source": "decomp:_nearby_53b890_from_nVal+132"
-    },
-    "136": {
-      "name": "m_vecBonePos",
-      "type": "gbVec3D",
-      "source": "decomp:_nearby_53b890_gbVec3D_operator=_loop(p+=3)"
-    },
-    "148": {
-      "name": "_todo_094",
-      "type": "int",
-      "source": "binary_scan:11refs"
-    },
-    "160": {
-      "name": "m_vecTargetPos",
-      "type": "gbVec3D",
-      "source": "decomp:SetActionByName_float_from_pbyName+4(target_position_XYZ)"
-    },
-    "172": {
-      "name": "_todo_0AC",
-      "type": "float",
-      "source": "binary_scan:2refs"
-    },
-    "176": {
-      "name": "_todo_0B0",
-      "type": "float",
-      "source": "binary_scan:2refs"
-    },
-    "180": {
-      "name": "_todo_0B4",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "184": {
-      "name": "_todo_0B8",
-      "type": "float",
-      "source": "binary_scan:3refs"
-    },
-    "188": {
-      "name": "_todo_0BC",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "200": {
-      "name": "_todo_0C8",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "264": {
-      "name": "m_nCmdParam",
-      "type": "int",
-      "source": "decomp:SetActionByName_from_pbyName+24"
-    },
-    "328": {
-      "name": "m_nAnimState",
-      "type": "short",
-      "source": "decomp:_nearby_53b890_LOWORD_from_nVal+328"
-    },
-    "444": {
-      "name": "_todo_1BC",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "A:decomp Actor::UpdateFrame"
     }
   },
-  "binary_size": 596
+  "binary_size": 820,
+  "note": "binary_size=820: 10 functions access>596, max +820. PAL3.exe differs from PDB (596)."
 }
