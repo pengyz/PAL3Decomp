@@ -1359,6 +1359,15 @@ def main():
         # (e.g. TaskMgr_SceneObjParam_SceneObj -> uses TaskMgr<...> template expression)
         if cls_name in _template_concrete:
             continue
+        # For classes with manual override files, copy the override instead of auto-generating
+        override_path = OVERRIDES_DIR / ('%s.h' % cls_name)
+        if override_path.exists():
+            output_path = OUTPUT_DIR / ("%s.h" % cls_name)
+            with open(override_path, 'r', encoding='utf-8') as src:
+                with open(output_path, 'w', encoding='utf-8') as dst:
+                    dst.write(src.read())
+            generated += 1
+            continue
 
         pdb_class = pdb_classes.get(cls_name)
         methods = methods_by_class.get(cls_name, [])
