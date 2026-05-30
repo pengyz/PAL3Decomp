@@ -242,19 +242,19 @@
       "comment": "camera up direction vector"
     },
     "556": {
-      "name": "_field_22C",
+      "name": "m_fViewDistance",
       "type": "float",
-      "source": "binary:1x access | type_fix"
+      "source": "A:InitDefaultView: mov [esi+22Ch], 43960000h (300.0f)"
     },
     "564": {
-      "name": "_field_234",
+      "name": "m_fViewPitch",
       "type": "float",
-      "source": "binary:1x access | type_fix:int->float(A+:decomp assign -1018691584=0xC3480000=-200.0f)"
+      "source": "A:InitDefaultView: mov [esi+234h], 0C21E4092h (-39.56f)"
     },
     "568": {
-      "name": "_field_238",
+      "name": "m_fViewYaw",
       "type": "float",
-      "source": "binary:1x access | type_fix"
+      "source": "A:InitDefaultView: mov [esi+238h], 4397468Ch (302.55f)"
     },
     "572": {
       "name": "_field_23C",
