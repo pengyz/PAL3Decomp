@@ -155,5 +155,24 @@
       "3264": "m_RoleAtt_4",
       "3268": "m_RoleAtt_5"
     }
+  },
+  "UIParabolaCtrl": {
+    "class_hint": "4B stub (opaque handle). Embedded in ARC_PlayerAtt(1408B) or similar struct. GetState reads a DWORD at offset 1328 as state/reset pattern.",
+    "binary_size": 1340,
+    "fields": {
+      "1328": "m_nState"
+    }
+  },
+  "CCCTData": {
+    "class_hint": "CCCTData embedded at offset 0 of CCBCamControl(430256B). Excess offsets access CCBCamControl tail fields.",
+    "binary_size": 430300,
+    "fields": {
+      "430004": "m_pCam",
+      "430036": "m_nCurTask",
+      "430144": "m_vecCurPos_z",
+      "430224": "m_pPointer",
+      "430248": "m_vecCircleEnd_z",
+      "430252": "m_bShowCircleSet"
+    }
   }
 }
