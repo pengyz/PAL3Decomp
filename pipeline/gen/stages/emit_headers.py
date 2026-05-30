@@ -350,7 +350,9 @@ def collect_methods():
                 def _params(s):
                     p = re.sub(r'^.*?__thiscall\([^,]*,\s*', '', s)
                     p = re.sub(r'^.*?__thiscall\(', '', p)
-                    return re.sub(r'\)\s*$', '', p).strip()
+                    p = re.sub(r'\)\s*$', '', p).strip()
+                    p = re.sub(r'\bstruct\s+', '', p)  # struct keyword is optional in C++
+                    return p
                 if _params(existing_sig) == _params(sig):
                     collides = True
                     break
@@ -382,7 +384,8 @@ def collect_methods():
                 def _params(s):
                     p = re.sub(r'^.*?__thiscall\([^,]*,\s*', '', s)
                     p = re.sub(r'^.*?__thiscall\(', '', p)
-                    return re.sub(r'\)\s*$', '', p).strip()
+                    p = re.sub(r'\)\s*$', '', p).strip()
+                    p = re.sub(r'\bstruct\s+', '', p)
                 collides = any(
                     existing_method == ovl_stripped and _params(existing_sig) == _params(sig)
                     for existing_method, existing_sig, _ in classes.get(cls, []))
@@ -766,13 +769,27 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                         matched = _tinfo
                         break
                 if matched:
-                    # Use concrete struct name (PDB template instance) instead
-                    # of C++ template expression — VC6 can't handle member
-                    # function pointers in template args.
-                    base_names.append(_cname)
+                    # Use C++ template expression (e.g. TaskMgr<SceneObjParam, Callback>)
+                    # instead of PDB concrete name (TaskMgr_SceneObjParam_SceneObj).
+                    # TaskMgr.h is now a proper template — no concrete header needed.
+                    base_names.append(matched)
                     continue
                 bname = base_tpl
             base_names.append(bname)
+        # Ensure all base classes have includes generated
+        # (base_names processing happens after include emission, so add directly)
+        header_dir = OUTPUT_DIR
+        for b in base_names:
+            if b in SYSTEM_TYPES:
+                continue
+            # Template expression: extract base name (e.g. "TaskMgr" from "TaskMgr<...>")
+            if '<' in b:
+                base_inc = b.split('<')[0]
+            else:
+                base_inc = b
+            inc_line = '#include "%s.h"' % base_inc
+            if inc_line not in lines:
+                lines.insert(0, inc_line)
 
     if not base_names:
         print(f'  [debug] no PDB bases, fallback to _ann_base={_ann_base}', file=sys.stderr)
@@ -785,10 +802,6 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
 
     if base_names:
         bases_str = " : " + ", ".join("public %s" % b for b in base_names)
-        for b in base_names:
-            # Inheritance requires full definition → include (not just fwd-declare)
-            include_types.add(b)
-            fwd_types.discard(b)
 
     # Determine keyword: union only if ANNOTATION explicitly marks is_union
     # (IDA TIL may misdetect some PDB types as union)
@@ -1036,6 +1049,14 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             import traceback; traceback.print_exc()
 
     # Methods (deduplicate by name+params to avoid C2535)
+    # Pre-compute opaque type info (needed before method loop to suppress ctor decl)
+    _is_opaque = False
+    _ann_for_check = load_annotations_data()
+    _check_struct = _ann_for_check.get('structs', {}).get(cls_name, {})
+    _check_size = _check_struct.get('binary_size') or 0
+    _check_members = _check_struct.get('known_members', {})
+    if _check_size and _check_size <= 16 and len(_check_members) == 0:
+        _is_opaque = True
     if methods:
         seen_methods = set()  # track "name(params)" to deduplicate
         for method_name, sig, addr in sorted(methods, key=lambda x: x[2]):
@@ -1111,6 +1132,8 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
 
             # Build declaration
             if is_ctor:
+                if _is_opaque:
+                    continue  # opaque type generates its own ctor body
                 decl = "    %s(%s);" % (cls_name, params)
             elif is_dtor:
                 if _has_ovl:
@@ -1282,6 +1305,19 @@ def main():
     ann_structs = set(ann_data_all.get('structs', {}).keys())
     all_classes = set(pdb_classes.keys()) | set(methods_by_class.keys()) | vtable_classes | ann_structs
 
+    # Load template reverse map: concrete class -> template expression
+    # Classes in this map are template instantiations whose headers should NOT
+    # be generated (they use the template definition instead).
+    _template_concrete = set()
+    _tpl_path = os.path.join(os.path.dirname(__file__), '..', '..', '..',
+                             'data', 'annotations', 'template_bases.json')
+    if os.path.exists(_tpl_path):
+        with open(_tpl_path) as _f:
+            _tpl_data = json.load(_f)
+        for _k, _v in _tpl_data.items():
+            if not _k.startswith('_'):
+                _template_concrete.add(_k)
+
     # Pre-compute set of all class names that will have headers generated
     classes_with_headers = set()
     for cls_name in all_classes:
@@ -1318,6 +1354,10 @@ def main():
 
     for cls_name in sorted(all_classes):
         if should_skip_class(cls_name):
+            continue
+        # Skip template instantiation classes that have a proper template definition
+        # (e.g. TaskMgr_SceneObjParam_SceneObj -> uses TaskMgr<...> template expression)
+        if cls_name in _template_concrete:
             continue
 
         pdb_class = pdb_classes.get(cls_name)
