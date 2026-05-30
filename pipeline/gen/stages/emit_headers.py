@@ -692,10 +692,14 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     # Types needing full definition but no header -> demote to fwd_types
     if known_classes is not None:
         resolved_includes = set()
+        header_dir = OUTPUT_DIR
         for t in include_types:
             if t in _gbengine_type_to_header:
                 resolved_includes.add(t)
             elif t in known_classes:
+                resolved_includes.add(t)
+            elif (header_dir / ('%s.h' % t)).exists():
+                # Header exists on disk but processed later in generation order
                 resolved_includes.add(t)
             else:
                 fwd_types.add(t)
