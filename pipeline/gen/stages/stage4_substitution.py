@@ -504,36 +504,47 @@ def _decompose_raw_pointer_arithmetic(code):
     
     _offset_index = _decompose_raw_pointer_arithmetic._offset_index
     
+    # Extract current class name from function signature (e.g. "ClassName::Method")
+    _cls_match = re.search(r'(?:\w[\w:]*\s+)?\w[\w:]*\s+\w+::\w+\s*\(', code)
+    _current_cls = ''
+    if _cls_match:
+        _sig = _cls_match.group(0)
+        _parts = re.findall(r'(\w+)::', _sig)
+        if _parts:
+            _current_cls = _parts[0]
+    
+    def _pick_field_name(off):
+        """Pick field name for an offset, preferring current class's struct."""
+        candidates = _offset_index.get(off, [])
+        if not candidates:
+            return None
+        # Prefer field from current class
+        for sn, fn, ft in reversed(candidates):
+            if sn == _current_cls:
+                return fn
+        # Fall back to any field (last = highest priority = field_overrides)
+        return candidates[-1][1]
+    
     # Phase 1: Pattern C — field_overrides substitution
     changes = []
     
     # Pattern C1: (char *)this + CONSTANT → comment with field name (safe, no struct change)
     for m in re.finditer(r'\(char\s*\*\)this\s*\+\s*(\d+)', code):
-        off = int(m.group(1))
-        if off in _offset_index:
-            candidates = _offset_index[off]
-            if len(candidates) >= 1:
-                fn = candidates[-1][1]
-                # Keep original text, append comment
-                changes.append((m.end(), m.end(), '  /* ' + fn + ' */'))
+        fn = _pick_field_name(int(m.group(1)))
+        if fn:
+            changes.append((m.end(), m.end(), '  /* ' + fn + ' */'))
     
     # Pattern C2: *((_DWORD *)this + N) → comment with field name (DWORD offset N → byte 4*N)
     for m in re.finditer(r'\*\(\(_DWORD\s*\*\)this\s*\+\s*(\d+)\)', code):
-        off = int(m.group(1)) * 4
-        if off in _offset_index:
-            candidates = _offset_index[off]
-            if len(candidates) >= 1:
-                fn = candidates[-1][1]
-                changes.append((m.end(), m.end(), '  /* ' + fn + ' */'))
+        fn = _pick_field_name(int(m.group(1)) * 4)
+        if fn:
+            changes.append((m.end(), m.end(), '  /* ' + fn + ' */'))
     
     # Pattern C3: *((_BYTE *)this + N) → comment with field name (byte offset)
     for m in re.finditer(r'\*\(\(_BYTE\s*\*\)this\s*\+\s*(\d+)\)', code):
-        off = int(m.group(1))
-        if off in _offset_index:
-            candidates = _offset_index[off]
-            if len(candidates) >= 1:
-                fn = candidates[-1][1]
-                changes.append((m.end(), m.end(), '  /* ' + fn + ' */'))
+        fn = _pick_field_name(int(m.group(1)))
+        if fn:
+            changes.append((m.end(), m.end(), '  /* ' + fn + ' */'))
     
     if changes:
         changes.sort(key=lambda x: x[0], reverse=True)
@@ -649,92 +660,11 @@ def _decompose_raw_pointer_arithmetic(code):
                             end = m.end()
                             changes.append((start, end, replacement))
     
-    # Pattern C: this + N (simple offset, no variable)
-    # Search all structs for a member at offset N
-    # Build a global offset index: offset -> [(struct_name, field_name, field_type)]
-    import json as _json
-    import os as _os
-    _structs_dir = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.dirname(
-                                 _os.path.dirname(_os.path.abspath(__file__))))),
-                                 'data', 'annotations', 'structs')
-    
-    # Build offset index on first call (cache)
-    if not hasattr(_decompose_raw_pointer_arithmetic, '_offset_index'):
-        _offset_index = {}  # offset -> [(struct, field_name, field_type)]
-        for _fname in sorted(_os.listdir(_structs_dir)):
-            if not _fname.endswith('.json'): continue
-            try:
-                with open(_os.path.join(_structs_dir, _fname), encoding='utf-8') as _fh:
-                    _d = _json.load(_fh)
-            except: continue
-            _sn = _d.get('name', '')
-            for _off_str, _m in _d.get('known_members', {}).items():
-                try:
-                    _off = int(_off_str)
-                except: continue
-                _n = _m.get('name', '')
-                _t = _m.get('type', '')
-                if _n and not _n.startswith('_'):
-                    _offset_index.setdefault(_off, []).append((_sn, _n, _t))
-        _decompose_raw_pointer_arithmetic._offset_index = _offset_index
-    # Load field_overrides.json for structs that bypass TAUDT_FIXED limits
-    _fo_path = _os.path.join(_structs_dir, '..', 'field_overrides.json')
-    if _os.path.exists(_fo_path):
-        try:
-            with open(_fo_path, encoding='utf-8') as _fo_f:
-                _fo_data = _json.load(_fo_f)
-            for _fo_struct, _fo_info in _fo_data.items():
-                if _fo_struct.startswith('_'): continue
-                for _fo_off_str, _fo_name in _fo_info.get('fields', {}).items():
-                    _fo_off = int(_fo_off_str)
-                    _offset_index.setdefault(_fo_off, []).append((_fo_struct, _fo_name, 'int'))
-        except:
-            pass
-
-    
-    _offset_index = _decompose_raw_pointer_arithmetic._offset_index
-    
-    # Match: this + CONSTANT (simple offset, not part of a larger expression)
-    for m in re.finditer(
-        r'\(char\s*\*\)this\s*\+\s*(\d+)|_BYTE\s*\*\)\(this\s*\+\s*(\d+)|_DWORD\s*\*\)\(this\s*\+\s*(\d+)',
-        code
-    ):
-        off = None
-        for g in m.groups():
-            if g is not None:
-                off = int(g)
-                break
-        if off is None or off <= 0:
-            continue
-        if off in _offset_index:
-            candidates = _offset_index[off]
-            if len(candidates) == 1:
-                sn, fn, ft = candidates[0]
-                # Only rewrite if the struct is different from this function's class
-                # or if this is a safe type match
-                replacement = 'this->' + fn
-                start = m.start()
-                end = m.end()
-                changes.append((start, end, replacement))
-    
-    # Apply changes in reverse order, filtering overlapping ones
+    # Apply Pattern B changes
     if changes:
-        # Sort by start position, descending
         changes.sort(key=lambda x: x[0], reverse=True)
-        # Filter out overlapping changes
-        filtered = []
-        for start, end, replacement in changes:
-            # Check if this range overlaps with any already-accepted change
-            overlaps = False
-            for fs, fe, _ in filtered:
-                if not (end <= fs or start >= fe):
-                    overlaps = True
-                    break
-            if not overlaps:
-                filtered.append((start, end, replacement))
-        
         code_bytes = code.encode('utf-8')
-        for start, end, replacement in filtered:
+        for start, end, replacement in changes:
             code_bytes = code_bytes[:start] + replacement.encode('utf-8') + code_bytes[end:]
         code = code_bytes.decode('utf-8')
     

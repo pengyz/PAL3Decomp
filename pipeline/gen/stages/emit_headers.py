@@ -467,6 +467,26 @@ def _estimate_member_size(mtype):
 def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names=None,
                     colliding_enums=None):
     """Generate a complete header for one class."""
+    # Use IDB-exported struct definitions as primary source (PDB + annotations merged).
+    # This ensures headers match exactly what the decompiler (running on the same IDB) sees.
+    _ida_structs_path = os.path.join(os.path.dirname(os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__)))), "asm", "pal3", "ida_structs.json")
+    try:
+        with open(_ida_structs_path, encoding='utf-8') as _f:
+            _ida_structs = json.load(_f)
+        _is = _ida_structs.get(cls_name)
+        if _is and _is.get('data_members'):
+            # Override pdb_class with IDB-exported struct data
+            if pdb_class is None:
+                pdb_class = {}
+            pdb_class['data_members'] = [
+                m for m in _is['data_members']
+                if not m.get('name', '').startswith('__vftable')
+            ]
+            pdb_class['size'] = _is.get('size', pdb_class.get('size', 0))
+    except (FileNotFoundError, json.JSONDecodeError, IOError):
+        pass  # fall back to annotation + PDB merge
+
     lines = []
     lines.append("#pragma once")
     lines.append("// Auto-generated: %s" % cls_name)
@@ -849,8 +869,12 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     except:
         _ann_s = {}
     # Priority: annotations with binary_size > annotations with members > PDB
+    # When both annotation and PDB exist, merge: annotation wins, PDB fills gaps.
     if _ann_s.get('binary_size') or _ann_s.get('known_members'):
-        use_pdb_members = False
+        if pdb_class and pdb_class.get('data_members'):
+            use_pdb_members = 'merge'  # merge PDB members into annotation
+        else:
+            use_pdb_members = False
     elif pdb_class and pdb_class.get('data_members'):
         use_pdb_members = True
 
@@ -909,8 +933,19 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
         try:
             ann_data_fb = load_annotations_data()
             ann_struct_fb = ann_data_fb.get('structs', {}).get(cls_name, {})
-            ann_members = ann_struct_fb.get('known_members', {})
+            ann_members = dict(ann_struct_fb.get('known_members', {}))  # copy
             ann_size = ann_struct_fb.get('binary_size')
+            
+            # Merge PDB members into annotation members (PDB fills gaps)
+            if use_pdb_members == 'merge' and pdb_class and pdb_class.get('data_members'):
+                ann_offsets = set(int(k) for k in ann_members.keys())
+                for m in pdb_class['data_members']:
+                    moff = m.get('offset', 0)
+                    if moff not in ann_offsets and moff >= base_size:
+                        mname = m.get('name', '')
+                        mtype = m.get('type', 'int')
+                        if mname and '__vftable' not in mname and 'vtbl_' not in mtype:
+                            ann_members[str(moff)] = {'name': mname, 'type': mtype, 'source': 'pdb_merge'}
             if ann_members or ann_size:
                 sorted_members = sorted(ann_members.items(), key=lambda x: int(x[0])) if ann_members else []
                 start_off = base_size
@@ -963,7 +998,15 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                         base_type = mtype[:arr_match.start()].rstrip()
                         lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, off))
                     else:
-                        lines.append("    %s %s; // +0x%X" % (mtype, mname, off))
+                        # Fix function pointer member syntax:
+                        # "void (*)(void)" + name = "void (*)(void) name" (WRONG)
+                        # Should be: "void (*name)(void)"
+                        _fp_match = re.search(r'\((\*)\)\(', mtype)
+                        if _fp_match:
+                            mtype = mtype[:_fp_match.start(1)] + '*' + mname + mtype[_fp_match.end(1):]
+                            lines.append("    %s; // +0x%X" % (mtype, off))
+                        else:
+                            lines.append("    %s %s; // +0x%X" % (mtype, mname, off))
                     # Estimate member size to compute next start_off
                     member_size = _estimate_member_size(mtype)
                     start_off = off + member_size
@@ -1043,24 +1086,12 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 lines.append("    // [IDA_REGPARAM] %s; // %s" % (method_name, addr))
                 continue
 
-            # Function pointer parameters: VC6 doesn't support __thiscall in fp type decls.
-            # Strip calling conventions from nested function pointer types and rename 'this'.
+            # VC6 supports __thiscall in function pointer type declarations.
+            # Keep calling conventions intact. Only rename 'this' to '_this'.
             if sig.count('(') > 2:
-                params = re.sub(r'__thiscall\s*\*', '*', params)
-                params = re.sub(r'__cdecl\s*\*', '*', params)
-                params = re.sub(r'__stdcall\s*\*', '*', params)
-                ret_right = re.sub(r'__thiscall\s*\*', '*', ret_right)
-                ret_right = re.sub(r'__cdecl\s*\*', '*', ret_right)
-                ret_right = re.sub(r'__stdcall\s*\*', '*', ret_right)
                 def _fix_nested_this(m):
                     return m.group(0).replace(' this', ' _this').replace('*this', '*_this')
                 params = re.sub(r'\([^)]*\bthis\b[^)]*\)', _fix_nested_this, params)
-
-            # Strip calling conventions from function-pointer return type
-            if ret_right:
-                ret = re.sub(r'__thiscall\s*\*', '*', ret)
-                ret = re.sub(r'__cdecl\s*\*', '*', ret)
-                ret = re.sub(r'__stdcall\s*\*', '*', ret)
 
             # Build declaration
             if is_ctor:
