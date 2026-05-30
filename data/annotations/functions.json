@@ -379,7 +379,7 @@
   },
   "0x0040E5F0": {
     "name": "ScriptSystem::Execute",
-    "signature": "int __cdecl(int nVal, char pData)"
+    "signature": "int __thiscall(ScriptSystem *this, int nVal, char pData)"
   },
   "0x0040EB90": {
     "name": "NPC::Create",
@@ -535,7 +535,7 @@
   },
   "0x0041D9A0": {
     "name": "CameraCtrl::UpdateInternal",
-    "signature": "void __cdecl CameraCtrl::UpdateInternal(float fDelta)"
+    "signature": "void __thiscall(CameraCtrl *this, float fDelta)"
   },
   "0x0041E7D0": {
     "name": "Camera::CheckCollision1",
@@ -822,7 +822,7 @@
     "signature": "int __thiscall(UIScene *this)"
   },
   "0x0043BE30": {
-    "name": "CCBResultWindow::~CCBResultWindow",
+    "name": "CCBResultWindow::~CCBResultWindow__ovl_be30",
     "signature": "void __thiscall CCBResultWindow::~CCBResultWindow(CCBResultWindow *this)"
   },
   "0x0043DC90": {
@@ -1082,7 +1082,7 @@
     "signature": "int __thiscall(CGameData *this, int nVal)"
   },
   "0x0044BDA0": {
-    "name": "UIScene::_scalar_dtor",
+    "name": "UIScene::_scalar_dtor__ovl_bda0",
     "signature": "void *__thiscall UIScene::_scalar_dtor(UIScene *this, char pData)",
     "type": "skip",
     "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -1524,7 +1524,7 @@
     "signature": "char __thiscall(CEffgbParticle *this, tagEffObjType *pType)"
   },
   "0x004C6F20": {
-    "name": "CEffgbParticle::Destroy",
+    "name": "CEffgbParticle::Destroy__ovl_6f20",
     "signature": "void __thiscall(CEffgbParticle *this)"
   },
   "0x004C7150": {
@@ -1584,8 +1584,8 @@
     "signature": "CEffgbParticle *__thiscall(CEffgbParticle *this)"
   },
   "0x004C8970": {
-    "name": "CEffgbParticle::ReleaseParticleData",
-    "signature": "void __fastcall CEffgbParticle::ReleaseParticleData(CEffgbParticle *this)"
+    "name": "CEffgbParticle::Destroy__fastcall",
+    "signature": "void __thiscall(CEffgbParticle *this)"
   },
   "0x004C8A40": {
     "name": "CEffgbParticle::CreateTask",
@@ -3786,7 +3786,7 @@
     "signature": "void __thiscall(CCBUI *this)"
   },
   "0x00519FE0": {
-    "name": "CCBFiveNimbusWindow::OnMessage",
+    "name": "CCBFiveNimbusWindow::OnMessage__ovl_9fe0",
     "signature": "int __thiscall(CCBUI *this, int nVal, unsigned int dwVal, int nVal2)"
   },
   "0x0051A090": {
@@ -4524,7 +4524,7 @@
     "signature": "void __thiscall(UIListBox *this)"
   },
   "0x004909F0": {
-    "name": "MainPropUI::~MainPropUI",
+    "name": "MainPropUI::~MainPropUI__ovl_09f0",
     "signature": "int __thiscall MainPropUI::~MainPropUI(MainPropUI *this)",
     "_misattrib_evidence": "max_offset=219676>class_size=10248"
   },
@@ -4721,7 +4721,7 @@
     "reason": "compiler-generated ctor/dtor/thunk, not game logic"
   },
   "0x00470F40": {
-    "name": "LineupUI::~LineupUI",
+    "name": "LineupUI::~LineupUI__ovl_0f40",
     "signature": "void __thiscall(LineupUI *this)",
     "_misattrib_evidence": "max_offset=124248>class_size=1208"
   },
@@ -4911,7 +4911,7 @@
     "signature": "void __thiscall ChoseCompose::~ChoseCompose(ChoseCompose *this)"
   },
   "0x004C0200": {
-    "name": "RenderTarget2::Update",
+    "name": "RenderTarget2::Update__ovl_0200",
     "signature": "void __thiscall(RenderTarget2 *this, float fVal)",
     "class": "RenderTarget2"
   },
@@ -5014,7 +5014,7 @@
   },
   "0x0053CC10": {
     "name": "Logger::RegisterCallback",
-    "signature": "int __thiscall(Logger *this, int pfn, char *name, char *desc)"
+    "signature": "int __thiscall(Logger *this, void (*f)(), char *name, char *desc)"
   },
   "0x0053CDD0": {
     "name": "CScreenMode::SetState",
@@ -5057,7 +5057,7 @@
     "signature": "int __thiscall EquipUI::InitUI(EquipUI *this)"
   },
   "0x004318A0": {
-    "name": "PalScript::Cleanup",
+    "name": "PalScript::Cleanup__ovl_18a0",
     "signature": "void __thiscall(PalScript *this)"
   },
   "0x00445F20": {
@@ -6884,7 +6884,7 @@
   },
   "0x00431D20": {
     "name": "PalScript::CleanupInstances",
-    "signature": "void __thiscall PalScript::CleanupInstances(PalScript *this)"
+    "signature": "void __thiscall(PalScript *this)"
   },
   "0x004327F0": {
     "name": "PtrArray::FindFirst",
@@ -7329,8 +7329,8 @@
     "signature": "gbVFileSystem *__thiscall UIFrameWnd::SetTextureByID(UIFrameWnd *this, int nTexID)"
   },
   "0x00442D00": {
-    "name": "UIStatic::CtorWithFlag",
-    "signature": "UIStatic *__thiscall UIStatic::CtorWithFlag(UIStatic *this)"
+    "name": "UIStatic::CtorWithFlag__ovl_2d00",
+    "signature": "UIStatic *__thiscall(UIStatic *this)"
   },
   "0x00442E60": {
     "name": "UIFrameWnd::_scalar_dtor",
@@ -7399,7 +7399,7 @@
     "signature": "void __thiscall CCBItemWindow::CCBItemWindow(CCBItemWindow *this)"
   },
   "0x004461D0": {
-    "name": "CCBUIPanel::_scalar_dtor",
+    "name": "CCBUIPanel::_scalar_dtor__ovl_61d0",
     "signature": "void __thiscall CCBUIPanel::_scalar_dtor(CCBUIPanel *this)",
     "type": "skip",
     "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -7421,8 +7421,8 @@
     "signature": "BOOL __thiscall CCBUIPanel::ProcessInput(CCBUIPanel *this, double st7_0)"
   },
   "0x0044A790": {
-    "name": "UIWnd::CtorDefault",
-    "signature": "UIWnd *__thiscall UIWnd::CtorDefault(UIWnd *this)"
+    "name": "UIWnd::CtorDefault__ovl_a790",
+    "signature": "UIWnd *__thiscall(UIWnd *this)"
   },
   "0x0044A870": {
     "name": "UIWnd::RenderTwoPass",
@@ -7749,7 +7749,7 @@
     "signature": "int __thiscall(LineupUI *this, int nVal, int nVal2)"
   },
   "0x00475FC0": {
-    "name": "LineupUI::RefreshDisplay",
+    "name": "LineupUI::RefreshDisplay__ovl_5fc0",
     "signature": "int __thiscall(LineupUI *this)",
     "_misattrib_evidence": "max_offset=124248>class_size=1208"
   },
@@ -8699,7 +8699,7 @@
     "signature": "CCBStage * __thiscall(CCBStageCam *this)"
   },
   "0x00504E60": {
-    "name": "CCBStageCam::~CCBStageCam",
+    "name": "CCBStageCam::~CCBStageCam__ovl_4e60",
     "signature": "char __thiscall CCBStageCam::~CCBStageCam(CCBStageCam *this)"
   },
   "0x0050ACF0": {
@@ -10253,7 +10253,7 @@
     "signature": "int __thiscall UIFrameWnd::SetFrameParam(UIFrameWnd *this, int nVal)"
   },
   "0x00442D40": {
-    "name": "UIFrameWnd::~UIFrameWnd",
+    "name": "UIFrameWnd::~UIFrameWnd__ovl_2d40",
     "signature": "void __thiscall UIFrameWnd::~UIFrameWnd(UIFrameWnd *this)"
   },
   "0x00442E90": {
@@ -10614,7 +10614,7 @@
     "_misattrib_evidence": "max_offset=556>class_size=140"
   },
   "0x004528F0": {
-    "name": "UIBigMap::InitLayout",
+    "name": "UIBigMap::InitUI(int id, int parent)",
     "signature": "int __thiscall(UIBigMap *this, int id, int parent)"
   },
   "0x00452D30": {
@@ -10686,7 +10686,7 @@
     "_misattrib_evidence": "max_offset=130360>class_size=4280"
   },
   "0x00456C20": {
-    "name": "CCBRoleState::~CCBRoleState",
+    "name": "CCBRoleState::~CCBRoleState__ovl_6c20",
     "signature": "void __thiscall CCBRoleState::~CCBRoleState(CCBRoleState *this)"
   },
   "0x00456E20": {
@@ -10936,8 +10936,8 @@
     "signature": "int __thiscall LineupUI::UpdateAllSlots(LineupUI *this)"
   },
   "0x004777B0": {
-    "name": "LineupUI::RefreshDisplayItems",
-    "signature": "void __thiscall LineupUI::RefreshDisplayItems(LineupUI *this)",
+    "name": "LineupUI::RefreshDisplayEx",
+    "signature": "int __thiscall(LineupUI *this)",
     "_misattrib_evidence": "max_offset=123740>class_size=1208"
   },
   "0x00477A90": {
@@ -11017,7 +11017,7 @@
     "signature": "int __thiscall ComposeUI::RefreshRecipeList(ComposeUI *this, int arg0)"
   },
   "0x0047E3E0": {
-    "name": "UITitle_YXXX::Update",
+    "name": "UITitle_YXXX::Update__ovl_e3e0",
     "signature": "int __thiscall(UITitle_YXXX *this, int nVal, int nVal2)"
   },
   "0x0047E4E0": {
@@ -11944,7 +11944,7 @@
   },
   "0x004C29A0": {
     "name": "RenderTarget2::UpdateInternal",
-    "signature": "int __thiscall RenderTarget2::UpdateInternal(RenderTarget2 *this, int nVal, int nVal2)"
+    "signature": "void __thiscall(RenderTarget2 *this, float fVal)"
   },
   "0x004C2D00": {
     "name": "RenderTarget2::CreateEffectTarget",
@@ -12871,7 +12871,7 @@
     "signature": "int __thiscall(UIListBox *this)"
   },
   "0x00527EA0": {
-    "name": "UIListBox::OnMessage_7ea0",
+    "name": "UIListBox::OnMessageEx",
     "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2, int nVal3)"
   },
   "0x00527F50": {
@@ -13454,7 +13454,7 @@
     "signature": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, short *pnVal)"
   },
   "0x0053A2E0": {
-    "name": "Actor::GetActionCount",
+    "name": "Actor::GetActionCount__ovl_a2e0",
     "signature": "int __thiscall(Actor *this)"
   },
   "0x0053A310": {
@@ -13512,10 +13512,6 @@
   "0x0053BD30": {
     "name": "Actor::BoneIndexVec_Assign",
     "signature": "int *__thiscall Actor::BoneIndexVec_Assign(Actor *this, int *pnVal)"
-  },
-  "0x0053BEB0": {
-    "name": "Actor::GetActionCountBySlot",
-    "signature": "int __thiscall Actor::GetActionCountBySlot(Actor *this)"
   },
   "0x0053BEE0": {
     "name": "ActVec_Reallocate",
@@ -14173,5 +14169,25 @@
   "0x00434C80": {
     "name": "PalScriptMgr::UpdateLoadProgress",
     "signature": "void * __cdecl PalScriptMgr::UpdateLoadProgress()"
+  },
+  "0x00483260": {
+    "name": "CScreenMode::_scalar_dtor__ovl_3260",
+    "signature": "StateUI *__thiscall(StateUI *Block, char a2)"
+  },
+  "0x00445B20": {
+    "name": "UIWnd::_scalar_dtor__ovl_5b20",
+    "signature": "void *__thiscall(UIWnd *Block, char pData)"
+  },
+  "0x0053BEB0": {
+    "name": "Actor::GetActionCountEx",
+    "signature": "int __thiscall(Actor *this)"
+  },
+  "0x004F6A80": {
+    "name": "PAL_GDB::IsRoleAlive2",
+    "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
+  },
+  "0x005279D0": {
+    "name": "UIListBox::_scalar_dtor_79d0",
+    "signature": "UIListBox *__thiscall(UIListBox *Block, char a2)"
   }
 }

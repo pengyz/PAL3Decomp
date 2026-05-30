@@ -37,11 +37,6 @@
       "type": "int",
       "source": "decomp:Render_access_pattern"
     },
-    "132": {
-      "name": "_todo_084",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
     "4652": {
       "name": "_todo_122C",
       "type": "int",
@@ -56,6 +51,16 @@
       "name": "_todo_12F8",
       "type": "int",
       "source": "binary_scan:1refs"
+    },
+    "0": {
+      "name": "m_nCallbackCount",
+      "type": "int",
+      "source": "A:decomp Logger::RegisterCallback *(DWORD*)this >= 34 — callback registration count"
+    },
+    "4": {
+      "name": "m_callbacks",
+      "type": "tagLoggerCallback[34]",
+      "source": "A:decomp Logger::RegisterCallback v6=&this->m_nCallbackCount + 34*count + 1 — callback array at +4, each 136 bytes, max 34 entries"
     }
   },
   "binary_size": 6360

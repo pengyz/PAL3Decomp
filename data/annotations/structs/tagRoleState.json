@@ -72,14 +72,14 @@
       "source": "gen_headers_9.2"
     },
     "48": {
-      "name": "nFullGP",
-      "type": "int",
-      "source": "gen_headers_9.2"
+      "name": "pCCBSystem",
+      "type": "CCBSystem *",
+      "source": "A:binary +4=m_pUI(CCBUI*), +12=m_pAttackSequen(CCBAttackSequen*), +20=m_pStage(CCBStage*), +52=m_p2DSpark(C2DSpark*), +120=m_eState(ECBCombatState) — all match CCBSystem layout exactly"
     },
     "52": {
       "name": "nMP",
-      "type": "int",
-      "source": "gen_headers_9.2"
+      "type": "CCBStage *",
+      "source": "A:decomp CCBRoleState::ProcessActions casts to CCBStage* and calls methods — pointer type confirmed"
     },
     "56": {
       "name": "nFullMP",

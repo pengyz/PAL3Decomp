@@ -3,8 +3,8 @@
   "known_members": {
     "0": {
       "name": "m_pVtable",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access | type_fix:float->int(vtable pointer)"
+      "type": "void (__thiscall *)(void)",
+      "source": "A:decomp CCBRoleState::ProcessActions uses this->m_pSceneMgr->m_rect.left as RoleSystem* -- offset 0 is vtable ptr, not int"
     },
     "4": {
       "name": "m_fTargetX",
@@ -378,8 +378,8 @@
     },
     "1228": {
       "name": "m_nPathState",
-      "type": "UIWnd *",
-      "source": "gen_headers_9.2+codegen_infer"
+      "type": "int",
+      "source": "gen_headers_9.2+codegen_infer | A:decomp RoleSystem::UpdateFollowerMovement switches on value 0/1/2, assigns integer enum — UIWnd* was wrong (pointer misattribution from PDB)"
     },
     "1232": {
       "name": "m_nPathStep",
@@ -1137,8 +1137,7 @@
       "source": "fix:gap_fill_for_decomp_naming"
     }
   },
-  "note": "not in PDB, needs binary analysis",
   "binary_size": 8684,
-  "base_class": "UIWnd",
-  "base_size": 68
+  "base_size": 68,
+  "base_class": "UIWnd"
 }

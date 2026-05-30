@@ -59,7 +59,7 @@ def _estimate_member_size(mtype, structs):
         return 4
     if t in ('double', '__int64', 'LONGLONG'):
         return 8
-    if 'RECT' in t or 'tagRECT' in t:
+    if t in ('RECT', 'tagRECT', '_RECTL'):
         return 16
     if t in ('gbVec3D',):
         return 12

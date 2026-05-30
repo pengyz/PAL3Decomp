@@ -353,6 +353,251 @@ def _collect_token_edits(code_bytes, tree, ctx):
 
 
 # ============================================================
+# Algebraic decomposition: (char *)this + S*var + C → this->array[var].field
+# ============================================================
+
+def _build_array_stride_index():
+    """Build stride index from annotations for algebraic decomposition.
+    
+    Returns {struct_name: [(stride, base_offset, array_name, elem_type)]}
+    for structs that have array members with known strides.
+    """
+    import json, os
+    structs_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
+                               os.path.dirname(os.path.abspath(__file__))))),
+                               'data', 'annotations', 'structs')
+    
+    # Load struct sizes and member info
+    struct_sizes = {}
+    struct_members = {}
+    for fname in sorted(os.listdir(structs_dir)):
+        if not fname.endswith('.json'):
+            continue
+        try:
+            with open(os.path.join(structs_dir, fname), encoding='utf-8') as f:
+                d = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            continue
+        name = d.get('name', '')
+        struct_sizes[name] = d.get('binary_size', 0)
+        members = {}
+        for off_str, m in d.get('known_members', {}).items():
+            try:
+                members[int(off_str)] = (m['name'], m['type'])
+            except (ValueError, KeyError):
+                pass
+        if members:
+            struct_members[name] = members
+    
+    # For each struct, find array members and compute stride
+    stride_index = {}
+    for struct_name, members in struct_members.items():
+        arrays = []
+        for off, (mname, mtype) in sorted(members.items(), key=lambda x: x[0]):
+            arr_match = re.match(r'(\w+)\[(\d+)\]', mtype)
+            if not arr_match:
+                continue
+            elem_type = arr_match.group(1)
+            count = int(arr_match.group(2))
+            # Get element size: prefer struct annotation, fall back to type guess
+            elem_size = struct_sizes.get(elem_type, 0)
+            if not elem_size:
+                if elem_type in ('char', 'unsigned char', 'BYTE', '_BYTE', 'bool'):
+                    elem_size = 1
+                elif elem_type in ('short', 'WORD'):
+                    elem_size = 2
+                elif elem_type in ('int', 'float', 'DWORD', 'LONG', 'unsigned long', 'ULONG'):
+                    elem_size = 4
+                else:
+                    continue  # unknown element size, skip
+            arrays.append((elem_size, off, mname, elem_type))
+            # Also index the element type's members for field lookup
+            if elem_type in struct_members:
+                pass  # we'll use struct_members for field resolution
+        if arrays:
+            stride_index[struct_name] = arrays
+    return stride_index, struct_members, struct_sizes
+
+
+# Build once, cache
+_ARRAY_STRIDE_INDEX = None
+_STRUCT_MEMBERS = None
+_STRUCT_SIZES = None
+
+def _get_array_stride_index():
+    global _ARRAY_STRIDE_INDEX, _STRUCT_MEMBERS, _STRUCT_SIZES
+    if _ARRAY_STRIDE_INDEX is None:
+        _ARRAY_STRIDE_INDEX, _STRUCT_MEMBERS, _STRUCT_SIZES = _build_array_stride_index()
+    return _ARRAY_STRIDE_INDEX, _STRUCT_MEMBERS, _STRUCT_SIZES
+
+
+def _resolve_field_at_offset(elem_type, field_offset, struct_members):
+    """Find the field at a given offset within a struct type."""
+    if elem_type not in struct_members:
+        return None
+    members = struct_members[elem_type]
+    # Find the member at or containing field_offset
+    best = None
+    for off, (name, mtype) in members.items():
+        if off == field_offset:
+            return (name, mtype)
+        if off < field_offset:
+            # estimate field end
+            sz = 4  # default size
+            if '*' in mtype: sz = 4
+            elif 'char' in mtype or 'BYTE' in mtype: sz = 1
+            elif 'short' in mtype or 'WORD' in mtype: sz = 2
+            elif 'float' in mtype or 'int' in mtype or 'DWORD' in mtype: sz = 4
+            elif mtype.startswith('_') and mtype[1:] in struct_members:
+                sz = _STRUCT_SIZES.get(mtype[1:], 4) if _STRUCT_SIZES else 4
+            elif mtype in struct_members:
+                sz = _STRUCT_SIZES.get(mtype, 4) if _STRUCT_SIZES else 4
+            if off + sz > field_offset:
+                return (name, mtype)
+    return None
+
+
+def _decompose_raw_pointer_arithmetic(code):
+    """Decompose (char *)this + S*var + C into this->array[var].field.
+    
+    Matches patterns where the expression is a struct array access
+    that Hex-Rays couldn't algebraically decompose.
+    """
+    stride_index, struct_members, struct_sizes = _get_array_stride_index()
+    if not stride_index:
+        return code
+    
+    changes = []
+    
+    # Pattern A: v = (char *)this + S * var  (variable assignment)
+    # Track these to rewrite subsequent uses
+    # Match: var_name = (char *)this + NUMBER * var_name
+    alias_map = {}  # var_name -> (stride, index_var)
+    for m in re.finditer(
+        r'(\w+)\s*=\s*\(char\s*\*\)this\s*\+\s*(\d+)\s*\*\s*(\w+)',
+        code
+    ):
+        alias_map[m.group(1)] = (int(m.group(2)), m.group(3))
+    # Also match: var_name = (char *)this + var_name * NUMBER
+    for m in re.finditer(
+        r'(\w+)\s*=\s*\(char\s*\*\)this\s*\+\s*(\w+)\s*\*\s*(\d+)',
+        code
+    ):
+        alias_map[m.group(1)] = (int(m.group(3)), m.group(2))
+    
+    if not alias_map:
+        return code
+    
+    # For each struct with arrays, try to match strides
+    for struct_name, arrays in stride_index.items():
+        for stride, array_off, array_name, elem_type in arrays:
+            # Find aliases that use this stride
+            matched_vars = [(v, idx_var) for v, (s, idx_var) in alias_map.items() if s == stride]
+            if not matched_vars:
+                continue
+            
+            # For each alias, try to rewrite S*var + C patterns
+            for alias_name, index_var in matched_vars:
+                # Pattern B: *((TYPE *)alias_name + K) → this->array[index_var].field
+                # The total offset from this is: stride * index_var + K * 4
+                # We need: total = array_off + field_off
+                # So: field_off = stride * index_var + K * 4 - array_off
+                # But this depends on index_var, so we handle it per-pattern type.
+                
+                # Pattern B1: v[constant] → offset = stride*index_var + constant
+                for m in re.finditer(
+                    re.escape(alias_name) + r'\[(\d+)\]',
+                    code
+                ):
+                    const = int(m.group(1))
+                    # The ELTS_OFFSET from array base = const - array_off + stride*??? 
+                    # Wait: v = (char*)this + S*idx. v[C] = *(this + S*idx + C).
+                    # This is at offset C within the element at this + S*idx.
+                    # If array is at array_off, then element starts at this + array_off + S*idx.
+                    # v[C] = this + S*idx + C. Element base = this + array_off + S*idx.
+                    # field_off = C - array_off
+                    field_off = const - array_off
+                    if field_off < 0 or field_off >= stride:
+                        # Not accessing within this array element, or before array start
+                        # But could be accessing a SUBSEQUENT element
+                        # v = this + S*idx, v[C] = this + S*idx + C
+                        # Element array[ idx + delta ] position = this + array_off + S*(idx+delta)
+                        # = this + S*idx + (array_off + S*delta)
+                        # So C = array_off + S*delta + field_off
+                        # Solve for delta, field_off:
+                        excess = const - array_off
+                        delta = excess // stride
+                        field_off = excess % stride
+                        if field_off < 0 or field_off >= stride:
+                            continue
+                        # Build new access: array_name + delta
+                        effective_idx = f'({index_var} + {delta})' if delta > 0 else index_var
+                    else:
+                        effective_idx = index_var
+                    
+                    field = _resolve_field_at_offset(elem_type, field_off, struct_members)
+                    if field:
+                        field_name, field_type = field
+                        replacement = f'this->{array_name}[{effective_idx}].{field_name}'
+                        start = m.start()
+                        end = m.end()
+                        changes.append((start, end, replacement))
+                
+                # Pattern B2: *((TYPE *)alias_name + K) → offset = stride*index_var + K*sizeof(TYPE)
+                type_sizes = {'_DWORD': 4, 'int': 4, 'float': 4, 'char': 1, 'short': 2, 'BYTE': 1, 'WORD': 2}
+                for type_name, type_sz in type_sizes.items():
+                    for m in re.finditer(
+                        r'\*\(\((' + re.escape(type_name) + r')\s*\*\)' + re.escape(alias_name) + r'\s*\+\s*(\d+)\)',
+                        code
+                    ):
+                        k = int(m.group(2))
+                        const = k * type_sz  # byte offset from v
+                        # Same logic as above
+                        field_off = const - array_off
+                        effective_idx = index_var
+                        if field_off < 0 or field_off >= stride:
+                            excess = const - array_off
+                            if excess < 0:
+                                continue
+                            delta = excess // stride
+                            field_off = excess % stride
+                            if field_off < 0 or field_off >= stride:
+                                continue
+                            effective_idx = f'({index_var} + {delta})' if delta > 0 else index_var
+                        
+                        field = _resolve_field_at_offset(elem_type, field_off, struct_members)
+                        if field:
+                            field_name, field_type = field
+                            replacement = f'this->{array_name}[{effective_idx}].{field_name}'
+                            start = m.start()
+                            end = m.end()
+                            changes.append((start, end, replacement))
+    
+    # Apply changes in reverse order, filtering overlapping ones
+    if changes:
+        # Sort by start position, descending
+        changes.sort(key=lambda x: x[0], reverse=True)
+        # Filter out overlapping changes
+        filtered = []
+        for start, end, replacement in changes:
+            # Check if this range overlaps with any already-accepted change
+            overlaps = False
+            for fs, fe, _ in filtered:
+                if not (end <= fs or start >= fe):
+                    overlaps = True
+                    break
+            if not overlaps:
+                filtered.append((start, end, replacement))
+        
+        code_bytes = code.encode('utf-8')
+        for start, end, replacement in filtered:
+            code_bytes = code_bytes[:start] + replacement.encode('utf-8') + code_bytes[end:]
+        code = code_bytes.decode('utf-8')
+    
+    return code
+
+
+# ============================================================
 # Non-AST substitutions (simple text operations without structural meaning)
 # ============================================================
 
@@ -729,6 +974,9 @@ def run(code, ctx):
 
     # Text-level substitutions (type aliases, suffixes, thunk classes)
     code = _apply_text_substitutions(code, ctx)
+
+    # Algebraic decomposition: (char *)this + S*var + C → this->array[var].field
+    code = _decompose_raw_pointer_arithmetic(code)
 
     # Fix IDA asm float constants: ds:1.2f → static const float variable
     code = _fix_asm_float_constants(code)

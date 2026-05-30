@@ -17,9 +17,9 @@
       "source": "fix:span=4_next_hits=22_ptr"
     },
     "48": {
-      "name": "m_scesys",
-      "type": "scSCEFile *",
-      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
+      "name": "m_fCamZ",
+      "type": "float",
+      "source": "A:decomp PalScriptMgr::ExecuteFrame (0x42F460) used as float camera Z along m_fCamX/m_fCamY — 5 accesses: lerp, LODWORD copy, float addition"
     },
     "76": {
       "name": "m_scepath",
@@ -27,9 +27,9 @@
       "source": "A:decomp LODWORD(this->m_scepath)=this->m_scesys where m_scesys is scSCEFile*"
     },
     "80": {
-      "name": "m_bigmapsce",
-      "type": "scSCEFile *",
-      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
+      "name": "m_bBigMapState",
+      "type": "unsigned char",
+      "source": "A:decomp PalScriptMgr::ExecuteFrame LOBYTE(this->m_bigMapState) compare to 0/1 + SetBigMapState LOBYTE assignment — byte-only access"
     },
     "40": {
       "name": "m_fCamX",

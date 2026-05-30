@@ -293,7 +293,16 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         if arr_match:
             decl = "%s __x%s;" % (arr_match.group(1).strip(), arr_match.group(2))
         else:
-            decl = "%s __x;" % mtype_str
+            # Function pointer types need __x INSIDE (*) not after the decl.
+            # void (*)(void) __x;  → FAIL (parse_decl returns None)
+            # void (*__x)(void);   → OK
+            _fp_m = re.match(r'(\w+(?:\s+__\w+)?)\s*(\([\w\s]*\*\s*\))', mtype_str)
+            if _fp_m:
+                _fp_pfx = _fp_m.group(1)
+                _fp_ptr = _fp_m.group(2).rstrip()[:-1].rstrip() + ' __x)'
+                decl = "%s %s;" % (_fp_pfx, _fp_ptr)
+            else:
+                decl = "%s __x;" % mtype_str
 
         result = ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_VAR)
         if result is None:
@@ -886,8 +895,6 @@ def apply_annotations():
         if not sig:
             continue
         sig_raw = sig.strip().rstrip(";")
-        if sig_raw.count("(") > 1:
-            continue
         # Strip IDA-specific modifiers that SetType doesn't accept
         sig_raw = _re_sig.sub(r'__usercall|__userpurge', '', sig_raw)
         sig_raw = _re_sig.sub(r'@<[\w:]+>', '', sig_raw)  # register annotations
