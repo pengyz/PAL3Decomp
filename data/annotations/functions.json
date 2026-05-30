@@ -933,7 +933,7 @@
   },
   "0x0043E560": {
     "name": "UIListBox::SetFirstShow__ovl_e560",
-    "signature": "int __thiscall(UIListBox *this, void *Source, int nVal)"
+    "signature": "int __thiscall(UIListBox *this, int nVal, int nOffset)"
   },
   "0x0043E5C0": {
     "name": "UIListBox::SetItemOffset__ovl_e5c0",
@@ -4085,7 +4085,7 @@
   },
   "0x0051D4A0": {
     "name": "CCBLineupWindow::Render",
-    "signature": "char __cdecl(int *p_DWORD)"
+    "signature": "char __thiscall(CCBLineupWindow *this, int *p_DWORD)"
   },
   "0x0051D580": {
     "name": "CCBLineupWindow::IsPtOnFace",
