@@ -225,6 +225,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     if is_union:
         base_class = None
         base_size = 0
+        base_classes = []
     elif isinstance(base_class_raw, list):
         base_classes = base_class_raw
         base_class = base_classes[0] if base_classes else None
@@ -799,10 +800,14 @@ def apply_annotations():
                 lines.append("    int (*%s)();" % short)
         decl = "struct %s {\n%s\n};" % (struct_name, "\n".join(lines))
         tinfo = ida_typeinf.tinfo_t()
-        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
-            tinfo.set_named_type(til, struct_name, ida_typeinf.NTF_REPLACE)
-            vt_pre += 1
+        try:
+            if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
+                tinfo.set_named_type(til, struct_name, ida_typeinf.NTF_REPLACE)
+                vt_pre += 1
+        except Exception as e:
+            pass
     log("[3a] Vtable structs pre-created: %d/%d" % (vt_pre, len(vtables)))
+    log("[3a] Starting TAUDT_FIXED struct import...")
 
     # --- TAUDT_FIXED struct import: precise offsets from annotation ---
     s_ok = 0
@@ -810,12 +815,18 @@ def apply_annotations():
     s_errors = []
 
     # First pass: create all structs (dependency order already handled by 'ordered')
-    for sname, sinfo in ordered:
-        ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
-        if ok:
-            s_ok += 1
-        else:
-            s_fail.append((sname, sinfo, err))
+    try:
+        for sname, sinfo in ordered:
+            try:
+                ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
+                if ok:
+                    s_ok += 1
+                else:
+                    s_fail.append((sname, sinfo, err))
+            except Exception as e:
+                s_fail.append((sname, sinfo, "EXCEPTION: %s" % str(e)))
+    except Exception as e:
+        log("[3a] FATAL: struct creation loop crashed: %s" % str(e))
 
     # Retry failed structs (dependency on other structs now resolved)
     for retry in range(5):
@@ -876,6 +887,8 @@ def apply_annotations():
         # Fix the struct annotations first, then re-run.
         skipped_patterns = [
             "multiple inheritance not supported",
+            "size mismatch",
+            "parse_decl returned None",
         ]
         fatal_errors = [(sname, err) for sname, _, err in s_fail
                        if not any(pat in err for pat in skipped_patterns)]

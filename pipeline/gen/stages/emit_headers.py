@@ -353,8 +353,8 @@ def collect_methods():
                     p = re.sub(r'^.*?__thiscall\(', '', s)  # everything before params
                     p = re.sub(r'\)\s*$', '', p).strip()    # trailing paren
                     # Strip the 'this' parameter (always first for __thiscall)
-                    # Handle 'this', 'Block', and IDA-generated type names with $
-                    p = re.sub(r'^(?:struct\s+)?[\w$]+(?:\s*\*+\s*)?\s*\w+\s*,?\s*', '', p)
+                    # Handle 'this', 'Block', namespace types (std::ios_base), and $
+                    p = re.sub(r'^(?:struct\s+)?[\w$][\w$:]*(?:\s*\*+\s*)?\s*\w+\s*,?\s*', '', p)
                     p = re.sub(r'\bstruct\s+', '', p)       # struct keyword optional
                     return p.strip()
                 if _params(existing_sig) == _params(sig):
@@ -1031,6 +1031,14 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                     elif '::' in mtype:
                         # Strip own class prefix for nested types
                         mtype = re.sub(r'^%s::' % re.escape(cls_name), '', mtype)
+                        # After stripping, check if inner type name matches a flattened
+                        # nested type (ClassName_InnerType). If the annotation stores it
+                        # as SimpleName, the flattened type used for the generated header
+                        # is ClassName_SimpleName.
+                        _inner = mtype.strip()
+                        _flat = '%s_%s' % (cls_name, _inner)
+                        if (OUTPUT_DIR / ('%s.h' % _flat)).exists():
+                            mtype = _flat
                     # Emit member with real type
                     comment = m.get('comment', '') or m.get('description', '')
                     arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
