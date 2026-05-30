@@ -87,9 +87,9 @@
       "source": "ida_decomp:_auto_42b510 ==2/if(this), 2 refs"
     },
     "84": {
-      "name": "_field_054",
-      "type": "float",
-      "source": "binary:raw_final"
+      "name": "m_nTimerDuration",
+      "type": "int",
+      "source": "A:decomp LODWORD(this->_field_054) = 600 (10s at 60fps)"
     },
     "88": {
       "name": "_field_058",
@@ -152,19 +152,19 @@
       "source": "binary:raw_path_list | type_fix:int→void*(naming m_p)"
     },
     "144": {
-      "name": "_todo_090",
+      "name": "m_nActionResult",
       "type": "int",
-      "source": "binary:raw_decomp"
+      "source": "B:decomp this->_todo_090 = Actor::DispatchAction(...)"
     },
     "148": {
-      "name": "_todo_094",
+      "name": "m_nDispFontColor",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:decomp this->_todo_094 = this->m_fontcolor.Color"
     },
     "152": {
-      "name": "_todo_098",
+      "name": "m_nDispWndColor",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:decomp this->_todo_098 = this->m_wndcolor.Color"
     },
     "156": {
       "name": "m_nField9C",
