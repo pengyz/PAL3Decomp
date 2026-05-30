@@ -1,588 +1,587 @@
-{
-  "name": "CCBStage",
-  "known_members": {
-    "0": {
-      "name": "m_pCBSystem",
-      "type": "CCBSystem *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "4": {
-      "name": "m_pRoleState",
-      "type": "CCBRoleState *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "8": {
-      "name": "m_pEditor",
-      "type": "CCBEditor *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "12": {
-      "name": "m_pCam",
-      "type": "CCBStageCam *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "16": {
-      "name": "m_pCamControl",
-      "type": "CCBCamControl *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "20": {
-      "name": "m_pScene",
-      "type": "CCBStageScene *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "24": {
-      "name": "m_pRole",
-      "type": "CCBStageRole *[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "68": {
-      "name": "m_TempStorageNGH",
-      "type": "Actor *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "72": {
-      "name": "m_NGHVariance",
-      "type": "Actor *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "76": {
-      "name": "m_TempStorageWPX",
-      "type": "Actor *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "80": {
-      "name": "m_WPXVariance",
-      "type": "Actor *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "84": {
-      "name": "m_pDisplayChain",
-      "type": "CCBDisplayChain *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "88": {
-      "name": "m_pShadow",
-      "type": "CCBStageShadow *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "92": {
-      "name": "m_pEffect",
-      "type": "CCBStageEffect *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "96": {
-      "name": "m_BFARole",
-      "type": "float",
-      "source": "A:FPU_round3_0x4d1063"
-    },
-    "100": {
-      "name": "m_BFARound",
-      "type": "float",
-      "source": "A:FPU_round3_0x4d107d"
-    },
-    "104": {
-      "name": "m_ptMousePos",
-      "type": "tagPOINT",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "112": {
-      "name": "m_nSelectedRole",
-      "type": "int",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "116": {
-      "name": "m_bRoleSelected",
-      "type": "unsigned char[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "127": {
-      "name": "m_bHideSceneAndRole",
-      "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "128": {
-      "name": "m_fDamageNumPosY",
-      "type": "float[5]",
-      "source": "binary:verified_raw_this152_check"
-    },
-    "172": {
-      "name": "m_fMusicVolume",
-      "type": "float",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "176": {
-      "name": "m_bPaused",
-      "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "180": {
-      "name": "m_nTask",
-      "type": "int",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "184": {
-      "name": "m_nCurTask",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "188": {
-      "name": "m_nCurSubTask",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "192": {
-      "name": "m_Task",
-      "type": "tagStageTask *",
-      "source": "pdb_verified_by_old_ida | layout_fix:span_mismatch"
-    },
-    "673984": {
-      "name": "m_dwAniFlagOver",
-      "type": "unsigned int",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "152": {
-      "name": "m_nStageStatus",
-      "type": "unsigned char",
-      "source": "binary:raw_Update_check"
-    },
-    "153": {
-      "name": "m_bFlag99",
-      "type": "unsigned char",
-      "source": "binary:byte_after_status"
-    },
-    "154": {
-      "name": "m_bFlag9A",
-      "type": "unsigned char",
-      "source": "binary:byte_flag"
-    },
-    "155": {
-      "name": "m_bFlag9B",
-      "type": "unsigned char",
-      "source": "binary:byte_flag"
-    },
-    "148": {
-      "name": "_todo_094",
-      "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
-    },
-    "160": {
-      "name": "m_nClearRoleAllTask",
-      "type": "int",
-      "source": "binary:gap_clean"
-    },
-    "164": {
-      "name": "m_nRoleSlot",
-      "type": "int",
-      "source": "ida_decomp:ProcTaskSlot 80*this, ProcessRoleEffect 20*this, 6 refs"
-    },
-    "168": {
-      "name": "m_nForceDelTask",
-      "type": "unsigned char",
-      "source": "A:mov_byte_ptr_in_class_method"
-    },
-    "1392": {
-      "name": "_todo_570",
-      "type": "int",
-      "source": "binary:disp32_2hits_1funcs"
-    },
-    "1396": {
-      "name": "_todo_574",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "2752": {
-      "name": "m_TaskQueue",
-      "type": "int",
-      "source": "decomp:10x_compared_to_270(task_type_check)"
-    },
-    "2760": {
-      "name": "m_nTaskExist",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "2796": {
-      "name": "m_nTaskState",
-      "type": "unsigned char",
-      "source": "A:mov_byte_ptr_disp32_in_class_method"
-    },
-    "4504": {
-      "name": "_todo_1198",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "4584": {
-      "name": "m_TurnBuffer",
-      "type": "int",
-      "source": "decomp:4x_memset_0x600(turn_data_buffer)"
-    },
-    "6568": {
-      "name": "m_nAllDone",
-      "type": "int",
-      "source": "binary:disp32_24hits_12funcs"
-    },
-    "6584": {
-      "name": "m_fCurPosX",
-      "type": "float",
-      "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6608, 16 refs"
-    },
-    "6588": {
-      "name": "m_fCurPosY",
-      "type": "float",
-      "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6612, 13 refs"
-    },
-    "6592": {
-      "name": "m_fCurPosZ",
-      "type": "float",
-      "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6616, 14 refs"
-    },
-    "6608": {
-      "name": "m_fTargetPosX",
-      "type": "float",
-      "source": "ida_decomp:CheckAllDone from array[idx]+432, 18 refs"
-    },
-    "6612": {
-      "name": "m_fTargetPosY",
-      "type": "float",
-      "source": "ida_decomp:CheckAllDone from array[idx]+436, 17 refs"
-    },
-    "6616": {
-      "name": "m_fTargetPosZ",
-      "type": "float",
-      "source": "ida_decomp:CheckAllDone from array[idx]+440, 17 refs"
-    },
-    "6620": {
-      "name": "m_fVelX",
-      "type": "float",
-      "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs"
-    },
-    "6624": {
-      "name": "m_fVelY",
-      "type": "float",
-      "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs"
-    },
-    "6628": {
-      "name": "m_fVelZ",
-      "type": "float",
-      "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs"
-    },
-    "6632": {
-      "name": "m_fAngleDegrees",
-      "type": "float",
-      "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2¦Ð, compare ¦Ð/2)"
-    },
-    "6636": {
-      "name": "_todo_19EC",
-      "type": "float",
-      "source": "A:FPU_binary_evidence"
-    },
-    "6644": {
-      "name": "m_nBattleResult",
-      "type": "int",
-      "source": "decomp:8x_compared_for_victory_check"
-    },
-    "6648": {
-      "name": "_todo_19F8",
-      "type": "int",
-      "source": "binary:disp32_2hits_1funcs"
-    },
-    "6652": {
-      "name": "_todo_19FC",
-      "type": "int",
-      "source": "binary:disp32_3hits_1funcs"
-    },
-    "6664": {
-      "name": "_todo_1A08",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "6668": {
-      "name": "_todo_1A0C",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "408000": {
-      "name": "_todo_639C0",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "410000": {
-      "name": "_todo_64190",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "673960": {
-      "name": "_todo_A48A8",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "156": {
-      "name": "m_nTaskCount",
-      "type": "int",
-      "source": "ida_decomp:GetStageRole --this, GetActiveTaskCount used, 3 refs"
-    },
-    "273": {
-      "name": "m_bAllDone",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "284": {
-      "name": "m_nActiveIdx",
-      "type": "int",
-      "source": "ida_decomp:CheckAllDone IsActive(this+284)=roleIdx, 44 refs"
-    },
-    "396": {
-      "name": "m_nActionIdx",
-      "type": "int",
-      "source": "ida_decomp:CheckAllDone 96*this+396=array_stride_idx, 64 refs"
-    },
-    "448": {
-      "name": "_todo_1C0",
-      "type": "float",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
-    },
-    "452": {
-      "name": "m_fRotPitch",
-      "type": "float",
-      "source": "ida_decomp:ProcessTurn -= v16*0.0043633231, 3 refs"
-    },
-    "456": {
-      "name": "m_fRotYaw",
-      "type": "float",
-      "source": "ida_decomp:ProcessTurn += v15*0.0043633231, 7 refs"
-    },
-    "464": {
-      "name": "m_fTimeAccum",
-      "type": "float",
-      "source": "ida_decomp:ProcessTurn += v11*0.001, 3 refs"
-    },
-    "468": {
-      "name": "m_fTimerRaw",
-      "type": "float",
-      "source": "ida_decomp:ProcessTurn += v11, set to 100.0, 3 refs"
-    },
-    "480": {
-      "name": "_todo_1E0",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "484": {
-      "name": "_todo_1E4",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "488": {
-      "name": "m_fAllDone",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "492": {
-      "name": "m_ActionAngles",
-      "type": "float",
-      "source": "decomp:3x_24stride*m_nActionIdx_angle_57.3(radian_to_deg)"
-    },
-    "504": {
-      "name": "m_ActionCmds",
-      "type": "float",
-      "source": "decomp:43x_96stride*m_nActionIdx(action_command_array)"
-    },
-    "508": {
-      "name": "_todo_1FC",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "512": {
-      "name": "_todo_200",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "516": {
-      "name": "_todo_204",
-      "type": "int",
-      "source": "reverted_auto_semantic:1x_access|reverted:pseudo_semantic"
-    },
-    "520": {
-      "name": "_todo_208",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "524": {
-      "name": "_todo_20C",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "544": {
-      "name": "m_pController",
-      "type": "void *",
-      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int¡úvoid*(deref pattern)"
-    },
-    "552": {
-      "name": "m_fPrevRotX",
-      "type": "float",
-      "source": "ida_decomp:ProcessTurn delta = x - prev, store new, 3 refs"
-    },
-    "556": {
-      "name": "m_fPrevRotY",
-      "type": "float",
-      "source": "ida_decomp:ProcessTurn delta = y - prev, store new, 3 refs"
-    },
-    "580": {
-      "name": "m_nResetState",
-      "type": "int",
-      "source": "ida_decomp:_nearby_5040d0 = -1, 4 refs"
-    },
-    "196": {
-      "name": "m_RoleSlots",
-      "type": "int",
-      "source": "decomp:46x_BYTE+29_check(role_slot_active_flags)"
-    },
-    "280": {
-      "name": "m_nActiveRoleIndex",
-      "type": "unsigned char",
-      "source": "A:mov_byte_ptr_disp32_in_class_method"
-    },
-    "288": {
-      "name": "m_CamAngles",
-      "type": "int",
-      "source": "decomp:4x_70*m_pCamControl_float(camera_angle_per_slot)"
-    },
-    "292": {
-      "name": "_todo_124",
-      "type": "int",
-      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic"
-    },
-    "296": {
-      "name": "m_CamParams",
-      "type": "gbColorQuad",
-      "source": "decomp:5x_70*m_pCamControl_float(camera_param_per_slot)"
-    },
-    "400": {
-      "name": "m_TargetPos",
-      "type": "int",
-      "source": "decomp:11x_+32/+36_float_targetXY"
-    },
-    "496": {
-      "name": "_todo_1F0",
-      "type": "float",
-      "source": "A+:decomp *(float*)&this->_todo_1F0 (1 occurrences)"
-    },
-    "500": {
-      "name": "_todo_1F4",
-      "type": "float",
-      "source": "A:FPU_fld_dword_esi+1F4h_(ProcessTurn)"
-    },
-    "548": {
-      "name": "m_fTurnProgress",
-      "type": "float",
-      "source": "decomp:_nearby_5040d0_set_0.0(turn_progress_float)"
-    },
-    "560": {
-      "name": "m_nTurnCount",
-      "type": "int",
-      "source": "decomp:_nearby_5040d0_set_0(turn_counter)"
-    },
-    "564": {
-      "name": "m_nCmdCount",
-      "type": "int",
-      "source": "decomp:_nearby_5040d0_set_0(command_counter)"
-    },
-    "568": {
-      "name": "m_nTurnPhase",
-      "type": "int",
-      "source": "decomp:_nearby_5040d0_set_0(turn_phase)"
-    },
-    "572": {
-      "name": "m_nLastAction",
-      "type": "int",
-      "source": "decomp:_nearby_5040d0_set_-1(last_action_sentinel)"
-    },
-    "576": {
-      "name": "m_nTurnIndex",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "584": {
-      "name": "m_CmdQueue",
-      "type": "int",
-      "source": "decomp:10x_memset_0xFA0_20stride*nVal(command_queue_200)"
-    },
-    "606": {
-      "name": "m_TurnFlags",
-      "type": "short",
-      "source": "decomp:12x_80stride*m_nTurnIndex_BYTE_flag"
-    },
-    "624": {
-      "name": "m_TurnData",
-      "type": "int",
-      "source": "decomp:16x_20stride*m_nTurnIndex_qmemcpy_0x18"
-    },
-    "1400": {
-      "name": "m_RoleData",
-      "type": "int",
-      "source": "decomp:30x_658stride*nIndex(per_role_battle_data)"
-    },
-    "2756": {
-      "name": "m_TaskState",
-      "type": "int",
-      "source": "decomp:7x_indexed_state_value"
-    },
-    "2764": {
-      "name": "m_DamageData",
-      "type": "int",
-      "source": "decomp:11x_indexed_float_cast+BYTE+5"
-    },
-    "4508": {
-      "name": "_todo_119C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "8052": {
-      "name": "m_fTurnTimer",
-      "type": "float",
-      "source": "decomp:_nearby_4e0340_set_NAN(float_sentinel_invalid)"
-    },
-    "8056": {
-      "name": "m_nTurnSlot0",
-      "type": "int",
-      "source": "decomp:_nearby_4e0340_set_-1(invalid_slot_index)"
-    },
-    "8060": {
-      "name": "m_nTurnSlot1",
-      "type": "int",
-      "source": "decomp:_nearby_4e0340_set_-1"
-    },
-    "8064": {
-      "name": "m_nTurnSlot2",
-      "type": "int",
-      "source": "decomp:_nearby_4e0340_set_-1"
-    },
-    "8068": {
-      "name": "m_nTurnSlot3",
-      "type": "int",
-      "source": "decomp:_nearby_4e0340_set_-1"
-    },
-    "8072": {
-      "name": "m_nTurnSlot4",
-      "type": "int",
-      "source": "decomp:_nearby_4e0340_set_-1"
-    },
-    "8076": {
-      "name": "m_nTurnSlot5",
-      "type": "int",
-      "source": "decomp:_nearby_4e0340_set_-1"
-    },
-    "9616": {
-      "name": "m_nResultSlot0",
-      "type": "int",
-      "source": "decomp:_nearby_4e0340_set_-1"
-    },
-    "9620": {
-      "name": "m_nResultSlot1",
-      "type": "int",
-      "source": "decomp:_nearby_4e0340_set_-1"
-    }
-  },
-  "pdb_size": 673992,
-  "binary_size": 1347704,
-  "_size_source": "synced_from_ida_apply"
+{
+  "name": "CCBStage",
+  "known_members": {
+    "0": {
+      "name": "m_pCBSystem",
+      "type": "CCBSystem *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "4": {
+      "name": "m_pRoleState",
+      "type": "CCBRoleState *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "8": {
+      "name": "m_pEditor",
+      "type": "CCBEditor *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "12": {
+      "name": "m_pCam",
+      "type": "CCBStageCam *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "16": {
+      "name": "m_pCamControl",
+      "type": "CCBCamControl *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "20": {
+      "name": "m_pScene",
+      "type": "CCBStageScene *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "24": {
+      "name": "m_pRole",
+      "type": "CCBStageRole *[11]",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "68": {
+      "name": "m_TempStorageNGH",
+      "type": "Actor *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "72": {
+      "name": "m_NGHVariance",
+      "type": "Actor *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "76": {
+      "name": "m_TempStorageWPX",
+      "type": "Actor *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "80": {
+      "name": "m_WPXVariance",
+      "type": "Actor *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "84": {
+      "name": "m_pDisplayChain",
+      "type": "CCBDisplayChain *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "88": {
+      "name": "m_pShadow",
+      "type": "CCBStageShadow *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "92": {
+      "name": "m_pEffect",
+      "type": "CCBStageEffect *",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "96": {
+      "name": "m_BFARole",
+      "type": "float",
+      "source": "A:FPU_round3_0x4d1063"
+    },
+    "100": {
+      "name": "m_BFARound",
+      "type": "float",
+      "source": "A:FPU_round3_0x4d107d"
+    },
+    "104": {
+      "name": "m_ptMousePos",
+      "type": "tagPOINT",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "112": {
+      "name": "m_nSelectedRole",
+      "type": "int",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "116": {
+      "name": "m_bRoleSelected",
+      "type": "unsigned char[11]",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "127": {
+      "name": "m_bHideSceneAndRole",
+      "type": "unsigned char",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "128": {
+      "name": "m_fDamageNumPosY",
+      "type": "float[5]",
+      "source": "binary:verified_raw_this152_check"
+    },
+    "172": {
+      "name": "m_fMusicVolume",
+      "type": "float",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "176": {
+      "name": "m_bPaused",
+      "type": "unsigned char",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "180": {
+      "name": "m_nTask",
+      "type": "int",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "184": {
+      "name": "m_nCurTask",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "188": {
+      "name": "m_nCurSubTask",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "192": {
+      "name": "m_Task",
+      "type": "tagStageTask *",
+      "source": "pdb_verified_by_old_ida | layout_fix:span_mismatch"
+    },
+    "673984": {
+      "name": "m_dwAniFlagOver",
+      "type": "unsigned int",
+      "source": "pdb_verified_by_old_ida"
+    },
+    "152": {
+      "name": "m_nStageStatus",
+      "type": "unsigned char",
+      "source": "binary:raw_Update_check"
+    },
+    "153": {
+      "name": "m_bFlag99",
+      "type": "unsigned char",
+      "source": "binary:byte_after_status"
+    },
+    "154": {
+      "name": "m_bFlag9A",
+      "type": "unsigned char",
+      "source": "binary:byte_flag"
+    },
+    "155": {
+      "name": "m_bFlag9B",
+      "type": "unsigned char",
+      "source": "binary:byte_flag"
+    },
+    "148": {
+      "name": "_todo_094",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "160": {
+      "name": "m_nClearRoleAllTask",
+      "type": "int",
+      "source": "binary:gap_clean"
+    },
+    "164": {
+      "name": "m_nRoleSlot",
+      "type": "int",
+      "source": "ida_decomp:ProcTaskSlot 80*this, ProcessRoleEffect 20*this, 6 refs"
+    },
+    "168": {
+      "name": "m_nForceDelTask",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_in_class_method"
+    },
+    "1392": {
+      "name": "_todo_570",
+      "type": "int",
+      "source": "binary:disp32_2hits_1funcs"
+    },
+    "1396": {
+      "name": "_todo_574",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "2752": {
+      "name": "m_TaskQueue",
+      "type": "int",
+      "source": "decomp:10x_compared_to_270(task_type_check)"
+    },
+    "2760": {
+      "name": "m_nTaskExist",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "2796": {
+      "name": "m_nTaskState",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_disp32_in_class_method"
+    },
+    "4504": {
+      "name": "_todo_1198",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "4584": {
+      "name": "m_TurnBuffer",
+      "type": "int",
+      "source": "decomp:4x_memset_0x600(turn_data_buffer)"
+    },
+    "6568": {
+      "name": "m_nAllDone",
+      "type": "int",
+      "source": "binary:disp32_24hits_12funcs"
+    },
+    "6584": {
+      "name": "m_fCurPosX",
+      "type": "float",
+      "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6608, 16 refs"
+    },
+    "6588": {
+      "name": "m_fCurPosY",
+      "type": "float",
+      "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6612, 13 refs"
+    },
+    "6592": {
+      "name": "m_fCurPosZ",
+      "type": "float",
+      "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6616, 14 refs"
+    },
+    "6608": {
+      "name": "m_fTargetPosX",
+      "type": "float",
+      "source": "ida_decomp:CheckAllDone from array[idx]+432, 18 refs"
+    },
+    "6612": {
+      "name": "m_fTargetPosY",
+      "type": "float",
+      "source": "ida_decomp:CheckAllDone from array[idx]+436, 17 refs"
+    },
+    "6616": {
+      "name": "m_fTargetPosZ",
+      "type": "float",
+      "source": "ida_decomp:CheckAllDone from array[idx]+440, 17 refs"
+    },
+    "6620": {
+      "name": "m_fVelX",
+      "type": "float",
+      "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs"
+    },
+    "6624": {
+      "name": "m_fVelY",
+      "type": "float",
+      "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs"
+    },
+    "6628": {
+      "name": "m_fVelZ",
+      "type": "float",
+      "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs"
+    },
+    "6632": {
+      "name": "m_fAngleDegrees",
+      "type": "float",
+      "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2¦Ð, compare ¦Ð/2)"
+    },
+    "6636": {
+      "name": "_todo_19EC",
+      "type": "float",
+      "source": "A:FPU_binary_evidence"
+    },
+    "6644": {
+      "name": "m_nBattleResult",
+      "type": "int",
+      "source": "decomp:8x_compared_for_victory_check"
+    },
+    "6648": {
+      "name": "_todo_19F8",
+      "type": "int",
+      "source": "binary:disp32_2hits_1funcs"
+    },
+    "6652": {
+      "name": "_todo_19FC",
+      "type": "int",
+      "source": "binary:disp32_3hits_1funcs"
+    },
+    "6664": {
+      "name": "_todo_1A08",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "6668": {
+      "name": "_todo_1A0C",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "408000": {
+      "name": "_todo_639C0",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "410000": {
+      "name": "_todo_64190",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "673960": {
+      "name": "_todo_A48A8",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "156": {
+      "name": "m_nTaskCount",
+      "type": "int",
+      "source": "ida_decomp:GetStageRole --this, GetActiveTaskCount used, 3 refs"
+    },
+    "273": {
+      "name": "m_bAllDone",
+      "type": "unsigned char",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "284": {
+      "name": "m_nActiveIdx",
+      "type": "int",
+      "source": "ida_decomp:CheckAllDone IsActive(this+284)=roleIdx, 44 refs"
+    },
+    "396": {
+      "name": "m_nActionIdx",
+      "type": "int",
+      "source": "ida_decomp:CheckAllDone 96*this+396=array_stride_idx, 64 refs"
+    },
+    "448": {
+      "name": "_todo_1C0",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
+    },
+    "452": {
+      "name": "m_fRotPitch",
+      "type": "float",
+      "source": "ida_decomp:ProcessTurn -= v16*0.0043633231, 3 refs"
+    },
+    "456": {
+      "name": "m_fRotYaw",
+      "type": "float",
+      "source": "ida_decomp:ProcessTurn += v15*0.0043633231, 7 refs"
+    },
+    "464": {
+      "name": "m_fTimeAccum",
+      "type": "float",
+      "source": "ida_decomp:ProcessTurn += v11*0.001, 3 refs"
+    },
+    "468": {
+      "name": "m_fTimerRaw",
+      "type": "float",
+      "source": "ida_decomp:ProcessTurn += v11, set to 100.0, 3 refs"
+    },
+    "480": {
+      "name": "_todo_1E0",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "484": {
+      "name": "_todo_1E4",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "488": {
+      "name": "m_fAllDone",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "492": {
+      "name": "m_ActionAngles",
+      "type": "float",
+      "source": "decomp:3x_24stride*m_nActionIdx_angle_57.3(radian_to_deg)"
+    },
+    "504": {
+      "name": "m_ActionCmds",
+      "type": "float",
+      "source": "decomp:43x_96stride*m_nActionIdx(action_command_array)"
+    },
+    "508": {
+      "name": "_todo_1FC",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "512": {
+      "name": "_todo_200",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "516": {
+      "name": "_todo_204",
+      "type": "int",
+      "source": "reverted_auto_semantic:1x_access|reverted:pseudo_semantic"
+    },
+    "520": {
+      "name": "_todo_208",
+      "type": "int",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "524": {
+      "name": "_todo_20C",
+      "type": "int",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "544": {
+      "name": "m_pController",
+      "type": "void *",
+      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int¡úvoid*(deref pattern)"
+    },
+    "552": {
+      "name": "m_fPrevRotX",
+      "type": "float",
+      "source": "ida_decomp:ProcessTurn delta = x - prev, store new, 3 refs"
+    },
+    "556": {
+      "name": "m_fPrevRotY",
+      "type": "float",
+      "source": "ida_decomp:ProcessTurn delta = y - prev, store new, 3 refs"
+    },
+    "580": {
+      "name": "m_nResetState",
+      "type": "int",
+      "source": "ida_decomp:_nearby_5040d0 = -1, 4 refs"
+    },
+    "196": {
+      "name": "m_RoleSlots",
+      "type": "int",
+      "source": "decomp:46x_BYTE+29_check(role_slot_active_flags)"
+    },
+    "280": {
+      "name": "m_nActiveRoleIndex",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_disp32_in_class_method"
+    },
+    "288": {
+      "name": "m_CamAngles",
+      "type": "int",
+      "source": "decomp:4x_70*m_pCamControl_float(camera_angle_per_slot)"
+    },
+    "292": {
+      "name": "_todo_124",
+      "type": "int",
+      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic"
+    },
+    "296": {
+      "name": "m_CamParams",
+      "type": "gbColorQuad",
+      "source": "decomp:5x_70*m_pCamControl_float(camera_param_per_slot)"
+    },
+    "400": {
+      "name": "m_TargetPos",
+      "type": "int",
+      "source": "decomp:11x_+32/+36_float_targetXY"
+    },
+    "496": {
+      "name": "_todo_1F0",
+      "type": "float",
+      "source": "A+:decomp *(float*)&this->_todo_1F0 (1 occurrences)"
+    },
+    "500": {
+      "name": "_todo_1F4",
+      "type": "float",
+      "source": "A:FPU_fld_dword_esi+1F4h_(ProcessTurn)"
+    },
+    "548": {
+      "name": "m_fTurnProgress",
+      "type": "float",
+      "source": "decomp:_nearby_5040d0_set_0.0(turn_progress_float)"
+    },
+    "560": {
+      "name": "m_nTurnCount",
+      "type": "int",
+      "source": "decomp:_nearby_5040d0_set_0(turn_counter)"
+    },
+    "564": {
+      "name": "m_nCmdCount",
+      "type": "int",
+      "source": "decomp:_nearby_5040d0_set_0(command_counter)"
+    },
+    "568": {
+      "name": "m_nTurnPhase",
+      "type": "int",
+      "source": "decomp:_nearby_5040d0_set_0(turn_phase)"
+    },
+    "572": {
+      "name": "m_nLastAction",
+      "type": "int",
+      "source": "decomp:_nearby_5040d0_set_-1(last_action_sentinel)"
+    },
+    "576": {
+      "name": "m_nTurnIndex",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "584": {
+      "name": "m_CmdQueue",
+      "type": "int",
+      "source": "decomp:10x_memset_0xFA0_20stride*nVal(command_queue_200)"
+    },
+    "606": {
+      "name": "m_TurnFlags",
+      "type": "short",
+      "source": "decomp:12x_80stride*m_nTurnIndex_BYTE_flag"
+    },
+    "624": {
+      "name": "m_TurnData",
+      "type": "int",
+      "source": "decomp:16x_20stride*m_nTurnIndex_qmemcpy_0x18"
+    },
+    "1400": {
+      "name": "m_RoleData",
+      "type": "int",
+      "source": "decomp:30x_658stride*nIndex(per_role_battle_data)"
+    },
+    "2756": {
+      "name": "m_TaskState",
+      "type": "int",
+      "source": "decomp:7x_indexed_state_value"
+    },
+    "2764": {
+      "name": "m_DamageData",
+      "type": "int",
+      "source": "decomp:11x_indexed_float_cast+BYTE+5"
+    },
+    "4508": {
+      "name": "_todo_119C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "8052": {
+      "name": "m_fTurnTimer",
+      "type": "float",
+      "source": "decomp:_nearby_4e0340_set_NAN(float_sentinel_invalid)"
+    },
+    "8056": {
+      "name": "m_nTurnSlot0",
+      "type": "int",
+      "source": "decomp:_nearby_4e0340_set_-1(invalid_slot_index)"
+    },
+    "8060": {
+      "name": "m_nTurnSlot1",
+      "type": "int",
+      "source": "decomp:_nearby_4e0340_set_-1"
+    },
+    "8064": {
+      "name": "m_nTurnSlot2",
+      "type": "int",
+      "source": "decomp:_nearby_4e0340_set_-1"
+    },
+    "8068": {
+      "name": "m_nTurnSlot3",
+      "type": "int",
+      "source": "decomp:_nearby_4e0340_set_-1"
+    },
+    "8072": {
+      "name": "m_nTurnSlot4",
+      "type": "int",
+      "source": "decomp:_nearby_4e0340_set_-1"
+    },
+    "8076": {
+      "name": "m_nTurnSlot5",
+      "type": "int",
+      "source": "decomp:_nearby_4e0340_set_-1"
+    },
+    "9616": {
+      "name": "m_nResultSlot0",
+      "type": "int",
+      "source": "decomp:_nearby_4e0340_set_-1"
+    },
+    "9620": {
+      "name": "m_nResultSlot1",
+      "type": "int",
+      "source": "decomp:_nearby_4e0340_set_-1"
+    }
+  },
+  "pdb_size": 673992,
+  "binary_size": 673992
 }
