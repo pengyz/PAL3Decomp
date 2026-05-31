@@ -5,10 +5,11 @@
   python pipeline/gen/codegen.py <command> [options]
 
 命令:
+  clean               清空 gen/ 目录（生成代码 + 头文件）
   headers             生成 .h 头文件 (include/pal3/gen/)
-  cpp                 生成 .cpp 实现文件 (src/pal3/)
+  cpp                 生成 .cpp 实现文件 (src/pal3/gen/)
   cpp ClassName       只生成指定类
-  all                 headers + cpp 全量生成
+  all                 clean + headers + cpp 全量生成
 
 提示: 用 python pipeline/cli.py config 查看/验证配置
 
@@ -80,6 +81,22 @@ def cmd_config():
         print("  [OK] All required paths exist")
 
 
+def cmd_clean():
+    """Clean all previously generated files in gen/ directories."""
+    import shutil
+    gen_dirs = [
+        cfg.output_headers,           # include/pal3/gen/
+        cfg.output_src / "gen",       # src/pal3/gen/
+    ]
+    for d in gen_dirs:
+        if d.exists():
+            shutil.rmtree(d)
+            print("  Cleaned: %s/" % d)
+        else:
+            print("  (empty) %s/" % d)
+    print("[clean] Done")
+
+
 def cmd_headers():
     """Generate header files from annotations."""
     from stages.emit_headers import run_header_generation
@@ -108,11 +125,14 @@ def main():
 
     if command == 'config':
         cmd_config()
+    elif command == 'clean':
+        cmd_clean()
     elif command == 'headers':
         cmd_headers()
     elif command == 'cpp':
         cmd_cpp(filter_classes=filter_classes or None)
     elif command == 'all':
+        cmd_clean()
         cmd_headers()
         cmd_cpp(filter_classes=filter_classes or None)
     else:
