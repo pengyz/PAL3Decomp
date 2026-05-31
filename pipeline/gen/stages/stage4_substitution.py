@@ -766,17 +766,31 @@ def _resolve_stru_overlap(code):
     2. pTarget._todo_XXXX — Hex-Rays synthetic field on undeclared local var.
        _todo_XXXX suffix encodes the hex byte offset.
     """
-    # Case 2: pTarget._todo_XXXX — synthetic field on undeclared local
-    # Hex-Rays generates pTarget._todo_92C for *(base + 0x92C) access patterns
-    # where pTarget is NOT declared in local_vars. Replace with explicit
-    # pointer arithmetic so it compiles without struct member access.
+    # Case 2: pTarget._todo_XXXX — synthetic field on undeclared local.
+    # The access targets fixed memory addresses. Map to proper C++ globals.
+    # Known: pTarget._todo_92C + 140 → g_nTargetSlot (at 0x5D5FE8)
+    
+    # Pass 1: exact +140 dereference → g_nTargetSlot
     code = re.sub(
-        r'&?(\bpTarget)\._todo_([0-9A-Fa-f]+)',
-        lambda m: (
-            '(int *)((char *)&' + m.group(1) + ' + 0x' + m.group(2) + ')'
-            if m.group(0).startswith('&')
-            else '*(int *)((char *)&' + m.group(1) + ' + 0x' + m.group(2) + ')'
-        ),
+        r'\*\(&pTarget\._todo_92C\s*\+\s*140\)',
+        'g_nTargetSlot',
+        code
+    )
+    # Pass 2: remaining &pTarget._todo_XX + N → relative to g_nTargetSlot
+    # g_nTargetSlot at offset 0xB5C from pTarget, _todo_XX at offset 0xXX
+    # pTarget._todo_XX + N = g_nTargetSlot + XX - 0xB5C + N*4
+    def _relative_to_target(m):
+        is_char = m.group(1) is not None
+        hex_off = int(m.group(2), 16)
+        idx = int(m.group(3)) if m.group(3) else 0
+        byte_off = hex_off - 0xB5C + idx * 4
+        if is_char:
+            return '(char *)&g_nTargetSlot + %d' % byte_off
+        else:
+            return '(int *)((char *)&g_nTargetSlot + %d)' % byte_off
+    code = re.sub(
+        r'(\(char\s*\*\))?&pTarget\._todo_([0-9A-Fa-f]+)(?:\s*\+\s*(\d+))?',
+        _relative_to_target,
         code
     )
     
