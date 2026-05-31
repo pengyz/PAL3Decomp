@@ -1981,7 +1981,10 @@
   "0x00D8BC20": {
     "name": "g_vRotateAxis",
     "type": "gbVec3D",
-    "source": "binary: UIBigMap_RenderRole: gbMatrixStack::Rotate(pStack, angle, &g_vRotateAxis)"
+    "source": "binary: UIBigMap_RenderRole: gbMatrixStack::Rotate(pStack, angle, &g_vRotateAxis)",
+    "overlaps_with": [
+      "g_ScriptSystemData"
+    ]
   },
   "0x00C0438C": {
     "name": "g_pSceneArrayEnd",
@@ -3196,10 +3199,18 @@
     "name": "g_ScriptRoleBuf",
     "type": "RoleSystem",
     "decomp_name": "Buffer",
-    "source": "RoleSystem at g_SceneMgr+0x590; all members match RoleSystem fields"
+    "source": "RoleSystem at g_SceneMgr+0x590; all members match RoleSystem fields",
+    "overlaps_with": [
+      "g_SceneMgr",
+      "g_PartyCombatData"
+    ]
   },
   "0x00C043A0": {
     "name": "g_PartyCombatData",
-    "type": "PartyCombatData"
+    "type": "PartyCombatData",
+    "overlaps_with": [
+      "g_SceneMgr",
+      "g_RoleSystemMain"
+    ]
   }
 }

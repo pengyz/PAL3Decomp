@@ -119,7 +119,7 @@
     "112": {
       "name": "m_pPathNext",
       "type": "void *",
-      "source": "binary:raw_path_next | type_fix:int→void*(naming m_p)"
+      "source": "binary:raw_path_next | type_fix:int鈫抳oid*(naming m_p)"
     },
     "116": {
       "name": "_todo_074",
@@ -149,7 +149,7 @@
     "140": {
       "name": "m_pPathListHead",
       "type": "void *",
-      "source": "binary:raw_path_list | type_fix:int→void*(naming m_p)"
+      "source": "binary:raw_path_list | type_fix:int鈫抳oid*(naming m_p)"
     },
     "144": {
       "name": "m_nActionResult",
@@ -369,7 +369,7 @@
     "416": {
       "name": "m_pPathNodeIter",
       "type": "void *",
-      "source": "binary:gap_access | type_fix:int→void*(naming m_p)"
+      "source": "binary:gap_access | type_fix:int鈫抳oid*(naming m_p)"
     },
     "420": {
       "name": "_field_1A4",
@@ -514,7 +514,7 @@
     "1420": {
       "name": "m_pLinkedSystem",
       "type": "void *",
-      "source": "ida_decomp:UpdateTransform deref+756 byte, 6 refs | type_fix:int→void*(deref pattern)"
+      "source": "ida_decomp:UpdateTransform deref+756 byte, 6 refs | type_fix:int鈫抳oid*(deref pattern)"
     },
     "1424": {
       "name": "m_fAnimSpeed",
@@ -554,7 +554,7 @@
     "1456": {
       "name": "m_pCtrlPoint",
       "type": "void *",
-      "source": "binary:raw_final | type_fix:int→void*(naming m_p)"
+      "source": "binary:raw_final | type_fix:int鈫抳oid*(naming m_p)"
     },
     "1460": {
       "name": "m_nMoveRole",
@@ -589,7 +589,7 @@
     "1484": {
       "name": "m_fMoveTargetY",
       "type": "int",
-      "source": "gen_headers_9.2 | type_fix:float→int_raw_decomp"
+      "source": "gen_headers_9.2 | type_fix:float鈫抜nt_raw_decomp"
     },
     "1488": {
       "name": "m_fMoveTargetZ",
@@ -1057,7 +1057,8 @@
       "source": "fix:gap_fill_for_decomp_naming"
     }
   },
-  "binary_size": 8908,
+  "binary_size": 8704,
   "base_size": 68,
-  "base_class": "UIWnd"
+  "base_class": "UIWnd",
+  "note": " | binary_size set to 8704 (stride from binary, was 8908)"
 }

@@ -221,11 +221,13 @@ def check():
         except ValueError:
             continue
         # Check if this address falls within any other global's range
+        expected_overlaps = set(info.get('overlaps_with', []) or [])
         for rstart, rend, rname, rtype in global_ranges:
             if rname == gname:
                 continue  # skip self
             if rstart <= gaddr < rend:
-                # Address falls within another global. This is expected for overlay patterns.
+                if rname in expected_overlaps:
+                    continue  # explicitly marked as intended overlap
                 gstruct = all_structs.get(gtype, {})
                 gsize = gstruct.get('binary_size', 0) or gstruct.get('pdb_size', 0)
                 if gsize:
@@ -234,7 +236,7 @@ def check():
                     errors.append(
                         f"globals[{addr_str}]: '{gname}' ({gtype}, {gsize}b) at +{gaddr - rstart} "
                         f"inside '{rname}' ({rtype}) range [0x{rstart:X}-0x{rend:X}] "
-                        f"{containment} — fix: adjust binary_size or add overlap annotation")
+                        f"{containment} — add 'overlaps_with' to globals[{addr_str}] if intentional")
 
     # 4. Structs
     structs = ann.get('structs', {})
