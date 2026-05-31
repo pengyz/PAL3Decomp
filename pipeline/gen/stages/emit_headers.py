@@ -1,6 +1,6 @@
 ﻿#!/usr/bin/env python3
 """
-Generate C++ header files from PDB class data + IDA function signatures.
+Generate C++ header files from IDB struct export + IDA function signatures.
 
 For each class, generates include/pal3/gen/<ClassName>.h containing:
   - Base class inheritance
@@ -8,11 +8,11 @@ For each class, generates include/pal3/gen/<ClassName>.h containing:
   - Method declarations from IDA decomp signatures
 
 Sources:
-  - asm/pal3a/pdb_export.json: class layout (members, inheritance, size)
+  - asm/pal3/ida_structs.json: struct/enum definitions (exported from IDB)
   - asm/pal3/decomp/*.json: method signatures
+  - data/annotations/: field name overrides and template mappings
 
-Usage:
-  python tools/gen_headers.py
+NO raw PDB data is read. The IDB export is the single source of truth.
 """
 
 import json
@@ -24,7 +24,6 @@ from pathlib import Path
 
 PIPELINE_ROOT = Path(__file__).parent.parent.parent  # pipeline/
 PROJECT_ROOT = PIPELINE_ROOT.parent
-PDB_FILE = PROJECT_ROOT / "data" / "pdb" / "pdb_export.json"
 ANNOTATIONS_DIR = PROJECT_ROOT / "data" / "annotations"
 IDA_STRUCTS_FILE = PROJECT_ROOT / "asm" / "pal3" / "ida_structs.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
@@ -844,12 +843,21 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
 
     if not base_names and _ann_base:
         if isinstance(_ann_base, list):
-            base_names.extend(_ann_base)
+            # Handle multiple inheritance annotation
+            resolved = []
+            for b in _ann_base:
+                if b in template_map:
+                    resolved.append(template_map[b])
+                else:
+                    resolved.append(b)
+            base_names.extend(resolved)
         else:
-            base_names.append(_ann_base)
-            # Also add include for the annotation base class (PDB bases not available)
-            # Skip template concrete classes — they use template definition instead
-            if _ann_base not in template_map:
+            # Single base class — check template resolution
+            if _ann_base in template_map:
+                base_names.append(template_map[_ann_base])
+            else:
+                base_names.append(_ann_base)
+                # Also add include for the annotation base class
                 gb_path = _gbengine_type_to_header.get(_ann_base, '')
                 if gb_path:
                     inc_line = '#include "%s"' % gb_path
@@ -860,12 +868,6 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
 
     if base_names:
         bases_str = " : " + ", ".join("public %s" % b for b in base_names)
-
-    if cls_name in ('CEffAction', 'CEffGrid', 'CEffCylinder'):
-        import sys as _sys
-        print("  [DEBUG %s] base_names=%s bases_str=%s _ann_base=%s" % (
-            cls_name, base_names, bases_str,
-            _ann_base), file=_sys.stderr)
 
     # Determine keyword: union only if ANNOTATION explicitly marks is_union
     # (IDA TIL may misdetect some PDB types as union)
@@ -953,22 +955,28 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     # Annotation known_members are authoritative over IDB/PDB struct layouts.
     # IDA's struct layout engine may compute different alignment/padding than MSVC 6.0,
     # causing offset drift in derived classes. Use annotation path when available.
-    # CRITICAL: annotations binary_size MUST override PDB size (PAL3A vs PAL3 difference)
-    use_pdb_members = False
+    # CRITICAL: Annotation known_members are authoritative.
+    # IDB/ida_structs data is the merged PDB+Annotations output, but annotations
+    # may have additional field names that IDB doesn't capture.
+    # Always use annotation path when available; use IDB data as fallback.
     try:
         _ann_d = load_annotations_data()
         _ann_s = _ann_d.get('structs', {}).get(cls_name, {})
     except:
         _ann_s = {}
-    # Priority: annotations with binary_size > annotations with members > PDB
-    # When both annotation and PDB exist, merge: annotation wins, PDB fills gaps.
-    if _ann_s.get('binary_size') or _ann_s.get('known_members'):
-        if pdb_class and pdb_class.get('data_members'):
-            use_pdb_members = 'merge'  # merge PDB members into annotation
-        else:
-            use_pdb_members = False
-    elif pdb_class and pdb_class.get('data_members'):
+
+    has_ann = bool(_ann_s.get('known_members') or _ann_s.get('binary_size'))
+    has_idb = bool(pdb_class and pdb_class.get('data_members'))
+
+    if has_ann:
+        # Annotation path: known_members + binary_size are authoritative
+        # IDB data is used only for gap-filling when annotation lacks offsets
+        use_pdb_members = False
+    elif has_idb:
+        # No annotation, but IDB has data — use it directly
         use_pdb_members = True
+    else:
+        use_pdb_members = False
 
     if use_pdb_members:
         members = pdb_class['data_members']
@@ -1021,7 +1029,9 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             lines.append("    // total size: 0x%X (%d)" % (size, size))
         lines.append("")
     if not use_pdb_members:
-        # Fallback: generate from annotation known_members with gap filling
+        # Generate from annotation known_members with gap filling.
+        # IDB/ida_structs members are merged as gap-fill when annotation
+        # doesn't have an offset mapped.
         try:
             ann_data_fb = load_annotations_data()
             ann_struct_fb = ann_data_fb.get('structs', {}).get(cls_name, {})
@@ -1297,69 +1307,35 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
 
 
 def main():
-    # Load PDB class data
-    with open(PDB_FILE, 'r', encoding='utf-8') as f:
-        pdb = json.load(f)
+    # IDB struct export is the SINGLE authoritative source.
+    # No raw PDB data is read. The pipeline: PDB → master_pipeline → IDB →
+    # apply_annotations → IDB → export_full → ida_structs.json
+    ida_classes = {}
+    ida_enums = {}
 
-    pdb_classes = {}
-    template_classes = {}  # template instances: "BaseName<...>" -> class data
-    for c in pdb.get('classes', []):
-        name = c.get('name', '')
-        if not name:
-            continue
-        if '<' in name:
-            # Template instance - store by simplified base name
-            base_name = name.split('<')[0]
-            if base_name and '::' not in base_name and c.get('size', 0) > 1:
-                template_classes[base_name] = c
-        elif '::' not in name:
-            pdb_classes[name] = c
-
-    # IDB is the sole authoritative source for struct layout.
-    # PDB data is already in IDB (imported by master_pipeline), annotation is the diff on top.
-    # IDB export = PDB + annotation merged. Always use IDB data over raw PDB.
-    ida_override_count = 0
     if IDA_STRUCTS_FILE.exists():
         ida_data = json.load(open(IDA_STRUCTS_FILE, encoding='utf-8'))
+
+        # Extract enums from special _enums section
+        if '_enums' in ida_data:
+            ida_enums = ida_data.pop('_enums')
+
         if isinstance(ida_data, dict):
-            ida_items = [(k, v) for k, v in ida_data.items() if isinstance(v, dict)]
-        else:
-            ida_items = [(s.get('name', ''), s) for s in ida_data.get('structs', [])]
-
-        # Save original PDB bases before IDA override
-        _pdb_bases_cache = {}
-        for sname, s in ida_items:
-            ssize = s.get('size', 0)
-            if not sname or ssize <= 1 or should_skip_class(sname):
-                continue
-            if '$' in sname or ':' in sname or '?' in sname or '<' in sname:
-                continue
-            if not sname[0].isalpha() and sname[0] != '_':
-                continue
-            # Save PDB bases before IDA overwrites
-            if sname in pdb_classes and pdb_classes[sname].get('bases'):
-                _pdb_bases_cache[sname] = pdb_classes[sname]['bases']
-
-        for sname, s in ida_items:
-            ssize = s.get('size', 0)
-            if not sname or ssize <= 1 or should_skip_class(sname):
-                continue
-            if '$' in sname or ':' in sname or '?' in sname or '<' in sname:
-                continue
-            if not sname[0].isalpha() and sname[0] != '_':
-                continue
-
-            if s.get('bases'):
-                pdb_classes[sname] = s
-            else:
-                merged = dict(s)
-                # Restore PDB bases for inheritance
-                if sname in _pdb_bases_cache:
-                    merged['bases'] = _pdb_bases_cache[sname]
-                pdb_classes[sname] = merged
-            ida_override_count += 1
-
-        print("  IDA struct overrides: %d (IDB is authoritative)" % ida_override_count)
+            for sname, s in ida_data.items():
+                if not isinstance(s, dict):
+                    continue
+                size = s.get('size', 0)
+                if not sname or sname.startswith('_'):
+                    continue
+                if size <= 0 or size == 0xFFFFFFFFFFFFFFFF:
+                    continue
+                if should_skip_class(sname):
+                    continue
+                if '$' in sname or ':' in sname or '?' in sname or '<' in sname:
+                    continue
+                if not sname[0].isalpha() and sname[0] != '_':
+                    continue
+                ida_classes[sname] = s
 
     # Collect methods from decomp
     methods_by_class = collect_methods()
@@ -1375,7 +1351,7 @@ def main():
 
     generated = 0
     ann_structs = set(ann_data_all.get('structs', {}).keys())
-    all_classes = set(pdb_classes.keys()) | set(methods_by_class.keys()) | vtable_classes | ann_structs
+    all_classes = set(ida_classes.keys()) | set(methods_by_class.keys()) | vtable_classes | ann_structs
 
     # Load template reverse map: concrete class -> template expression
     # Classes in this map are template instantiations whose headers should NOT
@@ -1390,12 +1366,20 @@ def main():
             if not _k.startswith('_'):
                 _template_concrete.add(_k)
 
+    # Build template_classes from ida_classes
+    template_classes = {}
+    for sname, s in ida_classes.items():
+        if '<' in sname:
+            base_name = sname.split('<')[0]
+            if base_name and '::' not in base_name and s.get('size', 0) > 1:
+                template_classes[base_name] = s
+
     # Pre-compute set of all class names that will have headers generated
     classes_with_headers = set()
     for cls_name in all_classes:
         if should_skip_class(cls_name):
             continue
-        pdb_class = pdb_classes.get(cls_name)
+        pdb_class = ida_classes.get(cls_name)
         methods_list = methods_by_class.get(cls_name, [])
         has_members = pdb_class and pdb_class.get('data_members') and pdb_class.get('size', 0) > 1
         has_methods = len(methods_list) >= 1
@@ -1410,12 +1394,14 @@ def main():
             classes_with_headers.add(base_name)
     enum_names = set()
     enum_by_name = {}  # name -> {values: {name: val}}
-    for e in pdb.get('enums', []):
-        ename = e.get('name', '')
+    for ename, edata in ida_enums.items():
+        values = edata.get('values', {})
+        if not values:
+            continue
         if ename and (ename[0].isalpha() or ename[0] == '_') and '<' not in ename and '::' not in ename:
             classes_with_headers.add(ename)
             enum_names.add(ename)
-            enum_by_name[ename] = e
+            enum_by_name[ename] = {'name': ename, 'values': values}
 
     # Build case-insensitive enum lookup for collision detection
     enum_by_lower = {}
@@ -1441,7 +1427,7 @@ def main():
             generated += 1
             continue
 
-        pdb_class = pdb_classes.get(cls_name)
+        pdb_class = ida_classes.get(cls_name)
         methods = methods_by_class.get(cls_name, [])
 
         # Skip if no useful content (but keep if has vtable or annotation members)
@@ -1483,12 +1469,13 @@ def main():
             f.write(content)
         generated += 1
 
-    # Generate enum headers
+    # Generate enum headers from ida_structs.json._enums
     enum_count = 0
-    for e in pdb.get('enums', []):
-        name = e.get('name', '')
-        values = e.get('values', {})
-        if not name or '<' in name or '::' in name:
+    for name, edata in sorted(ida_enums.items()):
+        values = edata.get('values', {})
+        if not values:
+            continue
+        if '<' in name or '::' in name:
             continue
         # Allow _-prefixed game enums, skip system _-prefixed ones
         GAME_ENUMS_UNDERSCORE = {'_BGM', '_FLIP', '_BIGMAP_ELEMENT', '_MU_R_STATE'}
@@ -1532,7 +1519,7 @@ def main():
         lines = ['#pragma once']
         lines.append('// Auto-generated: %s (template class, simplified)' % base_name)
         lines.append('// Original: %s' % tc.get('name', base_name))
-        lines.append('// Size: 0x%X (%d bytes) from PAL3A PDB' % (size, size))
+        lines.append('// Size: 0x%X (%d bytes) from IDB' % (size, size))
         lines.append('')
         lines.append('class %s {' % base_name)
         lines.append('public:')
@@ -1561,8 +1548,8 @@ def main():
             stale_removed += 1
 
     print("Generated %d header files in %s" % (generated, OUTPUT_DIR))
-    print("  With PDB layout: %d" % sum(1 for c in all_classes
-          if c in pdb_classes and pdb_classes[c].get('data_members') and pdb_classes[c].get('size', 0) > 1))
+    print("  With IDB layout: %d" % sum(1 for c in all_classes
+          if c in ida_classes and ida_classes[c].get('data_members') and ida_classes[c].get('size', 0) > 1))
     print("  With methods: %d" % sum(1 for c in all_classes if c in methods_by_class and methods_by_class[c]))
     print("  Enums: %d" % enum_count)
     print("  Template stubs: %d" % tmpl_count)

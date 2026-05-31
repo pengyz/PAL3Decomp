@@ -15,22 +15,14 @@ class DataStore:
     def __init__(self):
         self.loaded = False
         # Paths from config
-        try:
-            from pipeline.config import cfg
-            self.annotations_dir = cfg.annotations_dir
-            self.decomp_dir = cfg.decomp_dir
-            self.header_dir = cfg.output_headers
-            self.output_dir = cfg.output_src
-            self.project_root = cfg.annotations_dir.parent.parent
-            self.pipeline_root = self.project_root / "pipeline"
-        except (ImportError, SystemExit):
-            # Fallback for standalone usage
-            self.pipeline_root = Path(__file__).parent.parent
-            self.project_root = self.pipeline_root.parent
-            self.annotations_dir = self.project_root / "data" / "annotations"
-            self.decomp_dir = self.project_root / "asm" / "pal3" / "decomp"
-            self.header_dir = self.project_root / "include" / "pal3" / "gen"
-            self.output_dir = self.project_root / "src" / "pal3"
+        # Paths from pipeline config (must be configured)
+        from pipeline.config import cfg
+        self.annotations_dir = cfg.annotations_dir
+        self.decomp_dir = cfg.decomp_dir
+        self.header_dir = cfg.output_headers
+        self.output_dir = cfg.output_src
+        self.project_root = cfg.annotations_dir.parent.parent
+        self.pipeline_root = self.project_root / "pipeline"
 
         # Data tables (populated by load())
         self.literals = {}          # "flt_XXX" -> "1.0f", "aXxx" -> '"string"'
