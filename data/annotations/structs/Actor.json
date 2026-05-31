@@ -223,18 +223,18 @@
     },
     "216": {
       "name": "m_fScale",
-      "type": "float",
-      "source": "transfer_from_RoleSystem_off_640"
+      "type": "unsigned char",
+      "source": "transfer_from_RoleSystem_off_640|A:binary_mov_byte_[eax+0D8h]_1"
     },
     "220": {
       "name": "m_fMatrixA",
       "type": "float",
-      "source": "transfer_from_RoleSystem_off_644"
+      "source": "transfer_from_RoleSystem_off_644|A:binary_mov_dword_0DC_0xA28_init"
     },
     "224": {
       "name": "m_fMatrixB",
-      "type": "float",
-      "source": "transfer_from_RoleSystem_off_648"
+      "type": "unsigned char",
+      "source": "transfer_from_RoleSystem_off_648|A:binary_mov_byte_[eax+0E0h]_0"
     },
     "228": {
       "name": "m_fMatrixC",
@@ -565,6 +565,11 @@
       "name": "m_nUpdateMode",
       "type": "int",
       "source": "A:decomp Actor::UpdateFrame"
+    },
+    "217": {
+      "name": "_todo_0D9",
+      "type": "unsigned char",
+      "source": "A:binary_mov_byte_[eax+0D9h]_0"
     }
   },
   "binary_size": 820,
