@@ -164,7 +164,8 @@ def _try_struct_member_resolution(name):
             suffix = _resolve_offset(gtype, addr - base, prefix)
             if suffix:
                 return gname + suffix
-            return None
+            # Don't return None yet — another struct_instance may have a better match
+            continue
     return None
 
 
