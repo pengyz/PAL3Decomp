@@ -597,14 +597,18 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             if '::' not in bname:
                 include_types.add(bname)
 
-    # Annotation base_class also needs include (inheritance requires full definition)
-    try:
-        _ann_for_base = load_annotations_data()
-        _ann_base_cls = _ann_for_base.get('structs', {}).get(cls_name, {}).get('base_class')
-        if _ann_base_cls and '<' not in _ann_base_cls and '::' not in _ann_base_cls:
-            include_types.add(_ann_base_cls)
-    except:
-        pass
+
+
+    # Load template map early — needed for data member analysis below
+    _template_map = {}
+    _tpl_path = os.path.join(os.path.dirname(__file__), '..', '..', '..',
+                             'data', 'annotations', 'template_bases.json')
+    if os.path.exists(_tpl_path):
+        with open(_tpl_path) as _f:
+            _tpl_data = json.load(_f)
+        for _k, _v in _tpl_data.items():
+            if not _k.startswith('_'):
+                _template_map[_k] = _v['template']
 
     if pdb_class:
         # Data members
@@ -624,7 +628,11 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             if is_ptr:
                 fwd_types.add(base)
             else:
-                include_types.add(base)
+                # Skip template concrete classes (handled via template definition, no header)
+                if base not in _template_map:
+                    include_types.add(base)
+                else:
+                    fwd_types.add(base)
 
     # Also scan annotation known_members for type references
     needs_stl = False
@@ -749,15 +757,19 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     base_names = []
 
     # Load template reverse map: concrete_name → template_expression
-    template_map = {}
-    _tpl_path = os.path.join(os.path.dirname(__file__), '..', '..', '..',
-                             'data', 'annotations', 'template_bases.json')
-    if os.path.exists(_tpl_path):
-        with open(_tpl_path) as _f:
-            _tpl_data = json.load(_f)
-        for _k, _v in _tpl_data.items():
-            if not _k.startswith('_'):
-                template_map[_k] = _v['template']
+    # (may already be populated early for data member analysis)
+    try:
+        template_map = _template_map
+    except NameError:
+        template_map = {}
+        _tpl_path = os.path.join(os.path.dirname(__file__), '..', '..', '..',
+                                 'data', 'annotations', 'template_bases.json')
+        if os.path.exists(_tpl_path):
+            with open(_tpl_path) as _f:
+                _tpl_data = json.load(_f)
+            for _k, _v in _tpl_data.items():
+                if not _k.startswith('_'):
+                    template_map[_k] = _v['template']
 
     # Load annotation base_class (needed for template reverse lookup)
     _ann_base = None
@@ -767,7 +779,6 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     except:
         pass
 
-    import sys
     if pdb_class and pdb_class.get('bases'):
         for b in pdb_class['bases']:
             bname = b['name']
@@ -795,16 +806,36 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             # Template expression: extract base name (e.g. "TaskMgr" from "TaskMgr<...>")
             if '<' in b:
                 base_inc = b.split('<')[0]
-                # Extract template parameter types (uppercase-starting class names only)
+                # Extract template parameter types — match full type names including tag_ prefix
+                # Use \w+ instead of [A-Z][A-Za-z0-9_]* to catch lowercase-started types like tagEffTaskParam
                 inner = b[b.find('<')+1:b.rfind('>')]
-                for param in re.findall(r'[A-Z][A-Za-z0-9_]*', inner):
+                for param in re.findall(r'[A-Za-z_]\w+', inner):
                     if len(param) > 1 and param not in PRIMITIVES and param not in SYSTEM_TYPES and param != cls_name:
-                        inc_line = '#include "%s.h"' % param
-                        if inc_line not in lines:
-                            lines.insert(0, inc_line)
+                        gb_path = _gbengine_type_to_header.get(param, '')
+                        if gb_path:
+                            # gbengine type — use gbengine/ prefix
+                            inc_line = '#include "%s"' % gb_path
+                            if inc_line not in lines:
+                                lines.insert(0, inc_line)
+                        elif param in known_classes or (ANNOTATIONS_DIR / "structs" / ("%s.json" % param)).exists():
+                            # Has a real definition — include header (may not be generated yet,
+                            # but will be by the time compilation runs)
+                            inc_line = '#include "%s.h"' % param
+                            if inc_line not in lines:
+                                lines.insert(0, inc_line)
+                        else:
+                            # Unknown type — forward declare
+                            fwd_line = 'class %s;' % param
+                            if fwd_line not in lines:
+                                lines.insert(0, fwd_line)
             else:
                 base_inc = b
-            inc_line = '#include "%s.h"' % base_inc
+                # Check if this is a gbengine type that needs gbengine/ prefix
+                gb_path = _gbengine_type_to_header.get(base_inc, '')
+                if gb_path:
+                    inc_line = '#include "%s"' % gb_path
+                else:
+                    inc_line = '#include "%s.h"' % base_inc
             if inc_line not in lines:
                 lines.insert(0, inc_line)
 
@@ -816,9 +847,25 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             base_names.extend(_ann_base)
         else:
             base_names.append(_ann_base)
+            # Also add include for the annotation base class (PDB bases not available)
+            # Skip template concrete classes — they use template definition instead
+            if _ann_base not in template_map:
+                gb_path = _gbengine_type_to_header.get(_ann_base, '')
+                if gb_path:
+                    inc_line = '#include "%s"' % gb_path
+                else:
+                    inc_line = '#include "%s.h"' % _ann_base
+                if inc_line not in lines:
+                    lines.insert(0, inc_line)
 
     if base_names:
         bases_str = " : " + ", ".join("public %s" % b for b in base_names)
+
+    if cls_name in ('CEffAction', 'CEffGrid', 'CEffCylinder'):
+        import sys as _sys
+        print("  [DEBUG %s] base_names=%s bases_str=%s _ann_base=%s" % (
+            cls_name, base_names, bases_str,
+            _ann_base), file=_sys.stderr)
 
     # Determine keyword: union only if ANNOTATION explicitly marks is_union
     # (IDA TIL may misdetect some PDB types as union)
@@ -1664,7 +1711,7 @@ def generate_globals():
             insert_pos += 1
         h_lines.insert(insert_pos, '')
 
-    globals_h = PROJECT_ROOT / "include" / "pal3" / "globals.h"
+    globals_h = OUTPUT_DIR / "globals.h"
     with open(globals_h, 'w', encoding='utf-8') as f:
         f.write('\n'.join(h_lines) + '\n')
 
