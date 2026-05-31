@@ -272,19 +272,26 @@ def main():
                 if len(safe) > 100: safe = safe[:100]
                 filename = '%s_%08x.json' % (safe, ea)
 
-                # Collect local variable info
+                # Collect local variable info (both stack and register variables)
                 lvar_info = []
                 try:
                     for lvar in cfunc.lvars:
-                        loc = lvar.location
-                        if loc.is_stkoff():
+                        try:
+                            loc = lvar.location
                             type_str = lvar.type().dstr() if lvar.type() else ""
                             type_str = resolve_orphan_ordinals(type_str)
-                            lvar_info.append({
+                            entry = {
                                 "name": lvar.name,
                                 "type": type_str,
-                                "stack_offset": loc.stkoff(),
-                            })
+                            }
+                            if loc.is_stkoff():
+                                entry["stack_offset"] = loc.stkoff()
+                            elif loc.is_reg():
+                                entry["register"] = loc.reg()
+                            lvar_info.append(entry)
+                        except:
+                            # Skip individual problematic variables
+                            pass
                 except:
                     pass
 
