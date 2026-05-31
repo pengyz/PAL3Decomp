@@ -231,10 +231,10 @@ def check():
                 if gsize:
                     gend = gaddr + int(gsize)
                     containment = "(entirely within)" if gend <= rend else "(extends beyond)"
-                    warnings.append(
+                    errors.append(
                         f"globals[{addr_str}]: '{gname}' ({gtype}, {gsize}b) at +{gaddr - rstart} "
                         f"inside '{rname}' ({rtype}) range [0x{rstart:X}-0x{rend:X}] "
-                        f"{containment} — verify this is intended overlap")
+                        f"{containment} — fix: adjust binary_size or add overlap annotation")
 
     # 4. Structs
     structs = ann.get('structs', {})
