@@ -328,84 +328,138 @@ def main():
 
 
 def export_structs(log):
-    """Export struct definitions from TIL (not IDB Structs - apply_annotations writes to TIL)."""
-    import glob
+    """Export ALL types (structs, unions, enums) from IDB TIL to ida_structs.json.
+    
+    This is the authoritative export of the merged PDB+Annotations type system.
+    Codegen reads ONLY this file — never raw PDB data.
+    """
     structs_path = os.path.join(PROJECT_ROOT, "asm", "pal3", "ida_structs.json")
     result = {}
-    count = 0
+    enums = {}  # collected under result['_enums']
+    struct_count = 0
+    enum_count = 0
+    skipped_count = 0
 
-    # Read struct names from annotations (authoritative source)
-    ann_structs_dir = os.path.join(PROJECT_ROOT, "data", "annotations", "structs")
-    struct_names = []
-    for f in glob.glob(os.path.join(ann_structs_dir, "*.json")):
-        if os.path.basename(f).endswith('.disabled'):
-            continue
-        try:
-            import json as _json
-            with open(f, encoding='utf-8') as fp:
-                sdata = _json.load(fp)
-            sname = sdata.get('name', os.path.basename(f).replace('.json', ''))
-            struct_names.append(sname)
-        except:
-            pass
+    # Types that should never be exported (CRT, Windows SDK, etc.)
+    SKIP_NAMES = {
+        'std', 'stdiobuf', 'exception', 'type_info', 'filebuf', 'string',
+        'strstreambuf', 'ios_base', 'facet', 'codecvt_base',
+        '_ThrowInfo', '_CatchableType', '_CatchableTypeArray',
+        '_s_ThrowInfo', '_s__ThrowInfo',
+        'DOUBLE', 'FLOAT', 'INT', 'CHAR', 'VOID', 'LONG', 'SHORT', 'BOOL',
+        'BYTE', 'WORD', 'DWORD', 'UINT', 'ULONG',
+        'RECT', 'POINT', 'SIZE', 'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG',
+        '_iobuf', 'FILE', '_GUID', 'GUID', 'IID',
+        'HICON__', 'HWND__', 'HDC__', 'HINSTANCE__', 'HBRUSH__',
+        'HHOOK__', 'HKEY__', 'HMONITOR__', 'HWAVEOUT__',
+        'WNDCLASSA', 'tagWNDCLASSA', 'tagOFNA',
+        '_FILETIME', '_SYSTEMTIME', '_MEMORYSTATUS', '_SECURITY_ATTRIBUTES',
+        '_OSVERSIONINFOA', '_STARTUPINFOA', '_WIN32_FIND_DATAA',
+    }
+    SKIP_PREFIXES = ('D3D', '_D3D', 'ID3D', 'IDirect', 'IUnknown', 'vtbl_')
+    # System types that are primitives — skip
+    PRIMITIVE_NAMES = {
+        'int', 'char', 'float', 'double', 'long', 'short', 'void',
+        'unsigned', 'signed', 'bool', 'wchar_t',
+        '__int8', '__int16', '__int32', '__int64',
+        'unsigned __int8', 'unsigned __int16', 'unsigned __int32', 'unsigned __int64',
+        '_BYTE', '_WORD', '_DWORD', '_QWORD', '_UNKNOWN',
+    }
+
+    def should_skip(name):
+        if not name or name in PRIMITIVE_NAMES or name in SKIP_NAMES:
+            return True
+        if name.startswith(SKIP_PREFIXES):
+            return True
+        if name.startswith('$') or name.startswith('__'):
+            return True
+        if '<' in name or '`' in name:
+            return True
+        # Skip ordinal-only names like '#123'
+        if name.startswith('#') or name.startswith('Ord'):
+            return True
+        return False
 
     til = ida_typeinf.get_idati()
-    for name in sorted(struct_names):
-        stinfo = ida_typeinf.tinfo_t()
-        if not stinfo.get_named_type(til, name):
+    ordinal_limit = ida_typeinf.get_ordinal_limit(til)
+
+    for ordinal in range(1, ordinal_limit):
+        type_name = ida_typeinf.get_numbered_type_name(til, ordinal)
+        if not type_name or should_skip(type_name):
+            skipped_count += 1
             continue
 
-        size = stinfo.get_size()
+        tif = ida_typeinf.tinfo_t()
+        if not tif.get_numbered_type(til, ordinal):
+            continue
+
+        # --- ENUM export ---
+        if tif.is_enum():
+            evec = ida_typeinf.enum_type_data_t()
+            if tif.get_enum_details(evec):
+                values = {}
+                for ei in range(evec.size()):
+                    em = evec[ei]
+                    values[em.name] = em.value
+                enums[type_name] = {'values': values}
+                enum_count += 1
+            continue
+
+        # --- STRUCT/UNION export ---
+        if not tif.is_struct() and not tif.is_union():
+            continue  # skip other types (typedefs, etc.)
+
+        size = tif.get_size()
         if size <= 0 or size == 0xFFFFFFFFFFFFFFFF:
             continue
 
         members = []
         udt = ida_typeinf.udt_type_data_t()
-        if stinfo.get_udt_details(udt):
+        if tif.get_udt_details(udt):
             for mi in range(udt.size()):
                 um = udt[mi]
                 mname = um.name or '_field_%X' % (um.offset // 8)
                 mtype_str = um.type.dstr() if um.type else 'int'
                 members.append({'name': mname, 'type': mtype_str, 'offset': um.offset // 8})
 
-        # Detect base class and type kind
+        # Detect base classes from UDT members (anonymous baseclass members)
         bases = []
-        kind = 'struct'  # default
-        # 检测实际类型kind
-        if stinfo.is_union():
+        kind = 'struct'
+        if tif.is_union():
             kind = 'union'
-        elif stinfo.is_struct():
-            kind = 'struct'  # struct和class在IDA中都是is_struct()=true
 
-        # Detect base classes from UDT members
         for mi in range(udt.size()):
             um = udt[mi]
             umname = um.name or ''
             if umname and ('baseclass' in umname.lower() or umname.startswith('__parent') or umname == ''):
-                # Anonymous member = base class
                 if umname == '' or 'baseclass' in umname.lower() or umname.startswith('__parent'):
                     base_type = um.type.dstr() if um.type else ''
                     for prefix in ('struct ', 'class '):
                         if base_type.startswith(prefix):
                             base_type = base_type[len(prefix):]
-                    if base_type and base_type != name:
+                    if base_type and base_type != type_name:
                         bases.append({'name': base_type, 'offset': um.offset // 8})
 
-        # Filter out baseclass/vtable from members
+        # Filter out baseclass/vtable from data members
         filtered = [m for m in members
                     if not any(x in m['name'].lower() for x in ('baseclass', '__parent', '__vftable', 'vtbl'))]
 
-        result[name] = {
+        result[type_name] = {
             'size': size,
             'kind': kind,
             'data_members': filtered,
             'bases': bases,
         }
-        count += 1
+        struct_count += 1
+
+    # Attach enums as a special section
+    if enums:
+        result['_enums'] = enums
 
     with open(structs_path, 'w', encoding='utf-8') as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
-    log("[*] Structs exported: %d → ida_structs.json" % count)
+    log("[*] Types exported: %d structs, %d enums (skipped %d) → ida_structs.json" %
+        (struct_count, enum_count, skipped_count))
 
 if __name__ == '__main__':
     main()
