@@ -164,12 +164,13 @@ def _detect_needed_includes(cls_name, methods):
         if c != cls_name and c in known_headers and c not in needed_classes:
             needed_classes.add(c)
 
-    # Resolve indirect dependencies: if code dereferences a forward-declared
-    # pointer member (ptr->field), include that type's header too.
-    # Also scan base class headers (included via #include in the class header).
-    indirect = set()
+    # Resolve indirect dependencies: check EACH header we're about to include
+    # for forward-declared types. If a type is forward-declared in a header
+    # we include AND that type name appears in the code, include its header too.
+    # This handles the case where a->b->c needs c.h but only b is directly included.
+    fwd_types = set()
     all_included = needed_classes | {cls_name}
-    # Add headers included by the class's own header (base classes)
+    # Also add headers included by the class's own header
     cls_hpath = header_dir / ("%s.h" % cls_name)
     if cls_hpath.exists():
         with open(cls_hpath, 'r', encoding='utf-8', errors='replace') as hf:
@@ -179,19 +180,22 @@ def _detect_needed_includes(cls_name, methods):
                     inc_stem = inc_m.group(1).split('/')[-1].replace('.h', '')
                     if inc_stem in known_headers:
                         all_included.add(inc_stem)
+    # One-level BFS: scan headers we're including for forward-declared types
     for inc_cls in list(all_included):
         hpath = header_dir / ("%s.h" % inc_cls)
         if not hpath.exists():
             continue
         with open(hpath, 'r', encoding='utf-8', errors='replace') as hf:
             for hline in hf:
-                m = re.match(r'\s+(\w+)\s*\*\s*(\w+)\s*;', hline)
-                if m:
-                    ptr_type, ptr_name = m.group(1), m.group(2)
-                    if ptr_type in known_headers and ptr_type not in all_included:
-                        if re.search(r'\b' + re.escape(ptr_name) + r'\s*->', all_code_preview):
-                            indirect.add(ptr_type)
-    needed_classes |= indirect
+                fwd_m = re.match(r'^\s*class\s+(\w+)\s*;\s*(?://.*)?$', hline)
+                if fwd_m:
+                    fwd_type = fwd_m.group(1)
+                    if (fwd_type in known_headers and fwd_type not in all_included
+                            and not fwd_type.startswith('gb')
+                            and fwd_type in all_code_preview):
+                        fwd_types.add(fwd_type)
+                        all_included.add(fwd_type)
+    needed_classes |= fwd_types
 
     return needed_classes
 

@@ -759,31 +759,58 @@ def _apply_text_substitutions(code, ctx):
 
 
 def _resolve_stru_overlap(code):
-    """Replace stru_XXXX.member[N] with casted access into known struct_instance.
+    """Replace stru_XXXX.field references with typed access into known struct_instance.
 
-    Pattern: stru_XXXX.member[N]  →  ((int *)((char *)&g_Struct + offset))[N]
+    stru_XXXX is an IDA-generated struct at address XXXX. If that address falls
+    within a known global struct_instance, we replace the raw access with a
+    correctly-typed expression using the containing struct's field type.
+
+    Patterns:
+      stru_XXXX.field[N]  →  ((field_type *)((char *)&gname + off))[N]
+      stru_XXXX.field     →  ((gtype *)((char *)&gname + 0))->field_at_off
+                           (if we can find the correct field name at offset off)
     """
-    for m in re.finditer(r'&?\bstru_([0-9A-Fa-f]+)\.(\w+)\[([^\]]+)\]', code):
+    # Match both array (field[N]) and simple (field) access
+    for m in re.finditer(r'&?\bstru_([0-9A-Fa-f]+)\.(\w+)(?:\[([^\]]+)\])?', code):
         try:
             addr = int(m.group(1), 16)
         except ValueError:
             continue
         has_ampersand = m.group(0).startswith('&')
-        idx_expr = m.group(3)
+        field_name = m.group(2)
+        idx_expr = m.group(3)  # None for non-array access
         full = m.group(0)
         for base, end, gname, gtype in store.struct_instances:
             if not (base <= addr < end):
                 continue
             off = addr - base
             known_member = store.struct_members.get(gtype, {}).get(off)
-            if known_member and known_member[0] == m.group(2):
-                continue  # member name matches, already resolvable
+            if known_member and known_member[0] == field_name:
+                # Field name at this offset already matches — no overlap fix needed
+                continue
+
+            # Determine the cast type: prefer the struct field type, fallback to int
+            cast_type = 'int'
+            if known_member:
+                raw_type = known_member[1]  # e.g. "CameraCtrl *" or "int[11]"
+                # Strip array part for usable cast type: "int[11]" → "int"
+                arr_m = re.match(r'^(\w[\w\s]*)\s*\[', raw_type)
+                if arr_m:
+                    cast_type = arr_m.group(1).strip()
+                else:
+                    cast_type = raw_type.strip()
+
             if has_ampersand:
-                # &stru_XXXX.member[N] → (int *)((char *)&gname + offset) + N
-                repl = '(int *)((char *)&%s + %d) + %s' % (gname, off, idx_expr)
+                # &stru_XXXX.field[N] → (cast_type *)((char *)&gname + off) + N
+                base_repl = '(%s *)((char *)&%%s + %%d)' % cast_type
+            elif idx_expr is not None:
+                # stru_XXXX.field[N] → ((cast_type *)((char *)&gname + off))[N]
+                base_repl = '((%s *)((char *)&%%s + %%d))[%%s]' % cast_type
             else:
-                # stru_XXXX.member[N] → ((int *)((char *)&gname + offset))[N]
-                repl = '((int *)((char *)&%s + %d))[%s]' % (gname, off, idx_expr)
+                # stru_XXXX.field → *(cast_type *)((char *)&gname + off)
+                base_repl = '*(%s *)((char *)&%%s + %%d)' % cast_type
+
+            repl = base_repl % (gname, off, idx_expr) if idx_expr is not None else base_repl % (gname, off)
             code = code.replace(full, repl)
             break  # first match is most precise
     return code

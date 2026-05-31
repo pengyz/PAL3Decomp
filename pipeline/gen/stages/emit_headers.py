@@ -627,11 +627,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             if is_ptr:
                 fwd_types.add(base)
             else:
-                # Skip template concrete classes (handled via template definition, no header)
-                if base not in _template_map:
-                    include_types.add(base)
-                else:
-                    fwd_types.add(base)
+                include_types.add(base)
 
     # Also scan annotation known_members for type references
     needs_stl = False
