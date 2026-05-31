@@ -157,7 +157,7 @@ def _try_struct_member_resolution(name):
         addr = int(addr_hex, 16)
     except (ValueError, AttributeError):
         return None
-    if prefix not in ('dword', 'byte', 'word', 'off', 'flt', 'unk'):
+    if prefix not in ('dword', 'byte', 'word', 'off', 'flt', 'unk', 'stru'):
         return None
     for base, end, gname, gtype in store.struct_instances:
         if base <= addr < end:
