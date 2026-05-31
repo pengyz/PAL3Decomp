@@ -80,7 +80,7 @@ class DataStore:
         ])
 
     def _load_globals_h(self):
-        globals_h = self.project_root / "include" / "pal3" / "globals.h"
+        globals_h = self.project_root / "include" / "pal3" / "gen" / "globals.h"
         if globals_h.exists():
             for line in open(globals_h, encoding='utf-8', errors='replace'):
                 m = re.search(r'extern\s+\S.*?\b(\w+)\s*(?:\[|;)', line)

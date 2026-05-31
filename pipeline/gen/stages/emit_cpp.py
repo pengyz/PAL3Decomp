@@ -3,7 +3,6 @@
 Transforms decomp output through the pipeline and emits .cpp files
 organized by class and free functions.
 """
-import os
 import re
 from pathlib import Path
 
@@ -204,7 +203,7 @@ def generate_class_cpp(cls_name, methods):
 
     # Standard includes
     lines.append('#include "pal3/ida_defs.h"')
-    lines.append('#include "pal3/globals.h"')
+    lines.append('#include "pal3/gen/globals.h"')
     lines.append('#include "pal3/pal3_constants.h"')
     header_path = header_dir / ("%s.h" % cls_name)
     if header_path.exists():
@@ -267,7 +266,7 @@ def generate_free_funcs_cpp(funcs):
     """Generate .cpp for free functions."""
     lines = []
     lines.append('#include "pal3/ida_defs.h"')
-    lines.append('#include "pal3/globals.h"')
+    lines.append('#include "pal3/gen/globals.h"')
     lines.append('#include "pal3/gen/free_functions.h"')
 
     # Scan all function bodies for ClassName:: references and add includes
@@ -314,7 +313,7 @@ def run_cpp_generation(filter_classes=None):
     Args:
         filter_classes: If set, only generate these class names.
     """
-    output_dir = store.output_dir
+    output_dir = store.output_dir / "gen"
 
     print("Collecting functions from decomp...")
     by_class, free_funcs = collect_functions()
@@ -378,25 +377,6 @@ def run_cpp_generation(filter_classes=None):
         with open(h_path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(h_lines))
 
-
-    # Clean stale .cpp files not in current generation set
-    generated_files = set()
-    for cls_name in by_class:
-        subdir = get_class_dir(cls_name)
-        generated_files.add(str((output_dir / subdir / ("%s.cpp" % cls_name)).resolve()))
-    if free_funcs:
-        generated_files.add(str((output_dir / "free_functions.cpp").resolve()))
-
-    removed = 0
-    for root, dirs, files in os.walk(output_dir):
-        for fn in files:
-            if fn.endswith('.cpp'):
-                fpath = str(Path(root, fn).resolve())
-                if fpath not in generated_files:
-                    os.remove(os.path.join(root, fn))
-                    removed += 1
-    if removed:
-        print("  Cleaned %d stale .cpp files" % removed)
 
     print("\nGenerated %d .cpp files (%d functions) in %s" % (
         generated, total_funcs, output_dir))

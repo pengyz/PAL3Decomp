@@ -186,7 +186,7 @@ def cmd_config(args=None):
          "Hex-Rays 反编译 JSON (export 生成)",
          None),
         ("paths.output_src", str(cfg.output_src), cfg.output_src.exists(),
-         "生成的 .cpp 输出目录",
+         "源码根目录（生成代码在 gen/ 子目录下）",
          None),
         ("paths.output_headers", str(cfg.output_headers), cfg.output_headers.exists(),
          "生成的 .h 输出目录",
