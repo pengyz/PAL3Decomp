@@ -1194,6 +1194,29 @@ def run(code, ctx):
         code
     )
 
+    # Fix struct global used as array: g_StructName[N] -> *(int *)((char *)&g_StructName + N*4)
+    # Hex-Rays sometimes generates array syntax for *(base + N*4) on struct pointers.
+    # This is invalid when the struct doesn't define operator[].
+    import re as _re_struct_arr
+    # Match: g_StructName[digits] or &g_StructName[digits]
+    # Only target known large game structs that appear as arrays in decomp output
+    _struct_globals = ['g_RoleSystemCombat', 'g_RoleSystemMain', 'g_SceneMgr']
+    for _sg in _struct_globals:
+        if _sg in code:
+            # &g_StructName[N] -> (int *)((char *)&g_StructName + N*4)
+            code = _re_struct_arr.sub(
+                r'&' + re.escape(_sg) + r'\[(\d+)\]',
+                r'(int *)((char *)&' + _sg + r' + \1*4)',
+                code
+            )
+            # g_StructName[N] on its own (not preceded by &)
+            # Must not match if preceded by &
+            code = _re_struct_arr.sub(
+                r'(?<!&)\b' + re.escape(_sg) + r'\[(\d+)\]',
+                r'*((int *)((char *)&' + _sg + r' + \1*4))',
+                code
+            )
+
     # Fix void* to unsigned long* assignment: add explicit cast
     # *((_DWORD*)this + N) = (void*)expr → *((unsigned long*)this + N) = (unsigned long)(void*)expr
     import re as _re_vp2ul
