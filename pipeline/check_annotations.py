@@ -187,6 +187,55 @@ def check():
     if no_type > 0:
         warnings.append(f"globals: {no_type}/{len(globs)} missing type")
 
+    # 3b. Global overlap check: detect globals that fall within another named global's range
+    # Build address ranges for non-skip globals that have struct types with binary_size
+    all_structs = ann.get('structs', {})
+    global_ranges = []  # [(addr_start, addr_end, name, type)]
+    for addr_str, info in globs.items():
+        if info.get('type') == 'skip':
+            continue
+        gtype = info.get('type', '')
+        gname = info.get('name', '')
+        if not gtype or not gname:
+            continue
+        # Check if this global's type has a binary_size
+        gstruct = all_structs.get(gtype, {})
+        gsize = gstruct.get('binary_size', 0) or gstruct.get('pdb_size', 0)
+        if not gsize:
+            continue
+        try:
+            gaddr = int(addr_str, 16)
+        except ValueError:
+            continue
+        global_ranges.append((gaddr, gaddr + int(gsize), gname, gtype))
+
+    for addr_str, info in globs.items():
+        if info.get('type') == 'skip':
+            continue
+        gtype = info.get('type', '')
+        gname = info.get('name', '')
+        if not gtype or not gname:
+            continue
+        try:
+            gaddr = int(addr_str, 16)
+        except ValueError:
+            continue
+        # Check if this address falls within any other global's range
+        for rstart, rend, rname, rtype in global_ranges:
+            if rname == gname:
+                continue  # skip self
+            if rstart <= gaddr < rend:
+                # Address falls within another global. This is expected for overlay patterns.
+                gstruct = all_structs.get(gtype, {})
+                gsize = gstruct.get('binary_size', 0) or gstruct.get('pdb_size', 0)
+                if gsize:
+                    gend = gaddr + int(gsize)
+                    containment = "(entirely within)" if gend <= rend else "(extends beyond)"
+                    warnings.append(
+                        f"globals[{addr_str}]: '{gname}' ({gtype}, {gsize}b) at +{gaddr - rstart} "
+                        f"inside '{rname}' ({rtype}) range [0x{rstart:X}-0x{rend:X}] "
+                        f"{containment} — verify this is intended overlap")
+
     # 4. Structs
     structs = ann.get('structs', {})
     all_struct_names = set(structs.keys())
