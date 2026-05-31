@@ -800,17 +800,20 @@ def _resolve_stru_overlap(code):
                 else:
                     cast_type = raw_type.strip()
 
-            if has_ampersand:
-                # &stru_XXXX.field[N] → (cast_type *)((char *)&gname + off) + N
-                base_repl = '(%s *)((char *)&%%s + %%d)' % cast_type
-            elif idx_expr is not None:
-                # stru_XXXX.field[N] → ((cast_type *)((char *)&gname + off))[N]
-                base_repl = '((%s *)((char *)&%%s + %%d))[%%s]' % cast_type
-            else:
-                # stru_XXXX.field → *(cast_type *)((char *)&gname + off)
-                base_repl = '*(%s *)((char *)&%%s + %%d)' % cast_type
-
-            repl = base_repl % (gname, off, idx_expr) if idx_expr is not None else base_repl % (gname, off)
+            try:
+                if has_ampersand:
+                    base_repl = '(%s *)((char *)&%%s + %%d) + %%s' % cast_type
+                    repl = base_repl % (gname, off, idx_expr)
+                elif idx_expr is not None:
+                    base_repl = '((%s *)((char *)&%%s + %%d))[%%s]' % cast_type
+                    repl = base_repl % (gname, off, idx_expr)
+                else:
+                    base_repl = '*(%s *)((char *)&%%s + %%d)' % cast_type
+                    repl = base_repl % (gname, off)
+            except TypeError as _e:
+                import sys
+                print('[WARN] _resolve_stru_overlap format error: cast_type=%r gname=%r off=%r idx_expr=%r base_repl=%r' % (cast_type, gname, off, idx_expr, base_repl), file=sys.stderr)
+                continue  # skip this match, keep original code
             code = code.replace(full, repl)
             break  # first match is most precise
     return code
