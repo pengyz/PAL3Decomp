@@ -282,14 +282,14 @@
       "source": "decomp:8x_compared_for_victory_check"
     },
     "6648": {
-      "name": "_todo_19F8",
+      "name": "m_nActionFilterA",
       "type": "int",
-      "source": "binary:disp32_2hits_1funcs"
+      "source": "A:cmp_[esi+19F8h]_edi_ResolveActionEffect|naming:action_id_filter"
     },
     "6652": {
-      "name": "_todo_19FC",
+      "name": "m_nActionFilterB",
       "type": "int",
-      "source": "binary:disp32_3hits_1funcs"
+      "source": "A:cmp_[esi+19FCh]_edi_x3_ResolveActionEffect|naming:action_id_filter"
     },
     "6664": {
       "name": "_todo_1A08",
@@ -362,14 +362,14 @@
       "source": "ida_decomp:ProcessTurn += v11, set to 100.0, 3 refs"
     },
     "480": {
-      "name": "_todo_1E0",
+      "name": "m_fAccumX",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "A:FPU_fadd_fstp_[esi+1E0h]_ProcessTurn|naming:pos_accumulator_x"
     },
     "484": {
-      "name": "_todo_1E4",
+      "name": "m_fAccumY",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
+      "source": "A:FPU_fadd_fstp_[esi+1E4h]_ProcessTurn|naming:pos_accumulator_y"
     },
     "488": {
       "name": "m_fAllDone",
@@ -467,9 +467,9 @@
       "source": "A+:decomp *(float*)&this->_todo_1F0 (1 occurrences)"
     },
     "500": {
-      "name": "_todo_1F4",
+      "name": "m_nActionTimer",
       "type": "int",
-      "source": "A:FPU_fld_dword_esi+1F4h_(ProcessTurn)|A:slot array access stride=24 via m_nActionIdx"
+      "source": "A:store_imm3+slot_stride24_[esi+1F4h]+24*m_nActionIdx|naming:action_timer"
     },
     "548": {
       "name": "m_fTurnProgress",
