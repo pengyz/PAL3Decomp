@@ -437,12 +437,14 @@ def _estimate_member_size(mtype):
     # Pointer types
     if '*' in mtype:
         return 4
-    # Array types: "Type[N]" or "Type[N][M]"
-    arr_match = re.search(r'\[(\d+)\](?:\[(\d+)\])?$', mtype)
+    # Array types: "Type[N]" or "Type[0xN]" or "Type[N][M]"
+    arr_match = re.search(r'\[((?:0x[0-9a-fA-F]+|\d+))\](?:\[((?:0x[0-9a-fA-F]+|\d+))\])?$', mtype)
     if arr_match:
         base = mtype[:arr_match.start()].strip()
-        count = int(arr_match.group(1))
-        count2 = int(arr_match.group(2)) if arr_match.group(2) else 1
+        count_str = arr_match.group(1)
+        count = int(count_str, 16) if count_str.startswith('0x') else int(count_str)
+        count2_str = arr_match.group(2)
+        count2 = int(count2_str, 16) if count2_str and count2_str.startswith('0x') else (int(count2_str) if count2_str else 1)
         return _estimate_member_size(base) * count * count2
     # Known sizes
     t = mtype.strip()
@@ -616,7 +618,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             # Check if pointer or value
             is_ptr = '*' in mtype
             # Strip array/pointer to get base type name
-            base = re.sub(r'\[\d+\]', '', mtype).replace('*', '').strip()
+            base = re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', mtype).replace('*', '').strip()
             if not base or base == cls_name:
                 continue
             if base in PRIMITIVES or base in SYSTEM_TYPES:
@@ -656,7 +658,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                     else:
                         fwd_types.add(at)
                 continue
-            base = re.sub(r'\[\d+\]', '', mtype).replace('*', '').strip()
+            base = re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', mtype).replace('*', '').strip()
             if not base or base == cls_name or base in PRIMITIVES or base in SYSTEM_TYPES:
                 continue
             if '::' in base or '<' in base:
@@ -1012,8 +1014,8 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             # Fix C99 flexible array "Type[]" -> "Type[1]" (VC6 workaround)
             mtype = re.sub(r'\[\]', '[1]', mtype)
 
-            # Handle arrays in type: "Type[N]" or "Type *[N]" -> "Type name[N]" / "Type * name[N]"
-            arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
+            # Handle arrays in type: "Type[N]" or "Type[0xN]" or "Type *[N]" -> "Type name[N]" / "Type * name[N]"
+            arr_match = re.search(r'(\[(?:0x[0-9a-fA-F]+|\d+)\](?:\[(?:0x[0-9a-fA-F]+|\d+)\])*)$', mtype)
             if arr_match:
                 arr_part = arr_match.group(1)
                 base_type = mtype[:arr_match.start()].rstrip()
@@ -1096,7 +1098,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                             mtype = _flat
                     # Emit member with real type
                     comment = m.get('comment', '') or m.get('description', '')
-                    arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
+                    arr_match = re.search(r'(\[(?:0x[0-9a-fA-F]+|\d+)\](?:\[(?:0x[0-9a-fA-F]+|\d+)\])*)$', mtype)
                     if comment:
                         lines.append("    // %s" % comment)
                     if arr_match:
@@ -1630,7 +1632,7 @@ def generate_globals():
     def extract_base_type(t):
         """Extract base type name from a type string."""
         b = t.replace('const ', '').replace('*', '').replace('[]', '').strip()
-        return re.sub(r'\[\d+\]', '', b).strip()
+        return re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', b).strip()
 
     for addr_str, g in sorted_globs:
         name = g.get('name', '')
