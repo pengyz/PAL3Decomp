@@ -759,17 +759,28 @@ def _apply_text_substitutions(code, ctx):
 
 
 def _resolve_stru_overlap(code):
-    """Replace stru_XXXX.field references with typed access into known struct_instance.
-
-    stru_XXXX is an IDA-generated struct at address XXXX. If that address falls
-    within a known global struct_instance, we replace the raw access with a
-    correctly-typed expression using the containing struct's field type.
-
-    Patterns:
-      stru_XXXX.field[N]  →  ((field_type *)((char *)&gname + off))[N]
-      stru_XXXX.field     →  ((gtype *)((char *)&gname + 0))->field_at_off
-                           (if we can find the correct field name at offset off)
+    """Replace stru_XXXX.field and pTarget._todo_XXXX refs with typed ptr arithmetic.
+    
+    Cases:
+    1. stru_XXXX.field[N] — address within a known struct_instance global
+    2. pTarget._todo_XXXX — Hex-Rays synthetic field on undeclared local var.
+       _todo_XXXX suffix encodes the hex byte offset.
     """
+    # Case 2: pTarget._todo_XXXX — synthetic field on undeclared local
+    # Hex-Rays generates pTarget._todo_92C for *(base + 0x92C) access patterns
+    # where pTarget is NOT declared in local_vars. Replace with explicit
+    # pointer arithmetic so it compiles without struct member access.
+    code = re.sub(
+        r'&?(\bpTarget)\._todo_([0-9A-Fa-f]+)',
+        lambda m: (
+            '(int *)((char *)&' + m.group(1) + ' + 0x' + m.group(2) + ')'
+            if m.group(0).startswith('&')
+            else '*(int *)((char *)&' + m.group(1) + ' + 0x' + m.group(2) + ')'
+        ),
+        code
+    )
+    
+    # Case 1: stru_XXXX references
     # Match both array (field[N]) and simple (field) access
     for m in re.finditer(r'&?\bstru_([0-9A-Fa-f]+)\.(\w+)(?:\[([^\]]+)\])?', code):
         try:

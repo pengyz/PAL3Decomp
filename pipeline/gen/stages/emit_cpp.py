@@ -49,6 +49,8 @@ def collect_undefined_refs(code):
     refs.update(re.findall(r'\b(off_[0-9A-Fa-f]+)\b', code))
     refs.update(re.findall(r'\b(unk_[0-9A-Fa-f]+)\b', code))
     refs.update(re.findall(r'\b(stru_[0-9A-Fa-f]+)\b', code))
+    # pTarget: Hex-Rays synthesized local, NOT declared in decomp JSON's local_vars
+    refs.update(re.findall(r'\b(pTarget)\b', code))
     # IDA named but unresolved
     refs.update(re.findall(r'\b(nullsub_\d+)\b', code))
     refs.update(re.findall(r'\b(unknown_libname_\d+)\b', code))
