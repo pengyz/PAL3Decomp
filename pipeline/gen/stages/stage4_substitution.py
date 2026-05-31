@@ -159,21 +159,12 @@ def _try_struct_member_resolution(name):
         return None
     if prefix not in ('dword', 'byte', 'word', 'off', 'flt', 'unk', 'stru'):
         return None
-    fallback_gname = None
     for base, end, gname, gtype in store.struct_instances:
         if base <= addr < end:
             suffix = _resolve_offset(gtype, addr - base, prefix)
             if suffix:
                 return gname + suffix
-            # Address matched a struct_instance but specific offset is unknown.
-            # Still return the global name without suffix — the decomp output
-            # already has the member name (e.g., stru_C043A0.m_teamData5).
-            # We just need to give it a proper type.
-            if fallback_gname is None:
-                fallback_gname = gname
             continue
-    if fallback_gname:
-        return fallback_gname
     return None
 
 
