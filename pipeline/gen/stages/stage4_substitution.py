@@ -758,6 +758,37 @@ def _apply_text_substitutions(code, ctx):
     return code
 
 
+def _resolve_stru_overlap(code):
+    """Replace stru_XXXX.member[N] with casted access into known struct_instance.
+
+    Pattern: stru_XXXX.member[N]  →  ((int *)((char *)&g_Struct + offset))[N]
+    """
+    for m in re.finditer(r'&?\bstru_([0-9A-Fa-f]+)\.(\w+)\[([^\]]+)\]', code):
+        try:
+            addr = int(m.group(1), 16)
+        except ValueError:
+            continue
+        has_ampersand = m.group(0).startswith('&')
+        idx_expr = m.group(3)
+        full = m.group(0)
+        for base, end, gname, gtype in store.struct_instances:
+            if not (base <= addr < end):
+                continue
+            off = addr - base
+            known_member = store.struct_members.get(gtype, {}).get(off)
+            if known_member and known_member[0] == m.group(2):
+                continue  # member name matches, already resolvable
+            if has_ampersand:
+                # &stru_XXXX.member[N] → (int *)((char *)&gname + offset) + N
+                repl = '(int *)((char *)&%s + %d) + %s' % (gname, off, idx_expr)
+            else:
+                # stru_XXXX.member[N] → ((int *)((char *)&gname + offset))[N]
+                repl = '((int *)((char *)&%s + %d))[%s]' % (gname, off, idx_expr)
+            code = code.replace(full, repl)
+            break  # first match is most precise
+    return code
+
+
 def _fix_register_this_alias(code):
     """Replace Hex-Rays register-this pattern: _ESI = this; ... _ESI->x → this->x.
 
@@ -1120,6 +1151,9 @@ def run(code, ctx):
     code = re.sub(r'return\s+byte_1010101', r'return (void*)byte_1010101', code)
 
 
+
+    # Fix stru_ overlaps: replace stru_XXXX.member[N] with cast into containing struct
+    code = _resolve_stru_overlap(code)
 
     # Fix typed pointer arithmetic: *(this + N) = (Type*)val → *((_DWORD*)this + N) = (unsigned long)(Type*)val
     # MSVC6 can't assign typed pointer to DWORD without explicit cast
