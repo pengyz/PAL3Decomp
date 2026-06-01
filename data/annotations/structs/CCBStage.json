@@ -1405,604 +1405,490 @@
       "source": "pdb"
     },
     "0x004DFAA0": {
-      "name": "InitRound",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::InitRound",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x004DFE00": {
-      "name": "AddTextLabel",
+      "name": "CCBStage::AddTextLabel",
       "signature": "int __thiscall(CCBStage *this, int nVal, int nVal2)",
-      "source": "annotation"
+      "_misattrib_evidence": "accesses 280*idx beyond 208-byte struct; callers pass CUtil-derived ptr chain via CCBUI.m_pUtil"
     },
     "0x004DFED0": {
-      "name": "EndTurnAndAdvance",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::EndTurnAndAdvance",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x004E0690": {
-      "name": "ResetAllSlots",
-      "signature": "char __thiscall(CCBUI *this)",
-      "source": "annotation"
+      "name": "CCBStage::ResetAllSlots",
+      "signature": "char __thiscall(CCBUI *this)"
     },
     "0x004FB9A0": {
-      "name": "CCBStage",
-      "signature": "int *__thiscall(CCBStage *this, int pCBSystem)",
-      "source": "annotation"
+      "name": "CCBStage::CCBStage",
+      "signature": "int *__thiscall(CCBStage *this, int pCBSystem)"
     },
     "0x004FB9F0": {
-      "name": "~CCBStage",
-      "signature": "unsigned int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::~CCBStage",
+      "signature": "unsigned int __thiscall(CCBStage *this)"
     },
     "0x004FBE50": {
-      "name": "Create",
-      "signature": "char __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::Create",
+      "signature": "char __thiscall(CCBStage *this)"
     },
     "0x004FBF90": {
-      "name": "Destroy",
-      "signature": "char __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::Destroy",
+      "signature": "char __thiscall(CCBStage *this)"
     },
     "0x004FC150": {
-      "name": "Update_c150",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::Update_c150",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x004FC3A0": {
-      "name": "EditorUpdate",
-      "signature": "void(CCBStage *this, float fVal)",
-      "source": "annotation"
+      "name": "CCBStage::EditorUpdate",
+      "signature": "void(CCBStage *this, float fVal)"
     },
     "0x004FC6F0": {
-      "name": "Render",
-      "signature": "void __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::Render",
+      "signature": "void __thiscall(CCBStage *this)"
     },
     "0x004FC700": {
-      "name": "GetRoleIndex",
-      "signature": "int __thiscall(CCBStage *this, int nameCrc, const void *pData, char pData)",
-      "source": "annotation"
+      "name": "CCBStage::GetRoleIndex",
+      "signature": "int __thiscall(CCBStage *this, int nameCrc, const void *pData, char pData)"
     },
     "0x004FC7D0": {
-      "name": "GetRoleName",
-      "signature": "int __thiscall(CCBStage *this, int nameCrc, int nVal, int nVal2, int nVal3, int nVal4, int *p_DWORD, int nVal5, int nVal6)",
-      "source": "annotation"
+      "name": "CCBStage::GetRoleName",
+      "signature": "int __thiscall(CCBStage *this, int nameCrc, int nVal, int nVal2, int nVal3, int nVal4, int *p_DWORD, int nVal5, int nVal6)"
     },
     "0x004FC8B0": {
-      "name": "Procced",
-      "signature": "char __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::Procced",
+      "signature": "char __thiscall(CCBStage *this, int nVal)"
     },
     "0x004FC8F0": {
-      "name": "GetStageRole",
-      "signature": "char __thiscall(CCBStage *this, int idx)",
-      "source": "annotation"
+      "name": "CCBStage::GetStageRole",
+      "signature": "char __thiscall(CCBStage *this, int idx)"
     },
     "0x004FC940": {
-      "name": "GetStageRoleByIdx",
-      "signature": "char __thiscall(CCBStage *this, int idx)",
-      "source": "annotation"
+      "name": "CCBStage::GetStageRoleByIdx",
+      "signature": "char __thiscall(CCBStage *this, int idx)"
     },
     "0x004FC980": {
-      "name": "IsDoTask",
-      "signature": "int __thiscall(CCBStage *this, int eTask)",
-      "source": "annotation"
+      "name": "CCBStage::IsDoTask",
+      "signature": "int __thiscall(CCBStage *this, int eTask)"
     },
     "0x004FC9A0": {
-      "name": "EndTask",
-      "signature": "int __thiscall(CCBStage *this, int nIndex)",
-      "source": "annotation"
+      "name": "CCBStage::EndTask",
+      "signature": "int __thiscall(CCBStage *this, int nIndex)"
     },
     "0x004FC9C0": {
-      "name": "DelTask",
-      "signature": "char *__thiscall(CCBStage *this, int nIndex, _BYTE *p_BYTE, int *p_DWORD)",
-      "source": "annotation"
+      "name": "CCBStage::DelTask",
+      "signature": "char *__thiscall(CCBStage *this, int nIndex, _BYTE *p_BYTE, int *p_DWORD)"
     },
     "0x004FCA00": {
-      "name": "ForceDelTask",
-      "signature": "char __thiscall(CCBStage *this, int nIndex)",
-      "source": "annotation"
+      "name": "CCBStage::ForceDelTask",
+      "signature": "char __thiscall(CCBStage *this, int nIndex)"
     },
     "0x004FCA80": {
-      "name": "GetTask",
-      "signature": "void __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::GetTask",
+      "signature": "void __thiscall(CCBStage *this)"
     },
     "0x004FCBD0": {
-      "name": "GetTaskID",
-      "signature": "char __thiscall(CCBStage *this, int nIndex, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::GetTaskID",
+      "signature": "char __thiscall(CCBStage *this, int nIndex, int nVal)"
     },
     "0x004FCC10": {
-      "name": "GetTaskState__ovl_cc10",
-      "signature": "char(CCBStage *this, int nIndex, bool *bFinished, unsigned int *dwReturn)",
-      "source": "annotation"
+      "name": "CCBStage::GetTaskState__ovl_cc10",
+      "signature": "char(CCBStage *this, int nIndex, bool *bFinished, unsigned int *dwReturn)"
     },
     "0x004FCC50": {
-      "name": "GetTaskState__ovl_cc50",
-      "signature": "char(CCBStage *this, int nIndex, enum ECBStageTaskState *State)",
-      "source": "annotation"
+      "name": "CCBStage::GetTaskState__ovl_cc50",
+      "signature": "char(CCBStage *this, int nIndex, enum ECBStageTaskState *State)"
     },
     "0x004FCD00": {
-      "name": "IsTaskFinished",
-      "signature": "int __thiscall(CCBStage *this, int nIndex)",
-      "source": "annotation"
+      "name": "CCBStage::IsTaskFinished",
+      "signature": "int __thiscall(CCBStage *this, int nIndex)"
     },
     "0x004FCD50": {
-      "name": "IsTaskValidButNotFinish",
-      "signature": "_BYTE *__userpurge@<eax>(_BYTE *result@<eax>, int eTask@<ecx>, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::IsTaskValidButNotFinish",
+      "signature": "_BYTE *__userpurge@<eax>(_BYTE *result@<eax>, int eTask@<ecx>, int nVal)"
     },
     "0x004FCDA0": {
-      "name": "IsTaskExist",
-      "signature": "int __thiscall(CCBStage *this, unsigned int dwTaskID)",
-      "source": "annotation"
+      "name": "CCBStage::IsTaskExist",
+      "signature": "int __thiscall(CCBStage *this, unsigned int dwTaskID)"
     },
     "0x004FCDE0": {
-      "name": "DoTask",
-      "signature": "int __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::DoTask",
+      "signature": "int __thiscall(CCBStage *this, int nVal)"
     },
     "0x004FCE00": {
-      "name": "StartSubTask",
-      "signature": "int __thiscall(CCBStage *this, int n)",
-      "source": "annotation"
+      "name": "CCBStage::StartSubTask",
+      "signature": "int __thiscall(CCBStage *this, int n)"
     },
     "0x004FCE70": {
-      "name": "IsSubTaskFinished",
-      "signature": "int(CCBStage *this, int n, int nSub)",
-      "source": "annotation"
+      "name": "CCBStage::IsSubTaskFinished",
+      "signature": "int(CCBStage *this, int n, int nSub)"
     },
     "0x004FCFB0": {
-      "name": "IsAllSubTaskFinished",
-      "signature": "int __thiscall(CCBStage *this, int n)",
-      "source": "annotation"
+      "name": "CCBStage::IsAllSubTaskFinished",
+      "signature": "int __thiscall(CCBStage *this, int n)"
     },
     "0x004FD0B0": {
-      "name": "IsTaskValid",
-      "signature": "int __thiscall(CCBStage *this, int n)",
-      "source": "annotation"
+      "name": "CCBStage::IsTaskValid",
+      "signature": "int __thiscall(CCBStage *this, int n)"
     },
     "0x004FD1A0": {
-      "name": "IsSubTaskValid",
-      "signature": "int(CCBStage *this, int n, int nSub)",
-      "source": "annotation"
+      "name": "CCBStage::IsSubTaskValid",
+      "signature": "int(CCBStage *this, int n, int nSub)"
     },
     "0x004FD290": {
-      "name": "IsIdle",
-      "signature": "int __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::IsIdle",
+      "signature": "int __thiscall(CCBStage *this, int nVal)"
     },
     "0x004FD3D0": {
-      "name": "HasNormalAttackRole",
-      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)",
-      "source": "annotation"
+      "name": "CCBStage::HasNormalAttackRole",
+      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)"
     },
     "0x004FD880": {
-      "name": "ClearRoleAllTask",
-      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)",
-      "source": "annotation"
+      "name": "CCBStage::ClearRoleAllTask",
+      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)"
     },
     "0x004FDA10": {
-      "name": "EndRoleAllTask",
-      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)",
-      "source": "annotation"
+      "name": "CCBStage::EndRoleAllTask",
+      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)"
     },
     "0x004FDB10": {
-      "name": "GetRoleTaskNum",
-      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)",
-      "source": "annotation"
+      "name": "CCBStage::GetRoleTaskNum",
+      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)"
     },
     "0x004FDD90": {
-      "name": "SelectRole",
-      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)",
-      "source": "annotation"
+      "name": "CCBStage::SelectRole",
+      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)"
     },
     "0x004FDFC0": {
-      "name": "ProcWait",
-      "signature": "int __thiscall(CCBStage *this, int __formal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcWait",
+      "signature": "int __thiscall(CCBStage *this, int __formal)"
     },
     "0x004FE290": {
-      "name": "ProcShowFiveLineup",
-      "signature": "int __thiscall(CCBStage *this, int __formal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcShowFiveLineup",
+      "signature": "int __thiscall(CCBStage *this, int __formal)"
     },
     "0x004FE540": {
-      "name": "ProcShowEnemyFiveLineup",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::ProcShowEnemyFiveLineup",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x004FE550": {
-      "name": "ProcFiveLienupFadeIn",
-      "signature": "int __thiscall(CCBStage *this, int __formal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcFiveLienupFadeIn",
+      "signature": "int __thiscall(CCBStage *this, int __formal)"
     },
     "0x004FE600": {
-      "name": "ProcFiveLienupFadeOut",
-      "signature": "int __thiscall(CCBStage *this, int __formal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcFiveLienupFadeOut",
+      "signature": "int __thiscall(CCBStage *this, int __formal)"
     },
     "0x004FE660": {
-      "name": "ProcShowSneakAttackState",
-      "signature": "int __thiscall(CCBStage *this, unsigned int _74)",
-      "source": "annotation"
+      "name": "CCBStage::ProcShowSneakAttackState",
+      "signature": "int __thiscall(CCBStage *this, unsigned int _74)"
     },
     "0x004FECE0": {
-      "name": "HandleKeyCtrl",
-      "signature": "int __thiscall(CCBStage *this, int n)",
-      "source": "annotation"
+      "name": "CCBStage::HandleKeyCtrl",
+      "signature": "int __thiscall(CCBStage *this, int n)"
     },
     "0x004FEE60": {
-      "name": "HandleKeyFriend",
-      "signature": "int __thiscall(CCBStage *this, int Selected)",
-      "source": "annotation"
+      "name": "CCBStage::HandleKeyFriend",
+      "signature": "int __thiscall(CCBStage *this, int Selected)"
     },
     "0x004FEFB0": {
-      "name": "ProcShowName",
-      "signature": "int __thiscall(CCBStage *this, unsigned int __formal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcShowName",
+      "signature": "int __thiscall(CCBStage *this, unsigned int __formal)"
     },
     "0x004FF1B0": {
-      "name": "ProcShowItemName",
-      "signature": "int __thiscall(CCBStage *this, int __formal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcShowItemName",
+      "signature": "int __thiscall(CCBStage *this, int __formal)"
     },
     "0x004FF3D0": {
-      "name": "ProcShowDamage",
-      "signature": "int __thiscall(CCBStage *this, unsigned int __formal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcShowDamage",
+      "signature": "int __thiscall(CCBStage *this, unsigned int __formal)"
     },
     "0x004FF5C0": {
-      "name": "ProcShowCost",
-      "signature": "int __thiscall(CCBStage *this, int __formal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcShowCost",
+      "signature": "int __thiscall(CCBStage *this, int __formal)"
     },
     "0x004FF740": {
-      "name": "ProcShowCombatDialog",
-      "signature": "int __thiscall(CCBStage *this, int __formal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcShowCombatDialog",
+      "signature": "int __thiscall(CCBStage *this, int __formal)"
     },
     "0x004FF840": {
-      "name": "ProcGrabStageRole",
-      "signature": "int __thiscall(CCBStage *this, unsigned int __formal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcGrabStageRole",
+      "signature": "int __thiscall(CCBStage *this, unsigned int __formal)"
     },
     "0x00503020": {
-      "name": "ResetAll",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::ResetAll",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x00503CF0": {
-      "name": "UpdatePhysics",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::UpdatePhysics",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x005045B0": {
-      "name": "ProcessTurn",
-      "signature": "char __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::ProcessTurn",
+      "signature": "char __thiscall(CCBStage *this)"
     },
     "0x0050D440": {
-      "name": "CheckAllDone",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::CheckAllDone",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x0050E0D0": {
-      "name": "ProcessCommand",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::ProcessCommand",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x0051D710": {
-      "name": "Create_d710",
-      "signature": "CCBProtectWindow *__thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::Create_d710",
+      "signature": "CCBProtectWindow *__thiscall(CCBStage *this)"
     },
     "0x0051DDA0": {
-      "name": "ShowWindow",
-      "signature": "void __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::ShowWindow",
+      "signature": "void __thiscall(CCBStage *this)"
     },
     "0x004FC0A0": {
-      "name": "Update",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::Update",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x004F4AA0": {
-      "name": "GetRole",
-      "signature": "CCBStageRole *__thiscall(CCBStage *this, int index)",
-      "source": "annotation"
+      "name": "CCBStage::GetRole",
+      "signature": "CCBStageRole *__thiscall(CCBStage *this, int index)"
     },
     "0x004FF560": {
-      "name": "ProcTaskSlot",
-      "signature": "int __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcTaskSlot",
+      "signature": "int __thiscall(CCBStage *this, int nVal)"
     },
     "0x005024D0": {
-      "name": "ProcessRoleEffect",
-      "signature": "int __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcessRoleEffect",
+      "signature": "int __thiscall(CCBStage *this, int nVal)"
     },
     "0x0044A970": {
-      "name": "LoadScriptTexture",
+      "name": "CCBStage::LoadScriptTexture",
       "signature": "gbVFileSystem *__thiscall PalScriptIdleObj::LoadTexture(PalScriptIdleObj *this, int nTexID, int nParam)",
-      "source": "annotation"
+      "_misattrib_evidence": "max_offset=92>class_size=16"
     },
     "0x004DF710": {
-      "name": "ResetRoundState",
-      "signature": "void __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::ResetRoundState",
+      "signature": "void __thiscall(CCBStage *this)"
     },
     "0x004DFA10": {
-      "name": "CountActiveActions",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::CountActiveActions",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x004E0010": {
-      "name": "SetupCamControl",
-      "signature": "void __thiscall(CCBStage *this, CCBStage *thisa)",
-      "source": "annotation"
+      "name": "CCBStage::SetupCamControl",
+      "signature": "void __thiscall(CCBStage *this, CCBStage *thisa)"
     },
     "0x004E0430": {
-      "name": "CreatePreviewDialog",
-      "signature": "char __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::CreatePreviewDialog",
+      "signature": "char __thiscall(CCBStage *this)"
     },
     "0x00503680": {
-      "name": "CalcSneakAttackVariance",
-      "signature": "int __thiscall CCBStage::CalcSneakAttackVariance(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::CalcSneakAttackVariance",
+      "signature": "int __thiscall CCBStage::CalcSneakAttackVariance(CCBStage *this)"
     },
     "0x00504440": {
-      "name": "GetTurnSlotData",
-      "signature": "bool __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::GetTurnSlotData",
+      "signature": "bool __thiscall(CCBStage *this, int nVal)"
     },
     "0x00504A80": {
-      "name": "ScanTurnSlots",
-      "signature": "char __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::ScanTurnSlots",
+      "signature": "char __thiscall(CCBStage *this)"
     },
     "0x0050DA90": {
-      "name": "UpdateSlotTimer",
-      "signature": "int __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::UpdateSlotTimer",
+      "signature": "int __thiscall(CCBStage *this, int nVal)"
     },
     "0x0050EB00": {
-      "name": "ProcessSlotAction",
-      "signature": "int __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcessSlotAction",
+      "signature": "int __thiscall(CCBStage *this, int nVal)"
     },
     "0x0050EF60": {
-      "name": "UpdateActionTimers",
-      "signature": "int __thiscall(CCBStage *this, float fVal)",
-      "source": "annotation"
+      "name": "CCBStage::UpdateActionTimers",
+      "signature": "int __thiscall(CCBStage *this, float fVal)"
     },
     "0x0050F080": {
-      "name": "AnimCallback_Attack",
-      "signature": "int __thiscall CCBStage::AnimCallback_Attack(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::AnimCallback_Attack",
+      "signature": "int __thiscall CCBStage::AnimCallback_Attack(CCBStage *this, int nVal)"
     },
     "0x0050F150": {
-      "name": "AnimCallback_UseItem",
-      "signature": "int __thiscall CCBStage::AnimCallback_UseItem(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::AnimCallback_UseItem",
+      "signature": "int __thiscall CCBStage::AnimCallback_UseItem(CCBStage *this, int nVal)"
     },
     "0x0050F310": {
-      "name": "AnimCallback_Throw",
-      "signature": "int __thiscall CCBStage::AnimCallback_Throw(CCBStage *this, int nVal, int nVal2)",
-      "source": "annotation"
+      "name": "CCBStage::AnimCallback_Throw",
+      "signature": "int __thiscall CCBStage::AnimCallback_Throw(CCBStage *this, int nVal, int nVal2)"
     },
     "0x0050F410": {
-      "name": "AnimCallback_CastMagic",
-      "signature": "int __thiscall CCBStage::AnimCallback_CastMagic(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::AnimCallback_CastMagic",
+      "signature": "int __thiscall CCBStage::AnimCallback_CastMagic(CCBStage *this, int nVal)"
     },
     "0x0050F4C0": {
-      "name": "AnimCallback_WaitCmd",
-      "signature": "int __thiscall CCBStage::AnimCallback_WaitCmd(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::AnimCallback_WaitCmd",
+      "signature": "int __thiscall CCBStage::AnimCallback_WaitCmd(CCBStage *this, int nVal)"
     },
     "0x0050F590": {
-      "name": "AnimCallback_MoveTo",
-      "signature": "int __thiscall CCBStage::AnimCallback_MoveTo(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::AnimCallback_MoveTo",
+      "signature": "int __thiscall CCBStage::AnimCallback_MoveTo(CCBStage *this, int nVal)"
     },
     "0x00442000": {
-      "name": "CalcScrollPos",
+      "name": "CCBStage::CalcScrollPos",
       "signature": "int __thiscall UIWnd::CalcScrollPos(UIWnd *this)",
-      "source": "annotation"
+      "_misattrib_evidence": "max_offset=348>class_size=96"
     },
     "0x00442100": {
-      "name": "CalcSplitRect",
+      "name": "CCBStage::CalcSplitRect",
       "signature": "int __thiscall UIWnd::CalcSplitRect(UIWnd *this)",
-      "source": "annotation"
+      "_misattrib_evidence": "max_offset=332>class_size=84"
     },
     "0x004890A0": {
-      "name": "ProcessScriptEvent",
+      "name": "CCBStage::ProcessScriptEvent",
       "signature": "char __thiscall(ScriptSystem *this, int nVal, int nVal2, int nParam)",
-      "source": "annotation"
+      "_misattrib_evidence": "max_offset=217324>class_size=8704"
     },
     "0x004C5C20": {
-      "name": "GetReadyCount",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::GetReadyCount",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x004D1EF0": {
-      "name": "GetActiveTaskCount",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::GetActiveTaskCount",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x004D4D30": {
-      "name": "GetTaskParam",
-      "signature": "int __thiscall(CCBStage *this, int nVal, int nVal2)",
-      "source": "annotation"
+      "name": "CCBStage::GetTaskParam",
+      "signature": "int __thiscall(CCBStage *this, int nVal, int nVal2)"
     },
     "0x004D4D70": {
-      "name": "SetTaskState",
-      "signature": "char __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::SetTaskState",
+      "signature": "char __thiscall(CCBStage *this, int nVal)"
     },
     "0x004DF6B0": {
-      "name": "InitStage",
-      "signature": "int *__thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::InitStage",
+      "signature": "int *__thiscall(CCBStage *this, int nVal)"
     },
     "0x004DF700": {
-      "name": "IsInitialized",
-      "signature": "char __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::IsInitialized",
+      "signature": "char __thiscall(CCBStage *this)"
     },
     "0x004DFB70": {
-      "name": "UpdateTurnFlags",
-      "signature": "int __thiscall(CCBStage *this, const char *pszName, float fVal, float fVal2, float fVal3)",
-      "source": "annotation"
+      "name": "CCBStage::UpdateTurnFlags",
+      "signature": "int __thiscall(CCBStage *this, const char *pszName, float fVal, float fVal2, float fVal3)"
     },
     "0x004DFC40": {
-      "name": "InitSlotFlags",
-      "signature": "int __thiscall(CCBStage *this, const char *pszName, int nVal, int nVal2, int nVal3)",
-      "source": "annotation"
+      "name": "CCBStage::InitSlotFlags",
+      "signature": "int __thiscall(CCBStage *this, const char *pszName, int nVal, int nVal2, int nVal3)"
     },
     "0x004DFF90": {
-      "name": "AssignSlotData",
-      "signature": "int __thiscall(CCBStage *this, char pData)",
-      "source": "annotation"
+      "name": "CCBStage::AssignSlotData",
+      "signature": "int __thiscall(CCBStage *this, char pData)"
     },
     "0x004DFFF0": {
-      "name": "CalculateTurnOrder",
-      "signature": "__int64 __thiscall(CCBStage *this, float fVal, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::CalculateTurnOrder",
+      "signature": "__int64 __thiscall(CCBStage *this, float fVal, int nVal)"
     },
     "0x004E02F0": {
-      "name": "ResetAndSetSystem",
-      "signature": "int *__thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::ResetAndSetSystem",
+      "signature": "int *__thiscall(CCBStage *this, int nVal)"
     },
     "0x004E0330": {
-      "name": "Reset",
-      "signature": "int __thiscall CCBStage::Reset(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::Reset",
+      "signature": "int __thiscall CCBStage::Reset(CCBStage *this)"
     },
     "0x004E0340": {
-      "name": "ResetTurnSlots",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::ResetTurnSlots",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x004E0380": {
-      "name": "SyncTimeScale",
-      "signature": "char __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::SyncTimeScale",
+      "signature": "char __thiscall(CCBStage *this)"
     },
     "0x004E03F0": {
-      "name": "DestroyDialog",
-      "signature": "char __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::DestroyDialog",
+      "signature": "char __thiscall(CCBStage *this)"
     },
     "0x004E0530": {
-      "name": "ProcessAction",
-      "signature": "bool __thiscall(CCBStage *this, HWND pData)",
-      "source": "annotation"
+      "name": "CCBStage::ProcessAction",
+      "signature": "bool __thiscall(CCBStage *this, HWND pData)"
     },
     "0x004E05B0": {
-      "name": "CreatePreview",
-      "signature": "void __cdecl(float fVal)",
-      "source": "annotation"
+      "name": "CCBStage::CreatePreview",
+      "signature": "void __cdecl(float fVal)"
     },
     "0x004E0650": {
-      "name": "DestroyPreviewWindow",
-      "signature": "BOOL __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::DestroyPreviewWindow",
+      "signature": "BOOL __thiscall(CCBStage *this)"
     },
     "0x004F06C0": {
-      "name": "FindThreadByParam",
-      "signature": "bool __thiscall(CCBStage *this, int nVal, unsigned int dwVal)",
-      "source": "annotation"
+      "name": "CCBStage::FindThreadByParam",
+      "signature": "bool __thiscall(CCBStage *this, int nVal, unsigned int dwVal)"
     },
     "0x004F6CD0": {
-      "name": "CheckGDBTypeCompat",
-      "signature": "char __thiscall CCBStage::CheckGDBTypeCompat(CCBStage *this, unsigned int *pdwVal)",
-      "source": "annotation"
+      "name": "CCBStage::CheckGDBTypeCompat",
+      "signature": "char __thiscall CCBStage::CheckGDBTypeCompat(CCBStage *this, unsigned int *pdwVal)"
     },
     "0x00500840": {
-      "name": "ExecuteRoleTask",
-      "signature": "int __thiscall CCBStage::ExecuteRoleTask(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::ExecuteRoleTask",
+      "signature": "int __thiscall CCBStage::ExecuteRoleTask(CCBStage *this, int nVal)"
     },
     "0x005009C0": {
-      "name": "Method_5009C0",
-      "signature": "int __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::Method_5009C0",
+      "signature": "int __thiscall(CCBStage *this, int nVal)"
     },
     "0x00500AD0": {
-      "name": "Method_500AD0",
-      "signature": "int __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::Method_500AD0",
+      "signature": "int __thiscall(CCBStage *this, int nVal)"
     },
     "0x00503FA0": {
-      "name": "ResetTurnData",
-      "signature": "int __thiscall(CCBStage *this, int **a2, struct gbGfxManager *p)",
-      "source": "annotation"
+      "name": "CCBStage::ResetTurnData",
+      "signature": "int __thiscall(CCBStage *this, int **a2, struct gbGfxManager *p)"
     },
     "0x005040D0": {
-      "name": "ResetTurnSystem",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::ResetTurnSystem",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x00504420": {
-      "name": "ClearTurnSlot",
-      "signature": "int __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::ClearTurnSlot",
+      "signature": "int __thiscall(CCBStage *this, int nVal)"
     },
     "0x00504460": {
-      "name": "HasTurnChanged",
-      "signature": "bool __thiscall(CCBStage *this, float *pfVal)",
-      "source": "annotation"
+      "name": "CCBStage::HasTurnChanged",
+      "signature": "bool __thiscall(CCBStage *this, float *pfVal)"
     },
     "0x005049F0": {
-      "name": "GetNextActiveTask",
-      "signature": "int *__thiscall CCBStage::GetNextActiveTask(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::GetNextActiveTask",
+      "signature": "int *__thiscall CCBStage::GetNextActiveTask(CCBStage *this)"
     },
     "0x00504AB0": {
-      "name": "ClearActionSlot",
-      "signature": "char __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::ClearActionSlot",
+      "signature": "char __thiscall(CCBStage *this, int nVal)"
     },
     "0x00504B50": {
-      "name": "EnqueueCommand",
-      "signature": "char __thiscall CCBStage::EnqueueCommand(CCBStage *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, float fVal, const void *pData, const void *pData2)",
-      "source": "annotation"
+      "name": "CCBStage::EnqueueCommand",
+      "signature": "char __thiscall CCBStage::EnqueueCommand(CCBStage *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, float fVal, const void *pData, const void *pData2)"
     },
     "0x00504C50": {
-      "name": "ProcessQueuedCommand",
-      "signature": "int __thiscall CCBStage::ProcessQueuedCommand(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::ProcessQueuedCommand",
+      "signature": "int __thiscall CCBStage::ProcessQueuedCommand(CCBStage *this, int nVal)"
     },
     "0x00504E30": {
-      "name": "ClearAll",
-      "signature": "int __thiscall(CCBStage *this)",
-      "source": "annotation"
+      "name": "CCBStage::ClearAll",
+      "signature": "int __thiscall(CCBStage *this)"
     },
     "0x0050E160": {
-      "name": "Method_50E160",
-      "signature": "int __thiscall(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::Method_50E160",
+      "signature": "int __thiscall(CCBStage *this, int nVal)"
     },
     "0x0050E360": {
-      "name": "CalcFacingAngle",
-      "signature": "int __thiscall CCBStage::CalcFacingAngle(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::CalcFacingAngle",
+      "signature": "int __thiscall CCBStage::CalcFacingAngle(CCBStage *this, int nVal)"
     },
     "0x0050E550": {
-      "name": "ResolveActionEffect",
-      "signature": "int __thiscall CCBStage::ResolveActionEffect(CCBStage *this, int nVal)",
-      "source": "annotation"
+      "name": "CCBStage::ResolveActionEffect",
+      "signature": "int __thiscall CCBStage::ResolveActionEffect(CCBStage *this, int nVal)"
     },
     "0x004019B0": {
-      "name": "ReleasePtrArray",
+      "name": "CCBStage::ReleasePtrArray",
       "signature": "void *__thiscall(PtrArray *this)",
-      "source": "annotation"
+      "_misattrib_evidence": "max_offset=64>class_size=16"
     }
   }
 }

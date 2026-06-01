@@ -189,5 +189,228 @@
   },
   "binary_size": 344,
   "base_class": "UIWnd",
-  "base_size": 68
+  "base_size": 68,
+  "methods": {
+    "0x00421A10": {
+      "name": "UIScene::NotifyRender",
+      "signature": "int __thiscall(UIScene *this)"
+    },
+    "0x004220A0": {
+      "name": "UIScene::OverlayRender",
+      "signature": "int __thiscall(UIScene *this, int nVal)"
+    },
+    "0x004234D0": {
+      "name": "UIScene::CombatCheck",
+      "signature": "int __cdecl __thiscall(UIScene *this)"
+    },
+    "0x004235B0": {
+      "name": "UIScene::ProcessInput",
+      "signature": "BOOL __cdecl(char *String1, char *pszBuf)"
+    },
+    "0x0043A4C0": {
+      "name": "UIScene::LoadResource",
+      "signature": "void __thiscall(UIScene *this, void *path)"
+    },
+    "0x0043A770": {
+      "name": "UIScene::_UIScene",
+      "signature": "void __thiscall(UIScene *this)"
+    },
+    "0x0043A810": {
+      "name": "UIScene::Destroy2",
+      "signature": "void __thiscall(UIScene *this)"
+    },
+    "0x0043AB00": {
+      "name": "UIScene::Destroy",
+      "signature": "void __thiscall(UIScene *this)"
+    },
+    "0x0043AB20": {
+      "name": "UIScene::Update2",
+      "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)"
+    },
+    "0x0043AD40": {
+      "name": "UIScene::Render",
+      "signature": "int __thiscall(UIScene *this)"
+    },
+    "0x0043FA00": {
+      "name": "UIScene::GetChildCount",
+      "signature": "int __thiscall UIScene::GetChildCount(UIScene *this)"
+    },
+    "0x0043FAE0": {
+      "name": "UIScene::GetChildAt",
+      "signature": "int __thiscall UIScene::GetChildAt(UIScene *this)"
+    },
+    "0x004427A0": {
+      "name": "UIScene::SetShow",
+      "signature": "int __thiscall(UIScene *this, int bShow)"
+    },
+    "0x00445930": {
+      "name": "UIScene::SetState",
+      "signature": "void __thiscall UIScene::SetState(UIScene *this)"
+    },
+    "0x0044BDA0": {
+      "name": "UIScene::_scalar_dtor__ovl_bda0",
+      "signature": "void *__thiscall UIScene::_scalar_dtor(UIScene *this, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x0043BCE0": {
+      "name": "UIScene::ctor__ovl_BCE0",
+      "signature": "int *__thiscall(UIScene *this)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x0043A4B0": {
+      "name": "UIScene::SetController",
+      "signature": "int __thiscall(UIScene *this, int nVal)",
+      "_misattrib_evidence": "max_offset=68>class_size=4"
+    },
+    "0x0043A5D0": {
+      "name": "UIScene::OpenAndLoadResource",
+      "signature": "gbVFileSystem *__thiscall(UIScene *this, BOOL bVisible, UIWnd *pWnd)",
+      "_misattrib_evidence": "max_offset=160>class_size=20"
+    },
+    "0x0043A7F0": {
+      "name": "UIScene::_sdtor",
+      "signature": "UIScene *__thiscall(UIScene *Block, char pData)"
+    },
+    "0x0043A870": {
+      "name": "UIScene::CreateChildWidget",
+      "signature": "gbVFileSystem *__thiscall UIScene::CreateChildWidget(UIScene *this, int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)"
+    },
+    "0x0043AFE0": {
+      "name": "UIScene::SetupRenderClip",
+      "signature": "unsigned char __thiscall(UIScene *this, int nVal, unsigned int dwVal, unsigned int dwVal2, int nVal2)"
+    },
+    "0x0043B060": {
+      "name": "UIScene::CreateTextureWidget",
+      "signature": "gbVFileSystem *__thiscall UIScene::CreateTextureWidget(UIScene *this, int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)"
+    },
+    "0x0043B1E0": {
+      "name": "UIScene::Update",
+      "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)"
+    },
+    "0x0043B500": {
+      "name": "UIScene::GetChildWidget",
+      "signature": "unsigned char __thiscall(UIScene *this, unsigned int dwVal, unsigned int dwVal2, int nVal)"
+    },
+    "0x0043B570": {
+      "name": "UIScene::CreateLabelWidget",
+      "signature": "gbVFileSystem *__thiscall UIScene::CreateLabelWidget(UIScene *this, int id, void *pRect, gbVFileSystem *parent, LPCSTR lpString, char pData)"
+    },
+    "0x0043B900": {
+      "name": "UIScene::Update_b900",
+      "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)"
+    },
+    "0x0043C7B0": {
+      "name": "UIScene::CreateScrollWidget",
+      "signature": "gbVFileSystem *__thiscall UIScene::CreateScrollWidget(UIScene *this, int id, int *p_DWORD, int parent, gbVFileSystem *pVFileSystem, char pData)"
+    },
+    "0x0043D1A0": {
+      "name": "UIScene::CheckMouseHit",
+      "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)"
+    },
+    "0x0044BE40": {
+      "name": "UIScene::_scalar_dtor__ovl_be40",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x0044DAC0": {
+      "name": "UIScene::Render_dac0",
+      "signature": "void __thiscall(UIScene *this)"
+    },
+    "0x0044DFC0": {
+      "name": "UIScene::OnMessage",
+      "signature": "int __thiscall UIScene::OnMessage(UIScene *this, UICursor *msg, int wparam, int lparam)"
+    },
+    "0x00459900": {
+      "name": "UIScene::RenderUI",
+      "signature": "int __thiscall UIScene::RenderUI(UIScene *this)",
+      "_misattrib_evidence": "max_offset=3280>class_size=1012"
+    },
+    "0x0043A660": {
+      "name": "UIScene::ResetState",
+      "signature": "int __thiscall(UIScene *this)"
+    },
+    "0x0043A680": {
+      "name": "UIScene::_todo_43A680",
+      "signature": "int __thiscall UIScene::_todo_43A680(UIScene *this, int nVal)"
+    },
+    "0x0043B660": {
+      "name": "UIScene::Render_b660",
+      "signature": "int __thiscall(UIScene *this)"
+    },
+    "0x0043BEB0": {
+      "name": "UIScene::SetTexture",
+      "signature": "void __thiscall UIScene::SetTexture(UIScene *this, LPCSTR lpString, char pData)"
+    },
+    "0x0043C0F0": {
+      "name": "UIScene::UpdateLayout",
+      "signature": "void __thiscall UIScene::UpdateLayout(UIScene *this, float fVal)"
+    },
+    "0x0043C330": {
+      "name": "UIScene::RefreshLayout",
+      "signature": "int __thiscall UIScene::RefreshLayout(UIScene *this)"
+    },
+    "0x0043C9D0": {
+      "name": "UIScene::ResizeContent",
+      "signature": "int __thiscall UIScene::ResizeContent(UIScene *this, int nVal)"
+    },
+    "0x0043CBD0": {
+      "name": "UIScene::ResizeContentAlt",
+      "signature": "int __thiscall UIScene::ResizeContentAlt(UIScene *this, int nVal)"
+    },
+    "0x0043CDF0": {
+      "name": "UIScene::Render_cdf0",
+      "signature": "int __thiscall(UIScene *this)"
+    },
+    "0x0043FBC0": {
+      "name": "UIScene::SetTextParam",
+      "signature": "void __thiscall UIScene::SetTextParam(UIScene *this)"
+    },
+    "0x00442060": {
+      "name": "UIScene::SetFirstShow",
+      "signature": "void __thiscall UIScene::SetFirstShow(UIScene *this)"
+    },
+    "0x00455190": {
+      "name": "UIScene::SetParam",
+      "signature": "int __thiscall UIScene::SetParam(UIScene *this, int nVal)"
+    },
+    "0x0045ADF0": {
+      "name": "UIScene::DestroyParent",
+      "signature": "void __thiscall(UIScene *this)"
+    },
+    "0x0052E120": {
+      "name": "UIScene::LoadMapData",
+      "signature": "void __thiscall UIScene::LoadMapData(UIScene *this)"
+    },
+    "0x0052E140": {
+      "name": "UIScene::CalcViewTransform",
+      "signature": "int __thiscall UIScene::CalcViewTransform(UIScene *this, int nVal)"
+    },
+    "0x00532D60": {
+      "name": "UIScene::UpdateAlpha",
+      "signature": "void __thiscall(UIScene *this)"
+    },
+    "0x00535AE0": {
+      "name": "UIScene::ClearColors",
+      "signature": "int __thiscall(UIScene *this)"
+    },
+    "0x00535BA0": {
+      "name": "UIScene::ResetCameraOffset",
+      "signature": "int __thiscall(UIScene *this)"
+    },
+    "0x00419C20": {
+      "name": "UIScene::RenderVertexPool",
+      "signature": "int __thiscall(UIScene *this)"
+    },
+    "0x0043BE80": {
+      "name": "UIScene::ReleaseTexture",
+      "signature": "void __thiscall(UIScene *this)"
+    },
+    "0x00445F80": {
+      "name": "UIScene::GetPixelChannel",
+      "signature": "unsigned char __thiscall(UIScene *this, int nX, int nY, int nW, int nH)"
+    }
+  }
 }

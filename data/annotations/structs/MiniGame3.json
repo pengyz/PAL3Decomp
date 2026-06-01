@@ -2,5 +2,27 @@
   "name": "MiniGame3",
   "pdb_size": 4,
   "known_members": {},
-  "binary_size": 4
+  "binary_size": 4,
+  "methods": {
+    "0x00535320": {
+      "name": "MiniGame3::Render",
+      "signature": "void __thiscall(MiniGame3 *this)"
+    },
+    "0x00535C30": {
+      "name": "MiniGame3::LoadModels",
+      "signature": "char __thiscall(MiniGame3 *this, const char *pszModel1, const char *pszModel2, const char *pszModel3)"
+    },
+    "0x00533FD0": {
+      "name": "MiniGame3::SetCameraActive",
+      "signature": "void __thiscall(MiniGame3 *this)"
+    },
+    "0x00535970": {
+      "name": "MiniGame3::PushPopStack",
+      "signature": "void __thiscall(MiniGame3 *this, gbMatrixStack *pStack)"
+    },
+    "0x00535F10": {
+      "name": "MiniGame3::RenderWithTransform",
+      "signature": "void __thiscall(MiniGame3 *this, gbMatrixStack *pStack)"
+    }
+  }
 }

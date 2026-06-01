@@ -62,5 +62,31 @@
       "type": "int",
       "source": "binary_scan:1refs"
     }
+  },
+  "methods": {
+    "0x00441E30": {
+      "name": "ArcSceneMonster::HitTest",
+      "signature": "int __thiscall ArcSceneMonster::HitTest(ArcSceneMonster *this, unsigned int *pPoint)"
+    },
+    "0x00487F80": {
+      "name": "ArcSceneMonster::CreateInfoPanel",
+      "signature": "int *__thiscall(ArcSceneMonster *this, int nVal, int nVal2, int id, int *pnVal, int nVal3)"
+    },
+    "0x00491F20": {
+      "name": "ArcSceneMonster::CreateMonsterUI",
+      "signature": "int *__thiscall(ArcSceneMonster *this, int nVal, int nVal2, int id, int *pnVal, int nVal3)"
+    },
+    "0x00499CC0": {
+      "name": "ArcSceneMonster::CreateStatusPanel",
+      "signature": "int *__thiscall(ArcSceneMonster *this, int nVal, int nVal2, int id, int *pnVal, int nVal3)"
+    },
+    "0x0052DC40": {
+      "name": "ArcSceneMonster::CheckDistance",
+      "signature": "int __thiscall(ArcSceneMonster *this, float fVal)"
+    },
+    "0x0052DCA0": {
+      "name": "ArcSceneMonster::ValidateRange",
+      "signature": "int __thiscall(ArcSceneMonster *this, float fVal)"
+    }
   }
 }

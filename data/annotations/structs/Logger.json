@@ -63,5 +63,31 @@
       "source": "A:decomp Logger::RegisterCallback v6=&this->m_nCallbackCount + 34*count + 1 — callback array at +4, each 136 bytes, max 34 entries"
     }
   },
-  "binary_size": 6360
+  "binary_size": 6360,
+  "methods": {
+    "0x0053C990": {
+      "name": "Logger::Render",
+      "signature": "int __thiscall(Logger *this)"
+    },
+    "0x0053CEF0": {
+      "name": "Logger::FormatException",
+      "signature": "char *__thiscall(Logger *this, char *msg, char *file, int line)"
+    },
+    "0x0053CC70": {
+      "name": "Logger::Write",
+      "signature": "char *(Logger *this, char *fmt, ...)"
+    },
+    "0x0053CC10": {
+      "name": "Logger::RegisterCallback",
+      "signature": "int __thiscall(Logger *this, void (*f)(), char *name, char *desc)"
+    },
+    "0x0053CE90": {
+      "name": "Logger::RegisterCallbacks",
+      "signature": "int __thiscall(Logger *this)"
+    },
+    "0x0053CE20": {
+      "name": "Logger::WriteRoleNames",
+      "signature": "char *__cdecl(char *pszBuf)"
+    }
+  }
 }

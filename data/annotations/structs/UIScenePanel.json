@@ -219,5 +219,51 @@
       "source": "A:BYTE1_=_1_in_ctor"
     }
   },
-  "binary_size": 14232
+  "binary_size": 14232,
+  "methods": {
+    "0x0044BE80": {
+      "name": "UIScenePanel::ctor__ovl_BE80",
+      "signature": "void __thiscall(UIScenePanel *this)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x0043B3E0": {
+      "name": "UIScenePanel::_UIScenePanel",
+      "signature": "void __thiscall(UIScenePanel *this)",
+      "_misattrib_evidence": "max_offset=372>class_size=96"
+    },
+    "0x0043B4D0": {
+      "name": "UIScenePanel::Destroy2",
+      "signature": "void __thiscall(UIScenePanel *this)",
+      "_misattrib_evidence": "max_offset=344>class_size=96"
+    },
+    "0x0044BA60": {
+      "name": "UIScenePanel::ctor_BA60",
+      "signature": "int __thiscall(UIScenePanel *this)"
+    },
+    "0x0044C120": {
+      "name": "UIScenePanel::CreateSettingsUI",
+      "signature": "void __thiscall(UIScenePanel *this)"
+    },
+    "0x0044C910": {
+      "name": "UIScenePanel::Destroy",
+      "signature": "void __thiscall(UIScenePanel *this)"
+    },
+    "0x0046DF10": {
+      "name": "UIScenePanel::ValidateIndex",
+      "signature": "char __thiscall(UIScenePanel *this, int nVal)"
+    },
+    "0x0052CAF0": {
+      "name": "UIScenePanel::ActivatePanel",
+      "signature": "int __thiscall UIScenePanel::ActivatePanel(UIScenePanel *this, int id)"
+    },
+    "0x0052CD40": {
+      "name": "UIScenePanel::LayoutSlot",
+      "signature": "int __thiscall UIScenePanel::LayoutSlot(UIScenePanel *this, int arg0, int nVal, int nVal2, int nVal3, int nVal4)"
+    },
+    "0x0044DB70": {
+      "name": "UIScenePanel::StopAllSounds",
+      "signature": "int __thiscall(UIScenePanel *this, float fFade, int nFlags)"
+    }
+  }
 }

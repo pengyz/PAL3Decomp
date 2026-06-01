@@ -247,5 +247,39 @@
       "source": "binary_discovery:1refs"
     }
   },
-  "binary_size": 12956
+  "binary_size": 12956,
+  "methods": {
+    "0x004125D0": {
+      "name": "Camera::InitFromScene",
+      "signature": "void __thiscall(Camera *this, const char *pszSceneName)"
+    },
+    "0x0041E7D0": {
+      "name": "Camera::CheckCollision1",
+      "signature": "int __cdecl(float *pPos, void *pBounds, float *pDist)"
+    },
+    "0x0041EA00": {
+      "name": "Camera::CheckCollision2",
+      "signature": "int __cdecl(float *pPos, int rolePtr, void *pBounds)"
+    },
+    "0x0041EE60": {
+      "name": "Camera::IsTransitioning",
+      "signature": "char __cdecl __thiscall(Camera *this)"
+    },
+    "0x00439850": {
+      "name": "Camera::UpdateCameraLookAt__ovl_9850",
+      "signature": "void __thiscall Camera::UpdateCameraLookAt(Camera *this, int nScreenX, int nScreenY)"
+    },
+    "0x00439930": {
+      "name": "Camera::UpdateCameraLookAt__ovl_9930",
+      "signature": "void __thiscall Camera::UpdateCameraLookAt(Camera *this, int nScreenX, int nScreenY, int nOffsetY)"
+    },
+    "0x0041BE80": {
+      "name": "Camera::Camera",
+      "signature": "Camera *__thiscall(Camera *this, struct gbGfxManager *p)"
+    },
+    "0x0052BEB0": {
+      "name": "Camera::InitUIElements",
+      "signature": "void __thiscall Camera::InitUIElements(Camera *this)"
+    }
+  }
 }

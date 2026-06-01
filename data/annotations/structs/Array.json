@@ -23,5 +23,47 @@
       "source": "reverted_auto_semantic:3x"
     }
   },
-  "binary_size": 16
+  "binary_size": 16,
+  "methods": {
+    "0x00411170": {
+      "name": "Array::Insert",
+      "signature": "void *__thiscall(Array *this, void *pElem, void *pEnd)"
+    },
+    "0x004111C0": {
+      "name": "Array::Size",
+      "signature": "int __thiscall(Array *this)"
+    },
+    "0x004111E0": {
+      "name": "Array::Erase",
+      "signature": "void *__thiscall(Array *this, int nIndex, int nCount)"
+    },
+    "0x00411240": {
+      "name": "Array::Copy",
+      "signature": "void *__cdecl(void *dst, void *src)"
+    },
+    "0x00410BD0": {
+      "name": "Array::InsertAt",
+      "signature": "int __thiscall Array::InsertAt(Array *this, char *pPos, int *pSrc)"
+    },
+    "0x0049CF80": {
+      "name": "Array::HandleItemPage",
+      "signature": "double __fastcall(int *pnVal, int nVal, int elem)"
+    },
+    "0x00410960": {
+      "name": "Array::Free",
+      "signature": "void __thiscall Array::Free(Array *this)"
+    },
+    "0x00410DF0": {
+      "name": "Array::CopyRange",
+      "signature": "int *__thiscall(Array *this, int *p_DWORD, int *p_DWORD2)"
+    },
+    "0x004115C0": {
+      "name": "Array::PartialSort",
+      "signature": "unsigned int *__cdecl Array::PartialSort(unsigned int *pdwVal, unsigned int *pdwVal2, unsigned int dwVal, int nVal, int nVal2, int nVal3)"
+    },
+    "0x004AF450": {
+      "name": "Array::InsertBlocks",
+      "signature": "char *__thiscall Array::InsertBlocks(Array *this, char *pszBuf, unsigned int dwVal, int *p_DWORD)"
+    }
+  }
 }

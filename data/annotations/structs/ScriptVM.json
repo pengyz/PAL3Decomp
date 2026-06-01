@@ -133,5 +133,51 @@
       "source": "decomp:ExecuteOpcode_slot11_incremented"
     }
   },
-  "binary_size": 876
+  "binary_size": 876,
+  "methods": {
+    "0x0042FB60": {
+      "name": "ScriptVM::GetString",
+      "signature": "char *__thiscall(ScriptVM *this)"
+    },
+    "0x0042CB70": {
+      "name": "ScriptVM::PushParam",
+      "signature": "int __thiscall(ScriptVM *this, void *pData, unsigned char nType, int nCount)"
+    },
+    "0x0042C1A0": {
+      "name": "ScriptVM::IsRunning",
+      "signature": "BOOL __thiscall(ScriptVM *this)"
+    },
+    "0x0042CD90": {
+      "name": "ScriptVM::CallFunction",
+      "signature": "int __thiscall(ScriptVM *this, unsigned char nFuncID, int nArgCount)"
+    },
+    "0x004366C0": {
+      "name": "ScriptVM::GetObjectByID",
+      "signature": "int __cdecl(int nObjID)"
+    },
+    "0x0042C730": {
+      "name": "ScriptVM::OpenSceneScript",
+      "signature": "struct gbVFileSystem *__thiscall(ScriptVM *this)"
+    },
+    "0x0042C810": {
+      "name": "ScriptVM::UpdatePauseState",
+      "signature": "char __thiscall(ScriptVM *this)"
+    },
+    "0x0042C950": {
+      "name": "ScriptVM::ExecuteOpcode",
+      "signature": "int __thiscall(ScriptVM *this, void *pData, unsigned char nType, int nCount)"
+    },
+    "0x0042D670": {
+      "name": "ScriptVM::GetRolePosition",
+      "signature": "int __thiscall(ScriptVM *this, unsigned char pData)"
+    },
+    "0x00423880": {
+      "name": "ScriptVM::ProcessFrame",
+      "signature": "void __thiscall ScriptVM::ProcessFrame(ScriptVM *this)"
+    },
+    "0x0042D4B0": {
+      "name": "ScriptVM::SetRolePosition",
+      "signature": "int __thiscall(ScriptVM *this, unsigned char pData)"
+    }
+  }
 }

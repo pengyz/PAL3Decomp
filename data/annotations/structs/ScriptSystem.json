@@ -293,5 +293,79 @@
       "type": "int",
       "source": "binary_scan:1refs"
     }
+  },
+  "methods": {
+    "0x0040C630": {
+      "name": "ScriptSystem::Render",
+      "signature": "void __thiscall(ScriptSystem *this, gbMatrixStack *pMatrixStack)"
+    },
+    "0x0040C790": {
+      "name": "ScriptSystem::Cleanup",
+      "signature": "int __cdecl __thiscall(ScriptSystem *this)"
+    },
+    "0x0040C7D0": {
+      "name": "ScriptSystem::Render2",
+      "signature": "char __cdecl __thiscall(ScriptSystem *this)"
+    },
+    "0x0040C960": {
+      "name": "ScriptSystem::Destroy",
+      "signature": "void __thiscall(ScriptSystem *this)"
+    },
+    "0x0040E5F0": {
+      "name": "ScriptSystem::Execute",
+      "signature": "int __thiscall(ScriptSystem *this, int nVal, char pData)"
+    },
+    "0x004100A0": {
+      "name": "ScriptSystem::RunScript",
+      "signature": "int __cdecl(int nVal, int nVal2, int nVal3)"
+    },
+    "0x004101F0": {
+      "name": "ScriptSystem::RunWithDelay",
+      "signature": "int __cdecl(float delay, int nVal, int nVal2)"
+    },
+    "0x00410470": {
+      "name": "ScriptSystem::RunEvent",
+      "signature": "int __thiscall(ScriptSystem *this, int eventId, int nVal)"
+    },
+    "0x00411F60": {
+      "name": "ScriptSystem::UpdateTimers",
+      "signature": "int __cdecl(float dt)"
+    },
+    "0x004194C0": {
+      "name": "ScriptSystem::UpdateObjects",
+      "signature": "int __cdecl(float dt)"
+    },
+    "0x0041EFA0": {
+      "name": "ScriptSystem::Init",
+      "signature": "void __thiscall(ScriptSystem *this)"
+    },
+    "0x0040CB80": {
+      "name": "ScriptSystem::GetMainRoleSystem",
+      "signature": "RoleSystem *__cdecl(unsigned short pData)"
+    },
+    "0x0040CBB0": {
+      "name": "ScriptSystem::GetScriptContext",
+      "signature": "int __cdecl(unsigned short pData, int nVal)"
+    },
+    "0x0040CBD0": {
+      "name": "ScriptSystem::PassThrough",
+      "signature": "int __cdecl(unsigned short pData, int nVal, int nVal2)"
+    },
+    "0x0040CC00": {
+      "name": "ScriptSystem::CheckEventType",
+      "signature": "int __cdecl(unsigned short pData, int nVal)"
+    },
+    "0x0040CC60": {
+      "name": "ScriptSystem::ClearTimerSlot",
+      "signature": "int __fastcall(int nVal)"
+    },
+    "0x00419090": {
+      "name": "ScriptSystem::UpdatePositions",
+      "signature": "void __thiscall ScriptSystem::UpdatePositions(ScriptSystem *this)"
+    },
+    "0x00419200": {
+      "name": "ScriptSystem::SmoothTrackTarget",
+      "signature": "int __thiscall ScriptSystem::SmoothTrackTarget(ScriptSystem *this, float fDeltaTime, float fMaxAccel, float fVal3, float fVal4)"
+    }
   }
 }

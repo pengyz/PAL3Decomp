@@ -437,5 +437,177 @@
       "source": "binary:disp32_1hits_1funcs"
     }
   },
-  "binary_size": 4088
+  "binary_size": 4088,
+  "methods": {
+    "0x0041C1B0": {
+      "name": "CameraCtrl::InitParams",
+      "signature": "int __thiscall(CameraCtrl *this, void *pParams)"
+    },
+    "0x0041CAC0": {
+      "name": "CameraCtrl::GetViewTarget",
+      "signature": "void *__thiscall(CameraCtrl *this, void *pTarget, float *pPos)"
+    },
+    "0x0041D5B0": {
+      "name": "CameraCtrl::SetCamMode",
+      "signature": "int __thiscall(CameraCtrl *this, int mode)"
+    },
+    "0x0041D9A0": {
+      "name": "CameraCtrl::UpdateInternal",
+      "signature": "void __thiscall(CameraCtrl *this, float fDelta)"
+    },
+    "0x0041CA90": {
+      "name": "CameraCtrl::SetDimention",
+      "signature": "void __thiscall(CameraCtrl *this, int w, int h)"
+    },
+    "0x0041C630": {
+      "name": "CameraCtrl::SetAsCurrent",
+      "signature": "void __thiscall(CameraCtrl *this, int flags)"
+    },
+    "0x0041CBF0": {
+      "name": "CameraCtrl::GetLerpPos",
+      "signature": "float *__thiscall(CameraCtrl *this, float *pResult, float fCurrent, float fTarget, float fFactor)"
+    },
+    "0x00487610": {
+      "name": "CameraCtrl::LoadRoleParams",
+      "signature": "int *__thiscall(CameraCtrl *this)"
+    },
+    "0x0048D040": {
+      "name": "CameraCtrl::UpdateBlendWeight",
+      "signature": "void __thiscall(CameraCtrl *this, int arg0, int nVal)"
+    },
+    "0x0041CBD0": {
+      "name": "CameraCtrl::IsAngleBelowTarget",
+      "signature": "BOOL __thiscall(CameraCtrl *this)"
+    },
+    "0x00504510": {
+      "name": "CameraCtrl::InitFromConfig",
+      "signature": "char __thiscall(CameraCtrl *this)"
+    },
+    "0x00504540": {
+      "name": "CameraCtrl::InitFromScreen",
+      "signature": "char __thiscall(CameraCtrl *this)"
+    },
+    "0x00533EA0": {
+      "name": "CameraCtrl::InitDefaultView",
+      "signature": "char __thiscall CameraCtrl::InitDefaultView(CameraCtrl *this)"
+    },
+    "0x0041CC50": {
+      "name": "CameraCtrl::UpdateTransition",
+      "signature": "int __thiscall CameraCtrl::UpdateTransition(CameraCtrl *this, float fDelta)"
+    },
+    "0x0041CFC0": {
+      "name": "CameraCtrl::SetupDirect",
+      "signature": "int __thiscall(CameraCtrl *this, int *p_DWORD, int nVal, int nVal2)"
+    },
+    "0x0041D010": {
+      "name": "CameraCtrl::SetupLerp",
+      "signature": "int __thiscall(CameraCtrl *this, int nVal, int *p_DWORD, int nVal2, int nVal3)"
+    },
+    "0x0041E720": {
+      "name": "CameraCtrl::AttachToRole",
+      "signature": "void __cdecl(int nVal)"
+    },
+    "0x004BE910": {
+      "name": "CameraCtrl::OnIdle",
+      "signature": "void __thiscall CameraCtrl::OnIdle(CameraCtrl *this)"
+    },
+    "0x004BEAA0": {
+      "name": "CameraCtrl::OnIdleB",
+      "signature": "void __thiscall CameraCtrl::OnIdleB(CameraCtrl *this)"
+    },
+    "0x004BEBF0": {
+      "name": "CameraCtrl::RenderFadeEffect",
+      "signature": "void __thiscall CameraCtrl::RenderFadeEffect(CameraCtrl *this)"
+    },
+    "0x004BED40": {
+      "name": "CameraCtrl::RenderFadeEffectB",
+      "signature": "void __thiscall CameraCtrl::RenderFadeEffectB(CameraCtrl *this)"
+    },
+    "0x0041C670": {
+      "name": "CameraCtrl::CalcOrbitalPos",
+      "signature": "float *__thiscall CameraCtrl::CalcOrbitalPos(CameraCtrl *this, float *pfOut, float fTargetX, float fTargetY, float fTargetZ)"
+    },
+    "0x0041CEE0": {
+      "name": "CameraCtrl::SetupFollow",
+      "signature": "int __thiscall(CameraCtrl *this, int nVal, int nVal2, int nVal3, int nVal4)"
+    },
+    "0x0041CF20": {
+      "name": "CameraCtrl::SetupOrbit",
+      "signature": "int __thiscall(CameraCtrl *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5)"
+    },
+    "0x0041CF70": {
+      "name": "CameraCtrl::SetupTrack",
+      "signature": "int __thiscall(CameraCtrl *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5)"
+    },
+    "0x0041D070": {
+      "name": "CameraCtrl::SmoothTransition",
+      "signature": "int __thiscall(CameraCtrl *this, int nVal, int nVal2, int nVal3, int nVal4, int *p_DWORD, int nVal5)"
+    },
+    "0x0041D410": {
+      "name": "CameraCtrl::PushState",
+      "signature": "int __thiscall CameraCtrl::PushState(CameraCtrl *this)",
+      "_misattrib_evidence": "max_offset=444>class_size=36"
+    },
+    "0x0041D5C0": {
+      "name": "CameraCtrl::SetCamDist",
+      "signature": "int __thiscall CameraCtrl::SetCamDist(CameraCtrl *this, int nVal)"
+    },
+    "0x0041D5D0": {
+      "name": "CameraCtrl::UpdateFOVLerp",
+      "signature": "char *__thiscall(CameraCtrl *this)"
+    },
+    "0x0041D730": {
+      "name": "CameraCtrl::PopState",
+      "signature": "void __thiscall CameraCtrl::PopState(CameraCtrl *this)"
+    },
+    "0x0041D7C0": {
+      "name": "CameraCtrl::SetCameraSource",
+      "signature": "int *__thiscall(CameraCtrl *this, int nVal, int *p_DWORD)"
+    },
+    "0x0041D7F0": {
+      "name": "CameraCtrl::SetupCameraArray",
+      "signature": "unsigned int __thiscall(CameraCtrl *this, CameraCtrl *thisa, int nVal)"
+    },
+    "0x0041D960": {
+      "name": "CameraCtrl::ResetSceneMgrParams",
+      "signature": "void __thiscall(CameraCtrl *this)"
+    },
+    "0x0041EB50": {
+      "name": "CameraCtrl::GetModeByIndex",
+      "signature": "int __cdecl(int nVal)"
+    },
+    "0x00487480": {
+      "name": "CameraCtrl::ResetToDefaults",
+      "signature": "int __thiscall CameraCtrl::ResetToDefaults(CameraCtrl *this)",
+      "_misattrib_evidence": "max_offset=3296>class_size=200"
+    },
+    "0x0048B370": {
+      "name": "CameraCtrl::BuildRenderLists",
+      "signature": "int __thiscall(CameraCtrl *this)"
+    },
+    "0x0048C520": {
+      "name": "CameraCtrl::CalcStatPower",
+      "signature": "void __thiscall CameraCtrl::CalcStatPower(CameraCtrl *this, int nVal)"
+    },
+    "0x00534DC0": {
+      "name": "CameraCtrl::SetFOVIfValid",
+      "signature": "int __thiscall CameraCtrl::SetFOVIfValid(CameraCtrl *this, int nVal)"
+    },
+    "0x0052EBE0": {
+      "name": "CameraCtrl::SetViewport",
+      "signature": "void __thiscall(CameraCtrl *this, int nFlags)"
+    },
+    "0x0048EE00": {
+      "name": "CameraCtrl::FindNextValidSlot",
+      "signature": "int __thiscall(CameraCtrl *this, int *pCounter)"
+    },
+    "0x0048EE30": {
+      "name": "CameraCtrl::FindPrevValidSlot",
+      "signature": "int __thiscall(CameraCtrl *this, int *pCounter)"
+    },
+    "0x0041EF30": {
+      "name": "CameraCtrl::InitPathState",
+      "signature": "int __cdecl CameraCtrl::InitPathState()"
+    }
+  }
 }

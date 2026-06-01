@@ -260,224 +260,184 @@
       "source": "pdb"
     },
     "0x004BDAC0": {
-      "name": "RenderTarget",
-      "signature": "void __thiscall(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::RenderTarget",
+      "signature": "void __thiscall(RenderTarget *this)"
     },
     "0x004BDB60": {
-      "name": "Create",
-      "signature": "int __thiscall(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::Create",
+      "signature": "int __thiscall(RenderTarget *this)"
     },
     "0x004BDC10": {
-      "name": "OnDeviceLost",
-      "signature": "void __thiscall(RenderTarget *this, int nVal)",
-      "source": "annotation"
+      "name": "RenderTarget::OnDeviceLost",
+      "signature": "void __thiscall(RenderTarget *this, int nVal)"
     },
     "0x004BDC40": {
-      "name": "OnResetDevice",
-      "signature": "bool __thiscall(RenderTarget *this, int nVal)",
-      "source": "annotation"
+      "name": "RenderTarget::OnResetDevice",
+      "signature": "bool __thiscall(RenderTarget *this, int nVal)"
     },
     "0x004BDF10": {
-      "name": "Destroy",
-      "signature": "int *__thiscall(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::Destroy",
+      "signature": "int *__thiscall(RenderTarget *this)"
     },
     "0x004BDFB0": {
-      "name": "ScreenEffect",
-      "signature": "ScreenEffect * __thiscall(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::ScreenEffect",
+      "signature": "ScreenEffect * __thiscall(RenderTarget *this)"
     },
     "0x004B4910": {
-      "name": "SetState",
-      "signature": "void __thiscall(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::SetState",
+      "signature": "void __thiscall(RenderTarget *this)"
     },
     "0x004B4920": {
-      "name": "LoadTexture",
-      "signature": "gbVFileSystem *__thiscall(RenderTarget *this, const char *szFilename)",
-      "source": "annotation"
+      "name": "RenderTarget::LoadTexture",
+      "signature": "gbVFileSystem *__thiscall(RenderTarget *this, const char *szFilename)"
     },
     "0x004B48E0": {
-      "name": "SetSize",
-      "signature": "void __thiscall(RenderTarget *this, int nHeight)",
-      "source": "annotation"
+      "name": "RenderTarget::SetSize",
+      "signature": "void __thiscall(RenderTarget *this, int nHeight)"
     },
     "0x004B4850": {
-      "name": "SetColor",
-      "signature": "void __thiscall(RenderTarget *this, unsigned char r, unsigned char g, unsigned char b)",
-      "source": "annotation"
+      "name": "RenderTarget::SetColor",
+      "signature": "void __thiscall(RenderTarget *this, unsigned char r, unsigned char g, unsigned char b)"
     },
     "0x004B48B0": {
-      "name": "SetAlpha",
-      "signature": "void __thiscall(RenderTarget *this, unsigned char nAlpha)",
-      "source": "annotation"
+      "name": "RenderTarget::SetAlpha",
+      "signature": "void __thiscall(RenderTarget *this, unsigned char nAlpha)"
     },
     "0x004B4840": {
-      "name": "SetField084",
-      "signature": "void __thiscall RenderTarget::SetField084(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::SetField084",
+      "signature": "void __thiscall RenderTarget::SetField084(RenderTarget *this)"
     },
     "0x004B49C0": {
-      "name": "UpdateTransform",
-      "signature": "void __thiscall(RenderTarget *this, float fX, float fY)",
-      "source": "annotation"
+      "name": "RenderTarget::UpdateTransform",
+      "signature": "void __thiscall(RenderTarget *this, float fX, float fY)"
     },
     "0x004B4D80": {
-      "name": "SetOffset",
-      "signature": "void __thiscall(RenderTarget *this, int nOffY)",
-      "source": "annotation"
+      "name": "RenderTarget::SetOffset",
+      "signature": "void __thiscall(RenderTarget *this, int nOffY)"
     },
     "0x004B4DA0": {
-      "name": "SetScale",
-      "signature": "void __thiscall(RenderTarget *this, int nScaleY)",
-      "source": "annotation"
+      "name": "RenderTarget::SetScale",
+      "signature": "void __thiscall(RenderTarget *this, int nScaleY)"
     },
     "0x004B4820": {
-      "name": "SetVisible",
-      "signature": "void __thiscall(RenderTarget *this, BOOL bVisible)",
-      "source": "annotation"
+      "name": "RenderTarget::SetVisible",
+      "signature": "void __thiscall(RenderTarget *this, BOOL bVisible)"
     },
     "0x004BB200": {
-      "name": "ScreenToLocal",
-      "signature": "void __thiscall(RenderTarget *this, float *pOutX, float *pInX, float *pInY)",
-      "source": "annotation"
+      "name": "RenderTarget::ScreenToLocal",
+      "signature": "void __thiscall(RenderTarget *this, float *pOutX, float *pInX, float *pInY)"
     },
     "0x004B4C60": {
-      "name": "Render",
-      "signature": "void __thiscall(RenderTarget *this, int nY, int nWidth, int nHeight)",
-      "source": "annotation"
+      "name": "RenderTarget::Render",
+      "signature": "void __thiscall(RenderTarget *this, int nY, int nWidth, int nHeight)"
     },
     "0x004BB260": {
-      "name": "LoadFromFile__ovl_b260",
+      "name": "RenderTarget::LoadFromFile__ovl_b260",
       "signature": "void __thiscall(RenderTarget *this, gbVFile *pFile)",
-      "source": "annotation"
+      "_misattrib_evidence": "max_offset=1664>class_size=200"
     },
     "0x00486D00": {
-      "name": "_scalar_dtor",
+      "name": "RenderTarget::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "source": "annotation"
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x004BAE60": {
-      "name": "LoadFromFile__ovl_ae60",
+      "name": "RenderTarget::LoadFromFile__ovl_ae60",
       "signature": "void __thiscall(RenderTarget *this, struct gbVFile *pFile)",
-      "source": "annotation"
+      "_misattrib_evidence": "max_offset=32004>class_size=200"
     },
     "0x004BC7B0": {
-      "name": "UpdateTimeStep",
-      "signature": "void __thiscall(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::UpdateTimeStep",
+      "signature": "void __thiscall(RenderTarget *this)"
     },
     "0x004BC8A0": {
-      "name": "RenderToTexture",
-      "signature": "int __thiscall(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::RenderToTexture",
+      "signature": "int __thiscall(RenderTarget *this)"
     },
     "0x004BE8D0": {
-      "name": "ResetHorizontal",
-      "signature": "int __thiscall RenderTarget::ResetHorizontal(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::ResetHorizontal",
+      "signature": "int __thiscall RenderTarget::ResetHorizontal(RenderTarget *this)"
     },
     "0x004BEA60": {
-      "name": "ResetVertical",
-      "signature": "RenderTarget *__thiscall RenderTarget::ResetVertical(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::ResetVertical",
+      "signature": "RenderTarget *__thiscall RenderTarget::ResetVertical(RenderTarget *this)"
     },
     "0x004BEBB0": {
-      "name": "ResetVertical2",
-      "signature": "RenderTarget *__thiscall RenderTarget::ResetVertical2(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::ResetVertical2",
+      "signature": "RenderTarget *__thiscall RenderTarget::ResetVertical2(RenderTarget *this)"
     },
     "0x004BED00": {
-      "name": "ResetBase",
-      "signature": "RenderTarget *__thiscall RenderTarget::ResetBase(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::ResetBase",
+      "signature": "RenderTarget *__thiscall RenderTarget::ResetBase(RenderTarget *this)"
     },
     "0x00486CE0": {
-      "name": "Init",
-      "signature": "int *__thiscall RenderTarget::Init(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::Init",
+      "signature": "int *__thiscall RenderTarget::Init(RenderTarget *this)"
     },
     "0x0048F3A0": {
-      "name": "OnRender",
-      "signature": "int __thiscall RenderTarget::OnRender(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::OnRender",
+      "signature": "int __thiscall RenderTarget::OnRender(RenderTarget *this)"
     },
     "0x004B4B10": {
-      "name": "CalcRenderDimensions",
-      "signature": "void __thiscall RenderTarget::CalcRenderDimensions(RenderTarget *this, int nVal, int nVal2)",
-      "source": "annotation"
+      "name": "RenderTarget::CalcRenderDimensions",
+      "signature": "void __thiscall RenderTarget::CalcRenderDimensions(RenderTarget *this, int nVal, int nVal2)"
     },
     "0x004BB0B0": {
-      "name": "ClearTexture",
-      "signature": "int __thiscall(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::ClearTexture",
+      "signature": "int __thiscall(RenderTarget *this)"
     },
     "0x004BB0F0": {
-      "name": "ApplyScale",
-      "signature": "int __thiscall RenderTarget::ApplyScale(RenderTarget *this, float fVal)",
-      "source": "annotation"
+      "name": "RenderTarget::ApplyScale",
+      "signature": "int __thiscall RenderTarget::ApplyScale(RenderTarget *this, float fVal)"
     },
     "0x004BB180": {
-      "name": "_todo_4BB180",
-      "signature": "int __thiscall RenderTarget::_todo_4BB180(RenderTarget *this, int nVal)",
-      "source": "annotation"
+      "name": "RenderTarget::_todo_4BB180",
+      "signature": "int __thiscall RenderTarget::_todo_4BB180(RenderTarget *this, int nVal)"
     },
     "0x004BD6C0": {
-      "name": "LoadParticleTextures",
-      "signature": "char __thiscall(RenderTarget *this, const char *pszName)",
-      "source": "annotation"
+      "name": "RenderTarget::LoadParticleTextures",
+      "signature": "char __thiscall(RenderTarget *this, const char *pszName)"
     },
     "0x004BD870": {
-      "name": "GetManagedTexture",
-      "signature": "void __thiscall(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::GetManagedTexture",
+      "signature": "void __thiscall(RenderTarget *this)"
     },
     "0x004BD880": {
-      "name": "CreateParticleEffect",
-      "signature": "gbParticleEffect *__thiscall(RenderTarget *this, int nVal)",
-      "source": "annotation"
+      "name": "RenderTarget::CreateParticleEffect",
+      "signature": "gbParticleEffect *__thiscall(RenderTarget *this, int nVal)"
     },
     "0x004BD900": {
-      "name": "UpdateParticleEffect",
-      "signature": "struct gbParticleGroup *__thiscall(RenderTarget *this, int nVal)",
-      "source": "annotation"
+      "name": "RenderTarget::UpdateParticleEffect",
+      "signature": "struct gbParticleGroup *__thiscall(RenderTarget *this, int nVal)"
     },
     "0x004BD950": {
-      "name": "Stop",
-      "signature": "int __thiscall RenderTarget::Stop(RenderTarget *this, int nVal)",
-      "source": "annotation"
+      "name": "RenderTarget::Stop",
+      "signature": "int __thiscall RenderTarget::Stop(RenderTarget *this, int nVal)"
     },
     "0x004BD970": {
-      "name": "ReleaseDefault",
-      "signature": "int __thiscall(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::ReleaseDefault",
+      "signature": "int __thiscall(RenderTarget *this)"
     },
     "0x004BD990": {
-      "name": "SetPathMode",
-      "signature": "void __thiscall(RenderTarget *this, int nVal)",
-      "source": "annotation"
+      "name": "RenderTarget::SetPathMode",
+      "signature": "void __thiscall(RenderTarget *this, int nVal)"
     },
     "0x004BD9C0": {
-      "name": "SetDefaultParams",
-      "signature": "int __thiscall(RenderTarget *this, int nVal)",
-      "source": "annotation"
+      "name": "RenderTarget::SetDefaultParams",
+      "signature": "int __thiscall(RenderTarget *this, int nVal)"
     },
     "0x004BDD90": {
-      "name": "RenderToScreen",
-      "signature": "int __thiscall(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::RenderToScreen",
+      "signature": "int __thiscall(RenderTarget *this)"
     },
     "0x004BDEB0": {
-      "name": "GetActiveTexture",
-      "signature": "gbTexture *__thiscall(RenderTarget *this)",
-      "source": "annotation"
+      "name": "RenderTarget::GetActiveTexture",
+      "signature": "gbTexture *__thiscall(RenderTarget *this)"
     },
     "0x004BB050": {
-      "name": "ReadVFile",
-      "signature": "void __thiscall(RenderTarget *this, struct gbVFile *pFile)",
-      "source": "annotation"
+      "name": "RenderTarget::ReadVFile",
+      "signature": "void __thiscall(RenderTarget *this, struct gbVFile *pFile)"
     }
   }
 }

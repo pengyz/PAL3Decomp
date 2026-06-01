@@ -1,4 +1,23 @@
 {
   "name": "Combat",
-  "binary_size": 4
+  "binary_size": 4,
+  "methods": {
+    "0x004DFD20": {
+      "name": "Combat::LogMessage",
+      "signature": "char __thiscall(Combat *this, char *, int, char *format, ...)",
+      "source": "manual_fix_from_call_sites"
+    },
+    "0x0040CCD0": {
+      "name": "Combat::_todo_40CCD0",
+      "signature": "int __thiscall Combat::_todo_40CCD0(Combat *this)"
+    },
+    "0x004CDB60": {
+      "name": "Combat::Func_4CDB60",
+      "signature": "char __thiscall(Combat *this)"
+    },
+    "0x004F4820": {
+      "name": "Combat::HandleControlCmd",
+      "signature": "unsigned __int8 __thiscall Combat::HandleControlCmd(Combat *this, int idx)"
+    }
+  }
 }

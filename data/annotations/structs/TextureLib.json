@@ -203,5 +203,47 @@
       "source": "binary_scan:1refs"
     }
   },
-  "binary_size": 532
+  "binary_size": 532,
+  "methods": {
+    "0x0053F920": {
+      "name": "TextureLib::SetPath",
+      "signature": "char *__thiscall(TextureLib *this, char *path)"
+    },
+    "0x0053F960": {
+      "name": "TextureLib::LoadFromFile",
+      "signature": "char __thiscall(TextureLib *this, char *filename)"
+    },
+    "0x0053F5E0": {
+      "name": "TextureLib::FreeTexture",
+      "signature": "void __thiscall(TextureLib *this)"
+    },
+    "0x0053F500": {
+      "name": "TextureLib::CheckEndKey",
+      "signature": "int __thiscall(TextureLib *this, LPCSTR lpString1, LPCSTR lpString2)"
+    },
+    "0x0053F560": {
+      "name": "TextureLib::ClearGlobalVars",
+      "signature": "int * __thiscall(TextureLib *this)"
+    },
+    "0x0053F610": {
+      "name": "TextureLib::ParseConfigFile",
+      "signature": "int __thiscall(TextureLib *this, char *String)"
+    },
+    "0x0053F680": {
+      "name": "TextureLib::AddEntryFromConfig",
+      "signature": "char __thiscall TextureLib::AddEntryFromConfig(TextureLib *this, char *lpString2, char *Delimiter)"
+    },
+    "0x004A6930": {
+      "name": "TextureLib::LoadTexture",
+      "signature": "char __thiscall(TextureLib *this, char *pszPath)"
+    },
+    "0x004A6960": {
+      "name": "TextureLib::CreateFromFile",
+      "signature": "gbTexture *__thiscall(TextureLib *this)"
+    },
+    "0x004A6CA0": {
+      "name": "TextureLib::CreateFromMemory",
+      "signature": "gbTexture *__thiscall(TextureLib *this, _BYTE *pData, int nSize, char nFormat)"
+    }
+  }
 }
