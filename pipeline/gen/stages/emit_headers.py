@@ -1345,6 +1345,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
         lines.append("    // Opaque type: default ctor + int conversion for IDA codegen")
         lines.append("    %s() { memset(this, 0, sizeof(*this)); }" % cls_name)
         if _opaque_size == 4:
+            lines.append("    %s(int v) { *(int*)this = v; }" % cls_name)
             lines.append("    operator int() const { return *(int*)this; }")
             lines.append("    void operator=(int v) { *(int*)this = v; }")
         lines.append("")

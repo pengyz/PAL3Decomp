@@ -1,0 +1,64 @@
+{
+  "name": "gbVisNode",
+  "binary_size": 88,
+  "known_members": {
+    "28": {
+      "name": "MsgBuffer",
+      "type": "char[24]",
+      "source": "annotation"
+    },
+    "52": {
+      "name": "Priority",
+      "type": "int",
+      "source": "annotation"
+    },
+    "56": {
+      "name": "TimeScale",
+      "type": "float",
+      "source": "annotation"
+    },
+    "60": {
+      "name": "bShow",
+      "type": "int",
+      "source": "annotation"
+    },
+    "64": {
+      "name": "bDoShadow",
+      "type": "int",
+      "source": "annotation"
+    },
+    "68": {
+      "name": "pCullObj",
+      "type": "gbOctreeNode *",
+      "source": "annotation"
+    },
+    "72": {
+      "name": "pCullPrev",
+      "type": "gbVisNode *",
+      "source": "annotation"
+    },
+    "76": {
+      "name": "pCullNext",
+      "type": "gbVisNode *",
+      "source": "annotation"
+    },
+    "80": {
+      "name": "BlendParam",
+      "type": "float",
+      "source": "annotation"
+    },
+    "84": {
+      "name": "BlendFlag",
+      "type": "NodeBlend",
+      "source": "annotation"
+    },
+    "0": {
+      "name": "pSceneGraph",
+      "type": "gbSceneGraph *",
+      "source": "annotation"
+    }
+  },
+  "base_class": [
+    "gbNBTreeNode"
+  ]
+}

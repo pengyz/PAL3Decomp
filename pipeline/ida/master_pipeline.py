@@ -196,53 +196,8 @@ def phase1_import_types():
     cls_ok = 0
     _vftable_types = {'__vftable', 'vtbl_'}
 
-    # 批量生成 struct 声明
-    _decls = []
-    for cls in classes:
-        name = cls.get('name', '')
-        if not name or name in _SKIP_SYSTEM_TYPES:
-            continue
-        if '<' in name or '::' in name:
-            continue
-        # 跳过 gbengine 类型（已在 import_gbengine_types 中导入）
-        _skip_ti = ida_typeinf.tinfo_t()
-        if _skip_ti.get_named_type(til, name) and _skip_ti.get_size() > 1:
-            continue
-        data_members = cls.get('data_members', [])
-        if not data_members:
-            continue
-
-        lines = []
-        for m in data_members:
-            mname = m.get('name', '')
-            mtype_str = m.get('type', 'int')
-            if not mname:
-                continue
-            if mname.startswith('__vftable') or any(v in mtype_str for v in _vftable_types):
-                continue
-            # 数组后缀移到变量名: char[64] buf → char buf[64]
-            _arr = ''
-            _base_type = mtype_str
-            while True:
-                _ma = re.match(r'^(.+?)\[(\d+|0x[0-9a-fA-F]+)\](.*)$', _base_type)
-                if not _ma:
-                    break
-                _base_type = _ma.group(1).strip()
-                _arr += '[%s]' % _ma.group(2)
-            if _arr:
-                lines.append("    %s %s%s;" % (_base_type, mname, _arr))
-            else:
-                lines.append("    %s %s;" % (mtype_str, mname))
-
-        if not lines:
-            continue
-
-        keyword = "union" if cls.get('kind') == 'union' else "struct"
-        _decls.append("%s %s {\n%s\n};" % (keyword, name, "\n".join(lines)))
-
-    # PDB struct definitions 暂存，等 gbengine+D3D 导入后再执行
-    # (gbengine 类型优先级高于 PDB 类型)
-    _pdb_decls = _decls if _decls else None
+    # PDB struct 不再由 master_pipeline 导入。
+    # annotation 文件已合并 PDB 所有成员数据，由 apply_annotations 一次性导入。
     cls_ok = 0
 
     # Phase 1b: 从 VC6 DirectX 9 头文件导入 D3D 值类型 + gbengine 类型
@@ -297,27 +252,116 @@ typedef struct D3DXMATRIX {
         log("[!] gbengine import EXCEPTION: %s" % e)
 
     # Phase 1c: 导入 PDB struct 定义（D3D + gbengine 类型已就绪）
-    if _pdb_decls:
+    if _pdb_structs:
         log("")
         cls_ok = 0
         _fail_list = []
-        for _idx, _d in enumerate(_pdb_decls):
-            _ti = ida_typeinf.tinfo_t()
-            _name_match = re.match(r'(?:struct|union|class)\s+(\w+)', _d)
-            _sname = _name_match.group(1) if _name_match else '?'
-            if ida_typeinf.parse_decl(_ti, til, _d, ida_typeinf.PT_TYP) is not None:
-                try:
-                    _ti.set_named_type(til, _sname, ida_typeinf.NTF_REPLACE)
-                    cls_ok += 1
-                    if (_idx + 1) % 100 == 0:
-                        log("  ... %d/%d" % (_idx + 1, len(_pdb_decls)))
-                except:
-                    pass
-            elif _idx < 10:
-                _fail_list.append(_sname)
-        log("[Phase 1c] PDB struct 导入: %d/%d 成功" % (cls_ok, len(_pdb_decls)))
+        _total = len(_pdb_structs)
+
+        for _idx, cls in enumerate(_pdb_structs):
+            name = cls.get('name', '')
+            data_members = cls.get('data_members', [])
+            bases = cls.get('bases', [])
+            is_union = cls.get('kind') == 'union'
+            total_size = cls.get('size', 0)
+
+            try:
+                udt = ida_typeinf.udt_type_data_t()
+                udt.taudt_bits = 1024  # TAUDT_FIXED
+                if bases:
+                    udt.taudt_bits |= 128  # TAUDT_CPPOBJ
+                if is_union:
+                    udt.is_union = True
+                udt.total_size = total_size
+
+                # 基类作为匿名成员（支持多继承）
+                base_off = 0
+                base_total = 0
+                for b in bases:
+                    bc_name = b.get('name', '')
+                    bc_tinfo = ida_typeinf.tinfo_t()
+                    bc_size = bc_tinfo.get_size() if bc_tinfo.get_named_type(til, bc_name) else 0
+                    if bc_size in (0, 0xFFFFFFFFFFFFFFFF):
+                        bc_size = 4
+                    mb = ida_typeinf.udt_member_t()
+                    mb.name = ""
+                    mb.offset = base_off * 8
+                    mb.size = bc_size * 8
+                    mb.type = bc_tinfo
+                    udt.push_back(mb)
+                    base_off += bc_size
+                    base_total += bc_size
+
+                # 数据成员：按偏移量排序，保证 span 计算正确
+                _sorted_members = sorted(data_members, key=lambda x: x.get('offset', 0))
+                for _mi, m in enumerate(_sorted_members):
+                    mname = m.get('name', '')
+                    mtype_str = m.get('type', 'int')
+                    moffset = m.get('offset', 0)
+                    if not mname:
+                        continue
+                    if mname.startswith('__vftable'):
+                        continue
+                    if any(v in mtype_str for v in ['vtbl_', '__vftable']):
+                        continue
+                    if moffset < base_total:
+                        continue  # 属于基类范围，跳过
+
+                    mtinfo = _resolve_member_type(mtype_str, til)
+                    msize_valid = mtinfo is not None and mtinfo.get_size() not in (0, 0xFFFFFFFFFFFFFFFF)
+
+                    if msize_valid:
+                        msize = mtinfo.get_size()
+                    else:
+                        # 类型无法解析 → 用 span 计算大小
+                        _next_off = total_size
+                        for _nm in _sorted_members[_mi + 1:]:
+                            _no = _nm.get('offset', 0)
+                            if _no > moffset:
+                                _next_off = _no
+                                break
+                        msize = _next_off - moffset
+                        if msize <= 0:
+                            msize = 4
+                        _decl = "char[%d]" % msize
+                        _cti = ida_typeinf.tinfo_t()
+                        if ida_typeinf.parse_decl(_cti, til, _decl, ida_typeinf.PT_TYP) is not None:
+                            mtinfo = _cti
+                        else:
+                            continue
+
+                    mm = ida_typeinf.udt_member_t()
+                    mm.name = mname
+                    mm.offset = moffset * 8
+                    mm.size = msize * 8
+                    mm.type = mtinfo
+                    udt.push_back(mm)
+
+                if not _all_ready:
+                    _fail_list.append(name)
+                    continue
+
+                udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
+                result_tinfo = ida_typeinf.tinfo_t()
+                if result_tinfo.create_udt(udt, udt_flag):
+                    try:
+                        result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+                        cls_ok += 1
+                    except:
+                        pass
+                else:
+                    _fail_list.append(name)
+
+                if (_idx + 1) % 100 == 0:
+                    log("  ... %d/%d" % (_idx + 1, _total))
+
+            except Exception:
+                _fail_list.append(name)
+
+        log("[Phase 1c] PDB struct 导入: %d/%d 成功" % (cls_ok, _total))
         if _fail_list:
-            log("  首批失败: %s" % ", ".join(_fail_list))
+            _show = _fail_list[:10]
+            log("  失败(%d): %s" % (len(_fail_list), ", ".join(_show)))
         log("[*] 类导入: %d forward decls + %d full definitions" % (len(classes), cls_ok))
 
 

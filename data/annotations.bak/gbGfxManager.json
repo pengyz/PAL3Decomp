@@ -1,0 +1,139 @@
+{
+  "name": "gbGfxManager",
+  "binary_size": 1520,
+  "known_members": {
+    "8": {
+      "name": "hGfxWnd",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "12": {
+      "name": "DrvInfo",
+      "type": "gbGfxDriverInfo",
+      "source": "annotation"
+    },
+    "196": {
+      "name": "pVertPoolMgr",
+      "type": "gbVertPoolMgr *",
+      "source": "annotation"
+    },
+    "200": {
+      "name": "pEffectMgr",
+      "type": "gbEffectMgr *",
+      "source": "annotation"
+    },
+    "204": {
+      "name": "pTexResMgr",
+      "type": "gbResManager *",
+      "source": "annotation"
+    },
+    "208": {
+      "name": "pFontMgr",
+      "type": "gbPrintFontMgr *",
+      "source": "annotation"
+    },
+    "212": {
+      "name": "pMatrixStack",
+      "type": "gbMatrixStack *[4]",
+      "source": "annotation"
+    },
+    "228": {
+      "name": "ViewMatrix",
+      "type": "gbMatrix4",
+      "source": "annotation"
+    },
+    "292": {
+      "name": "InvViewMatrix",
+      "type": "gbMatrix4",
+      "source": "annotation"
+    },
+    "356": {
+      "name": "WorldMatrix",
+      "type": "gbMatrix4",
+      "source": "annotation"
+    },
+    "420": {
+      "name": "CurZBias",
+      "type": "int",
+      "source": "annotation"
+    },
+    "424": {
+      "name": "bWireMode",
+      "type": "int",
+      "source": "annotation"
+    },
+    "428": {
+      "name": "AmbientLight",
+      "type": "gbColorFlt",
+      "source": "annotation"
+    },
+    "444": {
+      "name": "fSelfIllum",
+      "type": "float",
+      "source": "annotation"
+    },
+    "448": {
+      "name": "pSceneGraph",
+      "type": "gbSceneGraph *",
+      "source": "annotation"
+    },
+    "452": {
+      "name": "Viewport",
+      "type": "gbViewPort",
+      "source": "annotation"
+    },
+    "476": {
+      "name": "ClearParam",
+      "type": "gbClearParam",
+      "source": "annotation"
+    },
+    "496": {
+      "name": "LastTime",
+      "type": "double",
+      "source": "annotation"
+    },
+    "504": {
+      "name": "CurTime",
+      "type": "double",
+      "source": "annotation"
+    },
+    "512": {
+      "name": "LastTick",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "516": {
+      "name": "CurTick",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "520": {
+      "name": "Stat",
+      "type": "gbGfxStatistic",
+      "source": "annotation"
+    },
+    "568": {
+      "name": "AllLight",
+      "type": "gbLight[8]",
+      "source": "annotation"
+    },
+    "1400": {
+      "name": "LightEnable",
+      "type": "int[8]",
+      "source": "annotation"
+    },
+    "1432": {
+      "name": "FogParam",
+      "type": "gbFogParam",
+      "source": "annotation"
+    },
+    "1484": {
+      "name": "m_pCurTexture",
+      "type": "gbTexture *[8]",
+      "source": "annotation"
+    }
+  },
+  "base_class": [
+    "gbSingleton<gbGfxManager>"
+  ]
+}

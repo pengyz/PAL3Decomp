@@ -1,0 +1,1064 @@
+{
+  "name": "RoleSystem",
+  "known_members": {
+    "0": {
+      "name": "m_pVtable",
+      "type": "void (__thiscall *)(void)",
+      "source": "A:decomp CCBRoleState::ProcessActions uses this->m_pSceneMgr->m_rect.left as RoleSystem* -- offset 0 is vtable ptr, not int"
+    },
+    "4": {
+      "name": "m_fTargetX",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "8": {
+      "name": "m_fTargetY",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "12": {
+      "name": "m_fTargetZ",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "16": {
+      "name": "_todo_010",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "20": {
+      "name": "m_fDirX",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "24": {
+      "name": "m_fDirY",
+      "type": "float",
+      "source": "binary:raw_UpdatePosition"
+    },
+    "28": {
+      "name": "m_fDirZ",
+      "type": "float",
+      "source": "binary:raw_UpdatePosition"
+    },
+    "32": {
+      "name": "m_fRightX",
+      "type": "float",
+      "source": "binary:raw_UpdatePosition"
+    },
+    "36": {
+      "name": "m_fRightY",
+      "type": "float",
+      "source": "binary:raw_UpdatePosition"
+    },
+    "40": {
+      "name": "m_fRightZ",
+      "type": "float",
+      "source": "binary:raw_UpdatePosition"
+    },
+    "44": {
+      "name": "m_fUpX",
+      "type": "float",
+      "source": "binary:raw_UpdatePosition"
+    },
+    "48": {
+      "name": "m_fUpY",
+      "type": "float",
+      "source": "binary:raw_UpdatePosition"
+    },
+    "52": {
+      "name": "m_fUpZ",
+      "type": "float",
+      "source": "binary:raw_UpdatePosition"
+    },
+    "56": {
+      "name": "m_pVObj",
+      "type": "PalScriptMgr *",
+      "source": "binary:PalScriptMgr_NotifyEvent_called_via_this_member"
+    },
+    "72": {
+      "name": "_field_048",
+      "type": "float",
+      "source": "A+:decomp *(float*)&this->_field_048 explicit_float_cast"
+    },
+    "80": {
+      "name": "m_nStateMode",
+      "type": "unsigned char",
+      "source": "ida_decomp:_auto_42b510 ==2/if(this), 2 refs"
+    },
+    "84": {
+      "name": "m_nTimerDuration",
+      "type": "int",
+      "source": "A:decomp LODWORD(this->_field_054) = 600 (10s at 60fps)"
+    },
+    "88": {
+      "name": "_field_058",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "92": {
+      "name": "_field_05C",
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
+    },
+    "100": {
+      "name": "m_pPathPoints",
+      "type": "void *",
+      "source": "B:naming_m_p+FPU_misattrib"
+    },
+    "104": {
+      "name": "m_nPathCount",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "108": {
+      "name": "m_pPathCurrent",
+      "type": "void *",
+      "source": "B:naming_m_p+FPU_misattrib"
+    },
+    "112": {
+      "name": "m_pPathNext",
+      "type": "void *",
+      "source": "binary:raw_path_next | type_fix:int鈫抳oid*(naming m_p)"
+    },
+    "116": {
+      "name": "_todo_074",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "120": {
+      "name": "_todo_078",
+      "type": "int",
+      "source": "binary:raw_path_misc"
+    },
+    "124": {
+      "name": "m_nPathField7C",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "128": {
+      "name": "_todo_080",
+      "type": "float",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "132": {
+      "name": "_todo_084",
+      "type": "int",
+      "source": "binary:raw_path_misc"
+    },
+    "140": {
+      "name": "m_pPathListHead",
+      "type": "void *",
+      "source": "binary:raw_path_list | type_fix:int鈫抳oid*(naming m_p)"
+    },
+    "144": {
+      "name": "m_nActionResult",
+      "type": "int",
+      "source": "B:decomp this->_todo_090 = Actor::DispatchAction(...)"
+    },
+    "148": {
+      "name": "m_nDispFontColor",
+      "type": "int",
+      "source": "B:decomp this->_todo_094 = this->m_fontcolor.Color"
+    },
+    "152": {
+      "name": "m_nDispWndColor",
+      "type": "int",
+      "source": "B:decomp this->_todo_098 = this->m_wndcolor.Color"
+    },
+    "156": {
+      "name": "m_nField9C",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "160": {
+      "name": "m_fPosX",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "164": {
+      "name": "m_fPosY",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "168": {
+      "name": "m_fPosZ",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "172": {
+      "name": "m_nFacing",
+      "type": "char",
+      "source": "gen_headers_9.2"
+    },
+    "173": {
+      "name": "m_nActionState",
+      "type": "char",
+      "source": "gen_headers_9.2"
+    },
+    "174": {
+      "name": "m_nAnimState",
+      "type": "char",
+      "source": "gen_headers_9.2"
+    },
+    "175": {
+      "name": "m_bActionPause",
+      "type": "unsigned char",
+      "source": "ida_decomp:_auto_42ad40 copied to +209, if(!this), 2 refs"
+    },
+    "176": {
+      "name": "m_szModelName",
+      "type": "int",
+      "source": "binary:disp32_auto_42ad40"
+    },
+    "192": {
+      "name": "_todo_0C0",
+      "type": "float",
+      "source": "A:FPU_post_reattrib_0x40c9cf"
+    },
+    "208": {
+      "name": "_field_0D0",
+      "type": "int",
+      "source": "A:unsigned_char_but_dword_jnz_access|A:test_byte_ptr_binary_evidence"
+    },
+    "216": {
+      "name": "m_fAngle",
+      "type": "float",
+      "source": "binary:disp32_auto_42ad40"
+    },
+    "220": {
+      "name": "m_fTileHeight",
+      "type": "float",
+      "source": "ida_decomp:_auto_420a10 if(Tile>=this), 7 refs"
+    },
+    "224": {
+      "name": "m_nSpawnData",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "236": {
+      "name": "_field_0EC",
+      "type": "float",
+      "source": "A:FPU_post_reattrib_0x44ce84"
+    },
+    "240": {
+      "name": "m_nSpawnFlags",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_in_class_method"
+    },
+    "244": {
+      "name": "m_nRoleAction",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_417040 =byte(a2+72), ProcessAction switch"
+    },
+    "246": {
+      "name": "m_nRoleSlot",
+      "type": "unsigned char",
+      "source": "ida_decomp:ProcessAction GetRolePtr(scene+16, byte(this))"
+    },
+    "248": {
+      "name": "m_fWaypointX",
+      "type": "float",
+      "source": "ida_decomp:_nearby_417040 =a2+76, _nearby_417420 delta=this+4-this"
+    },
+    "252": {
+      "name": "m_fWaypointZ",
+      "type": "float",
+      "source": "ida_decomp:_nearby_417040 =a2+80, delta=z-this"
+    },
+    "256": {
+      "name": "m_nActionParam",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_417040 =byte(a2+84)"
+    },
+    "260": {
+      "name": "m_nInitMoveMode",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_disp32_in_class_method"
+    },
+    "264": {
+      "name": "m_nSpawnExtra",
+      "type": "int",
+      "source": "ida_decomp:_nearby_417040 = a2+92, copied to a2+24, 2 refs"
+    },
+    "268": {
+      "name": "m_nSpawnParam2",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "272": {
+      "name": "m_szModelPath",
+      "type": "int",
+      "source": "ida_decomp:_nearby_417040 Actor::call(this+680, (char*)this, 0)"
+    },
+    "276": {
+      "name": "_field_114",
+      "type": "UIWnd *",
+      "source": "binary:gap_access+codegen_infer"
+    },
+    "300": {
+      "name": "m_bSpawnByteA",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_417040 = byte(a2+128)"
+    },
+    "301": {
+      "name": "m_bSpawnByteB",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_417040 = byte(a2+129)"
+    },
+    "304": {
+      "name": "m_nSpawnParam",
+      "type": "int",
+      "source": "ida_decomp:_nearby_417040 =a2+132"
+    },
+    "308": {
+      "name": "m_nActionTimer",
+      "type": "int",
+      "source": "ida_decomp:_sub_416FA0/416FE0 = 0"
+    },
+    "352": {
+      "name": "m_nSavedState",
+      "type": "int",
+      "source": "ida_decomp:ctor_1D20 =0, _method_532710 =v7, 3 refs"
+    },
+    "356": {
+      "name": "m_nVisState",
+      "type": "int",
+      "source": "ida_decomp:ctor_1D20 =0, _method_532710 = v7"
+    },
+    "360": {
+      "name": "m_bVisFlag",
+      "type": "unsigned char",
+      "source": "ida_decomp:ctor_1D20 =0, _method_532710 if(!this)"
+    },
+    "364": {
+      "name": "m_pWndFrame",
+      "type": "void *",
+      "source": "ida_decomp:ctor_1D20 UIFrameWnd init, GetChild, 3 refs | fix:int_to_ptr(decomp_vtable_dispatch_via_bvisible+4) | fix:ptr_type_for_vtable_target"
+    },
+    "380": {
+      "name": "m_nActive",
+      "type": "int",
+      "source": "binary:gap_access"
+    },
+    "384": {
+      "name": "_todo_180",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x"
+    },
+    "400": {
+      "name": "_field_190",
+      "type": "int",
+      "source": "binary:gap_access"
+    },
+    "404": {
+      "name": "_field_194",
+      "type": "int",
+      "source": "binary:gap_access"
+    },
+    "408": {
+      "name": "_field_198",
+      "type": "float",
+      "source": "A:decomp assigned 1065353216=0x3F800000=1.0f proves float"
+    },
+    "412": {
+      "name": "_field_19C",
+      "type": "float",
+      "source": "A:decomp assigned 1065353216=0x3F800000=1.0f proves float"
+    },
+    "416": {
+      "name": "m_pPathNodeIter",
+      "type": "void *",
+      "source": "binary:gap_access | type_fix:int鈫抳oid*(naming m_p)"
+    },
+    "420": {
+      "name": "_field_1A4",
+      "type": "int",
+      "source": "binary:gap_access"
+    },
+    "1244": {
+      "name": "m_fPathTargetY",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1248": {
+      "name": "m_fPathTargetZ",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1252": {
+      "name": "m_fPathAngle",
+      "type": "float",
+      "source": "ida_decomp:PathFind sqrt((v26+50+v26+50)/490)+v25, 10 refs"
+    },
+    "1256": {
+      "name": "m_fPathSpeed",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1260": {
+      "name": "m_nPrevMoveMode",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1264": {
+      "name": "m_nMoveMode",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1268": {
+      "name": "m_nMoveSubMode",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1272": {
+      "name": "m_nCollisionState",
+      "type": "int",
+      "source": "ida_decomp:_sub_413850 checked, _nearby_41bad0 =0, 2 refs"
+    },
+    "1276": {
+      "name": "m_nCollisionParam",
+      "type": "int",
+      "source": "ida_decomp:_nearby_4150c0 loaded, _nearby_41bad0 =1, 2 refs"
+    },
+    "1280": {
+      "name": "m_bPathActive",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_414f90 =0, _nearby_4150c0 =1, 6 refs"
+    },
+    "1284": {
+      "name": "m_nCoreState",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1288": {
+      "name": "m_nTransformState",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "1292": {
+      "name": "m_fMovement",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1296": {
+      "name": "m_fRotAxisX",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1300": {
+      "name": "m_fRotAxisY",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1304": {
+      "name": "m_fRotAxisZ",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1308": {
+      "name": "m_nMovement",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "1312": {
+      "name": "m_fSavedRotX",
+      "type": "float",
+      "source": "A:FPU_disp32_0x41353e"
+    },
+    "1316": {
+      "name": "m_FrameA",
+      "type": "UIFrameWnd",
+      "source": "decomp:ctor_UIFrameWnd_shared_init(was_m_fPathDirX_float_WRONG)"
+    },
+    "1388": {
+      "name": "m_nActiveRole",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1392": {
+      "name": "m_nRoleCount",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1396": {
+      "name": "m_nAnimation",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "1400": {
+      "name": "m_nAnimCopy1",
+      "type": "int",
+      "source": "ida_decomp:UpdateAnimation = v19, copied to role+1268, 3 refs"
+    },
+    "1404": {
+      "name": "m_nAnimCopy2",
+      "type": "int",
+      "source": "ida_decomp:UpdateAnimation = v18[321], 3 refs"
+    },
+    "1408": {
+      "name": "m_nAnimCopy3",
+      "type": "int",
+      "source": "ida_decomp:UpdateAnimation = v18[2172], UpdateMovement param, 3 refs"
+    },
+    "1412": {
+      "name": "m_pLinkedRole",
+      "type": "Object3D *",
+      "source": "ida_decomp:_nearby_4150c0 deref+264, _nearby_4189c0 = a7, 5 refs+codegen_infer"
+    },
+    "1416": {
+      "name": "m_nTransformMode",
+      "type": "int",
+      "source": "ida_decomp:UpdateTransform ==1, _nearby_417040 =0, 8 refs"
+    },
+    "1420": {
+      "name": "m_pLinkedSystem",
+      "type": "void *",
+      "source": "ida_decomp:UpdateTransform deref+756 byte, 6 refs | type_fix:int鈫抳oid*(deref pattern)"
+    },
+    "1424": {
+      "name": "m_fAnimSpeed",
+      "type": "float",
+      "source": "binary:raw_1126170624=3.0f"
+    },
+    "1428": {
+      "name": "m_fMoveRadius",
+      "type": "float",
+      "source": "ida_decomp:_nearby_417040 =v25, _nearby_417420 Length<=this, 3 refs"
+    },
+    "1432": {
+      "name": "m_fMoveSpeed",
+      "type": "float",
+      "source": "ida_decomp:_nearby_417040 =dword_58B314, *1.4>=Length, 3 refs"
+    },
+    "1436": {
+      "name": "m_nMoveReset",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "1440": {
+      "name": "m_pRenderObj",
+      "type": "gbGeomNode *",
+      "source": "gen_headers_9.2"
+    },
+    "1444": {
+      "name": "m_bRenderFlag1",
+      "type": "int",
+      "source": "binary:*(_DWORD*)&m_bRenderFlag1=0 writes 4 bytes"
+    },
+    "1448": {
+      "name": "m_bRenderFlag2",
+      "type": "char",
+      "source": "gen_headers_9.2"
+    },
+    "1456": {
+      "name": "m_pCtrlPoint",
+      "type": "void *",
+      "source": "binary:raw_final | type_fix:int鈫抳oid*(naming m_p)"
+    },
+    "1460": {
+      "name": "m_nMoveRole",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "1464": {
+      "name": "m_nRetryCount",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "1468": {
+      "name": "m_fCachePosX",
+      "type": "float",
+      "source": "A:FPU_disp32_0x413a53"
+    },
+    "1472": {
+      "name": "m_fCachePosY",
+      "type": "float",
+      "source": "A:FPU_disp32_0x413a46"
+    },
+    "1476": {
+      "name": "m_fCachePosZ",
+      "type": "float",
+      "source": "binary:raw_cached_pos"
+    },
+    "1480": {
+      "name": "m_fMoveTargetX",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1484": {
+      "name": "m_fMoveTargetY",
+      "type": "int",
+      "source": "gen_headers_9.2 | type_fix:float鈫抜nt_raw_decomp"
+    },
+    "1488": {
+      "name": "m_fMoveTargetZ",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "1492": {
+      "name": "m_fMoveRole",
+      "type": "float",
+      "source": "binary:raw_batch"
+    },
+    "1496": {
+      "name": "m_fMoveParamY",
+      "type": "float",
+      "source": "ida_decomp:MoveRole = a2[1]"
+    },
+    "1500": {
+      "name": "m_fMoveParamZ",
+      "type": "float",
+      "source": "ida_decomp:MoveRole = a2[2]"
+    },
+    "1572": {
+      "name": "_embed_UIWnd_624",
+      "type": "UIWnd",
+      "source": "A+:decomp_UIWnd::GetRect((UIWnd*)&field)_cast_confirm_embed,span=88,no_overlap"
+    },
+    "2968": {
+      "name": "m_wndPanel",
+      "type": "int",
+      "source": "ida_decomp:ctor_1D20, _method_532410 vtable call, 2 refs"
+    },
+    "4068": {
+      "name": "_field_FF8",
+      "type": "int",
+      "source": "binary:gap_r3"
+    },
+    "4492": {
+      "name": "m_nMoveState1",
+      "type": "int",
+      "source": "binary:_method_532410"
+    },
+    "4496": {
+      "name": "m_nMoveState2",
+      "type": "int",
+      "source": "binary:_method_532710"
+    },
+    "4500": {
+      "name": "m_nMoveState3",
+      "type": "int",
+      "source": "binary:_method_532710"
+    },
+    "4504": {
+      "name": "m_bMoveFlag1",
+      "type": "unsigned char",
+      "source": "binary:_method_532410"
+    },
+    "4508": {
+      "name": "m_nMoveParam1",
+      "type": "int",
+      "source": "binary:_method_532710"
+    },
+    "4512": {
+      "name": "m_nMoveParam2",
+      "type": "int",
+      "source": "binary:_method_532710"
+    },
+    "4516": {
+      "name": "m_bMoveFlag2",
+      "type": "unsigned char",
+      "source": "binary:_method_532710"
+    },
+    "4520": {
+      "name": "m_partyUI3",
+      "type": "UIItem",
+      "source": "A:LEA_ECX+CALL_UIItem::ctor"
+    },
+    "4752": {
+      "name": "m_teamData3",
+      "type": "int[50]",
+      "source": "FullInit:DWORD[84-96] accesses beyond UIItem; gap fill 216 bytes to _todo_137C"
+    },
+    "4976": {
+      "name": "m_wndLabel",
+      "type": "UIWnd *",
+      "source": "ida_decomp:_method_532410 UIWnd::SetEnable(text), 2 refs+codegen_infer"
+    },
+    "5888": {
+      "name": "m_partyUI5",
+      "type": "UIItem",
+      "source": "A:LEA_ECX+CALL_UIItem::ctor"
+    },
+    "6120": {
+      "name": "m_teamData5",
+      "type": "int[270]",
+      "source": "FullInit:DWORD[94-290] accesses beyond UIItem; gap fill 1088 bytes to _todo_1C28"
+    },
+    "7256": {
+      "name": "m_bStateFlag1",
+      "type": "unsigned char",
+      "source": "binary:_method_532710"
+    },
+    "7257": {
+      "name": "m_bStateFlag2",
+      "type": "unsigned char",
+      "source": "binary:_method_5326a0"
+    },
+    "7260": {
+      "name": "m_wndFrameA",
+      "type": "UIFrameWnd *",
+      "source": "ida_decomp:ctor_1D20 UIFrameWnd init, vtable call, 5 refs+codegen_infer"
+    },
+    "7392": {
+      "name": "_todo_1CF4",
+      "type": "int",
+      "source": "binary:disp32_method_44b470"
+    },
+    "7396": {
+      "name": "_todo_1CF8",
+      "type": "unsigned char",
+      "source": "binary:disp32_method_44b470"
+    },
+    "7412": {
+      "name": "m_wndFrameB",
+      "type": "UIFrameWnd *",
+      "source": "ida_decomp:ctor_1D20 UIFrameWnd init, vtable call, 5 refs+codegen_infer"
+    },
+    "7564": {
+      "name": "m_nStateParam1",
+      "type": "int",
+      "source": "binary:_method_532710"
+    },
+    "7568": {
+      "name": "m_nStateParam2",
+      "type": "int",
+      "source": "binary:_method_532710"
+    },
+    "7572": {
+      "name": "m_bStateFlag3",
+      "type": "unsigned char",
+      "source": "binary:_method_532710"
+    },
+    "7576": {
+      "name": "m_bStateFlag4",
+      "type": "unsigned char",
+      "source": "binary:_method_5326a0"
+    },
+    "7577": {
+      "name": "m_bStateFlag5",
+      "type": "unsigned char",
+      "source": "binary:_method_532360"
+    },
+    "8668": {
+      "name": "m_fFacingAngle",
+      "type": "float",
+      "source": "binary:raw_acos_angle"
+    },
+    "8672": {
+      "name": "m_fSnapshotX",
+      "type": "float",
+      "source": "binary:raw_snapshot"
+    },
+    "8676": {
+      "name": "m_fSnapshotY",
+      "type": "float",
+      "source": "binary:raw_snapshot"
+    },
+    "8680": {
+      "name": "m_fSnapshotZ",
+      "type": "float",
+      "source": "binary:raw_snapshot"
+    },
+    "7578": {
+      "name": "_todo_1D9A",
+      "type": "unsigned char",
+      "source": "reverted_auto_semantic:19x_access"
+    },
+    "76": {
+      "name": "_todo_4C",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "96": {
+      "name": "m_szInputPath",
+      "type": "char *",
+      "source": "fix:span=4_next_hits=53_ptr"
+    },
+    "180": {
+      "name": "m_mapData",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
+    },
+    "206": {
+      "name": "m_byStateArray",
+      "type": "unsigned char",
+      "source": "decomp:_nearby_417040_byte_loop_32entries"
+    },
+    "288": {
+      "name": "m_nParamArray",
+      "type": "int",
+      "source": "decomp:_nearby_417040_DWORD_loop_copy"
+    },
+    "312": {
+      "name": "m_vecPosArray",
+      "type": "gbVec3D",
+      "source": "decomp:_nearby_417040_p+=3(12byte_stride)_gbVec3D_array"
+    },
+    "424": {
+      "name": "m_partyActor",
+      "type": "Actor",
+      "source": "A+:decomp Actor::DispatchAction((Actor*)&this->_todo_1A8) embedded_Actor + member_access(.m_pSelfAtt,.m_pEquipAtt*,.m_dwMatMsg)"
+    },
+    "1452": {
+      "name": "_todo_5AC",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "1564": {
+      "name": "_todo_61C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "2960": {
+      "name": "_todo_BA4",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "4484": {
+      "name": "_todo_1198",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "4488": {
+      "name": "_todo_119C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "4968": {
+      "name": "_todo_137C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "5880": {
+      "name": "_todo_170C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7248": {
+      "name": "_todo_1C64",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7252": {
+      "name": "_todo_1C68",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7384": {
+      "name": "_todo_1CEC",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7388": {
+      "name": "_todo_1CF0",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7404": {
+      "name": "_todo_1D00",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7556": {
+      "name": "_todo_1D98",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7560": {
+      "name": "_todo_1D9C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "8388": {
+      "name": "_todo_20D8",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "8560": {
+      "name": "_todo_2184",
+      "type": "float",
+      "source": "A:FPU_binary_evidence_(batch_from_todo_field_context)"
+    },
+    "8660": {
+      "name": "_todo_21E8",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "8664": {
+      "name": "_todo_21EC",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "64": {
+      "name": "_todo_040",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "136": {
+      "name": "_todo_088",
+      "type": "float",
+      "source": "binary_scan:50refs"
+    },
+    "184": {
+      "name": "_todo_0B8",
+      "type": "float",
+      "source": "binary_scan:3refs"
+    },
+    "188": {
+      "name": "_todo_0BC",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "209": {
+      "name": "m_bActionState",
+      "type": "unsigned char",
+      "source": "decomp:_auto_42ad40_LOBYTE_set_from_multiple_sources(action_state_byte)"
+    },
+    "228": {
+      "name": "_todo_0E4",
+      "type": "int",
+      "source": "binary_scan:4refs"
+    },
+    "232": {
+      "name": "_todo_0E8",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "328": {
+      "name": "_todo_148",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "332": {
+      "name": "_todo_14C",
+      "type": "int",
+      "source": "binary_scan:3refs"
+    },
+    "336": {
+      "name": "_todo_150",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "368": {
+      "name": "_todo_170",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "1684": {
+      "name": "m_teamSlots",
+      "type": "int[307]",
+      "source": "expanded_to_cover_+0xB60"
+    },
+    "2988": {
+      "name": "m_StaticSlotArray",
+      "type": "UIWnd",
+      "source": "decomp:_method_532410_vtable_call+p+=38(152=UIStatic_stride)"
+    },
+    "3072": {
+      "name": "m_teamSlotsB",
+      "type": "int[200]",
+      "source": "binary_scan:5refs|FullInit: array access indices 94-190"
+    },
+    "4028": {
+      "name": "_todo_FBC",
+      "type": "int",
+      "source": "binary_scan:4refs"
+    },
+    "4088": {
+      "name": "_todo_FF8",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "4096": {
+      "name": "m_configData",
+      "type": "int[96]",
+      "source": "binary_scan:3refs|FullInit: array access indices 0-32, gap 384 bytes to _todo_1198"
+    },
+    "4996": {
+      "name": "m_CaptionCtrl",
+      "type": "UICaption",
+      "source": "decomp:_method_532410_UICaption_SetEnable"
+    },
+    "7276": {
+      "name": "m_nTimerFlags",
+      "type": "int",
+      "source": "decomp:_method_532710_LOBYTE+BYTE1_timer_control_bools"
+    },
+    "7280": {
+      "name": "m_FrameC",
+      "type": "UIFrameWnd",
+      "source": "decomp:ctor_UIFrameWnd_shared_init"
+    },
+    "7432": {
+      "name": "m_FrameD",
+      "type": "UIFrameWnd",
+      "source": "decomp:ctor_UIFrameWnd_shared_init"
+    },
+    "7584": {
+      "name": "m_dwCurTick",
+      "type": "int",
+      "source": "decomp:UpdateTimer_=GetTickCount(current_frame_time)"
+    },
+    "7588": {
+      "name": "m_dwPrevTick",
+      "type": "int",
+      "source": "decomp:UpdateTimer_=GetTickCount(previous_frame_time)"
+    },
+    "7592": {
+      "name": "m_bTimerActive",
+      "type": "unsigned char",
+      "source": "decomp:UpdateTimer_LOBYTE_set_0/1(timer_running)"
+    },
+    "7596": {
+      "name": "m_bToggleState",
+      "type": "unsigned char",
+      "source": "decomp:_method_532710_LOBYTE_toggle(==0?1:0)"
+    },
+    "8416": {
+      "name": "m_UICtrlArray",
+      "type": "int",
+      "source": "decomp:_method_44cd90_52DWORD_stride(208byte)_UI_array_base"
+    },
+    "8592": {
+      "name": "_todo_2190",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "7208": {
+      "name": "_todo_1C28",
+      "type": "int",
+      "source": "binary:v0-132 comparison"
+    },
+    "7216": {
+      "name": "_todo_1C30",
+      "type": "void **",
+      "source": "binary:v0-130 pointer to pointer"
+    },
+    "7220": {
+      "name": "_todo_1C34",
+      "type": "int",
+      "source": "binary:v0-129 set to 0"
+    },
+    "7236": {
+      "name": "_todo_1C44",
+      "type": "void *",
+      "source": "binary:v0-125 used as void*"
+    },
+    "7244": {
+      "name": "m_pScriptSystem",
+      "type": "ScriptSystem *",
+      "source": "binary:v0-123 cast to ScriptSystem*"
+    },
+    "361": {
+      "name": "_gap_169",
+      "type": "unsigned char[3]",
+      "source": "fix:gap_fill_for_decomp_naming"
+    }
+  },
+  "binary_size": 8704,
+  "base_size": 68,
+  "base_class": "UIWnd",
+  "note": " | binary_size set to 8704 (stride from binary, was 8908)"
+}

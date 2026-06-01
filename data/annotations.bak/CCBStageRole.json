@@ -1,0 +1,486 @@
+{
+  "name": "CCBStageRole",
+  "binary_size": 6848,
+  "known_members": {
+    "0": {
+      "name": "m_pStage",
+      "type": "CCBStage *",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "m_pRoleState",
+      "type": "CCBRoleState *",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "m_sLastRole",
+      "type": "char[256]",
+      "source": "annotation"
+    },
+    "264": {
+      "name": "m_bValid",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "265": {
+      "name": "m_bVisible",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "266": {
+      "name": "m_bPaused",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "267": {
+      "name": "m_bAbsTime",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "268": {
+      "name": "m_fTimeScale",
+      "type": "float",
+      "source": "annotation"
+    },
+    "272": {
+      "name": "m_bAlive",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "273": {
+      "name": "m_bRun",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "274": {
+      "name": "m_bFlash",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "275": {
+      "name": "m_bFlashCounter",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "276": {
+      "name": "m_fFlashTimeKey",
+      "type": "float",
+      "source": "annotation"
+    },
+    "280": {
+      "name": "m_bShowWeapon",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "284": {
+      "name": "m_nBlendState",
+      "type": "float",
+      "source": "annotation"
+    },
+    "288": {
+      "name": "m_bBeSelected",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "292": {
+      "name": "m_nIndex",
+      "type": "int",
+      "source": "annotation"
+    },
+    "296": {
+      "name": "m_dwID",
+      "type": "gbMatrix4 *",
+      "source": "annotation"
+    },
+    "300": {
+      "name": "m_pActor",
+      "type": "Actor *",
+      "source": "annotation"
+    },
+    "304": {
+      "name": "m_pRawActor",
+      "type": "Actor *",
+      "source": "annotation"
+    },
+    "308": {
+      "name": "m_pWeaponModel",
+      "type": "gbGeomNode *",
+      "source": "annotation"
+    },
+    "312": {
+      "name": "m_vecWeapon",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "324": {
+      "name": "m_rotWeapon",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "336": {
+      "name": "m_vNoteThrowPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "348": {
+      "name": "m_vThrowVec",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "360": {
+      "name": "m_vecLen",
+      "type": "gbVec3D *",
+      "source": "annotation"
+    },
+    "372": {
+      "name": "m_bShowWeaponModel",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "373": {
+      "name": "m_bCatching",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "376": {
+      "name": "m_iState",
+      "type": "int",
+      "source": "annotation"
+    },
+    "380": {
+      "name": "m_bForceFinishThrowingWeapon",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "384": {
+      "name": "m_fMaxThrowSpeed",
+      "type": "float",
+      "source": "annotation"
+    },
+    "388": {
+      "name": "m_fThrowSpeed",
+      "type": "float",
+      "source": "annotation"
+    },
+    "392": {
+      "name": "m_fThrowLen",
+      "type": "float",
+      "source": "annotation"
+    },
+    "396": {
+      "name": "m_ThrowCmdData",
+      "type": "tagCmdData *",
+      "source": "annotation"
+    },
+    "440": {
+      "name": "m_OBBox",
+      "type": "gbOBBox *",
+      "source": "annotation"
+    },
+    "516": {
+      "name": "m_bTransMtl",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "517": {
+      "name": "m_bSpecTransport",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "518": {
+      "name": "m_bGrabed",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "519": {
+      "name": "m_bNormalGrab",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "520": {
+      "name": "m_dwStageTaskID",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "524": {
+      "name": "m_bExternalTask",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "528": {
+      "name": "m_fLeftWeapon",
+      "type": "float",
+      "source": "annotation"
+    },
+    "532": {
+      "name": "m_fRightWeapon",
+      "type": "float",
+      "source": "annotation"
+    },
+    "536": {
+      "name": "m_nTask",
+      "type": "int",
+      "source": "annotation"
+    },
+    "540": {
+      "name": "m_nCurTask",
+      "type": "int",
+      "source": "annotation"
+    },
+    "544": {
+      "name": "m_fp",
+      "type": "void * *[4]",
+      "source": "annotation"
+    },
+    "560": {
+      "name": "m_Task",
+      "type": "tagRoleTask[64]",
+      "source": "annotation"
+    },
+    "6704": {
+      "name": "m_dwCurWeaponIndex",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6708": {
+      "name": "m_eRoleActState",
+      "type": "ERoleActState",
+      "source": "annotation"
+    },
+    "6712": {
+      "name": "m_eCurAction",
+      "type": "ACTION_KIND",
+      "source": "annotation"
+    },
+    "6716": {
+      "name": "m_vecSunDir",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "6728": {
+      "name": "m_vecPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "6740": {
+      "name": "m_vecInitPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "6752": {
+      "name": "m_vecRunTarget",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "6764": {
+      "name": "m_vecRunVelocity",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "6776": {
+      "name": "m_fFaceDir",
+      "type": "float",
+      "source": "annotation"
+    },
+    "6780": {
+      "name": "m_fInitFaceDir",
+      "type": "float",
+      "source": "annotation"
+    },
+    "6784": {
+      "name": "m_dwCurAniFlag",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6788": {
+      "name": "m_dwAniFlagOver",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6792": {
+      "name": "m_dwAniFlagWork",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6796": {
+      "name": "m_dwAniFlagWork1",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6800": {
+      "name": "m_dwAniFlagWork2",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6804": {
+      "name": "m_dwAniFlagWork3",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6808": {
+      "name": "m_dwAniFlagPause",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6812": {
+      "name": "m_dwAniFlagStore",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6816": {
+      "name": "m_dwAniFlagFlyup",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6820": {
+      "name": "m_dwAniFlagFlydown",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6824": {
+      "name": "m_dwAniFlagThrowED",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6828": {
+      "name": "m_dwAniFlagCatchED",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6832": {
+      "name": "m_dwAniFlagSJump",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6836": {
+      "name": "m_dwAniFlagEJump",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "6840": {
+      "name": "m_dwLastExternalActionCRC",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "368": {
+      "name": "m_fStatus",
+      "type": "float",
+      "source": "binary:raw_final"
+    },
+    "400": {
+      "name": "m_nRotAngle",
+      "type": "int",
+      "source": "binary:disp32_2hits_2funcs"
+    },
+    "404": {
+      "name": "m_nCurActionOff",
+      "type": "int",
+      "source": "decomp:ptr_dispatch+GetRotAngle_set_0"
+    },
+    "416": {
+      "name": "m_nTransportRun",
+      "type": "int",
+      "source": "binary:disp32_4hits_4funcs"
+    },
+    "432": {
+      "name": "m_nUseRecoverItem",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "436": {
+      "name": "m_nProperAction",
+      "type": "int",
+      "source": "A:store_in_GetProperCurAction+ProcTransportRun_6refs"
+    },
+    "444": {
+      "name": "m_nOBBox",
+      "type": "int",
+      "source": "binary:disp32_5hits_3funcs"
+    },
+    "496": {
+      "name": "m_nCurState",
+      "type": "int",
+      "source": "A:GetCurrentState_returns_&field+store_ProcProtect_3refs"
+    },
+    "500": {
+      "name": "m_nActionType0",
+      "type": "int",
+      "source": "decomp:24stride_set_3_in_GetProperCurAction"
+    },
+    "504": {
+      "name": "m_bProperCurAction",
+      "type": "unsigned char",
+      "source": "binary:disp32_2hits_2funcs"
+    },
+    "505": {
+      "name": "m_bSlotActive0",
+      "type": "unsigned char",
+      "source": "decomp:96stride_loop_flag"
+    },
+    "506": {
+      "name": "m_bSlotBlocked0",
+      "type": "unsigned char",
+      "source": "decomp:96stride_ProcBlock_flag"
+    },
+    "364": {
+      "name": "m_fTask",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "374": {
+      "name": "m_bDelAllTask",
+      "type": "unsigned char",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "408": {
+      "name": "m_nCurActionParam",
+      "type": "int",
+      "source": "decomp:copied_from_24stride_array"
+    },
+    "420": {
+      "name": "m_ActionSlot0",
+      "type": "int",
+      "source": "decomp:24stride_array_start(GetProperCurAction_sets)"
+    },
+    "424": {
+      "name": "m_ActionSlot1",
+      "type": "int",
+      "source": "decomp:24stride_index_1"
+    },
+    "428": {
+      "name": "m_ActionSlot2",
+      "type": "int",
+      "source": "decomp:24stride_index_2"
+    },
+    "448": {
+      "name": "m_fActionSpeed0",
+      "type": "int",
+      "source": "decomp:24stride+10_float(1.0/100.0_speed_values)"
+    },
+    "412": {
+      "name": "_todo_19C",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "452": {
+      "name": "_todo_1C4",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "472": {
+      "name": "_todo_1D8",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "484": {
+      "name": "m_apSlotData",
+      "type": "int",
+      "source": "A:array_idx_reg*4+1E4h_slot_data"
+    },
+    "488": {
+      "name": "_todo_1E8",
+      "type": "float",
+      "source": "binary_scan:2refs"
+    }
+  }
+}

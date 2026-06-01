@@ -1,0 +1,563 @@
+{
+  "name": "SceneMgr",
+  "binary_size": 58692,
+  "known_members": {
+    "0": {
+      "name": "m_pGfxMgr",
+      "type": "gbGfxManager *",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "m_pSceneRoot",
+      "type": "gbSceneGraph *",
+      "source": "gen_headers_9.2"
+    },
+    "8": {
+      "name": "m_pAddEffect2",
+      "type": "gbRenderEffect *",
+      "source": "binary:Create"
+    },
+    "12": {
+      "name": "m_pAlphaEffect2",
+      "type": "gbRenderEffect *",
+      "source": "binary:Create"
+    },
+    "16": {
+      "name": "m_pAddEffect",
+      "type": "gbRenderEffect *",
+      "source": "binary:Create"
+    },
+    "20": {
+      "name": "m_pAlphaEffect",
+      "type": "gbRenderEffect *",
+      "source": "binary:Create"
+    },
+    "24": {
+      "name": "m_pCamera",
+      "type": "gbCamera *",
+      "source": "binary:Create"
+    },
+    "28": {
+      "name": "m_aSceneSlots",
+      "type": "float",
+      "source": "A:FPU_post_reattrib_0x4d064a"
+    },
+    "32": {
+      "name": "_todo_020",
+      "type": "float[12]",
+      "source": "reverted_auto_semantic_r3:11x(_nearby_4cd930,GetCurrentNode)|reverted:pseudo_semantic"
+    },
+    "80": {
+      "name": "m_PlayerAtts",
+      "type": "PlayerAtts",
+      "source": "PDB:PAL3A + binary:_DWORD* access pattern"
+    },
+    "652": {
+      "name": "m_aRoleSlotStat",
+      "type": "int[11]",
+      "comment": "role slot base stats: [0]=slotState, [1]=speed, [2]=actionType, [3]=defense, [4]=damage, accessed with stride 352",
+      "source": "A+:free_functions::FullInit GetSlotState/CalcSpeedByLevel/CalcDefenseByLevel"
+    },
+    "696": {
+      "name": "m_nSlotCount",
+      "type": "int[1]",
+      "comment": "slot count parameter (set to 2 in PAL3::Init)",
+      "source": "A+:PAL3::Init # =2; StateUI sprintf"
+    },
+    "756": {
+      "name": "m_nSlotMemberCount",
+      "type": "int[1]",
+      "comment": "slot member count per level (GetRoleCount)",
+      "source": "A+:free_functions::FullInit GetRoleCount"
+    },
+    "868": {
+      "name": "m_aEquipGDB_ArmorData",
+      "type": "int[1]",
+      "comment": "armor slot GDB data (field_00 in PAL_GDB::LoadByType case 3)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
+    },
+    "872": {
+      "name": "m_aEquipWField_01",
+      "type": "int[1]",
+      "comment": "equip slot 1 wield flag (set=0 Init, set=1 in PlayerMgr weapon WU)",
+      "source": "A+:PAL3::Init set=0 + PlayerMgr weaponWU set=1"
+    },
+    "876": {
+      "name": "m_aEquipGDB_ArmorFlag",
+      "type": "int[1]",
+      "comment": "armor slot GDB flag/count (field_02, paired with ArmorData)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
+    },
+    "880": {
+      "name": "m_aEquipGDB_WeaponData",
+      "type": "int[1]",
+      "comment": "weapon GDB data (field_03, case 0)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
+    },
+    "884": {
+      "name": "m_aEquipWField_04",
+      "type": "int[1]",
+      "comment": "equip slot 4 wield flag",
+      "source": "A+:PAL3::Init set=0 + PlayerMgr weaponWU set=1"
+    },
+    "888": {
+      "name": "m_aEquipGDB_ItemData",
+      "type": "int[1]",
+      "comment": "item/consumable GDB data (field_06, case 4)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
+    },
+    "892": {
+      "name": "m_aEquipGDB_WeaponFlag",
+      "type": "int[1]",
+      "comment": "weapon GDB flag (field_05, paired)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
+    },
+    "896": {
+      "name": "m_aEquipWField_07",
+      "type": "int[1]",
+      "comment": "equip slot 7 wield flag",
+      "source": "A+:PAL3::Init set=0 + PlayerMgr weaponWU set=1"
+    },
+    "900": {
+      "name": "m_aEquipGDB_ItemFlag",
+      "type": "int[1]",
+      "comment": "item/consumable GDB flag (field_08, paired)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
+    },
+    "904": {
+      "name": "m_aEquipGDB_Acc1Data",
+      "type": "int[1]",
+      "comment": "accessory1 GDB data (field_09, case 2)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
+    },
+    "908": {
+      "name": "m_aEquipWField_0A",
+      "type": "int[1]",
+      "comment": "equip slot 10 wield flag",
+      "source": "A+:PAL3::Init set=0 + PlayerMgr weaponWU set=1"
+    },
+    "912": {
+      "name": "m_aEquipGDB_Acc2Data",
+      "type": "int[1]",
+      "comment": "accessory2 GDB data (field_0C, case 5)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
+    },
+    "916": {
+      "name": "m_aEquipGDB_Acc1Flag",
+      "type": "int[1]",
+      "comment": "accessory1 GDB flag (field_0B, paired)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
+    },
+    "920": {
+      "name": "m_aEquipWField_0D",
+      "type": "int[1]",
+      "comment": "equip slot 13 wield flag",
+      "source": "A+:PAL3::Init set=0 + PlayerMgr weaponWU set=1"
+    },
+    "924": {
+      "name": "m_aEquipGDB_Acc2Flag",
+      "type": "int[1]",
+      "comment": "accessory2 GDB flag (field_0E, paired)",
+      "source": "A+:PAL_GDB::LoadByType(0x0049C2C0) equipment slot dispatch + EquipUI"
+    },
+    "932": {
+      "name": "m_aSkillGDB_0F",
+      "type": "int[1]",
+      "comment": "GDB skill field (set 1 in PAL_GDB)",
+      "source": "A+:PAL_GDB GDB_GetSkillNum; PalScript skill handling"
+    },
+    "936": {
+      "name": "m_apSkillData",
+      "type": "int[1]",
+      "comment": "per-slot GDB skill/item data pointer array (FightItem*), stride 352",
+      "source": "A+:PAL_GDB GDB_GetSkillNum result; deref as skill struct ptr"
+    },
+    "940": {
+      "name": "m_aScriptDelay",
+      "type": "int[1]",
+      "comment": "script execution delay (*0.05 to get float seconds)",
+      "source": "A+:free_functions RunScript; PAL_GDB combat formula"
+    },
+    "944": {
+      "name": "m_aViewModeParamA",
+      "type": "int[1]",
+      "comment": "view mode parameter A (used in CScreenMode+RenderTarget)",
+      "source": "A+:CScreenMode::Init; RenderTarget sprintf"
+    },
+    "948": {
+      "name": "m_aViewModeParamB",
+      "type": "int[1]",
+      "comment": "view mode parameter B (paired with ParamA)",
+      "source": "A+:CScreenMode::Init; RenderTarget sprintf"
+    },
+    "952": {
+      "name": "m_aEquipVal_0",
+      "type": "int[1]",
+      "comment": "equip slot display value 0",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
+    },
+    "956": {
+      "name": "m_aEquipVal_1",
+      "type": "int[1]",
+      "comment": "equip slot display value 1",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
+    },
+    "960": {
+      "name": "m_aEquipVal_2",
+      "type": "int[1]",
+      "comment": "equip slot display value 2",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
+    },
+    "964": {
+      "name": "m_aEquipVal_3",
+      "type": "int[1]",
+      "comment": "equip slot display value 3",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
+    },
+    "968": {
+      "name": "m_aEquipVal_4",
+      "type": "int[1]",
+      "comment": "equip slot display value 4",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
+    },
+    "972": {
+      "name": "m_aEquipVal_5",
+      "type": "int[1]",
+      "comment": "equip slot display value 5",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
+    },
+    "976": {
+      "name": "m_aEquipVal_6",
+      "type": "int[1]",
+      "comment": "equip slot display value 6",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
+    },
+    "980": {
+      "name": "m_aEquipVal_7",
+      "type": "int[1]",
+      "comment": "equip slot display value 7",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
+    },
+    "984": {
+      "name": "m_aEquipVal_8",
+      "type": "int[1]",
+      "comment": "equip slot display value 8",
+      "source": "A+:StateUI sprintf per-equip-slot display; MainPropUI"
+    },
+    "988": {
+      "name": "m_aScriptTransition",
+      "type": "int[1]",
+      "comment": "script transition time (*0.5 to get float seconds)",
+      "source": "A+:free_functions RunScript(*0.5) + calc diff in PAL_GDB"
+    },
+    "992": {
+      "name": "m_aScreenModeParam",
+      "type": "int[1]",
+      "comment": "screen mode parameter (camera collision + mode init)",
+      "source": "A+:CScreenMode::Init; CameraCtrl; ScriptSystem subtract"
+    },
+    "996": {
+      "name": "m_aScreenModeParam2",
+      "type": "int[1]",
+      "comment": "screen mode parameter 2 (paired with Param)",
+      "source": "A+:CScreenMode::Init; CameraCtrl; ScriptSystem subtract"
+    },
+    "1008": {
+      "name": "_todo_3F0",
+      "type": "int[1]",
+      "comment": "role state display param (set 3 in Init; NO read references found)",
+      "source": "A+:PAL3::Init constant + s_RoleState display (was m_nInitParamRoleState)"
+    },
+    "1012": {
+      "name": "_todo_3F4",
+      "type": "int[1]",
+      "comment": "role state display param (set 2 in Init; NO read references found)",
+      "source": "A+:PAL3::Init constant + s_RoleState display (was m_nInitParamUnknown1)"
+    },
+    "1016": {
+      "name": "m_aStatMaxVal_Exp",
+      "type": "int[1]",
+      "comment": "EXP bar max value (set 3; displayed via m_ExpVal UICaption in s_RoleState)",
+      "source": "A+:s_RoleState::LoadAndSetupRole(0x4A3A90) bar-display pattern"
+    },
+    "1020": {
+      "name": "m_aStatMaxVal_NextLv",
+      "type": "int[1]",
+      "comment": "next level EXP bar max (set 3; m_NextLv UICaption)",
+      "source": "A+:s_RoleState::LoadAndSetupRole(0x4A3A90) bar-display pattern"
+    },
+    "1024": {
+      "name": "m_aStatMaxVal_WuLing0",
+      "type": "int[1]",
+      "comment": "WuLing element 0 bar max (set 6; m_WuLing[0] UICaption)",
+      "source": "A+:s_RoleState::LoadAndSetupRole(0x4A3A90) bar-display pattern"
+    },
+    "1028": {
+      "name": "m_aStatMaxVal_WuLing1",
+      "type": "int[1]",
+      "comment": "WuLing element 1 bar max (set 1; m_WuLing[1] UICaption)",
+      "source": "A+:s_RoleState::LoadAndSetupRole(0x4A3A90) bar-display pattern"
+    },
+    "1032": {
+      "name": "m_aStatMaxVal_WuLing2",
+      "type": "int[1]",
+      "comment": "WuLing element 2 bar max (set 2; m_WuLing[2] UICaption)",
+      "source": "A+:s_RoleState::LoadAndSetupRole(0x4A3A90) bar-display pattern"
+    },
+    "1036": {
+      "name": "m_nGDBItemCount",
+      "type": "int[1]",
+      "comment": "GDB item count limit (set 2224 in Init; used in GDB_GetRoleNum)",
+      "source": "A+:PAL3::Init =2224; SystemUI GDB_GetRoleNum"
+    },
+    "1040": {
+      "name": "m_nUIDisplayCount",
+      "type": "int[1]",
+      "comment": "UI display count (set 10 in Init; used in CCBUI/SwordUI calc)",
+      "source": "A+:PAL3::Init=10; CCBUI/SwordUI division calc"
+    },
+    "1044": {
+      "name": "m_nGDBRoleCount",
+      "type": "int[1]",
+      "comment": "GDB role count (stored in PAL_GDB)",
+      "source": "A+:PAL_GDB::RoleData save"
+    },
+    "1048": {
+      "name": "m_aNPCData",
+      "type": "int[1]",
+      "comment": "NPC entity property array (memset+set by index)",
+      "source": "A+:NPC::InitAll memset+PropertyByIndex"
+    },
+    "1080": {
+      "name": "m_aNPCFieldData",
+      "type": "int[1]",
+      "comment": "NPC multi-field property array (stride 352, mult fields per slot)",
+      "source": "A+:PAL_GDB::SetRoleData + free_functions"
+    },
+    "1144": {
+      "name": "m_aNPCPropByType",
+      "type": "int[1]",
+      "comment": "NPC property by role type + property type index",
+      "source": "A+:NPC::InitNPCProp"
+    },
+    "1176": {
+      "name": "m_aNPCPropByType2",
+      "type": "int[1]",
+      "comment": "NPC property by role type + property type index",
+      "source": "A+:NPC::InitNPCProp"
+    },
+    "1240": {
+      "name": "m_aNPCPropBySlot",
+      "type": "int[1]",
+      "comment": "NPC property by role slot index",
+      "source": "A+:NPC::InitNPCProp"
+    },
+    "1376": {
+      "name": "m_RenderBuffer",
+      "type": "int[12]",
+      "comment": "render buffer (size capped to 48 bytes to avoid overlap)",
+      "source": "A+:query_class_full memset(&_todo_560[239],0,0xA000)"
+    },
+    "1424": {
+      "name": "_todo_590",
+      "type": "int[1412]",
+      "comment": "RoleSystem buffer (capped at 5648B to avoid overlap with m_pCCBStageRoleFind)",
+      "source": "binary: Buffer members match RoleSystem; fread size 0x1B80"
+    },
+    "7072": {
+      "name": "m_pCCBStageRoleFind",
+      "type": "CCBStageRole *",
+      "source": "global_analysis:g_CCBStageRoleFind"
+    },
+    "7112": {
+      "name": "m_bRoleSlotValid",
+      "type": "unsigned char[8]",
+      "source": "global_analysis:g_bRoleSlotValid"
+    },
+    "7120": {
+      "name": "m_RoleSystems",
+      "type": "RoleSystem[5]",
+      "source": "binary:scenemgr_layout.md"
+    },
+    "51716": {
+      "name": "_field_0CA64",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "51724": {
+      "name": "_field_0CA6C",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "51748": {
+      "name": "_field_0CA84",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "51752": {
+      "name": "_field_0CA88",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "51756": {
+      "name": "_field_0CA8C",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "51784": {
+      "name": "_field_0CAA8",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "51820": {
+      "name": "_field_0CACC",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "52396": {
+      "name": "m_fMoveParam",
+      "type": "float",
+      "source": "gen_headers_9.2"
+    },
+    "52404": {
+      "name": "_field_0CD14",
+      "type": "float",
+      "source": "binary:scenemgr_high"
+    },
+    "52408": {
+      "name": "_field_0CD18",
+      "type": "float",
+      "source": "binary:scenemgr_high"
+    },
+    "52456": {
+      "name": "_field_0CD48",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "52460": {
+      "name": "_field_0CD4C",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "52492": {
+      "name": "m_fTileSize",
+      "type": "float",
+      "source": "binary: used as float divisor in position calc; dword_C1109C"
+    },
+    "53104": {
+      "name": "m_fCamFOV",
+      "type": "float",
+      "source": "binary:5refs_+0xCFD0"
+    },
+    "53112": {
+      "name": "_field_0CFD8",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "53116": {
+      "name": "_field_0CFDC",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "53156": {
+      "name": "m_vCameraTarget",
+      "type": "float[3]",
+      "source": "binary:CameraUpdate_CheckCollision"
+    },
+    "53172": {
+      "name": "m_vCameraPos",
+      "type": "float[3]",
+      "source": "binary:CameraUpdate_GetCursorPos"
+    },
+    "53200": {
+      "name": "m_vCamLookAt",
+      "type": "float[3]",
+      "source": "binary:4refs_+0xD030"
+    },
+    "53296": {
+      "name": "m_CamMatrix",
+      "type": "float[4]",
+      "source": "binary:cluster_+0xD090"
+    },
+    "53312": {
+      "name": "m_fCamDist",
+      "type": "float",
+      "source": "binary:8refs_+0xD0A0"
+    },
+    "53324": {
+      "name": "_field_0D0AC",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "53332": {
+      "name": "_field_0D0B4",
+      "type": "int",
+      "source": "binary:scenemgr_high"
+    },
+    "53460": {
+      "name": "m_nCollisionFlags",
+      "type": "int",
+      "source": "binary:5refs_+0xD334"
+    },
+    "53872": {
+      "name": "m_pControlledRole",
+      "type": "RoleSystem *",
+      "source": "binary:CameraUpdate_RoleSystem_calls"
+    },
+    "53876": {
+      "name": "m_bCameraActive",
+      "type": "int",
+      "source": "binary:CameraUpdate_flag"
+    },
+    "53980": {
+      "name": "_field_0D33C",
+      "type": "float",
+      "source": "binary:scenemgr_high"
+    },
+    "53984": {
+      "name": "_field_0D340",
+      "type": "float",
+      "source": "binary:scenemgr_high"
+    },
+    "54010": {
+      "name": "m_bPathEnabled",
+      "type": "unsigned char",
+      "source": "decomp_context"
+    },
+    "54012": {
+      "name": "m_pRoleSystem",
+      "type": "RoleSystem *",
+      "source": "decomp_context"
+    },
+    "54016": {
+      "name": "m_nCameraFlags",
+      "type": "int",
+      "source": "decomp_context"
+    },
+    "57568": {
+      "name": "m_nRoleCount",
+      "type": "int",
+      "source": "binary:*((_DWORD *)this+14392) count for Role array"
+    },
+    "50640": {
+      "name": "m_pGameData",
+      "type": "CGameData *",
+      "source": "docs:scenemgr_layout.md"
+    },
+    "50644": {
+      "name": "_unkC5D4",
+      "type": "int",
+      "source": "docs:scenemgr_layout.md"
+    },
+    "50648": {
+      "name": "m_pCameraCtrl",
+      "type": "CameraCtrl *",
+      "source": "docs:scenemgr_layout.md"
+    },
+    "50652": {
+      "name": "m_pScriptCtrl",
+      "type": "PalScriptMgr *",
+      "source": "docs:scenemgr_layout.md"
+    }
+  }
+}

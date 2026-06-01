@@ -1,0 +1,56 @@
+{
+  "name": "tagStageTask",
+  "binary_size": 2632,
+  "known_members": {
+    "0": {
+      "name": "eTask",
+      "type": "ECBStageTask",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "eStats",
+      "type": "ECBStageTaskState",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "nSubTask",
+      "type": "int",
+      "source": "annotation"
+    },
+    "16": {
+      "name": "SubTask",
+      "type": "tagStageSubTask[32]",
+      "source": "annotation"
+    },
+    "2576": {
+      "name": "dwID",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "2580": {
+      "name": "dwReturn",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "2584": {
+      "name": "cmd",
+      "type": "tagCmdData",
+      "source": "annotation"
+    },
+    "2628": {
+      "name": "bValid",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "2629": {
+      "name": "bAutoDel",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "12": {
+      "name": "nReserved",
+      "type": "int",
+      "source": "binary:gap_between_nSubTask_and_SubTask"
+    }
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "name": "ScriptSystem",
+  "binary_size": 8704,
+  "note": "NOT a class. Global array at dword_C05F60, stride=8704. Cdecl functions. Each slot mirrors RoleSystem state.",
+  "known_members": {
+    "0": {
+      "name": "m_nSlotID",
+      "type": "int",
+      "source": "type_fix:float->int(naming_convention:prefix m_n indicates integer (number))"
+    },
+    "4": {
+      "name": "m_vPos_x",
+      "type": "float",
+      "source": "binary:Execute dword_C05F64=v2[1], v2=g_pRoleSystem"
+    },
+    "8": {
+      "name": "m_vPos_y",
+      "type": "float",
+      "source": "binary:Execute dword_C05F68=v2[2]"
+    },
+    "12": {
+      "name": "m_vPos_z",
+      "type": "float",
+      "source": "binary:Execute dword_C05F6C=v2[3]"
+    },
+    "20": {
+      "name": "_todo_14",
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
+    },
+    "24": {
+      "name": "_todo_18",
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
+    },
+    "28": {
+      "name": "_todo_1C",
+      "type": "int",
+      "source": "binary:Execute dword_C05F7C=v2[7]"
+    },
+    "32": {
+      "name": "_todo_20",
+      "type": "int",
+      "source": "binary:Execute dword_C05F80=v2[8]"
+    },
+    "36": {
+      "name": "_todo_24",
+      "type": "int",
+      "source": "binary:Execute dword_C05F84=v2[9]"
+    },
+    "40": {
+      "name": "_todo_28",
+      "type": "int",
+      "source": "binary:Execute dword_C05F88=v2[10]"
+    },
+    "148": {
+      "name": "m_vRot_x",
+      "type": "float",
+      "source": "binary:Execute dword_C05FF4=v2[37], from RoleSystem+0x94"
+    },
+    "152": {
+      "name": "m_vRot_y",
+      "type": "float",
+      "source": "binary:Execute dword_C05FF8=v2[38]"
+    },
+    "156": {
+      "name": "m_vRot_z",
+      "type": "float",
+      "source": "binary:Execute dword_C05FFC=v2[39]"
+    },
+    "160": {
+      "name": "m_vDir_x",
+      "type": "float",
+      "source": "binary:Execute dword_C06000=v2[40], from RoleSystem+0xA0"
+    },
+    "164": {
+      "name": "m_vDir_y",
+      "type": "float",
+      "source": "binary:Execute dword_C06004=v2[41]"
+    },
+    "168": {
+      "name": "m_vDir_z",
+      "type": "float",
+      "source": "binary:Execute dword_C06008=v2[42]"
+    },
+    "628": {
+      "name": "m_nActionID",
+      "type": "int",
+      "source": "binary:Execute dword_C061D4=v2[157], from RoleSystem+0x274"
+    },
+    "632": {
+      "name": "m_bActive",
+      "type": "int",
+      "source": "binary:Execute dword_C061D8=0/1"
+    },
+    "8688": {
+      "name": "m_nSaveRot_x",
+      "type": "float",
+      "source": "binary:Execute dword_C08150=v2[2172], from RoleSystem+0x21F0"
+    },
+    "8692": {
+      "name": "m_nSaveRot_y",
+      "type": "float",
+      "source": "binary:Execute dword_C08154=v2[2173]"
+    },
+    "8696": {
+      "name": "m_nSaveRot_z",
+      "type": "float",
+      "source": "binary:Execute dword_C08158=v2[2174]"
+    },
+    "8700": {
+      "name": "m_nSaveDir",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "144": {
+      "name": "m_nMoveState",
+      "type": "int",
+      "source": "binary:UpdateTimers this+144, checked != 0"
+    },
+    "680": {
+      "name": "m_Object3D",
+      "type": "int",
+      "source": "binary:UpdateTimers sub_536FB0(this+680), Object3D method"
+    },
+    "1264": {
+      "name": "m_nActionState",
+      "type": "int",
+      "source": "binary:UpdateTimers this+1264 ==4 check"
+    },
+    "1268": {
+      "name": "m_nMoveMode",
+      "type": "int",
+      "source": "binary:UpdateTimers this+1268 ==12 check"
+    },
+    "1284": {
+      "name": "m_nSceneState",
+      "type": "int",
+      "source": "binary:UpdateObjects this+1284 = dword_C08664"
+    },
+    "1296": {
+      "name": "m_vSavePos1_x",
+      "type": "float",
+      "source": "binary:UpdateTimers this+1296 = this+1308"
+    },
+    "1300": {
+      "name": "m_vSavePos1_y",
+      "type": "float",
+      "source": "binary:UpdateTimers this+1300 = this+1312"
+    },
+    "1304": {
+      "name": "m_vSavePos1_z",
+      "type": "float",
+      "source": "binary:UpdateTimers this+1304 = this+1316"
+    },
+    "1308": {
+      "name": "m_vSrcPos_x",
+      "type": "float",
+      "source": "binary:UpdateTimers copied to +1296"
+    },
+    "1312": {
+      "name": "m_vSrcPos_y",
+      "type": "float",
+      "source": "binary:UpdateTimers copied to +1300"
+    },
+    "1316": {
+      "name": "m_vSrcPos_z",
+      "type": "float",
+      "source": "binary:UpdateTimers copied to +1304"
+    },
+    "1344": {
+      "name": "m_vTargetPos",
+      "type": "float",
+      "source": "binary:UpdateObjects sub_419090(this+1344)"
+    },
+    "104": {
+      "name": "m_szFmtBuf",
+      "type": "char[40]",
+      "source": "binary:gap_r2 | type_fix:int→char[40](sprintf(&this->_field_068,\"%d\",...))"
+    },
+    "904": {
+      "name": "_field_388",
+      "type": "int",
+      "source": "binary:gap_r2"
+    },
+    "900": {
+      "name": "_field_384",
+      "type": "int",
+      "source": "binary:7x [reg+0x384] in ScriptSystem::_init_4890a0, reg=this(ebp/ebx/esi)"
+    },
+    "909": {
+      "name": "m_bOpcodeFlag",
+      "type": "unsigned char",
+      "source": "ida_decomp:_init_4890a0 = 0, = v25, 5 refs"
+    },
+    "910": {
+      "name": "m_bExecFlag",
+      "type": "unsigned char",
+      "source": "ida_decomp:_init_4890a0 = 0, 4 refs"
+    },
+    "911": {
+      "name": "m_bBlockFlag",
+      "type": "unsigned char",
+      "source": "ida_decomp:_init_4890a0 = 0, 3 refs"
+    },
+    "1348": {
+      "name": "m_fObjects",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "1352": {
+      "name": "m_fTargetDir",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "1468": {
+      "name": "_todo_5BC",
+      "type": "int",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "1472": {
+      "name": "_todo_5C0",
+      "type": "int",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "1476": {
+      "name": "_todo_5C4",
+      "type": "int",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "877": {
+      "name": "_todo_36D",
+      "type": "unsigned char",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "1320": {
+      "name": "m_vMoveDir_x",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, gbVec3D::Length)"
+    },
+    "1324": {
+      "name": "m_vMoveDir_y",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, /fVal, *v16)"
+    },
+    "1328": {
+      "name": "m_vMoveDir_z",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, /fVal, *v16)"
+    },
+    "1480": {
+      "name": "_todo_5C8",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "176": {
+      "name": "_todo_0B0",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "200": {
+      "name": "_todo_0C8",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "208": {
+      "name": "_todo_0D0",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "268": {
+      "name": "_todo_10C",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "448": {
+      "name": "_todo_1C0",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "636": {
+      "name": "_todo_27C",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "1084": {
+      "name": "_todo_43C",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "1388": {
+      "name": "_todo_56C",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    }
+  }
+}

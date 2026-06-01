@@ -1,0 +1,481 @@
+{
+  "name": "BINK",
+  "binary_size": 932,
+  "known_members": {
+    "0": {
+      "name": "Width",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "Height",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "Frames",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "12": {
+      "name": "FrameNum",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "16": {
+      "name": "LastFrameNum",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "20": {
+      "name": "FrameRate",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "24": {
+      "name": "FrameRateDiv",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "28": {
+      "name": "ReadError",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "32": {
+      "name": "OpenFlags",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "36": {
+      "name": "BinkType",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "40": {
+      "name": "Size",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "44": {
+      "name": "FrameSize",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "48": {
+      "name": "SndSize",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "52": {
+      "name": "FrameRects",
+      "type": "BINKRECT[8]",
+      "source": "annotation"
+    },
+    "180": {
+      "name": "NumRects",
+      "type": "long",
+      "source": "annotation"
+    },
+    "184": {
+      "name": "PlaneNum",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "188": {
+      "name": "YPlane",
+      "type": "void *[2]",
+      "source": "annotation"
+    },
+    "196": {
+      "name": "APlane",
+      "type": "void *[2]",
+      "source": "annotation"
+    },
+    "204": {
+      "name": "YWidth",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "208": {
+      "name": "YHeight",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "212": {
+      "name": "UVWidth",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "216": {
+      "name": "UVHeight",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "220": {
+      "name": "MaskPlane",
+      "type": "void *",
+      "source": "annotation"
+    },
+    "224": {
+      "name": "MaskPitch",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "228": {
+      "name": "MaskLength",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "232": {
+      "name": "LargestFrameSize",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "236": {
+      "name": "InternalFrames",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "240": {
+      "name": "NumTracks",
+      "type": "long",
+      "source": "annotation"
+    },
+    "244": {
+      "name": "Highest1SecRate",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "248": {
+      "name": "Highest1SecFrame",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "252": {
+      "name": "Paused",
+      "type": "long",
+      "source": "annotation"
+    },
+    "256": {
+      "name": "BackgroundThread",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "260": {
+      "name": "compframe",
+      "type": "void *",
+      "source": "annotation"
+    },
+    "264": {
+      "name": "preloadptr",
+      "type": "void *",
+      "source": "annotation"
+    },
+    "268": {
+      "name": "frameoffsets",
+      "type": "DWORD *",
+      "source": "annotation"
+    },
+    "272": {
+      "name": "bio",
+      "type": "BINKIO",
+      "source": "annotation"
+    },
+    "476": {
+      "name": "ioptr",
+      "type": "BYTE *",
+      "source": "annotation"
+    },
+    "480": {
+      "name": "iosize",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "484": {
+      "name": "decompwidth",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "488": {
+      "name": "decompheight",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "492": {
+      "name": "trackindex",
+      "type": "long",
+      "source": "annotation"
+    },
+    "496": {
+      "name": "tracksizes",
+      "type": "DWORD *",
+      "source": "annotation"
+    },
+    "500": {
+      "name": "tracktypes",
+      "type": "DWORD *",
+      "source": "annotation"
+    },
+    "504": {
+      "name": "trackIDs",
+      "type": "int *",
+      "source": "annotation"
+    },
+    "508": {
+      "name": "numrects",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "512": {
+      "name": "playedframes",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "516": {
+      "name": "firstframetime",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "520": {
+      "name": "startframetime",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "524": {
+      "name": "startblittime",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "528": {
+      "name": "startsynctime",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "532": {
+      "name": "startsyncframe",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "536": {
+      "name": "twoframestime",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "540": {
+      "name": "entireframetime",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "544": {
+      "name": "slowestframetime",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "548": {
+      "name": "slowestframe",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "552": {
+      "name": "slowest2frametime",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "556": {
+      "name": "slowest2frame",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "560": {
+      "name": "soundon",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "564": {
+      "name": "videoon",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "568": {
+      "name": "totalmem",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "572": {
+      "name": "timevdecomp",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "576": {
+      "name": "timeadecomp",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "580": {
+      "name": "timeblit",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "584": {
+      "name": "timeopen",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "588": {
+      "name": "fileframerate",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "592": {
+      "name": "fileframeratediv",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "596": {
+      "name": "threadcontrol",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "600": {
+      "name": "runtimeframes",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "604": {
+      "name": "runtimemoveamt",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "608": {
+      "name": "rtframetimes",
+      "type": "DWORD *",
+      "source": "annotation"
+    },
+    "612": {
+      "name": "rtadecomptimes",
+      "type": "DWORD *",
+      "source": "annotation"
+    },
+    "616": {
+      "name": "rtvdecomptimes",
+      "type": "DWORD *",
+      "source": "annotation"
+    },
+    "620": {
+      "name": "rtblittimes",
+      "type": "DWORD *",
+      "source": "annotation"
+    },
+    "624": {
+      "name": "rtreadtimes",
+      "type": "DWORD *",
+      "source": "annotation"
+    },
+    "628": {
+      "name": "rtidlereadtimes",
+      "type": "DWORD *",
+      "source": "annotation"
+    },
+    "632": {
+      "name": "rtthreadreadtimes",
+      "type": "DWORD *",
+      "source": "annotation"
+    },
+    "636": {
+      "name": "lastblitflags",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "640": {
+      "name": "lastdecompframe",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "644": {
+      "name": "sndbufsize",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "648": {
+      "name": "sndbuf",
+      "type": "BYTE *",
+      "source": "annotation"
+    },
+    "652": {
+      "name": "sndend",
+      "type": "BYTE *",
+      "source": "annotation"
+    },
+    "656": {
+      "name": "sndwritepos",
+      "type": "BYTE *",
+      "source": "annotation"
+    },
+    "660": {
+      "name": "sndreadpos",
+      "type": "BYTE *",
+      "source": "annotation"
+    },
+    "664": {
+      "name": "sndcomp",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "668": {
+      "name": "sndamt",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "672": {
+      "name": "sndreenter",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "676": {
+      "name": "sndconvert8",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "680": {
+      "name": "bsnd",
+      "type": "BINKSND",
+      "source": "annotation"
+    },
+    "872": {
+      "name": "skippedlastblit",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "876": {
+      "name": "skippedblits",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "880": {
+      "name": "soundskips",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "884": {
+      "name": "sndendframe",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "888": {
+      "name": "sndprime",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "892": {
+      "name": "sndpad",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "896": {
+      "name": "bunp",
+      "type": "BUNDLEPOINTERS",
+      "source": "annotation"
+    }
+  }
+}

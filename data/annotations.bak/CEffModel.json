@@ -1,0 +1,61 @@
+{
+  "name": "CEffModel",
+  "binary_size": 104,
+  "known_members": {
+    "48": {
+      "name": "m_pGeomNode",
+      "type": "gbGeomNode *",
+      "source": "annotation"
+    },
+    "52": {
+      "name": "m_vecCurPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "64": {
+      "name": "m_vecOffsetPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "76": {
+      "name": "m_vecRot",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "88": {
+      "name": "m_bVisible",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "89": {
+      "name": "m_bAdditiveBlend",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "90": {
+      "name": "m_bNoZTest",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "92": {
+      "name": "m_fSizeX",
+      "type": "float",
+      "source": "annotation"
+    },
+    "96": {
+      "name": "m_fSizeY",
+      "type": "float",
+      "source": "annotation"
+    },
+    "100": {
+      "name": "m_fSizeZ",
+      "type": "float",
+      "source": "annotation"
+    }
+  },
+  "base_class": [
+    "CEffObj",
+    "CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>",
+    "CTaskTpl_tagEffTaskParam_CEffModel"
+  ]
+}

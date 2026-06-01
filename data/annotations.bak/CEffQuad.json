@@ -1,0 +1,110 @@
+{
+  "name": "CEffQuad",
+  "binary_size": 4272,
+  "known_members": {
+    "48": {
+      "name": "m_bActive",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "49": {
+      "name": "m_bVisible",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "50": {
+      "name": "m_bAniFrame",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "51": {
+      "name": "m_bBillBoard",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "52": {
+      "name": "m_bAdditiveBlend",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "53": {
+      "name": "m_bNoZTest",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "54": {
+      "name": "m_byMaxFrame",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "56": {
+      "name": "m_nRequireLoops",
+      "type": "int",
+      "source": "annotation"
+    },
+    "60": {
+      "name": "m_nQuadNum",
+      "type": "int",
+      "source": "annotation"
+    },
+    "64": {
+      "name": "m_nGeomQuadNum",
+      "type": "int",
+      "source": "annotation"
+    },
+    "68": {
+      "name": "m_nMaxQuad",
+      "type": "int",
+      "source": "annotation"
+    },
+    "72": {
+      "name": "m_nLastCreatedQuad",
+      "type": "int",
+      "source": "annotation"
+    },
+    "76": {
+      "name": "m_StartQuad",
+      "type": "tagQuad",
+      "source": "annotation"
+    },
+    "156": {
+      "name": "m_pQuad",
+      "type": "tagQuad *",
+      "source": "annotation"
+    },
+    "160": {
+      "name": "m_pGeomQuad",
+      "type": "gbGeomQuad *",
+      "source": "annotation"
+    },
+    "164": {
+      "name": "m_pnG2Q",
+      "type": "int *",
+      "source": "annotation"
+    },
+    "168": {
+      "name": "m_DefaultUVSet",
+      "type": "tagUV[256]",
+      "source": "annotation"
+    },
+    "4264": {
+      "name": "m_pTexture",
+      "type": "gbTexture *",
+      "source": "annotation"
+    },
+    "4268": {
+      "name": "m_pTextureArray",
+      "type": "gbTextureArray *",
+      "source": "annotation"
+    },
+    "0": {
+      "name": "vfptr",
+      "type": "int",
+      "source": "binary:vtable_ptr"
+    }
+  },
+  "base_class": [
+    "CEffObj",
+    "CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffQuad::*)(unsigned long)>"
+  ]
+}

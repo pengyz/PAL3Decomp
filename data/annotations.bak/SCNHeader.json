@@ -1,0 +1,36 @@
+{
+  "name": "SCNHeader",
+  "binary_size": 18,
+  "known_members": {
+    "0": {
+      "name": "magic",
+      "type": "unsigned char[4]",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "version",
+      "type": "WORD",
+      "source": "annotation"
+    },
+    "6": {
+      "name": "numnpc",
+      "type": "WORD",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "offsetnpc",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "12": {
+      "name": "numobj",
+      "type": "WORD",
+      "source": "annotation"
+    },
+    "14": {
+      "name": "offsetobj",
+      "type": "DWORD",
+      "source": "annotation"
+    }
+  }
+}

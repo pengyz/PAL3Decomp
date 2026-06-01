@@ -1,0 +1,81 @@
+{
+  "name": "FightInfo",
+  "binary_size": 96,
+  "known_members": {
+    "0": {
+      "name": "monsterID",
+      "type": "unsigned int[6]",
+      "source": "annotation"
+    },
+    "24": {
+      "name": "nAllMonsterNum",
+      "type": "int",
+      "source": "annotation"
+    },
+    "28": {
+      "name": "nMaxRound",
+      "type": "int",
+      "source": "annotation"
+    },
+    "32": {
+      "name": "sSceneName",
+      "type": "char[32]",
+      "source": "annotation"
+    },
+    "64": {
+      "name": "eSceneFiveMagic",
+      "type": "ECBFiveMagic",
+      "source": "annotation"
+    },
+    "68": {
+      "name": "eMeetType",
+      "type": "ECBMeetEnemy",
+      "source": "annotation"
+    },
+    "72": {
+      "name": "eBattleFieldAttr",
+      "type": "ECBBattleFieldAttr",
+      "source": "annotation"
+    },
+    "76": {
+      "name": "bMustFail",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "80": {
+      "name": "nRoleWillNotBeAttack",
+      "type": "int",
+      "source": "annotation"
+    },
+    "84": {
+      "name": "bScript",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "85": {
+      "name": "bBossMusic",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "86": {
+      "name": "bFiveNimbus",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "87": {
+      "name": "bPXVariance",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "88": {
+      "name": "bFirst",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "92": {
+      "name": "pMosnter",
+      "type": "Role *",
+      "source": "annotation"
+    }
+  }
+}

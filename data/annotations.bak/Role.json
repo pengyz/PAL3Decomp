@@ -1,0 +1,381 @@
+{
+  "name": "Role",
+  "binary_size": 8928,
+  "known_members": {
+    "96": {
+      "name": "m_cmdqueue",
+      "type": "std::queue<Role::ScriptCmd,std::deque<Role::ScriptCmd,std::allocator<Role::ScriptCmd> > >",
+      "source": "annotation"
+    },
+    "144": {
+      "name": "m_bInView",
+      "type": "int",
+      "source": "annotation"
+    },
+    "148": {
+      "name": "m_groundpos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "160": {
+      "name": "m_renderpos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "172": {
+      "name": "m_npcinfo",
+      "type": "NPCInfo",
+      "source": "annotation"
+    },
+    "628": {
+      "name": "m_onlayer",
+      "type": "int",
+      "source": "annotation"
+    },
+    "632": {
+      "name": "m_active",
+      "type": "int",
+      "source": "annotation"
+    },
+    "636": {
+      "name": "bCGMonster",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "640": {
+      "name": "nCGMonsterID",
+      "type": "int",
+      "source": "annotation"
+    },
+    "644": {
+      "name": "nCGMonsterType",
+      "type": "int",
+      "source": "annotation"
+    },
+    "648": {
+      "name": "bRelive",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "649": {
+      "name": "bInvincible",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "652": {
+      "name": "fRattrapWait",
+      "type": "float",
+      "source": "annotation"
+    },
+    "656": {
+      "name": "fMirrorWait",
+      "type": "float",
+      "source": "annotation"
+    },
+    "660": {
+      "name": "bMirror",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "664": {
+      "name": "fCGBIXIE",
+      "type": "float",
+      "source": "annotation"
+    },
+    "668": {
+      "name": "bCGBIXIE",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "669": {
+      "name": "bCrossAlpha",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "672": {
+      "name": "fCrossAlpha",
+      "type": "float",
+      "source": "annotation"
+    },
+    "676": {
+      "name": "bCGMonsterHitObj",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "677": {
+      "name": "bStill",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "680": {
+      "name": "pCG_SceneProp",
+      "type": "SceneProp *",
+      "source": "annotation"
+    },
+    "684": {
+      "name": "m_actor",
+      "type": "Actor",
+      "source": "annotation"
+    },
+    "1280": {
+      "name": "m_MachineryID",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "1284": {
+      "name": "m_bPet",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1288": {
+      "name": "m_scale",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "1292": {
+      "name": "m_tri",
+      "type": "NavTriangle",
+      "source": "pdb_merge"
+    },
+    "1328": {
+      "name": "m_specact",
+      "type": "Role::SPECIAL_ACTION",
+      "source": "pdb_merge"
+    },
+    "1364": {
+      "name": "m_ctrlmode",
+      "type": "ROLE_CTRL",
+      "source": "pdb_merge"
+    },
+    "1368": {
+      "name": "m_curbehaviour",
+      "type": "ROLE_BEHAVIOUR",
+      "source": "pdb_merge"
+    },
+    "1372": {
+      "name": "m_bPathOut",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1376": {
+      "name": "m_bShowActAutoStand",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1380": {
+      "name": "m_bNeedShowActEnd",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "1384": {
+      "name": "m_curact",
+      "type": "ACTION_KIND",
+      "source": "pdb_merge"
+    },
+    "1388": {
+      "name": "m_curspeed",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "1392": {
+      "name": "m_curforce",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "1396": {
+      "name": "m_velocity",
+      "type": "gbVec3D",
+      "source": "pdb_merge"
+    },
+    "1408": {
+      "name": "m_desirevel",
+      "type": "gbVec3D",
+      "source": "pdb_merge"
+    },
+    "1420": {
+      "name": "m_steer",
+      "type": "gbVec3D",
+      "source": "pdb_merge"
+    },
+    "1432": {
+      "name": "m_lastautodir",
+      "type": "gbVec3D",
+      "source": "pdb_merge"
+    },
+    "1444": {
+      "name": "m_targetpt",
+      "type": "gbVec3D",
+      "source": "pdb_merge"
+    },
+    "1456": {
+      "name": "m_targetlayer",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1460": {
+      "name": "m_targetportal",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1464": {
+      "name": "m_startpt",
+      "type": "gbVec3D",
+      "source": "pdb_merge"
+    },
+    "1476": {
+      "name": "m_wanderdir",
+      "type": "gbVec3D",
+      "source": "pdb_merge"
+    },
+    "1488": {
+      "name": "m_talkflag",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1492": {
+      "name": "m_talknpc",
+      "type": "Role *",
+      "source": "pdb_merge"
+    },
+    "1496": {
+      "name": "m_talkscript",
+      "type": "PalScript *",
+      "source": "pdb_merge"
+    },
+    "1500": {
+      "name": "m_talkoldbeh",
+      "type": "ROLE_BEHAVIOUR",
+      "source": "pdb_merge"
+    },
+    "1504": {
+      "name": "m_talkoldact",
+      "type": "ACTION_KIND",
+      "source": "annotation"
+    },
+    "1508": {
+      "name": "m_talkoldface",
+      "type": "float",
+      "source": "annotation"
+    },
+    "1512": {
+      "name": "m_talkobj",
+      "type": "SceneObj *",
+      "source": "annotation"
+    },
+    "1516": {
+      "name": "m_mstate",
+      "type": "int",
+      "source": "annotation"
+    },
+    "1520": {
+      "name": "m_matt",
+      "type": "RoleAtt *",
+      "source": "annotation"
+    },
+    "1524": {
+      "name": "m_mfreedist",
+      "type": "float",
+      "source": "annotation"
+    },
+    "1528": {
+      "name": "m_mattackrange",
+      "type": "float",
+      "source": "annotation"
+    },
+    "1532": {
+      "name": "m_mfindradius",
+      "type": "float",
+      "source": "annotation"
+    },
+    "1536": {
+      "name": "m_statetime",
+      "type": "float",
+      "source": "annotation"
+    },
+    "1540": {
+      "name": "m_weapon",
+      "type": "gbGeomNode *",
+      "source": "annotation"
+    },
+    "1544": {
+      "name": "m_bLeftWeapon",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "1545": {
+      "name": "m_bRightWeapon",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "1548": {
+      "name": "m_nRad",
+      "type": "int",
+      "source": "annotation"
+    },
+    "1552": {
+      "name": "m_nRealHeadPos",
+      "type": "int",
+      "source": "annotation"
+    },
+    "1556": {
+      "name": "m_nOverlapState",
+      "type": "int",
+      "source": "annotation"
+    },
+    "1560": {
+      "name": "m_tpos",
+      "type": "tagPOINT",
+      "source": "annotation"
+    },
+    "1568": {
+      "name": "m_vTagHeadPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "1580": {
+      "name": "m_overlap",
+      "type": "int",
+      "source": "annotation"
+    },
+    "1584": {
+      "name": "m_bPathMove",
+      "type": "int",
+      "source": "annotation"
+    },
+    "1588": {
+      "name": "m_pathMoveCounter",
+      "type": "int",
+      "source": "annotation"
+    },
+    "1592": {
+      "name": "m_lastpos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "1604": {
+      "name": "m_notePos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "1616": {
+      "name": "m_path_region",
+      "type": "char[7076]",
+      "source": "annotation"
+    },
+    "8824": {
+      "name": "m_rotate",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "8692": {
+      "name": "m_wanapos",
+      "type": "gbVec3D",
+      "source": "PAL3patch_verified"
+    }
+  },
+  "base_class": [
+    "Object",
+    "PalScriptWaitObj",
+    "GlowObj"
+  ]
+}

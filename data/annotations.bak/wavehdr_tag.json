@@ -1,0 +1,46 @@
+{
+  "name": "wavehdr_tag",
+  "binary_size": 32,
+  "known_members": {
+    "0": {
+      "name": "lpData",
+      "type": "char *",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "dwBufferLength",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "dwBytesRecorded",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "12": {
+      "name": "dwUser",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "16": {
+      "name": "dwFlags",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "20": {
+      "name": "dwLoops",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "24": {
+      "name": "lpNext",
+      "type": "wavehdr_tag *",
+      "source": "annotation"
+    },
+    "28": {
+      "name": "reserved",
+      "type": "DWORD",
+      "source": "annotation"
+    }
+  }
+}

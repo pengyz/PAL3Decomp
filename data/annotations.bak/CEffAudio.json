@@ -1,0 +1,21 @@
+{
+  "name": "CEffAudio",
+  "binary_size": 688,
+  "known_members": {
+    "48": {
+      "name": "m_szSoundNamePrefix",
+      "type": "char[128]",
+      "source": "annotation"
+    },
+    "176": {
+      "name": "m_szSoundName",
+      "type": "char[128][4]",
+      "source": "annotation"
+    }
+  },
+  "base_class": [
+    "CEffObj",
+    "CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffAudio::*)(unsigned long)>",
+    "CTaskTpl_tagEffTaskParam_CEffAudio"
+  ]
+}

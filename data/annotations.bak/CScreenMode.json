@@ -1,0 +1,446 @@
+{
+  "name": "CScreenMode",
+  "known_members": {
+    "4": {
+      "name": "_todo_004",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_in_class_method"
+    },
+    "8": {
+      "name": "_todo_008",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "12": {
+      "name": "m_nField0C",
+      "type": "int",
+      "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
+    },
+    "16": {
+      "name": "_todo_010",
+      "type": "int",
+      "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
+    },
+    "20": {
+      "name": "_todo_014",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "24": {
+      "name": "_todo_018",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "72": {
+      "name": "m_nPosY",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "244": {
+      "name": "m_nBarTotalSize",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "272": {
+      "name": "m_nArrayCapacity",
+      "type": "int",
+      "source": "ida_decomp:_init_52ed30 = 62, new(4*this), 3 refs"
+    },
+    "276": {
+      "name": "m_pArrayData",
+      "type": "void *",
+      "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs | type_fix:int→void*(pointer assignment+free semantics)"
+    },
+    "0": {
+      "name": "m_pEnumeration",
+      "type": "void*",
+      "source": "type_fix:float->void*(naming_convention:prefix m_p indicates pointer)"
+    },
+    "128": {
+      "name": "m_nProgressPos",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "132": {
+      "name": "m_nProgress",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "136": {
+      "name": "m_nBarWidth",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "140": {
+      "name": "m_nBarHeight",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "144": {
+      "name": "m_nBarPosX",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "148": {
+      "name": "m_nBarPosY",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "220": {
+      "name": "m_fProgressRatio",
+      "type": "float",
+      "source": "ida_decomp:SetProgress = a2/v3, 5 refs"
+    },
+    "224": {
+      "name": "m_fProgressMax",
+      "type": "float",
+      "source": "ida_decomp:SetProgress divisor, 8 refs"
+    },
+    "232": {
+      "name": "m_fProgress",
+      "type": "float",
+      "source": "reverted:fild_alone_insufficient(m_f_prefix_confirms_float)"
+    },
+    "268": {
+      "name": "m_nBarParam",
+      "type": "int",
+      "source": "ida_decomp:SetProgress loaded twice, 2 refs"
+    },
+    "1244": {
+      "name": "m_nPageCounter",
+      "type": "UIScene",
+      "source": "ida_decomp:_init_529e40 ++, 7 refs | fix:binary_ctor_UIScene_stride344"
+    },
+    "68": {
+      "name": "m_nPosX",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "212": {
+      "name": "m_szTooltip",
+      "type": "char[8]",
+      "source": "fix:span=8_next_hits=5"
+    },
+    "236": {
+      "name": "m_fProgressParam",
+      "type": "float",
+      "source": "binary:disp32_8hits_1funcs"
+    },
+    "248": {
+      "name": "m_fBarOffsetX",
+      "type": "float",
+      "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
+    },
+    "252": {
+      "name": "m_fBarOffsetY",
+      "type": "float",
+      "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
+    },
+    "256": {
+      "name": "m_fBarOffsetW",
+      "type": "float",
+      "source": "ida_decomp:SetProgress added to layout calc, 2 refs"
+    },
+    "28": {
+      "name": "m_fFadeAlpha",
+      "type": "float",
+      "source": "ida_decomp:_init_533250 >= v47 compare, 10 refs"
+    },
+    "36": {
+      "name": "m_fFadeSpeed",
+      "type": "float",
+      "source": "ida_decomp:_init_533250 += this+12, accumulated, 3 refs"
+    },
+    "40": {
+      "name": "m_fCountdown",
+      "type": "float",
+      "source": "ida_decomp:_init_533250 -= 0.5, 8 refs"
+    },
+    "44": {
+      "name": "m_fFadeParam",
+      "type": "float",
+      "source": "ida_decomp:_init_533250 = this+20 + this, accumulated, 3 refs"
+    },
+    "48": {
+      "name": "_todo_030",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x_access"
+    },
+    "52": {
+      "name": "m_VolMod",
+      "type": "int",
+      "source": "decomp:gbVolModNode_SetVolModObj(embedded_volmod)"
+    },
+    "60": {
+      "name": "m_bFadeActive",
+      "type": "unsigned char",
+      "source": "ida_decomp:_init_533250 byte toggle 1/0, 3 refs"
+    },
+    "64": {
+      "name": "_todo_040",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
+    },
+    "76": {
+      "name": "m_nLayoutParam",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "80": {
+      "name": "m_nUIState",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "84": {
+      "name": "m_nUIMode",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "88": {
+      "name": "m_nScreenWidth",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "92": {
+      "name": "m_nScreenHeight",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "96": {
+      "name": "m_nProgressBase",
+      "type": "int",
+      "source": "ida_decomp:SetProgress loaded, 10 refs"
+    },
+    "100": {
+      "name": "m_nLayoutState",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "104": {
+      "name": "m_nLayoutOffX",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "108": {
+      "name": "m_nLayoutOffY",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "120": {
+      "name": "m_nProgressValA",
+      "type": "int",
+      "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
+    },
+    "124": {
+      "name": "m_nProgressValB",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "152": {
+      "name": "m_bCameraInit",
+      "type": "int",
+      "source": "decomp:InitCamera_set_0,_init_set_1"
+    },
+    "164": {
+      "name": "m_wndAssistA",
+      "type": "float",
+      "source": "A:FPU_disp32_0x52c513"
+    },
+    "56": {
+      "name": "_todo_038",
+      "type": "float",
+      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
+    },
+    "113": {
+      "name": "m_bLoadFlag",
+      "type": "unsigned char",
+      "source": "decomp:LoadScreenScene_if(!x)+set_0"
+    },
+    "3876": {
+      "name": "m_RoleDialog",
+      "type": "UIRoleDialog",
+      "source": "ctor/dtor:ARC_PlayerAtt::Refresh+UIRoleDialog::_UIRoleDialog"
+    },
+    "2620": {
+      "name": "_todo_BB8",
+      "type": "UIScene",
+      "source": "A:binary_ctor lea+call UIScene::Destroy2 stride=344"
+    },
+    "2964": {
+      "name": "_todo_D10",
+      "type": "UIScene",
+      "source": "A:binary_ctor lea+call UIScene::Destroy2 stride=344"
+    },
+    "3308": {
+      "name": "_todo_CEC",
+      "type": "UIScene",
+      "source": "reverted_auto_semantic:4x_access|reverted:pseudo_semantic"
+    },
+    "636": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_816",
+      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
+    },
+    "728": {
+      "type": "UIFrameWnd",
+      "name": "_embed_UIFrameWnd_968",
+      "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
+    },
+    "32": {
+      "name": "_todo_020",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "160": {
+      "name": "_todo_0A0",
+      "type": "float",
+      "source": "binary_scan:3refs"
+    },
+    "168": {
+      "name": "_todo_0A8",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "172": {
+      "name": "_todo_0AC",
+      "type": "int",
+      "source": "binary_scan:6refs"
+    },
+    "176": {
+      "name": "_todo_0B0",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "180": {
+      "name": "_todo_0B4",
+      "type": "float",
+      "source": "binary_scan:2refs"
+    },
+    "184": {
+      "name": "_todo_0B8",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "192": {
+      "name": "_todo_0C0",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "196": {
+      "name": "_todo_0C4",
+      "type": "float",
+      "source": "binary_scan:2refs"
+    },
+    "204": {
+      "name": "_todo_0CC",
+      "type": "float",
+      "source": "binary_scan:1refs"
+    },
+    "208": {
+      "name": "_todo_0D0",
+      "type": "float",
+      "source": "binary_scan:1refs"
+    },
+    "228": {
+      "name": "m_fProgressCur",
+      "type": "float",
+      "source": "decomp:SetProgress_divided_by_max"
+    },
+    "240": {
+      "name": "m_fProgressNorm",
+      "type": "float",
+      "source": "decomp:SetProgress_normalized"
+    },
+    "260": {
+      "name": "m_fAccum",
+      "type": "float",
+      "source": "A:FPU_fadd_2x_[esi+104h]_confirmed_float"
+    },
+    "264": {
+      "name": "_todo_108",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "280": {
+      "name": "m_FrameB",
+      "type": "UIStatic",
+      "source": "decomp:_init_47be20_CreateFromTemplate+vtable16"
+    },
+    "432": {
+      "name": "m_StaticArray",
+      "type": "UIStatic",
+      "source": "decomp:_init_47be20_loop_ptr+=152(UIStatic_array_start)"
+    },
+    "616": {
+      "name": "_todo_268",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "620": {
+      "name": "_todo_26C",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "624": {
+      "name": "_todo_270",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "628": {
+      "name": "_todo_274",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "632": {
+      "name": "_todo_278",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "808": {
+      "name": "m_pAudioMgr",
+      "type": "gbAudioManager *",
+      "source": "decomp:Restore_dtor_call"
+    },
+    "812": {
+      "name": "_todo_32C",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "816": {
+      "name": "m_Static_816",
+      "type": "UIStatic",
+      "source": "ctor:UIStatic::_UIStatic"
+    },
+    "2260": {
+      "name": "m_BtnTooltipC",
+      "type": "UIButton",
+      "source": "decomp:_init_4593c0_same_pattern(+344_from_1916)"
+    },
+    "2608": {
+      "name": "_todo_A30",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "3868": {
+      "name": "m_bActive",
+      "type": "unsigned char",
+      "source": "A:byte_toggle_1_0_in_ctor"
+    },
+    "3872": {
+      "name": "_todo_F20",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "3688": {
+      "name": "m_SceneBlock",
+      "type": "int",
+      "source": "decomp:BYTE+560_DWORD+141"
+    },
+    "3660": {
+      "name": "m_nAssistMode",
+      "type": "int",
+      "source": "decomp:+4_BYTE_CreateFromTemplate"
+    }
+  },
+  "binary_size": 4984
+}

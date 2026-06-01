@@ -1,0 +1,441 @@
+{
+  "name": "CameraCtrl",
+  "note": "Camera controller: manages camera transitions (follow/orbit/track/lerp/shake), FOV interpolation, and viewport setup. Delegates to gbCamera for rendering.",
+  "pdb_size": 4,
+  "known_members": {
+    "0": {
+      "name": "m_pCamera",
+      "comment": "underlying gbCamera object for rendering",
+      "type": "gbCamera *",
+      "source": "binary:inferred from CameraCtrl context"
+    },
+    "4": {
+      "name": "m_fMinDist",
+      "type": "float",
+      "source": "ida_decomp:_nearby_41cbd0 this+5<this+4 compare",
+      "comment": "minimum camera distance from target (clamp)"
+    },
+    "8": {
+      "name": "m_pTarget",
+      "type": "void *",
+      "source": "A:binary VA=0x41CFC0 mov eax,[esp+4]; mov [ecx+8],eax; mov edx,[eax+0x1EC] (param stored then deref as object)",
+      "comment": "tracked/followed object (typed as void*, actually a game object)"
+    },
+    "12": {
+      "name": "m_nFlags",
+      "type": "int",
+      "source": "A:decomp switch(LODWORD(m_nFlags)) values 1-7 in 0x0041CFC0; stores int* in 0x0041D7C0",
+      "comment": "transition mode: 1=follow,2=orbit,3=lerp-pos,4=track,6=combined,7=shake"
+    },
+    "16": {
+      "name": "m_fTargetAngle",
+      "type": "float",
+      "source": "ida_decomp:_nearby_41cc50 v3>=this clamp, 8 refs",
+      "comment": "transition duration target (accumulated toward this value)"
+    },
+    "20": {
+      "name": "m_fCurAngle",
+      "type": "float",
+      "source": "ida_decomp:_nearby_41cc50 a2+this accumulate, 8 refs",
+      "comment": "current transition progress (delta-accumulated from 0.0)"
+    },
+    "24": {
+      "name": "m_nCamState",
+      "type": "int",
+      "source": "ida_decomp:_nearby_48b370 =0, counter/state, 10 refs",
+      "comment": "current camera operational state/sub-state"
+    },
+    "28": {
+      "name": "_field_01C",
+      "type": "float",
+      "source": "binary:5x access | type_fix"
+    },
+    "32": {
+      "name": "_field_020",
+      "type": "float",
+      "source": "binary:11x access | type_fix"
+    },
+    "36": {
+      "name": "m_fFOV",
+      "type": "float",
+      "source": "binary:13x access",
+      "comment": "current field of view angle"
+    },
+    "40": {
+      "name": "m_fFOVLerp",
+      "type": "float",
+      "source": "binary:8x access | type_fix | name:m_fFOVLerp(A+:decomp GetLerpPos(target+456, THIS, m_fFOV, factor) = current interpolated FOV)",
+      "comment": "interpolated FOV during transition (lerp source)"
+    },
+    "44": {
+      "name": "m_bCamFlag",
+      "type": "int",
+      "source": "B:naming_m_b+alignment+FPU_misattrib",
+      "comment": "flags for camera behavior (bitfield, actually stored as int)"
+    },
+    "48": {
+      "name": "_field_030",
+      "type": "float",
+      "source": "binary:5x access | type_fix"
+    },
+    "52": {
+      "name": "m_fLerpPosX",
+      "comment": "lerp source position X (current camera position before transition)",
+      "type": "float",
+      "source": "binary:6x access | type_fix | name:m_fLerpPosX(A+:decomp GetLerpPos(target+492, _field_040, THIS, factor); assigned from p_DWORD[123])"
+    },
+    "56": {
+      "name": "m_fLerpPosY",
+      "type": "float",
+      "source": "binary:5x access | type_fix | name:m_fLerpPosY(A+:decomp GetLerpPos(target+496, _field_044, THIS, factor); assigned from p_DWORD[124])",
+      "comment": "lerp source position Y"
+    },
+    "60": {
+      "name": "m_fLerpPosZ",
+      "type": "float",
+      "source": "A:0x41D010 stores gbVec3D.z from [eax+8] where eax=param2(gbVec3D*) | name:m_fLerpPosZ(A+:decomp GetLerpPos(target+500, _field_048, THIS, factor); assigned from p_DWORD[125])",
+      "comment": "lerp source position Z"
+    },
+    "64": {
+      "name": "m_fLerpTargetX",
+      "type": "float",
+      "source": "A:0x41D010 stores target->492(gbVec3D.x); SetupLerp v5[0]",
+      "comment": "lerp target position X (destination camera position)"
+    },
+    "68": {
+      "name": "m_fLerpTargetY",
+      "type": "float",
+      "source": "A:0x41D010 stores target->496(gbVec3D.y); SetupLerp v5[1]",
+      "comment": "lerp target position Y"
+    },
+    "72": {
+      "name": "m_fLerpTargetZ",
+      "type": "float",
+      "source": "A:0x41D010 stores target->500(gbVec3D.z); SetupLerp v5[2]",
+      "comment": "lerp target position Z"
+    },
+    "76": {
+      "name": "_field_04C",
+      "type": "int",
+      "source": "binary:2x access"
+    },
+    "80": {
+      "name": "_field_050",
+      "type": "int",
+      "source": "binary:1x access"
+    },
+    "84": {
+      "name": "_field_054",
+      "type": "int",
+      "source": "binary:1x access"
+    },
+    "88": {
+      "name": "_field_058",
+      "type": "int",
+      "source": "binary:1x access"
+    },
+    "92": {
+      "name": "_field_05C",
+      "type": "float",
+      "source": "A:FPU_round3_0x4bf2c2"
+    },
+    "96": {
+      "name": "m_nViewMode",
+      "type": "int",
+      "source": "binary:30x access",
+      "comment": "view mode (first/third person, etc.)"
+    },
+    "100": {
+      "name": "m_nViewFlags",
+      "type": "int",
+      "source": "binary:14x access",
+      "comment": "view mode flags"
+    },
+    "104": {
+      "name": "m_szCamPath",
+      "type": "char[260]",
+      "source": "gap_fill:ida_decomp_access | annotate_todo",
+      "comment": "camera path file name (.cam or similar)"
+    },
+    "364": {
+      "name": "_todo_16C",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "380": {
+      "name": "m_nInitParams",
+      "type": "int",
+      "source": "binary:1x access"
+    },
+    "384": {
+      "name": "m_nParamState",
+      "type": "int",
+      "source": "binary:1x access | annotate_todo"
+    },
+    "388": {
+      "name": "m_nParamA",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "392": {
+      "name": "m_nParamB",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "396": {
+      "name": "m_nParamC",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "452": {
+      "name": "m_fAngle",
+      "type": "float",
+      "source": "binary:2x access",
+      "comment": "camera yaw/horizontal rotation angle"
+    },
+    "456": {
+      "name": "m_fOrbitAngle",
+      "type": "float",
+      "source": "ida_decomp:_nearby_41c670 sin(this)*v5, cos(this)*v7, 5 refs",
+      "comment": "orbit pitch/vertical angle (used with sin/cos)"
+    },
+    "460": {
+      "name": "m_mode",
+      "type": "float",
+      "source": "A:FPU_in_class_method_0x41C4AC: D8 8E",
+      "comment": "camera operating mode selector"
+    },
+    "468": {
+      "name": "m_fCamDist",
+      "type": "float",
+      "source": "ida_decomp:_sub_504540 = 50.0f, used as multiplier, 6 refs",
+      "comment": "camera distance from target (zoom level)"
+    },
+    "472": {
+      "name": "m_nWidth",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib",
+      "comment": "viewport width in pixels"
+    },
+    "476": {
+      "name": "m_nHeight",
+      "type": "int",
+      "source": "binary:SetDimention(0x41CA90) mov [ecx+0x1DC],edx (param2=h)",
+      "comment": "viewport height in pixels"
+    },
+    "480": {
+      "name": "m_nAsCurrent",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib",
+      "comment": "flag: SetAsCurrent has been called"
+    },
+    "492": {
+      "name": "m_vecLookAt",
+      "type": "gbVec3D",
+      "source": "binary:disp32_1hits_1funcs | annotate_todo",
+      "comment": "camera look-at target world position"
+    },
+    "516": {
+      "name": "m_vecUpDir",
+      "type": "gbVec3D",
+      "source": "binary:disp32_1hits_1funcs | annotate_todo",
+      "comment": "camera up direction vector"
+    },
+    "556": {
+      "name": "m_fViewDistance",
+      "type": "float",
+      "source": "A:InitDefaultView: mov [esi+22Ch], 43960000h (300.0f)"
+    },
+    "564": {
+      "name": "m_fViewPitch",
+      "type": "float",
+      "source": "A:InitDefaultView: mov [esi+234h], 0C21E4092h (-39.56f)"
+    },
+    "568": {
+      "name": "m_fViewYaw",
+      "type": "float",
+      "source": "A:InitDefaultView: mov [esi+238h], 4397468Ch (302.55f)"
+    },
+    "572": {
+      "name": "m_fDefaultPosX",
+      "type": "float",
+      "source": "A:InitDefaultView: mov [esi+23Ch], 0C3DBD0FEh (-439.63f)"
+    },
+    "576": {
+      "name": "m_fDefaultPosY",
+      "type": "float",
+      "source": "A:InitDefaultView: mov [esi+240h], 0 (0.0f)"
+    },
+    "580": {
+      "name": "m_fDefaultPosZ",
+      "type": "float",
+      "source": "A:InitDefaultView: mov [esi+244h], 0C3480000h (-200.0f)"
+    },
+    "584": {
+      "name": "m_fDefaultOffset",
+      "type": "float",
+      "source": "A:InitDefaultView: mov [esi+248h], 0 (0.0f)"
+    },
+    "592": {
+      "name": "_todo_250",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "616": {
+      "name": "m_szText",
+      "type": "float",
+      "source": "A:FPU_disp32_0x533f64"
+    },
+    "620": {
+      "name": "_todo_26C",
+      "type": "WORD",
+      "source": "A:binary_cmp_word_26Ch"
+    },
+    "624": {
+      "name": "_todo_270",
+      "type": "WORD",
+      "source": "A:binary_cmp_word_270h"
+    },
+    "688": {
+      "name": "_field_2B0",
+      "type": "int",
+      "source": "binary:1x access"
+    },
+    "692": {
+      "name": "_field_2B4",
+      "type": "int",
+      "source": "binary:1x access"
+    },
+    "696": {
+      "name": "_field_2B8",
+      "type": "int",
+      "source": "binary:1x access"
+    },
+    "700": {
+      "name": "_todo_2BC",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "877": {
+      "name": "_todo_36D",
+      "type": "unsigned char",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "888": {
+      "name": "m_bPageMode",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_48ef80 if(byte this), 1 ref"
+    },
+    "889": {
+      "name": "m_bCamDirty",
+      "type": "unsigned char",
+      "source": "raw_decomp:Hex-Rays_type_cast | annotate_todo"
+    },
+    "892": {
+      "name": "m_nPageParam",
+      "type": "int",
+      "source": "ida_decomp:_nearby_48a390 = a2, 1 ref"
+    },
+    "896": {
+      "name": "_field_380",
+      "type": "unsigned char",
+      "source": "A+:decomp LOBYTE(this->_field_380)=0/1 byte_flag"
+    },
+    "900": {
+      "name": "m_nBlendWeight",
+      "type": "int",
+      "source": "binary:9x access"
+    },
+    "910": {
+      "name": "m_bBlendWeight",
+      "type": "unsigned char",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "911": {
+      "name": "m_bHandleEvent",
+      "type": "unsigned char",
+      "source": "binary:disp32_6hits_3funcs"
+    },
+    "912": {
+      "name": "m_bAutoRotate",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_48c9a0 toggle 0/1, 2 refs"
+    },
+    "916": {
+      "name": "m_nBlendTimer",
+      "type": "int",
+      "source": "ida_decomp:UpdateBlendWeight <=0 check, set 0, 15 refs"
+    },
+    "924": {
+      "name": "_todo_39C",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "928": {
+      "name": "m_nSlotParam",
+      "type": "int",
+      "source": "A:store_imm183Ah+array_idx_[esi+eax*4+3A0h]|naming:slot_state_param"
+    },
+    "1188": {
+      "name": "_todo_4A4",
+      "type": "int",
+      "source": "binary:disp32_3hits_2funcs"
+    },
+    "1192": {
+      "name": "_field_4A8",
+      "type": "int",
+      "source": "binary:1x access"
+    },
+    "1196": {
+      "name": "_field_4AC",
+      "type": "int",
+      "source": "binary:1x access"
+    },
+    "1200": {
+      "name": "m_roleParams",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
+    },
+    "1264": {
+      "name": "m_nViewState",
+      "type": "int",
+      "source": "A:cmp_[esi+4F0h]_edi_cmp7_cmp3|naming:camera_state_mode"
+    },
+    "2044": {
+      "name": "_todo_7FC",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "3336": {
+      "name": "m_bBlendActive",
+      "type": "unsigned char",
+      "source": "ida_decomp:UpdateBlendWeight set 1, 5 refs"
+    },
+    "3337": {
+      "name": "m_bBlendPause",
+      "type": "unsigned char",
+      "source": "ida_decomp:UpdateBlendWeight set 0, 5 refs"
+    },
+    "3340": {
+      "name": "m_nTickCount",
+      "type": "int",
+      "source": "ida_decomp:_nearby_48ef80 = TickCount, 2 refs"
+    },
+    "3344": {
+      "name": "m_nTickStamp",
+      "type": "int",
+      "source": "ida_decomp:_nearby_48ef80 = TickCount, delta = now-this, 3 refs"
+    },
+    "3348": {
+      "name": "m_bTickInit",
+      "type": "unsigned char",
+      "source": "ida_decomp:_nearby_48ef80 if(!this) set 1, 3 refs"
+    },
+    "3352": {
+      "name": "m_CamBlocks",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    }
+  },
+  "binary_size": 4088
+}

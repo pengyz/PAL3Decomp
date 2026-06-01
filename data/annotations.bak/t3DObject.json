@@ -1,0 +1,56 @@
+{
+  "name": "t3DObject",
+  "binary_size": 288,
+  "known_members": {
+    "0": {
+      "name": "numOfVerts",
+      "type": "int",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "numOfFaces",
+      "type": "int",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "numTexVertex",
+      "type": "int",
+      "source": "annotation"
+    },
+    "12": {
+      "name": "materialID",
+      "type": "int",
+      "source": "annotation"
+    },
+    "16": {
+      "name": "bHasTexture",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "17": {
+      "name": "strName",
+      "type": "char[255]",
+      "source": "annotation"
+    },
+    "272": {
+      "name": "pVerts",
+      "type": "D3DXVECTOR3 *",
+      "source": "annotation"
+    },
+    "276": {
+      "name": "pNormals",
+      "type": "D3DXVECTOR3 *",
+      "source": "annotation"
+    },
+    "280": {
+      "name": "pTexVerts",
+      "type": "D3DXVECTOR2 *",
+      "source": "annotation"
+    },
+    "284": {
+      "name": "pFaces",
+      "type": "tFace *",
+      "source": "annotation"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "name": "ScreenEffectMgr",
+  "binary_size": 152,
+  "known_members": {
+    "4": {
+      "name": "m_fadeIn",
+      "type": "ScreenFadeIn",
+      "source": "annotation"
+    },
+    "32": {
+      "name": "m_fadeOut",
+      "type": "ScreenFadeOut",
+      "source": "annotation"
+    },
+    "56": {
+      "name": "m_fadeWhite",
+      "type": "ScreenFadeWhite",
+      "source": "annotation"
+    },
+    "80": {
+      "name": "m_fadeWhite2",
+      "type": "ScreenFadeWhite2",
+      "source": "annotation"
+    },
+    "104": {
+      "name": "m_activeQueue",
+      "type": "std::queue<ScreenEffect *,std::deque<ScreenEffect *,std::allocator<ScreenEffect *> > >",
+      "source": "annotation"
+    },
+    "108": {
+      "name": "_field_06C",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "112": {
+      "name": "_field_070",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "116": {
+      "name": "_field_074",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "120": {
+      "name": "_field_078",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "124": {
+      "name": "_field_07C",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "128": {
+      "name": "_field_080",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "132": {
+      "name": "_field_084",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "136": {
+      "name": "_field_088",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "148": {
+      "name": "m_nEffectCount",
+      "type": "int",
+      "source": "ida_decomp:_unverified_4BE4A0 if(this), --1, 20 refs"
+    },
+    "0": {
+      "name": "m_pVtable",
+      "type": "int",
+      "source": "binary:gap_r2"
+    },
+    "140": {
+      "name": "m_pEffect",
+      "type": "void *",
+      "source": "ida_decomp:_unverified_4BE4A0 deref as void**, 4 refs | type_fix:int→void*(deref+ptr semantics)"
+    }
+  }
+}

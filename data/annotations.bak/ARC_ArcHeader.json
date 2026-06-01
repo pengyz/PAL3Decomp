@@ -1,0 +1,76 @@
+{
+  "name": "ARC_ArcHeader",
+  "binary_size": 220,
+  "known_members": {
+    "0": {
+      "name": "magic",
+      "type": "char[4]",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "ver",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "reverse",
+      "type": "unsigned int[16]",
+      "source": "annotation"
+    },
+    "72": {
+      "name": "brief",
+      "type": "ARC_ArcBrief",
+      "source": "annotation"
+    },
+    "152": {
+      "name": "localeOffset",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "156": {
+      "name": "playerOffset",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "160": {
+      "name": "scriptOffset",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "164": {
+      "name": "sceneOffset",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "168": {
+      "name": "soundOffset",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "172": {
+      "name": "miscOffset",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "176": {
+      "name": "mapOffset",
+      "type": "unsigned int[2]",
+      "source": "annotation"
+    },
+    "184": {
+      "name": "pastOffset",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "188": {
+      "name": "npcOffset",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "192": {
+      "name": "reverseOffset",
+      "type": "unsigned int[7]",
+      "source": "annotation"
+    }
+  }
+}

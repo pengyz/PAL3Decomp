@@ -1,0 +1,26 @@
+{
+  "name": "PlayerSkill",
+  "binary_size": 12,
+  "known_members": {
+    "0": {
+      "name": "id",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "lv",
+      "type": "WORD",
+      "source": "annotation"
+    },
+    "6": {
+      "name": "usedtime",
+      "type": "WORD",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "skill",
+      "type": "FightSkill *",
+      "source": "annotation"
+    }
+  }
+}

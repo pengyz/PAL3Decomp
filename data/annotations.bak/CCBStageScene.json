@@ -1,0 +1,551 @@
+{
+  "name": "CCBStageScene",
+  "binary_size": 1012,
+  "known_members": {
+    "0": {
+      "name": "m_pStage",
+      "type": "CCBStage *",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "m_pUtil",
+      "type": "CUtil *",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "m_vecFiveLineup",
+      "type": "gbVec3D[7]",
+      "source": "annotation"
+    },
+    "92": {
+      "name": "m_vecInitFiveLineup",
+      "type": "gbVec3D[3]",
+      "source": "annotation"
+    },
+    "176": {
+      "name": "m_vecEnemyLineup",
+      "type": "gbVec3D[7]",
+      "source": "annotation"
+    },
+    "260": {
+      "name": "m_vecInitEnemyLineup",
+      "type": "gbVec3D[7]",
+      "source": "annotation"
+    },
+    "344": {
+      "name": "m_bLoaded",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "345": {
+      "name": "m_sLastScene",
+      "type": "char[256]",
+      "source": "annotation"
+    },
+    "604": {
+      "name": "m_pGeomNode",
+      "type": "gbGeomNode *",
+      "source": "annotation"
+    },
+    "608": {
+      "name": "m_pCvd",
+      "type": "gbGeomNode *",
+      "source": "annotation"
+    },
+    "612": {
+      "name": "m_pLights",
+      "type": "gbVisNode *",
+      "source": "annotation"
+    },
+    "616": {
+      "name": "m_pPointer",
+      "type": "gbGeomNode *",
+      "source": "annotation"
+    },
+    "620": {
+      "name": "m_pCorpse",
+      "type": "gbGeomNode *[11]",
+      "source": "annotation"
+    },
+    "664": {
+      "name": "m_pFling",
+      "type": "gbRenderEffect *",
+      "source": "annotation"
+    },
+    "668": {
+      "name": "m_vecFling",
+      "type": "gbVec3D *",
+      "source": "annotation"
+    },
+    "680": {
+      "name": "m_rotFling",
+      "type": "gbVec3D *",
+      "source": "annotation"
+    },
+    "692": {
+      "name": "m_fQuadA_X",
+      "type": "float",
+      "source": "annotation"
+    },
+    "696": {
+      "name": "m_fQuadA_Y",
+      "type": "float",
+      "source": "annotation"
+    },
+    "700": {
+      "name": "m_fQuadA_Blend",
+      "type": "float",
+      "source": "annotation"
+    },
+    "704": {
+      "name": "m_fQuadA_Z",
+      "type": "float",
+      "source": "annotation"
+    },
+    "708": {
+      "name": "m_fQuadB_Y",
+      "type": "float",
+      "source": "annotation"
+    },
+    "712": {
+      "name": "m_fQuadB_Blend",
+      "type": "float",
+      "source": "annotation"
+    },
+    "716": {
+      "name": "m_fQuadB_Z",
+      "type": "float",
+      "source": "annotation"
+    },
+    "784": {
+      "name": "m_FiveLineupCenterQuad",
+      "type": "gbGeomQuad *",
+      "source": "annotation"
+    },
+    "852": {
+      "name": "m_fQuadC_Z",
+      "type": "float",
+      "source": "annotation"
+    },
+    "920": {
+      "name": "m_vecFiveLineupPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "932": {
+      "name": "m_vecFiveLineupInitPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "944": {
+      "name": "m_fFiveLineupRadius",
+      "type": "float",
+      "source": "annotation"
+    },
+    "948": {
+      "name": "m_fFiveLineupInitRadius",
+      "type": "float",
+      "source": "annotation"
+    },
+    "952": {
+      "name": "m_fFiveLineupRoll",
+      "type": "float",
+      "source": "annotation"
+    },
+    "956": {
+      "name": "m_fFiveLineupInitRoll",
+      "type": "float",
+      "source": "annotation"
+    },
+    "960": {
+      "name": "m_vecEnemyFiveLineupPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "972": {
+      "name": "m_fEnemyFiveLineupRadius",
+      "type": "float",
+      "source": "annotation"
+    },
+    "976": {
+      "name": "m_fEnemyFiveLineupRoll",
+      "type": "float",
+      "source": "annotation"
+    },
+    "980": {
+      "name": "m_vecPointerPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "992": {
+      "name": "m_bShowPointer",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "993": {
+      "name": "m_bShowAxis",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "994": {
+      "name": "m_bShowRoleIndex",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "995": {
+      "name": "m_bShowFiveLineup",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "996": {
+      "name": "m_bFiveLineupSelected",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "1000": {
+      "name": "m_eSceneFiveMagicAttrib",
+      "type": "ECBFiveMagic",
+      "source": "annotation"
+    },
+    "1004": {
+      "name": "m_eBattleFieldAttr",
+      "type": "ECBBattleFieldAttr",
+      "source": "annotation"
+    },
+    "1008": {
+      "name": "m_eBFAForce",
+      "type": "ECBForce",
+      "source": "annotation"
+    },
+    "732": {
+      "name": "m_fBlendRectAX",
+      "type": "float",
+      "source": "ida_decomp:Update =0, group of 4 with 1.0f pattern"
+    },
+    "736": {
+      "name": "m_fBlendRectAY",
+      "type": "float",
+      "source": "ida_decomp:Update =0"
+    },
+    "740": {
+      "name": "m_fBlendRectAW",
+      "type": "float",
+      "source": "ida_decomp:Update =1.0f(0x3F800000)"
+    },
+    "744": {
+      "name": "m_fBlendRectAH",
+      "type": "float",
+      "source": "ida_decomp:Update =1.0f(0x3F800000)"
+    },
+    "800": {
+      "name": "m_fBlendRectBX",
+      "type": "float",
+      "source": "ida_decomp:Update =0, same pattern as +732"
+    },
+    "804": {
+      "name": "m_fBlendRectBY",
+      "type": "float",
+      "source": "ida_decomp:Update =0"
+    },
+    "808": {
+      "name": "m_fBlendRectBW",
+      "type": "float",
+      "source": "ida_decomp:Update =1.0f"
+    },
+    "812": {
+      "name": "m_fBlendRectBH",
+      "type": "float",
+      "source": "ida_decomp:Update =1.0f"
+    },
+    "752": {
+      "name": "m_nInit",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "756": {
+      "name": "m_nCamState",
+      "type": "int",
+      "source": "decomp:Init_set_0"
+    },
+    "760": {
+      "name": "m_fCamPosX",
+      "type": "float",
+      "source": "decomp:Init_position_pair_with_764"
+    },
+    "764": {
+      "name": "m_fCamPosZ",
+      "type": "float",
+      "source": "decomp:Init_position_pair_with_760"
+    },
+    "768": {
+      "name": "m_fInit",
+      "type": "float",
+      "source": "binary:gap_r2"
+    },
+    "772": {
+      "name": "m_fCamTargX",
+      "type": "float",
+      "source": "decomp:Init_position_pair_with_776"
+    },
+    "776": {
+      "name": "m_fCamTargZ",
+      "type": "float",
+      "source": "decomp:Init_position_pair_with_772"
+    },
+    "780": {
+      "name": "m_fInitBlend",
+      "type": "float",
+      "source": "binary:gap_r2 | name_fix:=0.0_in_Init"
+    },
+    "820": {
+      "name": "m_fDirSinC",
+      "type": "float",
+      "source": "decomp:rotation_formula_paired_with_828"
+    },
+    "824": {
+      "name": "m_fBlendC",
+      "type": "float",
+      "source": "binary:gap_r2 | type_fix:float→int_raw_decomp | name_fix:=0.0_then_=0.5_blend_factor"
+    },
+    "828": {
+      "name": "m_fDirCosC",
+      "type": "float",
+      "source": "decomp:rotation_formula_cos_component"
+    },
+    "832": {
+      "name": "m_fDirSinD",
+      "type": "float",
+      "source": "decomp:rotation_formula_paired_with_840"
+    },
+    "836": {
+      "name": "m_fBlendD",
+      "type": "float",
+      "source": "binary:gap_r2 | name_fix:=0.0_then_=0.5_blend_factor"
+    },
+    "840": {
+      "name": "m_fDirCosD",
+      "type": "float",
+      "source": "decomp:rotation_formula_cos_component"
+    },
+    "844": {
+      "name": "m_fDirSinE",
+      "type": "float",
+      "source": "decomp:rotation_formula_paired_with_EnemyFiveLineupQuad"
+    },
+    "848": {
+      "name": "m_fBlendE",
+      "type": "float",
+      "source": "binary:gap_r2 | name_fix:=0.0_then_=0.5_blend_factor"
+    },
+    "748": {
+      "name": "m_bLoadPointer",
+      "type": "unsigned char",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "749": {
+      "name": "m_nPointerIndex1",
+      "type": "unsigned char",
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
+    },
+    "750": {
+      "name": "m_nPointerIndex2",
+      "type": "unsigned char",
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
+    },
+    "751": {
+      "name": "m_nPointerData",
+      "type": "unsigned char",
+      "source": "binary:disp32_1hits_1funcs | annotate_todo"
+    },
+    "816": {
+      "name": "m_nReset",
+      "type": "int",
+      "source": "binary:disp32_5hits_1funcs"
+    },
+    "128": {
+      "name": "m_nRender",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "132": {
+      "name": "m_fLineupCamY",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(assigned_to_vecFiveLineup[N].y_in_Reset)"
+    },
+    "136": {
+      "name": "m_fLineupCamZ",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:assigned_to_vecFiveLineup[N].z_in_Reset"
+    },
+    "140": {
+      "name": "m_fRender",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "144": {
+      "name": "m_fLineupPrevY",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[N].y)"
+    },
+    "148": {
+      "name": "m_fLineupPrevZ",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:assigned_to_vecFiveLineup[N].z,=_todo_088_in_Render"
+    },
+    "164": {
+      "name": "m_fLineupExtraX",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:assigned_to_vecFiveLineup[6].x_in_Reset"
+    },
+    "168": {
+      "name": "m_fLineupExtraY",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[6].y)"
+    },
+    "172": {
+      "name": "m_fLineupExtraZ",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[6].z)"
+    },
+    "672": {
+      "name": "m_nLoadPointer",
+      "type": "int",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "684": {
+      "name": "m_fDirSinA",
+      "type": "float",
+      "source": "decomp:rotation_formula_sin_component"
+    },
+    "688": {
+      "name": "m_fBlendA",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:=0.0_then_=0.5_blend_factor"
+    },
+    "720": {
+      "name": "m_fDirSinB",
+      "type": "float",
+      "source": "decomp:rotation_formula_sin_component"
+    },
+    "724": {
+      "name": "m_fBlendB",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast | name_fix:=0.0_then_=0.5_blend_factor"
+    },
+    "728": {
+      "name": "m_fDirCosB",
+      "type": "float",
+      "source": "decomp:rotation_formula_cos_component"
+    },
+    "788": {
+      "name": "m_fBlendTime",
+      "type": "float",
+      "source": "decomp:Init_time_value"
+    },
+    "792": {
+      "name": "m_nBlendState",
+      "type": "int",
+      "source": "decomp:Init_set_0_state"
+    },
+    "796": {
+      "name": "m_fBlendSpeed",
+      "type": "float",
+      "source": "decomp:Init_speed_value"
+    },
+    "152": {
+      "name": "m_fLineupDefaultX",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[1-5].x)"
+    },
+    "156": {
+      "name": "m_fLineupDefaultY",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[1-5].y)"
+    },
+    "160": {
+      "name": "m_fLineupDefaultZ",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access | name_fix:assigned_to_vecFiveLineup[1-5].z"
+    },
+    "676": {
+      "name": "m_nFlingState",
+      "type": "int",
+      "source": "decomp:assigned_from_int_ptr_deref"
+    },
+    "856": {
+      "name": "m_fDirSinF",
+      "type": "float",
+      "source": "decomp:Init_sin/cos_4th_quad_vertex"
+    },
+    "860": {
+      "name": "m_fBlendF",
+      "type": "float",
+      "source": "decomp:Init_set_0_then_0.5(blend_factor)"
+    },
+    "864": {
+      "name": "m_fDirCosF",
+      "type": "float",
+      "source": "decomp:Init_sin/cos_4th_quad_vertex"
+    },
+    "868": {
+      "name": "m_fBlendWeight0",
+      "type": "float",
+      "source": "decomp:Update_set_0(float_init)"
+    },
+    "872": {
+      "name": "m_fBlendWeight1",
+      "type": "float",
+      "source": "decomp:Update_set_0(float_init)"
+    },
+    "876": {
+      "name": "m_fBlendWeight2",
+      "type": "float",
+      "source": "decomp:Update_set_1.0f(0x3F800000_IEEE754)"
+    },
+    "880": {
+      "name": "m_fBlendWeight3",
+      "type": "float",
+      "source": "decomp:Update_set_1.0f(0x3F800000_IEEE754)"
+    },
+    "888": {
+      "name": "m_fCurAxisX",
+      "type": "float",
+      "source": "decomp:ShowAxis_copied_from_InitAxis+SetFlingRotX"
+    },
+    "892": {
+      "name": "m_fCurAxisY",
+      "type": "float",
+      "source": "decomp:ShowAxis_copied_from_388"
+    },
+    "896": {
+      "name": "m_fCurAxisZ",
+      "type": "float",
+      "source": "decomp:ShowAxis_copied_from_38C"
+    },
+    "900": {
+      "name": "m_fInitAxisX",
+      "type": "float",
+      "source": "decomp:ShowAxis_CIniFile_ReadLine_float"
+    },
+    "904": {
+      "name": "m_fInitAxisY",
+      "type": "float",
+      "source": "decomp:ShowAxis_CIniFile_ReadLine_float"
+    },
+    "908": {
+      "name": "m_fInitAxisZ",
+      "type": "float",
+      "source": "decomp:ShowAxis_CIniFile_ReadLine_float"
+    },
+    "912": {
+      "name": "m_fCurRotParam",
+      "type": "float",
+      "source": "decomp:SetFlingRotX_copied_from_394+ShowAxis"
+    },
+    "916": {
+      "name": "m_fInitRotParam",
+      "type": "float",
+      "source": "decomp:ShowAxis_CIniFile_ReadLine_float"
+    }
+  }
+}

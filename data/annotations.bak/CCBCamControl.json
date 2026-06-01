@@ -1,0 +1,191 @@
+{
+  "name": "CCBCamControl",
+  "binary_size": 430256,
+  "known_members": {
+    "0": {
+      "name": "m_CCT",
+      "type": "CCCTData *",
+      "source": "annotation"
+    },
+    "430000": {
+      "name": "m_pStage",
+      "type": "CCBStage *",
+      "source": "annotation"
+    },
+    "430004": {
+      "name": "m_pCam",
+      "type": "CCBStageCam *",
+      "source": "annotation"
+    },
+    "430008": {
+      "name": "m_pUtil",
+      "type": "CUtil *",
+      "source": "annotation"
+    },
+    "430012": {
+      "name": "m_bRunning",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "430016": {
+      "name": "m_fp",
+      "type": "void * *[4]",
+      "source": "annotation"
+    },
+    "430032": {
+      "name": "m_nCurList",
+      "type": "int",
+      "source": "annotation"
+    },
+    "430036": {
+      "name": "m_nCurTask",
+      "type": "int",
+      "source": "annotation"
+    },
+    "430040": {
+      "name": "m_fStartSpeed",
+      "type": "float",
+      "source": "annotation"
+    },
+    "430044": {
+      "name": "m_fNextSpeed",
+      "type": "float",
+      "source": "annotation"
+    },
+    "430048": {
+      "name": "m_vecSpeed",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "430060": {
+      "name": "m_vecNextSpeed",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "430072": {
+      "name": "m_fDistance",
+      "type": "float",
+      "source": "annotation"
+    },
+    "430076": {
+      "name": "m_fQuake",
+      "type": "float",
+      "source": "annotation"
+    },
+    "430080": {
+      "name": "m_fQuakeDec",
+      "type": "float",
+      "source": "annotation"
+    },
+    "430084": {
+      "name": "m_fQuakeFre",
+      "type": "float",
+      "source": "annotation"
+    },
+    "430088": {
+      "name": "m_StartPos",
+      "type": "tagCam",
+      "source": "annotation"
+    },
+    "430112": {
+      "name": "m_CurPos",
+      "type": "tagCam",
+      "source": "annotation"
+    },
+    "430136": {
+      "name": "m_vecCurPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "430148": {
+      "name": "m_OBBox",
+      "type": "gbOBBox",
+      "source": "annotation"
+    },
+    "430224": {
+      "name": "m_pPointer",
+      "type": "gbGeomNode *",
+      "source": "annotation"
+    },
+    "430228": {
+      "name": "m_vecCircleCenter",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "430240": {
+      "name": "m_vecCircleEnd",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "430252": {
+      "name": "m_bShowCircleSet",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "430253": {
+      "name": "m_bCircleCenterSelected",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "430254": {
+      "name": "m_bCircleEndSelected",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "m_pvecCenter",
+      "type": "gbVec3D *",
+      "source": "A+:decomp_assigned_from_param_pvecCenter"
+    },
+    "2436": {
+      "name": "m_nList",
+      "type": "gbRefObject *",
+      "source": "decomp_offset+codegen_infer"
+    },
+    "2440": {
+      "name": "m_nPointerUnderMouse",
+      "type": "int",
+      "source": "decomp_offset"
+    },
+    "12": {
+      "name": "_todo_C",
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
+    },
+    "16": {
+      "name": "_todo_010",
+      "type": "gbVolModNode *",
+      "source": "reverted_auto_semantic:2x_access"
+    },
+    "52": {
+      "name": "m_fCamBlendA",
+      "type": "float",
+      "source": "decomp:LoadPointer_set_0.0(camera_blend_param)"
+    },
+    "56": {
+      "name": "m_fCamBlendB",
+      "type": "float",
+      "source": "decomp:LoadPointer_set_0.0(camera_blend_param)"
+    },
+    "60": {
+      "name": "m_CamCtrlData",
+      "type": "int",
+      "source": "decomp:LoadPointer_16byte_clear+_auto_4ff360_base_for_dword_index_25/26/124"
+    },
+    "236": {
+      "name": "_embed_gbVolModNode_EC",
+      "type": "gbVolModNode",
+      "source": "A:LEA_ecx_[esi+0ECh]_2refs_confirm_embed,binary_size=220,no_overlap"
+    },
+    "2444": {
+      "name": "m_CamEntries",
+      "type": "int[1794]",
+      "source": "A+:ida_decomp stride=15*4(60bytes), 119 entries, pattern: for(i=&this->field; *i!=pCam; i+=15)"
+    },
+    "9620": {
+      "name": "m_nCurCamIdx",
+      "type": "int",
+      "source": "A+:decomp_cmp_-1+index_into_cam_array_5refs"
+    }
+  }
+}

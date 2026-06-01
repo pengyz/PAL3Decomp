@@ -1,0 +1,21 @@
+{
+  "name": "tagEntry",
+  "binary_size": 12,
+  "known_members": {
+    "0": {
+      "name": "sizeFront",
+      "type": "int",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "pEntryNext",
+      "type": "tagEntry *",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "pEntryPrev",
+      "type": "tagEntry *",
+      "source": "annotation"
+    }
+  }
+}

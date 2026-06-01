@@ -1,0 +1,602 @@
+{
+  "name": "CGameData",
+  "note": "Large game data container. Not in PAL3A PDB. Size estimated from offset analysis.",
+  "known_members": {
+    "0": {
+      "name": "_vftable",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access | type_fix:float->int(vtable pointer)"
+    },
+    "14528": {
+      "name": "m_pDialog",
+      "type": "void *",
+      "source": "binary:Init _dF40 pattern | type_fix:int→void*(naming m_p)"
+    },
+    "14532": {
+      "name": "m_DialogState1",
+      "type": "int",
+      "source": "binary:Render"
+    },
+    "14536": {
+      "name": "m_DialogState2",
+      "type": "int",
+      "source": "binary:Render"
+    },
+    "76": {
+      "name": "_d04C",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "80": {
+      "name": "_d050",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "84": {
+      "name": "_d054",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "88": {
+      "name": "_d058",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "92": {
+      "name": "_d05C",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "96": {
+      "name": "_d060",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "100": {
+      "name": "_d064",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "104": {
+      "name": "_d068",
+      "type": "float",
+      "source": "A:FPU_disp8_in_class_method"
+    },
+    "108": {
+      "name": "_d06C",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "112": {
+      "name": "_d070",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "124": {
+      "name": "_d07C",
+      "type": "UIWnd *",
+      "source": "gen_headers_9.2+codegen_infer"
+    },
+    "260": {
+      "name": "m_nInit",
+      "type": "UIWnd *",
+      "source": "gen_headers_9.2+codegen_infer"
+    },
+    "276": {
+      "name": "m_nInitRoles",
+      "type": "UIWnd *",
+      "source": "gen_headers_9.2+codegen_infer"
+    },
+    "884": {
+      "name": "m_RoleDataA",
+      "type": "CScreenMode *",
+      "source": "ida_decomp:InitRoles vtable+28 call, &this passed, 4 refs+codegen_infer"
+    },
+    "988": {
+      "name": "_d3DC",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "992": {
+      "name": "_d3E0",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1228": {
+      "name": "m_RoleDataB",
+      "type": "CScreenMode *",
+      "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer"
+    },
+    "1332": {
+      "name": "_d534",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1336": {
+      "name": "_d538",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1572": {
+      "name": "m_RoleDataC",
+      "type": "CScreenMode *",
+      "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer"
+    },
+    "1676": {
+      "name": "_d68C",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "1680": {
+      "name": "_d690",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "2228": {
+      "name": "m_nInitItems",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "2232": {
+      "name": "_todo_8B8",
+      "type": "int",
+      "source": "reverted_auto_semantic:1x"
+    },
+    "2248": {
+      "name": "_todo_8C8",
+      "type": "int",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+    },
+    "2260": {
+      "name": "_todo_8D4",
+      "type": "int",
+      "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
+    },
+    "3288": {
+      "name": "_todo_CD8",
+      "type": "int",
+      "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
+    },
+    "3904": {
+      "name": "m_nRender",
+      "type": "int",
+      "source": "gen_headers_9.2"
+    },
+    "24": {
+      "name": "m_pItemData",
+      "type": "void *",
+      "source": "binary:raw_this6 | type_fix:int→void*(naming m_p)"
+    },
+    "28": {
+      "name": "m_pMagicData",
+      "type": "void *",
+      "source": "binary:raw_this7 | type_fix:int→void*(naming m_p)"
+    },
+    "256": {
+      "name": "_field_100",
+      "type": "short",
+      "source": "binary:raw_batch"
+    },
+    "640": {
+      "name": "m_bFlag280",
+      "type": "unsigned char",
+      "source": "binary:5x abs refs, byte access (0x280)"
+    },
+    "641": {
+      "name": "m_bFlag281",
+      "type": "unsigned char",
+      "source": "binary:6x abs refs, byte access (0x281)"
+    },
+    "642": {
+      "name": "m_bFlag282",
+      "type": "unsigned char",
+      "source": "binary:6x abs refs, byte access (0x282)"
+    },
+    "3284": {
+      "name": "m_bInitRoles",
+      "type": "unsigned char",
+      "source": "binary:raw_batch"
+    },
+    "3304": {
+      "name": "_todo_CE8",
+      "type": "unsigned char",
+      "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
+    },
+    "3305": {
+      "name": "_todo_CE9",
+      "type": "unsigned char",
+      "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
+    },
+    "7412": {
+      "name": "_todo_1CF4",
+      "type": "int",
+      "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
+    },
+    "7416": {
+      "name": "_todo_1CF8",
+      "type": "unsigned char",
+      "source": "reverted_auto_semantic_r3:1x(InitRoles)"
+    },
+    "9488": {
+      "name": "m_nScriptHandleA",
+      "type": "int",
+      "source": "ida_decomp:InitRoles = 0"
+    },
+    "9492": {
+      "name": "m_nScriptHandleB",
+      "type": "int",
+      "source": "ida_decomp:InitRoles = 0"
+    },
+    "9496": {
+      "name": "m_nScriptHandleC",
+      "type": "int",
+      "source": "ida_decomp:InitRoles = 0"
+    },
+    "9500": {
+      "name": "m_nScriptHandleD",
+      "type": "int",
+      "source": "ida_decomp:InitRoles = 0"
+    },
+    "9504": {
+      "name": "m_nScriptHandleE",
+      "type": "int",
+      "source": "ida_decomp:InitRoles = 0"
+    },
+    "9508": {
+      "name": "m_nScriptHandleF",
+      "type": "int",
+      "source": "ida_decomp:InitRoles = 0"
+    },
+    "9512": {
+      "name": "_todo_2528",
+      "type": "unsigned char",
+      "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
+    },
+    "28176": {
+      "name": "m_pGameObj",
+      "type": "void *",
+      "source": "ida_decomp:Init=v3, Render vtable+4 call, Destroy delete, 5 refs | type_fix:int→void*(new/delete+vtable)"
+    },
+    "28180": {
+      "name": "m_nMode",
+      "type": "int",
+      "source": "binary:raw_batch"
+    },
+    "28184": {
+      "name": "m_pGameObjB",
+      "type": "void *",
+      "source": "ida_decomp:Init = v12, Render deref[3829] byte check, 2 refs | type_fix:int→void*(deref pattern)"
+    },
+    "68": {
+      "name": "_field_044",
+      "type": "int",
+      "source": "binary:gap_r2"
+    },
+    "220": {
+      "name": "m_nConfigFlags",
+      "type": "int",
+      "source": "binary:7x abs refs (0xDC)"
+    },
+    "244": {
+      "name": "_field_0F4",
+      "type": "int",
+      "source": "binary:gap_r2"
+    },
+    "356": {
+      "name": "m_nSaveSlot",
+      "type": "int",
+      "source": "binary:10x abs refs (0x164)"
+    },
+    "428": {
+      "name": "m_subObjA",
+      "type": "int",
+      "source": "ida_decomp:InitRoles &this used, 1 ref"
+    },
+    "656": {
+      "name": "m_nGameMode",
+      "type": "int",
+      "source": "binary:17x abs refs (0x290)"
+    },
+    "1916": {
+      "name": "m_ItemSlotA",
+      "type": "UIItem",
+      "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
+    },
+    "2220": {
+      "name": "_field_8AC",
+      "type": "int",
+      "source": "binary:gap_r2"
+    },
+    "3308": {
+      "name": "m_ItemSlotB",
+      "type": "UIItem",
+      "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
+    },
+    "4676": {
+      "name": "m_ItemSlotC",
+      "type": "UIItem",
+      "source": "ida_decomp:InitRoles UIItem::Create+SetData(18), 2 refs+codegen_infer"
+    },
+    "5012": {
+      "name": "m_UITitle",
+      "type": "int",
+      "source": "ida_decomp:ctor_F050 UITitle::ctor, Init InitRoles, 2 refs"
+    },
+    "6044": {
+      "name": "m_ItemSlotD",
+      "type": "UIItem",
+      "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
+    },
+    "14544": {
+      "name": "m_aItemData",
+      "type": "int",
+      "source": "ida_decomp:ctor_F050 eh_vector_dtor(0x8E0,6), Init InitItems loop, 2 refs"
+    },
+    "328": {
+      "name": "_field_0148",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "624": {
+      "name": "m_nPlayerMoney",
+      "type": "int",
+      "source": "binary:3x abs refs, store/load eax(dword)"
+    },
+    "628": {
+      "name": "_field_0274",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "632": {
+      "name": "_field_0278",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "636": {
+      "name": "_field_027C",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "644": {
+      "name": "_field_0284",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "648": {
+      "name": "_field_0288",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "652": {
+      "name": "_field_028C",
+      "type": "int",
+      "source": "A:dword_load_byte_tag_actually_dword|binary:gamedata_gap"
+    },
+    "653": {
+      "name": "_field_028D",
+      "type": "unsigned char",
+      "source": "binary:gamedata_gap"
+    },
+    "728": {
+      "name": "m_nBattleResult",
+      "type": "int",
+      "source": "binary:5x abs refs (0x2D8)"
+    },
+    "736": {
+      "name": "m_nMissionState",
+      "type": "int",
+      "source": "binary:4x abs refs, dword access in PalScriptMgr"
+    },
+    "3976": {
+      "name": "m_nUIFlags",
+      "type": "int",
+      "source": "binary:4x abs refs, A1(load eax) + others"
+    },
+    "14524": {
+      "name": "_field_38BC",
+      "type": "int",
+      "source": "binary:gamedata_gap"
+    },
+    "4": {
+      "name": "_todo_4",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "8": {
+      "name": "_todo_8",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "12": {
+      "name": "_todo_C",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "16": {
+      "name": "_todo_10",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "20": {
+      "name": "_todo_14",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "52": {
+      "name": "_todo_34",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "60": {
+      "name": "_todo_3C",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "64": {
+      "name": "_todo_40",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "72": {
+      "name": "_todo_48",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "1744": {
+      "name": "_todo_6D0",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "1748": {
+      "name": "_todo_6D4",
+      "type": "float",
+      "source": "A:FPU_abs_addr_0xD8EB94@0x438C0B"
+    },
+    "1788": {
+      "name": "_todo_6FC",
+      "type": "unsigned char",
+      "source": "globals_merge"
+    },
+    "1840": {
+      "name": "_todo_730",
+      "type": "unsigned char",
+      "source": "globals_merge"
+    },
+    "2480": {
+      "name": "_todo_9B0",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "2484": {
+      "name": "_todo_9B4",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "3796": {
+      "name": "_todo_ED4",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "4448": {
+      "name": "_todo_1160",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "4452": {
+      "name": "_todo_1164",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "5104": {
+      "name": "_todo_13F0",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "5760": {
+      "name": "_todo_1680",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "5764": {
+      "name": "_todo_1684",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "6416": {
+      "name": "_todo_1910",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "6420": {
+      "name": "_todo_1914",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "7728": {
+      "name": "_todo_1E30",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "7732": {
+      "name": "_todo_1E34",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "10352": {
+      "name": "_todo_2870",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "10364": {
+      "name": "_todo_287C",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "11008": {
+      "name": "_todo_2B00",
+      "type": "float",
+      "source": "globals_merge"
+    },
+    "11012": {
+      "name": "_todo_2B04",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "17104": {
+      "name": "_todo_42D0",
+      "type": "int",
+      "source": "globals_merge"
+    },
+    "14540": {
+      "name": "_todo_38CC",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "32": {
+      "name": "_todo_020",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "408": {
+      "name": "_todo_198",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "512": {
+      "name": "_todo_200",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "768": {
+      "name": "_todo_300",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "1024": {
+      "name": "_todo_400",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "1280": {
+      "name": "_todo_500",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "1536": {
+      "name": "_todo_600",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "2304": {
+      "name": "_todo_900",
+      "type": "int",
+      "source": "binary_discovery:1refs"
+    },
+    "3829": {
+      "name": "_todo_EF5",
+      "type": "unsigned char",
+      "source": "binary_discovery:1refs"
+    }
+  },
+  "binary_size": 28268
+}

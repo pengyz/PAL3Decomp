@@ -1205,6 +1205,10 @@ def run(code, ctx):
         flags=re.MULTILINE
     )
 
+    # Fix !this null check: IDA generates !this for class-type this pointers
+    code = re.sub(r'\b!this\b', '(this == NULL)', code)
+    code = re.sub(r'\bthis\s*==\s*0\b', '(this == NULL)', code)
+
     # Fix return byte_1010101 as void* (decompiler type inference mismatch)
     code = re.sub(r'return\s+byte_1010101', r'return (void*)byte_1010101', code)
 

@@ -1,0 +1,21 @@
+{
+  "name": "tagLoggerCallback",
+  "binary_size": 136,
+  "known_members": {
+    "0": {
+      "name": "szName",
+      "type": "char[32]",
+      "source": "A:decomp Logger::RegisterCallback strncpy(v6, name, 0x20)"
+    },
+    "32": {
+      "name": "szDesc",
+      "type": "char[100]",
+      "source": "A:decomp Logger::RegisterCallback strncpy(v6+32, desc, 0x64)"
+    },
+    "132": {
+      "name": "pfn",
+      "type": "void (*)(void)",
+      "source": "A:decomp Logger::RegisterCallback v6[33] = f — function pointer type"
+    }
+  }
+}
