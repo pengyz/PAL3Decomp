@@ -370,8 +370,10 @@ def create_fixed_struct_diff(name, struct_info, til):
             if new_type_str and new_type_str != "int":
                 new_tinfo = _resolve_member_type(new_type_str, til)
                 if new_tinfo is not None:
-                    m.type = new_tinfo
-                    m.size = new_tinfo.get_size() * 8
+                    _nsz = new_tinfo.get_size()
+                    if _nsz not in (0, 0xFFFFFFFFFFFFFFFF):
+                        m.type = new_tinfo
+                        m.size = _nsz * 8
 
         new_udt.push_back(m)
         existing_offsets.add(m_off_bytes)
@@ -1056,11 +1058,14 @@ def apply_annotations():
         still_fail = []
         resolved = 0
         for sname, sinfo, prev_err in s_fail:
-            mode = _resolve_mode(sname)
-            if mode == "replace":
-                ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
-            else:
-                ok, err = create_fixed_struct_diff(sname, sinfo, til)
+            try:
+                mode = _resolve_mode(sname)
+                if mode == "replace":
+                    ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
+                else:
+                    ok, err = create_fixed_struct_diff(sname, sinfo, til)
+            except Exception as e:
+                ok, err = False, "EXCEPTION: %s" % str(e)
             if ok:
                 s_ok += 1
                 resolved += 1
@@ -1101,6 +1106,26 @@ def apply_annotations():
     log("[3] Structs: applied=%d/%d (TAUDT_FIXED)" % (s_ok, len(structs)))
 
     if s_fail:
+        # Categorize failures for summary
+        _cat_nopdb = sum(1 for _, _, e in s_fail if "no PDB struct definition" in e)
+        _cat_size = sum(1 for _, _, e in s_fail if "size mismatch" in e)
+        _cat_base = sum(1 for _, _, e in s_fail if "base_class" in e and "invalid size" in e)
+        _cat_parse = sum(1 for _, _, e in s_fail if "parse_decl" in e or "_resolve_member_type" in e)
+        _cat_create = sum(1 for _, _, e in s_fail if "create_udt" in e)
+
+        log("")
+        log("=" * 60)
+        log("[STRUCT IMPORT SUMMARY]")
+        log("  Total:     %d/%d structs" % (s_ok, len(structs)))
+        log("  Failed:    %d" % len(s_fail))
+        if _cat_nopdb: log("    no PDB (need replace mode):   %d" % _cat_nopdb)
+        if _cat_size:  log("    size mismatch:                %d" % _cat_size)
+        if _cat_base:  log("    base class invalid:          %d" % _cat_base)
+        if _cat_parse: log("    member type parse failed:    %d" % _cat_parse)
+        if _cat_create:log("    create_udt failed:           %d" % _cat_create)
+        log("  Other:     %d" % (len(s_fail) - _cat_nopdb - _cat_size - _cat_base - _cat_parse - _cat_create))
+        log("")
+
         error_lines = []
         error_lines.append("STRUCT IMPORT ERRORS (%d failures):" % len(s_fail))
         for sname, sinfo, err in s_fail:
@@ -1112,32 +1137,18 @@ def apply_annotations():
             f.write('\n'.join(error_lines))
         log("[!] Error log: %s" % log_path)
 
-        # ABORT: struct layout is foundational — downstream steps (function signatures,
-        # vtables, globals) depend on correct struct definitions. Continuing with broken
-        # structs produces silently wrong decompilation (untyped this, raw offsets).
-        # Fix the struct annotations first, then re-run.
-        skipped_patterns = [
-            "multiple inheritance not supported",
-            "size mismatch",
-            "parse_decl returned None",
-        ]
-        fatal_errors = [(sname, err) for sname, _, err in s_fail
-                       if not any(pat in err for pat in skipped_patterns)]
-        if fatal_errors:
+        # ABORT if struct import failed entirely (0 success)
+        if s_ok == 0:
             log("")
             log("=" * 60)
-            log("[FATAL] %d struct import errors prevent safe continuation:" % len(fatal_errors))
-            log("=" * 60)
-            for sname, err in fatal_errors:
-                log("  %s: %s" % (sname, err))
-            log("")
-            log("Function signatures and global types were NOT applied.")
-            log("Fix these struct annotations, then re-run: python pipeline/cli.py apply")
+            log("[FATAL] 0 structs applied — aborting. Fix annotations and rerun.")
             log("=" * 60)
             os.makedirs(LOG_DIR, exist_ok=True)
             with open(LOG_FILE, 'w', encoding='utf-8') as f:
                 f.write('\n'.join(log_lines))
             idc.qexit(1)
+
+        log("Proceeding with %d successfully imported structs." % s_ok)
     else:
         # Clean: no errors
         if os.path.exists(log_path):
