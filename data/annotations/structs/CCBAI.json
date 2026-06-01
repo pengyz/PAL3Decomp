@@ -357,7 +357,8 @@
     },
     "0x004D7040": {
       "name": "CCBAI::Reset",
-      "signature": "int __thiscall(CCBAI *this)"
+      "signature": "void __thiscall(CCBAI *this)",
+      "source": "pdb_ret"
     },
     "0x004D7080": {
       "name": "CCBAI::Create",
@@ -365,47 +366,58 @@
     },
     "0x004D70C0": {
       "name": "CCBAI::Init",
-      "signature": "char __thiscall(CCBAI *this)"
+      "signature": "bool __thiscall(CCBAI *this)",
+      "source": "pdb_ret"
     },
     "0x004D7100": {
       "name": "CCBAI::Update",
-      "signature": "int __thiscall(CCBAI *this)"
+      "signature": "void __thiscall(CCBAI *this)",
+      "source": "pdb_ret"
     },
     "0x004D7120": {
       "name": "CCBAI::Render",
-      "signature": "char __thiscall(CCBAI *this, int nVal)"
+      "signature": "void __thiscall(CCBAI *this, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004D71E0": {
       "name": "CCBAI::HandleEnemyAction",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x004D7820": {
       "name": "CCBAI::HandleEnemyWell",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x004D7EF0": {
       "name": "CCBAI::HandleEnemyWeak",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x004D86D0": {
       "name": "CCBAI::HandleEnemyChaos",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x004D8760": {
       "name": "CCBAI::HandleFriendAction",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x004D8AF0": {
       "name": "CCBAI::HandleFriendNegative",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x004D8F20": {
       "name": "CCBAI::HandleFriendAffirmative",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, char pData)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, char pData)",
+      "source": "pdb_ret"
     },
     "0x004D9130": {
       "name": "CCBAI::HandlePlayerNormalAttack",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int bPlayerCmd)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int bPlayerCmd)",
+      "source": "pdb_ret"
     },
     "0x004D9360": {
       "name": "CCBAI::RepeatPlayerLastOperation",
@@ -417,103 +429,128 @@
     },
     "0x004D93D0": {
       "name": "CCBAI::FillAllDemandSatisfy",
-      "signature": "int __thiscall(CCBAI *this)"
+      "signature": "void __thiscall(CCBAI *this)",
+      "source": "pdb_ret"
     },
     "0x004D94F0": {
       "name": "CCBAI::DemandThreadTracer",
-      "signature": "char __thiscall(CCBAI *this)"
+      "signature": "void __thiscall(CCBAI *this)",
+      "source": "pdb_ret"
     },
     "0x004D9740": {
       "name": "CCBAI::DemandChecker",
-      "signature": "char __thiscall(CCBAI *this, unsigned int dwVal, int nVal, int nVal2)"
+      "signature": "void __thiscall(CCBAI *this, unsigned int dwVal, int nVal, int nVal2)",
+      "source": "pdb_ret"
     },
     "0x004D9920": {
       "name": "CCBAI::CastNormalAttack",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)",
+      "source": "pdb_ret"
     },
     "0x004D9A70": {
       "name": "CCBAI::CastRecoverMagic",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int nDestRole)",
+      "source": "pdb_ret"
     },
     "0x004D9BA0": {
       "name": "CCBAI::CastRecoverBigMagic",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004D9D00": {
       "name": "CCBAI::CastAttackMagic",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int nDestRole)",
+      "source": "pdb_ret"
     },
     "0x004D9E20": {
       "name": "CCBAI::CastAttackBigMagic",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int pDemand)",
+      "source": "pdb_ret"
     },
     "0x004D9F50": {
       "name": "CCBAI::CastSpecifyMagic",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int dwID)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int dwID)",
+      "source": "pdb_ret"
     },
     "0x004DA0A0": {
       "name": "CCBAI::CastBFAMagic",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int nDestRole)",
+      "source": "pdb_ret"
     },
     "0x004DA1D0": {
       "name": "CCBAI::CastBFAAttackMagic",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004DA350": {
       "name": "CCBAI::CastRandEnemyMagic",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int nDestRole)",
+      "source": "pdb_ret"
     },
     "0x004DA4F0": {
       "name": "CCBAI::CastRecoverSkill",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)",
+      "source": "pdb_ret"
     },
     "0x004DA640": {
       "name": "CCBAI::CastRecoverBigSkill",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int pDemand)",
+      "source": "pdb_ret"
     },
     "0x004DA770": {
       "name": "CCBAI::CastAttackSkill",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)",
+      "source": "pdb_ret"
     },
     "0x004DA900": {
       "name": "CCBAI::CastAttackBigSkill",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int pDemand)",
+      "source": "pdb_ret"
     },
     "0x004DAA40": {
       "name": "CCBAI::CastRecoverItem",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)",
+      "source": "pdb_ret"
     },
     "0x004DAB70": {
       "name": "CCBAI::CastRecoverBigItem",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004DACA0": {
       "name": "CCBAI::CastAttackItem",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)",
+      "source": "pdb_ret"
     },
     "0x004DADD0": {
       "name": "CCBAI::CastAttackBigItem",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004DAF00": {
       "name": "CCBAI::CastBossPhysicalAttack",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004DB030": {
       "name": "CCBAI::CastReviveMagic",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)",
+      "source": "pdb_ret"
     },
     "0x004DB160": {
       "name": "CCBAI::CastReviveSkill",
-      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)"
+      "signature": "bool __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x004DB270": {
       "name": "CCBAI::CastCureSpecStateMagic",
-      "signature": "int __thiscall(CCBAI *this)"
+      "signature": "bool __thiscall(CCBAI *this)",
+      "source": "pdb_ret"
     },
     "0x004DB280": {
       "name": "CCBAI::CastCureSpecStateSkill",
-      "signature": "int __thiscall(CCBAI *this)"
+      "signature": "bool __thiscall(CCBAI *this)",
+      "source": "pdb_ret"
     },
     "0x004DB290": {
       "name": "CCBAI::CastCureSpecStateItem",
@@ -525,11 +562,13 @@
     },
     "0x004DB2B0": {
       "name": "CCBAI::CreateValueAutomation",
-      "signature": "int __thiscall(CCBAI *this)"
+      "signature": "bool __thiscall(CCBAI *this)",
+      "source": "pdb_ret"
     },
     "0x004DB2C0": {
       "name": "CCBAI::AddValueFunction",
-      "signature": "int __thiscall(CCBAI *this)"
+      "signature": "bool __thiscall(CCBAI *this)",
+      "source": "pdb_ret"
     },
     "0x004DB300": {
       "name": "CCBAI::AddValueItem",
@@ -537,7 +576,8 @@
     },
     "0x004DB310": {
       "name": "CCBAI::DestroyValueAutomation",
-      "signature": "int __thiscall(CCBAI *this)"
+      "signature": "bool __thiscall(CCBAI *this)",
+      "source": "pdb_ret"
     },
     "0x004DB350": {
       "name": "CCBAI::RunValueAutomation",
@@ -545,7 +585,8 @@
     },
     "0x004DB360": {
       "name": "CCBAI::SpecAI",
-      "signature": "int __thiscall(CCBAI *this)"
+      "signature": "bool __thiscall(CCBAI *this)",
+      "source": "pdb_ret"
     },
     "0x004D8580": {
       "name": "CCBAI::ChooseRandomAction",

@@ -524,15 +524,18 @@
     },
     "0x004CE340": {
       "name": "CEffMgr::Init",
-      "signature": "int __thiscall(CEffMgr *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5)"
+      "signature": "bool __thiscall(CEffMgr *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5)",
+      "source": "pdb_ret"
     },
     "0x004CE580": {
       "name": "CEffMgr::Render",
-      "signature": "char __thiscall(CEffMgr *this, int nVal)"
+      "signature": "void __thiscall(CEffMgr *this, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004CE5F0": {
       "name": "CEffMgr::SetTimeScale",
-      "signature": "int __thiscall(CEffMgr *this, float fScale)"
+      "signature": "void __thiscall(CEffMgr *this, float fScale)",
+      "source": "pdb_ret"
     },
     "0x004CE690": {
       "name": "CEffMgr::CreateEff",
@@ -540,15 +543,18 @@
     },
     "0x004CEDA0": {
       "name": "CEffMgr::RunEffGroup",
-      "signature": "int(CEffMgr *this, char *nGroup, float fx, char *fy, float fz, unsigned int dwID)"
+      "signature": "unsigned long(CEffMgr *this, char *nGroup, float fx, char *fy, float fz, unsigned int dwID)",
+      "source": "pdb_ret"
     },
     "0x004CF100": {
       "name": "CEffMgr::IsAllEffGroupStop",
-      "signature": "int __thiscall(CEffMgr *this, char *pszBuf, int nVal, char *pszBuf2)"
+      "signature": "bool __thiscall(CEffMgr *this, char *pszBuf, int nVal, char *pszBuf2)",
+      "source": "pdb_ret"
     },
     "0x004CF7C0": {
       "name": "CEffMgr::CopyObjInGroup",
-      "signature": "int __thiscall(CEffMgr *this, char *nGroup, int nObj, char *nObjType)"
+      "signature": "void __thiscall(CEffMgr *this, char *nGroup, int nObj, char *nObjType)",
+      "source": "pdb_ret"
     },
     "0x004D58A0": {
       "name": "CEffMgr::Reset",

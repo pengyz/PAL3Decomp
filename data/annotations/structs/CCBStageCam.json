@@ -181,15 +181,18 @@
     },
     "0x00505060": {
       "name": "CCBStageCam::Reset",
-      "signature": "char __thiscall(CCBStageCam *this, int nVal, const void *pData)"
+      "signature": "void __thiscall(CCBStageCam *this, int nVal, const void *pData)",
+      "source": "pdb_ret"
     },
     "0x005050D0": {
       "name": "CCBStageCam::LoadEditorCam",
-      "signature": "char __thiscall(CCBStageCam *this, int nVal, int nVal2, const void *pData)"
+      "signature": "void __thiscall(CCBStageCam *this, int nVal, int nVal2, const void *pData)",
+      "source": "pdb_ret"
     },
     "0x00505180": {
       "name": "CCBStageCam::SaveEditorCam",
-      "signature": "char __thiscall(CCBStageCam *this, int nVal, int nVal2, int nVal3)"
+      "signature": "void __thiscall(CCBStageCam *this, int nVal, int nVal2, int nVal3)",
+      "source": "pdb_ret"
     },
     "0x005051E0": {
       "name": "CCBStageCam::AddCurCamToEditor",
@@ -197,27 +200,33 @@
     },
     "0x00505250": {
       "name": "CCBStageCam::DelEditorCam",
-      "signature": "char __thiscall(CCBStageCam *this, int nCamIndex)"
+      "signature": "void __thiscall(CCBStageCam *this, int nCamIndex)",
+      "source": "pdb_ret"
     },
     "0x00505290": {
       "name": "CCBStageCam::IsEditorCamValid",
-      "signature": "int __thiscall(CCBStageCam *this, int nCamIndex)"
+      "signature": "bool __thiscall(CCBStageCam *this, int nCamIndex)",
+      "source": "pdb_ret"
     },
     "0x005052C0": {
       "name": "CCBStageCam::IsCamValid",
-      "signature": "int __thiscall(CCBStageCam *this)"
+      "signature": "bool __thiscall(CCBStageCam *this)",
+      "source": "pdb_ret"
     },
     "0x00505410": {
       "name": "CCBStageCam::Create",
-      "signature": "int __thiscall(CCBStageCam *this)"
+      "signature": "bool __thiscall(CCBStageCam *this)",
+      "source": "pdb_ret"
     },
     "0x00505490": {
       "name": "CCBStageCam::Destroy",
-      "signature": "char __thiscall(CCBStageCam *this)"
+      "signature": "bool __thiscall(CCBStageCam *this)",
+      "source": "pdb_ret"
     },
     "0x005054E0": {
       "name": "CCBStageCam::Update",
-      "signature": "char __thiscall(CCBStageCam *this)"
+      "signature": "void __thiscall(CCBStageCam *this)",
+      "source": "pdb_ret"
     },
     "0x004E7350": {
       "name": "CCBStageCam::PopulateCameraListView",
@@ -297,7 +306,8 @@
     },
     "0x005058E0": {
       "name": "CCBStageCam::SwitchEditorCamPos",
-      "signature": "int __thiscall(CCBCamControl *this)"
+      "signature": "bool __thiscall(CCBCamControl *this)",
+      "source": "pdb_ret"
     }
   }
 }

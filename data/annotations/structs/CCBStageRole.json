@@ -1120,7 +1120,8 @@
     },
     "0x005090F0": {
       "name": "CCBStageRole::Proceed",
-      "signature": "int __thiscall(CCBStageRole *this)"
+      "signature": "void __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x00509130": {
       "name": "CCBStageRole::SetAlive",
@@ -1128,7 +1129,8 @@
     },
     "0x00509140": {
       "name": "CCBStageRole::SetMaxBlend",
-      "signature": "int __thiscall(CCBStageRole *this)"
+      "signature": "void __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x00509180": {
       "name": "CCBStageRole::SetVisible",
@@ -1136,11 +1138,13 @@
     },
     "0x00509190": {
       "name": "CCBStageRole::SetPause",
-      "signature": "int __thiscall(CCBStageRole *this)"
+      "signature": "void __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x005091D0": {
       "name": "CCBStageRole::OnChangeAction",
-      "signature": "int __thiscall(CCBStageRole *this)"
+      "signature": "void __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x005091E0": {
       "name": "CCBStageRole::CheckAction",
@@ -1148,15 +1152,18 @@
     },
     "0x00509220": {
       "name": "CCBStageRole::OnPlayAction",
-      "signature": "int __thiscall(CCBStageRole *this)"
+      "signature": "void __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x00509270": {
       "name": "CCBStageRole::IsUnderMouse",
-      "signature": "int __thiscall(CCBStageRole *this)"
+      "signature": "bool __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x00509280": {
       "name": "CCBStageRole::IsCollideRay",
-      "signature": "int __thiscall(CCBStageRole *this)"
+      "signature": "bool __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x00509290": {
       "name": "CCBStageRole::GetRoleRadius",
@@ -1176,19 +1183,23 @@
     },
     "0x00509540": {
       "name": "CCBStageRole::IsIdle",
-      "signature": "char __thiscall(CCBStageRole *this, unsigned int dwVal)"
+      "signature": "bool __thiscall(CCBStageRole *this, unsigned int dwVal)",
+      "source": "pdb_ret"
     },
     "0x00509690": {
       "name": "CCBStageRole::IsAtInitPos",
-      "signature": "char __thiscall(CCBStageRole *this)"
+      "signature": "bool __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x005096D0": {
       "name": "CCBStageRole::IsAtProtectPos",
-      "signature": "char __thiscall(CCBStageRole *this, int index, int nAttacker, int nVal)"
+      "signature": "bool __thiscall(CCBStageRole *this, int index, int nAttacker, int nVal)",
+      "source": "pdb_ret"
     },
     "0x005099A0": {
       "name": "CCBStageRole::IsTaskFinished",
-      "signature": "char __thiscall(CCBStageRole *this, int nVal, BOOL fpTask)"
+      "signature": "bool __thiscall(CCBStageRole *this, int nVal, BOOL fpTask)",
+      "source": "pdb_ret"
     },
     "0x00509B90": {
       "name": "CCBStageRole::IsDoTask",
@@ -1196,11 +1207,13 @@
     },
     "0x0050A180": {
       "name": "CCBStageRole::Grab",
-      "signature": "int(CCBStageRole *this, int dwStageTaskID, bool bNormal)"
+      "signature": "bool(CCBStageRole *this, int dwStageTaskID, bool bNormal)",
+      "source": "pdb_ret"
     },
     "0x0050A1A0": {
       "name": "CCBStageRole::Release",
-      "signature": "char __thiscall(CCBStageRole *this, char dwStageTaskID)"
+      "signature": "void __thiscall(CCBStageRole *this, char dwStageTaskID)",
+      "source": "pdb_ret"
     },
     "0x0050A1B0": {
       "name": "CCBStageRole::TryRelease",
@@ -1208,15 +1221,18 @@
     },
     "0x0050A1F0": {
       "name": "CCBStageRole::ForceRelease",
-      "signature": "char __thiscall(CCBStageRole *this, char pData)"
+      "signature": "void __thiscall(CCBStageRole *this, char pData)",
+      "source": "pdb_ret"
     },
     "0x0050A200": {
       "name": "CCBStageRole::DangerForceRelease",
-      "signature": "char __thiscall(CCBStageRole *this, char pData)"
+      "signature": "void __thiscall(CCBStageRole *this, char pData)",
+      "source": "pdb_ret"
     },
     "0x0050A210": {
       "name": "CCBStageRole::IsGrabedBy",
-      "signature": "int __thiscall(CCBStageRole *this)"
+      "signature": "bool __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x0050A260": {
       "name": "CCBStageRole::GetPointerPos",
@@ -1256,11 +1272,13 @@
     },
     "0x0050A8E0": {
       "name": "CCBStageRole::DelTask",
-      "signature": "char __thiscall(CCBStageRole *this, int nIndex)"
+      "signature": "bool __thiscall(CCBStageRole *this, int nIndex)",
+      "source": "pdb_ret"
     },
     "0x0050A8F0": {
       "name": "CCBStageRole::DelAllTask",
-      "signature": "char __thiscall(CCBStageRole *this, int nVal, char pData)"
+      "signature": "bool __thiscall(CCBStageRole *this, int nVal, char pData)",
+      "source": "pdb_ret"
     },
     "0x0050A920": {
       "name": "CCBStageRole::GetCurrentTask",
@@ -1292,7 +1310,8 @@
     },
     "0x0050AC50": {
       "name": "CCBStageRole::SetParam",
-      "signature": "int __thiscall(CCBStageRole *this, int pParam, char dw1)"
+      "signature": "void __thiscall(CCBStageRole *this, int pParam, char dw1)",
+      "source": "pdb_ret"
     },
     "0x0050AD30": {
       "name": "CCBStageRole::GetProperCurAction",
@@ -1304,11 +1323,13 @@
     },
     "0x0050B290": {
       "name": "CCBStageRole::SetForceFinishThrowingWeapon",
-      "signature": "char __thiscall(CCBStageRole *this, int bForce)"
+      "signature": "void __thiscall(CCBStageRole *this, int bForce)",
+      "source": "pdb_ret"
     },
     "0x0050B360": {
       "name": "CCBStageRole::ProcCatchED",
-      "signature": "int __thiscall(CCBStageRole *this)"
+      "signature": "unsigned long __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x0050B580": {
       "name": "CCBStageRole::ProcPursueRole",
@@ -1316,23 +1337,28 @@
     },
     "0x0050BBD0": {
       "name": "CCBStageRole::ProcTurn",
-      "signature": "unsigned int __thiscall(CCBStageRole *this)"
+      "signature": "unsigned long __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x0050BCD0": {
       "name": "CCBStageRole::ProcTurnToRole",
-      "signature": "int __thiscall(CCBStageRole *this, int __formal)"
+      "signature": "unsigned long __thiscall(CCBStageRole *this, int __formal)",
+      "source": "pdb_ret"
     },
     "0x0050C320": {
       "name": "CCBStageRole::ProcBlock",
-      "signature": "int __thiscall(CCBStageRole *this, int dwMsg)"
+      "signature": "unsigned long __thiscall(CCBStageRole *this, int dwMsg)",
+      "source": "pdb_ret"
     },
     "0x0050C970": {
       "name": "CCBStageRole::ProcMagic",
-      "signature": "int __thiscall(CCBStageRole *this, unsigned int dwMsg)"
+      "signature": "unsigned long __thiscall(CCBStageRole *this, unsigned int dwMsg)",
+      "source": "pdb_ret"
     },
     "0x0050CDE0": {
       "name": "CCBStageRole::ProcUseRecoverItem",
-      "signature": "int __thiscall(CCBStageRole *this, float dwMsg)"
+      "signature": "unsigned long __thiscall(CCBStageRole *this, float dwMsg)",
+      "source": "pdb_ret"
     },
     "0x0053E310": {
       "name": "CCBStageRole::PlaySound",
@@ -1352,7 +1378,8 @@
     },
     "0x0040DD80": {
       "name": "CCBStageRole::Reset",
-      "signature": "int __thiscall(CCBStageRole *this)"
+      "signature": "void __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x0040CF60": {
       "name": "CCBStageRole::PassCmd",

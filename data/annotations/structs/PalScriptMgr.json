@@ -1105,7 +1105,8 @@
     },
     "0x00431EB0": {
       "name": "PalScriptMgr::OpenSCE",
-      "signature": "int __thiscall(PalScriptMgr *this)"
+      "signature": "void __thiscall(PalScriptMgr *this)",
+      "source": "pdb_ret"
     },
     "0x00431EE0": {
       "name": "PalScriptMgr::FindScript",
@@ -1125,7 +1126,8 @@
     },
     "0x004322A0": {
       "name": "PalScriptMgr::IfAnyScriptRunning",
-      "signature": "int __thiscall(PalScriptMgr *this, int nVal)"
+      "signature": "bool __thiscall(PalScriptMgr *this, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004322C0": {
       "name": "PalScriptMgr::IsScriptRuning",
@@ -1145,7 +1147,8 @@
     },
     "0x004324B0": {
       "name": "PalScriptMgr::ClearAllScript",
-      "signature": "int __cdecl(void *pData)"
+      "signature": "void __cdecl(void *pData)",
+      "source": "pdb_ret"
     },
     "0x00432500": {
       "name": "PalScriptMgr::FindScriptByDesc",

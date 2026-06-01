@@ -190,11 +190,13 @@
     },
     "0x0047C770": {
       "name": "ObjectCamera::SetCameraRotate",
-      "signature": "int __thiscall(ObjectCamera *this, float yaw, float pitch, float roll)"
+      "signature": "void __thiscall(ObjectCamera *this, float yaw, float pitch, float roll)",
+      "source": "pdb_ret"
     },
     "0x0047C7E0": {
       "name": "ObjectCamera::SetCameraDist",
-      "signature": "int __thiscall(ObjectCamera *this, int dist, int nVal, int nVal2)"
+      "signature": "void __thiscall(ObjectCamera *this, int dist, int nVal, int nVal2)",
+      "source": "pdb_ret"
     },
     "0x0047C810": {
       "name": "ObjectCamera::Destroy",
@@ -202,7 +204,8 @@
     },
     "0x0047C830": {
       "name": "ObjectCamera::ComputeInfo",
-      "signature": "int __thiscall(ObjectCamera *this, int from)"
+      "signature": "void __thiscall(ObjectCamera *this, int from)",
+      "source": "pdb_ret"
     },
     "0x0047C9B0": {
       "name": "ObjectCamera::SetStepRotate",

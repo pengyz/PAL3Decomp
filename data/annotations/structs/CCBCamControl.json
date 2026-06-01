@@ -406,7 +406,8 @@
     },
     "0x005054B0": {
       "name": "CCBCamControl::Init",
-      "signature": "char __thiscall(CCBCamControl *this)"
+      "signature": "bool __thiscall(CCBCamControl *this)",
+      "source": "pdb_ret"
     },
     "0x005054F0": {
       "name": "CCBCamControl::DoTask",
@@ -434,7 +435,8 @@
     },
     "0x00508230": {
       "name": "CCBCamControl::Create",
-      "signature": "int __thiscall(CCBCamControl *this)"
+      "signature": "bool __thiscall(CCBCamControl *this)",
+      "source": "pdb_ret"
     },
     "0x00508270": {
       "name": "CCBCamControl::Destroy",
@@ -446,15 +448,18 @@
     },
     "0x005082C0": {
       "name": "CCBCamControl::Update",
-      "signature": "int __thiscall(CCBCamControl *this)"
+      "signature": "void __thiscall(CCBCamControl *this)",
+      "source": "pdb_ret"
     },
     "0x005082D0": {
       "name": "CCBCamControl::StartList",
-      "signature": "int __thiscall(CCBCamControl *this)"
+      "signature": "bool __thiscall(CCBCamControl *this)",
+      "source": "pdb_ret"
     },
     "0x00508320": {
       "name": "CCBCamControl::StopList",
-      "signature": "int __thiscall(CCBCamControl *this)"
+      "signature": "void __thiscall(CCBCamControl *this)",
+      "source": "pdb_ret"
     },
     "0x00508360": {
       "name": "CCBCamControl::HandleInput",
@@ -462,7 +467,8 @@
     },
     "0x00508370": {
       "name": "CCBCamControl::UpdateCircleSet",
-      "signature": "int __thiscall(CCBCamControl *this)"
+      "signature": "void __thiscall(CCBCamControl *this)",
+      "source": "pdb_ret"
     },
     "0x005083B0": {
       "name": "CCBCamControl::SetCircle",
@@ -470,7 +476,8 @@
     },
     "0x005084C0": {
       "name": "CCBCamControl::IsPointerUnderMouse",
-      "signature": "char __thiscall(CCBCamControl *this)"
+      "signature": "bool __thiscall(CCBCamControl *this)",
+      "source": "pdb_ret"
     },
     "0x00508660": {
       "name": "CCBCamControl::LoadPointer",
@@ -478,19 +485,23 @@
     },
     "0x00508680": {
       "name": "CCBCamControl::DoList",
-      "signature": "char __thiscall(CCBCamControl *this)"
+      "signature": "void __thiscall(CCBCamControl *this)",
+      "source": "pdb_ret"
     },
     "0x00508690": {
       "name": "CCBCamControl::ResetListFlag",
-      "signature": "int __thiscall(CCBCamControl *this)"
+      "signature": "void __thiscall(CCBCamControl *this)",
+      "source": "pdb_ret"
     },
     "0x00508880": {
       "name": "CCBCamControl::KeepCurCam",
-      "signature": "int __thiscall(CCBCamControl *this, int pCam)"
+      "signature": "void __thiscall(CCBCamControl *this, int pCam)",
+      "source": "pdb_ret"
     },
     "0x005088D0": {
       "name": "CCBCamControl::DoLineMove",
-      "signature": "int __thiscall(CCBCamControl *this, unsigned int dwVal)"
+      "signature": "void __thiscall(CCBCamControl *this, unsigned int dwVal)",
+      "source": "pdb_ret"
     },
     "0x0048E600": {
       "name": "CCBCamControl::ProcessRenderQueue",

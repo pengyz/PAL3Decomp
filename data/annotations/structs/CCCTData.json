@@ -126,7 +126,8 @@
     },
     "0x005060D0": {
       "name": "CCCTData::Destroy",
-      "signature": "char __thiscall(CCCTData *this)"
+      "signature": "bool __thiscall(CCCTData *this)",
+      "source": "pdb_ret"
     },
     "0x005061A0": {
       "name": "CCCTData::Init",
@@ -138,7 +139,8 @@
     },
     "0x005062D0": {
       "name": "CCCTData::Load",
-      "signature": "int __thiscall(CCCTData *this, float *pfVal)"
+      "signature": "bool __thiscall(CCCTData *this, float *pfVal)",
+      "source": "pdb_ret"
     },
     "0x005075E0": {
       "name": "CCCTData::InsertTaskToList",
@@ -150,11 +152,13 @@
     },
     "0x00508190": {
       "name": "CCCTData::ClearList",
-      "signature": "int __thiscall(CCCTData *this)"
+      "signature": "bool __thiscall(CCCTData *this)",
+      "source": "pdb_ret"
     },
     "0x005081A0": {
       "name": "CCCTData::IsTaskValid",
-      "signature": "int __thiscall(CCCTData *this)"
+      "signature": "bool __thiscall(CCCTData *this)",
+      "source": "pdb_ret"
     },
     "0x005081B0": {
       "name": "CCCTData::GetTaskNumInList",

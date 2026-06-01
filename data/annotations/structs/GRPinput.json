@@ -465,11 +465,13 @@
     },
     "0x00402A90": {
       "name": "GRPinput::SetMouseAbs",
-      "signature": "int __thiscall(GRPinput *this, int nVal, int nVal2, int nVal3)"
+      "signature": "void __thiscall(GRPinput *this, int nVal, int nVal2, int nVal3)",
+      "source": "pdb_ret"
     },
     "0x00402B00": {
       "name": "GRPinput::SetJoystickAbs",
-      "signature": "char __thiscall(GRPinput *this)"
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "pdb_ret"
     },
     "0x00402B60": {
       "name": "GRPinput::RunJoystickControlPanel",
@@ -477,7 +479,8 @@
     },
     "0x00402B70": {
       "name": "GRPinput::ClearKeyBuffer",
-      "signature": "int __thiscall(GRPinput *this)"
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "pdb_ret"
     },
     "0x00402B90": {
       "name": "GRPinput::SetJoystickLimits",
@@ -493,15 +496,18 @@
     },
     "0x00402C40": {
       "name": "GRPinput::SetJoystickPos",
-      "signature": "char __thiscall(GRPinput *this, const char *x, int y)"
+      "signature": "void __thiscall(GRPinput *this, const char *x, int y)",
+      "source": "pdb_ret"
     },
     "0x00402D00": {
       "name": "GRPinput::SetJoystickFreePos",
-      "signature": "char __thiscall(GRPinput *this, float x)"
+      "signature": "void __thiscall(GRPinput *this, float x)",
+      "source": "pdb_ret"
     },
     "0x00402D20": {
       "name": "GRPinput::SetMouseSensitivity",
-      "signature": "char __thiscall(GRPinput *this)"
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "pdb_ret"
     },
     "0x00402FA0": {
       "name": "GRPinput::GetMouseSensitivity",
@@ -513,7 +519,8 @@
     },
     "0x00403150": {
       "name": "GRPinput::GetMouseFreePos",
-      "signature": "int __thiscall(GRPinput *this)"
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "pdb_ret"
     },
     "0x00403160": {
       "name": "GRPinput::GetMouseDeltas",
@@ -553,7 +560,8 @@
     },
     "0x00403560": {
       "name": "GRPinput::Update",
-      "signature": "int __thiscall(GRPinput *this)"
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "pdb_ret"
     },
     "0x00403640": {
       "name": "GRPinput::CheckKeyEvents",
@@ -581,15 +589,18 @@
     },
     "0x004042D0": {
       "name": "GRPinput::IsAnyKeyPressed",
-      "signature": "int __thiscall(GRPinput *this)"
+      "signature": "bool __thiscall(GRPinput *this)",
+      "source": "pdb_ret"
     },
     "0x00402270": {
       "name": "GRPinput::SetMouseLimits",
-      "signature": "int __thiscall(GRPinput *this, int a, int b, int c, int d)"
+      "signature": "void __thiscall(GRPinput *this, int a, int b, int c, int d)",
+      "source": "pdb_ret"
     },
     "0x004022F0": {
       "name": "GRPinput::GetMousePos",
-      "signature": "int __thiscall(GRPinput *this, void *pOut, void *pOut2)"
+      "signature": "void __thiscall(GRPinput *this, void *pOut, void *pOut2)",
+      "source": "pdb_ret"
     },
     "0x004021E0": {
       "name": "GRPinput::HandleDeviceInput",

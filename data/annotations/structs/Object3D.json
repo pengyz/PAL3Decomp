@@ -372,7 +372,8 @@
     },
     "0x0047CF40": {
       "name": "Object3D::Destroy",
-      "signature": "char __thiscall(Object3D *this)"
+      "signature": "void __thiscall(Object3D *this)",
+      "source": "pdb_ret"
     },
     "0x0047CFB0": {
       "name": "Object3D::IsOverCVD",
@@ -416,11 +417,13 @@
     },
     "0x0047DC60": {
       "name": "Object3D::CheckMouseLPressed",
-      "signature": "int __thiscall(Object3D *this)"
+      "signature": "bool __thiscall(Object3D *this)",
+      "source": "pdb_ret"
     },
     "0x0047DC70": {
       "name": "Object3D::CheckMousePressed",
-      "signature": "int __thiscall(Object3D *this)"
+      "signature": "bool __thiscall(Object3D *this)",
+      "source": "pdb_ret"
     },
     "0x00429EE0": {
       "name": "Object3D::SetTransform",

@@ -119,11 +119,13 @@
     },
     "0x004D6A60": {
       "name": "C3DSpark::CreateSingle",
-      "signature": "char __thiscall(C3DSpark *this, const void *pSpark)"
+      "signature": "bool __thiscall(C3DSpark *this, const void *pSpark)",
+      "source": "pdb_ret"
     },
     "0x004D6AC0": {
       "name": "C3DSpark::CreateOne",
-      "signature": "char __thiscall(C3DSpark *this, int x, int y, int z)"
+      "signature": "void __thiscall(C3DSpark *this, int x, int y, int z)",
+      "source": "pdb_ret"
     },
     "0x004D6BA0": {
       "name": "C3DSpark::DestroyAll",
@@ -135,7 +137,8 @@
     },
     "0x004D6D30": {
       "name": "C3DSpark::Update",
-      "signature": "int __thiscall(C3DSpark *this, float fDeltaTime)"
+      "signature": "void __thiscall(C3DSpark *this, float fDeltaTime)",
+      "source": "pdb_ret"
     },
     "0x00527130": {
       "name": "C3DSpark::SetSlotCaption",

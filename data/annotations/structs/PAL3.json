@@ -547,11 +547,13 @@
     },
     "0x00405330": {
       "name": "PAL3::CreateEffectSystem",
-      "signature": "char __thiscall(PAL3 *this)"
+      "signature": "bool __thiscall(PAL3 *this)",
+      "source": "pdb_ret"
     },
     "0x004055A0": {
       "name": "PAL3::DestroyEffectSystem",
-      "signature": "char __thiscall(PAL3 *this)"
+      "signature": "bool __thiscall(PAL3 *this)",
+      "source": "pdb_ret"
     },
     "0x004055D0": {
       "name": "PAL3::Update",
@@ -575,11 +577,13 @@
     },
     "0x004066F0": {
       "name": "PAL3::ParseCmdLine",
-      "signature": "int __thiscall(PAL3 *this, const char *lpCmdLine)"
+      "signature": "void __thiscall(PAL3 *this, const char *lpCmdLine)",
+      "source": "pdb_ret"
     },
     "0x004068C0": {
       "name": "PAL3::HasCommandLineParam",
-      "signature": "int __cdecl(char *lpKeyName)"
+      "signature": "bool __cdecl(char *lpKeyName)",
+      "source": "pdb_ret"
     },
     "0x00406980": {
       "name": "PAL3::GetCommandLineParam",
@@ -587,7 +591,8 @@
     },
     "0x00406A10": {
       "name": "PAL3::TestCombat",
-      "signature": "int __thiscall(PAL3 *this)"
+      "signature": "void __thiscall(PAL3 *this)",
+      "source": "pdb_ret"
     },
     "0x00406B80": {
       "name": "PAL3::DefaultKeyMap",
@@ -599,11 +604,13 @@
     },
     "0x00406FF0": {
       "name": "PAL3::SnapScreen",
-      "signature": "int __cdecl(const char *pszName)"
+      "signature": "void __cdecl(const char *pszName)",
+      "source": "pdb_ret"
     },
     "0x00407180": {
       "name": "PAL3::StartWolf",
-      "signature": "char __cdecl(HKEY hKey, CHAR *lpSubKey)"
+      "signature": "void __cdecl(HKEY hKey, CHAR *lpSubKey)",
+      "source": "pdb_ret"
     },
     "0x004071C0": {
       "name": "PAL3::EndWolf",
@@ -611,15 +618,18 @@
     },
     "0x004072D0": {
       "name": "PAL3::StartHideFight",
-      "signature": "int __thiscall(PAL3 *this)"
+      "signature": "void __thiscall(PAL3 *this)",
+      "source": "pdb_ret"
     },
     "0x00407300": {
       "name": "PAL3::EndHideFight",
-      "signature": "int __thiscall(PAL3 *this)"
+      "signature": "void __thiscall(PAL3 *this)",
+      "source": "pdb_ret"
     },
     "0x00407320": {
       "name": "PAL3::StartCombat",
-      "signature": "char __cdecl(unsigned int *const pdwVal, int monsterid, Role *side, char pMonster)"
+      "signature": "void __cdecl(unsigned int *const pdwVal, int monsterid, Role *side, char pMonster)",
+      "source": "pdb_ret"
     },
     "0x00407560": {
       "name": "PAL3::StartCombatFromNPC",
@@ -627,11 +637,13 @@
     },
     "0x00407640": {
       "name": "PAL3::EntryCatchGhost",
-      "signature": "char __thiscall(PAL3 *this)"
+      "signature": "void __thiscall(PAL3 *this)",
+      "source": "pdb_ret"
     },
     "0x00407740": {
       "name": "PAL3::IfHideFightSucceed",
-      "signature": "int __cdecl(bool bFlag)"
+      "signature": "bool __cdecl(bool bFlag)",
+      "source": "pdb_ret"
     },
     "0x00408BE0": {
       "name": "PAL3::InitSubsystems",

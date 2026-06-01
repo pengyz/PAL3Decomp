@@ -164,19 +164,23 @@
     },
     "0x004D5EC0": {
       "name": "C2DSpark::CreateSingle",
-      "signature": "char __thiscall(C2DSpark *this, const void *pSpark)"
+      "signature": "bool __thiscall(C2DSpark *this, const void *pSpark)",
+      "source": "pdb_ret"
     },
     "0x004D5F20": {
       "name": "C2DSpark::CreateTrack",
-      "signature": "char(C2DSpark *this, char nx, int ny, gbColorQuad color)"
+      "signature": "void(C2DSpark *this, char nx, int ny, gbColorQuad color)",
+      "source": "pdb_ret"
     },
     "0x004D5F40": {
       "name": "C2DSpark::SetEnableMouseTrack",
-      "signature": "int __thiscall(C2DSpark *this, int bEnable, int nVal)"
+      "signature": "void __thiscall(C2DSpark *this, int bEnable, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004D6050": {
       "name": "C2DSpark::CreateMore",
-      "signature": "char __thiscall(C2DSpark *this, int x, int y, int color, int nVal)"
+      "signature": "void __thiscall(C2DSpark *this, int x, int y, int color, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004D61A0": {
       "name": "C2DSpark::CreateStars",
@@ -184,11 +188,13 @@
     },
     "0x004D61C0": {
       "name": "C2DSpark::DestroyAll",
-      "signature": "int __thiscall(C2DSpark *this)"
+      "signature": "void __thiscall(C2DSpark *this)",
+      "source": "pdb_ret"
     },
     "0x004D6380": {
       "name": "C2DSpark::Render",
-      "signature": "int __thiscall(C2DSpark *this, float fVal)"
+      "signature": "void __thiscall(C2DSpark *this, float fVal)",
+      "source": "pdb_ret"
     }
   }
 }

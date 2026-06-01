@@ -1431,11 +1431,13 @@
     },
     "0x004FBE50": {
       "name": "CCBStage::Create",
-      "signature": "char __thiscall(CCBStage *this)"
+      "signature": "bool __thiscall(CCBStage *this)",
+      "source": "pdb_ret"
     },
     "0x004FBF90": {
       "name": "CCBStage::Destroy",
-      "signature": "char __thiscall(CCBStage *this)"
+      "signature": "bool __thiscall(CCBStage *this)",
+      "source": "pdb_ret"
     },
     "0x004FC150": {
       "name": "CCBStage::Update_c150",
@@ -1459,7 +1461,8 @@
     },
     "0x004FC8B0": {
       "name": "CCBStage::Procced",
-      "signature": "char __thiscall(CCBStage *this, int nVal)"
+      "signature": "void __thiscall(CCBStage *this, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004FC8F0": {
       "name": "CCBStage::GetStageRole",
@@ -1471,11 +1474,13 @@
     },
     "0x004FC980": {
       "name": "CCBStage::IsDoTask",
-      "signature": "int __thiscall(CCBStage *this, int eTask)"
+      "signature": "bool __thiscall(CCBStage *this, int eTask)",
+      "source": "pdb_ret"
     },
     "0x004FC9A0": {
       "name": "CCBStage::EndTask",
-      "signature": "int __thiscall(CCBStage *this, int nIndex)"
+      "signature": "bool __thiscall(CCBStage *this, int nIndex)",
+      "source": "pdb_ret"
     },
     "0x004FC9C0": {
       "name": "CCBStage::DelTask",
@@ -1483,7 +1488,8 @@
     },
     "0x004FCA00": {
       "name": "CCBStage::ForceDelTask",
-      "signature": "char __thiscall(CCBStage *this, int nIndex)"
+      "signature": "bool __thiscall(CCBStage *this, int nIndex)",
+      "source": "pdb_ret"
     },
     "0x004FCA80": {
       "name": "CCBStage::GetTask",
@@ -1503,7 +1509,8 @@
     },
     "0x004FCD00": {
       "name": "CCBStage::IsTaskFinished",
-      "signature": "int __thiscall(CCBStage *this, int nIndex)"
+      "signature": "bool __thiscall(CCBStage *this, int nIndex)",
+      "source": "pdb_ret"
     },
     "0x004FCD50": {
       "name": "CCBStage::IsTaskValidButNotFinish",
@@ -1511,47 +1518,58 @@
     },
     "0x004FCDA0": {
       "name": "CCBStage::IsTaskExist",
-      "signature": "int __thiscall(CCBStage *this, unsigned int dwTaskID)"
+      "signature": "bool __thiscall(CCBStage *this, unsigned int dwTaskID)",
+      "source": "pdb_ret"
     },
     "0x004FCDE0": {
       "name": "CCBStage::DoTask",
-      "signature": "int __thiscall(CCBStage *this, int nVal)"
+      "signature": "void __thiscall(CCBStage *this, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004FCE00": {
       "name": "CCBStage::StartSubTask",
-      "signature": "int __thiscall(CCBStage *this, int n)"
+      "signature": "bool __thiscall(CCBStage *this, int n)",
+      "source": "pdb_ret"
     },
     "0x004FCE70": {
       "name": "CCBStage::IsSubTaskFinished",
-      "signature": "int(CCBStage *this, int n, int nSub)"
+      "signature": "bool(CCBStage *this, int n, int nSub)",
+      "source": "pdb_ret"
     },
     "0x004FCFB0": {
       "name": "CCBStage::IsAllSubTaskFinished",
-      "signature": "int __thiscall(CCBStage *this, int n)"
+      "signature": "bool __thiscall(CCBStage *this, int n)",
+      "source": "pdb_ret"
     },
     "0x004FD0B0": {
       "name": "CCBStage::IsTaskValid",
-      "signature": "int __thiscall(CCBStage *this, int n)"
+      "signature": "bool __thiscall(CCBStage *this, int n)",
+      "source": "pdb_ret"
     },
     "0x004FD1A0": {
       "name": "CCBStage::IsSubTaskValid",
-      "signature": "int(CCBStage *this, int n, int nSub)"
+      "signature": "bool(CCBStage *this, int n, int nSub)",
+      "source": "pdb_ret"
     },
     "0x004FD290": {
       "name": "CCBStage::IsIdle",
-      "signature": "int __thiscall(CCBStage *this, int nVal)"
+      "signature": "bool __thiscall(CCBStage *this, int nVal)",
+      "source": "pdb_ret"
     },
     "0x004FD3D0": {
       "name": "CCBStage::HasNormalAttackRole",
-      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)"
+      "signature": "bool __thiscall(CCBStage *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x004FD880": {
       "name": "CCBStage::ClearRoleAllTask",
-      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)"
+      "signature": "void __thiscall(CCBStage *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x004FDA10": {
       "name": "CCBStage::EndRoleAllTask",
-      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)"
+      "signature": "void __thiscall(CCBStage *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x004FDB10": {
       "name": "CCBStage::GetRoleTaskNum",
@@ -1559,63 +1577,78 @@
     },
     "0x004FDD90": {
       "name": "CCBStage::SelectRole",
-      "signature": "int __thiscall(CCBStage *this, int nRoleIndex)"
+      "signature": "void __thiscall(CCBStage *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x004FDFC0": {
       "name": "CCBStage::ProcWait",
-      "signature": "int __thiscall(CCBStage *this, int __formal)"
+      "signature": "unsigned long __thiscall(CCBStage *this, int __formal)",
+      "source": "pdb_ret"
     },
     "0x004FE290": {
       "name": "CCBStage::ProcShowFiveLineup",
-      "signature": "int __thiscall(CCBStage *this, int __formal)"
+      "signature": "unsigned long __thiscall(CCBStage *this, int __formal)",
+      "source": "pdb_ret"
     },
     "0x004FE540": {
       "name": "CCBStage::ProcShowEnemyFiveLineup",
-      "signature": "int __thiscall(CCBStage *this)"
+      "signature": "unsigned long __thiscall(CCBStage *this)",
+      "source": "pdb_ret"
     },
     "0x004FE550": {
       "name": "CCBStage::ProcFiveLienupFadeIn",
-      "signature": "int __thiscall(CCBStage *this, int __formal)"
+      "signature": "unsigned long __thiscall(CCBStage *this, int __formal)",
+      "source": "pdb_ret"
     },
     "0x004FE600": {
       "name": "CCBStage::ProcFiveLienupFadeOut",
-      "signature": "int __thiscall(CCBStage *this, int __formal)"
+      "signature": "unsigned long __thiscall(CCBStage *this, int __formal)",
+      "source": "pdb_ret"
     },
     "0x004FE660": {
       "name": "CCBStage::ProcShowSneakAttackState",
-      "signature": "int __thiscall(CCBStage *this, unsigned int _74)"
+      "signature": "unsigned long __thiscall(CCBStage *this, unsigned int _74)",
+      "source": "pdb_ret"
     },
     "0x004FECE0": {
       "name": "CCBStage::HandleKeyCtrl",
-      "signature": "int __thiscall(CCBStage *this, int n)"
+      "signature": "void __thiscall(CCBStage *this, int n)",
+      "source": "pdb_ret"
     },
     "0x004FEE60": {
       "name": "CCBStage::HandleKeyFriend",
-      "signature": "int __thiscall(CCBStage *this, int Selected)"
+      "signature": "bool __thiscall(CCBStage *this, int Selected)",
+      "source": "pdb_ret"
     },
     "0x004FEFB0": {
       "name": "CCBStage::ProcShowName",
-      "signature": "int __thiscall(CCBStage *this, unsigned int __formal)"
+      "signature": "unsigned long __thiscall(CCBStage *this, unsigned int __formal)",
+      "source": "pdb_ret"
     },
     "0x004FF1B0": {
       "name": "CCBStage::ProcShowItemName",
-      "signature": "int __thiscall(CCBStage *this, int __formal)"
+      "signature": "unsigned long __thiscall(CCBStage *this, int __formal)",
+      "source": "pdb_ret"
     },
     "0x004FF3D0": {
       "name": "CCBStage::ProcShowDamage",
-      "signature": "int __thiscall(CCBStage *this, unsigned int __formal)"
+      "signature": "unsigned long __thiscall(CCBStage *this, unsigned int __formal)",
+      "source": "pdb_ret"
     },
     "0x004FF5C0": {
       "name": "CCBStage::ProcShowCost",
-      "signature": "int __thiscall(CCBStage *this, int __formal)"
+      "signature": "unsigned long __thiscall(CCBStage *this, int __formal)",
+      "source": "pdb_ret"
     },
     "0x004FF740": {
       "name": "CCBStage::ProcShowCombatDialog",
-      "signature": "int __thiscall(CCBStage *this, int __formal)"
+      "signature": "unsigned long __thiscall(CCBStage *this, int __formal)",
+      "source": "pdb_ret"
     },
     "0x004FF840": {
       "name": "CCBStage::ProcGrabStageRole",
-      "signature": "int __thiscall(CCBStage *this, unsigned int __formal)"
+      "signature": "unsigned long __thiscall(CCBStage *this, unsigned int __formal)",
+      "source": "pdb_ret"
     },
     "0x00503020": {
       "name": "CCBStage::ResetAll",
@@ -1647,7 +1680,8 @@
     },
     "0x004FC0A0": {
       "name": "CCBStage::Update",
-      "signature": "int __thiscall(CCBStage *this)"
+      "signature": "void __thiscall(CCBStage *this)",
+      "source": "pdb_ret"
     },
     "0x004F4AA0": {
       "name": "CCBStage::GetRole",
@@ -1892,7 +1926,8 @@
     },
     "0x0050B530": {
       "name": "CCBStage::GetTaskState",
-      "signature": "int __thiscall(CCBStageRole *this)"
+      "signature": "void __thiscall(CCBStageRole *this)",
+      "source": "pdb_ret"
     },
     "0x0041BD70": {
       "name": "CCBStage::GetRoleName",

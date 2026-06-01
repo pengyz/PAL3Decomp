@@ -852,11 +852,13 @@
     },
     "0x00512320": {
       "name": "CCBSystem::SetQuitFlag",
-      "signature": "int __thiscall(CCBSystem *this)"
+      "signature": "void __thiscall(CCBSystem *this)",
+      "source": "pdb_ret"
     },
     "0x00512330": {
       "name": "CCBSystem::IsEditorWindow",
-      "signature": "int __thiscall(CCBSystem *this)"
+      "signature": "bool __thiscall(CCBSystem *this)",
+      "source": "pdb_ret"
     },
     "0x00512370": {
       "name": "CCBSystem::SetAuto",
@@ -864,7 +866,8 @@
     },
     "0x00512380": {
       "name": "CCBSystem::SetAutoOnly",
-      "signature": "int __thiscall(CCBSystem *this)"
+      "signature": "void __thiscall(CCBSystem *this)",
+      "source": "pdb_ret"
     },
     "0x005123C0": {
       "name": "CCBSystem::ShowInfo",
@@ -872,11 +875,13 @@
     },
     "0x005123D0": {
       "name": "CCBSystem::SetTimeScale",
-      "signature": "int __thiscall(CCBSystem *this)"
+      "signature": "void __thiscall(CCBSystem *this)",
+      "source": "pdb_ret"
     },
     "0x00512410": {
       "name": "CCBSystem::GetFreeID",
-      "signature": "int __thiscall(CCBSystem *this)"
+      "signature": "unsigned long __thiscall(CCBSystem *this)",
+      "source": "pdb_ret"
     },
     "0x00512460": {
       "name": "CCBSystem::DelAllTaskAndThread",
@@ -884,7 +889,8 @@
     },
     "0x00512470": {
       "name": "CCBSystem::Proceed",
-      "signature": "int __thiscall(CCBSystem *this)"
+      "signature": "void __thiscall(CCBSystem *this)",
+      "source": "pdb_ret"
     },
     "0x005124B0": {
       "name": "CCBSystem::CanBeHandleWPX_R",
@@ -892,11 +898,13 @@
     },
     "0x005124C0": {
       "name": "CCBSystem::CanBeHandleNGH_R",
-      "signature": "int __thiscall(CCBSystem *this)"
+      "signature": "bool __thiscall(CCBSystem *this)",
+      "source": "pdb_ret"
     },
     "0x00512580": {
       "name": "CCBSystem::ProcDialog",
-      "signature": "int __thiscall(CCBSystem *this)"
+      "signature": "unsigned long __thiscall(CCBSystem *this)",
+      "source": "pdb_ret"
     },
     "0x005125E0": {
       "name": "CCBSystem::ProcNormalAttack",
@@ -956,7 +964,8 @@
     },
     "0x005136A0": {
       "name": "CCBSystem::ProcProtect",
-      "signature": "int __thiscall(CCBSystem *this)"
+      "signature": "unsigned long __thiscall(CCBSystem *this)",
+      "source": "pdb_ret"
     },
     "0x005136D0": {
       "name": "CCBSystem::ProcMessage",
@@ -964,7 +973,8 @@
     },
     "0x005137F0": {
       "name": "CCBSystem::IsFriendDoSkill",
-      "signature": "int __thiscall(CCBSystem *this)"
+      "signature": "bool __thiscall(CCBSystem *this)",
+      "source": "pdb_ret"
     },
     "0x00513840": {
       "name": "CCBSystem::CheckBattleEnd",
@@ -976,15 +986,18 @@
     },
     "0x00513FD0": {
       "name": "CCBSystem::IsRoleWaitForFlee",
-      "signature": "int __thiscall(CCBSystem *this, int nRoleIndex)"
+      "signature": "bool __thiscall(CCBSystem *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x00514220": {
       "name": "CCBSystem::AddThread",
-      "signature": "int __thiscall(CCBSystem *this, int fp)"
+      "signature": "unsigned long __thiscall(CCBSystem *this, int fp)",
+      "source": "pdb_ret"
     },
     "0x00514610": {
       "name": "CCBSystem::DelThread",
-      "signature": "int __thiscall(CCBSystem *this, int nIndex)"
+      "signature": "bool __thiscall(CCBSystem *this, int nIndex)",
+      "source": "pdb_ret"
     },
     "0x00514870": {
       "name": "CCBSystem::GetSameThreadNum",
@@ -992,7 +1005,8 @@
     },
     "0x00514AE0": {
       "name": "CCBSystem::IsThreadExist",
-      "signature": "int __thiscall(CCBSystem *this, unsigned int dwThreadID)"
+      "signature": "bool __thiscall(CCBSystem *this, unsigned int dwThreadID)",
+      "source": "pdb_ret"
     },
     "0x00514D60": {
       "name": "CCBSystem::GetThreadIndex",
@@ -1008,11 +1022,13 @@
     },
     "0x005155D0": {
       "name": "CCBSystem::PassCmdToTask",
-      "signature": "int(CCBSystem *this, int nTaskIndex, int nThreadIndex)"
+      "signature": "bool(CCBSystem *this, int nTaskIndex, int nThreadIndex)",
+      "source": "pdb_ret"
     },
     "0x00515760": {
       "name": "CCBSystem::PassCmdViaThread",
-      "signature": "int(CCBSystem *this, int nDestThread, int nSrcThread)"
+      "signature": "bool(CCBSystem *this, int nDestThread, int nSrcThread)",
+      "source": "pdb_ret"
     },
     "0x00515940": {
       "name": "CCBSystem::CreateObj__ovl_5940",
@@ -1056,7 +1072,8 @@
     },
     "0x00515E90": {
       "name": "CCBSystem::InitObj",
-      "signature": "int __thiscall(CCBSystem *this)"
+      "signature": "bool __thiscall(CCBSystem *this)",
+      "source": "pdb_ret"
     },
     "0x00515EE0": {
       "name": "CCBSystem::InitObj_5ee0",
@@ -1180,7 +1197,8 @@
     },
     "0x00417AC0": {
       "name": "CCBSystem::SetState",
-      "signature": "char __thiscall(RoleSystem *this, int state)"
+      "signature": "void __thiscall(RoleSystem *this, int state)",
+      "source": "pdb_ret"
     },
     "0x004230D0": {
       "name": "CCBSystem::GetState",

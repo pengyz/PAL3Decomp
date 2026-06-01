@@ -161,11 +161,13 @@
     },
     "0x0051BB00": {
       "name": "CCBMagicWindow::Reset",
-      "signature": "int __thiscall(CCBMagicWindow *this, int nVal, int nVal2)"
+      "signature": "void __thiscall(CCBMagicWindow *this, int nVal, int nVal2)",
+      "source": "pdb_ret"
     },
     "0x0051BB40": {
       "name": "CCBMagicWindow::Create",
-      "signature": "int __thiscall(CCBMagicWindow *this, int rc)"
+      "signature": "bool __thiscall(CCBMagicWindow *this, int rc)",
+      "source": "pdb_ret"
     },
     "0x0051BB90": {
       "name": "CCBMagicWindow::ForbidPage",
@@ -177,7 +179,8 @@
     },
     "0x0051BC70": {
       "name": "CCBMagicWindow::CreateButton",
-      "signature": "char __thiscall(CCBMagicWindow *this, int *ppButton, int id)"
+      "signature": "bool __thiscall(CCBMagicWindow *this, int *ppButton, int id)",
+      "source": "pdb_ret"
     },
     "0x0051C110": {
       "name": "CCBMagicWindow::Destroy",

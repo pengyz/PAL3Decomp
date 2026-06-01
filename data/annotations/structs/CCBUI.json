@@ -654,19 +654,23 @@
     },
     "0x00517B30": {
       "name": "CCBUI::CreateCombatPanel",
-      "signature": "char __thiscall(CCBUI *this)"
+      "signature": "bool __thiscall(CCBUI *this)",
+      "source": "pdb_ret"
     },
     "0x00517C10": {
       "name": "CCBUI::CreateAttackSequen",
-      "signature": "char __thiscall(CCBUI *this)"
+      "signature": "bool __thiscall(CCBUI *this)",
+      "source": "pdb_ret"
     },
     "0x00517C80": {
       "name": "CCBUI::CreateBattleFieldAttr",
-      "signature": "char __thiscall(CCBUI *this)"
+      "signature": "bool __thiscall(CCBUI *this)",
+      "source": "pdb_ret"
     },
     "0x00517D60": {
       "name": "CCBUI::CreateControlWindow",
-      "signature": "char __thiscall(CCBUI *this)"
+      "signature": "bool __thiscall(CCBUI *this)",
+      "source": "pdb_ret"
     },
     "0x00517DF0": {
       "name": "CCBUI::CreateItemWindow",
@@ -674,7 +678,8 @@
     },
     "0x005181E0": {
       "name": "CCBUI::CreateParaWindow",
-      "signature": "char __thiscall(CCBUI *this)"
+      "signature": "bool __thiscall(CCBUI *this)",
+      "source": "pdb_ret"
     },
     "0x005183C0": {
       "name": "CCBUI::CreateMagicWindow",
@@ -682,35 +687,43 @@
     },
     "0x005184C0": {
       "name": "CCBUI::CreateSkillWindow",
-      "signature": "int __thiscall(CCBUI *this, char pData)"
+      "signature": "bool __thiscall(CCBUI *this, char pData)",
+      "source": "pdb_ret"
     },
     "0x00518AF0": {
       "name": "CCBUI::CreateLineupWindow",
-      "signature": "int __thiscall(CCBUI *this, int nVal, char pData)"
+      "signature": "bool __thiscall(CCBUI *this, int nVal, char pData)",
+      "source": "pdb_ret"
     },
     "0x00518B20": {
       "name": "CCBUI::CreateProtectWindow",
-      "signature": "char __thiscall(CCBUI *this)"
+      "signature": "bool __thiscall(CCBUI *this)",
+      "source": "pdb_ret"
     },
     "0x00518B30": {
       "name": "CCBUI::CreateResultWindow",
-      "signature": "char __thiscall(CCBUI *this, char pData)"
+      "signature": "bool __thiscall(CCBUI *this, char pData)",
+      "source": "pdb_ret"
     },
     "0x00518D40": {
       "name": "CCBUI::CreateFiveNimbus",
-      "signature": "int __thiscall(CCBUI *this, char pData)"
+      "signature": "bool __thiscall(CCBUI *this, char pData)",
+      "source": "pdb_ret"
     },
     "0x00518E60": {
       "name": "CCBUI::HideAll",
-      "signature": "int __thiscall(CCBUI *this)"
+      "signature": "void __thiscall(CCBUI *this)",
+      "source": "pdb_ret"
     },
     "0x00518FE0": {
       "name": "CCBUI::ShowBattleFieldAttr",
-      "signature": "int __thiscall(CCBUI *this, int attr)"
+      "signature": "void __thiscall(CCBUI *this, int attr)",
+      "source": "pdb_ret"
     },
     "0x00519080": {
       "name": "CCBUI::ShowControlWindow",
-      "signature": "int __thiscall(CCBUI *this, int bShow)"
+      "signature": "void __thiscall(CCBUI *this, int bShow)",
+      "source": "pdb_ret"
     },
     "0x00519200": {
       "name": "CCBUI::ShowDialogWindow",
@@ -718,11 +731,13 @@
     },
     "0x00519230": {
       "name": "CCBUI::ShowAIWindow",
-      "signature": "char __thiscall(CCBUI *this, int nRoleIndex)"
+      "signature": "void __thiscall(CCBUI *this, int nRoleIndex)",
+      "source": "pdb_ret"
     },
     "0x00519260": {
       "name": "CCBUI::IsResultWindowClosed",
-      "signature": "char __thiscall(CCBUI *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int nVal7, const void *pData)"
+      "signature": "bool __thiscall(CCBUI *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int nVal7, const void *pData)",
+      "source": "pdb_ret"
     },
     "0x005193D0": {
       "name": "CCBUI::ClearAttackSequence",
@@ -754,7 +769,8 @@
     },
     "0x00519BD0": {
       "name": "CCBUI::CreateButton",
-      "signature": "char(CCBUI *this, int parent, int id, int rc, int picname, UIButton **a6, int nVal)"
+      "signature": "bool(CCBUI *this, int parent, int id, int rc, int picname, UIButton **a6, int nVal)",
+      "source": "pdb_ret"
     },
     "0x00519F50": {
       "name": "CCBUI::Destroy_9f50",
@@ -766,7 +782,8 @@
     },
     "0x0051A0F0": {
       "name": "CCBUI::ChangeSpecStateLum",
-      "signature": "int __thiscall(CCBUI *this)"
+      "signature": "void __thiscall(CCBUI *this)",
+      "source": "pdb_ret"
     },
     "0x0051A1D0": {
       "name": "CCBUI::LineMove",
@@ -774,11 +791,13 @@
     },
     "0x0051A2B0": {
       "name": "CCBUI::GravityDown",
-      "signature": "int __thiscall(CCBUI *this, unsigned int __formal)"
+      "signature": "unsigned long __thiscall(CCBUI *this, unsigned int __formal)",
+      "source": "pdb_ret"
     },
     "0x0051A340": {
       "name": "CCBUI::ChangeNumTxt",
-      "signature": "int __thiscall(CCBUI *this)"
+      "signature": "unsigned long __thiscall(CCBUI *this)",
+      "source": "pdb_ret"
     },
     "0x0051A390": {
       "name": "CCBUI::DoTask",
