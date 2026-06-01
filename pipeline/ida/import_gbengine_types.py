@@ -363,7 +363,6 @@ def main():
 
     if not os.path.isdir(header_dir):
         log("[!] gbengine header dir not found: %s" % header_dir)
-        idc.qexit(1)
         return
 
     log("[*] Flattening gbengine headers + VC6 D3D headers for IDA...")
@@ -374,114 +373,9 @@ def main():
         log("[!] flatten_gbengine_headers failed: %s" % str(e))
         import traceback
         log(traceback.format_exc())
-        log_path = os.path.join(log_dir, "import_gbengine_log.txt")
-        with open(log_path, 'w') as f:
-            f.write('\n'.join(log_lines))
-        idc.qexit(1)
-        return
-
-    flat_path = os.path.join(log_dir, "gbengine_flat_ida.h")
-    with open(flat_path, 'w') as f:
-        f.write(content)
-
-    til = ida_typeinf.get_idati()
-
-    # Step 0: Remove forward-declaration stubs (size=-1) that block full definitions
-    type_names_in_content = set(re.findall(r'(?:struct|enum)\s+(\w+)\s*[{:]', content))
-    stubs_removed = 0
-    for tname in type_names_in_content:
-        tinfo = ida_typeinf.tinfo_t()
-        if tinfo.get_named_type(til, tname):
-            sz = tinfo.get_size()
-            if sz == 0xFFFFFFFFFFFFFFFF or sz == 0:
-                ida_typeinf.del_named_type(til, tname, ida_typeinf.NTF_TYPE)
-                stubs_removed += 1
-    if stubs_removed:
-        log("[*] Step 0: removed %d forward-decl stubs from TIL" % stubs_removed)
-
-    # Step 1: Bulk parse (two passes — second catches ordering-dependent failures)
-    errs = idc.parse_decls(content, 0)
-    log("[*] Step 1 idc.parse_decls pass 1: %d errors" % errs)
-    # Multiple passes: each pass resolves types that depended on types defined in previous pass
-    for pass_num in range(2, 6):
-        if errs == 0:
-            break
-        errs = idc.parse_decls(content, 0)
-        log("[*] Step 1 idc.parse_decls pass %d: %d errors" % (pass_num, errs))
-
-    # Step 1b: Identify which declarations fail by testing each block
-    if errs > 0:
-        # Split content into logical blocks (each struct/enum/typedef)
-        blocks = re.split(r'(?<=;\n)', content)
-        cum_errors = 0
-        error_blocks = []
-        for i, block in enumerate(blocks):
-            block_s = block.strip()
-            if not block_s:
-                continue
-            e = idc.parse_decls(block_s, 0)
-            if e > 0:
-                # Extract name from block
-                nm = re.search(r'(?:struct|enum|typedef\s+\S+\s+)(\w+)', block_s)
-                name = nm.group(1) if nm else "block_%d" % i
-                error_blocks.append((name, block_s[:150]))
-                cum_errors += e
-        if error_blocks:
-            log("[!] Step 1b: %d blocks with errors:" % len(error_blocks))
-            for name, preview in error_blocks:
-                log("    FAIL: %s — %s" % (name, preview.replace('\n', ' ')[:100]))
-
-    # Step 2: Recover individually-parseable types missed by bulk parse
-    decl_pattern = re.compile(
-        r'((?:struct|enum)\s+(\w+)\s*(?::\s*[^{]*?)?\s*\{[^}]*(?:\{[^}]*\}[^}]*)*\}\s*;)',
-        re.DOTALL
-    )
-    recovered = 0
-    failed_individual = []
-    for m in decl_pattern.finditer(content):
-        name = m.group(2)
-        decl = m.group(1)
-        tinfo = ida_typeinf.tinfo_t()
-        if not tinfo.get_named_type(til, name):
-            tinfo2 = ida_typeinf.tinfo_t()
-            result = ida_typeinf.parse_decl(tinfo2, til, decl, ida_typeinf.PT_TYP)
-            if result is not None:
-                tinfo2.set_named_type(til, name)
-                recovered += 1
-            else:
-                failed_individual.append(name)
-    log("[*] Step 2 recovered: %d types, failed: %d" % (recovered, len(failed_individual)))
-    if failed_individual:
-        log("[!] Step 2 failures: %s" % ', '.join(failed_individual))
-
-    # Verify
-    type_names = set()
-    for mm in re.finditer(r'(?:struct|enum)\s+(\w+)\s*[{:;]', content):
-        type_names.add(mm.group(1))
-
-    ok = fail = 0
-    fail_list = []
-    for name in sorted(type_names):
-        # Try multiple verification methods
-        tinfo = ida_typeinf.tinfo_t()
-        found = tinfo.get_named_type(til, name)
-        if not found:
-            found = bool(ida_typeinf.get_named_type(til, name, ida_typeinf.NTF_TYPE))
-        if found:
-            ok += 1
-        else:
-            fail += 1
-            fail_list.append(name)
-
-    log("[*] gbengine types: %d found in TIL, %d missing" % (ok, fail))
-    if fail_list:
-        log("[!] Missing: %s" % ', '.join(fail_list))
-
     log_path = os.path.join(log_dir, "import_gbengine_log.txt")
     with open(log_path, 'w') as f:
         f.write('\n'.join(log_lines))
-
-    idc.qexit(0)
 
 if __name__ == '__main__':
     main()

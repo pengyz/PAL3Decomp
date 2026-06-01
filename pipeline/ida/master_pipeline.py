@@ -32,6 +32,7 @@ import builtins
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
+os.makedirs(LOG_DIR, exist_ok=True)
 
 PDB_EXPORT = os.path.join(PROJECT_ROOT, "data", "pdb", "pdb_export.json")
 GLOBALS_FILE = os.path.join(PROJECT_ROOT, "data", "pdb", "globals_export.json")
@@ -39,6 +40,10 @@ OUTPUT_DIR = os.path.join(PROJECT_ROOT, "asm", "pal3")
 SIG_NAME = "pal3a_text"
 
 LOG_FILE = os.path.join(LOG_DIR, "pal3_master_pipeline_log.txt")
+try:
+    open(LOG_FILE, 'w').close()
+except:
+    pass
 
 TEXT_START = 0x00401000
 TEXT_END = 0x005695D0
@@ -53,6 +58,11 @@ log_lines = []
 def log(msg):
     log_lines.append(str(msg))
     print(msg)
+    try:
+        with open(LOG_FILE, 'a') as _lf:
+            _lf.write(str(msg) + '\n')
+    except:
+        pass
 
 
 def _resolve_member_type(mtype_str, til):
@@ -248,20 +258,13 @@ def phase1_import_types():
 
     log("[*] 类导入: %d forward decls + %d full definitions" % (len(classes), cls_ok))
 
-    # Import gbengine types (provides gb* + D3D type definitions)
+    # Phase 1b: 先创建 D3D 值类型（避免被 gbengine import 中的 parse_decls 错误覆盖）
     log("")
     log("=" * 60)
-    log("[Phase 1b] 导入 gbengine + D3D 类型")
+    log("[Phase 1b] 创建 D3D 值类型 + 导入 gbengine 类型")
     log("=" * 60)
-    try:
-        sys.path.insert(0, os.path.join(PROJECT_ROOT, "pipeline", "ida"))
-        import import_gbengine_types as _gb
-        _gb.main()
-        log("[*] gbengine 导入完成")
-    except Exception as e:
-        log("[!] gbengine import EXCEPTION: %s" % e)
 
-    # Ensure D3D value types exist in TIL (parse_decls may fail on these)
+    # 先确保 D3D 值类型以纯 struct 形式存在于 TIL
     _d3d_types = [
         ("D3DCOLOR",      4,  "unsigned long"),
         ("D3DVECTOR",     12, "float[3]"),
@@ -271,24 +274,40 @@ def phase1_import_types():
         ("D3DXVECTOR4",   16, "float[4]"),
         ("D3DXCOLOR",     16, "float[4]"),
     ]
+    _d3d_ok = 0
     for _tn, _tsize, _trep in _d3d_types:
         _ti = ida_typeinf.tinfo_t()
-        if _ti.get_named_type(til, _tn):
-            _sz = _ti.get_size()
-            if _sz == _tsize:
-                continue
+        if _ti.get_named_type(til, _tn) and _ti.get_size() == _tsize:
+            _d3d_ok += 1
+            continue
+        # 创建不透明类型（正确 size + 字段名）
         _decl = "struct %s { char _data[%d]; }; " % (_tn, _tsize)
         _ti2 = ida_typeinf.tinfo_t()
         if ida_typeinf.parse_decl(_ti2, til, _decl, ida_typeinf.PT_TYP) is not None:
             _ti2.set_named_type(til, _tn, ida_typeinf.NTF_REPLACE)
-
-    # D3DXMATRIX is too large for opaque, use real fields
+            _d3d_ok += 1
+    # D3DXMATRIX
     _ti = ida_typeinf.tinfo_t()
-    if not _ti.get_named_type(til, "D3DXMATRIX") or _ti.get_size() != 64:
+    if _ti.get_named_type(til, "D3DXMATRIX") and _ti.get_size() == 64:
+        _d3d_ok += 1
+    else:
         _decl = "struct D3DXMATRIX { float _11,_12,_13,_14; float _21,_22,_23,_24; float _31,_32,_33,_34; float _41,_42,_43,_44; }; "
         _ti2 = ida_typeinf.tinfo_t()
         if ida_typeinf.parse_decl(_ti2, til, _decl, ida_typeinf.PT_TYP) is not None:
             _ti2.set_named_type(til, "D3DXMATRIX", ida_typeinf.NTF_REPLACE)
+            _d3d_ok += 1
+    log("[*] D3D 值类型: %d/9 存在" % _d3d_ok)
+
+    # 导入 gbengine 类型
+    try:
+        sys.path.insert(0, os.path.join(PROJECT_ROOT, "pipeline", "ida"))
+        import import_gbengine_types as _gb
+        _gb.main()
+        log("[*] gbengine 导入完成")
+    except SystemExit:
+        log("[!] gbengine import 调用 qexit")
+    except Exception as e:
+        log("[!] gbengine import EXCEPTION: %s" % e)
 
     # Retry PDB full definitions — now gbengine/D3D types are available
     log("")
@@ -390,226 +409,10 @@ def phase2_apply_flirt():
     log("[*] 签名应用后: %d 命名 (+%d)" % (after_named, after_named - before_named))
 
 
-# ========================================================================
-# Phase 3: Apply Global Variable Names
-# ========================================================================
-def phase3_apply_globals():
-    log("")
-    log("=" * 60)
-    log("[Phase 3] 应用全局变量名")
-    log("=" * 60)
-
-    if not os.path.exists(GLOBALS_FILE):
-        log("[!] Globals 文件不存在: %s" % GLOBALS_FILE)
-        return
-
-    with open(GLOBALS_FILE, 'r', encoding='utf-8') as f:
-        globals_data = json.load(f)
-
-    globals_list = globals_data.get('globals', [])
-    log("[*] 全局变量: %d" % len(globals_list))
-
-    applied = 0
-    skipped = 0
-    for g in globals_list:
-        name = g.get('name', '')
-        addr_str = g.get('address', '')
-        if not name or not addr_str:
-            continue
-        try:
-            addr = int(addr_str, 16)
-        except (ValueError, TypeError):
-            continue
-
-        # Only shared address range
-        if not (RDATA_START <= addr < RDATA_END or DATA_START <= addr < DATA_END):
-            skipped += 1
-            continue
-        if not ida_bytes.is_loaded(addr):
-            skipped += 1
-            continue
-
-        existing = ida_name.get_name(addr) or ""
-        if existing and not existing.startswith("dword_") and \
-           not existing.startswith("byte_") and \
-           not existing.startswith("unk_") and \
-           not existing.startswith("off_"):
-            continue
-
-        clean = name.replace('::', '_').replace('<', '_').replace('>', '_')
-        clean = clean.replace(' ', '_').replace('*', 'p')
-        if ida_name.set_name(addr, clean, ida_name.SN_NOWARN | ida_name.SN_FORCE):
-            applied += 1
-
-    log("[*] 应用: %d, 跳过: %d" % (applied, skipped))
-
-
-# ========================================================================
-# Phase 4: Export Hex-Rays Decompilation
-# ========================================================================
-def phase4_export():
-    log("")
-    log("=" * 60)
-    log("[Phase 4] 导出 Hex-Rays 反编译")
-    log("=" * 60)
-
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-    # Clean old decomp files (preserve annotations.json and _prefixed files)
-    import glob
-    old_files = glob.glob(os.path.join(OUTPUT_DIR, "*.json"))
-    removed = 0
-    for f in old_files:
-        basename = os.path.basename(f)
-        if basename.startswith('_') or basename == 'annotations.json':
-            continue
-        os.remove(f)
-        removed += 1
-    if removed:
-        log("[*] 清理旧文件: %d" % removed)
-
-    # Collect targets
-    targets = []
-    named = 0
-    for ea in idautils.Functions(TEXT_START, TEXT_END):
-        if ea < TEXT_START or ea >= TEXT_END:
-            continue
-        name = ida_name.get_name(ea) or ""
-        if not name or name.startswith("nullsub_") or name.startswith("j_"):
-            continue
-        func = ida_funcs.get_func(ea)
-        if not func or func.size() == 0:
-            continue
-        is_named = not name.startswith("sub_")
-        if is_named:
-            named += 1
-        targets.append((ea, name, func.size(), is_named))
-
-    log("[*] 目标: %d (命名: %d, sub_: %d)" % (len(targets), named, len(targets) - named))
-
-    # Export
-    exported = 0
-    errors = 0
-    t0 = time.time()
-
-    for i, (ea, name, size, is_named) in enumerate(targets):
-        if (i + 1) % 500 == 0:
-            elapsed = time.time() - t0
-            rate = (i + 1) / elapsed if elapsed > 0 else 0
-            log("  [%d/%d] exported=%d (%.0f f/s)" % (i + 1, len(targets), exported, rate))
-
-        try:
-            cfunc = ida_hexrays.decompile(ea)
-            if not cfunc:
-                errors += 1
-                continue
-
-            code = str(cfunc)
-            sig = cfunc.type.dstr()
-
-            demangled = idc.demangle_name(name, idc.get_inf_attr(idc.INF_SHORT_DN))
-            display_name = demangled if demangled else name
-
-            # Filename
-            safe = display_name.replace('::', '_').replace('<', '_').replace('>', '_')
-            safe = safe.replace('*', '_').replace(' ', '_').replace('?', '_')
-            safe = safe.replace('@', '_').replace('$', '_').replace(',', '_')
-            safe = safe.replace('(', '').replace(')', '').replace('/', '_')
-            safe = safe.replace('"', '').replace("'", '').replace('\\', '_')
-            while '__' in safe:
-                safe = safe.replace('__', '_')
-            safe = safe.strip('_')
-            if len(safe) > 100:
-                safe = safe[:100]
-            filename = '%s_%08x.json' % (safe, ea)
-
-            result = {
-                'name': display_name,
-                'mangled_name': name,
-                'address': '0x%08X' % ea,
-                'size_bytes': size,
-                'signature': sig,
-                'decompiled_c': code,
-            }
-
-            with open(os.path.join(OUTPUT_DIR, filename), 'w', encoding='utf-8') as f:
-                json.dump(result, f, indent=2, ensure_ascii=False)
-
-            exported += 1
-
-        except Exception:
-            errors += 1
-
-    elapsed = time.time() - t0
-    log("[*] 导出完成: %d 成功, %d 错误 (%.1fs)" % (exported, errors, elapsed))
-
-    # Summary
-    summary = {
-        'total_targets': len(targets),
-        'named_functions': named,
-        'exported': exported,
-        'errors': errors,
-        'elapsed_seconds': round(elapsed, 1),
-    }
-    with open(os.path.join(OUTPUT_DIR, "_export_summary.json"), 'w', encoding='utf-8') as f:
-        json.dump(summary, f, indent=2)
-
-
-# ========================================================================
-# Main
-# ========================================================================
-def setup_compiler_vc6():
-    """Set compiler to MSVC 6.0 and load vc6win TIL.
-
-    PAL3.exe is compiled with MSVC 6.0 SP0 (cl.exe 12.00.8168).
-    IDA's auto-detection may load a newer MSVC TIL, causing STL/CRT
-    type sizes to mismatch (e.g., std::string 28 bytes vs actual 16).
-    """
-    # Set compiler via idc interface (works across IDA versions)
-    idc.set_inf_attr(idc.INF_COMPILER, idc.COMP_MS)
-    log("[*] Compiler set: MSVC (COMP_MS)")
-
-    # Load vc6win TIL - contains correct MSVC 6.0 type definitions
-    rc = ida_typeinf.add_til("vc6win", ida_typeinf.ADDTIL_DEFAULT)
-    if rc:
-        log("[*] Loaded TIL: vc6win (MSVC 6.0 runtime types)")
-    else:
-        log("[!] Failed to load vc6win TIL (may already be loaded)")
-
-    return True
-
-
 def main():
-    try:
-        ida_auto.auto_wait()
-        log("[*] PAL3.exe 分析管线启动")
-        log("[*] 时间: %s" % time.strftime("%Y-%m-%d %H:%M:%S"))
-
-        setup_compiler_vc6()
-        phase1_import_types()
-        idc.save_database(idc.get_idb_path(), 0)
-
-        # phase2_apply_flirt()  # disabled: +0 contribution, TIL causes stdiobuf misattribution
-        idc.save_database(idc.get_idb_path(), 0)
-
-        phase3_apply_globals()
-        idc.save_database(idc.get_idb_path(), 0)
-
-        phase4_export()
-        idc.save_database(idc.get_idb_path(), 0)
-
-        log("")
-        log("[*] 全部完成!")
-
-    except Exception as e:
-        log("[!] 致命错误: %s" % str(e))
-        import traceback
-        log(traceback.format_exc())
-
-    os.makedirs(LOG_DIR, exist_ok=True)
-    with open(LOG_FILE, 'w', encoding='utf-8') as f:
-        f.write('\n'.join(log_lines))
-
+    """完整管线入口"""
+    phase1_import_types()
+    phase2_apply_flirt()
     idc.qexit(0)
 
 

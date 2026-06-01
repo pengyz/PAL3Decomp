@@ -391,9 +391,13 @@ def create_fixed_struct_diff(name, struct_info, til):
             return (False, "add member +%d '%s': _resolve_member_type failed on '%s'" % (off, mname, mtype_str))
 
         m = ida_typeinf.udt_member_t()
+        msize = tinfo.get_size()
+        if msize in (0, 0xFFFFFFFFFFFFFFFF):
+            return (False, "add member +%d '%s': invalid size %d for type '%s'" % (
+                off, mname, msize, mtype_str))
         m.name = mname
         m.offset = off * 8
-        m.size = tinfo.get_size() * 8
+        m.size = msize * 8
         m.type = tinfo
         new_udt.push_back(m)
 
