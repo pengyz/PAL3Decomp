@@ -53,6 +53,18 @@ def _sanitize_filename(name):
     return name
 
 
+# Primitives that cannot be forward-declared as class in C++
+_GLOBALS_PRIMITIVES = {
+    'int', 'char', 'float', 'double', 'void', 'long', 'short', 'bool',
+    'unsigned', 'signed', 'wchar_t',
+    '__int8', '__int16', '__int32', '__int64',
+    'unsigned __int8', 'unsigned __int16', 'unsigned __int32', 'unsigned __int64',
+    'BYTE', 'WORD', 'DWORD', 'QWORD', 'UINT', 'ULONG', 'BOOL',
+    'INT8', 'INT16', 'INT32', 'INT64', 'UINT8', 'UINT16', 'UINT32', 'UINT64',
+    'DOUBLE', 'FLOAT', 'LONG', 'SHORT', 'CHAR', 'VOID',
+}
+
+
 def _ann_struct_path(name):
     """Return path to struct annotation file, trying both raw and sanitized name."""
     raw = ANNOTATIONS_DIR / "structs" / ("%s.json" % name)
@@ -1717,6 +1729,9 @@ def generate_globals():
             continue
 
         base_typ = extract_base_type(typ)
+        # Skip primitive types (int, char, double, etc.) — they cannot be forward-declared as class
+        if base_typ in _GLOBALS_PRIMITIVES:
+            continue
         is_pointer_only = '*' in typ and '[' not in typ
         has_header = (gen_header_dir / ("%s.h" % base_typ)).exists()
         has_struct = _ann_struct_path(base_typ).exists()
