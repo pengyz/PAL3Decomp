@@ -25,6 +25,7 @@ import idautils
 import idc
 import json
 import os
+import re
 import time
 import builtins
 
@@ -52,6 +53,57 @@ log_lines = []
 def log(msg):
     log_lines.append(str(msg))
     print(msg)
+
+
+def _resolve_member_type(mtype_str, til):
+    """将成员类型字符串解析为 tinfo_t，优先 API 创建，模板/函数指针 fallback parse_decl。"""
+    s = mtype_str.strip()
+    if not s:
+        return None
+    s = re.sub(r'\[0x([0-9a-fA-F]+)\]', lambda m: '[%d]' % int(m.group(1), 16), s)
+
+    if '<' in s or '(' in s:
+        tinfo = ida_typeinf.tinfo_t()
+        if ida_typeinf.parse_decl(tinfo, til, "%s __x;" % s, ida_typeinf.PT_VAR) is None:
+            return None
+        return tinfo
+
+    array_sizes = []
+    while True:
+        m = re.search(r'\[(\d+)\]$', s)
+        if not m:
+            break
+        array_sizes.insert(0, int(m.group(1)))
+        s = s[:m.start()].strip()
+
+    is_ptr = s.endswith('*')
+    if is_ptr:
+        s = s.rstrip('*').strip()
+
+    if s.startswith('const '):
+        s = s[6:].strip()
+    if not s:
+        return None
+
+    tinfo = ida_typeinf.tinfo_t()
+    resolved = tinfo.get_named_type(til, s)
+    if not resolved or tinfo.get_size() in (0, 0xFFFFFFFFFFFFFFFF):
+        # get_named_type 不处理基本类型（char/int/float 等），用 parse_decl fallback
+        if ida_typeinf.parse_decl(tinfo, til, "%s __x;" % s, ida_typeinf.PT_VAR) is None:
+            return None
+        resolved = True
+
+    if is_ptr:
+        ptr_tinfo = ida_typeinf.tinfo_t()
+        if not ptr_tinfo.create_ptr(tinfo):
+            return None
+        tinfo = ptr_tinfo
+    for size in reversed(array_sizes):
+        arr_tinfo = ida_typeinf.tinfo_t()
+        if not arr_tinfo.create_array(tinfo, size):
+            return None
+        tinfo = arr_tinfo
+    return tinfo
 
 
 # ========================================================================
@@ -129,7 +181,7 @@ def phase1_import_types():
         '_iobuf', 'FILE',
     }
 
-    # Forward declarations
+    # Forward declarations — first pass: every class gets a struct X;
     for cls in classes:
         name = cls.get('name', '')
         if name and name not in _SKIP_SYSTEM_TYPES:
@@ -138,10 +190,61 @@ def phase1_import_types():
             if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
                 tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
 
-    # Full definitions: DISABLED - leave to apply_annotations for complete definitions
-    # (Importing opaque _data structs here prevents apply_annotations from replacing them)
+    # Full definitions — 单遍导入，跳过无法解析的成员（gbengine/D3D 等不在 PDB 的类型）。
+    # 此类成员在 IDB 中留为 gap，apply_annotations 的 diff 模式会补充。
     cls_ok = 0
-    log("[*] 类导入: forward decls only (full definitions from apply_annotations)")
+    skip_member_total = 0
+    for cls in classes:
+        name = cls.get('name', '')
+        if not name or name in _SKIP_SYSTEM_TYPES:
+            continue
+        if '<' in name or '::' in name:
+            continue
+        data_members = cls.get('data_members', [])
+        if not data_members:
+            continue
+        try:
+            udt = ida_typeinf.udt_type_data_t()
+            udt.taudt_bits = 1024
+            skip_count = 0
+
+            for m in data_members:
+                mname = m.get('name', '')
+                mtype_str = m.get('type', 'int')
+                moffset = m.get('offset', 0)
+                if not mname:
+                    continue
+
+                mtinfo = _resolve_member_type(mtype_str, til)
+                if mtinfo is None:
+                    skip_count += 1
+                    continue
+                msize = mtinfo.get_size()
+                if msize in (0, 0xFFFFFFFFFFFFFFFF):
+                    skip_count += 1
+                    continue
+
+                mm = ida_typeinf.udt_member_t()
+                mm.name = mname
+                mm.offset = moffset * 8
+                mm.size = msize * 8
+                mm.type = mtinfo
+                udt.push_back(mm)
+
+            is_union = cls.get('kind') == 'union'
+            udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
+            result_tinfo = ida_typeinf.tinfo_t()
+            if result_tinfo.create_udt(udt, udt_flag):
+                result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+                cls_ok += 1
+                skip_member_total += skip_count
+        except Exception as e:
+            log("[!] 无法导入 %s: %s" % (name, e))
+
+    if skip_member_total > 0:
+        log("[!] 共 %d 个成员因类型无法解析被跳过（后续可通过 annotation 补充）" % skip_member_total)
+
+    log("[*] 类导入: %d forward decls + %d full definitions" % (len(classes), cls_ok))
 
 
 # ========================================================================

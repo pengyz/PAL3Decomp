@@ -986,29 +986,24 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
         except:
             pass
 
-    # Annotation known_members are authoritative over IDB/PDB struct layouts.
-    # IDA's struct layout engine may compute different alignment/padding than MSVC 6.0,
-    # causing offset drift in derived classes. Use annotation path when available.
-    # CRITICAL: Annotation known_members are authoritative.
-    # IDB/ida_structs data is the merged PDB+Annotations output, but annotations
-    # may have additional field names that IDB doesn't capture.
-    # Always use annotation path when available; use IDB data as fallback.
+    # ida_structs.json 已经是 PDB + annotation 合并后的 IDB 导出，
+    # 字段名已由 apply_annotations.py 写入 IDB。codegen 不应跨阶段
+    # 重新读取 annotation——idb_structs.json 就是权威数据源。
+    # 仅当 IDB 没有 data_members（巨型稀疏结构体，IDA 无法创建所有成员）
+    # 时，回退到 annotation known_members。
     try:
         _ann_d = load_annotations_data()
         _ann_s = _ann_d.get('structs', {}).get(cls_name, {})
     except:
         _ann_s = {}
 
-    has_ann = bool(_ann_s.get('known_members') or _ann_s.get('binary_size'))
-    has_idb = bool(pdb_class and pdb_class.get('data_members'))
+    has_idb_members = bool(pdb_class and pdb_class.get('data_members'))
+    has_ann_members = bool(_ann_s.get('known_members'))
 
-    if has_ann:
-        # Annotation path: known_members + binary_size are authoritative
-        # IDB data is used only for gap-filling when annotation lacks offsets
-        use_pdb_members = False
-    elif has_idb:
-        # No annotation, but IDB has data — use it directly
+    if has_idb_members:
         use_pdb_members = True
+    elif has_ann_members:
+        use_pdb_members = False
     else:
         use_pdb_members = False
 

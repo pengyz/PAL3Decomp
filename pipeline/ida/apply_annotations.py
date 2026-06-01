@@ -31,8 +31,101 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 ANNOTATIONS_DIR = os.path.join(PROJECT_ROOT, "data", "annotations")
 LOG_DIR = os.path.join(SCRIPT_DIR, "_logs")
 LOG_FILE = os.path.join(LOG_DIR, "apply_annotations_log.txt")
+PDB_EXPORT = os.path.join(PROJECT_ROOT, "data", "pdb", "pdb_export.json")
 
 log_lines = []
+
+
+def _normalize_type(mtype_str):
+    """Normalize member type string for IDA parse_decl."""
+    mtype_str = mtype_str.replace("class ", "").replace("struct ", "")
+    mtype_str = re.sub(r'\[0x([0-9a-fA-F]+)\]', lambda m: '[%d]' % int(m.group(1), 16), mtype_str)
+    return mtype_str
+
+
+def _resolve_member_type(mtype_str, til):
+    """将成员类型字符串解析为 tinfo_t。
+
+    优先级：
+    1. API 创建：基本类型/命名类型用 get_named_type，指针用 create_ptr，数组用 create_array
+    2. 模板/函数指针：fallback 到 parse_decl
+    3. 失败则返回 None
+    """
+    s = _normalize_type(mtype_str).strip()
+    if not s:
+        return None
+
+    # 模板和函数指针 → parse_decl fallback
+    if '<' in s or '(' in s:
+        tinfo = ida_typeinf.tinfo_t()
+        decl = "%s __x;" % s
+        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_VAR) is None:
+            return None
+        return tinfo
+
+    # 解析数组维度：Type[N][M]... 或 Type[N]
+    array_sizes = []
+    while True:
+        m = re.search(r'\[(\d+)\]$', s)
+        if not m:
+            break
+        array_sizes.insert(0, int(m.group(1)))
+        s = s[:m.start()].strip()
+
+    # 解析指针
+    is_ptr = s.endswith('*')
+    if is_ptr:
+        s = s.rstrip('*').strip()
+
+    # 解析 const
+    if s.startswith('const '):
+        s = s[6:].strip()
+
+    if not s:
+        return None
+
+    # 解析基础类型
+    tinfo = ida_typeinf.tinfo_t()
+    resolved = tinfo.get_named_type(til, s)
+
+    # 常见多词类型处理
+    if not resolved or tinfo.get_size() in (0, 0xFFFFFFFFFFFFFFFF):
+        multi_word_map = {
+            'unsigned long':  ('unsigned', 'long'),
+            'unsigned int':   ('unsigned', 'int'),
+            'unsigned short': ('unsigned', 'short'),
+            'unsigned char':  ('unsigned', 'char'),
+            'signed long':    ('signed', 'long'),
+            'signed int':     ('signed', 'int'),
+            'signed short':   ('signed', 'short'),
+            'signed char':    ('signed', 'char'),
+            'long long':      ('long', 'long'),
+            'long double':    ('long', 'double'),
+        }
+        if s in multi_word_map:
+            decl = "%s __x;" % s
+            if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_VAR) is not None:
+                resolved = True
+
+    if not resolved:
+        return None
+
+    # 应用指针
+    if is_ptr:
+        ptr_tinfo = ida_typeinf.tinfo_t()
+        if not ptr_tinfo.create_ptr(tinfo):
+            return None
+        tinfo = ptr_tinfo
+
+    # 应用数组（自内向外）
+    for size in reversed(array_sizes):
+        arr_tinfo = ida_typeinf.tinfo_t()
+        if not arr_tinfo.create_array(tinfo, size):
+            return None
+        tinfo = arr_tinfo
+
+    return tinfo
+
 
 def log(msg):
     log_lines.append(str(msg))
@@ -208,6 +301,121 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
     return "struct%s %s%s {\n%s\n};" % (cppobj, name, inherit, "\n".join(lines))
 
 
+def _type_exists_in_til(name, til):
+    """检查 TIL 中是否有命名类型（不论 forward decl 还是完整定义）。"""
+    tinfo = ida_typeinf.tinfo_t()
+    return tinfo.get_named_type(til, name)
+
+
+def _has_pdb_definition(name, til):
+    """检查 TIL 中是否有 PDB 导入的完整 struct 定义（非 forward decl）。"""
+    tinfo = ida_typeinf.tinfo_t()
+    if not tinfo.get_named_type(til, name):
+        return False
+    if tinfo.get_size() in (0, 0xFFFFFFFFFFFFFFFF):
+        return False
+    udt = ida_typeinf.udt_type_data_t()
+    if not tinfo.get_udt_details(udt):
+        return True  # TIL has type but can't read UDT — still a valid definition
+    for i in range(len(udt)):
+        m = udt[i]
+        if m.name or m.type.get_size() > 0:
+            return True
+    return False
+
+
+def create_fixed_struct_diff(name, struct_info, til):
+    """Diff 模式: TIL 中已有 PDB struct（由 master_pipeline 导入），
+    annotation 只做 incremental patch: 删除偏移、重命名/改类型、新增成员。"""
+    binary_size = struct_info.get("binary_size") or 0
+    if not binary_size:
+        return (False, "no binary_size")
+
+    deleted = set(struct_info.get("deleted_members", []))
+    overrides = {}
+    for k, v in struct_info.get("known_members", {}).items():
+        overrides[int(k.split('_')[0])] = v
+    is_union = struct_info.get("is_union", False)
+
+    # 加载 PDB struct
+    existing_tinfo = ida_typeinf.tinfo_t()
+    if not existing_tinfo.get_named_type(til, name):
+        return (False, "type not found in TIL")
+    existing_udt = ida_typeinf.udt_type_data_t()
+    if not existing_tinfo.get_udt_details(existing_udt):
+        # TIL 有类型但无法读取 UDT 详情（IDB 导入格式差异）。
+        # 回退到 replace 模式，从 known_members 重建。
+        return create_fixed_struct(name, struct_info, {}, {}, til)
+
+    new_udt = ida_typeinf.udt_type_data_t()
+    new_udt.taudt_bits = 1024  # TAUDT_FIXED
+    if existing_udt.taudt_bits & 128:
+        new_udt.taudt_bits |= 128  # TAUDT_CPPOBJ
+    if is_union:
+        new_udt.is_union = True
+    new_udt.total_size = binary_size
+
+    existing_offsets = set()
+    for i in range(len(existing_udt)):
+        m = existing_udt[i]
+        m_off_bytes = m.offset // 8
+
+        if m_off_bytes in deleted:
+            existing_offsets.add(m_off_bytes)
+            continue
+
+        if m_off_bytes in overrides:
+            m.name = overrides[m_off_bytes]["name"]
+            new_type_str = overrides[m_off_bytes].get("type")
+            if new_type_str and new_type_str != "int":
+                new_tinfo = _resolve_member_type(new_type_str, til)
+                if new_tinfo is not None:
+                    m.type = new_tinfo
+                    m.size = new_tinfo.get_size() * 8
+
+        new_udt.push_back(m)
+        existing_offsets.add(m_off_bytes)
+
+    # 新增 annotation 独有的成员
+    for off, minfo in sorted(overrides.items()):
+        if off in existing_offsets or off in deleted:
+            continue
+        if off < 0:
+            continue
+
+        mname = minfo["name"]
+        mtype_str = minfo["type"]
+
+        tinfo = _resolve_member_type(mtype_str, til)
+        if tinfo is None:
+            return (False, "add member +%d '%s': _resolve_member_type failed on '%s'" % (off, mname, mtype_str))
+
+        m = ida_typeinf.udt_member_t()
+        m.name = mname
+        m.offset = off * 8
+        m.size = tinfo.get_size() * 8
+        m.type = tinfo
+        new_udt.push_back(m)
+
+    # 写回 TIL
+    result_tinfo = ida_typeinf.tinfo_t()
+    udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
+    if not result_tinfo.create_udt(new_udt, udt_flag):
+        return (False, "create_udt() failed (diff mode)")
+
+    actual_size = result_tinfo.get_size()
+    if actual_size == 0xFFFFFFFFFFFFFFFF:
+        return (False, "create_udt produced invalid type")
+    # PDB 和 PAL3.exe 版本不同，struct size 可能不一致。
+    # annotation binary_size 是 PAL3.exe 实测值，应优先采用。
+    # 如果合并后 size 不匹配，说明 PDB layout 差异过大，回退 replace 模式。
+    if actual_size != binary_size:
+        return create_fixed_struct(name, struct_info, {}, {}, til)
+
+    result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+    return (True, None)
+
+
 def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     """用 TAUDT_FIXED 从 annotation 精确创建 IDA struct。
 
@@ -282,7 +490,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             continue
 
         mname = minfo["name"]
-        mtype_str = minfo["type"].replace("class ", "").replace("struct ", "")
+        mtype_str = _normalize_type(minfo["type"])
 
         # Normalize nested type references: Parent::Nested → Parent_Nested
         # PDB uses :: but annotation files use _ (e.g. SceneObj_SubObj.json)
@@ -304,25 +512,9 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                 mtype_str = "char[%d]" % span
 
         # Resolve type string to tinfo_t
-        tinfo = ida_typeinf.tinfo_t()
-        arr_match = re.match(r'^(.+?)(\[\d+\](?:\[\d+\])*)$', mtype_str)
-        if arr_match:
-            decl = "%s __x%s;" % (arr_match.group(1).strip(), arr_match.group(2))
-        else:
-            # Function pointer types need __x INSIDE (*) not after the decl.
-            # void (*)(void) __x;  → FAIL (parse_decl returns None)
-            # void (*__x)(void);   → OK
-            _fp_m = re.match(r'(\w+(?:\s+__\w+)?)\s*(\([\w\s]*\*\s*\))', mtype_str)
-            if _fp_m:
-                _fp_pfx = _fp_m.group(1)
-                _fp_ptr = _fp_m.group(2).rstrip()[:-1].rstrip() + ' __x)'
-                decl = "%s %s;" % (_fp_pfx, _fp_ptr)
-            else:
-                decl = "%s __x;" % mtype_str
-
-        result = ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_VAR)
-        if result is None:
-            return (False, "add member +%d '%s' type '%s' FAILED: parse_decl returned None" % (
+        tinfo = _resolve_member_type(mtype_str, til)
+        if tinfo is None:
+            return (False, "add member +%d '%s' type '%s' FAILED: _resolve_member_type" % (
                 offset, mname, mtype_str))
 
         member_size = tinfo.get_size()
@@ -814,11 +1006,36 @@ def apply_annotations():
     s_fail = []
     s_errors = []
 
+    # Build PDB struct name set for mode resolution (check PDB export directly)
+    _pdb_with_members = set()
+    if os.path.exists(PDB_EXPORT):
+        try:
+            with open(PDB_EXPORT, 'r', encoding='utf-8') as _f:
+                _pdb_data = json.load(_f)
+            for _cls in _pdb_data.get('classes', []):
+                _n = _cls.get('name', '')
+                if _n and _cls.get('data_members'):
+                    _pdb_with_members.add(_n)
+        except:
+            pass
+
+    def _resolve_mode(sname):
+        """有 PDB base → diff，否则 replace。annotation 显式设置优先。"""
+        sinfo = structs.get(sname, {})
+        explicit = sinfo.get("members_mode")
+        if explicit:
+            return explicit
+        return "diff" if sname in _pdb_with_members else "replace"
+
     # First pass: create all structs (dependency order already handled by 'ordered')
     try:
         for sname, sinfo in ordered:
             try:
-                ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
+                mode = _resolve_mode(sname)
+                if mode == "replace":
+                    ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
+                else:
+                    ok, err = create_fixed_struct_diff(sname, sinfo, til)
                 if ok:
                     s_ok += 1
                 else:
@@ -835,7 +1052,11 @@ def apply_annotations():
         still_fail = []
         resolved = 0
         for sname, sinfo, prev_err in s_fail:
-            ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
+            mode = _resolve_mode(sname)
+            if mode == "replace":
+                ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
+            else:
+                ok, err = create_fixed_struct_diff(sname, sinfo, til)
             if ok:
                 s_ok += 1
                 resolved += 1
@@ -855,10 +1076,16 @@ def apply_annotations():
         fallback_ok = 0
         still_fail = []
         for sname, sinfo, prev_err in s_fail:
-            # Create without TAUDT_FIXED (flexible size) but keep binary_size
             sinfo_copy = dict(sinfo)
-            sinfo_copy["_flexible"] = True  # signal to skip TAUDT_FIXED
-            ok, err = create_fixed_struct(sname, sinfo_copy, structs, vtables, til)
+            sinfo_copy["_flexible"] = True
+            members_mode = sinfo.get("members_mode", "diff")
+            if members_mode == "replace":
+                if _type_exists_in_til(sname, til) and not sinfo_copy.get("members_mode"):
+                    ok, err = True, None
+                else:
+                    ok, err = create_fixed_struct(sname, sinfo_copy, structs, vtables, til)
+            else:
+                ok, err = create_fixed_struct_diff(sname, sinfo_copy, til)
             if ok:
                 fallback_ok += 1
             else:
