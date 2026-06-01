@@ -191,62 +191,61 @@ def phase1_import_types():
         '_iobuf', 'FILE',
     }
 
-    # Forward declarations — first pass: every class gets a struct X;
-    for cls in classes:
-        name = cls.get('name', '')
-        if name and name not in _SKIP_SYSTEM_TYPES:
-            decl = 'struct %s;' % name
-            tinfo = ida_typeinf.tinfo_t()
-            if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
-                try:
-                    tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
-                except:
-                    pass
-
-    # Full definitions — 用 parse_decl(PT_TYP) 创建 PDB struct。
-    # 直接生成 C 声明字符串（同 apply_annotations 的 build_struct_decl 思路），
-    # 能正确处理依赖顺序和前向引用。
+    # Full definitions — 生成单一 C header 字符串，用 idc.parse_decls 批量解析。
+    # 此方式让 IDA 内部处理前向引用和依赖顺序，和 gbengine 类型导入同样机制。
     cls_ok = 0
     _vftable_types = {'__vftable', 'vtbl_'}
+
+    # 批量生成 struct 声明
+    _decls = []
     for cls in classes:
         name = cls.get('name', '')
         if not name or name in _SKIP_SYSTEM_TYPES:
             continue
         if '<' in name or '::' in name:
             continue
+        # 跳过 gbengine 类型（已在 import_gbengine_types 中导入）
+        _skip_ti = ida_typeinf.tinfo_t()
+        if _skip_ti.get_named_type(til, name) and _skip_ti.get_size() > 1:
+            continue
         data_members = cls.get('data_members', [])
         if not data_members:
             continue
 
-        try:
-            lines = []
-            for m in data_members:
-                mname = m.get('name', '')
-                mtype_str = m.get('type', 'int')
-                if not mname:
-                    continue
-                if mname.startswith('__vftable') or any(v in mtype_str for v in _vftable_types):
-                    continue
-                lines.append("    %s %s;" % (mtype_str, mname))
-            if not lines:
+        lines = []
+        for m in data_members:
+            mname = m.get('name', '')
+            mtype_str = m.get('type', 'int')
+            if not mname:
                 continue
+            if mname.startswith('__vftable') or any(v in mtype_str for v in _vftable_types):
+                continue
+            # 数组后缀移到变量名: char[64] buf → char buf[64]
+            _arr = ''
+            _base_type = mtype_str
+            while True:
+                _ma = re.match(r'^(.+?)\[(\d+|0x[0-9a-fA-F]+)\](.*)$', _base_type)
+                if not _ma:
+                    break
+                _base_type = _ma.group(1).strip()
+                _arr += '[%s]' % _ma.group(2)
+            if _arr:
+                lines.append("    %s %s%s;" % (_base_type, mname, _arr))
+            else:
+                lines.append("    %s %s;" % (mtype_str, mname))
 
-            keyword = "union" if cls.get('kind') == 'union' else "struct"
-            decl = "%s %s {\n%s\n};" % (keyword, name, "\n".join(lines))
+        if not lines:
+            continue
 
-            tinfo = ida_typeinf.tinfo_t()
-            if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
-                try:
-                    tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
-                except:
-                    pass
-                cls_ok += 1
-        except Exception:
-            pass
+        keyword = "union" if cls.get('kind') == 'union' else "struct"
+        _decls.append("%s %s {\n%s\n};" % (keyword, name, "\n".join(lines)))
 
-    log("[*] 类导入: %d forward decls + %d full definitions" % (len(classes), cls_ok))
+    # PDB struct definitions 暂存，等 gbengine+D3D 导入后再执行
+    # (gbengine 类型优先级高于 PDB 类型)
+    _pdb_decls = _decls if _decls else None
+    cls_ok = 0
 
-    # Phase 1b: 从 VC6 DirectX 9 头文件导入 D3D 值类型定义
+    # Phase 1b: 从 VC6 DirectX 9 头文件导入 D3D 值类型 + gbengine 类型
     log("")
     log("=" * 60)
     log("[Phase 1b] 导入 D3D 值类型 + gbengine 类型")
@@ -254,26 +253,37 @@ def phase1_import_types():
 
     _vc6_dir = os.path.join(PROJECT_ROOT, "tools", "vc6", "Include")
     _d3d_content = []
-    for _hdr in ['d3d9types.h', 'd3dx9math.h']:
-        _hp = os.path.join(_vc6_dir, _hdr)
-        if os.path.exists(_hp):
-            _txt = open(_hp, encoding='utf-8', errors='replace').read()
-            _txt = re.sub(r'//[^\n]*', '', _txt)
-            _txt = re.sub(r'/\*.*?\*/', '', _txt, flags=re.DOTALL)
-            _txt = re.sub(r'#\s*include[^\n]*', '', _txt)
-            _txt = re.sub(r'#\s*define[^\n]*', '', _txt)
-            _txt = re.sub(r'#\s*pragma[^\n]*', '', _txt)
-            _txt = re.sub(r'DECLARE_INTERFACE[^}]*}\s*;', '', _txt, flags=re.DOTALL)
-            _txt = re.sub(r'STDMETHOD[^}]*}\s*', '', _txt, flags=re.DOTALL)
-            _txt = re.sub(r'\n{3,}', '\n\n', _txt)
-            _d3d_content.append(_txt)
-    if _d3d_content:
-        _full_decls = '\n'.join(_d3d_content)
-        log("[*] D3D 头文件: %d chars" % len(_full_decls))
-        _errs = idc.parse_decls(_full_decls, 0)
-        log("[*] D3D parse_decls: errors=%d" % (_errs if _errs is not None else 0))
-    else:
-        log("[!] D3D 头文件未找到")
+    _hp = os.path.join(_vc6_dir, 'd3d9types.h')
+    if os.path.exists(_hp):
+        _txt = open(_hp, encoding='utf-8', errors='replace').read()
+        _txt = _txt.replace('\r\n', '\n')
+        _txt = re.sub(r'//[^\n]*', '', _txt)
+        _txt = re.sub(r'/\*.*?\*/', '', _txt, flags=re.DOTALL)
+        _txt = re.sub(r'\\\n', ' ', _txt)
+        _txt = re.sub(r'#\s*(?:include|define|undef|if|ifdef|ifndef|else|elif|endif|pragma|error|warning|line)[^\n]*', '', _txt, flags=re.MULTILINE)
+        _txt = re.sub(r'DECLARE_INTERFACE[^}]*}\s*;', '', _txt, flags=re.DOTALL)
+        _txt = re.sub(r'\n{3,}', '\n\n', _txt)
+        _d3d_content.append(_txt)
+
+    # d3dx9math.h 是 C++ class 语法，idc.parse_decls 不支持。
+    # D3DX 值类型用手动纯 struct 定义（无继承、无方法）。
+    _d3dx_stubs = """
+typedef struct D3DXVECTOR2 { float x; float y; } D3DXVECTOR2;
+typedef struct D3DXVECTOR3 { float x; float y; float z; } D3DXVECTOR3;
+typedef struct D3DXVECTOR4 { float x; float y; float z; float w; } D3DXVECTOR4;
+typedef struct D3DXCOLOR { float r; float g; float b; float a; } D3DXCOLOR;
+typedef struct D3DXMATRIX {
+    float _11, _12, _13, _14;
+    float _21, _22, _23, _24;
+    float _31, _32, _33, _34;
+    float _41, _42, _43, _44;
+} D3DXMATRIX;
+"""
+    _d3d_content.append(_d3dx_stubs)
+    _full_decls = '\n'.join(_d3d_content)
+    log("[*] D3D 头文件: %d chars" % len(_full_decls))
+    _errs = idc.parse_decls(_full_decls, 0)
+    log("[*] D3D parse_decls: errors=%d" % (_errs if _errs is not None else 0))
 
     # 导入 gbengine 类型
     try:
@@ -286,9 +296,16 @@ def phase1_import_types():
     except Exception as e:
         log("[!] gbengine import EXCEPTION: %s" % e)
 
-    # Retry PDB full definitions — now gbengine/D3D types are available
-    log("")
-    log("[Phase 1c] 重试 PDB 完整导入（gbengine 类型已就绪）")
+    # Phase 1c: 导入 PDB struct 定义（D3D + gbengine 类型已就绪）
+    if _pdb_decls:
+        log("")
+        _big_header = '\n\n'.join(_pdb_decls)
+        _errs = idc.parse_decls(_big_header, 0)
+        log("[Phase 1c] PDB struct 批量导入: %d decls, errors=%d" % (len(_pdb_decls), _errs if _errs is not None else 0))
+        cls_ok = len(_pdb_decls) - (_errs or 0)
+        log("[*] 类导入: %d forward decls + %d full definitions" % (len(classes), cls_ok))
+
+    # Phase 1d: 重试（可选，目前跳过，因为 parse_decls 已处理依赖）
     _imported_names = set()
     for cls in classes:
         n = cls.get('name', '')
