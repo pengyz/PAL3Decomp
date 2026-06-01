@@ -258,45 +258,34 @@ def phase1_import_types():
 
     log("[*] 类导入: %d forward decls + %d full definitions" % (len(classes), cls_ok))
 
-    # Phase 1b: 先创建 D3D 值类型（避免被 gbengine import 中的 parse_decls 错误覆盖）
+    # Phase 1b: 从 VC6 DirectX 9 头文件导入 D3D 值类型定义
     log("")
     log("=" * 60)
-    log("[Phase 1b] 创建 D3D 值类型 + 导入 gbengine 类型")
+    log("[Phase 1b] 导入 D3D 值类型 + gbengine 类型")
     log("=" * 60)
 
-    # 先确保 D3D 值类型以纯 struct 形式存在于 TIL
-    _d3d_types = [
-        ("D3DCOLOR",      4,  "unsigned long"),
-        ("D3DVECTOR",     12, "float[3]"),
-        ("D3DCOLORVALUE", 16, "float[4]"),
-        ("D3DXVECTOR2",   8,  "float[2]"),
-        ("D3DXVECTOR3",   12, "float[3]"),
-        ("D3DXVECTOR4",   16, "float[4]"),
-        ("D3DXCOLOR",     16, "float[4]"),
-    ]
-    _d3d_ok = 0
-    for _tn, _tsize, _trep in _d3d_types:
-        _ti = ida_typeinf.tinfo_t()
-        if _ti.get_named_type(til, _tn) and _ti.get_size() == _tsize:
-            _d3d_ok += 1
-            continue
-        # 创建不透明类型（正确 size + 字段名）
-        _decl = "struct %s { char _data[%d]; }; " % (_tn, _tsize)
-        _ti2 = ida_typeinf.tinfo_t()
-        if ida_typeinf.parse_decl(_ti2, til, _decl, ida_typeinf.PT_TYP) is not None:
-            _ti2.set_named_type(til, _tn, ida_typeinf.NTF_REPLACE)
-            _d3d_ok += 1
-    # D3DXMATRIX
-    _ti = ida_typeinf.tinfo_t()
-    if _ti.get_named_type(til, "D3DXMATRIX") and _ti.get_size() == 64:
-        _d3d_ok += 1
+    _vc6_dir = os.path.join(PROJECT_ROOT, "tools", "vc6", "Include")
+    _d3d_content = []
+    for _hdr in ['d3d9types.h', 'd3dx9math.h']:
+        _hp = os.path.join(_vc6_dir, _hdr)
+        if os.path.exists(_hp):
+            _txt = open(_hp, encoding='utf-8', errors='replace').read()
+            _txt = re.sub(r'//[^\n]*', '', _txt)
+            _txt = re.sub(r'/\*.*?\*/', '', _txt, flags=re.DOTALL)
+            _txt = re.sub(r'#\s*include[^\n]*', '', _txt)
+            _txt = re.sub(r'#\s*define[^\n]*', '', _txt)
+            _txt = re.sub(r'#\s*pragma[^\n]*', '', _txt)
+            _txt = re.sub(r'DECLARE_INTERFACE[^}]*}\s*;', '', _txt, flags=re.DOTALL)
+            _txt = re.sub(r'STDMETHOD[^}]*}\s*', '', _txt, flags=re.DOTALL)
+            _txt = re.sub(r'\n{3,}', '\n\n', _txt)
+            _d3d_content.append(_txt)
+    if _d3d_content:
+        _full_decls = '\n'.join(_d3d_content)
+        log("[*] D3D 头文件: %d chars" % len(_full_decls))
+        _errs = idc.parse_decls(_full_decls, 0)
+        log("[*] D3D parse_decls: errors=%d" % (_errs if _errs is not None else 0))
     else:
-        _decl = "struct D3DXMATRIX { float _11,_12,_13,_14; float _21,_22,_23,_24; float _31,_32,_33,_34; float _41,_42,_43,_44; }; "
-        _ti2 = ida_typeinf.tinfo_t()
-        if ida_typeinf.parse_decl(_ti2, til, _decl, ida_typeinf.PT_TYP) is not None:
-            _ti2.set_named_type(til, "D3DXMATRIX", ida_typeinf.NTF_REPLACE)
-            _d3d_ok += 1
-    log("[*] D3D 值类型: %d/9 存在" % _d3d_ok)
+        log("[!] D3D 头文件未找到")
 
     # 导入 gbengine 类型
     try:
