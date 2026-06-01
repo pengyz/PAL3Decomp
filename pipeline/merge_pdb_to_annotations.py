@@ -91,6 +91,24 @@ def main():
                 "source": "pdb_merge",
             }
 
+        # 冲突检测：同名字段在不同偏移 → 保留旧 annotation 偏移（PAL3 二进制分析更可信）
+        if name in old_ann:
+            old = old_ann[name]
+            old_km = old.get("known_members", {})
+            name_to_old_off = {}
+            for k, v in old_km.items():
+                try:
+                    name_to_old_off[v.get("name", "")] = str(int(k.split("_")[0]))
+                except:
+                    pass
+            # 删除 PDB 中与旧 annotation 同名但不同偏移的成员
+            to_remove = []
+            for off, m in new_ann["known_members"].items():
+                if m["name"] in name_to_old_off and off != name_to_old_off[m["name"]]:
+                    to_remove.append(off)
+            for off in to_remove:
+                del new_ann["known_members"][off]
+
         # 旧 annotation 覆盖：按偏移匹配，语义命名优先
         if name in old_ann:
             old = old_ann[name]
