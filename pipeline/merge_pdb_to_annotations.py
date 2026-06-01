@@ -147,10 +147,14 @@ def main():
                     if _bc not in new_ann.get("base_class", []):
                         new_ann.setdefault("base_class", []).append(_bc)
 
-            # 旧 annotation 的 binary_size 覆盖
+            # 旧 annotation 的 binary_size 权威优先
             old_bs = old.get("binary_size")
-            if old_bs and old_bs != cls.get("size"):
+            if old_bs:
                 new_ann["binary_size"] = old_bs
+                # 删除超出 binary_size 的 PDB 成员
+                to_del = [k for k in new_ann["known_members"] if int(k.split('_')[0]) >= old_bs]
+                for k in to_del:
+                    del new_ann["known_members"][k]
 
         # 写回
         out_path = os.path.join(ANN_DIR, f"{name}.json")
