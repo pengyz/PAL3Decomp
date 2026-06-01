@@ -12,8 +12,8 @@ import ida_auto, ida_typeinf, idc
 import os, re
 
 
-def flatten_gbengine_headers(header_dir):
-    """Read gbengine headers and produce IDA-compatible C declarations."""
+def flatten_gbengine_headers(header_dir, vc6_include_dir=None):
+    """Read gbengine headers (+ optional VC6 D3D headers) and produce IDA-compatible C declarations."""
     parse_order = [
         "gbengine_types.h", "gbengine_export.h", "gbengine_internal.h",
         "gbMisc.h", "gbChain.h",
@@ -22,6 +22,12 @@ def flatten_gbengine_headers(header_dir):
         "gbSceneGraph.h", "gbCamera.h", "gbActor.h", "gbActorMgr.h",
         "gbAudio.h", "gbGfxManager.h", "gbParticle.h", "gbPrintFont.h",
         "gbVFileSystem.h", "gbVisNode.h",
+    ]
+
+    # VC6 DirectX 9 SDK headers (value types + enums for PDB struct resolution)
+    d3d_headers = [
+        "d3d9types.h", "d3d9caps.h", "d3d9.h",
+        "d3dx9math.h", "d3dx9core.h", "d3dx9.h",
     ]
 
     all_content = []
@@ -39,29 +45,20 @@ def flatten_gbengine_headers(header_dir):
     # Prepend external SDK type stubs (D3DX types — VC6 DirectX 9 SDK).
     # Provide full definitions for value types, forward decl for interface pointers.
     sdk_stubs = """
-// D3D value types (DirectX 9 Summer 2003, VC6-compatible)
-typedef unsigned long D3DCOLOR;
-typedef struct _D3DVECTOR { float x; float y; float z; } D3DVECTOR;
-typedef struct _D3DCOLORVALUE { float r; float g; float b; float a; } D3DCOLORVALUE;
-typedef struct D3DXVECTOR2 { float x; float y; } D3DXVECTOR2;
-typedef struct D3DXVECTOR3 { float x; float y; float z; } D3DXVECTOR3;
-typedef struct D3DXVECTOR4 { float x; float y; float z; float w; } D3DXVECTOR4;
-typedef struct D3DXCOLOR { float r; float g; float b; float a; } D3DXCOLOR;
-typedef struct D3DXMATRIX {
-    float _11, _12, _13, _14;
-    float _21, _22, _23, _24;
-    float _31, _32, _33, _34;
-    float _41, _42, _43, _44;
-} D3DXMATRIX;
+struct D3DCOLOR { unsigned long c; };
+struct D3DVECTOR { float x; float y; float z; };
+struct D3DCOLORVALUE { float r; float g; float b; float a; };
+struct D3DXVECTOR2 { float x; float y; };
+struct D3DXVECTOR3 { float x; float y; float z; };
+struct D3DXVECTOR4 { float x; float y; float z; float w; };
+struct D3DXCOLOR { float r; float g; float b; float a; };
+struct D3DXMATRIX { float _11,_12,_13,_14; float _21,_22,_23,_24; float _31,_32,_33,_34; float _41,_42,_43,_44; };
 struct ID3DXEffect;
 struct ID3DXEffectPool;
 struct IDirect3DVertexDeclaration9;
 struct IDirect3DTexture9;
 struct IDirect3DSurface9;
 struct IDirect3DDevice9;
-typedef void * D3DXHANDLE;
-typedef void * LPDIRECT3DDEVICE9;
-typedef void * LPDIRECT3DTEXTURE9;
 """
     full = sdk_stubs + full
 
@@ -369,9 +366,10 @@ def main():
         idc.qexit(1)
         return
 
-    log("[*] Flattening gbengine headers for IDA...")
+    log("[*] Flattening gbengine headers + VC6 D3D headers for IDA...")
+    vc6_include_dir = os.path.join(project_root, "tools", "vc6", "Include")
     try:
-        content = flatten_gbengine_headers(header_dir)
+        content = flatten_gbengine_headers(header_dir, vc6_include_dir)
     except Exception as e:
         log("[!] flatten_gbengine_headers failed: %s" % str(e))
         import traceback

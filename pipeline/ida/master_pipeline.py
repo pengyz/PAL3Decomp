@@ -248,7 +248,7 @@ def phase1_import_types():
 
     log("[*] 类导入: %d forward decls + %d full definitions" % (len(classes), cls_ok))
 
-    # Import gbengine types (provides gb* type definitions + D3D value types)
+    # Import gbengine types (provides gb* + D3D type definitions)
     log("")
     log("=" * 60)
     log("[Phase 1b] 导入 gbengine + D3D 类型")
@@ -256,22 +256,39 @@ def phase1_import_types():
     try:
         sys.path.insert(0, os.path.join(PROJECT_ROOT, "pipeline", "ida"))
         import import_gbengine_types as _gb
-        _gb_headers = os.path.join(PROJECT_ROOT, "include", "gbengine")
-        _content = _gb.flatten_gbengine_headers(_gb_headers)
-        if _content:
-            til = ida_typeinf.get_idati()
-            # Remove any stub forward declarations that would block full defs
-            _type_names = set(re.findall(r'(?:struct|enum)\s+(\w+)\s*[{:]', _content))
-            for _tn in _type_names:
-                _ti = ida_typeinf.tinfo_t()
-                if _ti.get_named_type(til, _tn):
-                    _ti.set_named_type(til, _tn, ida_typeinf.NTF_REPLACE)
-            _errs = idc.parse_decls(_content, 0)
-            log("[*] gbengine: parsed %d chars, errors=%d" % (len(_content), _errs if _errs is not None else 0))
-        else:
-            log("[!] gbengine: no headers found at %s" % _gb_headers)
+        _gb.main()
+        log("[*] gbengine 导入完成")
     except Exception as e:
         log("[!] gbengine import EXCEPTION: %s" % e)
+
+    # Ensure D3D value types exist in TIL (parse_decls may fail on these)
+    _d3d_types = [
+        ("D3DCOLOR",      4,  "unsigned long"),
+        ("D3DVECTOR",     12, "float[3]"),
+        ("D3DCOLORVALUE", 16, "float[4]"),
+        ("D3DXVECTOR2",   8,  "float[2]"),
+        ("D3DXVECTOR3",   12, "float[3]"),
+        ("D3DXVECTOR4",   16, "float[4]"),
+        ("D3DXCOLOR",     16, "float[4]"),
+    ]
+    for _tn, _tsize, _trep in _d3d_types:
+        _ti = ida_typeinf.tinfo_t()
+        if _ti.get_named_type(til, _tn):
+            _sz = _ti.get_size()
+            if _sz == _tsize:
+                continue
+        _decl = "struct %s { char _data[%d]; }; " % (_tn, _tsize)
+        _ti2 = ida_typeinf.tinfo_t()
+        if ida_typeinf.parse_decl(_ti2, til, _decl, ida_typeinf.PT_TYP) is not None:
+            _ti2.set_named_type(til, _tn, ida_typeinf.NTF_REPLACE)
+
+    # D3DXMATRIX is too large for opaque, use real fields
+    _ti = ida_typeinf.tinfo_t()
+    if not _ti.get_named_type(til, "D3DXMATRIX") or _ti.get_size() != 64:
+        _decl = "struct D3DXMATRIX { float _11,_12,_13,_14; float _21,_22,_23,_24; float _31,_32,_33,_34; float _41,_42,_43,_44; }; "
+        _ti2 = ida_typeinf.tinfo_t()
+        if ida_typeinf.parse_decl(_ti2, til, _decl, ida_typeinf.PT_TYP) is not None:
+            _ti2.set_named_type(til, "D3DXMATRIX", ida_typeinf.NTF_REPLACE)
 
     # Retry PDB full definitions — now gbengine/D3D types are available
     log("")
