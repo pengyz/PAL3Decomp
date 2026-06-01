@@ -826,10 +826,6 @@
       "name": "CCBSystem::ClearCmdSlot",
       "signature": "char *__thiscall(CCBSystem *this, int nVal)"
     },
-    "0x004DB750": {
-      "name": "CCBSystem::GetCmdData",
-      "signature": "char *__thiscall(CCBSystem *this, int idx)"
-    },
     "0x004DB780": {
       "name": "CCBSystem::GetCmdCount",
       "signature": "int __thiscall(CCBSystem *this, int idx)"
@@ -1165,6 +1161,39 @@
     "0x005158F0": {
       "name": "CCBSystem::AllocThread",
       "signature": "int __thiscall(CCBSystem *this, int nVal)"
+    },
+    "0x004DC560": {
+      "name": "CCBSystem::GetState",
+      "signature": "int __thiscall(CCBControl *this)"
+    },
+    "0x004DC5B0": {
+      "name": "CCBSystem::GetControl",
+      "signature": "int __thiscall(CCBControl *this)"
+    },
+    "0x004031D0": {
+      "name": "CCBSystem::GetState",
+      "signature": "int __thiscall(GRPinput *this)"
+    },
+    "0x004B4910": {
+      "name": "CCBSystem::SetState",
+      "signature": "void __thiscall(RenderTarget *this)"
+    },
+    "0x00417AC0": {
+      "name": "CCBSystem::SetState",
+      "signature": "char __thiscall(RoleSystem *this, int state)"
+    },
+    "0x004230D0": {
+      "name": "CCBSystem::GetState",
+      "signature": "int __cdecl __thiscall(UICamera *this)"
+    },
+    "0x004A1CF0": {
+      "name": "CCBSystem::GetState",
+      "signature": "int __thiscall(UIParabolaCtrl *this)",
+      "_misattrib_evidence": "max_offset=1328>class_size=4"
+    },
+    "0x00445930": {
+      "name": "CCBSystem::SetState",
+      "signature": "void __thiscall UIScene::SetState(UIScene *this)"
     }
   }
 }

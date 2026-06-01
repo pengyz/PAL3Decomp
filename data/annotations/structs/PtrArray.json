@@ -194,10 +194,6 @@
       "name": "PtrArray::DestroyAll",
       "signature": "int __thiscall PtrArray::DestroyAll(PtrArray *this)"
     },
-    "0x004339F0": {
-      "name": "PtrArray::LoadFromFile",
-      "signature": "int __cdecl(const char *pszFilename)"
-    },
     "0x004348E0": {
       "name": "PtrArray::ReadFileSection",
       "signature": "struct gbVFile *__thiscall(PtrArray *this, int nSection)"
@@ -205,6 +201,18 @@
     "0x00433C50": {
       "name": "PtrArray::ReadFromVFile",
       "signature": "void __cdecl(unsigned short *pBuf, struct gbVFile *pFile)"
+    },
+    "0x00410BD0": {
+      "name": "PtrArray::InsertAt",
+      "signature": "int __thiscall Array::InsertAt(Array *this, char *pPos, int *pSrc)"
+    },
+    "0x004B48E0": {
+      "name": "PtrArray::SetSize",
+      "signature": "void __thiscall(RenderTarget *this, int nHeight)"
+    },
+    "0x00453A70": {
+      "name": "PtrArray::InsertAt",
+      "signature": "SceneObj *__thiscall SceneObj::InsertAt(SceneObj *this, SceneObj *pSceneObj, unsigned int dwVal, unsigned int dwVal2)"
     }
   }
 }

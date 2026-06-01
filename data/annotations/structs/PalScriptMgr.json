@@ -1163,10 +1163,6 @@
       "name": "PalScriptMgr::ExecuteOpcode",
       "signature": "int __thiscall(PalScriptMgr *this)"
     },
-    "0x0042C440": {
-      "name": "PalScriptMgr::RunCommand",
-      "signature": "void __thiscall(PalScriptMgr *this)"
-    },
     "0x00424C20": {
       "name": "PalScriptMgr::ExecuteBlock",
       "signature": "void __thiscall(PalScriptMgr *this)"
@@ -1322,6 +1318,10 @@
     "0x00434C80": {
       "name": "PalScriptMgr::UpdateLoadProgress",
       "signature": "void * __cdecl PalScriptMgr::UpdateLoadProgress()"
+    },
+    "0x004100A0": {
+      "name": "PalScriptMgr::RunScript",
+      "signature": "int __cdecl(int nVal, int nVal2, int nVal3)"
     }
   }
 }

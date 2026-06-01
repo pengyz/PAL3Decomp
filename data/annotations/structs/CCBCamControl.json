@@ -404,10 +404,6 @@
       "signature": "void ()",
       "source": "pdb"
     },
-    "0x005052E0": {
-      "name": "CCBCamControl::SetCamPos",
-      "signature": "CCBStageCam * __thiscall(CCBCamControl *this, int **pCamParam, int nVal)"
-    },
     "0x005054B0": {
       "name": "CCBCamControl::Init",
       "signature": "char __thiscall(CCBCamControl *this)"
@@ -422,14 +418,6 @@
     },
     "0x00505800": {
       "name": "CCBCamControl::AddTask",
-      "signature": "int __thiscall(CCBCamControl *this)"
-    },
-    "0x00505820": {
-      "name": "CCBCamControl::ProcCamMove",
-      "signature": "char __thiscall(CCBCamControl *this)"
-    },
-    "0x005058E0": {
-      "name": "CCBCamControl::SwitchEditorCamPos",
       "signature": "int __thiscall(CCBCamControl *this)"
     },
     "0x005081D0": {
@@ -550,6 +538,10 @@
       "name": "CCBCamControl::LoadSaveData",
       "signature": "int __thiscall _misattrib_CCBStageRole::LoadSaveData(CCBStageRole *this, int *p_DWORD)",
       "_misattrib_evidence": "max_offset=328044>class_size=6848"
+    },
+    "0x0042C1A0": {
+      "name": "CCBCamControl::IsRunning",
+      "signature": "BOOL __thiscall(ScriptVM *this)"
     }
   }
 }

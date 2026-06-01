@@ -1306,16 +1306,8 @@
       "name": "CCBStageRole::SetForceFinishThrowingWeapon",
       "signature": "char __thiscall(CCBStageRole *this, int bForce)"
     },
-    "0x0050B330": {
-      "name": "CCBStageRole::GetCurrentState",
-      "signature": "char __thiscall(CCBStageRole *this)"
-    },
     "0x0050B360": {
       "name": "CCBStageRole::ProcCatchED",
-      "signature": "int __thiscall(CCBStageRole *this)"
-    },
-    "0x0050B530": {
-      "name": "CCBStageRole::GetTaskState",
       "signature": "int __thiscall(CCBStageRole *this)"
     },
     "0x0050B580": {
@@ -1537,6 +1529,14 @@
     "0x0053EA10": {
       "name": "CCBStageRole::ResumeSound",
       "signature": "unsigned int __thiscall(CCBStageRole *this)"
+    },
+    "0x0052FBD0": {
+      "name": "CCBStageRole::GetOBBox",
+      "signature": "gbOBBox *__thiscall(MiniGame2Scene *this)"
+    },
+    "0x00421560": {
+      "name": "CCBStageRole::SetAction",
+      "signature": "void __thiscall(PalScript *this, int nRoleID)"
     }
   }
 }
