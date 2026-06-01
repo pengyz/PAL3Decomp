@@ -1729,22 +1729,21 @@ def generate_globals():
             continue
 
         base_typ = extract_base_type(typ)
-        # Skip primitive types (int, char, double, etc.) — they cannot be forward-declared as class
-        if base_typ in _GLOBALS_PRIMITIVES:
-            continue
         is_pointer_only = '*' in typ and '[' not in typ
         has_header = (gen_header_dir / ("%s.h" % base_typ)).exists()
         has_struct = _ann_struct_path(base_typ).exists()
 
         # Track types needing full definition vs forward declaration
-        if has_struct and not is_pointer_only:
-            if has_header:
-                includes_needed.add(base_typ)
-            else:
-                fwd_classes.add(base_typ)
-        elif has_struct and is_pointer_only:
-            if base_typ not in includes_needed:
-                fwd_classes.add(base_typ)
+        # Skip primitive types — they cannot be forward-declared as class
+        if not (base_typ in _GLOBALS_PRIMITIVES):
+            if has_struct and not is_pointer_only:
+                if has_header:
+                    includes_needed.add(base_typ)
+                else:
+                    fwd_classes.add(base_typ)
+            elif has_struct and is_pointer_only:
+                if base_typ not in includes_needed:
+                    fwd_classes.add(base_typ)
 
         # Emit extern declaration with correct C syntax
         arr_match = re.match(r'^(.+?)(\[\d*\])$', typ)
