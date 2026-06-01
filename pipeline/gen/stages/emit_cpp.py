@@ -340,7 +340,8 @@ def run_cpp_generation(filter_classes=None):
         out_dir = output_dir / subdir
         out_dir.mkdir(parents=True, exist_ok=True)
 
-        out_path = out_dir / ("%s.cpp" % cls_name)
+        safe_name = cls_name.replace('<', '_').replace('>', '_').replace(':', '_').replace('"', '_').replace('?', '_').replace('*', '_').replace('|', '_').replace('\\', '_').replace('/', '_').strip()
+        out_path = out_dir / ("%s.cpp" % safe_name)
         content = generate_class_cpp(cls_name, methods)
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(content)

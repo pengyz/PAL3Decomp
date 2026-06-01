@@ -562,6 +562,10 @@ def load_annotations():
             sdata = json.load(f)
         sname = sdata.pop("name", fname.replace(".json", ""))
         structs[sname] = sdata
+        # Merge struct methods into functions dict (class methods not in functions.json)
+        for addr, minfo in sdata.get("methods", {}).items():
+            if addr not in functions:
+                functions[addr] = minfo
     with open(os.path.join(ANNOTATIONS_DIR, "vtables.json"), "r", encoding="utf-8") as f:
         vtables = json.load(f)
     enums = {}
