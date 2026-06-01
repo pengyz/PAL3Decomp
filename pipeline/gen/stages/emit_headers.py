@@ -44,6 +44,34 @@ def _ensure_funcs_ann():
         else:
             _funcs_ann_cache = {}
 
+# Map IDA ordinal types to their actual type names
+ORDINAL_MAP = {
+    '#1472': 'gbTexture',
+    '#1461': 'gbGeomNode',
+    '#1455': 'gbAudioManager',
+    '#1465': 'gbRenderEffect',
+}
+
+def _resolve_ordinal_type(t):
+    """Resolve #NNN ordinal types to actual type names."""
+    for k, v in ORDINAL_MAP.items():
+        t = t.replace(k, v)
+    return t
+
+
+ORDINAL_MAP = {
+    '#1472': 'gbTexture',
+    '#1461': 'gbGeomNode',
+    '#1455': 'gbAudioManager',
+    '#1465': 'gbRenderEffect',
+}
+
+def _resolve_ordinal_type(t):
+    for k, v in ORDINAL_MAP.items():
+        t = t.replace(k, v)
+    return t
+
+
 def _sanitize_filename(name):
     """Sanitize a C++ type name for use as a cross-platform filename."""
     name = name.replace('<', '_').replace('>', '_')
@@ -651,6 +679,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             is_ptr = '*' in mtype
             # Strip array/pointer to get base type name
             base = re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', mtype).replace('*', '').strip()
+            base = _resolve_ordinal_type(base)
             if not base or base == cls_name:
                 continue
             if base in PRIMITIVES or base in SYSTEM_TYPES:
@@ -695,6 +724,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                         fwd_types.add(at)
                 continue
             base = re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', mtype).replace('*', '').strip()
+            base = _resolve_ordinal_type(base)
             if not base or base == cls_name or base in PRIMITIVES or base in SYSTEM_TYPES:
                 continue
             if '::' in base or '<' in base:
@@ -1062,7 +1092,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
 
         for m in members:
             mname = m.get('name', '')
-            mtype = m.get('type', 'int')
+            mtype = _resolve_ordinal_type(m.get('type', 'int'))
             moffset = m.get('offset', 0)
 
             # Skip members that belong to base class
@@ -1123,7 +1153,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                     moff = m.get('offset', 0)
                     if moff not in ann_offsets and moff >= base_size:
                         mname = m.get('name', '')
-                        mtype = m.get('type', 'int')
+                        mtype = _resolve_ordinal_type(m.get('type', 'int'))
                         if mname and '__vftable' not in mname and 'vtbl_' not in mtype:
                             ann_members[str(moff)] = {'name': mname, 'type': mtype, 'source': 'pdb_merge'}
             if ann_members or ann_size:
