@@ -299,69 +299,26 @@ typedef struct D3DXMATRIX {
     # Phase 1c: 导入 PDB struct 定义（D3D + gbengine 类型已就绪）
     if _pdb_decls:
         log("")
-        _big_header = '\n\n'.join(_pdb_decls)
-        _errs = idc.parse_decls(_big_header, 0)
-        log("[Phase 1c] PDB struct 批量导入: %d decls, errors=%d" % (len(_pdb_decls), _errs if _errs is not None else 0))
-        cls_ok = len(_pdb_decls) - (_errs or 0)
+        cls_ok = 0
+        _fail_list = []
+        for _idx, _d in enumerate(_pdb_decls):
+            _ti = ida_typeinf.tinfo_t()
+            _name_match = re.match(r'(?:struct|union|class)\s+(\w+)', _d)
+            _sname = _name_match.group(1) if _name_match else '?'
+            if ida_typeinf.parse_decl(_ti, til, _d, ida_typeinf.PT_TYP) is not None:
+                try:
+                    _ti.set_named_type(til, _sname, ida_typeinf.NTF_REPLACE)
+                    cls_ok += 1
+                    if (_idx + 1) % 100 == 0:
+                        log("  ... %d/%d" % (_idx + 1, len(_pdb_decls)))
+                except:
+                    pass
+            elif _idx < 10:
+                _fail_list.append(_sname)
+        log("[Phase 1c] PDB struct 导入: %d/%d 成功" % (cls_ok, len(_pdb_decls)))
+        if _fail_list:
+            log("  首批失败: %s" % ", ".join(_fail_list))
         log("[*] 类导入: %d forward decls + %d full definitions" % (len(classes), cls_ok))
-
-    # Phase 1d: 重试（可选，目前跳过，因为 parse_decls 已处理依赖）
-    _imported_names = set()
-    for cls in classes:
-        n = cls.get('name', '')
-        if n:
-            _imported_names.add(n)
-    cls_retry = 0
-    for cls in classes:
-        name = cls.get('name', '')
-        if not name or name in cls_names_ok:
-            continue
-        existing_ti = ida_typeinf.tinfo_t()
-        if existing_ti.get_named_type(til, name) and existing_ti.get_size() > 1:
-            continue  # already imported
-        try:
-            data_members = cls.get('data_members', [])
-            if not data_members:
-                continue
-            udt = ida_typeinf.udt_type_data_t()
-            udt.taudt_bits = 1024
-            udt.total_size = cls.get('size', 0)
-            for m in data_members:
-                mname = m.get('name', '')
-                mtype_str = m.get('type', 'int')
-                moffset = m.get('offset', 0)
-                if not mname:
-                    continue
-                mtinfo = _resolve_member_type(mtype_str, til)
-                if mtinfo is None or mtinfo.get_size() in (0, 0xFFFFFFFFFFFFFFFF):
-                    _sz = 4
-                    _decl = "char[%d]" % _sz
-                    _ti = ida_typeinf.tinfo_t()
-                    if ida_typeinf.parse_decl(_ti, til, _decl, ida_typeinf.PT_TYP) is not None:
-                        mtinfo = _ti
-                        msize = _sz
-                    else:
-                        break
-                else:
-                    msize = mtinfo.get_size()
-                mm = ida_typeinf.udt_member_t()
-                mm.name = mname
-                mm.offset = moffset * 8
-                mm.size = msize * 8
-                mm.type = mtinfo
-                udt.push_back(mm)
-            else:
-                is_union = cls.get('kind') == 'union'
-                udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
-                rt = ida_typeinf.tinfo_t()
-                if rt.create_udt(udt, udt_flag):
-                    rt.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
-                    cls_retry += 1
-        except Exception:
-            pass
-    if cls_retry:
-        cls_ok += cls_retry
-        log("[*] retry 追加: %d structs (原跳过成员现可解析)" % cls_retry)
 
 
 # ========================================================================
