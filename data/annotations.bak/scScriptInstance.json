@@ -1,41 +1,42 @@
 {
   "name": "scScriptInstance",
-  "binary_size": 84,
   "known_members": {
     "0": {
       "name": "pblock",
       "type": "scScriptBlock *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "4": {
       "name": "runmode",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "5": {
       "name": "pause",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "8": {
       "name": "pcaller",
       "type": "scScriptInstance *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "12": {
       "name": "codeptr",
       "type": "BYTE *",
-      "source": "annotation"
-    },
-    "16": {
-      "name": "reg",
-      "type": "scVARIANT[8]",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "80": {
       "name": "uservar",
       "type": "scVARIANT *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
+    },
+    "16": {
+      "name": "reg",
+      "type": "scVARIANT[8]",
+      "source": "pdb_fill_incomplete"
     }
-  }
+  },
+  "pdb_size": 84,
+  "binary_size": 84
 }

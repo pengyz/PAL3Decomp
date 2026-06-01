@@ -1,26 +1,17 @@
 {
   "name": "scSCEFile",
-  "binary_size": 20,
   "known_members": {
     "0": {
       "name": "m_fp",
       "type": "gbVFile *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "4": {
       "name": "m_blocks",
       "type": "std::vector<scScriptBlock *,std::allocator<scScriptBlock *> >[4]",
-      "source": "annotation"
-    },
-    "20": {
-      "name": "m_blocknum",
-      "type": "unsigned short",
-      "source": "pdb_merge"
-    },
-    "24": {
-      "name": "m_pindex",
-      "type": "SceIndex *",
-      "source": "pdb_merge"
+      "source": "pdb_fill_incomplete"
     }
-  }
+  },
+  "pdb_size": 28,
+  "binary_size": 20
 }

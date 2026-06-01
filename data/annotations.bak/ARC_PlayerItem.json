@@ -1,21 +1,23 @@
 {
   "name": "ARC_PlayerItem",
-  "binary_size": 10,
   "known_members": {
     "0": {
       "name": "id",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "4": {
       "name": "num",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "8": {
       "name": "item",
       "type": "short",
-      "source": "annotation"
+      "source": "binary:stride_10_in_wear_array"
     }
-  }
+  },
+  "pdb_size": 12,
+  "binary_size": 10,
+  "pack": 1
 }

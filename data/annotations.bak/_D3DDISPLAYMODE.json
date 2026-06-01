@@ -1,26 +1,27 @@
 {
   "name": "_D3DDISPLAYMODE",
-  "binary_size": 16,
+  "pdb_size": 16,
   "known_members": {
-    "0": {
-      "name": "Width",
-      "type": "unsigned int",
-      "source": "annotation"
-    },
     "4": {
       "name": "Height",
       "type": "unsigned int",
-      "source": "annotation"
+      "source": "pdb"
     },
     "8": {
       "name": "RefreshRate",
       "type": "unsigned int",
-      "source": "annotation"
+      "source": "pdb"
     },
     "12": {
       "name": "Format",
       "type": "_D3DFORMAT",
-      "source": "annotation"
+      "source": "pdb"
+    },
+    "0": {
+      "name": "Width",
+      "type": "unsigned int",
+      "source": "PDB_batch_import(size_match)"
     }
-  }
+  },
+  "binary_size": 16
 }

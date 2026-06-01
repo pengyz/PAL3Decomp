@@ -1,76 +1,77 @@
 {
   "name": "sg_emission_control",
-  "binary_size": 36952,
   "known_members": {
-    "0": {
-      "name": "name",
-      "type": "char[64]",
-      "source": "annotation"
-    },
     "64": {
       "name": "particle_pointer",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "68": {
       "name": "emitter_pointer",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "72": {
       "name": "elapsetime",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "76": {
       "name": "total_elatime",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "80": {
       "name": "maxparticle",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "84": {
       "name": "first_time",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "88": {
       "name": "cyclelength",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "92": {
       "name": "replacestyle",
       "type": "int",
-      "source": "annotation"
-    },
-    "96": {
-      "name": "particle_array",
-      "type": "sg_particle_data[400]",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "36896": {
       "name": "emitter",
       "type": "sg_emitter_data",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "36940": {
       "name": "pparticle",
       "type": "sg_particle *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "36944": {
       "name": "pemitter",
       "type": "sg_emitter *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "36948": {
       "name": "scene_pointer",
       "type": "sg_particle_scene *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
+    },
+    "0": {
+      "name": "name",
+      "type": "char[64]",
+      "source": "pdb_fill_incomplete"
+    },
+    "96": {
+      "name": "particle_array",
+      "type": "sg_particle_data[400]",
+      "source": "pdb_fill_incomplete"
     }
-  }
+  },
+  "pdb_size": 36952,
+  "binary_size": 36952
 }

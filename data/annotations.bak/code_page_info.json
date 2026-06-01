@@ -1,21 +1,22 @@
 {
   "name": "code_page_info",
-  "binary_size": 48,
   "known_members": {
     "0": {
       "name": "code_page",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "4": {
       "name": "mbulinfo",
       "type": "unsigned short[6]",
-      "source": "annotation"
+      "source": "pdb_fill_incomplete"
     },
     "16": {
       "name": "rgrange",
       "type": "unsigned char[8][4]",
-      "source": "annotation"
+      "source": "pdb_fill_incomplete"
     }
-  }
+  },
+  "pdb_size": 48,
+  "binary_size": 48
 }

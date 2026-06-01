@@ -1,31 +1,32 @@
 {
   "name": "CEffCallBack",
-  "binary_size": 64,
+  "pdb_size": 64,
   "known_members": {
     "48": {
       "name": "m_fStartX",
       "type": "float",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     },
     "52": {
       "name": "m_fStartY",
       "type": "float",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     },
     "56": {
       "name": "m_fStartZ",
       "type": "float",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     },
     "60": {
       "name": "m_dwRunningID",
       "type": "unsigned int",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     }
   },
   "base_class": [
     "CEffObj",
-    "CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffCallBack::*)(unsigned long)>",
     "CTaskTpl_tagEffTaskParam_CEffCallBack"
-  ]
+  ],
+  "base_size": 48,
+  "binary_size": 64
 }

@@ -1,76 +1,50 @@
 {
   "name": "CEffMgr",
-  "binary_size": 43312,
   "known_members": {
     "0": {
       "name": "m_pDisplay",
       "type": "gbGfxManager *",
-      "source": "annotation"
+      "source": "pdb:PAL3A"
     },
     "4": {
       "name": "m_pCBSystem",
       "type": "CCBSystem *",
-      "source": "annotation"
+      "source": "pdb:PAL3A"
     },
     "8": {
       "name": "m_pAdditiveBlendNoZ",
       "type": "gbRenderEffect *",
-      "source": "annotation"
+      "source": "pdb:PAL3A"
     },
     "12": {
       "name": "m_pAlphaBlendNoZ",
       "type": "gbRenderEffect *",
-      "source": "annotation"
+      "source": "pdb:PAL3A"
     },
     "16": {
       "name": "m_pAdditiveBlend",
       "type": "gbRenderEffect *",
-      "source": "annotation"
+      "source": "pdb:PAL3A"
     },
     "20": {
       "name": "m_pAlphaBlend",
       "type": "gbRenderEffect *",
-      "source": "annotation"
+      "source": "pdb:PAL3A"
     },
     "24": {
       "name": "m_pCam",
       "type": "gbCamera *",
-      "source": "annotation"
+      "source": "pdb:PAL3A"
     },
     "28": {
       "name": "m_EffClass",
       "type": "tagEffClass[32]",
-      "source": "annotation"
+      "source": "pdb:PAL3A"
     },
     "2332": {
       "name": "m_EffTable",
       "type": "tagEffObj[2048]",
-      "source": "annotation"
-    },
-    "43292": {
-      "name": "m_nEff",
-      "type": "int",
-      "source": "annotation"
-    },
-    "43296": {
-      "name": "m_fCurTime",
-      "type": "float",
-      "source": "annotation"
-    },
-    "43300": {
-      "name": "m_fDeltaTime",
-      "type": "float",
-      "source": "annotation"
-    },
-    "43304": {
-      "name": "m_fTimer",
-      "type": "float",
-      "source": "annotation"
-    },
-    "43308": {
-      "name": "m_fTimeScale",
-      "type": "float",
-      "source": "annotation"
+      "source": "pdb:PAL3A"
     },
     "156": {
       "name": "m_fEffParam",
@@ -147,6 +121,31 @@
       "type": "int",
       "source": "reverted_auto_semantic_r3:1x(Reset)"
     },
+    "43292": {
+      "name": "m_nEff",
+      "type": "int",
+      "source": "PDB_batch_import(size_match)"
+    },
+    "43296": {
+      "name": "m_fCurTime",
+      "type": "float",
+      "source": "PDB_batch_import(size_match)"
+    },
+    "43300": {
+      "name": "m_fDeltaTime",
+      "type": "float",
+      "source": "PDB_batch_import(size_match)"
+    },
+    "43304": {
+      "name": "m_fTimer",
+      "type": "float",
+      "source": "PDB_batch_import(size_match)"
+    },
+    "43308": {
+      "name": "m_fTimeScale",
+      "type": "float",
+      "source": "PDB_batch_import(size_match)"
+    },
     "188": {
       "name": "_todo_0BC",
       "type": "int",
@@ -172,5 +171,8 @@
       "type": "int",
       "source": "binary_discovery:1refs"
     }
-  }
+  },
+  "pdb_size": 43312,
+  "binary_size": 43312,
+  "note": "PAL3A layout. In PAL3, CEffMgr is embedded in SceneMgr; +4 is m_pSceneRoot (not m_pCBSystem)"
 }

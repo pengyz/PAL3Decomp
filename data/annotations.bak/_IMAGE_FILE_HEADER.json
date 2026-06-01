@@ -1,41 +1,42 @@
 {
   "name": "_IMAGE_FILE_HEADER",
-  "binary_size": 20,
   "known_members": {
     "0": {
       "name": "Machine",
       "type": "WORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "2": {
       "name": "NumberOfSections",
       "type": "WORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "4": {
       "name": "TimeDateStamp",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "8": {
       "name": "PointerToSymbolTable",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "12": {
       "name": "NumberOfSymbols",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "16": {
       "name": "SizeOfOptionalHeader",
       "type": "WORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "18": {
       "name": "Characteristics",
       "type": "WORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     }
-  }
+  },
+  "pdb_size": 20,
+  "binary_size": 20
 }

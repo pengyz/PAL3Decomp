@@ -1,61 +1,62 @@
 {
   "name": "CEffModel",
-  "binary_size": 104,
+  "pdb_size": 104,
   "known_members": {
     "48": {
       "name": "m_pGeomNode",
       "type": "gbGeomNode *",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     },
     "52": {
       "name": "m_vecCurPos",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     },
     "64": {
       "name": "m_vecOffsetPos",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     },
     "76": {
       "name": "m_vecRot",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     },
     "88": {
       "name": "m_bVisible",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     },
     "89": {
       "name": "m_bAdditiveBlend",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     },
     "90": {
       "name": "m_bNoZTest",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     },
     "92": {
       "name": "m_fSizeX",
       "type": "float",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     },
     "96": {
       "name": "m_fSizeY",
       "type": "float",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     },
     "100": {
       "name": "m_fSizeZ",
       "type": "float",
-      "source": "annotation"
+      "source": "pdb_batch_fill"
     }
   },
   "base_class": [
     "CEffObj",
-    "CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffModel::*)(unsigned long)>",
     "CTaskTpl_tagEffTaskParam_CEffModel"
-  ]
+  ],
+  "base_size": 48,
+  "binary_size": 104
 }

@@ -1,60 +1,15 @@
 {
   "name": "UIRoleDialog",
-  "binary_size": 720,
+  "pdb_size": 720,
   "known_members": {
-    "80": {
-      "name": "m_bk",
-      "type": "UIStaticFlex",
-      "source": "annotation"
-    },
-    "672": {
-      "name": "m_fPosY",
-      "type": "float",
-      "source": "pdb_merge"
-    },
-    "676": {
-      "name": "m_SfPosY",
-      "type": "float",
-      "source": "pdb_merge"
-    },
-    "680": {
-      "name": "m_bReady",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "684": {
-      "name": "m_dlgh",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "688": {
-      "name": "m_bkRc",
-      "type": "tagRECT",
-      "source": "pdb_merge"
-    },
-    "704": {
-      "name": "m_mode",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "708": {
-      "name": "m_leftright",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "712": {
-      "name": "m_time",
-      "type": "float",
-      "source": "pdb_merge"
-    },
-    "716": {
-      "name": "m_sel",
-      "type": "int",
-      "source": "pdb_merge"
-    },
     "72": {
       "name": "baseclass2",
       "type": "PalScriptWaitObj",
+      "source": "PAL3patch_verified"
+    },
+    "80": {
+      "name": "m_bk",
+      "type": "UIStaticFlex",
       "source": "PAL3patch_verified"
     },
     "272": {
@@ -78,8 +33,8 @@
       "source": "PAL3patch_verified | fix:truncated_UIStatic_to_char24_binary_size_720"
     }
   },
-  "base_class": [
-    "UIDialog",
-    "PalScriptWaitObj"
-  ]
+  "base_class": "UIDialog",
+  "base_size": 72,
+  "binary_size": 720,
+  "source": "reverted:binary_size_back_to_720_binary_confirms_operator_new_720"
 }

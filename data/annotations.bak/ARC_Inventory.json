@@ -1,26 +1,27 @@
 {
   "name": "ARC_Inventory",
-  "binary_size": 40,
   "known_members": {
-    "0": {
-      "name": "m_items",
-      "type": "std::vector<ARC_PlayerItem,std::allocator<ARC_PlayerItem> >",
-      "source": "annotation"
-    },
     "16": {
       "name": "m_curtype",
       "type": "int",
-      "source": "annotation"
-    },
-    "20": {
-      "name": "m_typeitems",
-      "type": "std::vector<ARC_PlayerItem,std::allocator<ARC_PlayerItem> >",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "36": {
       "name": "m_money",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
+    },
+    "0": {
+      "name": "m_items",
+      "type": "std::vector<ARC_PlayerItem,std::allocator<ARC_PlayerItem> >",
+      "source": "pdb_fill_incomplete"
+    },
+    "20": {
+      "name": "m_typeitems",
+      "type": "std::vector<ARC_PlayerItem,std::allocator<ARC_PlayerItem> >",
+      "source": "pdb_fill_incomplete"
     }
-  }
+  },
+  "pdb_size": 40,
+  "binary_size": 40
 }

@@ -1,26 +1,25 @@
 {
   "name": "UIButton",
-  "binary_size": 344,
   "known_members": {
     "68": {
       "name": "m_hasDBclk",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "decomp:this->0+N access pattern|PDB_rename"
     },
     "72": {
       "name": "m_ratiow",
       "type": "float",
-      "source": "annotation"
+      "source": "decomp:this->0+N access pattern+codegen_infer|PDB_rename"
     },
     "76": {
       "name": "m_state",
       "type": "UIButton_UIBUTTON_STATE",
-      "source": "annotation"
+      "source": "pdb_fill_incomplete"
     },
     "80": {
       "name": "m_canctrl",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "81": {
       "name": "m_bLockUpdate",
@@ -88,7 +87,8 @@
       "source": "gen_headers_9.2"
     }
   },
-  "base_class": [
-    "UIWnd"
-  ]
+  "pdb_size": 344,
+  "base_class": "UIWnd",
+  "base_size": 68,
+  "binary_size": 344
 }

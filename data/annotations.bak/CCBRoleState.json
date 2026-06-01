@@ -1,11 +1,10 @@
 {
   "name": "CCBRoleState",
-  "binary_size": 23764,
   "known_members": {
     "0": {
       "name": "m_sCombatDialog",
       "type": "char[360]",
-      "source": "annotation"
+      "source": "fix:pdb_char512_exceeds_span=360(next_member_at+360)"
     },
     "360": {
       "name": "_embed_UIFrameWnd_168",
@@ -510,5 +509,7 @@
       "type": "int",
       "source": "A:decomp vtable call pattern"
     }
-  }
+  },
+  "pdb_size": 23904,
+  "binary_size": 23764
 }

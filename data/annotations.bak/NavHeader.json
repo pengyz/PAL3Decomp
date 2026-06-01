@@ -1,31 +1,33 @@
 {
   "name": "NavHeader",
-  "binary_size": 14,
+  "pack": 1,
   "known_members": {
-    "0": {
-      "name": "magic",
-      "type": "unsigned char[4]",
-      "source": "annotation"
-    },
     "4": {
       "name": "version",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "5": {
       "name": "numlayer",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "6": {
       "name": "offsettile",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "10": {
       "name": "offsetface",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
+    },
+    "0": {
+      "name": "magic",
+      "type": "unsigned char[4]",
+      "source": "pdb_fill_incomplete"
     }
-  }
+  },
+  "pdb_size": 14,
+  "binary_size": 14
 }

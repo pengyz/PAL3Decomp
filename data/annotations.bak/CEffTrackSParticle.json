@@ -1,30 +1,32 @@
 {
   "name": "CEffTrackSParticle",
-  "binary_size": 116,
   "known_members": {
     "100": {
       "name": "m_pTrack",
       "type": "t3DModel *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "104": {
       "name": "m_fTrackSpeed",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "108": {
       "name": "m_fTrackDecPart",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "112": {
       "name": "m_nCurrTrackPos",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     }
   },
+  "pdb_size": 116,
   "base_class": [
-    "CEffSParticle",
-    "CEffObj"
-  ]
+    "CEffObj",
+    "CEffSParticle"
+  ],
+  "base_size": 100,
+  "binary_size": 116
 }

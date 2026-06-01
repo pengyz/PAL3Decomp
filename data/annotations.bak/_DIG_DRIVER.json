@@ -1,346 +1,347 @@
 {
   "name": "_DIG_DRIVER",
-  "binary_size": 724,
   "known_members": {
-    "0": {
-      "name": "tag",
-      "type": "char[4]",
-      "source": "annotation"
-    },
     "4": {
       "name": "backgroundtimer",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "8": {
       "name": "quiet",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "12": {
       "name": "n_active_samples",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "16": {
       "name": "master_volume",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "20": {
       "name": "DMA_rate",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "24": {
       "name": "hw_format",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "28": {
       "name": "hw_mode_flags",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "32": {
       "name": "channels_per_sample",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "36": {
       "name": "bytes_per_channel",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "40": {
       "name": "channels_per_buffer",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "44": {
       "name": "samples_per_buffer",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "48": {
       "name": "playing",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "52": {
       "name": "samples",
       "type": "_SAMPLE *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "56": {
       "name": "n_samples",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "60": {
       "name": "build_size",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "64": {
       "name": "build_buffer",
       "type": "int *",
-      "source": "annotation"
-    },
-    "68": {
-      "name": "system_data",
-      "type": "long[8]",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "100": {
       "name": "buffer_size",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "104": {
       "name": "hWaveOut",
       "type": "HWAVEOUT__ *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "108": {
       "name": "reset_works",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "112": {
       "name": "request_reset",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "116": {
       "name": "first",
       "type": "wavehdr_tag *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "120": {
       "name": "n_buffers",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "124": {
       "name": "return_list",
       "type": "wavehdr_tag * *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "128": {
       "name": "return_head",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "132": {
       "name": "return_tail",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "136": {
       "name": "deviceid",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "140": {
       "name": "wformat",
       "type": "pcmwaveformat_tag",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "156": {
       "name": "guid",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "160": {
       "name": "pDS",
       "type": "void *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "164": {
       "name": "ds_priority",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "168": {
       "name": "emulated_ds",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "172": {
       "name": "lppdsb",
       "type": "void *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "176": {
       "name": "dsHwnd",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "180": {
       "name": "lpbufflist",
       "type": "void * *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "184": {
       "name": "samp_list",
       "type": "_SAMPLE * *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "188": {
       "name": "sec_format",
       "type": "int *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "192": {
       "name": "max_buffs",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "196": {
       "name": "released",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "200": {
       "name": "foreground_timer",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "204": {
       "name": "next",
       "type": "_DIG_DRIVER *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "208": {
       "name": "callingCT",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "212": {
       "name": "callingDS",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "216": {
       "name": "DS_initialized",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "220": {
       "name": "DS_sec_buff",
       "type": "void *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "224": {
       "name": "DS_out_buff",
       "type": "void *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "228": {
       "name": "DS_buffer_size",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "232": {
       "name": "DS_frag_cnt",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "236": {
       "name": "DS_frag_size",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "240": {
       "name": "DS_last_frag",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "244": {
       "name": "DS_last_write",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "248": {
       "name": "DS_last_timer",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "252": {
       "name": "DS_skip_time",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "256": {
       "name": "DS_use_default_format",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "260": {
       "name": "use_MMX",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "264": {
       "name": "decode_buffer",
       "type": "void *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "268": {
       "name": "decode_buffer_size",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "272": {
       "name": "us_count",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "276": {
       "name": "ms_count",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "280": {
       "name": "last_ms_polled",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "284": {
       "name": "last_percent",
       "type": "DWORD",
-      "source": "annotation"
-    },
-    "288": {
-      "name": "pipeline",
-      "type": "DPINFO[4]",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "704": {
       "name": "reverb_buffer",
       "type": "int *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "708": {
       "name": "reverb_buffer_size",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "712": {
       "name": "reverb_buffer_position",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "716": {
       "name": "no_wom_done",
       "type": "long",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "720": {
       "name": "wom_done_buffers",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
+    },
+    "0": {
+      "name": "tag",
+      "type": "char[4]",
+      "source": "pdb_fill_incomplete"
+    },
+    "68": {
+      "name": "system_data",
+      "type": "long[8]",
+      "source": "pdb_fill_incomplete"
+    },
+    "288": {
+      "name": "pipeline",
+      "type": "DPINFO[4]",
+      "source": "pdb_fill_incomplete"
     }
-  }
+  },
+  "pdb_size": 724,
+  "binary_size": 724
 }

@@ -1,76 +1,77 @@
 {
   "name": "CEffectSystem",
-  "binary_size": 344,
   "known_members": {
     "0": {
       "name": "m_pDisplay",
       "type": "gbGfxManager *",
-      "source": "annotation"
+      "source": "pdb_unverified"
     },
     "4": {
       "name": "m_pVertexBuffer",
       "type": "gbDynVertBuf *",
-      "source": "annotation"
+      "source": "pdb_unverified"
     },
     "8": {
       "name": "m_pAdditiveBlend",
       "type": "gbRenderEffect *",
-      "source": "annotation"
+      "source": "pdb_unverified"
     },
     "12": {
       "name": "m_pAlphaBlend",
       "type": "gbRenderEffect *",
-      "source": "annotation"
+      "source": "pdb_unverified"
     },
     "16": {
       "name": "m_DefaultUVSet",
       "type": "tagUVSet[16]",
-      "source": "annotation"
+      "source": "pdb_unverified"
     },
     "272": {
       "name": "m_bInitialized",
       "type": "unsigned char",
-      "source": "annotation"
+      "source": "pdb_unverified"
     },
     "276": {
       "name": "m_nEffect",
       "type": "int",
-      "source": "annotation"
+      "source": "pdb_unverified"
     },
     "280": {
       "name": "m_pEffect",
       "type": "CEffect *[8]",
-      "source": "annotation"
+      "source": "pdb_unverified"
     },
     "312": {
       "name": "m_dDeltaTime",
       "type": "double",
-      "source": "annotation"
+      "source": "pdb_unverified"
     },
     "320": {
       "name": "m_dTimeFund",
       "type": "double",
-      "source": "annotation"
+      "source": "pdb_unverified"
     },
     "328": {
       "name": "m_fTimeFund",
       "type": "float",
-      "source": "annotation"
+      "source": "pdb_unverified"
     },
     "332": {
       "name": "m_fTimeScale",
-      "type": "float",
-      "source": "annotation"
+      "type": "int",
+      "source": "pdb_unverified | type_fix:float→int_raw_decomp"
     },
     "336": {
       "name": "m_fWindDirection",
-      "type": "float",
-      "source": "annotation"
+      "type": "int",
+      "source": "pdb_unverified | type_fix:float→int_raw_decomp"
     },
     "340": {
       "name": "m_fWindSpeed",
-      "type": "float",
-      "source": "annotation"
+      "type": "int",
+      "source": "pdb_unverified | type_fix:float→int_raw_decomp"
     }
-  }
+  },
+  "pdb_size": 344,
+  "binary_size": 344
 }

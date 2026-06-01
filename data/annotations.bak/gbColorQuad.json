@@ -1,26 +1,12 @@
 {
   "name": "gbColorQuad",
+  "note": "Real def in pal3_structs.h (struct with internal union). Keep annotation simple.",
   "binary_size": 4,
   "known_members": {
     "0": {
       "name": "Color",
       "type": "unsigned int",
-      "source": "annotation"
-    },
-    "1": {
-      "name": "Green",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "2": {
-      "name": "Red",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "3": {
-      "name": "Alpha",
-      "type": "unsigned char",
-      "source": "pdb_merge"
+      "source": "PAL3patch"
     }
   }
 }

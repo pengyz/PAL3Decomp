@@ -1,41 +1,42 @@
 {
   "name": "scScriptBlock",
-  "binary_size": 88,
   "known_members": {
     "0": {
       "name": "id",
       "type": "DWORD",
-      "source": "annotation"
-    },
-    "4": {
-      "name": "desc",
-      "type": "unsigned char[64]",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "68": {
       "name": "codesize",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "72": {
       "name": "pcodedata",
       "type": "BYTE *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "76": {
       "name": "uservarnum",
       "type": "WORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "80": {
       "name": "uservar",
       "type": "scUserVarInfo *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "84": {
       "name": "ref",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
+    },
+    "4": {
+      "name": "desc",
+      "type": "unsigned char[64]",
+      "source": "pdb_fill_incomplete"
     }
-  }
+  },
+  "pdb_size": 88,
+  "binary_size": 88
 }

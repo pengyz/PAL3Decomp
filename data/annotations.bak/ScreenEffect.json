@@ -1,26 +1,25 @@
 {
   "name": "ScreenEffect",
-  "binary_size": 24,
   "known_members": {
     "8": {
       "name": "m_blive",
       "type": "int",
-      "source": "annotation"
+      "source": "A:decomp LODWORD(m_blive)=2*count,=2 in ScreenEffectMgr; used as integer capacity"
     },
     "12": {
       "name": "m_life",
-      "type": "float",
-      "source": "annotation"
+      "type": "int",
+      "source": "A:decomp LODWORD(m_life)+=4 iterator, null-check, ptr-subtract>>2 in ScreenEffectMgr"
     },
     "16": {
       "name": "m_age",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "20": {
       "name": "m_hold",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "0": {
       "name": "m_nType",
@@ -28,7 +27,8 @@
       "source": "binary:first_member"
     }
   },
-  "base_class": [
-    "PalScriptWaitObj"
-  ]
+  "pdb_size": 24,
+  "base_class": "PalScriptWaitObj",
+  "base_size": 8,
+  "binary_size": 24
 }

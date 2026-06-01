@@ -2,63 +2,60 @@
   "name": "gbVisNode",
   "binary_size": 88,
   "known_members": {
-    "28": {
-      "name": "MsgBuffer",
-      "type": "char[24]",
-      "source": "annotation"
-    },
     "52": {
       "name": "Priority",
       "type": "int",
-      "source": "annotation"
+      "source": "PDB_batch_import(size_match)"
     },
     "56": {
       "name": "TimeScale",
       "type": "float",
-      "source": "annotation"
+      "source": "PDB_batch_import(size_match)"
     },
     "60": {
       "name": "bShow",
       "type": "int",
-      "source": "annotation"
+      "source": "PDB_batch_import(size_match)"
     },
     "64": {
       "name": "bDoShadow",
       "type": "int",
-      "source": "annotation"
+      "source": "PDB_batch_import(size_match)"
     },
     "68": {
       "name": "pCullObj",
       "type": "gbOctreeNode *",
-      "source": "annotation"
+      "source": "PDB_batch_import(size_match)"
     },
     "72": {
       "name": "pCullPrev",
       "type": "gbVisNode *",
-      "source": "annotation"
+      "source": "PDB_batch_import(size_match)"
     },
     "76": {
       "name": "pCullNext",
       "type": "gbVisNode *",
-      "source": "annotation"
+      "source": "PDB_batch_import(size_match)"
     },
     "80": {
       "name": "BlendParam",
       "type": "float",
-      "source": "annotation"
+      "source": "PDB_batch_import(size_match)"
     },
     "84": {
       "name": "BlendFlag",
       "type": "NodeBlend",
-      "source": "annotation"
+      "source": "PDB_batch_import(size_match)"
     },
     "0": {
       "name": "pSceneGraph",
       "type": "gbSceneGraph *",
-      "source": "annotation"
+      "source": "PDB_batch_import(size_match)"
+    },
+    "28": {
+      "name": "MsgBuffer",
+      "type": "char[24]",
+      "source": "PDB:gbCycleQueue<gbNodeMsgObj>(24B), VC6_incompatible template"
     }
-  },
-  "base_class": [
-    "gbNBTreeNode"
-  ]
+  }
 }

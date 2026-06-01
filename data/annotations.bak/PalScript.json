@@ -1,26 +1,25 @@
 {
   "name": "PalScript",
-  "binary_size": 1816,
   "known_members": {
     "0": {
       "name": "m_bLoadSceneScript",
-      "type": "unsigned char",
-      "source": "annotation"
+      "type": "int",
+      "source": "A:decomp all accesses use *(_DWORD*)&field; values 3/4 (enum) + tree traversal (ptr)"
     },
     "4": {
       "name": "m_pinst",
       "type": "scScriptInstance *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "8": {
       "name": "m_waitobj",
       "type": "PtrArray *",
-      "source": "annotation"
+      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "24": {
       "name": "m_CamObj",
       "type": "PtrArray *",
-      "source": "annotation"
+      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
     },
     "12": {
       "name": "m_fBlendFactor",
@@ -516,5 +515,8 @@
       "type": "float[48]",
       "source": "binary_scan: IDA array field, merged from individual elements"
     }
-  }
+  },
+  "pdb_size": 40,
+  "binary_size": 1816,
+  "note": "binary_size kept at 1816 despite member_scan showing access to offset 8416. High offset accesses (59 offsets >= 1816, max 8416) in methods like _auto_44b8a0 conflict with PalScript embeds in SaleUI/CCBUIPanel. Needs investigation: possible PalScript subclass, array access, or method misattribution."
 }

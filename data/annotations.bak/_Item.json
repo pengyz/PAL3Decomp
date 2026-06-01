@@ -1,36 +1,37 @@
 {
   "name": "_Item",
-  "binary_size": 48,
   "known_members": {
-    "0": {
-      "name": "title",
-      "type": "std::basic_string<char,std::char_traits<char>,std::allocator<char> >",
-      "source": "annotation"
-    },
-    "16": {
-      "name": "info",
-      "type": "std::basic_string<char,std::char_traits<char>,std::allocator<char> >",
-      "source": "annotation"
-    },
     "32": {
       "name": "bHasChild",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "36": {
       "name": "nChildNum",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "40": {
       "name": "bIsPic",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "44": {
       "name": "ppChildren",
       "type": "_Item * *",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
+    },
+    "0": {
+      "name": "title",
+      "type": "std::basic_string<char,std::char_traits<char>,std::allocator<char> >",
+      "source": "pdb_fill_incomplete"
+    },
+    "16": {
+      "name": "info",
+      "type": "std::basic_string<char,std::char_traits<char>,std::allocator<char> >",
+      "source": "pdb_fill_incomplete"
     }
-  }
+  },
+  "pdb_size": 48,
+  "binary_size": 48
 }

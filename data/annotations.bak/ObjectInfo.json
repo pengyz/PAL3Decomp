@@ -1,179 +1,179 @@
 {
   "name": "ObjectInfo",
-  "binary_size": 604,
   "known_members": {
-    "4": {
-      "name": "name",
-      "type": "char[32]",
-      "source": "annotation"
-    },
     "36": {
       "name": "ctype",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "37": {
       "name": "cango",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "40": {
       "name": "pos",
       "type": "gbVec3D",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "52": {
       "name": "rotate",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "56": {
       "name": "rect",
       "type": "tagRECT",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "72": {
       "name": "type",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "73": {
       "name": "savestate",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "74": {
       "name": "onlayer",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "75": {
       "name": "wuling",
       "type": "BYTE",
-      "source": "annotation"
-    },
-    "76": {
-      "name": "param",
-      "type": "float[6]",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "100": {
       "name": "needspecalact",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "102": {
       "name": "needitem",
       "type": "WORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "104": {
       "name": "needgold",
       "type": "WORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "106": {
       "name": "needlv",
       "type": "WORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "108": {
       "name": "needwu",
       "type": "WORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "110": {
       "name": "needallopen",
       "type": "BYTE",
-      "source": "annotation"
-    },
-    "111": {
-      "name": "failed",
-      "type": "char[16]",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "128": {
       "name": "dwNeedItem",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "132": {
       "name": "groupid",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "136": {
       "name": "scriptid",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "140": {
       "name": "path",
       "type": "PolyLine",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "336": {
       "name": "linkobj",
       "type": "WORD",
-      "source": "annotation"
-    },
-    "338": {
-      "name": "depend_scenename",
-      "type": "char[32]",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "370": {
       "name": "depend_id",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "372": {
       "name": "box",
       "type": "gbAABBox",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "396": {
       "name": "rotateX",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "400": {
       "name": "rotateZ",
       "type": "float",
-      "source": "annotation"
-    },
-    "404": {
-      "name": "snd",
-      "type": "unsigned char[8]",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "412": {
       "name": "effect",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "416": {
       "name": "bScriptChangeActive",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "420": {
       "name": "bScriptMoved",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "424": {
       "name": "bCalculateExp",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
+    },
+    "4": {
+      "name": "name",
+      "type": "char[32]",
+      "source": "pdb_fill_incomplete"
+    },
+    "76": {
+      "name": "param",
+      "type": "float[6]",
+      "source": "pdb_fill_incomplete"
+    },
+    "111": {
+      "name": "failed",
+      "type": "char[16]",
+      "source": "pdb_fill_incomplete"
+    },
+    "338": {
+      "name": "depend_scenename",
+      "type": "char[32]",
+      "source": "pdb_fill_incomplete"
+    },
+    "404": {
+      "name": "snd",
+      "type": "unsigned char[8]",
+      "source": "pdb_fill_incomplete"
     },
     "428": {
       "name": "reserve",
       "type": "unsigned int[44]",
-      "source": "annotation"
+      "source": "pdb_fill_incomplete"
     }
   },
-  "base_class": [
-    "ObjectInfoBase"
-  ]
+  "pdb_size": 604,
+  "base_class": "ObjectInfoBase",
+  "base_size": 4,
+  "binary_size": 604
 }

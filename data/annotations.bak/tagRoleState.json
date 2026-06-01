@@ -1,501 +1,277 @@
 {
   "name": "tagRoleState",
-  "binary_size": 600,
   "known_members": {
     "0": {
       "name": "dwID",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "4": {
       "name": "nIndex",
       "type": "int",
-      "source": "annotation"
-    },
-    "8": {
-      "name": "sModel",
-      "type": "char[16]",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "24": {
       "name": "byUIIndex",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "25": {
       "name": "bValid",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "26": {
       "name": "bAlive",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "27": {
       "name": "bFriend",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "28": {
       "name": "bBoss",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "29": {
       "name": "bCanAction",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "30": {
       "name": "bWaitForFlee",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "31": {
       "name": "bEnemyFriend",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "32": {
       "name": "nLevel",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "36": {
       "name": "nHP",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "40": {
       "name": "nFullHP",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "44": {
       "name": "nGP",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "48": {
       "name": "pCCBSystem",
       "type": "CCBSystem *",
-      "source": "annotation"
+      "source": "A:binary +4=m_pUI(CCBUI*), +12=m_pAttackSequen(CCBAttackSequen*), +20=m_pStage(CCBStage*), +52=m_p2DSpark(C2DSpark*), +120=m_eState(ECBCombatState) — all match CCBSystem layout exactly"
     },
     "52": {
       "name": "nMP",
       "type": "CCBStage *",
-      "source": "annotation"
+      "source": "A:decomp CCBRoleState::ProcessActions casts to CCBStage* and calls methods — pointer type confirmed"
     },
     "56": {
       "name": "nFullMP",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "60": {
       "name": "nAttack",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "64": {
       "name": "nDefence",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "68": {
       "name": "nSpeed",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "72": {
       "name": "nLuck",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "76": {
       "name": "nLove",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "80": {
       "name": "nMoney",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "84": {
       "name": "nProtectRole",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "88": {
       "name": "dwAttackMode",
       "type": "DWORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "92": {
       "name": "nGPInc",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "96": {
       "name": "byWeaponType",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "97": {
       "name": "bAttackRow",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "98": {
       "name": "bAttackColumn",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "99": {
       "name": "bAttackAll",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "100": {
       "name": "bMagicSword",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "104": {
       "name": "fGPCostDec",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "108": {
       "name": "fMPCostDec",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "112": {
       "name": "fPunchPowerInc",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "116": {
       "name": "fSkillCentInc",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "120": {
       "name": "fHPIncPerRound",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "124": {
       "name": "fGPIncPerRound",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "128": {
       "name": "fGPIncPerRoundBak",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "132": {
       "name": "fMPIncPerRound",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "136": {
       "name": "fEXPIncPerCombat",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "140": {
       "name": "fMoneyIncPerCombat",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "144": {
       "name": "fRecoverItemPowerInc",
       "type": "float",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "148": {
       "name": "nStealCent",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "152": {
       "name": "bLostMoneyGetLife",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "153": {
       "name": "bMirror",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "156": {
       "name": "nEXP",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "160": {
       "name": "nCombatEXP",
       "type": "int",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
+    },
+    "8": {
+      "name": "sModel",
+      "type": "char[16]",
+      "source": "pdb_fill_incomplete"
     },
     "164": {
       "name": "dwSkillID",
       "type": "unsigned int[9]",
-      "source": "annotation"
+      "source": "pdb_fill_incomplete"
     },
     "200": {
       "name": "bSkillMastered",
       "type": "unsigned char[9]",
-      "source": "annotation"
+      "source": "pdb_fill_incomplete"
     },
     "212": {
       "name": "dwMagicID",
       "type": "unsigned int[9][6]",
-      "source": "annotation"
+      "source": "pdb_fill_incomplete"
     },
     "428": {
       "name": "bMagicMastered",
       "type": "unsigned char[9][6]",
-      "source": "annotation"
+      "source": "pdb_fill_incomplete"
     },
     "482": {
       "name": "byMagicUseTime",
       "type": "unsigned short[9][6]",
-      "source": "annotation"
+      "source": "pdb_fill_incomplete"
     },
     "590": {
       "name": "byMagicLevel",
       "type": "unsigned char[10]",
-      "source": "annotation"
-    },
-    "644": {
-      "name": "dwWeaponSkillID",
-      "type": "unsigned long",
-      "source": "pdb_merge"
-    },
-    "648": {
-      "name": "dwCleanCent",
-      "type": "unsigned long",
-      "source": "pdb_merge"
-    },
-    "652": {
-      "name": "fWeaponSkillMass",
-      "type": "float",
-      "source": "pdb_merge"
-    },
-    "656": {
-      "name": "dwCorpse",
-      "type": "unsigned long",
-      "source": "pdb_merge"
-    },
-    "660": {
-      "name": "nMoneyCanBeSteal",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "664": {
-      "name": "dwItemCanBeSteal",
-      "type": "unsigned long",
-      "source": "pdb_merge"
-    },
-    "668": {
-      "name": "nItemCanBeSteal",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "672": {
-      "name": "dwFiveMagic",
-      "type": "unsigned long[7]",
-      "source": "pdb_merge"
-    },
-    "700": {
-      "name": "Lineup",
-      "type": "ECBFiveLineup",
-      "source": "pdb_merge"
-    },
-    "704": {
-      "name": "bDefence",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "705": {
-      "name": "bSpecState",
-      "type": "unsigned char[27]",
-      "source": "pdb_merge"
-    },
-    "732": {
-      "name": "snSpecStateLurk",
-      "type": "short[27]",
-      "source": "pdb_merge"
-    },
-    "786": {
-      "name": "snSpecStateLast",
-      "type": "short[27]",
-      "source": "pdb_merge"
-    },
-    "840": {
-      "name": "nSpecStateRound",
-      "type": "int[27]",
-      "source": "pdb_merge"
-    },
-    "948": {
-      "name": "bAIAttack",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "949": {
-      "name": "bAIMagic",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "950": {
-      "name": "bAISkill",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "951": {
-      "name": "bAIUseItem",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "952": {
-      "name": "bAINegative",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "953": {
-      "name": "bAI",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "954": {
-      "name": "bAbsorbHPWorm",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "955": {
-      "name": "byAbsorbHPWormRound",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "956": {
-      "name": "nKiller",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "960": {
-      "name": "fDeadTime",
-      "type": "float",
-      "source": "pdb_merge"
-    },
-    "964": {
-      "name": "bDeadImbibeNimbus",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "965": {
-      "name": "bVariance",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "966": {
-      "name": "bVarianceRun",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "968": {
-      "name": "nBeforeVarianceHP",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "972": {
-      "name": "nBeforeVarianceFullHP",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "976": {
-      "name": "nBeforeVarianceDef",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "980": {
-      "name": "nCurVarianceRound",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "984": {
-      "name": "nMaxVarianceRound",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "988": {
-      "name": "nBFARound",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "992": {
-      "name": "nMaxBFARound",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "996": {
-      "name": "pLeftWeapon",
-      "type": "gbGeomNode *[3]",
-      "source": "pdb_merge"
-    },
-    "1008": {
-      "name": "pRightWeapon",
-      "type": "gbGeomNode *[3]",
-      "source": "pdb_merge"
-    },
-    "1020": {
-      "name": "nRound",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "1024": {
-      "name": "bRepeatLastOperation",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "1025": {
-      "name": "bDoNormalAttack",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "1026": {
-      "name": "bDoFlee",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "1027": {
-      "name": "bTransMtl",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "1028": {
-      "name": "bFleeing",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "1029": {
-      "name": "bFleed",
-      "type": "unsigned char",
-      "source": "pdb_merge"
-    },
-    "1032": {
-      "name": "nFleeCent",
-      "type": "int",
-      "source": "pdb_merge"
-    },
-    "1036": {
-      "name": "pHPSign",
-      "type": "char *",
-      "source": "pdb_merge"
+      "source": "fix:span=10"
     }
-  }
+  },
+  "pdb_size": 1040,
+  "binary_size": 600
 }

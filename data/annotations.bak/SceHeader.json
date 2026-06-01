@@ -1,21 +1,23 @@
 {
   "name": "SceHeader",
-  "binary_size": 7,
+  "pack": 1,
   "known_members": {
-    "0": {
-      "name": "flag",
-      "type": "unsigned char[4]",
-      "source": "annotation"
-    },
     "4": {
       "name": "version",
       "type": "BYTE",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
     },
     "5": {
       "name": "blocknum",
       "type": "WORD",
-      "source": "annotation"
+      "source": "gen_headers_9.2"
+    },
+    "0": {
+      "name": "flag",
+      "type": "unsigned char[4]",
+      "source": "pdb_fill_incomplete"
     }
-  }
+  },
+  "pdb_size": 7,
+  "binary_size": 7
 }
