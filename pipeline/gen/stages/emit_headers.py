@@ -165,6 +165,7 @@ TYPE_REMAP = {
     'unsigned __int32': 'unsigned int',
     'unsigned short': 'WORD',
     '_iobuf *': 'FILE *',
+    '__int128': 'unsigned char _val_16[16]',
 }
 
 
@@ -569,6 +570,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
         'CRITICAL_SECTION', 'HRESULT', 'BOOL', 'LPCSTR', 'LPSTR',
         'HICON__', 'LRESULT', 'HCURSOR', 'LPARAM', 'WPARAM', 'LCID',
         'IDirectInput8A', 'IDirectInputDevice8A',
+        'INT_PTR', 'UINT_PTR', 'LONG_PTR', 'ULONG_PTR', 'DWORD_PTR',
     }
     SYSTEM_TYPES = WINDOWS_CRT_TYPES
 
@@ -868,15 +870,32 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 if inc_line not in lines:
                     lines.insert(0, inc_line)
 
-    # Generate includes for template bases added from annotation (above block
-    # runs after the PDB base include loop at lines 804-841, so we need to
-    # retroactively add includes for any template bases from annotation).
+    # Generate includes for bases added from annotation (runs after the
+    # PDB base include loop at lines 804-841 which doesn't see these).
     for b in base_names:
-        if '<' not in b:
+        if b in SYSTEM_TYPES:
             continue
-        base_inc = b.split('<')[0]
-        if base_inc in SYSTEM_TYPES:
-            continue
+        if '<' in b:
+            base_inc = b.split('<')[0]
+            # Also resolve template parameter types
+            inner = b[b.find('<')+1:b.rfind('>')]
+            for param in re.findall(r'[A-Za-z_]\w+', inner):
+                if len(param) > 1 and param not in PRIMITIVES and param not in SYSTEM_TYPES and param != cls_name:
+                    gb_path = _gbengine_type_to_header.get(param, '')
+                    if gb_path:
+                        inc_line = '#include "%s"' % gb_path
+                        if inc_line not in lines:
+                            lines.insert(0, inc_line)
+                    elif param in known_classes or (ANNOTATIONS_DIR / "structs" / ("%s.json" % param)).exists():
+                        inc_line = '#include "%s.h"' % param
+                        if inc_line not in lines:
+                            lines.insert(0, inc_line)
+                    else:
+                        fwd_line = 'class %s;' % param
+                        if fwd_line not in lines:
+                            lines.insert(0, fwd_line)
+        else:
+            base_inc = b
         gb_path = _gbengine_type_to_header.get(base_inc, '')
         if gb_path:
             inc_line = '#include "%s"' % gb_path

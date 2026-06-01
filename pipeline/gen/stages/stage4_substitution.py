@@ -729,6 +729,9 @@ def _apply_text_substitutions(code, ctx):
     # stdiobuf misidentification fix
     code = code.replace('stdiobuf *', 'UIWnd *')
     code = code.replace('stdiobuf::', 'UIWnd::')
+
+    # __int128 not supported by MSVC6 (IDA exports from PDB)
+    code = code.replace('__int128', 'unsigned char _val_16[16]')
     code = code.replace('std::ios_base *', 'UIWnd *')
 
     # MSVC6 strict type conversion fixes:
