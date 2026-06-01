@@ -25,7 +25,8 @@
   },
   "0x004E0A30": {
     "name": "DialogFunc",
-    "signature": "int __stdcall(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
+    "signature": "int __stdcall(HWND, UINT, WPARAM, LPARAM)",
+    "source": "ida_decomp"
   },
   "0x00421870": {
     "name": "GetGfxManagerDelVisNode",
@@ -495,5 +496,10 @@
     "name": "_misattrib_UIBigMap::OnMessage",
     "signature": "int __thiscall(UIBigMap *this, int nVal, char *pszBuf, int nItemID)",
     "_misattrib_evidence": "max_offset=219752>class_size=10248"
+  },
+  "0x0043A770": {
+    "name": "GetSys",
+    "signature": "struct NameSys *__cdecl()",
+    "source": "pdb"
   }
 }
