@@ -36,9 +36,23 @@ def flatten_gbengine_headers(header_dir):
     # Strip C++ comments
     full = re.sub(r'//[^\n]*', '', full)
 
-    # Prepend external SDK type stubs (D3DX types not in mssdk TIL).
-    # These are opaque pointer targets — only need forward declaration for sizeof(ptr).
+    # Prepend external SDK type stubs (D3DX types — VC6 DirectX 9 SDK).
+    # Provide full definitions for value types, forward decl for interface pointers.
     sdk_stubs = """
+// D3D value types (DirectX 9 Summer 2003, VC6-compatible)
+typedef unsigned long D3DCOLOR;
+typedef struct _D3DVECTOR { float x; float y; float z; } D3DVECTOR;
+typedef struct _D3DCOLORVALUE { float r; float g; float b; float a; } D3DCOLORVALUE;
+typedef struct D3DXVECTOR2 { float x; float y; } D3DXVECTOR2;
+typedef struct D3DXVECTOR3 { float x; float y; float z; } D3DXVECTOR3;
+typedef struct D3DXVECTOR4 { float x; float y; float z; float w; } D3DXVECTOR4;
+typedef struct D3DXCOLOR { float r; float g; float b; float a; } D3DXCOLOR;
+typedef struct D3DXMATRIX {
+    float _11, _12, _13, _14;
+    float _21, _22, _23, _24;
+    float _31, _32, _33, _34;
+    float _41, _42, _43, _44;
+} D3DXMATRIX;
 struct ID3DXEffect;
 struct ID3DXEffectPool;
 struct IDirect3DVertexDeclaration9;

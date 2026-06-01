@@ -193,6 +193,7 @@ def phase1_import_types():
     # Full definitions — 单遍导入，跳过无法解析的成员（gbengine/D3D 等不在 PDB 的类型）。
     # 此类成员在 IDB 中留为 gap，apply_annotations 的 diff 模式会补充。
     cls_ok = 0
+    cls_names_ok = set()  # track successfully imported
     skip_member_total = 0
     for cls in classes:
         name = cls.get('name', '')
@@ -237,6 +238,7 @@ def phase1_import_types():
             if result_tinfo.create_udt(udt, udt_flag):
                 result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
                 cls_ok += 1
+                cls_names_ok.add(name)
                 skip_member_total += skip_count
         except Exception as e:
             log("[!] 无法导入 %s: %s" % (name, e))
@@ -245,6 +247,83 @@ def phase1_import_types():
         log("[!] 共 %d 个成员因类型无法解析被跳过（后续可通过 annotation 补充）" % skip_member_total)
 
     log("[*] 类导入: %d forward decls + %d full definitions" % (len(classes), cls_ok))
+
+    # Import gbengine types (provides gb* type definitions + D3D value types)
+    log("")
+    log("=" * 60)
+    log("[Phase 1b] 导入 gbengine + D3D 类型")
+    log("=" * 60)
+    try:
+        sys.path.insert(0, os.path.join(PROJECT_ROOT, "pipeline", "ida"))
+        import import_gbengine_types as _gb
+        _gb_headers = os.path.join(PROJECT_ROOT, "include", "gbengine")
+        _content = _gb.flatten_gbengine_headers(_gb_headers)
+        if _content:
+            til = ida_typeinf.get_idati()
+            # Remove any stub forward declarations that would block full defs
+            _type_names = set(re.findall(r'(?:struct|enum)\s+(\w+)\s*[{:]', _content))
+            for _tn in _type_names:
+                _ti = ida_typeinf.tinfo_t()
+                if _ti.get_named_type(til, _tn):
+                    _ti.set_named_type(til, _tn, ida_typeinf.NTF_REPLACE)
+            _errs = idc.parse_decls(_content, 0)
+            log("[*] gbengine: parsed %d chars, errors=%d" % (len(_content), _errs if _errs is not None else 0))
+        else:
+            log("[!] gbengine: no headers found at %s" % _gb_headers)
+    except Exception as e:
+        log("[!] gbengine import EXCEPTION: %s" % e)
+
+    # Retry PDB full definitions — now gbengine/D3D types are available
+    log("")
+    log("[Phase 1c] 重试 PDB 完整导入（gbengine 类型已就绪）")
+    _imported_names = set()
+    for cls in classes:
+        n = cls.get('name', '')
+        if n:
+            _imported_names.add(n)
+    cls_retry = 0
+    for cls in classes:
+        name = cls.get('name', '')
+        if not name or name in cls_names_ok:
+            continue
+        existing_ti = ida_typeinf.tinfo_t()
+        if existing_ti.get_named_type(til, name) and existing_ti.get_size() > 1:
+            continue  # already imported
+        try:
+            data_members = cls.get('data_members', [])
+            if not data_members:
+                continue
+            udt = ida_typeinf.udt_type_data_t()
+            udt.taudt_bits = 1024
+            for m in data_members:
+                mname = m.get('name', '')
+                mtype_str = m.get('type', 'int')
+                moffset = m.get('offset', 0)
+                if not mname:
+                    continue
+                mtinfo = _resolve_member_type(mtype_str, til)
+                if mtinfo is None:
+                    break
+                msize = mtinfo.get_size()
+                if msize in (0, 0xFFFFFFFFFFFFFFFF):
+                    break
+                mm = ida_typeinf.udt_member_t()
+                mm.name = mname
+                mm.offset = moffset * 8
+                mm.size = msize * 8
+                mm.type = mtinfo
+                udt.push_back(mm)
+            else:
+                is_union = cls.get('kind') == 'union'
+                udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
+                rt = ida_typeinf.tinfo_t()
+                if rt.create_udt(udt, udt_flag):
+                    rt.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+                    cls_retry += 1
+        except Exception:
+            pass
+    if cls_retry:
+        log("[*] retry 追加: %d structs (原跳过成员现可解析)" % cls_retry)
 
 
 # ========================================================================
