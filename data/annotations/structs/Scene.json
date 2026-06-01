@@ -1,11 +1,96 @@
 {
   "name": "Scene",
-  "note": "Verified from binary. PDB size was 1094164 (wrong/different version)",
+  "binary_size": 1100000,
   "known_members": {
     "0": {
       "name": "_vftable",
+      "type": "SceneInfo",
+      "source": "annotation"
+    },
+    "132": {
+      "name": "m_geomnode",
+      "type": "gbGeomNode *",
+      "source": "annotation"
+    },
+    "136": {
+      "name": "m_lights",
+      "type": "gbVisNode *",
+      "source": "annotation"
+    },
+    "140": {
+      "name": "m_aabb",
+      "type": "gbAABBox",
+      "source": "annotation"
+    },
+    "164": {
+      "name": "m_bbArray",
+      "type": "PtrArray",
+      "source": "annotation"
+    },
+    "180": {
+      "name": "m_objmap",
+      "type": "SceneMapObj[2]",
+      "source": "annotation"
+    },
+    "220": {
+      "name": "m_numobj",
       "type": "int",
-      "source": "fix_scene_struct"
+      "source": "annotation"
+    },
+    "224": {
+      "name": "m_obj",
+      "type": "SceneObj[256]",
+      "source": "annotation"
+    },
+    "456928": {
+      "name": "m_numnpc",
+      "type": "int",
+      "source": "annotation"
+    },
+    "456932": {
+      "name": "m_npc",
+      "type": "Role[72]",
+      "source": "annotation"
+    },
+    "1093412": {
+      "name": "m_nav",
+      "type": "NavigationInfo",
+      "source": "pdb_merge"
+    },
+    "1093776": {
+      "name": "m_cvd",
+      "type": "gbGeomNode *",
+      "source": "pdb_merge"
+    },
+    "1093780": {
+      "name": "m_CamCollide",
+      "type": "NavigationInfo",
+      "source": "pdb_merge"
+    },
+    "1094144": {
+      "name": "m_bHasNavCollide",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "1094148": {
+      "name": "m_bLoad",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1094152": {
+      "name": "m_battached",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1094156": {
+      "name": "m_lastobj",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "1094160": {
+      "name": "m_bStar",
+      "type": "int",
+      "source": "pdb_merge"
     },
     "4": {
       "name": "m_pDataBegin",
@@ -22,57 +107,10 @@
       "type": "void *[29]",
       "source": "fix_scene_struct | fix:[30]->[29] span=116, 29*4=116"
     },
-    "132": {
-      "name": "m_geomnode",
-      "type": "gbGeomNode *",
-      "source": "gen_headers_9.2"
-    },
-    "136": {
-      "name": "m_lights",
-      "type": "gbVisNode *",
-      "source": "gen_headers_9.2"
-    },
-    "140": {
-      "name": "m_aabb",
-      "type": "gbAABBox",
-      "source": "gen_headers_9.2"
-    },
-    "164": {
-      "name": "m_bbArray",
-      "type": "PtrArray",
-      "source": "gen_headers_9.2"
-    },
-    "456928": {
-      "name": "m_numnpc",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "180": {
-      "name": "m_objmap",
-      "type": "SceneMapObj[2]",
-      "source": "pdb_fill_incomplete"
-    },
-    "224": {
-      "name": "m_obj",
-      "type": "SceneObj[256]",
-      "source": "pdb_fill_incomplete"
-    },
-    "456932": {
-      "name": "m_npc",
-      "type": "Role[72]",
-      "source": "pdb_fill_incomplete"
-    },
     "128": {
       "name": "m_nReset",
       "type": "int",
       "source": "binary:disp32_26hits_6funcs"
-    },
-    "220": {
-      "name": "m_numobj",
-      "type": "int",
-      "source": "PDB_batch_import(size_match)"
     }
-  },
-  "pdb_size": 1094164,
-  "binary_size": 1100000
+  }
 }

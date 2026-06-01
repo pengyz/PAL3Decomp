@@ -1,24 +1,85 @@
 {
   "name": "UIPushButton",
+  "binary_size": 252,
   "known_members": {
+    "68": {
+      "name": "m_isDown",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "69": {
+      "name": "m_isCtrl",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "70": {
+      "name": "m_mouseoff",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "72": {
+      "name": "m_texarrayInfo",
+      "type": "_PlugInfo *[2]",
+      "source": "annotation"
+    },
+    "76": {
+      "name": "m_fonttype",
+      "type": "gbFontType",
+      "source": "pdb_merge"
+    },
     "80": {
       "name": "m_bOn",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "84": {
       "name": "m_onpic",
       "type": "gbTexture *",
-      "source": "gen_headers_9.2"
-    },
-    "88": {
-      "name": "m_onpicInfo",
-      "type": "_PlugInfo *",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "92": {
       "name": "m_disablepic",
       "type": "gbTexture *",
+      "source": "annotation"
+    },
+    "100": {
+      "name": "m_caption",
+      "type": "char[128]",
+      "source": "annotation"
+    },
+    "104": {
+      "name": "m_onpic",
+      "type": "gbTexture *",
+      "source": "pdb_merge"
+    },
+    "108": {
+      "name": "m_onpicInfo",
+      "type": "_PlugInfo *",
+      "source": "pdb_merge"
+    },
+    "112": {
+      "name": "m_disablepic",
+      "type": "gbTexture *",
+      "source": "pdb_merge"
+    },
+    "116": {
+      "name": "m_disablepicInfo",
+      "type": "_PlugInfo *",
+      "source": "pdb_merge"
+    },
+    "120": {
+      "name": "m_caption",
+      "type": "char[128]",
+      "source": "pdb_merge"
+    },
+    "248": {
+      "name": "m_TextTopOffset",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "88": {
+      "name": "m_onpicInfo",
+      "type": "_PlugInfo *",
       "source": "gen_headers_9.2"
     },
     "96": {
@@ -31,29 +92,13 @@
       "type": "int",
       "source": "gen_headers_9.2"
     },
-    "72": {
-      "name": "m_texarrayInfo",
-      "type": "_PlugInfo *[2]",
-      "source": "pdb_fill_incomplete"
-    },
-    "100": {
-      "name": "m_caption",
-      "type": "char[128]",
-      "source": "pdb_fill_incomplete"
-    },
     "236": {
       "name": "_todo_0EC",
       "type": "int",
       "source": "binary_scan:1refs"
-    },
-    "248": {
-      "name": "_todo_0F8",
-      "type": "int",
-      "source": "binary_scan:1refs"
     }
   },
-  "pdb_size": 252,
-  "base_class": "UIWnd",
-  "base_size": 68,
-  "binary_size": 252
+  "base_class": [
+    "UIWnd"
+  ]
 }

@@ -1,48 +1,51 @@
 {
   "name": "CCBAttackSequen",
+  "binary_size": 456,
   "known_members": {
     "0": {
       "name": "m_pCBSystem",
       "type": "CCBSystem *",
-      "source": "PAL3patch_verified"
+      "source": "annotation"
     },
     "4": {
       "name": "m_pUI",
       "type": "CCBUI *",
-      "source": "PAL3patch_verified"
+      "source": "annotation"
     },
     "8": {
       "name": "m_pRole",
       "type": "CCBRoleState *",
-      "source": "PAL3patch_verified"
+      "source": "annotation"
     },
     "12": {
       "name": "m_Sequen",
       "type": "tagAttackSequen[11]",
-      "source": "PAL3patch_verified"
+      "source": "annotation"
     },
     "452": {
       "name": "m_bEnable",
       "type": "unsigned char",
-      "source": "PAL3patch_verified"
+      "source": "annotation"
     },
     "453": {
       "name": "m_bPause",
       "type": "unsigned char",
-      "source": "PAL3patch_verified"
+      "source": "annotation"
     },
     "454": {
       "name": "m_bVisible",
       "type": "unsigned char",
-      "source": "PAL3patch_verified"
+      "source": "annotation"
     },
     "455": {
       "name": "m_bLocked",
       "type": "unsigned char",
-      "source": "PAL3patch_verified"
+      "source": "annotation"
+    },
+    "456": {
+      "name": "m_eLockFlag",
+      "type": "ECBStageLockFlag[11]",
+      "source": "pdb_merge"
     }
-  },
-  "pdb_size": 500,
-  "binary_size": 456,
-  "base_class": null
+  }
 }

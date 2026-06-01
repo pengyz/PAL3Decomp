@@ -1,6 +1,47 @@
 {
   "name": "UIStaticEX",
+  "binary_size": 184,
   "known_members": {
+    "160": {
+      "name": "m_rotdst",
+      "type": "float",
+      "source": "annotation"
+    },
+    "164": {
+      "name": "m_rotspeed",
+      "type": "float",
+      "source": "annotation"
+    },
+    "168": {
+      "name": "m_rotdir",
+      "type": "float",
+      "source": "annotation"
+    },
+    "172": {
+      "name": "m_isStoped",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "176": {
+      "name": "m_accelerate",
+      "type": "float",
+      "source": "annotation"
+    },
+    "180": {
+      "name": "m_notespeed",
+      "type": "float",
+      "source": "annotation"
+    },
+    "184": {
+      "name": "m_accelerate",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "188": {
+      "name": "m_notespeed",
+      "type": "float",
+      "source": "pdb_merge"
+    },
     "152": {
       "name": "m_rotate",
       "type": "float",
@@ -10,40 +51,9 @@
       "name": "m_rotmode",
       "type": "int",
       "source": "PDB_verified"
-    },
-    "160": {
-      "name": "m_rotdst",
-      "type": "float",
-      "source": "PDB_verified"
-    },
-    "164": {
-      "name": "m_rotspeed",
-      "type": "float",
-      "source": "PDB_verified"
-    },
-    "168": {
-      "name": "m_rotdir",
-      "type": "int",
-      "source": "PDB_verified"
-    },
-    "172": {
-      "name": "m_isStoped",
-      "type": "unsigned char",
-      "source": "PDB_verified"
-    },
-    "176": {
-      "name": "m_accelerate",
-      "type": "float",
-      "source": "PDB_verified"
-    },
-    "180": {
-      "name": "m_notespeed",
-      "type": "float",
-      "source": "PDB_verified"
     }
   },
-  "pdb_size": 192,
-  "base_class": "UIStatic",
-  "base_size": 152,
-  "binary_size": 184
+  "base_class": [
+    "UIStatic"
+  ]
 }

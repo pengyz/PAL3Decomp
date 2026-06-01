@@ -1,46 +1,46 @@
 {
   "name": "CEffgbParticle",
-  "pdb_size": 80,
+  "binary_size": 80,
   "known_members": {
     "48": {
       "name": "m_pEffect",
       "type": "ParticleEffect *",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "52": {
       "name": "m_fSize",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "56": {
       "name": "m_fX",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "60": {
       "name": "m_fY",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "64": {
       "name": "m_fZ",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "68": {
       "name": "m_fPX",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "72": {
       "name": "m_fPY",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "76": {
       "name": "m_fPZ",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "0": {
       "name": "vfptr",
@@ -48,8 +48,8 @@
       "source": "binary:vtable_ptr"
     }
   },
-  "binary_size": 80,
   "base_class": [
-    "CEffObj"
+    "CEffObj",
+    "CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffgbParticle::*)(unsigned long)>"
   ]
 }

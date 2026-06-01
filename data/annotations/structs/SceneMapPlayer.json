@@ -5,52 +5,55 @@
     "16": {
       "name": "m_nLayerIndex",
       "type": "int",
-      "source": "PDB:PAL3A"
+      "source": "annotation"
     },
     "20": {
       "name": "m_playerpt",
       "type": "tagPOINT",
-      "source": "PDB:PAL3A"
+      "source": "annotation"
     },
     "28": {
       "name": "m_playerfov",
       "type": "tagRECT",
-      "source": "PDB:PAL3A"
+      "source": "annotation"
     },
     "44": {
       "name": "m_maxwidth",
       "type": "int",
-      "source": "PDB:PAL3A"
+      "source": "annotation"
     },
     "48": {
       "name": "m_maxheight",
       "type": "int",
-      "source": "PDB:PAL3A"
+      "source": "annotation"
     },
     "52": {
       "name": "m_tex",
       "type": "gbTexture *",
-      "source": "PDB:PAL3A + A:Reset releases this"
+      "source": "annotation"
     },
     "56": {
       "name": "m_img",
       "type": "gbImage2D",
-      "source": "PDB:PAL3A + A:Reset calls cleanup"
+      "source": "annotation"
     },
     "256": {
       "name": "m_layer",
       "type": "NavTileLayer *",
-      "source": "PDB:PAL3A + A:Reset sets NULL"
+      "source": "annotation"
     },
     "260": {
       "name": "m_bBuild",
       "type": "unsigned char",
-      "source": "PDB:PAL3A + A:Reset sets 0"
+      "source": "annotation"
     },
     "261": {
       "name": "m_szName",
       "type": "char[128]",
-      "source": "PDB:PAL3A + A:ClearName zeros 128B"
+      "source": "annotation"
     }
-  }
+  },
+  "base_class": [
+    "SceneMap"
+  ]
 }

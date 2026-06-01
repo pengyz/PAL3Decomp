@@ -1,32 +1,31 @@
 {
   "name": "UICursor",
+  "binary_size": 32,
   "known_members": {
-    "12": {
-      "name": "m_active",
-      "type": "CURSOR_TYPE",
-      "source": "gen_headers_9.2"
-    },
-    "28": {
-      "name": "m_bShow",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "29": {
-      "name": "m_bSoftMode",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
     "0": {
       "name": "m_dwID",
       "type": "unsigned int[3]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "12": {
+      "name": "m_active",
+      "type": "CURSOR_TYPE",
+      "source": "annotation"
     },
     "16": {
       "name": "m_tex",
       "type": "gbTexture *[3]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "28": {
+      "name": "m_bShow",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "29": {
+      "name": "m_bSoftMode",
+      "type": "BYTE",
+      "source": "annotation"
     }
-  },
-  "pdb_size": 32,
-  "binary_size": 32
+  }
 }

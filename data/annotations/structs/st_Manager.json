@@ -1,22 +1,136 @@
 {
   "name": "st_Manager",
+  "binary_size": 244,
   "known_members": {
     "0": {
       "name": "m_Type",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "1": {
       "name": "m_Dicker",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "2": {
       "name": "m_ID",
       "type": "WORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
+    },
+    "4": {
+      "name": "m_Name",
+      "type": "char[256]",
+      "source": "pdb_merge"
+    },
+    "260": {
+      "name": "m_C",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "264": {
+      "name": "m_Patience",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "268": {
+      "name": "m_BeginTalk",
+      "type": "char[256]",
+      "source": "pdb_merge"
+    },
+    "524": {
+      "name": "m_EntryBuy",
+      "type": "char[256]",
+      "source": "pdb_merge"
+    },
+    "780": {
+      "name": "m_EntrySale",
+      "type": "char[256]",
+      "source": "pdb_merge"
+    },
+    "1036": {
+      "name": "m_NormalAcptTalk",
+      "type": "char[256]",
+      "source": "pdb_merge"
+    },
+    "1292": {
+      "name": "m_NormalCnslTalk",
+      "type": "char[256]",
+      "source": "pdb_merge"
+    },
+    "1548": {
+      "name": "m_NoEnoughMoney",
+      "type": "char[256]",
+      "source": "pdb_merge"
+    },
+    "1804": {
+      "name": "m_Leave",
+      "type": "char[256]",
+      "source": "pdb_merge"
+    },
+    "2060": {
+      "name": "m_HarshTalkbuy",
+      "type": "char[256]",
+      "source": "pdb_merge"
+    },
+    "2316": {
+      "name": "m_AcptQuantum",
+      "type": "float[5]",
+      "source": "pdb_merge"
+    },
+    "2336": {
+      "name": "m_AcptTalk",
+      "type": "char[256][2][5]",
+      "source": "pdb_merge"
+    },
+    "4896": {
+      "name": "m_RfusQuantum",
+      "type": "float[5]",
+      "source": "pdb_merge"
+    },
+    "4916": {
+      "name": "m_RfusTalk",
+      "type": "char[256][2][5]",
+      "source": "pdb_merge"
+    },
+    "7476": {
+      "name": "m_HarshQuantum",
+      "type": "float[5]",
+      "source": "pdb_merge"
+    },
+    "7496": {
+      "name": "m_HarshTalk",
+      "type": "char[256][2][5]",
+      "source": "pdb_merge"
+    },
+    "10056": {
+      "name": "m_ForceAcptTalk",
+      "type": "char[256][2][5]",
+      "source": "pdb_merge"
+    },
+    "12616": {
+      "name": "m_ForceAcptTalkback",
+      "type": "char[256][5]",
+      "source": "pdb_merge"
+    },
+    "13896": {
+      "name": "m_StoreNum",
+      "type": "int[2]",
+      "source": "pdb_merge"
+    },
+    "13904": {
+      "name": "m_StoreID",
+      "type": "unsigned long[200][2]",
+      "source": "pdb_merge"
+    },
+    "15504": {
+      "name": "m_StoreData",
+      "type": "FightItem *[200][2]",
+      "source": "pdb_merge"
+    },
+    "17104": {
+      "name": "m_IsCtrl",
+      "type": "unsigned char[200][2]",
+      "source": "pdb_merge"
     }
-  },
-  "pdb_size": 17504,
-  "binary_size": 244
+  }
 }

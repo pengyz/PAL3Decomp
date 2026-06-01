@@ -1,30 +1,31 @@
 {
   "name": "ScreenEffectMgr",
+  "binary_size": 152,
   "known_members": {
     "4": {
       "name": "m_fadeIn",
       "type": "ScreenFadeIn",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "32": {
       "name": "m_fadeOut",
       "type": "ScreenFadeOut",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "56": {
       "name": "m_fadeWhite",
       "type": "ScreenFadeWhite",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "80": {
       "name": "m_fadeWhite2",
       "type": "ScreenFadeWhite2",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "104": {
       "name": "m_activeQueue",
       "type": "std::queue<ScreenEffect *,std::deque<ScreenEffect *,std::allocator<ScreenEffect *> > >",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "108": {
       "name": "_field_06C",
@@ -81,7 +82,5 @@
       "type": "void *",
       "source": "ida_decomp:_unverified_4BE4A0 deref as void**, 4 refs | type_fix:int→void*(deref+ptr semantics)"
     }
-  },
-  "pdb_size": 152,
-  "binary_size": 152
+  }
 }

@@ -1,74 +1,90 @@
 {
   "name": "ChoseCompose",
-  "pdb_size": 3856,
+  "binary_size": 3770,
   "known_members": {
     "80": {
       "name": "rc",
       "type": "tagRECT",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "96": {
       "name": "bkWndX",
       "type": "int",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "100": {
       "name": "bkWndY",
       "type": "int",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "104": {
       "name": "i",
       "type": "int",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "108": {
       "name": "j",
       "type": "int",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "112": {
       "name": "buf",
       "type": "char[256]",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "368": {
       "name": "bkRc",
       "type": "tagRECT",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "384": {
       "name": "m_id",
       "type": "unsigned long",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "388": {
       "name": "m_isExit",
       "type": "unsigned char",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "392": {
       "name": "m_bk",
       "type": "UIStaticFlex",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "584": {
       "name": "m_ComposeInfo",
       "type": "UIStatic",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "744": {
       "name": "m_RoleName",
       "type": "UIButton[5]",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "2464": {
       "name": "m_Msg",
       "type": "MUIDialog",
-      "source": "PDB_verified"
+      "source": "annotation"
+    },
+    "3848": {
+      "name": "m_isCtrl",
+      "type": "unsigned char[5]",
+      "source": "pdb_merge"
+    },
+    "3853": {
+      "name": "m_isActive",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "3854": {
+      "name": "m_isExtented",
+      "type": "unsigned char",
+      "source": "pdb_merge"
     }
   },
-  "base_class": "UIFrameWnd",
-  "base_size": 72,
-  "binary_size": 3770
+  "base_class": [
+    "UIFrameWnd",
+    "PalScriptWaitObj"
+  ]
 }

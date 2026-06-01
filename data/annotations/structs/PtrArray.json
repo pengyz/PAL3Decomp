@@ -1,27 +1,26 @@
 {
   "name": "PtrArray",
-  "pdb_size": 16,
+  "binary_size": 16,
   "known_members": {
     "0": {
       "name": "buf",
       "type": "void * *",
-      "source": "PAL3patch:pal3.h (binary_validated 100%). Renamed from m_pData for consistency."
+      "source": "annotation"
     },
     "4": {
       "name": "capacity",
       "type": "int",
-      "source": "PAL3patch:pal3.h (binary_validated 100%). Renamed from m_nSize (semantics: allocated capacity)."
+      "source": "annotation"
     },
     "8": {
       "name": "length",
       "type": "int",
-      "source": "PAL3patch:pal3.h (binary_validated 100%). Renamed from m_nMaxSize (semantics: current used length)."
+      "source": "annotation"
     },
     "12": {
       "name": "increase",
       "type": "int",
-      "source": "PAL3patch:pal3.h (binary_validated 100%). Renamed from m_nGrowBy for consistency."
+      "source": "annotation"
     }
-  },
-  "binary_size": 16
+  }
 }

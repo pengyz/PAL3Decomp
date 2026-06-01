@@ -1,10 +1,11 @@
 {
   "name": "PalScriptMgr",
+  "binary_size": 9512,
   "known_members": {
     "0": {
       "name": "m_bGetSceneScript",
       "type": "unsigned char",
-      "source": "type_fix:float->unsigned char(naming_convention:prefix m_b indicates boolean)"
+      "source": "annotation"
     },
     "4": {
       "name": "m_script",
@@ -1011,7 +1012,5 @@
       "type": "float",
       "source": "binary_scan:7refs"
     }
-  },
-  "pdb_size": 1,
-  "binary_size": 9512
+  }
 }

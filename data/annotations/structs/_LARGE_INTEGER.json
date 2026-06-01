@@ -1,17 +1,16 @@
 {
   "name": "_LARGE_INTEGER",
+  "binary_size": 8,
   "known_members": {
     "0": {
       "name": "QuadPart",
-      "type": "int",
-      "source": "fix:layout_error_span=4_low_dword"
+      "type": "__int64",
+      "source": "annotation"
     },
     "4": {
       "name": "HighPart",
       "type": "long",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     }
-  },
-  "pdb_size": 8,
-  "binary_size": 8
+  }
 }

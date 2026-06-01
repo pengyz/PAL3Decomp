@@ -1,6 +1,202 @@
 {
   "name": "UIChatRest",
+  "binary_size": 9516,
   "known_members": {
+    "68": {
+      "name": "m_pt",
+      "type": "tagPOINT",
+      "source": "pdb_merge"
+    },
+    "76": {
+      "name": "rc",
+      "type": "tagRECT",
+      "source": "pdb_merge"
+    },
+    "92": {
+      "name": "m_startY",
+      "type": "tagRECT",
+      "source": "annotation"
+    },
+    "108": {
+      "name": "m_startX",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "112": {
+      "name": "m_startY",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "116": {
+      "name": "mbWidth",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "120": {
+      "name": "mbHeight",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "124": {
+      "name": "m_FlagT",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "284": {
+      "name": "m_FlagB",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "444": {
+      "name": "m_FlagM",
+      "type": "UIStatic[3]",
+      "source": "pdb_merge"
+    },
+    "924": {
+      "name": "m_Chat",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "1268": {
+      "name": "m_Rest",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "1612": {
+      "name": "m_Exit",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "1956": {
+      "name": "m_TabBtn",
+      "type": "UITabBtn",
+      "source": "pdb_merge"
+    },
+    "1980": {
+      "name": "m_answerDlg",
+      "type": "MUIDialog",
+      "source": "pdb_merge"
+    },
+    "3364": {
+      "name": "m_bAnswer",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "3368": {
+      "name": "eft",
+      "type": "ScreenEffect *",
+      "source": "pdb_merge"
+    },
+    "3372": {
+      "name": "m_timewait",
+      "type": "TimeCtl",
+      "source": "pdb_merge"
+    },
+    "3384": {
+      "name": "m_isFadeOut",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "3385": {
+      "name": "m_isFadeIn",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "3388": {
+      "name": "m_noenoughmsg",
+      "type": "MUIDialog",
+      "source": "pdb_merge"
+    },
+    "4772": {
+      "name": "m_enough",
+      "type": "MUIDialog",
+      "source": "pdb_merge"
+    },
+    "6156": {
+      "name": "m_restover",
+      "type": "MUIDialog",
+      "source": "pdb_merge"
+    },
+    "7540": {
+      "name": "m_status",
+      "type": "unsigned int",
+      "source": "pdb_merge"
+    },
+    "7544": {
+      "name": "m_isExit",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "7548": {
+      "name": "m_RestScript",
+      "type": "RestScript",
+      "source": "pdb_merge"
+    },
+    "9616": {
+      "name": "m_CANREST_ID",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "9620": {
+      "name": "m_CANNOTREST_ID",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "9624": {
+      "name": "m_RESTOVER_ID",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "9628": {
+      "name": "pRest",
+      "type": "PalScript *",
+      "source": "pdb_merge"
+    },
+    "9632": {
+      "name": "pCantRest",
+      "type": "PalScript *",
+      "source": "pdb_merge"
+    },
+    "9636": {
+      "name": "pRestOver",
+      "type": "PalScript *",
+      "source": "pdb_merge"
+    },
+    "9640": {
+      "name": "m_bActive",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "9644": {
+      "name": "pC_DUI",
+      "type": "Comp_DonateUI *",
+      "source": "pdb_merge"
+    },
+    "9648": {
+      "name": "m_bC_DUIOver",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "9652": {
+      "name": "m_BK",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "9812": {
+      "name": "m_FadeOutAlpha",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "9816": {
+      "name": "m_age",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "9820": {
+      "name": "m_life",
+      "type": "float",
+      "source": "pdb_merge"
+    },
     "72": {
       "name": "bkrc",
       "type": "tagRECT",
@@ -8,11 +204,6 @@
     },
     "88": {
       "name": "m_startX",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "92": {
-      "name": "m_startY",
       "type": "int",
       "source": "gen_headers_9.2"
     },
@@ -187,8 +378,7 @@
       "source": "pdb_fill_incomplete"
     }
   },
-  "pdb_size": 9824,
-  "base_class": "UIWnd",
-  "base_size": 68,
-  "binary_size": 9516
+  "base_class": [
+    "UIWnd"
+  ]
 }

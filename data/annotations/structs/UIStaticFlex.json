@@ -1,10 +1,51 @@
 {
   "name": "UIStaticFlex",
+  "binary_size": 192,
   "known_members": {
     "68": {
       "name": "m_currect",
       "type": "tagRECT",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
+    },
+    "72": {
+      "name": "m_text",
+      "type": "std::basic_string<char,std::char_traits<char>,std::allocator<char> >",
+      "source": "pdb_merge"
+    },
+    "88": {
+      "name": "m_currect",
+      "type": "tagRECT",
+      "source": "pdb_merge"
+    },
+    "104": {
+      "name": "m_texs",
+      "type": "UITextureArray",
+      "source": "pdb_merge"
+    },
+    "172": {
+      "name": "m_state",
+      "type": "UIStaticFlex::State",
+      "source": "pdb_merge"
+    },
+    "176": {
+      "name": "m_statetime",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "180": {
+      "name": "m_fonttype",
+      "type": "gbFontType",
+      "source": "pdb_merge"
+    },
+    "184": {
+      "name": "m_tilesize",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "188": {
+      "name": "m_openstyle",
+      "type": "int",
+      "source": "pdb_merge"
     },
     "84": {
       "name": "m_texs",
@@ -37,8 +78,7 @@
       "source": "pdb_fill_incomplete"
     }
   },
-  "pdb_size": 192,
-  "base_class": "UIWnd",
-  "base_size": 68,
-  "binary_size": 192
+  "base_class": [
+    "UIWnd"
+  ]
 }

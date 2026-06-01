@@ -1,38 +1,36 @@
 {
   "name": "SCNHeader",
-  "pack": 1,
+  "binary_size": 18,
   "known_members": {
+    "0": {
+      "name": "magic",
+      "type": "unsigned char[4]",
+      "source": "annotation"
+    },
     "4": {
       "name": "version",
       "type": "WORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "6": {
       "name": "numnpc",
       "type": "WORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "8": {
       "name": "offsetnpc",
       "type": "DWORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "12": {
       "name": "numobj",
       "type": "WORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "14": {
       "name": "offsetobj",
       "type": "DWORD",
-      "source": "gen_headers_9.2"
-    },
-    "0": {
-      "name": "magic",
-      "type": "unsigned char[4]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     }
-  },
-  "pdb_size": 18,
-  "binary_size": 18
+  }
 }

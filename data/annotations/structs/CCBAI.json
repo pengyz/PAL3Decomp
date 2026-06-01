@@ -1,55 +1,56 @@
 {
   "name": "CCBAI",
+  "binary_size": 3664,
   "known_members": {
     "0": {
       "name": "m_bNewRole",
       "type": "unsigned char[11]",
-      "source": "pdb_verified_by_old_ida"
+      "source": "annotation"
     },
     "12": {
       "name": "m_pCBSystem",
       "type": "CCBSystem *",
-      "source": "pdb_verified_by_old_ida"
+      "source": "annotation"
     },
     "16": {
       "name": "m_pRoleState",
       "type": "CCBRoleState *",
-      "source": "pdb_verified_by_old_ida"
+      "source": "annotation"
     },
     "20": {
       "name": "m_pUtil",
       "type": "CUtil *",
-      "source": "pdb_verified_by_old_ida"
+      "source": "annotation"
     },
     "24": {
       "name": "m_VA",
       "type": "tagVA",
-      "source": "pdb_verified_by_old_ida"
+      "source": "annotation"
     },
     "48": {
       "name": "m_VAO",
       "type": "tagVAO[32]",
-      "source": "pdb_verified_by_old_ida"
+      "source": "annotation"
     },
     "560": {
       "name": "m_VAF",
       "type": "tagVAF[32]",
-      "source": "pdb_verified_by_old_ida"
+      "source": "annotation"
     },
     "1584": {
       "name": "m_Demand",
       "type": "tagDemand[10][11]",
-      "source": "pdb_verified_by_old_ida"
+      "source": "annotation"
     },
     "3344": {
       "name": "m_EnemyDemand",
       "type": "tagDemand[5]",
-      "source": "pdb_verified_by_old_ida | layout_fix:span_mismatch"
+      "source": "annotation"
     },
     "3504": {
       "name": "m_FriendDemand",
       "type": "tagDemand[5]",
-      "source": "pdb_verified_by_old_ida | layout_fix:span_mismatch"
+      "source": "annotation"
     },
     "3424": {
       "name": "m_nDemandThreadTracer",
@@ -71,7 +72,5 @@
       "type": "unsigned char",
       "source": "binary:disp32_1hits_1funcs"
     }
-  },
-  "pdb_size": 3664,
-  "binary_size": 3664
+  }
 }

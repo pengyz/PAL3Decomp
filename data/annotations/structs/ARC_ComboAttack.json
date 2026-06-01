@@ -1,67 +1,66 @@
 {
   "name": "ARC_ComboAttack",
+  "binary_size": 632,
   "known_members": {
-    "32": {
-      "name": "id",
-      "type": "DWORD",
-      "source": "gen_headers_9.2"
-    },
-    "56": {
-      "name": "skill",
-      "type": "DWORD",
-      "source": "gen_headers_9.2"
-    },
-    "64": {
-      "name": "Range",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "592": {
-      "name": "fanwei",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
     "0": {
       "name": "name",
       "type": "char[32]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "32": {
+      "name": "id",
+      "type": "DWORD",
+      "source": "annotation"
     },
     "36": {
       "name": "man",
       "type": "unsigned int[4]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "52": {
       "name": "pos",
       "type": "unsigned char[4]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "56": {
+      "name": "skill",
+      "type": "DWORD",
+      "source": "annotation"
     },
     "60": {
       "name": "WeaponType",
       "type": "unsigned char[4]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "64": {
+      "name": "Range",
+      "type": "BYTE",
+      "source": "annotation"
     },
     "68": {
       "name": "state",
       "type": "FightState[3]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "80": {
       "name": "Remark",
       "type": "char[512]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "592": {
+      "name": "fanwei",
+      "type": "BYTE",
+      "source": "annotation"
     },
     "593": {
       "name": "rvtype",
       "type": "unsigned char[12]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "606": {
       "name": "rolevalue",
       "type": "short[12]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     }
-  },
-  "pdb_size": 632,
-  "binary_size": 632
+  }
 }

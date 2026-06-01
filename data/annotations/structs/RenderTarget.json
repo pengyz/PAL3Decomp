@@ -1,25 +1,26 @@
 {
   "name": "RenderTarget",
+  "binary_size": 200,
   "known_members": {
     "0": {
       "name": "m_iMode",
       "type": "int",
-      "source": "type_fix:float->int(naming_convention:prefix m_i indicates integer)"
+      "source": "annotation"
     },
     "4": {
       "name": "m_Texture",
       "type": "gbTexture_D3D *",
-      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
+      "source": "annotation"
     },
     "100": {
       "name": "m_ScreenPlane",
       "type": "gbTexture_D3D *",
-      "source": "gen_headers_9.2 | fix:gbTexture_D3D(PDB=96)>span(24),revert_to_int+codegen_infer"
+      "source": "annotation"
     },
     "196": {
       "name": "m_nState",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "annotation"
     },
     "8": {
       "name": "m_nRenderX",
@@ -196,7 +197,5 @@
       "type": "int",
       "source": "gap_fill:ida_decomp_access"
     }
-  },
-  "pdb_size": 200,
-  "binary_size": 200
+  }
 }

@@ -1,6 +1,52 @@
 {
   "name": "UIStaticRM",
+  "binary_size": 180,
   "known_members": {
+    "160": {
+      "name": "m_alpha",
+      "type": "gbColorQuad",
+      "source": "annotation"
+    },
+    "164": {
+      "name": "m_minAlpha",
+      "type": "int",
+      "source": "annotation"
+    },
+    "168": {
+      "name": "m_fadespeed",
+      "type": "float",
+      "source": "annotation"
+    },
+    "172": {
+      "name": "m_isAdd",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "176": {
+      "name": "m_mode",
+      "type": "float",
+      "source": "annotation"
+    },
+    "180": {
+      "name": "m_isAdd",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "181": {
+      "name": "m_isFlash",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "182": {
+      "name": "m_stop",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "184": {
+      "name": "m_mode",
+      "type": "UIS_RM_Mode",
+      "source": "pdb_merge"
+    },
     "152": {
       "name": "m_color",
       "type": "gbColorQuad",
@@ -9,26 +55,6 @@
     "156": {
       "name": "m_dstAlpha",
       "type": "int",
-      "source": "PDB_verified"
-    },
-    "160": {
-      "name": "m_alpha",
-      "type": "int",
-      "source": "PDB_verified"
-    },
-    "164": {
-      "name": "m_minAlpha",
-      "type": "int",
-      "source": "PDB_verified"
-    },
-    "168": {
-      "name": "m_fadespeed",
-      "type": "float",
-      "source": "PDB_verified"
-    },
-    "172": {
-      "name": "m_isAdd",
-      "type": "unsigned char",
       "source": "PDB_verified"
     },
     "173": {
@@ -40,15 +66,9 @@
       "name": "m_stop",
       "type": "unsigned char",
       "source": "PDB_verified"
-    },
-    "176": {
-      "name": "m_mode",
-      "type": "int",
-      "source": "PDB_verified"
     }
   },
-  "pdb_size": 188,
-  "base_class": "UIStatic",
-  "base_size": 152,
-  "binary_size": 180
+  "base_class": [
+    "UIStatic"
+  ]
 }

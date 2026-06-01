@@ -1,129 +1,129 @@
 {
   "name": "PlayerAtt",
+  "binary_size": 1524,
   "known_members": {
     "852": {
       "name": "hat",
       "type": "PlayerItem",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "864": {
       "name": "cloth",
       "type": "PlayerItem",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "876": {
       "name": "shoes",
       "type": "PlayerItem",
-      "source": "gen_headers_9.2"
-    },
-    "912": {
-      "name": "weapon",
-      "type": "PlayerItem",
-      "source": "gen_headers_9.2"
-    },
-    "1020": {
-      "name": "nProtectRole",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "1024": {
-      "name": "dwWeaponSkillID",
-      "type": "DWORD",
-      "source": "gen_headers_9.2"
-    },
-    "1028": {
-      "name": "dwCleanCent",
-      "type": "DWORD",
-      "source": "gen_headers_9.2"
-    },
-    "1032": {
-      "name": "fWeaponSkillMass",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "1516": {
-      "name": "bAutoCtrl",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "1517": {
-      "name": "bAIAttack",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "1518": {
-      "name": "bAIMagic",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "1519": {
-      "name": "bAISkill",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "1520": {
-      "name": "bAIUseItem",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "1521": {
-      "name": "bAINegative",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "1522": {
-      "name": "byLineup",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "888": {
       "name": "wear",
       "type": "PlayerItem[2]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "912": {
+      "name": "weapon",
+      "type": "PlayerItem",
+      "source": "annotation"
     },
     "924": {
       "name": "maxrolevalue",
       "type": "int[12]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "972": {
       "name": "currolevalue",
       "type": "int[12]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "1020": {
+      "name": "nProtectRole",
+      "type": "int",
+      "source": "annotation"
+    },
+    "1024": {
+      "name": "dwWeaponSkillID",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "1028": {
+      "name": "dwCleanCent",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "1032": {
+      "name": "fWeaponSkillMass",
+      "type": "float",
+      "source": "annotation"
     },
     "1036": {
       "name": "dwSkillID",
       "type": "unsigned int[9]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "1072": {
       "name": "bSkillMastered",
       "type": "unsigned char[9]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "1084": {
       "name": "dwMagicID",
       "type": "unsigned int[9][6]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "1300": {
       "name": "bMagicMastered",
       "type": "unsigned char[9][6]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "1354": {
       "name": "byMagicUseTime",
       "type": "unsigned short[9][6]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "1462": {
       "name": "byMagicLevel",
       "type": "unsigned char[9][6]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "1516": {
+      "name": "bAutoCtrl",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "1517": {
+      "name": "bAIAttack",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "1518": {
+      "name": "bAIMagic",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "1519": {
+      "name": "bAISkill",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "1520": {
+      "name": "bAIUseItem",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "1521": {
+      "name": "bAINegative",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "1522": {
+      "name": "byLineup",
+      "type": "BYTE",
+      "source": "annotation"
     }
   },
-  "pdb_size": 1524,
-  "base_class": "RoleAtt",
-  "base_size": 852,
-  "binary_size": 1524
+  "base_class": [
+    "RoleAtt"
+  ]
 }

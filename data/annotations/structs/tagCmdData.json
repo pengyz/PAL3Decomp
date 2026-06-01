@@ -1,52 +1,51 @@
 {
   "name": "tagCmdData",
+  "binary_size": 44,
   "known_members": {
     "0": {
       "name": "dwCmdKind",
       "type": "DWORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "4": {
       "name": "dwItemID",
       "type": "DWORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "8": {
       "name": "nSrcRole",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "12": {
       "name": "nDestRole",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "16": {
       "name": "bMultiSrcRole",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "17": {
       "name": "bMultiDestRole",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "40": {
-      "name": "bValid",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "18": {
       "name": "bSrcRole",
       "type": "unsigned char[11]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "29": {
       "name": "bDestRole",
       "type": "unsigned char[11]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "40": {
+      "name": "bValid",
+      "type": "BYTE",
+      "source": "annotation"
     }
-  },
-  "pdb_size": 44,
-  "binary_size": 44
+  }
 }

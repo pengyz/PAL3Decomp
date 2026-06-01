@@ -1,32 +1,31 @@
 {
   "name": "GhostParam",
+  "binary_size": 48,
   "known_members": {
+    "0": {
+      "name": "name",
+      "type": "char[32]",
+      "source": "annotation"
+    },
     "32": {
       "name": "id",
       "type": "DWORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "36": {
       "name": "Type",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "40": {
       "name": "HP",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "44": {
       "name": "ATK",
       "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "0": {
-      "name": "name",
-      "type": "char[32]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     }
-  },
-  "pdb_size": 48,
-  "binary_size": 48
+  }
 }

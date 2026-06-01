@@ -1,57 +1,56 @@
 {
   "name": "tagStageTask",
+  "binary_size": 2632,
   "known_members": {
     "0": {
       "name": "eTask",
       "type": "ECBStageTask",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "4": {
       "name": "eStats",
       "type": "ECBStageTaskState",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "8": {
       "name": "nSubTask",
       "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "2576": {
-      "name": "dwID",
-      "type": "DWORD",
-      "source": "gen_headers_9.2"
-    },
-    "2580": {
-      "name": "dwReturn",
-      "type": "DWORD",
-      "source": "gen_headers_9.2"
-    },
-    "2584": {
-      "name": "cmd",
-      "type": "tagCmdData",
-      "source": "gen_headers_9.2"
-    },
-    "2628": {
-      "name": "bValid",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "2629": {
-      "name": "bAutoDel",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "16": {
       "name": "SubTask",
       "type": "tagStageSubTask[32]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "2576": {
+      "name": "dwID",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "2580": {
+      "name": "dwReturn",
+      "type": "DWORD",
+      "source": "annotation"
+    },
+    "2584": {
+      "name": "cmd",
+      "type": "tagCmdData",
+      "source": "annotation"
+    },
+    "2628": {
+      "name": "bValid",
+      "type": "BYTE",
+      "source": "annotation"
+    },
+    "2629": {
+      "name": "bAutoDel",
+      "type": "BYTE",
+      "source": "annotation"
     },
     "12": {
       "name": "nReserved",
       "type": "int",
       "source": "binary:gap_between_nSubTask_and_SubTask"
     }
-  },
-  "pdb_size": 2632,
-  "binary_size": 2632
+  }
 }

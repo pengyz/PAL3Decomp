@@ -1,21 +1,41 @@
 {
   "name": "Actor",
-  "pdb_size": 596,
+  "binary_size": 820,
   "known_members": {
     "0": {
       "name": "m_actarray",
       "type": "std::vector<gbActor *,std::allocator<gbActor *> >[4]",
-      "source": "pdb_verified_by_old_ida"
+      "source": "annotation"
     },
     "16": {
       "name": "m_pact",
       "type": "gbActor *",
-      "source": "pdb_verified_by_old_ida"
+      "source": "annotation"
     },
     "20": {
       "name": "m_name",
       "type": "char[8]",
-      "source": "binary:LEA+repne_scasb(strlen)_at_0x14,next_field_28_has_34_hits"
+      "source": "annotation"
+    },
+    "280": {
+      "name": "m_szTexture",
+      "type": "char[28]",
+      "source": "annotation"
+    },
+    "540": {
+      "name": "m_dwMatMsg",
+      "type": "unsigned int[11]",
+      "source": "annotation"
+    },
+    "584": {
+      "name": "m_bChangedMat",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "585": {
+      "name": "m_curact",
+      "type": "char[8]",
+      "source": "annotation"
     },
     "28": {
       "name": "_field_1C4",
@@ -286,11 +306,6 @@
       "type": "gbActor *",
       "source": "transfer_from_RoleSystem_off_696"
     },
-    "280": {
-      "name": "m_szTexture",
-      "type": "char[28]",
-      "source": "binary:LEA_40hits_at_0x118,next_verified_field_at_0x13C(316)=36B_but_ann_next_at_308=28B"
-    },
     "308": {
       "name": "_field_134",
       "type": "gbVec3D",
@@ -481,21 +496,6 @@
       "type": "float",
       "source": "A+:decomp gbVec3D::operator=(&this->_todo_218, nVal+364)"
     },
-    "540": {
-      "name": "m_dwMatMsg",
-      "type": "unsigned int[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "584": {
-      "name": "m_bChangedMat",
-      "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "585": {
-      "name": "m_curact",
-      "type": "char[8]",
-      "source": "pdb_verified_by_old_ida"
-    },
     "632": {
       "name": "m_fDirX",
       "type": "float",
@@ -571,7 +571,5 @@
       "type": "unsigned char",
       "source": "A:binary_mov_byte_[eax+0D9h]_0"
     }
-  },
-  "binary_size": 820,
-  "note": "binary_size=820: 10 functions access>596, max +820. PAL3.exe differs from PDB (596)."
+  }
 }

@@ -1,20 +1,41 @@
 {
   "name": "UISceneFace",
+  "binary_size": 1780,
   "known_members": {
     "68": {
       "name": "m_hp",
       "type": "UIProgressBar",
-      "source": "PAL3patch_verified"
+      "source": "annotation"
     },
     "312": {
       "name": "m_mp",
       "type": "UIProgressBar",
-      "source": "PAL3patch_verified"
+      "source": "annotation"
     },
     "556": {
       "name": "m_face",
       "type": "UIStatic[3]",
-      "source": "PAL3patch_verified"
+      "source": "annotation"
+    },
+    "1036": {
+      "name": "m_bk",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "1196": {
+      "name": "m_clicktime",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "1200": {
+      "name": "m_onclick",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1204": {
+      "name": "m_state",
+      "type": "UIStatic[4]",
+      "source": "pdb_merge"
     },
     "1012": {
       "name": "m_bk",
@@ -37,8 +58,7 @@
       "source": "PAL3patch_verified"
     }
   },
-  "pdb_size": 1844,
-  "base_class": "UIWnd",
-  "base_size": 68,
-  "binary_size": 1780
+  "base_class": [
+    "UIWnd"
+  ]
 }

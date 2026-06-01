@@ -1,135 +1,221 @@
 {
   "name": "CCBStageScene",
+  "binary_size": 1012,
   "known_members": {
     "0": {
       "name": "m_pStage",
       "type": "CCBStage *",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "4": {
       "name": "m_pUtil",
       "type": "CUtil *",
-      "source": "gen_headers_9.2"
-    },
-    "344": {
-      "name": "m_bLoaded",
-      "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "604": {
-      "name": "m_pGeomNode",
-      "type": "gbGeomNode *",
-      "source": "gen_headers_9.2"
-    },
-    "608": {
-      "name": "m_pCvd",
-      "type": "gbGeomNode *",
-      "source": "gen_headers_9.2"
-    },
-    "612": {
-      "name": "m_pLights",
-      "type": "gbVisNode *",
-      "source": "gen_headers_9.2"
-    },
-    "616": {
-      "name": "m_pPointer",
-      "type": "gbGeomNode *",
-      "source": "gen_headers_9.2"
-    },
-    "664": {
-      "name": "m_pFling",
-      "type": "gbRenderEffect *",
-      "source": "compile_evidence:C2664_from_gbRenderEffect*"
-    },
-    "668": {
-      "name": "m_vecFling",
-      "type": "gbVec3D *",
-      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
-    },
-    "680": {
-      "name": "m_rotFling",
-      "type": "gbVec3D *",
-      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
-    },
-    "692": {
-      "name": "m_fQuadA_X",
-      "type": "float",
-      "source": "fix:Init_sin/cos_rotation_math(was_bool)"
-    },
-    "696": {
-      "name": "m_fQuadA_Y",
-      "type": "float",
-      "source": "fix:Init_sin/cos_rotation(was_ptr)"
-    },
-    "700": {
-      "name": "m_fQuadA_Blend",
-      "type": "float",
-      "source": "fix:Init_set_0_then_0.5(was_gbTexture*)"
-    },
-    "704": {
-      "name": "m_fQuadA_Z",
-      "type": "float",
-      "source": "fix:Init_sin/cos_rotation(was_ptr)"
-    },
-    "708": {
-      "name": "m_fQuadB_Y",
-      "type": "float",
-      "source": "fix:Init_sin/cos_rotation(was_ptr)"
-    },
-    "712": {
-      "name": "m_fQuadB_Blend",
-      "type": "float",
-      "source": "fix:Init_set_0_then_0.5(was_ptr)"
-    },
-    "716": {
-      "name": "m_fQuadB_Z",
-      "type": "float",
-      "source": "fix:Init_sin/cos_rotation(was_struct)"
-    },
-    "784": {
-      "name": "m_FiveLineupCenterQuad",
-      "type": "gbGeomQuad *",
-      "source": "gen_headers_9.2 | type_fix:value→ptr(span=4)"
-    },
-    "852": {
-      "name": "m_fQuadC_Z",
-      "type": "float",
-      "source": "fix:Init_sin/cos_rotation(was_struct)"
-    },
-    "1008": {
-      "name": "m_eBFAForce",
-      "type": "ECBForce",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "8": {
       "name": "m_vecFiveLineup",
       "type": "gbVec3D[7]",
-      "source": "pdb_fill"
+      "source": "annotation"
     },
     "92": {
       "name": "m_vecInitFiveLineup",
       "type": "gbVec3D[3]",
-      "source": "pdb_fill | layout_fix:span_mismatch"
+      "source": "annotation"
     },
     "176": {
       "name": "m_vecEnemyLineup",
       "type": "gbVec3D[7]",
-      "source": "pdb_fill"
+      "source": "annotation"
     },
     "260": {
       "name": "m_vecInitEnemyLineup",
       "type": "gbVec3D[7]",
-      "source": "pdb_fill"
+      "source": "annotation"
+    },
+    "344": {
+      "name": "m_bLoaded",
+      "type": "BYTE",
+      "source": "annotation"
     },
     "345": {
       "name": "m_sLastScene",
       "type": "char[256]",
-      "source": "pdb_fill"
+      "source": "annotation"
+    },
+    "604": {
+      "name": "m_pGeomNode",
+      "type": "gbGeomNode *",
+      "source": "annotation"
+    },
+    "608": {
+      "name": "m_pCvd",
+      "type": "gbGeomNode *",
+      "source": "annotation"
+    },
+    "612": {
+      "name": "m_pLights",
+      "type": "gbVisNode *",
+      "source": "annotation"
+    },
+    "616": {
+      "name": "m_pPointer",
+      "type": "gbGeomNode *",
+      "source": "annotation"
     },
     "620": {
       "name": "m_pCorpse",
       "type": "gbGeomNode *[11]",
-      "source": "pdb_fill"
+      "source": "annotation"
+    },
+    "664": {
+      "name": "m_pFling",
+      "type": "gbRenderEffect *",
+      "source": "annotation"
+    },
+    "668": {
+      "name": "m_vecFling",
+      "type": "gbVec3D *",
+      "source": "annotation"
+    },
+    "680": {
+      "name": "m_rotFling",
+      "type": "gbVec3D *",
+      "source": "annotation"
+    },
+    "692": {
+      "name": "m_fQuadA_X",
+      "type": "float",
+      "source": "annotation"
+    },
+    "696": {
+      "name": "m_fQuadA_Y",
+      "type": "float",
+      "source": "annotation"
+    },
+    "700": {
+      "name": "m_fQuadA_Blend",
+      "type": "float",
+      "source": "annotation"
+    },
+    "704": {
+      "name": "m_fQuadA_Z",
+      "type": "float",
+      "source": "annotation"
+    },
+    "708": {
+      "name": "m_fQuadB_Y",
+      "type": "float",
+      "source": "annotation"
+    },
+    "712": {
+      "name": "m_fQuadB_Blend",
+      "type": "float",
+      "source": "annotation"
+    },
+    "716": {
+      "name": "m_fQuadB_Z",
+      "type": "float",
+      "source": "annotation"
+    },
+    "784": {
+      "name": "m_FiveLineupCenterQuad",
+      "type": "gbGeomQuad *",
+      "source": "annotation"
+    },
+    "852": {
+      "name": "m_fQuadC_Z",
+      "type": "float",
+      "source": "annotation"
+    },
+    "920": {
+      "name": "m_vecFiveLineupPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "932": {
+      "name": "m_vecFiveLineupInitPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "944": {
+      "name": "m_fFiveLineupRadius",
+      "type": "float",
+      "source": "annotation"
+    },
+    "948": {
+      "name": "m_fFiveLineupInitRadius",
+      "type": "float",
+      "source": "annotation"
+    },
+    "952": {
+      "name": "m_fFiveLineupRoll",
+      "type": "float",
+      "source": "annotation"
+    },
+    "956": {
+      "name": "m_fFiveLineupInitRoll",
+      "type": "float",
+      "source": "annotation"
+    },
+    "960": {
+      "name": "m_vecEnemyFiveLineupPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "972": {
+      "name": "m_fEnemyFiveLineupRadius",
+      "type": "float",
+      "source": "annotation"
+    },
+    "976": {
+      "name": "m_fEnemyFiveLineupRoll",
+      "type": "float",
+      "source": "annotation"
+    },
+    "980": {
+      "name": "m_vecPointerPos",
+      "type": "gbVec3D",
+      "source": "annotation"
+    },
+    "992": {
+      "name": "m_bShowPointer",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "993": {
+      "name": "m_bShowAxis",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "994": {
+      "name": "m_bShowRoleIndex",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "995": {
+      "name": "m_bShowFiveLineup",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "996": {
+      "name": "m_bFiveLineupSelected",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "1000": {
+      "name": "m_eSceneFiveMagicAttrib",
+      "type": "ECBFiveMagic",
+      "source": "annotation"
+    },
+    "1004": {
+      "name": "m_eBattleFieldAttr",
+      "type": "ECBBattleFieldAttr",
+      "source": "annotation"
+    },
+    "1008": {
+      "name": "m_eBFAForce",
+      "type": "ECBForce",
+      "source": "annotation"
     },
     "732": {
       "name": "m_fBlendRectAX",
@@ -386,91 +472,6 @@
       "type": "int",
       "source": "decomp:assigned_from_int_ptr_deref"
     },
-    "920": {
-      "name": "m_vecFiveLineupPos",
-      "type": "gbVec3D",
-      "source": "PDB_import"
-    },
-    "932": {
-      "name": "m_vecFiveLineupInitPos",
-      "type": "gbVec3D",
-      "source": "PDB_import"
-    },
-    "944": {
-      "name": "m_fFiveLineupRadius",
-      "type": "float",
-      "source": "PDB_import"
-    },
-    "948": {
-      "name": "m_fFiveLineupInitRadius",
-      "type": "float",
-      "source": "PDB_import"
-    },
-    "952": {
-      "name": "m_fFiveLineupRoll",
-      "type": "float",
-      "source": "PDB_import"
-    },
-    "956": {
-      "name": "m_fFiveLineupInitRoll",
-      "type": "float",
-      "source": "PDB_import"
-    },
-    "960": {
-      "name": "m_vecEnemyFiveLineupPos",
-      "type": "gbVec3D",
-      "source": "PDB_import"
-    },
-    "972": {
-      "name": "m_fEnemyFiveLineupRadius",
-      "type": "float",
-      "source": "PDB_import"
-    },
-    "976": {
-      "name": "m_fEnemyFiveLineupRoll",
-      "type": "float",
-      "source": "PDB_import"
-    },
-    "980": {
-      "name": "m_vecPointerPos",
-      "type": "gbVec3D",
-      "source": "PDB_import"
-    },
-    "992": {
-      "name": "m_bShowPointer",
-      "type": "unsigned char",
-      "source": "PDB_import"
-    },
-    "993": {
-      "name": "m_bShowAxis",
-      "type": "unsigned char",
-      "source": "PDB_import"
-    },
-    "994": {
-      "name": "m_bShowRoleIndex",
-      "type": "unsigned char",
-      "source": "PDB_import"
-    },
-    "995": {
-      "name": "m_bShowFiveLineup",
-      "type": "unsigned char",
-      "source": "PDB_import"
-    },
-    "996": {
-      "name": "m_bFiveLineupSelected",
-      "type": "unsigned char",
-      "source": "PDB_import"
-    },
-    "1000": {
-      "name": "m_eSceneFiveMagicAttrib",
-      "type": "ECBFiveMagic",
-      "source": "PDB_import"
-    },
-    "1004": {
-      "name": "m_eBattleFieldAttr",
-      "type": "ECBBattleFieldAttr",
-      "source": "PDB_import"
-    },
     "856": {
       "name": "m_fDirSinF",
       "type": "float",
@@ -546,7 +547,5 @@
       "type": "float",
       "source": "decomp:ShowAxis_CIniFile_ReadLine_float"
     }
-  },
-  "pdb_size": 1012,
-  "binary_size": 1012
+  }
 }

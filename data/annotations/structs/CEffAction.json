@@ -1,17 +1,16 @@
 {
   "name": "CEffAction",
-  "pdb_size": 52,
+  "binary_size": 52,
   "known_members": {
     "48": {
       "name": "m_nController",
       "type": "int",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     }
   },
   "base_class": [
     "CEffObj",
+    "CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffAction::*)(unsigned long)>",
     "CTaskTpl_tagEffTaskParam_CEffAction"
-  ],
-  "base_size": 48,
-  "binary_size": 52
+  ]
 }

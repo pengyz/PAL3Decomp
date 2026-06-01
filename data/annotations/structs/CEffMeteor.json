@@ -1,176 +1,176 @@
 {
   "name": "CEffMeteor",
-  "pdb_size": 4304,
+  "binary_size": 4304,
   "known_members": {
     "48": {
       "name": "m_pGeomQuad",
       "type": "gbGeomQuad *",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "52": {
       "name": "m_pChain",
       "type": "CMeteorChain *",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "56": {
       "name": "m_pMeteor",
       "type": "tagMeteor *",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "60": {
       "name": "m_pTexture",
       "type": "gbTexture *",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "64": {
       "name": "m_pTextureArray",
       "type": "gbTextureArray *",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "68": {
       "name": "m_bVisible",
       "type": "unsigned char",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "69": {
       "name": "m_bAdditiveBlend",
       "type": "unsigned char",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "70": {
       "name": "m_bNoZTest",
       "type": "unsigned char",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "71": {
       "name": "m_bHaveHead",
       "type": "unsigned char",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "72": {
       "name": "m_byMaxFrame",
       "type": "unsigned char",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "76": {
       "name": "m_nRequireLoops",
       "type": "int",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "80": {
       "name": "m_nLoops",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "annotation"
     },
     "84": {
       "name": "m_fCurFrame",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "88": {
       "name": "m_dwStartColor",
       "type": "unsigned int",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "92": {
       "name": "m_fAlpha",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "96": {
       "name": "m_fRed",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "100": {
       "name": "m_fGreen",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "104": {
       "name": "m_fBlue",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "108": {
       "name": "m_fXSize",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "112": {
       "name": "m_fZSize",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "116": {
       "name": "m_nMaxChain",
       "type": "int",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "120": {
       "name": "m_fMeteorWidth",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "124": {
       "name": "m_nMaxTrail",
       "type": "int",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "128": {
       "name": "m_fLumDecSpeed",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "132": {
       "name": "m_fWidthDecSpeed",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "136": {
       "name": "m_fMaxLum",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "140": {
       "name": "m_fUpdateTimeFund",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "144": {
       "name": "m_fFramePerSec",
       "type": "float",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "148": {
       "name": "m_vecRot",
       "type": "gbVec3D",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "160": {
       "name": "m_vecPos",
       "type": "gbVec3D",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "172": {
       "name": "m_vecOffsetPos",
       "type": "gbVec3D",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "184": {
       "name": "m_vecTarget",
       "type": "gbVec3D",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "196": {
       "name": "m_vecStartSpeed",
       "type": "gbVec3D",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "208": {
       "name": "m_DefaultUVSet",
       "type": "tagUV[256]",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "0": {
       "name": "vfptr",
@@ -178,8 +178,8 @@
       "source": "binary:vtable_ptr"
     }
   },
-  "binary_size": 4304,
   "base_class": [
-    "CEffObj"
+    "CEffObj",
+    "CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffMeteor::*)(unsigned long)>"
   ]
 }

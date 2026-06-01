@@ -1,44 +1,44 @@
 {
   "name": "MXSavePoint",
+  "binary_size": 1060,
   "known_members": {
     "92": {
       "name": "m_fTime",
       "type": "float",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "96": {
       "name": "m_aTex",
       "type": "gbTextureArray",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "164": {
       "name": "m_pTex",
       "type": "gbTexture *",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "168": {
       "name": "m_pEffect",
       "type": "gbRenderEffect *",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "172": {
       "name": "m_trans",
       "type": "gbGeomQuad",
-      "source": "gen_headers_9.2"
-    },
-    "1056": {
-      "name": "m_stone",
-      "type": "gbGeomNode *",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "240": {
       "name": "m_quads",
       "type": "gbGeomQuad[12]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "1056": {
+      "name": "m_stone",
+      "type": "gbGeomNode *",
+      "source": "annotation"
     }
   },
-  "pdb_size": 1060,
-  "base_class": "MeshFx",
-  "base_size": 92,
-  "binary_size": 1060
+  "base_class": [
+    "MeshFx"
+  ]
 }

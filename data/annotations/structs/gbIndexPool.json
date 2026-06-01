@@ -1,0 +1,39 @@
+{
+  "name": "gbIndexPool",
+  "binary_size": 56,
+  "known_members": {
+    "8": {
+      "name": "Type",
+      "type": "gbPoolType",
+      "source": "annotation"
+    },
+    "12": {
+      "name": "EleSize",
+      "type": "int",
+      "source": "annotation"
+    },
+    "16": {
+      "name": "pMemBuf",
+      "type": "void *",
+      "source": "annotation"
+    },
+    "20": {
+      "name": "TotalIndex",
+      "type": "int",
+      "source": "annotation"
+    },
+    "24": {
+      "name": "FreeIndexBub",
+      "type": "gbChain1D",
+      "source": "annotation"
+    },
+    "40": {
+      "name": "UsedIndexBub",
+      "type": "gbChain1D",
+      "source": "annotation"
+    }
+  },
+  "base_class": [
+    "gbChain1DNode"
+  ]
+}

@@ -1,10 +1,116 @@
 {
   "name": "CCBRoleState",
+  "binary_size": 23764,
   "known_members": {
     "0": {
       "name": "m_sCombatDialog",
       "type": "char[360]",
-      "source": "fix:pdb_char512_exceeds_span=360(next_member_at+360)"
+      "source": "annotation"
+    },
+    "512": {
+      "name": "m_fLastDialogTime",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "516": {
+      "name": "m_bCombatDialog",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "520": {
+      "name": "m_pCBSystem",
+      "type": "CCBSystem *",
+      "source": "pdb_merge"
+    },
+    "524": {
+      "name": "m_pStage",
+      "type": "CCBStage *",
+      "source": "pdb_merge"
+    },
+    "528": {
+      "name": "m_pUI",
+      "type": "CCBUI *",
+      "source": "pdb_merge"
+    },
+    "532": {
+      "name": "m_pUtil",
+      "type": "CUtil *",
+      "source": "pdb_merge"
+    },
+    "536": {
+      "name": "m_bWeSneakAttackEnemy",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "537": {
+      "name": "m_bEnemySneakAttackUs",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "540": {
+      "name": "m_nMaxRound",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "544": {
+      "name": "m_nBossRound",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "548": {
+      "name": "m_bMustFail",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "549": {
+      "name": "m_bFleeAlwaysSuccess",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "550": {
+      "name": "m_bCreatedNewRole",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "552": {
+      "name": "m_Role",
+      "type": "tagRoleState[11]",
+      "source": "pdb_merge"
+    },
+    "11992": {
+      "name": "m_RoleXor",
+      "type": "tagRoleState[11]",
+      "source": "pdb_merge"
+    },
+    "23432": {
+      "name": "m_dwEXPTable",
+      "type": "unsigned long[100]",
+      "source": "pdb_merge"
+    },
+    "23832": {
+      "name": "m_dwWinTaskID",
+      "type": "unsigned long",
+      "source": "pdb_merge"
+    },
+    "23836": {
+      "name": "m_bNGHDeadVariance",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "23840": {
+      "name": "m_eSameRow",
+      "type": "ECBFiveLineup[3][3]",
+      "source": "pdb_merge"
+    },
+    "23876": {
+      "name": "m_eSameColumn",
+      "type": "ECBFiveLineup[2][3]",
+      "source": "pdb_merge"
+    },
+    "23900": {
+      "name": "m_fSwordStarTime",
+      "type": "float",
+      "source": "pdb_merge"
     },
     "360": {
       "name": "_embed_UIFrameWnd_168",
@@ -509,7 +615,5 @@
       "type": "int",
       "source": "A:decomp vtable call pattern"
     }
-  },
-  "pdb_size": 23904,
-  "binary_size": 23764
+  }
 }

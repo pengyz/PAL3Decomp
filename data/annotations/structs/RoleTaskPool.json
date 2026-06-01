@@ -1,27 +1,26 @@
 {
   "name": "RoleTaskPool",
+  "binary_size": 684,
   "known_members": {
-    "32": {
-      "name": "m_taskFile",
-      "type": "TxtFile",
-      "source": "gen_headers_9.2"
-    },
     "0": {
       "name": "m_TaskData",
       "type": "std::vector<RoleTask,std::allocator<RoleTask> >",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "16": {
       "name": "m_TaskLine",
       "type": "std::vector<RoleTaskLine,std::allocator<RoleTaskLine> >",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "32": {
+      "name": "m_taskFile",
+      "type": "TxtFile",
+      "source": "annotation"
     },
     "556": {
       "name": "_TaskPicFolder",
       "type": "char[128]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     }
-  },
-  "pdb_size": 684,
-  "binary_size": 684
+  }
 }

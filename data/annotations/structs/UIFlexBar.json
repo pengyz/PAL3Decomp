@@ -1,25 +1,26 @@
 {
   "name": "UIFlexBar",
+  "binary_size": 84,
   "known_members": {
     "68": {
       "name": "m_tilewidth",
       "type": "int",
-      "source": "PDB_batch_import(size_match)"
+      "source": "annotation"
     },
     "72": {
       "name": "m_tileheight",
       "type": "int",
-      "source": "PDB_batch_import(size_match)"
+      "source": "annotation"
     },
     "76": {
       "name": "m_tex",
       "type": "gbTexture *",
-      "source": "PDB_batch_import(size_match)"
+      "source": "annotation"
     },
     "80": {
       "name": "m_style",
-      "type": "int",
-      "source": "PDB_batch_import(size_match)"
+      "type": "UIFlexBar::STYLE",
+      "source": "annotation"
     },
     "0": {
       "name": "vfptr",
@@ -27,6 +28,7 @@
       "source": "vtable_pointer(assumed_from_polymorphic_class)"
     }
   },
-  "pdb_size": 84,
-  "binary_size": 84
+  "base_class": [
+    "UIWnd"
+  ]
 }

@@ -1,6 +1,417 @@
 {
   "name": "MagicUI",
+  "binary_size": 267300,
   "known_members": {
+    "72": {
+      "name": "rc",
+      "type": "tagRECT",
+      "source": "pdb_merge"
+    },
+    "88": {
+      "name": "bkWndX",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "92": {
+      "name": "bkWndY",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "96": {
+      "name": "i",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "100": {
+      "name": "j",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "104": {
+      "name": "buf",
+      "type": "char[256]",
+      "source": "pdb_merge"
+    },
+    "360": {
+      "name": "remarkbuf",
+      "type": "char[256]",
+      "source": "pdb_merge"
+    },
+    "616": {
+      "name": "s_x",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "620": {
+      "name": "m_IsMsg",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "621": {
+      "name": "m_Is",
+      "type": "unsigned char[5]",
+      "source": "pdb_merge"
+    },
+    "628": {
+      "name": "m_CtrlRole",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "632": {
+      "name": "m_IsActive",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "633": {
+      "name": "m_IsCreateable",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "636": {
+      "name": "curPage",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "640": {
+      "name": "m_SelNum",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "644": {
+      "name": "m_CurType",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "648": {
+      "name": "m_usemagicRole",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "652": {
+      "name": "m_isuseMagic",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "653": {
+      "name": "m_LockUse",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "654": {
+      "name": "m_IsUsed",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "655": {
+      "name": "m_IsCanUse",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "656": {
+      "name": "m_IsAllUse",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "660": {
+      "name": "pt",
+      "type": "tagPOINT",
+      "source": "pdb_merge"
+    },
+    "668": {
+      "name": "m_RoleSkill",
+      "type": "SkillData[7][5]",
+      "source": "pdb_merge"
+    },
+    "42388": {
+      "name": "pStateUI",
+      "type": "StateUI *",
+      "source": "pdb_merge"
+    },
+    "42392": {
+      "name": "m_Frame",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "42552": {
+      "name": "m_TimeMoney",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "42712": {
+      "name": "m_OutFrameT",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "42872": {
+      "name": "m_OutFrameR",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "43032": {
+      "name": "m_OutFrameL",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "43192": {
+      "name": "m_OutFrameB",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "43352": {
+      "name": "stp_BarL",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "43512": {
+      "name": "stp_BarM",
+      "type": "UIFlexBar",
+      "source": "pdb_merge"
+    },
+    "43596": {
+      "name": "stp_BarR",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "43756": {
+      "name": "stp_State",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "44100": {
+      "name": "stp_Magic",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "44444": {
+      "name": "stp_Equip",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "44788": {
+      "name": "stp_Prop",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "45132": {
+      "name": "stp_BattleArray",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "45476": {
+      "name": "stp_TaskBook",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "45820": {
+      "name": "stp_System",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "46164": {
+      "name": "stp_Exit",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "46508": {
+      "name": "stp_Effect",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "46668": {
+      "name": "stp_Rect",
+      "type": "tagRECT",
+      "source": "pdb_merge"
+    },
+    "46684": {
+      "name": "titleRc",
+      "type": "tagRECT",
+      "source": "pdb_merge"
+    },
+    "46700": {
+      "name": "m_title",
+      "type": "UIStatic[4]",
+      "source": "pdb_merge"
+    },
+    "47340": {
+      "name": "m_GameTime",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "47500": {
+      "name": "m_GameMoney",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "47660": {
+      "name": "m_DlgEx",
+      "type": "MUIDialog",
+      "source": "pdb_merge"
+    },
+    "49044": {
+      "name": "m_btnPar",
+      "type": "UIParticle[16][7]",
+      "source": "pdb_merge"
+    },
+    "115348": {
+      "name": "m_btnPar2",
+      "type": "UIParticle[16][7]",
+      "source": "pdb_merge"
+    },
+    "181652": {
+      "name": "m_btnParRc",
+      "type": "tagRECT[7]",
+      "source": "pdb_merge"
+    },
+    "181764": {
+      "name": "_isParBtn",
+      "type": "unsigned char[7]",
+      "source": "pdb_merge"
+    },
+    "181772": {
+      "name": "_curParEffect",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "181776": {
+      "name": "m_CurSelRole",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "181780": {
+      "name": "m_CurNeedRole",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "181784": {
+      "name": "m_Dlg",
+      "type": "MUIDialog",
+      "source": "pdb_merge"
+    },
+    "183168": {
+      "name": "m_Msg",
+      "type": "MUIDialog",
+      "source": "pdb_merge"
+    },
+    "184552": {
+      "name": "m_DlgMsg",
+      "type": "DLG_MSG",
+      "source": "pdb_merge"
+    },
+    "184556": {
+      "name": "m_Animate",
+      "type": "UIAnimate[5]",
+      "source": "pdb_merge"
+    },
+    "184816": {
+      "name": "m_AnimateRc",
+      "type": "tagRECT[5]",
+      "source": "pdb_merge"
+    },
+    "184896": {
+      "name": "m_ListFrame",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "185056": {
+      "name": "m_ListGrid",
+      "type": "UIStatic[8]",
+      "source": "pdb_merge"
+    },
+    "186336": {
+      "name": "m_RemarkBk",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "186496": {
+      "name": "m_Remark",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "186656": {
+      "name": "m_RemarkVal",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "186816": {
+      "name": "m_UnCom",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "186976": {
+      "name": "m_Role",
+      "type": "m_RoleState[5]",
+      "source": "pdb_merge"
+    },
+    "208436": {
+      "name": "m_Ctrlbtn",
+      "type": "UIButton[7]",
+      "source": "pdb_merge"
+    },
+    "210844": {
+      "name": "ml_SpeList",
+      "type": "UIListBox",
+      "source": "pdb_merge"
+    },
+    "212132": {
+      "name": "ml_FengList",
+      "type": "UIListBox",
+      "source": "pdb_merge"
+    },
+    "213420": {
+      "name": "ml_LeiList",
+      "type": "UIListBox",
+      "source": "pdb_merge"
+    },
+    "214708": {
+      "name": "ml_ShuiList",
+      "type": "UIListBox",
+      "source": "pdb_merge"
+    },
+    "215996": {
+      "name": "ml_HuoList",
+      "type": "UIListBox",
+      "source": "pdb_merge"
+    },
+    "217284": {
+      "name": "ml_TuList",
+      "type": "UIListBox",
+      "source": "pdb_merge"
+    },
+    "218572": {
+      "name": "ml_SuangList",
+      "type": "UIListBox",
+      "source": "pdb_merge"
+    },
+    "219860": {
+      "name": "m_parRainbow",
+      "type": "UIParticle[8][5]",
+      "source": "annotation"
+    },
+    "220020": {
+      "name": "m_TopFrameXS",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "220180": {
+      "name": "m_parRainbow",
+      "type": "UIParticle[8][5]",
+      "source": "pdb_merge"
+    },
+    "243860": {
+      "name": "m_parRise",
+      "type": "UIParticle[8][5]",
+      "source": "pdb_merge"
+    },
+    "267540": {
+      "name": "m_parRc",
+      "type": "tagRECT[5]",
+      "source": "pdb_merge"
+    },
+    "0": {
+      "name": "m_ComSkill",
+      "type": "unsigned char[8][5]",
+      "source": "annotation"
+    },
     "536": {
       "name": "s_x",
       "type": "int",
@@ -361,11 +772,6 @@
       "type": "UIButton[7]",
       "source": "pdb_fill_incomplete"
     },
-    "219860": {
-      "name": "m_parRainbow",
-      "type": "UIParticle[8][5]",
-      "source": "pdb_fill_incomplete"
-    },
     "243540": {
       "name": "m_parRise",
       "type": "UIParticle[8][5]",
@@ -375,13 +781,9 @@
       "name": "m_parRc",
       "type": "tagRECT[5]",
       "source": "pdb_fill_incomplete"
-    },
-    "0": {
-      "name": "m_ComSkill",
-      "type": "unsigned char[8][5]",
-      "source": "pdb_fill_incomplete"
     }
   },
-  "pdb_size": 267620,
-  "binary_size": 267300
+  "base_class": [
+    "UIFrameWnd"
+  ]
 }

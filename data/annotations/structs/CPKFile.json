@@ -1,0 +1,66 @@
+{
+  "name": "CPKFile",
+  "binary_size": 48,
+  "known_members": {
+    "0": {
+      "name": "bValid",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "4": {
+      "name": "dwCRC",
+      "type": "unsigned long",
+      "source": "annotation"
+    },
+    "8": {
+      "name": "dwFatherCRC",
+      "type": "unsigned long",
+      "source": "annotation"
+    },
+    "12": {
+      "name": "nTableIndex",
+      "type": "int",
+      "source": "annotation"
+    },
+    "16": {
+      "name": "lpMapAddress",
+      "type": "void *",
+      "source": "annotation"
+    },
+    "20": {
+      "name": "lpStartAddress",
+      "type": "void *",
+      "source": "annotation"
+    },
+    "24": {
+      "name": "dwOffset",
+      "type": "unsigned long",
+      "source": "annotation"
+    },
+    "28": {
+      "name": "bCompressed",
+      "type": "unsigned char",
+      "source": "annotation"
+    },
+    "32": {
+      "name": "lpMem",
+      "type": "void *",
+      "source": "annotation"
+    },
+    "36": {
+      "name": "dwFileSize",
+      "type": "unsigned long",
+      "source": "annotation"
+    },
+    "40": {
+      "name": "dwPointer",
+      "type": "unsigned long",
+      "source": "annotation"
+    },
+    "44": {
+      "name": "pTableItem",
+      "type": "tagCPKTable *",
+      "source": "annotation"
+    }
+  }
+}

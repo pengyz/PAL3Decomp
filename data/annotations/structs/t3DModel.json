@@ -1,27 +1,26 @@
 {
   "name": "t3DModel",
+  "binary_size": 40,
   "known_members": {
     "0": {
       "name": "numOfObjects",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "4": {
       "name": "numOfMaterials",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "8": {
       "name": "pMaterials",
       "type": "std::vector<tMaterialInfo,std::allocator<tMaterialInfo> >",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     },
     "24": {
       "name": "pObject",
       "type": "std::vector<t3DObject,std::allocator<t3DObject> >",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
     }
-  },
-  "pdb_size": 40,
-  "binary_size": 40
+  }
 }

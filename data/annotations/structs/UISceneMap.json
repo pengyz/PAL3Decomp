@@ -1,10 +1,61 @@
 {
   "name": "UISceneMap",
+  "binary_size": 1012,
   "known_members": {
     "68": {
       "name": "m_probe",
       "type": "UIButton",
-      "source": "PAL3patch_verified"
+      "source": "annotation"
+    },
+    "69": {
+      "name": "m_bPlayer",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "72": {
+      "name": "m_lastZ",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "76": {
+      "name": "m_lastLookAt",
+      "type": "gbVec3D",
+      "source": "pdb_merge"
+    },
+    "88": {
+      "name": "m_probe",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "432": {
+      "name": "m_base",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "592": {
+      "name": "m_addin",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "752": {
+      "name": "m_compass",
+      "type": "UIStaticEX",
+      "source": "pdb_merge"
+    },
+    "944": {
+      "name": "m_mapbk",
+      "type": "UIStaticFlex",
+      "source": "pdb_merge"
+    },
+    "1136": {
+      "name": "m_icons",
+      "type": "UITextureArray",
+      "source": "pdb_merge"
+    },
+    "1204": {
+      "name": "m_state",
+      "type": "int",
+      "source": "pdb_merge"
     },
     "412": {
       "name": "m_base",
@@ -32,8 +83,7 @@
       "source": "PAL3patch_verified"
     }
   },
-  "pdb_size": 1208,
-  "base_class": "UIWnd",
-  "base_size": 68,
-  "binary_size": 1012
+  "base_class": [
+    "UIWnd"
+  ]
 }

@@ -1,64 +1,131 @@
 {
   "name": "MUIDialog",
-  "pdb_size": 1384,
+  "binary_size": 1288,
   "known_members": {
     "72": {
       "name": "ptr_Dlg",
       "type": "UIWnd *",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "76": {
       "name": "m_DlgId",
       "type": "unsigned int",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "80": {
       "name": "m_rect",
       "type": "tagRECT",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "96": {
       "name": "m_textRc",
       "type": "tagRECT",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "112": {
       "name": "m_bk",
       "type": "UIStaticFlex",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "304": {
       "name": "m_static",
       "type": "UIStatic",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "464": {
       "name": "m_text",
       "type": "UIStatic",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "624": {
       "name": "m_btnW",
       "type": "int",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "628": {
       "name": "m_btnH",
       "type": "int",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "632": {
       "name": "m_btRc",
       "type": "tagRECT",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "648": {
       "name": "mb_Yes",
       "type": "UIButton",
-      "source": "PDB_verified"
+      "source": "annotation"
+    },
+    "992": {
+      "name": "mb_No",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "1336": {
+      "name": "Lacune",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1340": {
+      "name": "m_type",
+      "type": "DLG_TYPE",
+      "source": "pdb_merge"
+    },
+    "1344": {
+      "name": "m_getMsg",
+      "type": "DLG_MSG",
+      "source": "pdb_merge"
+    },
+    "1348": {
+      "name": "dft_W",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1352": {
+      "name": "dft_H",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1356": {
+      "name": "m_IsModel",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "1357": {
+      "name": "m_isDoModel",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "1360": {
+      "name": "m_xOffset",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1364": {
+      "name": "m_yOffset",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "1368": {
+      "name": "_m_timeMgr",
+      "type": "_TimeMgr",
+      "source": "pdb_merge"
+    },
+    "1380": {
+      "name": "_m_canEndDlg",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "1381": {
+      "name": "_haveSound",
+      "type": "unsigned char",
+      "source": "pdb_merge"
     }
   },
-  "base_class": "UIFrameWnd",
-  "base_size": 72,
-  "binary_size": 1288
+  "base_class": [
+    "UIDialog",
+    "MUIDialogMgr",
+    "UIFrameWnd"
+  ]
 }

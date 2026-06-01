@@ -1,18 +1,189 @@
 {
   "name": "DealUI",
+  "binary_size": 3080,
   "known_members": {
     "72": {
       "name": "_isCreatable",
       "type": "BYTE",
-      "source": "gen_headers_9.2"
-    },
-    "78": {
-      "name": "m_ST",
-      "type": "WORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "80": {
       "name": "m_ID",
+      "type": "WORD",
+      "source": "annotation"
+    },
+    "96": {
+      "name": "bkrc",
+      "type": "tagRECT",
+      "source": "pdb_merge"
+    },
+    "112": {
+      "name": "bkWndX",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "116": {
+      "name": "bkWndY",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "120": {
+      "name": "bkWidth",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "124": {
+      "name": "bkHeight",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "128": {
+      "name": "mbWidth",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "132": {
+      "name": "mbHeight",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "136": {
+      "name": "m_startX",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "140": {
+      "name": "m_startY",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "144": {
+      "name": "m_x",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "148": {
+      "name": "m_y",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "152": {
+      "name": "_isCreatable",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "153": {
+      "name": "m_Is",
+      "type": "unsigned char[5]",
+      "source": "pdb_merge"
+    },
+    "158": {
+      "name": "m_ST",
+      "type": "unsigned short",
+      "source": "pdb_merge"
+    },
+    "160": {
+      "name": "m_ID",
+      "type": "unsigned short",
+      "source": "pdb_merge"
+    },
+    "164": {
+      "name": "m_FlagT",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "324": {
+      "name": "m_FlagB",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "484": {
+      "name": "m_FlagM",
+      "type": "UIStatic[5]",
+      "source": "pdb_merge"
+    },
+    "1284": {
+      "name": "mb_BuyEquip",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "1628": {
+      "name": "mb_BuyProp",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "1972": {
+      "name": "mb_Sale",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "2316": {
+      "name": "mb_Talk",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "2660": {
+      "name": "m_IsExit",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "2664": {
+      "name": "mb_Exit",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "3008": {
+      "name": "m_TabBtn",
+      "type": "UITabBtn",
+      "source": "pdb_merge"
+    },
+    "3032": {
+      "name": "m_BkWnd",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "3192": {
+      "name": "m_curRender",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "3196": {
+      "name": "pEquipUI",
+      "type": "EquipUI *",
+      "source": "pdb_merge"
+    },
+    "3200": {
+      "name": "pPropUI",
+      "type": "PropUI *",
+      "source": "pdb_merge"
+    },
+    "3204": {
+      "name": "pSaleUI",
+      "type": "SaleUI *",
+      "source": "pdb_merge"
+    },
+    "3208": {
+      "name": "pInterceptTex",
+      "type": "gbTexture *",
+      "source": "pdb_merge"
+    },
+    "3212": {
+      "name": "sv",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "3216": {
+      "name": "ev",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "3220": {
+      "name": "m_opt",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "78": {
+      "name": "m_ST",
       "type": "WORD",
       "source": "gen_headers_9.2"
     },
@@ -117,8 +288,7 @@
       "source": "pdb_fill_incomplete"
     }
   },
-  "pdb_size": 3224,
-  "base_class": "UIFrameWnd",
-  "base_size": 72,
-  "binary_size": 3080
+  "base_class": [
+    "UIFrameWnd"
+  ]
 }

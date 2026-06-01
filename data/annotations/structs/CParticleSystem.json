@@ -1,162 +1,161 @@
 {
   "name": "CParticleSystem",
+  "binary_size": 220,
   "known_members": {
     "0": {
       "name": "_bVisible",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "4": {
       "name": "_bPlay",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "8": {
       "name": "_bCycle",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "12": {
       "name": "_bManual",
       "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "32": {
-      "name": "_dwParticleId",
-      "type": "unsigned int",
-      "source": "pdb_verified:batch_rename"
-    },
-    "36": {
-      "name": "_pPositionPolicy",
-      "type": "CPolicy *",
-      "source": "gen_headers_9.2"
-    },
-    "40": {
-      "name": "_pDirectionPolicy",
-      "type": "CPolicy *",
-      "source": "gen_headers_9.2"
-    },
-    "44": {
-      "name": "_pColorPolicy",
-      "type": "CPolicy *",
-      "source": "gen_headers_9.2"
-    },
-    "48": {
-      "name": "_pAlphaPolicy",
-      "type": "CPolicy *",
-      "source": "gen_headers_9.2"
-    },
-    "52": {
-      "name": "_pFramePolicy",
-      "type": "CPolicy *",
-      "source": "gen_headers_9.2"
-    },
-    "56": {
-      "name": "_pEmitterPolicy",
-      "type": "CPolicy *",
-      "source": "gen_headers_9.2"
-    },
-    "64": {
-      "name": "_pEmitter",
-      "type": "CEmitter *",
-      "source": "gen_headers_9.2"
-    },
-    "84": {
-      "name": "_nNumOfParticles",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "88": {
-      "name": "_nMaxNum",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "92": {
-      "name": "_dwNumOfKeyFrames",
-      "type": "unsigned int",
-      "source": "pdb_verified:batch_rename"
-    },
-    "96": {
-      "name": "_dwNumOfUnitFrames",
-      "type": "unsigned int",
-      "source": "pdb_verified:batch_rename"
-    },
-    "100": {
-      "name": "_nCurrFrame",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "104": {
-      "name": "_nLastFrame",
-      "type": "int",
-      "source": "gen_headers_9.2"
-    },
-    "108": {
-      "name": "_fTimeCounter",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "112": {
-      "name": "_fEmitDecPart",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "116": {
-      "name": "_dwVBFlush",
-      "type": "unsigned int",
-      "source": "pdb_verified:batch_rename"
-    },
-    "120": {
-      "name": "_matTransform",
-      "type": "gbMatrix4",
-      "source": "gen_headers_9.2"
-    },
-    "184": {
-      "name": "_fWidthScale",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "188": {
-      "name": "_fHeightScale",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "208": {
-      "name": "_pTexture",
-      "type": "gbTexture *",
-      "source": "gen_headers_9.2"
-    },
-    "212": {
-      "name": "_pRenderEffect",
-      "type": "gbRenderEffect *",
-      "source": "gen_headers_9.2"
-    },
-    "216": {
-      "name": "_pGfxMgr",
-      "type": "gbGfxManager *",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "16": {
       "name": "_strParticleName",
       "type": "std::basic_string<char,std::char_traits<char>,std::allocator<char> >",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "32": {
+      "name": "_dwParticleId",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "36": {
+      "name": "_pPositionPolicy",
+      "type": "CPolicy *",
+      "source": "annotation"
+    },
+    "40": {
+      "name": "_pDirectionPolicy",
+      "type": "CPolicy *",
+      "source": "annotation"
+    },
+    "44": {
+      "name": "_pColorPolicy",
+      "type": "CPolicy *",
+      "source": "annotation"
+    },
+    "48": {
+      "name": "_pAlphaPolicy",
+      "type": "CPolicy *",
+      "source": "annotation"
+    },
+    "52": {
+      "name": "_pFramePolicy",
+      "type": "CPolicy *",
+      "source": "annotation"
+    },
+    "56": {
+      "name": "_pEmitterPolicy",
+      "type": "CPolicy *",
+      "source": "annotation"
     },
     "60": {
       "name": "_pParticles",
       "type": "CParticleSystem_ParticleUnit *",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "64": {
+      "name": "_pEmitter",
+      "type": "CEmitter *",
+      "source": "annotation"
     },
     "68": {
       "name": "_KeyFrames",
       "type": "std::vector<KeyFrame *,std::allocator<KeyFrame *> >[4]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "84": {
+      "name": "_nNumOfParticles",
+      "type": "int",
+      "source": "annotation"
+    },
+    "88": {
+      "name": "_nMaxNum",
+      "type": "int",
+      "source": "annotation"
+    },
+    "92": {
+      "name": "_dwNumOfKeyFrames",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "96": {
+      "name": "_dwNumOfUnitFrames",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "100": {
+      "name": "_nCurrFrame",
+      "type": "int",
+      "source": "annotation"
+    },
+    "104": {
+      "name": "_nLastFrame",
+      "type": "int",
+      "source": "annotation"
+    },
+    "108": {
+      "name": "_fTimeCounter",
+      "type": "float",
+      "source": "annotation"
+    },
+    "112": {
+      "name": "_fEmitDecPart",
+      "type": "float",
+      "source": "annotation"
+    },
+    "116": {
+      "name": "_dwVBFlush",
+      "type": "unsigned int",
+      "source": "annotation"
+    },
+    "120": {
+      "name": "_matTransform",
+      "type": "gbMatrix4",
+      "source": "annotation"
+    },
+    "184": {
+      "name": "_fWidthScale",
+      "type": "float",
+      "source": "annotation"
+    },
+    "188": {
+      "name": "_fHeightScale",
+      "type": "float",
+      "source": "annotation"
     },
     "192": {
       "name": "_TexCoordData",
       "type": "std::vector<CParticleSystem::TexCoordQuad,std::allocator<CParticleSystem::TexCoordQuad> >",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "208": {
+      "name": "_pTexture",
+      "type": "gbTexture *",
+      "source": "annotation"
+    },
+    "212": {
+      "name": "_pRenderEffect",
+      "type": "gbRenderEffect *",
+      "source": "annotation"
+    },
+    "216": {
+      "name": "_pGfxMgr",
+      "type": "gbGfxManager *",
+      "source": "annotation"
     }
-  },
-  "pdb_size": 220,
-  "binary_size": 220
+  }
 }

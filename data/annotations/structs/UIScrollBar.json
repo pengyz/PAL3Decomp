@@ -1,69 +1,125 @@
 {
   "name": "UIScrollBar",
+  "binary_size": 352,
   "known_members": {
     "68": {
       "name": "m_bPress",
       "type": "unsigned char",
-      "source": "PDB_PAL3_adjusted(-16_after_172)"
+      "source": "annotation"
     },
     "69": {
       "name": "m_bPressed",
       "type": "unsigned char",
-      "source": "PDB_PAL3_adjusted(-16_after_172)"
+      "source": "annotation"
     },
     "72": {
       "name": "m_bk",
       "type": "UIFlexBar",
-      "source": "PDB_PAL3_adjusted(-16_after_172)"
+      "source": "annotation"
     },
     "156": {
       "name": "m_btnH",
       "type": "int",
-      "source": "PDB_PAL3_adjusted(-16_after_172)"
+      "source": "annotation"
     },
     "160": {
       "name": "m_mouseat",
-      "type": "int",
-      "source": "PDB_PAL3_adjusted(-16_after_172)|enum_as_int(IDA_cant_parse_nested_enum_name)"
+      "type": "unsigned char",
+      "source": "annotation"
     },
     "164": {
       "name": "m_min",
-      "type": "int",
-      "source": "PDB_PAL3_adjusted(-16_after_172)"
-    },
-    "168": {
-      "name": "m_max",
-      "type": "int",
-      "source": "PDB_PAL3_adjusted(-16_after_172)"
+      "type": "tagPOINT",
+      "source": "annotation"
     },
     "172": {
       "name": "m_pos",
       "type": "int",
-      "source": "PDB_PAL3_adjusted(-16_after_172)"
+      "source": "annotation"
     },
     "176": {
       "name": "m_lastpos",
       "type": "float",
-      "source": "PDB_PAL3_adjusted(-16_after_172)"
+      "source": "annotation"
     },
     "180": {
       "name": "m_drawpos",
       "type": "float",
-      "source": "PDB_PAL3_adjusted(-16_after_172)"
+      "source": "annotation"
     },
     "184": {
       "name": "m_step",
       "type": "float",
-      "source": "PDB_PAL3_adjusted(-16_after_172)"
+      "source": "annotation"
     },
     "188": {
       "name": "m_pagesize",
       "type": "int",
-      "source": "PDB_PAL3_adjusted(-16_after_172)"
+      "source": "annotation"
     },
     "192": {
       "name": "m_texarray",
       "type": "UITextureArray",
+      "source": "annotation"
+    },
+    "196": {
+      "name": "m_drawpos",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "200": {
+      "name": "m_step",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "204": {
+      "name": "m_pagesize",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "208": {
+      "name": "m_texarray",
+      "type": "UITextureArray",
+      "source": "pdb_merge"
+    },
+    "276": {
+      "name": "m_texarrayInfo",
+      "type": "_PlugInfo *[10]",
+      "source": "pdb_merge"
+    },
+    "316": {
+      "name": "m_keytime",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "320": {
+      "name": "m_btnrect",
+      "type": "tagRECT[2]",
+      "source": "pdb_merge"
+    },
+    "352": {
+      "name": "m_slideroffset",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "356": {
+      "name": "m_slidertboffset",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "360": {
+      "name": "m_sliderw",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "364": {
+      "name": "m_sliderh",
+      "type": "int",
+      "source": "pdb_merge"
+    },
+    "168": {
+      "name": "m_max",
+      "type": "int",
       "source": "PDB_PAL3_adjusted(-16_after_172)"
     },
     "260": {
@@ -102,8 +158,7 @@
       "source": "PDB_PAL3_adjusted(-16_after_172)"
     }
   },
-  "pdb_size": 368,
-  "base_class": "UIWnd",
-  "base_size": 68,
-  "binary_size": 352
+  "base_class": [
+    "UIWnd"
+  ]
 }

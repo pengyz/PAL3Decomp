@@ -1,59 +1,94 @@
 {
   "name": "UITitle_QCYM",
+  "binary_size": 17676,
   "known_members": {
     "72": {
       "name": "rc",
       "type": "tagRECT",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "88": {
       "name": "buf",
       "type": "char[256]",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "344": {
       "name": "m_OutFrameT",
       "type": "UIStatic",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "504": {
       "name": "m_OutFrameR",
       "type": "UIStatic",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "664": {
       "name": "m_OutFrameL",
       "type": "UIStatic",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "824": {
       "name": "m_OutFrameB",
       "type": "UIStatic",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "984": {
       "name": "m_background",
       "type": "UIStatic",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "1144": {
       "name": "m_title",
       "type": "UIStatic",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "1304": {
       "name": "m_btn",
       "type": "UIButtonEXA[30]",
-      "source": "PDB_verified"
+      "source": "annotation"
     },
     "12584": {
       "name": "m_NoMovieBK",
       "type": "UIStatic[30]",
-      "source": "PDB_verified"
+      "source": "annotation"
+    },
+    "17384": {
+      "name": "m_exit",
+      "type": "UIButton",
+      "source": "pdb_merge"
+    },
+    "17728": {
+      "name": "m_info",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "17888": {
+      "name": "m_infoBK",
+      "type": "UIStatic",
+      "source": "pdb_merge"
+    },
+    "18048": {
+      "name": "m_isPlayMovie",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "18049": {
+      "name": "m_isJustOver",
+      "type": "unsigned char",
+      "source": "pdb_merge"
+    },
+    "18052": {
+      "name": "m_fpasstime",
+      "type": "float",
+      "source": "pdb_merge"
+    },
+    "18056": {
+      "name": "m_pMgr",
+      "type": "UICoverFrm *",
+      "source": "pdb_merge"
     }
   },
-  "pdb_size": 18060,
-  "base_class": "UIFrameWnd",
-  "base_size": 72,
-  "binary_size": 17676
+  "base_class": [
+    "UIFrameWnd"
+  ]
 }

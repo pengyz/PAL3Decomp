@@ -1,54 +1,54 @@
 {
   "name": "CCBStageCam",
+  "binary_size": 6272,
   "known_members": {
     "692": {
       "name": "m_pStage",
       "type": "CCBStage *",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "696": {
       "name": "m_pUtil",
       "type": "CUtil *",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "700": {
       "name": "m_fLastMouseX",
-      "type": "int",
-      "source": "gen_headers_9.2 | type_fix:float→int_raw_decomp"
+      "type": "float",
+      "source": "annotation"
     },
     "704": {
       "name": "m_fLastMouseY",
       "type": "float",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "712": {
       "name": "m_fp",
       "type": "void * *[4]",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "728": {
       "name": "m_nTask",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "732": {
       "name": "m_nCurTask",
       "type": "int",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "736": {
       "name": "m_Task",
       "type": "tagCamTask[50]",
-      "source": "pdb_fill"
+      "source": "annotation"
     },
     "4736": {
       "name": "m_EditorCam",
       "type": "tagCam[64]",
-      "source": "pdb_fill"
+      "source": "annotation"
     }
   },
-  "pdb_size": 6272,
-  "base_class": "RoleCamera",
-  "base_size": 692,
-  "binary_size": 6272
+  "base_class": [
+    "RoleCamera"
+  ]
 }

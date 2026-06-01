@@ -1,10 +1,11 @@
 {
   "name": "SceneMgr",
+  "binary_size": 58692,
   "known_members": {
     "0": {
       "name": "m_pGfxMgr",
       "type": "gbGfxManager *",
-      "source": "pdb_verified_by_old_ida"
+      "source": "annotation"
     },
     "4": {
       "name": "m_pSceneRoot",
@@ -558,8 +559,5 @@
       "type": "PalScriptMgr *",
       "source": "docs:scenemgr_layout.md"
     }
-  },
-  "pdb_size": 1,
-  "note": "CEffMgr embedded at +0 (ends at +0xA930). SceneMgr-own fields from +0xA940. View B (PlayerSlots/RoleSystems) is reinterpret_cast overlay on EffClass+EffTable region.",
-  "binary_size": 58692
+  }
 }

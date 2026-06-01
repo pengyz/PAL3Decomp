@@ -1,52 +1,51 @@
 {
   "name": "_FLOATING_SAVE_AREA",
+  "binary_size": 112,
   "known_members": {
     "0": {
       "name": "ControlWord",
       "type": "DWORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "4": {
       "name": "StatusWord",
       "type": "DWORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "8": {
       "name": "TagWord",
       "type": "DWORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "12": {
       "name": "ErrorOffset",
       "type": "DWORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "16": {
       "name": "ErrorSelector",
       "type": "DWORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "20": {
       "name": "DataOffset",
       "type": "DWORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "24": {
       "name": "DataSelector",
       "type": "DWORD",
-      "source": "gen_headers_9.2"
-    },
-    "108": {
-      "name": "Cr0NpxState",
-      "type": "DWORD",
-      "source": "gen_headers_9.2"
+      "source": "annotation"
     },
     "28": {
       "name": "RegisterArea",
       "type": "unsigned char[80]",
-      "source": "pdb_fill_incomplete"
+      "source": "annotation"
+    },
+    "108": {
+      "name": "Cr0NpxState",
+      "type": "DWORD",
+      "source": "annotation"
     }
-  },
-  "pdb_size": 112,
-  "binary_size": 112
+  }
 }

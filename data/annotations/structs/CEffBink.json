@@ -1,22 +1,21 @@
 {
   "name": "CEffBink",
-  "pdb_size": 304,
+  "binary_size": 304,
   "known_members": {
     "48": {
       "name": "m_szBinkNamePrefix",
       "type": "char[128]",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     },
     "176": {
       "name": "m_szBinkName",
       "type": "char[128]",
-      "source": "pdb_batch_fill"
+      "source": "annotation"
     }
   },
   "base_class": [
     "CEffObj",
+    "CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffBink::*)(unsigned long)>",
     "CTaskTpl_tagEffTaskParam_CEffBink"
-  ],
-  "base_size": 48,
-  "binary_size": 304
+  ]
 }
