@@ -1041,12 +1041,20 @@ def apply_annotations():
         log("[STRUCT IMPORT SUMMARY]")
         log("  Total:     %d/%d structs" % (s_ok, len(structs)))
         log("  Failed:    %d" % len(s_fail))
-        if _cat_nopdb: log("    no PDB (need replace mode):   %d" % _cat_nopdb)
-        if _cat_size:  log("    size mismatch:                %d" % _cat_size)
-        if _cat_base:  log("    base class invalid:          %d" % _cat_base)
-        if _cat_parse: log("    member type parse failed:    %d" % _cat_parse)
-        if _cat_create:log("    create_udt failed:           %d" % _cat_create)
-        log("  Other:     %d" % (len(s_fail) - _cat_nopdb - _cat_size - _cat_base - _cat_parse - _cat_create))
+        if s_fail:
+            from collections import Counter as _Counter
+            _cats = _Counter()
+            for _, _, e in s_fail:
+                if "size mismatch" in e: _cats["size_mismatch"] += 1
+                elif "base_class" in e: _cats["base_class"] += 1
+                elif "_resolve_member_type" in e: _cats["type_resolve"] += 1
+                elif "create_udt" in e: _cats["create_udt"] += 1
+                else: _cats["other"] += 1
+            for c, n in _cats.items():
+                log("    %s: %d" % (c, n))
+
+            log_path = os.path.join(SCRIPT_DIR, "_logs", "struct_import_errors.txt")
+            os.makedirs(os.path.dirname(log_path), exist_ok=True)
         log("")
 
         error_lines = []
