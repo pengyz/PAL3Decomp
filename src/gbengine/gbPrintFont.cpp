@@ -32,13 +32,9 @@ gbPrintFont::gbPrintFont(int maxStr, int max3D, int bufSize)
     current3DStringCount = 0;
     currentTextOffset = 0;
 
-    colorR = 0xFF;
-    colorG = 0xFF;
-    colorB = 0xFF;
-    colorA = 0xFF;
-
-    scaleX = 1.0f;
-    scaleY = 1.0f;
+    curColor = 0xFFFFFFFF;
+    ScaleX = 1.0f;
+    ScaleY = 1.0f;
     pitchX = 0.0f;
     pitchY = 0.0f;
     depth = 0.0f;
@@ -94,10 +90,10 @@ void gbPrintFont::PrintString(char* text, float x, float y, float w, float h)
     record->width = w;
     record->height = h;
 
-    record->color = *(unsigned int*)&colorR;
+    record->color = *(unsigned int*)&curColor;
 
-    record->scaleX = scaleX;
-    record->scaleY = scaleY;
+    record->ScaleX = ScaleX;
+    record->ScaleY = ScaleY;
     record->textBufferOffset = currentTextOffset;
 
     currentStringCount++;
@@ -124,13 +120,9 @@ void gbPrintFont::Print3DString(char* text, float x, float y, float z)
     record->z = z;
 
     // Pack color
-    record->color = (unsigned int)colorR |
-                    ((unsigned int)colorG << 8) |
-                    ((unsigned int)colorB << 16) |
-                    ((unsigned int)colorA << 24);
-
-    record->scaleX = scaleX;
-    record->scaleY = scaleY;
+    record->color = (unsigned int)curColor;
+    record->ScaleX = ScaleX;
+    record->ScaleY = ScaleY;
     record->pitchX = pitchX;
     record->pitchY = pitchY;
     record->textBufferOffset = currentTextOffset;
@@ -145,12 +137,12 @@ void gbPrintFont::PrintCenterLine(char* text, float left, float top, float right
     int len = (int)strlen(text);
 
     // Calculate centered X position
-    // Each char is scaleX * 0.5 wide, with pitchX spacing between chars
-    float textWidth = len * scaleX * 0.5f + (len - 1) * pitchX;
+    // Each char is ScaleX * 0.5 wide, with pitchX spacing between chars
+    float textWidth = len * ScaleX * 0.5f + (len - 1) * pitchX;
     float newX = (right - left - textWidth) * 0.5f + left;
 
     // Calculate centered Y position
-    float newY = (bottom - top - scaleY) * 0.5f + top;
+    float newY = (bottom - top - ScaleY) * 0.5f + top;
 
     PrintString(text, newX, newY, 10000.0f, 10000.0f);
 }
@@ -170,7 +162,7 @@ void gbPrintFont::SetFontColor(unsigned char r, unsigned char g, unsigned char b
         local[0] = r;
         local[3] = 0xFF;
     }
-    *(unsigned int*)&colorR = *(unsigned int*)local;
+    *(unsigned int*)&curColor = *(unsigned int*)local;
 }
 
 // 0x100043a0
@@ -188,14 +180,14 @@ void gbPrintFont::SetFontColor(unsigned char r, unsigned char g, unsigned char b
         local[0] = r;
         local[3] = a;
     }
-    *(unsigned int*)&colorR = *(unsigned int*)local;
+    *(unsigned int*)&curColor = *(unsigned int*)local;
 }
 
 // 0x10004400
 void gbPrintFont::SetCurFontScale(float sx, float sy)
 {
-    scaleX = sx;
-    scaleY = sy;
+    ScaleX = sx;
+    ScaleY = sy;
 }
 
 // 0x10004420

@@ -16,20 +16,19 @@ struct gbPrintStringInfo {
     float width;                // +0x10
     float height;               // +0x14
     unsigned int color;         // +0x18 (RGBA packed)
-    float scaleX;               // +0x1C
-    float scaleY;               // +0x20
+    float ScaleX;               // +0x1C
+    float ScaleY;               // +0x20
     float pitchX;               // +0x24
     int textBufferOffset;       // +0x28
 };
 
-// sizeof = 0x24
 struct gbPrint3DStringInfo {
     float x;                    // +0x00
     float y;                    // +0x04
     float z;                    // +0x08
     unsigned int color;         // +0x0C (RGBA packed)
-    float scaleX;               // +0x10
-    float scaleY;               // +0x14
+    float ScaleX;               // +0x10
+    float ScaleY;               // +0x14
     float pitchX;               // +0x18
     float pitchY;               // +0x1C
     int textBufferOffset;       // +0x20
@@ -48,12 +47,9 @@ public:
     char*           textBuffer;         // +0x20
     int             maxChars;           // +0x24
     int             currentTextOffset;  // +0x28
-    unsigned char   colorR;             // +0x2C
-    unsigned char   colorG;             // +0x2D
-    unsigned char   colorB;             // +0x2E
-    unsigned char   colorA;             // +0x2F
-    float           scaleX;             // +0x30
-    float           scaleY;             // +0x34
+    gbColorQuad     curColor;           // +0x2C (was colorR/G/B/A)
+    float           ScaleX;             // +0x30
+    float           ScaleY;             // +0x34
     float           pitchX;             // +0x38
     float           pitchY;             // +0x3C
     float           depth;              // +0x40
