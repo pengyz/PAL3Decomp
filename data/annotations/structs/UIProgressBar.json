@@ -191,16 +191,6 @@
       "name": "m_warningval",
       "type": "int",
       "source": "gen_headers_9.2"
-    },
-    "236": {
-      "name": "m_isAdd",
-      "type": "unsigned char",
-      "source": "pdb"
-    },
-    "240": {
-      "name": "m_warningval",
-      "type": "int",
-      "source": "pdb"
     }
   },
   "base_class": [
@@ -376,7 +366,8 @@
     },
     "0x0043C550": {
       "name": "UIProgressBar::SetProgress",
-      "signature": "int __thiscall(CScreenMode *this, float fProgress)"
+      "signature": "void __thiscall(CScreenMode *this, float fProgress)",
+      "source": "pdb_ret"
     }
   }
 }
