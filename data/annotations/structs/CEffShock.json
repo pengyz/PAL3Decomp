@@ -156,5 +156,137 @@
   "base_class": [
     "CEffObj",
     "CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffShock::*)(unsigned long)>"
-  ]
+  ],
+  "methods": {
+    "0x00603027": {
+      "name": "GetEditorTaskDescription",
+      "signature": "virtual char * (int)",
+      "source": "pdb"
+    },
+    "0x00602CCA": {
+      "name": "CreateTask",
+      "signature": "virtual void (tagEffTaskParam *)",
+      "source": "pdb"
+    },
+    "0x00602768": {
+      "name": "Destroy",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x0060223E": {
+      "name": "~CEffShock",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0060233E": {
+      "name": "Init",
+      "signature": "virtual void (tagEffObjType *, float, float, float)",
+      "source": "pdb"
+    },
+    "0x00602E0A": {
+      "name": "ProcCommonTask",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00603CC0": {
+      "name": "Clone",
+      "signature": "virtual class CEffObj * ()",
+      "source": "pdb"
+    },
+    "0x00603D50": {
+      "name": "CallTask",
+      "signature": "virtual void (void *, ulong)",
+      "source": "pdb"
+    },
+    "0x006029E0": {
+      "name": "Render",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x00603D80": {
+      "name": "ForceEndAllTask",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x00602150": {
+      "name": "CEffShock",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0060301C": {
+      "name": "UpdateShock",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x006034E6": {
+      "name": "LoadTexture",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x00602773": {
+      "name": "Update",
+      "signature": "virtual void (float)",
+      "source": "pdb"
+    },
+    "0x006029D5": {
+      "name": "Attach",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x00602EE9": {
+      "name": "StartShock",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x006033D1": {
+      "name": "InitDefaultUVSet",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x006023EB": {
+      "name": "Create",
+      "signature": "virtual bool (tagEffObjType *)",
+      "source": "pdb"
+    },
+    "0x00602D93": {
+      "name": "ProcInitTask",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x006031E6": {
+      "name": "CreateGeom",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0060316F": {
+      "name": "GetEditorObjDescription",
+      "signature": "virtual char * (int)",
+      "source": "pdb"
+    },
+    "0x004D45D0": {
+      "name": "StartShock",
+      "signature": "int __thiscall(CEffShock *this, int nRequireLoops)",
+      "source": "annotation"
+    },
+    "0x004D49F0": {
+      "name": "CreateGeom",
+      "signature": "int __thiscall(CEffShock *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x004D4B50": {
+      "name": "LoadTexture",
+      "signature": "int __thiscall(CEffShock *this, int pFileName, int nVal, int nVal2, int *p_DWORD, int nVal3, int nVal4)",
+      "source": "annotation"
+    },
+    "0x004D4570": {
+      "name": "UpdateSegment",
+      "signature": "int __thiscall(CEffShock *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004D3280": {
+      "name": "GetEditorTaskDescription",
+      "signature": "const char *__thiscall(CEffShock *this, int nIndex)",
+      "source": "annotation"
+    }
+  }
 }

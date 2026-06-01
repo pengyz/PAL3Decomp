@@ -172,5 +172,307 @@
       "type": "ACTION_KIND",
       "source": "annotation"
     }
+  },
+  "methods": {
+    "0x0053E7EF": {
+      "name": "GetMouseRay",
+      "signature": "struct gbRay (gbRay *)",
+      "source": "pdb"
+    },
+    "0x00550DF0": {
+      "name": "SetSubObjRelativeHeight",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x00550F70": {
+      "name": "SetRotObjY",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0053DAF7": {
+      "name": "SetCentrePos",
+      "signature": "void (gbVec3D)",
+      "source": "pdb"
+    },
+    "0x0053D5F1": {
+      "name": "LoadSubObject",
+      "signature": "void (char *, ACTION_KIND)",
+      "source": "pdb"
+    },
+    "0x005510F0": {
+      "name": "SetRotDstRelativeDir",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0053D335": {
+      "name": "LoadObject",
+      "signature": "void (char *, ACTION_KIND)",
+      "source": "pdb"
+    },
+    "0x00550F10": {
+      "name": "SetRotDstMode",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0053D93C": {
+      "name": "IsOverCVD",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00550E30": {
+      "name": "SetBindingCamera",
+      "signature": "void (ObjectCamera *)",
+      "source": "pdb"
+    },
+    "0x0053DF05": {
+      "name": "Render",
+      "signature": "void (gbMatrixStack *)",
+      "source": "pdb"
+    },
+    "0x0053EA86": {
+      "name": "CheckMousePressed",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x00551110": {
+      "name": "RotateDstRelative",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0053D318": {
+      "name": "~Object3D",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0053D1DB": {
+      "name": "Object3D",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00550FF0": {
+      "name": "ShowSubObj",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x00551010": {
+      "name": "ResetCVD",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0053E302": {
+      "name": "Update",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0053DCA8": {
+      "name": "GetScreenDegree",
+      "signature": "float (gbVec3D)",
+      "source": "pdb"
+    },
+    "0x0053DBC7": {
+      "name": "GetScreenDegree",
+      "signature": "float ()",
+      "source": "pdb"
+    },
+    "0x0053F490": {
+      "name": "SetRelativeYaw",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x00550F30": {
+      "name": "GetPosition",
+      "signature": "struct gbVec3D ()",
+      "source": "pdb"
+    },
+    "0x0053D98E": {
+      "name": "VecAngle",
+      "signature": "float (gbVec3D, gbVec3D)",
+      "source": "pdb"
+    },
+    "0x0053E88A": {
+      "name": "CheckMouseLClick",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0053DA27": {
+      "name": "SetObjectPosition",
+      "signature": "void (gbVec3D)",
+      "source": "pdb"
+    },
+    "0x00550E10": {
+      "name": "GetObjectHeight",
+      "signature": "float ()",
+      "source": "pdb"
+    },
+    "0x00551080": {
+      "name": "IsRelativeRight",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0053DD82": {
+      "name": "CaculateRelative",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00551050": {
+      "name": "DoAction",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005510C0": {
+      "name": "SetRotDstRelativeDegree",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x00550ED0": {
+      "name": "SetActionRelativeRot",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x00550EF0": {
+      "name": "SetRotDstRelativeSpeed",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0053D7FB": {
+      "name": "Destroy",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0053E988": {
+      "name": "CheckMouseLPressed",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00551220": {
+      "name": "IsRotDstDegree",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00550E90": {
+      "name": "SetVisible",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x0047CB70": {
+      "name": "Object3D",
+      "signature": "void __thiscall(Object3D *this)",
+      "source": "annotation"
+    },
+    "0x0047CB90": {
+      "name": "~Object3D",
+      "signature": "OpenNULLFile *__thiscall(Object3D *this, const char *pszName, int actionIdx)",
+      "source": "annotation"
+    },
+    "0x0047CD70": {
+      "name": "LoadObject",
+      "signature": "unsigned char __thiscall(Object3D *this, const char *filename, int act)",
+      "source": "annotation"
+    },
+    "0x0047CEE0": {
+      "name": "LoadSubObject",
+      "signature": "void __thiscall(Object3D *this)",
+      "source": "annotation"
+    },
+    "0x0047CF40": {
+      "name": "Destroy",
+      "signature": "char __thiscall(Object3D *this)",
+      "source": "annotation"
+    },
+    "0x0047CFB0": {
+      "name": "IsOverCVD",
+      "signature": "long double __thiscall(Object3D *this, float fVal, float fVal2, float fVal3, float fVal4, float fVal5, float fVal6)",
+      "source": "annotation"
+    },
+    "0x0047D030": {
+      "name": "VecAngle",
+      "signature": "void __thiscall(Object3D *this, float fVal, float fVal2, float fVal3)",
+      "source": "annotation"
+    },
+    "0x0047D130": {
+      "name": "SetObjectPosition",
+      "signature": "void __thiscall(Object3D *this, float position, float fVal, float fVal2)",
+      "source": "annotation"
+    },
+    "0x0047D230": {
+      "name": "SetCentrePos",
+      "signature": "long double __thiscall(Object3D *this)",
+      "source": "annotation"
+    },
+    "0x0047D320": {
+      "name": "GetScreenDegree__ovl_d320",
+      "signature": "void __thiscall(Object3D *this)",
+      "source": "annotation"
+    },
+    "0x0047D440": {
+      "name": "GetScreenDegree__ovl_d440",
+      "signature": "void(Object3D *this, gbVec3D scrVec, gbMatrixStack *pMatrixStack)",
+      "source": "annotation"
+    },
+    "0x0047D690": {
+      "name": "CaculateRelative",
+      "signature": "void __thiscall(Object3D *this, float fVal)",
+      "source": "annotation"
+    },
+    "0x0047D9D0": {
+      "name": "SetupCamera",
+      "signature": "void *__thiscall(Object3D *this)",
+      "source": "annotation"
+    },
+    "0x0047DA60": {
+      "name": "Update",
+      "signature": "bool __thiscall(Object3D *this)",
+      "source": "annotation"
+    },
+    "0x0047DB40": {
+      "name": "GetMouseRay",
+      "signature": "bool(Object3D *this, gbRay *retstr, tagPOINT *pPOINT)",
+      "source": "annotation"
+    },
+    "0x0047DC60": {
+      "name": "CheckMouseLPressed",
+      "signature": "int __thiscall(Object3D *this)",
+      "source": "annotation"
+    },
+    "0x0047DC70": {
+      "name": "CheckMousePressed",
+      "signature": "int __thiscall(Object3D *this)",
+      "source": "annotation"
+    },
+    "0x00429EE0": {
+      "name": "SetTransform",
+      "signature": "void __thiscall(Object3D *this, gbMatrix4 *pMatrix)",
+      "source": "annotation"
+    },
+    "0x00537060": {
+      "name": "GetVisNode",
+      "signature": "gbVisNode *__thiscall(Object3D *this)",
+      "source": "annotation"
+    },
+    "0x0042B1F0": {
+      "name": "IsVisible",
+      "signature": "BOOL __thiscall(Object3D *this)",
+      "source": "annotation"
+    },
+    "0x00537070": {
+      "name": "CheckMessage",
+      "signature": "int __thiscall(Object3D *this, const char *pszMsgName)",
+      "source": "annotation"
+    },
+    "0x0042B2F0": {
+      "name": "GetOrientedOBBox",
+      "signature": "void __thiscall(Object3D *this, gbOBBox *pOBBox)",
+      "source": "annotation"
+    },
+    "0x0047DD60": {
+      "name": "_todo_47DD60",
+      "signature": "int __thiscall Object3D::_todo_47DD60(Object3D *this, unsigned __int8 *thisa)",
+      "source": "annotation"
+    },
+    "0x004B7F80": {
+      "name": "RenderTransformed",
+      "signature": "int __thiscall Object3D::RenderTransformed(Object3D *this, int nLOD)",
+      "source": "annotation"
+    }
   }
 }

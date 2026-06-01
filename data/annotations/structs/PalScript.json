@@ -516,5 +516,1192 @@
       "type": "float[48]",
       "source": "binary_scan: IDA array field, merged from individual elements"
     }
+  },
+  "methods": {
+    "0x0049FC5C": {
+      "name": "Update",
+      "signature": "int (float)",
+      "source": "pdb"
+    },
+    "0x0049FB4A": {
+      "name": "ClearAllCamObj",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004B2C20": {
+      "name": "GetWaitObjNum",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x0049F3E1": {
+      "name": "~PalScript",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004A0790": {
+      "name": "GetScriptInstance",
+      "signature": "struct scScriptInstance * ()",
+      "source": "pdb"
+    },
+    "0x0049FBD3": {
+      "name": "ClearAllWaitObj",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0049F43B": {
+      "name": "Destroy",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0049FB2E": {
+      "name": "AddCamObj",
+      "signature": "void (PalScriptWaitObj *)",
+      "source": "pdb"
+    },
+    "0x0049FB12": {
+      "name": "AddWaitObj",
+      "signature": "void (PalScriptWaitObj *)",
+      "source": "pdb"
+    },
+    "0x0049F380": {
+      "name": "PalScript",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00412680": {
+      "name": "DestroyScript",
+      "signature": "int __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00430290": {
+      "name": "LoadScript",
+      "signature": "int __thiscall(PalScript *this, int pathAddr)",
+      "source": "annotation"
+    },
+    "0x00430570": {
+      "name": "SetAppName",
+      "signature": "char *__thiscall(PalScript *this, char *name)",
+      "source": "annotation"
+    },
+    "0x004318B0": {
+      "name": "LoadFromFile",
+      "signature": "void *__thiscall(PalScript *this, char *filename)",
+      "source": "annotation"
+    },
+    "0x004319F0": {
+      "name": "SetDirectory",
+      "signature": "int __thiscall(PalScript *this, char *dir)",
+      "source": "annotation"
+    },
+    "0x00431A60": {
+      "name": "HasNext",
+      "signature": "int __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00431B60": {
+      "name": "LoadNext",
+      "signature": "int __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00431D80": {
+      "name": "PalScript_1d80",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00431F00": {
+      "name": "AddWaitObj",
+      "signature": "int __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00431F10": {
+      "name": "AddCamObj",
+      "signature": "int __fastcall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00431F40": {
+      "name": "ClearAllCamObj",
+      "signature": "void __cdecl __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00431FA0": {
+      "name": "ClearAllWaitObj",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00431FB0": {
+      "name": "Update",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00434C00": {
+      "name": "GetString",
+      "signature": "char * __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x0043A250": {
+      "name": "MoveAndHide",
+      "signature": "int __thiscall PalScript::MoveAndHide(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x0043AA00": {
+      "name": "OpenScript",
+      "signature": "gbVFileSystem *__thiscall(PalScript *this, const char *pszName, char pData)",
+      "source": "annotation"
+    },
+    "0x00445D10": {
+      "name": "OnMessage",
+      "signature": "int __thiscall(PalScript *this, int nVal, int nMsg, int wParam)",
+      "source": "annotation"
+    },
+    "0x00439130": {
+      "name": "PalScript_Init",
+      "signature": "void __thiscall PalScript::PalScript_Init(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x0043A160": {
+      "name": "PalScript",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00445B90": {
+      "name": "Create",
+      "signature": "int __thiscall(PalScript *this, int id, tagRECT *pRect, int parent)",
+      "source": "annotation"
+    },
+    "0x0043A1F0": {
+      "name": "ctor__ovl_A1F0",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00445E70": {
+      "name": "ShowWindow",
+      "signature": "int __thiscall(PalScript *this, int nFlags)",
+      "source": "annotation"
+    },
+    "0x004318A0": {
+      "name": "Cleanup__ovl_18a0",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004353A0": {
+      "name": "Op_InTeam",
+      "signature": "void __thiscall PalScript::Op_InTeam(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435320": {
+      "name": "Op_RoleActiveShort",
+      "signature": "void __thiscall PalScript::Op_RoleActiveShort(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004352D0": {
+      "name": "Op_RoleScriptInitCam",
+      "signature": "char *__thiscall PalScript::Op_RoleScriptInitCam(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00431C10": {
+      "name": "FindSaveStateString",
+      "signature": "char __thiscall(PalScript *String1, char *String2, char *Destination, int nVal)",
+      "source": "annotation"
+    },
+    "0x00439230": {
+      "name": "LoadModel",
+      "signature": "gbGeomNode *__thiscall PalScript::LoadModel(PalScript *this, const char *szFilename, int nActionIdx)",
+      "source": "annotation"
+    },
+    "0x00421560": {
+      "name": "SetAction",
+      "signature": "void __thiscall(PalScript *this, int nRoleID)",
+      "source": "annotation"
+    },
+    "0x00421CA0": {
+      "name": "BindRolesToStage",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435170": {
+      "name": "Op_GetDislike",
+      "signature": "void __thiscall PalScript::Op_GetDislike(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004378E0": {
+      "name": "Op_HaveItem",
+      "signature": "void __thiscall PalScript::Op_HaveItem(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004384B0": {
+      "name": "Op_Dist",
+      "signature": "void __thiscall PalScript::Op_Dist(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00429D10": {
+      "name": "GetCount",
+      "signature": "int *__thiscall(PalScript *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00538D60": {
+      "name": "DestroyInstances",
+      "signature": "void __thiscall PalScript::DestroyInstances(PalScript *this, double nActionID, int *p_DWORD)",
+      "source": "annotation"
+    },
+    "0x00410840": {
+      "name": "InitParticleSlht",
+      "signature": "PalScript *__thiscall PalScript::InitParticleSlht(PalScript *pPalScript)",
+      "source": "annotation"
+    },
+    "0x004309D0": {
+      "name": "EvalExpression",
+      "signature": "int *__thiscall PalScript::EvalExpression(PalScript *this, int *p_DWORD, char *pszBuf)",
+      "source": "annotation"
+    },
+    "0x00431040": {
+      "name": "GetVarRef",
+      "signature": "int *__thiscall PalScript::GetVarRef(PalScript *this, int *pOut, int nIdx)",
+      "source": "annotation"
+    },
+    "0x00431100": {
+      "name": "EvalExprTree",
+      "signature": "int *__thiscall PalScript::EvalExprTree(PalScript *this, int *p_DWORD, void *pData, int *p_DWORD2, char *pszBuf)",
+      "source": "annotation"
+    },
+    "0x00431D20": {
+      "name": "CleanupInstances",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00434D70": {
+      "name": "Op_ScriptRunMode",
+      "signature": "void __thiscall PalScript::Op_ScriptRunMode(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00434D90": {
+      "name": "Op_RolePathOut",
+      "signature": "void __thiscall PalScript::Op_RolePathOut(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00434E50": {
+      "name": "Op_RoleScript",
+      "signature": "char * __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00434E90": {
+      "name": "Op_RoleCtrl",
+      "signature": "char * __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004350F0": {
+      "name": "Op_RoleOverlap",
+      "signature": "char * __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004351A0": {
+      "name": "Op_RoleActive",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435830": {
+      "name": "Op_CameraFocusPoint",
+      "signature": "void __thiscall PalScript::Op_CameraFocusPoint(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435BF0": {
+      "name": "Op_LoseItem",
+      "signature": "void __thiscall PalScript::Op_LoseItem(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004360F0": {
+      "name": "Op_RoleSpaceWalk",
+      "signature": "void __thiscall PalScript::Op_RoleSpaceWalk(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436130": {
+      "name": "Op_RoleMoveBackEx",
+      "signature": "unsigned int __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436190": {
+      "name": "Op_RoleShowAction",
+      "signature": "void __thiscall PalScript::Op_RoleShowAction(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436280": {
+      "name": "Op_RoleEndAction",
+      "signature": "void __thiscall PalScript::Op_RoleEndAction(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436470": {
+      "name": "Op_FavorAdd",
+      "signature": "void __thiscall PalScript::Op_FavorAdd(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004364E0": {
+      "name": "Op_AddRoleAtt",
+      "signature": "void __thiscall PalScript::Op_AddRoleAtt(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004365A0": {
+      "name": "Op_RoleSetFace",
+      "signature": "void __thiscall PalScript::Op_RoleSetFace(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004365B0": {
+      "name": "Op_RoleTurnFace",
+      "signature": "void __thiscall PalScript::Op_RoleTurnFace(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436600": {
+      "name": "Op_TeamClose",
+      "signature": "void __thiscall PalScript::Op_TeamClose(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436680": {
+      "name": "Op_RoleInput",
+      "signature": "void __thiscall PalScript::Op_RoleInput(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436A60": {
+      "name": "Op_Sub",
+      "signature": "void __thiscall PalScript::Op_Sub(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436AB0": {
+      "name": "Op_GetMoney",
+      "signature": "void __thiscall PalScript::Op_GetMoney(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436C00": {
+      "name": "Op_HY_Mode",
+      "signature": "void __thiscall PalScript::Op_HY_Mode(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437010": {
+      "name": "Op_StopMusic",
+      "signature": "void __thiscall PalScript::Op_StopMusic(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437550": {
+      "name": "Op_CameraSet",
+      "signature": "void __thiscall PalScript::Op_CameraSet(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437630": {
+      "name": "Op_CameraRotate",
+      "signature": "void __thiscall PalScript::Op_CameraRotate(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437650": {
+      "name": "Op_GetDlgSel",
+      "signature": "void __thiscall PalScript::Op_GetDlgSel(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004377F0": {
+      "name": "Op_RoleEmote",
+      "signature": "void __thiscall PalScript::Op_RoleEmote(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437AE0": {
+      "name": "Op_RoleSetLayerByObj",
+      "signature": "char *__thiscall PalScript::Op_RoleSetLayerByObj(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437C40": {
+      "name": "Op_Enable_JusticeBook",
+      "signature": "void __thiscall PalScript::Op_Enable_JusticeBook(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437C50": {
+      "name": "Op_Specify_Compos",
+      "signature": "void __thiscall PalScript::Op_Specify_Compos(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437FF0": {
+      "name": "Op_Start_Wolf",
+      "signature": "void __thiscall PalScript::Op_Start_Wolf(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004381B0": {
+      "name": "ClearFloatParams",
+      "signature": "void __thiscall PalScript::ClearFloatParams(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438350": {
+      "name": "Op_GetHS_ManageType",
+      "signature": "void __thiscall PalScript::Op_GetHS_ManageType(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438390": {
+      "name": "Op_GetHS_Accrual_type",
+      "signature": "void __thiscall PalScript::Op_GetHS_Accrual_type(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438840": {
+      "name": "Op_ScrEft",
+      "signature": "void __thiscall PalScript::Op_ScrEft(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004389D0": {
+      "name": "Op_Snow",
+      "signature": "void __thiscall PalScript::Op_Snow(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438B00": {
+      "name": "Op_EntrySmeltSys",
+      "signature": "void __thiscall PalScript::Op_EntrySmeltSys(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438B60": {
+      "name": "Op_CEft_Load",
+      "signature": "void __thiscall PalScript::Op_CEft_Load(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438D00": {
+      "name": "Op_Rain",
+      "signature": "void __thiscall PalScript::Op_Rain(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438F10": {
+      "name": "Op_FullTeamAtt",
+      "signature": "void __thiscall PalScript::Op_FullTeamAtt(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438F30": {
+      "name": "Op_BeeInsertFrame",
+      "signature": "void __thiscall PalScript::Op_BeeInsertFrame(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x0043A1D0": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "source": "annotation"
+    },
+    "0x0043A270": {
+      "name": "RenderUI",
+      "signature": "int __thiscall PalScript::RenderUI(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x0043A3E0": {
+      "name": "UpdateTimer",
+      "signature": "BOOL __thiscall(PalScript *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x0044B8A0": {
+      "name": "SetDialogTemplate",
+      "signature": "LPSTR __thiscall PalScript::SetDialogTemplate(PalScript *this, CHAR *String1, CHAR *lpString2)",
+      "source": "annotation"
+    },
+    "0x00522130": {
+      "name": "LoadSceneConfig",
+      "signature": "char __thiscall(PalScript *this, char *filename)",
+      "source": "annotation"
+    },
+    "0x00529440": {
+      "name": "LoadResource",
+      "signature": "int __thiscall(PalScript *this, char *filename)",
+      "source": "annotation"
+    },
+    "0x00535710": {
+      "name": "LoadVisNode",
+      "signature": "struct gbVFileSystem *__thiscall PalScript::LoadVisNode(PalScript *this, double String2, char *pszBuf, char *pszBuf2)",
+      "source": "annotation"
+    },
+    "0x00429D40": {
+      "name": "SetIndex",
+      "signature": "int __thiscall(PalScript *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00430500": {
+      "name": "ReleaseFrame",
+      "signature": "void __thiscall PalScript::ReleaseFrame(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004307D0": {
+      "name": "InitScriptObj",
+      "signature": "int __thiscall PalScript::InitScriptObj(PalScript *this, int *p_DWORD, unsigned int dwVal, unsigned int dwVal2)",
+      "source": "annotation"
+    },
+    "0x00431390": {
+      "name": "ResolveScope",
+      "signature": "int *__thiscall PalScript::ResolveScope(PalScript *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00431440": {
+      "name": "IteratorNext",
+      "signature": "int *__thiscall PalScript::IteratorNext(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004314A0": {
+      "name": "IteratorPrev",
+      "signature": "int *__thiscall PalScript::IteratorPrev(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004314F0": {
+      "name": "ConstructStringObj",
+      "signature": "void __thiscall PalScript::ConstructStringObj(PalScript *this, char *pszBuf)",
+      "source": "annotation"
+    },
+    "0x00431640": {
+      "name": "SetWaitRange",
+      "signature": "int __thiscall PalScript::SetWaitRange(PalScript *this, unsigned int dwVal, unsigned int dwVal2)",
+      "source": "annotation"
+    },
+    "0x00431780": {
+      "name": "CompareBuffer",
+      "signature": "int __thiscall PalScript::CompareBuffer(PalScript *this, int nDescriptor)",
+      "source": "annotation"
+    },
+    "0x004319C0": {
+      "name": "FreeLoadBuffer",
+      "signature": "void __thiscall PalScript::FreeLoadBuffer(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00431C00": {
+      "name": "SaveLoadState",
+      "signature": "int __thiscall PalScript::SaveLoadState(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00434CE0": {
+      "name": "Op_Idle",
+      "signature": "void __thiscall PalScript::Op_Idle(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00434ED0": {
+      "name": "Op_RolePathOutToTile",
+      "signature": "void __thiscall PalScript::Op_RolePathOutToTile(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00434F90": {
+      "name": "Op_RolePathTo",
+      "signature": "void __thiscall PalScript::Op_RolePathTo(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435010": {
+      "name": "Op_TeamCloseA",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435080": {
+      "name": "Op_RoleSetPos",
+      "signature": "void __thiscall PalScript::Op_RoleSetPos(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435130": {
+      "name": "CmdGetSceneObject",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004353F0": {
+      "name": "Op_RoleSetLayer",
+      "signature": "void __thiscall PalScript::Op_RoleSetLayer(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435470": {
+      "name": "Op_RoleOverlapEx",
+      "signature": "void __thiscall PalScript::Op_RoleOverlapEx(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004354F0": {
+      "name": "Op_RoleCtrlEx",
+      "signature": "void __thiscall PalScript::Op_RoleCtrlEx(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435570": {
+      "name": "Op_RoleScale",
+      "signature": "void __thiscall PalScript::Op_RoleScale(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435600": {
+      "name": "Op_CameraPush",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004356C0": {
+      "name": "Op_ShowActAutoStand",
+      "signature": "void __thiscall PalScript::Op_ShowActAutoStand(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435730": {
+      "name": "Op_RoleTurnFaceA",
+      "signature": "void __thiscall PalScript::Op_RoleTurnFaceA(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435770": {
+      "name": "Op_TeamOpenA",
+      "signature": "void __thiscall PalScript::Op_TeamOpenA(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004357B0": {
+      "name": "Op_CameraPushState",
+      "signature": "void __thiscall PalScript::Op_CameraPushState(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004357E0": {
+      "name": "Op_CameraFocusRole",
+      "signature": "void __thiscall PalScript::Op_CameraFocusRole(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436240": {
+      "name": "Op_RoleScaleEx",
+      "signature": "float * __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004362D0": {
+      "name": "Op_ShowActAutoStandEx",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436360": {
+      "name": "Op_TestGoto",
+      "signature": "void __thiscall PalScript::Op_TestGoto(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436380": {
+      "name": "Op_Let",
+      "signature": "void __thiscall PalScript::Op_Let(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004363B0": {
+      "name": "Op_AddEx",
+      "signature": "void __thiscall PalScript::Op_AddEx(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004363E0": {
+      "name": "Op_GetSwitch",
+      "signature": "void __thiscall PalScript::Op_GetSwitch(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436410": {
+      "name": "Op_Call",
+      "signature": "void __thiscall PalScript::Op_Call(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436440": {
+      "name": "Op_LK_Ghost",
+      "signature": "void __thiscall PalScript::Op_LK_Ghost(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436490": {
+      "name": "Op_Team",
+      "signature": "void __thiscall PalScript::Op_Team(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436530": {
+      "name": "Op_AddItem",
+      "signature": "void __thiscall PalScript::Op_AddItem(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004365C0": {
+      "name": "Op_RoleFaceRoleEx",
+      "signature": "char __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004365D0": {
+      "name": "Op_RoleTurnFaceAEx",
+      "signature": "char __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004365E0": {
+      "name": "Op_TeamOpen",
+      "signature": "void __thiscall PalScript::Op_TeamOpen(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436710": {
+      "name": "Op_GoTo",
+      "signature": "void __thiscall PalScript::Op_GoTo(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436760": {
+      "name": "Op_FNOT",
+      "signature": "void __thiscall PalScript::Op_FNOT(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436780": {
+      "name": "Op_FOP",
+      "signature": "void __thiscall PalScript::Op_FOP(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004367B0": {
+      "name": "Op_GT",
+      "signature": "void __thiscall PalScript::Op_GT(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004367E0": {
+      "name": "Op_LS",
+      "signature": "void __thiscall PalScript::Op_LS(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436810": {
+      "name": "Op_Between",
+      "signature": "void __thiscall PalScript::Op_Between(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436860": {
+      "name": "Op_EQ",
+      "signature": "void __thiscall PalScript::Op_EQ(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436890": {
+      "name": "Op_NEQ",
+      "signature": "void __thiscall PalScript::Op_NEQ(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004368C0": {
+      "name": "Op_Music",
+      "signature": "void __thiscall PalScript::Op_Music(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004368E0": {
+      "name": "Op_GEQ",
+      "signature": "void __thiscall PalScript::Op_GEQ(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436910": {
+      "name": "Op_LEQ",
+      "signature": "void __thiscall PalScript::Op_LEQ(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436940": {
+      "name": "Op_RemoveItem",
+      "signature": "void __thiscall PalScript::Op_RemoveItem(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004369A0": {
+      "name": "Op_AddMoney",
+      "signature": "void __thiscall PalScript::Op_AddMoney(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004369C0": {
+      "name": "Op_Movie",
+      "signature": "void __thiscall PalScript::Op_Movie(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436A10": {
+      "name": "Op_CEft_Pos",
+      "signature": "void __thiscall PalScript::Op_CEft_Pos(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436B40": {
+      "name": "Op_TeamCloseAEx",
+      "signature": "void __thiscall PalScript::Op_TeamCloseAEx(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436BD0": {
+      "name": "Op_GetHS_Period_type",
+      "signature": "void __thiscall PalScript::Op_GetHS_Period_type(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436C60": {
+      "name": "Op_FadeNormal",
+      "signature": "void __thiscall PalScript::Op_FadeNormal(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436CB0": {
+      "name": "Op_HY_FLY",
+      "signature": "void __thiscall PalScript::Op_HY_FLY(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436D30": {
+      "name": "Op_SetRoleTexture",
+      "signature": "void __thiscall PalScript::Op_SetRoleTexture(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436DB0": {
+      "name": "Op_Rotate",
+      "signature": "void __thiscall PalScript::Op_Rotate(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436E10": {
+      "name": "Op_Quake",
+      "signature": "void __thiscall PalScript::Op_Quake(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436E70": {
+      "name": "Op_ShowChatRest",
+      "signature": "void __thiscall PalScript::Op_ShowChatRest(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436ED0": {
+      "name": "Op_GetHS_UnHock_type",
+      "signature": "void __thiscall PalScript::Op_GetHS_UnHock_type(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436F40": {
+      "name": "Op_SetBigMapElement",
+      "signature": "void __thiscall PalScript::Op_SetBigMapElement(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436F90": {
+      "name": "Op_ObjectMove",
+      "signature": "void __thiscall PalScript::Op_ObjectMove(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436FB0": {
+      "name": "Op_KF_Entry",
+      "signature": "void __thiscall PalScript::Op_KF_Entry(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436FE0": {
+      "name": "Op_ENCAMP_Entry",
+      "signature": "void __thiscall PalScript::Op_ENCAMP_Entry(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437040": {
+      "name": "Op_SKEE_Entry",
+      "signature": "void __thiscall PalScript::Op_SKEE_Entry(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437080": {
+      "name": "Op_Deal",
+      "signature": "void __thiscall PalScript::Op_Deal(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004370C0": {
+      "name": "Op_APPR_Entry",
+      "signature": "void __thiscall PalScript::Op_APPR_Entry(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004370E0": {
+      "name": "Op_GetHSLv",
+      "signature": "void __thiscall PalScript::Op_GetHSLv(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437120": {
+      "name": "Op_SwitchRS",
+      "signature": "void __thiscall PalScript::Op_SwitchRS(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437170": {
+      "name": "Op_GetFavor",
+      "signature": "void __thiscall PalScript::Op_GetFavor(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437190": {
+      "name": "Op_AddSkill",
+      "signature": "void __thiscall PalScript::Op_AddSkill(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004371B0": {
+      "name": "Op_GetFavorite",
+      "signature": "void __thiscall PalScript::Op_GetFavorite(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004371D0": {
+      "name": "Op_Note",
+      "signature": "void __thiscall PalScript::Op_Note(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004371F0": {
+      "name": "Op_PlaySound",
+      "signature": "void __thiscall PalScript::Op_PlaySound(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437210": {
+      "name": "Op_FullRoleAtt",
+      "signature": "void __thiscall PalScript::Op_FullRoleAtt(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437280": {
+      "name": "Op_DlgPos",
+      "signature": "void __thiscall PalScript::Op_DlgPos(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004373A0": {
+      "name": "Op_FadeOut",
+      "signature": "void __thiscall PalScript::Op_FadeOut(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004373C0": {
+      "name": "Op_FadeIn",
+      "signature": "void __thiscall PalScript::Op_FadeIn(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004373D0": {
+      "name": "Op_DlgFace",
+      "signature": "void __thiscall PalScript::Op_DlgFace(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437440": {
+      "name": "Op_DlgFont",
+      "signature": "void __thiscall PalScript::Op_DlgFont(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004374A0": {
+      "name": "Op_LoadScene",
+      "signature": "void __thiscall PalScript::Op_LoadScene(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004374E0": {
+      "name": "Op_DlgHead",
+      "signature": "void __thiscall PalScript::Op_DlgHead(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437500": {
+      "name": "Op_DlgSel",
+      "signature": "void __thiscall PalScript::Op_DlgSel(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004375E0": {
+      "name": "Op_CameraWag",
+      "signature": "void __thiscall PalScript::Op_CameraWag(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437610": {
+      "name": "Op_CameraMove",
+      "signature": "void __thiscall PalScript::Op_CameraMove(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004376A0": {
+      "name": "Op_CameraTrans",
+      "signature": "void __thiscall PalScript::Op_CameraTrans(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004376F0": {
+      "name": "Op_CameraDefault",
+      "signature": "void __thiscall PalScript::Op_CameraDefault(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437740": {
+      "name": "Op_RoleStop",
+      "signature": "void __thiscall PalScript::Op_RoleStop(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437A80": {
+      "name": "Op_Climb",
+      "signature": "void __thiscall PalScript::Op_Climb(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437AC0": {
+      "name": "Op_InTeamExecScript",
+      "signature": "char *__thiscall PalScript::Op_InTeamExecScript(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437B20": {
+      "name": "Op_Combat",
+      "signature": "void __thiscall PalScript::Op_Combat(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437B90": {
+      "name": "Op_DlgTime",
+      "signature": "void __thiscall PalScript::Op_DlgTime(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437BB0": {
+      "name": "Op_GetTimeSel",
+      "signature": "void __thiscall PalScript::Op_GetTimeSel(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438030": {
+      "name": "Op_Start_HideFight",
+      "signature": "void __thiscall PalScript::Op_Start_HideFight(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438110": {
+      "name": "UpdateWaitTimer",
+      "signature": "void __thiscall PalScript::UpdateWaitTimer(PalScript *this, float fVal)",
+      "source": "annotation"
+    },
+    "0x004381E0": {
+      "name": "Op_Trigger",
+      "signature": "void __thiscall PalScript::Op_Trigger(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004382A0": {
+      "name": "UpdateIdleTimer",
+      "signature": "void __thiscall PalScript::UpdateIdleTimer(PalScript *this, float fVal)",
+      "source": "annotation"
+    },
+    "0x00438310": {
+      "name": "Op_JT_Exhibit",
+      "signature": "void __thiscall PalScript::Op_JT_Exhibit(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438440": {
+      "name": "Op_EntryRow",
+      "signature": "void __thiscall PalScript::Op_EntryRow(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438450": {
+      "name": "Op_RotateInv",
+      "signature": "void __thiscall PalScript::Op_RotateInv(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438470": {
+      "name": "Op_EntrySkee",
+      "signature": "void __thiscall PalScript::Op_EntrySkee(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004384D0": {
+      "name": "Op_CombatNotGameOver",
+      "signature": "void __thiscall PalScript::Op_CombatNotGameOver(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438540": {
+      "name": "UpdateFadeOut",
+      "signature": "void __thiscall PalScript::UpdateFadeOut(PalScript *this, float fDelta)",
+      "source": "annotation"
+    },
+    "0x004385A0": {
+      "name": "Op_GetCombat",
+      "signature": "void __thiscall PalScript::Op_GetCombat(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438640": {
+      "name": "UpdateFadeIn",
+      "signature": "void __thiscall PalScript::UpdateFadeIn(PalScript *this, float fDelta)",
+      "source": "annotation"
+    },
+    "0x004387B0": {
+      "name": "Op_RoleFadeIn",
+      "signature": "void __thiscall PalScript::Op_RoleFadeIn(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004387D0": {
+      "name": "Op_TeamOpenAStartMove",
+      "signature": "void __thiscall PalScript::Op_TeamOpenAStartMove(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004388C0": {
+      "name": "Op_IfInTeam",
+      "signature": "void __thiscall PalScript::Op_IfInTeam(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438910": {
+      "name": "ClearIntParams",
+      "signature": "void __thiscall PalScript::ClearIntParams(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438980": {
+      "name": "Op_CEft_Role",
+      "signature": "void __thiscall PalScript::Op_CEft_Role(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004389A0": {
+      "name": "Op_FogH",
+      "signature": "void __thiscall PalScript::Op_FogH(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438A30": {
+      "name": "Op_AverageLv",
+      "signature": "void __thiscall PalScript::Op_AverageLv(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438B40": {
+      "name": "Op_Switch2Menu",
+      "signature": "void __thiscall PalScript::Op_Switch2Menu(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438BA0": {
+      "name": "Op_LoadAct",
+      "signature": "void __thiscall PalScript::Op_LoadAct(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438D20": {
+      "name": "Op_WaterMagic",
+      "signature": "void __thiscall PalScript::Op_WaterMagic(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438F50": {
+      "name": "Op_CameraYaw",
+      "signature": "void __thiscall PalScript::Op_CameraYaw(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004391A0": {
+      "name": "SetReady",
+      "signature": "void __thiscall PalScript::SetReady(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004391D0": {
+      "name": "ReleaseStateResource",
+      "signature": "void __thiscall PalScript::ReleaseStateResource(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004393A0": {
+      "name": "CheckAnimOver",
+      "signature": "char __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00445E10": {
+      "name": "OffsetRect",
+      "signature": "int *__thiscall(PalScript *this, int *p_DWORD)",
+      "source": "annotation"
+    },
+    "0x0052BE40": {
+      "name": "LoadEncampConfig",
+      "signature": "int __thiscall PalScript::LoadEncampConfig(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00535010": {
+      "name": "ResetAll",
+      "signature": "int __thiscall PalScript::ResetAll(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x0042C700": {
+      "name": "StopSound3D",
+      "signature": "void __thiscall(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00439FE0": {
+      "name": "GetRayToScreen",
+      "signature": "void *__thiscall(PalScript *this, void *pRay, long *pResult)",
+      "source": "annotation"
+    },
+    "0x00436730": {
+      "name": "Op_FCZero",
+      "signature": "void __thiscall PalScript::Op_FCZero(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436740": {
+      "name": "Op_Rand",
+      "signature": "void __thiscall PalScript::Op_Rand(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435710": {
+      "name": "Op_RoleMoveBack",
+      "signature": "void __thiscall PalScript::Op_RoleMoveBack(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00435720": {
+      "name": "Op_RoleFaceRole",
+      "signature": "void __thiscall PalScript::Op_RoleFaceRole(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00436120": {
+      "name": "Op_RoleMoveTo",
+      "signature": "void __thiscall PalScript::Op_RoleMoveTo(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x004386C0": {
+      "name": "Op_RoleFadeOut",
+      "signature": "void __thiscall PalScript::Op_RoleFadeOut(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438A20": {
+      "name": "Op_CEft",
+      "signature": "void __thiscall PalScript::Op_CEft(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438B80": {
+      "name": "Op_GiveCloth",
+      "signature": "void __thiscall PalScript::Op_GiveCloth(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437C20": {
+      "name": "Op_Get_Appr",
+      "signature": "void __thiscall PalScript::Op_Get_Appr(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00437C30": {
+      "name": "Op_Enable_Sword",
+      "signature": "void __thiscall PalScript::Op_Enable_Sword(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00438930": {
+      "name": "Op_Enable_SwordSkill",
+      "signature": "void __thiscall PalScript::Op_Enable_SwordSkill(PalScript *this)",
+      "source": "annotation"
+    },
+    "0x00433F90": {
+      "name": "ProcessGBKString",
+      "signature": "int __cdecl PalScript::ProcessGBKString()",
+      "source": "annotation"
+    }
   }
 }

@@ -186,5 +186,172 @@
   "base_class": [
     "CEffObj",
     "CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffCylinder::*)(unsigned long)>"
-  ]
+  ],
+  "methods": {
+    "0x005DCA90": {
+      "name": "GetEditorTaskDescription",
+      "signature": "virtual char * (int)",
+      "source": "pdb"
+    },
+    "0x005DBAA4": {
+      "name": "Init",
+      "signature": "virtual void (tagEffObjType *, float, float, float)",
+      "source": "pdb"
+    },
+    "0x005DCC91": {
+      "name": "InitDefaultUVSet",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x005DCDB1": {
+      "name": "LoadTexture",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x005DBF9C": {
+      "name": "Render",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x005DCBD8": {
+      "name": "GetEditorObjDescription",
+      "signature": "virtual char * (int)",
+      "source": "pdb"
+    },
+    "0x005DC5EC": {
+      "name": "ProcCommonTask",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x005DDBF0": {
+      "name": "ForceEndAllTask",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x005DC4AC": {
+      "name": "CreateTask",
+      "signature": "virtual void (tagEffTaskParam *)",
+      "source": "pdb"
+    },
+    "0x005DBC1E": {
+      "name": "Create",
+      "signature": "virtual bool (tagEffObjType *)",
+      "source": "pdb"
+    },
+    "0x005DC285": {
+      "name": "Update",
+      "signature": "virtual void (float)",
+      "source": "pdb"
+    },
+    "0x005DDC10": {
+      "name": "CallTask",
+      "signature": "virtual void (void *, ulong)",
+      "source": "pdb"
+    },
+    "0x005DCFCC": {
+      "name": "CreateGeom",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005DDB60": {
+      "name": "Clone",
+      "signature": "virtual class CEffObj * ()",
+      "source": "pdb"
+    },
+    "0x005DB9DA": {
+      "name": "~CEffCylinder",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005DC575": {
+      "name": "ProcInitTask",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x005DBF91": {
+      "name": "Destroy",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x005DB860": {
+      "name": "CEffCylinder",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005DC27A": {
+      "name": "Attach",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x004C3DD0": {
+      "name": "CEffCylinder",
+      "signature": "void __fastcall(CEffCylinder *this)",
+      "source": "annotation"
+    },
+    "0x004C3EB0": {
+      "name": "~CEffCylinder",
+      "signature": "void __thiscall(CEffCylinder *this)",
+      "source": "annotation"
+    },
+    "0x004C3EC0": {
+      "name": "Init__ovl_3ec0",
+      "signature": "int __thiscall(CEffCylinder *this, float *pType, float fx, float fy, float fz)",
+      "source": "annotation"
+    },
+    "0x004C4060": {
+      "name": "Create",
+      "signature": "char __thiscall(CEffCylinder *this, tagEffObjType *pType)",
+      "source": "annotation"
+    },
+    "0x004C4370": {
+      "name": "Destroy",
+      "signature": "void __thiscall(CEffCylinder *this)",
+      "source": "annotation"
+    },
+    "0x004C45A0": {
+      "name": "CreateTask",
+      "signature": "void __thiscall(CEffCylinder *this, float p)",
+      "source": "annotation"
+    },
+    "0x004C48D0": {
+      "name": "ProcInitTask",
+      "signature": "void __thiscall(CEffCylinder *this, int *dwParam)",
+      "source": "annotation"
+    },
+    "0x004C5010": {
+      "name": "GetEditorTaskDescription",
+      "signature": "const char *__thiscall(CEffCylinder *this, int nIndex)",
+      "source": "annotation"
+    },
+    "0x004C5150": {
+      "name": "GetEditorObjDescription",
+      "signature": "const char *__thiscall(CEffCylinder *this, int nIndex)",
+      "source": "annotation"
+    },
+    "0x004C5210": {
+      "name": "InitDefaultUVSet",
+      "signature": "void __thiscall(CEffCylinder *this, int nFramePerRow, int nFramePerCol)",
+      "source": "annotation"
+    },
+    "0x004C52C0": {
+      "name": "LoadTexture",
+      "signature": "int *__thiscall(CEffCylinder *this, char *pFileName)",
+      "source": "annotation"
+    },
+    "0x004C3C90": {
+      "name": "Init__ovl_3c90",
+      "signature": "CEffCylinder **__thiscall CEffCylinder::Init(CEffCylinder *this)",
+      "source": "annotation"
+    },
+    "0x004CA450": {
+      "name": "UpdateGeometry",
+      "signature": "int __thiscall CEffCylinder::UpdateGeometry(CEffCylinder *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004CC4C0": {
+      "name": "Update",
+      "signature": "int __thiscall CEffCylinder::Update(CEffCylinder *this, int nVal)",
+      "source": "annotation"
+    }
+  }
 }

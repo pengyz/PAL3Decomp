@@ -50,5 +50,267 @@
   },
   "base_class": [
     "RoleCamera"
-  ]
+  ],
+  "methods": {
+    "0x00695660": {
+      "name": "AddCurCamToEditor",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x006954C9": {
+      "name": "SaveEditorCam",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x006958E8": {
+      "name": "DelEditorCam",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0069627B": {
+      "name": "ClearFinishedTask",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x006966C4": {
+      "name": "ProcCamMove",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x006962DE": {
+      "name": "DelTask",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00695181": {
+      "name": "~CCBStageCam",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x006959F1": {
+      "name": "SetCamPos",
+      "signature": "void (tagCam *)",
+      "source": "pdb"
+    },
+    "0x00695077": {
+      "name": "CCBStageCam",
+      "signature": "void (CCBStage *, gbGfxManager *)",
+      "source": "pdb"
+    },
+    "0x00696888": {
+      "name": "SwitchEditorCamPos",
+      "signature": "bool (int, int, float)",
+      "source": "pdb"
+    },
+    "0x006960D6": {
+      "name": "DoTask",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00695A65": {
+      "name": "SetCamPosToEditor",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x00695280": {
+      "name": "LoadEditorCam",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00695ABF": {
+      "name": "Create",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00695AF5": {
+      "name": "Init",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0064DF60": {
+      "name": "GetEditorCam",
+      "signature": "struct tagCam * (int)",
+      "source": "pdb"
+    },
+    "0x00695B65": {
+      "name": "Update",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00695972": {
+      "name": "IsCamValid",
+      "signature": "bool (tagCam *)",
+      "source": "pdb"
+    },
+    "0x00695AE8": {
+      "name": "Destroy",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00695918": {
+      "name": "IsEditorCamValid",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x006951D2": {
+      "name": "Reset",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x006964F2": {
+      "name": "AddTask",
+      "signature": "bool (void *, ulong, float, tagCam *, tagCam *)",
+      "source": "pdb"
+    },
+    "0x00504080": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(CCBStageCam *this, char flags)",
+      "source": "annotation"
+    },
+    "0x00504E70": {
+      "name": "CCBStageCam",
+      "signature": "void __thiscall(CCBStageCam *Buffer)",
+      "source": "annotation"
+    },
+    "0x00504F40": {
+      "name": "~CCBStageCam__ovl_4f40",
+      "signature": "void __thiscall(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x00505060": {
+      "name": "Reset",
+      "signature": "char __thiscall(CCBStageCam *this, int nVal, const void *pData)",
+      "source": "annotation"
+    },
+    "0x005050D0": {
+      "name": "LoadEditorCam",
+      "signature": "char __thiscall(CCBStageCam *this, int nVal, int nVal2, const void *pData)",
+      "source": "annotation"
+    },
+    "0x00505180": {
+      "name": "SaveEditorCam",
+      "signature": "char __thiscall(CCBStageCam *this, int nVal, int nVal2, int nVal3)",
+      "source": "annotation"
+    },
+    "0x005051E0": {
+      "name": "AddCurCamToEditor",
+      "signature": "char __thiscall(CCBStageCam *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00505250": {
+      "name": "DelEditorCam",
+      "signature": "char __thiscall(CCBStageCam *this, int nCamIndex)",
+      "source": "annotation"
+    },
+    "0x00505290": {
+      "name": "IsEditorCamValid",
+      "signature": "int __thiscall(CCBStageCam *this, int nCamIndex)",
+      "source": "annotation"
+    },
+    "0x005052C0": {
+      "name": "IsCamValid",
+      "signature": "int __thiscall(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x00505410": {
+      "name": "Create",
+      "signature": "int __thiscall(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x00505490": {
+      "name": "Destroy",
+      "signature": "char __thiscall(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x005054E0": {
+      "name": "Update",
+      "signature": "char __thiscall(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x004E7350": {
+      "name": "PopulateCameraListView",
+      "signature": "int __thiscall CCBStageCam::PopulateCameraListView(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x004E6020": {
+      "name": "UpdateEditorState",
+      "signature": "int __thiscall CCBStageCam::UpdateEditorState(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x004E7060": {
+      "name": "ApplyShake",
+      "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)",
+      "source": "annotation"
+    },
+    "0x004E7280": {
+      "name": "UpdateSmooth",
+      "signature": "LRESULT __thiscall(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x004E74E0": {
+      "name": "UpdateOrbit",
+      "signature": "void __thiscall(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x004E75E0": {
+      "name": "ClampViewAngle",
+      "signature": "char __thiscall(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x004E8480": {
+      "name": "UpdateStageCamera",
+      "signature": "int __thiscall(CCBStageCam *this, float *pfVal, HWND hDlg, int nVal, int nVal2, int nVal3)",
+      "source": "annotation"
+    },
+    "0x00504DD0": {
+      "name": "ResetViewport",
+      "signature": "CCBStage * __thiscall(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x00504E60": {
+      "name": "~CCBStageCam__ovl_4e60",
+      "signature": "char __thiscall CCBStageCam::~CCBStageCam(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x004E7B50": {
+      "name": "LerpToTarget",
+      "signature": "char __thiscall(CCBStageCam *this)",
+      "source": "annotation"
+    },
+    "0x004E8450": {
+      "name": "StoreCurrentView",
+      "signature": "int __thiscall CCBStageCam::StoreCurrentView(CCBStageCam *this, HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
+      "source": "annotation"
+    },
+    "0x004E9890": {
+      "name": "SetBlendWeight",
+      "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)",
+      "source": "annotation"
+    },
+    "0x004E9950": {
+      "name": "InterpolateAngle",
+      "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)",
+      "source": "annotation"
+    },
+    "0x004E9A70": {
+      "name": "UpdateFollowTarget",
+      "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)",
+      "source": "annotation"
+    },
+    "0x004E9C50": {
+      "name": "SetViewDistance",
+      "signature": "char __thiscall(CCBStageCam *this, HWND hDlg)",
+      "source": "annotation"
+    },
+    "0x004E9F70": {
+      "name": "CalculateFOV",
+      "signature": "void __thiscall(CCBStageCam *this, HWND hDlg)",
+      "source": "annotation"
+    },
+    "0x004EA2E0": {
+      "name": "UpdateTransition",
+      "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)",
+      "source": "annotation"
+    }
+  }
 }

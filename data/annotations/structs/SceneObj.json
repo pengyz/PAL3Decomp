@@ -232,5 +232,962 @@
     "PalScriptWaitObj",
     "GlowObj",
     "TaskMgr<SceneObjParam,unsigned long (__thiscall SceneObj::*)(unsigned long)>"
-  ]
+  ],
+  "methods": {
+    "0x00469899": {
+      "name": "CanBeCheck",
+      "signature": "bool (Role *)",
+      "source": "pdb"
+    },
+    "0x0048F0EB": {
+      "name": "Proc_DoAction",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048DA37": {
+      "name": "Proc_AddItemFromTreasureBox",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047E7F1": {
+      "name": "Glow_Attach",
+      "signature": "virtual void (gbRenderEffect *)",
+      "source": "pdb"
+    },
+    "0x004874F1": {
+      "name": "Common_SwitchSpecialState",
+      "signature": "void (uchar, int)",
+      "source": "pdb"
+    },
+    "0x00476924": {
+      "name": "IsCollideRayEX",
+      "signature": "int (gbRay *, gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x0049A2E0": {
+      "name": "F2VEC",
+      "signature": "[thunk]:struct SceneObj `protected: struct gbVec3D & ()",
+      "source": "pdb"
+    },
+    "0x0047DA6A": {
+      "name": "IsPushAllow",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0047BAB4": {
+      "name": "MoveActor",
+      "signature": "bool (float)",
+      "source": "pdb"
+    },
+    "0x004937E4": {
+      "name": "Proc_ObjectMoveUPDN",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048782C": {
+      "name": "Common_SetActive",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x0049A2F0": {
+      "name": "SetRetrorse",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0048E7C0": {
+      "name": "Proc_UnHideSelf",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x004967D5": {
+      "name": "Proc_UnLockCamera",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047680D": {
+      "name": "IsCollideRay",
+      "signature": "int (gbRay *)",
+      "source": "pdb"
+    },
+    "0x0047BA17": {
+      "name": "GetSubObjBox",
+      "signature": "void (gbOBBox *)",
+      "source": "pdb"
+    },
+    "0x0047AC46": {
+      "name": "IsCollide",
+      "signature": "int (int, int, gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x0048E6A6": {
+      "name": "Proc_UnLockRole",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00467586": {
+      "name": "Create",
+      "signature": "void (ObjectInfo *, Scene *)",
+      "source": "pdb"
+    },
+    "0x004727FC": {
+      "name": "InterActRole_CGSpecial",
+      "signature": "void (Role *, uchar, int, float, float)",
+      "source": "pdb"
+    },
+    "0x00494865": {
+      "name": "Proc_VerticalMove",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047C2B4": {
+      "name": "OnLoad",
+      "signature": "void (ObjectInfo *, SceneObj::SubObj *)",
+      "source": "pdb"
+    },
+    "0x0047373E": {
+      "name": "Update",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0047AE68": {
+      "name": "CanRoleGoto",
+      "signature": "int (gbVec3D *, gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x004878E3": {
+      "name": "Common_Delay",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0047BD5E": {
+      "name": "MoveTouchedObj",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004879B8": {
+      "name": "Common_OnSwitchCommonState",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004848E0": {
+      "name": "CallTask",
+      "signature": "virtual void (void *, ulong)",
+      "source": "pdb"
+    },
+    "0x0047B5A3": {
+      "name": "FinishBox",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00472ACB": {
+      "name": "InterActRole_CG",
+      "signature": "void (Role *, uchar, int, float, float)",
+      "source": "pdb"
+    },
+    "0x004875DE": {
+      "name": "Common_ShowAnimation",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x0048D8B3": {
+      "name": "Proc_ShowDialog",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00489A5F": {
+      "name": "CalculateExp",
+      "signature": "float (WuLing)",
+      "source": "pdb"
+    },
+    "0x0048F79B": {
+      "name": "Proc_CG_MoveToAndFro",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x004873D8": {
+      "name": "Common_Position",
+      "signature": "void (gbVec3D *, float, uchar, uchar)",
+      "source": "pdb"
+    },
+    "0x00492CDD": {
+      "name": "Proc_LinkObject",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047A741": {
+      "name": "FillMapRectSubObj",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0047E81C": {
+      "name": "Snd_Stop",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0048C737": {
+      "name": "SetUniteObjectsRight",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x00495E84": {
+      "name": "VecAngle",
+      "signature": "float (gbVec3D *, gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x0048826C": {
+      "name": "Common_Update",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0048E84D": {
+      "name": "Proc_RunScript",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x006E34B0": {
+      "name": "IsPtInTouchAreaCG",
+      "signature": "int (tagPOINT)",
+      "source": "pdb"
+    },
+    "0x0048EC16": {
+      "name": "Proc_RefreshMapRect",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048764E": {
+      "name": "Common_FillMapRect",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x0047BC9F": {
+      "name": "SceneRelation",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00487449": {
+      "name": "Common_MovePlayer",
+      "signature": "void (gbVec3D *, uchar, uchar)",
+      "source": "pdb"
+    },
+    "0x004901A9": {
+      "name": "Proc_CG_VerticalMove",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0049A0A0": {
+      "name": "SetCallProcessGroupObj",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x00477640": {
+      "name": "GetRawOBB",
+      "signature": "void (gbOBBox *)",
+      "source": "pdb"
+    },
+    "0x0047DEBA": {
+      "name": "IsNULLState",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x004942A0": {
+      "name": "Proc_MutualPropUI",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00495F70": {
+      "name": "CalculateRelate",
+      "signature": "struct gbVec3D (gbVec3D *, gbVec3D *, float *)",
+      "source": "pdb"
+    },
+    "0x00493510": {
+      "name": "Proc_MoveOnObject",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00496737": {
+      "name": "Proc_LockCamera",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x004878B8": {
+      "name": "Common_DistRestrict",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0047DBDC": {
+      "name": "SetFloorCanGo",
+      "signature": "void (FLOOR_KIND, int)",
+      "source": "pdb"
+    },
+    "0x0047A9D8": {
+      "name": "CanGoTo",
+      "signature": "int (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x004B2F50": {
+      "name": "GetSnd",
+      "signature": "class gbSound3DNode * ()",
+      "source": "pdb"
+    },
+    "0x0048E4C2": {
+      "name": "SetTasks",
+      "signature": "void (SaveTask *)",
+      "source": "pdb"
+    },
+    "0x00479AC8": {
+      "name": "FillMapORectSubObj",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x004674B3": {
+      "name": "~SceneObj",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0048E55B": {
+      "name": "Init",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0049171D": {
+      "name": "Proc_DirectionMove",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00487616": {
+      "name": "Common_EnableRoleCtrl",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x00487864": {
+      "name": "Common_Snd",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x00487723": {
+      "name": "Common_GravityDown",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0048774E": {
+      "name": "Common_SetPlayerLayer",
+      "signature": "void (int, uchar)",
+      "source": "pdb"
+    },
+    "0x0048DF8B": {
+      "name": "GetObjectTouchPoint",
+      "signature": "bool (Role *, gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x0049603F": {
+      "name": "Proc_RelativeRotateYaw",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047E7BD": {
+      "name": "Glow_GetAABB",
+      "signature": "virtual void (gbAABBox *)",
+      "source": "pdb"
+    },
+    "0x0047AFBA": {
+      "name": "OnCreateMap",
+      "signature": "int (SceneMapObj *, uchar)",
+      "source": "pdb"
+    },
+    "0x0048BB0A": {
+      "name": "Proc_HandleSwitch",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048E484": {
+      "name": "GetTasks",
+      "signature": "struct SaveTask & ()",
+      "source": "pdb"
+    },
+    "0x0047E860": {
+      "name": "FlowerSwitch_Mdl",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00493477": {
+      "name": "Proc_ChangeState",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00468999": {
+      "name": "Render",
+      "signature": "void (gbMatrixStack *, gbRenderEffect *)",
+      "source": "pdb"
+    },
+    "0x0049524E": {
+      "name": "Proc_ShowRoleInPosition",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048778D": {
+      "name": "Common_SetCameraFree",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x0047DF0C": {
+      "name": "IsStatic",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0048E23D": {
+      "name": "CheckToTouch",
+      "signature": "bool (Role *, gbVec3D, gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x00494FF8": {
+      "name": "Proc_HiddenOther",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048EAD0": {
+      "name": "Proc_RunScriptWait",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047E963": {
+      "name": "OpenSwitch",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0049544A": {
+      "name": "Proc_HorizontalMove",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00484A80": {
+      "name": "SetSubParam",
+      "signature": "void (subPARAM)",
+      "source": "pdb"
+    },
+    "0x0048B9BB": {
+      "name": "Proc_SetRoleLevel",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047C12B": {
+      "name": "MoveLayer",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00489C9F": {
+      "name": "HandleTreasureBox",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0048A712": {
+      "name": "HandleUpgrade",
+      "signature": "int (int)",
+      "source": "pdb"
+    },
+    "0x0049377D": {
+      "name": "Proc_ObjectMoveOnPath",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00496A03": {
+      "name": "Proc_Test3",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00487948": {
+      "name": "Common_Switch",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x0048CB61": {
+      "name": "SetUniteObjectsMove",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0049A080": {
+      "name": "SetProcessLinkObj",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0048DE71": {
+      "name": "CheckLinkObject",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0049A200": {
+      "name": "F2VEC",
+      "signature": "struct gbVec3D & (float *)",
+      "source": "pdb"
+    },
+    "0x004731A6": {
+      "name": "GetObjHeight",
+      "signature": "float (int, int, int)",
+      "source": "pdb"
+    },
+    "0x0048BE8D": {
+      "name": "SetUniteObjectsLeft",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x0048752F": {
+      "name": "Common_RunScript",
+      "signature": "void (int, uchar)",
+      "source": "pdb"
+    },
+    "0x0047B54E": {
+      "name": "OnRoleLeave",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00496980": {
+      "name": "Proc_Test2",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x004876BE": {
+      "name": "Common_PlayerFace",
+      "signature": "void (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x004907CC": {
+      "name": "Proc_CG_PlayerCVD",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x004896A4": {
+      "name": "GetVectorFromYawPitchRoll",
+      "signature": "struct gbVec3D (gbVec3D *, float, float)",
+      "source": "pdb"
+    },
+    "0x004876F8": {
+      "name": "Common_MovePlayerPath",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00477E92": {
+      "name": "FillMapRect",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x00468798": {
+      "name": "Destroy",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0047BC18": {
+      "name": "HasInverseStateUniteObj_InLastSaveScene",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0047D7B3": {
+      "name": "Script_OpenDoor",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0048BE67": {
+      "name": "Lerp",
+      "signature": "void (float *, float, float, float)",
+      "source": "pdb"
+    },
+    "0x0048BBE9": {
+      "name": "Proc_DisplayPointer",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00487980": {
+      "name": "Common_MachineCtrl",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x0048E5AE": {
+      "name": "HandleCGObj",
+      "signature": "void (Role *, int, gbVec3D, int)",
+      "source": "pdb"
+    },
+    "0x0048BA6D": {
+      "name": "Proc_HandleObject",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x004968FD": {
+      "name": "Proc_Test1",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x004909BB": {
+      "name": "Proc_CG_Thunder",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00487686": {
+      "name": "Common_SetCanGo",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x0048BD0E": {
+      "name": "Proc_HandleLittleBox",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047DAE8": {
+      "name": "Door_Switch",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0048ECB2": {
+      "name": "Proc_PlayCVD",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047C04D": {
+      "name": "IfOnMe",
+      "signature": "int (Role *)",
+      "source": "pdb"
+    },
+    "0x00496870": {
+      "name": "Proc_PlaySnd",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00477921": {
+      "name": "GetCollideOBB",
+      "signature": "void (gbOBBox *, gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x00477779": {
+      "name": "GetCollideOBB",
+      "signature": "void (gbOBBox *)",
+      "source": "pdb"
+    },
+    "0x0048C2BA": {
+      "name": "SetUniteObjectsZero",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00484A40": {
+      "name": "VEC2F",
+      "signature": "void (gbVec3D *, float *)",
+      "source": "pdb"
+    },
+    "0x004699BE": {
+      "name": "InterActRole",
+      "signature": "void (Role *, uchar, int, float)",
+      "source": "pdb"
+    },
+    "0x004947FE": {
+      "name": "Proc_MoveWithPath",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0049320F": {
+      "name": "Proc_MoveRole",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0049A0C0": {
+      "name": "SetMainGroupObj",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0047799F": {
+      "name": "RefreshMapRect",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0049648E": {
+      "name": "Proc_CameraRefer",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048FD4B": {
+      "name": "Proc_CG_RotateAndMove",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048A78D": {
+      "name": "HandleObject",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00492738": {
+      "name": "Proc_Rotate",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047E07B": {
+      "name": "Flower_Switch",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x0046721D": {
+      "name": "SceneObj",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004877C5": {
+      "name": "Common_CameraMove",
+      "signature": "void (gbVec3D, uchar)",
+      "source": "pdb"
+    },
+    "0x0049384B": {
+      "name": "Proc_RoleToPosition",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x004637A0": {
+      "name": "GetTouchCounter",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x00492FAC": {
+      "name": "Proc_RoleFalling",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00491DDF": {
+      "name": "Proc_DirectionMoveEX",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047E417": {
+      "name": "PlaySnd",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0048E733": {
+      "name": "Proc_HideSelf",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048C885": {
+      "name": "Proc_UniteObjectsRight",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048C406": {
+      "name": "Proc_UniteObjectsZero",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047DDA7": {
+      "name": "SetRectDist",
+      "signature": "void (tagRECT *, uchar)",
+      "source": "pdb"
+    },
+    "0x0048E604": {
+      "name": "Proc_LockRole",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048791D": {
+      "name": "Common_CameraLockPlayer",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0048756D": {
+      "name": "Common_LinkObject",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x004903D6": {
+      "name": "Proc_CG_VerticalMoveToAndFro",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00495164": {
+      "name": "Proc_DisableRole",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047D89A": {
+      "name": "AddInventory",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0048F6B5": {
+      "name": "Proc_CG_PointAct",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0049596A": {
+      "name": "Proc_ShowLinkObj",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047D845": {
+      "name": "IsWaiting",
+      "signature": "virtual int ()",
+      "source": "pdb"
+    },
+    "0x0049106C": {
+      "name": "Proc_CG_Fire",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047E1FA": {
+      "name": "IfNeedSave",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0048CF52": {
+      "name": "Proc_UniteObjectsMove",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00492055": {
+      "name": "Proc_MoveToAndFro",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048895F": {
+      "name": "Common_OnSwitchSpecial",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x00584A60": {
+      "name": "IsLockedPropUI",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x004875A5": {
+      "name": "Common_PlayerShowAct",
+      "signature": "void (ACTION_KIND, int)",
+      "source": "pdb"
+    },
+    "0x00494D8D": {
+      "name": "Proc_RiseAndFall",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0048F1F2": {
+      "name": "Proc_CG_DirectionMove",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x0047D932": {
+      "name": "LinkObject",
+      "signature": "class SceneObj * ()",
+      "source": "pdb"
+    },
+    "0x00496A86": {
+      "name": "Proc_Test4",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x004897DA": {
+      "name": "ProcessGroupObj",
+      "signature": "int (Role *, uchar, int, float)",
+      "source": "pdb"
+    },
+    "0x0048BFDA": {
+      "name": "Proc_UniteObjectsLeft",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00536260": {
+      "name": "CreateUI",
+      "signature": "int __thiscall(SceneObj *this)",
+      "source": "annotation"
+    },
+    "0x005362F0": {
+      "name": "Destructor",
+      "signature": "SceneObj * __thiscall(SceneObj *this)",
+      "source": "annotation"
+    },
+    "0x005363C0": {
+      "name": "CleanupInternal",
+      "signature": "int __thiscall(SceneObj *this)",
+      "source": "annotation"
+    },
+    "0x005368A0": {
+      "name": "HandleEvent",
+      "signature": "BOOL __thiscall(SceneObj *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00452FD0": {
+      "name": "ctor__ovl_2FD0",
+      "signature": "int __thiscall(SceneObj *this)",
+      "source": "annotation"
+    },
+    "0x00453030": {
+      "name": "ctor_3030",
+      "signature": "void __thiscall(SceneObj *this)",
+      "source": "annotation"
+    },
+    "0x00407B50": {
+      "name": "UpdateAutoDelete",
+      "signature": "char __thiscall SceneObj::UpdateAutoDelete(SceneObj *this, unsigned int deltatime)",
+      "source": "annotation"
+    },
+    "0x00453010": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "source": "annotation"
+    },
+    "0x00453A70": {
+      "name": "InsertAt",
+      "signature": "SceneObj *__thiscall SceneObj::InsertAt(SceneObj *this, SceneObj *pSceneObj, unsigned int dwVal, unsigned int dwVal2)",
+      "source": "annotation"
+    },
+    "0x0052F800": {
+      "name": "LoadGeomFromFile",
+      "signature": "gbVFileSystem *__thiscall(SceneObj *this, const char *pszName)",
+      "source": "annotation"
+    },
+    "0x0052FB70": {
+      "name": "LoadObstruction",
+      "signature": "gbVFileSystem *__thiscall(SceneObj *this)",
+      "source": "annotation"
+    },
+    "0x00530280": {
+      "name": "LoadGeomNode",
+      "signature": "gbGeomNode *__thiscall(SceneObj *this, const char *pszFilename)",
+      "source": "annotation"
+    },
+    "0x00530330": {
+      "name": "LoadDefaultModel",
+      "signature": "gbGeomNode *__thiscall(SceneObj *this)",
+      "source": "annotation"
+    },
+    "0x0053EE60": {
+      "name": "StringCopyReplace",
+      "signature": "char *__thiscall SceneObj::StringCopyReplace(SceneObj *pSceneObj, char *pszBuf, char *pszBuf2)",
+      "source": "annotation"
+    },
+    "0x0053F060": {
+      "name": "StringCopyCat",
+      "signature": "void __thiscall SceneObj::StringCopyCat(SceneObj *pSceneObj, SceneObj *pSceneObj2)",
+      "source": "annotation"
+    },
+    "0x00453200": {
+      "name": "ValidateState",
+      "signature": "char __thiscall SceneObj::ValidateState(SceneObj *this)",
+      "source": "annotation"
+    },
+    "0x004538E0": {
+      "name": "LoadData",
+      "signature": "char __thiscall SceneObj::LoadData(SceneObj *this)",
+      "source": "annotation"
+    },
+    "0x00527D40": {
+      "name": "GetVisibleFlag",
+      "signature": "int __thiscall(SceneObj *this, _BYTE *p_BYTE)",
+      "source": "annotation"
+    },
+    "0x00527D60": {
+      "name": "_todo_527D60",
+      "signature": "int __thiscall SceneObj::_todo_527D60(SceneObj *this)",
+      "source": "annotation"
+    },
+    "0x00530340": {
+      "name": "SetScriptDel",
+      "signature": "int __thiscall SceneObj::SetScriptDel(SceneObj *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x0053EF60": {
+      "name": "LoadFromConfig",
+      "signature": "int __cdecl(int *p_DWORD, int *p_DWORD2, int nVal)",
+      "source": "annotation"
+    }
+  }
 }

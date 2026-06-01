@@ -102,5 +102,32 @@
       "type": "tagRECT",
       "source": "PDB_batch_import(size_match)"
     }
+  },
+  "methods": {
+    "0x0058F6A0": {
+      "name": "s_RoleState",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0058F8A0": {
+      "name": "~s_RoleState",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0052FA50": {
+      "name": "LoadSkeletonModel",
+      "signature": "gbVFileSystem *__thiscall s_RoleState::LoadSkeletonModel(s_RoleState *this)",
+      "source": "annotation"
+    },
+    "0x004A3A90": {
+      "name": "LoadAndSetupRole",
+      "signature": "int __thiscall s_RoleState::LoadAndSetupRole(s_RoleState *this)",
+      "source": "annotation"
+    },
+    "0x0052FB00": {
+      "name": "CopyRoleData",
+      "signature": "char __thiscall(s_RoleState *this, int nVal, char pData)",
+      "source": "annotation"
+    }
   }
 }

@@ -32,5 +32,327 @@
       "type": "int",
       "source": "annotation"
     }
+  },
+  "methods": {
+    "0x0053BC15": {
+      "name": "GDB_GetRole",
+      "signature": "struct RoleAtt * (ulong)",
+      "source": "pdb"
+    },
+    "0x0053C007": {
+      "name": "GDB_GetItem",
+      "signature": "struct FightItem * (ulong)",
+      "source": "pdb"
+    },
+    "0x0053B9C4": {
+      "name": "~PAL_GDB",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0053BF21": {
+      "name": "GDB_GetSkillNum",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x0053BD7F": {
+      "name": "GDB_GetRoleID",
+      "signature": "unsigned long (int)",
+      "source": "pdb"
+    },
+    "0x0053BF75": {
+      "name": "GDB_GetSkillID",
+      "signature": "unsigned long (int)",
+      "source": "pdb"
+    },
+    "0x0053BD2B": {
+      "name": "GDB_GetRoleNum",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x0053C17D": {
+      "name": "GDB_GetItemID",
+      "signature": "unsigned long (int)",
+      "source": "pdb"
+    },
+    "0x0053C126": {
+      "name": "GDB_GetItemNum",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x0053C20F": {
+      "name": "GDB_GetCombo",
+      "signature": "struct ComboAttack * (ulong)",
+      "source": "pdb"
+    },
+    "0x0053B8C0": {
+      "name": "PAL_GDB",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0053BE0B": {
+      "name": "GDB_GetSkill",
+      "signature": "struct FightSkill * (ulong)",
+      "source": "pdb"
+    },
+    "0x0053C382": {
+      "name": "GDB_GetComboID",
+      "signature": "unsigned long (int)",
+      "source": "pdb"
+    },
+    "0x0053C32E": {
+      "name": "GDB_GetComboNum",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x0053B9CF": {
+      "name": "GDB_LoadFile",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00457410": {
+      "name": "LoadLanguage",
+      "signature": "char __thiscall(PAL_GDB *this, char *path)",
+      "source": "annotation"
+    },
+    "0x00478E00": {
+      "name": "PAL_GDB",
+      "signature": "PAL_GDB *__thiscall(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x00478FD0": {
+      "name": "~PAL_GDB",
+      "signature": "void __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00479040": {
+      "name": "GDB_LoadFile",
+      "signature": "int __thiscall(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x00479050": {
+      "name": "GDB_GetRole",
+      "signature": "int __thiscall(PAL_GDB *this, unsigned int ID)",
+      "source": "annotation"
+    },
+    "0x00479080": {
+      "name": "GDB_GetRoleNum",
+      "signature": "int __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00479130": {
+      "name": "GDB_GetSkillNum",
+      "signature": "int __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004791A0": {
+      "name": "GDB_GetSkillID",
+      "signature": "int __thiscall(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x004791E0": {
+      "name": "GDB_GetItemNum",
+      "signature": "int __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004792C0": {
+      "name": "GDB_GetComboID",
+      "signature": "int __thiscall(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x0049CA70": {
+      "name": "IsValidItem",
+      "signature": "BOOL __thiscall(PAL_GDB *this, int nItemID)",
+      "source": "annotation"
+    },
+    "0x00460A90": {
+      "name": "UpdateSkillPanel",
+      "signature": "int __thiscall(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x0049C2C0": {
+      "name": "LoadByType",
+      "signature": "char __thiscall PAL_GDB::LoadByType(PAL_GDB *this, unsigned int dwVal, char pData)",
+      "source": "annotation"
+    },
+    "0x0049C660": {
+      "name": "SelectBestTarget",
+      "signature": "int __thiscall PAL_GDB::SelectBestTarget(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00457F00": {
+      "name": "RefreshSkillNumbers",
+      "signature": "void __thiscall PAL_GDB::RefreshSkillNumbers(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x004E50B0": {
+      "name": "SetupSkillConfig",
+      "signature": "char * __thiscall(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x00526300": {
+      "name": "RefreshPartyStats",
+      "signature": "gbGeomNode *__thiscall PAL_GDB::RefreshPartyStats(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x005294C0": {
+      "name": "SetDefaultEquipment",
+      "signature": "char *__thiscall PAL_GDB::SetDefaultEquipment(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x00478C00": {
+      "name": "ResetAllData",
+      "signature": "MainEquipUI *__thiscall PAL_GDB::ResetAllData(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x004791B0": {
+      "name": "GetItemID",
+      "signature": "int __thiscall PAL_GDB::GetItemID(PAL_GDB *this, unsigned int index)",
+      "source": "annotation"
+    },
+    "0x004E5500": {
+      "name": "LoadConfigFromINI",
+      "signature": "int __thiscall PAL_GDB::LoadConfigFromINI(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x004E56E0": {
+      "name": "FindItemByID",
+      "signature": "char __thiscall(PAL_GDB *this, int nVal, int *p_DWORD)",
+      "source": "annotation"
+    },
+    "0x004E5710": {
+      "name": "GetItemPrice",
+      "signature": "int __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004E5760": {
+      "name": "GetItemWeight",
+      "signature": "int __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004E57B0": {
+      "name": "GetItemData",
+      "signature": "int __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004E5800": {
+      "name": "PartySetupDialogProc",
+      "signature": "int __thiscall PAL_GDB::PartySetupDialogProc(PAL_GDB *this, HWND hDlg, UINT pData, WPARAM a4, LPARAM a5)",
+      "source": "annotation"
+    },
+    "0x004E5B20": {
+      "name": "RefreshPartyDialog",
+      "signature": "LRESULT __thiscall PAL_GDB::RefreshPartyDialog(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x004E5E00": {
+      "name": "PopulateAvailableRoles",
+      "signature": "int __thiscall PAL_GDB::PopulateAvailableRoles(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x004E5F60": {
+      "name": "UpdateInventorySlots",
+      "signature": "int *__thiscall(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x004E5FF0": {
+      "name": "DlgProcCamera",
+      "signature": "int __thiscall PAL_GDB::DlgProcCamera(PAL_GDB *this, HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)",
+      "source": "annotation"
+    },
+    "0x004EC1F0": {
+      "name": "ShowDetailPanel",
+      "signature": "LRESULT __thiscall PAL_GDB::ShowDetailPanel(PAL_GDB *this, HWND hDlg)",
+      "source": "annotation"
+    },
+    "0x004ED8C0": {
+      "name": "LoadSkillData",
+      "signature": "int __thiscall PAL_GDB::LoadSkillData(PAL_GDB *this)",
+      "source": "annotation"
+    },
+    "0x004F69F0": {
+      "name": "IsItemConsumable",
+      "signature": "bool __thiscall PAL_GDB::IsItemConsumable(PAL_GDB *this, int nItemId)",
+      "source": "annotation"
+    },
+    "0x004F6A20": {
+      "name": "IsItemEquipment",
+      "signature": "bool __thiscall PAL_GDB::IsItemEquipment(PAL_GDB *this, int nItemId)",
+      "source": "annotation"
+    },
+    "0x004F6A40": {
+      "name": "IsRoleAlive__ovl_6a40",
+      "signature": "bool __thiscall PAL_GDB::IsRoleAlive(PAL_GDB *this, int nRoleId)",
+      "source": "annotation"
+    },
+    "0x004F6A60": {
+      "name": "IsRoleDead",
+      "signature": "bool __thiscall PAL_GDB::IsRoleDead(PAL_GDB *this, int nRoleId)",
+      "source": "annotation"
+    },
+    "0x004F6AB0": {
+      "name": "IsItemConsumed",
+      "signature": "bool __thiscall PAL_GDB::IsItemConsumed(PAL_GDB *this, int nItemId)",
+      "source": "annotation"
+    },
+    "0x004F6AD0": {
+      "name": "GetSkillLevel",
+      "signature": "bool __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F6B20": {
+      "name": "GetSkillType",
+      "signature": "bool __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F6B70": {
+      "name": "IsSkillUsable",
+      "signature": "bool __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F6BB0": {
+      "name": "IsSkillEmpty",
+      "signature": "bool __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F6BE0": {
+      "name": "SearchAllItems",
+      "signature": "char __thiscall(PAL_GDB *this, int nVal, int *p_DWORD, int *pnVal, int *p_DWORD2)",
+      "source": "annotation"
+    },
+    "0x004F6C60": {
+      "name": "SearchItemLoop",
+      "signature": "char __thiscall(PAL_GDB *this, int nVal, int nVal2, int *p_DWORD, int *pnVal)",
+      "source": "annotation"
+    },
+    "0x004F6D30": {
+      "name": "IsRoleSkillValid",
+      "signature": "char __thiscall(PAL_GDB *this, unsigned int *pdwVal, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F6E80": {
+      "name": "IterateInventory",
+      "signature": "char __thiscall(PAL_GDB *this, int *p_DWORD)",
+      "source": "annotation"
+    },
+    "0x004F6FB0": {
+      "name": "BuildItemArray",
+      "signature": "char __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00528650": {
+      "name": "InitSkillDisplay",
+      "signature": "int __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x0052ECE0": {
+      "name": "SetupSkillData",
+      "signature": "BOOL __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F6A80": {
+      "name": "IsRoleAlive2",
+      "signature": "bool __thiscall(PAL_GDB *this, int nVal)",
+      "source": "annotation"
+    }
   }
 }

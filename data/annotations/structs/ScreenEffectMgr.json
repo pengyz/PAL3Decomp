@@ -82,5 +82,172 @@
       "type": "void *",
       "source": "ida_decomp:_unverified_4BE4A0 deref as void**, 4 refs | type_fix:int→void*(deref+ptr semantics)"
     }
+  },
+  "methods": {
+    "0x005C4660": {
+      "name": "IsFadingOut",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x005C440D": {
+      "name": "~ScreenEffectMgr",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005C4613": {
+      "name": "Inst",
+      "signature": "class ScreenEffectMgr * ()",
+      "source": "pdb"
+    },
+    "0x005C45B0": {
+      "name": "Render",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005C456C": {
+      "name": "Update",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x005C4491": {
+      "name": "QueueEffect",
+      "signature": "class ScreenEffect * (SCR_EFT_KIND)",
+      "source": "pdb"
+    },
+    "0x005C4685": {
+      "name": "Clear",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005C4380": {
+      "name": "ScreenEffectMgr",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004BE4A0": {
+      "name": "UpdateFrontEffect",
+      "signature": "void __thiscall ScreenEffectMgr::UpdateFrontEffect(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BE590": {
+      "name": "GetInstance",
+      "signature": "ScreenEffect *__cdecl __thiscall(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BE1A0": {
+      "name": "ProcessEffect",
+      "signature": "int __thiscall(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BE080": {
+      "name": "ClearAllEffects",
+      "signature": "void __thiscall ScreenEffectMgr::ClearAllEffects(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BE810": {
+      "name": "GetFadeFlags",
+      "signature": "int *__thiscall(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BE920": {
+      "name": "RenderFadeOut",
+      "signature": "void __thiscall ScreenEffectMgr::RenderFadeOut(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BEAB0": {
+      "name": "RenderFadeIn",
+      "signature": "void __thiscall ScreenEffectMgr::RenderFadeIn(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BEE60": {
+      "name": "ScreenEffectMgr",
+      "signature": "ScreenEffectMgr *__thiscall ScreenEffectMgr::ScreenEffectMgr(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BEFB0": {
+      "name": "LoadResources",
+      "signature": "gbVFileSystem *__thiscall ScreenEffectMgr::LoadResources(ScreenEffectMgr *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004BDF60": {
+      "name": "IsScriptDelNeeded",
+      "signature": "int __thiscall(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BDF70": {
+      "name": "StartFade",
+      "signature": "void __thiscall ScreenEffectMgr::StartFade(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BE5E0": {
+      "name": "IsFadeWhiteHolding",
+      "signature": "bool __thiscall(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BE5F0": {
+      "name": "DrainQueue",
+      "signature": "int __thiscall ScreenEffectMgr::DrainQueue(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BE6B0": {
+      "name": "AllocEffectBlock",
+      "signature": "char *__thiscall ScreenEffectMgr::AllocEffectBlock(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BE9C0": {
+      "name": "ToggleFade",
+      "signature": "void __thiscall ScreenEffectMgr::ToggleFade(ScreenEffectMgr *this, float fVal)",
+      "source": "annotation"
+    },
+    "0x004BE9E0": {
+      "name": "StartFadeIn",
+      "signature": "void __thiscall(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BEC00": {
+      "name": "RenderFadeWhiteOut",
+      "signature": "void __thiscall ScreenEffectMgr::RenderFadeWhiteOut(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BED50": {
+      "name": "RenderFadeWhiteIn",
+      "signature": "void __thiscall ScreenEffectMgr::RenderFadeWhiteIn(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BF4F0": {
+      "name": "UpdateAnimation",
+      "signature": "void __thiscall ScreenEffectMgr::UpdateAnimation(ScreenEffectMgr *this, float fVal)",
+      "source": "annotation"
+    },
+    "0x004BF680": {
+      "name": "GetPageIndex",
+      "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004BF6C0": {
+      "name": "SetFadeParams",
+      "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004BF760": {
+      "name": "ResetFadeState",
+      "signature": "int *__thiscall ScreenEffectMgr::ResetFadeState(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x0052F310": {
+      "name": "ProcessInstance",
+      "signature": "int __thiscall(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x0052F330": {
+      "name": "IsFadeActive",
+      "signature": "BOOL __thiscall ScreenEffectMgr::IsFadeActive(ScreenEffectMgr *this)",
+      "source": "annotation"
+    },
+    "0x004BF170": {
+      "name": "CleanupTextures",
+      "signature": "void __thiscall ScreenEffectMgr::CleanupTextures(ScreenEffectMgr *this)",
+      "source": "annotation"
+    }
   }
 }

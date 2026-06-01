@@ -92,5 +92,167 @@
       "type": "int",
       "source": "decomp:UpdateParabola_switch(0..4)_selects_which_subsystem_renders"
     }
+  },
+  "methods": {
+    "0x006E0602": {
+      "name": "RectIntersection",
+      "signature": "bool (tagRECT, tagRECT, tagRECT *)",
+      "source": "pdb"
+    },
+    "0x006E036E": {
+      "name": "Create",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x006B7FD0": {
+      "name": "SetVec",
+      "signature": "void (gbVec3D *, float, float, float)",
+      "source": "pdb"
+    },
+    "0x006E0363": {
+      "name": "~CUtil",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x006E0392": {
+      "name": "CreateLog",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0049A1E0": {
+      "name": "f2i",
+      "signature": "int (float)",
+      "source": "pdb"
+    },
+    "0x006E03F0": {
+      "name": "WriteLog",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x006E0B80": {
+      "name": "Randomize",
+      "signature": "void (ulong)",
+      "source": "pdb"
+    },
+    "0x0049A100": {
+      "name": "Rand",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x006E0336": {
+      "name": "CUtil",
+      "signature": "void (CCBSystem *)",
+      "source": "pdb"
+    },
+    "0x006E056F": {
+      "name": "GetFileSize",
+      "signature": "long (_iobuf *)",
+      "source": "pdb"
+    },
+    "0x006E0468": {
+      "name": "GetFileSize",
+      "signature": "long (char *)",
+      "source": "pdb"
+    },
+    "0x006E037C": {
+      "name": "Init",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0049A150": {
+      "name": "Probability",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x006DE830": {
+      "name": "iRange",
+      "signature": "int (int, int, int)",
+      "source": "pdb"
+    },
+    "0x006E0375": {
+      "name": "Destroy",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00678EC0": {
+      "name": "Warp",
+      "signature": "int (int, float)",
+      "source": "pdb"
+    },
+    "0x00678FC0": {
+      "name": "Float",
+      "signature": "int (int, float)",
+      "source": "pdb"
+    },
+    "0x005230F0": {
+      "name": "~CUtil",
+      "signature": "int __thiscall(CUtil *this)",
+      "source": "annotation"
+    },
+    "0x00523100": {
+      "name": "Create",
+      "signature": "int __thiscall(CUtil *this)",
+      "source": "annotation"
+    },
+    "0x00523110": {
+      "name": "Destroy",
+      "signature": "void __thiscall(CUtil *this)",
+      "source": "annotation"
+    },
+    "0x00523120": {
+      "name": "Init",
+      "signature": "void __thiscall(CUtil *this)",
+      "source": "annotation"
+    },
+    "0x00523130": {
+      "name": "CUtil",
+      "signature": "int __thiscall(CUtil *this)",
+      "source": "annotation"
+    },
+    "0x005231D0": {
+      "name": "WriteLog",
+      "signature": "UIWnd *__thiscall(CUtil *Block, char format)",
+      "source": "annotation"
+    },
+    "0x005231F0": {
+      "name": "~CUtil_31f0",
+      "signature": "void __thiscall(CUtil *this)",
+      "source": "annotation"
+    },
+    "0x005232B0": {
+      "name": "InitGameSystems",
+      "signature": "int __thiscall(CUtil *this)",
+      "source": "annotation"
+    },
+    "0x00523560": {
+      "name": "RectIntersection",
+      "signature": "char __thiscall(CUtil *this)",
+      "source": "annotation"
+    },
+    "0x00523600": {
+      "name": "CalulateParabola",
+      "signature": "int __thiscall(CUtil *this)",
+      "source": "annotation"
+    },
+    "0x00523670": {
+      "name": "RenderFrame",
+      "signature": "int __thiscall(CUtil *this)",
+      "source": "annotation"
+    },
+    "0x005236E0": {
+      "name": "RenderFrameY",
+      "signature": "int __thiscall(CUtil *this, PalScript *fTime, int nVal)",
+      "source": "annotation"
+    },
+    "0x00523820": {
+      "name": "Update",
+      "signature": "int __thiscall(CUtil *this, float nDelta)",
+      "source": "annotation"
+    },
+    "0x00523E80": {
+      "name": "DispatchCommand",
+      "signature": "int __thiscall CUtil::DispatchCommand(CUtil *this, int *pCmd)",
+      "source": "annotation"
+    }
   }
 }

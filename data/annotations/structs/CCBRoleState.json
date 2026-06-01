@@ -510,5 +510,2337 @@
       "type": "int",
       "source": "A:decomp vtable call pattern"
     }
+  },
+  "methods": {
+    "0x00654B35": {
+      "name": "IsJingtianProtect",
+      "signature": "bool (int, int)",
+      "source": "pdb"
+    },
+    "0x0065AC73": {
+      "name": "SpecAffect",
+      "signature": "bool (int, int, int)",
+      "source": "pdb"
+    },
+    "0x00664D23": {
+      "name": "GetBestRoleReviveSkill",
+      "signature": "unsigned long (int, uchar, int)",
+      "source": "pdb"
+    },
+    "0x0066034C": {
+      "name": "IsRolePoisoned",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0065FFF3": {
+      "name": "GetPoisonMagicForEnemy",
+      "signature": "unsigned long (int)",
+      "source": "pdb"
+    },
+    "0x0065B065": {
+      "name": "ItemSpecAffect",
+      "signature": "bool (tagCmdData *, int)",
+      "source": "pdb"
+    },
+    "0x0065E12B": {
+      "name": "GetForceAverageHP",
+      "signature": "int (ECBForce, uchar)",
+      "source": "pdb"
+    },
+    "0x00669456": {
+      "name": "CheckCombatDialog",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0064EEDA": {
+      "name": "CheckGroundEffect",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0065DEEB": {
+      "name": "GetMoney",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x00666193": {
+      "name": "IsRecoverCombo",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x00628780": {
+      "name": "IsAISkill",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00660A0F": {
+      "name": "SetSpecState",
+      "signature": "void (int, ECBRoleSpecState, uchar, uchar)",
+      "source": "pdb"
+    },
+    "0x0065E1F7": {
+      "name": "GetForceAverageFullHP",
+      "signature": "int (ECBForce, uchar)",
+      "source": "pdb"
+    },
+    "0x0065F120": {
+      "name": "CalHasNormalAttackToDie",
+      "signature": "int (int, ECBForce)",
+      "source": "pdb"
+    },
+    "0x0065B458": {
+      "name": "SpecWeaponAffect",
+      "signature": "bool (int, int)",
+      "source": "pdb"
+    },
+    "0x0066648F": {
+      "name": "IsAttackItem",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x00662B27": {
+      "name": "GetItemRecoverPower",
+      "signature": "int (int, ulong)",
+      "source": "pdb"
+    },
+    "0x0066D1BA": {
+      "name": "CalFullGP",
+      "signature": "int (int, int)",
+      "source": "pdb"
+    },
+    "0x0065FA9F": {
+      "name": "GetProperForceRoleIndex",
+      "signature": "void (ECBForce, int *, int *)",
+      "source": "pdb"
+    },
+    "0x0066715D": {
+      "name": "IsGem",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0066DC08": {
+      "name": "GetBestBFAMagic",
+      "signature": "unsigned long (int)",
+      "source": "pdb"
+    },
+    "0x00660277": {
+      "name": "IsRoleInBadSpecState",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x006666D8": {
+      "name": "GetRoleMagicKind",
+      "signature": "bool (int, ulong, ECBMagicKind *, int *)",
+      "source": "pdb"
+    },
+    "0x00665FBC": {
+      "name": "IsAttackMagic",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x00655FBE": {
+      "name": "GetCoAttackDamage",
+      "signature": "int (ulong, ulong, ulong)",
+      "source": "pdb"
+    },
+    "0x00651383": {
+      "name": "ReviveAllFriendAtEnd",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0066611E": {
+      "name": "IsHarmfulSkill",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x006590D2": {
+      "name": "MagicDamage",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0064F493": {
+      "name": "CancelVariance",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0065E5B0": {
+      "name": "GetRoleLuck",
+      "signature": "int (int)",
+      "source": "pdb"
+    },
+    "0x006522F1": {
+      "name": "InitRoleEquipAttrib",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x006562CD": {
+      "name": "GetNormalAttackRange",
+      "signature": "void (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x00657DCA": {
+      "name": "CanRoleMove",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00656F77": {
+      "name": "CanRoleBeNormalAttack",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00655929": {
+      "name": "FiveMagicToMagicKind",
+      "signature": "void (ECBFiveMagic, ECBMagicKind *)",
+      "source": "pdb"
+    },
+    "0x00668403": {
+      "name": "FixState",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0064FD7A": {
+      "name": "IsBoss",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00653A67": {
+      "name": "GetAliveRoleNumInForce",
+      "signature": "int (ECBForce)",
+      "source": "pdb"
+    },
+    "0x00628810": {
+      "name": "IsAIUseItem",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0064E78A": {
+      "name": "Destroy",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0066DAB6": {
+      "name": "IsForbidWithBFA",
+      "signature": "bool (ulong, int)",
+      "source": "pdb"
+    },
+    "0x0065F000": {
+      "name": "GetLowestHPCentRole",
+      "signature": "int (ECBForce)",
+      "source": "pdb"
+    },
+    "0x00666552": {
+      "name": "IsHarmfulItem",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x006546F6": {
+      "name": "CanBeImbibeNimbus",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x006663E0": {
+      "name": "IsRecoverMPItem",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x0065FB99": {
+      "name": "GetInvForce",
+      "signature": "enum ECBForce (ECBForce)",
+      "source": "pdb"
+    },
+    "0x0065EBF9": {
+      "name": "GetWeakRoleNum",
+      "signature": "int (ECBForce)",
+      "source": "pdb"
+    },
+    "0x00669B9B": {
+      "name": "UpdateUI",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x006286A0": {
+      "name": "IsAIAttack",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0066E51E": {
+      "name": "GetGreaterFiveMagic",
+      "signature": "enum ECBFiveMagic (ECBFiveMagic)",
+      "source": "pdb"
+    },
+    "0x00667B86": {
+      "name": "CanCastTrick",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x00665049": {
+      "name": "GetBestRoleReviveItem",
+      "signature": "unsigned long (int, uchar, int)",
+      "source": "pdb"
+    },
+    "0x0066231A": {
+      "name": "HandleSpecStateBout",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0065BEC1": {
+      "name": "FightSkillCost",
+      "signature": "void (int, ulong, int)",
+      "source": "pdb"
+    },
+    "0x00666314": {
+      "name": "IsGoodSpecStateItem",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x006672D5": {
+      "name": "DecGemUseTime",
+      "signature": "void (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0062B050": {
+      "name": "IsWeSneakAttackEnemy",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0065427C": {
+      "name": "CanCoAttack",
+      "signature": "bool (int, ulong, ulong *)",
+      "source": "pdb"
+    },
+    "0x0065F259": {
+      "name": "RandSetState",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0065E748": {
+      "name": "ChangeRoleSpeed",
+      "signature": "int (int, int)",
+      "source": "pdb"
+    },
+    "0x006536F1": {
+      "name": "SetVisible",
+      "signature": "void (int, uchar)",
+      "source": "pdb"
+    },
+    "0x00654C6F": {
+      "name": "ChangeRoleValue",
+      "signature": "int (tagCmdData *, int)",
+      "source": "pdb"
+    },
+    "0x0065015C": {
+      "name": "LoadRoleData",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0065A9CA": {
+      "name": "AttackSpecAffect",
+      "signature": "bool (int, int)",
+      "source": "pdb"
+    },
+    "0x0065FE09": {
+      "name": "GetGoodMagicForEnemy",
+      "signature": "unsigned long (int)",
+      "source": "pdb"
+    },
+    "0x006538D7": {
+      "name": "GetRole",
+      "signature": "struct tagRoleState * (int)",
+      "source": "pdb"
+    },
+    "0x0064E634": {
+      "name": "Reset",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0066450C": {
+      "name": "GetBestRoleAttackItem",
+      "signature": "unsigned long (int, uchar, int)",
+      "source": "pdb"
+    },
+    "0x00655BAB": {
+      "name": "GetFiveMagicOfMagic",
+      "signature": "void (ulong, ECBFiveMagic *, ECBFiveMagic *)",
+      "source": "pdb"
+    },
+    "0x0066DE92": {
+      "name": "GetBestBFAAttackMagic",
+      "signature": "unsigned long (int, uchar, int)",
+      "source": "pdb"
+    },
+    "0x0066E895": {
+      "name": "IsNobodyAtLineupMiddle",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00650D80": {
+      "name": "WriteBackRoleData",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00665F12": {
+      "name": "IsMagic",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x0065732F": {
+      "name": "CanAttackBackRole",
+      "signature": "bool (int, int)",
+      "source": "pdb"
+    },
+    "0x0065B9EA": {
+      "name": "WeaponSkillAffect",
+      "signature": "int (tagCmdData *, int)",
+      "source": "pdb"
+    },
+    "0x0065C363": {
+      "name": "GetGP",
+      "signature": "int (int, uchar)",
+      "source": "pdb"
+    },
+    "0x00659E6E": {
+      "name": "StealItem",
+      "signature": "bool (int, int)",
+      "source": "pdb"
+    },
+    "0x0066E64E": {
+      "name": "FillFiveMagicMatrix",
+      "signature": "void (ECBFiveMagic)",
+      "source": "pdb"
+    },
+    "0x006284A0": {
+      "name": "IsEnemyFriend",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0066BDDD": {
+      "name": "GetMagicIDInList",
+      "signature": "unsigned long (int, int, int)",
+      "source": "pdb"
+    },
+    "0x0066BA66": {
+      "name": "FillMagicList",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x00666265": {
+      "name": "IsRecoverItem",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x0064FFF6": {
+      "name": "CanAction",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0066AA1D": {
+      "name": "HandleWinRoleState",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x006350F0": {
+      "name": "IsAttackColumn",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0065B15F": {
+      "name": "MagicSpecAffect",
+      "signature": "bool (tagCmdData *, int)",
+      "source": "pdb"
+    },
+    "0x00635080": {
+      "name": "IsAttackRow",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0066B53A": {
+      "name": "HandleSuicide",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0064F2BB": {
+      "name": "VarianceRoundCounter",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0066C417": {
+      "name": "FillAIList",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x00628550": {
+      "name": "IsFlee",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x006547CA": {
+      "name": "CheckRoleValid",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00628430": {
+      "name": "IsValid",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00653EEF": {
+      "name": "SetCoAttack",
+      "signature": "void (ulong)",
+      "source": "pdb"
+    },
+    "0x006661FC": {
+      "name": "IsAttackCombo",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x00693450": {
+      "name": "IsFleed",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0066532B": {
+      "name": "GetBestRoleCureSpecStateMagic",
+      "signature": "unsigned long (int, ECBRoleSpecState, uchar)",
+      "source": "pdb"
+    },
+    "0x00666FD3": {
+      "name": "IsRoleItem",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0066D551": {
+      "name": "SetParam",
+      "signature": "void (tagParam *, ulong, ulong, ulong)",
+      "source": "pdb"
+    },
+    "0x006601B9": {
+      "name": "IsSpecStateGood",
+      "signature": "bool (ECBRoleSpecState)",
+      "source": "pdb"
+    },
+    "0x0065B66B": {
+      "name": "SkillAffect",
+      "signature": "int (tagCmdData *, int)",
+      "source": "pdb"
+    },
+    "0x0065B259": {
+      "name": "RandSetPlayerLineup",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x006559DC": {
+      "name": "MagicKindToFiveMagic",
+      "signature": "void (ECBMagicKind, ECBFiveMagic *)",
+      "source": "pdb"
+    },
+    "0x00663765": {
+      "name": "GetRandRoleMiscMagic",
+      "signature": "unsigned long (int, uchar)",
+      "source": "pdb"
+    },
+    "0x00662218": {
+      "name": "GetInSpecStateRoleNum",
+      "signature": "int (ECBForce, ECBRoleSpecState)",
+      "source": "pdb"
+    },
+    "0x00653091": {
+      "name": "LoadWeaponModel",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0062B070": {
+      "name": "IsEnemySneakAttackUs",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00657518": {
+      "name": "GetCoAttackRange",
+      "signature": "void (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0066604C": {
+      "name": "IsRecoverSkill",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x00662688": {
+      "name": "GetFightSkillPower",
+      "signature": "int (int, ulong)",
+      "source": "pdb"
+    },
+    "0x00655E70": {
+      "name": "GetNormalAttackDamage",
+      "signature": "int (int, int, ulong)",
+      "source": "pdb"
+    },
+    "0x006665E8": {
+      "name": "GetMagicKind",
+      "signature": "bool (ulong, ECBMagicKind *, int *, int *)",
+      "source": "pdb"
+    },
+    "0x00693800": {
+      "name": "IsFleeAlwaysSuccess",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0066FF84": {
+      "name": "GetCombatWinItem",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x00663B89": {
+      "name": "GetBestRoleRecoverSkill",
+      "signature": "unsigned long (int, uchar, int)",
+      "source": "pdb"
+    },
+    "0x0066BEE9": {
+      "name": "FillItemList",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x0065D001": {
+      "name": "HandlePXVariance",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0065EEA9": {
+      "name": "GetLowestHPRole",
+      "signature": "int (int, ECBForce)",
+      "source": "pdb"
+    },
+    "0x0065ED76": {
+      "name": "GetLowestHPRole",
+      "signature": "int (ECBForce)",
+      "source": "pdb"
+    },
+    "0x0066751A": {
+      "name": "IsTrickSpecialCostOK",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x00651425": {
+      "name": "InitRoleState",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00653997": {
+      "name": "GetRoleNumInForce",
+      "signature": "int (ECBForce)",
+      "source": "pdb"
+    },
+    "0x00653C1F": {
+      "name": "GetFirstAliveRoleInForce",
+      "signature": "int (ECBForce)",
+      "source": "pdb"
+    },
+    "0x0064FCB9": {
+      "name": "IsAlive",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x006560A0": {
+      "name": "GetMagicDamage",
+      "signature": "int (int, int, ulong)",
+      "source": "pdb"
+    },
+    "0x0065F3B1": {
+      "name": "RandSetStateInInitApp",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00665B92": {
+      "name": "GetBestRoleCureSpecStateItem",
+      "signature": "unsigned long (int, ECBRoleSpecState, uchar)",
+      "source": "pdb"
+    },
+    "0x00663EB1": {
+      "name": "GetBestRoleAttackSkill",
+      "signature": "unsigned long (int, uchar, int)",
+      "source": "pdb"
+    },
+    "0x0066B66A": {
+      "name": "FillSkillList",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0064FEFA": {
+      "name": "IsAllEnemyDead",
+      "signature": "bool (uchar)",
+      "source": "pdb"
+    },
+    "0x006609F2": {
+      "name": "CanUseCallupMagic",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00651EA7": {
+      "name": "InitRoleFiveMagic",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00662D41": {
+      "name": "GetBestRoleRecoverMagic",
+      "signature": "unsigned long (int, uchar, int)",
+      "source": "pdb"
+    },
+    "0x00663248": {
+      "name": "GetBestRoleAttackMagic",
+      "signature": "unsigned long (int, uchar, int)",
+      "source": "pdb"
+    },
+    "0x006671E6": {
+      "name": "IsGemHaveLeftUseTime",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x00670481": {
+      "name": "ConvertSpecMagic",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x00652F3D": {
+      "name": "InitRoleSpecEquipAttrib",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x0065E8E0": {
+      "name": "SetDefence",
+      "signature": "void (int, uchar)",
+      "source": "pdb"
+    },
+    "0x0065A826": {
+      "name": "CoAttackDamage",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0065E3A6": {
+      "name": "GetRoleAttack",
+      "signature": "int (int)",
+      "source": "pdb"
+    },
+    "0x00667994": {
+      "name": "IsTrickCommonCostOK",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x006548FB": {
+      "name": "CanBeSelect",
+      "signature": "bool (tagCmdData *, int)",
+      "source": "pdb"
+    },
+    "0x00665E82": {
+      "name": "IsRecoverMagic",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x006641D8": {
+      "name": "GetBestRoleRecoverItem",
+      "signature": "unsigned long (int, uchar, int)",
+      "source": "pdb"
+    },
+    "0x0066D5A6": {
+      "name": "GetRoleEnglishName",
+      "signature": "void (int, char *)",
+      "source": "pdb"
+    },
+    "0x0065358A": {
+      "name": "UnloadWeaponModel",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0066D51D": {
+      "name": "CalEXP",
+      "signature": "int (int)",
+      "source": "pdb"
+    },
+    "0x0065D3BA": {
+      "name": "CancelPXVariance",
+      "signature": "void (int, uchar)",
+      "source": "pdb"
+    },
+    "0x0065B869": {
+      "name": "ItemAffect",
+      "signature": "int (tagCmdData *, int)",
+      "source": "pdb"
+    },
+    "0x0064F34E": {
+      "name": "CheckVarianceRound",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x006685C0": {
+      "name": "CheckState",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0066D4D8": {
+      "name": "CalLevel",
+      "signature": "int (int)",
+      "source": "pdb"
+    },
+    "0x00656111": {
+      "name": "GetSkillDamage",
+      "signature": "int (ulong, ulong, ulong)",
+      "source": "pdb"
+    },
+    "0x0066AB56": {
+      "name": "CreateMonster",
+      "signature": "void (int, ulong)",
+      "source": "pdb"
+    },
+    "0x0066E444": {
+      "name": "GetEMagicKind",
+      "signature": "enum ECBMagicKind (FightSkill *)",
+      "source": "pdb"
+    },
+    "0x0065E972": {
+      "name": "GetDefence",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0064EEB7": {
+      "name": "Update",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x006565FE": {
+      "name": "GetBestNormalAttackInitPos",
+      "signature": "int (tagCmdData *, int *, int *)",
+      "source": "pdb"
+    },
+    "0x0065BB1F": {
+      "name": "CoAttackAffect",
+      "signature": "int (tagCmdData *, int)",
+      "source": "pdb"
+    },
+    "0x0066057C": {
+      "name": "IsRoleInSpecState",
+      "signature": "bool (int, ECBRoleSpecState)",
+      "source": "pdb"
+    },
+    "0x0065004A": {
+      "name": "SetCanAction",
+      "signature": "void (int, uchar)",
+      "source": "pdb"
+    },
+    "0x0066D755": {
+      "name": "GetMagicSuffix",
+      "signature": "void (int, ulong, int *, int *)",
+      "source": "pdb"
+    },
+    "0x0064E6B0": {
+      "name": "Create",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00665860": {
+      "name": "GetBestRoleCureSpecStateSkill",
+      "signature": "unsigned long (int, ECBRoleSpecState, uchar)",
+      "source": "pdb"
+    },
+    "0x0065EA01": {
+      "name": "GetBestAttacker",
+      "signature": "int (ECBForce)",
+      "source": "pdb"
+    },
+    "0x0066B41C": {
+      "name": "HandleChongLouAnamo",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x00653B51": {
+      "name": "GetDeadRoleNumInForce",
+      "signature": "int (ECBForce)",
+      "source": "pdb"
+    },
+    "0x0066D24E": {
+      "name": "CalFullMP",
+      "signature": "int (int, int)",
+      "source": "pdb"
+    },
+    "0x00657F30": {
+      "name": "GetFightSkillRange",
+      "signature": "void (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0065B535": {
+      "name": "MagicAffect",
+      "signature": "int (tagCmdData *, int)",
+      "source": "pdb"
+    },
+    "0x006667C6": {
+      "name": "IsReviveFightSkill",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0065C4C9": {
+      "name": "PreHandlePXVariance",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0065FBFD": {
+      "name": "GetBadMagicForEnemy",
+      "signature": "unsigned long (int)",
+      "source": "pdb"
+    },
+    "0x0065E813": {
+      "name": "GetMagicUseTime",
+      "signature": "int (int, ECBMagicKind)",
+      "source": "pdb"
+    },
+    "0x006B3460": {
+      "name": "IsMustFail",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0066C241": {
+      "name": "FillParabolaItemList",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x006606F7": {
+      "name": "GetInBadSpecStateRoleNum",
+      "signature": "int (ECBForce)",
+      "source": "pdb"
+    },
+    "0x0066B99C": {
+      "name": "GetSkillIDInList",
+      "signature": "unsigned long (int, int)",
+      "source": "pdb"
+    },
+    "0x006549D7": {
+      "name": "CanProtect",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0066D30A": {
+      "name": "CalFullAttack",
+      "signature": "int (int, int)",
+      "source": "pdb"
+    },
+    "0x0065A323": {
+      "name": "ItemDamage",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0064FE30": {
+      "name": "IsAllWeDead",
+      "signature": "bool (uchar)",
+      "source": "pdb"
+    },
+    "0x006500A1": {
+      "name": "RandSetEnemyPos",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0065F6A2": {
+      "name": "SortFriendFightSkill",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0065BC44": {
+      "name": "GetCoAttackPower",
+      "signature": "int (tagCmdData *, int)",
+      "source": "pdb"
+    },
+    "0x00657023": {
+      "name": "GetBestRoleForAttackRowOrCol",
+      "signature": "int (uchar, uchar)",
+      "source": "pdb"
+    },
+    "0x006607DD": {
+      "name": "GetNormalSpecStateRoleNum",
+      "signature": "int (ECBForce)",
+      "source": "pdb"
+    },
+    "0x0065C2B0": {
+      "name": "GetHP",
+      "signature": "int (int, uchar)",
+      "source": "pdb"
+    },
+    "0x00657D53": {
+      "name": "HasUnmovableRoleInLineup",
+      "signature": "bool (ECBFiveLineup)",
+      "source": "pdb"
+    },
+    "0x00656CF5": {
+      "name": "IsRoleInColumn",
+      "signature": "bool (int, int)",
+      "source": "pdb"
+    },
+    "0x0065602F": {
+      "name": "GetPunchyAttackDamage",
+      "signature": "int (ulong, ulong, ulong)",
+      "source": "pdb"
+    },
+    "0x0065EB03": {
+      "name": "GetHPState",
+      "signature": "enum ECBRSHPState (int)",
+      "source": "pdb"
+    },
+    "0x006608C5": {
+      "name": "IsHaveSpecifyMagic",
+      "signature": "bool (int, ulong)",
+      "source": "pdb"
+    },
+    "0x00655B1A": {
+      "name": "GetDefenceFiveMagic",
+      "signature": "int (int, ECBFiveMagic)",
+      "source": "pdb"
+    },
+    "0x0065E67C": {
+      "name": "GetRoleSpeed",
+      "signature": "int (int)",
+      "source": "pdb"
+    },
+    "0x00657B73": {
+      "name": "IsDestRoleAllDead",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x00656A7C": {
+      "name": "IsRoleInRow",
+      "signature": "bool (int, int)",
+      "source": "pdb"
+    },
+    "0x00654847": {
+      "name": "CheckRoleNimbus",
+      "signature": "int (int)",
+      "source": "pdb"
+    },
+    "0x0065FB23": {
+      "name": "GetRoleForce",
+      "signature": "enum ECBForce (int)",
+      "source": "pdb"
+    },
+    "0x006583E3": {
+      "name": "AttackDamage",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x00668032": {
+      "name": "GetRoleMagicLevel",
+      "signature": "int (int, ulong)",
+      "source": "pdb"
+    },
+    "0x0066693A": {
+      "name": "IsCureSpecStateFightSkill",
+      "signature": "bool (tagCmdData *, ECBRoleSpecState)",
+      "source": "pdb"
+    },
+    "0x0065989C": {
+      "name": "SkillDamage",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x00628710": {
+      "name": "IsAIMagic",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00693760": {
+      "name": "CleanNGHDeadVariance",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0066E91B": {
+      "name": "CalCombatResult",
+      "signature": "void (uchar, int)",
+      "source": "pdb"
+    },
+    "0x00657CB4": {
+      "name": "IsDestRole",
+      "signature": "bool (tagCmdData *, int)",
+      "source": "pdb"
+    },
+    "0x0066293D": {
+      "name": "GetItemAttackPower",
+      "signature": "int (int, ulong)",
+      "source": "pdb"
+    },
+    "0x00653CF7": {
+      "name": "GetCastFightSkillSuccess",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0066D87C": {
+      "name": "HasBFAMagic",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0064E8F3": {
+      "name": "Init",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0065E00D": {
+      "name": "ChangeLove",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x00660425": {
+      "name": "SetRoleRandPoison",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0064F552": {
+      "name": "CheckPerRound",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0065392B": {
+      "name": "GetRoleNum",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x00668262": {
+      "name": "CanRemoveSpecState",
+      "signature": "bool (int, ECBRoleSpecState)",
+      "source": "pdb"
+    },
+    "0x00651DCE": {
+      "name": "CalSneakAttack",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0065E4AB": {
+      "name": "GetRoleDefence",
+      "signature": "int (int)",
+      "source": "pdb"
+    },
+    "0x0065ECB7": {
+      "name": "GetLowHPRoleNum",
+      "signature": "int (ECBForce)",
+      "source": "pdb"
+    },
+    "0x0065D785": {
+      "name": "ChangeGP",
+      "signature": "int (int, int, uchar)",
+      "source": "pdb"
+    },
+    "0x0065DA53": {
+      "name": "ChangeMP",
+      "signature": "int (int, int, uchar)",
+      "source": "pdb"
+    },
+    "0x006660B5": {
+      "name": "IsAttackSkill",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x0065C5AC": {
+      "name": "ChangeHP",
+      "signature": "int (int, int, uchar, int, uchar)",
+      "source": "pdb"
+    },
+    "0x00655909": {
+      "name": "GetLineup",
+      "signature": "enum ECBFiveLineup (int)",
+      "source": "pdb"
+    },
+    "0x00662109": {
+      "name": "HandleUncontrolableState",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0065DEFF": {
+      "name": "ChangeMoney",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x00666D01": {
+      "name": "IsRoleMasteredTrick",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0066D3F1": {
+      "name": "CalFullDefence",
+      "signature": "int (int, int)",
+      "source": "pdb"
+    },
+    "0x00628600": {
+      "name": "IsNegative",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00668339": {
+      "name": "HasDestRole",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0065A592": {
+      "name": "WeaponSkillDamage",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0065DE7D": {
+      "name": "TransferGP",
+      "signature": "void (int, int, int)",
+      "source": "pdb"
+    },
+    "0x0066B462": {
+      "name": "HandleNewMonster",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x0064FD26": {
+      "name": "IsFriend",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0065551E": {
+      "name": "ChangeSpecState",
+      "signature": "void (tagCmdData *, int)",
+      "source": "pdb"
+    },
+    "0x0065124C": {
+      "name": "WriteBackConfig",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00660497": {
+      "name": "GetPoisonedRoleNum",
+      "signature": "int (ECBForce)",
+      "source": "pdb"
+    },
+    "0x0064EAC4": {
+      "name": "InitUI",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00655A86": {
+      "name": "GetAttackFiveMagic",
+      "signature": "int (int, ECBFiveMagic)",
+      "source": "pdb"
+    },
+    "0x0064E629": {
+      "name": "~CCBRoleState",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0065C416": {
+      "name": "GetMP",
+      "signature": "int (int, uchar)",
+      "source": "pdb"
+    },
+    "0x00651D44": {
+      "name": "SetEnemyBeImbibeNimbus",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0065E2C3": {
+      "name": "GetForceAverageDamageHP",
+      "signature": "int (ECBForce, uchar)",
+      "source": "pdb"
+    },
+    "0x0066D6C5": {
+      "name": "GetRoleIndexFormID",
+      "signature": "int (ulong)",
+      "source": "pdb"
+    },
+    "0x00655C59": {
+      "name": "CalFiveMagic",
+      "signature": "int (ulong, ulong, ulong)",
+      "source": "pdb"
+    },
+    "0x0066E5B6": {
+      "name": "GetPunyFiveMagic",
+      "signature": "enum ECBFiveMagic (ECBFiveMagic)",
+      "source": "pdb"
+    },
+    "0x00657987": {
+      "name": "IsMultiTargetFightSkill",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x0065DE0F": {
+      "name": "TransferMP",
+      "signature": "void (int, int, int)",
+      "source": "pdb"
+    },
+    "0x0064E587": {
+      "name": "CCBRoleState",
+      "signature": "void (CCBSystem *)",
+      "source": "pdb"
+    },
+    "0x0066C5F8": {
+      "name": "FixFormula",
+      "signature": "int (ECBFixFormula, int, int, int, ulong)",
+      "source": "pdb"
+    },
+    "0x00656182": {
+      "name": "DamageImmediate",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x006647E5": {
+      "name": "GetBestRoleReviveMagic",
+      "signature": "unsigned long (int, uchar, int)",
+      "source": "pdb"
+    },
+    "0x0065DD97": {
+      "name": "TransferHP",
+      "signature": "void (int, int, int)",
+      "source": "pdb"
+    },
+    "0x0066063A": {
+      "name": "GetRoleWorstSpecState",
+      "signature": "enum ECBRoleSpecState (int)",
+      "source": "pdb"
+    },
+    "0x00657ED1": {
+      "name": "IsSameFiveMagic",
+      "signature": "bool (ECBFiveMagic, ECBFiveLineup)",
+      "source": "pdb"
+    },
+    "0x0066D0FF": {
+      "name": "CalFullHP",
+      "signature": "int (int, int)",
+      "source": "pdb"
+    },
+    "0x0066098A": {
+      "name": "IsHaveCallupMagic",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00666AB9": {
+      "name": "IsRoleTrick",
+      "signature": "bool (tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x004ED010": {
+      "name": "IsRoleAlive",
+      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004ED040": {
+      "name": "IsActive",
+      "signature": "char __thiscall(CCBRoleState *this, int index)",
+      "source": "annotation"
+    },
+    "0x004ED060": {
+      "name": "GetRoleType",
+      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004ED100": {
+      "name": "GetForce",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004EDD60": {
+      "name": "CCBRoleState",
+      "signature": "void __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004EDF10": {
+      "name": "~CCBRoleState__ovl_df10",
+      "signature": "void __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004EE430": {
+      "name": "Reset",
+      "signature": "char *__thiscall(CCBRoleState *this, int nVal, char *pszBuf)",
+      "source": "annotation"
+    },
+    "0x004EE540": {
+      "name": "Create",
+      "signature": "char __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004EE760": {
+      "name": "Destroy",
+      "signature": "int __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004EE7C0": {
+      "name": "Init",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal, char pData)",
+      "source": "annotation"
+    },
+    "0x004EE870": {
+      "name": "InitUI__ovl_e870",
+      "signature": "tagRoleState *__thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004EE890": {
+      "name": "Update__ovl_e890",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004EE990": {
+      "name": "VarianceRoundCounter",
+      "signature": "bool __thiscall(CCBRoleState *this, int *nRoleIndex)",
+      "source": "annotation"
+    },
+    "0x004EEA70": {
+      "name": "CheckVarianceRound",
+      "signature": "char __thiscall(CCBRoleState *this, int nRoleIndex, int nVal, int *pnVal)",
+      "source": "annotation"
+    },
+    "0x004EECB0": {
+      "name": "CancelVariance",
+      "signature": "void __thiscall(CCBRoleState *this, int *nRoleIndex, unsigned int dwVal)",
+      "source": "annotation"
+    },
+    "0x004EEE60": {
+      "name": "IsAlive__ovl_ee60",
+      "signature": "char __thiscall(CCBRoleState *this, int nIndex, int nVal)",
+      "source": "annotation"
+    },
+    "0x004EF4A0": {
+      "name": "IsBoss",
+      "signature": "void __thiscall(CCBRoleState *this, int *arg0, unsigned int nRoleIndex)",
+      "source": "annotation"
+    },
+    "0x004EF6A0": {
+      "name": "IsAllWeDead",
+      "signature": "int __thiscall(CCBRoleState *this, int bCheckHP)",
+      "source": "annotation"
+    },
+    "0x004EF6C0": {
+      "name": "IsAllEnemyDead",
+      "signature": "int *__thiscall(CCBRoleState *this, int bCheckHP, int *pnVal, int *pnVal2)",
+      "source": "annotation"
+    },
+    "0x004EF710": {
+      "name": "CanAction",
+      "signature": "int __thiscall(CCBRoleState *this, int nIndex, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x004EF7E0": {
+      "name": "SetCanAction",
+      "signature": "int __thiscall(CCBRoleState *this, unsigned int dmg, int roleIdx, int nVal)",
+      "source": "annotation"
+    },
+    "0x004EF8B0": {
+      "name": "RandSetEnemyPos",
+      "signature": "void __thiscall(CCBRoleState *this, const void *arg0)",
+      "source": "annotation"
+    },
+    "0x004EF980": {
+      "name": "CalcHealAmount",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004EFAF0": {
+      "name": "WriteBackRoleData",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal, int *p_DWORD, int *pnVal)",
+      "source": "annotation"
+    },
+    "0x004EFD70": {
+      "name": "WriteBackConfig",
+      "signature": "bool __thiscall(CCBRoleState *this, int roleIdx, int nVal)",
+      "source": "annotation"
+    },
+    "0x004EFE90": {
+      "name": "ReviveAllFriendAtEnd",
+      "signature": "bool __thiscall(CCBRoleState *this, int roleIdx, int nVal)",
+      "source": "annotation"
+    },
+    "0x004EFFC0": {
+      "name": "IsRoleReady",
+      "signature": "bool __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F0020": {
+      "name": "SetEnemyBeImbibeNimbus",
+      "signature": "int __thiscall(CCBRoleState *this, char pData, char pData2)",
+      "source": "annotation"
+    },
+    "0x004F0210": {
+      "name": "CalSneakAttack",
+      "signature": "bool __thiscall(CCBRoleState *this, int nVal, unsigned int dwVal)",
+      "source": "annotation"
+    },
+    "0x004F0360": {
+      "name": "InitRoleFiveMagic",
+      "signature": "unsigned int __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F05A0": {
+      "name": "IsAllyTargetCmd",
+      "signature": "char __thiscall CCBRoleState::IsAllyTargetCmd(CCBRoleState *this, int *p_DWORD)",
+      "source": "annotation"
+    },
+    "0x004F0640": {
+      "name": "InitRoleSpecEquipAttrib",
+      "signature": "void __thiscall(CCBRoleState *this, int nRoleIndex)",
+      "source": "annotation"
+    },
+    "0x004F0700": {
+      "name": "UnloadWeaponModel",
+      "signature": "char __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F0750": {
+      "name": "SetVisible",
+      "signature": "bool(CCBRoleState *this, int nPanelIndex, bool bVisible)",
+      "source": "annotation"
+    },
+    "0x004F07D0": {
+      "name": "GetRole__ovl_07d0",
+      "signature": "char __thiscall(CCBRoleState *this, int nIndex, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F0830": {
+      "name": "GetRoleNum",
+      "signature": "unsigned char __thiscall(CCBRoleState *this, int *pnVal)",
+      "source": "annotation"
+    },
+    "0x004F1070": {
+      "name": "GetAliveRoleNumInForce",
+      "signature": "char __thiscall(CCBRoleState *this, struct tagCmdData *force)",
+      "source": "annotation"
+    },
+    "0x004F1420": {
+      "name": "GetDeadRoleNumInForce",
+      "signature": "char __thiscall(CCBRoleState *this, int *force)",
+      "source": "annotation"
+    },
+    "0x004F17C0": {
+      "name": "GetFirstAliveRoleInForce",
+      "signature": "char __thiscall(CCBRoleState *this, int roleIdx, int arg4)",
+      "source": "annotation"
+    },
+    "0x004F1A30": {
+      "name": "GetCastFightSkillSuccess",
+      "signature": "char __thiscall(CCBRoleState *this, int pCmd)",
+      "source": "annotation"
+    },
+    "0x004F1B20": {
+      "name": "SetCoAttack",
+      "signature": "char __thiscall(CCBRoleState *this, unsigned int dwCoAttackID)",
+      "source": "annotation"
+    },
+    "0x004F1CC0": {
+      "name": "CanBeImbibeNimbus",
+      "signature": "char __thiscall(CCBRoleState *this, int dmg, unsigned int nRoleIndex)",
+      "source": "annotation"
+    },
+    "0x004F1FA0": {
+      "name": "CheckRoleValid",
+      "signature": "char __thiscall(CCBRoleState *this, int nRoleIndex, unsigned int roleIdx, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F2310": {
+      "name": "CheckRoleNimbus",
+      "signature": "char __thiscall(CCBRoleState *this, int nRoleIndex, unsigned int dwVal)",
+      "source": "annotation"
+    },
+    "0x004F2350": {
+      "name": "CanBeSelect",
+      "signature": "char __thiscall(CCBRoleState *this, tagCmdData *pCmd, unsigned int nDestRole)",
+      "source": "annotation"
+    },
+    "0x004F2910": {
+      "name": "SetRoleHP",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx, int value)",
+      "source": "annotation"
+    },
+    "0x004F2BB0": {
+      "name": "SetRoleField",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx, int value)",
+      "source": "annotation"
+    },
+    "0x004F3020": {
+      "name": "CalcAttackPower",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F31C0": {
+      "name": "CalcDefensePower",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3380": {
+      "name": "GetMaxHP",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F33D0": {
+      "name": "GetMaxMP",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3420": {
+      "name": "GetTotalRounds",
+      "signature": "int __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004F3430": {
+      "name": "CheckBuff",
+      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F34E0": {
+      "name": "CanUseSkill",
+      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3570": {
+      "name": "CalcMagicAttack",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3620": {
+      "name": "CalcMPRegen",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F36D0": {
+      "name": "CalcMagicDefense",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F37A0": {
+      "name": "GetAttackBonus",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3820": {
+      "name": "GetDefenseBonus",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F38A0": {
+      "name": "GetRoleState",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3920": {
+      "name": "GetSpeedBonus",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F39A0": {
+      "name": "GetRoleLevel",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F39F0": {
+      "name": "GetRoleExp",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3A30": {
+      "name": "SetRoleFlag",
+      "signature": "char __thiscall(CCBRoleState *this, int roleIdx, char flag)",
+      "source": "annotation"
+    },
+    "0x004F3A50": {
+      "name": "GetRoleAttr",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3AD0": {
+      "name": "CalcMPCost",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3B90": {
+      "name": "GetRoleMP",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3BC0": {
+      "name": "GetRoleHP",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3C00": {
+      "name": "IsForce1",
+      "signature": "int __thiscall(CCBRoleState *this, int force)",
+      "source": "annotation"
+    },
+    "0x004F3C20": {
+      "name": "IsPlayerTeam",
+      "signature": "char __thiscall(CCBRoleState *this, int force)",
+      "source": "annotation"
+    },
+    "0x004F3CC0": {
+      "name": "IsRoleInForce",
+      "signature": "bool __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3D10": {
+      "name": "CanRoleAct",
+      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F3D90": {
+      "name": "GetRoleField",
+      "signature": "char __thiscall(CCBRoleState *this, int roleIdx, int fieldOff)",
+      "source": "annotation"
+    },
+    "0x004F3E20": {
+      "name": "ProcessRound",
+      "signature": "char __thiscall(CCBRoleState *this, unsigned int dwVal)",
+      "source": "annotation"
+    },
+    "0x004F4DA0": {
+      "name": "ProcessAttackResult",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F5070": {
+      "name": "ProcessMagicResult",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F55D0": {
+      "name": "CalcPhysicalDamage",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F57A0": {
+      "name": "CalcMagicDamage__ovl_57a0",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F5970": {
+      "name": "ProcessSkillEffect",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F5B70": {
+      "name": "ProcessItemEffect",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F7500": {
+      "name": "GetRoleAI",
+      "signature": "char __thiscall(CCBRoleState *this, void *pOut)",
+      "source": "annotation"
+    },
+    "0x004F7880": {
+      "name": "CheckStatus",
+      "signature": "unsigned int __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004F7910": {
+      "name": "ProcessActions",
+      "signature": "void *__thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004F8480": {
+      "name": "UpdateEffects",
+      "signature": "int __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004F98B0": {
+      "name": "ApplyDamage",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx, int dmg)",
+      "source": "annotation"
+    },
+    "0x004FA540": {
+      "name": "CheckRoleStatus",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004FA6A0": {
+      "name": "CheckDeath",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004FA8B0": {
+      "name": "Revive",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004FA930": {
+      "name": "UpdateRoleMP",
+      "signature": "char __thiscall(CCBRoleState *this, char arg0, int nVal)",
+      "source": "annotation"
+    },
+    "0x004ECB00": {
+      "name": "Update__ovl_cb00",
+      "signature": "int __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004F3C70": {
+      "name": "GetRoleForce",
+      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x00456AB0": {
+      "name": "ctor__ovl_6AB0",
+      "signature": "int __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x005020D0": {
+      "name": "CalcTurnDelay",
+      "signature": "int __thiscall CCBRoleState::CalcTurnDelay(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00503AE0": {
+      "name": "GetRoleMPValue",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2, int nVal3)",
+      "source": "annotation"
+    },
+    "0x004F7FC0": {
+      "name": "ProcessCombatDialog",
+      "signature": "void __thiscall CCBRoleState::ProcessCombatDialog(CCBRoleState *this, unsigned int dwVal)",
+      "source": "annotation"
+    },
+    "0x004F3DC0": {
+      "name": "FindFirstEnemySlot",
+      "signature": "int __thiscall CCBRoleState::FindFirstEnemySlot(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x00457070": {
+      "name": "ctor__ovl_7070",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2, int nVal3)",
+      "source": "annotation"
+    },
+    "0x00456B80": {
+      "name": "ctor_6B80",
+      "signature": "void __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x00502000": {
+      "name": "Func_502000",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F2C30": {
+      "name": "GetRole__ovl_2c30",
+      "signature": "void *__thiscall(CCBRoleState *this, int index)",
+      "source": "annotation"
+    },
+    "0x004DC720": {
+      "name": "IsAlive__ovl_c720",
+      "signature": "BOOL __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004DC7A0": {
+      "name": "InitCombatDialog",
+      "signature": "void __thiscall CCBRoleState::InitCombatDialog(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004ECB20": {
+      "name": "ProcessCombatAction",
+      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004EEF20": {
+      "name": "CalcCombatDamage__ovl_ef20",
+      "signature": "int __thiscall(CCBRoleState *this, const void *pData, unsigned int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F2690": {
+      "name": "CheckBoss",
+      "signature": "int __thiscall(CCBRoleState *this, int *arg0, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x00456B60": {
+      "name": "_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "source": "annotation"
+    },
+    "0x004DCF80": {
+      "name": "HandleMagicMenu",
+      "signature": "int __thiscall CCBRoleState::HandleMagicMenu(CCBRoleState *this, int nState)",
+      "source": "annotation"
+    },
+    "0x004DDC90": {
+      "name": "EndRoundTasks",
+      "signature": "int __thiscall(CCBRoleState *this, int B4)",
+      "source": "annotation"
+    },
+    "0x004DF3D0": {
+      "name": "CheckMP__ovl_f3d0",
+      "signature": "char __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004E1A40": {
+      "name": "CombatDialogProc",
+      "signature": "int __thiscall CCBRoleState::CombatDialogProc(CCBRoleState *this, int nVal, HWND hDlg, unsigned int uMsg, int wParam, int lParam)",
+      "source": "annotation"
+    },
+    "0x004E2C10": {
+      "name": "HandleDlgMessage",
+      "signature": "LRESULT __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004E30E0": {
+      "name": "SyncRoleUIData",
+      "signature": "unsigned char __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004E40B0": {
+      "name": "UpdateDebugDialog",
+      "signature": "LRESULT __thiscall CCBRoleState::UpdateDebugDialog(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004EC910": {
+      "name": "SetupCombatLayout",
+      "signature": "int __thiscall CCBRoleState::SetupCombatLayout(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004ED250": {
+      "name": "LoadPartyData",
+      "signature": "int __fastcall CCBRoleState::LoadPartyData(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004ED870": {
+      "name": "SyncSkillCent",
+      "signature": "char __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004EE910": {
+      "name": "CheckMP__ovl_2",
+      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F0A10": {
+      "name": "CalcCombatDamage__ovl_2",
+      "signature": "char __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F2390": {
+      "name": "CheckRoundComplete",
+      "signature": "char __thiscall CCBRoleState::CheckRoundComplete(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004F2560": {
+      "name": "ValidateSlotIndex",
+      "signature": "char __thiscall(CCBRoleState *this, unsigned int arg0, unsigned int dwVal)",
+      "source": "annotation"
+    },
+    "0x004F2660": {
+      "name": "CheckTargetCombo",
+      "signature": "int __thiscall CCBRoleState::CheckTargetCombo(CCBRoleState *this, struct tagCmdData *p, unsigned int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F2750": {
+      "name": "CheckBoss_2",
+      "signature": "int __thiscall(CCBRoleState *this, int *arg0, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F27B0": {
+      "name": "GetV4",
+      "signature": "int __thiscall(CCBRoleState *this, int *arg0, unsigned int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F27E0": {
+      "name": "CalcComboDirect",
+      "signature": "int __thiscall CCBRoleState::CalcComboDirect(CCBRoleState *this, const void *pData, unsigned int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F2800": {
+      "name": "ApplyItemEffect",
+      "signature": "int __thiscall CCBRoleState::ApplyItemEffect(CCBRoleState *this, int nCmdData, int nParam)",
+      "source": "annotation"
+    },
+    "0x004F48C0": {
+      "name": "TickDebuffs",
+      "signature": "void __thiscall CCBRoleState::TickDebuffs(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F4B90": {
+      "name": "CalcMagicDamage__ovl_4b90",
+      "signature": "unsigned int __thiscall CCBRoleState::CalcMagicDamage(CCBRoleState *this, int roleIdx, int nMagicID)",
+      "source": "annotation"
+    },
+    "0x004F4C80": {
+      "name": "CalcSkillDamage",
+      "signature": "unsigned int __thiscall CCBRoleState::CalcSkillDamage(CCBRoleState *this, int roleIdx, int nSkillID)",
+      "source": "annotation"
+    },
+    "0x004F5330": {
+      "name": "AISelectItem",
+      "signature": "int __thiscall CCBRoleState::AISelectItem(CCBRoleState *this, int roleIdx, char pData)",
+      "source": "annotation"
+    },
+    "0x004F5D00": {
+      "name": "AISelectMagic",
+      "signature": "int __thiscall CCBRoleState::AISelectMagic(CCBRoleState *this, unsigned int roleIdx, char pData, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F6000": {
+      "name": "AISelectHealItem",
+      "signature": "int __thiscall CCBRoleState::AISelectHealItem(CCBRoleState *this, unsigned int roleIdx, char pData, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F61D0": {
+      "name": "AISelectTarget",
+      "signature": "int __thiscall CCBRoleState::AISelectTarget(CCBRoleState *this, unsigned int roleIdx, char pData, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F6370": {
+      "name": "AISelectSkill",
+      "signature": "int __thiscall CCBRoleState::AISelectSkill(CCBRoleState *this, unsigned int roleIdx, int nVal, char pData)",
+      "source": "annotation"
+    },
+    "0x004F6690": {
+      "name": "AISelectItemForSkill",
+      "signature": "int __thiscall CCBRoleState::AISelectItemForSkill(CCBRoleState *this, unsigned int roleIdx, int nSkillID, char pData)",
+      "source": "annotation"
+    },
+    "0x004F6860": {
+      "name": "AISelectSkillTarget",
+      "signature": "int __thiscall CCBRoleState::AISelectSkillTarget(CCBRoleState *this, unsigned int roleIdx, int nSkillID, char pData)",
+      "source": "annotation"
+    },
+    "0x004F7200": {
+      "name": "CheckEventCondition",
+      "signature": "char __thiscall CCBRoleState::CheckEventCondition(CCBRoleState *this, int pEvent)",
+      "source": "annotation"
+    },
+    "0x004F8AF0": {
+      "name": "ProcessControlInput",
+      "signature": "void __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004F8FA0": {
+      "name": "LoadRoleModel",
+      "signature": "char __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F8FD0": {
+      "name": "SpawnRandomEnemies",
+      "signature": "char __thiscall CCBRoleState::SpawnRandomEnemies(CCBRoleState *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x004F90F0": {
+      "name": "CheckRoleCanAct",
+      "signature": "char *__thiscall(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F91B0": {
+      "name": "PopulateItemList",
+      "signature": "char *__thiscall CCBRoleState::PopulateItemList(CCBRoleState *this, int nSlot)",
+      "source": "annotation"
+    },
+    "0x004F9390": {
+      "name": "PopulateMagicList",
+      "signature": "unsigned int __thiscall CCBRoleState::PopulateMagicList(CCBRoleState *this, int nSlot)",
+      "source": "annotation"
+    },
+    "0x004FB370": {
+      "name": "CheckMPRequirement",
+      "signature": "int __thiscall CCBRoleState::CheckMPRequirement(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00449F00": {
+      "name": "CalcSpringForce",
+      "signature": "__int64 __thiscall(CCBRoleState *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00449FE0": {
+      "name": "UpdateSpringAnim",
+      "signature": "int __thiscall CCBRoleState::UpdateSpringAnim(CCBRoleState *this, float fDelta)",
+      "source": "annotation"
+    },
+    "0x0044A2E0": {
+      "name": "UpdateFadeAlpha",
+      "signature": "void __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x0044A3D0": {
+      "name": "InitFadeAndSpring",
+      "signature": "int __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x00456C20": {
+      "name": "~CCBRoleState__ovl_6c20",
+      "signature": "void __thiscall CCBRoleState::~CCBRoleState(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x00457020": {
+      "name": "PlayVideoIfReady",
+      "signature": "BOOL __thiscall(CCBRoleState *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x0046D770": {
+      "name": "LayoutSlotPanelA",
+      "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)",
+      "source": "annotation"
+    },
+    "0x0046D890": {
+      "name": "LayoutSlotPanelB",
+      "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)",
+      "source": "annotation"
+    },
+    "0x0046D9B0": {
+      "name": "LayoutSlotPanelC",
+      "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)",
+      "source": "annotation"
+    },
+    "0x0046DAD0": {
+      "name": "LayoutSlotPanelD",
+      "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)",
+      "source": "annotation"
+    },
+    "0x0046DBF0": {
+      "name": "LayoutSlotPanelE",
+      "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)",
+      "source": "annotation"
+    },
+    "0x0046F390": {
+      "name": "NotifyStateChange",
+      "signature": "int __thiscall CCBRoleState::NotifyStateChange(CCBRoleState *this, unsigned __int8 nState)",
+      "source": "annotation"
+    },
+    "0x004DC760": {
+      "name": "GetCombatDialogPos",
+      "signature": "char __thiscall(CCBRoleState *this, int *p_DWORD, int *p_DWORD2, int *p_DWORD3)",
+      "source": "annotation"
+    },
+    "0x004DCD00": {
+      "name": "HandleItemMenu",
+      "signature": "int __thiscall CCBRoleState::HandleItemMenu(CCBRoleState *this, int nState)",
+      "source": "annotation"
+    },
+    "0x004DD300": {
+      "name": "HandleTargetMenu",
+      "signature": "int __thiscall CCBRoleState::HandleTargetMenu(CCBRoleState *this, int nState)",
+      "source": "annotation"
+    },
+    "0x004DD650": {
+      "name": "StartLineupPhase",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004DE8C0": {
+      "name": "InitSelectionUI",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004DEE80": {
+      "name": "DispatchCombatAction",
+      "signature": "int __thiscall CCBRoleState::DispatchCombatAction(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004DF2F0": {
+      "name": "ExecuteCombatCommand",
+      "signature": "int __thiscall CCBRoleState::ExecuteCombatCommand(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004DF370": {
+      "name": "GetActionPriority",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004DF6D0": {
+      "name": "ResetDialogSlots",
+      "signature": "int __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004E28F0": {
+      "name": "UpdateDebugTreeView",
+      "signature": "LRESULT __thiscall CCBRoleState::UpdateDebugTreeView(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004E4570": {
+      "name": "ApplyDebugEdits",
+      "signature": "char __thiscall CCBRoleState::ApplyDebugEdits(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004EC680": {
+      "name": "ClearAndSetGP",
+      "signature": "CCBRoleState * __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004EC7D0": {
+      "name": "IterateMagicSlots",
+      "signature": "char __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004EC830": {
+      "name": "DestroyAndReinit",
+      "signature": "char __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004ED0A0": {
+      "name": "ApplyHitEffect",
+      "signature": "char __thiscall(CCBRoleState *this, char pData)",
+      "source": "annotation"
+    },
+    "0x004ED170": {
+      "name": "ShuffleSlots",
+      "signature": "char __thiscall CCBRoleState::ShuffleSlots(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004ED680": {
+      "name": "SavePartyData",
+      "signature": "char __thiscall CCBRoleState::SavePartyData(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004ED800": {
+      "name": "UpdateDefenceStats",
+      "signature": "char *__thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004EDC60": {
+      "name": "RollInitiative",
+      "signature": "int __thiscall CCBRoleState::RollInitiative(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004EED60": {
+      "name": "ForceRoleTaskByCond",
+      "signature": "char __thiscall CCBRoleState::ForceRoleTaskByCond(CCBRoleState *this, int roleIdx)",
+      "source": "annotation"
+    },
+    "0x004F2BF0": {
+      "name": "GetRoleGPBak",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal, char pData)",
+      "source": "annotation"
+    },
+    "0x004F6DA0": {
+      "name": "ValidateCommandTarget",
+      "signature": "char __thiscall CCBRoleState::ValidateCommandTarget(CCBRoleState *this, int *pCmd)",
+      "source": "annotation"
+    },
+    "0x004F7480": {
+      "name": "CheckMagicCost",
+      "signature": "char __thiscall(CCBRoleState *this, int *p_DWORD)",
+      "source": "annotation"
+    },
+    "0x004F76C0": {
+      "name": "GetSkillCostLevel",
+      "signature": "int __thiscall CCBRoleState::GetSkillCostLevel(CCBRoleState *this, unsigned int dwSlot, int nSkillID)",
+      "source": "annotation"
+    },
+    "0x004F7820": {
+      "name": "SumGPCost",
+      "signature": "char __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004F8BB0": {
+      "name": "InitSlot",
+      "signature": "int __thiscall CCBRoleState::InitSlot(CCBRoleState *this, int idx, int nRoleID)",
+      "source": "annotation"
+    },
+    "0x004F9340": {
+      "name": "GetDialogSlot",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x004F9590": {
+      "name": "GetMagicSlotData",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2, int nVal3)",
+      "source": "annotation"
+    },
+    "0x004F95F0": {
+      "name": "PopulateTargetList",
+      "signature": "int __thiscall CCBRoleState::PopulateTargetList(CCBRoleState *this, int nSlot, int nType)",
+      "source": "annotation"
+    },
+    "0x004F9790": {
+      "name": "UpdateCommandButtons",
+      "signature": "int __thiscall CCBRoleState::UpdateCommandButtons(CCBRoleState *this, int nSlot)",
+      "source": "annotation"
+    },
+    "0x004FA210": {
+      "name": "GetSlotState",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x004FA280": {
+      "name": "CalcSpeedByLevel",
+      "signature": "int __thiscall CCBRoleState::CalcSpeedByLevel(CCBRoleState *this, int nRole, int nLevel)",
+      "source": "annotation"
+    },
+    "0x004FA330": {
+      "name": "GetActionTypeBySlot",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x004FA3A0": {
+      "name": "CalcDefenseByLevel",
+      "signature": "int __thiscall CCBRoleState::CalcDefenseByLevel(CCBRoleState *this, int nRole, int nLevel)",
+      "source": "annotation"
+    },
+    "0x004FA440": {
+      "name": "CalcDamage",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x004FA4E0": {
+      "name": "FindSlotByHP",
+      "signature": "int __thiscall(CCBRoleState *this, CCBRoleState *thisa, unsigned int dwVal)",
+      "source": "annotation"
+    },
+    "0x004FA510": {
+      "name": "GetRoleCount",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004FA560": {
+      "name": "GetSlotActionType",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal, char *Buffer)",
+      "source": "annotation"
+    },
+    "0x004FA5F0": {
+      "name": "FindRoleByID",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004FA620": {
+      "name": "CountValidSlots",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2, int *p_DWORD, int *pnVal)",
+      "source": "annotation"
+    },
+    "0x004FA700": {
+      "name": "GetSlotType",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004FA760": {
+      "name": "SwapEffectParams",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004FB6B0": {
+      "name": "RandomizeSpecialSkill",
+      "signature": "int __thiscall CCBRoleState::RandomizeSpecialSkill(CCBRoleState *this, int nSkillId)",
+      "source": "annotation"
+    },
+    "0x005021C0": {
+      "name": "FadeMusicIn",
+      "signature": "int __thiscall CCBRoleState::FadeMusicIn(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00502300": {
+      "name": "FadeMusicOut",
+      "signature": "int __thiscall CCBRoleState::FadeMusicOut(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00502430": {
+      "name": "GetCombatDialogEntry",
+      "signature": "int __thiscall(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x005025C0": {
+      "name": "FormatSkillResultText",
+      "signature": "int __thiscall CCBRoleState::FormatSkillResultText(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x005027E0": {
+      "name": "FormatAttackResultText",
+      "signature": "int __thiscall CCBRoleState::FormatAttackResultText(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00502950": {
+      "name": "FormatItemResultText",
+      "signature": "int __thiscall CCBRoleState::FormatItemResultText(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00502CC0": {
+      "name": "FormatMagicResultText",
+      "signature": "int __thiscall CCBRoleState::FormatMagicResultText(CCBRoleState *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004EC6B0": {
+      "name": "ClearRoleMemory",
+      "signature": "int __thiscall(CCBRoleState *this)",
+      "source": "annotation"
+    },
+    "0x004E5110": {
+      "name": "GetTargetCommand",
+      "signature": "int __cdecl CCBRoleState::GetTargetCommand()",
+      "source": "annotation"
+    }
   }
 }

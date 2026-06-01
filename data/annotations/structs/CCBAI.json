@@ -72,5 +72,537 @@
       "type": "unsigned char",
       "source": "binary:disp32_1hits_1funcs"
     }
+  },
+  "methods": {
+    "0x00623102": {
+      "name": "CastBFAAttackMagic",
+      "signature": "bool (int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x00624D50": {
+      "name": "CastReviveItem",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x00622485": {
+      "name": "CastRecoverMagic",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x0061D2A2": {
+      "name": "HandleEnemyAction",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00622739": {
+      "name": "CastRecoverBigMagic",
+      "signature": "bool (int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x006213D2": {
+      "name": "RepeatPlayerLastOperation",
+      "signature": "bool (int, tagCmdData *)",
+      "source": "pdb"
+    },
+    "0x00623E95": {
+      "name": "CastRecoverItem",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x0061D208": {
+      "name": "Destroy",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0061E37F": {
+      "name": "HandleEnemyWeak",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00623C1E": {
+      "name": "CastAttackBigSkill",
+      "signature": "bool (int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x00622E3D": {
+      "name": "CastSpecifyMagic",
+      "signature": "bool (int, int, ulong)",
+      "source": "pdb"
+    },
+    "0x0062297D": {
+      "name": "CastAttackMagic",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x0061D193": {
+      "name": "~CCBAI",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0061F2E5": {
+      "name": "HandleEnemyLow",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00625A4A": {
+      "name": "DestroyValueAutomation",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00624328": {
+      "name": "CastAttackItem",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x0062057A": {
+      "name": "HandleFriendNegative",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0062044F": {
+      "name": "HandleFriendAction",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0062219A": {
+      "name": "CastNormalAttack",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x006254ED": {
+      "name": "CastCureSpecStateItem",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x0061D297": {
+      "name": "Render",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0061D433": {
+      "name": "HandleEnemyWell",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00624107": {
+      "name": "CastRecoverBigItem",
+      "signature": "bool (int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x00621B13": {
+      "name": "DemandThreadTracer",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00621D74": {
+      "name": "DemandChecker",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00624FB5": {
+      "name": "CastCureSpecStateMagic",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x0061D215": {
+      "name": "Init",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0061D0C7": {
+      "name": "CCBAI",
+      "signature": "void (CCBSystem *)",
+      "source": "pdb"
+    },
+    "0x00624863": {
+      "name": "CastReviveMagic",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x006259C9": {
+      "name": "AddValueItem",
+      "signature": "bool (int, ulong)",
+      "source": "pdb"
+    },
+    "0x00625E0C": {
+      "name": "SpecAI",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x00623279": {
+      "name": "CastRandEnemyMagic",
+      "signature": "bool (int, int)",
+      "source": "pdb"
+    },
+    "0x00624AEB": {
+      "name": "CastReviveSkill",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x00625272": {
+      "name": "CastCureSpecStateSkill",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x00621166": {
+      "name": "HandlePlayerNormalAttack",
+      "signature": "bool (int, uchar)",
+      "source": "pdb"
+    },
+    "0x0061D27C": {
+      "name": "Update",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00624804": {
+      "name": "CastBossPhysicalAttack",
+      "signature": "bool (int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x0062029D": {
+      "name": "HandleEnemyChaos",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0061D19E": {
+      "name": "Reset",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00621A32": {
+      "name": "SetNewRole",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00621A62": {
+      "name": "FillAllDemandSatisfy",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x006234EE": {
+      "name": "CastRecoverSkill",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x00623981": {
+      "name": "CastAttackSkill",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x0061D1FB": {
+      "name": "Create",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x00620B19": {
+      "name": "HandleFriendAffirmative",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0062581E": {
+      "name": "CreateValueAutomation",
+      "signature": "bool (ECBVAKind, int, int)",
+      "source": "pdb"
+    },
+    "0x006245D7": {
+      "name": "CastAttackBigItem",
+      "signature": "bool (int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x00625A99": {
+      "name": "RunValueAutomation",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x00623760": {
+      "name": "CastRecoverBigSkill",
+      "signature": "bool (int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x0062588B": {
+      "name": "AddValueFunction",
+      "signature": "bool (void *, int, uchar)",
+      "source": "pdb"
+    },
+    "0x00622FE4": {
+      "name": "CastBFAMagic",
+      "signature": "bool (int, int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x00622C4A": {
+      "name": "CastAttackBigMagic",
+      "signature": "bool (int, tagDemand *)",
+      "source": "pdb"
+    },
+    "0x0062575A": {
+      "name": "HasVeryPunyFiveMagicRole",
+      "signature": "bool (ECBForce, ECBForce)",
+      "source": "pdb"
+    },
+    "0x004014F0": {
+      "name": "Thunk_GetValue",
+      "signature": "char __thiscall(CCBAI *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x0040CFE0": {
+      "name": "GetTargetRole",
+      "signature": "void *__thiscall(CCBAI *this, void *pOut)",
+      "source": "annotation"
+    },
+    "0x004D6FF0": {
+      "name": "CCBAI",
+      "signature": "void __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004D7030": {
+      "name": "~CCBAI",
+      "signature": "void __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004D7040": {
+      "name": "Reset",
+      "signature": "int __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004D7080": {
+      "name": "Create",
+      "signature": "CCBAI * __thiscall(CCBAI *this, int *p_DWORD)",
+      "source": "annotation"
+    },
+    "0x004D70C0": {
+      "name": "Init",
+      "signature": "char __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004D7100": {
+      "name": "Update",
+      "signature": "int __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004D7120": {
+      "name": "Render",
+      "signature": "char __thiscall(CCBAI *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004D71E0": {
+      "name": "HandleEnemyAction",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "annotation"
+    },
+    "0x004D7820": {
+      "name": "HandleEnemyWell",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "annotation"
+    },
+    "0x004D7EF0": {
+      "name": "HandleEnemyWeak",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "annotation"
+    },
+    "0x004D86D0": {
+      "name": "HandleEnemyChaos",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "annotation"
+    },
+    "0x004D8760": {
+      "name": "HandleFriendAction",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "annotation"
+    },
+    "0x004D8AF0": {
+      "name": "HandleFriendNegative",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "annotation"
+    },
+    "0x004D8F20": {
+      "name": "HandleFriendAffirmative",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, char pData)",
+      "source": "annotation"
+    },
+    "0x004D9130": {
+      "name": "HandlePlayerNormalAttack",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int bPlayerCmd)",
+      "source": "annotation"
+    },
+    "0x004D9360": {
+      "name": "RepeatPlayerLastOperation",
+      "signature": "void *__thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004D9380": {
+      "name": "SetNewRole",
+      "signature": "int *__thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004D93D0": {
+      "name": "FillAllDemandSatisfy",
+      "signature": "int __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004D94F0": {
+      "name": "DemandThreadTracer",
+      "signature": "char __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004D9740": {
+      "name": "DemandChecker",
+      "signature": "char __thiscall(CCBAI *this, unsigned int dwVal, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x004D9920": {
+      "name": "CastNormalAttack",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)",
+      "source": "annotation"
+    },
+    "0x004D9A70": {
+      "name": "CastRecoverMagic",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole)",
+      "source": "annotation"
+    },
+    "0x004D9BA0": {
+      "name": "CastRecoverBigMagic",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)",
+      "source": "annotation"
+    },
+    "0x004D9D00": {
+      "name": "CastAttackMagic",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole)",
+      "source": "annotation"
+    },
+    "0x004D9E20": {
+      "name": "CastAttackBigMagic",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand)",
+      "source": "annotation"
+    },
+    "0x004D9F50": {
+      "name": "CastSpecifyMagic",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int dwID)",
+      "source": "annotation"
+    },
+    "0x004DA0A0": {
+      "name": "CastBFAMagic",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole)",
+      "source": "annotation"
+    },
+    "0x004DA1D0": {
+      "name": "CastBFAAttackMagic",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)",
+      "source": "annotation"
+    },
+    "0x004DA350": {
+      "name": "CastRandEnemyMagic",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole)",
+      "source": "annotation"
+    },
+    "0x004DA4F0": {
+      "name": "CastRecoverSkill",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)",
+      "source": "annotation"
+    },
+    "0x004DA640": {
+      "name": "CastRecoverBigSkill",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand)",
+      "source": "annotation"
+    },
+    "0x004DA770": {
+      "name": "CastAttackSkill",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)",
+      "source": "annotation"
+    },
+    "0x004DA900": {
+      "name": "CastAttackBigSkill",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand)",
+      "source": "annotation"
+    },
+    "0x004DAA40": {
+      "name": "CastRecoverItem",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)",
+      "source": "annotation"
+    },
+    "0x004DAB70": {
+      "name": "CastRecoverBigItem",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)",
+      "source": "annotation"
+    },
+    "0x004DACA0": {
+      "name": "CastAttackItem",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)",
+      "source": "annotation"
+    },
+    "0x004DADD0": {
+      "name": "CastAttackBigItem",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)",
+      "source": "annotation"
+    },
+    "0x004DAF00": {
+      "name": "CastBossPhysicalAttack",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int pDemand, int nVal)",
+      "source": "annotation"
+    },
+    "0x004DB030": {
+      "name": "CastReviveMagic",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex, int nDestRole, int pDemand)",
+      "source": "annotation"
+    },
+    "0x004DB160": {
+      "name": "CastReviveSkill",
+      "signature": "char __thiscall(CCBAI *this, int nRoleIndex)",
+      "source": "annotation"
+    },
+    "0x004DB270": {
+      "name": "CastCureSpecStateMagic",
+      "signature": "int __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004DB280": {
+      "name": "CastCureSpecStateSkill",
+      "signature": "int __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004DB290": {
+      "name": "CastCureSpecStateItem",
+      "signature": "void __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004DB2A0": {
+      "name": "HasVeryPunyFiveMagicRole",
+      "signature": "void __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004DB2B0": {
+      "name": "CreateValueAutomation",
+      "signature": "int __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004DB2C0": {
+      "name": "AddValueFunction",
+      "signature": "int __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004DB300": {
+      "name": "AddValueItem",
+      "signature": "bool __thiscall(CCBAI *this, int nData, unsigned int dwData)",
+      "source": "annotation"
+    },
+    "0x004DB310": {
+      "name": "DestroyValueAutomation",
+      "signature": "int __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004DB350": {
+      "name": "RunValueAutomation",
+      "signature": "int __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004DB360": {
+      "name": "SpecAI",
+      "signature": "int __thiscall(CCBAI *this)",
+      "source": "annotation"
+    },
+    "0x004D8580": {
+      "name": "ChooseRandomAction",
+      "signature": "void __thiscall CCBAI::ChooseRandomAction(CCBAI *this, int nSelfIdx)",
+      "source": "annotation"
+    }
   }
 }

@@ -571,5 +571,522 @@
       "type": "unsigned char",
       "source": "A:binary_mov_byte_[eax+0D9h]_0"
     }
+  },
+  "methods": {
+    "0x00703212": {
+      "name": "CheckAction",
+      "signature": "int (char *)",
+      "source": "pdb"
+    },
+    "0x00702FAF": {
+      "name": "IsAction",
+      "signature": "int (char *)",
+      "source": "pdb"
+    },
+    "0x0070298C": {
+      "name": "GetLoopPast",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x00702E63": {
+      "name": "IsOver",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x007030E2": {
+      "name": "GotoAction",
+      "signature": "void (char *, char *, char *)",
+      "source": "pdb"
+    },
+    "0x007028A4": {
+      "name": "GotoAction",
+      "signature": "int (ACTION_KIND, int)",
+      "source": "pdb"
+    },
+    "0x007026D7": {
+      "name": "GotoAction",
+      "signature": "int (char *, int)",
+      "source": "pdb"
+    },
+    "0x00702E7B": {
+      "name": "IfMsg",
+      "signature": "int (char *)",
+      "source": "pdb"
+    },
+    "0x007026C4": {
+      "name": "~Actor",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x007029EF": {
+      "name": "SetFPS",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0043AC20": {
+      "name": "GetgbActor",
+      "signature": "class gbActor * ()",
+      "source": "pdb"
+    },
+    "0x00702664": {
+      "name": "Actor",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00702D46": {
+      "name": "Attach",
+      "signature": "int (gbRenderEffect *)",
+      "source": "pdb"
+    },
+    "0x00702FD6": {
+      "name": "Reset2Msg",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x00702EF1": {
+      "name": "IfHaveAction",
+      "signature": "int (ulong, gbActor *)",
+      "source": "pdb"
+    },
+    "0x00702CF9": {
+      "name": "Update",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00702CEC": {
+      "name": "CheckMatChange",
+      "signature": "void (ulong)",
+      "source": "pdb"
+    },
+    "0x00702A3A": {
+      "name": "Init",
+      "signature": "void (char *, int)",
+      "source": "pdb"
+    },
+    "0x00702D99": {
+      "name": "GetCollideOBB",
+      "signature": "void (gbOBBox *)",
+      "source": "pdb"
+    },
+    "0x0070293D": {
+      "name": "EnableActionTransMtl",
+      "signature": "void (char *, uchar)",
+      "source": "pdb"
+    },
+    "0x00702DE7": {
+      "name": "Destroy",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x007028F2": {
+      "name": "LoadAction",
+      "signature": "int (char *)",
+      "source": "pdb"
+    },
+    "0x00703054": {
+      "name": "SetTexture",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x00536160": {
+      "name": "SetParam",
+      "signature": "int __thiscall(Actor *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00536220": {
+      "name": "GetDefaultFOV_thunk",
+      "signature": "int __cdecl __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00536230": {
+      "name": "SetDefaultFOV",
+      "signature": "int __cdecl __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00536240": {
+      "name": "GetDefaultDist_thunk",
+      "signature": "int __cdecl __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00536250": {
+      "name": "SetDefaultDist",
+      "signature": "void __cdecl __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00536310": {
+      "name": "DestroyInternalData",
+      "signature": "void __thiscall(SceneObj *this)",
+      "source": "annotation"
+    },
+    "0x005363A0": {
+      "name": "ResetDefaultState",
+      "signature": "int __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00536A40": {
+      "name": "GetDefaultFOV2_thunk",
+      "signature": "int __cdecl __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00536A50": {
+      "name": "SetDefaultFOV2",
+      "signature": "int __cdecl __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00536A60": {
+      "name": "GetDefaultDist2_thunk",
+      "signature": "int __cdecl __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00536A70": {
+      "name": "SetDefaultDist2",
+      "signature": "void __cdecl __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00536A80": {
+      "name": "FastInit",
+      "signature": "void __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00536C50": {
+      "name": "CompareActionName",
+      "signature": "int __thiscall(Actor *this, int actionIdx, int nVal)",
+      "source": "annotation"
+    },
+    "0x00536CC0": {
+      "name": "GetAnimDuration",
+      "signature": "unsigned int __thiscall(Actor *this, int animId)",
+      "source": "annotation"
+    },
+    "0x00536CE0": {
+      "name": "EnableTransition",
+      "signature": "void __thiscall(Actor *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00536D00": {
+      "name": "SetTimeScale",
+      "signature": "void __thiscall(Actor *this, float scale)",
+      "source": "annotation"
+    },
+    "0x00536D20": {
+      "name": "LoadModel",
+      "signature": "void *__thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00536FB0": {
+      "name": "QueryState",
+      "signature": "int __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00536FC0": {
+      "name": "DispatchAction",
+      "signature": "int __thiscall(Actor *this, int actionId)",
+      "source": "annotation"
+    },
+    "0x00536FD0": {
+      "name": "PlayAction",
+      "signature": "int __thiscall(Actor *this, int actionId)",
+      "source": "annotation"
+    },
+    "0x00536FF0": {
+      "name": "UpdateAllActions",
+      "signature": "int __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x005371B0": {
+      "name": "SetVisible",
+      "signature": "void __thiscall(Actor *this, int bVisible)",
+      "source": "annotation"
+    },
+    "0x00536AC0": {
+      "name": "SetMaterialName",
+      "signature": "int __thiscall Actor::SetMaterialName(Actor *this, void *name)",
+      "source": "annotation"
+    },
+    "0x00539540": {
+      "name": "AddActionByName",
+      "signature": "int __thiscall Actor::AddActionByName(Actor *this, const char *pszName, const char *pszName2, int nVal)",
+      "source": "annotation"
+    },
+    "0x0053A0C0": {
+      "name": "InsertAction",
+      "signature": "int __thiscall Actor::InsertAction(Actor *this, int *p_DWORD, char **nY)",
+      "source": "annotation"
+    },
+    "0x0053AF30": {
+      "name": "FindMatchingEntry",
+      "signature": "int __thiscall(Actor *this, int nY, int nVal, int nX)",
+      "source": "annotation"
+    },
+    "0x0053AF70": {
+      "name": "SetVideoRegions",
+      "signature": "void __thiscall(Actor *this, int nX, int nVal, int nY)",
+      "source": "annotation"
+    },
+    "0x0041B9F0": {
+      "name": "GetInnerAnimDuration",
+      "signature": "unsigned int __thiscall Actor::GetInnerAnimDuration(Actor *this, int animId)",
+      "source": "annotation"
+    },
+    "0x0050ACF0": {
+      "name": "GetAnimDurationByIndex",
+      "signature": "unsigned int __thiscall(Actor *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x005306A0": {
+      "name": "InitActionConfig",
+      "signature": "gbVFileSystem *__thiscall(Actor *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00531260": {
+      "name": "UpdateFrame",
+      "signature": "void __thiscall(Actor *this, float arg0)",
+      "source": "annotation"
+    },
+    "0x00537A90": {
+      "name": "DoSceneTransition",
+      "signature": "FILE *__thiscall(Actor *this, double pData, int nVal)",
+      "source": "annotation"
+    },
+    "0x00539E70": {
+      "name": "InsertAnimFrame",
+      "signature": "char *__thiscall(Actor *this, float fVal)",
+      "source": "annotation"
+    },
+    "0x0053B2A0": {
+      "name": "SelectPointer",
+      "signature": "int *__cdecl(int *pnVal, int *pnVal2, int *pnVal3)",
+      "source": "annotation"
+    },
+    "0x00419690": {
+      "name": "UpdatePhysics",
+      "signature": "void __thiscall(Actor *this, float fVal)",
+      "source": "annotation"
+    },
+    "0x0044CB30": {
+      "name": "InitParticles",
+      "signature": "int __thiscall Actor::InitParticles(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00456EE0": {
+      "name": "ApplyStateArray",
+      "signature": "int __thiscall Actor::ApplyStateArray(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00456F10": {
+      "name": "SaveState",
+      "signature": "char * __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x005309A0": {
+      "name": "ResetTransformState",
+      "signature": "int __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00530C00": {
+      "name": "UpdateAnimState",
+      "signature": "bool __thiscall(Actor *this, char pData)",
+      "source": "annotation"
+    },
+    "0x00530F70": {
+      "name": "BlendAnimation",
+      "signature": "void __thiscall(Actor *this, float fVal)",
+      "source": "annotation"
+    },
+    "0x005370E0": {
+      "name": "ValidateInput",
+      "signature": "int __thiscall(Actor *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00537120": {
+      "name": "SetTextureName",
+      "signature": "void __thiscall(Actor *this, const char *pszName)",
+      "source": "annotation"
+    },
+    "0x005372B0": {
+      "name": "GetArrayCount",
+      "signature": "int __thiscall Actor::GetArrayCount(Actor *this)",
+      "source": "annotation"
+    },
+    "0x005372D0": {
+      "name": "LoadActionSequence",
+      "signature": "int *__thiscall(Actor *this, int *p_DWORD, unsigned int dwVal, int *p_DWORD2)",
+      "source": "annotation"
+    },
+    "0x00537510": {
+      "name": "StoreParam",
+      "signature": "int __thiscall(Actor *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x005375B0": {
+      "name": "ClearArrayEntry",
+      "signature": "int __fastcall(int nVal)",
+      "source": "annotation"
+    },
+    "0x005375F0": {
+      "name": "ClearPathBuffer",
+      "signature": "void __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x005376E0": {
+      "name": "LoadSaveData",
+      "signature": "int __thiscall Actor::LoadSaveData(Actor *this, char *pszSlotIdx)",
+      "source": "annotation"
+    },
+    "0x00537770": {
+      "name": "LoadActions",
+      "signature": "int __thiscall Actor::LoadActions(Actor *this, FILE *Stream, int *pnVal)",
+      "source": "annotation"
+    },
+    "0x00537A30": {
+      "name": "ClearAllocBuffers",
+      "signature": "void __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x005381D0": {
+      "name": "InitAnimSequence",
+      "signature": "char *__thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00538320": {
+      "name": "EnsureDirectory",
+      "signature": "BOOL __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00538500": {
+      "name": "LoadActorModel",
+      "signature": "BOOL __thiscall(Actor *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00538CE0": {
+      "name": "ClearActionFlags",
+      "signature": "int __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00538D20": {
+      "name": "CompareModelName",
+      "signature": "BOOL __cdecl(char *String1, char *String2)",
+      "source": "annotation"
+    },
+    "0x005392C0": {
+      "name": "ActionEntry_Assign",
+      "signature": "char *__thiscall Actor::ActionEntry_Assign(Actor *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x005394D0": {
+      "name": "ClearActionArrays",
+      "signature": "int *__thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00539700": {
+      "name": "GetAnimDataBuffer",
+      "signature": "void __thiscall(Actor *this, void **Buffer, int Stream)",
+      "source": "annotation"
+    },
+    "0x005399E0": {
+      "name": "IterateActiveActors",
+      "signature": "void __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00539A90": {
+      "name": "SearchAnimByIndex",
+      "signature": "char __thiscall(Actor *this, char *String1, char *pszBuf)",
+      "source": "annotation"
+    },
+    "0x00539AF0": {
+      "name": "RegisterAnim",
+      "signature": "void __thiscall Actor::RegisterAnim(Actor *this, char *pszName, char *pszBuf)",
+      "source": "annotation"
+    },
+    "0x00539D60": {
+      "name": "ClearAllActions",
+      "signature": "int *__thiscall Actor::ClearAllActions(Actor *this)",
+      "source": "annotation"
+    },
+    "0x0053A020": {
+      "name": "IterateAllocBuffer",
+      "signature": "char __thiscall(Actor *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x0053A060": {
+      "name": "InitAction",
+      "signature": "int *__thiscall Actor::InitAction(Actor *this, _BYTE *pActionType)",
+      "source": "annotation"
+    },
+    "0x0053A080": {
+      "name": "GetActionArrayEnd",
+      "signature": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, short *pnVal)",
+      "source": "annotation"
+    },
+    "0x0053A2E0": {
+      "name": "GetActionCount__ovl_a2e0",
+      "signature": "int __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x0053A310": {
+      "name": "DestroyActionRange",
+      "signature": "void __thiscall(Actor *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x0053A670": {
+      "name": "CopyActionData",
+      "signature": "int *__thiscall(Actor *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x0053AFA0": {
+      "name": "CopyBufferBlocks",
+      "signature": "char *__thiscall Actor::CopyBufferBlocks(Actor *this, char *pszDst, char *pszSrc, char *pszBuf3)",
+      "source": "annotation"
+    },
+    "0x0053AFE0": {
+      "name": "CopyIfValid",
+      "signature": "char * __thiscall(Actor *this, char *pszBuf, char *pszBuf2, const void *pData)",
+      "source": "annotation"
+    },
+    "0x0053B230": {
+      "name": "GetCount",
+      "signature": "int __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x0053B260": {
+      "name": "CompareBuffers",
+      "signature": "char * __thiscall(Actor *this, char *pszBuf, char *pszBuf2, char *pszBuf3)",
+      "source": "annotation"
+    },
+    "0x0053B890": {
+      "name": "SetCurrentAction",
+      "signature": "char *__thiscall Actor::SetCurrentAction(Actor *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x0053BAE0": {
+      "name": "ActArray_Assign",
+      "signature": "int *__thiscall Actor::ActArray_Assign(Actor *this, int *p_DWORD)",
+      "source": "annotation"
+    },
+    "0x0053BD30": {
+      "name": "BoneIndexVec_Assign",
+      "signature": "int *__thiscall Actor::BoneIndexVec_Assign(Actor *this, int *pnVal)",
+      "source": "annotation"
+    },
+    "0x0041BCA0": {
+      "name": "SetActionByName",
+      "signature": "int __thiscall(Actor *this, unsigned char *pbyName)",
+      "source": "annotation"
+    },
+    "0x00530F20": {
+      "name": "GetBoundRadius",
+      "signature": "bool __thiscall(Actor *this)",
+      "source": "annotation"
+    },
+    "0x00538FA0": {
+      "name": "BuildCollisionMesh",
+      "signature": "void __thiscall(Actor *this, int *pOut)",
+      "source": "annotation"
+    },
+    "0x0053BEB0": {
+      "name": "GetActionCountEx",
+      "signature": "int __thiscall(Actor *this)",
+      "source": "annotation"
+    }
   }
 }

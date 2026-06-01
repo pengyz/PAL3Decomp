@@ -75,5 +75,127 @@
   },
   "base_class": [
     "PalScriptWaitObj"
-  ]
+  ],
+  "methods": {
+    "0x00450A74": {
+      "name": "UpdateValue",
+      "signature": "void (float *, float, float, float)",
+      "source": "pdb"
+    },
+    "0x004512D4": {
+      "name": "Interpolate",
+      "signature": "void (RoleCamera *, float, float, float, gbVec3D *, float)",
+      "source": "pdb"
+    },
+    "0x00450AEE": {
+      "name": "ScriptUpdate",
+      "signature": "virtual void (float)",
+      "source": "pdb"
+    },
+    "0x00451241": {
+      "name": "Move",
+      "signature": "void (RoleCamera *, gbVec3D *, float, int)",
+      "source": "pdb"
+    },
+    "0x004513B9": {
+      "name": "HorizonRotate",
+      "signature": "void (RoleCamera *, float, float, float, float, int)",
+      "source": "pdb"
+    },
+    "0x00451118": {
+      "name": "Wag",
+      "signature": "void (RoleCamera *, float, float, float, int)",
+      "source": "pdb"
+    },
+    "0x00451078": {
+      "name": "Rotate",
+      "signature": "void (RoleCamera *, float, float, float, int)",
+      "source": "pdb"
+    },
+    "0x004511B8": {
+      "name": "Quake",
+      "signature": "void (RoleCamera *, float, float)",
+      "source": "pdb"
+    },
+    "0x00450FF3": {
+      "name": "Push",
+      "signature": "void (RoleCamera *, float, float, int)",
+      "source": "pdb"
+    },
+    "0x004519F5": {
+      "name": "FocusRole",
+      "signature": "void (RoleCamera *, Role *)",
+      "source": "pdb"
+    },
+    "0x00450A25": {
+      "name": "~RoleCameraCtrl",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00450A41": {
+      "name": "IsWaiting",
+      "signature": "virtual int ()",
+      "source": "pdb"
+    },
+    "0x0045096F": {
+      "name": "RoleCameraCtrl",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00451474": {
+      "name": "VerticalRotate",
+      "signature": "void (RoleCamera *, float, float, float, float, int)",
+      "source": "pdb"
+    },
+    "0x00445860": {
+      "name": "SetName",
+      "signature": "void __thiscall RoleCameraCtrl::SetName(RoleCameraCtrl *this, const char *pszName)",
+      "source": "annotation"
+    },
+    "0x00450A60": {
+      "name": "InitFrameUI",
+      "signature": "RoleCameraCtrl * __thiscall(RoleCameraCtrl *this)",
+      "source": "annotation"
+    },
+    "0x00450C90": {
+      "name": "UpdatePosition",
+      "signature": "BOOL __thiscall(RoleCameraCtrl *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00445910": {
+      "name": "SetTargetDistance",
+      "signature": "int __thiscall RoleCameraCtrl::SetTargetDistance(RoleCameraCtrl *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00450AD0": {
+      "name": "InitBaseWidget",
+      "signature": "void __thiscall(RoleCameraCtrl *this)",
+      "source": "annotation"
+    },
+    "0x00450C60": {
+      "name": "OnMessage",
+      "signature": "int __thiscall(RoleCameraCtrl *this, int nVal, int nVal2, int nVal3)",
+      "source": "annotation"
+    },
+    "0x00450D00": {
+      "name": "ShowWindow",
+      "signature": "void __thiscall(RoleCameraCtrl *this)",
+      "source": "annotation"
+    },
+    "0x0051BB50": {
+      "name": "InitViewSlots",
+      "signature": "int __thiscall(RoleCameraCtrl *this)",
+      "source": "annotation"
+    },
+    "0x0052DFF0": {
+      "name": "SetViewPosition",
+      "signature": "int __thiscall RoleCameraCtrl::SetViewPosition(RoleCameraCtrl *this, int nVal, int nVal2, int nVal3, char pData)",
+      "source": "annotation"
+    },
+    "0x0052E080": {
+      "name": "ComputeViewVector",
+      "signature": "int __thiscall(RoleCameraCtrl *this, int nVal, int nVal2, int nVal3)",
+      "source": "annotation"
+    }
+  }
 }

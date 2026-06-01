@@ -192,5 +192,497 @@
       "type": "BYTE[256]",
       "source": "PAL3patch_import"
     }
+  },
+  "methods": {
+    "0x00456E80": {
+      "name": "_ClickOnce",
+      "signature": "int (ulong)",
+      "source": "pdb"
+    },
+    "0x0041D409": {
+      "name": "SetJoystickAbs",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0041D3C1": {
+      "name": "SetMouseAbs",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0041D65A": {
+      "name": "SetMouseSensitivity",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0041D7C5": {
+      "name": "AcquireMouse",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0041D87C": {
+      "name": "AcquireJoystick",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0041D57A": {
+      "name": "SetJoystickPos",
+      "signature": "void (long, long)",
+      "source": "pdb"
+    },
+    "0x0041DB23": {
+      "name": "CheckKeyEvents",
+      "signature": "void (ulong, int)",
+      "source": "pdb"
+    },
+    "0x0041D547": {
+      "name": "SetMouseFreePos",
+      "signature": "void (long, long)",
+      "source": "pdb"
+    },
+    "0x00456EE0": {
+      "name": "_ClickDouble",
+      "signature": "int (ulong)",
+      "source": "pdb"
+    },
+    "0x0041D75C": {
+      "name": "GetJoystickPos",
+      "signature": "void (long *, long *)",
+      "source": "pdb"
+    },
+    "0x0041D716": {
+      "name": "GetMouseFreePos",
+      "signature": "void (long *, long *)",
+      "source": "pdb"
+    },
+    "0x0070F430": {
+      "name": "GetInputState",
+      "signature": "void (int *, int *, int *)",
+      "source": "pdb"
+    },
+    "0x0041D670": {
+      "name": "GetMouseSensitivity",
+      "signature": "float ()",
+      "source": "pdb"
+    },
+    "0x00456E00": {
+      "name": "_Click",
+      "signature": "int (ulong)",
+      "source": "pdb"
+    },
+    "0x00456E40": {
+      "name": "_Click2",
+      "signature": "int (ulong)",
+      "source": "pdb"
+    },
+    "0x0041DC00": {
+      "name": "InitShiftedKeys",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0041D681": {
+      "name": "GetShiftedKeyState",
+      "signature": "unsigned short (ushort)",
+      "source": "pdb"
+    },
+    "0x0041D926": {
+      "name": "UnacquireKeyboard",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0041D849": {
+      "name": "UnacquireMouse",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0041D439": {
+      "name": "RunJoystickControlPanel",
+      "signature": "void (void *)",
+      "source": "pdb"
+    },
+    "0x0041D213": {
+      "name": "Create",
+      "signature": "int (void *, void *, int)",
+      "source": "pdb"
+    },
+    "0x0041D961": {
+      "name": "Update",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0041D414": {
+      "name": "RunMouseControlPanel",
+      "signature": "void (void *)",
+      "source": "pdb"
+    },
+    "0x0041D36C": {
+      "name": "SetActiveDevices",
+      "signature": "void (int, int, int)",
+      "source": "pdb"
+    },
+    "0x0041D4FB": {
+      "name": "SetJoystickLimits",
+      "signature": "void (long, long, long, long)",
+      "source": "pdb"
+    },
+    "0x0041E392": {
+      "name": "GetKey",
+      "signature": "int (ulong)",
+      "source": "pdb"
+    },
+    "0x0041E304": {
+      "name": "GetKey",
+      "signature": "unsigned long ()",
+      "source": "pdb"
+    },
+    "0x0041D6DE": {
+      "name": "GetKeyRaw",
+      "signature": "unsigned short (ushort)",
+      "source": "pdb"
+    },
+    "0x0042C840": {
+      "name": "_1stClick",
+      "signature": "int (ulong)",
+      "source": "pdb"
+    },
+    "0x0041E49C": {
+      "name": "IsAnyKeyPressed",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x0041D7A2": {
+      "name": "GetJoystickDeltas",
+      "signature": "void (long *, long *)",
+      "source": "pdb"
+    },
+    "0x0041D627": {
+      "name": "SetJoystickFreePos",
+      "signature": "void (long, long)",
+      "source": "pdb"
+    },
+    "0x0041D739": {
+      "name": "GetMouseDeltas",
+      "signature": "void (long *, long *)",
+      "source": "pdb"
+    },
+    "0x0041D4CA": {
+      "name": "SetMouseLimits",
+      "signature": "void (long, long, long, long)",
+      "source": "pdb"
+    },
+    "0x0041E3E1": {
+      "name": "DecideKeyStatus",
+      "signature": "int (ulong, ulong, int)",
+      "source": "pdb"
+    },
+    "0x0041D892": {
+      "name": "AcquireKeyboard",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004BAA60": {
+      "name": "_IsBetweenDbClick",
+      "signature": "int (ulong)",
+      "source": "pdb"
+    },
+    "0x0041D77F": {
+      "name": "GetJoystickFreePos",
+      "signature": "void (long *, long *)",
+      "source": "pdb"
+    },
+    "0x0041DD39": {
+      "name": "InitDIKToKEY",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0041D446": {
+      "name": "ClearKeyBuffer",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0041D887": {
+      "name": "UnacquireJoystick",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0041E3B4": {
+      "name": "GetCharKey",
+      "signature": "int (ulong)",
+      "source": "pdb"
+    },
+    "0x0041D6FF": {
+      "name": "GetMousePos",
+      "signature": "void (tagPOINT *)",
+      "source": "pdb"
+    },
+    "0x0041D6C0": {
+      "name": "GetKeyState",
+      "signature": "unsigned short (ushort)",
+      "source": "pdb"
+    },
+    "0x00456DE0": {
+      "name": "GetMouseWheel",
+      "signature": "long ()",
+      "source": "pdb"
+    },
+    "0x0041D18B": {
+      "name": "~GRPinput",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0041D52C": {
+      "name": "SetMousePos",
+      "signature": "void (long, long)",
+      "source": "pdb"
+    },
+    "0x0041D007": {
+      "name": "GRPinput",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004022E0": {
+      "name": "GetCursorPos",
+      "signature": "BOOL __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00402310": {
+      "name": "AcquireDevices",
+      "signature": "int __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00402380": {
+      "name": "ReleaseDevices",
+      "signature": "int __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00402400": {
+      "name": "GRPinput",
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x004024F0": {
+      "name": "~GRPinput",
+      "signature": "void __thiscall(GRPinput *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00402570": {
+      "name": "InitKeyMappings",
+      "signature": "int __thiscall GRPinput::InitKeyMappings(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00402A90": {
+      "name": "SetMouseAbs",
+      "signature": "int __thiscall(GRPinput *this, int nVal, int nVal2, int nVal3)",
+      "source": "annotation"
+    },
+    "0x00402B00": {
+      "name": "SetJoystickAbs",
+      "signature": "char __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00402B60": {
+      "name": "RunJoystickControlPanel",
+      "signature": "void __thiscall(GRPinput *this, void *hWnd)",
+      "source": "annotation"
+    },
+    "0x00402B70": {
+      "name": "ClearKeyBuffer",
+      "signature": "int __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00402B90": {
+      "name": "SetJoystickLimits",
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00402BA0": {
+      "name": "SetMousePos",
+      "signature": "GRPinput *__fastcall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00402BF0": {
+      "name": "SetMouseFreePos",
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00402C40": {
+      "name": "SetJoystickPos",
+      "signature": "char __thiscall(GRPinput *this, const char *x, int y)",
+      "source": "annotation"
+    },
+    "0x00402D00": {
+      "name": "SetJoystickFreePos",
+      "signature": "char __thiscall(GRPinput *this, float x)",
+      "source": "annotation"
+    },
+    "0x00402D20": {
+      "name": "SetMouseSensitivity",
+      "signature": "char __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00402FA0": {
+      "name": "GetMouseSensitivity",
+      "signature": "int __thiscall(GRPinput *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x00403000": {
+      "name": "PollInputState",
+      "signature": "_BYTE *__thiscall GRPinput::PollInputState(GRPinput *this, unsigned int key)",
+      "source": "annotation"
+    },
+    "0x00403150": {
+      "name": "GetMouseFreePos",
+      "signature": "int __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00403160": {
+      "name": "GetMouseDeltas",
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00403170": {
+      "name": "GetJoystickPos",
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00403180": {
+      "name": "GetJoystickFreePos",
+      "signature": "BOOL __thiscall(GRPinput *this, int x, int y)",
+      "source": "annotation"
+    },
+    "0x00403370": {
+      "name": "AcquireMouse",
+      "signature": "GRPinput * __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x004033F0": {
+      "name": "UnacquireMouse",
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00403410": {
+      "name": "AcquireJoystick",
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00403470": {
+      "name": "UnacquireJoystick",
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x004034B0": {
+      "name": "AcquireKeyboard",
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x004034E0": {
+      "name": "UnacquireKeyboard",
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00403560": {
+      "name": "Update",
+      "signature": "int __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00403640": {
+      "name": "CheckKeyEvents",
+      "signature": "void __thiscall(GRPinput *this, const char *key)",
+      "source": "annotation"
+    },
+    "0x004038F0": {
+      "name": "InitShiftedKeys",
+      "signature": "float *__cdecl(float *pfVal, int nVal)",
+      "source": "annotation"
+    },
+    "0x004039D0": {
+      "name": "InitDIKToKEY",
+      "signature": "void __thiscall(GRPinput *this, unsigned short *pwVal)",
+      "source": "annotation"
+    },
+    "0x00404020": {
+      "name": "GetKey",
+      "signature": "GRPinput *__thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00404060": {
+      "name": "GetCharKey",
+      "signature": "int __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00404150": {
+      "name": "DecideKeyStatus",
+      "signature": "unsigned int __thiscall(GRPinput *this, gbRay *thisTime, unsigned int cKey)",
+      "source": "annotation"
+    },
+    "0x004042D0": {
+      "name": "IsAnyKeyPressed",
+      "signature": "int __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x004031D0": {
+      "name": "GetState",
+      "signature": "int __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00402270": {
+      "name": "SetMouseLimits",
+      "signature": "int __thiscall(GRPinput *this, int a, int b, int c, int d)",
+      "source": "annotation"
+    },
+    "0x004022F0": {
+      "name": "GetMousePos",
+      "signature": "int __thiscall(GRPinput *this, void *pOut, void *pOut2)",
+      "source": "annotation"
+    },
+    "0x004021E0": {
+      "name": "HandleDeviceInput",
+      "signature": "int __thiscall GRPinput::HandleDeviceInput(GRPinput *this, int nMouse, int nKeyboard, int nVal3)",
+      "source": "annotation"
+    },
+    "0x004022B0": {
+      "name": "SetMode",
+      "signature": "int __thiscall(GRPinput *this, int mode)",
+      "source": "annotation"
+    },
+    "0x004022C0": {
+      "name": "GetKeyState",
+      "signature": "short __thiscall(GRPinput *this, unsigned short key)",
+      "source": "annotation"
+    },
+    "0x004020E0": {
+      "name": "Create",
+      "signature": "int __thiscall(GRPinput *this, HINSTANCE *hInst, int hwnd, int flag)",
+      "source": "annotation"
+    },
+    "0x00402360": {
+      "name": "_thunk_vtbl8",
+      "signature": "int __thiscall GRPinput::_thunk_vtbl8(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00402220": {
+      "name": "Reset",
+      "signature": "void __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x00403B80": {
+      "name": "ProcessInputFrame",
+      "signature": "int __thiscall(GRPinput *this, char *pszBuf)",
+      "source": "annotation"
+    },
+    "0x00402290": {
+      "name": "SetCursorPos",
+      "signature": "BOOL __thiscall GRPinput::SetCursorPos(GRPinput *this, int X, int Y)",
+      "source": "annotation"
+    },
+    "0x00402640": {
+      "name": "BuildKeyMap",
+      "signature": "int __thiscall(GRPinput *this)",
+      "source": "annotation"
+    },
+    "0x0046F480": {
+      "name": "ProcessMouseInput",
+      "signature": "void __thiscall GRPinput::ProcessMouseInput(GRPinput *this, float fVal)",
+      "source": "annotation"
+    }
   }
 }

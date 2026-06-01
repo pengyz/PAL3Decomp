@@ -106,5 +106,162 @@
   "base_class": [
     "CEffObj",
     "CTaskTpl<tagEffTaskParam,unsigned long (__thiscall CEffQuad::*)(unsigned long)>"
-  ]
+  ],
+  "methods": {
+    "0x005FAEA2": {
+      "name": "Destroy",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x005FB35D": {
+      "name": "Attach",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x005FDA84": {
+      "name": "Padds",
+      "signature": "void (float *, float)",
+      "source": "pdb"
+    },
+    "0x005FDA00": {
+      "name": "Padds",
+      "signature": "void (uchar *, float)",
+      "source": "pdb"
+    },
+    "0x005FC7B3": {
+      "name": "ToNextFrame",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x005FCB59": {
+      "name": "ProcInitTask",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x005FE840": {
+      "name": "Clone",
+      "signature": "virtual class CEffObj * ()",
+      "source": "pdb"
+    },
+    "0x005FCA54": {
+      "name": "CreateTask",
+      "signature": "virtual void (tagEffTaskParam *)",
+      "source": "pdb"
+    },
+    "0x005FB0C1": {
+      "name": "Create",
+      "signature": "virtual bool (tagEffObjType *)",
+      "source": "pdb"
+    },
+    "0x005FBA0D": {
+      "name": "Update",
+      "signature": "virtual void (float)",
+      "source": "pdb"
+    },
+    "0x005FE8D0": {
+      "name": "CallTask",
+      "signature": "virtual void (void *, ulong)",
+      "source": "pdb"
+    },
+    "0x005FC45E": {
+      "name": "SetQuad",
+      "signature": "bool (int, tagQuad *)",
+      "source": "pdb"
+    },
+    "0x005FCBD0": {
+      "name": "ProcCommonTask",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x005FD8B6": {
+      "name": "ProcCreateQuad",
+      "signature": "unsigned long (ulong)",
+      "source": "pdb"
+    },
+    "0x005FC2A3": {
+      "name": "DestroyOneQuad",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x005FE900": {
+      "name": "ForceEndAllTask",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x005FAD7E": {
+      "name": "~CEffQuad",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005FBF2F": {
+      "name": "FillGeomQuad",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x005FAC60": {
+      "name": "CEffQuad",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005FC934": {
+      "name": "InitDefaultUVSet",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x005FC57D": {
+      "name": "LoadTexture",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x005FB368": {
+      "name": "Render",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x005FC51F": {
+      "name": "DestroyAllQuad",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005FDAD6": {
+      "name": "GetEditorTaskDescription",
+      "signature": "virtual char * (int)",
+      "source": "pdb"
+    },
+    "0x005FBD7A": {
+      "name": "CreateOneQuad",
+      "signature": "bool (tagQuad *)",
+      "source": "pdb"
+    },
+    "0x005FAEAD": {
+      "name": "Init",
+      "signature": "virtual void (tagEffObjType *, float, float, float)",
+      "source": "pdb"
+    },
+    "0x004D1BE0": {
+      "name": "DestroyOneQuad",
+      "signature": "char __thiscall(CEffQuad *this, const void *n)",
+      "source": "annotation"
+    },
+    "0x004D1CA0": {
+      "name": "SetQuad",
+      "signature": "int __thiscall(CEffQuad *this, int n)",
+      "source": "annotation"
+    },
+    "0x004D1E50": {
+      "name": "DestroyAllQuad",
+      "signature": "int *__thiscall(CEffQuad *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004D1F30": {
+      "name": "ToNextFrame",
+      "signature": "int *__thiscall(CEffQuad *this, int nQuad)",
+      "source": "annotation"
+    },
+    "0x004D2E10": {
+      "name": "ProcessDestroyPass",
+      "signature": "int __thiscall CEffQuad::ProcessDestroyPass(CEffQuad *this, int nVal)",
+      "source": "annotation"
+    }
+  }
 }

@@ -20,5 +20,37 @@
   },
   "base_class": [
     "PalScriptWaitObj"
-  ]
+  ],
+  "methods": {
+    "0x004B2D10": {
+      "name": "IsWaiting",
+      "signature": "virtual int ()",
+      "source": "pdb"
+    },
+    "0x004B2D50": {
+      "name": "ScriptUpdate",
+      "signature": "virtual void (float)",
+      "source": "pdb"
+    },
+    "0x004B2DC0": {
+      "name": "~PalScriptIdleObj",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004B2CC0": {
+      "name": "PalScriptIdleObj",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x00453C00": {
+      "name": "UpdateWait",
+      "signature": "int __thiscall PalScriptIdleObj::UpdateWait(PalScriptIdleObj *this, const void *pData, unsigned int dwVal)",
+      "source": "annotation"
+    },
+    "0x00535600": {
+      "name": "ResetTimers",
+      "signature": "UISceneFrm * __thiscall(PalScriptIdleObj *this)",
+      "source": "annotation"
+    }
+  }
 }

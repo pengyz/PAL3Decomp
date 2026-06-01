@@ -57,5 +57,392 @@
       "type": "int",
       "source": "gap_fill:ida_decomp_access | type_fix:float->int(vtable pointer)"
     }
+  },
+  "methods": {
+    "0x004D4E26": {
+      "name": "Render",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x004D4B01": {
+      "name": "~UIWnd",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004D58DD": {
+      "name": "GetWindowRect",
+      "signature": "struct tagRECT ()",
+      "source": "pdb"
+    },
+    "0x004D4ED4": {
+      "name": "OnMessage",
+      "signature": "virtual int (uint, ulong, ulong)",
+      "source": "pdb"
+    },
+    "0x004D4C97": {
+      "name": "Destroy",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x004E8CA0": {
+      "name": "IfCreateOK",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x004D593A": {
+      "name": "SetWndColor",
+      "signature": "void (ulong)",
+      "source": "pdb"
+    },
+    "0x004D5924": {
+      "name": "SetWndColor",
+      "signature": "void (gbColorQuad)",
+      "source": "pdb"
+    },
+    "0x004D4100": {
+      "name": "IfEnable",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x004D5441": {
+      "name": "ShowWindow",
+      "signature": "virtual void (int)",
+      "source": "pdb"
+    },
+    "0x004D5081": {
+      "name": "MoveWindowOffset",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x004D4C48": {
+      "name": "AddChild",
+      "signature": "void (UIWnd *)",
+      "source": "pdb"
+    },
+    "0x004B5F30": {
+      "name": "UISendMessage",
+      "signature": "void (UIWnd *, uint, ulong, ulong)",
+      "source": "pdb"
+    },
+    "0x004D4B55": {
+      "name": "Create",
+      "signature": "virtual void (uint, tagRECT *, UIWnd *, uchar)",
+      "source": "pdb"
+    },
+    "0x004D40E0": {
+      "name": "IfVisible",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x004D590C": {
+      "name": "SetFontColor",
+      "signature": "void (gbColorQuad *)",
+      "source": "pdb"
+    },
+    "0x004D5950": {
+      "name": "BringWindowToTop",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004D589C": {
+      "name": "SetRect",
+      "signature": "void (tagRECT *)",
+      "source": "pdb"
+    },
+    "0x004D518A": {
+      "name": "CenterWindow",
+      "signature": "void (UIWnd *)",
+      "source": "pdb"
+    },
+    "0x004D5391": {
+      "name": "ClientToScreen",
+      "signature": "void (tagPOINT *)",
+      "source": "pdb"
+    },
+    "0x004D52AD": {
+      "name": "ClientToScreen",
+      "signature": "void (tagRECT *)",
+      "source": "pdb"
+    },
+    "0x004D5331": {
+      "name": "ScreenToClient",
+      "signature": "void (tagPOINT *)",
+      "source": "pdb"
+    },
+    "0x004D5229": {
+      "name": "ScreenToClient",
+      "signature": "void (tagRECT *)",
+      "source": "pdb"
+    },
+    "0x004D4D54": {
+      "name": "Update",
+      "signature": "virtual int (float, int)",
+      "source": "pdb"
+    },
+    "0x004D5019": {
+      "name": "MoveWindow",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x004D4F14": {
+      "name": "SetFrameRate",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004D4A28": {
+      "name": "UIWnd",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004D53F1": {
+      "name": "EnableWindow",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0043FDC0": {
+      "name": "GetWidth",
+      "signature": "void __thiscall(UIWnd *this, int nWidth)",
+      "source": "annotation"
+    },
+    "0x0043FDD0": {
+      "name": "GetHeight",
+      "signature": "void __thiscall(UIWnd *this, int nHeight)",
+      "source": "annotation"
+    },
+    "0x0043FDE0": {
+      "name": "GetPosition",
+      "signature": "void __thiscall(UIWnd *this, int pPos)",
+      "source": "annotation"
+    },
+    "0x00445B40": {
+      "name": "_UIWnd",
+      "signature": "void __thiscall(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x00445C10": {
+      "name": "HideAll",
+      "signature": "void __thiscall UIWnd::HideAll(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x00445C60": {
+      "name": "HitTest",
+      "signature": "BOOL __thiscall UIWnd::HitTest(UIWnd *this, int x, int y)",
+      "source": "annotation"
+    },
+    "0x00445CD0": {
+      "name": "Render",
+      "signature": "int __thiscall(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x00445DB0": {
+      "name": "SetVisible",
+      "signature": "int __thiscall(UIWnd *this, int bVisible)",
+      "source": "annotation"
+    },
+    "0x00445EA0": {
+      "name": "DestroyChildren",
+      "signature": "UIWnd * __thiscall(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x00445FA0": {
+      "name": "GetRect",
+      "signature": "int __thiscall(UIWnd *this, RECT *pRect)",
+      "source": "annotation"
+    },
+    "0x00446010": {
+      "name": "GetChild",
+      "signature": "int __thiscall(UIWnd *this, int id)",
+      "source": "annotation"
+    },
+    "0x0043BBB0": {
+      "name": "ctor__ovl_BBB0",
+      "signature": "void __thiscall(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x00445D20": {
+      "name": "LocalToScreen",
+      "signature": "int __thiscall UIWnd::LocalToScreen(UIWnd *this, int px, int py)",
+      "source": "annotation"
+    },
+    "0x00445D40": {
+      "name": "ClientToScreen",
+      "signature": "int __thiscall(UIWnd *this, int px, int py)",
+      "source": "annotation"
+    },
+    "0x0043FD90": {
+      "name": "SetIntParam",
+      "signature": "int __thiscall(UIWnd *this, int value)",
+      "source": "annotation"
+    },
+    "0x0043FDB0": {
+      "name": "SetScaleRate",
+      "signature": "void __thiscall UIWnd::SetScaleRate(UIWnd *this, int nRate)",
+      "source": "annotation"
+    },
+    "0x00445FE0": {
+      "name": "SetRect",
+      "signature": "int *__thiscall(UIWnd *this, int *pRect)",
+      "source": "annotation"
+    },
+    "0x00445F20": {
+      "name": "MoveWindow",
+      "signature": "int __thiscall(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x00530200": {
+      "name": "UpdateVisibility",
+      "signature": "int()",
+      "source": "annotation"
+    },
+    "0x00445E50": {
+      "name": "SetEnabled",
+      "signature": "int __thiscall UIWnd::SetEnabled(UIWnd *this, int state)",
+      "source": "annotation"
+    },
+    "0x0045ADD0": {
+      "name": "ResetChildList",
+      "signature": "void __thiscall UIWnd::ResetChildList(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x00445AA0": {
+      "name": "UIWnd",
+      "signature": "int *__thiscall(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x0043BE10": {
+      "name": "_scalar_dtor_be10",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "source": "annotation"
+    },
+    "0x00445F60": {
+      "name": "GetChildByIndex",
+      "signature": "UIWnd *__thiscall(UIWnd *this, unsigned int nIndex)",
+      "source": "annotation"
+    },
+    "0x00445ED0": {
+      "name": "SetItemVisible",
+      "signature": "int __thiscall(UIWnd *this, BOOL bVisible)",
+      "source": "annotation"
+    },
+    "0x0052D0F0": {
+      "name": "InitPartyFacePanel",
+      "signature": "int __thiscall UIWnd::InitPartyFacePanel(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x00452DF0": {
+      "name": "RenderRoleAvatar",
+      "signature": "void __thiscall(UIWnd *this, int *pnVal, int nRoleIndex)",
+      "source": "annotation"
+    },
+    "0x00439110": {
+      "name": "_sdtor",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "source": "annotation"
+    },
+    "0x004433D0": {
+      "name": "LayoutAndRender",
+      "signature": "int __thiscall UIWnd::LayoutAndRender(UIWnd *this, int a2)",
+      "source": "annotation"
+    },
+    "0x0044A790": {
+      "name": "CtorDefault__ovl_a790",
+      "signature": "UIWnd *__thiscall(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x0044A870": {
+      "name": "RenderTwoPass",
+      "signature": "int __thiscall(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x0044E980": {
+      "name": "LayoutForHitTest",
+      "signature": "void __thiscall UIWnd::LayoutForHitTest(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x00450390": {
+      "name": "UIWnd_Variant",
+      "signature": "void __thiscall UIWnd::UIWnd_Variant(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x0051B8C0": {
+      "name": "ProcessCancelKey",
+      "signature": "BOOL __thiscall UIWnd::ProcessCancelKey(UIWnd *this, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00445BF0": {
+      "name": "AddChild",
+      "signature": "void __thiscall UIWnd::AddChild(UIWnd *this, int pChild)",
+      "source": "annotation"
+    },
+    "0x00446030": {
+      "name": "RegisterToParent",
+      "signature": "void __thiscall UIWnd::RegisterToParent(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x0044A7F0": {
+      "name": "~UIWnd",
+      "signature": "void __thiscall UIWnd::~UIWnd(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x0044E9F0": {
+      "name": "LayoutProjectCoords",
+      "signature": "void __thiscall UIWnd::LayoutProjectCoords(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x00450440": {
+      "name": "CheckVisibleState",
+      "signature": "int __thiscall(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x00458F70": {
+      "name": "ParseResourcePath",
+      "signature": "char *__thiscall(UIWnd *this, const char *lpString, int nVal)",
+      "source": "annotation"
+    },
+    "0x00459080": {
+      "name": "ResetHotkeyTableA",
+      "signature": "int *__thiscall UIWnd::ResetHotkeyTableA(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x004590B0": {
+      "name": "ResetHotkeyTableB",
+      "signature": "int *__thiscall UIWnd::ResetHotkeyTableB(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x004A4770": {
+      "name": "SetGlobalFlag",
+      "signature": "char __cdecl SetGlobalFlag(char bFlag)",
+      "source": "annotation"
+    },
+    "0x004A8230": {
+      "name": "ClampToRange",
+      "signature": "unsigned int __thiscall CScreenMode::ClampToRange(CScreenMode *this, unsigned int dwVal, int nSlot)",
+      "source": "annotation"
+    },
+    "0x004AB560": {
+      "name": "CompareByMode",
+      "signature": "bool __thiscall CompareByMode(void *this, int nItemA, int nItemB)",
+      "source": "annotation"
+    },
+    "0x0051CC20": {
+      "name": "CreateFromTemplateSafe",
+      "signature": "char __stdcall UIWnd::CreateFromTemplateSafe(int *pParam)",
+      "source": "annotation"
+    },
+    "0x00530270": {
+      "name": "ResetVtable",
+      "signature": "int *__thiscall UIWnd::ResetVtable(UIWnd *this)",
+      "source": "annotation"
+    },
+    "0x00450560": {
+      "name": "WorldToScreen",
+      "signature": "int __thiscall(UIWnd *this, int nX, int nY)",
+      "source": "annotation"
+    },
+    "0x00445B20": {
+      "name": "_scalar_dtor__ovl_5b20",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "source": "annotation"
+    }
   }
 }

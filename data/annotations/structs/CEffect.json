@@ -62,5 +62,227 @@
       "type": "gbTextureArray *",
       "source": "annotation"
     }
+  },
+  "methods": {
+    "0x005E1B80": {
+      "name": "f2i",
+      "signature": "int (float)",
+      "source": "pdb"
+    },
+    "0x005E04DF": {
+      "name": "Destroy",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x005E0436": {
+      "name": "Reset",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x005E041A": {
+      "name": "~CEffect",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005E0622": {
+      "name": "Update",
+      "signature": "virtual void (double)",
+      "source": "pdb"
+    },
+    "0x005E1AE0": {
+      "name": "GetKind",
+      "signature": "enum EEffect ()",
+      "source": "pdb"
+    },
+    "0x005E1B00": {
+      "name": "IsVisible",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x005E0E33": {
+      "name": "DestroyAllPartical",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005E0615": {
+      "name": "HandleViewMove",
+      "signature": "virtual void (float, float)",
+      "source": "pdb"
+    },
+    "0x005E0D84": {
+      "name": "SetOnePartical",
+      "signature": "bool (int, tagPartical *)",
+      "source": "pdb"
+    },
+    "0x005E0486": {
+      "name": "Init",
+      "signature": "virtual bool ()",
+      "source": "pdb"
+    },
+    "0x005E1B20": {
+      "name": "SetVisible",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x005E0E82": {
+      "name": "LoadTexture",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x005E10B2": {
+      "name": "ToNextFrame",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x005E0BEE": {
+      "name": "DestroyOnePartical",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x005E03C4": {
+      "name": "CEffect",
+      "signature": "void (CEffectSystem *)",
+      "source": "pdb"
+    },
+    "0x005E10A7": {
+      "name": "DestroyTexture",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005E0A41": {
+      "name": "FillQuadByPartical",
+      "signature": "virtual void (int)",
+      "source": "pdb"
+    },
+    "0x005E0545": {
+      "name": "Render",
+      "signature": "virtual void ()",
+      "source": "pdb"
+    },
+    "0x005E08D9": {
+      "name": "CreateOnePartical",
+      "signature": "bool (tagPartical *)",
+      "source": "pdb"
+    },
+    "0x004C61A0": {
+      "name": "CEffectSystem",
+      "signature": "int *__thiscall(CEffectSystem *this, int pDisplay)",
+      "source": "annotation"
+    },
+    "0x004C6940": {
+      "name": "CEffect",
+      "signature": "void __thiscall(CEffect *this)",
+      "source": "annotation"
+    },
+    "0x004C6A70": {
+      "name": "Reset",
+      "signature": "void __thiscall(CEffect *this, float *pfVal, float fVal, float fVal2, float fVal3)",
+      "source": "annotation"
+    },
+    "0x004C7150": {
+      "name": "CreateOnePartical",
+      "signature": "void __thiscall(CEffect *this, float pPartical)",
+      "source": "annotation"
+    },
+    "0x004C7450": {
+      "name": "FillQuadByPartical",
+      "signature": "void __thiscall(CEffect *this, int *nParticalIndex)",
+      "source": "annotation"
+    },
+    "0x004CA400": {
+      "name": "SetParam",
+      "signature": "int __thiscall(CEffect *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004D0D70": {
+      "name": "SetTimeScale",
+      "signature": "CEffect *__thiscall(CEffect *this)",
+      "source": "annotation"
+    },
+    "0x004D0EC0": {
+      "name": "ProcInitTask",
+      "signature": "int __thiscall(CEffect *this, float *dwParam, float fVal, float fVal2, float fVal3)",
+      "source": "annotation"
+    },
+    "0x004D1090": {
+      "name": "Create",
+      "signature": "char __thiscall(CEffect *this, tagEffObjType *pEffObjType)",
+      "source": "annotation"
+    },
+    "0x004D2080": {
+      "name": "CreateTask",
+      "signature": "int __thiscall(CEffect *this, int *p)",
+      "source": "annotation"
+    },
+    "0x004D3910": {
+      "name": "CEffShock",
+      "signature": "void __thiscall(CEffect *this)",
+      "source": "annotation"
+    },
+    "0x004D3A50": {
+      "name": "Init",
+      "signature": "int __thiscall(CEffect *this, float *pType, float fx, float fy, float fz)",
+      "source": "annotation"
+    },
+    "0x004D3AD0": {
+      "name": "Create_3ad0",
+      "signature": "char __thiscall(CEffect *this, tagEffObjType *pEffObjType)",
+      "source": "annotation"
+    },
+    "0x004CE460": {
+      "name": "Render",
+      "signature": "int __thiscall(CEffect *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004D4340": {
+      "name": "CreateTarget",
+      "signature": "void __thiscall CEffect::CreateTarget(CEffect *this, int *pnVal)",
+      "source": "annotation"
+    },
+    "0x0048E780": {
+      "name": "CreateFromTemplate",
+      "signature": "int __thiscall CEffect::CreateFromTemplate(CEffect *this, int f)",
+      "source": "annotation"
+    },
+    "0x0048E950": {
+      "name": "UpdateState",
+      "signature": "char __thiscall CEffect::UpdateState(CEffect *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004BB190": {
+      "name": "SetRenderParam",
+      "signature": "int __thiscall(CEffect *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004BD7A0": {
+      "name": "SetQuadParam",
+      "signature": "int *__thiscall CEffect::SetQuadParam(CEffect *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004D0390": {
+      "name": "SetChildTimeScale",
+      "signature": "void __thiscall(CEffect *this, float fVal)",
+      "source": "annotation"
+    },
+    "0x004D0DB0": {
+      "name": "UpdateCallback",
+      "signature": "void __fastcall(CEffect *this)",
+      "source": "annotation"
+    },
+    "0x004D3950": {
+      "name": "DestroyCallback",
+      "signature": "void __fastcall(CEffect *this)",
+      "source": "annotation"
+    },
+    "0x0053D580": {
+      "name": "ReleaseResources",
+      "signature": "void __thiscall(CEffect *this)",
+      "source": "annotation"
+    },
+    "0x004D03B0": {
+      "name": "Spawn",
+      "signature": "void __thiscall CEffect::Spawn(CEffect *this)",
+      "source": "annotation"
+    }
   }
 }

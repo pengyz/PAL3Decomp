@@ -1012,5 +1012,372 @@
       "type": "float",
       "source": "binary_scan:7refs"
     }
+  },
+  "methods": {
+    "0x0049FAB3": {
+      "name": "FindScript",
+      "signature": "class PalScript * (scScriptInstance *)",
+      "source": "pdb"
+    },
+    "0x004A01D5": {
+      "name": "RunSceneScript",
+      "signature": "void (char *, char *)",
+      "source": "pdb"
+    },
+    "0x004A024D": {
+      "name": "_CON_CloseScript",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x004A025C": {
+      "name": "ClearAllScript",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004A02CC": {
+      "name": "FindScriptByDesc",
+      "signature": "unsigned long (char *)",
+      "source": "pdb"
+    },
+    "0x004A007E": {
+      "name": "Destroy",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0049F772": {
+      "name": "~PalScriptMgr",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0049F8EA": {
+      "name": "OpenSCE",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x0049F782": {
+      "name": "InitSys",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004A0097": {
+      "name": "_CON_State",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x004A016C": {
+      "name": "IfAnyScriptRunning",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x004A0222": {
+      "name": "_CON_ReLoadScript",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x004A0329": {
+      "name": "IfHaveScript",
+      "signature": "bool (ulong)",
+      "source": "pdb"
+    },
+    "0x0049FF51": {
+      "name": "Update",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0049F764": {
+      "name": "PalScriptMgr",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0049F93F": {
+      "name": "RunScript",
+      "signature": "class PalScript * (ulong, uchar)",
+      "source": "pdb"
+    },
+    "0x004A0184": {
+      "name": "IsScriptRuning",
+      "signature": "int (PalScript *)",
+      "source": "pdb"
+    },
+    "0x00431E60": {
+      "name": "PalScriptMgr",
+      "signature": "void __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x00431EB0": {
+      "name": "OpenSCE",
+      "signature": "int __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x00431EE0": {
+      "name": "FindScript",
+      "signature": "void __cdecl __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x004320A0": {
+      "name": "Update",
+      "signature": "void __cdecl(const char *pszName)",
+      "source": "annotation"
+    },
+    "0x00432170": {
+      "name": "Destroy",
+      "signature": "void __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x00432260": {
+      "name": "_CON_State",
+      "signature": "const char **__cdecl(const char *pszName)",
+      "source": "annotation"
+    },
+    "0x004322A0": {
+      "name": "IfAnyScriptRunning",
+      "signature": "int __thiscall(PalScriptMgr *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004322C0": {
+      "name": "IsScriptRuning",
+      "signature": "int __thiscall(PalScriptMgr *this, int pal)",
+      "source": "annotation"
+    },
+    "0x004323C0": {
+      "name": "RunSceneScript",
+      "signature": "void __thiscall(PalScriptMgr *this, const char *pszScene)",
+      "source": "annotation"
+    },
+    "0x00432480": {
+      "name": "_CON_ReLoadScript",
+      "signature": "void __cdecl __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x004324A0": {
+      "name": "_CON_CloseScript",
+      "signature": "BOOL __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x004324B0": {
+      "name": "ClearAllScript",
+      "signature": "int __cdecl(void *pData)",
+      "source": "annotation"
+    },
+    "0x00432500": {
+      "name": "FindScriptByDesc",
+      "signature": "int *__cdecl(const char *pszName, const char *desc)",
+      "source": "annotation"
+    },
+    "0x00432550": {
+      "name": "IfHaveScript",
+      "signature": "void __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x00434C40": {
+      "name": "NotifyEvent",
+      "signature": "void __cdecl(int nEventID)",
+      "source": "annotation"
+    },
+    "0x0042EBE0": {
+      "name": "ExecuteOpcode",
+      "signature": "int __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x0042C440": {
+      "name": "RunCommand",
+      "signature": "void __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x00424C20": {
+      "name": "ExecuteBlock",
+      "signature": "void __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x00434CA0": {
+      "name": "InitVtable",
+      "signature": "void __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x0041BDE0": {
+      "name": "Get_result",
+      "signature": "int *__thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x0042AF80": {
+      "name": "GetScriptState",
+      "signature": "char __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x0042B350": {
+      "name": "ProcessRoleLoading",
+      "signature": "void __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x0042BF90": {
+      "name": "ExecuteScriptByID",
+      "signature": "PalScriptMgr *__thiscall PalScriptMgr::ExecuteScriptByID(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x0042BFE0": {
+      "name": "IsScriptReady",
+      "signature": "bool __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x0042E6C0": {
+      "name": "CmdRoleMoveDirect",
+      "signature": "int __thiscall PalScriptMgr::CmdRoleMoveDirect(PalScriptMgr *this, unsigned __int8 pData)",
+      "source": "annotation"
+    },
+    "0x0042FCC0": {
+      "name": "PopScript",
+      "signature": "void __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x00420B40": {
+      "name": "CheckTileScript",
+      "signature": "void __thiscall PalScriptMgr::CheckTileScript(PalScriptMgr *this, RoleSystem *pRole, float fVal, char bExecute)",
+      "source": "annotation"
+    },
+    "0x00429DB0": {
+      "name": "BuildCmdTransform",
+      "signature": "void __thiscall PalScriptMgr::BuildCmdTransform(PalScriptMgr *this, gbMatrix4 *pMatrix)",
+      "source": "annotation"
+    },
+    "0x0042B5B0": {
+      "name": "UpdateScriptRoles",
+      "signature": "double __thiscall(PalScriptMgr *this, double thisa, int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x0042BEF0": {
+      "name": "HandleGetItem",
+      "signature": "void __cdecl PalScriptMgr::HandleGetItem(int nSkillGDBID)",
+      "source": "annotation"
+    },
+    "0x0042C280": {
+      "name": "LoadSceneGeometry",
+      "signature": "struct gbVFileSystem *__thiscall PalScriptMgr::LoadSceneGeometry(PalScriptMgr *this, char bNoPol)",
+      "source": "annotation"
+    },
+    "0x0042CF60": {
+      "name": "CmdPushCmd04",
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd04(PalScriptMgr *this, int nVal, unsigned __int8 pData)",
+      "source": "annotation"
+    },
+    "0x0042D130": {
+      "name": "CmdPushCmd05",
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd05(PalScriptMgr *this, unsigned __int8 pData)",
+      "source": "annotation"
+    },
+    "0x0042D2F0": {
+      "name": "CmdPushCmd07",
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd07(PalScriptMgr *this, unsigned __int8 pData)",
+      "source": "annotation"
+    },
+    "0x0042D830": {
+      "name": "CmdPushCmd10",
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd10(PalScriptMgr *this, unsigned __int8 pData)",
+      "source": "annotation"
+    },
+    "0x0042F460": {
+      "name": "ExecuteFrame",
+      "signature": "void __thiscall(PalScriptMgr *this, float fVal)",
+      "source": "annotation"
+    },
+    "0x0042FB40": {
+      "name": "SetBigMapState",
+      "signature": "char __thiscall PalScriptMgr::SetBigMapState(PalScriptMgr *this, char nState)",
+      "source": "annotation"
+    },
+    "0x00450BC0": {
+      "name": "ShowTextBox",
+      "signature": "int __thiscall PalScriptMgr::ShowTextBox(PalScriptMgr *this, const char *pszText)",
+      "source": "annotation"
+    },
+    "0x00410920": {
+      "name": "LoadYlfScript",
+      "signature": "int *__thiscall PalScriptMgr::LoadYlfScript(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x0042AAE0": {
+      "name": "CheckTileCollision",
+      "signature": "BOOL __thiscall PalScriptMgr::CheckTileCollision(PalScriptMgr *this, int *pnVal, int nVal, struct gbVec3D *p)",
+      "source": "annotation"
+    },
+    "0x0042BEA0": {
+      "name": "OnAnimFinish",
+      "signature": "void __thiscall PalScriptMgr::OnAnimFinish(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x0042C030": {
+      "name": "SetPauseState",
+      "signature": "void __thiscall PalScriptMgr::SetPauseState(PalScriptMgr *this, int bPause)",
+      "source": "annotation"
+    },
+    "0x0042DF30": {
+      "name": "CmdPushCmd14",
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd14(PalScriptMgr *this, int nVal, unsigned __int8 pData)",
+      "source": "annotation"
+    },
+    "0x0042E100": {
+      "name": "CmdPushCmd15",
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd15(PalScriptMgr *this, unsigned __int8 pData)",
+      "source": "annotation"
+    },
+    "0x0042E2C0": {
+      "name": "CmdCameraOrbitPos",
+      "signature": "char *__thiscall PalScriptMgr::CmdCameraOrbitPos(PalScriptMgr *this, int nVal, float fVal, float fVal2, unsigned __int8 pData)",
+      "source": "annotation"
+    },
+    "0x0042E4D0": {
+      "name": "CmdRoleMoveSmooth",
+      "signature": "int __thiscall PalScriptMgr::CmdRoleMoveSmooth(PalScriptMgr *this, int nVal, unsigned __int8 pData)",
+      "source": "annotation"
+    },
+    "0x00429D80": {
+      "name": "InitControlBlock",
+      "signature": "int __thiscall PalScriptMgr::InitControlBlock(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x00429F90": {
+      "name": "BuildFullTransform",
+      "signature": "void __thiscall PalScriptMgr::BuildFullTransform(PalScriptMgr *this, gbMatrix4 *pMatrix, struct gbVec3D *pPos)",
+      "source": "annotation"
+    },
+    "0x0042AC80": {
+      "name": "CmdUpdateRolePath",
+      "signature": "int __thiscall PalScriptMgr::CmdUpdateRolePath(PalScriptMgr *this, float *pfVal, float *pfVal2)",
+      "source": "annotation"
+    },
+    "0x0042AFA0": {
+      "name": "SaveExecutionState",
+      "signature": "int __thiscall PalScriptMgr::SaveExecutionState(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x0042B450": {
+      "name": "IsPosInBounds",
+      "signature": "BOOL __thiscall PalScriptMgr::IsPosInBounds(PalScriptMgr *this, float *pfPos)",
+      "source": "annotation"
+    },
+    "0x0042C3A0": {
+      "name": "IsInputBlocked",
+      "signature": "bool __thiscall PalScriptMgr::IsInputBlocked(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x00434CC0": {
+      "name": "IsWaitComplete",
+      "signature": "BOOL __thiscall PalScriptMgr::IsWaitComplete(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x00434D20": {
+      "name": "IsBlendComplete",
+      "signature": "BOOL __thiscall(PalScriptMgr *this)",
+      "source": "annotation"
+    },
+    "0x00434D40": {
+      "name": "AccumulateTime",
+      "signature": "void __thiscall PalScriptMgr::AccumulateTime(PalScriptMgr *this, float fDelta)",
+      "source": "annotation"
+    },
+    "0x00434C80": {
+      "name": "UpdateLoadProgress",
+      "signature": "void * __cdecl PalScriptMgr::UpdateLoadProgress()",
+      "source": "annotation"
+    }
   }
 }

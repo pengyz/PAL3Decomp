@@ -242,5 +242,647 @@
     "Object",
     "PalScriptWaitObj",
     "GlowObj"
-  ]
+  ],
+  "methods": {
+    "0x00440539": {
+      "name": "UpdateSteer",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x004453E9": {
+      "name": "CGStand",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00440868": {
+      "name": "OnBehaviourFinish",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0043EDA8": {
+      "name": "GotoAction",
+      "signature": "void (ACTION_KIND)",
+      "source": "pdb"
+    },
+    "0x0044398D": {
+      "name": "IsTeamOpenA",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x0043E934": {
+      "name": "Destroy",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00446FDA": {
+      "name": "GetHeight",
+      "signature": "float ()",
+      "source": "pdb"
+    },
+    "0x00446ED7": {
+      "name": "MachineCtrl",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x0044A6DE": {
+      "name": "GetArcInfo",
+      "signature": "void (ArcLocaleRole *)",
+      "source": "pdb"
+    },
+    "0x0043F8F3": {
+      "name": "PathMoveCG",
+      "signature": "void (gbVec3D *, int, ACTION_KIND)",
+      "source": "pdb"
+    },
+    "0x004E66A0": {
+      "name": "SetRealHeadPos",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x00440EE5": {
+      "name": "GetMapDist",
+      "signature": "int (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x004479A2": {
+      "name": "Script_Climb",
+      "signature": "bool (int, int)",
+      "source": "pdb"
+    },
+    "0x0044631A": {
+      "name": "CGGetAttackRange",
+      "signature": "float ()",
+      "source": "pdb"
+    },
+    "0x00449A69": {
+      "name": "Script_SetPos",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x0044A75D": {
+      "name": "SetArcInfo",
+      "signature": "void (ArcLocaleRole *)",
+      "source": "pdb"
+    },
+    "0x00447D47": {
+      "name": "GetPetPos",
+      "signature": "void (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x0044175F": {
+      "name": "ShowAct",
+      "signature": "void (char *, int)",
+      "source": "pdb"
+    },
+    "0x004415CD": {
+      "name": "ShowAct",
+      "signature": "void (ACTION_KIND, int, uchar)",
+      "source": "pdb"
+    },
+    "0x004411DD": {
+      "name": "JumpTo",
+      "signature": "void (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x0044A2AF": {
+      "name": "LoadAct",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x0043FA4C": {
+      "name": "PathToLayer",
+      "signature": "void (gbVec3D *, int, ACTION_KIND)",
+      "source": "pdb"
+    },
+    "0x00448266": {
+      "name": "PetFly",
+      "signature": "void (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x00445562": {
+      "name": "UpdateCGMonster",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x00443A34": {
+      "name": "FaceTo",
+      "signature": "void (gbVec3D *, int)",
+      "source": "pdb"
+    },
+    "0x004475A3": {
+      "name": "Climb",
+      "signature": "void (int, int, int, int, float, SceneObj *)",
+      "source": "pdb"
+    },
+    "0x004486AB": {
+      "name": "DrawView",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00448841": {
+      "name": "IsPointInView2",
+      "signature": "int (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x00484B20": {
+      "name": "SetMachineryID",
+      "signature": "void (uchar)",
+      "source": "pdb"
+    },
+    "0x0043FE6C": {
+      "name": "UpdateNPCPath",
+      "signature": "int (float)",
+      "source": "pdb"
+    },
+    "0x004439BD": {
+      "name": "IsWaiting",
+      "signature": "virtual int ()",
+      "source": "pdb"
+    },
+    "0x0044A2CE": {
+      "name": "IsPointInView3",
+      "signature": "int (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x00447D97": {
+      "name": "UpdateFly",
+      "signature": "int (float, float)",
+      "source": "pdb"
+    },
+    "0x004485BC": {
+      "name": "Evasion",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00446215": {
+      "name": "CGEvasionPlayer",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0043E0DC": {
+      "name": "UpdateRenderPos",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x00449FDF": {
+      "name": "UpdateLayer",
+      "signature": "bool (int)",
+      "source": "pdb"
+    },
+    "0x0043E650": {
+      "name": "SetNavigation",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x004499FF": {
+      "name": "CopyPos",
+      "signature": "void (Role *)",
+      "source": "pdb"
+    },
+    "0x00449B47": {
+      "name": "LoadWeapon",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x00448C9C": {
+      "name": "UpdateStar",
+      "signature": "int (float)",
+      "source": "pdb"
+    },
+    "0x00446110": {
+      "name": "CGPursuit",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0043DA30": {
+      "name": "~Role",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0043E176": {
+      "name": "UpdateRotate",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004448F1": {
+      "name": "TeamClose",
+      "signature": "void (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x0043F07B": {
+      "name": "Wander",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00456DC0": {
+      "name": "GetCurAct",
+      "signature": "enum ACTION_KIND ()",
+      "source": "pdb"
+    },
+    "0x004E66E0": {
+      "name": "GetRealHeadPosState",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x00447CCA": {
+      "name": "Scale",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x00443CE6": {
+      "name": "TalkTo",
+      "signature": "void (Role *)",
+      "source": "pdb"
+    },
+    "0x00444891": {
+      "name": "TeamOpen",
+      "signature": "void (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x00446185": {
+      "name": "CGFindPlayer",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x00444E20": {
+      "name": "UpdateMonster",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0044811D": {
+      "name": "UpdatePetFly",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0043DB00": {
+      "name": "UpdateMove",
+      "signature": "void (float, uchar)",
+      "source": "pdb"
+    },
+    "0x00444977": {
+      "name": "CreateNPC",
+      "signature": "void (NPCInfo *)",
+      "source": "pdb"
+    },
+    "0x0043E6B2": {
+      "name": "Create",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x004431FE": {
+      "name": "EnforceNonOverlap",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0044308C": {
+      "name": "EnforceNonOverlap",
+      "signature": "void (Role *)",
+      "source": "pdb"
+    },
+    "0x004485DC": {
+      "name": "UpdateWolf",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x00449A9A": {
+      "name": "Script_SetActive",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x00443AEA": {
+      "name": "TurnTo",
+      "signature": "void (float, int)",
+      "source": "pdb"
+    },
+    "0x0043DC23": {
+      "name": "Update",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x004468FD": {
+      "name": "UpdateNPC",
+      "signature": "int (float)",
+      "source": "pdb"
+    },
+    "0x0043E903": {
+      "name": "SetCGPos",
+      "signature": "void (gbVec3D)",
+      "source": "pdb"
+    },
+    "0x0044163F": {
+      "name": "RotateFly",
+      "signature": "void (gbVec3D *, int)",
+      "source": "pdb"
+    },
+    "0x0044391C": {
+      "name": "SetPosition",
+      "signature": "void (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x004438B0": {
+      "name": "SetPosition",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x0044047F": {
+      "name": "TransToLayer",
+      "signature": "void (int, int)",
+      "source": "pdb"
+    },
+    "0x00440161": {
+      "name": "UpdatePath",
+      "signature": "int (float)",
+      "source": "pdb"
+    },
+    "0x004441DD": {
+      "name": "UpdateTalk",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0043EB24": {
+      "name": "OnChangeAct",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00446DD4": {
+      "name": "IsCollideRay",
+      "signature": "int (gbRay *)",
+      "source": "pdb"
+    },
+    "0x0049A310": {
+      "name": "ClearMachinery",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00447F9C": {
+      "name": "UpdatePetFollow",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x0043F587": {
+      "name": "WalkToByAct",
+      "signature": "bool (int, int, char *)",
+      "source": "pdb"
+    },
+    "0x00463820": {
+      "name": "GetRadius",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x0044A668": {
+      "name": "Tired",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0044684E": {
+      "name": "ShowActEnd",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0043EAE7": {
+      "name": "GetWalkSpeed",
+      "signature": "float ()",
+      "source": "pdb"
+    },
+    "0x0043FD47": {
+      "name": "PathTo",
+      "signature": "bool (int, int, ACTION_KIND)",
+      "source": "pdb"
+    },
+    "0x0043F38E": {
+      "name": "PathTo",
+      "signature": "bool (gbVec3D *, ACTION_KIND)",
+      "source": "pdb"
+    },
+    "0x004499A7": {
+      "name": "SetAlpha",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x00448571": {
+      "name": "GetHeadPos",
+      "signature": "void (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x00446334": {
+      "name": "mFindPlayer",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x00449FB4": {
+      "name": "Glow_Attach",
+      "signature": "virtual void (gbRenderEffect *)",
+      "source": "pdb"
+    },
+    "0x004447B7": {
+      "name": "TalkCancle",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00448AAB": {
+      "name": "EvasionPlayer",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x00440814": {
+      "name": "Velocity2Steer",
+      "signature": "void (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x0043F169": {
+      "name": "MoveTo",
+      "signature": "void (gbVec3D *, ACTION_KIND)",
+      "source": "pdb"
+    },
+    "0x0043F0D8": {
+      "name": "MoveTo",
+      "signature": "void (ulong, ulong, ACTION_KIND)",
+      "source": "pdb"
+    },
+    "0x0044898B": {
+      "name": "IsPointInView",
+      "signature": "int (gbVec3D *, uchar)",
+      "source": "pdb"
+    },
+    "0x0043E2BA": {
+      "name": "Render",
+      "signature": "void (gbMatrixStack *, gbRenderEffect *)",
+      "source": "pdb"
+    },
+    "0x00445460": {
+      "name": "CGWander",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00448A59": {
+      "name": "SetTexture",
+      "signature": "void (char *)",
+      "source": "pdb"
+    },
+    "0x0043F26F": {
+      "name": "MoveBack",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x00446F6A": {
+      "name": "IsCollideOBB",
+      "signature": "int (gbOBBox *)",
+      "source": "pdb"
+    },
+    "0x00446E48": {
+      "name": "IsCollideRayByScale",
+      "signature": "int (gbRay *, float)",
+      "source": "pdb"
+    },
+    "0x0043F75D": {
+      "name": "PathMove",
+      "signature": "void (gbVec3D *, int, ACTION_KIND, int)",
+      "source": "pdb"
+    },
+    "0x00446079": {
+      "name": "mPursuit",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0043EAF8": {
+      "name": "GetATKSpeed",
+      "signature": "float ()",
+      "source": "pdb"
+    },
+    "0x0042CC20": {
+      "name": "SetScale",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x00447005": {
+      "name": "Stand",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00449821": {
+      "name": "Monster_Wander",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x00449F59": {
+      "name": "Glow_GetAABB",
+      "signature": "virtual void (gbAABBox *)",
+      "source": "pdb"
+    },
+    "0x0043D809": {
+      "name": "Role",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x006EA060": {
+      "name": "GetActDuration",
+      "signature": "float ()",
+      "source": "pdb"
+    },
+    "0x004410EA": {
+      "name": "CtrlSetVelocity",
+      "signature": "void (gbVec3D *, ACTION_KIND)",
+      "source": "pdb"
+    },
+    "0x00440945": {
+      "name": "AutoPosition",
+      "signature": "int (gbVec3D *)",
+      "source": "pdb"
+    },
+    "0x004496AD": {
+      "name": "NPC_Wander",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x0044A384": {
+      "name": "Init",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004464FC": {
+      "name": "Check",
+      "signature": "void (SceneObj *)",
+      "source": "pdb"
+    },
+    "0x00449AC5": {
+      "name": "DumpCmdQueue",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x004470D5": {
+      "name": "GetShadowQuad",
+      "signature": "int (gbGeomQuad *)",
+      "source": "pdb"
+    },
+    "0x0044851E": {
+      "name": "AMove",
+      "signature": "void (float, float, ACTION_KIND)",
+      "source": "pdb"
+    },
+    "0x00448352": {
+      "name": "AMove",
+      "signature": "void (gbVec3D *, ACTION_KIND)",
+      "source": "pdb"
+    },
+    "0x0043AC60": {
+      "name": "GetScale",
+      "signature": "float ()",
+      "source": "pdb"
+    },
+    "0x00463800": {
+      "name": "GetNPCState",
+      "signature": "int ()",
+      "source": "pdb"
+    },
+    "0x0043FDDA": {
+      "name": "UpdateSeek",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x004418EC": {
+      "name": "UpdateSpecialAct",
+      "signature": "int (float, ulong)",
+      "source": "pdb"
+    },
+    "0x00408D10": {
+      "name": "CalcXueJianInit",
+      "signature": "int __cdecl(int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00408D80": {
+      "name": "CalcLongKuiInit",
+      "signature": "int __cdecl(int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00408E30": {
+      "name": "CalcZiXuanInit",
+      "signature": "int __cdecl(int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00408E90": {
+      "name": "CalcChangQingInit",
+      "signature": "int __cdecl(int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00408F30": {
+      "name": "CalcHuaYingInit",
+      "signature": "int __cdecl(int nVal, int nVal2)",
+      "source": "annotation"
+    },
+    "0x00418170": {
+      "name": "CheckOBBCollision",
+      "signature": "int __thiscall(Role *this, struct gbOBBox *p)",
+      "source": "annotation"
+    },
+    "0x00411900": {
+      "name": "Role",
+      "signature": "void __thiscall(Role *this)",
+      "source": "annotation"
+    },
+    "0x0041B640": {
+      "name": "UpdateBoundingBox",
+      "signature": "void __thiscall Role::UpdateBoundingBox(Role *this, struct gbAABBox *pBox)",
+      "source": "annotation"
+    }
+  }
 }

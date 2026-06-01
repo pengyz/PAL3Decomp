@@ -72,5 +72,207 @@
       "type": "int",
       "source": "annotation"
     }
+  },
+  "methods": {
+    "0x005DF646": {
+      "name": "Init",
+      "signature": "bool ()",
+      "source": "pdb"
+    },
+    "0x005E021B": {
+      "name": "Render",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005DFDC5": {
+      "name": "DestroyEffect",
+      "signature": "void (int)",
+      "source": "pdb"
+    },
+    "0x005DFC0B": {
+      "name": "DestroyEffect",
+      "signature": "void (EEffect)",
+      "source": "pdb"
+    },
+    "0x005E037A": {
+      "name": "FillDefaultUVSet",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005DF8FE": {
+      "name": "CreateEffect",
+      "signature": "class CEffect * (EEffect)",
+      "source": "pdb"
+    },
+    "0x005DF57B": {
+      "name": "~CEffectSystem",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005DFB80": {
+      "name": "GetEffect",
+      "signature": "class CEffect * (int)",
+      "source": "pdb"
+    },
+    "0x006C3DF0": {
+      "name": "SetTimeScale",
+      "signature": "void (float)",
+      "source": "pdb"
+    },
+    "0x005E02BF": {
+      "name": "Set256UV",
+      "signature": "void (tagUVSet *, int, int)",
+      "source": "pdb"
+    },
+    "0x005DF779": {
+      "name": "Destroy",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005DF882": {
+      "name": "GetEffectIndex",
+      "signature": "int (CEffect *)",
+      "source": "pdb"
+    },
+    "0x005DF7BC": {
+      "name": "GetEffectIndex",
+      "signature": "int (EEffect)",
+      "source": "pdb"
+    },
+    "0x005DFFDF": {
+      "name": "SetVisible",
+      "signature": "void (EEffect, uchar)",
+      "source": "pdb"
+    },
+    "0x005DFE31": {
+      "name": "DestroyAllEffect",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005E00B0": {
+      "name": "HandleViewMove",
+      "signature": "void (float, float)",
+      "source": "pdb"
+    },
+    "0x005DFF30": {
+      "name": "IsVisible",
+      "signature": "bool (EEffect)",
+      "source": "pdb"
+    },
+    "0x005DF58E": {
+      "name": "Reset",
+      "signature": "void ()",
+      "source": "pdb"
+    },
+    "0x005E0140": {
+      "name": "Update",
+      "signature": "void (double)",
+      "source": "pdb"
+    },
+    "0x005DF520": {
+      "name": "CEffectSystem",
+      "signature": "void (gbGfxManager *)",
+      "source": "pdb"
+    },
+    "0x005DFE6C": {
+      "name": "IsValid",
+      "signature": "bool (EEffect)",
+      "source": "pdb"
+    },
+    "0x004C6240": {
+      "name": "~CEffectSystem",
+      "signature": "int *__thiscall(CEffectSystem *this, int nVal)",
+      "source": "annotation"
+    },
+    "0x004C6260": {
+      "name": "Reset",
+      "signature": "int *__thiscall(CEffectSystem *Block, char pData)",
+      "source": "annotation"
+    },
+    "0x004C6280": {
+      "name": "Init",
+      "signature": "int __thiscall(CEffectSystem *this)",
+      "source": "annotation"
+    },
+    "0x004C6290": {
+      "name": "Destroy",
+      "signature": "void __thiscall(CEffectSystem *this)",
+      "source": "annotation"
+    },
+    "0x004C6330": {
+      "name": "GetEffectIndex",
+      "signature": "CEffect *__thiscall(CEffectSystem *this)",
+      "source": "annotation"
+    },
+    "0x004C6340": {
+      "name": "CreateEffect__ovl_6340",
+      "signature": "int __thiscall(CEffectSystem *this)",
+      "source": "annotation"
+    },
+    "0x004C6350": {
+      "name": "GetEffect",
+      "signature": "void __thiscall(CEffectSystem *this)",
+      "source": "annotation"
+    },
+    "0x004C6360": {
+      "name": "DestroyEffect",
+      "signature": "void __thiscall(CEffectSystem *this)",
+      "source": "annotation"
+    },
+    "0x004C6370": {
+      "name": "DestroyEffect_6370",
+      "signature": "CEffectSystem *__thiscall(CEffectSystem *this)",
+      "source": "annotation"
+    },
+    "0x004C6410": {
+      "name": "DestroyAllEffect",
+      "signature": "int *__thiscall(CEffectSystem *this)",
+      "source": "annotation"
+    },
+    "0x004C6460": {
+      "name": "IsVisible",
+      "signature": "char __thiscall(CEffectSystem *this)",
+      "source": "annotation"
+    },
+    "0x004C65C0": {
+      "name": "SetVisible",
+      "signature": "void __thiscall(CEffectSystem *this, float effect)",
+      "source": "annotation"
+    },
+    "0x004C65F0": {
+      "name": "HandleViewMove",
+      "signature": "void(CEffectSystem *this, float x, float y)",
+      "source": "annotation"
+    },
+    "0x004C6670": {
+      "name": "Update",
+      "signature": "char __thiscall(CEffectSystem *this)",
+      "source": "annotation"
+    },
+    "0x004C6870": {
+      "name": "FillDefaultUVSet",
+      "signature": "int *__thiscall(CEffectSystem *this)",
+      "source": "annotation"
+    },
+    "0x004E1190": {
+      "name": "CreateEffectChain",
+      "signature": "int __thiscall(CEffectSystem *this, CCBUI *pCBUI, HWND hDlg, unsigned int dwVal, int bReadOnly, int nVal)",
+      "source": "annotation"
+    },
+    "0x004CF580": {
+      "name": "CreateEffect__ovl_f580",
+      "signature": "int __thiscall CEffectSystem::CreateEffect__ovl_f580(CEffectSystem *this, CEffectSystem *pSrc, int nVal, CEffectSystem *pParam)",
+      "source": "annotation"
+    },
+    "0x004C5DE0": {
+      "name": "ReleaseParticle",
+      "signature": "void __thiscall(CEffectSystem *this)",
+      "source": "annotation"
+    },
+    "0x004C5820": {
+      "name": "Create",
+      "signature": "CEffectSystem *__thiscall(CEffectSystem *this, int pGfxMgr)",
+      "source": "annotation"
+    }
   }
 }
