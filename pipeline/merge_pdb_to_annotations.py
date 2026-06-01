@@ -123,9 +123,9 @@ def main():
                     if v.get("name") and not v["name"].startswith(("_field_", "_todo_", "_gap_")):
                         new_ann["known_members"][off]["name"] = v["name"]
                         new_ann["known_members"][off]["source"] = "annotation"
-                    # 旧 annotation 有明确的类型 → 覆盖（跳过 int）
+                    # 旧 annotation 的类型覆盖 PDB（annotation 是二进制分析结果，更准确）
                     vt = v.get("type", "")
-                    if vt and vt != "int":
+                    if vt:
                         new_ann["known_members"][off]["type"] = vt
                         new_ann["known_members"][off]["source"] = "annotation"
 
@@ -147,12 +147,52 @@ def main():
                     if _bc not in new_ann.get("base_class", []):
                         new_ann.setdefault("base_class", []).append(_bc)
 
+            # 删除 PDB 成员中与旧 annotation 成员重叠的（annotation 优先）
+            old_km_list = []
+            for ok, ov in old_km.items():
+                try:
+                    old_km_list.append((int(ok.split("_")[0]), ov.get("type", "int")))
+                except:
+                    pass
+            old_km_list.sort()
+            for k, v in list(new_ann["known_members"].items()):
+                if v.get("source") != "pdb_merge":
+                    continue
+                off = int(k.split("_")[0])
+                # 估算 size
+                sz = 4
+                for i, (oo, ot) in enumerate(old_km_list):
+                    o_sz = 4
+                    if i + 1 < len(old_km_list):
+                        o_sz = old_km_list[i+1][0] - oo
+                    elif old.get("binary_size"):
+                        o_sz = old["binary_size"] - oo
+                    if oo == off or (oo < off + sz and off < oo + o_sz):
+                        # 偏移重叠且名字不同 → 删 PDB 版
+                        if v.get("name") != old_km.get(str(oo), {}).get("name"):
+                            del new_ann["known_members"][k]
+                            break
+
             # 旧 annotation 的 binary_size 权威优先
             old_bs = old.get("binary_size")
             if old_bs:
                 new_ann["binary_size"] = old_bs
-                # 删除超出 binary_size 的 PDB 成员
-                to_del = [k for k in new_ann["known_members"] if int(k.split('_')[0]) >= old_bs]
+                # 删除超出 binary_size 的成员（含结束偏移超出）
+                # 先按偏移排序
+                sorted_km = sorted(new_ann["known_members"].items(), key=lambda x: int(x[0].split('_')[0]))
+                to_del = []
+                for i, (k, v) in enumerate(sorted_km):
+                    off = int(k.split('_')[0])
+                    # 估算 size：下一个成员的偏移 - 当前偏移
+                    if i + 1 < len(sorted_km):
+                        next_off = int(sorted_km[i+1][0].split('_')[0])
+                        sz = next_off - off
+                    else:
+                        sz = old_bs - off
+                    if sz <= 0:
+                        sz = 4
+                    if off >= old_bs or off + sz > old_bs:
+                        to_del.append(k)
                 for k in to_del:
                     del new_ann["known_members"][k]
 
