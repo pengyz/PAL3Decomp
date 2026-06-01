@@ -198,13 +198,16 @@ def phase1_import_types():
             decl = 'struct %s;' % name
             tinfo = ida_typeinf.tinfo_t()
             if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
-                tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+                try:
+                    tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+                except:
+                    pass
 
-    # Full definitions — 单遍导入，跳过无法解析的成员（gbengine/D3D 等不在 PDB 的类型）。
-    # 此类成员在 IDB 中留为 gap，apply_annotations 的 diff 模式会补充。
+    # Full definitions — 用 parse_decl(PT_TYP) 创建 PDB struct。
+    # 直接生成 C 声明字符串（同 apply_annotations 的 build_struct_decl 思路），
+    # 能正确处理依赖顺序和前向引用。
     cls_ok = 0
-    cls_names_ok = set()  # track successfully imported
-    skip_member_total = 0
+    _vftable_types = {'__vftable', 'vtbl_'}
     for cls in classes:
         name = cls.get('name', '')
         if not name or name in _SKIP_SYSTEM_TYPES:
@@ -214,47 +217,32 @@ def phase1_import_types():
         data_members = cls.get('data_members', [])
         if not data_members:
             continue
-        try:
-            udt = ida_typeinf.udt_type_data_t()
-            udt.taudt_bits = 1024
-            skip_count = 0
 
+        try:
+            lines = []
             for m in data_members:
                 mname = m.get('name', '')
                 mtype_str = m.get('type', 'int')
-                moffset = m.get('offset', 0)
                 if not mname:
                     continue
-
-                mtinfo = _resolve_member_type(mtype_str, til)
-                if mtinfo is None:
-                    skip_count += 1
+                if mname.startswith('__vftable') or any(v in mtype_str for v in _vftable_types):
                     continue
-                msize = mtinfo.get_size()
-                if msize in (0, 0xFFFFFFFFFFFFFFFF):
-                    skip_count += 1
-                    continue
+                lines.append("    %s %s;" % (mtype_str, mname))
+            if not lines:
+                continue
 
-                mm = ida_typeinf.udt_member_t()
-                mm.name = mname
-                mm.offset = moffset * 8
-                mm.size = msize * 8
-                mm.type = mtinfo
-                udt.push_back(mm)
+            keyword = "union" if cls.get('kind') == 'union' else "struct"
+            decl = "%s %s {\n%s\n};" % (keyword, name, "\n".join(lines))
 
-            is_union = cls.get('kind') == 'union'
-            udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
-            result_tinfo = ida_typeinf.tinfo_t()
-            if result_tinfo.create_udt(udt, udt_flag):
-                result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+            tinfo = ida_typeinf.tinfo_t()
+            if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
+                try:
+                    tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+                except:
+                    pass
                 cls_ok += 1
-                cls_names_ok.add(name)
-                skip_member_total += skip_count
-        except Exception as e:
-            log("[!] 无法导入 %s: %s" % (name, e))
-
-    if skip_member_total > 0:
-        log("[!] 共 %d 个成员因类型无法解析被跳过（后续可通过 annotation 补充）" % skip_member_total)
+        except Exception:
+            pass
 
     log("[*] 类导入: %d forward decls + %d full definitions" % (len(classes), cls_ok))
 
@@ -320,6 +308,7 @@ def phase1_import_types():
                 continue
             udt = ida_typeinf.udt_type_data_t()
             udt.taudt_bits = 1024
+            udt.total_size = cls.get('size', 0)
             for m in data_members:
                 mname = m.get('name', '')
                 mtype_str = m.get('type', 'int')
@@ -327,11 +316,17 @@ def phase1_import_types():
                 if not mname:
                     continue
                 mtinfo = _resolve_member_type(mtype_str, til)
-                if mtinfo is None:
-                    break
-                msize = mtinfo.get_size()
-                if msize in (0, 0xFFFFFFFFFFFFFFFF):
-                    break
+                if mtinfo is None or mtinfo.get_size() in (0, 0xFFFFFFFFFFFFFFFF):
+                    _sz = 4
+                    _decl = "char[%d]" % _sz
+                    _ti = ida_typeinf.tinfo_t()
+                    if ida_typeinf.parse_decl(_ti, til, _decl, ida_typeinf.PT_TYP) is not None:
+                        mtinfo = _ti
+                        msize = _sz
+                    else:
+                        break
+                else:
+                    msize = mtinfo.get_size()
                 mm = ida_typeinf.udt_member_t()
                 mm.name = mname
                 mm.offset = moffset * 8
@@ -348,6 +343,7 @@ def phase1_import_types():
         except Exception:
             pass
     if cls_retry:
+        cls_ok += cls_retry
         log("[*] retry 追加: %d structs (原跳过成员现可解析)" % cls_retry)
 
 
