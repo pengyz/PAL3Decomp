@@ -152,6 +152,7 @@ class gbTexture : public gbResource {
 public:
 
     // gbTexture own fields
+    gbGfxManager* pGfxMgr;  // +0 union with vfptr/gbResource fields
     int Width;
     int Height;
     gbImage2D* pTexImage;

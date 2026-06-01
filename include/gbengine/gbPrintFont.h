@@ -37,6 +37,7 @@ struct gbPrint3DStringInfo {
 
 class gbPrintFont {
 public:
+    gbGfxManager* pGfxMgr;             // +0x00
     gbPrintStringInfo* stringInfoBuffer; // +0x04
     void*           charInfoBuffer;     // +0x08
     int             maxStrings;         // +0x0C
@@ -97,6 +98,7 @@ enum gbFontType {
 class gbPrintFontMgr {
 public:
     gbPrintFont*    fonts[5];   // +0x00
+    gbPrintFont*    pAllFont[5];   // alias for fonts
     gbGfxManager*   gfxMgr;    // +0x14
 
     // 0x10022f40 (21B)
