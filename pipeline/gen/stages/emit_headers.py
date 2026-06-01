@@ -44,6 +44,24 @@ def _ensure_funcs_ann():
         else:
             _funcs_ann_cache = {}
 
+def _sanitize_filename(name):
+    """Sanitize a C++ type name for use as a cross-platform filename."""
+    name = name.replace('<', '_').replace('>', '_')
+    name = name.replace(':', '_').replace('"', '_')
+    name = name.replace('?', '_').replace('*', '_')
+    name = name.replace('|', '_').replace('\\', '_').replace('/', '_')
+    return name
+
+
+def _ann_struct_path(name):
+    """Return path to struct annotation file, trying both raw and sanitized name."""
+    raw = ANNOTATIONS_DIR / "structs" / ("%s.json" % name)
+    if raw.exists():
+        return raw
+    safe = _sanitize_filename(name)
+    return ANNOTATIONS_DIR / "structs" / ("%s.json" % safe)
+
+
 def load_annotations_data():
     """从拆分目录加载标注数据（带缓存）。"""
     global _annotations_cache
@@ -820,7 +838,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                             inc_line = '#include "%s"' % gb_path
                             if inc_line not in lines:
                                 lines.insert(0, inc_line)
-                        elif param in known_classes or (ANNOTATIONS_DIR / "structs" / ("%s.json" % param)).exists():
+                        elif param in known_classes or _ann_struct_path(param).exists():
                             # Has a real definition — include header (may not be generated yet,
                             # but will be by the time compilation runs)
                             inc_line = '#include "%s.h"' % param
@@ -886,7 +904,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                         inc_line = '#include "%s"' % gb_path
                         if inc_line not in lines:
                             lines.insert(0, inc_line)
-                    elif param in known_classes or (ANNOTATIONS_DIR / "structs" / ("%s.json" % param)).exists():
+                    elif param in known_classes or _ann_struct_path(param).exists():
                         inc_line = '#include "%s.h"' % param
                         if inc_line not in lines:
                             lines.insert(0, inc_line)
@@ -1699,7 +1717,7 @@ def generate_globals():
         base_typ = extract_base_type(typ)
         is_pointer_only = '*' in typ and '[' not in typ
         has_header = (gen_header_dir / ("%s.h" % base_typ)).exists()
-        has_struct = (ANNOTATIONS_DIR / "structs" / ("%s.json" % base_typ)).exists()
+        has_struct = _ann_struct_path(base_typ).exists()
 
         # Track types needing full definition vs forward declaration
         if has_struct and not is_pointer_only:

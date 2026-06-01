@@ -30,6 +30,20 @@ _SKIP_TYPES = {
 }
 
 
+def _sanitize_filename(name):
+    """Replace Windows-illegal filename characters with safe alternatives."""
+    name = name.replace('<', '_').replace('>', '_')
+    name = name.replace(':', '_').replace('"', '_')
+    name = name.replace('?', '_').replace('*', '_')
+    name = name.replace('|', '_').replace('\\', '_').replace('/', '_')
+    name = name.strip('. ')
+    if not name:
+        name = 'unnamed'
+    while '__' in name:
+        name = name.replace('__', '_')
+    return name
+
+
 def main():
     pdb = json.load(open(PDB_FILE))
     classes = pdb.get("classes", [])
@@ -196,8 +210,8 @@ def main():
                 for k in to_del:
                     del new_ann["known_members"][k]
 
-        # 写回
-        out_path = os.path.join(ANN_DIR, f"{name}.json")
+        # 写回（sanitize filename for cross-platform compatibility）
+        out_path = os.path.join(ANN_DIR, f"{_sanitize_filename(name)}.json")
         # 确保 known_members key 是字符串
         km = {}
         for k, v in new_ann["known_members"].items():

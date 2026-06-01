@@ -25,6 +25,20 @@ def pdb_sig_to_str(return_type, params):
     return "%s (%s)" % (ret, ", ".join(param_strs))
 
 
+def _sanitize_filename(name):
+    """Replace Windows-illegal filename characters with safe alternatives."""
+    name = name.replace('<', '_').replace('>', '_')
+    name = name.replace(':', '_').replace('"', '_')
+    name = name.replace('?', '_').replace('*', '_')
+    name = name.replace('|', '_').replace('\\', '_').replace('/', '_')
+    name = name.strip('. ')
+    if not name:
+        name = 'unnamed'
+    while '__' in name:
+        name = name.replace('__', '_')
+    return name
+
+
 def main():
     pdb = json.load(open(PDB_FILE))
     ann_funcs = json.load(open(ANN_FUNCS_FILE))
@@ -81,10 +95,14 @@ def main():
     updated = 0
     created = 0
     for cls, methods in funcs_by_addr.items():
-        path = os.path.join(ANN_STRUCTS_DIR, f"{cls}.json")
+        safe_cls = _sanitize_filename(cls)
+        path = os.path.join(ANN_STRUCTS_DIR, f"{safe_cls}.json")
         if os.path.exists(path):
             with open(path) as f:
                 ann = json.load(f)
+            # 确保 JSON 中的 name 是原始类名（可能来自文件名回退）
+            if ann.get("name") != cls:
+                ann["name"] = cls
         else:
             ann = {"name": cls, "known_members": {}}
             created += 1
