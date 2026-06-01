@@ -88,24 +88,11 @@ def _resolve_member_type(mtype_str, til):
     tinfo = ida_typeinf.tinfo_t()
     resolved = tinfo.get_named_type(til, s)
 
-    # 常见多词类型处理
+    # get_named_type 不处理基本类型（char/int/float 等），用 parse_decl fallback
     if not resolved or tinfo.get_size() in (0, 0xFFFFFFFFFFFFFFFF):
-        multi_word_map = {
-            'unsigned long':  ('unsigned', 'long'),
-            'unsigned int':   ('unsigned', 'int'),
-            'unsigned short': ('unsigned', 'short'),
-            'unsigned char':  ('unsigned', 'char'),
-            'signed long':    ('signed', 'long'),
-            'signed int':     ('signed', 'int'),
-            'signed short':   ('signed', 'short'),
-            'signed char':    ('signed', 'char'),
-            'long long':      ('long', 'long'),
-            'long double':    ('long', 'double'),
-        }
-        if s in multi_word_map:
-            decl = "%s __x;" % s
-            if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_VAR) is not None:
-                resolved = True
+        decl = "%s __x;" % s
+        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_VAR) is not None:
+            resolved = True
 
     if not resolved:
         return None
@@ -1012,98 +999,34 @@ def apply_annotations():
     s_fail = []
     s_errors = []
 
-    # Build PDB struct name set for mode resolution (check PDB export directly)
-    _pdb_with_members = set()
-    if os.path.exists(PDB_EXPORT):
+    log("  Structs: %d total (dependency order by topological sort)" % len(ordered))
+
+    # 导入所有 struct（annotation 自包含，只需处理依赖顺序）
+    for sname, sinfo in ordered:
         try:
-            with open(PDB_EXPORT, 'r', encoding='utf-8') as _f:
-                _pdb_data = json.load(_f)
-            for _cls in _pdb_data.get('classes', []):
-                _n = _cls.get('name', '')
-                if _n and _cls.get('data_members'):
-                    _pdb_with_members.add(_n)
-        except:
-            pass
+            ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
+            if ok:
+                s_ok += 1
+            else:
+                s_fail.append((sname, sinfo, err))
+        except Exception as e:
+            s_fail.append((sname, sinfo, "EXCEPTION: %s" % str(e)))
 
-    def _resolve_mode(sname):
-        """有 PDB base → diff，否则 replace。annotation 显式设置优先。"""
-        sinfo = structs.get(sname, {})
-        explicit = sinfo.get("members_mode")
-        if explicit:
-            return explicit
-        return "diff" if sname in _pdb_with_members else "replace"
-
-    # First pass: create all structs (dependency order already handled by 'ordered')
-    try:
-        for sname, sinfo in ordered:
+    # 一轮 retry（第一轮失败的可能因为依赖的 annotation struct 尚未导入）
+    if s_fail:
+        still_fail = []
+        for sname, sinfo, prev_err in s_fail:
             try:
-                mode = _resolve_mode(sname)
-                if mode == "replace":
-                    ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
-                else:
-                    ok, err = create_fixed_struct_diff(sname, sinfo, til)
+                ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
                 if ok:
                     s_ok += 1
                 else:
-                    s_fail.append((sname, sinfo, err))
+                    still_fail.append((sname, sinfo, err))
             except Exception as e:
-                s_fail.append((sname, sinfo, "EXCEPTION: %s" % str(e)))
-    except Exception as e:
-        log("[3a] FATAL: struct creation loop crashed: %s" % str(e))
-
-    # Retry failed structs (dependency on other structs now resolved)
-    for retry in range(5):
-        if not s_fail:
-            break
-        still_fail = []
-        resolved = 0
-        for sname, sinfo, prev_err in s_fail:
-            try:
-                mode = _resolve_mode(sname)
-                if mode == "replace":
-                    ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
-                else:
-                    ok, err = create_fixed_struct_diff(sname, sinfo, til)
-            except Exception as e:
-                ok, err = False, "EXCEPTION: %s" % str(e)
-            if ok:
-                s_ok += 1
-                resolved += 1
-            else:
-                still_fail.append((sname, sinfo, err))
+                still_fail.append((sname, sinfo, "EXCEPTION: %s" % str(e)))
         s_fail = still_fail
-        if resolved == 0:
-            break
 
-    # Report errors and write to log file
-    log_path = os.path.join(SCRIPT_DIR, "_logs", "struct_import_errors.txt")
-    os.makedirs(os.path.dirname(log_path), exist_ok=True)
-
-    # Fallback: for structs that failed TAUDT_FIXED, try without TAUDT_FIXED
-    if s_fail:
-        log("  Fallback: retrying %d structs in flexible mode..." % len(s_fail))
-        fallback_ok = 0
-        still_fail = []
-        for sname, sinfo, prev_err in s_fail:
-            sinfo_copy = dict(sinfo)
-            sinfo_copy["_flexible"] = True
-            members_mode = sinfo.get("members_mode", "diff")
-            if members_mode == "replace":
-                if _type_exists_in_til(sname, til) and not sinfo_copy.get("members_mode"):
-                    ok, err = True, None
-                else:
-                    ok, err = create_fixed_struct(sname, sinfo_copy, structs, vtables, til)
-            else:
-                ok, err = create_fixed_struct_diff(sname, sinfo_copy, til)
-            if ok:
-                fallback_ok += 1
-            else:
-                still_fail.append((sname, sinfo, err))
-        s_fail = still_fail
-        s_ok += fallback_ok
-        log("  Fallback: %d succeeded, %d still failing" % (fallback_ok, len(s_fail)))
-
-    log("[3] Structs: applied=%d/%d (TAUDT_FIXED)" % (s_ok, len(structs)))
+    log("[3] Structs: %d/%d" % (s_ok, len(structs)))
 
     if s_fail:
         # Categorize failures for summary
