@@ -868,8 +868,40 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 if inc_line not in lines:
                     lines.insert(0, inc_line)
 
+    # Generate includes for template bases added from annotation (above block
+    # runs after the PDB base include loop at lines 804-841, so we need to
+    # retroactively add includes for any template bases from annotation).
+    for b in base_names:
+        if '<' not in b:
+            continue
+        base_inc = b.split('<')[0]
+        if base_inc in SYSTEM_TYPES:
+            continue
+        gb_path = _gbengine_type_to_header.get(base_inc, '')
+        if gb_path:
+            inc_line = '#include "%s"' % gb_path
+        else:
+            inc_line = '#include "%s.h"' % base_inc
+        if inc_line not in lines:
+            lines.insert(0, inc_line)
+
     if base_names:
-        bases_str = " : " + ", ".join("public %s" % b for b in base_names)
+        # Sanitize template base class expressions for MSVC6 compatibility.
+        # MSVC6 cannot parse member function pointer types that reference the
+        # class being defined (incomplete type) when used as template arguments
+        # in base class specs. Replace such self-referencing types with void*.
+        # These callback types are only forwarded to forward-declared template
+        # pointers (e.g. MainTask<T, Callback>*), so void* is ABI-safe.
+        def _sanitize_template_base(name, cls_name):
+            if '<' not in name:
+                return name
+            p = (r'[\w\s]+\s*\(\s*__thiscall\s+' + re.escape(cls_name)
+                 + r'\s*::\s*\*\s*\)\s*\([\w\s,]*\)')
+            return re.sub(p, 'void*', name)
+
+        bases_str = " : " + ", ".join(
+            "public %s" % _sanitize_template_base(b, cls_name) for b in base_names
+        )
 
     # Determine keyword: union only if ANNOTATION explicitly marks is_union
     # (IDA TIL may misdetect some PDB types as union)
