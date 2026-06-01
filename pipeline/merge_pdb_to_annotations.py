@@ -45,7 +45,7 @@ def _sanitize_filename(name):
 
 
 def main():
-    pdb = json.load(open(PDB_FILE))
+    pdb = json.load(open(PDB_FILE, encoding='utf-8'))
     classes = pdb.get("classes", [])
 
     # Step 1: 备份旧 annotation
@@ -63,7 +63,7 @@ def main():
         for fname in os.listdir(BACKUP_DIR):
             if not fname.endswith(".json"):
                 continue
-            with open(os.path.join(BACKUP_DIR, fname)) as f:
+            with open(os.path.join(BACKUP_DIR, fname), encoding='utf-8') as f:
                 s = json.load(f)
             old_ann[s.get("name", fname.replace(".json", ""))] = s
 
@@ -218,7 +218,7 @@ def main():
             km[str(k)] = v
         new_ann["known_members"] = km
 
-        with open(out_path, "w") as f:
+        with open(out_path, "w", encoding='utf-8') as f:
             json.dump(new_ann, f, indent=2, ensure_ascii=False)
             f.write("\n")
 

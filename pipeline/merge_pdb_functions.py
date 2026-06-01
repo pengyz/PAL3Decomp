@@ -40,8 +40,8 @@ def _sanitize_filename(name):
 
 
 def main():
-    pdb = json.load(open(PDB_FILE))
-    ann_funcs = json.load(open(ANN_FUNCS_FILE))
+    pdb = json.load(open(PDB_FILE, encoding='utf-8'))
+    ann_funcs = json.load(open(ANN_FUNCS_FILE, encoding='utf-8'))
 
     pdb_functions = pdb.get("functions", [])
     funcs_by_addr = {}
@@ -98,7 +98,7 @@ def main():
         safe_cls = _sanitize_filename(cls)
         path = os.path.join(ANN_STRUCTS_DIR, f"{safe_cls}.json")
         if os.path.exists(path):
-            with open(path) as f:
+            with open(path, encoding='utf-8') as f:
                 ann = json.load(f)
             # 确保 JSON 中的 name 是原始类名（可能来自文件名回退）
             if ann.get("name") != cls:
@@ -113,7 +113,7 @@ def main():
             methods_dict["0x%08X" % addr] = minfo
 
         ann["methods"] = methods_dict
-        with open(path, "w") as f:
+        with open(path, "w", encoding='utf-8') as f:
             json.dump(ann, f, indent=2, ensure_ascii=False)
             f.write("\n")
         updated += 1

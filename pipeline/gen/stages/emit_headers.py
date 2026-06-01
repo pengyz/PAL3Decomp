@@ -1446,6 +1446,8 @@ def main():
     for cls_name in all_classes:
         if should_skip_class(cls_name):
             continue
+        if '<' in cls_name or '::' in cls_name:
+            continue
         pdb_class = ida_classes.get(cls_name)
         methods_list = methods_by_class.get(cls_name, [])
         has_members = pdb_class and pdb_class.get('data_members') and pdb_class.get('size', 0) > 1
@@ -1487,7 +1489,7 @@ def main():
         # For classes with manual override files, copy the override instead of auto-generating
         override_path = OVERRIDES_DIR / ('%s.h' % cls_name)
         if override_path.exists():
-            output_path = OUTPUT_DIR / ("%s.h" % cls_name)
+            output_path = OUTPUT_DIR / ("%s.h" % _sanitize_filename(cls_name))
             with open(override_path, 'r', encoding='utf-8') as src:
                 with open(output_path, 'w', encoding='utf-8') as dst:
                     dst.write(src.read())
@@ -1531,7 +1533,7 @@ def main():
 
         content = generate_header(cls_name, pdb_class, methods, classes_with_headers, enum_names,
                                   colliding_enums=colliding_enums)
-        output_path = OUTPUT_DIR / ("%s.h" % cls_name)
+        output_path = OUTPUT_DIR / ("%s.h" % _sanitize_filename(cls_name))
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(content)
         generated += 1
