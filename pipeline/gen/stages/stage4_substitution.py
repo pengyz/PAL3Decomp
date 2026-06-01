@@ -721,10 +721,10 @@ def _apply_text_substitutions(code, ctx):
     # Pattern 3: ::method__ovl_XXXX; — function pointer address (no parens)
     code = re.sub(r'(::)(\w+)__ovl_[0-9a-fA-F]+(\s*[;,)])', r'\1\2\3', code)
 
-    # Hex-Rays raw offset access: &this->0 means "address of member at offset 0" = this
-    # this->0 standalone means "value of first DWORD" = *(_DWORD*)this
-    code = re.sub(r'&this->0\b', 'this', code)
-    code = re.sub(r'\bthis->0\b', '*(_DWORD *)this', code)
+    # Hex-Rays raw offset access: &var->0 means "address of member at offset 0" = var
+    # var->0 standalone means "value of first DWORD" = *(_DWORD*)var
+    code = re.sub(r'&(\w+)->0\b', r'\1', code)
+    code = re.sub(r'\b(\w+)->0\b', r'*((_DWORD *)\1)', code)
 
     # stdiobuf misidentification fix
     code = code.replace('stdiobuf *', 'UIWnd *')
