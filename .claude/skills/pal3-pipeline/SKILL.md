@@ -12,8 +12,20 @@ when_to_use: "当用户需要执行 PAL3 反编译管线流程（标注、导出
 唯一目标：提升 `data/annotations/` 数据质量。
 所有结构体字段修改必须有 PAL3.exe 二进制直接证据。
 
-**阶段分离**：标注阶段（当前）产出 annotations；codegen 阶段（未来）产出可编译源码。
-编译错误是 codegen 适配度指标，不是标注正确性指标。
+**核心工作流（不要搞错各阶段职责）**：
+
+```
+annotations/  ──apply_annotations.py──▶  IDB
+                                        │
+IDB  ──export_full.py─────────────────▶  decomp JSONs
+                                        │
+decomp JSONs  ──codegen───────────────▶  src/ + include/
+```
+
+**Annotation 是唯一数据源**。apply_annotations 把标注写入 IDB；export_full 从 IDB 导出反编译结果；codegen 只读 decomp JSON，不读 annotation。
+
+**如果 annotation 方法未出现在 header 中**：说明该方法在 IDB 中不存在（没有反编译，或 export 不覆盖），需要在 IDA 中确认并重新 export。**不要改 codegen 去读 annotation methods**。
+
 </CRITICAL-INSTRUCTION>
 
 ## 数据架构

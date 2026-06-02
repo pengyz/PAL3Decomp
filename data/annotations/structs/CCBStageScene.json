@@ -74,12 +74,12 @@
     },
     "668": {
       "name": "m_vecFling",
-      "type": "gbVec3D",
+      "type": "float",
       "offset": 668
     },
     "680": {
       "name": "m_rotFling",
-      "type": "gbVec3D",
+      "type": "float",
       "offset": 680
     },
     "692": {
@@ -114,17 +114,17 @@
     },
     "716": {
       "name": "m_FiveLineupQuad",
-      "type": "gbGeomQuad",
+      "type": "gbGeomQuad *",
       "offset": 716
     },
     "784": {
       "name": "m_FiveLineupCenterQuad",
-      "type": "gbGeomQuad",
+      "type": "gbGeomQuad *",
       "offset": 784
     },
     "852": {
       "name": "m_EnemyFiveLineupQuad",
-      "type": "gbGeomQuad",
+      "type": "gbGeomQuad *",
       "offset": 852
     },
     "920": {
@@ -305,7 +305,7 @@
     "824": {
       "name": "m_fBlendC",
       "type": "float",
-      "source": "binary:gap_r2 | type_fix:float→int_raw_decomp | name_fix:=0.0_then_=0.5_blend_factor"
+      "source": "binary:gap_r2 | type_fix:float\u2192int_raw_decomp | name_fix:=0.0_then_=0.5_blend_factor"
     },
     "828": {
       "name": "m_fDirCosC",
@@ -370,7 +370,7 @@
     "132": {
       "name": "m_fLineupCamY",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(assigned_to_vecFiveLineup[N].y_in_Reset)"
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int\u2192float(assigned_to_vecFiveLineup[N].y_in_Reset)"
     },
     "136": {
       "name": "m_fLineupCamZ",
@@ -385,7 +385,7 @@
     "144": {
       "name": "m_fLineupPrevY",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[N].y)"
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int\u2192float(LODWORD_assign_to_vecFiveLineup[N].y)"
     },
     "148": {
       "name": "m_fLineupPrevZ",
@@ -400,12 +400,12 @@
     "168": {
       "name": "m_fLineupExtraY",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[6].y)"
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int\u2192float(LODWORD_assign_to_vecFiveLineup[6].y)"
     },
     "172": {
       "name": "m_fLineupExtraZ",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[6].z)"
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int\u2192float(LODWORD_assign_to_vecFiveLineup[6].z)"
     },
     "672": {
       "name": "m_nLoadPointer",
@@ -455,12 +455,12 @@
     "152": {
       "name": "m_fLineupDefaultX",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[1-5].x)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192float(LODWORD_assign_to_vecFiveLineup[1-5].x)"
     },
     "156": {
       "name": "m_fLineupDefaultY",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[1-5].y)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192float(LODWORD_assign_to_vecFiveLineup[1-5].y)"
     },
     "160": {
       "name": "m_fLineupDefaultZ",
