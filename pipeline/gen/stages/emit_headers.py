@@ -1132,8 +1132,11 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             if not mname:
                 mname = '_field_%04X' % moffset
 
-            # Skip vtable members (IDA internal, not part of C++ source)
+            # Skip vtable members (IDA internal, not part of C++ source).
+            # vfptr at +0 is compiler-generated for classes with virtual functions.
             if '__vftable' in mname or 'vtbl_' in mtype or '_vtbl' in mtype:
+                continue
+            if mname == 'vfptr' and moffset == 0 and class_vtable_slots(cls_name):
                 continue
 
             # Remap IDA internal types to C types
@@ -1194,6 +1197,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                     mtype = m.get('type', 'int')
                     off = int(off_str)
                     if off < start_off:
+                        continue
+                    # Skip vfptr at +0 for classes with vtables (compiler-generated)
+                    if mname == 'vfptr' and off == 0 and class_vtable_slots(cls_name):
+                        start_off = off + 4
                         continue
                     # Insert gap padding before this member if needed
                     if off > start_off:

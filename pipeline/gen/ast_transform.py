@@ -8,9 +8,47 @@ Only transforms calls where first argument is safe to convert.
 import tree_sitter_cpp as tscpp
 import tree_sitter
 import re
+import os
+import json
 
 _lang = tree_sitter.Language(tscpp.language())
 _parser = tree_sitter.Parser(_lang)
+
+# Cache class hierarchy from annotation data
+_CLASS_BASES = None
+
+def _ensure_bases():
+    global _CLASS_BASES
+    if _CLASS_BASES is not None:
+        return
+    _CLASS_BASES = {}
+    _gen_dir = os.path.dirname(os.path.abspath(__file__))
+    _proj = os.path.dirname(os.path.dirname(_gen_dir))
+    _structs_dir = os.path.join(_proj, 'data', 'annotations', 'structs')
+    if not os.path.isdir(_structs_dir):
+        return
+    for _f in sorted(os.listdir(_structs_dir)):
+        if not _f.endswith('.json'):
+            continue
+        _sd = json.load(open(os.path.join(_structs_dir, _f), encoding='utf-8'))
+        _c = _sd.get('name', '')
+        _b = _sd.get('base_class')
+        if _b:
+            if isinstance(_b, str):
+                _b = [_b]
+            _CLASS_BASES[_c] = _b
+
+def _is_derived_from(derived, base):
+    """Check if derived class inherits from base (directly or transitively)."""
+    if derived == base:
+        return True
+    if not _CLASS_BASES:
+        return False
+    _bases = _CLASS_BASES.get(derived, [])
+    for _b in _bases:
+        if _is_derived_from(_b, base):
+            return True
+    return False
 
 
 def transform_oop_calls(code, static_methods=None, cls_name=None):
@@ -73,15 +111,31 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                         rest_str = ', '.join(rest_args)
 
                         if first_arg.type == 'this':
-                            # Only rewrite this->Method() when the method's class
-                            # matches the enclosing function's class. Otherwise the
-                            # call is a misattribution (Hex-Rays typed this wrong).
-                            if class_name == cls_name:
-                                new_text = 'this->%s(%s)' % (method_name, rest_str)
+                            # Map IDA internal destructor name _ClassName -> ~ClassName
+                            _method_out = method_name
+                            if method_name == '_' + class_name.split('::')[-1]:
+                                _method_out = '~' + class_name.split('::')[-1]
+                            
+                            _ensure_bases()
+                            _is_base = _is_derived_from(cls_name, class_name)
+                            # Use qualified Base::Method(rest) when calling base class method
+                            # from derived class that may SHADOW the base method.
+                            if _is_base and class_name != cls_name:
+                                new_text = '%s::%s(%s)' % (class_name, _method_out, rest_str)
+                            elif class_name == cls_name or _is_base:
+                                new_text = 'this->%s(%s)' % (_method_out, rest_str)
                             else:
-                                # Misattrib: keep Class::Method(this, rest) form
-                                new_text = '%s::%s(%s)' % (class_name, method_name,
-                                    ', '.join(a.text.decode('utf-8') for a in arg_nodes))
+                                # Non-base class destructor: output this->~Class()
+                                # Stage 3 cleanup detects and deletes these (compiler handles chain).
+                                if _method_out.startswith('~'):
+                                    new_text = 'this->%s()' % _method_out
+                                else:
+                                    # Non-base, non-dtor: keep original with explicit this.
+                                    # C2440 type errors indicate annotation issues.
+                                    args_text = ', '.join(a.text.decode('utf-8')
+                                                          for a in arg_nodes)
+                                    new_text = '%s::%s(%s)' % (
+                                        class_name, _method_out, args_text)
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return
@@ -141,5 +195,51 @@ int CCBRoleState::Update()
   return CCBRoleState::UpdateEffects(this);
 }
 """
-    result = transform_oop_calls(test_code)
+    result = transform_oop_calls(test_code, cls_name='CCBRoleState')
+    print('=== cls matches ===')
     print(result)
+    print()
+    ok = True
+    for desc, check in [
+        ('this->CheckStatus()', 'this->CheckStatus' in result),
+        ('this->ProcessActions()', 'this->ProcessActions' in result),
+        ('((CCBStage *)this->m_pStage)->Update', '((CCBStage *)this->m_pStage)->Update' in result),
+        ('sub_4F3020 unchanged', 'sub_4F3020(this, 3)' in result),
+    ]:
+        st = '✅' if check else '❌'
+        print(f'{st} {desc}')
+        ok = ok and check
+    
+    # Test with derived class context (base class Method calls)
+    test_code2 = """
+void CCBControlWindow::_CCBControlWindow()
+{
+  UIListBox::_UIListBox(this);
+}
+UIListBox * CCBControlWindow::CreateButton()
+{
+  PalScript::Create(this, 1879048195, (tagRECT *)pRect, parent);
+  UIWnd::Create(this, 1879048196, (tagRECT *)pRect, parent);
+  return this;
+}
+"""
+    result2 = transform_oop_calls(test_code2, cls_name='CCBControlWindow')
+    print()
+    print('=== derived context ===')
+    print(result2)
+    print()
+    for desc, check in [
+        ('this->~UIListBox() for dtor', 'this->~UIListBox()' in result2),
+        ('No _UIListBox call', 'UIListBox::_UIListBox' not in result2),
+        ('PalScript::Create(this,...) kept',
+         'PalScript::Create(this, 1879048195' in result2),
+        ('UIWnd::Create(...) for base call (avoid shadow)',
+         'UIWnd::Create(1879048196' in result2),
+        ('NOT this->Create', 'this->Create(1879048196' not in result2),
+    ]:
+        st = '✅' if check else '❌'
+        print(f'{st} {desc}')
+        ok = ok and check
+    
+    status = 'PASSED' if ok else 'FAILED'
+    print(f'\nAll: {status}')

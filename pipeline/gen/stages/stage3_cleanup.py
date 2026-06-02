@@ -98,6 +98,10 @@ def _get_ctor_call_info(node):
     if method_name in store.game_classes:
         return method_name, obj.text.decode('utf-8')
 
+    # Check: destructor pattern this->~ClassName() or (cast)->~ClassName()
+    if method_name.startswith('~'):
+        return method_name, obj.text.decode('utf-8')
+
     return None, None
 
 
