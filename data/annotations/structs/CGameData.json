@@ -13,14 +13,14 @@
       "source": "binary:Init _dF40 pattern | type_fix:int→void*(naming m_p)"
     },
     "14532": {
-      "name": "m_DialogState1",
-      "type": "int",
-      "source": "binary:Render"
+      "name": "m_pSceneObjRef",
+      "type": "SceneObj *",
+      "source": "binary:Render+manual_ida_load"
     },
     "14536": {
-      "name": "m_DialogState2",
+      "name": "m_nPrevSceneState",
       "type": "int",
-      "source": "binary:Render"
+      "source": "binary:Render+manual_ida_load"
     },
     "76": {
       "name": "_d04C",
@@ -363,9 +363,9 @@
       "source": "binary:gamedata_gap"
     },
     "648": {
-      "name": "_field_0288",
+      "name": "m_nSceneLoadParam",
       "type": "int",
-      "source": "binary:gamedata_gap"
+      "source": "binary:gamedata_gap+manual_ida_load"
     },
     "652": {
       "name": "_field_028C",
@@ -548,9 +548,9 @@
       "source": "globals_merge"
     },
     "14540": {
-      "name": "_todo_38CC",
+      "name": "m_nSceneTransition",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access+manual_ida_load"
     },
     "32": {
       "name": "_todo_020",
@@ -558,9 +558,9 @@
       "source": "binary_discovery:1refs"
     },
     "408": {
-      "name": "_todo_198",
+      "name": "m_nSceneTransFlag",
       "type": "int",
-      "source": "binary_discovery:1refs"
+      "source": "binary_discovery:1refs+manual_ida_load"
     },
     "512": {
       "name": "_todo_200",
