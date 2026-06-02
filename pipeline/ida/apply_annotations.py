@@ -529,6 +529,51 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     if not result_tinfo.create_udt(udt, udt_flag):
         return (False, "TAUDT_FIXED create_udt() returned False for %s" % name)
 
+    # Add virtual function declarations from vtables.json
+    method_udms = ida_typeinf.udtmembervec_t()
+    struct_methods = struct_info.get('methods', {}) if struct_info else {}
+    for vtbl_name, vtbl_info in vtables.items():
+        if vtbl_info.get('class') == name:
+            for vm in vtbl_info.get('methods', []):
+                vm_name_full = vm.get('name', '')
+                if '::' not in vm_name_full:
+                    continue
+                vm_short = vm_name_full.split('::')[-1]
+                vm_addr = vm.get('address', '')
+                # Find matching annotation method entry to get signature
+                ann_method = struct_methods.get(vm_addr, {})
+                ann_sig = ann_method.get('signature', '')
+                if not ann_sig:
+                    # Try matching by name
+                    for a_addr, a_info in struct_methods.items():
+                        if a_info.get('name', '').endswith('::' + vm_short):
+                            ann_sig = a_info.get('signature', '')
+                            break
+                if not ann_sig:
+                    continue
+                # Build declaration: "virtual ret_type calling_conv MethodName(params)"
+                if '(' in ann_sig:
+                    before = ann_sig[:ann_sig.index('(')]
+                    after = ann_sig[ann_sig.index('('):]
+                    if '__thiscall' in ann_sig:
+                        decl = "virtual %s %s%s" % (before, vm_short, after)
+                    else:
+                        decl = "virtual %s %s%s" % (before, vm_short, after)
+                else:
+                    decl = "virtual void %s()" % vm_short
+                try:
+                    mtif = ida_typeinf.tinfo_t()
+                    if ida_typeinf.parse_decl(mtif, til, decl + ";", 0):
+                        mudm = ida_typeinf.udm_t()
+                        mudm.name = vm_short
+                        mudm.type = mtif
+                        mudm.set_method(True)
+                        method_udms.push_back(mudm)
+                except:
+                    pass
+    if len(method_udms) > 0:
+        result_tinfo.set_methods(method_udms)
+
     actual_size = result_tinfo.get_size()
     if actual_size == 0xFFFFFFFFFFFFFFFF:
         return (False, "TAUDT_FIXED create_udt produced INVALID type for %s (size=-1). "
