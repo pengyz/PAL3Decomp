@@ -17,4 +17,5 @@ from data import store
 
 def run(code, ctx):
     """Apply OOP call transformation."""
-    return transform_oop_calls(code, static_methods=store.static_methods)
+    return transform_oop_calls(code, static_methods=store.static_methods,
+                               cls_name=ctx.cls_name)

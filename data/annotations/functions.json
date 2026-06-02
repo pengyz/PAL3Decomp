@@ -1,4 +1,8 @@
 {
+  "0x00401800": {
+    "name": "_todo_401800",
+    "signature": "void __cdecl()"
+  },
   "0x00401810": {
     "name": "ArraySort",
     "signature": "int __stdcall(int base, int count, int elemSize, int compareFunc)"
@@ -15,278 +19,37 @@
     "name": "?EnumJoystick@@YGHPBUDIDEVICEINSTANCEA@@PAX@Z",
     "signature": "int __thiscall(int this)"
   },
+  "0x00404310": {
+    "name": "StrCopyRange",
+    "signature": "char *__stdcall(char *pStart, char *pEnd, char *pDest)"
+  },
   "0x00404D60": {
     "name": "?WinProc@@YGJPAUHWND__@@IIJ@Z",
     "signature": "int __stdcall(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)"
   },
-  "0x00431870": {
-    "name": "ctor_0x431870",
-    "signature": "int *__thiscall(int *this)"
+  "0x00408B60": {
+    "name": "InitScriptObjArray",
+    "signature": "void __cdecl InitScriptObjArray()"
   },
-  "0x004E0A30": {
-    "name": "DialogFunc",
-    "signature": "int __stdcall(HWND, UINT, WPARAM, LPARAM)",
-    "source": "ida_decomp"
-  },
-  "0x00421870": {
-    "name": "GetGfxManagerDelVisNode",
-    "signature": "gbGfxManager *__cdecl GetGfxManagerDelVisNode()"
-  },
-  "0x0053CDE0": {
-    "name": "WinProc_HWND_SetAndExec",
-    "signature": "int __thiscall WinProc_HWND_SetAndExec(char *this, char *Source)"
-  },
-  "0x00429CA0": {
-    "name": "GetActorMgr",
-    "signature": "gbActorMgr *__cdecl()"
-  },
-  "0x004BE460": {
-    "name": "RenderPost",
-    "signature": "int __thiscall(int this, int nVal)"
-  },
-  "0x004C5BB0": {
-    "name": "CombatEffectUpdate",
-    "signature": "int __thiscall(int this, double pData)"
-  },
-  "0x00423540": {
-    "name": "CombatEnter",
-    "signature": "gbGfxManager *__cdecl()"
-  },
-  "0x0041EB80": {
-    "name": "UIPostUpdate",
-    "signature": "void __thiscall(gbSound2DNode *this)"
-  },
-  "0x0044BD80": {
-    "name": "SafeDeletePtr",
-    "signature": "void __cdecl SafeDeletePtr(void **pptr)"
-  },
-  "0x00422E40": {
-    "name": "EffectUpdate",
-    "signature": "void __cdecl(float fVal)"
-  },
-  "0x0042C6E0": {
-    "name": "GetGfxManager_4",
-    "signature": "gbGfxManager *__cdecl()"
-  },
-  "0x004226F0": {
-    "name": "UISceneUpdate",
-    "signature": "int__cdecl()"
-  },
-  "0x0053CF80": {
-    "name": "InitLogFiles",
-    "signature": "FILE *__cdecl()"
-  },
-  "0x0053CF30": {
-    "name": "Texture_Info_FormatException",
-    "signature": "char *__cdecl Texture_Info_FormatException(char *ArgList, const char *pszName, const char *pszName2, const char *pszName3, int nVal)"
-  },
-  "0x005353A0": {
-    "name": "MiniGame3Update",
-    "signature": "void __thiscall(int *this, float fVal)"
-  },
-  "0x0041B6A0": {
-    "name": "GetGfxManager_1",
-    "signature": "gbGfxManager *__cdecl()"
-  },
-  "0x0053CB10": {
-    "name": "WinProc_HWND_InputLine",
-    "signature": "int __thiscall WinProc_HWND_InputLine(void *this, char pData)"
-  },
-  "0x00435350": {
-    "name": "GetCurrentCamera",
-    "signature": "gbCamera *__cdecl GetCurrentCamera()"
-  },
-  "0x0053D030": {
-    "name": "LogMessage",
-    "signature": "FILE *__cdecl(char *Format, ...)"
+  "0x00408BD0": {
+    "name": "_todo_408BD0",
+    "signature": "void __cdecl _todo_408BD0(void *pData)"
   },
   "0x0040C230": {
     "name": "ScriptUpdate",
     "signature": "char *__cdecl(int dt)"
   },
-  "0x00421830": {
-    "name": "GetGfxManager_2",
-    "signature": "gbGfxManager *__cdecl()"
-  },
-  "0x004105B0": {
-    "name": "NPCAnimUpdate",
-    "signature": "int __cdecl(float fVal)"
-  },
-  "0x0052B900": {
-    "name": "MiniGame1Update",
-    "signature": "int __thiscall(int ***this, double pData)"
-  },
-  "0x00421C40": {
-    "name": "UINotifyUpdate",
-    "signature": "int __thiscall(int *this)"
-  },
-  "0x00435380": {
-    "name": "GetCamera_4",
-    "signature": "gbCamera *__cdecl()"
-  },
-  "0x005382D0": {
-    "name": "CheckDirectoryExists",
-    "signature": "BOOL __cdecl(LPCSTR lpFileName)"
-  },
-  "0x0041C280": {
-    "name": "InputUpdate",
-    "signature": "int __thiscall(int this, int nVal)"
-  },
-  "0x0044F4C0": {
-    "name": "SceneUpdate",
-    "signature": "int __thiscall(int this, int nVal, int nVal2)"
-  },
-  "0x0043EBB0": {
-    "name": "GetGridOffset",
-    "signature": "void __thiscall(void *this, int *pOut, int index)"
-  },
-  "0x0053CCF0": {
-    "name": "WinProc_HWND_ExecCommand",
-    "signature": "char *__thiscall WinProc_HWND_ExecCommand(char *this)"
-  },
-  "0x004CDB70": {
-    "name": "SceneMgrUpdate",
-    "signature": "char __thiscall(float *this, float fVal)"
-  },
-  "0x0052F350": {
-    "name": "MiniGame2Update",
-    "signature": "void __thiscall(int **this, int nVal)"
-  },
-  "0x004E5300": {
-    "name": "EditBox_SetReadOnly",
-    "signature": "LRESULT __cdecl(HWND hWnd, BOOL bReadOnly)"
-  },
-  "0x004E5430": {
-    "name": "EditBox_GetFloat",
-    "signature": "double __cdecl(HWND hWnd)"
-  },
-  "0x004E5350": {
-    "name": "EditBox_SetFloat",
-    "signature": "LRESULT __cdecl(HWND hWnd, float fValue)"
-  },
-  "0x004E5330": {
-    "name": "EditBox_IsModified",
-    "signature": "BOOL __cdecl(HWND hWnd)"
-  },
-  "0x00434BD0": {
-    "name": "GetSceneObject",
-    "signature": "void *__cdecl(unsigned short nObjID)"
-  },
-  "0x004E5390": {
-    "name": "EditBox_SetInt",
-    "signature": "LRESULT __cdecl(HWND hWnd, int nValue)"
-  },
-  "0x005394F0": {
-    "name": "GetSaveDataManager",
-    "signature": "void *__cdecl()"
+  "0x0040DE10": {
+    "name": "MovePartyFollowers",
+    "signature": "char *__cdecl MovePartyFollowers(char *bNotifyScript)"
   },
   "0x0040E050": {
     "name": "Vec3D_Lerp",
     "signature": "float *__cdecl(float *pOut, float *pSrc, float fLerpFactor)"
   },
-  "0x004E5460": {
-    "name": "EditBox_GetInt",
-    "signature": "int __cdecl(HWND hWnd)"
-  },
-  "0x00456670": {
-    "name": "ShowMessageBox",
-    "signature": "BOOL __cdecl(const char *szMessage, const char *szCaption)"
-  },
-  "0x00423600": {
-    "name": "GetRoleDataOffset",
-    "signature": "int __cdecl(int nRoleIndex)"
-  },
-  "0x00456FC0": {
-    "name": "ReadRegistryString",
-    "signature": "BOOL __cdecl(const char *szSubKey, const char *szValueName, char *szOutBuf)"
-  },
-  "0x00413800": {
-    "name": "Vec3D_Cross",
-    "signature": "gbVec3D *__cdecl(gbVec3D *pOut, gbVec3D *pA, gbVec3D *pB)"
-  },
-  "0x005374E0": {
-    "name": "Vec3D_CopyStruct",
-    "signature": "gbVec3D *__stdcall(gbVec3D *pDst, gbVec3D *pSrc, gbVec3D *pExtra)"
-  },
-  "0x0040FC90": {
-    "name": "AddMoney",
-    "signature": "void __cdecl AddMoney(int nAmount)"
-  },
-  "0x00432600": {
-    "name": "FindScriptEventByID",
-    "signature": "char __cdecl FindScriptEventByID(int nEventId)"
-  },
-  "0x0053A8D0": {
-    "name": "ActVec_InsertN",
-    "signature": "unsigned int __thiscall(Actor *this, char *pszBuf, unsigned int nX, char *nY)"
-  },
-  "0x0040DE10": {
-    "name": "MovePartyFollowers",
-    "signature": "char *__cdecl MovePartyFollowers(char *bNotifyScript)"
-  },
   "0x0040E0A0": {
     "name": "RestorePartyFollowMode",
     "signature": "void __cdecl RestorePartyFollowMode(int bNotifyScript)"
-  },
-  "0x0040E840": {
-    "name": "AddNPCToPartySlot",
-    "signature": "int *__cdecl AddNPCToPartySlot(int nRoleSlot, int nNpcId)"
-  },
-  "0x0040FF70": {
-    "name": "SetRoleLevelAndRefresh",
-    "signature": "char *__cdecl SetRoleLevelAndRefresh(int nRoleIdx, int nLevel)"
-  },
-  "0x0041D100": {
-    "name": "_old_sbh_page_manage",
-    "signature": "int __thiscall(__old_sbh_page_struct *this, int nVal)"
-  },
-  "0x00422950": {
-    "name": "LoadScene",
-    "signature": "struct gbVFileSystem *__cdecl LoadScene(double sceneNames, char *arg8, char *pszBuf, char pData, char pData2)"
-  },
-  "0x00432870": {
-    "name": "GetOpcodeParamTypes",
-    "signature": "unsigned __int8 *__cdecl GetOpcodeParamTypes()"
-  },
-  "0x00432980": {
-    "name": "ResizeOpcodeParams",
-    "signature": "void __thiscall ResizeOpcodeParams(PtrArray *this)"
-  },
-  "0x00432990": {
-    "name": "LoadScriptFile",
-    "signature": "int __cdecl LoadScriptFile(const char *pszFileName)"
-  },
-  "0x005269B0": {
-    "name": "CreateDigitPair",
-    "signature": "void __cdecl CreateDigitPair(int nVal, UIWnd **ppTens, UIWnd **ppOnes, const char *pszTexBase, char bFlag)"
-  },
-  "0x0053A340": {
-    "name": "ActVec_Insert_char",
-    "signature": "void __thiscall(Actor *this, char *pszBuf, unsigned int dwVal, char *pszBuf2)"
-  },
-  "0x0053B010": {
-    "name": "ActVec_UninitCopy",
-    "signature": "char **(int nVal, unsigned int *pdwVal, unsigned int *pdwVal2, char **a4)"
-  },
-  "0x0053B2D0": {
-    "name": "ActVec_UninitCopy2",
-    "signature": "int *(int nVal, int *p_DWORD, int *p_DWORD2, char **a4)"
-  },
-  "0x0053B4D0": {
-    "name": "ActVec_UninitFill",
-    "signature": "char **(int nVal, int nVal2, int nVal3, char **a4)"
-  },
-  "0x00401800": {
-    "name": "_todo_401800",
-    "signature": "void __cdecl()"
-  },
-  "0x00404310": {
-    "name": "StrCopyRange",
-    "signature": "char *__stdcall(char *pStart, char *pEnd, char *pDest)"
-  },
-  "0x00408B60": {
-    "name": "InitScriptObjArray",
-    "signature": "void __cdecl InitScriptObjArray()"
   },
   "0x0040E110": {
     "name": "SetupPartyFormation",
@@ -296,6 +59,10 @@
     "name": "SetupPartyFormationWide",
     "signature": "char __cdecl SetupPartyFormationWide(int bNotifyScript)"
   },
+  "0x0040E840": {
+    "name": "AddNPCToPartySlot",
+    "signature": "int *__cdecl AddNPCToPartySlot(int nRoleSlot, int nNpcId)"
+  },
   "0x0040F0C0": {
     "name": "SaveGameState",
     "signature": "void __cdecl SaveGameState(FILE *fp)"
@@ -304,17 +71,105 @@
     "name": "LoadGameState",
     "signature": "int *__cdecl LoadGameState(FILE *fp)"
   },
+  "0x0040F4B0": {
+    "name": "RefreshPartyRoleData",
+    "signature": "int __cdecl RefreshPartyRoleData()"
+  },
+  "0x0040FC90": {
+    "name": "AddMoney",
+    "signature": "void __cdecl AddMoney(int nAmount)"
+  },
+  "0x0040FF70": {
+    "name": "SetRoleLevelAndRefresh",
+    "signature": "char *__cdecl SetRoleLevelAndRefresh(int nRoleIdx, int nLevel)"
+  },
+  "0x004105B0": {
+    "name": "NPCAnimUpdate",
+    "signature": "int __cdecl(float fVal)"
+  },
   "0x00411220": {
     "name": "AssignInt",
     "signature": "int *__cdecl AssignInt(int *pDst, int *pSrc)"
+  },
+  "0x00413800": {
+    "name": "Vec3D_Cross",
+    "signature": "gbVec3D *__cdecl(gbVec3D *pOut, gbVec3D *pA, gbVec3D *pB)"
+  },
+  "0x0041B6A0": {
+    "name": "GetGfxManager_1",
+    "signature": "gbGfxManager *__cdecl()"
   },
   "0x0041C1E0": {
     "name": "_old_sbh_page_alloc",
     "signature": "int __thiscall(__old_sbh_page_struct *this)"
   },
+  "0x0041C280": {
+    "name": "InputUpdate",
+    "signature": "int __thiscall(int this, int nVal)"
+  },
+  "0x0041D100": {
+    "name": "_old_sbh_page_manage",
+    "signature": "int __thiscall(__old_sbh_page_struct *this, int nVal)"
+  },
+  "0x0041EB80": {
+    "name": "UIPostUpdate",
+    "signature": "void __thiscall(gbSound2DNode *this)"
+  },
+  "0x00421830": {
+    "name": "GetGfxManager_2",
+    "signature": "gbGfxManager *__cdecl()"
+  },
+  "0x00421870": {
+    "name": "GetGfxManagerDelVisNode",
+    "signature": "gbGfxManager *__cdecl GetGfxManagerDelVisNode()"
+  },
+  "0x00421C40": {
+    "name": "UINotifyUpdate",
+    "signature": "int __thiscall(int *this)"
+  },
+  "0x004226F0": {
+    "name": "UISceneUpdate",
+    "signature": "int__cdecl()"
+  },
+  "0x00422950": {
+    "name": "LoadScene",
+    "signature": "struct gbVFileSystem *__cdecl LoadScene(double sceneNames, char *arg8, char *pszBuf, char pData, char pData2)"
+  },
+  "0x00422E40": {
+    "name": "EffectUpdate",
+    "signature": "void __cdecl(float fVal)"
+  },
+  "0x00423540": {
+    "name": "CombatEnter",
+    "signature": "gbGfxManager *__cdecl()"
+  },
+  "0x00423600": {
+    "name": "GetRoleDataOffset",
+    "signature": "int __cdecl(int nRoleIndex)"
+  },
   "0x00426E80": {
     "name": "PointInRect",
     "signature": "BOOL __cdecl PointInRect(int *pRect, int *pPoint)"
+  },
+  "0x00429CA0": {
+    "name": "GetActorMgr",
+    "signature": "gbActorMgr *__cdecl()"
+  },
+  "0x0042C6E0": {
+    "name": "GetGfxManager_4",
+    "signature": "gbGfxManager *__cdecl()"
+  },
+  "0x00431870": {
+    "name": "ctor_0x431870",
+    "signature": "int *__thiscall(int *this)"
+  },
+  "0x00432600": {
+    "name": "FindScriptEventByID",
+    "signature": "char __cdecl FindScriptEventByID(int nEventId)"
+  },
+  "0x00432870": {
+    "name": "GetOpcodeParamTypes",
+    "signature": "unsigned __int8 *__cdecl GetOpcodeParamTypes()"
   },
   "0x00432890": {
     "name": "InitOpcodeEntry",
@@ -328,13 +183,37 @@
     "name": "SetScriptInitFlag",
     "signature": "void __cdecl SetScriptInitFlag()"
   },
+  "0x00432980": {
+    "name": "ResizeOpcodeParams",
+    "signature": "void __thiscall ResizeOpcodeParams(PtrArray *this)"
+  },
+  "0x00432990": {
+    "name": "LoadScriptFile",
+    "signature": "int __cdecl LoadScriptFile(const char *pszFileName)"
+  },
+  "0x004329B0": {
+    "name": "InitSceOpcodeTable",
+    "signature": "int __cdecl InitSceOpcodeTable()"
+  },
   "0x00433CD0": {
     "name": "FreeScriptInstance",
     "signature": "void __cdecl FreeScriptInstance(int *pInstance)"
   },
+  "0x00434BD0": {
+    "name": "GetSceneObject",
+    "signature": "void *__cdecl(unsigned short nObjID)"
+  },
   "0x00434F60": {
     "name": "ConvertDirection",
     "signature": "int __cdecl ConvertDirection(int nDir)"
+  },
+  "0x00435350": {
+    "name": "GetCurrentCamera",
+    "signature": "gbCamera *__cdecl GetCurrentCamera()"
+  },
+  "0x00435380": {
+    "name": "GetCamera_4",
+    "signature": "gbCamera *__cdecl()"
   },
   "0x00437D90": {
     "name": "FindOpcodeByName",
@@ -348,18 +227,76 @@
     "name": "LoadGameSwitches",
     "signature": "char *__cdecl LoadGameSwitches()"
   },
+  "0x0043A770": {
+    "name": "GetSys",
+    "signature": "struct NameSys *__cdecl()",
+    "source": "pdb"
+  },
+  "0x0043EBB0": {
+    "name": "GetGridOffset",
+    "signature": "void __thiscall(void *this, int *pOut, int index)"
+  },
   "0x004433C0": {
     "name": "UIFrameWnd_dtor_thunk",
     "signature": "void __thiscall(UIFrameWnd *this)"
   },
+  "0x004499A0": {
+    "name": "sub_4499A0",
+    "signature": "char __thiscall(void *this, unsigned int a2, int a3)"
+  },
+  "0x0044BD80": {
+    "name": "SafeDeletePtr",
+    "signature": "void __cdecl SafeDeletePtr(void **pptr)"
+  },
+  "0x0044F4C0": {
+    "name": "SceneUpdate",
+    "signature": "int __thiscall(int this, int nVal, int nVal2)"
+  },
   "0x00451730": {
+    "_misattrib_evidence": "max_offset=1104>class_size=276",
     "name": "_todo_451730",
-    "signature": "int __thiscall _todo_451730(UIWnd *this)",
-    "_misattrib_evidence": "max_offset=1104>class_size=276"
+    "signature": "int __thiscall _todo_451730(UIWnd *this)"
+  },
+  "0x00456670": {
+    "name": "ShowMessageBox",
+    "signature": "BOOL __cdecl(const char *szMessage, const char *szCaption)"
+  },
+  "0x00456FC0": {
+    "name": "ReadRegistryString",
+    "signature": "BOOL __cdecl(const char *szSubKey, const char *szValueName, char *szOutBuf)"
+  },
+  "0x0046AEA0": {
+    "_misattrib_evidence": "max_offset=101168>class_size=10584",
+    "name": "_misattrib_GRPinput::ProcessButtonHold",
+    "signature": "void __thiscall GRPinput::ProcessButtonHold(GRPinput *this, float fDelta)"
+  },
+  "0x00494250": {
+    "_misattrib_evidence": "max_offset=219752>class_size=4280",
+    "name": "_misattrib_CScreenMode::ResetProgressList",
+    "signature": "int __thiscall _misattrib_CScreenMode::ResetProgressList(CScreenMode *this)"
+  },
+  "0x004974A0": {
+    "_misattrib_evidence": "max_offset=219752>class_size=10248",
+    "name": "_misattrib_UIBigMap::OnMessage",
+    "signature": "int __thiscall(UIBigMap *this, int nVal, char *pszBuf, int nItemID)"
+  },
+  "0x004A13E0": {
+    "name": "_sub_4A13E0",
+    "signature": "int __cdecl()"
   },
   "0x004A36B0": {
     "name": "FormatChineseNumber",
     "signature": "LPSTR __cdecl FormatChineseNumber(int nVal, LPSTR lpBuf)"
+  },
+  "0x004AA9C0": {
+    "_misattrib_evidence": "max_offset=401904>class_size=2632",
+    "name": "_misattrib_CCBUI::CreatePanelUI",
+    "signature": "void __thiscall _misattrib_CCBUI::CreatePanelUI(CCBUI *this)"
+  },
+  "0x004AB2B0": {
+    "_misattrib_evidence": "max_offset=396024>class_size=2632",
+    "name": "_misattrib_CCBUI::DestroyDynamic",
+    "signature": "void __thiscall _misattrib_CCBUI::DestroyDynamic(CCBUI *this, int nVal)"
   },
   "0x004AFAA0": {
     "name": "CopyRoleData",
@@ -369,31 +306,133 @@
     "name": "SortTripletsByField",
     "signature": "int *__cdecl SortTripletsByField(int *p_DWORD, int *p_DWORD2, int nVal)"
   },
+  "0x004BE460": {
+    "name": "RenderPost",
+    "signature": "int __thiscall(int this, int nVal)"
+  },
+  "0x004C5BB0": {
+    "name": "CombatEffectUpdate",
+    "signature": "int __thiscall(int this, double pData)"
+  },
+  "0x004CDB70": {
+    "name": "SceneMgrUpdate",
+    "signature": "char __thiscall(float *this, float fVal)"
+  },
+  "0x004CFFA0": {
+    "name": "CEffModel_DestroyEffect_thunk",
+    "signature": "void __thiscall(CEffModel *this)"
+  },
+  "0x004E0A30": {
+    "name": "DialogFunc",
+    "signature": "int __stdcall(HWND, UINT, WPARAM, LPARAM)",
+    "source": "ida_decomp"
+  },
+  "0x004E5300": {
+    "name": "EditBox_SetReadOnly",
+    "signature": "LRESULT __cdecl(HWND hWnd, BOOL bReadOnly)"
+  },
+  "0x004E5330": {
+    "name": "EditBox_IsModified",
+    "signature": "BOOL __cdecl(HWND hWnd)"
+  },
+  "0x004E5350": {
+    "name": "EditBox_SetFloat",
+    "signature": "LRESULT __cdecl(HWND hWnd, float fValue)"
+  },
+  "0x004E5390": {
+    "name": "EditBox_SetInt",
+    "signature": "LRESULT __cdecl(HWND hWnd, int nValue)"
+  },
   "0x004E5410": {
     "name": "GetEditBoxText",
     "signature": "char *__cdecl GetEditBoxText(HWND hWnd)"
   },
+  "0x004E5430": {
+    "name": "EditBox_GetFloat",
+    "signature": "double __cdecl(HWND hWnd)"
+  },
+  "0x004E5460": {
+    "name": "EditBox_GetInt",
+    "signature": "int __cdecl(HWND hWnd)"
+  },
+  "0x004EA590": {
+    "name": "CCBStageCam_DlgProc",
+    "signature": "BOOL __stdcall(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
+  },
   "0x00525080": {
+    "_misattrib_evidence": "max_offset=5264>class_size=1488",
     "name": "sub_525080",
-    "signature": "int __thiscall _todo_525080(UIWnd *this)",
-    "_misattrib_evidence": "max_offset=5264>class_size=1488"
+    "signature": "int __thiscall _todo_525080(UIWnd *this)"
   },
   "0x00525090": {
+    "_misattrib_evidence": "max_offset=5264>class_size=584",
     "name": "sub_525090",
-    "signature": "int __thiscall _todo_525090(void *this)",
-    "_misattrib_evidence": "max_offset=5264>class_size=584"
+    "signature": "int __thiscall _todo_525090(void *this)"
+  },
+  "0x005269B0": {
+    "name": "CreateDigitPair",
+    "signature": "void __cdecl CreateDigitPair(int nVal, UIWnd **ppTens, UIWnd **ppOnes, const char *pszTexBase, char bFlag)"
+  },
+  "0x0052B900": {
+    "name": "MiniGame1Update",
+    "signature": "int __thiscall(int ***this, double pData)"
+  },
+  "0x0052F350": {
+    "name": "MiniGame2Update",
+    "signature": "void __thiscall(int **this, int nVal)"
+  },
+  "0x0052FC60": {
+    "_misattrib_evidence": "max_offset=3336>class_size=4",
+    "name": "_misattrib_MatrixStack::BeginScene",
+    "signature": "void __thiscall(MatrixStack *this)"
   },
   "0x00532CF0": {
     "name": "CalcAngleBetweenVectors",
     "signature": "long double __cdecl CalcAngleBetweenVectors(int nX1, int nY1, int nZ1, int nX2, float fY2, float fZ2)"
   },
+  "0x005353A0": {
+    "name": "MiniGame3Update",
+    "signature": "void __thiscall(int *this, float fVal)"
+  },
+  "0x005374E0": {
+    "name": "Vec3D_CopyStruct",
+    "signature": "gbVec3D *__stdcall(gbVec3D *pDst, gbVec3D *pSrc, gbVec3D *pExtra)"
+  },
+  "0x005382D0": {
+    "name": "CheckDirectoryExists",
+    "signature": "BOOL __cdecl(LPCSTR lpFileName)"
+  },
+  "0x005394F0": {
+    "name": "GetSaveDataManager",
+    "signature": "void *__cdecl()"
+  },
+  "0x0053A340": {
+    "name": "ActVec_Insert_char",
+    "signature": "void __thiscall(Actor *this, char *pszBuf, unsigned int dwVal, char *pszBuf2)"
+  },
   "0x0053A6C0": {
     "name": "ActVec_Insert_word",
     "signature": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, unsigned int dwVal, _WORD *p_WORD2)"
   },
+  "0x0053A8D0": {
+    "name": "ActVec_InsertN",
+    "signature": "unsigned int __thiscall(Actor *this, char *pszBuf, unsigned int nX, char *nY)"
+  },
   "0x0053ACA0": {
     "name": "ActVec_InsertRange",
     "signature": "char *__thiscall(Actor *this, char *pszBuf, unsigned int dwVal, const void *pData)"
+  },
+  "0x0053B010": {
+    "name": "ActVec_UninitCopy",
+    "signature": "char **(int nVal, unsigned int *pdwVal, unsigned int *pdwVal2, char **a4)"
+  },
+  "0x0053B2D0": {
+    "name": "ActVec_UninitCopy2",
+    "signature": "int *(int nVal, int *p_DWORD, int *p_DWORD2, char **a4)"
+  },
+  "0x0053B4D0": {
+    "name": "ActVec_UninitFill",
+    "signature": "char **(int nVal, int nVal2, int nVal3, char **a4)"
   },
   "0x0053B6E0": {
     "name": "Actor_CopyConstruct_1C",
@@ -411,37 +450,33 @@
     "name": "ActVec_Reallocate",
     "signature": "char *(int nVal, char *pszBuf, char *pszBuf2, char *pszBuf3, int nVal2)"
   },
+  "0x0053CB10": {
+    "name": "WinProc_HWND_InputLine",
+    "signature": "int __thiscall WinProc_HWND_InputLine(void *this, char pData)"
+  },
+  "0x0053CCF0": {
+    "name": "WinProc_HWND_ExecCommand",
+    "signature": "char *__thiscall WinProc_HWND_ExecCommand(char *this)"
+  },
+  "0x0053CDE0": {
+    "name": "WinProc_HWND_SetAndExec",
+    "signature": "int __thiscall WinProc_HWND_SetAndExec(char *this, char *Source)"
+  },
+  "0x0053CF30": {
+    "name": "Texture_Info_FormatException",
+    "signature": "char *__cdecl Texture_Info_FormatException(char *ArgList, const char *pszName, const char *pszName2, const char *pszName3, int nVal)"
+  },
+  "0x0053CF80": {
+    "name": "InitLogFiles",
+    "signature": "FILE *__cdecl()"
+  },
+  "0x0053D030": {
+    "name": "LogMessage",
+    "signature": "FILE *__cdecl(char *Format, ...)"
+  },
   "0x0053F550": {
     "name": "TextureLib_ClearAndJump_thunk",
     "signature": "void __thiscall(TextureLib *this)"
-  },
-  "0x00569020": {
-    "name": "PAL3_RandomPickValues",
-    "signature": "int __cdecl PAL3_RandomPickValues(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int *p_DWORD)"
-  },
-  "0x00541160": {
-    "name": "UIRenderPar",
-    "signature": "int __cdecl(int nX, int nY, int nW, int nH, gbColorQuad *pColor, gbTextureArray *pTex, _PlugInfo *pInfo)"
-  },
-  "0x004EA590": {
-    "name": "CCBStageCam_DlgProc",
-    "signature": "BOOL __stdcall(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
-  },
-  "0x004CFFA0": {
-    "name": "CEffModel_DestroyEffect_thunk",
-    "signature": "void __thiscall(CEffModel *this)"
-  },
-  "0x0040F4B0": {
-    "name": "RefreshPartyRoleData",
-    "signature": "int __cdecl RefreshPartyRoleData()"
-  },
-  "0x004329B0": {
-    "name": "InitSceOpcodeTable",
-    "signature": "int __cdecl InitSceOpcodeTable()"
-  },
-  "0x004499A0": {
-    "name": "sub_4499A0",
-    "signature": "char __thiscall(void *this, unsigned int a2, int a3)"
   },
   "0x00540070": {
     "name": "crt_sub_00540070",
@@ -451,55 +486,24 @@
     "name": "crt_sub_00540D20",
     "signature": "int __cdecl()"
   },
+  "0x00540DC0": {
+    "name": "crt_sub_00540DC0",
+    "signature": "int __cdecl()"
+  },
   "0x00540FD0": {
     "name": "crt_sub_00540FD0",
     "signature": "int __cdecl()"
   },
-  "0x00540DC0": {
-    "name": "crt_sub_00540DC0",
-    "signature": "int __cdecl()"
+  "0x00541160": {
+    "name": "UIRenderPar",
+    "signature": "int __cdecl(int nX, int nY, int nW, int nH, gbColorQuad *pColor, gbTextureArray *pTex, _PlugInfo *pInfo)"
   },
   "0x00541590": {
     "name": "crt_sub_00541590",
     "signature": "int __cdecl()"
   },
-  "0x004A13E0": {
-    "name": "_sub_4A13E0",
-    "signature": "int __cdecl()"
-  },
-  "0x004AA9C0": {
-    "name": "_misattrib_CCBUI::CreatePanelUI",
-    "signature": "void __thiscall _misattrib_CCBUI::CreatePanelUI(CCBUI *this)",
-    "_misattrib_evidence": "max_offset=401904>class_size=2632"
-  },
-  "0x004AB2B0": {
-    "name": "_misattrib_CCBUI::DestroyDynamic",
-    "signature": "void __thiscall _misattrib_CCBUI::DestroyDynamic(CCBUI *this, int nVal)",
-    "_misattrib_evidence": "max_offset=396024>class_size=2632"
-  },
-  "0x00494250": {
-    "name": "_misattrib_CScreenMode::ResetProgressList",
-    "signature": "int __thiscall _misattrib_CScreenMode::ResetProgressList(CScreenMode *this)",
-    "_misattrib_evidence": "max_offset=219752>class_size=4280"
-  },
-  "0x0046AEA0": {
-    "name": "_misattrib_GRPinput::ProcessButtonHold",
-    "signature": "void __thiscall GRPinput::ProcessButtonHold(GRPinput *this, float fDelta)",
-    "_misattrib_evidence": "max_offset=101168>class_size=10584"
-  },
-  "0x0052FC60": {
-    "name": "_misattrib_MatrixStack::BeginScene",
-    "signature": "void __thiscall(MatrixStack *this)",
-    "_misattrib_evidence": "max_offset=3336>class_size=4"
-  },
-  "0x004974A0": {
-    "name": "_misattrib_UIBigMap::OnMessage",
-    "signature": "int __thiscall(UIBigMap *this, int nVal, char *pszBuf, int nItemID)",
-    "_misattrib_evidence": "max_offset=219752>class_size=10248"
-  },
-  "0x0043A770": {
-    "name": "GetSys",
-    "signature": "struct NameSys *__cdecl()",
-    "source": "pdb"
+  "0x00569020": {
+    "name": "PAL3_RandomPickValues",
+    "signature": "int __cdecl PAL3_RandomPickValues(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int *p_DWORD)"
   }
 }

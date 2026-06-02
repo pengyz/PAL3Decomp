@@ -13,7 +13,7 @@ _lang = tree_sitter.Language(tscpp.language())
 _parser = tree_sitter.Parser(_lang)
 
 
-def transform_oop_calls(code, static_methods=None):
+def transform_oop_calls(code, static_methods=None, cls_name=None):
     """
     Transform Class::Method(obj, args) -> obj->Method(args)
     Only when:
@@ -73,8 +73,15 @@ def transform_oop_calls(code, static_methods=None):
                         rest_str = ', '.join(rest_args)
 
                         if first_arg.type == 'this':
-                            # Simple: this->Method(rest)
-                            new_text = 'this->%s(%s)' % (method_name, rest_str)
+                            # Only rewrite this->Method() when the method's class
+                            # matches the enclosing function's class. Otherwise the
+                            # call is a misattribution (Hex-Rays typed this wrong).
+                            if class_name == cls_name:
+                                new_text = 'this->%s(%s)' % (method_name, rest_str)
+                            else:
+                                # Misattrib: keep Class::Method(this, rest) form
+                                new_text = '%s::%s(%s)' % (class_name, method_name,
+                                    ', '.join(a.text.decode('utf-8') for a in arg_nodes))
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return
