@@ -1,4 +1,14 @@
 {
+  "0x0017A7E88": {
+    "name": "g_nScriptCounter",
+    "source": "binary:12 decomp refs",
+    "type": "int"
+  },
+  "0x0017B1EC0": {
+    "name": "g_InputState",
+    "source": "binary:12 decomp refs",
+    "type": "int"
+  },
   "0x0056A634": {
     "name": "g_bActorFlag",
     "type": "unsigned char"
@@ -15,17 +25,122 @@
     "name": "g_vtbl_UITitle_YXXX",
     "type": "void *"
   },
+  "0x0056ABA4": {
+    "name": "off_56ABA4",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056AF80": {
+    "name": "off_56AF80",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056B504": {
+    "name": "off_56B504",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056B518": {
+    "name": "off_56B518",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056B52C": {
+    "name": "off_56B52C",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056B898": {
+    "name": "off_56B898",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056B97C": {
+    "name": "off_56B97C",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056B990": {
+    "name": "off_56B990",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056BA08": {
+    "name": "off_56BA08",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056BA1C": {
+    "name": "off_56BA1C",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056C548": {
+    "name": "off_56C548",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056C568": {
+    "name": "g_MonsterEntryTable",
+    "source": "binary: UITitle_XJTM_UpdateMonsterEntry: g_MonsterEntryTable[nVal]; RenderTarget_OnRender uses it",
+    "type": "int[]"
+  },
   "0x0056C57C": {
     "name": "g_ArcSceneMonsterTable",
     "type": "void *"
+  },
+  "0x0056D5D8": {
+    "name": "off_56D5D8",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
   },
   "0x0056D604": {
     "name": "g_pfnCallback",
     "type": "void *"
   },
+  "0x0056E130": {
+    "name": "off_56E130",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
   "0x0056E15C": {
     "name": "g_ArcSceneMonsterTable2",
     "type": "void *"
+  },
+  "0x0056F02C": {
+    "name": "g_ComposeUIChildIDs",
+    "source": "binary: ComposeUI::GetChildPtr: *((_DWORD*)&off_56F02C + index); child control ID table",
+    "type": "int[]"
+  },
+  "0x0056F1A4": {
+    "name": "off_56F1A4",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056F1B8": {
+    "name": "off_56F1B8",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056F1CC": {
+    "name": "off_56F1CC",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056F1E0": {
+    "name": "off_56F1E0",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056F1F4": {
+    "name": "off_56F1F4",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x0056F208": {
+    "name": "off_56F208",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
   },
   "0x0056F62C": {
     "name": "g_vtbl_CEffSParticle",
@@ -35,6 +150,16 @@
     "name": "lpFileName",
     "type": "const LPCSTR"
   },
+  "0x0056FCC8": {
+    "comment": "combat state panel left positions",
+    "name": "g_nStatePanelL",
+    "type": "int[4]"
+  },
+  "0x0056FCD8": {
+    "comment": "combat state panel top positions",
+    "name": "g_nStatePanelT",
+    "type": "int[4]"
+  },
   "0x0056FDAC": {
     "name": "bVisible",
     "type": "const int"
@@ -43,9 +168,129 @@
     "name": "animId",
     "type": "const int"
   },
+  "0x00570080": {
+    "comment": "item type base IDs: {16,17,18,19}",
+    "name": "g_nItemTypeBase",
+    "type": "int[4]"
+  },
+  "0x00570090": {
+    "comment": "skill tab IDs: {32,33,34,35}",
+    "name": "g_nSkillTabIDs",
+    "type": "int[4]"
+  },
+  "0x005700A0": {
+    "comment": "magic tab IDs: {48,49,50,51}",
+    "name": "g_nMagicTabIDs",
+    "type": "int[4]"
+  },
+  "0x005700B0": {
+    "comment": "item tab IDs: {64,65,66,67}",
+    "name": "g_nItemTabIDs",
+    "type": "int[4]"
+  },
+  "0x005700C0": {
+    "comment": "item IDs: {69,70,71,72,73}",
+    "name": "g_nItemIDs_69",
+    "type": "int[5]"
+  },
+  "0x005700D4": {
+    "comment": "skill/item ID lookup table",
+    "name": "g_nSkillItemIDTable",
+    "type": "int[25]"
+  },
+  "0x00570138": {
+    "comment": "property IDs: {208,209,210,211,212}",
+    "name": "g_nPropIDs_208",
+    "type": "int[5]"
+  },
+  "0x0057014C": {
+    "comment": "property IDs: {241-245, 273-278}",
+    "name": "g_nPropIDs_241",
+    "type": "int[11]"
+  },
+  "0x00570178": {
+    "comment": "duplicate combat state panel left positions",
+    "name": "g_nStatePanelL_dup",
+    "type": "int[4]"
+  },
+  "0x00570188": {
+    "comment": "duplicate combat state panel top positions",
+    "name": "g_nStatePanelT_dup",
+    "type": "int[4]"
+  },
+  "0x00570198": {
+    "comment": "sprite size constant 64x5",
+    "name": "g_nSpriteSize_64",
+    "type": "int[5]"
+  },
+  "0x005701AC": {
+    "comment": "sprite size constant 82x5",
+    "name": "g_nSpriteSize_82",
+    "type": "int[5]"
+  },
+  "0x005701C0": {
+    "comment": "sprite size constant 20x5",
+    "name": "g_nSpriteSize_20",
+    "type": "int[5]"
+  },
+  "0x005701D4": {
+    "comment": "unknown data table: 5 ints + 25 ptrs",
+    "name": "g_nUnkDataTable",
+    "type": "int[30]"
+  },
+  "0x0057024C": {
+    "comment": "unknown lookup table {0,104,46,136,65,156,104}",
+    "name": "g_nUnkTable_24C",
+    "type": "int[7]"
+  },
+  "0x00570268": {
+    "comment": "unknown lookup table {0,188,148,87,87,148,131}",
+    "name": "g_nUnkTable_268",
+    "type": "int[7]"
+  },
+  "0x00570298": {
+    "name": "off_570298",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x00570310": {
+    "name": "off_570310",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
   "0x00570618": {
     "name": "lpString",
     "type": "const LPCSTR"
+  },
+  "0x005706AC": {
+    "name": "off_5706AC",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x005706C0": {
+    "name": "off_5706C0",
+    "reason": "rdata array end sentinel used as boundary in pointer arithmetic",
+    "type": "skip"
+  },
+  "0x00570748": {
+    "name": "off_570748",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x00570754": {
+    "name": "off_570754",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x005707D0": {
+    "name": "off_5707D0",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
+  },
+  "0x00570904": {
+    "name": "off_570904",
+    "reason": "rdata offset: codegen auto-substitutes",
+    "type": "skip"
   },
   "0x00572B3C": {
     "name": "SubKey",
@@ -99,6 +344,11 @@
     "name": "Mode",
     "type": "char[3]"
   },
+  "0x005833B8": {
+    "name": "g_nPAL3_5833B8",
+    "source": "binary:3 decomp refs, 4-byte access; cls=PAL3, 3 funcs",
+    "type": "int"
+  },
   "0x005833BC": {
     "name": "g_dwGameFlags",
     "type": "unsigned long"
@@ -151,9 +401,19 @@
     "name": "section",
     "type": "CHAR[]"
   },
+  "0x00583A1C": {
+    "name": "off_583A1C",
+    "reason": ".data string pointer used in string comparison; runtime-initialized",
+    "type": "skip"
+  },
   "0x00583A9C": {
     "name": "dir",
     "type": "char[256]"
+  },
+  "0x00586154": {
+    "name": "g_nPtrArray_586154",
+    "source": "binary:3 decomp refs, 4-byte access; cls=PtrArray, 3 funcs",
+    "type": "int"
   },
   "0x00586158": {
     "name": "g_nFrameRate",
@@ -163,21 +423,89 @@
     "name": "g_nUpdateInterval",
     "type": "int"
   },
+  "0x00586180": {
+    "name": "g_pszDefaultScene",
+    "type": "char *"
+  },
+  "0x00586184": {
+    "name": "g_pszScene1",
+    "type": "char *"
+  },
+  "0x00586188": {
+    "name": "g_pszScene2",
+    "type": "char *"
+  },
   "0x0058618C": {
     "name": "g_pfnUpdateFuncs",
     "type": "void *[5]"
+  },
+  "0x00586190": {
+    "name": "g_pszSceneSlot3",
+    "type": "char *"
+  },
+  "0x00586194": {
+    "name": "g_pszSceneSlot2",
+    "type": "char *"
+  },
+  "0x00586198": {
+    "name": "g_pszSceneSlot1",
+    "type": "char *"
+  },
+  "0x0058619C": {
+    "name": "g_pszSceneSlot0",
+    "type": "char *"
+  },
+  "0x005861F8": {
+    "name": "off_5861F8",
+    "reason": ".data string pointer used in string comparison; runtime-initialized",
+    "type": "skip"
   },
   "0x0058B230": {
     "name": "g_nCameraUpdateCount",
     "type": "int"
   },
+  "0x0058B234": {
+    "name": "g_nRoleSystem_58B234",
+    "source": "binary:3 decomp refs, 4-byte access; cls=RoleSystem, 2 funcs",
+    "type": "int"
+  },
+  "0x0058B238": {
+    "name": "g_fCameraDefaultDist",
+    "source": "binary:2 decomp refs; .data init=30.0",
+    "type": "float"
+  },
+  "0x0058B38C": {
+    "name": "g_nRoleSystem_58B38C",
+    "source": "binary:3 decomp refs, 4-byte access; cls=RoleSystem, 3 funcs",
+    "type": "int"
+  },
+  "0x0058B444": {
+    "name": "off_58B444",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0058B448": {
+    "name": "off_58B448",
+    "reason": ".data string pointer used in string comparison; runtime-initialized",
+    "type": "skip"
+  },
   "0x0058B784": {
     "name": "a1n07a",
     "type": "char[]"
   },
+  "0x0058DE64": {
+    "name": "g_fEffectTimer",
+    "source": "binary:13 hits, D9 05=fld; accumulates += dt, reset to 10.0",
+    "type": "float"
+  },
   "0x005905AC": {
     "name": "a368",
     "type": "char[]"
+  },
+  "0x00592DA4": {
+    "name": "off_592DA4",
+    "reason": ".data string pointer used in string comparison; runtime-initialized",
+    "type": "skip"
   },
   "0x00595960": {
     "name": "a13i2",
@@ -207,17 +535,138 @@
     "name": "aA",
     "type": "char[]"
   },
+  "0x00596420": {
+    "name": "off_596420",
+    "reason": ".data string pointer used in string comparison; runtime-initialized",
+    "type": "skip"
+  },
+  "0x00596424": {
+    "name": "off_596424",
+    "reason": ".data string pointer used in string comparison; runtime-initialized",
+    "type": "skip"
+  },
   "0x005967B0": {
     "name": "aS_2",
     "type": "char[3]"
+  },
+  "0x005974E0": {
+    "name": "off_5974E0",
+    "type": "const char *"
   },
   "0x00598C14": {
     "name": "aQ07",
     "type": "char[4]"
   },
+  "0x00599594": {
+    "name": "off_599594",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059959C": {
+    "name": "off_59959C",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005995A0": {
+    "name": "off_5995A0",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005995A4": {
+    "name": "off_5995A4",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005995A8": {
+    "name": "off_5995A8",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
   "0x005995AC": {
     "name": "g_szDataPath",
     "type": "const char *"
+  },
+  "0x0059B5E8": {
+    "name": "g_pCScreenMode",
+    "source": "A+:decomp_off_59B5E8->GetInstance_df70()_37refs",
+    "type": "const char *"
+  },
+  "0x0059BA94": {
+    "name": "off_59BA94",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059DC84": {
+    "name": "off_59DC84",
+    "type": "const char *"
+  },
+  "0x0059DC90": {
+    "name": "off_59DC90",
+    "type": "const char *"
+  },
+  "0x0059DD00": {
+    "name": "off_59DD00",
+    "type": "const char *"
+  },
+  "0x0059DD18": {
+    "name": "off_59DD18",
+    "reason": ".data string pointer used in string comparison; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059DD60": {
+    "name": "off_59DD60",
+    "reason": ".data string pointer used in string comparison; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059DD70": {
+    "name": "off_59DD70",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059DD80": {
+    "name": "off_59DD80",
+    "reason": ".data string pointer used in string comparison; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059DDA0": {
+    "name": "off_59DDA0",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059DDA8": {
+    "name": "off_59DDA8",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059DDB4": {
+    "name": "off_59DDB4",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059DDB8": {
+    "name": "off_59DDB8",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059DDBC": {
+    "name": "off_59DDBC",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059DDC0": {
+    "name": "off_59DDC0",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059DDC4": {
+    "name": "off_59DDC4",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x0059DDC8": {
+    "name": "off_59DDC8",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
   },
   "0x005A06B0": {
     "name": "a13i2_0",
@@ -243,6 +692,11 @@
     "name": "g_bSceneLoaded",
     "type": "unsigned char"
   },
+  "0x005A099C": {
+    "name": "g_fDefaultFOV",
+    "source": "binary:3 decomp refs; .data init=20.0",
+    "type": "float"
+  },
   "0x005A3748": {
     "name": "g_nMiniGameParam",
     "type": "int"
@@ -251,17 +705,85 @@
     "name": "tex",
     "type": "char[256]"
   },
+  "0x005A6A3C": {
+    "name": "off_5A6A3C",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
   "0x005ABA60": {
     "name": "aP",
     "type": "char[]"
+  },
+  "0x005ABBE0": {
+    "name": "off_5ABBE0",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005AC084": {
+    "name": "off_5AC084",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005AC088": {
+    "name": "off_5AC088",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005AC0A0": {
+    "name": "off_5AC0A0",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005AC180": {
+    "name": "off_5AC180",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
   },
   "0x005AE1E4": {
     "name": "g_bAudioEnabled",
     "type": "unsigned char"
   },
+  "0x005AE380": {
+    "name": "off_5AE380",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005AE388": {
+    "name": "off_5AE388",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005AE38C": {
+    "name": "off_5AE38C",
+    "type": "const char *"
+  },
+  "0x005AE3A8": {
+    "name": "off_5AE3A8",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005AE3C4": {
+    "name": "off_5AE3C4",
+    "type": "const char *"
+  },
+  "0x005B0950": {
+    "name": "off_5B0950",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
   "0x005B0958": {
     "name": "g_bEffectEnabled",
     "type": "unsigned char"
+  },
+  "0x005B0DA4": {
+    "name": "off_5B0DA4",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005B0E2C": {
+    "name": "off_5B0E2C",
+    "reason": ".data string pointer used in string comparison; runtime-initialized",
+    "type": "skip"
   },
   "0x005B1280": {
     "name": "a13i2_1",
@@ -283,13 +805,218 @@
     "name": "a15h1_1",
     "type": "char[]"
   },
+  "0x005B1604": {
+    "name": "off_5B1604",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005B203C": {
+    "name": "off_5B203C",
+    "type": "const char *"
+  },
+  "0x005B46B4": {
+    "name": "g_pCScreenMode_5B46B4",
+    "source": "A+:decomp_calls_GetInstance_df70",
+    "type": "const char *"
+  },
+  "0x005B46C0": {
+    "name": "off_5B46C0",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005B46C4": {
+    "name": "off_5B46C4",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005B7650": {
+    "name": "off_5B7650",
+    "type": "const char *"
+  },
+  "0x005B765C": {
+    "name": "off_5B765C",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005B7660": {
+    "name": "off_5B7660",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005B9DE4": {
+    "name": "off_5B9DE4",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005B9DF0": {
+    "name": "off_5B9DF0",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005B9DF4": {
+    "name": "off_5B9DF4",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005BC4A4": {
+    "name": "off_5BC4A4",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
   "0x005BC4A8": {
     "name": "g_pCombatUIData",
     "type": "void *"
   },
+  "0x005BC90C": {
+    "name": "off_5BC90C",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005BC914": {
+    "name": "off_5BC914",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005BC918": {
+    "name": "g_pCScreenMode_5BC918",
+    "source": "A+:decomp_assigned_to_CScreenMode*_var",
+    "type": "const char *"
+  },
+  "0x005BC940": {
+    "name": "off_5BC940",
+    "type": "const char *"
+  },
+  "0x005BEE3C": {
+    "name": "szFilename",
+    "type": "char[260]"
+  },
+  "0x005BF000": {
+    "name": "off_5BF000",
+    "type": "const char *"
+  },
+  "0x005C3EAC": {
+    "name": "off_5C3EAC",
+    "type": "const char *"
+  },
+  "0x005C3ED4": {
+    "name": "off_5C3ED4",
+    "type": "const char *"
+  },
+  "0x005C5EBC": {
+    "name": "off_5C5EBC",
+    "type": "const char *"
+  },
+  "0x005C5EC4": {
+    "name": "off_5C5EC4",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005C5EC8": {
+    "name": "off_5C5EC8",
+    "type": "const char *"
+  },
+  "0x005C775C": {
+    "name": "off_5C775C",
+    "type": "const char *"
+  },
+  "0x005C7760": {
+    "name": "off_5C7760",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005C7764": {
+    "name": "off_5C7764",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005C7768": {
+    "name": "g_pCScreenMode_5C7768",
+    "source": "A+:decomp_cast_to_CScreenMode*",
+    "type": "const char *"
+  },
+  "0x005C7770": {
+    "name": "off_5C7770",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005C7774": {
+    "name": "off_5C7774",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005C778C": {
+    "name": "off_5C778C",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005C91C8": {
+    "name": "off_5C91C8",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005C936C": {
+    "name": "off_5C936C",
+    "type": "const char *"
+  },
+  "0x005C9378": {
+    "name": "off_5C9378",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005CADC4": {
+    "name": "off_5CADC4",
+    "type": "const char *"
+  },
+  "0x005CADC8": {
+    "name": "off_5CADC8",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005CADD0": {
+    "name": "off_5CADD0",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005CC578": {
+    "name": "off_5CC578",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005CC7AC": {
+    "name": "off_5CC7AC",
+    "type": "const char *"
+  },
   "0x005CEFA8": {
     "name": "g_bDebugMode",
     "type": "unsigned char"
+  },
+  "0x005CEFA9": {
+    "name": "g_bRoleSystem_5CEFA9",
+    "source": "binary:8 decomp refs, 1-byte access; cls=RoleSystem, 6 funcs",
+    "type": "unsigned char"
+  },
+  "0x005CF1E8": {
+    "name": "g_pCScreenMode_5CF1E8",
+    "source": "A+:decomp_calls_GetInstance_df70",
+    "type": "const char *"
+  },
+  "0x005CF1EC": {
+    "name": "off_5CF1EC",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005CF1F0": {
+    "name": "off_5CF1F0",
+    "type": "const char *"
+  },
+  "0x005CF1F4": {
+    "name": "g_pCScreenMode_5CF1F4",
+    "source": "A+:decomp_calls_GetInstance_df70",
+    "type": "const char *"
+  },
+  "0x005CF220": {
+    "name": "off_5CF220",
+    "type": "const char *"
   },
   "0x005D0750": {
     "name": "g_nFiveNimbusCount",
@@ -299,6 +1026,43 @@
     "name": "aN",
     "type": "CHAR[]"
   },
+  "0x005D11B8": {
+    "name": "off_5D11B8",
+    "type": "const char *"
+  },
+  "0x005D11C0": {
+    "name": "off_5D11C0",
+    "type": "const char *"
+  },
+  "0x005D11C4": {
+    "name": "off_5D11C4",
+    "type": "const char *"
+  },
+  "0x005D11E0": {
+    "name": "off_5D11E0",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005D11F8": {
+    "name": "off_5D11F8",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005D11FC": {
+    "name": "off_5D11FC",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005D3C68": {
+    "name": "unk_5D3C68",
+    "reason": ".data float/data table element",
+    "type": "skip"
+  },
+  "0x005D3C6C": {
+    "name": "unk_5D3C6C",
+    "reason": ".data float/data table element",
+    "type": "skip"
+  },
   "0x005D41B0": {
     "name": "g_nTextureDefault",
     "type": "int"
@@ -307,15 +1071,36 @@
     "name": "g_fConst400",
     "type": "float"
   },
+  "0x005D41B8": {
+    "name": "g_fRenderHeight",
+    "source": "binary:39 decomp refs, D9 05=fld float (.rdata constant)",
+    "type": "float"
+  },
+  "0x005D41BC": {
+    "name": "g_fRenderWidth",
+    "source": "binary:39 decomp refs, D8 35=fdiv float (.rdata constant)",
+    "type": "float"
+  },
   "0x005D4D3C": {
     "name": "g_EffCylinderEditorData",
     "type": "int"
+  },
+  "0x005D4D7C": {
+    "name": "g_pszEditorDesc",
+    "source": "binary: CEffCylinder/CEffGrid::GetEditorObjDescription returns it",
+    "type": "const char *"
   },
   "0x005D4DF4": {
     "name": "g_EffEditorState",
     "type": "int"
   },
+  "0x005D542C": {
+    "binary_size": 4,
+    "name": "g_TargetData",
+    "type": "int"
+  },
   "0x005D5484": {
+    "decomp_name": "pEffMgr",
     "name": "g_EffMgr",
     "type": "CEffMgr"
   },
@@ -323,13 +1108,118 @@
     "name": "FileName",
     "type": "char[256]"
   },
+  "0x005D5FE8": {
+    "binary_size": 4,
+    "name": "g_nTargetSlot",
+    "type": "int"
+  },
+  "0x005D87F0": {
+    "name": "unk_5D87F0",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
   "0x005D87F4": {
     "name": "roleIdx",
     "type": "unsigned int"
   },
+  "0x005D8800": {
+    "name": "unk_5D8800",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8808": {
+    "name": "unk_5D8808",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8824": {
+    "name": "unk_5D8824",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8848": {
+    "name": "unk_5D8848",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8884": {
+    "name": "unk_5D8884",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
   "0x005D88BC": {
     "name": "a164229",
     "type": "char[]"
+  },
+  "0x005D88EC": {
+    "name": "unk_5D88EC",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D88F4": {
+    "name": "unk_5D88F4",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D88FC": {
+    "name": "unk_5D88FC",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8938": {
+    "name": "unk_5D8938",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D893C": {
+    "name": "unk_5D893C",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8940": {
+    "name": "unk_5D8940",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8944": {
+    "name": "unk_5D8944",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8948": {
+    "name": "unk_5D8948",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8950": {
+    "name": "unk_5D8950",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8954": {
+    "name": "unk_5D8954",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8958": {
+    "name": "unk_5D8958",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D895C": {
+    "name": "unk_5D895C",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8960": {
+    "name": "unk_5D8960",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8964": {
+    "name": "unk_5D8964",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
   },
   "0x005D8968": {
     "name": "a03dS",
@@ -338,6 +1228,21 @@
   "0x005D8970": {
     "name": "aY",
     "type": "char[]"
+  },
+  "0x005D8974": {
+    "name": "unk_5D8974",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D89A4": {
+    "name": "unk_5D89A4",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D89B0": {
+    "name": "unk_5D89B0",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
   },
   "0x005D89B4": {
     "name": "a15f",
@@ -351,9 +1256,129 @@
     "name": "KeyName",
     "type": "CHAR[]"
   },
+  "0x005D89F0": {
+    "name": "unk_5D89F0",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D89F8": {
+    "name": "unk_5D89F8",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8A00": {
+    "name": "unk_5D8A00",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8A38": {
+    "name": "g_szCCBStageCamName",
+    "source": "binary: CCBStageCam: sprintf(buf, \"%s\", &g_szCCBStageCamName); string buffer",
+    "type": "char[]"
+  },
+  "0x005D8A3C": {
+    "name": "unk_5D8A3C",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8A40": {
+    "name": "unk_5D8A40",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8A48": {
+    "name": "unk_5D8A48",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8A50": {
+    "name": "unk_5D8A50",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8A58": {
+    "name": "unk_5D8A58",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8A5C": {
+    "name": "unk_5D8A5C",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8A64": {
+    "name": "unk_5D8A64",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8A6C": {
+    "name": "unk_5D8A6C",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8A90": {
+    "name": "unk_5D8A90",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8AB4": {
+    "name": "unk_5D8AB4",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8ABC": {
+    "name": "unk_5D8ABC",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8AC4": {
+    "name": "unk_5D8AC4",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
   "0x005D8ACC": {
     "name": "a12f",
     "type": "char[]"
+  },
+  "0x005D8AD4": {
+    "name": "unk_5D8AD4",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8AF4": {
+    "name": "unk_5D8AF4",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8B00": {
+    "name": "unk_5D8B00",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8B04": {
+    "name": "unk_5D8B04",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8B0C": {
+    "name": "unk_5D8B0C",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8B14": {
+    "name": "unk_5D8B14",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8B3C": {
+    "name": "unk_5D8B3C",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8B44": {
+    "name": "unk_5D8B44",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
   },
   "0x005D8B78": {
     "name": "a02f",
@@ -363,9 +1388,134 @@
     "name": "aO",
     "type": "char[]"
   },
+  "0x005D8B88": {
+    "name": "unk_5D8B88",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8DC0": {
+    "name": "unk_5D8DC0",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8E20": {
+    "name": "unk_5D8E20",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8E30": {
+    "name": "unk_5D8E30",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8E3C": {
+    "name": "unk_5D8E3C",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8E48": {
+    "name": "unk_5D8E48",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8EB0": {
+    "name": "unk_5D8EB0",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8EB8": {
+    "name": "unk_5D8EB8",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8EC0": {
+    "name": "unk_5D8EC0",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F28": {
+    "name": "unk_5D8F28",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F30": {
+    "name": "unk_5D8F30",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F38": {
+    "name": "unk_5D8F38",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F40": {
+    "name": "unk_5D8F40",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F48": {
+    "name": "unk_5D8F48",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F50": {
+    "name": "unk_5D8F50",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F58": {
+    "name": "unk_5D8F58",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F60": {
+    "name": "unk_5D8F60",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F68": {
+    "name": "unk_5D8F68",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F70": {
+    "name": "unk_5D8F70",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F78": {
+    "name": "unk_5D8F78",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F80": {
+    "name": "unk_5D8F80",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F88": {
+    "name": "unk_5D8F88",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F90": {
+    "name": "unk_5D8F90",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
+  "0x005D8F98": {
+    "name": "unk_5D8F98",
+    "reason": "CCBStageCam data area element",
+    "type": "skip"
+  },
   "0x005DBEA0": {
     "name": "a203",
     "type": "char[]"
+  },
+  "0x005DFDEB": {
+    "name": "g_bCombatDebugMode",
+    "source": "binary: CCBRoleState_ApplyDamage/CalcCombatDamage: if(!val)/if(val) checks",
+    "type": "unsigned char"
   },
   "0x005DFDEC": {
     "name": "g_nCombatRandSeed",
@@ -375,13 +1525,133 @@
     "name": "aRb",
     "type": "char[3]"
   },
+  "0x005DFF88": {
+    "name": "off_5DFF88",
+    "type": "const char *"
+  },
+  "0x005DFF90": {
+    "name": "off_5DFF90",
+    "type": "const char *"
+  },
+  "0x005DFF94": {
+    "name": "off_5DFF94",
+    "type": "const char *"
+  },
+  "0x005E524C": {
+    "name": "off_5E524C",
+    "type": "const char *"
+  },
+  "0x005E525C": {
+    "name": "off_5E525C",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005E7ECC": {
+    "name": "off_5E7ECC",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005E7ED8": {
+    "name": "off_5E7ED8",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005E7F20": {
+    "name": "off_5E7F20",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005E7F24": {
+    "name": "off_5E7F24",
+    "type": "const char *"
+  },
+  "0x005E92A0": {
+    "name": "off_5E92A0",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005EB920": {
+    "name": "off_5EB920",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005ED1D0": {
+    "name": "off_5ED1D0",
+    "type": "const char *"
+  },
+  "0x005ED1D4": {
+    "name": "off_5ED1D4",
+    "type": "const char *"
+  },
+  "0x005EFAB4": {
+    "name": "off_5EFAB4",
+    "type": "const char *"
+  },
+  "0x005EFF48": {
+    "name": "off_5EFF48",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005EFF78": {
+    "name": "off_5EFF78",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005EFF90": {
+    "name": "off_5EFF90",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005EFF98": {
+    "name": "off_5EFF98",
+    "type": "const char *"
+  },
+  "0x005F2488": {
+    "name": "off_5F2488",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
   "0x005F24CC": {
     "name": "aR",
     "type": "char[]"
   },
+  "0x005F4D20": {
+    "name": "off_5F4D20",
+    "reason": ".data string pointer used in string comparison; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005F50B4": {
+    "name": "off_5F50B4",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
   "0x005F50B8": {
     "name": "lpString2",
     "type": "LPCSTR"
+  },
+  "0x005F50BC": {
+    "name": "off_5F50BC",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005F50C0": {
+    "name": "off_5F50C0",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005F50C4": {
+    "name": "off_5F50C4",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005F50C8": {
+    "name": "off_5F50C8",
+    "reason": "function/vtable pointer table in .data section; runtime-initialized",
+    "type": "skip"
+  },
+  "0x005F7790": {
+    "name": "off_5F7790",
+    "type": "const char *"
   },
   "0x00601528": {
     "name": "PathName_0",
@@ -399,6 +1669,10 @@
     "name": "Delimiter",
     "type": "char[256]"
   },
+  "0x00608CD8": {
+    "name": "pszName3",
+    "type": "const char *"
+  },
   "0x0060AD00": {
     "name": "g_TileData",
     "type": "int[]"
@@ -407,9 +1681,54 @@
     "name": "jpt_55C6DD",
     "type": "void *"
   },
+  "0x006EBFA0": {
+    "name": "g_VFileSystem",
+    "type": "gbVFileSystem *"
+  },
+  "0x007CC178": {
+    "name": "g_BaseVFileSystem",
+    "type": "gbVFileSystem *"
+  },
+  "0x008834C0": {
+    "name": "g_nSaveDataSize",
+    "type": "int"
+  },
+  "0x008ACBEC": {
+    "name": "g_fPAL3Timer",
+    "source": "binary:5 hits; near g_PAL3Data",
+    "type": "float"
+  },
+  "0x008ACBF0": {
+    "name": "g_PAL3_Instance",
+    "type": "PAL3"
+  },
+  "0x008DDCE0": {
+    "name": "g_nLoadBufferSize",
+    "type": "int"
+  },
   "0x00975ED8": {
     "name": "g_pGDB",
     "type": "PAL_GDB *"
+  },
+  "0x00A00000": {
+    "name": "g_UITemplateData",
+    "source": "binary: BSS buffer; byte_A00001/A00102 etc. are template name strings passed to UIStatic::CreateFromTemplate; span 0xA00001-0xA00B08",
+    "type": "unsigned char[]"
+  },
+  "0x00A00232": {
+    "name": "word_A00232",
+    "reason": "g_UITemplateData element: UI template string/data in BSS buffer",
+    "type": "skip"
+  },
+  "0x00A00552": {
+    "name": "word_A00552",
+    "reason": "g_UITemplateData element: UI template string/data in BSS buffer",
+    "type": "skip"
+  },
+  "0x00A00572": {
+    "name": "word_A00572",
+    "reason": "g_UITemplateData element: UI template string/data in BSS buffer",
+    "type": "skip"
   },
   "0x00A3A6EC": {
     "name": "g_nRenderFlags",
@@ -419,9 +1738,38 @@
     "name": "g_nRenderMode",
     "type": "int"
   },
+  "0x00A3A6F8": {
+    "name": "g_pVolModNode",
+    "source": "binary: PAL3_InitVolModNode: gbVolModNode::gbVolModNode(val); PAL3_InitGFX: SetVolModObj(val)",
+    "type": "gbVolModNode *"
+  },
   "0x00A3A7D8": {
     "name": "g_ScreenMode",
     "type": "CScreenMode"
+  },
+  "0x00AA0B00": {
+    "name": "g_PlayerAttBuffer",
+    "source": "binary: ARC_PlayerAtt::Create(&g_PlayerAttBuffer, nVal); player attribute data buffer",
+    "type": "ARC_PlayerAtt"
+  },
+  "0x00AABEF6": {
+    "name": "g_PalScriptTemplate",
+    "source": "binary: CGameData_InitRoles: PalScript::Create(this, &g_PalScriptTemplate, rect, nVal)",
+    "type": "unsigned char[]"
+  },
+  "0x00ABCD00": {
+    "name": "g_PlayerAttBuffer2",
+    "source": "binary: CUtil_InitGameSystems: ARC_PlayerAtt::Create(&g_PlayerAttBuffer2, nVal)",
+    "type": "ARC_PlayerAtt"
+  },
+  "0x00ABD000": {
+    "name": "g_PlayerAttTemplate",
+    "source": "binary: CGameData_InitRoles/LineupUI: ARC_PlayerAtt::Create(dst, &g_PlayerAttTemplate, nVal)",
+    "type": "unsigned char[]"
+  },
+  "0x00BFAB60": {
+    "name": "g_ScriptSlots",
+    "type": "int[132]"
   },
   "0x00BFAD70": {
     "name": "g_Input",
@@ -429,1392 +1777,8 @@
   },
   "0x00BFD6C8": {
     "name": "g_DrvInfo",
-    "type": "gbGfxDriverInfo",
-    "source": "PAL3patch:confirmed struct at 0xBFD6C8, contains display/window params"
-  },
-  "0x00BFDA04": {
-    "name": "g_nGameTime",
-    "type": "int"
-  },
-  "0x00BFDA2C": {
-    "name": "g_nTickCount",
-    "type": "int"
-  },
-  "0x00BFDA30": {
-    "name": "g_fDeltaTime",
-    "type": "float"
-  },
-  "0x00BFDA34": {
-    "name": "g_fGameSpeed",
-    "type": "float"
-  },
-  "0x00BFDA48": {
-    "name": "hInstance",
-    "type": "HINSTANCE"
-  },
-  "0x00BFDA4C": {
-    "name": "hWndParent",
-    "type": "HWND"
-  },
-  "0x00BFDA50": {
-    "name": "hDlg",
-    "type": "HWND"
-  },
-  "0x00BFDA54": {
-    "name": "g_hMainWnd",
-    "type": "HWND"
-  },
-  "0x00BFDA60": {
-    "name": "gfxMgr",
-    "type": "gbGfxManager *"
-  },
-  "0x00BFDA64": {
-    "name": "g_pActorMgr",
-    "type": "gbActorMgr *"
-  },
-  "0x00BFDA68": {
-    "name": "g_pCameraCtrl",
-    "type": "CameraCtrl *"
-  },
-  "0x00BFDA6C": {
-    "name": "g_nSceneState",
-    "type": "int"
-  },
-  "0x00BFDA74": {
-    "name": "g_pCBSystem",
-    "type": "CCBSystem *"
-  },
-  "0x00BFDA7C": {
-    "name": "g_pMiniGame2",
-    "type": "void *"
-  },
-  "0x00BFDA80": {
-    "name": "g_pMiniGame1",
-    "type": "void *"
-  },
-  "0x00BFDA84": {
-    "name": "g_pMiniGame3",
-    "type": "void *"
-  },
-  "0x00BFDA8C": {
-    "name": "g_nCombatMode",
-    "type": "int"
-  },
-  "0x00BFDA90": {
-    "name": "g_bTestCombat",
-    "type": "unsigned char"
-  },
-  "0x00BFDA94": {
-    "name": "g_hCursor",
-    "type": "HCURSOR"
-  },
-  "0x00BFDAA4": {
-    "name": "Default",
-    "type": "CHAR[8]"
-  },
-  "0x00BFDAB0": {
-    "name": "g_UIScene",
-    "type": "std::ios_base"
-  },
-  "0x00BFDB70": {
-    "name": "g_nMagicSlotCountA",
-    "type": "int"
-  },
-  "0x00BFDB74": {
-    "name": "g_nMagicSlotCountB",
-    "type": "int"
-  },
-  "0x00BFDB80": {
-    "name": "g_pScriptObjArray",
-    "type": "void **"
-  },
-  "0x00BFDB84": {
-    "name": "g_pScriptEventObj",
-    "type": "void *"
-  },
-  "0x00BFDB90": {
-    "name": "g_nScriptEventParam",
-    "type": "int"
-  },
-  "0x00BFDB94": {
-    "name": "g_fScriptEventParam2",
-    "type": "float",
-    "source": "binary: *(float*)& cast confirms float type"
-  },
-  "0x00BFDB98": {
-    "name": "g_nScriptRolePosX",
-    "type": "int"
-  },
-  "0x00BFDB9C": {
-    "name": "g_nScriptRolePosY",
-    "type": "int"
-  },
-  "0x00BFDBA0": {
-    "name": "g_nScriptRolePosZ",
-    "type": "int"
-  },
-  "0x00BFDBA4": {
-    "name": "g_nCurrentEventId",
-    "type": "unsigned int"
-  },
-  "0x00C01FB0": {
-    "name": "g_fCamRoleParams",
-    "type": "float[40]"
-  },
-  "0x00C02050": {
-    "name": "g_ScriptCounters",
-    "type": "ScriptCounter[10]"
-  },
-  "0x00C020F8": {
-    "name": "g_RoleSystemMain",
-    "type": "RoleSystem",
-    "binary_size": 8704
-  },
-  "0x00C04350": {
-    "name": "g_SceneMgrPrefix",
-    "type": "Array",
-    "source": "|FullInit:used as (Array *)&xxx, actual embedded Array instance"
-  },
-  "0x00C04354": {
-    "name": "g_RoleTeam1",
-    "type": "void *"
-  },
-  "0x00C04358": {
-    "name": "g_RoleTeam2",
-    "type": "int[]"
-  },
-  "0x00C04364": {
-    "name": "arr",
-    "type": "void *"
-  },
-  "0x00C04368": {
-    "name": "end",
-    "type": "void *"
-  },
-  "0x00C04370": {
-    "name": "g_nSceneFlags",
-    "type": "Array",
-    "source": "|FullInit:used as (Array *)&xxx, actual embedded Array instance"
-  },
-  "0x00C04374": {
-    "name": "g_nSceneMode",
-    "type": "int"
-  },
-  "0x00C04378": {
-    "name": "elem",
-    "type": "void *"
-  },
-  "0x00C04384": {
-    "name": "g_nSceneState",
-    "type": "int"
-  },
-  "0x00C04388": {
-    "name": "g_nSceneType",
-    "type": "int"
-  },
-  "0x00C04390": {
-    "name": "g_SceneMgr",
-    "type": "SceneMgr"
-  },
-  "0x00C05F60": {
-    "name": "g_pRoleSystems",
-    "type": "RoleSystem *"
-  },
-  "0x00C116EA": {
-    "name": "m_bPathEnabled",
-    "type": "unsigned char"
-  },
-  "0x00C116EC": {
-    "name": "g_pRoleSystem",
-    "type": "RoleSystem *"
-  },
-  "0x00D8B318": {
-    "name": "g_ScriptSystemData",
-    "type": "ScriptSystemData"
-  },
-  "0x00D8C1AC": {
-    "name": "String",
-    "type": "CHAR[260]"
-  },
-  "0x00D8E468": {
-    "name": "g_pLoadBuffer",
-    "type": "void *"
-  },
-  "0x00D8E470": {
-    "name": "Block",
-    "type": "void *"
-  },
-  "0x00D8E4C0": {
-    "name": "g_GameData",
-    "type": "CGameData"
-  },
-  "0x00DB9FD0": {
-    "name": "g_gamefrm",
-    "type": "int",
-    "source": "PAL3patch:UIGameFrm*,simplified_for_now"
-  },
-  "0x00DC3C3C": {
-    "name": "g_bSlotFlag",
-    "type": "unsigned char[768]"
-  },
-  "0x00DC5F3C": {
-    "name": "g_bSaveFlag",
-    "type": "unsigned char"
-  },
-  "0x00DCAE3C": {
-    "name": "g_szCombatFieldName",
-    "type": "char"
-  },
-  "0x00DE54EF": {
-    "name": "g_ArcSceneObjBuffer",
-    "type": "unsigned char"
-  },
-  "0x00DE5F92": {
-    "name": "g_bRoleFlag1",
-    "type": "unsigned char"
-  },
-  "0x00DE5F93": {
-    "name": "g_bRoleFlag2",
-    "type": "unsigned char"
-  },
-  "0x00DE5F98": {
-    "name": "g_nActorState",
-    "type": "int"
-  },
-  "0x00DE5FA0": {
-    "name": "g_nRoleParam",
-    "type": "int"
-  },
-  "0x00EC9E70": {
-    "name": "g_nSaveSlot0",
-    "type": "int"
-  },
-  "0x00EC9E74": {
-    "name": "g_nSaveSlot1",
-    "type": "int"
-  },
-  "0x017A8AE8": {
-    "name": "g_RoleSystemCombat",
-    "type": "RoleSystem",
-    "source": "binary: PAL3_FullInit: RoleSystem::SetActive(g_pCameraCtrl, &g_RoleSystemCombat._embed_UIItem_5908+1216); Actor_LoadActorModel: (RoleSystem*)(&g_RoleSystemCombat._embed_UIItem_5908+1216)",
-    "binary_size": 8704
-  },
-  "0x017A9180": {
-    "name": "g_fCBTimer",
-    "type": "float"
-  },
-  "0x017A94E4": {
-    "name": "g_CCBStageCamBuffer",
-    "type": "unsigned char"
-  },
-  "0x17A990C": {
-    "name": "g_nCombatViewMode",
-    "type": "int"
-  },
-  "0x017A9910": {
-    "name": "dwInitParam",
-    "type": "HWND"
-  },
-  "0x17A9914": {
-    "name": "g_hCombatDlg1",
-    "type": "HWND"
-  },
-  "0x17A9918": {
-    "name": "g_hCombatDlg2",
-    "type": "HWND"
-  },
-  "0x017AA870": {
-    "name": "g_CCBStageState",
-    "type": "unsigned char"
-  },
-  "0x017AA880": {
-    "name": "g_nCBStageFlags",
-    "type": "int[8]"
-  },
-  "0x017AA8A0": {
-    "name": "g_nCBRoleAnimData",
-    "type": "int[24]"
-  },
-  "0x017AA8B0": {
-    "name": "g_nCBQueueHead",
-    "type": "int"
-  },
-  "0x017AAD48": {
-    "name": "g_fCBAnimTime",
-    "type": "float"
-  },
-  "0x017AAF64": {
-    "name": "g_CCBCamControlData",
-    "type": "unsigned char"
-  },
-  "0x017AB588": {
-    "name": "g_nCBFormation1",
-    "type": "int[12]"
-  },
-  "0x017AB5E8": {
-    "name": "g_nCBFormation2",
-    "type": "int[16]"
-  },
-  "0x017AB658": {
-    "name": "g_nCBFormation3",
-    "type": "int[12]"
-  },
-  "0x017AB678": {
-    "name": "g_nCBRoleIndex",
-    "type": "int"
-  },
-  "0x017AB6B8": {
-    "name": "g_nCBFormation4",
-    "type": "int[12]"
-  },
-  "0x017AB6D8": {
-    "name": "g_nCBTargetIndex",
-    "type": "int"
-  },
-  "0x017AB6E8": {
-    "name": "g_nCBRoleAttackTable",
-    "type": "int[44]"
-  },
-  "0x017AB708": {
-    "name": "g_nCBActionType",
-    "type": "int"
-  },
-  "0x017AB758": {
-    "name": "g_nCBDamageValue",
-    "type": "int"
-  },
-  "0x017AB788": {
-    "name": "g_nCBHealValue",
-    "type": "int"
-  },
-  "0x017AB7A8": {
-    "name": "g_nCBRoleMoveTable",
-    "type": "int[24]"
-  },
-  "0x017AB874": {
-    "name": "g_nCBRoleHitTable",
-    "type": "int[18]"
-  },
-  "0x017ABF00": {
-    "name": "g_CCBStageSceneData",
-    "type": "unsigned char"
-  },
-  "0x017AC5D8": {
-    "name": "uType",
-    "type": "UINT"
-  },
-  "0x017AC5DC": {
-    "name": "g_bCBFlag",
-    "type": "unsigned char"
-  },
-  "0x017AC7DC": {
-    "name": "g_fCBDeltaTime",
-    "type": "float"
-  },
-  "0x017AC7E0": {
-    "name": "g_nCBRoundCount",
-    "type": "int[3]"
-  },
-  "0x017AC7EC": {
-    "name": "g_fCBSpeed",
-    "type": "float"
-  },
-  "0x017AC7F0": {
-    "name": "g_bCBActive",
-    "type": "unsigned char"
-  },
-  "0x017ACA78": {
-    "name": "g_fCBTimeScale",
-    "type": "float"
-  },
-  "0x017ACA80": {
-    "name": "g_nCBRolePos",
-    "type": "int[32]"
-  },
-  "0x017ACE10": {
-    "name": "g_fCBCamParam",
-    "type": "float"
-  },
-  "0x017ACE14": {
-    "name": "g_nCBCamState",
-    "type": "int[24]"
-  },
-  "0x017AD310": {
-    "name": "g_nRandCallCount",
-    "type": "int"
-  },
-  "0x017B02EC": {
-    "name": "g_fSceneScale",
-    "type": "float"
-  },
-  "0x017B1CC0": {
-    "name": "Source",
-    "type": "char[99]"
-  },
-  "0x017B30E4": {
-    "name": "g_nCBResultState",
-    "type": "int"
-  },
-  "0x01894970": {
-    "name": "Data",
-    "type": "BYTE"
-  },
-  "0x01894A74": {
-    "name": "Filename",
-    "type": "CHAR[260]"
-  },
-  "0x01894B78": {
-    "name": "g_nScriptVar",
-    "type": "int"
-  },
-  "0x01895318": {
-    "name": "Str",
-    "type": "char *"
-  },
-  "0x0189533C": {
-    "name": "g_nScriptState",
-    "type": "int"
-  },
-  "0x01895388": {
-    "name": "lp",
-    "type": "void *"
-  },
-  "0x01895561": {
-    "name": "g_bScriptFlag",
-    "type": "unsigned char"
-  },
-  "0x01895580": {
-    "name": "g_pCEffMgrBackup",
-    "type": "int",
-    "source": "fix:renamed_from_g_nCursorState_used_as_CEffMgr_ptr_via_cast"
-  },
-  "0x01895984": {
-    "name": "g_nRandSeed",
-    "type": "unsigned long"
-  },
-  "0x01895988": {
-    "name": "g_nRandCount",
-    "type": "int"
-  },
-  "0x0189598E": {
-    "name": "g_bStaticInitFlags",
-    "type": "unsigned char"
-  },
-  "0x018969A4": {
-    "name": "CodePage",
-    "type": "UINT"
-  },
-  "0x01896BE0": {
-    "name": "g_nUIState",
-    "type": "int"
-  },
-  "0x01896CE0": {
-    "name": "uNumber",
-    "type": "UINT"
-  },
-  "0x01896D00": {
-    "name": "g_nScriptCounter",
-    "type": "int"
-  },
-  "0x01896D0C": {
-    "name": "hHeap",
-    "type": "HANDLE"
-  },
-  "0x00C04380": {
-    "name": "g_SceneArray",
-    "type": "Array",
-    "source": "binary:99 decomp refs, mov reg(addr load), near g_SceneMgr|FullInit:used as (Array *)&xxx, actual embedded Array instance"
-  },
-  "0x00C04360": {
-    "name": "g_RoleTeamArray",
-    "type": "Array",
-    "source": "binary:22 decomp refs, mov reg(addr load), near g_RoleTeam2|FullInit:used as (Array *)&xxx, actual embedded Array instance"
-  },
-  "0x005D41B8": {
-    "name": "g_fRenderHeight",
-    "type": "float",
-    "source": "binary:39 decomp refs, D9 05=fld float (.rdata constant)"
-  },
-  "0x005D41BC": {
-    "name": "g_fRenderWidth",
-    "type": "float",
-    "source": "binary:39 decomp refs, D8 35=fdiv float (.rdata constant)"
-  },
-  "0x00BFDA78": {
-    "name": "g_pSceneManager",
-    "type": "void *",
-    "source": "binary:12 decomp refs, A3=store eax, near gfxMgr/g_pCBSystem"
-  },
-  "0x00DE5FA4": {
-    "name": "g_nRoleState",
-    "type": "int",
-    "source": "binary:12 decomp refs, A3=store eax, near g_nActorState"
-  },
-  "0x0017B1EC0": {
-    "name": "g_InputState",
-    "type": "int",
-    "source": "binary:12 decomp refs"
-  },
-  "0x0017A7E88": {
-    "name": "g_nScriptCounter",
-    "type": "int",
-    "source": "binary:12 decomp refs"
-  },
-  "0x00BFDAA0": {
-    "name": "g_fGameTimer",
-    "type": "float",
-    "source": "binary:13 hits, D9 05=fld float; Actor/EquipUI/CScreenMode usage"
-  },
-  "0x00BFDA58": {
-    "name": "g_fFadeAngle",
-    "type": "float",
-    "source": "binary:10 hits, D9 05=fld; PAL3::Render 180.0-flt pattern"
-  },
-  "0x00C12B14": {
-    "name": "g_fTileScale",
-    "type": "float",
-    "source": "binary:11 hits; used as divisor in RoleSystem position calc"
-  },
-  "0x00BFDAAC": {
-    "name": "g_fPathScale",
-    "type": "float",
-    "source": "binary:7 hits; set to 12.0, used as divisor like g_fTileScale"
-  },
-  "0x0058DE64": {
-    "name": "g_fEffectTimer",
-    "type": "float",
-    "source": "binary:13 hits, D9 05=fld; accumulates += dt, reset to 10.0"
-  },
-  "0x017AAD54": {
-    "name": "g_fCombatHalfParam",
-    "type": "float",
-    "source": "binary:1 hit, D9 1D=fstp; CCCTData assigns v42*0.5"
-  },
-  "0x017ABCDC": {
-    "name": "g_fCombatTimer",
-    "type": "float",
-    "source": "binary:8 hits, D9 1D=fstp float"
-  },
-  "0x008ACBEC": {
-    "name": "g_fPAL3Timer",
-    "type": "float",
-    "source": "binary:5 hits; near g_PAL3Data"
-  },
-  "0x00BFDA5C": {
-    "name": "g_fTimeScale",
-    "type": "float",
-    "source": "binary:3+ decomp refs; PAL3 time control"
-  },
-  "0x005A099C": {
-    "name": "g_fDefaultFOV",
-    "type": "float",
-    "source": "binary:3 decomp refs; .data init=20.0"
-  },
-  "0x0058B238": {
-    "name": "g_fCameraDefaultDist",
-    "type": "float",
-    "source": "binary:2 decomp refs; .data init=30.0"
-  },
-  "0x017A7E88": {
-    "name": "g_nEffShockCount",
-    "type": "int",
-    "source": "binary:12 decomp refs, 4-byte access"
-  },
-  "0x017A8118": {
-    "name": "g_nEffSParticleCount",
-    "type": "int",
-    "source": "binary:12 decomp refs, 4-byte access"
-  },
-  "0x00DC3338": {
-    "name": "g_bListNeedsRefresh",
-    "type": "unsigned char",
-    "source": "binary: set to 0/1 flag; controls UIListBox rebuild in LineupUI/PropUI/PAL_GDB"
-  },
-  "0x00DE5CE4": {
-    "name": "g_nUILayoutFlags",
-    "type": "int",
-    "source": "binary:10 decomp refs, 4-byte access"
-  },
-  "0x017AB5A8": {
-    "name": "g_nCEffGridCount",
-    "type": "int",
-    "source": "binary:10 decomp refs, 4-byte access"
-  },
-  "0x00C02370": {
-    "name": "g_nRoleMoveParam",
-    "type": "int",
-    "source": "binary:10 decomp refs, 4-byte access"
-  },
-  "0x017AB67C": {
-    "name": "g_nCEffModelX",
-    "type": "int",
-    "source": "binary:10 decomp refs, 4-byte access"
-  },
-  "0x017AB680": {
-    "name": "g_nCEffModelY",
-    "type": "int",
-    "source": "binary:10 decomp refs, 4-byte access"
-  },
-  "0x017AA884": {
-    "name": "g_nCEffQuadX",
-    "type": "int",
-    "source": "binary:10 decomp refs, 4-byte access"
-  },
-  "0x017AA888": {
-    "name": "g_nCEffQuadY",
-    "type": "int",
-    "source": "binary:10 decomp refs, 4-byte access"
-  },
-  "0x00BFDA70": {
-    "name": "g_pEffectSystem",
-    "type": "void *",
-    "source": "binary:9 decomp refs, 4-byte access"
-  },
-  "0x017A991C": {
-    "name": "g_nActorRenderCount",
-    "type": "int",
-    "source": "binary:9 decomp refs, 0-byte access"
-  },
-  "0x017A7BC0": {
-    "name": "g_nSceneObjCount",
-    "type": "int",
-    "source": "binary:9 decomp refs, 4-byte access"
-  },
-  "0x017AA890": {
-    "name": "g_nCEffQuadZ",
-    "type": "int",
-    "source": "binary:9 decomp refs, 4-byte access"
-  },
-  "0x017AA894": {
-    "name": "g_fCEffParam1",
-    "type": "float",
-    "source": "binary: fld instruction confirms float; from m_Task[62].fTemp array"
-  },
-  "0x017AA898": {
-    "name": "g_fCEffParam2",
-    "type": "float",
-    "source": "binary: fld instruction confirms float; from m_Task[62].fTemp array"
-  },
-  "0x00DE8E08": {
-    "name": "g_nRenderTarget2_DE8E08",
-    "type": "int",
-    "source": "binary:9 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs"
-  },
-  "0x00DE8E10": {
-    "name": "g_nRenderTarget2_DE8E10",
-    "type": "int",
-    "source": "binary:9 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs"
-  },
-  "0x00DE9380": {
-    "name": "g_nsub_4C55F0Count_DE9380",
-    "type": "int",
-    "source": "binary:9 decomp refs, 4-byte access; cls=sub_4C55F0, 2 funcs"
-  },
-  "0x00D8E46C": {
-    "name": "g_nPtrArray_D8E46C",
-    "type": "int",
-    "source": "binary:8 decomp refs, 4-byte access; cls=PtrArray, 4 funcs"
-  },
-  "0x00DC1100": {
-    "name": "g_nMiniGameState",
-    "type": "int",
-    "source": "binary: compared with g_nMiniGameParam; cleared on scene load/script ops"
-  },
-  "0x0189504C": {
-    "name": "g_pRenderEffect_189504C",
-    "type": "gbRenderEffect *",
-    "source": "binary:8 decomp refs, 4-byte access; cls=UIWnd, 9 funcs"
-  },
-  "0x00C12B40": {
-    "name": "g_nunknown_libname_331_C12B40",
-    "type": "int",
-    "source": "binary:8 decomp refs, 4-byte access; cls=unknown_libname_331, 3 funcs"
-  },
-  "0x005CEFA9": {
-    "name": "g_bRoleSystem_5CEFA9",
-    "type": "unsigned char",
-    "source": "binary:8 decomp refs, 1-byte access; cls=RoleSystem, 6 funcs"
-  },
-  "0x00C0437C": {
-    "name": "g_nPAL3_C0437C",
-    "type": "int",
-    "source": "binary:8 decomp refs, 4-byte access; cls=PAL3, 1 funcs"
-  },
-  "0x00C12B28": {
-    "name": "g_fPalScript_C12B28",
-    "type": "float",
-    "source": "binary:8 decomp refs, 4-byte access; cls=PalScript, 9 funcs"
-  },
-  "0x00C12B2C": {
-    "name": "g_fPalScript_C12B2C",
-    "type": "float",
-    "source": "binary:8 decomp refs, 4-byte access; cls=PalScript, 9 funcs"
-  },
-  "0x00C12B30": {
-    "name": "g_fPalScript_C12B30",
-    "type": "float",
-    "source": "binary:8 decomp refs, 4-byte access; cls=PalScript, 9 funcs"
-  },
-  "0x00DE8E24": {
-    "name": "g_nRenderTarget2State_DE8E24",
-    "type": "int",
-    "source": "binary:8 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs"
-  },
-  "0x00BFDBA8": {
-    "name": "g_nActor_BFDBA8",
-    "type": "int",
-    "source": "binary:7 decomp refs, 4-byte access; cls=Actor, 3 funcs"
-  },
-  "0x00DC10FC": {
-    "name": "g_nsub_41FA90_DC10FC",
-    "type": "int",
-    "source": "binary:7 decomp refs, 4-byte access; cls=sub_41FA90, 3 funcs"
-  },
-  "0x017AA8B4": {
-    "name": "g_nCombatActionParam",
-    "type": "int",
-    "source": "binary: CCBStageRole_SetupCombatAction: assigned from v8+4, passed as action param"
-  },
-  "0x00DE625A": {
-    "name": "g_bUIWnd_DE625A",
-    "type": "unsigned char",
-    "source": "binary:6 decomp refs, 1-byte access; cls=UIWnd, 7 funcs"
-  },
-  "0x00DE937C": {
-    "name": "g_bCEffCylinderFlag_DE937C",
-    "type": "unsigned char",
-    "source": "binary:6 decomp refs, 1-byte access; cls=CEffCylinder, 1 funcs"
-  },
-  "0x017A7B84": {
-    "name": "g_bgbMatrixStackFlag_17A7B84",
-    "type": "unsigned char",
-    "source": "binary:6 decomp refs, 1-byte access; cls=gbMatrixStack, 1 funcs"
-  },
-  "0x00D8E47C": {
-    "name": "g_nPalScript_D8E47C",
-    "type": "int",
-    "source": "binary:6 decomp refs, 4-byte access; cls=PalScript, 4 funcs"
-  },
-  "0x01895064": {
-    "name": "g_pRenderEffect_1895064",
-    "type": "gbRenderEffect *",
-    "source": "binary:6 decomp refs, 4-byte access; cls=VertPoolMgr, 4 funcs"
-  },
-  "0x01895048": {
-    "name": "g_pRenderEffect_1895048",
-    "type": "gbRenderEffect *",
-    "source": "binary:6 decomp refs, 4-byte access; cls=_TextureLib_Data, 7 funcs"
-  },
-  "0x017AB8B4": {
-    "name": "g_bBladeFlags",
-    "type": "unsigned char",
-    "source": "binary: CCBStageRole_SetBladeTime: bit flags (& 1, |= 1, & 2)"
-  },
-  "0x01895980": {
-    "name": "g_nCEffect_1895980",
-    "type": "int",
-    "source": "binary:6 decomp refs, 4-byte access; cls=CEffect, 2 funcs"
-  },
-  "0x00DE99AC": {
-    "name": "g_bCEffExplosiveFlag_DE99AC",
-    "type": "unsigned char",
-    "source": "binary:6 decomp refs, 1-byte access; cls=CEffExplosive, 1 funcs"
-  },
-  "0x00BFDA44": {
-    "name": "g_nWolfIndex",
-    "type": "int",
-    "source": "binary: PAL3_EndWolf: if(g_nWolfIndex<4) PAL3_Helper(v14[g_nWolfIndex]); ++g_nWolfIndex"
-  },
-  "0x00DE5F9C": {
-    "name": "g_nActor_DE5F9C",
-    "type": "int",
-    "source": "binary:5 decomp refs, 4-byte access; cls=Actor, 6 funcs"
-  },
-  "0x017A993C": {
-    "name": "g_nCCBUISelectedRole",
-    "type": "int",
-    "source": "binary: CCBUI_SettingsDialogProc: SendMessageA(DlgItem, LB_GETCURSEL=0x130B) -> selected role index"
-  },
-  "0x00BFDBAC": {
-    "name": "g_nActor_BFDBAC",
-    "type": "int",
-    "source": "binary:5 decomp refs, 4-byte access; cls=Actor, 3 funcs"
-  },
-  "0x00DC3304": {
-    "name": "g_bStateFlags",
-    "type": "unsigned char[]",
-    "source": "binary: Actor_SaveState: memset(g_bStateFlags,0,sizeof); g_bStateFlags[i]=((1<<i)&v2)!=0"
-  },
-  "0x00DE8DF8": {
-    "name": "g_nRenderTarget2_DE8DF8",
-    "type": "int",
-    "source": "binary:5 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs"
-  },
-  "0x00C04300": {
-    "name": "g_nPtrArray_C04300",
-    "type": "int",
-    "source": "binary:4 decomp refs, 4-byte access; cls=PtrArray, 4 funcs"
-  },
-  "0x00C12B38": {
-    "name": "g_nunknown_libname_331_C12B38",
-    "type": "int",
-    "source": "binary:4 decomp refs, 4-byte access; cls=unknown_libname_331, 3 funcs"
-  },
-  "0x00C12B3C": {
-    "name": "g_nunknown_libname_331_C12B3C",
-    "type": "int",
-    "source": "binary:4 decomp refs, 4-byte access; cls=unknown_libname_331, 3 funcs"
-  },
-  "0x017A9940": {
-    "name": "g_nCCBUI_17A9940",
-    "type": "int",
-    "source": "binary:4 decomp refs, 4-byte access; cls=CCBUI, 2 funcs"
-  },
-  "0x00D8E478": {
-    "name": "g_nPalScript_D8E478",
-    "type": "int",
-    "source": "binary:4 decomp refs, 4-byte access; cls=PalScript, 4 funcs"
-  },
-  "0x01895050": {
-    "name": "g_pRenderEffect_1895050",
-    "type": "gbRenderEffect *",
-    "source": "binary:4 decomp refs, 4-byte access; cls=_TextureLib_Data, 3 funcs"
-  },
-  "0x01895068": {
-    "name": "g_pRenderEffect_1895068",
-    "type": "gbRenderEffect *",
-    "source": "binary:4 decomp refs, 4-byte access; cls=Parent_Data, 2 funcs"
-  },
-  "0x01895054": {
-    "name": "g_pRenderEffect_1895054",
-    "type": "gbRenderEffect *",
-    "source": "binary:4 decomp refs, 4-byte access; cls=_TextureLib_Data, 4 funcs"
-  },
-  "0x01895058": {
-    "name": "g_pTexColorEffect",
-    "type": "int",
-    "source": "PAL3patch:gbRenderEffect**,simplified"
-  },
-  "0x0189505C": {
-    "name": "g_pRenderEffect_189505C",
-    "type": "gbRenderEffect *",
-    "source": "binary:4 decomp refs, 4-byte access; cls=_TextureLib_Data, 3 funcs"
-  },
-  "0x01895060": {
-    "name": "g_pRenderEffect_1895060",
-    "type": "gbRenderEffect *",
-    "source": "binary:4 decomp refs, 4-byte access; cls=UIRenderQuadEX(tagRECT const &,gbTextureArray &,gbColorQuad,_PlugInfo *), 3 funcs"
-  },
-  "0x0189506C": {
-    "name": "g_nParent_Data_189506C",
-    "type": "int",
-    "source": "binary:4 decomp refs, 4-byte access; cls=Parent_Data, 2 funcs"
-  },
-  "0x00D8E488": {
-    "name": "g_nPAL3_D8E488",
-    "type": "int",
-    "source": "binary:4 decomp refs, 4-byte access; cls=PAL3, 3 funcs"
-  },
-  "0x017AF5C4": {
-    "name": "g_bgbGeomNodeFlag_17AF5C4",
-    "type": "unsigned char",
-    "source": "binary:4 decomp refs, 1-byte access; cls=gbGeomNode, 1 funcs"
-  },
-  "0x00DE8E18": {
-    "name": "g_nRenderTarget2_DE8E18",
-    "type": "int",
-    "source": "binary:4 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs"
-  },
-  "0x00DE8E1C": {
-    "name": "g_nRenderTarget2_DE8E1C",
-    "type": "int",
-    "source": "binary:4 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs"
-  },
-  "0x00DE8E20": {
-    "name": "g_nRenderTarget2_DE8E20",
-    "type": "int",
-    "source": "binary:4 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs"
-  },
-  "0x005833B8": {
-    "name": "g_nPAL3_5833B8",
-    "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=PAL3, 3 funcs"
-  },
-  "0x017AB598": {
-    "name": "g_fCCBStageMoveParam",
-    "type": "float",
-    "source": "binary: CCBStage_AnimCallback_MoveTo: *(float*)&val * g_nCEffGridCount; float usage confirmed"
-  },
-  "0x017ACB8C": {
-    "name": "g_nCCBAIWindow_17ACB8C",
-    "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=CCBAIWindow, 2 funcs"
-  },
-  "0x017ACB88": {
-    "name": "g_nAIWindowBase",
-    "type": "int",
-    "source": "binary: CCBUI_SetupAIWindow: used as base offset (+86)"
-  },
-  "0x00BFDA91": {
-    "name": "g_bPAL3_BFDA91",
-    "type": "unsigned char",
-    "source": "binary:3 decomp refs, 1-byte access; cls=PAL3, 3 funcs"
-  },
-  "0x00586154": {
-    "name": "g_nPtrArray_586154",
-    "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=PtrArray, 3 funcs"
-  },
-  "0x017A8EF4": {
-    "name": "g_pCCBRoleStateArrayEnd",
-    "type": "CCBRoleState *",
-    "source": "binary: CCBRoleState_EndRoundTasks: while(v17 < &g_pCCBRoleStateArrayEnd); CCBRoleState array end pointer; g_RoleSystemCombat+1036"
-  },
-  "0x0058B234": {
-    "name": "g_nRoleSystem_58B234",
-    "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=RoleSystem, 2 funcs"
-  },
-  "0x00DE5FA8": {
-    "name": "g_nActor_DE5FA8",
-    "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=Actor, 4 funcs"
-  },
-  "0x00BFDA38": {
-    "name": "g_pDropGroup",
-    "type": "gbDropGroup *",
-    "source": "binary: gbDropGroup::Render(g_pDropGroup); PAL3_CreateEffectSystem assigns it"
-  },
-  "0x00BFDA3C": {
-    "name": "g_nPAL3_BFDA3C",
-    "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=PAL3, 2 funcs"
-  },
-  "0x017A9926": {
-    "name": "g_bWPARAM_17A9926",
-    "type": "unsigned char",
-    "source": "binary:3 decomp refs, 1-byte access; cls=WPARAM, 3 funcs"
-  },
-  "0x0058B38C": {
-    "name": "g_nRoleSystem_58B38C",
-    "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=RoleSystem, 3 funcs"
-  },
-  "0x017A7B50": {
-    "name": "g_nCEffMgr_17A7B50",
-    "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=CEffMgr, 1 funcs"
-  },
-  "0x00DE8DFC": {
-    "name": "g_nRenderTarget2_DE8DFC",
-    "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs"
-  },
-  "0x00DE8E00": {
-    "name": "g_nRenderTarget2_DE8E00",
-    "type": "int",
-    "source": "binary:3 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs"
-  },
-  "0x00586180": {
-    "name": "g_pszDefaultScene",
-    "type": "char *"
-  },
-  "0x00586184": {
-    "name": "g_pszScene1",
-    "type": "char *"
-  },
-  "0x00586188": {
-    "name": "g_pszScene2",
-    "type": "char *"
-  },
-  "0x00586190": {
-    "name": "g_pszSceneSlot3",
-    "type": "char *"
-  },
-  "0x00586194": {
-    "name": "g_pszSceneSlot2",
-    "type": "char *"
-  },
-  "0x00586198": {
-    "name": "g_pszSceneSlot1",
-    "type": "char *"
-  },
-  "0x0058619C": {
-    "name": "g_pszSceneSlot0",
-    "type": "char *"
-  },
-  "0x00DE5220": {
-    "name": "g_SaveSlotFlags",
-    "type": "unsigned char[40]"
-  },
-  "0x00C04334": {
-    "name": "g_nRoleInitLevel",
-    "type": "int[6]"
-  },
-  "0x00C020F0": {
-    "name": "g_ScriptCountersEnd",
-    "type": "unsigned char"
-  },
-  "0x00BFDBB0": {
-    "name": "g_RoleSystemExtra0",
-    "type": "RoleSystem"
-  },
-  "0x00BFFDB0": {
-    "name": "g_RoleSystemExtra1",
-    "type": "RoleSystem"
-  },
-  "0x00C0435C": {
-    "name": "g_pRoleTeam0_Capacity",
-    "type": "int"
-  },
-  "0x00C0436C": {
-    "name": "g_pRoleTeam1_Capacity",
-    "type": "int"
-  },
-  "0x017A94E0": {
-    "name": "pfVal",
-    "type": "float"
-  },
-  "0x005BEE3C": {
-    "name": "szFilename",
-    "type": "char[260]"
-  },
-  "0x00DE7AA0": {
-    "name": "g_PAL3",
-    "type": "PAL3"
-  },
-  "0x00C12B48": {
-    "name": "g_RoleSystemInstance",
-    "type": "RoleSystem"
-  },
-  "0x00DE6CD8": {
-    "name": "g_RenderTarget3",
-    "type": "RenderTarget3"
-  },
-  "0x00BFAB60": {
-    "name": "g_ScriptSlots",
-    "type": "int[132]"
-  },
-  "0x008ACBF0": {
-    "name": "g_PAL3_Instance",
-    "type": "PAL3"
-  },
-  "0x00570080": {
-    "name": "g_nItemTypeBase",
-    "type": "int[4]",
-    "comment": "item type base IDs: {16,17,18,19}"
-  },
-  "0x00570090": {
-    "name": "g_nSkillTabIDs",
-    "type": "int[4]",
-    "comment": "skill tab IDs: {32,33,34,35}"
-  },
-  "0x005700A0": {
-    "name": "g_nMagicTabIDs",
-    "type": "int[4]",
-    "comment": "magic tab IDs: {48,49,50,51}"
-  },
-  "0x005700B0": {
-    "name": "g_nItemTabIDs",
-    "type": "int[4]",
-    "comment": "item tab IDs: {64,65,66,67}"
-  },
-  "0x005700C0": {
-    "name": "g_nItemIDs_69",
-    "type": "int[5]",
-    "comment": "item IDs: {69,70,71,72,73}"
-  },
-  "0x00570178": {
-    "name": "g_nStatePanelL_dup",
-    "type": "int[4]",
-    "comment": "duplicate combat state panel left positions"
-  },
-  "0x00570188": {
-    "name": "g_nStatePanelT_dup",
-    "type": "int[4]",
-    "comment": "duplicate combat state panel top positions"
-  },
-  "0x005700D4": {
-    "name": "g_nSkillItemIDTable",
-    "type": "int[25]",
-    "comment": "skill/item ID lookup table"
-  },
-  "0x00570138": {
-    "name": "g_nPropIDs_208",
-    "type": "int[5]",
-    "comment": "property IDs: {208,209,210,211,212}"
-  },
-  "0x0057014C": {
-    "name": "g_nPropIDs_241",
-    "type": "int[11]",
-    "comment": "property IDs: {241-245, 273-278}"
-  },
-  "0x00570198": {
-    "name": "g_nSpriteSize_64",
-    "type": "int[5]",
-    "comment": "sprite size constant 64x5"
-  },
-  "0x005701AC": {
-    "name": "g_nSpriteSize_82",
-    "type": "int[5]",
-    "comment": "sprite size constant 82x5"
-  },
-  "0x005701C0": {
-    "name": "g_nSpriteSize_20",
-    "type": "int[5]",
-    "comment": "sprite size constant 20x5"
-  },
-  "0x005701D4": {
-    "name": "g_nUnkDataTable",
-    "type": "int[30]",
-    "comment": "unknown data table: 5 ints + 25 ptrs"
-  },
-  "0x0057024C": {
-    "name": "g_nUnkTable_24C",
-    "type": "int[7]",
-    "comment": "unknown lookup table {0,104,46,136,65,156,104}"
-  },
-  "0x00570268": {
-    "name": "g_nUnkTable_268",
-    "type": "int[7]",
-    "comment": "unknown lookup table {0,188,148,87,87,148,131}"
-  },
-  "0x0056FCC8": {
-    "name": "g_nStatePanelL",
-    "type": "int[4]",
-    "comment": "combat state panel left positions"
-  },
-  "0x0056FCD8": {
-    "name": "g_nStatePanelT",
-    "type": "int[4]",
-    "comment": "combat state panel top positions"
-  },
-  "0x017ACF80": {
-    "name": "g_TempBuffer1024",
-    "type": "unsigned char[1024]"
-  },
-  "0x00C10CBC": {
-    "name": "g_pCurrentScript",
-    "type": "PalScript *",
-    "source": "binary: used as PalScript* with vtable calls; SceneMgr+0xC92C"
-  },
-  "0x0174D330": {
-    "name": "g_EffTable",
-    "type": "char[370720]",
-    "source": "A+:decomp qmemcpy/fwrite 0x5A820 + stride 280(70*4) in CEffMgr methods"
-  },
-  "0x0174D334": {
-    "name": "g_nEffTableCount",
-    "type": "int",
-    "source": "A+:decomp used as loop bound with g_EffTable"
-  },
-  "0x01895070": {
-    "name": "dbl_1895070",
-    "type": "double"
-  },
-  "0x17B41E8": {
-    "name": "g_CScreenMode",
-    "type": "CScreenMode"
-  },
-  "0x0059B5E8": {
-    "name": "g_pCScreenMode",
-    "type": "const char *",
-    "source": "A+:decomp_off_59B5E8->GetInstance_df70()_37refs"
-  },
-  "0x005CF1F4": {
-    "name": "g_pCScreenMode_5CF1F4",
-    "type": "const char *",
-    "source": "A+:decomp_calls_GetInstance_df70"
-  },
-  "0x005CF1E8": {
-    "name": "g_pCScreenMode_5CF1E8",
-    "type": "const char *",
-    "source": "A+:decomp_calls_GetInstance_df70"
-  },
-  "0x005B46B4": {
-    "name": "g_pCScreenMode_5B46B4",
-    "type": "const char *",
-    "source": "A+:decomp_calls_GetInstance_df70"
-  },
-  "0x005C7768": {
-    "name": "g_pCScreenMode_5C7768",
-    "type": "const char *",
-    "source": "A+:decomp_cast_to_CScreenMode*"
-  },
-  "0x005BC918": {
-    "name": "g_pCScreenMode_5BC918",
-    "type": "const char *",
-    "source": "A+:decomp_assigned_to_CScreenMode*_var"
-  },
-  "0x00608CD8": {
-    "name": "pszName3",
-    "type": "const char *"
-  },
-  "0x005E7F24": {
-    "name": "off_5E7F24",
-    "type": "const char *"
-  },
-  "0x005ED1D0": {
-    "name": "off_5ED1D0",
-    "type": "const char *"
-  },
-  "0x005BF000": {
-    "name": "off_5BF000",
-    "type": "const char *"
-  },
-  "0x005B7650": {
-    "name": "off_5B7650",
-    "type": "const char *"
-  },
-  "0x005C5EBC": {
-    "name": "off_5C5EBC",
-    "type": "const char *"
-  },
-  "0x005DFF90": {
-    "name": "off_5DFF90",
-    "type": "const char *"
-  },
-  "0x005C936C": {
-    "name": "off_5C936C",
-    "type": "const char *"
-  },
-  "0x005DFF88": {
-    "name": "off_5DFF88",
-    "type": "const char *"
-  },
-  "0x005EFF98": {
-    "name": "off_5EFF98",
-    "type": "const char *"
-  },
-  "0x005C3ED4": {
-    "name": "off_5C3ED4",
-    "type": "const char *"
-  },
-  "0x005D11B8": {
-    "name": "off_5D11B8",
-    "type": "const char *"
-  },
-  "0x005ED1D4": {
-    "name": "off_5ED1D4",
-    "type": "const char *"
-  },
-  "0x005BC940": {
-    "name": "off_5BC940",
-    "type": "const char *"
-  },
-  "0x0059DD00": {
-    "name": "off_59DD00",
-    "type": "const char *"
-  },
-  "0x005CF220": {
-    "name": "off_5CF220",
-    "type": "const char *"
-  },
-  "0x005CC7AC": {
-    "name": "off_5CC7AC",
-    "type": "const char *"
-  },
-  "0x005D11C0": {
-    "name": "off_5D11C0",
-    "type": "const char *"
-  },
-  "0x005C775C": {
-    "name": "off_5C775C",
-    "type": "const char *"
-  },
-  "0x005DFF94": {
-    "name": "off_5DFF94",
-    "type": "const char *"
-  },
-  "0x0059DC90": {
-    "name": "off_59DC90",
-    "type": "const char *"
-  },
-  "0x005C3EAC": {
-    "name": "off_5C3EAC",
-    "type": "const char *"
-  },
-  "0x005B203C": {
-    "name": "off_5B203C",
-    "type": "const char *"
-  },
-  "0x005AE3C4": {
-    "name": "off_5AE3C4",
-    "type": "const char *"
-  },
-  "0x005C5EC8": {
-    "name": "off_5C5EC8",
-    "type": "const char *"
-  },
-  "0x0059DC84": {
-    "name": "off_59DC84",
-    "type": "const char *"
-  },
-  "0x005CF1F0": {
-    "name": "off_5CF1F0",
-    "type": "const char *"
-  },
-  "0x005AE38C": {
-    "name": "off_5AE38C",
-    "type": "const char *"
-  },
-  "0x005F7790": {
-    "name": "off_5F7790",
-    "type": "const char *"
-  },
-  "0x005D11C4": {
-    "name": "off_5D11C4",
-    "type": "const char *"
-  },
-  "0x005E524C": {
-    "name": "off_5E524C",
-    "type": "const char *"
-  },
-  "0x005CADC4": {
-    "name": "off_5CADC4",
-    "type": "const char *"
-  },
-  "0x005974E0": {
-    "name": "off_5974E0",
-    "type": "const char *"
-  },
-  "0x005EFAB4": {
-    "name": "off_5EFAB4",
-    "type": "const char *"
-  },
-  "0x017A9920": {
-    "name": "g_hCBStageCamDlg",
-    "type": "HWND"
-  },
-  "0x006EBFA0": {
-    "name": "g_VFileSystem",
-    "type": "gbVFileSystem *"
-  },
-  "0x017A7B88": {
-    "name": "g_nEffectUID",
-    "type": "int"
-  },
-  "0x007CC178": {
-    "name": "g_BaseVFileSystem",
-    "type": "gbVFileSystem *"
-  },
-  "0x00C11700": {
-    "name": "g_nPartyRoles",
-    "type": "int[6]"
-  },
-  "0x00C11718": {
-    "name": "g_nPartyCount",
-    "type": "int"
-  },
-  "0x00C12B20": {
-    "name": "g_lastupdateloading",
-    "type": "unsigned long",
-    "source": "PAL3patch:verified"
-  },
-  "0x00C12B1C": {
-    "name": "g_nLastUpdateTime",
-    "type": "int",
-    "source": "proximity:g_lastupdateloading-4"
+    "source": "PAL3patch:confirmed struct at 0xBFD6C8, contains display/window params",
+    "type": "gbGfxDriverInfo"
   },
   "0x00BFD6CC": {
     "name": "g_nDisplayMode",
@@ -1860,6 +1824,599 @@
     "name": "g_nScreenHeight",
     "type": "int"
   },
+  "0x00BFDA04": {
+    "name": "g_nGameTime",
+    "type": "int"
+  },
+  "0x00BFDA2C": {
+    "name": "g_nTickCount",
+    "type": "int"
+  },
+  "0x00BFDA30": {
+    "name": "g_fDeltaTime",
+    "type": "float"
+  },
+  "0x00BFDA34": {
+    "name": "g_fGameSpeed",
+    "type": "float"
+  },
+  "0x00BFDA38": {
+    "name": "g_pDropGroup",
+    "source": "binary: gbDropGroup::Render(g_pDropGroup); PAL3_CreateEffectSystem assigns it",
+    "type": "gbDropGroup *"
+  },
+  "0x00BFDA3C": {
+    "name": "g_nPAL3_BFDA3C",
+    "source": "binary:3 decomp refs, 4-byte access; cls=PAL3, 2 funcs",
+    "type": "int"
+  },
+  "0x00BFDA44": {
+    "name": "g_nWolfIndex",
+    "source": "binary: PAL3_EndWolf: if(g_nWolfIndex<4) PAL3_Helper(v14[g_nWolfIndex]); ++g_nWolfIndex",
+    "type": "int"
+  },
+  "0x00BFDA48": {
+    "name": "hInstance",
+    "type": "HINSTANCE"
+  },
+  "0x00BFDA4C": {
+    "name": "hWndParent",
+    "type": "HWND"
+  },
+  "0x00BFDA50": {
+    "name": "hDlg",
+    "type": "HWND"
+  },
+  "0x00BFDA54": {
+    "name": "g_hMainWnd",
+    "type": "HWND"
+  },
+  "0x00BFDA58": {
+    "name": "g_fFadeAngle",
+    "source": "binary:10 hits, D9 05=fld; PAL3::Render 180.0-flt pattern",
+    "type": "float"
+  },
+  "0x00BFDA5C": {
+    "name": "g_fTimeScale",
+    "source": "binary:3+ decomp refs; PAL3 time control",
+    "type": "float"
+  },
+  "0x00BFDA60": {
+    "name": "gfxMgr",
+    "type": "gbGfxManager *"
+  },
+  "0x00BFDA64": {
+    "name": "g_pActorMgr",
+    "type": "gbActorMgr *"
+  },
+  "0x00BFDA68": {
+    "name": "g_pCameraCtrl",
+    "type": "CameraCtrl *"
+  },
+  "0x00BFDA6C": {
+    "name": "g_nSceneState",
+    "type": "int"
+  },
+  "0x00BFDA70": {
+    "name": "g_pEffectSystem",
+    "source": "binary:9 decomp refs, 4-byte access",
+    "type": "void *"
+  },
+  "0x00BFDA74": {
+    "name": "g_pCBSystem",
+    "type": "CCBSystem *"
+  },
+  "0x00BFDA78": {
+    "name": "g_pSceneManager",
+    "source": "binary:12 decomp refs, A3=store eax, near gfxMgr/g_pCBSystem",
+    "type": "void *"
+  },
+  "0x00BFDA7C": {
+    "name": "g_pMiniGame2",
+    "type": "void *"
+  },
+  "0x00BFDA80": {
+    "name": "g_pMiniGame1",
+    "type": "void *"
+  },
+  "0x00BFDA84": {
+    "name": "g_pMiniGame3",
+    "type": "void *"
+  },
+  "0x00BFDA88": {
+    "name": "g_bSceneLoaded",
+    "source": "binary: CScreenMode_LoadScreenScene: set to 1; CGameData_Load: if(val)",
+    "type": "unsigned char"
+  },
+  "0x00BFDA8C": {
+    "name": "g_nCombatMode",
+    "type": "int"
+  },
+  "0x00BFDA90": {
+    "name": "g_bTestCombat",
+    "type": "unsigned char"
+  },
+  "0x00BFDA91": {
+    "name": "g_bPAL3_BFDA91",
+    "source": "binary:3 decomp refs, 1-byte access; cls=PAL3, 3 funcs",
+    "type": "unsigned char"
+  },
+  "0x00BFDA94": {
+    "name": "g_hCursor",
+    "type": "HCURSOR"
+  },
+  "0x00BFDA98": {
+    "name": "g_bEditorMode",
+    "source": "binary: PAL3_DefaultKeyMap: set to 1; CCBStage_EditorUpdate: if(!val)",
+    "type": "int"
+  },
+  "0x00BFDAA0": {
+    "name": "g_fGameTimer",
+    "source": "binary:13 hits, D9 05=fld float; Actor/EquipUI/CScreenMode usage",
+    "type": "float"
+  },
+  "0x00BFDAA4": {
+    "name": "Default",
+    "type": "CHAR[8]"
+  },
+  "0x00BFDAAC": {
+    "name": "g_fPathScale",
+    "source": "binary:7 hits; set to 12.0, used as divisor like g_fTileScale",
+    "type": "float"
+  },
+  "0x00BFDAB0": {
+    "name": "g_UIScene",
+    "type": "std::ios_base"
+  },
+  "0x00BFDB70": {
+    "name": "g_nMagicSlotCountA",
+    "type": "int"
+  },
+  "0x00BFDB74": {
+    "name": "g_nMagicSlotCountB",
+    "type": "int"
+  },
+  "0x00BFDB80": {
+    "name": "g_pScriptObjArray",
+    "type": "void **"
+  },
+  "0x00BFDB84": {
+    "name": "g_pScriptEventObj",
+    "type": "void *"
+  },
+  "0x00BFDB90": {
+    "name": "g_nScriptEventParam",
+    "type": "int"
+  },
+  "0x00BFDB94": {
+    "name": "g_fScriptEventParam2",
+    "source": "binary: *(float*)& cast confirms float type",
+    "type": "float"
+  },
+  "0x00BFDB98": {
+    "name": "g_nScriptRolePosX",
+    "type": "int"
+  },
+  "0x00BFDB9C": {
+    "name": "g_nScriptRolePosY",
+    "type": "int"
+  },
+  "0x00BFDBA0": {
+    "name": "g_nScriptRolePosZ",
+    "type": "int"
+  },
+  "0x00BFDBA4": {
+    "name": "g_nCurrentEventId",
+    "type": "unsigned int"
+  },
+  "0x00BFDBA8": {
+    "name": "g_nActor_BFDBA8",
+    "source": "binary:7 decomp refs, 4-byte access; cls=Actor, 3 funcs",
+    "type": "int"
+  },
+  "0x00BFDBAC": {
+    "name": "g_nActor_BFDBAC",
+    "source": "binary:5 decomp refs, 4-byte access; cls=Actor, 3 funcs",
+    "type": "int"
+  },
+  "0x00BFDBB0": {
+    "name": "g_RoleSystemExtra0",
+    "type": "RoleSystem"
+  },
+  "0x00BFFDB0": {
+    "name": "g_RoleSystemExtra1",
+    "type": "RoleSystem"
+  },
+  "0x00C01FB0": {
+    "name": "g_fCamRoleParams",
+    "type": "float[40]"
+  },
+  "0x00C02050": {
+    "name": "g_ScriptCounters",
+    "type": "ScriptCounter[10]"
+  },
+  "0x00C020F0": {
+    "name": "g_ScriptCountersEnd",
+    "type": "unsigned char"
+  },
+  "0x00C020F8": {
+    "binary_size": 8704,
+    "name": "g_RoleSystemMain",
+    "type": "RoleSystem"
+  },
+  "0x00C02370": {
+    "name": "g_nRoleMoveParam",
+    "source": "binary:10 decomp refs, 4-byte access",
+    "type": "int"
+  },
+  "0x00C042E8": {
+    "name": "g_fScriptTimeAccum",
+    "reason": "script system frame time accumulator (fDeltaTime)",
+    "type": "float"
+  },
+  "0x00C042F8": {
+    "name": "dword_C8042F8",
+    "reason": "init=21.5900",
+    "type": "float"
+  },
+  "0x00C042FC": {
+    "name": "dword_C8042FC",
+    "reason": "init=0.0000",
+    "type": "float"
+  },
+  "0x00C04300": {
+    "name": "g_nPtrArray_C04300",
+    "source": "binary:4 decomp refs, 4-byte access; cls=PtrArray, 4 funcs",
+    "type": "int"
+  },
+  "0x00C04304": {
+    "name": "dword_C804304",
+    "reason": "init=-42.3700",
+    "type": "float"
+  },
+  "0x00C04308": {
+    "name": "dword_C804308",
+    "reason": "init=0.0000",
+    "type": "float"
+  },
+  "0x00C0430C": {
+    "name": "dword_C80430C",
+    "reason": "init=-32.0800",
+    "type": "float"
+  },
+  "0x00C04310": {
+    "name": "dword_C804310",
+    "reason": "init=-25.6900",
+    "type": "float"
+  },
+  "0x00C04314": {
+    "name": "dword_C804314",
+    "reason": "init=0.0000",
+    "type": "float"
+  },
+  "0x00C04318": {
+    "name": "dword_C804318",
+    "reason": "init=-73.6700",
+    "type": "float"
+  },
+  "0x00C0431C": {
+    "name": "dword_C80431C",
+    "reason": "init=28.9600",
+    "type": "float"
+  },
+  "0x00C04320": {
+    "name": "dword_C804320",
+    "reason": "init=0.0000",
+    "type": "float"
+  },
+  "0x00C04324": {
+    "name": "dword_C804324",
+    "reason": "init=-82.9900",
+    "type": "float"
+  },
+  "0x00C04328": {
+    "name": "dword_C804328",
+    "reason": "init=28.9600",
+    "type": "float"
+  },
+  "0x00C0432C": {
+    "name": "dword_C80432C",
+    "reason": "init=0.0000",
+    "type": "float"
+  },
+  "0x00C04330": {
+    "name": "dword_C804330",
+    "reason": "init=-122.9900",
+    "type": "float"
+  },
+  "0x00C04334": {
+    "name": "g_nRoleInitLevel",
+    "type": "int[6]"
+  },
+  "0x00C04350": {
+    "name": "g_SceneMgrPrefix",
+    "source": "|FullInit:used as (Array *)&xxx, actual embedded Array instance",
+    "type": "Array"
+  },
+  "0x00C04354": {
+    "name": "g_RoleTeam1",
+    "type": "void *"
+  },
+  "0x00C04358": {
+    "name": "g_RoleTeam2",
+    "type": "int[]"
+  },
+  "0x00C0435C": {
+    "name": "g_pRoleTeam0_Capacity",
+    "type": "int"
+  },
+  "0x00C04360": {
+    "name": "g_RoleTeamArray",
+    "source": "binary:22 decomp refs, mov reg(addr load), near g_RoleTeam2|FullInit:used as (Array *)&xxx, actual embedded Array instance",
+    "type": "Array"
+  },
+  "0x00C04364": {
+    "name": "arr",
+    "type": "void *"
+  },
+  "0x00C04368": {
+    "name": "end",
+    "type": "void *"
+  },
+  "0x00C0436C": {
+    "name": "g_pRoleTeam1_Capacity",
+    "type": "int"
+  },
+  "0x00C04370": {
+    "name": "g_nSceneFlags",
+    "source": "|FullInit:used as (Array *)&xxx, actual embedded Array instance",
+    "type": "Array"
+  },
+  "0x00C04374": {
+    "name": "g_nSceneMode",
+    "type": "int"
+  },
+  "0x00C04378": {
+    "name": "elem",
+    "type": "void *"
+  },
+  "0x00C0437C": {
+    "name": "g_nPAL3_C0437C",
+    "source": "binary:8 decomp refs, 4-byte access; cls=PAL3, 1 funcs",
+    "type": "int"
+  },
+  "0x00C04380": {
+    "name": "g_SceneArray",
+    "source": "binary:99 decomp refs, mov reg(addr load), near g_SceneMgr|FullInit:used as (Array *)&xxx, actual embedded Array instance",
+    "type": "Array"
+  },
+  "0x00C04384": {
+    "name": "g_nSceneState",
+    "type": "int"
+  },
+  "0x00C04388": {
+    "name": "g_nSceneType",
+    "type": "int"
+  },
+  "0x00C0438C": {
+    "name": "g_pSceneArrayEnd",
+    "source": "binary: PAL3_FullInit: (g_pSceneArrayEnd - g_nSceneType)/12; scene array end pointer",
+    "type": "int *"
+  },
+  "0x00C04390": {
+    "name": "g_SceneMgr",
+    "type": "SceneMgr"
+  },
+  "0x00C0439C": {
+    "name": "g_pSceneArrayEnd2",
+    "source": "binary: PAL3_FullInit: (g_pSceneArrayEnd2 - pEnd)/12; scene array end",
+    "type": "int *"
+  },
+  "0x00C04920": {
+    "decomp_name": "Buffer",
+    "name": "g_ScriptRoleBuf",
+    "overlaps_with": [
+      "g_SceneMgr",
+      "g_PartyCombatData"
+    ],
+    "source": "RoleSystem at g_SceneMgr+0x590; all members match RoleSystem fields",
+    "type": "RoleSystem"
+  },
+  "0x00C05F60": {
+    "name": "g_pRoleSystems",
+    "type": "RoleSystem *"
+  },
+  "0x00C061D8": {
+    "name": "g_nUnk61D8",
+    "type": "int"
+  },
+  "0x00C08664": {
+    "name": "g_nScriptObjectCount",
+    "source": "binary: ScriptSystem_UpdateObjects: if(val <= 2 && *v2+1284 != val)",
+    "type": "unsigned int"
+  },
+  "0x00C10960": {
+    "name": "g_pScriptArrayEnd",
+    "reason": "SceneMgrCamBlock.m_pScriptArrayEnd at +84 (SceneMgr+0xC5D0); resolved via struct_instances",
+    "type": "skip"
+  },
+  "0x00C10968": {
+    "name": "g_UIScript",
+    "reason": "SceneMgrCamBlock.m_pUIScript at +92 (SceneMgr+0xC5D8); resolved via struct_instances",
+    "type": "skip"
+  },
+  "0x00C1096C": {
+    "name": "g_pScriptArrayEnd2",
+    "source": "binary: MovePartyFollowers/PAL3_Update: while(v < g_pScriptArrayEnd2); loop terminator",
+    "type": "PalScript *"
+  },
+  "0x00C10A0E": {
+    "name": "g_pRoleSystemArrayEnd",
+    "source": "binary: PAL3_FullInit/RoleSystem_LoadWeaponModel: while(v < g_pRoleSystemArrayEnd); RoleSystem array end",
+    "type": "RoleSystem *"
+  },
+  "0x00C10CBC": {
+    "name": "g_pCurrentScript",
+    "source": "binary: used as PalScript* with vtable calls; SceneMgr+0xC92C",
+    "type": "PalScript *"
+  },
+  "0x00C10CC0": {
+    "name": "g_bFormationReady",
+    "source": "binary: SetupPartyFormation sets to 1; ScriptUpdate clears to 0; formation init flag",
+    "type": "unsigned char"
+  },
+  "0x00C10CC1": {
+    "name": "g_nSceneTransitionParam2",
+    "source": "binary: Actor_DoSceneTransition assigns v64; stored in Buffer_44[92]",
+    "type": "unsigned char"
+  },
+  "0x00C10CC8": {
+    "name": "g_nCurrentRoleSlot",
+    "source": "binary: used as RoleSystem array index (352*val); SceneMgr+0xC938",
+    "type": "int"
+  },
+  "0x00C10CD0": {
+    "name": "g_fFadeTimer",
+    "source": "binary: ScriptUpdate: *(float*)&val += dt; UITitle_BBTY: (1.0-val/60.0)*255 fade calc; float confirmed",
+    "type": "float"
+  },
+  "0x00C10D38": {
+    "name": "g_szSceneUIText",
+    "source": "binary: used as char* in lstrcpyA/strcpy/SendMessageA; SceneMgr+0xC9A8",
+    "type": "char[256]"
+  },
+  "0x00C10D40": {
+    "name": "g_fCollisionRadius",
+    "source": "binary: RoleSystem_SetCollisionRadius assigns; used as double in ScanMoveDirections",
+    "type": "double"
+  },
+  "0x00C1109C": {
+    "name": "g_fSceneTileSize",
+    "source": "binary: used as float divisor in RoleSystem position calc; SceneMgr+0xCD0C",
+    "type": "float"
+  },
+  "0x00C11360": {
+    "name": "g_pBGMTable",
+    "source": "binary: SoundSystem_Init: memset to 0; UIPostUpdate: g_pBGMTable[CameraCtrl::GetModeByIndex(v7)]",
+    "type": "gbSound2DNode *[]"
+  },
+  "0x00C113C0": {
+    "name": "g_pAmbientTable",
+    "source": "binary: SoundSystem_Init: memset to 0; UIPostUpdate: g_pAmbientTable[GetModeByIndex]",
+    "type": "gbSound2DNode *[]"
+  },
+  "0x00C116C4": {
+    "name": "g_fTileSize",
+    "source": "binary: Camera_IsTransitioning/UIPostUpdate: position/*(float*)&val; tile size divisor",
+    "type": "float"
+  },
+  "0x00C116EA": {
+    "name": "m_bPathEnabled",
+    "type": "unsigned char"
+  },
+  "0x00C116EC": {
+    "name": "g_pRoleSystem",
+    "type": "RoleSystem *"
+  },
+  "0x00C116F4": {
+    "name": "g_pCurrentBGM",
+    "source": "binary: UIPostUpdate: gbSound2DNode::Stop/Play(g_pCurrentBGM); current BGM node",
+    "type": "gbSound2DNode *"
+  },
+  "0x00C116F8": {
+    "name": "g_fCameraBlendWeight",
+    "source": "binary: CameraCtrl_UpdateInternal: *(float*)&val + fDelta; float confirmed",
+    "type": "float"
+  },
+  "0x00C11700": {
+    "name": "g_nPartyRoles",
+    "type": "int[6]"
+  },
+  "0x00C11718": {
+    "name": "g_nPartyCount",
+    "type": "int"
+  },
+  "0x00C11744": {
+    "name": "g_nMonsterType",
+    "source": "binary: PAL3_StartCombat: monsterid==1 ? 2 : (monsterid==2); monster type flag",
+    "type": "int"
+  },
+  "0x00C11754": {
+    "name": "g_pCombatRole",
+    "source": "binary: PAL3_StartCombat: val=(int)side (Role*); PAL3_CheckViewCollision: *(val+632)=0 = Role.m_active=0",
+    "type": "Role *"
+  },
+  "0x00C12B14": {
+    "name": "g_fTileScale",
+    "source": "binary:11 hits; used as divisor in RoleSystem position calc",
+    "type": "float"
+  },
+  "0x00C12B1C": {
+    "name": "g_nLastUpdateTime",
+    "source": "proximity:g_lastupdateloading-4",
+    "type": "int"
+  },
+  "0x00C12B20": {
+    "name": "g_lastupdateloading",
+    "source": "PAL3patch:verified",
+    "type": "unsigned long"
+  },
+  "0x00C12B28": {
+    "name": "g_fPalScript_C12B28",
+    "source": "binary:8 decomp refs, 4-byte access; cls=PalScript, 9 funcs",
+    "type": "float"
+  },
+  "0x00C12B2C": {
+    "name": "g_fPalScript_C12B2C",
+    "source": "binary:8 decomp refs, 4-byte access; cls=PalScript, 9 funcs",
+    "type": "float"
+  },
+  "0x00C12B30": {
+    "name": "g_fPalScript_C12B30",
+    "source": "binary:8 decomp refs, 4-byte access; cls=PalScript, 9 funcs",
+    "type": "float"
+  },
+  "0x00C12B38": {
+    "name": "g_nunknown_libname_331_C12B38",
+    "source": "binary:4 decomp refs, 4-byte access; cls=unknown_libname_331, 3 funcs",
+    "type": "int"
+  },
+  "0x00C12B3C": {
+    "name": "g_nunknown_libname_331_C12B3C",
+    "source": "binary:4 decomp refs, 4-byte access; cls=unknown_libname_331, 3 funcs",
+    "type": "int"
+  },
+  "0x00C12B40": {
+    "name": "g_nunknown_libname_331_C12B40",
+    "source": "binary:8 decomp refs, 4-byte access; cls=unknown_libname_331, 3 funcs",
+    "type": "int"
+  },
+  "0x00C12B48": {
+    "name": "g_RoleSystemInstance",
+    "type": "RoleSystem"
+  },
+  "0x00D8B318": {
+    "name": "g_ScriptSystemData",
+    "type": "ScriptSystemData"
+  },
+  "0x00D8BBEC": {
+    "name": "g_nGameMode",
+    "source": "binary: compared to 2 in game mode checks; ScriptSystemData+0x8D4",
+    "type": "int"
+  },
+  "0x00D8BC20": {
+    "name": "g_vRotateAxis",
+    "overlaps_with": [
+      "g_ScriptSystemData"
+    ],
+    "source": "binary: UIBigMap_RenderRole: gbMatrixStack::Rotate(pStack, angle, &g_vRotateAxis)",
+    "type": "gbVec3D"
+  },
+  "0x00D8BC2C": {
+    "name": "g_bMapRenderFlags",
+    "source": "binary: UIBigMap_RenderRole: (g_bMapRenderFlags & 1)==0 check",
+    "type": "unsigned char"
+  },
   "0x00D8BC30": {
     "name": "g_nScriptCounter0",
     "type": "int"
@@ -1871,6 +2428,141 @@
   "0x00D8BC38": {
     "name": "g_nScriptFlag",
     "type": "int"
+  },
+  "0x00D8BEC4": {
+    "name": "g_fScriptTileSize",
+    "source": "binary: used as float divisor in RoleSystem position calc; ScriptSystemData+0xBAC",
+    "type": "float"
+  },
+  "0x00D8C17C": {
+    "name": "g_fScriptTileSize2",
+    "source": "binary: PalScriptMgr_ExecuteFrame: position/*(float*)&val division; tile size divisor",
+    "type": "float"
+  },
+  "0x00D8C1AC": {
+    "name": "String",
+    "type": "CHAR[260]"
+  },
+  "0x00D8C2B0": {
+    "name": "g_pScriptCurrentBlock",
+    "source": "binary: used as PalScript block pointer; ScriptSystemData+0xF98",
+    "type": "void *"
+  },
+  "0x00D8E468": {
+    "name": "g_pLoadBuffer",
+    "type": "void *"
+  },
+  "0x00D8E46C": {
+    "name": "g_nPtrArray_D8E46C",
+    "source": "binary:8 decomp refs, 4-byte access; cls=PtrArray, 4 funcs",
+    "type": "int"
+  },
+  "0x00D8E470": {
+    "name": "Block",
+    "type": "void *"
+  },
+  "0x00D8E478": {
+    "name": "g_nPalScript_D8E478",
+    "source": "binary:4 decomp refs, 4-byte access; cls=PalScript, 4 funcs",
+    "type": "int"
+  },
+  "0x00D8E47C": {
+    "name": "g_nPalScript_D8E47C",
+    "source": "binary:6 decomp refs, 4-byte access; cls=PalScript, 4 funcs",
+    "type": "int"
+  },
+  "0x00D8E488": {
+    "name": "g_nPAL3_D8E488",
+    "source": "binary:4 decomp refs, 4-byte access; cls=PAL3, 3 funcs",
+    "type": "int"
+  },
+  "0x00D8E4C0": {
+    "name": "g_GameData",
+    "type": "CGameData"
+  },
+  "0x00D91780": {
+    "name": "g_fUIColorParam",
+    "source": "binary: CGameData_SetDefaultColors: val=64; UIListBox_Render uses as float",
+    "type": "float"
+  },
+  "0x00D924B4": {
+    "name": "g_bRoleLoadFlags",
+    "source": "binary: PAL3_LoadRoleByIndex: g_bRoleLoadFlags[nVal]=1; PAL3_LoadUnlockFlags: memset to 0",
+    "type": "unsigned char[]"
+  },
+  "0x00D924E8": {
+    "name": "g_bGameUpdating",
+    "source": "binary: PAL3_Update: set to 1; UIScenePanel_CreateSettingsUI: if(val) check",
+    "type": "unsigned char"
+  },
+  "0x00D92788": {
+    "name": "g_SceneTransitionBuffer",
+    "source": "binary: Actor_DoSceneTransition: qmemcpy(&g_SceneTransitionBuffer, v90, 0x27848); CGameData_Load copies UISceneMap data here",
+    "type": "unsigned char[]"
+  },
+  "0x00DB9FD0": {
+    "name": "g_gamefrm",
+    "source": "PAL3patch:UIGameFrm*,simplified_for_now",
+    "type": "int"
+  },
+  "0x00DBA014": {
+    "name": "g_pSceneTransitionBegin",
+    "source": "binary: Actor_DoSceneTransition/LoadActorModel: v=g_pSceneTransitionBegin; loop start paired with g_pSceneTransitionEnd",
+    "type": "unsigned char *"
+  },
+  "0x00DBA0AC": {
+    "name": "g_pSceneTransitionEnd",
+    "source": "binary: Actor_DoSceneTransition/LoadActorModel: while(v < g_pSceneTransitionEnd)",
+    "type": "unsigned char *"
+  },
+  "0x00DBA250": {
+    "name": "g_dwUISettings",
+    "source": "binary: LOBYTE=UI flag0, BYTE1=UI flag1, BYTE2=UI flag2; written to registry in UIScene_OnMessage",
+    "type": "unsigned int"
+  },
+  "0x00DBA260": {
+    "binary_size": 1208,
+    "name": "g_UIListBoxDlg",
+    "type": "UIListBox"
+  },
+  "0x00DBAF10": {
+    "binary_size": 1012,
+    "name": "g_UISceneMapDlg",
+    "type": "UISceneMap"
+  },
+  "0x00DBB364": {
+    "binary_size": 9624,
+    "name": "g_CCBEditorInst",
+    "type": "CCBEditor"
+  },
+  "0x00DC0DE8": {
+    "name": "g_pComposeUI",
+    "source": "binary: PalScript_Op_SKEE_Entry: ComposeUI::RefreshRecipeList(g_pComposeUI, ...)",
+    "type": "ComposeUI *"
+  },
+  "0x00DC10FC": {
+    "name": "g_nsub_41FA90_DC10FC",
+    "source": "binary:7 decomp refs, 4-byte access; cls=sub_41FA90, 3 funcs",
+    "type": "int"
+  },
+  "0x00DC1100": {
+    "name": "g_nMiniGameState",
+    "source": "binary: compared with g_nMiniGameParam; cleared on scene load/script ops",
+    "type": "int"
+  },
+  "0x00DC3304": {
+    "name": "g_bStateFlags",
+    "source": "binary: Actor_SaveState: memset(g_bStateFlags,0,sizeof); g_bStateFlags[i]=((1<<i)&v2)!=0",
+    "type": "unsigned char[]"
+  },
+  "0x00DC3338": {
+    "name": "g_bListNeedsRefresh",
+    "source": "binary: set to 0/1 flag; controls UIListBox rebuild in LineupUI/PropUI/PAL_GDB",
+    "type": "unsigned char"
+  },
+  "0x00DC3C3C": {
+    "name": "g_bSlotFlag",
+    "type": "unsigned char[768]"
   },
   "0x00DC443C": {
     "name": "g_szRoleName0",
@@ -1888,1353 +2580,662 @@
     "name": "g_szRoleName3",
     "type": "const char *"
   },
+  "0x00DC5F3C": {
+    "name": "g_bSaveFlag",
+    "type": "unsigned char"
+  },
   "0x00DC6C3C": {
     "name": "g_szSceneName",
     "type": "const char *"
   },
-  "0x0174D354": {
-    "name": "g_EffTableBase",
-    "type": "int[]"
+  "0x00DC733C": {
+    "name": "g_szRoleNameTable",
+    "source": "binary: Array_HandleItemPage: &g_szRoleNameTable[256*elem]; 256-byte per role name entry",
+    "type": "char[256]"
   },
-  "0x017A7B74": {
-    "name": "g_EffTableEnd",
+  "0x00DCAE3C": {
+    "name": "g_szCombatFieldName",
+    "type": "char"
+  },
+  "0x00DD003C": {
+    "name": "g_ComposeRecipeTable",
+    "source": "binary: ComposeUI_RefreshRecipeList uses it; SystemUI: &val[64], &val[1984]",
+    "type": "unsigned char[]"
+  },
+  "0x00DE5220": {
+    "name": "g_SaveSlotFlags",
+    "type": "unsigned char[40]"
+  },
+  "0x00DE54EF": {
+    "name": "g_ArcSceneObjBuffer",
+    "type": "unsigned char"
+  },
+  "0x00DE5CE4": {
+    "name": "g_nUILayoutFlags",
+    "source": "binary:10 decomp refs, 4-byte access",
     "type": "int"
   },
-  "0x017A7C24": {
-    "name": "g_EffTaskEnd",
+  "0x00DE5F92": {
+    "name": "g_bRoleFlag1",
+    "type": "unsigned char"
+  },
+  "0x00DE5F93": {
+    "name": "g_bRoleFlag2",
+    "type": "unsigned char"
+  },
+  "0x00DE5F98": {
+    "name": "g_nActorState",
     "type": "int"
   },
-  "0x008834C0": {
-    "name": "g_nSaveDataSize",
+  "0x00DE5F9C": {
+    "name": "g_nActor_DE5F9C",
+    "source": "binary:5 decomp refs, 4-byte access; cls=Actor, 6 funcs",
     "type": "int"
   },
-  "0x008DDCE0": {
-    "name": "g_nLoadBufferSize",
+  "0x00DE5FA0": {
+    "name": "g_nRoleParam",
+    "type": "int"
+  },
+  "0x00DE5FA4": {
+    "name": "g_nRoleState",
+    "source": "binary:12 decomp refs, A3=store eax, near g_nActorState",
+    "type": "int"
+  },
+  "0x00DE5FA8": {
+    "name": "g_nActor_DE5FA8",
+    "source": "binary:3 decomp refs, 4-byte access; cls=Actor, 4 funcs",
+    "type": "int"
+  },
+  "0x00DE625A": {
+    "name": "g_bUIWnd_DE625A",
+    "source": "binary:6 decomp refs, 1-byte access; cls=UIWnd, 7 funcs",
+    "type": "unsigned char"
+  },
+  "0x00DE6CD8": {
+    "name": "g_RenderTarget3",
+    "type": "RenderTarget3"
+  },
+  "0x00DE7710": {
+    "name": "g_nFileVersion",
+    "source": "binary: ParticleEffect_LoadSceneFile: gbVFileSystem::Read(&val, 4); if(val > 0x10000)",
+    "type": "unsigned int"
+  },
+  "0x00DE7714": {
+    "name": "g_szParticleTexName",
+    "source": "binary: ParticleEffect_LoadTextures: strcpy(val, pszName); texture name buffer",
+    "type": "char[256]"
+  },
+  "0x00DE7AA0": {
+    "name": "g_PAL3",
+    "type": "PAL3"
+  },
+  "0x00DE8DF8": {
+    "name": "g_nRenderTarget2_DE8DF8",
+    "source": "binary:5 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs",
+    "type": "int"
+  },
+  "0x00DE8DFC": {
+    "name": "g_nRenderTarget2_DE8DFC",
+    "source": "binary:3 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs",
+    "type": "int"
+  },
+  "0x00DE8E00": {
+    "name": "g_nRenderTarget2_DE8E00",
+    "source": "binary:3 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs",
+    "type": "int"
+  },
+  "0x00DE8E08": {
+    "name": "g_nRenderTarget2_DE8E08",
+    "source": "binary:9 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs",
+    "type": "int"
+  },
+  "0x00DE8E10": {
+    "name": "g_nRenderTarget2_DE8E10",
+    "source": "binary:9 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs",
+    "type": "int"
+  },
+  "0x00DE8E18": {
+    "name": "g_nRenderTarget2_DE8E18",
+    "source": "binary:4 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs",
+    "type": "int"
+  },
+  "0x00DE8E1C": {
+    "name": "g_nRenderTarget2_DE8E1C",
+    "source": "binary:4 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs",
+    "type": "int"
+  },
+  "0x00DE8E20": {
+    "name": "g_nRenderTarget2_DE8E20",
+    "source": "binary:4 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs",
+    "type": "int"
+  },
+  "0x00DE8E24": {
+    "name": "g_nRenderTarget2State_DE8E24",
+    "source": "binary:8 decomp refs, 4-byte access; cls=RenderTarget2, 1 funcs",
+    "type": "int"
+  },
+  "0x00DE937C": {
+    "name": "g_bCEffCylinderFlag_DE937C",
+    "source": "binary:6 decomp refs, 1-byte access; cls=CEffCylinder, 1 funcs",
+    "type": "unsigned char"
+  },
+  "0x00DE9380": {
+    "name": "g_nsub_4C55F0Count_DE9380",
+    "source": "binary:9 decomp refs, 4-byte access; cls=sub_4C55F0, 2 funcs",
+    "type": "int"
+  },
+  "0x00DE99AC": {
+    "name": "g_bCEffExplosiveFlag_DE99AC",
+    "source": "binary:6 decomp refs, 1-byte access; cls=CEffExplosive, 1 funcs",
+    "type": "unsigned char"
+  },
+  "0x00EC9E70": {
+    "name": "g_nSaveSlot0",
+    "type": "int"
+  },
+  "0x00EC9E74": {
+    "name": "g_nSaveSlot1",
     "type": "int"
   },
   "0x00EC9EB4": {
     "name": "g_nSaveSlotBase",
     "type": "int[]"
   },
-  "0x00C061D8": {
-    "name": "g_nUnk61D8",
+  "0x0174D330": {
+    "name": "g_EffTable",
+    "source": "A+:decomp qmemcpy/fwrite 0x5A820 + stride 280(70*4) in CEffMgr methods",
+    "type": "char[370720]"
+  },
+  "0x0174D334": {
+    "name": "g_nEffTableCount",
+    "source": "A+:decomp used as loop bound with g_EffTable",
     "type": "int"
   },
-  "0x00C10D38": {
-    "name": "g_szSceneUIText",
-    "type": "char[256]",
-    "source": "binary: used as char* in lstrcpyA/strcpy/SendMessageA; SceneMgr+0xC9A8"
-  },
-  "0x00C1109C": {
-    "name": "g_fSceneTileSize",
-    "type": "float",
-    "source": "binary: used as float divisor in RoleSystem position calc; SceneMgr+0xCD0C"
-  },
-  "0x00C10CC8": {
-    "name": "g_nCurrentRoleSlot",
-    "type": "int",
-    "source": "binary: used as RoleSystem array index (352*val); SceneMgr+0xC938"
-  },
-  "0x00C10960": {
-    "name": "g_pScriptArrayEnd",
-    "type": "skip",
-    "reason": "SceneMgrCamBlock.m_pScriptArrayEnd at +84 (SceneMgr+0xC5D0); resolved via struct_instances"
-  },
-  "0x00D8BEC4": {
-    "name": "g_fScriptTileSize",
-    "type": "float",
-    "source": "binary: used as float divisor in RoleSystem position calc; ScriptSystemData+0xBAC"
-  },
-  "0x00D8BBEC": {
-    "name": "g_nGameMode",
-    "type": "int",
-    "source": "binary: compared to 2 in game mode checks; ScriptSystemData+0x8D4"
-  },
-  "0x00D8C2B0": {
-    "name": "g_pScriptCurrentBlock",
-    "type": "void *",
-    "source": "binary: used as PalScript block pointer; ScriptSystemData+0xF98"
-  },
-  "0x01895560": {
-    "name": "g_bEffSystemFlags",
-    "type": "unsigned char",
-    "source": "binary: CEffMgr/CEffMeteor: (val & 1)==0 check, |= 1 set; effect system init flags"
-  },
-  "0x0056F02C": {
-    "name": "g_ComposeUIChildIDs",
-    "type": "int[]",
-    "source": "binary: ComposeUI::GetChildPtr: *((_DWORD*)&off_56F02C + index); child control ID table"
-  },
-  "0x00DBA250": {
-    "name": "g_dwUISettings",
-    "type": "unsigned int",
-    "source": "binary: LOBYTE=UI flag0, BYTE1=UI flag1, BYTE2=UI flag2; written to registry in UIScene_OnMessage"
-  },
-  "0x00C116F4": {
-    "name": "g_pCurrentBGM",
-    "type": "gbSound2DNode *",
-    "source": "binary: UIPostUpdate: gbSound2DNode::Stop/Play(g_pCurrentBGM); current BGM node"
-  },
-  "0x00C10CC0": {
-    "name": "g_bFormationReady",
-    "type": "unsigned char",
-    "source": "binary: SetupPartyFormation sets to 1; ScriptUpdate clears to 0; formation init flag"
-  },
-  "0x00D8BC20": {
-    "name": "g_vRotateAxis",
-    "type": "gbVec3D",
-    "source": "binary: UIBigMap_RenderRole: gbMatrixStack::Rotate(pStack, angle, &g_vRotateAxis)",
-    "overlaps_with": [
-      "g_ScriptSystemData"
-    ]
-  },
-  "0x00C0438C": {
-    "name": "g_pSceneArrayEnd",
-    "type": "int *",
-    "source": "binary: PAL3_FullInit: (g_pSceneArrayEnd - g_nSceneType)/12; scene array end pointer"
-  },
-  "0x00C10968": {
-    "name": "g_UIScript",
-    "type": "skip",
-    "reason": "SceneMgrCamBlock.m_pUIScript at +92 (SceneMgr+0xC5D8); resolved via struct_instances"
-  },
-  "0x00C1096C": {
-    "name": "g_pScriptArrayEnd2",
-    "type": "PalScript *",
-    "source": "binary: MovePartyFollowers/PAL3_Update: while(v < g_pScriptArrayEnd2); loop terminator"
-  },
-  "0x00D92788": {
-    "name": "g_SceneTransitionBuffer",
-    "type": "unsigned char[]",
-    "source": "binary: Actor_DoSceneTransition: qmemcpy(&g_SceneTransitionBuffer, v90, 0x27848); CGameData_Load copies UISceneMap data here"
-  },
-  "0x00DC733C": {
-    "name": "g_szRoleNameTable",
-    "type": "char[256]",
-    "source": "binary: Array_HandleItemPage: &g_szRoleNameTable[256*elem]; 256-byte per role name entry"
-  },
-  "0x00DD003C": {
-    "name": "g_ComposeRecipeTable",
-    "type": "unsigned char[]",
-    "source": "binary: ComposeUI_RefreshRecipeList uses it; SystemUI: &val[64], &val[1984]"
-  },
-  "0x00D8BC2C": {
-    "name": "g_bMapRenderFlags",
-    "type": "unsigned char",
-    "source": "binary: UIBigMap_RenderRole: (g_bMapRenderFlags & 1)==0 check"
-  },
-  "0x00AA0B00": {
-    "name": "g_PlayerAttBuffer",
-    "type": "ARC_PlayerAtt",
-    "source": "binary: ARC_PlayerAtt::Create(&g_PlayerAttBuffer, nVal); player attribute data buffer"
-  },
-  "0x005D4D7C": {
-    "name": "g_pszEditorDesc",
-    "type": "const char *",
-    "source": "binary: CEffCylinder/CEffGrid::GetEditorObjDescription returns it"
-  },
-  "0x005DFDEB": {
-    "name": "g_bCombatDebugMode",
-    "type": "unsigned char",
-    "source": "binary: CCBRoleState_ApplyDamage/CalcCombatDamage: if(!val)/if(val) checks"
-  },
-  "0x017A9946": {
-    "name": "g_bCommandEdited",
-    "type": "unsigned char",
-    "source": "binary: CCBUI_ApplyCommandEdit/CommandEditDialogProc: set to 1 on command edit"
-  },
-  "0x00A00000": {
-    "name": "g_UITemplateData",
-    "type": "unsigned char[]",
-    "source": "binary: BSS buffer; byte_A00001/A00102 etc. are template name strings passed to UIStatic::CreateFromTemplate; span 0xA00001-0xA00B08"
-  },
-  "0x00C10CD0": {
-    "name": "g_fFadeTimer",
-    "type": "float",
-    "source": "binary: ScriptUpdate: *(float*)&val += dt; UITitle_BBTY: (1.0-val/60.0)*255 fade calc; float confirmed"
-  },
-  "0x00D91780": {
-    "name": "g_fUIColorParam",
-    "type": "float",
-    "source": "binary: CGameData_SetDefaultColors: val=64; UIListBox_Render uses as float"
-  },
-  "0x00D924B4": {
-    "name": "g_bRoleLoadFlags",
-    "type": "unsigned char[]",
-    "source": "binary: PAL3_LoadRoleByIndex: g_bRoleLoadFlags[nVal]=1; PAL3_LoadUnlockFlags: memset to 0"
-  },
-  "0x0056C568": {
-    "name": "g_MonsterEntryTable",
-    "type": "int[]",
-    "source": "binary: UITitle_XJTM_UpdateMonsterEntry: g_MonsterEntryTable[nVal]; RenderTarget_OnRender uses it"
-  },
-  "0x00C11360": {
-    "name": "g_pBGMTable",
-    "type": "gbSound2DNode *[]",
-    "source": "binary: SoundSystem_Init: memset to 0; UIPostUpdate: g_pBGMTable[CameraCtrl::GetModeByIndex(v7)]"
-  },
-  "0x00C10CC1": {
-    "name": "g_nSceneTransitionParam2",
-    "type": "unsigned char",
-    "source": "binary: Actor_DoSceneTransition assigns v64; stored in Buffer_44[92]"
-  },
-  "0x00A00572": {
-    "name": "word_A00572",
-    "type": "skip",
-    "reason": "g_UITemplateData element: UI template string/data in BSS buffer"
-  },
-  "0x00A00552": {
-    "name": "word_A00552",
-    "type": "skip",
-    "reason": "g_UITemplateData element: UI template string/data in BSS buffer"
-  },
-  "0x00A00232": {
-    "name": "word_A00232",
-    "type": "skip",
-    "reason": "g_UITemplateData element: UI template string/data in BSS buffer"
-  },
-  "0x005AE3A8": {
-    "name": "off_5AE3A8",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005F50B4": {
-    "name": "off_5F50B4",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005C7770": {
-    "name": "off_5C7770",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005C7774": {
-    "name": "off_5C7774",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005D11FC": {
-    "name": "off_5D11FC",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005D11F8": {
-    "name": "off_5D11F8",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005EFF48": {
-    "name": "off_5EFF48",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005EFF90": {
-    "name": "off_5EFF90",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x0059DDA0": {
-    "name": "off_59DDA0",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005CC578": {
-    "name": "off_5CC578",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005A6A3C": {
-    "name": "off_5A6A3C",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005CADD0": {
-    "name": "off_5CADD0",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005CADC8": {
-    "name": "off_5CADC8",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005E7F20": {
-    "name": "off_5E7F20",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005AE380": {
-    "name": "off_5AE380",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x0059DD70": {
-    "name": "off_59DD70",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005E525C": {
-    "name": "off_5E525C",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005B9DF4": {
-    "name": "off_5B9DF4",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005B9DF0": {
-    "name": "off_5B9DF0",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005B1604": {
-    "name": "off_5B1604",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005C7764": {
-    "name": "off_5C7764",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005CF1EC": {
-    "name": "off_5CF1EC",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005C778C": {
-    "name": "off_5C778C",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x0059DDB4": {
-    "name": "off_59DDB4",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x0059DDB8": {
-    "name": "off_59DDB8",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x0059DDBC": {
-    "name": "off_59DDBC",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x0059DDC0": {
-    "name": "off_59DDC0",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x0059DDC4": {
-    "name": "off_59DDC4",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x0059DDC8": {
-    "name": "off_59DDC8",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005F2488": {
-    "name": "off_5F2488",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x0059BA94": {
-    "name": "off_59BA94",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005995A0": {
-    "name": "off_5995A0",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x0059959C": {
-    "name": "off_59959C",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005C9378": {
-    "name": "off_5C9378",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005B0950": {
-    "name": "off_5B0950",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005995A8": {
-    "name": "off_5995A8",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005995A4": {
-    "name": "off_5995A4",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005D11E0": {
-    "name": "off_5D11E0",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005BC4A4": {
-    "name": "off_5BC4A4",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005F50C8": {
-    "name": "off_5F50C8",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005F50BC": {
-    "name": "off_5F50BC",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005F50C0": {
-    "name": "off_5F50C0",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005F50C4": {
-    "name": "off_5F50C4",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005AE388": {
-    "name": "off_5AE388",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005E7ECC": {
-    "name": "off_5E7ECC",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005E7ED8": {
-    "name": "off_5E7ED8",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005ABBE0": {
-    "name": "off_5ABBE0",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005EB920": {
-    "name": "off_5EB920",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x0058B444": {
-    "name": "off_58B444",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005B46C4": {
-    "name": "off_5B46C4",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005B46C0": {
-    "name": "off_5B46C0",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005C7760": {
-    "name": "off_5C7760",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x00599594": {
-    "name": "off_599594",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005B7660": {
-    "name": "off_5B7660",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005B765C": {
-    "name": "off_5B765C",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005AC088": {
-    "name": "off_5AC088",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005AC084": {
-    "name": "off_5AC084",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005AC180": {
-    "name": "off_5AC180",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005AC0A0": {
-    "name": "off_5AC0A0",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x0059DDA8": {
-    "name": "off_59DDA8",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005C91C8": {
-    "name": "off_5C91C8",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005E92A0": {
-    "name": "off_5E92A0",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005B9DE4": {
-    "name": "off_5B9DE4",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005C5EC4": {
-    "name": "off_5C5EC4",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005B0DA4": {
-    "name": "off_5B0DA4",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005EFF78": {
-    "name": "off_5EFF78",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005BC90C": {
-    "name": "off_5BC90C",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x005BC914": {
-    "name": "off_5BC914",
-    "type": "skip",
-    "reason": "function/vtable pointer table in .data section; runtime-initialized"
-  },
-  "0x00C11754": {
-    "name": "g_pCombatRole",
-    "type": "Role *",
-    "source": "binary: PAL3_StartCombat: val=(int)side (Role*); PAL3_CheckViewCollision: *(val+632)=0 = Role.m_active=0"
-  },
-  "0x00C116F8": {
-    "name": "g_fCameraBlendWeight",
-    "type": "float",
-    "source": "binary: CameraCtrl_UpdateInternal: *(float*)&val + fDelta; float confirmed"
-  },
-  "0x00C0439C": {
-    "name": "g_pSceneArrayEnd2",
-    "type": "int *",
-    "source": "binary: PAL3_FullInit: (g_pSceneArrayEnd2 - pEnd)/12; scene array end"
-  },
-  "0x00C10D40": {
-    "name": "g_fCollisionRadius",
-    "type": "double",
-    "source": "binary: RoleSystem_SetCollisionRadius assigns; used as double in ScanMoveDirections"
-  },
-  "0x00ABCD00": {
-    "name": "g_PlayerAttBuffer2",
-    "type": "ARC_PlayerAtt",
-    "source": "binary: CUtil_InitGameSystems: ARC_PlayerAtt::Create(&g_PlayerAttBuffer2, nVal)"
-  },
-  "0x00BFDA88": {
-    "name": "g_bSceneLoaded",
-    "type": "unsigned char",
-    "source": "binary: CScreenMode_LoadScreenScene: set to 1; CGameData_Load: if(val)"
-  },
-  "0x00C113C0": {
-    "name": "g_pAmbientTable",
-    "type": "gbSound2DNode *[]",
-    "source": "binary: SoundSystem_Init: memset to 0; UIPostUpdate: g_pAmbientTable[GetModeByIndex]"
-  },
-  "0x00BFDA98": {
-    "name": "g_bEditorMode",
-    "type": "int",
-    "source": "binary: PAL3_DefaultKeyMap: set to 1; CCBStage_EditorUpdate: if(!val)"
-  },
-  "0x017AD5C4": {
-    "name": "g_CCBProtectData",
-    "type": "unsigned char[]",
-    "source": "binary: CCBProtectWindow_OnMessage: memset(val, 0, 0x30)"
-  },
-  "0x00DBA0AC": {
-    "name": "g_pSceneTransitionEnd",
-    "type": "unsigned char *",
-    "source": "binary: Actor_DoSceneTransition/LoadActorModel: while(v < g_pSceneTransitionEnd)"
+  "0x0174D354": {
+    "name": "g_EffTableBase",
+    "type": "int[]"
+  },
+  "0x017A7B50": {
+    "name": "g_nCEffMgr_17A7B50",
+    "source": "binary:3 decomp refs, 4-byte access; cls=CEffMgr, 1 funcs",
+    "type": "int"
+  },
+  "0x017A7B74": {
+    "name": "g_EffTableEnd",
+    "type": "int"
+  },
+  "0x017A7B84": {
+    "name": "g_bgbMatrixStackFlag_17A7B84",
+    "source": "binary:6 decomp refs, 1-byte access; cls=gbMatrixStack, 1 funcs",
+    "type": "unsigned char"
+  },
+  "0x017A7B88": {
+    "name": "g_nEffectUID",
+    "type": "int"
+  },
+  "0x017A7BC0": {
+    "name": "g_nSceneObjCount",
+    "source": "binary:9 decomp refs, 4-byte access",
+    "type": "int"
+  },
+  "0x017A7C24": {
+    "name": "g_EffTaskEnd",
+    "type": "int"
+  },
+  "0x017A7E88": {
+    "name": "g_nEffShockCount",
+    "source": "binary:12 decomp refs, 4-byte access",
+    "type": "int"
+  },
+  "0x017A8118": {
+    "name": "g_nEffSParticleCount",
+    "source": "binary:12 decomp refs, 4-byte access",
+    "type": "int"
   },
   "0x017A8438": {
     "name": "qword_17A8438",
-    "type": "skip",
-    "reason": "CCBStage/CCBStageRole global data area field; part of combat system data block"
+    "reason": "CCBStage/CCBStageRole global data area field; part of combat system data block",
+    "type": "skip"
   },
-  "0x00D8C17C": {
-    "name": "g_fScriptTileSize2",
-    "type": "float",
-    "source": "binary: PalScriptMgr_ExecuteFrame: position/*(float*)&val division; tile size divisor"
+  "0x017A8AE8": {
+    "binary_size": 8704,
+    "name": "g_RoleSystemCombat",
+    "source": "binary: PAL3_FullInit: RoleSystem::SetActive(g_pCameraCtrl, &g_RoleSystemCombat._embed_UIItem_5908+1216); Actor_LoadActorModel: (RoleSystem*)(&g_RoleSystemCombat._embed_UIItem_5908+1216)",
+    "type": "RoleSystem"
   },
-  "0x00DE7710": {
-    "name": "g_nFileVersion",
-    "type": "unsigned int",
-    "source": "binary: ParticleEffect_LoadSceneFile: gbVFileSystem::Read(&val, 4); if(val > 0x10000)"
+  "0x017A8EF4": {
+    "name": "g_pCCBRoleStateArrayEnd",
+    "source": "binary: CCBRoleState_EndRoundTasks: while(v17 < &g_pCCBRoleStateArrayEnd); CCBRoleState array end pointer; g_RoleSystemCombat+1036",
+    "type": "CCBRoleState *"
   },
-  "0x00A3A6F8": {
-    "name": "g_pVolModNode",
-    "type": "gbVolModNode *",
-    "source": "binary: PAL3_InitVolModNode: gbVolModNode::gbVolModNode(val); PAL3_InitGFX: SetVolModObj(val)"
+  "0x017A9180": {
+    "name": "g_fCBTimer",
+    "type": "float"
   },
-  "0x0189598D": {
-    "name": "g_bSceneChangeFlags",
-    "type": "unsigned char",
-    "source": "binary: SceneInfo_ProcessSceneChange/UIListBox_ProcessSelection: (val & 1)==0 check"
+  "0x017A94E0": {
+    "name": "pfVal",
+    "type": "float"
   },
-  "0x00C116C4": {
-    "name": "g_fTileSize",
-    "type": "float",
-    "source": "binary: Camera_IsTransitioning/UIPostUpdate: position/*(float*)&val; tile size divisor"
+  "0x017A94E4": {
+    "name": "g_CCBStageCamBuffer",
+    "type": "unsigned char"
   },
-  "0x00C08664": {
-    "name": "g_nScriptObjectCount",
-    "type": "unsigned int",
-    "source": "binary: ScriptSystem_UpdateObjects: if(val <= 2 && *v2+1284 != val)"
+  "0x017A9910": {
+    "name": "dwInitParam",
+    "type": "HWND"
   },
-  "0x00DE7714": {
-    "name": "g_szParticleTexName",
-    "type": "char[256]",
-    "source": "binary: ParticleEffect_LoadTextures: strcpy(val, pszName); texture name buffer"
+  "0x017A991C": {
+    "name": "g_nActorRenderCount",
+    "source": "binary:9 decomp refs, 0-byte access",
+    "type": "int"
   },
-  "0x00AABEF6": {
-    "name": "g_PalScriptTemplate",
-    "type": "unsigned char[]",
-    "source": "binary: CGameData_InitRoles: PalScript::Create(this, &g_PalScriptTemplate, rect, nVal)"
+  "0x017A9920": {
+    "name": "g_hCBStageCamDlg",
+    "type": "HWND"
   },
-  "0x00ABD000": {
-    "name": "g_PlayerAttTemplate",
-    "type": "unsigned char[]",
-    "source": "binary: CGameData_InitRoles/LineupUI: ARC_PlayerAtt::Create(dst, &g_PlayerAttTemplate, nVal)"
+  "0x017A9926": {
+    "name": "g_bWPARAM_17A9926",
+    "source": "binary:3 decomp refs, 1-byte access; cls=WPARAM, 3 funcs",
+    "type": "unsigned char"
   },
-  "0x005706C0": {
-    "name": "off_5706C0",
-    "type": "skip",
-    "reason": "rdata array end sentinel used as boundary in pointer arithmetic"
+  "0x017A993C": {
+    "name": "g_nCCBUISelectedRole",
+    "source": "binary: CCBUI_SettingsDialogProc: SendMessageA(DlgItem, LB_GETCURSEL=0x130B) -> selected role index",
+    "type": "int"
   },
-  "0x00C11744": {
-    "name": "g_nMonsterType",
-    "type": "int",
-    "source": "binary: PAL3_StartCombat: monsterid==1 ? 2 : (monsterid==2); monster type flag"
+  "0x017A9940": {
+    "name": "g_nCCBUI_17A9940",
+    "source": "binary:4 decomp refs, 4-byte access; cls=CCBUI, 2 funcs",
+    "type": "int"
   },
-  "0x005D8A38": {
-    "name": "g_szCCBStageCamName",
-    "type": "char[]",
-    "source": "binary: CCBStageCam: sprintf(buf, \"%s\", &g_szCCBStageCamName); string buffer"
+  "0x017A9946": {
+    "name": "g_bCommandEdited",
+    "source": "binary: CCBUI_ApplyCommandEdit/CommandEditDialogProc: set to 1 on command edit",
+    "type": "unsigned char"
+  },
+  "0x017AA870": {
+    "name": "g_CCBStageState",
+    "type": "unsigned char"
+  },
+  "0x017AA880": {
+    "name": "g_nCBStageFlags",
+    "type": "int[8]"
+  },
+  "0x017AA884": {
+    "name": "g_nCEffQuadX",
+    "source": "binary:10 decomp refs, 4-byte access",
+    "type": "int"
+  },
+  "0x017AA888": {
+    "name": "g_nCEffQuadY",
+    "source": "binary:10 decomp refs, 4-byte access",
+    "type": "int"
+  },
+  "0x017AA890": {
+    "name": "g_nCEffQuadZ",
+    "source": "binary:9 decomp refs, 4-byte access",
+    "type": "int"
+  },
+  "0x017AA894": {
+    "name": "g_fCEffParam1",
+    "source": "binary: fld instruction confirms float; from m_Task[62].fTemp array",
+    "type": "float"
+  },
+  "0x017AA898": {
+    "name": "g_fCEffParam2",
+    "source": "binary: fld instruction confirms float; from m_Task[62].fTemp array",
+    "type": "float"
+  },
+  "0x017AA8A0": {
+    "name": "g_nCBRoleAnimData",
+    "type": "int[24]"
+  },
+  "0x017AA8B0": {
+    "name": "g_nCBQueueHead",
+    "type": "int"
+  },
+  "0x017AA8B4": {
+    "name": "g_nCombatActionParam",
+    "source": "binary: CCBStageRole_SetupCombatAction: assigned from v8+4, passed as action param",
+    "type": "int"
+  },
+  "0x017AAD48": {
+    "name": "g_fCBAnimTime",
+    "type": "float"
+  },
+  "0x017AAD54": {
+    "name": "g_fCombatHalfParam",
+    "source": "binary:1 hit, D9 1D=fstp; CCCTData assigns v42*0.5",
+    "type": "float"
+  },
+  "0x017AAF64": {
+    "name": "g_CCBCamControlData",
+    "type": "unsigned char"
+  },
+  "0x017AB588": {
+    "name": "g_nCBFormation1",
+    "type": "int[12]"
+  },
+  "0x017AB598": {
+    "name": "g_fCCBStageMoveParam",
+    "source": "binary: CCBStage_AnimCallback_MoveTo: *(float*)&val * g_nCEffGridCount; float usage confirmed",
+    "type": "float"
+  },
+  "0x017AB5A8": {
+    "name": "g_nCEffGridCount",
+    "source": "binary:10 decomp refs, 4-byte access",
+    "type": "int"
+  },
+  "0x017AB5E8": {
+    "name": "g_nCBFormation2",
+    "type": "int[16]"
+  },
+  "0x017AB658": {
+    "name": "g_nCBFormation3",
+    "type": "int[12]"
+  },
+  "0x017AB678": {
+    "name": "g_nCBRoleIndex",
+    "type": "int"
+  },
+  "0x017AB67C": {
+    "name": "g_nCEffModelX",
+    "source": "binary:10 decomp refs, 4-byte access",
+    "type": "int"
+  },
+  "0x017AB680": {
+    "name": "g_nCEffModelY",
+    "source": "binary:10 decomp refs, 4-byte access",
+    "type": "int"
+  },
+  "0x017AB6B8": {
+    "name": "g_nCBFormation4",
+    "type": "int[12]"
+  },
+  "0x017AB6D8": {
+    "name": "g_nCBTargetIndex",
+    "type": "int"
+  },
+  "0x017AB6E8": {
+    "name": "g_nCBRoleAttackTable",
+    "type": "int[44]"
+  },
+  "0x017AB708": {
+    "name": "g_nCBActionType",
+    "type": "int"
+  },
+  "0x017AB758": {
+    "name": "g_nCBDamageValue",
+    "type": "int"
+  },
+  "0x017AB788": {
+    "name": "g_nCBHealValue",
+    "type": "int"
+  },
+  "0x017AB7A8": {
+    "name": "g_nCBRoleMoveTable",
+    "type": "int[24]"
+  },
+  "0x017AB874": {
+    "name": "g_nCBRoleHitTable",
+    "type": "int[18]"
+  },
+  "0x017AB8B4": {
+    "name": "g_bBladeFlags",
+    "source": "binary: CCBStageRole_SetBladeTime: bit flags (& 1, |= 1, & 2)",
+    "type": "unsigned char"
   },
   "0x017AB8B8": {
     "name": "unk_17AB8B8",
-    "type": "skip",
-    "reason": "CCBStage/CCBStageRole global data area field"
-  },
-  "0x0056C548": {
-    "name": "off_56C548",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056D5D8": {
-    "name": "off_56D5D8",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056F208": {
-    "name": "off_56F208",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056F1CC": {
-    "name": "off_56F1CC",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056F1E0": {
-    "name": "off_56F1E0",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056ABA4": {
-    "name": "off_56ABA4",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056BA1C": {
-    "name": "off_56BA1C",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056B97C": {
-    "name": "off_56B97C",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x00570904": {
-    "name": "off_570904",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056B898": {
-    "name": "off_56B898",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056E130": {
-    "name": "off_56E130",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056F1A4": {
-    "name": "off_56F1A4",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056F1B8": {
-    "name": "off_56F1B8",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056B518": {
-    "name": "off_56B518",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056B504": {
-    "name": "off_56B504",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056B52C": {
-    "name": "off_56B52C",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x005706AC": {
-    "name": "off_5706AC",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056B990": {
-    "name": "off_56B990",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056BA08": {
-    "name": "off_56BA08",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x00570298": {
-    "name": "off_570298",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056F1F4": {
-    "name": "off_56F1F4",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x00570310": {
-    "name": "off_570310",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x005707D0": {
-    "name": "off_5707D0",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x0056AF80": {
-    "name": "off_56AF80",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x00570748": {
-    "name": "off_570748",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x00570754": {
-    "name": "off_570754",
-    "type": "skip",
-    "reason": "rdata offset: codegen auto-substitutes"
-  },
-  "0x00D924E8": {
-    "name": "g_bGameUpdating",
-    "type": "unsigned char",
-    "source": "binary: PAL3_Update: set to 1; UIScenePanel_CreateSettingsUI: if(val) check"
-  },
-  "0x00DC0DE8": {
-    "name": "g_pComposeUI",
-    "type": "ComposeUI *",
-    "source": "binary: PalScript_Op_SKEE_Entry: ComposeUI::RefreshRecipeList(g_pComposeUI, ...)"
-  },
-  "0x00DBA014": {
-    "name": "g_pSceneTransitionBegin",
-    "type": "unsigned char *",
-    "source": "binary: Actor_DoSceneTransition/LoadActorModel: v=g_pSceneTransitionBegin; loop start paired with g_pSceneTransitionEnd"
-  },
-  "0x00592DA4": {
-    "name": "off_592DA4",
-    "type": "skip",
-    "reason": ".data string pointer used in string comparison; runtime-initialized"
-  },
-  "0x005D3C68": {
-    "name": "unk_5D3C68",
-    "type": "skip",
-    "reason": ".data float/data table element"
-  },
-  "0x005D8AD4": {
-    "name": "unk_5D8AD4",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8AF4": {
-    "name": "unk_5D8AF4",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D89F8": {
-    "name": "unk_5D89F8",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D89F0": {
-    "name": "unk_5D89F0",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8A00": {
-    "name": "unk_5D8A00",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x0059DD60": {
-    "name": "off_59DD60",
-    "type": "skip",
-    "reason": ".data string pointer used in string comparison; runtime-initialized"
-  },
-  "0x0059DD80": {
-    "name": "off_59DD80",
-    "type": "skip",
-    "reason": ".data string pointer used in string comparison; runtime-initialized"
-  },
-  "0x0058B448": {
-    "name": "off_58B448",
-    "type": "skip",
-    "reason": ".data string pointer used in string comparison; runtime-initialized"
-  },
-  "0x005D8A3C": {
-    "name": "unk_5D8A3C",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D89B0": {
-    "name": "unk_5D89B0",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x0059DD18": {
-    "name": "off_59DD18",
-    "type": "skip",
-    "reason": ".data string pointer used in string comparison; runtime-initialized"
-  },
-  "0x005D8948": {
-    "name": "unk_5D8948",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8944": {
-    "name": "unk_5D8944",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8940": {
-    "name": "unk_5D8940",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D893C": {
-    "name": "unk_5D893C",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8938": {
-    "name": "unk_5D8938",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D3C6C": {
-    "name": "unk_5D3C6C",
-    "type": "skip",
-    "reason": ".data float/data table element"
-  },
-  "0x005B0E2C": {
-    "name": "off_5B0E2C",
-    "type": "skip",
-    "reason": ".data string pointer used in string comparison; runtime-initialized"
-  },
-  "0x005D8F98": {
-    "name": "unk_5D8F98",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F90": {
-    "name": "unk_5D8F90",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F88": {
-    "name": "unk_5D8F88",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F80": {
-    "name": "unk_5D8F80",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F78": {
-    "name": "unk_5D8F78",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F70": {
-    "name": "unk_5D8F70",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F68": {
-    "name": "unk_5D8F68",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F60": {
-    "name": "unk_5D8F60",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F58": {
-    "name": "unk_5D8F58",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F50": {
-    "name": "unk_5D8F50",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F48": {
-    "name": "unk_5D8F48",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F40": {
-    "name": "unk_5D8F40",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F38": {
-    "name": "unk_5D8F38",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F28": {
-    "name": "unk_5D8F28",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8F30": {
-    "name": "unk_5D8F30",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x00583A1C": {
-    "name": "off_583A1C",
-    "type": "skip",
-    "reason": ".data string pointer used in string comparison; runtime-initialized"
-  },
-  "0x005D8E20": {
-    "name": "unk_5D8E20",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8E30": {
-    "name": "unk_5D8E30",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8E3C": {
-    "name": "unk_5D8E3C",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8E48": {
-    "name": "unk_5D8E48",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x00596424": {
-    "name": "off_596424",
-    "type": "skip",
-    "reason": ".data string pointer used in string comparison; runtime-initialized"
-  },
-  "0x00596420": {
-    "name": "off_596420",
-    "type": "skip",
-    "reason": ".data string pointer used in string comparison; runtime-initialized"
-  },
-  "0x005F4D20": {
-    "name": "off_5F4D20",
-    "type": "skip",
-    "reason": ".data string pointer used in string comparison; runtime-initialized"
-  },
-  "0x005D8B0C": {
-    "name": "unk_5D8B0C",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8A58": {
-    "name": "unk_5D8A58",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8B04": {
-    "name": "unk_5D8B04",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8B00": {
-    "name": "unk_5D8B00",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8B14": {
-    "name": "unk_5D8B14",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8B3C": {
-    "name": "unk_5D8B3C",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8B44": {
-    "name": "unk_5D8B44",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005861F8": {
-    "name": "off_5861F8",
-    "type": "skip",
-    "reason": ".data string pointer used in string comparison; runtime-initialized"
-  },
-  "0x005D88F4": {
-    "name": "unk_5D88F4",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D88EC": {
-    "name": "unk_5D88EC",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D88FC": {
-    "name": "unk_5D88FC",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8974": {
-    "name": "unk_5D8974",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8824": {
-    "name": "unk_5D8824",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D87F0": {
-    "name": "unk_5D87F0",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8AC4": {
-    "name": "unk_5D8AC4",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8ABC": {
-    "name": "unk_5D8ABC",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8AB4": {
-    "name": "unk_5D8AB4",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8B88": {
-    "name": "unk_5D8B88",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8DC0": {
-    "name": "unk_5D8DC0",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8800": {
-    "name": "unk_5D8800",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D89A4": {
-    "name": "unk_5D89A4",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8EC0": {
-    "name": "unk_5D8EC0",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8EB8": {
-    "name": "unk_5D8EB8",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8EB0": {
-    "name": "unk_5D8EB0",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8808": {
-    "name": "unk_5D8808",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8884": {
-    "name": "unk_5D8884",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8964": {
-    "name": "unk_5D8964",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8960": {
-    "name": "unk_5D8960",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D895C": {
-    "name": "unk_5D895C",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8958": {
-    "name": "unk_5D8958",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8954": {
-    "name": "unk_5D8954",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8950": {
-    "name": "unk_5D8950",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8A64": {
-    "name": "unk_5D8A64",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8A5C": {
-    "name": "unk_5D8A5C",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8A50": {
-    "name": "unk_5D8A50",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8A48": {
-    "name": "unk_5D8A48",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8A40": {
-    "name": "unk_5D8A40",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8A6C": {
-    "name": "unk_5D8A6C",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8A90": {
-    "name": "unk_5D8A90",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x005D8848": {
-    "name": "unk_5D8848",
-    "type": "skip",
-    "reason": "CCBStageCam data area element"
-  },
-  "0x00C10A0E": {
-    "name": "g_pRoleSystemArrayEnd",
-    "type": "RoleSystem *",
-    "source": "binary: PAL3_FullInit/RoleSystem_LoadWeaponModel: while(v < g_pRoleSystemArrayEnd); RoleSystem array end"
+    "reason": "CCBStage/CCBStageRole global data area field",
+    "type": "skip"
+  },
+  "0x017ABCDC": {
+    "name": "g_fCombatTimer",
+    "source": "binary:8 hits, D9 1D=fstp float",
+    "type": "float"
+  },
+  "0x017ABF00": {
+    "name": "g_CCBStageSceneData",
+    "type": "unsigned char"
+  },
+  "0x017AC5D8": {
+    "name": "uType",
+    "type": "UINT"
+  },
+  "0x017AC5DC": {
+    "name": "g_bCBFlag",
+    "type": "unsigned char"
+  },
+  "0x017AC7DC": {
+    "name": "g_fCBDeltaTime",
+    "type": "float"
+  },
+  "0x017AC7E0": {
+    "name": "g_nCBRoundCount",
+    "type": "int[3]"
+  },
+  "0x017AC7EC": {
+    "name": "g_fCBSpeed",
+    "type": "float"
+  },
+  "0x017AC7F0": {
+    "name": "g_bCBActive",
+    "type": "unsigned char"
+  },
+  "0x017ACA78": {
+    "name": "g_fCBTimeScale",
+    "type": "float"
+  },
+  "0x017ACA80": {
+    "name": "g_nCBRolePos",
+    "type": "int[32]"
+  },
+  "0x017ACB88": {
+    "name": "g_nAIWindowBase",
+    "source": "binary: CCBUI_SetupAIWindow: used as base offset (+86)",
+    "type": "int"
+  },
+  "0x017ACB8C": {
+    "name": "g_nCCBAIWindow_17ACB8C",
+    "source": "binary:3 decomp refs, 4-byte access; cls=CCBAIWindow, 2 funcs",
+    "type": "int"
+  },
+  "0x017ACE10": {
+    "name": "g_fCBCamParam",
+    "type": "float"
+  },
+  "0x017ACE14": {
+    "name": "g_nCBCamState",
+    "type": "int[24]"
+  },
+  "0x017ACF80": {
+    "name": "g_TempBuffer1024",
+    "type": "unsigned char[1024]"
+  },
+  "0x017AD310": {
+    "name": "g_nRandCallCount",
+    "type": "int"
+  },
+  "0x017AD5C4": {
+    "name": "g_CCBProtectData",
+    "source": "binary: CCBProtectWindow_OnMessage: memset(val, 0, 0x30)",
+    "type": "unsigned char[]"
+  },
+  "0x017AF5C4": {
+    "name": "g_bgbGeomNodeFlag_17AF5C4",
+    "source": "binary:4 decomp refs, 1-byte access; cls=gbGeomNode, 1 funcs",
+    "type": "unsigned char"
+  },
+  "0x017B02EC": {
+    "name": "g_fSceneScale",
+    "type": "float"
+  },
+  "0x017B1550": {
+    "binary_size": 820,
+    "name": "g_ActorSaveData",
+    "type": "Actor"
+  },
+  "0x017B1CC0": {
+    "name": "Source",
+    "type": "char[99]"
+  },
+  "0x017B30E4": {
+    "name": "g_nCBResultState",
+    "type": "int"
+  },
+  "0x01894970": {
+    "name": "Data",
+    "type": "BYTE"
+  },
+  "0x01894A74": {
+    "name": "Filename",
+    "type": "CHAR[260]"
+  },
+  "0x01894B78": {
+    "name": "g_nScriptVar",
+    "type": "int"
+  },
+  "0x01895048": {
+    "name": "g_pRenderEffect_1895048",
+    "source": "binary:6 decomp refs, 4-byte access; cls=_TextureLib_Data, 7 funcs",
+    "type": "gbRenderEffect *"
+  },
+  "0x0189504C": {
+    "name": "g_pRenderEffect_189504C",
+    "source": "binary:8 decomp refs, 4-byte access; cls=UIWnd, 9 funcs",
+    "type": "gbRenderEffect *"
+  },
+  "0x01895050": {
+    "name": "g_pRenderEffect_1895050",
+    "source": "binary:4 decomp refs, 4-byte access; cls=_TextureLib_Data, 3 funcs",
+    "type": "gbRenderEffect *"
+  },
+  "0x01895054": {
+    "name": "g_pRenderEffect_1895054",
+    "source": "binary:4 decomp refs, 4-byte access; cls=_TextureLib_Data, 4 funcs",
+    "type": "gbRenderEffect *"
+  },
+  "0x01895058": {
+    "name": "g_pTexColorEffect",
+    "source": "PAL3patch:gbRenderEffect**,simplified",
+    "type": "int"
+  },
+  "0x0189505C": {
+    "name": "g_pRenderEffect_189505C",
+    "source": "binary:4 decomp refs, 4-byte access; cls=_TextureLib_Data, 3 funcs",
+    "type": "gbRenderEffect *"
+  },
+  "0x01895060": {
+    "name": "g_pRenderEffect_1895060",
+    "source": "binary:4 decomp refs, 4-byte access; cls=UIRenderQuadEX(tagRECT const &,gbTextureArray &,gbColorQuad,_PlugInfo *), 3 funcs",
+    "type": "gbRenderEffect *"
+  },
+  "0x01895064": {
+    "name": "g_pRenderEffect_1895064",
+    "source": "binary:6 decomp refs, 4-byte access; cls=VertPoolMgr, 4 funcs",
+    "type": "gbRenderEffect *"
+  },
+  "0x01895068": {
+    "name": "g_pRenderEffect_1895068",
+    "source": "binary:4 decomp refs, 4-byte access; cls=Parent_Data, 2 funcs",
+    "type": "gbRenderEffect *"
+  },
+  "0x0189506C": {
+    "name": "g_nParent_Data_189506C",
+    "source": "binary:4 decomp refs, 4-byte access; cls=Parent_Data, 2 funcs",
+    "type": "int"
+  },
+  "0x01895070": {
+    "name": "dbl_1895070",
+    "type": "double"
+  },
+  "0x01895318": {
+    "name": "Str",
+    "type": "char *"
+  },
+  "0x0189533C": {
+    "name": "g_nScriptState",
+    "type": "int"
+  },
+  "0x01895388": {
+    "name": "lp",
+    "type": "void *"
+  },
+  "0x01895560": {
+    "name": "g_bEffSystemFlags",
+    "source": "binary: CEffMgr/CEffMeteor: (val & 1)==0 check, |= 1 set; effect system init flags",
+    "type": "unsigned char"
+  },
+  "0x01895561": {
+    "name": "g_bScriptFlag",
+    "type": "unsigned char"
+  },
+  "0x01895580": {
+    "name": "g_pCEffMgrBackup",
+    "source": "fix:renamed_from_g_nCursorState_used_as_CEffMgr_ptr_via_cast",
+    "type": "int"
+  },
+  "0x01895980": {
+    "name": "g_nCEffect_1895980",
+    "source": "binary:6 decomp refs, 4-byte access; cls=CEffect, 2 funcs",
+    "type": "int"
+  },
+  "0x01895984": {
+    "name": "g_nRandSeed",
+    "type": "unsigned long"
+  },
+  "0x01895988": {
+    "name": "g_nRandCount",
+    "type": "int"
+  },
+  "0x0189598D": {
+    "name": "g_bSceneChangeFlags",
+    "source": "binary: SceneInfo_ProcessSceneChange/UIListBox_ProcessSelection: (val & 1)==0 check",
+    "type": "unsigned char"
+  },
+  "0x0189598E": {
+    "name": "g_bStaticInitFlags",
+    "type": "unsigned char"
+  },
+  "0x018969A4": {
+    "name": "CodePage",
+    "type": "UINT"
+  },
+  "0x01896BE0": {
+    "name": "g_nUIState",
+    "type": "int"
+  },
+  "0x01896CE0": {
+    "name": "uNumber",
+    "type": "UINT"
+  },
+  "0x01896D00": {
+    "name": "g_nScriptCounter",
+    "type": "int"
+  },
+  "0x01896D0C": {
+    "name": "hHeap",
+    "type": "HANDLE"
+  },
+  "0x17A990C": {
+    "name": "g_nCombatViewMode",
+    "type": "int"
+  },
+  "0x17A9914": {
+    "name": "g_hCombatDlg1",
+    "type": "HWND"
+  },
+  "0x17A9918": {
+    "name": "g_hCombatDlg2",
+    "type": "HWND"
+  },
+  "0x17B41E8": {
+    "name": "g_CScreenMode",
+    "type": "CScreenMode"
   },
   "0xC04920": {
     "name": "g_SubObj_SceneMgr_590",
     "type": "skip"
-  },
-  "0x00C042E8": {
-    "name": "g_fScriptTimeAccum",
-    "type": "float",
-    "reason": "script system frame time accumulator (fDeltaTime)"
-  },
-  "0x00C042F8": {
-    "name": "dword_C8042F8",
-    "type": "float",
-    "reason": "init=21.5900"
-  },
-  "0x00C042FC": {
-    "name": "dword_C8042FC",
-    "type": "float",
-    "reason": "init=0.0000"
-  },
-  "0x00C04304": {
-    "name": "dword_C804304",
-    "type": "float",
-    "reason": "init=-42.3700"
-  },
-  "0x00C04308": {
-    "name": "dword_C804308",
-    "type": "float",
-    "reason": "init=0.0000"
-  },
-  "0x00C0430C": {
-    "name": "dword_C80430C",
-    "type": "float",
-    "reason": "init=-32.0800"
-  },
-  "0x00C04310": {
-    "name": "dword_C804310",
-    "type": "float",
-    "reason": "init=-25.6900"
-  },
-  "0x00C04314": {
-    "name": "dword_C804314",
-    "type": "float",
-    "reason": "init=0.0000"
-  },
-  "0x00C04318": {
-    "name": "dword_C804318",
-    "type": "float",
-    "reason": "init=-73.6700"
-  },
-  "0x00C0431C": {
-    "name": "dword_C80431C",
-    "type": "float",
-    "reason": "init=28.9600"
-  },
-  "0x00C04320": {
-    "name": "dword_C804320",
-    "type": "float",
-    "reason": "init=0.0000"
-  },
-  "0x00C04324": {
-    "name": "dword_C804324",
-    "type": "float",
-    "reason": "init=-82.9900"
-  },
-  "0x00C04328": {
-    "name": "dword_C804328",
-    "type": "float",
-    "reason": "init=28.9600"
-  },
-  "0x00C0432C": {
-    "name": "dword_C80432C",
-    "type": "float",
-    "reason": "init=0.0000"
-  },
-  "0x00C04330": {
-    "name": "dword_C804330",
-    "type": "float",
-    "reason": "init=-122.9900"
-  },
-  "0x00C04920": {
-    "name": "g_ScriptRoleBuf",
-    "type": "RoleSystem",
-    "decomp_name": "Buffer",
-    "source": "RoleSystem at g_SceneMgr+0x590; all members match RoleSystem fields",
-    "overlaps_with": [
-      "g_SceneMgr",
-      "g_PartyCombatData"
-    ]
-  },
-  "0x00DBAF10": {
-    "name": "g_UISceneMapDlg",
-    "type": "UISceneMap",
-    "binary_size": 1012
-  },
-  "0x00DBA260": {
-    "name": "g_UIListBoxDlg",
-    "type": "UIListBox",
-    "binary_size": 1208
-  },
-  "0x00DBB364": {
-    "name": "g_CCBEditorInst",
-    "type": "CCBEditor",
-    "binary_size": 9624
-  },
-  "0x017B1550": {
-    "name": "g_ActorSaveData",
-    "type": "Actor",
-    "binary_size": 820
-  },
-  "0x005D5FE8": {
-    "name": "g_nTargetSlot",
-    "type": "int",
-    "binary_size": 4
-  },
-  "0x005D542C": {
-    "name": "g_TargetData",
-    "type": "int",
-    "binary_size": 4
   }
 }

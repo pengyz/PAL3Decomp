@@ -978,6 +978,17 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                  + r'\s*::\s*\*\s*\)\s*\([\w\s,]*\)')
             return re.sub(p, 'void*', name)
 
+        # Deduplicate base classes after sanitization (PDB + annotation
+        # may list the same template instantiation under different names).
+        seen = set()
+        unique_bases = []
+        for b in base_names:
+            s = _sanitize_template_base(b, cls_name)
+            if s not in seen:
+                seen.add(s)
+                unique_bases.append(b)
+        base_names = unique_bases
+
         bases_str = " : " + ", ".join(
             "public %s" % _sanitize_template_base(b, cls_name) for b in base_names
         )
