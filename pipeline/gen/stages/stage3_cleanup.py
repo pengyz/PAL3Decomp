@@ -429,6 +429,7 @@ def run(code, ctx):
     code = code.replace('__SPAIR64__', '__PAIR64__')
 
     # Comment out Hex-Rays "->0)" vtable dispatch (invalid C syntax, comment whole statement)
+    # If the dispatch line ends with ';' (single-line), don't bleed into subsequent lines.
     lines = code.split('\n')
     out_lines = []
     commenting = False
@@ -436,6 +437,8 @@ def run(code, ctx):
         if not commenting and '->0)' in line and '//' not in line:
             commenting = True
             out_lines.append(line[:len(line) - len(line.lstrip())] + '// [VTBL_DISPATCH] ' + line.strip())
+            if line.rstrip().endswith(';'):
+                commenting = False
         elif commenting:
             out_lines.append(line[:len(line) - len(line.lstrip())] + '// [VTBL_DISPATCH]   ' + line.strip())
             if line.rstrip().endswith(';'):
