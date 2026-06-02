@@ -4,118 +4,13 @@
   "known_members": {
     "0": {
       "name": "m_sCombatDialog",
-      "type": "char[360]",
-      "source": "annotation"
+      "type": "char[512]",
+      "offset": 0
     },
     "360": {
       "name": "_embed_UIFrameWnd_168",
       "type": "UIFrameWnd",
       "source": "A+:decomp_ctor_at_this+360,span=152=binary_size"
-    },
-    "432": {
-      "name": "m_fLastDialogTime",
-      "type": "float",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "436": {
-      "name": "m_bCombatDialog",
-      "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "440": {
-      "name": "m_pCBSystem",
-      "type": "CCBSystem *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "444": {
-      "name": "m_pStage",
-      "type": "CCBStage *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "448": {
-      "name": "m_pUI",
-      "type": "CCBUI *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "452": {
-      "name": "m_pUtil",
-      "type": "CUtil *",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "456": {
-      "name": "m_bWeSneakAttackEnemy",
-      "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "457": {
-      "name": "m_bEnemySneakAttackUs",
-      "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "460": {
-      "name": "m_nMaxRound",
-      "type": "int",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "464": {
-      "name": "m_nBossRound",
-      "type": "int",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "468": {
-      "name": "m_bMustFail",
-      "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "469": {
-      "name": "m_bFleeAlwaysSuccess",
-      "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "470": {
-      "name": "m_bCreatedNewRole",
-      "type": "unsigned char",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "472": {
-      "name": "m_Role",
-      "type": "tagRoleState[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "11912": {
-      "name": "m_RoleXor",
-      "type": "tagRoleState[11]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "23292": {
-      "name": "m_dwEXPTable",
-      "type": "unsigned int[100]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "23692": {
-      "name": "m_dwWinTaskID",
-      "type": "unsigned int",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "23696": {
-      "name": "m_bNGHDeadVariance",
-      "type": "int",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "23700": {
-      "name": "m_eSameRow",
-      "type": "ECBFiveLineup[3][3]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "23736": {
-      "name": "m_eSameColumn",
-      "type": "ECBFiveLineup[2][3]",
-      "source": "pdb_verified_by_old_ida"
-    },
-    "23760": {
-      "name": "m_fSwordStarTime",
-      "type": "float",
-      "source": "pdb_verified_by_old_ida"
     },
     "21960": {
       "name": "m_bScrollEnableA",
@@ -509,6 +404,111 @@
       "name": "_todo_4C38",
       "type": "int",
       "source": "A:decomp vtable call pattern"
+    },
+    "512": {
+      "name": "m_fLastDialogTime",
+      "type": "float",
+      "offset": 512
+    },
+    "516": {
+      "name": "m_bCombatDialog",
+      "type": "unsigned char",
+      "offset": 516
+    },
+    "520": {
+      "name": "m_pCBSystem",
+      "type": "CCBSystem *",
+      "offset": 520
+    },
+    "524": {
+      "name": "m_pStage",
+      "type": "CCBStage *",
+      "offset": 524
+    },
+    "528": {
+      "name": "m_pUI",
+      "type": "CCBUI *",
+      "offset": 528
+    },
+    "532": {
+      "name": "m_pUtil",
+      "type": "CUtil *",
+      "offset": 532
+    },
+    "536": {
+      "name": "m_bWeSneakAttackEnemy",
+      "type": "unsigned char",
+      "offset": 536
+    },
+    "537": {
+      "name": "m_bEnemySneakAttackUs",
+      "type": "unsigned char",
+      "offset": 537
+    },
+    "540": {
+      "name": "m_nMaxRound",
+      "type": "int",
+      "offset": 540
+    },
+    "544": {
+      "name": "m_nBossRound",
+      "type": "int",
+      "offset": 544
+    },
+    "548": {
+      "name": "m_bMustFail",
+      "type": "unsigned char",
+      "offset": 548
+    },
+    "549": {
+      "name": "m_bFleeAlwaysSuccess",
+      "type": "unsigned char",
+      "offset": 549
+    },
+    "550": {
+      "name": "m_bCreatedNewRole",
+      "type": "unsigned char",
+      "offset": 550
+    },
+    "552": {
+      "name": "m_Role",
+      "type": "tagRoleState[11]",
+      "offset": 552
+    },
+    "11992": {
+      "name": "m_RoleXor",
+      "type": "tagRoleState[11]",
+      "offset": 11992
+    },
+    "23432": {
+      "name": "m_dwEXPTable",
+      "type": "unsigned long[100]",
+      "offset": 23432
+    },
+    "23832": {
+      "name": "m_dwWinTaskID",
+      "type": "unsigned long",
+      "offset": 23832
+    },
+    "23836": {
+      "name": "m_bNGHDeadVariance",
+      "type": "int",
+      "offset": 23836
+    },
+    "23840": {
+      "name": "m_eSameRow",
+      "type": "ECBFiveLineup[3][3]",
+      "offset": 23840
+    },
+    "23876": {
+      "name": "m_eSameColumn",
+      "type": "ECBFiveLineup[2][3]",
+      "offset": 23876
+    },
+    "23900": {
+      "name": "m_fSwordStarTime",
+      "type": "float",
+      "offset": 23900
     }
   },
   "methods": {
@@ -2651,10 +2651,6 @@
     "0x004E5110": {
       "name": "CCBRoleState::GetTargetCommand",
       "signature": "int __cdecl CCBRoleState::GetTargetCommand()"
-    },
-    "0x00488DE0": {
-      "name": "CCBRoleState::LoadRoleData",
-      "signature": "int __thiscall MainPropUI::LoadRoleData(MainPropUI *this)"
     }
   }
 }

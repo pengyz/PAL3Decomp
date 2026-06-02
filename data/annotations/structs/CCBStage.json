@@ -5,142 +5,142 @@
     "0": {
       "name": "m_pCBSystem",
       "type": "CCBSystem *",
-      "source": "annotation"
+      "offset": 0
     },
     "4": {
       "name": "m_pRoleState",
       "type": "CCBRoleState *",
-      "source": "annotation"
+      "offset": 4
     },
     "8": {
       "name": "m_pEditor",
       "type": "CCBEditor *",
-      "source": "annotation"
+      "offset": 8
     },
     "12": {
       "name": "m_pCam",
       "type": "CCBStageCam *",
-      "source": "annotation"
+      "offset": 12
     },
     "16": {
       "name": "m_pCamControl",
       "type": "CCBCamControl *",
-      "source": "annotation"
+      "offset": 16
     },
     "20": {
       "name": "m_pScene",
       "type": "CCBStageScene *",
-      "source": "annotation"
+      "offset": 20
     },
     "24": {
       "name": "m_pRole",
       "type": "CCBStageRole *[11]",
-      "source": "annotation"
+      "offset": 24
     },
     "68": {
       "name": "m_TempStorageNGH",
       "type": "Actor *",
-      "source": "annotation"
+      "offset": 68
     },
     "72": {
       "name": "m_NGHVariance",
       "type": "Actor *",
-      "source": "annotation"
+      "offset": 72
     },
     "76": {
       "name": "m_TempStorageWPX",
       "type": "Actor *",
-      "source": "annotation"
+      "offset": 76
     },
     "80": {
       "name": "m_WPXVariance",
       "type": "Actor *",
-      "source": "annotation"
+      "offset": 80
     },
     "84": {
       "name": "m_pDisplayChain",
       "type": "CCBDisplayChain *",
-      "source": "annotation"
+      "offset": 84
     },
     "88": {
       "name": "m_pShadow",
       "type": "CCBStageShadow *",
-      "source": "annotation"
+      "offset": 88
     },
     "92": {
       "name": "m_pEffect",
       "type": "CCBStageEffect *",
-      "source": "annotation"
+      "offset": 92
     },
     "96": {
       "name": "m_BFARole",
-      "type": "float",
-      "source": "annotation"
+      "type": "int",
+      "offset": 96
     },
     "100": {
       "name": "m_BFARound",
-      "type": "float",
-      "source": "annotation"
+      "type": "int",
+      "offset": 100
     },
     "104": {
       "name": "m_ptMousePos",
       "type": "tagPOINT",
-      "source": "annotation"
+      "offset": 104
     },
     "112": {
       "name": "m_nSelectedRole",
       "type": "int",
-      "source": "annotation"
+      "offset": 112
     },
     "116": {
       "name": "m_bRoleSelected",
       "type": "unsigned char[11]",
-      "source": "annotation"
+      "offset": 116
     },
     "127": {
       "name": "m_bHideSceneAndRole",
       "type": "unsigned char",
-      "source": "annotation"
+      "offset": 127
     },
     "128": {
       "name": "m_fDamageNumPosY",
-      "type": "float[5]",
-      "source": "annotation"
+      "type": "float[11]",
+      "offset": 128
     },
     "172": {
       "name": "m_fMusicVolume",
       "type": "float",
-      "source": "annotation"
+      "offset": 172
     },
     "176": {
       "name": "m_bPaused",
       "type": "unsigned char",
-      "source": "annotation"
+      "offset": 176
     },
     "180": {
       "name": "m_nTask",
       "type": "int",
-      "source": "annotation"
+      "offset": 180
     },
     "184": {
       "name": "m_nCurTask",
       "type": "int",
-      "source": "annotation"
+      "offset": 184
     },
     "188": {
       "name": "m_nCurSubTask",
       "type": "int",
-      "source": "annotation"
+      "offset": 188
     },
     "192": {
       "name": "m_Task",
-      "type": "tagStageTask *",
-      "source": "annotation"
+      "type": "tagStageTask[256]",
+      "offset": 192
     },
     "673984": {
       "name": "m_dwAniFlagOver",
-      "type": "unsigned int",
-      "source": "annotation"
+      "type": "unsigned long",
+      "offset": 673984
     },
     "152": {
       "name": "m_nStageStatus",
@@ -1412,10 +1412,6 @@
       "name": "CCBStage::EndTurnAndAdvance",
       "signature": "int __thiscall(CCBStage *this)"
     },
-    "0x004E0690": {
-      "name": "CCBStage::ResetAllSlots",
-      "signature": "char __thiscall(CCBUI *this)"
-    },
     "0x004FB9A0": {
       "name": "CCBStage::CCBStage",
       "signature": "int *__thiscall(CCBStage *this, int pCBSystem)"
@@ -1653,25 +1649,9 @@
       "name": "CCBStage::UpdatePhysics",
       "signature": "int __thiscall(CCBStage *this)"
     },
-    "0x005045B0": {
-      "name": "CCBStage::ProcessTurn",
-      "signature": "char __thiscall(CCBStage *this)"
-    },
-    "0x0050D440": {
-      "name": "CCBStage::CheckAllDone",
-      "signature": "int __thiscall(CCBStage *this)"
-    },
     "0x0050E0D0": {
       "name": "CCBStage::ProcessCommand",
       "signature": "int __thiscall(CCBStage *this)"
-    },
-    "0x0051D710": {
-      "name": "CCBStage::Create_d710",
-      "signature": "CCBProtectWindow *__thiscall(CCBStage *this)"
-    },
-    "0x0051DDA0": {
-      "name": "CCBStage::ShowWindow",
-      "signature": "void __thiscall(CCBStage *this)"
     },
     "0x004FC0A0": {
       "name": "CCBStage::Update",
@@ -1689,11 +1669,6 @@
     "0x005024D0": {
       "name": "CCBStage::ProcessRoleEffect",
       "signature": "int __thiscall(CCBStage *this, int nVal)"
-    },
-    "0x0044A970": {
-      "name": "CCBStage::LoadScriptTexture",
-      "signature": "gbVFileSystem *__thiscall PalScriptIdleObj::LoadTexture(PalScriptIdleObj *this, int nTexID, int nParam)",
-      "_misattrib_evidence": "max_offset=92>class_size=16"
     },
     "0x004DF710": {
       "name": "CCBStage::ResetRoundState",
@@ -1723,10 +1698,6 @@
       "name": "CCBStage::ScanTurnSlots",
       "signature": "char __thiscall(CCBStage *this)"
     },
-    "0x0050DA90": {
-      "name": "CCBStage::UpdateSlotTimer",
-      "signature": "int __thiscall(CCBStage *this, int nVal)"
-    },
     "0x0050EB00": {
       "name": "CCBStage::ProcessSlotAction",
       "signature": "int __thiscall(CCBStage *this, int nVal)"
@@ -1754,20 +1725,6 @@
     "0x0050F4C0": {
       "name": "CCBStage::AnimCallback_WaitCmd",
       "signature": "int __thiscall CCBStage::AnimCallback_WaitCmd(CCBStage *this, int nVal)"
-    },
-    "0x0050F590": {
-      "name": "CCBStage::AnimCallback_MoveTo",
-      "signature": "int __thiscall CCBStage::AnimCallback_MoveTo(CCBStage *this, int nVal)"
-    },
-    "0x00442000": {
-      "name": "CCBStage::CalcScrollPos",
-      "signature": "int __thiscall UIWnd::CalcScrollPos(UIWnd *this)",
-      "_misattrib_evidence": "max_offset=348>class_size=96"
-    },
-    "0x00442100": {
-      "name": "CCBStage::CalcSplitRect",
-      "signature": "int __thiscall UIWnd::CalcSplitRect(UIWnd *this)",
-      "_misattrib_evidence": "max_offset=332>class_size=84"
     },
     "0x004C5C20": {
       "name": "CCBStage::GetReadyCount",
@@ -1897,6 +1854,34 @@
       "name": "CCBStage::ClearAll",
       "signature": "int __thiscall(CCBStage *this)"
     },
+    "0x0050E550": {
+      "name": "CCBStage::ResolveActionEffect",
+      "signature": "int __thiscall CCBStage::ResolveActionEffect(CCBStage *this, int nVal)"
+    },
+    "0x005045B0": {
+      "name": "CCBStage::ProcessTurn",
+      "signature": "char __thiscall(CCBStage *this)"
+    },
+    "0x0050D440": {
+      "name": "CCBStage::CheckAllDone",
+      "signature": "int __thiscall(CCBStage *this)"
+    },
+    "0x0051D710": {
+      "name": "CCBStage::Create_d710",
+      "signature": "CCBProtectWindow *__thiscall(CCBStage *this)"
+    },
+    "0x0051DDA0": {
+      "name": "CCBStage::ShowWindow",
+      "signature": "void __thiscall(CCBStage *this)"
+    },
+    "0x0050DA90": {
+      "name": "CCBStage::UpdateSlotTimer",
+      "signature": "int __thiscall(CCBStage *this, int nVal)"
+    },
+    "0x0050F590": {
+      "name": "CCBStage::AnimCallback_MoveTo",
+      "signature": "int __thiscall CCBStage::AnimCallback_MoveTo(CCBStage *this, int nVal)"
+    },
     "0x0050E160": {
       "name": "CCBStage::Method_50E160",
       "signature": "int __thiscall(CCBStage *this, int nVal)"
@@ -1904,19 +1889,6 @@
     "0x0050E360": {
       "name": "CCBStage::CalcFacingAngle",
       "signature": "int __thiscall CCBStage::CalcFacingAngle(CCBStage *this, int nVal)"
-    },
-    "0x0050E550": {
-      "name": "CCBStage::ResolveActionEffect",
-      "signature": "int __thiscall CCBStage::ResolveActionEffect(CCBStage *this, int nVal)"
-    },
-    "0x004019B0": {
-      "name": "CCBStage::ReleasePtrArray",
-      "signature": "void *__thiscall(PtrArray *this)",
-      "_misattrib_evidence": "max_offset=64>class_size=16"
-    },
-    "0x0041BD70": {
-      "name": "CCBStage::GetRoleName",
-      "signature": "const char *__thiscall(RoleSystem *this, unsigned int nRoleIndex)"
     }
   }
 }
