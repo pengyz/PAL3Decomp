@@ -134,7 +134,7 @@
     },
     "192": {
       "name": "m_Task",
-      "type": "tagStageTask[256]",
+      "type": "tagStageTask[64]",
       "offset": 192
     },
     "673984": {
@@ -270,7 +270,7 @@
     "6632": {
       "name": "m_fAngleDegrees",
       "type": "float",
-      "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2¦Ð, compare ¦Ð/2)"
+      "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2\u00a6\u00d0, compare \u00a6\u00d0/2)"
     },
     "6636": {
       "name": "_todo_19EC",
@@ -415,7 +415,7 @@
     "544": {
       "name": "m_pController",
       "type": "void *",
-      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int¡úvoid*(deref pattern)"
+      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int\u00a1\u00favoid*(deref pattern)"
     },
     "552": {
       "name": "m_fPrevRotX",
@@ -581,6 +581,41 @@
       "name": "m_nResultSlot1",
       "type": "int",
       "source": "decomp:_nearby_4e0340_set_-1"
+    },
+    "900": {
+      "name": "_field_384",
+      "type": "int",
+      "source": "binary:disp32_2hits_1funcs"
+    },
+    "904": {
+      "name": "_field_388",
+      "type": "int",
+      "source": "binary:disp32_2hits_1funcs"
+    },
+    "877": {
+      "name": "_todo_36D",
+      "type": "unsigned char",
+      "source": "binary:byte_disp"
+    },
+    "1480": {
+      "name": "_todo_5C8",
+      "type": "int",
+      "source": "binary:disp32"
+    },
+    "909": {
+      "name": "m_bOpcodeFlag",
+      "type": "unsigned char",
+      "source": "binary:byte_disp"
+    },
+    "910": {
+      "name": "m_bExecFlag",
+      "type": "unsigned char",
+      "source": "binary:byte_disp"
+    },
+    "911": {
+      "name": "m_bBlockFlag",
+      "type": "unsigned char",
+      "source": "binary:byte_disp"
     }
   },
   "methods": {
