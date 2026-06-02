@@ -377,10 +377,6 @@
     "name": "g_szGamePath",
     "type": "char[256]"
   },
-  "0x005834CC": {
-    "name": "a101h",
-    "type": "char[]"
-  },
   "0x00583814": {
     "name": "a163941",
     "type": "char[]"
@@ -388,18 +384,6 @@
   "0x00583820": {
     "name": "path",
     "type": "char[256]"
-  },
-  "0x0058388C": {
-    "name": "name",
-    "type": "char[256]"
-  },
-  "0x005838A8": {
-    "name": "filename",
-    "type": "char[256]"
-  },
-  "0x00583998": {
-    "name": "section",
-    "type": "CHAR[]"
   },
   "0x00583A1C": {
     "name": "off_583A1C",
@@ -438,22 +422,6 @@
   "0x0058618C": {
     "name": "g_pfnUpdateFuncs",
     "type": "void *[5]"
-  },
-  "0x00586190": {
-    "name": "g_pszSceneSlot3",
-    "type": "char *"
-  },
-  "0x00586194": {
-    "name": "g_pszSceneSlot2",
-    "type": "char *"
-  },
-  "0x00586198": {
-    "name": "g_pszSceneSlot1",
-    "type": "char *"
-  },
-  "0x0058619C": {
-    "name": "g_pszSceneSlot0",
-    "type": "char *"
   },
   "0x005861F8": {
     "name": "off_5861F8",
@@ -1657,10 +1625,6 @@
     "name": "PathName_0",
     "type": "char[256]"
   },
-  "0x00601548": {
-    "name": "aPal3Timenotefi_96_0",
-    "type": "LPCSTR"
-  },
   "0x00608B3C": {
     "name": "lpString1",
     "type": "LPCSTR"
@@ -1668,10 +1632,6 @@
   "0x00608CB4": {
     "name": "Delimiter",
     "type": "char[256]"
-  },
-  "0x00608CD8": {
-    "name": "pszName3",
-    "type": "const char *"
   },
   "0x0060AD00": {
     "name": "g_TileData",
@@ -1958,15 +1918,6 @@
   "0x00BFDAA4": {
     "name": "Default",
     "type": "CHAR[8]"
-  },
-  "0x00BFDAAC": {
-    "name": "g_fPathScale",
-    "source": "binary:7 hits; set to 12.0, used as divisor like g_fTileScale",
-    "type": "float"
-  },
-  "0x00BFDAB0": {
-    "name": "g_UIScene",
-    "type": "std::ios_base"
   },
   "0x00BFDB70": {
     "name": "g_nMagicSlotCountA",
@@ -2285,11 +2236,6 @@
     "source": "binary: used as char* in lstrcpyA/strcpy/SendMessageA; SceneMgr+0xC9A8",
     "type": "char[256]"
   },
-  "0x00C10D40": {
-    "name": "g_fCollisionRadius",
-    "source": "binary: RoleSystem_SetCollisionRadius assigns; used as double in ScanMoveDirections",
-    "type": "double"
-  },
   "0x00C1109C": {
     "name": "g_fSceneTileSize",
     "source": "binary: used as float divisor in RoleSystem position calc; SceneMgr+0xCD0C",
@@ -2442,11 +2388,6 @@
   "0x00D8C1AC": {
     "name": "String",
     "type": "CHAR[260]"
-  },
-  "0x00D8C2B0": {
-    "name": "g_pScriptCurrentBlock",
-    "source": "binary: used as PalScript block pointer; ScriptSystemData+0xF98",
-    "type": "void *"
   },
   "0x00D8E468": {
     "name": "g_pLoadBuffer",
@@ -2746,15 +2687,6 @@
     "source": "A+:decomp qmemcpy/fwrite 0x5A820 + stride 280(70*4) in CEffMgr methods",
     "type": "char[370720]"
   },
-  "0x0174D334": {
-    "name": "g_nEffTableCount",
-    "source": "A+:decomp used as loop bound with g_EffTable",
-    "type": "int"
-  },
-  "0x0174D354": {
-    "name": "g_EffTableBase",
-    "type": "int[]"
-  },
   "0x017A7B50": {
     "name": "g_nCEffMgr_17A7B50",
     "source": "binary:3 decomp refs, 4-byte access; cls=CEffMgr, 1 funcs",
@@ -2861,43 +2793,9 @@
     "name": "g_nCBStageFlags",
     "type": "int[8]"
   },
-  "0x017AA884": {
-    "name": "g_nCEffQuadX",
-    "source": "binary:10 decomp refs, 4-byte access",
-    "type": "int"
-  },
-  "0x017AA888": {
-    "name": "g_nCEffQuadY",
-    "source": "binary:10 decomp refs, 4-byte access",
-    "type": "int"
-  },
-  "0x017AA890": {
-    "name": "g_nCEffQuadZ",
-    "source": "binary:9 decomp refs, 4-byte access",
-    "type": "int"
-  },
-  "0x017AA894": {
-    "name": "g_fCEffParam1",
-    "source": "binary: fld instruction confirms float; from m_Task[62].fTemp array",
-    "type": "float"
-  },
-  "0x017AA898": {
-    "name": "g_fCEffParam2",
-    "source": "binary: fld instruction confirms float; from m_Task[62].fTemp array",
-    "type": "float"
-  },
   "0x017AA8A0": {
     "name": "g_nCBRoleAnimData",
     "type": "int[24]"
-  },
-  "0x017AA8B0": {
-    "name": "g_nCBQueueHead",
-    "type": "int"
-  },
-  "0x017AA8B4": {
-    "name": "g_nCombatActionParam",
-    "source": "binary: CCBStageRole_SetupCombatAction: assigned from v8+4, passed as action param",
-    "type": "int"
   },
   "0x017AAD48": {
     "name": "g_fCBAnimTime",
@@ -2916,16 +2814,6 @@
     "name": "g_nCBFormation1",
     "type": "int[12]"
   },
-  "0x017AB598": {
-    "name": "g_fCCBStageMoveParam",
-    "source": "binary: CCBStage_AnimCallback_MoveTo: *(float*)&val * g_nCEffGridCount; float usage confirmed",
-    "type": "float"
-  },
-  "0x017AB5A8": {
-    "name": "g_nCEffGridCount",
-    "source": "binary:10 decomp refs, 4-byte access",
-    "type": "int"
-  },
   "0x017AB5E8": {
     "name": "g_nCBFormation2",
     "type": "int[16]"
@@ -2934,43 +2822,13 @@
     "name": "g_nCBFormation3",
     "type": "int[12]"
   },
-  "0x017AB678": {
-    "name": "g_nCBRoleIndex",
-    "type": "int"
-  },
-  "0x017AB67C": {
-    "name": "g_nCEffModelX",
-    "source": "binary:10 decomp refs, 4-byte access",
-    "type": "int"
-  },
-  "0x017AB680": {
-    "name": "g_nCEffModelY",
-    "source": "binary:10 decomp refs, 4-byte access",
-    "type": "int"
-  },
   "0x017AB6B8": {
     "name": "g_nCBFormation4",
     "type": "int[12]"
   },
-  "0x017AB6D8": {
-    "name": "g_nCBTargetIndex",
-    "type": "int"
-  },
   "0x017AB6E8": {
     "name": "g_nCBRoleAttackTable",
     "type": "int[44]"
-  },
-  "0x017AB708": {
-    "name": "g_nCBActionType",
-    "type": "int"
-  },
-  "0x017AB758": {
-    "name": "g_nCBDamageValue",
-    "type": "int"
-  },
-  "0x017AB788": {
-    "name": "g_nCBHealValue",
-    "type": "int"
   },
   "0x017AB7A8": {
     "name": "g_nCBRoleMoveTable",
@@ -2979,16 +2837,6 @@
   "0x017AB874": {
     "name": "g_nCBRoleHitTable",
     "type": "int[18]"
-  },
-  "0x017AB8B4": {
-    "name": "g_bBladeFlags",
-    "source": "binary: CCBStageRole_SetBladeTime: bit flags (& 1, |= 1, & 2)",
-    "type": "unsigned char"
-  },
-  "0x017AB8B8": {
-    "name": "unk_17AB8B8",
-    "reason": "CCBStage/CCBStageRole global data area field",
-    "type": "skip"
   },
   "0x017ABCDC": {
     "name": "g_fCombatTimer",
@@ -3053,10 +2901,6 @@
     "name": "g_TempBuffer1024",
     "type": "unsigned char[1024]"
   },
-  "0x017AD310": {
-    "name": "g_nRandCallCount",
-    "type": "int"
-  },
   "0x017AD5C4": {
     "name": "g_CCBProtectData",
     "source": "binary: CCBProtectWindow_OnMessage: memset(val, 0, 0x30)",
@@ -3091,10 +2935,6 @@
   "0x01894A74": {
     "name": "Filename",
     "type": "CHAR[260]"
-  },
-  "0x01894B78": {
-    "name": "g_nScriptVar",
-    "type": "int"
   },
   "0x01895048": {
     "name": "g_pRenderEffect_1895048",

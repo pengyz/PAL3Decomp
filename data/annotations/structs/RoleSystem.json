@@ -1,85 +1,20 @@
 {
   "name": "RoleSystem",
   "known_members": {
-    "0": {
+    "68": {
       "name": "m_pVtable",
       "type": "void (__thiscall *)(void)",
       "source": "A:decomp CCBRoleState::ProcessActions uses this->m_pSceneMgr->m_rect.left as RoleSystem* -- offset 0 is vtable ptr, not int"
-    },
-    "4": {
-      "name": "m_fTargetX",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "8": {
-      "name": "m_fTargetY",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "12": {
-      "name": "m_fTargetZ",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "16": {
-      "name": "_todo_010",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "20": {
-      "name": "m_fDirX",
-      "type": "float",
-      "source": "gen_headers_9.2"
-    },
-    "24": {
-      "name": "m_fDirY",
-      "type": "float",
-      "source": "binary:raw_UpdatePosition"
-    },
-    "28": {
-      "name": "m_fDirZ",
-      "type": "float",
-      "source": "binary:raw_UpdatePosition"
-    },
-    "32": {
-      "name": "m_fRightX",
-      "type": "float",
-      "source": "binary:raw_UpdatePosition"
-    },
-    "36": {
-      "name": "m_fRightY",
-      "type": "float",
-      "source": "binary:raw_UpdatePosition"
-    },
-    "40": {
-      "name": "m_fRightZ",
-      "type": "float",
-      "source": "binary:raw_UpdatePosition"
-    },
-    "44": {
-      "name": "m_fUpX",
-      "type": "float",
-      "source": "binary:raw_UpdatePosition"
-    },
-    "48": {
-      "name": "m_fUpY",
-      "type": "float",
-      "source": "binary:raw_UpdatePosition"
-    },
-    "52": {
-      "name": "m_fUpZ",
-      "type": "float",
-      "source": "binary:raw_UpdatePosition"
-    },
-    "56": {
-      "name": "m_pVObj",
-      "type": "PalScriptMgr *",
-      "source": "binary:PalScriptMgr_NotifyEvent_called_via_this_member"
     },
     "72": {
       "name": "_field_048",
       "type": "float",
       "source": "A+:decomp *(float*)&this->_field_048 explicit_float_cast"
+    },
+    "76": {
+      "name": "_todo_4C",
+      "type": "float",
+      "source": "gap_fill:ida_decomp_access"
     },
     "80": {
       "name": "m_nStateMode",
@@ -100,6 +35,11 @@
       "name": "_field_05C",
       "type": "float",
       "source": "A:FPU_disp8_in_class_method"
+    },
+    "96": {
+      "name": "m_szInputPath",
+      "type": "char *",
+      "source": "fix:span=4_next_hits=53_ptr"
     },
     "100": {
       "name": "m_pPathPoints",
@@ -142,9 +82,9 @@
       "source": "B:naming_m_n+FPU_misattrib"
     },
     "132": {
-      "name": "_todo_084",
+      "name": "_todo_040",
       "type": "int",
-      "source": "binary:raw_path_misc"
+      "source": "binary_scan:1refs"
     },
     "140": {
       "name": "m_pPathListHead",
@@ -766,16 +706,6 @@
       "type": "unsigned char",
       "source": "reverted_auto_semantic:19x_access"
     },
-    "76": {
-      "name": "_todo_4C",
-      "type": "float",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "96": {
-      "name": "m_szInputPath",
-      "type": "char *",
-      "source": "fix:span=4_next_hits=53_ptr"
-    },
     "180": {
       "name": "m_mapData",
       "type": "int",
@@ -890,11 +820,6 @@
       "name": "_todo_21EC",
       "type": "int",
       "source": "gap_fill:ida_decomp_access"
-    },
-    "64": {
-      "name": "_todo_040",
-      "type": "int",
-      "source": "binary_scan:1refs"
     },
     "136": {
       "name": "_todo_088",
