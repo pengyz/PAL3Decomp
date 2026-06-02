@@ -48,7 +48,7 @@
       "source": "pdb"
     },
     "0x004590D0": {
-      "name": "UISceneFrm::ctor__ovl_90D0",
+      "name": "UISceneFrm::ctor",
       "signature": "int __thiscall(UISceneFrm *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -58,26 +58,33 @@
       "signature": "void __thiscall(UISceneFrm *this)"
     },
     "0x0045A4F0": {
-      "name": "UISceneFrm::HandleSceneTransition",
-      "signature": "int __thiscall UISceneFrm::HandleSceneTransition(UISceneFrm *this, struct PalScript *p, int nVal)"
+      "name": "UISceneFrm::fill_2",
+      "signature": "void __thiscall(UISceneFrm *this, RoleTask *a1, RoleTask *a2, RoleTask *a3)",
+      "ordinal": 2,
+      "source": "manual_fix_vtable+canonical_rename"
     },
     "0x00459240": {
       "name": "UISceneFrm::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x00459360": {
       "name": "UISceneFrm::Destroy",
-      "signature": "void __thiscall(UISceneFrm *this)"
+      "signature": "void __thiscall(UISceneFrm *this)",
+      "ordinal": 3
     },
     "0x0045A600": {
-      "name": "UISceneFrm::OnMessage",
-      "signature": "int __thiscall(UISceneFrm *this, int nVal, int nVal2, int nVal3)"
+      "name": "UISceneFrm::_Construct_2",
+      "signature": "void __thiscall(UISceneFrm *this, RoleTaskLine *a1, RoleTaskLine *a2)",
+      "ordinal": 6,
+      "source": "manual_fix_vtable+canonical_rename"
     },
     "0x0045A490": {
       "name": "UISceneFrm::Render",
-      "signature": "int __thiscall(UISceneFrm *this)"
+      "signature": "int __thiscall(UISceneFrm *this)",
+      "ordinal": 1
     },
     "0x004BB330": {
       "name": "UISceneFrm::InitGraph_Base",
@@ -132,5 +139,41 @@
       "name": "UISceneFrm::InitTemplateStrings",
       "signature": "LPSTR __thiscall UISceneFrm::InitTemplateStrings(UISceneFrm *this)"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B394",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0045A490",
+          "from": null
+        },
+        {
+          "addr": "0x0045A4F0",
+          "from": null
+        },
+        {
+          "addr": "0x00459360",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00459240",
+          "from": null
+        },
+        {
+          "addr": "0x0045A600",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

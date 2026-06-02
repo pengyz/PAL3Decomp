@@ -477,7 +477,8 @@
     },
     "0x0041CBD0": {
       "name": "CameraCtrl::IsAngleBelowTarget",
-      "signature": "BOOL __thiscall(CameraCtrl *this)"
+      "signature": "BOOL __thiscall(CameraCtrl *this)",
+      "ordinal": 1
     },
     "0x00504510": {
       "name": "CameraCtrl::InitFromConfig",
@@ -493,7 +494,8 @@
     },
     "0x0041CC50": {
       "name": "CameraCtrl::UpdateTransition",
-      "signature": "int __thiscall CameraCtrl::UpdateTransition(CameraCtrl *this, float fDelta)"
+      "signature": "int __thiscall CameraCtrl::UpdateTransition(CameraCtrl *this, float fDelta)",
+      "ordinal": 2
     },
     "0x0041CFC0": {
       "name": "CameraCtrl::SetupDirect",
@@ -599,6 +601,32 @@
     "0x0041EF30": {
       "name": "CameraCtrl::InitPathState",
       "signature": "int __cdecl CameraCtrl::InitPathState()"
+    },
+    "0x0041CBA0": {
+      "name": "CameraCtrl::sub_0041CBA0",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 0
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AA90",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0041CBA0",
+          "from": null
+        },
+        {
+          "addr": "0x0041CBD0",
+          "from": null
+        },
+        {
+          "addr": "0x0041CC50",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

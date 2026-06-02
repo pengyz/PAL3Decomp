@@ -628,7 +628,7 @@
       "source": "pdb"
     },
     "0x004909F0": {
-      "name": "MainPropUI::~MainPropUI__ovl_09f0",
+      "name": "MainPropUI::~MainPropUI",
       "signature": "int __thiscall MainPropUI::~MainPropUI(MainPropUI *this)",
       "_misattrib_evidence": "max_offset=219676>class_size=10248"
     },
@@ -645,7 +645,7 @@
       "_misattrib_evidence": "max_offset=249476>class_size=200"
     },
     "0x004912D0": {
-      "name": "MainPropUI::~MainPropUI__ovl_12d0",
+      "name": "MainPropUI::~MainPropUI",
       "signature": "void __thiscall(MainPropUI *this)",
       "_misattrib_evidence": "max_offset=219676>class_size=10248",
       "type": "skip",
@@ -750,5 +750,41 @@
       "name": "MainPropUI::LoadRoleData",
       "signature": "int __thiscall MainPropUI::LoadRoleData(MainPropUI *this)"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056D618",
+      "base": "UIBigMap",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00496FA0",
+          "from": "UIBigMap"
+        },
+        {
+          "addr": "0x004971E0",
+          "from": "UIBigMap"
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": "UIBigMap"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00490E70",
+          "from": "UIBigMap"
+        },
+        {
+          "addr": "0x004974A0",
+          "from": "_misattrib_UIBigMap"
+        }
+      ]
+    }
+  ]
 }

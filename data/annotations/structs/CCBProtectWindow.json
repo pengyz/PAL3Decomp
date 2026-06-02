@@ -110,7 +110,8 @@
     },
     "0x00518E30": {
       "name": "CCBProtectWindow::ShowAndNotify",
-      "signature": "BOOL __thiscall(CCBProtectWindow *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(CCBProtectWindow *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x00449BE0": {
       "name": "CCBProtectWindow::ValidateSlot",
@@ -120,5 +121,41 @@
       "name": "CCBProtectWindow::OnMessage",
       "signature": "int __thiscall(CCBProtectWindow *this, int nVal, int nVal2, int nVal3)"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x005704A8",
+      "base": "CCBUI",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00518E30",
+          "from": null
+        },
+        {
+          "addr": "0x005164D0",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00516100",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x0043D7A0",
+          "from": "CCBUI"
+        }
+      ]
+    }
+  ]
 }

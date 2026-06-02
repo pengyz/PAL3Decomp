@@ -57,17 +57,68 @@
     },
     "0x0044B0F0": {
       "name": "UITitle::RunFrame",
-      "signature": "int __thiscall UITitle::RunFrame(UITitle *this, struct PalScript *p, int nVal)"
+      "signature": "int __thiscall UITitle::RunFrame(UITitle *this, struct PalScript *p, int nVal)",
+      "ordinal": 2
     },
     "0x0044ACC0": {
       "name": "UITitle::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x0044B710": {
       "name": "UITitle::OnCommand",
-      "signature": "int __thiscall UITitle::OnCommand(UITitle *this, int nVal, char *pszBuf, int nVal2)"
+      "signature": "int __thiscall UITitle::OnCommand(UITitle *this, int nVal, char *pszBuf, int nVal2)",
+      "ordinal": 6
+    },
+    "0x0044B460": {
+      "name": "UITitle::vfunc_1",
+      "signature": "int __thiscall(UIWnd *this)",
+      "source": "vtable_migrated",
+      "ordinal": 1
+    },
+    "0x004A14C0": {
+      "name": "UITitle::vfunc_3",
+      "signature": "void __thiscall(UIWnd *this)",
+      "source": "vtable_migrated",
+      "ordinal": 3
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AFD4",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0044B460",
+          "from": null
+        },
+        {
+          "addr": "0x0044B0F0",
+          "from": null
+        },
+        {
+          "addr": "0x004A14C0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0044ACC0",
+          "from": null
+        },
+        {
+          "addr": "0x0044B710",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

@@ -113,13 +113,15 @@
     },
     "0x0051A930": {
       "name": "CCBItemWindow::OnMessage",
-      "signature": "int __thiscall(CCBUI *this, int nVal, unsigned int dwVal, int nVal2)"
+      "signature": "int __thiscall(CCBUI *this, int nVal, unsigned int dwVal, int nVal2)",
+      "ordinal": 6
     },
     "0x0051B160": {
       "name": "CCBItemWindow::_scalar_dtor",
       "signature": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 19
     },
     "0x0051B1D0": {
       "name": "CCBItemWindow::Reset",
@@ -133,15 +135,18 @@
     },
     "0x0051B4B0": {
       "name": "CCBItemWindow::Destroy",
-      "signature": "int __thiscall(CCBItemWindow *this)"
+      "signature": "int __thiscall(CCBItemWindow *this)",
+      "ordinal": 17
     },
     "0x0051B570": {
       "name": "CCBItemWindow::HandleInput",
-      "signature": "BOOL __thiscall(CCBItemWindow *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(CCBItemWindow *this, int nVal, int nVal2)",
+      "ordinal": 16
     },
     "0x0051B5D0": {
       "name": "CCBItemWindow::ShowDescriptionPage",
-      "signature": "int __thiscall CCBItemWindow::ShowDescriptionPage(CCBItemWindow *this, int msg)"
+      "signature": "int __thiscall CCBItemWindow::ShowDescriptionPage(CCBItemWindow *this, int msg)",
+      "ordinal": 14
     },
     "0x0051B620": {
       "name": "CCBItemWindow::Update",
@@ -158,6 +163,140 @@
     "0x00450650": {
       "name": "CCBItemWindow::SetItemName",
       "signature": "char *__thiscall CCBItemWindow::SetItemName(CCBItemWindow *this, char *pszName)"
+    },
+    "0x0051A390": {
+      "name": "CCBItemWindow::?DoTask@CCBUI@@AAEXXZ",
+      "signature": "void __thiscall(CCBUI *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 5
+    },
+    "0x0043DDF0": {
+      "name": "CCBItemWindow::?SetScroll@UIListBox@@QAEXPBDAAUtagRECT@@HH_N@Z",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_migrated",
+      "ordinal": 8
+    },
+    "0x0051B0B0": {
+      "name": "CCBItemWindow::?MoveButtons@CCBControlWindow@@QAEXXZ",
+      "signature": "void __thiscall(CCBControlWindow *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 9
+    },
+    "0x0051AFE0": {
+      "name": "CCBItemWindow::?Update@CCBControlWindow@@UAEHMH@Z",
+      "signature": "int __thiscall(CCBControlWindow *__hidden this, float, int)",
+      "source": "vtable_migrated",
+      "ordinal": 10
+    },
+    "0x0051AC90": {
+      "name": "CCBItemWindow::?HandleEnable@CCBControlWindow@@IAEXHH@Z",
+      "signature": "void __thiscall(CCBControlWindow *__hidden this, char a2, int)",
+      "source": "vtable_migrated",
+      "ordinal": 12
+    },
+    "0x0051B030": {
+      "name": "CCBItemWindow::sub_51B030",
+      "signature": "int __stdcall(int, int a2, int a3)",
+      "source": "vtable_migrated",
+      "ordinal": 13
+    },
+    "0x0051C9B0": {
+      "name": "CCBItemWindow::?OnMessage@CCBSkillWindow@@MAEHIKK@Z",
+      "signature": "int __thiscall(CCBSkillWindow *__hidden this, unsigned int, unsigned int a2, unsigned int)",
+      "source": "vtable_migrated",
+      "ordinal": 20
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x00570500",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x0051AB00",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x0051A880",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051A390",
+          "from": null
+        },
+        {
+          "addr": "0x0051A930",
+          "from": null
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051B0B0",
+          "from": null
+        },
+        {
+          "addr": "0x0051AFE0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051AC90",
+          "from": null
+        },
+        {
+          "addr": "0x0051B030",
+          "from": null
+        },
+        {
+          "addr": "0x0051B5D0",
+          "from": null
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051B570",
+          "from": null
+        },
+        {
+          "addr": "0x0051B4B0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051B160",
+          "from": null
+        },
+        {
+          "addr": "0x0051C9B0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

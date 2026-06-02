@@ -6,7 +6,8 @@
       "name": "filebuf::_scalar_dtor",
       "signature": "gbFileStream * __thiscall(filebuf *this, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 0
     },
     "0x00438EB0": {
       "name": "filebuf::~filebuf",
@@ -14,7 +15,34 @@
     },
     "0x00438E30": {
       "name": "filebuf::AccumulateTime",
-      "signature": "int __thiscall(filebuf *this, float fVal)"
+      "signature": "int __thiscall(filebuf *this, float fVal)",
+      "ordinal": 2
+    },
+    "0x00438100": {
+      "name": "filebuf::sub_438100",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 1
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AC08",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00438E90",
+          "from": null
+        },
+        {
+          "addr": "0x00438100",
+          "from": null
+        },
+        {
+          "addr": "0x00438E30",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

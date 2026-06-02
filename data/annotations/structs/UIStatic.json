@@ -143,9 +143,9 @@
       "source": "pdb"
     },
     "0x004CC555": {
-      "name": "Render",
-      "signature": "virtual void ()",
-      "source": "pdb"
+      "name": "UIStatic::Render",
+      "signature": "void __thiscall(UIStatic *this)",
+      "source": "pdb+fix:sig_match_base"
     },
     "0x00550FD0": {
       "name": "SetAlign",
@@ -218,7 +218,8 @@
     },
     "0x00440BA0": {
       "name": "UIStatic::OnMessage",
-      "signature": "int __thiscall(UIStatic *this)"
+      "signature": "int __thiscall(UIStatic *this)",
+      "ordinal": 3
     },
     "0x004426B0": {
       "name": "UIStatic::CreateFromTemplate",
@@ -226,15 +227,17 @@
     },
     "0x00440DD0": {
       "name": "UIStatic::Update",
-      "signature": "BOOL __thiscall(UIStatic *this, float deltatime, int haveinput)"
+      "signature": "BOOL __thiscall(UIStatic *this, float deltatime, int haveinput)",
+      "ordinal": 2
     },
     "0x004422E0": {
       "name": "UIStatic::_UIStatic",
       "signature": "void __thiscall(UIStatic *this)"
     },
     "0x00440F30": {
-      "name": "UIStatic::Render__ovl_0f30",
-      "signature": "int __thiscall UIStatic::Render__ovl_0f30(UIStatic *this)"
+      "name": "UIStatic::Render",
+      "signature": "void __thiscall(UIStatic *this)",
+      "ordinal": 1
     },
     "0x00440740": {
       "name": "UIStatic::UIStatic",
@@ -250,7 +253,8 @@
     },
     "0x00440810": {
       "name": "UIStatic::CreateWithTextures",
-      "signature": "gbVFileSystem *__thiscall UIStatic::CreateWithTextures(UIStatic *this, int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)"
+      "signature": "gbVFileSystem *__thiscall UIStatic::CreateWithTextures(UIStatic *this, int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)",
+      "ordinal": 7
     },
     "0x00440960": {
       "name": "UIStatic::FormatText",
@@ -265,7 +269,7 @@
       "signature": "void __thiscall UIStatic::SetText(UIStatic *this)"
     },
     "0x00442D00": {
-      "name": "UIStatic::CtorWithFlag__ovl_2d00",
+      "name": "UIStatic::CtorWithFlag",
       "signature": "UIStatic *__thiscall(UIStatic *this)"
     },
     "0x00443380": {
@@ -295,6 +299,146 @@
     "0x004538D0": {
       "name": "UIStatic::IsHidden",
       "signature": "BOOL __thiscall UIStatic::IsHidden(UIStatic *this)"
+    },
+    "0x004407A0": {
+      "name": "UIStatic::_scalar_dtor",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 5
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AD88",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00440F30",
+          "from": null
+        },
+        {
+          "addr": "0x00440DD0",
+          "from": null
+        },
+        {
+          "addr": "0x00440BA0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004407A0",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00440810",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AE48",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004433D0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00442AD0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00442420",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004433A0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00443950",
+          "from": null
+        },
+        {
+          "addr": "0x00443970",
+          "from": null
+        },
+        {
+          "addr": "0x004438F0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00443530",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004435A0",
+          "from": null
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00444AD0",
+          "from": null
+        },
+        {
+          "addr": "0x00444D30",
+          "from": null
+        },
+        {
+          "addr": "0x00442420",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00444AA0",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ]
 }

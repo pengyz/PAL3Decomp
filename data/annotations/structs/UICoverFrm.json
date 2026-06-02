@@ -358,7 +358,7 @@
       "source": "pdb"
     },
     "0x0052BA10": {
-      "name": "UICoverFrm::ctor__ovl_BA10",
+      "name": "UICoverFrm::ctor",
       "signature": "int __thiscall(UICoverFrm *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -377,7 +377,8 @@
     },
     "0x0052C480": {
       "name": "UICoverFrm::UpdateStarAnimation",
-      "signature": "double __thiscall UICoverFrm::UpdateStarAnimation(UICoverFrm *this, int edi0, double result, int result_4, int nVal)"
+      "signature": "double __thiscall UICoverFrm::UpdateStarAnimation(UICoverFrm *this, int edi0, double result, int result_4, int nVal)",
+      "ordinal": 2
     },
     "0x0044FF20": {
       "name": "UICoverFrm::FindActiveSlot",
@@ -387,11 +388,13 @@
       "name": "UICoverFrm::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x0052C450": {
       "name": "UICoverFrm::Render",
-      "signature": "int __thiscall(UICoverFrm *this)"
+      "signature": "int __thiscall(UICoverFrm *this)",
+      "ordinal": 1
     },
     "0x0044C840": {
       "name": "UICoverFrm::SetDefaultValues",
@@ -411,7 +414,50 @@
     },
     "0x0052CA10": {
       "name": "UICoverFrm::OnMessage",
-      "signature": "int __thiscall UICoverFrm::OnMessage(UICoverFrm *this, int nVal, char *pszBuf, int nVal2)"
+      "signature": "int __thiscall UICoverFrm::OnMessage(UICoverFrm *this, int nVal, char *pszBuf, int nVal2)",
+      "ordinal": 6
+    },
+    "0x0043DE40": {
+      "name": "UICoverFrm::Destroy",
+      "signature": "void __thiscall(UIListBox *__hidden this, int)",
+      "source": "vtable_migrated",
+      "ordinal": 3
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x00570830",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0052C450",
+          "from": null
+        },
+        {
+          "addr": "0x0052C480",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0052BBB0",
+          "from": null
+        },
+        {
+          "addr": "0x0052CA10",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

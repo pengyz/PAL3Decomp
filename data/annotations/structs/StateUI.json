@@ -556,7 +556,7 @@
       "signature": "int __thiscall(StateUI *this)"
     },
     "0x00483380": {
-      "name": "StateUI::ctor__ovl_3380",
+      "name": "StateUI::ctor",
       "signature": "void __thiscall(StateUI *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -640,7 +640,8 @@
     },
     "0x00485DF0": {
       "name": "StateUI::OnRender",
-      "signature": "int __thiscall StateUI::OnRender(StateUI *this)"
+      "signature": "int __thiscall StateUI::OnRender(StateUI *this)",
+      "ordinal": 6
     },
     "0x0048A310": {
       "name": "StateUI::SelectSubTab1",
@@ -687,5 +688,41 @@
       "signature": "int __thiscall(StateUI *this)",
       "class": "StateUI"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056BA30",
+      "base": "CScreenMode",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004850E0",
+          "from": "CScreenMode"
+        },
+        {
+          "addr": "0x00485230",
+          "from": "CScreenMode"
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": "CScreenMode"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00483260",
+          "from": "CScreenMode"
+        },
+        {
+          "addr": "0x00485DF0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

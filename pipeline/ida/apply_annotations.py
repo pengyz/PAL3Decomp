@@ -154,12 +154,12 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
         return size if size > 0 else current_offset
 
     # 查找此类的 vtable（只处理无基类的，有基类时 vtable 由基类定义）
+    # 新 schema: vtable 信息内嵌在 struct_info['vtables']
     virtual_methods = None
-    if not base_class:
-        for vt_name, vt_info in vtables.items():
-            if vt_info.get("class") == name:
-                virtual_methods = vt_info.get("methods", [])
-                break
+    own_vtable_addr = None
+    if not base_class and struct_info and struct_info.get("vtables"):
+        own_vtable_addr = struct_info["vtables"][0].get("addr", "")
+        virtual_methods = struct_info["vtables"][0].get("slots", [])
 
     lines = []
     cursor = base_size
@@ -173,12 +173,8 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
 
         # vfptr: 用 vtbl struct 指针（IDA 反编译输出最优）
         if offset == 0 and mname == "vfptr" and virtual_methods:
-            vt_struct_name = None
-            for vt_name, vt_info in vtables.items():
-                if vt_info.get("class") == name:
-                    vt_struct_name = "vtbl_%s" % vt_info["address"][2:]
-                    break
-            if vt_struct_name:
+            if own_vtable_addr:
+                vt_struct_name = "vtbl_%s" % own_vtable_addr[2:]
                 lines.append("    %s *__vftable;" % vt_struct_name)
             else:
                 lines.append("    int vfptr;")
@@ -266,20 +262,20 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
     if size > 0 and cursor < size:
         lines.append("    char _tail_%03X[%d];" % (cursor, size - cursor))
 
+    def _base_has_vtable(bc):
+        return bool(bc and all_structs and all_structs.get(bc, {}).get("vtables"))
+
     if not lines:
         if size > 0:
             inherit = " : public %s" % base_class if base_class else ""
             data_size = size - base_size if base_class else size
-            has_vt = base_class and any(vt_info.get("class") == base_class for vt_info in vtables.values())
-            cpp = " __cppobj" if has_vt else ""
+            cpp = " __cppobj" if _base_has_vtable(base_class) else ""
             return "struct%s %s%s { char _data[%d]; };" % (cpp, name, inherit, data_size)
         return None
 
     inherit = " : public %s" % base_class if base_class else ""
     # Mark as __cppobj if class has a vtable (enables Hex-Rays virtual call resolution)
-    has_vtable = any("__vftable" in l for l in lines) or (base_class and any(
-        vt_info.get("class") == base_class for vt_info in vtables.values()
-    ))
+    has_vtable = any("__vftable" in l for l in lines) or _base_has_vtable(base_class)
     cppobj = " __cppobj" if has_vtable else ""
     # Only use pack(1) for structs explicitly marked (file format headers, etc.)
     pack = struct_info.get("pack")
@@ -529,48 +525,37 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     if not result_tinfo.create_udt(udt, udt_flag):
         return (False, "TAUDT_FIXED create_udt() returned False for %s" % name)
 
-    # Add virtual function declarations from vtables.json
     method_udms = ida_typeinf.udtmembervec_t()
     struct_methods = struct_info.get('methods', {}) if struct_info else {}
-    for vtbl_name, vtbl_info in vtables.items():
-        if vtbl_info.get('class') == name:
-            for vm in vtbl_info.get('methods', []):
-                vm_name_full = vm.get('name', '')
-                if '::' not in vm_name_full:
-                    continue
-                vm_short = vm_name_full.split('::')[-1]
-                vm_addr = vm.get('address', '')
-                # Find matching annotation method entry to get signature
-                ann_method = struct_methods.get(vm_addr, {})
-                ann_sig = ann_method.get('signature', '')
-                if not ann_sig:
-                    # Try matching by name
-                    for a_addr, a_info in struct_methods.items():
-                        if a_info.get('name', '').endswith('::' + vm_short):
-                            ann_sig = a_info.get('signature', '')
-                            break
-                if not ann_sig:
-                    continue
-                # Build declaration: "virtual ret_type calling_conv MethodName(params)"
-                if '(' in ann_sig:
-                    before = ann_sig[:ann_sig.index('(')]
-                    after = ann_sig[ann_sig.index('('):]
-                    if '__thiscall' in ann_sig:
-                        decl = "virtual %s %s%s" % (before, vm_short, after)
-                    else:
-                        decl = "virtual %s %s%s" % (before, vm_short, after)
+    vt_slots = resolve_vtable_slots(struct_info, struct_methods)
+    if vt_slots:
+        total = sum(len(slots) for _, slots in vt_slots)
+        log("  [vtable] %s: %d table(s), %d slots" % (name, len(vt_slots), total))
+    seen_vm = set()
+    for _vt_addr, slots in vt_slots:
+        for _slot_addr, vm_short, ann_sig, _from in slots:
+            if not vm_short or vm_short in seen_vm or not ann_sig:
+                continue
+            seen_vm.add(vm_short)
+            if '(' in ann_sig:
+                open_paren = ann_sig.index('(')
+                sig_prefix = _re.sub(r'\w+::\w+', '', ann_sig[:open_paren]).strip()
+                sig_params = ann_sig[open_paren:]
+                decl = "virtual %s %s %s" % (sig_prefix, vm_short, sig_params)
+            else:
+                decl = "virtual void %s()" % vm_short
+            try:
+                mtif = ida_typeinf.tinfo_t()
+                if ida_typeinf.parse_decl(mtif, til, decl + ";", 0):
+                    mudm = ida_typeinf.udm_t()
+                    mudm.name = vm_short
+                    mudm.type = mtif
+                    mudm.set_method(True)
+                    method_udms.push_back(mudm)
                 else:
-                    decl = "virtual void %s()" % vm_short
-                try:
-                    mtif = ida_typeinf.tinfo_t()
-                    if ida_typeinf.parse_decl(mtif, til, decl + ";", 0):
-                        mudm = ida_typeinf.udm_t()
-                        mudm.name = vm_short
-                        mudm.type = mtif
-                        mudm.set_method(True)
-                        method_udms.push_back(mudm)
-                except:
-                    pass
+                    log("  [!] parse_decl FAILED for %s: '%s;'" % (vm_short, decl))
+            except Exception as _e:
+                log("  [!] parse_decl EXCEPTION for %s: %s (decl='%s;')" % (vm_short, _e, decl))
     if len(method_udms) > 0:
         result_tinfo.set_methods(method_udms)
 
@@ -611,8 +596,6 @@ def load_annotations():
         for addr, minfo in sdata.get("methods", {}).items():
             if addr not in functions:
                 functions[addr] = minfo
-    with open(os.path.join(ANNOTATIONS_DIR, "vtables.json"), "r", encoding="utf-8") as f:
-        vtables = json.load(f)
     enums = {}
     enums_path = os.path.join(ANNOTATIONS_DIR, "enums.json")
     if os.path.exists(enums_path):
@@ -623,8 +606,28 @@ def load_annotations():
         "globals": globals_data,
         "structs": structs,
         "enums": enums,
-        "vtables": vtables,
     }
+
+
+def resolve_vtable_slots(struct_info, functions):
+    """从 per-class vtables 重建有序 slot 列表。
+
+    返回 list of (vtable_addr, slots) — slots 是有序 list of
+    (slot_addr, short_name, signature, from_class)。
+    name/signature 按地址从该类 methods -> functions 解析 (Trust by address)。
+    """
+    methods = struct_info.get("methods", {}) if struct_info else {}
+    out = []
+    for vt in struct_info.get("vtables", []) if struct_info else []:
+        slots = []
+        for slot in vt.get("slots", []):
+            addr = slot.get("addr", "")
+            entry = methods.get(addr) or functions.get(addr) or {}
+            raw_name = entry.get("name", "")
+            short = raw_name.split("::")[-1] if "::" in raw_name else raw_name
+            slots.append((addr, short, entry.get("signature", ""), slot.get("from")))
+        out.append((vt.get("addr", ""), slots))
+    return out
 
 
 def import_gbengine_types():
@@ -969,32 +972,24 @@ def apply_annotations():
             done.add(sname)
     ordered.extend(remaining.items())
 
-    vtables = data.get("vtables", {})
     functions = data.get("functions", {})
 
-    # Pre-create vtable structs so class structs can reference them
+    # Aggregate per-class vtables into (struct_name, ordered_slots) jobs.
+    vtable_jobs = []
+    for sname, sinfo in structs.items():
+        for vt_addr, slots in resolve_vtable_slots(sinfo, functions):
+            if vt_addr and slots:
+                vtable_jobs.append((vt_addr, slots))
+
     import re as _re3
     vt_pre = 0
-    for vt_name, vt_info in vtables.items():
-        methods = vt_info.get("methods", [])
-        if not methods:
-            continue
-        struct_name = "vtbl_%s" % vt_info["address"][2:]
+    for vt_addr, slots in vtable_jobs:
+        struct_name = "vtbl_%s" % vt_addr[2:]
         lines = []
         seen_names = set()
-        for i, m in enumerate(methods):
-            sig = m.get("signature", "")
-            mname = m.get("name", "")
-            # Look up signature from functions.json if not in vtable method
-            if not sig and m.get("address"):
-                func_entry = functions.get(m["address"], {})
-                sig = func_entry.get("signature", "")
-            short = "method_%d" % i
-            if "::" in mname:
-                short = mname.split("::")[-1]
-                short = _re3.sub(r'[^a-zA-Z0-9_]', '_', short)
-            elif mname.startswith("sub_"):
-                short = mname
+        for i, (slot_addr, short_name, sig, _from) in enumerate(slots):
+            short = short_name or ("method_%d" % i)
+            short = _re3.sub(r'[^a-zA-Z0-9_]', '_', short) if short else ("method_%d" % i)
             if short in seen_names:
                 short = "%s_%d" % (short, i)
             seen_names.add(short)
@@ -1040,7 +1035,7 @@ def apply_annotations():
                 vt_pre += 1
         except Exception as e:
             pass
-    log("[3a] Vtable structs pre-created: %d/%d" % (vt_pre, len(vtables)))
+    log("[3a] Vtable structs pre-created: %d/%d" % (vt_pre, len(vtable_jobs)))
     log("[3a] Starting TAUDT_FIXED struct import...")
 
     # --- TAUDT_FIXED struct import: precise offsets from annotation ---
@@ -1053,7 +1048,7 @@ def apply_annotations():
     # 导入所有 struct（annotation 自包含，只需处理依赖顺序）
     for sname, sinfo in ordered:
         try:
-            ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
+            ok, err = create_fixed_struct(sname, sinfo, structs, {}, til)
             if ok:
                 s_ok += 1
             else:
@@ -1066,7 +1061,7 @@ def apply_annotations():
         still_fail = []
         for sname, sinfo, prev_err in s_fail:
             try:
-                ok, err = create_fixed_struct(sname, sinfo, structs, vtables, til)
+                ok, err = create_fixed_struct(sname, sinfo, structs, {}, til)
                 if ok:
                     s_ok += 1
                 else:
@@ -1138,16 +1133,14 @@ def apply_annotations():
 
     # --- 5. Vtable .rdata typing ---
     vt_applied = 0
-    for vt_name, vt_info in vtables.items():
-        methods = vt_info.get("methods", [])
-        if not methods:
+    for vt_addr_hex, slots in vtable_jobs:
+        if not slots:
             continue
-        vt_addr = int(vt_info["address"], 16)
-        struct_name = "vtbl_%s" % vt_info["address"][2:]
-        if idc.SetType(vt_addr, "%s x;" % struct_name):
+        struct_name = "vtbl_%s" % vt_addr_hex[2:]
+        if idc.SetType(int(vt_addr_hex, 16), "%s x;" % struct_name):
             vt_applied += 1
 
-    log("[5] Vtable .rdata typed: %d/%d" % (vt_applied, len(vtables)))
+    log("[5] Vtable .rdata typed: %d/%d" % (vt_applied, len(vtable_jobs)))
 
     # Wait for type system to settle before applying signatures
     ida_auto.auto_wait()

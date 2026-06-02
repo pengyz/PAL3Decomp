@@ -290,7 +290,8 @@
     },
     "0x004C9610": {
       "name": "CEffGrid::CEffGrid",
-      "signature": "void __thiscall(CEffGrid *this)"
+      "signature": "void __thiscall(CEffGrid *this)",
+      "ordinal": 7
     },
     "0x004C9650": {
       "name": "CEffGrid::~CEffGrid",
@@ -298,15 +299,128 @@
     },
     "0x004C98F0": {
       "name": "CEffGrid::Create",
-      "signature": "char __thiscall(CEffGrid *this, tagEffObjType *pType)"
+      "signature": "char __thiscall(CEffGrid *this, tagEffObjType *pType)",
+      "ordinal": 1
     },
     "0x004CA9A0": {
       "name": "CEffGrid::GetEditorObjDescription",
-      "signature": "const char *__thiscall(CEffGrid *this, int nIndex)"
+      "signature": "const char *__thiscall(CEffGrid *this, int nIndex)",
+      "ordinal": 14
     },
     "0x004C9750": {
       "name": "CEffGrid::Init",
-      "signature": "int __thiscall CEffGrid::Init(CEffGrid *this, float *pfVal, float fVal, float fVal2, float fVal3)"
+      "signature": "int __thiscall CEffGrid::Init(CEffGrid *this, float *pfVal, float fVal, float fVal2, float fVal3)",
+      "ordinal": 2
+    },
+    "0x004C9630": {
+      "name": "CEffGrid::slot_0",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 0
+    },
+    "0x004C9ED0": {
+      "name": "CEffGrid::slot_5",
+      "signature": "int __stdcall(int a2)",
+      "source": "vtable_migrated",
+      "ordinal": 5
+    },
+    "0x004C9CA0": {
+      "name": "CEffGrid::slot_6",
+      "signature": "int __cdecl(int, int)",
+      "source": "vtable_migrated",
+      "ordinal": 6
+    },
+    "0x004C0500": {
+      "name": "CEffGrid::sub_4C0500",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 8
+    },
+    "0x004CAAB0": {
+      "name": "CEffGrid::sub_4CAAB0",
+      "signature": "int __stdcall(int)",
+      "source": "vtable_migrated",
+      "ordinal": 10
+    },
+    "0x004CA1D0": {
+      "name": "CEffGrid::sub_4CA1D0",
+      "signature": "int __stdcall(int)",
+      "source": "vtable_migrated",
+      "ordinal": 12
+    },
+    "0x004C15D0": {
+      "name": "CEffSParticle::sub_4C15D0",
+      "signature": "void __thiscall(CEffSParticle *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 13
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F920",
+      "base": "CEffAction",
+      "slots": [
+        {
+          "addr": "0x004C9630",
+          "from": null
+        },
+        {
+          "addr": "0x004C98F0",
+          "from": null
+        },
+        {
+          "addr": "0x004C9750",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004C9ED0",
+          "from": null
+        },
+        {
+          "addr": "0x004C9CA0",
+          "from": null
+        },
+        {
+          "addr": "0x004C9610",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004CAAB0",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004CA1D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004CA9A0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

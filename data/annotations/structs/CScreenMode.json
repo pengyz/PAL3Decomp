@@ -446,7 +446,8 @@
   "methods": {
     "0x0043DE40": {
       "name": "CScreenMode::Destroy",
-      "signature": "void __thiscall(CScreenMode *this)"
+      "signature": "void __thiscall(CScreenMode *this)",
+      "ordinal": 3
     },
     "0x0053C5A0": {
       "name": "CScreenMode::PlayVideo",
@@ -568,11 +569,14 @@
       "name": "CScreenMode::_scalar_dtor_4110",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5,
+      "source": "+canonical_rename"
     },
     "0x00524980": {
       "name": "CScreenMode::ForwardMessage",
-      "signature": "int __thiscall(CScreenMode *this, int nVal, int nVal2)"
+      "signature": "int __thiscall(CScreenMode *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x0052ED30": {
       "name": "CScreenMode::InitEndScreen",
@@ -612,7 +616,8 @@
     },
     "0x005249A0": {
       "name": "CScreenMode::OnRenderAlt",
-      "signature": "int __thiscall CScreenMode::OnRenderAlt(CScreenMode *this)"
+      "signature": "int __thiscall CScreenMode::OnRenderAlt(CScreenMode *this)",
+      "ordinal": 6
     },
     "0x00527F50": {
       "name": "CScreenMode::InitSceneAudio",
@@ -707,8 +712,50 @@
       "signature": "CScreenMode *__cdecl CScreenMode::GetInstance()"
     },
     "0x00483260": {
-      "name": "CScreenMode::_scalar_dtor__ovl_3260",
+      "name": "CScreenMode::_scalar_dtor",
       "signature": "StateUI *__thiscall(StateUI *Block, char a2)"
+    },
+    "0x00524970": {
+      "name": "CScreenMode::vfunc_1",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_migrated",
+      "ordinal": 1
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x00570630",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00524970",
+          "from": null
+        },
+        {
+          "addr": "0x00524980",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00524110",
+          "from": null
+        },
+        {
+          "addr": "0x005249A0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

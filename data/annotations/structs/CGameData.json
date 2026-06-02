@@ -369,8 +369,8 @@
     },
     "652": {
       "name": "_field_028C",
-      "type": "int",
-      "source": "A:dword_load_byte_tag_actually_dword|binary:gamedata_gap"
+      "type": "char",
+      "source": "manual_fix:shrink_to_gap"
     },
     "653": {
       "name": "_field_028D",
@@ -614,7 +614,8 @@
     },
     "0x0044F5B0": {
       "name": "CGameData::ProcessDialog",
-      "signature": "int __thiscall CGameData::ProcessDialog(CGameData *this)"
+      "signature": "int __thiscall CGameData::ProcessDialog(CGameData *this)",
+      "ordinal": 1
     },
     "0x0044F8A0": {
       "name": "CGameData::SetMode",
@@ -622,14 +623,15 @@
     },
     "0x0044F430": {
       "name": "CGameData::Cleanup",
-      "signature": "void __thiscall CGameData::Cleanup(CGameData *this)"
+      "signature": "void __thiscall CGameData::Cleanup(CGameData *this)",
+      "ordinal": 3
     },
     "0x0044F610": {
       "name": "CGameData::Load",
       "signature": "int __thiscall(CGameData *this, CUtil *pUtil)"
     },
     "0x0044F050": {
-      "name": "CGameData::ctor__ovl_F050",
+      "name": "CGameData::ctor",
       "signature": "void __thiscall(CGameData *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -642,11 +644,54 @@
       "name": "CGameData::_scalar_dtor",
       "signature": "void __thiscall CGameData::_scalar_dtor(CGameData *this)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x00445A60": {
       "name": "CGameData::SetDefaultColors",
       "signature": "char __thiscall(CGameData *this)"
+    },
+    "0x0044F4C0": {
+      "name": "CGameData::SceneUpdate",
+      "signature": "int __thiscall(int this, int nVal, int nVal2)",
+      "source": "vtable_migrated",
+      "ordinal": 2
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B094",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0044F5B0",
+          "from": null
+        },
+        {
+          "addr": "0x0044F4C0",
+          "from": null
+        },
+        {
+          "addr": "0x0044F430",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0044F030",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ]
 }

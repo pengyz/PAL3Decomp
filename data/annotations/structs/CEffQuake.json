@@ -90,7 +90,8 @@
     },
     "0x004D32C0": {
       "name": "CEffQuake::Destroy",
-      "signature": "int *__thiscall(CEffQuake *this)"
+      "signature": "int *__thiscall(CEffQuake *this)",
+      "ordinal": 7
     },
     "0x004D3300": {
       "name": "CEffQuake::Update",
@@ -99,6 +100,116 @@
     "0x004D3860": {
       "name": "CEffQuake::_sdtor",
       "signature": "CEffQuake *__thiscall(CEffQuake *this, char pData)"
+    },
+    "0x004D32E0": {
+      "name": "CEffQuake::slot_0",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 0
+    },
+    "0x004D33A0": {
+      "name": "CEffQuake::slot_2",
+      "signature": "int __stdcall(int, int, int, int)",
+      "source": "vtable_migrated",
+      "ordinal": 2
+    },
+    "0x004C0500": {
+      "name": "CEffQuake::sub_4C0500",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 8
+    },
+    "0x004C0510": {
+      "name": "CEffSParticle::sub_4C0510",
+      "signature": "void __thiscall(CEffSParticle *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 10
+    },
+    "0x004D33B0": {
+      "name": "CEffQuake::sub_4D33B0",
+      "signature": "int __stdcall(int)",
+      "source": "vtable_migrated",
+      "ordinal": 12
+    },
+    "0x004C15D0": {
+      "name": "CEffSParticle::sub_4C15D0",
+      "signature": "void __thiscall(CEffSParticle *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 13
+    },
+    "0x004D3660": {
+      "name": "CEffQuake::sub_4D3660",
+      "signature": "int __stdcall(int)",
+      "source": "vtable_migrated",
+      "ordinal": 14
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056FA88",
+      "base": "CEffAction",
+      "slots": [
+        {
+          "addr": "0x004D32E0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0650",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004D33A0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004C29A0",
+          "from": "CEffAudio"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004D32C0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004D33B0",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004D3660",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

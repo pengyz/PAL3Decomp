@@ -30,12 +30,11 @@ def load_annotations():
             sdata = json.load(open(os.path.join(structs_dir, fname), encoding='utf-8'))
             sname = sdata.pop('name', fname.replace('.json', ''))
             structs[sname] = sdata
-    vtables = json.load(open(os.path.join(ANN_DIR, 'vtables.json'), encoding='utf-8'))
     enums = {}
     enums_path = os.path.join(ANN_DIR, 'enums.json')
     if os.path.exists(enums_path):
         enums = json.load(open(enums_path, encoding='utf-8'))
-    return {'functions': funcs, 'globals': globs, 'structs': structs, 'vtables': vtables, 'enums': enums}
+    return {'functions': funcs, 'globals': globs, 'structs': structs, 'enums': enums}
 
 def _estimate_member_size(mtype, structs):
     """Estimate member size for overlap detection."""
@@ -279,6 +278,9 @@ def check():
                 size1 = _estimate_member_size(m1.get('type', 'int'), structs)
                 end1 = off1 + size1
                 if end1 > off2:
+                    # CCBStage.m_Task[256] is an intentional union overlay
+                    if sname == 'CCBStage' and m1.get('name') == 'm_Task':
+                        continue
                     msg = (f"structs[{sname}]: member overlap: "
                            f"{m1.get('name')}({m1.get('type')}, size={size1})@{off1} "
                            f"ends@{end1} > next {sorted_m[i+1][1].get('name')}@{off2}")

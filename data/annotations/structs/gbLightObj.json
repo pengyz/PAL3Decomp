@@ -99,11 +99,57 @@
   "methods": {
     "0x0042C6A0": {
       "name": "gbLightObj::GetAABBox",
-      "signature": "void __thiscall(gbLightObj *this, struct gbAABBox *p)"
+      "signature": "void __thiscall(gbLightObj *this, struct gbAABBox *p)",
+      "ordinal": 0
     },
     "0x0042BEE0": {
       "name": "gbLightObj::IsIdle",
-      "signature": "BOOL __thiscall gbLightObj::IsIdle(gbLightObj *this)"
+      "signature": "BOOL __thiscall gbLightObj::IsIdle(gbLightObj *this)",
+      "ordinal": 4
+    },
+    "0x0042C6E0": {
+      "name": "gbLightObj::GetGfxManager_4",
+      "signature": "gbGfxManager *__cdecl()",
+      "source": "vtable_migrated",
+      "ordinal": 1
+    },
+    "0x0042C8D0": {
+      "name": "gbLightObj::GetCGEntry",
+      "signature": "int __stdcall(char)",
+      "source": "vtable_migrated+pdb_correct",
+      "ordinal": 2
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AB28",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0042C6A0",
+          "from": null
+        },
+        {
+          "addr": "0x0042C6E0",
+          "from": null
+        },
+        {
+          "addr": "0x0042C8D0",
+          "from": null
+        },
+        {
+          "addr": "0x00423860",
+          "from": null
+        },
+        {
+          "addr": "0x0042BEE0",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

@@ -171,7 +171,8 @@
     },
     "0x0051AC90": {
       "name": "CCBControlWindow::HandleEnable",
-      "signature": "UIWnd *__thiscall(CCBControlWindow *Block, char dir)"
+      "signature": "UIWnd *__thiscall(CCBControlWindow *Block, char dir)",
+      "ordinal": 5
     },
     "0x0051ACB0": {
       "name": "CCBControlWindow::~CCBControlWindow",
@@ -188,15 +189,117 @@
     },
     "0x0051AFE0": {
       "name": "CCBControlWindow::Destroy",
-      "signature": "void __thiscall(CCBControlWindow *this)"
+      "signature": "void __thiscall(CCBControlWindow *this)",
+      "ordinal": 3
     },
     "0x0051B0B0": {
       "name": "CCBControlWindow::MoveButtons",
-      "signature": "BOOL __thiscall(CCBControlWindow *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(CCBControlWindow *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x0051B110": {
       "name": "CCBControlWindow::CreateButton",
       "signature": "UIListBox * __thiscall(CCBControlWindow *this)"
+    },
+    "0x0043DDF0": {
+      "name": "CCBControlWindow::Render",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_migrated",
+      "ordinal": 1
+    },
+    "0x0051B030": {
+      "name": "CCBControlWindow::OnMessage",
+      "signature": "int __stdcall(int, int a2, int a3)",
+      "source": "vtable_migrated",
+      "ordinal": 6
+    },
+    "0x0051B5D0": {
+      "name": "CCBControlWindow::?OnMessage@CCBItemWindow@@MAEHIKK@Z",
+      "signature": "int __thiscall(CCBItemWindow *__hidden this, unsigned int a2, unsigned int, unsigned int)",
+      "source": "vtable_migrated",
+      "ordinal": 7
+    },
+    "0x0051B570": {
+      "name": "CCBControlWindow::?HandleInput@CCBItemWindow@@IAEXXZ",
+      "signature": "void __thiscall(CCBItemWindow *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 9
+    },
+    "0x0051B4B0": {
+      "name": "CCBControlWindow::?Destroy@CCBItemWindow@@UAEXXZ",
+      "signature": "void __thiscall(CCBItemWindow *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 10
+    },
+    "0x0051C9B0": {
+      "name": "CCBControlWindow::?OnMessage@CCBSkillWindow@@MAEHIKK@Z",
+      "signature": "int __thiscall(CCBSkillWindow *__hidden this, unsigned int, unsigned int a2, unsigned int)",
+      "source": "vtable_migrated",
+      "ordinal": 13
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0057051C",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051B0B0",
+          "from": null
+        },
+        {
+          "addr": "0x0051AFE0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051AC90",
+          "from": null
+        },
+        {
+          "addr": "0x0051B030",
+          "from": null
+        },
+        {
+          "addr": "0x0051B5D0",
+          "from": null
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051B570",
+          "from": null
+        },
+        {
+          "addr": "0x0051B4B0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051B160",
+          "from": null
+        },
+        {
+          "addr": "0x0051C9B0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

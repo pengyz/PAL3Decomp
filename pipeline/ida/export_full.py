@@ -152,6 +152,33 @@ def main():
             ann_funcs = _ann_json.load(open(funcs_file, encoding='utf-8'))
             log("[*] Loaded %d function annotations" % len(ann_funcs))
 
+        # Load per-class methods to detect virtual functions and build class attribution.
+        _virtual_addrs = set()    # int(addr) — appears in ANY vtable slot (own or inherited)
+        _addr_to_class = {}       # int(addr) -> class_name (own slots only)
+        _structs_dir = os.path.join(PROJECT_ROOT, "data", "annotations", "structs")
+        if os.path.isdir(_structs_dir):
+            import json as _sj, glob as _gl
+            for _sf in _gl.glob(os.path.join(_structs_dir, "*.json")):
+                _sd = _sj.load(open(_sf, encoding='utf-8'))
+                _sname = _sd.get('name', '')
+                for _addr, _minfo in _sd.get('methods', {}).items():
+                    if 'ordinal' in _minfo:
+                        _virtual_addrs.add(int(_addr, 16))
+                for _vt in _sd.get('vtables', []):
+                    for _slot in _vt.get('slots', []):
+                        _sa = _slot.get('addr', '')
+                        if _sa:
+                            _virtual_addrs.add(int(_sa, 16))
+                for _vt in _sd.get('vtables', []):
+                    for _slot in _vt.get('slots', []):
+                        _sa = _slot.get('addr', '')
+                        if _sa and _slot.get('from') is None:
+                            _key = int(_sa, 16)
+                            if _key not in _addr_to_class:
+                                _addr_to_class[_key] = _sname
+            log("[*] Loaded %d virtual methods, %d class-attributable addresses" % (
+                len(_virtual_addrs), len(_addr_to_class)))
+
         # Load skip list
         skip_addrs = set()
         skip_file = os.path.join(PROJECT_ROOT, "data", "annotations", "skip_functions.json")
@@ -260,8 +287,15 @@ def main():
                 code = resolve_orphan_ordinals(code)
                 sig = cfunc.type.dstr()
                 sig = resolve_orphan_ordinals(sig)
+                if ea in _virtual_addrs and not sig.startswith('virtual '):
+                    sig = 'virtual ' + sig
                 demangled = idc.demangle_name(name, idc.get_inf_attr(idc.INF_SHORT_DN))
                 display_name = demangled if demangled else name
+                # Expose missing class attribution: inject ClassName:: from vtable data.
+                # This triggers C2673 in .cpp bodies that call these as free functions —
+                # those are real bugs that need IDA-side re-annotation.
+                if '::' not in display_name and ea in _addr_to_class:
+                    display_name = '%s::%s' % (_addr_to_class[ea], display_name)
                 safe = display_name.replace('::', '_').replace('<', '_').replace('>', '_')
                 safe = safe.replace('*', '_').replace(' ', '_').replace('?', '_')
                 safe = safe.replace('@', '_').replace('$', '_').replace(',', '_')

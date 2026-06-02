@@ -153,17 +153,17 @@
       "source": "pdb"
     },
     "0x0043BE30": {
-      "name": "CCBResultWindow::~CCBResultWindow__ovl_be30",
+      "name": "CCBResultWindow::~CCBResultWindow",
       "signature": "void __thiscall CCBResultWindow::~CCBResultWindow(CCBResultWindow *this)"
     },
     "0x00519380": {
-      "name": "CCBResultWindow::~CCBResultWindow__ovl_9380",
+      "name": "CCBResultWindow::~CCBResultWindow",
       "signature": "void __thiscall(CCBResultWindow *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x00442E10": {
-      "name": "CCBResultWindow::ctor__ovl_2E10",
+      "name": "CCBResultWindow::ctor",
       "signature": "void __thiscall(CCBResultWindow *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -188,6 +188,262 @@
       "name": "CCBResultWindow::StartAnim",
       "signature": "int __thiscall CCBResultWindow::StartAnim(CCBResultWindow *this)",
       "class": "UIWnd"
+    },
+    "0x00519660": {
+      "name": "CCBResultWindow::?IsImbibeNimbusNotFinish@CCBUI@@QAE_NXZ",
+      "signature": "bool __thiscall(CCBUI *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 2
+    },
+    "0x00519360": {
+      "name": "CCBResultWindow::?ShowLineupWindow@CCBUI@@QAEX_N@Z",
+      "signature": "void __thiscall(CCBUI *__hidden this, bool a2)",
+      "source": "vtable_migrated",
+      "ordinal": 5
+    },
+    "0x0043DDF0": {
+      "name": "CCBResultWindow::?SetScroll@UIListBox@@QAEXPBDAAUtagRECT@@HH_N@Z",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_migrated",
+      "ordinal": 8
+    },
+    "0x0051A090": {
+      "name": "CCBResultWindow::?AddResultWindowAni@CCBUI@@AAEXXZ",
+      "signature": "void __thiscall(CCBUI *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 9
+    },
+    "0x00519F50": {
+      "name": "CCBResultWindow::?DeleteUIObj@CCBUI@@AAEXPAVUIWnd@@@Z",
+      "signature": "void __thiscall(CCBUI *__hidden this, struct UIWnd *)",
+      "source": "vtable_migrated",
+      "ordinal": 10
+    },
+    "0x00519B40": {
+      "name": "CCBResultWindow::?GetNimbusColor@CCBUI@@QAE?AUgbColorQuad@@W4ECBFiveNimbus@@@Z",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 12
+    },
+    "0x00519FE0": {
+      "name": "CCBResultWindow::?AddRightControlButtonAni@CCBUI@@AAEXXZ",
+      "signature": "void __thiscall(CCBUI *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 13
+    },
+    "0x0051AB00": {
+      "name": "CCBResultWindow::CheckMagicKeyPress",
+      "signature": "int __thiscall(UIWnd *this, int a2, int a3)",
+      "source": "vtable_migrated+pdb_correct",
+      "ordinal": 16
+    },
+    "0x0051A390": {
+      "name": "CCBResultWindow::?DoTask@CCBUI@@AAEXXZ",
+      "signature": "void __thiscall(CCBUI *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 19
+    },
+    "0x0051A930": {
+      "name": "CCBResultWindow::?Reset@CCBControlWindow@@AAEXXZ",
+      "signature": "void __thiscall(CCBControlWindow *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 20
+    },
+    "0x0051B0B0": {
+      "name": "CCBResultWindow::?MoveButtons@CCBControlWindow@@QAEXXZ",
+      "signature": "void __thiscall(CCBControlWindow *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 23
+    },
+    "0x0051AFE0": {
+      "name": "CCBResultWindow::?Update@CCBControlWindow@@UAEHMH@Z",
+      "signature": "int __thiscall(CCBControlWindow *__hidden this, float, int)",
+      "source": "vtable_migrated",
+      "ordinal": 24
+    },
+    "0x0051AC90": {
+      "name": "CCBResultWindow::?HandleEnable@CCBControlWindow@@IAEXHH@Z",
+      "signature": "void __thiscall(CCBControlWindow *__hidden this, char a2, int)",
+      "source": "vtable_migrated",
+      "ordinal": 26
+    },
+    "0x0051B030": {
+      "name": "CCBResultWindow::sub_51B030",
+      "signature": "int __stdcall(int, int a2, int a3)",
+      "source": "vtable_migrated",
+      "ordinal": 27
+    },
+    "0x0051B5D0": {
+      "name": "CCBResultWindow::?OnMessage@CCBItemWindow@@MAEHIKK@Z",
+      "signature": "int __thiscall(CCBItemWindow *__hidden this, unsigned int a2, unsigned int, unsigned int)",
+      "source": "vtable_migrated",
+      "ordinal": 28
+    },
+    "0x0051B570": {
+      "name": "CCBResultWindow::?HandleInput@CCBItemWindow@@IAEXXZ",
+      "signature": "void __thiscall(CCBItemWindow *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 30
+    },
+    "0x0051B4B0": {
+      "name": "CCBResultWindow::?Destroy@CCBItemWindow@@UAEXXZ",
+      "signature": "void __thiscall(CCBItemWindow *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 31
+    },
+    "0x0051C9B0": {
+      "name": "CCBResultWindow::?OnMessage@CCBSkillWindow@@MAEHIKK@Z",
+      "signature": "int __thiscall(CCBSkillWindow *__hidden this, unsigned int, unsigned int a2, unsigned int)",
+      "source": "vtable_migrated",
+      "ordinal": 34
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x005704C8",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00519660",
+          "from": null
+        },
+        {
+          "addr": "0x00519510",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00519360",
+          "from": null
+        },
+        {
+          "addr": "0x005195E0",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051A090",
+          "from": null
+        },
+        {
+          "addr": "0x00519F50",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00519B40",
+          "from": null
+        },
+        {
+          "addr": "0x00519FE0",
+          "from": null
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051AB00",
+          "from": null
+        },
+        {
+          "addr": "0x0051A880",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051A390",
+          "from": null
+        },
+        {
+          "addr": "0x0051A930",
+          "from": null
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051B0B0",
+          "from": null
+        },
+        {
+          "addr": "0x0051AFE0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051AC90",
+          "from": null
+        },
+        {
+          "addr": "0x0051B030",
+          "from": null
+        },
+        {
+          "addr": "0x0051B5D0",
+          "from": null
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051B570",
+          "from": null
+        },
+        {
+          "addr": "0x0051B4B0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051B160",
+          "from": null
+        },
+        {
+          "addr": "0x0051C9B0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

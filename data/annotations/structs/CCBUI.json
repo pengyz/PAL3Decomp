@@ -284,8 +284,9 @@
     },
     "1208": {
       "name": "m_Task",
-      "type": "tagUITask[20]",
-      "offset": 1208
+      "type": "tagUITask[19]",
+      "offset": 1208,
+      "source": "+fix:overlap_correct_count"
     }
   },
   "base_class": [
@@ -775,7 +776,8 @@
     },
     "0x00519BB0": {
       "name": "CCBUI::Render",
-      "signature": "int __thiscall(CCBUI *this)"
+      "signature": "void __thiscall(CCBUI *this)",
+      "source": "manual_fix_vtable"
     },
     "0x00519BD0": {
       "name": "CCBUI::CreateButton",
@@ -826,13 +828,13 @@
       "signature": "int __thiscall CCBUI::StepFrame(CCBUI *this)"
     },
     "0x00519310": {
-      "name": "CCBUI::ctor__ovl_9310",
+      "name": "CCBUI::ctor",
       "signature": "int *__thiscall(CCBUI *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x005160A0": {
-      "name": "CCBUI::ctor__ovl_60A0",
+      "name": "CCBUI::ctor",
       "signature": "int *__thiscall(CCBUI *this, int nVal)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"

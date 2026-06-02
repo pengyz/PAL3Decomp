@@ -1,0 +1,1371 @@
+[
+  {
+    "vtable_addr": "0x005705D0",
+    "orig_class": "CCBProtectWindow",
+    "guessed_owner": "CCBResultWindow",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "CCBStage": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x0051DD43",
+        "func": "CCBStage::Create_d710",
+        "class_hint": "CCBStage"
+      },
+      {
+        "type": "write",
+        "from": "0x0051DDBD",
+        "func": "CCBStage::ShowWindow",
+        "class_hint": "CCBStage"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056B22C",
+    "orig_class": "CCBUIPanel",
+    "guessed_owner": "UIListBox",
+    "slot_count": 7,
+    "total_xref": 5,
+    "writers": 5,
+    "readers": 0,
+    "writer_classes": {
+      "CCBUIPanel": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x00453E26",
+        "func": "CCBUIPanel::ctor_3D10",
+        "class_hint": "CCBUIPanel"
+      },
+      {
+        "type": "write",
+        "from": "0x00453E8D",
+        "func": "CCBUIPanel::ctor__ovl_3E70",
+        "class_hint": "CCBUIPanel"
+      },
+      {
+        "type": "write",
+        "from": "0x004545E1",
+        "func": "fill_1",
+        "class_hint": null
+      },
+      {
+        "type": "write",
+        "from": "0x004546B5",
+        "func": "fill_1",
+        "class_hint": null
+      },
+      {
+        "type": "write",
+        "from": "0x0045477D",
+        "func": "fill_1",
+        "class_hint": null
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F62C",
+    "orig_class": "CEffSParticle",
+    "guessed_owner": null,
+    "slot_count": 15,
+    "total_xref": 25,
+    "writers": 25,
+    "readers": 0,
+    "writer_classes": {
+      "RenderTarget2": 10,
+      "CEffCylinder": 2,
+      "CEffgbParticle": 2,
+      "CEffGrid": 1,
+      "CEffMeteor": 1,
+      "char": 2,
+      "CEffect": 2,
+      "CEffQuake": 2,
+      "CEffSParticle": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004C05DD",
+        "func": "RenderTarget2::ExecutePasses",
+        "class_hint": "RenderTarget2"
+      },
+      {
+        "type": "write",
+        "from": "0x004C05E7",
+        "func": "RenderTarget2::ExecutePasses",
+        "class_hint": "RenderTarget2"
+      },
+      {
+        "type": "write",
+        "from": "0x004C0629",
+        "func": "??_Gfacet@locale@std@@UAEPAXI@Z_1",
+        "class_hint": null
+      },
+      {
+        "type": "write",
+        "from": "0x004C16DD",
+        "func": "RenderTarget2::DestroyEffBase",
+        "class_hint": "RenderTarget2"
+      },
+      {
+        "type": "write",
+        "from": "0x004C16E7",
+        "func": "RenderTarget2::DestroyEffBase",
+        "class_hint": "RenderTarget2"
+      },
+      {
+        "type": "write",
+        "from": "0x004C214D",
+        "func": "RenderTarget2::DestroyEffBink",
+        "class_hint": "RenderTarget2"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056FADC",
+    "orig_class": "CEffect",
+    "guessed_owner": "CEffShock",
+    "slot_count": 15,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "CEffect": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004D38DB",
+        "func": "sub_4D3870",
+        "class_hint": null
+      },
+      {
+        "type": "write",
+        "from": "0x004D3973",
+        "func": "CEffect::DestroyCallback",
+        "class_hint": "CEffect"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F844",
+    "orig_class": "CEffectSystem",
+    "guessed_owner": "CEffectSystem",
+    "slot_count": 8,
+    "total_xref": 1,
+    "writers": 1,
+    "readers": 0,
+    "writer_classes": {
+      "CEffectSystem": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004C624D",
+        "func": "CEffectSystem::_CEffectSystem",
+        "class_hint": "CEffectSystem"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F878",
+    "orig_class": "CEffgbParticle",
+    "guessed_owner": "CEffAction",
+    "slot_count": 15,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "CEffectSystem": 1,
+      "CEffgbParticle": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004C68E4",
+        "func": "CEffectSystem::FillDefaultUVSet",
+        "class_hint": "CEffectSystem"
+      },
+      {
+        "type": "write",
+        "from": "0x004C69A3",
+        "func": "CEffgbParticle::ReleaseEffect",
+        "class_hint": "CEffgbParticle"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056B794",
+    "orig_class": "LineupUI",
+    "guessed_owner": "UIListBox",
+    "slot_count": 7,
+    "total_xref": 3,
+    "writers": 3,
+    "readers": 0,
+    "writer_classes": {
+      "UIListBox": 1,
+      "LineupUI": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x00470E17",
+        "func": "UIListBox::InitWithPalScript",
+        "class_hint": "UIListBox"
+      },
+      {
+        "type": "write",
+        "from": "0x00470F60",
+        "func": "LineupUI::_LineupUI__ovl_0f40",
+        "class_hint": "LineupUI"
+      },
+      {
+        "type": "write",
+        "from": "0x00477DD8",
+        "func": "LineupUI::OnMessage__ovl_7bb0",
+        "class_hint": "LineupUI"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F040",
+    "orig_class": "MainEquipUI",
+    "guessed_owner": "UIGameFrm",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "EquipUI": 1,
+      "MainEquipUI": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004A210C",
+        "func": "EquipUI::InitUI",
+        "class_hint": "EquipUI"
+      },
+      {
+        "type": "write",
+        "from": "0x004A246D",
+        "func": "MainEquipUI::_MainEquipUI",
+        "class_hint": "MainEquipUI"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AC4C",
+    "orig_class": "PalScript",
+    "guessed_owner": "PalScript",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "PalScript": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x0043A1A4",
+        "func": "PalScript::PalScript",
+        "class_hint": "PalScript"
+      },
+      {
+        "type": "write",
+        "from": "0x0043A20D",
+        "func": "PalScript::ctor__ovl_A1F0",
+        "class_hint": "PalScript"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F5E4",
+    "orig_class": "RenderTarget2",
+    "guessed_owner": "CEffAction",
+    "slot_count": 15,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RenderTarget2": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004C04EC",
+        "func": "RenderTarget2::ClearTarget",
+        "class_hint": "RenderTarget2"
+      },
+      {
+        "type": "write",
+        "from": "0x004C056B",
+        "func": "RenderTarget2::ExecutePasses",
+        "class_hint": "RenderTarget2"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F674",
+    "orig_class": "RenderTarget2",
+    "guessed_owner": "CEffAudio",
+    "slot_count": 15,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RenderTarget2": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004C159C",
+        "func": "RenderTarget2::Reset",
+        "class_hint": "RenderTarget2"
+      },
+      {
+        "type": "write",
+        "from": "0x004C166B",
+        "func": "RenderTarget2::DestroyEffBase",
+        "class_hint": "RenderTarget2"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F6C8",
+    "orig_class": "RenderTarget2",
+    "guessed_owner": "CEffAction",
+    "slot_count": 15,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RenderTarget2": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004C207C",
+        "func": "RenderTarget2::ResetSurface",
+        "class_hint": "RenderTarget2"
+      },
+      {
+        "type": "write",
+        "from": "0x004C20DB",
+        "func": "RenderTarget2::DestroyEffBink",
+        "class_hint": "RenderTarget2"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F71C",
+    "orig_class": "RenderTarget2",
+    "guessed_owner": null,
+    "slot_count": 15,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RenderTarget2": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004C27FC",
+        "func": "RenderTarget2::Deactivate",
+        "class_hint": "RenderTarget2"
+      },
+      {
+        "type": "write",
+        "from": "0x004C289B",
+        "func": "RenderTarget2::BeginMultiPass",
+        "class_hint": "RenderTarget2"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F768",
+    "orig_class": "RenderTarget2",
+    "guessed_owner": "RenderTarget2",
+    "slot_count": 42,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RenderTarget2": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004C3482",
+        "func": "RenderTarget2::ResetTargetSlot",
+        "class_hint": "RenderTarget2"
+      },
+      {
+        "type": "write",
+        "from": "0x004C34E6",
+        "func": "RenderTarget2::DestroyEffCallBack",
+        "class_hint": "RenderTarget2"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F774",
+    "orig_class": "RenderTarget2",
+    "guessed_owner": "CEffAction",
+    "slot_count": 15,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RenderTarget2": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004C347C",
+        "func": "RenderTarget2::ResetTargetSlot",
+        "class_hint": "RenderTarget2"
+      },
+      {
+        "type": "write",
+        "from": "0x004C34DB",
+        "func": "RenderTarget2::DestroyEffCallBack",
+        "class_hint": "RenderTarget2"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056A6D0",
+    "orig_class": "RoleSystem",
+    "guessed_owner": "RoleSystem",
+    "slot_count": 3,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {},
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x0040839A",
+        "func": "unknown_libname_320",
+        "class_hint": null
+      },
+      {
+        "type": "write",
+        "from": "0x004083D0",
+        "func": "sub_4083D0",
+        "class_hint": null
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AAD8",
+    "orig_class": "RoleSystem",
+    "guessed_owner": "gbRenderEffect",
+    "slot_count": 9,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RoleSystem": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x00420254",
+        "func": "sub_420250",
+        "class_hint": null
+      },
+      {
+        "type": "write",
+        "from": "0x00420290",
+        "func": "RoleSystem::RoleSystem",
+        "class_hint": "RoleSystem"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AAE4",
+    "orig_class": "RoleSystem",
+    "guessed_owner": null,
+    "slot_count": 6,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RoleSystem": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x00420408",
+        "func": "RoleSystem::InitRoleImage",
+        "class_hint": "RoleSystem"
+      },
+      {
+        "type": "write",
+        "from": "0x0042046D",
+        "func": "sub_420450",
+        "class_hint": null
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AAF0",
+    "orig_class": "RoleSystem",
+    "guessed_owner": null,
+    "slot_count": 3,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RoleSystem": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004208F8",
+        "func": "sub_4208F0",
+        "class_hint": null
+      },
+      {
+        "type": "write",
+        "from": "0x00420930",
+        "func": "RoleSystem::InitInternal",
+        "class_hint": "RoleSystem"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x005706CC",
+    "orig_class": "SaleUI",
+    "guessed_owner": "CCBUI",
+    "slot_count": 7,
+    "total_xref": 4,
+    "writers": 4,
+    "readers": 0,
+    "writer_classes": {
+      "SaleUI": 2,
+      "PlayerMgr": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x0052543B",
+        "func": "SaleUI::InitUI",
+        "class_hint": "SaleUI"
+      },
+      {
+        "type": "write",
+        "from": "0x0052555D",
+        "func": "PlayerMgr::InitShopUI",
+        "class_hint": "PlayerMgr"
+      },
+      {
+        "type": "write",
+        "from": "0x00525CCD",
+        "func": "PlayerMgr::InitSkillUI",
+        "class_hint": "PlayerMgr"
+      },
+      {
+        "type": "write",
+        "from": "0x00526B48",
+        "func": "SaleUI::OnMessage",
+        "class_hint": "SaleUI"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x005708E8",
+    "orig_class": "SceneObj",
+    "guessed_owner": "Actor",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "SceneObj": 1,
+      "Actor": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x005362CC",
+        "func": "SceneObj::CreateUI",
+        "class_hint": "SceneObj"
+      },
+      {
+        "type": "write",
+        "from": "0x0053632D",
+        "func": "Actor::DestroyInternalData",
+        "class_hint": "Actor"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x00570A58",
+    "orig_class": "SceneObj",
+    "guessed_owner": null,
+    "slot_count": 4,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "CScreenMode": 1,
+      "SceneObj": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x0053F4C2",
+        "func": "CScreenMode::_nearby_53f4c0",
+        "class_hint": "CScreenMode"
+      },
+      {
+        "type": "write",
+        "from": "0x0053F4F0",
+        "func": "SceneObj::_nearby_53f4f0",
+        "class_hint": "SceneObj"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F510",
+    "orig_class": "ScreenEffectMgr",
+    "guessed_owner": null,
+    "slot_count": 6,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RenderTarget": 1,
+      "CameraCtrl": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004BE8D8",
+        "func": "RenderTarget::ResetHorizontal",
+        "class_hint": "RenderTarget"
+      },
+      {
+        "type": "write",
+        "from": "0x004BE910",
+        "func": "CameraCtrl::OnIdle",
+        "class_hint": "CameraCtrl"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F52C",
+    "orig_class": "ScreenEffectMgr",
+    "guessed_owner": "ScreenEffectMgr",
+    "slot_count": 6,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RenderTarget": 1,
+      "CameraCtrl": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004BEA68",
+        "func": "RenderTarget::ResetVertical",
+        "class_hint": "RenderTarget"
+      },
+      {
+        "type": "write",
+        "from": "0x004BEAA0",
+        "func": "CameraCtrl::OnIdleB",
+        "class_hint": "CameraCtrl"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F548",
+    "orig_class": "ScreenEffectMgr",
+    "guessed_owner": "ScreenEffectMgr",
+    "slot_count": 6,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RenderTarget": 1,
+      "CameraCtrl": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004BEBB8",
+        "func": "RenderTarget::ResetVertical2",
+        "class_hint": "RenderTarget"
+      },
+      {
+        "type": "write",
+        "from": "0x004BEBF0",
+        "func": "CameraCtrl::RenderFadeEffect",
+        "class_hint": "CameraCtrl"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056F564",
+    "orig_class": "ScreenEffectMgr",
+    "guessed_owner": "ScreenEffectMgr",
+    "slot_count": 6,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "RenderTarget": 1,
+      "CameraCtrl": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004BED08",
+        "func": "RenderTarget::ResetBase",
+        "class_hint": "RenderTarget"
+      },
+      {
+        "type": "write",
+        "from": "0x004BED40",
+        "func": "CameraCtrl::RenderFadeEffectB",
+        "class_hint": "CameraCtrl"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056A9CC",
+    "orig_class": "ScriptObj",
+    "guessed_owner": null,
+    "slot_count": 1,
+    "total_xref": 4,
+    "writers": 4,
+    "readers": 0,
+    "writer_classes": {
+      "Role": 1,
+      "Array": 1,
+      "ScriptObj": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x00411965",
+        "func": "Role::Role",
+        "class_hint": "Role"
+      },
+      {
+        "type": "write",
+        "from": "0x00411B70",
+        "func": "Array::_nearby_411b70",
+        "class_hint": "Array"
+      },
+      {
+        "type": "write",
+        "from": "0x00411B89",
+        "func": "??_Gfacet@locale@std@@UAEPAXI@Z",
+        "class_hint": null
+      },
+      {
+        "type": "write",
+        "from": "0x00411DE2",
+        "func": "ScriptObj::_ScriptObj",
+        "class_hint": "ScriptObj"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056ACB8",
+    "orig_class": "UIFrameWnd",
+    "guessed_owner": "UIWnd",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UIFrameWnd": 1,
+      "UIWnd": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x0043BB78",
+        "func": "UIFrameWnd::UIFrameWnd",
+        "class_hint": "UIFrameWnd"
+      },
+      {
+        "type": "write",
+        "from": "0x0043BBB0",
+        "func": "UIWnd::ctor__ovl_BBB0",
+        "class_hint": "UIWnd"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056ADD0",
+    "orig_class": "UIFrameWnd",
+    "guessed_owner": "UIFrameWnd",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UIStatic": 1,
+      "UIFrameWnd": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x00442332",
+        "func": "UIStatic::_UIStatic_0",
+        "class_hint": "UIStatic"
+      },
+      {
+        "type": "write",
+        "from": "0x004423AD",
+        "func": "UIFrameWnd::_UIFrameWnd",
+        "class_hint": "UIFrameWnd"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056ADF0",
+    "orig_class": "UIFrameWnd",
+    "guessed_owner": "UIFrameWnd",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UIStatic": 1,
+      "UIFrameWnd": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x00442D08",
+        "func": "UIStatic::CtorWithFlag__ovl_2d00",
+        "class_hint": "UIStatic"
+      },
+      {
+        "type": "write",
+        "from": "0x00442D40",
+        "func": "UIFrameWnd::_UIFrameWnd_ovl_2d40",
+        "class_hint": "UIFrameWnd"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AE64",
+    "orig_class": "UIFrameWnd",
+    "guessed_owner": "UIWnd",
+    "slot_count": 15,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UIFrameWnd": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x00443501",
+        "func": "UIFrameWnd::InitSharedPanel",
+        "class_hint": "UIFrameWnd"
+      },
+      {
+        "type": "write",
+        "from": "0x0044356D",
+        "func": "UIFrameWnd::_UIFrameWnd_ovl_3550",
+        "class_hint": "UIFrameWnd"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AE84",
+    "orig_class": "UIFrameWnd",
+    "guessed_owner": "CCBResultWindow",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "CCBResultWindow": 1,
+      "UIFrameWnd": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x00444A4D",
+        "func": "CCBResultWindow::CCBResultWindow",
+        "class_hint": "CCBResultWindow"
+      },
+      {
+        "type": "write",
+        "from": "0x00444AC0",
+        "func": "UIFrameWnd::_UIFrameWnd_Full",
+        "class_hint": "UIFrameWnd"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AD20",
+    "orig_class": "UIListBox",
+    "guessed_owner": "UIWnd",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UIListBox": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x0043DCD8",
+        "func": "UIListBox::UIListBox",
+        "class_hint": "UIListBox"
+      },
+      {
+        "type": "write",
+        "from": "0x0043DD2D",
+        "func": "UIListBox::_UIListBox",
+        "class_hint": "UIListBox"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056B178",
+    "orig_class": "UIListBox",
+    "guessed_owner": "UILoadingFrm",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UIListBox": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004518A9",
+        "func": "UIListBox::UIListBox_Init",
+        "class_hint": "UIListBox"
+      },
+      {
+        "type": "write",
+        "from": "0x00451921",
+        "func": "UIListBox::DestroyContent",
+        "class_hint": "UIListBox"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056B1BC",
+    "orig_class": "UIListBox",
+    "guessed_owner": "UIListBox",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UIListBox": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004525C6",
+        "func": "GetFaceNum",
+        "class_hint": null
+      },
+      {
+        "type": "write",
+        "from": "0x0045261D",
+        "func": "UIListBox::ctor_2600",
+        "class_hint": "UIListBox"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x005706EC",
+    "orig_class": "UIListBox",
+    "guessed_owner": "UIListBox",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UIListBox": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x005279AE",
+        "func": "UIListBox::ctor__ovl_7950",
+        "class_hint": "UIListBox"
+      },
+      {
+        "type": "write",
+        "from": "0x00527A0D",
+        "func": "UIListBox::ctor_79F0",
+        "class_hint": "UIListBox"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AB34",
+    "orig_class": "UIScene",
+    "guessed_owner": "UIScene",
+    "slot_count": 3,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "BINK": 1,
+      "ScriptVM": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x004237F1",
+        "func": "BINK::Reset",
+        "class_hint": "BINK"
+      },
+      {
+        "type": "write",
+        "from": "0x0042389F",
+        "func": "ScriptVM::ProcessFrame",
+        "class_hint": "ScriptVM"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AC70",
+    "orig_class": "UIScene",
+    "guessed_owner": "UIWnd",
+    "slot_count": 17,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UICaption": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x0043A7BC",
+        "func": "GetSys",
+        "class_hint": null
+      },
+      {
+        "type": "write",
+        "from": "0x0043A82D",
+        "func": "UICaption::Destroy2",
+        "class_hint": "UICaption"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056B018",
+    "orig_class": "UIScene",
+    "guessed_owner": "UIScenePanel",
+    "slot_count": 9,
+    "total_xref": 13,
+    "writers": 13,
+    "readers": 0,
+    "writer_classes": {
+      "UIScenePanel": 12,
+      "UIScene": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x0044BB92",
+        "func": "UIScenePanel::ctor_BA60",
+        "class_hint": "UIScenePanel"
+      },
+      {
+        "type": "write",
+        "from": "0x0044BBCD",
+        "func": "UIScenePanel::ctor_BA60",
+        "class_hint": "UIScenePanel"
+      },
+      {
+        "type": "write",
+        "from": "0x0044BC08",
+        "func": "UIScenePanel::ctor_BA60",
+        "class_hint": "UIScenePanel"
+      },
+      {
+        "type": "write",
+        "from": "0x0044BC43",
+        "func": "UIScenePanel::ctor_BA60",
+        "class_hint": "UIScenePanel"
+      },
+      {
+        "type": "write",
+        "from": "0x0044BC7E",
+        "func": "UIScenePanel::ctor_BA60",
+        "class_hint": "UIScenePanel"
+      },
+      {
+        "type": "write",
+        "from": "0x0044BCB9",
+        "func": "UIScenePanel::ctor_BA60",
+        "class_hint": "UIScenePanel"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AFFC",
+    "orig_class": "UIScenePanel",
+    "guessed_owner": "UIScene",
+    "slot_count": 16,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UIScenePanel": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x0044BD0F",
+        "func": "UIScenePanel::ctor_BA60",
+        "class_hint": "UIScenePanel"
+      },
+      {
+        "type": "write",
+        "from": "0x0044BEA0",
+        "func": "UIScenePanel::ctor__ovl_BE80",
+        "class_hint": "UIScenePanel"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AE48",
+    "orig_class": "UIStatic",
+    "guessed_owner": "UIWnd",
+    "slot_count": 22,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UIStatic": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x00443388",
+        "func": "UIStatic::UIStatic_Base",
+        "class_hint": "UIStatic"
+      },
+      {
+        "type": "write",
+        "from": "0x004433C0",
+        "func": "UIFrameWnd_dtor_thunk",
+        "class_hint": null
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AFB0",
+    "orig_class": "UIStatic",
+    "guessed_owner": "CCBProtectWindow",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UIWnd": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x0044A7AA",
+        "func": "UIWnd::CtorDefault__ovl_a790",
+        "class_hint": "UIWnd"
+      },
+      {
+        "type": "write",
+        "from": "0x0044A7F9",
+        "func": "UIWnd::_UIWnd_0",
+        "class_hint": "UIWnd"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056A9C0",
+    "orig_class": "UITitle_YXXX",
+    "guessed_owner": "UITitle_YXXX",
+    "slot_count": 4,
+    "total_xref": 21,
+    "writers": 21,
+    "readers": 0,
+    "writer_classes": {
+      "Role": 1,
+      "Array": 1,
+      "ScriptObj": 1,
+      "CameraCtrl": 1,
+      "BINK": 1,
+      "ScriptVM": 1,
+      "PalScript": 1,
+      "filebuf": 1,
+      "UIWnd": 3,
+      "UIEmote": 1,
+      "scScriptInstance": 1,
+      "UICaption": 1,
+      "UISceneMap": 1,
+      "RoleAtt": 1,
+      "UIListBox": 2,
+      "UITitle_YXXX": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x00411972",
+        "func": "Role::Role",
+        "class_hint": "Role"
+      },
+      {
+        "type": "write",
+        "from": "0x00411BA0",
+        "func": "Array::_nearby_411ba0",
+        "class_hint": "Array"
+      },
+      {
+        "type": "write",
+        "from": "0x00411BB9",
+        "func": "??_Gfacet@locale@std@@UAEPAXI@Z_0",
+        "class_hint": null
+      },
+      {
+        "type": "write",
+        "from": "0x00411DDC",
+        "func": "ScriptObj::_ScriptObj",
+        "class_hint": "ScriptObj"
+      },
+      {
+        "type": "write",
+        "from": "0x0041CBC0",
+        "func": "CameraCtrl::_nearby_41cbc0",
+        "class_hint": "CameraCtrl"
+      },
+      {
+        "type": "write",
+        "from": "0x004236F7",
+        "func": "BINK::Reset",
+        "class_hint": "BINK"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056AEC8",
+    "orig_class": "UIWnd",
+    "guessed_owner": "UIWnd",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UIWnd": 2
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x00445AB4",
+        "func": "UIWnd::UIWnd",
+        "class_hint": "UIWnd"
+      },
+      {
+        "type": "write",
+        "from": "0x00445B5D",
+        "func": "UIWnd::_UIWnd",
+        "class_hint": "UIWnd"
+      }
+    ],
+    "reader_details": []
+  },
+  {
+    "vtable_addr": "0x0056B0E0",
+    "orig_class": "UIWnd",
+    "guessed_owner": "UIDialog",
+    "slot_count": 7,
+    "total_xref": 2,
+    "writers": 2,
+    "readers": 0,
+    "writer_classes": {
+      "UICaption": 1,
+      "UIWnd": 1
+    },
+    "writer_details": [
+      {
+        "type": "write",
+        "from": "0x0045033D",
+        "func": "UICaption::LayoutDefault",
+        "class_hint": "UICaption"
+      },
+      {
+        "type": "write",
+        "from": "0x00450399",
+        "func": "UIWnd::UIWnd_Variant",
+        "class_hint": "UIWnd"
+      }
+    ],
+    "reader_details": []
+  }
+]

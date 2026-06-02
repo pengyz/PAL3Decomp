@@ -202,26 +202,73 @@
       "signature": "void __thiscall(UIButton *this)"
     },
     "0x0043F7F0": {
-      "name": "UIButton::ctor__ovl_F7F0",
+      "name": "UIButton::ctor",
       "signature": "int *__thiscall(UIButton *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x00440560": {
       "name": "UIButton::Update",
-      "signature": "BOOL __thiscall UIButton::Update(UIButton *this, int nDelta, int nVal2)"
+      "signature": "BOOL __thiscall UIButton::Update(UIButton *this, int nDelta, int nVal2)",
+      "ordinal": 2
     },
     "0x0043F9C0": {
       "name": "UIButton::Destroy",
-      "signature": "void __thiscall(UIButton *this)"
+      "signature": "void __thiscall(UIButton *this)",
+      "ordinal": 3
     },
     "0x0043FF00": {
       "name": "UIButton::Create",
-      "signature": "int __thiscall UIButton::Create(UIButton *this, int id, int *pRect, int parent)"
+      "signature": "int __thiscall UIButton::Create(UIButton *this, int id, int *pRect, int parent)",
+      "ordinal": 4
     },
     "0x0043FF70": {
       "name": "UIButton::Render",
-      "signature": "int __thiscall(UIButton *this)"
+      "signature": "void __thiscall(UIButton *this)",
+      "ordinal": 1,
+      "source": "+fix:sig_match_base"
+    },
+    "0x0043F950": {
+      "name": "UIButton::_scalar_dtor",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 5
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AD64",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043FF70",
+          "from": null
+        },
+        {
+          "addr": "0x00440560",
+          "from": null
+        },
+        {
+          "addr": "0x0043F9C0",
+          "from": null
+        },
+        {
+          "addr": "0x0043FF00",
+          "from": null
+        },
+        {
+          "addr": "0x0043F950",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ]
 }

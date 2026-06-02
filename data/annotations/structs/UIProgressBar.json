@@ -347,27 +347,66 @@
       "signature": "void __thiscall(UIProgressBar *this, float fValue)"
     },
     "0x00439030": {
-      "name": "UIProgressBar::ctor__ovl_9030",
+      "name": "UIProgressBar::ctor",
       "signature": "int *__thiscall(UIProgressBar *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x00439A20": {
       "name": "UIProgressBar::CheckRayHitRole",
-      "signature": "BOOL __thiscall(UIProgressBar *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(UIProgressBar *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x00439410": {
       "name": "UIProgressBar::Render",
-      "signature": "void __thiscall(UIProgressBar *this)"
+      "signature": "void __thiscall(UIProgressBar *this)",
+      "ordinal": 1
     },
     "0x00439810": {
       "name": "UIProgressBar::Destroy",
-      "signature": "void __thiscall(UIProgressBar *this)"
+      "signature": "void __thiscall(UIProgressBar *this)",
+      "ordinal": 3
     },
     "0x0043C550": {
       "name": "UIProgressBar::SetProgress",
       "signature": "void __thiscall(CScreenMode *this, float fProgress)",
       "source": "pdb_ret"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AC20",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00439410",
+          "from": null
+        },
+        {
+          "addr": "0x00439A20",
+          "from": null
+        },
+        {
+          "addr": "0x00439810",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00439110",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ]
 }

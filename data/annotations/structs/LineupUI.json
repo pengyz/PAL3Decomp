@@ -483,18 +483,18 @@
       "source": "pdb"
     },
     "0x0047E910": {
-      "name": "LineupUI::ctor__ovl_E910",
+      "name": "LineupUI::ctor",
       "signature": "void __thiscall(LineupUI *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x00470F40": {
-      "name": "LineupUI::~LineupUI__ovl_0f40",
+      "name": "LineupUI::~LineupUI",
       "signature": "void __thiscall(LineupUI *this)",
       "_misattrib_evidence": "max_offset=124248>class_size=1208"
     },
     "0x00477BB0": {
-      "name": "LineupUI::OnMessage__ovl_7bb0",
+      "name": "LineupUI::OnMessage",
       "signature": "int __thiscall(LineupUI *this, int msg, int wparam, int lparam)"
     },
     "0x00482ED0": {
@@ -525,7 +525,7 @@
       "signature": "int __thiscall(LineupUI *this, int nVal, int nVal2)"
     },
     "0x00475FC0": {
-      "name": "LineupUI::RefreshDisplay__ovl_5fc0",
+      "name": "LineupUI::RefreshDisplay",
       "signature": "int __thiscall(LineupUI *this)",
       "_misattrib_evidence": "max_offset=124248>class_size=1208"
     },
@@ -543,11 +543,13 @@
       "name": "LineupUI::_scalar_dtor",
       "signature": "void __thiscall LineupUI::_scalar_dtor(LineupUI *this)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x0047F880": {
       "name": "LineupUI::RenderEffects",
-      "signature": "void __thiscall LineupUI::RenderEffects(LineupUI *this)"
+      "signature": "void __thiscall LineupUI::RenderEffects(LineupUI *this)",
+      "ordinal": 1
     },
     "0x00482BB0": {
       "name": "LineupUI::ShowPage",
@@ -614,18 +616,21 @@
       "signature": "char __thiscall(LineupUI *this, int nVal)"
     },
     "0x0047F590": {
-      "name": "LineupUI::~LineupUI__ovl_f590",
+      "name": "LineupUI::~LineupUI",
       "signature": "int __thiscall LineupUI::~LineupUI__ovl_f590(LineupUI *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x0047F970": {
       "name": "LineupUI::CleanupAndForwardInput",
-      "signature": "int __thiscall LineupUI::CleanupAndForwardInput(LineupUI *this)"
+      "signature": "int __thiscall LineupUI::CleanupAndForwardInput(LineupUI *this)",
+      "ordinal": 2
     },
     "0x00480600": {
-      "name": "LineupUI::OnMessage__ovl_0600",
-      "signature": "int __thiscall(LineupUI *this, int nVal, char *pszBuf, int nVal2)"
+      "name": "LineupUI::OnMessage",
+      "signature": "int __thiscall(LineupUI *this, int nVal, char *pszBuf, int nVal2)",
+      "ordinal": 6,
+      "source": "+canonical_rename"
     },
     "0x004826A0": {
       "name": "LineupUI::RebuildSystemPage",
@@ -655,6 +660,48 @@
       "name": "LineupUI::LoadRoleData",
       "signature": "void ()",
       "source": "pdb"
+    },
+    "0x0043DE40": {
+      "name": "LineupUI::Destroy",
+      "signature": "void __thiscall(UIListBox *__hidden this, int)",
+      "source": "vtable_migrated",
+      "ordinal": 3
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B90C",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0047F880",
+          "from": null
+        },
+        {
+          "addr": "0x0047F970",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0047E8F0",
+          "from": null
+        },
+        {
+          "addr": "0x00480600",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

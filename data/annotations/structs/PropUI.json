@@ -456,7 +456,7 @@
       "signature": "int __thiscall PropUI::PropUI(PropUI *this)"
     },
     "0x0046D4E0": {
-      "name": "PropUI::ctor__ovl_D4E0",
+      "name": "PropUI::ctor",
       "signature": "void __thiscall(PropUI *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -471,11 +471,13 @@
     },
     "0x0046F620": {
       "name": "PropUI::HandleInput",
-      "signature": "int __thiscall(PropUI *this, int nVal, int nVal2)"
+      "signature": "int __thiscall(PropUI *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x0046F650": {
       "name": "PropUI::InitListUI",
-      "signature": "int __thiscall(PropUI *this, int arg0, int nVal, unsigned int dwVal)"
+      "signature": "int __thiscall(PropUI *this, int arg0, int nVal, unsigned int dwVal)",
+      "ordinal": 6
     },
     "0x0045B200": {
       "name": "PropUI::ShowCategory0",
@@ -528,6 +530,48 @@
     "0x00521A50": {
       "name": "PropUI::SetPendingMessage",
       "signature": "int __thiscall PropUI::SetPendingMessage(PropUI *this, char msg, int wparam, int lparam)"
+    },
+    "0x0046D4C0": {
+      "name": "PropUI::_scalar_dtor",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 5
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B688",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x0046F620",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0046D4C0",
+          "from": null
+        },
+        {
+          "addr": "0x0046F650",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

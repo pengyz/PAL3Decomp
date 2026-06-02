@@ -64,7 +64,8 @@
     },
     "0x00445920": {
       "name": "UITextArea::Destroy",
-      "signature": "int __thiscall(UITextArea *this)"
+      "signature": "int __thiscall(UITextArea *this)",
+      "ordinal": 3
     },
     "0x00445010": {
       "name": "UITextArea::Destroy_445010",
@@ -80,19 +81,58 @@
     },
     "0x00445170": {
       "name": "UITextArea::ProcessInput",
-      "signature": "int __thiscall UITextArea::ProcessInput(UITextArea *this)"
+      "signature": "int __thiscall UITextArea::ProcessInput(UITextArea *this)",
+      "ordinal": 2
     },
     "0x00445500": {
       "name": "UITextArea::Render",
-      "signature": "void __thiscall(UITextArea *this)"
+      "signature": "void __thiscall(UITextArea *this)",
+      "ordinal": 1
     },
     "0x00445720": {
       "name": "UITextArea::ShowWindow",
-      "signature": "void __thiscall(UITextArea *this)"
+      "signature": "void __thiscall(UITextArea *this)",
+      "ordinal": 0
     },
     "0x004B7AF0": {
       "name": "UITextArea::ReleaseAllTextures",
       "signature": "void __thiscall(UITextArea *this)"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AEA4",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445720",
+          "from": null
+        },
+        {
+          "addr": "0x00445500",
+          "from": null
+        },
+        {
+          "addr": "0x00445170",
+          "from": null
+        },
+        {
+          "addr": "0x00445920",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00444FF0",
+          "from": "UIAnimateCtrlEX"
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ]
 }

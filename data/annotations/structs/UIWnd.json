@@ -209,206 +209,206 @@
     },
     "0x00445C60": {
       "name": "UIWnd::HitTest",
-      "signature": "BOOL __thiscall UIWnd::HitTest(UIWnd *this, int x, int y)"
+      "signature": "BOOL __thiscall UIWnd::HitTest(UIWnd *this, int x, int y)",
+      "ordinal": 2
     },
     "0x00445CD0": {
       "name": "UIWnd::Render",
-      "signature": "int __thiscall(UIWnd *this)"
-    },
-    "0x00445DB0": {
-      "name": "UIWnd::SetVisible",
-      "signature": "int __thiscall(UIWnd *this, int bVisible)"
-    },
-    "0x00445EA0": {
-      "name": "UIWnd::DestroyChildren",
-      "signature": "UIWnd * __thiscall(UIWnd *this)"
-    },
-    "0x00445FA0": {
-      "name": "UIWnd::GetRect",
-      "signature": "int __thiscall(UIWnd *this, RECT *pRect)"
-    },
-    "0x00446010": {
-      "name": "UIWnd::GetChild",
-      "signature": "int __thiscall(UIWnd *this, int id)"
-    },
-    "0x0043BBB0": {
-      "name": "UIWnd::ctor__ovl_BBB0",
       "signature": "void __thiscall(UIWnd *this)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x00445D20": {
-      "name": "UIWnd::LocalToScreen",
-      "signature": "int __thiscall UIWnd::LocalToScreen(UIWnd *this, int px, int py)"
-    },
-    "0x00445D40": {
-      "name": "UIWnd::ClientToScreen",
-      "signature": "void __thiscall(UIWnd *this, int px, int py)",
-      "source": "pdb_ret"
-    },
-    "0x0043FD90": {
-      "name": "UIWnd::SetIntParam",
-      "signature": "int __thiscall(UIWnd *this, int value)"
-    },
-    "0x0043FDB0": {
-      "name": "UIWnd::SetScaleRate",
-      "signature": "void __thiscall UIWnd::SetScaleRate(UIWnd *this, int nRate)"
-    },
-    "0x00445FE0": {
-      "name": "UIWnd::SetRect",
-      "signature": "int *__thiscall(UIWnd *this, int *pRect)"
-    },
-    "0x00445F20": {
-      "name": "UIWnd::MoveWindow",
-      "signature": "void __thiscall(UIWnd *this)",
-      "source": "pdb_ret"
-    },
-    "0x00530200": {
-      "name": "UIWnd::UpdateVisibility",
-      "signature": "int()"
-    },
-    "0x00445E50": {
-      "name": "UIWnd::SetEnabled",
-      "signature": "int __thiscall UIWnd::SetEnabled(UIWnd *this, int state)"
-    },
-    "0x0045ADD0": {
-      "name": "UIWnd::ResetChildList",
-      "signature": "void __thiscall UIWnd::ResetChildList(UIWnd *this)"
-    },
-    "0x00445AA0": {
-      "name": "UIWnd::UIWnd",
-      "signature": "int *__thiscall(UIWnd *this)"
-    },
-    "0x0043BE10": {
-      "name": "UIWnd::_scalar_dtor_be10",
-      "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
-    "0x00445F60": {
-      "name": "UIWnd::GetChildByIndex",
-      "signature": "UIWnd *__thiscall(UIWnd *this, unsigned int nIndex)"
-    },
-    "0x00445ED0": {
-      "name": "UIWnd::SetItemVisible",
-      "signature": "int __thiscall(UIWnd *this, BOOL bVisible)"
-    },
-    "0x0052D0F0": {
-      "name": "UIWnd::InitPartyFacePanel",
-      "signature": "int __thiscall UIWnd::InitPartyFacePanel(UIWnd *this)"
-    },
-    "0x00452DF0": {
-      "name": "UIWnd::RenderRoleAvatar",
-      "signature": "void __thiscall(UIWnd *this, int *pnVal, int nRoleIndex)"
-    },
-    "0x00439110": {
-      "name": "UIWnd::_sdtor",
-      "signature": "void *__thiscall(UIWnd *Block, char pData)"
-    },
-    "0x004433D0": {
-      "name": "UIWnd::LayoutAndRender",
-      "signature": "int __thiscall UIWnd::LayoutAndRender(UIWnd *this, int a2)"
-    },
-    "0x0044A790": {
-      "name": "UIWnd::CtorDefault__ovl_a790",
-      "signature": "UIWnd *__thiscall(UIWnd *this)"
-    },
-    "0x0044A870": {
-      "name": "UIWnd::RenderTwoPass",
-      "signature": "int __thiscall(UIWnd *this)"
-    },
-    "0x0044E980": {
-      "name": "UIWnd::LayoutForHitTest",
-      "signature": "void __thiscall UIWnd::LayoutForHitTest(UIWnd *this)"
-    },
-    "0x00450390": {
-      "name": "UIWnd::UIWnd_Variant",
-      "signature": "void __thiscall UIWnd::UIWnd_Variant(UIWnd *this)"
-    },
-    "0x0051B8C0": {
-      "name": "UIWnd::ProcessCancelKey",
-      "signature": "BOOL __thiscall UIWnd::ProcessCancelKey(UIWnd *this, int nVal, int nVal2)"
-    },
-    "0x00445BF0": {
-      "name": "UIWnd::AddChild",
-      "signature": "void __thiscall UIWnd::AddChild(UIWnd *this, int pChild)",
-      "_misattrib_evidence": "max_offset=40>class_size=12"
-    },
-    "0x00446030": {
-      "name": "UIWnd::RegisterToParent",
-      "signature": "void __thiscall UIWnd::RegisterToParent(UIWnd *this)"
-    },
-    "0x0044A7F0": {
-      "name": "UIWnd::~UIWnd",
-      "signature": "void __thiscall UIWnd::~UIWnd(UIWnd *this)"
-    },
-    "0x0044E9F0": {
-      "name": "UIWnd::LayoutProjectCoords",
-      "signature": "void __thiscall UIWnd::LayoutProjectCoords(UIWnd *this)"
-    },
-    "0x00450440": {
-      "name": "UIWnd::CheckVisibleState",
-      "signature": "int __thiscall(UIWnd *this)"
-    },
-    "0x00458F70": {
-      "name": "UIWnd::ParseResourcePath",
-      "signature": "char *__thiscall(UIWnd *this, const char *lpString, int nVal)"
-    },
-    "0x00459080": {
-      "name": "UIWnd::ResetHotkeyTableA",
-      "signature": "int *__thiscall UIWnd::ResetHotkeyTableA(UIWnd *this)"
-    },
-    "0x004590B0": {
-      "name": "UIWnd::ResetHotkeyTableB",
-      "signature": "int *__thiscall UIWnd::ResetHotkeyTableB(UIWnd *this)"
-    },
-    "0x004A4770": {
-      "name": "UIWnd::SetGlobalFlag",
-      "signature": "char __cdecl SetGlobalFlag(char bFlag)"
-    },
-    "0x004A8230": {
-      "name": "UIWnd::ClampToRange",
-      "signature": "unsigned int __thiscall CScreenMode::ClampToRange(CScreenMode *this, unsigned int dwVal, int nSlot)"
-    },
-    "0x004AB560": {
-      "name": "UIWnd::CompareByMode",
-      "signature": "bool __thiscall CompareByMode(void *this, int nItemA, int nItemB)"
-    },
-    "0x0051CC20": {
-      "name": "UIWnd::CreateFromTemplateSafe",
-      "signature": "char __stdcall UIWnd::CreateFromTemplateSafe(int *pParam)"
-    },
-    "0x00530270": {
-      "name": "UIWnd::ResetVtable",
-      "signature": "int *__thiscall UIWnd::ResetVtable(UIWnd *this)"
-    },
-    "0x00450560": {
-      "name": "UIWnd::WorldToScreen",
-      "signature": "int __thiscall(UIWnd *this, int nX, int nY)"
-    },
-    "0x00445B20": {
-      "name": "UIWnd::_scalar_dtor__ovl_5b20",
-      "signature": "void *__thiscall(UIWnd *Block, char pData)"
-    },
-    "0x0043FEC0": {
-      "name": "UIWnd::AddChild",
-      "signature": "void __thiscall(CCBFiveNimbusWindow *this, int *pChild)",
-      "source": "pdb_ret"
-    },
-    "0x00445C10": {
-      "name": "UIWnd::HideAll",
-      "signature": "void ()",
-      "source": "pdb"
-    },
-    "0x00442000": {
-      "name": "UIWnd::CalcScrollPos",
-      "signature": "int __thiscall UIWnd::CalcScrollPos(UIWnd *this)",
-      "_misattrib_evidence": "max_offset=348>class_size=96"
-    },
-    "0x00442100": {
-      "name": "UIWnd::CalcSplitRect",
-      "signature": "int __thiscall UIWnd::CalcSplitRect(UIWnd *this)",
-      "_misattrib_evidence": "max_offset=332>class_size=84"
+      "source": "manual_fix_vtable+fix:sig_match_overrides",
+      "ordinal": 1
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AE2C",
+      "base": "UIFrameWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x00443200",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00442FF0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00442420",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x004431B0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        },
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x004433D0",
+          "from": null
+        },
+        {
+          "addr": "0x00442AD0",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00442420",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x004433A0",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        },
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x00443950",
+          "from": null
+        },
+        {
+          "addr": "0x00443970",
+          "from": null
+        },
+        {
+          "addr": "0x004438F0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x00443530",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        },
+        {
+          "addr": "0x004435A0",
+          "from": null
+        },
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x00444AD0",
+          "from": null
+        },
+        {
+          "addr": "0x00444D30",
+          "from": null
+        },
+        {
+          "addr": "0x00442420",
+          "from": "UIFrameWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x00444AA0",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AFB0",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x0044A870",
+          "from": "CCBProtectWindow"
+        },
+        {
+          "addr": "0x0044A820",
+          "from": "CCBProtectWindow"
+        },
+        {
+          "addr": "0x0043D920",
+          "from": "CCBProtectWindow"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x0044A7D0",
+          "from": "CCBProtectWindow"
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AEC8",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x00445CD0",
+          "from": null
+        },
+        {
+          "addr": "0x00445C60",
+          "from": null
+        },
+        {
+          "addr": "0x00445C10",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x00445B20",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

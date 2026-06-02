@@ -118,26 +118,30 @@
       "signature": "void __thiscall(UIRoleDialog *this)"
     },
     "0x004BEF50": {
-      "name": "UIRoleDialog::~UIWnd__ovl_ef50",
+      "name": "UIRoleDialog::~UIWnd",
       "signature": "void __thiscall(UIRoleDialog *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x004A1A80": {
       "name": "UIRoleDialog::RemoveChild",
-      "signature": "void *__thiscall UIRoleDialog::RemoveChild(UIRoleDialog *this, void *pChild, char bDelete)"
+      "signature": "void *__thiscall UIRoleDialog::RemoveChild(UIRoleDialog *this, void *pChild, char bDelete)",
+      "ordinal": 1
     },
     "0x004A1AA0": {
       "name": "UIRoleDialog::ProcessFrame",
-      "signature": "BOOL __thiscall UIRoleDialog::ProcessFrame(UIRoleDialog *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall UIRoleDialog::ProcessFrame(UIRoleDialog *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x004A13F0": {
       "name": "UIRoleDialog::_sdtor",
-      "signature": "UIItem * __thiscall(UIRoleDialog *this, void *Block, char pData)"
+      "signature": "UIItem * __thiscall(UIRoleDialog *this, void *Block, char pData)",
+      "ordinal": 5
     },
     "0x004A1D10": {
       "name": "UIRoleDialog::OnCommand",
-      "signature": "int __thiscall UIRoleDialog::OnCommand(UIRoleDialog *this, int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall UIRoleDialog::OnCommand(UIRoleDialog *this, int nVal, int nVal2, int nVal3)",
+      "ordinal": 6
     },
     "0x004BF1C0": {
       "name": "UIRoleDialog::Create",
@@ -152,5 +156,41 @@
       "name": "UIRoleDialog::Render",
       "signature": "void __thiscall(UIRoleDialog *this, int nVal)"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056E190",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004A1A80",
+          "from": null
+        },
+        {
+          "addr": "0x004A1AA0",
+          "from": null
+        },
+        {
+          "addr": "0x004A14C0",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004A13F0",
+          "from": null
+        },
+        {
+          "addr": "0x004A1D10",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

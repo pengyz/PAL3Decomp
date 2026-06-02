@@ -317,7 +317,7 @@
       "signature": "void __thiscall(RenderTarget *this, int nY, int nWidth, int nHeight)"
     },
     "0x004BB260": {
-      "name": "RenderTarget::LoadFromFile__ovl_b260",
+      "name": "RenderTarget::LoadFromFile",
       "signature": "void __thiscall(RenderTarget *this, gbVFile *pFile)",
       "_misattrib_evidence": "max_offset=1664>class_size=200"
     },
@@ -325,10 +325,11 @@
       "name": "RenderTarget::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x004BAE60": {
-      "name": "RenderTarget::LoadFromFile__ovl_ae60",
+      "name": "RenderTarget::LoadFromFile",
       "signature": "void __thiscall(RenderTarget *this, struct gbVFile *pFile)",
       "_misattrib_evidence": "max_offset=32004>class_size=200"
     },
@@ -362,7 +363,8 @@
     },
     "0x0048F3A0": {
       "name": "RenderTarget::OnRender",
-      "signature": "int __thiscall RenderTarget::OnRender(RenderTarget *this)"
+      "signature": "int __thiscall RenderTarget::OnRender(RenderTarget *this)",
+      "ordinal": 6
     },
     "0x004B4B10": {
       "name": "RenderTarget::CalcRenderDimensions",
@@ -423,6 +425,60 @@
     "0x004BB050": {
       "name": "RenderTarget::ReadVFile",
       "signature": "void __thiscall(RenderTarget *this, struct gbVFile *pFile)"
+    },
+    "0x0048EB40": {
+      "name": "RenderTarget::RenderWithEffects",
+      "signature": "int()",
+      "source": "vtable_migrated+pdb_correct",
+      "ordinal": 1
+    },
+    "0x0048EF80": {
+      "name": "RenderTarget::ValidateDevice",
+      "signature": "int __userpurge@<eax>(unsigned __int8 nPageIdx@<cl>, int a2, int a3)",
+      "source": "vtable_migrated+pdb_correct",
+      "ordinal": 2
+    },
+    "0x0043DE40": {
+      "name": "RenderTarget::vfunc_3",
+      "signature": "void __thiscall(UIListBox *__hidden this, int)",
+      "source": "vtable_migrated",
+      "ordinal": 3
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056C590",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0048EB40",
+          "from": null
+        },
+        {
+          "addr": "0x0048EF80",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00486D00",
+          "from": null
+        },
+        {
+          "addr": "0x0048F3A0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

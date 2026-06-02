@@ -115,12 +115,51 @@ def load_annotations_data():
             sdata = json.load(open(f, encoding='utf-8'))
             sname = sdata.pop('name', f.stem)
             structs[sname] = sdata
-    vtables = {}
-    vt_file = ann_dir / "vtables.json"
-    if vt_file.exists():
-        vtables = json.load(open(vt_file, encoding='utf-8'))
-    _annotations_cache = {'structs': structs, 'vtables': vtables}
+    functions = {}
+    fn_file = ann_dir / "functions.json"
+    if fn_file.exists():
+        functions = json.load(open(fn_file, encoding='utf-8'))
+    _annotations_cache = {'structs': structs, 'functions': functions}
     return _annotations_cache
+
+
+def class_vtable_slots(cls_name, with_addr=False):
+    """返回该类的虚表 slot 短名列表（按 vtable 顺序，跨多张表去重）。
+
+    名字按 slot 地址从该类 methods -> functions 解析（Trust by address）。
+    当 with_addr=True 时，返回 list of (addr_hex_str, short_name) 对。
+    """
+    ann = load_annotations_data()
+    sinfo = ann['structs'].get(cls_name)
+    if not sinfo or not sinfo.get('vtables'):
+        return [] if not with_addr else []
+    methods = sinfo.get('methods', {})
+    functions = ann.get('functions', {})
+    if with_addr:
+        items = []
+        seen_addrs = set()
+        for vt in sinfo['vtables']:
+            for slot in vt.get('slots', []):
+                addr = slot.get('addr', '')
+                if addr in seen_addrs:
+                    continue
+                seen_addrs.add(addr)
+                entry = methods.get(addr) or functions.get(addr) or {}
+                raw = entry.get('name', '')
+                short = raw.split('::')[-1] if '::' in raw else raw
+                if short and addr:
+                    items.append((addr, short))
+        return items
+    names = []
+    for vt in sinfo['vtables']:
+        for slot in vt.get('slots', []):
+            addr = slot.get('addr', '')
+            entry = methods.get(addr) or functions.get(addr) or {}
+            raw = entry.get('name', '')
+            short = raw.split('::')[-1] if '::' in raw else raw
+            if short:
+                names.append(short)
+    return names
 
 
 # Skip STL/CRT/Windows types (already defined by system headers)
@@ -196,6 +235,7 @@ SKIP_PREFIXES = (
     '_DI',   # DirectInput internal structs (defined by dinput.h)
     '_IMAGE',# PE header structs (defined by winnt.h)
     '_Crt',  # CRT debug internals
+    'std',   # C++ standard library (provided by MSVC CRT)
 )
 
 
@@ -1011,57 +1051,36 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     vtable_method_names = set()  # track names declared via vtable (including inherited)
     try:
         ann_data_vt = load_annotations_data()
-        vtables_data = ann_data_vt.get('vtables', {})
 
-        # Collect inherited vtable method names from base classes
         def _collect_base_vtable_names(class_name, visited=None):
             if visited is None:
                 visited = set()
             if class_name in visited:
                 return set()
             visited.add(class_name)
-            names = set()
-            for vt_name, vt_info in vtables_data.items():
-                if vt_info.get('class') == class_name:
-                    for vm in vt_info.get('methods', []):
-                        vm_name = vm.get('name', '')
-                        if '::' in vm_name:
-                            names.add(vm_name.split('::')[-1])
-                        elif vm_name.startswith('sub_'):
-                            names.add(vm_name)
-            # Recurse into base classes
+            names = set(re.sub(r'[^a-zA-Z0-9_]', '_', n) for n in class_vtable_slots(class_name))
             ann_s = ann_data_vt.get('structs', {}).get(class_name, {})
             base = ann_s.get('base_class')
             if base:
-                names |= _collect_base_vtable_names(base, visited)
+                bases = [base] if isinstance(base, str) else base
+                for b in bases:
+                    names |= _collect_base_vtable_names(b, visited)
             return names
 
         for bn in base_names:
             vtable_method_names |= _collect_base_vtable_names(bn)
 
-        # Find the vtable for this class (smallest = base class vtable)
-        cls_vtables = [(name, info) for name, info in vtables_data.items()
-                       if info.get('class') == cls_name]
-        if cls_vtables:
-            cls_vtables.sort(key=lambda x: len(x[1].get('methods', [])))
-            vt_name, vt_info = cls_vtables[0]
-            vt_methods = vt_info.get('methods', [])
-            if vt_methods and not base_names:
-                lines.append("    // vtable (%s, %d methods) — signatures from IDA vtable, not authoritative" % (vt_name, len(vt_methods)))
-                seen_vnames = set()
-                for vm in vt_methods:
-                    vm_name = vm.get('name', '')
-                    short = 'unknown'
-                    if '::' in vm_name:
-                        short = vm_name.split('::')[-1]
-                        short = re.sub(r'[^a-zA-Z0-9_]', '_', short)
-                    elif vm_name.startswith('sub_'):
-                        short = vm_name
-                    if short in seen_vnames:
-                        short = '%s_%s' % (short, vm.get('address', '0')[-4:])
-                    seen_vnames.add(short)
-                    vtable_method_names.add(short)
-                lines.append("")
+        own_slots = class_vtable_slots(cls_name)
+        if own_slots and not base_names:
+            lines.append("    // vtable (%d methods, order matches binary layout)" % len(own_slots))
+            seen_vnames = set()
+            for raw in own_slots:
+                short = re.sub(r'[^a-zA-Z0-9_]', '_', raw)
+                if short in seen_vnames:
+                    continue
+                seen_vnames.add(short)
+                vtable_method_names.add(short)
+            lines.append("")
     except:
         pass
 
@@ -1259,8 +1278,17 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     if _check_size and _check_size <= 16 and len(_check_members) == 0:
         _is_opaque = True
     if methods:
+        # Sort: vtable methods first (in slot order by address), then non-vtable by addr
+        _vtable_addr_order = {}
+        for _vi, _sn in enumerate(class_vtable_slots(cls_name, with_addr=True)):
+            _vtable_addr_order[int(_sn[0], 16)] = _vi
+        def _method_sort_key(item):
+            _addr = int(item[2], 16) if isinstance(item[2], str) else item[2]
+            if _addr in _vtable_addr_order:
+                return (0, _vtable_addr_order[_addr], _addr)
+            return (1, 0, _addr)
         seen_methods = set()  # track "name(params)" to deduplicate
-        for method_name, sig, addr in sorted(methods, key=lambda x: x[2]):
+        for method_name, sig, addr in sorted(methods, key=_method_sort_key):
             ret, cc, params, ret_right = parse_signature(sig)
 
             # Remap IDA internal types to C types in signatures
@@ -1465,8 +1493,8 @@ def main():
 
     # Load annotations for vtable info
     ann_data_all = load_annotations_data()
-    vtable_classes = set(v.get('class', '') for v in ann_data_all.get('vtables', {}).values())
-    vtable_classes.discard('')
+    vtable_classes = set(name for name, sinfo in ann_data_all.get('structs', {}).items()
+                         if sinfo.get('vtables'))
     vtable_classes -= {'crt_internal', 'std_locale_facet'}
 
     generated = 0
@@ -1555,8 +1583,8 @@ def main():
         # Skip if no useful content (but keep if has vtable or annotation members)
         has_members = pdb_class and pdb_class.get('data_members') and pdb_class.get('size', 0) > 1
         has_methods = len(methods) >= 1
-        has_vtable = any(v.get('class') == cls_name for v in ann_data_all.get('vtables', {}).values())
         ann_struct = ann_data_all.get('structs', {}).get(cls_name, {})
+        has_vtable = bool(ann_struct.get('vtables'))
         has_ann_members = bool(ann_struct.get('known_members'))
         has_ann_size = bool(ann_struct.get('binary_size'))
         if not has_members and not has_methods and not has_vtable and not has_ann_members and not has_ann_size:

@@ -876,7 +876,8 @@
     },
     "0x0041B640": {
       "name": "Role::UpdateBoundingBox",
-      "signature": "void __thiscall Role::UpdateBoundingBox(Role *this, struct gbAABBox *pBox)"
+      "signature": "void __thiscall Role::UpdateBoundingBox(Role *this, struct gbAABBox *pBox)",
+      "ordinal": 0
     },
     "0x004B4DA0": {
       "name": "Role::SetScale",
@@ -894,6 +895,38 @@
     "0x0043FDD0": {
       "name": "Role::GetHeight",
       "signature": "void __thiscall(UIWnd *this, int nHeight)"
+    },
+    "0x0041B6A0": {
+      "name": "Role::GetGfxManager_1",
+      "signature": "gbGfxManager *__thiscall(Role *this)",
+      "source": "manual_fix_vtable+canonical_rename",
+      "ordinal": 1
+    },
+    "0x0041BE30": {
+      "name": "Role::sub_41BE30",
+      "signature": "int __stdcall(char)",
+      "source": "vtable_migrated",
+      "ordinal": 2
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056A9A4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0041B640",
+          "from": null
+        },
+        {
+          "addr": "0x0041B6A0",
+          "from": null
+        },
+        {
+          "addr": "0x0041BE30",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

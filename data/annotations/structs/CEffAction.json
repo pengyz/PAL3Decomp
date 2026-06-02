@@ -96,15 +96,141 @@
     },
     "0x004C0740": {
       "name": "CEffAction::UpdateFrame",
-      "signature": "void __fastcall CEffAction::UpdateFrame(float *pfVal, float fVal)"
+      "signature": "void __thiscall(CEffAction *this, float fVal)",
+      "ordinal": 5,
+      "source": "manual_fix_vtable"
     },
     "0x004C0640": {
       "name": "CEffAction::ResetState",
-      "signature": "void __thiscall CEffAction::ResetState(CEffAction *this)"
+      "signature": "void __thiscall CEffAction::ResetState(CEffAction *this)",
+      "ordinal": 2
     },
     "0x004C0650": {
       "name": "CEffAction::AllocSegments",
-      "signature": "char __thiscall CEffAction::AllocSegments(CEffAction *this, int nVal)"
+      "signature": "char __thiscall CEffAction::AllocSegments(CEffAction *this, int nVal)",
+      "ordinal": 1
+    },
+    "0x004C0540": {
+      "name": "CEffAction::slot_0",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 0
+    },
+    "0x00408BD0": {
+      "name": "CEffAction::_todo_408BD0",
+      "signature": "void __cdecl _todo_408BD0(void *pData)",
+      "source": "vtable_migrated",
+      "ordinal": 3
+    },
+    "0x004C0520": {
+      "name": "CEffAction::sub_4C0520",
+      "signature": "void __thiscall(CEffAction *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 7
+    },
+    "0x004C0500": {
+      "name": "CEffAction::sub_4C0500",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 8
+    },
+    "0x004C0920": {
+      "name": "CEffAction::sub_4C0920",
+      "signature": "void __thiscall(CEffAction *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 9
+    },
+    "0x004C0510": {
+      "name": "CEffSParticle::sub_4C0510",
+      "signature": "void __thiscall(CEffSParticle *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 10
+    },
+    "0x004C09E0": {
+      "name": "CEffAction::sub_4C09E0",
+      "signature": "void __thiscall(CEffAction *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 12
+    },
+    "0x004C15D0": {
+      "name": "CEffSParticle::sub_4C15D0",
+      "signature": "void __thiscall(CEffSParticle *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 13
+    },
+    "0x004C1270": {
+      "name": "CEffAction::sub_4C1270",
+      "signature": "void __thiscall(CEffAction *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 14
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F5E4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C0540",
+          "from": null
+        },
+        {
+          "addr": "0x004C0650",
+          "from": null
+        },
+        {
+          "addr": "0x004C0640",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0740",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0520",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004C0920",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C09E0",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004C1270",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

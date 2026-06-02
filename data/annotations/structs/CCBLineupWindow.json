@@ -194,6 +194,48 @@
     "0x0051D6D0": {
       "name": "CCBLineupWindow::RefreshFacePos",
       "signature": "CCBProtectWindow *__thiscall(CCBLineupWindow *this)"
+    },
+    "0x0051B570": {
+      "name": "CCBLineupWindow::?HandleInput@CCBItemWindow@@IAEXXZ",
+      "signature": "void __thiscall(CCBItemWindow *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 2
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x00570538",
+      "base": "CCBItemWindow",
+      "slots": [
+        {
+          "addr": "0x0051B5D0",
+          "from": "CCBItemWindow"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": "CCBItemWindow"
+        },
+        {
+          "addr": "0x0051B570",
+          "from": null
+        },
+        {
+          "addr": "0x0051B4B0",
+          "from": "CCBItemWindow"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051B160",
+          "from": "CCBItemWindow"
+        },
+        {
+          "addr": "0x0051C9B0",
+          "from": "CCBSkillWindow"
+        }
+      ]
+    }
+  ]
 }

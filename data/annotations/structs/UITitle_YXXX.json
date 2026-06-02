@@ -107,7 +107,7 @@
       "signature": "void __thiscall(UITitle_YXXX *this)"
     },
     "0x004AF760": {
-      "name": "UITitle_YXXX::Update__ovl_f760",
+      "name": "UITitle_YXXX::Update",
       "signature": "void __stdcall(int)",
       "type": "skip",
       "reason": "compiler-generated stub/thunk, not game logic"
@@ -125,12 +125,68 @@
       "signature": "void __thiscall UITitle_YXXX::~UITitle_YXXX(UITitle_YXXX *this)"
     },
     "0x0047E3E0": {
-      "name": "UITitle_YXXX::Update__ovl_e3e0",
-      "signature": "int __thiscall(UITitle_YXXX *this, int nVal, int nVal2)"
+      "name": "UITitle_YXXX::Update",
+      "signature": "int __thiscall(UITitle_YXXX *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x0047E4E0": {
       "name": "UITitle_YXXX::HandleMsgDLL",
-      "signature": "int __thiscall UITitle_YXXX::HandleMsgDLL(UITitle_YXXX *this, HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)"
+      "signature": "int __thiscall UITitle_YXXX::HandleMsgDLL(UITitle_YXXX *this, HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)",
+      "ordinal": 6
+    },
+    "0x00524970": {
+      "name": "UITitle_YXXX::Render",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_migrated",
+      "ordinal": 1
+    },
+    "0x0043DE40": {
+      "name": "UITitle_YXXX::Destroy",
+      "signature": "void __thiscall(UIListBox *__hidden this, int)",
+      "source": "vtable_migrated",
+      "ordinal": 3
+    },
+    "0x0047DD70": {
+      "name": "UITitle_YXXX::_scalar_dtor",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 5
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B8A4",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00524970",
+          "from": null
+        },
+        {
+          "addr": "0x0047E3E0",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0047DD70",
+          "from": null
+        },
+        {
+          "addr": "0x0047E4E0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

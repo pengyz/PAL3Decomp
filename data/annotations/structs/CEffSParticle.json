@@ -150,7 +150,8 @@
     },
     "0x004D4EE0": {
       "name": "CEffSParticle::CEffSParticle",
-      "signature": "void __thiscall(CEffSParticle *this)"
+      "signature": "void __thiscall(CEffSParticle *this)",
+      "ordinal": 7
     },
     "0x004D4F20": {
       "name": "CEffSParticle::~CEffSParticle",
@@ -158,11 +159,13 @@
     },
     "0x004D4FC0": {
       "name": "CEffSParticle::Create",
-      "signature": "int __thiscall(CEffSParticle *this, float pType)"
+      "signature": "int __thiscall(CEffSParticle *this, float pType)",
+      "ordinal": 5
     },
     "0x004D51B0": {
       "name": "CEffSParticle::Init",
-      "signature": "void __thiscall(CEffSParticle *this, int *pType)"
+      "signature": "void __thiscall(CEffSParticle *this, int *pType)",
+      "ordinal": 12
     },
     "0x004D53E0": {
       "name": "CEffSParticle::Attach",
@@ -170,7 +173,8 @@
     },
     "0x004D5620": {
       "name": "CEffSParticle::Update",
-      "signature": "int *__thiscall(CEffSParticle *this, float fCurTime)"
+      "signature": "int *__thiscall(CEffSParticle *this, float fCurTime)",
+      "ordinal": 14
     },
     "0x004D56B0": {
       "name": "CEffSParticle::Render",
@@ -187,6 +191,104 @@
     "0x004D58D0": {
       "name": "CEffSParticle::GetEditorTaskDescription",
       "signature": "const char *__thiscall(CEffSParticle *this, int nIndex)"
+    },
+    "0x004D4F00": {
+      "name": "CEffSParticle::slot_0",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 0
+    },
+    "0x004D33A0": {
+      "name": "CEffSParticle::slot_2",
+      "signature": "int __stdcall(int, int, int, int)",
+      "source": "vtable_migrated",
+      "ordinal": 2
+    },
+    "0x004C0500": {
+      "name": "CEffSParticle::sub_4C0500",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 8
+    },
+    "0x004C0510": {
+      "name": "CEffSParticle::sub_4C0510",
+      "signature": "void __thiscall(CEffSParticle *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 10
+    },
+    "0x004C15D0": {
+      "name": "CEffSParticle::sub_4C15D0",
+      "signature": "void __thiscall(CEffSParticle *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 13
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056FB34",
+      "base": "CEffAction",
+      "slots": [
+        {
+          "addr": "0x004D4F00",
+          "from": null
+        },
+        {
+          "addr": "0x004C0650",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004D33A0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004D4FC0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004D4EE0",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004D51B0",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004D5620",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

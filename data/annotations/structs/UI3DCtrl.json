@@ -183,7 +183,7 @@
       "source": "pdb"
     },
     "0x0043D880": {
-      "name": "UI3DCtrl::ctor__ovl_D880",
+      "name": "UI3DCtrl::ctor",
       "signature": "void __thiscall(UI3DCtrl *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -196,15 +196,18 @@
       "name": "UI3DCtrl::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x0043D890": {
       "name": "UI3DCtrl::CreateWithTexture",
-      "signature": "gbVFileSystem *__thiscall UI3DCtrl::CreateWithTexture(UI3DCtrl *this, int id, void *pRect, int nVal, unsigned int dwVal, int parent)"
+      "signature": "gbVFileSystem *__thiscall UI3DCtrl::CreateWithTexture(UI3DCtrl *this, int id, void *pRect, int nVal, unsigned int dwVal, int parent)",
+      "ordinal": 7
     },
     "0x0043D940": {
       "name": "UI3DCtrl::Render",
-      "signature": "void __thiscall(UI3DCtrl *this)"
+      "signature": "void __thiscall(UI3DCtrl *this)",
+      "ordinal": 1
     },
     "0x0052B050": {
       "name": "UI3DCtrl::LoadEncampModel",
@@ -230,5 +233,45 @@
       "name": "UI3DCtrl::UpdateTransform",
       "signature": "char __thiscall UI3DCtrl::UpdateTransform(UI3DCtrl *this, int nVal)"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ACFC",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D940",
+          "from": null
+        },
+        {
+          "addr": "0x00445C60",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D920",
+          "from": "CCBProtectWindow"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D860",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043D890",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

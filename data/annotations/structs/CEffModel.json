@@ -160,11 +160,13 @@
     },
     "0x004CFEB0": {
       "name": "CEffModel::LoadFromNode",
-      "signature": "bool __thiscall CEffModel::LoadFromNode(CEffModel *this, int nVal)"
+      "signature": "bool __thiscall CEffModel::LoadFromNode(CEffModel *this, int nVal)",
+      "ordinal": 1
     },
     "0x004D01C0": {
       "name": "CEffModel::RenderScenePass",
-      "signature": "void __thiscall(CEffModel *this)"
+      "signature": "void __thiscall(CEffModel *this)",
+      "ordinal": 4
     },
     "0x004CFC70": {
       "name": "CEffModel::CEffModel",
@@ -186,6 +188,116 @@
     "0x0052AF20": {
       "name": "CEffModel::LoadModel",
       "signature": "char __thiscall UI3DCtrl::LoadModel(UI3DCtrl *this, const char *pszModelName)"
+    },
+    "0x004CFD00": {
+      "name": "CEffModel::sub_4CFD00",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 7
+    },
+    "0x004C0500": {
+      "name": "CEffModel::sub_4C0500",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 8
+    },
+    "0x004C0510": {
+      "name": "CEffSParticle::sub_4C0510",
+      "signature": "void __thiscall(CEffSParticle *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 10
+    },
+    "0x004D0390": {
+      "name": "CEffModel::sub_4D0390",
+      "signature": "void __thiscall(CEffModel *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 11
+    },
+    "0x004D03B0": {
+      "name": "CEffModel::sub_4D03B0",
+      "signature": "void __thiscall(CEffModel *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 12
+    },
+    "0x004C15D0": {
+      "name": "CEffSParticle::sub_4C15D0",
+      "signature": "void __thiscall(CEffSParticle *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 13
+    },
+    "0x004D0850": {
+      "name": "CEffModel::sub_4D0850",
+      "signature": "int __stdcall(int)",
+      "source": "vtable_migrated",
+      "ordinal": 14
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F9DC",
+      "base": "CEffCustomShape",
+      "slots": [
+        {
+          "addr": "0x004CFD20",
+          "from": "CEffCustomShape"
+        },
+        {
+          "addr": "0x004CFEB0",
+          "from": null
+        },
+        {
+          "addr": "0x004CFE20",
+          "from": "CEffCustomShape"
+        },
+        {
+          "addr": "0x004CFFA0",
+          "from": "CEffCustomShape"
+        },
+        {
+          "addr": "0x004D01C0",
+          "from": null
+        },
+        {
+          "addr": "0x004CFFB0",
+          "from": "CEffCustomShape"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004CFD00",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004D0390",
+          "from": null
+        },
+        {
+          "addr": "0x004D03B0",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004D0850",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

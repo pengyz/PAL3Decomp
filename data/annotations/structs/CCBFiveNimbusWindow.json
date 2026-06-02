@@ -177,8 +177,9 @@
       "signature": "void __thiscall(CCBFiveNimbusWindow *this)"
     },
     "0x00519FE0": {
-      "name": "CCBFiveNimbusWindow::OnMessage__ovl_9fe0",
-      "signature": "int __thiscall(CCBUI *this, int nVal, unsigned int dwVal, int nVal2)"
+      "name": "CCBFiveNimbusWindow::OnMessage",
+      "signature": "int __thiscall(CCBUI *this, int nVal, unsigned int dwVal, int nVal2)",
+      "ordinal": 6
     },
     "0x0043A070": {
       "name": "CCBFiveNimbusWindow::SetFloatParam",
@@ -235,6 +236,210 @@
     "0x00530BC0": {
       "name": "CCBFiveNimbusWindow::ApplySelection",
       "signature": "int __thiscall(CCBFiveNimbusWindow *this, int nVal)"
+    },
+    "0x0051A090": {
+      "name": "CCBFiveNimbusWindow::?AddResultWindowAni@CCBUI@@AAEXXZ",
+      "signature": "void __thiscall(CCBUI *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 2
+    },
+    "0x00519B40": {
+      "name": "CCBFiveNimbusWindow::?GetNimbusColor@CCBUI@@QAE?AUgbColorQuad@@W4ECBFiveNimbus@@@Z",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 5
+    },
+    "0x0043DDF0": {
+      "name": "CCBFiveNimbusWindow::?SetScroll@UIListBox@@QAEXPBDAAUtagRECT@@HH_N@Z",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_migrated",
+      "ordinal": 8
+    },
+    "0x0051AB00": {
+      "name": "CCBFiveNimbusWindow::CheckMagicKeyPress",
+      "signature": "int __thiscall(UIWnd *this, int a2, int a3)",
+      "source": "vtable_migrated+pdb_correct",
+      "ordinal": 9
+    },
+    "0x0051A390": {
+      "name": "CCBFiveNimbusWindow::?DoTask@CCBUI@@AAEXXZ",
+      "signature": "void __thiscall(CCBUI *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 12
+    },
+    "0x0051A930": {
+      "name": "CCBFiveNimbusWindow::?Reset@CCBControlWindow@@AAEXXZ",
+      "signature": "void __thiscall(CCBControlWindow *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 13
+    },
+    "0x0051B0B0": {
+      "name": "CCBFiveNimbusWindow::?MoveButtons@CCBControlWindow@@QAEXXZ",
+      "signature": "void __thiscall(CCBControlWindow *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 16
+    },
+    "0x0051AFE0": {
+      "name": "CCBFiveNimbusWindow::?Update@CCBControlWindow@@UAEHMH@Z",
+      "signature": "int __thiscall(CCBControlWindow *__hidden this, float, int)",
+      "source": "vtable_migrated",
+      "ordinal": 17
+    },
+    "0x0051AC90": {
+      "name": "CCBFiveNimbusWindow::?HandleEnable@CCBControlWindow@@IAEXHH@Z",
+      "signature": "void __thiscall(CCBControlWindow *__hidden this, char a2, int)",
+      "source": "vtable_migrated",
+      "ordinal": 19
+    },
+    "0x0051B030": {
+      "name": "CCBFiveNimbusWindow::sub_51B030",
+      "signature": "int __stdcall(int, int a2, int a3)",
+      "source": "vtable_migrated",
+      "ordinal": 20
+    },
+    "0x0051B5D0": {
+      "name": "CCBFiveNimbusWindow::?OnMessage@CCBItemWindow@@MAEHIKK@Z",
+      "signature": "int __thiscall(CCBItemWindow *__hidden this, unsigned int a2, unsigned int, unsigned int)",
+      "source": "vtable_migrated",
+      "ordinal": 21
+    },
+    "0x0051B570": {
+      "name": "CCBFiveNimbusWindow::?HandleInput@CCBItemWindow@@IAEXXZ",
+      "signature": "void __thiscall(CCBItemWindow *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 23
+    },
+    "0x0051B4B0": {
+      "name": "CCBFiveNimbusWindow::?Destroy@CCBItemWindow@@UAEXXZ",
+      "signature": "void __thiscall(CCBItemWindow *__hidden this)",
+      "source": "vtable_migrated",
+      "ordinal": 24
+    },
+    "0x0051C9B0": {
+      "name": "CCBFiveNimbusWindow::?OnMessage@CCBSkillWindow@@MAEHIKK@Z",
+      "signature": "int __thiscall(CCBSkillWindow *__hidden this, unsigned int, unsigned int a2, unsigned int)",
+      "source": "vtable_migrated",
+      "ordinal": 27
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x005704E4",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x0051A090",
+          "from": null
+        },
+        {
+          "addr": "0x00519F50",
+          "from": "CCBUI"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00519B40",
+          "from": null
+        },
+        {
+          "addr": "0x00519FE0",
+          "from": null
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051AB00",
+          "from": null
+        },
+        {
+          "addr": "0x0051A880",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051A390",
+          "from": null
+        },
+        {
+          "addr": "0x0051A930",
+          "from": null
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051B0B0",
+          "from": null
+        },
+        {
+          "addr": "0x0051AFE0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051AC90",
+          "from": null
+        },
+        {
+          "addr": "0x0051B030",
+          "from": null
+        },
+        {
+          "addr": "0x0051B5D0",
+          "from": null
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0051B570",
+          "from": null
+        },
+        {
+          "addr": "0x0051B4B0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051B160",
+          "from": null
+        },
+        {
+          "addr": "0x0051C9B0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

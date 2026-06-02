@@ -104,8 +104,9 @@
     },
     "128": {
       "name": "m_fDamageNumPosY",
-      "type": "float[11]",
-      "offset": 128
+      "type": "float[5]",
+      "offset": 128,
+      "source": "+fix:overlap_correct_count"
     },
     "172": {
       "name": "m_fMusicVolume",
@@ -270,7 +271,7 @@
     "6632": {
       "name": "m_fAngleDegrees",
       "type": "float",
-      "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2\u00a6\u00d0, compare \u00a6\u00d0/2)"
+      "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2¦Ð, compare ¦Ð/2)"
     },
     "6636": {
       "name": "_todo_19EC",
@@ -415,7 +416,7 @@
     "544": {
       "name": "m_pController",
       "type": "void *",
-      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int\u00a1\u00favoid*(deref pattern)"
+      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int¡úvoid*(deref pattern)"
     },
     "552": {
       "name": "m_fPrevRotX",
@@ -1491,11 +1492,11 @@
       "signature": "char __thiscall(CCBStage *this, int nIndex, int nVal)"
     },
     "0x004FCC10": {
-      "name": "CCBStage::GetTaskState__ovl_cc10",
+      "name": "CCBStage::GetTaskState",
       "signature": "char(CCBStage *this, int nIndex, bool *bFinished, unsigned int *dwReturn)"
     },
     "0x004FCC50": {
-      "name": "CCBStage::GetTaskState__ovl_cc50",
+      "name": "CCBStage::GetTaskState",
       "signature": "char(CCBStage *this, int nIndex, enum ECBStageTaskState *State)"
     },
     "0x004FCD00": {
@@ -1889,6 +1890,54 @@
     "0x0050E360": {
       "name": "CCBStage::CalcFacingAngle",
       "signature": "int __thiscall CCBStage::CalcFacingAngle(CCBStage *this, int nVal)"
+    },
+    "0x0051F0A0": {
+      "name": "CCBStage::?Reset@CCBResultWindow@@AAEXXZ",
+      "signature": "void __thiscall(CCBResultWindow *__hidden this)",
+      "source": "vtable_evidence",
+      "ordinal": 2
+    },
+    "0x0051DD80": {
+      "name": "CCBStage::?Destroy@CCBProtectWindow@@UAEXXZ",
+      "signature": "void __thiscall(CCBProtectWindow *__hidden this)",
+      "source": "vtable_evidence",
+      "ordinal": 5
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x005705D0",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00524970",
+          "from": "CCBResultWindow"
+        },
+        {
+          "addr": "0x0051F0A0",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": "CCBResultWindow"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051DD80",
+          "from": null
+        },
+        {
+          "addr": "0x0051F1B0",
+          "from": "CCBResultWindow"
+        }
+      ]
+    }
+  ]
 }

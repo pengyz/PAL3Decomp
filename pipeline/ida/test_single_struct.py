@@ -24,14 +24,13 @@ def main():
 
     # Test specific structs
     test_names = ["EquipUI", "CCBStageRole", "PalScriptMgr", "Role", "SwordUI"]
-    vtables = data.get("vtables", {})
 
     test_results = {}
     for sname in test_names:
         if sname not in structs:
             print("[!] %s not found" % sname)
             continue
-        decl = build_struct_decl(sname, structs[sname], structs, vtables)
+        decl = build_struct_decl(sname, structs[sname], structs, {})
         if not decl:
             print("[!] %s: None decl" % sname)
             continue

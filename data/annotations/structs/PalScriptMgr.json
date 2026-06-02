@@ -1308,15 +1308,18 @@
     },
     "0x00434CC0": {
       "name": "PalScriptMgr::IsWaitComplete",
-      "signature": "BOOL __thiscall PalScriptMgr::IsWaitComplete(PalScriptMgr *this)"
+      "signature": "BOOL __thiscall PalScriptMgr::IsWaitComplete(PalScriptMgr *this)",
+      "ordinal": 1
     },
     "0x00434D20": {
       "name": "PalScriptMgr::IsBlendComplete",
-      "signature": "BOOL __thiscall(PalScriptMgr *this)"
+      "signature": "BOOL __thiscall(PalScriptMgr *this)",
+      "ordinal": 4
     },
     "0x00434D40": {
       "name": "PalScriptMgr::AccumulateTime",
-      "signature": "void __thiscall PalScriptMgr::AccumulateTime(PalScriptMgr *this, float fDelta)"
+      "signature": "void __thiscall PalScriptMgr::AccumulateTime(PalScriptMgr *this, float fDelta)",
+      "ordinal": 5
     },
     "0x00434C80": {
       "name": "PalScriptMgr::UpdateLoadProgress",
@@ -1330,6 +1333,44 @@
       "name": "CCBStage::ProcessScriptEvent",
       "signature": "char __thiscall(ScriptSystem *this, int nVal, int nVal2, int nParam)",
       "_misattrib_evidence": "max_offset=217324>class_size=8704"
+    },
+    "0x00434D50": {
+      "name": "PalScriptMgr::sub_00434D50",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 0
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ABB8",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00434D50",
+          "from": null
+        },
+        {
+          "addr": "0x00434CC0",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x00434D50",
+          "from": null
+        },
+        {
+          "addr": "0x00434D20",
+          "from": null
+        },
+        {
+          "addr": "0x00434D40",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

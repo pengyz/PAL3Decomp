@@ -1102,7 +1102,7 @@
       "_misattrib_evidence": "max_offset=3340>class_size=596"
     },
     "0x00452FD0": {
-      "name": "SceneObj::ctor__ovl_2FD0",
+      "name": "SceneObj::ctor",
       "signature": "int __thiscall(SceneObj *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -1119,7 +1119,8 @@
       "name": "SceneObj::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x0052F800": {
       "name": "SceneObj::LoadGeomFromFile",
@@ -1147,7 +1148,8 @@
     },
     "0x00453200": {
       "name": "SceneObj::ValidateState",
-      "signature": "char __thiscall SceneObj::ValidateState(SceneObj *this)"
+      "signature": "char __thiscall SceneObj::ValidateState(SceneObj *this)",
+      "ordinal": 1
     },
     "0x004538E0": {
       "name": "SceneObj::LoadData",
@@ -1169,5 +1171,41 @@
       "name": "SceneObj::LoadFromConfig",
       "signature": "int __cdecl(int *p_DWORD, int *p_DWORD2, int nVal)"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B200",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00453200",
+          "from": null
+        },
+        {
+          "addr": "0x00445C60",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00445C10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00453010",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ]
 }

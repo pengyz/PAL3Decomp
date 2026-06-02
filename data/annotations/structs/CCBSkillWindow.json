@@ -64,7 +64,8 @@
     },
     "0x0051BBE0": {
       "name": "CCBSkillWindow::Destroy",
-      "signature": "void __thiscall(CCBSkillWindow *this)"
+      "signature": "void __thiscall(CCBSkillWindow *this)",
+      "ordinal": 5
     },
     "0x0051BC00": {
       "name": "CCBSkillWindow::~CCBSkillWindow",
@@ -74,7 +75,8 @@
       "name": "CCBSkillWindow::_scalar_dtor",
       "signature": "UIWnd *__thiscall(CCBSkillWindow *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 12
     },
     "0x0051C2D0": {
       "name": "CCBSkillWindow::Reset",
@@ -88,23 +90,99 @@
     },
     "0x0051C880": {
       "name": "CCBSkillWindow::Destroy_c880",
-      "signature": "int __thiscall(CCBSkillWindow *this)"
+      "signature": "int __thiscall(CCBSkillWindow *this)",
+      "ordinal": 10
     },
     "0x0051C9B0": {
       "name": "CCBSkillWindow::OnMessage",
-      "signature": "int __thiscall(CCBSkillWindow *this, int msg, int wparam, int lparam)"
+      "signature": "int __thiscall(CCBSkillWindow *this, int msg, int wparam, int lparam)",
+      "ordinal": 13
     },
     "0x0051C9F0": {
       "name": "CCBSkillWindow::Update",
-      "signature": "BOOL __thiscall(CCBSkillWindow *this, int deltatime, int haveinput)"
+      "signature": "BOOL __thiscall(CCBSkillWindow *this, int deltatime, int haveinput)",
+      "ordinal": 9
     },
     "0x0051CA50": {
       "name": "CCBSkillWindow::ToggleSlots",
-      "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots(CCBSkillWindow *this, int nVal)"
+      "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots(CCBSkillWindow *this, int nVal)",
+      "ordinal": 7
     },
     "0x0051CAA0": {
       "name": "CCBSkillWindow::Render",
-      "signature": "int __thiscall(CCBSkillWindow *this)"
+      "signature": "void __thiscall(CCBSkillWindow *this)",
+      "ordinal": 8,
+      "source": "manual_fix_vtable"
+    },
+    "0x0051C1B0": {
+      "name": "CCBSkillWindow::?SetActivePage@CCBMagicWindow@@QAEXH@Z",
+      "signature": "void __thiscall(CCBMagicWindow *__hidden this, int a2)",
+      "source": "vtable_migrated",
+      "ordinal": 2
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x00570570",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": "CCBMagicWindow"
+        },
+        {
+          "addr": "0x0051C1B0",
+          "from": null
+        },
+        {
+          "addr": "0x0051C110",
+          "from": "CCBMagicWindow"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051BBE0",
+          "from": null
+        },
+        {
+          "addr": "0x0051B860",
+          "from": "CCBMagicWindow"
+        },
+        {
+          "addr": "0x0051CA50",
+          "from": null
+        },
+        {
+          "addr": "0x0051CAA0",
+          "from": null
+        },
+        {
+          "addr": "0x0051C9F0",
+          "from": null
+        },
+        {
+          "addr": "0x0051C880",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051C260",
+          "from": null
+        },
+        {
+          "addr": "0x0051C9B0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

@@ -88,13 +88,13 @@
       "source": "pdb"
     },
     "0x0044FFE0": {
-      "name": "UISceneMap::ctor__ovl_FFE0",
+      "name": "UISceneMap::ctor",
       "signature": "int __thiscall(UISceneMap *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x004B47E0": {
-      "name": "UISceneMap::Destructor__ovl_4B47E0",
+      "name": "UISceneMap::Destructor",
       "signature": "void __thiscall(UISceneMap *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -111,7 +111,8 @@
       "name": "UISceneMap::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x00451200": {
       "name": "UISceneMap::LoadCompass",
@@ -139,7 +140,8 @@
     },
     "0x00450230": {
       "name": "UISceneMap::Render",
-      "signature": "int __thiscall(UISceneMap *this)"
+      "signature": "int __thiscall(UISceneMap *this)",
+      "ordinal": 1
     },
     "0x00450DC0": {
       "name": "UISceneMap::UISceneMap",
@@ -165,6 +167,54 @@
       "name": "UISceneMap::SetFieldIfValid",
       "signature": "int __thiscall UISceneMap::SetFieldIfValid(UISceneMap *this, int nVal)",
       "_misattrib_evidence": "max_offset=224>class_size=68"
+    },
+    "0x004501A0": {
+      "name": "UISceneMap::Update",
+      "signature": "double __stdcall(float, int)",
+      "source": "vtable_migrated",
+      "ordinal": 2
+    },
+    "0x00408BD0": {
+      "name": "UISceneMap::_todo_408BD0",
+      "signature": "void __cdecl _todo_408BD0(void *pData)",
+      "source": "vtable_migrated",
+      "ordinal": 3
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B0B4",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00450230",
+          "from": null
+        },
+        {
+          "addr": "0x004501A0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00450070",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    }
+  ]
 }

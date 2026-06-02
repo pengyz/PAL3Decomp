@@ -353,7 +353,8 @@
     },
     "0x0043DEF0": {
       "name": "UIListBox::Render",
-      "signature": "int __thiscall(UIListBox *this)"
+      "signature": "void __thiscall(UIListBox *this)",
+      "source": "+fix:sig_match_base"
     },
     "0x0043DF10": {
       "name": "UIListBox::CalHeightCount",
@@ -368,10 +369,11 @@
       "signature": "UIListBox *__thiscall(UIListBox *this)"
     },
     "0x0043E100": {
-      "name": "UIListBox::_scalar_dtor__ovl_e100",
+      "name": "UIListBox::_scalar_dtor",
       "signature": "std::ios_base *__thiscall(std::ios_base *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x0043E120": {
       "name": "UIListBox::DeleteRow",
@@ -380,7 +382,8 @@
     "0x0043E1C0": {
       "name": "UIListBox::CalScrollBarRange",
       "signature": "void __thiscall(UIListBox *this, int id, int *p_DWORD, int parent, LPCSTR lpString, int nVal, char pData)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "ordinal": 7
     },
     "0x0043E330": {
       "name": "UIListBox::GetSel",
@@ -396,19 +399,21 @@
       "source": "pdb_ret"
     },
     "0x0043E480": {
-      "name": "UIListBox::OnMessage__ovl_e480",
-      "signature": "int __thiscall(UIListBox *this, int height, int nVal, int nVal2)"
+      "name": "UIListBox::OnMessage",
+      "signature": "int __thiscall(UIListBox *this, int height, int nVal, int nVal2)",
+      "ordinal": 6
     },
     "0x0043E520": {
       "name": "UIListBox::Destroy_e520",
-      "signature": "void __thiscall(UIListBox *this)"
+      "signature": "void __thiscall(UIListBox *this)",
+      "ordinal": 3
     },
     "0x0043E560": {
-      "name": "UIListBox::SetFirstShow__ovl_e560",
+      "name": "UIListBox::SetFirstShow",
       "signature": "int __thiscall(UIListBox *this, int nVal, int nOffset)"
     },
     "0x0043E5C0": {
-      "name": "UIListBox::SetItemOffset__ovl_e5c0",
+      "name": "UIListBox::SetItemOffset",
       "signature": "int __thiscall(UIListBox *this, char *Source, int y)"
     },
     "0x0043E7D0": {
@@ -417,7 +422,8 @@
     },
     "0x0043E8A0": {
       "name": "UIListBox::Render_e8a0",
-      "signature": "int __thiscall(UIListBox *this)"
+      "signature": "int __thiscall(UIListBox *this)",
+      "ordinal": 1
     },
     "0x0043EBA0": {
       "name": "UIListBox::SetDefaultSel",
@@ -425,7 +431,7 @@
       "source": "pdb_ret"
     },
     "0x00527950": {
-      "name": "UIListBox::ctor__ovl_7950",
+      "name": "UIListBox::ctor",
       "signature": "int __thiscall(UIListBox *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -485,7 +491,7 @@
       "signature": "int __thiscall(UIListBox *this, char *Source, int nVal)"
     },
     "0x0046B4B0": {
-      "name": "UIListBox::OnMessage__ovl_b4b0",
+      "name": "UIListBox::OnMessage",
       "signature": "int __thiscall(UIListBox *this, int nVal, char *pszBuf, int nVal2)"
     },
     "0x00431CD0": {
@@ -494,7 +500,8 @@
     },
     "0x0043EBE0": {
       "name": "UIListBox::Update",
-      "signature": "BOOL __thiscall(UIListBox *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(UIListBox *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x0043F080": {
       "name": "UIListBox::ProcessSelection",
@@ -510,7 +517,7 @@
       "_misattrib_evidence": "max_offset=1196>class_size=308"
     },
     "0x0043F6D0": {
-      "name": "UIListBox::SetFirstShow__ovl_43f6d0",
+      "name": "UIListBox::SetFirstShow",
       "signature": "int __thiscall(UIListBox *this, unsigned int dwVal)",
       "_misattrib_evidence": "max_offset=1200>class_size=308"
     },
@@ -519,18 +526,21 @@
       "signature": "int __thiscall UIListBox::DestroyAllSlots(UIListBox *this)"
     },
     "0x004525E0": {
-      "name": "UIListBox::_scalar_dtor__ovl_25e0",
+      "name": "UIListBox::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x004526C0": {
       "name": "UIListBox::ShouldProcessInput",
-      "signature": "BOOL __thiscall(UIListBox *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(UIListBox *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x004526F0": {
       "name": "UIListBox::RenderMagic",
-      "signature": "int __thiscall(UIListBox *this)"
+      "signature": "int __thiscall(UIListBox *this)",
+      "ordinal": 1
     },
     "0x0045AE40": {
       "name": "UIListBox::_scalar_dtor_ae40",
@@ -571,7 +581,7 @@
       "signature": "int __thiscall UIListBox::GetLockedSel(UIListBox *this)"
     },
     "0x0043F670": {
-      "name": "UIListBox::SetItemOffset__ovl_f670",
+      "name": "UIListBox::SetItemOffset",
       "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2)"
     },
     "0x0043F690": {
@@ -603,11 +613,13 @@
     },
     "0x00527D80": {
       "name": "UIListBox::RenderWithSceneMap",
-      "signature": "int __thiscall(UIListBox *this)"
+      "signature": "int __thiscall(UIListBox *this)",
+      "ordinal": 1
     },
     "0x00527EA0": {
       "name": "UIListBox::OnMessageEx",
-      "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall(UIListBox *this, int nVal, int nVal2, int nVal3)",
+      "ordinal": 6
     },
     "0x00532A40": {
       "name": "UIListBox::ResetRect",
@@ -624,6 +636,206 @@
     "0x00442060": {
       "name": "UIListBox::SetFirstShow",
       "signature": "void __thiscall UIScene::SetFirstShow(UIScene *this)"
+    },
+    "0x00445C60": {
+      "name": "UIListBox::Update",
+      "signature": "int __stdcall(int a2, int a3)",
+      "source": "vtable_evidence",
+      "ordinal": 2
+    },
+    "0x0043DCF0": {
+      "name": "UIListBox::_scalar_dtor",
+      "signature": "void __thiscall(UIListBox *__hidden this)",
+      "source": "vtable_evidence",
+      "ordinal": 5
+    },
+    "0x0043DE40": {
+      "name": "UIListBox::Destroy",
+      "signature": "void __thiscall(UIListBox *__hidden this, int)",
+      "source": "vtable_evidence",
+      "ordinal": 3
+    },
+    "0x0043D7A0": {
+      "name": "UIListBox::OnMessage",
+      "signature": "int __stdcall(int, int, int)",
+      "source": "vtable_evidence",
+      "ordinal": 6
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AD40",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043E8A0",
+          "from": null
+        },
+        {
+          "addr": "0x0043EBE0",
+          "from": null
+        },
+        {
+          "addr": "0x0043E520",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043E100",
+          "from": null
+        },
+        {
+          "addr": "0x0043E480",
+          "from": null
+        },
+        {
+          "addr": "0x0043E1C0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AD20",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": "CCBMagicWindow"
+        },
+        {
+          "addr": "0x00445C60",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": "UICoverFrm"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DCF0",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        }
+      ]
+    },
+    {
+      "addr": "0x0056B178",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00451B40",
+          "from": "UILoadingFrm"
+        },
+        {
+          "addr": "0x00451C10",
+          "from": "UILoadingFrm"
+        },
+        {
+          "addr": "0x0043BBC0",
+          "from": "UILoadingFrm"
+        },
+        {
+          "addr": "0x00445C10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004518E0",
+          "from": "UILoadingFrm"
+        },
+        {
+          "addr": "0x00451AA0",
+          "from": "UILoadingFrm"
+        }
+      ]
+    },
+    {
+      "addr": "0x0056B1BC",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004526F0",
+          "from": null
+        },
+        {
+          "addr": "0x004526C0",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004525E0",
+          "from": null
+        },
+        {
+          "addr": "0x0043D7A0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x005706EC",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00527D80",
+          "from": null
+        },
+        {
+          "addr": "0x00527DC0",
+          "from": "UICoverFrm"
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x005279D0",
+          "from": "UICoverFrm"
+        },
+        {
+          "addr": "0x00527EA0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

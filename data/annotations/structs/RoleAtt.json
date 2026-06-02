@@ -186,11 +186,13 @@
     },
     "0x004512F0": {
       "name": "RoleAtt::Render",
-      "signature": "void **__thiscall(RoleAtt *this)"
+      "signature": "void **__thiscall(RoleAtt *this)",
+      "ordinal": 1
     },
     "0x00451320": {
       "name": "RoleAtt::Destroy",
-      "signature": "void __thiscall(RoleAtt *this)"
+      "signature": "void __thiscall(RoleAtt *this)",
+      "ordinal": 3
     },
     "0x005310C0": {
       "name": "RoleAtt::UpdateTimedBuff",
@@ -206,15 +208,18 @@
     },
     "0x004515A0": {
       "name": "RoleAtt::OnMessage",
-      "signature": "int __thiscall(RoleAtt *this, int nVal, LPCSTR lpString1, int nVal2)"
+      "signature": "int __thiscall(RoleAtt *this, int nVal, LPCSTR lpString1, int nVal2)",
+      "ordinal": 6
     },
     "0x004515E0": {
       "name": "RoleAtt::HandleInput",
-      "signature": "int __thiscall RoleAtt::HandleInput(RoleAtt *this, int nVal, int nVal2)"
+      "signature": "int __thiscall RoleAtt::HandleInput(RoleAtt *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x00451740": {
       "name": "RoleAtt::ShowWindow",
-      "signature": "void __thiscall(RoleAtt *this)"
+      "signature": "void __thiscall(RoleAtt *this)",
+      "ordinal": 0
     },
     "0x00457F90": {
       "name": "RoleAtt::FormatAttributeText",
@@ -282,5 +287,41 @@
       "name": "RoleAtt::UpdateOscillation",
       "signature": "double __thiscall RoleAtt::UpdateOscillation(RoleAtt *this)"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B14C",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00451740",
+          "from": null
+        },
+        {
+          "addr": "0x004512F0",
+          "from": null
+        },
+        {
+          "addr": "0x004515E0",
+          "from": null
+        },
+        {
+          "addr": "0x00451320",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00450E90",
+          "from": "CCBFiveNimbusWindow"
+        },
+        {
+          "addr": "0x004515A0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

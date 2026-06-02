@@ -159,7 +159,8 @@
     },
     "0x004BEFB0": {
       "name": "ScreenEffectMgr::LoadResources",
-      "signature": "gbVFileSystem *__thiscall ScreenEffectMgr::LoadResources(ScreenEffectMgr *this, int nVal)"
+      "signature": "gbVFileSystem *__thiscall ScreenEffectMgr::LoadResources(ScreenEffectMgr *this, int nVal)",
+      "ordinal": 10
     },
     "0x004BDF60": {
       "name": "ScreenEffectMgr::IsScriptDelNeeded",
@@ -199,15 +200,18 @@
     },
     "0x004BF4F0": {
       "name": "ScreenEffectMgr::UpdateAnimation",
-      "signature": "void __thiscall ScreenEffectMgr::UpdateAnimation(ScreenEffectMgr *this, float fVal)"
+      "signature": "void __thiscall ScreenEffectMgr::UpdateAnimation(ScreenEffectMgr *this, float fVal)",
+      "ordinal": 12
     },
     "0x004BF680": {
       "name": "ScreenEffectMgr::GetPageIndex",
-      "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)"
+      "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)",
+      "ordinal": 13
     },
     "0x004BF6C0": {
       "name": "ScreenEffectMgr::SetFadeParams",
-      "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)"
+      "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)",
+      "ordinal": 14
     },
     "0x004BF760": {
       "name": "ScreenEffectMgr::ResetFadeState",
@@ -223,7 +227,94 @@
     },
     "0x004BF170": {
       "name": "ScreenEffectMgr::CleanupTextures",
-      "signature": "void __thiscall ScreenEffectMgr::CleanupTextures(ScreenEffectMgr *this)"
+      "signature": "void __thiscall ScreenEffectMgr::CleanupTextures(ScreenEffectMgr *this)",
+      "ordinal": 11
+    },
+    "0x0054210E": {
+      "name": "ScreenEffectMgr::sub_0054210E",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 7
+    },
+    "0x005420DE": {
+      "name": "ScreenEffectMgr::sub_005420DE",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 8
+    },
+    "0x005420D8": {
+      "name": "ScreenEffectMgr::sub_005420D8",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 9
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F580",
+      "base": "UIRoleDialog",
+      "slots": [
+        {
+          "addr": "0x004BEF30",
+          "from": "UIRoleDialog"
+        },
+        {
+          "addr": "0x004BF260",
+          "from": "UIRoleDialog"
+        },
+        {
+          "addr": "0x00542102",
+          "from": "UIRoleDialog"
+        },
+        {
+          "addr": "0x004BF1D0",
+          "from": "UIRoleDialog"
+        },
+        {
+          "addr": "0x004BF1C0",
+          "from": "UIRoleDialog"
+        },
+        {
+          "addr": "0x0054211A",
+          "from": "UIRoleDialog"
+        },
+        {
+          "addr": "0x00542114",
+          "from": "UIRoleDialog"
+        },
+        {
+          "addr": "0x0054210E",
+          "from": null
+        },
+        {
+          "addr": "0x005420DE",
+          "from": null
+        },
+        {
+          "addr": "0x005420D8",
+          "from": null
+        },
+        {
+          "addr": "0x004BEFB0",
+          "from": null
+        },
+        {
+          "addr": "0x004BF170",
+          "from": null
+        },
+        {
+          "addr": "0x004BF4F0",
+          "from": null
+        },
+        {
+          "addr": "0x004BF680",
+          "from": null
+        },
+        {
+          "addr": "0x004BF6C0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

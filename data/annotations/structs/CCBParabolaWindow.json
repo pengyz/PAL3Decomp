@@ -91,6 +91,48 @@
     "0x00440BE0": {
       "name": "CCBParabolaWindow::LoadResourceEx",
       "signature": "gbVFileSystem *__thiscall(CCBParabolaWindow *this, const char *pszName, char pData)"
+    },
+    "0x0051C9F0": {
+      "name": "CCBParabolaWindow::?Update@CCBSkillWindow@@UAEHMH@Z",
+      "signature": "int __thiscall(CCBSkillWindow *__hidden this, float a2, int a3)",
+      "source": "vtable_migrated",
+      "ordinal": 2
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0057058C",
+      "base": "CCBSkillWindow",
+      "slots": [
+        {
+          "addr": "0x0051CA50",
+          "from": "CCBSkillWindow"
+        },
+        {
+          "addr": "0x0051CAA0",
+          "from": "CCBSkillWindow"
+        },
+        {
+          "addr": "0x0051C9F0",
+          "from": null
+        },
+        {
+          "addr": "0x0051C880",
+          "from": "CCBSkillWindow"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0051C260",
+          "from": "CCBSkillWindow"
+        },
+        {
+          "addr": "0x0051C9B0",
+          "from": "CCBSkillWindow"
+        }
+      ]
+    }
+  ]
 }

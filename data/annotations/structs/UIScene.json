@@ -225,7 +225,8 @@
     },
     "0x0043AD40": {
       "name": "UIScene::Render",
-      "signature": "int __thiscall(UIScene *this)"
+      "signature": "void __thiscall(UIScene *this)",
+      "source": "+fix:sig_match_base"
     },
     "0x0043FA00": {
       "name": "UIScene::GetChildCount",
@@ -239,14 +240,8 @@
       "name": "UIScene::SetShow",
       "signature": "int __thiscall(UIScene *this, int bShow)"
     },
-    "0x0044BDA0": {
-      "name": "UIScene::_scalar_dtor__ovl_bda0",
-      "signature": "void *__thiscall UIScene::_scalar_dtor(UIScene *this, char pData)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
     "0x0043BCE0": {
-      "name": "UIScene::ctor__ovl_BCE0",
+      "name": "UIScene::ctor",
       "signature": "int *__thiscall(UIScene *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -295,17 +290,13 @@
     },
     "0x0043C7B0": {
       "name": "UIScene::CreateScrollWidget",
-      "signature": "gbVFileSystem *__thiscall UIScene::CreateScrollWidget(UIScene *this, int id, int *p_DWORD, int parent, gbVFileSystem *pVFileSystem, char pData)"
+      "signature": "gbVFileSystem *__thiscall UIScene::CreateScrollWidget(UIScene *this, int id, int *p_DWORD, int parent, gbVFileSystem *pVFileSystem, char pData)",
+      "ordinal": 7
     },
     "0x0043D1A0": {
       "name": "UIScene::CheckMouseHit",
-      "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)"
-    },
-    "0x0044BE40": {
-      "name": "UIScene::_scalar_dtor__ovl_be40",
-      "signature": "void *__thiscall(UIWnd *Block, char pData)",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "signature": "BOOL __thiscall(UIScene *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x0044DAC0": {
       "name": "UIScene::Render_dac0",
@@ -354,7 +345,8 @@
     },
     "0x0043CDF0": {
       "name": "UIScene::Render_cdf0",
-      "signature": "int __thiscall(UIScene *this)"
+      "signature": "int __thiscall(UIScene *this)",
+      "ordinal": 1
     },
     "0x0043FBC0": {
       "name": "UIScene::SetTextParam",
@@ -390,7 +382,60 @@
     },
     "0x0043BE80": {
       "name": "UIScene::ReleaseTexture",
-      "signature": "void __thiscall(UIScene *this)"
+      "signature": "void __thiscall(UIScene *this)",
+      "ordinal": 3
+    },
+    "0x0043BE10": {
+      "name": "UIScene::_scalar_dtor",
+      "signature": "void *__thiscall(UIWnd *__hidden this, char)",
+      "source": "vtable_migrated",
+      "ordinal": 5
+    },
+    "0x0043D7A0": {
+      "name": "UIScene::OnMessage",
+      "signature": "int __stdcall(int, int, int)",
+      "source": "vtable_migrated",
+      "ordinal": 6
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ACD8",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043CDF0",
+          "from": null
+        },
+        {
+          "addr": "0x0043D1A0",
+          "from": null
+        },
+        {
+          "addr": "0x0043BE80",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043BE10",
+          "from": null
+        },
+        {
+          "addr": "0x0043D7A0",
+          "from": null
+        },
+        {
+          "addr": "0x0043C7B0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

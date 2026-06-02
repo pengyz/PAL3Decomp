@@ -185,7 +185,8 @@
     },
     "0x004C6260": {
       "name": "CEffectSystem::Reset",
-      "signature": "int *__thiscall(CEffectSystem *Block, char pData)"
+      "signature": "int *__thiscall(CEffectSystem *Block, char pData)",
+      "ordinal": 8
     },
     "0x004C6280": {
       "name": "CEffectSystem::Init",
@@ -201,7 +202,7 @@
       "signature": "CEffect *__thiscall(CEffectSystem *this)"
     },
     "0x004C6340": {
-      "name": "CEffectSystem::CreateEffect__ovl_6340",
+      "name": "CEffectSystem::CreateEffect",
       "signature": "int __thiscall(CEffectSystem *this)"
     },
     "0x004C6350": {
@@ -247,12 +248,13 @@
       "signature": "int __thiscall(CEffectSystem *this, CCBUI *pCBUI, HWND hDlg, unsigned int dwVal, int bReadOnly, int nVal)"
     },
     "0x004CF580": {
-      "name": "CEffectSystem::CreateEffect__ovl_f580",
+      "name": "CEffectSystem::CreateEffect",
       "signature": "int __thiscall CEffectSystem::CreateEffect__ovl_f580(CEffectSystem *this, CEffectSystem *pSrc, int nVal, CEffectSystem *pParam)"
     },
     "0x004C5DE0": {
       "name": "CEffectSystem::ReleaseParticle",
-      "signature": "void __thiscall(CEffectSystem *this)"
+      "signature": "void __thiscall(CEffectSystem *this)",
+      "ordinal": 3
     },
     "0x004C5820": {
       "name": "CEffectSystem::Create",
@@ -262,6 +264,158 @@
       "name": "CEffectSystem::CEffectSystem",
       "signature": "int *__thiscall(CEffectSystem *this, int pDisplay)",
       "_misattrib_evidence": "max_offset=245796>class_size=344"
+    },
+    "0x004C5D50": {
+      "name": "CEffectSystem::slot_0",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 0
+    },
+    "0x004C5D80": {
+      "name": "CEffectSystem::slot_1",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 1
+    },
+    "0x004C5DB0": {
+      "name": "CEffectSystem::slot_2",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 2
+    },
+    "0x004C5E80": {
+      "name": "CEffectSystem::slot_5",
+      "signature": "int __stdcall(double)",
+      "source": "vtable_migrated",
+      "ordinal": 5
+    },
+    "0x004C5E20": {
+      "name": "CEffectSystem::slot_6",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 6
+    },
+    "0x004C6030": {
+      "name": "CEffectSystem::sub_4C6030",
+      "signature": "int __stdcall(int)",
+      "source": "vtable_migrated",
+      "ordinal": 7
+    },
+    "0x004C5E70": {
+      "name": "CEffectSystem::nullsub_79",
+      "signature": "int __stdcall(int, int)",
+      "source": "vtable_evidence",
+      "ordinal": 4
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F824",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C5D50",
+          "from": null
+        },
+        {
+          "addr": "0x004C5D80",
+          "from": null
+        },
+        {
+          "addr": "0x004C5DB0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5DE0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E70",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E80",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E20",
+          "from": null
+        },
+        {
+          "addr": "0x004C6030",
+          "from": null
+        },
+        {
+          "addr": "0x004C6260",
+          "from": null
+        },
+        {
+          "addr": "0x004C5D80",
+          "from": null
+        },
+        {
+          "addr": "0x004C5DB0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5DE0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E70",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E80",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E20",
+          "from": null
+        },
+        {
+          "addr": "0x004C6030",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056F844",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004C6260",
+          "from": null
+        },
+        {
+          "addr": "0x004C5D80",
+          "from": null
+        },
+        {
+          "addr": "0x004C5DB0",
+          "from": null
+        },
+        {
+          "addr": "0x004C5DE0",
+          "from": "CEffect"
+        },
+        {
+          "addr": "0x004C5E70",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E80",
+          "from": null
+        },
+        {
+          "addr": "0x004C5E20",
+          "from": null
+        },
+        {
+          "addr": "0x004C6030",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

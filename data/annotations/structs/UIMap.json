@@ -228,7 +228,7 @@
       "source": "pdb"
     },
     "0x004410F0": {
-      "name": "UIMap::ctor__ovl_10F0",
+      "name": "UIMap::ctor",
       "signature": "int *__thiscall(UIMap *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -241,27 +241,73 @@
       "name": "UIMap::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x004412C0": {
       "name": "UIMap::Create",
-      "signature": "char *__thiscall UIMap::Create(UIMap *this, int id, void *pRect, int parent, char *pszTexPath, int nVal, char bAtlas)"
+      "signature": "char *__thiscall UIMap::Create(UIMap *this, int id, void *pRect, int parent, char *pszTexPath, int nVal, char bAtlas)",
+      "ordinal": 7
     },
     "0x004414D0": {
       "name": "UIMap::Destroy",
-      "signature": "void __thiscall(UIMap *this)"
+      "signature": "void __thiscall(UIMap *this)",
+      "ordinal": 3
     },
     "0x004414F0": {
       "name": "UIMap::Render",
-      "signature": "void __thiscall(UIMap *this)"
+      "signature": "void __thiscall(UIMap *this)",
+      "ordinal": 1
     },
     "0x00441730": {
       "name": "UIMap::ProcessHitTest",
-      "signature": "BOOL __thiscall UIMap::ProcessHitTest(UIMap *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall UIMap::ProcessHitTest(UIMap *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x004420C0": {
       "name": "UIMap::OnMessage",
-      "signature": "int __thiscall(UIMap *this, int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall(UIMap *this, int nVal, int nVal2, int nVal3)",
+      "ordinal": 6
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ADAC",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004414F0",
+          "from": null
+        },
+        {
+          "addr": "0x00441730",
+          "from": null
+        },
+        {
+          "addr": "0x004414D0",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004411B0",
+          "from": null
+        },
+        {
+          "addr": "0x004420C0",
+          "from": null
+        },
+        {
+          "addr": "0x004412C0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

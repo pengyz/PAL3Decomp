@@ -186,27 +186,33 @@
     },
     "0x004D0D70": {
       "name": "CEffect::SetTimeScale",
-      "signature": "CEffect *__thiscall(CEffect *this)"
+      "signature": "CEffect *__thiscall(CEffect *this)",
+      "ordinal": 7
     },
     "0x004D0EC0": {
       "name": "CEffect::ProcInitTask",
-      "signature": "int __thiscall(CEffect *this, float *dwParam, float fVal, float fVal2, float fVal3)"
+      "signature": "int __thiscall(CEffect *this, float *dwParam, float fVal, float fVal2, float fVal3)",
+      "ordinal": 2
     },
     "0x004D1090": {
       "name": "CEffect::Create",
-      "signature": "char __thiscall(CEffect *this, tagEffObjType *pEffObjType)"
+      "signature": "char __thiscall(CEffect *this, tagEffObjType *pEffObjType)",
+      "ordinal": 1
     },
     "0x004D2080": {
       "name": "CEffect::CreateTask",
-      "signature": "int __thiscall(CEffect *this, int *p)"
+      "signature": "int __thiscall(CEffect *this, int *p)",
+      "ordinal": 12
     },
     "0x004D3A50": {
       "name": "CEffect::Init",
-      "signature": "int __thiscall(CEffect *this, float *pType, float fx, float fy, float fz)"
+      "signature": "int __thiscall(CEffect *this, float *pType, float fx, float fy, float fz)",
+      "ordinal": 2
     },
     "0x004D3AD0": {
       "name": "CEffect::Create_3ad0",
-      "signature": "char __thiscall(CEffect *this, tagEffObjType *pEffObjType)"
+      "signature": "char __thiscall(CEffect *this, tagEffObjType *pEffObjType)",
+      "ordinal": 1
     },
     "0x004CE460": {
       "name": "CEffect::Render",
@@ -214,7 +220,8 @@
     },
     "0x004D4340": {
       "name": "CEffect::CreateTarget",
-      "signature": "void __thiscall CEffect::CreateTarget(CEffect *this, int *pnVal)"
+      "signature": "void __thiscall CEffect::CreateTarget(CEffect *this, int *pnVal)",
+      "ordinal": 12
     },
     "0x0048E780": {
       "name": "CEffect::CreateFromTemplate",
@@ -234,8 +241,9 @@
       "signature": "int *__thiscall CEffect::SetQuadParam(CEffect *this, int nVal)"
     },
     "0x004D0390": {
-      "name": "CEffect::SetChildTimeScale",
-      "signature": "void __thiscall(CEffect *this, float fVal)"
+      "name": "CEffModel::sub_4D0390",
+      "signature": "void __thiscall(CEffModel *this)",
+      "source": "manual_fix_vtable"
     },
     "0x004D0DB0": {
       "name": "CEffect::UpdateCallback",
@@ -250,8 +258,179 @@
       "signature": "void __thiscall(CEffect *this)"
     },
     "0x004D03B0": {
-      "name": "CEffect::Spawn",
-      "signature": "void __thiscall CEffect::Spawn(CEffect *this)"
+      "name": "CEffModel::sub_4D03B0",
+      "signature": "void __thiscall(CEffModel *this)",
+      "source": "manual_fix_vtable"
+    },
+    "0x004C0500": {
+      "name": "CEffect::sub_4C0500",
+      "signature": "int()",
+      "source": "vtable_migrated",
+      "ordinal": 8
+    },
+    "0x004C0510": {
+      "name": "CEffSParticle::sub_4C0510",
+      "signature": "void __thiscall(CEffSParticle *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 10
+    },
+    "0x004C15D0": {
+      "name": "CEffSParticle::sub_4C15D0",
+      "signature": "void __thiscall(CEffSParticle *this)",
+      "source": "manual_fix_vtable",
+      "ordinal": 13
+    },
+    "0x004D2ED0": {
+      "name": "CEffect::sub_4D2ED0",
+      "signature": "int __stdcall(int)",
+      "source": "vtable_migrated",
+      "ordinal": 14
+    },
+    "0x004D3910": {
+      "name": "CEffect::CEffShock",
+      "signature": "CEffShock *__thiscall(CEffShock *__hidden this)",
+      "source": "vtable_evidence+pdb_correct",
+      "ordinal": 7
+    },
+    "0x004AF760": {
+      "name": "CEffect::nullsub_73",
+      "signature": "int __stdcall(int)",
+      "source": "vtable_evidence",
+      "ordinal": 9
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056FA30",
+      "base": "CEffQuad",
+      "slots": [
+        {
+          "addr": "0x004D0D90",
+          "from": "CEffQuad"
+        },
+        {
+          "addr": "0x004D1090",
+          "from": null
+        },
+        {
+          "addr": "0x004D0EC0",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004D17D0",
+          "from": "CEffQuad"
+        },
+        {
+          "addr": "0x004D1300",
+          "from": "CEffQuad"
+        },
+        {
+          "addr": "0x004D0D70",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004C0510",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004D2080",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004D2ED0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056FADC",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004D3930",
+          "from": "CEffShock"
+        },
+        {
+          "addr": "0x004D3AD0",
+          "from": null
+        },
+        {
+          "addr": "0x004D3A50",
+          "from": null
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x00408BD0",
+          "from": "CEffAction"
+        },
+        {
+          "addr": "0x004D3DC0",
+          "from": "CEffShock"
+        },
+        {
+          "addr": "0x004D4110",
+          "from": "CEffShock"
+        },
+        {
+          "addr": "0x004D3910",
+          "from": null
+        },
+        {
+          "addr": "0x004C0500",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004D4840",
+          "from": null
+        },
+        {
+          "addr": "0x004AF760",
+          "from": null
+        },
+        {
+          "addr": "0x004D4340",
+          "from": null
+        },
+        {
+          "addr": "0x004C15D0",
+          "from": null
+        },
+        {
+          "addr": "0x004D4700",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

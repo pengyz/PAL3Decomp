@@ -627,7 +627,8 @@
     },
     "0x0043A250": {
       "name": "PalScript::MoveAndHide",
-      "signature": "int __thiscall PalScript::MoveAndHide(PalScript *this)"
+      "signature": "int __thiscall PalScript::MoveAndHide(PalScript *this)",
+      "ordinal": 3
     },
     "0x0043AA00": {
       "name": "PalScript::OpenScript",
@@ -635,7 +636,8 @@
     },
     "0x00445D10": {
       "name": "PalScript::OnMessage",
-      "signature": "int __thiscall(PalScript *this, int nVal, int nMsg, int wParam)"
+      "signature": "int __thiscall(PalScript *this, int nVal, int nMsg, int wParam)",
+      "ordinal": 6
     },
     "0x00439130": {
       "name": "PalScript::PalScript_Init",
@@ -647,20 +649,22 @@
     },
     "0x00445B90": {
       "name": "PalScript::Create",
-      "signature": "int __thiscall(PalScript *this, int id, tagRECT *pRect, int parent)"
+      "signature": "int __thiscall(PalScript *this, int id, tagRECT *pRect, int parent)",
+      "ordinal": 4
     },
     "0x0043A1F0": {
-      "name": "PalScript::ctor__ovl_A1F0",
+      "name": "PalScript::ctor",
       "signature": "void __thiscall(PalScript *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x00445E70": {
       "name": "PalScript::ShowWindow",
-      "signature": "int __thiscall(PalScript *this, int nFlags)"
+      "signature": "int __thiscall(PalScript *this, int nFlags)",
+      "ordinal": 0
     },
     "0x004318A0": {
-      "name": "PalScript::Cleanup__ovl_18a0",
+      "name": "PalScript::Cleanup",
       "signature": "void __thiscall(PalScript *this)"
     },
     "0x004353A0": {
@@ -979,15 +983,18 @@
       "name": "PalScript::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x0043A270": {
       "name": "PalScript::RenderUI",
-      "signature": "int __thiscall PalScript::RenderUI(PalScript *this)"
+      "signature": "int __thiscall PalScript::RenderUI(PalScript *this)",
+      "ordinal": 1
     },
     "0x0043A3E0": {
       "name": "PalScript::UpdateTimer",
-      "signature": "BOOL __thiscall(PalScript *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(PalScript *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x0044B8A0": {
       "name": "PalScript::SetDialogTemplate",
@@ -1395,7 +1402,8 @@
     },
     "0x00438110": {
       "name": "PalScript::UpdateWaitTimer",
-      "signature": "void __thiscall PalScript::UpdateWaitTimer(PalScript *this, float fVal)"
+      "signature": "void __thiscall PalScript::UpdateWaitTimer(PalScript *this, float fVal)",
+      "ordinal": 2
     },
     "0x004381E0": {
       "name": "PalScript::Op_Trigger",
@@ -1403,7 +1411,8 @@
     },
     "0x004382A0": {
       "name": "PalScript::UpdateIdleTimer",
-      "signature": "void __thiscall PalScript::UpdateIdleTimer(PalScript *this, float fVal)"
+      "signature": "void __thiscall PalScript::UpdateIdleTimer(PalScript *this, float fVal)",
+      "ordinal": 5
     },
     "0x00438310": {
       "name": "PalScript::Op_JT_Exhibit",
@@ -1427,7 +1436,8 @@
     },
     "0x00438540": {
       "name": "PalScript::UpdateFadeOut",
-      "signature": "void __thiscall PalScript::UpdateFadeOut(PalScript *this, float fDelta)"
+      "signature": "void __thiscall PalScript::UpdateFadeOut(PalScript *this, float fDelta)",
+      "ordinal": 8
     },
     "0x004385A0": {
       "name": "PalScript::Op_GetCombat",
@@ -1435,7 +1445,8 @@
     },
     "0x00438640": {
       "name": "PalScript::UpdateFadeIn",
-      "signature": "void __thiscall PalScript::UpdateFadeIn(PalScript *this, float fDelta)"
+      "signature": "void __thiscall PalScript::UpdateFadeIn(PalScript *this, float fDelta)",
+      "ordinal": 11
     },
     "0x004387B0": {
       "name": "PalScript::Op_RoleFadeIn",
@@ -1569,6 +1580,120 @@
       "name": "PalScript::SetIndex",
       "signature": "void __thiscall(PalScript *this, int nVal)",
       "source": "pdb_ret"
+    },
+    "0x00438190": {
+      "name": "PalScript::vfunc_0",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 0
+    },
+    "0x00438100": {
+      "name": "PalScript::vfunc_1",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 1
+    },
+    "0x00434D50": {
+      "name": "PalScript::vfunc_3",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 3
+    },
+    "0x00438530": {
+      "name": "PalScript::sub_00438530",
+      "signature": "",
+      "source": "vtable_migrated",
+      "ordinal": 7
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056ABD4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00438190",
+          "from": null
+        },
+        {
+          "addr": "0x00438100",
+          "from": null
+        },
+        {
+          "addr": "0x00438110",
+          "from": null
+        },
+        {
+          "addr": "0x00434D50",
+          "from": null
+        },
+        {
+          "addr": "0x00438100",
+          "from": null
+        },
+        {
+          "addr": "0x004382A0",
+          "from": null
+        },
+        {
+          "addr": "0x00434D50",
+          "from": null
+        },
+        {
+          "addr": "0x00438530",
+          "from": null
+        },
+        {
+          "addr": "0x00438540",
+          "from": null
+        },
+        {
+          "addr": "0x00434D50",
+          "from": null
+        },
+        {
+          "addr": "0x00438530",
+          "from": null
+        },
+        {
+          "addr": "0x00438640",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AC4C",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": null
+        },
+        {
+          "addr": "0x0043A270",
+          "from": null
+        },
+        {
+          "addr": "0x0043A3E0",
+          "from": null
+        },
+        {
+          "addr": "0x0043A250",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": null
+        },
+        {
+          "addr": "0x0043A1D0",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

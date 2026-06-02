@@ -81,12 +81,14 @@
       "name": "UIAnimateCtrlEX::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x00452AA0": {
       "name": "UIAnimateCtrlEX::Render",
       "signature": "void __thiscall(UIAnimateCtrlEX *this)",
-      "_misattrib_evidence": "max_offset=1008>class_size=204"
+      "_misattrib_evidence": "max_offset=1008>class_size=204",
+      "ordinal": 1
     },
     "0x00441D50": {
       "name": "UIAnimateCtrlEX::StepAnimation",
@@ -98,11 +100,13 @@
     },
     "0x00452D30": {
       "name": "UIAnimateCtrlEX::ComputeStatBonus",
-      "signature": "BOOL __thiscall(UIAnimateCtrlEX *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(UIAnimateCtrlEX *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x00452DA0": {
       "name": "UIAnimateCtrlEX::OnNotify",
-      "signature": "int __thiscall UIAnimateCtrlEX::OnNotify(UIAnimateCtrlEX *this, int msg, int wparam, int lparam)"
+      "signature": "int __thiscall UIAnimateCtrlEX::OnNotify(UIAnimateCtrlEX *this, int msg, int wparam, int lparam)",
+      "ordinal": 6
     },
     "0x00530990": {
       "name": "UIAnimateCtrlEX::SetTextBottom",
@@ -118,5 +122,41 @@
       "name": "UIAnimateCtrlEX::InitMatrix",
       "signature": "int __thiscall(UIAnimateCtrlEX *this)"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B1DC",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00452AA0",
+          "from": null
+        },
+        {
+          "addr": "0x00452D30",
+          "from": null
+        },
+        {
+          "addr": "0x00445C10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00452830",
+          "from": null
+        },
+        {
+          "addr": "0x00452DA0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

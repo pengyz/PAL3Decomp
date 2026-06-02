@@ -8,7 +8,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent
 FUNCTIONS_FILE = PROJECT_ROOT / 'data/annotations/functions.json'
-VTABLES_FILE = PROJECT_ROOT / 'data/annotations/vtables.json'
+STRUCTS_DIR = PROJECT_ROOT / 'data/annotations/structs'
 
 # 需要验证的访问点
 ACCESSES_TO_VERIFY = [
@@ -55,21 +55,19 @@ def extract_class_from_function_name(func_name: str) -> str:
 
 
 def check_vtable_membership(class_name: str, func_addr: int) -> bool:
-    """检查函数是否在该类的 vtable 中"""
-    if not VTABLES_FILE.exists():
+    """检查函数地址是否出现在该类 per-class vtables 的任一 slot 中。"""
+    struct_file = STRUCTS_DIR / ('%s.json' % class_name)
+    if not struct_file.exists():
         return None
 
-    with open(VTABLES_FILE) as f:
-        vtables = json.load(f)
+    with open(struct_file, encoding='utf-8') as f:
+        sinfo = json.load(f)
 
-    for vtable_name, vtable_info in vtables.items():
-        if vtable_info.get('class') == class_name:
-            methods = vtable_info.get('methods', {})
-            for method_addr_str in methods.values():
-                if isinstance(method_addr_str, str):
-                    method_addr = int(method_addr_str, 16)
-                    if method_addr == func_addr:
-                        return True
+    for vt in sinfo.get('vtables', []):
+        for slot in vt.get('slots', []):
+            saddr = slot.get('addr', '')
+            if saddr and int(saddr, 16) == func_addr:
+                return True
 
     return False
 

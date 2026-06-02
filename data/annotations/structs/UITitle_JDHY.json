@@ -327,12 +327,13 @@
       "_misattrib_evidence": "max_offset=288208>class_size=4280"
     },
     "0x004B2750": {
-      "name": "UITitle_JDHY::SaveData__ovl_2750",
+      "name": "UITitle_JDHY::SaveData",
       "signature": "FILE *__thiscall UITitle_JDHY::SaveData(UITitle_JDHY *this, double Data, int nVal)"
     },
     "0x004B2C70": {
       "name": "UITitle_JDHY::RenderSlotEffects",
-      "signature": "void __thiscall UITitle_JDHY::RenderSlotEffects(UITitle_JDHY *this)"
+      "signature": "void __thiscall UITitle_JDHY::RenderSlotEffects(UITitle_JDHY *this)",
+      "ordinal": 1
     },
     "0x004B2D20": {
       "name": "UITitle_JDHY::HandleNavigation",
@@ -357,13 +358,14 @@
       "signature": "int __thiscall(UITitle_JDHY *this)"
     },
     "0x004B2920": {
-      "name": "UITitle_JDHY::SaveData__ovl_2920",
+      "name": "UITitle_JDHY::SaveData",
       "signature": "char __thiscall UITitle_JDHY::SaveData__ovl_2920(UITitle_JDHY *this, int Data)"
     },
     "0x004B3100": {
       "name": "UITitle_JDHY::ForwardHitTest",
       "signature": "int __thiscall UITitle_JDHY::ForwardHitTest(UITitle_JDHY *this)",
-      "_misattrib_evidence": "max_offset=286376>class_size=4280"
+      "_misattrib_evidence": "max_offset=286376>class_size=4280",
+      "ordinal": 2
     },
     "0x004B3270": {
       "name": "UITitle_JDHY::UpdateTextPosition",
@@ -373,7 +375,44 @@
     "0x004B3470": {
       "name": "UITitle_JDHY::OnMessage",
       "signature": "int __thiscall(UITitle_JDHY *this)",
-      "_misattrib_evidence": "max_offset=289576>class_size=1208"
+      "_misattrib_evidence": "max_offset=289576>class_size=1208",
+      "ordinal": 6
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056F33C",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004B2C70",
+          "from": null
+        },
+        {
+          "addr": "0x004B3100",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004B0520",
+          "from": "CCBMagicWindow"
+        },
+        {
+          "addr": "0x004B3470",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

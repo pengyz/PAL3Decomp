@@ -19,8 +19,9 @@
     },
     "92": {
       "name": "m_vecInitFiveLineup",
-      "type": "gbVec3D[7]",
-      "offset": 92
+      "type": "gbVec3D[3]",
+      "offset": 92,
+      "source": "+fix:overlap_correct_count"
     },
     "176": {
       "name": "m_vecEnemyLineup",
@@ -305,7 +306,7 @@
     "824": {
       "name": "m_fBlendC",
       "type": "float",
-      "source": "binary:gap_r2 | type_fix:float\u2192int_raw_decomp | name_fix:=0.0_then_=0.5_blend_factor"
+      "source": "binary:gap_r2 | type_fix:float→int_raw_decomp | name_fix:=0.0_then_=0.5_blend_factor"
     },
     "828": {
       "name": "m_fDirCosC",
@@ -370,7 +371,7 @@
     "132": {
       "name": "m_fLineupCamY",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int\u2192float(assigned_to_vecFiveLineup[N].y_in_Reset)"
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(assigned_to_vecFiveLineup[N].y_in_Reset)"
     },
     "136": {
       "name": "m_fLineupCamZ",
@@ -385,7 +386,7 @@
     "144": {
       "name": "m_fLineupPrevY",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int\u2192float(LODWORD_assign_to_vecFiveLineup[N].y)"
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[N].y)"
     },
     "148": {
       "name": "m_fLineupPrevZ",
@@ -400,12 +401,12 @@
     "168": {
       "name": "m_fLineupExtraY",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int\u2192float(LODWORD_assign_to_vecFiveLineup[6].y)"
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[6].y)"
     },
     "172": {
       "name": "m_fLineupExtraZ",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int\u2192float(LODWORD_assign_to_vecFiveLineup[6].z)"
+      "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[6].z)"
     },
     "672": {
       "name": "m_nLoadPointer",
@@ -455,12 +456,12 @@
     "152": {
       "name": "m_fLineupDefaultX",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192float(LODWORD_assign_to_vecFiveLineup[1-5].x)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[1-5].x)"
     },
     "156": {
       "name": "m_fLineupDefaultY",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192float(LODWORD_assign_to_vecFiveLineup[1-5].y)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[1-5].y)"
     },
     "160": {
       "name": "m_fLineupDefaultZ",
@@ -829,7 +830,7 @@
       "signature": "int __thiscall CCBStageScene::ResetSceneState(CCBStageScene *this)"
     },
     "0x0050FEE0": {
-      "name": "CCBStageScene::CCBStageScene__ovl_fee0",
+      "name": "CCBStageScene::CCBStageScene",
       "signature": "void __thiscall(CCBStageScene *this)"
     },
     "0x005100D0": {
@@ -954,7 +955,7 @@
       "source": "pdb_ret"
     },
     "0x0050FD00": {
-      "name": "CCBStageScene::CCBStageScene__ovl_fd00",
+      "name": "CCBStageScene::CCBStageScene",
       "signature": "CCBStageScene *__thiscall CCBStageScene::CCBStageScene(CCBStageScene *this, CCBStage *pCBStage)"
     },
     "0x0052B2A0": {

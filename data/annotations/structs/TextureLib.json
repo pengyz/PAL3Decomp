@@ -227,7 +227,8 @@
     },
     "0x0053F680": {
       "name": "TextureLib::AddEntryFromConfig",
-      "signature": "char __thiscall TextureLib::AddEntryFromConfig(TextureLib *this, char *lpString2, char *Delimiter)"
+      "signature": "char __thiscall TextureLib::AddEntryFromConfig(TextureLib *this, char *lpString2, char *Delimiter)",
+      "ordinal": 0
     },
     "0x004A6930": {
       "name": "TextureLib::LoadTexture",
@@ -240,6 +241,28 @@
     "0x004A6CA0": {
       "name": "TextureLib::CreateFromMemory",
       "signature": "gbTexture *__thiscall(TextureLib *this, _BYTE *pData, int nSize, char nFormat)"
+    },
+    "0x0053F5C0": {
+      "name": "TextureLib::sub_53F5C0",
+      "signature": "int __thiscall(void *Block, char)",
+      "source": "vtable_migrated",
+      "ordinal": 1
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x00570A60",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x0053F680",
+          "from": null
+        },
+        {
+          "addr": "0x0053F5C0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

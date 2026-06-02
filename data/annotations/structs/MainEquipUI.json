@@ -588,7 +588,7 @@
       "source": "pdb"
     },
     "0x00479680": {
-      "name": "MainEquipUI::ctor__ovl_9680",
+      "name": "MainEquipUI::ctor",
       "signature": "void __thiscall(MainEquipUI *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -622,7 +622,8 @@
       "name": "MainEquipUI::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x00479890": {
       "name": "MainEquipUI::InitMainEquipUI",
@@ -630,7 +631,8 @@
     },
     "0x0047B200": {
       "name": "MainEquipUI::Render",
-      "signature": "char __thiscall(MainEquipUI *this)"
+      "signature": "char __thiscall(MainEquipUI *this)",
+      "ordinal": 1
     },
     "0x004819A0": {
       "name": "MainEquipUI::LoadFromFile",
@@ -696,11 +698,13 @@
     },
     "0x0047B3B0": {
       "name": "MainEquipUI::Render3DModel",
-      "signature": "BOOL __thiscall MainEquipUI::Render3DModel(MainEquipUI *this)"
+      "signature": "BOOL __thiscall MainEquipUI::Render3DModel(MainEquipUI *this)",
+      "ordinal": 2
     },
     "0x0047B6C0": {
       "name": "MainEquipUI::OnMessage",
-      "signature": "int __thiscall(MainEquipUI *this, int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall(MainEquipUI *this, int nVal, int nVal2, int nVal3)",
+      "ordinal": 6
     },
     "0x0047EC00": {
       "name": "MainEquipUI::ClearState",
@@ -743,6 +747,48 @@
       "name": "MainEquipUI::UpdateCaptions",
       "signature": "int __thiscall MainEquipUI::UpdateCaptions(MainEquipUI *this)",
       "_misattrib_evidence": "max_offset=176084>class_size=4"
+    },
+    "0x0043DE40": {
+      "name": "MainEquipUI::Destroy",
+      "signature": "void __thiscall(UIListBox *__hidden this, int)",
+      "source": "vtable_migrated",
+      "ordinal": 3
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B820",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0047B200",
+          "from": null
+        },
+        {
+          "addr": "0x0047B3B0",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00479660",
+          "from": null
+        },
+        {
+          "addr": "0x0047B6C0",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

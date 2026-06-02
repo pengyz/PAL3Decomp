@@ -1699,7 +1699,7 @@
       "signature": "void __thiscall(CCBRoleState *this)"
     },
     "0x004EDF10": {
-      "name": "CCBRoleState::~CCBRoleState__ovl_df10",
+      "name": "CCBRoleState::~CCBRoleState",
       "signature": "void __thiscall(CCBRoleState *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -1724,11 +1724,11 @@
       "source": "pdb_ret"
     },
     "0x004EE870": {
-      "name": "CCBRoleState::InitUI__ovl_e870",
+      "name": "CCBRoleState::InitUI",
       "signature": "tagRoleState *__thiscall(CCBRoleState *this, int nVal)"
     },
     "0x004EE890": {
-      "name": "CCBRoleState::Update__ovl_e890",
+      "name": "CCBRoleState::Update",
       "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
     },
     "0x004EE990": {
@@ -1745,7 +1745,7 @@
       "signature": "void __thiscall(CCBRoleState *this, int *nRoleIndex, unsigned int dwVal)"
     },
     "0x004EEE60": {
-      "name": "CCBRoleState::IsAlive__ovl_ee60",
+      "name": "CCBRoleState::IsAlive",
       "signature": "char __thiscall(CCBRoleState *this, int nIndex, int nVal)"
     },
     "0x004EF4A0": {
@@ -1827,7 +1827,7 @@
       "signature": "bool(CCBRoleState *this, int nPanelIndex, bool bVisible)"
     },
     "0x004F07D0": {
-      "name": "CCBRoleState::GetRole__ovl_07d0",
+      "name": "CCBRoleState::GetRole",
       "signature": "char __thiscall(CCBRoleState *this, int nIndex, int nVal)"
     },
     "0x004F0830": {
@@ -2000,7 +2000,7 @@
       "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
     },
     "0x004F57A0": {
-      "name": "CCBRoleState::CalcMagicDamage__ovl_57a0",
+      "name": "CCBRoleState::CalcMagicDamage",
       "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
     },
     "0x004F5970": {
@@ -2048,7 +2048,7 @@
       "signature": "char __thiscall(CCBRoleState *this, char arg0, int nVal)"
     },
     "0x004ECB00": {
-      "name": "CCBRoleState::Update__ovl_cb00",
+      "name": "CCBRoleState::Update",
       "signature": "int __thiscall(CCBRoleState *this)"
     },
     "0x004F3C70": {
@@ -2056,7 +2056,7 @@
       "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
     },
     "0x00456AB0": {
-      "name": "CCBRoleState::ctor__ovl_6AB0",
+      "name": "CCBRoleState::ctor",
       "signature": "int __thiscall(CCBRoleState *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -2079,10 +2079,12 @@
       "signature": "int __thiscall CCBRoleState::FindFirstEnemySlot(CCBRoleState *this, int roleIdx)"
     },
     "0x00457070": {
-      "name": "CCBRoleState::ctor__ovl_7070",
+      "name": "CCBRoleState::ctor",
       "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2, int nVal3)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 6,
+      "source": "+canonical_rename"
     },
     "0x00456B80": {
       "name": "CCBRoleState::ctor_6B80",
@@ -2094,11 +2096,11 @@
       "_misattrib_evidence": "max_offset=164>class_size=4"
     },
     "0x004F2C30": {
-      "name": "CCBRoleState::GetRole__ovl_2c30",
+      "name": "CCBRoleState::GetRole",
       "signature": "void *__thiscall(CCBRoleState *this, int index)"
     },
     "0x004DC720": {
-      "name": "CCBRoleState::IsAlive__ovl_c720",
+      "name": "CCBRoleState::IsAlive",
       "signature": "BOOL __thiscall(CCBRoleState *this)"
     },
     "0x004DC7A0": {
@@ -2110,7 +2112,7 @@
       "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
     },
     "0x004EEF20": {
-      "name": "CCBRoleState::CalcCombatDamage__ovl_ef20",
+      "name": "CCBRoleState::CalcCombatDamage",
       "signature": "int __thiscall(CCBRoleState *this, const void *pData, unsigned int roleIdx)"
     },
     "0x004F2690": {
@@ -2121,7 +2123,8 @@
       "name": "CCBRoleState::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x004DCF80": {
       "name": "CCBRoleState::HandleMagicMenu",
@@ -2132,7 +2135,7 @@
       "signature": "int __thiscall(CCBRoleState *this, int B4)"
     },
     "0x004DF3D0": {
-      "name": "CCBRoleState::CheckMP__ovl_f3d0",
+      "name": "CCBRoleState::CheckMP",
       "signature": "char __thiscall(CCBRoleState *this)"
     },
     "0x004E1A40": {
@@ -2164,11 +2167,11 @@
       "signature": "char __thiscall(CCBRoleState *this)"
     },
     "0x004EE910": {
-      "name": "CCBRoleState::CheckMP__ovl_2",
+      "name": "CCBRoleState::CheckMP",
       "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
     },
     "0x004F0A10": {
-      "name": "CCBRoleState::CalcCombatDamage__ovl_2",
+      "name": "CCBRoleState::CalcCombatDamage",
       "signature": "char __thiscall(CCBRoleState *this, int nVal)"
     },
     "0x004F2390": {
@@ -2204,7 +2207,7 @@
       "signature": "void __thiscall CCBRoleState::TickDebuffs(CCBRoleState *this, int roleIdx)"
     },
     "0x004F4B90": {
-      "name": "CCBRoleState::CalcMagicDamage__ovl_4b90",
+      "name": "CCBRoleState::CalcMagicDamage",
       "signature": "unsigned int __thiscall CCBRoleState::CalcMagicDamage(CCBRoleState *this, int roleIdx, int nMagicID)"
     },
     "0x004F4C80": {
@@ -2288,12 +2291,13 @@
       "signature": "int __thiscall(CCBRoleState *this)"
     },
     "0x00456C20": {
-      "name": "CCBRoleState::~CCBRoleState__ovl_6c20",
+      "name": "CCBRoleState::~CCBRoleState",
       "signature": "void __thiscall CCBRoleState::~CCBRoleState(CCBRoleState *this)"
     },
     "0x00457020": {
       "name": "CCBRoleState::PlayVideoIfReady",
-      "signature": "BOOL __thiscall(CCBRoleState *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(CCBRoleState *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x0046D770": {
       "name": "CCBRoleState::LayoutSlotPanelA",
@@ -2527,6 +2531,54 @@
     "0x004E5110": {
       "name": "CCBRoleState::GetTargetCommand",
       "signature": "int __cdecl CCBRoleState::GetTargetCommand()"
+    },
+    "0x00524970": {
+      "name": "CCBRoleState::vfunc_1",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_migrated",
+      "ordinal": 1
+    },
+    "0x0043DE40": {
+      "name": "CCBRoleState::vfunc_3",
+      "signature": "void __thiscall(UIListBox *__hidden this, int)",
+      "source": "vtable_migrated",
+      "ordinal": 3
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B364",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00524970",
+          "from": null
+        },
+        {
+          "addr": "0x00457020",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00456B60",
+          "from": null
+        },
+        {
+          "addr": "0x00457070",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

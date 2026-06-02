@@ -209,7 +209,8 @@
     },
     "0x005231D0": {
       "name": "CUtil::WriteLog",
-      "signature": "UIWnd *__thiscall(CUtil *Block, char format)"
+      "signature": "UIWnd *__thiscall(CUtil *Block, char format)",
+      "ordinal": 5
     },
     "0x005231F0": {
       "name": "CUtil::~CUtil_31f0",
@@ -231,11 +232,13 @@
     },
     "0x00523670": {
       "name": "CUtil::RenderFrame",
-      "signature": "int __thiscall(CUtil *this)"
+      "signature": "int __thiscall(CUtil *this)",
+      "ordinal": 1
     },
     "0x005236E0": {
       "name": "CUtil::RenderFrameY",
-      "signature": "int __thiscall(CUtil *this, PalScript *fTime, int nVal)"
+      "signature": "int __thiscall(CUtil *this, PalScript *fTime, int nVal)",
+      "ordinal": 2
     },
     "0x00523820": {
       "name": "CUtil::Update",
@@ -246,5 +249,41 @@
       "name": "CUtil::DispatchCommand",
       "signature": "int __thiscall CUtil::DispatchCommand(CUtil *this, int *pCmd)"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x005705F4",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00523670",
+          "from": null
+        },
+        {
+          "addr": "0x005236E0",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": "ParabolaCalculator"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x005231D0",
+          "from": null
+        },
+        {
+          "addr": "0x00523B90",
+          "from": "ParabolaCalculator"
+        }
+      ]
+    }
+  ]
 }

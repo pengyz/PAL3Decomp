@@ -222,7 +222,7 @@
   "binary_size": 14232,
   "methods": {
     "0x0044BE80": {
-      "name": "UIScenePanel::ctor__ovl_BE80",
+      "name": "UIScenePanel::ctor",
       "signature": "void __thiscall(UIScenePanel *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -259,6 +259,132 @@
     "0x0044DB70": {
       "name": "UIScenePanel::StopAllSounds",
       "signature": "int __thiscall(UIScenePanel *this, float fFade, int nFlags)"
+    },
+    "0x0043A870": {
+      "name": "UIScenePanel::CreateChildWidget",
+      "signature": "int __thiscall(UIWnd *this, int id, void *pRect, int parent, int, char, char)",
+      "source": "vtable_migrated+pdb_correct",
+      "ordinal": 7
+    },
+    "0x0043B570": {
+      "name": "UIScenePanel::CreateLabelWidget",
+      "signature": "int __thiscall(UIWnd *this, int id, void *pRect, int parent, LPCSTR lpString, char)",
+      "source": "vtable_migrated+pdb_correct",
+      "ordinal": 8
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056AC90",
+      "base": "UIScene",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043B660",
+          "from": "UIScene"
+        },
+        {
+          "addr": "0x0043B900",
+          "from": "UIScene"
+        },
+        {
+          "addr": "0x0043AB00",
+          "from": "UIScene"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043B4B0",
+          "from": "UIScene"
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043A870",
+          "from": null
+        },
+        {
+          "addr": "0x0043B570",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AFFC",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0044DAC0",
+          "from": "UIScene"
+        },
+        {
+          "addr": "0x0044DB70",
+          "from": "UIScene"
+        },
+        {
+          "addr": "0x0044C910",
+          "from": "UIScene"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0044BE40",
+          "from": "UIScene"
+        },
+        {
+          "addr": "0x0044DFC0",
+          "from": "UIScene"
+        },
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043AD40",
+          "from": "UIScene"
+        },
+        {
+          "addr": "0x0043B1E0",
+          "from": null
+        },
+        {
+          "addr": "0x0043AB00",
+          "from": "UIScene"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0044BE00",
+          "from": null
+        },
+        {
+          "addr": "0x00445D10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043A870",
+          "from": null
+        },
+        {
+          "addr": "0x0043B060",
+          "from": null
+        }
+      ]
+    }
+  ]
 }

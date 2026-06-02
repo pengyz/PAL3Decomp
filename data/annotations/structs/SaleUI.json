@@ -583,7 +583,8 @@
     },
     "0x0046B040": {
       "name": "SaleUI::ProcessCellAnimations",
-      "signature": "int __thiscall SaleUI::ProcessCellAnimations(SaleUI *this, int deltatime, int haveinput)"
+      "signature": "int __thiscall SaleUI::ProcessCellAnimations(SaleUI *this, int deltatime, int haveinput)",
+      "ordinal": 2
     },
     "0x004AB5E0": {
       "name": "SaleUI::InitColumnWidths",
@@ -594,5 +595,41 @@
       "name": "SaleUI::ResetGridState",
       "signature": "int __thiscall SaleUI::ResetGridState(SaleUI *this)"
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056B5CC",
+      "base": "UIListBox",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0043DDF0",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x0046B040",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": "UIListBox"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x0045AE40",
+          "from": "UIBigMap"
+        },
+        {
+          "addr": "0x0046B4B0",
+          "from": "UIListBox"
+        }
+      ]
+    }
+  ]
 }

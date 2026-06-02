@@ -218,8 +218,8 @@
     },
     "208": {
       "name": "_field_0D0",
-      "type": "int",
-      "source": "A:unsigned_char_but_dword_jnz_access|A:test_byte_ptr_binary_evidence"
+      "type": "char",
+      "source": "manual_fix:shrink_to_gap"
     },
     "216": {
       "name": "m_fAngle",
@@ -1079,7 +1079,7 @@
       "signature": "void __thiscall(RoleSystem *this, gbMatrixStack *pStack, int nVal)"
     },
     "0x00412710": {
-      "name": "RoleSystem::UpdateTransform__ovl_2710",
+      "name": "RoleSystem::UpdateTransform",
       "signature": "int __thiscall(RoleSystem *this)"
     },
     "0x00412E60": {
@@ -1119,7 +1119,7 @@
       "signature": "char __thiscall RoleSystem::BindPartyToScene(RoleSystem *this, float *pfVal, int nVal)"
     },
     "0x00531E70": {
-      "name": "RoleSystem::ctor__ovl_1E70",
+      "name": "RoleSystem::ctor",
       "signature": "void __thiscall(RoleSystem *this)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -1169,7 +1169,7 @@
       "signature": "void __thiscall(RoleSystem *this, float *pTargetPos, int nMode)"
     },
     "0x00416620": {
-      "name": "RoleSystem::UpdateMovement__ovl_6620",
+      "name": "RoleSystem::UpdateMovement",
       "signature": "int __thiscall(RoleSystem *this, float fDeltaTime, int nMode)"
     },
     "0x00413CD0": {
@@ -1221,7 +1221,7 @@
       "signature": "double __thiscall RoleSystem::AdvanceToTarget(RoleSystem *this, double fDelta)"
     },
     "0x00414350": {
-      "name": "RoleSystem::UpdateMovement__ovl_4350",
+      "name": "RoleSystem::UpdateMovement",
       "signature": "double __thiscall RoleSystem::UpdateMovement(RoleSystem *this, double result, gbVec3D *pB)"
     },
     "0x004150C0": {
@@ -1237,7 +1237,7 @@
       "signature": "void __thiscall(RoleSystem *this, float *nFlags)"
     },
     "0x00417420": {
-      "name": "RoleSystem::UpdateTransform__ovl_7420",
+      "name": "RoleSystem::UpdateTransform",
       "signature": "void __thiscall RoleSystem::UpdateTransform__ovl_7420(RoleSystem *this, float arg0)"
     },
     "0x00417850": {
@@ -1408,7 +1408,8 @@
       "name": "RoleSystem::_scalar_dtor",
       "signature": "void *__thiscall(UIWnd *Block, char pData)",
       "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5
     },
     "0x00408460": {
       "name": "RoleSystem::BindRoleToScene",
@@ -1544,7 +1545,8 @@
     },
     "0x004209E0": {
       "name": "RoleSystem::ResetState",
-      "signature": "void __thiscall RoleSystem::ResetState(RoleSystem *this)"
+      "signature": "void __thiscall RoleSystem::ResetState(RoleSystem *this)",
+      "ordinal": 3
     },
     "0x00420F50": {
       "name": "RoleSystem::GetMapNodePtr",
@@ -1630,7 +1632,8 @@
     },
     "0x00532710": {
       "name": "RoleSystem::UpdateTimer",
-      "signature": "BOOL __thiscall(RoleSystem *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(RoleSystem *this, int nVal, int nVal2)",
+      "ordinal": 2
     },
     "0x00532960": {
       "name": "RoleSystem::ScaleValue",
@@ -1638,7 +1641,8 @@
     },
     "0x005329A0": {
       "name": "RoleSystem::HandleMsgDLL",
-      "signature": "int __thiscall RoleSystem::HandleMsgDLL(RoleSystem *this, HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)"
+      "signature": "int __thiscall RoleSystem::HandleMsgDLL(RoleSystem *this, HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)",
+      "ordinal": 6
     },
     "0x00532C80": {
       "name": "RoleSystem::AdjustHeight",
@@ -1683,6 +1687,144 @@
     "0x0041BD70": {
       "name": "RoleSystem::GetRoleName",
       "signature": "const char *__thiscall(RoleSystem *this, unsigned int nRoleIndex)"
+    },
+    "0x00524970": {
+      "name": "RoleSystem::vfunc_1",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_migrated",
+      "ordinal": 1
+    },
+    "0x0043DE40": {
+      "name": "RoleSystem::vfunc_3",
+      "signature": "void __thiscall(UIListBox *__hidden this, int)",
+      "source": "vtable_migrated",
+      "ordinal": 3
     }
-  }
+  },
+  "vtables": [
+    {
+      "addr": "0x00570890",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00524970",
+          "from": null
+        },
+        {
+          "addr": "0x00532710",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00531E50",
+          "from": null
+        },
+        {
+          "addr": "0x005329A0",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AAD8",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004202F0",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x004202A0",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x00420270",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x004208A0",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x004202A0",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x00420430",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x004209E0",
+          "from": "gbRenderEffect"
+        },
+        {
+          "addr": "0x004202A0",
+          "from": null
+        },
+        {
+          "addr": "0x00420910",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AAE4",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004208A0",
+          "from": null
+        },
+        {
+          "addr": "0x004202A0",
+          "from": null
+        },
+        {
+          "addr": "0x00420430",
+          "from": null
+        },
+        {
+          "addr": "0x004209E0",
+          "from": null
+        },
+        {
+          "addr": "0x004202A0",
+          "from": null
+        },
+        {
+          "addr": "0x00420910",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056AAF0",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x004209E0",
+          "from": null
+        },
+        {
+          "addr": "0x004202A0",
+          "from": null
+        },
+        {
+          "addr": "0x00420910",
+          "from": null
+        }
+      ]
+    }
+  ]
 }
