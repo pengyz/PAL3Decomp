@@ -454,15 +454,16 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         udt.total_size = binary_size
 
     # Add base classes as anonymous members (supports multiple inheritance)
+    # Skip unresolvable bases (template bases, forward decls) and leave gaps.
     if base_classes and base_size > 0:
         base_offset = 0
         for bc in base_classes:
             bc_tinfo = ida_typeinf.tinfo_t()
             if not bc_tinfo.get_named_type(til, bc):
-                return (False, "base_class '%s' not found in TIL" % bc)
+                continue  # skip unresolvable base (template, forward decl)
             bc_size = bc_tinfo.get_size()
             if bc_size == 0xFFFFFFFFFFFFFFFF or bc_size == 0:
-                return (False, "base_class '%s' has invalid size" % bc)
+                continue  # skip invalid-size bases
             mb = ida_typeinf.udt_member_t()
             mb.name = ""  # anonymous = base class
             mb.offset = base_offset
@@ -523,7 +524,15 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
 
     if not result_tinfo.create_udt(udt, udt_flag):
-        return (False, "TAUDT_FIXED create_udt() returned False for %s" % name)
+        # create_udt failed — fall back to string-based decl
+        try:
+            decl_text = build_struct_decl(name, struct_info, all_structs)
+            if decl_text and ida_typeinf.parse_decl(result_tinfo, til, decl_text, ida_typeinf.PT_TYP) is not None:
+                log("  [fallback] %s: created via string decl" % name)
+            else:
+                return (False, "TAUDT_FIXED create_udt() returned False for %s" % name)
+        except Exception as fallback_e:
+            return (False, "TAUDT_FIXED create_udt() returned False for %s (fallback: %s)" % (name, str(fallback_e)))
 
     method_udms = ida_typeinf.udtmembervec_t()
     struct_methods = struct_info.get('methods', {}) if struct_info else {}
