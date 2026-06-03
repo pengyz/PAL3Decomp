@@ -578,7 +578,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         log("  [gap-fill] %s: TAUDT_FIXED invalid, retrying with gaps..." % name)
         try:
             udt2 = ida_typeinf.udt_type_data_t()
-            udt2.taudt_bits = 0  # no TAUDT_FIXED
+            udt2.taudt_bits = 1024  # TAUDT_FIXED — with gap fillers, layout IS contiguous
             if base_class:
                 udt2.taudt_bits |= 128  # TAUDT_CPPOBJ
             udt2.total_size = binary_size
