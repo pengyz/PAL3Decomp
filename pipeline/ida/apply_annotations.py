@@ -1222,8 +1222,11 @@ def apply_annotations():
         if not slots:
             continue
         struct_name = "vtbl_%s" % vt_addr_hex[2:]
-        if idc.SetType(int(vt_addr_hex, 16), "%s x;" % struct_name):
-            vt_applied += 1
+        _vt_tif = ida_typeinf.tinfo_t()
+        _vt_decl = "%s x;" % struct_name
+        if ida_typeinf.parse_decl(_vt_tif, til, _vt_decl, ida_typeinf.PT_TYP):
+            if ida_typeinf.apply_tinfo(int(vt_addr_hex, 16), _vt_tif, ida_typeinf.TINFO_DEFINITE):
+                vt_applied += 1
 
     log("[5] Vtable .rdata typed: %d/%d" % (vt_applied, len(vtable_jobs)))
 
@@ -1258,19 +1261,12 @@ def apply_annotations():
             continue
         sig_raw = sig.strip().rstrip(";")
         # Strip IDA-specific modifiers that SetType doesn't accept
+        # (parse_decl PT_TYP is used for final application and handles C++ keywords)
         sig_raw = _re_sig.sub(r'__usercall|__userpurge', '', sig_raw)
         sig_raw = _re_sig.sub(r'@<[\w:]+>', '', sig_raw)  # register annotations
         sig_raw = sig_raw.replace(' __noreturn', '')
         sig_raw = _re_sig.sub(r'\s*__spoils<[^>]*>', '', sig_raw)
         sig_raw = sig_raw.strip()
-        # Strip 'virtual' keyword — SetType only accepts plain C declarations.
-        # export_full.py re-adds 'virtual' for vtable functions during export.
-        sig_raw = _re_sig.sub(r'^virtual\s+', '', sig_raw)
-        # Skip thunk-style signatures ([thunk]:...) — SetType can't handle them
-        # and they shouldn't appear in signature application.
-        if '[thunk]' in sig_raw or '`' in sig_raw:
-            sig_fail.append((addr_str, name, "[thunk] skipped"))
-            continue
         # Clean up redundant calling conventions for member functions
         if ("::" in name or "*this" in sig_raw) and "__cdecl" in sig_raw and "__thiscall" in sig_raw:
             # Member function with both __cdecl and __thiscall - remove __cdecl
@@ -1324,13 +1320,26 @@ def apply_annotations():
                 sig_with_name = before + " " + short_name + after
             else:
                 sig_with_name = before + after
-            # Try original (with struct/class keywords), fallback to stripped
-            if idc.SetType(addr, sig_with_name):
-                sig_ok += 1
-            else:
-                stripped = sig_with_name.replace("struct ", "").replace("class ", "")
-                if stripped != sig_with_name and idc.SetType(addr, stripped):
+            # Apply via C++-aware parse_decl + apply_tinfo (supports virtual,
+            # __thiscall, __cdecl, etc. — SetType strips C++ keywords).
+            _tif = ida_typeinf.tinfo_t()
+            if ida_typeinf.parse_decl(_tif, til, sig_with_name, ida_typeinf.PT_TYP):
+                if ida_typeinf.apply_tinfo(addr, _tif, ida_typeinf.TINFO_DEFINITE):
                     sig_ok += 1
+                else:
+                    sig_fail.append((addr_str, name, sig_with_name + " (apply_tinfo failed)"))
+            else:
+                # Fallback: try without struct/class keywords
+                stripped = sig_with_name.replace("struct ", "").replace("class ", "")
+                if stripped != sig_with_name:
+                    _tif2 = ida_typeinf.tinfo_t()
+                    if ida_typeinf.parse_decl(_tif2, til, stripped, ida_typeinf.PT_TYP):
+                        if ida_typeinf.apply_tinfo(addr, _tif2, ida_typeinf.TINFO_DEFINITE):
+                            sig_ok += 1
+                        else:
+                            sig_fail.append((addr_str, name, sig_with_name))
+                    else:
+                        sig_fail.append((addr_str, name, sig_with_name))
                 else:
                     sig_fail.append((addr_str, name, sig_with_name))
 
@@ -1354,12 +1363,23 @@ def apply_annotations():
         typ = info.get("type", "")
         if typ:
             type_str = typ.rstrip(";") + ";"
-            if idc.SetType(addr, type_str):
-                g_typed += 1
+            _g_tif = ida_typeinf.tinfo_t()
+            if ida_typeinf.parse_decl(_g_tif, til, type_str, ida_typeinf.PT_TYP):
+                if ida_typeinf.apply_tinfo(addr, _g_tif, ida_typeinf.TINFO_DEFINITE):
+                    g_typed += 1
+                else:
+                    g_type_fail.append((addr_str, info.get("name", ""), typ))
             else:
                 stripped = type_str.replace("struct ", "").replace("class ", "")
-                if stripped != type_str and idc.SetType(addr, stripped):
-                    g_typed += 1
+                if stripped != type_str:
+                    _g_tif2 = ida_typeinf.tinfo_t()
+                    if ida_typeinf.parse_decl(_g_tif2, til, stripped, ida_typeinf.PT_TYP):
+                        if ida_typeinf.apply_tinfo(addr, _g_tif2, ida_typeinf.TINFO_DEFINITE):
+                            g_typed += 1
+                        else:
+                            g_type_fail.append((addr_str, info.get("name", ""), typ))
+                    else:
+                        g_type_fail.append((addr_str, info.get("name", ""), typ))
                 else:
                     g_type_fail.append((addr_str, info.get("name", ""), typ))
 
