@@ -359,16 +359,11 @@ def run(code, ctx):
             i += 1
     code = '\n'.join(result_lines)
 
-    # Comment out lines referencing _vtbl_placeholder (synthetic slots, no real member)
+    # Comment out lines referencing vtable-related names (__vftable from IDA
+    # decompilation, vfptr from annotation struct layout — both compiler-managed).
+    # Skip already-commented lines.
     code = re.sub(
-        r'^([ \t]*.*_vtbl_placeholder[^;]*;.*)$',
-        r'// [VFTABLE] \1',
-        code, flags=re.MULTILINE)
-
-    # Comment out ->vfptr member access (compiler-managed, not in C++ source).
-    # The vfptr exists in the IDB struct definition but is suppressed in headers.
-    code = re.sub(
-        r'^([ \t]*.*(?:->|\.)vfptr\b[^;]*;.*)$',
+        r'^([ \t]*(?!/[/*]).*(?:__vftable|(?:->|\.)vfptr\b)[^;]*;.*)$',
         r'// [VFTABLE] \1',
         code, flags=re.MULTILINE)
 
