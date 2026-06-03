@@ -583,19 +583,6 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                 udt2.taudt_bits |= 128
             udt2.total_size = binary_size
             cursor = 0
-            gap_count = 0
-            skip_count = 0
-            add_count = 0
-            # Add base classes as anonymous members
-            bc_cursor = 0
-            for bc in base_classes:
-                bt = ida_typeinf.tinfo_t()
-                if bt.get_named_type(til, bc):
-                    bsz = bt.get_size()
-                    if bsz > 0 and bsz != 0xFFFFFFFFFFFFFFFF:
-                        udt2.add_member("", bt, bc_cursor * 8)
-                        bc_cursor += bsz
-            cursor = bc_cursor
             for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0])):
                 offset = int(off_str.split('_')[0])
                 if base_class and offset < base_size:
@@ -608,7 +595,6 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                         if ida_typeinf.parse_decl(gap_base, til, "char __x;", ida_typeinf.PT_VAR):
                             gap_tif.create_array(gap_base, gap_sz)
                             udt2.add_member("_gap_%03X" % cursor, gap_tif, cursor * 8)
-                            gap_count += 1
                     cursor = offset
                 mname = minfo["name"]
                 mtype_str = _normalize_type(minfo["type"])
@@ -620,22 +606,47 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                     ida_typeinf.parse_decl(tinfo, til, "int __x;", ida_typeinf.PT_VAR)
                 msz = tinfo.get_size()
                 if msz == 0 or msz == 0xFFFFFFFFFFFFFFFF:
-                    skip_count += 1
                     continue
                 udt2.add_member(mname, tinfo, offset * 8)
-                add_count += 1
                 cursor = offset + msz
-            log("  [gap-fill] members: gaps=%d added=%d skipped=%d cursor=%d total=%d" % (
-                gap_count, add_count, skip_count, cursor, binary_size))
             result_tinfo2 = ida_typeinf.tinfo_t()
             if result_tinfo2.create_udt(udt2, udt_flag):
                 actual_size2 = result_tinfo2.get_size()
-                log("  [gap-fill] create_udt=%s size=%d" % (
-                    "OK" if actual_size2 != 0xFFFFFFFFFFFFFFFF else "INVALID", actual_size2))
                 if actual_size2 != 0xFFFFFFFFFFFFFFFF and actual_size2 <= binary_size + 8:
                     log("  [gap-fill] %s: OK size=%d" % (name, actual_size2))
                     result_tinfo2.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
                     return (True, None)
+            # Gap-fill with TAUDT_FIXED failed. Last resort: create without
+            # TAUDT_FIXED, sequential offset, correct total_size.
+            log("  [seq-fill] %s: trying sequential without TAUDT_FIXED..." % name)
+            udt3 = ida_typeinf.udt_type_data_t()
+            if base_class:
+                udt3.taudt_bits = 128  # TAUDT_CPPOBJ only
+            udt3.total_size = binary_size
+            seq_off = 0
+            for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0])):
+                offset = int(off_str.split('_')[0])
+                if base_class and offset < base_size:
+                    continue
+                mname = minfo["name"]
+                mtype_str = _normalize_type(minfo["type"])
+                if "::" in mtype_str and "std::" not in mtype_str and "<" not in mtype_str:
+                    mtype_str = mtype_str.replace("::", "_")
+                tinfo = _resolve_member_type(mtype_str, til)
+                if tinfo is None:
+                    tinfo = ida_typeinf.tinfo_t()
+                    ida_typeinf.parse_decl(tinfo, til, "int __x;", ida_typeinf.PT_VAR)
+                msz = tinfo.get_size()
+                if msz == 0 or msz == 0xFFFFFFFFFFFFFFFF:
+                    continue
+                udt3.add_member(mname, tinfo, seq_off * 8)
+                seq_off += msz
+            result_tinfo3 = ida_typeinf.tinfo_t()
+            if result_tinfo3.create_udt(udt3, udt_flag):
+                log("  [seq-fill] %s: OK (sequential layout)" % name)
+                result_tinfo3.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+                return (True, None)
+
         except Exception as gf_e:
             log("  [gap-fill] %s exception: %s" % (name, str(gf_e)[:80]))
         return (False, "TAUDT_FIXED create_udt produced INVALID type for %s (size=-1). "
