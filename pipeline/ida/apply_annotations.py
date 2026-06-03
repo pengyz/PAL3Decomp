@@ -529,21 +529,10 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     result_tinfo = ida_typeinf.tinfo_t()
     udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
 
-    # For structs with very high member counts, create_udt may produce
-    # an invalid UDT (size=-1) that can't be replaced. Skip UDT and
-    # go directly to string-based fallback.
-    _skip_udt = len(members) > 60 and not is_union
-
-    if not _skip_udt and not result_tinfo.create_udt(udt, udt_flag):
-        # create_udt failed — fall back to string-based decl
-        try:
-            decl_text = build_struct_decl(name, struct_info, all_structs)
-            if decl_text and ida_typeinf.parse_decl(result_tinfo, til, decl_text, ida_typeinf.PT_TYP) is not None:
-                log("  [fallback] %s: created via string decl" % name)
-            else:
-                return (False, "TAUDT_FIXED create_udt() returned False for %s" % name)
-        except Exception as fallback_e:
-            return (False, "TAUDT_FIXED create_udt() returned False for %s (fallback: %s)" % (name, str(fallback_e)))
+    if not result_tinfo.create_udt(udt, udt_flag):
+        # create_udt failed. DO NOT fall back to build_struct_decl:
+        # it drops multi-inheritance bases and produces incorrect layouts.
+        return (False, "TAUDT_FIXED create_udt() returned False for %s" % name)
 
     method_udms = ida_typeinf.udtmembervec_t()
     struct_methods = struct_info.get('methods', {}) if struct_info else {}
@@ -581,18 +570,6 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
 
     actual_size = result_tinfo.get_size()
     if actual_size == 0xFFFFFFFFFFFFFFFF:
-        # UDT created but invalid (size=-1). Try build_struct_decl fallback.
-        try:
-            decl_text = build_struct_decl(name, struct_info, all_structs)
-            if decl_text and ida_typeinf.parse_decl(result_tinfo, til, decl_text, ida_typeinf.PT_TYP) is not None:
-                log("  [fallback] %s: created via string decl (size=-1 recovery)" % name)
-                actual_size = result_tinfo.get_size()
-                if actual_size != 0xFFFFFFFFFFFFFFFF:
-                    result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
-                    return (True, None)
-        except Exception as fallback_e:
-            log("  [fallback] %s failed: %s" % (name, str(fallback_e)[:100]))
-            pass
         return (False, "TAUDT_FIXED create_udt produced INVALID type for %s (size=-1). "
                 "Check: base_class '%s' correct size in TIL? All member types resolvable? "
                 "Struct has %d members, total annotation size=%d." % (
