@@ -1263,6 +1263,14 @@ def apply_annotations():
         sig_raw = sig_raw.replace(' __noreturn', '')
         sig_raw = _re_sig.sub(r'\s*__spoils<[^>]*>', '', sig_raw)
         sig_raw = sig_raw.strip()
+        # Strip 'virtual' keyword — SetType only accepts plain C declarations.
+        # export_full.py re-adds 'virtual' for vtable functions during export.
+        sig_raw = _re_sig.sub(r'^virtual\s+', '', sig_raw)
+        # Skip thunk-style signatures ([thunk]:...) — SetType can't handle them
+        # and they shouldn't appear in signature application.
+        if '[thunk]' in sig_raw or '`' in sig_raw:
+            sig_fail.append((addr_str, name, "[thunk] skipped"))
+            continue
         # Clean up redundant calling conventions for member functions
         if ("::" in name or "*this" in sig_raw) and "__cdecl" in sig_raw and "__thiscall" in sig_raw:
             # Member function with both __cdecl and __thiscall - remove __cdecl
