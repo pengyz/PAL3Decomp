@@ -591,9 +591,12 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             _minimal = "struct %s { char _data[%d]; };" % (name, binary_size)
             if ida_typeinf.parse_decl(result_tinfo, til, _minimal, ida_typeinf.PT_TYP) is not None:
                 log("  [minimal] %s: created as char[%d] stub" % (name, binary_size))
-                result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
-                return (True, None)
-        except Exception:
+                if result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE):
+                    return (True, None)
+                else:
+                    log("  [minimal] %s: set_named_type FAILED" % name)
+        except Exception as minimal_e:
+            log("  [minimal] %s failed: %s" % (name, str(minimal_e)[:120]))
             pass
         return (False, "TAUDT_FIXED create_udt produced INVALID type for %s (size=-1). "
                 "Check: base_class '%s' correct size in TIL? All member types resolvable? "
