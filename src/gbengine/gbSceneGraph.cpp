@@ -20,20 +20,20 @@ gbSceneGraph* gbVisNode_pSceneGraph = NULL;
 /* ======== gbLightObj method implementations ======== */
 
 float gbLightObj::GetEffectOnPoint(const gbVec3D& point, int useAttenuation) {
-    if (!enabled) return 0.0f;
+    if (!m_UseDiffuse) return 0.0f;
 
     gbVec3D delta;
-    delta.x = point.x - sysLight.position.x;
-    delta.y = point.y - sysLight.position.y;
-    delta.z = point.z - sysLight.position.z;
+    delta.x = point.x - m_SysLight.position.x;
+    delta.y = point.y - m_SysLight.position.y;
+    delta.z = point.z - m_SysLight.position.z;
 
     float distSq = delta.x * delta.x + delta.y * delta.y + delta.z * delta.z;
     float dist = sqrtf(distSq);
 
-    if (dist > range) return 0.0f;
+    if (dist > m_FarEnd) return 0.0f;
 
     if (useAttenuation) {
-        float atten = attenuation0 + attenuation1 * dist + attenuation2 * distSq;
+        float atten = m_LightShape + m_HotSize * dist + m_Falloff * distSq;
         if (atten > 0.0f) {
             return 1.0f / atten;
         }
@@ -45,46 +45,46 @@ float gbLightObj::GetEffectOnPoint(const gbVec3D& point, int useAttenuation) {
 void gbLightObj::Compute(gbVolModNode* volmod) {
     // 0x10013350 (581B) - Computes D3DLIGHT9 sysLight from light parameters
     // Transforms position/direction by the gbVolModNode's world matrix
-    // Sets sysLight.type based on lightType: 0->POINT(1), 1->SPOT(2), 2->DIR(3)
+    // Sets m_SysLight.type based on m_LightType: 0->POINT(1), 1->SPOT(2), 2->DIR(3)
 
     gbMatrix4* worldMatrix = &volmod->worldMatrix;
 
     // Set D3D light type
-    if (lightType == 0) {
-        sysLight.type = 1;  // D3DLIGHT_POINT
-    } else if (lightType == 1) {
-        sysLight.type = 2;  // D3DLIGHT_SPOT
-    } else if (lightType == 2) {
-        sysLight.type = 3;  // D3DLIGHT_DIRECTIONAL
+    if (m_LightType == 0) {
+        m_SysLight.type = 1;  // D3DLIGHT_POINT
+    } else if (m_LightType == 1) {
+        m_SysLight.type = 2;  // D3DLIGHT_SPOT
+    } else if (m_LightType == 2) {
+        m_SysLight.type = 3;  // D3DLIGHT_DIRECTIONAL
     }
-    sysLight.type = 1;
+    m_SysLight.type = 1;
 
     // Copy diffuse color to sysLight
-    sysLight.diffuse.Red = diffuse.Red;
-    sysLight.diffuse.Green = diffuse.Green;
-    sysLight.diffuse.Blue = diffuse.Blue;
-    sysLight.diffuse.Alpha = diffuse.Alpha;
+    m_SysLight.diffuse.Red = m_Color.Red;
+    m_SysLight.diffuse.Green = m_Color.Green;
+    m_SysLight.diffuse.Blue = m_Color.Blue;
+    m_SysLight.diffuse.Alpha = m_Color.Alpha;
 
     // Specular defaults (no separate specular field in gbVolumeModifier)
-    sysLight.specular.Red = diffuse.Red;
-    sysLight.specular.Green = diffuse.Green;
-    sysLight.specular.Blue = diffuse.Blue;
-    sysLight.specular.Alpha = diffuse.Alpha;
+    m_SysLight.specular.Red = m_Color.Red;
+    m_SysLight.specular.Green = m_Color.Green;
+    m_SysLight.specular.Blue = m_Color.Blue;
+    m_SysLight.specular.Alpha = m_Color.Alpha;
 
     // Copy ambient color
-    sysLight.ambient.Red = ambient.Red;
-    sysLight.ambient.Green = ambient.Green;
-    sysLight.ambient.Blue = ambient.Blue;
-    sysLight.ambient.Alpha = ambient.Alpha;
+    m_SysLight.ambient.Red = m_Ambient.Red;
+    m_SysLight.ambient.Green = m_Ambient.Green;
+    m_SysLight.ambient.Blue = m_Ambient.Blue;
+    m_SysLight.ambient.Alpha = m_Ambient.Alpha;
 
     // Set range and falloff
-    sysLight.range = range;
-    sysLight.falloff = 1.0f;
+    m_SysLight.range = m_FarEnd;
+    m_SysLight.falloff = 1.0f;
 
     // Compute attenuation values
-    sysLight.attenuation0 = 1.0f;
-    sysLight.attenuation1 = 0.0f;
-    sysLight.attenuation2 = 0.0f;
+    m_SysLight.attenuation0 = 1.0f;
+    m_SysLight.attenuation1 = 0.0f;
+    m_SysLight.attenuation2 = 0.0f;
 
     // Transform position/direction based on light type
     gbVec3D localPos;
@@ -92,20 +92,20 @@ void gbLightObj::Compute(gbVolModNode* volmod) {
     gbVec3D localDir;
     localDir.x = 0.0f; localDir.y = -1.0f; localDir.z = 0.0f;
 
-    if (lightType == 0) {
+    if (m_LightType == 0) {
         // Point light: transform position
-        worldMatrix->Transform(&localPos, &sysLight.position);
-    } else if (lightType == 1) {
+        worldMatrix->Transform(&localPos, &m_SysLight.position);
+    } else if (m_LightType == 1) {
         // Spot light: transform position and rotate direction
-        worldMatrix->Transform(&localPos, &sysLight.position);
-        worldMatrix->Rotate(&localDir, &sysLight.direction);
+        worldMatrix->Transform(&localPos, &m_SysLight.position);
+        worldMatrix->Rotate(&localDir, &m_SysLight.direction);
     } else {
         // Directional light: rotate direction, set position far away
-        worldMatrix->Rotate(&localDir, &sysLight.direction);
-        sysLight.range = 200000.0f;
-        sysLight.position.x = sysLight.direction.x * -100000.0f;
-        sysLight.position.y = sysLight.direction.y * -100000.0f;
-        sysLight.position.z = sysLight.direction.z * -100000.0f;
+        worldMatrix->Rotate(&localDir, &m_SysLight.direction);
+        m_SysLight.range = 200000.0f;
+        m_SysLight.position.x = m_SysLight.direction.x * -100000.0f;
+        m_SysLight.position.y = m_SysLight.direction.y * -100000.0f;
+        m_SysLight.position.z = m_SysLight.direction.z * -100000.0f;
     }
 }
 

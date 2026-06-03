@@ -17,6 +17,7 @@ struct gbClearParam {
     unsigned int color;
     float depth;
     unsigned int stencil;
+    unsigned int clearflag; // +0x0C
     unsigned int flags;
 };
 

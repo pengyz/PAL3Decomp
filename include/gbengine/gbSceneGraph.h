@@ -71,6 +71,7 @@ struct gbRenderInfoObj {
 
 // ============================================================================
 // gbLightObj - light object with virtual methods
+// Members inherited from gbVolumeModifier
 // ============================================================================
 class gbLightObj : public gbVolumeModifier {
 public:

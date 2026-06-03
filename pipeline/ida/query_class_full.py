@@ -54,17 +54,30 @@ def main():
                     todos.add(int(off_str))
             structs_info[cls] = todos
 
-    # Collect methods per class
-    class_methods = {}
+    # Collect methods per class (from struct JSON + functions.json)
+    from collections import defaultdict
+    class_methods = defaultdict(list)
+    
+    # Source 1: struct JSON methods
+    for cls in targets:
+        spath = os.path.join(ANNOTATIONS_DIR, "structs", "%s.json" % cls)
+        if os.path.exists(spath):
+            with open(spath, "r", encoding="utf-8") as f:
+                sdata = json.load(f)
+            for addr_str, minfo in sdata.get("methods", {}).items():
+                mname = minfo.get("name", "").split("::")[-1]
+                class_methods[cls].append((int(addr_str, 16), mname))
+    
+    # Source 2: functions.json
     for addr_str, info in all_funcs.items():
         name = info.get("name", "")
         if "::" not in name:
             continue
         cls = name.split("::")[0]
         if cls in targets:
-            if cls not in class_methods:
-                class_methods[cls] = []
-            class_methods[cls].append((int(addr_str, 16), name))
+            ea = int(addr_str, 16)
+            if all(pair[0] != ea for pair in class_methods.get(cls, [])):
+                class_methods[cls].append((ea, name))
 
     results = {}
     for cls in targets:

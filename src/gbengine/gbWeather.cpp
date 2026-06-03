@@ -112,17 +112,17 @@ gbDropGroup::gbDropGroup(int maxCount, const gbDropDesc* dropDesc, const char* t
 
     pRenderEffect = g_pGfxManager->pEffectMgr->NewRenderEffect("gfxscript\\p_add_g.gbf", 0);
 
-    *(int*)&desc.gravity = *(int*)&dropDesc->gravity;
-    *(int*)&desc.viewDistance = *(int*)&dropDesc->viewDistance;
-    *(int*)&desc.density = *(int*)&dropDesc->density;
-    *(int*)&desc.speedMinX = *(int*)&dropDesc->speedMinX;
-    *(int*)&desc.speedMaxX = *(int*)&dropDesc->speedMaxX;
-    *(int*)&desc.speedMinY = *(int*)&dropDesc->speedMinY;
-    *(int*)&desc.speedMaxY = *(int*)&dropDesc->speedMaxY;
-    *(int*)&desc.speedMinZ = *(int*)&dropDesc->speedMinZ;
-    int lastDescField = *(int*)&dropDesc->speedMaxZ;
+    *(int*)&desc.unitsize = *(int*)&dropDesc->unitsize;
+    *(int*)&desc.range = *(int*)&dropDesc->range;
+    *(int*)&desc.emitrate = *(int*)&dropDesc->emitrate;
+    *(int*)&desc.minlife = *(int*)&dropDesc->minlife;
+    *(int*)&desc.maxlife = *(int*)&dropDesc->maxlife;
+    *(int*)&desc.minvelocity = *(int*)&dropDesc->minvelocity;
+    *(int*)&desc.maxvelocity = *(int*)&dropDesc->maxvelocity;
+    *(int*)&desc.minheight = *(int*)&dropDesc->minheight;
+    int lastDescField = *(int*)&dropDesc->maxheight;
     *(int*)&elapsedTime = 0;
-    *(int*)&desc.speedMaxZ = lastDescField;
+    *(int*)&desc.maxheight = lastDescField;
     numActiveUnits = 0;
     *((int*)&elapsedTime + 1) = 0;
     spawnTimer = 0.0f;
@@ -154,7 +154,7 @@ void gbDropGroup::Render(gbCamera* camera) {
 // 0x10031FE0 - gbDropGroup::CreateUnit
 void gbDropGroup::CreateUnit(float deltaTime, gbCamera* camera) {
     spawnTimer = deltaTime + spawnTimer;
-    double rate = (double)desc.density;
+    double rate = (double)desc.emitrate;
     int numToSpawn = (int)(rate * (double)spawnTimer);
     if (numToSpawn > 0) {
         spawnTimer = spawnTimer - (float)((double)numToSpawn / rate);
@@ -164,13 +164,13 @@ void gbDropGroup::CreateUnit(float deltaTime, gbCamera* camera) {
             do {
                 float* pUnit = (float*)((char*)units + offset);
                 if (*pUnit <= 0.0f) {
-                    pUnit[4] = gbRandFloat(desc.viewDistance * -0.5f, desc.viewDistance * 0.5f);
-                    pUnit[6] = gbRandFloat(-desc.viewDistance, desc.viewDistance * -0.5f);
-                    pUnit[5] = gbRandFloat(desc.speedMinZ, desc.speedMaxZ);
-                    *pUnit = gbRandFloat(desc.speedMinX, desc.speedMaxX);
+                    pUnit[4] = gbRandFloat(desc.range * -0.5f, desc.range * 0.5f);
+                    pUnit[6] = gbRandFloat(-desc.range, desc.range * -0.5f);
+                    pUnit[5] = gbRandFloat(desc.minheight, desc.maxheight);
+                    *pUnit = gbRandFloat(desc.minlife, desc.maxlife);
                     pUnit[3] = 0.0f;
                     pUnit[1] = 0.0f;
-                    pUnit[2] = -gbRandFloat(desc.speedMinY, desc.speedMaxY);
+                    pUnit[2] = -gbRandFloat(desc.minvelocity, desc.maxvelocity);
                     ++numActiveUnits;
                     if (--numToSpawn == 0)
                         break;
@@ -186,15 +186,15 @@ void gbDropGroup::CreateUnit(float deltaTime, gbCamera* camera) {
 gbDropGroup::gbDropGroup(const gbDropGroup& other) {
     maxUnits = other.maxUnits;
     numActiveUnits = other.numActiveUnits;
-    desc.gravity = other.desc.gravity;
-    desc.viewDistance = other.desc.viewDistance;
-    desc.density = other.desc.density;
-    desc.speedMinX = other.desc.speedMinX;
-    desc.speedMaxX = other.desc.speedMaxX;
-    desc.speedMinY = other.desc.speedMinY;
-    desc.speedMaxY = other.desc.speedMaxY;
-    desc.speedMinZ = other.desc.speedMinZ;
-    desc.speedMaxZ = other.desc.speedMaxZ;
+    desc.unitsize = other.desc.unitsize;
+    desc.range = other.desc.range;
+    desc.emitrate = other.desc.emitrate;
+    desc.minlife = other.desc.minlife;
+    desc.maxlife = other.desc.maxlife;
+    desc.minvelocity = other.desc.minvelocity;
+    desc.maxvelocity = other.desc.maxvelocity;
+    desc.minheight = other.desc.minheight;
+    desc.maxheight = other.desc.maxheight;
     elapsedTime = other.elapsedTime;
     spawnTimer = other.spawnTimer;
     units = other.units;
@@ -226,15 +226,15 @@ gbRain::gbRain(int maxDrops, const gbDropDesc* dropDesc, const char* texName)
 gbRain::gbRain(const gbRain& other) {
     maxUnits = other.maxUnits;
     numActiveUnits = other.numActiveUnits;
-    desc.gravity = other.desc.gravity;
-    desc.viewDistance = other.desc.viewDistance;
-    desc.density = other.desc.density;
-    desc.speedMinX = other.desc.speedMinX;
-    desc.speedMaxX = other.desc.speedMaxX;
-    desc.speedMinY = other.desc.speedMinY;
-    desc.speedMaxY = other.desc.speedMaxY;
-    desc.speedMinZ = other.desc.speedMinZ;
-    desc.speedMaxZ = other.desc.speedMaxZ;
+    desc.unitsize = other.desc.unitsize;
+    desc.range = other.desc.range;
+    desc.emitrate = other.desc.emitrate;
+    desc.minlife = other.desc.minlife;
+    desc.maxlife = other.desc.maxlife;
+    desc.minvelocity = other.desc.minvelocity;
+    desc.maxvelocity = other.desc.maxvelocity;
+    desc.minheight = other.desc.minheight;
+    desc.maxheight = other.desc.maxheight;
     elapsedTime = other.elapsedTime;
     spawnTimer = other.spawnTimer;
     units = other.units;
@@ -297,7 +297,7 @@ void gbRain::Draw(void) {
         float u;
     };
 
-    float halfWidth = desc.gravity * 0.5f;
+    float halfWidth = desc.unitsize * 0.5f;
 
     // Lock vertex buffer for numActiveUnits * 6 vertices
     float* pVerts = (float*)pVB->Lock(numActiveUnits * 6);
@@ -359,15 +359,15 @@ void gbRain::Draw(void) {
 gbRain& gbRain::operator=(const gbRain& other) {
     maxUnits = other.maxUnits;
     numActiveUnits = other.numActiveUnits;
-    desc.gravity = other.desc.gravity;
-    desc.viewDistance = other.desc.viewDistance;
-    desc.density = other.desc.density;
-    desc.speedMinX = other.desc.speedMinX;
-    desc.speedMaxX = other.desc.speedMaxX;
-    desc.speedMinY = other.desc.speedMinY;
-    desc.speedMaxY = other.desc.speedMaxY;
-    desc.speedMinZ = other.desc.speedMinZ;
-    desc.speedMaxZ = other.desc.speedMaxZ;
+    desc.unitsize = other.desc.unitsize;
+    desc.range = other.desc.range;
+    desc.emitrate = other.desc.emitrate;
+    desc.minlife = other.desc.minlife;
+    desc.maxlife = other.desc.maxlife;
+    desc.minvelocity = other.desc.minvelocity;
+    desc.maxvelocity = other.desc.maxvelocity;
+    desc.minheight = other.desc.minheight;
+    desc.maxheight = other.desc.maxheight;
     elapsedTime = other.elapsedTime;
     spawnTimer = other.spawnTimer;
     units = other.units;
@@ -387,15 +387,15 @@ gbSnow::gbSnow(int maxDrops, const gbDropDesc* dropDesc, const char* texName, fl
 gbSnow::gbSnow(const gbSnow& other) {
     maxUnits = other.maxUnits;
     numActiveUnits = other.numActiveUnits;
-    desc.gravity = other.desc.gravity;
-    desc.viewDistance = other.desc.viewDistance;
-    desc.density = other.desc.density;
-    desc.speedMinX = other.desc.speedMinX;
-    desc.speedMaxX = other.desc.speedMaxX;
-    desc.speedMinY = other.desc.speedMinY;
-    desc.speedMaxY = other.desc.speedMaxY;
-    desc.speedMinZ = other.desc.speedMinZ;
-    desc.speedMaxZ = other.desc.speedMaxZ;
+    desc.unitsize = other.desc.unitsize;
+    desc.range = other.desc.range;
+    desc.emitrate = other.desc.emitrate;
+    desc.minlife = other.desc.minlife;
+    desc.maxlife = other.desc.maxlife;
+    desc.minvelocity = other.desc.minvelocity;
+    desc.maxvelocity = other.desc.maxvelocity;
+    desc.minheight = other.desc.minheight;
+    desc.maxheight = other.desc.maxheight;
     field_34 = other.field_34;
     elapsedTime = other.elapsedTime;
     spawnTimer = other.spawnTimer;
@@ -452,7 +452,7 @@ void gbSnow::Draw(void) {
     gbMatrixStack* pMatStack = g_pGfxManager->pMatrixStack[1];
     pMatStack->GetTop();
 
-    float halfSize = desc.gravity * 0.5f;
+    float halfSize = desc.unitsize * 0.5f;
 
     // Lock vertex buffer
     float* pVerts = (float*)pVB->Lock(numActiveUnits * 6);
@@ -512,15 +512,15 @@ void gbSnow::Draw(void) {
 gbSnow& gbSnow::operator=(const gbSnow& other) {
     maxUnits = other.maxUnits;
     numActiveUnits = other.numActiveUnits;
-    desc.gravity = other.desc.gravity;
-    desc.viewDistance = other.desc.viewDistance;
-    desc.density = other.desc.density;
-    desc.speedMinX = other.desc.speedMinX;
-    desc.speedMaxX = other.desc.speedMaxX;
-    desc.speedMinY = other.desc.speedMinY;
-    desc.speedMaxY = other.desc.speedMaxY;
-    desc.speedMinZ = other.desc.speedMinZ;
-    desc.speedMaxZ = other.desc.speedMaxZ;
+    desc.unitsize = other.desc.unitsize;
+    desc.range = other.desc.range;
+    desc.emitrate = other.desc.emitrate;
+    desc.minlife = other.desc.minlife;
+    desc.maxlife = other.desc.maxlife;
+    desc.minvelocity = other.desc.minvelocity;
+    desc.maxvelocity = other.desc.maxvelocity;
+    desc.minheight = other.desc.minheight;
+    desc.maxheight = other.desc.maxheight;
     elapsedTime = other.elapsedTime;
     spawnTimer = other.spawnTimer;
     units = other.units;

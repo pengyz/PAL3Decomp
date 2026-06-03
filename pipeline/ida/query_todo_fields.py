@@ -48,23 +48,46 @@ def load_todo_fields():
 
 
 def load_class_methods():
-    """从 annotations 加载每个类的方法列表。"""
-    funcs_path = os.path.join(ANNOTATIONS_DIR, "functions.json")
-    with open(funcs_path, "r", encoding="utf-8") as f:
-        funcs = json.load(f)
+    """从 annotations 加载每个类的方法列表。
 
-    class_methods = {}
-    for addr_str, info in funcs.items():
-        name = info.get("name", "")
-        if "::" not in name:
+    读取两个来源：
+    - structs/*.json 的 methods（主要来源）
+    - functions.json 中带 ClassName:: 前缀的条目（补充来源）
+    """
+    from collections import defaultdict
+    class_methods = defaultdict(list)
+
+    # 来源 1: struct JSON methods
+    structs_dir = os.path.join(ANNOTATIONS_DIR, "structs")
+    for fname in os.listdir(structs_dir):
+        if not fname.endswith(".json"):
             continue
-        cls = name.split("::")[0]
-        method = name.split("::", 1)[1]
-        ea = int(addr_str, 16)
-        if cls not in class_methods:
-            class_methods[cls] = []
-        class_methods[cls].append((ea, method))
-    return class_methods
+        with open(os.path.join(structs_dir, fname), "r", encoding="utf-8") as f:
+            sdata = json.load(f)
+        sname = sdata.get("name", fname.replace(".json", ""))
+        for addr_str, minfo in sdata.get("methods", {}).items():
+            mname = minfo.get("name", "")
+            method_short = mname.split("::")[-1] if "::" in mname else mname
+            ea = int(addr_str, 16)
+            class_methods[sname].append((ea, method_short))
+
+    # 来源 2: functions.json（补充不在 struct JSON 中的条目）
+    funcs_path = os.path.join(ANNOTATIONS_DIR, "functions.json")
+    if os.path.exists(funcs_path):
+        with open(funcs_path, "r", encoding="utf-8") as f:
+            funcs = json.load(f)
+        existing = {ea for list_ in class_methods.values() for ea, _ in list_}
+        for addr_str, info in funcs.items():
+            name = info.get("name", "")
+            if "::" not in name:
+                continue
+            cls = name.split("::")[0]
+            method = name.split("::", 1)[1]
+            ea = int(addr_str, 16)
+            if ea not in existing:
+                class_methods[cls].append((ea, method))
+
+    return dict(class_methods)
 
 
 def find_disp32_in_func(ea, func_size, target_offsets):

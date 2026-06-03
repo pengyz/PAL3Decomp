@@ -125,32 +125,32 @@ gbVisNode* gbLoadLightFile(const char* filename) {
         gbLightObj* light = new gbLightObj();
 
         // Read light parameters from file (matching gbVolumeModifier field layout)
-        g_pVFileSys->Read(&light->lightType, 4, fp);
-        g_pVFileSys->Read(&light->diffuse, 0x10, fp);
-        g_pVFileSys->Read(&light->ambient, 0x10, fp);
-        g_pVFileSys->Read(&light->enabled, 4, fp);
-        g_pVFileSys->Read(&light->_field30, 4, fp);
-        g_pVFileSys->Read(&light->_field34, 4, fp);
-        g_pVFileSys->Read(&light->_field38, 4, fp);
-        g_pVFileSys->Read(&light->_field3C, 4, fp);
-        g_pVFileSys->Read(&light->range, 4, fp);
-        g_pVFileSys->Read(&light->_field44, 4, fp);
-        g_pVFileSys->Read(&light->_field48, 4, fp);
-        g_pVFileSys->Read(&light->attenuation0, 4, fp);
-        g_pVFileSys->Read(&light->attenuation1, 4, fp);
-        g_pVFileSys->Read(&light->attenuation2, 4, fp);
-        g_pVFileSys->Read(&light->_field58, 4, fp);
+        g_pVFileSys->Read(&light->m_LightType, 4, fp);
+        g_pVFileSys->Read(&light->m_Color, 0x10, fp);
+        g_pVFileSys->Read(&light->m_Ambient, 0x10, fp);
+        g_pVFileSys->Read(&light->m_UseDiffuse, 4, fp);
+        g_pVFileSys->Read(&light->m_UseSpecular, 4, fp);
+        g_pVFileSys->Read(&light->m_NearStart, 4, fp);
+        g_pVFileSys->Read(&light->m_NearEnd, 4, fp);
+        g_pVFileSys->Read(&light->m_FarStart, 4, fp);
+        g_pVFileSys->Read(&light->m_FarEnd, 4, fp);
+        g_pVFileSys->Read(&light->m_DecayType, 4, fp);
+        g_pVFileSys->Read(&light->m_DecayRadius, 4, fp);
+        g_pVFileSys->Read(&light->m_LightShape, 4, fp);
+        g_pVFileSys->Read(&light->m_HotSize, 4, fp);
+        g_pVFileSys->Read(&light->m_Falloff, 4, fp);
+        g_pVFileSys->Read(&light->m_Aspect, 4, fp);
 
         // Copy range as bounding sphere radius
-        light->boundSphere.radius = light->range;
+        light->m_BoundSphere.radius = light->m_FarEnd;
 
         // Clear bounding sphere center
-        light->boundSphere.center.x = 0.0f;
-        light->boundSphere.center.y = 0.0f;
-        light->boundSphere.center.z = 0.0f;
+        light->m_BoundSphere.center.x = 0.0f;
+        light->m_BoundSphere.center.y = 0.0f;
+        light->m_BoundSphere.center.z = 0.0f;
 
         // Set dirty flag
-        light->bDirty = 1;
+        light->m_BakedLight = 1;
 
         // IncRef on light (gbVolumeModifier inherits gbRefObject)
         light->refCount++;

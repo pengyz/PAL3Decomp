@@ -463,11 +463,11 @@ void gbVolumeModifier::Compute(gbVolModNode* volmod) {
 }
 
 int gbVolumeModifier::GetType(void) {
-    return lightType;
+    return m_LightType;
 }
 
 const gbSphere* gbVolumeModifier::GetBoundSphere(void) {
-    return &boundSphere;
+    return &m_BoundSphere;
 }
 
 class gbVolumeModifier & gbVolumeModifier::operator=(class gbVolumeModifier const & p0) { if (this != &p0) memcpy(this, &p0, sizeof(*this)); return *this; }

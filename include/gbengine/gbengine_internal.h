@@ -245,24 +245,24 @@ struct gbLight {
 // Base class for light objects and other volume modifiers
 class gbVolumeModifier : public gbRefObject {
 public:
-    int lightType;          // +0x08: light type (0=point, 1=spot, 2=directional)
-    gbColorFlt diffuse;     // +0x0C: diffuse color (16 bytes)
-    gbColorFlt ambient;     // +0x1C: ambient color (16 bytes)
-    int enabled;            // +0x2C: enabled flag
-    int _field30;           // +0x30
-    int _field34;           // +0x34
-    int _field38;           // +0x38
-    int _field3C;           // +0x3C
-    float range;            // +0x40: effective range (DWORD index 16)
-    float _field44;         // +0x44
-    float _field48;         // +0x48
-    float attenuation0;     // +0x4C: constant attenuation
-    float attenuation1;     // +0x50: linear attenuation
-    float attenuation2;     // +0x54: quadratic attenuation
-    float _field58;         // +0x58
-    gbSphere boundSphere;   // +0x5C: bounding sphere (16 bytes, DWORD index 23-26)
-    gbLight sysLight;       // +0x6C: D3D-compatible light structure (104 bytes)
-    int bDirty;             // +0xD4: needs recompute flag
+    int m_LightType;          // +0x08: light type (0=point, 1=spot, 2=directional)
+    gbColorFlt m_Color;       // +0x0C: diffuse color (16 bytes)
+    gbColorFlt m_Ambient;     // +0x1C: ambient color (16 bytes)
+    int m_UseDiffuse;         // +0x2C: enabled flag
+    int m_UseSpecular;        // +0x30
+    float m_NearStart;        // +0x34
+    float m_NearEnd;          // +0x38
+    float m_FarStart;         // +0x3C
+    float m_FarEnd;           // +0x40: effective range
+    int m_DecayType;          // +0x44
+    float m_DecayRadius;      // +0x48
+    int m_LightShape;         // +0x4C: light shape type
+    float m_HotSize;          // +0x50: hot size
+    float m_Falloff;          // +0x54: falloff
+    float m_Aspect;           // +0x58
+    gbSphere m_BoundSphere;   // +0x5C: bounding sphere (16 bytes, DWORD index 23-26)
+    gbLight m_SysLight;       // +0x6C: D3D-compatible light structure (104 bytes)
+    int m_BakedLight;         // +0xD4: needs recompute flag
     // Total: 0xD8 = 216 bytes
 
     gbVolumeModifier(const gbVolumeModifier& other);

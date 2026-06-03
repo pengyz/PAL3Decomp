@@ -98,7 +98,7 @@ struct gbParticleUnit {
 struct gbPartGroupParam {
     char name[32];                     // +0x00
     int flags;                         // +0x20
-    float gravity;                     // +0x24
+    float unitsize;                     // +0x24
     float airResistance;               // +0x28
     float unused1;                     // +0x2C
     int turbulenceFlag;                // +0x30
@@ -272,15 +272,15 @@ public:
 
 // sizeof = 0x24 = 36 bytes (verified from operator= memcpy size)
 struct gbDropDesc {
-    float gravity;           // +0x00
-    float viewDistance;      // +0x04: half-range for spawn area
-    int density;             // +0x08: spawn rate (particles/sec, int for FILD)
-    float speedMinX;         // +0x0C: speed range X min
-    float speedMaxX;         // +0x10: speed range X max
-    float speedMinY;         // +0x14: speed range Y min
-    float speedMaxY;         // +0x18: speed range Y max
-    float speedMinZ;         // +0x1C: speed range Z min
-    float speedMaxZ;         // +0x20: speed range Z max
+    float unitsize;           // +0x00
+    float range;      // +0x04: half-range for spawn area
+    int emitrate;             // +0x08: spawn rate (particles/sec, int for FILD)
+    float minlife;         // +0x0C: speed range X min
+    float maxlife;         // +0x10: speed range X max
+    float minvelocity;         // +0x14: speed range Y min
+    float maxvelocity;         // +0x18: speed range Y max
+    float minheight;         // +0x1C: speed range Z min
+    float maxheight;         // +0x20: speed range Z max
 
     gbDropDesc& operator=(const gbDropDesc& other);
 };

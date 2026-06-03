@@ -9,7 +9,14 @@ class gbRenderEffect;
 struct gbRenderInfoObj;
 
 struct gbNodeMsgObj {
-    int data[4];  // 16 bytes message object
+    union {
+        int data[4];            // raw array access (used by gbengine code)
+        struct {
+            int msgid;          // +0x00: message identifier
+            unsigned int param[2]; // +0x04: message parameters (8 bytes)
+            int _pad0C;         // +0x0C: padding
+        };
+    };
 };
 
 enum NodeBlend {

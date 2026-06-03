@@ -8,25 +8,25 @@
 #include <math.h>
 
 gbLightObj::gbLightObj(void) {
-    lightType = LIGHT_POINT;
-    diffuse.Red = diffuse.Green = diffuse.Blue = diffuse.Alpha = 1.0f;
-    ambient.Red = ambient.Green = ambient.Blue = ambient.Alpha = 0.0f;
-    enabled = 0;
-    _field30 = 0;
-    _field34 = 0;
-    _field38 = 0;
-    _field3C = 0;
-    range = 1000.0f;
-    _field44 = 0.0f;
-    _field48 = 0.0f;
-    attenuation0 = 1.0f;
-    attenuation1 = 0.0f;
-    attenuation2 = 0.0f;
-    _field58 = 0.0f;
+    m_LightType = LIGHT_POINT;
+    m_Color.Red = m_Color.Green = m_Color.Blue = m_Color.Alpha = 1.0f;
+    m_Ambient.Red = m_Ambient.Green = m_Ambient.Blue = m_Ambient.Alpha = 0.0f;
+    m_UseDiffuse = 0;
+    m_UseSpecular = 0;
+    m_NearStart = 0;
+    m_NearEnd = 0;
+    m_FarStart = 0;
+    m_FarEnd = 1000.0f;
+    m_DecayType = 0.0f;
+    m_DecayRadius = 0.0f;
+    m_LightShape = 1.0f;
+    m_HotSize = 0.0f;
+    m_Falloff = 0.0f;
+    m_Aspect = 0.0f;
 
-    memset(&boundSphere, 0, sizeof(boundSphere));
-    memset(&sysLight, 0, sizeof(sysLight));
-    bDirty = 0;
+    memset(&m_BoundSphere, 0, sizeof(m_BoundSphere));
+    memset(&m_SysLight, 0, sizeof(m_SysLight));
+    m_BakedLight = 0;
 }
 
 gbLightObj::gbLightObj(const gbLightObj& other) {
@@ -65,96 +65,96 @@ gbLightObj::~gbLightObj(void) {
 }
 
 gbLightObj& gbLightObj::operator=(const gbLightObj& other) {
-    lightType = other.lightType;
-    diffuse.Red = other.diffuse.Red;
-    diffuse.Green = other.diffuse.Green;
-    diffuse.Blue = other.diffuse.Blue;
-    diffuse.Alpha = other.diffuse.Alpha;
-    ambient.Red = other.ambient.Red;
-    ambient.Green = other.ambient.Green;
-    ambient.Blue = other.ambient.Blue;
-    ambient.Alpha = other.ambient.Alpha;
-    enabled = other.enabled;
-    _field30 = other._field30;
-    _field34 = other._field34;
-    _field38 = other._field38;
-    _field3C = other._field3C;
-    range = other.range;
-    _field44 = other._field44;
-    _field48 = other._field48;
-    attenuation0 = other.attenuation0;
-    attenuation1 = other.attenuation1;
-    attenuation2 = other.attenuation2;
-    _field58 = other._field58;
-    boundSphere.center.x = other.boundSphere.center.x;
-    boundSphere.center.y = other.boundSphere.center.y;
-    boundSphere.center.z = other.boundSphere.center.z;
-    boundSphere.radius = other.boundSphere.radius;
-    sysLight.type = other.sysLight.type;
-    sysLight.diffuse.Red = other.sysLight.diffuse.Red;
-    sysLight.diffuse.Green = other.sysLight.diffuse.Green;
-    sysLight.diffuse.Blue = other.sysLight.diffuse.Blue;
-    sysLight.diffuse.Alpha = other.sysLight.diffuse.Alpha;
-    sysLight.specular.Red = other.sysLight.specular.Red;
-    sysLight.specular.Green = other.sysLight.specular.Green;
-    sysLight.specular.Blue = other.sysLight.specular.Blue;
-    sysLight.specular.Alpha = other.sysLight.specular.Alpha;
-    sysLight.ambient.Red = other.sysLight.ambient.Red;
-    sysLight.ambient.Green = other.sysLight.ambient.Green;
-    sysLight.ambient.Blue = other.sysLight.ambient.Blue;
-    sysLight.ambient.Alpha = other.sysLight.ambient.Alpha;
-    sysLight.position.x = other.sysLight.position.x;
-    sysLight.position.y = other.sysLight.position.y;
-    sysLight.position.z = other.sysLight.position.z;
-    sysLight.direction.x = other.sysLight.direction.x;
-    sysLight.direction.y = other.sysLight.direction.y;
-    sysLight.direction.z = other.sysLight.direction.z;
-    sysLight.range = other.sysLight.range;
-    sysLight.falloff = other.sysLight.falloff;
-    sysLight.attenuation0 = other.sysLight.attenuation0;
-    sysLight.attenuation1 = other.sysLight.attenuation1;
-    sysLight.attenuation2 = other.sysLight.attenuation2;
-    sysLight.theta = other.sysLight.theta;
-    sysLight.phi = other.sysLight.phi;
-    bDirty = other.bDirty;
+    m_LightType = other.m_LightType;
+    m_Color.Red = other.m_Color.Red;
+    m_Color.Green = other.m_Color.Green;
+    m_Color.Blue = other.m_Color.Blue;
+    m_Color.Alpha = other.m_Color.Alpha;
+    m_Ambient.Red = other.m_Ambient.Red;
+    m_Ambient.Green = other.m_Ambient.Green;
+    m_Ambient.Blue = other.m_Ambient.Blue;
+    m_Ambient.Alpha = other.m_Ambient.Alpha;
+    m_UseDiffuse = other.m_UseDiffuse;
+    m_UseSpecular = other.m_UseSpecular;
+    m_NearStart = other.m_NearStart;
+    m_NearEnd = other.m_NearEnd;
+    m_FarStart = other.m_FarStart;
+    m_FarEnd = other.m_FarEnd;
+    m_DecayType = other.m_DecayType;
+    m_DecayRadius = other.m_DecayRadius;
+    m_LightShape = other.m_LightShape;
+    m_HotSize = other.m_HotSize;
+    m_Falloff = other.m_Falloff;
+    m_Aspect = other.m_Aspect;
+    m_BoundSphere.center.x = other.m_BoundSphere.center.x;
+    m_BoundSphere.center.y = other.m_BoundSphere.center.y;
+    m_BoundSphere.center.z = other.m_BoundSphere.center.z;
+    m_BoundSphere.radius = other.m_BoundSphere.radius;
+    m_SysLight.type = other.m_SysLight.type;
+    m_SysLight.diffuse.Red = other.m_SysLight.diffuse.Red;
+    m_SysLight.diffuse.Green = other.m_SysLight.diffuse.Green;
+    m_SysLight.diffuse.Blue = other.m_SysLight.diffuse.Blue;
+    m_SysLight.diffuse.Alpha = other.m_SysLight.diffuse.Alpha;
+    m_SysLight.specular.Red = other.m_SysLight.specular.Red;
+    m_SysLight.specular.Green = other.m_SysLight.specular.Green;
+    m_SysLight.specular.Blue = other.m_SysLight.specular.Blue;
+    m_SysLight.specular.Alpha = other.m_SysLight.specular.Alpha;
+    m_SysLight.ambient.Red = other.m_SysLight.ambient.Red;
+    m_SysLight.ambient.Green = other.m_SysLight.ambient.Green;
+    m_SysLight.ambient.Blue = other.m_SysLight.ambient.Blue;
+    m_SysLight.ambient.Alpha = other.m_SysLight.ambient.Alpha;
+    m_SysLight.position.x = other.m_SysLight.position.x;
+    m_SysLight.position.y = other.m_SysLight.position.y;
+    m_SysLight.position.z = other.m_SysLight.position.z;
+    m_SysLight.direction.x = other.m_SysLight.direction.x;
+    m_SysLight.direction.y = other.m_SysLight.direction.y;
+    m_SysLight.direction.z = other.m_SysLight.direction.z;
+    m_SysLight.range = other.m_SysLight.range;
+    m_SysLight.falloff = other.m_SysLight.falloff;
+    m_SysLight.attenuation0 = other.m_SysLight.attenuation0;
+    m_SysLight.attenuation1 = other.m_SysLight.attenuation1;
+    m_SysLight.attenuation2 = other.m_SysLight.attenuation2;
+    m_SysLight.theta = other.m_SysLight.theta;
+    m_SysLight.phi = other.m_SysLight.phi;
+    m_BakedLight = other.m_BakedLight;
     return *this;
 }
 
 void gbLightObj::Init(enum LIGHT_TYPE lt) {
     float sqrtMax = (float)sqrt(3.402823466385289e38);
-    lightType = lt;
-    diffuse.Alpha = 1.0f;
-    diffuse.Blue = 1.0f;
-    diffuse.Green = 1.0f;
-    diffuse.Red = 1.0f;
-    ambient.Alpha = 0.0f;
-    ambient.Blue = 0.0f;
-    ambient.Green = 0.0f;
-    ambient.Red = 0.0f;
-    enabled = 1;
-    _field30 = 1;
-    _field38 = 0;
-    _field34 = 0;
-    _field44 = 0;
-    _field48 = 1.0f;
-    attenuation0 = 0;
+    m_LightType = lt;
+    m_Color.Alpha = 1.0f;
+    m_Color.Blue = 1.0f;
+    m_Color.Green = 1.0f;
+    m_Color.Red = 1.0f;
+    m_Ambient.Alpha = 0.0f;
+    m_Ambient.Blue = 0.0f;
+    m_Ambient.Green = 0.0f;
+    m_Ambient.Red = 0.0f;
+    m_UseDiffuse = 1;
+    m_UseSpecular = 1;
+    m_NearEnd = 0;
+    m_NearStart = 0;
+    m_DecayType = 0;
+    m_DecayRadius = 1.0f;
+    m_LightShape = 0;
     *(int*)((char*)this + 0x50) = 0x42B40000;
     *(int*)((char*)this + 0x54) = 0x42B60000;
-    _field58 = 1.0f;
+    m_Aspect = 1.0f;
     *(float*)((char*)this + 0x40) = sqrtMax;
     *(float*)((char*)this + 0x3C) = sqrtMax;
     *(int*)((char*)this + 0x68) = 0;
     *(int*)((char*)this + 0x64) = 0;
     *(int*)((char*)this + 0x60) = 0;
     *(int*)((char*)this + 0x5C) = 0x7F7FFFFF;
-    bDirty = 0;
+    m_BakedLight = 0;
 }
 
 void gbLightObj::ComputeBoundSphere(void) {
-    boundSphere.radius = range;
-    boundSphere.center.x = 0.0f;
-    boundSphere.center.y = 0.0f;
-    boundSphere.center.z = 0.0f;
+    m_BoundSphere.radius = m_FarEnd;
+    m_BoundSphere.center.x = 0.0f;
+    m_BoundSphere.center.y = 0.0f;
+    m_BoundSphere.center.z = 0.0f;
 }
 
 int gbLightObj::GetType(void) {
@@ -162,9 +162,9 @@ int gbLightObj::GetType(void) {
 }
 
 const gbSphere* gbLightObj::GetBoundSphere(void) {
-    return &boundSphere;
+    return &m_BoundSphere;
 }
 
 gbLight* gbLightObj::GetSysLight(void) {
-    return (gbLight*)&sysLight;
+    return (gbLight*)&m_SysLight;
 }
