@@ -108,6 +108,51 @@
       "offset": 128,
       "source": "+fix:overlap_correct_count"
     },
+    "148": {
+      "name": "_todo_094",
+      "type": "int",
+      "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "152": {
+      "name": "m_nStageStatus",
+      "type": "unsigned char",
+      "source": "binary:raw_Update_check"
+    },
+    "153": {
+      "name": "m_bFlag99",
+      "type": "unsigned char",
+      "source": "binary:byte_after_status"
+    },
+    "154": {
+      "name": "m_bFlag9A",
+      "type": "unsigned char",
+      "source": "binary:byte_flag"
+    },
+    "155": {
+      "name": "m_bFlag9B",
+      "type": "unsigned char",
+      "source": "binary:byte_flag"
+    },
+    "156": {
+      "name": "m_nTaskCount",
+      "type": "int",
+      "source": "ida_decomp:GetStageRole --this, GetActiveTaskCount used, 3 refs"
+    },
+    "160": {
+      "name": "m_nClearRoleAllTask",
+      "type": "int",
+      "source": "binary:gap_clean"
+    },
+    "164": {
+      "name": "m_nRoleSlot",
+      "type": "int",
+      "source": "ida_decomp:ProcTaskSlot 80*this, ProcessRoleEffect 20*this, 6 refs"
+    },
+    "168": {
+      "name": "m_nForceDelTask",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_in_class_method"
+    },
     "172": {
       "name": "m_fMusicVolume",
       "type": "float",
@@ -138,50 +183,216 @@
       "type": "tagStageTask[256]",
       "offset": 192
     },
-    "673984": {
-      "name": "m_dwAniFlagOver",
-      "type": "unsigned long",
-      "offset": 673984
-    },
-    "152": {
-      "name": "m_nStageStatus",
-      "type": "unsigned char",
-      "source": "binary:raw_Update_check"
-    },
-    "153": {
-      "name": "m_bFlag99",
-      "type": "unsigned char",
-      "source": "binary:byte_after_status"
-    },
-    "154": {
-      "name": "m_bFlag9A",
-      "type": "unsigned char",
-      "source": "binary:byte_flag"
-    },
-    "155": {
-      "name": "m_bFlag9B",
-      "type": "unsigned char",
-      "source": "binary:byte_flag"
-    },
-    "148": {
-      "name": "_todo_094",
+    "196": {
+      "name": "m_RoleSlots",
       "type": "int",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "decomp:46x_BYTE+29_check(role_slot_active_flags)"
     },
-    "160": {
-      "name": "m_nClearRoleAllTask",
-      "type": "int",
-      "source": "binary:gap_clean"
-    },
-    "164": {
-      "name": "m_nRoleSlot",
-      "type": "int",
-      "source": "ida_decomp:ProcTaskSlot 80*this, ProcessRoleEffect 20*this, 6 refs"
-    },
-    "168": {
-      "name": "m_nForceDelTask",
+    "273": {
+      "name": "m_bAllDone",
       "type": "unsigned char",
-      "source": "A:mov_byte_ptr_in_class_method"
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "280": {
+      "name": "m_nActiveRoleIndex",
+      "type": "unsigned char",
+      "source": "A:mov_byte_ptr_disp32_in_class_method"
+    },
+    "284": {
+      "name": "m_nActiveIdx",
+      "type": "int",
+      "source": "ida_decomp:CheckAllDone IsActive(this+284)=roleIdx, 44 refs"
+    },
+    "288": {
+      "name": "m_CamAngles",
+      "type": "int",
+      "source": "decomp:4x_70*m_pCamControl_float(camera_angle_per_slot)"
+    },
+    "292": {
+      "name": "_todo_124",
+      "type": "int",
+      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic"
+    },
+    "296": {
+      "name": "m_CamParams",
+      "type": "gbColorQuad",
+      "source": "decomp:5x_70*m_pCamControl_float(camera_param_per_slot)"
+    },
+    "396": {
+      "name": "m_nActionIdx",
+      "type": "int",
+      "source": "ida_decomp:CheckAllDone 96*this+396=array_stride_idx, 64 refs"
+    },
+    "400": {
+      "name": "m_TargetPos",
+      "type": "int",
+      "source": "decomp:11x_+32/+36_float_targetXY"
+    },
+    "448": {
+      "name": "_todo_1C0",
+      "type": "int",
+      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic|A:slot array access stride=24 via m_nActionIdx"
+    },
+    "452": {
+      "name": "m_fRotPitch",
+      "type": "float",
+      "source": "ida_decomp:ProcessTurn -= v16*0.0043633231, 3 refs"
+    },
+    "456": {
+      "name": "m_fRotYaw",
+      "type": "float",
+      "source": "ida_decomp:ProcessTurn += v15*0.0043633231, 7 refs"
+    },
+    "464": {
+      "name": "m_fTimeAccum",
+      "type": "float",
+      "source": "ida_decomp:ProcessTurn += v11*0.001, 3 refs"
+    },
+    "468": {
+      "name": "m_fTimerRaw",
+      "type": "float",
+      "source": "ida_decomp:ProcessTurn += v11, set to 100.0, 3 refs"
+    },
+    "480": {
+      "name": "m_fAccumX",
+      "type": "float",
+      "source": "A:FPU_fadd_fstp_[esi+1E0h]_ProcessTurn|naming:pos_accumulator_x"
+    },
+    "484": {
+      "name": "m_fAccumY",
+      "type": "float",
+      "source": "A:FPU_fadd_fstp_[esi+1E4h]_ProcessTurn|naming:pos_accumulator_y"
+    },
+    "488": {
+      "name": "m_fAllDone",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "492": {
+      "name": "m_ActionAngles",
+      "type": "float",
+      "source": "decomp:3x_24stride*m_nActionIdx_angle_57.3(radian_to_deg)"
+    },
+    "496": {
+      "name": "_todo_1F0",
+      "type": "float",
+      "source": "A+:decomp *(float*)&this->_todo_1F0 (1 occurrences)"
+    },
+    "500": {
+      "name": "m_nActionTimer",
+      "type": "int",
+      "source": "A:store_imm3+slot_stride24_[esi+1F4h]+24*m_nActionIdx|naming:action_timer"
+    },
+    "504": {
+      "name": "m_ActionCmds",
+      "type": "float",
+      "source": "decomp:43x_96stride*m_nActionIdx(action_command_array)"
+    },
+    "508": {
+      "name": "_todo_1FC",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "512": {
+      "name": "_todo_200",
+      "type": "float",
+      "source": "raw_decomp:Hex-Rays_type_cast|A:binary LEA + UIFrameWnd dtor call"
+    },
+    "516": {
+      "name": "_todo_204",
+      "type": "int",
+      "source": "reverted_auto_semantic:1x_access|reverted:pseudo_semantic|A:binary *(gbVec3D*)&this+0x204 in ProcessTurn"
+    },
+    "520": {
+      "name": "_todo_208",
+      "type": "int",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "524": {
+      "name": "_todo_20C",
+      "type": "int",
+      "source": "raw_decomp:Hex-Rays_type_cast"
+    },
+    "544": {
+      "name": "m_pController",
+      "type": "char *",
+      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int¡úvoid*(deref pattern)",
+      "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "548": {
+      "name": "m_fTurnProgress",
+      "type": "float",
+      "source": "decomp:_nearby_5040d0_set_0.0(turn_progress_float)"
+    },
+    "552": {
+      "name": "m_fPrevRotX",
+      "type": "float",
+      "source": "ida_decomp:ProcessTurn delta = x - prev, store new, 3 refs"
+    },
+    "556": {
+      "name": "m_fPrevRotY",
+      "type": "float",
+      "source": "ida_decomp:ProcessTurn delta = y - prev, store new, 3 refs"
+    },
+    "560": {
+      "name": "m_nTurnCount",
+      "type": "int",
+      "source": "decomp:_nearby_5040d0_set_0(turn_counter)"
+    },
+    "564": {
+      "name": "m_nCmdCount",
+      "type": "int",
+      "source": "decomp:_nearby_5040d0_set_0(command_counter)"
+    },
+    "568": {
+      "name": "m_nTurnPhase",
+      "type": "int",
+      "source": "decomp:_nearby_5040d0_set_0(turn_phase)"
+    },
+    "572": {
+      "name": "m_nLastAction",
+      "type": "int",
+      "source": "decomp:_nearby_5040d0_set_-1(last_action_sentinel)"
+    },
+    "576": {
+      "name": "m_nTurnIndex",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "580": {
+      "name": "m_nResetState",
+      "type": "int",
+      "source": "ida_decomp:_nearby_5040d0 = -1, 4 refs"
+    },
+    "584": {
+      "name": "m_CmdQueue",
+      "type": "int",
+      "source": "decomp:10x_memset_0xFA0_20stride*nVal(command_queue_200)"
+    },
+    "606": {
+      "name": "m_TurnFlags",
+      "type": "short",
+      "source": "decomp:12x_80stride*m_nTurnIndex_BYTE_flag"
+    },
+    "624": {
+      "name": "m_TurnData",
+      "type": "int",
+      "source": "decomp:16x_20stride*m_nTurnIndex_qmemcpy_0x18"
+    },
+    "877": {
+      "name": "_todo_36D",
+      "type": "char",
+      "source": "decomp ref"
+    },
+    "900": {
+      "name": "_field_384",
+      "type": "int",
+      "source": "decomp ref (inside m_Task array)"
+    },
+    "904": {
+      "name": "_field_388",
+      "type": "int",
+      "source": "decomp ref (inside m_Task array)"
     },
     "1392": {
       "name": "_todo_570",
@@ -193,15 +404,35 @@
       "type": "int",
       "source": "binary:disp32_1hits_1funcs"
     },
+    "1400": {
+      "name": "m_RoleData",
+      "type": "int",
+      "source": "decomp:30x_658stride*nIndex(per_role_battle_data)"
+    },
+    "1480": {
+      "name": "_todo_5C8",
+      "type": "int",
+      "source": "decomp ref (inside m_Task array)"
+    },
     "2752": {
       "name": "m_TaskQueue",
       "type": "int",
       "source": "decomp:10x_compared_to_270(task_type_check)"
     },
+    "2756": {
+      "name": "m_TaskState",
+      "type": "int",
+      "source": "decomp:7x_indexed_state_value"
+    },
     "2760": {
       "name": "m_nTaskExist",
       "type": "int",
       "source": "binary:disp32_1hits_1funcs"
+    },
+    "2764": {
+      "name": "m_DamageData",
+      "type": "int",
+      "source": "decomp:11x_indexed_float_cast+BYTE+5"
     },
     "2796": {
       "name": "m_nTaskState",
@@ -212,6 +443,11 @@
       "name": "_todo_1198",
       "type": "int",
       "source": "binary:disp32_1hits_1funcs|A:memset 0x50 bytes in ClearActionSlot"
+    },
+    "4508": {
+      "name": "_todo_119C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
     },
     "4584": {
       "name": "m_TurnBuffer",
@@ -303,242 +539,6 @@
       "type": "int",
       "source": "binary:disp32_1hits_1funcs"
     },
-    "408000": {
-      "name": "_todo_639C0",
-      "type": "char[2000]",
-      "source": "binary:disp32_1hits_1funcs|A:memset 0x7D0 bytes in ClearAll"
-    },
-    "410000": {
-      "name": "_todo_64190",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "673960": {
-      "name": "_todo_A48A8",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
-    },
-    "156": {
-      "name": "m_nTaskCount",
-      "type": "int",
-      "source": "ida_decomp:GetStageRole --this, GetActiveTaskCount used, 3 refs"
-    },
-    "273": {
-      "name": "m_bAllDone",
-      "type": "unsigned char",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "284": {
-      "name": "m_nActiveIdx",
-      "type": "int",
-      "source": "ida_decomp:CheckAllDone IsActive(this+284)=roleIdx, 44 refs"
-    },
-    "396": {
-      "name": "m_nActionIdx",
-      "type": "int",
-      "source": "ida_decomp:CheckAllDone 96*this+396=array_stride_idx, 64 refs"
-    },
-    "448": {
-      "name": "_todo_1C0",
-      "type": "int",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic|A:slot array access stride=24 via m_nActionIdx"
-    },
-    "452": {
-      "name": "m_fRotPitch",
-      "type": "float",
-      "source": "ida_decomp:ProcessTurn -= v16*0.0043633231, 3 refs"
-    },
-    "456": {
-      "name": "m_fRotYaw",
-      "type": "float",
-      "source": "ida_decomp:ProcessTurn += v15*0.0043633231, 7 refs"
-    },
-    "464": {
-      "name": "m_fTimeAccum",
-      "type": "float",
-      "source": "ida_decomp:ProcessTurn += v11*0.001, 3 refs"
-    },
-    "468": {
-      "name": "m_fTimerRaw",
-      "type": "float",
-      "source": "ida_decomp:ProcessTurn += v11, set to 100.0, 3 refs"
-    },
-    "480": {
-      "name": "m_fAccumX",
-      "type": "float",
-      "source": "A:FPU_fadd_fstp_[esi+1E0h]_ProcessTurn|naming:pos_accumulator_x"
-    },
-    "484": {
-      "name": "m_fAccumY",
-      "type": "float",
-      "source": "A:FPU_fadd_fstp_[esi+1E4h]_ProcessTurn|naming:pos_accumulator_y"
-    },
-    "488": {
-      "name": "m_fAllDone",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "492": {
-      "name": "m_ActionAngles",
-      "type": "float",
-      "source": "decomp:3x_24stride*m_nActionIdx_angle_57.3(radian_to_deg)"
-    },
-    "504": {
-      "name": "m_ActionCmds",
-      "type": "float",
-      "source": "decomp:43x_96stride*m_nActionIdx(action_command_array)"
-    },
-    "508": {
-      "name": "_todo_1FC",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "512": {
-      "name": "_todo_200",
-      "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast|A:binary LEA + UIFrameWnd dtor call"
-    },
-    "516": {
-      "name": "_todo_204",
-      "type": "int",
-      "source": "reverted_auto_semantic:1x_access|reverted:pseudo_semantic|A:binary *(gbVec3D*)&this+0x204 in ProcessTurn"
-    },
-    "520": {
-      "name": "_todo_208",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "524": {
-      "name": "_todo_20C",
-      "type": "int",
-      "source": "raw_decomp:Hex-Rays_type_cast"
-    },
-    "544": {
-      "name": "m_pController",
-      "type": "char *",
-      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int¡úvoid*(deref pattern)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "552": {
-      "name": "m_fPrevRotX",
-      "type": "float",
-      "source": "ida_decomp:ProcessTurn delta = x - prev, store new, 3 refs"
-    },
-    "556": {
-      "name": "m_fPrevRotY",
-      "type": "float",
-      "source": "ida_decomp:ProcessTurn delta = y - prev, store new, 3 refs"
-    },
-    "580": {
-      "name": "m_nResetState",
-      "type": "int",
-      "source": "ida_decomp:_nearby_5040d0 = -1, 4 refs"
-    },
-    "196": {
-      "name": "m_RoleSlots",
-      "type": "int",
-      "source": "decomp:46x_BYTE+29_check(role_slot_active_flags)"
-    },
-    "280": {
-      "name": "m_nActiveRoleIndex",
-      "type": "unsigned char",
-      "source": "A:mov_byte_ptr_disp32_in_class_method"
-    },
-    "288": {
-      "name": "m_CamAngles",
-      "type": "int",
-      "source": "decomp:4x_70*m_pCamControl_float(camera_angle_per_slot)"
-    },
-    "292": {
-      "name": "_todo_124",
-      "type": "int",
-      "source": "reverted_auto_semantic:3x_access|reverted:pseudo_semantic"
-    },
-    "296": {
-      "name": "m_CamParams",
-      "type": "gbColorQuad",
-      "source": "decomp:5x_70*m_pCamControl_float(camera_param_per_slot)"
-    },
-    "400": {
-      "name": "m_TargetPos",
-      "type": "int",
-      "source": "decomp:11x_+32/+36_float_targetXY"
-    },
-    "496": {
-      "name": "_todo_1F0",
-      "type": "float",
-      "source": "A+:decomp *(float*)&this->_todo_1F0 (1 occurrences)"
-    },
-    "500": {
-      "name": "m_nActionTimer",
-      "type": "int",
-      "source": "A:store_imm3+slot_stride24_[esi+1F4h]+24*m_nActionIdx|naming:action_timer"
-    },
-    "548": {
-      "name": "m_fTurnProgress",
-      "type": "float",
-      "source": "decomp:_nearby_5040d0_set_0.0(turn_progress_float)"
-    },
-    "560": {
-      "name": "m_nTurnCount",
-      "type": "int",
-      "source": "decomp:_nearby_5040d0_set_0(turn_counter)"
-    },
-    "564": {
-      "name": "m_nCmdCount",
-      "type": "int",
-      "source": "decomp:_nearby_5040d0_set_0(command_counter)"
-    },
-    "568": {
-      "name": "m_nTurnPhase",
-      "type": "int",
-      "source": "decomp:_nearby_5040d0_set_0(turn_phase)"
-    },
-    "572": {
-      "name": "m_nLastAction",
-      "type": "int",
-      "source": "decomp:_nearby_5040d0_set_-1(last_action_sentinel)"
-    },
-    "576": {
-      "name": "m_nTurnIndex",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "584": {
-      "name": "m_CmdQueue",
-      "type": "int",
-      "source": "decomp:10x_memset_0xFA0_20stride*nVal(command_queue_200)"
-    },
-    "606": {
-      "name": "m_TurnFlags",
-      "type": "short",
-      "source": "decomp:12x_80stride*m_nTurnIndex_BYTE_flag"
-    },
-    "624": {
-      "name": "m_TurnData",
-      "type": "int",
-      "source": "decomp:16x_20stride*m_nTurnIndex_qmemcpy_0x18"
-    },
-    "1400": {
-      "name": "m_RoleData",
-      "type": "int",
-      "source": "decomp:30x_658stride*nIndex(per_role_battle_data)"
-    },
-    "2756": {
-      "name": "m_TaskState",
-      "type": "int",
-      "source": "decomp:7x_indexed_state_value"
-    },
-    "2764": {
-      "name": "m_DamageData",
-      "type": "int",
-      "source": "decomp:11x_indexed_float_cast+BYTE+5"
-    },
-    "4508": {
-      "name": "_todo_119C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
     "8052": {
       "name": "m_fTurnTimer",
       "type": "float",
@@ -583,6 +583,26 @@
       "name": "m_nResultSlot1",
       "type": "int",
       "source": "decomp:_nearby_4e0340_set_-1"
+    },
+    "408000": {
+      "name": "_todo_639C0",
+      "type": "char[2000]",
+      "source": "binary:disp32_1hits_1funcs|A:memset 0x7D0 bytes in ClearAll"
+    },
+    "410000": {
+      "name": "_todo_64190",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "673960": {
+      "name": "_todo_A48A8",
+      "type": "int",
+      "source": "binary:disp32_1hits_1funcs"
+    },
+    "673984": {
+      "name": "m_dwAniFlagOver",
+      "type": "unsigned long",
+      "offset": 673984
     }
   },
   "methods": {
