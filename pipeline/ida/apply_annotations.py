@@ -434,10 +434,12 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         base_classes = [base_class] if base_class else []
     if not is_union:
         base_size = struct_info.get("base_size", 0)
+        # Filter out template expression names (with <>) that won't resolve in TIL
+        _concrete_bases = [bc for bc in base_classes if '<' not in bc and '>' not in bc]
         # For multiple inheritance, compute total base size by looking up each base
         if len(base_classes) > 1:
             total_base = 0
-            for bc in base_classes:
+            for bc in _concrete_bases:
                 bc_tinfo = ida_typeinf.tinfo_t()
                 if bc_tinfo.get_named_type(til, bc):
                     total_base += bc_tinfo.get_size()
@@ -455,19 +457,12 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             udt.taudt_bits |= 128  # TAUDT_CPPOBJ
         udt.total_size = binary_size
 
-    # Filter base classes: remove template expression names (with <>) that
-    # won't resolve in TIL. Keep only concrete type names.
-    _concrete_bases = [bc for bc in base_classes if '<' not in bc and '>' not in bc]
-
     # Add base classes as anonymous members (supports multiple inheritance)
-    # Note: for complex inheritance (diamond, virtual bases), adding bases
-    # as sequential anonymous members may produce invalid UDTs. If create_udt
-    # fails, we retry WITHOUT base members — the struct still gets correct
-    # total size and derived members, just loses base class navigation in IDA.
+    _concrete_bases = [bc for bc in base_classes if '<' not in bc and '>' not in bc]
     _base_offset = 0
     if _concrete_bases and base_size > 0:
         base_offset = 0
-        for bc in base_classes:
+        for bc in _concrete_bases:
             bc_tinfo = ida_typeinf.tinfo_t()
             if not bc_tinfo.get_named_type(til, bc):
                 continue
