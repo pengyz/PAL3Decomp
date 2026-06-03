@@ -1,0 +1,208 @@
+IDB 函数中无 annotation 的分类:
+    432  game_func
+    428  sub_
+    397  other
+    342  thunk_accessor
+    264  unknown_libname
+    119  mangled_crt
+    113  j_nullsub
+  -----
+   2095  总计
+
+=== 游戏函数（需 annotation）: 432 个 ===
+涉及类数: 76
+
+涉及最多的类（前 20）:
+    63  __m64
+    43  double
+    30  UIWnd
+    22  __m128
+    19  BYTE
+    14  WPARAM
+    12  UIScene
+    12  ScreenEffectMgr
+    11  (global)
+     9  UIListBox
+     9  CCBSystem
+     8  RoleSystem
+     7  CameraCtrl
+     7  CScreenMode
+     6  Array
+     6  PAL3
+     6  UISceneMap
+     6  RenderTarget
+     6  CCBStage
+     5  PalScript
+
+游戏函数列表（前 50）:
+  0x0054A36F [  1690B] double::_nearby_54a36f
+  0x004E0A60 [  1629B] WPARAM::_static_4E0A60
+  0x004EAC10 [  1559B] WPARAM::_nearby_4eac10
+  0x0044F8D0 [  1548B] BYTE::_init_44f8d0
+  0x0054AA09 [  1424B] double::_nearby_54aa09
+  0x00548F41 [  1395B] double::_nearby_548f41
+  0x004EA6D0 [  1335B] WPARAM::_nearby_4ea6d0
+  0x0054F72B [  1332B] __m64::_static_54F72B
+  0x004EB8D0 [  1106B] WPARAM::_sub_4EB8D0
+  0x00430C30 [  1029B] string::_auto_430c30
+  0x0055005A [  1016B] __m64::_static_55005A
+  0x004C7680 [   994B] CEffCylinder::ProcCommonTask__ovl_0
+  0x004EB260 [   892B] WPARAM::_static_4EB260
+  0x004A3360 [   836B] CHAR::_sub_4A3360
+  0x00550452 [   820B] __m64::_static_550452
+  0x0054FD78 [   738B] __m64::_static_54FD78
+  0x005481F2 [   679B] double::_static_5481F2
+  0x0054740C [   634B] __m64::_static_54740C
+  0x004CD0D0 [   624B] BYTE::_sub_4CD0D0
+  0x004221D0 [   608B] VFileSystem::_auto_4221d0
+  0x00549D36 [   568B] double::_nearby_549d36
+  0x0054B79B [   568B] double::_nearby_54b79b
+  0x0054ED17 [   562B] __m64::_static_54ED17
+  0x0054A13E [   561B] double::_nearby_54a13e
+  0x0054BBA3 [   561B] double::_nearby_54bba3
+  0x0054D976 [   540B] __m64::_static_54D976
+  0x0054DB92 [   533B] __m64::_static_54DB92
+  0x004CFFB0 [   524B] char::_nearby_4cffb0
+  0x00550EE7 [   518B] __m64::_static_550EE7
+  0x00549732 [   515B] double::_nearby_549732
+  0x0054B197 [   515B] double::_nearby_54b197
+  0x00551F2D [   489B] __m128::_static_551F2D
+  0x00549F6E [   464B] double::_nearby_549f6e
+  0x0054B9D3 [   464B] double::_nearby_54b9d3
+  0x00550B93 [   455B] __m64::_sub_550B93
+  0x004E95A0 [   423B] WPARAM::_sub_4E95A0
+  0x0054F586 [   421B] __m64::_sub_54F586
+  0x004EB720 [   418B] WPARAM::_sub_4EB720
+  0x00549935 [   395B] double::_nearby_549935
+  0x0054B39A [   395B] double::_nearby_54b39a
+  0x0055110D [   381B] __m64::_static_55110D
+  0x00551400 [   379B] __m64::_static_551400
+  0x005495B8 [   378B] double::_nearby_5495b8
+  0x00547042 [   376B] __m128::_static_547042
+  0x005471BA [   366B] __m128::_static_5471BA
+  0x00550D5F [   360B] __m64::_static_550D5F
+  0x00549AC0 [   358B] double::_nearby_549ac0
+  0x0054B525 [   358B] double::_nearby_54b525
+  0x0054849A [   326B] double::_static_54849A
+  0x00552116 [   326B] __m128i::_static_552116
+  ... 共 432 个
+
+=== sub_ 函数: 428 个 ===
+sub_ 大小分布:
+  tiny(<16B):  72
+  small(16-50B): 92
+  medium(50-200B): 158
+  large(>=200B): 106
+
+较大的 sub_ 函数（>=200B，可能有实际代码）:
+  0x00426EB0 [ 11026B] sub_426EB0
+  0x00506340 [  4767B] sub_506340
+  0x0051DFD0 [  4247B] sub_51DFD0
+  0x00496190 [  3124B] sub_496190
+  0x0054E2DE [  2617B] sub_54E2DE
+  0x004B8890 [  2377B] sub_4B8890
+  0x00485230 [  1857B] sub_485230
+  0x004C4B00 [  1293B] sub_4C4B00
+  0x0053D5D0 [  1270B] sub_53D5D0
+  0x00495CA0 [  1256B] sub_495CA0
+  0x00494880 [  1234B] sub_494880
+  0x004D1300 [  1182B] sub_4D1300
+  0x00546667 [  1034B] sub_546667
+  0x004D17D0 [  1032B] sub_4D17D0
+  0x0054628D [   986B] sub_54628D
+  0x004BA800 [   957B] sub_4BA800
+  0x005435A4 [   927B] sub_5435A4
+  0x0041FA90 [   914B] sub_41FA90
+  0x004D3DC0 [   834B] sub_4D3DC0
+  0x00546B0E [   817B] sub_546B0E
+  0x00545B40 [   794B] sub_545B40
+  0x004B7650 [   787B] sub_4B7650
+  0x004CAD10 [   746B] sub_4CAD10
+  0x004CD500 [   731B] sub_4CD500
+  0x00407790 [   689B] sub_407790
+  0x00545E5A [   666B] sub_545E5A
+  0x004B9B80 [   656B] sub_4B9B80
+  0x004B8300 [   624B] sub_4B8300
+  0x0041FE30 [   613B] sub_41FE30
+  0x004B9920 [   606B] sub_4B9920
+  0x00516170 [   596B] sub_516170
+  0x004204B0 [   573B] sub_4204B0
+  0x00543098 [   566B] sub_543098
+  0x0054335B [   566B] sub_54335B
+  0x004B94A0 [   565B] sub_4B94A0
+  0x004B96E0 [   565B] sub_4B96E0
+  0x00401070 [   552B] sub_401070
+  0x00545820 [   529B] sub_545820
+  0x004D4110 [   512B] sub_4D4110
+  0x00408190 [   499B] sub_408190
+  0x0054547A [   480B] sub_54547A
+  0x00554722 [   467B] sub_554722
+  0x004B7D30 [   459B] sub_4B7D30
+  0x004BACA0 [   438B] sub_4BACA0
+  0x004C90C0 [   407B] sub_4C90C0
+  0x004015B0 [   401B] sub_4015B0
+  0x0054567A [   390B] sub_54567A
+  0x00434760 [   379B] sub_434760
+  0x005452ED [   365B] sub_5452ED
+  0x004B7980 [   363B] sub_4B7980
+  0x00452DF0 [   361B] sub_452DF0
+  0x004B9330 [   359B] sub_4B9330
+  0x004CCDA0 [   335B] sub_4CCDA0
+  0x004BA270 [   334B] sub_4BA270
+  0x004019F0 [   330B] sub_4019F0
+  0x004850E0 [   329B] sub_4850E0
+  0x004B70C0 [   329B] sub_4B70C0
+  0x00407EC0 [   321B] sub_407EC0
+  0x004D48B0 [   313B] sub_4D48B0
+  0x00544127 [   308B] sub_544127
+  0x004BA3D0 [   306B] sub_4BA3D0
+  0x0054C8AE [   298B] sub_54C8AE
+  0x0041F8C0 [   294B] sub_41F8C0
+  0x004CD3D0 [   292B] sub_4CD3D0
+  0x00523B90 [   283B] sub_523B90
+  0x0044E9F0 [   278B] sub_44E9F0
+  0x0053D460 [   277B] sub_53D460
+  0x004C5980 [   276B] sub_4C5980
+  0x00450440 [   266B] sub_450440
+  0x004B9FA0 [   261B] sub_4B9FA0
+  0x0052D0F0 [   260B] sub_52D0F0
+  0x00543C48 [   258B] sub_543C48
+  0x004B91E0 [   257B] sub_4B91E0
+  0x004B9EA0 [   252B] sub_4B9EA0
+  0x004018B0 [   250B] sub_4018B0
+  0x0044A870 [   245B] sub_44A870
+  0x00552340 [   245B] sub_552340
+  0x005163D0 [   244B] sub_5163D0
+  0x00542C93 [   243B] sub_542C93
+  0x00542A71 [   240B] sub_542A71
+  0x00552640 [   233B] sub_552640
+  0x00543ED6 [   230B] sub_543ED6
+  0x00544777 [   227B] sub_544777
+  0x00450560 [   226B] sub_450560
+  0x00543D5D [   226B] sub_543D5D
+  0x004BABC0 [   224B] sub_4BABC0
+  0x004B80C0 [   223B] sub_4B80C0
+  0x004CB3A0 [   223B] sub_4CB3A0
+  0x0054520E [   223B] sub_54520E
+  0x004BA150 [   221B] sub_4BA150
+  0x004D4700 [   220B] sub_4D4700
+  0x005460F4 [   218B] sub_5460F4
+  0x0054430B [   217B] sub_54430B
+  0x00543FE7 [   215B] sub_543FE7
+  0x00408010 [   214B] sub_408010
+  0x004C55F0 [   213B] sub_4C55F0
+  0x004C9320 [   213B] sub_4C9320
+  0x004CB130 [   213B] sub_4CB130
+  0x004D3010 [   213B] sub_4D3010
+  0x004D36C0 [   213B] sub_4D36C0
+  0x0054263B [   209B] sub_54263B
+  0x00542B98 [   209B] sub_542B98
+  0x004CE8A0 [   206B] sub_4CE8A0
+  0x00542FBB [   202B] sub_542FBB
+  0x005478A7 [   202B] sub_5478A7
+  0x004CE970 [   200B] sub_4CE970
+
+=== 工作量估算 ===
+需添加 annotation 的游戏函数: 432
+其中包含 76 个类
+估算: 每个函数平均 2 分钟 = 864 分钟 (14.4 小时)

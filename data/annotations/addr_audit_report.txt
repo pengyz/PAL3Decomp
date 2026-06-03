@@ -1,0 +1,56 @@
+IDB 中 .text 段函数总数: 5548
+Annotation 中方法总数: 5481
+非函数起始位置: 2028（函数内部地址）
+完全无函数:     0
+
+涉及 annotation 文件数: 199
+
+Top 20 文件（函数内部地址数量）:
+    166  SceneObj
+    112  Role
+    102  std
+     65  Scene
+     52  PlayerMgr
+     46  MagicUI
+     45  GRPinput
+     36  RoleCamera
+     35  UIListBox
+     33  Object3D
+     31  EquipUI
+     30  PAL3
+     29  JusticeBookUI
+     29  SaleUI
+     29  UICoverFrm
+     28  LineupUI
+     28  UIMap
+     27  UIGameFrm
+     27  UIScrollBar
+     26  UIWnd
+
+函数内部地址示例（前 20）:
+  0x004FA350 -> CCBRoleState::GetActionTypeBySlot+0x20  (annotation: ARC_PlayerItem)
+  0x00413F0E -> RoleSystem::PathFollowUpdate+0x23E  (annotation: ReturnBestNode)
+  0x00413C60 -> RoleSystem::PlaceAtRegion+0x60  (annotation: GenerateSucc)
+  0x004134D0 -> RoleSystem::StepAlongPath+0xB0  (annotation: ~AStarPathFinder)
+  0x00414051 -> RoleSystem::PathFollowUpdate+0x381  (annotation: DeleteNode)
+  0x00413480 -> RoleSystem::StepAlongPath+0x60  (annotation: AStarPathFinder)
+  0x00413FFC -> RoleSystem::PathFollowUpdate+0x32C  (annotation: InsertOpen)
+  0x00414085 -> RoleSystem::PathFollowUpdate+0x3B5  (annotation: PropagateDown)
+  0x00413F7C -> RoleSystem::PathFollowUpdate+0x2AC  (annotation: CheckOPEN)
+  0x00413F6D -> RoleSystem::PathFollowUpdate+0x29D  (annotation: GetTileValue)
+  0x00413F5E -> RoleSystem::PathFollowUpdate+0x28E  (annotation: CanGoTile)
+  0x004134FD -> RoleSystem::StepAlongPath+0xDD  (annotation: FindPath)
+  0x00414336 -> RoleSystem::NotifyMoveComplete+0x56  (annotation: Destroy)
+  0x00413FBC -> RoleSystem::PathFollowUpdate+0x2EC  (annotation: CheckCLOSED)
+  0x004142F5 -> RoleSystem::NotifyMoveComplete+0x15  (annotation: Pop)
+  0x004142A8 -> RoleSystem::NormalizeDirection+0x58  (annotation: Push)
+  0x0041389C -> RoleSystem::AdvanceToTarget+0x4C  (annotation: FindPathNear)
+  0x0043AC20 -> UIScene::Update2+0x100  (annotation: GetgbActor)
+  0x0043AC80 -> UIScene::Update2+0x160  (annotation: ArcLocaleRole)
+  0x004BAA40 -> sub_4BA800+0x240  (annotation: IsOptimized)
+
+=== 结论 ===
+有效地址: 3453
+无效地址: 2028（需清理）
+  其中在函数内部: 2028
+  其中完全无函数: 0

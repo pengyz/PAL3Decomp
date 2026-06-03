@@ -1,0 +1,48 @@
+IDB .text 段函数总数: 5548
+Annotation 方法地址数: 3453
+
+IDB 函数覆盖分析:
+  有 annotation: 3453
+  无 annotation: 2095
+    其中 named: 1667（有名字但无 annotation）
+    其中 sub_:  428（未命名）
+
+被删除的地址不再在 ann_addrs 中，所以它们对应的是
+no_annotation 中那些 named 函数（有名字但无 annotation）
+
+无 annotation 的有名函数示例（前 30）:
+  0x004017D0 unknown_libname_287
+  0x00401840 thunk_00401840
+  0x00401850 accessor_00401850
+  0x004018A0 j_PtrArray::ReleasePtrArray
+  0x00401B40 unknown_libname_288
+  0x00401B70 thunk_00401B70
+  0x00401B80 accessor_00401B80
+  0x00401BB0 thunk_00401BB0
+  0x00401BF0 thunk_00401BF0
+  0x00401C30 $E153
+  0x00401C40 $E158
+  0x00401C60 $E163
+  0x00401FA0 unknown_libname_289
+  0x00402B30 unknown_libname_290
+  0x00402B80 GRPinput::SetMouseLimits_2b80
+  0x00402FB0 ?_Tidy@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEX_N@Z
+  0x00403110 unknown_libname_291
+  0x00403140 GRPinput::GetMousePos_3140
+  0x00404300 nullsub_2
+  0x00404430 unknown_libname_292
+  0x00404460 thunk_00404460
+  0x00404470 accessor_00404470
+  0x004044A0 thunk_004044A0
+  0x004044B0 unknown_libname_293
+  0x004044D0 unknown_libname_294
+  0x004044E0 thunk_004044E0
+  0x004044F0 unknown_libname_295
+  0x00404510 unknown_libname_296
+  0x00404520 thunk_00404520
+  0x00404560 thunk_00404560
+  ... 共 1667 个
+
+无 annotation 的 sub_ 函数规模: 428
+这些是 IDA auto-analysis 发现的函数，但 annotation 中没有对应条目。
+其中一些可能是编译器生成的内部函数（不需要 annotation）。
