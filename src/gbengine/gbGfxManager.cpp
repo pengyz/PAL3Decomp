@@ -135,7 +135,7 @@ int gbGfxManager::BeginScene(void) {
         Stat.TimeAccum = accum;
     }
 
-    gbRenderEffect* pEffect = pEffectMgr->m_pDefaultEffect;
+    gbRenderEffect* pEffect = pEffectMgr->m_pDefEffect;
     pEffect->Apply();
     pEffectMgr->m_nFrameCounter = 0;
     return 1;
@@ -449,7 +449,7 @@ gbEffectMgr::gbEffectMgr(const gbEffectMgr& other) {
     m_pGfxMgr = other.m_pGfxMgr;
     m_pWhiteTexture = other.m_pWhiteTexture;
     m_pGrayTexture = other.m_pGrayTexture;
-    m_pDefaultEffect = other.m_pDefaultEffect;
+    m_pDefEffect = other.m_pDefEffect;
     memcpy((char*)this + 28, (char*)&other + 28, 0x80C);
 }
 
@@ -476,7 +476,7 @@ gbEffectMgr& gbEffectMgr::operator=(const gbEffectMgr& other) {
     m_pGfxMgr = other.m_pGfxMgr;
     m_pWhiteTexture = other.m_pWhiteTexture;
     m_pGrayTexture = other.m_pGrayTexture;
-    m_pDefaultEffect = other.m_pDefaultEffect;
+    m_pDefEffect = other.m_pDefEffect;
     char* dst = (char*)this + 28;
     do {
         char* src = dst + ((char*)&other - (char*)this);
@@ -505,7 +505,7 @@ void gbEffectMgr::Init(gbGfxManager* gfxMgr) {
     m_pGrayTexture->LoadTexture(1);
 
     // Create default effect and all standard effects
-    m_pDefaultEffect = NewRenderEffect("gfx/script/default.gbf", 0);
+    m_pDefEffect = NewRenderEffect("gfx/script/default.gbf", 0);
     NewRenderEffect("gfx/script/geom1.gbf", 3);
     NewRenderEffect("gfx/script/geom1s.gbf", 7);
     NewRenderEffect("gfx/script/geomT.gbf", 0x43);

@@ -25,7 +25,7 @@ static gbVec3D s_sunDirection(0.0f, -1.0f, 0.0f);
 
 // Constructor from gbActorDef
 gbActor::gbActor(gbActorDef* actorDef) : gbVisNode() {
-    m_pActorDef = actorDef;
+    pBody = actorDef;
     m_field_5C = 0;
     m_pActions = NULL;
     m_numActions = 0;
@@ -73,7 +73,7 @@ gbActor::gbActor(gbActorDef* actorDef) : gbVisNode() {
 
 // Copy constructor
 gbActor::gbActor(const gbActor& other) : gbVisNode() {
-    m_pActorDef = other.m_pActorDef;
+    pBody = other.pBody;
     m_field_5C = other.m_field_5C;
     m_numActions = other.m_numActions;
     m_numExportNodes = other.m_numExportNodes;
@@ -112,10 +112,10 @@ void gbActor::UpdateExportNodes() {
     unsigned int crcBuffer[256];
 
     // Call actorDef vtable[11] (offset 44): get export node CRCs
-    void** defVtable = *(void***)m_pActorDef;
+    void** defVtable = *(void***)pBody;
     typedef int (__thiscall *GetExportCRCsFn)(void*, unsigned int*, int);
     GetExportCRCsFn getExportCRCs = (GetExportCRCsFn)defVtable[44 / 4];
-    int numNodes = getExportCRCs(m_pActorDef, crcBuffer, 256);
+    int numNodes = getExportCRCs(pBody, crcBuffer, 256);
 
     // Reallocate if count exceeds capacity
     if (numNodes > m_maxExportNodes) {
@@ -152,7 +152,7 @@ void gbActor::UpdateExportNodes() {
 void gbActor::Update() {
     gbVisNode::Update();
 
-    if (!m_pActorDef) return;
+    if (!pBody) return;
 
     // Get delta time from graphics manager
     float deltaTime = 0.016f;  // Default 60fps
@@ -218,8 +218,8 @@ void gbActor::Update() {
     }
 
     // Update skeletal pose
-    if (m_pActorDef) {
-        m_pActorDef->UpdateBones();
+    if (pBody) {
+        pBody->UpdateBones();
     }
 
     // Send message if dominant action changed
@@ -236,7 +236,7 @@ void gbActor::Render(gbRenderInfoObj* renderInfo) {
     gbMatrixStack* matStack = gbVisNode::pGfxMgr->pMatrixStack[1];
     matStack->Push();
     matStack->LoadMatrix(&renderInfo->worldMatrix);
-    m_pActorDef->RenderDef(this, renderInfo);
+    pBody->RenderDef(this, renderInfo);
     matStack->Pop();
 }
 
@@ -244,17 +244,17 @@ void gbActor::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
     gbMatrixStack* matStack = gbVisNode::pGfxMgr->pMatrixStack[1];
     matStack->Push();
     matStack->LoadMatrix(&renderInfo->worldMatrix);
-    m_pActorDef->RenderShadowVolumeDef(this, renderInfo);
+    pBody->RenderShadowVolumeDef(this, renderInfo);
     matStack->Pop();
 }
 
 // Attach render effect
 int gbActor::Attach(gbRenderEffect* effect) {
-    gbAABBox* aabb = m_pActorDef->GetCollideAABBox();
+    gbAABBox* aabb = pBody->GetCollideAABBox();
     if (gbVisNode::pGfxMgr->ClipBoundVolume(aabb)) {
         return 0;
     }
-    m_pActorDef->AttachSelf(this, effect);
+    pBody->AttachSelf(this, effect);
     if (enableShadow) {
         gbVisNode::pGfxMgr->pSceneGraph->NewShadowVolume((gbVisNode*)this);
     }
@@ -282,7 +282,7 @@ void gbActor::GotoAction(char* actionName, float startTime, float endTime) {
 
 // Go to action with three names (action + start marker + end marker)
 void gbActor::GotoAction(char* action1, char* action2, char* action3) {
-    if (!m_pActorDef) return;
+    if (!pBody) return;
 
     unsigned int crc = gbCrc32Compute(action1);
 
@@ -298,11 +298,11 @@ void gbActor::GotoAction(char* action1, char* action2, char* action3) {
     // Resolve start marker to frame number via actorDef vtable[0x44]
     unsigned int startFrame = 0;
     if (action2 != NULL) {
-        void** defVtable = *(void***)m_pActorDef;
+        void** defVtable = *(void***)pBody;
         typedef unsigned int (__thiscall *GetMarkerFn)(void*, unsigned int, int);
         GetMarkerFn getMarker = (GetMarkerFn)((void**)defVtable)[0x44 / 4];
         unsigned int crc2 = gbCrc32Compute(action2);
-        startFrame = getMarker(m_pActorDef, crc2, actionIdx);
+        startFrame = getMarker(pBody, crc2, actionIdx);
     }
 
     // Resolve end marker to frame number
@@ -310,25 +310,25 @@ void gbActor::GotoAction(char* action1, char* action2, char* action3) {
     unsigned long transition;
     if (action3 != NULL) {
         unsigned int crc3 = gbCrc32Compute(action3);
-        void** defVtable = *(void***)m_pActorDef;
+        void** defVtable = *(void***)pBody;
         typedef unsigned int (__thiscall *GetMarkerFn)(void*, unsigned int, int);
         GetMarkerFn getMarker = (GetMarkerFn)((void**)defVtable)[0x44 / 4];
-        endFrame = getMarker(m_pActorDef, crc3, actionIdx);
+        endFrame = getMarker(pBody, crc3, actionIdx);
         if (endFrame != 0) {
             transition = endFrame;
             goto doGoto;
         }
         // Log warning if marker not found
-        char* defName = m_pActorDef->pName;
+        char* defName = pBody->pName;
         gbLogInfo((char*)"  Action msg not find actor:%s action:%s event:%s\n", defName, action1, action3);
     }
 
     // Fallback: get total duration via actorDef vtable[0x8]
     {
-        void** defVtable = *(void***)m_pActorDef;
+        void** defVtable = *(void***)pBody;
         typedef unsigned int (__thiscall *GetDurationFn)(void*, char*);
         GetDurationFn getDuration = (GetDurationFn)((void**)defVtable)[0x8 / 4];
-        endFrame = getDuration(m_pActorDef, action1);
+        endFrame = getDuration(pBody, action1);
         transition = 0x6f766572;
     }
 
@@ -338,13 +338,13 @@ doGoto:
 
 // Go to action with raw parameters (core implementation)
 void gbActor::GotoAction(unsigned long actionCrc, int loop, unsigned int startFrame, unsigned int endFrame, unsigned long transition) {
-    if (!m_pActorDef) return;
+    if (!pBody) return;
 
     // Call actorDef vtable[0x38] - prepare for action change
-    void** defVtable = *(void***)m_pActorDef;
+    void** defVtable = *(void***)pBody;
     typedef void (__thiscall *PrepareFn)(void*);
     PrepareFn prepare = (PrepareFn)((void**)defVtable)[0x38 / 4];
-    prepare(m_pActorDef);
+    prepare(pBody);
 
     int actionIdx = 0;
     for (int i = 0; i < m_numActions; i++) {
@@ -367,7 +367,7 @@ void gbActor::GotoAction(unsigned long actionCrc, int loop, unsigned int startFr
             // Call actorDef vtable[0x48] - set active action
             typedef void (__thiscall *SetActiveFn)(void*, int);
             SetActiveFn setActive = (SetActiveFn)((void**)defVtable)[0x48 / 4];
-            setActive(m_pActorDef, actionIdx);
+            setActive(pBody, actionIdx);
 
             UpdateExportNodes();
         } else {
@@ -403,22 +403,22 @@ void gbActor::UnlockAction(char* actionName) {
 
 // Get action duration - thunk to actorDef vtable[2] (offset 0x8)
 unsigned int gbActor::GetActionDuration(char* actionName) {
-    return m_pActorDef->GetActionDuration(actionName);
+    return pBody->GetActionDuration(actionName);
 }
 
 // Get event time for action - find action by CRC, then query actorDef
 unsigned int gbActor::GetEventTime(char* actionName, char* eventName) {
-    if (!m_pActorDef) return 0xFFFFFFFF;
+    if (!pBody) return 0xFFFFFFFF;
 
     unsigned int actionCrc = gbCrc32Compute(actionName);
     unsigned int eventCrc = gbCrc32Compute(eventName);
 
     for (int i = 0; i < m_numActions; i++) {
         if (m_pActions[i].actionCrc == actionCrc) {
-            void** defVtable = *(void***)m_pActorDef;
+            void** defVtable = *(void***)pBody;
             typedef unsigned int (__thiscall *GetEventFn)(void*, unsigned int, int);
             GetEventFn getEvent = (GetEventFn)((void**)defVtable)[0x44 / 4];
-            return getEvent(m_pActorDef, eventCrc, i);
+            return getEvent(pBody, eventCrc, i);
         }
     }
     return 0xFFFFFFFF;
@@ -444,13 +444,13 @@ int gbActor::GetTagNodeTM(gbMatrix4* matrix, char* tagName) {
 void gbActor::EnableShadow(int enable) {
     gbVisNode::EnableShadow(enable);
     if (enable != 0) {
-        m_pActorDef->UpdateBones();
+        pBody->UpdateBones();
     }
 }
 
 // Get bounding sphere - calls actorDef vtable[8] (offset 0x20) and copies
 void gbActor::GetBoundSphere(gbSphere* sphere) {
-    gbSphere* src = m_pActorDef->GetBoundSpherePtr();
+    gbSphere* src = pBody->GetBoundSpherePtr();
     *(unsigned int*)((char*)sphere + 0) = *(unsigned int*)((char*)src + 0);
     *(unsigned int*)((char*)sphere + 4) = *(unsigned int*)((char*)src + 4);
     *(unsigned int*)((char*)sphere + 8) = *(unsigned int*)((char*)src + 8);
@@ -459,12 +459,12 @@ void gbActor::GetBoundSphere(gbSphere* sphere) {
 
 // Get collision AABB - thunk: MOV ECX,[ECX+58]; MOV EAX,[ECX]; JMP [EAX+24]
 gbAABBox* gbActor::GetCollideAABBox() {
-    return m_pActorDef->GetCollideAABBox();
+    return pBody->GetCollideAABBox();
 }
 
 // Get collision OBB - thunk to actorDef vtable[7] (offset 0x1C)
 void gbActor::GetCollideOBB(gbOBBox& obb) {
-    m_pActorDef->GetCollideOBB(&obb, this);
+    pBody->GetCollideOBB(&obb, this);
 }
 
 // Get all export nodes (returns raw pointer to internal data)
@@ -488,20 +488,20 @@ int gbActor::GetNumMixInfo() {
 
 // Set current material - thunk to actorDef vtable[15] (offset 0x3C)
 void gbActor::SetCurMaterial(char* materialName) {
-    m_pActorDef->SetCurMaterial(materialName);
+    pBody->SetCurMaterial(materialName);
 }
 
 // Enable action material transition - find action then delegate to actorDef vtable[0x4]
 void gbActor::EnableActionTransMtl(char* actionName, bool enable) {
-    if (!m_pActorDef) return;
+    if (!pBody) return;
 
     unsigned int crc = gbCrc32Compute(actionName);
     for (int i = 0; i < m_numActions; i++) {
         if (m_pActions[i].actionCrc == crc) {
-            void** defVtable = *(void***)m_pActorDef;
+            void** defVtable = *(void***)pBody;
             typedef void (__thiscall *EnableTransFn)(void*, int, bool);
             EnableTransFn enableTrans = (EnableTransFn)((void**)defVtable)[0x4 / 4];
-            enableTrans(m_pActorDef, i, enable);
+            enableTrans(pBody, i, enable);
             return;
         }
     }
@@ -519,7 +519,7 @@ void gbActor::SetSunDirection(gbVec3D* direction) {
 
 // 0x10005190 - operator= (163B)
 gbActor& gbActor::operator=(const gbActor& other) {
-    m_pActorDef = other.m_pActorDef;
+    pBody = other.pBody;
     m_field_5C = other.m_field_5C;
     m_pActions = other.m_pActions;
     m_numActions = other.m_numActions;

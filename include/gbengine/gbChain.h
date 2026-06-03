@@ -13,6 +13,7 @@ public:
     gbChain1DNode(void);
     gbChain1DNode(const gbChain1DNode& src);
     virtual ~gbChain1DNode();
+    void Process();
     gbChain1DNode& operator=(const gbChain1DNode& other);
 };
 

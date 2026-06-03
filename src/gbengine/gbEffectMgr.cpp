@@ -24,7 +24,7 @@ void gbEffectMgr::Release(void) {
 }
 
 gbRenderEffect* gbEffectMgr::GetDefaultEffect(void) {
-    return m_pDefaultEffect;
+    return m_pDefEffect;
 }
 
 gbTexture* gbEffectMgr::GetWhiteTexture(void) {

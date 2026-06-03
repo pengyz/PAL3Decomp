@@ -253,7 +253,7 @@ static void SetupMeshLighting(gbRenderInfoObj* renderInfo, gbGfxManager* gfxMgr,
 
     // Get render effect from renderInfo
     gbRenderEffect* effect = renderInfo->pEffect;
-    unsigned int flags = renderInfo->renderFlags;
+    unsigned int flags = renderInfo->EffectFlag;
 
     // Get blend factor from the vis node
     float blendFactor = 1.0f;
@@ -428,7 +428,7 @@ void gbStaticMesh::DrawSubSet(int index, gbRenderInfoObj* renderInfo) {
         pool->DrawIndexedPrimitive(
             m_pVertBubble,
             section->m_pIndexBubble,
-            renderInfo->sectionIndex,
+            renderInfo->Param,
             section->m_textures
         );
     }
@@ -717,7 +717,7 @@ void gbMesh::DrawSubSet(int index, gbRenderInfoObj* renderInfo) {
             pool->DrawIndexedPrimitive(
                 vb,
                 section->m_pIndexBubble,
-                renderInfo->sectionIndex,
+                renderInfo->Param,
                 section->m_textures
             );
         }

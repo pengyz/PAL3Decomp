@@ -165,7 +165,7 @@ public:
 
 class gbVertPoolMgr {
 public:
-    gbChain1D vertPoolChains[32];        // +0x000 (32*16=512 bytes, ends at +0x200)
+    gbChain1D StaticPool[32];        // +0x000 (32*16=512 bytes, ends at +0x200)
     unsigned int vertPoolFVFs[32];        // +0x200 (32*4=128 bytes, ends at +0x280)
     gbChain1D indexPoolList;             // +0x280 (16 bytes, ends at +0x290)
     gbDynVertBuf* dynVertBufs[32];       // +0x290 (32*4=128 bytes, ends at +0x310)

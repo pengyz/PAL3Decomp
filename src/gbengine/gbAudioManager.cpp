@@ -315,9 +315,9 @@ gbAudioManager::gbAudioManager(int& result, gbAudioMgrDesc* desc) {
 
     // Initialize counters and volumes
     allocCounter = 0;
-    volume3D = 1.0f;
-    volume2D = 1.0f;
-    musicMasterVolume = 1.0f;
+    S_3DMasterVol = 1.0f;
+    S_2DMasterVol = 1.0f;
+    MusicMasterVol = 1.0f;
 
     // Create 3D listener
     listener = AIL_open_3D_listener(provider3D);
@@ -354,9 +354,9 @@ gbAudioManager::gbAudioManager(const gbAudioManager& other) {
     provider3D = other.provider3D;
     allocCounter = other.allocCounter;
     listener = other.listener;
-    volume2D = other.volume2D;
-    volume3D = other.volume3D;
-    musicMasterVolume = other.musicMasterVolume;
+    S_2DMasterVol = other.S_2DMasterVol;
+    S_3DMasterVol = other.S_3DMasterVol;
+    MusicMasterVol = other.MusicMasterVol;
     listenerPosition = other.listenerPosition;
 
     soundResManager.array = other.soundResManager.array;
@@ -454,9 +454,9 @@ gbAudioManager& gbAudioManager::operator=(const gbAudioManager& other) {
     }
     allocCounter = other.allocCounter;
     listener = other.listener;
-    volume2D = other.volume2D;
-    volume3D = other.volume3D;
-    musicMasterVolume = other.musicMasterVolume;
+    S_2DMasterVol = other.S_2DMasterVol;
+    S_3DMasterVol = other.S_3DMasterVol;
+    MusicMasterVol = other.MusicMasterVol;
     listenerPosition = other.listenerPosition;
     if (soundResManager.array) {
         free(soundResManager.array);
@@ -657,7 +657,7 @@ void gbAudioManager::AttachSampleHandle(gbSound2DNode* node) {
     // Configure the sample
     HSAMPLE sample = slots2D[freeSlot].handle;
     AIL_set_sample_file(sample, node->soundData->fileData, 0);
-    int vol = (int)(node->volume * volume2D * 127.0f);
+    int vol = (int)(node->volume * S_2DMasterVol * 127.0f);
     if (vol > 127) vol = 127;
     if (vol < 0) vol = 0;
     AIL_set_sample_volume(sample, vol);
@@ -746,7 +746,7 @@ void gbAudioManager::PlaySoundStream(int index, char* filename, int loop) {
     streams[index] = stream;
 
     // Set music volume
-    int vol = (int)(musicMasterVolume * 127.0f);
+    int vol = (int)(MusicMasterVol * 127.0f);
     if (vol > 127) vol = 127;
     if (vol < 0) vol = 0;
     AIL_set_stream_volume(stream, vol);
@@ -796,7 +796,7 @@ int gbAudioManager::GetStreamStatus(int index) {
 
 // SetMusicMasterVolume - 0x10001c80 (67B)
 void gbAudioManager::SetMusicMasterVolume(float vol) {
-    musicMasterVolume = vol;
+    MusicMasterVol = vol;
 
     // Update volume on all active streams
     int intVol = (int)(vol * 127.0f);
@@ -812,7 +812,7 @@ void gbAudioManager::SetMusicMasterVolume(float vol) {
 
 // GetMusicMasterVolume
 float gbAudioManager::GetMusicMasterVolume() {
-    return musicMasterVolume;
+    return MusicMasterVol;
 }
 
 // SetListenerPosition - 0x10001d20 (62B)
@@ -838,22 +838,22 @@ void gbAudioManager::GetListenerPosition(gbVec3D& pos) {
 
 // Set2DMasterVolume - 0x100021c0 (13B)
 void gbAudioManager::Set2DMasterVolume(float vol) {
-    volume2D = vol;
+    S_2DMasterVol = vol;
 }
 
 // Get2DMasterVolume
 float gbAudioManager::Get2DMasterVolume() {
-    return volume2D;
+    return S_2DMasterVol;
 }
 
 // Set3DMasterVolume - 0x100021e0 (13B)
 void gbAudioManager::Set3DMasterVolume(float vol) {
-    volume3D = vol;
+    S_3DMasterVol = vol;
 }
 
 // Get3DMasterVolume
 float gbAudioManager::Get3DMasterVolume() {
-    return volume3D;
+    return S_3DMasterVol;
 }
 
 

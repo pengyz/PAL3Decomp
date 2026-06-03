@@ -9,6 +9,7 @@
 class gbVisNode;
 class gbVolModNode;
 class gbDynVertBuf;
+struct gbTextureArray;
 
 // ============================================================================
 // gbBladeMgr - blade trail effect manager
@@ -57,13 +58,13 @@ public:
 // ============================================================================
 struct gbRenderInfoObj {
     gbVisNode* pNode;           // +0x00 [0]: owner node
-    void* pMatrixOverride;      // +0x04 [1]: optional matrix override
-    int sectionIndex;           // +0x08 [2]: mesh section index
+    void* Z;      // +0x04 [1]: optional matrix override
+    int Param;           // +0x08 [2]: mesh section index
     gbRenderEffect* pEffect;    // +0x0C [3]: render effect to use
-    void* pTextureArray;        // +0x10 [4]: pointer to section texture array
-    int renderPriority;         // +0x14 [5]: from node's renderPriority
-    int isOpaque;               // +0x18 [6]: 1 if opaque, 0 if transparent
-    unsigned int renderFlags;   // +0x1C [7]: combined render flags
+    void* pTexArray;        // +0x10 [4]: pointer to section texture array
+    int Priority;         // +0x14 [5]: from node's renderPriority
+    unsigned int Flags;               // +0x18 [6]: 1 if opaque, 0 if transparent
+    unsigned int EffectFlag;   // +0x1C [7]: combined render flags
     gbMatrix4 worldMatrix;      // +0x20 [8..23]: world transform (64 bytes)
     void* volModSlotA[2];       // +0x60 [24..25]: volume modifier nodes (type A)
     void* volModSlotB[2];       // +0x68 [26..27]: volume modifier nodes (type B)

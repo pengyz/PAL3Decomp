@@ -98,7 +98,7 @@ struct gbParticleUnit {
 struct gbPartGroupParam {
     char name[32];                     // +0x00
     int flags;                         // +0x20
-    float unitsize;                     // +0x24
+    float gravity;                     // +0x24
     float airResistance;               // +0x28
     float unused1;                     // +0x2C
     int turbulenceFlag;                // +0x30

@@ -28,7 +28,7 @@ public:
     // gbVisNode base: 0x00-0x57 (88 bytes)
     gbMatrix4 worldTransform;              // +0x58 (64B) - GetCacheToWorld returns &this->worldTransform
     gbMatrix4 staticTransform;             // +0x98 (64B) - initial local pose/orientation
-    gbAnimCurve* pAnimTranslate;           // +0xD8: translation curve (virtual dtor + GetValue)
+    gbAnimCurve* PosCtrl;           // +0xD8: translation curve (virtual dtor + GetValue)
     gbAnimCurve* pAnimRotate;              // +0xDC: rotation curve
     gbAnimCurve* pAnimScale;              // +0xE0: scale curve
     float scaleValue;                      // +0xE4: uniform scale (init 1.0f)
@@ -38,7 +38,7 @@ public:
     float animMaxTime;                     // +0xF8: total animation duration
     int animLoop;                          // +0xFC: loop count (0=infinite)
     int loopPast;                          // +0x100: completed loop count
-    int bladeEnabled;                      // +0x104: blade trail effect enabled
+    int bBlade;                      // +0x104: blade trail effect enabled
     gbStaticMesh* mesh;                    // +0x108: geometry mesh (gbRefObject)
     void* pLightmapData;                   // +0x10C: lightmap/attach data (heap alloc)
     int numAttachPoints;                   // +0x110: attach point count

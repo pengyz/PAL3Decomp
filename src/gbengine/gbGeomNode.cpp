@@ -425,7 +425,7 @@ gbGeomNode::gbGeomNode(void) : gbVisNode() {
 
     *(int*)((char*)this + 0xF0) = 0;
     animController = NULL;
-    pAnimTranslate = NULL;
+    PosCtrl = NULL;
     pAnimRotate = NULL;
     pAnimScale = NULL;
     hasAnimation = 0;
@@ -434,7 +434,7 @@ gbGeomNode::gbGeomNode(void) : gbVisNode() {
     animLoop = 0;
     loopPast = 0;
     mesh = NULL;
-    bladeEnabled = 0;
+    bBlade = 0;
     pLightmapData = NULL;
     scaleValue = 1.0f;
 }
@@ -460,8 +460,8 @@ gbGeomNode::~gbGeomNode(void) {
         mesh->Release();
     if (animController)
         operator delete(animController);
-    if (pAnimTranslate) {
-        delete pAnimTranslate;
+    if (PosCtrl) {
+        delete PosCtrl;
     }
     if (pAnimScale) {
         delete pAnimScale;
@@ -710,7 +710,7 @@ void gbGeomNode::LoadCVDFromStream(gbVFile* file, float scale) {
     hasAnimation = 1;
 
     // Create translation curve (vtable at off_100F55F0)
-    pAnimTranslate = (gbAnimCurve*)operator new(0x14u);
+    PosCtrl = (gbAnimCurve*)operator new(0x14u);
     // sub_1000FAB0(file) - read translation keyframes
 
     // Create scale curve (vtable at off_100F55EC)
@@ -792,8 +792,8 @@ void gbGeomNode::Update(void) {
         float time = (float)currentTime;
         gbVec3D result;
 
-        if (pAnimTranslate) {
-            pAnimTranslate->GetValue(&result, time);
+        if (PosCtrl) {
+            PosCtrl->GetValue(&result, time);
             worldTransform.LeftTranslate(result);
         }
 
@@ -864,7 +864,7 @@ void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
     }
 
     // Blade attach point processing
-    if (bladeEnabled && pAttachPointArray) {
+    if (bBlade && pAttachPointArray) {
         if (!s_bladeInitialized) {
             s_bladeInitialized = 1;
             memset(s_bladeTransforms, 0, sizeof(s_bladeTransforms));
@@ -926,8 +926,8 @@ void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
                 flags |= 0x10u;
             }
 
-            renderObj->sectionIndex = sectionIndex;
-            renderObj->isOpaque = (sec->m_blendMode == 0) ? 1 : 0;
+            renderObj->Param = sectionIndex;
+            renderObj->Flags = (sec->m_blendMode == 0) ? 1 : 0;
 
             // Animated texture frame selection
             if (sec->m_numAnimFrames) {
@@ -935,9 +935,9 @@ void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
                 sec->m_textures[sec->m_animTexSlot] = *(gbTexture**)((char*)sec->m_animTexArray + 4 * frameIdx);
             }
 
-            renderObj->renderFlags = flags;
-            renderObj->pTextureArray = &sec->m_textures[0];
-            renderObj->pMatrixOverride = (localMatrix.m[3][3] != 0.0f) ? &localMatrix : NULL;
+            renderObj->EffectFlag = flags;
+            renderObj->pTexArray = &sec->m_textures[0];
+            renderObj->Z = (localMatrix.m[3][3] != 0.0f) ? (void*)&localMatrix : NULL;
 
             if (sec->m_overrideEffect)
                 renderObj->pEffect = (gbRenderEffect*)sec->m_overrideEffect;
@@ -984,7 +984,7 @@ void gbGeomNode::Render(gbRenderInfoObj* renderInfo) {
             matStack->Push();
             matStack->LoadMatrix(&renderInfo->worldMatrix);
 
-            mesh->DrawSubSetBase(renderInfo->sectionIndex, renderInfo);
+            mesh->DrawSubSetBase(renderInfo->Param, renderInfo);
 
             matStack->Pop();
         }
@@ -1259,7 +1259,7 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
 /* ======== Simple accessors ======== */
 
 void gbGeomNode::EnableBlade(int enable) {
-    bladeEnabled = enable;
+    bBlade = enable;
 }
 
 gbMatrix4* gbGeomNode::GetCacheToWorld() {

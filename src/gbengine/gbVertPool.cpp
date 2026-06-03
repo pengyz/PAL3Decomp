@@ -820,7 +820,7 @@ gbVertexBubble* gbVertPoolMgr::NewVertexBubble(unsigned int fvf, int count) {
     i = -1;
 
 found:
-    chain = &vertPoolChains[i];
+    chain = &StaticPool[i];
     pool = (gbVertexPool*)chain->pHead;
     chain->pIterator = (gbChain1DNode*)pool;
 
@@ -877,7 +877,7 @@ found:
 
     // If pool is now empty, remove and delete it
     if (pool->usedList[0] == 0) {
-        vertPoolChains[i].DelNodeFromChain((gbChain1DNode*)pool);
+        StaticPool[i].DelNodeFromChain((gbChain1DNode*)pool);
         if (pool) {
             delete pool;
         }

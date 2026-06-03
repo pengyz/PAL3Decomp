@@ -138,7 +138,7 @@ public:
 private:
     void UpdateExportNodes();
 
-    gbActorDef* m_pActorDef;           // +0x58
+    gbActorDef* pBody;           // +0x58
     int m_field_5C;                    // +0x5C
     gbActionState* m_pActions;         // +0x60
     int m_numActions;                  // +0x64

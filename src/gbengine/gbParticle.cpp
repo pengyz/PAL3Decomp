@@ -1192,16 +1192,16 @@ int gbParticleEffect::Attach(gbRenderEffect* effect) {
         int ofs = 0;
         do {
             gbRenderInfoObj* rObj = pScene->NewOneRenderObj((gbVisNode*)this);
-            rObj->isOpaque = 0;
-            rObj->sectionIndex = j;
+            rObj->Flags = 0;
+            rObj->Param = j;
             int iParam = *(int*)((char*)particleGroups + ofs + 0x78);
             int iEff = *(int*)(iParam + 0x493c);
-            rObj->pTextureArray = (void*)(iParam + 0x48f8);
+            rObj->pTexArray = (void*)(iParam + 0x48f8);
             rObj->pEffect = (gbRenderEffect*)iEff;
             gbMatrix4* topMat = pMat->GetTop();
             topMat->Transform(&localPos, &worldPos);
-            rObj->renderPriority = 1;
-            rObj->pMatrixOverride = (void*)(*(int*)&worldPos.z);
+            rObj->Priority = 1;
+            rObj->Z = (void*)(*(int*)&worldPos.z);
             j++;
             ofs += 0x90;
         } while (j < numGroups);

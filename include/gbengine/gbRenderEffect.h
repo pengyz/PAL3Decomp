@@ -12,7 +12,7 @@ class gbGfxManager;
 struct gbVertexElement;
 
 // ============================================================================
-// GBPARAMHANDLE enum - indices into m_paramHandles[]
+// GBPARAMHANDLE enum - indices into m_ParamHandle[]
 // ============================================================================
 enum GBPARAMHANDLE {
     GBPARAM_WORLDMATRIX = 0,
@@ -36,7 +36,7 @@ enum GBPARAMHANDLE {
 //   [6] m_pEffect        (ID3DXEffect*)
 //   [7] m_dwFlags        (unsigned int)
 //   [8] m_pDecl          (IDirect3DVertexDeclaration9*)
-//   [9..16] m_paramHandles[8] (D3DXHANDLE array)
+//   [9..16] m_ParamHandle[8] (D3DXHANDLE array)
 // ============================================================================
 class gbRenderEffect : public gbResource {
     friend class gbEffectMgr;
@@ -45,7 +45,7 @@ protected:
     ID3DXEffect* m_pEffect;                 // +0x18
     unsigned int m_dwFlags;                 // +0x1C
     IDirect3DVertexDeclaration9* m_pDecl;   // +0x20
-    D3DXHANDLE m_paramHandles[8];           // +0x24
+    D3DXHANDLE m_ParamHandle[8];           // +0x24
 
 private:
     gbRenderEffect(ID3DXEffect* pEffect, unsigned int flags);
@@ -90,7 +90,7 @@ public:
     gbGfxManager* m_pGfxMgr;       // +0x0C
     gbTexture* m_pWhiteTexture;     // +0x10
     gbTexture* m_pGrayTexture;      // +0x14
-    gbRenderEffect* m_pDefaultEffect; // +0x18
+    gbRenderEffect* m_pDefEffect; // +0x18
     gbVertFormatEntry m_vertFormats[64]; // +0x1C (32*64=2048 bytes, to +0x81C)
     int m_nNumVertFormats;          // +0x81C [519]
     int m_nMaxVertFormats;          // +0x820 [520]
