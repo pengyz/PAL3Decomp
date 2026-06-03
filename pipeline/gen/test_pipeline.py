@@ -87,6 +87,13 @@ class TestOopTransform(unittest.TestCase):
         self.assertIn('DoSomething(1, 2)', result)
         self.assertNotIn('this->', result)
 
+    def test_inter_class_call_with_this(self):
+        """OtherClass::Method(this, ...) -> ((OtherClass *)this)->Method(...)"""
+        code = "int Derived::Bar() { OtherClass::DoSomething(this, 1, 2); return 0; }"
+        result = transform_oop_calls(code, cls_name='Derived')
+        self.assertIn('((OtherClass *)this)->DoSomething(1, 2)', result)
+        self.assertNotIn('OtherClass::DoSomething(this', result)
+
 
 class TestStage3Cleanup(unittest.TestCase):
     """Test stage3_cleanup.py run()"""

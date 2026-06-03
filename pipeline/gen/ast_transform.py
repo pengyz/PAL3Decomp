@@ -130,12 +130,11 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                                 if _method_out.startswith('~'):
                                     new_text = 'this->%s()' % _method_out
                                 else:
-                                    # Non-base, non-dtor: keep original with explicit this.
-                                    # C2440 type errors indicate annotation issues.
-                                    args_text = ', '.join(a.text.decode('utf-8')
-                                                          for a in arg_nodes)
-                                    new_text = '%s::%s(%s)' % (
-                                        class_name, _method_out, args_text)
+                                    # Inter-class call with this as first arg.
+                                    # Convert to ((Class *)this)->Method(rest) to remove
+                                    # the explicit this and match header signature.
+                                    new_text = '((%s *)this)->%s(%s)' % (
+                                        class_name, _method_out, rest_str)
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return
