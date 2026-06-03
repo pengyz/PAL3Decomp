@@ -472,8 +472,8 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                 continue
             mb = ida_typeinf.udt_member_t()
             mb.name = ""
-            mb.offset = base_offset
-            mb.size = bc_size * 8
+            mb.offset = base_offset * 8  # bits
+            mb.size = bc_size * 8  # bits
             mb.type = bc_tinfo
             udt.push_back(mb)
             base_offset += bc_size
