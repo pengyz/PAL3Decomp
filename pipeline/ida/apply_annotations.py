@@ -527,7 +527,12 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     result_tinfo = ida_typeinf.tinfo_t()
     udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
 
-    if not result_tinfo.create_udt(udt, udt_flag):
+    # For structs with very high member counts, create_udt may produce
+    # an invalid UDT (size=-1) that can't be replaced. Skip UDT and
+    # go directly to string-based fallback.
+    _skip_udt = len(members) > 60 and not is_union
+
+    if not _skip_udt and not result_tinfo.create_udt(udt, udt_flag):
         # create_udt failed — fall back to string-based decl
         try:
             decl_text = build_struct_decl(name, struct_info, all_structs)
