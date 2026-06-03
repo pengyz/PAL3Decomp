@@ -4,8 +4,9 @@
   "known_members": {
     "0": {
       "name": "fp",
-      "type": "void *",
-      "source": "PAL3patch_verified"
+      "type": "char *",
+      "source": "PAL3patch_verified",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "4": {
       "name": "fp_data",

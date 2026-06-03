@@ -54,13 +54,15 @@
     },
     "4": {
       "name": "m_pDataBegin",
-      "type": "void *",
-      "source": "fix_scene_struct"
+      "type": "char *",
+      "source": "fix_scene_struct",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "8": {
       "name": "m_pDataEnd",
-      "type": "void *",
-      "source": "fix_scene_struct"
+      "type": "char *",
+      "source": "fix_scene_struct",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "12": {
       "name": "m_pCapacity",

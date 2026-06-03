@@ -49,9 +49,9 @@
     },
     "36": {
       "name": "m_pAllocBuf",
-      "type": "void *",
+      "type": "char *",
       "source": "decomp:operator_delete+set_0(pointer_not_float)",
-      "note": "Discovered by member_scan after disp8 fix."
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "40": {
       "name": "_field_1D0",
@@ -97,9 +97,9 @@
     },
     "72": {
       "name": "m_pRoleParam3",
-      "type": "void *",
+      "type": "char *",
       "source": "decomp:transfer_from_nVal+72_ptr",
-      "note": "Discovered by member_scan after disp8 fix."
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "76": {
       "name": "m_nCachedA",
@@ -233,8 +233,9 @@
     },
     "208": {
       "name": "m_pRoleObj",
-      "type": "void *",
-      "source": "B:naming_m_p+FPU_misattrib"
+      "type": "char *",
+      "source": "B:naming_m_p+FPU_misattrib",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "212": {
       "name": "m_nPathEnabled",
@@ -558,8 +559,9 @@
     },
     "776": {
       "name": "m_pRoleState",
-      "type": "void *",
-      "source": "A:decomp Actor::UpdateFrame"
+      "type": "char *",
+      "source": "A:decomp Actor::UpdateFrame",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "784": {
       "name": "m_nUpdateMode",

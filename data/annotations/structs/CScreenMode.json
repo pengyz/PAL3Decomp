@@ -48,8 +48,9 @@
     },
     "276": {
       "name": "m_pArrayData",
-      "type": "void *",
-      "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs | type_fix:int→void*(pointer assignment+free semantics)"
+      "type": "char *",
+      "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs | type_fix:int→void*(pointer assignment+free semantics)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "0": {
       "name": "m_pEnumeration",

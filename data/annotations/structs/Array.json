@@ -14,8 +14,9 @@
     },
     "8": {
       "name": "m_pData",
-      "type": "void *",
-      "source": "decomp:13x_char*_cast(data_buffer_ptr)"
+      "type": "char *",
+      "source": "decomp:13x_char*_cast(data_buffer_ptr)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "12": {
       "name": "_todo_00C",

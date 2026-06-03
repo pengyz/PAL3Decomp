@@ -9,8 +9,9 @@
     },
     "14528": {
       "name": "m_pDialog",
-      "type": "void *",
-      "source": "binary:Init _dF40 pattern | type_fix:int→void*(naming m_p)"
+      "type": "char *",
+      "source": "binary:Init _dF40 pattern | type_fix:int→void*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "14532": {
       "name": "m_pSceneObjRef",
@@ -164,13 +165,15 @@
     },
     "24": {
       "name": "m_pItemData",
-      "type": "void *",
-      "source": "binary:raw_this6 | type_fix:int→void*(naming m_p)"
+      "type": "char *",
+      "source": "binary:raw_this6 | type_fix:int→void*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "28": {
       "name": "m_pMagicData",
-      "type": "void *",
-      "source": "binary:raw_this7 | type_fix:int→void*(naming m_p)"
+      "type": "char *",
+      "source": "binary:raw_this7 | type_fix:int→void*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "256": {
       "name": "_field_100",
@@ -254,8 +257,9 @@
     },
     "28176": {
       "name": "m_pGameObj",
-      "type": "void *",
-      "source": "ida_decomp:Init=v3, Render vtable+4 call, Destroy delete, 5 refs | type_fix:int→void*(new/delete+vtable)"
+      "type": "char *",
+      "source": "ida_decomp:Init=v3, Render vtable+4 call, Destroy delete, 5 refs | type_fix:int→void*(new/delete+vtable)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "28180": {
       "name": "m_nMode",
@@ -264,8 +268,9 @@
     },
     "28184": {
       "name": "m_pGameObjB",
-      "type": "void *",
-      "source": "ida_decomp:Init = v12, Render deref[3829] byte check, 2 refs | type_fix:int→void*(deref pattern)"
+      "type": "char *",
+      "source": "ida_decomp:Init = v12, Render deref[3829] byte check, 2 refs | type_fix:int→void*(deref pattern)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "68": {
       "name": "_field_044",

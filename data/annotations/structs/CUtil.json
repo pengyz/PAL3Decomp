@@ -74,13 +74,15 @@
     },
     "1740": {
       "name": "m_pBattleSystem",
-      "type": "void *",
-      "source": "decomp:InitGameSystems_new(0xA4128)_large_combat_obj"
+      "type": "char *",
+      "source": "decomp:InitGameSystems_new(0xA4128)_large_combat_obj",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "1744": {
       "name": "m_pListView",
-      "type": "void *",
-      "source": "decomp:InitGameSystems_new(0x1E56C)+InitListView"
+      "type": "char *",
+      "source": "decomp:InitGameSystems_new(0x1E56C)+InitListView",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "1748": {
       "name": "m_pPropUI",

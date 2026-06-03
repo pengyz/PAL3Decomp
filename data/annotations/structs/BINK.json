@@ -114,8 +114,9 @@
     },
     "220": {
       "name": "MaskPlane",
-      "type": "void *",
-      "source": "annotation"
+      "type": "char *",
+      "source": "annotation",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "224": {
       "name": "MaskPitch",
@@ -164,13 +165,15 @@
     },
     "260": {
       "name": "compframe",
-      "type": "void *",
-      "source": "annotation"
+      "type": "char *",
+      "source": "annotation",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "264": {
       "name": "preloadptr",
-      "type": "void *",
-      "source": "annotation"
+      "type": "char *",
+      "source": "annotation",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "268": {
       "name": "frameoffsets",

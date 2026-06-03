@@ -17,9 +17,10 @@
     },
     "8": {
       "name": "m_pTarget",
-      "type": "void *",
+      "type": "char *",
       "source": "A:binary VA=0x41CFC0 mov eax,[esp+4]; mov [ecx+8],eax; mov edx,[eax+0x1EC] (param stored then deref as object)",
-      "comment": "tracked/followed object (typed as void*, actually a game object)"
+      "comment": "tracked/followed object (typed as void*, actually a game object)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "12": {
       "name": "m_nFlags",

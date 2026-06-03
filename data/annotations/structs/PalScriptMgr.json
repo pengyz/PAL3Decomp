@@ -79,8 +79,9 @@
     },
     "92": {
       "name": "m_pExecSystem",
-      "type": "void *",
-      "source": "binary:raw_7votes | fix:int_to_ptr"
+      "type": "char *",
+      "source": "binary:raw_7votes | fix:int_to_ptr",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "52": {
       "name": "m_Sub_0034",
@@ -234,13 +235,15 @@
     },
     "840": {
       "name": "m_pScriptBlock",
-      "type": "void *",
-      "source": "ida_decomp:ExecuteOpcode = this+76, 11 refs | type_fix:int→void*(decomp ptr usage)"
+      "type": "char *",
+      "source": "ida_decomp:ExecuteOpcode = this+76, 11 refs | type_fix:int→void*(decomp ptr usage)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "844": {
       "name": "m_pExecObj",
-      "type": "void *",
-      "source": "ida_decomp:ExecuteOpcode deref as void***, 12 refs | type_fix:int→void*(triple deref)"
+      "type": "char *",
+      "source": "ida_decomp:ExecuteOpcode deref as void***, 12 refs | type_fix:int→void*(triple deref)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "848": {
       "name": "m_fExecParam",
@@ -249,8 +252,9 @@
     },
     "864": {
       "name": "m_pWaitObj",
-      "type": "void *",
-      "source": "ida_decomp:ExecuteOpcode deref as void**, 4 refs | type_fix:int→void*(double deref)"
+      "type": "char *",
+      "source": "ida_decomp:ExecuteOpcode deref as void**, 4 refs | type_fix:int→void*(double deref)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "872": {
       "name": "m_nWaitCount",
@@ -259,8 +263,9 @@
     },
     "884": {
       "name": "m_pClearResult",
-      "type": "void *",
-      "source": "ida_decomp:ExecuteOpcode = Destroy(v2+64), 12 refs | fix:int_to_ptr"
+      "type": "char *",
+      "source": "ida_decomp:ExecuteOpcode = Destroy(v2+64), 12 refs | fix:int_to_ptr",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "3284": {
       "name": "_field_CD4",
@@ -369,8 +374,9 @@
     },
     "808": {
       "name": "m_pCmdBuffer",
-      "type": "void *",
-      "source": "ida_decomp:PAL3_Helper_426E80(this,&a2) | type_fix:int→void*(naming+decomp)"
+      "type": "char *",
+      "source": "ida_decomp:PAL3_Helper_426E80(this,&a2) | type_fix:int→void*(naming+decomp)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "828": {
       "name": "m_pSubScriptB",
@@ -404,8 +410,9 @@
     },
     "9488": {
       "name": "m_pScriptInstA",
-      "type": "void *",
-      "source": "ida_decomp:Destroy(this)→+9500, 2 refs | type_fix:int→void*(destroy pattern)"
+      "type": "char *",
+      "source": "ida_decomp:Destroy(this)→+9500, 2 refs | type_fix:int→void*(destroy pattern)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "9492": {
       "name": "m_pScriptInstD",
@@ -414,8 +421,9 @@
     },
     "9496": {
       "name": "m_pScriptInstE",
-      "type": "void *",
-      "source": "ida_decomp:Destroy(this), 2 refs | type_fix:int→void*(destroy pattern)"
+      "type": "char *",
+      "source": "ida_decomp:Destroy(this), 2 refs | type_fix:int→void*(destroy pattern)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "9500": {
       "name": "m_nScriptResultA",
@@ -554,8 +562,9 @@
     },
     "292": {
       "name": "m_pSubScript",
-      "type": "void *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)"
+      "type": "char *",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "296": {
       "name": "m_nScriptCount",
@@ -584,13 +593,15 @@
     },
     "788": {
       "name": "m_pRoleSystem",
-      "type": "void *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)"
+      "type": "char *",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "876": {
       "name": "m_pScriptInst",
-      "type": "void *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)"
+      "type": "char *",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "1908": {
       "name": "_todo_774",
@@ -609,8 +620,9 @@
     },
     "3280": {
       "name": "m_pScreenEffect",
-      "type": "void *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)"
+      "type": "char *",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "8452": {
       "name": "m_nCost",
@@ -619,13 +631,15 @@
     },
     "9480": {
       "name": "m_pScriptInstB",
-      "type": "void *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)"
+      "type": "char *",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "9484": {
       "name": "m_pScriptInstC",
-      "type": "void *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)"
+      "type": "char *",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "24": {
       "name": "_todo_018",

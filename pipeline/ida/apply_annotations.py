@@ -181,7 +181,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
             cursor = offset + 4
             continue
 
-        arr_match = _re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
+        arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
 
         if 'std::' in mtype or '::' in mtype or '<' in mtype:
             span = next_member_offset(offset) - offset
@@ -208,7 +208,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
                     ref = all_structs[clean]
                     elem_size = ref.get("binary_size") or ref.get("pdb_size") or ref.get("size") or 0
             if elem_size > 0:
-                dims = [int(d) for d in _re.findall(r'\[(\d+)\]', arr_match.group(1))]
+                dims = [int(d) for d in re.findall(r'\[(\d+)\]', arr_match.group(1))]
                 total_elems = 1
                 for d in dims:
                     total_elems *= d
@@ -539,7 +539,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             seen_vm.add(vm_short)
             if '(' in ann_sig:
                 open_paren = ann_sig.index('(')
-                sig_prefix = _re.sub(r'\w+::\w+', '', ann_sig[:open_paren]).strip()
+                sig_prefix = re.sub(r'\w+::\w+', '', ann_sig[:open_paren]).strip()
                 sig_params = ann_sig[open_paren:]
                 decl = "virtual %s %s %s" % (sig_prefix, vm_short, sig_params)
             else:

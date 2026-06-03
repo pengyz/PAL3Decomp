@@ -3,8 +3,9 @@
   "known_members": {
     "68": {
       "name": "m_pVtable",
-      "type": "void *",
-      "source": "A:decomp CCBRoleState::ProcessActions uses this->m_pSceneMgr->m_rect.left as RoleSystem* -- offset 0 is vtable ptr, not int"
+      "type": "char *",
+      "source": "A:decomp CCBRoleState::ProcessActions uses this->m_pSceneMgr->m_rect.left as RoleSystem* -- offset 0 is vtable ptr, not int",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "72": {
       "name": "_field_048",
@@ -43,8 +44,9 @@
     },
     "100": {
       "name": "m_pPathPoints",
-      "type": "void *",
-      "source": "B:naming_m_p+FPU_misattrib"
+      "type": "char *",
+      "source": "B:naming_m_p+FPU_misattrib",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "104": {
       "name": "m_nPathCount",
@@ -53,13 +55,15 @@
     },
     "108": {
       "name": "m_pPathCurrent",
-      "type": "void *",
-      "source": "B:naming_m_p+FPU_misattrib"
+      "type": "char *",
+      "source": "B:naming_m_p+FPU_misattrib",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "112": {
       "name": "m_pPathNext",
-      "type": "void *",
-      "source": "binary:raw_path_next | type_fix:int鈫抳oid*(naming m_p)"
+      "type": "char *",
+      "source": "binary:raw_path_next | type_fix:int鈫抳oid*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "116": {
       "name": "_todo_074",
@@ -88,8 +92,9 @@
     },
     "140": {
       "name": "m_pPathListHead",
-      "type": "void *",
-      "source": "binary:raw_path_list | type_fix:int鈫抳oid*(naming m_p)"
+      "type": "char *",
+      "source": "binary:raw_path_list | type_fix:int鈫抳oid*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "144": {
       "name": "m_nActionResult",
@@ -273,8 +278,9 @@
     },
     "364": {
       "name": "m_pWndFrame",
-      "type": "void *",
-      "source": "ida_decomp:ctor_1D20 UIFrameWnd init, GetChild, 3 refs | fix:int_to_ptr(decomp_vtable_dispatch_via_bvisible+4) | fix:ptr_type_for_vtable_target"
+      "type": "char *",
+      "source": "ida_decomp:ctor_1D20 UIFrameWnd init, GetChild, 3 refs | fix:int_to_ptr(decomp_vtable_dispatch_via_bvisible+4) | fix:ptr_type_for_vtable_target",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "380": {
       "name": "m_nActive",
@@ -308,8 +314,9 @@
     },
     "416": {
       "name": "m_pPathNodeIter",
-      "type": "void *",
-      "source": "binary:gap_access | type_fix:int鈫抳oid*(naming m_p)"
+      "type": "char *",
+      "source": "binary:gap_access | type_fix:int鈫抳oid*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "420": {
       "name": "_field_1A4",
@@ -453,8 +460,9 @@
     },
     "1420": {
       "name": "m_pLinkedSystem",
-      "type": "void *",
-      "source": "ida_decomp:UpdateTransform deref+756 byte, 6 refs | type_fix:int鈫抳oid*(deref pattern)"
+      "type": "char *",
+      "source": "ida_decomp:UpdateTransform deref+756 byte, 6 refs | type_fix:int鈫抳oid*(deref pattern)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "1424": {
       "name": "m_fAnimSpeed",
@@ -493,8 +501,9 @@
     },
     "1456": {
       "name": "m_pCtrlPoint",
-      "type": "void *",
-      "source": "binary:raw_final | type_fix:int鈫抳oid*(naming m_p)"
+      "type": "char *",
+      "source": "binary:raw_final | type_fix:int鈫抳oid*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "1460": {
       "name": "m_nMoveRole",
@@ -958,7 +967,7 @@
     },
     "7216": {
       "name": "_todo_1C30",
-      "type": "void **",
+      "type": "char **",
       "source": "binary:v0-130 pointer to pointer"
     },
     "7220": {
@@ -968,8 +977,9 @@
     },
     "7236": {
       "name": "_todo_1C44",
-      "type": "void *",
-      "source": "binary:v0-125 used as void*"
+      "type": "char *",
+      "source": "binary:v0-125 used as void*",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "7244": {
       "name": "m_pScriptSystem",

@@ -123,8 +123,9 @@
     },
     "164": {
       "name": "m_pChildData",
-      "type": "void *",
-      "source": "B:naming_m_p+FPU_misattrib"
+      "type": "char *",
+      "source": "B:naming_m_p+FPU_misattrib",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "168": {
       "name": "m_fAngle",

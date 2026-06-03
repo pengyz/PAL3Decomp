@@ -415,8 +415,9 @@
     },
     "544": {
       "name": "m_pController",
-      "type": "void *",
-      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int¡úvoid*(deref pattern)"
+      "type": "char *",
+      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int¡úvoid*(deref pattern)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "552": {
       "name": "m_fPrevRotX",

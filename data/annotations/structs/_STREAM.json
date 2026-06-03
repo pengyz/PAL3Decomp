@@ -224,7 +224,7 @@
     },
     "224": {
       "name": "callback",
-      "type": "void * *",
+      "type": "char **",
       "source": "annotation"
     },
     "228": {
@@ -234,8 +234,9 @@
     },
     "260": {
       "name": "next",
-      "type": "void *",
-      "source": "annotation"
+      "type": "char *",
+      "source": "annotation",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "264": {
       "name": "autostreaming",

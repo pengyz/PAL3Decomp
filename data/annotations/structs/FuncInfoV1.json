@@ -13,8 +13,9 @@
     },
     "8": {
       "name": "pUnwindMap",
-      "type": "void *",
-      "source": "gen_headers_9.2"
+      "type": "char *",
+      "source": "gen_headers_9.2",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "12": {
       "name": "nTryBlocks",
@@ -23,8 +24,9 @@
     },
     "16": {
       "name": "pTryBlockMap",
-      "type": "void *",
-      "source": "gen_headers_9.2"
+      "type": "char *",
+      "source": "gen_headers_9.2",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "20": {
       "name": "nIPMapEntries",
@@ -33,8 +35,9 @@
     },
     "24": {
       "name": "pIPtoStateMap",
-      "type": "void *",
-      "source": "gen_headers_9.2"
+      "type": "char *",
+      "source": "gen_headers_9.2",
+      "note": "replaced void* with char* (IDB struct compat)"
     }
   },
   "binary_size": 28

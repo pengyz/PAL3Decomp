@@ -74,8 +74,9 @@
     },
     "4": {
       "name": "m_pSurface",
-      "type": "void *",
-      "source": "B:naming_m_p+FPU_misattrib"
+      "type": "char *",
+      "source": "B:naming_m_p+FPU_misattrib",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "8": {
       "name": "m_bActive",
@@ -134,8 +135,9 @@
     },
     "0": {
       "name": "m_pVtable",
-      "type": "void *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(vtable pointer)"
+      "type": "char *",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(vtable pointer)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "12": {
       "name": "m_SubObj",

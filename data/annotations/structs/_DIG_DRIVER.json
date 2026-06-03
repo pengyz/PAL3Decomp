@@ -154,8 +154,9 @@
     },
     "160": {
       "name": "pDS",
-      "type": "void *",
-      "source": "annotation"
+      "type": "char *",
+      "source": "annotation",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "164": {
       "name": "ds_priority",
@@ -169,8 +170,9 @@
     },
     "172": {
       "name": "lppdsb",
-      "type": "void *",
-      "source": "annotation"
+      "type": "char *",
+      "source": "annotation",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "176": {
       "name": "dsHwnd",
@@ -179,7 +181,7 @@
     },
     "180": {
       "name": "lpbufflist",
-      "type": "void * *",
+      "type": "char **",
       "source": "annotation"
     },
     "184": {
@@ -229,13 +231,15 @@
     },
     "220": {
       "name": "DS_sec_buff",
-      "type": "void *",
-      "source": "annotation"
+      "type": "char *",
+      "source": "annotation",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "224": {
       "name": "DS_out_buff",
-      "type": "void *",
-      "source": "annotation"
+      "type": "char *",
+      "source": "annotation",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "228": {
       "name": "DS_buffer_size",
@@ -284,8 +288,9 @@
     },
     "264": {
       "name": "decode_buffer",
-      "type": "void *",
-      "source": "annotation"
+      "type": "char *",
+      "source": "annotation",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "268": {
       "name": "decode_buffer_size",

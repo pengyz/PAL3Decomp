@@ -114,13 +114,15 @@
     },
     "860": {
       "name": "m_pPathCurrent",
-      "type": "void *",
-      "source": "decomp:ExecuteOpcode_slot8_ptr_arithmetic"
+      "type": "char *",
+      "source": "decomp:ExecuteOpcode_slot8_ptr_arithmetic",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "864": {
       "name": "m_pPathKeys",
-      "type": "void *",
-      "source": "decomp:ExecuteOpcode_slot9_key_array_base"
+      "type": "char *",
+      "source": "decomp:ExecuteOpcode_slot9_key_array_base",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "868": {
       "name": "m_nPathKeyCount",

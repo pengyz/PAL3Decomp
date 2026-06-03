@@ -79,8 +79,9 @@
     },
     "140": {
       "name": "m_pEffect",
-      "type": "void *",
-      "source": "ida_decomp:_unverified_4BE4A0 deref as void**, 4 refs | type_fix:int→void*(deref+ptr semantics)"
+      "type": "char *",
+      "source": "ida_decomp:_unverified_4BE4A0 deref as void**, 4 refs | type_fix:int→void*(deref+ptr semantics)",
+      "note": "replaced void* with char* (IDB struct compat)"
     }
   },
   "methods": {
