@@ -91,6 +91,25 @@ class DataStore:
                 if '::' in name and '__cdecl' in sig:
                     self.static_methods.add(name)
 
+        # struct/*.json methods: also scan for __cdecl static methods
+        # These are free/static functions attributed to a class that IDA
+        # decompiles as Class::Method(obj, ...) with __cdecl convention.
+        # Without this, the OOP transform strips the first param (thinks it's this).
+        _structs_dir = self.annotations_dir / "structs"
+        if _structs_dir.exists():
+            for _f in sorted(os.listdir(str(_structs_dir))):
+                if not _f.endswith('.json'):
+                    continue
+                try:
+                    _sd = json.load(open(str(_structs_dir / _f), encoding='utf-8'))
+                except:
+                    continue
+                for _addr, _minfo in _sd.get('methods', {}).items():
+                    _name = _minfo.get('name', '')
+                    _sig = _minfo.get('signature', '')
+                    if '::' in _name and '__cdecl' in _sig and '__thiscall' not in _sig:
+                        self.static_methods.add(_name)
+
         # Hardcoded gbengine static methods (not in PAL3.exe functions.json)
         # These are methods that IDA decompiles as static calls but headers declare as members
         self.static_methods.update([
