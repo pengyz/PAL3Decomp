@@ -594,22 +594,22 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         # Last resort: create a minimal char[] struct so the type exists
         try:
             _minimal = "struct %s { char _data[%d]; };" % (name, binary_size)
-                if ida_typeinf.parse_decl(result_tinfo, til, _minimal, ida_typeinf.PT_TYP) is not None:
-                    log("  [minimal] %s: created as char[%d] stub" % (name, binary_size))
-                    # set_named_type may fail if the type is referenced; use
-                    # set_numbered_type as a more robust fallback for registration
-                    if result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE):
+            if ida_typeinf.parse_decl(result_tinfo, til, _minimal, ida_typeinf.PT_TYP) is not None:
+                log("  [minimal] %s: created as char[%d] stub" % (name, binary_size))
+                # set_named_type may fail if the type is referenced; use
+                # set_numbered_type as a more robust fallback for registration
+                if result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE):
+                    return (True, None)
+                log("  [minimal] %s: NTF_REPLACE failed, trying alternate name" % name)
+                # Last attempt: use idaapi.set_numbered_type
+                try:
+                    import ida_typeinf as _ti
+                    _ord = _ti.alloc_type_ordinal(til)
+                    if _ord:
+                        _ti.set_numbered_type(til, _ord, _ti.BTF_STRUCT, name, result_tinfo)
                         return (True, None)
-                    log("  [minimal] %s: NTF_REPLACE failed, trying alternate name" % name)
-                    # Last attempt: use idaapi.set_numbered_type
-                    try:
-                        import ida_typeinf as _ti
-                        _ord = _ti.alloc_type_ordinal(til)
-                        if _ord:
-                            _ti.set_numbered_type(til, _ord, _ti.BTF_STRUCT, name, result_tinfo)
-                            return (True, None)
-                    except Exception as _nte:
-                        log("  [minimal] %s: set_numbered_type failed: %s" % (name, str(_nte)[:80]))
+                except Exception as _nte:
+                    log("  [minimal] %s: set_numbered_type failed: %s" % (name, str(_nte)[:80]))
         except Exception as minimal_e:
             log("  [minimal] %s failed: %s" % (name, str(minimal_e)[:120]))
             pass
