@@ -453,9 +453,13 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             udt.taudt_bits |= 128  # TAUDT_CPPOBJ
         udt.total_size = binary_size
 
+    # Filter base classes: remove template expression names (with <>) that
+    # won't resolve in TIL. Keep only concrete type names (CEffObj, etc.)
+    # and concrete template instantiations (CTaskTpl_tagEffTaskParam_Xxx).
+    _concrete_bases = [bc for bc in base_classes if '<' not in bc and '>' not in bc]
+
     # Add base classes as anonymous members (supports multiple inheritance)
-    # Skip unresolvable bases (template bases, forward decls) and leave gaps.
-    if base_classes and base_size > 0:
+    if _concrete_bases and base_size > 0:
         base_offset = 0
         for bc in base_classes:
             bc_tinfo = ida_typeinf.tinfo_t()
