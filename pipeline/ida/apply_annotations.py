@@ -455,6 +455,10 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             udt.taudt_bits |= 128  # TAUDT_CPPOBJ
         udt.total_size = binary_size
 
+    # Filter base classes: remove template expression names (with <>) that
+    # won't resolve in TIL. Keep only concrete type names.
+    _concrete_bases = [bc for bc in base_classes if '<' not in bc and '>' not in bc]
+
     # Add base classes as anonymous members (supports multiple inheritance)
     # Note: for complex inheritance (diamond, virtual bases), adding bases
     # as sequential anonymous members may produce invalid UDTs. If create_udt
@@ -531,40 +535,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
 
     if not result_tinfo.create_udt(udt, udt_flag):
-        # create_udt with base members failed. Retry WITHOUT base members
-        # (complex inheritance like diamond/virtual produces invalid UDTs).
-        if _base_offset > 0:
-            udt2 = ida_typeinf.udt_type_data_t()
-            udt2.taudt_bits = 1024  # TAUDT_FIXED
-            udt2.total_size = binary_size
-            # Re-add only derived members (skip bases)
-            for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0])):
-                offset = int(off_str.split('_')[0])
-                if base_class and offset < base_size:
-                    continue
-                mname = minfo["name"]
-                mtype_str = _normalize_type(minfo["type"])
-                if "::" in mtype_str and "std::" not in mtype_str and "<" not in mtype_str:
-                    mtype_str = mtype_str.replace("::", "_")
-                tinfo = _resolve_member_type(mtype_str, til)
-                if tinfo is None:
-                    continue
-                msize = tinfo.get_size()
-                if msize == 0 or msize == 0xFFFFFFFFFFFFFFFF:
-                    continue
-                m = ida_typeinf.udt_member_t()
-                m.name = mname
-                m.offset = offset * 8
-                m.size = msize * 8
-                m.type = tinfo
-                udt2.push_back(m)
-            if result_tinfo.create_udt(udt2, udt_flag):
-                log("  [no-base] %s: created without base members" % name)
-                _base_offset = 0  # signal to skip total_size check below
-            else:
-                return (False, "TAUDT_FIXED create_udt() returned False for %s" % name)
-        else:
-            return (False, "TAUDT_FIXED create_udt() returned False for %s" % name)
+        return (False, "TAUDT_FIXED create_udt() returned False for %s" % name)
 
     method_udms = ida_typeinf.udtmembervec_t()
     struct_methods = struct_info.get('methods', {}) if struct_info else {}
