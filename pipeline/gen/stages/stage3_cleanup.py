@@ -365,6 +365,13 @@ def run(code, ctx):
         r'// [VFTABLE] \1',
         code, flags=re.MULTILINE)
 
+    # Comment out ->vfptr member access (compiler-managed, not in C++ source).
+    # The vfptr exists in the IDB struct definition but is suppressed in headers.
+    code = re.sub(
+        r'^([ \t]*.*(?:->|\.)vfptr\b[^;]*;.*)$',
+        r'// [VFTABLE] \1',
+        code, flags=re.MULTILINE)
+
     # Comment out lines with IDA type misidentifications (FLIRT/TIL false matches)
     _IDA_MISID_PATTERNS = (
         'Concurrency', 'details::VirtualProcessor', 'NtTib', 'ExceptionList',
