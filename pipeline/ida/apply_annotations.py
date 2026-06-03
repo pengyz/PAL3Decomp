@@ -181,7 +181,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
             cursor = offset + 4
             continue
 
-        arr_match = re.search(r'(\[\d+\](?:\[\d+\])*)$', mtype)
+        arr_match = re.search(r'((?:\[(?:\d+|0x[0-9a-fA-F]+)\])+)$', mtype)
 
         if 'std::' in mtype or '::' in mtype or '<' in mtype:
             span = next_member_offset(offset) - offset
@@ -208,7 +208,9 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
                     ref = all_structs[clean]
                     elem_size = ref.get("binary_size") or ref.get("pdb_size") or ref.get("size") or 0
             if elem_size > 0:
-                dims = [int(d) for d in re.findall(r'\[(\d+)\]', arr_match.group(1))]
+                def _parse_dim(dim_str):
+                    return int(dim_str, 0)  # handles 0x hex prefix automatically
+                dims = [_parse_dim(d) for d in re.findall(r'\[(0x[0-9a-fA-F]+|\d+)\]', arr_match.group(1))]
                 total_elems = 1
                 for d in dims:
                     total_elems *= d
@@ -579,39 +581,17 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
 
     actual_size = result_tinfo.get_size()
     if actual_size == 0xFFFFFFFFFFFFFFFF:
-        # UDT created but invalid — try string-based fallback
+        # UDT created but invalid (size=-1). Try build_struct_decl fallback.
         try:
             decl_text = build_struct_decl(name, struct_info, all_structs)
             if decl_text and ida_typeinf.parse_decl(result_tinfo, til, decl_text, ida_typeinf.PT_TYP) is not None:
-                log("  [fallback] %s: created via string decl" % name)
+                log("  [fallback] %s: created via string decl (size=-1 recovery)" % name)
                 actual_size = result_tinfo.get_size()
                 if actual_size != 0xFFFFFFFFFFFFFFFF:
                     result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
                     return (True, None)
         except Exception as fallback_e:
             log("  [fallback] %s failed: %s" % (name, str(fallback_e)[:100]))
-            pass
-        # Last resort: create a minimal char[] struct so the type exists
-        try:
-            _minimal = "struct %s { char _data[%d]; };" % (name, binary_size)
-            if ida_typeinf.parse_decl(result_tinfo, til, _minimal, ida_typeinf.PT_TYP) is not None:
-                log("  [minimal] %s: created as char[%d] stub" % (name, binary_size))
-                # set_named_type may fail if the type is referenced; use
-                # set_numbered_type as a more robust fallback for registration
-                if result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE):
-                    return (True, None)
-                log("  [minimal] %s: NTF_REPLACE failed, trying alternate name" % name)
-                    # Last attempt: use idaapi.set_numbered_type
-                    try:
-                        import ida_typeinf as _ti
-                        _ord = _ti.alloc_type_ordinal(til)
-                        if _ord and _ord > 0:
-                            _ti.set_numbered_type(til, int(_ord), 0, str(name), result_tinfo)
-                            return (True, None)
-                    except Exception as _nte:
-                        log("  [minimal] %s: set_numbered_type failed: %s" % (name, str(_nte)[:120]))
-        except Exception as minimal_e:
-            log("  [minimal] %s failed: %s" % (name, str(minimal_e)[:120]))
             pass
         return (False, "TAUDT_FIXED create_udt produced INVALID type for %s (size=-1). "
                 "Check: base_class '%s' correct size in TIL? All member types resolvable? "
