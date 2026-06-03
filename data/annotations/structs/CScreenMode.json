@@ -606,6 +606,10 @@
       "name": "CScreenMode::InitSceneObjects",
       "signature": "void __thiscall(CScreenMode *this, int *p_DWORD, int nVal, int *p_DWORD2)"
     },
+    "0x00569320": {
+      "name": "CScreenMode::LoadAudioFromFile",
+      "signature": "int __cdecl CScreenMode::LoadAudioFromFile(int *p_DWORD, FILE *Stream, int *p_DWORD2)"
+    },
     "0x00456E20": {
       "name": "CScreenMode::PauseAllStreams",
       "signature": "void __thiscall CScreenMode::PauseAllStreams(void (__thiscall ***this)(_DWORD, _DWORD), unsigned __int8 a2)"
@@ -686,6 +690,10 @@
     "0x0053F220": {
       "name": "CScreenMode::UpdateRenderState",
       "signature": "char __thiscall CScreenMode::UpdateRenderState(CScreenMode *this, int *lpString)"
+    },
+    "0x005694F0": {
+      "name": "CScreenMode::OpenBinkVideo",
+      "signature": "int __cdecl CScreenMode::OpenBinkVideo(CScreenMode *pScreen, const char *szFilename, int nVal, int nVal2, int nFlags)"
     },
     "0x0052DF40": {
       "name": "CScreenMode::InitCamera",
