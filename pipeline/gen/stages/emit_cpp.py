@@ -13,7 +13,7 @@ from stages.collect import collect_functions, get_class_dir, CLASS_DIRS
 
 def collect_sub_refs(code):
     """Find all sub_XXXXX and named function references needing forward declaration."""
-    refs = set(re.findall(r'\b(_todo_[0-9A-Fa-f]+|sub_[0-9A-Fa-f]+)\b', code))
+    refs = set(re.findall(r'\b(_todo_[0-9A-Fa-f]+|todo_[0-9A-Fa-f]+|sub_[0-9A-Fa-f]+)\b', code))
     # PascalCase game function calls (not preceded by . or -> or ::)
     for m in re.finditer(
         r'(?<![.>:])\b([A-Z][a-zA-Z0-9_]*'

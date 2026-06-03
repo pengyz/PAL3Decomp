@@ -240,6 +240,7 @@ def check():
     # 4. Structs
     structs = ann.get('structs', {})
     all_struct_names = set(structs.keys())
+
     for sname, sinfo in structs.items():
         members = sinfo.get('known_members', {})
         is_union = sinfo.get('is_union', False)

@@ -359,6 +359,12 @@ def run(code, ctx):
             i += 1
     code = '\n'.join(result_lines)
 
+    # Comment out lines referencing _vtbl_placeholder (synthetic slots, no real member)
+    code = re.sub(
+        r'^([ \t]*.*_vtbl_placeholder[^;]*;.*)$',
+        r'// [VFTABLE] \1',
+        code, flags=re.MULTILINE)
+
     # Comment out lines with IDA type misidentifications (FLIRT/TIL false matches)
     _IDA_MISID_PATTERNS = (
         'Concurrency', 'details::VirtualProcessor', 'NtTib', 'ExceptionList',
