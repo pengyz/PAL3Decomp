@@ -113,12 +113,6 @@
       "name": "CCBFiveNimbusWindow::ApplySelection",
       "signature": "int __thiscall(CCBFiveNimbusWindow *this, int nVal)"
     },
-    "0x0051A090": {
-      "name": "CCBFiveNimbusWindow::?AddResultWindowAni@CCBUI@@AAEXXZ",
-      "signature": "void __thiscall(CCBUI *__hidden this)",
-      "source": "vtable_migrated",
-      "ordinal": 2
-    },
     "0x00519B40": {
       "name": "CCBFiveNimbusWindow::?GetNimbusColor@CCBUI@@QAE?AUgbColorQuad@@W4ECBFiveNimbus@@@Z",
       "signature": "",
@@ -136,18 +130,6 @@
       "signature": "int __thiscall(UIWnd *this, int a2, int a3)",
       "source": "vtable_migrated+pdb_correct",
       "ordinal": 9
-    },
-    "0x0051A390": {
-      "name": "CCBFiveNimbusWindow::?DoTask@CCBUI@@AAEXXZ",
-      "signature": "void __thiscall(CCBUI *__hidden this)",
-      "source": "vtable_migrated",
-      "ordinal": 12
-    },
-    "0x0051A930": {
-      "name": "CCBFiveNimbusWindow::?Reset@CCBControlWindow@@AAEXXZ",
-      "signature": "void __thiscall(CCBControlWindow *__hidden this)",
-      "source": "vtable_migrated",
-      "ordinal": 13
     },
     "0x0051B0B0": {
       "name": "CCBFiveNimbusWindow::?MoveButtons@CCBControlWindow@@QAEXXZ",
@@ -213,7 +195,7 @@
         },
         {
           "addr": "0x0051A090",
-          "from": null
+          "from": "CCBUI"
         },
         {
           "addr": "0x00519F50",
@@ -253,11 +235,11 @@
         },
         {
           "addr": "0x0051A390",
-          "from": null
+          "from": "CCBUI"
         },
         {
           "addr": "0x0051A930",
-          "from": null
+          "from": "CCBItemWindow"
         },
         {
           "addr": "0x00445E70",

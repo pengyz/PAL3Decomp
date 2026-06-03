@@ -127,30 +127,6 @@
       "signature": "int __thiscall(int, int a2, int a3)",
       "source": "vtable_migrated",
       "ordinal": 6
-    },
-    "0x0051B5D0": {
-      "name": "CCBControlWindow::?OnMessage@CCBItemWindow@@MAEHIKK@Z",
-      "signature": "int __thiscall(CCBItemWindow *__hidden this, unsigned int a2, unsigned int, unsigned int)",
-      "source": "vtable_migrated",
-      "ordinal": 7
-    },
-    "0x0051B570": {
-      "name": "CCBControlWindow::?HandleInput@CCBItemWindow@@IAEXXZ",
-      "signature": "void __thiscall(CCBItemWindow *__hidden this)",
-      "source": "vtable_migrated",
-      "ordinal": 9
-    },
-    "0x0051B4B0": {
-      "name": "CCBControlWindow::?Destroy@CCBItemWindow@@UAEXXZ",
-      "signature": "void __thiscall(CCBItemWindow *__hidden this)",
-      "source": "vtable_migrated",
-      "ordinal": 10
-    },
-    "0x0051C9B0": {
-      "name": "CCBControlWindow::?OnMessage@CCBSkillWindow@@MAEHIKK@Z",
-      "signature": "int __thiscall(CCBSkillWindow *__hidden this, unsigned int, unsigned int a2, unsigned int)",
-      "source": "vtable_migrated",
-      "ordinal": 13
     }
   },
   "vtables": [
@@ -188,7 +164,7 @@
         },
         {
           "addr": "0x0051B5D0",
-          "from": null
+          "from": "CCBItemWindow"
         },
         {
           "addr": "0x0043DDF0",
@@ -196,11 +172,11 @@
         },
         {
           "addr": "0x0051B570",
-          "from": null
+          "from": "CCBItemWindow"
         },
         {
           "addr": "0x0051B4B0",
-          "from": null
+          "from": "CCBItemWindow"
         },
         {
           "addr": "0x00445B90",
@@ -212,7 +188,7 @@
         },
         {
           "addr": "0x0051C9B0",
-          "from": null
+          "from": "CCBSkillWindow"
         }
       ]
     }
