@@ -601,15 +601,15 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                 if result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE):
                     return (True, None)
                 log("  [minimal] %s: NTF_REPLACE failed, trying alternate name" % name)
-                # Last attempt: use idaapi.set_numbered_type
-                try:
-                    import ida_typeinf as _ti
-                    _ord = _ti.alloc_type_ordinal(til)
-                    if _ord:
-                        _ti.set_numbered_type(til, _ord, _ti.BTF_STRUCT, name, result_tinfo)
-                        return (True, None)
-                except Exception as _nte:
-                    log("  [minimal] %s: set_numbered_type failed: %s" % (name, str(_nte)[:80]))
+                    # Last attempt: use idaapi.set_numbered_type
+                    try:
+                        import ida_typeinf as _ti
+                        _ord = _ti.alloc_type_ordinal(til)
+                        if _ord and _ord > 0:
+                            _ti.set_numbered_type(til, int(_ord), 0, str(name), result_tinfo)
+                            return (True, None)
+                    except Exception as _nte:
+                        log("  [minimal] %s: set_numbered_type failed: %s" % (name, str(_nte)[:120]))
         except Exception as minimal_e:
             log("  [minimal] %s failed: %s" % (name, str(minimal_e)[:120]))
             pass
