@@ -590,10 +590,12 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                 # Insert gap padding if needed
                 if offset > cursor:
                     gap_sz = offset - cursor
-                    gap_tif = ida_typeinf.tinfo_t()
-                    gap_decl = "char _gap_%03X[%d];" % (cursor, gap_sz)
-                    if ida_typeinf.parse_decl(gap_tif, til, gap_decl, ida_typeinf.PT_VAR):
-                        udt2.add_member("_gap_%03X" % cursor, gap_tif, cursor * 8)
+                    if gap_sz > 0:
+                        gap_tif = ida_typeinf.tinfo_t()
+                        gap_base = ida_typeinf.tinfo_t()
+                        if ida_typeinf.parse_decl(gap_base, til, "char __x;", ida_typeinf.PT_VAR):
+                            gap_tif.create_array(gap_base, gap_sz)
+                            udt2.add_member("_gap_%03X" % cursor, gap_tif, cursor * 8)
                     cursor = offset
                 mname = minfo["name"]
                 mtype_str = _normalize_type(minfo["type"])
@@ -601,7 +603,9 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                     mtype_str = mtype_str.replace("::", "_")
                 tinfo = _resolve_member_type(mtype_str, til)
                 if tinfo is None:
-                    continue
+                    # Fallback: use int for unresolvable types
+                    tinfo = ida_typeinf.tinfo_t()
+                    ida_typeinf.parse_decl(tinfo, til, "int __x;", ida_typeinf.PT_VAR)
                 msz = tinfo.get_size()
                 if msz == 0 or msz == 0xFFFFFFFFFFFFFFFF:
                     continue
