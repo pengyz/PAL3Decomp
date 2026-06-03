@@ -2,9 +2,10 @@
   "name": "gbFileStream",
   "known_members": {
     "0": {
-      "name": "vfptr",
+      "name": "__vftable",
       "type": "int",
-      "source": "gap_fill:ida_decomp_access | type_fix:float->int(vtable pointer)"
+      "source": "gap_fill:ida_decomp_access | type_fix:float->int(vtable pointer)",
+      "note": "renamed vfptr -> __vftable (unified with IDA convention)"
     }
   },
   "pdb_size": 4,

@@ -53,10 +53,10 @@
       "source": "annotation"
     },
     "0": {
-      "name": "vfptr",
+      "name": "__vftable",
       "type": "int",
       "source": "gap_fill:ida_decomp_access | type_fix:float->int(vtable pointer)",
-      "note": "replaced void* with int (IDB struct compat)"
+      "note": "renamed vfptr -> __vftable (unified with IDA convention)"
     }
   },
   "methods": {

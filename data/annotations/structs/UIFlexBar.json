@@ -23,9 +23,10 @@
       "source": "annotation"
     },
     "0": {
-      "name": "vfptr",
+      "name": "__vftable",
       "type": "int",
-      "source": "vtable_pointer(assumed_from_polymorphic_class)"
+      "source": "vtable_pointer(assumed_from_polymorphic_class)",
+      "note": "renamed vfptr -> __vftable (unified with IDA convention)"
     }
   },
   "base_class": [

@@ -359,11 +359,11 @@ def run(code, ctx):
             i += 1
     code = '\n'.join(result_lines)
 
-    # Comment out lines referencing vtable-related names (__vftable from IDA
-    # decompilation, vfptr from annotation struct layout — both compiler-managed).
+    # Comment out remaining __vftable references (compiler-managed, never in C++ source).
+    # __vftable is the IDA convention used consistently in annotations and codegen.
     # Skip already-commented lines.
     code = re.sub(
-        r'^([ \t]*(?!/[/*]).*(?:__vftable|(?:->|\.)vfptr\b)[^;]*;.*)$',
+        r'^([ \t]*(?!/[/*]).*__vftable[^;]*;.*)$',
         r'// [VFTABLE] \1',
         code, flags=re.MULTILINE)
 

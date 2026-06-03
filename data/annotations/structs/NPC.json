@@ -69,9 +69,10 @@
       "source": "gap_fill:ida_decomp_access | type_fix:int→UIWnd(UIWnd::FindChild/FindChildByName(&this->_todo_44,...))"
     },
     "0": {
-      "name": "vfptr",
+      "name": "__vftable",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs",
+      "note": "renamed vfptr -> __vftable (unified with IDA convention)"
     },
     "48": {
       "name": "_todo_030",
