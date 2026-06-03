@@ -586,6 +586,15 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         except Exception as fallback_e:
             log("  [fallback] %s failed: %s" % (name, str(fallback_e)[:100]))
             pass
+        # Last resort: create a minimal char[] struct so the type exists
+        try:
+            _minimal = "struct %s { char _data[%d]; };" % (name, binary_size)
+            if ida_typeinf.parse_decl(result_tinfo, til, _minimal, ida_typeinf.PT_TYP) is not None:
+                log("  [minimal] %s: created as char[%d] stub" % (name, binary_size))
+                result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+                return (True, None)
+        except Exception:
+            pass
         return (False, "TAUDT_FIXED create_udt produced INVALID type for %s (size=-1). "
                 "Check: base_class '%s' correct size in TIL? All member types resolvable? "
                 "Struct has %d members, total annotation size=%d." % (
