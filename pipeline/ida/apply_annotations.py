@@ -573,6 +573,49 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
 
     actual_size = result_tinfo.get_size()
     if actual_size == 0xFFFFFFFFFFFFFFFF:
+        # TAUDT_FIXED failed (IDA limit on non-contiguous members). Retry
+        # WITHOUT TAUDT_FIXED but with gap-filling members for correct layout.
+        log("  [gap-fill] %s: TAUDT_FIXED invalid, retrying with gaps..." % name)
+        try:
+            udt2 = ida_typeinf.udt_type_data_t()
+            udt2.taudt_bits = 0  # no TAUDT_FIXED
+            if base_class:
+                udt2.taudt_bits |= 128  # TAUDT_CPPOBJ
+            udt2.total_size = binary_size
+            cursor = 0
+            for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0])):
+                offset = int(off_str.split('_')[0])
+                if base_class and offset < base_size:
+                    continue
+                # Insert gap padding if needed
+                if offset > cursor:
+                    gap_sz = offset - cursor
+                    gap_tif = ida_typeinf.tinfo_t()
+                    gap_decl = "char _gap_%03X[%d];" % (cursor, gap_sz)
+                    if ida_typeinf.parse_decl(gap_tif, til, gap_decl, ida_typeinf.PT_VAR):
+                        udt2.add_member("_gap_%03X" % cursor, gap_tif, cursor * 8)
+                    cursor = offset
+                mname = minfo["name"]
+                mtype_str = _normalize_type(minfo["type"])
+                if "::" in mtype_str and "std::" not in mtype_str and "<" not in mtype_str:
+                    mtype_str = mtype_str.replace("::", "_")
+                tinfo = _resolve_member_type(mtype_str, til)
+                if tinfo is None:
+                    continue
+                msz = tinfo.get_size()
+                if msz == 0 or msz == 0xFFFFFFFFFFFFFFFF:
+                    continue
+                udt2.add_member(mname, tinfo, offset * 8)
+                cursor = offset + msz
+            result_tinfo2 = ida_typeinf.tinfo_t()
+            if result_tinfo2.create_udt(udt2, udt_flag):
+                actual_size2 = result_tinfo2.get_size()
+                if actual_size2 != 0xFFFFFFFFFFFFFFFF and actual_size2 <= binary_size + 8:
+                    log("  [gap-fill] %s: OK size=%d" % (name, actual_size2))
+                    result_tinfo2.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+                    return (True, None)
+        except Exception as gf_e:
+            log("  [gap-fill] %s exception: %s" % (name, str(gf_e)[:80]))
         return (False, "TAUDT_FIXED create_udt produced INVALID type for %s (size=-1). "
                 "Check: base_class '%s' correct size in TIL? All member types resolvable? "
                 "Struct has %d members, total annotation size=%d." % (
