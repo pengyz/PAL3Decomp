@@ -1170,20 +1170,20 @@ def apply_annotations():
         log("[STRUCT IMPORT SUMMARY]")
         log("  Total:     %d/%d structs" % (s_ok, len(structs)))
         log("  Failed:    %d" % len(s_fail))
-        if s_fail:
-            from collections import Counter as _Counter
-            _cats = _Counter()
-            for _, _, e in s_fail:
-                if "size mismatch" in e: _cats["size_mismatch"] += 1
-                elif "base_class" in e: _cats["base_class"] += 1
-                elif "_resolve_member_type" in e: _cats["type_resolve"] += 1
-                elif "create_udt" in e: _cats["create_udt"] += 1
-                else: _cats["other"] += 1
-            for c, n in _cats.items():
-                log("    %s: %d" % (c, n))
+    log_path = os.path.join(SCRIPT_DIR, "_logs", "struct_import_errors.txt")
+    if s_fail:
+        from collections import Counter as _Counter
+        _cats = _Counter()
+        for _, _, e in s_fail:
+            if "size mismatch" in e: _cats["size_mismatch"] += 1
+            elif "base_class" in e: _cats["base_class"] += 1
+            elif "_resolve_member_type" in e: _cats["type_resolve"] += 1
+            elif "create_udt" in e: _cats["create_udt"] += 1
+            else: _cats["other"] += 1
+        for c, n in _cats.items():
+            log("    %s: %d" % (c, n))
 
-            log_path = os.path.join(SCRIPT_DIR, "_logs", "struct_import_errors.txt")
-            os.makedirs(os.path.dirname(log_path), exist_ok=True)
+        os.makedirs(os.path.dirname(log_path), exist_ok=True)
         log("")
 
         error_lines = []
@@ -1210,7 +1210,7 @@ def apply_annotations():
 
         log("Proceeding with %d successfully imported structs." % s_ok)
     else:
-        # Clean: no errors
+        # Clean: no errors — remove stale error log if present
         if os.path.exists(log_path):
             os.remove(log_path)
 
