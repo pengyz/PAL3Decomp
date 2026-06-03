@@ -1234,7 +1234,23 @@ def apply_annotations():
     import re as _re_sig
     sig_ok = 0
     sig_fail = []
-    for addr_str, info in funcs.items():
+
+    # Build a combined list: functions.json + struct/*.json methods
+    _sig_entries = list(funcs.items())
+    _structs_dir = os.path.join(ANNOTATIONS_DIR, "structs")
+    if os.path.isdir(_structs_dir):
+        for _sf in sorted(os.listdir(_structs_dir)):
+            if not _sf.endswith('.json'):
+                continue
+            try:
+                _sd = json.load(open(os.path.join(_structs_dir, _sf), encoding='utf-8'))
+            except:
+                continue
+            for _addr_str, _minfo in _sd.get('methods', {}).items():
+                if _minfo.get('signature') and _addr_str not in funcs:
+                    _sig_entries.append((_addr_str, _minfo))
+
+    for addr_str, info in _sig_entries:
         addr = int(addr_str, 16)
         sig = info.get("signature", "")
         name = info.get("name", "")
