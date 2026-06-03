@@ -570,6 +570,17 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
 
     actual_size = result_tinfo.get_size()
     if actual_size == 0xFFFFFFFFFFFFFFFF:
+        # UDT created but invalid — try string-based fallback
+        try:
+            decl_text = build_struct_decl(name, struct_info, all_structs)
+            if decl_text and ida_typeinf.parse_decl(result_tinfo, til, decl_text, ida_typeinf.PT_TYP) is not None:
+                log("  [fallback] %s: created via string decl" % name)
+                actual_size = result_tinfo.get_size()
+                if actual_size != 0xFFFFFFFFFFFFFFFF:
+                    result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+                    return (True, None)
+        except Exception:
+            pass
         return (False, "TAUDT_FIXED create_udt produced INVALID type for %s (size=-1). "
                 "Check: base_class '%s' correct size in TIL? All member types resolvable? "
                 "Struct has %d members, total annotation size=%d." % (
