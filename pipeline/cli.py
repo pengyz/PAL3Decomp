@@ -282,6 +282,11 @@ def cmd_init(force=False):
     ok = _run_ida('apply_annotations.py', cfg.idb_work)
     print("      -> %s" % ("OK" if ok else "WARN: non-zero exit"))
 
+    # Step 5: Fix vtable types (post-processing)
+    print("[5/5] Fix vtable types: setting __cppobj and typed vtable pointers ...")
+    vtok = _run_ida('fix_vtable_types.py', cfg.idb_work)
+    print("      -> %s" % ("OK" if vtok else "WARN: non-zero exit"))
+
     # Done
     print()
     print("=" * 55)
@@ -302,6 +307,7 @@ def cmd_apply():
 
     print("APPLY: updating annotations in %s ..." % cfg.idb_work.name)
     ok = _run_ida('apply_annotations.py', cfg.idb_work)
+    _run_ida('fix_vtable_types.py', cfg.idb_work)
     if ok:
         print("-> OK: annotations applied")
     else:
