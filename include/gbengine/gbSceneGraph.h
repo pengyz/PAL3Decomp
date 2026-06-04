@@ -131,6 +131,7 @@ public:
     gbBladeMgr* bladeMgr;                     // +0x4B28 [4810]
     unsigned char bSceneActive;               // +0x4B2C: scene rendering flag
     char _pad[3];
+    unsigned char pnodebuf[2048];    // buffer for scene node data
 
     gbSceneGraph(gbGfxManager* gfxMgr, const gbVec3D& param2, float param3);
     ~gbSceneGraph(void);

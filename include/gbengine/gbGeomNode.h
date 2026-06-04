@@ -23,7 +23,9 @@ public:
 /* ======== gbGeomNode ======== */
 
 // sizeof(gbGeomNode) = 0x118 = 280
-class gbGeomNode : public gbVisNode {
+class gbGeomNode {
+public:
+    void* Children;  // child list : public gbVisNode {
 public:
     // gbVisNode base: 0x00-0x57 (88 bytes)
     gbMatrix4 worldTransform;              // +0x58 (64B) - GetCacheToWorld returns &this->worldTransform

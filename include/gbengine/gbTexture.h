@@ -167,6 +167,7 @@ public:
 
     // 0x10004190 (12B) - Check if texture is initialized
     int IsInit(void);
+    unsigned int NameCrc32;  // texture name CRC32 (accessed as field)
     // Vtable dispatch: check if texture data is loaded
     virtual int IsLoaded(...);
 
