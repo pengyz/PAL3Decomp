@@ -166,9 +166,16 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                             return
                         elif first_arg.type == 'identifier':
                             # Simple var: cast to class type for safety
-                            # (IDA may not have correct type info for local vars)
+                            # If the variable is a global OBJECT (not pointer), add &
+                            # E.g. g_RoleSystemMain (type RoleSystem) -> &g_RoleSystemMain
+                            _needs_addr = (
+                                class_name[0].isupper()
+                                and first_arg_text.startswith('g_')
+                                and first_arg_text not in static_methods
+                            )
+                            _obj = '&' + first_arg_text if _needs_addr else first_arg_text
                             new_text = '((%s *)%s)->%s(%s)' % (
-                                class_name, first_arg_text, method_name, rest_str)
+                                class_name, _obj, method_name, rest_str)
                             replacements.append((
                                 node.start_byte, node.end_byte, new_text))
                             return
@@ -177,15 +184,16 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                             # Always transform to OOP form (header declares as member function)
                             # Use class_name for the cast since IDA may have wrong type
                             if first_arg.type == 'cast_expression':
-                                # Extract inner expression past the cast
-                                # (Type)expr -> get expr
                                 val_node = first_arg.child_by_field_name('value')
-                                if val_node:
-                                    inner = val_node.text.decode('utf-8')
-                                else:
-                                    inner = first_arg_text
+                                inner = val_node.text.decode('utf-8') if val_node else first_arg_text
+                                # Add & for global objects: (Camera *)g_RoleSystemMain
+                                _needs_addr = (
+                                    inner in ('g_RoleSystemMain', 'g_RoleSystemExtra0',
+                                              'g_RoleSystemExtra1', 'g_RoleSystemCombat')
+                                )
+                                _inner = '&' + inner if _needs_addr else inner
                                 new_text = '((%s *)%s)->%s(%s)' % (
-                                    class_name, inner, method_name, rest_str)
+                                    class_name, _inner, method_name, rest_str)
                             else:
                                 new_text = '((%s *)%s)->%s(%s)' % (
                                     class_name, first_arg_text,

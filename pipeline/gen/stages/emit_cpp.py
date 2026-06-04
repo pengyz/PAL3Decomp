@@ -172,6 +172,25 @@ def _detect_needed_includes(cls_name, methods):
     # This handles the case where a->b->c needs c.h but only b is directly included.
     fwd_types = set()
     all_included = needed_classes | {cls_name}
+    # Also scan globals.h for forward-declared types (included by all .cpp files)
+    _globals_h = header_dir / "globals.h"
+    if _globals_h.exists():
+        with open(_globals_h, 'r', encoding='utf-8', errors='replace') as _gh:
+            for _hl in _gh:
+                _fwd = re.match(r'^\s*class\s+(\w+)\s*;\s*', _hl)
+                if _fwd:
+                    _t = _fwd.group(1)
+                    if _t in known_headers and not _t.startswith('gb'):
+                        # Check: exact class name, g_p+Name, or g_+Name in code
+                        _in_code = _t in all_code_preview
+                        _in_code = _in_code or ('g_p' + _t in all_code_preview)
+                        _in_code = _in_code or ('g_' + _t in all_code_preview)
+                        # Also check for common shortened prefixes: g_pCBSystem → CCBSystem
+                        if _t.startswith('CCB') and 'g_pCB' + _t[3:] in all_code_preview:
+                            _in_code = True
+                        if _in_code:
+                            all_included.add(_t)
+                            needed_classes.add(_t)
     # Also add headers included by the class's own header
     cls_hpath = header_dir / ("%s.h" % cls_name)
     if cls_hpath.exists():
