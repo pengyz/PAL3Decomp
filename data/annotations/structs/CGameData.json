@@ -10,7 +10,7 @@
     "14528": {
       "name": "m_pDialog",
       "type": "char *",
-      "source": "binary:Init _dF40 pattern | type_fix:int→void*(naming m_p)",
+      "source": "binary:Init _dF40 pattern | type_fix:int\u2192void*(naming m_p)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "14532": {
@@ -166,13 +166,13 @@
     "24": {
       "name": "m_pItemData",
       "type": "char *",
-      "source": "binary:raw_this6 | type_fix:int→void*(naming m_p)",
+      "source": "binary:raw_this6 | type_fix:int\u2192void*(naming m_p)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "28": {
       "name": "m_pMagicData",
       "type": "char *",
-      "source": "binary:raw_this7 | type_fix:int→void*(naming m_p)",
+      "source": "binary:raw_this7 | type_fix:int\u2192void*(naming m_p)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "256": {
@@ -258,7 +258,7 @@
     "28176": {
       "name": "m_pGameObj",
       "type": "char *",
-      "source": "ida_decomp:Init=v3, Render vtable+4 call, Destroy delete, 5 refs | type_fix:int→void*(new/delete+vtable)",
+      "source": "ida_decomp:Init=v3, Render vtable+4 call, Destroy delete, 5 refs | type_fix:int\u2192void*(new/delete+vtable)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "28180": {
@@ -269,7 +269,7 @@
     "28184": {
       "name": "m_pGameObjB",
       "type": "char *",
-      "source": "ida_decomp:Init = v12, Render deref[3829] byte check, 2 refs | type_fix:int→void*(deref pattern)",
+      "source": "ida_decomp:Init = v12, Render deref[3829] byte check, 2 refs | type_fix:int\u2192void*(deref pattern)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "68": {

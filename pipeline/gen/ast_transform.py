@@ -68,6 +68,13 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
     if static_methods is None:
         static_methods = set()
 
+    # Preprocess Hex-Rays ->N (offset N access) patterns before tree-sitter parsing.
+    # Hex-Rays generates "&var->N" meaning "address of member at offset N" which in C
+    # is just "var" (the pointer itself). "var->N" alone means "first DWORD at *var".
+    # tree-sitter can't parse ->N as valid C++, so we must normalize first.
+    code = re.sub(r'&((?:\w+\s*->\s*)+\w+)\s*->\s*0\b', r'\1', code)
+    code = re.sub(r'\b((?:\w+\s*->\s*)+\w+)\s*->\s*0\b', r'*((_DWORD *)\1)', code)
+
     code_bytes = code.encode('utf-8')
     tree = _parser.parse(code_bytes)
 

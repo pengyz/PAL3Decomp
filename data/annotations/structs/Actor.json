@@ -479,8 +479,8 @@
     },
     "496": {
       "name": "m_pSelfAtt",
-      "type": "int",
-      "source": "transfer_from_RoleSystem_off_920"
+      "type": "void*",
+      "source": "transfer_from_RoleSystem_off_920; type_fix:m_p*_int_to_void*"
     },
     "500": {
       "name": "m_nAnimFrame",
@@ -597,7 +597,7 @@
     },
     "0x00536310": {
       "name": "Actor::DestroyInternalData",
-      "signature": "void __thiscall(SceneObj *this)"
+      "signature": "void __thiscall(Actor *this)"
     },
     "0x005363A0": {
       "name": "Actor::ResetDefaultState",

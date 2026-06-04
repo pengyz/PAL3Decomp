@@ -275,10 +275,15 @@ def generate_free_funcs_cpp(funcs):
     lines.append('#include "pal3/gen/globals.h"')
     lines.append('#include "pal3/gen/free_functions.h"')
 
-    # Scan all function bodies for ClassName:: references and add includes
+    # Scan all function bodies for ClassName:: and (ClassName *) references, add includes
     import re
     all_code_text = '\n'.join(f.get('code', '') for f in funcs)
     referenced_classes = set(re.findall(r'\b([A-Z][A-Za-z0-9_]+)::', all_code_text))
+    # Also detect (ClassName *) casts — casting to a class pointer requires full definition
+    for m in re.finditer(r'\((\w+)\s*\*+\s*\)', all_code_text):
+        c = m.group(1)
+        if c[0].isupper():
+            referenced_classes.add(c)
     header_dir = store.project_root / "include" / "pal3" / "gen"
     for cls in sorted(referenced_classes):
         hpath = header_dir / ("%s.h" % cls)

@@ -74,13 +74,13 @@
     },
     "0": {
       "name": "m_pVtable",
-      "type": "int",
-      "source": "binary:gap_r2"
+      "type": "void*",
+      "source": "binary:gap_r2; type_fix:m_p*_int_to_void*"
     },
     "140": {
       "name": "m_pEffect",
       "type": "char *",
-      "source": "ida_decomp:_unverified_4BE4A0 deref as void**, 4 refs | type_fix:int→void*(deref+ptr semantics)",
+      "source": "ida_decomp:_unverified_4BE4A0 deref as void**, 4 refs | type_fix:int\u2192void*(deref+ptr semantics)",
       "note": "replaced void* with char* (IDB struct compat)"
     }
   },

@@ -328,13 +328,13 @@
     },
     "144": {
       "name": "m_pCurrentTask",
-      "type": "int",
-      "source": "binary_scan:9refs"
+      "type": "void*",
+      "source": "binary_scan:9refs; type_fix:m_p*_int_to_void*"
     },
     "148": {
       "name": "m_pTaskPtr",
-      "type": "int",
-      "source": "binary_scan:3refs"
+      "type": "void*",
+      "source": "binary_scan:3refs; type_fix:m_p*_int_to_void*"
     },
     "152": {
       "name": "m_nTimerCount",

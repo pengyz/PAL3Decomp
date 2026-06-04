@@ -45,12 +45,12 @@
     "524": {
       "name": "m_purgeEquipNum",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation; type_fix:m_p*_int_to_void*"
     },
     "528": {
       "name": "m_purgeWeaponNum",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation; type_fix:m_p*_int_to_void*"
     },
     "532": {
       "name": "m_avgWeaponWU",
@@ -681,5 +681,6 @@
       "name": "SwordUI::RenderSword",
       "signature": "gbTexture *__thiscall SwordUI::RenderSword(SwordUI *this)"
     }
-  }
+  },
+  "base_size": 72
 }

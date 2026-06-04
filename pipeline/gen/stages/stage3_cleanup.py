@@ -64,6 +64,58 @@ def _is_vftable_call(node):
     return False
 
 
+def _try_resolve_vftable(expr):
+    """Resolve (*(void (**)(Type*))(obj->__vftable + N))(args) → obj->Method(args).
+
+    Uses vtable slot annotations to map byte offset to method name.
+    Returns None if resolution fails.
+    """
+    m = re.match(
+        r'\(\s*\*\s*\(\s*void\s+'
+        r'\(\s*(?:__thiscall|__stdcall|\s*)\s*'
+        r'\*\s*\*\s*\)'
+        r'\s*\(\s*(\w+)\s*\*'
+        r'[^)]*\)\s*\)'
+        r'\s*\(\s*(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*\+\s*(\d+)\s*\)'
+        r'\s*\)\s*\((.*)\)\s*;\s*$',
+        expr, re.DOTALL
+    )
+    if not m:
+        return None
+
+    class_type = m.group(1)
+    obj_expr = m.group(2)
+    offset = int(m.group(3))
+    args = m.group(4)
+    slot_index = offset // 4
+
+    try:
+        import json, os
+        _d = os.path.dirname
+        ann_path = os.path.join(_d(_d(_d(_d(os.path.abspath(__file__))))),
+                                'data', 'annotations', 'structs', '%s.json' % class_type)
+        if not os.path.exists(ann_path):
+            return None
+        ann = json.load(open(ann_path))
+        vtables = ann.get('vtables', [])
+        if not vtables:
+            return None
+        slots = vtables[0].get('slots', [])
+        if slot_index >= len(slots):
+            return None
+        entry = ann.get('methods', {}).get(slots[slot_index].get('addr', ''), {})
+        name = entry.get('name', '')
+        if not name or '::' not in name:
+            return None
+        method = name.split('::')[-1]
+    except Exception:
+        return None
+
+    _args = [a.strip() for a in args.split(',')]
+    _args = [a for a in _args if a != obj_expr]
+    return '%s->%s(%s);' % (obj_expr, method, ', '.join(_args))
+
+
 def _get_ctor_call_info(node):
     """Detect explicit ctor: ((Type*)expr)->Type(args) where cast_type == method.
 
@@ -166,13 +218,8 @@ def _ast_cleanup(code, ctx):
                     edits[line_idx] = ('delete', None)
                     return
 
-            # Check for vftable virtual call
-            for child in _iter_all(node):
-                if _is_vftable_call(child):
-                    stripped = lines[line_idx].strip() if line_idx < len(lines) else ''
-                    if stripped.endswith(';') and not stripped.startswith('//'):
-                        edits[line_idx] = ('comment_vft', stripped)
-                    return
+            # Vftable calls are handled by regex preprocessing (above).
+            # AST detection is unreliable for complex function-pointer call syntax.
 
             # Check for explicit ctor/dtor call
             for child in _iter_all(node):
@@ -237,6 +284,8 @@ def _ast_cleanup(code, ctx):
         indent = line[:len(line) - len(line.lstrip())]
         if action == 'delete':
             continue
+        elif action == 'insert':
+            out.append(data)
         elif action == 'comment_vft':
             out.append(indent + '// [IDA_VFTABLE] ' + data)
         elif action == 'comment_ctor':
@@ -332,17 +381,50 @@ def run(code, ctx):
         # Base class ctor call: this->BaseClassName() → implicit (compiler auto-calls)
         code = re.sub(r'^\s*this->\w+\(\);\s*$', '', code, flags=re.MULTILINE)
 
-    # Comment out any remaining statements that reference __vftable
-    # (vtable is compiler-managed, never appears in real C++ source)
+    # Try to resolve vtable dispatch calls to direct method calls before commenting out.
+    # Pattern: (*(void (callconv **)(Type*))(obj->__vftable + N))(args);
+    # Matches optional __thiscall/__stdcall or bare (**) after void.
+    _vtable_re = re.compile(
+        r'\(\s*\*\s*\(\s*void\s+'
+        r'\(\s*(?:__thiscall|__stdcall|\s*)\s*'
+        r'\*\s*\*\s*\)'
+        r'\s*\(\s*(\w+)\s*\*'
+        r'[^)]*\)\s*\)'
+        r'\s*\(\s*(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*\+\s*(\d+)\s*\)'
+        r'\s*\)\s*\((.*?)\)\s*;\s*')
+    def _try_resolve_vtable(m):
+        cls, obj, off, args = m.group(1), m.group(2), int(m.group(3)), m.group(4)
+        slot = off // 4
+        try:
+            import json as _json, os as _os
+            _ap = _os.path.join(_os.path.dirname(_os.path.dirname(
+                _os.path.dirname(_os.path.abspath(__file__)))),
+                'data', 'annotations', 'structs', '%s.json' % cls)
+            if _os.path.exists(_ap):
+                _ann = _json.load(open(_ap))
+                _vt = _ann.get('vtables', [])
+                if _vt:
+                    _slots = _vt[0].get('slots', [])
+                    if slot < len(_slots):
+                        _entry = _ann.get('methods', {}).get(_slots[slot].get('addr', ''), {})
+                        _name = _entry.get('name', '')
+                        if _name and '::' in _name:
+                            _method = _name.split('::')[-1]
+                            _args = [a.strip() for a in args.split(',')]
+                            _args = [a for a in _args if a != obj]
+                            return '%s->%s(%s);' % (obj, _method, ', '.join(_args))
+        except: pass
+        return None
+    code = _vtable_re.sub(lambda m: _try_resolve_vtable(m) or m.group(0), code)
+
+    # Comment out remaining __vftable refs (unresolved = no method name for that slot)
     lines_arr = code.split('\n')
     result_lines = []
     i = 0
     while i < len(lines_arr):
         line = lines_arr[i]
-        if '__vftable' in line and '// [IDA_VFTABLE]' not in line:
-            # Comment this line and any continuation until we find a ;
+        if '__vftable' in line and '//' not in line:
             commented = ['// [VFTABLE] ' + line.lstrip()]
-            # Check if statement is complete (has ;) or continues on next lines
             depth = line.count('(') - line.count(')')
             has_semi = line.rstrip().endswith(';')
             i += 1

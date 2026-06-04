@@ -120,7 +120,7 @@
     "3076": {
       "name": "_field_C04",
       "type": "int",
-      "source": "binary:stru_D8B318_gap | type_fix:float→int_raw_decomp"
+      "source": "binary:stru_D8B318_gap | type_fix:float\u2192int_raw_decomp"
     },
     "3080": {
       "name": "_field_C08",
@@ -425,7 +425,7 @@
     "3992": {
       "name": "m_pCurrentBlock",
       "type": "char *",
-      "source": "binary:32x abs refs, malloc(48)+store pattern (0xF98) | type_fix:int→void*(malloc store)",
+      "source": "binary:32x abs refs, malloc(48)+store pattern (0xF98) | type_fix:int\u2192void*(malloc store)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "4000": {
@@ -506,7 +506,7 @@
     "4080": {
       "name": "m_pCmdTableFF0",
       "type": "char *",
-      "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array) | type_fix:int→void*(array base)",
+      "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array) | type_fix:int\u2192void*(array base)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "4084": {
@@ -907,7 +907,7 @@
     "4012": {
       "name": "m_pScriptData",
       "type": "char *",
-      "source": "binary:4x abs refs (0xFAC) | type_fix:int→void*(naming m_p)",
+      "source": "binary:4x abs refs (0xFAC) | type_fix:int\u2192void*(naming m_p)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "4108": {
@@ -918,7 +918,7 @@
     "4172": {
       "name": "m_pCmdArray104C",
       "type": "char *",
-      "source": "binary:5x abs refs, BF=mov edi,addr + [ecx*8+addr] (stride-8) | type_fix:int→void*(indexed access)",
+      "source": "binary:5x abs refs, BF=mov edi,addr + [ecx*8+addr] (stride-8) | type_fix:int\u2192void*(indexed access)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "4432": {

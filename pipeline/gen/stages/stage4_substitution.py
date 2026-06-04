@@ -1232,22 +1232,14 @@ def run(code, ctx):
     import re as _re_struct_arr
     # Match: g_StructName[digits] or &g_StructName[digits]
     # Only target known large game structs that appear as arrays in decomp output
-    _struct_globals = ['g_RoleSystemCombat', 'g_RoleSystemMain', 'g_SceneMgr']
-    for _sg in _struct_globals:
-        if _sg in code:
-            # &g_StructName[N] -> (int *)((char *)&g_StructName + N*4)
-            code = _re_struct_arr.sub(
-                r'&' + re.escape(_sg) + r'\[(\d+)\]',
-                r'(int *)((char *)&' + _sg + r' + \1*4)',
-                code
-            )
-            # g_StructName[N] on its own (not preceded by &)
-            # Must not match if preceded by &
-            code = _re_struct_arr.sub(
-                r'(?<!&)\b' + re.escape(_sg) + r'\[(\d+)\]',
-                r'*((int *)((char *)&' + _sg + r' + \1*4))',
-                code
-            )
+    # &g_ScriptRoleBuf[EXPR] -> (RoleSystem *)((char *)&g_ScriptRoleBuf + EXPR)
+    # Fixes C2676: cannot use operator[] on non-array object
+    if 'g_ScriptRoleBuf' in code:
+        code = re.sub(
+            r'&g_ScriptRoleBuf\[(.+?)\]',
+            r'(RoleSystem *)((char *)&g_ScriptRoleBuf + \1)',
+            code
+        )
 
     # Fix void* to unsigned long* assignment: add explicit cast
     # *((_DWORD*)this + N) = (void*)expr → *((unsigned long*)this + N) = (unsigned long)(void*)expr
