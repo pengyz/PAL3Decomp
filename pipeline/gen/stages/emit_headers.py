@@ -597,7 +597,15 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 _ann_overlay = load_annotations_data()
                 _ann_overlay_s = _ann_overlay.get('structs', {}).get(cls_name, {}).get('known_members', {})
                 if _ann_overlay_s:
-                    _ann_by_off = {int(k): v for k, v in _ann_overlay_s.items()}
+                    # Annotation offsets are ABSOLUTE (from struct start including base).
+                    # IDB offsets are RELATIVE (from derived class data, after base).
+                    # Adjust annotation offsets by subtracting base_size.
+                    _ann_sinfo = _ann_overlay.get('structs', {}).get(cls_name, {})
+                    _base_size = _ann_sinfo.get('base_size', 0) or 0
+                    _ann_by_off = {
+                        max(0, int(k) - _base_size): v
+                        for k, v in _ann_overlay_s.items()
+                    }
                     for _m in pdb_class['data_members']:
                         _moff = _m.get('offset', -1)
                         if _moff in _ann_by_off:
@@ -1129,9 +1137,13 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             mtype = _resolve_ordinal_type(m.get('type', 'int'))
             moffset = m.get('offset', 0)
 
-            # Skip members that belong to base class
+            # Skip members that belong to base class.
+            # IDB struct is non-flat (has _field_0 @0 for base) → skip base-size range.
+            # IDB struct is flat (no _field_0) → don't skip (already at derived offsets).
             if base_size > 0 and moffset < base_size:
-                continue
+                _first = members[0] if members else {}
+                if _first.get('name') == '_field_0' and _first.get('offset') == 0:
+                    continue
 
             if not mname:
                 mname = '_field_%04X' % moffset

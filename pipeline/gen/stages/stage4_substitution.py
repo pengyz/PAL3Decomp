@@ -1188,6 +1188,7 @@ def run(code, ctx):
     code = _fix_ulong_uint_cast(code)
 
     # Fix pointer to unsigned long assignment: *((_DWORD*)this+N) = (Class*)val
+    # Also handle *(_DWORD *)this->field = (Class*)val
     # MSVC6 requires explicit cast from typed pointer to unsigned long
     import re as _re_ptoul
     code = _re_ptoul.sub(
@@ -1196,6 +1197,7 @@ def run(code, ctx):
         r'\1(unsigned long)(\2\3)',
         code
     )
+
 
     # Fix empty if-body before else: Hex-Rays generates "if(cond)\nelse" without ";"
     code = re.sub(
