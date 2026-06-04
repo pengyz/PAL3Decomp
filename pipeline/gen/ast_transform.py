@@ -108,6 +108,25 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                     arg_nodes = [c for c in args_node.children
                                  if c.type not in ('(', ')', ',', 'comment')]
 
+                    # Primitive-type class names are Hex-Rays misattributions.
+                    # Strip the class qualifier to produce a free-function call.
+                    # E.g. BYTE::_sub_4CD0D0(args) → _sub_4CD0D0(args)
+                    _PRIMITIVE_TYPES = frozenset({
+                        'BYTE', 'CHAR', 'WPARAM', 'float', 'double',
+                        'int', 'long', 'short', 'char', 'void',
+                        '_BYTE', '_DWORD', '_WORD', 'signed',
+                        'unsigned', 'BOOL', 'DWORD', 'WORD',
+                    })
+                    if class_name in _PRIMITIVE_TYPES:
+                        arg_texts = [a.text.decode('utf-8') for a in arg_nodes]
+                        new_text = '%s(%s)' % (method_name, ', '.join(arg_texts))
+                        replacements.append((
+                            node.start_byte, node.end_byte, new_text))
+                        import sys as _sys
+                        print('[WARN] Hex-Rays misattribution: %s::%s → %s' % (
+                            class_name, method_name, new_text[:80]), file=_sys.stderr)
+                        return
+
                     if arg_nodes:
                         first_arg = arg_nodes[0]
                         first_arg_text = first_arg.text.decode('utf-8')
