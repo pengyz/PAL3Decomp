@@ -75,7 +75,7 @@ public:
     gbVec3D orientation;      // +0x20
     int field_2C;             // +0x2C
     float volume;             // +0x30
-    int loopCount;            // +0x34
+    int nLoop;            // +0x34
     float minDist;            // +0x38
     float maxDist;            // +0x3C
 
@@ -110,7 +110,7 @@ class gbSound2DNode {
 public:
     gbSoundData* soundData;   // +0x00
     void* sampleHandle;       // +0x04 (HSAMPLE)
-    int loopCount;            // +0x08
+    int nLoop;            // +0x08
     float volume;             // +0x0C
 
     static gbAudioManager* pAudioMgr;

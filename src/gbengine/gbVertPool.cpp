@@ -112,13 +112,13 @@ gbIndexPool::gbIndexPool(gbPoolType type, int indexSz, int total) {
     // Initialize free list
     this->freeList.pHead = NULL;
     this->freeList.pTail = NULL;
-    this->freeList.nCount = 0;
+    this->freeList.m_numNode = 0;
     this->freeList.pIterator = NULL;
 
     // Initialize used list
     this->usedList.pHead = NULL;
     this->usedList.pTail = NULL;
-    this->usedList.nCount = 0;
+    this->usedList.m_numNode = 0;
     this->usedList.pIterator = NULL;
 
     this->poolType = type;
@@ -300,11 +300,11 @@ gbIndexPool& gbIndexPool::operator=(const gbIndexPool& other) {
     totalSize = other.totalSize;
     freeList.pHead = other.freeList.pHead;
     freeList.pTail = other.freeList.pTail;
-    freeList.nCount = other.freeList.nCount;
+    freeList.m_numNode = other.freeList.m_numNode;
     freeList.pIterator = other.freeList.pIterator;
     usedList.pHead = other.usedList.pHead;
     usedList.pTail = other.usedList.pTail;
-    usedList.nCount = other.usedList.nCount;
+    usedList.m_numNode = other.usedList.m_numNode;
     usedList.pIterator = other.usedList.pIterator;
     return *this;
 }
@@ -459,13 +459,13 @@ gbVertexPool::gbVertexPool(gbPoolType type, unsigned int vertType, int total) {
     // Initialize free list
     this->freeList.pHead = NULL;
     this->freeList.pTail = NULL;
-    this->freeList.nCount = 0;
+    this->freeList.m_numNode = 0;
     this->freeList.pIterator = NULL;
 
     // Initialize used list
     this->usedList.pHead = NULL;
     this->usedList.pTail = NULL;
-    this->usedList.nCount = 0;
+    this->usedList.m_numNode = 0;
     this->usedList.pIterator = NULL;
 
     this->poolType = type;
@@ -700,11 +700,11 @@ gbVertexPool& gbVertexPool::operator=(const gbVertexPool& other) {
     stride = other.stride;
     freeList.pHead = other.freeList.pHead;
     freeList.pTail = other.freeList.pTail;
-    freeList.nCount = other.freeList.nCount;
+    freeList.m_numNode = other.freeList.m_numNode;
     freeList.pIterator = other.freeList.pIterator;
     usedList.pHead = other.usedList.pHead;
     usedList.pTail = other.usedList.pTail;
-    usedList.nCount = other.usedList.nCount;
+    usedList.m_numNode = other.usedList.m_numNode;
     usedList.pIterator = other.usedList.pIterator;
     return *this;
 }
@@ -720,7 +720,7 @@ gbVertPoolMgr::gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5) 
     // Initialize index pool list
     this->indexPoolList.pHead = NULL;
     this->indexPoolList.pTail = NULL;
-    this->indexPoolList.nCount = 0;
+    this->indexPoolList.m_numNode = 0;
     this->indexPoolList.pIterator = NULL;
 
     // Initialize src vertex pool chain area

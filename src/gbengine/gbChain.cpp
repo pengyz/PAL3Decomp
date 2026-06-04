@@ -36,7 +36,7 @@ gbChain1DNode& gbChain1DNode::operator=(const gbChain1DNode& other) {
 gbChain1D::gbChain1D(void) {
     pTail = NULL;
     pHead = NULL;
-    nCount = 0;
+    m_numNode = 0;
 }
 
 gbChain1D::~gbChain1D() {
@@ -51,7 +51,7 @@ gbChain1D::~gbChain1D() {
 gbChain1D& gbChain1D::operator=(const gbChain1D& other) {
     pHead = other.pHead;
     pTail = other.pTail;
-    nCount = other.nCount;
+    m_numNode = other.m_numNode;
     pIterator = other.pIterator;
     return *this;
 }
@@ -59,7 +59,7 @@ gbChain1D& gbChain1D::operator=(const gbChain1D& other) {
 void gbChain1D::ClearAllNodePtr(void) {
     pTail = NULL;
     pHead = NULL;
-    nCount = 0;
+    m_numNode = 0;
 }
 
 #pragma auto_inline(off)
@@ -70,7 +70,7 @@ void gbChain1D::AddNodeOnHead(gbChain1DNode* node) {
     pHead = node;
     if (!v2)
         pTail = node;
-    nCount++;
+    m_numNode++;
 }
 
 void gbChain1D::AddNodeOnTail(gbChain1DNode* node) {
@@ -83,7 +83,7 @@ void gbChain1D::AddNodeOnTail(gbChain1DNode* node) {
         v2->pNext = node;
         pTail = node;
     }
-    nCount++;
+    m_numNode++;
 }
 
 void gbChain1D::AddNode(gbChain1DNode* node) {
@@ -96,7 +96,7 @@ void gbChain1D::AddNode(gbChain1DNode* node) {
         v2->pNext = node;
         pTail = node;
     }
-    nCount++;
+    m_numNode++;
 }
 
 void gbChain1D::InsertBefore(gbChain1DNode* newNode, gbChain1DNode* beforeNode) {
@@ -113,7 +113,7 @@ void gbChain1D::InsertBefore(gbChain1DNode* newNode, gbChain1DNode* beforeNode) 
             pTail = newNode;
             pHead = newNode;
         }
-        nCount++;
+        m_numNode++;
         return;
     }
 
@@ -131,7 +131,7 @@ void gbChain1D::InsertBefore(gbChain1DNode* newNode, gbChain1DNode* beforeNode) 
     }
     prev->pNext = newNode;
     newNode->pNext = beforeNode;
-    nCount++;
+    m_numNode++;
 }
 
 void gbChain1D::InsertAfter(gbChain1DNode* newNode, gbChain1DNode* afterNode) {
@@ -143,7 +143,7 @@ void gbChain1D::InsertAfter(gbChain1DNode* newNode, gbChain1DNode* afterNode) {
         pHead = newNode;
         if (!tail) {
             pTail = newNode;
-            nCount++;
+            m_numNode++;
             return;
         }
     } else {
@@ -152,7 +152,7 @@ void gbChain1D::InsertAfter(gbChain1DNode* newNode, gbChain1DNode* afterNode) {
         if (pTail == afterNode)
             pTail = newNode;
     }
-    nCount++;
+    m_numNode++;
 }
 
 void gbChain1D::DelNodeFromChain(gbChain1DNode* node) {
@@ -163,11 +163,11 @@ void gbChain1D::DelNodeFromChain(gbChain1DNode* node) {
         if (node == pTail) {
             pTail = NULL;
             pHead = NULL;
-            nCount--;
+            m_numNode--;
             return;
         }
         pHead = node->pNext;
-        nCount--;
+        m_numNode--;
         return;
     }
 
@@ -178,7 +178,7 @@ void gbChain1D::DelNodeFromChain(gbChain1DNode* node) {
             prev = cur;
             cur = cur->pNext;
             if (!cur) {
-                nCount--;
+                m_numNode--;
                 return;
             }
         }
@@ -186,7 +186,7 @@ void gbChain1D::DelNodeFromChain(gbChain1DNode* node) {
             pTail = prev;
         prev->pNext = node->pNext;
     }
-    nCount--;
+    m_numNode--;
 }
 
 bool gbChain1D::IsContainNode(gbChain1DNode* node) {
@@ -201,7 +201,7 @@ bool gbChain1D::IsContainNode(gbChain1DNode* node) {
 }
 
 int gbChain1D::GetNumNode(void) {
-    return nCount;
+    return m_numNode;
 }
 
 gbChain1DNode* gbChain1D::BeginIterate(void) {
@@ -230,7 +230,7 @@ gbChain1DNode* gbChain1D::operator[](int index) {
 
 
 /* ================================================================
- * Implementation: gbChain2DNode
+ * MARKER_STARTNode
  * ================================================================ */
 
 gbChain2DNode::gbChain2DNode(void) {
@@ -252,7 +252,7 @@ gbChain2DNode& gbChain2DNode::operator=(const gbChain2DNode& other) {
 
 
 /* ================================================================
- * Implementation: gbChain2D
+ * MARKER_START
  * ================================================================ */
 
 gbChain2D::gbChain2D(void) {
@@ -378,7 +378,7 @@ gbNBTreeNode& gbNBTreeNode::operator=(const gbNBTreeNode& other) {
     pParent = other.pParent;
     children.pHead = other.children.pHead;
     children.pTail = other.children.pTail;
-    children.nCount = other.children.nCount;
+    children.m_numNode = other.children.m_numNode;
     children.pIterator = other.children.pIterator;
     return *this;
 }

@@ -23,9 +23,9 @@ public:
 
 class gbChain1D {
 public:
-    gbChain1DNode* pHead;      // +0x00
-    gbChain1DNode* pTail;      // +0x04
-    int nCount;                // +0x08
+    gbChain1DNode* pHead;        // +0x00
+    gbChain1DNode* pTail;        // +0x04
+    int m_numNode;               // +0x08 (was nCount)
     gbChain1DNode* pIterator;  // +0x0C
 
     gbChain1D(void);
