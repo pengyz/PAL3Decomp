@@ -215,7 +215,7 @@ void gbSceneGraph::Begin(gbCamera* camera) {
 gbRenderInfoObj* gbSceneGraph::NewOneRenderObj(gbVisNode* node) {
     gbRenderInfoObj* obj = &((gbRenderInfoObj*)renderObjPool)[numRenderObjs];
     obj->pNode = node;
-    obj->renderPriority = node->renderPriority;
+    obj->Priority = node->renderPriority;
     memcpy(&obj->worldMatrix, pGfxManager->pMatrixStack[1]->GetTop(), sizeof(gbMatrix4));
     numRenderObjs++;
     return obj;
@@ -302,9 +302,9 @@ static int __cdecl RenderObjCompare(const void* a, const void* b) {
     int idxA = *(const int*)a;
     int idxB = *(const int*)b;
     gbRenderInfoObj* pool = (gbRenderInfoObj*)s_pRenderObjPool;
-    // Sort by: isOpaque (opaque first), then by effect pointer
-    int opaqueA = pool[idxA].isOpaque & 1;
-    int opaqueB = pool[idxB].isOpaque & 1;
+    // Sort by: Flags (opaque first), then by effect pointer
+    int opaqueA = pool[idxA].Flags & 1;
+    int opaqueB = pool[idxB].Flags & 1;
     if (opaqueA != opaqueB)
         return opaqueB - opaqueA;  // opaque (1) before transparent (0)
     // Within same opacity class, sort by effect pointer for batching
@@ -446,7 +446,7 @@ void gbSceneGraph::End(void) {
     numOpaque = numObjs;
     for (i = 0; i < numObjs; i++) {
         gbRenderInfoObj* obj = &((gbRenderInfoObj*)renderObjPool)[sortIndices[i]];
-        if ((obj->isOpaque & 1) == 0) {
+        if ((obj->Flags & 1) == 0) {
             numOpaque = i;
             break;
         }

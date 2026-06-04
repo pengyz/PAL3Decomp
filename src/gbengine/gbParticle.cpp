@@ -1274,12 +1274,12 @@ void gbAnimTreeNode::SetPriorityInternal(int priority) {
         visNode->SetRenderPriority(priority);
     }
     int i = 0;
-    if (i < children.nCount) {
+    if (i < children.m_numNode) {
         do {
             gbAnimTreeNode* child = (gbAnimTreeNode*)children[i];
             child->SetPriorityInternal(priority);
             i++;
-        } while (i < children.nCount);
+        } while (i < children.m_numNode);
     }
 }
 
@@ -1397,12 +1397,12 @@ void gbAnimNodeGroup::SetPriority(int p0) {
         visNode->SetRenderPriority(p0);
     }
     int i = 0;
-    if (i < node->children.nCount) {
+    if (i < node->children.m_numNode) {
         do {
             gbAnimTreeNode* child = (gbAnimTreeNode*)node->children[i];
             child->SetPriorityInternal(p0);
             i++;
-        } while (i < node->children.nCount);
+        } while (i < node->children.m_numNode);
     }
 }
 

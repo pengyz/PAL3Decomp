@@ -56,7 +56,7 @@ gbSound3DNode::gbSound3DNode()
     sampleHandle = NULL;
     minDist = 10000.0f;
     maxDist = 100000.0f;
-    loopCount = 1;
+    nLoop = 1;
     volume = 1.0f;
     field_2C = 0;
     position.Zero();
@@ -95,7 +95,7 @@ gbSound3DNode& gbSound3DNode::operator=(const gbSound3DNode& other)
     orientation.z = other.orientation.z;
     field_2C = other.field_2C;
     volume = other.volume;
-    loopCount = other.loopCount;
+    nLoop = other.nLoop;
     minDist = other.minDist;
     maxDist = other.maxDist;
     return *this;
@@ -124,11 +124,11 @@ void gbSound3DNode::Play()
         if (!sampleHandle)
             pAudioMgr->AttachSampleHandle(this);
         H3DSAMPLE h = (H3DSAMPLE)sampleHandle;
-        AIL_set_3D_sample_volume(h, (int)(pAudioMgr->volume3D * volume * 127.0f));
+        AIL_set_3D_sample_volume(h, (int)(pAudioMgr->S_3DMasterVol * volume * 127.0f));
         float negZ = -position.z;
         AIL_set_3D_position(h, position.x, position.y, negZ);
         AIL_set_3D_sample_distances(h, maxDist, minDist);
-        AIL_set_3D_sample_loop_count(h, loopCount);
+        AIL_set_3D_sample_loop_count(h, nLoop);
         AIL_set_3D_velocity(h, 0.0f, 0.0f, 0.0f, 1.0f);
         AIL_auto_update_3D_position(h, 0);
         AIL_start_3D_sample(h);
@@ -182,7 +182,7 @@ bool gbSound3DNode::IfAttached()
 // 0x100024f0
 void gbSound3DNode::SetLoopNum(int num)
 {
-    loopCount = num;
+    nLoop = num;
 }
 
 // 0x10002500
@@ -238,7 +238,7 @@ float gbSound3DNode::GetMinDist()
 // GetPlayLoop
 int gbSound3DNode::GetPlayLoop()
 {
-    return loopCount;
+    return nLoop;
 }
 
 // 0x10004420
@@ -258,7 +258,7 @@ gbSound2DNode::gbSound2DNode()
 {
     soundData = NULL;
     sampleHandle = NULL;
-    loopCount = 1;
+    nLoop = 1;
     volume = 1.0f;
 }
 
@@ -292,8 +292,8 @@ void gbSound2DNode::Play()
         if (!sampleHandle)
             pAudioMgr->AttachSampleHandle(this);
         HSAMPLE h = (HSAMPLE)sampleHandle;
-        AIL_set_sample_volume(h, (int)(pAudioMgr->volume2D * volume * 127.0f));
-        AIL_set_sample_loop_count(h, loopCount);
+        AIL_set_sample_volume(h, (int)(pAudioMgr->S_2DMasterVol * volume * 127.0f));
+        AIL_set_sample_loop_count(h, nLoop);
         AIL_start_sample(h);
     }
 }
@@ -342,7 +342,7 @@ void gbSound2DNode::SetVolume(float vol)
 // 0x10002630
 void gbSound2DNode::SetLoopNum(int num)
 {
-    loopCount = num;
+    nLoop = num;
 }
 
 // operator=
@@ -351,7 +351,7 @@ gbSound2DNode& gbSound2DNode::operator=(const gbSound2DNode& other)
     if (this != &other) {
         soundData = other.soundData;
         sampleHandle = other.sampleHandle;
-        loopCount = other.loopCount;
+        nLoop = other.nLoop;
         volume = other.volume;
     }
     return *this;

@@ -661,7 +661,7 @@ void gbAudioManager::AttachSampleHandle(gbSound2DNode* node) {
     if (vol > 127) vol = 127;
     if (vol < 0) vol = 0;
     AIL_set_sample_volume(sample, vol);
-    AIL_set_sample_loop_count(sample, node->loopCount);
+    AIL_set_sample_loop_count(sample, node->nLoop);
 
     // Link node to slot
     node->sampleHandle = sample;

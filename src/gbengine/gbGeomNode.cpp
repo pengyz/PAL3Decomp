@@ -1069,7 +1069,7 @@ void gbGeomNode::GetBoundSphere(gbSphere* sphere) {
 void gbGeomNode::SetAnimLoop(int loop) {
     animLoop = loop;
     loopPast = 0;
-    for (int i = 0; i < children.nCount; i++) {
+    for (int i = 0; i < children.m_numNode; i++) {
         gbGeomNode* child = (gbGeomNode*)children[i];
         child->SetAnimLoop(loop);
     }

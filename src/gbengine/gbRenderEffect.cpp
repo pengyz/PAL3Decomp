@@ -29,7 +29,7 @@ gbRenderEffect::gbRenderEffect(ID3DXEffect* pEffect, unsigned int flags) {
 
     int i = 0;
     do {
-        m_paramHandles[i] = pEffect->GetParameterByName(0, s_paramNames[i]);
+        m_ParamHandle[i] = pEffect->GetParameterByName(0, s_paramNames[i]);
     } while (++i < 8);
 }
 
@@ -37,7 +37,7 @@ gbRenderEffect::gbRenderEffect(const gbRenderEffect& other) : gbResource(other) 
     m_pEffect = other.m_pEffect;
     m_dwFlags = other.m_dwFlags;
     m_pDecl = other.m_pDecl;
-    memcpy(m_paramHandles, other.m_paramHandles, 0x20);
+    memcpy(m_ParamHandle, other.m_ParamHandle, 0x20);
 }
 
 gbRenderEffect::~gbRenderEffect() {
@@ -54,7 +54,7 @@ gbRenderEffect& gbRenderEffect::operator=(const gbRenderEffect& other) {
     m_dwFlags = other.m_dwFlags;
     m_pDecl = other.m_pDecl;
     for (int i = 0; i < 8; i++) {
-        m_paramHandles[i] = other.m_paramHandles[i];
+        m_ParamHandle[i] = other.m_ParamHandle[i];
     }
     return *this;
 }
@@ -117,11 +117,11 @@ void gbRenderEffect::Apply(void) {
 }
 
 void gbRenderEffect::GetVariant(enum GBPARAMHANDLE handle, void* pValue) {
-    m_pEffect->GetValue(m_paramHandles[handle], pValue, (UINT)-1);
+    m_pEffect->GetValue(m_ParamHandle[handle], pValue, (UINT)-1);
 }
 
 void gbRenderEffect::SetVariant(enum GBPARAMHANDLE handle, void* pValue) {
-    m_pEffect->SetValue(m_paramHandles[handle], pValue, (UINT)-1);
+    m_pEffect->SetValue(m_ParamHandle[handle], pValue, (UINT)-1);
 }
 
 void gbRenderEffect::GetVariant(char* name, void* pValue) {
