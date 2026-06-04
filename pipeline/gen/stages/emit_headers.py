@@ -822,8 +822,12 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 fwd_types.add(t)
         include_types = resolved_includes
 
-    # Also resolve gbengine fwd types — if they have a header, we can fwd-declare
-    # (pointer-only usage doesn't need the header)
+    # gbengine types: always include full header instead of forward-declaring
+    # This ensures the generated code can access gbengine struct members.
+    for _t in list(fwd_types):
+        if _t in _gbengine_type_to_header:
+            fwd_types.discard(_t)
+            include_types.add(_t)
 
     # Emit includes
     if needs_stl:
