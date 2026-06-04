@@ -167,6 +167,8 @@ public:
 
     // 0x10004190 (12B) - Check if texture is initialized
     int IsInit(void);
+    // Vtable dispatch: check if texture data is loaded
+    virtual int IsLoaded(...);
 
     // 0x10020760 (102B) - Create empty texture
     void CreateTexture(int w, int h, gbPixelFmtType fmt, int mips);
