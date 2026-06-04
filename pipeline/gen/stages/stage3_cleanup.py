@@ -334,7 +334,6 @@ def run(code, ctx):
 
     # Comment out any remaining statements that reference __vftable
     # (vtable is compiler-managed, never appears in real C++ source)
-    # Handle multi-line: if __vftable is in a function call, comment until the closing ;
     lines_arr = code.split('\n')
     result_lines = []
     i = 0

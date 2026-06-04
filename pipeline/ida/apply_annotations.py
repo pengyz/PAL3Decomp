@@ -655,6 +655,32 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             binary_size, actual_size))
 
     result_tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+    
+    # Post-create: fix __vftable type for classes with vtables
+    # build_struct_decl creates typed vtbl_ADDR *__vftable, but annotations
+    # overwrite it with int. This ensures the vtable pointer has the correct type.
+    if struct_info and struct_info.get("vtables"):
+        _va0 = struct_info["vtables"][0].get("addr", "")
+        if _va0:
+            _vtn = "vtbl_%s" % _va0[2:]
+            _vtif = ida_typeinf.tinfo_t()
+            if _vtif.get_named_type(til, _vtn) and _vtif.get_size() < 10000:
+                _vp_tif = ida_typeinf.tinfo_t()
+                _vp_decl = "%s *_vp;" % _vtn
+                ida_typeinf.parse_decl(_vp_tif, til, _vp_decl, ida_typeinf.PT_VAR)
+                if _vp_tif.is_correct() and _vp_tif.get_size() == 4:
+                    _udt2 = ida_typeinf.udt_type_data_t()
+                    if result_tinfo.get_udt_details(_udt2):
+                        for _i in range(_udt2.size()):
+                            try:
+                                _um = _udt2[_i]
+                                if _um.get_name() == "__vftable":
+                                    _um.type = _vp_tif  # set typed vtable pointer
+                                    _r2 = ida_typeinf.tinfo_t()
+                                    if _r2.create_udt(_udt2, ida_typeinf.BTF_STRUCT):
+                                        _r2.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+                                    break
+                            except: pass
     return (True, None)
 
 

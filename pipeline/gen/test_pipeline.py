@@ -156,5 +156,51 @@ class TestStage3Cleanup(unittest.TestCase):
         self.assertNotIn('.0', result)
 
 
+class TestVftableFallback(unittest.TestCase):
+    """Test vftable cleanup fallback (IDA handles conversion; codegen just comments)"""
+
+    def test_vftable_assign_commented(self):
+        """__vftable = value should be commented out (compiler-managed)"""
+        code = 'this->__vftable = &off_123456;'
+        result = stage3_run(code, _make_ctx(cls_name='Test'))
+        self.assertIn('// [VFTABLE]', result)
+
+    def test_normal_method_unchanged(self):
+        """Regular virtual method calls should not be affected"""
+        code = 'this->DoSomething(1, 2);'
+        result = stage3_run(code, _make_ctx(cls_name='Test'))
+        self.assertEqual(result.strip(), code.strip())
+
+    def test_vftable_direct_call_commented(self):
+        """(*(void(**)(Type*))(obj->__vftable))(obj) -> commented (fallback)"""
+        code = '(*(void (**)(SceneObj *))(this->m_pObj->__vftable))(this->m_pObj);'
+        result = stage3_run(code, _make_ctx(cls_name='Test'))
+        self.assertIn('// [VFTABLE]', result)
+
+    def test_vftable_offset4_call_commented(self):
+        """(*(void(**)(Type*))(obj->__vftable + 4))(obj) -> commented (fallback)"""
+        code = '(*(void (**)(SceneObj *))(this->m_pObj->__vftable + 4))(this->m_pObj);'
+        result = stage3_run(code, _make_ctx(cls_name='Test'))
+        self.assertIn('// [VFTABLE]', result)
+
+    def test_mixed_normal_and_vftable(self):
+        """Normal code with vftable refs should comment only vftable lines"""
+        code = '''void Test::Foo() {
+    this->NormalCall(1);
+    this->__vftable = 0;
+    this->OtherCall(2);
+}'''
+        result = stage3_run(code, _make_ctx(cls_name='Test'))
+        self.assertIn('this->NormalCall(1)', result)
+        self.assertIn('// [VFTABLE]', result)
+        self.assertIn('this->OtherCall(2)', result)
+
+    def test_slot0_vftable_call_commented(self):
+        """((Type*)&obj->__vftable)->Method(args) -> commented (IDA layer handles)"""
+        code = '((UIWnd *)&this->m_wnd->__vftable)->Destroy(0);'
+        result = stage3_run(code, _make_ctx(cls_name='Test'))
+        self.assertIn('// [VFTABLE]', result)
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)
