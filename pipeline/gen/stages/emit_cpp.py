@@ -211,11 +211,22 @@ def _detect_needed_includes(cls_name, methods):
                 fwd_m = re.match(r'^\s*class\s+(\w+)\s*;\s*(?://.*)?$', hline)
                 if fwd_m:
                     fwd_type = fwd_m.group(1)
-                    if (fwd_type in known_headers and fwd_type not in all_included
-                            and not fwd_type.startswith('gb')
-                            and fwd_type in all_code_preview):
-                        fwd_types.add(fwd_type)
-                        all_included.add(fwd_type)
+                    if fwd_type in known_headers and fwd_type not in all_included \
+                            and not fwd_type.startswith('gb'):
+                        # Check if the type is used: exact name, member access, or field type
+                        _used = fwd_type in all_code_preview
+                        # Check if any struct member type matches (e.g., ObjectCamera as field type)
+                        if not _used:
+                            for _sn, _sm in store.struct_members.items():
+                                for _so, (_sfn, _sft) in _sm.items():
+                                    if fwd_type in _sft and _sfn in all_code_preview:
+                                        _used = True
+                                        break
+                                if _used:
+                                    break
+                        if _used:
+                            fwd_types.add(fwd_type)
+                            all_included.add(fwd_type)
     needed_classes |= fwd_types
 
     return needed_classes
