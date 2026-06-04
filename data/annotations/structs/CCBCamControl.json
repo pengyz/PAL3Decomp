@@ -302,26 +302,6 @@
       "signature": "int __thiscall _misattrib_UIListBox::ShowAllSlots(UIListBox *this, int nVal)",
       "_misattrib_evidence": "max_offset=394816>class_size=1208"
     },
-    "0x004AA1B0": {
-      "name": "CCBCamControl::ResetAllListBoxes",
-      "signature": "int __thiscall _misattrib_UIListBox::ResetAllLists(UIListBox *this)",
-      "_misattrib_evidence": "max_offset=394816>class_size=1208"
-    },
-    "0x004AA230": {
-      "name": "CCBCamControl::ShowSlotUI",
-      "signature": "int __thiscall _misattrib_UIListBox::ShowSlotUI(UIListBox *this)",
-      "_misattrib_evidence": "max_offset=397552>class_size=1208"
-    },
-    "0x004AA320": {
-      "name": "CCBCamControl::InsertUIListBox",
-      "signature": "void __thiscall _misattrib_UIListBox::InsertAndLayout(UIListBox *this, int nVal)",
-      "_misattrib_evidence": "max_offset=400536>class_size=1208"
-    },
-    "0x004AA680": {
-      "name": "CCBCamControl::ProcessListInput",
-      "signature": "void __thiscall _misattrib_UIListBox::ProcessListInput(UIListBox *this, int nVal)",
-      "_misattrib_evidence": "max_offset=397552>class_size=1208"
-    },
     "0x004EBD30": {
       "name": "CCBCamControl::ShowCameraDialog",
       "signature": "void __thiscall CCBCamControl::ShowCameraDialog(CCBCamControl *this, HWND hDlg)"
@@ -330,10 +310,10 @@
       "name": "CCBCamControl::ReadCameraDialog",
       "signature": "void __thiscall CCBCamControl::ReadCameraDialog(CCBCamControl *this, HWND hDlg)"
     },
-    "0x00521B00": {
-      "name": "CCBCamControl::LoadSaveData",
-      "signature": "int __thiscall _misattrib_CCBStageRole::LoadSaveData(CCBStageRole *this, int *p_DWORD)",
-      "_misattrib_evidence": "max_offset=328044>class_size=6848"
+    "0x005058E0": {
+      "name": "CCBCamControl::SwitchEditorCamPos",
+      "signature": "bool __thiscall(CCBCamControl *this)",
+      "source": "pdb_ret"
     }
   }
 }

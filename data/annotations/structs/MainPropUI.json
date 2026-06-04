@@ -417,13 +417,6 @@
       "signature": "int __thiscall MainPropUI::~MainPropUI(MainPropUI *this)",
       "_misattrib_evidence": "max_offset=219676>class_size=10248"
     },
-    "0x004867F0": {
-      "name": "MainPropUI::InitChildPanels",
-      "signature": "int __thiscall(RenderTarget *this)",
-      "_misattrib_evidence": "max_offset=307036>class_size=200",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic"
-    },
     "0x004870C0": {
       "name": "MainPropUI::InitNPCPanel",
       "signature": "void __thiscall(RenderTarget *this)",
@@ -440,20 +433,10 @@
       "name": "MainPropUI::SetPage",
       "signature": "int __thiscall(MainPropUI *this, unsigned char nPageIdx)"
     },
-    "0x0048C610": {
-      "name": "MainPropUI::HandleCameraEvent",
-      "signature": "BOOL __thiscall(CameraCtrl *this, int nParam, BOOL bFlag)",
-      "_misattrib_evidence": "max_offset=207612>class_size=4088"
-    },
     "0x0047A400": {
       "name": "MainPropUI::InitParticleRenders",
       "signature": "int __thiscall RenderTarget::InitParticleRenders(RenderTarget *this)",
       "_misattrib_evidence": "max_offset=209000>class_size=200"
-    },
-    "0x0048D5D0": {
-      "name": "MainPropUI::CreateCameraUI",
-      "signature": "void *__thiscall(CameraCtrl *this, int nVal)",
-      "_misattrib_evidence": "max_offset=307028>class_size=4088"
     },
     "0x00491B40": {
       "name": "MainPropUI::ShowPage",
@@ -503,11 +486,6 @@
       "name": "MainPropUI::RenderWithEffects",
       "signature": "char __thiscall _misattrib_RenderTarget::RenderWithEffects(RenderTarget *this)",
       "_misattrib_evidence": "max_offset=307040>class_size=200"
-    },
-    "0x0048EE60": {
-      "name": "MainPropUI::ProcessSaveSlotNav",
-      "signature": "char __thiscall CameraCtrl::ProcessSaveSlotNav(CameraCtrl *this)",
-      "_misattrib_evidence": "max_offset=205784>class_size=4088"
     },
     "0x0048EF80": {
       "name": "MainPropUI::ValidateDevice",

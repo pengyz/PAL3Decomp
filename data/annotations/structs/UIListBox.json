@@ -332,8 +332,10 @@
       "_misattrib_evidence": "max_offset=1196>class_size=308"
     },
     "0x00449C20": {
-      "name": "UIListBox::DestroyAllSlots",
-      "signature": "int __thiscall UIListBox::DestroyAllSlots(UIListBox *this)"
+      "name": "UIListBox::Render",
+      "signature": "int __thiscall(UIListBox *this)",
+      "source": "vtable_migrated",
+      "ordinal": 1
     },
     "0x004525E0": {
       "name": "UIListBox::_scalar_dtor",
@@ -477,6 +479,26 @@
       "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
       "source": "vtable_migrated",
       "ordinal": 8
+    },
+    "0x004AA1B0": {
+      "name": "UIListBox::ResetAllListBoxes",
+      "signature": "int __thiscall _misattrib_UIListBox::ResetAllLists(UIListBox *this)",
+      "_misattrib_evidence": "max_offset=394816>class_size=1208"
+    },
+    "0x004AA230": {
+      "name": "UIListBox::ShowSlotUI",
+      "signature": "int __thiscall _misattrib_UIListBox::ShowSlotUI(UIListBox *this)",
+      "_misattrib_evidence": "max_offset=397552>class_size=1208"
+    },
+    "0x004AA320": {
+      "name": "UIListBox::InsertUIListBox",
+      "signature": "void __thiscall _misattrib_UIListBox::InsertAndLayout(UIListBox *this, int nVal)",
+      "_misattrib_evidence": "max_offset=400536>class_size=1208"
+    },
+    "0x004AA680": {
+      "name": "UIListBox::ProcessListInput",
+      "signature": "void __thiscall _misattrib_UIListBox::ProcessListInput(UIListBox *this, int nVal)",
+      "_misattrib_evidence": "max_offset=397552>class_size=1208"
     }
   },
   "vtables": [

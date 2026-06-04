@@ -574,11 +574,6 @@
       "name": "CCBUI::Destroy",
       "signature": "void __thiscall(CCBUI *this)"
     },
-    "0x00516940": {
-      "name": "CCBUI::InitResultPanels",
-      "signature": "void __thiscall CCBUI::InitResultPanels(CCBUI *this)",
-      "_misattrib_evidence": "max_offset=1016>class_size=208"
-    },
     "0x005184E0": {
       "name": "CCBUI::InitRoleDisplay",
       "signature": "int __thiscall(CCBUI *this, int a_128)"
@@ -688,10 +683,6 @@
       "name": "CCBUI::ShowLineupWindow",
       "signature": "void __thiscall(CCBResultWindow *this, BOOL bShow)"
     },
-    "0x00519660": {
-      "name": "CCBUI::IsImbibeNimbusNotFinish",
-      "signature": "BOOL __thiscall(CCBResultWindow *this, int nVal, int nVal2)"
-    },
     "0x00517BA0": {
       "name": "CCBUI::ShowAIWindow",
       "signature": "void __thiscall(NPC *this)"
@@ -721,6 +712,16 @@
       "_misattrib_evidence": "max_offset=100572>class_size=2632",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
+    },
+    "0x005273D0": {
+      "name": "CCBUI::PlayResultSound",
+      "signature": "void __thiscall _misattrib_CCBUI::PlayResultSound(CCBUI *this)",
+      "_misattrib_evidence": "max_offset=101028>class_size=2632"
+    },
+    "0x00527610": {
+      "name": "CCBUI::UpdateCaptions",
+      "signature": "void __thiscall _misattrib_CCBUI::UpdateCaptions(CCBUI *this)",
+      "_misattrib_evidence": "max_offset=99200>class_size=2632"
     }
   },
   "base_size": 72
