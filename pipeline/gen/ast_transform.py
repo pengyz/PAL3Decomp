@@ -72,8 +72,8 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
     # Hex-Rays generates "&var->N" meaning "address of member at offset N" which in C
     # is just "var" (the pointer itself). "var->N" alone means "first DWORD at *var".
     # tree-sitter can't parse ->N as valid C++, so we must normalize first.
-    code = re.sub(r'&((?:\w+\s*->\s*)+\w+)\s*->\s*0\b', r'\1', code)
-    code = re.sub(r'\b((?:\w+\s*->\s*)+\w+)\s*->\s*0\b', r'*((_DWORD *)\1)', code)
+    code = re.sub(r'&(\w+(?:\s*->\s*\w+)*)\s*->\s*0\b', r'\1', code)
+    code = re.sub(r'\b(\w+(?:\s*->\s*\w+)*)\s*->\s*0\b', r'*((_DWORD *)\1)', code)
 
     code_bytes = code.encode('utf-8')
     tree = _parser.parse(code_bytes)
@@ -168,10 +168,11 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                             # Simple var: cast to class type for safety
                             # If the variable is a global OBJECT (not pointer), add &
                             # E.g. g_RoleSystemMain (type RoleSystem) -> &g_RoleSystemMain
+                            _strip = first_arg_text.lstrip(':')
                             _needs_addr = (
                                 class_name[0].isupper()
-                                and first_arg_text.startswith('g_')
-                                and first_arg_text not in static_methods
+                                and _strip.startswith('g_')
+                                and _strip not in static_methods
                             )
                             _obj = '&' + first_arg_text if _needs_addr else first_arg_text
                             new_text = '((%s *)%s)->%s(%s)' % (
@@ -186,12 +187,25 @@ def transform_oop_calls(code, static_methods=None, cls_name=None):
                             if first_arg.type == 'cast_expression':
                                 val_node = first_arg.child_by_field_name('value')
                                 inner = val_node.text.decode('utf-8') if val_node else first_arg_text
-                                # Add & for global objects: (Camera *)g_RoleSystemMain
+                                _inner_strip = inner.lstrip(':')
                                 _needs_addr = (
-                                    inner in ('g_RoleSystemMain', 'g_RoleSystemExtra0',
-                                              'g_RoleSystemExtra1', 'g_RoleSystemCombat')
+                                    _inner_strip in ('g_RoleSystemMain', 'g_RoleSystemExtra0',
+                                                      'g_RoleSystemExtra1', 'g_RoleSystemCombat',
+                                                      'g_ScriptRoleBuf', 'Buffer')
                                 )
                                 _inner = '&' + inner if _needs_addr else inner
+                                new_text = '((%s *)%s)->%s(%s)' % (
+                                    class_name, _inner, method_name, rest_str)
+                            elif first_arg.type == 'qualified_identifier':
+                                _scope = first_arg.child_by_field_name('scope')
+                                _name = first_arg.child_by_field_name('name')
+                                _inner = (_scope.text.decode() if _scope else '') + (_name.text.decode() if _name else '')
+                                _strip = _inner.lstrip(':')
+                                _needs_addr = (
+                                    class_name[0].isupper()
+                                    and _strip.startswith('g_')
+                                )
+                                _inner = '&' + _inner if _needs_addr else _inner
                                 new_text = '((%s *)%s)->%s(%s)' % (
                                     class_name, _inner, method_name, rest_str)
                             else:
