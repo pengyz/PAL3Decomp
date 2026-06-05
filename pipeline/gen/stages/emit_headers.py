@@ -589,7 +589,7 @@ def _estimate_member_size(mtype):
     # Struct/class - check annotation cache first, then file
     try:
         ann = _get_ida_structs()
-        ann_s = ann.get('structs', {}).get(t, {})
+        ann_s = ann.get(t, {})
         sz = ann_s.get('binary_size')
         if sz and sz != '?':
             return int(sz)
@@ -702,7 +702,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # Inheritance -> include (simplify template names same as in class declaration)
     try:
         _ann_base_ref = _get_ida_structs()
-        _ann_base_info = _ann_base_ref.get('structs', {}).get(cls_name, {})
+        _ann_base_info = _ann_base_ref.get(cls_name, {})
         _base_list = _ann_base_info.get('base_class', [])
         if isinstance(_base_list, str):
             _base_list = [_base_list]
@@ -726,12 +726,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if not _k.startswith('_'):
                 _template_map[_k] = _v['template']
 
-    # Scan annotation known_members for type references (includes/forward-decls)
+    # Scan annotation data_members for type references (includes/forward-decls)
     needs_stl = False
     try:
         ann_data_ref = _get_ida_structs()
-        ann_struct_ref = ann_data_ref.get('structs', {}).get(cls_name, {})
-        for m in ann_struct_ref.get('known_members', {}).values():
+        ann_struct_ref = ann_data_ref.get(cls_name, {})
+        for m in ann_struct_ref.get('data_members', []):
             mtype = m.get('type', '')
             is_ptr = '*' in mtype
             # Detect STL template usage → need pal3_stl.h
@@ -872,7 +872,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     _ann_base = None
     try:
         _ann_data = _get_ida_structs()
-        _ann_base = _ann_data.get('structs', {}).get(cls_name, {}).get('base_class')
+        _ann_base = _ann_data.get(cls_name, {}).get('base_class')
     except:
         pass
 
@@ -880,7 +880,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     _ann_base = None
     try:
         _ann_data = _get_ida_structs()
-        _ann_base = _ann_data.get('structs', {}).get(cls_name, {}).get('base_class')
+        _ann_base = _ann_data.get(cls_name, {}).get('base_class')
     except:
         pass
 
@@ -973,7 +973,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     _ann_is_union = False
     try:
         _ann_check = _get_ida_structs()
-        _ann_is_union = _ann_check.get('structs', {}).get(cls_name, {}).get('is_union', False)
+        _ann_is_union = _ann_check.get(cls_name, {}).get('is_union', False)
     except:
         pass
     if _ann_is_union:
@@ -1002,7 +1002,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 # Fallback to annotation for classes not in export
                 try:
                     _ad = _get_ida_structs()
-                    _ab = _ad.get('structs', {}).get(class_name, {}).get('base_class')
+                    _ab = _ad.get(class_name, {}).get('base_class')
                     if _ab:
                         base = [_ab] if isinstance(_ab, str) else _ab
                 except:
@@ -1035,7 +1035,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     if base_names:
         try:
             ann_data = _get_ida_structs()
-            ann_struct = ann_data.get('structs', {}).get(cls_name, {})
+            ann_struct = ann_data.get(cls_name, {})
             base_size = ann_struct.get('base_size', 0)
         except:
             pass
@@ -1047,16 +1047,20 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # 时，回退到 annotation known_members。
     try:
         _ann_d = _get_ida_structs()
-        _ann_s = _ann_d.get('structs', {}).get(cls_name, {})
+        _ann_s = _ann_d.get(cls_name, {})
     except:
         _ann_s = {}
 
     # Generate members from annotation known_members (sole source of truth)
     try:
         ann_data_fb = _get_ida_structs()
-        ann_struct_fb = ann_data_fb.get('structs', {}).get(cls_name, {})
-        ann_members = dict(ann_struct_fb.get('known_members', {}))  # copy
-        ann_size = ann_struct_fb.get('binary_size')
+        ann_struct_fb = ann_data_fb.get(cls_name, {})
+        # Convert data_members list to offset-keyed dict for member iteration
+        ann_members = {}
+        for _dm in ann_struct_fb.get('data_members', []):
+            _off = _dm.get('offset', 0)
+            ann_members[str(_off)] = _dm
+        ann_size = ann_struct_fb.get('size')
         if ann_members or ann_size:
             sorted_members = sorted(ann_members.items(), key=lambda x: int(x[0])) if ann_members else []
             start_off = base_size
@@ -1147,9 +1151,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # Pre-compute opaque type info (needed before method loop to suppress ctor decl)
     _is_opaque = False
     _ann_for_check = _get_ida_structs()
-    _check_struct = _ann_for_check.get('structs', {}).get(cls_name, {})
+    _check_struct = _ann_for_check.get(cls_name, {})
     _check_size = _check_struct.get('binary_size') or 0
-    _check_members = _check_struct.get('known_members', {})
+    _check_members = _check_struct.get('data_members', [])
     if _check_size and _check_size <= 16 and len(_check_members) == 0:
         _is_opaque = True
     if methods:
@@ -1180,7 +1184,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         _ann_methods_by_addr = {}
         try:
             _ann_md = _get_ida_structs()
-            _ann_ms = _ann_md.get('structs', {}).get(cls_name, {}).get('methods', {})
+            _ann_ms = _ann_md.get(cls_name, {}).get('methods', {})
             for _k, _v in _ann_ms.items():
                 _ann_methods_by_addr[_k] = _v.get('signature', '')
         except:
@@ -1333,9 +1337,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # If class has parameterized ctor but no default ctor, add one
     # (skip for opaque structs which get their own ctor below)
     _ann_for_ctor = _get_ida_structs()
-    _ctor_struct = _ann_for_ctor.get('structs', {}).get(cls_name, {})
+    _ctor_struct = _ann_for_ctor.get(cls_name, {})
     _ctor_size = _ctor_struct.get('binary_size') or 0
-    _ctor_members = _ctor_struct.get('known_members', {})
+    _ctor_members = _ctor_struct.get('data_members', [])
     _is_opaque = (_ctor_size and _ctor_size <= 16 and len(_ctor_members) == 0)
     if methods and not _is_opaque:
         has_param_ctor = any(k.startswith(cls_name + '(') and k != cls_name + '()' for k in seen_methods)
@@ -1347,9 +1351,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # For opaque 4-byte structs (no real members), add int conversion operators
     # This allows IDA-generated code to assign integers to these types
     _ann_for_opaque = _get_ida_structs()
-    _opaque_struct = _ann_for_opaque.get('structs', {}).get(cls_name, {})
+    _opaque_struct = _ann_for_opaque.get(cls_name, {})
     _opaque_size = _opaque_struct.get('binary_size') or 0
-    _opaque_members = _opaque_struct.get('known_members', {})
+    _opaque_members = _opaque_struct.get('data_members', [])
     if _opaque_size and _opaque_size <= 16 and len(_opaque_members) == 0:
         lines.append("    // Opaque type: default ctor + int conversion for IDA codegen")
         lines.append("    %s() { memset(this, 0, sizeof(*this)); }" % cls_name)
