@@ -38,9 +38,9 @@ enum GBPARAMHANDLE {
 //   [8] m_pDecl          (IDirect3DVertexDeclaration9*)
 //   [9..16] m_ParamHandle[8] (D3DXHANDLE array)
 // ============================================================================
-class gbRenderEffect {
+// IDA-verified: inherits gbResource (which inherits gbRefObject)
+class gbRenderEffect : public gbResource {
 public:
-    int RefCount;  // reference count : public gbResource {
     friend class gbEffectMgr;
 
 protected:
