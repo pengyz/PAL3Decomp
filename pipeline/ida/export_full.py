@@ -459,7 +459,7 @@ def export_structs(log):
         if tif.get_udt_details(udt):
             for mi in range(udt.size()):
                 um = udt[mi]
-                mname = um.name or '_field_%X' % (um.offset // 8)
+                mname = um.name if um.name is not None else '_field_%X' % (um.offset // 8)
                 mtype_str = um.type.dstr() if um.type else 'int'
                 members.append({'name': mname, 'type': mtype_str, 'offset': um.offset // 8})
 
@@ -472,14 +472,21 @@ def export_structs(log):
         for mi in range(udt.size()):
             um = udt[mi]
             umname = um.name or ''
-            if umname and ('baseclass' in umname.lower() or umname.startswith('__parent') or umname == ''):
-                if umname == '' or 'baseclass' in umname.lower() or umname.startswith('__parent'):
-                    base_type = um.type.dstr() if um.type else ''
-                    for prefix in ('struct ', 'class '):
-                        if base_type.startswith(prefix):
-                            base_type = base_type[len(prefix):]
-                    if base_type and base_type != type_name:
-                        bases.append({'name': base_type, 'offset': um.offset // 8})
+            if not umname:
+                # IDB represents base classes as members with empty name
+                base_type = um.type.dstr() if um.type else ''
+                for prefix in ('struct ', 'class '):
+                    if base_type.startswith(prefix):
+                        base_type = base_type[len(prefix):]
+                if base_type and base_type != type_name:
+                    bases.append({'name': base_type, 'offset': um.offset // 8})
+            elif 'baseclass' in umname.lower() or umname.startswith('__parent'):
+                base_type = um.type.dstr() if um.type else ''
+                for prefix in ('struct ', 'class '):
+                    if base_type.startswith(prefix):
+                        base_type = base_type[len(prefix):]
+                if base_type and base_type != type_name:
+                    bases.append({'name': base_type, 'offset': um.offset // 8})
 
         # Filter out baseclass/vtable from data members
         filtered = [m for m in members
