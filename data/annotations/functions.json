@@ -556,8 +556,8 @@
     "source": "ida_decomp"
   },
   "0x004E0A60": {
-    "name": "CCBUI::4E0A60",
-    "signature": "int __stdcall(CCBUI *a1, HWND hDlg, unsigned int a3, unsigned __int16 a4, int a5)"
+    "name": "CCBUI::DlgProcEditorMain",
+    "signature": "int __stdcall(CCBUI *a1, HWND hDlg, UINT uMsg, WORD wParam, LPARAM lParam)"
   },
   "0x004E5300": {
     "name": "EditBox_SetReadOnly",
@@ -592,7 +592,7 @@
     "signature": "int __thiscall(CCBStageCam *this, HWND hDlg)"
   },
   "0x004E9750": {
-    "name": "sub_4E9750",
+    "name": "CCBCamControl::sub_4E9750",
     "signature": "int __thiscall(WPARAM *this, HWND hDlg)"
   },
   "0x004EA4A0": {
@@ -604,8 +604,8 @@
     "signature": "BOOL __stdcall(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
   },
   "0x004EA5C0": {
-    "name": "CCBUI::4EA5C0",
-    "signature": "int __stdcall(int *a1, HWND hDlg, int a3, __int16 a4, int a5)"
+    "name": "CCBUI::DlgProcCameraEdit",
+    "signature": "int __stdcall(CCBCamControl *a1, HWND hDlg, UINT uMsg, WORD wParam, LPARAM lParam)"
   },
   "0x004EA6D0": {
     "name": "CCBUI::_nearby_4ea6d0",
@@ -620,19 +620,19 @@
     "signature": "INT_PTR __stdcall(HWND hDlg, UINT a2, WPARAM a3, LPARAM a4)"
   },
   "0x004EB260": {
-    "name": "CCBUI::4EB260",
-    "signature": "int __stdcall(CCBCamControl *a1, HWND hDlg, int a3, int a4, int a5)"
+    "name": "CCBUI::DlgProcCameraConfig",
+    "signature": "int __stdcall(CCBCamControl *a1, HWND hDlg, UINT uMsg, WORD wParam, LPARAM lParam)"
   },
   "0x004EB6F0": {
     "name": "CCBCamControl::sub_4EB6F0",
     "signature": "void __thiscall(CCBCamControl *this, HWND hDlg)"
   },
   "0x004EB720": {
-    "name": "sub_4EB720",
+    "name": "CCBCamControl::sub_4EB720",
     "signature": "LRESULT __thiscall(WPARAM *this, HWND hDlg)"
   },
   "0x004EB8D0": {
-    "name": "sub_4EB8D0",
+    "name": "CCBCamControl::sub_4EB8D0",
     "signature": "LRESULT __thiscall(WPARAM *this, HWND hDlg)"
   },
   "0x004EC480": {
