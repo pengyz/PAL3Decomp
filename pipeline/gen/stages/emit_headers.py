@@ -871,15 +871,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     _ann_base = None
     try:
         _ann_data = _get_ida_structs()
-        _ann_base = _ann_data.get(cls_name, {}).get('base_class')
-        if not _ann_base:
-            _ann_path = ANNOTATIONS_DIR / "structs" / ("%s.json" % cls_name)
-            if not _ann_path.exists():
-                _safe = cls_name.replace('<','_').replace('>','_').replace(':','_').replace('*','_')
-                _ann_path = ANNOTATIONS_DIR / "structs" / ("%s.json" % _safe)
-            if _ann_path.exists():
-                _ann_raw = json.load(open(_ann_path, encoding='utf-8'))
-                _ann_base = _ann_raw.get('base_class')
+        _is_entry = _ann_data.get(cls_name, {})
+        # ida_structs.json uses 'bases' (export-native), annotation uses 'base_class'
+        _ann_base = _is_entry.get('base_class')
+        if not _ann_base and _is_entry.get('bases'):
+            _ann_base = [b['name'] for b in _is_entry['bases'] if 'name' in b]
     except:
         pass
 
