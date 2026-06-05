@@ -381,6 +381,19 @@ def export_structs(log):
     enum_count = 0
     skipped_count = 0
 
+    # Load annotation struct data for vtables/methods pass-through
+    _ann_structs = {}
+    _ann_dir = os.path.join(PROJECT_ROOT, "data", "annotations", "structs")
+    if os.path.isdir(_ann_dir):
+        import json as _aj, glob as _agl
+        for _af in _agl.glob(os.path.join(_ann_dir, "*.json")):
+            try:
+                with open(_af, encoding='utf-8') as _f:
+                    _ad = _aj.load(_f)
+                _ann_structs[_ad.get('name', '')] = _ad
+            except:
+                pass
+
     # Types that should never be exported (CRT, Windows SDK, etc.)
     SKIP_NAMES = {
         'std', 'stdiobuf', 'exception', 'type_info', 'filebuf', 'string',
@@ -490,19 +503,47 @@ def export_structs(log):
 
         # Filter out baseclass/vtable from data members
         filtered = [m for m in members
-                    if not any(x in m['name'].lower() for x in ('baseclass', '__parent', '__vftable', 'vtbl'))]
+                    if m.get('name', '') and not any(x in m['name'].lower() for x in ('baseclass', '__parent', '__vftable', 'vtbl'))]
 
         result[type_name] = {
             'size': size,
             'kind': kind,
             'data_members': filtered,
             'bases': bases,
+            # Pass through annotation vtables/methods for codegen
+            'vtables': _ann_structs.get(type_name, {}).get('vtables', []),
+            'methods': _ann_structs.get(type_name, {}).get('methods', {}),
         }
         struct_count += 1
 
     # Attach enums as a special section
     if enums:
         result['_enums'] = enums
+
+    # Export globals from the IDB (names and types set by apply_annotations.py)
+    _globals = {}
+    for _seg in range(ida_segm.get_segm_qty()):
+        _s = ida_segm.getnsegm(_seg)
+        if not _s:
+            continue
+        _sclass = ida_segm.get_segm_class(_s)
+        if _sclass not in ('DATA', 'CONST', 'BSS'):
+            continue
+        _ea = _s.start_ea
+        while _ea < _s.end_ea:
+            _name = idc.get_name(_ea)
+            if _name and not _name.startswith('dword_') and not _name.startswith('byte_') \
+                    and not _name.startswith('word_') and not _name.startswith('off_'):
+                _flags = idc.get_flags(_ea)
+                if idc.has_type_name(_flags):
+                    _type = idc.GetType(_ea)
+                    if _type:
+                        _globals[hex(_ea)] = {'name': _name, 'type': _type}
+                        _ea += idc.get_item_size(_ea)
+                        continue
+            _ea += 1
+    if _globals:
+        result['_globals'] = _globals
 
     with open(structs_path, 'w', encoding='utf-8') as f:
         json.dump(result, f, indent=2, ensure_ascii=False)

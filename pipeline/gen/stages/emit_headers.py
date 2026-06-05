@@ -31,7 +31,6 @@ OUTPUT_DIR = PROJECT_ROOT / "include" / "pal3" / "gen"
 OVERRIDES_DIR = PROJECT_ROOT / "include" / "pal3" / "overrides"
 
 
-_annotations_cache = None
 _ida_structs_cache = None  # ida_structs.json (export output, primary source)
 
 def _get_ida_structs():
@@ -45,17 +44,6 @@ def _get_ida_structs():
         _ida_structs_cache = {}
     return _ida_structs_cache
 _header_errors = []
-_funcs_ann_cache = None
-
-def _ensure_funcs_ann():
-    global _funcs_ann_cache
-    if _funcs_ann_cache is None:
-        funcs_json = ANNOTATIONS_DIR / "functions.json"
-        if funcs_json.exists():
-            _funcs_ann_cache = json.load(open(funcs_json, encoding='utf-8'))
-        else:
-            _funcs_ann_cache = {}
-
 # Map IDA ordinal types to their actual type names
 ORDINAL_MAP = {
     '#1472': 'gbTexture',
@@ -106,23 +94,11 @@ _GLOBALS_PRIMITIVES = {
 
 
 def _ann_struct_path(name):
-    """Return path to struct annotation file, trying both raw and sanitized name."""
-    raw = ANNOTATIONS_DIR / "structs" / ("%s.json" % name)
-    if raw.exists():
-        return raw
-    safe = _sanitize_filename(name)
-    return ANNOTATIONS_DIR / "structs" / ("%s.json" % safe)
+    """Check if a struct exists in ida_structs.json (export output)."""
+    return _get_ida_structs().get(name, None)
 
 
 def load_annotations_data():
-    """ARCHITECTURE VIOLATION: codegen must NOT read annotations directly.
-    
-    All data needed by codegen must flow through:
-    annotation → apply → IDB → export → ida_structs.json + decomp JSON
-    
-    This function intentionally raises — all callers must use _get_ida_structs()
-    or read decomp JSON data instead.
-    """
     raise RuntimeError(
         "load_annotations_data() called from codegen — forbidden.\n"
         "All data must come from export output (ida_structs.json + decomp JSON).\n"
@@ -140,24 +116,11 @@ def class_vtable_slots(cls_name, with_addr=False, vtables=None, methods=None):
     """
     if vtables is None or methods is None:
         _is = _get_ida_structs().get(cls_name)
-        if _is and _is.get('vtables'):
-            vtables = _is['vtables']
-            methods = _is.get('methods', {})
-            functions = {}
-        else:
-            # DEBT: vtables not in ida_structs.json (export_full.py doesn't pass through).
-            # Read from annotations directly as fallback.
-            _ann_path = ANNOTATIONS_DIR / "structs" / ("%s.json" % cls_name)
-            if not _ann_path.exists():
-                safe = cls_name.replace('<', '_').replace('>', '_').replace(':', '_').replace('*', '_')
-                _ann_path = ANNOTATIONS_DIR / "structs" / ("%s.json" % safe)
-            if _ann_path.exists():
-                _ann = json.load(open(_ann_path, encoding='utf-8'))
-                vtables = _ann.get('vtables', [])
-                methods = _ann.get('methods', {})
-                functions = {}
-            else:
-                return [] if not with_addr else []
+        if not _is or not _is.get('vtables'):
+            return [] if not with_addr else []
+        vtables = _is['vtables']
+        methods = _is.get('methods', {})
+        functions = {}
     else:
         functions = {}
     if with_addr:
@@ -418,8 +381,7 @@ def demangle_name(mangled):
 
 
 def collect_methods():
-    """Collect all class methods from decomp JSONs + functions.json (fallback)."""
-    _ensure_funcs_ann()
+    """Collect all class methods from decomp JSONs."""
     classes = defaultdict(list)
     seen_addrs = set()
 
@@ -489,38 +451,6 @@ def collect_methods():
                 method = ovl_stripped
         classes[cls].append((method, sig, addr))
         seen_addrs.add(addr)
-
-    # Secondary source: functions.json (for functions not exported by IDA)
-    funcs_json = ANNOTATIONS_DIR / "functions.json"
-    if funcs_json.exists():
-        funcs_data = json.load(open(funcs_json, encoding='utf-8'))
-        for addr_str, info in funcs_data.items():
-            if addr_str in seen_addrs:
-                continue
-            name = info.get('name', '')
-            sig = info.get('signature', '')
-            if '::' not in name or name.startswith('sub_'):
-                continue
-            parts = name.split('::', 1)
-            cls = parts[0]
-            method = parts[1]
-            if should_skip_class(cls) or '`' in method or ' ' in method or '?' in method:
-                continue
-            addr = addr_str
-            # Strip __ovl_XXXX only when it forms a valid overload (different params)
-            ovl_stripped = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
-            if ovl_stripped != method:
-                def _params(s):
-                    p = re.sub(r'^.*?__thiscall\([^,]*,\s*', '', s)
-                    p = re.sub(r'^.*?__thiscall\(', '', p)
-                    p = re.sub(r'\)\s*$', '', p).strip()
-                    p = re.sub(r'\bstruct\s+', '', p)
-                collides = any(
-                    existing_method == ovl_stripped and _params(existing_sig) == _params(sig)
-                    for existing_method, existing_sig, _ in classes.get(cls, []))
-                if not collides:
-                    method = ovl_stripped
-            classes[cls].append((method, sig, addr))
 
     return classes
 
@@ -872,10 +802,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     try:
         _ann_data = _get_ida_structs()
         _is_entry = _ann_data.get(cls_name, {})
-        # ida_structs.json uses 'bases' (export-native), annotation uses 'base_class'
-        _ann_base = _is_entry.get('base_class')
-        if not _ann_base and _is_entry.get('bases'):
-            _ann_base = [b['name'] for b in _is_entry['bases'] if 'name' in b]
+        _ann_base = _is_entry.get('bases')
+        if isinstance(_ann_base, list) and _ann_base and isinstance(_ann_base[0], dict):
+            _ann_base = [b['name'] for b in _ann_base if 'name' in b]
     except:
         pass
 
@@ -916,7 +845,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         inc_line = '#include "%s"' % gb_path
                         if inc_line not in lines:
                             lines.insert(0, inc_line)
-                    elif param in known_classes or _ann_struct_path(param).exists():
+                    elif param in known_classes or _ann_struct_path(param):
                         inc_line = '#include "%s.h"' % param
                         if inc_line not in lines:
                             lines.insert(0, inc_line)
@@ -1218,15 +1147,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         try:
             _ann_md = _get_ida_structs()
             _ann_ms = _ann_md.get(cls_name, {}).get('methods', {})
-            if not _ann_ms:
-                # DEBT: methods not in ida_structs.json, read from annotation directly
-                _ann_path = ANNOTATIONS_DIR / "structs" / ("%s.json" % cls_name)
-                if not _ann_path.exists():
-                    _safe = cls_name.replace('<','_').replace('>','_').replace(':','_').replace('*','_')
-                    _ann_path = ANNOTATIONS_DIR / "structs" / ("%s.json" % _safe)
-                if _ann_path.exists():
-                    _ann_raw = json.load(open(_ann_path, encoding='utf-8'))
-                    _ann_ms = _ann_raw.get('methods', {})
             for _k, _v in _ann_ms.items():
                 _ann_methods_by_addr[_k] = _v.get('signature', '')
         except:
@@ -1721,17 +1641,16 @@ def main():
 
 
 def generate_globals():
-    """Generate include/pal3/globals.h from globals.json + binary initial values."""
+    """Generate include/pal3/globals.h from ida_structs.json globals + binary initial values."""
     import struct as _st
 
-    globals_json = ANNOTATIONS_DIR / "globals.json"
-    if not globals_json.exists():
+    _is_data = _get_ida_structs()
+    globs = _is_data.get('_globals', {})
+    if not globs:
         return
 
     exe_path = PROJECT_ROOT / "original" / "PAL3.exe"
     exe_data = open(exe_path, 'rb').read() if exe_path.exists() else None
-
-    globs = json.load(open(globals_json, 'r', encoding='utf-8'))
 
     # PE section info for reading initial values
     DATA_VA = 0x580000
@@ -1810,7 +1729,7 @@ def generate_globals():
         base_typ = extract_base_type(typ)
         is_pointer_only = '*' in typ and '[' not in typ
         has_header = (gen_header_dir / ("%s.h" % base_typ)).exists()
-        has_struct = _ann_struct_path(base_typ).exists()
+        has_struct = _ann_struct_path(base_typ) is not None
 
         # Track types needing full definition vs forward declaration
         # Skip primitive types — they cannot be forward-declared as class
