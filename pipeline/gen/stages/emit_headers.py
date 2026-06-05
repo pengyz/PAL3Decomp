@@ -867,19 +867,19 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 if not _k.startswith('_'):
                     template_map[_k] = _v['template']
 
-    # Load annotation base_class (needed for template reverse lookup)
-    _ann_base = None
-    try:
-        _ann_data = _get_ida_structs()
-        _ann_base = _ann_data.get(cls_name, {}).get('base_class')
-    except:
-        pass
-
     # Load annotation base_class (primary source for inheritance)
     _ann_base = None
     try:
         _ann_data = _get_ida_structs()
         _ann_base = _ann_data.get(cls_name, {}).get('base_class')
+        if not _ann_base:
+            _ann_path = ANNOTATIONS_DIR / "structs" / ("%s.json" % cls_name)
+            if not _ann_path.exists():
+                _safe = cls_name.replace('<','_').replace('>','_').replace(':','_').replace('*','_')
+                _ann_path = ANNOTATIONS_DIR / "structs" / ("%s.json" % _safe)
+            if _ann_path.exists():
+                _ann_raw = json.load(open(_ann_path, encoding='utf-8'))
+                _ann_base = _ann_raw.get('base_class')
     except:
         pass
 
