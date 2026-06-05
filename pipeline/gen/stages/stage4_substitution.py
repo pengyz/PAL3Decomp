@@ -721,6 +721,15 @@ def _apply_text_substitutions(code, ctx):
     # Pattern 3: ::method__ovl_XXXX; — function pointer address (no parens)
     code = re.sub(r'(::)(\w+)__ovl_[0-9a-fA-F]+(\s*[;,)])', r'\1\2\3', code)
 
+    # Strip spurious global-scope '::' prefix from local variables/parameters
+    # that IDA's decompiler incorrectly qualified (e.g. ::pszBuf → pszBuf).
+    # Only strip when the name is NOT a known global variable.
+    code = re.sub(
+        r'(?<!\w)::(\w+)',
+        lambda m: '::' + m.group(1) if m.group(1) in store.globals_map else m.group(1),
+        code
+    )
+
     # Hex-Rays raw offset access: &var->0 means "address of member at offset 0" = var
     # var->0 standalone means "value of first DWORD" = *(_DWORD*)var
     code = re.sub(r'&(\w+)->0\b', r'\1', code)

@@ -46,6 +46,11 @@
       "name": "__vftable",
       "type": "int",
       "source": "vtable_fix"
+    },
+    "48": {
+      "name": "m_pGeomNode",
+      "type": "gbGeomNode *",
+      "source": "template_base_fix"
     }
   },
   "base_class": [
@@ -88,7 +93,7 @@
     },
     "0x004CFD00": {
       "name": "CEffModel::sub_4CFD00",
-      "signature": "int()",
+      "signature": "int __cdecl()",
       "source": "vtable_migrated",
       "ordinal": 7
     },
@@ -118,7 +123,7 @@
     },
     "0x004D0850": {
       "name": "CEffModel::sub_4D0850",
-      "signature": "int __thiscall(int)",
+      "signature": "int __thiscall(CEffModel *this, int nVal)",
       "source": "vtable_migrated",
       "ordinal": 14
     }
@@ -191,5 +196,5 @@
       ]
     }
   ],
-  "base_size": 52
+  "base_size": 16
 }

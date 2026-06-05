@@ -84,6 +84,13 @@ def _resolve_member_type(mtype_str, til):
     if not s:
         return None
 
+    # void 不能作为变量声明（"void __x;" 非法），特殊处理指针类型
+    if s == 'void' and is_ptr:
+        tinfo = ida_typeinf.tinfo_t()
+        if ida_typeinf.parse_decl(tinfo, til, "void* __x;", ida_typeinf.PT_VAR) is not None:
+            return tinfo
+        return None
+
     # 解析基础类型
     tinfo = ida_typeinf.tinfo_t()
     resolved = tinfo.get_named_type(til, s)
@@ -927,6 +934,7 @@ def apply_annotations():
     # Also name skip_functions (not decompiled, but callers need their names)
     skip_path = os.path.join(ANNOTATIONS_DIR, "skip_functions.json")
     skip_named = 0
+    skip_funcs = {}
     if os.path.exists(skip_path):
         with open(skip_path, "r", encoding="utf-8") as f:
             skip_funcs = json.load(f)
@@ -1156,89 +1164,16 @@ def apply_annotations():
 
     log("  Structs: %d total (dependency order by topological sort)" % len(ordered))
 
-    # 导入所有 struct（annotation 自包含，只需处理依赖顺序）
+    # 导入所有 struct（严格模式：任何失败直接终止）
     for sname, sinfo in ordered:
-        try:
-            ok, err = create_fixed_struct(sname, sinfo, structs, {}, til)
-            if ok:
-                s_ok += 1
-            else:
-                s_fail.append((sname, sinfo, err))
-        except Exception as e:
-            s_fail.append((sname, sinfo, "EXCEPTION: %s" % str(e)))
+        ok, err = create_fixed_struct(sname, sinfo, structs, {}, til)
+        if ok:
+            s_ok += 1
+        else:
+            log("[FATAL] Struct import failed: %s → %s" % (sname, err))
+            __import__('os')._exit(1)
 
-    # 一轮 retry（第一轮失败的可能因为依赖的 annotation struct 尚未导入）
-    if s_fail:
-        still_fail = []
-        for sname, sinfo, prev_err in s_fail:
-            try:
-                ok, err = create_fixed_struct(sname, sinfo, structs, {}, til)
-                if ok:
-                    s_ok += 1
-                else:
-                    still_fail.append((sname, sinfo, err))
-            except Exception as e:
-                still_fail.append((sname, sinfo, "EXCEPTION: %s" % str(e)))
-        s_fail = still_fail
-
-    log("[3] Structs: %d/%d" % (s_ok, len(structs)))
-
-    if s_fail:
-        # Categorize failures for summary
-        _cat_nopdb = sum(1 for _, _, e in s_fail if "no PDB struct definition" in e)
-        _cat_size = sum(1 for _, _, e in s_fail if "size mismatch" in e)
-        _cat_base = sum(1 for _, _, e in s_fail if "base_class" in e and "invalid size" in e)
-        _cat_parse = sum(1 for _, _, e in s_fail if "parse_decl" in e or "_resolve_member_type" in e)
-        _cat_create = sum(1 for _, _, e in s_fail if "create_udt" in e)
-
-        log("")
-        log("=" * 60)
-        log("[STRUCT IMPORT SUMMARY]")
-        log("  Total:     %d/%d structs" % (s_ok, len(structs)))
-        log("  Failed:    %d" % len(s_fail))
-    log_path = os.path.join(SCRIPT_DIR, "_logs", "struct_import_errors.txt")
-    if s_fail:
-        from collections import Counter as _Counter
-        _cats = _Counter()
-        for _, _, e in s_fail:
-            if "size mismatch" in e: _cats["size_mismatch"] += 1
-            elif "base_class" in e: _cats["base_class"] += 1
-            elif "_resolve_member_type" in e: _cats["type_resolve"] += 1
-            elif "create_udt" in e: _cats["create_udt"] += 1
-            else: _cats["other"] += 1
-        for c, n in _cats.items():
-            log("    %s: %d" % (c, n))
-
-        os.makedirs(os.path.dirname(log_path), exist_ok=True)
-        log("")
-
-        error_lines = []
-        error_lines.append("STRUCT IMPORT ERRORS (%d failures):" % len(s_fail))
-        for sname, sinfo, err in s_fail:
-            line = "  struct %s: %s" % (sname, err)
-            error_lines.append(line)
-            print("[!] " + line)
-
-        with open(log_path, 'w') as f:
-            f.write('\n'.join(error_lines))
-        log("[!] Error log: %s" % log_path)
-
-        # ABORT if struct import failed entirely (0 success)
-        if s_ok == 0:
-            log("")
-            log("=" * 60)
-            log("[FATAL] 0 structs applied — aborting. Fix annotations and rerun.")
-            log("=" * 60)
-            os.makedirs(LOG_DIR, exist_ok=True)
-            with open(LOG_FILE, 'w', encoding='utf-8') as f:
-                f.write('\n'.join(log_lines))
-            idc.qexit(1)
-
-        log("Proceeding with %d successfully imported structs." % s_ok)
-    else:
-        # Clean: no errors — remove stale error log if present
-        if os.path.exists(log_path):
-            os.remove(log_path)
+    log("[3] Structs: %d/%d imported successfully" % (s_ok, len(structs)))
 
     # (Enums already applied in step 3b, before structs)
 
@@ -1260,6 +1195,7 @@ def apply_annotations():
     import re as _re_sig
     sig_ok = 0
     sig_fail = []
+    sig_skip_placeholder = 0
 
     # Build a combined list: functions.json + struct/*.json methods
     _sig_entries = list(funcs.items())
@@ -1278,9 +1214,16 @@ def apply_annotations():
 
     for addr_str, info in _sig_entries:
         addr = int(addr_str, 16)
+        # Skip entries listed in skip_functions.json (compiler-generated, etc.)
+        if addr_str in skip_funcs:
+            continue
         sig = info.get("signature", "")
         name = info.get("name", "")
         if not sig:
+            continue
+        # Skip placeholder signatures (IDA-unknown params, no value to apply)
+        if '(...)' in sig:
+            sig_skip_placeholder += 1
             continue
         sig_raw = sig.strip().rstrip(";")
         # Strip IDA-specific modifiers that SetType doesn't accept
@@ -1363,7 +1306,10 @@ def apply_annotations():
         log("[!] Signature failures logged: %s" % sig_fail_log)
         for addr_str, fname, sig_str in sig_fail[:5]:
             log("  [!] %s %s → %s" % (addr_str, fname[:40], sig_str[:60]))
-    log("[6] Signatures: %d/%d (fail=%d)" % (sig_ok, len([f for f in funcs.values() if f.get("signature")]), len(sig_fail)))
+    log("[6] Signatures: %d/%d (fail=%d, placeholder=%d)" % (sig_ok, len([f for f in funcs.values() if f.get("signature")]), len(sig_fail), sig_skip_placeholder))
+    if sig_fail:
+        log("[FATAL] %d signature application failures — aborting. Fix annotation signatures." % len(sig_fail))
+        __import__('os')._exit(1)
 
     # --- 6b. Global types (after structs so struct types are resolved) ---
     g_typed = 0
@@ -1372,6 +1318,9 @@ def apply_annotations():
         addr = int(addr_str, 16)
         typ = info.get("type", "")
         if typ:
+            if typ.strip() == "skip":
+                g_typed += 1
+                continue
             type_str = typ.rstrip(";") + ";"
             if idc.SetType(addr, type_str):
                 g_typed += 1
@@ -1383,6 +1332,12 @@ def apply_annotations():
                     g_type_fail.append((addr_str, info.get("name", ""), typ))
 
     log("[6b] Global types: %d/%d (fail=%d)" % (g_typed, len([g for g in globs.values() if g.get("type")]), len(g_type_fail)))
+    if g_type_fail:
+        log("[FATAL] %d global type application failures — aborting. Fix globals.json types." % len(g_type_fail))
+        for addr_str, gname, typ in g_type_fail[:20]:
+            log("  [!] %s %s → %s" % (addr_str, gname[:40] if gname else "?", typ[:60]))
+        __import__('sys').stdout.flush()
+        __import__('os')._exit(1)
 
     # --- 6b2. Create IDA data arrays for array-typed globals ---
     # SetType alone sets type metadata but doesn't create data items in IDA's

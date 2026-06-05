@@ -2248,13 +2248,15 @@
   },
   "0x00C11360": {
     "name": "g_pBGMTable",
+    "note": "memset_size_0x60_confirmed_via_IDA",
     "source": "binary: SoundSystem_Init: memset to 0; UIPostUpdate: g_pBGMTable[CameraCtrl::GetModeByIndex(v7)]",
-    "type": "gbSound2DNode *[]"
+    "type": "gbSound2DNode *[24]"
   },
   "0x00C113C0": {
     "name": "g_pAmbientTable",
+    "note": "memset_size_0x60_confirmed_via_IDA",
     "source": "binary: SoundSystem_Init: memset to 0; UIPostUpdate: g_pAmbientTable[GetModeByIndex]",
-    "type": "gbSound2DNode *[]"
+    "type": "gbSound2DNode *[24]"
   },
   "0x00C116C4": {
     "name": "g_fTileSize",

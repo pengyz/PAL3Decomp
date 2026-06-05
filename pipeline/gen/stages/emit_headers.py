@@ -32,6 +32,18 @@ OVERRIDES_DIR = PROJECT_ROOT / "include" / "pal3" / "overrides"
 
 
 _annotations_cache = None
+_ida_structs_cache = None  # ida_structs.json (export output, primary source)
+
+def _get_ida_structs():
+    global _ida_structs_cache
+    if _ida_structs_cache is not None:
+        return _ida_structs_cache
+    if IDA_STRUCTS_FILE.exists():
+        with open(IDA_STRUCTS_FILE, encoding='utf-8') as f:
+            _ida_structs_cache = json.load(f)
+    else:
+        _ida_structs_cache = {}
+    return _ida_structs_cache
 _header_errors = []
 _funcs_ann_cache = None
 
@@ -103,10 +115,18 @@ def _ann_struct_path(name):
 
 
 def load_annotations_data():
-    """从拆分目录加载标注数据（带缓存）。"""
-    global _annotations_cache
-    if _annotations_cache is not None:
-        return _annotations_cache
+    """ARCHITECTURE VIOLATION: codegen must NOT read annotations directly.
+    
+    All data needed by codegen must flow through:
+    annotation → apply → IDB → export → ida_structs.json + decomp JSON
+    
+    Remove this call and use _get_ida_structs() or decomp JSON data instead.
+    If the data you need isn't in the export output, add it to export_full.py.
+    """
+    raise RuntimeError(
+        "_get_ida_structs() called from codegen — forbidden.\n"
+        "All data must come from export output (ida_structs.json + decomp JSON).\n"
+        "See export_full.py to add missing data to the export.")
     ann_dir = ANNOTATIONS_DIR
     structs = {}
     structs_dir = ann_dir / "structs"
@@ -123,22 +143,28 @@ def load_annotations_data():
     return _annotations_cache
 
 
-def class_vtable_slots(cls_name, with_addr=False):
+def class_vtable_slots(cls_name, with_addr=False, vtables=None, methods=None):
     """返回该类的虚表 slot 短名列表（按 vtable 顺序，跨多张表去重）。
 
     名字按 slot 地址从该类 methods -> functions 解析（Trust by address）。
     当 with_addr=True 时，返回 list of (addr_hex_str, short_name) 对。
+    
+    vtables/methods: from ida_structs.json (export output).
+    If not provided, fallback to annotation data (architecture debt path).
     """
-    ann = load_annotations_data()
-    sinfo = ann['structs'].get(cls_name)
-    if not sinfo or not sinfo.get('vtables'):
-        return [] if not with_addr else []
-    methods = sinfo.get('methods', {})
-    functions = ann.get('functions', {})
+    if vtables is None or methods is None:
+        _is = _get_ida_structs().get(cls_name)
+        if not _is or not _is.get('vtables'):
+            return [] if not with_addr else []
+        vtables = _is['vtables']
+        methods = _is.get('methods', {})
+        functions = {}
+    else:
+        functions = {}
     if with_addr:
         items = []
         seen_addrs = set()
-        for vt in sinfo['vtables']:
+        for vt in vtables:
             for slot in vt.get('slots', []):
                 addr = slot.get('addr', '')
                 if addr in seen_addrs:
@@ -151,7 +177,7 @@ def class_vtable_slots(cls_name, with_addr=False):
                     items.append((addr, short))
         return items
     names = []
-    for vt in sinfo['vtables']:
+    for vt in vtables:
         for slot in vt.get('slots', []):
             addr = slot.get('addr', '')
             entry = methods.get(addr) or functions.get(addr) or {}
@@ -562,7 +588,7 @@ def _estimate_member_size(mtype):
         t = t.rsplit('::', 1)[-1]
     # Struct/class - check annotation cache first, then file
     try:
-        ann = load_annotations_data()
+        ann = _get_ida_structs()
         ann_s = ann.get('structs', {}).get(t, {})
         sz = ann_s.get('binary_size')
         if sz and sz != '?':
@@ -573,65 +599,41 @@ def _estimate_member_size(mtype):
     return 4
 
 
-def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names=None,
-                    colliding_enums=None):
-    """Generate a complete header for one class."""
-    # Use IDB-exported struct definitions as primary source (PDB + annotations merged).
-    # This ensures headers match exactly what the decompiler (running on the same IDB) sees.
-    _ida_structs_path = os.path.join(os.path.dirname(os.path.dirname(
-        os.path.dirname(os.path.abspath(__file__)))), "asm", "pal3", "ida_structs.json")
-    try:
-        with open(_ida_structs_path, encoding='utf-8') as _f:
-            _ida_structs = json.load(_f)
-        _is = _ida_structs.get(cls_name)
-        if _is and _is.get('data_members'):
-            if pdb_class is None:
-                pdb_class = {}
-            pdb_class['data_members'] = [
-                m for m in _is['data_members']
-                if not m.get('name', '').startswith('__vftable')
-            ]
-            pdb_class['size'] = _is.get('size', pdb_class.get('size', 0))
-            # Overlay annotation known_members on top of IDB data
-            try:
-                _ann_overlay = load_annotations_data()
-                _ann_overlay_s = _ann_overlay.get('structs', {}).get(cls_name, {}).get('known_members', {})
-                if _ann_overlay_s:
-                    # Annotation offsets are ABSOLUTE (from struct start including base).
-                    # IDB offsets are RELATIVE (from derived class data, after base).
-                    # Adjust annotation offsets by subtracting base_size.
-                    _ann_sinfo = _ann_overlay.get('structs', {}).get(cls_name, {})
-                    _base_size = _ann_sinfo.get('base_size', 0) or 0
-                    _ann_by_off = {
-                        max(0, int(k) - _base_size): v
-                        for k, v in _ann_overlay_s.items()
-                    }
-                    for _m in pdb_class['data_members']:
-                        _moff = _m.get('offset', -1)
-                        if _moff in _ann_by_off:
-                            _ao = _ann_by_off[_moff]
-                            if 'type' in _ao:
-                                _m['type'] = _ao['type']
-                            if 'name' in _ao and _ao['name']:
-                                _m['name'] = _ao['name']
-            except:
-                pass
-    except (FileNotFoundError, json.JSONDecodeError, IOError):
-        pass  # fall back to annotation + PDB merge
-
-    lines = []
-    lines.append("#pragma once")
-    lines.append("// Auto-generated: %s" % cls_name)
-    # Struct-level note from annotations
-    try:
-        _ann_note = load_annotations_data()
-        _note = _ann_note.get('structs', {}).get(cls_name, {}).get('note', '')
-        if _note:
-            for _nl in _note.split('\n'):
-                lines.append("// %s" % _nl)
-    except:
-        pass
+def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_names=None,
+                    colliding_enums=None, template_expr=None):
+    """Generate a complete header for one class.
+    
+    ida_struct: struct definition from ida_structs.json (export output, NOT raw PDB).
+                Contains data_members, size, bases from IDB after annotation apply.
+    methods:    function definitions collected from decomp JSONs.
+    """
+    lines = ["#pragma once"]
+    lines.append("// Auto-generated: %s" % (
+        template_expr if template_expr else cls_name))
     lines.append("")
+
+    # Overlay annotation known_members on top of ida_struct data for naming.
+    # ARCHITECTURE DEBT: should come via export, not direct annotation read.
+    _overlaid = None
+    if ida_struct and ida_struct.get('data_members'):
+        _overlaid = list(ida_struct['data_members'])
+        try:
+            _ann_km = {}  # known_members from ida_struct data_members; naming handled via _overlaid
+            if _ann_km:
+                _ann_sinfo = ida_struct
+                _base_size = _ann_sinfo.get('base_size', 0) or 0
+                # Annotation offsets are absolute, ida_struct offsets are relative to derived start
+                _ann_by_off = {max(0, int(k) - _base_size): v for k, v in _ann_km.items()}
+                for _m in _overlaid:
+                    _moff = _m.get('offset', -1)
+                    if _moff in _ann_by_off:
+                        _ao = _ann_by_off[_moff]
+                        if 'type' in _ao:
+                            _m['type'] = _ao['type']
+                        if 'name' in _ao and _ao['name']:
+                            _m['name'] = _ao['name']
+        except:
+            pass
 
     # Embed colliding enums (case-insensitive FS collision) before class definition
     if colliding_enums:
@@ -697,14 +699,19 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                         if name not in _gbengine_type_to_header or is_definition:
                             _gbengine_type_to_header[name] = header_path
 
-    if pdb_class:
-        # Inheritance -> include (simplify template names same as in class declaration)
-        for b in pdb_class.get('bases', []) or []:
-            bname = b['name']
-            if '<' in bname:
-                bname = bname.split('<')[0]  # CTaskTpl<...> -> CTaskTpl
+    # Inheritance -> include (simplify template names same as in class declaration)
+    try:
+        _ann_base_ref = _get_ida_structs()
+        _ann_base_info = _ann_base_ref.get('structs', {}).get(cls_name, {})
+        _base_list = _ann_base_info.get('base_class', [])
+        if isinstance(_base_list, str):
+            _base_list = [_base_list]
+        for b in _base_list:
+            bname = b.split('<')[0] if '<' in b else b
             if '::' not in bname:
                 include_types.add(bname)
+    except:
+        pass
 
 
 
@@ -719,35 +726,10 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             if not _k.startswith('_'):
                 _template_map[_k] = _v['template']
 
-    if pdb_class:
-        # Data members
-        for m in pdb_class.get('data_members', []):
-            mtype = m.get('type', '')
-            # Check if pointer or value
-            is_ptr = '*' in mtype
-            # Strip array/pointer to get base type name
-            base = re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', mtype).replace('*', '').strip()
-            base = _resolve_ordinal_type(base)
-            if not base or base == cls_name:
-                continue
-            if base in PRIMITIVES or base in SYSTEM_TYPES:
-                continue
-            if '::' in base or '<' in base:
-                continue
-
-            if is_ptr:
-                fwd_types.add(base)
-            else:
-                # Skip template concrete classes (handled via template definition, no header)
-                if base not in _template_map:
-                    include_types.add(base)
-                else:
-                    fwd_types.add(base)
-
-    # Also scan annotation known_members for type references
+    # Scan annotation known_members for type references (includes/forward-decls)
     needs_stl = False
     try:
-        ann_data_ref = load_annotations_data()
+        ann_data_ref = _get_ida_structs()
         ann_struct_ref = ann_data_ref.get('structs', {}).get(cls_name, {})
         for m in ann_struct_ref.get('known_members', {}).values():
             mtype = m.get('type', '')
@@ -889,77 +871,21 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     # Load annotation base_class (needed for template reverse lookup)
     _ann_base = None
     try:
-        _ann_data = load_annotations_data()
+        _ann_data = _get_ida_structs()
         _ann_base = _ann_data.get('structs', {}).get(cls_name, {}).get('base_class')
     except:
         pass
 
-    if pdb_class and pdb_class.get('bases'):
-        for b in pdb_class['bases']:
-            bname = b['name']
-            if '<' in bname:
-                base_tpl = bname.split('<')[0]
-                matched = None
-                for _cname, _tinfo in template_map.items():
-                    if _cname.startswith(base_tpl + '_') and _cname.endswith('_' + cls_name):
-                        matched = _tinfo
-                        break
-                if matched:
-                    # Use C++ template expression (e.g. TaskMgr<SceneObjParam, Callback>)
-                    # instead of PDB concrete name (TaskMgr_SceneObjParam_SceneObj).
-                    # TaskMgr.h is now a proper template — no concrete header needed.
-                    base_names.append(matched)
-                    continue
-                bname = base_tpl
-            base_names.append(bname)
-        # Ensure all base classes have includes generated
-        # (base_names processing happens after include emission, so add directly)
-        header_dir = OUTPUT_DIR
-        for b in base_names:
-            if b in SYSTEM_TYPES:
-                continue
-            # Template expression: extract base name (e.g. "TaskMgr" from "TaskMgr<...>")
-            if '<' in b:
-                base_inc = b.split('<')[0]
-                # Extract template parameter types — match full type names including tag_ prefix
-                # Use \w+ instead of [A-Z][A-Za-z0-9_]* to catch lowercase-started types like tagEffTaskParam
-                inner = b[b.find('<')+1:b.rfind('>')]
-                for param in re.findall(r'[A-Za-z_]\w+', inner):
-                    if len(param) > 1 and param not in PRIMITIVES and param not in SYSTEM_TYPES and param != cls_name:
-                        gb_path = _gbengine_type_to_header.get(param, '')
-                        if gb_path:
-                            # gbengine type — use gbengine/ prefix
-                            inc_line = '#include "%s"' % gb_path
-                            if inc_line not in lines:
-                                lines.insert(0, inc_line)
-                        elif param in known_classes or _ann_struct_path(param).exists():
-                            # Has a real definition — include header (may not be generated yet,
-                            # but will be by the time compilation runs)
-                            inc_line = '#include "%s.h"' % param
-                            if inc_line not in lines:
-                                lines.insert(0, inc_line)
-                        else:
-                            # Unknown type — forward declare
-                            fwd_line = 'class %s;' % param
-                            if fwd_line not in lines:
-                                lines.insert(0, fwd_line)
-            else:
-                base_inc = b
-                # Check if this is a gbengine type that needs gbengine/ prefix
-                gb_path = _gbengine_type_to_header.get(base_inc, '')
-                if gb_path:
-                    inc_line = '#include "%s"' % gb_path
-                else:
-                    inc_line = '#include "%s.h"' % base_inc
-            if inc_line not in lines:
-                lines.insert(0, inc_line)
+    # Load annotation base_class (primary source for inheritance)
+    _ann_base = None
+    try:
+        _ann_data = _get_ida_structs()
+        _ann_base = _ann_data.get('structs', {}).get(cls_name, {}).get('base_class')
+    except:
+        pass
 
-    if not base_names:
-        print(f'  [debug] no PDB bases, fallback to _ann_base={_ann_base}', file=sys.stderr)
-
-    if not base_names and _ann_base:
+    if _ann_base:
         if isinstance(_ann_base, list):
-            # Handle multiple inheritance annotation
             resolved = []
             for b in _ann_base:
                 if b in template_map:
@@ -968,13 +894,11 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                     resolved.append(b)
             base_names.extend(resolved)
         else:
-            # Single base class — check template resolution
             if _ann_base in template_map:
                 base_names.append(template_map[_ann_base])
             else:
                 base_names.append(_ann_base)
-                # Also add include for the annotation base class
-                gb_path = _gbengine_type_to_header.get(_ann_base, '')
+                gb_path = _gbengine_type_to_header.get(_ann_base)
                 if gb_path:
                     inc_line = '#include "%s"' % gb_path
                 else:
@@ -982,8 +906,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 if inc_line not in lines:
                     lines.insert(0, inc_line)
 
-    # Generate includes for bases added from annotation (runs after the
-    # PDB base include loop at lines 804-841 which doesn't see these).
+    # Generate includes for all base classes
     for b in base_names:
         if b in SYSTEM_TYPES:
             continue
@@ -1016,20 +939,20 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
         if inc_line not in lines:
             lines.insert(0, inc_line)
 
-    if base_names:
-        # Sanitize template base class expressions for MSVC6 compatibility.
-        # MSVC6 cannot parse member function pointer types that reference the
-        # class being defined (incomplete type) when used as template arguments
-        # in base class specs. Replace such self-referencing types with void*.
-        # These callback types are only forwarded to forward-declared template
-        # pointers (e.g. MainTask<T, Callback>*), so void* is ABI-safe.
-        def _sanitize_template_base(name, cls_name):
-            if '<' not in name:
-                return name
-            p = (r'[\w\s]+\s*\(\s*__thiscall\s+' + re.escape(cls_name)
-                 + r'\s*::\s*\*\s*\)\s*\([\w\s,]*\)')
-            return re.sub(p, 'void*', name)
+    # Sanitize template base class expressions for MSVC6 compatibility.
+    # MSVC6 cannot parse member function pointer types that reference the
+    # class being defined (incomplete type) when used as template arguments
+    # in base class specs. Replace such self-referencing types with void*.
+    # These callback types are only forwarded to forward-declared template
+    # pointers (e.g. MainTask<T, Callback>*), so void* is ABI-safe.
+    def _sanitize_template_base(name, _cls):
+        if '<' not in name:
+            return name
+        p = (r'[\w\s]+\s*\(\s*__thiscall\s+' + re.escape(_cls)
+             + r'\s*::\s*\*\s*\)\s*\([\w\s,]*\)')
+        return re.sub(p, 'void*', name)
 
+    if base_names:
         # Deduplicate base classes after sanitization (PDB + annotation
         # may list the same template instantiation under different names).
         seen = set()
@@ -1049,12 +972,15 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     # (IDA TIL may misdetect some PDB types as union)
     _ann_is_union = False
     try:
-        _ann_check = load_annotations_data()
+        _ann_check = _get_ida_structs()
         _ann_is_union = _ann_check.get('structs', {}).get(cls_name, {}).get('is_union', False)
     except:
         pass
     if _ann_is_union:
         lines.append("union %s {" % cls_name)
+    elif template_expr:
+        lines.append("template<>")
+        lines.append("class %s%s {" % (_sanitize_template_base(template_expr, cls_name), bases_str))
     else:
         lines.append("class %s%s {" % (cls_name, bases_str))
     lines.append("public:")
@@ -1062,8 +988,6 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     # Virtual methods from vtable (must be first, order matches vtable layout)
     vtable_method_names = set()  # track names declared via vtable (including inherited)
     try:
-        ann_data_vt = load_annotations_data()
-
         def _collect_base_vtable_names(class_name, visited=None):
             if visited is None:
                 visited = set()
@@ -1071,11 +995,20 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 return set()
             visited.add(class_name)
             names = set(re.sub(r'[^a-zA-Z0-9_]', '_', n) for n in class_vtable_slots(class_name))
-            ann_s = ann_data_vt.get('structs', {}).get(class_name, {})
-            base = ann_s.get('base_class')
+            # Get base_class from ida_structs (primary) or annotation (fallback)
+            _is_entry = _get_ida_structs().get(class_name, {})
+            base = _is_entry.get('base_class') or []
+            if not base:
+                # Fallback to annotation for classes not in export
+                try:
+                    _ad = _get_ida_structs()
+                    _ab = _ad.get('structs', {}).get(class_name, {}).get('base_class')
+                    if _ab:
+                        base = [_ab] if isinstance(_ab, str) else _ab
+                except:
+                    pass
             if base:
-                bases = [base] if isinstance(base, str) else base
-                for b in bases:
+                for b in base:
                     names |= _collect_base_vtable_names(b, visited)
             return names
 
@@ -1101,7 +1034,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     base_size = 0
     if base_names:
         try:
-            ann_data = load_annotations_data()
+            ann_data = _get_ida_structs()
             ann_struct = ann_data.get('structs', {}).get(cls_name, {})
             base_size = ann_struct.get('base_size', 0)
         except:
@@ -1113,188 +1046,107 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
     # 仅当 IDB 没有 data_members（巨型稀疏结构体，IDA 无法创建所有成员）
     # 时，回退到 annotation known_members。
     try:
-        _ann_d = load_annotations_data()
+        _ann_d = _get_ida_structs()
         _ann_s = _ann_d.get('structs', {}).get(cls_name, {})
     except:
         _ann_s = {}
 
-    has_idb_members = bool(pdb_class and pdb_class.get('data_members'))
-    has_ann_members = bool(_ann_s.get('known_members'))
-
-    if has_idb_members:
-        use_pdb_members = True
-    elif has_ann_members:
-        use_pdb_members = False
-    else:
-        use_pdb_members = False
-
-    if use_pdb_members:
-        members = pdb_class['data_members']
-        size = pdb_class.get('size', 0)
-
-        for m in members:
-            mname = m.get('name', '')
-            mtype = _resolve_ordinal_type(m.get('type', 'int'))
-            moffset = m.get('offset', 0)
-
-            # Skip members that belong to base class.
-            # IDB struct is non-flat (has _field_0 @0 for base) → skip base-size range.
-            # IDB struct is flat (no _field_0) → don't skip (already at derived offsets).
-            if base_size > 0 and moffset < base_size:
-                _first = members[0] if members else {}
-                if _first.get('name') == '_field_0' and _first.get('offset') == 0:
+    # Generate members from annotation known_members (sole source of truth)
+    try:
+        ann_data_fb = _get_ida_structs()
+        ann_struct_fb = ann_data_fb.get('structs', {}).get(cls_name, {})
+        ann_members = dict(ann_struct_fb.get('known_members', {}))  # copy
+        ann_size = ann_struct_fb.get('binary_size')
+        if ann_members or ann_size:
+            sorted_members = sorted(ann_members.items(), key=lambda x: int(x[0])) if ann_members else []
+            start_off = base_size
+            for off_str, m in sorted_members:
+                mname = m.get('name', '_field_%04X' % int(off_str))
+                mtype = m.get('type', 'int')
+                off = int(off_str)
+                if off < start_off:
                     continue
-
-            if not mname:
-                mname = '_field_%04X' % moffset
-
-            # Skip vtable members (IDA internal, not part of C++ source).
-            # vfptr at +0 is compiler-generated for classes with virtual functions.
-            if '__vftable' in mname or 'vtbl_' in mtype or '_vtbl' in mtype:
-                continue
-            if mname == 'vfptr' and moffset == 0 and class_vtable_slots(cls_name):
-                continue
-
-            # Remap IDA internal types to C types
-            for ida_type, c_type in TYPE_REMAP.items():
-                if ida_type in mtype:
-                    mtype = mtype.replace(ida_type, c_type)
-
-            # Fix IDA type misidentification
-            mtype = mtype.replace('stdiobuf', 'UIWnd')
-            mtype = mtype.replace('std::ios_base', 'UIWnd')
-
-            # Full type restoration for templates and nested types
-            if '<' in mtype or 'std::' in mtype:
-                mtype = simplify_stl_type(mtype, cls_name)
-            elif '::' in mtype:
-                mtype = re.sub(r'^%s::' % re.escape(cls_name), '', mtype)
-
-            # Fix C99 flexible array "Type[]" -> "Type[1]" (VC6 workaround)
-            mtype = re.sub(r'\[\]', '[1]', mtype)
-
-            # Handle arrays in type: "Type[N]" or "Type[0xN]" or "Type *[N]" -> "Type name[N]" / "Type * name[N]"
-            arr_match = re.search(r'(\[(?:0x[0-9a-fA-F]+|\d+)\](?:\[(?:0x[0-9a-fA-F]+|\d+)\])*)$', mtype)
-            if arr_match:
-                arr_part = arr_match.group(1)
-                base_type = mtype[:arr_match.start()].rstrip()
-                lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, moffset))
-            else:
-                lines.append("    %s %s; // +0x%X" % (mtype, mname, moffset))
-
-        if size > 0:
-            lines.append("    // total size: 0x%X (%d)" % (size, size))
-        lines.append("")
-    if not use_pdb_members:
-        # Generate from annotation known_members with gap filling.
-        # IDB/ida_structs members are merged as gap-fill when annotation
-        # doesn't have an offset mapped.
-        try:
-            ann_data_fb = load_annotations_data()
-            ann_struct_fb = ann_data_fb.get('structs', {}).get(cls_name, {})
-            ann_members = dict(ann_struct_fb.get('known_members', {}))  # copy
-            ann_size = ann_struct_fb.get('binary_size')
-            
-            # Merge PDB members into annotation members (PDB fills gaps)
-            if use_pdb_members == 'merge' and pdb_class and pdb_class.get('data_members'):
-                ann_offsets = set(int(k) for k in ann_members.keys())
-                for m in pdb_class['data_members']:
-                    moff = m.get('offset', 0)
-                    if moff not in ann_offsets and moff >= base_size:
-                        mname = m.get('name', '')
-                        mtype = _resolve_ordinal_type(m.get('type', 'int'))
-                        if mname and '__vftable' not in mname and 'vtbl_' not in mtype:
-                            ann_members[str(moff)] = {'name': mname, 'type': mtype, 'source': 'pdb_merge'}
-            if ann_members or ann_size:
-                sorted_members = sorted(ann_members.items(), key=lambda x: int(x[0])) if ann_members else []
-                start_off = base_size
-                for off_str, m in sorted_members:
-                    mname = m.get('name', '_field_%04X' % int(off_str))
-                    mtype = m.get('type', 'int')
-                    off = int(off_str)
-                    if off < start_off:
-                        continue
-                    # Skip vfptr at +0 for classes with vtables (compiler-generated)
-                    if mname == 'vfptr' and off == 0 and class_vtable_slots(cls_name):
-                        start_off = off + 4
-                        continue
-                    # Insert gap padding before this member if needed
-                    if off > start_off:
-                        gap_size = off - start_off
-                        lines.append("    char _gap_%03X[%d]; // +0x%X" % (start_off, gap_size, start_off))
-                    # Fix C99 flexible array
-                    mtype = re.sub(r'\[\]', '[1]', mtype)
-                    # Full type restoration: annotation stores real C++ types,
-                    # codegen outputs them directly (no flatten for IDA limitations)
-                    if '<' in mtype or 'std::' in mtype:
-                        simplified = simplify_stl_type(mtype, cls_name)
-                        # Self-referencing nested types (e.g. queue<Common_State> inside
-                        # SceneObj where Common_State = SceneObj::Common_State) need the
-                        # nested type declared first. Since we don't have its layout,
-                        # fall back to char[N] for these cases only.
-                        original_has_self_ref = (cls_name + '::') in mtype
-                        if original_has_self_ref:
-                            idx_m = sorted_members.index((off_str, m))
-                            if idx_m + 1 < len(sorted_members):
-                                next_off = int(sorted_members[idx_m + 1][0])
-                            else:
-                                next_off = int(ann_size) if ann_size and ann_size != '?' else off + 4
-                            msize = next_off - off
-                            if msize > 0:
-                                lines.append("    char %s[%d]; // +0x%X %s" % (mname, msize, off, simplified))
-                            else:
-                                lines.append("    int %s; // +0x%X %s" % (mname, off, simplified))
-                            member_size = msize if msize > 0 else 4
-                            start_off = off + member_size
-                            continue
-                        mtype = simplified
-                    elif '::' in mtype:
-                        # Strip own class prefix for nested types
-                        mtype = re.sub(r'^%s::' % re.escape(cls_name), '', mtype)
-                        # After stripping, check if inner type name matches a flattened
-                        # nested type (ClassName_InnerType). If the annotation stores it
-                        # as SimpleName, the flattened type used for the generated header
-                        # is ClassName_SimpleName.
-                        _inner = mtype.strip()
-                        _flat = '%s_%s' % (cls_name, _inner)
-                        if (OUTPUT_DIR / ('%s.h' % _flat)).exists():
-                            mtype = _flat
-                    # Emit member with real type
-                    comment = m.get('comment', '') or m.get('description', '')
-                    arr_match = re.search(r'(\[(?:0x[0-9a-fA-F]+|\d+)\](?:\[(?:0x[0-9a-fA-F]+|\d+)\])*)$', mtype)
-                    if comment:
-                        lines.append("    // %s" % comment)
-                    if arr_match:
-                        arr_part = arr_match.group(1)
-                        base_type = mtype[:arr_match.start()].rstrip()
-                        lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, off))
-                    else:
-                        # Fix function pointer member syntax:
-                        # "void (*)(void)" + name = "void (*)(void) name" (WRONG)
-                        # Should be: "void (*name)(void)"
-                        _fp_match = re.search(r'\((\*)\)\(', mtype)
-                        if _fp_match:
-                            mtype = mtype[:_fp_match.start(1)] + '*' + mname + mtype[_fp_match.end(1):]
-                            lines.append("    %s; // +0x%X" % (mtype, off))
+                # Skip vfptr at +0 for classes with vtables (compiler-generated)
+                if mname == 'vfptr' and off == 0 and class_vtable_slots(cls_name):
+                    start_off = off + 4
+                    continue
+                # Insert gap padding before this member if needed
+                if off > start_off:
+                    gap_size = off - start_off
+                    lines.append("    char _gap_%03X[%d]; // +0x%X" % (start_off, gap_size, start_off))
+                # Fix C99 flexible array
+                mtype = re.sub(r'\[\]', '[1]', mtype)
+                # Full type restoration: annotation stores real C++ types,
+                # codegen outputs them directly (no flatten for IDA limitations)
+                if '<' in mtype or 'std::' in mtype:
+                    simplified = simplify_stl_type(mtype, cls_name)
+                    # Self-referencing nested types (e.g. queue<Common_State> inside
+                    # SceneObj where Common_State = SceneObj::Common_State) need the
+                    # nested type declared first. Since we don't have its layout,
+                    # fall back to char[N] for these cases only.
+                    original_has_self_ref = (cls_name + '::') in mtype
+                    if original_has_self_ref:
+                        idx_m = sorted_members.index((off_str, m))
+                        if idx_m + 1 < len(sorted_members):
+                            next_off = int(sorted_members[idx_m + 1][0])
                         else:
-                            lines.append("    %s %s; // +0x%X" % (mtype, mname, off))
-                    # Estimate member size to compute next start_off
-                    member_size = _estimate_member_size(mtype)
-                    start_off = off + member_size
-                # Tail padding to reach total size
-                if ann_size and ann_size != '?' and int(ann_size) > start_off:
-                    tail_size = int(ann_size) - start_off
-                    lines.append("    char _tail_%03X[%d]; // +0x%X" % (start_off, tail_size, start_off))
-                if ann_size and ann_size != '?':
-                    lines.append("    // total size: 0x%X (%d)" % (int(ann_size), int(ann_size)))
-                lines.append("")
-        except Exception as e:
-            import traceback; traceback.print_exc()
+                            next_off = int(ann_size) if ann_size and ann_size != '?' else off + 4
+                        msize = next_off - off
+                        if msize > 0:
+                            lines.append("    char %s[%d]; // +0x%X %s" % (mname, msize, off, simplified))
+                        else:
+                            lines.append("    int %s; // +0x%X %s" % (mname, off, simplified))
+                        member_size = msize if msize > 0 else 4
+                        start_off = off + member_size
+                        continue
+                    mtype = simplified
+                elif '::' in mtype:
+                    # Strip own class prefix for nested types
+                    mtype = re.sub(r'^%s::' % re.escape(cls_name), '', mtype)
+                    # After stripping, check if inner type name matches a flattened
+                    # nested type (ClassName_InnerType). If the annotation stores it
+                    # as SimpleName, the flattened type used for the generated header
+                    # is ClassName_SimpleName.
+                    _inner = mtype.strip()
+                    _flat = '%s_%s' % (cls_name, _inner)
+                    if (OUTPUT_DIR / ('%s.h' % _flat)).exists():
+                        mtype = _flat
+                # Emit member with real type
+                comment = m.get('comment', '') or m.get('description', '')
+                arr_match = re.search(r'(\[(?:0x[0-9a-fA-F]+|\d+)\](?:\[(?:0x[0-9a-fA-F]+|\d+)\])*)$', mtype)
+                if comment:
+                    lines.append("    // %s" % comment)
+                if arr_match:
+                    arr_part = arr_match.group(1)
+                    base_type = mtype[:arr_match.start()].rstrip()
+                    lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, off))
+                else:
+                    # Fix function pointer member syntax:
+                    # "void (*)(void)" + name = "void (*)(void) name" (WRONG)
+                    # Should be: "void (*name)(void)"
+                    _fp_match = re.search(r'\((\*)\)\(', mtype)
+                    if _fp_match:
+                        mtype = mtype[:_fp_match.start(1)] + '*' + mname + mtype[_fp_match.end(1):]
+                        lines.append("    %s; // +0x%X" % (mtype, off))
+                    else:
+                        lines.append("    %s %s; // +0x%X" % (mtype, mname, off))
+                # Estimate member size to compute next start_off
+                member_size = _estimate_member_size(mtype)
+                start_off = off + member_size
+            # Tail padding to reach total size
+            if ann_size and ann_size != '?' and int(ann_size) > start_off:
+                tail_size = int(ann_size) - start_off
+                lines.append("    char _tail_%03X[%d]; // +0x%X" % (start_off, tail_size, start_off))
+            if ann_size and ann_size != '?':
+                lines.append("    // total size: 0x%X (%d)" % (int(ann_size), int(ann_size)))
+            lines.append("")
+    except Exception as e:
+        import traceback; traceback.print_exc()
 
     # Methods (deduplicate by name+params to avoid C2535)
     # Pre-compute opaque type info (needed before method loop to suppress ctor decl)
     _is_opaque = False
-    _ann_for_check = load_annotations_data()
+    _ann_for_check = _get_ida_structs()
     _check_struct = _ann_for_check.get('structs', {}).get(cls_name, {})
     _check_size = _check_struct.get('binary_size') or 0
     _check_members = _check_struct.get('known_members', {})
@@ -1310,8 +1162,36 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
             if _addr in _vtable_addr_order:
                 return (0, _vtable_addr_order[_addr], _addr)
             return (1, 0, _addr)
+        # Add undef guards for Windows API macros that conflict with method names
+        _MACRO_CONFLICTS = {'CreateDialog', 'CreateWindow', 'DestroyWindow',
+                            'LoadMenu', 'LoadBitmap', 'LoadImage', 'LoadCursor',
+                            'PostMessage', 'SendMessage', 'DefWindowProc'}
+        _conflict_undefs = []
+        for _mn, _ms, _ma in methods:
+            if _mn in _MACRO_CONFLICTS:
+                _ul = '#ifdef %s\n#undef %s\n#endif' % (_mn, _mn)
+                if _ul not in _conflict_undefs:
+                    _conflict_undefs.append(_ul)
+        if _conflict_undefs:
+            for _ul in reversed(_conflict_undefs):
+                lines.insert(1, '')
+                lines.insert(1, _ul)
+
+        _ann_methods_by_addr = {}
+        try:
+            _ann_md = _get_ida_structs()
+            _ann_ms = _ann_md.get('structs', {}).get(cls_name, {}).get('methods', {})
+            for _k, _v in _ann_ms.items():
+                _ann_methods_by_addr[_k] = _v.get('signature', '')
+        except:
+            pass
         seen_methods = set()  # track "name(params)" to deduplicate
         for method_name, sig, addr in sorted(methods, key=_method_sort_key):
+            # Override signature from annotation methods if available
+            # (annotation has manually corrected return types, e.g. void Render)
+            _ann_sig = _ann_methods_by_addr.get(addr, '')
+            if _ann_sig:
+                sig = _ann_sig
             ret, cc, params, ret_right = parse_signature(sig)
 
             # Remap IDA internal types to C types in signatures
@@ -1382,7 +1262,15 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                     return m.group(0).replace(' this', ' _this').replace('*this', '*_this')
                 params = re.sub(r'\([^)]*\bthis\b[^)]*\)', _fix_nested_this, params)
 
-            # Build declaration
+            # Build declaration, wrapping method name in () when it conflicts
+            # with a Windows function-like macro (e.g. CreateDialog) to prevent
+            # preprocessor expansion. Wrap in a separate function for clarity.
+            def _safe_method_name(name):
+                _MACRO_CONFLICTS = {'CreateDialog', 'CreateWindow', 'DestroyWindow',
+                                    'LoadMenu', 'LoadBitmap', 'LoadImage', 'LoadCursor',
+                                    'PostMessage', 'SendMessage', 'DefWindowProc'}
+                return '(%s)' % name if name in _MACRO_CONFLICTS else name
+            _mn = _safe_method_name(method_name)
             if is_ctor:
                 if _is_opaque:
                     continue  # opaque type generates its own ctor body
@@ -1393,15 +1281,14 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
                 else:
                     decl = "    ~%s();" % cls_name
             elif ret_right:
-                # Function-pointer return: "ret_left method(params) ret_right;"
                 if is_static:
-                    decl = "    static %s %s(%s)%s;" % (ret, method_name, params, ret_right)
+                    decl = "    static %s %s(%s)%s;" % (ret, _mn, params, ret_right)
                 else:
-                    decl = "    %s %s(%s)%s;" % (ret, method_name, params, ret_right)
+                    decl = "    %s %s(%s)%s;" % (ret, _mn, params, ret_right)
             elif is_static:
-                decl = "    static %s %s(%s);" % (ret, method_name, params)
+                decl = "    static %s %s(%s);" % (ret, _mn, params)
             else:
-                decl = "    %s %s(%s);" % (ret, method_name, params)
+                decl = "    %s %s(%s);" % (ret, _mn, params)
 
             # Virtual override: method inherited from base vtable but this class has its own impl.
             # Declare it normally — virtual keyword needs signature matching (C2555 risk).
@@ -1445,7 +1332,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
 
     # If class has parameterized ctor but no default ctor, add one
     # (skip for opaque structs which get their own ctor below)
-    _ann_for_ctor = load_annotations_data()
+    _ann_for_ctor = _get_ida_structs()
     _ctor_struct = _ann_for_ctor.get('structs', {}).get(cls_name, {})
     _ctor_size = _ctor_struct.get('binary_size') or 0
     _ctor_members = _ctor_struct.get('known_members', {})
@@ -1459,7 +1346,7 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
 
     # For opaque 4-byte structs (no real members), add int conversion operators
     # This allows IDA-generated code to assign integers to these types
-    _ann_for_opaque = load_annotations_data()
+    _ann_for_opaque = _get_ida_structs()
     _opaque_struct = _ann_for_opaque.get('structs', {}).get(cls_name, {})
     _opaque_size = _opaque_struct.get('binary_size') or 0
     _opaque_members = _opaque_struct.get('known_members', {})
@@ -1478,12 +1365,21 @@ def generate_header(cls_name, pdb_class, methods, known_classes=None, enum_names
 
 
 def main():
-    # IDB struct export is the SINGLE authoritative source.
-    # No raw PDB data is read. The pipeline: PDB → master_pipeline → IDB →
-    # apply_annotations → IDB → export_full → ida_structs.json
+    # Load export data (ida_structs.json) — the ONLY legitimate source for struct info
+    _is_data = _get_ida_structs()
+    vtable_classes = set(name for name, sinfo in _is_data.items()
+                         if sinfo.get('vtables'))
+    ann_structs = set(name for name, sinfo in _is_data.items()
+                      if sinfo.get('data_members') or sinfo.get('size', 0))
+
+    # Collect methods from decomp JSONs (function bodies with class attribution)
+    methods_by_class = collect_methods()
+
+    # Load struct definitions from export output (ida_structs.json).
+    # This is the legitimate data source for codegen — it's the export stage's output,
+    # containing IDB type information after annotations have been applied.
     ida_classes = {}
     ida_enums = {}
-
     if IDA_STRUCTS_FILE.exists():
         ida_data = json.load(open(IDA_STRUCTS_FILE, encoding='utf-8'))
 
@@ -1508,21 +1404,28 @@ def main():
                     continue
                 ida_classes[sname] = s
 
-    # Collect methods from decomp
-    methods_by_class = collect_methods()
-
-    # Generate headers for all classes that have either members or methods
+    # Generate headers
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Load annotations for vtable info
-    ann_data_all = load_annotations_data()
-    vtable_classes = set(name for name, sinfo in ann_data_all.get('structs', {}).items()
-                         if sinfo.get('vtables'))
-    vtable_classes -= {'crt_internal', 'std_locale_facet'}
-
-    generated = 0
-    ann_structs = set(ann_data_all.get('structs', {}).keys())
+    # Build all_classes from export + decomp + annotation (for complete coverage)
     all_classes = set(ida_classes.keys()) | set(methods_by_class.keys()) | vtable_classes | ann_structs
+
+    # Counters
+    generated = 0
+
+    def colliding_enums_for(cls_name, enum_names, enum_by_lower, embedded_enums):
+        """Check for enum name collisions with this class."""
+        result = []
+        for ename, edata in enum_by_lower.get(cls_name.lower(), []):
+            if ename in embedded_enums:
+                continue
+            if ename == cls_name:
+                if cls_name in methods_by_class:
+                    result.append((ename, edata))
+            else:
+                result.append((ename, edata))
+                embedded_enums.add(ename)
+        return result
 
     # Load template reverse map: concrete class -> template expression
     # Classes in this map are template instantiations whose headers should NOT
@@ -1537,7 +1440,7 @@ def main():
             if not _k.startswith('_'):
                 _template_concrete.add(_k)
 
-    # Build template_classes from ida_classes
+    # Build template_classes from ida_structs (export output, has template instantiations)
     template_classes = {}
     for sname, s in ida_classes.items():
         if '<' in sname:
@@ -1552,13 +1455,13 @@ def main():
             continue
         if '<' in cls_name or '::' in cls_name:
             continue
-        pdb_class = ida_classes.get(cls_name)
+        ann_for_cls = _is_data.get(cls_name, {})
         methods_list = methods_by_class.get(cls_name, [])
-        has_members = pdb_class and pdb_class.get('data_members') and pdb_class.get('size', 0) > 1
+        has_members = bool(ann_for_cls.get('data_members')) and bool(ann_for_cls.get('size'))
         has_methods = len(methods_list) >= 1
-        ann_s = ann_data_all.get('structs', {}).get(cls_name, {})
-        has_ann = bool(ann_s.get('known_members'))
-        has_ann_sz = bool(ann_s.get('binary_size'))
+        ann_s = _is_data.get(cls_name, {})
+        has_ann = bool(ann_s.get('data_members'))
+        has_ann_sz = bool(ann_s.get('size'))
         if has_members or has_methods or has_ann or has_ann_sz:
             classes_with_headers.add(cls_name)
     # Also include template stubs and enums
@@ -1586,38 +1489,45 @@ def main():
     for cls_name in sorted(all_classes):
         if should_skip_class(cls_name):
             continue
-        # Skip template instantiation classes that have a proper template definition
-        # (e.g. TaskMgr_SceneObjParam_SceneObj -> uses TaskMgr<...> template expression)
+        # Generate template specialization headers for concrete template instantiations
         if cls_name in _template_concrete:
+            _tpl_expr = _tpl_data.get(cls_name, {}).get('template', '')
+            if _tpl_expr:
+                methods = methods_by_class.get(cls_name, [])
+                ann_struct = _is_data.get(cls_name, {})
+                has_members = bool(ann_struct.get('data_members'))
+                has_vtable = bool(ann_struct.get('vtables'))
+                has_size = bool(ann_struct.get('size'))
+                if has_members or has_vtable or has_size:
+                    content = generate_header(cls_name, ann_struct, methods,
+                        classes_with_headers, enum_names, template_expr=_tpl_expr,
+                        colliding_enums=colliding_enums_for(cls_name, enum_names, enum_by_lower, embedded_enums))
+                    output_path = OUTPUT_DIR / ("%s.h" % _sanitize_filename(_tpl_expr))
+                    with open(output_path, 'w', encoding='utf-8') as f:
+                        f.write(content)
+                    generated += 1
+                    _fallback = OUTPUT_DIR / ("%s.h" % _sanitize_filename(cls_name))
+                    if not _fallback.exists():
+                        with open(_fallback, 'w', encoding='utf-8') as f:
+                            f.write('#pragma once\n#include "%s"\n' % output_path.name)
+                    continue
             continue
-        # For classes with manual override files, copy the override instead of auto-generating
-        override_path = OVERRIDES_DIR / ('%s.h' % cls_name)
-        if override_path.exists():
-            output_path = OUTPUT_DIR / ("%s.h" % _sanitize_filename(cls_name))
-            with open(override_path, 'r', encoding='utf-8') as src:
-                with open(output_path, 'w', encoding='utf-8') as dst:
-                    dst.write(src.read())
-            generated += 1
-            continue
-
-        pdb_class = ida_classes.get(cls_name)
+        ann_struct = _is_data.get(cls_name, {})
         methods = methods_by_class.get(cls_name, [])
 
         # Skip if no useful content (but keep if has vtable or annotation members)
-        has_members = pdb_class and pdb_class.get('data_members') and pdb_class.get('size', 0) > 1
+        has_members = bool(ann_struct.get('data_members')) and bool(ann_struct.get('size'))
         has_methods = len(methods) >= 1
-        ann_struct = ann_data_all.get('structs', {}).get(cls_name, {})
         has_vtable = bool(ann_struct.get('vtables'))
-        has_ann_members = bool(ann_struct.get('known_members'))
-        has_ann_size = bool(ann_struct.get('binary_size'))
+        has_ann_members = bool(ann_struct.get('data_members'))
+        has_ann_size = bool(ann_struct.get('size'))
         if not has_members and not has_methods and not has_vtable and not has_ann_members and not has_ann_size:
             continue
 
-        # Skip class generation if name conflicts with a PDB enum and class is just an enum wrapper
-        # (size <= 4, no meaningful members beyond padding)
+        # Skip class generation if name conflicts with an enum and class is just an enum wrapper
         if cls_name in enum_names:
-            pdb_size = pdb_class.get('size', 0) if pdb_class else 0
-            if pdb_size <= 4 and not has_ann_members:
+            ann_size = ann_struct.get('size', 0)
+            if ann_size and ann_size <= 4 and not has_ann_members:
                 continue
 
         # Embed enums that would collide with this class header on disk:
@@ -1635,7 +1545,7 @@ def main():
                 colliding_enums.append((ename, edata))
                 embedded_enums.add(ename)
 
-        content = generate_header(cls_name, pdb_class, methods, classes_with_headers, enum_names,
+        content = generate_header(cls_name, _is_data.get(cls_name, {}), methods, classes_with_headers, enum_names,
                                   colliding_enums=colliding_enums)
         output_path = OUTPUT_DIR / ("%s.h" % _sanitize_filename(cls_name))
         with open(output_path, 'w', encoding='utf-8') as f:
@@ -1721,8 +1631,7 @@ def main():
             stale_removed += 1
 
     print("Generated %d header files in %s" % (generated, OUTPUT_DIR))
-    print("  With IDB layout: %d" % sum(1 for c in all_classes
-          if c in ida_classes and ida_classes[c].get('data_members') and ida_classes[c].get('size', 0) > 1))
+    print("  With annotation layout: %d" % len(all_classes))
     print("  With methods: %d" % sum(1 for c in all_classes if c in methods_by_class and methods_by_class[c]))
     print("  Enums: %d" % enum_count)
     print("  Template stubs: %d" % tmpl_count)
