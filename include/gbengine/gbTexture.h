@@ -168,20 +168,27 @@ public:
     // 0x10004190 (12B) - Check if texture is initialized
     int IsInit(void);
     unsigned int NameCrc32;  // texture name CRC32 (accessed as field)
-    // Vtable dispatch: check if texture data is loaded
-    virtual int IsLoaded(...);
 
     // 0x10020760 (102B) - Create empty texture
     void CreateTexture(int w, int h, gbPixelFmtType fmt, int mips);
 
     // Get the D3D texture interface (base returns NULL, overridden in D3D subclass)
-    virtual IDirect3DTexture9* GetTexture(void);
+    IDirect3DTexture9* GetTexture(void);
 
     // Exported: GetHeight
     int GetHeight(void);
 
     // Exported: GetWidth
     int GetWidth(void);
+
+    // --- Pure virtuals (vtable slots [1]-[4], overridden by gbTexture_D3D) ---
+    // IDA-verified: gbTexture vtable has __purecall at all 4 slots,
+    // gbTexture_D3D vtable overrides them in this order:
+    virtual void CreateFromMemory(int w, int h, gbPixelFmtType srcFmt, int levels,
+                                  gbPixelFmtType dstFmt, void* data) = 0;
+    virtual void UpdateTexture(int x, int y, int w, int h, gbPixelFmtType srcFmt, void* data) = 0;
+    virtual int CreateForRenderTarget(int w, int h, gbPixelFmtType fmt) = 0;
+    virtual void CreateFromFileMemory(void* data, int size) = 0;
 
     // 0x10020430 (85B) - Get internal D3D format from image
     gbPixelFmtType GetInternalFormat(gbImage2D* img);
@@ -200,9 +207,6 @@ public:
 
     // 0x100205a0 (443B) - Load texture from resource index
     void LoadTexture(int resIndex);
-
-    // Virtual: update texture data (overridden in gbTexture_D3D)
-    virtual void UpdateTexture(int x, int y, int w, int h, gbPixelFmtType srcFmt, void* data);
 
     // 0x10020820 (52B) - Update texture sub-region from image
     void UpdateTexture(int x, int y, gbImage2D* img);
@@ -227,8 +231,8 @@ public:
     // 0x1001baa0 - Virtual destructor: release D3D resources
     virtual ~gbTexture_D3D();
 
-    // Override: return the D3D texture pointer
-    virtual IDirect3DTexture9* GetTexture(void);
+    // Return the D3D texture pointer
+    IDirect3DTexture9* GetTexture(void);
 
     // 0x1001bea0 (219B) - Override: update existing texture with new data
     virtual void UpdateTexture(int x, int y, int w, int h, gbPixelFmtType srcFmt, void* data);
