@@ -1100,6 +1100,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             for off_str, m in sorted_members:
                 mname = m.get('name', '_field_%04X' % int(off_str))
                 mtype = m.get('type', 'int')
+                # Remap IDA internal types to C types
+                for ida_type, c_type in TYPE_REMAP.items():
+                    if ida_type in mtype:
+                        mtype = mtype.replace(ida_type, c_type)
                 off = int(off_str)
                 if off < start_off:
                     continue
