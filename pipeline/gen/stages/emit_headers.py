@@ -154,11 +154,24 @@ def class_vtable_slots(cls_name, with_addr=False, vtables=None, methods=None):
     """
     if vtables is None or methods is None:
         _is = _get_ida_structs().get(cls_name)
-        if not _is or not _is.get('vtables'):
-            return [] if not with_addr else []
-        vtables = _is['vtables']
-        methods = _is.get('methods', {})
-        functions = {}
+        if _is and _is.get('vtables'):
+            vtables = _is['vtables']
+            methods = _is.get('methods', {})
+            functions = {}
+        else:
+            # DEBT: vtables not in ida_structs.json (export_full.py doesn't pass through).
+            # Read from annotations directly as fallback.
+            _ann_path = ANNOTATIONS_DIR / "structs" / ("%s.json" % cls_name)
+            if not _ann_path.exists():
+                safe = cls_name.replace('<', '_').replace('>', '_').replace(':', '_').replace('*', '_')
+                _ann_path = ANNOTATIONS_DIR / "structs" / ("%s.json" % safe)
+            if _ann_path.exists():
+                _ann = json.load(open(_ann_path, encoding='utf-8'))
+                vtables = _ann.get('vtables', [])
+                methods = _ann.get('methods', {})
+                functions = {}
+            else:
+                return [] if not with_addr else []
     else:
         functions = {}
     if with_addr:
@@ -1185,6 +1198,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         try:
             _ann_md = _get_ida_structs()
             _ann_ms = _ann_md.get(cls_name, {}).get('methods', {})
+            if not _ann_ms:
+                # DEBT: methods not in ida_structs.json, read from annotation directly
+                _ann_path = ANNOTATIONS_DIR / "structs" / ("%s.json" % cls_name)
+                if not _ann_path.exists():
+                    _safe = cls_name.replace('<','_').replace('>','_').replace(':','_').replace('*','_')
+                    _ann_path = ANNOTATIONS_DIR / "structs" / ("%s.json" % _safe)
+                if _ann_path.exists():
+                    _ann_raw = json.load(open(_ann_path, encoding='utf-8'))
+                    _ann_ms = _ann_raw.get('methods', {})
             for _k, _v in _ann_ms.items():
                 _ann_methods_by_addr[_k] = _v.get('signature', '')
         except:
