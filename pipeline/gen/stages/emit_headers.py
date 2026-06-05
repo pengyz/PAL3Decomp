@@ -120,27 +120,13 @@ def load_annotations_data():
     All data needed by codegen must flow through:
     annotation → apply → IDB → export → ida_structs.json + decomp JSON
     
-    Remove this call and use _get_ida_structs() or decomp JSON data instead.
-    If the data you need isn't in the export output, add it to export_full.py.
+    This function intentionally raises — all callers must use _get_ida_structs()
+    or read decomp JSON data instead.
     """
     raise RuntimeError(
-        "_get_ida_structs() called from codegen — forbidden.\n"
+        "load_annotations_data() called from codegen — forbidden.\n"
         "All data must come from export output (ida_structs.json + decomp JSON).\n"
         "See export_full.py to add missing data to the export.")
-    ann_dir = ANNOTATIONS_DIR
-    structs = {}
-    structs_dir = ann_dir / "structs"
-    if structs_dir.exists():
-        for f in structs_dir.glob("*.json"):
-            sdata = json.load(open(f, encoding='utf-8'))
-            sname = sdata.pop('name', f.stem)
-            structs[sname] = sdata
-    functions = {}
-    fn_file = ann_dir / "functions.json"
-    if fn_file.exists():
-        functions = json.load(open(fn_file, encoding='utf-8'))
-    _annotations_cache = {'structs': structs, 'functions': functions}
-    return _annotations_cache
 
 
 def class_vtable_slots(cls_name, with_addr=False, vtables=None, methods=None):
@@ -613,7 +599,7 @@ def _estimate_member_size(mtype):
 
 
 def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_names=None,
-                    colliding_enums=None, template_expr=None):
+                    colliding_enums=None, template_expr=None, template_param_count=0):
     """Generate a complete header for one class.
     
     ida_struct: struct definition from ida_structs.json (export output, NOT raw PDB).
@@ -992,8 +978,42 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     if _ann_is_union:
         lines.append("union %s {" % cls_name)
     elif template_expr:
-        lines.append("template<>")
-        lines.append("class %s%s {" % (_sanitize_template_base(template_expr, cls_name), bases_str))
+        # MSVC6 can't parse member function pointer types inline in template args.
+        # Use a typedef + forward decl to make the argument a simple identifier.
+        _td_mfp = re.search(r'__thiscall\s+(\w+)\s*::\s*\*', template_expr)
+        if _td_mfp:
+            _td_cls = _td_mfp.group(1)
+            # Extract the full member function pointer type string
+            _td_full = re.search(r'[\w\s]+\s*\(\s*__thiscall\s+\w+\s*::\s*\*\s*\)\s*\([\w\s,]*\)', template_expr)
+            if _td_full:
+                _td_type = _td_full.group(0).strip()
+                _td_name = '_{}_cb'.format(_td_cls)
+                _td_type_named = re.sub(r'\*\)', '*%s)' % _td_name, _td_type, 1)
+                _td_expr = template_expr.replace(_td_type, _td_name)
+                lines.append('class %s;' % _td_cls)
+                lines.append('typedef %s;' % _td_type_named)
+                _base_tpl = template_expr.split('<')[0]
+                _inc = '#include "%s.h"' % _base_tpl
+                if _inc not in lines:
+                    lines.insert(0, _inc)
+                # Include simple template parameter types (e.g. tagEffTaskParam)
+                for _tp in re.findall(r'\w+', template_expr.split('<', 1)[1].split(',')[0]):
+                    if _tp and _tp != _base_tpl and _tp not in PRIMITIVES and _tp not in SYSTEM_TYPES:
+                        _inc2 = '#include "%s.h"' % _tp
+                        if _inc2 not in lines:
+                            lines.insert(0, _inc2)
+                lines.append("template<>")
+                lines.append("class %s%s {" % (_sanitize_template_base(_td_expr, cls_name), bases_str))
+            else:
+                lines.append("template<>")
+                lines.append("class %s%s {" % (_sanitize_template_base(template_expr, cls_name), bases_str))
+        else:
+            lines.append("template<>")
+            lines.append("class %s%s {" % (_sanitize_template_base(template_expr, cls_name), bases_str))
+    elif template_param_count > 0:
+        _params = ', '.join('typename T%d' % (i+1) for i in range(template_param_count))
+        lines.append("template<%s>" % _params)
+        lines.append("class %s%s {" % (cls_name, bases_str))
     else:
         lines.append("class %s%s {" % (cls_name, bases_str))
     lines.append("public:")
@@ -1474,6 +1494,23 @@ def main():
             if base_name and '::' not in base_name and s.get('size', 0) > 1:
                 template_classes[base_name] = s
 
+    # Build template param count for base template names
+    _tpl_param_count = {}
+    for _k, _v in _tpl_data.items():
+        if _k.startswith('_') or not isinstance(_v, dict):
+            continue
+        _t = _v.get('template', '')
+        if '<' in _t:
+            _base = _t.split('<')[0]
+            _inner = _t[_t.find('<')+1:_t.rfind('>')]
+            _depth = 0
+            _count = 1
+            for _c in _inner:
+                if _c == '<': _depth += 1
+                elif _c == '>': _depth -= 1
+                elif _c == ',' and _depth == 0: _count += 1
+            _tpl_param_count[_base] = _count
+
     # Pre-compute set of all class names that will have headers generated
     classes_with_headers = set()
     for cls_name in all_classes:
@@ -1535,7 +1572,21 @@ def main():
                     _fallback = OUTPUT_DIR / ("%s.h" % _sanitize_filename(cls_name))
                     if not _fallback.exists():
                         with open(_fallback, 'w', encoding='utf-8') as f:
-                            f.write('#pragma once\n#include "%s"\n' % output_path.name)
+                            f.write('#pragma once\n')
+                            f.write('#include "%s"\n' % output_path.name)
+                            # Provide concrete typedef for the specialization
+                            # e.g. typedef CTaskTpl<tagEffTaskParam, _CEffModel_cb> CTaskTpl_tagEffTaskParam_CEffModel;
+                            _fb_mfp = re.search(r'__thiscall\s+(\w+)\s*::\s*\*', _tpl_expr)
+                            if _fb_mfp:
+                                _fb_cls = _fb_mfp.group(1)
+                                _fb_name = '_{}_cb'.format(_fb_cls)
+                                _fb_tpl_name = _tpl_expr.split('<')[0]
+                                _fb_params = _tpl_expr.split('<', 1)[1].rsplit('>', 1)[0]
+                                _fb_full = re.search(r'[\w\s]+\s*\(\s*__thiscall\s+\w+\s*::\s*\*\s*\)\s*\([\w\s,]*\)', _tpl_expr)
+                                if _fb_full:
+                                    _fb_type = _fb_full.group(0)
+                                    _fb_params_san = _fb_params.replace(_fb_type, _fb_name)
+                                    f.write('typedef %s<%s> %s;\n' % (_fb_tpl_name, _fb_params_san, cls_name))
                     continue
             continue
         ann_struct = _is_data.get(cls_name, {})
@@ -1572,7 +1623,8 @@ def main():
                 embedded_enums.add(ename)
 
         content = generate_header(cls_name, _is_data.get(cls_name, {}), methods, classes_with_headers, enum_names,
-                                  colliding_enums=colliding_enums)
+                                  colliding_enums=colliding_enums,
+                                  template_param_count=_tpl_param_count.get(cls_name, 0))
         output_path = OUTPUT_DIR / ("%s.h" % _sanitize_filename(cls_name))
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(content)
