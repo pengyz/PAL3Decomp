@@ -97,7 +97,7 @@
   },
   "0x0041BE30": {
     "name": "_sdtor_22",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual ScriptObj *__thiscall(ScriptObj *this, char a2)"
   },
   "0x0041C1E0": {
     "name": "_old_sbh_page_alloc",
@@ -117,15 +117,15 @@
   },
   "0x00420270": {
     "name": "_sdtor",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual RoleSystem *__thiscall(RoleSystem *Block, char a2)"
   },
   "0x00420430": {
     "name": "_sdtor_2",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual void *__thiscall(void *Block, char a2)"
   },
   "0x00420910": {
     "name": "_sdtor_3",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual RoleSystem *__thiscall(RoleSystem *Block, char a2)"
   },
   "0x00421C40": {
     "name": "UINotifyUpdate",
@@ -161,23 +161,23 @@
   },
   "0x0042C1C0": {
     "name": "_sub_42C1C0",
-    "signature": "int __cdecl(...)"
+    "signature": "bool __thiscall(int this)"
   },
   "0x0042C8D0": {
     "name": "_sdtor_4",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual char *__thiscall(char *this, char a2)"
   },
   "0x00430180": {
     "name": "_sub_430180",
-    "signature": "int __cdecl(...)"
+    "signature": "_BYTE *__thiscall(_BYTE *this)"
   },
   "0x00430C10": {
     "name": "_sub_430C10",
-    "signature": "int __cdecl(...)"
+    "signature": "_BYTE *__thiscall(_BYTE *this, _DWORD *a2, _BYTE *a3)"
   },
   "0x00431760": {
     "name": "_sdtor_23",
-    "signature": "int __cdecl(...)"
+    "signature": "PalScript *__thiscall(PalScript *Block, char a2)"
   },
   "0x00431870": {
     "name": "ctor_0x431870",
@@ -249,11 +249,11 @@
   },
   "0x00438100": {
     "name": "_sub_438100",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual BOOL __thiscall(_BYTE *this)"
   },
   "0x00438530": {
     "name": "_sub_438530",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual BOOL __thiscall(_BYTE *this)"
   },
   "0x0043A770": {
     "name": "GetSys",
@@ -262,7 +262,7 @@
   },
   "0x0043B4B0": {
     "name": "_sdtor_5",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual UICaption *__thiscall(UICaption *Block, char a2)"
   },
   "0x0043EBB0": {
     "name": "GetGridOffset",
@@ -270,23 +270,23 @@
   },
   "0x0043F950": {
     "name": "_sdtor_6",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual UIButton *__thiscall(UIButton *Block, char a2)"
   },
   "0x004407A0": {
     "name": "_sdtor_7",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual UIStatic *__thiscall(UIStatic *Block, char a2)"
   },
   "0x00442D20": {
     "name": "_sdtor_8",
-    "signature": "int __cdecl(...)"
+    "signature": "UIFrameWnd *__thiscall(UIFrameWnd *Block, char a2)"
   },
   "0x004431B0": {
     "name": "_sdtor_9",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual UIFrameWnd *__thiscall(UIFrameWnd *Block, char a2)"
   },
   "0x004433A0": {
     "name": "_sdtor_10",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual void *__thiscall(void *Block, char a2)"
   },
   "0x004433C0": {
     "name": "UIFrameWnd_dtor_thunk",
@@ -294,19 +294,19 @@
   },
   "0x00443530": {
     "name": "_sdtor_11",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual UIFrameWnd *__thiscall(UIFrameWnd *Block, char a2)"
   },
   "0x00443CA0": {
     "name": "_sub_443CA0",
-    "signature": "int __cdecl(...)"
+    "signature": "char __thiscall(int this, float fVal)"
   },
   "0x00444AA0": {
     "name": "_sdtor_12",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual UIFrameWnd *__thiscall(UIFrameWnd *Block, char a2)"
   },
   "0x00444FF0": {
     "name": "_sdtor_13",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual UITextArea *__thiscall(UITextArea *Block, char a2)"
   },
   "0x004499A0": {
     "name": "sub_4499A0",
@@ -314,7 +314,7 @@
   },
   "0x0044A7D0": {
     "name": "_sdtor_14",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual void *__thiscall(void *Block, char a2)"
   },
   "0x0044BD80": {
     "name": "SafeDeletePtr",
@@ -322,11 +322,11 @@
   },
   "0x0044BE00": {
     "name": "_sdtor_24",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual UICaption *__thiscall(UICaption *Block, char a2)"
   },
   "0x0044E5C0": {
     "name": "_sdtor_25",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual scScriptInstance *__thiscall(scScriptInstance *Block, char a2)"
   },
   "0x0044F4C0": {
     "name": "SceneUpdate",
@@ -334,19 +334,19 @@
   },
   "0x0044F8D0": {
     "name": "_init_44f8d0",
-    "signature": "int __cdecl(...)"
+    "signature": "CCBUI *__thiscall(int this, int a2)"
   },
   "0x00450370": {
     "name": "_sdtor_15",
-    "signature": "int __cdecl(...)"
+    "signature": "void *__thiscall(void *Block, char a2)"
   },
   "0x00450AB0": {
     "name": "_sdtor_26",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual RoleCameraCtrl *__thiscall(RoleCameraCtrl *Block, char a2)"
   },
   "0x00450E90": {
     "name": "_sdtor_27",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual UIWnd *__thiscall(UIWnd *Block, char a2)"
   },
   "0x00451730": {
     "_misattrib_evidence": "max_offset=1104>class_size=276",
@@ -355,11 +355,11 @@
   },
   "0x004518E0": {
     "name": "_sdtor_28",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual UIWnd *__thiscall(UIWnd *Block, char a2)"
   },
   "0x004531F0": {
     "name": "_sub_4531F0",
-    "signature": "int __cdecl(...)"
+    "signature": "void __thiscall(_BYTE *this)"
   },
   "0x00456670": {
     "name": "ShowMessageBox",
@@ -371,31 +371,31 @@
   },
   "0x00459F80": {
     "name": "_sub_459F80",
-    "signature": "int __cdecl(...)"
+    "signature": "int __thiscall(_BYTE *this)"
   },
   "0x00459FA0": {
     "name": "_sub_459FA0",
-    "signature": "int __cdecl(...)"
+    "signature": "char __thiscall(int this, unsigned __int8 pData)"
   },
   "0x0045A020": {
     "name": "_sub_45A020",
-    "signature": "int __cdecl(...)"
+    "signature": "char __thiscall(int this, unsigned __int8 pData)"
   },
   "0x0045A0A0": {
     "name": "_sub_45A0A0",
-    "signature": "int __cdecl(...)"
+    "signature": "char __thiscall(int this, unsigned __int8 pData)"
   },
   "0x0045A120": {
     "name": "_sub_45A120",
-    "signature": "int __cdecl(...)"
+    "signature": "char __thiscall(int this, unsigned __int8 pData)"
   },
   "0x0045A1A0": {
     "name": "_sub_45A1A0",
-    "signature": "int __cdecl(...)"
+    "signature": "char __thiscall(int this, unsigned __int8 pData)"
   },
   "0x0046ADF0": {
     "name": "_sub_46ADF0",
-    "signature": "int __cdecl(...)"
+    "signature": "char __thiscall(_BYTE *this)"
   },
   "0x0046AEA0": {
     "_misattrib_evidence": "max_offset=101168>class_size=10584",
@@ -404,15 +404,15 @@
   },
   "0x0046F3D0": {
     "name": "_sub_46F3D0",
-    "signature": "int __cdecl(...)"
+    "signature": "char __thiscall(_BYTE *this)"
   },
   "0x00474990": {
     "name": "_sub_474990",
-    "signature": "int __cdecl(...)"
+    "signature": "char __thiscall(_BYTE *this)"
   },
   "0x0047DD70": {
     "name": "_sdtor_29",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual UITitle_YXXX *__thiscall(UITitle_YXXX *Block, char a2)"
   },
   "0x00494250": {
     "_misattrib_evidence": "max_offset=219752>class_size=4280",
@@ -430,7 +430,7 @@
   },
   "0x004A3360": {
     "name": "_sub_4A3360",
-    "signature": "int __cdecl(...)"
+    "signature": "int __thiscall(CHAR *this, int a2, int *a3)"
   },
   "0x004A36B0": {
     "name": "FormatChineseNumber",
@@ -438,7 +438,7 @@
   },
   "0x004A7670": {
     "name": "_sdtor_30",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual SystemUI *__thiscall(SystemUI *Block, char a2)"
   },
   "0x004AA9C0": {
     "_misattrib_evidence": "max_offset=401904>class_size=2632",
@@ -460,7 +460,7 @@
   },
   "0x004B6C80": {
     "name": "_sdtor_16",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual void *__thiscall(void *Block, char a2)"
   },
   "0x004BE460": {
     "name": "RenderPost",
@@ -468,27 +468,27 @@
   },
   "0x004BE8F0": {
     "name": "_sdtor_17",
-    "signature": "int __cdecl(...)"
+    "signature": "CameraCtrl *__thiscall(CameraCtrl *Block, char a2)"
   },
   "0x004C1560": {
     "name": "_sdtor_31",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual char *__thiscall(char *this, char a2)"
   },
   "0x004C2040": {
     "name": "_sdtor_32",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual char *__thiscall(char *this, char a2)"
   },
   "0x004C27C0": {
     "name": "_sdtor_33",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual char *__thiscall(char *this, char a2)"
   },
   "0x004C3400": {
     "name": "_sdtor_34",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual char *__thiscall(char *this, char a2)"
   },
   "0x004C3C80": {
     "name": "_sdtor_35",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual char *__thiscall(char *this, char a2)"
   },
   "0x004C5BB0": {
     "name": "CombatEffectUpdate",
@@ -496,11 +496,11 @@
   },
   "0x004C5D50": {
     "name": "_sdtor_18",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual void *__thiscall(void *Block, char a2)"
   },
   "0x004CB350": {
     "name": "_sdtor_36",
-    "signature": "int __cdecl(...)"
+    "signature": "char *__thiscall(char *this, char a2)"
   },
   "0x004CD0D0": {
     "name": "_sub_4CD0D0",
@@ -508,7 +508,7 @@
   },
   "0x004CDA00": {
     "name": "_sdtor_37",
-    "signature": "int __cdecl(...)"
+    "signature": "char *__thiscall(char *this, char a2)"
   },
   "0x004CDB70": {
     "name": "SceneMgrUpdate",
@@ -516,11 +516,11 @@
   },
   "0x004CFD40": {
     "name": "_nearby_4cfd40",
-    "signature": "int __cdecl(...)"
+    "signature": "int __fastcall(CEffgbParticle *a1)"
   },
   "0x004CFE20": {
     "name": "_nearby_4cfe20",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual int __thiscall(int this, int a2, float a3, float a4, float a5)"
   },
   "0x004CFFA0": {
     "name": "CEffModel_DestroyEffect_thunk",
@@ -528,27 +528,27 @@
   },
   "0x004CFFB0": {
     "name": "_nearby_4cffb0",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual void __thiscall(int this, float a2)"
   },
   "0x004D0CA0": {
     "name": "_sdtor_38",
-    "signature": "int __cdecl(...)"
+    "signature": "char *__thiscall(char *this, char a2)"
   },
   "0x004D3230": {
     "name": "_sdtor_39",
-    "signature": "int __cdecl(...)"
+    "signature": "char *__thiscall(char *this, char a2)"
   },
   "0x004D33A0": {
     "name": "_sub_4D33A0",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual void __thiscall(_BYTE *this, int a2, int a3, int a4, int a5)"
   },
   "0x004D4DF0": {
     "name": "_sdtor_40",
-    "signature": "int __cdecl(...)"
+    "signature": "char *__thiscall(char *this, char a2)"
   },
   "0x004DB940": {
     "name": "_sub_4DB940",
-    "signature": "int __cdecl(...)"
+    "signature": "int __thiscall(_BYTE *this, char a2)"
   },
   "0x004E0A30": {
     "name": "DialogFunc",
@@ -557,7 +557,7 @@
   },
   "0x004E0A60": {
     "name": "_static_4E0A60",
-    "signature": "int __cdecl(...)"
+    "signature": "int __stdcall(CCBUI *a1, HWND hDlg, unsigned int a3, unsigned __int16 a4, int a5)"
   },
   "0x004E5300": {
     "name": "EditBox_SetReadOnly",
@@ -589,15 +589,15 @@
   },
   "0x004E95A0": {
     "name": "_sub_4E95A0",
-    "signature": "int __cdecl(...)"
+    "signature": "int __thiscall(CCBStageCam *this, HWND hDlg)"
   },
   "0x004E9750": {
     "name": "_sub_4E9750",
-    "signature": "int __cdecl(...)"
+    "signature": "int __thiscall(WPARAM *this, HWND hDlg)"
   },
   "0x004EA4A0": {
     "name": "_nearby_4ea4a0",
-    "signature": "int __cdecl(...)"
+    "signature": "LRESULT __thiscall(void *this, HWND hDlg, int a3)"
   },
   "0x004EA590": {
     "name": "CCBStageCam_DlgProc",
@@ -605,47 +605,47 @@
   },
   "0x004EA5C0": {
     "name": "_static_4EA5C0",
-    "signature": "int __cdecl(...)"
+    "signature": "int __stdcall(int *a1, HWND hDlg, int a3, __int16 a4, int a5)"
   },
   "0x004EA6D0": {
     "name": "_nearby_4ea6d0",
-    "signature": "int __cdecl(...)"
+    "signature": "char __thiscall(_DWORD *this, HWND hDlg, int a3)"
   },
   "0x004EAC10": {
     "name": "_nearby_4eac10",
-    "signature": "int __cdecl(...)"
+    "signature": "char __thiscall(_DWORD *this, HWND hDlg, int a3)"
   },
   "0x004EB230": {
     "name": "_nearby_4eb230",
-    "signature": "int __cdecl(...)"
+    "signature": "INT_PTR __stdcall(HWND hDlg, UINT a2, WPARAM a3, LPARAM a4)"
   },
   "0x004EB260": {
     "name": "_static_4EB260",
-    "signature": "int __cdecl(...)"
+    "signature": "int __stdcall(CCBCamControl *a1, HWND hDlg, int a3, int a4, int a5)"
   },
   "0x004EB6F0": {
     "name": "_sub_4EB6F0",
-    "signature": "int __cdecl(...)"
+    "signature": "void __thiscall(CCBCamControl *this, HWND hDlg)"
   },
   "0x004EB720": {
     "name": "_sub_4EB720",
-    "signature": "int __cdecl(...)"
+    "signature": "LRESULT __thiscall(WPARAM *this, HWND hDlg)"
   },
   "0x004EB8D0": {
     "name": "_sub_4EB8D0",
-    "signature": "int __cdecl(...)"
+    "signature": "LRESULT __thiscall(WPARAM *this, HWND hDlg)"
   },
   "0x004EC480": {
     "name": "_nearby_4ec480",
-    "signature": "int __cdecl(...)"
+    "signature": "int()"
   },
   "0x004EC490": {
     "name": "_nearby_4ec490",
-    "signature": "int __cdecl(...)"
+    "signature": "void()"
   },
   "0x00516100": {
     "name": "_sdtor_19",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual CCBProtectWindow *__thiscall(CCBProtectWindow *Block, char a2)"
   },
   "0x0051DD80": {
     "name": "CCBProtectWindow::Destroy",
@@ -657,7 +657,7 @@
   },
   "0x00523CB0": {
     "name": "_sub_523CB0",
-    "signature": "int __cdecl(...)"
+    "signature": "int __thiscall(_BYTE *this)"
   },
   "0x00525080": {
     "_misattrib_evidence": "max_offset=5264>class_size=1488",
@@ -700,7 +700,7 @@
   },
   "0x00538260": {
     "name": "_sub_538260",
-    "signature": "int __cdecl(...)"
+    "signature": "CHAR *__thiscall(CHAR *this)"
   },
   "0x005382D0": {
     "name": "CheckDirectoryExists",
@@ -780,7 +780,7 @@
   },
   "0x0053F4D0": {
     "name": "_sdtor_20",
-    "signature": "int __cdecl(...)"
+    "signature": "void *__thiscall(void *Block, char a2)"
   },
   "0x0053F550": {
     "name": "TextureLib_ClearAndJump_thunk",
@@ -788,7 +788,7 @@
   },
   "0x0053F5C0": {
     "name": "_sdtor_21",
-    "signature": "int __cdecl(...)"
+    "signature": "virtual TextureLib *__thiscall(TextureLib *Block, char a2)"
   },
   "0x00540070": {
     "name": "crt_sub_00540070",
