@@ -401,7 +401,9 @@ def run_cpp_generation(filter_classes=None):
         _SYSTEM_TYPES = {'int', 'void', 'char', 'float', 'double', 'short', 'long',
                          'unsigned', 'const', 'BYTE', 'WORD', 'DWORD', 'UINT', 'BOOL',
                          'LPCSTR', 'LPSTR', 'CHAR', 'HRESULT', 'HANDLE', 'HWND', 'RECT',
-                         'FILE', '_DWORD', '_BYTE', '_WORD', 'POINT', 'SIZE'}
+                         'FILE', '_DWORD', '_BYTE', '_WORD', 'POINT', 'SIZE',
+                         'WPARAM', 'LPARAM', 'LRESULT', 'LCID',
+                         'INT_PTR', 'UINT_PTR', 'LONG_PTR', 'ULONG_PTR', 'DWORD_PTR'}
         fwd_types = set()
         for fname, decl in store.free_func_sigs.items():
             for m in re.finditer(r'\b(\w+)\s*\*', decl):
