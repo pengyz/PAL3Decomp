@@ -1315,8 +1315,8 @@ def apply_annotations():
             log("  [!] %s %s → %s" % (addr_str, fname[:40], sig_str[:60]))
     log("[6] Signatures: %d/%d (fail=%d, placeholder=%d)" % (sig_ok, len([f for f in funcs.values() if f.get("signature")]), len(sig_fail), sig_skip_placeholder))
     if sig_fail:
-        for _addr_s, _info_s, _err_s in sig_fail[:20]:
-            log("  [!] %s: %s → %s" % (_info_s.get("name","?"), _err_s))
+        for _addr_s, _fname_s, _err_s in sig_fail[:20]:
+            log("  [!] %s: %s → %s" % (_addr_s, _fname_s[:40], _err_s[:60]))
 
     # --- 6b. Global types (after structs so struct types are resolved) ---
     g_typed = 0
