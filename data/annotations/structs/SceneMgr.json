@@ -360,9 +360,9 @@
     },
     "1424": {
       "name": "_todo_590",
-      "type": "int[1412]",
-      "comment": "RoleSystem buffer (capped at 5648B to avoid overlap with m_pCCBStageRoleFind)",
-      "source": "binary: Buffer members match RoleSystem; fread size 0x1B80"
+      "type": "ScriptRoleBuf",
+      "comment": "Overlapped memory: used as RoleSystem (via Buffer/g_ScriptRoleBuf) and CEffMgr effect table. Capped at 5648B to avoid overlap with m_pCCBStageRoleFind.",
+      "source": "annotation"
     },
     "7072": {
       "name": "m_pCCBStageRoleFind",
