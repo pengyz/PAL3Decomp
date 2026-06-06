@@ -20,7 +20,7 @@ gbSceneGraph* gbVisNode::pSceneGraph = NULL;
 
 // Constructor - 0x10016590
 gbVisNode::gbVisNode() {
-    pParent = NULL;
+    pFather = NULL;
 
     msgOverflow = 1;
     msgUnused = 0;
@@ -42,12 +42,12 @@ gbVisNode::gbVisNode() {
 // Copy constructor - 0x10004a60
 gbVisNode::gbVisNode(const gbVisNode& other) : gbNBTreeNode() {
     // Copy gbChain1DNode fields
-    pNext = other.pNext;
+    next = other.next;
 
     // Copy gbNBTreeNode fields
-    pParent = other.pParent;
+    pFather = other.pFather;
     children = other.children;
-    children.pIterator = other.children.pIterator;
+    children.m_Cur = other.children.m_Cur;
 
     // Copy gbVisNode fields
     // Copy 6 dwords starting at +0x1c
@@ -139,14 +139,14 @@ int gbVisNode::Attach(gbRenderEffect* effect) {
     gbVisNode* child;
 
     result = 0;
-    child = (gbVisNode*)children.pHead;
-    children.pIterator = (gbNBTreeNode*)child;
+    child = (gbVisNode*)children.m_Head;
+    children.m_Cur = (gbNBTreeNode*)child;
     if (child) {
         do {
             if (child->Attach(effect))
                 result = 1;
-            child = (gbVisNode*)children.pIterator->pNext;
-            children.pIterator = (gbNBTreeNode*)child;
+            child = (gbVisNode*)children.m_Cur->next;
+            children.m_Cur = (gbNBTreeNode*)child;
         } while (child);
     }
     return result;
@@ -154,25 +154,25 @@ int gbVisNode::Attach(gbRenderEffect* effect) {
 
 // Update - 0x10016730 (virtual)
 void gbVisNode::Update() {
-    gbVisNode* child = (gbVisNode*)children.pHead;
-    children.pIterator = (gbNBTreeNode*)child;
+    gbVisNode* child = (gbVisNode*)children.m_Head;
+    children.m_Cur = (gbNBTreeNode*)child;
 
     while (child != NULL) {
         child->Update();
-        child = (gbVisNode*)children.pIterator->pNext;
-        children.pIterator = (gbNBTreeNode*)child;
+        child = (gbVisNode*)children.m_Cur->next;
+        children.m_Cur = (gbNBTreeNode*)child;
     }
 }
 
 // Reset - 0x10016760 (42B) - Iterate children, call Reset on each
 void gbVisNode::Reset(float time) {
-    gbVisNode* child = (gbVisNode*)children.pHead;
-    children.pIterator = (gbNBTreeNode*)child;
+    gbVisNode* child = (gbVisNode*)children.m_Head;
+    children.m_Cur = (gbNBTreeNode*)child;
 
     while (child) {
         child->Reset(time);
-        child = (gbVisNode*)children.pIterator->pNext;
-        children.pIterator = (gbNBTreeNode*)child;
+        child = (gbVisNode*)children.m_Cur->next;
+        children.m_Cur = (gbNBTreeNode*)child;
     }
 }
 
@@ -181,13 +181,13 @@ void gbVisNode::ShowNode(int show) {
     visible = show;
 
     // Recursively apply to children
-    gbVisNode* child = (gbVisNode*)children.pHead;
-    children.pIterator = (gbNBTreeNode*)child;
+    gbVisNode* child = (gbVisNode*)children.m_Head;
+    children.m_Cur = (gbNBTreeNode*)child;
 
     while (child != NULL) {
         child->ShowNode(show);
-        child = (gbVisNode*)children.pIterator->pNext;
-        children.pIterator = (gbNBTreeNode*)child;
+        child = (gbVisNode*)children.m_Cur->next;
+        children.m_Cur = (gbNBTreeNode*)child;
     }
 }
 
@@ -195,10 +195,10 @@ void gbVisNode::ShowNode(int show) {
 void gbVisNode::SetTimeScale(float scale) {
     timeScale = scale;
 
-    gbVisNode* child = (gbVisNode*)children.pHead;
-    for (children.pIterator = (gbChain1DNode*)child; child; children.pIterator = (gbChain1DNode*)child) {
+    gbVisNode* child = (gbVisNode*)children.m_Head;
+    for (children.m_Cur = (gbChain1DNode*)child; child; children.m_Cur = (gbChain1DNode*)child) {
         child->SetTimeScale(scale);
-        child = (gbVisNode*)children.pIterator->pNext;
+        child = (gbVisNode*)children.m_Cur->next;
     }
 }
 
@@ -236,13 +236,13 @@ int gbVisNode::GetRenderPriority() {
 void gbVisNode::SetRenderPriority(int priority) {
     renderPriority = priority;
 
-    gbVisNode* child = (gbVisNode*)children.pHead;
-    children.pIterator = (gbNBTreeNode*)child;
+    gbVisNode* child = (gbVisNode*)children.m_Head;
+    children.m_Cur = (gbNBTreeNode*)child;
 
     while (child != NULL) {
         child->SetRenderPriority(priority);
-        child = (gbVisNode*)children.pIterator->pNext;
-        children.pIterator = (gbNBTreeNode*)child;
+        child = (gbVisNode*)children.m_Cur->next;
+        children.m_Cur = (gbNBTreeNode*)child;
     }
 }
 
@@ -283,13 +283,13 @@ void gbVisNode::SetBlendRecursive(NodeBlend mode, float value) {
     SetBlend(mode, value);
 
     // Recursively apply to children
-    gbVisNode* child = (gbVisNode*)children.pHead;
-    children.pIterator = (gbNBTreeNode*)child;
+    gbVisNode* child = (gbVisNode*)children.m_Head;
+    children.m_Cur = (gbNBTreeNode*)child;
 
     while (child != NULL) {
         child->SetBlendRecursive(mode, value);
-        child = (gbVisNode*)children.pIterator->pNext;
-        children.pIterator = (gbNBTreeNode*)child;
+        child = (gbVisNode*)children.m_Cur->next;
+        children.m_Cur = (gbNBTreeNode*)child;
     }
 }
 
@@ -374,10 +374,10 @@ int gbVisNode::GetAABBox(gbAABBox* box) {
 
 // operator= - 0x10004af0 (121B)
 gbVisNode& gbVisNode::operator=(const gbVisNode& other) {
-    pNext = other.pNext;
-    pParent = other.pParent;
+    next = other.next;
+    pFather = other.pFather;
     children = other.children;
-    children.pIterator = other.children.pIterator;
+    children.m_Cur = other.children.m_Cur;
     msgBuffer = other.msgBuffer;
     msgCapacity = other.msgCapacity;
     memcpy(&msgUnused, &other.msgUnused, 0x3Cu);

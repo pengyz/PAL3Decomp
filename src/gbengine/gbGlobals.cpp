@@ -163,7 +163,7 @@ gbVisNode* gbLoadLightFile(const char* filename) {
 
         // Add volmod node as child of root
         root->children.AddNodeOnTail((gbChain1DNode*)volNode);
-        ((gbNBTreeNode*)volNode)->pParent = (gbNBTreeNode*)root;
+        ((gbNBTreeNode*)volNode)->pFather = (gbNBTreeNode*)root;
     }
 
     g_pVFileSys->CloseFile(fp);
@@ -924,13 +924,13 @@ void gbWaterMesh::InitializeGraphics() {
         while (1) {
             pos = stripPos + 1;
             *pCur = (unsigned short)(lastCol + nextRowOffset2);
-            unsigned short* pNext = pCur + 1;
+            unsigned short* next = pCur + 1;
             if (--lastCol < 0)
                 break;
             stripPos = pos + 1;
-            *pNext = (unsigned short)(lastCol + w * nextRow);
+            *next = (unsigned short)(lastCol + w * nextRow);
             nextRowOffset2 = (short)(w * (nextRow + 1));
-            pCur = pNext + 1;
+            pCur = next + 1;
         }
 
         col = lastCol + 1;
@@ -1442,11 +1442,11 @@ void gbOctree::AttachNodeToOctree(int* pNode) {
     }
 
     // Recursively attach all children
-    int child = pNode[3];  // first child (gbNBTreeNode::children.pHead)
+    int child = pNode[3];  // first child (gbNBTreeNode::children.m_Head)
     pNode[6] = child;      // store as iterator
     while (child) {
         AttachNodeToOctree((int*)child);
-        child = *(int*)(pNode[6] + 4);  // pNext
+        child = *(int*)(pNode[6] + 4);  // next
         pNode[6] = child;
     }
 }
@@ -1461,7 +1461,7 @@ void gbOctree::DetachNodeRecursive(int* pNode) {
     pNode[6] = child;
     while (child) {
         DetachNodeRecursive((int*)child);
-        child = *(int*)(pNode[6] + 4);  // pNext
+        child = *(int*)(pNode[6] + 4);  // next
         pNode[6] = child;
     }
 

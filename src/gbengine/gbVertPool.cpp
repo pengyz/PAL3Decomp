@@ -92,7 +92,7 @@ void gbIndexBubble::Unlock() {
 
 // operator=: 0x10003c20
 gbIndexBubble& gbIndexBubble::operator=(const gbIndexBubble& other) {
-    pNext = other.pNext;
+    next = other.next;
     pPool = other.pPool;
     primType = other.primType;
     count = other.count;
@@ -110,16 +110,16 @@ gbIndexBubble& gbIndexBubble::operator=(const gbIndexBubble& other) {
 gbIndexPool::gbIndexPool(gbPoolType type, int indexSz, int total) {
 
     // Initialize free list
-    this->freeList.pHead = NULL;
-    this->freeList.pTail = NULL;
+    this->freeList.m_Head = NULL;
+    this->freeList.m_Tail = NULL;
     this->freeList.m_numNode = 0;
-    this->freeList.pIterator = NULL;
+    this->freeList.m_Cur = NULL;
 
     // Initialize used list
-    this->usedList.pHead = NULL;
-    this->usedList.pTail = NULL;
+    this->usedList.m_Head = NULL;
+    this->usedList.m_Tail = NULL;
     this->usedList.m_numNode = 0;
-    this->usedList.pIterator = NULL;
+    this->usedList.m_Cur = NULL;
 
     this->poolType = type;
     this->indexSize = indexSz;
@@ -173,8 +173,8 @@ gbIndexBubble* gbIndexPool::NewBubble(gbPrimType prim, int count) {
     int bestSize = 0x7FFFFFFF;
 
     // Find best-fit free bubble
-    gbChain1DNode* node = this->freeList.pHead;
-    this->freeList.pIterator = node;
+    gbChain1DNode* node = this->freeList.m_Head;
+    this->freeList.m_Cur = node;
 
     while (node) {
         gbIndexBubble* bubble = (gbIndexBubble*)node;
@@ -185,8 +185,8 @@ gbIndexBubble* gbIndexPool::NewBubble(gbPrimType prim, int count) {
             bestFit = bubble;
         }
 
-        node = this->freeList.pIterator->pNext;
-        this->freeList.pIterator = node;
+        node = this->freeList.m_Cur->next;
+        this->freeList.m_Cur = node;
     }
 
     if (!bestFit) {
@@ -230,14 +230,14 @@ void gbIndexPool::DelBubble(gbIndexBubble* bubble) {
 
     // Find position in free list (sorted by startIndex)
     gbChain1DNode* prev = NULL;
-    gbChain1DNode* curr = this->freeList.pHead;
-    this->freeList.pIterator = curr;
+    gbChain1DNode* curr = this->freeList.m_Head;
+    this->freeList.m_Cur = curr;
 
     if (curr) {
         while (((gbIndexBubble*)curr)->startIndex <= bubble->startIndex) {
             prev = curr;
-            curr = this->freeList.pIterator->pNext;
-            this->freeList.pIterator = curr;
+            curr = this->freeList.m_Cur->next;
+            this->freeList.m_Cur = curr;
             if (!curr)
                 goto insert_at_end;
         }
@@ -293,19 +293,19 @@ int gbIndexPool::IsEmpty() {
 
 // operator=: 0x10003d60
 gbIndexPool& gbIndexPool::operator=(const gbIndexPool& other) {
-    pNext = other.pNext;
+    next = other.next;
     poolType = other.poolType;
     indexSize = other.indexSize;
     pBuffer = other.pBuffer;
     totalSize = other.totalSize;
-    freeList.pHead = other.freeList.pHead;
-    freeList.pTail = other.freeList.pTail;
+    freeList.m_Head = other.freeList.m_Head;
+    freeList.m_Tail = other.freeList.m_Tail;
     freeList.m_numNode = other.freeList.m_numNode;
-    freeList.pIterator = other.freeList.pIterator;
-    usedList.pHead = other.usedList.pHead;
-    usedList.pTail = other.usedList.pTail;
+    freeList.m_Cur = other.freeList.m_Cur;
+    usedList.m_Head = other.usedList.m_Head;
+    usedList.m_Tail = other.usedList.m_Tail;
     usedList.m_numNode = other.usedList.m_numNode;
-    usedList.pIterator = other.usedList.pIterator;
+    usedList.m_Cur = other.usedList.m_Cur;
     return *this;
 }
 
@@ -432,7 +432,7 @@ void gbVertexBubble::StepVertexPtr() {
 
 // operator=: 0x10003ed0
 gbVertexBubble& gbVertexBubble::operator=(const gbVertexBubble& other) {
-    pNext = other.pNext;
+    next = other.next;
     pPool = other.pPool;
     startVertex = other.startVertex;
     countUsed = other.countUsed;
@@ -457,16 +457,16 @@ gbGfxManager* gbVertexPool::pGfxMgr = NULL;
 gbVertexPool::gbVertexPool(gbPoolType type, unsigned int vertType, int total) {
 
     // Initialize free list
-    this->freeList.pHead = NULL;
-    this->freeList.pTail = NULL;
+    this->freeList.m_Head = NULL;
+    this->freeList.m_Tail = NULL;
     this->freeList.m_numNode = 0;
-    this->freeList.pIterator = NULL;
+    this->freeList.m_Cur = NULL;
 
     // Initialize used list
-    this->usedList.pHead = NULL;
-    this->usedList.pTail = NULL;
+    this->usedList.m_Head = NULL;
+    this->usedList.m_Tail = NULL;
     this->usedList.m_numNode = 0;
-    this->usedList.pIterator = NULL;
+    this->usedList.m_Cur = NULL;
 
     this->poolType = type;
     this->fvf = vertType;
@@ -561,8 +561,8 @@ gbVertexBubble* gbVertexPool::NewBubble(int count) {
     int bestSize = 0x7FFFFFFF;
 
     // Find best-fit free bubble
-    gbChain1DNode* node = this->freeList.pHead;
-    this->freeList.pIterator = node;
+    gbChain1DNode* node = this->freeList.m_Head;
+    this->freeList.m_Cur = node;
 
     while (node) {
         gbVertexBubble* bubble = (gbVertexBubble*)node;
@@ -573,8 +573,8 @@ gbVertexBubble* gbVertexPool::NewBubble(int count) {
             bestFit = bubble;
         }
 
-        node = this->freeList.pIterator->pNext;
-        this->freeList.pIterator = node;
+        node = this->freeList.m_Cur->next;
+        this->freeList.m_Cur = node;
     }
 
     if (!bestFit) {
@@ -624,8 +624,8 @@ void gbVertexPool::DelBubble(gbVertexBubble* bubble) {
     this->usedList.DelNodeFromChain((gbChain1DNode*)bubble);
 
     gbChain1DNode* prev = NULL;
-    gbChain1DNode* curr = this->freeList.pHead;
-    this->freeList.pIterator = curr;
+    gbChain1DNode* curr = this->freeList.m_Head;
+    this->freeList.m_Cur = curr;
 
     while (curr) {
         if (bubble->startVertex < ((gbVertexBubble*)curr)->startVertex) {
@@ -638,8 +638,8 @@ void gbVertexPool::DelBubble(gbVertexBubble* bubble) {
         }
 
         prev = curr;
-        curr = this->freeList.pIterator->pNext;
-        this->freeList.pIterator = curr;
+        curr = this->freeList.m_Cur->next;
+        this->freeList.m_Cur = curr;
     }
 
     this->freeList.AddNode((gbChain1DNode*)bubble);
@@ -692,20 +692,20 @@ int gbVertexPool::IsEmpty() {
 
 // operator=: 0x10004040
 gbVertexPool& gbVertexPool::operator=(const gbVertexPool& other) {
-    pNext = other.pNext;
+    next = other.next;
     poolType = other.poolType;
     pBuffer = other.pBuffer;
     totalSize = other.totalSize;
     fvf = other.fvf;
     stride = other.stride;
-    freeList.pHead = other.freeList.pHead;
-    freeList.pTail = other.freeList.pTail;
+    freeList.m_Head = other.freeList.m_Head;
+    freeList.m_Tail = other.freeList.m_Tail;
     freeList.m_numNode = other.freeList.m_numNode;
-    freeList.pIterator = other.freeList.pIterator;
-    usedList.pHead = other.usedList.pHead;
-    usedList.pTail = other.usedList.pTail;
+    freeList.m_Cur = other.freeList.m_Cur;
+    usedList.m_Head = other.usedList.m_Head;
+    usedList.m_Tail = other.usedList.m_Tail;
     usedList.m_numNode = other.usedList.m_numNode;
-    usedList.pIterator = other.usedList.pIterator;
+    usedList.m_Cur = other.usedList.m_Cur;
     return *this;
 }
 
@@ -718,10 +718,10 @@ gbVertPoolMgr::gbVertPoolMgr(gbGfxManager* mgr, int p2, int p3, int p4, int p5) 
     memset(this, 0, 0x10 * 0x20);
 
     // Initialize index pool list
-    this->indexPoolList.pHead = NULL;
-    this->indexPoolList.pTail = NULL;
+    this->indexPoolList.m_Head = NULL;
+    this->indexPoolList.m_Tail = NULL;
     this->indexPoolList.m_numNode = 0;
-    this->indexPoolList.pIterator = NULL;
+    this->indexPoolList.m_Cur = NULL;
 
     // Initialize src vertex pool chain area
     memset(&this->srcVertPoolChains, 0, 0x10 * 0x20);
@@ -821,14 +821,14 @@ gbVertexBubble* gbVertPoolMgr::NewVertexBubble(unsigned int fvf, int count) {
 
 found:
     chain = &StaticPool[i];
-    pool = (gbVertexPool*)chain->pHead;
-    chain->pIterator = (gbChain1DNode*)pool;
+    pool = (gbVertexPool*)chain->m_Head;
+    chain->m_Cur = (gbChain1DNode*)pool;
 
     while (pool) {
         result = pool->NewBubble(count);
         if (result) return result;
-        pool = (gbVertexPool*)chain->pIterator->pNext;
-        chain->pIterator = (gbChain1DNode*)pool;
+        pool = (gbVertexPool*)chain->m_Cur->next;
+        chain->m_Cur = (gbChain1DNode*)pool;
     }
 
     // No existing pool has space - create new one
@@ -915,14 +915,14 @@ gbVertexBubble* gbVertPoolMgr::NewSrcVertBub(unsigned int fvf, int count) {
 
 found:
     chain = &srcVertPoolChains[i];
-    pool = (gbVertexPool*)chain->pHead;
-    chain->pIterator = (gbChain1DNode*)pool;
+    pool = (gbVertexPool*)chain->m_Head;
+    chain->m_Cur = (gbChain1DNode*)pool;
 
     while (pool) {
         result = pool->NewBubble(count);
         if (result) return result;
-        pool = (gbVertexPool*)chain->pIterator->pNext;
-        chain->pIterator = (gbChain1DNode*)pool;
+        pool = (gbVertexPool*)chain->m_Cur->next;
+        chain->m_Cur = (gbChain1DNode*)pool;
     }
 
     // No existing pool has space - create new one
@@ -986,14 +986,14 @@ gbIndexBubble* gbVertPoolMgr::NewIndexBubble(gbPrimType prim, int count) {
     // Update stat counter
     *(int*)((char*)pGfxManager + 0x214) += count;
 
-    pool = (gbIndexPool*)indexPoolList.pHead;
-    indexPoolList.pIterator = (gbChain1DNode*)pool;
+    pool = (gbIndexPool*)indexPoolList.m_Head;
+    indexPoolList.m_Cur = (gbChain1DNode*)pool;
 
     while (pool) {
         result = pool->NewBubble(prim, count);
         if (result) return result;
-        pool = (gbIndexPool*)indexPoolList.pIterator->pNext;
-        indexPoolList.pIterator = (gbChain1DNode*)pool;
+        pool = (gbIndexPool*)indexPoolList.m_Cur->next;
+        indexPoolList.m_Cur = (gbChain1DNode*)pool;
     }
 
     // No existing pool has space - create new one

@@ -593,13 +593,13 @@ void gbSceneGraph::End(void) {
 void gbSceneGraph::AddVisNode(gbVisNode* node) {
     if (!rootNode || !node) return;
     rootNode->children.AddNode((gbChain1DNode*)node);
-    node->pParent = (gbNBTreeNode*)rootNode;
+    node->pFather = (gbNBTreeNode*)rootNode;
 }
 
 // 0x100155d0 - Remove a visible node from scene
 void gbSceneGraph::DelVisNode(gbVisNode* node) {
     if (!node) return;
-    gbNBTreeNode* parent = node->pParent;
+    gbNBTreeNode* parent = node->pFather;
     if (!parent) return;
     parent->children.DelNodeFromChain((gbChain1DNode*)node);
 }

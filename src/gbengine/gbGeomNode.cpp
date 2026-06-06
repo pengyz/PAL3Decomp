@@ -621,7 +621,7 @@ int gbGeomNode::LoadFromFile(const char* filename, const char* texPath, void (__
             if (!childMesh->LoadFromStream(file, version, &s_nodeDescPool[i]))
                 return 0;
             children.AddNodeOnTail(child);
-            child->pParent = this;
+            child->pFather = this;
             if (progressCallback)
                 progressCallback(numMeshes, i);
         }
@@ -692,7 +692,7 @@ int gbGeomNode::LoadCVDFile(const char* filename) {
     // Add all nodes as children
     for (i = 0; i < nodeCount; i++) {
         children.AddNodeOnTail(nodeList[i]);
-        nodeList[i]->pParent = this;
+        nodeList[i]->pFather = this;
         if (nodeList[i]->animMaxTime > animMaxTime)
             animMaxTime = nodeList[i]->animMaxTime;
     }
@@ -783,8 +783,8 @@ void gbGeomNode::Update(void) {
     }
 
     // Copy parent's world transform or load identity
-    if (pParent)
-        memcpy(&worldTransform, &((gbGeomNode*)pParent)->worldTransform, sizeof(gbMatrix4));
+    if (pFather)
+        memcpy(&worldTransform, &((gbGeomNode*)pFather)->worldTransform, sizeof(gbMatrix4));
     else
         worldTransform.LoadIdentity();
 
@@ -1113,12 +1113,12 @@ void gbGeomNode::ReplaceTexture(const char* textureName) {
         mesh->ReplaceTexture(textureName);
     }
 
-    gbGeomNode* child = (gbGeomNode*)children.pHead;
-    children.pIterator = (gbChain1DNode*)child;
+    gbGeomNode* child = (gbGeomNode*)children.m_Head;
+    children.m_Cur = (gbChain1DNode*)child;
     while (child != NULL) {
         child->ReplaceTexture(textureName);
-        child = (gbGeomNode*)((gbChain1DNode*)children.pIterator)->pNext;
-        children.pIterator = (gbChain1DNode*)child;
+        child = (gbGeomNode*)((gbChain1DNode*)children.m_Cur)->next;
+        children.m_Cur = (gbChain1DNode*)child;
     }
 }
 
@@ -1161,12 +1161,12 @@ static void CollectMeshNodes(int* nodeArray, int* count, gbGeomNode* node) {
         nodeArray[*count] = (int)node;
         (*count)++;
     }
-    gbChain1DNode* child = node->children.pHead;
-    node->children.pIterator = child;
+    gbChain1DNode* child = node->children.m_Head;
+    node->children.m_Cur = child;
     while (child != NULL) {
         CollectMeshNodes(nodeArray, count, (gbGeomNode*)child);
-        child = node->children.pIterator->pNext;
-        node->children.pIterator = child;
+        child = node->children.m_Cur->next;
+        node->children.m_Cur = child;
     }
 }
 
@@ -1178,12 +1178,12 @@ gbOBBox* gbGeomNode::GetTotalOBBox(gbOBBox* box) {
         nodeCount = 1;
     }
 
-    gbGeomNode* child = (gbGeomNode*)children.pHead;
-    children.pIterator = (gbChain1DNode*)child;
+    gbGeomNode* child = (gbGeomNode*)children.m_Head;
+    children.m_Cur = (gbChain1DNode*)child;
     while (child != NULL) {
         CollectMeshNodes(s_totalOBBoxNodes, &nodeCount, child);
-        child = (gbGeomNode*)((gbChain1DNode*)children.pIterator)->pNext;
-        children.pIterator = (gbChain1DNode*)child;
+        child = (gbGeomNode*)((gbChain1DNode*)children.m_Cur)->next;
+        children.m_Cur = (gbChain1DNode*)child;
     }
 
     if (nodeCount == 0) {
