@@ -777,6 +777,10 @@ def _resolve_stru_overlap(code):
     1. stru_XXXX.field[N] — address within a known struct_instance global
     2. pTarget._todo_XXXX — Hex-Rays synthetic field on undeclared local var.
        _todo_XXXX suffix encodes the hex byte offset.
+    3. g_NamedGlobal.field[N] — named global whose address falls inside a
+       struct_instance (e.g. g_ScriptRoleBuf at g_SceneMgr+0x590).
+       These are "artifacts" — overlap resolution converts them to offset
+       expressions to avoid duplicate memory declarations.
     """
     # Case 2: pTarget._todo_XXXX — synthetic field on undeclared local.
     # The access targets fixed memory addresses. Map to proper C++ globals.
@@ -853,6 +857,185 @@ def _resolve_stru_overlap(code):
                 continue  # skip this match, keep original code
             code = code.replace(full, repl)
             break  # first match is most precise
+
+    # Case 3: Named global references that overlap with struct_instances
+    # (e.g. g_ScriptRoleBuf lives inside g_SceneMgr at +0x590).
+    # Resolve to proper member path (g_SceneMgr.someMember) instead of raw casts.
+    # Load globals.json once and cache in function attribute.
+    if not hasattr(_resolve_stru_overlap, '_global_addrs'):
+        _resolve_stru_overlap._global_addrs = {}
+        _ann_path = store.annotations_dir / "globals.json"
+        if _ann_path.exists():
+            import json as _json
+            _ann_data = _json.load(open(_ann_path, encoding='utf-8'))
+            for _addr, _info in _ann_data.items():
+                _name = _info.get('name', '')
+                if _name and not _name.startswith(('dword_', 'byte_', 'word_', 'off_', 'stru_')):
+                    _resolve_stru_overlap._global_addrs[_name] = int(_addr, 16)
+
+    def _resolve_offset_to_member_path(itype, offset):
+        """Resolve a byte offset within a struct type to a member access path.
+        
+        Returns a list of (member_name, member_type) tuples from outermost to innermost.
+        If the offset falls inside a member (not at its start), returns None for that level
+        since we can't express intra-member offsets as member access.
+        """
+        path = []
+        current_type = itype
+        current_off = offset
+        max_depth = 10
+        while current_off > 0 and len(path) < max_depth:
+            members = store.struct_members.get(current_type, {})
+            sorted_offs = sorted(members.keys())
+            # Find the member at exact offset, or the containing member
+            exact = members.get(current_off)
+            if exact:
+                path.append((exact[0], exact[1]))
+                # If the member is an embedded struct (non-pointer), continue resolving
+                # sub-offset within it. For pointer types or scalars, we're done.
+                if '*' in exact[1] or exact[1] in ('int', 'float', 'char', 'unsigned', 'DWORD', 'BYTE', 'WORD', 'BOOL', 'LONG', 'ULONG'):
+                    break
+                # Check if the type is a known struct with members
+                if exact[1] in store.struct_members:
+                    current_type = exact[1]
+                    current_off = 0  # exact match, no remaining offset
+                    break  # exact match, member path complete
+                else:
+                    break
+            else:
+                # Find containing member (largest offset < current_off)
+                containing = None
+                for off in sorted_offs:
+                    if off <= current_off:
+                        containing = off
+                    else:
+                        break
+                if containing is not None:
+                    mname, mtype = members[containing]
+                    msize = _estimate_member_size(mtype, store.struct_members)
+                    if containing + msize > current_off:
+                        # Inside this member, not at its start
+                        # We need a cast: the global IS this member at a sub-offset
+                        path.append((mname, mtype))
+                        remaining = current_off - containing
+                        if remaining > 0:
+                            # Can't cleanly resolve sub-offset to member chain
+                            # Return what we have + remaining bytes
+                            return path, remaining
+                        break
+                    else:
+                        # Past this member, shouldn't happen
+                        break
+                else:
+                    break
+        return path, 0
+
+    def _estimate_member_size(mtype, struct_members):
+        """Estimate the byte size of a member type."""
+        if '*' in mtype:
+            return 4
+        if '[' in mtype:
+            import re as _re2
+            arr_m = _re2.match(r'^(\w+)\s*\[(\d+)\]$', mtype)
+            if arr_m:
+                elem = arr_m.group(1)
+                count = int(arr_m.group(2))
+                if elem in struct_members:
+                    bs = [v[1] for v in struct_members[elem].values() if isinstance(v[1], int)]  # wrong, fix below
+                # Simple approach: sum up known sizes
+                # Default: elem * 4 for numeric types
+                _PRIMITIVE_SIZES = {'char':1, 'unsigned char':1, 'BYTE':1, 'short':2, 'WORD':2, 'int':4, 'unsigned':4, 'DWORD':4, 'float':4, 'long':4, 'unsigned long':4}
+                if elem in _PRIMITIVE_SIZES:
+                    return _PRIMITIVE_SIZES[elem] * count
+                # Try struct size
+                if elem in struct_members:
+                    mx = max(struct_members[elem].keys()) if struct_members[elem] else 0
+                    if mx:
+                        return (mx + 4) * count
+                return 4 * count
+        _PRIMITIVE_SIZES = {'char':1, 'unsigned char':1, 'BYTE':1, 'short':2, 'WORD':2, 'int':4, 'unsigned':4, 'DWORD':4, 'float':4, 'long':4, 'unsigned long':4, 'BOOL':4, 'LONG':4}
+        if mtype in _PRIMITIVE_SIZES:
+            return _PRIMITIVE_SIZES[mtype]
+        if mtype in struct_members:
+            mx = max(struct_members[mtype].keys()) if struct_members[mtype] else 0
+            if mx:
+                return mx + 4
+        return 4
+
+    # Build overlap map: gname -> (iname, itype, offset_in_bytes)
+    _overlap_map = {}
+    for _gname, _gaddr in _resolve_stru_overlap._global_addrs.items():
+        for _base, _end, _iname, _itype in store.struct_instances:
+            if _base <= _gaddr < _end:
+                _overlap_map[_gname] = (_iname, _itype, _gaddr - _base)
+                break
+
+    if _overlap_map:
+        # Build a combined pattern matching only overlapped global names
+        _names = sorted(_overlap_map.keys(), key=len, reverse=True)
+        _name_pattern = '|'.join(re.escape(n) for n in _names)
+
+        # For each overlapped global, precompute the member path prefix.
+        # e.g. g_ScriptRoleBuf at SceneMgr+0x590 → path=['m_embedRoleSys']
+        _path_cache = {}
+        for _gname, (_iname, _itype, _off) in _overlap_map.items():
+            _path, _remaining = _resolve_offset_to_member_path(_itype, _off)
+            if _path and _remaining == 0:
+                # Build prefix: g_ContainingStruct.member1.member2...
+                _prefix = _iname
+                for _pname, _ptype in _path:
+                    _prefix += '.' + _pname
+                _path_cache[_gname] = _prefix
+            else:
+                # Can't resolve cleanly — use raw cast fallback
+                _gtype = store.global_types.get(_gname, 'int')
+                _cast_type = _gtype if _gtype and _gtype not in ('skip', '') else 'int'
+                _path_cache[_gname] = None  # mark for fallback
+
+        def _replace_field(m):
+            _gname = m.group(1)
+            _field = m.group(2)
+            _idx = m.group(3)
+            _prefix = _path_cache.get(_gname, '')
+            if _prefix:
+                if _idx is not None:
+                    return '%s.%s[%s]' % (_prefix, _field, _idx)
+                else:
+                    return '%s.%s' % (_prefix, _field)
+            else:
+                # Fallback to raw cast
+                _iname, _itype, _off = _overlap_map[_gname]
+                _cast = 'int'
+                _mem = store.struct_members.get(_itype, {}).get(_off)
+                if _mem:
+                    _raw = _mem[1]
+                    _am = re.match(r'^(\w[\w\s]*)\s*\[', _raw)
+                    _cast = _am.group(1).strip() if _am else _raw.strip()
+                if _idx is not None:
+                    return '((%s *)((char *)&%s + %d))[%s]' % (_cast, _iname, _off, _idx)
+                else:
+                    return '*(%s *)((char *)&%s + %d).%s' % (_cast, _iname, _off, _field)
+        code = re.sub(
+            r'\b(' + _name_pattern + r')\.(\w+)(?:\[([^\]]+)\])?',
+            _replace_field, code
+        )
+
+        def _replace_bare(m):
+            _gname = m.group(1)
+            _prefix = _path_cache.get(_gname, '')
+            if _prefix:
+                return _prefix
+            else:
+                _iname, _itype, _off = _overlap_map[_gname]
+                _gtype = store.global_types.get(_gname, '')
+                if not _gtype or _gtype in ('RoleSystem', 'SceneMgr', 'CScreenMode'):
+                    return m.group(0)
+                return '*(%s *)((char *)&%s + %d)' % (_gtype, _iname, _off)
+        code = re.sub(
+            r'\b(' + _name_pattern + r')\b(?!\s*\.|\s*\[|\s*_)',
+            _replace_bare, code
+        )
+
     return code
 
 

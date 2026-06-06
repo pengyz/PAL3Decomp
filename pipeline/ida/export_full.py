@@ -5,7 +5,8 @@ Usage:
   idat.exe -A -S"pal3_export_only.py" original/PAL3.exe.i64
 """
 import ida_auto, ida_funcs, ida_hexrays, ida_name, ida_typeinf, idautils, idc
-import json, os, time, glob
+import ida_segment as idaseg
+import json, os, time, glob, re
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
@@ -522,11 +523,11 @@ def export_structs(log):
 
     # Export globals from the IDB (names and types set by apply_annotations.py)
     _globals = {}
-    for _seg in range(ida_segm.get_segm_qty()):
-        _s = ida_segm.getnsegm(_seg)
+    for _seg in range(idaseg.get_segm_qty()):
+        _s = idaseg.getnseg(_seg)
         if not _s:
             continue
-        _sclass = ida_segm.get_segm_class(_s)
+        _sclass = idaseg.get_segm_class(_s)
         if _sclass not in ('DATA', 'CONST', 'BSS'):
             continue
         _ea = _s.start_ea
@@ -534,13 +535,17 @@ def export_structs(log):
             _name = idc.get_name(_ea)
             if _name and not _name.startswith('dword_') and not _name.startswith('byte_') \
                     and not _name.startswith('word_') and not _name.startswith('off_'):
-                _flags = idc.get_flags(_ea)
-                if idc.has_type_name(_flags):
-                    _type = idc.GetType(_ea)
-                    if _type:
-                        _globals[hex(_ea)] = {'name': _name, 'type': _type}
-                        _ea += idc.get_item_size(_ea)
-                        continue
+                # Skip non-C-identifier names: mangled C++ (??..., ?...@...),
+                # decorated imports (...@...), RTTI data (__TI...), etc.
+                # These are linker artifacts, not source-level global variables.
+                if not re.match(r'^[A-Za-z_][A-Za-z0-9_]*$', _name):
+                    _ea += 1
+                    continue
+                _type = idc.get_type(_ea)
+                if _type:
+                    _globals[hex(_ea)] = {'name': _name, 'type': _type}
+                    _ea += idc.get_item_size(_ea)
+                    continue
             _ea += 1
     if _globals:
         result['_globals'] = _globals

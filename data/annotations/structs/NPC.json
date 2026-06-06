@@ -35,7 +35,7 @@
     "4": {
       "name": "m_pBuffer",
       "type": "char *",
-      "source": "A:decomp *(_DWORD*)&field=new/delete+4*idx array in NPC.cpp; type_fix:int\u2192void*(alloc/free pattern)",
+      "source": "A:decomp *(_DWORD*)&field=new/delete+4*idx array in NPC.cpp; type_fix:int→void*(alloc/free pattern)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "8": {
@@ -66,7 +66,7 @@
     "68": {
       "name": "m_wndBase",
       "type": "UIWnd",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192UIWnd(UIWnd::FindChild/FindChildByName(&this->_todo_44,...))"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→UIWnd(UIWnd::FindChild/FindChildByName(&this->_todo_44,...))"
     },
     "0": {
       "name": "__vftable",
@@ -186,6 +186,10 @@
     "0x00479100": {
       "name": "NPC::GetPropertyByIndex",
       "signature": "int __thiscall NPC::GetPropertyByIndex(NPC *this, unsigned int dwVal)"
+    },
+    "0x00517BA0": {
+      "name": "NPC::ShowAIWindow",
+      "signature": "void __thiscall(NPC *this)"
     }
   }
 }

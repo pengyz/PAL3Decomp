@@ -696,8 +696,23 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         pass
 
     # Also scan method signatures for type references (all pointer/ref -> fwd_types)
+    # Use annotation-overridden signatures when available, since decomp JSON signatures
+    # may be stripped/simplified (e.g. "virtual void(char*)" losing original types).
+    _ann_sigs_by_addr = {}
+    try:
+        _ann_md = _get_ida_structs()
+        _ann_ms = _ann_md.get(cls_name, {}).get('methods', {})
+        for _k, _v in _ann_ms.items():
+            _ann_sigs_by_addr[_k] = _v.get('signature', '')
+    except:
+        pass
+
     if methods:
         for method_name, sig, addr in methods:
+            # Prefer annotation signature if available (richer type information)
+            _ann_s = _ann_sigs_by_addr.get(addr, '')
+            if _ann_s:
+                sig = _ann_s
             # Extract all type names from signature
             all_types_in_sig = re.findall(r'\b([A-Za-z_][A-Za-z0-9_]*)\b\s*\*', sig)
             for t in all_types_in_sig:
@@ -1699,6 +1714,9 @@ def generate_globals():
         '// Auto-generated from pipeline/data/annotations/globals.json',
         '',
         '#include <windows.h>',
+        '#ifndef _PVFV',
+        'typedef void (__cdecl *_PVFV)(void);',
+        '#endif',
         '',
         '// %d typed globals' % len(sorted_globs),
         '',
@@ -1724,6 +1742,13 @@ def generate_globals():
             continue  # known-unnameable: don't emit extern declaration
         # Skip IDA default names (they go in per-file forward decls)
         if re.match(r'^(dword|byte|flt|word|off|stru|unk|asc)_', name):
+            continue
+
+        # Skip WinAPI function pointer globals (loaded via GetProcAddress) that are
+        # already declared in <windows.h>. Re-declaring them causes C2372 redefinition.
+        # Also avoids VC6-incompatible types like LSTATUS, __noreturn in these decls.
+        # (Mangled/non-C-identifier names are already filtered at export layer.)
+        if '__stdcall' in typ and '*)' in typ:
             continue
 
         base_typ = extract_base_type(typ)
@@ -1760,6 +1785,13 @@ def generate_globals():
             h_lines.append('extern %s %s; // %s' % (typ, name, addr_str))
         else:
             h_lines.append('extern %s %s; // %s' % (typ, name, addr_str))
+
+    # NOTE: Globals from annotations globals.json that are not in _globals
+    # (because they overlap with larger struct instances like g_SceneMgr)
+    # are intentionally NOT declared here as standalone externs.
+    # They are "artifacts" — memory that belongs to a containing struct.
+    # The overlap resolution in stage4_substitution.py (_resolve_stru_overlap)
+    # converts accesses to them into offset expressions at the codegen level.
 
     # Remove from fwd_classes anything already in includes_needed
     fwd_classes -= includes_needed
