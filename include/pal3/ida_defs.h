@@ -36,10 +36,6 @@ typedef unsigned __int64 _QWORD;
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
 
-// GRPinput full definition (for g_Input member access in generated code)
-#include "pal3/gen/GRP_KEYREG.h"
-#include "pal3/gen/GRPinput.h"
-
 // (DirectInput forward declarations moved above GRPinput include)
 
 // Allow C-style implicit void* conversion (IDA generated code relies on this)
