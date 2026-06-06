@@ -924,7 +924,7 @@ int gbMesh::LoadFromFile(gbVFile1* file, float quality) {
             } else {
                 gbEffectMgr* effMgr = *(gbEffectMgr**)((char*)m_pGfxManager + 200);
                 tex = effMgr->GetWhiteTexture();
-                tex->refCount++;
+                tex->RefCount++;
             }
 
             // Store texture

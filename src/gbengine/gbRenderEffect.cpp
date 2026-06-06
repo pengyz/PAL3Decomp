@@ -45,11 +45,11 @@ gbRenderEffect::~gbRenderEffect() {
 }
 
 gbRenderEffect& gbRenderEffect::operator=(const gbRenderEffect& other) {
-    refCount = other.refCount;
-    name = other.name;
-    nameCrc = other.nameCrc;
-    isLoaded = other.isLoaded;
-    manager = other.manager;
+    RefCount = other.RefCount;
+    pName = other.pName;
+    NameCrc32 = other.NameCrc32;
+    IsLoaded = other.IsLoaded;
+    pMgr = other.pMgr;
     m_pEffect = other.m_pEffect;
     m_dwFlags = other.m_dwFlags;
     m_pDecl = other.m_pDecl;

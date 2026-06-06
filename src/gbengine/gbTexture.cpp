@@ -152,11 +152,11 @@ gbImage2D::~gbImage2D() {
 
 // 0x10020370 (37B) - Constructor
 gbTexture::gbTexture(void) {
-    refCount = 0;
-    name = NULL;
-    nameCrc = 0;
-    isLoaded = 0;
-    manager = NULL;
+    RefCount = 0;
+    pName = NULL;
+    NameCrc32 = 0;
+    IsLoaded = 0;
+    pMgr = NULL;
     Width = 0;
     Height = 0;
     pTexImage = NULL;
@@ -170,9 +170,9 @@ gbTexture::~gbTexture() {
         delete pTexImage;
         pTexImage = NULL;
     }
-    if (name) {
-        free(name);
-        name = NULL;
+    if (pName) {
+        free(pName);
+        pName = NULL;
     }
 }
 
@@ -188,7 +188,7 @@ void gbTexture::CreateTexture(int w, int h, gbPixelFmtType fmt, int mips) {
     InFmt.Type = fmt;
     InFmt.Bpp = gbPixelFmtBpp(fmt);
     nLevels = mips;
-    isLoaded = 1;
+    IsLoaded = 1;
 }
 
 // Get the D3D texture interface (base returns NULL, overridden in D3D subclass)
@@ -266,15 +266,15 @@ void gbTexture::LoadFromImage2D(gbImage2D* img) {
     Height = img->Height;
     InFmt.Type = img->PixelFmt.Type;
     InFmt.Bpp = img->PixelFmt.Bpp;
-    isLoaded = 1;
+    IsLoaded = 1;
 }
 
 // 0x100205a0 (443B)
 void gbTexture::LoadTexture(int a2) {
-    if (isLoaded)
+    if (IsLoaded)
         return;
 
-    strcpy(Str, name);
+    strcpy(Str, pName);
     char* dot = strrchr(Str, '.');
     if (!dot)
         return;
@@ -294,14 +294,14 @@ void gbTexture::LoadTexture(int a2) {
             ((gbTexture_D3D*)this)->CreateFromFileMemory(buf, fileSize);
             free(buf);
         }
-        isLoaded = 1;
+        IsLoaded = 1;
         return;
     }
     if (!pTexImage) {
         gbImage2D* img = new gbImage2D();
         pTexImage = img;
     }
-    if (pTexImage->LoadImageFile(name, dword_10140DB0) && a2) {
+    if (pTexImage->LoadImageFile(pName, dword_10140DB0) && a2) {
         LoadFromImage2D(pTexImage);
         if (a2 == 1) {
             pTexImage->Release();
@@ -312,7 +312,7 @@ void gbTexture::LoadTexture(int a2) {
             }
             pTexImage = NULL;
         }
-        isLoaded = 1;
+        IsLoaded = 1;
     }
 }
 
@@ -385,7 +385,7 @@ void gbTexture_D3D::CreateFromMemory(int w, int h, gbPixelFmtType srcFmt, int le
     D3DFORMAT d3dDstFmt = gbPixelFmtToD3D(dstFmt);
     D3DFORMAT d3dSrcFmt = gbPixelFmtToD3D(srcFmt);
 
-    // Get the D3D device from the global gfx manager
+    // Get the D3D device from the global gfx pMgr
     // In the real engine: ((gbGfxManager_D3D*)g_pGfxManager)->m_pd3dDevice
     IDirect3DDevice9* pDevice = NULL;
     if (g_pGfxManager) {
@@ -435,7 +435,7 @@ void gbTexture_D3D::CreateFromMemory(int w, int h, gbPixelFmtType srcFmt, int le
     }
 
     m_ImgFormat = (ULONG)d3dDstFmt;
-    isLoaded = 1;
+    IsLoaded = 1;
 }
 
 // 0x1001bea0 (219B) - Update existing texture with new data
@@ -505,7 +505,7 @@ void gbTexture_D3D::CreateFromFileMemory(void* data, int size) {
         m_ImgFormat = (ULONG)desc.Format;
     }
 
-    isLoaded = 1;
+    IsLoaded = 1;
 }
 
 // 0x1001bf80 (144B) - Create texture for use as render target
@@ -543,7 +543,7 @@ int gbTexture_D3D::CreateForRenderTarget(int w, int h, gbPixelFmtType fmt) {
     InFmt.Bpp = gbPixelFmtBpp(fmt);
     m_ImgFormat = (ULONG)d3dFmt;
     nLevels = 1;
-    isLoaded = 1;
+    IsLoaded = 1;
 
     return 1;
 }

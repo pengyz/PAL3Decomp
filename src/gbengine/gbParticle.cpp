@@ -1308,9 +1308,9 @@ gbAnimNodeGroup::gbAnimNodeGroup(class gbGfxManager * p0) {
 
 gbAnimNodeGroup::~gbAnimNodeGroup() {
     if (pNode) {
-        int* refCount = (int*)((char*)pNode + 0x174);
-        (*refCount)--;
-        if (*refCount == 0 && pNode != NULL) {
+        int* RefCount = (int*)((char*)pNode + 0x174);
+        (*RefCount)--;
+        if (*RefCount == 0 && pNode != NULL) {
             delete (gbVisNode*)pNode;
         }
     }

@@ -11,7 +11,7 @@ class gbResManager;
 // ============================================================================
 class gbRefObject {
 public:
-    int refCount;       // +0x04 (vtable at +0x00)
+    int RefCount;       // +0x04 (vtable at +0x00)
 
     gbRefObject();
     gbRefObject(const gbRefObject& other);
@@ -30,10 +30,10 @@ public:
 // ============================================================================
 class gbResource : public gbRefObject {
 public:
-    char* name;             // +0x08
-    unsigned int nameCrc;   // +0x0C
-    int isLoaded;           // +0x10
-    gbResManager* manager;  // +0x14
+    char* pName;            // +0x08
+    unsigned int NameCrc32; // +0x0C
+    int IsLoaded;           // +0x10
+    gbResManager* pMgr;     // +0x14
 
     gbResource();
     gbResource(const gbResource& other);

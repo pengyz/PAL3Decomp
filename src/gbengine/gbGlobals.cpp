@@ -153,7 +153,7 @@ gbVisNode* gbLoadLightFile(const char* filename) {
         light->m_BakedLight = 1;
 
         // IncRef on light (gbVolumeModifier inherits gbRefObject)
-        light->refCount++;
+        light->RefCount++;
 
         // Assign to volmod node
         volNode->pVolMod = light;

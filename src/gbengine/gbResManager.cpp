@@ -16,12 +16,12 @@ extern unsigned int gbCrc32Compute(const char* str);
 // Constructor - 0x100015e0
 gbRefObject::gbRefObject() {
     // vtable set by compiler
-    refCount = 1;
+    RefCount = 1;
 }
 
 // Copy constructor - 0x100017c0
 gbRefObject::gbRefObject(const gbRefObject& other) {
-    refCount = other.refCount;
+    RefCount = other.RefCount;
 }
 
 // Destructor - 0x1002f7e0 (virtual)
@@ -30,23 +30,23 @@ gbRefObject::~gbRefObject() {
 
 // IncRef - 0x10001600
 void gbRefObject::IncRef() {
-    refCount++;
+    RefCount++;
 }
 
 // DecRef - 0x10001610
 void gbRefObject::DecRef() {
-    refCount--;
+    RefCount--;
 }
 
 // GetRef - 0x100017b0
 int gbRefObject::GetRef() {
-    return refCount;
+    return RefCount;
 }
 
 // Release - 0x1002f7f0
 void gbRefObject::Release() {
-    refCount--;
-    if (refCount == 0) {
+    RefCount--;
+    if (RefCount == 0) {
         // Call virtual destructor through vtable
         // The destructor will delete the object
         delete this;
@@ -55,7 +55,7 @@ void gbRefObject::Release() {
 
 // operator= - 0x10003980
 gbRefObject& gbRefObject::operator=(const gbRefObject& other) {
-    refCount = other.refCount;
+    RefCount = other.RefCount;
     return *this;
 }
 
@@ -64,26 +64,26 @@ gbRefObject& gbRefObject::operator=(const gbRefObject& other) {
 
 // Constructor - 0x10001840
 gbResource::gbResource() : gbRefObject() {
-    refCount = 1;
+    RefCount = 1;
     // vtable set by compiler
-    name = NULL;
-    isLoaded = NULL;
-    manager = NULL;
+    pName = NULL;
+    IsLoaded = NULL;
+    pMgr = NULL;
 }
 
 // Copy constructor - 0x10001860
 gbResource::gbResource(const gbResource& other) : gbRefObject(other) {
-    name = other.name;
-    nameCrc = other.nameCrc;
-    isLoaded = other.isLoaded;
-    manager = other.manager;
+    pName = other.pName;
+    NameCrc32 = other.NameCrc32;
+    IsLoaded = other.IsLoaded;
+    pMgr = other.pMgr;
     // vtable updated by compiler
 }
 
 // Destructor - 0x100200d0 (191B)
 gbResource::~gbResource() {
-    if (manager) {
-        gbResManager* mgr = manager;
+    if (pMgr) {
+        gbResManager* mgr = pMgr;
         int cnt = mgr->count;
         int idx = 0;
         if (cnt > 0) {
@@ -95,7 +95,7 @@ gbResource::~gbResource() {
                     goto done_remove;
             }
             int newCount = cnt - 1;
-            manager = NULL;
+            pMgr = NULL;
             if (newCount > idx)
                 mgr->array[idx] = mgr->array[cnt - 1];
             int newCapacity = cnt - 1;
@@ -115,23 +115,23 @@ gbResource::~gbResource() {
         }
     }
 done_remove:
-    if (name)
-        free(name);
+    if (pName)
+        free(pName);
 
     gbRefObject::~gbRefObject();
 }
 
 // SetName - 0x10020040
 void gbResource::SetName(const char* newName) {
-    // Free old name
-    if (name != NULL) {
-        free(name);
+    // Free old pName
+    if (pName != NULL) {
+        free(pName);
     }
 
     // Handle NULL or empty string
     if (newName == NULL || newName[0] == '\0') {
-        name = NULL;
-        nameCrc = 0;
+    pName = NULL;
+        NameCrc32 = 0;
         return;
     }
 
@@ -142,30 +142,30 @@ void gbResource::SetName(const char* newName) {
     size_t allocSize = (len < 16) ? 16 : len;
 
     // Allocate and copy
-    name = (char*)malloc(allocSize);
-    strcpy(name, newName);
+    pName = (char*)malloc(allocSize);
+    strcpy(pName, newName);
 
     // Compute CRC32
-    nameCrc = gbCrc32Compute(newName);
+    NameCrc32 = gbCrc32Compute(newName);
 }
 
 // GetName - 0x100039f0
 const char* gbResource::GetName() {
-    return name;
+    return pName;
 }
 
 // GetNameCrc32 - 0x10003cc0
 unsigned int gbResource::GetNameCrc32() {
-    return nameCrc;
+    return NameCrc32;
 }
 
 // operator= - 0x100018a0
 gbResource& gbResource::operator=(const gbResource& other) {
     gbRefObject::operator=(other);
-    name = other.name;
-    nameCrc = other.nameCrc;
-    isLoaded = other.isLoaded;
-    manager = other.manager;
+    pName = other.pName;
+    NameCrc32 = other.NameCrc32;
+    IsLoaded = other.IsLoaded;
+    pMgr = other.pMgr;
     return *this;
 }
 
@@ -201,8 +201,8 @@ gbResManager::~gbResManager() {
 
 // AddResource - 0x10020200
 void gbResManager::AddResource(gbResource* res) {
-    // Set manager pointer in resource
-    res->manager = this;
+    // Set pMgr pointer in resource
+    res->pMgr = this;
 
     // Check if need to grow array
     if (count == capacity) {
@@ -245,7 +245,7 @@ void gbResManager::DelResource(gbResource* res) {
             if (++idx >= cnt)
                 return;
         }
-        res->manager = NULL;
+        res->pMgr = NULL;
         int newCount = cnt - 1;
         if (cnt - 1 > idx)
             array[idx] = array[cnt - 1];
@@ -278,9 +278,9 @@ gbResource* gbResManager::FindResByName(const char* name) {
     // Linear search by CRC
     for (int i = 0; i < count; i++) {
         gbResource* res = array[i];
-        if (res->nameCrc == crc) {
+        if (res->NameCrc32 == crc) {
             // Found - increment ref count and return
-            res->refCount++;
+            res->RefCount++;
             return res;
         }
     }
@@ -293,8 +293,8 @@ void gbResManager::CleanAllResource() {
     while (count != 0) {
         gbResource* res = array[0];
 
-        // Release until refCount reaches 1
-        while (res->refCount > 1) {
+        // Release until RefCount reaches 1
+        while (res->RefCount > 1) {
             res->Release();
         }
 
