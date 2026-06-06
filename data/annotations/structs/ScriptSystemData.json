@@ -2,6 +2,16 @@
   "name": "ScriptSystemData",
   "binary_size": 12624,
   "known_members": {
+    "0": {
+      "name": "m_mapPlayer",
+      "type": "SceneMapPlayer[4]",
+      "source": "A:binary ClearInitState(0x4220F0) stride=0x188, PDB SceneMapPlayer size=392"
+    },
+    "1568": {
+      "name": "m_scriptArray",
+      "type": "PtrArray",
+      "source": "A:mov ecx,0xD8B938;call PtrArray::InsertAt/Remove"
+    },
     "1612": {
       "name": "_field_64C",
       "type": "float",
@@ -97,6 +107,16 @@
       "type": "int",
       "source": "binary:stru_D8B318_gap"
     },
+    "2260": {
+      "name": "m_nGameMode",
+      "type": "int",
+      "source": "binary: compared to 2 in game mode checks; dword_D8BBEC"
+    },
+    "2312": {
+      "name": "g_vRotateAxis",
+      "type": "gbVec3D",
+      "source": "codegen:global_overlap_detection"
+    },
     "2380": {
       "name": "_field_94C",
       "type": "float",
@@ -117,10 +137,15 @@
       "type": "float",
       "source": "binary:stru_D8B318_gap"
     },
+    "2988": {
+      "name": "m_g_fTimeDelta",
+      "type": "float",
+      "source": "globals_merge"
+    },
     "3076": {
       "name": "_field_C04",
       "type": "int",
-      "source": "binary:stru_D8B318_gap | type_fix:float\u2192int_raw_decomp"
+      "source": "binary:stru_D8B318_gap | type_fix:float→int_raw_decomp"
     },
     "3080": {
       "name": "_field_C08",
@@ -317,6 +342,11 @@
       "type": "int",
       "source": "binary:stru_D8B318_gap"
     },
+    "3732": {
+      "name": "m_String",
+      "type": "char[96]",
+      "source": "globals_merge | layout_fix:span_mismatch"
+    },
     "3828": {
       "name": "_field_EF4",
       "type": "int",
@@ -425,7 +455,7 @@
     "3992": {
       "name": "m_pCurrentBlock",
       "type": "char *",
-      "source": "binary:32x abs refs, malloc(48)+store pattern (0xF98) | type_fix:int\u2192void*(malloc store)",
+      "source": "binary:32x abs refs, malloc(48)+store pattern (0xF98) | type_fix:int→void*(malloc store)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "4000": {
@@ -442,6 +472,12 @@
       "name": "m_nCmdFA8",
       "type": "int",
       "source": "binary:4x abs refs, 4-byte access"
+    },
+    "4012": {
+      "name": "m_pScriptData",
+      "type": "char *",
+      "source": "binary:4x abs refs (0xFAC) | type_fix:int→void*(naming m_p)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "4016": {
       "name": "m_nCmdFB0",
@@ -506,7 +542,7 @@
     "4080": {
       "name": "m_pCmdTableFF0",
       "type": "char *",
-      "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array) | type_fix:int\u2192void*(array base)",
+      "source": "binary:5x abs refs, B9=mov ecx,addr (base load for array) | type_fix:int→void*(array base)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "4084": {
@@ -528,6 +564,11 @@
       "name": "m_nCmd1008",
       "type": "int",
       "source": "binary:3x abs refs, 4-byte access"
+    },
+    "4108": {
+      "name": "m_bScriptFlag",
+      "type": "unsigned char",
+      "source": "binary:10x abs refs, byte access 8A/88 (0x100C)"
     },
     "4116": {
       "name": "m_nScriptParam",
@@ -593,6 +634,12 @@
       "name": "m_nScriptResult",
       "type": "int",
       "source": "binary:15x abs refs, dword access (0x1048)"
+    },
+    "4172": {
+      "name": "m_pCmdArray104C",
+      "type": "char *",
+      "source": "binary:5x abs refs, BF=mov edi,addr + [ecx*8+addr] (stride-8) | type_fix:int→void*(indexed access)",
+      "note": "replaced void* with char* (IDB struct compat)"
     },
     "4176": {
       "name": "m_nCmd1050",
@@ -894,52 +941,10 @@
       "type": "int",
       "source": "binary:stru_D8B318_gap"
     },
-    "2988": {
-      "name": "m_g_fTimeDelta",
-      "type": "float",
-      "source": "globals_merge"
-    },
-    "3732": {
-      "name": "m_String",
-      "type": "char[96]",
-      "source": "globals_merge | layout_fix:span_mismatch"
-    },
-    "4012": {
-      "name": "m_pScriptData",
-      "type": "char *",
-      "source": "binary:4x abs refs (0xFAC) | type_fix:int\u2192void*(naming m_p)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
-    "4108": {
-      "name": "m_bScriptFlag",
-      "type": "unsigned char",
-      "source": "binary:10x abs refs, byte access 8A/88 (0x100C)"
-    },
-    "4172": {
-      "name": "m_pCmdArray104C",
-      "type": "char *",
-      "source": "binary:5x abs refs, BF=mov edi,addr + [ecx*8+addr] (stride-8) | type_fix:int\u2192void*(indexed access)",
-      "note": "replaced void* with char* (IDB struct compat)"
-    },
     "4432": {
       "name": "m_CmdTable",
       "type": "tagScriptCmd[213]",
       "source": "binary:stride16_abs_addr_pattern"
-    },
-    "0": {
-      "name": "m_mapPlayer",
-      "type": "SceneMapPlayer[4]",
-      "source": "A:binary ClearInitState(0x4220F0) stride=0x188, PDB SceneMapPlayer size=392"
-    },
-    "1568": {
-      "name": "m_scriptArray",
-      "type": "PtrArray",
-      "source": "A:mov ecx,0xD8B938;call PtrArray::InsertAt/Remove"
-    },
-    "2260": {
-      "name": "m_nGameMode",
-      "type": "int",
-      "source": "binary: compared to 2 in game mode checks; dword_D8BBEC"
     }
   },
   "methods": {

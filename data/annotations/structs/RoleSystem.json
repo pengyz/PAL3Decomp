@@ -1,6 +1,11 @@
 {
   "name": "RoleSystem",
   "known_members": {
+    "0": {
+      "name": "__vftable",
+      "type": "int",
+      "source": "vtable_fix"
+    },
     "68": {
       "name": "m_pVtable",
       "type": "char *",
@@ -90,6 +95,11 @@
       "type": "int",
       "source": "binary_scan:1refs"
     },
+    "136": {
+      "name": "_todo_088",
+      "type": "float",
+      "source": "binary_scan:50refs"
+    },
     "140": {
       "name": "m_pPathListHead",
       "type": "char *",
@@ -156,15 +166,40 @@
       "type": "int",
       "source": "binary:disp32_auto_42ad40"
     },
+    "180": {
+      "name": "m_mapData",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access | annotate_todo"
+    },
+    "184": {
+      "name": "_todo_0B8",
+      "type": "float",
+      "source": "binary_scan:3refs"
+    },
+    "188": {
+      "name": "_todo_0BC",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
     "192": {
       "name": "_todo_0C0",
       "type": "float",
       "source": "A:FPU_post_reattrib_0x40c9cf"
     },
+    "206": {
+      "name": "m_byStateArray",
+      "type": "unsigned char",
+      "source": "decomp:_nearby_417040_byte_loop_32entries"
+    },
     "208": {
       "name": "_field_0D0",
       "type": "char",
       "source": "manual_fix:shrink_to_gap"
+    },
+    "209": {
+      "name": "m_bActionState",
+      "type": "unsigned char",
+      "source": "decomp:_auto_42ad40_LOBYTE_set_from_multiple_sources(action_state_byte)"
     },
     "216": {
       "name": "m_fAngle",
@@ -180,6 +215,16 @@
       "name": "m_nSpawnData",
       "type": "int",
       "source": "B:naming_m_n+FPU_misattrib"
+    },
+    "228": {
+      "name": "_todo_0E4",
+      "type": "int",
+      "source": "binary_scan:4refs"
+    },
+    "232": {
+      "name": "_todo_0E8",
+      "type": "int",
+      "source": "binary_scan:2refs"
     },
     "236": {
       "name": "_field_0EC",
@@ -241,6 +286,11 @@
       "type": "UIWnd *",
       "source": "binary:gap_access+codegen_infer"
     },
+    "288": {
+      "name": "m_nParamArray",
+      "type": "int",
+      "source": "decomp:_nearby_417040_DWORD_loop_copy"
+    },
     "300": {
       "name": "m_bSpawnByteA",
       "type": "unsigned char",
@@ -261,6 +311,26 @@
       "type": "int",
       "source": "ida_decomp:_sub_416FA0/416FE0 = 0"
     },
+    "312": {
+      "name": "m_vecPosArray",
+      "type": "gbVec3D",
+      "source": "decomp:_nearby_417040_p+=3(12byte_stride)_gbVec3D_array"
+    },
+    "328": {
+      "name": "_todo_148",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
+    "332": {
+      "name": "_todo_14C",
+      "type": "int",
+      "source": "binary_scan:3refs"
+    },
+    "336": {
+      "name": "_todo_150",
+      "type": "int",
+      "source": "binary_scan:2refs"
+    },
     "352": {
       "name": "m_nSavedState",
       "type": "int",
@@ -276,11 +346,21 @@
       "type": "unsigned char",
       "source": "ida_decomp:ctor_1D20 =0, _method_532710 if(!this)"
     },
+    "361": {
+      "name": "_gap_169",
+      "type": "unsigned char[3]",
+      "source": "fix:gap_fill_for_decomp_naming"
+    },
     "364": {
       "name": "m_pWndFrame",
       "type": "char *",
       "source": "ida_decomp:ctor_1D20 UIFrameWnd init, GetChild, 3 refs | fix:int_to_ptr(decomp_vtable_dispatch_via_bvisible+4) | fix:ptr_type_for_vtable_target",
       "note": "replaced void* with char* (IDB struct compat)"
+    },
+    "368": {
+      "name": "_todo_170",
+      "type": "int",
+      "source": "binary_scan:1refs"
     },
     "380": {
       "name": "m_nActive",
@@ -322,6 +402,11 @@
       "name": "_field_1A4",
       "type": "int",
       "source": "binary:gap_access"
+    },
+    "424": {
+      "name": "m_partyActor",
+      "type": "Actor",
+      "source": "A+:decomp Actor::DispatchAction((Actor*)&this->_todo_1A8) embedded_Actor + member_access(.m_pSelfAtt,.m_pEquipAtt*,.m_dwMatMsg)"
     },
     "1244": {
       "name": "m_fPathTargetY",
@@ -499,6 +584,11 @@
       "type": "char",
       "source": "gen_headers_9.2"
     },
+    "1452": {
+      "name": "_todo_5AC",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
     "1456": {
       "name": "m_pCtrlPoint",
       "type": "char *",
@@ -560,20 +650,90 @@
       "type": "float",
       "source": "ida_decomp:MoveRole = a2[2]"
     },
+    "1564": {
+      "name": "_todo_61C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
     "1572": {
       "name": "_embed_UIWnd_624",
       "type": "UIWnd",
       "source": "A+:decomp_UIWnd::GetRect((UIWnd*)&field)_cast_confirm_embed,span=88,no_overlap"
+    },
+    "1684": {
+      "name": "m_teamSlots",
+      "type": "int[307]",
+      "source": "expanded_to_cover_+0xB60"
+    },
+    "2960": {
+      "name": "_todo_BA4",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
     },
     "2968": {
       "name": "m_wndPanel",
       "type": "int",
       "source": "ida_decomp:ctor_1D20, _method_532410 vtable call, 2 refs"
     },
+    "2988": {
+      "name": "m_StaticSlotArray",
+      "type": "UIWnd",
+      "source": "decomp:_method_532410_vtable_call+p+=38(152=UIStatic_stride)"
+    },
+    "3072": {
+      "name": "m_teamSlotsB",
+      "type": "int[200]",
+      "source": "binary_scan:5refs|FullInit: array access indices 94-190"
+    },
+    "3624": {
+      "name": "dwInitParam",
+      "type": "HWND",
+      "source": "codegen:global_overlap_detection"
+    },
+    "3628": {
+      "name": "g_hCombatDlg1",
+      "type": "HWND",
+      "source": "codegen:global_overlap_detection"
+    },
+    "3632": {
+      "name": "g_hCombatDlg2",
+      "type": "HWND",
+      "source": "codegen:global_overlap_detection"
+    },
+    "3640": {
+      "name": "g_hCBStageCamDlg",
+      "type": "HWND",
+      "source": "codegen:global_overlap_detection"
+    },
+    "4028": {
+      "name": "_todo_FBC",
+      "type": "int",
+      "source": "binary_scan:4refs"
+    },
     "4068": {
       "name": "_field_FF8",
       "type": "int",
       "source": "binary:gap_r3"
+    },
+    "4088": {
+      "name": "_todo_FF8",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "4096": {
+      "name": "m_configData",
+      "type": "int[96]",
+      "source": "binary_scan:3refs|FullInit: array access indices 0-32, gap 384 bytes to _todo_1198"
+    },
+    "4484": {
+      "name": "_todo_1198",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "4488": {
+      "name": "_todo_119C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
     },
     "4492": {
       "name": "m_nMoveState1",
@@ -620,10 +780,25 @@
       "type": "int[50]",
       "source": "FullInit:DWORD[84-96] accesses beyond UIItem; gap fill 216 bytes to _todo_137C"
     },
+    "4968": {
+      "name": "_todo_137C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
     "4976": {
       "name": "m_wndLabel",
       "type": "UIWnd *",
       "source": "ida_decomp:_method_532410 UIWnd::SetEnable(text), 2 refs+codegen_infer"
+    },
+    "4996": {
+      "name": "m_CaptionCtrl",
+      "type": "UICaption",
+      "source": "decomp:_method_532410_UICaption_SetEnable"
+    },
+    "5880": {
+      "name": "_todo_170C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
     },
     "5888": {
       "name": "m_partyUI5",
@@ -634,331 +809,6 @@
       "name": "m_teamData5",
       "type": "int[270]",
       "source": "FullInit:DWORD[94-290] accesses beyond UIItem; gap fill 1088 bytes to _todo_1C28"
-    },
-    "7256": {
-      "name": "m_bStateFlag1",
-      "type": "unsigned char",
-      "source": "binary:_method_532710"
-    },
-    "7257": {
-      "name": "m_bStateFlag2",
-      "type": "unsigned char",
-      "source": "binary:_method_5326a0"
-    },
-    "7260": {
-      "name": "m_wndFrameA",
-      "type": "UIFrameWnd *",
-      "source": "ida_decomp:ctor_1D20 UIFrameWnd init, vtable call, 5 refs+codegen_infer"
-    },
-    "7392": {
-      "name": "_todo_1CF4",
-      "type": "int",
-      "source": "binary:disp32_method_44b470"
-    },
-    "7396": {
-      "name": "_todo_1CF8",
-      "type": "unsigned char",
-      "source": "binary:disp32_method_44b470"
-    },
-    "7412": {
-      "name": "m_wndFrameB",
-      "type": "UIFrameWnd *",
-      "source": "ida_decomp:ctor_1D20 UIFrameWnd init, vtable call, 5 refs+codegen_infer"
-    },
-    "7564": {
-      "name": "m_nStateParam1",
-      "type": "int",
-      "source": "binary:_method_532710"
-    },
-    "7568": {
-      "name": "m_nStateParam2",
-      "type": "int",
-      "source": "binary:_method_532710"
-    },
-    "7572": {
-      "name": "m_bStateFlag3",
-      "type": "unsigned char",
-      "source": "binary:_method_532710"
-    },
-    "7576": {
-      "name": "m_bStateFlag4",
-      "type": "unsigned char",
-      "source": "binary:_method_5326a0"
-    },
-    "7577": {
-      "name": "m_bStateFlag5",
-      "type": "unsigned char",
-      "source": "binary:_method_532360"
-    },
-    "8668": {
-      "name": "m_fFacingAngle",
-      "type": "float",
-      "source": "binary:raw_acos_angle"
-    },
-    "8672": {
-      "name": "m_fSnapshotX",
-      "type": "float",
-      "source": "binary:raw_snapshot"
-    },
-    "8676": {
-      "name": "m_fSnapshotY",
-      "type": "float",
-      "source": "binary:raw_snapshot"
-    },
-    "8680": {
-      "name": "m_fSnapshotZ",
-      "type": "float",
-      "source": "binary:raw_snapshot"
-    },
-    "7578": {
-      "name": "_todo_1D9A",
-      "type": "unsigned char",
-      "source": "reverted_auto_semantic:19x_access"
-    },
-    "180": {
-      "name": "m_mapData",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access | annotate_todo"
-    },
-    "206": {
-      "name": "m_byStateArray",
-      "type": "unsigned char",
-      "source": "decomp:_nearby_417040_byte_loop_32entries"
-    },
-    "288": {
-      "name": "m_nParamArray",
-      "type": "int",
-      "source": "decomp:_nearby_417040_DWORD_loop_copy"
-    },
-    "312": {
-      "name": "m_vecPosArray",
-      "type": "gbVec3D",
-      "source": "decomp:_nearby_417040_p+=3(12byte_stride)_gbVec3D_array"
-    },
-    "424": {
-      "name": "m_partyActor",
-      "type": "Actor",
-      "source": "A+:decomp Actor::DispatchAction((Actor*)&this->_todo_1A8) embedded_Actor + member_access(.m_pSelfAtt,.m_pEquipAtt*,.m_dwMatMsg)"
-    },
-    "1452": {
-      "name": "_todo_5AC",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "1564": {
-      "name": "_todo_61C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "2960": {
-      "name": "_todo_BA4",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4484": {
-      "name": "_todo_1198",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4488": {
-      "name": "_todo_119C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "4968": {
-      "name": "_todo_137C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "5880": {
-      "name": "_todo_170C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "7248": {
-      "name": "_todo_1C64",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "7252": {
-      "name": "_todo_1C68",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "7384": {
-      "name": "_todo_1CEC",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "7388": {
-      "name": "_todo_1CF0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "7404": {
-      "name": "_todo_1D00",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "7556": {
-      "name": "_todo_1D98",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "7560": {
-      "name": "_todo_1D9C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "8388": {
-      "name": "_todo_20D8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "8560": {
-      "name": "_todo_2184",
-      "type": "float",
-      "source": "A:FPU_binary_evidence_(batch_from_todo_field_context)"
-    },
-    "8660": {
-      "name": "_todo_21E8",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "8664": {
-      "name": "_todo_21EC",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "136": {
-      "name": "_todo_088",
-      "type": "float",
-      "source": "binary_scan:50refs"
-    },
-    "184": {
-      "name": "_todo_0B8",
-      "type": "float",
-      "source": "binary_scan:3refs"
-    },
-    "188": {
-      "name": "_todo_0BC",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "209": {
-      "name": "m_bActionState",
-      "type": "unsigned char",
-      "source": "decomp:_auto_42ad40_LOBYTE_set_from_multiple_sources(action_state_byte)"
-    },
-    "228": {
-      "name": "_todo_0E4",
-      "type": "int",
-      "source": "binary_scan:4refs"
-    },
-    "232": {
-      "name": "_todo_0E8",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "328": {
-      "name": "_todo_148",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "332": {
-      "name": "_todo_14C",
-      "type": "int",
-      "source": "binary_scan:3refs"
-    },
-    "336": {
-      "name": "_todo_150",
-      "type": "int",
-      "source": "binary_scan:2refs"
-    },
-    "368": {
-      "name": "_todo_170",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "1684": {
-      "name": "m_teamSlots",
-      "type": "int[307]",
-      "source": "expanded_to_cover_+0xB60"
-    },
-    "2988": {
-      "name": "m_StaticSlotArray",
-      "type": "UIWnd",
-      "source": "decomp:_method_532410_vtable_call+p+=38(152=UIStatic_stride)"
-    },
-    "3072": {
-      "name": "m_teamSlotsB",
-      "type": "int[200]",
-      "source": "binary_scan:5refs|FullInit: array access indices 94-190"
-    },
-    "4028": {
-      "name": "_todo_FBC",
-      "type": "int",
-      "source": "binary_scan:4refs"
-    },
-    "4088": {
-      "name": "_todo_FF8",
-      "type": "int",
-      "source": "binary_scan:1refs"
-    },
-    "4096": {
-      "name": "m_configData",
-      "type": "int[96]",
-      "source": "binary_scan:3refs|FullInit: array access indices 0-32, gap 384 bytes to _todo_1198"
-    },
-    "4996": {
-      "name": "m_CaptionCtrl",
-      "type": "UICaption",
-      "source": "decomp:_method_532410_UICaption_SetEnable"
-    },
-    "7276": {
-      "name": "m_nTimerFlags",
-      "type": "int",
-      "source": "decomp:_method_532710_LOBYTE+BYTE1_timer_control_bools"
-    },
-    "7280": {
-      "name": "m_FrameC",
-      "type": "UIFrameWnd",
-      "source": "decomp:ctor_UIFrameWnd_shared_init"
-    },
-    "7432": {
-      "name": "m_FrameD",
-      "type": "UIFrameWnd",
-      "source": "decomp:ctor_UIFrameWnd_shared_init"
-    },
-    "7584": {
-      "name": "m_dwCurTick",
-      "type": "int",
-      "source": "decomp:UpdateTimer_=GetTickCount(current_frame_time)"
-    },
-    "7588": {
-      "name": "m_dwPrevTick",
-      "type": "int",
-      "source": "decomp:UpdateTimer_=GetTickCount(previous_frame_time)"
-    },
-    "7592": {
-      "name": "m_bTimerActive",
-      "type": "unsigned char",
-      "source": "decomp:UpdateTimer_LOBYTE_set_0/1(timer_running)"
-    },
-    "7596": {
-      "name": "m_bToggleState",
-      "type": "unsigned char",
-      "source": "decomp:_method_532710_LOBYTE_toggle(==0?1:0)"
-    },
-    "8416": {
-      "name": "m_UICtrlArray",
-      "type": "int",
-      "source": "decomp:_method_44cd90_52DWORD_stride(208byte)_UI_array_base"
-    },
-    "8592": {
-      "name": "_todo_2190",
-      "type": "int",
-      "source": "binary_scan:1refs"
     },
     "7208": {
       "name": "_todo_1C28",
@@ -986,15 +836,185 @@
       "type": "ScriptSystem *",
       "source": "binary:v0-123 cast to ScriptSystem*"
     },
-    "361": {
-      "name": "_gap_169",
-      "type": "unsigned char[3]",
-      "source": "fix:gap_fill_for_decomp_naming"
-    },
-    "0": {
-      "name": "__vftable",
+    "7248": {
+      "name": "_todo_1C64",
       "type": "int",
-      "source": "vtable_fix"
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7252": {
+      "name": "_todo_1C68",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7256": {
+      "name": "m_bStateFlag1",
+      "type": "unsigned char",
+      "source": "binary:_method_532710"
+    },
+    "7257": {
+      "name": "m_bStateFlag2",
+      "type": "unsigned char",
+      "source": "binary:_method_5326a0"
+    },
+    "7260": {
+      "name": "m_wndFrameA",
+      "type": "UIFrameWnd *",
+      "source": "ida_decomp:ctor_1D20 UIFrameWnd init, vtable call, 5 refs+codegen_infer"
+    },
+    "7276": {
+      "name": "m_nTimerFlags",
+      "type": "int",
+      "source": "decomp:_method_532710_LOBYTE+BYTE1_timer_control_bools"
+    },
+    "7280": {
+      "name": "m_FrameC",
+      "type": "UIFrameWnd",
+      "source": "decomp:ctor_UIFrameWnd_shared_init"
+    },
+    "7384": {
+      "name": "_todo_1CEC",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7388": {
+      "name": "_todo_1CF0",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7392": {
+      "name": "_todo_1CF4",
+      "type": "int",
+      "source": "binary:disp32_method_44b470"
+    },
+    "7396": {
+      "name": "_todo_1CF8",
+      "type": "unsigned char",
+      "source": "binary:disp32_method_44b470"
+    },
+    "7404": {
+      "name": "_todo_1D00",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7412": {
+      "name": "m_wndFrameB",
+      "type": "UIFrameWnd *",
+      "source": "ida_decomp:ctor_1D20 UIFrameWnd init, vtable call, 5 refs+codegen_infer"
+    },
+    "7432": {
+      "name": "m_FrameD",
+      "type": "UIFrameWnd",
+      "source": "decomp:ctor_UIFrameWnd_shared_init"
+    },
+    "7556": {
+      "name": "_todo_1D98",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7560": {
+      "name": "_todo_1D9C",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "7564": {
+      "name": "m_nStateParam1",
+      "type": "int",
+      "source": "binary:_method_532710"
+    },
+    "7568": {
+      "name": "m_nStateParam2",
+      "type": "int",
+      "source": "binary:_method_532710"
+    },
+    "7572": {
+      "name": "m_bStateFlag3",
+      "type": "unsigned char",
+      "source": "binary:_method_532710"
+    },
+    "7576": {
+      "name": "m_bStateFlag4",
+      "type": "unsigned char",
+      "source": "binary:_method_5326a0"
+    },
+    "7577": {
+      "name": "m_bStateFlag5",
+      "type": "unsigned char",
+      "source": "binary:_method_532360"
+    },
+    "7578": {
+      "name": "_todo_1D9A",
+      "type": "unsigned char",
+      "source": "reverted_auto_semantic:19x_access"
+    },
+    "7584": {
+      "name": "m_dwCurTick",
+      "type": "int",
+      "source": "decomp:UpdateTimer_=GetTickCount(current_frame_time)"
+    },
+    "7588": {
+      "name": "m_dwPrevTick",
+      "type": "int",
+      "source": "decomp:UpdateTimer_=GetTickCount(previous_frame_time)"
+    },
+    "7592": {
+      "name": "m_bTimerActive",
+      "type": "unsigned char",
+      "source": "decomp:UpdateTimer_LOBYTE_set_0/1(timer_running)"
+    },
+    "7596": {
+      "name": "m_bToggleState",
+      "type": "unsigned char",
+      "source": "decomp:_method_532710_LOBYTE_toggle(==0?1:0)"
+    },
+    "8388": {
+      "name": "_todo_20D8",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "8416": {
+      "name": "m_UICtrlArray",
+      "type": "int",
+      "source": "decomp:_method_44cd90_52DWORD_stride(208byte)_UI_array_base"
+    },
+    "8560": {
+      "name": "_todo_2184",
+      "type": "float",
+      "source": "A:FPU_binary_evidence_(batch_from_todo_field_context)"
+    },
+    "8592": {
+      "name": "_todo_2190",
+      "type": "int",
+      "source": "binary_scan:1refs"
+    },
+    "8660": {
+      "name": "_todo_21E8",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "8664": {
+      "name": "_todo_21EC",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
+    "8668": {
+      "name": "m_fFacingAngle",
+      "type": "float",
+      "source": "binary:raw_acos_angle"
+    },
+    "8672": {
+      "name": "m_fSnapshotX",
+      "type": "float",
+      "source": "binary:raw_snapshot"
+    },
+    "8676": {
+      "name": "m_fSnapshotY",
+      "type": "float",
+      "source": "binary:raw_snapshot"
+    },
+    "8680": {
+      "name": "m_fSnapshotZ",
+      "type": "float",
+      "source": "binary:raw_snapshot"
     }
   },
   "binary_size": 8704,
