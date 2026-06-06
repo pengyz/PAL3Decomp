@@ -1012,12 +1012,16 @@ def _resolve_stru_overlap(code):
                         return '%s.%s[%s]' % (_gname, _field, _idx)
                     else:
                         return '%s.%s' % (_gname, _field)
-                _cast = 'int'
+                # For non-zero offsets, check if the offset has a named member
+                # If yes, use GLOBAL.member.SUBFIELD instead of *(type*)(...).SUBFIELD
                 _mem = store.struct_members.get(_itype, {}).get(_off)
                 if _mem:
-                    _raw = _mem[1]
-                    _am = re.match(r'^(\w[\w\s]*)\s*\[', _raw)
-                    _cast = _am.group(1).strip() if _am else _raw.strip()
+                    _member_name = _mem[0]
+                    if _idx is not None:
+                        return '%s.%s.%s[%s]' % (_gname, _member_name, _field, _idx)
+                    else:
+                        return '%s.%s.%s' % (_gname, _member_name, _field)
+                _cast = 'int'
                 if _idx is not None:
                     return '((%s *)((char *)&%s + %d))[%s]' % (_cast, _iname, _off, _idx)
                 else:
