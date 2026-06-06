@@ -185,39 +185,4 @@ for cls_name, vtbl_addr, slot_names in [
 print("[*] Fixed: cppobj=%d, primary_vtbl=%d, secondary_vtbl=%d" % (
     fixed_cppobj, fixed_primary, fixed_secondary))
 
-# ── Post-processing: rename PDB struct member names to match gbengine header ──
-# PDB uses different naming conventions (PascalCase, m_ prefix) than our
-# header (camelCase, p_ prefix). The gbengine header is the compilation
-# target — the PAL3 IDB must use header-compatible names.
-#
-# Round 1 (completed in gbTexture.h): header renamed towards PDB convention.
-# Remaining structs (gbChain, gbVisNode): rename_map bridges the gap until
-# headers are also renamed to match PDB.
-fix_count = 0
-for cls, byte_off, new_name in [
-    ("gbChain1D", 0, "pHead"),
-    ("gbChain1D", 4, "pTail"),
-    ("gbChain1D", 12, "pIterator"),
-    ("gbChain1DNode", 4, "pNext"),
-    ("gbNBTreeNode", 8, "pParent"),
-    ("gbVisNode", 52, "renderPriority"),
-    ("gbVisNode", 56, "timeScale"),
-    ("gbVisNode", 60, "visible"),
-    ("gbVisNode", 64, "enableShadow"),
-    ("gbVisNode", 72, "cullPrev"),
-    ("gbVisNode", 76, "cullNext"),
-    ("gbVisNode", 80, "blendValue"),
-    ("gbVisNode", 84, "blendMode"),
-]:
-    sid = idc.get_struc_id(cls)
-    if sid in (-1, 0xFFFFFFFF): continue
-    try:
-        cur = idc.get_member_name(sid, byte_off)
-    except: continue
-    if not cur or cur == new_name: continue
-    if idc.set_member_name(sid, byte_off, new_name):
-        fix_count += 1
-        print("  [FIX] %s+%d: %s -> %s" % (cls, byte_off, cur, new_name))
-print("[*] Renamed %d struct members to gbengine header convention" % fix_count)
-
 ida_pro.qexit(0)
