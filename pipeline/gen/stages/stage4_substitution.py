@@ -1466,6 +1466,23 @@ def run(code, ctx):
         code
     )
 
+    # Fix `ptr->N` (numeric member access) — Hex-Rays artifact, not valid C++
+    # `&ptr->DIGITS` means address of field at byte offset DIGITS.
+    # Transform to pointer arithmetic: `((char*)ptr + DIGITS)`
+    # Pattern 1: simple &this->N
+    code = re.sub(r'&this\s*->\s*(\d+)', r'((char*)this + \1)', code)
+    # Pattern 2: complex chain like &this->a.b.c[15]->0
+    code = re.sub(
+        r'&(\w+(?:\[[^\]]*\])*(?:(?:\s*\.\s*|\s*->\s*)\w+(?:\[[^\]]*\])*)*)\s*->\s*(\d+)',
+        r'((char*)(\1) + \2)', code)
+    # Pattern 3: dereference like &(*ptr)->0
+    code = re.sub(r'&\(\*(\w+)\)\s*->\s*(\d+)', r'((char*)(*(\1)) + \2)', code)
+    # Pattern 4: vtable slot access like ptr->0[N].Method → ((void(**)())(*(void***)ptr))[N]->Method
+    # This is a Hex-Rays vtable dispatch pattern used when slot names aren't resolved.
+    code = re.sub(r'\((\*(\w+))\)\s*->0\[(\d+)\]\.(\w+)', r'((void(***)(\2))\1)[\3]->\4', code)
+    # Pattern 5: catch-all for remaining `)->N` (closing paren before numeric access)
+    code = re.sub(r'\)\s*->\s*(\d+)', r') + \1', code)
+
     # Fix member function pointer casts: use mfp_cast (union type pun)
     # MSVC6 can't C-style-cast member fn ptr to __cdecl fn ptr.
     # (int(*)(int,int))&CCBSystem::Method → mfp_cast<int(*)(int,int)>(&CCBSystem::Method)
