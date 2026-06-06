@@ -374,12 +374,6 @@ def main():
         import traceback
         log(traceback.format_exc())
     
-    # Parse the flattened header declarations into IDA type system
-    if content:
-        log("[*] Parsing gbengine declarations into IDA type system (%d chars)..." % len(content))
-        errs = idc.parse_decls(content, 0)
-        log("[*] parse_decls: errors=%d" % (errs if errs is not None else -1))
-    
     # ── Post-processing: fix member names to match gbengine header ──
     # PDB imports may use different naming conventions (PascalCase vs camelCase).
     # gbengine headers are the source of truth — override any PDB-derived names.
@@ -411,11 +405,6 @@ def main():
         ("gbVisNode", "pCullNext"): "cullNext",
         ("gbVisNode", "BlendParam"): "blendValue",
         ("gbVisNode", "BlendFlag"): "blendMode",
-        # gbRenderEffect from gbResource (inherited)
-        ("gbRenderEffect", "pName"): "name",
-        ("gbRenderEffect", "NameCrc32"): "nameCrc",
-        ("gbRenderEffect", "IsLoaded"): "isLoaded",
-        ("gbRenderEffect", "pMgr"): "manager",
     }
     for (cls, old_name), new_name in rename_map.items():
         sid = idc.get_struc_id(cls)

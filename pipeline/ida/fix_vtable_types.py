@@ -119,6 +119,69 @@ for cls_name, vt_list in sorted(cls_vtables.items()):
         if r2.create_udt(ud, ida_typeinf.BTF_STRUCT):
             r2.set_named_type(til, cls_name, ida_typeinf.NTF_REPLACE)
 
+# ── 3. Fix gbengine vtable slot names ──
+# The PDB imports gbTexture with wrong slot names (e.g. "IsLoaded").
+# Override with correct names from gbengine header (source of truth).
+# These vtbl structs were pre-created by apply_annotations step 3a.
+# We only need to ensure the gbTexture struct references them.
+
+# gbTexture: 4 pure virtual slots at [1]-[4] overridden by gbTexture_D3D
+# vtable addr = 0x100F57E8, vtbl struct = vtbl_100F57E8
+for cls_name, vtbl_addr, slot_names in [
+    ("gbTexture", "100F57E8",
+     ["~gbTexture", "CreateFromMemory", "UpdateTexture",
+      "CreateForRenderTarget", "CreateFromFileMemory"]),
+]:
+    tif = ida_typeinf.tinfo_t()
+    if not tif.get_named_type(til, cls_name):
+        continue
+    ud = ida_typeinf.udt_type_data_t()
+    if not tif.get_udt_details(ud):
+        continue
+    
+    # Ensure __cppobj flag
+    if not (ud.taudt_bits & TAUDT_CPPOBJ):
+        ud.taudt_bits |= TAUDT_CPPOBJ
+        fixed_cppobj += 1
+    
+    # Create vtbl pointer type: vtbl_ADDR *
+    vtbl_type_name = "vtbl_%s" % vtbl_addr
+    vtif = ida_typeinf.tinfo_t()
+    if not vtif.get_named_type(til, vtbl_type_name):
+        # Create the vtbl struct if it doesn't exist yet
+        lines = []
+        for i, name in enumerate(slot_names):
+            lines.append("    int (*%s)();" % name)
+        decl = "struct %s {\n%s\n};" % (vtbl_type_name, "\n".join(lines))
+        if ida_typeinf.parse_decl(vtif, til, decl, ida_typeinf.PT_TYP) is None:
+            continue
+        vtif.set_named_type(til, vtbl_type_name, ida_typeinf.NTF_REPLACE)
+    
+    vp_tif = ida_typeinf.tinfo_t()
+    vp_decl = "%s *_vp;" % vtbl_type_name
+    ida_typeinf.parse_decl(vp_tif, til, vp_decl, ida_typeinf.PT_VAR)
+    if not vp_tif.is_correct() or vp_tif.get_size() != 4:
+        continue
+    
+    # Find member at offset 0 (the vtable pointer) and type it
+    for i in range(ud.size()):
+        try:
+            um = ud[i]
+            mname = um.name if hasattr(um, 'name') else um.get_name()
+            # Check if this is the first member (offset 0)
+            if um.offset == 0:
+                cur_type = um.type.dstr() if um.type else ""
+                if "vtbl" not in cur_type:
+                    um.type = vp_tif
+                    fixed_primary += 1
+                    # Rebuild UDT
+                    r2 = ida_typeinf.tinfo_t()
+                    if r2.create_udt(ud, ida_typeinf.BTF_STRUCT):
+                        r2.set_named_type(til, cls_name, ida_typeinf.NTF_REPLACE)
+                    break
+        except:
+            break
+
 print("[*] Fixed: cppobj=%d, primary_vtbl=%d, secondary_vtbl=%d" % (
     fixed_cppobj, fixed_primary, fixed_secondary))
 ida_pro.qexit(0)
