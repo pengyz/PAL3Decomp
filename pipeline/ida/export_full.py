@@ -177,8 +177,23 @@ def main():
                             _key = int(_sa, 16)
                             if _key not in _addr_to_class:
                                 _addr_to_class[_key] = _sname
-            log("[*] Loaded %d virtual methods, %d class-attributable addresses" % (
-                len(_virtual_addrs), len(_addr_to_class)))
+            # Also attribute non-virtual methods from annotation struct methods dict.
+            # These have names like "ClassName::MethodName" that encode the class.
+            _method_attributed = 0
+            for _sf in _gl.glob(os.path.join(_structs_dir, "*.json")):
+                _sd = _sj.load(open(_sf, encoding='utf-8'))
+                for _addr, _minfo in _sd.get('methods', {}).items():
+                    if 'ordinal' in _minfo:
+                        continue  # virtual methods already handled above
+                    _mname = _minfo.get('name', '')
+                    if '::' in _mname:
+                        _cls = _mname.split('::')[0]
+                        _key = int(_addr, 16)
+                        if _key not in _addr_to_class:
+                            _addr_to_class[_key] = _cls
+                            _method_attributed += 1
+            log("[*] Loaded %d virtual methods, %d class-attributable addresses (methods=%d)" % (
+                len(_virtual_addrs), len(_addr_to_class), _method_attributed))
 
         # Load skip list
         skip_addrs = set()
@@ -410,6 +425,7 @@ def export_structs(log):
         'WNDCLASSA', 'tagWNDCLASSA', 'tagOFNA',
         '_FILETIME', '_SYSTEMTIME', '_MEMORYSTATUS', '_SECURITY_ATTRIBUTES',
         '_OSVERSIONINFOA', '_STARTUPINFOA', '_WIN32_FIND_DATAA',
+        'CURRENCY', 'tagCY', 'CY',
     }
     SKIP_PREFIXES = ('D3D', '_D3D', 'ID3D', 'IDirect', 'IUnknown', 'vtbl_')
     # System types that are primitives — skip

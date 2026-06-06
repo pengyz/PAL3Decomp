@@ -851,6 +851,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             continue
         if '<' in b:
             base_inc = b.split('<')[0]
+            if '$' in base_inc or ':' in base_inc:
+                continue
             # Also resolve template parameter types
             inner = b[b.find('<')+1:b.rfind('>')]
             for param in re.findall(r'[A-Za-z_]\w+', inner):
@@ -870,6 +872,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                             lines.insert(0, fwd_line)
         else:
             base_inc = b
+        if '$' in base_inc or ':' in base_inc:
+            continue
         gb_path = _gbengine_type_to_header.get(base_inc, '')
         if gb_path:
             inc_line = '#include "%s"' % gb_path
