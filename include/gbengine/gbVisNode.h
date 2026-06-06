@@ -36,15 +36,15 @@ public:
     int msgOverflow;             // +0x28 [10]: overflow flag
     int msgReadIndex;            // +0x2C [11]: read index
     int msgWriteIndex;           // +0x30 [12]: write index
-    int renderPriority;          // +0x34 [13]: render priority
-    float timeScale;             // +0x38 [14]: time scale (default 1.0)
-    int visible;                 // +0x3C [15]: visibility flag (default 1)
-    int enableShadow;            // +0x40 [16]: shadow enable flag
+    int Priority;                // +0x34 [13]: render priority
+    float TimeScale;             // +0x38 [14]: time scale (default 1.0)
+    int bShow;                   // +0x3C [15]: visibility flag (default 1)
+    int bDoShadow;               // +0x40 [16]: shadow enable flag
     int field_44;                // +0x44 [17]: unknown
-    gbVisNode* cullPrev;         // +0x48 [18]: cull list prev
-    gbVisNode* cullNext;         // +0x4C [19]: cull list next
-    float blendValue;            // +0x50 [20]: blend value
-    NodeBlend blendMode;         // +0x54 [21]: blend mode
+    gbVisNode* pCullPrev;        // +0x48 [18]: cull list prev
+    gbVisNode* pCullNext;        // +0x4C [19]: cull list next
+    float BlendParam;            // +0x50 [20]: blend value
+    NodeBlend BlendFlag;         // +0x54 [21]: blend mode
 
     // Static members
     static gbGfxManager* pGfxMgr;

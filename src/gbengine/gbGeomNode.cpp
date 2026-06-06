@@ -755,7 +755,7 @@ void gbGeomNode::LoadCVDFromStream(gbVFile* file, float scale, gbGeomNode** outN
 /* ======== Update ======== */
 
 void gbGeomNode::Update(void) {
-    float deltaTime = (float)(gbVisNode::pGfxMgr->GetDeltaTime()) * timeScale;
+    float deltaTime = (float)(gbVisNode::pGfxMgr->GetDeltaTime()) * TimeScale;
 
     if (animMaxTime > 0.0f) {
         double ct = currentTime;
@@ -951,7 +951,7 @@ void gbGeomNode::AttachSelf(gbRenderEffect* effect) {
     }
 
     // Shadow volume submission
-    if (cullNext)
+    if (pCullNext)
         gbVisNode::pSceneGraph->NewShadowVolume(this);
 
     matStack->Pop();
@@ -973,7 +973,7 @@ void gbGeomNode::Render(gbRenderInfoObj* renderInfo) {
     if (animMaxTime != 0.0f)
         frame = (int)(__int64)(curTime / animMaxTime);
 
-    if (visible) {
+    if (bShow) {
         if (mesh) {
             float localTime = (float)(curTime - (double)frame * (double)animMaxTime);
             if (localTime < 0.0f)
@@ -998,7 +998,7 @@ void gbGeomNode::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
     if (animMaxTime != 0.0f)
         frame = (int)(__int64)(curTime / animMaxTime);
 
-    if (visible) {
+    if (bShow) {
         if (mesh) {
             float localTime = (float)(curTime - (double)frame * (double)animMaxTime);
             if (localTime < 0.0f)

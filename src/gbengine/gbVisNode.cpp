@@ -28,15 +28,15 @@ gbVisNode::gbVisNode() {
     msgBuffer = (gbNodeMsgObj*)operator new(128);
     msgReadIndex = 0;
     msgWriteIndex = 0;
-    renderPriority = 0;
-    enableShadow = 0;
+    Priority = 0;
+    bDoShadow = 0;
     field_44 = 0;
-    cullPrev = NULL;
-    cullNext = NULL;
-    renderPriority = 0;
+    pCullPrev = NULL;
+    pCullNext = NULL;
+    Priority = 0;
 
-    timeScale = 1.0f;
-    visible = 1;
+    TimeScale = 1.0f;
+    bShow = 1;
 }
 
 // Copy constructor - 0x10004a60
@@ -58,15 +58,15 @@ gbVisNode::gbVisNode(const gbVisNode& other) : gbNBTreeNode() {
     msgReadIndex = other.msgReadIndex;
     msgWriteIndex = other.msgWriteIndex;
 
-    renderPriority = other.renderPriority;
-    timeScale = other.timeScale;
-    visible = other.visible;
-    enableShadow = other.enableShadow;
+    Priority = other.Priority;
+    TimeScale = other.TimeScale;
+    bShow = other.bShow;
+    bDoShadow = other.bDoShadow;
     field_44 = other.field_44;
-    cullPrev = other.cullPrev;
-    cullNext = other.cullNext;
-    blendValue = other.blendValue;
-    blendMode = other.blendMode;
+    pCullPrev = other.pCullPrev;
+    pCullNext = other.pCullNext;
+    BlendParam = other.BlendParam;
+    BlendFlag = other.BlendFlag;
 }
 
 // Destructor - 0x100049c0
@@ -178,7 +178,7 @@ void gbVisNode::Reset(float time) {
 
 // ShowNode - 0x10016790
 void gbVisNode::ShowNode(int show) {
-    visible = show;
+    bShow = show;
 
     // Recursively apply to children
     gbVisNode* child = (gbVisNode*)children.m_Head;
@@ -193,7 +193,7 @@ void gbVisNode::ShowNode(int show) {
 
 // SetTimeScale - 0x100167c0
 void gbVisNode::SetTimeScale(float scale) {
-    timeScale = scale;
+    TimeScale = scale;
 
     gbVisNode* child = (gbVisNode*)children.m_Head;
     for (children.m_Cur = (gbChain1DNode*)child; child; children.m_Cur = (gbChain1DNode*)child) {
@@ -219,22 +219,22 @@ void gbVisNode::RenderShadowVolume(gbRenderInfoObj* renderInfo) {
 
 // GetTimeScale
 float gbVisNode::GetTimeScale() {
-    return timeScale;
+    return TimeScale;
 }
 
 // IsNodeShow
 int gbVisNode::IsNodeShow() {
-    return visible;
+    return bShow;
 }
 
 // GetRenderPriority
 int gbVisNode::GetRenderPriority() {
-    return renderPriority;
+    return Priority;
 }
 
 // SetRenderPriority - 0x100167f0
 void gbVisNode::SetRenderPriority(int priority) {
-    renderPriority = priority;
+    Priority = priority;
 
     gbVisNode* child = (gbVisNode*)children.m_Head;
     children.m_Cur = (gbNBTreeNode*)child;
@@ -248,12 +248,12 @@ void gbVisNode::SetRenderPriority(int priority) {
 
 // GetCullNext
 gbVisNode* gbVisNode::GetCullNext() {
-    return cullNext;
+    return pCullNext;
 }
 
 // GetCullPrev
 gbVisNode* gbVisNode::GetCullPrev() {
-    return cullPrev;
+    return pCullPrev;
 }
 
 // GetBoundSphere - 0x10016820 (virtual, base implementation)
@@ -263,19 +263,19 @@ void gbVisNode::GetBoundSphere(gbSphere* sphere) {
 
 // EnableShadow - 0x10016830 (virtual)
 void gbVisNode::EnableShadow(int enable) {
-    enableShadow = enable;
+    bDoShadow = enable;
 }
 
 // SetBlend - 0x10016840
 void gbVisNode::SetBlend(NodeBlend mode, float value) {
-    blendMode = mode;
-    blendValue = value;
+    BlendFlag = mode;
+    BlendParam = value;
 }
 
 // GetBlend - 0x10016860
 NodeBlend gbVisNode::GetBlend(float& outValue) {
-    outValue = blendValue;
-    return blendMode;
+    outValue = BlendParam;
+    return BlendFlag;
 }
 
 // SetBlendRecursive - 0x10016870

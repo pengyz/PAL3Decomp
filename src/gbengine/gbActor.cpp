@@ -255,7 +255,7 @@ int gbActor::Attach(gbRenderEffect* effect) {
         return 0;
     }
     pBody->AttachSelf(this, effect);
-    if (enableShadow) {
+    if (bDoShadow) {
         gbVisNode::pGfxMgr->pSceneGraph->NewShadowVolume((gbVisNode*)this);
     }
     return 1;

@@ -215,7 +215,7 @@ void gbSceneGraph::Begin(gbCamera* camera) {
 gbRenderInfoObj* gbSceneGraph::NewOneRenderObj(gbVisNode* node) {
     gbRenderInfoObj* obj = &((gbRenderInfoObj*)renderObjPool)[numRenderObjs];
     obj->pNode = node;
-    obj->Priority = node->renderPriority;
+    obj->Priority = node->Priority;
     memcpy(&obj->worldMatrix, pGfxManager->pMatrixStack[1]->GetTop(), sizeof(gbMatrix4));
     numRenderObjs++;
     return obj;
@@ -366,7 +366,7 @@ static void CollectVisibleNodesRecursive(int* outArray, int* pCount, gbCamera* c
         } while (i != 0);
         return;
     }
-    // Partially visible - add this node and recurse children with updated clip mask
+    // Partially bShow - add this node and recurse children with updated clip mask
     i = *pCount;
     outArray[i] = node;
     *pCount = *pCount + 1;
@@ -381,9 +381,9 @@ static void CollectVisibleNodesRecursive(int* outArray, int* pCount, gbCamera* c
     } while (i != 0);
 }
 
-// 0x10014990 (44B) - Collect visible nodes from camera frustum
+// 0x10014990 (44B) - Collect bShow nodes from camera frustum
 // __thiscall on spatial partition structure (ECX = volModNodePool)
-// Returns count of visible root-level nodes written to outArray
+// Returns count of bShow root-level nodes written to outArray
 static int CollectVisibleNodes(int* outArray, gbCamera* camera, void* spatialRoot)
 {
     int count = 0;
@@ -406,7 +406,7 @@ void gbSceneGraph::End(void) {
     gbMatrixStack* worldStack;
     gbMatrixStack* viewStack;
 
-    // Phase 1: Traverse scene and submit visible nodes
+    // Phase 1: Traverse scene and submit bShow nodes
     if (bSceneActive) {
         if (activeCamera) {
             numVisible = CollectVisibleNodes(visibleNodes, activeCamera, volModNodePool);
@@ -589,14 +589,14 @@ void gbSceneGraph::End(void) {
     numShadowVolumes = 0;
 }
 
-// 0x100155a0 - Add a visible node to scene
+// 0x100155a0 - Add a bShow node to scene
 void gbSceneGraph::AddVisNode(gbVisNode* node) {
     if (!rootNode || !node) return;
     rootNode->children.AddNode((gbChain1DNode*)node);
     node->pFather = (gbNBTreeNode*)rootNode;
 }
 
-// 0x100155d0 - Remove a visible node from scene
+// 0x100155d0 - Remove a bShow node from scene
 void gbSceneGraph::DelVisNode(gbVisNode* node) {
     if (!node) return;
     gbNBTreeNode* parent = node->pFather;
