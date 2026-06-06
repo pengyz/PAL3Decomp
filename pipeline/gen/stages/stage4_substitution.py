@@ -1486,6 +1486,13 @@ def run(code, ctx):
     # Fix type-erased global access: *(int *)((char *)&GLOBAL + 0).MEMBER
     # Hex-Rays casts a global to int* and dereferences, losing the original type.
     # Offset 0 means the access is at the base of the global — just use GLOBAL.MEMBER.
+    # First, simplify &*(TYPE*)((char*)&GLOBAL+N) → just &GLOBAL (when N=0, &* cancel)
+    code = re.sub(
+        r'&\*\((\w+(?:\s*\*)?)\s*\)\(\(char\s*\*\)&(\w+)\s*\+\s*(\d+)\)',
+        lambda m: ('&' + m.group(2)) if int(m.group(3)) == 0 else m.group(0),
+        code
+    )
+    # Then handle the base case: *(int *)((char *)&GLOBAL + 0).MEMBER → GLOBAL.MEMBER
     code = re.sub(
         r'\*\(int\s*\*\s*\)\(\(char\s*\*\s*\)&(\w+)\s*\+\s*0\)',
         r'\1',
