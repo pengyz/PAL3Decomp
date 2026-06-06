@@ -379,53 +379,49 @@ def main():
     # gbengine headers are the source of truth — override any PDB-derived names.
     log("[*] Fixing gbengine struct member names to match headers...")
     fix_count = 0
-    rename_map = {
-        # (struct_name, pdb_name) → header_name
-        # gbRefObject/gbResource naming (PascalCase in PDB vs camelCase in header)
-        ("gbRefObject", "RefCount"): "refCount",
-        ("gbResource", "pName"): "name",
-        ("gbResource", "NameCrc32"): "nameCrc",
-        ("gbResource", "IsLoaded"): "isLoaded",
-        ("gbResource", "pMgr"): "manager",
-        # gbChain1D naming
-        ("gbChain1D", "m_Head"): "pHead",
-        ("gbChain1D", "m_Tail"): "pTail",
-        ("gbChain1D", "m_Cur"): "pIterator",
+    # rename_map: (struct_name, byte_offset, new_name)
+    # byte offsets verified from PDB imports — matches header layout.
+    # This renames PDB-derived names to match gbengine header conventions.
+    rename_map = [
+        # gbRefObject
+        ("gbRefObject", 4, "refCount"),
+        # gbResource
+        ("gbResource", 8, "name"),
+        ("gbResource", 12, "nameCrc"),
+        ("gbResource", 16, "isLoaded"),
+        ("gbResource", 20, "manager"),
+        # gbChain1D
+        ("gbChain1D", 0, "pHead"),
+        ("gbChain1D", 4, "pTail"),
+        ("gbChain1D", 12, "pIterator"),
         # gbChain1DNode
-        ("gbChain1DNode", "next"): "pNext",
+        ("gbChain1DNode", 4, "pNext"),
         # gbNBTreeNode
-        ("gbNBTreeNode", "pFather"): "pParent",
-        # gbVisNode naming
-        ("gbVisNode", "pSceneGraph"): "pSceneGraph",  # same
-        ("gbVisNode", "Priority"): "renderPriority",
-        ("gbVisNode", "TimeScale"): "timeScale",
-        ("gbVisNode", "bShow"): "visible",
-        ("gbVisNode", "bDoShadow"): "enableShadow",
-        ("gbVisNode", "pCullPrev"): "cullPrev",
-        ("gbVisNode", "pCullNext"): "cullNext",
-        ("gbVisNode", "BlendParam"): "blendValue",
-        ("gbVisNode", "BlendFlag"): "blendMode",
-    }
-    for (cls, old_name), new_name in rename_map.items():
+        ("gbNBTreeNode", 8, "pParent"),
+        # gbVisNode — offsets relative to gbVisNode start (after base classes)
+        ("gbVisNode", 52, "renderPriority"),
+        ("gbVisNode", 56, "timeScale"),
+        ("gbVisNode", 60, "visible"),
+        ("gbVisNode", 64, "enableShadow"),
+        ("gbVisNode", 72, "cullPrev"),
+        ("gbVisNode", 76, "cullNext"),
+        ("gbVisNode", 80, "blendValue"),
+        ("gbVisNode", 84, "blendMode"),
+    ]
+    for cls, byte_off, new_name in rename_map:
         sid = idc.get_struc_id(cls)
-        if sid == -1:
-            log("  [SKIP] struct %s not found" % cls)
+        if sid in (-1, 0xFFFFFFFF):
+            log("  [SKIP] %s: struct not found" % cls)
             continue
-        # Find member by name
-        mptr = idc.get_member_by_name(sid, old_name)
-        if not mptr:
-            # Maybe it was already renamed in a previous run
-            mptr = idc.get_member_by_name(sid, new_name)
-            if mptr:
-                log("  [OK] %s.%s already renamed to %s" % (cls, old_name, new_name))
-                continue
-            log("  [SKIP] %s.%s not found in struct" % (cls, old_name))
+        cur = idc.get_member_name(sid, byte_off)
+        if cur == new_name:
+            log("  [OK] %s+%d: already '%s'" % (cls, byte_off, new_name))
             continue
-        if idc.set_member_name(mptr, new_name):
+        if idc.set_member_name(sid, byte_off, new_name):
             fix_count += 1
-            log("  [FIX] %s.%s → %s" % (cls, old_name, new_name))
+            log("  [FIX] %s+%d: '%s' → '%s'" % (cls, byte_off, cur, new_name))
         else:
-            log("  [FAIL] %s.%s → %s (set_member_name failed)" % (cls, old_name, new_name))
+            log("  [FAIL] %s+%d: set_member_name('%s') failed" % (cls, byte_off, new_name))
     log("[*] Renamed %d struct members" % fix_count)
     
     log_path = os.path.join(log_dir, "import_gbengine_log.txt")
