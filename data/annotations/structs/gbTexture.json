@@ -31,5 +31,35 @@
   "base_class": [
     "gbResource"
   ],
-  "base_size": 24
+  "base_size": 24,
+  "vtables": [
+    {
+      "addr": "0x100F57E8",
+      "base": null,
+      "slots": [
+        {"addr": "0x1001BD30", "from": null},
+        {"addr": "0x1001BEA0", "from": null},
+        {"addr": "0x1001BF80", "from": null},
+        {"addr": "0x1001C010", "from": null}
+      ]
+    }
+  ],
+  "methods": {
+    "0x1001BD30": {
+      "name": "CreateFromMemory",
+      "signature": "void __thiscall gbTexture::CreateFromMemory(int,int,gbPixelFmtType,int,gbPixelFmtType,void *)"
+    },
+    "0x1001BEA0": {
+      "name": "UpdateTexture",
+      "signature": "void __thiscall gbTexture::UpdateTexture(int,int,int,int,gbPixelFmtType,void *)"
+    },
+    "0x1001BF80": {
+      "name": "CreateForRenderTarget",
+      "signature": "int __thiscall gbTexture::CreateForRenderTarget(int,int,gbPixelFmtType)"
+    },
+    "0x1001C010": {
+      "name": "CreateFromFileMemory",
+      "signature": "void __thiscall gbTexture::CreateFromFileMemory(void *,int)"
+    }
+  }
 }
