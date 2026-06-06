@@ -373,6 +373,72 @@ def main():
         log("[!] flatten_gbengine_headers failed: %s" % str(e))
         import traceback
         log(traceback.format_exc())
+    
+    # Parse the flattened header declarations into IDA type system
+    if content:
+        log("[*] Parsing gbengine declarations into IDA type system (%d chars)..." % len(content))
+        errs = idc.parse_decls(content, 0)
+        log("[*] parse_decls: errors=%d" % (errs if errs is not None else -1))
+    
+    # ── Post-processing: fix member names to match gbengine header ──
+    # PDB imports may use different naming conventions (PascalCase vs camelCase).
+    # gbengine headers are the source of truth — override any PDB-derived names.
+    log("[*] Fixing gbengine struct member names to match headers...")
+    fix_count = 0
+    rename_map = {
+        # (struct_name, pdb_name) → header_name
+        # gbRefObject/gbResource naming (PascalCase in PDB vs camelCase in header)
+        ("gbRefObject", "RefCount"): "refCount",
+        ("gbResource", "pName"): "name",
+        ("gbResource", "NameCrc32"): "nameCrc",
+        ("gbResource", "IsLoaded"): "isLoaded",
+        ("gbResource", "pMgr"): "manager",
+        # gbChain1D naming
+        ("gbChain1D", "m_Head"): "pHead",
+        ("gbChain1D", "m_Tail"): "pTail",
+        ("gbChain1D", "m_Cur"): "pIterator",
+        # gbChain1DNode
+        ("gbChain1DNode", "next"): "pNext",
+        # gbNBTreeNode
+        ("gbNBTreeNode", "pFather"): "pParent",
+        # gbVisNode naming
+        ("gbVisNode", "pSceneGraph"): "pSceneGraph",  # same
+        ("gbVisNode", "Priority"): "renderPriority",
+        ("gbVisNode", "TimeScale"): "timeScale",
+        ("gbVisNode", "bShow"): "visible",
+        ("gbVisNode", "bDoShadow"): "enableShadow",
+        ("gbVisNode", "pCullPrev"): "cullPrev",
+        ("gbVisNode", "pCullNext"): "cullNext",
+        ("gbVisNode", "BlendParam"): "blendValue",
+        ("gbVisNode", "BlendFlag"): "blendMode",
+        # gbRenderEffect from gbResource (inherited)
+        ("gbRenderEffect", "pName"): "name",
+        ("gbRenderEffect", "NameCrc32"): "nameCrc",
+        ("gbRenderEffect", "IsLoaded"): "isLoaded",
+        ("gbRenderEffect", "pMgr"): "manager",
+    }
+    for (cls, old_name), new_name in rename_map.items():
+        sid = idc.get_struc_id(cls)
+        if sid == -1:
+            log("  [SKIP] struct %s not found" % cls)
+            continue
+        # Find member by name
+        mptr = idc.get_member_by_name(sid, old_name)
+        if not mptr:
+            # Maybe it was already renamed in a previous run
+            mptr = idc.get_member_by_name(sid, new_name)
+            if mptr:
+                log("  [OK] %s.%s already renamed to %s" % (cls, old_name, new_name))
+                continue
+            log("  [SKIP] %s.%s not found in struct" % (cls, old_name))
+            continue
+        if idc.set_member_name(mptr, new_name):
+            fix_count += 1
+            log("  [FIX] %s.%s → %s" % (cls, old_name, new_name))
+        else:
+            log("  [FAIL] %s.%s → %s (set_member_name failed)" % (cls, old_name, new_name))
+    log("[*] Renamed %d struct members" % fix_count)
+    
     log_path = os.path.join(log_dir, "import_gbengine_log.txt")
     with open(log_path, 'w') as f:
         f.write('\n'.join(log_lines))
