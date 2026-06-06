@@ -187,14 +187,14 @@ print("[*] Fixed: cppobj=%d, primary_vtbl=%d, secondary_vtbl=%d" % (
 
 # ── Post-processing: rename PDB struct member names to match gbengine header ──
 # PDB uses different naming conventions (PascalCase, m_ prefix) than our
-# header (camelCase, p_ prefix). Runs after all types are fully loaded.
+# header (camelCase, p_ prefix). The gbengine header is the compilation
+# target — the PAL3 IDB must use header-compatible names.
+#
+# Round 1 (completed in gbTexture.h): header renamed towards PDB convention.
+# Remaining structs (gbChain, gbVisNode): rename_map bridges the gap until
+# headers are also renamed to match PDB.
 fix_count = 0
 for cls, byte_off, new_name in [
-    ("gbRefObject", 4, "refCount"),
-    ("gbResource", 8, "name"),
-    ("gbResource", 12, "nameCrc"),
-    ("gbResource", 16, "isLoaded"),
-    ("gbResource", 20, "manager"),
     ("gbChain1D", 0, "pHead"),
     ("gbChain1D", 4, "pTail"),
     ("gbChain1D", 12, "pIterator"),
