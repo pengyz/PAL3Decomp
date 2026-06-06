@@ -920,13 +920,17 @@ def apply_annotations():
                 created += 1
         if name:
             cur = ida_name.get_name(addr) or ""
-            if cur == name:
+            # Strip class prefix for comparison and set_name, since IDA
+            # handles only simple names. Export_full.py re-adds class
+            # prefix via _addr_to_class (from vtable data).
+            simple_name = name.split("::")[-1] if "::" in name else name
+            if cur == name or cur == simple_name:
                 renamed += 1
                 continue
             # Delete existing name first (required for mangled names like ?xxx@yyy@@)
-            if cur and cur != name:
+            if cur:
                 ida_name.set_name(addr, "", ida_name.SN_NOWARN)
-            if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+            if ida_name.set_name(addr, simple_name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                 renamed += 1
             else:
                 rename_fail.append((addr_str, cur, name))
@@ -1565,10 +1569,11 @@ def apply_annotations():
         desired = info.get("name", "")
         if not desired:
             continue
+        desired_simple = desired.split("::")[-1] if "::" in desired else desired
         cur = ida_name.get_name(addr) or ""
-        if cur != desired:
+        if cur != desired_simple:
             ida_name.set_name(addr, "", ida_name.SN_NOWARN)
-            if ida_name.set_name(addr, desired, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+            if ida_name.set_name(addr, desired_simple, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                 _force_renamed += 1
     if _force_renamed:
         print("[11] Force-renamed %d functions (type propagation override)" % _force_renamed)

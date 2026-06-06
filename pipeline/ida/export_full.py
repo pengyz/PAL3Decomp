@@ -191,7 +191,7 @@ def main():
         targets = []
         target_addrs = set()
         for ea in idautils.Functions(TEXT_START, TEXT_END):
-            name = ida_funcs.get_func_name(ea) or ida_name.get_name(ea) or ""
+            name = ida_name.get_name(ea) or ""
             if not name or name.startswith("nullsub_") or name.startswith("j_"):
                 continue
             if ea in skip_addrs:

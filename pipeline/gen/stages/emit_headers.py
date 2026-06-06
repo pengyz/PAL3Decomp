@@ -1168,6 +1168,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             pass
         seen_methods = set()  # track "name(params)" to deduplicate
         for method_name, sig, addr in sorted(methods, key=_method_sort_key):
+            # Strip Hex-Rays annotations before parsing: __userpurge/@<eax>/@<ecx>
+            sig = re.sub(r'@<\w+>', '', sig)
+            sig = re.sub(r'\s*__userpurge\s*', ' ', sig)
+            sig = re.sub(r'\s*__usercall\s*', ' ', sig)
             # Override signature from annotation methods if available
             # (annotation has manually corrected return types, e.g. void Render)
             _ann_sig = _ann_methods_by_addr.get(addr, '')
@@ -1263,10 +1267,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     decl = "    ~%s();" % cls_name
             elif ret_right:
                 if is_static:
+                    ret = re.sub(r'\bvirtual\b', '', ret).strip()
                     decl = "    static %s %s(%s)%s;" % (ret, _mn, params, ret_right)
                 else:
                     decl = "    %s %s(%s)%s;" % (ret, _mn, params, ret_right)
             elif is_static:
+                ret = re.sub(r'\bvirtual\b', '', ret).strip()
                 decl = "    static %s %s(%s);" % (ret, _mn, params)
             else:
                 decl = "    %s %s(%s);" % (ret, _mn, params)

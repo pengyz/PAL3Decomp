@@ -279,7 +279,7 @@ def generate_class_cpp(cls_name, methods):
     # Transform all method code through the pipeline
     transformed = []
     for m in methods:
-        ctx = make_context(cls_name, m['method'], sig=m['sig'])
+        ctx = make_context(cls_name, m['method'], sig=m.get('sig', ''))
         code = run_transforms(m['code'].strip(), ctx)
         transformed.append((m['addr'], code))
 

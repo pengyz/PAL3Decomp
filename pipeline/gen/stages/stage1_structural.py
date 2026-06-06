@@ -93,6 +93,9 @@ def run(code, ctx):
                 for cv in cls_variants:
                     if cv + '::' in current_name and cv != ctx.cls_name:
                         needs_fix = True
+                # Also fix when name lacks class prefix entirely
+                if not needs_fix and ctx.cls_name + '::' not in current_name:
+                    needs_fix = True
                 if needs_fix:
                     edits.append((name_node.start_byte, name_node.end_byte,
                                   expected_name.encode('utf-8')))
@@ -206,7 +209,8 @@ def _regex_fallback(code, ctx):
 
     func_line_idx = 0
     for idx, l in enumerate(lines):
-        if '(' in l and (any(cv + '::' in l for cv in cls_variants) or 'sub_' in l):
+        if '(' in l and (any(cv + '::' in l for cv in cls_variants) or 'sub_' in l
+                         or (method_name and re.search(r'\b' + re.escape(method_name) + r'\s*\(', l))):
             func_line_idx = idx
             break
 
@@ -214,6 +218,12 @@ def _regex_fallback(code, ctx):
         first_line = lines[func_line_idx]
         full_method = '%s::%s' % (cls_name, method_name)
         first_line = re.sub(r'\bsub_[0-9A-Fa-f]+\b', full_method, first_line, count=1)
+        # If function already has a proper name but missing class prefix, add it
+        if cls_name and cls_name + '::' not in first_line:
+            first_line = re.sub(
+                r'\b' + re.escape(method_name) + r'(?=\s*\()',
+                full_method, first_line, count=1
+            )
         for cv in cls_variants:
             if cv != cls_name and cv + '::' in first_line:
                 first_line = first_line.replace(cv + '::', cls_name + '::')
@@ -234,6 +244,8 @@ def _regex_fallback(code, ctx):
         first = re.sub(r'\s*__fastcall\s*', ' ', first)
         first = re.sub(r'\s*__userpurge\s*', ' ', first)
         first = re.sub(r'\s*__usercall\s*', ' ', first)
+        # Strip @<reg> annotations from names and params (Hex-Rays userpurge/usercall artifact)
+        first = re.sub(r'@<\w+>', '', first)
         # Remove this param: 'ClassName *this' or 'ClassName *Block' etc.
         # For __thiscall, first param is always this — match 'ClsName *name'
         if ctx.cls_name:
@@ -243,6 +255,9 @@ def _regex_fallback(code, ctx):
         # Fallback: literal 'this' name
         first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*,\s*', '(', first)
         first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*\)', '()', first)
+        # Catch 'int this' and other typed this params not matched above
+        first = re.sub(r'\(\s*\w[\w\s]+\bthis\b\s*,\s*', '(', first)
+        first = re.sub(r'\(\s*\w[\w\s]+\bthis\b\s*\)', '()', first)
         if ctx.is_dtor:
             first = re.sub(r'\([^)]*\)', '()', first)
         first = re.sub(r'  +', ' ', first).strip()

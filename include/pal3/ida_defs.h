@@ -119,6 +119,7 @@ class gbSound3DNode;
 
 // Note: IDA misidentifies UIWnd as stdiobuf/std::ios_base in this binary.
 // gen_cpp.py post-processing replaces these with UIWnd* automatically.
+class UIWnd;
 
 // Common game functions (should be declared via annotations + codegen pipeline)
 // DO NOT add function declarations here — use data/annotations/functions.json
@@ -147,6 +148,11 @@ void *BinkOpenMiles(unsigned int freq);
 void *BinkOpenDirectSound(unsigned int freq);
 int BinkSetSoundSystem(void *soundsys, unsigned int freq);
 }
+
+// Forward declarations for types used by decomp but not in VC6 SDK
+// LPSPropValue is from MAPI (propidl.h/mapidefs.h) — not available in VC6
+struct _SPropValue;
+typedef struct _SPropValue *LPSPropValue;
 
 // Suppress [[maybe_unused]] equivalent for MSVC6 (no-op)
 // MSVC6 calls __thiscall "reserved for future use" when used in function pointer types

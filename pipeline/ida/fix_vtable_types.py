@@ -9,7 +9,7 @@ For each class with vtables:
 
 This enables Hex-Rays to generate proper virtual function calls.
 """
-import json, os, ida_auto, ida_typeinf, ida_pro
+import json, os, ida_auto, ida_typeinf, ida_pro, ida_name, ida_funcs
 ida_auto.auto_wait()
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -184,5 +184,47 @@ for cls_name, vtbl_addr, slot_names in [
 
 print("[*] Fixed: cppobj=%d, primary_vtbl=%d, secondary_vtbl=%d" % (
     fixed_cppobj, fixed_primary, fixed_secondary))
+
+# ── 4. Force-rename (type propagation from vtable type changes may override names) ---
+ida_auto.auto_wait()
+ANNOTATIONS_DIR = os.path.join(PROJECT_ROOT, "data", "annotations")
+_force_renamed = 0
+_rename_fail = []
+
+funcs_path = os.path.join(ANNOTATIONS_DIR, "functions.json")
+if os.path.exists(funcs_path):
+    with open(funcs_path, "r", encoding="utf-8") as f:
+        funcs = json.load(f)
+    structs_path = os.path.join(ANNOTATIONS_DIR, "structs")
+    for fn in sorted(os.listdir(structs_path)):
+        if not fn.endswith(".json"): continue
+        with open(os.path.join(structs_path, fn), encoding="utf-8") as f:
+            sd = json.load(f)
+        for addr_str, minfo in sd.get("methods", {}).items():
+            if addr_str not in funcs:
+                funcs[addr_str] = minfo
+
+    for addr_str, info in funcs.items():
+        desired = info.get("name", "")
+        if not desired:
+            continue
+        desired_simple = desired.split("::")[-1] if "::" in desired else desired
+        addr = int(addr_str, 16)
+        cur = ida_name.get_name(addr) or ""
+        if cur == desired_simple:
+            continue
+        ida_name.set_name(addr, "", ida_name.SN_NOWARN)
+        if ida_name.set_name(addr, desired_simple, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+            _force_renamed += 1
+        else:
+            _rename_fail.append((addr_str, cur, desired_simple))
+
+if _force_renamed:
+    print("[4] Force-renamed %d functions (post-vtable fix)" % _force_renamed)
+if _rename_fail:
+    for a, c, d in _rename_fail[:5]:
+        print("    [!] %s: '%s' -> '%s' FAILED" % (a, c[:30], d[:30]))
+
+ida_auto.auto_wait()
 
 ida_pro.qexit(0)
