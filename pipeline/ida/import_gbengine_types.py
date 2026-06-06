@@ -379,6 +379,8 @@ def main():
     # gbengine headers are the source of truth — override any PDB-derived names.
     log("[*] Fixing gbengine struct member names to match headers...")
     fix_count = 0
+    # Wait for type system to settle before renaming
+    ida_auto.auto_wait()
     # rename_map: (struct_name, byte_offset, new_name)
     # byte offsets verified from PDB imports — matches header layout.
     # This renames PDB-derived names to match gbengine header conventions.
@@ -413,7 +415,23 @@ def main():
         if sid in (-1, 0xFFFFFFFF):
             log("  [SKIP] %s: struct not found" % cls)
             continue
-        cur = idc.get_member_name(sid, byte_off)
+        try:
+            cur = idc.get_member_name(sid, byte_off)
+        except Exception as e:
+            log("  [ERR] %s+%d: get_member_name exception: %s" % (cls, byte_off, e))
+            continue
+        if not cur:
+            # Try listing members in the struct for diagnostics
+            qty = idc.get_member_qty(sid)
+            members = []
+            for i in range(qty):
+                try:
+                    nm = idc.get_member_name(sid, i)
+                    members.append(nm or "?")
+                except:
+                    members.append("?")
+            log("  [SKIP] %s+%d: no member found (qty=%d, members=%s)" % (cls, byte_off, qty, members[:6]))
+            continue
         if cur == new_name:
             log("  [OK] %s+%d: already '%s'" % (cls, byte_off, new_name))
             continue
@@ -421,7 +439,7 @@ def main():
             fix_count += 1
             log("  [FIX] %s+%d: '%s' → '%s'" % (cls, byte_off, cur, new_name))
         else:
-            log("  [FAIL] %s+%d: set_member_name('%s') failed" % (cls, byte_off, new_name))
+            log("  [FAIL] %s+%d: set_member_name('%s') — current member is '%s'" % (cls, byte_off, new_name, cur))
     log("[*] Renamed %d struct members" % fix_count)
     
     log_path = os.path.join(log_dir, "import_gbengine_log.txt")
