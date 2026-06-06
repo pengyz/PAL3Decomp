@@ -1483,6 +1483,15 @@ def run(code, ctx):
     # Pattern 5: catch-all for remaining `)->N` (closing paren before numeric access)
     code = re.sub(r'\)\s*->\s*(\d+)', r') + \1', code)
 
+    # Fix type-erased global access: *(int *)((char *)&GLOBAL + 0).MEMBER
+    # Hex-Rays casts a global to int* and dereferences, losing the original type.
+    # Offset 0 means the access is at the base of the global — just use GLOBAL.MEMBER.
+    code = re.sub(
+        r'\*\(int\s*\*\s*\)\(\(char\s*\*\s*\)&(\w+)\s*\+\s*0\)',
+        r'\1',
+        code
+    )
+
     # Fix `_flt_X_Y` Hex-Rays float constant labels in inline assembly
     # MSVC MASM interprets `_flt_0_0` (leading _ + digits) as a number token
     # causing "bad suffix on number" C2059. Rename to `float_X_Y` (letter prefix).
