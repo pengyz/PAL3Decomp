@@ -26,7 +26,7 @@ vtbl_map = {}  # vtable addr (hex string without 0x) -> class_name
 cls_vtables = {}  # class_name -> [(addr, slots)]
 for fn in sorted(os.listdir(STRUCTS_DIR)):
     if not fn.endswith(".json"): continue
-    with open(os.path.join(STRUCTS_DIR, fn)) as f:
+    with open(os.path.join(STRUCTS_DIR, fn), encoding='utf-8') as f:
         sd = json.load(f)
     cn = sd.get("name", fn.replace(".json", ""))
     for vt in sd.get("vtables", []):
@@ -82,7 +82,7 @@ for cls_name, vt_list in sorted(cls_vtables.items()):
             # Try a few naming conventions based on common patterns
             target_name = None
             # Check known_members for this class
-            with open(os.path.join(STRUCTS_DIR, "%s.json" % cls_name)) as f:
+            with open(os.path.join(STRUCTS_DIR, "%s.json" % cls_name), encoding='utf-8') as f:
                 sd = json.load(f)
             for off_str, minfo in sd.get("known_members", {}).items():
                 mn = minfo["name"]
