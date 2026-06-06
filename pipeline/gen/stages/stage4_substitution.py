@@ -1483,6 +1483,19 @@ def run(code, ctx):
     # Pattern 5: catch-all for remaining `)->N` (closing paren before numeric access)
     code = re.sub(r'\)\s*->\s*(\d+)', r') + \1', code)
 
+    # Fix `_flt_X_Y` Hex-Rays float constant labels in inline assembly
+    # MSVC MASM interprets `_flt_0_0` (leading _ + digits) as a number token
+    # causing "bad suffix on number" C2059. Rename to `float_X_Y` (letter prefix).
+    code = re.sub(r'\b_flt_(\d+)', r'float_\1', code)
+
+    # Fix `[esp+HEX+VAR]` in inline assembly: MASM can't compute ESP-relative
+    # address with C variable names. Strip the ESP-relative prefix.
+    code = re.sub(
+        r'\[esp\+[0-9a-fA-F]+h\+(\w+)\]',
+        r'[\1]',
+        code
+    )
+
     # Fix member function pointer casts: use mfp_cast (union type pun)
     # MSVC6 can't C-style-cast member fn ptr to __cdecl fn ptr.
     # (int(*)(int,int))&CCBSystem::Method → mfp_cast<int(*)(int,int)>(&CCBSystem::Method)
