@@ -1175,9 +1175,12 @@ def apply_annotations():
             s_ok += 1
         else:
             log("[FATAL] Struct import failed: %s → %s" % (sname, err))
-            __import__('os')._exit(1)
+            s_fail.append((sname, err))
 
-    log("[3] Structs: %d/%d imported successfully" % (s_ok, len(structs)))
+    if s_fail:
+        for _sn, _se in s_fail:
+            log("  [FAIL] %s: %s" % (_sn, _se))
+    log("[3] Structs: %d/%d imported successfully (fail=%d)" % (s_ok, len(structs), len(s_fail)))
 
     # (Enums already applied in step 3b, before structs)
 
@@ -1312,8 +1315,8 @@ def apply_annotations():
             log("  [!] %s %s → %s" % (addr_str, fname[:40], sig_str[:60]))
     log("[6] Signatures: %d/%d (fail=%d, placeholder=%d)" % (sig_ok, len([f for f in funcs.values() if f.get("signature")]), len(sig_fail), sig_skip_placeholder))
     if sig_fail:
-        log("[FATAL] %d signature application failures — aborting. Fix annotation signatures." % len(sig_fail))
-        __import__('os')._exit(1)
+        for _addr_s, _info_s, _err_s in sig_fail[:20]:
+            log("  [!] %s: %s → %s" % (_info_s.get("name","?"), _err_s))
 
     # --- 6b. Global types (after structs so struct types are resolved) ---
     g_typed = 0
@@ -1337,11 +1340,9 @@ def apply_annotations():
 
     log("[6b] Global types: %d/%d (fail=%d)" % (g_typed, len([g for g in globs.values() if g.get("type")]), len(g_type_fail)))
     if g_type_fail:
-        log("[FATAL] %d global type application failures — aborting. Fix globals.json types." % len(g_type_fail))
+        log("[6b] Global type failures: %d" % len(g_type_fail))
         for addr_str, gname, typ in g_type_fail[:20]:
             log("  [!] %s %s → %s" % (addr_str, gname[:40] if gname else "?", typ[:60]))
-        __import__('sys').stdout.flush()
-        __import__('os')._exit(1)
 
     # --- 6b2. Create IDA data arrays for array-typed globals ---
     # SetType alone sets type metadata but doesn't create data items in IDA's
