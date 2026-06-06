@@ -963,8 +963,14 @@ def _resolve_stru_overlap(code):
         return 4
 
     # Build overlap map: gname -> (iname, itype, offset_in_bytes)
+    # Skip globals that already have their own type annotation — they are
+    # standalone proper-typed globals that happen to overlap in memory,
+    # not artifacts needing resolution (e.g. g_ScriptRoleBuf inside g_SceneMgr).
     _overlap_map = {}
     for _gname, _gaddr in _resolve_stru_overlap._global_addrs.items():
+        _gtype = store.global_types.get(_gname, '')
+        if _gtype and _gtype not in ('int', 'skip', ''):
+            continue  # properly typed global — keep standalone access
         for _base, _end, _iname, _itype in store.struct_instances:
             if _base <= _gaddr < _end:
                 _overlap_map[_gname] = (_iname, _itype, _gaddr - _base)
