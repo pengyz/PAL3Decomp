@@ -963,14 +963,11 @@ def _resolve_stru_overlap(code):
         return 4
 
     # Build overlap map: gname -> (iname, itype, offset_in_bytes)
-    # Skip globals that already have their own type annotation — they are
-    # standalone proper-typed globals that happen to overlap in memory,
-    # not artifacts needing resolution (e.g. g_ScriptRoleBuf inside g_SceneMgr).
+    # For globals with explicit type (non-int), they represent intentional
+    # reinterpret_cast views (e.g. g_ScriptRoleBuf as RoleSystem at g_SceneMgr+0x590).
+    # These are resolved via cast expression: ((TYPE*)&Container.member)->field.
     _overlap_map = {}
     for _gname, _gaddr in _resolve_stru_overlap._global_addrs.items():
-        _gtype = store.global_types.get(_gname, '')
-        if _gtype and _gtype not in ('int', 'skip', ''):
-            continue  # properly typed global — keep standalone access
         for _base, _end, _iname, _itype in store.struct_instances:
             if _base <= _gaddr < _end:
                 _overlap_map[_gname] = (_iname, _itype, _gaddr - _base)
@@ -985,18 +982,52 @@ def _resolve_stru_overlap(code):
         # e.g. g_ScriptRoleBuf at SceneMgr+0x590 → path=['m_embedRoleSys']
         _path_cache = {}
         for _gname, (_iname, _itype, _off) in _overlap_map.items():
-            _path, _remaining = _resolve_offset_to_member_path(_itype, _off)
-            if _path and _remaining == 0:
-                # Build prefix: g_ContainingStruct.member1.member2...
-                _prefix = _iname
-                for _pname, _ptype in _path:
-                    _prefix += '.' + _pname
-                _path_cache[_gname] = _prefix
+            _gtype = store.global_types.get(_gname, '')
+            _is_typed = bool(_gtype and _gtype not in ('int', 'skip', '')
+                            and not any(_gtype.startswith(p) for p in 
+                                        ['char', 'int', 'float', 'double', 'short', 'long', 
+                                         'unsigned', 'signed', 'void', 'bool',
+                                         'BYTE', 'WORD', 'DWORD', 'UINT', 'LONG', 'ULONG', 'BOOL'])
+                            and '*' not in _gtype
+                            and '[' not in _gtype)
+
+            if _is_typed and _off == 0:
+                # Offset 0: global IS at the struct start, no cast needed
+                _path_cache[_gname] = _iname
+            elif _is_typed and _gtype != _itype:
+                # Typed global = intentional reinterpret_cast overlap.
+                # Require a named member at this offset — can't fallback to raw cast.
+                _mem = store.struct_members.get(_itype, {}).get(_off)
+                if not _mem:
+                    import sys
+                    print("[WARN] %s overlaps %s at +0x%X (type=%s) but no named member at that offset — add to %s.json" % (
+                        _gname, _itype, _off, _gtype, _itype), file=sys.stderr)
+                    # Fall through to untyped path (raw int cast)
+                    _path, _remaining = _resolve_offset_to_member_path(_itype, _off)
+                    if _path and _remaining == 0:
+                        _prefix = _iname
+                        for _pname, _ptype in _path:
+                            _prefix += '.' + _pname
+                        _path_cache[_gname] = _prefix
+                    else:
+                        _path_cache[_gname] = None
+                else:
+                    # Build cast prefix: ((TYPE*)&Container.member)
+                    _member_name = _mem[0]
+                    _prefix = '((%s *)&%s.%s)' % (_gtype, _iname, _member_name)
+                    _path_cache[_gname] = _prefix
             else:
-                # Can't resolve cleanly — use raw cast fallback
-                _gtype = store.global_types.get(_gname, 'int')
-                _cast_type = _gtype if _gtype and _gtype not in ('skip', '') else 'int'
-                _path_cache[_gname] = None  # mark for fallback
+                # Untyped global — try to resolve member path
+                _path, _remaining = _resolve_offset_to_member_path(_itype, _off)
+                if _path and _remaining == 0:
+                    # Build prefix: g_ContainingStruct.member1.member2...
+                    _prefix = _iname
+                    for _pname, _ptype in _path:
+                        _prefix += '.' + _pname
+                    _path_cache[_gname] = _prefix
+                else:
+                    # Can't resolve cleanly — mark for raw cast fallback
+                    _path_cache[_gname] = None
 
         def _replace_field(m):
             _gname = m.group(1)
@@ -1004,25 +1035,29 @@ def _resolve_stru_overlap(code):
             _idx = m.group(3)
             _prefix = _path_cache.get(_gname, '')
             if _prefix:
-                if _idx is not None:
-                    return '%s.%s[%s]' % (_prefix, _field, _idx)
+                # Cast prefix: use -> (pointer access, faithful to reinterpret_cast)
+                if _prefix.startswith('(('):
+                    if _idx is not None:
+                        return '%s->%s[%s]' % (_prefix, _field, _idx)
+                    else:
+                        return '%s->%s' % (_prefix, _field)
+                # Normal member path: use . (direct struct access)
                 else:
-                    return '%s.%s' % (_prefix, _field)
+                    if _idx is not None:
+                        return '%s.%s[%s]' % (_prefix, _field, _idx)
+                    else:
+                        return '%s.%s' % (_prefix, _field)
             else:
                 # Fallback to raw cast
                 _iname, _itype, _off = _overlap_map[_gname]
-                # When offset is 0, the global access is already at the correct field
-                # `g_DrvInfo.height` should not be rewritten to `*(int*)((char*)&g_DrvInfo+0).height`
                 if _off == 0:
                     if _idx is not None:
                         return '%s.%s[%s]' % (_gname, _field, _idx)
                     else:
                         return '%s.%s' % (_gname, _field)
-                # For non-zero offsets, check if the offset has a named member
-                # If yes, use GLOBAL.member.SUBFIELD instead of *(type*)(...).SUBFIELD
-                _mem = store.struct_members.get(_itype, {}).get(_off)
-                if _mem:
-                    _member_name = _mem[0]
+                _mem2 = store.struct_members.get(_itype, {}).get(_off)
+                if _mem2:
+                    _member_name = _mem2[0]
                     if _idx is not None:
                         return '%s.%s.%s[%s]' % (_gname, _member_name, _field, _idx)
                     else:
