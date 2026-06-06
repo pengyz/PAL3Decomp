@@ -8,7 +8,7 @@
 
 class gbChain1DNode {
 public:
-    gbChain1DNode* pNext;   // +0x04: next node (vptr at +0x00 from virtual dtor)
+    gbChain1DNode* next;   // +0x04: next node (vptr at +0x00 from virtual dtor)
 
     gbChain1DNode(void);
     gbChain1DNode(const gbChain1DNode& src);
@@ -23,10 +23,10 @@ public:
 
 class gbChain1D {
 public:
-    gbChain1DNode* pHead;        // +0x00
-    gbChain1DNode* pTail;        // +0x04
+    gbChain1DNode* m_Head;        // +0x00
+    gbChain1DNode* m_Tail;        // +0x04
     int m_numNode;               // +0x08 (was nCount)
-    gbChain1DNode* pIterator;  // +0x0C
+    gbChain1DNode* m_Cur;  // +0x0C
 
     gbChain1D(void);
     ~gbChain1D();
@@ -91,7 +91,7 @@ public:
 
 class gbNBTreeNode : public gbChain1DNode {
 public:
-    gbNBTreeNode* pParent;         // +0x08
+    gbNBTreeNode* pFather;         // +0x08
     gbChain1D children;            // +0x0C (16 bytes: head at +0C, tail at +10, count at +14, iter at +18)
 
     gbNBTreeNode(void);
