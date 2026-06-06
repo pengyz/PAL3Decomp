@@ -1005,6 +1005,13 @@ def _resolve_stru_overlap(code):
             else:
                 # Fallback to raw cast
                 _iname, _itype, _off = _overlap_map[_gname]
+                # When offset is 0, the global access is already at the correct field
+                # `g_DrvInfo.height` should not be rewritten to `*(int*)((char*)&g_DrvInfo+0).height`
+                if _off == 0:
+                    if _idx is not None:
+                        return '%s.%s[%s]' % (_gname, _field, _idx)
+                    else:
+                        return '%s.%s' % (_gname, _field)
                 _cast = 'int'
                 _mem = store.struct_members.get(_itype, {}).get(_off)
                 if _mem:
