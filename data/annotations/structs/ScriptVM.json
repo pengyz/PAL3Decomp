@@ -38,9 +38,9 @@
       "source": "decomp:GetString ring buffer write position (iterator)"
     },
     "0": {
-      "name": "_todo_000",
-      "type": "int",
-      "source": "binary_scan:2refs"
+      "name": "__vftable",
+      "type": "void *",
+      "source": "binary_scan:vtbl_attrib"
     },
     "160": {
       "name": "_todo_0A0",
@@ -73,14 +73,14 @@
       "source": "A:cmp_byte_ptr_25h_confirms_byte|binary_scan:1refs"
     },
     "256": {
-      "name": "_todo_100",
+      "name": "m_nPauseState",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "decomp:UpdatePauseState compared to 1"
     },
     "796": {
-      "name": "_todo_31C",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "name": "m_pCmdList",
+      "type": "void *",
+      "source": "decomp:UpdatePauseState *(m_pCmdList + 16) accessed as array base"
     },
     "828": {
       "name": "m_nPathMode",
