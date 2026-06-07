@@ -200,37 +200,37 @@
       "source": "binary_scan:1refs | ida_xref"
     },
     "228": {
-      "name": "m_pfnResolveA",
+      "name": "m_pfnStageSetup",
       "type": "int",
       "source": "binary_scan:8refs | ida_xref"
     },
     "260": {
-      "name": "m_pfnResolveB",
+      "name": "m_pfnStageGeometry",
       "type": "int",
       "source": "binary_scan:3refs | ida_xref"
     },
     "268": {
-      "name": "m_pfnResolveC",
+      "name": "m_pfnStageProcess",
       "type": "int",
       "source": "binary_scan:21refs | ida_xref"
     },
     "272": {
-      "name": "_todo_110",
+      "name": "m_nTaskState",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     },
     "276": {
-      "name": "m_pfnResolveD",
+      "name": "m_pfnStagePostFx",
       "type": "int",
       "source": "binary_scan:4refs | ida_xref"
     },
     "324": {
-      "name": "m_pfnResolveE",
+      "name": "m_pfnStageOutput",
       "type": "int",
       "source": "binary_scan:1refs | ida_xref"
     },
     "328": {
-      "name": "m_pfnResolveF",
+      "name": "m_pfnStageComposite",
       "type": "int",
       "source": "binary_scan:1refs | ida_xref"
     },
@@ -255,59 +255,59 @@
       "source": "binary_scan:1refs"
     },
     "400": {
-      "name": "m_pfnResolveG",
+      "name": "m_pfnStagePresent",
       "type": "int",
       "source": "binary_scan:2refs | ida_xref"
     },
     "416": {
-      "name": "m_pfnResolveH",
+      "name": "m_pfnStageCleanup",
       "type": "int",
       "source": "binary_scan:1refs | ida_xref"
     },
     "524": {
-      "name": "_todo_20C",
+      "name": "m_nTargetType",
       "type": "int",
-      "source": "binary_scan:5refs"
+      "source": "binary_scan:5refs | ida_xref2"
     },
     "1648": {
-      "name": "_todo_670",
+      "name": "m_nSoundChannels",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     },
     "1660": {
-      "name": "_todo_67C",
+      "name": "m_nSampleRate",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     },
     "1716": {
-      "name": "_todo_6B4",
+      "name": "m_nBufferSamples",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     },
     "1812": {
-      "name": "_todo_714",
+      "name": "m_nRenderFlags",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     },
     "1816": {
-      "name": "_todo_718",
+      "name": "m_pRenderData",
       "type": "int",
-      "source": "binary_scan:49refs"
+      "source": "binary_scan:49refs | ida_xref2"
     },
     "2280": {
-      "name": "_todo_8E8",
+      "name": "m_nClearFlags",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     },
     "2284": {
-      "name": "_todo_8EC",
+      "name": "m_nClearColor",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     },
     "2348": {
-      "name": "_todo_92C",
+      "name": "m_vTargetPos",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     }
   },
   "binary_size": 4292,

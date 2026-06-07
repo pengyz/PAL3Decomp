@@ -176,7 +176,7 @@
     "104": {
       "name": "m_szFmtBuf",
       "type": "char[40]",
-      "source": "binary:gap_r2 | type_fix:int\u2192char[40](sprintf(&this->_field_068,\"%d\",...))"
+      "source": "binary:gap_r2 | type_fix:int→char[40](sprintf(&this->_field_068,\"%d\",...))"
     },
     "904": {
       "name": "_field_388",
@@ -184,9 +184,9 @@
       "source": "binary:gap_r2"
     },
     "900": {
-      "name": "_field_384",
+      "name": "m_pScriptEvent",
       "type": "int",
-      "source": "binary:7x [reg+0x384] in ScriptSystem::_init_4890a0, reg=this(ebp/ebx/esi)"
+      "source": "binary:7x [reg+0x384] in ScriptSystem::_init_4890a0, reg=this(ebp/ebx/esi) | ida_xref2"
     },
     "909": {
       "name": "m_bOpcodeFlag",
@@ -236,17 +236,17 @@
     "1320": {
       "name": "m_vMoveDir_x",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192float(*(float*)&, gbVec3D::Length)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, gbVec3D::Length)"
     },
     "1324": {
       "name": "m_vMoveDir_y",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192float(*(float*)&, /fVal, *v16)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, /fVal, *v16)"
     },
     "1328": {
       "name": "m_vMoveDir_z",
       "type": "float",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192float(*(float*)&, /fVal, *v16)"
+      "source": "gap_fill:ida_decomp_access | type_fix:int→float(*(float*)&, /fVal, *v16)"
     },
     "1480": {
       "name": "_todo_5C8",

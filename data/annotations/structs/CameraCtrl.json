@@ -161,9 +161,9 @@
       "comment": "camera path file name (.cam or similar)"
     },
     "364": {
-      "name": "_todo_16C",
+      "name": "m_nBlendWeightIdx",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     },
     "380": {
       "name": "m_nInitParams",
@@ -280,9 +280,9 @@
       "source": "A:InitDefaultView: mov [esi+248h], 0 (0.0f)"
     },
     "592": {
-      "name": "_todo_250",
+      "name": "m_pCameraEvent",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     },
     "616": {
       "name": "m_szText",
@@ -300,17 +300,17 @@
       "source": "A:binary_cmp_word_270h | ida_xref"
     },
     "688": {
-      "name": "m_nCamParam0",
+      "name": "m_nEventViewX",
       "type": "int",
       "source": "binary:1x access | ida_xref"
     },
     "692": {
-      "name": "m_nCamParam1",
+      "name": "m_nEventViewY",
       "type": "int",
       "source": "binary:1x access | ida_xref"
     },
     "696": {
-      "name": "m_nCamParam2",
+      "name": "m_nEventHandle",
       "type": "int",
       "source": "binary:1x access | ida_xref"
     },

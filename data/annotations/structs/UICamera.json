@@ -3,19 +3,19 @@
   "pdb_size": 4,
   "known_members": {
     "128": {
-      "name": "_todo_080",
+      "name": "m_nCamState",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     },
     "152": {
-      "name": "_todo_098",
+      "name": "m_nViewMode",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs | ida_xref2"
     },
     "160": {
-      "name": "_todo_0A0",
+      "name": "m_fCamAngle",
       "type": "float",
-      "source": "binary_scan:5refs"
+      "source": "binary_scan:5refs | ida_xref2"
     },
     "164": {
       "name": "m_fCoordU",
@@ -33,19 +33,19 @@
       "source": "A:4x_mov_[ebp+0DCh]_load_pattern"
     },
     "224": {
-      "name": "_todo_0E0",
+      "name": "m_hTarget",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     },
     "272": {
-      "name": "_todo_110",
+      "name": "m_pCameraData",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs | ida_xref2"
     },
     "460": {
-      "name": "_todo_1CC",
+      "name": "m_nStateFlags",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref2"
     },
     "464": {
       "name": "m_nParam",
@@ -68,9 +68,9 @@
       "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern"
     },
     "628": {
-      "name": "_todo_274",
+      "name": "m_hCameraHandle",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs | ida_xref2"
     },
     "632": {
       "name": "_todo_278",
