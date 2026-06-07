@@ -8360,5 +8360,995 @@
   "0x00513120": {
     "name": "RenderCheck",
     "reason": "no_decomp: decompile returns None, needs IDA investigation"
+  },
+  "0x00536CE0": {
+    "name": "Actor::EnableTransition(int,int)",
+    "reason": "thunk",
+    "target_name": "gbActor::EnableActionTransMtl"
+  },
+  "0x00536CC0": {
+    "name": "Actor::GetAnimDuration(int)",
+    "reason": "thunk",
+    "target_name": "gbActor::GetActionDuration"
+  },
+  "0x00536A60": {
+    "name": "Actor::GetDefaultDist2_thunk()",
+    "reason": "thunk",
+    "target_name": "Actor::SetDefaultDist2"
+  },
+  "0x00536240": {
+    "name": "Actor::GetDefaultDist_thunk()",
+    "reason": "thunk",
+    "target_name": "Actor::SetDefaultDist"
+  },
+  "0x00536A40": {
+    "name": "Actor::GetDefaultFOV2_thunk()",
+    "reason": "thunk",
+    "target_name": "Actor::SetDefaultFOV2"
+  },
+  "0x00536220": {
+    "name": "Actor::GetDefaultFOV_thunk()",
+    "reason": "thunk",
+    "target_name": "Actor::SetDefaultFOV"
+  },
+  "0x0041B9F0": {
+    "name": "Actor::GetInnerAnimDuration(int)",
+    "reason": "thunk",
+    "target_name": "Actor::GetAnimDuration"
+  },
+  "0x00536D00": {
+    "name": "Actor::SetTimeScale(float)",
+    "reason": "thunk",
+    "target_name": "gbVisNode::SetTimeScale"
+  },
+  "0x0041D5C0": {
+    "name": "CameraCtrl::SetCamDist(int)",
+    "reason": "thunk",
+    "target_name": "LODWORD"
+  },
+  "0x0041D5B0": {
+    "name": "CameraCtrl::SetCamMode(int)",
+    "reason": "thunk",
+    "target_name": "LODWORD"
+  },
+  "0x0041CA90": {
+    "name": "CameraCtrl::SetDimention(int,int)",
+    "reason": "thunk",
+    "target_name": "gbCamera::SetDimention"
+  },
+  "0x004DB300": {
+    "name": "CCBAI::AddValueItem(int,uint)",
+    "reason": "thunk",
+    "target_name": "CCBAI::DestroyValueAutomation"
+  },
+  "0x004DB290": {
+    "name": "CCBAI::CastCureSpecStateItem()",
+    "reason": "thunk",
+    "target_name": "CCBAI::HasVeryPunyFiveMagicRole"
+  },
+  "0x004DB270": {
+    "name": "CCBAI::CastCureSpecStateMagic()",
+    "reason": "thunk",
+    "target_name": "CCBAI::CastCureSpecStateSkill"
+  },
+  "0x004D7030": {
+    "name": "CCBAI::_CCBAI()",
+    "reason": "thunk",
+    "target_name": "CCBAI::Reset"
+  },
+  "0x004DB2B0": {
+    "name": "CCBAI::CreateValueAutomation()",
+    "reason": "thunk",
+    "target_name": "CCBAI::AddValueFunction"
+  },
+  "0x005081D0": {
+    "name": "CCBCamControl::CCBCamControl()",
+    "reason": "thunk",
+    "target_name": "CCBCamControl::_CCBCamControl"
+  },
+  "0x00508270": {
+    "name": "CCBCamControl::Destroy()",
+    "reason": "thunk",
+    "target_name": "CCBCamControl::Init_8280"
+  },
+  "0x00508680": {
+    "name": "CCBCamControl::DoList()",
+    "reason": "thunk",
+    "target_name": "gbRefObject::Release"
+  },
+  "0x00508360": {
+    "name": "CCBCamControl::HandleInput()",
+    "reason": "thunk",
+    "target_name": "CCBCamControl::UpdateCircleSet"
+  },
+  "0x00508220": {
+    "name": "CCBCamControl::Reset()",
+    "reason": "thunk",
+    "target_name": "CCBCamControl::Create"
+  },
+  "0x005082C0": {
+    "name": "CCBCamControl::Update()",
+    "reason": "thunk",
+    "target_name": "CCBCamControl::StartList"
+  },
+  "0x00530BC0": {
+    "name": "CCBFiveNimbusWindow::ApplySelection(int)",
+    "reason": "thunk",
+    "target_name": "RoleSystem::ApplyRotationAxis"
+  },
+  "0x0052FBB0": {
+    "name": "CCBFiveNimbusWindow::GetSlotA(int)",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x0052FC30": {
+    "name": "CCBFiveNimbusWindow::GetSlotB(int)",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x00443BF0": {
+    "name": "CCBFiveNimbusWindow::IsAboveThreshold(float)",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x00443C70": {
+    "name": "CCBFiveNimbusWindow::IsHitBottom(float)",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x00443BA0": {
+    "name": "CCBFiveNimbusWindow::IsHitLeft(float)",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x00450650": {
+    "name": "CCBItemWindow::SetItemName(char *)",
+    "reason": "thunk",
+    "target_name": "strncpy"
+  },
+  "0x0051D5F0": {
+    "name": "CCBLineupWindow::IsFaceOnInitPos()",
+    "reason": "thunk",
+    "target_name": "timeGetTime"
+  },
+  "0x0051D580": {
+    "name": "CCBLineupWindow::IsPtOnFace()",
+    "reason": "thunk",
+    "target_name": "CCBLineupWindow::IsPtOnFace_d590"
+  },
+  "0x0051D5A0": {
+    "name": "CCBLineupWindow::IsPtOnInitPos()",
+    "reason": "thunk",
+    "target_name": "CCBLineupWindow::IsPtOnInitPos_d5b0"
+  },
+  "0x0051D6D0": {
+    "name": "CCBLineupWindow::RefreshFacePos()",
+    "reason": "thunk",
+    "target_name": "CCBProtectWindow::CCBProtectWindow"
+  },
+  "0x0051D6F0": {
+    "name": "CCBProtectWindow::_CCBProtectWindow()",
+    "reason": "thunk",
+    "target_name": "CCBProtectWindow::Reset"
+  },
+  "0x00443190": {
+    "name": "CCBResultWindow::Create()",
+    "reason": "thunk",
+    "target_name": "CCBResultWindow::ctor"
+  },
+  "0x00444D20": {
+    "name": "CCBResultWindow::SetDirty()",
+    "reason": "thunk",
+    "target_name": "BYTE2"
+  },
+  "0x004F27E0": {
+    "name": "CCBRoleState::CalcComboDirect(void const *,uint)",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::CalcCombatDamage"
+  },
+  "0x004F3570": {
+    "name": "CCBRoleState::CalcMagicAttack(int)",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::GetRoleMP"
+  },
+  "0x004F36D0": {
+    "name": "CCBRoleState::CalcMagicDefense(int)",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::GetRoleMP"
+  },
+  "0x004F3AD0": {
+    "name": "CCBRoleState::CalcMPCost(int)",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::GetRoleMP"
+  },
+  "0x004F3620": {
+    "name": "CCBRoleState::CalcMPRegen(int)",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::GetRoleMP"
+  },
+  "0x004EE910": {
+    "name": "CCBRoleState::CheckMP(int)",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::GetRoleMP"
+  },
+  "0x004FB370": {
+    "name": "CCBRoleState::CheckMPRequirement(int)",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::GetRoleMP"
+  },
+  "0x004DF3D0": {
+    "name": "CCBRoleState::CheckMP()",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::GetRoleMP"
+  },
+  "0x004EE870": {
+    "name": "CCBRoleState::InitUI(int)",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x004EFFC0": {
+    "name": "CCBRoleState::IsRoleReady(int)",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::GetRoleField"
+  },
+  "0x004FA8B0": {
+    "name": "CCBRoleState::Revive(int)",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::GetRoleMP"
+  },
+  "0x004F3A30": {
+    "name": "CCBRoleState::SetRoleFlag(int,char)",
+    "reason": "thunk",
+    "target_name": "BYTE1"
+  },
+  "0x004EE890": {
+    "name": "CCBRoleState::Update(int)",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::GetRoleMP"
+  },
+  "0x00504E60": {
+    "name": "CCBStageCam::_CCBStageCam()",
+    "reason": "thunk",
+    "target_name": "CCBStageCam::_CCBStageCam"
+  },
+  "0x004E8450": {
+    "name": "CCBStageCam::StoreCurrentView(int,uint,int,int)",
+    "reason": "thunk",
+    "target_name": "CCBStageCam::UpdateStageCamera"
+  },
+  "0x005054E0": {
+    "name": "CCBStageCam::Update()",
+    "reason": "thunk",
+    "target_name": "CCBStageCam::Create"
+  },
+  "0x00509050": {
+    "name": "CCBStageEffect::Create()",
+    "reason": "thunk",
+    "target_name": "CCBStageEffect::Destroy"
+  },
+  "0x00509070": {
+    "name": "CCBStageEffect::Init()",
+    "reason": "thunk",
+    "target_name": "CCBStageEffect::GetLinkerIndex"
+  },
+  "0x005090E0": {
+    "name": "CCBStageEffect::LoadLinker()",
+    "reason": "thunk",
+    "target_name": "CCBStageRole::Proceed"
+  },
+  "0x00522120": {
+    "name": "CCBStageRole::CleanupScript()",
+    "reason": "thunk",
+    "target_name": "PalScript::Cleanup"
+  },
+  "0x0050A6F0": {
+    "name": "CCBStageRole::ForceDelTaskByPFN()",
+    "reason": "thunk",
+    "target_name": "LODWORD"
+  },
+  "0x00509290": {
+    "name": "CCBStageRole::GetRoleRadius()",
+    "reason": "thunk",
+    "target_name": "CCBStageRole::GetRoleHeight"
+  },
+  "0x00509270": {
+    "name": "CCBStageRole::IsUnderMouse()",
+    "reason": "thunk",
+    "target_name": "CCBStageRole::IsCollideRay"
+  },
+  "0x005091D0": {
+    "name": "CCBStageRole::OnChangeAction()",
+    "reason": "thunk",
+    "target_name": "CCBStageRole::CheckAction"
+  },
+  "0x00509130": {
+    "name": "CCBStageRole::SetAlive(bool)",
+    "reason": "thunk",
+    "target_name": "CCBStageRole::SetMaxBlend"
+  },
+  "0x00509180": {
+    "name": "CCBStageRole::SetVisible()",
+    "reason": "thunk",
+    "target_name": "CCBStageRole::SetPause"
+  },
+  "0x00511CE0": {
+    "name": "CCBStageScene::LoadFiveLineupData()",
+    "reason": "thunk",
+    "target_name": "CCBStageScene::SaveFiveLineupDate"
+  },
+  "0x00511C40": {
+    "name": "CCBStageScene::LoadScene(int)",
+    "reason": "thunk",
+    "target_name": "CCBStageScene::DestroyScene"
+  },
+  "0x00511C20": {
+    "name": "CCBStageScene::ResetFiveLineupToInit()",
+    "reason": "thunk",
+    "target_name": "CCBStageScene::ResetRolePosToInit"
+  },
+  "0x00511C00": {
+    "name": "CCBStageScene::ShowEnemyFiveLineupEx(uchar)",
+    "reason": "thunk",
+    "target_name": "CCBStageScene::IsFiveLineupUnderMouse"
+  },
+  "0x00512300": {
+    "name": "CCBStageShadow::FillShadowQuad()",
+    "reason": "thunk",
+    "target_name": "CCBSystem::HandleInput"
+  },
+  "0x005122E0": {
+    "name": "CCBStageShadow::Update()",
+    "reason": "thunk",
+    "target_name": "CCBStageShadow::Render"
+  },
+  "0x00504420": {
+    "name": "CCBStage::ClearTurnSlot(int)",
+    "reason": "thunk",
+    "target_name": "memset"
+  },
+  "0x00504440": {
+    "name": "CCBStage::GetTurnSlotData(int)",
+    "reason": "thunk",
+    "target_name": "CCBStage::HasTurnChanged"
+  },
+  "0x004FC980": {
+    "name": "CCBStage::IsDoTask(int)",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x004DF700": {
+    "name": "CCBStage::IsInitialized()",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::ResetDialogSlots"
+  },
+  "0x004FE540": {
+    "name": "CCBStage::ProcShowEnemyFiveLineup()",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x004FC6F0": {
+    "name": "CCBStage::Render()",
+    "reason": "thunk",
+    "target_name": "CCBStage::GetTask"
+  },
+  "0x004E0330": {
+    "name": "CCBStage::Reset()",
+    "reason": "thunk",
+    "target_name": "memset"
+  },
+  "0x004DB640": {
+    "name": "CCBSystem::CalcSpeed(int,int)",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::GetSpeedBonus"
+  },
+  "0x005124B0": {
+    "name": "CCBSystem::CanBeHandleWPX_R()",
+    "reason": "thunk",
+    "target_name": "CCBSystem::CanBeHandleNGH_R"
+  },
+  "0x00512460": {
+    "name": "CCBSystem::DelAllTaskAndThread()",
+    "reason": "thunk",
+    "target_name": "CCBSystem::Proceed"
+  },
+  "0x004DC1B0": {
+    "name": "CCBSystem::GetState()",
+    "reason": "thunk",
+    "target_name": "CCBSystem::ClearAllPointers"
+  },
+  "0x004DB3A0": {
+    "name": "CCBSystem::InitCmdTable1_thunk()",
+    "reason": "thunk",
+    "target_name": "CCBSystem::InitCmdTable1"
+  },
+  "0x004DB3F0": {
+    "name": "CCBSystem::InitCmdTable2_thunk()",
+    "reason": "thunk",
+    "target_name": "CCBSystem::InitCmdTable2"
+  },
+  "0x004DB440": {
+    "name": "CCBSystem::InitCmdTable3_thunk()",
+    "reason": "thunk",
+    "target_name": "CCBSystem::InitCmdTable3"
+  },
+  "0x004DB6C0": {
+    "name": "CCBSystem::IsCmdReady(int)",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x00513420": {
+    "name": "CCBSystem::ProcFlee(char)",
+    "reason": "thunk",
+    "target_name": "LOBYTE"
+  },
+  "0x00513380": {
+    "name": "CCBSystem::ProcUseItem(int)",
+    "reason": "thunk",
+    "target_name": "CCBStage::ProcessAction"
+  },
+  "0x00512370": {
+    "name": "CCBSystem::SetAuto()",
+    "reason": "thunk",
+    "target_name": "CCBSystem::SetAutoOnly"
+  },
+  "0x00512320": {
+    "name": "CCBSystem::SetQuitFlag()",
+    "reason": "thunk",
+    "target_name": "CCBSystem::IsEditorWindow"
+  },
+  "0x005123C0": {
+    "name": "CCBSystem::ShowInfo()",
+    "reason": "thunk",
+    "target_name": "CCBSystem::SetTimeScale"
+  },
+  "0x004E1A10": {
+    "name": "CCBUI::?CombatDlgProcThunk@CCBUI@@QGEHHIHH@Z",
+    "reason": "thunk",
+    "target_name": "CCBRoleState::CombatDialogProc"
+  },
+  "0x004E1160": {
+    "name": "CCBUI::DlgProcEffect(int,uint,int,int)",
+    "reason": "thunk",
+    "target_name": "CEffectSystem::CreateEffectChain"
+  },
+  "0x004E2490": {
+    "name": "CCBUI::DlgProcMain(int,uint,int,int)",
+    "reason": "thunk",
+    "target_name": "CCBUI::CommandEditDialogProc"
+  },
+  "0x004E53C0": {
+    "name": "CCBUI::SendWindowMessage(int,int)",
+    "reason": "thunk",
+    "target_name": "SendMessageA"
+  },
+  "0x00519230": {
+    "name": "CCBUI::ShowAIWindow(int)",
+    "reason": "thunk",
+    "target_name": "LOBYTE"
+  },
+  "0x00508190": {
+    "name": "CCCTData::ClearList()",
+    "reason": "thunk",
+    "target_name": "CCCTData::IsTaskValid"
+  },
+  "0x005081B0": {
+    "name": "CCCTData::GetTaskNumInList()",
+    "reason": "thunk",
+    "target_name": "CCCTData::GetFreeSpaceInPool"
+  },
+  "0x004C6350": {
+    "name": "CEffectSystem::GetEffect()",
+    "reason": "thunk",
+    "target_name": "CEffectSystem::DestroyEffect"
+  },
+  "0x004CDB60": {
+    "name": "Combat::Func_4CDB60()",
+    "reason": "thunk",
+    "target_name": "CEffMgr::ReleaseCompletedEffects"
+  },
+  "0x0042FEB0": {
+    "name": "Config::ResetField7()",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x004CE0D0": {
+    "name": "CPK::GetInstance()",
+    "reason": "thunk",
+    "target_name": "CPK::CPK"
+  },
+  "0x0053C440": {
+    "name": "CScreenMode::CreateDevice(int,int,int,int)",
+    "reason": "thunk",
+    "target_name": "CScreenMode::OpenBinkVideo"
+  },
+  "0x00524980": {
+    "name": "CScreenMode::ForwardMessage(int,int)",
+    "reason": "thunk",
+    "target_name": "UIListBox::Update_38"
+  },
+  "0x0053EDE0": {
+    "name": "CScreenMode::FreeSoundBuffer(void *,int)",
+    "reason": "thunk",
+    "target_name": "delete"
+  },
+  "0x0053E500": {
+    "name": "CScreenMode::GetAudioManager()",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x005230F0": {
+    "name": "CUtil::_CUtil()",
+    "reason": "thunk",
+    "target_name": "CUtil::Create"
+  },
+  "0x00523110": {
+    "name": "CUtil::Destroy()",
+    "reason": "thunk",
+    "target_name": "CUtil::Init"
+  },
+  "0x0049E840": {
+    "name": "EquipUI::SetSubTab2(int)",
+    "reason": "thunk",
+    "target_name": "UITitle_XJTM::SetMonsterState2"
+  },
+  "0x0048A2F0": {
+    "name": "EquipUI::SetSubTab(int)",
+    "reason": "thunk",
+    "target_name": "UITitle_XJTM::SetMonsterState"
+  },
+  "0x0042BEE0": {
+    "name": "gbLightObj::IsIdle()",
+    "reason": "thunk",
+    "target_name": "LOBYTE"
+  },
+  "0x00403370": {
+    "name": "GRPinput::AcquireMouse()",
+    "reason": "thunk",
+    "target_name": "memset"
+  },
+  "0x004022E0": {
+    "name": "GRPinput::GetCursorPos_0()",
+    "reason": "thunk",
+    "target_name": "GetCursorPos"
+  },
+  "0x00403160": {
+    "name": "GRPinput::GetMouseDeltas()",
+    "reason": "thunk",
+    "target_name": "GRPinput::GetJoystickPos"
+  },
+  "0x00402B60": {
+    "name": "GRPinput::RunJoystickControlPanel(void *)",
+    "reason": "thunk",
+    "target_name": "GRPinput::ClearKeyBuffer"
+  },
+  "0x00402290": {
+    "name": "GRPinput::SetCursorPos(int,int)",
+    "reason": "thunk",
+    "target_name": "SetCursorPos"
+  },
+  "0x004022B0": {
+    "name": "GRPinput::SetMode(int)",
+    "reason": "thunk",
+    "target_name": "LODWORD"
+  },
+  "0x004034E0": {
+    "name": "GRPinput::UnacquireKeyboard()",
+    "reason": "thunk",
+    "target_name": "GRPinput::Update"
+  },
+  "0x00484E10": {
+    "name": "LineupComp::DispatchSlotMethod(int,uint)",
+    "reason": "thunk",
+    "target_name": "LineupComp::CallSlotMethod"
+  },
+  "0x00494620": {
+    "name": "MagicUI::SelectBigMapTab3(char)",
+    "reason": "thunk",
+    "target_name": "UIBigMap::SetEntryVisible"
+  },
+  "0x00494640": {
+    "name": "MagicUI::SelectBigMapTab4(char)",
+    "reason": "thunk",
+    "target_name": "UIBigMap::SetEntryVisible"
+  },
+  "0x0048A350": {
+    "name": "MagicUI::SelectSubTab3(int)",
+    "reason": "thunk",
+    "target_name": "UITitle_XJTM::SetMonsterState"
+  },
+  "0x0048A370": {
+    "name": "MagicUI::SelectSubTab4(int)",
+    "reason": "thunk",
+    "target_name": "UITitle_XJTM::SetMonsterState"
+  },
+  "0x00484ED0": {
+    "name": "MagicUI::SelectTab3(int)",
+    "reason": "thunk",
+    "target_name": "LineupComp::DispatchSlotMethod"
+  },
+  "0x00484EF0": {
+    "name": "MagicUI::SelectTab4(int)",
+    "reason": "thunk",
+    "target_name": "LineupComp::DispatchSlotMethod"
+  },
+  "0x0049E8A0": {
+    "name": "MagicUI::SelectXJTMTab3(int)",
+    "reason": "thunk",
+    "target_name": "UITitle_XJTM::SetMonsterState2"
+  },
+  "0x0049E8C0": {
+    "name": "MagicUI::SelectXJTMTab4(int)",
+    "reason": "thunk",
+    "target_name": "UITitle_XJTM::SetMonsterState2"
+  },
+  "0x00533FD0": {
+    "name": "MiniGame3::SetCameraActive()",
+    "reason": "thunk",
+    "target_name": "gbCamera::SetAsCurrent"
+  },
+  "0x0047DC60": {
+    "name": "Object3D::CheckMouseLPressed()",
+    "reason": "thunk",
+    "target_name": "Object3D::CheckMousePressed"
+  },
+  "0x0047CB70": {
+    "name": "Object3D::Object3D()",
+    "reason": "thunk",
+    "target_name": "Object3D::LoadSubObject"
+  },
+  "0x0047C630": {
+    "name": "ObjectCamera::GetCameraDirect()",
+    "reason": "thunk",
+    "target_name": "ObjectCamera::Destroy"
+  },
+  "0x0047C570": {
+    "name": "ObjectCamera::ObjectCamera()",
+    "reason": "thunk",
+    "target_name": "ObjectCamera::_ObjectCamera"
+  },
+  "0x004B6F70": {
+    "name": "PAL3VisNode::PAL3VisNode()",
+    "reason": "thunk",
+    "target_name": "gbVisNode::gbVisNode"
+  },
+  "0x00401C00": {
+    "name": "PAL3::InitVFileSystem2()",
+    "reason": "thunk",
+    "target_name": "gbVFileSystem::gbVFileSystem"
+  },
+  "0x00401BC0": {
+    "name": "PAL3::InitVFileSystem()",
+    "reason": "thunk",
+    "target_name": "gbVFileSystem::gbVFileSystem"
+  },
+  "0x00404530": {
+    "name": "PAL3::InitVolModNode()",
+    "reason": "thunk",
+    "target_name": "gbVolModNode::gbVolModNode"
+  },
+  "0x004047F0": {
+    "name": "PAL3::_PAL3()",
+    "reason": "thunk",
+    "target_name": "PAL3::Destroy"
+  },
+  "0x004322A0": {
+    "name": "PalScriptMgr::IfAnyScriptRunning(int)",
+    "reason": "thunk",
+    "target_name": "PtrArray::SetAt"
+  },
+  "0x004318A0": {
+    "name": "PalScript::Cleanup()",
+    "reason": "thunk",
+    "target_name": "PalScript::FreeLoadBuffer"
+  },
+  "0x00431FA0": {
+    "name": "PalScript::ClearAllWaitObj()",
+    "reason": "thunk",
+    "target_name": "PalScriptMgr::_CON_ReLoadScript"
+  },
+  "0x00431040": {
+    "name": "PalScript::GetVarRef(int *,int)",
+    "reason": "thunk",
+    "target_name": "PalScript::ResolveScope"
+  },
+  "0x00438A20": {
+    "name": "PalScript::Op_CEft()",
+    "reason": "thunk",
+    "target_name": "CGameData::Load_0"
+  },
+  "0x004365C0": {
+    "name": "PalScript::Op_RoleFaceRoleEx()",
+    "reason": "thunk",
+    "target_name": "SetupPartyFormation"
+  },
+  "0x00435720": {
+    "name": "PalScript::Op_RoleFaceRole()",
+    "reason": "thunk",
+    "target_name": "RoleCamera::PushState"
+  },
+  "0x00435710": {
+    "name": "PalScript::Op_RoleMoveBack()",
+    "reason": "thunk",
+    "target_name": "RoleSystem::AddCameraKeyframe"
+  },
+  "0x004365A0": {
+    "name": "PalScript::Op_RoleSetFace()",
+    "reason": "thunk",
+    "target_name": "MovePartyFollowers"
+  },
+  "0x004365D0": {
+    "name": "PalScript::Op_RoleTurnFaceAEx()",
+    "reason": "thunk",
+    "target_name": "SetupPartyFormationWide"
+  },
+  "0x004365B0": {
+    "name": "PalScript::Op_RoleTurnFace()",
+    "reason": "thunk",
+    "target_name": "RestorePartyFollowMode"
+  },
+  "0x004E5FF0": {
+    "name": "PAL_GDB::DlgProcCamera(int,uint,int,int)",
+    "reason": "thunk",
+    "target_name": "CCBStageCam::UpdateEditorState"
+  },
+  "0x004F69F0": {
+    "name": "PAL_GDB::IsItemConsumable(int)",
+    "reason": "thunk",
+    "target_name": "PAL_GDB::GDB_GetRoleNum"
+  },
+  "0x004F6AB0": {
+    "name": "PAL_GDB::IsItemConsumed(int)",
+    "reason": "thunk",
+    "target_name": "PAL_GDB::GDB_GetItemNum"
+  },
+  "0x004F6A20": {
+    "name": "PAL_GDB::IsItemEquipment(int)",
+    "reason": "thunk",
+    "target_name": "PAL_GDB::GDB_GetRoleNum"
+  },
+  "0x004F6A80": {
+    "name": "PAL_GDB::IsRoleAlive2(int)",
+    "reason": "thunk",
+    "target_name": "PAL_GDB::GDB_GetRoleNum"
+  },
+  "0x004F6A40": {
+    "name": "PAL_GDB::IsRoleAlive(int)",
+    "reason": "thunk",
+    "target_name": "PAL_GDB::GDB_GetRoleNum"
+  },
+  "0x004F6A60": {
+    "name": "PAL_GDB::IsRoleDead(int)",
+    "reason": "thunk",
+    "target_name": "PAL_GDB::GDB_GetRoleNum"
+  },
+  "0x004F6BB0": {
+    "name": "PAL_GDB::IsSkillEmpty(int)",
+    "reason": "thunk",
+    "target_name": "PAL_GDB::GDB_GetSkillNum"
+  },
+  "0x004F6B70": {
+    "name": "PAL_GDB::IsSkillUsable(int)",
+    "reason": "thunk",
+    "target_name": "PAL_GDB::GDB_GetSkillNum"
+  },
+  "0x0053FE80": {
+    "name": "Parent_Data::_CheckKeyWord()",
+    "reason": "thunk",
+    "target_name": "Parent_Data::_CheckStr"
+  },
+  "0x0053FEA0": {
+    "name": "Parent_Data::GetSize()",
+    "reason": "thunk",
+    "target_name": "Parent_Data::spstr"
+  },
+  "0x004BC7E0": {
+    "name": "ParticleEffect::SetDeltaTime(int)",
+    "reason": "thunk",
+    "target_name": "LODWORD"
+  },
+  "0x004C2850": {
+    "name": "RenderTarget2::AdjustThisCall(int,int,int)",
+    "reason": "thunk",
+    "target_name": "a2"
+  },
+  "0x004C1550": {
+    "name": "RenderTarget2::vfunc_0(float)",
+    "reason": "thunk",
+    "target_name": "CEffAction::UpdateFrame"
+  },
+  "0x004BD830": {
+    "name": "RenderTargetNode::RenderTargetNode()",
+    "reason": "thunk",
+    "target_name": "PAL3VisNode::PAL3VisNode"
+  },
+  "0x004BD870": {
+    "name": "RenderTarget::GetManagedTexture()",
+    "reason": "thunk",
+    "target_name": "gbChain1DNode::Process"
+  },
+  "0x004BED00": {
+    "name": "RenderTarget::ResetBase()",
+    "reason": "thunk",
+    "target_name": "RenderTarget::Destroy"
+  },
+  "0x004B4820": {
+    "name": "RenderTarget::SetVisible(uint)",
+    "reason": "thunk",
+    "target_name": "LOBYTE"
+  },
+  "0x00414E30": {
+    "name": "RoleSystem::GetActionByIndex(int)",
+    "reason": "thunk",
+    "target_name": "RoleSystem::PlayAction"
+  },
+  "0x00420F50": {
+    "name": "RoleSystem::GetMapNodePtr(int)",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x00420F30": {
+    "name": "RoleSystem::GetRolePtr(int)",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x004209F0": {
+    "name": "RoleSystem::GetTile(int,int)",
+    "reason": "thunk",
+    "target_name": "LODWORD"
+  },
+  "0x00420930": {
+    "name": "RoleSystem::InitInternal()",
+    "reason": "thunk",
+    "target_name": "RoleSystem::RoleSystem"
+  },
+  "0x00418D90": {
+    "name": "RoleSystem::IsInBounds(int,int)",
+    "reason": "thunk",
+    "target_name": "SLODWORD"
+  },
+  "0x00421BF0": {
+    "name": "RoleSystem::NotifyPathEnd(int)",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x00533DA0": {
+    "name": "SceneObjParam::FlushCommands()",
+    "reason": "thunk",
+    "target_name": "RoleSystem::FlushCommandQueue"
+  },
+  "0x00530330": {
+    "name": "SceneObj::LoadDefaultModel()",
+    "reason": "thunk",
+    "target_name": "SceneObj::LoadGeomNode"
+  },
+  "0x004BDF60": {
+    "name": "ScreenEffectMgr::IsScriptDelNeeded()",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x004BE9E0": {
+    "name": "ScreenEffectMgr::StartFadeIn()",
+    "reason": "thunk",
+    "target_name": "ScreenEffectMgr::StartFade"
+  },
+  "0x0044E5E0": {
+    "name": "scScriptInstance::_scScriptInstance()",
+    "reason": "thunk",
+    "target_name": "UIWnd::_UIWnd"
+  },
+  "0x0043D880": {
+    "name": "UI3DCtrl::ctor()",
+    "reason": "thunk",
+    "target_name": "UIWnd::_UIWnd"
+  },
+  "0x004461F0": {
+    "name": "UICaption::DestroyPanel()",
+    "reason": "thunk",
+    "target_name": "UICaption::Destroy2"
+  },
+  "0x0044BDA0": {
+    "name": "UICaption::sub_44BDA0()",
+    "reason": "thunk",
+    "target_name": "UICaption::Destroy2"
+  },
+  "0x00541CC0": {
+    "name": "UICursor::IRender()",
+    "reason": "thunk",
+    "target_name": "gbUpdateCurTime"
+  },
+  "0x00442E80": {
+    "name": "UIFrameWnd::ctor()",
+    "reason": "thunk",
+    "target_name": "UIFrameWnd::_UIFrameWnd"
+  },
+  "0x004431D0": {
+    "name": "UIFrameWnd::DestroyCallingCtor()",
+    "reason": "thunk",
+    "target_name": "UIFrameWnd::ctor"
+  },
+  "0x00444AC0": {
+    "name": "UIFrameWnd::_UIFrameWnd_Full()",
+    "reason": "thunk",
+    "target_name": "UIFrameWnd::_UIFrameWnd"
+  },
+  "0x00442D40": {
+    "name": "UIFrameWnd::_UIFrameWnd_ovl_2d40()",
+    "reason": "thunk",
+    "target_name": "UIFrameWnd::_UIFrameWnd"
+  },
+  "0x0043DCB0": {
+    "name": "UILBColumn::_UILBColumn()",
+    "reason": "thunk",
+    "target_name": "UILBColumn::Destroy"
+  },
+  "0x0043DC90": {
+    "name": "UILBItem::_UILBItem()",
+    "reason": "thunk",
+    "target_name": "UILBColumn::UILBColumn"
+  },
+  "0x0043DEB0": {
+    "name": "UIListBox::AddRow()",
+    "reason": "thunk",
+    "target_name": "UIListBox::SetSubItem"
+  },
+  "0x0043DF10": {
+    "name": "UIListBox::CalHeightCount()",
+    "reason": "thunk",
+    "target_name": "PtrArray::Clear"
+  },
+  "0x0043DE90": {
+    "name": "UIListBox::Destroy()",
+    "reason": "thunk",
+    "target_name": "UIListBox::AddColumn"
+  },
+  "0x0043DED0": {
+    "name": "UIListBox::GetSubItemInfo()",
+    "reason": "thunk",
+    "target_name": "memset"
+  },
+  "0x00528D30": {
+    "name": "UINote::GetEntryPtr(int)",
+    "reason": "thunk",
+    "target_name": "return"
+  },
+  "0x004BF1C0": {
+    "name": "UIRoleDialog::Create(int)",
+    "reason": "thunk",
+    "target_name": "void"
+  },
+  "0x004B47E0": {
+    "name": "UISceneMap::Destructor()",
+    "reason": "thunk",
+    "target_name": "UIFrameWnd::_UIFrameWnd"
+  },
+  "0x00445F80": {
+    "name": "UIScene::GetPixelChannel(int,int,int,int)",
+    "reason": "thunk",
+    "target_name": "gbTexture::GetPixelChannel"
+  },
+  "0x0052E120": {
+    "name": "UIScene::LoadMapData()",
+    "reason": "thunk",
+    "target_name": "UIScene::CalcViewTransform"
+  },
+  "0x004538D0": {
+    "name": "UIStatic::IsHidden()",
+    "reason": "thunk",
+    "target_name": "LODWORD"
+  },
+  "0x0043BBB0": {
+    "name": "UIWnd::sub_43BBB0()",
+    "reason": "thunk",
+    "target_name": "UIWnd::_UIWnd"
+  },
+  "0x0044A7F0": {
+    "name": "UIWnd::sub_44A7F0()",
+    "reason": "thunk",
+    "target_name": "UIWnd::_UIWnd"
+  },
+  "0x00450390": {
+    "name": "UIWnd::sub_450390()",
+    "reason": "thunk",
+    "target_name": "UIWnd::sub_43BBB0"
   }
 }

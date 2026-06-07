@@ -100,14 +100,11 @@ def _get_skip_classes():
         for info in skip_data.values():
             if info.get('reason') == 'thunk':
                 name = info.get('name', '')
-                if '::' in name:
-                    # _nearby_ thunks are compiler-generated stubs, not real class
-                    # methods. They coexist alongside real methods and should not
-                    # cause the entire class to be skipped (e.g. PalScript had 222
-                    # real methods suppressed because of 4 _nearby_ stubs).
-                    method_part = name.split('::', 1)[1]
-                    if not method_part.startswith('_nearby_'):
-                        skip.add(name.split('::')[0])
+                # Only skip the entire class if the thunk is a class-level
+                # wrapper (j_ClassName). Method-level thunks (ClassName::method)
+                # should not suppress the whole class -- they're individual stubs.
+                if '::' not in name and name.startswith('j_'):
+                    skip.add(name[2:])
     return skip
 
 

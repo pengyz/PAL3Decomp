@@ -125,9 +125,16 @@ class DataStore:
                     self.thunks["sub_%s" % addr[2:].lstrip('0').lower()] = target
                     self.thunks[info['name']] = target
                     self.thunks[info['name'].replace('~', '_')] = target.replace('~', '_')
-                    # Collect thunk class names for type cast replacement
+                    # Also add short method name for OOP-transformed calls
+                    # (Stage 2 converts Class::Method(obj) -> obj->Method)
                     n = info.get('name', '')
                     if '::' in n:
+                        short = n.split('::', 1)[1]
+                        if short not in self.thunks:
+                            self.thunks[short] = target
+                        short_dtor = short.replace('~', '_')
+                        if short_dtor not in self.thunks:
+                            self.thunks[short_dtor] = target.replace('~', '_')
                         self.thunk_classes.add(n.split('::')[0])
             self.thunk_classes.add('j_std')
             self.thunk_classes.add('j_j_codecvt_base')
