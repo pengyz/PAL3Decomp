@@ -20,7 +20,7 @@
     "48": {
       "name": "m_fCamZ",
       "type": "float",
-      "source": "A:decomp PalScriptMgr::ExecuteFrame (0x42F460) used as float camera Z along m_fCamX/m_fCamY \u2014 5 accesses: lerp, LODWORD copy, float addition"
+      "source": "A:decomp PalScriptMgr::ExecuteFrame (0x42F460) used as float camera Z along m_fCamX/m_fCamY — 5 accesses: lerp, LODWORD copy, float addition"
     },
     "76": {
       "name": "m_scepath",
@@ -30,7 +30,7 @@
     "80": {
       "name": "m_bBigMapState",
       "type": "unsigned char",
-      "source": "A:decomp PalScriptMgr::ExecuteFrame LOBYTE(this->m_bigMapState) compare to 0/1 + SetBigMapState LOBYTE assignment \u2014 byte-only access"
+      "source": "A:decomp PalScriptMgr::ExecuteFrame LOBYTE(this->m_bigMapState) compare to 0/1 + SetBigMapState LOBYTE assignment — byte-only access"
     },
     "40": {
       "name": "m_fCamX",
@@ -236,13 +236,13 @@
     "840": {
       "name": "m_pScriptBlock",
       "type": "char *",
-      "source": "ida_decomp:ExecuteOpcode = this+76, 11 refs | type_fix:int\u2192void*(decomp ptr usage)",
+      "source": "ida_decomp:ExecuteOpcode = this+76, 11 refs | type_fix:int→void*(decomp ptr usage)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "844": {
       "name": "m_pExecObj",
       "type": "char *",
-      "source": "ida_decomp:ExecuteOpcode deref as void***, 12 refs | type_fix:int\u2192void*(triple deref)",
+      "source": "ida_decomp:ExecuteOpcode deref as void***, 12 refs | type_fix:int→void*(triple deref)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "848": {
@@ -253,7 +253,7 @@
     "864": {
       "name": "m_pWaitObj",
       "type": "char *",
-      "source": "ida_decomp:ExecuteOpcode deref as void**, 4 refs | type_fix:int\u2192void*(double deref)",
+      "source": "ida_decomp:ExecuteOpcode deref as void**, 4 refs | type_fix:int→void*(double deref)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "872": {
@@ -375,7 +375,7 @@
     "808": {
       "name": "m_pCmdBuffer",
       "type": "char *",
-      "source": "ida_decomp:PAL3_Helper_426E80(this,&a2) | type_fix:int\u2192void*(naming+decomp)",
+      "source": "ida_decomp:PAL3_Helper_426E80(this,&a2) | type_fix:int→void*(naming+decomp)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "828": {
@@ -411,18 +411,18 @@
     "9488": {
       "name": "m_pScriptInstA",
       "type": "char *",
-      "source": "ida_decomp:Destroy(this)\u2192+9500, 2 refs | type_fix:int\u2192void*(destroy pattern)",
+      "source": "ida_decomp:Destroy(this)→+9500, 2 refs | type_fix:int→void*(destroy pattern)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "9492": {
       "name": "m_pScriptInstD",
       "type": "PalScriptMgr *",
-      "source": "ida_decomp:Destroy(this)\u2192+9504, 2 refs+codegen_infer"
+      "source": "ida_decomp:Destroy(this)→+9504, 2 refs+codegen_infer"
     },
     "9496": {
       "name": "m_pScriptInstE",
       "type": "char *",
-      "source": "ida_decomp:Destroy(this), 2 refs | type_fix:int\u2192void*(destroy pattern)",
+      "source": "ida_decomp:Destroy(this), 2 refs | type_fix:int→void*(destroy pattern)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "9500": {
@@ -532,7 +532,7 @@
     },
     "160": {
       "name": "m_pExecState",
-      "type": "int",
+      "type": "void *",
       "source": "A:0_fpu_in_14+_refs_all_mov_load_store"
     },
     "164": {
@@ -563,7 +563,7 @@
     "292": {
       "name": "m_pSubScript",
       "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192void*(naming m_p + annotate_todo)",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "296": {
@@ -594,13 +594,13 @@
     "788": {
       "name": "m_pRoleSystem",
       "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192void*(naming m_p + annotate_todo)",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "876": {
       "name": "m_pScriptInst",
       "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192void*(naming m_p + annotate_todo)",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "1908": {
@@ -621,7 +621,7 @@
     "3280": {
       "name": "m_pScreenEffect",
       "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192void*(naming m_p + annotate_todo)",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "8452": {
@@ -632,13 +632,13 @@
     "9480": {
       "name": "m_pScriptInstB",
       "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192void*(naming m_p + annotate_todo)",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "9484": {
       "name": "m_pScriptInstC",
       "type": "char *",
-      "source": "gap_fill:ida_decomp_access | type_fix:int\u2192void*(naming m_p + annotate_todo)",
+      "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "24": {
@@ -738,7 +738,7 @@
     },
     "152": {
       "name": "m_pCurScriptBlock",
-      "type": "int",
+      "type": "void *",
       "source": "binary_scan:8refs"
     },
     "176": {
@@ -803,7 +803,7 @@
     },
     "412": {
       "name": "m_pRoleScript",
-      "type": "int",
+      "type": "void *",
       "source": "binary_scan:1refs"
     },
     "420": {
@@ -813,7 +813,7 @@
     },
     "448": {
       "name": "m_pOpResult",
-      "type": "int",
+      "type": "void *",
       "source": "binary_scan:4refs"
     },
     "468": {
@@ -828,7 +828,7 @@
     },
     "628": {
       "name": "m_pCaseTable",
-      "type": "int",
+      "type": "void *",
       "source": "binary_scan:8refs"
     },
     "632": {
