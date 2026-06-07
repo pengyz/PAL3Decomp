@@ -545,6 +545,134 @@ IDA 默认加 `_0`/`_1` 后缀，导致 export 出的 cpp 方法名和 header �
 
 **当前状态**: 未实现。PtrArray 无参构造器等少数 case 暂时保持现状。
 
+## Stub/Thunk 函数处理系统
+
+IDA 反编译产出中大量函数实际上是编译器生成的 stub/wrapper，它们不包含独立逻辑，
+只是转发调用到另一个函数。这些 stub 仍被虚函数表引用或被其他函数调用，无法物理消除，
+但可以通过 annotation 和 codegen 联动自动替换为对目标函数的直接调用。
+
+### 识别 stub 函数
+
+通过 decomp JSON 的函数体分析识别 stub：
+
+```python
+# 模式: { return TargetFunc(args...); } 或 { TargetFunc(args...); }
+body = decompiled.split('{',1)[-1].rsplit('}',1)[0]
+calls = re.findall(r'(?:return\s+)?(\w+(?:::\w+)?)\s*\(', body)
+if len(calls) == 1 and body.count(';') <= 2:
+    target = calls[0]
+    # target 不是 sub_/_nearby_/unknown_libname 时判定为 stub
+```
+
+典型 stub 模式：
+- **类方法委托**：`ClassName::Method(...)` → 直接替换为 `TargetClass::Method(...)`
+- **析构包装**：`~ClassName(...)` → 替换为 `ClassName::Destroy(...)`
+- **操作符包装**：`operator=(...)` → 替换为 `Assign(...)`
+- **CRT 包装**：`j_XXXX(...)` → 编译器生成的 import 包装
+
+非 stub（保留反编译）：
+- 函数体包含条件判断、循环、switch 等逻辑语句
+- 调用了 `sub_`/`_nearby_` 等未命名函数
+- body 中的调用数 > 1 或语句数 > 2
+
+### 标记 thunk
+
+在 `data/annotations/skip_functions.json` 中添加条目：
+
+```json
+{
+  "0x0043BBB0": {
+    "name": "UIWnd::sub_43BBB0",
+    "reason": "thunk",
+    "target_name": "UIWnd::_UIWnd"
+  }
+}
+```
+
+字段说明：
+- `reason: "thunk"` — 标记为跳转型 stub
+- `target_name` — 替换目标函数的全限定名（必须包含 `ClassName::`）
+
+### codegen 替换机制
+
+```
+skip_functions.json
+    ↓ data.py: 加载 thunks
+    store.thunks = {
+      "sub_43bbb0": "UIWnd::_UIWnd",     # 地址短名
+      "UIWnd::sub_43BBB0": "UIWnd::_UIWnd",  # 全限定名
+      "sub_43BBB0": "UIWnd::_UIWnd",         # 函数短名（OOP 变换后）
+      "_UIWnd": "UIWnd::_UIWnd",             # 方法短名
+    }
+    ↓ stage4_substitution.py: _build_identifier_map() + thunk_map
+    ↓ AST 级别标识符替换
+    sub_43BBB0(...) → UIWnd::_UIWnd(...)
+    this->sub_43BBB0(...) → this->_UIWnd(...)
+```
+
+替换发生在 codegen 的 Stage 4（token 替换阶段），在所有 OOP 变换之后执行，
+因此 thunk_map 中同时包含全限定名（`ClassName::method`）和短名（`method`），
+以匹配 OOP 变换前后的不同代码形态。
+
+### 语法 vs 语义 stub
+
+| 类型 | 函数体模式 | 示例 | 处理 |
+|------|-----------|------|------|
+| 纯语法 stub | `{ Target(this); }` | `UIWnd::Destroy` → `UIWnd::_UIWnd` | thunk |
+| 带参数转发 | `{ return Target(this, args...); }` | `Actor::GetAnimDuration` → `gbActor::GetActionDuration` | thunk |
+| 字段设置器 | `{ this->field = val; }` | `CameraCtrl::SetCamMode` → `LODWORD(this->m_mode)=mode` | 保持原样 |
+| 简单条件 | `{ if (cond) return X; else return Y; }` | `PAL_GDB::GDB_GetRoleNum` | 保持原样 |
+
+**经验**：字段设置器和简单条件函数虽然代码短，但包含真实语义逻辑，不应标记为 thunk。
+thunk 只应用于函数体仅包含一次函数调用且无其他逻辑的函数。
+
+### 批量检测脚本
+
+```bash
+# 步1: 扫描所有未分类函数，检测 stub 模式
+python -c "
+import json, os, re
+d = 'asm/pal3/decomp'
+for f in os.listdir(d):
+    if not f.endswith('.json'): continue
+    j = json.load(open(d+'/'+f))
+    if j.get('class'): continue  # 已归属的跳过
+    dec = (j.get('decompiled_c') or j.get('decompiled','')).replace('\\\\n','\\n')
+    body = dec.split('{',1)[-1].rsplit('}',1)[0] if '{' in dec else ''
+    calls = re.findall(r'(?:return\\s+)?([A-Za-z_]\\w*(?:::\\w+)?)\\s*\\(', body)
+    if len(calls)==1 and body.count(';')<=2 and '::' in calls[0]:
+        print(f'{j[\"address\"]}: {j[\"name\"]} -> {calls[0]}')
+" > stubs.txt
+
+# 步2: 人工审核后批量添加到 skip_functions.json
+# （需要确认 target_name 正确，排除设置了字段但看起来像 stub 的函数）
+```
+
+### 验证
+
+```bash
+# 验证 thunk 替换是否生效
+grep -c 'EnableActionTransMtl' src/pal3/gen/Role/Actor.cpp
+# >0 表示 thunk 替换成功
+
+# 检查 thunk 函数是否不再导出
+ls asm/pal3/decomp/ | wc -l
+# 每次添加 thunk 后导出文件数应减少
+
+# 检查前向声明变化
+python -c "
+import os, re
+c=0
+for r,d,f in os.walk('src/pal3/gen'):
+    for fn in f:
+        if not fn.endswith('.cpp'): continue
+        t=open(r+'/'+fn).read()
+        m=t.find('\\n// 0x')
+        for x in re.findall(r'int (sub_\\\\w+)\\\\(\\\\.\\\\.\\\\.\\\\)', t[:m if m>0 else len(t)]):
+            c+=1
+print(f'Remaining sub_ forward decls: {c}')
+```
+
 ## 退出条件
 
 - 对齐违规 = 0
