@@ -359,10 +359,10 @@
       "source": "A+:query_class_full memset(&_todo_560[239],0,0xA000)"
     },
     "1424": {
-      "name": "_todo_590",
+      "name": "m_ScriptRoleBuf",
       "type": "int[1412]",
       "comment": "Overlapped memory: used as RoleSystem (via Buffer/g_ScriptRoleBuf) and CEffMgr effect table. Capped at 5648B to avoid overlap with m_pCCBStageRoleFind.",
-      "source": "annotation"
+      "source": "annotation | iter2_field_rename"
     },
     "7072": {
       "name": "m_pCCBStageRoleFind",
