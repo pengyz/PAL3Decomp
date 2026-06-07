@@ -321,6 +321,31 @@ def check():
         if size == 0 and members:
             warnings.append(f"structs[{sname}]: no size (has {len(members)} members but size=0)")
 
+    # 5. Check skip_functions thunks vs struct methods / functions conflicts
+    # When a function is in skip as reason=thunk AND in struct methods,
+    # apply_annotations step 1 sets the mangled name, then the skip override
+    # (line 1038) overwrites it with the raw skip name, breaking the mangler.
+    skip_path = os.path.join(ANN_DIR, 'skip_functions.json')
+    if os.path.exists(skip_path):
+        skip_data = json.load(open(skip_path, encoding='utf-8'))
+        # Build set of all method addresses from structs + functions
+        method_addrs = set()
+        for sname, sinfo in structs.items():
+            for addr in sinfo.get('methods', {}):
+                method_addrs.add(addr)
+        for addr in funcs:
+            method_addrs.add(addr)
+        # A function must not be in both skip_functions AND struct methods/functions.
+        # skip means "don't export"; struct methods means "is a real function".
+        # Both can't be true — remove from skip_functions.json.
+        for addr in skip_data:
+            if addr in method_addrs:
+                skip_name = skip_data[addr].get('name', '?')
+                errors.append(
+                    f"skip_functions[{addr}] '{skip_name}' also exists in"
+                    f" struct methods or functions.json — remove from skip_functions.json (one source only)"
+                )
+
     return errors, warnings
 
 

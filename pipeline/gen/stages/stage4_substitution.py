@@ -1460,6 +1460,12 @@ def run(code, ctx):
 
 
 
+    # Text-level thunk fallback: replace identifiers missed by AST traversal
+    # (tree-sitter may not expose some identifiers, esp. after -> or . operators)
+    for _tname, _trepl in store.thunks.items():
+        if _tname in code:
+            code = code.replace(_tname, _trepl)
+
     # Fix stru_ overlaps: replace stru_XXXX.member[N] with cast into containing struct
     code = _resolve_stru_overlap(code)
 

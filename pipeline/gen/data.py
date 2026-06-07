@@ -128,8 +128,10 @@ class DataStore:
                     # Also add short method name for OOP-transformed calls
                     # (Stage 2 converts Class::Method(obj) -> obj->Method)
                     n = info.get('name', '')
-                    if '::' in n:
-                        short = n.split('::', 1)[1]
+                    # Strip trailing () from function names
+                    clean_n = n.rstrip(')').split('(')[0] if '(' in n else n
+                    if '::' in clean_n:
+                        short = clean_n.split('::', 1)[1]
                         if short not in self.thunks:
                             self.thunks[short] = target
                         short_dtor = short.replace('~', '_')
