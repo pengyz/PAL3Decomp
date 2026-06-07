@@ -17,10 +17,9 @@
     },
     "8": {
       "name": "m_pTarget",
-      "type": "char *",
-      "source": "A:binary VA=0x41CFC0 mov eax,[esp+4]; mov [ecx+8],eax; mov edx,[eax+0x1EC] (param stored then deref as object)",
-      "comment": "tracked/followed object (typed as void*, actually a game object)",
-      "note": "replaced void* with char* (IDB struct compat)"
+      "type": "InputSystem *",
+      "source": "A:binary VA=0x41CFC0 mov eax,[esp+4]; mov [ecx+8],eax; mov edx,[eax+0x1EC] (param stored then deref as InputSystem)",
+      "comment": "tracked camera target object (cast to InputSystem for ProcessKeyboard)"
     },
     "12": {
       "name": "m_nFlags",
@@ -47,14 +46,16 @@
       "comment": "current camera operational state/sub-state"
     },
     "28": {
-      "name": "_field_01C",
+      "name": "m_fAngleDest",
       "type": "float",
-      "source": "binary:5x access | type_fix"
+      "source": "binary:5x access | type_fix | rename:used as fTarget in GetLerpPos",
+      "comment": "angle interpolation destination (for orbit/follow transitions)"
     },
     "32": {
-      "name": "_field_020",
+      "name": "m_fAngleSrc",
       "type": "float",
-      "source": "binary:11x access | type_fix"
+      "source": "binary:11x access | type_fix | rename:used as fCurrent in GetLerpPos",
+      "comment": "angle interpolation source (for orbit/follow transitions)"
     },
     "36": {
       "name": "m_fFOV",
@@ -75,9 +76,10 @@
       "comment": "flags for camera behavior (bitfield, actually stored as int)"
     },
     "48": {
-      "name": "_field_030",
+      "name": "m_fParamF",
       "type": "float",
-      "source": "binary:5x access | type_fix"
+      "source": "binary:5x access | type_fix | rename:used as fCurrent in GetLerpPos(target+113, THIS, m_bCamFlag, fFactor)",
+      "comment": "generic float parameter for camera transitions"
     },
     "52": {
       "name": "m_fLerpPosX",
