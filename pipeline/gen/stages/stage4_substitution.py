@@ -1088,6 +1088,56 @@ def _resolve_stru_overlap(code):
             _replace_bare, code
         )
 
+    # Case 4: dword_/byte_ IDA address references that overlap struct_instances.
+    # IDA generates dword_XXXXXX for unnamed data at absolute addresses that
+    # actually belong inside known struct instances (e.g. g_SceneMgr).
+    # Resolve to member expressions where possible.
+    for _m4 in re.finditer(r'\b(?:dword_|byte_|word_|stru_|unk_)([0-9A-Fa-f]+)\b', code):
+        _full4 = _m4.group(0)
+        _addr_str4 = _m4.group(1)
+        try:
+            _addr4 = int(_addr_str4, 16)
+        except ValueError:
+            continue
+        for _base4, _end4, _iname4, _itype4 in store.struct_instances:
+            if not (_base4 <= _addr4 < _end4):
+                continue
+            _off4 = _addr4 - _base4
+            # Try exact member match first
+            _mem4 = store.struct_members.get(_itype4, {}).get(_off4)
+            if _mem4:
+                _repl4 = '%s.%s' % (_iname4, _mem4[0])
+                code = code.replace(_full4, _repl4)
+                break
+            # Find containing member
+            _containing4 = None
+            _containing_type4 = ''
+            for _coff4 in sorted(store.struct_members.get(_itype4, {}).keys()):
+                if _coff4 <= _off4:
+                    _containing4 = _coff4
+                    _containing_type4 = store.struct_members[_itype4][_coff4][1]
+            if _containing4 is not None:
+                _name4 = store.struct_members[_itype4][_containing4][0]
+                _sub4 = _off4 - _containing4
+                # If containing member is an array, compute index
+                _arr4 = re.match(r'^(\w+)\[(\d+)\]$', _containing_type4)
+                if _arr4 and _sub4 % 4 == 0:
+                    _elem4 = int(_arr4.group(2))
+                    _idx4 = _sub4 // 4
+                    if _idx4 < _elem4:
+                        _repl4 = '%s.%s[%d]' % (_iname4, _name4, _idx4)
+                        code = code.replace(_full4, _repl4)
+                        break
+                # Otherwise use raw offset cast
+                _cast4 = 'int' if _full4.startswith('dword_') else 'char'
+                _repl4 = '*(%s *)((char *)&%s + %d)' % (_cast4, _iname4, _off4)
+                code = code.replace(_full4, _repl4)
+                break
+            # No member at all — use raw offset cast
+            _repl4 = '*(int *)((char *)&%s + %d)' % (_iname4, _off4)
+            code = code.replace(_full4, _repl4)
+            break
+
     return code
 
 
