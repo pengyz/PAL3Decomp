@@ -167,3 +167,8 @@ inline F mfp_cast(M mfp) {
     u.m = mfp;
     return u.f;
 }
+
+// Hex-Rays MACRO_NULL enumeration (None = 0)
+#ifndef None
+#define None 0
+#endif
