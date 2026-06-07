@@ -17,9 +17,9 @@
     },
     "8": {
       "name": "m_pTarget",
-      "type": "InputSystem *",
-      "source": "A:binary VA=0x41CFC0 mov eax,[esp+4]; mov [ecx+8],eax; mov edx,[eax+0x1EC] (param stored then deref as InputSystem)",
-      "comment": "tracked camera target object (cast to InputSystem for ProcessKeyboard)"
+      "type": "void *",
+      "source": "A:binary VA=0x41CFC0 stored as InputSystem* from script param; float data at +468+ accessed as float*",
+      "comment": "camera target object (received from scripts, typed as void*; cast to InputSystem* for ProcessKeyboard, to float* for lerp data)"
     },
     "12": {
       "name": "m_nFlags",
