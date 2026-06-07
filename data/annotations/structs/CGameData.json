@@ -373,14 +373,14 @@
       "source": "binary:gamedata_gap+manual_ida_load"
     },
     "652": {
-      "name": "_field_028C",
+      "name": "m_bSceneLoaded",
       "type": "char",
-      "source": "manual_fix:shrink_to_gap"
+      "source": "manual_fix:shrink_to_gap | ida_xref"
     },
     "653": {
-      "name": "_field_028D",
+      "name": "m_bSceneActive",
       "type": "unsigned char",
-      "source": "binary:gamedata_gap"
+      "source": "binary:gamedata_gap | ida_xref"
     },
     "728": {
       "name": "m_nBattleResult",
@@ -598,9 +598,9 @@
       "source": "binary_discovery:1refs"
     },
     "3829": {
-      "name": "_todo_EF5",
+      "name": "m_bDialogActive",
       "type": "unsigned char",
-      "source": "binary_discovery:1refs"
+      "source": "binary_discovery:1refs | ida_xref"
     }
   },
   "binary_size": 28268,

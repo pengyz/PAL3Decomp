@@ -86,9 +86,9 @@
       "source": "B:naming_m_n+FPU_misattrib"
     },
     "128": {
-      "name": "_todo_080",
+      "name": "m_fMoveX",
       "type": "float",
-      "source": "B:naming_m_n+FPU_misattrib"
+      "source": "B:naming_m_n+FPU_misattrib | ida_xref"
     },
     "132": {
       "name": "_todo_040",
@@ -96,9 +96,9 @@
       "source": "binary_scan:1refs"
     },
     "136": {
-      "name": "_todo_088",
+      "name": "m_fMoveZ",
       "type": "float",
-      "source": "binary_scan:50refs"
+      "source": "binary_scan:50refs | ida_xref"
     },
     "140": {
       "name": "m_pPathListHead",
@@ -172,19 +172,19 @@
       "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "184": {
-      "name": "_todo_0B8",
+      "name": "m_fScale",
       "type": "float",
-      "source": "binary_scan:3refs"
+      "source": "binary_scan:3refs | ida_xref"
     },
     "188": {
-      "name": "_todo_0BC",
+      "name": "m_nImageIdx",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs | ida_xref"
     },
     "192": {
-      "name": "_todo_0C0",
+      "name": "m_fMoveSpd",
       "type": "float",
-      "source": "A:FPU_post_reattrib_0x40c9cf"
+      "source": "A:FPU_post_reattrib_0x40c9cf | ida_xref"
     },
     "206": {
       "name": "m_byStateArray",
@@ -192,9 +192,9 @@
       "source": "decomp:_nearby_417040_byte_loop_32entries"
     },
     "208": {
-      "name": "_field_0D0",
+      "name": "m_bFlags",
       "type": "char",
-      "source": "manual_fix:shrink_to_gap"
+      "source": "manual_fix:shrink_to_gap | ida_xref"
     },
     "209": {
       "name": "m_bActionState",
@@ -217,19 +217,19 @@
       "source": "B:naming_m_n+FPU_misattrib"
     },
     "228": {
-      "name": "_todo_0E4",
+      "name": "m_nActionType",
       "type": "int",
-      "source": "binary_scan:4refs"
+      "source": "binary_scan:4refs | ida_xref"
     },
     "232": {
-      "name": "_todo_0E8",
+      "name": "m_nActionStep",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs | ida_xref"
     },
     "236": {
-      "name": "_field_0EC",
+      "name": "m_fActionParam",
       "type": "float",
-      "source": "A:FPU_post_reattrib_0x44ce84"
+      "source": "A:FPU_post_reattrib_0x44ce84 | ida_xref"
     },
     "240": {
       "name": "m_nSpawnFlags",
@@ -282,9 +282,9 @@
       "source": "ida_decomp:_nearby_417040 Actor::call(this+680, (char*)this, 0)"
     },
     "276": {
-      "name": "_field_114",
+      "name": "m_pWaypointWnd",
       "type": "UIWnd *",
-      "source": "binary:gap_access+codegen_infer"
+      "source": "binary:gap_access+codegen_infer | ida_xref"
     },
     "288": {
       "name": "m_nParamArray",
@@ -317,19 +317,19 @@
       "source": "decomp:_nearby_417040_p+=3(12byte_stride)_gbVec3D_array"
     },
     "328": {
-      "name": "_todo_148",
+      "name": "m_nMoveSrc",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs | ida_xref"
     },
     "332": {
-      "name": "_todo_14C",
+      "name": "m_nMoveDst",
       "type": "int",
-      "source": "binary_scan:3refs"
+      "source": "binary_scan:3refs | ida_xref"
     },
     "336": {
-      "name": "_todo_150",
+      "name": "m_nMoveStep",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs | ida_xref"
     },
     "352": {
       "name": "m_nSavedState",
@@ -368,9 +368,9 @@
       "source": "binary:gap_access"
     },
     "384": {
-      "name": "_todo_180",
+      "name": "m_fInactiveTime",
       "type": "float",
-      "source": "reverted_auto_semantic:2x"
+      "source": "reverted_auto_semantic:2x | ida_xref"
     },
     "400": {
       "name": "_field_190",

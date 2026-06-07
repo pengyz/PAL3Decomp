@@ -229,9 +229,9 @@
       "source": "decomp:11x_+32/+36_float_targetXY"
     },
     "448": {
-      "name": "_todo_1C0",
+      "name": "m_nTurnCounter",
       "type": "int",
-      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic|A:slot array access stride=24 via m_nActionIdx"
+      "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic|A:slot array access stride=24 via m_nActionIdx | ida_xref"
     },
     "452": {
       "name": "m_fRotPitch",
@@ -274,9 +274,9 @@
       "source": "decomp:3x_24stride*m_nActionIdx_angle_57.3(radian_to_deg)"
     },
     "496": {
-      "name": "_todo_1F0",
+      "name": "m_fTurnDelay",
       "type": "float",
-      "source": "A+:decomp *(float*)&this->_todo_1F0 (1 occurrences)"
+      "source": "A+:decomp *(float*)&this->_todo_1F0 (1 occurrences) | ida_xref"
     },
     "500": {
       "name": "m_nActionTimer",
@@ -294,14 +294,14 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "512": {
-      "name": "_todo_200",
+      "name": "m_pSubStage",
       "type": "float",
-      "source": "raw_decomp:Hex-Rays_type_cast|A:binary LEA + UIFrameWnd dtor call"
+      "source": "raw_decomp:Hex-Rays_type_cast|A:binary LEA + UIFrameWnd dtor call | ida_xref"
     },
     "516": {
-      "name": "_todo_204",
+      "name": "m_nSubStageState",
       "type": "int",
-      "source": "reverted_auto_semantic:1x_access|reverted:pseudo_semantic|A:binary *(gbVec3D*)&this+0x204 in ProcessTurn"
+      "source": "reverted_auto_semantic:1x_access|reverted:pseudo_semantic|A:binary *(gbVec3D*)&this+0x204 in ProcessTurn | ida_xref"
     },
     "520": {
       "name": "_todo_208",
@@ -385,14 +385,14 @@
       "source": "decomp ref"
     },
     "900": {
-      "name": "_field_384",
+      "name": "m_hTask",
       "type": "int",
-      "source": "decomp ref (inside m_Task array)"
+      "source": "decomp ref (inside m_Task array) | ida_xref"
     },
     "904": {
-      "name": "_field_388",
+      "name": "m_hTaskParam",
       "type": "int",
-      "source": "decomp ref (inside m_Task array)"
+      "source": "decomp ref (inside m_Task array) | ida_xref"
     },
     "1392": {
       "name": "_todo_570",
@@ -530,14 +530,14 @@
       "source": "A:cmp_[esi+19FCh]_edi_x3_ResolveActionEffect|naming:action_id_filter"
     },
     "6664": {
-      "name": "_todo_1A08",
+      "name": "m_nDoneCount",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs | ida_xref"
     },
     "6668": {
-      "name": "_todo_1A0C",
+      "name": "m_nTotalCount",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs | ida_xref"
     },
     "8052": {
       "name": "m_fTurnTimer",

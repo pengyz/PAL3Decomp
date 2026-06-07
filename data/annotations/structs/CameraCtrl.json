@@ -290,29 +290,29 @@
       "source": "A:FPU_disp32_0x533f64"
     },
     "620": {
-      "name": "_todo_26C",
+      "name": "m_wParamA",
       "type": "WORD",
-      "source": "A:binary_cmp_word_26Ch"
+      "source": "A:binary_cmp_word_26Ch | ida_xref"
     },
     "624": {
-      "name": "_todo_270",
+      "name": "m_wParamB",
       "type": "WORD",
-      "source": "A:binary_cmp_word_270h"
+      "source": "A:binary_cmp_word_270h | ida_xref"
     },
     "688": {
-      "name": "_field_2B0",
+      "name": "m_nCamParam0",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "binary:1x access | ida_xref"
     },
     "692": {
-      "name": "_field_2B4",
+      "name": "m_nCamParam1",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "binary:1x access | ida_xref"
     },
     "696": {
-      "name": "_field_2B8",
+      "name": "m_nCamParam2",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "binary:1x access | ida_xref"
     },
     "700": {
       "name": "_todo_2BC",
@@ -320,9 +320,9 @@
       "source": "gap_fill:ida_decomp_access"
     },
     "877": {
-      "name": "_todo_36D",
+      "name": "m_bCamEventFlag",
       "type": "unsigned char",
-      "source": "gap_fill:ida_decomp_access"
+      "source": "gap_fill:ida_decomp_access | ida_xref | fix:rename"
     },
     "888": {
       "name": "m_bPageMode",
@@ -370,9 +370,9 @@
       "source": "ida_decomp:UpdateBlendWeight <=0 check, set 0, 15 refs"
     },
     "924": {
-      "name": "_todo_39C",
+      "name": "m_nBlendState",
       "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "source": "binary:disp32_1hits_1funcs | ida_xref"
     },
     "928": {
       "name": "m_nSlotParam",
@@ -380,19 +380,19 @@
       "source": "A:store_imm183Ah+array_idx_[esi+eax*4+3A0h]|naming:slot_state_param"
     },
     "1188": {
-      "name": "_todo_4A4",
+      "name": "m_nBlendWeightA",
       "type": "int",
-      "source": "binary:disp32_3hits_2funcs"
+      "source": "binary:disp32_3hits_2funcs | ida_xref"
     },
     "1192": {
-      "name": "_field_4A8",
+      "name": "m_nBlendWeightB",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "binary:1x access | ida_xref"
     },
     "1196": {
-      "name": "_field_4AC",
+      "name": "m_nBlendWeightC",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "binary:1x access | ida_xref"
     },
     "1200": {
       "name": "m_roleParams",

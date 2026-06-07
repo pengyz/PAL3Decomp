@@ -8,9 +8,9 @@
       "source": "binary:disp32_17hits_13funcs"
     },
     "132": {
-      "name": "_todo_084",
+      "name": "m_fTexParam",
       "type": "float",
-      "source": "binary:disp32_14hits_13funcs"
+      "source": "binary:disp32_14hits_13funcs | ida_xref"
     },
     "136": {
       "name": "m_fAngle",
@@ -55,7 +55,7 @@
     "528": {
       "name": "m_pTexture",
       "type": "char *",
-      "source": "binary:disp32_13hits_2funcs | type_fix:int\u2192void*(naming m_p + high ref pointer semantics)",
+      "source": "binary:disp32_13hits_2funcs | type_fix:int→void*(naming m_p + high ref pointer semantics)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "32": {
@@ -124,14 +124,14 @@
       "source": "decomp:lstrcpyA_target"
     },
     "184": {
-      "name": "_todo_0B8",
+      "name": "m_nTexWidth",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs | ida_xref"
     },
     "188": {
-      "name": "_todo_0BC",
+      "name": "m_nTexHeight",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs | ida_xref"
     },
     "204": {
       "name": "m_Image",
@@ -154,14 +154,14 @@
       "source": "binary_scan:3refs"
     },
     "332": {
-      "name": "_todo_14C",
+      "name": "m_nStride",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs | ida_xref"
     },
     "336": {
-      "name": "_todo_150",
+      "name": "m_nDataSize",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref"
     },
     "344": {
       "name": "_todo_158",
@@ -169,14 +169,14 @@
       "source": "binary_scan:1refs"
     },
     "384": {
-      "name": "_todo_180",
+      "name": "m_nBPP",
       "type": "int",
-      "source": "binary_scan:2refs"
+      "source": "binary_scan:2refs | ida_xref"
     },
     "388": {
-      "name": "_todo_184",
+      "name": "m_nDataOffset",
       "type": "int",
-      "source": "binary_scan:1refs"
+      "source": "binary_scan:1refs | ida_xref"
     },
     "408": {
       "name": "_todo_198",
