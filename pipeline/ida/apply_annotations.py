@@ -870,6 +870,81 @@ def import_gbengine_types():
         print("[gb] gbengine import function types set: %d" % gb_sig_ok)
 
 
+# ============================================================
+# VC6 mangled name generator
+# ============================================================
+_VC6_TC = {
+    'void': 'X', 'char': 'D', 'unsigned char': 'E',
+    'short': 'F', 'unsigned short': 'G',
+    'int': 'H', 'unsigned int': 'I',
+    'long': 'J', 'unsigned long': 'K',
+    'float': 'M', 'double': 'N', 'bool': '_N',
+    'BYTE': 'E', 'WORD': 'G', 'DWORD': 'K', 'BOOL': 'I', 'UINT': 'I',
+}
+_VC6_CC = {'__thiscall': 'A', '__cdecl': 'C', '__stdcall': 'G', '__fastcall': 'I'}
+
+
+def _vc6_encode_type(t):
+    t = t.strip()
+    is_const = t.startswith('const ')
+    if is_const: t = t[6:].strip()
+    is_ref = t.endswith('&')
+    if is_ref: t = t[:-1].strip()
+    ptr = 0
+    while t.endswith('*'):
+        t = t[:-1].strip(); ptr += 1
+    tag = None
+    if t.startswith('struct '): tag = 'U'; t = t[7:].strip()
+    elif t.startswith('class '): tag = 'V'; t = t[6:].strip()
+    code = _VC6_TC.get(t)
+    if code is None and ptr > 0: code = 'U' + t + '@@'
+    elif code is None and tag: code = tag + t + '@@'
+    elif code is None:
+        if t.startswith('unsigned '): code = _VC6_TC.get(t[9:].strip())
+        if code is None: code = 'H'
+    if is_ref: code = 'A' + code
+    for _ in range(ptr):
+        code = 'P' + ('B' if (is_const and _ == 0) else 'A') + code
+    return code
+
+
+def _vc6_strip_param_name(p):
+    m = re.match(r'^(.+\*)\s*\w*$', p)
+    if m: return m.group(1).strip()
+    m = re.match(r'^(.+?)\s+\w+$', p)
+    if m: return m.group(1).strip()
+    return p.strip()
+
+
+def _mangle_vc6(cls_name, method_name, sig):
+    paren = sig.find('(') if sig else -1
+    if paren == -1: return '?' + method_name + '@' + cls_name + '@@QAEXXZ'
+    prefix = sig[:paren].strip()
+    pstr = sig[paren + 1:sig.rfind(')')] if sig.rfind(')') > paren else ''
+    cc = '__thiscall'
+    for c in ['__thiscall', '__cdecl', '__stdcall', '__fastcall']:
+        if c in prefix: cc = c; break
+    ret = prefix.replace(cc, '').strip()
+    ret = re.sub(r'\w+::\w+', '', ret).strip()
+    pstr = re.sub(r'\w+\s*\*\s*(?:__hidden\s+)?this\s*,?\s*', '', pstr)
+    params = []
+    if pstr and pstr.strip() not in ('', 'void'):
+        depth = 0; cur = ''
+        for ch in pstr:
+            if ch in '<([': depth += 1; cur += ch
+            elif ch in '>)]': depth -= 1; cur += ch
+            elif ch == ',' and depth == 0:
+                if cur.strip(): params.append(cur.strip()); cur = ''
+            else: cur += ch
+        if cur.strip(): params.append(cur.strip())
+    r = '?' + method_name + '@' + cls_name + '@@'
+    r += 'Q' + _VC6_CC.get(cc, 'A') + 'E'
+    r += _vc6_encode_type(ret)
+    for p in params: r += _vc6_encode_type(_vc6_strip_param_name(p))
+    r += '@Z'
+    return r
+
+
 def apply_annotations():
     ida_auto.auto_wait()
 
@@ -931,18 +1006,21 @@ def apply_annotations():
             if cur:
                 ida_name.set_name(addr, "", ida_name.SN_NOWARN)
 
-            # Use full annotation name (ClassName::Method). IDA supports :: in names.
-            # Each class's methods get unique names, avoiding cross-class conflicts
-            # that would cause IDA to append _0/_1 suffixes.
-            if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
-                _actual = ida_name.get_name(addr)
-                if _actual != name:
-                    # IDA mangled the name (same-class overload conflict).
-                    # The annotation should use __ovl_ADDR suffix for overloads.
-                    print('[!] NAME CONFLICT (need __ovl_): annot=%s actual=%s' % (name, _actual))
-                renamed += 1
+            # Use mangled name for class methods (globally unique, no _N conflict)
+            # or simple name for free functions.
+            if '::' in name:
+                _cls, _method = name.split('::', 1)
+                _sig = info.get('signature', '')
+                _mangled = _mangle_vc6(_cls, _method, _sig)
+                if _mangled and ida_name.set_name(addr, _mangled, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+                    renamed += 1
+                else:
+                    rename_fail.append((addr_str, cur, name))
             else:
-                print('[!] SET_NAME FAILED: %s @ %s' % (name, addr_str))
+                if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+                    renamed += 1
+                else:
+                    rename_fail.append((addr_str, cur, name))
 
     # Also name skip_functions (not decompiled, but callers need their names)
     skip_path = os.path.join(ANNOTATIONS_DIR, "skip_functions.json")
@@ -1573,22 +1651,31 @@ def apply_annotations():
         print("[10] Final un-name: %d stale functions (post-propagation)" % _unnamed2)
 
     # --- 11. Force-rename: type propagation may override our names with mangled versions ---
+    # Disable auto-analysis to prevent further type propagation from reverting names
+    ida_auto.set_auto_state(False)
+    log("[11] Step 11 reached, funcs=%d" % len(funcs))
     _force_renamed = 0
+    _total = 0
     for addr_str, info in funcs.items():
         addr = int(addr_str, 16)
         desired = info.get("name", "")
         if not desired:
             continue
+        # Compute expected name: mangled for class methods, simple for free functions
+        if '::' in desired:
+            _cls, _method = desired.split('::', 1)
+            _sig = info.get('signature', '')
+            _expected = _mangle_vc6(_cls, _method, _sig)
+        else:
+            _expected = desired
+        if not _expected:
+            continue
         cur = ida_name.get_name(addr) or ""
-        if cur != desired:
-            ida_name.set_name(addr, "", ida_name.SN_NOWARN)
-            if ida_name.set_name(addr, desired, ida_name.SN_NOWARN | ida_name.SN_FORCE):
-                _actual = ida_name.get_name(addr)
-                if _actual != desired:
-                    print('[!] FORCE-RENAME CONFLICT (need __ovl_): annot=%s actual=%s' % (desired, _actual))
-                _force_renamed += 1
-    if _force_renamed:
-        print("[11] Force-renamed %d functions (type propagation override)" % _force_renamed)
+        # Always set expected name (type propagation may have overridden)
+        ida_name.set_name(addr, "", ida_name.SN_NOWARN)
+        if ida_name.set_name(addr, _expected, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+            _force_renamed += 1
+    log("[11] Force-renamed %d/%d" % (_force_renamed, len(funcs)))
 
     idc.save_database(idc.get_idb_path(), 0)
     log("[*] Done. Database saved.")

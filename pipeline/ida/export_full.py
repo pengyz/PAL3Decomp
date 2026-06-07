@@ -203,6 +203,48 @@ def main():
             skip_data = _json.load(open(skip_file))
             skip_addrs = set(int(a, 16) for a in skip_data.keys())
 
+        # Pre-pass: set mangled names for class methods so export uses clean unique names.
+        # This ensures function names like ?Create@UINote@@... are used, not Create_37.
+        try:
+            import sys as _sys
+            _sys.path.insert(0, SCRIPT_DIR)
+            import vc6_mangler
+            _ann_funcs = {}
+            _funcs_file = os.path.join(PROJECT_ROOT, "data", "annotations", "functions.json")
+            if os.path.exists(_funcs_file):
+                _ann_funcs = _json.load(open(_funcs_file, encoding='utf-8'))
+            _structs_dir = os.path.join(PROJECT_ROOT, "data", "annotations", "structs")
+            if os.path.isdir(_structs_dir):
+                for _sf in sorted(os.listdir(_structs_dir)):
+                    if not _sf.endswith('.json'): continue
+                    with open(os.path.join(_structs_dir, _sf), 'r', encoding='utf-8') as _fh:
+                        _sd = _json.load(_fh)
+                    for _addr, _info in _sd.get('methods', {}).items():
+                        if _addr not in _ann_funcs:
+                            _ann_funcs[_addr] = _info
+            _set_count = 0
+            for _addr_s, _info in _ann_funcs.items():
+                _name = _info.get('name', '')
+                _sig = _info.get('signature', '')
+                if '::' not in _name or not _sig:
+                    continue
+                try:
+                    _ea = int(_addr_s, 16)
+                except:
+                    continue
+                if not (TEXT_START <= _ea <= TEXT_END):
+                    continue
+                _cls, _method = _name.split('::', 1)
+                _mangled = vc6_mangler.mangle(_cls, _method, _sig)
+                if _mangled:
+                    ida_name.set_name(_ea, "", ida_name.SN_NOWARN)
+                    if ida_name.set_name(_ea, _mangled, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+                        _set_count += 1
+            if _set_count:
+                log("[*] Mangler: set %d mangled function names" % _set_count)
+        except Exception as _me:
+            log("[!] Mangler pre-pass error: %s" % str(_me)[:80])
+
         targets = []
         target_addrs = set()
         for ea in idautils.Functions(TEXT_START, TEXT_END):
