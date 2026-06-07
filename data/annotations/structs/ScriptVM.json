@@ -13,24 +13,29 @@
       "source": "codegen_offset_infer"
     },
     "4": {
-      "name": "_todo_004",
+      "name": "m_bufHead",
       "type": "int",
-      "source": "gap_discovery:2refs_in_decomp"
+      "source": "decomp:GetString ring buffer head pointer (pair: {block_ptr, block_end})"
+    },
+    "8": {
+      "name": "m_bufTail",
+      "type": "int",
+      "source": "decomp:GetString ring buffer tail (+4 = block_end = block_ptr+0xFBC)"
     },
     "12": {
-      "name": "_todo_00C",
+      "name": "m_bufCapacity",
       "type": "int",
-      "source": "gap_discovery:1refs_in_decomp"
+      "source": "decomp:GetString ring buffer capacity/count"
     },
     "16": {
-      "name": "_todo_010",
+      "name": "m_bufReadPtr",
       "type": "int",
-      "source": "gap_discovery:2refs_in_decomp"
+      "source": "decomp:GetString ring buffer read position (iterator)"
     },
     "20": {
-      "name": "_todo_014",
+      "name": "m_bufWritePtr",
       "type": "int",
-      "source": "gap_discovery:3refs_in_decomp"
+      "source": "decomp:GetString ring buffer write position (iterator)"
     },
     "0": {
       "name": "_todo_000",
@@ -137,10 +142,6 @@
   },
   "binary_size": 876,
   "methods": {
-    "0x0042CB70": {
-      "name": "ScriptVM::PushParam",
-      "signature": "int __thiscall(ScriptVM *this, void *pData, unsigned char nType, int nCount)"
-    },
     "0x0042CD90": {
       "name": "ScriptVM::CallFunction",
       "signature": "int __thiscall(ScriptVM *this, unsigned char nFuncID, int nArgCount)"
