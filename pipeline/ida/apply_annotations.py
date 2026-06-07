@@ -919,21 +919,30 @@ def apply_annotations():
             if _ida_funcs.add_func(addr):
                 created += 1
         if name:
+            # Skip functions outside PAL3.exe code range (gbengine imports etc.)
+            if addr < 0x00401000 or addr > 0x005695D0:
+                continue
             cur = ida_name.get_name(addr) or ""
-            # Strip class prefix for comparison and set_name, since IDA
-            # handles only simple names. Export_full.py re-adds class
-            # prefix via _addr_to_class (from vtable data).
-            simple_name = name.split("::")[-1] if "::" in name else name
-            if cur == name or cur == simple_name:
+            if cur == name:
                 renamed += 1
                 continue
+
             # Delete existing name first (required for mangled names like ?xxx@yyy@@)
             if cur:
                 ida_name.set_name(addr, "", ida_name.SN_NOWARN)
-            if ida_name.set_name(addr, simple_name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+
+            # Use full annotation name (ClassName::Method). IDA supports :: in names.
+            # Each class's methods get unique names, avoiding cross-class conflicts
+            # that would cause IDA to append _0/_1 suffixes.
+            if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+                _actual = ida_name.get_name(addr)
+                if _actual != name:
+                    # IDA mangled the name (same-class overload conflict).
+                    # The annotation should use __ovl_ADDR suffix for overloads.
+                    print('[!] NAME CONFLICT (need __ovl_): annot=%s actual=%s' % (name, _actual))
                 renamed += 1
             else:
-                rename_fail.append((addr_str, cur, name))
+                print('[!] SET_NAME FAILED: %s @ %s' % (name, addr_str))
 
     # Also name skip_functions (not decompiled, but callers need their names)
     skip_path = os.path.join(ANNOTATIONS_DIR, "skip_functions.json")
@@ -1570,11 +1579,13 @@ def apply_annotations():
         desired = info.get("name", "")
         if not desired:
             continue
-        desired_simple = desired.split("::")[-1] if "::" in desired else desired
         cur = ida_name.get_name(addr) or ""
-        if cur != desired_simple:
+        if cur != desired:
             ida_name.set_name(addr, "", ida_name.SN_NOWARN)
-            if ida_name.set_name(addr, desired_simple, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+            if ida_name.set_name(addr, desired, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+                _actual = ida_name.get_name(addr)
+                if _actual != desired:
+                    print('[!] FORCE-RENAME CONFLICT (need __ovl_): annot=%s actual=%s' % (desired, _actual))
                 _force_renamed += 1
     if _force_renamed:
         print("[11] Force-renamed %d functions (type propagation override)" % _force_renamed)

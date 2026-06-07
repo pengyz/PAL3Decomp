@@ -316,7 +316,7 @@
     "544": {
       "name": "m_pController",
       "type": "char *",
-      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int\u00a1\u00favoid*(deref pattern)",
+      "source": "ida_decomp:ProcessTurn deref+134 byte check, 10 refs | type_fix:int¡úvoid*(deref pattern)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "548": {
@@ -507,7 +507,7 @@
     "6632": {
       "name": "m_fAngleDegrees",
       "type": "float",
-      "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2\u00a6\u00d0, compare \u00a6\u00d0/2)"
+      "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2¦Ð, compare ¦Ð/2)"
     },
     "6636": {
       "name": "_todo_19EC",
@@ -712,7 +712,7 @@
     },
     "0x004FCD50": {
       "name": "CCBStage::IsTaskValidButNotFinish",
-      "signature": "_BYTE *__userpurge@<eax>(_BYTE *result@<eax>, int eTask@<ecx>, int nVal)"
+      "signature": "unsigned char *__stdcall(unsigned char *result, int eTask, int nVal)"
     },
     "0x004FCDA0": {
       "name": "CCBStage::IsTaskExist",
@@ -1098,7 +1098,7 @@
       "signature": "int __thiscall CCBStage::CalcFacingAngle(CCBStage *this, int nVal)"
     },
     "0x0051DD80": {
-      "name": "CCBStage::?Destroy@CCBProtectWindow@@UAEXXZ",
+      "name": "CCBStage::Destroy",
       "signature": "void __thiscall(CCBProtectWindow *__hidden this)",
       "source": "vtable_evidence",
       "ordinal": 5
