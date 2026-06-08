@@ -245,6 +245,23 @@ def main():
         except Exception as _me:
             log("[!] Mangler pre-pass error: %s" % str(_me)[:80])
 
+        # Collect thunks (j_ functions) before skipping them in main export
+        thunk_info = {}
+        import ida_ua as _idau
+        for ea in idautils.Functions(TEXT_START, TEXT_END):
+            name = ida_name.get_name(ea) or ""
+            if name.startswith('j_'):
+                _dname = idc.demangle_name(name, idc.get_inf_attr(idc.INF_SHORT_DN))
+                if _dname:
+                    name = _dname
+                target_name = ''
+                _insn = _idau.insn_t()
+                if _idau.decode_insn(_insn, ea) > 0 and _insn.get_canon_mnem() == 'jmp':
+                    _target = _insn[0].addr
+                    _target_raw = ida_name.get_name(_target) or ''
+                    target_name = idc.demangle_name(_target_raw, idc.get_inf_attr(idc.INF_SHORT_DN)) or _target_raw
+                thunk_info[name] = {'name': name, 'target_name': target_name, 'address': '0x%08X' % ea}
+
         targets = []
         target_addrs = set()
         for ea in idautils.Functions(TEXT_START, TEXT_END):
@@ -419,6 +436,14 @@ def main():
 
         # Export struct definitions from IDB (authoritative source for gen_headers)
         export_structs(log)
+
+        # Export thunks for codegen (avoiding annotation bypass)
+        _extra_dir = os.path.join(PROJECT_ROOT, "asm", "pal3", "extra")
+        os.makedirs(_extra_dir, exist_ok=True)
+        _thunks_path = os.path.join(_extra_dir, "thunks.json")
+        with open(_thunks_path, 'w', encoding='utf-8') as _tf:
+            json.dump(thunk_info, _tf, indent=2, ensure_ascii=False)
+        log("[*] Thunks exported: %d -> extra/thunks.json" % len(thunk_info))
 
         # Report orphan ordinal stats
         if _orphan_stats:

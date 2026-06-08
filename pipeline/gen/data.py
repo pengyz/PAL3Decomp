@@ -38,7 +38,6 @@ class DataStore:
         self.free_func_sigs = {}    # "FuncName" -> "ret FuncName(params)" declaration
         self.exe_data = b''         # raw exe for .rdata string lookup
         self.skip_classes = set()   # classes to not generate
-        self.functions_ann = {}     # "0x00XXXXXX" -> {name, signature} from annotations
 
     def load(self):
         """Load all resources from disk. Call once at startup."""
@@ -46,24 +45,27 @@ class DataStore:
             return
         self._load_game_classes()
         self._load_globals_h()
-        self._load_annotations()
+        self._load_exported_data()
         self._load_binary()
         self.loaded = True
 
     def _load_game_classes(self):
         for h in self.header_dir.glob("*.h"):
             self.game_classes.add(h.stem)
-        # Also include gbengine classes for ctor/dtor detection
         gb_dir = self.project_root / "include" / "gbengine"
         if gb_dir.exists():
             for h in gb_dir.glob("*.h"):
                 self.game_classes.add(h.stem)
-        # Add struct names from annotations (covers engine types like gbVec3D)
-        structs_dir = self.project_root / "data" / "annotations" / "structs"
-        if structs_dir.exists():
-            for f in structs_dir.glob("*.json"):
-                self.game_classes.add(f.stem)
-        # Common engine structs not in annotation files
+        # Add struct names from ida_structs.json keys (already exported)
+        ida_structs_path = self.project_root / "asm" / "pal3" / "ida_structs.json"
+        if ida_structs_path.exists():
+            try:
+                _ida_data = json.load(open(ida_structs_path, encoding='utf-8'))
+                for _k in _ida_data:
+                    if not _k.startswith('_'):
+                        self.game_classes.add(_k)
+            except:
+                pass
         self.game_classes.update([
             'gbVec3D', 'gbVec2D', 'gbVec4D', 'gbMatrix4', 'gbColorQuad',
             'gbResManager', 'gbLight', 'gbMaterial', 'gbViewPort',
@@ -79,197 +81,161 @@ class DataStore:
                 if m:
                     self.declared_globals.add(m.group(1))
 
-    def _load_annotations(self):
-        # functions.json → static methods + thunks + full annotation lookup
-        funcs_path = self.annotations_dir / "functions.json"
-        if funcs_path.exists():
-            funcs = json.load(open(funcs_path, encoding='utf-8'))
-            self.functions_ann = funcs
-            for addr, info in funcs.items():
-                name = info.get('name', '')
-                sig = info.get('signature', '')
-                if '::' in name and '__cdecl' in sig:
-                    self.static_methods.add(name)
+    def _load_exported_data(self):
+        """Load all data from exported JSONs (NOT from annotations).
 
-        # struct/*.json methods: also scan for __cdecl static methods
-        # These are free/static functions attributed to a class that IDA
-        # decompiles as Class::Method(obj, ...) with __cdecl convention.
-        # Without this, the OOP transform strips the first param (thinks it's this).
-        _structs_dir = self.annotations_dir / "structs"
-        if _structs_dir.exists():
-            for _f in sorted(os.listdir(str(_structs_dir))):
-                if not _f.endswith('.json'):
+        Sources:
+          - asm/pal3/ida_structs.json: struct defs, globals, methods
+          - asm/pal3/decomp/*.json: function signatures for free funcs, static methods
+        """
+        ida_structs_path = self.project_root / "asm" / "pal3" / "ida_structs.json"
+        ida_structs = {}
+        if ida_structs_path.exists():
+            try:
+                ida_structs = json.load(open(ida_structs_path, encoding='utf-8'))
+            except:
+                pass
+
+        # 1. Globals: name mapping + type info from ida_structs._globals
+        _globals = ida_structs.get('_globals', {})
+        ida_prefixes = ('dword', 'byte', 'word', 'stru', 'off', 'unk', 'flt')
+        for addr_str, ginfo in _globals.items():
+            gname = ginfo.get('name', '')
+            gtype = ginfo.get('type', '')
+            if gname and gtype:
+                self.global_types[gname] = gtype
+                if any(gname.startswith(p + '_') for p in ida_prefixes):
                     continue
-                try:
-                    _sd = json.load(open(str(_structs_dir / _f), encoding='utf-8'))
-                except:
-                    continue
-                for _addr, _minfo in _sd.get('methods', {}).items():
-                    _name = _minfo.get('name', '')
-                    _sig = _minfo.get('signature', '')
-                    if '::' in _name and '__cdecl' in _sig and '__thiscall' not in _sig:
-                        self.static_methods.add(_name)
-
-        # Hardcoded gbengine static methods (not in PAL3.exe functions.json)
-        # These are methods that IDA decompiles as static calls but headers declare as members
-        self.static_methods.update([
-        ])
-
-        # skip_functions.json → thunks
-        skip_path = self.annotations_dir / "skip_functions.json"
-        if skip_path.exists():
-            skip = json.load(open(skip_path, encoding='utf-8'))
-            for addr, info in skip.items():
-                if info.get('reason') == 'thunk' and info.get('target_name'):
-                    target = info['target_name']
-                    self.thunks["sub_%s" % addr[2:].lstrip('0').lower()] = target
-                    self.thunks[info['name']] = target
-                    self.thunks[info['name'].replace('~', '_')] = target.replace('~', '_')
-                    # Also add short method name for OOP-transformed calls
-                    # (Stage 2 converts Class::Method(obj) -> obj->Method)
-                    n = info.get('name', '')
-                    # Strip trailing () from function names
-                    clean_n = n.rstrip(')').split('(')[0] if '(' in n else n
-                    if '::' in clean_n:
-                        short = clean_n.split('::', 1)[1]
-                        # Only add short name if it won't collide with common identifiers
-                        # in Stage4 substitution. Generic names like 'Destroy' or 'Create'
-                        # cause false replacements in function definitions (PAL3::Destroy
-                        # becomes PAL3::UISystem::Destroy).
-                        if short not in ('Destroy', 'Create', 'Update', 'Render', 'Init',
-                                         'Reset', 'Load', 'Save', 'Release', 'Free', 'Show',
-                                         'Hide', 'Set', 'Get', 'Add', 'Remove', 'Clear',
-                                         'Move', 'Copy', 'Find', 'Close', 'Open',
-                                         'IsValid', 'IsReady', 'Process', 'Handle',
-                                         'CCBAI', 'MoveWindow'):
-                            if short not in self.thunks:
-                                self.thunks[short] = target
-                            short_dtor = short.replace('~', '_')
-                            if short_dtor not in self.thunks:
-                                self.thunks[short_dtor] = target.replace('~', '_')
-                        self.thunk_classes.add(n.split('::')[0])
-            self.thunk_classes.add('j_std')
-            self.thunk_classes.add('j_j_codecvt_base')
-
-        # globals.json → global types + name map
-        globals_path = self.annotations_dir / "globals.json"
-        if globals_path.exists():
-            gdata = json.load(open(globals_path, encoding='utf-8'))
-            ida_prefixes = ('dword', 'byte', 'word', 'stru', 'off', 'unk', 'flt')
-            for addr_str, ginfo in gdata.items():
-                gname = ginfo.get('name', '')
-                gtype = ginfo.get('type', '')
-                if gtype == 'skip':
-                    continue  # known-unnameable: don't substitute in codegen
-                if gname and gtype:
-                    self.global_types[gname] = gtype
-                if not gname or any(gname.startswith(p + '_') for p in ida_prefixes):
-                    continue
-                addr_int = int(addr_str, 16)
+            # Build globals_map: dword_XXXXX → g_ScriptRoleBuf
+            if gname and not any(gname.startswith(p + '_') for p in ida_prefixes):
+                addr_int = int(addr_str, 16) if isinstance(addr_str, str) else addr_str
                 addr_hex = '%X' % addr_int
                 for pfx in ida_prefixes:
                     self.globals_map['%s_%s' % (pfx, addr_hex)] = gname
-                # Map decompiler-generated name to annotation name
-                decomp_name = ginfo.get('decomp_name', '')
-                if decomp_name:
-                    self.globals_map[decomp_name] = gname
 
-        # functions.json → free function signatures for forward declarations
-        funcs_path = self.annotations_dir / "functions.json"
-        if funcs_path.exists():
-            import re as _re
-            fdata = json.load(open(funcs_path, encoding='utf-8'))
-            for addr_s, finfo in fdata.items():
-                fname = finfo.get('name', '')
-                fsig = finfo.get('signature', '')
-                if '::' in fname or not fname or not fsig:
-                    continue
-                if '__thiscall' in fsig:
-                    # __thiscall without class (no ::) → emit as cdecl with explicit this
-                    if fname.startswith('_') or fname.startswith('$') or fname.startswith('?'):
-                        continue
-                    if 'unknown_libname' in fname or 'nullsub' in fname:
-                        continue
-                    if not _re.match(r'^[A-Za-z_]\w*$', fname):
-                        continue
-                    m = _re.match(r'^(.+?)\s*__thiscall\s*\((.*)\)$', fsig)
-                    if m:
-                        ret = m.group(1).strip()
-                        params = m.group(2).strip()
-                        if not params:
-                            params = 'void'
-                        # Replace 'this' keyword in params with '_this'
-                        params = _re.sub(r'\bthis\b', '_this', params)
-                        self.free_func_sigs[fname] = '%s %s(%s)' % (ret, fname, params)
-                    continue
-                if '__cdecl' not in fsig and '__stdcall' not in fsig:
-                    continue
-                if fname.startswith('_') or fname.startswith('$') or fname.startswith('?'):
-                    continue
-                if 'unknown_libname' in fname or 'nullsub' in fname:
-                    continue
-                # Skip names that conflict with ida_defs.h macros
-                _IDA_MACROS = {'Func', 'JUMPOUT', 'NAN', 'LOBYTE', 'HIBYTE',
-                               'LOWORD', 'HIWORD', 'LODWORD', 'HIDWORD'}
-                if fname in _IDA_MACROS:
-                    continue
-                m = _re.match(r'^(.+?)\s*(__cdecl|__stdcall)\s*\((.*)\)$', fsig)
-                if not m:
-                    continue
-                ret = m.group(1).strip()
-                callconv = m.group(2)
-                params = m.group(3).strip()
-                if not params:
-                    params = 'void'
-                if callconv == '__cdecl':
-                    self.free_func_sigs[fname] = '%s %s(%s)' % (ret, fname, params)
-                else:
-                    self.free_func_sigs[fname] = '%s %s %s(%s)' % (ret, callconv, fname, params)
-
-        # structs → struct instances + members for member resolution
-        structs_dir = self.annotations_dir / "structs"
-        if structs_dir.exists():
-            struct_sizes = {}
-            for sf in structs_dir.glob("*.json"):
-                sd = json.load(open(sf, encoding='utf-8'))
-                sname = sf.stem
-                bs = sd.get('binary_size')
-                if bs:
-                    struct_sizes[sname] = bs
-                members = sd.get('known_members', {})
+        # 2. Struct members from ida_structs data_members
+        for sname, sinfo in ida_structs.items():
+            if sname.startswith('_'):
+                continue
+            dms = sinfo.get('data_members', [])
+            if dms:
                 self.struct_members[sname] = {
-                    int(k): (v['name'], v.get('type', ''))
-                    for k, v in members.items()
+                    dm['offset']: (dm['name'], dm.get('type', 'int'))
+                    for dm in dms
                 }
 
-            # Build instance ranges from globals
-            if globals_path.exists():
-                import re as _re
-                for addr_str, ginfo in gdata.items():
-                    gtype = ginfo.get('type', '')
-                    gname = ginfo.get('name', '')
-                    if not gname or ginfo.get('type') == 'skip':
+        # 3. Struct instances from _globals + struct sizes
+        _struct_sizes = {
+            sname: sinfo.get('size', 0)
+            for sname, sinfo in ida_structs.items()
+            if not sname.startswith('_') and sinfo.get('size', 0)
+        }
+        import re as _re
+        for addr_str, ginfo in _globals.items():
+            gtype = ginfo.get('type', '')
+            gname = ginfo.get('name', '')
+            if not gname or not gtype:
+                continue
+            if gtype in _struct_sizes:
+                base = int(addr_str, 16) if isinstance(addr_str, str) else addr_str
+                self.struct_instances.append(
+                    (base, base + _struct_sizes[gtype], gname, gtype))
+            else:
+                arr_m = _re.match(r'^(\w+)\[(\d+)\]$', gtype)
+                if arr_m:
+                    elem_type = arr_m.group(1)
+                    count = int(arr_m.group(2))
+                    elem_size = _struct_sizes.get(elem_type, 0)
+                    if elem_size and elem_type in self.struct_members:
+                        base = int(addr_str, 16) if isinstance(addr_str, str) else addr_str
+                        for idx in range(count):
+                            elem_base = base + idx * elem_size
+                            elem_name = '%s[%d]' % (gname, idx)
+                            self.struct_instances.append(
+                                (elem_base, elem_base + elem_size, elem_name, elem_type))
+        self.struct_instances.sort()
+
+        # 4. Free function sigs + static methods + thunks from decomp JSONs
+        # (thunks are also supplemented from export at asm/pal3/extra/thunks.json)
+        _extra_path = self.project_root / "asm" / "pal3" / "extra"
+        _thunks_path = _extra_path / "thunks.json"
+        if _thunks_path.exists():
+            try:
+                _thunk_data = json.load(open(_thunks_path, encoding='utf-8'))
+                for _addr_s, _tinfo in _thunk_data.items():
+                    _tname = _tinfo.get('name', '')
+                    _ttarget = _tinfo.get('target_name', '')
+                    if _ttarget:
+                        self.thunks[_tname] = _ttarget
+                        self.thunks[_tname.replace('~', '_')] = _ttarget.replace('~', '_')
+                        if '::' in _tname:
+                            _short = _tname.split('::')[1]
+                            if _short not in ('Destroy', 'Create', 'Update', 'Render', 'Init',
+                                              'Reset', 'Load', 'Save', 'Release', 'Free', 'Show',
+                                              'Hide', 'Set', 'Get', 'Add', 'Remove', 'Clear',
+                                              'Move', 'Copy', 'Find', 'Close', 'Open',
+                                              'IsValid', 'IsReady', 'Process', 'Handle',
+                                              'CCBAI', 'MoveWindow'):
+                                if _short not in self.thunks:
+                                    self.thunks[_short] = _ttarget
+                                _short_dtor = _short.replace('~', '_')
+                                if _short_dtor not in self.thunks:
+                                    self.thunks[_short_dtor] = _ttarget.replace('~', '_')
+                        self.thunk_classes.add(_tname.split('::')[0] if '::' in _tname else '')
+            except:
+                pass
+        self.thunk_classes.add('j_std')
+        self.thunk_classes.add('j_j_codecvt_base')
+
+        # 5. Free function sigs + static methods from decomp JSONs
+        _decomp_dir = self.project_root / "asm" / "pal3" / "decomp"
+        if _decomp_dir.exists():
+            import re as _re2
+            _IDA_MACROS = {'Func', 'JUMPOUT', 'NAN', 'LOBYTE', 'HIBYTE',
+                           'LOWORD', 'HIWORD', 'LODWORD', 'HIDWORD'}
+            for _df in sorted(_decomp_dir.glob("*.json")):
+                try:
+                    _dd = json.load(open(_df, encoding='utf-8'))
+                except:
+                    continue
+                _name = _dd.get('name', '')
+                _sig = _dd.get('signature', '')
+                if not _name or not _sig:
+                    continue
+                if '::' in _name:
+                    # Class method: detect __cdecl for static_methods
+                    if '__cdecl' in _sig and '__thiscall' not in _sig:
+                        self.static_methods.add(_name)
+                else:
+                    # Free function: build forward declaration
+                    if _name.startswith('_') or _name.startswith('$') or _name.startswith('?'):
                         continue
-                    if gtype in struct_sizes:
-                        base = int(addr_str, 16)
-                        self.struct_instances.append(
-                            (base, base + struct_sizes[gtype], gname, gtype))
-                    else:
-                        # Handle array types: TypeName[N]
-                        arr_m = _re.match(r'^(\w+)\[(\d+)\]$', gtype)
-                        if arr_m:
-                            elem_type = arr_m.group(1)
-                            count = int(arr_m.group(2))
-                            elem_size = struct_sizes.get(elem_type, 0)
-                            if elem_size and elem_type in self.struct_members:
-                                base = int(addr_str, 16)
-                                # Register each array element as a separate instance
-                                for idx in range(count):
-                                    elem_base = base + idx * elem_size
-                                    elem_name = '%s[%d]' % (gname, idx)
-                                    self.struct_instances.append(
-                                        (elem_base, elem_base + elem_size, elem_name, elem_type))
-                self.struct_instances.sort()
+                    if 'unknown_libname' in _name or 'nullsub' in _name:
+                        continue
+                    if not _re2.match(r'^[A-Za-z_]\w*$', _name):
+                        continue
+                    if _name in _IDA_MACROS:
+                        continue
+                    # Parse signature: "ret __cc(params)"
+                    if '__thiscall' in _sig:
+                        m = _re2.match(r'^(.+?)\s*__thiscall\s*\((.*)\)$', _sig)
+                        if m:
+                            ret = m.group(1).strip()
+                            params = m.group(2).strip()
+                            if not params: params = 'void'
+                            params = _re2.sub(r'\bthis\b', '_this', params)
+                            self.free_func_sigs[_name] = '%s %s(%s)' % (ret, _name, params)
+                    elif '__cdecl' in _sig or '__stdcall' in _sig:
+                        m = _re2.match(r'^(.+?)\s*(__cdecl|__stdcall)\s*\((.*)\)$', _sig)
+                        if m:
+                            ret = m.group(1).strip()
+                            cc = m.group(2)
+                            params = m.group(3).strip()
+                            if not params: params = 'void'
+                            if cc == '__cdecl':
+                                self.free_func_sigs[_name] = '%s %s(%s)' % (ret, _name, params)
+                            else:
+                                self.free_func_sigs[_name] = '%s %s %s(%s)' % (ret, cc, _name, params)
 
     def _load_binary(self):
         exe_path = self.project_root / "original" / "PAL3.exe"

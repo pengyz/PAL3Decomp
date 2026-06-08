@@ -1162,33 +1162,17 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 lines.insert(1, '')
                 lines.insert(1, _ul)
 
-        _ann_methods_by_addr = {}
-        try:
-            _ann_md = _get_ida_structs()
-            _ann_ms = _ann_md.get(cls_name, {}).get('methods', {})
-            for _k, _v in _ann_ms.items():
-                _ann_methods_by_addr[_k] = _v.get('signature', '')
-        except:
-            pass
         seen_methods = set()  # track "name(params)" to deduplicate
         for method_name, sig, addr in sorted(methods, key=_method_sort_key):
             # Strip Hex-Rays annotations before parsing: __userpurge/@<eax>/@<ecx>
             sig = re.sub(r'@<\w+>', '', sig)
             sig = re.sub(r'\s*__userpurge\s*', ' ', sig)
             sig = re.sub(r'\s*__usercall\s*', ' ', sig)
-            # Override signature from annotation methods if available
-            # (annotation has manually corrected return types, e.g. void Render)
-            _ann_sig = _ann_methods_by_addr.get(addr, '')
-            if _ann_sig:
-                sig = _ann_sig
+            # NOTE: signature comes from decomp JSON (cfunc.type.dstr()).
+            # Do NOT override with annotation pass-through — that would
+            # reintroduce .h/.cpp type mismatches (C2556).
+            # Type corrections must go through: annotate→SetType→IDB→re-export.
             ret, cc, params, ret_right = parse_signature(sig)
-
-            # Remap IDA internal types to C types in signatures
-            for ida_type, c_type in TYPE_REMAP.items():
-                if ida_type in ret:
-                    ret = ret.replace(ida_type, c_type)
-                if ida_type in params:
-                    params = params.replace(ida_type, c_type)
 
             is_ctor = (method_name == cls_name)
             is_dtor = (method_name.startswith('~') or method_name == '~%s' % cls_name)
