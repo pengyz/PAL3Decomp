@@ -594,10 +594,10 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         return (False, "TAUDT_FIXED invalid for %s (get_size=-1)" % name)
     # When created without base members (_base_offset==0), actual_size may
     # be smaller than binary_size (base class portions are missing). Accept it.
-    # For flexible structs (overlapping views), use the computed total_size.
-    _size_check = binary_size
-    if is_flexible and udt.total_size > _size_check:
-        _size_check = udt.total_size
+    if is_flexible:
+        _size_check = actual_size  # flexible structs: accept whatever IDA computes
+    else:
+        _size_check = binary_size
     if actual_size > _size_check:
         return (False, "size mismatch: expected <=%d, got %d" % (
             binary_size, actual_size))

@@ -373,11 +373,6 @@
       "type": "unsigned char[8]",
       "source": "global_analysis:g_bRoleSlotValid"
     },
-    "7120": {
-      "name": "m_RoleSystems",
-      "type": "RoleSystem[5]",
-      "source": "revert:test"
-    },
     "50640": {
       "name": "m_pGameData",
       "type": "CGameData *",
@@ -643,20 +638,20 @@
       "type": "int",
       "source": "A:ida_stru_C11430_Camera_field"
     },
-    "50814": {
-      "name": "_pad_roleEnd",
-      "type": "unsigned char[2]",
-      "source": "alignment_fix"
-    },
     "50820": {
       "name": "m_partyInitData",
       "type": "int[100]",
       "source": "ida:party_role_init_array_stride_16_25slots_C680"
     },
     "50816": {
+      "name": "m_partyInitData",
+      "type": "int[100]",
+      "source": "ida:confirmed_overlap_with_RoleSystem_ptr_at_50814"
+    },
+    "50814": {
       "name": "m_pRoleSystemArrayEnd",
       "type": "RoleSystem *",
-      "source": "fixed_offset"
+      "source": "A:ida_get_type_C10A0E_confirmed_RoleSystem_ptr"
     }
   },
   "methods": {

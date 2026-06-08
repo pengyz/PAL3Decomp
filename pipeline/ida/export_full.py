@@ -626,5 +626,19 @@ def export_structs(log):
     log("[*] Types exported: %d structs, %d enums (skipped %d) → ida_structs.json" %
         (struct_count, enum_count, skipped_count))
 
+    # Validate: key structs must have data_members (0 members = TAUDT_FIXED/export bug)
+    _critical_structs = ['SceneMgr', 'RoleSystem', 'CCBRoleState', 'CEffMgr']
+    _zero_member = []
+    for _cn in _critical_structs:
+        _cm = result.get(_cn, {})
+        if not _cm.get('data_members'):
+            _zero_member.append(_cn)
+    if _zero_member:
+        log("[FATAL] %d critical structs have 0 exported members: %s" % (
+            len(_zero_member), ', '.join(_zero_member)))
+        log("[FATAL] This indicates TAUDT_FIXED or export failure. Fix struct annotations first.")
+        import os as _os
+        _os._exit(1)
+
 if __name__ == '__main__':
     main()
