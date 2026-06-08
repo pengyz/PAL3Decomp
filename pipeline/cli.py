@@ -140,7 +140,11 @@ def _run_ida(script_name, idb_path, env=None):
         print("  [ERROR] Script not found: %s" % script)
         return False
     cmd = '"%s" -A -S"%s" "%s"' % (cfg.ida_path, script, idb_path)
-    result = subprocess.run(cmd, shell=True, env=env)
+    _env = dict(os.environ)
+    _env['TVHEADLESS'] = '1'
+    if env:
+        _env.update(env)
+    result = subprocess.run(cmd, shell=True, env=_env)
     return result.returncode == 0
 
 

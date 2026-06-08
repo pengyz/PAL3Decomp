@@ -454,6 +454,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                 base_size = total_base
 
     udt = ida_typeinf.udt_type_data_t()
+    is_flexible = struct_info.get("_flexible", False)
     if is_union:
         udt.is_union = True
     else:
@@ -462,7 +463,8 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             udt.taudt_bits = 1024  # TAUDT_FIXED: respect explicit offsets
         if base_class:
             udt.taudt_bits |= 128  # TAUDT_CPPOBJ
-        udt.total_size = binary_size
+        if not is_flexible:
+            udt.total_size = binary_size
 
     # Add base classes as anonymous members (supports multiple inheritance)
     _concrete_bases = [bc for bc in base_classes if '<' not in bc and '>' not in bc]
@@ -532,6 +534,16 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         m.type = tinfo
         udt.push_back(m)
 
+    # For flexible structs, compute total_size from actual member layout
+    if is_flexible and not is_union:
+        _computed_size = binary_size
+        for _i in range(udt.size()):
+            _m = udt[_i]
+            _m_end = _m.offset // 8 + _m.size // 8
+            if _m_end > _computed_size:
+                _computed_size = _m_end
+        udt.total_size = _computed_size
+
     # Create the struct/union
     result_tinfo = ida_typeinf.tinfo_t()
     udt_flag = ida_typeinf.BTF_UNION if is_union else ida_typeinf.BTF_STRUCT
@@ -575,89 +587,18 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
 
     actual_size = result_tinfo.get_size()
     if actual_size == 0xFFFFFFFFFFFFFFFF:
-        # TAUDT_FIXED failed (IDA limit on non-contiguous members). Retry
-        # WITHOUT TAUDT_FIXED but with gap-filling members for correct layout.
-        log("  [gap-fill] %s: TAUDT_FIXED invalid, retrying with gaps..." % name)
-        try:
-            udt2 = ida_typeinf.udt_type_data_t()
-            udt2.taudt_bits = 1024
-            if base_class:
-                udt2.taudt_bits |= 128
-            udt2.total_size = binary_size
-            cursor = 0
-            for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0])):
-                offset = int(off_str.split('_')[0])
-                if base_class and offset < base_size:
-                    continue
-                if offset > cursor:
-                    gap_sz = offset - cursor
-                    if gap_sz > 0:
-                        gap_tif = ida_typeinf.tinfo_t()
-                        gap_base = ida_typeinf.tinfo_t()
-                        if ida_typeinf.parse_decl(gap_base, til, "char __x;", ida_typeinf.PT_VAR):
-                            gap_tif.create_array(gap_base, gap_sz)
-                            udt2.add_member("_gap_%03X" % cursor, gap_tif, cursor * 8)
-                    cursor = offset
-                mname = minfo["name"]
-                mtype_str = _normalize_type(minfo["type"])
-                if "::" in mtype_str and "std::" not in mtype_str and "<" not in mtype_str:
-                    mtype_str = mtype_str.replace("::", "_")
-                tinfo = _resolve_member_type(mtype_str, til)
-                if tinfo is None:
-                    tinfo = ida_typeinf.tinfo_t()
-                    ida_typeinf.parse_decl(tinfo, til, "int __x;", ida_typeinf.PT_VAR)
-                msz = tinfo.get_size()
-                if msz == 0 or msz == 0xFFFFFFFFFFFFFFFF:
-                    continue
-                udt2.add_member(mname, tinfo, offset * 8)
-                cursor = offset + msz
-            result_tinfo2 = ida_typeinf.tinfo_t()
-            if result_tinfo2.create_udt(udt2, udt_flag):
-                actual_size2 = result_tinfo2.get_size()
-                if actual_size2 != 0xFFFFFFFFFFFFFFFF and actual_size2 <= binary_size + 8:
-                    log("  [gap-fill] %s: OK size=%d" % (name, actual_size2))
-                    result_tinfo2.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
-                    return (True, None)
-            # Gap-fill with TAUDT_FIXED failed. Last resort: create without
-            # TAUDT_FIXED, sequential offset, correct total_size.
-            log("  [seq-fill] %s: trying sequential without TAUDT_FIXED..." % name)
-            udt3 = ida_typeinf.udt_type_data_t()
-            if base_class:
-                udt3.taudt_bits = 128  # TAUDT_CPPOBJ only
-            udt3.total_size = binary_size
-            seq_off = 0
-            for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0])):
-                offset = int(off_str.split('_')[0])
-                if base_class and offset < base_size:
-                    continue
-                mname = minfo["name"]
-                mtype_str = _normalize_type(minfo["type"])
-                if "::" in mtype_str and "std::" not in mtype_str and "<" not in mtype_str:
-                    mtype_str = mtype_str.replace("::", "_")
-                tinfo = _resolve_member_type(mtype_str, til)
-                if tinfo is None:
-                    tinfo = ida_typeinf.tinfo_t()
-                    ida_typeinf.parse_decl(tinfo, til, "int __x;", ida_typeinf.PT_VAR)
-                msz = tinfo.get_size()
-                if msz == 0 or msz == 0xFFFFFFFFFFFFFFFF:
-                    continue
-                udt3.add_member(mname, tinfo, seq_off * 8)
-                seq_off += msz
-            result_tinfo3 = ida_typeinf.tinfo_t()
-            if result_tinfo3.create_udt(udt3, udt_flag):
-                log("  [seq-fill] %s: OK (sequential layout)" % name)
-                result_tinfo3.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
-                return (True, None)
-
-        except Exception as gf_e:
-            log("  [gap-fill] %s exception: %s" % (name, str(gf_e)[:80]))
-        return (False, "TAUDT_FIXED create_udt produced INVALID type for %s (size=-1). "
-                "Check: base_class '%s' correct size in TIL? All member types resolvable? "
-                "Struct has %d members, total annotation size=%d." % (
-                    name, base_class or '(none)', len(members), binary_size))
+        log("[FATAL] %s: TAUDT_FIXED struct 'invalid' (get_size=-1). "
+            "binary_size=%d, members=%d, base=%s. "
+            "Fix member offsets or types in annotation." % (
+                name, binary_size, len(members), base_class or '(none)'))
+        return (False, "TAUDT_FIXED invalid for %s (get_size=-1)" % name)
     # When created without base members (_base_offset==0), actual_size may
     # be smaller than binary_size (base class portions are missing). Accept it.
-    if actual_size > binary_size:
+    # For flexible structs (overlapping views), use the computed total_size.
+    _size_check = binary_size
+    if is_flexible and udt.total_size > _size_check:
+        _size_check = udt.total_size
+    if actual_size > _size_check:
         return (False, "size mismatch: expected <=%d, got %d" % (
             binary_size, actual_size))
 
@@ -1265,8 +1206,10 @@ def apply_annotations():
             s_fail.append((sname, err))
 
     if s_fail:
+        log("[FATAL] %d struct imports FAILED — aborting. Fix annotation offsets or types." % len(s_fail))
         for _sn, _se in s_fail:
             log("  [FAIL] %s: %s" % (_sn, _se))
+        raise RuntimeError("Struct import failures: %d\nSee [FAIL] entries above for details." % len(s_fail))
     log("[3] Structs: %d/%d imported successfully (fail=%d)" % (s_ok, len(structs), len(s_fail)))
 
     # (Enums already applied in step 3b, before structs)

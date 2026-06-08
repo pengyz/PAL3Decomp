@@ -184,8 +184,9 @@
     },
     "14264": {
       "name": "m_sz5D8C3C",
-      "type": "char[]",
-      "source": "auto:extern_overlap_g_EffMgr_at_+0x37B8"
+      "type": "char[29028]",
+      "source": "auto:extern_overlap_g_EffMgr_at_+0x37B8",
+      "note": "fixed from char[] to char[29028]"
     }
   },
   "methods": {
@@ -323,5 +324,6 @@
       "name": "CEffMgr::UpdateEffect",
       "signature": "int __thiscall CEffMgr::UpdateEffect(CEffMgr *this, float fVal, int nVal)"
     }
-  }
+  },
+  "_flexible": true
 }

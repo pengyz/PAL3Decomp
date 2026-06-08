@@ -9,8 +9,9 @@
     },
     "4": {
       "name": "m_pBuffer",
-      "type": "char[256]",
-      "source": "annotation"
+      "type": "char[20]",
+      "source": "annotation",
+      "note": "shrunk from char[256] to eliminate overlap"
     },
     "12": {
       "name": "_todo_00C",
@@ -28,5 +29,6 @@
       "source": "decomp ref C2039"
     }
   },
-  "methods": {}
+  "methods": {},
+  "_flexible": true
 }
