@@ -339,30 +339,30 @@
   "methods": {
     "0x0047E910": {
       "name": "LineupUI::ctor",
-      "signature": "void __thiscall(LineupUI *this)",
+      "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x00470F40": {
       "name": "LineupUI::~LineupUI",
-      "signature": "void __thiscall(LineupUI *this)",
+      "signature": "void __thiscall()",
       "_misattrib_evidence": "max_offset=124248>class_size=1208"
     },
     "0x00477BB0": {
       "name": "LineupUI::OnMessage",
-      "signature": "int __thiscall(LineupUI *this, int msg, int wparam, int lparam)"
+      "signature": "int __thiscall(int msg, int wparam, int lparam)"
     },
     "0x00482ED0": {
       "name": "LineupUI::Save",
-      "signature": "int __thiscall(LineupUI *this)"
+      "signature": "int __thiscall()"
     },
     "0x0047E5C0": {
       "name": "LineupUI::ctor_E5C0",
-      "signature": "int __thiscall(LineupUI *this)"
+      "signature": "int __thiscall()"
     },
     "0x00473B50": {
       "name": "LineupUI::InitItemList",
-      "signature": "int __thiscall(LineupUI *this)",
+      "signature": "int __thiscall()",
       "_misattrib_evidence": "max_offset=121112>class_size=1208"
     },
     "0x00456500": {
@@ -377,21 +377,21 @@
     },
     "0x00474C50": {
       "name": "LineupUI::UpdateAndForward",
-      "signature": "int __thiscall(LineupUI *this, int nVal, int nVal2)"
+      "signature": "int __thiscall(int nVal, int nVal2)"
     },
     "0x00475FC0": {
       "name": "LineupUI::RefreshDisplay",
-      "signature": "int __thiscall(LineupUI *this)",
+      "signature": "int __thiscall()",
       "_misattrib_evidence": "max_offset=124248>class_size=1208"
     },
     "0x004765F0": {
       "name": "LineupUI::SetItemDisplay",
-      "signature": "int __thiscall(LineupUI *this)",
+      "signature": "int __thiscall()",
       "_misattrib_evidence": "max_offset=124076>class_size=1208"
     },
     "0x00476ED0": {
       "name": "LineupUI::SetItemColors",
-      "signature": "int __thiscall(LineupUI *this)",
+      "signature": "int __thiscall()",
       "_misattrib_evidence": "max_offset=124076>class_size=1208"
     },
     "0x0047E8F0": {
@@ -412,7 +412,7 @@
     },
     "0x00483650": {
       "name": "LineupUI::CreatePreviewScene",
-      "signature": "void *__thiscall(LineupUI *this, int nVal)"
+      "signature": "void *__thiscall(int nVal)"
     },
     "0x004B1920": {
       "name": "LineupUI::UpdateProtectPanel",
@@ -424,7 +424,7 @@
     },
     "0x00471590": {
       "name": "LineupUI::InitListView",
-      "signature": "int __thiscall(LineupUI *this)",
+      "signature": "int __thiscall()",
       "_misattrib_evidence": "max_offset=124256>class_size=1208"
     },
     "0x00472A80": {
@@ -434,12 +434,12 @@
     },
     "0x00472AA0": {
       "name": "LineupUI::RefreshListData",
-      "signature": "void __thiscall(LineupUI *this)",
+      "signature": "void __thiscall()",
       "_misattrib_evidence": "max_offset=121112>class_size=1208"
     },
     "0x004739F0": {
       "name": "LineupUI::BuildEquipList",
-      "signature": "int __thiscall(LineupUI *this)",
+      "signature": "int __thiscall()",
       "_misattrib_evidence": "max_offset=121112>class_size=39240"
     },
     "0x00474AB0": {
@@ -449,7 +449,7 @@
     },
     "0x00474C80": {
       "name": "LineupUI::BuildListItems",
-      "signature": "int __thiscall(LineupUI *this)",
+      "signature": "int __thiscall()",
       "_misattrib_evidence": "max_offset=124076>class_size=1208"
     },
     "0x00476010": {
@@ -463,12 +463,12 @@
     },
     "0x004777B0": {
       "name": "LineupUI::RefreshDisplayEx",
-      "signature": "int __thiscall(LineupUI *this)",
+      "signature": "int __thiscall()",
       "_misattrib_evidence": "max_offset=123740>class_size=1208"
     },
     "0x0047B0E0": {
       "name": "LineupUI::CountVisibleItems",
-      "signature": "char __thiscall(LineupUI *this, int nVal)"
+      "signature": "char __thiscall(int nVal)"
     },
     "0x0047F970": {
       "name": "LineupUI::CleanupAndForwardInput",
@@ -477,7 +477,7 @@
     },
     "0x00480600": {
       "name": "LineupUI::OnMessage",
-      "signature": "int __thiscall(LineupUI *this, int nVal, char *pszBuf, int nVal2)",
+      "signature": "int __thiscall(int nVal, char *pszBuf, int nVal2)",
       "ordinal": 6,
       "source": "+canonical_rename"
     },

@@ -208,23 +208,23 @@
   "methods": {
     "0x0053F920": {
       "name": "TextureLib::SetPath",
-      "signature": "char *__thiscall(TextureLib *this, char *path)"
+      "signature": "char *__thiscall(char *path)"
     },
     "0x0053F5E0": {
       "name": "TextureLib::FreeTexture",
-      "signature": "void __thiscall(TextureLib *this)"
+      "signature": "void __thiscall()"
     },
     "0x0053F500": {
       "name": "TextureLib::CheckEndKey",
-      "signature": "int __thiscall(TextureLib *this, LPCSTR lpString1, LPCSTR lpString2)"
+      "signature": "int __thiscall(LPCSTR lpString1, LPCSTR lpString2)"
     },
     "0x0053F560": {
       "name": "TextureLib::ClearGlobalVars",
-      "signature": "int * __thiscall(TextureLib *this)"
+      "signature": "int * __thiscall()"
     },
     "0x0053F610": {
       "name": "TextureLib::ParseConfigFile",
-      "signature": "int __thiscall(TextureLib *this, char *String)"
+      "signature": "int __thiscall(char *String)"
     },
     "0x0053F680": {
       "name": "TextureLib::AddEntryFromConfig",
@@ -233,15 +233,15 @@
     },
     "0x004A6930": {
       "name": "TextureLib::LoadTexture",
-      "signature": "char __thiscall(TextureLib *this, char *pszPath)"
+      "signature": "char __thiscall(char *pszPath)"
     },
     "0x004A6960": {
       "name": "TextureLib::CreateFromFile",
-      "signature": "gbTexture *__thiscall(TextureLib *this)"
+      "signature": "gbTexture *__thiscall()"
     },
     "0x004A6CA0": {
       "name": "TextureLib::CreateFromMemory",
-      "signature": "gbTexture *__thiscall(TextureLib *this, _BYTE *pData, int nSize, char nFormat)"
+      "signature": "gbTexture *__thiscall(_BYTE *pData, int nSize, char nFormat)"
     },
     "0x0053F5C0": {
       "name": "TextureLib::sub_53F5C0",

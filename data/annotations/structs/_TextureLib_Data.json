@@ -43,11 +43,11 @@
   "methods": {
     "0x0053FDD0": {
       "name": "_TextureLib_Data::CreateParentData",
-      "signature": "Parent_Data *__thiscall(_TextureLib_Data *this, LPCSTR lpString)"
+      "signature": "Parent_Data *__thiscall(LPCSTR lpString)"
     },
     "0x0053FFA0": {
       "name": "_TextureLib_Data::_TextureLib_Data",
-      "signature": "void __thiscall(_TextureLib_Data *this)"
+      "signature": "void __thiscall()"
     },
     "0x004B4FE0": {
       "name": "_TextureLib_Data::AutoScrollParticles",
@@ -75,7 +75,7 @@
     },
     "0x004B5EE0": {
       "name": "_TextureLib_Data::LoadLibrary",
-      "signature": "char __thiscall(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
+      "signature": "char __thiscall(char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
     },
     "0x004B60F0": {
       "name": "_TextureLib_Data::UpdateByMode",
@@ -83,44 +83,44 @@
     },
     "0x004B6300": {
       "name": "_TextureLib_Data::GetTextureByName",
-      "signature": "__int64 __thiscall(_TextureLib_Data *this, char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
+      "signature": "__int64 __thiscall(char *pszBuf, int nVal, _TextureLib_Data *p_TextureLib_Data, int nVal2)"
     },
     "0x00443A00": {
       "name": "_TextureLib_Data::CountEntries",
-      "signature": "int __thiscall(_TextureLib_Data *this)"
+      "signature": "int __thiscall()"
     },
     "0x00443A90": {
       "name": "_TextureLib_Data::SearchByIndex",
-      "signature": "int __thiscall(_TextureLib_Data *this)"
+      "signature": "int __thiscall()"
     },
     "0x00540440": {
       "name": "_TextureLib_Data::SetLibFolder",
-      "signature": "void __thiscall(_TextureLib_Data *this, char *pszFolder)"
+      "signature": "void __thiscall(char *pszFolder)"
     },
     "0x00540210": {
       "name": "_TextureLib_Data::_CheckItem",
-      "signature": "int __thiscall(_TextureLib_Data *this, char *pszName, char *pszBuf)"
+      "signature": "int __thiscall(char *pszName, char *pszBuf)"
     },
     "0x005400E0": {
       "name": "_TextureLib_Data::_GetItemNum",
-      "signature": "unsigned int __thiscall(_TextureLib_Data *this, void *pData)"
+      "signature": "unsigned int __thiscall(void *pData)"
     },
     "0x00540650": {
       "name": "_TextureLib_Data::GetLibInfo",
-      "signature": "bool __thiscall(_TextureLib_Data *this, char *pszName)",
+      "signature": "bool __thiscall(char *pszName)",
       "source": "pdb_ret"
     },
     "0x005407A0": {
       "name": "_TextureLib_Data::GetLib",
-      "signature": "char *__thiscall(_TextureLib_Data *this, char *pszName)"
+      "signature": "char *__thiscall(char *pszName)"
     },
     "0x005408E0": {
       "name": "_TextureLib_Data::GetTextureInfo",
-      "signature": "_Texture_Info *__thiscall(_TextureLib_Data *this, char *pszName)"
+      "signature": "_Texture_Info *__thiscall(char *pszName)"
     },
     "0x00540A20": {
       "name": "_TextureLib_Data::GetTextureInfoByIndex",
-      "signature": "_Texture_Info *__thiscall(_TextureLib_Data *this, int nIndex)"
+      "signature": "_Texture_Info *__thiscall(int nIndex)"
     }
   },
   "base_size": 4

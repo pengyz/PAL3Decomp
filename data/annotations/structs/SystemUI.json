@@ -334,24 +334,24 @@
   "methods": {
     "0x004200A0": {
       "name": "SystemUI::Render",
-      "signature": "int __thiscall(SystemUI *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x00420110": {
       "name": "SystemUI::RenderWithStack",
-      "signature": "int __thiscall(SystemUI *this, void *pStack)",
+      "signature": "int __thiscall(void *pStack)",
       "_misattrib_evidence": "max_offset=57572>class_size=204"
     },
     "0x004A7690": {
       "name": "SystemUI::~SystemUI",
-      "signature": "void __thiscall(SystemUI *this)"
+      "signature": "void __thiscall()"
     },
     "0x00420150": {
       "name": "SystemUI::UIUpdate",
-      "signature": "double __thiscall(SystemUI *this, double result, double pData)"
+      "signature": "double __thiscall(double result, double pData)"
     },
     "0x004AD540": {
       "name": "SystemUI::UpdateSwordDisplay",
-      "signature": "BOOL __thiscall(SystemUI *this, int nVal, int nVal2)",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
       "ordinal": 2
     },
     "0x0041F6F0": {
@@ -380,7 +380,7 @@
     },
     "0x004ADC30": {
       "name": "SystemUI::InitScreenUI",
-      "signature": "int __thiscall(SystemUI *this, int nVal, UIWnd *pWnd, int nVal2, char *pszBuf, int nVal3)",
+      "signature": "int __thiscall(int nVal, UIWnd *pWnd, int nVal2, char *pszBuf, int nVal3)",
       "ordinal": 6
     },
     "0x00421A40": {
@@ -403,11 +403,11 @@
     },
     "0x0051F130": {
       "name": "SystemUI::UpdateParticles",
-      "signature": "int __thiscall(SystemUI *this)"
+      "signature": "int __thiscall()"
     },
     "0x004AC8B0": {
       "name": "SystemUI::ReplaceTextures",
-      "signature": "void __thiscall(SystemUI *this)",
+      "signature": "void __thiscall()",
       "_misattrib_evidence": "max_offset=382744>class_size=4280"
     },
     "0x004A7670": {

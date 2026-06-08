@@ -201,23 +201,23 @@
     },
     "0x004022E0": {
       "name": "GRPinput::GetCursorPos",
-      "signature": "BOOL __thiscall(GRPinput *this)"
+      "signature": "BOOL __thiscall()"
     },
     "0x00402310": {
       "name": "GRPinput::AcquireDevices",
-      "signature": "int __thiscall(GRPinput *this)"
+      "signature": "int __thiscall()"
     },
     "0x00402380": {
       "name": "GRPinput::ReleaseDevices",
-      "signature": "int __thiscall(GRPinput *this)"
+      "signature": "int __thiscall()"
     },
     "0x00402400": {
       "name": "GRPinput::GRPinput",
-      "signature": "void __thiscall(GRPinput *this)"
+      "signature": "void __thiscall()"
     },
     "0x004024F0": {
       "name": "GRPinput::~GRPinput",
-      "signature": "void __thiscall(GRPinput *this, int nVal, int nVal2)"
+      "signature": "void __thiscall(int nVal, int nVal2)"
     },
     "0x00402570": {
       "name": "GRPinput::InitKeyMappings",
@@ -225,26 +225,26 @@
     },
     "0x00402A90": {
       "name": "GRPinput::SetMouseAbs",
-      "signature": "void __thiscall(GRPinput *this, int nVal, int nVal2, int nVal3)",
+      "signature": "void __thiscall(int nVal, int nVal2, int nVal3)",
       "source": "pdb_ret"
     },
     "0x00402B00": {
       "name": "GRPinput::SetJoystickAbs",
-      "signature": "void __thiscall(GRPinput *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x00402B60": {
       "name": "GRPinput::RunJoystickControlPanel",
-      "signature": "void __thiscall(GRPinput *this, void *hWnd)"
+      "signature": "void __thiscall(void *hWnd)"
     },
     "0x00402B70": {
       "name": "GRPinput::ClearKeyBuffer",
-      "signature": "void __thiscall(GRPinput *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x00402B90": {
       "name": "GRPinput::SetJoystickLimits",
-      "signature": "void __thiscall(GRPinput *this)"
+      "signature": "void __thiscall()"
     },
     "0x00402BA0": {
       "name": "GRPinput::SetMousePos",
@@ -252,26 +252,26 @@
     },
     "0x00402BF0": {
       "name": "GRPinput::SetMouseFreePos",
-      "signature": "void __thiscall(GRPinput *this)"
+      "signature": "void __thiscall()"
     },
     "0x00402C40": {
       "name": "GRPinput::SetJoystickPos",
-      "signature": "void __thiscall(GRPinput *this, const char *x, int y)",
+      "signature": "void __thiscall(const char *x, int y)",
       "source": "pdb_ret"
     },
     "0x00402D00": {
       "name": "GRPinput::SetJoystickFreePos",
-      "signature": "void __thiscall(GRPinput *this, float x)",
+      "signature": "void __thiscall(float x)",
       "source": "pdb_ret"
     },
     "0x00402D20": {
       "name": "GRPinput::SetMouseSensitivity",
-      "signature": "void __thiscall(GRPinput *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x00402FA0": {
       "name": "GRPinput::GetMouseSensitivity",
-      "signature": "int __thiscall(GRPinput *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x00403000": {
       "name": "GRPinput::PollInputState",
@@ -279,53 +279,53 @@
     },
     "0x00403150": {
       "name": "GRPinput::GetMouseFreePos",
-      "signature": "void __thiscall(GRPinput *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x00403160": {
       "name": "GRPinput::GetMouseDeltas",
-      "signature": "void __thiscall(GRPinput *this)"
+      "signature": "void __thiscall()"
     },
     "0x00403170": {
       "name": "GRPinput::GetJoystickPos",
-      "signature": "void __thiscall(GRPinput *this)"
+      "signature": "void __thiscall()"
     },
     "0x00403180": {
       "name": "GRPinput::GetJoystickFreePos",
-      "signature": "BOOL __thiscall(GRPinput *this, int x, int y)"
+      "signature": "BOOL __thiscall(int x, int y)"
     },
     "0x00403370": {
       "name": "GRPinput::AcquireMouse",
-      "signature": "GRPinput * __thiscall(GRPinput *this)"
+      "signature": "GRPinput * __thiscall()"
     },
     "0x004033F0": {
       "name": "GRPinput::UnacquireMouse",
-      "signature": "void __thiscall(GRPinput *this)"
+      "signature": "void __thiscall()"
     },
     "0x00403410": {
       "name": "GRPinput::AcquireJoystick",
-      "signature": "void __thiscall(GRPinput *this)"
+      "signature": "void __thiscall()"
     },
     "0x00403470": {
       "name": "GRPinput::UnacquireJoystick",
-      "signature": "void __thiscall(GRPinput *this)"
+      "signature": "void __thiscall()"
     },
     "0x004034B0": {
       "name": "GRPinput::AcquireKeyboard",
-      "signature": "void __thiscall(GRPinput *this)"
+      "signature": "void __thiscall()"
     },
     "0x004034E0": {
       "name": "GRPinput::UnacquireKeyboard",
-      "signature": "void __thiscall(GRPinput *this)"
+      "signature": "void __thiscall()"
     },
     "0x00403560": {
       "name": "GRPinput::Update",
-      "signature": "void __thiscall(GRPinput *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x00403640": {
       "name": "GRPinput::CheckKeyEvents",
-      "signature": "void __thiscall(GRPinput *this, const char *key)"
+      "signature": "void __thiscall(const char *key)"
     },
     "0x004038F0": {
       "name": "GRPinput::InitShiftedKeys",
@@ -333,33 +333,33 @@
     },
     "0x004039D0": {
       "name": "GRPinput::InitDIKToKEY",
-      "signature": "void __thiscall(GRPinput *this, unsigned short *pwVal)"
+      "signature": "void __thiscall(unsigned short *pwVal)"
     },
     "0x00404020": {
       "name": "GRPinput::GetKey",
-      "signature": "GRPinput *__thiscall(GRPinput *this)"
+      "signature": "GRPinput *__thiscall()"
     },
     "0x00404060": {
       "name": "GRPinput::GetCharKey",
-      "signature": "int __thiscall(GRPinput *this)"
+      "signature": "int __thiscall()"
     },
     "0x00404150": {
       "name": "GRPinput::DecideKeyStatus",
-      "signature": "unsigned int __thiscall(GRPinput *this, gbRay *thisTime, unsigned int cKey)"
+      "signature": "unsigned int __thiscall(gbRay *thisTime, unsigned int cKey)"
     },
     "0x004042D0": {
       "name": "GRPinput::IsAnyKeyPressed",
-      "signature": "bool __thiscall(GRPinput *this)",
+      "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x00402270": {
       "name": "GRPinput::SetMouseLimits",
-      "signature": "void __thiscall(GRPinput *this, int a, int b, int c, int d)",
+      "signature": "void __thiscall(int a, int b, int c, int d)",
       "source": "pdb_ret"
     },
     "0x004022F0": {
       "name": "GRPinput::GetMousePos",
-      "signature": "void __thiscall(GRPinput *this, void *pOut, void *pOut2)",
+      "signature": "void __thiscall(void *pOut, void *pOut2)",
       "source": "pdb_ret"
     },
     "0x004021E0": {
@@ -368,15 +368,15 @@
     },
     "0x004022B0": {
       "name": "GRPinput::SetMode",
-      "signature": "int __thiscall(GRPinput *this, int mode)"
+      "signature": "int __thiscall(int mode)"
     },
     "0x004022C0": {
       "name": "GRPinput::GetKeyState",
-      "signature": "short __thiscall(GRPinput *this, unsigned short key)"
+      "signature": "short __thiscall(unsigned short key)"
     },
     "0x004020E0": {
       "name": "GRPinput::Create",
-      "signature": "int __thiscall(GRPinput *this, HINSTANCE *hInst, int hwnd, int flag)"
+      "signature": "int __thiscall(HINSTANCE *hInst, int hwnd, int flag)"
     },
     "0x00402360": {
       "name": "GRPinput::_thunk_vtbl8",
@@ -384,11 +384,11 @@
     },
     "0x00402220": {
       "name": "GRPinput::Reset",
-      "signature": "void __thiscall(GRPinput *this)"
+      "signature": "void __thiscall()"
     },
     "0x00403B80": {
       "name": "GRPinput::ProcessInputFrame",
-      "signature": "int __thiscall(GRPinput *this, char *pszBuf)"
+      "signature": "int __thiscall(char *pszBuf)"
     },
     "0x00402290": {
       "name": "GRPinput::SetCursorPos",
@@ -396,7 +396,7 @@
     },
     "0x00402640": {
       "name": "GRPinput::BuildKeyMap",
-      "signature": "int __thiscall(GRPinput *this)"
+      "signature": "int __thiscall()"
     },
     "0x0046F480": {
       "name": "GRPinput::ProcessMouseInput",
@@ -404,7 +404,7 @@
     },
     "0x004031D0": {
       "name": "GRPinput::GetState",
-      "signature": "int __thiscall(GRPinput *this)"
+      "signature": "int __thiscall()"
     }
   }
 }

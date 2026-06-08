@@ -314,34 +314,34 @@
   "methods": {
     "0x004BF780": {
       "name": "RenderTarget2::Init",
-      "signature": "int __thiscall(RenderTarget2 *this)"
+      "signature": "int __thiscall()"
     },
     "0x004BFD70": {
       "name": "RenderTarget2::Begin",
-      "signature": "void *__cdecl __thiscall(RenderTarget2 *this)"
+      "signature": "void *__cdecl __thiscall()"
     },
     "0x004BFDD0": {
       "name": "RenderTarget2::Resolve",
-      "signature": "void __thiscall(RenderTarget2 *this)"
+      "signature": "void __thiscall()"
     },
     "0x004C0200": {
       "name": "RenderTarget2::Update",
-      "signature": "void __thiscall(RenderTarget2 *this, float fVal)",
+      "signature": "void __thiscall(float fVal)",
       "class": "RenderTarget2"
     },
     "0x004C04C0": {
       "name": "RenderTarget2::ClearTarget",
-      "signature": "CEffBase **__thiscall(RenderTarget2 *this)"
+      "signature": "CEffBase **__thiscall()"
     },
     "0x004C0520": {
       "name": "CEffAction::sub_4C0520",
-      "signature": "void __thiscall(CEffAction *this)",
+      "signature": "void __thiscall()",
       "ordinal": 10,
       "source": "manual_fix_vtable"
     },
     "0x004C1570": {
       "name": "RenderTarget2::Reset",
-      "signature": "CEffAudio **__thiscall(RenderTarget2 *this)"
+      "signature": "CEffAudio **__thiscall()"
     },
     "0x004C15B0": {
       "name": "RenderTarget2::CreateEffAudio",
@@ -350,7 +350,7 @@
     },
     "0x004C2050": {
       "name": "RenderTarget2::ResetSurface",
-      "signature": "CEffBink **__thiscall(RenderTarget2 *this)"
+      "signature": "CEffBink **__thiscall()"
     },
     "0x004C2090": {
       "name": "RenderTarget2::CreateEffBink",
@@ -359,7 +359,7 @@
     },
     "0x004C27D0": {
       "name": "RenderTarget2::Deactivate",
-      "signature": "void ** __thiscall(RenderTarget2 *this)"
+      "signature": "void ** __thiscall()"
     },
     "0x004C2820": {
       "name": "RenderTarget2::CreateDeactivated",
@@ -373,7 +373,7 @@
     },
     "0x004C3450": {
       "name": "RenderTarget2::ResetTargetSlot",
-      "signature": "CEffCallBack **__thiscall(RenderTarget2 *this)"
+      "signature": "CEffCallBack **__thiscall()"
     },
     "0x004C3490": {
       "name": "RenderTarget2::CreateEffCallBack",
@@ -382,7 +382,7 @@
     },
     "0x004C3D90": {
       "name": "CEffCylinder::sub_4C3D90",
-      "signature": "void __thiscall(CEffCylinder *this)",
+      "signature": "void __thiscall()",
       "source": "manual_fix_vtable",
       "ordinal": 31
     },
@@ -400,7 +400,7 @@
     },
     "0x004C0560": {
       "name": "RenderTarget2::ExecutePasses",
-      "signature": "int __thiscall(RenderTarget2 *this)"
+      "signature": "int __thiscall()"
     },
     "0x004C0600": {
       "name": "RenderTarget2::StubReturn0",
@@ -409,13 +409,13 @@
     },
     "0x004C0920": {
       "name": "CEffAction::sub_4C0920",
-      "signature": "void __thiscall(CEffAction *this)",
+      "signature": "void __thiscall()",
       "ordinal": 12,
       "source": "manual_fix_vtable"
     },
     "0x004C09E0": {
       "name": "CEffAction::sub_4C09E0",
-      "signature": "void __thiscall(CEffAction *this)",
+      "signature": "void __thiscall()",
       "ordinal": 15,
       "source": "manual_fix_vtable"
     },
@@ -425,18 +425,12 @@
     },
     "0x004C13B0": {
       "name": "RenderTarget2::RenderScene",
-      "signature": "int __thiscall(RenderTarget2 *this, int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
     },
     "0x004C1490": {
       "name": "RenderTarget2::BeginRenderPass",
-      "signature": "RenderTarget2 * __thiscall(RenderTarget2 *this, void *Block, char pData)",
+      "signature": "RenderTarget2 * __thiscall(void *Block, char pData)",
       "ordinal": 20
-    },
-    "0x004C15D0": {
-      "name": "CEffSParticle::sub_4C15D0",
-      "signature": "void __thiscall(CEffSParticle *this)",
-      "ordinal": 16,
-      "source": "manual_fix_vtable"
     },
     "0x004C1660": {
       "name": "RenderTarget2::DestroyEffBase",
@@ -463,7 +457,7 @@
     },
     "0x004C1E90": {
       "name": "RenderTarget2::RenderOverlay",
-      "signature": "int __thiscall(RenderTarget2 *this, int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
     },
     "0x004C1F70": {
       "name": "RenderTarget2::DestroyEffAudio",
@@ -490,12 +484,12 @@
     },
     "0x004C25C0": {
       "name": "RenderTarget2::GetTargetAddress",
-      "signature": "int * __thiscall(RenderTarget2 *this, int nVal)",
+      "signature": "int * __thiscall(int nVal)",
       "ordinal": 74
     },
     "0x004C2700": {
       "name": "RenderTarget2::BeginNextPass",
-      "signature": "RenderTarget2 * __thiscall(RenderTarget2 *this, void *Block, char pData)",
+      "signature": "RenderTarget2 * __thiscall(void *Block, char pData)",
       "ordinal": 77
     },
     "0x004C2850": {
@@ -505,7 +499,7 @@
     },
     "0x004C2890": {
       "name": "RenderTarget2::BeginMultiPass",
-      "signature": "int __thiscall(RenderTarget2 *this)"
+      "signature": "int __thiscall()"
     },
     "0x004C2930": {
       "name": "RenderTarget2::InitTargetPos",
@@ -514,7 +508,7 @@
     },
     "0x004C29A0": {
       "name": "RenderTarget2::UpdateInternal",
-      "signature": "void __thiscall(RenderTarget2 *this, float fVal)",
+      "signature": "void __thiscall(float fVal)",
       "ordinal": 44
     },
     "0x004C2D00": {
@@ -529,7 +523,7 @@
     },
     "0x004C3260": {
       "name": "RenderTarget2::RenderPostProcess",
-      "signature": "int __thiscall(RenderTarget2 *this, int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
     },
     "0x004C3340": {
       "name": "RenderTarget2::_scalar_dtor_Bink",
@@ -558,21 +552,21 @@
     },
     "0x004C3A90": {
       "name": "RenderTarget2::GetTargetByType",
-      "signature": "int * __thiscall(RenderTarget2 *this, int nVal)",
+      "signature": "int * __thiscall(int nVal)",
       "ordinal": 17
     },
     "0x004C3AD0": {
       "name": "RenderTarget2::RenderFinal",
-      "signature": "int __thiscall(RenderTarget2 *this, int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
     },
     "0x004C3BB0": {
       "name": "RenderTarget2::AdvancePass",
-      "signature": "RenderTarget2 * __thiscall(RenderTarget2 *this, void *Block, char pData)",
+      "signature": "RenderTarget2 * __thiscall(void *Block, char pData)",
       "ordinal": 20
     },
     "0x004C5810": {
       "name": "RenderTarget2::_sdtor",
-      "signature": "char *__thiscall(RenderTarget2 *this, char pData)"
+      "signature": "char *__thiscall(char pData)"
     },
     "0x004D05E0": {
       "name": "RenderTarget2::CameraInterpCallback",
@@ -580,25 +574,25 @@
     },
     "0x004C1550": {
       "name": "RenderTarget2::vfunc_0",
-      "signature": "virtual void __thiscall(char *this, float a2)",
+      "signature": "virtual void __thiscall(float a2)",
       "source": "vtable_migrated",
       "ordinal": 0
     },
     "0x004C1560": {
       "name": "RenderTarget2::vfunc_2",
-      "signature": "virtual char *__thiscall(char *this, char a2)",
+      "signature": "virtual char *__thiscall(char a2)",
       "source": "vtable_migrated",
       "ordinal": 2
     },
     "0x004C0650": {
       "name": "RenderTarget2::AllocSegments",
-      "signature": "virtual char __thiscall(CEffAction *this, int nVal)",
+      "signature": "virtual char __thiscall(int nVal)",
       "source": "vtable_migrated+pdb_correct",
       "ordinal": 4
     },
     "0x004C0640": {
       "name": "RenderTarget2::ResetState",
-      "signature": "virtual void __thiscall(CEffAction *this)",
+      "signature": "virtual void __thiscall()",
       "source": "vtable_migrated+pdb_correct",
       "ordinal": 5
     },
@@ -610,13 +604,13 @@
     },
     "0x004C0740": {
       "name": "CEffAction::UpdateFrame",
-      "signature": "void __thiscall(CEffAction *this, float fVal)",
+      "signature": "void __thiscall(float fVal)",
       "source": "manual_fix_vtable",
       "ordinal": 8
     },
     "0x004C2600": {
       "name": "RenderTarget2::CalcDeltaTime",
-      "signature": "int __thiscall(RenderTarget2 *this, float fTime)",
+      "signature": "int __thiscall(float fTime)",
       "source": "vtable_migrated+manual_ida_body",
       "ordinal": 18
     },
@@ -634,7 +628,7 @@
     },
     "0x004C2040": {
       "name": "RenderTarget2::sub_004C2040",
-      "signature": "virtual char *__thiscall(char *this, char a2)",
+      "signature": "virtual char *__thiscall(char a2)",
       "source": "vtable_migrated",
       "ordinal": 38
     },
@@ -646,13 +640,13 @@
     },
     "0x004C27C0": {
       "name": "RenderTarget2::sub_004C27C0",
-      "signature": "virtual char *__thiscall(char *this, char a2)",
+      "signature": "virtual char *__thiscall(char a2)",
       "source": "vtable_migrated",
       "ordinal": 59
     },
     "0x004C3400": {
       "name": "RenderTarget2::sub_004C3400",
-      "signature": "virtual char *__thiscall(char *this, char a2)",
+      "signature": "virtual char *__thiscall(char a2)",
       "source": "vtable_migrated",
       "ordinal": 80
     },
@@ -670,49 +664,49 @@
     },
     "0x004C4060": {
       "name": "RenderTarget2::Create",
-      "signature": "virtual char __thiscall(CEffCylinder *this, tagEffObjType *pType)",
+      "signature": "virtual char __thiscall(tagEffObjType *pType)",
       "source": "vtable_evidence",
       "ordinal": 25
     },
     "0x004C3EC0": {
       "name": "RenderTarget2::Init",
-      "signature": "virtual int __thiscall(CEffCylinder *this, float *pType, float fx, float fy, float fz)",
+      "signature": "virtual int __thiscall(float *pType, float fx, float fy, float fz)",
       "source": "vtable_evidence",
       "ordinal": 26
     },
     "0x004C45A0": {
       "name": "RenderTarget2::CreateTask",
-      "signature": "virtual void __thiscall(CEffCylinder *this, float p)",
+      "signature": "virtual void __thiscall(float p)",
       "source": "vtable_evidence",
       "ordinal": 29
     },
     "0x004C4370": {
       "name": "RenderTarget2::Destroy",
-      "signature": "virtual void __thiscall(CEffCylinder *this)",
+      "signature": "virtual void __thiscall()",
       "source": "vtable_evidence",
       "ordinal": 30
     },
     "0x004C5150": {
       "name": "RenderTarget2::GetEditorObjDescription",
-      "signature": "virtual const char *__thiscall(CEffCylinder *this, int nIndex)",
+      "signature": "virtual const char *__thiscall(int nIndex)",
       "source": "vtable_evidence",
       "ordinal": 34
     },
     "0x004C48D0": {
       "name": "RenderTarget2::ProcInitTask",
-      "signature": "virtual void __thiscall(CEffCylinder *this, int *dwParam)",
+      "signature": "virtual void __thiscall(int *dwParam)",
       "source": "vtable_evidence",
       "ordinal": 36
     },
     "0x004C5010": {
       "name": "RenderTarget2::GetEditorTaskDescription",
-      "signature": "virtual const char *__thiscall(CEffCylinder *this, int nIndex)",
+      "signature": "virtual const char *__thiscall(int nIndex)",
       "source": "vtable_evidence",
       "ordinal": 38
     },
     "0x004C2620": {
       "name": "RenderTarget2::RenderEffect",
-      "signature": "void __thiscall(RenderTarget2 *this, int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)",
+      "signature": "void __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)",
       "source": "pdb_ret"
     }
   },

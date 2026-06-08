@@ -66,57 +66,57 @@
   "methods": {
     "0x004C6940": {
       "name": "CEffect::CEffect",
-      "signature": "void __thiscall(CEffect *this)"
+      "signature": "void __thiscall()"
     },
     "0x004C6A70": {
       "name": "CEffect::Reset",
-      "signature": "void __thiscall(CEffect *this, float *pfVal, float fVal, float fVal2, float fVal3)"
+      "signature": "void __thiscall(float *pfVal, float fVal, float fVal2, float fVal3)"
     },
     "0x004C7150": {
       "name": "CEffect::CreateOnePartical",
-      "signature": "void __thiscall(CEffect *this, float pPartical)"
+      "signature": "void __thiscall(float pPartical)"
     },
     "0x004C7450": {
       "name": "CEffect::FillQuadByPartical",
-      "signature": "void __thiscall(CEffect *this, int *nParticalIndex)"
+      "signature": "void __thiscall(int *nParticalIndex)"
     },
     "0x004CA400": {
       "name": "CEffect::SetParam",
-      "signature": "int __thiscall(CEffect *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004D0D70": {
       "name": "CEffect::SetTimeScale",
-      "signature": "CEffect *__thiscall(CEffect *this)",
+      "signature": "CEffect *__thiscall()",
       "ordinal": 7
     },
     "0x004D0EC0": {
       "name": "CEffect::ProcInitTask",
-      "signature": "int __thiscall(CEffect *this, float *dwParam, float fVal, float fVal2, float fVal3)",
+      "signature": "int __thiscall(float *dwParam, float fVal, float fVal2, float fVal3)",
       "ordinal": 2
     },
     "0x004D1090": {
       "name": "CEffect::Create",
-      "signature": "char __thiscall(CEffect *this, tagEffObjType *pEffObjType)",
+      "signature": "char __thiscall(tagEffObjType *pEffObjType)",
       "ordinal": 1
     },
     "0x004D2080": {
       "name": "CEffect::CreateTask",
-      "signature": "int __thiscall(CEffect *this, int *p)",
+      "signature": "int __thiscall(int *p)",
       "ordinal": 12
     },
     "0x004D3A50": {
       "name": "CEffect::Init",
-      "signature": "int __thiscall(CEffect *this, float *pType, float fx, float fy, float fz)",
+      "signature": "int __thiscall(float *pType, float fx, float fy, float fz)",
       "ordinal": 2
     },
     "0x004D3AD0": {
       "name": "CEffect::Create_3ad0",
-      "signature": "char __thiscall(CEffect *this, tagEffObjType *pEffObjType)",
+      "signature": "char __thiscall(tagEffObjType *pEffObjType)",
       "ordinal": 1
     },
     "0x004CE460": {
       "name": "CEffect::Render",
-      "signature": "int __thiscall(CEffect *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004D4340": {
       "name": "CEffect::CreateTarget",
@@ -134,7 +134,7 @@
     },
     "0x004BB190": {
       "name": "CEffect::SetRenderParam",
-      "signature": "int __thiscall(CEffect *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004BD7A0": {
       "name": "CEffect::SetQuadParam",
@@ -142,7 +142,7 @@
     },
     "0x004D0390": {
       "name": "CEffModel::sub_4D0390",
-      "signature": "void __thiscall(CEffModel *this)",
+      "signature": "void __thiscall()",
       "source": "manual_fix_vtable"
     },
     "0x004D0DB0": {
@@ -155,11 +155,11 @@
     },
     "0x0053D580": {
       "name": "CEffect::ReleaseResources",
-      "signature": "void __thiscall(CEffect *this)"
+      "signature": "void __thiscall()"
     },
     "0x004D03B0": {
       "name": "CEffModel::sub_4D03B0",
-      "signature": "void __thiscall(CEffModel *this)",
+      "signature": "void __thiscall()",
       "source": "manual_fix_vtable"
     },
     "0x004C0500": {
@@ -167,12 +167,6 @@
       "signature": "int()",
       "source": "vtable_migrated",
       "ordinal": 8
-    },
-    "0x004C15D0": {
-      "name": "CEffSParticle::sub_4C15D0",
-      "signature": "void __thiscall(CEffSParticle *this)",
-      "source": "manual_fix_vtable",
-      "ordinal": 13
     },
     "0x004D2ED0": {
       "name": "CEffect::sub_4D2ED0",

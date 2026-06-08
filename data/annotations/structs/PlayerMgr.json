@@ -121,18 +121,18 @@
     },
     "0x0045AE60": {
       "name": "PlayerMgr::ctor",
-      "signature": "void __thiscall(PlayerMgr *this)",
+      "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x00469EB0": {
       "name": "PlayerMgr::HandleInput",
-      "signature": "BOOL __thiscall(PlayerMgr *this, int nInputID, int nParam, int nFlags)",
+      "signature": "BOOL __thiscall(int nInputID, int nParam, int nFlags)",
       "_misattrib_evidence": "max_offset=93596>class_size=2632"
     },
     "0x0045B990": {
       "name": "PlayerMgr::InitCombatUI",
-      "signature": "int __thiscall(PlayerMgr *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x00462120": {
       "name": "PlayerMgr::SetSelectionFlags",
@@ -141,7 +141,7 @@
     },
     "0x004623A0": {
       "name": "PlayerMgr::CreatePanelElements",
-      "signature": "int __thiscall(PlayerMgr *this, CCBUIPanel *arg0)"
+      "signature": "int __thiscall(CCBUIPanel *arg0)"
     },
     "0x0045B7A0": {
       "name": "PlayerMgr::LoadState",
@@ -153,7 +153,7 @@
     },
     "0x004620E0": {
       "name": "PlayerMgr::SendInputToRole",
-      "signature": "int __thiscall(PlayerMgr *this, unsigned char pData)",
+      "signature": "int __thiscall(unsigned char pData)",
       "_misattrib_evidence": "max_offset=95748>class_size=2632"
     },
     "0x00469D90": {

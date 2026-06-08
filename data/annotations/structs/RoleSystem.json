@@ -1079,11 +1079,11 @@
   "methods": {
     "0x0040BE50": {
       "name": "RoleSystem::Init",
-      "signature": "int *__thiscall(RoleSystem *this)"
+      "signature": "int *__thiscall()"
     },
     "0x0040BE80": {
       "name": "RoleSystem::RecalcAggregatedStats",
-      "signature": "int __thiscall(RoleSystem *this, char pData)"
+      "signature": "int __thiscall(char pData)"
     },
     "0x00410E40": {
       "name": "RoleSystem::CheckVisible",
@@ -1091,43 +1091,43 @@
     },
     "0x00412400": {
       "name": "RoleSystem::RenderRole",
-      "signature": "void __thiscall(RoleSystem *this, gbMatrixStack *pStack, int nVal)"
+      "signature": "void __thiscall(gbMatrixStack *pStack, int nVal)"
     },
     "0x00412710": {
       "name": "RoleSystem::UpdateTransform",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x00412E60": {
       "name": "RoleSystem::MoveRole",
-      "signature": "int __thiscall(RoleSystem *this, float *pPos, int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall(float *pPos, int nVal, int nVal2, int nVal3)"
     },
     "0x00413010": {
       "name": "RoleSystem::UpdateRole",
-      "signature": "char __thiscall(RoleSystem *this, float *pfVal, int nVal, int nVal2)"
+      "signature": "char __thiscall(float *pfVal, int nVal, int nVal2)"
     },
     "0x00414A30": {
       "name": "RoleSystem::PathFind",
-      "signature": "int __thiscall(RoleSystem *this, float *pTarget)"
+      "signature": "int __thiscall(float *pTarget)"
     },
     "0x00416790": {
       "name": "RoleSystem::UpdateAnimation",
-      "signature": "void __thiscall(RoleSystem *this, float *pfVal)"
+      "signature": "void __thiscall(float *pfVal)"
     },
     "0x00416F10": {
       "name": "RoleSystem::GetActiveRole",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x00419A80": {
       "name": "RoleSystem::GetDirection",
-      "signature": "int __thiscall(RoleSystem *this, float *pOut)"
+      "signature": "int __thiscall(float *pOut)"
     },
     "0x0041BBE0": {
       "name": "RoleSystem::GetCount",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x00420F30": {
       "name": "RoleSystem::GetRolePtr",
-      "signature": "int __thiscall(RoleSystem *this, int index)"
+      "signature": "int __thiscall(int index)"
     },
     "0x00412D90": {
       "name": "RoleSystem::BindPartyToScene",
@@ -1135,7 +1135,7 @@
     },
     "0x00531E70": {
       "name": "RoleSystem::ctor",
-      "signature": "void __thiscall(RoleSystem *this)",
+      "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
@@ -1145,79 +1145,79 @@
     },
     "0x004142E0": {
       "name": "RoleSystem::NotifyMoveComplete",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x004181E0": {
       "name": "RoleSystem::Notify",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x00531D20": {
       "name": "RoleSystem::ctor_1D20",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x0042A010": {
       "name": "RoleSystem::ProcessAction",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x004122C0": {
       "name": "RoleSystem::UpdatePosition",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x00412230": {
       "name": "RoleSystem::SetMoveSpeed",
-      "signature": "void __thiscall(RoleSystem *this, float fSpeed, int nRoleIndex, int nFlag)"
+      "signature": "void __thiscall(float fSpeed, int nRoleIndex, int nFlag)"
     },
     "0x00418130": {
       "name": "RoleSystem::GetMoveState",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x00421020": {
       "name": "RoleSystem::CheckCollision",
-      "signature": "BOOL __thiscall(RoleSystem *this, int *pResult, int nFlag)"
+      "signature": "BOOL __thiscall(int *pResult, int nFlag)"
     },
     "0x00412B60": {
       "name": "RoleSystem::SetMoveTarget",
-      "signature": "void __thiscall(RoleSystem *this, float *pTargetPos, int nFlags)"
+      "signature": "void __thiscall(float *pTargetPos, int nFlags)"
     },
     "0x00416550": {
       "name": "RoleSystem::IsPathComplete",
-      "signature": "void __thiscall(RoleSystem *this, float *pTargetPos, int nMode)"
+      "signature": "void __thiscall(float *pTargetPos, int nMode)"
     },
     "0x00416620": {
       "name": "RoleSystem::UpdateMovement",
-      "signature": "int __thiscall(RoleSystem *this, float fDeltaTime, int nMode)"
+      "signature": "int __thiscall(float fDeltaTime, int nMode)"
     },
     "0x00413CD0": {
       "name": "RoleSystem::PathFollowUpdate",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x00416490": {
       "name": "RoleSystem::SetTargetRotation",
-      "signature": "void __thiscall(RoleSystem *this, gbVec3D *pTarget)"
+      "signature": "void __thiscall(gbVec3D *pTarget)"
     },
     "0x004125B0": {
       "name": "RoleSystem::NotifySceneChange",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x00414E30": {
       "name": "RoleSystem::GetActionByIndex",
-      "signature": "int __thiscall(RoleSystem *this, int nParam)"
+      "signature": "int __thiscall(int nParam)"
     },
     "0x00412A50": {
       "name": "RoleSystem::StartHalfSpeedMovement",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x004178A0": {
       "name": "RoleSystem::CheckVisibility",
-      "signature": "BOOL __thiscall(RoleSystem *this)"
+      "signature": "BOOL __thiscall()"
     },
     "0x0041ABE0": {
       "name": "RoleSystem::UpdateFollowVelocity",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x0041AD40": {
       "name": "RoleSystem::UpdateFollowVelocityEx",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x00411E00": {
       "name": "RoleSystem::ApplyMoveStep",
@@ -1241,15 +1241,15 @@
     },
     "0x004150C0": {
       "name": "RoleSystem::UpdateActionState",
-      "signature": "void __thiscall(RoleSystem *this, float fVal)"
+      "signature": "void __thiscall(float fVal)"
     },
     "0x00416FA0": {
       "name": "RoleSystem::InitPathTracking",
-      "signature": "void __thiscall(RoleSystem *this, float *nFlags)"
+      "signature": "void __thiscall(float *nFlags)"
     },
     "0x00416FE0": {
       "name": "RoleSystem::RestoreMoveMode",
-      "signature": "void __thiscall(RoleSystem *this, float *nFlags)"
+      "signature": "void __thiscall(float *nFlags)"
     },
     "0x00417420": {
       "name": "RoleSystem::UpdateTransform",
@@ -1257,7 +1257,7 @@
     },
     "0x00417850": {
       "name": "RoleSystem::EnterSubMode6",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x00417C50": {
       "name": "RoleSystem::UpdateMoveSubMode",
@@ -1269,23 +1269,23 @@
     },
     "0x0041A450": {
       "name": "RoleSystem::UpdateFollowerMovement",
-      "signature": "void __thiscall(RoleSystem *this, float fVal)"
+      "signature": "void __thiscall(float fVal)"
     },
     "0x00420320": {
       "name": "RoleSystem::GetCurrentID",
-      "signature": "int __thiscall(RoleSystem *this, int *pnVal, char pData)"
+      "signature": "int __thiscall(int *pnVal, char pData)"
     },
     "0x00420A10": {
       "name": "RoleSystem::IsTileInBounds",
-      "signature": "int *__thiscall(RoleSystem *this, int nVal, int nY, int nVal2)"
+      "signature": "int *__thiscall(int nVal, int nY, int nVal2)"
     },
     "0x00420A90": {
       "name": "RoleSystem::SetRoleGridPosition",
-      "signature": "void __thiscall(RoleSystem *this, float fVal, int nVal, float fVal2, int nVal2)"
+      "signature": "void __thiscall(float fVal, int nVal, float fVal2, int nVal2)"
     },
     "0x00420FB0": {
       "name": "RoleSystem::CheckMoveCollision",
-      "signature": "BOOL __thiscall(RoleSystem *this, int *index, float *pfVal, int nVal)"
+      "signature": "BOOL __thiscall(int *index, float *pfVal, int nVal)"
     },
     "0x00421150": {
       "name": "RoleSystem::IsTilePassable",
@@ -1293,11 +1293,11 @@
     },
     "0x004214B0": {
       "name": "RoleSystem::ValidatePathIndex",
-      "signature": "BOOL __thiscall(RoleSystem *this, int index, int nY, int nVal)"
+      "signature": "BOOL __thiscall(int index, int nY, int nVal)"
     },
     "0x00421BF0": {
       "name": "RoleSystem::NotifyPathEnd",
-      "signature": "char *__thiscall(RoleSystem *this, int nVal)"
+      "signature": "char *__thiscall(int nVal)"
     },
     "0x0042A950": {
       "name": "RoleSystem::CheckScriptTrigger",
@@ -1305,7 +1305,7 @@
     },
     "0x0042B510": {
       "name": "RoleSystem::UpdateStateMode",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x0042C0C0": {
       "name": "RoleSystem::SetTileTypeVisible",
@@ -1321,7 +1321,7 @@
     },
     "0x004083E0": {
       "name": "RoleSystem::CheckSceneCollision",
-      "signature": "BOOL __thiscall(RoleSystem *this, int *nFlag, int nVal)"
+      "signature": "BOOL __thiscall(int *nFlag, int nVal)"
     },
     "0x00410430": {
       "name": "RoleSystem::RenderMainRole",
@@ -1333,7 +1333,7 @@
     },
     "0x00413390": {
       "name": "RoleSystem::InterpolateMoveFrame",
-      "signature": "void __thiscall(RoleSystem *this, float fVal)"
+      "signature": "void __thiscall(float fVal)"
     },
     "0x00417040": {
       "name": "RoleSystem::SetupMoveState",
@@ -1341,7 +1341,7 @@
     },
     "0x00417BC0": {
       "name": "RoleSystem::StopAndResetPath",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x004189C0": {
       "name": "RoleSystem::StartPathMove",
@@ -1349,7 +1349,7 @@
     },
     "0x00419A20": {
       "name": "RoleSystem::GetActorState",
-      "signature": "void __thiscall(RoleSystem *this, double thisa, int nVal, int nVal2, int nVal3)"
+      "signature": "void __thiscall(double thisa, int nVal, int nVal2, int nVal3)"
     },
     "0x00419B30": {
       "name": "RoleSystem::UpdateFollowBehavior",
@@ -1357,7 +1357,7 @@
     },
     "0x0041A150": {
       "name": "RoleSystem::SetActorTexture",
-      "signature": "void __thiscall(RoleSystem *this, const char *pszName)"
+      "signature": "void __thiscall(const char *pszName)"
     },
     "0x0041B6C0": {
       "name": "RoleSystem::ApproachTarget",
@@ -1365,7 +1365,7 @@
     },
     "0x00420290": {
       "name": "RoleSystem::RoleSystem",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x00420930": {
       "name": "RoleSystem::InitInternal",
@@ -1373,39 +1373,39 @@
     },
     "0x00420940": {
       "name": "RoleSystem::CopyRoleToSlot",
-      "signature": "int __thiscall(RoleSystem *this, RoleSystem *pRoleSystem, int index)"
+      "signature": "int __thiscall(RoleSystem *pRoleSystem, int index)"
     },
     "0x00420F70": {
       "name": "RoleSystem::IsRoleInRange",
-      "signature": "BOOL __thiscall(RoleSystem *this, int index, int *pnVal, int nVal)"
+      "signature": "BOOL __thiscall(int index, int *pnVal, int nVal)"
     },
     "0x00421440": {
       "name": "RoleSystem::SetRoleParam",
-      "signature": "void __thiscall(RoleSystem *this, int index, float *pfVal, int *pnVal, int *p_DWORD)"
+      "signature": "void __thiscall(int index, float *pfVal, int *pnVal, int *p_DWORD)"
     },
     "0x004215B0": {
       "name": "RoleSystem::AdvanceOnPath",
-      "signature": "int __thiscall(RoleSystem *this, int *pResult, char *nFlag, int nVal, char *pszBuf, int nVal2)"
+      "signature": "int __thiscall(int *pResult, char *nFlag, int nVal, char *pszBuf, int nVal2)"
     },
     "0x00421710": {
       "name": "RoleSystem::ValidatePath",
-      "signature": "int __thiscall(RoleSystem *this, int *pResult, int *nFlag, int *pnVal, int nVal, int nVal2, int **a7)"
+      "signature": "int __thiscall(int *pResult, int *nFlag, int *pnVal, int nVal, int nVal2, int **a7)"
     },
     "0x004218B0": {
       "name": "RoleSystem::GetPathTarget",
-      "signature": "BOOL __thiscall(RoleSystem *this, int *pResult, int *nFlag, int *pnVal, char *pszBuf, int nVal, int **a7)"
+      "signature": "BOOL __thiscall(int *pResult, int *nFlag, int *pnVal, char *pszBuf, int nVal, int **a7)"
     },
     "0x00421A90": {
       "name": "RoleSystem::UpdatePathProgress",
-      "signature": "int __thiscall(RoleSystem *this, char arg0, int index, char *pszBuf, int nVal, char *pszBuf2, int nVal2)"
+      "signature": "int __thiscall(char arg0, int index, char *pszBuf, int nVal, char *pszBuf2, int nVal2)"
     },
     "0x00421D10": {
       "name": "RoleSystem::BuildPathSegment",
-      "signature": "int *__thiscall(RoleSystem *this, int *pnVal, char pData)"
+      "signature": "int *__thiscall(int *pnVal, char pData)"
     },
     "0x00421EA0": {
       "name": "RoleSystem::ResetTransition",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x0042DBD0": {
       "name": "RoleSystem::ExecScriptDataA",
@@ -1428,7 +1428,7 @@
     },
     "0x00408460": {
       "name": "RoleSystem::BindRoleToScene",
-      "signature": "int __thiscall(RoleSystem *this, int index, float *pfVal, float *pfVal2, int nVal, char pData)"
+      "signature": "int __thiscall(int index, float *pfVal, float *pfVal2, int nVal, char pData)"
     },
     "0x0040C9A0": {
       "name": "RoleSystem::ForceStopRole",
@@ -1440,7 +1440,7 @@
     },
     "0x00412C30": {
       "name": "RoleSystem::SetPathWaypoint",
-      "signature": "int __thiscall(RoleSystem *this, float fVal)"
+      "signature": "int __thiscall(float fVal)"
     },
     "0x00413C00": {
       "name": "RoleSystem::PlaceAtRegion",
@@ -1448,11 +1448,11 @@
     },
     "0x004148C0": {
       "name": "RoleSystem::UpdateMoveInterpolation",
-      "signature": "float *__thiscall(RoleSystem *this, float *pfVal, float *pfVal2)"
+      "signature": "float *__thiscall(float *pfVal, float *pfVal2)"
     },
     "0x00414A10": {
       "name": "RoleSystem::UpdateMoveTimer",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x00414F90": {
       "name": "RoleSystem::PlayAction",
@@ -1460,11 +1460,11 @@
     },
     "0x004164E0": {
       "name": "RoleSystem::IsPathMoving",
-      "signature": "BOOL __thiscall(RoleSystem *this)"
+      "signature": "BOOL __thiscall()"
     },
     "0x00416500": {
       "name": "RoleSystem::IsActionBlocked",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x00416BC0": {
       "name": "RoleSystem::ProcessInteraction",
@@ -1472,15 +1472,15 @@
     },
     "0x004180B0": {
       "name": "RoleSystem::CheckWidgetReady",
-      "signature": "int __thiscall(RoleSystem *this, gbRay *pRay)"
+      "signature": "int __thiscall(gbRay *pRay)"
     },
     "0x00418970": {
       "name": "RoleSystem::AddVec3ToTarget",
-      "signature": "void __thiscall(RoleSystem *this, int nVal, int nVal2)"
+      "signature": "void __thiscall(int nVal, int nVal2)"
     },
     "0x00418D90": {
       "name": "RoleSystem::IsInBounds",
-      "signature": "BOOL __thiscall(RoleSystem *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall(int nVal, int nVal2)"
     },
     "0x00418DC0": {
       "name": "RoleSystem::TryMoveToTarget",
@@ -1488,11 +1488,11 @@
     },
     "0x00419030": {
       "name": "RoleSystem::ResetPathParams",
-      "signature": "int __thiscall(RoleSystem *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x00419790": {
       "name": "RoleSystem::ProcessMoveCommand",
-      "signature": "int __thiscall(RoleSystem *this, int *p_DWORD)"
+      "signature": "int __thiscall(int *p_DWORD)"
     },
     "0x004198C0": {
       "name": "RoleSystem::StartLinearMove",
@@ -1500,11 +1500,11 @@
     },
     "0x00419AE0": {
       "name": "RoleSystem::NotifyAndSetMode6",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x00419B10": {
       "name": "RoleSystem::SetCollisionRadius",
-      "signature": "__int64 __thiscall(RoleSystem *this)"
+      "signature": "__int64 __thiscall()"
     },
     "0x00419EF0": {
       "name": "RoleSystem::AdvancePathStep",
@@ -1512,11 +1512,11 @@
     },
     "0x0041AEA0": {
       "name": "RoleSystem::SetBlendMode",
-      "signature": "void __thiscall(RoleSystem *this, float fAlpha)"
+      "signature": "void __thiscall(float fAlpha)"
     },
     "0x0041AEE0": {
       "name": "RoleSystem::SetTransform",
-      "signature": "int __thiscall(RoleSystem *this, int *p_DWORD)"
+      "signature": "int __thiscall(int *p_DWORD)"
     },
     "0x0041AF50": {
       "name": "RoleSystem::AllocPathPage",
@@ -1524,27 +1524,27 @@
     },
     "0x0041B120": {
       "name": "RoleSystem::StopPathMovement",
-      "signature": "int __thiscall(RoleSystem *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x0041B420": {
       "name": "RoleSystem::LoadWeaponModel",
-      "signature": "void __thiscall(RoleSystem *this, char *pszRoleName)"
+      "signature": "void __thiscall(char *pszRoleName)"
     },
     "0x0041BA10": {
       "name": "RoleSystem::InterpolateHeight",
-      "signature": "BOOL __thiscall(RoleSystem *this, float *pfVal)"
+      "signature": "BOOL __thiscall(float *pfVal)"
     },
     "0x0041BAD0": {
       "name": "RoleSystem::InitDefaultState",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x0041BC30": {
       "name": "RoleSystem::ExportRoleData",
-      "signature": "int __thiscall(RoleSystem *this, float *pfVal)"
+      "signature": "int __thiscall(float *pfVal)"
     },
     "0x0041BD40": {
       "name": "RoleSystem::ClearColors",
-      "signature": "int *__thiscall(RoleSystem *this, _BYTE *p_BYTE)"
+      "signature": "int *__thiscall(_BYTE *p_BYTE)"
     },
     "0x0041C090": {
       "name": "RoleSystem::FlushCommandQueue",
@@ -1552,7 +1552,7 @@
     },
     "0x0041C190": {
       "name": "RoleSystem::SetInactive",
-      "signature": "int __thiscall(RoleSystem *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x0041D220": {
       "name": "RoleSystem::AddCameraKeyframe",
@@ -1569,23 +1569,23 @@
     },
     "0x00421DD0": {
       "name": "RoleSystem::ClearWaypointBuffer",
-      "signature": "int __thiscall(RoleSystem *this, int nVal, int nVal2, int nVal3, char pData)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, char pData)"
     },
     "0x00421F20": {
       "name": "RoleSystem::GetFontColor",
-      "signature": "size_t __thiscall(RoleSystem *this, FILE *Stream)"
+      "signature": "size_t __thiscall(FILE *Stream)"
     },
     "0x00421F70": {
       "name": "RoleSystem::ClearPathData",
-      "signature": "char __thiscall(RoleSystem *this, FILE *Buffer)"
+      "signature": "char __thiscall(FILE *Buffer)"
     },
     "0x00422000": {
       "name": "RoleSystem::BuildModelPath",
-      "signature": "BOOL __thiscall(RoleSystem *this, const char *pszName)"
+      "signature": "BOOL __thiscall(const char *pszName)"
     },
     "0x00422140": {
       "name": "RoleSystem::ResetModelPaths",
-      "signature": "int *__thiscall(RoleSystem *this)"
+      "signature": "int *__thiscall()"
     },
     "0x00422430": {
       "name": "RoleSystem::SetAnimBlend",
@@ -1593,11 +1593,11 @@
     },
     "0x00422540": {
       "name": "RoleSystem::SetAnimFrame",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x00422740": {
       "name": "RoleSystem::ResetGlobalPos",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x004234A0": {
       "name": "RoleSystem::SetCameraMode",
@@ -1605,7 +1605,7 @@
     },
     "0x0042AD40": {
       "name": "RoleSystem::SetActionState",
-      "signature": "int __thiscall(RoleSystem *this, int nVal, char pData)"
+      "signature": "int __thiscall(int nVal, char pData)"
     },
     "0x0044B470": {
       "name": "RoleSystem::ProcessWaypoint",
@@ -1613,7 +1613,7 @@
     },
     "0x0044CD90": {
       "name": "RoleSystem::InitUICtrlArray",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x0044CEC0": {
       "name": "RoleSystem::InitDefaultPositions",
@@ -1631,23 +1631,23 @@
     },
     "0x00532360": {
       "name": "RoleSystem::ApplyRotationAxis",
-      "signature": "int __thiscall(RoleSystem *this, int nVal, char pData)"
+      "signature": "int __thiscall(int nVal, char pData)"
     },
     "0x00532410": {
       "name": "RoleSystem::ShowHideUI",
-      "signature": "int __thiscall(RoleSystem *this, char pData)"
+      "signature": "int __thiscall(char pData)"
     },
     "0x005326A0": {
       "name": "RoleSystem::StartBlinkUI",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x005326E0": {
       "name": "RoleSystem::StopBlinkUI",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x00532710": {
       "name": "RoleSystem::UpdateTimer",
-      "signature": "BOOL __thiscall(RoleSystem *this, int nVal, int nVal2)",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
       "ordinal": 2
     },
     "0x00532960": {
@@ -1661,7 +1661,7 @@
     },
     "0x00532C80": {
       "name": "RoleSystem::AdjustHeight",
-      "signature": "void __thiscall(RoleSystem *this, int nVal)"
+      "signature": "void __thiscall(int nVal)"
     },
     "0x00532D30": {
       "name": "RoleSystem::GetStateMode",
@@ -1673,7 +1673,7 @@
     },
     "0x00414250": {
       "name": "RoleSystem::NormalizeDirection",
-      "signature": "void __thiscall(RoleSystem *this, float *pfDir)"
+      "signature": "void __thiscall(float *pfDir)"
     },
     "0x004161E0": {
       "name": "RoleSystem::ScaleVector",
@@ -1681,19 +1681,19 @@
     },
     "0x004207D0": {
       "name": "RoleSystem::LoadRoleImage",
-      "signature": "unsigned char *__thiscall(RoleSystem *this, int nIndex, const char *pszPath)"
+      "signature": "unsigned char *__thiscall(int nIndex, const char *pszPath)"
     },
     "0x004163B0": {
       "name": "RoleSystem::CalcTileDistance",
-      "signature": "int __thiscall(RoleSystem *this, int nTileX, int nTileY)"
+      "signature": "int __thiscall(int nTileX, int nTileY)"
     },
     "0x0041B300": {
       "name": "RoleSystem::GetCurrentTile",
-      "signature": "int __thiscall(RoleSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x004203C0": {
       "name": "RoleSystem::InitRoleImage",
-      "signature": "void __thiscall(RoleSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x00532D40": {
       "name": "RoleSystem::NegateStateMode",
@@ -1701,7 +1701,7 @@
     },
     "0x0041BD70": {
       "name": "RoleSystem::GetRoleName",
-      "signature": "const char *__thiscall(RoleSystem *this, unsigned int nRoleIndex)"
+      "signature": "const char *__thiscall(unsigned int nRoleIndex)"
     },
     "0x00524970": {
       "name": "RoleSystem::Render",
@@ -1711,20 +1711,20 @@
     },
     "0x00414980": {
       "name": "RoleSystem::GetPosition",
-      "signature": "void __thiscall(RoleSystem *this, float *pOut, int nVal)"
+      "signature": "void __thiscall(float *pOut, int nVal)"
     },
     "0x00417AC0": {
       "name": "RoleSystem::SetState",
-      "signature": "void __thiscall(RoleSystem *this, int state)",
+      "signature": "void __thiscall(int state)",
       "source": "pdb_ret"
     },
     "0x004209F0": {
       "name": "RoleSystem::GetTile",
-      "signature": "char __thiscall(RoleSystem *this, int nX, int nY)"
+      "signature": "char __thiscall(int nX, int nY)"
     },
     "0x00412940": {
       "name": "RoleSystem::UpdatePath",
-      "signature": "int __thiscall(RoleSystem *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     }
   },
   "vtables": [

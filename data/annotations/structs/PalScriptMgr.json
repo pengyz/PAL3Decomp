@@ -1030,16 +1030,16 @@
   "methods": {
     "0x00431E60": {
       "name": "PalScriptMgr::PalScriptMgr",
-      "signature": "void __thiscall(PalScriptMgr *this)"
+      "signature": "void __thiscall()"
     },
     "0x00431EB0": {
       "name": "PalScriptMgr::OpenSCE",
-      "signature": "void __thiscall(PalScriptMgr *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x00431EE0": {
       "name": "PalScriptMgr::FindScript",
-      "signature": "void __cdecl __thiscall(PalScriptMgr *this)"
+      "signature": "void __cdecl __thiscall()"
     },
     "0x004320A0": {
       "name": "PalScriptMgr::Update",
@@ -1047,7 +1047,7 @@
     },
     "0x00432170": {
       "name": "PalScriptMgr::Destroy",
-      "signature": "void __thiscall(PalScriptMgr *this)"
+      "signature": "void __thiscall()"
     },
     "0x00432260": {
       "name": "PalScriptMgr::_CON_State",
@@ -1055,24 +1055,24 @@
     },
     "0x004322A0": {
       "name": "PalScriptMgr::IfAnyScriptRunning",
-      "signature": "bool __thiscall(PalScriptMgr *this, int nVal)",
+      "signature": "bool __thiscall(int nVal)",
       "source": "pdb_ret"
     },
     "0x004322C0": {
       "name": "PalScriptMgr::IsScriptRuning",
-      "signature": "int __thiscall(PalScriptMgr *this, int pal)"
+      "signature": "int __thiscall(int pal)"
     },
     "0x004323C0": {
       "name": "PalScriptMgr::RunSceneScript",
-      "signature": "void __thiscall(PalScriptMgr *this, const char *pszScene)"
+      "signature": "void __thiscall(const char *pszScene)"
     },
     "0x00432480": {
       "name": "PalScriptMgr::_CON_ReLoadScript",
-      "signature": "void __cdecl __thiscall(PalScriptMgr *this)"
+      "signature": "void __cdecl __thiscall()"
     },
     "0x004324A0": {
       "name": "PalScriptMgr::_CON_CloseScript",
-      "signature": "BOOL __thiscall(PalScriptMgr *this)"
+      "signature": "BOOL __thiscall()"
     },
     "0x004324B0": {
       "name": "PalScriptMgr::ClearAllScript",
@@ -1085,7 +1085,7 @@
     },
     "0x00432550": {
       "name": "PalScriptMgr::IfHaveScript",
-      "signature": "void __thiscall(PalScriptMgr *this)"
+      "signature": "void __thiscall()"
     },
     "0x00434C40": {
       "name": "PalScriptMgr::NotifyEvent",
@@ -1093,27 +1093,27 @@
     },
     "0x0042EBE0": {
       "name": "PalScriptMgr::ExecuteOpcode",
-      "signature": "int __thiscall(PalScriptMgr *this)"
+      "signature": "int __thiscall()"
     },
     "0x00424C20": {
       "name": "PalScriptMgr::ExecuteBlock",
-      "signature": "void __thiscall(PalScriptMgr *this)"
+      "signature": "void __thiscall()"
     },
     "0x00434CA0": {
       "name": "PalScriptMgr::InitVtable",
-      "signature": "void __thiscall(PalScriptMgr *this)"
+      "signature": "void __thiscall()"
     },
     "0x0041BDE0": {
       "name": "PalScriptMgr::Get_result",
-      "signature": "int *__thiscall(PalScriptMgr *this)"
+      "signature": "int *__thiscall()"
     },
     "0x0042AF80": {
       "name": "PalScriptMgr::GetScriptState",
-      "signature": "char __thiscall(PalScriptMgr *this)"
+      "signature": "char __thiscall()"
     },
     "0x0042B350": {
       "name": "PalScriptMgr::ProcessRoleLoading",
-      "signature": "void __thiscall(PalScriptMgr *this)"
+      "signature": "void __thiscall()"
     },
     "0x0042BF90": {
       "name": "PalScriptMgr::ExecuteScriptByID",
@@ -1121,7 +1121,7 @@
     },
     "0x0042BFE0": {
       "name": "PalScriptMgr::IsScriptReady",
-      "signature": "bool __thiscall(PalScriptMgr *this)"
+      "signature": "bool __thiscall()"
     },
     "0x0042E6C0": {
       "name": "PalScriptMgr::CmdRoleMoveDirect",
@@ -1129,7 +1129,7 @@
     },
     "0x0042FCC0": {
       "name": "PalScriptMgr::PopScript",
-      "signature": "void __thiscall(PalScriptMgr *this)"
+      "signature": "void __thiscall()"
     },
     "0x00420B40": {
       "name": "PalScriptMgr::CheckTileScript",
@@ -1141,7 +1141,7 @@
     },
     "0x0042B5B0": {
       "name": "PalScriptMgr::UpdateScriptRoles",
-      "signature": "double __thiscall(PalScriptMgr *this, double thisa, int nVal, int nVal2)"
+      "signature": "double __thiscall(double thisa, int nVal, int nVal2)"
     },
     "0x0042BEF0": {
       "name": "PalScriptMgr::HandleGetItem",
@@ -1169,7 +1169,7 @@
     },
     "0x0042F460": {
       "name": "PalScriptMgr::ExecuteFrame",
-      "signature": "void __thiscall(PalScriptMgr *this, float fVal)"
+      "signature": "void __thiscall(float fVal)"
     },
     "0x0042FB40": {
       "name": "PalScriptMgr::SetBigMapState",
@@ -1242,7 +1242,7 @@
     },
     "0x00434D20": {
       "name": "PalScriptMgr::IsBlendComplete",
-      "signature": "BOOL __thiscall(PalScriptMgr *this)",
+      "signature": "BOOL __thiscall()",
       "ordinal": 4
     },
     "0x00434D40": {
@@ -1266,7 +1266,7 @@
     },
     "0x0042C440": {
       "name": "PalScriptMgr::RunCommand",
-      "signature": "void __thiscall(PalScriptMgr *this)"
+      "signature": "void __thiscall()"
     }
   },
   "vtables": [

@@ -54,7 +54,7 @@
   "methods": {
     "0x00504080": {
       "name": "CCBStageCam::_scalar_dtor",
-      "signature": "void *__thiscall(CCBStageCam *this, char flags)",
+      "signature": "void *__thiscall(char flags)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
@@ -64,51 +64,51 @@
     },
     "0x00505060": {
       "name": "CCBStageCam::Reset",
-      "signature": "void __thiscall(CCBStageCam *this, int nVal, const void *pData)",
+      "signature": "void __thiscall(int nVal, const void *pData)",
       "source": "pdb_ret"
     },
     "0x005050D0": {
       "name": "CCBStageCam::LoadEditorCam",
-      "signature": "void __thiscall(CCBStageCam *this, int nVal, int nVal2, const void *pData)",
+      "signature": "void __thiscall(int nVal, int nVal2, const void *pData)",
       "source": "pdb_ret"
     },
     "0x00505180": {
       "name": "CCBStageCam::SaveEditorCam",
-      "signature": "void __thiscall(CCBStageCam *this, int nVal, int nVal2, int nVal3)",
+      "signature": "void __thiscall(int nVal, int nVal2, int nVal3)",
       "source": "pdb_ret"
     },
     "0x005051E0": {
       "name": "CCBStageCam::AddCurCamToEditor",
-      "signature": "char __thiscall(CCBStageCam *this, int nVal, int nVal2)"
+      "signature": "char __thiscall(int nVal, int nVal2)"
     },
     "0x00505250": {
       "name": "CCBStageCam::DelEditorCam",
-      "signature": "void __thiscall(CCBStageCam *this, int nCamIndex)",
+      "signature": "void __thiscall(int nCamIndex)",
       "source": "pdb_ret"
     },
     "0x00505290": {
       "name": "CCBStageCam::IsEditorCamValid",
-      "signature": "bool __thiscall(CCBStageCam *this, int nCamIndex)",
+      "signature": "bool __thiscall(int nCamIndex)",
       "source": "pdb_ret"
     },
     "0x005052C0": {
       "name": "CCBStageCam::IsCamValid",
-      "signature": "bool __thiscall(CCBStageCam *this)",
+      "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x00505410": {
       "name": "CCBStageCam::Create",
-      "signature": "bool __thiscall(CCBStageCam *this)",
+      "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x00505490": {
       "name": "CCBStageCam::Destroy",
-      "signature": "bool __thiscall(CCBStageCam *this)",
+      "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x005054E0": {
       "name": "CCBStageCam::Update",
-      "signature": "void __thiscall(CCBStageCam *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x004E7350": {
@@ -121,27 +121,27 @@
     },
     "0x004E7060": {
       "name": "CCBStageCam::ApplyShake",
-      "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)"
+      "signature": "LRESULT __thiscall(HWND hDlg)"
     },
     "0x004E7280": {
       "name": "CCBStageCam::UpdateSmooth",
-      "signature": "LRESULT __thiscall(CCBStageCam *this)"
+      "signature": "LRESULT __thiscall()"
     },
     "0x004E74E0": {
       "name": "CCBStageCam::UpdateOrbit",
-      "signature": "void __thiscall(CCBStageCam *this)"
+      "signature": "void __thiscall()"
     },
     "0x004E75E0": {
       "name": "CCBStageCam::ClampViewAngle",
-      "signature": "char __thiscall(CCBStageCam *this)"
+      "signature": "char __thiscall()"
     },
     "0x004E8480": {
       "name": "CCBStageCam::UpdateStageCamera",
-      "signature": "int __thiscall(CCBStageCam *this, float *pfVal, HWND hDlg, int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall(float *pfVal, HWND hDlg, int nVal, int nVal2, int nVal3)"
     },
     "0x00504DD0": {
       "name": "CCBStageCam::ResetViewport",
-      "signature": "CCBStage * __thiscall(CCBStageCam *this)"
+      "signature": "CCBStage * __thiscall()"
     },
     "0x00504E60": {
       "name": "CCBStageCam::~CCBStageCam",
@@ -149,7 +149,7 @@
     },
     "0x004E7B50": {
       "name": "CCBStageCam::LerpToTarget",
-      "signature": "char __thiscall(CCBStageCam *this)"
+      "signature": "char __thiscall()"
     },
     "0x004E8450": {
       "name": "CCBStageCam::StoreCurrentView",
@@ -157,27 +157,27 @@
     },
     "0x004E9890": {
       "name": "CCBStageCam::SetBlendWeight",
-      "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)"
+      "signature": "LRESULT __thiscall(HWND hDlg)"
     },
     "0x004E9950": {
       "name": "CCBStageCam::InterpolateAngle",
-      "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)"
+      "signature": "LRESULT __thiscall(HWND hDlg)"
     },
     "0x004E9A70": {
       "name": "CCBStageCam::UpdateFollowTarget",
-      "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)"
+      "signature": "LRESULT __thiscall(HWND hDlg)"
     },
     "0x004E9C50": {
       "name": "CCBStageCam::SetViewDistance",
-      "signature": "char __thiscall(CCBStageCam *this, HWND hDlg)"
+      "signature": "char __thiscall(HWND hDlg)"
     },
     "0x004E9F70": {
       "name": "CCBStageCam::CalculateFOV",
-      "signature": "void __thiscall(CCBStageCam *this, HWND hDlg)"
+      "signature": "void __thiscall(HWND hDlg)"
     },
     "0x004EA2E0": {
       "name": "CCBStageCam::UpdateTransition",
-      "signature": "LRESULT __thiscall(CCBStageCam *this, HWND hDlg)"
+      "signature": "LRESULT __thiscall(HWND hDlg)"
     }
   },
   "base_size": 692

@@ -24,17 +24,17 @@
   "methods": {
     "0x004590D0": {
       "name": "UISceneFrm::ctor",
-      "signature": "int __thiscall(UISceneFrm *this)",
+      "signature": "int __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x00459260": {
       "name": "UISceneFrm::ctor_9260",
-      "signature": "void __thiscall(UISceneFrm *this)"
+      "signature": "void __thiscall()"
     },
     "0x0045A4F0": {
       "name": "UISceneFrm::fill_2",
-      "signature": "void __thiscall(UISceneFrm *this, RoleTask *a1, RoleTask *a2, RoleTask *a3)",
+      "signature": "void __thiscall(RoleTask *a1, RoleTask *a2, RoleTask *a3)",
       "ordinal": 2,
       "source": "manual_fix_vtable+canonical_rename"
     },
@@ -47,18 +47,18 @@
     },
     "0x00459360": {
       "name": "UISceneFrm::Destroy",
-      "signature": "void __thiscall(UISceneFrm *this)",
+      "signature": "void __thiscall()",
       "ordinal": 3
     },
     "0x0045A600": {
       "name": "UISceneFrm::_Construct_2",
-      "signature": "void __thiscall(UISceneFrm *this, RoleTaskLine *a1, RoleTaskLine *a2)",
+      "signature": "void __thiscall(RoleTaskLine *a1, RoleTaskLine *a2)",
       "ordinal": 6,
       "source": "manual_fix_vtable+canonical_rename"
     },
     "0x0045A490": {
       "name": "UISceneFrm::Render",
-      "signature": "void __thiscall(UISceneFrm *this)",
+      "signature": "void __thiscall()",
       "ordinal": 1
     },
     "0x004BB330": {
@@ -103,7 +103,7 @@
     },
     "0x00528CD0": {
       "name": "UISceneFrm::CallFaceMethod",
-      "signature": "int __thiscall(UISceneFrm *this, int nVal, unsigned char pData)"
+      "signature": "int __thiscall(int nVal, unsigned char pData)"
     },
     "0x00535630": {
       "name": "UISceneFrm::ShowAndRelease",

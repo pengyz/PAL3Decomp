@@ -426,53 +426,53 @@
     },
     "0x00404760": {
       "name": "PAL3::PAL3",
-      "signature": "void __thiscall(PAL3 *this)"
+      "signature": "void __thiscall()"
     },
     "0x004047F0": {
       "name": "PAL3::~PAL3",
-      "signature": "void __thiscall(PAL3 *this)"
+      "signature": "void __thiscall()"
     },
     "0x00404800": {
       "name": "PAL3::Create",
-      "signature": "void __thiscall(PAL3 *this, HINSTANCE hinst)"
+      "signature": "void __thiscall(HINSTANCE hinst)"
     },
     "0x00404FF0": {
       "name": "PAL3::InitGFX",
-      "signature": "void __thiscall(PAL3 *this)"
+      "signature": "void __thiscall()"
     },
     "0x00405330": {
       "name": "PAL3::CreateEffectSystem",
-      "signature": "bool __thiscall(PAL3 *this)",
+      "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x004055A0": {
       "name": "PAL3::DestroyEffectSystem",
-      "signature": "bool __thiscall(PAL3 *this)",
+      "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x004055D0": {
       "name": "PAL3::Update",
-      "signature": "void __thiscall(PAL3 *this, float dt)"
+      "signature": "void __thiscall(float dt)"
     },
     "0x00405C00": {
       "name": "PAL3::Render",
-      "signature": "void __thiscall(PAL3 *this)"
+      "signature": "void __thiscall()"
     },
     "0x00406230": {
       "name": "PAL3::Destroy",
-      "signature": "void __thiscall(PAL3 *this)"
+      "signature": "void __thiscall()"
     },
     "0x00406310": {
       "name": "PAL3::CheckSystemRequire",
-      "signature": "void __thiscall(PAL3 *this, HINSTANCE hinst)"
+      "signature": "void __thiscall(HINSTANCE hinst)"
     },
     "0x004065F0": {
       "name": "PAL3::CreateGfxWindow",
-      "signature": "void __thiscall(PAL3 *this)"
+      "signature": "void __thiscall()"
     },
     "0x004066F0": {
       "name": "PAL3::ParseCmdLine",
-      "signature": "void __thiscall(PAL3 *this, const char *lpCmdLine)",
+      "signature": "void __thiscall(const char *lpCmdLine)",
       "source": "pdb_ret"
     },
     "0x004068C0": {
@@ -482,20 +482,20 @@
     },
     "0x00406980": {
       "name": "PAL3::GetCommandLineParam",
-      "signature": "int __thiscall(PAL3 *this)"
+      "signature": "int __thiscall()"
     },
     "0x00406A10": {
       "name": "PAL3::TestCombat",
-      "signature": "void __thiscall(PAL3 *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x00406B80": {
       "name": "PAL3::DefaultKeyMap",
-      "signature": "void __thiscall(PAL3 *this, int nVal, int nVal2)"
+      "signature": "void __thiscall(int nVal, int nVal2)"
     },
     "0x00406D70": {
       "name": "PAL3::PrintScreen",
-      "signature": "void __thiscall(PAL3 *this)"
+      "signature": "void __thiscall()"
     },
     "0x00406FF0": {
       "name": "PAL3::SnapScreen",
@@ -513,12 +513,12 @@
     },
     "0x004072D0": {
       "name": "PAL3::StartHideFight",
-      "signature": "void __thiscall(PAL3 *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x00407300": {
       "name": "PAL3::EndHideFight",
-      "signature": "void __thiscall(PAL3 *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x00407320": {
@@ -532,7 +532,7 @@
     },
     "0x00407640": {
       "name": "PAL3::EntryCatchGhost",
-      "signature": "void __thiscall(PAL3 *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x00407740": {
@@ -542,11 +542,11 @@
     },
     "0x00408BE0": {
       "name": "PAL3::InitSubsystems",
-      "signature": "int __thiscall(PAL3 *this)"
+      "signature": "int __thiscall()"
     },
     "0x00408FD0": {
       "name": "PAL3::FullInit",
-      "signature": "int __cdecl __thiscall(PAL3 *this)",
+      "signature": "int __cdecl __thiscall()",
       "local_vars": [
         {
           "name": "nSlotIndex",
@@ -572,11 +572,11 @@
     },
     "0x004118D0": {
       "name": "PAL3::UpdateSubsystems",
-      "signature": "int __cdecl __thiscall(PAL3 *this)"
+      "signature": "int __cdecl __thiscall()"
     },
     "0x0041EE40": {
       "name": "PAL3::UIPostProcess",
-      "signature": "int __cdecl __thiscall(PAL3 *this)"
+      "signature": "int __cdecl __thiscall()"
     },
     "0x004B6D80": {
       "name": "PAL3::CreateNullTexture",
@@ -588,15 +588,15 @@
     },
     "0x004BDB10": {
       "name": "PAL3::GetInstance_db10",
-      "signature": "PAL3 * __thiscall(PAL3 *this)"
+      "signature": "PAL3 * __thiscall()"
     },
     "0x004BFD20": {
       "name": "PAL3::GetInstance_fd20",
-      "signature": "ScreenEffectMgr * __thiscall(PAL3 *this)"
+      "signature": "ScreenEffectMgr * __thiscall()"
     },
     "0x004B6D30": {
       "name": "PAL3::GetInstance",
-      "signature": "RenderTarget3 * __thiscall(PAL3 *this)"
+      "signature": "RenderTarget3 * __thiscall()"
     },
     "0x004BDED0": {
       "name": "PAL3::InvalidateSnapH",
@@ -604,15 +604,15 @@
     },
     "0x00461FD0": {
       "name": "PAL3::SetValue",
-      "signature": "int __thiscall(PAL3 *this, unsigned char nValue)"
+      "signature": "int __thiscall(unsigned char nValue)"
     },
     "0x00462220": {
       "name": "PAL3::GetValue",
-      "signature": "int __thiscall(PAL3 *this, unsigned char nIndex)"
+      "signature": "int __thiscall(unsigned char nIndex)"
     },
     "0x00462080": {
       "name": "PAL3::SetRange",
-      "signature": "int __thiscall(PAL3 *this, unsigned char nMax)"
+      "signature": "int __thiscall(unsigned char nMax)"
     },
     "0x00461BF0": {
       "name": "PAL3::EnterGameMode",
@@ -624,7 +624,7 @@
     },
     "0x0041F9F0": {
       "name": "PAL3::LoadingTimerCallback",
-      "signature": "void __thiscall(PAL3 *this)"
+      "signature": "void __thiscall()"
     },
     "0x00437E60": {
       "name": "PAL3::WriteRegistryValue",
@@ -644,7 +644,7 @@
     },
     "0x0047C260": {
       "name": "PAL3::Render_47c260",
-      "signature": "void __thiscall(PAL3 *this)",
+      "signature": "void __thiscall()",
       "_misattrib_evidence": "max_offset=3996>class_size=1012"
     },
     "0x004B2840": {
@@ -665,7 +665,7 @@
     },
     "0x00462030": {
       "name": "PAL3::SetPanelStates",
-      "signature": "int __thiscall(PAL3 *this, unsigned char pData)"
+      "signature": "int __thiscall(unsigned char pData)"
     },
     "0x0047C2D0": {
       "name": "PAL3::DispatchModeCommand",
@@ -686,23 +686,23 @@
     },
     "0x004BDA60": {
       "name": "PAL3::CreateTextures",
-      "signature": "int *__thiscall(PAL3 *this)"
+      "signature": "int *__thiscall()"
     },
     "0x004C58C0": {
       "name": "PAL3::CreateRenderEffects",
-      "signature": "char __thiscall(PAL3 *this)"
+      "signature": "char __thiscall()"
     },
     "0x00401BC0": {
       "name": "PAL3::InitVFileSystem",
-      "signature": "void * __thiscall(PAL3 *this)"
+      "signature": "void * __thiscall()"
     },
     "0x00401C00": {
       "name": "PAL3::InitVFileSystem2",
-      "signature": "void * __thiscall(PAL3 *this)"
+      "signature": "void * __thiscall()"
     },
     "0x00404530": {
       "name": "PAL3::InitVolModNode",
-      "signature": "void __thiscall(PAL3 *this)"
+      "signature": "void __thiscall()"
     }
   }
 }

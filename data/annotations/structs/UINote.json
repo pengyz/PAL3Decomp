@@ -19,11 +19,11 @@
   "methods": {
     "0x004450A0": {
       "name": "UINote::Create",
-      "signature": "void *__thiscall(UINote *this, int id, int nVal, int nVal2, char *tex)"
+      "signature": "void *__thiscall(int id, int nVal, int nVal2, char *tex)"
     },
     "0x0052AFC0": {
       "name": "UINote::RenderIfVisible",
-      "signature": "int __thiscall(UINote *this, gbMatrixStack *pMatrixStack)",
+      "signature": "int __thiscall(gbMatrixStack *pMatrixStack)",
       "_misattrib_evidence": "max_offset=256>class_size=68"
     },
     "0x00528D30": {
@@ -32,7 +32,7 @@
     },
     "0x0052B030": {
       "name": "UINote::CallVtableMethod",
-      "signature": "int __thiscall(UINote *this, double pData)"
+      "signature": "int __thiscall(double pData)"
     },
     "0x004B7F00": {
       "name": "UINote::ReleaseResources",
@@ -41,7 +41,7 @@
     },
     "0x0052AFF0": {
       "name": "UINote::RenderWithStack",
-      "signature": "void __thiscall(UINote *this, gbMatrixStack *pStack)"
+      "signature": "void __thiscall(gbMatrixStack *pStack)"
     }
   },
   "base_size": 72

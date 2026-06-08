@@ -390,128 +390,128 @@
   "methods": {
     "0x004ED010": {
       "name": "CCBRoleState::IsRoleAlive",
-      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "char __thiscall(int roleIdx)"
     },
     "0x004ED040": {
       "name": "CCBRoleState::IsActive",
-      "signature": "char __thiscall(CCBRoleState *this, int index)"
+      "signature": "char __thiscall(int index)"
     },
     "0x004ED060": {
       "name": "CCBRoleState::GetRoleType",
-      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "char __thiscall(int roleIdx)"
     },
     "0x004ED100": {
       "name": "CCBRoleState::GetForce",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004EDD60": {
       "name": "CCBRoleState::CCBRoleState",
-      "signature": "void __thiscall(CCBRoleState *this)"
+      "signature": "void __thiscall()"
     },
     "0x004EE430": {
       "name": "CCBRoleState::Reset",
-      "signature": "char *__thiscall(CCBRoleState *this, int nVal, char *pszBuf)"
+      "signature": "char *__thiscall(int nVal, char *pszBuf)"
     },
     "0x004EE540": {
       "name": "CCBRoleState::Create",
-      "signature": "bool __thiscall(CCBRoleState *this)",
+      "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x004EE760": {
       "name": "CCBRoleState::Destroy",
-      "signature": "bool __thiscall(CCBRoleState *this)",
+      "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x004EE7C0": {
       "name": "CCBRoleState::Init",
-      "signature": "bool __thiscall(CCBRoleState *this, int nVal, char pData)",
+      "signature": "bool __thiscall(int nVal, char pData)",
       "source": "pdb_ret"
     },
     "0x004EE870": {
       "name": "CCBRoleState::InitUI",
-      "signature": "tagRoleState *__thiscall(CCBRoleState *this, int nVal)"
+      "signature": "tagRoleState *__thiscall(int nVal)"
     },
     "0x004EE890": {
       "name": "CCBRoleState::Update",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004EE990": {
       "name": "CCBRoleState::VarianceRoundCounter",
-      "signature": "bool __thiscall(CCBRoleState *this, int *nRoleIndex)"
+      "signature": "bool __thiscall(int *nRoleIndex)"
     },
     "0x004EEA70": {
       "name": "CCBRoleState::CheckVarianceRound",
-      "signature": "void __thiscall(CCBRoleState *this, int nRoleIndex, int nVal, int *pnVal)",
+      "signature": "void __thiscall(int nRoleIndex, int nVal, int *pnVal)",
       "source": "pdb_ret"
     },
     "0x004EECB0": {
       "name": "CCBRoleState::CancelVariance",
-      "signature": "void __thiscall(CCBRoleState *this, int *nRoleIndex, unsigned int dwVal)"
+      "signature": "void __thiscall(int *nRoleIndex, unsigned int dwVal)"
     },
     "0x004EEE60": {
       "name": "CCBRoleState::IsAlive",
-      "signature": "char __thiscall(CCBRoleState *this, int nIndex, int nVal)"
+      "signature": "char __thiscall(int nIndex, int nVal)"
     },
     "0x004EF4A0": {
       "name": "CCBRoleState::IsBoss",
-      "signature": "void __thiscall(CCBRoleState *this, int *arg0, unsigned int nRoleIndex)"
+      "signature": "void __thiscall(int *arg0, unsigned int nRoleIndex)"
     },
     "0x004EF6A0": {
       "name": "CCBRoleState::IsAllWeDead",
-      "signature": "bool __thiscall(CCBRoleState *this, int bCheckHP)",
+      "signature": "bool __thiscall(int bCheckHP)",
       "source": "pdb_ret"
     },
     "0x004EF6C0": {
       "name": "CCBRoleState::IsAllEnemyDead",
-      "signature": "int *__thiscall(CCBRoleState *this, int bCheckHP, int *pnVal, int *pnVal2)"
+      "signature": "int *__thiscall(int bCheckHP, int *pnVal, int *pnVal2)"
     },
     "0x004EF710": {
       "name": "CCBRoleState::CanAction",
-      "signature": "bool __thiscall(CCBRoleState *this, int nIndex, int nVal, int nVal2)",
+      "signature": "bool __thiscall(int nIndex, int nVal, int nVal2)",
       "source": "pdb_ret"
     },
     "0x004EF7E0": {
       "name": "CCBRoleState::SetCanAction",
-      "signature": "void __thiscall(CCBRoleState *this, unsigned int dmg, int roleIdx, int nVal)",
+      "signature": "void __thiscall(unsigned int dmg, int roleIdx, int nVal)",
       "source": "pdb_ret"
     },
     "0x004EF8B0": {
       "name": "CCBRoleState::RandSetEnemyPos",
-      "signature": "void __thiscall(CCBRoleState *this, const void *arg0)"
+      "signature": "void __thiscall(const void *arg0)"
     },
     "0x004EF980": {
       "name": "CCBRoleState::CalcHealAmount",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004EFAF0": {
       "name": "CCBRoleState::WriteBackRoleData",
-      "signature": "void __thiscall(CCBRoleState *this, int nVal, int *p_DWORD, int *pnVal)",
+      "signature": "void __thiscall(int nVal, int *p_DWORD, int *pnVal)",
       "source": "pdb_ret"
     },
     "0x004EFD70": {
       "name": "CCBRoleState::WriteBackConfig",
-      "signature": "bool __thiscall(CCBRoleState *this, int roleIdx, int nVal)"
+      "signature": "bool __thiscall(int roleIdx, int nVal)"
     },
     "0x004EFE90": {
       "name": "CCBRoleState::ReviveAllFriendAtEnd",
-      "signature": "bool __thiscall(CCBRoleState *this, int roleIdx, int nVal)"
+      "signature": "bool __thiscall(int roleIdx, int nVal)"
     },
     "0x004EFFC0": {
       "name": "CCBRoleState::IsRoleReady",
-      "signature": "bool __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "bool __thiscall(int roleIdx)"
     },
     "0x004F0020": {
       "name": "CCBRoleState::SetEnemyBeImbibeNimbus",
-      "signature": "void __thiscall(CCBRoleState *this, char pData, char pData2)",
+      "signature": "void __thiscall(char pData, char pData2)",
       "source": "pdb_ret"
     },
     "0x004F0210": {
       "name": "CCBRoleState::CalSneakAttack",
-      "signature": "bool __thiscall(CCBRoleState *this, int nVal, unsigned int dwVal)"
+      "signature": "bool __thiscall(int nVal, unsigned int dwVal)"
     },
     "0x004F0360": {
       "name": "CCBRoleState::InitRoleFiveMagic",
-      "signature": "unsigned int __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "unsigned int __thiscall(int nVal)"
     },
     "0x004F05A0": {
       "name": "CCBRoleState::IsAllyTargetCmd",
@@ -519,11 +519,11 @@
     },
     "0x004F0640": {
       "name": "CCBRoleState::InitRoleSpecEquipAttrib",
-      "signature": "void __thiscall(CCBRoleState *this, int nRoleIndex)"
+      "signature": "void __thiscall(int nRoleIndex)"
     },
     "0x004F0700": {
       "name": "CCBRoleState::UnloadWeaponModel",
-      "signature": "void __thiscall(CCBRoleState *this, int nVal)",
+      "signature": "void __thiscall(int nVal)",
       "source": "pdb_ret"
     },
     "0x004F0750": {
@@ -532,236 +532,236 @@
     },
     "0x004F07D0": {
       "name": "CCBRoleState::GetRole",
-      "signature": "char __thiscall(CCBRoleState *this, int nIndex, int nVal)"
+      "signature": "char __thiscall(int nIndex, int nVal)"
     },
     "0x004F0830": {
       "name": "CCBRoleState::GetRoleNum",
-      "signature": "unsigned char __thiscall(CCBRoleState *this, int *pnVal)"
+      "signature": "unsigned char __thiscall(int *pnVal)"
     },
     "0x004F1070": {
       "name": "CCBRoleState::GetAliveRoleNumInForce",
-      "signature": "char __thiscall(CCBRoleState *this, struct tagCmdData *force)"
+      "signature": "char __thiscall(struct tagCmdData *force)"
     },
     "0x004F1420": {
       "name": "CCBRoleState::GetDeadRoleNumInForce",
-      "signature": "char __thiscall(CCBRoleState *this, int *force)"
+      "signature": "char __thiscall(int *force)"
     },
     "0x004F17C0": {
       "name": "CCBRoleState::GetFirstAliveRoleInForce",
-      "signature": "char __thiscall(CCBRoleState *this, int roleIdx, int arg4)"
+      "signature": "char __thiscall(int roleIdx, int arg4)"
     },
     "0x004F1A30": {
       "name": "CCBRoleState::GetCastFightSkillSuccess",
-      "signature": "bool __thiscall(CCBRoleState *this, int pCmd)",
+      "signature": "bool __thiscall(int pCmd)",
       "source": "pdb_ret"
     },
     "0x004F1B20": {
       "name": "CCBRoleState::SetCoAttack",
-      "signature": "void __thiscall(CCBRoleState *this, unsigned int dwCoAttackID)",
+      "signature": "void __thiscall(unsigned int dwCoAttackID)",
       "source": "pdb_ret"
     },
     "0x004F1CC0": {
       "name": "CCBRoleState::CanBeImbibeNimbus",
-      "signature": "bool __thiscall(CCBRoleState *this, int dmg, unsigned int nRoleIndex)",
+      "signature": "bool __thiscall(int dmg, unsigned int nRoleIndex)",
       "source": "pdb_ret"
     },
     "0x004F1FA0": {
       "name": "CCBRoleState::CheckRoleValid",
-      "signature": "bool __thiscall(CCBRoleState *this, int nRoleIndex, unsigned int roleIdx, int nVal)",
+      "signature": "bool __thiscall(int nRoleIndex, unsigned int roleIdx, int nVal)",
       "source": "pdb_ret"
     },
     "0x004F2310": {
       "name": "CCBRoleState::CheckRoleNimbus",
-      "signature": "char __thiscall(CCBRoleState *this, int nRoleIndex, unsigned int dwVal)"
+      "signature": "char __thiscall(int nRoleIndex, unsigned int dwVal)"
     },
     "0x004F2350": {
       "name": "CCBRoleState::CanBeSelect",
-      "signature": "bool __thiscall(CCBRoleState *this, tagCmdData *pCmd, unsigned int nDestRole)",
+      "signature": "bool __thiscall(tagCmdData *pCmd, unsigned int nDestRole)",
       "source": "pdb_ret"
     },
     "0x004F2910": {
       "name": "CCBRoleState::SetRoleHP",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx, int value)"
+      "signature": "int __thiscall(int roleIdx, int value)"
     },
     "0x004F2BB0": {
       "name": "CCBRoleState::SetRoleField",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx, int value)"
+      "signature": "int __thiscall(int roleIdx, int value)"
     },
     "0x004F3020": {
       "name": "CCBRoleState::CalcAttackPower",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F31C0": {
       "name": "CCBRoleState::CalcDefensePower",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F3380": {
       "name": "CCBRoleState::GetMaxHP",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F33D0": {
       "name": "CCBRoleState::GetMaxMP",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F3420": {
       "name": "CCBRoleState::GetTotalRounds",
-      "signature": "int __thiscall(CCBRoleState *this)"
+      "signature": "int __thiscall()"
     },
     "0x004F3430": {
       "name": "CCBRoleState::CheckBuff",
-      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "char __thiscall(int roleIdx)"
     },
     "0x004F34E0": {
       "name": "CCBRoleState::CanUseSkill",
-      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "char __thiscall(int roleIdx)"
     },
     "0x004F3570": {
       "name": "CCBRoleState::CalcMagicAttack",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F3620": {
       "name": "CCBRoleState::CalcMPRegen",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F36D0": {
       "name": "CCBRoleState::CalcMagicDefense",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F37A0": {
       "name": "CCBRoleState::GetAttackBonus",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F3820": {
       "name": "CCBRoleState::GetDefenseBonus",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F38A0": {
       "name": "CCBRoleState::GetRoleState",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F3920": {
       "name": "CCBRoleState::GetSpeedBonus",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F39A0": {
       "name": "CCBRoleState::GetRoleLevel",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F39F0": {
       "name": "CCBRoleState::GetRoleExp",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F3A30": {
       "name": "CCBRoleState::SetRoleFlag",
-      "signature": "char __thiscall(CCBRoleState *this, int roleIdx, char flag)"
+      "signature": "char __thiscall(int roleIdx, char flag)"
     },
     "0x004F3A50": {
       "name": "CCBRoleState::GetRoleAttr",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F3AD0": {
       "name": "CCBRoleState::CalcMPCost",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F3B90": {
       "name": "CCBRoleState::GetRoleMP",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F3C00": {
       "name": "CCBRoleState::IsForce1",
-      "signature": "int __thiscall(CCBRoleState *this, int force)"
+      "signature": "int __thiscall(int force)"
     },
     "0x004F3C20": {
       "name": "CCBRoleState::IsPlayerTeam",
-      "signature": "char __thiscall(CCBRoleState *this, int force)"
+      "signature": "char __thiscall(int force)"
     },
     "0x004F3CC0": {
       "name": "CCBRoleState::IsRoleInForce",
-      "signature": "bool __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "bool __thiscall(int roleIdx)"
     },
     "0x004F3D10": {
       "name": "CCBRoleState::CanRoleAct",
-      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "char __thiscall(int roleIdx)"
     },
     "0x004F3D90": {
       "name": "CCBRoleState::GetRoleField",
-      "signature": "char __thiscall(CCBRoleState *this, int roleIdx, int fieldOff)"
+      "signature": "char __thiscall(int roleIdx, int fieldOff)"
     },
     "0x004F3E20": {
       "name": "CCBRoleState::ProcessRound",
-      "signature": "char __thiscall(CCBRoleState *this, unsigned int dwVal)"
+      "signature": "char __thiscall(unsigned int dwVal)"
     },
     "0x004F4DA0": {
       "name": "CCBRoleState::ProcessAttackResult",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F5070": {
       "name": "CCBRoleState::ProcessMagicResult",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F55D0": {
       "name": "CCBRoleState::CalcPhysicalDamage",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F57A0": {
       "name": "CCBRoleState::CalcMagicDamage",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F5970": {
       "name": "CCBRoleState::ProcessSkillEffect",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F5B70": {
       "name": "CCBRoleState::ProcessItemEffect",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F7500": {
       "name": "CCBRoleState::GetRoleAI",
-      "signature": "char __thiscall(CCBRoleState *this, void *pOut)"
+      "signature": "char __thiscall(void *pOut)"
     },
     "0x004F7880": {
       "name": "CCBRoleState::CheckStatus",
-      "signature": "unsigned int __thiscall(CCBRoleState *this)"
+      "signature": "unsigned int __thiscall()"
     },
     "0x004F7910": {
       "name": "CCBRoleState::ProcessActions",
-      "signature": "void *__thiscall(CCBRoleState *this)"
+      "signature": "void *__thiscall()"
     },
     "0x004F8480": {
       "name": "CCBRoleState::UpdateEffects",
-      "signature": "int __thiscall(CCBRoleState *this)"
+      "signature": "int __thiscall()"
     },
     "0x004F98B0": {
       "name": "CCBRoleState::ApplyDamage",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx, int dmg)"
+      "signature": "int __thiscall(int roleIdx, int dmg)"
     },
     "0x004FA540": {
       "name": "CCBRoleState::CheckRoleStatus",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004FA6A0": {
       "name": "CCBRoleState::CheckDeath",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004FA8B0": {
       "name": "CCBRoleState::Revive",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004FA930": {
       "name": "CCBRoleState::UpdateRoleMP",
-      "signature": "char __thiscall(CCBRoleState *this, char arg0, int nVal)"
+      "signature": "char __thiscall(char arg0, int nVal)"
     },
     "0x004ECB00": {
       "name": "CCBRoleState::Update",
-      "signature": "int __thiscall(CCBRoleState *this)"
+      "signature": "int __thiscall()"
     },
     "0x004F3C70": {
       "name": "CCBRoleState::GetRoleForce",
-      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "char __thiscall(int roleIdx)"
     },
     "0x00456AB0": {
       "name": "CCBRoleState::ctor",
-      "signature": "int __thiscall(CCBRoleState *this)",
+      "signature": "int __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
@@ -772,7 +772,7 @@
     },
     "0x00503AE0": {
       "name": "CCBRoleState::GetRoleMPValue",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
     },
     "0x004F7FC0": {
       "name": "CCBRoleState::ProcessCombatDialog",
@@ -784,7 +784,7 @@
     },
     "0x00457070": {
       "name": "CCBRoleState::ctor",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2, int nVal3)",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 6,
@@ -792,20 +792,20 @@
     },
     "0x00456B80": {
       "name": "CCBRoleState::ctor_6B80",
-      "signature": "void __thiscall(CCBRoleState *this)"
+      "signature": "void __thiscall()"
     },
     "0x00502000": {
       "name": "CCBRoleState::Func_502000",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal)",
+      "signature": "int __thiscall(int nVal)",
       "_misattrib_evidence": "max_offset=164>class_size=4"
     },
     "0x004F2C30": {
       "name": "CCBRoleState::GetRole",
-      "signature": "void *__thiscall(CCBRoleState *this, int index)"
+      "signature": "void *__thiscall(int index)"
     },
     "0x004DC720": {
       "name": "CCBRoleState::IsAlive",
-      "signature": "BOOL __thiscall(CCBRoleState *this)"
+      "signature": "BOOL __thiscall()"
     },
     "0x004DC7A0": {
       "name": "CCBRoleState::InitCombatDialog",
@@ -813,15 +813,15 @@
     },
     "0x004ECB20": {
       "name": "CCBRoleState::ProcessCombatAction",
-      "signature": "char __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "char __thiscall(int roleIdx)"
     },
     "0x004EEF20": {
       "name": "CCBRoleState::CalcCombatDamage",
-      "signature": "int __thiscall(CCBRoleState *this, const void *pData, unsigned int roleIdx)"
+      "signature": "int __thiscall(const void *pData, unsigned int roleIdx)"
     },
     "0x004F2690": {
       "name": "CCBRoleState::CheckBoss",
-      "signature": "int __thiscall(CCBRoleState *this, int *arg0, int roleIdx)"
+      "signature": "int __thiscall(int *arg0, int roleIdx)"
     },
     "0x00456B60": {
       "name": "CCBRoleState::_scalar_dtor",
@@ -836,11 +836,11 @@
     },
     "0x004DDC90": {
       "name": "CCBRoleState::EndRoundTasks",
-      "signature": "int __thiscall(CCBRoleState *this, int B4)"
+      "signature": "int __thiscall(int B4)"
     },
     "0x004DF3D0": {
       "name": "CCBRoleState::CheckMP",
-      "signature": "char __thiscall(CCBRoleState *this)"
+      "signature": "char __thiscall()"
     },
     "0x004E1A40": {
       "name": "CCBRoleState::CombatDialogProc",
@@ -848,11 +848,11 @@
     },
     "0x004E2C10": {
       "name": "CCBRoleState::HandleDlgMessage",
-      "signature": "LRESULT __thiscall(CCBRoleState *this)"
+      "signature": "LRESULT __thiscall()"
     },
     "0x004E30E0": {
       "name": "CCBRoleState::SyncRoleUIData",
-      "signature": "unsigned char __thiscall(CCBRoleState *this)"
+      "signature": "unsigned char __thiscall()"
     },
     "0x004E40B0": {
       "name": "CCBRoleState::UpdateDebugDialog",
@@ -868,15 +868,15 @@
     },
     "0x004ED870": {
       "name": "CCBRoleState::SyncSkillCent",
-      "signature": "char __thiscall(CCBRoleState *this)"
+      "signature": "char __thiscall()"
     },
     "0x004EE910": {
       "name": "CCBRoleState::CheckMP",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004F0A10": {
       "name": "CCBRoleState::CalcCombatDamage",
-      "signature": "char __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "char __thiscall(int nVal)"
     },
     "0x004F2390": {
       "name": "CCBRoleState::CheckRoundComplete",
@@ -884,7 +884,7 @@
     },
     "0x004F2560": {
       "name": "CCBRoleState::ValidateSlotIndex",
-      "signature": "char __thiscall(CCBRoleState *this, unsigned int arg0, unsigned int dwVal)"
+      "signature": "char __thiscall(unsigned int arg0, unsigned int dwVal)"
     },
     "0x004F2660": {
       "name": "CCBRoleState::CheckTargetCombo",
@@ -892,11 +892,11 @@
     },
     "0x004F2750": {
       "name": "CCBRoleState::CheckBoss_2",
-      "signature": "int __thiscall(CCBRoleState *this, int *arg0, int roleIdx)"
+      "signature": "int __thiscall(int *arg0, int roleIdx)"
     },
     "0x004F27B0": {
       "name": "CCBRoleState::GetV4",
-      "signature": "int __thiscall(CCBRoleState *this, int *arg0, unsigned int roleIdx)"
+      "signature": "int __thiscall(int *arg0, unsigned int roleIdx)"
     },
     "0x004F27E0": {
       "name": "CCBRoleState::CalcComboDirect",
@@ -952,11 +952,11 @@
     },
     "0x004F8AF0": {
       "name": "CCBRoleState::ProcessControlInput",
-      "signature": "void __thiscall(CCBRoleState *this)"
+      "signature": "void __thiscall()"
     },
     "0x004F8FA0": {
       "name": "CCBRoleState::LoadRoleModel",
-      "signature": "char __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "char __thiscall(int nVal)"
     },
     "0x004F8FD0": {
       "name": "CCBRoleState::SpawnRandomEnemies",
@@ -964,7 +964,7 @@
     },
     "0x004F90F0": {
       "name": "CCBRoleState::CheckRoleCanAct",
-      "signature": "char *__thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "char *__thiscall(int roleIdx)"
     },
     "0x004F91B0": {
       "name": "CCBRoleState::PopulateItemList",
@@ -980,7 +980,7 @@
     },
     "0x00449F00": {
       "name": "CCBRoleState::CalcSpringForce",
-      "signature": "__int64 __thiscall(CCBRoleState *this, int nVal, int nVal2)"
+      "signature": "__int64 __thiscall(int nVal, int nVal2)"
     },
     "0x00449FE0": {
       "name": "CCBRoleState::UpdateSpringAnim",
@@ -988,11 +988,11 @@
     },
     "0x0044A2E0": {
       "name": "CCBRoleState::UpdateFadeAlpha",
-      "signature": "void __thiscall(CCBRoleState *this)"
+      "signature": "void __thiscall()"
     },
     "0x0044A3D0": {
       "name": "CCBRoleState::InitFadeAndSpring",
-      "signature": "int __thiscall(CCBRoleState *this)"
+      "signature": "int __thiscall()"
     },
     "0x00456C20": {
       "name": "CCBRoleState::~CCBRoleState",
@@ -1000,28 +1000,28 @@
     },
     "0x00457020": {
       "name": "CCBRoleState::PlayVideoIfReady",
-      "signature": "BOOL __thiscall(CCBRoleState *this, int nVal, int nVal2)",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
       "ordinal": 2
     },
     "0x0046D770": {
       "name": "CCBRoleState::LayoutSlotPanelA",
-      "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
+      "signature": "int __thiscall(unsigned char pData)"
     },
     "0x0046D890": {
       "name": "CCBRoleState::LayoutSlotPanelB",
-      "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
+      "signature": "int __thiscall(unsigned char pData)"
     },
     "0x0046D9B0": {
       "name": "CCBRoleState::LayoutSlotPanelC",
-      "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
+      "signature": "int __thiscall(unsigned char pData)"
     },
     "0x0046DAD0": {
       "name": "CCBRoleState::LayoutSlotPanelD",
-      "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
+      "signature": "int __thiscall(unsigned char pData)"
     },
     "0x0046DBF0": {
       "name": "CCBRoleState::LayoutSlotPanelE",
-      "signature": "int __thiscall(CCBRoleState *this, unsigned char pData)"
+      "signature": "int __thiscall(unsigned char pData)"
     },
     "0x0046F390": {
       "name": "CCBRoleState::NotifyStateChange",
@@ -1029,7 +1029,7 @@
     },
     "0x004DC760": {
       "name": "CCBRoleState::GetCombatDialogPos",
-      "signature": "char __thiscall(CCBRoleState *this, int *p_DWORD, int *p_DWORD2, int *p_DWORD3)"
+      "signature": "char __thiscall(int *p_DWORD, int *p_DWORD2, int *p_DWORD3)"
     },
     "0x004DCD00": {
       "name": "CCBRoleState::HandleItemMenu",
@@ -1041,11 +1041,11 @@
     },
     "0x004DD650": {
       "name": "CCBRoleState::StartLineupPhase",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004DE8C0": {
       "name": "CCBRoleState::InitSelectionUI",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004DEE80": {
       "name": "CCBRoleState::DispatchCombatAction",
@@ -1057,11 +1057,11 @@
     },
     "0x004DF370": {
       "name": "CCBRoleState::GetActionPriority",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004DF6D0": {
       "name": "CCBRoleState::ResetDialogSlots",
-      "signature": "int __thiscall(CCBRoleState *this)"
+      "signature": "int __thiscall()"
     },
     "0x004E28F0": {
       "name": "CCBRoleState::UpdateDebugTreeView",
@@ -1073,19 +1073,19 @@
     },
     "0x004EC680": {
       "name": "CCBRoleState::ClearAndSetGP",
-      "signature": "CCBRoleState * __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "CCBRoleState * __thiscall(int nVal)"
     },
     "0x004EC7D0": {
       "name": "CCBRoleState::IterateMagicSlots",
-      "signature": "char __thiscall(CCBRoleState *this)"
+      "signature": "char __thiscall()"
     },
     "0x004EC830": {
       "name": "CCBRoleState::DestroyAndReinit",
-      "signature": "char __thiscall(CCBRoleState *this)"
+      "signature": "char __thiscall()"
     },
     "0x004ED0A0": {
       "name": "CCBRoleState::ApplyHitEffect",
-      "signature": "char __thiscall(CCBRoleState *this, char pData)"
+      "signature": "char __thiscall(char pData)"
     },
     "0x004ED170": {
       "name": "CCBRoleState::ShuffleSlots",
@@ -1097,7 +1097,7 @@
     },
     "0x004ED800": {
       "name": "CCBRoleState::UpdateDefenceStats",
-      "signature": "char *__thiscall(CCBRoleState *this)"
+      "signature": "char *__thiscall()"
     },
     "0x004EDC60": {
       "name": "CCBRoleState::RollInitiative",
@@ -1109,7 +1109,7 @@
     },
     "0x004F2BF0": {
       "name": "CCBRoleState::GetRoleGPBak",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal, char pData)"
+      "signature": "int __thiscall(int nVal, char pData)"
     },
     "0x004F6DA0": {
       "name": "CCBRoleState::ValidateCommandTarget",
@@ -1117,7 +1117,7 @@
     },
     "0x004F7480": {
       "name": "CCBRoleState::CheckMagicCost",
-      "signature": "char __thiscall(CCBRoleState *this, int *p_DWORD)"
+      "signature": "char __thiscall(int *p_DWORD)"
     },
     "0x004F76C0": {
       "name": "CCBRoleState::GetSkillCostLevel",
@@ -1125,7 +1125,7 @@
     },
     "0x004F7820": {
       "name": "CCBRoleState::SumGPCost",
-      "signature": "char __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "char __thiscall(int nVal)"
     },
     "0x004F8BB0": {
       "name": "CCBRoleState::InitSlot",
@@ -1133,11 +1133,11 @@
     },
     "0x004F9340": {
       "name": "CCBRoleState::GetDialogSlot",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)"
+      "signature": "int __thiscall(int nVal, int nVal2)"
     },
     "0x004F9590": {
       "name": "CCBRoleState::GetMagicSlotData",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
     },
     "0x004F95F0": {
       "name": "CCBRoleState::PopulateTargetList",
@@ -1149,7 +1149,7 @@
     },
     "0x004FA210": {
       "name": "CCBRoleState::GetSlotState",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)"
+      "signature": "int __thiscall(int nVal, int nVal2)"
     },
     "0x004FA280": {
       "name": "CCBRoleState::CalcSpeedByLevel",
@@ -1157,7 +1157,7 @@
     },
     "0x004FA330": {
       "name": "CCBRoleState::GetActionTypeBySlot",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)"
+      "signature": "int __thiscall(int nVal, int nVal2)"
     },
     "0x004FA3A0": {
       "name": "CCBRoleState::CalcDefenseByLevel",
@@ -1165,35 +1165,35 @@
     },
     "0x004FA440": {
       "name": "CCBRoleState::CalcDamage",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2)"
+      "signature": "int __thiscall(int nVal, int nVal2)"
     },
     "0x004FA4E0": {
       "name": "CCBRoleState::FindSlotByHP",
-      "signature": "int __thiscall(CCBRoleState *this, CCBRoleState *thisa, unsigned int dwVal)"
+      "signature": "int __thiscall(CCBRoleState *thisa, unsigned int dwVal)"
     },
     "0x004FA510": {
       "name": "CCBRoleState::GetRoleCount",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004FA560": {
       "name": "CCBRoleState::GetSlotActionType",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal, char *Buffer)"
+      "signature": "int __thiscall(int nVal, char *Buffer)"
     },
     "0x004FA5F0": {
       "name": "CCBRoleState::FindRoleByID",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004FA620": {
       "name": "CCBRoleState::CountValidSlots",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal, int nVal2, int *p_DWORD, int *pnVal)"
+      "signature": "int __thiscall(int nVal, int nVal2, int *p_DWORD, int *pnVal)"
     },
     "0x004FA700": {
       "name": "CCBRoleState::GetSlotType",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004FA760": {
       "name": "CCBRoleState::SwapEffectParams",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004FB6B0": {
       "name": "CCBRoleState::RandomizeSpecialSkill",
@@ -1209,7 +1209,7 @@
     },
     "0x00502430": {
       "name": "CCBRoleState::GetCombatDialogEntry",
-      "signature": "int __thiscall(CCBRoleState *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x005025C0": {
       "name": "CCBRoleState::FormatSkillResultText",
@@ -1229,7 +1229,7 @@
     },
     "0x004EC6B0": {
       "name": "CCBRoleState::ClearRoleMemory",
-      "signature": "int __thiscall(CCBRoleState *this)",
+      "signature": "int __thiscall()",
       "class": "CCBRoleState"
     },
     "0x004E5110": {
@@ -1244,11 +1244,11 @@
     },
     "0x004F3BC0": {
       "name": "CCBRoleState::GetRoleHP",
-      "signature": "int __thiscall(CCBRoleState *this, int roleIdx)"
+      "signature": "int __thiscall(int roleIdx)"
     },
     "0x004EDF10": {
       "name": "CCBRoleState::UpdateRolePositions",
-      "signature": "char __thiscall(CCBRoleState *this)",
+      "signature": "char __thiscall()",
       "source": "ida_xref:sub_fix_from_decomp_this_type"
     }
   },

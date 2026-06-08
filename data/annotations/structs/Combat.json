@@ -4,17 +4,17 @@
   "methods": {
     "0x004DFD20": {
       "name": "Combat::LogMessage",
-      "signature": "char __thiscall(Combat *this, char *, int, char *format, ...)",
+      "signature": "char __thiscall(char *, int, char *format, ...)",
       "source": "manual_fix_from_call_sites"
     },
     "0x0040CCD0": {
       "name": "Combat::GetSlotCount",
-      "signature": "int __thiscall(Combat *this)",
+      "signature": "int __thiscall()",
       "source": " | rename:_todo_→fn_"
     },
     "0x004CDB60": {
       "name": "Combat::Func_4CDB60",
-      "signature": "char __thiscall(Combat *this)"
+      "signature": "char __thiscall()"
     },
     "0x004F4820": {
       "name": "Combat::HandleControlCmd",

@@ -24,12 +24,12 @@
   "methods": {
     "0x004BC760": {
       "name": "ParticleEffect::Reset",
-      "signature": "ParticleEffect *__thiscall(ParticleEffect *this)",
+      "signature": "ParticleEffect *__thiscall()",
       "_misattrib_evidence": "max_offset=362856>class_size=200"
     },
     "0x004BC7E0": {
       "name": "ParticleEffect::SetDeltaTime",
-      "signature": "int __thiscall(ParticleEffect *this, int nVal)",
+      "signature": "int __thiscall(int nVal)",
       "_misattrib_evidence": "max_offset=362856>class_size=200"
     },
     "0x004BC7F0": {
@@ -39,17 +39,17 @@
     },
     "0x004BD520": {
       "name": "ParticleEffect::LoadTextures",
-      "signature": "char __thiscall(ParticleEffect *this, const char *pszName, const char *pszName2)",
+      "signature": "char __thiscall(const char *pszName, const char *pszName2)",
       "_misattrib_evidence": "max_offset=362840>class_size=200"
     },
     "0x004BD7C0": {
       "name": "ParticleEffect::SetTimeParam",
-      "signature": "int __thiscall(ParticleEffect *this, int nVal)",
+      "signature": "int __thiscall(int nVal)",
       "_misattrib_evidence": "max_offset=362832>class_size=200"
     },
     "0x004BA510": {
       "name": "ParticleEffect::LoadSceneFile",
-      "signature": "int __thiscall(ParticleEffect *this, const char *pszName, const char *pszName2)",
+      "signature": "int __thiscall(const char *pszName, const char *pszName2)",
       "_misattrib_evidence": "max_offset=362828>class_size=200"
     },
     "0x004339F0": {
@@ -59,7 +59,7 @@
     },
     "0x0053F960": {
       "name": "ParticleEffect::LoadFromFile",
-      "signature": "bool __thiscall(TextureLib *this, char *filename)",
+      "signature": "bool __thiscall(char *filename)",
       "source": "pdb_ret"
     }
   },

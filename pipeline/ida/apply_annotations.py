@@ -1340,6 +1340,21 @@ def apply_annotations():
         sig_raw = _re_format.sub(r'(\w)__(cdecl|thiscall|stdcall|fastcall)\b', r'\1 __\2', sig_raw)
         paren_idx = sig_raw.find("(")
         if paren_idx > 0:
+            # Auto-complete this pointer for class methods.
+            # Signatures in annotations no longer redundantly store ClassName *this.
+            # Extract class from function name and prepend if missing.
+            if "::" in name:
+                _cls = name.split("::")[0]
+                _params = sig_raw[paren_idx:]
+                # Check if this pointer is already present
+                if not re.search(r'\b' + re.escape(_cls) + r'\s*\*\s*this', _params):
+                    _before = sig_raw[:paren_idx].rstrip()
+                    # Insert ClassName *this as first param
+                    if _params.startswith('(') and _params[1:].strip() and _params[1:].strip()[0] != ')':
+                        _new_params = '(%s *this, %s' % (_cls, _params[1:])
+                    else:
+                        _new_params = '(%s *this)' % _cls
+                    sig_raw = _before + _new_params
             # Extract a valid C identifier for the function name
             if "::" in name:
                 short_name = name.split("::")[-1]

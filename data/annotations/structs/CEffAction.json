@@ -21,7 +21,7 @@
   "methods": {
     "0x004C0740": {
       "name": "CEffAction::UpdateFrame",
-      "signature": "void __thiscall(CEffAction *this, float fVal)",
+      "signature": "void __thiscall(float fVal)",
       "ordinal": 5,
       "source": "manual_fix_vtable"
     },
@@ -43,7 +43,7 @@
     },
     "0x004C0520": {
       "name": "CEffAction::AllocRenderTarget",
-      "signature": "void __thiscall(CEffAction *this)",
+      "signature": "void __thiscall()",
       "source": "manual_fix_vtable+manual_ida_body",
       "ordinal": 7
     },
@@ -55,21 +55,15 @@
     },
     "0x004C0920": {
       "name": "CEffAction::PrepareEffect",
-      "signature": "void __thiscall(CEffAction *this)",
+      "signature": "void __thiscall()",
       "source": "manual_fix_vtable+manual_ida_body",
       "ordinal": 9
     },
     "0x004C09E0": {
       "name": "CEffAction::RenderScene",
-      "signature": "void __thiscall(CEffAction *this)",
+      "signature": "void __thiscall()",
       "source": "manual_fix_vtable+manual_ida_body",
       "ordinal": 12
-    },
-    "0x004C15D0": {
-      "name": "CEffSParticle::sub_4C15D0",
-      "signature": "void __thiscall(CEffSParticle *this)",
-      "source": "manual_fix_vtable",
-      "ordinal": 13
     }
   },
   "vtables": [

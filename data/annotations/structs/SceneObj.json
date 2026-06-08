@@ -241,30 +241,30 @@
   "methods": {
     "0x00536260": {
       "name": "SceneObj::CreateUI",
-      "signature": "int __thiscall(SceneObj *this)"
+      "signature": "int __thiscall()"
     },
     "0x005362F0": {
       "name": "SceneObj::Destructor",
-      "signature": "SceneObj * __thiscall(SceneObj *this)"
+      "signature": "SceneObj * __thiscall()"
     },
     "0x005363C0": {
       "name": "SceneObj::CleanupInternal",
-      "signature": "int __thiscall(SceneObj *this)"
+      "signature": "int __thiscall()"
     },
     "0x005368A0": {
       "name": "SceneObj::HandleEvent",
-      "signature": "BOOL __thiscall(SceneObj *this, int nVal, int nVal2)",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
       "_misattrib_evidence": "max_offset=3340>class_size=596"
     },
     "0x00452FD0": {
       "name": "SceneObj::ctor",
-      "signature": "int __thiscall(SceneObj *this)",
+      "signature": "int __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x00453030": {
       "name": "SceneObj::ctor_3030",
-      "signature": "void __thiscall(SceneObj *this)"
+      "signature": "void __thiscall()"
     },
     "0x00407B50": {
       "name": "SceneObj::UpdateAutoDelete",
@@ -279,19 +279,19 @@
     },
     "0x0052F800": {
       "name": "SceneObj::LoadGeomFromFile",
-      "signature": "gbVFileSystem *__thiscall(SceneObj *this, const char *pszName)"
+      "signature": "gbVFileSystem *__thiscall(const char *pszName)"
     },
     "0x0052FB70": {
       "name": "SceneObj::LoadObstruction",
-      "signature": "gbVFileSystem *__thiscall(SceneObj *this)"
+      "signature": "gbVFileSystem *__thiscall()"
     },
     "0x00530280": {
       "name": "SceneObj::LoadGeomNode",
-      "signature": "gbGeomNode *__thiscall(SceneObj *this, const char *pszFilename)"
+      "signature": "gbGeomNode *__thiscall(const char *pszFilename)"
     },
     "0x00530330": {
       "name": "SceneObj::LoadDefaultModel",
-      "signature": "gbGeomNode *__thiscall(SceneObj *this)"
+      "signature": "gbGeomNode *__thiscall()"
     },
     "0x0053EE60": {
       "name": "SceneObj::StringCopyReplace",
@@ -312,11 +312,11 @@
     },
     "0x00527D40": {
       "name": "SceneObj::GetVisibleFlag",
-      "signature": "int __thiscall(SceneObj *this, _BYTE *p_BYTE)"
+      "signature": "int __thiscall(_BYTE *p_BYTE)"
     },
     "0x00527D60": {
       "name": "SceneObj::fn_527D60",
-      "signature": "int __thiscall(SceneObj *this)",
+      "signature": "int __thiscall()",
       "source": " | rename:_todo_→fn_"
     },
     "0x00530340": {

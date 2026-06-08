@@ -104,11 +104,11 @@
   "methods": {
     "0x004407C0": {
       "name": "UIStatic::~UIStatic",
-      "signature": "void __thiscall(UIStatic *this)"
+      "signature": "void __thiscall()"
     },
     "0x00440BA0": {
       "name": "UIStatic::OnMessage",
-      "signature": "int __thiscall(UIStatic *this)",
+      "signature": "int __thiscall()",
       "ordinal": 3
     },
     "0x004426B0": {
@@ -117,12 +117,12 @@
     },
     "0x00440DD0": {
       "name": "UIStatic::Update",
-      "signature": "BOOL __thiscall(UIStatic *this, float deltatime, int haveinput)",
+      "signature": "BOOL __thiscall(float deltatime, int haveinput)",
       "ordinal": 2
     },
     "0x00440F30": {
       "name": "UIStatic::Render",
-      "signature": "void __thiscall(UIStatic *this)",
+      "signature": "void __thiscall()",
       "ordinal": 1
     },
     "0x00440740": {
@@ -156,7 +156,7 @@
     },
     "0x00442D00": {
       "name": "UIStatic::CtorWithFlag",
-      "signature": "UIStatic *__thiscall(UIStatic *this)"
+      "signature": "UIStatic *__thiscall()"
     },
     "0x00443380": {
       "name": "UIStatic::UIStatic_Base",
@@ -164,23 +164,23 @@
     },
     "0x0043D920": {
       "name": "UIStatic::Destroy",
-      "signature": "void __thiscall(UIStatic *this)"
+      "signature": "void __thiscall()"
     },
     "0x0043DAB0": {
       "name": "UIStatic::RenderQuadSlice",
-      "signature": "void __thiscall(UIStatic *this, int *pnVal, int nVal)"
+      "signature": "void __thiscall(int *pnVal, int nVal)"
     },
     "0x00442480": {
       "name": "UIStatic::LoadTextureByName",
-      "signature": "void __thiscall(UIStatic *this, LPCSTR lpString, char pData)"
+      "signature": "void __thiscall(LPCSTR lpString, char pData)"
     },
     "0x0044A820": {
       "name": "UIStatic::GetUIElements",
-      "signature": "int __thiscall(UIStatic *this, float fVal, int nVal)"
+      "signature": "int __thiscall(float fVal, int nVal)"
     },
     "0x0044AA20": {
       "name": "UIStatic::RenderTile",
-      "signature": "void __thiscall(UIStatic *this, int nVal, char pData)"
+      "signature": "void __thiscall(int nVal, char pData)"
     },
     "0x004538D0": {
       "name": "UIStatic::IsHidden",
@@ -194,7 +194,7 @@
     },
     "0x0044A870": {
       "name": "UIStatic::RenderText",
-      "signature": "virtual void __thiscall(UIStatic *this)",
+      "signature": "virtual void __thiscall()",
       "source": "ida_xref:sub_fix_from_decomp_this_type"
     }
   },

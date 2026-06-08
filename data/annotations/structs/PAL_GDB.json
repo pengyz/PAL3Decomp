@@ -36,54 +36,54 @@
   "methods": {
     "0x00457410": {
       "name": "PAL_GDB::LoadLanguage",
-      "signature": "char __thiscall(PAL_GDB *this, char *path)"
+      "signature": "char __thiscall(char *path)"
     },
     "0x00478E00": {
       "name": "PAL_GDB::PAL_GDB",
-      "signature": "PAL_GDB *__thiscall(PAL_GDB *this)"
+      "signature": "PAL_GDB *__thiscall()"
     },
     "0x00478FD0": {
       "name": "PAL_GDB::~PAL_GDB",
-      "signature": "void __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "void __thiscall(int nVal)"
     },
     "0x00479040": {
       "name": "PAL_GDB::GDB_LoadFile",
-      "signature": "bool __thiscall(PAL_GDB *this)",
+      "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x00479050": {
       "name": "PAL_GDB::GDB_GetRole",
-      "signature": "int __thiscall(PAL_GDB *this, unsigned int ID)"
+      "signature": "int __thiscall(unsigned int ID)"
     },
     "0x00479080": {
       "name": "PAL_GDB::GDB_GetRoleNum",
-      "signature": "int __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x00479130": {
       "name": "PAL_GDB::GDB_GetSkillNum",
-      "signature": "int __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004791A0": {
       "name": "PAL_GDB::GDB_GetSkillID",
-      "signature": "unsigned long __thiscall(PAL_GDB *this)",
+      "signature": "unsigned long __thiscall()",
       "source": "pdb_ret"
     },
     "0x004791E0": {
       "name": "PAL_GDB::GDB_GetItemNum",
-      "signature": "int __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004792C0": {
       "name": "PAL_GDB::GDB_GetComboID",
-      "signature": "unsigned long __thiscall(PAL_GDB *this)",
+      "signature": "unsigned long __thiscall()",
       "source": "pdb_ret"
     },
     "0x0049CA70": {
       "name": "PAL_GDB::IsValidItem",
-      "signature": "BOOL __thiscall(PAL_GDB *this, int nItemID)"
+      "signature": "BOOL __thiscall(int nItemID)"
     },
     "0x00460A90": {
       "name": "PAL_GDB::UpdateSkillPanel",
-      "signature": "int __thiscall(PAL_GDB *this)"
+      "signature": "int __thiscall()"
     },
     "0x0049C2C0": {
       "name": "PAL_GDB::LoadByType",
@@ -99,7 +99,7 @@
     },
     "0x004E50B0": {
       "name": "PAL_GDB::SetupSkillConfig",
-      "signature": "char * __thiscall(PAL_GDB *this)"
+      "signature": "char * __thiscall()"
     },
     "0x00526300": {
       "name": "PAL_GDB::RefreshPartyStats",
@@ -124,19 +124,19 @@
     },
     "0x004E56E0": {
       "name": "PAL_GDB::FindItemByID",
-      "signature": "char __thiscall(PAL_GDB *this, int nVal, int *p_DWORD)"
+      "signature": "char __thiscall(int nVal, int *p_DWORD)"
     },
     "0x004E5710": {
       "name": "PAL_GDB::GetItemPrice",
-      "signature": "int __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004E5760": {
       "name": "PAL_GDB::GetItemWeight",
-      "signature": "int __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004E57B0": {
       "name": "PAL_GDB::GetItemData",
-      "signature": "int __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004E5800": {
       "name": "PAL_GDB::PartySetupDialogProc",
@@ -152,7 +152,7 @@
     },
     "0x004E5F60": {
       "name": "PAL_GDB::UpdateInventorySlots",
-      "signature": "int *__thiscall(PAL_GDB *this)"
+      "signature": "int *__thiscall()"
     },
     "0x004E5FF0": {
       "name": "PAL_GDB::DlgProcCamera",
@@ -188,51 +188,51 @@
     },
     "0x004F6AD0": {
       "name": "PAL_GDB::GetSkillLevel",
-      "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "bool __thiscall(int nVal)"
     },
     "0x004F6B20": {
       "name": "PAL_GDB::GetSkillType",
-      "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "bool __thiscall(int nVal)"
     },
     "0x004F6B70": {
       "name": "PAL_GDB::IsSkillUsable",
-      "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "bool __thiscall(int nVal)"
     },
     "0x004F6BB0": {
       "name": "PAL_GDB::IsSkillEmpty",
-      "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "bool __thiscall(int nVal)"
     },
     "0x004F6BE0": {
       "name": "PAL_GDB::SearchAllItems",
-      "signature": "char __thiscall(PAL_GDB *this, int nVal, int *p_DWORD, int *pnVal, int *p_DWORD2)"
+      "signature": "char __thiscall(int nVal, int *p_DWORD, int *pnVal, int *p_DWORD2)"
     },
     "0x004F6C60": {
       "name": "PAL_GDB::SearchItemLoop",
-      "signature": "char __thiscall(PAL_GDB *this, int nVal, int nVal2, int *p_DWORD, int *pnVal)"
+      "signature": "char __thiscall(int nVal, int nVal2, int *p_DWORD, int *pnVal)"
     },
     "0x004F6D30": {
       "name": "PAL_GDB::IsRoleSkillValid",
-      "signature": "char __thiscall(PAL_GDB *this, unsigned int *pdwVal, int nVal)"
+      "signature": "char __thiscall(unsigned int *pdwVal, int nVal)"
     },
     "0x004F6E80": {
       "name": "PAL_GDB::IterateInventory",
-      "signature": "char __thiscall(PAL_GDB *this, int *p_DWORD)"
+      "signature": "char __thiscall(int *p_DWORD)"
     },
     "0x004F6FB0": {
       "name": "PAL_GDB::BuildItemArray",
-      "signature": "char __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "char __thiscall(int nVal)"
     },
     "0x00528650": {
       "name": "PAL_GDB::InitSkillDisplay",
-      "signature": "int __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x0052ECE0": {
       "name": "PAL_GDB::SetupSkillData",
-      "signature": "BOOL __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "BOOL __thiscall(int nVal)"
     },
     "0x004F6A80": {
       "name": "PAL_GDB::IsRoleAlive2",
-      "signature": "bool __thiscall(PAL_GDB *this, int nVal)"
+      "signature": "bool __thiscall(int nVal)"
     }
   }
 }

@@ -144,7 +144,7 @@
   "methods": {
     "0x0042CD90": {
       "name": "ScriptVM::CallFunction",
-      "signature": "int __thiscall(ScriptVM *this, unsigned char nFuncID, int nArgCount)"
+      "signature": "int __thiscall(unsigned char nFuncID, int nArgCount)"
     },
     "0x004366C0": {
       "name": "ScriptVM::GetObjectByID",
@@ -152,19 +152,19 @@
     },
     "0x0042C730": {
       "name": "ScriptVM::OpenSceneScript",
-      "signature": "struct gbVFileSystem *__thiscall(ScriptVM *this)"
+      "signature": "struct gbVFileSystem *__thiscall()"
     },
     "0x0042C810": {
       "name": "ScriptVM::UpdatePauseState",
-      "signature": "char __thiscall(ScriptVM *this)"
+      "signature": "char __thiscall()"
     },
     "0x0042C950": {
       "name": "ScriptVM::ExecuteOpcode",
-      "signature": "int __thiscall(ScriptVM *this, void *pData, unsigned char nType, int nCount)"
+      "signature": "int __thiscall(void *pData, unsigned char nType, int nCount)"
     },
     "0x0042D670": {
       "name": "ScriptVM::GetRolePosition",
-      "signature": "int __thiscall(ScriptVM *this, unsigned char pData)"
+      "signature": "int __thiscall(unsigned char pData)"
     },
     "0x00423880": {
       "name": "ScriptVM::ProcessFrame",
@@ -172,15 +172,15 @@
     },
     "0x0042D4B0": {
       "name": "ScriptVM::SetRolePosition",
-      "signature": "int __thiscall(ScriptVM *this, unsigned char pData)"
+      "signature": "int __thiscall(unsigned char pData)"
     },
     "0x0042C1A0": {
       "name": "ScriptVM::IsRunning",
-      "signature": "BOOL __thiscall(ScriptVM *this)"
+      "signature": "BOOL __thiscall()"
     },
     "0x0042FB60": {
       "name": "ScriptVM::GetString",
-      "signature": "char *__thiscall(ScriptVM *this)"
+      "signature": "char *__thiscall()"
     }
   }
 }

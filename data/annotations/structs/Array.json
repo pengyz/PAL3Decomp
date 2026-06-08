@@ -28,15 +28,15 @@
   "methods": {
     "0x00411170": {
       "name": "Array::Insert",
-      "signature": "void *__thiscall(Array *this, void *pElem, void *pEnd)"
+      "signature": "void *__thiscall(void *pElem, void *pEnd)"
     },
     "0x004111C0": {
       "name": "Array::Size",
-      "signature": "int __thiscall(Array *this)"
+      "signature": "int __thiscall()"
     },
     "0x004111E0": {
       "name": "Array::Erase",
-      "signature": "void *__thiscall(Array *this, int nIndex, int nCount)"
+      "signature": "void *__thiscall(int nIndex, int nCount)"
     },
     "0x00411240": {
       "name": "Array::Copy",
@@ -52,7 +52,7 @@
     },
     "0x00410DF0": {
       "name": "Array::CopyRange",
-      "signature": "int *__thiscall(Array *this, int *p_DWORD, int *p_DWORD2)"
+      "signature": "int *__thiscall(int *p_DWORD, int *p_DWORD2)"
     },
     "0x004115C0": {
       "name": "Array::PartialSort",

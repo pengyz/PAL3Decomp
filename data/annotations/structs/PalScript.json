@@ -520,39 +520,39 @@
   "methods": {
     "0x00412680": {
       "name": "PalScript::DestroyScript",
-      "signature": "int __thiscall(PalScript *this)"
+      "signature": "int __thiscall()"
     },
     "0x00430290": {
       "name": "PalScript::LoadScript",
-      "signature": "int __thiscall(PalScript *this, int pathAddr)"
+      "signature": "int __thiscall(int pathAddr)"
     },
     "0x00430570": {
       "name": "PalScript::SetAppName",
-      "signature": "char *__thiscall(PalScript *this, char *name)"
+      "signature": "char *__thiscall(char *name)"
     },
     "0x004318B0": {
       "name": "PalScript::LoadFromFile",
-      "signature": "void *__thiscall(PalScript *this, char *filename)"
+      "signature": "void *__thiscall(char *filename)"
     },
     "0x004319F0": {
       "name": "PalScript::SetDirectory",
-      "signature": "int __thiscall(PalScript *this, char *dir)"
+      "signature": "int __thiscall(char *dir)"
     },
     "0x00431A60": {
       "name": "PalScript::HasNext",
-      "signature": "int __thiscall(PalScript *this)"
+      "signature": "int __thiscall()"
     },
     "0x00431B60": {
       "name": "PalScript::LoadNext",
-      "signature": "int __thiscall(PalScript *this)"
+      "signature": "int __thiscall()"
     },
     "0x00431D80": {
       "name": "PalScript::PalScript_1d80",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x00431F00": {
       "name": "PalScript::AddWaitObj",
-      "signature": "void __thiscall(PalScript *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x00431F10": {
@@ -561,19 +561,19 @@
     },
     "0x00431F40": {
       "name": "PalScript::ClearAllCamObj",
-      "signature": "void __cdecl __thiscall(PalScript *this)"
+      "signature": "void __cdecl __thiscall()"
     },
     "0x00431FA0": {
       "name": "PalScript::ClearAllWaitObj",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x00431FB0": {
       "name": "PalScript::Update",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x00434C00": {
       "name": "PalScript::GetString",
-      "signature": "char * __thiscall(PalScript *this)"
+      "signature": "char * __thiscall()"
     },
     "0x0043A250": {
       "name": "PalScript::MoveAndHide",
@@ -582,11 +582,11 @@
     },
     "0x0043AA00": {
       "name": "PalScript::OpenScript",
-      "signature": "gbVFileSystem *__thiscall(PalScript *this, const char *pszName, char pData)"
+      "signature": "gbVFileSystem *__thiscall(const char *pszName, char pData)"
     },
     "0x00445D10": {
       "name": "PalScript::OnMessage",
-      "signature": "int __thiscall(PalScript *this, int nVal, int nMsg, int wParam)",
+      "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
       "ordinal": 6
     },
     "0x00439130": {
@@ -595,27 +595,27 @@
     },
     "0x0043A160": {
       "name": "PalScript::PalScript",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x00445B90": {
       "name": "PalScript::Create",
-      "signature": "int __thiscall(PalScript *this, int id, tagRECT *pRect, int parent)",
+      "signature": "int __thiscall(int id, tagRECT *pRect, int parent)",
       "ordinal": 4
     },
     "0x0043A1F0": {
       "name": "PalScript::ctor",
-      "signature": "void __thiscall(PalScript *this)",
+      "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
     "0x00445E70": {
       "name": "PalScript::ShowWindow",
-      "signature": "int __thiscall(PalScript *this, int nFlags)",
+      "signature": "int __thiscall(int nFlags)",
       "ordinal": 0
     },
     "0x004318A0": {
       "name": "PalScript::Cleanup",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x004353A0": {
       "name": "PalScript::Op_InTeam",
@@ -639,7 +639,7 @@
     },
     "0x00421CA0": {
       "name": "PalScript::BindRolesToStage",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x00435170": {
       "name": "PalScript::Op_GetDislike",
@@ -655,7 +655,7 @@
     },
     "0x00429D10": {
       "name": "PalScript::GetCount",
-      "signature": "int *__thiscall(PalScript *this, int nVal)"
+      "signature": "int *__thiscall(int nVal)"
     },
     "0x00538D60": {
       "name": "PalScript::DestroyInstances",
@@ -679,7 +679,7 @@
     },
     "0x00431D20": {
       "name": "PalScript::CleanupInstances",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x00434D70": {
       "name": "PalScript::Op_ScriptRunMode",
@@ -691,19 +691,19 @@
     },
     "0x00434E50": {
       "name": "PalScript::Op_RoleScript",
-      "signature": "char * __thiscall(PalScript *this)"
+      "signature": "char * __thiscall()"
     },
     "0x00434E90": {
       "name": "PalScript::Op_RoleCtrl",
-      "signature": "char * __thiscall(PalScript *this)"
+      "signature": "char * __thiscall()"
     },
     "0x004350F0": {
       "name": "PalScript::Op_RoleOverlap",
-      "signature": "char * __thiscall(PalScript *this)"
+      "signature": "char * __thiscall()"
     },
     "0x004351A0": {
       "name": "PalScript::Op_RoleActive",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x00435830": {
       "name": "PalScript::Op_CameraFocusPoint",
@@ -807,7 +807,7 @@
     },
     "0x00436130": {
       "name": "PalScript::Op_RoleMoveBackEx",
-      "signature": "unsigned int __thiscall(PalScript *this)"
+      "signature": "unsigned int __thiscall()"
     },
     "0x00436190": {
       "name": "PalScript::Op_RoleShowAction",
@@ -943,7 +943,7 @@
     },
     "0x0043A3E0": {
       "name": "PalScript::UpdateTimer",
-      "signature": "BOOL __thiscall(PalScript *this, int nVal, int nVal2)",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
       "ordinal": 2
     },
     "0x0044B8A0": {
@@ -952,11 +952,11 @@
     },
     "0x00522130": {
       "name": "PalScript::LoadSceneConfig",
-      "signature": "char __thiscall(PalScript *this, char *filename)"
+      "signature": "char __thiscall(char *filename)"
     },
     "0x00529440": {
       "name": "PalScript::LoadResource",
-      "signature": "int __thiscall(PalScript *this, char *filename)"
+      "signature": "int __thiscall(char *filename)"
     },
     "0x00535710": {
       "name": "PalScript::LoadVisNode",
@@ -1016,7 +1016,7 @@
     },
     "0x00435010": {
       "name": "PalScript::Op_TeamCloseA",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x00435080": {
       "name": "PalScript::Op_RoleSetPos",
@@ -1024,7 +1024,7 @@
     },
     "0x00435130": {
       "name": "PalScript::CmdGetSceneObject",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x004353F0": {
       "name": "PalScript::Op_RoleSetLayer",
@@ -1044,7 +1044,7 @@
     },
     "0x00435600": {
       "name": "PalScript::Op_CameraPush",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x004356C0": {
       "name": "PalScript::Op_ShowActAutoStand",
@@ -1068,11 +1068,11 @@
     },
     "0x00436240": {
       "name": "PalScript::Op_RoleScaleEx",
-      "signature": "float * __thiscall(PalScript *this)"
+      "signature": "float * __thiscall()"
     },
     "0x004362D0": {
       "name": "PalScript::Op_ShowActAutoStandEx",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x00436360": {
       "name": "PalScript::Op_TestGoto",
@@ -1108,11 +1108,11 @@
     },
     "0x004365C0": {
       "name": "PalScript::Op_RoleFaceRoleEx",
-      "signature": "char __thiscall(PalScript *this)"
+      "signature": "char __thiscall()"
     },
     "0x004365D0": {
       "name": "PalScript::Op_RoleTurnFaceAEx",
-      "signature": "char __thiscall(PalScript *this)"
+      "signature": "char __thiscall()"
     },
     "0x004365E0": {
       "name": "PalScript::Op_TeamOpen",
@@ -1452,11 +1452,11 @@
     },
     "0x004393A0": {
       "name": "PalScript::CheckAnimOver",
-      "signature": "char __thiscall(PalScript *this)"
+      "signature": "char __thiscall()"
     },
     "0x00445E10": {
       "name": "PalScript::OffsetRect",
-      "signature": "int *__thiscall(PalScript *this, int *p_DWORD)"
+      "signature": "int *__thiscall(int *p_DWORD)"
     },
     "0x0052BE40": {
       "name": "PalScript::LoadEncampConfig",
@@ -1468,11 +1468,11 @@
     },
     "0x0042C700": {
       "name": "PalScript::StopSound3D",
-      "signature": "void __thiscall(PalScript *this)"
+      "signature": "void __thiscall()"
     },
     "0x00439FE0": {
       "name": "PalScript::GetRayToScreen",
-      "signature": "void *__thiscall(PalScript *this, void *pRay, long *pResult)"
+      "signature": "void *__thiscall(void *pRay, long *pResult)"
     },
     "0x00436730": {
       "name": "PalScript::Op_FCZero",
@@ -1524,11 +1524,11 @@
     },
     "0x00421560": {
       "name": "PalScript::SetAction",
-      "signature": "void __thiscall(PalScript *this, int nRoleID)"
+      "signature": "void __thiscall(int nRoleID)"
     },
     "0x00429D40": {
       "name": "PalScript::SetIndex",
-      "signature": "void __thiscall(PalScript *this, int nVal)",
+      "signature": "void __thiscall(int nVal)",
       "source": "pdb_ret"
     },
     "0x00438190": {

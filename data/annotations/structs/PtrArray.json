@@ -26,19 +26,19 @@
   "methods": {
     "0x00432660": {
       "name": "PtrArray::Clear",
-      "signature": "int *__thiscall(PtrArray *this)"
+      "signature": "int *__thiscall()"
     },
     "0x00434130": {
       "name": "PtrArray::PtrArray",
-      "signature": "void __thiscall(PtrArray *this, int nInitSize, int nGrowBy, char bOwned)"
+      "signature": "void __thiscall(int nInitSize, int nGrowBy, char bOwned)"
     },
     "0x004341E0": {
       "name": "PtrArray::~PtrArray",
-      "signature": "void __thiscall(PtrArray *this)"
+      "signature": "void __thiscall()"
     },
     "0x00434240": {
       "name": "PtrArray::SetSize",
-      "signature": "void __thiscall(PtrArray *this)"
+      "signature": "void __thiscall()"
     },
     "0x004343B0": {
       "name": "PtrArray::SetAtGrow",
@@ -46,23 +46,23 @@
     },
     "0x004343F0": {
       "name": "PtrArray::RemoveAt",
-      "signature": "void __thiscall(PtrArray *this, const char *nIndex)"
+      "signature": "void __thiscall(const char *nIndex)"
     },
     "0x00434490": {
       "name": "PtrArray::Remove",
-      "signature": "void __thiscall(PtrArray *this)"
+      "signature": "void __thiscall()"
     },
     "0x004344F0": {
       "name": "PtrArray::InsertAt",
-      "signature": "void __thiscall(PtrArray *this, const char *nIndex)"
+      "signature": "void __thiscall(const char *nIndex)"
     },
     "0x0044BD60": {
       "name": "PtrArray::PtrArray",
-      "signature": "void __thiscall(PtrArray *this)"
+      "signature": "void __thiscall()"
     },
     "0x0053D1A0": {
       "name": "PtrArray::SetResolution",
-      "signature": "void __thiscall(PtrArray *this, int nVal, int arg4)"
+      "signature": "void __thiscall(int nVal, int arg4)"
     },
     "0x004327B0": {
       "name": "PtrArray::RemoveAt",
@@ -70,23 +70,23 @@
     },
     "0x00432770": {
       "name": "PtrArray::SetAt",
-      "signature": "void __thiscall(PtrArray *this, int nIndex, int newElement)"
+      "signature": "void __thiscall(int nIndex, int newElement)"
     },
     "0x0040D640": {
       "name": "PtrArray::GetAt",
-      "signature": "void *__thiscall(PtrArray *this, void *pOut, unsigned int nIndex)"
+      "signature": "void *__thiscall(void *pOut, unsigned int nIndex)"
     },
     "0x0040D620": {
       "name": "PtrArray::GetSize",
-      "signature": "int __thiscall(PtrArray *this)"
+      "signature": "int __thiscall()"
     },
     "0x0040D6B0": {
       "name": "PtrArray::Insert",
-      "signature": "void *__thiscall(PtrArray *this, void *pItem)"
+      "signature": "void *__thiscall(void *pItem)"
     },
     "0x0040DBD0": {
       "name": "PtrArray::Find",
-      "signature": "BOOL __thiscall(PtrArray *this, void *pKey, void *pResult)"
+      "signature": "BOOL __thiscall(void *pKey, void *pResult)"
     },
     "0x00411290": {
       "name": "PtrArray::ParseStringPair",
@@ -94,7 +94,7 @@
     },
     "0x004327F0": {
       "name": "PtrArray::FindFirst",
-      "signature": "int __thiscall(PtrArray *this, void *pData)"
+      "signature": "int __thiscall(void *pData)"
     },
     "0x00433DC0": {
       "name": "PtrArray::CopyRange",
@@ -102,7 +102,7 @@
     },
     "0x0053D0B0": {
       "name": "PtrArray::ClearBoth",
-      "signature": "PtrArray *__thiscall(PtrArray *this)"
+      "signature": "PtrArray *__thiscall()"
     },
     "0x0040DCD0": {
       "name": "PtrArray::CompareValues",
@@ -126,7 +126,7 @@
     },
     "0x004348E0": {
       "name": "PtrArray::ReadFileSection",
-      "signature": "struct gbVFile *__thiscall(PtrArray *this, int nSection)"
+      "signature": "struct gbVFile *__thiscall(int nSection)"
     },
     "0x00433C50": {
       "name": "PtrArray::ReadFromVFile",
@@ -134,7 +134,7 @@
     },
     "0x004019B0": {
       "name": "PtrArray::ReleasePtrArray",
-      "signature": "void *__thiscall(PtrArray *this)",
+      "signature": "void *__thiscall()",
       "_misattrib_evidence": "max_offset=64>class_size=16"
     }
   }

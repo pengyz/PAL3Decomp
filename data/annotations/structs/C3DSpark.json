@@ -76,25 +76,25 @@
   "methods": {
     "0x004D6670": {
       "name": "C3DSpark::C3DSpark",
-      "signature": "C3DSpark * __thiscall(C3DSpark *this)"
+      "signature": "C3DSpark * __thiscall()"
     },
     "0x004D6960": {
       "name": "C3DSpark::~C3DSpark",
-      "signature": "void __thiscall(C3DSpark *this)"
+      "signature": "void __thiscall()"
     },
     "0x004D6A60": {
       "name": "C3DSpark::CreateSingle",
-      "signature": "bool __thiscall(C3DSpark *this, const void *pSpark)",
+      "signature": "bool __thiscall(const void *pSpark)",
       "source": "pdb_ret"
     },
     "0x004D6AC0": {
       "name": "C3DSpark::CreateOne",
-      "signature": "void __thiscall(C3DSpark *this, int x, int y, int z)",
+      "signature": "void __thiscall(int x, int y, int z)",
       "source": "pdb_ret"
     },
     "0x004D6BA0": {
       "name": "C3DSpark::DestroyAll",
-      "signature": "_BYTE *__thiscall(C3DSpark *this)"
+      "signature": "_BYTE *__thiscall()"
     },
     "0x004D6BC0": {
       "name": "C3DSpark::Render",
@@ -102,7 +102,7 @@
     },
     "0x004D6D30": {
       "name": "C3DSpark::Update",
-      "signature": "void __thiscall(C3DSpark *this, float fDeltaTime)",
+      "signature": "void __thiscall(float fDeltaTime)",
       "source": "pdb_ret"
     }
   }

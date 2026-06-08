@@ -67,11 +67,11 @@
   "methods": {
     "0x0053C990": {
       "name": "Logger::Render",
-      "signature": "int __thiscall(Logger *this)"
+      "signature": "int __thiscall()"
     },
     "0x0053CEF0": {
       "name": "Logger::FormatException",
-      "signature": "char *__thiscall(Logger *this, char *msg, char *file, int line)"
+      "signature": "char *__thiscall(char *msg, char *file, int line)"
     },
     "0x0053CC70": {
       "name": "Logger::Write",
@@ -79,11 +79,11 @@
     },
     "0x0053CC10": {
       "name": "Logger::RegisterCallback",
-      "signature": "int __thiscall(Logger *this, void (*f)(), char *name, char *desc)"
+      "signature": "int __thiscall(void (*f)(), char *name, char *desc)"
     },
     "0x0053CE90": {
       "name": "Logger::RegisterCallbacks",
-      "signature": "int __thiscall(Logger *this)"
+      "signature": "int __thiscall()"
     },
     "0x0053CE20": {
       "name": "Logger::WriteRoleNames",

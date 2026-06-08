@@ -251,7 +251,7 @@
   "methods": {
     "0x004125D0": {
       "name": "Camera::InitFromScene",
-      "signature": "void __thiscall(Camera *this, const char *pszSceneName)"
+      "signature": "void __thiscall(const char *pszSceneName)"
     },
     "0x0041E7D0": {
       "name": "Camera::CheckCollision1",
@@ -263,7 +263,7 @@
     },
     "0x0041EE60": {
       "name": "Camera::IsTransitioning",
-      "signature": "char __cdecl __thiscall(Camera *this)"
+      "signature": "char __cdecl __thiscall()"
     },
     "0x00439850": {
       "name": "Camera::UpdateCameraLookAt",
@@ -275,7 +275,7 @@
     },
     "0x0041BE80": {
       "name": "Camera::Camera",
-      "signature": "Camera *__thiscall(Camera *this, struct gbGfxManager *p)"
+      "signature": "Camera *__thiscall(struct gbGfxManager *p)"
     },
     "0x0052BEB0": {
       "name": "Camera::InitUIElements",

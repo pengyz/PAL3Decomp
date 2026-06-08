@@ -80,7 +80,7 @@
     "140": {
       "name": "m_pEffect",
       "type": "char *",
-      "source": "ida_decomp:_unverified_4BE4A0 deref as void**, 4 refs | type_fix:int\u2192void*(deref+ptr semantics)",
+      "source": "ida_decomp:_unverified_4BE4A0 deref as void**, 4 refs | type_fix:int→void*(deref+ptr semantics)",
       "note": "replaced void* with char* (IDB struct compat)"
     }
   },
@@ -91,11 +91,11 @@
     },
     "0x004BE590": {
       "name": "ScreenEffectMgr::GetInstance",
-      "signature": "ScreenEffect *__cdecl __thiscall(ScreenEffectMgr *this)"
+      "signature": "ScreenEffect *__cdecl __thiscall()"
     },
     "0x004BE1A0": {
       "name": "ScreenEffectMgr::ProcessEffect",
-      "signature": "int __thiscall(ScreenEffectMgr *this)"
+      "signature": "int __thiscall()"
     },
     "0x004BE080": {
       "name": "ScreenEffectMgr::ClearAllEffects",
@@ -103,7 +103,7 @@
     },
     "0x004BE810": {
       "name": "ScreenEffectMgr::GetFadeFlags",
-      "signature": "int *__thiscall(ScreenEffectMgr *this)"
+      "signature": "int *__thiscall()"
     },
     "0x004BE920": {
       "name": "ScreenEffectMgr::RenderFadeOut",
@@ -125,7 +125,7 @@
     },
     "0x004BDF60": {
       "name": "ScreenEffectMgr::IsScriptDelNeeded",
-      "signature": "int __thiscall(ScreenEffectMgr *this)"
+      "signature": "int __thiscall()"
     },
     "0x004BDF70": {
       "name": "ScreenEffectMgr::StartFade",
@@ -133,7 +133,7 @@
     },
     "0x004BE5E0": {
       "name": "ScreenEffectMgr::IsFadeWhiteHolding",
-      "signature": "bool __thiscall(ScreenEffectMgr *this)"
+      "signature": "bool __thiscall()"
     },
     "0x004BE5F0": {
       "name": "ScreenEffectMgr::DrainQueue",
@@ -149,7 +149,7 @@
     },
     "0x004BE9E0": {
       "name": "ScreenEffectMgr::StartFadeIn",
-      "signature": "void __thiscall(ScreenEffectMgr *this)"
+      "signature": "void __thiscall()"
     },
     "0x004BEC00": {
       "name": "ScreenEffectMgr::RenderFadeWhiteOut",
@@ -166,12 +166,12 @@
     },
     "0x004BF680": {
       "name": "ScreenEffectMgr::GetPageIndex",
-      "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)",
+      "signature": "int __thiscall(int nVal)",
       "ordinal": 13
     },
     "0x004BF6C0": {
       "name": "ScreenEffectMgr::SetFadeParams",
-      "signature": "int __thiscall(ScreenEffectMgr *this, int nVal)",
+      "signature": "int __thiscall(int nVal)",
       "ordinal": 14
     },
     "0x004BF760": {
@@ -180,7 +180,7 @@
     },
     "0x0052F310": {
       "name": "ScreenEffectMgr::ProcessInstance",
-      "signature": "int __thiscall(ScreenEffectMgr *this)"
+      "signature": "int __thiscall()"
     },
     "0x0052F330": {
       "name": "ScreenEffectMgr::IsFadeActive",

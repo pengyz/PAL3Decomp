@@ -201,36 +201,36 @@
   "methods": {
     "0x004BDAC0": {
       "name": "RenderTarget::RenderTarget",
-      "signature": "void __thiscall(RenderTarget *this)"
+      "signature": "void __thiscall()"
     },
     "0x004BDB60": {
       "name": "RenderTarget::Create",
-      "signature": "void __thiscall(RenderTarget *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x004BDC10": {
       "name": "RenderTarget::OnDeviceLost",
-      "signature": "void __thiscall(RenderTarget *this, int nVal)"
+      "signature": "void __thiscall(int nVal)"
     },
     "0x004BDC40": {
       "name": "RenderTarget::OnResetDevice",
-      "signature": "bool __thiscall(RenderTarget *this, int nVal)"
+      "signature": "bool __thiscall(int nVal)"
     },
     "0x004BDF10": {
       "name": "RenderTarget::Destroy",
-      "signature": "int *__thiscall(RenderTarget *this)"
+      "signature": "int *__thiscall()"
     },
     "0x004B4920": {
       "name": "RenderTarget::LoadTexture",
-      "signature": "gbVFileSystem *__thiscall(RenderTarget *this, const char *szFilename)"
+      "signature": "gbVFileSystem *__thiscall(const char *szFilename)"
     },
     "0x004B4850": {
       "name": "RenderTarget::SetColor",
-      "signature": "void __thiscall(RenderTarget *this, unsigned char r, unsigned char g, unsigned char b)"
+      "signature": "void __thiscall(unsigned char r, unsigned char g, unsigned char b)"
     },
     "0x004B48B0": {
       "name": "RenderTarget::SetAlpha",
-      "signature": "void __thiscall(RenderTarget *this, unsigned char nAlpha)"
+      "signature": "void __thiscall(unsigned char nAlpha)"
     },
     "0x004B4840": {
       "name": "RenderTarget::SetField084",
@@ -238,27 +238,27 @@
     },
     "0x004B49C0": {
       "name": "RenderTarget::UpdateTransform",
-      "signature": "void __thiscall(RenderTarget *this, float fX, float fY)"
+      "signature": "void __thiscall(float fX, float fY)"
     },
     "0x004B4D80": {
       "name": "RenderTarget::SetOffset",
-      "signature": "void __thiscall(RenderTarget *this, int nOffY)"
+      "signature": "void __thiscall(int nOffY)"
     },
     "0x004B4820": {
       "name": "RenderTarget::SetVisible",
-      "signature": "void __thiscall(RenderTarget *this, BOOL bVisible)"
+      "signature": "void __thiscall(BOOL bVisible)"
     },
     "0x004BB200": {
       "name": "RenderTarget::ScreenToLocal",
-      "signature": "void __thiscall(RenderTarget *this, float *pOutX, float *pInX, float *pInY)"
+      "signature": "void __thiscall(float *pOutX, float *pInX, float *pInY)"
     },
     "0x004B4C60": {
       "name": "RenderTarget::Render",
-      "signature": "void __thiscall(RenderTarget *this, int nY, int nWidth, int nHeight)"
+      "signature": "void __thiscall(int nY, int nWidth, int nHeight)"
     },
     "0x004BB260": {
       "name": "RenderTarget::LoadFromFile",
-      "signature": "void __thiscall(RenderTarget *this, gbVFile *pFile)",
+      "signature": "void __thiscall(gbVFile *pFile)",
       "_misattrib_evidence": "max_offset=1664>class_size=200"
     },
     "0x00486D00": {
@@ -270,16 +270,16 @@
     },
     "0x004BAE60": {
       "name": "RenderTarget::LoadFromFile",
-      "signature": "void __thiscall(RenderTarget *this, struct gbVFile *pFile)",
+      "signature": "void __thiscall(struct gbVFile *pFile)",
       "_misattrib_evidence": "max_offset=32004>class_size=200"
     },
     "0x004BC7B0": {
       "name": "RenderTarget::UpdateTimeStep",
-      "signature": "void __thiscall(RenderTarget *this)"
+      "signature": "void __thiscall()"
     },
     "0x004BC8A0": {
       "name": "RenderTarget::RenderToTexture",
-      "signature": "int __thiscall(RenderTarget *this)"
+      "signature": "int __thiscall()"
     },
     "0x004BE8D0": {
       "name": "RenderTarget::ResetHorizontal",
@@ -312,7 +312,7 @@
     },
     "0x004BB0B0": {
       "name": "RenderTarget::ClearTexture",
-      "signature": "int __thiscall(RenderTarget *this)"
+      "signature": "int __thiscall()"
     },
     "0x004BB0F0": {
       "name": "RenderTarget::ApplyScale",
@@ -320,24 +320,24 @@
     },
     "0x004BB180": {
       "name": "RenderTarget::fn_4BB180",
-      "signature": "int __thiscall(RenderTarget *this, int nVal)",
+      "signature": "int __thiscall(int nVal)",
       "source": " | rename:_todo_→fn_"
     },
     "0x004BD6C0": {
       "name": "RenderTarget::LoadParticleTextures",
-      "signature": "char __thiscall(RenderTarget *this, const char *pszName)"
+      "signature": "char __thiscall(const char *pszName)"
     },
     "0x004BD870": {
       "name": "RenderTarget::GetManagedTexture",
-      "signature": "void __thiscall(RenderTarget *this)"
+      "signature": "void __thiscall()"
     },
     "0x004BD880": {
       "name": "RenderTarget::CreateParticleEffect",
-      "signature": "gbParticleEffect *__thiscall(RenderTarget *this, int nVal)"
+      "signature": "gbParticleEffect *__thiscall(int nVal)"
     },
     "0x004BD900": {
       "name": "RenderTarget::UpdateParticleEffect",
-      "signature": "struct gbParticleGroup *__thiscall(RenderTarget *this, int nVal)"
+      "signature": "struct gbParticleGroup *__thiscall(int nVal)"
     },
     "0x004BD950": {
       "name": "RenderTarget::Stop",
@@ -345,27 +345,27 @@
     },
     "0x004BD970": {
       "name": "RenderTarget::ReleaseDefault",
-      "signature": "int __thiscall(RenderTarget *this)"
+      "signature": "int __thiscall()"
     },
     "0x004BD990": {
       "name": "RenderTarget::SetPathMode",
-      "signature": "void __thiscall(RenderTarget *this, int nVal)"
+      "signature": "void __thiscall(int nVal)"
     },
     "0x004BD9C0": {
       "name": "RenderTarget::SetDefaultParams",
-      "signature": "int __thiscall(RenderTarget *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x004BDD90": {
       "name": "RenderTarget::RenderToScreen",
-      "signature": "int __thiscall(RenderTarget *this)"
+      "signature": "int __thiscall()"
     },
     "0x004BDEB0": {
       "name": "RenderTarget::GetActiveTexture",
-      "signature": "gbTexture *__thiscall(RenderTarget *this)"
+      "signature": "gbTexture *__thiscall()"
     },
     "0x004BB050": {
       "name": "RenderTarget::ReadVFile",
-      "signature": "void __thiscall(RenderTarget *this, struct gbVFile *pFile)"
+      "signature": "void __thiscall(struct gbVFile *pFile)"
     },
     "0x0048EB40": {
       "name": "RenderTarget::RenderWithEffects",
@@ -381,19 +381,19 @@
     },
     "0x004B4910": {
       "name": "RenderTarget::SetState",
-      "signature": "void __thiscall(RenderTarget *this)"
+      "signature": "void __thiscall()"
     },
     "0x004B48E0": {
       "name": "RenderTarget::SetSize",
-      "signature": "void __thiscall(RenderTarget *this, int nHeight)"
+      "signature": "void __thiscall(int nHeight)"
     },
     "0x004B4DA0": {
       "name": "RenderTarget::SetScale",
-      "signature": "void __thiscall(RenderTarget *this, int nScaleY)"
+      "signature": "void __thiscall(int nScaleY)"
     },
     "0x004867F0": {
       "name": "RenderTarget::InitChildPanels",
-      "signature": "int __thiscall(RenderTarget *this)",
+      "signature": "int __thiscall()",
       "_misattrib_evidence": "max_offset=307036>class_size=200",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
@@ -405,7 +405,7 @@
     },
     "0x004870C0": {
       "name": "RenderTarget::InitNPCPanel",
-      "signature": "void __thiscall(RenderTarget *this)",
+      "signature": "void __thiscall()",
       "_misattrib_evidence": "max_offset=249476>class_size=200"
     }
   },

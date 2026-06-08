@@ -577,87 +577,87 @@
   "methods": {
     "0x00536160": {
       "name": "Actor::SetParam",
-      "signature": "int __thiscall(Actor *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x00536220": {
       "name": "Actor::GetDefaultFOV_thunk",
-      "signature": "int __cdecl __thiscall(Actor *this)"
+      "signature": "int __cdecl __thiscall()"
     },
     "0x00536230": {
       "name": "Actor::SetDefaultFOV",
-      "signature": "int __cdecl __thiscall(Actor *this)"
+      "signature": "int __cdecl __thiscall()"
     },
     "0x00536240": {
       "name": "Actor::GetDefaultDist_thunk",
-      "signature": "int __cdecl __thiscall(Actor *this)"
+      "signature": "int __cdecl __thiscall()"
     },
     "0x00536250": {
       "name": "Actor::SetDefaultDist",
-      "signature": "void __cdecl __thiscall(Actor *this)"
+      "signature": "void __cdecl __thiscall()"
     },
     "0x00536310": {
       "name": "Actor::DestroyInternalData",
-      "signature": "void __thiscall(Actor *this)"
+      "signature": "void __thiscall()"
     },
     "0x005363A0": {
       "name": "Actor::ResetDefaultState",
-      "signature": "int __thiscall(Actor *this)"
+      "signature": "int __thiscall()"
     },
     "0x00536A40": {
       "name": "Actor::GetDefaultFOV2_thunk",
-      "signature": "int __cdecl __thiscall(Actor *this)"
+      "signature": "int __cdecl __thiscall()"
     },
     "0x00536A50": {
       "name": "Actor::SetDefaultFOV2",
-      "signature": "int __cdecl __thiscall(Actor *this)"
+      "signature": "int __cdecl __thiscall()"
     },
     "0x00536A60": {
       "name": "Actor::GetDefaultDist2_thunk",
-      "signature": "int __cdecl __thiscall(Actor *this)"
+      "signature": "int __cdecl __thiscall()"
     },
     "0x00536A70": {
       "name": "Actor::SetDefaultDist2",
-      "signature": "void __cdecl __thiscall(Actor *this)"
+      "signature": "void __cdecl __thiscall()"
     },
     "0x00536A80": {
       "name": "Actor::FastInit",
-      "signature": "void __thiscall(Actor *this)"
+      "signature": "void __thiscall()"
     },
     "0x00536C50": {
       "name": "Actor::CompareActionName",
-      "signature": "int __thiscall(Actor *this, int actionIdx, int nVal)"
+      "signature": "int __thiscall(int actionIdx, int nVal)"
     },
     "0x00536CC0": {
       "name": "Actor::GetAnimDuration",
-      "signature": "unsigned int __thiscall(Actor *this, int animId)"
+      "signature": "unsigned int __thiscall(int animId)"
     },
     "0x00536CE0": {
       "name": "Actor::EnableTransition",
-      "signature": "void __thiscall(Actor *this, int nVal, int nVal2)"
+      "signature": "void __thiscall(int nVal, int nVal2)"
     },
     "0x00536D00": {
       "name": "Actor::SetTimeScale",
-      "signature": "void __thiscall(Actor *this, float scale)"
+      "signature": "void __thiscall(float scale)"
     },
     "0x00536FB0": {
       "name": "Actor::QueryState",
-      "signature": "int __thiscall(Actor *this)"
+      "signature": "int __thiscall()"
     },
     "0x00536FC0": {
       "name": "Actor::DispatchAction",
-      "signature": "int __thiscall(Actor *this, int actionId)"
+      "signature": "int __thiscall(int actionId)"
     },
     "0x00536FD0": {
       "name": "Actor::PlayAction",
-      "signature": "int __thiscall(Actor *this, int actionId)"
+      "signature": "int __thiscall(int actionId)"
     },
     "0x00536FF0": {
       "name": "Actor::UpdateAllActions",
-      "signature": "int __thiscall(Actor *this)"
+      "signature": "int __thiscall()"
     },
     "0x005371B0": {
       "name": "Actor::SetVisible",
-      "signature": "void __thiscall(Actor *this, int bVisible)"
+      "signature": "void __thiscall(int bVisible)"
     },
     "0x00536AC0": {
       "name": "Actor::SetMaterialName",
@@ -673,11 +673,11 @@
     },
     "0x0053AF30": {
       "name": "Actor::FindMatchingEntry",
-      "signature": "int __thiscall(Actor *this, int nY, int nVal, int nX)"
+      "signature": "int __thiscall(int nY, int nVal, int nX)"
     },
     "0x0053AF70": {
       "name": "Actor::SetVideoRegions",
-      "signature": "void __thiscall(Actor *this, int nX, int nVal, int nY)"
+      "signature": "void __thiscall(int nX, int nVal, int nY)"
     },
     "0x0041B9F0": {
       "name": "Actor::GetInnerAnimDuration",
@@ -685,23 +685,23 @@
     },
     "0x0050ACF0": {
       "name": "Actor::GetAnimDurationByIndex",
-      "signature": "unsigned int __thiscall(Actor *this, int nVal)"
+      "signature": "unsigned int __thiscall(int nVal)"
     },
     "0x005306A0": {
       "name": "Actor::InitActionConfig",
-      "signature": "gbVFileSystem *__thiscall(Actor *this, int nVal)"
+      "signature": "gbVFileSystem *__thiscall(int nVal)"
     },
     "0x00531260": {
       "name": "Actor::UpdateFrame",
-      "signature": "void __thiscall(Actor *this, float arg0)"
+      "signature": "void __thiscall(float arg0)"
     },
     "0x00537A90": {
       "name": "Actor::DoSceneTransition",
-      "signature": "FILE *__thiscall(Actor *this, double pData, int nVal)"
+      "signature": "FILE *__thiscall(double pData, int nVal)"
     },
     "0x00539E70": {
       "name": "Actor::InsertAnimFrame",
-      "signature": "char *__thiscall(Actor *this, float fVal)"
+      "signature": "char *__thiscall(float fVal)"
     },
     "0x0053B2A0": {
       "name": "Actor::SelectPointer",
@@ -709,7 +709,7 @@
     },
     "0x00419690": {
       "name": "Actor::UpdatePhysics",
-      "signature": "void __thiscall(Actor *this, float fVal)"
+      "signature": "void __thiscall(float fVal)"
     },
     "0x0044CB30": {
       "name": "Actor::InitParticles",
@@ -721,27 +721,27 @@
     },
     "0x00456F10": {
       "name": "Actor::SaveState",
-      "signature": "char * __thiscall(Actor *this)"
+      "signature": "char * __thiscall()"
     },
     "0x005309A0": {
       "name": "Actor::ResetTransformState",
-      "signature": "int __thiscall(Actor *this)"
+      "signature": "int __thiscall()"
     },
     "0x00530C00": {
       "name": "Actor::UpdateAnimState",
-      "signature": "bool __thiscall(Actor *this, char pData)"
+      "signature": "bool __thiscall(char pData)"
     },
     "0x00530F70": {
       "name": "Actor::BlendAnimation",
-      "signature": "void __thiscall(Actor *this, float fVal)"
+      "signature": "void __thiscall(float fVal)"
     },
     "0x005370E0": {
       "name": "Actor::ValidateInput",
-      "signature": "int __thiscall(Actor *this, int nVal, int nVal2)"
+      "signature": "int __thiscall(int nVal, int nVal2)"
     },
     "0x00537120": {
       "name": "Actor::SetTextureName",
-      "signature": "void __thiscall(Actor *this, const char *pszName)"
+      "signature": "void __thiscall(const char *pszName)"
     },
     "0x005372B0": {
       "name": "Actor::GetArrayCount",
@@ -749,11 +749,11 @@
     },
     "0x005372D0": {
       "name": "Actor::LoadActionSequence",
-      "signature": "int *__thiscall(Actor *this, int *p_DWORD, unsigned int dwVal, int *p_DWORD2)"
+      "signature": "int *__thiscall(int *p_DWORD, unsigned int dwVal, int *p_DWORD2)"
     },
     "0x00537510": {
       "name": "Actor::StoreParam",
-      "signature": "int __thiscall(Actor *this, int nVal, int nVal2)"
+      "signature": "int __thiscall(int nVal, int nVal2)"
     },
     "0x005375B0": {
       "name": "Actor::ClearArrayEntry",
@@ -761,7 +761,7 @@
     },
     "0x005375F0": {
       "name": "Actor::ClearPathBuffer",
-      "signature": "void __thiscall(Actor *this)"
+      "signature": "void __thiscall()"
     },
     "0x005376E0": {
       "name": "Actor::LoadSaveData",
@@ -773,23 +773,23 @@
     },
     "0x00537A30": {
       "name": "Actor::ClearAllocBuffers",
-      "signature": "void __thiscall(Actor *this)"
+      "signature": "void __thiscall()"
     },
     "0x005381D0": {
       "name": "Actor::InitAnimSequence",
-      "signature": "char *__thiscall(Actor *this)"
+      "signature": "char *__thiscall()"
     },
     "0x00538320": {
       "name": "Actor::EnsureDirectory",
-      "signature": "BOOL __thiscall(Actor *this)"
+      "signature": "BOOL __thiscall()"
     },
     "0x00538500": {
       "name": "Actor::LoadActorModel",
-      "signature": "BOOL __thiscall(Actor *this, int nVal)"
+      "signature": "BOOL __thiscall(int nVal)"
     },
     "0x00538CE0": {
       "name": "Actor::ClearActionFlags",
-      "signature": "int __thiscall(Actor *this)"
+      "signature": "int __thiscall()"
     },
     "0x00538D20": {
       "name": "Actor::CompareModelName",
@@ -801,19 +801,19 @@
     },
     "0x005394D0": {
       "name": "Actor::ClearActionArrays",
-      "signature": "int *__thiscall(Actor *this)"
+      "signature": "int *__thiscall()"
     },
     "0x00539700": {
       "name": "Actor::GetAnimDataBuffer",
-      "signature": "void __thiscall(Actor *this, void **Buffer, int Stream)"
+      "signature": "void __thiscall(void **Buffer, int Stream)"
     },
     "0x005399E0": {
       "name": "Actor::IterateActiveActors",
-      "signature": "void __thiscall(Actor *this)"
+      "signature": "void __thiscall()"
     },
     "0x00539A90": {
       "name": "Actor::SearchAnimByIndex",
-      "signature": "char __thiscall(Actor *this, char *String1, char *pszBuf)"
+      "signature": "char __thiscall(char *String1, char *pszBuf)"
     },
     "0x00539AF0": {
       "name": "Actor::RegisterAnim",
@@ -825,7 +825,7 @@
     },
     "0x0053A020": {
       "name": "Actor::IterateAllocBuffer",
-      "signature": "char __thiscall(Actor *this, int nVal)"
+      "signature": "char __thiscall(int nVal)"
     },
     "0x0053A060": {
       "name": "Actor::InitAction",
@@ -833,19 +833,19 @@
     },
     "0x0053A080": {
       "name": "Actor::GetActionArrayEnd",
-      "signature": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, short *pnVal)"
+      "signature": "_WORD *__thiscall(_WORD *p_WORD, short *pnVal)"
     },
     "0x0053A2E0": {
       "name": "Actor::GetActionCount",
-      "signature": "int __thiscall(Actor *this)"
+      "signature": "int __thiscall()"
     },
     "0x0053A310": {
       "name": "Actor::DestroyActionRange",
-      "signature": "void __thiscall(Actor *this, int nVal, int nVal2)"
+      "signature": "void __thiscall(int nVal, int nVal2)"
     },
     "0x0053A670": {
       "name": "Actor::CopyActionData",
-      "signature": "int *__thiscall(Actor *this, int nVal)"
+      "signature": "int *__thiscall(int nVal)"
     },
     "0x0053AFA0": {
       "name": "Actor::CopyBufferBlocks",
@@ -853,15 +853,15 @@
     },
     "0x0053AFE0": {
       "name": "Actor::CopyIfValid",
-      "signature": "char * __thiscall(Actor *this, char *pszBuf, char *pszBuf2, const void *pData)"
+      "signature": "char * __thiscall(char *pszBuf, char *pszBuf2, const void *pData)"
     },
     "0x0053B230": {
       "name": "Actor::GetCount",
-      "signature": "int __thiscall(Actor *this)"
+      "signature": "int __thiscall()"
     },
     "0x0053B260": {
       "name": "Actor::CompareBuffers",
-      "signature": "char * __thiscall(Actor *this, char *pszBuf, char *pszBuf2, char *pszBuf3)"
+      "signature": "char * __thiscall(char *pszBuf, char *pszBuf2, char *pszBuf3)"
     },
     "0x0053B890": {
       "name": "Actor::SetCurrentAction",
@@ -877,38 +877,38 @@
     },
     "0x0041BCA0": {
       "name": "Actor::SetActionByName",
-      "signature": "int __thiscall(Actor *this, unsigned char *pbyName)"
+      "signature": "int __thiscall(unsigned char *pbyName)"
     },
     "0x00530F20": {
       "name": "Actor::GetBoundRadius",
-      "signature": "bool __thiscall(Actor *this)"
+      "signature": "bool __thiscall()"
     },
     "0x00538FA0": {
       "name": "Actor::BuildCollisionMesh",
-      "signature": "void __thiscall(Actor *this, int *pOut)"
+      "signature": "void __thiscall(int *pOut)"
     },
     "0x0053BEB0": {
       "name": "Actor::GetActionCountEx",
-      "signature": "int __thiscall(Actor *this)"
+      "signature": "int __thiscall()"
     },
     "0x005363E0": {
       "name": "Actor::SetActorAction",
-      "signature": "void __thiscall(Actor *this, int actionId)",
+      "signature": "void __thiscall(int actionId)",
       "_misattrib_evidence": "max_offset=3340>class_size=596"
     },
     "0x005364B0": {
       "name": "Actor::InitActorComponents",
-      "signature": "int __thiscall(Actor *this)",
+      "signature": "int __thiscall()",
       "_misattrib_evidence": "max_offset=3340>class_size=596"
     },
     "0x00536560": {
       "name": "Actor::ProcessActorFrame",
-      "signature": "char __thiscall(Actor *this)",
+      "signature": "char __thiscall()",
       "_misattrib_evidence": "max_offset=3340>class_size=596"
     },
     "0x00536D20": {
       "name": "Actor::LoadModel",
-      "signature": "void *__thiscall(Actor *this)"
+      "signature": "void *__thiscall()"
     }
   }
 }

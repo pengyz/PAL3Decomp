@@ -658,15 +658,15 @@
     },
     "0x004CDA10": {
       "name": "SceneMgr::Create",
-      "signature": "CEffMgr * __thiscall(SceneMgr *this, int gfxMgr, int cam, int nVal)"
+      "signature": "CEffMgr * __thiscall(int gfxMgr, int cam, int nVal)"
     },
     "0x004CDBF0": {
       "name": "SceneMgr::RenderAll",
-      "signature": "char __thiscall(SceneMgr *this)"
+      "signature": "char __thiscall()"
     },
     "0x004CDC20": {
       "name": "SceneMgr::RenderUpdate",
-      "signature": "char __thiscall(SceneMgr *this)"
+      "signature": "char __thiscall()"
     },
     "0x00422050": {
       "name": "SceneMgr::FindRoleByState",
@@ -675,7 +675,7 @@
     },
     "0x00493E40": {
       "name": "SceneMgr::FormatStatusCaption",
-      "signature": "void __thiscall (SceneMgr *this, int nVal)",
+      "signature": "void __thiscall (int nVal)",
       "_misattrib_evidence": "max_offset=204880>class_size=54024"
     },
     "0x004CD930": {
@@ -686,12 +686,12 @@
     },
     "0x00528D50": {
       "name": "SceneMgr::LoadMainUITexture",
-      "signature": "int __thiscall (RenderTarget *this)",
+      "signature": "int __thiscall ()",
       "_misattrib_evidence": "max_offset=56180>class_size=200"
     },
     "0x0052EC90": {
       "name": "SceneMgr::GetCurrentNode",
-      "signature": "int *__thiscall(SceneMgr *this)"
+      "signature": "int *__thiscall()"
     },
     "0x0040CA40": {
       "name": "SceneMgr::InitSceneRoles",

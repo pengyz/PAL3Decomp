@@ -76,7 +76,7 @@
   "methods": {
     "0x004C6240": {
       "name": "CEffectSystem::~CEffectSystem",
-      "signature": "int *__thiscall(CEffectSystem *this, int nVal)"
+      "signature": "int *__thiscall(int nVal)"
     },
     "0x004C6260": {
       "name": "CEffectSystem::Reset",
@@ -85,45 +85,45 @@
     },
     "0x004C6280": {
       "name": "CEffectSystem::Init",
-      "signature": "bool __thiscall(CEffectSystem *this)",
+      "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x004C6290": {
       "name": "CEffectSystem::Destroy",
-      "signature": "void __thiscall(CEffectSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x004C6330": {
       "name": "CEffectSystem::GetEffectIndex",
-      "signature": "CEffect *__thiscall(CEffectSystem *this)"
+      "signature": "CEffect *__thiscall()"
     },
     "0x004C6340": {
       "name": "CEffectSystem::CreateEffect",
-      "signature": "int __thiscall(CEffectSystem *this)"
+      "signature": "int __thiscall()"
     },
     "0x004C6350": {
       "name": "CEffectSystem::GetEffect",
-      "signature": "void __thiscall(CEffectSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x004C6360": {
       "name": "CEffectSystem::DestroyEffect",
-      "signature": "void __thiscall(CEffectSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x004C6370": {
       "name": "CEffectSystem::DestroyEffect_6370",
-      "signature": "CEffectSystem *__thiscall(CEffectSystem *this)"
+      "signature": "CEffectSystem *__thiscall()"
     },
     "0x004C6410": {
       "name": "CEffectSystem::DestroyAllEffect",
-      "signature": "int *__thiscall(CEffectSystem *this)"
+      "signature": "int *__thiscall()"
     },
     "0x004C6460": {
       "name": "CEffectSystem::IsVisible",
-      "signature": "bool __thiscall(CEffectSystem *this)",
+      "signature": "bool __thiscall()",
       "source": "pdb_ret"
     },
     "0x004C65C0": {
       "name": "CEffectSystem::SetVisible",
-      "signature": "void __thiscall(CEffectSystem *this, float effect)"
+      "signature": "void __thiscall(float effect)"
     },
     "0x004C65F0": {
       "name": "CEffectSystem::HandleViewMove",
@@ -131,16 +131,16 @@
     },
     "0x004C6670": {
       "name": "CEffectSystem::Update",
-      "signature": "void __thiscall(CEffectSystem *this)",
+      "signature": "void __thiscall()",
       "source": "pdb_ret"
     },
     "0x004C6870": {
       "name": "CEffectSystem::FillDefaultUVSet",
-      "signature": "int *__thiscall(CEffectSystem *this)"
+      "signature": "int *__thiscall()"
     },
     "0x004E1190": {
       "name": "CEffectSystem::CreateEffectChain",
-      "signature": "int __thiscall(CEffectSystem *this, CCBUI *pCBUI, HWND hDlg, unsigned int dwVal, int bReadOnly, int nVal)"
+      "signature": "int __thiscall(CCBUI *pCBUI, HWND hDlg, unsigned int dwVal, int bReadOnly, int nVal)"
     },
     "0x004CF580": {
       "name": "CEffectSystem::CreateEffect",
@@ -148,16 +148,16 @@
     },
     "0x004C5DE0": {
       "name": "CEffectSystem::ReleaseParticle",
-      "signature": "void __thiscall(CEffectSystem *this)",
+      "signature": "void __thiscall()",
       "ordinal": 3
     },
     "0x004C5820": {
       "name": "CEffectSystem::Create",
-      "signature": "CEffectSystem *__thiscall(CEffectSystem *this, int pGfxMgr)"
+      "signature": "CEffectSystem *__thiscall(int pGfxMgr)"
     },
     "0x004C61A0": {
       "name": "CEffectSystem::CEffectSystem",
-      "signature": "int *__thiscall(CEffectSystem *this, int pDisplay)",
+      "signature": "int *__thiscall(int pDisplay)",
       "_misattrib_evidence": "max_offset=245796>class_size=344"
     },
     "0x004C5D50": {

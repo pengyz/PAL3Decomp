@@ -324,7 +324,7 @@
   "methods": {
     "0x00452670": {
       "name": "PropUI::Init",
-      "signature": "void __thiscall(PropUI *this)"
+      "signature": "void __thiscall()"
     },
     "0x00452580": {
       "name": "PropUI::PropUI",
@@ -332,7 +332,7 @@
     },
     "0x0046D4E0": {
       "name": "PropUI::ctor",
-      "signature": "void __thiscall(PropUI *this)",
+      "signature": "void __thiscall()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic"
     },
@@ -346,12 +346,12 @@
     },
     "0x0046F620": {
       "name": "PropUI::HandleInput",
-      "signature": "int __thiscall(PropUI *this, int nVal, int nVal2)",
+      "signature": "int __thiscall(int nVal, int nVal2)",
       "ordinal": 2
     },
     "0x0046F650": {
       "name": "PropUI::InitListUI",
-      "signature": "int __thiscall(PropUI *this, int arg0, int nVal, unsigned int dwVal)",
+      "signature": "int __thiscall(int arg0, int nVal, unsigned int dwVal)",
       "ordinal": 6
     },
     "0x0045B200": {
@@ -380,7 +380,7 @@
     },
     "0x0046DF40": {
       "name": "PropUI::InitPlayerList",
-      "signature": "int __thiscall(PropUI *this, int nVal)"
+      "signature": "int __thiscall(int nVal)"
     },
     "0x0046EC30": {
       "name": "PropUI::SetSlotLock",
@@ -392,7 +392,7 @@
     },
     "0x0046EC70": {
       "name": "PropUI::SetSceneStates",
-      "signature": "int __thiscall(PropUI *this, unsigned char pData)"
+      "signature": "int __thiscall(unsigned char pData)"
     },
     "0x0046F160": {
       "name": "PropUI::UpdateCaptions",

@@ -297,15 +297,15 @@
   "methods": {
     "0x0040C630": {
       "name": "ScriptSystem::Render",
-      "signature": "void __thiscall(ScriptSystem *this, gbMatrixStack *pMatrixStack)"
+      "signature": "void __thiscall(gbMatrixStack *pMatrixStack)"
     },
     "0x0040C790": {
       "name": "ScriptSystem::Cleanup",
-      "signature": "int __cdecl __thiscall(ScriptSystem *this)"
+      "signature": "int __cdecl __thiscall()"
     },
     "0x0040C960": {
       "name": "ScriptSystem::Destroy",
-      "signature": "void __thiscall(ScriptSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x004101F0": {
       "name": "ScriptSystem::RunWithDelay",
@@ -313,7 +313,7 @@
     },
     "0x00410470": {
       "name": "ScriptSystem::RunEvent",
-      "signature": "int __thiscall(ScriptSystem *this, int eventId, int nVal)"
+      "signature": "int __thiscall(int eventId, int nVal)"
     },
     "0x00411F60": {
       "name": "ScriptSystem::UpdateTimers",
@@ -325,7 +325,7 @@
     },
     "0x0041EFA0": {
       "name": "ScriptSystem::Init",
-      "signature": "void __thiscall(ScriptSystem *this)"
+      "signature": "void __thiscall()"
     },
     "0x0040CB80": {
       "name": "ScriptSystem::GetMainRoleSystem",
@@ -357,7 +357,7 @@
     },
     "0x004890A0": {
       "name": "ScriptSystem::ProcessScriptEvent",
-      "signature": "char __thiscall(ScriptSystem *this, int nVal, int nVal2, int nParam)",
+      "signature": "char __thiscall(int nVal, int nVal2, int nParam)",
       "_misattrib_evidence": "max_offset=217324>class_size=8704"
     }
   }
