@@ -149,7 +149,7 @@ def _try_struct_member_resolution(name):
         addr = int(name.split('_', 1)[1], 16)
     except (ValueError, IndexError):
         return None
-    if addr < 0x00401000 or addr > 0x0057F178:
+    if addr < 0x00401000 or addr > 0x01800000:
         return None
     prefix = name.split('_')[0]
     for base, end, gname, gtype in store.struct_instances:
@@ -231,7 +231,7 @@ def _collect_token_edits(code_bytes, tree, ctx):
         if node.type == 'identifier' and node.child_count == 0:
             name = node.text.decode('utf-8')
             replacement = None
-            if name.startswith(('dword_', 'byte_', 'word_', 'off_', 'flt_', 'unk_')):
+            if name.startswith(('dword_', 'byte_', 'word_', 'off_', 'flt_', 'unk_', 'stru_')):
                 replacement = _try_struct_member_resolution(name)
             if not replacement:
                 replacement = _try_global_name(name)
