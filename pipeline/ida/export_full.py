@@ -345,6 +345,19 @@ def main():
                 code = resolve_orphan_ordinals(code)
                 sig = cfunc.type.dstr()
                 sig = resolve_orphan_ordinals(sig)
+                # Fix Hex-Rays ecx register elision: 'ClassName *vN; // ecx' where
+                # vN is actually 'this' (assignment elided by Hex-Rays optimizer).
+                # Only fix when vN is typed as the current class and never assigned.
+                _m = re.search(r'(?:struct\s+)?(\w+)\s*\*\s*this\b', sig)
+                if _m:
+                    _cls = _m.group(1)
+                    _ecx_vars = set(re.findall(
+                        r'^\s*' + re.escape(_cls) + r'\s*\*\s*(\w+)\s*;\s*//\s*ecx',
+                        code, re.MULTILINE
+                    ))
+                    for _v in _ecx_vars:
+                        if not re.search(r'\b' + re.escape(_v) + r'\s*=', code):
+                            code = re.sub(r'\b' + re.escape(_v) + r'\b', 'this', code)
                 if ea in _virtual_addrs and not sig.startswith('virtual '):
                     sig = 'virtual ' + sig
                 demangled = idc.demangle_name(name, idc.get_inf_attr(idc.INF_SHORT_DN))
