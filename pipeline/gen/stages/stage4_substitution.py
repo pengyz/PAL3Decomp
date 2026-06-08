@@ -152,7 +152,7 @@ def _try_struct_member_resolution(name):
             offset = addr - base
             resolved = _resolve_offset(gtype, offset, prefix)
             if resolved:
-                return 'g_%s%s' % (gname, resolved)
+                return '%s%s' % (gname, resolved)
     return None
 
 
@@ -168,8 +168,8 @@ def _try_global_name(name):
         return None
     for base, end, gname, _ in store.struct_instances:
         if base <= addr < end:
-            store.globals_map[name] = 'g_%s' % gname
-            return 'g_%s' % gname
+            store.globals_map[name] = gname
+            return gname
     return None
 
 

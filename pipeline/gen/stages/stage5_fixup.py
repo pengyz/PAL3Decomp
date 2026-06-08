@@ -290,7 +290,7 @@ def _resolve_stru_overlap(code):
     for base, end, gname, gtype in store.struct_instances:
         _stru_name = 'stru_%X' % base
         _pattern = r'\b' + _stru_name + r'\.([a-zA-Z_]\w*(?:\[\d+\])?)'
-        _replacement = r'((%s *)&g_%s)->\1' % (gtype, gname)
+        _replacement = r'((%s *)&%s)->\1' % (gtype, gname)
         code = re.sub(_pattern, _replacement, code)
     return code
 
