@@ -360,9 +360,8 @@
     },
     "1424": {
       "name": "m_ScriptRoleBuf",
-      "type": "RoleSystem",
-      "comment": "Overlapped memory: used as RoleSystem (via Buffer/g_ScriptRoleBuf) and CEffMgr effect table. Capped at 5648B to avoid overlap with m_pCCBStageRoleFind.",
-      "source": "A:ida_get_type_confirmed_RoleSystem"
+      "type": "int[1412]",
+      "source": "revert:test"
     },
     "7072": {
       "name": "m_pCCBStageRoleFind",
@@ -376,8 +375,8 @@
     },
     "7120": {
       "name": "m_RoleSystems",
-      "type": "RoleSystem *",
-      "source": "A:ida_get_type_confirmed_pointer"
+      "type": "RoleSystem[5]",
+      "source": "revert:test"
     },
     "50640": {
       "name": "m_pGameData",
@@ -569,11 +568,6 @@
       "type": "unsigned int",
       "source": "auto:overlap_g_SceneMgr_at_+0x42D4"
     },
-    "50814": {
-      "name": "m_pRoleSystemArrayEnd",
-      "type": "RoleSystem *",
-      "source": "auto:overlap_g_SceneMgr_at_+0xC67E"
-    },
     "51500": {
       "name": "m_pCurrentScript",
       "type": "PalScript *",
@@ -644,15 +638,25 @@
       "type": "Role *",
       "source": "auto:overlap_g_SceneMgr_at_+0xD3C4"
     },
-    "50816": {
-      "name": "m_partyInitData",
-      "type": "int[100]",
-      "source": "ida:party_role_init_array_stride_16_25slots_C680"
-    },
     "53764": {
       "name": "m_ScriptResult",
       "type": "int",
       "source": "A:ida_stru_C11430_Camera_field"
+    },
+    "50814": {
+      "name": "_pad_roleEnd",
+      "type": "unsigned char[2]",
+      "source": "alignment_fix"
+    },
+    "50820": {
+      "name": "m_partyInitData",
+      "type": "int[100]",
+      "source": "ida:party_role_init_array_stride_16_25slots_C680"
+    },
+    "50816": {
+      "name": "m_pRoleSystemArrayEnd",
+      "type": "RoleSystem *",
+      "source": "fixed_offset"
     }
   },
   "methods": {
