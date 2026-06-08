@@ -325,12 +325,6 @@ def run(code, ctx):
     code = _fix_ulong_uint_cast(code)
 
     # Pointer → unsigned long assignment cast (MSVC6 incompatibility)
-    code = re.sub(
-        r'(\*\(\(_DWORD\s*\*\)this\s*\+\s*\d+\)\s*=\s*)'
-        r'(\([^)]+\*\)\s*)?(\w+)',
-        r'\1(unsigned long)(\2\3)',
-        code
-    )
 
     # Empty if-body before else
     code = re.sub(

@@ -12,11 +12,6 @@
       "type": "CCBRoleState *",
       "offset": 4
     },
-    "8": {
-      "name": "m_sLastRole",
-      "type": "char[256]",
-      "offset": 8
-    },
     "264": {
       "name": "m_bValid",
       "type": "unsigned char",
@@ -481,6 +476,21 @@
       "name": "_todo_1E8",
       "type": "float",
       "source": "binary_scan:2refs"
+    },
+    "8": {
+      "name": "m_sLastRole",
+      "type": "char[12]",
+      "source": "split_from_char256"
+    },
+    "20": {
+      "name": "m_sRoleArray",
+      "type": "Array",
+      "source": "A:ida_decomp_v29_Array_ptr"
+    },
+    "36": {
+      "name": "m_sRoleData",
+      "type": "char[228]",
+      "source": "split_from_char256"
     }
   },
   "methods": {
