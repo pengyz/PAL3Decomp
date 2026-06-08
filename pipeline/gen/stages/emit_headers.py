@@ -1203,9 +1203,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             params = re.sub(r'@<\w+>', '', params)
 
             # Remove this pointer from params (always first param for __thiscall)
+            # Only if params actually contain 'ClassName *this' — annotation sigs now omit it.
             if is_thiscall and params:
                 param_list = split_params(params)
-                if param_list:
+                if param_list and (re.search(r'\*(\w+\s+)?this\b', param_list[0])
+                                   or param_list[0].startswith(cls_name + ' ')):
                     param_list = param_list[1:]
                 params = ', '.join(param_list)
 
