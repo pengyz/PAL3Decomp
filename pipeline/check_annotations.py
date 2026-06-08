@@ -285,14 +285,25 @@ def check():
                     msg = (f"structs[{sname}]: member overlap: "
                            f"{m1.get('name')}({m1.get('type')}, size={size1})@{off1} "
                            f"ends@{end1} > next {sorted_m[i+1][1].get('name')}@{off2}")
-                    KNOWN_FIXED_SIZES = {'gbVec3D', 'gbMatrix', 'tagRECT', 'RECT'}
-                    mtype_clean = m1.get('type', '').replace('struct ', '').replace('class ', '').strip()
-                    if mtype_clean in structs or mtype_clean in KNOWN_FIXED_SIZES:
-                        errors.append(msg)
-                    else:
-                        warnings.append(msg + " (type size estimated)")
+                    errors.append(msg)
                 if end1 > max_extent:
                     max_extent = end1
+            # Check member alignment: pointers must be 4-aligned, shorts 2-aligned
+            for off_str, m in members.items():
+                off = int(off_str)
+                mtype = m.get('type', '')
+                name = m.get('name', '')
+                if off == 0:
+                    continue
+                if name.startswith('_pad_') or name.startswith('_gap_'):
+                    continue
+                if '*' in mtype and off % 4 != 0:
+                    errors.append(
+                        f"structs[{sname}]: ALIGN: +{off} {name} = {mtype} (pointer not 4-aligned)")
+                elif any(mtype.startswith(t) for t in ['short', 'unsigned short', 'WORD', '_WORD']):
+                    if off % 2 != 0:
+                        errors.append(
+                            f"structs[{sname}]: ALIGN: +{off} {name} = {mtype} (short not 2-aligned)")
             # Check last member extent vs binary_size
             if sorted_m:
                 last_off = int(sorted_m[-1][0])
