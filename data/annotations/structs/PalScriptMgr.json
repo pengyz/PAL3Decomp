@@ -1043,7 +1043,8 @@
     },
     "0x004320A0": {
       "name": "PalScriptMgr::Update",
-      "signature": "void __cdecl(const char *pszName)"
+      "signature": "void __cdecl(const char *pszName)",
+      "static": true
     },
     "0x00432170": {
       "name": "PalScriptMgr::Destroy",
@@ -1051,7 +1052,8 @@
     },
     "0x00432260": {
       "name": "PalScriptMgr::_CON_State",
-      "signature": "const char **__cdecl(const char *pszName)"
+      "signature": "const char **__cdecl(const char *pszName)",
+      "static": true
     },
     "0x004322A0": {
       "name": "PalScriptMgr::IfAnyScriptRunning",
@@ -1077,11 +1079,13 @@
     "0x004324B0": {
       "name": "PalScriptMgr::ClearAllScript",
       "signature": "void __cdecl(void *pData)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "static": true
     },
     "0x00432500": {
       "name": "PalScriptMgr::FindScriptByDesc",
-      "signature": "int *__cdecl(const char *pszName, const char *desc)"
+      "signature": "int *__cdecl(const char *pszName, const char *desc)",
+      "static": true
     },
     "0x00432550": {
       "name": "PalScriptMgr::IfHaveScript",
@@ -1089,7 +1093,8 @@
     },
     "0x00434C40": {
       "name": "PalScriptMgr::NotifyEvent",
-      "signature": "void __cdecl(int nEventID)"
+      "signature": "void __cdecl(int nEventID)",
+      "static": true
     },
     "0x0042EBE0": {
       "name": "PalScriptMgr::ExecuteOpcode",
@@ -1145,7 +1150,8 @@
     },
     "0x0042BEF0": {
       "name": "PalScriptMgr::HandleGetItem",
-      "signature": "void __cdecl PalScriptMgr::HandleGetItem(int nSkillGDBID)"
+      "signature": "void __cdecl PalScriptMgr::HandleGetItem(int nSkillGDBID)",
+      "static": true
     },
     "0x0042C280": {
       "name": "PalScriptMgr::LoadSceneGeometry",
@@ -1252,11 +1258,13 @@
     },
     "0x00434C80": {
       "name": "PalScriptMgr::UpdateLoadProgress",
-      "signature": "void * __cdecl PalScriptMgr::UpdateLoadProgress()"
+      "signature": "void * __cdecl PalScriptMgr::UpdateLoadProgress()",
+      "static": true
     },
     "0x004100A0": {
       "name": "PalScriptMgr::RunScript",
-      "signature": "int __cdecl(int nVal, int nVal2, int nVal3)"
+      "signature": "int __cdecl(int nVal, int nVal2, int nVal3)",
+      "static": true
     },
     "0x00434D50": {
       "name": "PalScriptMgr::sub_00434D50",

@@ -309,7 +309,8 @@
     },
     "0x004101F0": {
       "name": "ScriptSystem::RunWithDelay",
-      "signature": "int __cdecl(float delay, int nVal, int nVal2)"
+      "signature": "int __cdecl(float delay, int nVal, int nVal2)",
+      "static": true
     },
     "0x00410470": {
       "name": "ScriptSystem::RunEvent",
@@ -317,11 +318,13 @@
     },
     "0x00411F60": {
       "name": "ScriptSystem::UpdateTimers",
-      "signature": "int __cdecl(float dt)"
+      "signature": "int __cdecl(float dt)",
+      "static": true
     },
     "0x004194C0": {
       "name": "ScriptSystem::UpdateObjects",
-      "signature": "int __cdecl(float dt)"
+      "signature": "int __cdecl(float dt)",
+      "static": true
     },
     "0x0041EFA0": {
       "name": "ScriptSystem::Init",
@@ -329,19 +332,23 @@
     },
     "0x0040CB80": {
       "name": "ScriptSystem::GetMainRoleSystem",
-      "signature": "RoleSystem *__cdecl(unsigned short pData)"
+      "signature": "RoleSystem *__cdecl(unsigned short pData)",
+      "static": true
     },
     "0x0040CBB0": {
       "name": "ScriptSystem::GetScriptContext",
-      "signature": "int __cdecl(unsigned short pData, int nVal)"
+      "signature": "int __cdecl(unsigned short pData, int nVal)",
+      "static": true
     },
     "0x0040CBD0": {
       "name": "ScriptSystem::PassThrough",
-      "signature": "int __cdecl(unsigned short pData, int nVal, int nVal2)"
+      "signature": "int __cdecl(unsigned short pData, int nVal, int nVal2)",
+      "static": true
     },
     "0x0040CC00": {
       "name": "ScriptSystem::CheckEventType",
-      "signature": "int __cdecl(unsigned short pData, int nVal)"
+      "signature": "int __cdecl(unsigned short pData, int nVal)",
+      "static": true
     },
     "0x0040CC60": {
       "name": "ScriptSystem::ClearTimerSlot",

@@ -478,7 +478,8 @@
     "0x004068C0": {
       "name": "PAL3::HasCommandLineParam",
       "signature": "bool __cdecl(char *lpKeyName)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "static": true
     },
     "0x00406980": {
       "name": "PAL3::GetCommandLineParam",
@@ -500,16 +501,19 @@
     "0x00406FF0": {
       "name": "PAL3::SnapScreen",
       "signature": "void __cdecl(const char *pszName)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "static": true
     },
     "0x00407180": {
       "name": "PAL3::StartWolf",
       "signature": "void __cdecl(HKEY hKey, CHAR *lpSubKey)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "static": true
     },
     "0x004071C0": {
       "name": "PAL3::EndWolf",
-      "signature": "void __cdecl(int nVal)"
+      "signature": "void __cdecl(int nVal)",
+      "static": true
     },
     "0x004072D0": {
       "name": "PAL3::StartHideFight",
@@ -524,11 +528,13 @@
     "0x00407320": {
       "name": "PAL3::StartCombat",
       "signature": "void __cdecl(unsigned int *const pdwVal, int monsterid, Role *side, char pMonster)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "static": true
     },
     "0x00407560": {
       "name": "PAL3::StartCombatFromNPC",
-      "signature": "char __cdecl PAL3::StartCombatFromNPC(const NPCInfo *pNPCInfo, int tmp, Role *side)"
+      "signature": "char __cdecl PAL3::StartCombatFromNPC(const NPCInfo *pNPCInfo, int tmp, Role *side)",
+      "static": true
     },
     "0x00407640": {
       "name": "PAL3::EntryCatchGhost",
@@ -538,7 +544,8 @@
     "0x00407740": {
       "name": "PAL3::IfHideFightSucceed",
       "signature": "bool __cdecl(bool bFlag)",
-      "source": "pdb_ret"
+      "source": "pdb_ret",
+      "static": true
     },
     "0x00408BE0": {
       "name": "PAL3::InitSubsystems",
@@ -628,15 +635,18 @@
     },
     "0x00437E60": {
       "name": "PAL3::WriteRegistryValue",
-      "signature": "bool __cdecl PAL3::WriteRegistryValue(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+      "signature": "bool __cdecl PAL3::WriteRegistryValue(CHAR *lpSubKey, DWORD dwDisposition, ...)",
+      "static": true
     },
     "0x0044E2B0": {
       "name": "PAL3::WriteRegistryDword",
-      "signature": "bool __cdecl PAL3::WriteRegistryDword(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+      "signature": "bool __cdecl PAL3::WriteRegistryDword(CHAR *lpSubKey, DWORD dwDisposition, ...)",
+      "static": true
     },
     "0x00456590": {
       "name": "PAL3::WriteRegistryKey",
-      "signature": "bool __cdecl PAL3::WriteRegistryKey(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+      "signature": "bool __cdecl PAL3::WriteRegistryKey(CHAR *lpSubKey, DWORD dwDisposition, ...)",
+      "static": true
     },
     "0x00459860": {
       "name": "PAL3::HandleDeviceReset",
@@ -649,15 +659,18 @@
     },
     "0x004B2840": {
       "name": "PAL3::WriteRegistry",
-      "signature": "bool __cdecl PAL3::WriteRegistry(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+      "signature": "bool __cdecl PAL3::WriteRegistry(CHAR *lpSubKey, DWORD dwDisposition, ...)",
+      "static": true
     },
     "0x0052F570": {
       "name": "PAL3::WriteRegistryDwordEx",
-      "signature": "bool __cdecl PAL3::WriteRegistryDwordEx(CHAR *lpSubKey, DWORD dwDisposition, ...)"
+      "signature": "bool __cdecl PAL3::WriteRegistryDwordEx(CHAR *lpSubKey, DWORD dwDisposition, ...)",
+      "static": true
     },
     "0x0044E390": {
       "name": "PAL3::LoadRoleByIndex",
-      "signature": "void __cdecl(int nVal)"
+      "signature": "void __cdecl(int nVal)",
+      "static": true
     },
     "0x0044E410": {
       "name": "PAL3::LoadUnlockFlags",
@@ -682,7 +695,8 @@
     },
     "0x00569110": {
       "name": "PAL3::ResetForNewScene",
-      "signature": "void __cdecl PAL3::ResetForNewScene(char bSaveData)"
+      "signature": "void __cdecl PAL3::ResetForNewScene(char bSaveData)",
+      "static": true
     },
     "0x004BDA60": {
       "name": "PAL3::CreateTextures",

@@ -109,19 +109,23 @@
   "methods": {
     "0x0040EB90": {
       "name": "NPC::Create",
-      "signature": "unsigned int __cdecl(int index)"
+      "signature": "unsigned int __cdecl(int index)",
+      "static": true
     },
     "0x0040EC20": {
       "name": "NPC::Init",
-      "signature": "void *__cdecl(int index)"
+      "signature": "void *__cdecl(int index)",
+      "static": true
     },
     "0x0040F060": {
       "name": "NPC::SetRoleMode",
-      "signature": "int __cdecl(int nVal)"
+      "signature": "int __cdecl(int nVal)",
+      "static": true
     },
     "0x0040F620": {
       "name": "NPC::InitAll",
-      "signature": "int __cdecl(int nMaxCount)"
+      "signature": "int __cdecl(int nMaxCount)",
+      "static": true
     },
     "0x0043F560": {
       "name": "NPC::CreateChild",

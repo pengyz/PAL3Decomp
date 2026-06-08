@@ -447,7 +447,8 @@
   "methods": {
     "0x0040EB10": {
       "name": "CScreenMode::ProcessGameMode",
-      "signature": "void __cdecl(int nVal, int nVal2)"
+      "signature": "void __cdecl(int nVal, int nVal2)",
+      "static": true
     },
     "0x0043AFA0": {
       "name": "CScreenMode::SetTooltipText",
@@ -620,13 +621,10 @@
       "name": "CScreenMode::Restore",
       "signature": "void __thiscall()"
     },
-    "0x0053DF70": {
-      "name": "CScreenMode::GetInstance",
-      "signature": "CScreenMode *__cdecl CScreenMode::GetInstance()"
-    },
     "0x0053DF80": {
       "name": "CScreenMode::GetByteParam",
-      "signature": "BOOL __cdecl(int nVal, int nVal2)"
+      "signature": "BOOL __cdecl(int nVal, int nVal2)",
+      "static": true
     },
     "0x0053DFB0": {
       "name": "CScreenMode::PlaySoundStream",
@@ -714,7 +712,8 @@
     },
     "0x00569320": {
       "name": "CScreenMode::LoadAudioFromFile",
-      "signature": "int __cdecl CScreenMode::LoadAudioFromFile(int *p_DWORD, FILE *Stream, int *p_DWORD2)"
+      "signature": "int __cdecl CScreenMode::LoadAudioFromFile(int *p_DWORD, FILE *Stream, int *p_DWORD2)",
+      "static": true
     },
     "0x005694F0": {
       "name": "CScreenMode::OpenBinkVideo",
@@ -732,6 +731,11 @@
     "0x0053F4C0": {
       "name": "_nearby_53f4c0",
       "signature": "_DWORD *__thiscall(_DWORD *)"
+    },
+    "0x0053DF70": {
+      "name": "CScreenMode::GetInstance",
+      "signature": "CScreenMode *__cdecl(CScreenMode *dummy)",
+      "static": true
     }
   },
   "vtables": [

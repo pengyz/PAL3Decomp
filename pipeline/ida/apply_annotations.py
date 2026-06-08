@@ -1286,11 +1286,12 @@ def apply_annotations():
             # Auto-complete this pointer for class methods.
             # Signatures in annotations no longer redundantly store ClassName *this.
             # Extract class from function name and prepend if missing.
+            # Only for __thiscall methods: __cdecl/__stdcall/__fastcall are static and have no this.
             if "::" in name:
                 _cls = name.split("::")[0]
+                _cc_is_thiscall = '__thiscall' in sig_raw
                 _params = sig_raw[paren_idx:]
-                # Check if this pointer is already present
-                if not re.search(r'\b' + re.escape(_cls) + r'\s*\*\s*this', _params):
+                if _cc_is_thiscall and not re.search(r'\b' + re.escape(_cls) + r'\s*\*\s*this', _params):
                     _before = sig_raw[:paren_idx].rstrip()
                     # Insert ClassName *this as first param
                     if _params.startswith('(') and _params[1:].strip() and _params[1:].strip()[0] != ')':
