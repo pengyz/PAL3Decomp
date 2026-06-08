@@ -132,11 +132,21 @@ class DataStore:
                     clean_n = n.rstrip(')').split('(')[0] if '(' in n else n
                     if '::' in clean_n:
                         short = clean_n.split('::', 1)[1]
-                        if short not in self.thunks:
-                            self.thunks[short] = target
-                        short_dtor = short.replace('~', '_')
-                        if short_dtor not in self.thunks:
-                            self.thunks[short_dtor] = target.replace('~', '_')
+                        # Only add short name if it won't collide with common identifiers
+                        # in Stage4 substitution. Generic names like 'Destroy' or 'Create'
+                        # cause false replacements in function definitions (PAL3::Destroy
+                        # becomes PAL3::UISystem::Destroy).
+                        if short not in ('Destroy', 'Create', 'Update', 'Render', 'Init',
+                                         'Reset', 'Load', 'Save', 'Release', 'Free', 'Show',
+                                         'Hide', 'Set', 'Get', 'Add', 'Remove', 'Clear',
+                                         'Move', 'Copy', 'Find', 'Close', 'Open',
+                                         'IsValid', 'IsReady', 'Process', 'Handle',
+                                         'CCBAI', 'MoveWindow'):
+                            if short not in self.thunks:
+                                self.thunks[short] = target
+                            short_dtor = short.replace('~', '_')
+                            if short_dtor not in self.thunks:
+                                self.thunks[short_dtor] = target.replace('~', '_')
                         self.thunk_classes.add(n.split('::')[0])
             self.thunk_classes.add('j_std')
             self.thunk_classes.add('j_j_codecvt_base')
