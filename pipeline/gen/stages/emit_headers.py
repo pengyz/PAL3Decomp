@@ -1211,14 +1211,16 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     param_list = param_list[1:]
                 params = ', '.join(param_list)
 
-            # Fix invalid parameter names (starting with digit like "int 14C")
+            # Fix invalid parameter names (starting with digit or 'this' keyword)
             if params:
                 def _fix_param(p):
                     p = p.strip()
-                    # Match: "type [*] name" where name starts with digit
                     m = re.match(r'^(.+?[\s\*])(\d\w*)$', p)
                     if m:
                         return '%s a_%s' % (m.group(1), m.group(2))
+                    # 'this' is a C++ keyword — rename to '_this'
+                    if re.match(r'^(.+[\s\*])this$', p):
+                        return '%s_this' % p
                     return p
                 param_list = split_params(params)
                 param_list = [_fix_param(p) for p in param_list]
