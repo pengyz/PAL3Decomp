@@ -795,21 +795,6 @@
       "type": "UICaption",
       "source": "decomp:_method_532410_UICaption_SetEnable"
     },
-    "5880": {
-      "name": "_todo_170C",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
-    },
-    "5888": {
-      "name": "m_partyUI5",
-      "type": "UIItem",
-      "source": "A:LEA_ECX+CALL_UIItem::ctor"
-    },
-    "6120": {
-      "name": "m_teamData5",
-      "type": "int[270]",
-      "source": "FullInit:DWORD[94-290] accesses beyond UIItem; gap fill 1088 bytes to _todo_1C28"
-    },
     "7208": {
       "name": "_todo_1C28",
       "type": "int",
@@ -1070,6 +1055,11 @@
       "name": "m_fScriptTimeAccum",
       "type": "float",
       "source": "auto:overlap_g_RoleSystemMain_at_+0x21F0"
+    },
+    "5632": {
+      "name": "m_npcScriptBuf",
+      "type": "NPC",
+      "source": "A:ida_get_type_C05F20_confirmed_NPC"
     }
   },
   "binary_size": 6252,

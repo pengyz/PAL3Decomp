@@ -129,10 +129,15 @@ def _resolve_offset(type_name, offset, prefix):
                     if sub:
                         return '.%s[%d]%s' % (mname, idx, sub)
         embedded = store.struct_members.get(mtype.strip().rstrip('*').strip())
-        if embedded and '*' not in mtype and rel < _ELEM_SIZES.get(mtype.strip(), 0x1000):
-            sub = _resolve_offset(mtype.strip(), rel, prefix)
-            if sub:
-                return '.%s%s' % (mname, sub)
+        if embedded and '*' not in mtype:
+            # Use struct's full size as threshold (not primitive default 0x1000)
+            _embedded_offsets = list(embedded.keys())
+            _max_off = max(_embedded_offsets) if _embedded_offsets else 0
+            _struct_sz = max(rel + 1, _max_off + 4)
+            if rel < _struct_sz:
+                sub = _resolve_offset(mtype.strip(), rel, prefix)
+                if sub:
+                    return '.%s%s' % (mname, sub)
     return None
 
 
