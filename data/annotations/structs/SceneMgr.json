@@ -360,9 +360,9 @@
     },
     "1424": {
       "name": "m_ScriptRoleBuf",
-      "type": "int[1412]",
+      "type": "RoleSystem",
       "comment": "Overlapped memory: used as RoleSystem (via Buffer/g_ScriptRoleBuf) and CEffMgr effect table. Capped at 5648B to avoid overlap with m_pCCBStageRoleFind.",
-      "source": "annotation | iter2_field_rename"
+      "source": "A:ida_get_type_confirmed_RoleSystem"
     },
     "7072": {
       "name": "m_pCCBStageRoleFind",
@@ -376,8 +376,8 @@
     },
     "7120": {
       "name": "m_RoleSystems",
-      "type": "RoleSystem[5]",
-      "source": "binary:scenemgr_layout.md"
+      "type": "RoleSystem *",
+      "source": "A:ida_get_type_confirmed_pointer"
     },
     "50640": {
       "name": "m_pGameData",
