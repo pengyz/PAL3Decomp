@@ -1708,6 +1708,42 @@ def generate_globals():
     # Sort by address
     sorted_globs = sorted(globs.items(), key=lambda x: int(x[0], 16))
 
+    # Filter out "phantom" globals that fall within a larger struct's range
+    # (they're actually struct fields, not independent variables)
+    _phantom_count = 0
+    _phantom_log = []
+    _instances = []  # (base, end, name, type) from _globals with known struct types
+    for _addr_s, _ginfo in globs.items():
+        _gtype = _ginfo.get('type', '')
+        _stinfo = _is_data.get(_gtype, {})
+        _sz = _stinfo.get('size', 0)
+        if _sz > 0:
+            _dms = _stinfo.get('data_members', [])
+            _instances.append((int(_addr_s, 16), int(_addr_s, 16) + _sz, _ginfo.get('name', ''), _gtype, _dms))
+    _filtered = []
+    for _addr_s, _ginfo in sorted_globs:
+        _addr = int(_addr_s, 16)
+        _phantom = False
+        for _base, _end, _pname, _ptype, _dms in _instances:
+            if _base < _addr < _end:
+                # Only treat as phantom if the parent struct has a data_member at this offset
+                _offset = _addr - _base
+                for _dm in _dms:
+                    if _dm.get('offset') == _offset:
+                        _phantom = True
+                        break
+                if _phantom:
+                    _phantom_count += 1
+                    _phantom_log.append(_ginfo.get('name', _addr_s))
+                    break
+        if not _phantom:
+            _filtered.append((_addr_s, _ginfo))
+    sorted_globs = _filtered
+    if _phantom_count:
+        print("  Phantom globals skipped: %d (%s)" % (_phantom_count, ', '.join(_phantom_log[:10])))
+        if _phantom_count > 10:
+            print("    ... and %d more" % (_phantom_count - 10))
+
     # Generate globals.h (extern declarations)
     h_lines = [
         '#pragma once',
