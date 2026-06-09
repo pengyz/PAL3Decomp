@@ -225,7 +225,8 @@ def _regex_fallback(code, ctx):
                 full_method, first_line, count=1
             )
         for cv in cls_variants:
-            if cv != cls_name and cv + '::' in first_line:
+            if cv != cls_name and re.search(r'(?<!_)' + re.escape(cv) + r'::', first_line):
+                first_line = re.sub(r'(?<!_)' + re.escape(cv) + r'::', cls_name + '::', first_line)
                 first_line = first_line.replace(cv + '::', cls_name + '::')
         if ctx.is_ctor or ctx.is_dtor:
             first_line = re.sub(r'^.*?\b(%s::%s)' % (re.escape(cls_name), re.escape(method_name)),
