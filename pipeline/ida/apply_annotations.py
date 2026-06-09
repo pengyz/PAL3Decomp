@@ -746,30 +746,6 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                                     break
                             except: pass
 
-    # Create nested types (struct/class/enum inside this struct)
-    _nested = (struct_info or {}).get("nested_types", {})
-    for _nt_name, _nt_info in _nested.items():
-        _nt_kind = _nt_info.get("kind", "")
-        _nt_full = "%s::%s" % (name, _nt_name)
-        if _nt_kind in ("struct", "class"):
-            _nt_data = dict(_nt_info)
-            _nt_data.pop("kind", None)
-            _nt_data.setdefault("known_members", {})
-            _nt_mtd = _nt_data.get("methods", {})
-            for _addr, _minfo in _nt_mtd.items():
-                _mn = _minfo.get("name", "")
-                if _mn and "::" not in _mn:
-                    _minfo["name"] = "%s::%s" % (_nt_full, _mn)
-            _ok, _msg = create_fixed_struct(_nt_full, _nt_data, {}, {}, til)
-            if not _ok:
-                log("  [!] nested struct %s FAILED: %s" % (_nt_full, _msg))
-        elif _nt_kind == "enum":
-            _nt_values = _nt_info.get("values", {})
-            _eid = idc.add_enum(-1, _nt_full, 1)
-            if _eid != -1:
-                for _k, _v in _nt_values.items():
-                    _val = int(_v, 0) if isinstance(_v, str) else _v
-                    idc.add_enum_member(_eid, _k, _val)
     return (True, None)
 
 
@@ -796,6 +772,15 @@ def load_annotations():
         for addr, minfo in sdata.get("methods", {}).items():
             if addr not in functions:
                 functions[addr] = minfo
+        # Also merge nested type methods (e.g. NODE::FindInOpen)
+        for _nt_name, _nt_info in sdata.get("nested_types", {}).items():
+            _nt_full = "%s::%s" % (sname, _nt_name)
+            for _addr, _minfo in _nt_info.get("methods", {}).items():
+                if _addr not in functions:
+                    _mn = _minfo.get("name", "")
+                    if _mn and "::" not in _mn:
+                        _minfo["name"] = "%s::%s" % (_nt_full, _mn)
+                    functions[_addr] = _minfo
     enums = {}
     enums_path = os.path.join(ANNOTATIONS_DIR, "enums.json")
     if os.path.exists(enums_path):
@@ -991,9 +976,15 @@ def _vc6_strip_param_name(p):
     return p.strip()
 
 
+def _mangle_vc6_class_chain(cls_name):
+    """Convert 'AStarPathFinder::NODE' to 'NODE@AStarPathFinder' (MSVC format)."""
+    parts = cls_name.split('::')
+    return '@'.join(reversed(parts))
+
 def _mangle_vc6(cls_name, method_name, sig):
+    cls_chain = _mangle_vc6_class_chain(cls_name)
     paren = sig.find('(') if sig else -1
-    if paren == -1: return '?' + method_name + '@' + cls_name + '@@QAEXXZ'
+    if paren == -1: return '?' + method_name + '@' + cls_chain + '@@QAEXXZ'
     prefix = sig[:paren].strip()
     pstr = sig[paren + 1:sig.rfind(')')] if sig.rfind(')') > paren else ''
     cc = '__thiscall'
@@ -1012,7 +1003,7 @@ def _mangle_vc6(cls_name, method_name, sig):
                 if cur.strip(): params.append(cur.strip()); cur = ''
             else: cur += ch
         if cur.strip(): params.append(cur.strip())
-    r = '?' + method_name + '@' + cls_name + '@@'
+    r = '?' + method_name + '@' + cls_chain + '@@'
     r += 'Q' + _VC6_CC.get(cc, 'A') + 'E'
     r += _vc6_encode_type(ret)
     for p in params: r += _vc6_encode_type(_vc6_strip_param_name(p))
@@ -1084,7 +1075,9 @@ def apply_annotations():
             # Use mangled name for class methods (globally unique, no _N conflict)
             # or simple name for free functions.
             if '::' in name:
-                _cls, _method = name.split('::', 1)
+                _parts = name.rsplit('::', 1)
+                _cls = _parts[0]   # may include :: for nested types
+                _method = _parts[1]
                 _sig = info.get('signature', '')
                 _mangled = _mangle_vc6(_cls, _method, _sig)
                 if _mangled and ida_name.set_name(addr, _mangled, ida_name.SN_NOWARN | ida_name.SN_FORCE):
@@ -1366,12 +1359,14 @@ def apply_annotations():
 
     log("  Structs: %d total (dependency order by topological sort)" % len(ordered))
 
-    # 导入所有 struct（严格模式：任何失败直接终止）
-    for sname, sinfo in ordered:
-        # Create nested type forward declarations BEFORE parent struct
-        # so _resolve_member_type can resolve Parent::Nested types
-        for _nt_name, _nt_info in sinfo.get("nested_types", {}).items():
-            _nt_full = "%s::%s" % (sname, _nt_name)
+    # Pre-create forward declarations for ALL nested types (recursive,
+    # arbitrary depth) BEFORE the main loop. This ensures any struct
+    # referencing Parent::Nested as a member type can resolve it
+    # (e.g. CEmitter has CParticleSystem::EmitterAttribute).
+    def _forward_decl_nested(parent_name, parent_sinfo, til):
+        """Recursively create forward decls for all depths of nested types."""
+        for _nt_name, _nt_info in parent_sinfo.get("nested_types", {}).items():
+            _nt_full = "%s::%s" % (parent_name, _nt_name)
             _probe = ida_typeinf.tinfo_t()
             if _probe.get_named_type(til, _nt_full):
                 continue
@@ -1385,12 +1380,53 @@ def apply_annotations():
             elif _nt_kind == "enum":
                 if idc.get_enum(_nt_full) == -1:
                     idc.add_enum(-1, _nt_full, 1)
+            # Recurse deeper (arbitrary depth)
+            _forward_decl_nested(_nt_full, _nt_info, til)
+
+    for _sname, _sinfo in ordered:
+        _forward_decl_nested(_sname, _sinfo, til)
+    log("  Nested type forward decls: pre-created (recursive)")
+
+    # 导入所有 struct（严格模式：任何失败直接终止）
+    for sname, sinfo in ordered:
         ok, err = create_fixed_struct(sname, sinfo, structs, {}, til)
         if ok:
             s_ok += 1
         else:
             log("[FATAL] Struct import failed: %s → %s" % (sname, err))
             s_fail.append((sname, err))
+            continue  # skip nested if parent failed
+
+        # Create nested types recursively (arbitrary depth) — same create_fixed_struct, full args
+        def _create_nested_recursive(parent_name, parent_sinfo):
+            """Recursively create nested types in TIL (arbitrary depth)."""
+            for _nt_name, _nt_info in parent_sinfo.get("nested_types", {}).items():
+                _nt_kind = _nt_info.get("kind", "")
+                _nt_full = "%s::%s" % (parent_name, _nt_name)
+                if _nt_kind in ("struct", "class"):
+                    _nt_data = dict(_nt_info)
+                    _nt_data.pop("kind", None)
+                    _nt_data.setdefault("known_members", {})
+                    _nt_mtd = _nt_data.get("methods", {})
+                    for _addr, _minfo in _nt_mtd.items():
+                        _mn = _minfo.get("name", "")
+                        if _mn and "::" not in _mn:
+                            _minfo["name"] = "%s::%s" % (_nt_full, _mn)
+                    ok_nt, err_nt = create_fixed_struct(_nt_full, _nt_data, structs, {}, til)
+                    if not ok_nt:
+                        log("  [!] nested struct %s FAILED: %s" % (_nt_full, err_nt))
+                elif _nt_kind == "enum":
+                    _nt_values = _nt_info.get("values", {})
+                    if idc.get_enum(_nt_full) == -1:
+                        _eid = idc.add_enum(-1, _nt_full, 1)
+                        if _eid != -1:
+                            for _k, _v in _nt_values.items():
+                                _val = int(_v, 0) if isinstance(_v, str) else _v
+                                idc.add_enum_member(_eid, _k, _val)
+                # Recurse deeper (arbitrary depth)
+                _create_nested_recursive(_nt_full, _nt_info)
+
+        _create_nested_recursive(sname, sinfo)
 
     if s_fail:
         log("[FATAL] %d struct imports FAILED — aborting. Fix annotation offsets or types." % len(s_fail))
@@ -1808,7 +1844,9 @@ def apply_annotations():
             continue
         # Compute expected name: mangled for class methods, simple for free functions
         if '::' in desired:
-            _cls, _method = desired.split('::', 1)
+            _parts = desired.rsplit('::', 1)
+            _cls = _parts[0]
+            _method = _parts[1]
             _sig = info.get('signature', '')
             _expected = _mangle_vc6(_cls, _method, _sig)
         else:
