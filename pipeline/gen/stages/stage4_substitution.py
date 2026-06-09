@@ -36,7 +36,6 @@ def _build_identifier_map():
     for cls in store.game_classes:
         if cls.startswith('_') and cls[1:] not in store.game_classes:
             m[cls[1:]] = cls
-    m['Buffer'] = 'g_ScriptRoleBuf'
     return m
 
 
