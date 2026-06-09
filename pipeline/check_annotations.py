@@ -80,7 +80,51 @@ def check():
         ann = load_annotations()
     except Exception as e:
         errors.append(f"JSON parse error: {e}")
-        return errors, warnings
+    # 6. Exported globals overlap check (ida_structs.json)
+    # ida_structs.json is the actual data source for codegen.
+    # Overlapping globals in export = codegen produces wrong declarations.
+    _is_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'asm', 'pal3', 'ida_structs.json')
+    if os.path.exists(_is_path):
+        _is_data = json.load(open(_is_path, encoding='utf-8'))
+        _exp_globs = _is_data.get('_globals', {})
+        # Build ranges for globals with struct types
+        _exp_ranges = []
+        for _addr_s, _ginfo in _exp_globs.items():
+            _gt = _ginfo.get('type', '')
+            _gn = _ginfo.get('name', '')
+            if not _gt or not _gn:
+                continue
+            _st = _is_data.get(_gt, {})
+            _sz = _st.get('size', 0)
+            if not _sz:
+                continue
+            try:
+                _ga = int(_addr_s, 16)
+            except ValueError:
+                continue
+            _exp_ranges.append((_ga, _ga + _sz, _gn, _gt))
+        for _addr_s, _ginfo in _exp_globs.items():
+            _gt = _ginfo.get('type', '')
+            _gn = _ginfo.get('name', '')
+            if not _gt or not _gn:
+                continue
+            try:
+                _ga = int(_addr_s, 16)
+            except ValueError:
+                continue
+            for _rs, _re, _rn, _rt in _exp_ranges:
+                if _rn == _gn:
+                    continue
+                if _rs < _ga < _re:
+                    # Global is within another global's range — check if it has its own instance
+                    _has_own = any(_b == _ga for _b, _e, _, _ in _exp_ranges)
+                    if not _has_own:
+                        errors.append(
+                            f"export[0x{_ga:X}]: '{_gn}' ({_gt}) at +0x{_ga - _rs:X} inside "
+                            f"'{_rn}' ({_rt}) [0x{_rs:X}-0x{_re:X}] — phantom global without its own "
+                            f"struct_instance, can't be declared as extern")
+
+    return errors, warnings
 
     # 2. Functions
     funcs = ann.get('functions', {})
@@ -269,6 +313,52 @@ def check():
                         f"globals[{addr_str}]: '{gname}' ({gtype}, {gsize}b) at +{gaddr - rstart} "
                         f"inside '{rname}' ({rtype}) range [0x{rstart:X}-0x{rend:X}] "
                         f"{containment} — add 'overlaps_with' to globals[{addr_str}] if intentional")
+
+    # 3c. Annotation globals that are neither in export nor in struct_instance range
+    # A global in globals.json with a type must be either:
+    # 1. In ida_structs.json _globals (properly exported), or
+    # 2. Within a struct_instance range (phantom, handled by overlap), or
+    # 3. Marked as "type": "skip" (intentionally excluded)
+    # If none of these, codegen cannot handle it — annotation is incomplete.
+    _is_path3 = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'asm', 'pal3', 'ida_structs.json')
+    if os.path.exists(_is_path3):
+        _is_data3 = json.load(open(_is_path3, encoding='utf-8'))
+        _exp_glob3 = _is_data3.get('_globals', {})
+        _exp_names3 = {info.get('name') for info in _exp_glob3.values() if info.get('name')}
+        _exp_ranges3 = []
+        for _addr_s, _ginfo in _exp_glob3.items():
+            _gt = _ginfo.get('type', '')
+            _gn = _ginfo.get('name', '')
+            if not _gt or not _gn:
+                continue
+            _st = _is_data3.get(_gt, {})
+            _sz = _st.get('size', 0)
+            if not _sz:
+                continue
+            try:
+                _ga = int(_addr_s, 16)
+            except ValueError:
+                continue
+            _exp_ranges3.append((_ga, _ga + _sz, _gn, _gt))
+        for _addr_s, _ginfo in globs.items():
+            if _ginfo.get('type') == 'skip':
+                continue
+            _gn = _ginfo.get('name', '')
+            _gt = _ginfo.get('type', '')
+            if not _gn or not _gt:
+                continue
+            if _gn in _exp_names3:
+                continue  # in export — OK
+            try:
+                _ga = int(_addr_s, 16)
+            except ValueError:
+                continue
+            _in_range = any(_rs < _ga < _re for _rs, _re, _, _ in _exp_ranges3)
+            if not _in_range:
+                errors.append(
+                    f"globals[{_addr_s}]: '{_gn}' ({_gt}) is not in ida_structs.json _globals "
+                    f"and not in any struct_instance range — codegen cannot handle it. "
+                    f"Either fix the annotation so IDB includes it, or mark as 'skip' if phantom.")
 
     # 4. Structs
     structs = ann.get('structs', {})

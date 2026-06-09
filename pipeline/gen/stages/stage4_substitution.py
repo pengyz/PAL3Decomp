@@ -179,6 +179,12 @@ def _try_global_name(name):
     # Handle named globals (e.g. Buffer): check struct_instance ranges
     if name in store.global_addrs:
         addr = store.global_addrs[name]
+        # If the name has its own struct_instance (exact address match),
+        # it's an independent global — don't resolve through parent
+        for base, end, _, _ in store.struct_instances:
+            if base == addr:
+                return None
+        # No exact match: try resolving through parent struct range
         for base, end, gname, gtype in store.struct_instances:
             if base < addr < end:
                 offset = addr - base

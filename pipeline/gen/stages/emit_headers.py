@@ -1726,7 +1726,9 @@ def generate_globals():
         _phantom = False
         for _base, _end, _pname, _ptype, _dms in _instances:
             if _base < _addr < _end:
-                # Only treat as phantom if the parent struct has a data_member at this offset
+                # Skip if the global has its own struct_instance (not a phantom)
+                if any(b == _addr for b, e, _, _, _ in _instances):
+                    break
                 _offset = _addr - _base
                 for _dm in _dms:
                     if _dm.get('offset') == _offset:
