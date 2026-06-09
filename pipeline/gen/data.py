@@ -106,18 +106,15 @@ class DataStore:
             gtype = ginfo.get('type', '')
             if gname and gtype:
                 self.global_types[gname] = gtype
-                if any(gname.startswith(p + '_') for p in ida_prefixes):
-                    continue
-            # Build globals_map: dword_XXXXX → g_ScriptRoleBuf
+            # Build name->address lookup for identifier resolution in stage4
+            if gname:
+                addr_int = int(addr_str, 16) if isinstance(addr_str, str) else addr_str
+                self.global_addrs[gname] = addr_int
             if gname and not any(gname.startswith(p + '_') for p in ida_prefixes):
                 addr_int = int(addr_str, 16) if isinstance(addr_str, str) else addr_str
                 addr_hex = '%X' % addr_int
                 for pfx in ida_prefixes:
                     self.globals_map['%s_%s' % (pfx, addr_hex)] = gname
-            # Build name->address lookup for identifier resolution in stage4
-            if gname and not any(gname.startswith(p + '_') for p in ida_prefixes):
-                addr_int = int(addr_str, 16) if isinstance(addr_str, str) else addr_str
-                self.global_addrs[gname] = addr_int
 
         # 2. Struct members from ida_structs data_members
         for sname, sinfo in ida_structs.items():
