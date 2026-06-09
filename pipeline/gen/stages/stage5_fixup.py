@@ -317,9 +317,11 @@ def run(code, ctx):
 
     # Strip Hex-Rays mangled name decorations in qualified method calls:
     #   obj->Class::?method@namespace@@...() → obj->Class::method()
+    #   obj->?method@namespace@@...()        → obj->method()
     # The ?...@...@...@... suffix is MSVC mangling that leaks through
     # when Hex-Rays can't resolve the call target.
     code = re.sub(r'::\?(\w+)@[A-Za-z0-9_@]+(?=\()', r'::\1', code)
+    code = re.sub(r'->\?(\w+)@[A-Za-z0-9_@]+(?=\()', r'->\1', code)
 
     # Text-level substitutions (type aliases, suffixes, thunk classes)
     code = _apply_text_substitutions(code, ctx)
