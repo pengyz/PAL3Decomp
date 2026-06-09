@@ -1686,15 +1686,18 @@ def main():
         ann_struct = _is_data.get(cls_name, {})
         methods = methods_by_class.get(cls_name, [])
 
-        # Collect nested type methods via scope tree
+        # Collect nested type methods via scope tree (recursive depth walk)
         _nested_type_methods = {}
         _root = scope_tree.find(cls_name)
         if _root:
-            for _child in _root.children:
-                _nt_full = _child.full_name
-                _nt_m = methods_by_class.get(_nt_full, [])
-                if _nt_m:
-                    _nested_type_methods[_child.short_name] = _nt_m
+            def _collect_deep(node):
+                for _child in node.children:
+                    _nt_full = _child.full_name
+                    _nt_m = methods_by_class.get(_nt_full, [])
+                    if _nt_m:
+                        _nested_type_methods[_child.short_name] = _nt_m
+                    _collect_deep(_child)  # recurse deeper
+            _collect_deep(_root)
 
         # Skip if no useful content (but keep if has vtable or annotation members)
         has_members = bool(ann_struct.get('data_members')) and bool(ann_struct.get('size'))
