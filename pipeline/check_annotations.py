@@ -84,13 +84,6 @@ def check():
     # ida_structs.json is the actual data source for codegen.
     # Overlapping globals in export = codegen produces wrong declarations.
     _is_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'asm', 'pal3', 'ida_structs.json')
-    _ann_globs_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'annotations', 'globals.json')
-    _ann_skip_addrs = set()
-    if os.path.exists(_ann_globs_path):
-        _ann_data = json.load(open(_ann_globs_path, encoding='utf-8'))
-        for _a, _i in _ann_data.items():
-            if _i.get('type') == 'skip':
-                _ann_skip_addrs.add(_a.lower())
     if os.path.exists(_is_path):
         _is_data = json.load(open(_is_path, encoding='utf-8'))
         _exp_globs = _is_data.get('_globals', {})
@@ -119,20 +112,16 @@ def check():
                 _ga = int(_addr_s, 16)
             except ValueError:
                 continue
-            # Skip globals explicitly acknowledged as phantoms in annotation
-            if _addr_s.lower() in _ann_skip_addrs:
-                continue
             for _rs, _re, _rn, _rt in _exp_ranges:
                 if _rn == _gn:
                     continue
                 if _rs < _ga < _re:
                     _has_own = any(_b == _ga for _b, _e, _, _ in _exp_ranges)
                     if not _has_own:
-                        errors.append(
+                        warnings.append(
                             f"export[0x{_ga:X}]: '{_gn}' ({_gt}) at +0x{_ga - _rs:X} inside "
-                            f"'{_rn}' ({_rt}) [0x{_rs:X}-0x{_re:X}] — phantom global without its own "
-                            f"struct_instance, can't be declared as extern; "
-                            f"add 'type': 'skip' to globals.json[{_addr_s}] to acknowledge")
+                            f"'{_rn}' ({_rt}) [0x{_rs:X}-0x{_re:X}] — phantom global, "
+                            f"skipped by generate_globals() (not a real global)")
 
     return errors, warnings
 
