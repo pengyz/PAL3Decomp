@@ -8,81 +8,81 @@ when_to_use: "当用户需要执行 PAL3 反编译管线流程（标注、导出
 # PAL3 标注迭代管线
 
 <CRITICAL-INSTRUCTION>
-当前阶段：**IDA 标注阶段**。源码是生成物，不手动编辑。
-唯一目标：提升 `data/annotations/` 数据质量。
-所有结构体字段修改必须有 PAL3.exe 二进制直接证据。
+**阶段分离原则**：反编译项目明确拆分为两个独立阶段：
 
-**核心工作流（不要搞错各阶段职责）**：
+1. **标注阶段**（当前）：还原编译过程中丢失的信息（类型、名称、结构、继承关系）。
+   评价指标：check_annotations 0 errors + decomp_quality 四维指标。
+   **不关注**：codegen 输出、编译错误。
 
-```
-annotations/  ──apply_annotations.py──▶  IDB
-                                        │
-IDB  ──export_full.py─────────────────▶  decomp JSONs
-                                        │
-decomp JSONs  ──codegen───────────────▶  src/ + include/
-```
+2. **codegen 阶段**（未来）：将标注成果转化为可编译源码。
+   评价指标：编译错误数、pass rate、字节匹配率。
+   **前提**：标注质量足够高。
 
-**Annotation 是唯一数据源**。apply_annotations 把标注写入 IDB；export_full 从 IDB 导出反编译结果；codegen 只读 decomp JSON，不读 annotation。
+编译错误是 codegen 适配度的指标，不是标注正确性的指标。更精确的标注可能导致更多
+编译错误（因为 codegen 尚未适配强类型代码），这是正常现象，不构成标注回退的理由。
 
-**如果 annotation 方法未出现在 header 中**：说明该方法在 IDB 中不存在（没有反编译，或 export 不覆盖），需要在 IDA 中确认并重新 export。**不要改 codegen 去读 annotation methods**。
-
+**Annotation 是唯一手工维护的数据源**。所有修改回到 annotation，不走 IDB 直接编辑。
 </CRITICAL-INSTRUCTION>
+
+## 管线操作
+
+所有操作通过 `python pipeline/cli.py` 统一入口：
+
+```bash
+# 完整重建（从零开始）
+python pipeline/cli.py init --force      # raw IDB → 导入 PDB + FLIRT + 应用 annotation
+python pipeline/cli.py export            # IDB → decomp JSONs + ida_structs.json + thunks
+python pipeline/cli.py codegen all       # JSONs → .h + .cpp
+python pipeline/cli.py compile           # VC6 编译
+
+# 日常迭代（仅 annotation 更新后）
+python pipeline/cli.py init              # 只 apply annotation（不重建 raw）
+python pipeline/cli.py export
+python pipeline/cli.py codegen all
+python pipeline/cli.py compile
+
+# 仅修改了 codegen（annotation 未变）
+python pipeline/cli.py codegen all
+python pipeline/cli.py compile
+```
+
+**注意**：`cli.py` 调用 IDA 时 stdout 不显示输出，运行时间 30s-5min。日志在 `pipeline/ida/_logs/`。
 
 ## 数据架构
 
 ```
 data/annotations/
-  ├── functions.json            — {addr: {name, signature}}
-  ├── globals.json              — {addr: {name, type}}
-  ├── skip_functions.json       — {addr: {name, reason}}
-  ├── vtables.json              — {vtbl_name: {address, class, methods}}
-  ├── structs/ClassName.json    — {name, binary_size, known_members: {offset: {name, type, source}}}
-  ├── field_overrides.json      — TAUDT_FIXED 绕过 / 嵌入偏移文档（仅注释，不生成代码）
-  └── CHANGE_LOG.md             — 变更审计记录
+  ├── functions.json        — {addr: {name, signature}}
+  ├── globals.json          — {addr: {name, type, overlaps_with, decomp_name}}
+  ├── skip_functions.json   — {addr: {name, reason, target_name}}
+  ├── structs/ClassName.json — {name, binary_size, known_members: {offset: {name, type}}}
+  └── CHANGE_LOG.md         — 变更审计记录（证据+置信度）
+
+asm/pal3/
+  ├── decomp/*.json         — IDA 反编译导出（codegen 输入）
+  ├── ida_structs.json      — 结构体 + 全局变量导出
+  └── extra/thunks.json     — thunk 函数导出
 ```
 
-### field_overrides.json
+## IDA 查询工具（只读）
 
-IDA 无法通过 TAUDT_FIXED 创建巨型稀疏结构体时，用此文件提供偏移→名称映射。codegen Pattern C 读取后为 `(char*)this+N` 等表达式附加内联注释 `/* fieldName */`。
+所有脚本在 `pipeline/ida/` 下，在 IDA 中运行：
 
-**约束**：
-- 只产生注释，不生成代码访问——不改变 struct binary_size
-- stub 类（4B）不能靠此添加成员——`memset(this, 0, sizeof(*this))` 会越界
-- 伪语义命名（`m_field_104`）无效——不加比加好
+```bash
+# 由 cli.py 自动调用 IDA，无需手动指定 IDA 路径
+python pipeline/cli.py tool query_todo_fields     # 全局 _todo_ 字段扫描
+python pipeline/cli.py tool query_class_full Name # 指定类全部方法扫描
+python pipeline/cli.py tool query_highref_fields  # 补充高引用字段上下文
+```
 
-## IDA 9.x API 差异
+| 脚本 | 用途 | 输出位置 |
+|------|------|---------|
+| `query_todo_fields.py` | 全局 _todo_ 字段扫描 | `_logs/todo_field_context.json` |
+| `query_highref_fields.py` | 补充高引用字段上下文 | `_logs/highref_field_context.json` |
+| `query_class_full.py Name` | 指定类全部方法 | `_logs/class_full_context.json` |
+| `find_strides.py` | 嵌入子对象 stride 分析 | `_logs/stride_analysis.json` |
 
-### 调用注意事项
-
-- IDA 静默运行，stdout/stderr 不显示在终端。脚本内 `print()` 不可见。
-- 脚本必须写文件到 `_logs/` 目录才能查看结果
-- Python 脚本需要 `import idaapi; idaapi.auto_wait()` 在开头
-- 退出用 `idc.qexit(0)`（正常）或 `idc.qexit(1)`（错误）
-- 脚本路径有空格时需要在 `-S` 参数中额外加引号：`-S"\"path with spaces\script.py\""`
-- `idc.get_type(va)` 可能返回 None（函数未设置签名）
-- `idaapi.get_func(va)` 返回 None 时表示地址处没有函数
-
-### API 变更（IDA 7.x → 9.x）
-
-- `get_first_member(sid)` / `get_next_member(sid, m)` → **不存在**，改 `get_member_by_idx(sid, idx)` 遍历
-- `get_member_name(m_handle)` → `get_member_name(sid, offset)`（两个参数）
-- `get_member_offset(m_handle)` → `get_member_offset(sid, member_name)`
-- `get_member_size(m_handle)` → `get_member_size(sid, offset)`
-- `ida_struct` 模块不存在
-- `idautils.Structs()` 不稳定 → 优先 `get_struc_id` + 已知 name
-
-## 禁止行为
-
-<HARD-REQUIREMENT>
-1. 禁止从 Hex-Rays 反编译文本推断偏移——除非 IDB 已 apply_annotations 且结构体正确
-2. 禁止批量修改未验证字段——每个偏移/类型变更必须逐一验证
-3. 禁止仅凭 PDB 数据修改——PAL3A PDB 偏移可能与 PAL3 不同
-4. 禁止提交无 A 级证据的偏移/类型修改
-5. 禁止伪语义命名——`m_nState_4968` 没有语义价值，不如 `_todo_`
-6. 禁止对 IDA 查询工具输出不加验证直接命名——工具提供候选，人工判断拍板
-7. 禁止仅凭 signature this 类型修正函数归属——必须有 decomp member access evidence
-8. 禁止用编译错误评判标注质量——codegen 适配问题，不是标注问题
-</HARD-REQUIREMENT>
+IDA 脚本的 `print()` 不显示在终端，所有输出写入 `pipeline/ida/_logs/` 目录。
 
 ## 置信度规则
 
@@ -96,118 +96,63 @@ IDA 无法通过 TAUDT_FIXED 创建巨型稀疏结构体时，用此文件提供
 
 **提交阈值**：偏移修改≥80，类型修改≥70，字段命名≥60，结构体 size≥85。
 
+## 禁止行为
+
+1. **禁止从 Hex-Rays 反编译文本推断偏移**——除非 IDB 已 apply_annotations 且结构体正确
+2. **禁止批量修改未验证字段**——每个偏移/类型变更必须逐一验证
+3. **禁止仅凭 PDB 数据修改**——PAL3A PDB 偏移可能与 PAL3 不同
+4. **禁止提交无 A 级证据的偏移/类型修改**
+5. **禁止伪语义命名**——`m_nState_4968` 没有语义价值，不如 `_todo_`
+6. **禁止对 IDA 查询工具输出不加验证直接命名**——工具提供候选，人工判断拍板
+7. **禁止仅凭 signature this 类型修正函数归属**——必须有 decomp member access evidence
+8. **禁止用编译错误评判标注质量**——codegen 适配问题，不是标注问题
+
+## Phantom Global 处理
+
+`globals.json` 中某些全局变量的地址落在更大的结构体内部（如 `g_ScriptRoleBuf` 在 `g_SceneMgr` 内）。
+
+**处理流程**：
+1. 确认地址落在某 `struct_instance` 范围内
+2. 在父结构体的 `known_members` 中添加对应偏移的字段定义
+3. 在 `globals.json` 中将该全局标记为 `"type": "skip"`，`reason` 注明父结构体
+4. 重新 export + codegen 后通过 `_resolve_offset` 递归解析为 `g_StructName.member.sub_member`
+
+**必要条件**：父结构体必须有 `binary_size`、每级结构体需有 `known_members`、struct_instances 中需有地址范围。
+
+## 字段验证流程
+
+1. 定位二进制证据（query_todo_fields 或 verify_offset.py）
+2. 确认寄存器来源（函数头部 this 赋值模式）
+3. 确认访问宽度（指令前缀：8B=4字节, C6=1字节, 66 8B=2字节, D9=float）
+4. 记录证据到 CHANGE_LOG.md
+5. 修改 annotation → `python pipeline/check_annotations.py` 验证
+6. 提交
+
 ## 关键方法论
 
-### 反编译器伪像识别
-
-审计脚本报告的 `this+N` 超标函数中，约 25% 是反编译器伪像——IDA 生成虚假表达式但二进制实际无 `[esi+disp]` 访问。
-
-**ESI 验证法**：扫描函数内所有 `[esi+disp]` 指令取最大 disp，与审计 max_off 对比：
-- ESI max ≈ 审计 max_off → **真实字段访问**
-- ESI max << 审计 max_off → **反编译器伪像**（来自指针强制转换）
-- ESI max = 0 → **伪像**
-
-处理审计条目时先过 ESI 筛子，伪像直接跳过。
-
-### 嵌入模式 vs 归属错误
-
-函数同时访问小偏移（≤原类 size）和大偏移（>原类 size）→ **嵌入模式**，不是归属错误。
-
-| 模式 | 小偏移 | 大偏移 | this 来源 | 处理 |
-|------|--------|--------|----------|------|
-| 偏移 0 嵌入 | ✅ | ✅ | `mov esi, ecx` | 可重归属到包含结构体 |
-| 非零偏移嵌入 | ✅ | ✅ | `lea esi, [ecx+X]` | 必须在包含结构体中定义嵌入成员 |
-| 全局指针 | 可能有 | 可能有 | `mov ecx, offset g_X` | 不能重归属 |
-| 反编译器伪像 | ❌ | 审计有但 ESI 无 | 任意 | 跳过 |
-
-**验证偏移 0 嵌入**：查函数入口 `mov esi, ecx`（无 `lea esi, [ecx+offset]`）。如有 LEA 调整，这是非零偏移嵌入，不能简单重归属。
-
-### `_misattrib_` 函数处理
-
-确定归属错误但未找到正确类时，用 `_misattrib_ClassName::Method` 命名。
-
-**修正流程**：
-1. 运行 `_audit_attribution.py` 查 Candidates（size 匹配的 struct）
-2. IDA 查 ESI 偏移范围，验证是否在候选 binary_size 内
-3. 确认偏移 0 嵌入（`mov esi, ecx`）
-4. 同类多函数交叉验证
-5. 更新 functions.json：去掉 `_misattrib_`，改为 `CorrectClass::Method`
-6. 管线：`apply → export → codegen → check_annotations`
-
-### Codegen Pattern C
-
-`stage4_substitution.py` 中 `_decompose_raw_pointer_arithmetic`：
-
-1. Pattern C（常量偏移注释）→ 立即应用，优先于 stride 检查
-2. C1: `(char*)this+N`, C2: `*((_DWORD*)this+N)`, C3: `*((_BYTE*)this+N)` → `/* fieldName */`
-3. 偏移索引从 `field_overrides.json` + struct known_members 构建，缓存在函数对象上
-4. 仅注释，不替换代码（编译安全）
-
-Pattern A/B（数组步幅分解）→ `build_array_stride_index` 匹配 stride 后重写 `v[K]` → `this->array[var].field`。
-
-## 管线操作
-
-```bash
-# 日常迭代（标注更新后）：apply → export → codegen
-"D:\Program Files\IDA Professional 9.2\idat.exe" -A -S"pipeline/ida/apply_annotations.py" original\PAL3.exe.i64
-"D:\Program Files\IDA Professional 9.2\idat.exe" -A -S"pipeline/ida/export_full.py" original\PAL3.exe.i64
-python pipeline/gen/codegen.py all
-
-# 注意：IDA 调用不输出到 stdout，运行时间 30s-5min
-# -S 参数写法：-S"绝对或相对路径" IDB路径
-# 如果 IDA 静默退出 code!=0，检查脚本是否有 Python import 错误
-```
-
-## IDA 查询工具
-
-所有脚本在 `pipeline/ida/` 下，在 IDA 中运行：
-
-```bash
-idat.exe -A -S"pipeline/ida/query_todo_fields.py" original\PAL3.exe.i64
-idat.exe -A -S"pipeline/ida/query_class_full.py Camera,PalScript" original\PAL3.exe.i64
-```
-
-**关键**：IDA 脚本的 `print()` 输出不显示在终端，需要写入文件。所有查询工具输出到 `pipeline/ida/_logs/*.json`。
-
-| 脚本 | 用途 | 输出 |
-|------|------|------|
-| `query_todo_fields.py` | 全局 _todo_ 字段扫描 | `_logs/todo_field_context.json` |
-| `query_highref_fields.py` | 补充高引用字段上下文（需先跑 todo） | `_logs/highref_field_context.json` |
-| `query_class_full.py Name` | 指定类全部方法的字段上下文 | `_logs/class_full_context.json` |
-| `query_method.py` | 指定函数的内存访问 | `_logs/method_accesses.json`（需改脚本内地址表） |
-| `find_strides.py` | 分析嵌入子对象 stride | `_logs/stride_analysis.json` |
-
-**IDA 脚本自定义查询**：写一个 `.py` 文件，用 `idc.get_func(va)`、`idc.generate_disasm_line(ea, 0)`、`idc.get_type(va)` 等 API。输出写入 `_logs/` 目录文件后用 `Get-Content -Path "绝对路径"` 读取。
-
-## 非 IDA 工具
-
-| 脚本 | 用途 |
-|------|------|
-| `pipeline/check_annotations.py` | 校验合法性（0 errors 门槛） |
-| `pipeline/verify_offset.py` | 验证全局实例字段偏移 |
-| `pipeline/_audit_attribution.py` | 审计函数归属：`this+N` > binary_size 检测 |
-| `pipeline/decomp_quality.py` | 四维指标：type/field/global/attribution |
-
-## 类型判定（二进制指令级）
-
-| 证据 | 结论 |
-|------|------|
-| `fld`/`fadd`/`fst`/`fcomp` | **float** |
-| `fild`/`fistp` | int↔float 转换 |
-| `movzx byte`/`mov byte` | **unsigned char** |
-| `lea reg,[reg+off]; push reg; call Func(char*)` | **char[] 缓冲区** |
-| `lea reg,[reg+off]; mov ecx,reg; call ctor` | **嵌入子对象** |
-
-**关键教训**：`mov eax,[esi+off]; test eax,eax` 对 4 字节**无法区分** int 和 float。只有 FPU 指令能确定性证明 float。
-
-## 嵌入子对象发现
+### 嵌入子对象发现
 
 构造函数中 `lea ecx,[esi+offset]; call CtorFunc` 模式：
 - 连续 LEA 的 stride = 子对象大小
-- 调用目标 = 子对象类的构造函数
+- 调用目标 = 子对象构造函数
 - stride > binary_size 时：每个 slot 含子对象 + 额外数据
+- **二进制 LEA 是嵌入偏移的最终权威**，apply 后的 Hex-Rays 也可能因结构体布局错误给出偏差
 
-**二进制 LEA 是嵌入偏移的最终权威**——apply 后的 Hex-Rays 也可能因结构体布局错误给出偏移偏差（CScreenMode 案例：系统性偏移 -8）。如果 decomp 偏移与二进制 LEA 矛盾→以二进制为准。
+### 管理器 vs 元素判别
+
+包含对象数组的类：
+- **管理器方法**：访问 count 字段 + stride 循环
+- **元素方法**：在 vtable 中定义，操作单个元素内偏移
+- 管理器字段在数组起始前，元素字段在 stride 范围内
+
+### 反编译器伪像识别
+
+`this+N` 超标函数中，约 25% 是反编译器伪像：
+- ESI max ≈ 审计 max_off → 真实字段访问
+- ESI max << 审计 max_off → 伪像（来自指针强制转换）
+- ESI max = 0 → 伪像
+
+处理审计条目时先过 ESI 筛子，伪像直接跳过。
 
 ## 退出条件
 
@@ -216,4 +161,4 @@ idat.exe -A -S"pipeline/ida/query_class_full.py Camera,PalScript" original\PAL3.
 - 重建一致性 ≥95%
 - sub_ 数趋于稳定
 
-切换到：编译修复 → 字节匹配阶段。
+然后切换到：编译修复 → 字节匹配阶段。
