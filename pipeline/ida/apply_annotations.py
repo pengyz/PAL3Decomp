@@ -752,10 +752,14 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         _nt_kind = _nt_info.get("kind", "")
         _nt_full = "%s::%s" % (name, _nt_name)
         if _nt_kind in ("struct", "class"):
-            _nt_data = {
-                "binary_size": _nt_info.get("binary_size", 0),
-                "known_members": _nt_info.get("known_members", {}),
-            }
+            _nt_data = dict(_nt_info)
+            _nt_data.pop("kind", None)
+            _nt_data.setdefault("known_members", {})
+            _nt_mtd = _nt_data.get("methods", {})
+            for _addr, _minfo in _nt_mtd.items():
+                _mn = _minfo.get("name", "")
+                if _mn and "::" not in _mn:
+                    _minfo["name"] = "%s::%s" % (_nt_full, _mn)
             _ok, _msg = create_fixed_struct(_nt_full, _nt_data, {}, {}, til)
             if not _ok:
                 log("  [!] nested struct %s FAILED: %s" % (_nt_full, _msg))

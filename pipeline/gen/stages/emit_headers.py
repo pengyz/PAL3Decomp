@@ -257,6 +257,8 @@ def should_skip_class(name):
     """Check if a class name should be skipped (system/library type)."""
     if not name or len(name) <= 1:
         return True
+    if '::' in name:  # nested types — emitted inside parent struct
+        return True
     if name in SKIP_CLASSES:
         return True
     if name.startswith(SKIP_PREFIXES):

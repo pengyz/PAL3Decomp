@@ -46,6 +46,13 @@
         "20": {"name": "key", "type": "int", "source": "A:decomp_TryExpand:*((_DWORD*)v14+5)=x+y*512"},
         "24": {"name": "parent", "type": "AStarPathFinder::NODE *", "source": "A:decomp_TryExpand:*((_DWORD*)v14+6)=nVal"},
         "28": {"name": "stack", "type": "int[8]", "source": "A:decomp_TryExpand:nVal+28_loop_to_8"}
+      },
+      "methods": {
+        "0x00401500": {"name": "FindInOpen", "signature": "int __thiscall(int nTileIdx)"},
+        "0x00401530": {"name": "FindInClosed", "signature": "int __thiscall(int nTileIdx)"},
+        "0x00401560": {"name": "PushOpen", "signature": "int __thiscall()"},
+        "0x00401590": {"name": "Release", "signature": "int __thiscall()"},
+        "0x004015B0": {"name": "UpdateNeighbors", "signature": "int __thiscall()"}
       }
     },
     "STACK": {"kind": "struct", "binary_size": 4}
