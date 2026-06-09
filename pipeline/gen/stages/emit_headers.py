@@ -377,7 +377,9 @@ def demangle_name(mangled):
         return None
     if not method or '$' in method or '<' in method:
         return None
-    if not method[0].isalpha() and method[0] != '~':
+    # Strip leading ? from mangled method names (e.g. ??_CEffGrid -> _CEffGrid)
+    method = method.lstrip('?')
+    if not method or not (method[0].isalpha() or method[0] in ('~', '_')):
         return None
 
     return cls, method
@@ -416,7 +418,11 @@ def collect_methods():
                 cls = parts[0]
                 method = parts[1].split('(')[0] if '(' in parts[1] else parts[1]
                 if '?' in method:
-                    cls = None  # skip
+                    # Mangled name (destructor/constructor with @ chars).
+                    # Demangle instead of skipping so the header gets the clean name.
+                    _result = demangle_name(method if method.startswith('?') else '?' + method.lstrip('?'))
+                    if _result:
+                        _, method = _result
 
         if not cls or not method:
             continue
