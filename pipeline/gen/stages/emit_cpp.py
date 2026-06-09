@@ -405,7 +405,9 @@ def run_cpp_generation(filter_classes=None):
                          'LPCSTR', 'LPSTR', 'CHAR', 'HRESULT', 'HANDLE', 'HWND', 'RECT',
                          'FILE', '_DWORD', '_BYTE', '_WORD', 'POINT', 'SIZE',
                          'WPARAM', 'LPARAM', 'LRESULT', 'LCID',
-                         'INT_PTR', 'UINT_PTR', 'LONG_PTR', 'ULONG_PTR', 'DWORD_PTR'}
+                         'INT_PTR', 'UINT_PTR', 'LONG_PTR', 'ULONG_PTR', 'DWORD_PTR',
+                         '__int8', '__int16', '__int32', '__int64',
+                         'unsigned __int8', 'unsigned __int16', 'unsigned __int32', 'unsigned __int64'}
         fwd_types = set()
         for fname, decl in store.free_func_sigs.items():
             for m in re.finditer(r'\b(\w+)\s*\*', decl):

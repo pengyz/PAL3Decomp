@@ -301,6 +301,13 @@ def _resolve_stru_overlap(code):
 
 def run(code, ctx):
     """Stage 5: compiler compatibility fixups (text-level, no AST)."""
+    # Strip __noreturn (VC6 doesn't support this IDA attribute)
+    code = re.sub(r'\b__noreturn\s*(?=\()', '', code)
+
+    # Strip 'virtual' from free function definitions (not valid for non-member functions)
+    if ctx.is_free_function:
+        code = re.sub(r'\bvirtual\s+', '', code)
+
     # Text-level substitutions (type aliases, suffixes, thunk classes)
     code = _apply_text_substitutions(code, ctx)
 

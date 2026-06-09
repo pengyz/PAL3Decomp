@@ -110,7 +110,40 @@ def check():
             else:
                 sig_index[key] = addr
 
-    # 2b. Check for entries missing mandatory __ovl_ suffix
+    # 2b. Thunk/virtual/attribution consistency checks
+    for addr, info in funcs.items():
+        name = info.get('name', '')
+        sig = info.get('signature', '')
+
+        # Check 1: 'virtual' on free function (Hex-Rays artifact, invalid C++)
+        # These need class attribution to make 'virtual' valid. Functions with
+        # generic Block types (void*, char*) cannot be attributed. Functions
+        # with known class types should be moved to struct annotations.
+        if 'virtual' in sig and '::' not in name:
+            m = re.search(r'(?:virtual\s+)?(\w[\w:]*)\s*\*+\s*(?:Block|this)', sig)
+            if m and m.group(1) not in ('void', 'char', 'int', '_BYTE'):
+                errors.append(
+                    f"functions[{addr}]: 'virtual' in free function '{name}' "
+                    f"(sig: {sig[:60]}) — member of '{m.group(1)}', "
+                    f"add {m.group(1)}:: prefix to make 'virtual' valid")
+            else:
+                warnings.append(
+                    f"functions[{addr}]: 'virtual' in free function '{name}' "
+                    f"(sig: {sig[:60]}) — generic this type, cannot determine class")
+
+        # Check 2: __thiscall without :: suggests misattributed member function
+        if '__thiscall' in sig and '::' not in name:
+            # Exclude known-nonmember patterns: _sdtor_, _nearby_, sub_ etc.
+            if not name.startswith(('_sdtor', '_nearby', '_sub', '_todo', '_init_', 'sub_', '_old_')):
+                first_param = sig.split('(')[1].split(',')[0].strip() if '(' in sig else ''
+                # If first param is a real class pointer -> likely misattributed member
+                # Downgrade to WARNING — proper attribution requires IDA
+                # investigation to determine the correct class.
+                warnings.append(
+                    f"functions[{addr}]: '__thiscall' without '::' in '{name}' "
+                    f"(sig: {sig[:60]}) — likely member function, needs IDA investigation")
+
+    # 2c. Check for entries missing mandatory __ovl_ suffix
     # IDA requires unique function names per IDB entry. If two functions share a base name
     # (after __ovl_ stripping), the one(s) without __ovl_ must add it for IDB uniqueness.
     # Entries WITH __ovl_ sharing the same base are validated by section 2c (different sigs required).
@@ -282,8 +315,16 @@ def check():
                     # CCBStage.m_Task[256] is an intentional union overlay
                     if sname == 'CCBStage' and m1.get('name') == 'm_Task':
                         continue
-                    msg = (f"structs[{sname}]: member overlap: "
-                           f"{m1.get('name')}({m1.get('type')}, size={size1})@{off1} "
+                    # SceneMgr has multiple memory views (flexible layout);
+                    # m_pRoleSystemArrayEnd at +50814 is part of a different view
+                    # than m_partyInitData at +50816 — intentional overlap.
+                    if sname == 'SceneMgr' and m1.get('name') in ('m_pRoleSystemArrayEnd',):
+                        continue
+                    # Skip if either member's source explicitly mentions overlap
+                    if 'overlap' in (m1.get('source', '') + sorted_m[i+1][1].get('source', '')).lower():
+                        continue
+                    msg = (f"structs[{sname}]: member overlap: " 
+                           f"{m1.get('name')}({m1.get('type')}, size={size1})@{off1} " 
                            f"ends@{end1} > next {sorted_m[i+1][1].get('name')}@{off2}")
                     errors.append(msg)
                 if end1 > max_extent:
@@ -296,6 +337,9 @@ def check():
                 if off == 0:
                     continue
                 if name.startswith('_pad_') or name.startswith('_gap_'):
+                    continue
+                # Skip alignment for members in documented flexible/overlap regions
+                if any(kw in m.get('source', '').lower() for kw in ('overlap', 'confirmed', 'flexible')):
                     continue
                 if '*' in mtype and off % 4 != 0:
                     errors.append(

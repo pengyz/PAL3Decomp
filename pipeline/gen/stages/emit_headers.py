@@ -267,6 +267,9 @@ def parse_signature(sig):
         return 'int', '', '', ''
     # Strip IDA __attribute__ annotations from signature
     sig = re.sub(r'\s*__attribute__\s*\(\([^()]*(?:\([^()]*\)[^()]*)*\)\)', '', sig)
+    # Strip __noreturn (VC6 doesn't support it; functions are noreturn by analysis)
+    # Matches both "__noreturn ()" and "__noreturn()"
+    sig = re.sub(r'\b__noreturn\s*(?=\()', '', sig)
 
     # Detect function-pointer return type: "... *CC(params)(fp_params)"
     fp_match = re.search(r'\*\s*(__thiscall|__cdecl|__stdcall|__fastcall)\s*\(', sig)

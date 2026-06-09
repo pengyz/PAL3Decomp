@@ -165,23 +165,24 @@ class DataStore:
                 for _addr_s, _tinfo in _thunk_data.items():
                     _tname = _tinfo.get('name', '')
                     _ttarget = _tinfo.get('target_name', '')
-                    if _ttarget:
-                        self.thunks[_tname] = _ttarget
-                        self.thunks[_tname.replace('~', '_')] = _ttarget.replace('~', '_')
-                        if '::' in _tname:
-                            _short = _tname.split('::')[1]
-                            if _short not in ('Destroy', 'Create', 'Update', 'Render', 'Init',
-                                              'Reset', 'Load', 'Save', 'Release', 'Free', 'Show',
-                                              'Hide', 'Set', 'Get', 'Add', 'Remove', 'Clear',
-                                              'Move', 'Copy', 'Find', 'Close', 'Open',
-                                              'IsValid', 'IsReady', 'Process', 'Handle',
-                                              'CCBAI', 'MoveWindow'):
-                                if _short not in self.thunks:
-                                    self.thunks[_short] = _ttarget
-                                _short_dtor = _short.replace('~', '_')
-                                if _short_dtor not in self.thunks:
-                                    self.thunks[_short_dtor] = _ttarget.replace('~', '_')
-                        self.thunk_classes.add(_tname.split('::')[0] if '::' in _tname else '')
+                    if not _ttarget:
+                        _ttarget = _tname  # identity guard: avoid empty-string replacement
+                    self.thunks[_tname] = _ttarget
+                    self.thunks[_tname.replace('~', '_')] = _ttarget.replace('~', '_')
+                    if '::' in _tname:
+                        _short = _tname.split('::')[1]
+                        if _short not in ('Destroy', 'Create', 'Update', 'Render', 'Init',
+                                          'Reset', 'Load', 'Save', 'Release', 'Free', 'Show',
+                                          'Hide', 'Set', 'Get', 'Add', 'Remove', 'Clear',
+                                          'Move', 'Copy', 'Find', 'Close', 'Open',
+                                          'IsValid', 'IsReady', 'Process', 'Handle',
+                                          'CCBAI', 'MoveWindow'):
+                            if _short not in self.thunks:
+                                self.thunks[_short] = _ttarget
+                            _short_dtor = _short.replace('~', '_')
+                            if _short_dtor not in self.thunks:
+                                self.thunks[_short_dtor] = _ttarget.replace('~', '_')
+                    self.thunk_classes.add(_tname.split('::')[0] if '::' in _tname else '')
             except:
                 pass
         self.thunk_classes.add('j_std')
@@ -217,10 +218,13 @@ class DataStore:
                     if _name in _IDA_MACROS:
                         continue
                     # Parse signature: "ret __cc(params)"
+                    # Strip 'virtual' from free function signatures (Hex-Rays adds it
+                    # for vtable-related thunks, but free functions cannot be virtual).
                     if '__thiscall' in _sig:
                         m = _re2.match(r'^(.+?)\s*__thiscall\s*\((.*)\)$', _sig)
                         if m:
                             ret = m.group(1).strip()
+                            ret = _re2.sub(r'\bvirtual\s+', '', ret)
                             params = m.group(2).strip()
                             if not params: params = 'void'
                             params = _re2.sub(r'\bthis\b', '_this', params)
@@ -229,6 +233,7 @@ class DataStore:
                         m = _re2.match(r'^(.+?)\s*(__cdecl|__stdcall)\s*\((.*)\)$', _sig)
                         if m:
                             ret = m.group(1).strip()
+                            ret = _re2.sub(r'\bvirtual\s+', '', ret)
                             cc = m.group(2)
                             params = m.group(3).strip()
                             if not params: params = 'void'
