@@ -160,21 +160,21 @@ class DataStore:
                                 (elem_base, elem_base + elem_size, elem_name, elem_type))
         self.struct_instances.sort()
 
-        # 4. Free function sigs + static methods + thunks from decomp JSONs
-        # (thunks are also supplemented from export at asm/pal3/extra/thunks.json)
-        _extra_path = self.project_root / "asm" / "pal3" / "extra"
-        _thunks_path = _extra_path / "thunks.json"
-        if _thunks_path.exists():
+        # 4. Thunks from skip_functions.json (manually curated thunk replacements)
+        _skip_path = self.project_root / "data" / "annotations" / "skip_functions.json"
+        if _skip_path.exists():
             try:
-                _thunk_data = json.load(open(_thunks_path, encoding='utf-8'))
-                for _addr_s, _tinfo in _thunk_data.items():
+                _skip_data = json.load(open(_skip_path, encoding='utf-8'))
+                for _addr_s, _tinfo in _skip_data.items():
+                    if _tinfo.get('reason') != 'thunk':
+                        continue
                     _tname = _tinfo.get('name', '')
                     _ttarget = _tinfo.get('target_name', '')
-                    if not _ttarget:
-                        _ttarget = _tname  # identity guard: avoid empty-string replacement
+                    if not _tname or not _ttarget:
+                        continue
                     self.thunks[_tname] = _ttarget
                     self.thunks[_tname.replace('~', '_')] = _ttarget.replace('~', '_')
-                    if '::' in _tname and _ttarget != _tname:
+                    if '::' in _tname:
                         _short = _tname.split('::')[1]
                         if _short not in ('Destroy', 'Create', 'Update', 'Render', 'Init',
                                           'Reset', 'Load', 'Save', 'Release', 'Free', 'Show',
@@ -187,7 +187,7 @@ class DataStore:
                             _short_dtor = _short.replace('~', '_')
                             if _short_dtor not in self.thunks:
                                 self.thunks[_short_dtor] = _ttarget.replace('~', '_')
-                    self.thunk_classes.add(_tname.split('::')[0] if '::' in _tname else '')
+                        self.thunk_classes.add(_tname.split('::')[0] if '::' in _tname else '')
             except:
                 pass
         self.thunk_classes.add('j_std')

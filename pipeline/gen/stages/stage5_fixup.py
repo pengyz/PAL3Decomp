@@ -308,6 +308,13 @@ def run(code, ctx):
     if ctx.is_free_function:
         code = re.sub(r'\bvirtual\s+', '', code)
 
+    # Strip Hex-Rays j_ thunk class scope from member calls:
+    #   obj->j_ClassName::Method() → obj->Method()
+    # These are IDA decompiler artifacts — the binary has a direct call,
+    # Hex-Rays incorrectly inserts the thunk class name as scope qualifier.
+    # Only affects call sites (-> form), not function definitions.
+    code = re.sub(r'->j_([A-Z]\w*)::', '->', code)
+
     # Text-level substitutions (type aliases, suffixes, thunk classes)
     code = _apply_text_substitutions(code, ctx)
 
