@@ -119,3 +119,7 @@ tools/                独立工具（DIA 导出等）
 
 - **PAL3patch** (`extra/PAL3patch/`): 结构体定义、逆向笔记
 - **OpenPAL3** (dontpanic92): Rust 重实现，文件格式解析器
+
+## Skill Routing
+
+管线、annotation、IDA 查询、编译错误分析 → 加载 `pal3-pipeline` skill
