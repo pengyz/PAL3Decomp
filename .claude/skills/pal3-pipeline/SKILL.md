@@ -38,6 +38,20 @@ python pipeline/cli.py tool find_strides            # stride 分析
 
 输出在 `pipeline/ida/_logs/*.json`。IDA 脚本的 print() 不显示在终端。
 
+## 证据等级（提交阈值）
+
+- **A 级**：二进制指令 reg+disp32（偏移修改≥85）
+- **B 级**：3+ 条 A 级交叉确认（≥80）
+- **C 级**：Hex-Rays 文本推断（仅标注参考，不可单独用于偏移修改）
+- **D 级**：语义推断（命名≥60，不可用于偏移/类型修改）
+
+## 关键方法提醒
+
+- **ESI 验证法**：函数内 `[esi+disp]` 最大 disp 接近审计 max_off → 真实字段；远小于 → 反编译器伪像
+- **嵌入子对象**：构造函数中 `lea ecx,[esi+off]; call Ctor` → 连续 LEA 的 stride = 子对象大小。**二进制 LEA 是最终权威**，Hex-Rays 可能因结构体布局错误给出偏移偏差
+- **归属判别**：函数访问大偏移(>原类 size) + 小偏移(<原类 size) → 嵌入模式，不是归属错误
+- **签名修正**：仅有 signature this 类型不够，必须有 decomp member access evidence（this->member 在目标类中存在且不在原类中存在）
+
 ## data/annotations/ 文件格式
 
 ```
