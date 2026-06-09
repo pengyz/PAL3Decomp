@@ -161,19 +161,30 @@ def _try_struct_member_resolution(name):
 
 
 def _try_global_name(name):
-    """Map IDA unnamed globals (dword_XXX) → annotated name via globals_map + direct lookup."""
+    """Map IDA unnamed globals (dword_XXX) → annotated name via globals_map + direct lookup.
+    Also resolves named globals within struct_instance ranges to g_Parent.field expressions."""
     if name in store.globals_map:
         return store.globals_map[name]
-    if not (name.startswith(('dword_', 'byte_', 'word_', 'off_', 'unk_', 'stru_', 'flt_'))):
+    # Handle IDA default names (dword_/byte_/etc.) via address lookup
+    if name.startswith(('dword_', 'byte_', 'word_', 'off_', 'unk_', 'stru_', 'flt_')):
+        try:
+            addr = int(name.split('_', 1)[1], 16)
+        except (ValueError, IndexError):
+            return None
+        for base, end, gname, _ in store.struct_instances:
+            if base <= addr < end:
+                store.globals_map[name] = gname
+                return gname
         return None
-    try:
-        addr = int(name.split('_', 1)[1], 16)
-    except (ValueError, IndexError):
-        return None
-    for base, end, gname, _ in store.struct_instances:
-        if base <= addr < end:
-            store.globals_map[name] = gname
-            return gname
+    # Handle named globals (e.g. Buffer): check struct_instance ranges
+    if name in store.global_addrs:
+        addr = store.global_addrs[name]
+        for base, end, gname, gtype in store.struct_instances:
+            if base < addr < end:
+                offset = addr - base
+                resolved = _resolve_offset(gtype, offset, '')
+                if resolved:
+                    return '%s%s' % (gname, resolved)
     return None
 
 

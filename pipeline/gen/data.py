@@ -38,6 +38,7 @@ class DataStore:
         self.free_func_sigs = {}    # "FuncName" -> "ret FuncName(params)" declaration
         self.exe_data = b''         # raw exe for .rdata string lookup
         self.skip_classes = set()   # classes to not generate
+        self.global_addrs = {}      # name -> base_address (from ida_structs.json _globals)
 
     def load(self):
         """Load all resources from disk. Call once at startup."""
@@ -112,6 +113,10 @@ class DataStore:
                 addr_hex = '%X' % addr_int
                 for pfx in ida_prefixes:
                     self.globals_map['%s_%s' % (pfx, addr_hex)] = gname
+            # Build name->address lookup for identifier resolution in stage4
+            if gname and not any(gname.startswith(p + '_') for p in ida_prefixes):
+                addr_int = int(addr_str, 16) if isinstance(addr_str, str) else addr_str
+                self.global_addrs[gname] = addr_int
 
         # 2. Struct members from ida_structs data_members
         for sname, sinfo in ida_structs.items():
