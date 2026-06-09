@@ -243,14 +243,30 @@ def _collect_token_edits(code_bytes, tree, ctx):
     edits = []
     thunk_map = _build_identifier_map()
 
+    def _in_declaration(node):
+        """Check if this node is within a variable declaration (not an expression)."""
+        p = node.parent
+        while p:
+            if p.type in ('declaration', 'pointer_declarator', 'function_declarator',
+                          'parameter_declaration', 'init_declarator'):
+                return True
+            p = p.parent
+        return False
+
     def visit(node):
         if node.type == 'identifier' and node.child_count == 0:
             name = node.text.decode('utf-8')
             replacement = None
             if name.startswith(('dword_', 'byte_', 'word_', 'off_', 'flt_', 'unk_', 'stru_')):
-                replacement = _try_struct_member_resolution(name)
+                # Skip struct_instances resolution in declaration contexts
+                # (dword_XXXX used as a variable name, not a field access)
+                if not _in_declaration(node):
+                    replacement = _try_struct_member_resolution(name)
             if not replacement:
-                replacement = _try_global_name(name)
+                # In declaration context, only resolve dword_/byte_ patterns
+                # (named locals like 'src' should not be resolved through globals)
+                if not _in_declaration(node) or name.startswith(('dword_', 'byte_', 'word_', 'off_', 'unk_', 'stru_', 'flt_')):
+                    replacement = _try_global_name(name)
             if not replacement:
                 replacement = _try_literal_replacement(name)
             if not replacement and name in thunk_map:
