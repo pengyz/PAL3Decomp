@@ -160,11 +160,11 @@ def _try_struct_member_resolution(name):
         if base <= addr < end:
             offset = addr - base
             # Check for a named global at the exact address within this range.
-            # If found, use it directly — it has better type info than
-            # _resolve_offset would produce from raw offset decomposition.
+            # If found, use it directly — it has its own type and identity,
+            # and already has a struct_instance (anchor) or extern declaration.
             for _gn, _ga in store.global_addrs.items():
                 if _ga == addr:
-                    return '%s.%s' % (gname, _gn)
+                    return _gn
             resolved = _resolve_offset(gtype, offset, prefix)
             if resolved:
                 return '%s%s' % (gname, resolved)
