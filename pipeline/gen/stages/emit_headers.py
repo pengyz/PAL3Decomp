@@ -587,6 +587,79 @@ def _estimate_member_size(mtype):
     return 4
 
 
+def _emit_nested_struct(scope_node, nested_methods, is_data, parent_name, indent=4):
+    """Recursively emit nested struct definition with members + methods.
+    
+    Args:
+        scope_node: ScopeNode whose children to emit
+        nested_methods: dict of {short_name: [(method_name, sig, addr), ...]}
+        is_data: ida_structs.json data dict
+        parent_name: parent class name (for this param stripping)
+        indent: base indentation level (4 per nesting level)
+    
+    Returns:
+        list of lines (str) for the nested struct definition(s)
+    """
+    lines = []
+    for _child in scope_node.children:
+        _nt_full = _child.full_name
+        _nt_struct = is_data.get(_nt_full, {})
+        _nt_members = _nt_struct.get('data_members', [])
+        _nt_methods = (nested_methods or {}).get(_child.short_name, [])
+        _indent = " " * indent
+        
+        lines.append("")
+        lines.append("%sstruct %s {" % (_indent, _child.short_name))
+        
+        # Members
+        if _nt_members:
+            for _dm in _nt_members:
+                _t = _dm.get('type', 'int')
+                _n = _dm.get('name', '')
+                _arr = re.search(r'(\[.*\])$', _t)
+                if _arr:
+                    _t = _t[:_arr.start()].strip()
+                    _n = _n + _arr.group(1)
+                lines.append("%s    %s %s;" % (_indent, _t, _n))
+        elif _nt_struct.get('size'):
+            _sz = _nt_struct['size']
+            lines.append("%s    unsigned char _pad[%d];" % (_indent, _sz))
+        
+        # Methods
+        if _nt_methods:
+            if _nt_members or _nt_struct.get('size'):
+                lines.append("")
+            _seen = set()
+            for _mname, _msig, _maddr in _nt_methods:
+                _mn = _mname.split('::')[-1]
+                _ret, _cc, _params, _ret_right = parse_signature(_msig)
+                if '__thiscall' in _cc and _params:
+                    _plist = split_params(_params)
+                    if _plist and (re.search(r'\*(\w+\s+)?this\b', _plist[0])
+                                   or _plist[0].startswith(parent_name + ' ')):
+                        _plist = _plist[1:]
+                    _params = ', '.join(_plist)
+                if _ret:
+                    _d = "%s %s(%s)" % (_ret, _mn, _params)
+                    if _ret_right:
+                        _d = "%s %s(%s)%s" % (_ret, _mn, _params, _ret_right)
+                else:
+                    _d = "%s(%s)" % (_mn, _params)
+                if _d not in _seen:
+                    _seen.add(_d)
+                    lines.append("%s    %s; // %s" % (_indent, _d, _maddr))
+            lines.append("")
+        
+        # Recursive: emit grandchildren (deeper nesting)
+        if _child.children:
+            lines.extend(_emit_nested_struct(_child, nested_methods, is_data,
+                                              parent_name, indent + 4))
+        
+        lines.append("%s};" % _indent)
+    
+    return lines
+
+
 def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_names=None,
                     colliding_enums=None, template_expr=None, template_param_count=0,
                     nested_types=None, nested_methods=None, scope_node=None):
@@ -1405,60 +1478,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             lines.append("    void operator=(int v) { *(int*)this = v; }")
         lines.append("")
 
-    if nested_types:
-        lines.append("")
-        _is_data = _get_ida_structs()
-        for _nt_name in nested_types:
-            _nt_full = "%s::%s" % (cls_name, _nt_name)
-            _nt_struct = _is_data.get(_nt_full, {})
-            _nt_members = _nt_struct.get('data_members', [])
-            _nt_methods = (nested_methods or {}).get(_nt_name, [])
+    # Recursive nested type emission via scope tree
+    if scope_node and scope_node.children:
+        _is_data_for_nested = _get_ida_structs()
+        lines.extend(_emit_nested_struct(scope_node, nested_methods,
+                                          _is_data_for_nested, cls_name, indent=4))
 
-            lines.append("    struct %s {" % _nt_name)
-
-            # Emit members (same pattern as parent struct members)
-            if _nt_members:
-                for _dm in _nt_members:
-                    _t = _dm.get('type', 'int')
-                    _n = _dm.get('name', '')
-                    _arr = re.search(r'(\[.*\])$', _t)
-                    if _arr:
-                        _t = _t[:_arr.start()].strip()
-                        _n = _n + _arr.group(1)
-                    lines.append("        %s %s;" % (_t, _n))
-            elif _nt_struct.get('size'):
-                _sz = _nt_struct['size']
-                lines.append("        unsigned char _pad[%d];" % _sz)
-
-            # Emit methods (simplified: no ctor/dtor special cases)
-            if _nt_methods:
-                if _nt_members or _nt_struct.get('size'):
-                    lines.append("")
-                _seen = set()
-                for _mname, _msig, _maddr in _nt_methods:
-                    # Strip any remaining scope prefix (e.g. NODE::FindInOpen → FindInOpen)
-                    _mn = _mname.split('::')[-1]
-                    # Parse signature for return type and params
-                    _ret, _cc, _params, _ret_right = parse_signature(_msig)
-                    # Remove 'this' parameter for __thiscall
-                    if '__thiscall' in _cc and _params:
-                        _plist = split_params(_params)
-                        if _plist and (re.search(r'\*(\w+\s+)?this\b', _plist[0])
-                                       or _plist[0].startswith(cls_name + ' ')):
-                            _plist = _plist[1:]
-                        _params = ', '.join(_plist)
-                    if _ret:
-                        _d = "%s %s(%s)" % (_ret, _mn, _params)
-                        if _ret_right:
-                            _d = "%s %s(%s)%s" % (_ret, _mn, _params, _ret_right)
-                    else:
-                        _d = "%s(%s)" % (_mn, _params)
-                    if _d not in _seen:
-                        _seen.add(_d)
-                        lines.append("        %s; // %s" % (_d, _maddr))
-                lines.append("")
-
-            lines.append("    };")
 
     lines.append("};")
     lines.append("")
