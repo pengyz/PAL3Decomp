@@ -333,6 +333,9 @@ def run(code, ctx):
     code = re.sub(r'(\w+)\s*->\s*_scalar_dtor\w*\s*\(\s*1\s*\)', r'delete \1', code)
     code = re.sub(r'(\w+)\s*->\s*_scalar_dtor\w*\s*\(\s*0\s*\)', r'', code)
 
+    # UIScene::GetSys is a static method but Hex-Rays calls it without scope.
+    code = re.sub(r'(?<!::)\bGetSys\s*\(', 'UIScene::GetSys(', code)
+
     # Text-level substitutions (type aliases, suffixes, thunk classes)
     code = _apply_text_substitutions(code, ctx)
 
