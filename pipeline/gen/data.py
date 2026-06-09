@@ -174,7 +174,7 @@ class DataStore:
                         _ttarget = _tname  # identity guard: avoid empty-string replacement
                     self.thunks[_tname] = _ttarget
                     self.thunks[_tname.replace('~', '_')] = _ttarget.replace('~', '_')
-                    if '::' in _tname:
+                    if '::' in _tname and _ttarget != _tname:
                         _short = _tname.split('::')[1]
                         if _short not in ('Destroy', 'Create', 'Update', 'Render', 'Init',
                                           'Reset', 'Load', 'Save', 'Release', 'Free', 'Show',
