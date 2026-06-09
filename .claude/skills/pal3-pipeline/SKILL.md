@@ -61,16 +61,47 @@ skip_functions.json {addr: {name, reason, target_name}}
 structs/*.json     {name, binary_size, known_members: {offset: {name, type}}}
 ```
 
-`globals.json` 中标记 `overlaps_with` 的变量是伪全局（地址落在父结构体内），
-在 `globals.json` 中标记 `"type": "skip"`，并在父 struct 的 known_members 中
-补对应偏移的字段。codegen 通过 struct_instances 自动解析为 `g_Parent.field`。
-
 ## Phantom Global 处理
 
-1. 确认全局变量地址落在某 `struct_instance` 范围内
-2. 在父结构体的 `known_members` 中添加对应偏移的字段定义
-3. 在 `globals.json` 中将该全局标记为 `"type": "skip"`，`reason` 注明父结构体
-4. 重新 export + codegen
+### 什么是 Phantom Global
+
+某些 annotation `globals.json` 中的全局变量的实际地址落在另一个更大结构体的内存
+范围内。它们在 IDB 中可能有独立命名，但实际上是父结构体的内部字段。
+
+例如 `g_ScriptRoleBuf`（地址 0xC04920）落在 `g_SceneMgr`（0xC04390, size=6904）范围内。
+它没有独立存储，不能有 `extern` 声明。
+
+### 识别方法
+
+- 编译报 C2065 + 级联 C2228（变量名.member）
+- annotation `globals.json` 中有 `overlaps_with` 字段标记
+- 地址计算：变量地址是否在某个已知 struct_instance 范围内（差值即为父结构体内的偏移）
+
+### 处理流程
+
+1. **验证**：计算变量地址和父结构体基址的差值，确认偏移落在父结构体 size 内
+2. **父 struct 补成员**：在 `structs/ParentStruct.json` 的 `known_members` 中
+   添加对应偏移的字段定义（类型、名称）
+3. **标记 skip**：在 `globals.json` 中设 `"type": "skip"`，`"reason"` 注明所属父结构体
+4. **重新导出**：`export → codegen → compile`
+
+### 禁止行为
+
+- ❌ 加 `extern` 声明——地址冲突
+- ❌ 通过 thunk_map 重命名——无法通过地址验证
+- ❌ 保留独立全局声明——编译器允许但运行时地址错误
+
+### 典型场景：g_ScriptRoleBuf
+
+```
+g_SceneMgr    0xC04390  size=6904
+g_ScriptRoleBuf 0xC04920 → g_SceneMgr + 0x590
+
+annotation 中:
+1. 在 SceneMgr.json 的 known_members 补偏移 0x590 的 RoleSystem 字段
+2. 在 globals.json 中将 g_ScriptRoleBuf 标记为 "type": "skip"
+3. 重新 export 后，codegen 自动解析为 g_SceneMgr.fieldName.subField
+```
 
 ## 字段验证
 
