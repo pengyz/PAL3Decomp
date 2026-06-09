@@ -271,7 +271,7 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
         return None
 
     sorted_members = sorted(
-        [(int(off), info) for off, info in members.items() if int(off) >= base_size],
+        [(int(off, 0), info) for off, info in members.items() if int(off, 0) >= base_size],
         key=lambda x: x[0]
     )
 
@@ -580,12 +580,16 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         udt.is_union = True
     else:
         is_flexible = struct_info.get("_flexible", False)
-        if not is_flexible:
-            udt.taudt_bits = 1024  # TAUDT_FIXED: respect explicit offsets
         if base_class:
+            # Base classes use anonymous member for inheritance — let IDA compute size
+            # No TAUDT_FIXED (automatic layout from member offsets + base class sizes)
+            # No TAUDT_CPPOBJ (base class provides vtable semantics)
+            udt.total_size = 0
+        else:
+            if not is_flexible:
+                udt.taudt_bits = 1024  # TAUDT_FIXED: respect explicit offsets
+                udt.total_size = binary_size
             udt.taudt_bits |= 128  # TAUDT_CPPOBJ
-        if not is_flexible:
-            udt.total_size = binary_size
 
     # Add base classes as anonymous members (supports multiple inheritance)
     _concrete_bases = [bc for bc in base_classes if '<' not in bc and '>' not in bc]
@@ -610,8 +614,8 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
 
     # Add known members at exact annotation offsets
     # Union members use "0", "0_1", "0_2" keys (all at offset 0)
-    for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0])):
-        offset = int(off_str.split('_')[0])
+    for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0], 0)):
+        offset = int(off_str.split('_')[0], 0)
         if base_class and offset < base_size:
             continue
 
@@ -621,7 +625,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         # STL/template types: flatten to char[span] (TIL API can't handle template syntax)
         _is_stl = 'std::' in mtype_str or '<' in mtype_str
         if _is_stl:
-            sorted_offs = sorted(int(o) for o in members if int(o) > offset)
+            sorted_offs = sorted(int(o, 0) for o in members if int(o, 0) > offset)
             span = min(sorted_offs) - offset if sorted_offs else binary_size - offset
             if span <= 0:
                 span = 4
@@ -641,6 +645,18 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         m.size = member_size * 8  # bytes to bits
         m.type = tinfo
         udt.push_back(m)
+
+    # When struct has size but no members, IDA creates a blob without named fields.
+    # Add a char[N] filler so the struct has proper named members in the IDB.
+    if udt.size() == 0 and binary_size > 0:
+        _filler_arr = ida_typeinf.tinfo_t()
+        _filler_char = _resolve_member_type("unsigned char", til)
+        if _filler_char and _filler_arr.create_array(_filler_char, binary_size):
+            _filler_m = ida_typeinf.udt_member_t()
+            _filler_m.name = "_tail_000"
+            _filler_m.offset = 0
+            _filler_m.type = _filler_arr
+            udt.push_back(_filler_m)
 
     # For flexible structs, compute total_size from actual member layout
     if is_flexible and not is_union:
@@ -1348,6 +1364,23 @@ def apply_annotations():
 
     # 导入所有 struct（严格模式：任何失败直接终止）
     for sname, sinfo in ordered:
+        # Create nested type forward declarations BEFORE parent struct
+        # so _resolve_member_type can resolve Parent::Nested types
+        for _nt_name, _nt_info in sinfo.get("nested_types", {}).items():
+            _nt_full = "%s::%s" % (sname, _nt_name)
+            _probe = ida_typeinf.tinfo_t()
+            if _probe.get_named_type(til, _nt_full):
+                continue
+            _nt_kind = _nt_info.get("kind", "")
+            if _nt_kind in ("struct", "class"):
+                _u = ida_typeinf.udt_type_data_t()
+                _u.total_size = _nt_info.get("binary_size", 0)
+                _t = ida_typeinf.tinfo_t()
+                if _t.create_udt(_u, ida_typeinf.BTF_STRUCT):
+                    _t.set_named_type(til, _nt_full, ida_typeinf.NTF_REPLACE)
+            elif _nt_kind == "enum":
+                if idc.get_enum(_nt_full) == -1:
+                    idc.add_enum(-1, _nt_full, 1)
         ok, err = create_fixed_struct(sname, sinfo, structs, {}, til)
         if ok:
             s_ok += 1
