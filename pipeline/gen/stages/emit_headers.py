@@ -22,6 +22,8 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+from pipeline.gen.stages.scope_tree import ScopeTree
+
 # Module-level cache for _scalar_dtor detection (populated lazily)
 _scalar_dtor_classes = None
 
@@ -361,13 +363,32 @@ def split_params(params_str):
     return result
 
 
+def _parse_mangled_class_qual(rest):
+    """Extract qualified class name from MSVC mangled qualifier chain.
+    
+    'NODE@AStarPathFinder@@...' -> 'AStarPathFinder::NODE'
+    'UIWnd@@...' -> 'UIWnd'
+    """
+    qual_end = rest.find('@@')
+    if qual_end <= 0:
+        return None
+    class_qual = rest[:qual_end]
+    classes = [c for c in class_qual.split('@') if c]
+    if not classes:
+        return None
+    classes.reverse()  # innermost first → outermost first
+    return '::'.join(classes)
+
+
 def demangle_name(mangled):
     """Extract (ClassName, MethodName) from MSVC mangled name.
 
     Formats:
-      ?Method@Class@@...       -> (Class, Method)
-      ??0Class@@...            -> (Class, Class)   [ctor]
-      ??1Class@@...            -> (Class, ~Class)  [dtor]
+      ?Method@Class@@...               -> (Class, Method)
+      ?Method@Inner@Outer@@...         -> (Outer::Inner, Method)
+      ??0Class@@...                    -> (Class, Class)   [ctor]
+      ??0Inner@Outer@@...              -> (Outer::Inner, Outer::Inner) [nested ctor]
+      ??1Class@@...                    -> (Class, ~Class)  [dtor]
     """
     if not mangled.startswith('?'):
         return None
@@ -378,31 +399,27 @@ def demangle_name(mangled):
     if inner.startswith('?0') or inner.startswith('?1'):
         code = inner[1]
         rest = inner[2:]
-        at_pos = rest.find('@')
-        if at_pos <= 0:
+        cls = _parse_mangled_class_qual(rest)
+        if not cls:
             return None
-        cls = rest[:at_pos]
-        if not cls or '$' in cls or '<' in cls or not cls[0].isalpha():
+        if any(c in cls for c in ('$', '<', '?')):
             return None
         if code == '0':
-            return cls, cls
+            return cls, cls.split('::')[-1]  # short name (NODE for AStarPathFinder::NODE)
         else:
-            return cls, '~' + cls
+            return cls, '~' + cls.split('::')[-1]
 
-    # Regular method: Method@Class@...
+    # Regular method: Method@Class(s)@...
     at_pos = inner.find('@')
     if at_pos <= 0:
         return None
     method = inner[:at_pos]
     rest = inner[at_pos+1:]
 
-    at_pos2 = rest.find('@')
-    if at_pos2 <= 0:
+    cls = _parse_mangled_class_qual(rest)
+    if not cls:
         return None
-    cls = rest[:at_pos2]
 
-    if not cls or '$' in cls or '<' in cls or not cls[0].isalpha():
-        return None
     if not method or '$' in method or '<' in method:
         return None
     # Strip leading ? from mangled method names (e.g. ??_CEffGrid -> _CEffGrid)
@@ -442,7 +459,7 @@ def collect_methods():
         # Then try ClassName::Method format
         elif '::' in name and not name.startswith('sub_'):
             if '`' not in name:
-                parts = name.split('::', 1)
+                parts = name.rsplit('::', 1)
                 cls = parts[0]
                 method = parts[1].split('(')[0] if '(' in parts[1] else parts[1]
                 if '?' in method:
@@ -457,7 +474,9 @@ def collect_methods():
         # Strip _misattrib_ prefix (same as collect.py)
         if cls.startswith('_misattrib_'):
             cls = cls[len('_misattrib_'):]
-        if should_skip_class(cls):
+        # Skip only invalid/synthetic names; class filtering (system types,
+        # nested types) is handled at output time in main().
+        if not cls or '$' in cls or '<' in cls or not cls[0].isalpha():
             continue
         # Skip compiler-generated _scalar_dtor functions (handled by virtual ~ClassName())
         if '_scalar_dtor' in method or method == '_sdtor':
@@ -570,7 +589,7 @@ def _estimate_member_size(mtype):
 
 def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_names=None,
                     colliding_enums=None, template_expr=None, template_param_count=0,
-                    nested_types=None):
+                    nested_types=None, nested_methods=None, scope_node=None):
     """Generate a complete header for one class.
     
     ida_struct: struct definition from ida_structs.json (export output, NOT raw PDB).
@@ -1393,8 +1412,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             _nt_full = "%s::%s" % (cls_name, _nt_name)
             _nt_struct = _is_data.get(_nt_full, {})
             _nt_members = _nt_struct.get('data_members', [])
+            _nt_methods = (nested_methods or {}).get(_nt_name, [])
+
+            lines.append("    struct %s {" % _nt_name)
+
+            # Emit members (same pattern as parent struct members)
             if _nt_members:
-                lines.append("    struct %s {" % _nt_name)
                 for _dm in _nt_members:
                     _t = _dm.get('type', 'int')
                     _n = _dm.get('name', '')
@@ -1403,9 +1426,39 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         _t = _t[:_arr.start()].strip()
                         _n = _n + _arr.group(1)
                     lines.append("        %s %s;" % (_t, _n))
-                lines.append("    };")
-            else:
-                lines.append("    struct %s {};" % _nt_name)
+            elif _nt_struct.get('size'):
+                _sz = _nt_struct['size']
+                lines.append("        unsigned char _pad[%d];" % _sz)
+
+            # Emit methods (simplified: no ctor/dtor special cases)
+            if _nt_methods:
+                if _nt_members or _nt_struct.get('size'):
+                    lines.append("")
+                _seen = set()
+                for _mname, _msig, _maddr in _nt_methods:
+                    # Strip any remaining scope prefix (e.g. NODE::FindInOpen → FindInOpen)
+                    _mn = _mname.split('::')[-1]
+                    # Parse signature for return type and params
+                    _ret, _cc, _params, _ret_right = parse_signature(_msig)
+                    # Remove 'this' parameter for __thiscall
+                    if '__thiscall' in _cc and _params:
+                        _plist = split_params(_params)
+                        if _plist and (re.search(r'\*(\w+\s+)?this\b', _plist[0])
+                                       or _plist[0].startswith(cls_name + ' ')):
+                            _plist = _plist[1:]
+                        _params = ', '.join(_plist)
+                    if _ret:
+                        _d = "%s %s(%s)" % (_ret, _mn, _params)
+                        if _ret_right:
+                            _d = "%s %s(%s)%s" % (_ret, _mn, _params, _ret_right)
+                    else:
+                        _d = "%s(%s)" % (_mn, _params)
+                    if _d not in _seen:
+                        _seen.add(_d)
+                        lines.append("        %s; // %s" % (_d, _maddr))
+                lines.append("")
+
+            lines.append("    };")
 
     lines.append("};")
     lines.append("")
@@ -1455,8 +1508,17 @@ def main():
     # Generate headers
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
+    # Build scope tree from ida_structs.json for type-to-header mapping.
+    scope_tree = ScopeTree()
+    scope_tree.build(_is_data if isinstance(_is_data, dict) else {},
+                     SKIP_CLASSES, SKIP_PREFIXES)
+
     # Build all_classes from export + decomp + annotation (for complete coverage)
     all_classes = set(ida_classes.keys()) | set(methods_by_class.keys()) | vtable_classes | ann_structs
+    # Filter: only non-skipped roots (skip :: names they belong in parent scope tree)
+    all_classes = {c for c in all_classes
+                   if '::' not in c          # nested types handled by scope tree
+                   or scope_tree.find(c) is None}  # safety: not in tree? let it pass
 
     # Counters
     generated = 0
@@ -1474,14 +1536,6 @@ def main():
                 result.append((ename, edata))
                 embedded_enums.add(ename)
         return result
-
-    # Build nested type mapping: parent -> [nested_type_names]
-    nested_by_parent = {}
-    for sname in _is_data:
-        if '::' in sname and not sname.startswith('_'):
-            parts = sname.split('::', 1)
-            if len(parts) == 2:
-                nested_by_parent.setdefault(parts[0], []).append(parts[1])
 
     # Load template reverse map: concrete class -> template expression
     # Classes in this map are template instantiations whose headers should NOT
@@ -1602,6 +1656,16 @@ def main():
         ann_struct = _is_data.get(cls_name, {})
         methods = methods_by_class.get(cls_name, [])
 
+        # Collect nested type methods via scope tree
+        _nested_type_methods = {}
+        _root = scope_tree.find(cls_name)
+        if _root:
+            for _child in _root.children:
+                _nt_full = _child.full_name
+                _nt_m = methods_by_class.get(_nt_full, [])
+                if _nt_m:
+                    _nested_type_methods[_child.short_name] = _nt_m
+
         # Skip if no useful content (but keep if has vtable or annotation members)
         has_members = bool(ann_struct.get('data_members')) and bool(ann_struct.get('size'))
         has_methods = len(methods) >= 1
@@ -1634,7 +1698,9 @@ def main():
 
         content = generate_header(cls_name, _is_data.get(cls_name, {}), methods, classes_with_headers, enum_names,
                                   colliding_enums=colliding_enums,
-                                  nested_types=nested_by_parent.get(cls_name, []),
+                                  nested_types=[c.short_name for c in _root.children] if _root else [],
+                                  nested_methods=_nested_type_methods,
+                                  scope_node=_root,
                                   template_param_count=_tpl_param_count.get(cls_name, 0))
         output_path = OUTPUT_DIR / ("%s.h" % _sanitize_filename(cls_name))
         with open(output_path, 'w', encoding='utf-8') as f:
