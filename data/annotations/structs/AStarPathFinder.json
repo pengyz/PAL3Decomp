@@ -4,37 +4,50 @@
   "known_members": {
     "0": {
       "name": "_todo_0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
+      "type": "void *",
+      "source": "A:decomp_TryExpand:used_as_vtable_ptr(+4,+8_callbacks)"
     },
     "4": {
       "name": "OPEN",
       "type": "AStarPathFinder::NODE *",
-      "source": "annotation"
+      "source": "A:decomp_TryExpand_Reset"
     },
     "8": {
       "name": "CLOSED",
       "type": "AStarPathFinder::NODE *",
-      "source": "annotation"
+      "source": "A:decomp_TryExpand_Reset"
     },
     "12": {
       "name": "PATH",
       "type": "AStarPathFinder::NODE *",
-      "source": "annotation"
+      "source": "A:decomp_TryExpand_Reset"
     },
     "16": {
       "name": "Stack",
       "type": "AStarPathFinder::STACK *",
-      "source": "annotation"
+      "source": "A:decomp_TryExpand"
     },
     "20": {
       "name": "m_TestTimer",
       "type": "int",
-      "source": "annotation"
+      "source": "A:decomp_TryExpand"
     }
   },
   "nested_types": {
-    "NODE": {"kind": "struct", "binary_size": 12},
+    "NODE": {
+      "kind": "struct",
+      "binary_size": 64,
+      "known_members": {
+        "0":  {"name": "f", "type": "float", "source": "A:decomp_TryExpand:*v14=v15+v19"},
+        "4":  {"name": "h", "type": "float", "source": "A:decomp_TryExpand:v14[1]=v15"},
+        "8":  {"name": "g", "type": "float", "source": "A:decomp_TryExpand:v14[2]=v19"},
+        "12": {"name": "x", "type": "int", "source": "A:decomp_TryExpand:*((_DWORD*)v14+3)=nVal2"},
+        "16": {"name": "y", "type": "int", "source": "A:decomp_TryExpand:*((_DWORD*)v14+4)=nVal3"},
+        "20": {"name": "key", "type": "int", "source": "A:decomp_TryExpand:*((_DWORD*)v14+5)=x+y*512"},
+        "24": {"name": "parent", "type": "AStarPathFinder::NODE *", "source": "A:decomp_TryExpand:*((_DWORD*)v14+6)=nVal"},
+        "28": {"name": "stack", "type": "int[8]", "source": "A:decomp_TryExpand:nVal+28_loop_to_8"}
+      }
+    },
     "STACK": {"kind": "struct", "binary_size": 4}
   },
   "methods": {

@@ -1396,6 +1396,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 for _dm in _nt_members:
                     _t = _dm.get('type', 'int')
                     _n = _dm.get('name', '')
+                    _arr = re.search(r'(\[.*\])$', _t)
+                    if _arr:
+                        _t = _t[:_arr.start()].strip()
+                        _n = _n + _arr.group(1)
                     lines.append("        %s %s;" % (_t, _n))
                 lines.append("    };")
             else:
