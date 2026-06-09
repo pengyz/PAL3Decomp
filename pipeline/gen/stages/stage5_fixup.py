@@ -323,6 +323,16 @@ def run(code, ctx):
     code = re.sub(r'::\?(\w+)@[A-Za-z0-9_@]+(?=\()', r'::\1', code)
     code = re.sub(r'->\?(\w+)@[A-Za-z0-9_@]+(?=\()', r'->\1', code)
 
+    # Replace compiler-generated _scalar_dtor calls with equivalent expressions.
+    # _scalar_dtor(this, 1) = delete + destructor = delete this
+    # _scalar_dtor(this, 0) = destructor only = ~ClassName(this) -- handled by dtor body
+    # _scalar_dtor may have address suffix (_scalar_dtor_XXXX)
+    code = re.sub(r'(\w+)\s*->\s*_scalar_dtor\w*\s*\(\s*(\w+)\s*,\s*1\s*\)', r'delete \1', code)
+    code = re.sub(r'(\w+)\s*->\s*_scalar_dtor\w*\s*\(\s*(\w+)\s*,\s*0\s*\)', r'', code)
+    # also handle single-param form: _scalar_dtor(char deleting)
+    code = re.sub(r'(\w+)\s*->\s*_scalar_dtor\w*\s*\(\s*1\s*\)', r'delete \1', code)
+    code = re.sub(r'(\w+)\s*->\s*_scalar_dtor\w*\s*\(\s*0\s*\)', r'', code)
+
     # Text-level substitutions (type aliases, suffixes, thunk classes)
     code = _apply_text_substitutions(code, ctx)
 

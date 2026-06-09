@@ -22,6 +22,32 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+# Module-level cache for _scalar_dtor detection (populated lazily)
+_scalar_dtor_classes = None
+
+def _get_scalar_dtor_classes():
+    """Detect classes with _scalar_dtor by scanning decomp JSONs."""
+    global _scalar_dtor_classes
+    if _scalar_dtor_classes is not None:
+        return _scalar_dtor_classes
+    _scalar_dtor_classes = set()
+    decomp_dir = PROJECT_ROOT / "asm" / "pal3" / "decomp"
+    if not decomp_dir.exists():
+        return _scalar_dtor_classes
+    for f in sorted(decomp_dir.glob("*.json")):
+        try:
+            d = json.load(open(f, encoding='utf-8'))
+        except:
+            continue
+        name = d.get('name', '')
+        if '::' not in name:
+            continue
+        cls = name.split('::')[0]
+        method = name.split('::', 1)[1].split('(')[0]
+        if '_scalar_dtor' in method or method == '_sdtor':
+            _scalar_dtor_classes.add(cls)
+    return _scalar_dtor_classes
+
 PIPELINE_ROOT = Path(__file__).parent.parent.parent  # pipeline/
 PROJECT_ROOT = PIPELINE_ROOT.parent
 ANNOTATIONS_DIR = PROJECT_ROOT / "data" / "annotations"
@@ -430,6 +456,9 @@ def collect_methods():
         if cls.startswith('_misattrib_'):
             cls = cls[len('_misattrib_'):]
         if should_skip_class(cls):
+            continue
+        # Skip compiler-generated _scalar_dtor functions (handled by virtual ~ClassName())
+        if '_scalar_dtor' in method or method == '_sdtor':
             continue
         if ' ' in method or '`' in method:
             continue
@@ -1136,6 +1165,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             lines.append("")
     except Exception as e:
         import traceback; traceback.print_exc()
+
+    # Auto-generate virtual destructor for classes that had _scalar_dtor
+    # filtered out (compiler generates it automatically from the declaration).
+    # Scan decomp JSONs to detect _scalar_dtor (same logic as data.py)
+    if cls_name in _get_scalar_dtor_classes():
+        lines.append("    virtual ~%s() {}" % cls_name)
+        lines.append("")
 
     # Methods (deduplicate by name+params to avoid C2535)
     # Pre-compute opaque type info (needed before method loop to suppress ctor decl)

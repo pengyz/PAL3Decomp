@@ -175,6 +175,13 @@ def collect_functions(decomp_dir=None):
             if cls in skip_classes:
                 continue
 
+            # Skip compiler-generated _scalar_dtor functions.
+            # These are vtable wrappers around virtual destructors; the compiler
+            # generates them automatically from 'virtual ~ClassName()' declarations.
+            if '_scalar_dtor' in method or method == '_sdtor':
+                store.scalar_dtor_classes.add(cls)
+                continue
+
             # Strip _misattrib_ prefix: put function back under the original class
             # with a comment marking it as misattributed (attribution unconfirmed)
             if cls.startswith('_misattrib_'):

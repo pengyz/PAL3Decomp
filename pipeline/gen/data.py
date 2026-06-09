@@ -39,6 +39,7 @@ class DataStore:
         self.exe_data = b''         # raw exe for .rdata string lookup
         self.skip_classes = set()   # classes to not generate
         self.global_addrs = {}      # name -> base_address (from ida_structs.json _globals)
+        self.scalar_dtor_classes = set()  # classes that had _scalar_dtor filtered
 
     def load(self):
         """Load all resources from disk. Call once at startup."""
@@ -193,9 +194,21 @@ class DataStore:
         self.thunk_classes.add('j_std')
         self.thunk_classes.add('j_j_codecvt_base')
 
-        # 5. Free function sigs + static methods from decomp JSONs
+        # 5. Free function sigs + static methods + scalar_dtor detection from decomp JSONs
         _decomp_dir = self.project_root / "asm" / "pal3" / "decomp"
         if _decomp_dir.exists():
+            # Pre-scan for _scalar_dtor classes (needed before header generation)
+            for _df in sorted(_decomp_dir.glob("*.json")):
+                try:
+                    _dd = json.load(open(_df, encoding='utf-8'))
+                except:
+                    continue
+                _name = _dd.get('name', '')
+                if '::' in _name:
+                    _cls = _name.split('::')[0]
+                    _method = _name.split('::', 1)[1].split('(')[0]
+                    if '_scalar_dtor' in _method or _method == '_sdtor':
+                        self.scalar_dtor_classes.add(_cls)
             import re as _re2
             _IDA_MACROS = {'Func', 'JUMPOUT', 'NAN', 'LOBYTE', 'HIBYTE',
                            'LOWORD', 'HIWORD', 'LODWORD', 'HIDWORD'}
