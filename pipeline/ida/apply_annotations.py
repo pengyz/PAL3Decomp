@@ -1059,6 +1059,14 @@ def apply_annotations():
         if not _ida_funcs.get_func(addr):
             if _ida_funcs.add_func(addr):
                 created += 1
+            else:
+                # add_func without arg failed — try with explicit end (next
+                # function boundary). This handles functions without standard
+                # prologues (e.g. AStarPathFinder::NODE methods at 0x401500).
+                _next_func = _ida_funcs.get_next_func(addr)
+                if _next_func:
+                    if _ida_funcs.add_func(addr, _next_func.start_ea):
+                        created += 1
         if name:
             # Skip functions outside PAL3.exe code range (gbengine imports etc.)
             if addr < 0x00401000 or addr > 0x005695D0:

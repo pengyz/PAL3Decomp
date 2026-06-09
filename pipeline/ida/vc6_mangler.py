@@ -52,20 +52,28 @@ def strip_param_name(p):
     return p.strip()
 
 
+def _mangle_class_chain(cls_name):
+    """Convert 'AStarPathFinder::NODE' to 'NODE@AStarPathFinder' (MSVC format)."""
+    parts = cls_name.split('::')
+    return '@'.join(reversed(parts))
+
+
 def mangle(cls_name, method_name, sig):
     """Compute VC6 mangled name for a class method.
     
     Args:
-        cls_name: Class name (e.g. 'UINote')
-        method_name: Method name (e.g. 'Create')
-        sig: Signature string (e.g. 'void *__thiscall(UINote *this, int id, ...)')
+        cls_name: Class name — may include :: for nested (e.g. 'AStarPathFinder::NODE')
+        method_name: Method name (e.g. 'FindInOpen')
+        sig: Signature string (e.g. 'int __thiscall(int nTileIdx)')
     
     Returns:
-        Mangled name string (e.g. '?Create@UINote@@QAEPAXHHHHPAD@Z')
+        Mangled name string (e.g. '?FindInOpen@NODE@AStarPathFinder@@QAEHH@Z')
     """
+    cls_chain = _mangle_class_chain(cls_name)
+    
     paren = sig.find('(') if sig else -1
     if paren == -1:
-        return '?' + method_name + '@' + cls_name + '@@QAEXXZ'
+        return '?' + method_name + '@' + cls_chain + '@@QAEXXZ'
     
     prefix = sig[:paren].strip()
     pstr = sig[paren + 1:sig.rfind(')')] if sig.rfind(')') > paren else ''
@@ -89,7 +97,7 @@ def mangle(cls_name, method_name, sig):
             else: cur += ch
         if cur.strip(): params.append(cur.strip())
     
-    r = '?' + method_name + '@' + cls_name + '@@'
+    r = '?' + method_name + '@' + cls_chain + '@@'
     r += 'Q' + _CC.get(cc, 'A') + 'E'
     r += encode_type(ret)
     for p in params:

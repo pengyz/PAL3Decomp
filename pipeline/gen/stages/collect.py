@@ -168,8 +168,9 @@ def collect_functions(decomp_dir=None):
             if cls and ('$' in cls or '<' in cls or not (cls[0].isalpha() or cls[0] == '_')):
                 cls = None
         elif '::' in name:
-            cls = name.split('::')[0]
-            method = name.split('::', 1)[1].split('(')[0]
+            parts = name.rsplit('::', 1)
+            cls = parts[0]
+            method = parts[1].split('(')[0] if '(' in parts[1] else parts[1]
 
         if cls and method:
             if cls in skip_classes:
