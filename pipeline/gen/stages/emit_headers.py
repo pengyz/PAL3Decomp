@@ -256,10 +256,12 @@ SKIP_PREFIXES = (
 
 
 def should_skip_class(name):
-    """Check if a class name should be skipped (system/library type)."""
+    """Check if a class name should be skipped (system/library type).
+    
+    Note: :: names are NOT skipped here — they are nested types handled
+    by the scope tree and filtered in the main generation loop.
+    """
     if not name or len(name) <= 1:
-        return True
-    if '::' in name:  # nested types — emitted inside parent struct
         return True
     if name in SKIP_CLASSES:
         return True
@@ -1640,6 +1642,9 @@ def main():
 
     for cls_name in sorted(all_classes):
         if should_skip_class(cls_name):
+            continue
+        # :: names are nested types — emitted inside parent via scope tree
+        if '::' in cls_name:
             continue
         # Generate template specialization headers for concrete template instantiations
         if cls_name in _template_concrete:
