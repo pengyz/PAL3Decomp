@@ -221,7 +221,7 @@
     },
     "0x00402570": {
       "name": "GRPinput::InitKeyMappings",
-      "signature": "int __thiscall GRPinput::InitKeyMappings(GRPinput *this)"
+      "signature": "int __thiscall GRPinput::InitKeyMappings()"
     },
     "0x00402A90": {
       "name": "GRPinput::SetMouseAbs",
@@ -275,7 +275,7 @@
     },
     "0x00403000": {
       "name": "GRPinput::PollInputState",
-      "signature": "_BYTE *__thiscall GRPinput::PollInputState(GRPinput *this, unsigned int key)"
+      "signature": "_BYTE *__thiscall GRPinput::PollInputState(unsigned int key)"
     },
     "0x00403150": {
       "name": "GRPinput::GetMouseFreePos",
@@ -346,7 +346,7 @@
     },
     "0x00404150": {
       "name": "GRPinput::DecideKeyStatus",
-      "signature": "unsigned int __thiscall(gbRay *thisTime, unsigned int cKey)"
+      "signature": "unsigned int __thiscall(Time, unsigned int cKey)"
     },
     "0x004042D0": {
       "name": "GRPinput::IsAnyKeyPressed",
@@ -365,7 +365,7 @@
     },
     "0x004021E0": {
       "name": "GRPinput::HandleDeviceInput",
-      "signature": "int __thiscall GRPinput::HandleDeviceInput(GRPinput *this, int nMouse, int nKeyboard, int nVal3)"
+      "signature": "int __thiscall GRPinput::HandleDeviceInput(int nMouse, int nKeyboard, int nVal3)"
     },
     "0x004022B0": {
       "name": "GRPinput::SetMode",
@@ -381,7 +381,7 @@
     },
     "0x00402360": {
       "name": "GRPinput::_thunk_vtbl8",
-      "signature": "int __thiscall GRPinput::_thunk_vtbl8(GRPinput *this)"
+      "signature": "int __thiscall GRPinput::_thunk_vtbl8()"
     },
     "0x00402220": {
       "name": "GRPinput::Reset",
@@ -393,7 +393,7 @@
     },
     "0x00402290": {
       "name": "GRPinput::SetCursorPos",
-      "signature": "BOOL __thiscall GRPinput::SetCursorPos(GRPinput *this, int X, int Y)"
+      "signature": "BOOL __thiscall GRPinput::SetCursorPos(int X, int Y)"
     },
     "0x00402640": {
       "name": "GRPinput::BuildKeyMap",
@@ -401,7 +401,7 @@
     },
     "0x0046F480": {
       "name": "GRPinput::ProcessMouseInput",
-      "signature": "void __thiscall GRPinput::ProcessMouseInput(GRPinput *this, float fVal)"
+      "signature": "void __thiscall GRPinput::ProcessMouseInput(float fVal)"
     },
     "0x004031D0": {
       "name": "GRPinput::GetState",

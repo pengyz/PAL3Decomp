@@ -587,7 +587,7 @@
     },
     "0x0050A180": {
       "name": "CCBStageRole::Grab",
-      "signature": "bool(CCBStageRole *this, int dwStageTaskID, bool bNormal)",
+      "signature": "bool(int dwStageTaskID, bool bNormal))",
       "source": "pdb_ret"
     },
     "0x0050A1A0": {
@@ -775,7 +775,7 @@
     },
     "0x00521F30": {
       "name": "CCBStageRole::DispatchUpdateAll",
-      "signature": "int __thiscall CCBStageRole::DispatchUpdateAll(CCBStageRole *this, unsigned __int8 nFlag)"
+      "signature": "int __thiscall CCBStageRole::DispatchUpdateAll(unsigned __int8 nFlag)"
     },
     "0x00521F70": {
       "name": "CCBStageRole::DispatchUpdate_1",
@@ -799,31 +799,31 @@
     },
     "0x004E2C50": {
       "name": "CCBStageRole::InitUIByName",
-      "signature": "void __thiscall CCBStageRole::InitUIByName(CCBStageRole *this)"
+      "signature": "void __thiscall CCBStageRole::InitUIByName()"
     },
     "0x004FFA90": {
       "name": "CCBStageRole::TaskExecAttack",
-      "signature": "int __thiscall CCBStageRole::TaskExecAttack(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskExecAttack(int nVal)"
     },
     "0x004FFCB0": {
       "name": "CCBStageRole::TaskExecCommand",
-      "signature": "int __thiscall CCBStageRole::TaskExecCommand(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskExecCommand(int nVal)"
     },
     "0x004FFF60": {
       "name": "CCBStageRole::TaskExecMagicEffect",
-      "signature": "int __thiscall CCBStageRole::TaskExecMagicEffect(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskExecMagicEffect(int nVal)"
     },
     "0x00500220": {
       "name": "CCBStageRole::TaskExecSkill",
-      "signature": "int __thiscall CCBStageRole::TaskExecSkill(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskExecSkill(int nVal)"
     },
     "0x00500550": {
       "name": "CCBStageRole::TaskExecItem",
-      "signature": "int __thiscall CCBStageRole::TaskExecItem(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskExecItem(int nVal)"
     },
     "0x00500D50": {
       "name": "CCBStageRole::TaskResolveAction",
-      "signature": "int __thiscall CCBStageRole::TaskResolveAction(CCBStageRole *this, int nState)"
+      "signature": "int __thiscall CCBStageRole::TaskResolveAction(int nState)"
     },
     "0x0050B430": {
       "name": "CCBStageRole::FindFreeSlot",
@@ -839,7 +839,7 @@
     },
     "0x0050F200": {
       "name": "CCBStageRole::OnMagicHit",
-      "signature": "int __thiscall CCBStageRole::OnMagicHit(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::OnMagicHit(int nVal)"
     },
     "0x0050FA20": {
       "name": "CCBStageRole::ClearTaskIfMatch",
@@ -851,39 +851,39 @@
     },
     "0x0044CFF0": {
       "name": "CCBStageRole::RandomizePositions",
-      "signature": "int __thiscall CCBStageRole::RandomizePositions(CCBStageRole *this)"
+      "signature": "int __thiscall CCBStageRole::RandomizePositions()"
     },
     "0x004FFED0": {
       "name": "CCBStageRole::TaskResetToIdle",
-      "signature": "int __thiscall CCBStageRole::TaskResetToIdle(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskResetToIdle(int nVal)"
     },
     "0x005004B0": {
       "name": "CCBStageRole::TaskWaitIdle",
-      "signature": "int __thiscall CCBStageRole::TaskWaitIdle(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskWaitIdle(int nVal)"
     },
     "0x005007A0": {
       "name": "CCBStageRole::TaskForceEnd",
-      "signature": "int __thiscall CCBStageRole::TaskForceEnd(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskForceEnd(int nVal)"
     },
     "0x00500C20": {
       "name": "CCBStageRole::TaskExecAction",
-      "signature": "int __thiscall CCBStageRole::TaskExecAction(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskExecAction(int nVal)"
     },
     "0x005011B0": {
       "name": "CCBStageRole::TaskMoveToStart",
-      "signature": "int __thiscall CCBStageRole::TaskMoveToStart(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskMoveToStart(int nVal)"
     },
     "0x00501330": {
       "name": "CCBStageRole::TaskBlendToReady",
-      "signature": "int __thiscall CCBStageRole::TaskBlendToReady(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskBlendToReady(int nVal)"
     },
     "0x00501410": {
       "name": "CCBStageRole::TaskBlendToEnd",
-      "signature": "int __thiscall CCBStageRole::TaskBlendToEnd(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskBlendToEnd(int nVal)"
     },
     "0x005014E0": {
       "name": "CCBStageRole::TaskEnterGuard",
-      "signature": "int __thiscall CCBStageRole::TaskEnterGuard(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskEnterGuard(int nVal)"
     },
     "0x005015C0": {
       "name": "CCBStageRole::SetupCombatAction",
@@ -891,27 +891,27 @@
     },
     "0x00501CF0": {
       "name": "CCBStageRole::TaskReturnToIdle",
-      "signature": "int __thiscall CCBStageRole::TaskReturnToIdle(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskReturnToIdle(int nVal)"
     },
     "0x00501E60": {
       "name": "CCBStageRole::TaskShowLevelUp",
-      "signature": "int __thiscall CCBStageRole::TaskShowLevelUp(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskShowLevelUp(int nVal)"
     },
     "0x00501F30": {
       "name": "CCBStageRole::TaskShowSkillLearned",
-      "signature": "int __thiscall CCBStageRole::TaskShowSkillLearned(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::TaskShowSkillLearned(int nVal)"
     },
     "0x0050EDA0": {
       "name": "CCBStageRole::CheckPushState",
-      "signature": "int __thiscall CCBStageRole::CheckPushState(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::CheckPushState(int nVal)"
     },
     "0x0050EE70": {
       "name": "CCBStageRole::OnPhysicalHit",
-      "signature": "int __thiscall CCBStageRole::OnPhysicalHit(CCBStageRole *this, int nVal)"
+      "signature": "int __thiscall CCBStageRole::OnPhysicalHit(int nVal)"
     },
     "0x00518E10": {
       "name": "CCBStageRole::SetActionVisible",
-      "signature": "int __thiscall CCBStageRole::SetActionVisible(CCBStageRole *this, char nActIndex)"
+      "signature": "int __thiscall CCBStageRole::SetActionVisible(char nActIndex)"
     },
     "0x00521A80": {
       "name": "CCBStageRole::CheckActionValid",
@@ -920,7 +920,7 @@
     },
     "0x00522030": {
       "name": "CCBStageRole::CCBStageRole",
-      "signature": "CCBStageRole *__thiscall CCBStageRole::CCBStageRole(CCBStageRole *this)"
+      "signature": "CCBStageRole *__thiscall CCBStageRole::CCBStageRole()"
     },
     "0x005220E0": {
       "name": "CCBStageRole::ClearRoleState",

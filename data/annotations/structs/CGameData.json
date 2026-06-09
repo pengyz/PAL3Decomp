@@ -309,8 +309,8 @@
     },
     "2220": {
       "name": "_field_8AC",
-      "type": "int",
-      "source": "binary:gap_r2"
+      "type": "void *",
+      "source": "binary:gap_r2;batch_fix:int_or_float_to_v*_LEA"
     },
     "3308": {
       "name": "m_ItemSlotB",
@@ -634,7 +634,7 @@
     },
     "0x0044F5B0": {
       "name": "CGameData::ProcessDialog",
-      "signature": "int __thiscall CGameData::ProcessDialog(CGameData *this)",
+      "signature": "int __thiscall CGameData::ProcessDialog()",
       "ordinal": 1
     },
     "0x0044F8A0": {
@@ -643,7 +643,7 @@
     },
     "0x0044F430": {
       "name": "CGameData::Cleanup",
-      "signature": "void __thiscall CGameData::Cleanup(CGameData *this)",
+      "signature": "void __thiscall CGameData::Cleanup()",
       "ordinal": 3
     },
     "0x0044F610": {
@@ -662,7 +662,7 @@
     },
     "0x0044F030": {
       "name": "CGameData::_scalar_dtor",
-      "signature": "void __thiscall CGameData::_scalar_dtor(CGameData *this)",
+      "signature": "void __thiscall CGameData::_scalar_dtor()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5

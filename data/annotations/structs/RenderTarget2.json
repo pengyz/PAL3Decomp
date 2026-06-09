@@ -345,7 +345,7 @@
     },
     "0x004C15B0": {
       "name": "RenderTarget2::CreateEffAudio",
-      "signature": "CEffAudio **__thiscall RenderTarget2::CreateEffAudio(RenderTarget2 *this)",
+      "signature": "CEffAudio **__thiscall RenderTarget2::CreateEffAudio()",
       "ordinal": 46
     },
     "0x004C2050": {
@@ -354,7 +354,7 @@
     },
     "0x004C2090": {
       "name": "RenderTarget2::CreateEffBink",
-      "signature": "CEffBink **__thiscall RenderTarget2::CreateEffBink(RenderTarget2 *this)",
+      "signature": "CEffBink **__thiscall RenderTarget2::CreateEffBink()",
       "ordinal": 67
     },
     "0x004C27D0": {
@@ -363,12 +363,12 @@
     },
     "0x004C2820": {
       "name": "RenderTarget2::CreateDeactivated",
-      "signature": "void **__thiscall RenderTarget2::CreateDeactivated(RenderTarget2 *this)",
+      "signature": "void **__thiscall RenderTarget2::CreateDeactivated()",
       "ordinal": 88
     },
     "0x004C2BA0": {
       "name": "RenderTarget2::RenderFromParams",
-      "signature": "void __thiscall RenderTarget2::RenderFromParams(RenderTarget2 *this, float *pfVal)",
+      "signature": "void __thiscall RenderTarget2::RenderFromParams(float *pfVal)",
       "ordinal": 90
     },
     "0x004C3450": {
@@ -377,7 +377,7 @@
     },
     "0x004C3490": {
       "name": "RenderTarget2::CreateEffCallBack",
-      "signature": "CEffCallBack **__thiscall RenderTarget2::CreateEffCallBack(RenderTarget2 *this)",
+      "signature": "CEffCallBack **__thiscall RenderTarget2::CreateEffCallBack()",
       "ordinal": 10
     },
     "0x004C3D90": {
@@ -388,15 +388,15 @@
     },
     "0x004CEEC0": {
       "name": "RenderTarget2::AddCallbackEffect",
-      "signature": "int __thiscall RenderTarget2::AddCallbackEffect(RenderTarget2 *this, RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
+      "signature": "int __thiscall RenderTarget2::AddCallbackEffect(RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
     },
     "0x004CF340": {
       "name": "RenderTarget2::AddGenericEffect",
-      "signature": "int __thiscall RenderTarget2::AddGenericEffect(RenderTarget2 *this, RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
+      "signature": "int __thiscall RenderTarget2::AddGenericEffect(RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
     },
     "0x004CFA00": {
       "name": "RenderTarget2::AddBinkEffect",
-      "signature": "int __thiscall RenderTarget2::AddBinkEffect(RenderTarget2 *this, RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
+      "signature": "int __thiscall RenderTarget2::AddBinkEffect(RenderTarget2 *pTarget, int nVal, RenderTarget2 *pParam)"
     },
     "0x004C0560": {
       "name": "RenderTarget2::ExecutePasses",
@@ -404,7 +404,7 @@
     },
     "0x004C0600": {
       "name": "RenderTarget2::StubReturn0",
-      "signature": "char __thiscall RenderTarget2::StubReturn0(RenderTarget2 *this, int nVal)",
+      "signature": "char __thiscall RenderTarget2::StubReturn0(int nVal)",
       "ordinal": 22
     },
     "0x004C0920": {
@@ -421,7 +421,7 @@
     },
     "0x004C0C10": {
       "name": "RenderTarget2::SceneRoleCallback",
-      "signature": "int __thiscall RenderTarget2::SceneRoleCallback(RenderTarget2 *this, int nParam)"
+      "signature": "int __thiscall RenderTarget2::SceneRoleCallback(int nParam)"
     },
     "0x004C13B0": {
       "name": "RenderTarget2::RenderScene",
@@ -434,25 +434,25 @@
     },
     "0x004C1660": {
       "name": "RenderTarget2::DestroyEffBase",
-      "signature": "int __thiscall RenderTarget2::DestroyEffBase(RenderTarget2 *this)"
+      "signature": "int __thiscall RenderTarget2::DestroyEffBase()"
     },
     "0x004C1700": {
       "name": "RenderTarget2::LoadResourcesByIndex",
-      "signature": "void __thiscall RenderTarget2::LoadResourcesByIndex(RenderTarget2 *this, float *pfVal)",
+      "signature": "void __thiscall RenderTarget2::LoadResourcesByIndex(float *pfVal)",
       "ordinal": 48
     },
     "0x004C18D0": {
       "name": "RenderTarget2::CreateSoundTarget",
-      "signature": "void __thiscall RenderTarget2::CreateSoundTarget(RenderTarget2 *this, int *p_DWORD)",
+      "signature": "void __thiscall RenderTarget2::CreateSoundTarget(int *p_DWORD)",
       "ordinal": 51
     },
     "0x004C1B00": {
       "name": "RenderTarget2::ProcessSoundPass",
-      "signature": "int __thiscall RenderTarget2::ProcessSoundPass(RenderTarget2 *this, int nVal)"
+      "signature": "int __thiscall RenderTarget2::ProcessSoundPass(int nVal)"
     },
     "0x004C1DD0": {
       "name": "RenderTarget2::GetEffAudioTemplate",
-      "signature": "int *__thiscall RenderTarget2::GetEffAudioTemplate(RenderTarget2 *this, int nType)",
+      "signature": "int *__thiscall RenderTarget2::GetEffAudioTemplate(int nType)",
       "ordinal": 53
     },
     "0x004C1E90": {
@@ -461,26 +461,26 @@
     },
     "0x004C1F70": {
       "name": "RenderTarget2::DestroyEffAudio",
-      "signature": "RenderTarget2 *__thiscall RenderTarget2::DestroyEffAudio(RenderTarget2 *this, void *Block, char pData)",
+      "signature": "RenderTarget2 *__thiscall RenderTarget2::DestroyEffAudio(void *Block, char pData)",
       "ordinal": 56
     },
     "0x004C20D0": {
       "name": "RenderTarget2::DestroyEffBink",
-      "signature": "int __thiscall RenderTarget2::DestroyEffBink(RenderTarget2 *this)"
+      "signature": "int __thiscall RenderTarget2::DestroyEffBink()"
     },
     "0x004C2170": {
       "name": "RenderTarget2::AllocTargets",
-      "signature": "char __thiscall RenderTarget2::AllocTargets(RenderTarget2 *this, int nVal)",
+      "signature": "char __thiscall RenderTarget2::AllocTargets(int nVal)",
       "ordinal": 40
     },
     "0x004C2280": {
       "name": "RenderTarget2::CreateVideoTarget",
-      "signature": "void __thiscall RenderTarget2::CreateVideoTarget(RenderTarget2 *this, int *p_DWORD)",
+      "signature": "void __thiscall RenderTarget2::CreateVideoTarget(int *p_DWORD)",
       "ordinal": 72
     },
     "0x004C24B0": {
       "name": "RenderTarget2::ProcessVideoPass",
-      "signature": "int __thiscall RenderTarget2::ProcessVideoPass(RenderTarget2 *this, int nVal)"
+      "signature": "int __thiscall RenderTarget2::ProcessVideoPass(int nVal)"
     },
     "0x004C25C0": {
       "name": "RenderTarget2::GetTargetAddress",
@@ -494,7 +494,7 @@
     },
     "0x004C2850": {
       "name": "RenderTarget2::AdjustThisCall",
-      "signature": "int __thiscall RenderTarget2::AdjustThisCall(char *this, int (__thiscall *a2)(char *, int), int a3, int a4)",
+      "signature": "int __thiscall RenderTarget2::AdjustThisCall(int (__thiscall *a2)(char *, int), int a3, int a4)",
       "ordinal": 1
     },
     "0x004C2890": {
@@ -503,7 +503,7 @@
     },
     "0x004C2930": {
       "name": "RenderTarget2::InitTargetPos",
-      "signature": "int __thiscall RenderTarget2::InitTargetPos(RenderTarget2 *this, float *pfVal, float fVal, float fVal2, float fVal3)",
+      "signature": "int __thiscall RenderTarget2::InitTargetPos(float *pfVal, float fVal, float fVal2, float fVal3)",
       "ordinal": 83
     },
     "0x004C29A0": {
@@ -513,12 +513,12 @@
     },
     "0x004C2D00": {
       "name": "RenderTarget2::CreateEffectTarget",
-      "signature": "void __thiscall RenderTarget2::CreateEffectTarget(RenderTarget2 *this, int *p_DWORD)",
+      "signature": "void __thiscall RenderTarget2::CreateEffectTarget(int *p_DWORD)",
       "ordinal": 93
     },
     "0x004C3160": {
       "name": "RenderTarget2::GetCallbackTable",
-      "signature": "int *__thiscall RenderTarget2::GetCallbackTable(RenderTarget2 *this, int nVal)",
+      "signature": "int *__thiscall RenderTarget2::GetCallbackTable(int nVal)",
       "ordinal": 95
     },
     "0x004C3260": {
@@ -527,28 +527,28 @@
     },
     "0x004C3340": {
       "name": "RenderTarget2::_scalar_dtor_Bink",
-      "signature": "RenderTarget2 *__thiscall RenderTarget2::_scalar_dtor_Bink(RenderTarget2 *this, void *Block, char pData)",
+      "signature": "RenderTarget2 *__thiscall RenderTarget2::_scalar_dtor_Bink(void *Block, char pData)",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 98
     },
     "0x004C34D0": {
       "name": "RenderTarget2::DestroyEffCallBack",
-      "signature": "int __thiscall RenderTarget2::DestroyEffCallBack(RenderTarget2 *this)"
+      "signature": "int __thiscall RenderTarget2::DestroyEffCallBack()"
     },
     "0x004C3570": {
       "name": "RenderTarget2::UpdatePost",
-      "signature": "void __thiscall RenderTarget2::UpdatePost(RenderTarget2 *this, float fVal)",
+      "signature": "void __thiscall RenderTarget2::UpdatePost(float fVal)",
       "ordinal": 8
     },
     "0x004C3770": {
       "name": "RenderTarget2::CreateCameraTarget",
-      "signature": "void __thiscall RenderTarget2::CreateCameraTarget(RenderTarget2 *this, int *p_DWORD)",
+      "signature": "void __thiscall RenderTarget2::CreateCameraTarget(int *p_DWORD)",
       "ordinal": 15
     },
     "0x004C39A0": {
       "name": "RenderTarget2::ProcessCameraPass",
-      "signature": "int __thiscall RenderTarget2::ProcessCameraPass(RenderTarget2 *this, int nVal)"
+      "signature": "int __thiscall RenderTarget2::ProcessCameraPass(int nVal)"
     },
     "0x004C3A90": {
       "name": "RenderTarget2::GetTargetByType",
@@ -570,7 +570,7 @@
     },
     "0x004D05E0": {
       "name": "RenderTarget2::CameraInterpCallback",
-      "signature": "int __thiscall RenderTarget2::CameraInterpCallback(RenderTarget2 *this, int nVal)"
+      "signature": "int __thiscall RenderTarget2::CameraInterpCallback(int nVal)"
     },
     "0x004C1550": {
       "name": "RenderTarget2::vfunc_0",

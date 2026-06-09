@@ -45,8 +45,8 @@
     },
     "180": {
       "name": "_field_0B4",
-      "type": "int",
-      "source": "decomp ref C2039"
+      "type": "void *",
+      "source": "decomp ref C2039;batch_fix:int_or_float_to_v*_LEA"
     },
     "360": {
       "name": "m_IsMsg",
@@ -357,26 +357,26 @@
     },
     "0x0041F6F0": {
       "name": "SystemUI::Reset",
-      "signature": "void __thiscall SystemUI::Reset(SystemUI *this)"
+      "signature": "void __thiscall SystemUI::Reset()"
     },
     "0x004A8150": {
       "name": "SystemUI::ShowPage",
-      "signature": "int __thiscall SystemUI::ShowPage(SystemUI *this)",
+      "signature": "int __thiscall SystemUI::ShowPage()",
       "_misattrib_evidence": "max_offset=26968>class_size=1816"
     },
     "0x004ACDE0": {
       "name": "SystemUI::UpdateNoteScroll",
-      "signature": "int __thiscall SystemUI::UpdateNoteScroll(SystemUI *this)",
+      "signature": "int __thiscall SystemUI::UpdateNoteScroll()",
       "_misattrib_evidence": "max_offset=283700>class_size=200"
     },
     "0x004ACF90": {
       "name": "SystemUI::UpdateNoteScrollAlt",
-      "signature": "int __thiscall SystemUI::UpdateNoteScrollAlt(SystemUI *this)",
+      "signature": "int __thiscall SystemUI::UpdateNoteScrollAlt()",
       "_misattrib_evidence": "max_offset=283704>class_size=200"
     },
     "0x004AD140": {
       "name": "SystemUI::ProcessFrame",
-      "signature": "void __thiscall SystemUI::ProcessFrame(SystemUI *this)",
+      "signature": "void __thiscall SystemUI::ProcessFrame()",
       "ordinal": 1
     },
     "0x004ADC30": {
@@ -386,20 +386,20 @@
     },
     "0x00421A40": {
       "name": "SystemUI::GetNoteItemData",
-      "signature": "int __thiscall SystemUI::GetNoteItemData(SystemUI *this, int *item)"
+      "signature": "int __thiscall SystemUI::GetNoteItemData(int *item)"
     },
     "0x004A7C40": {
       "name": "SystemUI::LayoutWidgets",
-      "signature": "int __thiscall SystemUI::LayoutWidgets(SystemUI *this)",
+      "signature": "int __thiscall SystemUI::LayoutWidgets()",
       "_misattrib_evidence": "max_offset=177412>class_size=33228"
     },
     "0x004A8260": {
       "name": "SystemUI::CreateNoteEntry",
-      "signature": "char __thiscall SystemUI::CreateNoteEntry(SystemUI *this, int nVal, int nVal2, int nVal3, char pData, int nVal4, int nVal5, unsigned __int8 a8)"
+      "signature": "char __thiscall SystemUI::CreateNoteEntry(int nVal, int nVal2, int nVal3, char pData, int nVal4, int nVal5, unsigned __int8 a8)"
     },
     "0x004ACC10": {
       "name": "SystemUI::InitSlotEffects",
-      "signature": "int __thiscall SystemUI::InitSlotEffects(SystemUI *this, int nVal)",
+      "signature": "int __thiscall SystemUI::InitSlotEffects(int nVal)",
       "_misattrib_evidence": "max_offset=177420>class_size=200"
     },
     "0x0051F130": {
@@ -419,7 +419,7 @@
     },
     "0x0041F800": {
       "name": "SystemUI::Close",
-      "signature": "void __thiscall SystemUI::Close(SystemUI *this)"
+      "signature": "void __thiscall SystemUI::Close()"
     }
   },
   "vtables": [

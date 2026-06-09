@@ -217,7 +217,7 @@
     },
     "0x0047D440": {
       "name": "Object3D::GetScreenDegree",
-      "signature": "void(Object3D *this, gbVec3D scrVec, gbMatrixStack *pMatrixStack)"
+      "signature": "void(gbVec3D scrVec, gbMatrixStack *pMatrixStack))"
     },
     "0x0047D690": {
       "name": "Object3D::CaculateRelative",
@@ -233,7 +233,7 @@
     },
     "0x0047DB40": {
       "name": "Object3D::GetMouseRay",
-      "signature": "bool(Object3D *this, gbRay *retstr, tagPOINT *pPOINT)"
+      "signature": "bool(gbRay *retstr, tagPOINT *pPOINT))"
     },
     "0x0047DC60": {
       "name": "Object3D::CheckMouseLPressed",
@@ -272,7 +272,7 @@
     },
     "0x004B7F80": {
       "name": "Object3D::RenderTransformed",
-      "signature": "int __thiscall Object3D::RenderTransformed(Object3D *this, int nLOD)",
+      "signature": "int __thiscall Object3D::RenderTransformed(int nLOD)",
       "_misattrib_evidence": "max_offset=1056>class_size=152"
     },
     "0x0047FD90": {

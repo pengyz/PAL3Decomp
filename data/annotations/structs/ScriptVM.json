@@ -64,8 +64,8 @@
     },
     "224": {
       "name": "_todo_0E0",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "type": "void *",
+      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
     },
     "244": {
       "name": "_todo_0F4",
@@ -169,7 +169,7 @@
     },
     "0x00423880": {
       "name": "ScriptVM::ProcessFrame",
-      "signature": "void __thiscall ScriptVM::ProcessFrame(ScriptVM *this)"
+      "signature": "void __thiscall ScriptVM::ProcessFrame()"
     },
     "0x0042D4B0": {
       "name": "ScriptVM::SetRolePosition",

@@ -1122,7 +1122,7 @@
     },
     "0x0042BF90": {
       "name": "PalScriptMgr::ExecuteScriptByID",
-      "signature": "PalScriptMgr *__thiscall PalScriptMgr::ExecuteScriptByID(PalScriptMgr *this)"
+      "signature": "PalScriptMgr *__thiscall PalScriptMgr::ExecuteScriptByID()"
     },
     "0x0042BFE0": {
       "name": "PalScriptMgr::IsScriptReady",
@@ -1130,7 +1130,7 @@
     },
     "0x0042E6C0": {
       "name": "PalScriptMgr::CmdRoleMoveDirect",
-      "signature": "int __thiscall PalScriptMgr::CmdRoleMoveDirect(PalScriptMgr *this, unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdRoleMoveDirect(unsigned __int8 pData)"
     },
     "0x0042FCC0": {
       "name": "PalScriptMgr::PopScript",
@@ -1138,11 +1138,11 @@
     },
     "0x00420B40": {
       "name": "PalScriptMgr::CheckTileScript",
-      "signature": "void __thiscall PalScriptMgr::CheckTileScript(PalScriptMgr *this, RoleSystem *pRole, float fVal, char bExecute)"
+      "signature": "void __thiscall PalScriptMgr::CheckTileScript(RoleSystem *pRole, float fVal, char bExecute)"
     },
     "0x00429DB0": {
       "name": "PalScriptMgr::BuildCmdTransform",
-      "signature": "void __thiscall PalScriptMgr::BuildCmdTransform(PalScriptMgr *this, gbMatrix4 *pMatrix)"
+      "signature": "void __thiscall PalScriptMgr::BuildCmdTransform(gbMatrix4 *pMatrix)"
     },
     "0x0042B5B0": {
       "name": "PalScriptMgr::UpdateScriptRoles",
@@ -1155,23 +1155,23 @@
     },
     "0x0042C280": {
       "name": "PalScriptMgr::LoadSceneGeometry",
-      "signature": "struct gbVFileSystem *__thiscall PalScriptMgr::LoadSceneGeometry(PalScriptMgr *this, char bNoPol)"
+      "signature": "struct gbVFileSystem *__thiscall PalScriptMgr::LoadSceneGeometry(char bNoPol)"
     },
     "0x0042CF60": {
       "name": "PalScriptMgr::CmdPushCmd04",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd04(PalScriptMgr *this, int nVal, unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd04(int nVal, unsigned __int8 pData)"
     },
     "0x0042D130": {
       "name": "PalScriptMgr::CmdPushCmd05",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd05(PalScriptMgr *this, unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd05(unsigned __int8 pData)"
     },
     "0x0042D2F0": {
       "name": "PalScriptMgr::CmdPushCmd07",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd07(PalScriptMgr *this, unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd07(unsigned __int8 pData)"
     },
     "0x0042D830": {
       "name": "PalScriptMgr::CmdPushCmd10",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd10(PalScriptMgr *this, unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd10(unsigned __int8 pData)"
     },
     "0x0042F460": {
       "name": "PalScriptMgr::ExecuteFrame",
@@ -1179,71 +1179,71 @@
     },
     "0x0042FB40": {
       "name": "PalScriptMgr::SetBigMapState",
-      "signature": "char __thiscall PalScriptMgr::SetBigMapState(PalScriptMgr *this, char nState)"
+      "signature": "char __thiscall PalScriptMgr::SetBigMapState(char nState)"
     },
     "0x00450BC0": {
       "name": "PalScriptMgr::ShowTextBox",
-      "signature": "int __thiscall PalScriptMgr::ShowTextBox(PalScriptMgr *this, const char *pszText)"
+      "signature": "int __thiscall PalScriptMgr::ShowTextBox(const char *pszText)"
     },
     "0x00410920": {
       "name": "PalScriptMgr::LoadYlfScript",
-      "signature": "int *__thiscall PalScriptMgr::LoadYlfScript(PalScriptMgr *this)"
+      "signature": "int *__thiscall PalScriptMgr::LoadYlfScript()"
     },
     "0x0042AAE0": {
       "name": "PalScriptMgr::CheckTileCollision",
-      "signature": "BOOL __thiscall PalScriptMgr::CheckTileCollision(PalScriptMgr *this, int *pnVal, int nVal, struct gbVec3D *p)"
+      "signature": "BOOL __thiscall PalScriptMgr::CheckTileCollision(int *pnVal, int nVal, struct gbVec3D *p)"
     },
     "0x0042BEA0": {
       "name": "PalScriptMgr::OnAnimFinish",
-      "signature": "void __thiscall PalScriptMgr::OnAnimFinish(PalScriptMgr *this)"
+      "signature": "void __thiscall PalScriptMgr::OnAnimFinish()"
     },
     "0x0042C030": {
       "name": "PalScriptMgr::SetPauseState",
-      "signature": "void __thiscall PalScriptMgr::SetPauseState(PalScriptMgr *this, int bPause)"
+      "signature": "void __thiscall PalScriptMgr::SetPauseState(int bPause)"
     },
     "0x0042DF30": {
       "name": "PalScriptMgr::CmdPushCmd14",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd14(PalScriptMgr *this, int nVal, unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd14(int nVal, unsigned __int8 pData)"
     },
     "0x0042E100": {
       "name": "PalScriptMgr::CmdPushCmd15",
-      "signature": "int __thiscall PalScriptMgr::CmdPushCmd15(PalScriptMgr *this, unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdPushCmd15(unsigned __int8 pData)"
     },
     "0x0042E2C0": {
       "name": "PalScriptMgr::CmdCameraOrbitPos",
-      "signature": "char *__thiscall PalScriptMgr::CmdCameraOrbitPos(PalScriptMgr *this, int nVal, float fVal, float fVal2, unsigned __int8 pData)"
+      "signature": "char *__thiscall PalScriptMgr::CmdCameraOrbitPos(int nVal, float fVal, float fVal2, unsigned __int8 pData)"
     },
     "0x0042E4D0": {
       "name": "PalScriptMgr::CmdRoleMoveSmooth",
-      "signature": "int __thiscall PalScriptMgr::CmdRoleMoveSmooth(PalScriptMgr *this, int nVal, unsigned __int8 pData)"
+      "signature": "int __thiscall PalScriptMgr::CmdRoleMoveSmooth(int nVal, unsigned __int8 pData)"
     },
     "0x00429D80": {
       "name": "PalScriptMgr::InitControlBlock",
-      "signature": "int __thiscall PalScriptMgr::InitControlBlock(PalScriptMgr *this)"
+      "signature": "int __thiscall PalScriptMgr::InitControlBlock()"
     },
     "0x00429F90": {
       "name": "PalScriptMgr::BuildFullTransform",
-      "signature": "void __thiscall PalScriptMgr::BuildFullTransform(PalScriptMgr *this, gbMatrix4 *pMatrix, struct gbVec3D *pPos)"
+      "signature": "void __thiscall PalScriptMgr::BuildFullTransform(gbMatrix4 *pMatrix, struct gbVec3D *pPos)"
     },
     "0x0042AC80": {
       "name": "PalScriptMgr::CmdUpdateRolePath",
-      "signature": "int __thiscall PalScriptMgr::CmdUpdateRolePath(PalScriptMgr *this, float *pfVal, float *pfVal2)"
+      "signature": "int __thiscall PalScriptMgr::CmdUpdateRolePath(float *pfVal, float *pfVal2)"
     },
     "0x0042AFA0": {
       "name": "PalScriptMgr::SaveExecutionState",
-      "signature": "int __thiscall PalScriptMgr::SaveExecutionState(PalScriptMgr *this)"
+      "signature": "int __thiscall PalScriptMgr::SaveExecutionState()"
     },
     "0x0042B450": {
       "name": "PalScriptMgr::IsPosInBounds",
-      "signature": "BOOL __thiscall PalScriptMgr::IsPosInBounds(PalScriptMgr *this, float *pfPos)"
+      "signature": "BOOL __thiscall PalScriptMgr::IsPosInBounds(float *pfPos)"
     },
     "0x0042C3A0": {
       "name": "PalScriptMgr::IsInputBlocked",
-      "signature": "bool __thiscall PalScriptMgr::IsInputBlocked(PalScriptMgr *this)"
+      "signature": "bool __thiscall PalScriptMgr::IsInputBlocked()"
     },
     "0x00434CC0": {
       "name": "PalScriptMgr::IsWaitComplete",
-      "signature": "BOOL __thiscall PalScriptMgr::IsWaitComplete(PalScriptMgr *this)",
+      "signature": "BOOL __thiscall PalScriptMgr::IsWaitComplete()",
       "ordinal": 1
     },
     "0x00434D20": {
@@ -1253,7 +1253,7 @@
     },
     "0x00434D40": {
       "name": "PalScriptMgr::AccumulateTime",
-      "signature": "void __thiscall PalScriptMgr::AccumulateTime(PalScriptMgr *this, float fDelta)",
+      "signature": "void __thiscall PalScriptMgr::AccumulateTime(float fDelta)",
       "ordinal": 5
     },
     "0x00434C80": {

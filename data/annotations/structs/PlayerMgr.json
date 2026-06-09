@@ -136,7 +136,7 @@
     },
     "0x00462120": {
       "name": "PlayerMgr::SetSelectionFlags",
-      "signature": "int __thiscall PlayerMgr::SetSelectionFlags(PlayerMgr *this, int nFlags)",
+      "signature": "int __thiscall PlayerMgr::SetSelectionFlags(int nFlags)",
       "_misattrib_evidence": "max_offset=94380>class_size=2632"
     },
     "0x004623A0": {
@@ -145,11 +145,11 @@
     },
     "0x0045B7A0": {
       "name": "PlayerMgr::LoadState",
-      "signature": "unsigned __int8 __thiscall PlayerMgr::LoadState(PlayerMgr *this, const void *arg0)"
+      "signature": "unsigned __int8 __thiscall PlayerMgr::LoadState(const void *arg0)"
     },
     "0x00461C50": {
       "name": "PlayerMgr::InitMode",
-      "signature": "void __thiscall PlayerMgr::InitMode(PlayerMgr *this, int nVal)"
+      "signature": "void __thiscall PlayerMgr::InitMode(int nVal)"
     },
     "0x004620E0": {
       "name": "PlayerMgr::SendInputToRole",
@@ -158,27 +158,33 @@
     },
     "0x00469D90": {
       "name": "PlayerMgr::SetupPlayerDisplay",
-      "signature": "void __thiscall PlayerMgr::SetupPlayerDisplay(PlayerMgr *this, int nVal)"
+      "signature": "void __thiscall PlayerMgr::SetupPlayerDisplay(int nVal)"
     },
     "0x00471220": {
       "name": "PlayerMgr::ToggleSlot0",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot0(PlayerMgr *this, unsigned __int8 pData)"
+      "signature": "char __thiscall PlayerMgr::ToggleSlot0(unsigned __int8 pData)"
     },
     "0x004712D0": {
       "name": "PlayerMgr::ToggleSlot1",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot1(PlayerMgr *this, unsigned __int8 pData)"
+      "signature": "char __thiscall PlayerMgr::ToggleSlot1(unsigned __int8 pData)"
     },
     "0x00471380": {
       "name": "PlayerMgr::ToggleSlot2",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot2(PlayerMgr *this, unsigned __int8 pData)"
+      "signature": "char __thiscall PlayerMgr::ToggleSlot2(unsigned __int8 pData)"
     },
     "0x00471430": {
       "name": "PlayerMgr::ToggleSlot3",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot3(PlayerMgr *this, unsigned __int8 pData)"
+      "signature": "char __thiscall PlayerMgr::ToggleSlot3(unsigned __int8 pData)"
     },
     "0x004714E0": {
       "name": "PlayerMgr::ToggleSlot4",
-      "signature": "char __thiscall PlayerMgr::ToggleSlot4(PlayerMgr *this, unsigned __int8 pData)"
+      "signature": "char __thiscall PlayerMgr::ToggleSlot4(unsigned __int8 pData)"
+    }
+  },
+  "nested_types": {
+    "PoisonState": {
+      "kind": "struct",
+      "binary_size": 32
     }
   }
 }

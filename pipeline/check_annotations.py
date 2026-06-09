@@ -80,50 +80,7 @@ def check():
         ann = load_annotations()
     except Exception as e:
         errors.append(f"JSON parse error: {e}")
-     # 6. Exported globals overlap check (ida_structs.json)
-    # ida_structs.json is the actual data source for codegen.
-    # Overlapping globals in export = codegen produces wrong declarations.
-    _is_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'asm', 'pal3', 'ida_structs.json')
-    if os.path.exists(_is_path):
-        _is_data = json.load(open(_is_path, encoding='utf-8'))
-        _exp_globs = _is_data.get('_globals', {})
-        # Build ranges for globals with struct types
-        _exp_ranges = []
-        for _addr_s, _ginfo in _exp_globs.items():
-            _gt = _ginfo.get('type', '')
-            _gn = _ginfo.get('name', '')
-            if not _gt or not _gn:
-                continue
-            _st = _is_data.get(_gt, {})
-            _sz = _st.get('size', 0)
-            if not _sz:
-                continue
-            try:
-                _ga = int(_addr_s, 16)
-            except ValueError:
-                continue
-            _exp_ranges.append((_ga, _ga + _sz, _gn, _gt))
-        for _addr_s, _ginfo in _exp_globs.items():
-            _gt = _ginfo.get('type', '')
-            _gn = _ginfo.get('name', '')
-            if not _gt or not _gn:
-                continue
-            try:
-                _ga = int(_addr_s, 16)
-            except ValueError:
-                continue
-            for _rs, _re, _rn, _rt in _exp_ranges:
-                if _rn == _gn:
-                    continue
-                if _rs < _ga < _re:
-                    _has_own = any(_b == _ga for _b, _e, _, _ in _exp_ranges)
-                    if not _has_own:
-                        warnings.append(
-                            f"export[0x{_ga:X}]: '{_gn}' ({_gt}) at +0x{_ga - _rs:X} inside "
-                            f"'{_rn}' ({_rt}) [0x{_rs:X}-0x{_re:X}] — phantom global, "
-                            f"skipped by generate_globals() (not a real global)")
-
-    return errors, warnings
+        return errors, warnings
 
     # 2. Functions
     funcs = ann.get('functions', {})
@@ -379,7 +336,7 @@ def check():
         if is_union:
             binary_sz = sinfo.get('binary_size', 0)
             for off, m in members.items():
-                real_off = int(off.split('_')[0])
+                real_off = int(off.split('_')[0], 0)
                 if real_off != 0:
                     errors.append(f"union[{sname}]: member '{m.get('name')}' at +{real_off} (must be 0)")
                 # Each union member size must fit within binary_size
@@ -392,12 +349,12 @@ def check():
                 errors.append(f"union[{sname}]: unions cannot have base_class")
         else:
             # Check member overlap (using known struct sizes) - structs only
-            sorted_m = sorted(members.items(), key=lambda x: int(x[0]))
+            sorted_m = sorted(members.items(), key=lambda x: int(x[0], 0))
             max_extent = 0
             for i in range(len(sorted_m) - 1):
-                off1 = int(sorted_m[i][0])
+                off1 = int(sorted_m[i][0], 0)
                 m1 = sorted_m[i][1]
-                off2 = int(sorted_m[i + 1][0])
+                off2 = int(sorted_m[i + 1][0], 0)
                 size1 = _estimate_member_size(m1.get('type', 'int'), structs)
                 end1 = off1 + size1
                 if end1 > off2:
@@ -420,7 +377,7 @@ def check():
                     max_extent = end1
             # Check member alignment: pointers must be 4-aligned, shorts 2-aligned
             for off_str, m in members.items():
-                off = int(off_str)
+                off = int(off_str, 0)
                 mtype = m.get('type', '')
                 name = m.get('name', '')
                 if off == 0:
@@ -465,6 +422,25 @@ def check():
         if size == 0 and members:
             warnings.append(f"structs[{sname}]: no size (has {len(members)} members but size=0)")
 
+        # Check nested_types format
+        for nt_name, nt_info in sinfo.get("nested_types", {}).items():
+            kind = nt_info.get("kind", "")
+            if kind not in ("struct", "class", "enum"):
+                errors.append(
+                    f"structs[{sname}].nested_types[{nt_name}]: kind must be "
+                    f"struct/class/enum (got '{kind}')"
+                )
+            if kind in ("struct", "class") and not nt_info.get("binary_size"):
+                errors.append(
+                    f"structs[{sname}].nested_types[{nt_name}]: kind={kind} "
+                    f"requires binary_size"
+                )
+            if kind == "enum" and not nt_info.get("values"):
+                errors.append(
+                    f"structs[{sname}].nested_types[{nt_name}]: kind=enum "
+                    f"requires values"
+                )
+
     # 5. Check skip_functions thunks vs struct methods / functions conflicts
     # When a function is in skip as reason=thunk AND in struct methods,
     # apply_annotations step 1 sets the mangled name, then the skip override
@@ -488,7 +464,49 @@ def check():
                 errors.append(
                     f"skip_functions[{addr}] '{skip_name}' also exists in"
                     f" struct methods or functions.json — remove from skip_functions.json (one source only)"
-                )
+                        )
+
+    # 6. Exported globals overlap check (ida_structs.json)
+    # ida_structs.json is the actual data source for codegen.
+    # Overlapping globals in export = codegen produces wrong declarations.
+    _is_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'asm', 'pal3', 'ida_structs.json')
+    if os.path.exists(_is_path):
+        _is_data = json.load(open(_is_path, encoding='utf-8'))
+        _exp_globs = _is_data.get('_globals', {})
+        _exp_ranges = []
+        for _addr_s, _ginfo in _exp_globs.items():
+            _gt = _ginfo.get('type', '')
+            _gn = _ginfo.get('name', '')
+            if not _gt or not _gn:
+                continue
+            _st = _is_data.get(_gt, {})
+            _sz = _st.get('size', 0)
+            if not _sz:
+                continue
+            try:
+                _ga = int(_addr_s, 16)
+            except ValueError:
+                continue
+            _exp_ranges.append((_ga, _ga + _sz, _gn, _gt))
+        for _addr_s, _ginfo in _exp_globs.items():
+            _gt = _ginfo.get('type', '')
+            _gn = _ginfo.get('name', '')
+            if not _gt or not _gn:
+                continue
+            try:
+                _ga = int(_addr_s, 16)
+            except ValueError:
+                continue
+            for _rs, _re, _rn, _rt in _exp_ranges:
+                if _rn == _gn:
+                    continue
+                if _rs < _ga < _re:
+                    _has_own = any(_b == _ga for _b, _e, _, _ in _exp_ranges)
+                    if not _has_own:
+                        warnings.append(
+                            f"export[0x{_ga:X}]: '{_gn}' ({_gt}) at +0x{_ga - _rs:X} inside "
+                            f"'{_rn}' ({_rt}) [0x{_rs:X}-0x{_re:X}] — phantom global, "
+                            f"skipped by generate_globals() (not a real global)")
 
     return errors, warnings
 

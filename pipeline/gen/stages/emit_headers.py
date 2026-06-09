@@ -567,7 +567,8 @@ def _estimate_member_size(mtype):
 
 
 def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_names=None,
-                    colliding_enums=None, template_expr=None, template_param_count=0):
+                    colliding_enums=None, template_expr=None, template_param_count=0,
+                    nested_types=None):
     """Generate a complete header for one class.
     
     ida_struct: struct definition from ida_structs.json (export output, NOT raw PDB).
@@ -1383,6 +1384,23 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             lines.append("    void operator=(int v) { *(int*)this = v; }")
         lines.append("")
 
+    if nested_types:
+        lines.append("")
+        _is_data = _get_ida_structs()
+        for _nt_name in nested_types:
+            _nt_full = "%s::%s" % (cls_name, _nt_name)
+            _nt_struct = _is_data.get(_nt_full, {})
+            _nt_members = _nt_struct.get('data_members', [])
+            if _nt_members:
+                lines.append("    struct %s {" % _nt_name)
+                for _dm in _nt_members:
+                    _t = _dm.get('type', 'int')
+                    _n = _dm.get('name', '')
+                    lines.append("        %s %s;" % (_t, _n))
+                lines.append("    };")
+            else:
+                lines.append("    struct %s;" % _nt_name)
+
     lines.append("};")
     lines.append("")
     return '\n'.join(lines)
@@ -1450,6 +1468,14 @@ def main():
                 result.append((ename, edata))
                 embedded_enums.add(ename)
         return result
+
+    # Build nested type mapping: parent -> [nested_type_names]
+    nested_by_parent = {}
+    for sname in _is_data:
+        if '::' in sname and not sname.startswith('_'):
+            parts = sname.split('::', 1)
+            if len(parts) == 2:
+                nested_by_parent.setdefault(parts[0], []).append(parts[1])
 
     # Load template reverse map: concrete class -> template expression
     # Classes in this map are template instantiations whose headers should NOT
@@ -1602,6 +1628,7 @@ def main():
 
         content = generate_header(cls_name, _is_data.get(cls_name, {}), methods, classes_with_headers, enum_names,
                                   colliding_enums=colliding_enums,
+                                  nested_types=nested_by_parent.get(cls_name, []),
                                   template_param_count=_tpl_param_count.get(cls_name, 0))
         output_path = OUTPUT_DIR / ("%s.h" % _sanitize_filename(cls_name))
         with open(output_path, 'w', encoding='utf-8') as f:

@@ -238,13 +238,13 @@
     },
     "332": {
       "name": "_todo_14C",
-      "type": "int",
-      "source": "binary_discovery:1refs"
+      "type": "void *",
+      "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed"
     },
     "348": {
       "name": "_todo_15C",
-      "type": "int",
-      "source": "binary_discovery:1refs"
+      "type": "void *",
+      "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed"
     }
   },
   "binary_size": 12956,
@@ -269,11 +269,11 @@
     },
     "0x00439850": {
       "name": "Camera::UpdateCameraLookAt",
-      "signature": "void __thiscall Camera::UpdateCameraLookAt(Camera *this, int nScreenX, int nScreenY)"
+      "signature": "void __thiscall Camera::UpdateCameraLookAt(int nScreenX, int nScreenY)"
     },
     "0x00439930": {
       "name": "Camera::UpdateCameraLookAt",
-      "signature": "void __thiscall Camera::UpdateCameraLookAt(Camera *this, int nScreenX, int nScreenY, int nOffsetY)"
+      "signature": "void __thiscall Camera::UpdateCameraLookAt(int nScreenX, int nScreenY, int nOffsetY)"
     },
     "0x0041BE80": {
       "name": "Camera::Camera",
@@ -281,7 +281,7 @@
     },
     "0x0052BEB0": {
       "name": "Camera::InitUIElements",
-      "signature": "void __thiscall Camera::InitUIElements(Camera *this)"
+      "signature": "void __thiscall Camera::InitUIElements()"
     }
   }
 }

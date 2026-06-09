@@ -169,11 +169,11 @@
     },
     "0x0040F030": {
       "name": "NPC::GetBufferCount",
-      "signature": "int __thiscall NPC::GetBufferCount(NPC *this)"
+      "signature": "int __thiscall NPC::GetBufferCount()"
     },
     "0x0040F050": {
       "name": "NPC::GetBufferAt",
-      "signature": "int __thiscall NPC::GetBufferAt(NPC *this, int nIndex)"
+      "signature": "int __thiscall NPC::GetBufferAt(int nIndex)"
     },
     "0x0040F6F0": {
       "name": "NPC::ReadBufferData",
@@ -181,7 +181,7 @@
     },
     "0x0040F760": {
       "name": "NPC::LoadBufferFromStream",
-      "signature": "int __thiscall NPC::LoadBufferFromStream(NPC *this, FILE *fp)"
+      "signature": "int __thiscall NPC::LoadBufferFromStream(FILE *fp)"
     },
     "0x0040F950": {
       "name": "NPC::SaveToStream",
@@ -189,7 +189,7 @@
     },
     "0x00479100": {
       "name": "NPC::GetPropertyByIndex",
-      "signature": "int __thiscall NPC::GetPropertyByIndex(NPC *this, unsigned int dwVal)"
+      "signature": "int __thiscall NPC::GetPropertyByIndex(unsigned int dwVal)"
     },
     "0x00517BA0": {
       "name": "NPC::ShowAIWindow",

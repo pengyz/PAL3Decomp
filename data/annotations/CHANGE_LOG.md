@@ -5124,3 +5124,45 @@ float * CCBStageRole::GetWorldPos()
 
 **暂不修改**: 这需要 A 级二进制证据，当前只有 C 级代码推断。
 
+## 2026-06-09 批量清理: 成员函数签名中的显式 *this 参数
+
+- **变更**: 从 157 个 struct JSON 文件的 1068 个类成员函数签名中移除显式的 `*this` 参数
+- **规则**: 所有 `__thiscall` 类成员函数的签名不得包含 `ClassName *this` 作为首个参数
+- **原因**: `__thiscall` 隐含 this 指针，显式声明多余且可能导致 IDA 解析异常
+- **保留**: `**this`（双指针——这是真实参数）、`__fastcall`/`__cdecl` 签名的 *this
+- **模式**: `int __thiscall(Type *this, ...)` → `int __thiscall(...)`，同时处理了
+  含 `Type::MethodName(Type *this)` 前缀和析构函数 `~Type(Type *this)` 的变体
+
+## 2026-06-09 ArcSceneMonster._todo_004
+
+- **变更**: 类型 int → void *
+- **置信度**: 75
+- **证据**:
+  1. [A] 二进制 xref: `*((_DWORD *)this + 1)` 在 ValidateRange/CheckDistance 中读取
+  2. [A] 读取值作为指针使用（cast 为 float*，参与 `p + 12` 和 `v4 + 32*v3` 指针运算）
+  3. [B] ValidateRange 和 CheckDistance 两个独立函数交叉确认
+- **影响**: 标记为指针类型，防止被当作纯整数算术使用
+
+## 2026-06-09 CScreenMode._todo_010 和 _todo_014
+
+- **变更**: 类型 int → float
+- **置信度**: 85
+- **证据**:
+  1. [A] offset 0x10: `*((float*)this + 4)` 在 LoadScreenScene 中读取/写入（多指令）
+  2. [A] offset 0x10: `(struct gbVec3D *)(this + 16)` 在 InitCamera 中作为 vec3 基址
+  3. [A] offset 0x14: `*((float*)this + 5)` 在 LoadScreenScene 中多次读写
+  4. [A] offset 0x14: 在 CleanupSoundList 中被清零
+  5. [B] 多个独立函数交叉验证
+- **影响**: 同大小（4字节），无非对齐风险
+
+## 2026-06-09 批量 int/float→void*（LEA 嵌入子对象/指针地址线索）
+
+- **变更**: 23 个字段类型从 int/float 改为 void *（同大小，无布局级联）
+- **涉及文件**: Camera, ArcSceneMonster, CScreenMode, CameraCtrl, CCBUIPanel,
+  CCBStage, CUtil, CGameData, Logger, RoleSystem, ScriptVM, SystemUI, TextureLib,
+  UIScenePanel, Actor（15 个 struct JSON）
+- **证据**: 全部有 LEA reg,[this+offset] 指令，部分带 `; this` 注释（嵌入对象作为
+  this 指针传递给构造函数/方法调用）
+- **置信度**: 75（统一批量，单字段置信度 70-85 不等）
+- **影响**: 语义修正（这些字段是地址/嵌入对象，不是整数），大小不变
+

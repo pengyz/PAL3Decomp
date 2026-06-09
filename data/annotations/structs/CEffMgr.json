@@ -215,11 +215,11 @@
     },
     "0x004CE690": {
       "name": "CEffMgr::CreateEff",
-      "signature": "char(CEffMgr *this, const char *szEffTypeName, unsigned int dwRunID, float fx, float fy, float fz)"
+      "signature": "char(const char *szEffTypeName, unsigned int dwRunID, float fx, float fy, float fz))"
     },
     "0x004CEDA0": {
       "name": "CEffMgr::RunEffGroup",
-      "signature": "unsigned long(CEffMgr *this, char *nGroup, float fx, char *fy, float fz, unsigned int dwID)",
+      "signature": "unsigned long(char *nGroup, float fx, char *fy, float fz, unsigned int dwID))",
       "source": "pdb_ret"
     },
     "0x004CF100": {
@@ -238,7 +238,7 @@
     },
     "0x004CEA80": {
       "name": "CEffMgr::ReleaseCompletedEffects",
-      "signature": "char __thiscall CEffMgr::ReleaseCompletedEffects(CEffMgr *this)"
+      "signature": "char __thiscall CEffMgr::ReleaseCompletedEffects()"
     },
     "0x004B73D0": {
       "name": "CEffMgr::SetComponent",
@@ -247,7 +247,7 @@
     },
     "0x004CDC50": {
       "name": "CEffMgr::SetEffectsTimeScale",
-      "signature": "char __thiscall CEffMgr::SetEffectsTimeScale(CEffMgr *this, int nVal)"
+      "signature": "char __thiscall CEffMgr::SetEffectsTimeScale(int nVal)"
     },
     "0x004CDED0": {
       "name": "CEffMgr::InitEffClass",
@@ -255,31 +255,31 @@
     },
     "0x004CEFE0": {
       "name": "CEffMgr::CreateSParticleEffect",
-      "signature": "int __thiscall CEffMgr::CreateSParticleEffect(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+      "signature": "int __thiscall CEffMgr::CreateSParticleEffect(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
     },
     "0x004CF220": {
       "name": "CEffMgr::CreateModelEffect",
-      "signature": "int __thiscall CEffMgr::CreateModelEffect(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+      "signature": "int __thiscall CEffMgr::CreateModelEffect(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
     },
     "0x004CF460": {
       "name": "CEffMgr::CreateEffectType3",
-      "signature": "int __thiscall CEffMgr::CreateEffectType3(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+      "signature": "int __thiscall CEffMgr::CreateEffectType3(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
     },
     "0x004CF6A0": {
       "name": "CEffMgr::CreateEffectType4",
-      "signature": "int __thiscall CEffMgr::CreateEffectType4(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+      "signature": "int __thiscall CEffMgr::CreateEffectType4(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
     },
     "0x004CF8E0": {
       "name": "CEffMgr::CreateEffectType5",
-      "signature": "int __thiscall CEffMgr::CreateEffectType5(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+      "signature": "int __thiscall CEffMgr::CreateEffectType5(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
     },
     "0x004CFB20": {
       "name": "CEffMgr::CreateShockEffect",
-      "signature": "int __thiscall CEffMgr::CreateShockEffect(CEffMgr *this, CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+      "signature": "int __thiscall CEffMgr::CreateShockEffect(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
     },
     "0x004B7340": {
       "name": "CEffMgr::UpdateTimedTrigger",
-      "signature": "void __thiscall CEffMgr::UpdateTimedTrigger(CEffMgr *this, float fVal)"
+      "signature": "void __thiscall CEffMgr::UpdateTimedTrigger(float fVal)"
     },
     "0x004B73F0": {
       "name": "CEffMgr::SetEffectClass",
@@ -287,15 +287,15 @@
     },
     "0x004C2F30": {
       "name": "CEffMgr::ProcessEffectPass",
-      "signature": "int __thiscall CEffMgr::ProcessEffectPass(CEffMgr *this, int nVal)"
+      "signature": "int __thiscall CEffMgr::ProcessEffectPass(int nVal)"
     },
     "0x004C5350": {
       "name": "CEffMgr::UpdateParticlePositions",
-      "signature": "int __thiscall CEffMgr::UpdateParticlePositions(CEffMgr *this)"
+      "signature": "int __thiscall CEffMgr::UpdateParticlePositions()"
     },
     "0x004C7E60": {
       "name": "CEffMgr::EmitParticles",
-      "signature": "int __thiscall CEffMgr::EmitParticles(CEffMgr *this)"
+      "signature": "int __thiscall CEffMgr::EmitParticles()"
     },
     "0x004CDCA0": {
       "name": "CEffMgr::CreateEffect",
@@ -322,7 +322,7 @@
     },
     "0x004CCEF0": {
       "name": "CEffMgr::UpdateEffect",
-      "signature": "int __thiscall CEffMgr::UpdateEffect(CEffMgr *this, float fVal, int nVal)"
+      "signature": "int __thiscall CEffMgr::UpdateEffect(float fVal, int nVal)"
     }
   },
   "_flexible": true

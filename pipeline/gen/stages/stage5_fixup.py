@@ -328,10 +328,9 @@ def run(code, ctx):
     # _scalar_dtor(this, 0) = destructor only = ~ClassName(this) -- handled by dtor body
     # _scalar_dtor may have address suffix (_scalar_dtor_XXXX)
     code = re.sub(r'(\w+)\s*->\s*_scalar_dtor\w*\s*\(\s*(\w+)\s*,\s*1\s*\)', r'delete \1', code)
-    code = re.sub(r'(\w+)\s*->\s*_scalar_dtor\w*\s*\(\s*(\w+)\s*,\s*0\s*\)', r'((void)\1)', code)
     # also handle single-param form: _scalar_dtor(char deleting)
     code = re.sub(r'(\w+)\s*->\s*_scalar_dtor\w*\s*\(\s*1\s*\)', r'delete \1', code)
-    code = re.sub(r'(\w+)\s*->\s*_scalar_dtor\w*\s*\(\s*0\s*\)', r'((void)\1)', code)
+    code = re.sub(r'(\w+)\s*->\s*_scalar_dtor\w*\s*\(\s*0\s*\)', r'', code)
 
     # UIScene::GetSys is a static method but Hex-Rays calls it without scope.
     code = re.sub(r'(?<!::)\bGetSys\s*\(', 'UIScene::GetSys(', code)

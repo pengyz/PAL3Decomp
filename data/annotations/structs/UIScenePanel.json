@@ -120,13 +120,13 @@
     },
     "5088": {
       "name": "_todo_13E0",
-      "type": "int",
-      "source": "binary_discovery:1refs"
+      "type": "void *",
+      "source": "binary_discovery:1refs;batch_fix:int_or_float_to_v*_LEA"
     },
     "8416": {
       "name": "_todo_20E0",
-      "type": "int",
-      "source": "binary_discovery:1refs"
+      "type": "void *",
+      "source": "binary_discovery:1refs;batch_fix:int_or_float_to_v*_LEA"
     },
     "10496": {
       "name": "m_Static_10496",
@@ -255,11 +255,11 @@
     },
     "0x0052CAF0": {
       "name": "UIScenePanel::ActivatePanel",
-      "signature": "int __thiscall UIScenePanel::ActivatePanel(UIScenePanel *this, int id)"
+      "signature": "int __thiscall UIScenePanel::ActivatePanel(int id)"
     },
     "0x0052CD40": {
       "name": "UIScenePanel::LayoutSlot",
-      "signature": "int __thiscall UIScenePanel::LayoutSlot(UIScenePanel *this, int arg0, int nVal, int nVal2, int nVal3, int nVal4)"
+      "signature": "int __thiscall UIScenePanel::LayoutSlot(int arg0, int nVal, int nVal2, int nVal3, int nVal4)"
     },
     "0x0044DB70": {
       "name": "UIScenePanel::StopAllSounds",

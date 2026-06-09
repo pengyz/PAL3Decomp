@@ -489,8 +489,8 @@
     },
     "512": {
       "name": "_field_200",
-      "type": "float",
-      "source": "A+:decomp *(float*)&this->_field_200 (1 occurrences)"
+      "type": "void *",
+      "source": "A+:decomp *(float*)&this->_field_200 (1 occurrences);batch_fix:int_to_v*_LEA_embed"
     },
     "536": {
       "name": "m_fAnimDelta",
@@ -661,15 +661,15 @@
     },
     "0x00536AC0": {
       "name": "Actor::SetMaterialName",
-      "signature": "int __thiscall Actor::SetMaterialName(Actor *this, void *name)"
+      "signature": "int __thiscall Actor::SetMaterialName(void *name)"
     },
     "0x00539540": {
       "name": "Actor::AddActionByName",
-      "signature": "int __thiscall Actor::AddActionByName(Actor *this, const char *pszName, const char *pszName2, int nVal)"
+      "signature": "int __thiscall Actor::AddActionByName(const char *pszName, const char *pszName2, int nVal)"
     },
     "0x0053A0C0": {
       "name": "Actor::InsertAction",
-      "signature": "int __thiscall Actor::InsertAction(Actor *this, int *p_DWORD, char **nY)"
+      "signature": "int __thiscall Actor::InsertAction(int *p_DWORD, char **nY)"
     },
     "0x0053AF30": {
       "name": "Actor::FindMatchingEntry",
@@ -681,7 +681,7 @@
     },
     "0x0041B9F0": {
       "name": "Actor::GetInnerAnimDuration",
-      "signature": "unsigned int __thiscall Actor::GetInnerAnimDuration(Actor *this, int animId)"
+      "signature": "unsigned int __thiscall Actor::GetInnerAnimDuration(int animId)"
     },
     "0x0050ACF0": {
       "name": "Actor::GetAnimDurationByIndex",
@@ -714,11 +714,11 @@
     },
     "0x0044CB30": {
       "name": "Actor::InitParticles",
-      "signature": "int __thiscall Actor::InitParticles(Actor *this)"
+      "signature": "int __thiscall Actor::InitParticles()"
     },
     "0x00456EE0": {
       "name": "Actor::ApplyStateArray",
-      "signature": "int __thiscall Actor::ApplyStateArray(Actor *this)"
+      "signature": "int __thiscall Actor::ApplyStateArray()"
     },
     "0x00456F10": {
       "name": "Actor::SaveState",
@@ -746,7 +746,7 @@
     },
     "0x005372B0": {
       "name": "Actor::GetArrayCount",
-      "signature": "int __thiscall Actor::GetArrayCount(Actor *this)"
+      "signature": "int __thiscall Actor::GetArrayCount()"
     },
     "0x005372D0": {
       "name": "Actor::LoadActionSequence",
@@ -766,11 +766,11 @@
     },
     "0x005376E0": {
       "name": "Actor::LoadSaveData",
-      "signature": "int __thiscall Actor::LoadSaveData(Actor *this, char *pszSlotIdx)"
+      "signature": "int __thiscall Actor::LoadSaveData(char *pszSlotIdx)"
     },
     "0x00537770": {
       "name": "Actor::LoadActions",
-      "signature": "int __thiscall Actor::LoadActions(Actor *this, FILE *Stream, int *pnVal)"
+      "signature": "int __thiscall Actor::LoadActions(FILE *Stream, int *pnVal)"
     },
     "0x00537A30": {
       "name": "Actor::ClearAllocBuffers",
@@ -799,7 +799,7 @@
     },
     "0x005392C0": {
       "name": "Actor::ActionEntry_Assign",
-      "signature": "char *__thiscall Actor::ActionEntry_Assign(Actor *this, int nVal)"
+      "signature": "char *__thiscall Actor::ActionEntry_Assign(int nVal)"
     },
     "0x005394D0": {
       "name": "Actor::ClearActionArrays",
@@ -819,11 +819,11 @@
     },
     "0x00539AF0": {
       "name": "Actor::RegisterAnim",
-      "signature": "void __thiscall Actor::RegisterAnim(Actor *this, char *pszName, char *pszBuf)"
+      "signature": "void __thiscall Actor::RegisterAnim(char *pszName, char *pszBuf)"
     },
     "0x00539D60": {
       "name": "Actor::ClearAllActions",
-      "signature": "int *__thiscall Actor::ClearAllActions(Actor *this)"
+      "signature": "int *__thiscall Actor::ClearAllActions()"
     },
     "0x0053A020": {
       "name": "Actor::IterateAllocBuffer",
@@ -831,7 +831,7 @@
     },
     "0x0053A060": {
       "name": "Actor::InitAction",
-      "signature": "int *__thiscall Actor::InitAction(Actor *this, _BYTE *pActionType)"
+      "signature": "int *__thiscall Actor::InitAction(_BYTE *pActionType)"
     },
     "0x0053A080": {
       "name": "Actor::GetActionArrayEnd",
@@ -851,7 +851,7 @@
     },
     "0x0053AFA0": {
       "name": "Actor::CopyBufferBlocks",
-      "signature": "char *__thiscall Actor::CopyBufferBlocks(Actor *this, char *pszDst, char *pszSrc, char *pszBuf3)"
+      "signature": "char *__thiscall Actor::CopyBufferBlocks(char *pszDst, char *pszSrc, char *pszBuf3)"
     },
     "0x0053AFE0": {
       "name": "Actor::CopyIfValid",
@@ -867,15 +867,15 @@
     },
     "0x0053B890": {
       "name": "Actor::SetCurrentAction",
-      "signature": "char *__thiscall Actor::SetCurrentAction(Actor *this, int nVal)"
+      "signature": "char *__thiscall Actor::SetCurrentAction(int nVal)"
     },
     "0x0053BAE0": {
       "name": "Actor::ActArray_Assign",
-      "signature": "int *__thiscall Actor::ActArray_Assign(Actor *this, int *p_DWORD)"
+      "signature": "int *__thiscall Actor::ActArray_Assign(int *p_DWORD)"
     },
     "0x0053BD30": {
       "name": "Actor::BoneIndexVec_Assign",
-      "signature": "int *__thiscall Actor::BoneIndexVec_Assign(Actor *this, int *pnVal)"
+      "signature": "int *__thiscall Actor::BoneIndexVec_Assign(int *pnVal)"
     },
     "0x0041BCA0": {
       "name": "Actor::SetActionByName",

@@ -441,8 +441,8 @@
     },
     "4504": {
       "name": "_todo_1198",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs|A:memset 0x50 bytes in ClearActionSlot"
+      "type": "void *",
+      "source": "binary:disp32_1hits_1funcs|A:memset 0x50 bytes in ClearActionSlot;batch_fix:int_to_v*_LEA_embed"
     },
     "4508": {
       "name": "_todo_119C",
@@ -591,8 +591,8 @@
     },
     "410000": {
       "name": "_todo_64190",
-      "type": "int",
-      "source": "binary:disp32_1hits_1funcs"
+      "type": "void *",
+      "source": "binary:disp32_1hits_1funcs;batch_fix:int_to_v*_LEA"
     },
     "673960": {
       "name": "_todo_A48A8",
@@ -643,7 +643,7 @@
     },
     "0x004FC3A0": {
       "name": "CCBStage::EditorUpdate",
-      "signature": "void(CCBStage *this, float fVal)"
+      "signature": "void(float fVal))"
     },
     "0x004FC6F0": {
       "name": "CCBStage::Render",
@@ -699,11 +699,11 @@
     },
     "0x004FCC10": {
       "name": "CCBStage::GetTaskState",
-      "signature": "char(CCBStage *this, int nIndex, bool *bFinished, unsigned int *dwReturn)"
+      "signature": "char(int nIndex, bool *bFinished, unsigned int *dwReturn))"
     },
     "0x004FCC50": {
       "name": "CCBStage::GetTaskState",
-      "signature": "char(CCBStage *this, int nIndex, enum ECBStageTaskState *State)"
+      "signature": "char(int nIndex, enum ECBStageTaskState *State))"
     },
     "0x004FCD00": {
       "name": "CCBStage::IsTaskFinished",
@@ -731,7 +731,7 @@
     },
     "0x004FCE70": {
       "name": "CCBStage::IsSubTaskFinished",
-      "signature": "bool(CCBStage *this, int n, int nSub)",
+      "signature": "bool(int n, int nSub))",
       "source": "pdb_ret"
     },
     "0x004FCFB0": {
@@ -746,7 +746,7 @@
     },
     "0x004FD1A0": {
       "name": "CCBStage::IsSubTaskValid",
-      "signature": "bool(CCBStage *this, int n, int nSub)",
+      "signature": "bool(int n, int nSub))",
       "source": "pdb_ret"
     },
     "0x004FD290": {
@@ -887,7 +887,7 @@
     },
     "0x004E0010": {
       "name": "CCBStage::SetupCamControl",
-      "signature": "void __thiscall(CCBStage *thisa)"
+      "signature": "void __thiscall(a)"
     },
     "0x004E0430": {
       "name": "CCBStage::CreatePreviewDialog",
@@ -895,7 +895,7 @@
     },
     "0x00503680": {
       "name": "CCBStage::CalcSneakAttackVariance",
-      "signature": "int __thiscall CCBStage::CalcSneakAttackVariance(CCBStage *this)"
+      "signature": "int __thiscall CCBStage::CalcSneakAttackVariance()"
     },
     "0x00504440": {
       "name": "CCBStage::GetTurnSlotData",
@@ -915,23 +915,23 @@
     },
     "0x0050F080": {
       "name": "CCBStage::AnimCallback_Attack",
-      "signature": "int __thiscall CCBStage::AnimCallback_Attack(CCBStage *this, int nVal)"
+      "signature": "int __thiscall CCBStage::AnimCallback_Attack(int nVal)"
     },
     "0x0050F150": {
       "name": "CCBStage::AnimCallback_UseItem",
-      "signature": "int __thiscall CCBStage::AnimCallback_UseItem(CCBStage *this, int nVal)"
+      "signature": "int __thiscall CCBStage::AnimCallback_UseItem(int nVal)"
     },
     "0x0050F310": {
       "name": "CCBStage::AnimCallback_Throw",
-      "signature": "int __thiscall CCBStage::AnimCallback_Throw(CCBStage *this, int nVal, int nVal2)"
+      "signature": "int __thiscall CCBStage::AnimCallback_Throw(int nVal, int nVal2)"
     },
     "0x0050F410": {
       "name": "CCBStage::AnimCallback_CastMagic",
-      "signature": "int __thiscall CCBStage::AnimCallback_CastMagic(CCBStage *this, int nVal)"
+      "signature": "int __thiscall CCBStage::AnimCallback_CastMagic(int nVal)"
     },
     "0x0050F4C0": {
       "name": "CCBStage::AnimCallback_WaitCmd",
-      "signature": "int __thiscall CCBStage::AnimCallback_WaitCmd(CCBStage *this, int nVal)"
+      "signature": "int __thiscall CCBStage::AnimCallback_WaitCmd(int nVal)"
     },
     "0x004C5C20": {
       "name": "CCBStage::GetReadyCount",
@@ -979,7 +979,7 @@
     },
     "0x004E0330": {
       "name": "CCBStage::Reset",
-      "signature": "int __thiscall CCBStage::Reset(CCBStage *this)"
+      "signature": "int __thiscall CCBStage::Reset()"
     },
     "0x004E0340": {
       "name": "CCBStage::ResetTurnSlots",
@@ -1012,11 +1012,11 @@
     },
     "0x004F6CD0": {
       "name": "CCBStage::CheckGDBTypeCompat",
-      "signature": "char __thiscall CCBStage::CheckGDBTypeCompat(CCBStage *this, unsigned int *pdwVal)"
+      "signature": "char __thiscall CCBStage::CheckGDBTypeCompat(unsigned int *pdwVal)"
     },
     "0x00500840": {
       "name": "CCBStage::ExecuteRoleTask",
-      "signature": "int __thiscall CCBStage::ExecuteRoleTask(CCBStage *this, int nVal)"
+      "signature": "int __thiscall CCBStage::ExecuteRoleTask(int nVal)"
     },
     "0x005009C0": {
       "name": "CCBStage::Method_5009C0",
@@ -1044,7 +1044,7 @@
     },
     "0x005049F0": {
       "name": "CCBStage::GetNextActiveTask",
-      "signature": "int *__thiscall CCBStage::GetNextActiveTask(CCBStage *this)"
+      "signature": "int *__thiscall CCBStage::GetNextActiveTask()"
     },
     "0x00504AB0": {
       "name": "CCBStage::ClearActionSlot",
@@ -1052,11 +1052,11 @@
     },
     "0x00504B50": {
       "name": "CCBStage::EnqueueCommand",
-      "signature": "char __thiscall CCBStage::EnqueueCommand(CCBStage *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, float fVal, const void *pData, const void *pData2)"
+      "signature": "char __thiscall CCBStage::EnqueueCommand(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, float fVal, const void *pData, const void *pData2)"
     },
     "0x00504C50": {
       "name": "CCBStage::ProcessQueuedCommand",
-      "signature": "int __thiscall CCBStage::ProcessQueuedCommand(CCBStage *this, int nVal)"
+      "signature": "int __thiscall CCBStage::ProcessQueuedCommand(int nVal)"
     },
     "0x00504E30": {
       "name": "CCBStage::ClearAll",
@@ -1064,7 +1064,7 @@
     },
     "0x0050E550": {
       "name": "CCBStage::ResolveActionEffect",
-      "signature": "int __thiscall CCBStage::ResolveActionEffect(CCBStage *this, int nVal)"
+      "signature": "int __thiscall CCBStage::ResolveActionEffect(int nVal)"
     },
     "0x005045B0": {
       "name": "CCBStage::ProcessTurn",
@@ -1088,7 +1088,7 @@
     },
     "0x0050F590": {
       "name": "CCBStage::AnimCallback_MoveTo",
-      "signature": "int __thiscall CCBStage::AnimCallback_MoveTo(CCBStage *this, int nVal)"
+      "signature": "int __thiscall CCBStage::AnimCallback_MoveTo(int nVal)"
     },
     "0x0050E160": {
       "name": "CCBStage::Method_50E160",
@@ -1096,7 +1096,7 @@
     },
     "0x0050E360": {
       "name": "CCBStage::CalcFacingAngle",
-      "signature": "int __thiscall CCBStage::CalcFacingAngle(CCBStage *this, int nVal)"
+      "signature": "int __thiscall CCBStage::CalcFacingAngle(int nVal)"
     },
     "0x0051DD80": {
       "name": "CCBStage::Destroy",

@@ -11,7 +11,7 @@ annotations.json 是 PDB base 之上的纯差分层，存储所有人工标注�
   1. functions — set_name + SetType (幂等)
   2. globals   — set_name + SetType (幂等)
   3. structs   — build_struct with gap-filling (增量叠加)
-  4. enums     — parse_decl (幂等)
+   4. enums     — idc.add_enum + add_enum_member (幂等)
 """
 
 import ida_auto
@@ -36,34 +36,87 @@ PDB_EXPORT = os.path.join(PROJECT_ROOT, "data", "pdb", "pdb_export.json")
 log_lines = []
 
 
+# 基本类型到 BTF 常量映射（纯 API，不用 parse_decl）
+_PRIMITIVE_BTF = {
+    'void': ida_typeinf.BTF_VOID,
+    'char': ida_typeinf.BTF_CHAR,
+    'signed char': ida_typeinf.BTF_INT8,
+    'unsigned char': ida_typeinf.BTF_BYTE,
+    'BYTE': ida_typeinf.BTF_BYTE,
+    'uchar': ida_typeinf.BTF_BYTE,
+    'uint8_t': ida_typeinf.BTF_BYTE,
+    'short': ida_typeinf.BTF_INT16,
+    'signed short': ida_typeinf.BTF_INT16,
+    'unsigned short': ida_typeinf.BTF_UINT16,
+    'WORD': ida_typeinf.BTF_UINT16,
+    'ushort': ida_typeinf.BTF_UINT16,
+    'short int': ida_typeinf.BTF_INT16,
+    'int': ida_typeinf.BTF_INT32,
+    'signed int': ida_typeinf.BTF_INT32,
+    'int32': ida_typeinf.BTF_INT32,
+    'unsigned int': ida_typeinf.BTF_UINT32,
+    'UINT': ida_typeinf.BTF_UINT32,
+    'uint': ida_typeinf.BTF_UINT32,
+    'DWORD': ida_typeinf.BTF_UINT32,
+    'unsigned': ida_typeinf.BTF_UINT32,
+    'long': ida_typeinf.BTF_INT32,
+    'signed long': ida_typeinf.BTF_INT32,
+    'unsigned long': ida_typeinf.BTF_UINT32,
+    'LONG': ida_typeinf.BTF_INT32,
+    'long int': ida_typeinf.BTF_INT32,
+    'float': ida_typeinf.BTF_FLOAT,
+    'double': ida_typeinf.BTF_DOUBLE,
+    'bool': ida_typeinf.BTF_BOOL,
+    'BOOL': ida_typeinf.BTF_INT32,
+    '__int64': ida_typeinf.BTF_INT64,
+    'unsigned __int64': ida_typeinf.BTF_UINT64,
+    'int64': ida_typeinf.BTF_INT64,
+    'UINT64': ida_typeinf.BTF_UINT64,
+    'HRESULT': ida_typeinf.BTF_INT32,
+    '_DWORD': ida_typeinf.BTF_UINT32,
+    '_BYTE': ida_typeinf.BTF_BYTE,
+    '_WORD': ida_typeinf.BTF_UINT16,
+}
+
+
+def _create_primitive(name):
+    """通过 API 创建基础类型 tinfo_t，不用 parse_decl。"""
+    btf = _PRIMITIVE_BTF.get(name)
+    if btf is None:
+        return None
+    t = ida_typeinf.tinfo_t()
+    if not t.create_simple_type(btf):
+        return None
+    return t
+
+
 def _normalize_type(mtype_str):
-    """Normalize member type string for IDA parse_decl."""
-    mtype_str = mtype_str.replace("class ", "").replace("struct ", "")
+    mtype_str = re.sub(r'\bclass\s+|\bstruct\s+', '', mtype_str)
     mtype_str = re.sub(r'\[0x([0-9a-fA-F]+)\]', lambda m: '[%d]' % int(m.group(1), 16), mtype_str)
     return mtype_str
 
 
 def _resolve_member_type(mtype_str, til):
-    """将成员类型字符串解析为 tinfo_t。
+    """将成员类型字符串解析为 tinfo_t（纯 API，不用 parse_decl）。
 
     优先级：
-    1. API 创建：基本类型/命名类型用 get_named_type，指针用 create_ptr，数组用 create_array
-    2. 模板/函数指针：fallback 到 parse_decl
-    3. 失败则返回 None
+    1. 基础类型（int/float/char 等）：_create_primitive
+    2. 命名类型（结构体/类）：get_named_type
+    3. 指针：create_ptr
+    4. 数组：create_array
+    5. 模板/函数指针：不支持，返回 None
     """
     s = _normalize_type(mtype_str).strip()
     if not s:
         return None
 
-    # 模板和函数指针 → parse_decl fallback
     if '<' in s or '(' in s:
+        base = re.split(r'[<(]', s)[0].strip()
         tinfo = ida_typeinf.tinfo_t()
-        decl = "%s __x;" % s
-        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_VAR) is None:
-            return None
-        return tinfo
+        if tinfo.get_named_type(til, base):
+            return tinfo
+        return None
 
-    # 解析数组维度：Type[N][M]... 或 Type[N]
     array_sizes = []
     while True:
         m = re.search(r'\[(\d+)\]$', s)
@@ -72,58 +125,126 @@ def _resolve_member_type(mtype_str, til):
         array_sizes.insert(0, int(m.group(1)))
         s = s[:m.start()].strip()
 
-    # 解析指针
-    is_ptr = s.endswith('*')
-    if is_ptr:
+    ptr_count = 0
+    while s.endswith('*'):
+        ptr_count += 1
         s = s.rstrip('*').strip()
 
-    # 解析 const
     if s.startswith('const '):
         s = s[6:].strip()
 
     if not s:
         return None
 
-    # void 不能作为变量声明（"void __x;" 非法），特殊处理指针类型
-    if s == 'void' and is_ptr:
-        tinfo = ida_typeinf.tinfo_t()
-        if ida_typeinf.parse_decl(tinfo, til, "void* __x;", ida_typeinf.PT_VAR) is not None:
-            return tinfo
+    if s == 'void' and ptr_count > 0:
+        void_t = ida_typeinf.tinfo_t()
+        if void_t.create_simple_type(ida_typeinf.BTF_VOID):
+            ptr_t = ida_typeinf.tinfo_t()
+            if ptr_t.create_ptr(void_t):
+                return ptr_t
         return None
 
-    # 解析基础类型
+    tinfo = _create_primitive(s)
+    if tinfo is not None:
+        for _ in range(ptr_count):
+            p = ida_typeinf.tinfo_t()
+            if not p.create_ptr(tinfo):
+                return None
+            tinfo = p
+        for size in reversed(array_sizes):
+            a = ida_typeinf.tinfo_t()
+            if not a.create_array(tinfo, size):
+                return None
+            tinfo = a
+        return tinfo
+
     tinfo = ida_typeinf.tinfo_t()
-    resolved = tinfo.get_named_type(til, s)
+    if tinfo.get_named_type(til, s):
+        for _ in range(ptr_count):
+            p = ida_typeinf.tinfo_t()
+            if not p.create_ptr(tinfo):
+                return None
+            tinfo = p
+        for size in reversed(array_sizes):
+            a = ida_typeinf.tinfo_t()
+            if not a.create_array(tinfo, size):
+                return None
+            tinfo = a
+        return tinfo
 
-    # get_named_type 不处理基本类型（char/int/float 等），用 parse_decl fallback
-    if not resolved or tinfo.get_size() in (0, 0xFFFFFFFFFFFFFFFF):
-        decl = "%s __x;" % s
-        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_VAR) is not None:
-            resolved = True
-
-    if not resolved:
-        return None
-
-    # 应用指针
-    if is_ptr:
-        ptr_tinfo = ida_typeinf.tinfo_t()
-        if not ptr_tinfo.create_ptr(tinfo):
-            return None
-        tinfo = ptr_tinfo
-
-    # 应用数组（自内向外）
-    for size in reversed(array_sizes):
-        arr_tinfo = ida_typeinf.tinfo_t()
-        if not arr_tinfo.create_array(tinfo, size):
-            return None
-        tinfo = arr_tinfo
-
-    return tinfo
+    return None
 
 
 def log(msg):
     log_lines.append(str(msg))
     print(msg)
+
+
+def _make_vtable_method_type(ann_sig, vm_short, til):
+    """从 annotation 签名创建 vtable 方法类型，纯 API 不用 parse_decl。"""
+    if '(' not in ann_sig:
+        return None
+    open_paren = ann_sig.index('(')
+    close_paren = ann_sig.rindex(')')
+    prefix = ann_sig[:open_paren].strip()
+    params_str = ann_sig[open_paren+1:close_paren].strip()
+    prefix = re.sub(r'\w+::\w+', '', prefix).strip()
+    prefix = re.sub(r'\bvirtual\s+', '', prefix).strip()
+    ret_type = prefix
+    cc = ida_typeinf.CM_CC_THISCALL
+    if '__stdcall' in ret_type:
+        cc = ida_typeinf.CM_CC_STDCALL
+        ret_type = ret_type.replace('__stdcall', '').strip()
+    elif '__cdecl' in ret_type:
+        cc = ida_typeinf.CM_CC_CDECL
+        ret_type = ret_type.replace('__cdecl', '').strip()
+    else:
+        ret_type = ret_type.replace('__thiscall', '').strip()
+    ret_tinfo = _resolve_member_type(ret_type, til)
+    if ret_tinfo is None:
+        return None
+    func_data = ida_typeinf.func_type_data_t()
+    func_data.rettype = ret_tinfo
+    func_data.cc = cc
+    if params_str:
+        depth = 0
+        current = []
+        for c in params_str:
+            if c == '<': depth += 1
+            elif c == '>': depth -= 1
+            elif c == ',' and depth == 0:
+                p = ''.join(current).strip()
+                if p:
+                    tokens = p.split()
+                    if len(tokens) >= 2 and tokens[-1] not in ('const',):
+                        ptype = ' '.join(tokens[:-1])
+                    else:
+                        ptype = p
+                    pt_tinfo = _resolve_member_type(ptype, til)
+                    if pt_tinfo is not None:
+                        arg = ida_typeinf.funcarg_t()
+                        arg.type = pt_tinfo
+                        func_data.push_back(arg)
+                current = []
+                continue
+            current.append(c)
+        if current:
+            p = ''.join(current).strip()
+            if p:
+                tokens = p.split()
+                if len(tokens) >= 2 and tokens[-1] not in ('const',):
+                    ptype = ' '.join(tokens[:-1])
+                else:
+                    ptype = p
+                pt_tinfo = _resolve_member_type(ptype, til)
+                if pt_tinfo is not None:
+                    arg = ida_typeinf.funcarg_t()
+                    arg.type = pt_tinfo
+                    func_data.push_back(arg)
+    mtif = ida_typeinf.tinfo_t()
+    if not mtif.create_func(func_data):
+        return None
+    return mtif
 
 
 def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
@@ -497,24 +618,14 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         mname = minfo["name"]
         mtype_str = _normalize_type(minfo["type"])
 
-        # Normalize nested type references: Parent::Nested → Parent_Nested
-        # PDB uses :: but annotation files use _ (e.g. SceneObj_SubObj.json)
-        if "::" in mtype_str and "std::" not in mtype_str and "<" not in mtype_str:
-            mtype_str = mtype_str.replace("::", "_")
-
-        # STL/template types: try to resolve, fall back to char[span] if IDA can't parse
+        # STL/template types: flatten to char[span] (TIL API can't handle template syntax)
         _is_stl = 'std::' in mtype_str or '<' in mtype_str
         if _is_stl:
-            # Try to let IDA resolve it with vc6win TIL first
-            _probe = ida_typeinf.tinfo_t()
-            _decl = "%s __probe;" % mtype_str
-            if ida_typeinf.parse_decl(_probe, til, _decl, ida_typeinf.PT_VAR) is None:
-                # IDA can't parse this type - flatten to char[span]
-                sorted_offs = sorted(int(o) for o in members if int(o) > offset)
-                span = min(sorted_offs) - offset if sorted_offs else binary_size - offset
-                if span <= 0:
-                    span = 4
-                mtype_str = "char[%d]" % span
+            sorted_offs = sorted(int(o) for o in members if int(o) > offset)
+            span = min(sorted_offs) - offset if sorted_offs else binary_size - offset
+            if span <= 0:
+                span = 4
+            mtype_str = "char[%d]" % span
 
         # Resolve type string to tinfo_t
         tinfo = _resolve_member_type(mtype_str, til)
@@ -523,9 +634,6 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                 offset, mname, mtype_str))
 
         member_size = tinfo.get_size()
-        if member_size == 0 or member_size == 0xFFFFFFFFFFFFFFFF:
-            return (False, "add member +%d '%s' type '%s' FAILED: resolved size=%d invalid" % (
-                offset, mname, mtype_str, member_size))
 
         m = ida_typeinf.udt_member_t()
         m.name = mname
@@ -563,25 +671,18 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             if not vm_short or vm_short in seen_vm or not ann_sig:
                 continue
             seen_vm.add(vm_short)
-            if '(' in ann_sig:
-                open_paren = ann_sig.index('(')
-                sig_prefix = re.sub(r'\w+::\w+', '', ann_sig[:open_paren]).strip()
-                sig_params = ann_sig[open_paren:]
-                decl = "virtual %s %s %s" % (sig_prefix, vm_short, sig_params)
-            else:
-                decl = "virtual void %s()" % vm_short
             try:
-                mtif = ida_typeinf.tinfo_t()
-                if ida_typeinf.parse_decl(mtif, til, decl + ";", 0):
+                mtif = _make_vtable_method_type(ann_sig, vm_short, til)
+                if mtif is not None:
                     mudm = ida_typeinf.udm_t()
                     mudm.name = vm_short
                     mudm.type = mtif
                     mudm.set_method(True)
                     method_udms.push_back(mudm)
                 else:
-                    log("  [!] parse_decl FAILED for %s: '%s;'" % (vm_short, decl))
+                    log("  [!] vtable method FAILED for %s (ann_sig='%s')" % (vm_short, ann_sig))
             except Exception as _e:
-                log("  [!] parse_decl EXCEPTION for %s: %s (decl='%s;')" % (vm_short, _e, decl))
+                log("  [!] vtable method EXCEPTION for %s: %s (ann_sig='%s')" % (vm_short, _e, ann_sig))
     if len(method_udms) > 0:
         result_tinfo.set_methods(method_udms)
 
@@ -614,8 +715,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             _vtif = ida_typeinf.tinfo_t()
             if _vtif.get_named_type(til, _vtn) and _vtif.get_size() < 10000:
                 _vp_tif = ida_typeinf.tinfo_t()
-                _vp_decl = "%s *_vp;" % _vtn
-                ida_typeinf.parse_decl(_vp_tif, til, _vp_decl, ida_typeinf.PT_VAR)
+                _vp_tif.create_ptr(_vtif)
                 if _vp_tif.is_correct() and _vp_tif.get_size() == 4:
                     _udt2 = ida_typeinf.udt_type_data_t()
                     if result_tinfo.get_udt_details(_udt2):
@@ -629,6 +729,27 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                                         _r2.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
                                     break
                             except: pass
+
+    # Create nested types (struct/class/enum inside this struct)
+    _nested = (struct_info or {}).get("nested_types", {})
+    for _nt_name, _nt_info in _nested.items():
+        _nt_kind = _nt_info.get("kind", "")
+        _nt_full = "%s::%s" % (name, _nt_name)
+        if _nt_kind in ("struct", "class"):
+            _nt_data = {
+                "binary_size": _nt_info.get("binary_size", 0),
+                "known_members": _nt_info.get("known_members", {}),
+            }
+            _ok, _msg = create_fixed_struct(_nt_full, _nt_data, {}, {}, til)
+            if not _ok:
+                log("  [!] nested struct %s FAILED: %s" % (_nt_full, _msg))
+        elif _nt_kind == "enum":
+            _nt_values = _nt_info.get("values", {})
+            _eid = idc.add_enum(-1, _nt_full, 1)
+            if _eid != -1:
+                for _k, _v in _nt_values.items():
+                    _val = int(_v, 0) if isinstance(_v, str) else _v
+                    idc.add_enum_member(_eid, _k, _val)
     return (True, None)
 
 
@@ -723,35 +844,28 @@ def import_gbengine_types():
                 ida_typeinf.del_named_type(til, tname, ida_typeinf.NTF_TYPE)
                 stubs_removed += 1
 
-    # Bulk parse (multiple passes for ordering-dependent types)
-    errs = idc.parse_decls(content, 0)
-    for pass_num in range(2, 6):
-        if errs == 0:
-            break
-        errs = idc.parse_decls(content, 0)
-
-    # Recover individually-parseable types missed by bulk parse
-    decl_pattern = re.compile(
-        r'((?:struct|enum)\s+(\w+)\s*(?::\s*[^{]*?)?\s*\{[^}]*(?:\{[^}]*\}[^}]*)*\}\s*;)',
-        re.DOTALL
-    )
-    recovered = 0
-    for m in decl_pattern.finditer(content):
-        name = m.group(2)
-        decl = m.group(1)
-        tinfo = ida_typeinf.tinfo_t()
-        if not tinfo.get_named_type(til, name):
-            tinfo2 = ida_typeinf.tinfo_t()
-            result = ida_typeinf.parse_decl(tinfo2, til, decl, ida_typeinf.PT_TYP)
-            if result is not None:
-                tinfo2.set_named_type(til, name)
-                recovered += 1
-
+    # Look up each type — should already exist from PDB import in master_pipeline
+    import re as _re_gb
+    _gb_missing = set()
+    for _m in _re_gb.finditer(r'(?:struct|enum|typedef)\s+(\w+)\s*[{:;]', content):
+        _n = _m.group(1)
+        if _n not in ('int','char','float','double','short','long','unsigned','void','bool'):
+            if not ida_typeinf.tinfo_t().get_named_type(til, _n):
+                _gb_missing.add(_n)
+    if _gb_missing:
+        # Create forward declarations for missing types (opaque)
+        for _n in sorted(_gb_missing):
+            _u = ida_typeinf.udt_type_data_t()
+            _u.total_size = 0
+            _t = ida_typeinf.tinfo_t()
+            if _t.create_udt(_u, ida_typeinf.BTF_STRUCT):
+                _t.set_named_type(til, _n, ida_typeinf.NTF_REPLACE)
     # Verify
-    type_names = set(re.findall(r'(?:struct|enum)\s+(\w+)\s*[{:;]', content))
+    type_names = set(_re_gb.findall(r'(?:struct|enum)\s+(\w+)\s*[{:;]', content))
+    type_names = {n for n in type_names if n not in ('int','char','float','double','short','long','unsigned','void','bool')}
     ok = sum(1 for n in type_names if ida_typeinf.tinfo_t().get_named_type(til, n))
-    log("[gb] gbengine types: %d imported (%d stubs cleared, %d recovered, %d errors)"
-          % (ok, stubs_removed, recovered, errs))
+    log("[gb] gbengine types: %d/%d present in til (%d stubs cleared, %d forward-declared)"
+          % (ok, len(type_names), stubs_removed, len(_gb_missing)))
 
     # Set correct function types on gbengine IAT entries (data pointers in .idata).
     # Hex-Rays reads the type from the IAT address when decompiling indirect calls.
@@ -997,42 +1111,28 @@ def apply_annotations():
 
     log("[2] Globals: named=%d/%d (types deferred)" % (g_named, len(globs)))
 
-    # --- 2b. Define essential Windows/SDK types that mssdk TIL would provide ---
-    # (mssdk TIL disabled due to excessive misidentification, but we still need basic types)
-    _ESSENTIAL_TYPES = [
-        "struct tagRECT { long left; long top; long right; long bottom; };",
-        "struct tagPOINT { long x; long y; };",
-        "struct tagSIZE { long cx; long cy; };",
-        "struct tagMSG { void *hwnd; unsigned int message; unsigned int wParam; long lParam; unsigned long time; tagPOINT pt; };",
-        "struct _GUID { unsigned long Data1; unsigned short Data2; unsigned short Data3; unsigned char Data4[8]; };",
-    ]
-    # STL types (namespace must be handled separately)
-    _STL_TYPES = [
-        ("std::string", "struct string { char *_Ptr; unsigned int _Len; unsigned int _Res; char _Buf[16]; };"),
-    ]
-    til = ida_typeinf.get_idati()
-    ess_ok = 0
-    for decl in _ESSENTIAL_TYPES:
-        tinfo = ida_typeinf.tinfo_t()
-        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
-            # Extract name from "struct NAME {"
-            import re as _re_ess
-            m = _re_ess.match(r'struct\s+(\w+)', decl)
-            if m:
-                tinfo.set_named_type(til, m.group(1), ida_typeinf.NTF_REPLACE)
-                ess_ok += 1
-    log("[2b] Essential SDK types: %d/%d" % (ess_ok, len(_ESSENTIAL_TYPES)))
-
-    # STL types with namespace
-    stl_ok = 0
-    for full_name, decl in _STL_TYPES:
-        tinfo = ida_typeinf.tinfo_t()
-        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
-            # Register with namespace-qualified name
-            if tinfo.set_named_type(til, full_name, ida_typeinf.NTF_REPLACE):
-                stl_ok += 1
-    if _STL_TYPES:
-        log("[2c] STL types: %d/%d" % (stl_ok, len(_STL_TYPES)))
+    # --- 2b. SDK types (from data/annotations/sdk_types.json) ---
+    _sdk_path = os.path.join(ANNOTATIONS_DIR, "sdk_types.json")
+    _sdk_ok = 0
+    _sdk_total = 0
+    if os.path.exists(_sdk_path):
+        try:
+            with open(_sdk_path, 'r', encoding='utf-8') as _sf:
+                _sdk_data = json.load(_sf)
+            _sdk_total = len(_sdk_data)
+            for _st in _sdk_data:
+                _sn = _st.get("name", "")
+                if not _sn or not _st.get("known_members"):
+                    continue
+                try:
+                    _r = build_struct_decl(_sn, _st)
+                    if _r and _r[0]:
+                        _sdk_ok += 1
+                except Exception as _e:
+                    log("  [!] SDK type %s FAILED: %s" % (_sn, _e))
+        except Exception as _e:
+            log("  [!] SDK types load FAILED: %s" % _e)
+    log("[2b] SDK types: %d/%d" % (_sdk_ok, _sdk_total))
 
     # --- 3. Structs (gap-filling build, base classes first) ---
     structs = data.get("structs", {})
@@ -1053,34 +1153,39 @@ def apply_annotations():
             # Extract base type (strip pointers and arrays)
             base = _re_fwd.sub(r'\[.*\]', '', mtype).replace("*", "").strip()
             if base and base not in _primitives:
+                if '::' in base:
+                    continue  # nested types — forward decl via parent struct
                 fwd_names.add(base)
     fwd_ok = 0
     fwd_skip = 0
     for name in sorted(fwd_names):
-        # Skip if type already exists in til (could be enum, typedef, or PDB-imported struct)
         existing = ida_typeinf.tinfo_t()
         if existing.get_named_type(til, name):
             fwd_skip += 1
             continue
-        fwd_decl = "struct %s;" % name
-        tinfo = ida_typeinf.tinfo_t()
-        if ida_typeinf.parse_decl(tinfo, til, fwd_decl, ida_typeinf.PT_TYP) is not None:
-            tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+        _udt = ida_typeinf.udt_type_data_t()
+        _udt.total_size = 0
+        _t = ida_typeinf.tinfo_t()
+        if _t.create_udt(_udt, ida_typeinf.BTF_STRUCT):
+            _t.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
             fwd_ok += 1
     log("[3a] Forward declarations: %d new, %d skipped (already in til)" % (fwd_ok, fwd_skip))
 
-    # --- 3b. Enums (BEFORE structs — struct members may reference enum types) ---
+    # --- 3b. Enums (via ida_enum API, 不用 parse_decl) ---
     enums = data.get("enums", {})
     e_ok = 0
     for ename, einfo in enums.items():
         values = einfo.get("values", {})
         if not values:
             continue
-        member_strs = ["    %s = %s" % (k, v) for k, v in values.items()]
-        decl = "enum %s {\n%s\n};" % (ename, ",\n".join(member_strs))
-        tinfo = ida_typeinf.tinfo_t()
-        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
-            tinfo.set_named_type(til, ename, ida_typeinf.NTF_REPLACE)
+        if idc.get_enum(ename) != -1:
+            e_ok += 1  # Already exists from PDB import
+            continue
+        eid = idc.add_enum(-1, ename, 1)
+        if eid != -1:
+            for k, v in values.items():
+                val = int(v, 0) if isinstance(v, str) else v
+                idc.add_enum_member(eid, k, val)
             e_ok += 1
     log("[3b] Enums: applied=%d/%d" % (e_ok, len(enums)))
 
@@ -1178,13 +1283,58 @@ def apply_annotations():
                     lines.append("    int (*%s)();" % short)
             else:
                 lines.append("    int (*%s)();" % short)
-        decl = "struct %s {\n%s\n};" % (struct_name, "\n".join(lines))
-        tinfo = ida_typeinf.tinfo_t()
-        try:
-            if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
-                tinfo.set_named_type(til, struct_name, ida_typeinf.NTF_REPLACE)
-                vt_pre += 1
-        except Exception as e:
+        _vt_udt = ida_typeinf.udt_type_data_t()
+        _vt_off = 0
+        for _line in lines:
+            _line = _line.strip().rstrip(';')
+            if not _line:
+                continue
+            _fp_m = re.match(r'(.*?)\((.*?)\*(.*?)\)(\(.*\))$', _line)
+            if not _fp_m:
+                continue
+            _ret_str = _fp_m.group(1).strip()
+            _cc_str = _fp_m.group(2).strip()
+            _fn_str = _fp_m.group(3).strip()
+            _args_str = _fp_m.group(4).strip()
+            _ret_ti = _resolve_member_type(_ret_str, til)
+            if _ret_ti is None:
+                continue
+            _cc_map = {'__thiscall': ida_typeinf.CM_CC_THISCALL, '__cdecl': ida_typeinf.CM_CC_CDECL, '__stdcall': ida_typeinf.CM_CC_STDCALL}
+            _fd = ida_typeinf.func_type_data_t()
+            _fd.rettype = _ret_ti
+            _fd.cc = _cc_map.get(_cc_str, ida_typeinf.CM_CC_THISCALL)
+            if _args_str.strip('()'):
+                _inner = _args_str.strip('()').strip()
+                for _ap in re.split(r',\s*(?![^<>]*>)', _inner):
+                    _ap = _ap.strip().rstrip(')')
+                    _ap_ti = _resolve_member_type(_ap, til)
+                    if _ap_ti is not None:
+                        _fa = ida_typeinf.funcarg_t(); _fa.type = _ap_ti; _fd.push_back(_fa)
+            _ft = ida_typeinf.tinfo_t()
+            if not _ft.create_func(_fd):
+                continue
+            _fpt = ida_typeinf.tinfo_t()
+            if not _fpt.create_ptr(_ft):
+                continue
+            _vtm = ida_typeinf.udt_member_t()
+            _vtm.offset = _vt_off
+            _vtm.type = _fpt
+            _vtm.name = _fn_str
+            _vt_udt.push_back(_vtm)
+            _vt_off += 4
+        _vt_udt.total_size = _vt_off
+        _t = ida_typeinf.tinfo_t()
+        if _vt_off > 0 and _t.create_udt(_vt_udt, ida_typeinf.BTF_STRUCT):
+            _t.set_named_type(til, struct_name, ida_typeinf.NTF_REPLACE)
+            vt_pre += 1
+        elif _vt_off == 0:
+            _u = ida_typeinf.udt_type_data_t()
+            _u.total_size = 0
+            _t2 = ida_typeinf.tinfo_t()
+            if _t2.create_udt(_u, ida_typeinf.BTF_STRUCT):
+                _t2.set_named_type(til, struct_name, ida_typeinf.NTF_REPLACE)
+            vt_pre += 1
+            # _vt_off > 0 but create_udt failed — log it
             pass
     log("[3a] Vtable structs pre-created: %d/%d" % (vt_pre, len(vtable_jobs)))
     log("[3a] Starting TAUDT_FIXED struct import...")
@@ -1570,9 +1720,8 @@ def apply_annotations():
                 modified = True
             new_type = ann.get("type")
             if new_type and not is_reg:
-                tif = ida_typeinf.tinfo_t()
-                _decl = "%s __x;" % new_type
-                if ida_typeinf.parse_decl(tif, None, _decl, 1) is None:
+                tif = _resolve_member_type(new_type, ida_typeinf.get_idati())
+                if tif is not None:
                     try:
                         lvar.set_lvar_type(tif)
                         modified = True

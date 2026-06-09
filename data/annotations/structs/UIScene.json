@@ -237,11 +237,11 @@
     },
     "0x0043FA00": {
       "name": "UIScene::GetChildCount",
-      "signature": "int __thiscall UIScene::GetChildCount(UIScene *this)"
+      "signature": "int __thiscall UIScene::GetChildCount()"
     },
     "0x0043FAE0": {
       "name": "UIScene::GetChildAt",
-      "signature": "int __thiscall UIScene::GetChildAt(UIScene *this)"
+      "signature": "int __thiscall UIScene::GetChildAt()"
     },
     "0x004427A0": {
       "name": "UIScene::SetShow",
@@ -269,7 +269,7 @@
     },
     "0x0043A870": {
       "name": "UIScene::CreateChildWidget",
-      "signature": "gbVFileSystem *__thiscall UIScene::CreateChildWidget(UIScene *this, int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)"
+      "signature": "gbVFileSystem *__thiscall UIScene::CreateChildWidget(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)"
     },
     "0x0043AFE0": {
       "name": "UIScene::SetupRenderClip",
@@ -277,7 +277,7 @@
     },
     "0x0043B060": {
       "name": "UIScene::CreateTextureWidget",
-      "signature": "gbVFileSystem *__thiscall UIScene::CreateTextureWidget(UIScene *this, int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)"
+      "signature": "gbVFileSystem *__thiscall UIScene::CreateTextureWidget(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)"
     },
     "0x0043B1E0": {
       "name": "UIScene::Update",
@@ -289,7 +289,7 @@
     },
     "0x0043B570": {
       "name": "UIScene::CreateLabelWidget",
-      "signature": "gbVFileSystem *__thiscall UIScene::CreateLabelWidget(UIScene *this, int id, void *pRect, gbVFileSystem *parent, LPCSTR lpString, char pData)"
+      "signature": "gbVFileSystem *__thiscall UIScene::CreateLabelWidget(int id, void *pRect, gbVFileSystem *parent, LPCSTR lpString, char pData)"
     },
     "0x0043B900": {
       "name": "UIScene::Update_b900",
@@ -297,7 +297,7 @@
     },
     "0x0043C7B0": {
       "name": "UIScene::CreateScrollWidget",
-      "signature": "gbVFileSystem *__thiscall UIScene::CreateScrollWidget(UIScene *this, int id, int *p_DWORD, int parent, gbVFileSystem *pVFileSystem, char pData)",
+      "signature": "gbVFileSystem *__thiscall UIScene::CreateScrollWidget(int id, int *p_DWORD, int parent, gbVFileSystem *pVFileSystem, char pData)",
       "ordinal": 7
     },
     "0x0043D1A0": {
@@ -311,11 +311,11 @@
     },
     "0x0044DFC0": {
       "name": "UIScene::OnMessage",
-      "signature": "int __thiscall UIScene::OnMessage(UIScene *this, UICursor *msg, int wparam, int lparam)"
+      "signature": "int __thiscall UIScene::OnMessage(UICursor *msg, int wparam, int lparam)"
     },
     "0x00459900": {
       "name": "UIScene::RenderUI",
-      "signature": "int __thiscall UIScene::RenderUI(UIScene *this)",
+      "signature": "int __thiscall UIScene::RenderUI()",
       "_misattrib_evidence": "max_offset=3280>class_size=1012"
     },
     "0x0043A660": {
@@ -333,23 +333,23 @@
     },
     "0x0043BEB0": {
       "name": "UIScene::SetTexture",
-      "signature": "void __thiscall UIScene::SetTexture(UIScene *this, LPCSTR lpString, char pData)"
+      "signature": "void __thiscall UIScene::SetTexture(LPCSTR lpString, char pData)"
     },
     "0x0043C0F0": {
       "name": "UIScene::UpdateLayout",
-      "signature": "void __thiscall UIScene::UpdateLayout(UIScene *this, float fVal)"
+      "signature": "void __thiscall UIScene::UpdateLayout(float fVal)"
     },
     "0x0043C330": {
       "name": "UIScene::RefreshLayout",
-      "signature": "int __thiscall UIScene::RefreshLayout(UIScene *this)"
+      "signature": "int __thiscall UIScene::RefreshLayout()"
     },
     "0x0043C9D0": {
       "name": "UIScene::fill",
-      "signature": "void __thiscall UIScene::fill(UIScene *this, PlayerItem *a1, PlayerItem *a2, PlayerItem *a3)"
+      "signature": "void __thiscall UIScene::fill(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3)"
     },
     "0x0043CBD0": {
       "name": "UIScene::ResizeContentAlt",
-      "signature": "int __thiscall UIScene::ResizeContentAlt(UIScene *this, int nVal)"
+      "signature": "int __thiscall UIScene::ResizeContentAlt(int nVal)"
     },
     "0x0043CDF0": {
       "name": "UIScene::Render_cdf0",
@@ -358,11 +358,11 @@
     },
     "0x0043FBC0": {
       "name": "UIScene::SetTextParam",
-      "signature": "void __thiscall UIScene::SetTextParam(UIScene *this)"
+      "signature": "void __thiscall UIScene::SetTextParam()"
     },
     "0x00455190": {
       "name": "UIScene::SetParam",
-      "signature": "int __thiscall UIScene::SetParam(UIScene *this, int nVal)"
+      "signature": "int __thiscall UIScene::SetParam(int nVal)"
     },
     "0x0045ADF0": {
       "name": "UIScene::DestroyParent",
@@ -370,11 +370,11 @@
     },
     "0x0052E120": {
       "name": "UIScene::LoadMapData",
-      "signature": "void __thiscall UIScene::LoadMapData(UIScene *this)"
+      "signature": "void __thiscall UIScene::LoadMapData()"
     },
     "0x0052E140": {
       "name": "UIScene::CalcViewTransform",
-      "signature": "int __thiscall UIScene::CalcViewTransform(UIScene *this, int nVal)"
+      "signature": "int __thiscall UIScene::CalcViewTransform(int nVal)"
     },
     "0x00535AE0": {
       "name": "UIScene::ClearColors",
@@ -410,11 +410,11 @@
     },
     "0x00445930": {
       "name": "UIScene::SetState",
-      "signature": "void __thiscall UIScene::SetState(UIScene *this)"
+      "signature": "void __thiscall UIScene::SetState()"
     },
     "0x00442060": {
       "name": "UIScene::SetFirstShow",
-      "signature": "void __thiscall UIScene::SetFirstShow(UIScene *this)"
+      "signature": "void __thiscall UIScene::SetFirstShow()"
     },
     "0x00445F80": {
       "name": "UIScene::GetPixelChannel",
@@ -422,7 +422,7 @@
     },
     "0x004932D0": {
       "name": "UIScene::LoadRoleSkillData",
-      "signature": "int __thiscall UIScene::LoadRoleSkillData(UIScene *this, int nRoleIndex)",
+      "signature": "int __thiscall UIScene::LoadRoleSkillData(int nRoleIndex)",
       "_misattrib_evidence": "max_offset=217412>class_size=204"
     }
   },

@@ -65,19 +65,30 @@ def log(msg):
         pass
 
 
+_PRIMITIVE_BTF = {
+    'void': ida_typeinf.BTF_VOID, 'char': ida_typeinf.BTF_CHAR, 'signed char': ida_typeinf.BTF_INT8,
+    'unsigned char': ida_typeinf.BTF_BYTE, 'BYTE': ida_typeinf.BTF_BYTE, 'uchar': ida_typeinf.BTF_BYTE,
+    'short': ida_typeinf.BTF_INT16, 'unsigned short': ida_typeinf.BTF_UINT16, 'WORD': ida_typeinf.BTF_UINT16,
+    'int': ida_typeinf.BTF_INT32, 'signed int': ida_typeinf.BTF_INT32, 'unsigned int': ida_typeinf.BTF_UINT32,
+    'UINT': ida_typeinf.BTF_UINT32, 'DWORD': ida_typeinf.BTF_UINT32, 'unsigned': ida_typeinf.BTF_UINT32,
+    'long': ida_typeinf.BTF_INT32, 'unsigned long': ida_typeinf.BTF_UINT32, 'LONG': ida_typeinf.BTF_INT32,
+    'float': ida_typeinf.BTF_FLOAT, 'double': ida_typeinf.BTF_DOUBLE,
+    'bool': ida_typeinf.BTF_BOOL, 'BOOL': ida_typeinf.BTF_INT32,
+    '__int64': ida_typeinf.BTF_INT64, 'unsigned __int64': ida_typeinf.BTF_UINT64,
+    '_DWORD': ida_typeinf.BTF_UINT32, '_BYTE': ida_typeinf.BTF_BYTE, '_WORD': ida_typeinf.BTF_UINT16,
+}
+
 def _resolve_member_type(mtype_str, til):
-    """将成员类型字符串解析为 tinfo_t，优先 API 创建，模板/函数指针 fallback parse_decl。"""
     s = mtype_str.strip()
     if not s:
         return None
     s = re.sub(r'\[0x([0-9a-fA-F]+)\]', lambda m: '[%d]' % int(m.group(1), 16), s)
-
     if '<' in s or '(' in s:
+        base = re.split(r'[<(]', s)[0].strip()
         tinfo = ida_typeinf.tinfo_t()
-        if ida_typeinf.parse_decl(tinfo, til, "%s __x;" % s, ida_typeinf.PT_VAR) is None:
-            return None
-        return tinfo
-
+        if tinfo.get_named_type(til, base):
+            return tinfo
+        return None
     array_sizes = []
     while True:
         m = re.search(r'\[(\d+)\]$', s)
@@ -85,35 +96,32 @@ def _resolve_member_type(mtype_str, til):
             break
         array_sizes.insert(0, int(m.group(1)))
         s = s[:m.start()].strip()
-
     is_ptr = s.endswith('*')
     if is_ptr:
         s = s.rstrip('*').strip()
-
     if s.startswith('const '):
         s = s[6:].strip()
     if not s:
         return None
-
+    if s == 'void' and is_ptr:
+        void_t = ida_typeinf.tinfo_t()
+        if void_t.create_simple_type(ida_typeinf.BTF_VOID):
+            ptr_t = ida_typeinf.tinfo_t()
+            if ptr_t.create_ptr(void_t): return ptr_t
+        return None
+    btf = _PRIMITIVE_BTF.get(s)
+    if btf is not None:
+        tinfo = ida_typeinf.tinfo_t()
+        if tinfo.create_simple_type(btf):
+            if is_ptr: p = ida_typeinf.tinfo_t(); p.create_ptr(tinfo); tinfo = p
+            for sz in reversed(array_sizes): a = ida_typeinf.tinfo_t(); a.create_array(tinfo, sz); tinfo = a
+            return tinfo
     tinfo = ida_typeinf.tinfo_t()
-    resolved = tinfo.get_named_type(til, s)
-    if not resolved or tinfo.get_size() in (0, 0xFFFFFFFFFFFFFFFF):
-        # get_named_type 不处理基本类型（char/int/float 等），用 parse_decl fallback
-        if ida_typeinf.parse_decl(tinfo, til, "%s __x;" % s, ida_typeinf.PT_VAR) is None:
-            return None
-        resolved = True
-
-    if is_ptr:
-        ptr_tinfo = ida_typeinf.tinfo_t()
-        if not ptr_tinfo.create_ptr(tinfo):
-            return None
-        tinfo = ptr_tinfo
-    for size in reversed(array_sizes):
-        arr_tinfo = ida_typeinf.tinfo_t()
-        if not arr_tinfo.create_array(tinfo, size):
-            return None
-        tinfo = arr_tinfo
-    return tinfo
+    if tinfo.get_named_type(til, s) and tinfo.get_size() not in (0, 0xFFFFFFFFFFFFFFFF):
+        if is_ptr: p = ida_typeinf.tinfo_t(); p.create_ptr(tinfo); tinfo = p
+        for sz in reversed(array_sizes): a = ida_typeinf.tinfo_t(); a.create_array(tinfo, sz); tinfo = a
+        return tinfo
+    return None
 
 
 # ========================================================================
@@ -170,10 +178,16 @@ def phase1_import_types():
             member_strs.append('    %s = %d' % (mname, mval))
         if not member_strs:
             continue
-        decl = 'enum %s {\n%s\n};' % (name, ',\n'.join(member_strs))
-        tinfo = ida_typeinf.tinfo_t()
-        if ida_typeinf.parse_decl(tinfo, til, decl, ida_typeinf.PT_TYP) is not None:
-            tinfo.set_named_type(til, name, ida_typeinf.NTF_REPLACE)
+        eid = idc.get_enum(name)
+        if eid == -1:
+            eid = idc.add_enum(-1, name, 1)
+        if eid != -1:
+            for mname, mval_str in values.items():
+                try:
+                    mval = int(mval_str)
+                except (ValueError, TypeError):
+                    mval = 0
+                idc.add_enum_member(eid, mname, mval)
             enum_ok += 1
 
     log("[*] 枚举导入: %d / %d" % (enum_ok, len(enums)))
@@ -237,8 +251,17 @@ typedef struct D3DXMATRIX {
     _d3d_content.append(_d3dx_stubs)
     _full_decls = '\n'.join(_d3d_content)
     log("[*] D3D 头文件: %d chars" % len(_full_decls))
-    _errs = idc.parse_decls(_full_decls, 0)
-    log("[*] D3D parse_decls: errors=%d" % (_errs if _errs is not None else 0))
+    # D3D types: extract struct names, create empty forward decls
+    _d3d_til = ida_typeinf.get_idati()
+    _d3d_ok = 0
+    for _m in re.finditer(r'(?:struct|typedef struct)\s+(\w+)', _full_decls):
+        _n = _m.group(1)
+        if ida_typeinf.tinfo_t().get_named_type(_d3d_til, _n): continue
+        _u = ida_typeinf.udt_type_data_t(); _u.total_size = 0
+        _t = ida_typeinf.tinfo_t()
+        if _t.create_udt(_u, ida_typeinf.BTF_STRUCT) and _t.set_named_type(_d3d_til, _n, ida_typeinf.NTF_REPLACE):
+            _d3d_ok += 1
+    log("[*] D3D types: %d forward-declared" % _d3d_ok)
 
     # 导入 gbengine 类型
     try:

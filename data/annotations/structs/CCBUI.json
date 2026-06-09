@@ -431,7 +431,7 @@
     },
     "0x00519BD0": {
       "name": "CCBUI::CreateButton",
-      "signature": "bool(CCBUI *this, int parent, int id, int rc, int picname, UIButton **a6, int nVal)",
+      "signature": "bool(int parent, int id, int rc, int picname, UIButton **a6, int nVal))",
       "source": "pdb_ret"
     },
     "0x00519F50": {
@@ -475,7 +475,7 @@
     },
     "0x004E04C0": {
       "name": "CCBUI::StepFrame",
-      "signature": "int __thiscall CCBUI::StepFrame(CCBUI *this)"
+      "signature": "int __thiscall CCBUI::StepFrame()"
     },
     "0x00519310": {
       "name": "CCBUI::ctor",
@@ -539,7 +539,7 @@
     },
     "0x004413C0": {
       "name": "CCBUI::LoadTextureSequence",
-      "signature": "gbVFileSystem *__thiscall CCBUI::LoadTextureSequence(CCBUI *this, gbVFileSystem *pPath, char bUseAtlas)",
+      "signature": "gbVFileSystem *__thiscall CCBUI::LoadTextureSequence(gbVFileSystem *pPath, char bUseAtlas)",
       "_misattrib_evidence": "max_offset=260>class_size=76"
     },
     "0x004E1A10": {
@@ -548,11 +548,11 @@
     },
     "0x004E1F70": {
       "name": "CCBUI::SettingsDialogProc",
-      "signature": "int __thiscall CCBUI::SettingsDialogProc(CCBUI *this, HWND hDlg, unsigned int dwVal, WPARAM pData, LPARAM a5)"
+      "signature": "int __thiscall CCBUI::SettingsDialogProc(HWND hDlg, unsigned int dwVal, WPARAM pData, LPARAM a5)"
     },
     "0x004E24C0": {
       "name": "CCBUI::CommandEditDialogProc",
-      "signature": "int __thiscall CCBUI::CommandEditDialogProc(CCBUI *this, int *p_DWORD, HWND hDlg, int nVal, int nVal2, int nVal3)"
+      "signature": "int __thiscall CCBUI::CommandEditDialogProc(int *p_DWORD, HWND hDlg, int nVal, int nVal2, int nVal3)"
     },
     "0x004E3A20": {
       "name": "CCBUI::InitUI_4E3A20",
@@ -564,11 +564,11 @@
     },
     "0x004E4A80": {
       "name": "CCBUI::PopulateCommandList",
-      "signature": "LRESULT __thiscall CCBUI::PopulateCommandList(CCBUI *this)"
+      "signature": "LRESULT __thiscall CCBUI::PopulateCommandList()"
     },
     "0x004E4D70": {
       "name": "CCBUI::ShowCommandDetails",
-      "signature": "LRESULT __thiscall CCBUI::ShowCommandDetails(CCBUI *this)"
+      "signature": "LRESULT __thiscall CCBUI::ShowCommandDetails()"
     },
     "0x005164D0": {
       "name": "CCBUI::Destroy",
@@ -603,7 +603,7 @@
     },
     "0x00460A00": {
       "name": "CCBUI::RollProbability",
-      "signature": "bool __thiscall CCBUI::RollProbability(CCBUI *this, float fProb)"
+      "signature": "bool __thiscall CCBUI::RollProbability(float fProb)"
     },
     "0x004DC610": {
       "name": "CCBUI::CountAttackSequences",
@@ -611,43 +611,43 @@
     },
     "0x004E10E0": {
       "name": "CCBUI::CloseDialog",
-      "signature": "int __thiscall CCBUI::CloseDialog(CCBUI *this, HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
+      "signature": "int __thiscall CCBUI::CloseDialog(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
     },
     "0x004E1160": {
       "name": "CCBUI::DlgProcEffect",
-      "signature": "int __thiscall CCBUI::DlgProcEffect(CCBUI *this, HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
+      "signature": "int __thiscall CCBUI::DlgProcEffect(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
     },
     "0x004E16F0": {
       "name": "CCBUI::PopulateSceneList",
-      "signature": "unsigned __int8 *__thiscall CCBUI::PopulateSceneList(CCBUI *this, HWND hDlg)"
+      "signature": "unsigned __int8 *__thiscall CCBUI::PopulateSceneList(HWND hDlg)"
     },
     "0x004E1870": {
       "name": "CCBUI::LoadSceneByIndex",
-      "signature": "unsigned __int8 *__thiscall CCBUI::LoadSceneByIndex(CCBUI *this, int nVal)"
+      "signature": "unsigned __int8 *__thiscall CCBUI::LoadSceneByIndex(int nVal)"
     },
     "0x004E2430": {
       "name": "CCBUI::HandleWindowMessage",
-      "signature": "int __thiscall CCBUI::HandleWindowMessage(CCBUI *this, HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
+      "signature": "int __thiscall CCBUI::HandleWindowMessage(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
     },
     "0x004E2490": {
       "name": "CCBUI::DlgProcMain",
-      "signature": "int __thiscall CCBUI::DlgProcMain(CCBUI *this, HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
+      "signature": "int __thiscall CCBUI::DlgProcMain(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
     },
     "0x004E3780": {
       "name": "CCBUI::UpdateDebugStatus",
-      "signature": "char __thiscall CCBUI::UpdateDebugStatus(CCBUI *this)"
+      "signature": "char __thiscall CCBUI::UpdateDebugStatus()"
     },
     "0x004E4D50": {
       "name": "CCBUI::CloseCommandDialog",
-      "signature": "BOOL __thiscall CCBUI::CloseCommandDialog(CCBUI *this)"
+      "signature": "BOOL __thiscall CCBUI::CloseCommandDialog()"
     },
     "0x004E4F00": {
       "name": "CCBUI::ApplyCommandEdit",
-      "signature": "int __thiscall CCBUI::ApplyCommandEdit(CCBUI *this)"
+      "signature": "int __thiscall CCBUI::ApplyCommandEdit()"
     },
     "0x004E5170": {
       "name": "CCBUI::ShowSkillDetails",
-      "signature": "int __thiscall CCBUI::ShowSkillDetails(CCBUI *this)"
+      "signature": "int __thiscall CCBUI::ShowSkillDetails()"
     },
     "0x004E53C0": {
       "name": "CCBUI::SendWindowMessage",
@@ -670,7 +670,7 @@
     },
     "0x00526740": {
       "name": "CCBUI::Update",
-      "signature": "int __thiscall CCBUI::Update(CCBUI *this, int deltatime, int haveinput)"
+      "signature": "int __thiscall CCBUI::Update(int deltatime, int haveinput)"
     },
     "0x00469D40": {
       "name": "CCBUI::fn_469D40",
@@ -711,7 +711,7 @@
     },
     "0x00516940": {
       "name": "CCBUI::InitResultPanels",
-      "signature": "void __thiscall CCBUI::InitResultPanels(CCBUI *this)",
+      "signature": "void __thiscall CCBUI::InitResultPanels()",
       "_misattrib_evidence": "max_offset=1016>class_size=208"
     },
     "0x00519380": {

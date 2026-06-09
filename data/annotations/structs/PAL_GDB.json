@@ -87,15 +87,15 @@
     },
     "0x0049C2C0": {
       "name": "PAL_GDB::LoadByType",
-      "signature": "char __thiscall PAL_GDB::LoadByType(PAL_GDB *this, unsigned int dwVal, char pData)"
+      "signature": "char __thiscall PAL_GDB::LoadByType(unsigned int dwVal, char pData)"
     },
     "0x0049C660": {
       "name": "PAL_GDB::SelectBestTarget",
-      "signature": "int __thiscall PAL_GDB::SelectBestTarget(PAL_GDB *this, int nVal)"
+      "signature": "int __thiscall PAL_GDB::SelectBestTarget(int nVal)"
     },
     "0x00457F00": {
       "name": "PAL_GDB::RefreshSkillNumbers",
-      "signature": "void __thiscall PAL_GDB::RefreshSkillNumbers(PAL_GDB *this)"
+      "signature": "void __thiscall PAL_GDB::RefreshSkillNumbers()"
     },
     "0x004E50B0": {
       "name": "PAL_GDB::SetupSkillConfig",
@@ -103,24 +103,24 @@
     },
     "0x00526300": {
       "name": "PAL_GDB::RefreshPartyStats",
-      "signature": "gbGeomNode *__thiscall PAL_GDB::RefreshPartyStats(PAL_GDB *this)"
+      "signature": "gbGeomNode *__thiscall PAL_GDB::RefreshPartyStats()"
     },
     "0x005294C0": {
       "name": "PAL_GDB::SetDefaultEquipment",
-      "signature": "char *__thiscall PAL_GDB::SetDefaultEquipment(PAL_GDB *this)"
+      "signature": "char *__thiscall PAL_GDB::SetDefaultEquipment()"
     },
     "0x00478C00": {
       "name": "PAL_GDB::ResetAllData",
-      "signature": "MainEquipUI *__thiscall PAL_GDB::ResetAllData(PAL_GDB *this)",
+      "signature": "MainEquipUI *__thiscall PAL_GDB::ResetAllData()",
       "_misattrib_evidence": "max_offset=804880>class_size=204620"
     },
     "0x004791B0": {
       "name": "PAL_GDB::GetItemID",
-      "signature": "int __thiscall PAL_GDB::GetItemID(PAL_GDB *this, unsigned int index)"
+      "signature": "int __thiscall PAL_GDB::GetItemID(unsigned int index)"
     },
     "0x004E5500": {
       "name": "PAL_GDB::LoadConfigFromINI",
-      "signature": "int __thiscall PAL_GDB::LoadConfigFromINI(PAL_GDB *this)"
+      "signature": "int __thiscall PAL_GDB::LoadConfigFromINI()"
     },
     "0x004E56E0": {
       "name": "PAL_GDB::FindItemByID",
@@ -140,15 +140,15 @@
     },
     "0x004E5800": {
       "name": "PAL_GDB::PartySetupDialogProc",
-      "signature": "int __thiscall PAL_GDB::PartySetupDialogProc(PAL_GDB *this, HWND hDlg, UINT pData, WPARAM a4, LPARAM a5)"
+      "signature": "int __thiscall PAL_GDB::PartySetupDialogProc(HWND hDlg, UINT pData, WPARAM a4, LPARAM a5)"
     },
     "0x004E5B20": {
       "name": "PAL_GDB::RefreshPartyDialog",
-      "signature": "LRESULT __thiscall PAL_GDB::RefreshPartyDialog(PAL_GDB *this)"
+      "signature": "LRESULT __thiscall PAL_GDB::RefreshPartyDialog()"
     },
     "0x004E5E00": {
       "name": "PAL_GDB::PopulateAvailableRoles",
-      "signature": "int __thiscall PAL_GDB::PopulateAvailableRoles(PAL_GDB *this)"
+      "signature": "int __thiscall PAL_GDB::PopulateAvailableRoles()"
     },
     "0x004E5F60": {
       "name": "PAL_GDB::UpdateInventorySlots",
@@ -156,35 +156,35 @@
     },
     "0x004E5FF0": {
       "name": "PAL_GDB::DlgProcCamera",
-      "signature": "int __thiscall PAL_GDB::DlgProcCamera(PAL_GDB *this, HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
+      "signature": "int __thiscall PAL_GDB::DlgProcCamera(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)"
     },
     "0x004EC1F0": {
       "name": "PAL_GDB::ShowDetailPanel",
-      "signature": "LRESULT __thiscall PAL_GDB::ShowDetailPanel(PAL_GDB *this, HWND hDlg)"
+      "signature": "LRESULT __thiscall PAL_GDB::ShowDetailPanel(HWND hDlg)"
     },
     "0x004ED8C0": {
       "name": "PAL_GDB::LoadSkillData",
-      "signature": "int __thiscall PAL_GDB::LoadSkillData(PAL_GDB *this)"
+      "signature": "int __thiscall PAL_GDB::LoadSkillData()"
     },
     "0x004F69F0": {
       "name": "PAL_GDB::IsItemConsumable",
-      "signature": "bool __thiscall PAL_GDB::IsItemConsumable(PAL_GDB *this, int nItemId)"
+      "signature": "bool __thiscall PAL_GDB::IsItemConsumable(int nItemId)"
     },
     "0x004F6A20": {
       "name": "PAL_GDB::IsItemEquipment",
-      "signature": "bool __thiscall PAL_GDB::IsItemEquipment(PAL_GDB *this, int nItemId)"
+      "signature": "bool __thiscall PAL_GDB::IsItemEquipment(int nItemId)"
     },
     "0x004F6A40": {
       "name": "PAL_GDB::IsRoleAlive",
-      "signature": "bool __thiscall PAL_GDB::IsRoleAlive(PAL_GDB *this, int nRoleId)"
+      "signature": "bool __thiscall PAL_GDB::IsRoleAlive(int nRoleId)"
     },
     "0x004F6A60": {
       "name": "PAL_GDB::IsRoleDead",
-      "signature": "bool __thiscall PAL_GDB::IsRoleDead(PAL_GDB *this, int nRoleId)"
+      "signature": "bool __thiscall PAL_GDB::IsRoleDead(int nRoleId)"
     },
     "0x004F6AB0": {
       "name": "PAL_GDB::IsItemConsumed",
-      "signature": "bool __thiscall PAL_GDB::IsItemConsumed(PAL_GDB *this, int nItemId)"
+      "signature": "bool __thiscall PAL_GDB::IsItemConsumed(int nItemId)"
     },
     "0x004F6AD0": {
       "name": "PAL_GDB::GetSkillLevel",

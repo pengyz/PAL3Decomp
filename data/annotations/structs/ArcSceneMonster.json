@@ -14,8 +14,8 @@
     },
     "4": {
       "name": "_todo_004",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "type": "void *",
+      "source": "decomp_analysis:used_as_pointer_in_ValidateRange_CheckDistance"
     },
     "164": {
       "name": "_todo_0A4",
@@ -39,8 +39,8 @@
     },
     "304": {
       "name": "_todo_130",
-      "type": "int",
-      "source": "binary_scan:2refs"
+      "type": "void *",
+      "source": "binary_scan:2refs;batch_fix:int_to_v*_LEA_embed"
     },
     "316": {
       "name": "_todo_13C",
@@ -49,8 +49,8 @@
     },
     "320": {
       "name": "_todo_140",
-      "type": "int",
-      "source": "binary_scan:2refs"
+      "type": "void *",
+      "source": "binary_scan:2refs;batch_fix:int_to_v*_LEA_embed"
     },
     "324": {
       "name": "_todo_144",
@@ -66,7 +66,7 @@
   "methods": {
     "0x00441E30": {
       "name": "ArcSceneMonster::HitTest",
-      "signature": "int __thiscall ArcSceneMonster::HitTest(ArcSceneMonster *this, unsigned int *pPoint)"
+      "signature": "int __thiscall ArcSceneMonster::HitTest(unsigned int *pPoint)"
     },
     "0x00487F80": {
       "name": "ArcSceneMonster::CreateInfoPanel",

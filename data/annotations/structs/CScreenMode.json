@@ -18,12 +18,12 @@
     },
     "16": {
       "name": "_todo_010",
-      "type": "int",
+      "type": "float",
       "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
     },
     "20": {
       "name": "_todo_014",
-      "type": "int",
+      "type": "float",
       "source": "B:naming_m_n+FPU_misattrib"
     },
     "24": {
@@ -404,8 +404,8 @@
     },
     "812": {
       "name": "_todo_32C",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "type": "void *",
+      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
     },
     "816": {
       "name": "m_Static_816",
@@ -419,8 +419,8 @@
     },
     "2608": {
       "name": "_todo_A30",
-      "type": "int",
-      "source": "binary_scan:2refs"
+      "type": "void *",
+      "source": "binary_scan:2refs;batch_fix:int_to_v*_LEA_embed"
     },
     "3868": {
       "name": "m_bActive",
@@ -460,7 +460,7 @@
     },
     "0x0044E8B0": {
       "name": "CScreenMode::HideUIBars",
-      "signature": "void __thiscall CScreenMode::HideUIBars(CScreenMode *this, int nVal, unsigned int dwVal)"
+      "signature": "void __thiscall CScreenMode::HideUIBars(int nVal, unsigned int dwVal)"
     },
     "0x00454980": {
       "name": "CScreenMode::_scalar_dtor_0"
@@ -475,11 +475,11 @@
     },
     "0x004593C0": {
       "name": "CScreenMode::InitGameUI",
-      "signature": "void __thiscall CScreenMode::InitGameUI(CScreenMode *this)"
+      "signature": "void __thiscall CScreenMode::InitGameUI()"
     },
     "0x0047BE20": {
       "name": "CScreenMode::InitEquipScreen",
-      "signature": "void __thiscall CScreenMode::InitEquipScreen(CScreenMode *this)"
+      "signature": "void __thiscall CScreenMode::InitEquipScreen()"
     },
     "0x00483260": {
       "name": "CScreenMode::_scalar_dtor",
@@ -522,16 +522,16 @@
     },
     "0x005249A0": {
       "name": "CScreenMode::OnRenderAlt",
-      "signature": "int __thiscall CScreenMode::OnRenderAlt(CScreenMode *this)",
+      "signature": "int __thiscall CScreenMode::OnRenderAlt()",
       "ordinal": 6
     },
     "0x00527F50": {
       "name": "CScreenMode::InitSceneAudio",
-      "signature": "int __thiscall CScreenMode::InitSceneAudio(CScreenMode *this, int nVal)"
+      "signature": "int __thiscall CScreenMode::InitSceneAudio(int nVal)"
     },
     "0x0052D230": {
       "name": "CScreenMode::InitPlayerData",
-      "signature": "char __thiscall CScreenMode::InitPlayerData(CScreenMode *this)"
+      "signature": "char __thiscall CScreenMode::InitPlayerData()"
     },
     "0x0052DF40": {
       "name": "CScreenMode::InitCamera",
@@ -539,7 +539,7 @@
     },
     "0x0052ED30": {
       "name": "CScreenMode::InitEndScreen",
-      "signature": "void __thiscall CScreenMode::InitEndScreen(CScreenMode *this)"
+      "signature": "void __thiscall CScreenMode::InitEndScreen()"
     },
     "0x00530440": {
       "name": "CScreenMode::CreateVolModNode",
@@ -555,7 +555,7 @@
     },
     "0x0053C420": {
       "name": "CScreenMode::CloseBinkVideo",
-      "signature": "int __thiscall CScreenMode::CloseBinkVideo(CScreenMode *this)"
+      "signature": "int __thiscall CScreenMode::CloseBinkVideo()"
     },
     "0x0053C440": {
       "name": "CScreenMode::CreateDevice",
@@ -563,7 +563,7 @@
     },
     "0x0053C460": {
       "name": "CScreenMode::WaitBinkFrame",
-      "signature": "int __thiscall CScreenMode::WaitBinkFrame(CScreenMode *this)"
+      "signature": "int __thiscall CScreenMode::WaitBinkFrame()"
     },
     "0x0053C470": {
       "name": "CScreenMode::IsSceneReady",
@@ -591,7 +591,7 @@
     },
     "0x0053C8C0": {
       "name": "CScreenMode::InitDisplayState",
-      "signature": "int __thiscall CScreenMode::InitDisplayState(CScreenMode *this)"
+      "signature": "int __thiscall CScreenMode::InitDisplayState()"
     },
     "0x0053CDD0": {
       "name": "CScreenMode::SetState",
@@ -599,7 +599,7 @@
     },
     "0x0053D150": {
       "name": "CScreenMode::GetSoundList",
-      "signature": "PtrArray * __thiscall CScreenMode::GetSoundList(CScreenMode *this)"
+      "signature": "PtrArray * __thiscall CScreenMode::GetSoundList()"
     },
     "0x0053D1E0": {
       "name": "CScreenMode::SetAudioParam",
@@ -611,7 +611,7 @@
     },
     "0x0053DC50": {
       "name": "CScreenMode::CleanupSoundList",
-      "signature": "void __thiscall CScreenMode::CleanupSoundList(CScreenMode *this)"
+      "signature": "void __thiscall CScreenMode::CleanupSoundList()"
     },
     "0x0053DD70": {
       "name": "CScreenMode::SetMode",
@@ -628,7 +628,7 @@
     },
     "0x0053DFB0": {
       "name": "CScreenMode::PlaySoundStream",
-      "signature": "int __thiscall CScreenMode::PlaySoundStream(CScreenMode *this, const void *pData)"
+      "signature": "int __thiscall CScreenMode::PlaySoundStream(const void *pData)"
     },
     "0x0053E2E0": {
       "name": "CScreenMode::AudioSetPosition",
@@ -640,7 +640,7 @@
     },
     "0x0053E4E0": {
       "name": "CScreenMode::PlaySoundIfEnabled",
-      "signature": "void __thiscall CScreenMode::PlaySoundIfEnabled(CScreenMode *this, void *pSound, int nMode)"
+      "signature": "void __thiscall CScreenMode::PlaySoundIfEnabled(void *pSound, int nMode)"
     },
     "0x0053E500": {
       "name": "CScreenMode::GetAudioManager",
@@ -648,19 +648,19 @@
     },
     "0x0053E510": {
       "name": "CScreenMode::PlaySceneMusic",
-      "signature": "void __thiscall CScreenMode::PlaySceneMusic(CScreenMode *this, char *pszScene, const char *pszArea, int nVal)"
+      "signature": "void __thiscall CScreenMode::PlaySceneMusic(char *pszScene, const char *pszArea, int nVal)"
     },
     "0x0053E680": {
       "name": "CScreenMode::PlayCombatMusic",
-      "signature": "void __thiscall CScreenMode::PlayCombatMusic(CScreenMode *this, char *pszSceneName)"
+      "signature": "void __thiscall CScreenMode::PlayCombatMusic(char *pszSceneName)"
     },
     "0x0053E720": {
       "name": "CScreenMode::StopAllAudio",
-      "signature": "unsigned int __thiscall CScreenMode::StopAllAudio(CScreenMode *this)"
+      "signature": "unsigned int __thiscall CScreenMode::StopAllAudio()"
     },
     "0x0053E740": {
       "name": "CScreenMode::PlayAmbientSound",
-      "signature": "void __thiscall CScreenMode::PlayAmbientSound(CScreenMode *this, char *pszName, gbAudioManager *pAudioMgr)"
+      "signature": "void __thiscall CScreenMode::PlayAmbientSound(char *pszName, gbAudioManager *pAudioMgr)"
     },
     "0x0053E890": {
       "name": "CScreenMode::ApplyColorFilter",
@@ -684,11 +684,11 @@
     },
     "0x0053EB90": {
       "name": "CScreenMode::AddSoundEntry",
-      "signature": "int __thiscall CScreenMode::AddSoundEntry(CScreenMode *this, char *pszBuf, char *pszBuf2)"
+      "signature": "int __thiscall CScreenMode::AddSoundEntry(char *pszBuf, char *pszBuf2)"
     },
     "0x0053ED70": {
       "name": "CScreenMode::GetSoundCount",
-      "signature": "int __thiscall CScreenMode::GetSoundCount(CScreenMode *this)"
+      "signature": "int __thiscall CScreenMode::GetSoundCount()"
     },
     "0x0053EDA0": {
       "name": "CScreenMode::DestroyString",
@@ -696,7 +696,7 @@
     },
     "0x0053EDE0": {
       "name": "CScreenMode::FreeSoundBuffer",
-      "signature": "void __thiscall CScreenMode::FreeSoundBuffer(CScreenMode *this, void *Block, int nVal)"
+      "signature": "void __thiscall CScreenMode::FreeSoundBuffer(void *Block, int nVal)"
     },
     "0x0053EDF0": {
       "name": "CScreenMode::ComparePointers",
@@ -708,7 +708,7 @@
     },
     "0x0053F220": {
       "name": "CScreenMode::UpdateRenderState",
-      "signature": "char __thiscall CScreenMode::UpdateRenderState(CScreenMode *this, int *lpString)"
+      "signature": "char __thiscall CScreenMode::UpdateRenderState(int *lpString)"
     },
     "0x00569320": {
       "name": "CScreenMode::LoadAudioFromFile",

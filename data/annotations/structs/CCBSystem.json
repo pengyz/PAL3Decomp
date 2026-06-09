@@ -427,7 +427,7 @@
     },
     "0x00513EB0": {
       "name": "CCBSystem::Message",
-      "signature": "int(CCBSystem *this, char *pMsg, char *pTitle, unsigned int uType)"
+      "signature": "int(char *pMsg, char *pTitle, unsigned int uType))"
     },
     "0x00513FD0": {
       "name": "CCBSystem::IsRoleWaitForFlee",
@@ -463,16 +463,16 @@
     },
     "0x00515200": {
       "name": "CCBSystem::PassCmdToThread",
-      "signature": "int(CCBSystem *this, int nThreadIndex, tagCmdData *_68)"
+      "signature": "int(int nThreadIndex, tagCmdData *_68))"
     },
     "0x005155D0": {
       "name": "CCBSystem::PassCmdToTask",
-      "signature": "bool(CCBSystem *this, int nTaskIndex, int nThreadIndex)",
+      "signature": "bool(int nTaskIndex, int nThreadIndex))",
       "source": "pdb_ret"
     },
     "0x00515760": {
       "name": "CCBSystem::PassCmdViaThread",
-      "signature": "bool(CCBSystem *this, int nDestThread, int nSrcThread)",
+      "signature": "bool(int nDestThread, int nSrcThread))",
       "source": "pdb_ret"
     },
     "0x00515940": {
@@ -574,11 +574,11 @@
     },
     "0x004DB8E0": {
       "name": "CCBSystem::SetThreadFlag",
-      "signature": "int __thiscall CCBSystem::SetThreadFlag(CCBSystem *this, char pData)"
+      "signature": "int __thiscall CCBSystem::SetThreadFlag(char pData)"
     },
     "0x004DBE60": {
       "name": "CCBSystem::InitCombatSlot",
-      "signature": "void __thiscall CCBSystem::InitCombatSlot(CCBSystem *this, int roleIdx)"
+      "signature": "void __thiscall CCBSystem::InitCombatSlot(int roleIdx)"
     },
     "0x004DC510": {
       "name": "CCBSystem::ResetConfig",
@@ -590,7 +590,7 @@
     },
     "0x00462280": {
       "name": "CCBSystem::ProcessSlotResults",
-      "signature": "void __thiscall CCBSystem::ProcessSlotResults(CCBSystem *this, int nVal)"
+      "signature": "void __thiscall CCBSystem::ProcessSlotResults(int nVal)"
     },
     "0x00462340": {
       "name": "CCBSystem::InitResultWindow",
@@ -614,11 +614,11 @@
     },
     "0x004FCA40": {
       "name": "CCBSystem::FindThreadByID",
-      "signature": "int __thiscall CCBSystem::FindThreadByID(CCBSystem *this, int nID)"
+      "signature": "int __thiscall CCBSystem::FindThreadByID(int nID)"
     },
     "0x00504D60": {
       "name": "CCBSystem::CastProtect",
-      "signature": "char __thiscall CCBSystem::CastProtect(CCBSystem *this, int nCaster, int nTarget, float fVal)"
+      "signature": "char __thiscall CCBSystem::CastProtect(int nCaster, int nTarget, float fVal)"
     },
     "0x005158F0": {
       "name": "CCBSystem::AllocThread",

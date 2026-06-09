@@ -44,8 +44,8 @@
     },
     "352": {
       "name": "_todo_160",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "type": "void *",
+      "source": "binary_scan:1refs;batch_fix:int_to_v*_LEA_embed"
     },
     "360": {
       "name": "_todo_168",
@@ -159,7 +159,7 @@
     },
     "0x00523E80": {
       "name": "CUtil::DispatchCommand",
-      "signature": "int __thiscall CUtil::DispatchCommand(CUtil *this, int *pCmd)"
+      "signature": "int __thiscall CUtil::DispatchCommand(int *pCmd)"
     }
   },
   "vtables": [

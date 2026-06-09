@@ -367,12 +367,12 @@
     },
     "0x00456500": {
       "name": "LineupUI::OnMsgHandleNav",
-      "signature": "int __thiscall LineupUI::OnMsgHandleNav(LineupUI *this, unsigned int uMsg, unsigned int wParam, int lParam)",
+      "signature": "int __thiscall LineupUI::OnMsgHandleNav(unsigned int uMsg, unsigned int wParam, int lParam)",
       "_misattrib_evidence": "max_offset=130360>class_size=4280"
     },
     "0x00473520": {
       "name": "LineupUI::Render3DModels",
-      "signature": "int __thiscall LineupUI::Render3DModels(LineupUI *this)",
+      "signature": "int __thiscall LineupUI::Render3DModels()",
       "_misattrib_evidence": "max_offset=124260>class_size=1208"
     },
     "0x00474C50": {
@@ -396,19 +396,19 @@
     },
     "0x0047E8F0": {
       "name": "LineupUI::_scalar_dtor",
-      "signature": "void __thiscall LineupUI::_scalar_dtor(LineupUI *this)",
+      "signature": "void __thiscall LineupUI::_scalar_dtor()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5
     },
     "0x0047F880": {
       "name": "LineupUI::RenderEffects",
-      "signature": "void __thiscall LineupUI::RenderEffects(LineupUI *this)",
+      "signature": "void __thiscall LineupUI::RenderEffects()",
       "ordinal": 1
     },
     "0x00482BB0": {
       "name": "LineupUI::ShowPage",
-      "signature": "int __thiscall LineupUI::ShowPage(LineupUI *this)"
+      "signature": "int __thiscall LineupUI::ShowPage()"
     },
     "0x00483650": {
       "name": "LineupUI::CreatePreviewScene",
@@ -416,11 +416,11 @@
     },
     "0x004B1920": {
       "name": "LineupUI::UpdateProtectPanel",
-      "signature": "int *__thiscall LineupUI::UpdateProtectPanel(LineupUI *this, int nVal)"
+      "signature": "int *__thiscall LineupUI::UpdateProtectPanel(int nVal)"
     },
     "0x004B3DA0": {
       "name": "LineupUI::RebuildMainPage",
-      "signature": "int __thiscall LineupUI::RebuildMainPage(LineupUI *this)"
+      "signature": "int __thiscall LineupUI::RebuildMainPage()"
     },
     "0x00471590": {
       "name": "LineupUI::InitListView",
@@ -429,7 +429,7 @@
     },
     "0x00472A80": {
       "name": "LineupUI::SetPageIndex",
-      "signature": "int __thiscall LineupUI::SetPageIndex(LineupUI *this, int nPage)",
+      "signature": "int __thiscall LineupUI::SetPageIndex(int nPage)",
       "_misattrib_evidence": "max_offset=124248>class_size=39240"
     },
     "0x00472AA0": {
@@ -444,7 +444,7 @@
     },
     "0x00474AB0": {
       "name": "LineupUI::ProcessMouseInput",
-      "signature": "void __thiscall LineupUI::ProcessMouseInput(LineupUI *this, float fVal)",
+      "signature": "void __thiscall LineupUI::ProcessMouseInput(float fVal)",
       "_misattrib_evidence": "max_offset=121864>class_size=10584"
     },
     "0x00474C80": {
@@ -454,12 +454,12 @@
     },
     "0x00476010": {
       "name": "LineupUI::PopulateList",
-      "signature": "int __thiscall LineupUI::PopulateList(LineupUI *this)",
+      "signature": "int __thiscall LineupUI::PopulateList()",
       "_misattrib_evidence": "max_offset=124076>class_size=1208"
     },
     "0x004765D0": {
       "name": "LineupUI::UpdateAllSlots",
-      "signature": "int __thiscall LineupUI::UpdateAllSlots(LineupUI *this)"
+      "signature": "int __thiscall LineupUI::UpdateAllSlots()"
     },
     "0x004777B0": {
       "name": "LineupUI::RefreshDisplayEx",
@@ -472,7 +472,7 @@
     },
     "0x0047F970": {
       "name": "LineupUI::CleanupAndForwardInput",
-      "signature": "int __thiscall LineupUI::CleanupAndForwardInput(LineupUI *this)",
+      "signature": "int __thiscall LineupUI::CleanupAndForwardInput()",
       "ordinal": 2
     },
     "0x00480600": {
@@ -483,27 +483,27 @@
     },
     "0x004826A0": {
       "name": "LineupUI::RebuildSystemPage",
-      "signature": "int __thiscall LineupUI::RebuildSystemPage(LineupUI *this)"
+      "signature": "int __thiscall LineupUI::RebuildSystemPage()"
     },
     "0x00484360": {
       "name": "LineupUI::GetSlotRect",
-      "signature": "int __thiscall LineupUI::GetSlotRect(LineupUI *this, int nVal, unsigned int dwVal)"
+      "signature": "int __thiscall LineupUI::GetSlotRect(int nVal, unsigned int dwVal)"
     },
     "0x00484810": {
       "name": "LineupUI::RebuildNavPage",
-      "signature": "int __thiscall LineupUI::RebuildNavPage(LineupUI *this)"
+      "signature": "int __thiscall LineupUI::RebuildNavPage()"
     },
     "0x00491630": {
       "name": "LineupUI::RebuildExitPage",
-      "signature": "int __thiscall LineupUI::RebuildExitPage(LineupUI *this)"
+      "signature": "int __thiscall LineupUI::RebuildExitPage()"
     },
     "0x004993D0": {
       "name": "LineupUI::RebuildCaptionPage",
-      "signature": "int __thiscall LineupUI::RebuildCaptionPage(LineupUI *this)"
+      "signature": "int __thiscall LineupUI::RebuildCaptionPage()"
     },
     "0x004A26D0": {
       "name": "LineupUI::RebuildFontPage",
-      "signature": "int __thiscall LineupUI::RebuildFontPage(LineupUI *this)"
+      "signature": "int __thiscall LineupUI::RebuildFontPage()"
     },
     "0x00488DE0": {
       "name": "LineupUI::LoadRoleData",

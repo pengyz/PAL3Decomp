@@ -194,8 +194,8 @@
     },
     "20664": {
       "name": "_todo_50B8",
-      "type": "int",
-      "source": "binary_discovery:1refs"
+      "type": "void *",
+      "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed"
     },
     "4324": {
       "name": "m_Slots",
@@ -243,7 +243,7 @@
     },
     "0x004461D0": {
       "name": "CCBUIPanel::_scalar_dtor",
-      "signature": "void __thiscall CCBUIPanel::_scalar_dtor(CCBUIPanel *this)",
+      "signature": "void __thiscall CCBUIPanel::_scalar_dtor()",
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 5
@@ -254,11 +254,11 @@
     },
     "0x00449B90": {
       "name": "CCBUIPanel::FocusCurrentRole",
-      "signature": "char __thiscall CCBUIPanel::FocusCurrentRole(CCBUIPanel *this)"
+      "signature": "char __thiscall CCBUIPanel::FocusCurrentRole()"
     },
     "0x0044A1B0": {
       "name": "CCBUIPanel::ProcessInput",
-      "signature": "BOOL __thiscall CCBUIPanel::ProcessInput(CCBUIPanel *this, double st7_0)",
+      "signature": "BOOL __thiscall CCBUIPanel::ProcessInput(double st7_0)",
       "ordinal": 2
     },
     "0x00453E50": {
@@ -269,53 +269,53 @@
     },
     "0x00454550": {
       "name": "CCBUIPanel::RenderIfUnlocked",
-      "signature": "char __thiscall CCBUIPanel::RenderIfUnlocked(CCBUIPanel *this)"
+      "signature": "char __thiscall CCBUIPanel::RenderIfUnlocked()"
     },
     "0x00454560": {
       "name": "CCBUIPanel::ProcessInputIfUnlocked",
-      "signature": "BOOL __thiscall CCBUIPanel::ProcessInputIfUnlocked(CCBUIPanel *this, int nVal, int nVal2)"
+      "signature": "BOOL __thiscall CCBUIPanel::ProcessInputIfUnlocked(int nVal, int nVal2)"
     },
     "0x00449AB0": {
       "name": "CCBUIPanel::CenterSlot",
-      "signature": "int __thiscall CCBUIPanel::CenterSlot(CCBUIPanel *this, unsigned int nSlotIdx)",
+      "signature": "int __thiscall CCBUIPanel::CenterSlot(unsigned int nSlotIdx)",
       "_misattrib_evidence": "max_offset=18792>class_size=456"
     },
     "0x00449C50": {
       "name": "CCBUIPanel::UpdateSlotClipping",
-      "signature": "int __thiscall CCBUIPanel::UpdateSlotClipping(CCBUIPanel *this)",
+      "signature": "int __thiscall CCBUIPanel::UpdateSlotClipping()",
       "_misattrib_evidence": "max_offset=608>class_size=160"
     },
     "0x00449CF0": {
       "name": "CCBUIPanel::UpdateSlotPositions",
-      "signature": "char __thiscall CCBUIPanel::UpdateSlotPositions(CCBUIPanel *this, int nVal)",
+      "signature": "char __thiscall CCBUIPanel::UpdateSlotPositions(int nVal)",
       "_misattrib_evidence": "max_offset=18800>class_size=584"
     },
     "0x00449E60": {
       "name": "CCBUIPanel::EnsureSize",
-      "signature": "void __thiscall CCBUIPanel::EnsureSize(CCBUIPanel *this, int nVal, int nVal2)",
+      "signature": "void __thiscall CCBUIPanel::EnsureSize(int nVal, int nVal2)",
       "_misattrib_evidence": "max_offset=18832>class_size=204"
     },
     "0x0044A180": {
       "name": "CCBUIPanel::SetAllSlotsVisible",
-      "signature": "int __thiscall CCBUIPanel::SetAllSlotsVisible(CCBUIPanel *this, unsigned __int8 bVisible)",
+      "signature": "int __thiscall CCBUIPanel::SetAllSlotsVisible(unsigned __int8 bVisible)",
       "_misattrib_evidence": "max_offset=608>class_size=160"
     },
     "0x0044A4F0": {
       "name": "CCBUIPanel::ActivateSlot",
-      "signature": "void __thiscall CCBUIPanel::ActivateSlot(CCBUIPanel *this, unsigned int nSlotIdx)"
+      "signature": "void __thiscall CCBUIPanel::ActivateSlot(unsigned int nSlotIdx)"
     },
     "0x004544F0": {
       "name": "CCBUIPanel::UpdateButtonVisibility",
-      "signature": "int __thiscall CCBUIPanel::UpdateButtonVisibility(CCBUIPanel *this)",
+      "signature": "int __thiscall CCBUIPanel::UpdateButtonVisibility()",
       "_misattrib_evidence": "max_offset=1416>class_size=352"
     },
     "0x0048A170": {
       "name": "CCBUIPanel::InitSlots",
-      "signature": "int __thiscall CCBUIPanel::InitSlots(CCBUIPanel *this)"
+      "signature": "int __thiscall CCBUIPanel::InitSlots()"
     },
     "0x004A3EC0": {
       "name": "CCBUIPanel::InitScrollState",
-      "signature": "int __thiscall CCBUIPanel::InitScrollState(CCBUIPanel *this)"
+      "signature": "int __thiscall CCBUIPanel::InitScrollState()"
     },
     "0x00449990": {
       "name": "CCBUIPanel::Destroy",

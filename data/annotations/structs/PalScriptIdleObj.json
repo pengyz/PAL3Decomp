@@ -19,7 +19,7 @@
   "methods": {
     "0x00453C00": {
       "name": "PalScriptIdleObj::UpdateWait",
-      "signature": "int __thiscall PalScriptIdleObj::UpdateWait(PalScriptIdleObj *this, const void *pData, unsigned int dwVal)"
+      "signature": "int __thiscall PalScriptIdleObj::UpdateWait(const void *pData, unsigned int dwVal)"
     },
     "0x00535600": {
       "name": "PalScriptIdleObj::ResetTimers",
@@ -27,7 +27,7 @@
     },
     "0x0044A970": {
       "name": "PalScriptIdleObj::LoadScriptTexture",
-      "signature": "gbVFileSystem *__thiscall PalScriptIdleObj::LoadTexture(PalScriptIdleObj *this, int nTexID, int nParam)",
+      "signature": "gbVFileSystem *__thiscall PalScriptIdleObj::LoadTexture(int nTexID, int nParam)",
       "_misattrib_evidence": "max_offset=92>class_size=16"
     }
   },

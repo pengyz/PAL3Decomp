@@ -47,15 +47,15 @@
   "methods": {
     "0x00429AF0": {
       "name": "GeomNode::InitFromFile",
-      "signature": "void __thiscall GeomNode::InitFromFile(GeomNode *this, const gbGeomNode *pGeomNode, int nVal)"
+      "signature": "void __thiscall GeomNode::InitFromFile(const gbGeomNode *pGeomNode, int nVal)"
     },
     "0x004D0950": {
       "name": "GeomNode::LoadFromNode",
-      "signature": "bool __thiscall GeomNode::LoadFromNode(GeomNode *this, const gbGeomNode *pNode)"
+      "signature": "bool __thiscall GeomNode::LoadFromNode(const gbGeomNode *pNode)"
     },
     "0x004D0A80": {
       "name": "GeomNode::DestroyChildren",
-      "signature": "void __thiscall GeomNode::DestroyChildren(GeomNode *this)"
+      "signature": "void __thiscall GeomNode::DestroyChildren()"
     }
   }
 }

@@ -1,0 +1,148 @@
+[
+  {
+    "name": "tagRECT",
+    "binary_size": 16,
+    "known_members": {
+      "0": {
+        "name": "left",
+        "type": "long",
+        "source": "sdk"
+      },
+      "4": {
+        "name": "top",
+        "type": "long",
+        "source": "sdk"
+      },
+      "8": {
+        "name": "right",
+        "type": "long",
+        "source": "sdk"
+      },
+      "12": {
+        "name": "bottom",
+        "type": "long",
+        "source": "sdk"
+      }
+    }
+  },
+  {
+    "name": "tagPOINT",
+    "binary_size": 8,
+    "known_members": {
+      "0": {
+        "name": "x",
+        "type": "long",
+        "source": "sdk"
+      },
+      "4": {
+        "name": "y",
+        "type": "long",
+        "source": "sdk"
+      }
+    }
+  },
+  {
+    "name": "tagSIZE",
+    "binary_size": 8,
+    "known_members": {
+      "0": {
+        "name": "cx",
+        "type": "long",
+        "source": "sdk"
+      },
+      "4": {
+        "name": "cy",
+        "type": "long",
+        "source": "sdk"
+      }
+    }
+  },
+  {
+    "name": "tagMSG",
+    "binary_size": 28,
+    "known_members": {
+      "0": {
+        "name": "hwnd",
+        "type": "void *",
+        "source": "sdk"
+      },
+      "4": {
+        "name": "message",
+        "type": "unsigned int",
+        "source": "sdk"
+      },
+      "8": {
+        "name": "wParam",
+        "type": "unsigned int",
+        "source": "sdk"
+      },
+      "12": {
+        "name": "lParam",
+        "type": "long",
+        "source": "sdk"
+      },
+      "16": {
+        "name": "time",
+        "type": "unsigned long",
+        "source": "sdk"
+      },
+      "20": {
+        "name": "pt",
+        "type": "tagPOINT",
+        "source": "sdk"
+      }
+    }
+  },
+  {
+    "name": "_GUID",
+    "binary_size": 16,
+    "known_members": {
+      "0": {
+        "name": "Data1",
+        "type": "unsigned long",
+        "source": "sdk"
+      },
+      "4": {
+        "name": "Data2",
+        "type": "unsigned short",
+        "source": "sdk"
+      },
+      "6": {
+        "name": "Data3",
+        "type": "unsigned short",
+        "source": "sdk"
+      },
+      "8": {
+        "name": "Data4",
+        "type": "unsigned char[8]",
+        "source": "sdk"
+      }
+    }
+  },
+  {
+    "name": "std::string",
+    "binary_size": 28,
+    "known_members": {
+      "0": {
+        "name": "_Ptr",
+        "type": "char *",
+        "source": "sdk"
+      },
+      "4": {
+        "name": "_Len",
+        "type": "unsigned int",
+        "source": "sdk"
+      },
+      "8": {
+        "name": "_Res",
+        "type": "unsigned int",
+        "source": "sdk"
+      },
+      "12": {
+        "name": "_Buf",
+        "type": "char[16]",
+        "source": "sdk"
+      }
+    }
+  }
+]

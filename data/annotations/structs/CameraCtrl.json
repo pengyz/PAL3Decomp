@@ -406,8 +406,8 @@
     },
     "2044": {
       "name": "_todo_7FC",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "type": "void *",
+      "source": "binary_scan:1refs;batch_fix:int_to_v*_LEA_embed"
     },
     "3336": {
       "name": "m_bBlendActive",
@@ -487,7 +487,7 @@
     },
     "0x0041C670": {
       "name": "CameraCtrl::CalcOrbitalPos",
-      "signature": "float *__thiscall CameraCtrl::CalcOrbitalPos(CameraCtrl *this, float *pfOut, float fTargetX, float fTargetY, float fTargetZ)"
+      "signature": "float *__thiscall CameraCtrl::CalcOrbitalPos(float *pfOut, float fTargetX, float fTargetY, float fTargetZ)"
     },
     "0x0041CA90": {
       "name": "CameraCtrl::SetDimention",
@@ -511,7 +511,7 @@
     },
     "0x0041CC50": {
       "name": "CameraCtrl::UpdateTransition",
-      "signature": "int __thiscall CameraCtrl::UpdateTransition(CameraCtrl *this, float fDelta)",
+      "signature": "int __thiscall CameraCtrl::UpdateTransition(float fDelta)",
       "ordinal": 2
     },
     "0x0041CEE0": {
@@ -544,7 +544,7 @@
     },
     "0x0041D5C0": {
       "name": "CameraCtrl::SetCamDist",
-      "signature": "int __thiscall CameraCtrl::SetCamDist(CameraCtrl *this, int nVal)"
+      "signature": "int __thiscall CameraCtrl::SetCamDist(int nVal)"
     },
     "0x0041D5D0": {
       "name": "CameraCtrl::UpdateFOVLerp",
@@ -556,7 +556,7 @@
     },
     "0x0041D7F0": {
       "name": "CameraCtrl::SetupCameraArray",
-      "signature": "unsigned int __thiscall(CameraCtrl *thisa, int nVal)"
+      "signature": "unsigned int __thiscall(a, int nVal)"
     },
     "0x0041D960": {
       "name": "CameraCtrl::ResetSceneMgrParams",
@@ -583,7 +583,7 @@
     },
     "0x00487480": {
       "name": "CameraCtrl::ResetToDefaults",
-      "signature": "int __thiscall CameraCtrl::ResetToDefaults(CameraCtrl *this)",
+      "signature": "int __thiscall CameraCtrl::ResetToDefaults()",
       "_misattrib_evidence": "max_offset=3296>class_size=200"
     },
     "0x00487610": {
@@ -596,7 +596,7 @@
     },
     "0x0048C520": {
       "name": "CameraCtrl::CalcStatPower",
-      "signature": "void __thiscall CameraCtrl::CalcStatPower(CameraCtrl *this, int nVal)"
+      "signature": "void __thiscall CameraCtrl::CalcStatPower(int nVal)"
     },
     "0x0048D040": {
       "name": "CameraCtrl::UpdateBlendWeight",
@@ -612,19 +612,19 @@
     },
     "0x004BE910": {
       "name": "CameraCtrl::OnIdle",
-      "signature": "void __thiscall CameraCtrl::OnIdle(CameraCtrl *this)"
+      "signature": "void __thiscall CameraCtrl::OnIdle()"
     },
     "0x004BEAA0": {
       "name": "CameraCtrl::OnIdleB",
-      "signature": "void __thiscall CameraCtrl::OnIdleB(CameraCtrl *this)"
+      "signature": "void __thiscall CameraCtrl::OnIdleB()"
     },
     "0x004BEBF0": {
       "name": "CameraCtrl::RenderFadeEffect",
-      "signature": "void __thiscall CameraCtrl::RenderFadeEffect(CameraCtrl *this)"
+      "signature": "void __thiscall CameraCtrl::RenderFadeEffect()"
     },
     "0x004BED40": {
       "name": "CameraCtrl::RenderFadeEffectB",
-      "signature": "void __thiscall CameraCtrl::RenderFadeEffectB(CameraCtrl *this)"
+      "signature": "void __thiscall CameraCtrl::RenderFadeEffectB()"
     },
     "0x00504510": {
       "name": "CameraCtrl::InitFromConfig",
@@ -640,15 +640,15 @@
     },
     "0x00533EA0": {
       "name": "CameraCtrl::InitDefaultView",
-      "signature": "char __thiscall CameraCtrl::InitDefaultView(CameraCtrl *this)"
+      "signature": "char __thiscall CameraCtrl::InitDefaultView()"
     },
     "0x00534DC0": {
       "name": "CameraCtrl::SetFOVIfValid",
-      "signature": "int __thiscall CameraCtrl::SetFOVIfValid(CameraCtrl *this, int nVal)"
+      "signature": "int __thiscall CameraCtrl::SetFOVIfValid(int nVal)"
     },
     "0x0041D730": {
       "name": "CameraCtrl::PopState",
-      "signature": "void __thiscall CameraCtrl::PopState(CameraCtrl *this)"
+      "signature": "void __thiscall CameraCtrl::PopState()"
     },
     "0x0048C610": {
       "name": "CameraCtrl::HandleCameraEvent",
@@ -662,7 +662,7 @@
     },
     "0x0048EE60": {
       "name": "CameraCtrl::ProcessSaveSlotNav",
-      "signature": "char __thiscall CameraCtrl::ProcessSaveSlotNav(CameraCtrl *this)",
+      "signature": "char __thiscall CameraCtrl::ProcessSaveSlotNav()",
       "_misattrib_evidence": "max_offset=205784>class_size=4088"
     },
     "0x0048C9A0": {

@@ -39,18 +39,18 @@
     },
     "4652": {
       "name": "_todo_122C",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "type": "void *",
+      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
     },
     "4656": {
       "name": "_todo_1230",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "type": "void *",
+      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
     },
     "4856": {
       "name": "_todo_12F8",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "type": "void *",
+      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
     },
     "0": {
       "name": "m_nCallbackCount",
@@ -75,7 +75,7 @@
     },
     "0x0053CC70": {
       "name": "Logger::Write",
-      "signature": "char *(Logger *this, char *fmt, ...)"
+      "signature": "char *(char *fmt, ...))"
     },
     "0x0053CC10": {
       "name": "Logger::RegisterCallback",

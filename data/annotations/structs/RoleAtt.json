@@ -191,7 +191,7 @@
     },
     "0x005310C0": {
       "name": "RoleAtt::UpdateTimedBuff",
-      "signature": "void __thiscall RoleAtt::UpdateTimedBuff(RoleAtt *this, float fDelta)"
+      "signature": "void __thiscall RoleAtt::UpdateTimedBuff(float fDelta)"
     },
     "0x00450EB0": {
       "name": "RoleAtt::~RoleAtt",
@@ -199,7 +199,7 @@
     },
     "0x00450F80": {
       "name": "RoleAtt::IsValid",
-      "signature": "BOOL __thiscall RoleAtt::IsValid(RoleAtt *this)"
+      "signature": "BOOL __thiscall RoleAtt::IsValid()"
     },
     "0x004515A0": {
       "name": "RoleAtt::OnMessage",
@@ -208,7 +208,7 @@
     },
     "0x004515E0": {
       "name": "RoleAtt::HandleInput",
-      "signature": "int __thiscall RoleAtt::HandleInput(RoleAtt *this, int nVal, int nVal2)",
+      "signature": "int __thiscall RoleAtt::HandleInput(int nVal, int nVal2)",
       "ordinal": 2
     },
     "0x00451740": {
@@ -222,7 +222,7 @@
     },
     "0x00530810": {
       "name": "RoleAtt::LoadModelAndInit",
-      "signature": "void __thiscall RoleAtt::LoadModelAndInit(RoleAtt *this)"
+      "signature": "void __thiscall RoleAtt::LoadModelAndInit()"
     },
     "0x00530960": {
       "name": "RoleAtt::SetSAIDAndImage",
@@ -230,7 +230,7 @@
     },
     "0x00531010": {
       "name": "RoleAtt::ApplySpeedFactor",
-      "signature": "void __thiscall RoleAtt::ApplySpeedFactor(RoleAtt *this, float fVal)"
+      "signature": "void __thiscall RoleAtt::ApplySpeedFactor(float fVal)"
     },
     "0x00531160": {
       "name": "RoleAtt::InterpolateStats",
@@ -238,37 +238,37 @@
     },
     "0x005322D0": {
       "name": "RoleAtt::SetPageParam",
-      "signature": "int __thiscall RoleAtt::SetPageParam(RoleAtt *this, int nVal)",
+      "signature": "int __thiscall RoleAtt::SetPageParam(int nVal)",
       "_misattrib_evidence": "max_offset=1308>class_size=332"
     },
     "0x005322E0": {
       "name": "RoleAtt::SetPageParam2",
-      "signature": "int __thiscall RoleAtt::SetPageParam2(RoleAtt *this, int nVal)",
+      "signature": "int __thiscall RoleAtt::SetPageParam2(int nVal)",
       "_misattrib_evidence": "max_offset=1312>class_size=332"
     },
     "0x005322F0": {
       "name": "RoleAtt::SwitchPage",
-      "signature": "int __thiscall RoleAtt::SwitchPage(RoleAtt *this, int nPageIdx, int nParam)"
+      "signature": "int __thiscall RoleAtt::SwitchPage(int nPageIdx, int nParam)"
     },
     "0x00533DB0": {
       "name": "RoleAtt::ResetNameField",
-      "signature": "int __thiscall RoleAtt::ResetNameField(RoleAtt *this)"
+      "signature": "int __thiscall RoleAtt::ResetNameField()"
     },
     "0x00533FE0": {
       "name": "RoleAtt::UpdatePosition",
-      "signature": "void __thiscall RoleAtt::UpdatePosition(RoleAtt *this, float fX, float fY, float fZ)"
+      "signature": "void __thiscall RoleAtt::UpdatePosition(float fX, float fY, float fZ)"
     },
     "0x00534210": {
       "name": "RoleAtt::SetPositionFromInts",
-      "signature": "void __thiscall RoleAtt::SetPositionFromInts(RoleAtt *this, int nX, int nY, int nZ)"
+      "signature": "void __thiscall RoleAtt::SetPositionFromInts(int nX, int nY, int nZ)"
     },
     "0x00534450": {
       "name": "RoleAtt::InterpolateMotion",
-      "signature": "void __thiscall RoleAtt::InterpolateMotion(RoleAtt *this, float f1, float f2, float f3, float f4, float f5)"
+      "signature": "void __thiscall RoleAtt::InterpolateMotion(float f1, float f2, float f3, float f4, float f5)"
     },
     "0x00534810": {
       "name": "RoleAtt::UpdateDirectionalMotion",
-      "signature": "void __thiscall RoleAtt::UpdateDirectionalMotion(RoleAtt *this, gbVec3D pData, float fVal, float fVal2)"
+      "signature": "void __thiscall RoleAtt::UpdateDirectionalMotion(gbVec3D pData, float fVal, float fVal2)"
     },
     "0x00534BA0": {
       "name": "RoleAtt::SetFightState",
@@ -280,7 +280,7 @@
     },
     "0x00534C50": {
       "name": "RoleAtt::UpdateOscillation",
-      "signature": "double __thiscall RoleAtt::UpdateOscillation(RoleAtt *this)"
+      "signature": "double __thiscall RoleAtt::UpdateOscillation()"
     },
     "0x0052F8E0": {
       "name": "RoleAtt::LoadGeomNode",

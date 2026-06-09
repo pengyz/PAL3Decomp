@@ -2,36 +2,40 @@
   "name": "AStarPathFinder",
   "binary_size": 24,
   "known_members": {
+    "0": {
+      "name": "_todo_0",
+      "type": "int",
+      "source": "gap_fill:ida_decomp_access"
+    },
     "4": {
       "name": "OPEN",
-      "type": "AStarPathFinder_NODE *",
+      "type": "AStarPathFinder::NODE *",
       "source": "annotation"
     },
     "8": {
       "name": "CLOSED",
-      "type": "AStarPathFinder_NODE *",
+      "type": "AStarPathFinder::NODE *",
       "source": "annotation"
     },
     "12": {
       "name": "PATH",
-      "type": "AStarPathFinder_NODE *",
+      "type": "AStarPathFinder::NODE *",
       "source": "annotation"
     },
     "16": {
       "name": "Stack",
-      "type": "AStarPathFinder_STACK *",
+      "type": "AStarPathFinder::STACK *",
       "source": "annotation"
     },
     "20": {
       "name": "m_TestTimer",
       "type": "int",
       "source": "annotation"
-    },
-    "0": {
-      "name": "_todo_0",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access"
     }
+  },
+  "nested_types": {
+    "NODE": {"kind": "struct", "binary_size": 12},
+    "STACK": {"kind": "struct", "binary_size": 4}
   },
   "methods": {
     "0x004012A0": {

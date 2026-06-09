@@ -180,8 +180,8 @@
     },
     "408": {
       "name": "_todo_198",
-      "type": "int",
-      "source": "binary_scan:1refs"
+      "type": "void *",
+      "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
     },
     "412": {
       "name": "m_nDataStart",
@@ -228,7 +228,7 @@
     },
     "0x0053F680": {
       "name": "TextureLib::AddEntryFromConfig",
-      "signature": "char __thiscall TextureLib::AddEntryFromConfig(TextureLib *this, char *lpString2, char *Delimiter)",
+      "signature": "char __thiscall TextureLib::AddEntryFromConfig(char *lpString2, char *Delimiter)",
       "ordinal": 0
     },
     "0x004A6930": {
@@ -251,7 +251,7 @@
     },
     "0x0053F550": {
       "name": "TextureLib::ClearAndJump",
-      "signature": "void __thiscall(TextureLib *this)"
+      "signature": "void __thiscall()"
     }
   },
   "vtables": [
