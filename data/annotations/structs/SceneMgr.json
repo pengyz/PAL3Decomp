@@ -358,21 +358,6 @@
       "comment": "render buffer (size capped to 48 bytes to avoid overlap)",
       "source": "A+:query_class_full memset(&_todo_560[239],0,0xA000)"
     },
-    "1424": {
-      "name": "m_ScriptRoleBuf",
-      "type": "int[1412]",
-      "source": "revert:test"
-    },
-    "7072": {
-      "name": "m_pCCBStageRoleFind",
-      "type": "CCBStageRole *",
-      "source": "global_analysis:g_CCBStageRoleFind"
-    },
-    "7112": {
-      "name": "m_bRoleSlotValid",
-      "type": "unsigned char[8]",
-      "source": "global_analysis:g_bRoleSlotValid"
-    },
     "50640": {
       "name": "m_pGameData",
       "type": "CGameData *",
@@ -553,11 +538,6 @@
       "type": "int",
       "source": "binary:*((_DWORD *)this+14392) count for Role array"
     },
-    "7752": {
-      "name": "m_nUnk61D8",
-      "type": "int",
-      "source": "auto:overlap_g_SceneMgr_at_+0x1E48"
-    },
     "17108": {
       "name": "m_nScriptObjectCount",
       "type": "unsigned int",
@@ -652,6 +632,21 @@
       "name": "stru_C059A0",
       "type": "RoleSystem",
       "source": "binary layout: after m_ScriptRoleBuf"
+    },
+    "11092": {
+      "name": "m_pCCBStageRoleFind",
+      "type": "CCBStageRole *",
+      "source": "global_analysis:g_CCBStageRoleFind"
+    },
+    "11096": {
+      "name": "m_bRoleSlotValid",
+      "type": "unsigned char[8]",
+      "source": "global_analysis:g_bRoleSlotValid"
+    },
+    "11104": {
+      "name": "m_nUnk61D8",
+      "type": "int",
+      "source": "auto:overlap_g_SceneMgr_at_+0x1E48"
     }
   },
   "methods": {
