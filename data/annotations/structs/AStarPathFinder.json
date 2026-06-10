@@ -56,7 +56,7 @@
         "16": {"name": "y", "type": "int", "source": "A:decomp_TryExpand:*((_DWORD*)v14+4)=nVal3"},
         "20": {"name": "key", "type": "int", "source": "A:decomp_TryExpand:*((_DWORD*)v14+5)=x+y*512"},
         "24": {"name": "parent", "type": "AStarPathFinder::NODE *", "source": "A:decomp_TryExpand:*((_DWORD*)v14+6)=nVal"},
-        "28": {"name": "stack", "type": "int[8]", "source": "A:decomp_TryExpand:nVal+28_loop_to_8"},
+        "28": {"name": "stack", "type": "AStarPathFinder::NODE *[8]", "source": "A:decomp_TryExpand:nVal+28_loop_to_8_stores_NODE*"},
         "60": {"name": "next", "type": "AStarPathFinder::NODE *", "source": "A:decomp_FindInOpen:OPEN->stack[8]==next/i=*(_DWORD*)(i+60)"}
       }
     },
@@ -116,11 +116,11 @@
     },
     "0x00401750": {
       "name": "AStarPathFinder::ResortNode",
-      "signature": "int __thiscall(AStarPathFinder::NODE *pNode)"
+      "signature": "int __thiscall()"
     },
     "0x00401780": {
       "name": "AStarPathFinder::PopStack",
-      "signature": "int __thiscall()"
+      "signature": "AStarPathFinder::NODE *__thiscall()"
     },
     "0x004017A0": {
       "name": "AStarPathFinder::Reset",
