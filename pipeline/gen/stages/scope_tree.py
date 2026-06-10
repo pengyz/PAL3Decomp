@@ -60,11 +60,14 @@ class ScopeTree:
         self._nodes: dict[str, ScopeNode] = {}
         self.roots: list[ScopeNode] = []  # non-skipped roots ready for generation
 
-    def build(self, ida_structs: dict, skip_classes: set, skip_prefixes: tuple):
+    def build(self, ida_structs: dict, skip_classes: set, skip_prefixes: tuple,
+              ida_enums: dict = None):
         """Build tree from ida_structs.json data."""
         self._nodes = {}
+        if ida_enums is None:
+            ida_enums = {}
 
-        # 1. Filter + create nodes
+        # 1. Filter + create nodes from structs
         for key, data in ida_structs.items():
             if key.startswith("_"):
                 continue  # _globals, _enums
@@ -102,7 +105,27 @@ class ScopeTree:
             if node.is_skipped:
                 self._prune(node)
 
-        # 5. Collect valid roots
+        # 5. Add enum entries (from _enums) that have :: in name (nested enums)
+        for key, edata in ida_enums.items():
+            if '::' not in key:
+                continue
+            if key in self._nodes:
+                continue
+            short = key.split("::")[-1]
+            if not short or not (short[0].isalpha() or short[0] == "_"):
+                continue
+            node = ScopeNode(
+                full_name=key,
+                short_name=short,
+                data=edata,
+                is_root=False,
+            )
+            self._nodes[key] = node
+            pkey = parent_key(key)
+            if pkey and pkey in self._nodes:
+                self._nodes[pkey].children.append(node)
+
+        # 6. Collect valid roots
         self.roots = [n for n in self._nodes.values() if n.is_root and not n.is_skipped]
 
     @staticmethod

@@ -513,6 +513,28 @@ def collect_methods():
         classes[cls].append((method, sig, addr))
         seen_addrs.add(addr)
 
+    # Supplement: add methods from ida_structs.json that lack decomp JSONs
+    # (tiny helpers like PopStack whose Hex-Rays decomp is too small to export)
+    _ida_s = _get_ida_structs()
+    for _sname, _sinfo in _ida_s.items():
+        if not _sinfo.get('methods'):
+            continue
+        # Filter out system/nested types (same critera as collect.py)
+        if _sname.startswith('_') or '<' in _sname or '$' in _sname:
+            continue
+        for _addr_str, _minfo in _sinfo['methods'].items():
+            if _addr_str in seen_addrs:
+                continue
+            _method = _minfo.get('name', '')
+            if '::' in _method:
+                _method = _method.rsplit('::', 1)[-1]
+            _sig = _minfo.get('signature', '')
+            # Skip vtable-only (destructor-style) placeholders
+            if not _method or '__vec_dtor' in _method:
+                continue
+            classes[_sname].append((_method, _sig, _addr_str))
+            seen_addrs.add(_addr_str)
+
     return classes
 
 
@@ -589,8 +611,8 @@ def _estimate_member_size(mtype):
     return 4
 
 
-def _emit_nested_struct(scope_node, nested_methods, is_data, parent_name, indent=4):
-    """Recursively emit nested struct definition with members + methods.
+def _emit_nested_struct(scope_node, nested_methods, is_data, parent_name, indent=4, ida_enums=None):
+    """Recursively emit nested struct/enum definition with members + methods.
     
     Args:
         scope_node: ScopeNode whose children to emit
@@ -598,66 +620,85 @@ def _emit_nested_struct(scope_node, nested_methods, is_data, parent_name, indent
         is_data: ida_structs.json data dict
         parent_name: parent class name (for this param stripping)
         indent: base indentation level (4 per nesting level)
+        ida_enums: _enums dict from ida_structs.json
     
     Returns:
-        list of lines (str) for the nested struct definition(s)
+        list of lines (str) for the nested struct/enum definition(s)
     """
+    if ida_enums is None:
+        _ida_enums_local = _get_ida_structs().get('_enums', {})
+        ida_enums = _ida_enums_local
     lines = []
     for _child in scope_node.children:
         _nt_full = _child.full_name
-        _nt_struct = is_data.get(_nt_full, {})
-        _nt_members = _nt_struct.get('data_members', [])
-        _nt_methods = (nested_methods or {}).get(_child.short_name, [])
         _indent = " " * indent
         
-        lines.append("")
-        lines.append("%sstruct %s {" % (_indent, _child.short_name))
-        
-        # Members
-        if _nt_members:
-            for _dm in _nt_members:
-                _t = _dm.get('type', 'int')
-                _n = _dm.get('name', '')
-                _arr = re.search(r'(\[.*\])$', _t)
-                if _arr:
-                    _t = _t[:_arr.start()].strip()
-                    _n = _n + _arr.group(1)
-                lines.append("%s    %s %s;" % (_indent, _t, _n))
-        elif _nt_struct.get('size'):
-            _sz = _nt_struct['size']
-            lines.append("%s    unsigned char _pad[%d];" % (_indent, _sz))
-        
-        # Methods
-        if _nt_methods:
-            if _nt_members or _nt_struct.get('size'):
-                lines.append("")
-            _seen = set()
-            for _mname, _msig, _maddr in _nt_methods:
-                _mn = _mname.split('::')[-1]
-                _ret, _cc, _params, _ret_right = parse_signature(_msig)
-                if '__thiscall' in _cc and _params:
-                    _plist = split_params(_params)
-                    if _plist and (re.search(r'\*(\w+\s+)?this\b', _plist[0])
-                                   or _plist[0].startswith(parent_name + ' ')):
-                        _plist = _plist[1:]
-                    _params = ', '.join(_plist)
-                if _ret:
-                    _d = "%s %s(%s)" % (_ret, _mn, _params)
-                    if _ret_right:
-                        _d = "%s %s(%s)%s" % (_ret, _mn, _params, _ret_right)
-                else:
-                    _d = "%s(%s)" % (_mn, _params)
-                if _d not in _seen:
-                    _seen.add(_d)
-                    lines.append("%s    %s; // %s" % (_indent, _d, _maddr))
+        # Check if this is an enum
+        _enum_data = ida_enums.get(_nt_full, {})
+        if _enum_data.get('values'):
+            # Emit as enum
             lines.append("")
-        
-        # Recursive: emit grandchildren (deeper nesting)
-        if _child.children:
-            lines.extend(_emit_nested_struct(_child, nested_methods, is_data,
-                                              parent_name, indent + 4))
-        
-        lines.append("%s};" % _indent)
+            lines.append("%senum %s {" % (_indent, _child.short_name))
+            for _vk in sorted(_enum_data['values'].keys(),
+                             key=lambda k: int(_enum_data['values'][k])):
+                _vv = _enum_data['values'][_vk]
+                lines.append("%s    %s = %s," % (_indent, _vk, _vv))
+            lines.append("%s};" % _indent)
+        else:
+            # Emit as struct (original logic)
+            _nt_struct = is_data.get(_nt_full, {})
+            _nt_members = _nt_struct.get('data_members', [])
+            _nt_methods = (nested_methods or {}).get(_child.short_name, [])
+            
+            lines.append("")
+            lines.append("%sstruct %s {" % (_indent, _child.short_name))
+            
+            # Members
+            if _nt_members:
+                for _dm in _nt_members:
+                    _t = _dm.get('type', 'int')
+                    _n = _dm.get('name', '')
+                    _t = re.sub(r'\b' + re.escape(parent_name) + r'::', '', _t)
+                    _arr = re.search(r'(\[.*\])$', _t)
+                    if _arr:
+                        _t = _t[:_arr.start()].strip()
+                        _n = _n + _arr.group(1)
+                    lines.append("%s    %s %s;" % (_indent, _t, _n))
+            elif _nt_struct.get('size'):
+                _sz = _nt_struct['size']
+                lines.append("%s    unsigned char _pad[%d];" % (_indent, _sz))
+            
+            # Methods
+            if _nt_methods:
+                if _nt_members or _nt_struct.get('size'):
+                    lines.append("")
+                _seen = set()
+                for _mname, _msig, _maddr in _nt_methods:
+                    _mn = _mname.split('::')[-1]
+                    _ret, _cc, _params, _ret_right = parse_signature(_msig)
+                    if '__thiscall' in _cc and _params:
+                        _plist = split_params(_params)
+                        if _plist and (re.search(r'\*(\w+\s+)?this\b', _plist[0])
+                                       or _plist[0].startswith(parent_name + ' ')):
+                            _plist = _plist[1:]
+                        _params = ', '.join(_plist)
+                    if _ret:
+                        _d = "%s %s(%s)" % (_ret, _mn, _params)
+                        if _ret_right:
+                            _d = "%s %s(%s)%s" % (_ret, _mn, _params, _ret_right)
+                    else:
+                        _d = "%s(%s)" % (_mn, _params)
+                    if _d not in _seen:
+                        _seen.add(_d)
+                        lines.append("%s    %s; // %s" % (_indent, _d, _maddr))
+                lines.append("")
+            
+            # Recursive
+            if _child.children:
+                lines.extend(_emit_nested_struct(_child, nested_methods, is_data,
+                                                  parent_name, indent + 4, ida_enums))
+            
+            lines.append("%s};" % _indent)
     
     return lines
 
@@ -1141,6 +1182,22 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     except:
         pass
 
+    # Forward-declare nested types used as pointer members
+    if scope_node and scope_node.children:
+        for _child in scope_node.children:
+            _nt_full = _child.full_name
+            _enum_data = _get_ida_structs().get('_enums', {}).get(_nt_full, {})
+            if _enum_data.get('values'):
+                continue  # can't forward-declare enums in VC6
+            lines.append("    struct %s;" % _child.short_name)
+        lines.append("")
+
+    # Nested type definitions (before data members so types are known)
+    if scope_node and scope_node.children:
+        _is_data_for_nested = _get_ida_structs()
+        lines.extend(_emit_nested_struct(scope_node, nested_methods,
+                                          _is_data_for_nested, cls_name, indent=4))
+
     # Data members
     # Determine base class size to skip inherited members
     base_size = 0
@@ -1480,13 +1537,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             lines.append("    void operator=(int v) { *(int*)this = v; }")
         lines.append("")
 
-    # Recursive nested type emission via scope tree
-    if scope_node and scope_node.children:
-        _is_data_for_nested = _get_ida_structs()
-        lines.extend(_emit_nested_struct(scope_node, nested_methods,
-                                          _is_data_for_nested, cls_name, indent=4))
-
-
     lines.append("};")
     lines.append("")
     return '\n'.join(lines)
@@ -1511,9 +1561,9 @@ def main():
     if IDA_STRUCTS_FILE.exists():
         ida_data = json.load(open(IDA_STRUCTS_FILE, encoding='utf-8'))
 
-        # Extract enums from special _enums section
-        if '_enums' in ida_data:
-            ida_enums = ida_data.pop('_enums')
+    # Extract enums from special _enums section
+    if '_enums' in ida_data:
+        ida_enums = ida_data.get('_enums', {})
 
         if isinstance(ida_data, dict):
             for sname, s in ida_data.items():
@@ -1538,7 +1588,7 @@ def main():
     # Build scope tree from ida_structs.json for type-to-header mapping.
     scope_tree = ScopeTree()
     scope_tree.build(_is_data if isinstance(_is_data, dict) else {},
-                     SKIP_CLASSES, SKIP_PREFIXES)
+                     SKIP_CLASSES, SKIP_PREFIXES, ida_enums=ida_enums)
 
     # Build all_classes from export + decomp + annotation (for complete coverage)
     all_classes = set(ida_classes.keys()) | set(methods_by_class.keys()) | vtable_classes | ann_structs

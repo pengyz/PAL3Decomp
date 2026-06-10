@@ -56,7 +56,7 @@
         "16": {"name": "y", "type": "int", "source": "A:decomp_TryExpand:*((_DWORD*)v14+4)=nVal3"},
         "20": {"name": "key", "type": "int", "source": "A:decomp_TryExpand:*((_DWORD*)v14+5)=x+y*512"},
         "24": {"name": "parent", "type": "AStarPathFinder::NODE *", "source": "A:decomp_TryExpand:*((_DWORD*)v14+6)=nVal"},
-        "28": {"name": "stack", "type": "AStarPathFinder::NODE *[8]", "source": "A:decomp_TryExpand:nVal+28_loop_to_8_stores_NODE*"},
+        "28": {"name": "stack", "type": "AStarPathFinder::NODE *[8]", "source": "A:decomp_TryExpand:nVal+28_loop_to_8"},
         "60": {"name": "next", "type": "AStarPathFinder::NODE *", "source": "A:decomp_FindInOpen:OPEN->stack[8]==next/i=*(_DWORD*)(i+60)"}
       }
     },
@@ -92,7 +92,10 @@
     },
     "0x004012A0": {
       "name": "AStarPathFinder::TryExpand",
-      "signature": "int __thiscall(AStarPathFinder::NODE *pNode, int nTileX, int nTileY, int nGoalX, int nGoalY)"
+      "signature": "int __thiscall(AStarPathFinder::NODE *pNode, int nTileX, int nTileY, int nGoalX, int nGoalY)",
+      "local_vars": [
+        {"from_name": "v14", "type": "AStarPathFinder::NODE *"}
+      ]
     },
     "0x00401500": {
       "name": "AStarPathFinder::FindInOpen",
@@ -112,7 +115,10 @@
     },
     "0x004015B0": {
       "name": "AStarPathFinder::UpdateNeighbors",
-      "signature": "int __thiscall(AStarPathFinder::NODE *pNode)"
+      "signature": "int __thiscall(AStarPathFinder::NODE *pNode)",
+      "local_vars": [
+        {"from_name": "v10", "type": "AStarPathFinder::NODE *"}
+      ]
     },
     "0x00401750": {
       "name": "AStarPathFinder::ResortNode",
@@ -120,7 +126,7 @@
     },
     "0x00401780": {
       "name": "AStarPathFinder::PopStack",
-      "signature": "AStarPathFinder::NODE *__thiscall()"
+      "signature": "AStarPathFinder::NODE * __thiscall()"
     },
     "0x004017A0": {
       "name": "AStarPathFinder::Reset",

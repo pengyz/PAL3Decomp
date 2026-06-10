@@ -956,9 +956,17 @@ def _vc6_encode_type(t):
     tag = None
     if t.startswith('struct '): tag = 'U'; t = t[7:].strip()
     elif t.startswith('class '): tag = 'V'; t = t[6:].strip()
+    # Handle nested types (e.g. AStarPathFinder::NODE)
+    # IDA keeps :: in mangled names: PAUAStarPathFinder::NODE@@
+    if '::' in t and tag is None:
+        tag = 'U'
     code = _VC6_TC.get(t)
-    if code is None and ptr > 0: code = 'U' + t + '@@'
-    elif code is None and tag: code = tag + t + '@@'
+    if '::' in t and code is None:
+        code = (tag if tag else 'U') + t + '@@'
+    elif code is None and ptr > 0:
+        code = 'U' + t + '@@'
+    elif code is None and tag:
+        code = tag + t + '@@'
     elif code is None:
         if t.startswith('unsigned '): code = _VC6_TC.get(t[9:].strip())
         if code is None: code = 'H'
@@ -991,7 +999,10 @@ def _mangle_vc6(cls_name, method_name, sig):
     for c in ['__thiscall', '__cdecl', '__stdcall', '__fastcall']:
         if c in prefix: cc = c; break
     ret = prefix.replace(cc, '').strip()
-    ret = re.sub(r'\w+::\w+', '', ret).strip()
+    # Strip trailing ClassName::Method (from signature patterns like
+    # "int ClassName::Method()") but NOT nested types in return position
+    # (e.g. "AStarPathFinder::NODE *" must keep AStarPathFinder::NODE).
+    ret = re.sub(r'\s+\w+::\w+$', '', ret).strip()
     pstr = re.sub(r'\w+\s*\*\s*(?:__hidden\s+)?this\s*,?\s*', '', pstr)
     params = []
     if pstr and pstr.strip() not in ('', 'void'):
@@ -1009,6 +1020,74 @@ def _mangle_vc6(cls_name, method_name, sig):
     for p in params: r += _vc6_encode_type(_vc6_strip_param_name(p))
     r += '@Z'
     return r
+
+
+def _try_apply_type_tinfo(addr, sig, info, til):
+    """Apply function type via tinfo_t API (fallback when SetType fails on :: types)."""
+    import re as _re_t
+    if '::' not in sig:
+        return False
+    name = info.get("name", "")
+    try:
+        sig_clean = sig.strip().rstrip(";")
+        # Parse: rettype __thiscall(params) or rettype(params)
+        paren = sig_clean.find("(")
+        if paren <= 0:
+            return False
+        prefix = sig_clean[:paren].strip()
+        pstr = sig_clean[paren + 1:sig_clean.rfind(")")] if sig_clean.rfind(")") > paren else ""
+        # Extract return type
+        cc = '__thiscall'
+        for c in ['__thiscall', '__cdecl', '__stdcall', '__fastcall']:
+            if c in prefix:
+                cc = c
+                break
+        ret_str = prefix.replace(cc, '').strip()
+        # Build function type
+        ftd = ida_typeinf.func_type_data_t()
+        ftd.rettype = _resolve_member_type(ret_str, til)
+        if ftd.rettype is None:
+            ret_str_try = ret_str.replace('struct ', '').replace('class ', '')
+            ftd.rettype = _resolve_member_type(ret_str_try, til)
+        if ftd.rettype is None:
+            return False
+        ftd.cc = {'__thiscall': ida_typeinf.CM_CC_THISCALL,
+                  '__cdecl': ida_typeinf.CM_CC_CDECL,
+                  '__stdcall': ida_typeinf.CM_CC_STDCALL,
+                  '__fastcall': ida_typeinf.CM_CC_FASTCALL}.get(cc, ida_typeinf.CM_CC_THISCALL)
+        # Parse params
+        if pstr and pstr.strip() not in ('', 'void'):
+            depth = 0
+            cur = ''
+            for ch in pstr:
+                if ch in '<([':
+                    depth += 1
+                    cur += ch
+                elif ch in '>)]':
+                    depth -= 1
+                    cur += ch
+                elif ch == ',' and depth == 0:
+                    if cur.strip():
+                        _pt = _resolve_member_type(cur.strip(), til)
+                        if _pt is not None:
+                            fa = ida_typeinf.funcarg_t()
+                            fa.type = _pt
+                            ftd.push_back(fa)
+                    cur = ''
+                else:
+                    cur += ch
+            if cur.strip():
+                _pt = _resolve_member_type(cur.strip(), til)
+                if _pt is not None:
+                    fa = ida_typeinf.funcarg_t()
+                    fa.type = _pt
+                    ftd.push_back(fa)
+        ft = ida_typeinf.tinfo_t()
+        if not ft.create_func(ftd):
+            return False
+        return ida_typeinf.apply_type(til, ft, addr)
+    except Exception:
+        return False
 
 
 def apply_annotations():
@@ -1390,9 +1469,13 @@ def apply_annotations():
                 if _t.create_udt(_u, ida_typeinf.BTF_STRUCT):
                     _t.set_named_type(til, _nt_full, ida_typeinf.NTF_REPLACE)
             elif _nt_kind == "enum":
-                if idc.get_enum(_nt_full) == -1:
-                    idc.add_enum(-1, _nt_full, 1)
-            # Recurse deeper (arbitrary depth)
+                # Create as enumeration (parent struct forward-declared in step 3a)
+                _eid = idc.add_enum(-1, _nt_full, 4)
+                if _eid != -1:
+                    _nt_values = _nt_info.get("values", {})
+                    for _k, _v in _nt_values.items():
+                        _val = int(_v, 0) if isinstance(_v, str) else _v
+                        idc.add_enum_member(_eid, _k, _val)
             _forward_decl_nested(_nt_full, _nt_info, til)
 
     for _sname, _sinfo in ordered:
@@ -1429,12 +1512,21 @@ def apply_annotations():
                         log("  [!] nested struct %s FAILED: %s" % (_nt_full, err_nt))
                 elif _nt_kind == "enum":
                     _nt_values = _nt_info.get("values", {})
-                    if idc.get_enum(_nt_full) == -1:
-                        _eid = idc.add_enum(-1, _nt_full, 1)
-                        if _eid != -1:
+                    if not _nt_values:
+                        continue
+                    # Enum should already be created by _forward_decl_nested.
+                    # Only add values if the enum exists but has no members.
+                    _old_eid = idc.get_enum(_nt_full)
+                    if _old_eid == -1 or _old_eid == 0xFFFFFFFF:
+                        ida_typeinf.del_named_type(til, _nt_full, ida_typeinf.NTF_TYPE)
+                        _eid = idc.add_enum(-1, _nt_full, 4)
+                        if _eid != -1 and _eid != 0xFFFFFFFF:
                             for _k, _v in _nt_values.items():
                                 _val = int(_v, 0) if isinstance(_v, str) else _v
-                                idc.add_enum_member(_eid, _k, _val)
+                                try:
+                                    idc.add_enum_member(_eid, _k, _val)
+                                except ValueError:
+                                    pass  # duplicate member, ignore
                 # Recurse deeper (arbitrary depth)
                 _create_nested_recursive(_nt_full, _nt_info)
 
@@ -1574,6 +1666,8 @@ def apply_annotations():
                 sig_with_name = before + " " + short_name + after
             else:
                 sig_with_name = before + after
+            # Strip own class prefix for __thiscall return type (function type setup
+            # handles this implicitly)
             # Apply via idc.SetType — handles virtual, thiscall, etc.
             if idc.SetType(addr, sig_with_name):
                 sig_ok += 1
@@ -1582,7 +1676,11 @@ def apply_annotations():
                 if stripped != sig_with_name and idc.SetType(addr, stripped):
                     sig_ok += 1
                 else:
-                    sig_fail.append((addr_str, name, sig_with_name))
+                    # Final fallback: apply via tinfo_t API (handles :: in types)
+                    if _try_apply_type_tinfo(addr, sig, info, til):
+                        sig_ok += 1
+                    else:
+                        sig_fail.append((addr_str, name, sig_with_name))
 
     if sig_fail:
         # Write detailed failure log
@@ -1780,8 +1878,13 @@ def apply_annotations():
         try:
             cfunc = ida_hexrays.decompile(func)
         except:
-            lvar_fail += len(lvars_ann)
-            continue
+            # Force fresh decompilation (clear cache)
+            ida_hexrays.del_heap_decomp(addr)
+            try:
+                cfunc = ida_hexrays.decompile(func)
+            except:
+                lvar_fail += len(lvars_ann)
+                continue
         if not cfunc:
             lvar_fail += len(lvars_ann)
             continue

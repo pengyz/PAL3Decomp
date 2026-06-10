@@ -170,8 +170,18 @@
   "base_size": 72,
   "nested_types": {
     "CDState": {
-      "kind": "struct",
-      "binary_size": 4
+      "kind": "enum",
+      "binary_size": 4,
+      "values": {
+        "CD_NONE": 0,
+        "CD_HASKEY": 1,
+        "CD_DONATED": 2,
+        "CD_NOSOURCE": 3,
+        "CD_NOINTIMACY": 4,
+        "CD_CANCOMPOSE": 5,
+        "CD_COMPOSED": 6,
+        "CD_NUM": 7
+      }
     }
   }
 }
