@@ -45,14 +45,8 @@
         "16": {"name": "y", "type": "int", "source": "A:decomp_TryExpand:*((_DWORD*)v14+4)=nVal3"},
         "20": {"name": "key", "type": "int", "source": "A:decomp_TryExpand:*((_DWORD*)v14+5)=x+y*512"},
         "24": {"name": "parent", "type": "AStarPathFinder::NODE *", "source": "A:decomp_TryExpand:*((_DWORD*)v14+6)=nVal"},
-        "28": {"name": "stack", "type": "int[8]", "source": "A:decomp_TryExpand:nVal+28_loop_to_8"}
-      },
-      "methods": {
-        "0x00401500": {"name": "FindInOpen", "signature": "int __thiscall(int nTileIdx)"},
-        "0x00401530": {"name": "FindInClosed", "signature": "int __thiscall(int nTileIdx)"},
-        "0x00401560": {"name": "PushOpen", "signature": "int __thiscall()"},
-        "0x00401590": {"name": "Release", "signature": "int __thiscall()"},
-        "0x004015B0": {"name": "UpdateNeighbors", "signature": "int __thiscall()"}
+        "28": {"name": "stack", "type": "int[8]", "source": "A:decomp_TryExpand:nVal+28_loop_to_8"},
+        "60": {"name": "next", "type": "AStarPathFinder::NODE *", "source": "A:decomp_FindInOpen:OPEN->stack[8]==next/i=*(_DWORD*)(i+60)"}
       }
     },
     "STACK": {"kind": "struct", "binary_size": 4}
@@ -61,6 +55,26 @@
     "0x004012A0": {
       "name": "AStarPathFinder::TryExpand",
       "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5)"
+    },
+    "0x00401500": {
+      "name": "AStarPathFinder::FindInOpen",
+      "signature": "int __thiscall(int nTileIdx)"
+    },
+    "0x00401530": {
+      "name": "AStarPathFinder::FindInClosed",
+      "signature": "int __thiscall(int nTileIdx)"
+    },
+    "0x00401560": {
+      "name": "AStarPathFinder::PushOpen",
+      "signature": "int __thiscall(AStarPathFinder::NODE *pNode)"
+    },
+    "0x00401590": {
+      "name": "AStarPathFinder::Release",
+      "signature": "int __thiscall(AStarPathFinder::NODE *pNode)"
+    },
+    "0x004015B0": {
+      "name": "AStarPathFinder::UpdateNeighbors",
+      "signature": "int __thiscall(AStarPathFinder::NODE *pNode)"
     },
     "0x004017A0": {
       "name": "AStarPathFinder::Reset",
