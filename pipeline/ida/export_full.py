@@ -494,7 +494,7 @@ def export_structs(log):
         '_OSVERSIONINFOA', '_STARTUPINFOA', '_WIN32_FIND_DATAA',
         'CURRENCY', 'tagCY', 'CY',
     }
-    SKIP_PREFIXES = ('D3D', '_D3D', 'ID3D', 'IDirect', 'IUnknown', 'vtbl_')
+    SKIP_PREFIXES = ('D3D', '_D3D', 'ID3D', 'IDirect', 'IUnknown')
     # System types that are primitives — skip
     PRIMITIVE_NAMES = {
         'int', 'char', 'float', 'double', 'long', 'short', 'void',
