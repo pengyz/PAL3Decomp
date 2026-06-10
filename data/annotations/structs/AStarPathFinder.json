@@ -60,7 +60,14 @@
         "60": {"name": "next", "type": "AStarPathFinder::NODE *", "source": "A:decomp_FindInOpen:OPEN->stack[8]==next/i=*(_DWORD*)(i+60)"}
       }
     },
-    "STACK": {"kind": "struct", "binary_size": 4}
+    "STACK": {
+      "kind": "struct",
+      "binary_size": 8,
+      "known_members": {
+        "0": {"name": "sp", "type": "int", "source": "A:ctor:calloc(1,8)_Stack"},
+        "4": {"name": "top", "type": "AStarPathFinder::NODE *", "source": "A:decomp_UpdateNeighbors:Stack[1]="}
+      }
+    }
   },
   "methods": {
     "0x00401000": {

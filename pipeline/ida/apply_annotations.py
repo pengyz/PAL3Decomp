@@ -1328,6 +1328,9 @@ def apply_annotations():
                 _inner = _args_str.strip('()').strip()
                 for _ap in re.split(r',\s*(?![^<>]*>)', _inner):
                     _ap = _ap.strip().rstrip(')')
+                    _ap_tokens = _ap.rsplit(None, 1)
+                    if len(_ap_tokens) > 1 and not _ap_tokens[1].startswith('*'):
+                        _ap = _ap_tokens[0]
                     _ap_ti = _resolve_member_type(_ap, til)
                     if _ap_ti is not None:
                         _fa = ida_typeinf.funcarg_t(); _fa.type = _ap_ti; _fd.push_back(_fa)
@@ -1344,6 +1347,7 @@ def apply_annotations():
             _vt_udt.push_back(_vtm)
             _vt_off += 4
         _vt_udt.total_size = _vt_off
+        ida_typeinf.del_named_type(til, struct_name, ida_typeinf.NTF_TYPE)
         _t = ida_typeinf.tinfo_t()
         if _vt_off > 0 and _t.create_udt(_vt_udt, ida_typeinf.BTF_STRUCT):
             _t.set_named_type(til, struct_name, ida_typeinf.NTF_REPLACE)
