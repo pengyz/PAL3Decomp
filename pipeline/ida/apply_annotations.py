@@ -1253,9 +1253,11 @@ def apply_annotations():
 
     # Aggregate per-class vtables into (struct_name, ordered_slots) jobs.
     vtable_jobs = []
+    _vt_seen = set()
     for sname, sinfo in structs.items():
         for vt_addr, slots in resolve_vtable_slots(sinfo, functions):
-            if vt_addr and slots:
+            if vt_addr and slots and vt_addr not in _vt_seen:
+                _vt_seen.add(vt_addr)
                 vtable_jobs.append((vt_addr, slots))
 
     import re as _re3
