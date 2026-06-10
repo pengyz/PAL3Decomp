@@ -3,9 +3,9 @@
   "binary_size": 24,
   "known_members": {
     "0": {
-      "name": "_todo_0",
+      "name": "__vftable",
       "type": "void *",
-      "source": "A:decomp_TryExpand:used_as_vtable_ptr(+4,+8_callbacks)"
+      "source": "A:decomp_TryExpand:slot1=IsInBounds,slot2=GetHeuristicIdx"
     },
     "4": {
       "name": "OPEN",
@@ -54,7 +54,7 @@
   "methods": {
     "0x004012A0": {
       "name": "AStarPathFinder::TryExpand",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5)"
+      "signature": "int __thiscall(AStarPathFinder::NODE *pNode, int nTileX, int nTileY, int nGoalX, int nGoalY)"
     },
     "0x00401500": {
       "name": "AStarPathFinder::FindInOpen",
@@ -75,6 +75,14 @@
     "0x004015B0": {
       "name": "AStarPathFinder::UpdateNeighbors",
       "signature": "int __thiscall(AStarPathFinder::NODE *pNode)"
+    },
+    "0x00401750": {
+      "name": "AStarPathFinder::ResortNode",
+      "signature": "int __thiscall(AStarPathFinder::NODE *pNode)"
+    },
+    "0x00401780": {
+      "name": "AStarPathFinder::PopStack",
+      "signature": "int __thiscall()"
     },
     "0x004017A0": {
       "name": "AStarPathFinder::Reset",
