@@ -33,6 +33,17 @@
       "source": "A:decomp_TryExpand"
     }
   },
+  "vtables": [
+    {
+      "addr": "0x0056A600",
+      "base": null,
+      "slots": [
+        {"addr": "0x00401030", "from": null},
+        {"addr": "0x004014E0", "from": null},
+        {"addr": "0x004014F0", "from": null}
+      ]
+    }
+  ],
   "nested_types": {
     "NODE": {
       "kind": "struct",
@@ -52,6 +63,26 @@
     "STACK": {"kind": "struct", "binary_size": 4}
   },
   "methods": {
+    "0x00401000": {
+      "name": "AStarPathFinder::AStarPathFinder",
+      "signature": "void __thiscall()"
+    },
+    "0x00401030": {
+      "name": "AStarPathFinder::~AStarPathFinder",
+      "signature": "void *__thiscall(char a2)"
+    },
+    "0x00401050": {
+      "name": "AStarPathFinder::ReleaseAll",
+      "signature": "void __thiscall()"
+    },
+    "0x004014E0": {
+      "name": "AStarPathFinder::IsInBounds",
+      "signature": "int __thiscall(int nX, int nY)"
+    },
+    "0x004014F0": {
+      "name": "AStarPathFinder::GetHeuristicIdx",
+      "signature": "unsigned char __thiscall(int nX, int nY)"
+    },
     "0x004012A0": {
       "name": "AStarPathFinder::TryExpand",
       "signature": "int __thiscall(AStarPathFinder::NODE *pNode, int nTileX, int nTileY, int nGoalX, int nGoalY)"
