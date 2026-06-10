@@ -32,6 +32,10 @@ typedef unsigned short _WORD;
 typedef unsigned long _DWORD;
 typedef unsigned __int64 _QWORD;
 
+// Hex-Rays type aliases (unsigned char -> uchar, unsigned int -> uint)
+typedef unsigned char uchar;
+typedef unsigned int uint;
+
 // DirectInput 8 (DX SDK provides full dinput.h with IDirectInput8A)
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>

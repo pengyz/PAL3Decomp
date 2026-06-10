@@ -482,6 +482,7 @@ def collect_methods():
             continue
         # Skip compiler-generated _scalar_dtor functions (handled by virtual ~ClassName())
         if '_scalar_dtor' in method or method == '_sdtor':
+            seen_addrs.add(addr)
             continue
         if ' ' in method or '`' in method:
             continue
@@ -960,8 +961,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 lines.append('#include "%s.h"' % t)
         fwd_types -= enum_fwd
 
-    # Emit forward declarations for class types (skip IDA vtable structs)
-    fwd_types = {t for t in fwd_types if not t.startswith('vtbl_')}
+    # Emit forward declarations for class types
+    fwd_types = {t for t in fwd_types}
     for t in sorted(fwd_types):
         lines.append("class %s;" % t)
     if fwd_types:
@@ -1323,7 +1324,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # Auto-generate virtual destructor for classes that had _scalar_dtor
     # filtered out (compiler generates it automatically from the declaration).
     # Scan decomp JSONs to detect _scalar_dtor (same logic as data.py)
-    if cls_name in _get_scalar_dtor_classes():
+    # BUT only if the class doesn't already have an explicit destructor.
+    _has_dtor = any(m for m, _, _ in (methods or []) if m == '~' + cls_name)
+    if cls_name in _get_scalar_dtor_classes() and not _has_dtor:
         lines.append("    virtual ~%s() {}" % cls_name)
         lines.append("")
 
