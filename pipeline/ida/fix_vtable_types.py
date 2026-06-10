@@ -86,7 +86,8 @@ for cls_name, vt_list in sorted(cls_vtables.items()):
                 sd = json.load(f)
             for off_str, minfo in sd.get("known_members", {}).items():
                 mn = minfo["name"]
-                if mn != "__vftable" and ("vf" in mn.lower() or "vtbl" in mn.lower() or "vftable" in mn.lower()):
+                if mn != "__vftable" and ("vftable" in mn.lower() or "vtbl" in mn.lower()):
+                    # Match VfTable/vftable, but NOT substring like FVF
                     target_name = mn
                     break
         

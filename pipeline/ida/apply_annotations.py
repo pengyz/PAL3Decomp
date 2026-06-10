@@ -581,10 +581,12 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     else:
         is_flexible = struct_info.get("_flexible", False)
         if base_class:
-            # Base classes use anonymous member for inheritance — let IDA compute size
-            # No TAUDT_FIXED (automatic layout from member offsets + base class sizes)
-            # No TAUDT_CPPOBJ (base class provides vtable semantics)
-            udt.total_size = 0
+            # TAUDT_FIXED + TAUDT_CPPOBJ: enforce annotation's exact member
+            # layout and types (instead of IDA auto-layout from base class).
+            if not is_flexible:
+                udt.taudt_bits = 1024  # TAUDT_FIXED
+                udt.total_size = binary_size
+            udt.taudt_bits |= 128  # TAUDT_CPPOBJ
         else:
             if not is_flexible:
                 udt.taudt_bits = 1024  # TAUDT_FIXED: respect explicit offsets
