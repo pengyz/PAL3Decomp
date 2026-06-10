@@ -417,6 +417,18 @@ def run(code, ctx):
         return None
     code = _vtable_re.sub(lambda m: _try_resolve_vtable(m) or m.group(0), code)
 
+    # Generic OOP substitution: this->__vftable->Method(this, args...) → this->Method(args...)
+    # Matches any context (assignment, array subscript, etc.)
+    code = re.sub(
+        r'\(\(\s*[\w\s]+(?:\s*\*)*\s*'               # ((type... (*
+        r'\(\s*(?:__thiscall\s*)?\s*\*\s*\)'          # (__thiscall**)
+        r'\s*\([^)]*\)\s*\)'                          # )(type_params))
+        r'\s*this\s*->\s*__vftable\s*->\s*(\w+)\)'    # this->__vftable->Method)
+        r'\s*\(\s*this\s*,\s*',                       # (this,
+        r'this->\1(',
+        code
+    )
+
     # Comment out remaining __vftable refs (unresolved = no method name for that slot)
     lines_arr = code.split('\n')
     result_lines = []
@@ -440,9 +452,7 @@ def run(code, ctx):
             i += 1
     code = '\n'.join(result_lines)
 
-    # Comment out remaining __vftable references (compiler-managed, never in C++ source).
-    # __vftable is the IDA convention used consistently in annotations and codegen.
-    # Skip already-commented lines.
+    # Comment out remaining __vftable refs
     code = re.sub(
         r'^([ \t]*(?!/[/*]).*__vftable[^;]*;.*)$',
         r'// [VFTABLE] \1',
