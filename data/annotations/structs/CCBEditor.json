@@ -82,5 +82,11 @@
       "name": "CCBEditor::InvokeItemMethod",
       "signature": "int __thiscall()"
     }
-  }
+  },
+  "notes": [
+    "NOTE: m_NewItem[500] covers +8..+8008. Within this range, sub-objects exist at fixed offsets",
+    "  (inited by ctor sub_44ACE0): +0x374=type3,+0x4CC=type4,+0x624=type5,+0x77C=type6,",
+    "  +0xCEC=type8,+0x1244=type9,+0x179C=type0xA,+0x1CFC=type0xB. These overlap with m_NewItem elements.",
+    "  tagNewItem is a variant/union: dwItemID=type tag, nHP/nGP/nMP meanings differ by type."
+  ]
 }
