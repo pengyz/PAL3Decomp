@@ -408,21 +408,26 @@ def run(code, ctx):
     code = _vtable_re.sub(lambda m: _try_resolve_vtable(m) or m.group(0), code)
 
     _vtable_re2 = re.compile(
-        r'\(\s*\(\s*void\s+'
+        r'\s*(?:\w+\s*=\s*)?'
+        r'\(\s*\(\s*(\w+)\s+'
         r'\(\s*(?:__thiscall|__stdcall|\s*)\s*\*\s*\)'
         r'\s*\(\s*(\w+)\s*\*'
         r'[^)]*\)\s*\)'
-        r'\s*(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*\)'
+        r'\s*(?:\(\s*\*\s*(\w+)\)|(\w+(?:\s*->\s*\w+)*))\s*->\s*__vftable\s*\)'
         r'\s*\(((?:[^)]|\([^)]*\))*)\)\s*;\s*')
     def _try_resolve_vtable2(m):
-        cls, obj, args = m.group(1), m.group(2), m.group(3)
+        _ret = m.group(1)
+        cls = m.group(2)
+        obj = m.group(3) if m.group(3) else m.group(4)
+        args = m.group(5)
+        _obj_expr = '(*%s)' % obj if m.group(3) else obj
         try:
             _slots = store.struct_vtables.get(cls, {})
             if 0 in _slots:
                 _method = _slots[0]
                 _args = [a.strip() for a in args.split(',')]
                 _args = [a for a in _args if a.replace('&', '').strip() != obj]
-                return '%s->%s(%s);\n' % (obj, _method, ', '.join(_args))
+                return '%s->%s(%s);\n' % (_obj_expr, _method, ', '.join(_args))
         except: pass
         return None
     code = _vtable_re2.sub(lambda m: _try_resolve_vtable2(m) or m.group(0), code)
