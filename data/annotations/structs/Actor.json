@@ -38,12 +38,12 @@
       "source": "annotation"
     },
     "28": {
-      "name": "_field_1C4",
+      "name": "m_fMoveSpeed",
       "type": "float",
       "source": "transfer_from_RoleSystem_off_452"
     },
     "32": {
-      "name": "_field_1C8",
+      "name": "m_fMoveRange",
       "type": "float",
       "source": "transfer_from_RoleSystem_off_456"
     },
@@ -54,12 +54,12 @@
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "40": {
-      "name": "_field_1D0",
+      "name": "m_fTransitionSpeed",
       "type": "float",
       "source": "transfer_from_RoleSystem_off_464"
     },
     "44": {
-      "name": "_field_1D4",
+      "name": "m_fTransitionPos",
       "type": "float",
       "source": "transfer_from_RoleSystem_off_468"
     },
@@ -75,17 +75,17 @@
       "note": "Discovered by member_scan after disp8 fix."
     },
     "56": {
-      "name": "_field_1E0",
+      "name": "m_fRoleParam",
       "type": "float",
       "source": "transfer_from_RoleSystem_off_480"
     },
     "60": {
-      "name": "_field_1E4",
+      "name": "m_fRoleParam2",
       "type": "float",
       "source": "transfer_from_RoleSystem_off_484"
     },
     "64": {
-      "name": "_field_1E8",
+      "name": "m_fRoleParam3",
       "type": "float",
       "source": "transfer_from_RoleSystem_off_488"
     },
@@ -132,7 +132,7 @@
       "source": "transfer_from_RoleSystem_off_517"
     },
     "96": {
-      "name": "_field_208",
+      "name": "m_fAnimParam",
       "type": "float",
       "source": "A:FPU_disp8_in_class_method"
     },
@@ -147,7 +147,7 @@
       "source": "decomp:operator_delete_on_derived_ptr"
     },
     "116": {
-      "name": "_todo_074",
+      "name": "m_nModelId",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -187,17 +187,17 @@
       "source": "decomp:SetActionByName_float_from_pbyName+4(target_position_XYZ)"
     },
     "172": {
-      "name": "_todo_0AC",
+      "name": "m_fInterpStart",
       "type": "float",
       "source": "binary_scan:2refs"
     },
     "176": {
-      "name": "_todo_0B0",
+      "name": "m_fInterpEnd",
       "type": "float",
       "source": "binary_scan:2refs"
     },
     "180": {
-      "name": "_todo_0B4",
+      "name": "m_nInterpFrames",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -207,22 +207,22 @@
       "source": "binary_scan:3refs | ida_xref2"
     },
     "188": {
-      "name": "_todo_0BC",
+      "name": "m_nInterpCurrent",
       "type": "int",
       "source": "binary_scan:1refs"
     },
     "192": {
-      "name": "_field_268",
+      "name": "m_nInterpState",
       "type": "int",
       "source": "transfer_from_RoleSystem_off_616"
     },
     "196": {
-      "name": "_field_26C",
+      "name": "m_fInterpSpeed",
       "type": "float",
       "source": "A:FPU_post_reattrib_0x53ac79"
     },
     "200": {
-      "name": "_todo_0C8",
+      "name": "m_nModelLoadState",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -263,17 +263,17 @@
       "source": "transfer_from_RoleSystem_off_652"
     },
     "232": {
-      "name": "_field_290",
+      "name": "m_nMatrixParam",
       "type": "int",
       "source": "transfer_from_RoleSystem_off_656"
     },
     "236": {
-      "name": "_field_294",
+      "name": "m_fMatrixParamA",
       "type": "float",
       "source": "A:FPU_post_reattrib_0x53b84e"
     },
     "240": {
-      "name": "_field_298",
+      "name": "m_fMatrixParamB",
       "type": "float",
       "source": "transfer_from_RoleSystem_off_664"
     },
@@ -288,7 +288,7 @@
       "source": "transfer_from_RoleSystem_off_672"
     },
     "252": {
-      "name": "_field_2A4",
+      "name": "m_fMatrixParamC",
       "type": "float",
       "source": "A:FPU_post_reattrib_0x5368f5"
     },
@@ -308,7 +308,7 @@
       "source": "transfer_from_RoleSystem_off_696"
     },
     "308": {
-      "name": "_field_134",
+      "name": "m_vecLocalPos",
       "type": "gbVec3D",
       "source": "A:lea+ctor_call(gbVec3D::default_ctor@0x4119C3)"
     },
@@ -398,12 +398,12 @@
       "source": "ida_decomp:_nearby_53b890 = *(a2+388), 4 refs"
     },
     "392": {
-      "name": "_field_188",
+      "name": "m_fActionAssignParam",
       "type": "float",
       "source": "A:FPU_disp32_0x41c23e"
     },
     "396": {
-      "name": "_field_334",
+      "name": "m_nCloneParamB",
       "type": "int",
       "source": "transfer_from_RoleSystem_off_820"
     },
@@ -428,12 +428,12 @@
       "source": "binary:gap_r2 | type_fix:int->float(A+:decomp *(float*)&this->_field_19C-m_vecRot.z in UpdateFrame (3x)) | name:m_fFacingAngle(A+:decomp =90.0 + used as rotation_delta_base)"
     },
     "420": {
-      "name": "_field_1A4",
+      "name": "m_nModelParamA",
       "type": "int",
       "source": "binary:gap_r2"
     },
     "428": {
-      "name": "_field_1AC",
+      "name": "m_nModelParamB",
       "type": "int",
       "source": "binary:gap_r2"
     },
@@ -453,7 +453,7 @@
       "source": "binary:distinct_fields_at_0x1B8/0x1BC(LEA)/0x1C0,each_4B"
     },
     "444": {
-      "name": "_todo_1BC",
+      "name": "m_nTransitionParam",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -488,7 +488,7 @@
       "source": "A:66_prefix_word_access"
     },
     "512": {
-      "name": "_field_200",
+      "name": "m_pParticleData",
       "type": "void *",
       "source": "A+:decomp *(float*)&this->_field_200 (1 occurrences);batch_fix:int_to_v*_LEA_embed"
     },
@@ -569,7 +569,7 @@
       "source": "A:decomp Actor::UpdateFrame"
     },
     "217": {
-      "name": "_todo_0D9",
+      "name": "m_bParamFlag",
       "type": "unsigned char",
       "source": "A:binary_mov_byte_[eax+0D9h]_0"
     }
