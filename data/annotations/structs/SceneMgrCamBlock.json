@@ -27,14 +27,14 @@
       "source": "binary:IDA structs export (PDB-derived layout)"
     },
     "100": {
-      "name": "_field_0C8",
+      "name": "m_nUnlockDataOffset",
       "type": "int",
-      "source": "binary:IDA structs export (PDB-derived layout)"
+      "source": "A:PDB-derived layout before m_RoleUnlockData[100] at 108; role unlock data array header/offset"
     },
     "104": {
-      "name": "_field_0FC",
+      "name": "m_nUnlockDataLen",
       "type": "int",
-      "source": "binary:IDA structs export (PDB-derived layout)"
+      "source": "A:PDB-derived layout before m_RoleUnlockData[100] at 108; role unlock data array length"
     },
     "108": {
       "name": "m_RoleUnlockData",
@@ -42,9 +42,9 @@
       "source": "binary:IDA structs export (PDB-derived layout)"
     },
     "508": {
-      "name": "_field_158",
+      "name": "m_nUnlockDataEndFlag",
       "type": "int",
-      "source": "binary:IDA structs export (PDB-derived layout)"
+      "source": "A:PDB-derived after m_RoleUnlockData[100](108-507) before m_nUnlockDataCount(512); role unlock terminator/flag"
     },
     "512": {
       "name": "m_nUnlockDataCount",
@@ -57,9 +57,9 @@
       "source": "binary:IDA structs export (PDB-derived layout)"
     },
     "756": {
-      "name": "_field_2B0",
+      "name": "m_nMonsterUnlockEndFlag",
       "type": "int",
-      "source": "binary:IDA structs export (PDB-derived layout)"
+      "source": "A:PDB-derived after m_MonsterUnlockTable[60](516-755) before m_nCurrentScene(760); monster unlock terminator/flag"
     },
     "760": {
       "name": "m_nCurrentScene",
