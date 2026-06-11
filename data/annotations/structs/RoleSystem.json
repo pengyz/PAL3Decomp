@@ -373,24 +373,24 @@
       "source": "reverted_auto_semantic:2x | ida_xref"
     },
     "400": {
-      "name": "_field_190",
+      "name": "m_pCmdQueue",
       "type": "void *",
-      "source": "binary:gap_access;batch_fix:int_to_v*_LEA_embed"
+      "source": "A:decomp RoleSystem::FlushCommandQueue lea as block base ptr; allocator pattern gap between m_fInactiveTime and m_partyActor"
     },
     "404": {
-      "name": "_field_194",
+      "name": "m_pCmdQueueEnd",
       "type": "void *",
-      "source": "binary:gap_access;batch_fix:int_to_v*_LEA_embed"
+      "source": "A:decomp RoleSystem::FlushCommandQueue lea as block end ptr; paired with m_pCmdQueue"
     },
     "408": {
-      "name": "_field_198",
+      "name": "m_fCmdInterval",
       "type": "float",
-      "source": "A:decomp assigned 1065353216=0x3F800000=1.0f proves float"
+      "source": "A:decomp init=0x3F800000=1.0f; FlushCommandQueue cmp as interval/threshold"
     },
     "412": {
-      "name": "_field_19C",
+      "name": "m_fCmdTimer",
       "type": "float",
-      "source": "A:decomp assigned 1065353216=0x3F800000=1.0f proves float"
+      "source": "A:decomp init=0x3F800000=1.0f; FlushCommandQueue load/store as timer accumulator"
     },
     "416": {
       "name": "m_pPathNodeIter",
@@ -399,9 +399,9 @@
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "420": {
-      "name": "_field_1A4",
+      "name": "m_nCmdQueuePos",
       "type": "int",
-      "source": "binary:gap_access"
+      "source": "A:decomp RoleSystem::FlushCommandQueue lea+store as queue cursor; matches allocator pattern"
     },
     "424": {
       "name": "m_partyActor",
