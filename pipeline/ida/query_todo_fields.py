@@ -91,78 +91,116 @@ def load_class_methods():
 
 
 def find_disp32_in_func(ea, func_size, target_offsets):
-    """在函数体中搜索 [reg+disp32] 访问指定偏移的指令。"""
+    """在函数体中搜索 [reg+disp32] / [reg+disp8] 访问指定偏移的指令。
+
+    x86 ModRM encoding:
+      mod=2 (10b): [reg+disp32] — 4-byte displacement
+      mod=1 (01b): [reg+disp8]  — 1-byte signed displacement
+    小偏移（0-127）可能被编码为 disp8 而非 disp32，必须同时检查。
+    """
     hits = {}
     binary = ida_bytes.get_bytes(ea, func_size)
     if not binary:
         return hits
 
+    regs = ["eax", "ecx", "edx", "ebx", "esp", "ebp", "esi", "edi"]
+
     for offset in target_offsets:
-        needle = struct.pack("<I", offset)
+        # disp32: [reg + disp32], 4-byte offset
+        needle32 = struct.pack("<I", offset)
+        # disp8: [reg + disp8], 1-byte signed offset. Only valid for -128..127
+        needle8 = struct.pack("<b", offset) if -128 <= offset <= 127 else None
+
+        # ── Scan for disp32 ──
         pos = 0
         while pos < len(binary):
-            idx = binary.find(needle, pos)
+            idx = binary.find(needle32, pos)
             if idx == -1:
                 break
-            # Check ModRM: preceding byte should have mod=10 (register+disp32)
             if idx >= 2:
                 modrm = binary[idx - 1]
                 opcode = binary[idx - 2]
                 mod = (modrm >> 6) & 3
                 rm = modrm & 7
-                nnn = (modrm >> 3) & 7
 
-                if mod == 2 and rm != 4:  # mod=10, not SIB
-                    # Get disassembly from IDA for proper context
-                    insn_ea = ea + idx - 2
-                    disasm = idc.GetDisasm(insn_ea)
-
-                    # Determine access type from opcode
-                    access = "unknown"
-                    width = 4
-                    if opcode in (0x8B, 0x8D):
-                        access = "load" if opcode == 0x8B else "lea"
-                    elif opcode == 0x89:
-                        access = "store"
-                    elif opcode == 0xD9:
-                        access = "fld"
-                        width = 4
-                    elif opcode == 0xDD:
-                        access = "fld_double"
-                        width = 8
-                    elif opcode == 0xC6:
-                        access = "store_byte"
-                        width = 1
-                    elif opcode == 0xC7:
-                        access = "store_imm"
-                    elif opcode == 0x3B:
-                        access = "cmp"
-
-                    # Check for 66 prefix (word access)
-                    if idx >= 3 and binary[idx - 3] == 0x66:
-                        width = 2
-                    # Check for 0F B6/B7 (movzx byte/word)
-                    if idx >= 3 and binary[idx - 3] == 0x0F:
-                        if opcode == 0xB6:
-                            access = "movzx_byte"
-                            width = 1
-                        elif opcode == 0xB7:
-                            access = "movzx_word"
-                            width = 2
-
-                    regs = ["eax", "ecx", "edx", "ebx", "esp", "ebp", "esi", "edi"]
-
-                    if offset not in hits:
-                        hits[offset] = []
-                    hits[offset].append({
-                        "va": "0x%08X" % insn_ea,
-                        "access": access,
-                        "width": width,
-                        "base_reg": regs[rm],
-                        "disasm": disasm[:80] if disasm else "",
-                    })
+                if mod == 2 and rm != 4:  # mod=10 (disp32), no SIB, no RIP-rel
+                    _record_hit(hits, binary, ea, idx, offset, opcode, modrm, regs)
             pos = idx + 1
+
+        # ── Scan for disp8 (only if offset fits in signed byte) ──
+        if needle8 is None:
+            continue
+        pos = 0
+        while pos < len(binary):
+            idx = binary.find(needle8, pos)
+            if idx == -1:
+                break
+            if idx >= 2:
+                modrm = binary[idx - 1]
+                opcode = binary[idx - 2]
+                mod = (modrm >> 6) & 3
+                rm = modrm & 7
+
+                if mod == 1 and rm != 4:  # mod=01 (disp8), no SIB
+                    _record_hit(hits, binary, ea, idx, offset, opcode, modrm, regs)
+            pos = idx + 1
+
     return hits
+
+
+def _record_hit(hits, binary, ea, idx, offset, opcode, modrm, regs):
+    """Record a single field access hit from disp8/disp32 match."""
+    rm = modrm & 7
+    insn_ea = ea + idx - 2
+    disasm = idc.GetDisasm(insn_ea)
+
+    access = "unknown"
+    width = 4
+    if opcode in (0x8B, 0x8D):
+        access = "load" if opcode == 0x8B else "lea"
+    elif opcode == 0x89:
+        access = "store"
+    elif opcode == 0xD9:
+        access = "fld"
+        width = 4
+    elif opcode == 0xDD:
+        access = "fld_double"
+        width = 8
+    elif opcode == 0xC6:
+        access = "store_byte"
+        width = 1
+    elif opcode == 0xC7:
+        access = "store_imm"
+    elif opcode == 0x3B:
+        access = "cmp"
+    elif opcode == 0x39:
+        access = "cmp"
+    elif opcode == 0x01:
+        access = "add"
+    elif opcode == 0x03:
+        access = "add_load"
+
+    # Check for 66 prefix (word access)
+    if idx >= 3 and binary[idx - 3] == 0x66:
+        width = 2
+    # Check for 0F B6/B7 (movzx byte/word)
+    if idx >= 3 and binary[idx - 3] == 0x0F:
+        if opcode == 0xB6:
+            access = "movzx_byte"
+            width = 1
+        elif opcode == 0xB7:
+            access = "movzx_word"
+            width = 2
+
+    if offset not in hits:
+        hits[offset] = []
+    hits[offset].append({
+        "va": "0x%08X" % insn_ea,
+        "access": access,
+        "width": width,
+        "base_reg": regs[rm],
+        "disasm": disasm[:80] if disasm else "",
+    })
 
 
 def try_decompile_context(ea, offset):
