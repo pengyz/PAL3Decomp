@@ -5166,3 +5166,51 @@ float * CCBStageRole::GetWorldPos()
 - **置信度**: 75（统一批量，单字段置信度 70-85 不等）
 - **影响**: 语义修正（这些字段是地址/嵌入对象，不是整数），大小不变
 
+
+## 2026-06-11: Session Summary - _field_ Reduction 111→74
+
+### Named (37 fields)
+- **ScreenEffectMgr(8)**: m_pAllocBlock/m_pAllocBlockEnd/m_pAllocPos/m_pAllocSlot/m_pAllocRest/m_nAllocFlag1/m_nAllocFlag2/m_fAllocFactor — allocator state from decomp UpdateFrontEffect/AllocEffectBlock
+- **RoleSystem(5)**: m_pCmdQueue/m_pCmdQueueEnd/m_fCmdInterval/m_fCmdTimer/m_nCmdQueuePos — command queue allocator in FlushCommandQueue
+- **CameraCtrl(6)**: m_nUIPosX/m_nUIWidgetW/m_nUIWidgetH/m_nUIWidgetSavedW/m_fUIWidgetSavedH/m_bBlendUpdate — UI panel creation params
+- **SceneMgrCamBlock(4)**: m_nUnlockDataOffset/m_nUnlockDataLen/m_nUnlockDataEndFlag/m_nMonsterUnlockEndFlag — positional inference
+- **RenderTarget(2)**: m_fFileParam (from ApplyScale), m_fRenderIntensity (from SetField084 callers)
+- **PathObj(1)**: m_nCurPathLen (CalcLength stores m_nPathLen)
+- **RoleCamera(2)**: m_nStackIdx/m_nStackSize (PushState ±28/30)
+- **PalScript(1)**: m_fScriptTimer (ReleaseFrame=0.0, RenderUI frame compare)
+- **ScriptSystem(1)**: m_nEventParam (ProcessScriptEvent <0 check)
+
+### Removed as duplicates (7)
+- **SceneMgr(7)**: +0xCA04-0xCA6C within g_szSceneUIText[256] at +0xC9A8
+
+### Infrastructure
+- query_todo_fields.py: added disp8 (mod=1) scanning (was missing all offsets <128)
+- query_class_full: ran for RenderTarget, CameraCtrl, RoleSystem, SystemUI, CGameData, PalScriptMgr
+- IDA call tracing: SetField084(20 callers) discovered constant float values 1.0/1.6/2.0
+
+### Remaining Analysis Summary
+13 analysis methods exhausted for remaining 74 fields:
+1. disp8/disp32 scanning — all classes done
+2. query_class_full — 6 key structs done  
+3. query_highref_fields — no additional context
+4. IDA call tracing — SetField084 done
+5. verify_offset.py — global instances checked
+6. Binary absolute address search — all global instances searched
+7. Decompiled JSON offset pattern search — all offsets in all JSONs
+8. C pointer arithmetic pattern search — (this+N) patterns scanned
+9. LEA instruction scanning for field block — ScriptSystemData 0x1080 block
+10. Stride-16 array access pattern search — ScriptSystemData field block
+11. PAL3A PDB cross-reference — no matches found
+12. Overlap checking with sub-objects — all structs checked
+13. query_all_fields gap discovery — ScriptSystemData, SceneMgr
+
+### Remaining: 74 _field_ across 7 structs
+| Struct | Count | Evidence Type | Blocking Issue |
+|--------|-------|--------------|----------------|
+| ScriptSystemData | 53 | gap/stru_D8B318 | 208B+0x1080 block, 16B stride×13, no func refs |
+| SceneMgr | 10 | scenemgr_high | Interleaved with named globals |
+| RenderTarget | 4 | byte/FPU/disp | Only ClearTexture zeroing |
+| SystemUI | 3 | decomp C2039 | Array pointer pattern only |
+| CGameData | 2 | gap | memset'd block in Init |
+| RoleSystem | 1 | gap_r3 | No references |
+| PalScriptMgr | 1 | binary:3x access | No function evidence |
