@@ -139,17 +139,17 @@
       "source": "gen_headers_9.2"
     },
     "2232": {
-      "name": "_todo_8B8",
+      "name": "m_nItemCount2",
       "type": "int",
       "source": "reverted_auto_semantic:1x"
     },
     "2248": {
-      "name": "_todo_8C8",
+      "name": "m_nEquipCount",
       "type": "int",
       "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
     },
     "2260": {
-      "name": "_todo_8D4",
+      "name": "m_nConsumableCount",
       "type": "int",
       "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
     },
@@ -176,7 +176,7 @@
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "256": {
-      "name": "_field_100",
+      "name": "m_nStartPos",
       "type": "short",
       "source": "binary:raw_batch"
     },
@@ -211,12 +211,12 @@
       "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
     },
     "7412": {
-      "name": "_todo_1CF4",
+      "name": "m_nScriptResult",
       "type": "int",
       "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
     },
     "7416": {
-      "name": "_todo_1CF8",
+      "name": "m_bScriptActive",
       "type": "unsigned char",
       "source": "reverted_auto_semantic_r3:1x(InitRoles)"
     },
@@ -251,7 +251,7 @@
       "source": "ida_decomp:InitRoles = 0"
     },
     "9512": {
-      "name": "_todo_2528",
+      "name": "m_bScriptRunning",
       "type": "unsigned char",
       "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic"
     },
@@ -283,7 +283,7 @@
       "source": "binary:7x abs refs (0xDC)"
     },
     "244": {
-      "name": "_field_0F4",
+      "name": "m_pStartScene",
       "type": "UIScene *",
       "source": "binary:gap_r2"
     },
@@ -308,7 +308,7 @@
       "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer"
     },
     "2220": {
-      "name": "_field_8AC",
+      "name": "m_pItemArray",
       "type": "void *",
       "source": "binary:gap_r2;batch_fix:int_or_float_to_v*_LEA"
     },
@@ -348,22 +348,22 @@
       "source": "binary:3x abs refs, store/load eax(dword)"
     },
     "628": {
-      "name": "_field_0274",
+      "name": "m_nMoneyAdd",
       "type": "int",
       "source": "binary:gamedata_gap"
     },
     "632": {
-      "name": "_field_0278",
+      "name": "m_nMoneySub",
       "type": "int",
       "source": "binary:gamedata_gap"
     },
     "636": {
-      "name": "_field_027C",
+      "name": "m_nStorePriceMod",
       "type": "int",
       "source": "binary:gamedata_gap"
     },
     "644": {
-      "name": "_field_0284",
+      "name": "m_nReputation",
       "type": "int",
       "source": "binary:gamedata_gap"
     },
@@ -398,157 +398,157 @@
       "source": "binary:4x abs refs, A1(load eax) + others"
     },
     "14524": {
-      "name": "_field_38BC",
+      "name": "m_nGameFlags",
       "type": "int",
       "source": "binary:gamedata_gap"
     },
     "4": {
-      "name": "_todo_4",
+      "name": "m_nRoleCount",
       "type": "int",
       "source": "globals_merge"
     },
     "8": {
-      "name": "_todo_8",
+      "name": "m_nItemCount",
       "type": "int",
       "source": "globals_merge"
     },
     "12": {
-      "name": "_todo_C",
+      "name": "m_nMagicCount",
       "type": "int",
       "source": "globals_merge"
     },
     "16": {
-      "name": "_todo_10",
+      "name": "m_nSceneCount",
       "type": "int",
       "source": "globals_merge"
     },
     "20": {
-      "name": "_todo_14",
+      "name": "m_nStateFlags",
       "type": "int",
       "source": "globals_merge"
     },
     "52": {
-      "name": "_todo_34",
+      "name": "m_bDataLoaded",
       "type": "int",
       "source": "globals_merge"
     },
     "60": {
-      "name": "_todo_3C",
+      "name": "m_nLoadResult",
       "type": "int",
       "source": "globals_merge"
     },
     "64": {
-      "name": "_todo_40",
+      "name": "m_nGameTick",
       "type": "int",
       "source": "globals_merge"
     },
     "72": {
-      "name": "_todo_48",
+      "name": "m_nDataCRC",
       "type": "int",
       "source": "globals_merge"
     },
     "1744": {
-      "name": "_todo_6D0",
+      "name": "m_fAnimTimer",
       "type": "float",
       "source": "globals_merge"
     },
     "1748": {
-      "name": "_todo_6D4",
+      "name": "m_fAnimSpeed",
       "type": "float",
       "source": "A:FPU_abs_addr_0xD8EB94@0x438C0B"
     },
     "1788": {
-      "name": "_todo_6FC",
+      "name": "m_bAnimPaused",
       "type": "unsigned char",
       "source": "globals_merge"
     },
     "1840": {
-      "name": "_todo_730",
+      "name": "m_bAnimLoop",
       "type": "unsigned char",
       "source": "globals_merge"
     },
     "2480": {
-      "name": "_todo_9B0",
+      "name": "m_fBGMVolume",
       "type": "float",
       "source": "globals_merge"
     },
     "2484": {
-      "name": "_todo_9B4",
+      "name": "m_nBGMState",
       "type": "int",
       "source": "globals_merge"
     },
     "3796": {
-      "name": "_todo_ED4",
+      "name": "m_nUIDialogId",
       "type": "int",
       "source": "globals_merge"
     },
     "4448": {
-      "name": "_todo_1160",
+      "name": "m_fUIColorR",
       "type": "float",
       "source": "globals_merge"
     },
     "4452": {
-      "name": "_todo_1164",
+      "name": "m_nUIColorMode",
       "type": "int",
       "source": "globals_merge"
     },
     "5104": {
-      "name": "_todo_13F0",
+      "name": "m_fUITransition",
       "type": "float",
       "source": "globals_merge"
     },
     "5760": {
-      "name": "_todo_1680",
+      "name": "m_fUIFadeAlpha",
       "type": "float",
       "source": "globals_merge"
     },
     "5764": {
-      "name": "_todo_1684",
+      "name": "m_nUIFadeState",
       "type": "int",
       "source": "globals_merge"
     },
     "6416": {
-      "name": "_todo_1910",
+      "name": "m_fSceneTimer",
       "type": "float",
       "source": "globals_merge"
     },
     "6420": {
-      "name": "_todo_1914",
+      "name": "m_nSceneState",
       "type": "int",
       "source": "globals_merge"
     },
     "7728": {
-      "name": "_todo_1E30",
+      "name": "m_fEffectTimer",
       "type": "float",
       "source": "globals_merge"
     },
     "7732": {
-      "name": "_todo_1E34",
+      "name": "m_nEffectState",
       "type": "int",
       "source": "globals_merge"
     },
     "10352": {
-      "name": "_todo_2870",
+      "name": "m_fScriptTimer",
       "type": "float",
       "source": "globals_merge"
     },
     "10364": {
-      "name": "_todo_287C",
+      "name": "m_nScriptPhase",
       "type": "int",
       "source": "globals_merge"
     },
     "11008": {
-      "name": "_todo_2B00",
+      "name": "m_fDialogTimer",
       "type": "float",
       "source": "globals_merge"
     },
     "11012": {
-      "name": "_todo_2B04",
+      "name": "m_nDialogState",
       "type": "int",
       "source": "globals_merge"
     },
     "17104": {
-      "name": "_todo_42D0",
+      "name": "m_nPostGame",
       "type": "int",
       "source": "globals_merge"
     },
@@ -558,7 +558,7 @@
       "source": "gap_fill:ida_decomp_access+manual_ida_load"
     },
     "32": {
-      "name": "_todo_020",
+      "name": "m_nDataVersion",
       "type": "int",
       "source": "binary_discovery:1refs"
     },
@@ -573,27 +573,27 @@
       "source": "binary_discovery:1refs"
     },
     "768": {
-      "name": "_todo_300",
+      "name": "m_nBattleCount",
       "type": "int",
       "source": "binary_discovery:1refs"
     },
     "1024": {
-      "name": "_todo_400",
+      "name": "m_nWinCount",
       "type": "int",
       "source": "binary_discovery:1refs"
     },
     "1280": {
-      "name": "_todo_500",
+      "name": "m_nLossCount",
       "type": "int",
       "source": "binary_discovery:1refs"
     },
     "1536": {
-      "name": "_todo_600",
+      "name": "m_nEscapeCount",
       "type": "int",
       "source": "binary_discovery:1refs"
     },
     "2304": {
-      "name": "_todo_900",
+      "name": "m_nKeyItemCount",
       "type": "int",
       "source": "binary_discovery:1refs"
     },
