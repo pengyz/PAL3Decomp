@@ -10,7 +10,7 @@
     "4": {
       "name": "nHP",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation — also fnPtr or PalScript base via reinterpret_cast; discriminated by dwItemID"
     },
     "8": {
       "name": "nGP",
@@ -20,7 +20,15 @@
     "12": {
       "name": "nMP",
       "type": "int",
-      "source": "annotation"
+      "source": "annotation — also float via reinterpret_cast in some elements"
     }
-  }
+  },
+  "notes": [
+    "tagNewItem is a discriminated union. dwItemID determines field interpretation:",
+    "  — values: nHP(int)/nGP(int)/nMP(int) for game item data",
+    "  — fnPtrs: nHP/fnHP, nMP/fnMP store function addresses in editor mode",
+    "  — PalScript: nHP (+4) is base of embedded PalScript for some elements (e.g. [463])",
+    "PalScript variant extends beyond 16 bytes — accessed via reinterpret_cast from nHP address.",
+    "C++ union cannot express this without changing sizeof(tagNewItem), hence the cast is inevitable."
+  ]
 }
