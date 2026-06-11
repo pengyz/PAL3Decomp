@@ -40,6 +40,7 @@ class DataStore:
         self.skip_classes = set()   # classes to not generate
         self.global_addrs = {}      # name -> base_address (from ida_structs.json _globals)
         self.scalar_dtor_classes = set()  # classes that had _scalar_dtor filtered
+        self.struct_vtables = {}    # "ClassName" -> {slot_index: method_name} (from annotations)
 
     def load(self):
         """Load all resources from disk. Call once at startup."""
@@ -48,6 +49,7 @@ class DataStore:
         self._load_game_classes()
         self._load_globals_h()
         self._load_exported_data()
+        self._load_vtable_data()
         self._load_binary()
         self.loaded = True
 
@@ -190,6 +192,38 @@ class DataStore:
                 pass
         self.thunk_classes.add('j_std')
         self.thunk_classes.add('j_j_codecvt_base')
+
+    def _load_vtable_data(self):
+        """Load vtable slot→method mapping from struct annotations.
+
+        This is the ONLY place codegen reads from annotations (architectural exception).
+        Vtable slot resolution requires method names that only exist in annotations.
+        """
+        _structs_dir = self.annotations_dir / "structs"
+        if not _structs_dir.exists():
+            return
+        for _f in sorted(_structs_dir.glob("*.json")):
+            try:
+                _ann = json.load(open(_f, encoding='utf-8'))
+            except:
+                continue
+            _name = _ann.get('name', '')
+            _vtables = _ann.get('vtables', [])
+            _methods = _ann.get('methods', {})
+            if not _vtables or not _methods:
+                continue
+            _slot_map = {}
+            for _vt in _vtables:
+                for _i, _slot in enumerate(_vt.get('slots', [])):
+                    _addr = _slot.get('addr', '')
+                    if _addr in _methods:
+                        _mname = _methods[_addr].get('name', '')
+                        if _mname and '::' in _mname:
+                            _method = _mname.split('::')[-1]
+                            if _method not in _slot_map.values():
+                                _slot_map[_i] = _method
+            if _slot_map:
+                self.struct_vtables[_name] = _slot_map
 
         # 5. Free function sigs + static methods + scalar_dtor detection from decomp JSONs
         _decomp_dir = self.project_root / "asm" / "pal3" / "decomp"

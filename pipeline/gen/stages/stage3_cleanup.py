@@ -395,27 +395,37 @@ def run(code, ctx):
     def _try_resolve_vtable(m):
         cls, obj, off, args = m.group(1), m.group(2), int(m.group(3)), m.group(4)
         slot = off // 4
+        _indent = m.group(0)[:len(m.group(0)) - len(m.group(0).lstrip())]
         try:
-            import json as _json, os as _os
-            _ap = _os.path.join(_os.path.dirname(_os.path.dirname(
-                _os.path.dirname(_os.path.abspath(__file__)))),
-                'data', 'annotations', 'structs', '%s.json' % cls)
-            if _os.path.exists(_ap):
-                _ann = _json.load(open(_ap))
-                _vt = _ann.get('vtables', [])
-                if _vt:
-                    _slots = _vt[0].get('slots', [])
-                    if slot < len(_slots):
-                        _entry = _ann.get('methods', {}).get(_slots[slot].get('addr', ''), {})
-                        _name = _entry.get('name', '')
-                        if _name and '::' in _name:
-                            _method = _name.split('::')[-1]
-                            _args = [a.strip() for a in args.split(',')]
-                            _args = [a for a in _args if a != obj]
-                            return '%s->%s(%s);' % (obj, _method, ', '.join(_args))
+            _slots = store.struct_vtables.get(cls, {})
+            if slot in _slots:
+                _method = _slots[slot]
+                _args = [a.strip() for a in args.split(',')]
+                _args = [a for a in _args if a.replace('&', '').strip() != obj]
+                return '%s->%s(%s);\n%s' % (obj, _method, ', '.join(_args), _indent)
         except: pass
         return None
     code = _vtable_re.sub(lambda m: _try_resolve_vtable(m) or m.group(0), code)
+
+    _vtable_re2 = re.compile(
+        r'\(\s*\(\s*void\s+'
+        r'\(\s*(?:__thiscall|__stdcall|\s*)\s*\*\s*\)'
+        r'\s*\(\s*(\w+)\s*\*'
+        r'[^)]*\)\s*\)'
+        r'\s*(\w+(?:\s*->\s*\w+)*)\s*->\s*__vftable\s*\)'
+        r'\s*\(((?:[^)]|\([^)]*\))*)\)\s*;\s*')
+    def _try_resolve_vtable2(m):
+        cls, obj, args = m.group(1), m.group(2), m.group(3)
+        try:
+            _slots = store.struct_vtables.get(cls, {})
+            if 0 in _slots:
+                _method = _slots[0]
+                _args = [a.strip() for a in args.split(',')]
+                _args = [a for a in _args if a.replace('&', '').strip() != obj]
+                return '%s->%s(%s);\n' % (obj, _method, ', '.join(_args))
+        except: pass
+        return None
+    code = _vtable_re2.sub(lambda m: _try_resolve_vtable2(m) or m.group(0), code)
 
     # Generic OOP substitution: this->__vftable->Method(this, args...) → this->Method(args...)
     # Matches any context (assignment, array subscript, etc.)
