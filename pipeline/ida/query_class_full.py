@@ -91,7 +91,7 @@ def main():
         field_context = {}
 
         for ea, func_name in sorted(methods):
-            method = func_name.split("::", 1)[1]
+            method = func_name.split("::")[-1] if "::" in func_name else func_name
             try:
                 ida_hexrays.mark_cfunc_dirty(ea)
             except:
