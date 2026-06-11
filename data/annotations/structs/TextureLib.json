@@ -3,7 +3,7 @@
   "pdb_size": 4,
   "known_members": {
     "128": {
-      "name": "_todo_080",
+      "name": "m_bAlphaChannel",
       "type": "unsigned char",
       "source": "binary:disp32_17hits_13funcs"
     },
@@ -18,27 +18,27 @@
       "source": "binary:disp32_57hits_12funcs"
     },
     "140": {
-      "name": "_todo_8C",
+      "name": "m_fColorModR",
       "type": "float",
       "source": "binary:disp32_38hits_12funcs"
     },
     "144": {
-      "name": "_todo_090",
+      "name": "m_fColorModG",
       "type": "float",
       "source": "binary:disp32_25hits_7funcs"
     },
     "148": {
-      "name": "_todo_094",
+      "name": "m_fColorModB",
       "type": "float",
       "source": "binary:disp32_32hits_7funcs"
     },
     "152": {
-      "name": "_todo_098",
+      "name": "m_fColorModA",
       "type": "float",
       "source": "binary:disp32_12hits_6funcs"
     },
     "156": {
-      "name": "_todo_09C",
+      "name": "m_fColorAdd",
       "type": "float",
       "source": "reverted_auto_semantic:6x_access"
     },
@@ -59,7 +59,7 @@
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "32": {
-      "name": "_todo_020",
+      "name": "m_nTextureId",
       "type": "int",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
@@ -69,47 +69,47 @@
       "source": "A+:SetPath_lstrcpyA(&this->field,path)+lstrcatA+lstrlenA"
     },
     "48": {
-      "name": "_todo_030",
+      "name": "m_fTexCoordU",
       "type": "float",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "52": {
-      "name": "_todo_034",
+      "name": "m_fTexCoordV",
       "type": "float",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "60": {
-      "name": "_todo_03C",
+      "name": "m_fTexScale",
       "type": "float",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "64": {
-      "name": "_todo_040",
+      "name": "m_bTexFilter",
       "type": "unsigned char",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "68": {
-      "name": "_todo_044",
+      "name": "m_nTexParam1",
       "type": "int",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "72": {
-      "name": "_todo_048",
+      "name": "m_nTexParam2",
       "type": "int",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "76": {
-      "name": "_todo_04C",
+      "name": "m_nTexParam3",
       "type": "int",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "80": {
-      "name": "_todo_050",
+      "name": "m_bTexClamp",
       "type": "unsigned char",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "127": {
-      "name": "_todo_07F",
+      "name": "m_bMipMap",
       "type": "unsigned char",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
@@ -139,17 +139,17 @@
       "source": "decomp:LoadTexture_gbImage2D_Release+LoadImageFile"
     },
     "252": {
-      "name": "_todo_0FC",
+      "name": "m_nImageOffset",
       "type": "int",
       "source": "binary_scan:1refs"
     },
     "256": {
-      "name": "_todo_100",
+      "name": "m_nImageSize",
       "type": "int",
       "source": "binary_scan:2refs"
     },
     "304": {
-      "name": "_todo_130",
+      "name": "m_nColorKey",
       "type": "int",
       "source": "binary_scan:3refs"
     },
@@ -164,7 +164,7 @@
       "source": "binary_scan:1refs | ida_xref"
     },
     "344": {
-      "name": "_todo_158",
+      "name": "m_nTexFormat",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -179,7 +179,7 @@
       "source": "binary_scan:1refs | ida_xref"
     },
     "408": {
-      "name": "_todo_198",
+      "name": "m_pPalette",
       "type": "void *",
       "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
     },
@@ -194,12 +194,12 @@
       "source": "A:mov_byte_1_0+LOBYTE_load_if_check"
     },
     "460": {
-      "name": "_todo_1CC",
+      "name": "m_nPaletteSize",
       "type": "int",
       "source": "binary_scan:1refs"
     },
     "488": {
-      "name": "_todo_1E8",
+      "name": "m_nTexFlags",
       "type": "int",
       "source": "binary_scan:1refs"
     }
