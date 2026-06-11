@@ -14,68 +14,9 @@
     },
     "8": {
       "name": "m_NewItem",
-      "type": "tagNewItem[7]",
-      "source": "A:ctor sub_44AB90 init +0x7C as sub_obj; real tagNewItem data within +8..+119 only"
-    },
-    "124": {
-      "name": "m_subA",
-      "type": "CCBEditorSubObj *",
-      "source": "A:ctor sub_44AB90 lea ecx,[esi+7Ch]; call sub_4422E0; vtable off_56AC70 type3 slot[0]=ShowWindow_2"
-    },
-    "276": {
-      "name": "m_subB",
-      "type": "CCBEditorSubObj *",
-      "source": "A:ctor sub_44AB90 lea ecx,[esi+114h]; call sub_4422E0"
-    },
-    "428": {
-      "name": "m_subArray",
-      "type": "CCBEditorSubObj *",
-      "source": "A:ctor sub_44AB90/44ACE0 lea eax,[esi+1ACh]; 3 elems stride 0x98; vtable off_56AC70 type3"
-    },
-    "884": {
-      "name": "m_subD",
-      "type": "CCBEditorSubObj *",
-      "source": "A:ctor sub_44ACE0 lea ecx,[esi+374h]; call sub_43A810 (vtable off_56AC70, type3)"
-    },
-    "1228": {
-      "name": "m_subE",
-      "type": "CCBEditorSubObj *",
-      "source": "A:ctor sub_44ACE0 lea ecx,[esi+4CCh]; call sub_43A810 (vtable off_56AC70, type4)"
-    },
-    "1572": {
-      "name": "m_subF",
-      "type": "CCBEditorSubObj *",
-      "source": "A:ctor sub_44ACE0 lea ecx,[esi+624h]; call sub_43A810 (vtable off_56AC70, type5)"
-    },
-    "1916": {
-      "name": "m_subG",
-      "type": "void *",
-      "source": "A:ctor sub_44ACE0 lea ecx,[esi+77Ch]; call sub_4A1410 (type6)"
-    },
-    "3308": {
-      "name": "m_subH",
-      "type": "void *",
-      "source": "A:ctor sub_44ACE0 lea ecx,[esi+0CECh]; call sub_4A1410 (type8)"
-    },
-    "4676": {
-      "name": "m_subI",
-      "type": "void *",
-      "source": "A:ctor sub_44ACE0 lea ecx,[esi+1244h]; call sub_4A1410 (type9)"
-    },
-    "6044": {
-      "name": "m_subJ",
-      "type": "void *",
-      "source": "A:ctor sub_44ACE0 lea ecx,[esi+179Ch]; call sub_4A1410 (type0Ah)"
-    },
-    "7416": {
-      "name": "m_bTrickFlag",
-      "type": "unsigned char",
-      "source": "A:InvokeItemMethod mov byte ptr [esi+1CF8h],1; UpdateItemScript LOBYTE(m_dwTrickID[358])"
-    },
-    "7420": {
-      "name": "m_subK",
-      "type": "void *",
-      "source": "A:ctor sub_44ACE0 lea ecx,[esi+1CFCh]; call sub_44B890 (type0Bh)"
+      "type": "tagNewItem[500]",
+      "offset": 8,
+      "note": "binary_size=8000, covers +8..+8008. Elements [7],[16],[26],[54],[76],[97] hold function ptrs in editor mode."
     },
     "8008": {
       "name": "m_dwSelectFighter",
@@ -142,11 +83,5 @@
       "name": "CCBEditor::InvokeItemMethod",
       "signature": "int __thiscall()"
     }
-  },
-  "notes": [
-    "NOTE: m_NewItem[500] covers +8..+8008. Within this range, sub-objects exist at fixed offsets",
-    "  (inited by ctor sub_44ACE0): +0x374=type3,+0x4CC=type4,+0x624=type5,+0x77C=type6,",
-    "  +0xCEC=type8,+0x1244=type9,+0x179C=type0xA,+0x1CFC=type0xB. These overlap with m_NewItem elements.",
-    "  tagNewItem is a variant/union: dwItemID=type tag, nHP/nGP/nMP meanings differ by type."
-  ]
+  }
 }
