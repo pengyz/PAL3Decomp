@@ -28,44 +28,44 @@
       "source": "annotation"
     },
     "108": {
-      "name": "_field_06C",
+      "name": "m_pAllocBlock",
       "type": "int",
-      "source": "binary:raw_batch"
+      "source": "A:decomp ScreenEffectMgr::UpdateFrontEffect/ProcessEffect/ClearAllEffects — allocator block start ptr, used as p_field_06C[0] with 0x1000 block size"
     },
     "112": {
-      "name": "_field_070",
+      "name": "m_pAllocBlockEnd",
       "type": "int",
-      "source": "binary:raw_batch"
+      "source": "A:decomp — allocator block end (= block_start + 0x1000), used as p_field_06C[1]"
     },
     "116": {
-      "name": "_field_074",
+      "name": "m_pAllocPos",
       "type": "int",
-      "source": "binary:raw_batch"
+      "source": "A:decomp — allocator cursor within current block, used as p_field_06C[2], advanced by 4 per allocation"
     },
     "120": {
-      "name": "_field_078",
+      "name": "m_pAllocSlot",
       "type": "int",
-      "source": "binary:raw_batch"
+      "source": "A:decomp — ptr to current entry in block-pointer table, used as p_field_06C[3]"
     },
     "124": {
-      "name": "_field_07C",
+      "name": "m_pAllocRest",
       "type": "int",
-      "source": "binary:raw_batch"
+      "source": "A:decomp — secondary allocator ptr, zeroed on all-effects-cleared"
     },
     "128": {
-      "name": "_field_080",
+      "name": "m_nAllocFlag1",
       "type": "int",
-      "source": "binary:raw_batch"
+      "source": "A:decomp — allocator flag, zeroed on all-effects-cleared"
     },
     "132": {
-      "name": "_field_084",
+      "name": "m_nAllocFlag2",
       "type": "int",
-      "source": "binary:raw_batch"
+      "source": "A:decomp — allocator flag, zeroed on all-effects-cleared"
     },
     "136": {
-      "name": "_field_088",
+      "name": "m_fAllocFactor",
       "type": "int",
-      "source": "binary:raw_batch"
+      "source": "A:decomp — allocator factor, zeroed on reset; set to 1065353216(1.0f) in LoadResources"
     },
     "148": {
       "name": "m_nEffectCount",
