@@ -123,24 +123,24 @@
       "source": "A:decomp CameraCtrl::CreateCameraUI =0, then used as base+18 pixel stride for SetSelTexture UI element X positioning"
     },
     "80": {
-      "name": "_field_050",
+      "name": "m_nUIWidgetW",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "A:decomp CameraCtrl::CreateCameraUI SetSelTexture param2; copied from m_nUIWidgetSavedW(88); UI widget width"
     },
     "84": {
-      "name": "_field_054",
+      "name": "m_nUIWidgetH",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "A:decomp CameraCtrl::CreateCameraUI SetSelTexture param3; bitcast from m_fUIWidgetSavedH(92); UI widget height"
     },
     "88": {
-      "name": "_field_058",
+      "name": "m_nUIWidgetSavedW",
       "type": "int",
-      "source": "binary:1x access"
+      "source": "A:decomp CameraCtrl::CreateCameraUI source for m_nUIWidgetW(80); stored widget width"
     },
     "92": {
-      "name": "_field_05C",
+      "name": "m_fUIWidgetSavedH",
       "type": "float",
-      "source": "A:FPU_round3_0x4bf2c2"
+      "source": "A:decomp CameraCtrl::CreateCameraUI float source for m_nUIWidgetH(84); stored widget height as float"
     },
     "96": {
       "name": "m_nViewMode",
