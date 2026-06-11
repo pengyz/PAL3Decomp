@@ -14,8 +14,68 @@
     },
     "8": {
       "name": "m_NewItem",
-      "type": "tagNewItem[500]",
-      "offset": 8
+      "type": "tagNewItem[7]",
+      "source": "A:ctor sub_44AB90 init +0x7C as sub_obj; real tagNewItem data within +8..+119 only"
+    },
+    "124": {
+      "name": "m_subA",
+      "type": "void *",
+      "source": "A:ctor sub_44AB90 lea ecx,[esi+7Ch]; call sub_4422E0"
+    },
+    "276": {
+      "name": "m_subB",
+      "type": "void *",
+      "source": "A:ctor sub_44AB90 lea ecx,[esi+114h]; call sub_4422E0"
+    },
+    "428": {
+      "name": "m_subArray",
+      "type": "void *",
+      "source": "A:ctor sub_44AB90/44ACE0 lea eax,[esi+1ACh]; 3 elems stride 0x98; eh vector dtor iterator"
+    },
+    "884": {
+      "name": "m_subD",
+      "type": "void *",
+      "source": "A:ctor sub_44ACE0 lea ecx,[esi+374h]; call sub_43A810 (vtable off_56AC70, type3)"
+    },
+    "1228": {
+      "name": "m_subE",
+      "type": "void *",
+      "source": "A:ctor sub_44ACE0 lea ecx,[esi+4CCh]; call sub_43A810 (vtable off_56AC70, type4)"
+    },
+    "1572": {
+      "name": "m_subF",
+      "type": "void *",
+      "source": "A:ctor sub_44ACE0 lea ecx,[esi+624h]; call sub_43A810 (vtable off_56AC70, type5)"
+    },
+    "1916": {
+      "name": "m_subG",
+      "type": "void *",
+      "source": "A:ctor sub_44ACE0 lea ecx,[esi+77Ch]; call sub_4A1410 (type6)"
+    },
+    "3308": {
+      "name": "m_subH",
+      "type": "void *",
+      "source": "A:ctor sub_44ACE0 lea ecx,[esi+0CECh]; call sub_4A1410 (type8)"
+    },
+    "4676": {
+      "name": "m_subI",
+      "type": "void *",
+      "source": "A:ctor sub_44ACE0 lea ecx,[esi+1244h]; call sub_4A1410 (type9)"
+    },
+    "6044": {
+      "name": "m_subJ",
+      "type": "void *",
+      "source": "A:ctor sub_44ACE0 lea ecx,[esi+179Ch]; call sub_4A1410 (type0Ah)"
+    },
+    "7416": {
+      "name": "m_bTrickFlag",
+      "type": "unsigned char",
+      "source": "A:InvokeItemMethod mov byte ptr [esi+1CF8h],1; UpdateItemScript LOBYTE(m_dwTrickID[358])"
+    },
+    "7420": {
+      "name": "m_subK",
+      "type": "void *",
+      "source": "A:ctor sub_44ACE0 lea ecx,[esi+1CFCh]; call sub_44B890 (type0Bh)"
     },
     "8008": {
       "name": "m_dwSelectFighter",
