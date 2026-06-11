@@ -143,9 +143,9 @@
       "source": "ida_decomp:SetVisible = a2"
     },
     "132": {
-      "name": "_field_084",
+      "name": "m_fRenderIntensity",
       "type": "float",
-      "source": "A:FPU_disp32_0x4b515d"
+      "source": "A:20 callers to SetField084 pass constant floats(1.0/1.6/2.0); called after SetColor/SetAlpha, before SetState; render intensity/glow factor"
     },
     "136": {
       "name": "m_fOffsetParam",
