@@ -7,7 +7,7 @@
       "source": "A:mov_byte_ptr_in_class_method | ida_xref"
     },
     "8": {
-      "name": "_todo_008",
+      "name": "m_nScreenFlags",
       "type": "int",
       "source": "B:naming_m_n+FPU_misattrib"
     },
@@ -17,17 +17,17 @@
       "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
     },
     "16": {
-      "name": "_todo_010",
+      "name": "m_fFadeStart",
       "type": "float",
       "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)"
     },
     "20": {
-      "name": "_todo_014",
+      "name": "m_fFadeTarget",
       "type": "float",
       "source": "B:naming_m_n+FPU_misattrib"
     },
     "24": {
-      "name": "_todo_018",
+      "name": "m_nFadeState",
       "type": "int",
       "source": "B:naming_m_n+FPU_misattrib"
     },
@@ -163,7 +163,7 @@
       "source": "ida_decomp:_init_533250 = this+20 + this, accumulated, 3 refs"
     },
     "48": {
-      "name": "_todo_030",
+      "name": "m_fFadeProgress",
       "type": "float",
       "source": "reverted_auto_semantic:2x_access"
     },
@@ -178,7 +178,7 @@
       "source": "ida_decomp:_init_533250 byte toggle 1/0, 3 refs"
     },
     "64": {
-      "name": "_todo_040",
+      "name": "m_fScreenTimer",
       "type": "float",
       "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
     },
@@ -248,7 +248,7 @@
       "source": "A:FPU_disp32_0x52c513"
     },
     "56": {
-      "name": "_todo_038",
+      "name": "m_fFadeMaxAlpha",
       "type": "float",
       "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic"
     },
@@ -288,7 +288,7 @@
       "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init"
     },
     "32": {
-      "name": "_todo_020",
+      "name": "m_nFadeCounter",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -323,7 +323,7 @@
       "source": "binary_scan:1refs | ida_xref"
     },
     "192": {
-      "name": "_todo_0C0",
+      "name": "m_nVideoState",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -358,7 +358,7 @@
       "source": "A:FPU_fadd_2x_[esi+104h]_confirmed_float"
     },
     "264": {
-      "name": "_todo_108",
+      "name": "m_nProgressTimer",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -373,27 +373,27 @@
       "source": "decomp:_init_47be20_loop_ptr+=152(UIStatic_array_start)"
     },
     "616": {
-      "name": "_todo_268",
+      "name": "m_nVolNode0",
       "type": "int",
       "source": "binary_scan:1refs"
     },
     "620": {
-      "name": "_todo_26C",
+      "name": "m_nVolNode1",
       "type": "int",
       "source": "binary_scan:1refs"
     },
     "624": {
-      "name": "_todo_270",
+      "name": "m_nVolNode2",
       "type": "int",
       "source": "binary_scan:1refs"
     },
     "628": {
-      "name": "_todo_274",
+      "name": "m_nVolNode3",
       "type": "int",
       "source": "binary_scan:1refs"
     },
     "632": {
-      "name": "_todo_278",
+      "name": "m_nVolNode4",
       "type": "int",
       "source": "binary_scan:1refs"
     },
@@ -403,7 +403,7 @@
       "source": "decomp:Restore_dtor_call"
     },
     "812": {
-      "name": "_todo_32C",
+      "name": "m_pSoundStream",
       "type": "void *",
       "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
     },
@@ -418,7 +418,7 @@
       "source": "decomp:_init_4593c0_same_pattern(+344_from_1916)"
     },
     "2608": {
-      "name": "_todo_A30",
+      "name": "m_pGameUI",
       "type": "void *",
       "source": "binary_scan:2refs;batch_fix:int_to_v*_LEA_embed"
     },
@@ -428,7 +428,7 @@
       "source": "A:byte_toggle_1_0_in_ctor"
     },
     "3872": {
-      "name": "_todo_F20",
+      "name": "m_nScreenActive",
       "type": "int",
       "source": "binary_scan:1refs"
     },
