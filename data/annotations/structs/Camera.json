@@ -8,7 +8,7 @@
       "source": "A:FPU_binary_evidence | ida_xref"
     },
     "132": {
-      "name": "_todo_084",
+      "name": "m_fZoomTarget",
       "type": "int",
       "source": "binary:disp32_1hits_1funcs"
     },
@@ -18,22 +18,22 @@
       "source": "A:FPU_binary_evidence | ida_xref"
     },
     "140": {
-      "name": "_todo_08C",
+      "name": "m_nShakeAmplitude",
       "type": "int",
       "source": "binary:disp32_1hits_1funcs"
     },
     "144": {
-      "name": "_todo_090",
+      "name": "m_nShakeDuration",
       "type": "int",
       "source": "binary:disp32_1hits_1funcs"
     },
     "152": {
-      "name": "_todo_098",
+      "name": "m_nShakeType",
       "type": "int",
       "source": "binary:disp32_1hits_1funcs"
     },
     "160": {
-      "name": "_todo_0A0",
+      "name": "m_fShakeFrequency",
       "type": "float",
       "source": "binary:disp32_1hits_1funcs"
     },
@@ -43,7 +43,7 @@
       "source": "binary:disp32_1hits_1funcs | ida_xref"
     },
     "168": {
-      "name": "_todo_0A8",
+      "name": "m_fShakeOffset",
       "type": "float",
       "source": "binary:disp32_1hits_1funcs"
     },
@@ -58,7 +58,7 @@
       "source": "binary:disp32_4hits_2funcs"
     },
     "272": {
-      "name": "_todo_110",
+      "name": "m_nFollowMode",
       "type": "int",
       "source": "binary:disp32_2hits_2funcs"
     },
@@ -83,7 +83,7 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "12": {
-      "name": "_todo_00C",
+      "name": "m_fCameraUpPosition",
       "type": "float",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
@@ -98,7 +98,7 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "24": {
-      "name": "_todo_018",
+      "name": "m_nStepDirection",
       "type": "int",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
@@ -108,27 +108,27 @@
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "64": {
-      "name": "_todo_040",
+      "name": "m_fLookAtStart",
       "type": "float",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "68": {
-      "name": "_todo_044",
+      "name": "m_fLookAtEnd",
       "type": "float",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "72": {
-      "name": "_todo_048",
+      "name": "m_fLookAtProgress",
       "type": "float",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "104": {
-      "name": "_todo_068",
+      "name": "m_fCameraHeight",
       "type": "float",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
     "116": {
-      "name": "_todo_074",
+      "name": "m_nTargetRole",
       "type": "int",
       "source": "raw_decomp:Hex-Rays_type_cast"
     },
@@ -143,32 +143,32 @@
       "source": "gap_fill:ida_decomp_access | annotate_todo"
     },
     "380": {
-      "name": "_todo_17C",
+      "name": "m_nCameraTick",
       "type": "int",
       "source": "reverted_auto_semantic:1x"
     },
     "384": {
-      "name": "_todo_180",
+      "name": "m_nPrevCameraTick",
       "type": "int",
       "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
     },
     "388": {
-      "name": "_todo_184",
+      "name": "m_fCameraTimer",
       "type": "float",
       "source": "reverted_auto_semantic:1x"
     },
     "392": {
-      "name": "_todo_188",
+      "name": "m_fLerpSpeed",
       "type": "float",
       "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
     },
     "396": {
-      "name": "_todo_18C",
+      "name": "m_fLerpProgress",
       "type": "float",
       "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic"
     },
     "400": {
-      "name": "_todo_190",
+      "name": "m_bLerpActive",
       "type": "unsigned char",
       "source": "A+:raw_idb VA=0x41BEC0 *((_BYTE*)this+400)=(_BYTE)a2"
     },
@@ -178,7 +178,7 @@
       "source": "decomp:34x_PalScriptMgr_Get_result_address_taken"
     },
     "28": {
-      "name": "_todo_28",
+      "name": "m_fStepDuration",
       "type": "float",
       "source": "binary_scan:7_accesses(load:5, fild_int:2)",
       "note": "Discovered by member_scan after disp8 fix."
@@ -190,13 +190,13 @@
       "note": "Discovered by member_scan after disp8 fix."
     },
     "36": {
-      "name": "_todo_36",
+      "name": "m_fTransitionTime",
       "type": "float",
       "source": "binary_scan:4_accesses(load:3, fld_float:1)",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "32": {
-      "name": "_todo_32",
+      "name": "m_nTransitionState",
       "type": "int",
       "source": "binary_scan:2_accesses(load:2)",
       "note": "Discovered by member_scan after disp8 fix."
@@ -214,35 +214,35 @@
       "note": "Discovered by member_scan after disp8 fix."
     },
     "56": {
-      "name": "_todo_56",
+      "name": "m_nTransitionStep",
       "type": "int",
       "source": "binary_scan:4_accesses(load:4)",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "60": {
-      "name": "_todo_60",
+      "name": "m_nTransitionFlags",
       "type": "int",
       "source": "binary_scan:2_accesses(load:2)",
       "note": "Discovered by member_scan after disp8 fix."
     },
     "76": {
-      "name": "_todo_76",
+      "name": "m_pLookAtData",
       "type": "char *",
       "source": "binary_scan:20_accesses(lea:18, store:2)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "244": {
-      "name": "_todo_0F4",
+      "name": "m_nCollisionFlags",
       "type": "int",
       "source": "binary_discovery:1refs"
     },
     "332": {
-      "name": "_todo_14C",
+      "name": "m_pCollisionMesh",
       "type": "void *",
       "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed"
     },
     "348": {
-      "name": "_todo_15C",
+      "name": "m_pRayHitPoint",
       "type": "void *",
       "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed"
     }
