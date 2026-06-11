@@ -1522,8 +1522,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         has_param_ctor = any(k.startswith(cls_name + '(') and k != cls_name + '()' for k in seen_methods)
         has_default_ctor = (cls_name + '()') in seen_methods
         if has_param_ctor and not has_default_ctor:
-            lines.append("    %s() {} // auto-generated default ctor" % cls_name)
-            lines.append("")
+            # Not auto-generating a default constructor — if a class has parameterized
+            # constructors only, there's a reason (e.g. gbCamera needs gbGfxManager*).
+            # An empty default ctor would silently construct an invalid object.
+            pass
 
     # For opaque 4-byte structs (no real members), add int conversion operators
     # This allows IDA-generated code to assign integers to these types
