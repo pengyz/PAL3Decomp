@@ -315,8 +315,8 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
         if offset > cursor:
             lines.append("    char _gap_%03X[%d];" % (cursor, offset - cursor))
 
-        # vfptr: 用 vtbl struct 指针（IDA 反编译输出最优）
-        if offset == 0 and mname == "vfptr" and virtual_methods:
+        # __vftable/vfptr: typed vtable pointer（IDA 反编译输出最优）
+        if offset == 0 and mname in ("__vftable", "vfptr") and virtual_methods:
             if own_vtable_addr:
                 vt_struct_name = "vtbl_%s" % own_vtable_addr[2:]
                 lines.append("    %s *__vftable;" % vt_struct_name)
@@ -634,7 +634,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     # Union members use "0", "0_1", "0_2" keys (all at offset 0)
     for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0], 0)):
         offset = int(off_str.split('_')[0], 0)
-        if base_class and offset < base_size and minfo.get("name") != "vfptr":
+        if base_class and offset < base_size and minfo.get("name") not in ("vfptr", "__vftable"):
             continue
 
         mname = minfo["name"]
