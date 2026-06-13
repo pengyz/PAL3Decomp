@@ -111,6 +111,22 @@ def _resolve_member_type(mtype_str, til):
         return None
 
     if '<' in s or '(' in s:
+        # Function pointer type: "int (__thiscall *)(void *, unsigned long)"
+        if '(' in s and '*' in s:
+            tinfo = ida_typeinf.tinfo_t()
+            try:
+                # parse_decl is a global function: ida_typeinf.parse_decl(tinfo, til, decl, flags)
+                # Build decl with dummy name after *
+                _fp = re.search(r'\(([^)]*\*)\)\s*\(', s)
+                if _fp:
+                    _inner = _fp.group(1)
+                    _star_pos = _inner.rfind('*')
+                    _decl = s[:_fp.start(1)] + _inner[:_star_pos] + '*__x' + s[_fp.end(1):] + ';'
+                    _result = ida_typeinf.parse_decl(tinfo, til, _decl, 0)
+                    if _result is not None:
+                        return tinfo
+            except:
+                pass
         base = re.split(r'[<(]', s)[0].strip()
         tinfo = ida_typeinf.tinfo_t()
         if tinfo.get_named_type(til, base):
@@ -706,11 +722,17 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
 
     actual_size = result_tinfo.get_size()
     if actual_size == 0xFFFFFFFFFFFFFFFF:
-        log("[FATAL] %s: TAUDT_FIXED struct 'invalid' (get_size=-1). "
-            "binary_size=%d, members=%d, base=%s. "
-            "Fix member offsets or types in annotation." % (
-                name, binary_size, len(members), base_class or '(none)'))
-        return (False, "TAUDT_FIXED invalid for %s (get_size=-1)" % name)
+        # TAUDT_FIXED with union members (same-offset variants) causes IDA to
+        # report get_size=-1 even though the UDT was created successfully.
+        # Use binary_size as the authoritative size for validation.
+        if binary_size > 0:
+            actual_size = binary_size
+        else:
+            log("[FATAL] %s: TAUDT_FIXED struct 'invalid' (get_size=-1). "
+                "binary_size=%d, members=%d, base=%s. "
+                "Fix member offsets or types in annotation." % (
+                    name, binary_size, len(members), base_class or '(none)'))
+            return (False, "TAUDT_FIXED invalid for %s (get_size=-1)" % name)
     # When created without base members (_base_offset==0), actual_size may
     # be smaller than binary_size (base class portions are missing). Accept it.
     if is_flexible:

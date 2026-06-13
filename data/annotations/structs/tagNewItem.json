@@ -1,7 +1,7 @@
 {
   "name": "tagNewItem",
   "binary_size": 16,
-  "_known_members_comment": "Fields with 'union':true at same offset become anonymous union in generated C++. nHP is int in game mode, fnHP in editor mode.",
+  "_known_members_comment": "+4/+8 are function pointers. +12 is union of function pointer and float. The int variants (nHP/nGP/nMP) have zero usage in the codebase and are removed. PalScript at [463] is accessed via reinterpret_cast from fnHP address, spanning multiple elements.",
   "known_members": {
     "0": {
       "name": "dwItemID",
@@ -9,40 +9,26 @@
       "source": "annotation"
     },
     "4": {
-      "name": "nHP",
-      "type": "int",
-      "union": true
-    },
-    "4_1": {
       "name": "fnHP",
       "type": "int (__thiscall *)(void *, unsigned long)",
-      "union": true,
-      "note": "function pointer when dwItemID indicates editor/script type"
+      "source": "annotation"
     },
     "8": {
-      "name": "nGP",
-      "type": "int",
-      "union": true
-    },
-    "8_1": {
       "name": "fnGP",
       "type": "int (__thiscall *)(void *, unsigned long)",
-      "union": true
+      "source": "annotation"
     },
     "12": {
-      "name": "nMP",
-      "type": "int",
-      "union": true
-    },
-    "12_1": {
       "name": "fnMP",
       "type": "int (__thiscall *)(void *, unsigned long)",
-      "union": true
+      "union": true,
+      "source": "annotation"
     },
-    "12_2": {
+    "12_1": {
       "name": "fMP",
       "type": "float",
-      "union": true
+      "union": true,
+      "source": "annotation"
     }
   }
 }

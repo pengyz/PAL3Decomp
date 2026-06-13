@@ -355,8 +355,10 @@ def main():
 
                 code = str(cfunc)
                 code = resolve_orphan_ordinals(code)
+                code = _normalize_ida_type(code)
                 sig = cfunc.type.dstr()
                 sig = resolve_orphan_ordinals(sig)
+                sig = _normalize_ida_type(sig)
                 # Fix Hex-Rays ecx register elision: 'ClassName *vN; // ecx' where
                 # vN is actually 'this' (assignment elided by Hex-Rays optimizer).
                 # Only fix when vN is typed as the current class and never assigned.
@@ -449,6 +451,14 @@ def main():
     with open(LOG_FILE, 'w', encoding='utf-8') as f:
         f.write("\n".join(log_lines))
     idc.qexit(0)
+
+
+def _normalize_ida_type(t):
+    """Normalize IDA type strings to VC6-compatible C types."""
+    t = t.replace('unsigned __int32', 'unsigned int')
+    t = t.replace('signed __int32', 'int')
+    t = t.replace('__int32', 'int')  # bare __int32 (after signed/unsigned handled)
+    return t
 
 
 def export_structs(log):
@@ -558,6 +568,17 @@ def export_structs(log):
                 um = udt[mi]
                 mname = um.name if um.name is not None else '_field_%X' % (um.offset // 8)
                 mtype_str = um.type.dstr() if um.type else 'int'
+                # Normalize __int32 → int (VC6 treats them as distinct types)
+                mtype_str = _normalize_ida_type(mtype_str)
+                # TAUDT_FIXED with per-member union (same offset, multiple types)
+                # can cause IDA to serialize some member types as _BYTE[]/_BYTE[1].
+                # Fall back to annotation known_members for the correct type.
+                if mtype_str in ('_BYTE[]', '_BYTE[1]', '_BYTE'):
+                    _ann_members = _ann_structs.get(type_name, {}).get('known_members', {})
+                    for _k, _v in _ann_members.items():
+                        if _v.get('name') == mname and _v.get('type', '') != mtype_str:
+                            mtype_str = _v['type']
+                            break
                 members.append({'name': mname, 'type': mtype_str, 'offset': um.offset // 8})
 
         # Detect base classes from UDT members (anonymous baseclass members)
