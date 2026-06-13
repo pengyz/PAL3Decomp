@@ -49,7 +49,7 @@
     "276": {
       "name": "m_pArrayData",
       "type": "char *",
-      "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs | type_fix:int→void*(pointer assignment+free semantics)",
+      "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs | type_fix:int\u2192void*(pointer assignment+free semantics)",
       "note": "replaced void* with char* (IDB struct compat)"
     },
     "0": {
@@ -408,7 +408,7 @@
       "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA"
     },
     "816": {
-      "name": "m_Static_816",
+      "name": "m_SubStatic",
       "type": "UIStatic",
       "source": "ctor:UIStatic::_UIStatic"
     },
