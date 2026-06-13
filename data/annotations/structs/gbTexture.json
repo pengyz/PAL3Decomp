@@ -26,6 +26,11 @@
       "name": "nLevels",
       "type": "int",
       "source": "annotation"
+    },
+    "0": {
+      "name": "vfptr",
+      "type": "void *",
+      "source": "annotation: vtable ptr fix for ->0"
     }
   },
   "base_class": [
@@ -37,10 +42,22 @@
       "addr": "0x100F57E8",
       "base": null,
       "slots": [
-        {"addr": "0x1001BD30", "from": null},
-        {"addr": "0x1001BEA0", "from": null},
-        {"addr": "0x1001BF80", "from": null},
-        {"addr": "0x1001C010", "from": null}
+        {
+          "addr": "0x1001BD30",
+          "from": null
+        },
+        {
+          "addr": "0x1001BEA0",
+          "from": null
+        },
+        {
+          "addr": "0x1001BF80",
+          "from": null
+        },
+        {
+          "addr": "0x1001C010",
+          "from": null
+        }
       ]
     }
   ],

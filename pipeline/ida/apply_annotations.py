@@ -634,7 +634,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     # Union members use "0", "0_1", "0_2" keys (all at offset 0)
     for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0], 0)):
         offset = int(off_str.split('_')[0], 0)
-        if base_class and offset < base_size:
+        if base_class and offset < base_size and minfo.get("name") != "vfptr":
             continue
 
         mname = minfo["name"]
