@@ -1,0 +1,93 @@
+  File "/home/peng/.idapro/plugins/HexRaysPyTools/callbacks/scanners.py", line 130, in update
+    if ctx.form_type == idaapi.BWN_FUNCS:
+Please use "widget_type" instead of "form_type" ("form_type" is kept for backward-compatibility, and will be removed soon.)
+
+  bytes   pages size description
+--------- ----- ---- --------------------------------------------
+ 38731776  4728 8192 allocating memory for b-tree...
+  8577024  1047 8192 allocating memory for virtual array...
+   262144    32 8192 allocating memory for name pointers...
+-----------------------------------------------------------------
+ 47570944            total memory allocated
+
+Loading processor module /home/peng/ida-pro-9.1/procs/pc.so for metapc...Initializing processor module metapc...OK
+Loading type libraries...
+Autoanalysis subsystem has been initialized.
+[DEBUG] Demangled names have been initialized
+[Info] Collecting information about imports
+[Info] Done...
+Database for file 'PAL3.exe' has been loaded.
+Hex-Rays Decompiler plugin has been loaded (v9.1.0.250226)
+  The hotkeys are F5: decompile, Ctrl-F5: decompile all.
+
+  Please check the Edit/Plugins menu for more information.
+Hex-rays version 9.1.0.250226 has been detected, gooMBA plugin ready to use
+[HappyIDA] Plugin initialized
+Failed while executing plugin_t.init():
+Traceback (most recent call last):
+  File "/home/peng/.idapro/plugins/HexRaysPyTools.py", line 29, in init
+    const.init()
+  File "/home/peng/.idapro/plugins/HexRaysPyTools/core/const.py", line 36, in init
+    EA64 = idaapi.get_inf_structure().is_64bit()
+AttributeError: module 'idaapi' has no attribute 'get_inf_structure'
+ -> OK
+pipeline/ida/test_fnptr.py: module 'ida_typeinf' has no attribute 'get_idtil'
+Traceback (most recent call last):
+  File "/home/peng/ida-pro-9.1/python/ida_idaapi.py", line 501, in IDAPython_ExecScript
+    exec(code, g)
+  File "pipeline/ida/test_fnptr.py", line 3, in <module>
+    til = ida_typeinf.get_idtil()
+AttributeError: module 'ida_typeinf' has no attribute 'get_idtil'
+ -> OK
+Flushing buffers, please wait...ok
+[HappyIDA] Plugin terminated
+Unloading IDP module /home/peng/ida-pro-9.1/procs/pc.so...  File "/home/peng/.idapro/plugins/HexRaysPyTools/callbacks/scanners.py", line 130, in update
+    if ctx.form_type == idaapi.BWN_FUNCS:
+Please use "widget_type" instead of "form_type" ("form_type" is kept for backward-compatibility, and will be removed soon.)
+IDA has found an unpacked version of database: /home/peng/workspace/PAL3Decomp/original/PAL3.exe.i64
+on the disk.
+
+Should we proceed with the unpacked files?
+ -> Pro~c~eed with unpacked base
+
+  bytes   pages size description
+--------- ----- ---- --------------------------------------------
+ 38731776  4728 8192 allocating memory for b-tree...
+  8577024  1047 8192 allocating memory for virtual array...
+   262144    32 8192 allocating memory for name pointers...
+-----------------------------------------------------------------
+ 47570944            total memory allocated
+
+Loading processor module /home/peng/ida-pro-9.1/procs/pc.so for metapc...Initializing processor module metapc...OK
+Loading type libraries...
+Autoanalysis subsystem has been initialized.
+[DEBUG] Demangled names have been initialized
+[Info] Collecting information about imports
+[Info] Done...
+Database for file 'PAL3.exe' has been loaded.
+Hex-Rays Decompiler plugin has been loaded (v9.1.0.250226)
+  The hotkeys are F5: decompile, Ctrl-F5: decompile all.
+
+  Please check the Edit/Plugins menu for more information.
+Hex-rays version 9.1.0.250226 has been detected, gooMBA plugin ready to use
+[HappyIDA] Plugin initialized
+Failed while executing plugin_t.init():
+Traceback (most recent call last):
+  File "/home/peng/.idapro/plugins/HexRaysPyTools.py", line 29, in init
+    const.init()
+  File "/home/peng/.idapro/plugins/HexRaysPyTools/core/const.py", line 36, in init
+    EA64 = idaapi.get_inf_structure().is_64bit()
+AttributeError: module 'idaapi' has no attribute 'get_inf_structure'
+ -> OK
+Test decl: int (__thiscall *__x)(void *, unsigned long);
+pipeline/ida/test_fnptr.py: 'tinfo_t' object has no attribute 'parse_decl'
+Traceback (most recent call last):
+  File "/home/peng/ida-pro-9.1/python/ida_idaapi.py", line 501, in IDAPython_ExecScript
+    exec(code, g)
+  File "pipeline/ida/test_fnptr.py", line 20, in <module>
+    ok = tinfo.parse_decl(til, _decl, flags_val)
+AttributeError: 'tinfo_t' object has no attribute 'parse_decl'
+ -> OK
+Flushing buffers, please wait...ok
+[HappyIDA] Plugin terminated
+Unloading IDP module /home/peng/ida-pro-9.1/procs/pc.so...

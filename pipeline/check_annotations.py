@@ -87,7 +87,7 @@ def check():
     # Track (name, normalized_signature) for duplicate detection
     sig_index = {}  # (name, sig_norm) -> first_addr
     for addr, info in funcs.items():
-        if not re.match(r'^0x[0-9A-F]{8}$', addr):
+        if not re.match(r'^0x[0-9A-Fa-f]{8}$', addr):
             errors.append(f"functions[{addr}]: invalid address format")
         if not info.get('name'):
             errors.append(f"functions[{addr}]: missing name")
