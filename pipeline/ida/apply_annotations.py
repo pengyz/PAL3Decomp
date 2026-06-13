@@ -1580,8 +1580,10 @@ def apply_annotations():
 
     log("[5] Vtable .rdata typed: %d/%d" % (vt_applied, len(vtable_jobs)))
 
-    # Wait for type system to settle before applying signatures
+    # Wait for type system to settle then clear Hex-Rays caches
+    # so next export uses corrected struct definitions.
     ida_auto.auto_wait()
+    ida_hexrays.clear_cached_cfuncs()
 
     # --- 6. Function signatures (after structs so types are resolved) ---
     import re as _re_sig
