@@ -24,7 +24,7 @@
   "0x0056ABA4": {
     "name": "off_56ABA4",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056AF80": {
     "name": "off_56AF80",
@@ -34,47 +34,47 @@
   "0x0056B504": {
     "name": "off_56B504",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056B518": {
     "name": "off_56B518",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056B52C": {
     "name": "off_56B52C",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056B898": {
     "name": "off_56B898",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056B97C": {
     "name": "off_56B97C",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056B990": {
     "name": "off_56B990",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056BA08": {
     "name": "off_56BA08",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056BA1C": {
     "name": "off_56BA1C",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056C548": {
     "name": "off_56C548",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056C568": {
     "name": "g_MonsterEntryTable",
@@ -88,7 +88,7 @@
   "0x0056D5D8": {
     "name": "off_56D5D8",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056D604": {
     "name": "g_pfnCallback",
@@ -97,7 +97,7 @@
   "0x0056E130": {
     "name": "off_56E130",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056E15C": {
     "name": "g_ArcSceneMonsterTable2",
@@ -111,32 +111,32 @@
   "0x0056F1A4": {
     "name": "off_56F1A4",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056F1B8": {
     "name": "off_56F1B8",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056F1CC": {
     "name": "off_56F1CC",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056F1E0": {
     "name": "off_56F1E0",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056F1F4": {
     "name": "off_56F1F4",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056F208": {
     "name": "off_56F208",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x0056FC8C": {
     "name": "lpFileName",
@@ -243,12 +243,12 @@
   "0x00570298": {
     "name": "off_570298",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x00570310": {
     "name": "off_570310",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x00570618": {
     "name": "lpString",
@@ -257,32 +257,32 @@
   "0x005706AC": {
     "name": "off_5706AC",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x005706C0": {
     "name": "off_5706C0",
     "reason": "rdata array end sentinel used as boundary in pointer arithmetic",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x00570748": {
     "name": "off_570748",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x00570754": {
     "name": "off_570754",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x005707D0": {
     "name": "off_5707D0",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x00570904": {
     "name": "off_570904",
     "reason": "rdata offset: codegen auto-substitutes",
-    "type": "skip"
+    "type": "const char *"
   },
   "0x00572B3C": {
     "name": "SubKey",
@@ -3364,5 +3364,15 @@
     "name": "pEnd",
     "type": "skip",
     "reason": "address within g_SceneMgr range, not an independent global"
+  },
+  "0x56B794": {
+    "name": "off_56B794",
+    "type": "const char *",
+    "reason": ".rdata string constant"
+  },
+  "0x5706CC": {
+    "name": "off_5706CC",
+    "type": "const char *",
+    "reason": ".rdata string constant"
   }
 }
