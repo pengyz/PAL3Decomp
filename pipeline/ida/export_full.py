@@ -637,8 +637,7 @@ def export_structs(log):
         _ea = _s.start_ea
         while _ea < _s.end_ea:
             _name = idc.get_name(_ea)
-            if _name and not _name.startswith('dword_') and not _name.startswith('byte_') \
-                    and not _name.startswith('word_') and not _name.startswith('off_'):
+            if _name:
                 # Skip non-C-identifier names: mangled C++ (??..., ?...@...),
                 # decorated imports (...@...), RTTI data (__TI...), etc.
                 # These are linker artifacts, not source-level global variables.

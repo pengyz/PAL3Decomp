@@ -1226,14 +1226,21 @@ def apply_annotations():
     # --- 2. Globals (names only; types deferred to step 6b after structs) ---
     globs = data.get("globals", {})
     g_named = 0
+    g_typed = 0
+    til = ida_typeinf.get_idati()
     for addr_str, info in globs.items():
         addr = int(addr_str, 16)
         name = info.get("name", "")
+        gtype = info.get("type", "")
         if name:
             if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                 g_named += 1
+        # Set type for globals with explicit type annotations (skip "skip" and empty)
+        if name and gtype and gtype != "skip":
+            if idc.SetType(addr, gtype):
+                g_typed += 1
 
-    log("[2] Globals: named=%d/%d (types deferred)" % (g_named, len(globs)))
+    log("[2] Globals: named=%d/%d, typed=%d (incl. deferred)" % (g_named, len(globs), g_typed))
 
     # --- 2b. SDK types (from data/annotations/sdk_types.json) ---
     _sdk_path = os.path.join(ANNOTATIONS_DIR, "sdk_types.json")
