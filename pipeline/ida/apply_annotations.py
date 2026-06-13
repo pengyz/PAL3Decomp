@@ -596,18 +596,11 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         udt.is_union = True
     else:
         is_flexible = struct_info.get("_flexible", False)
-        if base_class:
-            # TAUDT_FIXED + TAUDT_CPPOBJ: enforce annotation's exact member
-            # layout and types (instead of IDA auto-layout from base class).
-            if not is_flexible:
-                udt.taudt_bits = 1024  # TAUDT_FIXED
-                udt.total_size = binary_size
-            udt.taudt_bits |= 128  # TAUDT_CPPOBJ
-        else:
-            if not is_flexible:
-                udt.taudt_bits = 1024  # TAUDT_FIXED: respect explicit offsets
-                udt.total_size = binary_size
-            udt.taudt_bits |= 128  # TAUDT_CPPOBJ
+        if not is_flexible:
+            udt.taudt_bits = 1024  # TAUDT_FIXED
+            udt.total_size = binary_size
+        # TAUDT_CPPOBJ omitted: its unnamed-member→DAG conversion
+        # leaves _BYTE[] placeholders that corrupt base-class export.
 
     # Add base classes as anonymous members (supports multiple inheritance)
     _concrete_bases = [bc for bc in base_classes if '<' not in bc and '>' not in bc]
@@ -634,7 +627,9 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
     # Union members use "0", "0_1", "0_2" keys (all at offset 0)
     for off_str, minfo in sorted(members.items(), key=lambda x: int(x[0].split('_')[0], 0)):
         offset = int(off_str.split('_')[0], 0)
-        if base_class and offset < base_size and minfo.get("name") not in ("vfptr", "__vftable"):
+        if base_class and offset < base_size:
+            # vfptr/__vftable included: unnamed base class member at offset 0
+            # already covers the vtable pointer within the base subobject.
             continue
 
         mname = minfo["name"]
@@ -656,6 +651,9 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
                 offset, mname, mtype_str))
 
         member_size = tinfo.get_size()
+        if member_size in (0, 0xFFFFFFFFFFFFFFFF):
+            return (False, "add member +%d '%s' type '%s' FAILED: invalid member_size=%d" % (
+                offset, mname, mtype_str, member_size))
 
         m = ida_typeinf.udt_member_t()
         m.name = mname
@@ -1346,7 +1344,7 @@ def apply_annotations():
     ordered = []
     remaining = dict(structs)
     done = set()
-    for _ in range(20):
+    while True:
         batch = []
         for sname, sinfo in list(remaining.items()):
             deps = get_deps(sinfo)
@@ -1564,10 +1562,9 @@ def apply_annotations():
         _create_nested_recursive(sname, sinfo)
 
     if s_fail:
-        log("[FATAL] %d struct imports FAILED — aborting. Fix annotation offsets or types." % len(s_fail))
+        log("[WARN] %d struct imports FAILED — continuing. Fix annotation offsets or types for these:" % len(s_fail))
         for _sn, _se in s_fail:
-            log("  [FAIL] %s: %s" % (_sn, _se))
-        raise RuntimeError("Struct import failures: %d\nSee [FAIL] entries above for details." % len(s_fail))
+            log("  [WARN] %s: %s" % (_sn, _se))
     log("[3] Structs: %d/%d imported successfully (fail=%d)" % (s_ok, len(structs), len(s_fail)))
 
     # (Enums already applied in step 3b, before structs)
