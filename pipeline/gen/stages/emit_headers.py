@@ -1225,25 +1225,72 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     try:
         ann_data_fb = _get_ida_structs()
         ann_struct_fb = ann_data_fb.get(cls_name, {})
-        # Convert data_members list to offset-keyed dict for member iteration
+        # Convert data_members list to offset-keyed dict of lists for member iteration
+        # (same-offset members = union variants)
         ann_members = {}
         for _dm in ann_struct_fb.get('data_members', []):
-            _off = _dm.get('offset', 0)
-            ann_members[str(_off)] = _dm
+            _off = str(_dm.get('offset', 0))
+            ann_members.setdefault(_off, []).append(_dm)
         ann_size = ann_struct_fb.get('size')
         if ann_members or ann_size:
-            sorted_members = sorted(ann_members.items(), key=lambda x: int(x[0])) if ann_members else []
             start_off = base_size
-            for off_str, m in sorted_members:
-                mname = m.get('name', '_field_%04X' % int(off_str))
-                mtype = m.get('type', 'int')
+            sorted_offsets = sorted(ann_members, key=lambda x: int(x))
+
+            def _emit_member(m, off, mname, mtype):
+                """Emit a single member line (with type remap + function pointer fix)."""
                 # Remap IDA internal types to C types
                 for ida_type, c_type in TYPE_REMAP.items():
                     if ida_type in mtype:
                         mtype = mtype.replace(ida_type, c_type)
+                # Fix C99 flexible array
+                mtype = re.sub(r'\[\]', '[1]', mtype)
+                comment = m.get('comment', '') or m.get('description', '')
+                if comment:
+                    lines.append("    // %s" % comment)
+                arr_match = re.search(r'(\[(?:0x[0-9a-fA-F]+|\d+)\](?:\[(?:0x[0-9a-fA-F]+|\d+)\])*)$', mtype)
+                if arr_match:
+                    arr_part = arr_match.group(1)
+                    base_type = mtype[:arr_match.start()].rstrip()
+                    lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, off))
+                else:
+                    # Fix function pointer member syntax:
+                    # "int (__thiscall *)(void)" → "int (__thiscall *name)(void)"
+                    _fp_match = re.search(r'\(([^)]*\*)\)\s*\(', mtype)
+                    if _fp_match:
+                        _inner = _fp_match.group(1)
+                        _star_pos = _inner.rfind('*')
+                        mtype = mtype[:_fp_match.start(1)] + _inner[:_star_pos] + '*' + mname + mtype[_fp_match.end(1):]
+                        lines.append("    %s; // +0x%X" % (mtype, off))
+                    else:
+                        lines.append("    %s %s; // +0x%X" % (mtype, mname, off))
+                return _estimate_member_size(mtype)
+
+            for off_str in sorted_offsets:
+                group = ann_members[off_str]
                 off = int(off_str)
                 if off < start_off:
                     continue
+
+                if len(group) > 1:
+                    # Union: multiple variants at same offset
+                    if off > start_off:
+                        gap_size = off - start_off
+                        lines.append("    char _gap_%03X[%d]; // +0x%X" % (start_off, gap_size, start_off))
+                    lines.append("    union { // +0x%X" % off)
+                    union_sizes = []
+                    for m in group:
+                        mname = m.get('name', '_field_%04X' % off)
+                        _sz = _emit_member(m, off, mname, m.get('type', 'int'))
+                        union_sizes.append(_sz)
+                    lines.append("    };")
+                    member_size = max(union_sizes, default=4)
+                    start_off = off + member_size
+                    continue
+
+                m = group[0]
+                mname = m.get('name', '_field_%04X' % int(off_str))
+                mtype = m.get('type', 'int')
+                off = int(off_str)
                 # Skip vfptr at +0 for classes with vtables (compiler-generated)
                 if mname == 'vfptr' and off == 0 and class_vtable_slots(cls_name):
                     start_off = off + 4
@@ -1252,8 +1299,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 if off > start_off:
                     gap_size = off - start_off
                     lines.append("    char _gap_%03X[%d]; // +0x%X" % (start_off, gap_size, start_off))
-                # Fix C99 flexible array
-                mtype = re.sub(r'\[\]', '[1]', mtype)
                 # Full type restoration: annotation stores real C++ types,
                 # codegen outputs them directly (no flatten for IDA limitations)
                 if '<' in mtype or 'std::' in mtype:
@@ -1264,9 +1309,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     # fall back to char[N] for these cases only.
                     original_has_self_ref = (cls_name + '::') in mtype
                     if original_has_self_ref:
-                        idx_m = sorted_members.index((off_str, m))
-                        if idx_m + 1 < len(sorted_members):
-                            next_off = int(sorted_members[idx_m + 1][0])
+                        _skeys = sorted(ann_members, key=lambda x: int(x))
+                        try:
+                            _idx = _skeys.index(off_str)
+                        except ValueError:
+                            _idx = -1
+                        if _idx >= 0 and _idx + 1 < len(_skeys):
+                            next_off = int(_skeys[_idx + 1])
                         else:
                             next_off = int(ann_size) if ann_size and ann_size != '?' else off + 4
                         msize = next_off - off
@@ -1289,27 +1338,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     _flat = '%s_%s' % (cls_name, _inner)
                     if (OUTPUT_DIR / ('%s.h' % _flat)).exists():
                         mtype = _flat
-                # Emit member with real type
-                comment = m.get('comment', '') or m.get('description', '')
-                arr_match = re.search(r'(\[(?:0x[0-9a-fA-F]+|\d+)\](?:\[(?:0x[0-9a-fA-F]+|\d+)\])*)$', mtype)
-                if comment:
-                    lines.append("    // %s" % comment)
-                if arr_match:
-                    arr_part = arr_match.group(1)
-                    base_type = mtype[:arr_match.start()].rstrip()
-                    lines.append("    %s %s%s; // +0x%X" % (base_type, mname, arr_part, off))
-                else:
-                    # Fix function pointer member syntax:
-                    # "void (*)(void)" + name = "void (*)(void) name" (WRONG)
-                    # Should be: "void (*name)(void)"
-                    _fp_match = re.search(r'\((\*)\)\(', mtype)
-                    if _fp_match:
-                        mtype = mtype[:_fp_match.start(1)] + '*' + mname + mtype[_fp_match.end(1):]
-                        lines.append("    %s; // +0x%X" % (mtype, off))
-                    else:
-                        lines.append("    %s %s; // +0x%X" % (mtype, mname, off))
-                # Estimate member size to compute next start_off
-                member_size = _estimate_member_size(mtype)
+                member_size = _emit_member(m, off, mname, mtype)
                 start_off = off + member_size
             # Tail padding to reach total size
             if ann_size and ann_size != '?' and int(ann_size) > start_off:

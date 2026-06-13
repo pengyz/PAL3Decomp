@@ -1,6 +1,7 @@
 {
   "name": "tagNewItem",
   "binary_size": 16,
+  "_known_members_comment": "Fields with 'union':true at same offset become anonymous union in generated C++. nHP is int in game mode, fnHP in editor mode.",
   "known_members": {
     "0": {
       "name": "dwItemID",
@@ -10,25 +11,38 @@
     "4": {
       "name": "nHP",
       "type": "int",
-      "source": "annotation — also fnPtr or PalScript base via reinterpret_cast; discriminated by dwItemID"
+      "union": true
+    },
+    "4_1": {
+      "name": "fnHP",
+      "type": "int (__thiscall *)(void *, unsigned long)",
+      "union": true,
+      "note": "function pointer when dwItemID indicates editor/script type"
     },
     "8": {
       "name": "nGP",
       "type": "int",
-      "source": "annotation"
+      "union": true
+    },
+    "8_1": {
+      "name": "fnGP",
+      "type": "int (__thiscall *)(void *, unsigned long)",
+      "union": true
     },
     "12": {
       "name": "nMP",
       "type": "int",
-      "source": "annotation — also float via reinterpret_cast in some elements"
+      "union": true
+    },
+    "12_1": {
+      "name": "fnMP",
+      "type": "int (__thiscall *)(void *, unsigned long)",
+      "union": true
+    },
+    "12_2": {
+      "name": "fMP",
+      "type": "float",
+      "union": true
     }
-  },
-  "notes": [
-    "tagNewItem is a discriminated union. dwItemID determines field interpretation:",
-    "  — values: nHP(int)/nGP(int)/nMP(int) for game item data",
-    "  — fnPtrs: nHP/fnHP, nMP/fnMP store function addresses in editor mode",
-    "  — PalScript: nHP (+4) is base of embedded PalScript for some elements (e.g. [463])",
-    "PalScript variant extends beyond 16 bytes — accessed via reinterpret_cast from nHP address.",
-    "C++ union cannot express this without changing sizeof(tagNewItem), hence the cast is inevitable."
-  ]
+  }
 }

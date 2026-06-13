@@ -349,15 +349,26 @@ def check():
                 errors.append(f"union[{sname}]: unions cannot have base_class")
         else:
             # Check member overlap (using known struct sizes) - structs only
-            sorted_m = sorted(members.items(), key=lambda x: int(x[0], 0))
+            # Parse known_member keys as "base_offset[_variant]" where variant is optional
+            def _base_off(key):
+                return int(key.split('_')[0], 0)
+            sorted_m = sorted(members.items(), key=lambda x: _base_off(x[0]))
             max_extent = 0
+            # Group by base offset to detect intentional per-member union variants
+            _off_groups = {}
+            for k, v in members.items():
+                _off_groups.setdefault(_base_off(k), []).append(k)
+            _union_offsets = {off for off, keys in _off_groups.items() if len(keys) > 1}
             for i in range(len(sorted_m) - 1):
-                off1 = int(sorted_m[i][0], 0)
+                off1 = _base_off(sorted_m[i][0])
                 m1 = sorted_m[i][1]
-                off2 = int(sorted_m[i + 1][0], 0)
+                off2 = _base_off(sorted_m[i + 1][0])
                 size1 = _estimate_member_size(m1.get('type', 'int'), structs)
                 end1 = off1 + size1
                 if end1 > off2:
+                    # Skip overlap for same-offset union variants
+                    if off1 == off2:
+                        continue
                     # CCBStage.m_Task[256] is an intentional union overlay
                     if sname == 'CCBStage' and m1.get('name') == 'm_Task':
                         continue
@@ -377,7 +388,7 @@ def check():
                     max_extent = end1
             # Check member alignment: pointers must be 4-aligned, shorts 2-aligned
             for off_str, m in members.items():
-                off = int(off_str, 0)
+                off = _base_off(off_str)
                 mtype = m.get('type', '')
                 name = m.get('name', '')
                 if off == 0:
@@ -396,7 +407,7 @@ def check():
                             f"structs[{sname}]: ALIGN: +{off} {name} = {mtype} (short not 2-aligned)")
             # Check last member extent vs binary_size
             if sorted_m:
-                last_off = int(sorted_m[-1][0])
+                last_off = _base_off(sorted_m[-1][0])
                 last_m = sorted_m[-1][1]
                 last_sz = _estimate_member_size(last_m.get('type', 'int'), structs)
                 last_end = last_off + last_sz
